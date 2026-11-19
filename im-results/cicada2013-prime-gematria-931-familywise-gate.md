@@ -1,58 +1,66 @@
-# 2013 prime-Gematria 931 → Stage11 title133: familywise source-text gate
+# 2013 prime-Gematria 931 → Stage11 title133: exact-tokenizer familywise gate
 
-**Decision:** the arithmetic is correct, but the phrase selection is not unique across the comparable 2013 message corpus. Treat 931→BASE29 133 as an interesting post-hoc correspondence, not an independently validated locator or cipher instruction.
+**Decision (19 November 2026):** the arithmetic is reproducible, but neither the prime-sum 931 nor the whole-sentence GP0 address252 is unique in the comparable 2013 corpus. Treat 931→BASE29 133 and the p50 cell252 correspondence as post-hoc structural observations, not independently validated locators, cipher instructions, or radix selectors.
 
 ## Fixed method and corpus
 
-The pinned helper transcription in [`analyze_gematria.py`](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/003-twitter/analyze_gematria.py) strips nonletters, uppercases, and greedily consumes a known two-letter digraph when present; otherwise it consumes one letter. Its lookup table has 29 distinct prime values (with aliases such as U/V and C/K). The same tokenization is applied unchanged to the complete comparable set of human-readable PGP clear-signed message bodies in the pinned 2013 archive.
+The preregistered participant tokenizer is applied **per alphabetic word**: uppercase; replace QU→CW and Q→K; greedily consume the longest lookup token (including 3-letter ING), then 2-letter digraphs, then singles. Preserve aliases U/V, C/K, S/Z, NG/ING, and IA/IO. The 29 distinct prime values are ranked in ascending order to produce GP0 indices 0–28. The GP-prime sum uses the raw prime values. This is the exact helper behavior frozen in [the familywise preregistration](../workplace/lp2-2013-all-around-p50-familywise-preregistration.md), not the earlier two-letter-only approximation.
 
-Included: the 2013 OS message, first-onion clue and hello messages, second-onion “everything you need” and ICMP messages, third-onion coordinate/standby messages, fourth-onion no-email message, and final invitation. Excluded before scoring: duplicate unsigned OS text, hex/gzip dumps, binary whitespace-stego payloads (`whitespace-message.txt`, `gematria.jpg.asc`), raw tweet hex stream, and public-domain source books. The extracted message bodies, original source blob SHAs, and exact selection rule are preserved in `im-results/data/cicada2013-clear-signed-text-corpus.json`.
+Included are the ten human-readable PGP clear-signed message bodies in the pinned 2013 corpus: the OS message, first-onion clue and hello, second-onion everything-you-need and ICMP, third-onion coordinate/standby bodies, fourth-onion no-email, and final invitation. Excluded before scoring are the duplicate unsigned OS text, hex/gzip dumps, binary whitespace-stego payloads, raw tweet hex stream, and public-domain source books. The exact bodies, source paths, blob SHAs, and selection rule are preserved in `im-results/data/cicada2013-clear-signed-text-corpus.json`.
 
-## Full-message outputs
+The OS screen itself is preserved from the original ISO but is **not PGP-signed**. A separate clear-signed `message.txt.asc` counterpart contains the same text. The signed 2013 TCP protocol authenticates integer BASE29 conversion; it does not authenticate text-GP0 summation or p50 addressing.
 
-| 2013 signed message | GP29 tokens | Prime sum | BASE29 |
-|---|---:|---:|---|
-| OS `message.txt.asc` | 27 | 1153 | `1AM` |
-| First-onion `clue.txt.asc` | 50 | 2015 | `2BE` |
-| First-onion `hello.txt.asc` | 61 | 2398 | `2OK` |
-| Second-onion `everything-you-need.txt.asc` | 92 | 4008 | `4M6` |
-| Second-onion `icmp-echo.asc` | 46 | 1857 | `261` |
-| Third-onion `annapolis-md.txt.asc` | 0 | 0 | `0` |
-| Third-onion `okinawa-japan.txt.asc` | 0 | 0 | `0` |
-| Third-onion `standby.txt.asc` | 21 | 974 | `14H` |
-| Fourth-onion `no-email.txt.asc` | 106 | 4880 | `5N8` |
-| Final `invitation.asc` | 1709 | 76274 | `33K4` |
+## Target phrase
 
-The selected phrase “THE KEY IS ALL AROUND YOU” is a **19-token substring** of the OS message, not the full message. Its prime values sum to **931**, and (931=1\times29^2+3\times29+3), so BASE29 is `133`. The complete OS message instead sums to **1153**, BASE29 `1AM`.
+The phrase `THE KEY IS ALL AROUND YOU` tokenizes to 19 GP29 tokens:
+
+`TH E K E Y I S A L L A R O U N D Y O U`
+
+| Measure | Result |
+|---|---:|
+| GP0 token sums by word | `[20, 49, 25, 64, 64, 30]` |
+| Whole-phrase GP0 sum | **252** |
+| Whole-phrase raw GP-prime sum | **931** |
+| BASE29(931) | **133** |
+| 20-letter A0Z25 sum | **241** |
+| 20-letter A1Z26 sum | **261** |
+
+The full OS message is not the target phrase: it has 27 GP29 tokens, GP0 sum318, raw prime sum1153, and BASE29 `1AM`.
 
 ## Familywise 19-token scan
 
-There are **1,968** consecutive 19-token windows across the included corpus. **12** windows sum to 931:
+Across the ten messages there are **1,953** consecutive 19-token windows. The target is one of **20** windows with GP0 sum252 and one of **13** windows with raw GP-prime sum931. The complete hit starts are preserved by the reproducer; the prime-sum hit list is:
 
-| Source | Start token | 19-token window |
-|---|---:|---|
-| OS message | 0 | `TH E K E Y I S A L L A R O U N D Y O U` |
-| Fourth-onion no-email | 20 | `U T D I D N O T R E C E I V EA N E M A` |
-| Fourth-onion no-email | 65 | `A T C G M A I L C O M M A K E S U R E` |
-| Final invitation | 216 | `R E W O N T B EA N Y H I D D E N C O D` |
-| Final invitation | 246 | `E S S A G E S O R P H Y S I C A L T R` |
-| Final invitation | 730 | `W O U L D H A V E R E V EA L E D S O M` |
-| Final invitation | 766 | `Y R A N N Y A N D O P P R E S S I O N` |
-| Final invitation | 1001 | `E S O R D E C L I N E M E M B E R S H` |
-| Final invitation | 1102 | `N D O U B T E D L Y W O N D E R I NG W` |
-| Final invitation | 1451 | `I E V E TH A T E V E R Y H U M A N B E` |
-| Final invitation | 1452 | `E V E TH A T E V E R Y H U M A N B E I` |
-| Final invitation | 1463 | `H U M A N B E I NG H A S A R I G H T T` |
+| Source | Start token (0-based) |
+|---|---:|
+| OS `message.txt.asc` | 0 |
+| Fourth-onion `no-email.txt.asc` | 66 |
+| Final `invitation.asc` | 216, 377, 378, 379, 402, 408, 710, 941, 986, 1169, 1439 |
 
-The selected OS phrase is one of twelve hits; the same sum occurs repeatedly in unrelated prose, especially the long final invitation. The correspondence is therefore not rare within the relevant corpus. More importantly, it appears only after selecting a 19-token substring; the full OS message does not produce133.
+The 20 GP0=252 hits occur at starts: OS `message.txt.asc` 0; fourth-onion `no-email.txt.asc` 47; final invitation 71, 157, 211, 212, 387, 625, 683, 765, 913, 942, 976, 1004, 1014, 1104, 1185, 1439, 1577, 1614. The selected OS phrase is therefore **one of 20**, not a unique 252 address. The 13/1,953 prime-sum family likewise defeats the 931→133 uniqueness claim.
 
-## Stage11 comparison
+## Direct-address and character controls
 
-The pinned Stage11 HTML has title `133`, one numeric element ID `331`, and **58** image links (0–57). There is no image or element ID `133`. The arithmetic `133 mod 58 = 17` would point to image17 only after inventing an otherwise unsupported modulo-58 rule. The factorization (133=7\times19) can point to image19 only after choosing a factorization rule; the HTML links all 58 images in ordinary order and does not privilege19. No further fixed Stage11 object is selected by133.
+Under the frozen zero-based row-major p50 table address rule, the GP0 19-token family yields **1,393 valid direct addresses**, of which **478** land on the 76-cell perimeter; **20** select a base60 token value of180 and **0** select a base59 value of180. All 20 base60=180 hits are the repeated GP0=252 address.
+
+The character-based controls use 20-letter windows after stripping spaces and punctuation:
+
+| Family | Windows | Valid addresses 0–255 | Perimeter | base60=180 | base59=180 |
+|---|---:|---:|---:|---:|---:|
+| A0Z25 | 2,031 | 1,777 | 593 | 28 | 0 |
+| A1Z26 | 2,031 | 1,267 | 484 | 24 | 0 |
+
+The target phrase's own character sums are241 and261, neither252. Nevertheless, unrelated character windows produce 28 and24 base60=180 perimeter hits. This is not an exceptional physical address under the character controls. Full-message GP0, raw-prime, A0Z25, and A1Z26 sums for all ten messages are recorded by the reproducer; none selects252 or931.
+
+## Cell252 and Stage11
+
+Cell252 is row31, column4 (zero-based), on the p50 outer perimeter. Its printed token is `30`: base60 value **180**, base59 value **177**. These are real table facts, but the whole-sentence GP0 family does not uniquely select the cell, and the table value does not choose a radix.
+
+The pinned Stage11 HTML has title `133`, numeric element ID `331`, and **58** image links (0–57). There is no image or element ID `133`. The operations `133 mod58 = 17` and `133 = 7×19` select image17 or image19 only after adding unsupported modulo/factorization rules. The 13/1,953 prime-sum family does not authenticate a Stage11 continuation.
 
 ## Conclusion
 
-The prime sum and BASE29 conversion reproduce exactly, but the familywise control defeats the claim that the selected phrase uniquely predicts title133. The full-message outputs do not yield133; 12/1,968 19-token windows yield931; the title is the only visible133 field; and no source instruction maps133 to a further asset. The 2013 OS / Stage11 relation remains a possible historical association, not a causal decoding route. Do not use it to justify further p50/p55 key fitting.
+The old two-letter-only tokenizer produced stale counts of 1,968 windows and12 prime-sum hits. The exact per-word participant tokenizer corrects these to **1,953 windows and13 hits**; the companion GP0 family has **20 hits** at252. Character controls independently produce many base60=180 hits. Therefore the whole-sentence `THE KEY IS ALL AROUND YOU` sum does **not** uniquely select p50 cell252, does not establish base60 over base59, and does not validate the downstream p53 receiver. The p53 H-inverse result remains a separate conditional consequence; it must not be used to tune or rescue the address grammar. The newer wordwise 49/27/75/177 motif is a separate family assigned under #1912 and is not part of this whole-sentence audit.
 
 ## Reproduction
 
@@ -60,4 +68,4 @@ Run from repository root:
 
 `node sims/cicada2013_prime_gematria_931_familywise.cjs`
 
-The script reads the pinned corpus snapshot in `im-results/data/cicada2013-clear-signed-text-corpus.json` and the Stage11 HTML at `resources/external/cicada2014-stage11-onion7-original-index.html`.
+The script reads only the pinned 2013 corpus, the original p50 32×8 base60 grid, and the pinned Stage11 HTML. It asserts the exact tokenizer, target phrase, all familywise counts, table values, and Stage11 metadata.
