@@ -364,6 +364,76 @@ The overlap at `IS21` is exact. The next authenticated token is `NUMBERS26`, whi
 
 This is structural solve-path evidence. It does not mean p50/base59 maps every signed word number to prose; the full adjacent-pair census shows the uniform-shift event is isolated.
 
+### P11 overlaps on THEIR25 and closes the full 19–29 clause
+
+A concurrent independent p11 result supplies the next two authenticated indices without reusing the p22 number map.
+
+The already selected p11 two-rune receiver is
+
+```text
+[11,14].
+```
+
+Read its fixed sum/difference coordinates:
+
+```text
+11 + 14 = 25
+11 - 14 = -3 = 26 mod29
+
+=> source25/source26
+=> THEIR NUMBERS.
+```
+
+That packet is manuscript-unique under its published family control in
+`im-results/lp2-p11-p27-numbers-direction-order.md`.
+
+The overlap with the p22 result is exact:
+
+```text
+p22 clause closure ends at THEIR25
+p11 raw packet begins     THEIR25 NUMBERS26.
+```
+
+The authenticated continuation is
+
+```text
+27 ARE
+28 THE
+29 DIRECTION.
+```
+
+Therefore the two independent manuscript objects jointly reconstruct the entire contiguous signed segment
+
+```text
+19 THEIR
+20 MEANING
+21 IS
+22 THE
+23 ROAD
+24 AND
+25 THEIR
+26 NUMBERS
+27 ARE
+28 THE
+29 DIRECTION.
+```
+
+This is also the same pair of five-word clauses linked independently by p33's established `THEIR RISE` operation:
+
+```text
+19..23  THEIR MEANING IS THE ROAD
+  +a=6
+25..29  THEIR NUMBERS ARE THE DIRECTION.
+```
+
+The three routes have different inputs:
+
+- p22 receiver ordinal/raw/plaintext plus the base59 number-direction map;
+- p11 untouched two-rune sum/difference packet;
+- p33 recovered `THEIR RISE` state translation.
+
+Their overlap turns the authenticated prose into a connected solve-path scaffold rather than a set of isolated semantic labels.
+
 ### Fixed-key manuscript control
 
 Hold the exact numeric key `[20,10,18,20]` fixed across all 509 unknown four-rune words, all nine authenticated four-rune targets, and both signs:

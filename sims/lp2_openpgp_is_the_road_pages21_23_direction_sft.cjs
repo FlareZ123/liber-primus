@@ -567,6 +567,30 @@ assert.deepEqual(
   p11Is.map((word) => [word.index, word.start, word.values]),
   [[11, 49, [11, 14]]]
 );
+
+const p11TheirNumbers = [
+  mod29(p11Is[0].values[0] + p11Is[0].values[1]),
+  mod29(p11Is[0].values[0] - p11Is[0].values[1]),
+];
+assert.deepEqual(p11TheirNumbers, [25, 26]);
+assert.deepEqual(
+  p11TheirNumbers.map((index) => source[index]),
+  ["THEIR", "NUMBERS"]
+);
+assert.deepEqual(
+  source.slice(25, 30),
+  ["THEIR", "NUMBERS", "ARE", "THE", "DIRECTION"]
+);
+assert.equal(reconstructedClause.at(-1), source[25]);
+const reconstructedFullClause = [
+  ...reconstructedClause,
+  ...source.slice(26, 30),
+];
+assert.deepEqual(
+  reconstructedFullClause,
+  ["THEIR", "MEANING", "IS", "THE", "ROAD", "AND", "THEIR", "NUMBERS", "ARE", "THE", "DIRECTION"]
+);
+assert.deepEqual(source.slice(19, 30), reconstructedFullClause);
 assert.deepEqual(
   p21Is.map((word) => [word.index, word.start, word.values]),
   [[33, 170, [24, 1]]]
@@ -657,6 +681,11 @@ console.log(JSON.stringify({
     page_numbers: [21, 22, 23],
   },
   p21_prior_state_packet: p21Packet,
+  p11_overlap: {
+    raw_sum_difference: p11TheirNumbers,
+    words: p11TheirNumbers.map((index) => source[index]),
+    full_clause: reconstructedFullClause,
+  },
   p22_prospective_holdout: {
     source_word: source[22],
     p50_token: tape[20],
