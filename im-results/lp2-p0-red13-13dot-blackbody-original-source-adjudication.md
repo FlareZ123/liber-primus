@@ -35,8 +35,27 @@ The first seven smaller red runes appear in seven connected components with area
 
 ## Consequence for actual cryptanalysis
 
-The original p0–p2 729-rune opening has a 13-rune red heading followed by a 716-rune chapter remainder. Treating p0 body as beginning at offset8 would introduce five authentic red heading runes into the wrong cipher register. The previous red8-marker8 key-switch hypothesis is excluded by this direct image reading. The older published total of 225 red runes should **not** be reduced by five based on p0. Other pages need their own source tests before elevating this old derivative census into a full-book photographic result.
+The original p0–p2 729-rune opening has a 13-rune red heading followed by a 716-rune chapter remainder. Treating p0 body as beginning at offset8 would introduce five authentic red heading runes into the wrong cipher register. The previous red8-marker8 key-switch hypothesis is excluded by this direct image reading. The older published total of 225 red runes should **not** be reduced by five based on p0.
 
-The external proposed Latin SECUENDI RATIO calculation is an unverified arithmetic fit on the existing red8/red5 two-word title, using separately chosen keys and cipher directions. The physical placement supplies neither key, nor its direction, nor a valid black-body continuation. Return to source-selected reversible operations and independent plaintext holdouts using the correct first thirteen red runes.
+## The 13-dot mark is not a source-selected cipher initial state (Issue #1905)
 
-**Decision:** retract the erroneous original-image correction; use marker offset13 and red title lengths 8+5 in every new image-faithful p0 decoder. This resolves a research input contradiction and produces zero recovered unknown plaintext.
+The p0 image establishes a precise *layout* boundary: 13 red heading runes, then the large red 13-dot mark at GP offset13, then black body. That is the only operation selected by this page itself: exclude the heading/marker from the black-body ciphertext register and begin the body at offset13. It does not specify a key, a GP29 direction, a state-update law or a reset schedule.
+
+The first later red 13-dot mark in physical reading order is the blind p2 consequence frozen in Issue #1905. Original p2 image **19.jpg** places it at GP offset **201**, exactly equal to p2's 201-rune count: it follows the final body rune and has no following p2 rune. P1 has no red 13-dot mark. The full LP2 annotation census finds **30 red 13-dot marks across 58 pages**: **19 internal**, **10 terminal**, and **one at page offset0** (p15). Thus p0's offset13 mark is one instance of a recurring punctuation family, not a uniform initial-state marker. P2's terminal placement is incompatible with treating every such mark as the beginning of a new cipher state. The p0 13-rune heading / 13-dot equality is a local layout alignment, not a key selector.
+
+| Original page | Red 13-dot offset | Page rune count | Position |
+| --- | ---: | ---: | --- |
+| p0 (17.jpg) | 13 | 262 | internal; after the 8+5 red heading |
+| p2 (19.jpg) | 201 | 201 | terminal; after the last body rune |
+| p15 | 0 | page-start | the only red 13-dot mark at offset0 |
+
+At most three low-description readings are warranted:
+1. **Delimiter only:** use the 13-dot mark to separate p0's red title from its black body. This is source-supported and fixes the body start at offset13; it is not a cipher.
+2. **Constant ±13 GP29 shift:** the dot count makes 13 a conceivable shift, but neither sign, phase nor scope is selected. It is not run.
+3. **Period-13 red-title key:** the 13 red title runes could be guessed as a repeating key, but the image gives no instruction that the title is a key and no sign or continuation rule. A related p0-title/2015-prime-delta composition was already tested and rejected; it is not repeated.
+
+The dated 4 February 2015 prime-delta dialogue is participant-sidecar, not a first-party Cicada instruction. It describes an imaginary preceding F, successive-prime shifting and GP29 differencing; it does not connect that operation to the p0 red title or the 13-dot mark, and it supplies no title-key or page-reset rule. The 2015 idea therefore cannot fill the missing selector.
+
+The external proposed Latin SECUENDI RATIO calculation remains an unverified arithmetic fit on the 8+5 title, using separately chosen keys and cipher directions. The physical placement supplies neither key nor direction. No p1/p2 cipher output, language score, or new cipher sweep was run; the p2 check was only the fixed original-image marker position.
+
+**Decision:** retain the corrected 8+5 red heading and body start at offset13. Treat the 13-dot glyph as recurring punctuation/section layout unless independent first-party evidence selects a cryptographic role. The p2 terminal control rejects a generic initial-state/reset interpretation. No unknown plaintext, key or cipher mechanism is recovered.
