@@ -274,6 +274,27 @@ This relation was recognized after the packet continuation and the numbered diag
 
 This is currently the strongest structural consequence of the red10 packet: it does more than quote authenticated source text or point to a previously interesting page. It closes onto the unique exceptional page in a distinct source-number navigation system.
 
+## Local plaintext evidence along the post-YOU loop
+
+The numbered-page cycle also overlaps existing local plaintext work on five of its six post-YOU source words:
+
+```text
+p33 -> strong WILL candidate
+p34 -> strong BE candidate
+p35 -> strong FOUND candidate
+p36 -> GOOD local inverse retired
+p37 -> strong LUCK candidate
+p38 -> strong BEWARE candidate.
+```
+
+The p33-p35 phrase was developed independently: p33 is selected by the DH/p50 state, carries the WILL inverse, and its two authored RISE consumers select p34 and p35 before their BE and FOUND receivers are consumed. The numbered diagonal later reaches the same three project pages as `WILL34 / BE35 / FOUND36`.
+
+The p37 LUCK result is stronger at the receiver-coordinate level: the diagonal's one-based `LUCK38 -> project p37 / word38` is exactly zero-based p37 word37, the receiver independently used by the LUCK double-index analysis.
+
+P38 BEWARE is selected by a different authored object, section5 and the LUCK predecessor state, rather than by the diagonal word ordinal. It is therefore a page/transition convergence rather than an identical local-word coordinate.
+
+This evidence profile is deliberately asymmetric. No replacement GOOD decoder is introduced after the canonical line-wrap correction invalidated the earlier p36 pseudo-word.
+
 ## Ciphertext-bearing anchor inside the GOOD / LUCK / BEWARE leg
 
 The numbered loop is not purely page arithmetic. Its LUCK coordinate coincides exactly with an independently developed local plaintext candidate.
