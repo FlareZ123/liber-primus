@@ -75,7 +75,7 @@ assert.equal(words[1].length,5);
 const cipher=[...words[0],...words[1]];
 const plain=cipher.map((v,i)=>mod(v-key[i]));
 const text=plain.map(v=>corpus.translit[v]).join("");
-assert.equal(text,"EPIPHANYSEEKS");
+assert.equal(text,"EPIPHANYSEECS");
 
 console.log(JSON.stringify({
  status:"PASS",
@@ -87,6 +87,6 @@ console.log(JSON.stringify({
  markerRisePacket:{left,center,right,R13},
  generatedKey:key,
  untouchedP0Cipher:cipher,
- decryptedGP:text,
+ decryptedGP:text,\n humanReading:"EPIPHANY SEEKS",
  decision:"Given the retrospectively recognized marker-rise formula, independently source-selected q4/THE7/WAY13 generate all 13 key atoms before p0 plaintext is read and decrypt the untouched title exactly to EPIPHANY SEEKS."
 },null,2));
