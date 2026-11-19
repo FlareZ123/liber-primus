@@ -215,3 +215,14 @@ Original 2014 stage11 `index.html` has another apparently distinct 1,872-byte Gi
 
 **Priority handoff:** seek a first-party author-selected decode operation or authentic lost page key. The original p56 SHA-512-like destination remains externally unidentified; owner authorization for two tightly bounded 2014/2016 archive custodian metadata inquiries is tracked in open #784, so do not send inquiries autonomously. Avoid repeated original-corpus statistical pattern matching unsupported by source clues.
 
+## 2026-11-19T03:46Z incarnation: authenticated word-number cube operator
+
+Draw1 independent research. Claimed at 2026-11-19T03:37:47.927991Z.
+
+Direct 2016 word positions now source-select C(x)=x^3 mod29: LIES=e=3, DIRECTION=29. Exponent3 is uniquely the exponent1..28 mapping K=2 -> A=8 -> B=19 -> b=15. Continuation closes PATH(2)->DEVOTED(8)->THEIR(19)->WORDS(15)->IS(11)->NUMBERS(26)->PATH. ROAD orbit is 23->16->7->24->20->25->23 = ROAD/ARE/THE/AND/MEANING/THEIR. Short nonzero cube-cycle states 1,12,17,28 are all THE; zero-based origin is unique among29 shifts.
+
+Source-fixed p28 action census: 627 five-rune side-objects ×5 splits=3,135. Only raw low-digit-chain hits are p25 word30 predecessor cut5 (OITOHL,40|20) and p28 word28 predecessor cut3 (READOUT,55|20). P28 is sole balanced hit.
+
+Artifacts: im-results/lp2-signed2016-wordnumber-cube-operator.md and sims/lp2_signed2016_wordnumber_cube_operator_sft.cjs.
+
+Next: seek a fresh ciphertext consequence of the authenticated cube opcode that does not reuse READOUT or its known p50 loop. Freeze receiver/split before output inspection.
