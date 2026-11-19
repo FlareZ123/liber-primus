@@ -30,6 +30,30 @@ No adjacency is produced by walk depths `p,g,a,b,A,B` under either radix, and ba
 
 Thus the source-derived shared secret `K=2`, rather than an after-the-fact choice of two hops, selects **WILL -> BE**.
 
+## Independent p50 boundary control for the WILL receiver
+
+The recovered WILL receiver at p0 141..144 is also the only complete p0 word bracketed by authenticated signed-word numbers.
+
+Charge every one of the 43 signed words, both p50 radices, and every complete printed p0 word. For each signed word, use its canonical GP0 as the p50 address. A p0 word qualifies only if at least one signed source lands exactly on its printed start and another signed source lands exactly on its printed end.
+
+The entire family has one result:
+
+```text
+base60 only
+p0 141..144, length4
+
+start141:
+  YOU, GP0 30 -> p50[30] = 141
+
+end144:
+  MEANING, GP0 77 -> p50[77] = 144
+  FALSE,   GP0 77 -> p50[77] = 144
+```
+
+Base59 produces no complete-word bracket anywhere on p0.
+
+This control is independent of the literal `2L` count clue and of the DH key derivation. It strengthens the claim that p0 141..144 is deliberately addressed by the authenticated carrier before its ciphertext is decrypted.
+
 ## The intermediate direction finds the next authenticated word length
 
 The two-hop walk has one intermediate value:
@@ -205,6 +229,7 @@ This warning alignment is corroborative rather than part of the receiver-selecti
 
 Established computationally in this report:
 
+- across all authenticated signed-word p50 outputs, both radices and all p0 words, p0 141..144 is the sole complete word whose start and end are both addressed;
 - among all seven DH-state walk depths, both radices and all signed adjacencies, only `K=2` gives a hit, `WILL -> BE`;
 - among all signed triples under that frozen walk, only `WILL BE FOUND` has an intermediate direction landing inside a p0 word whose printed length matches the third authenticated word;
 - the selected p0 word is 117..121, length5, before its ciphertext is consumed;
