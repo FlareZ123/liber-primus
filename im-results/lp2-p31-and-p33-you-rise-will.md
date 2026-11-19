@@ -67,7 +67,67 @@ Replay is exact:
 
 The shell ordering was recognized after AND was assigned by the authenticated source route. The next section supplies a source-selected helper page and a charged original-layout construction for the exact shell.
 
-## 2. GP0(AND)=56 selects solved p56; p31 layout derives the shell
+## 2. The numbered SEEK/AND pair gives a typed source-window instruction candidate
+
+The same two numbered objects have a second interpretation that uses only authenticated source positions.
+
+The signed source places `THE` at index1. The later clause-center THE positions are 12,17,22,28, and index1 acts as a literal unit radius around each one:
+
+```text
+12 ± 1 -> 11,13 -> IS / WAY
+17 ± 1 -> 16,18 -> ARE / MAP
+22 ± 1 -> 21,23 -> IS / ROAD
+28 ± 1 -> 27,29 -> ARE / DIRECTION.
+```
+
+So the four source clauses expose the fixed number grammar `center THE ± source THE1 -> its predicate/object neighbors`.
+
+Now charge every complete three-rune object on the authenticated numbered diagonal. There are eight. Interpret a packet `[center,subject,step]` only when both `source[center]` and `source[step]` are `THE`, and when `center-step` and `center+step` remain valid source positions. Exactly two objects satisfy that source typing, the consecutive p30/p31 pair already selected by SEEK/AND:
+
+```text
+p30 SEEK:
+[28,4,12]
+center THE28
+subject EMPTY4
+step THE12
+28-12=16 ARE
+28+12=40 PATHS
+
+=> EMPTY ARE THE PATHS
+
+p31 AND:
+[12,23,1]
+center THE12
+subject ROAD23
+step THE1
+12-1=11 IS
+12+1=13 WAY
+
+=> ROAD IS THE WAY
+```
+
+The readout is fixed as:
+
+```text
+[center, subject, step]
+ -> source[subject]
+ -> source[center-step], source[center], source[center+step].
+```
+
+The source typing selects the two objects before English quality is considered. The subject-first serialization was recognized after the typed pair was inspected, so preserve the outputs as a strong **instruction candidate** rather than authenticated plaintext.
+
+The semantic consequence has an existing independent consumer. ROAD and PATHS are the known GP0=54 ambiguity in the p35 FOUND direction graph. That graph independently selected ROAD. The new consecutive readout states:
+
+```text
+EMPTY ARE THE PATHS
+ROAD IS THE WAY
+```
+
+which selects the same branch in source-authored vocabulary. The authenticated source also places `FALSE PATHS` at indices39..40, giving a separate lexical echo of the negative PATHS branch.
+
+This is the first route in this report that explains the ROAD/PATHS choice in human-readable terms without changing the established direction arithmetic.
+
+## 3. GP0(AND)=56 selects solved p56; p31 layout derives the shell
 
 The source supplies a stronger helper-page selector before any p31 key is applied. Charge all 42 adjacent pairs in the authenticated 43-word message by exact GP0 equality. There is exactly one equal pair:
 
@@ -205,7 +265,7 @@ P33 is exactly the page on which the frozen p31 key has its sole cross-page lexi
 This navigation relation was recognized after the p33 YOU transfer, so retain that chronology. It does remove the previous need to invent an unexplained p31-to-p33 jump.
 
 
-## 3. Complete numbered-diagonal shell charge
+## 4. Complete numbered-diagonal shell charge
 
 Across the complete one-based numbered diagonal, only seven available objects have the same GP length as their source-assigned target:
 
@@ -242,7 +302,7 @@ Related existing controls:
 - p11: `im-results/lp2-p11-is-occurrence-hrect.md`
 - p37: `im-results/lp2-p37-luck-doubleindex-state-inverse.md`
 
-## 4. Freeze the p31 key: the only transfer is p33 YOU
+## 5. Freeze the p31 key: the only transfer is p33 YOU
 
 Now freeze the exact p31 key:
 
@@ -286,7 +346,7 @@ The p33 recovery is exact:
 
 This gives p33 a new local YOU candidate under a key fixed on a different page.
 
-## 5. SEEK AND YOU closes a source/page loop
+## 6. SEEK AND YOU closes a source/page loop
 
 The p31 transfer has a source-only return edge that was not used to derive its key. Charge every consecutive source trigram of width `K+1=3` and ask whether the terminal word's exact GP0 equals the zero-based index of the first word.
 
@@ -335,7 +395,7 @@ p30 SEEK.
 
 No new scalar is introduced. The source-side trigram relation is unique across all possible consecutive width-three windows, while the three manuscript edges were independently fixed by the corrected numbered route, the p31 helper, and source GP0 arithmetic. The page loop was recognized after the p33 YOU transfer, so preserve it as cross-mechanism convergence rather than a universal GP0 navigation law.
 
-## 6. THEIR RISE moves YOU to the independent WILL receiver
+## 7. THEIR RISE moves YOU to the independent WILL receiver
 
 P33 already contains the independently recovered hidden instruction:
 
@@ -376,7 +436,7 @@ WILL(word35)
 
 No new rise magnitude is introduced.
 
-## 7. Relation to the existing suffix
+## 8. Relation to the existing suffix
 
 Independent work already recovers the page sequence:
 
@@ -400,7 +460,7 @@ SEEK AND YOU WILL BE FOUND.
 
 The p31 helper packet now supplies the same independently established `RISE=+2` page operation used elsewhere, so the route continues p31 -> p33 without introducing a new step magnitude. The stronger new facts are the p31 AND inverse, the unchanged-key p33 YOU transfer, this reused +2 page rise, and the p33 +6 YOU -> WILL word transition.
 
-## 8. Evidence boundary
+## 9. Evidence boundary
 
 Preserve p31 AND as a strong source-constrained local recovery candidate, and p33 YOU as a fixed-key transfer candidate. Preserve the independent WILL result unchanged.
 
