@@ -210,6 +210,61 @@ assert.equal(and.object.start, 126);
 assert.deepEqual(and.object.values, [state.K * state.a, state.p, 1]);
 assert.deepEqual(and.object.values, [12, 23, 1]);
 
+// Reuse the already fixed zero-based signed-word convention as a literal
+// number-to-word readout. Each GP rune value is an authenticated source
+// index in the first 29 positions.
+function lexicalize(values, origin) {
+  return values.map((value) => {
+    const index = origin === 0 ? value : value - 1;
+    return index >= 0 && index < source.length ? source[index].word : null;
+  });
+}
+
+assert.deepEqual(lexicalize(seek.object.values, 0), ["THE", "THE", "THE"]);
+assert.deepEqual(lexicalize(and.object.values, 0), ["THE", "ROAD", "THE"]);
+
+function lexicalTransitions(origin) {
+  const hits = [];
+  for (let index = 0; index + 1 < diagonal.length; index += 1) {
+    const first = diagonal[index];
+    const second = diagonal[index + 1];
+    if (!first.object || !second.object) continue;
+    if (first.object.values.length !== 3 || second.object.values.length !== 3) continue;
+
+    const left = lexicalize(first.object.values, origin);
+    const right = lexicalize(second.object.values, origin);
+    const x = left[0];
+    if (
+      x !== null &&
+      left.every((word) => word === x) &&
+      right[0] === x &&
+      right[2] === x &&
+      right[1] !== null &&
+      right[1] !== x
+    ) {
+      hits.push({
+        sourceIndex: index,
+        first: first.source.word,
+        second: second.source.word,
+        left,
+        right,
+        extracted: [x, right[1]],
+      });
+    }
+  }
+  return hits;
+}
+
+assert.deepEqual(lexicalTransitions(0), [{
+  sourceIndex: 30,
+  first: "SEEK",
+  second: "AND",
+  left: ["THE", "THE", "THE"],
+  right: ["THE", "ROAD", "THE"],
+  extracted: ["THE", "ROAD"],
+}]);
+assert.deepEqual(lexicalTransitions(1), []);
+
 // YOU33 is the sole missing direct coordinate. Its physical page has exactly
 // the group order number of words, so use one one-based cyclic reduction.
 const you = missing[0];
