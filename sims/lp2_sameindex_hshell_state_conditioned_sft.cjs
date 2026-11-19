@@ -204,8 +204,14 @@ const nonAutomatic = fourRuneRows.map((row) => ({
   firstIsSignedState: signedStateValues.includes(row.shell[0]),
   thirdIsState: stateValues.includes(row.shell[2]),
 }));
-assert.ok(nonAutomatic.every((row) =>
+const p33p40 = nonAutomatic.filter((row) => row.index === 33 || row.index === 40);
+const p36 = nonAutomatic.filter((row) => row.index === 36);
+assert.ok(p33p40.every((row) =>
   row.secondIsA && row.firstIsSignedState && row.thirdIsState
+));
+assert.ok(p36.length >= 1);
+assert.ok(p36.every((row) =>
+  !(row.secondIsA && row.firstIsSignedState && row.thirdIsState)
 ));
 
 console.log(JSON.stringify({
@@ -213,6 +219,11 @@ console.log(JSON.stringify({
   sameIndexStateRows: rows,
   sameIndexIndices: [...new Set(rows.map((row) => row.index))],
   fourRuneRows: nonAutomatic,
+  prospectiveP36GOOD: {
+    precommit: "workplace/agent2-p36-good-shared-shell-precommit.md",
+    rows: p36,
+    outcome: "NEGATIVE: every p36 GOOD state receiver fails at least one non-automatic p33/p40 H-shell condition.",
+  },
   automaticIdentity: {
     statement:
       "For a four-rune receiver with exact target GP0, sum(key)=0 mod29, therefore H(key)[3]=-H(key)[2].",
