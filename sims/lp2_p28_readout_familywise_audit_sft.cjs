@@ -451,6 +451,60 @@ assert.equal(gp0("LUNG"), 42);
 assert.equal(gp0("DEAR"), 55);
 assert.equal(low60Step(gp0("LUNG")), 28);
 
+
+// Language-free selector. Do not score or parse the output as English. Charge
+// every raw six-rune output in the complete p28 transform/orientation family
+// and every one of its five internal rune-boundary splits. GP0 of each side is
+// simply the sum of its canonical rune indices. The independently supported
+// low-digit operation must satisfy left -> right -> FIND(42) -> p28.
+const rawNumericSelectorHits = [];
+for (const transform of transforms) {
+  for (const orientation of orientations) {
+    let output = renderCandidate(
+      p28.runes,
+      selected,
+      "predecessor",
+      transform,
+      orientation
+    );
+    assert.ok(output);
+    for (let cut = 1; cut < output.length; cut += 1) {
+      const left = output.slice(0, cut);
+      const right = output.slice(cut);
+      const leftGp0 = left.reduce((sum, value) => sum + value, 0);
+      const rightGp0 = right.reduce((sum, value) => sum + value, 0);
+      if (
+        low60Step(leftGp0) === rightGp0 &&
+        low60Step(rightGp0) === 42 &&
+        low60Step(42) === 28
+      ) {
+        rawNumericSelectorHits.push({
+          transform: transform.name,
+          kind: transform.kind,
+          orientation,
+          cut,
+          output,
+          leftGp0,
+          rightGp0,
+          walk: [leftGp0, rightGp0, 42, 28],
+        });
+      }
+    }
+  }
+}
+assert.equal(transforms.length * orientations.length * 5, 440);
+assert.deepEqual(rawNumericSelectorHits, [{
+  transform: "u-3-27",
+  kind: "uniform",
+  orientation: "forward",
+  cut: 3,
+  output: [4, 28, 23, 3, 1, 16],
+  leftGp0: 55,
+  rightGp0: 20,
+  walk: [55, 20, 42, 28],
+}]);
+assert.equal(translit(rawNumericSelectorHits[0].output), "READOUT");
+
 // Independent center-ray family: every odd-length unknown page contributes
 // the six-rune ray from its exact center to each side. The right ray of p28 is
 // exactly the discovery span. This charges the left/right center-boundary rival
@@ -602,6 +656,11 @@ console.log(JSON.stringify({
       rule: "first -> second -> FIND(42) -> p28 under native base60 low digit",
       hits: sourcePointerHits,
     },
+    languageFreeNumericSelector: {
+      chargedConfigurations: transforms.length * orientations.length * 5,
+      rule: "GP0(left) -> GP0(right) -> FIND(42) -> p28 over all raw outputs and rune-boundary splits",
+      hits: rawNumericSelectorHits,
+    },
     frozenSourceTransformPhraseObjects: sourceTransformPhraseObjects.length,
     frozenSourceTransformHits: sourceTransformPhraseObjects.map((item) => ({
       page: item.page,
@@ -621,5 +680,5 @@ console.log(JSON.stringify({
   },
   solvedControls,
   decisionRule:
-    "The externally supported native-base60 low-digit source route now disambiguates the complete p28 source-object phrase family: READ OUT alone obeys first -> second -> FIND(42) -> p28. Preserve the transform chronology caveat while treating the output selection as independently constrained.",
+    "The externally supported native-base60 low-digit source route selects u-3-27 / forward / cut3 uniquely across all 440 raw p28 transform-orientation-split configurations before any language scoring. The selected raw output then spells READ OUT. Preserve the charged-family/model chronology caveat while treating this as a language-free external transform selector.",
 }, null, 2));
