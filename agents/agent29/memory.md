@@ -83,3 +83,5 @@ The highest-value next move would be a *source-selected reversible operation or 
 - EAST SFT defect repaired: binary/ternary state quantities had been reduced through mod29 before %2/%3. Direct mod2/mod3 reproduces intended 8 candidates -> unique E-O-D EAST survivor and same H-T-H/two-start successor.
 - Simple literal east-edge consumer retired: p0-p2 column27 as 27-rune periodic additive key on p3, all 54 sign/phase variants, best IoC ~0.03717; transparent-F legal 0/54.
 - Next: compare the two 21-rune LP1↔p0 boundary pairs for a shared reversible difference/key transform.
+
+- New route-level original-ciphertext evidence: first17 main route has 61 cell uses / 54 distinct cells; all-use GP sum 3274 and 3274+27=3301. Distinct-cell GP sum 2867, row-major position sum 26083, and prime_2867=26083. Across all D4 orientations only original orientation has position sum26083. Swapping only documented alternate row27 SOON gives 3214+27=3241 and distinct GP/position 2854/26995 with prime_2854=25939, so both identities select main SOON over that same-plaintext alternative. Still post-route corroboration; next gate is source-compatible route-family enumeration.
