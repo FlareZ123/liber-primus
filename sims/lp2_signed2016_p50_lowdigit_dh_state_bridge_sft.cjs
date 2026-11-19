@@ -144,6 +144,7 @@ assert.equal(e, 3);
 const words = signedWords();
 assert.equal(words.length, 43);
 const lengths = words.map(word => gp(word).length);
+const latinLengths = words.map(word => word.length);
 assert.deepEqual(words.slice(36), [
   "GOOD",
   "LUCK",
@@ -174,8 +175,11 @@ function componentValue(token, alphabet, component) {
   return value < 0 ? null : value;
 }
 
-/** @param {Mode} mode */
-function derive(mode) {
+/**
+ * @param {Mode} mode
+ * @param {number[]} wordLengths
+ */
+function derive(mode, wordLengths = lengths) {
   const alphabet = mode.radix === "base60" ? alpha60 : alpha59;
   const sequence = [];
 
@@ -190,7 +194,7 @@ function derive(mode) {
       raw +
       mode.digitOrigin +
       mode.indexSign * (index + mode.numberOrigin) +
-      mode.lengthSign * lengths[index]
+      mode.lengthSign * wordLengths[index]
     ));
   }
   return sequence;
@@ -371,6 +375,27 @@ assert.deepEqual(
 const anySevenWindowModes = modes.filter(mode => mode.windows7 > 0);
 assert.equal(anySevenWindowModes.length, 6);
 
+// GP-rune length is discriminating. Re-run every one of the 128 arithmetic
+// conventions with ordinary Latin-letter count. None keeps the terminal
+// seven inside the signed primitive-DH register.
+const latinFinal7Modes = modes.filter(mode => {
+  /** @type {Mode} */
+  const base = {
+    addressOrigin: mode.addressOrigin,
+    radix: mode.radix,
+    component: mode.component,
+    digitOrigin: mode.digitOrigin,
+    numberOrigin: mode.numberOrigin,
+    indexSign: mode.indexSign,
+    lengthSign: mode.lengthSign,
+  };
+  const values = derive(base, latinLengths);
+  return values && allSignedPrimitive(values.slice(36));
+});
+assert.equal(latinFinal7Modes.length, 0);
+assert.equal(latinLengths[40], 5);
+assert.equal(lengths[40], 4);
+
 const exactTailModes = modes.filter(mode => mode.exactTailWindows > 0);
 assert.equal(exactTailModes.length, 2);
 assert.ok(exactTailModes.every(mode => mode.exactTailWindows === 1));
@@ -427,6 +452,91 @@ const exactTailProbability =
 assert.ok(Math.abs(primitiveProbability - 0.003171181641539031) < 1e-15);
 assert.ok(Math.abs(exactTailProbability - 2.0057916029058945e-10) < 1e-22);
 
+// Charge all 256 cyclic table origins under the frozen numeric operation.
+const low60Table = table.map(token => alpha60.indexOf(token[1]));
+const cyclicOrigins = [];
+for (let offset = 0; offset < table.length; offset += 1) {
+  const candidate = [];
+  for (let index = 36; index <= 42; index += 1) {
+    candidate.push(mod29(
+      low60Table[(offset + index) % table.length] -
+      index -
+      lengths[index]
+    ));
+  }
+  if (
+    allSignedPrimitive(candidate) ||
+    candidate.every((value, i) => value === tail[i])
+  ) {
+    cyclicOrigins.push({
+      offset,
+      primitive: allSignedPrimitive(candidate),
+      exact: candidate.every((value, i) => value === tail[i]),
+      tail: candidate,
+    });
+  }
+}
+assert.deepEqual(
+  cyclicOrigins.filter(row => row.primitive).map(row => row.offset),
+  [0, 93, 253]
+);
+assert.deepEqual(
+  cyclicOrigins.filter(row => row.exact).map(row => row.offset),
+  [0]
+);
+
+// Charge the eight obvious 32x8 source-table traversals.
+const traversals = [];
+for (const major of ["row", "column"]) {
+  for (const reverseMajor of [false, true]) {
+    for (const reverseMinor of [false, true]) {
+      const tokens = [];
+      if (major === "row") {
+        const rowOrder = reverseMajor ? [...grid.rows].reverse() : grid.rows;
+        for (const row0 of rowOrder) {
+          const row = reverseMinor ? [...row0].reverse() : row0;
+          tokens.push(...row);
+        }
+      } else {
+        const columns = Array.from({length: 8}, (_, i) => i);
+        const columnOrder = reverseMajor ? [...columns].reverse() : columns;
+        const rows = Array.from({length: 32}, (_, i) => i);
+        const rowOrder = reverseMinor ? [...rows].reverse() : rows;
+        for (const column of columnOrder) {
+          for (const row of rowOrder) tokens.push(grid.rows[row][column]);
+        }
+      }
+
+      const low = tokens.map(token => alpha60.indexOf(token[1]));
+      const candidate = [];
+      for (let index = 36; index <= 42; index += 1) {
+        candidate.push(mod29(low[index] - index - lengths[index]));
+      }
+      traversals.push({
+        major,
+        reverseMajor,
+        reverseMinor,
+        primitive: allSignedPrimitive(candidate),
+        exact: candidate.every((value, i) => value === tail[i]),
+        tail: candidate,
+      });
+    }
+  }
+}
+assert.equal(traversals.filter(row => row.primitive).length, 1);
+assert.equal(traversals.filter(row => row.exact).length, 1);
+assert.deepEqual(
+  traversals.find(row => row.exact),
+  {
+    major: "row",
+    reverseMajor: false,
+    reverseMinor: false,
+    primitive: true,
+    exact: true,
+    tail,
+  }
+);
+
 console.log(JSON.stringify({
   status: "PASS: signed 2016 terminal words map through p50 low digits to p28 DH state",
   formula: "s_i = low60(p50[i]) - i - GP_length(word_i) mod29",
@@ -455,7 +565,9 @@ console.log(JSON.stringify({
   },
   familyCharge: {
     modes: modes.length,
+    lengthAugmentedModes: modes.length * 2,
     finalSevenModes: final7Modes.length,
+    latinLetterFinalSevenModes: latinFinal7Modes.length,
     distinctFinalSevenNumericOutputs: new Set(
       final7Modes.map(mode => mode.tail.join(","))
     ).size,
@@ -463,6 +575,16 @@ console.log(JSON.stringify({
     actualFiveRunStarts: fiveStarts,
     actualSevenRunStarts: sevenStarts,
     exactTailModes: exactTailModes.length,
+    cyclicOriginsWithPrimitiveTail: cyclicOrigins
+      .filter(row => row.primitive)
+      .map(row => row.offset),
+    cyclicOriginsWithExactTail: cyclicOrigins
+      .filter(row => row.exact)
+      .map(row => row.offset),
+    sourceTableTraversalsWithPrimitiveTail: traversals
+      .filter(row => row.primitive).length,
+    sourceTableTraversalsWithExactTail: traversals
+      .filter(row => row.exact).length,
   },
   exactTokenMultisetNull: {
     denominator: denominator.toString(),
