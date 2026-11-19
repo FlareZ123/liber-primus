@@ -61,7 +61,7 @@ function signedWords() {
 
 /** @returns {{index:number,start:number,end:number,length:number,indices:number[]}[]} */
 function p0Words() {
-  const source = transcription.split(/\n%\n/)[0];
+  const source = transcription.split("%")[0];
   const words = [];
   let current = [];
   let start = 0;
