@@ -2,6 +2,38 @@
 
 **Agent22, 19 November 2026. Classification: authenticated-source state reconstruction. This uses the signed 2016 message, the already frozen H transform, the original p50 table, and the independently selected PRIMUS/NUMBERS/OPENPGP dual-radix source triad. It does not use p28 ciphertext values to recover the state.**
 
+## 0. The raw nibbles already serialize the private state
+
+Before applying H, the printed hex nibbles themselves are:
+
+```text
+[7,10,3,5,0,9,0,15]
+=
+[g+K, K*g, e, g, F, b-a, F, b].
+```
+
+They reconstruct:
+
+```text
+g = 5
+b = 15
+e = 3
+K = 10 / 5 mod29 = 2
+a = b - 9 mod29 = 6
+```
+
+with the independent raw checks `7=g+K` and the two literal zero fields.
+
+The H shell then contributes `p=23` and independently re-encodes the same `g,K,a`. Thus the **key ID alone** already determines:
+
+```text
+p=23,g=5,a=6,b=15,K=2,e=3
+A=g^a mod p=8
+B=g^b mod p=19.
+```
+
+The PRIMUS/NUMBERS/OPENPGP triad described below is therefore an independent cross-check, not a required input for completing the state.
+
 ## 1. The signed key ID is an exact H-state packet
 
 The authenticated 2016 message explicitly says:
@@ -69,7 +101,7 @@ Charge the same structural template across all 16 dihedral presentations of the 
 
 Only the **printed, unrotated orientation** satisfies the packet constraints and reconstructs a valid `p,g,K,a` tuple.
 
-## 2. The dual-radix source triad supplies A, B, and e
+## 2. The dual-radix source triad independently cross-checks A, B, and e
 
 Independently, the complete authenticated-source p50/dual-radix word-boundary charge selects exactly:
 
@@ -89,7 +121,7 @@ NUMBERS -> 19
 OPENPGP -> 3
 ```
 
-The first value is exactly the already reconstructed `A=8`. Read the three as:
+The values exactly reproduce the state already reconstructed from the key ID:
 
 ```text
 [A,B,e] = [8,19,3].
@@ -104,17 +136,9 @@ The base59 outputs independently reduce to:
 
 This is a second state channel produced by the same three source anchors.
 
-## 3. Recover b and verify the GCD inverse
+## 3. The triad independently verifies b and the GCD inverse
 
-With:
-
-```text
-p=23
-g=5
-B=19
-```
-
-the unique exponent in `0..21` satisfying:
+Using the triad's independently supplied `B=19` with the key-ID values `p=23,g=5`, the unique exponent in `0..21` satisfying:
 
 ```text
 g^b mod p = B
@@ -159,7 +183,7 @@ This is exactly the state previously recovered through the p28 HERE/DH/GCD route
 
 ## Why this matters
 
-This is a materially different route to the same state.
+The signed OpenPGP key ID by itself is a materially different route to the same state, and the p50 triad independently cross-checks it.
 
 The p28 branch had already supplied a coherent DH/GCD interpretation. The 2016 signed source now independently rebuilds the same parameters through:
 
