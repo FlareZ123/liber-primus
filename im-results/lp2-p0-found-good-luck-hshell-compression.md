@@ -121,6 +121,42 @@ An obvious overgeneralization is rejected. The published direct keys differ GOOD
 
 This is mechanism compression rather than blind plaintext proof because the shell-update form was recognized after GOOD and LUCK. It does, however, remove the separate LUCK-key grammar from the minimum description. The unresolved unification problem moves upstream to FOUND -> GOOD and to a prospective untouched prediction.
 
+
+## DH-selected FOUND -> GOOD paired-shell transition
+
+**Agent19 refinement, 19 November 2026.** The remaining FOUND -> GOOD gap also compresses in the frozen H coordinates. FOUND has five runes, so its H serialization contains two paired shells plus one unmatched center. Compare only the four paired-shell coordinates with the four-coordinate GOOD shell:
+
+```text
+paired H_shell(FOUND) = [6,23,23,12] = [a,p,p,K*a]
+H_shell(GOOD)         = [12,0,0,6]  = [K*a,0,0,a]
+delta                 = [6,6,6,23]  = [a,a,a,p].
+```
+
+This is equivalently `[a,a,a,-a]` because `p+a=29`. No transformation of the unmatched FOUND center is required to compare a five-rune shell with a four-rune shell.
+
+Charge the same 15-value source scalar pool used in the GOOD -> LUCK audit. Let `x` and `y` independently range over those values, test both signs, and apply every update of shape `[x,x,x,y]` to FOUND's paired shell. Among **450 labeled configurations**, only two labeled descriptions hit any authenticated four-rune target, and both are the same numeric update and target:
+
+```text
++a,+a,+a,+p -> GOOD
+-p,-p,-p,-a -> GOOD
+```
+
+The aliases are residue-identical modulo29. Across all **63** ordered authenticated five-rune x four-rune target pairs, FOUND -> GOOD is the only pair whose first three shell-coordinate differences are equal. In the authenticated message itself there are two adjacent 5 -> 4 transitions, FOUND -> GOOD and FALSE -> PATHS; only FOUND -> GOOD has the shape. Across the pinned solved native corpus there are **9** adjacent 5 -> 4 pairs and none has the broader equal-three-coordinate form.
+
+Together with the independently frozen GCD transition below, the candidate phrase now has a two-step state description entirely in H coordinates:
+
+```text
+paired shell(FOUND)
+  + [a,a,a,p]
+= shell(GOOD)
+
+shell(GOOD)
+  + [b^-1, p+K, p+K, 0]
+= shell(LUCK).
+```
+
+Both transition forms were recognized after the candidate words were known. They therefore compress the mechanism substantially without establishing plaintext by themselves. The remaining decisive requirement is prospective: a source rule must select the transition program before another receiver is opened, or the program must make a new untouched original-cipher prediction.
+
 ## Why this matters for the key-grammar problem
 
 The previous FOUND / GOOD / LUCK report gave three exact reversible additive inverses with broad family controls, but their source-key grammars were recognized separately after the targets were known.
@@ -143,7 +179,7 @@ LUCK  key [17,16,4,22]
 
 the original ciphertexts do **not** satisfy the shell equation, while the recovered plaintexts all do.
 
-The three direct additive keys still do not come from one formula. The GCD-selected shell transition above now unifies GOOD -> LUCK without the separate LUCK-key grammar, so the remaining promotion problem is narrower: explain FOUND -> GOOD from a source-selected state transition and make a prospective untouched prediction.
+The direct additive keys still do not come from one formula. The two shell transitions above compress FOUND -> GOOD -> LUCK into a source-state program using [a,a,a,p] followed by [b^-1,p+K,p+K,0]. The remaining promotion problem is prospective selection of that program before another receiver is opened.
 
 ## Ordinary-language controls
 
@@ -186,10 +222,10 @@ The useful evidence here is the conjunction of facts already selected independen
 
 Promote this as a **mechanism-compression result**. It strengthens the case that FOUND / GOOD / LUCK belong to one designed local subpuzzle rather than three unrelated crib fits.
 
-Do not claim that the junction equation or the retrospectively recognized GOOD -> LUCK update alone proves plaintext, and do not use the DH vocabulary as a p-value. The high-value gate is now a source-selected transition for FOUND -> GOOD plus a prospective untouched receiver; the repeated direct-key recurrence has already failed.
+Do not claim that the junction equation or either retrospectively recognized shell update proves plaintext, and do not use the DH vocabulary as a p-value. The high-value gate is now a prospectively selected transition program plus an untouched receiver; the repeated direct-key recurrence has already failed.
 
 ## Reproduction
 
 - SFT: `sims/lp2_p0_found_good_luck_hshell_compression_sft.cjs`
-- Agent22 GCD-transition SFT: `sims/lp2_good_luck_gcd_shell_transition_sft.cjs`
+- Agent22 GCD-transition SFT: `sims/lp2_good_luck_gcd_shell_transition_sft.cjs`\n- Agent19 FOUND -> GOOD transition SFT: `sims/lp2_found_good_shell_transition_sft.cjs`
 - Windows Node22 PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44439948995
