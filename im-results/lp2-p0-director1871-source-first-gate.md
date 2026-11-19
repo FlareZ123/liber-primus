@@ -83,11 +83,33 @@ These controls show that the exact local construction is highly selective after 
 
 ## Why #1871 still fails its source-first gate
 
-The issue explicitly requires a serialization and coordinate-to-GP29 rule selected **before** evaluating `C-P` or the residual.
+The issue requires the exact serialization and coordinate-to-GP29 rule to be selected **before** evaluating the p0 residual. The three rise laws do not satisfy that chronology: their shape was recognized after the p0 residual packet was visible. The later recovery of every numeric anchor from the original marker and square state does not retroactively source-select the formulas.
 
-The three exact vertical rise laws above do not satisfy that chronology. Their shape was recognized after the p0 residual packet was already available. Later work recovered every numeric anchor from the original glyph and square state, and the role/sign families are highly selective, but those facts do not retroactively turn the formula shape into a blinded source selection.
+### Additional first-party / historically available source audit (19 November 2026)
 
-Therefore the strongest rival in #1871, retrospective formula fitting, is reduced but not eliminated.
+I checked the preserved 2012–2017 signed/public instruction chain for a rule that fixes the exact left/center/right rise formulas, not merely a general preference for directions, depth or visual inspection:
+
+- **2012 countdown:** 'You have done well to come this far. Patience is a virtue. Check back…' — no marker, column or rise operation.
+- **2012 path/Chorus message:** 'This song is your own path,' 'Another stop on the road toward enlightenment,' and 'Let the Chorus be your guide to the depths.' It can motivate following a source path, but gives no three-column traversal or cumulative increments.
+- **2013 forest clue:** 'You can't see the forest when you're looking at the trees.' This is a whole/part caution, not a column-rise instruction.
+- **2013 second-onion message:** 'You already have everything you need to continue. Sometimes one must knock on the sky and listen to the sound.' It does not specify a p0 marker coordinate system, rise law or sign.
+- **2014 Onion5 signed response:** the text says 'Very good. You have done well to come this far' and embeds two small JPEGs: one contains the visible text Bew(y) = ∃ x, the other an eye. Neither supplies the p0 three-column increment sequences or a column ordering.
+- **2014 Onion6 magic-square form:** explicitly asks the player to paste the Order-5/3301, Order-7/1033 and Order-5/1033 squares and provide a Tor hidden-service URL. This selects the square submission task and its three square inputs, not the p0 marker's rise formulas.
+- **2014 May 2 / Stage11 signed message:** 'Your enlightenment awaits you,' followed by an onion address and 'We look forward to hearing from you.' No rise/column rule.
+- **2016 signed clue:** the 'numbers are the direction / meaning is the road' language is compatible with numeric direction-finding, but does not specify the three-column cumulative grammar, its role assignments, additive sign, or p0 receiver.
+- **2017 signed message:** 'Beware false paths. Always verify PGP signature…' is an authenticity warning, not a p0 transformation.
+
+The authenticated 2014 square metadata does independently fix the DH state and the visible marker-derived values. The p0 marker independently fixes the 4|5|4 column populations and the alternating 1,2 row populations. Neither source specifies that these values must be fed into
+
+```
+left   = cumulative(-Q, [Q-S, B-S, B+S])
+center = cumulative( Q, [Q, Q+T, Q+2T, Q+3T])
+right  = cumulative( T, [T-S, T, T+S])
+```
+
+No preserved instruction fixes the cumulative operation, the three increment lists, their assignment to columns, the top-to-bottom order, or the subtraction sign before the residual is examined.
+
+**Source-selector result: negative.** The source corpus supports the numeric roles and marker geometry; it does not independently select the rise-law shape. The strong local EPIPHANY SEEKS candidate remains conditional and the p2 holdout below remains negative. Do not promote the full 13-rune rise serializer as a source-authenticated LP2 cipher.
 
 ## Natural p2 held-out transfer
 
