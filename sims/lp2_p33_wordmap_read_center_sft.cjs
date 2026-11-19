@@ -146,6 +146,15 @@ assert.equal(sourceThirdSums[0], THEIR_GP0);
 assert.equal(sourceThirdSums[2], HERE_GP0);
 assert.equal(low60(sourceThirdSums[1]), 25);
 
+// The recovered READ center has the pre-existing READ OUT state consumer.
+const READ_GP0 = readGp.reduce((sum, value) => sum + value, 0);
+const OUT_GP0 = 20;
+const FIND_GP0 = 42;
+assert.equal(READ_GP0, 55);
+assert.equal(low60(READ_GP0), OUT_GP0);
+assert.equal(low60(OUT_GP0), FIND_GP0);
+assert.equal(low60(FIND_GP0), 28);
+
 // Manuscript-wide fixed control: every complete nine-rune unknown-page word,
 // same exponent27, same central three-rune extraction.
 let nineRuneWords = 0;
@@ -239,6 +248,15 @@ console.log(JSON.stringify({
     pageWord: 4,
     pageOffset: selected[0].start + 10,
     sourceValues: selected[0].values,
+  },
+  recoveredReadConsumer: {
+    readGp0: READ_GP0,
+    readToOut: low60(READ_GP0),
+    outToFind: low60(OUT_GP0),
+    findToPage: low60(FIND_GP0),
+    destination: "p28",
+    p33SourceRightThirdGp0: HERE_GP0,
+    destinationPageStartCandidate: "HERE",
   },
   transform: {
     exponent: wordExponent,
