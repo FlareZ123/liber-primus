@@ -158,6 +158,24 @@ This route is not yet a decoder. The selected p49 page is already the known SHED
 
 The numeric derivation is reproduced by [the read-only CommonJS SFT](../sims/lp2_cuneiform_fivepassage_shed_navigation_sft.cjs). The prime-rank context is distinct from the previously rejected floor(rank/58) proposal: here 229 and 271 are themselves prime values whose ordinary one-based ranks are 50 and 58. This remains a candidate navigation layer, not an established decryption.
 
+## Five-symbol p50 packet from the original 2014 number sequence
+
+The same sexagesimal page:word → base29 positional word number → p50 row-major cell → base60 token → mod29 rune map applies to the three 2014 square centers in source order **809, 331, 91**, followed by the two p33 cuneiform numerals **1033, 3301**:
+
+| Source number | Page:word | Selected word | Base29 value | p50 cell | Token | Base60 | Output |
+| ---: | ---: | --- | ---: | ---: | --- | ---: | --- |
+| 809 | p13:29 | TEI | 13,988 | 164 | 1j | 105 | E |
+| 331 | p5:31 | THYEOTHJTHRU | 50,212,977,392 | 240 | 2O | 144 | EA |
+| 91 | p1:31 | TXELR | 11,673,664 | 64 | 22 | 122 | G |
+| 1033 | p17:13 | FREAMEAA | 3,528,831 | 127 | 3D | 193 | M |
+| 3301 | p55:1 | NG | 21 | 21 | 2H | 137 | NG |
+
+In the original source order this yields the five-symbol packet **[E,EA,G,M,NG]**. Its cardinality matches the five red-numbered wisdom passages, but it is not their direct boundary sequence: the passage starts are **[L,N,D,NG,H]** and ends are **[A,B,W,M,C]**.
+
+Tested the obvious direct uses of this packet on the 553-rune enclosure: one constant additive shift per passage (both signs), a period-5 additive key reset at each passage (both signs), a period-5 additive key over the concatenated passages (both signs), and one multiplicative or inverse coefficient per passage. None produced readable text; their aggregate IoCs remain near the original random-like value **0.03423** (range **0.03367–0.03503**). This rejects these simple consumers, not every possible source-selected use of the packet.
+
+Keep **[E,EA,G,M,NG]** as a candidate five-symbol state/key vector only. Do not promote it to plaintext or launch unconstrained matrix/period searches. A further consumer needs an independent source clue. Reproduction and metrics are included in `sims/lp2_cuneiform_sexagesimal_wordmap_p50_state_sft.cjs`.
+
 ## Research decision
 
 The original glyphs supply **five numbered passages and a precise 553-rune test interval**, independently image-readback verified 553/553. The direct source-square, totient, interleave, and five-way matrix inverses remain negative. The new source-selected SHED transfer supplies a reproducible **candidate five-page route [46,35,50,38,58]**, with matching word-value candidates ARE, BE, and WITHIN; it does not recover unknown plaintext, a key, or an authenticated cipher. Keep the page-number/prime-rank interpretation provisional until p45, p34, and p37 provide a coherent continuation under an independently source-selected operation. Do not add modulo, offsets, reversals, or alternative rank conventions to rescue it. The earlier seven-page cuneiform issue's conclusion remains: the repeated header alone does not select an original-cipher inverse.

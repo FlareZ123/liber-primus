@@ -137,7 +137,7 @@ The canonical word parser joins across slash-marked physical line wraps; this ma
 
 The outputs **[19,21] = [M,NG]** reproduce, in order, the two oversized decorative markers visible on the original p33 scan. This is consistent with the authenticated 2016 signed instruction: “Its words are the map, their meaning is the road, and their numbers are the direction.” The 29-rune alphabet supplies the base29 word number; the 256-cell p50 table supplies the address space; its printed tokens are base60 values, which reduce naturally to GP ordinals modulo29.
 
-Controls: applying the identical coordinate-and-table pipeline to the three 2014 magic-square centers **91, 331, 809** yields **[6,28,18] = [G,EA,E]**, not the p33 marker pair.
+The three 2014 square centers in their original source order **809, 331, 91** extend the same mapping to **E, EA, G**. Appending the two p33 cuneiform values gives the five-symbol packet **[E,EA,G,M,NG]**, matching the number of red-numbered wisdom passages. This is a candidate state/key vector, not a direct passage-boundary match or a validated cipher key: the five passage starts are **[L,N,D,NG,H]**, and the simplest additive and multiplicative consumers are negative (see `im-results/lp2-cuneiform-five-numbered-wisdom-inversion.md`).
 
 A bounded **64-variant** convention audit varies page origin, word origin, table origin, row/column serialization, sum versus positional word encoding, and forward versus reversed rune order. Exactly one variant returns [19,21]: zero-based pages, one-based word ordinals, zero-based table indexing, row-major order, forward base29 positional encoding. This is a uniqueness result within that stated family, **not** a probability or a blinded prediction.
 
