@@ -63,6 +63,7 @@ function increasing(values) {
 }
 
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
+const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
 const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
@@ -127,6 +128,17 @@ const clear = signed2016.match(/Hash: SHA1\n\n([\s\S]*?)\n-----BEGIN PGP SIGNATU
 assert.ok(clear);
 const source = (clear[1].match(/\b[A-Za-z]+\b/gu) || []).map((word) => word.toUpperCase());
 assert.equal(source.length, 43);
+
+const tape = grid.pages.flatMap((page) => page.tokens);
+const alpha60 = grid.alphabet;
+
+/** @param {number} address @returns {number} */
+function low60(address) {
+  assert.ok(Number.isInteger(address) && address >= 0 && address < tape.length);
+  const value = alpha60.indexOf(tape[address][1]);
+  assert.ok(value >= 0);
+  return value;
+}
 
 // Independently established full unit-run packets on the direct numbered route.
 const p11 = getWord(11, 12);
@@ -259,6 +271,36 @@ for (const basePacket of unitPackets) {
 }
 assert.deepEqual(secondStageHits, []);
 
+// Held-out downstream closure committed before this cross-coordinate discovery.
+// The frozen base60 low-digit consumer maps second THEIR25 -> MAP18 -> WORDS15,
+// selecting the authenticated interval WORDS ARE THE MAP at indices15..18.
+const secondTheir = 25;
+const mapIndex = low60(secondTheir);
+const wordsIndex = low60(mapIndex);
+assert.deepEqual([secondTheir, mapIndex, wordsIndex], [25, 18, 15]);
+const lowDigitClause = [15, 16, 17, 18];
+assert.deepEqual(
+  lowDigitClause.map((index) => source[index]),
+  ["WORDS", "ARE", "THE", "MAP"]
+);
+
+const crossPacket = unitHits[0].increasing;
+assert.deepEqual(crossPacket, [14, 15, 16]);
+const overlap = crossPacket.filter((index) => lowDigitClause.includes(index));
+assert.deepEqual(overlap, [15, 16]);
+assert.deepEqual(overlap.map((index) => source[index]), ["WORDS", "ARE"]);
+
+const completeInterval = [...new Set([
+  ...unitPackets[1].values,
+  ...crossPacket,
+  ...lowDigitClause,
+])].sort((left, right) => left - right);
+assert.deepEqual(completeInterval, [12, 13, 14, 15, 16, 17, 18]);
+assert.deepEqual(
+  completeInterval.map((index) => source[index]),
+  ["THE", "WAY", "ITS", "WORDS", "ARE", "THE", "MAP"]
+);
+
 // The p11+p24 combination is independently motivated by the already recovered
 // source fragments THEIR NUMBERS and THE WAY. Report its four receivers in
 // addition to the all-packet cross charge.
@@ -287,6 +329,15 @@ console.log(JSON.stringify({
     derivedPacket,
     hits: secondStageHits,
   },
+  preExistingLowDigitClosure: {
+    path: [secondTheir, mapIndex, wordsIndex],
+    clauseIndices: lowDigitClause,
+    clauseWords: lowDigitClause.map((index) => source[index]),
+    overlapIndices: overlap,
+    overlapWords: overlap.map((index) => source[index]),
+    completeInterval,
+    completeWords: completeInterval.map((index) => source[index]),
+  },
   continuationTarget: {
     prefixIndices: [12, 13],
     prefixWords: source.slice(12, 14),
@@ -294,5 +345,5 @@ console.log(JSON.stringify({
     immediateContinuationWords: source.slice(14, 17),
     concatenated: source.slice(12, 17),
   },
-  decision: "Crossing every pair of the three independently established numbered-diagonal unit packets under the existing page=index / word=index+1 coordinate grammar and both live H serializations gives one unit-run hit: NUMBERS26 x THE12 selects p26 word13, whose Hsplit output [16,15,14] orients to ITS WORDS ARE. It exactly continues THE WAY to THE WAY ITS WORDS ARE. Reusing the derived packet under the same cross grammar yields no second-stage unit run.",
+  decision: "Crossing every pair of the three independently established numbered-diagonal unit packets under the existing page=index / word=index+1 coordinate grammar and both live H serializations gives one unit-run hit: NUMBERS26 x THE12 selects p26 word13, whose Hsplit output [16,15,14] orients to ITS WORDS ARE. It exactly continues THE WAY. A pre-existing low-digit route independently selects WORDS ARE THE MAP at indices15..18, overlapping the new packet on WORDS ARE and closing the authenticated interval THE WAY ITS WORDS ARE THE MAP. Reusing the derived packet under the cross grammar yields no second-stage unit run.",
 }, null, 2));
