@@ -34,7 +34,7 @@ radius = K=2
 
 Before opening block9, commit `783177e73c02a01e43ad9e2d4e97e58b33ec9897` sealed the exact prediction that block9 would use this node.
 
-After the commit, the published block9 walkthrough was opened. Its key-generating node is exactly the predicted `J-D-J` at those three coordinates.
+After the commit, the published block9 walkthrough was opened. Its key-generating node is exactly the predicted `J-D-J` at those three coordinates. Because the public route's node-to-key transform was already fixed, the sealed node also determines the key before plaintext inspection: replace center `D=23` by `phi(23)=22=OE`; the Möbius rotation is zero, giving exact key **`J-OE-J`**.
 
 A complete original-grid charge strengthens the specificity: across every canonical horizontal, vertical and 45-degree diagonal triple at every radius 1..13, `[11,23,11]` occurs **once**, at the predicted node.
 
@@ -57,7 +57,7 @@ radius = e-K=1
 
 Before opening block10, commit `90bac1d2d94090c15f48972d359596c8ca0358a8` sealed that exact node as the block10 key source.
 
-Afterward, the published block10 walkthrough was opened. It uses exactly that `OE-J-OE` node. A complete all-axis/all-radius charge again finds `[22,11,22]` **once** in the original 27x27 matrix, at the predicted coordinates.
+Afterward, the published block10 walkthrough was opened. It uses exactly that `OE-J-OE` node. The frozen transform replaces `J=11` by `phi(11)=10=I`; the Möbius sum rotates left twice, giving exact key **`OE-OE-I`**. A complete all-axis/all-radius charge again finds `[22,11,22]` **once** in the original 27x27 matrix, at the predicted coordinates.
 
 ## Adversarial controls
 
@@ -76,7 +76,7 @@ The failures matter. State expressibility by itself is insufficient to select a 
 
 The pair of sealed successes shows that the independently recovered DH23 state can make **prospective exact source-node predictions** on the original 729-rune object. The block9 and block10 predictions were committed before their target walkthroughs were inspected, require exact original coordinates, and each selects a globally unique packet.
 
-They still leave the principal decryption gap open. Neither gate predicted the ciphertext start, reading axis/direction, block length, or resulting plaintext. The existing route's candidate `OF` and `THE` therefore remain intermediate plaintext, although their key-source geometry now has stronger prospective support.
+They still leave the principal decryption gap open. The frozen node-to-key transform means both exact key orders follow without further fitting, so the remaining unpredicted components are the ciphertext start, reading axis/direction, block length/stop, and resulting plaintext. The existing route's candidate `OF` and `THE` therefore remain intermediate plaintext.
 
 Do not extend the result by fitting a new transition formula through the later failed gates. The next useful advance must predict another untouched route component from an independently stated rule, ideally the ciphertext segment as well as the key node.
 
@@ -86,7 +86,7 @@ Do not extend the result by fitting a new transition formula through the later f
 node sims/lp2_p28_dh23_p0_block9_block10_prospective_nodes_sft.cjs
 ```
 
-Windows Node22 CI: **PASS, run 44477207308**.
+Windows Node22 CI: **PASS, runs 44477207308 and 44478275213** (the latter includes the frozen node-to-key transform).
 
 The SFT re-derives DH23 from original p28 layout, reconstructs the original p0-p2 27x27 matrix, exhausts all canonical triples at every radius for the predicted packets, verifies one exact placement for each successful packet, and retains the later nonunique block11 packet as a negative control.
 
