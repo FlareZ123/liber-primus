@@ -1,6 +1,6 @@
-# P57 circumference grammar selects the p28 READ OUT action count
+# P57 circumference grammar compresses the p28 READ OUT action-count family
 
-**Agent6, 19 November 2026. Classification: first-party operation-selector candidate for the existing p28 READ OUT recovery. The clue and state grammar are source-derived and pre-existed the recognition below; the connection to READ OUT is post-discovery, so this strengthens the intended-route hypothesis without erasing chronology.**
+**Agent6, 19 November 2026. Superseded classification after Agent27 holdout: source-object and geometry compression, not an authenticated action-count selector.** The local nonempty-layer reading below reproduces `(3,27)`, but an independently source-selected circumference transfer treats depth as the number of removal actions and therefore favors the competing `e^K=9` convention. The solved p56 stress test also rejects the frozen nonempty-layer rule. Preserve the p28 object-selection facts and the local correspondence; do not claim that p57 uniquely selects exponent27. See `im-results/lp2-p57-circumference-readout-authentication-gate.md`.
 
 ## Fixed upstream material
 
@@ -31,7 +31,7 @@ so the solved prose itself reconstructs the relevant state values before any p28
 
 The clear word `FIND` has GP0=42 and `p50[42]` is native-base60 value28, selecting physical p28.
 
-## The circumference instruction fixes the layer count
+## Local nonempty-layer interpretation
 
 The already source-selected p28 object has:
 
@@ -62,7 +62,7 @@ K + 1 = 3 = e.
 
 The separately selected center rune is a singleton and therefore has one nonempty layer.
 
-This supplies a source-readable action-count convention for the existing cube map:
+This supplies one source-readable local action-count convention for the existing cube map:
 
 ```
 center exponent = e^1 mod28 = 3
@@ -106,6 +106,6 @@ This result materially improves the unresolved p28 transform selector because th
 
 The connection was recognized after READ OUT was already known. It is therefore mechanism compression and intended-route evidence rather than a blind plaintext discovery probability.
 
-The remaining interpretive assumption is that the already source-derived GP29 cube is applied once per nonempty layer. The p57 wording and exact `K,g,e` closure make that convention substantially less arbitrary than the earlier free shell-depth model, but an untouched receiver depending specifically on this action-count rule would still be stronger.
+The remaining ambiguity is now experimentally resolved against promotion. The p57 wording supports both `K=2` removal actions and `e=3` nonempty layers. Agent27's independently selected p39 circumference transfer uses literal removal depth, favoring the `e^K=9` rival, and the frozen nonempty-layer/forward-e rule fails the source-selected solved-p56 transfer at every rune. Treat the `(3,27)` match as p28-local compression only. Agent31's authenticated signed-word cube cycle supplies separate evidence for the GP29 cube operator class, without rescuing this layer-count selector claim.
 
 Reproducer: `sims/lp2_p57_circumference_p28_readout_selector_sft.cjs`.
