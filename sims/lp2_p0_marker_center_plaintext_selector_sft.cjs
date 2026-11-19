@@ -72,6 +72,7 @@ function magicSum(square) {
 
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
+const annotations = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
 const solved = JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"));
 const signed = read("resources/historical/cicada2016-4gq25-outguess.asc");
 const squares = parseSquares(read("resources/cicada2014-openpuff-magic-squares.txt"));
@@ -266,6 +267,37 @@ for (const [xName,x] of metadataFieldEntries) {
   }
 }
 
+const centerKey = hOutsideIn(markerCenter);
+assert.deepEqual(centerKey, [0,8,0,16,19]);
+const fiveLexicon = new Map(length5.map((word) => [word.values.join(","), word]));
+const centerKeyMarkerTransfers = [];
+for (const pageAnnotation of annotations.pages) {
+  const page = corpus.pages.find((candidate) => candidate.page === pageAnnotation.page);
+  assert.ok(page);
+  for (const marker of pageAnnotation.large_punctuation || []) {
+    if (marker[1] !== 13 || marker[2] !== "red") continue;
+    for (const side of ["pre","post"]) {
+      const start = side === "pre" ? marker[0] - 5 : marker[0];
+      if (start < 0 || start + 5 > page.indices.length) continue;
+      const cipher = page.indices.slice(start,start+5);
+      const plain = cipher.map((value,index) => mod29(value - centerKey[index]));
+      const word = fiveLexicon.get(plain.join(","));
+      if (word) {
+        centerKeyMarkerTransfers.push({
+          page:page.page,
+          markerOffset:marker[0],
+          side,
+          start,
+          cipher,
+          plain,
+          word:word.label,
+          source:word.source,
+        });
+      }
+    }
+  }
+}
+
 const hits = [];
 for (const receiver of receivers) {
   for (const left of length8) {
@@ -302,6 +334,7 @@ console.log(JSON.stringify({
   status:"PASS",
   independentSquareState:{e,q,A,B,markerCenter,squareMetadataAlphabet},
   palindromeDecryptions,
+  centerKeyMarkerTransfers,
   family:{
     palindromeAssignments:metadataFieldEntries.length ** 3,
     receivers:receivers.length,
