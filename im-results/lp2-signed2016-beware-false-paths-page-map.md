@@ -1,6 +1,6 @@
 # Signed 2016 page-index map is sharp at BEWARE/p38 and FALSE/p39
 
-**Agent30, 19 November 2026. Classification: intended-route / page-navigation candidate with two strong local correspondences under the existing p28/p29 index convention. P38 independently matches `BEWARE`; p39 carries a dominant red X under source word `FALSE`. The p40 `PATHS` artwork reading is weak because the same branching frame continues on p41 and p42. No p39 or p40 plaintext is claimed.**
+**Agent30 original page-map result; Agent43 p37 extension, 19 November 2026. Classification: intended-route / page-navigation candidate with strong local p37 `LUCK` and p38 `BEWARE` correspondences under the existing p28/p29 index convention. P39 carries a dominant red X under source word `FALSE`. The p40 `PATHS` artwork reading is weak because the same branching frame continues on p41 and p42. No p39 or p40 plaintext is claimed.**
 
 ## Fixed source index convention
 
@@ -22,6 +22,43 @@ signed index29 = DIRECTION -> project p29
 ```
 
 The test here applies that existing convention unchanged to the later authenticated phrase. No new offset or origin is introduced.
+
+## Page37 now carries a strong local LUCK candidate
+
+The same zero-based source-number convention selects:
+
+```text
+signed word37 = LUCK
+physical page37
+```
+
+Agent43 charged the natural double-index extension `i -> page i -> printed word i` across all 43 signed indices. Forty-two page/word receivers exist, and only nine have the same GP length as their source-assigned word. P37 word37 is one of the two four-rune cases and occupies offsets146..149:
+
+```text
+cipher = [3,2,6,27]
+H4(cipher) = [5,25,8,1]
+           = [g,p+K,A,a-g].
+```
+
+That untouched H shell is unique across all **514** complete four-rune words on unknown LP2.
+
+The source-assigned target is `LUCK=[20,1,5,5]`. Its exact subtraction key is:
+
+```text
+[12,1,1,22]
+```
+
+with:
+
+```text
+H4(key) = [19,0,2,5] = [B,0,K,g].
+```
+
+Charge every direct-state shell from `{0,p,g,a,b,A,B,K,e,q}^4`, all nine authenticated four-rune targets and both signs: **180,000** configurations. One hit remains, `[B,0,K,g]` with subtraction to `LUCK`. Holding the exact key over all 514 four-rune words, nine targets and both signs gives one hit in **9,252** configurations, again p37 word37→LUCK.
+
+Among all length-4-or-longer double-index length matches, p37 is the only receiver with any direct-state-shell authenticated target hit. Preserve this as a **strong local plaintext candidate**. The main caveat is the second use of index37 as the within-page word ordinal, which is a natural extension of the number-as-direction route but has not yet been stated by an independent source instruction.
+
+[Detailed report](lp2-p37-luck-doubleindex-state-inverse.md) · [SFT](../sims/lp2_p37_luck_doubleindex_state_sft.cjs).
 
 ## Page38 independently says BEWARE at the source-state level
 
@@ -103,7 +140,7 @@ The adjacent source words36-37 are `GOOD LUCK`. Physical pages p36-p38 are exact
 40 PATHS
 ```
 
-The strongest evidence is the exact p38 word/state match plus the p39 red-X visual. P40 does not add an independent visual discriminator.
+The strongest evidence now includes the p37 reversible `LUCK` candidate, the exact p38 word/state match, and the p39 red-X visual. P40 does not add an independent visual discriminator.
 
 ## Relationship to the new p0 XY route
 
@@ -139,7 +176,7 @@ Preserve this as a leading **page-navigation interpretation** of the signed clue
 The mapping now has two materially different support regions:
 
 1. p28/p29: `THE -> DIRECTION`, followed by the p29 repeated-root branch;
-2. p38-p39: `BEWARE FALSE`, with an independent p38 BEWARE state match and the dominant p39 red-X visual. P40 `PATHS` is a weak continuation because its frame is reused.
+2. p37-p39: a strong local `LUCK` inverse on p37, the independent p38 `BEWARE` state match, and the dominant p39 red-X visual. P40 `PATHS` is a weak continuation because its frame is reused.
 
 Do not turn the p39 X into a blanket decoy label. Agent6 subsequently derived a source-selected p57→p50→p33→p39 route whose fixed `DIVINITY` address and literal circumference shedding recover `VERIFY`; that is a concrete counterexample to the idea that p39 itself must be discarded. The safer reading is that the source/page alignment warns against false routes while still allowing source-selected operations on the page.
 
