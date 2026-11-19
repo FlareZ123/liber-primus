@@ -16,11 +16,14 @@ The community archive contains two consecutive sequences: LP1 occupies `00.jpg`�
 |---:|---:|
 | 0 | `17.jpg` |
 | 40 | `57.jpg` |
-| 49 | `66.jpg` |
-| 50 (numeric grid) | `67.jpg` |
+| 49 (grid rows 1–10; 80 tokens) | `66.jpg` |
+| 50 (rune-free grid rows 11–23; 104 tokens) | `67.jpg` |
+| 51 (grid rows 24–32; 72 tokens) | `68.jpg` |
 | 55 | `72.jpg` |
 | 56 | `73.jpg` |
 | 57 (PARABLE) | `74.jpg` |
+
+The numeric object is one continuous row-major 32×8 grid spread over physical pages p49–p51: 80 + 104 + 72 = 256 tokens (10 + 13 + 9 rows). Page p50 is the rune-free central segment, not the whole grid; p49 and p51 also contain their adjacent runic prose. The zero-based address boundaries between these printed segments are 80 and 184.
 
 Do not interpret `57.jpg` as LP2 page 57: it is physical page 40. For example, the five-dot black side clusters in archive `57.jpg` belong to p40; the actual p57 image is `74.jpg`, whose source-identified features include the seven-rune red PARABLE title and terminal red 23-dot mark.
 
