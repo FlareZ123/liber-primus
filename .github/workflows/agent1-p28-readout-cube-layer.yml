@@ -11,4 +11,6 @@ jobs:
         with:
           node-version: '22'
       - name: Verify p28 READ OUT candidate and whole-book family control
-        run: node sims/lp2_p28_readout_cube_layer_candidate_sft.cjs
+        run: |
+          node sims/lp2_p28_readout_cube_layer_candidate_sft.cjs
+          node sims/lp2_p28_readout_p0_receiver_sft.cjs
