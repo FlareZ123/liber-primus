@@ -633,6 +633,149 @@ assert.deepEqual(openpgpManuscriptHits, [{
   matches: ["OPENPGP"],
 }]);
 
+// The four runes between the packet-start OPENPGP word and the center
+// VERIFY word are visibly split by the manuscript into a 3-rune word and a
+// 1-rune word. The signed warning says BEWARE FALSE PATHS. If that internal
+// boundary is treated as the false path, joining the four runes produces a
+// source-constrained PATHS inverse.
+const p0Runes = p0.flatMap((word) => word.values);
+assert.deepEqual(starts.get(173), {
+  index: 38,
+  start: 173,
+  end: 175,
+  length: 3,
+  values: [22, 8, 20],
+});
+assert.deepEqual(starts.get(176), {
+  index: 39,
+  start: 176,
+  end: 176,
+  length: 1,
+  values: [28],
+});
+const falsePathCipher = p0Runes.slice(173, 177);
+assert.deepEqual(falsePathCipher, [22, 8, 20, 28]);
+const falsePathKey = [
+  mod29(state.K * state.B),
+  H(state.A, state.g)[1],
+  H(state.p, state.g)[0],
+  H(state.A, state.g)[1],
+];
+assert.deepEqual(falsePathKey, [9, 13, 18, 13]);
+const falsePathPlain = falsePathCipher.map((value, index) =>
+  mod29(value - falsePathKey[index])
+);
+assert.deepEqual(falsePathPlain, gp("PATHS"));
+assert.equal(spell(falsePathPlain), "PATHS");
+
+// Charge a broad compact family around that key:
+// - any direct DH field times either public value A/B in slot1;
+// - independently choose A/B for the repeated public±g slot;
+// - every H coordinate/orientation for that slot and p/g;
+// - both additive signs;
+// - every authenticated four-rune target.
+const fourRuneTargets = new Map();
+for (const row of message) {
+  if (row.gp.length !== 4) continue;
+  if (!fourRuneTargets.has(row.gp.join(","))) {
+    fourRuneTargets.set(row.gp.join(","), []);
+  }
+  fourRuneTargets.get(row.gp.join(",")).push(row.word);
+}
+
+let falsePathFamilyConfigs = 0;
+const falsePathFamilyHits = [];
+for (const [factorName, factor] of directStateFields) {
+  for (const [productPublicName, productPublic] of [
+    ["A", state.A],
+    ["B", state.B],
+  ]) {
+    for (const [repeatPublicName, repeatPublic] of [
+      ["A", state.A],
+      ["B", state.B],
+    ]) {
+      for (const repeatG of hChoices(repeatPublic, state.g)) {
+        for (const pG of hChoices(state.p, state.g)) {
+          for (const sign of [-1, 1]) {
+            falsePathFamilyConfigs += 1;
+            const key = [
+              mod29(factor * productPublic),
+              repeatG.value,
+              pG.value,
+              repeatG.value,
+            ];
+            const plain = falsePathCipher.map((value, index) =>
+              mod29(value + (sign * key[index]))
+            );
+            const matches = fourRuneTargets.get(plain.join(",")) || [];
+            if (matches.length) {
+              falsePathFamilyHits.push({
+                factor: factorName,
+                productPublic: productPublicName,
+                repeatPublic: repeatPublicName,
+                repeatG: repeatG.name,
+                pG: pG.name,
+                sign: sign === -1 ? "subtract" : "add",
+                key,
+                plain,
+                matches,
+              });
+            }
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(falsePathFamilyConfigs, 896);
+assert.equal(falsePathFamilyHits.length, 2);
+const distinctFalsePathOps = new Map(
+  falsePathFamilyHits.map((hit) => [
+    [hit.key.join(","), hit.sign, hit.plain.join(",")].join("|"),
+    hit,
+  ])
+);
+assert.equal(distinctFalsePathOps.size, 1);
+const falsePathOp = [...distinctFalsePathOps.values()][0];
+assert.deepEqual(falsePathOp.key, falsePathKey);
+assert.equal(falsePathOp.sign, "subtract");
+assert.deepEqual(falsePathOp.matches, ["PATHS"]);
+
+// Unlike the word-boundary tests, charge every contiguous four-rune window
+// on every unknown page. The fixed key's sole authenticated-target hit is
+// the deliberately cross-boundary p0 window 173..176.
+let fourRuneWindows = 0;
+const falsePathWindowHits = [];
+for (let page = 0; page <= 55; page += 1) {
+  if (page === 50) continue;
+  const runes = parsePage(parts[page]).flatMap((word) => word.values);
+  for (let start = 0; start <= runes.length - 4; start += 1) {
+    fourRuneWindows += 1;
+    const cipher = runes.slice(start, start + 4);
+    const plain = cipher.map((value, index) =>
+      mod29(value - falsePathKey[index])
+    );
+    const matches = fourRuneTargets.get(plain.join(",")) || [];
+    if (matches.length) {
+      falsePathWindowHits.push({
+        page,
+        start,
+        cipher,
+        plain,
+        matches,
+      });
+    }
+  }
+}
+assert.equal(fourRuneWindows, 12784);
+assert.deepEqual(falsePathWindowHits, [{
+  page: 0,
+  start: 173,
+  cipher: [22, 8, 20, 28],
+  plain: gp("PATHS"),
+  matches: ["PATHS"],
+}]);
+
 // The final word of the same selected packet is another authenticated warning
 // word. Its compact source-state key places BEWARE at the packet end, giving
 // OPENPGP at the start, VERIFY at the exact center, and BEWARE at the end.
@@ -844,7 +987,7 @@ assert.notEqual(mod29(decodeToken(table[60], alpha59)), state.B);
 console.log(JSON.stringify({
   status: "PASS",
   classification:
-    "strong source-constrained local OPENPGP/VERIFY/BEWARE packet candidate: authenticated warning vocabulary selects state75; base60/zero cell75=177 is both the center of the unique source-word-length-matched p=23 packet 166..188 and the start of a six-rune VERIFY receiver. The packet start decrypts to OPENPGP, center to canonical-GP UERIFY, and end to BEWARE under compact p28 DH keys. Charged finite key families each collapse to one distinct authenticated-target operation; each fixed key has one manuscript-wide same-length target hit. Key assembly remains retrospective.",
+    "strong source-constrained local warning-packet candidate: authenticated BEWARE FALSE PATHS / VERIFY OPENPGP vocabulary selects state75; base60/zero cell75=177 centers the unique signed-word-length-matched p=23 packet 166..188. The packet start decrypts OPENPGP, the visibly split 3+1 internal segment decrypts PATHS only when the apparent boundary is crossed, the center word decrypts canonical-GP UERIFY, and the end word decrypts BEWARE. Each charged finite key family collapses to one distinct authenticated-target operation; each fixed key has a unique manuscript-wide same-length/window hit. Key assembly remains retrospective.",
   state: { ...state, e },
   source: {
     phrase: message.slice(-2).map((row) => row.word),
@@ -879,6 +1022,18 @@ console.log(JSON.stringify({
       distinctFamilyOps: distinctOpenpgpOps.size,
       sevenRuneWords,
       manuscriptHits: openpgpManuscriptHits,
+    },
+    falsePaths: {
+      manuscriptSplit: [[173, 175], [176, 176]],
+      cipher: falsePathCipher,
+      key: falsePathKey,
+      plaintext: falsePathPlain,
+      text: spell(falsePathPlain),
+      familyConfigs: falsePathFamilyConfigs,
+      labeledFamilyHits: falsePathFamilyHits.length,
+      distinctFamilyOps: distinctFalsePathOps.size,
+      fourRuneWindows,
+      manuscriptHits: falsePathWindowHits,
     },
     beware: {
       receiver: bewareReceiver,
