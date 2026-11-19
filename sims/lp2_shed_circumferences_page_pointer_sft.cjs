@@ -26,9 +26,45 @@ const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const ink = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
 const grid = JSON.parse(read("resources/liber-primus/base60-grid.json"));
 const solved = JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"));
+const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
 const parts = transcription.split(/^\s*%\s*$/m);
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const gpTokens = corpus.translit
+  .map((symbol, value) => ({ symbol, value }))
+  .sort((left, right) => right.symbol.length - left.symbol.length);
+
+/**
+ * Encode an authenticated source word in canonical GP29 spelling.
+ * @param {string} word
+ * @returns {number[]}
+ */
+function gp(word) {
+  const normalized = word.toUpperCase()
+    .replace(/QU/g, "CW")
+    .replace(/V/g, "U")
+    .replace(/[KQ]/g, "C")
+    .replace(/Z/g, "S")
+    .replace(/[^A-Z]/g, "");
+  const values = [];
+  for (let offset = 0; offset < normalized.length;) {
+    if (normalized.startsWith("ING", offset)) {
+      values.push(21);
+      offset += 3;
+      continue;
+    }
+    if (normalized.startsWith("IO", offset)) {
+      values.push(27);
+      offset += 2;
+      continue;
+    }
+    const token = gpTokens.find((row) => normalized.startsWith(row.symbol, offset));
+    assert.ok(token, "unmapped GP spelling " + word);
+    values.push(token.value);
+    offset += token.symbol.length;
+  }
+  return values;
+}
 
 /** @param {string} text @returns {number[][]} */
 function runeWords(text) {
@@ -109,6 +145,17 @@ function redStartedBodies() {
   return out;
 }
 
+const signedClear = signed2016
+  .split("-----BEGIN PGP SIGNATURE-----")[0]
+  .split(/\n\n/u)
+  .slice(1)
+  .join("\n");
+const signedWords = signedClear
+  .split(/[^A-Za-z0-9]+/u)
+  .filter((token) => /^[A-Za-z]+$/u.test(token))
+  .map((word, index) => ({ index, word: word.toUpperCase(), values: gp(word) }));
+assert.equal(signedWords.length, 43);
+
 const p57 = solved.sections.find((section) => section.name === "p57_parable");
 assert.ok(p57);
 const p57Words = runeWords(p57.source_text);
@@ -131,6 +178,8 @@ assert.equal(shedWords(p57BodySolved).length, 50);
 // The canonical physical transcription must independently reproduce the same
 // p57 body geometry selected by its red PARABLE title.
 const bodies = redStartedBodies();
+
+/** @returns {number[][]} */
 function p39BodyForCounts() {
   const row = bodies.find((candidate) => candidate.page === 39 && candidate.start === 119);
   assert.ok(row);
@@ -247,13 +296,54 @@ assert.equal(
 
 // The arrived circumference operation itself is a state register on p39.
 // Depths [K,e,q,g]=[2,3,4,5] leave [p,a,K,0] runes.
+/**
+ * @param {number[][]} words
+ * @param {number} depth
+ * @returns {number[]}
+ */
+function shedDepthStream(words, depth) {
+  return words.flatMap((word) =>
+    word.length <= 2 * depth ? [] : word.slice(depth, -depth)
+  );
+}
+
+/**
+ * @param {number[][]} words
+ * @param {number} depth
+ * @returns {number}
+ */
 function shedDepthCount(words, depth) {
-  return words.reduce((sum, word) => sum + Math.max(word.length - 2 * depth, 0), 0);
+  return shedDepthStream(words, depth).length;
 }
 assert.deepEqual(
   [K, e, q, g].map((depth) => shedDepthCount(p39Body, depth)),
   [p, a, K, 0]
 );
+
+const p39DepthE = shedDepthStream(p39Body, e);
+const p39DepthQ = shedDepthStream(p39Body, q);
+const p39DepthESum = p39DepthE.reduce((sum, value) => sum + value, 0);
+const p39DepthQSum = p39DepthQ.reduce((sum, value) => sum + value, 0);
+
+const sourceFound = signedWords.find((row) => row.word === "FOUND");
+const sourceGood = signedWords.find((row) => row.word === "GOOD");
+const sourceLuck = signedWords.find((row) => row.word === "LUCK");
+assert.ok(sourceFound);
+assert.ok(sourceGood);
+assert.ok(sourceLuck);
+assert.deepEqual([sourceFound.index, sourceGood.index, sourceLuck.index], [35, 36, 37]);
+assert.equal(sourceFound.values.reduce((sum, value) => sum + value, 0), sourceGood.index);
+assert.equal(sourceGood.values[0], a);
+
+assert.equal(p39DepthE.length, sourceGood.values[0]);
+assert.equal(p39DepthESum, sourceGood.index);
+assert.equal(p39DepthESum, sourceFound.values.reduce((sum, value) => sum + value, 0));
+
+assert.deepEqual(p39DepthQ, [10, 5]);
+assert.equal(p39DepthQ.length, K);
+assert.equal(p39DepthQSum, b);
+assert.deepEqual(H(p39DepthQ), [g, b]);
+assert.equal(signedWords[b].word, "WORDS");
 
 const length3Red = [];
 for (const page of ink.pages) {
@@ -306,6 +396,18 @@ const nestedStateHits = bodies
   .map((row) => [row.page, row.start]);
 assert.deepEqual(nestedStateHits, [[39,119]]);
 
+const signedWordSelectorHits = bodies
+  .map((row) => {
+    const stream = shedDepthStream(row.body, e);
+    const sum = stream.reduce((total, value) => total + value, 0);
+    const target = signedWords[sum];
+    return target && stream.length === target.values[0]
+      ? [row.page, row.start, stream.length, sum, target.word]
+      : null;
+  })
+  .filter(Boolean);
+assert.deepEqual(signedWordSelectorHits, [[39,119,a,sourceGood.index,"GOOD"]]);
+
 console.log(JSON.stringify({
   status: "PASS",
   solvedInstruction: {
@@ -348,6 +450,20 @@ console.log(JSON.stringify({
         depths: [K, e, q, g],
         counts: [K, e, q, g].map((depth) => shedDepthCount(p39Body, depth)),
         uniqueRedBodyHit: nestedStateHits,
+        depthE: {
+          values: p39DepthE,
+          count: p39DepthE.length,
+          rawSum: p39DepthESum,
+          sourceRelation: "count=GP(G)=a=6; sum=GP0(FOUND)=signed index(GOOD)=36",
+          signedWordSelectorHits,
+        },
+        depthQ: {
+          values: p39DepthQ,
+          count: p39DepthQ.length,
+          rawSum: p39DepthQSum,
+          throughH: H(p39DepthQ),
+          sourceRelation: "count=K=2; sum=b=15=index(WORDS); H(core)=[g,b]",
+        },
       },
     },
   },
@@ -360,5 +476,5 @@ console.log(JSON.stringify({
   },
   census,
   interpretation:
-    "Solved p57 literally says WE MUST SHED OUR OWN CIRCUMFERENCES. Removing each body's first and last rune leaves exactly 50 runes, selecting the p50 number table. P50 state B=19 selects p33; p33's source-visible H chain returns WE and the red 13-dot count. Reusing the solved instruction unchanged on p33's first black body leaves exactly 39 runes, selecting p39. The target p39 independently carries red title [-K,g,b]=[27,5,15], whose H chain is [p-1,e] -> [B,GP0(WE)] -> [p,b]. Its geometry continues the p33 p*g state: upper runes=p*g+q=119, lower black runes=p*g+e=118, complete lower section=p*g+a=121, lower black words=p+g=28, and both source sections have a=6 lines. Repeated shedding at depths [K,e,q,g] leaves [p,a,K,0], uniquely among red-started bodies. An independent original-image inventory also establishes p39 as the only other page sharing p33's reused three-dot divider graphic. The same operation on p3's second red-started body predicts p53, preserved separately without forced interpretation.",
+    "Solved p57 literally says WE MUST SHED OUR OWN CIRCUMFERENCES. Removing each body's first and last rune leaves exactly 50 runes, selecting the p50 number table. P50 state B=19 selects p33; p33's source-visible H chain returns WE and the red 13-dot count. Reusing the solved instruction unchanged on p33's first black body leaves exactly 39 runes, selecting p39. The target p39 independently carries red title [-K,g,b]=[27,5,15], whose H chain is [p-1,e] -> [B,GP0(WE)] -> [p,b]. Its geometry continues the p33 p*g state: upper runes=p*g+q=119, lower black runes=p*g+e=118, complete lower section=p*g+a=121, lower black words=p+g=28, and both source sections have a=6 lines. Repeated shedding at depths [K,e,q,g] leaves [p,a,K,0], uniquely among red-started bodies. At depth e the six-rune core has raw sum36: count6=GP(G)=a and sum36=GP0(FOUND)=zero-based signed index GOOD, the sole red-body depth-e hit of the fixed first-GP/index selector. At depth q the two-rune core [10,5] has sum b=15=index(WORDS) and H(core)=[g,b]. An independent original-image inventory also establishes p39 as the only other page sharing p33's reused three-dot divider graphic. The same operation on p3's second red-started body predicts p53, preserved separately without forced interpretation.",
 }, null, 2));
