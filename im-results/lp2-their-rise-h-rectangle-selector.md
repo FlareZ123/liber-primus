@@ -236,4 +236,4 @@ Run:
 node sims/lp2_their_rise_h_rectangle_selector_sft.cjs
 ```
 
-The SFT parses the authenticated 2016 source, reconstructs the source-role state values, derives rise6 from the two THEIR positions, exhausts the fixed-rise and all-rise rectangle families, and reproduces p28 READ OUT from the recovered ordered pair.
+The SFT parses the authenticated 2016 source, reconstructs the source-role state values, derives rise6 from the two THEIR positions, exhausts the fixed-rise and all-rise rectangle families, and reproduces p28 READ OUT from the recovered ordered pair. Windows Node22 workflow **44458710411** passes.
