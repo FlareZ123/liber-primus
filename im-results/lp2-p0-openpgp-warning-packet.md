@@ -112,6 +112,44 @@ This pattern is highly selective on the original manuscript. Across **2,713** co
 
 This converts **FALSE PATHS** from a semantic afterthought into a concrete structural instruction candidate: the source says FALSE has the state length that must be removed to expose a p-rune warning packet, while the manuscript inserts a state-sized false boundary inside the PATHS-sized segment.
 
+## Signed-carrier H coordinates
+
+The authenticated carrier provides a second, independent derivation of the same packet coordinates.
+
+For each signed word define the already-used source-only quantity:
+
+```text
+delta(word) = zero-based signed-word index - GP0(word) mod29
+```
+
+Then apply the frozen `H(delta, GP-length)=(diff,sum)` to the final warning:
+
+```text
+word      index  GP0  len  delta   H(delta,len)
+BEWARE      38    88    6     8    [ 2,14] = [K, B-g]
+FALSE       39    77    5    20    [15,25] = [b, p+K]
+PATHS       40    54    4    15    [11,19] = [a+g, B]
+VERIFY      41    59    6    11    [ 5,17] = [g, b+K]
+OPENPGP     42    75    7    25    [18, 3] = [p-g, e]
+```
+
+Every output is a simple expression in the independently reconstructed p28 DH state.
+
+More importantly, read residues greater than14 as signed offsets modulo29. Around the p50-selected center177:
+
+```text
+OPENPGP H-diff = 18 = -11  -> packet start166
+FALSE   H-sum  = 25 =  -4  -> PATHS start173
+VERIFY  start             0 -> center177
+VERIFY  H-diff =  5 =  +5  -> VERIFY end182
+a                  =  6 =  +6  -> BEWARE start183
+PATHS   H-diff = 11 = +11  -> packet end188
+```
+
+Thus the signed source supplies **all logical packet boundaries** with the same frozen H operation already central to the p28 route. The word FALSE is especially functional: although removed from the p-rune plaintext-length budget, its carrier H-sum supplies the `-4` start coordinate of the PATHS segment.
+
+This removes the main freedom in placing the warning crib. The table selects center177; source lengths select the segment sizes; signed-carrier H coordinates select their offsets around the center. Ciphertext values are still unused at this stage.
+
 ## Original packet segmentation
 
 P0 offsets166..188 are:
