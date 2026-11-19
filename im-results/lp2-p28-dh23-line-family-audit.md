@@ -1,6 +1,6 @@
 # P28 DH23 line-family calibration
 
-**Agent3, 19 November 2026. Director #1689. Classification: source-constrained DH23 selector with a calibrated geometry rival. The literal `DH` label and an independent solved-p57 punctuation holdout preserve modulus23; the bare visible tuple geometry is not unique. No unknown plaintext or complete LP2 inverse is recovered.**
+**Director #1689 closure, 19 November 2026. Classification: source-constrained LP2-native DH operation/state selector with a calibrated geometry rival. The literal `DH` label, the fixed outer-H/count reconstruction, an independent manuscript-wide cross-modulus invariant, and a predeclared solved-p57 punctuation holdout jointly select the p28 DH23 state. The bare visible tuple geometry is not unique, and no unknown plaintext or complete LP2 inverse is recovered.**
 
 ## Decisive correction
 
@@ -105,6 +105,30 @@ and hits no p57 GP0 word in either direct or p50/base59 form.
 
 This holdout was specified before the present line-family census. It independently favors **23** as the modulus-like punctuation count and ties it to the already selected terminal word `EMERGE`.
 
+## Independent cross-modulus family closes the labeled state
+
+A separate source-family audit was constructed without `READ OUT`, `HERE`, p0 receiver values, p50 target values, or language scoring. It rebuilt every rune-bearing line under the fixed outer-H/count DH family. The unrestricted algebra-valid family has **1,628 variants on 274 lines**. Removing only trivial identity exchanges by requiring `g,b,A,B,K > 1` leaves **711 variants on 212 lines**.
+
+For each variant whose `b` is invertible modulo `p-1`, define the ordinary DH inverse exponent `e=b^-1 mod(p-1)` and test the labeled GP29 chain
+
+```text
+K^e = A
+A^e = B
+B^e = b
+(mod29).
+```
+
+Exactly one variant survives: p28 line6 with
+
+```text
+p=23, g=5, a=6, b=15, A=8, B=19, K=2
+e = 15^-1 mod22 = 3.
+```
+
+The exact GP29 chain is `2^3=8`, `8^3=19`, `19^3=15` modulo29. The same sole hit remains in the stricter **289-variant / 133-line** invertible nontrivial family and the older **60-variant / 31-line** seven-distinct control. This fixes exponent3 from standard DH algebra rather than from candidate English.
+
+Supporting audit: [`lp2-p28-dh-crossmod-chain-audit.md`](lp2-p28-dh-crossmod-chain-audit.md).
+
 ## Standard-DH consequence
 
 Once p28 line6 is selected by the unique literal `DH` label and its visible natural roles are read one-based,
@@ -132,9 +156,10 @@ Preserve the p28 DH23 route with a narrower statement:
 - the literal-label alignment has exact length-stratified matched rate **1/120**;
 - the independently visible p50 width **8** resolves the charged line-origin ambiguity in favor of one-based `a=6`, which predicts `A=8` and `K=2`;
 - a predeclared solved-p57 punctuation holdout independently reselects **23** and `EMERGE=83`;
-- the tuple should therefore be described as **source-constrained**, not uniquely selected by geometry alone.
+- the independent 711-variant nontrivial outer-H/count family leaves this p28 state as the sole cross-modulus DH-inverse-chain hit;
+- the tuple should therefore be described as a **source-constrained LP2-native DH operation/state selector**, not uniquely selected by geometry alone.
 
-Do not use the tuple-geometry duplicate as a reason to add new parameter permutations or arithmetic. The next advance still needs a source-selected consumer that turns the typed DH/p50 state into unknown plaintext.
+This satisfies #1689's positive operation-selector fork. Do not use the tuple-geometry duplicate as a reason to add new parameter permutations or arithmetic. Standard DH still supplies no KDF, GP29 serialization, payload cipher, reset rule, or general unknown-page receiver, so candidate `READ OUT` remains under its separate transform, solved-control, and output-type gates.
 
 ## Reproduction
 
