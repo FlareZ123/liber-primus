@@ -25,6 +25,7 @@ const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
 
 const table = grid.rows.flat();
+const byteTable = grid.byte_rows.flat();
 const alpha60 = grid.alphabet;
 const alpha59 = alpha60.replace("f", "");
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
@@ -872,6 +873,101 @@ assert.equal(
 );
 assert.equal(multiplicativeInverse(topologyState.b, topologyState.p - 1), e);
 
+// Derive the complete DH state from graph topology alone. The p28 state above
+// is used only as an independent equality check after these values are fixed.
+const topologyStateFull = Object.freeze({
+  ...topologyState,
+  A: modPow(topologyState.g, topologyState.a, topologyState.p),
+  B: modPow(topologyState.g, topologyState.b, topologyState.p),
+});
+assert.equal(
+  modPow(topologyStateFull.A, topologyStateFull.b, topologyStateFull.p),
+  topologyStateFull.K
+);
+assert.equal(
+  modPow(topologyStateFull.B, topologyStateFull.a, topologyStateFull.p),
+  topologyStateFull.K
+);
+assert.deepEqual(topologyStateFull, state);
+
+// Pure signed-source OPENPGP key derivation. No p28 value participates here.
+const cycle1Low = topology.cycles[0].map(index =>
+  mod29(alpha60.indexOf(table[index][1]))
+);
+const cycle2Low = topology.cycles[1].map(index =>
+  mod29(alpha60.indexOf(table[index][1]))
+);
+assert.deepEqual(cycle1Low, [
+  topologyStateFull.p,
+  topologyStateFull.b,
+  mod29(-topologyStateFull.K),
+]);
+assert.deepEqual(cycle2Low, [
+  topologyStateFull.a - topologyStateFull.g,
+  topologyStateFull.a,
+  topologyStateFull.p - e,
+]);
+
+const openpgpShell = [
+  ...H(cycle1Low[0], cycle1Low[2]),
+  cycle1Low[1],
+  cycle2Low[2],
+  cycle2Low[1],
+  modPow(topologyStateFull.a, e, 29),
+  cycle2Low[0],
+];
+assert.deepEqual(openpgpShell, [25, 21, 15, 20, 6, 13, 1]);
+
+/** @param {number[]} shell */
+function inverseOddHShell(shell) {
+  const key = Array(shell.length);
+  const inverse2 = 15;
+  const pairs = Math.floor(shell.length / 2);
+  for (let pair = 0; pair < pairs; pair += 1) {
+    const difference = shell[2 * pair];
+    const sum = shell[2 * pair + 1];
+    key[pair] = mod29((difference + sum) * inverse2);
+    key[key.length - 1 - pair] =
+      mod29((sum - difference) * inverse2);
+  }
+  if (shell.length % 2 === 1) key[pairs] = shell.at(-1);
+  return key;
+}
+
+const openpgpKey = inverseOddHShell(openpgpShell);
+assert.deepEqual(openpgpKey, [23, 3, 24, 1, 18, 17, 27]);
+
+const openpgpWordIndex = words.indexOf("OPENPGP");
+assert.equal(openpgpWordIndex, 42);
+const openpgpGp = gp(words[openpgpWordIndex]);
+const openpgpGp0 = openpgpGp.reduce((sum, value) => sum + value, 0);
+assert.equal(openpgpGp0, 75);
+const openpgpAddressToken = table[openpgpGp0];
+const openpgpPointer = byteTable[openpgpGp0];
+assert.equal(openpgpAddressToken, "2v");
+assert.equal(openpgpPointer, 177);
+
+const openpgpStart =
+  openpgpPointer - Math.floor(topologyStateFull.p / 2);
+assert.equal(openpgpStart, 166);
+const p0 = corpus.pages.find(page => page.page === 0).indices;
+const openpgpCipher = p0.slice(
+  openpgpStart,
+  openpgpStart + openpgpKey.length
+);
+assert.deepEqual(
+  openpgpCipher.map(value => corpus.translit[value]),
+  ["F", "P", "F", "N", "NG", "J", "ING"]
+);
+const openpgpPlain = openpgpCipher.map((value, index) =>
+  mod29(value - openpgpKey[index])
+);
+assert.deepEqual(openpgpPlain, openpgpGp);
+assert.equal(
+  openpgpPlain.map(value => corpus.translit[value]).join(""),
+  "OPENPGP"
+);
+
 // Charge the exact HELLO -> MAP -> ROAD -> HELLO cycle across all 128
 // arithmetic conventions x GP/Latin word-length definitions.
 const directionFamilyHits = [];
@@ -1172,6 +1268,19 @@ console.log(JSON.stringify({
   },
   signedWordDirectionGraph: {
     topologyState,
+    topologyStateFull,
+    p28IndependentOpenpgp: {
+      cycle1Low,
+      cycle2Low,
+      shell: openpgpShell,
+      key: openpgpKey,
+      address: openpgpGp0,
+      token: openpgpAddressToken,
+      pointer: openpgpPointer,
+      start: openpgpStart,
+      ciphertext: openpgpCipher.map(value => corpus.translit[value]),
+      plaintext: openpgpPlain.map(value => corpus.translit[value]).join(""),
+    },
     cycles: topology.cycles,
     maximumDepth: topology.maxDepth,
     depthHistogram: topology.depthHistogram,
