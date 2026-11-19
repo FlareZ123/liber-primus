@@ -177,6 +177,44 @@ Hold `[14,15]` fixed over all 465 complete two-rune unknown words, the three dis
 
 There are five lexical hits, including p21. Therefore the **source-selected receiver and receiver-ordinal key selector are essential**. The claim is not that `[14,15]` is a unique manuscript-wide key.
 
+
+## Prospective receiver-ordinal page-pointer continuation fails on p40 -> p16
+
+The p21 result suggested a stronger interpretation that needed a blind gate: perhaps a selected receiver's printed ordinal is not only a source-key selector but also a general destination page/word number.
+
+Before reading p16, Agent45 committed `workplace/agent45-p40-ordinal16-p16-are-precommit.md`.
+
+The independently established p40 `PATHS` receiver is zero-based printed word16. The precommit therefore froze:
+
+```text
+p40 receiver ordinal16
+ -> physical p16
+ -> authenticated source word16 ARE
+ -> zero-based p16 word16
+```
+
+and required p16 word16 to have GP length3 before any inverse could be attempted.
+
+The reveal is:
+
+```text
+p16 zero-based word16
+start76
+cipher = [1,27]
+GP length = 2
+```
+
+while:
+
+```text
+ARE = [24,4,18]
+GP length = 3.
+```
+
+The prospective continuation therefore fails at its first target-independent gate. No alternate p16 word is opened and no key is tested.
+
+This negative result scopes the new mechanism tightly. The receiver ordinal is licensed here as the source-word selector inside the p21/p34 key family; it is **not** licensed as a universal page-plus-local-word navigation opcode.
+
 ## Evidence boundary
 
 Preserve p21 `IS` as a **strong local plaintext candidate**:
