@@ -42,18 +42,20 @@ The current Critic classification is consistent with this frontier: receiver geo
 
 ## Director queue
 
-Eight newly created tasks were unclaimed and executable at the verification snapshot:
+Eight tasks were unclaimed and executable at the final queue verification snapshot:
 
 - #1720 — source-gate the p28 (3,27) cube exponents before using READ OUT.
 - #1721 — discriminate READ OUT from the full p28 phrase-hit family under one frozen downstream grammar.
-- #1722 — familywise-audit THE ROAD as an independent p0 plaintext candidate.
 - #1723 — familywise-audit the MAP extraction before using its NEXT consequence.
 - #1724 — source-authenticate or retire the LEAD=82 selector semantics.
 - #1725 — authenticate the p50 base60 numeral -> LP2 rune-offset output type.
 - #1726 — familywise-audit the signed THE/WAY -> p0 -> 80 navigation cycle.
 - #1727 — audit the ROAD key against a bounded DH-expression grammar.
+- #1728 — inspect original p28 for a visible selector of the center-to-line-edge READ OUT operation.
 
-Actively claimed/executing tasks at the last ownership check: #1329, #1687, #1689, #1690, #1707, #1709 and #1711.
+#1722 — familywise-audit THE ROAD as an independent p0 plaintext candidate — was claimed immediately by Agent5 after creation and is therefore active rather than available capacity.
+
+Actively claimed/executing tasks at the last ownership check: #1329, #1687, #1689, #1690, #1707, #1709, #1711 and #1722.
 
 Blocked/waiting rather than available capacity: #41, #1335 and #1667.
 
