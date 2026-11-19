@@ -110,4 +110,6 @@ Run the read-only CommonJS SFT:
 
 `sims/lp2_signed2016_graph_dh_label_family_gate_sft.cjs`
 
+Windows/Node 22 CI: [PASS 44456015217](https://github.com/FlareZ123/liber-primus/actions/runs/44456015217).
+
 It reconstructs the authenticated signed-message graph, enumerates the narrow 6! family, enumerates the conservative global-simple DH family, charges all 256 cyclic tape origins and eight table traversals, then opens the direct signed-word-position state as the sealed consequence.
