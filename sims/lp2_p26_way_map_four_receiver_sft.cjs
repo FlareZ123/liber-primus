@@ -110,6 +110,7 @@ const movementEligible = [];
 const movementHits = [];
 const pair57to56 = [];
 const fourHits = [];
+const dhResiduePacketHits = [];
 let withinPagePairs = 0;
 let fourWordWindows = 0;
 
@@ -167,6 +168,19 @@ for (let page = 0; page <= 55; page += 1) {
     const window = words.slice(index, index + 4);
     const windowAddresses = addresses.slice(index, index + 4);
     if (windowAddresses.some((address) => address >= table.length)) continue;
+    const bytes = windowAddresses.map((address) => grid.bytes[address]);
+    const residues = bytes.map((value) => value % 29);
+    if (residues.join(",") === "15,22,2,22") {
+      dhResiduePacketHits.push({
+        page,
+        index,
+        addresses: windowAddresses,
+        tokens: windowAddresses.map((address) => table[address]),
+        bytes,
+        residues,
+      });
+    }
+
     const high = windowAddresses.map((address) => Number(table[address][0]));
     if (high.join(",") !== "0,3,1,4") continue;
     fourHits.push({
@@ -240,6 +254,56 @@ assert.deepEqual(p26Four, {
     { line: 10, word: 3 },
   ],
 });
+
+assert.deepEqual(dhResiduePacketHits, [{
+  page: 26,
+  index: 51,
+  addresses: [18, 61, 57, 56],
+  tokens: ["0F", "3G", "1w", "4E"],
+  bytes: [15, 196, 118, 254],
+  residues: [15, 22, 2, 22],
+}]);
+
+/** @param {number} left @param {number} right */
+function gcd(left, right) {
+  let a = Math.abs(left);
+  let b = Math.abs(right);
+  while (b !== 0) {
+    [a, b] = [b, a % b];
+  }
+  return a;
+}
+
+const p26Bytes = p26Four.addresses.map((address) => grid.bytes[address]);
+const p26Residues = p26Bytes.map((value) => value % 29);
+assert.deepEqual(p26Residues, [15, 22, 2, 22]);
+assert.deepEqual(p26Residues, [15, 23 - 1, 2, 23 - 1]);
+
+const firstPairGcd = gcd(p26Residues[0], p26Residues[1]);
+const wayMapGcd = gcd(p26Residues[2], p26Residues[3]);
+assert.equal(firstPairGcd, 1);
+assert.equal(wayMapGcd, 2);
+assert.equal(firstPairGcd, p26Four.high[2]);
+assert.equal(translit([wayMapGcd]), "TH");
+assert.equal(p26Four.output + translit([wayMapGcd]), "FOURTH");
+
+const fourExtensions = fourHits.map((hit) => {
+  const residues = hit.addresses.map((address) => grid.bytes[address] % 29);
+  const suffix = gcd(residues[2], residues[3]);
+  return {
+    page: hit.page,
+    residues,
+    suffix,
+    suffixRune: translit([suffix]),
+    output: hit.output + translit([suffix]),
+  };
+});
+assert.deepEqual(fourExtensions, [
+  { page: 5, residues: [25, 26, 21, 21], suffix: 21, suffixRune: "NG", output: "FOURNG" },
+  { page: 23, residues: [10, 24, 15, 21], suffix: 3, suffixRune: "O", output: "FOURO" },
+  { page: 26, residues: [15, 22, 2, 22], suffix: 2, suffixRune: "TH", output: "FOURTH" },
+  { page: 31, residues: [4, 9, 20, 21], suffix: 1, suffixRune: "U", output: "FOURU" },
+]);
 
 
 /*
@@ -336,6 +400,10 @@ console.log(JSON.stringify({
   },
   p26Receiver: {
     fourWindow: p26Four,
+    dhResiduePacketHits,
+    dhResidues: p26Residues,
+    dhPacketLabels: ["b", "p-1", "K", "p-1"],
+    gcdChecks: { firstPairGcd, wayMapGcd, extendedInstruction: p26Four.output + translit([wayMapGcd]), fourExtensions },
     uniqueState48Word: p26State48,
     state48CurrentPageSelfIndex: { offset48Rune: corpus.translit[p26Page.indices[48]], dCountThrough48: 1, pass: false },
     sharedSecretWordProbe: { plusK: translit(plusK), minusK: translit(minusK), threeRuneWords, signedKEnglishHits },
@@ -345,5 +413,5 @@ console.log(JSON.stringify({
     immediateCiphertextContinuation: 95,
   },
   classification:
-    "Bounded unknown-cipher receiver candidate. Among 3288 within-page unknown-word adjacencies, only two literal p50 movement tokens predict the next word GP0; p26 is the sole 57->56 hit selected by the independently fixed WAY->MAP table edge, and that same p26 boundary window reads FOUR under the independently authenticated high-digit rule. The 56->48 table continuation does not equal p26's immediate next word; the unique p26 state48 word fails the frozen 4D current-page self-index; and the readable +K word SAD is only a bounded candidate against a 41/1590 signed-K English background. No continuous plaintext is claimed.",
+    "Bounded unknown-cipher receiver candidate. Among 3288 within-page unknown-word adjacencies, only two literal p50 movement tokens predict the next word GP0; p26 is the sole 57->56 hit selected by the independently fixed WAY->MAP table edge, and that same p26 boundary window reads FOUR under the independently authenticated high-digit rule. The selected p26 FOUR window also has the unique full-byte residue packet [15,22,2,22]=[b,p-1,K,p-1] across all 3176 unknown four-word windows. Applying the already-frozen GCD opcode to the WAY/MAP residue pair gives gcd(K,p-1)=2=TH, extending FOUR to FOURTH; the other three unknown FOUR windows do not. The 56->48 table continuation does not equal p26's immediate next word; the unique p26 state48 word fails the frozen 4D current-page self-index; and the readable +K word SAD remains below plaintext threshold. No continuous plaintext is claimed.",
 }, null, 2));
