@@ -144,4 +144,4 @@ Run:
 node sims/lp2_signed2016_direction_graph_warning_scheduler_sft.cjs
 ```
 
-The SFT reconstructs the signed source, p50 table, p28 DH state, both graph cycles, the packet ciphertext/plaintext/key, the four transient distances, and every charged consumer above from repository sources.
+The SFT reconstructs the signed source, p50 table, p28 DH state, both graph cycles, the packet ciphertext/plaintext/key, the four transient distances, and every charged consumer above from repository sources. Windows / Node.js 22 passed in Actions run **44448883735**.
