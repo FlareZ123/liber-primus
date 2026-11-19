@@ -35,7 +35,7 @@ function firstPrimes(count) {
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const ink = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
-const parts = transcription.split(/^\\s*%\\s*$/m);
+const parts = transcription.split(/^\s*%\s*$/m);
 const primes = firstPrimes(300);
 
 /** @param {number} page @returns {string} */
@@ -57,14 +57,14 @@ function spell(values) {
 
 /** @param {string} line @returns {number[]} */
 function wordLengths(line) {
-  return (line.match(/[\\u16A0-\\u16FF]+/gu) || []).map((word) => [...word].length);
+  return (line.match(/[\u16A0-\u16FF]+/gu) || []).map((word) => [...word].length);
 }
 
 /** @param {number} page @returns {{line:number,lens:number[],runes:number,text:string}[]} */
 function pageLines(page) {
   return physicalPart(page)
-    .split(/\\r?\\n/)
-    .filter((line) => /[\\u16A0-\\u16FF]/u.test(line))
+    .split(/\r?\n/)
+    .filter((line) => /[\u16A0-\u16FF]/u.test(line))
     .map((line, index) => {
       const lens = wordLengths(line);
       return {
