@@ -41,6 +41,20 @@ The two named words converge on state32 under the same byte-as-next-address oper
 
 This links the authenticated phrase to both the physical page number and a fixed phase of the existing table cycle. Re-running the bounded whole-p32 additive family at phase115, with address, successor, row, and column schedules, row/column clocks, and both signs, gives 16 fixed outputs. The best IoC is **0.04049586776859504** and remains visibly nonlinguistic. The phase removes a start-state ambiguity without rescuing the direct additive consumer.
 
+## Complete four-word navigation grammar
+
+A stronger source-family test now consumes the complete consecutive clause `EPIPHANY SEEKS THE DEVOTED` rather than treating EPIPHANY and DEVOTED independently.
+
+Use `GP0(SEEKS)=71` as the p50 start and the reconstructed DH modulus `p=23` as pointer depth. Under base60 the exact 23-step route ends:
+
+`... -> 125 -> 20 -> 102 -> 32`.
+
+Here `20=GP0(THE)`, `102=GP0(DEVOTED)`, terminal32 is physical p32, and p32 has 121 runes = `GP0(EPIPHANY)`.
+
+Charge all 40 consecutive authenticated four-word windows, all seven DH-state values as depth, and both radices. Require the final two preterminal states to equal the last two words' GP0 values, the terminal to be a physical page, and that page's rune count to equal the first word's GP0. The complete **560-case** family has exactly **one** hit: `EPIPHANY SEEKS THE DEVOTED`, `p=23`, base60, p32.
+
+This upgrades the page selector into a source-native navigation mechanism. See [the exhaustive 23-step route report](lp2-epiphany-seeks-devoted-23step.md).
+
 ## Whole signed-source control
 
 Charge every authenticated 2016 word as the possible rune-count word and every authenticated word as the possible p50-address word. For a hit:
