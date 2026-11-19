@@ -141,6 +141,30 @@ Thus the key is described independently both by p15's visible layout and by the 
 
 **Chronology caveat:** this particular five-feature serialization was recognized after the source-index route had made `WORDS15` a serious target. It is therefore a source-visible retrospective key construction, not a blind preregistered key.
 
+## 3.5 Independent receiver-selection convergence from the numbered diagonal
+
+After this p15 candidate had been developed, Agent1 independently recovered the authenticated `THEIR NUMBERS ARE THE DIRECTION` diagonal:
+
+```text
+one-based signed ordinal n
+-> physical LP2 page n
+-> canonical local word n.
+```
+
+Apply that route to authenticated `WORDS`:
+
+```text
+WORDS zero index15 = ordinal16
+-> physical page16
+-> project p15
+-> canonical word16
+-> zero-based local word15.
+```
+
+This is exactly the receiver used below, offsets71..75. The diagonal route was derived from DIRECTION/SEEK/AND/YOU state structure rather than from the p15 WORDS inverse, and it has its own Windows-positive reproducer (`sims/lp2_direction_seek_you_numbered_route_sft.cjs`, reported PASS 44462393395).
+
+This materially strengthens receiver provenance. The remaining chronology caveat is concentrated in the exact five-feature key serialization `[3,10,4,4,2]`, which was recognized after WORDS became a serious target.
+
 ## 4. Source-selected receiver and exact inverse
 
 The signed source has:
