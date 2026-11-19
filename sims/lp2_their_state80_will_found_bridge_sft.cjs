@@ -320,6 +320,84 @@ assert.equal(afterFound.offset, 53);
 assert.equal(afterFound.word.length, 3);
 assert.notEqual(afterFound.word.length, gp("GOOD").length);
 
+
+// A second state-packet leg closes LUCK back onto the independently recovered
+// ROAD receiver under one different, but again uniquely word-starting, mode.
+assert.equal(gp0("LUCK"), 31);
+assert.equal(table[31], "2D");
+const luckStarts = modes
+  .map((mode) => wordStartStep(gp0("LUCK"), mode))
+  .filter(Boolean);
+assert.deepEqual(
+  luckStarts.map((step) => ({
+    radix: step.radix,
+    origin: step.origin,
+    offset: step.offset,
+    word: step.word.index,
+  })),
+  [{ radix: "base59", origin: 0, offset: 131, word: 30 }]
+);
+const luckMode = modes.find((mode) =>
+  mode.radix === "base59" && mode.origin === 0
+);
+assert.ok(luckMode);
+const luckPacket = wordStartStep(gp0("LUCK"), luckMode);
+assert.ok(luckPacket);
+assert.deepEqual(luckPacket.word.values, [23, 14, 21, 7]);
+const luckPacketShell = shell(luckPacket.word.values);
+const luckExpectedShell = [
+  H(state.K, state.b)[0],
+  mod29(state.a - state.g),
+  state.p - 1,
+  state.a,
+];
+assert.deepEqual(luckPacketShell, [16, 1, 22, 6]);
+assert.deepEqual(luckPacketShell, luckExpectedShell);
+const luckDirection = luckPacketShell.reduce((total, value) => total + value, 0);
+assert.equal(luckDirection, 45);
+assert.equal(table[luckDirection], "1l");
+
+const roadReceiver = wordStartStep(luckDirection, luckMode);
+assert.ok(roadReceiver);
+assert.equal(roadReceiver.offset, 105);
+assert.equal(roadReceiver.word.index, 22);
+assert.deepEqual(roadReceiver.word.values, [16, 8, 25, 27]);
+
+const roadKey = [12, 5, 1, 4];
+const roadPlain = roadReceiver.word.values.map((value, index) =>
+  mod29(value - roadKey[index])
+);
+assert.deepEqual(roadPlain, gp("ROAD"));
+
+// The exact LUCK packet shell is unique among all complete unknown four-rune words.
+const exactFourRuneShellHits = [];
+let fourRuneWordCount = 0;
+for (let partIndex = 0; partIndex < 55; partIndex += 1) {
+  const physicalPage = partIndex <= 49 ? partIndex : partIndex + 1;
+  for (const word of parsePage(parts[partIndex])) {
+    if (word.length !== 4) continue;
+    fourRuneWordCount += 1;
+    const wordShell = shell(word.values);
+    if (wordShell.every((value, index) => value === luckPacketShell[index])) {
+      exactFourRuneShellHits.push({
+        page: physicalPage,
+        word: word.index,
+        start: word.start,
+        values: word.values,
+        shell: wordShell,
+      });
+    }
+  }
+}
+assert.equal(fourRuneWordCount, 514);
+assert.deepEqual(exactFourRuneShellHits, [{
+  page: 0,
+  word: 30,
+  start: 131,
+  values: [23, 14, 21, 7],
+  shell: [16, 1, 22, 6],
+}]);
+
 // Charge the post-discovery two-stage recipe over every authenticated source
 // word and all four live radix/origin modes:
 // source GP0 -> p50 -> p0 word start -> H-shell integer sum -> p50 -> p0 start.
@@ -393,10 +471,25 @@ assert.equal(message[25].toUpperCase(), "THEIR");
 // index19 is the same source word and same numeric route, not a second identity.
 assert.equal(toWill.filter((row) => row.sourceIndex === 25).length, 1);
 
+const toRoad = twoStageHits.filter((row) => row.secondOffset === 105);
+assert.deepEqual(toRoad, [{
+  sourceIndex: 37,
+  source: "LUCK",
+  mode: ["base59", 0],
+  firstAddress: 31,
+  firstOffset: 131,
+  firstWord: 30,
+  firstShell: [16, 1, 22, 6],
+  direction: 45,
+  secondOffset: 105,
+  secondWord: 22,
+}]);
+
+
 console.log(JSON.stringify({
   status: "PASS",
   classification:
-    "post-receiver state/navigation compression: prospectively sealed ROAD -> AND THEIR context fixes THEIR; GP0(THEIR)=34 has one p0 word-start interpretation (base60/one-based), whose unique five-rune shell is [p,B,b,p,F]; its coordinate sum80 under the same semantics reaches the independently recovered WILL receiver, and WILL under the same semantics reaches the FOUND receiver. The two-stage recipe has nine authenticated-source/mode survivors and only THEIR reaches WILL. Operator recognition remains retrospective, so this is not plaintext promotion.",
+    "post-receiver local-cycle compression: ROAD -> AND THEIR fixes THEIR; THEIR uniquely enters [p,B,b,p,F], sum80 reaches WILL, and WILL reaches FOUND under base60/one-based semantics. Independently, LUCK has one word-start mode, base59/zero, entering the unique shell [H(K,b)[0],a-g,p-1,a], whose sum45 reaches the recovered ROAD receiver. Across the nine two-stage survivors only THEIR reaches WILL and only LUCK reaches ROAD. Packet/sum operators remain post-discovery, so this is mechanism compression rather than plaintext promotion.",
   roadContext: message.slice(23, 30).map((word) => word.toUpperCase()),
   their: {
     gp0: gp0("THEIR"),
@@ -424,6 +517,21 @@ console.log(JSON.stringify({
     foundKey,
     foundPlain,
   },
+  luck: {
+    gp0: gp0("LUCK"),
+    token: table[gp0("LUCK")],
+    receiverOffset: luckPacket.offset,
+    receiverWord: luckPacket.word.index,
+    receiverCipher: luckPacket.word.values,
+    receiverShell: luckPacketShell,
+    direction: luckDirection,
+    nextToken: table[luckDirection],
+    roadOffset: roadReceiver.offset,
+    roadWord: roadReceiver.word.index,
+    roadKey,
+    roadPlain,
+    exactFourRuneShellHits,
+  },
   afterFound: {
     gp0: gp0("FOUND"),
     token: table[gp0("FOUND")],
@@ -434,5 +542,6 @@ console.log(JSON.stringify({
   family: {
     twoStageHits,
     toWill,
+    toRoad,
   },
 }, null, 2));
