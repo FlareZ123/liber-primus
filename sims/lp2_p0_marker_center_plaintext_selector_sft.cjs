@@ -287,24 +287,31 @@ const fullStateFieldEntries = Object.entries(fullStateFields);
 function palindromeDecryptionsFor(fieldEntries) {
   const out = [];
   for (const [xName,x] of fieldEntries) {
-  for (const [yName,y] of metadataFieldEntries) {
-    for (const [zName,z] of metadataFieldEntries) {
-      const center = [x,y,z,y,x];
-      const key = hOutsideIn(center);
-      const plain = p0SecondCipher.map((value,index) => mod29(value - key[index]));
-      const word = length5.find((candidate) => candidate.values.join(",") === plain.join(","));
-      if (word) {
-        palindromeDecryptions.push({
-          fields:[xName,yName,zName],
-          center,
-          key,
-          word:word.label,
-          source:word.source,
-        });
+    for (const [yName,y] of fieldEntries) {
+      for (const [zName,z] of fieldEntries) {
+        const center = [x,y,z,y,x];
+        const key = hOutsideIn(center);
+        const plain = p0SecondCipher.map((value,index) => mod29(value - key[index]));
+        const word = length5.find((candidate) =>
+          candidate.values.join(",") === plain.join(",")
+        );
+        if (word) {
+          out.push({
+            fields:[xName,yName,zName],
+            center,
+            key,
+            word:word.label,
+            source:word.source,
+          });
+        }
       }
     }
   }
+  return out;
 }
+
+const palindromeDecryptions = palindromeDecryptionsFor(metadataFieldEntries);
+const fullStatePalindromeDecryptions = palindromeDecryptionsFor(fullStateFieldEntries);
 
 const centerKey = hOutsideIn(markerCenter);
 assert.deepEqual(centerKey, [0,8,0,16,19]);
