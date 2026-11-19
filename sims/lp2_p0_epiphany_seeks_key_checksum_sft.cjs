@@ -148,15 +148,16 @@ assert.deepEqual(checksumHits, [{
 
 // Fixed random-key calibration: count all 29^13 residue sequences satisfying
 // the two whole-key measures, then the stricter suffix-GP0=43 holdout.
-const eight = measureCounts(8, 192, 729);
+const whole = measureCounts(13, 192, 729);
+const both = whole.get("192,729") || 0n;
+const eight = measureCounts(8, 149, 729);
 const five = measureCounts(5, 43, 729);
-let both = 0n;
 let triple = 0n;
 for (const [k5, c5] of five.entries()) {
   const [s5, p5] = k5.split(",").map(Number);
-  const c8 = eight.get((192 - s5) + "," + (729 - p5)) || 0n;
-  both += c5 * c8;
-  if (s5 === 43) triple += c5 * c8;
+  if (s5 !== 43) continue;
+  const c8 = eight.get("149," + (729 - p5)) || 0n;
+  triple += c5 * c8;
 }
 assert.equal(both, 347924712936372n);
 assert.equal(triple, 1892838925720n);
