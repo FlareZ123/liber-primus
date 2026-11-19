@@ -23,6 +23,9 @@ const transcription = read("resources/liber-primus/lp2-transcription.txt");
 const ink = JSON.parse(
   read("resources/liber-primus/lp2-p0-physical-ink-override.json")
 );
+const inkAnnotations = JSON.parse(
+  read("resources/liber-primus/lp2-ink-annotations.json")
+);
 const solved = JSON.parse(
   read("resources/external/relikd-solved-gp29-native-v1.json")
 );
@@ -526,6 +529,81 @@ const expectedLexicalHit = [{
 assert.deepEqual(exactStateKeyHits, expectedLexicalHit);
 assert.deepEqual(jointStateHits, expectedLexicalHit);
 
+
+// Prospective same-marker transfer: freeze the p0 key unchanged on every
+// red 13-dot predecessor window and require an exact typed source span.
+const sourceWindowMap = new Map();
+
+/**
+ * @param {string} source
+ * @param {number[]} values
+ */
+function addSourceWindows(source, values) {
+  for (let start = 0; start + 13 <= values.length; start += 1) {
+    const window = values.slice(start, start + 13);
+    const id = window.join(",");
+    if (!sourceWindowMap.has(id)) sourceWindowMap.set(id, []);
+    sourceWindowMap.get(id).push({source, start});
+  }
+}
+
+addSourceWindows("signed2016", gpText(clear));
+for (const section of solved.sections) {
+  const values = [];
+  for (const character of [...section.source_text]) {
+    const value = runeIndex.get(character);
+    if (value !== undefined) values.push(value);
+  }
+  addSourceWindows(section.name, values);
+}
+
+const sourceWindowCount = [...sourceWindowMap.values()]
+  .reduce((total, rows) => total + rows.length, 0);
+assert.equal(sourceWindowCount, 3036);
+
+const red13TransferRows = [];
+for (const annotatedPage of inkAnnotations.pages) {
+  if (annotatedPage.page > 55) continue;
+  const page = corpus.pages.find((row) => row.page === annotatedPage.page);
+  if (!page) continue;
+
+  for (const mark of annotatedPage.large_punctuation || []) {
+    const [offset, dotCount, color] = mark;
+    if (dotCount !== 13 || color !== "red" || offset < 13) continue;
+
+    const markedCipher = page.indices.slice(offset - 13, offset);
+    if (markedCipher.length !== 13) continue;
+
+    const markedPlain = markedCipher.map((value, index) =>
+      mod29(value - stateKey[index])
+    );
+    red13TransferRows.push({
+      page: annotatedPage.page,
+      offset,
+      matches: sourceWindowMap.get(markedPlain.join(",")) || [],
+    });
+  }
+}
+
+assert.equal(red13TransferRows.length, 23);
+const red13SourceHits = red13TransferRows.filter((row) =>
+  row.matches.length > 0
+);
+assert.deepEqual(red13SourceHits, [{
+  page: 0,
+  offset: 13,
+  matches: [{
+    source: "signed2016",
+    start: 19,
+  }],
+}]);
+assert.equal(
+  red13TransferRows.filter((row) =>
+    row.page !== 0 && row.matches.length > 0
+  ).length,
+  0
+);
+
 console.log(JSON.stringify({
   status: "PASS",
   state,
@@ -565,5 +643,8 @@ console.log(JSON.stringify({
     lexicalCases,
     exactStateKeyHits,
     jointStateHits,
+    sourceWindowCount,
+    red13PredecessorWindows: red13TransferRows.length,
+    red13SourceHits,
   },
 }, null, 2));
