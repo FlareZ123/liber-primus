@@ -1,6 +1,6 @@
 # P23 `THE ORIGIN | AL` supplies the historical AL=31 key for p28 READ OUT
 
-**Agent 5, 19 November 2026. Classification: source-constrained post-discovery key-provenance bridge. The p23 hidden-layout construction has an independently meaningful split `THE ORIGIN | AL`; the historically established Thelemic key `AL=31` compresses exactly to the already selected p28 power key `[e,-K]=[3,27]`. A finite ±31 residue family plus the untouched p39 numeric selector chooses that pair without language scoring. This strengthens the intended human route to the existing READ OUT candidate. It does not by itself recover new unknown body plaintext.**
+**Agent 5, 19 November 2026. Classification: source-constrained, post-discovery key-provenance candidate. The p23 state handoff emits `THE ORIGIN | AL`; Crowley's New Comment explicitly identifies AL=31 as the Master Key, and the relevant commentary was publicly printed decades before Liber Primus. This is a plausible May 2014 player-visible selector, but not a Cicada-signed instruction or a validated cipher mechanism.**
 
 ## New observation: the p23 construction naturally separates ORIGIN from AL
 
@@ -39,19 +39,67 @@ THE ORIGINAL.
 
 This is not a free respacing of one homogeneous plaintext string. The two letters `AL` are supplied by a distinct, independently charged source/destination-page handoff after the local `THE ORIGIN` packet is complete.
 
-## Why AL is a historically motivated key rather than a new arbitrary word
+## Historical source path and May 2014 availability
 
-Liber AL vel Legis was already a genuine Cicada source in the 2013 puzzle, and the repository preserves the exact three chapter texts used for prior source-directed tests.
+### The p23 clue can select AL=31 without opening the target pages
 
-More specifically, Liber AL III:47 says that translations must retain **"the original"**, says that letter shapes and relative positions contain mysteries, and says that someone will discover **"the Key of it all."** Crowley's New Comment on that verse explicitly glosses the phrase as **"all, i.e. AL 31 the Key!"** Frater Achad's *Liber 31* records Crowley's 1919 response that Achad's key had opened the book and solved even II:76 and III:47.
+The p23 construction produces two differently sourced pieces:
 
-Sources:
+```text
+local p23 packet:
+  word lengths [2,6,3,5,4]
+  five-dot count 5
+  terminal GP0 25
+  -> THE ORIGIN
 
-- https://hermetic.com/legis/new-comment/chapter-iii
-- https://hermetic.com/crowley/libers/lib31
-- repository copies of the 2013 source text at `resources/external/2013-liber-al-bookcode-{I,II,III}.txt`
+separate p23 -> p33 state handoff:
+  source physical page 23 -> T(23)=A
+  derived destination page 33 -> T(33)=L
+  -> AL
+```
 
-The historical material predates Liber Primus. Cicada's 2013 use of Liber AL makes it available to a contemporary solver without requiring a newly invented book hunt. The new evidence here is narrower than previous Liber AL running-key tests: the p23 serializer itself emits the exact name `AL` as a separately sourced suffix.
+The combined surface reading is **THE ORIGINAL**, while the mechanism supports the structural split **THE ORIGIN | AL**. Neither p28, p31 nor p39 output values are used to produce this p23 phrase or its AL suffix. The local p23 scan and the existing p23 state/handoff SFT are the starting evidence; the original p23 image visibly supplies the five-dot marker and selected line.
+
+That output gives a constrained lookup path rather than a free association:
+
+1. **AL** is the title/name of Liber AL, already identified as a Cicada source by the 2013 book-code puzzle.
+2. **THE ORIGINAL** echoes Liber AL III:47, which says to retain “the original” and promises a discoverer of “the Key of it all.”
+3. Crowley's New Comment to Liber AL explicitly identifies AL=31 as the key. Its introductory title note also says AL is the true name of the Book and that its number 31 is the Master Key; the note to I.37 calls AL the key of the whole Book.
+4. The New Comment to III:47 gives the exact gloss: “all, i.e. AL 31 the Key!”
+
+This is unusually specific source support. It is not merely “AL has a gematria value of 31”: the same author names AL, 31, and the key in the commentary to the exact verse whose wording is echoed by the p23 output.
+
+### What a solver could obtain by May 2014
+
+The relevant material was public well before Liber Primus:
+
+- **Liber AL itself:** privately printed in *Holy Books, Vol. III* (1909), then in *The Equinox* I:7 (1912) and I:10 (1913), followed by multiple editions. The surviving 2013 Cicada book-code message is a chapter/verse/character book code for this text.
+- **Old Comment:** composed before the New Comment and first published in *The Equinox* I:7 (1912).
+- **New Comment / Extenuation:** written circa 1920–21; it remained unpublished during Crowley's lifetime and was first published in *Magical and Philosophical Commentaries on The Book of the Law* (93 Publishing, 1974). Its opening AL=31 title note and the III:47 “AL 31 the Key” gloss are present in the published New Comment text.
+- **The Law is for All:** Israel Regardie's 1975 first edition includes the Old and New comments and was described by antiquarian booksellers as more widely available than the 1974 *Magical and Philosophical Commentaries*. A second edition appeared in 1983 and an authorized popular edition in 1996. These were all available before May 2014.
+- **Other commentaries:** the incomplete Djeridensis commentary dates to 1923 and was published with the commentaries in 1974; a partial “K” commentary appears in *The Magical Diaries of Aleister Crowley* (1973); the Short/Tunis comment dates to 1925 and was privately printed in 1926 in only eleven copies, making it a much less realistic general-solver source.
+
+The exact III:47 wording is directly checkable in the 1974 commentary and in the later 1996 *The Law is for All* text witness. The 1975 Regardie edition is a more accessible public route to Crowley's Old/New commentary, although the several printed editions are editorially different and should not be silently treated as identical.
+
+The Hermetic Library says it was founded in 1996 and is now a standard online Crowley reference. Its current New Comment page is useful, but I did **not** establish a dateable pre-May-2014 capture of that exact chapter III page. Therefore the historical-availability conclusion rests on the 1974/1975/1996 printed editions, not on an unverified claim that the current webpage was already online in 2014.
+
+### What Cicada's 2013 use does—and does not—select
+
+The surviving signed 2013 OutGuess message gives the riddle “A book whose study is forbidden / Once dictated to a beast” and then chapter/verse/character coordinates such as `I:1:6`. The surviving solver reconstruction identifies the Book of the Law through the text at sacred-texts.com and applies the coordinates to the Book's text. It does **not** name the New Comment, the 1974 or 1975 commentary editions, or any particular publisher's edition.
+
+The repository's `resources/external/2013-liber-al-bookcode-{I,II,III}.txt` files are later normalized chapter-text copies used in research; they are not evidence that Cicada used the OTO copy or any particular modern transcription. The exact edition used by the original puzzle is not specified in its surviving instruction.
+
+Accordingly, Cicada's 2013 use makes Liber AL a genuine, player-visible source, but it does not itself authorize the New Comment. The additional LP2 clue is what makes the commentary lookup plausible: p23 emits AL, while the complete surface phrase points toward III:47 and its explicit “Key of it all” wording.
+
+### Historical corroboration and finite alternatives
+
+Frater Achad's *Liber 31* records that the manuscript was written in November 1918, mailed to Crowley around 3 September 1919, and acknowledged by Crowley in a postcard dated 9 September 1919. Crowley wrote: “Your key opens Palace. CCXX has unfolded like a flower. All solved, even II.76 & III.47.” This establishes that the AL/31 key association and its connection to II.76 and III.47 were historical, not a modern reconstruction. Achad's *Liber 31* is distinct from Crowley's later use of the title *Liber XXXI* for the manuscript of the Book itself.
+
+The strongest competing reading of the **THE ORIGIN** prefix is internal, not numerological: the separate p50 cell-0 cross-check reads the canonical p50 origin token as `[THE,0]`, independently supporting the prefix as a literal table-origin instruction. This can coexist with the AL suffix; it means the prefix need not be read only as a verbal pointer to “the original” in III:47. See [the p50 origin cross-check](lp2-p23-origin-p50-cell0-crosscheck.md).
+
+Other natural readings are weaker but remain live: the surface phrase may be read simply as the single English word “THE ORIGINAL,” with no external commentary; AL could be treated as the final two letters completing that word rather than a separate book title; and LA is a reversed 31-valued spelling but is not the emitted suffix. The historically salient Thelemic values 93, 418 and 666 are not named as the key in this New Comment passage. The existing SFT's limited residue controls give `[1,9,6]`, `[4,26,12]` and `[22,22,28]` under moduli `[23,28,29]`, none matching the source-state packet `[8,3,2]`; this is a small historically motivated comparison, not a statistical proof.
+
+The source selects **31**. It does **not** itself instruct the solver to reduce 31 modulo 23, 28 and 29, choose the negative residue modulo 29, or apply the resulting exponents to p28. Those are additional cipher-mechanism hypotheses and must be tested prospectively rather than inferred from already-known target outputs.
 
 ## AL=31 reproduces the p28 exponent state
 
@@ -316,11 +364,11 @@ This is a plausible human solve path because each transition is prompted by an o
 
 ## Decision
 
-Promote **AL=31 as a serious first-party-adjacent routing and key-provenance candidate**. It derives the p28 READ OUT exponent state, compresses `[A,e,K]` across the active moduli, and independently selects physical p31, where state/layout alone derives the fixed key whose only local authenticated three-rune hit is `AND`; the same `K` rise carries that key to p33 `YOU`.
+**Positive** on the issue's historical question: AL=31 is a plausible May 2014 player-visible key selector. A solver who first derives p23's source-separated `THE ORIGIN | AL` can follow the already-known Liber AL source to III:47 and then consult a New Comment that had been publicly printed since 1974/1975. The New Comment explicitly supplies the key value; this is not an arbitrary occult association.
 
-Do not treat the bridge as proof that Cicada intended Crowley's later commentary rather than only the Book of the Law text. The historical relationship is strong, and Cicada's prior use of Liber AL is genuine, while the exact AL=31 interpretation is inherited Thelemic context rather than a Cicada-signed instruction.
+The logical route selects 31 without using p28, p31 or p39 output values. The research chronology is different: this association was recognized after those target results were already known, so the current arithmetic bridge is **post-discovery**, not blind empirical validation. The p50 cell-0 interpretation is a real competing consumer for `THE ORIGIN`, but it does not explain away the separately generated AL suffix.
 
-The next useful test should consume AL=31 **prospectively on an untouched source-selected receiver**, rather than mine further Crowley numerology. A good discriminator must predict a numeric state, operation, or raw ciphertext output before its target values are opened.
+Promote AL=31 only as a **historically sourced key-provenance candidate** for a new untouched original-cipher test. Do not call it a recovered authentic key, a Cicada-signed instruction, or a validated decryption. The 31→modulus/sign mapping remains an unproven operation choice. No new p28 exponent sweep or language-score search was run for this audit.
 
 ## Reproduction
 

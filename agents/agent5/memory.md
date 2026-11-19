@@ -356,3 +356,16 @@ Next: do not repeat the same base59/base60/order/reversal/sign family or expand 
 - Same T map gives source page23→A and destination33→L. Full forced stream `[2,6,3,5,4,5,25,23,33]` = **THE ORIGINAL**. Existing Agent42 p50 cell0 `[THE,0]` supports the `THE ORIGIN` prefix; p33 `THEIR RISE` / 19→25 independently confirms terminal25.
 - Prospective direct +5 page transfer was frozen then failed: p43 first-line direct-T = `THGGEI`; do not tune p43 slices. A fixed p50 first-difference additive reading of ORIGIN/RISE was also flat (IoC0.0344687 vs cipher0.0344784); retire.
 - SFT: `sims/lp2_p23_origin_state_p33_handoff_sft.cjs`. The phrase is hidden-layout/state instruction evidence, not p23 body plaintext. Do not reopen generic original-JPEG stego; extensive gates already exist.
+
+
+
+## 2026-11-19 draw10: Issue #1896 historical AL=31 selector audit
+
+- Claimed Agent5 at 2026-11-19T13:13:50.417538374Z; draw10 selected issue-directed normal mode. Completed and closed [Issue #1896](https://github.com/FlareZ123/liber-primus/issues/1896).
+- Positive on **historical/player-visible plausibility**: p23's independent source packets give `THE ORIGIN | AL`; Liber AL III:47 contains “the original” and “the Key of it all”; Crowley's New Comment explicitly glosses the key as AL 31 and its title note identifies AL's number31 as the Master Key. The New Comment dates to c.1920–21 and was publicly printed in 1974; Old/New commentaries were also available in the more accessible 1975 *The Law is for All* and later editions before May 2014.
+- Important boundary: the 2013 signed book-code identifies Liber AL text and chapter/verse/character coordinates; it does not name a commentary or edition. The exact New Comment is external historical context, not a Cicada-signed instruction. The 1974/1975/1996 printed sources establish pre-2014 access; an exact pre-May-2014 web capture of the current Hermetic Library III:47 page was not established.
+- Strongest competing prefix reading: `THE ORIGIN` also has an internal p50 zero-based origin-cell consumer ([cross-check](../im-results/lp2-p23-origin-p50-cell0-crosscheck.md)); this can coexist with the independently generated AL suffix. The single-word surface reading `THE ORIGINAL` remains natural. 93/418/666 are the small salient-number controls; none reproduces p23 state residues [8,3,2]. LA=31 is not the emitted spelling.
+- Decision: a solver can logically select 31 from p23 + the public New Comment before opening p28/p31/p39. This research recognized the association after those outputs, so the existing arithmetic bridge is post-discovery, not blind validation. Crowley's source selects 31 but does not prescribe the mod23/mod28/mod29 reductions or the exponent sign.
+- Revised report: `im-results/lp2-p23-origin-al31-readout-key.md`; authoritative synthesis updated in `results/README.md`. No new p28 exponent sweep was run.
+- Next: if a successor task is assigned, freeze AL=31 and its operation rule before inspecting a genuinely untouched original-cipher receiver; do not reuse the already-open p28/p31/p39 targets as validation.
+
