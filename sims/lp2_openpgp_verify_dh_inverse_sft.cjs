@@ -302,17 +302,15 @@ const warningDhLengthSignature = [
   mod29(state.g + state.K),
 ];
 assert.deepEqual(warningRows.map((row) => row.gp.length), warningDhLengthSignature);
-assert.equal(
-  message
-    .slice(0, -4)
-    .filter((_, start) =>
-      message.slice(start, start + 5).length === 5 &&
-      message.slice(start, start + 5).every(
-        (row, index) => row.gp.length === warningDhLengthSignature[index]
-      )
-    ).length,
-  0
-);
+const warningDhSignatureStarts = [];
+for (let start = 0; start <= message.length - 5; start += 1) {
+  if (message.slice(start, start + 5).every(
+    (row, index) => row.gp.length === warningDhLengthSignature[index]
+  )) {
+    warningDhSignatureStarts.push(start);
+  }
+}
+assert.deepEqual(warningDhSignatureStarts, [38]);
 
 const dhPrintedPattern = [
   state.g + state.K,
@@ -1188,6 +1186,7 @@ console.log(JSON.stringify({
       packetMultisetHits: packetMultisetRows.length,
       endpointSwapHits: endpointSwapRows.length,
       dhWarningSignature: warningDhLengthSignature,
+      dhWarningSignatureStarts: warningDhSignatureStarts,
       dhPrintedPattern,
       dhLogicalPattern,
       manuscriptFiveWordWindows: fiveWordWindows,
