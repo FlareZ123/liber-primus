@@ -1,6 +1,6 @@
 # Source-first 2016 -> p50 -> p28 -> READ OUT -> HERE route
 
-**Agent16, 19 November 2026. Classification: strongest current intended-route reconstruction for the p28 READ OUT candidate. Every routing decision through the selected raw six-rune output can be stated numerically before transliteration. Authenticated source word numbers independently select the GP29 cube operator; the main remaining local premise is applying that fixed map separately to p28's center singleton and adjacent five-rune word according to their visible layers. No claim is made that the rest of LP2 is decrypted.**
+**Agent16, 19 November 2026, reconciled after Director #1787. Classification: integrated candidate route around p28 READ OUT. The strongest READ OUT selector is the independently selected p39 circumference pair `[55,20]`, which selects the raw p28 output before transliteration and does not rely on p50 low-digit navigation. The ROAD/PATHS↔FOUND and NUMBERS/DIRECTION low/right-digit constructions remain reproducible route-specific structures, while a sealed GOOD→LUCK holdout rejects promotion of that transition to a general opcode. No claim is made that the 56 unknown LP2 pages are decrypted.**
 
 ## 0. Candidate manuscript entry: solved p57 -> p39 -> VERIFY OPENPGP
 
@@ -76,7 +76,7 @@ p=23, g=5, a=6, b=15, A=8, B=19, K=2, e=3, q=4
 
 and places DIRECTION at 29, the GP modulus.
 
-## 2. "Their numbers are the direction" selects the p50 low/right pointer
+## 2. NUMBERS / DIRECTION exposes a specific low/right p50 structure
 
 Canonical whole-word GP0 gives:
 
@@ -85,47 +85,27 @@ NUMBERS   = 83
 DIRECTION = 112
 ```
 
-The original 32×8 number table spans LP2 p49, p50 and p51 as 10 / 13 / 9 rows. P50 is the rune-free middle page and contains row-major addresses80..183.
-
-Both source numbers land on that middle number page:
+The original 32×8 number table spans LP2 p49, p50 and p51 as 10 / 13 / 9 rows. P50 is the rune-free middle page and contains row-major addresses80..183. Both source numbers land there:
 
 ```text
 p50[83]  = 3D
 p50[112] = 1D
 ```
 
-The cells visibly agree on their **right-hand** character only. Native base60 gives `D=13`. Thus the clue selects the zero-based low/right digit as the next-state pointer:
+The visible cells agree on their right-hand character `D`, whose native-base60 value is13. Among ten charged semantic source pairs, NUMBERS/DIRECTION is the only pair whose two GP0 addresses both land on p50 and whose printed cells share the right character.
+
+Under the already investigated native-base60/low/zero/zero rule the pair converges and follows:
 
 ```text
-83  -> 13
-112 -> 13
+83,112 -> 13 -> 4 -> 37 -> 20 -> 42 -> 28
 ```
 
-Among ten obvious signed semantic relations crossed with base60/base59, high/low component, zero/one address and zero/one emitted value, **160** relation/mode cases are charged. NUMBERS/DIRECTION under native-base60 low/zero/zero is the only case whose two terms converge and whose shared route reaches consecutive `FIND(42) -> 28`.
+where `20=GP0(OUT)` and `42=GP0(FIND)`. Across ten source relations ×16 component/origin conventions, this is the sole relation/mode reaching consecutive `FIND -> 28`.
 
-It is also the only charged relation whose two GP0 addresses both land on p50 and whose printed cells share their right character.
+**Prospective correction:** Director #1787 later sealed `GOOD -> LUCK` as an independent one-step source prediction. It fails: `GP0(GOOD)=35 -> p50[35]=0d -> low60=39`, while `GP0(LUCK)=31`; all 16 frozen modes miss. With GOOD/LUCK withheld, the preferred mode has 0/84 exact adjacent-word transitions across authenticated 2016 plus solved p56/p57. Therefore this NUMBERS/DIRECTION construction is specific corroboration, not an authenticated general navigation opcode.
+## 3. Specific low/right source structures
 
-## 3. The source pointer reaches physical p28
-
-Continue the same low/right operation:
-
-```text
-NUMBERS(83)   \
-               -> 13 -> 4 -> 37 -> 20 -> 42 -> 28
-DIRECTION(112)/
-```
-
-The final named states are:
-
-```text
-20 = GP0(OUT)
-42 = GP0(FIND)
-28 = physical p28
-```
-
-The route uses no unknown p28 ciphertext.
-
-The same operation gives a literal false-path trap in the signed prose:
+The same low/right rule gives the source-side collision:
 
 ```text
 ROAD(54)  -> FOUND(36)
@@ -133,8 +113,16 @@ FOUND(36) -> ROAD/PATHS(54)
 PATHS(54) -> FOUND(36)
 ```
 
-The source prints ROAD, later FOUND, later PATHS. Following the next later matching term therefore yields `ROAD -> FOUND -> PATHS`, after which PATHS loops to FOUND. This gives “Beware false paths” a concrete computational interpretation.
+The signed prose prints ROAD, later FOUND, later PATHS, producing the suggestive route-specific trap `ROAD -> FOUND -> PATHS -> FOUND`.
 
+The NUMBERS/DIRECTION chain likewise reaches physical p28 without unknown p28 ciphertext:
+
+```text
+NUMBERS / DIRECTION
+ -> 13 -> 4 -> 37 -> OUT(20) -> FIND(42) -> p28
+```
+
+These are preserved as exact source-visible structures. They are not used below as the primary READ OUT authentication gate because the prospective GOOD→LUCK transfer failed.
 ## 4. P28 fixes a two-part source object
 
 Physical p28 contains 269 runes, so its exact center is rune offset134. One-based word28 begins immediately at offset135, has length5 and runs to the physical line edge.
@@ -172,7 +160,7 @@ so the cube opcode is first-party source structure rather than a p28 output fit.
 
 P57's literal circumference grammar compresses the already fixed p28 source object but does not uniquely authenticate the word action count. The center singleton has one nonempty layer; the adjacent five-rune word has two circumference-removal actions and three nonempty layers. Those conventions yield competing source-typed word exponents `3^2 mod28=9` and `3^3 mod28=27`. Agent27's independent p39 circumference holdout favors literal removal-count semantics, so p57 must not be used as the selector for exponent27.
 
-The winning `(3,27)` raw output remains selected independently by the language-free external p50 relation charged below, while Agent31's authenticated source cycle fixes the cube operator class and exponent3.
+The winning `(3,27)` raw output is selected independently below by the source-selected p39 outer-circumference coordinates `[55,20]`, while Agent31's authenticated source cycle fixes the cube operator class and exponent3.
 
 Agent45's independently frozen circumference route supplies the same ordered pair from a different manuscript location. P53's unique terminal red span has `GP0(MUST)=51`; its first two red runes give `H=[e,0]`, and one literal shed leaves **27 = -K mod29** runes. The source-selected p57→p50→p33→p39→p3→p53 chain therefore exposes:
 
@@ -190,55 +178,48 @@ Applying that externally repeated pair gives the raw p28 output:
 
 A fresh manuscript-wide control applies only this frozen `(3,27)` action to every unknown five-rune side-object and every internal split. Among **3,135** configurations, only two raw pointer hits survive: p25 at an unbalanced5|1 split and p28 at the balanced3|3 split. P28 is the sole balanced hit and the sole hit on the independently selected terminal page28.
 
-## 6. The external route selects that raw output before language
+## 6. P39 selects the raw p28 output before language
 
-Do not use a dictionary.
+Do not use a dictionary or the failed general low-digit-opcode hypothesis.
 
-First charge the full source-motivated p28 DH/shell family:
-
-```text
-44 transforms × 2 orientations × 5 internal splits
-= 440 numeric configurations
-```
-
-For each raw six-rune output split, require only:
+The solved p57 circumference route independently selects p39. Apply the already fixed forward H map to each word's outer circumference in p39's lower black body. The complete transformed outer stream has:
 
 ```text
-GP0(left) -> GP0(right) -> FIND(42) -> p28
+length        = 55
+GP0 sum mod29 = 20
 ```
 
-Exactly one configuration survives:
+so p39 supplies the ordered numeric pair `[55,20]`. Across all 15 nonempty red-started bodies, p39 is the sole body with that pair. This statistic was recognized after READ OUT, so it is cross-object corroboration rather than a blind probability claim.
+
+Now charge `[55,20]` against every reversible uniform GP29 power map on the already source-fixed p28 center-plus-word28 object:
+
+- 12 unit exponents modulo28 on the center;
+- 12 unit exponents on the five-rune word;
+- 2 orientations;
+- 5 internal cuts.
+
+Total: **1,440** numeric configurations. Retain only raw outputs whose two GP0 sums equal `[55,20]`.
+
+Exactly two parameter tuples survive:
 
 ```text
-uniform (3,27)
-forward
-split 3|3
-raw = [4,28,23] | [3,1,16]
-GP0 = 55 | 20
-55 -> 20 -> 42 -> 28
+(3,27),  forward, cut3
+(17,27), forward, cut3
 ```
 
-Widen further to **all** independent reversible uniform GP29 powers. There are 12 unit exponents modulo28:
+Both produce the identical raw six-rune output:
 
 ```text
-1,3,5,9,11,13,15,17,19,23,25,27
+[4,28,23] | [3,1,16]
 ```
 
-Charge:
-
-```text
-12 × 12 exponent pairs × 2 orientations × 5 splits
-= 1,440 numeric configurations
-```
-
-Two parameter tuples survive, `(3,27)` and `(17,27)`, while both produce the **same raw six-rune output** because source center rune9 satisfies `9^3 = 9^17 = 4 mod29`. There is therefore exactly one selected raw output. The source-derived DH value `e=3` resolves the residual center-exponent alias.
-
-Only after this numeric selection do the runes transliterate as:
+because source center rune9 satisfies `9^3 = 9^17 = 4 mod29`. The authenticated DH value `e=3` resolves the center alias. Only after this numeric selection does the output transliterate:
 
 ```text
 READ | OUT
 ```
 
+This selector is independent of p50 low-digit navigation. The separately frozen p53 circumference packet also supplies `[e,-K]=[3,27]`, giving the same parameter pair from another manuscript object.
 ## 7. READ OUT has a direct instruction-level consequence: HERE
 
 P28 line1 has source-selected DH geometry `[p,g,K,g]=[23,5,2,5]`. Its first two fragments are:
@@ -272,25 +253,18 @@ The inner rival does not give HERE.
 
 This is a direct downstream interpretation of READ OUT rather than a new transform search.
 
-## 8. HERE closes back into the same route
+## 8. HERE has a route-specific low/right echo
 
 Canonical:
 
 ```text
 GP0(HERE) = 48
 p50[48]   = 4D
-low60(D)  = 13
 ```
 
-Therefore:
+The low/right character `D=13` enters the same previously observed `13 -> 4 -> 37 -> OUT -> FIND -> p28` tail. After Director #1787 this is retained only as a local echo. It is not evidence that the low/right transition is a general navigation opcode.
 
-```text
-HERE(48)
- -> 13 -> 4 -> 37 -> OUT(20) -> FIND(42) -> p28
-```
-
-The p28-local HERE checkpoint and the authenticated NUMBERS/DIRECTION route enter the same state13 tail and return to p28.
-
+The stronger continuation uses the full visible token `4D` as an ordinal locator, with an independent solved-p56 holdout, as shown next.
 ## 9. HERE self-indexes the fourth D and recovers GCD
 
 The p50 token at the HERE state is itself readable:
@@ -428,30 +402,36 @@ The p26 result is a meta-instruction/state packet rather than continuous plainte
 
 ## Current evidence boundary
 
-This route now explains, in a single human-facing chain:
+The most defensible integrated chain is now:
 
 ```text
 solved p57 circumference route
- -> candidate p39 VERIFY OPENPGP
- -> authenticated 2016 word numbers
- -> DH23 state, e=3, DIRECTION=29
- -> NUMBERS/DIRECTION p50 low/right pointer
- -> FIND -> p28
- -> center-plus-word28 GP29 power map
- -> raw numeric selector
+ -> candidate p39 VERIFY OPENPGP entry
+ -> authenticated 2016 word-number DH23 state
+ -> source-selected GP29 cube, e=3, modulus29
+ -> p53 [e,-K]=[3,27]
+ -> p39 outer circumference [55,20]
+ -> source-fixed p28 center + word28 object
+ -> unique raw [4,28,23] | [3,1,16]
  -> READ OUT
- -> outer-H page-start selection
+ -> OUT selects outer-H page-start layer
  -> HERE
  -> p50[HERE]=4D
- -> fourth-D/H -> GCD -> e=3
+ -> fourth D ; H -> GCD -> e=3
  -> THE / DIRECTION -> p29 -> WAY
- -> WAY/MAP -> p26 -> FOURTH DH
+ -> WAY/MAP -> p26 -> FOURTH D ; H
  -> p28 fourth-D/H -> GCD -> e=3
 ```
 
-The strongest remaining premise is the p28-specific two-part application: why the source-selected cube map and independently repeated `[e,-K]=[3,27]` packet should be assigned respectively to this exact center singleton and adjacent five-rune word. The source fixes exponent3 and modulus29, p57 supplies circumference/object grammar but its independent holdout favors the competing removal-count exponent9, p28 supplies the literal DH marker and unique center-plus-word geometry, and the external numeric selector chooses the `(3,27)` raw output before language.
+Two distinctions are essential.
 
-A decisive next advance would either recover such an operator instruction from a first-party source or use READ OUT / HERE to derive new unknown plaintext outside the already used p28 checkpoint.
+First, the native-base60 low/right p50 constructions remain reproducible: ROAD/PATHS↔FOUND and NUMBERS/DIRECTION→...→FIND→p28. Director #1787's sealed GOOD→LUCK miss and 0/84 held-out adjacent transitions reject their promotion to a general navigation opcode. They are corroborating structures rather than a required step in the chain above.
+
+Second, the strongest remaining p28 premise is the two-part application itself: assigning the independently repeated `[3,27]` power pair to the exact center singleton and adjacent five-rune word. P28's geometry and literal DH marker motivate that split, and the independently selected p39 coordinates `[55,20]` choose the resulting raw output before transliteration.
+
+The strongest downstream route-specific results are READ OUT→HERE, HERE→4D→fourth-D/H→GCD, and the p29/p26 loop returning FOURTH D; H to the same p28 consumer. These are candidate instruction/state structures rather than continuous unknown-page plaintext.
+
+A decisive next advance should derive fresh unknown plaintext or a new receiver outside this already used loop from one of the source-selected operations, or produce a first-party instruction that fixes the p28 two-part power assignment before the output is considered.
 
 ## Reproduction
 
