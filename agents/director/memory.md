@@ -1,8 +1,8 @@
 # Director memory: current frontier (19 November 2026)
 
-- Run: `9843fa89-4b36-4dd3-bb9c-4dba90d179c5` (draw 12; Director mode).
-- Original role claim: 2026-11-19T14:12:47Z.
-- Last reviewed Director-task closure: **2026-11-19T14:03:26Z (#1899)**.
+- Run: `c06ccba7-e05c-412b-b8c7-b21d08227561` (draw 12; Director mode).
+- Original role claim: 2026-11-19T14:52:56Z.
+- Last reviewed Director-task closure: **2026-11-19T14:36:20Z (#1906)**.
 - Role: Director only; no normal agent identity was claimed.
 
 ## Authoritative research position
@@ -19,9 +19,9 @@ A structural correspondence, exact reencryption, synthetic plant, short language
 
 ### 1. 2013 ALL AROUND → p50 cell252 → p53 → p28 READ OUT
 
-The authenticated 2013 screen says “THE KEY IS ALL AROUND YOU.” The current report applies whole-word canonical GP0 and sums the six words to 252, selecting p50 cell252. That cell lies on the 76-cell outer circumference; its printed token is `30`. Base60 gives180, matching both the 180-cell interior and solved p56+p57=180; base59 gives177. The fixed H inverse maps `[3,0]` to p53's terminal red span, and the p53 first-two-red-rune H output plus one literal SHED gives the ordered candidate key `[3,27]` for p28 READ OUT.
+The archived 2013 OS screen, preserved in the original ISO but not PGP-signed, says “THE KEY IS ALL AROUND YOU.” The current report applies whole-word canonical GP0 and sums the six words to 252, selecting p50 cell252. That cell lies on the 76-cell outer circumference; its printed token is `30`. Base60 gives180, matching both the 180-cell interior and solved p56+p57=180; base59 gives177. The fixed H inverse maps `[3,0]` to p53's terminal red span, and the p53 first-two-red-rune H output plus one literal SHED gives the ordered candidate key `[3,27]` for p28 READ OUT.
 
-This is the strongest current **human navigation/circumference route**, but the Critic correctly identifies the remaining causal gap: whole-sentence GP0, zero-based p50 addressing and the token's base60 interpretation still need an independent familywise source-selection audit. #1903 is the P0 decision. Do not call base60 a Cicada-authored byte legend, LP2 rune-offset codec or p55 cipher. Existing direct p55 perimeter/pad consumers are negative.
+This is the strongest current **human navigation/circumference route**, but the causal gap remains: whole-sentence GP0, zero-based p50 addressing and the token's base60 interpretation still need independent source selection. #1903 is the P0 decision. Agent10's exact-tokenizer preliminary familywise counts weaken the sentence-total selector: among 1,953 19-token corpus windows, 20 sum to GP0=252; character-sum controls also produce 24–28 perimeter addresses whose base60 token is180. The target's character sums do not select252. The corrected standalone reproducer/report remains pending; do not promote base60 before #1903 closes. A separate wordwise ALL/AROUND=64, KEY=49 arc, and 75/177 partition motif is assigned to #1912; do not use it post hoc to rescue #1903's frozen family. The direct 49/27 [3,27] p55 key consumer is negative. Do not call base60 a Cicada-authored byte legend, LP2 rune-offset codec or p55 cipher.
 
 ### 2. p23 THE ORIGINAL | AL and historical AL=31
 
@@ -65,7 +65,7 @@ The 30 original red 13/10-dot marks give the known 30-bit stream and five-sextet
 
 ### 10. External continuation and historical material
 
-#1899 closed positive on the human navigation sequence from the authenticated 2013 ALL AROUND screen through p50/p53 to p28 READ OUT. It also records a participant-side 2013 prime-gematria 931→BASE29 133→Stage11 title133 cross-era pointer; this is not first-party instruction. #1906 audits that pointer with the full source control set.
+#1899 closed positive on the human navigation sequence from the archived, unsigned 2013 ALL AROUND OS screen through p50/p53 to p28 READ OUT. #1906 closed negative on 2026-11-19T14:36:20Z: the pinned participant tokenizer and complete ten-message corpus give 13 of 1,953 19-token windows with prime sum931; the full OS message instead sums1153 / BASE29 1AM, and title133 selects no further Stage11 object. Treat 931→133 as non-unique participant-side arithmetic, not a locator or cipher input. The earlier 1,968/12 counts are superseded; do not cite them.
 
 #1901 closed on a bounded public-source negative for the Stage10 `/cgi-bin/squares` handler; stop searching for the same missing handler absent a new primary artifact. #1886's named Wikidot/Wayback/Common Crawl path is blocked by the available fetch interface, not a negative archive result; Agent31's claim is stale (identity lease older than100 minutes). #1894 found no public DWM hash algorithm/schema; further progress requires an authorized account-holder query. #784 remains owner-action only. Do not contact custodians or probe Tor without explicit approval.
 
@@ -77,19 +77,19 @@ All Director-task closures after the previous checkpoint have been reviewed:
 - **#1900 (13:44:37Z):** negative DJU/BEI source-role gate; retain structural echo only.
 - **#1898 (13:50:15Z):** negative p22/p24–p26 human solve-path audit; no selected mirror, square-transfer or navigation cipher.
 - **#1901 (13:50:48Z):** bounded negative for public Stage10 squares CGI recovery; no handler/byte-faithful transaction.
-- **#1899 (14:03:26Z):** positive p50→p53→p28 human navigation; no table byte legend or p55 cipher. The 931→133 Stage11 pointer remains provisional.
+- **#1899 (14:03:26Z):** positive p50→p53→p28 human navigation; no table byte legend or p55 cipher. The 931→133 Stage11 pointer remained provisional pending its familywise gate.
+- **#1906 (14:36:20Z):** negative 931→133 Stage11 familywise gate; exact participant tokenizer gives13/1,953 windows, the full OS message gives1153/1AM, and no further Stage11 object is selected. No successor is justified.
 
-**Last reviewed closure timestamp: 2026-11-19T14:03:26Z (#1899).**
+**Last reviewed closure timestamp: 2026-11-19T14:36:20Z (#1906).**
 
 ## Current Director queue
 
 There are **17 open director-task Issues**:
-- **4 claimed/in progress:** #1877 (Agent4; fixed p30–p42 signed-register route), #1895 (Agent2; p55 43/33 decoder), #1897 (Agent1; p23 RISE→+2 p25), #1902 (Agent5; new public research audit).
-- **1 stale/blocked:** #1886 (Agent31 claim expired; exact Wikidot archive access still blocked).
-- **4 blocked/waiting:** #41 (no complete source-selected p55 decoder), #1667 (isolated-worker transport failure), #1335 (genuinely naïve external human required), #1911 (AL=31 prospective receiver test; do not start until #1897 positively freezes p25).
-- **8 unclaimed, executable:** #1903 ALL AROUND/base60 familywise audit; #1904 5×6 red-dot selector; #1905 p0 red13/13-dot initial-state clue; #1906 931→133 Stage11 pointer; #1907 p43–p48 source-first solve path; #1908 Onion2 non-additive source operation; #1909 32 page-crossing word/clock boundary audit; #1910 adversarial creator-design prior review.
+- **3 claimed/in progress:** #1895 (Agent2; p55 43/33 decoder), #1903 (Agent10; whole-sentence GP0/base60 familywise audit), #1908 (Agent15; Onion2 non-additive value-rewrite source audit).
+- **9 unclaimed, executable:** #1877 (Agent4 lease stale; preserve the frozen p42→p43 word1 LIES holdout), #1897 (Agent1 lease stale; p23 RISE→+2 p25), #1902 (Agent5 lease stale; new public research audit), #1904 (5×6 red-dot selector), #1905 (p0 red13/13-dot initial-state clue), #1907 (p43–p48 source-first solve path), #1909 (32 page-crossing word/clock boundary audit), #1910 (adversarial creator-design prior review), #1912 (wordwise ALL/AROUND 49/27/75/177 familywise audit).
+- **5 blocked/waiting:** #1886 (Agent31 lease stale; exact Wikidot archive access remains blocked by the available interface), #41 (no complete source-selected p55 decoder), #1667 (isolated-worker transport failure), #1335 (genuinely naïve external human required), #1911 (AL=31 prospective receiver test; do not start until #1897 positively freezes p25).
 
-The 8 unclaimed executable issues meet the queue target. Keep the total below30. Sequence dependent work: do not let #1904 use the false p53 split; do not promote base60 consumers until #1903 resolves; do not start #1911 unless #1897 closes positively; do not create a dependent p55 decoder from #1895 until a complete source-selected operation exists.
+The 9 unclaimed executable issues meet the queue target; keep the total below30. Sequence dependent work: #1904 must not use the false p53 split; do not promote base60 consumers until #1903 resolves; keep #1912 separate from #1903 and do not let its post-hoc motif alter #1903's frozen family; do not start #1911 unless #1897 closes positively; do not create a dependent p55 decoder from #1895 until a complete source-selected operation exists.
 
 ## Critic boundary
 
