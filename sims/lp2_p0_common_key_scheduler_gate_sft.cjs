@@ -103,8 +103,8 @@ const digit60 = (ch) => {
 const base60 = (token) => digit60(token[0]) * 60 + digit60(token[1]);
 const base59 = (token) => digit60(token[0]) * 59 + digit60(token[1]);
 
-// Freeze the additional receiver from source-only inputs before dereferencing
-// its p0 rune values: AND -> GP0 56 -> original p50 cell 4E -> p0 offset 254.
+// Freeze the additional receiver from source-only inputs before using its
+// p0 rune values in the test: AND -> GP0 56 -> p50 cell 4E -> p0 offset 254.
 const selector = {
   sourceWord: "AND",
   gp0: gp0("AND"),
@@ -146,6 +146,10 @@ const theirKey = [H(state.p, state.a)[0], state.p, mod(state.K * state.g), state
 // [17,23,10,5]
 assert.deepEqual(andKey, [5, 26, 15]);
 assert.deepEqual(theirKey, [17, 23, 10, 5]);
+assert.equal(digit60(p50[numbersIndex][0]), state.e);
+assert.equal(digit60(p50[numbersIndex][1]), mod(state.b - state.K));
+assert.equal(theirKey[0], digit60(p50[theirIndex][1]));
+assert.equal(theirKey[0], mod(state.p - state.a));
 
 // Verify the 84-member AND family on the original NUMBERS-selected receiver.
 const andReceiver = wordAt(189).values;
