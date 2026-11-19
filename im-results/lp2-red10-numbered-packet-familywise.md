@@ -255,6 +255,53 @@ The numbered diagonal also independently selects p15's canonical word16 / zero-b
 
 This makes `PRIMUS IS THE WAY ITS WORDS` a repeated manuscript-level instruction rather than a phrase obtained from only one numerical layout.
 
+## The same packet also selects MEANING -> ROAD
+
+A concurrent independent result gives the red10 packet a second source-selected consumer.
+
+The two matching outer punctuation glyphs each have ten red dots:
+
+```text
+10 + 10 = 20
+source index20 = MEANING.
+```
+
+Section marker1 fixes p36's first section receiver. Its canonical word at offsets99..102 is:
+
+```text
+C = [20,2,12,22].
+```
+
+The original-raster ten-dot geometry has column signature `(3,4,3)=(e,q,e)`; together with visible section marker1, the complete local key alphabet is therefore `{1,3,4}`. Agent43 exhaustively charged all:
+
+```text
+3^4 * 2 signs = 162
+```
+
+four-slot operations against the already fixed MEANING target. Exactly one works:
+
+```text
+[20,2,12,22] - [1,3,3,1]
+= [19,28,9,21]
+= MEANING.
+```
+
+The same authenticated source uses the recurring `X IS/ARE THE Y` spacing of `e=3`:
+
+```text
+MEANING20 + e3 = ROAD23.
+```
+
+ROAD23 is independently the established p23/origin state checkpoint. Thus the packet does more than recover the earlier clause `PRIMUS IS THE WAY ITS WORDS`; its own red boundary count and section1 also supply a constrained transition:
+
+```text
+MEANING -> ROAD.
+```
+
+This is a strong local candidate with target-frozen finite controls, not a universal p36 cipher. It replaces no part of the retired p36 GOOD pseudo-word claim.
+
+See `im-results/lp2-p36-section1-meaning-state-inverse.md` and Windows regression **44465133751**.
+
 ## Independent numbered-diagonal loop: BEWARE returns to YOU
 
 Agent1's independently recovered numbered route gives a second interpretation of the packet's p32 result.
