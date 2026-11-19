@@ -439,6 +439,62 @@ for (const orientation of ["forward", "reverse"]) {
   }
 }
 
+// First-party semantic charge over the 40 structural shells.
+const navigationLabels = new Set(["PATH", "WAY", "MAP", "ROAD"]);
+const structuralShells = [];
+for (const orientation of ["forward", "reverse"]) {
+  for (const replacement of [-1, 0, 1, 2, 3]) {
+    for (const [bodyMode, bodyValue] of bodyScalars) {
+      for (const placement of ["first", "last"]) {
+        const title = orientation === "forward" ? titleLengths.slice() : titleLengths.slice().reverse();
+        if (replacement >= 0) {
+          const slot = orientation === "forward" ? replacement : 3 - replacement;
+          title[slot] = 11;
+        }
+        const candidateShell = placement === "last" ? [...title, bodyValue] : [bodyValue, ...title];
+        const labels = candidateShell.map((value) => source[value]?.word || null);
+        const semanticGrammar =
+          labels[0] === labels[2] &&
+          labels[1] === "IS" &&
+          navigationLabels.has(labels[3]) &&
+          navigationLabels.has(labels[4]) &&
+          labels[3] !== labels[4];
+        structuralShells.push({ orientation, replacement, bodyMode, placement, shell: candidateShell, labels, semanticGrammar });
+      }
+    }
+  }
+}
+assert.equal(structuralShells.length, 40);
+assert.equal(new Set(structuralShells.map((row) => row.shell.join(","))).size, 40);
+assert.deepEqual(structuralShells.filter((row) => row.semanticGrammar), [{
+  orientation: "forward",
+  replacement: 1,
+  bodyMode: "HERE-inverse",
+  placement: "last",
+  shell: [4, 11, 4, 2, 23],
+  labels: ["EMPTY", "IS", "EMPTY", "PATH", "ROAD"],
+  semanticGrammar: true,
+}]);
+
+const navigationIndices = new Set(source.filter((row) => navigationLabels.has(row.word)).map((row) => row.index));
+const targetNavigation = fiveRuneTargets.map((target) => {
+  const targetShell = H(target.values);
+  return {
+    word: target.word,
+    shell: targetShell,
+    labels: targetShell.map((value) => source[value]?.word || null),
+    distinctNavigation: [...new Set(targetShell.filter((value) => navigationIndices.has(value)))],
+  };
+});
+const maxNavigation = Math.max(...targetNavigation.map((row) => row.distinctNavigation.length));
+assert.equal(maxNavigation, 3);
+assert.deepEqual(targetNavigation.filter((row) => row.distinctNavigation.length === maxNavigation), [{
+  word: "SEEKS",
+  shell: [0, 13, 18, 23, 1],
+  labels: ["HELLO", "WAY", "MAP", "ROAD", "THE"],
+  distinctNavigation: [13, 18, 23],
+}]);
+
 assert.equal(familyConfigurations, 160);
 assert.deepEqual(familyHits, [{
   orientation: "forward",
@@ -527,6 +583,8 @@ console.log(JSON.stringify({
     fixedKeyHits,
     layoutFamilyConfigurations: familyConfigurations,
     layoutFamilyHits: familyHits,
+    semanticStructuralShells: structuralShells.filter((row) => row.semanticGrammar),
+    targetNavigation,
     exactFourWordRed,
   },
 }, null, 2));
