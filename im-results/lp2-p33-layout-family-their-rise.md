@@ -93,6 +93,27 @@ Thus the recovered words `THEIR RISE` describe a concrete source-visible transit
 
 The earlier signed-source collision reconstruction had already used `H(19,25)=[23,15]=[p,b]`. The new p33 phrase gives that pair a direct human-facing reading, although this semantic connection was recognized after the collision relation was known and should not be presented as a blind discovery probability.
 
+## Literal body-rise consumer: 81 -> 115 selects p34 BE
+
+A later source-layout audit found a direct consumer for the two ciphertext-body **counts** without decrypting either body. The upper and lower bodies already have fixed counts:
+
+```text
+upper: 5 lines, 21 canonical words, 81 runes
+lower: 6 lines, 28 canonical words, 115 runes
+```
+
+Reading `THEIR RISE` literally as lower minus upper gives `[1,7,34]`. All three are authenticated zero-based signed-word positions, with source labels `THE, THE, BE`. Across the complete family of pages with exactly two canonical red spans beginning at the page head and a second span at a line boundary, only p33 keeps all three rises inside the 43-word source register; it is also the only member whose line- and word-scale rises name the same signed token.
+
+The highest-resolution result is an authored-layout handoff independent of p34 ciphertext:
+
+```text
+115 - 81 = 34
+-> signed word34 = BE
+-> physical p34.
+```
+
+P34 already has an independently source-predicted exact BE receiver. This upgrades the p33 bodies from having no licensed consumer to having a **count-only navigation consumer**; their rune contents remain ciphertext. See [body-rise handoff](lp2-p33-their-rise-body34-be-handoff.md) and [SFT](../sims/lp2_p33_their_rise_body34_be_handoff_sft.cjs).
+
 ## Prospectively frozen continuation: negative
 
 Before reading p50 cell25, Issue #1782 recorded the following precommit:
@@ -122,7 +143,7 @@ The evidence boundary is now sharper:
 - solved p56 independently serializes its two headings into `THEIR RISE`;
 - the phrase closes an exact signed-2016 numerical loop `19 -> 25`, with rise6=`a`;
 - the precommitted attempt to treat 25 as the next p50 page address fails;
-- p33's 81- and 115-rune bodies remain ciphertext with no licensed consumer.
+- p33's 81- and 115-rune bodies remain ciphertext, while their authored counts now have a licensed navigation consumer: `115-81=34` selects signed/physical p34 BE.
 
 Do not reopen p33 H phases, repeating keys or the failed address25 page-pointer route without a new authored selector.
 
