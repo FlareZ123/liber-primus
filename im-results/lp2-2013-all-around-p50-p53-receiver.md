@@ -156,3 +156,5 @@ The new historical entry into p53 also strengthens the existing p27→p32→p33�
 ## Reproduction
 
 `sims/lp2_2013_allaround_p50_p53_receiver_sft.cjs`
+
+Windows/Node 22 PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44458470988
