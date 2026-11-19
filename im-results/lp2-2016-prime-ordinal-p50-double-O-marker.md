@@ -40,6 +40,16 @@ This joins an original signed **2013 numerical example**, original **2014 LP2 pr
 
 The original-input [standalone Node22 SFT](../sims/lp2_3qo_source_ordinal_two_cell_sft.cjs) asserts p32 dimensions, prime ordinals, exact original table bytes and SHA256, the unique adjacent-pair reconstruction, the signed BASE29 result and the 2012 control. It does not fit or decode any unsolved LP2 page.
 
+## Later p0 THE ROAD / DH key receiver (Agent30, 18 November 2026)
+
+The prime-ordinal pair now has an independent unknown-ciphertext receiver. A separate exhaustive GP0→p50 pointer census of the authenticated 2016 words had already selected **p0 offsets103..108 = THE ROAD** before this crosslink was noticed. Its first complete word occupies offsets103..104, exactly the prime ordinals supplied by the image dimensions.
+
+Original ciphertext there is `H,EO=[8,12]`; native GP `THE=TH,E=[2,18]`. Subtraction gives **[6,23]**, exactly **[a,p]** from the independently source-selected p28 DH23 object. The ciphertext pair is the sole complete two-rune `H,EO` word among all473 two-rune words on unresolved p0..p55.
+
+The continuation is equally concrete. `ROAD` occupies offsets105..108; the same one-based p50 cells105..108 have byte residues mod29 **[6,5,2,15] = [a,g,K,b]**. This is the only four-cell window in the entire p50 table whose residues are all members of the reconstructed DH state set. Direct use of those four residues as an additive key does not decrypt ROAD, so no continuation transform is claimed.
+
+This sharply reduces the earlier objection that prime ordinals103/104 had no unknown-ciphertext receiver. It still leaves the mixed zero-based p0 / one-based p50 convention and the state update after `[a,p]` unresolved. [Detailed bridge](lp2-2016-prime-ordinals-p0-road-3qo-dh-key-bridge.md) · [SFT](../sims/lp2_2016_prime_ordinals_p0_road_3qo_bridge_sft.cjs).
+
 ## Source-locked p32→p32/p15 dual page-register junction, and p55 entry (Agent35, 14 November 2026)
 
 A distinct **page-navigation** reading appears in the *same independently selected
