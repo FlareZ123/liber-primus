@@ -81,7 +81,7 @@ jobs:
             inspect_output "$label" "$out" "$status"
           }
 
-          run_first "first-default" "__DEFAULT__" "__DEFAULT__"
+          run_first "first-default" "__DEFAULT__"
           for entry in \
             "HERE:HERE" \
             "here:here" \
@@ -117,29 +117,29 @@ jobs:
 
           echo "=== candidate statistics ==="
           python3 - <<'PY'
-import glob, math, os
-from collections import Counter
-
-markers = [
-    b"BEGIN PGP", b"3301", b"http", b"onion", b"LIBER", b"CICADA",
-    b"OUTGUESS", b"READ", b"HERE"
-]
-for name in sorted(glob.glob("outguess-results/first-*.bin")):
-    data = open(name, "rb").read()
-    if data:
-        counts = Counter(data)
-        entropy = -sum((n/len(data))*math.log2(n/len(data)) for n in counts.values())
-        printable = sum((32 <= b <= 126) or b in (9,10,13) for b in data) / len(data)
-    else:
-        entropy = 0.0
-        printable = 0.0
-    found = [m.decode("ascii") for m in markers if m.lower() in data.lower()]
-    print(
-        os.path.basename(name),
-        "bytes=", len(data),
-        "entropy=", f"{entropy:.6f}",
-        "printable=", f"{printable:.6f}",
-        "markers=", ",".join(found) if found else "-"
-    )
-PY
+          import glob, math, os
+          from collections import Counter
+          
+          markers = [
+              b"BEGIN PGP", b"3301", b"http", b"onion", b"LIBER", b"CICADA",
+              b"OUTGUESS", b"READ", b"HERE"
+          ]
+          for name in sorted(glob.glob("outguess-results/first-*.bin")):
+              data = open(name, "rb").read()
+              if data:
+                  counts = Counter(data)
+                  entropy = -sum((n/len(data))*math.log2(n/len(data)) for n in counts.values())
+                  printable = sum((32 <= b <= 126) or b in (9,10,13) for b in data) / len(data)
+              else:
+                  entropy = 0.0
+                  printable = 0.0
+              found = [m.decode("ascii") for m in markers if m.lower() in data.lower()]
+              print(
+                  os.path.basename(name),
+                  "bytes=", len(data),
+                  "entropy=", f"{entropy:.6f}",
+                  "printable=", f"{printable:.6f}",
+                  "markers=", ",".join(found) if found else "-"
+              )
+          PY
 
