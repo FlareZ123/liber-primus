@@ -159,6 +159,44 @@ for (const word of signedWords) {
 }
 assert.deepEqual([...signedTwoRune.keys()].sort(), ["10,15", "17,18", "2,18"]);
 
+const stateFieldEntries = Object.entries({
+  p: state.p,
+  g: state.g,
+  a: state.a,
+  b: state.b,
+  A: state.A,
+  B: state.B,
+  K: state.K,
+});
+const pairSumRows = [];
+for (let left = 0; left < stateFieldEntries.length; left += 1) {
+  for (let right = left + 1; right < stateFieldEntries.length; right += 1) {
+    const [leftName, leftValue] = stateFieldEntries[left];
+    const [rightName, rightValue] = stateFieldEntries[right];
+    const index = leftValue + rightValue;
+    if (index < 1 || index > p28.words.length) continue;
+    const target = p28.words[index - 1];
+    if (target.length < 2) continue;
+    const output = H(target[0], target[target.length - 1]);
+    pairSumRows.push({
+      expression: `${leftName}+${rightName}`,
+      index,
+      output,
+      signedTargets: signedTwoRune.get(output.join(",")) || [],
+    });
+  }
+}
+assert.equal(pairSumRows.length, 20);
+assert.deepEqual(
+  pairSumRows.filter((row) => row.signedTargets.length > 0),
+  [{
+    expression: "p+A",
+    index: 31,
+    output: [2, 18],
+    signedTargets: ["THE"],
+  }]
+);
+
 const stateValues = new Set([
   state.p, state.g, state.a, state.b, state.A, state.B, state.K,
 ]);
@@ -300,6 +338,7 @@ console.log(JSON.stringify({
     twoRuneFragmentCount,
     validSamePageIndexCount,
     signedTwoRuneHitCount: signedTwoRuneHits.length,
+    pairSumRows,
     statePairSourceCount,
     validStatePairIndexCount,
     statePairSignedHits,
