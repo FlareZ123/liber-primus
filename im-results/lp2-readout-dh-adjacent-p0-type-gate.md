@@ -76,4 +76,4 @@ Run:
 
 `node sims/lp2_readout_dh_to_adjacent_p0_gate_sft.cjs`
 
-The SFT freezes the p0 packet and adjacent four-word target from canonical transcription, records the authenticated protocol operation types, records the admitted H/cube GP29 types, and asserts that the intersection **deterministic + consumes DH state + emits GP29** is empty.
+The SFT freezes the p0 packet and adjacent four-word target from canonical transcription, records the authenticated protocol operation types, records the admitted H/cube GP29 types, and asserts that the intersection **deterministic + consumes DH state + emits GP29** is empty. Windows / Node.js 22 reproduction passed in Actions run [44428431557](https://github.com/FlareZ123/liber-primus/actions/runs/44428431557).
