@@ -447,6 +447,42 @@ assert.deepEqual(
   [[53, 128]]
 );
 
+// The first literal shed of the MUST-marked p53 object yields 27, so preserve
+// the already fixed output type and open physical p27. Its only red title is a
+// dense state holdout that was not used to derive the pointer.
+const p27Page = p53ShedCounts[0];
+assert.equal(p27Page, 27);
+const p27Ink = ink.pages.find((page) => page.page === p27Page);
+assert.ok(p27Ink);
+assert.equal(p27Ink.red_spans.length, 1);
+const p27RedSpan = p27Ink.red_spans[0];
+const p27Rows = wordRows(p27Page);
+const p27RedWords = p27Rows
+  .filter((row) =>
+    row.start >= p27RedSpan.start &&
+    row.end <= p27RedSpan.start + p27RedSpan.length
+  )
+  .map((row) => row.values);
+const p27RedFlat = p27RedWords.flat();
+assert.equal(p27RedSpan.start, 0);
+assert.equal(p27RedSpan.length, B);
+assert.equal(p27RedFlat[0], B);
+assert.equal(p27RedFlat.reduce((sum, value) => sum + value, 0) % 29, b);
+assert.deepEqual(H(p27RedFlat.slice(0, 2)), [a, e]);
+const p27ShedCounts = [1, 2, 3, 4, 5].map((depth) =>
+  shedDepthCount(p27RedWords, depth)
+);
+assert.deepEqual(p27ShedCounts, [A + g, A, a, q, K]);
+assert.deepEqual(
+  redSpanControls
+    .filter((row) =>
+      row.length === B &&
+      JSON.stringify(row.shedCounts) === JSON.stringify(p27ShedCounts)
+    )
+    .map((row) => [row.page, row.start]),
+  [[27, 0]]
+);
+
 // Full red-body census under the same rule. This includes one-rune words by
 // giving them empty interiors, so the 39/50 results do not depend on a special
 // eligibility exception.
@@ -562,6 +598,15 @@ console.log(JSON.stringify({
       nestedShedCounts: p53ShedCounts,
       stateInterpretation: "[-K,K*a,g,e,a-g]",
       readoutParameterPair: [e, p53ShedCounts[0]],
+      nextPointer: p27Page,
+      p27Holdout: {
+        redLength: p27RedSpan.length,
+        firstRune: p27RedFlat[0],
+        redGp0Mod29: p27RedFlat.reduce((sum, value) => sum + value, 0) % 29,
+        firstH: H(p27RedFlat.slice(0, 2)),
+        nestedShedCounts: p27ShedCounts,
+        interpretation: "length=B, first=B, GP0 mod29=b, H(first2)=[a,e], sheds=[A+g,A,a,q,K]",
+      },
       matchingLengthControls: redSpanControls.filter((row) => row.length === mustGp0).length,
       matchingFirstHControls: redSpanControls.filter((row) => row.firstH?.[0] === e && row.firstH?.[1] === 0).length,
       matchingShedPacketControls: redSpanControls.filter((row) =>
@@ -571,5 +616,5 @@ console.log(JSON.stringify({
   },
   census,
   interpretation:
-    "Solved p57 literally says WE MUST SHED OUR OWN CIRCUMFERENCES. Removing each body's first and last rune leaves exactly 50 runes, selecting the p50 number table. P50 state B=19 selects p33; p33's source-visible H chain returns WE and the red 13-dot count. Reusing the solved instruction unchanged on p33's first black body leaves exactly 39 runes, selecting p39. The target p39 independently carries red title [-K,g,b]=[27,5,15], whose H chain is [p-1,e] -> [B,GP0(WE)] -> [p,b]. Its geometry continues the p33 p*g state: upper runes=p*g+q=119, lower black runes=p*g+e=118, complete lower section=p*g+a=121, lower black words=p+g=28, and both source sections have a=6 lines. Repeated shedding at depths [K,e,q,g] leaves [p,a,K,0], uniquely among red-started bodies. At depth e the six-rune core has raw sum36: count6=GP(G)=a and sum36=GP0(FOUND)=zero-based signed index GOOD, the sole red-body depth-e hit of the fixed first-GP/index selector. At depth q the two-rune core [10,5] has sum b=15=index(WORDS) and H(core)=[g,b]. An independent original-image inventory also establishes p39 as the only other page sharing p33's reused three-dot divider graphic. P39's H chain emits e=3, and p3 is the unique other page carrying the same three-rune red span at the same offset119. The paired p3 body sheds to p53. P53 then carries the unique 51-rune red span, equal to GP0(MUST); its first pair maps through H to [e,F], while repeated shedding leaves [-K,K*a,g,e,a-g]=[27,12,5,3,1]. Thus the route reconstructs WE then MUST from source features while the solved p57 text supplies SHED. The p53 packet also exposes [e,-K]=[3,27], the already used p28 READ OUT exponent pair, without yet authenticating exponentiation as the cipher operator.",
+    "Solved p57 literally says WE MUST SHED OUR OWN CIRCUMFERENCES. Removing each body's first and last rune leaves exactly 50 runes, selecting the p50 number table. P50 state B=19 selects p33; p33's source-visible H chain returns WE and the red 13-dot count. Reusing the solved instruction unchanged on p33's first black body leaves exactly 39 runes, selecting p39. The target p39 independently carries red title [-K,g,b]=[27,5,15], whose H chain is [p-1,e] -> [B,GP0(WE)] -> [p,b]. Its geometry continues the p33 p*g state: upper runes=p*g+q=119, lower black runes=p*g+e=118, complete lower section=p*g+a=121, lower black words=p+g=28, and both source sections have a=6 lines. Repeated shedding at depths [K,e,q,g] leaves [p,a,K,0], uniquely among red-started bodies. At depth e the six-rune core has raw sum36: count6=GP(G)=a and sum36=GP0(FOUND)=zero-based signed index GOOD, the sole red-body depth-e hit of the fixed first-GP/index selector. At depth q the two-rune core [10,5] has sum b=15=index(WORDS) and H(core)=[g,b]. An independent original-image inventory also establishes p39 as the only other page sharing p33's reused three-dot divider graphic. P39's H chain emits e=3, and p3 is the unique other page carrying the same three-rune red span at the same offset119. The paired p3 body sheds to p53. P53 then carries the unique 51-rune red span, equal to GP0(MUST); its first pair maps through H to [e,F], while repeated shedding leaves [-K,K*a,g,e,a-g]=[27,12,5,3,1]. Thus the route reconstructs WE then MUST from source features while the solved p57 text supplies SHED. The p53 packet also exposes [e,-K]=[3,27], the already used p28 READ OUT exponent pair, without yet authenticating exponentiation as the cipher operator. Keeping the same page-pointer output type, the first shed of the MUST-marked p53 object gives p27. P27 answers with a unique red state register: length and first rune B=19, whole-title GP0 mod29=b=15, H(first2)=[a,e], and nested shed counts [A+g,A,a,q,K]=[13,8,6,4,2].",
 }, null, 2));
