@@ -1,0 +1,19 @@
+name: Agent22 GOOD LUCK GCD shell SFT
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run GOOD LUCK GCD shell SFT
+        shell: cmd
+        run: node sims\lp2_good_luck_gcd_shell_transition_sft.cjs
