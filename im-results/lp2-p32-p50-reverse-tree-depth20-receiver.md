@@ -153,3 +153,36 @@ This is part of a wider exact partition of the 252-cell 11-cycle basin. In cycle
 Every non-singleton component size is prime. The corresponding prime indices are `[2,–,1,6,1,17,9,2,32,1,6]`. The [prime-component SFT](../sims/lp2_p50_prime_cycle_components_sft.cjs) passed in Windows Node22 [run 44449154221](https://github.com/FlareZ123/liber-primus/actions/runs/44449154221). Among 1,900 exact-byte-multiset shuffles retaining an 11-cycle at cell0, 45 retain the all-prime-or-singleton partition property, 4 contain any 131-cell component, and none reproduce the observed ordered partition.
 
 The page selection therefore has two nested graph facts: the **complete tree has prime cardinality 131 → page32**, while the authenticated **THE=20** reverse-depth cut selects **121 nonroot nodes = EPIPHANY**, exactly the page's rune count. The original p32 illustration is itself a tree, which makes this a compact clue-constrained receiver hypothesis. None of these facts yet specifies the rune-to-node bijection or plaintext operation.
+
+
+## Solved-p57 tree grammar on the same rooted component
+
+The solved p57 instruction supplies an independent entry into the same graph object. Canonical GP0 gives `SHED=64`; SHED has four GP runes. Four ordinary base60 pointer steps are
+
+`64→122→86→111→115`.
+
+Root115 is exactly the 131-cell rooted component above, and `GP0(CIRCUMFERENCES)=131`. Across the unique solved-p57 vocabulary, SHED is the sole word for which “start at the word's GP0, walk for that word's GP-rune count, then read the endpoint component cardinality as another solved-p57 GP0” produces a p57 word pair: **SHED → CIRCUMFERENCES**.
+
+The fixed root115 depth histogram also contains several authenticated cumulative counts: depth6 has 42 nonroot nodes = FIND; depth15 has 105 nodes including root = DIVINITY; depth20 has 121 nonroot nodes = EPIPHANY; the complete depth24 tree has 131 nodes including root = CIRCUMFERENCES. These identities use the fixed tree and source vocabulary. They do not specify a plaintext transform.
+
+The depth20 receiver has two root branches. The 111 branch contributes 37 selected nodes and the 32 branch contributes 84. Therefore `1+37=38=WITHIN`, `84-1=83=EMERGE`, and `38+83=121=EPIPHANY`. This is a secondary structural identity pending an authored rule for the +1/-1 interpretation.
+
+Reproducer: [`sims/lp2_p57_p50_tree_word_grammar_sft.cjs`](../sims/lp2_p57_p50_tree_word_grammar_sft.cjs), Windows Node22 run **44450273976** passed.
+
+## Authenticated 2016 words select p32 word boundaries
+
+P32 has 26 original printed words with cumulative rune boundaries
+
+`[1,4,9,20,25,30,33,44,48,50,59,64,71,72,76,85,89,92,97,99,102,104,112,114,117,121]`.
+
+The authenticated 2016 values `THE=20`, `SEEKS=71`, `EMPTY=92`, `DEVOTED=102`, and `EPIPHANY=121` are all members of that set. Across physical unknown pages p0–p55, p32 is the sole page with all five boundaries, and p32 is also the sole page with exactly 121 runes.
+
+The p50 pointer table acts directly on those boundary numbers. If the pointer is followed until the next p32 boundary appears, the source values form this exact chain:
+
+`SEEKS 71 → EMPTY 92 → THE 20 → DEVOTED 102`.
+
+The full roads are `71→108→14→183→81→58→146→92`, then `92→236→238→129→179→175→18→15→212→70→169→228→144→125→20`, then `20→102`. No intermediate p32 boundary occurs on those segments.
+
+This gives a source-selected p32 receiver in the page's own printed word geometry. Two small consumers were tested before any language selection: a boundary-seeded per-rune pointer clock and one fixed p50 scalar per printed word. Their best GP-native trigram scores remain well below held clear controls, so the boundary chain currently constrains navigation rather than yielding plaintext.
+
+Reproducer: [`sims/lp2_p32_signed_word_boundary_receiver_sft.cjs`](../sims/lp2_p32_signed_word_boundary_receiver_sft.cjs).
