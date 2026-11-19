@@ -313,10 +313,37 @@ function palindromeDecryptionsFor(fieldEntries) {
 const palindromeDecryptions = palindromeDecryptionsFor(metadataFieldEntries);
 const fullStatePalindromeDecryptions = palindromeDecryptionsFor(fullStateFieldEntries);
 
+/** @param {Array<[string,number]>} fieldEntries @returns {Array<object>} */
+function palindromeAdditiveDecryptionsFor(fieldEntries) {
+  const out = [];
+  for (const [xName,x] of fieldEntries) {
+    for (const [yName,y] of fieldEntries) {
+      for (const [zName,z] of fieldEntries) {
+        const center = [x,y,z,y,x];
+        const key = hOutsideIn(center);
+        const plain = p0SecondCipher.map((value,index) => mod29(value + key[index]));
+        const word = length5.find((candidate) =>
+          candidate.values.join(",") === plain.join(",")
+        );
+        if (word) out.push({
+          fields:[xName,yName,zName], center, key,
+          word:word.label, source:word.source,
+        });
+      }
+    }
+  }
+  return out;
+}
+const palindromeAdditiveDecryptions =
+  palindromeAdditiveDecryptionsFor(metadataFieldEntries);
+const fullStatePalindromeAdditiveDecryptions =
+  palindromeAdditiveDecryptionsFor(fullStateFieldEntries);
+
 const centerKey = hOutsideIn(markerCenter);
 assert.deepEqual(centerKey, [0,8,0,16,19]);
 const fiveLexicon = new Map(length5.map((word) => [word.values.join(","), word]));
 const centerKeyMarkerTransfers = [];
+const centerKeyMarkerAddTransfers = [];
 let centerKeyMarkerWindows = 0;
 for (const pageAnnotation of annotations.pages) {
   const page = corpus.pages.find((candidate) => candidate.page === pageAnnotation.page);
@@ -340,6 +367,20 @@ for (const pageAnnotation of annotations.pages) {
           plain,
           word:word.label,
           source:word.source,
+        });
+      }
+      const addPlain = cipher.map((value,index) => mod29(value + centerKey[index]));
+      const addWord = fiveLexicon.get(addPlain.join(","));
+      if (addWord) {
+        centerKeyMarkerAddTransfers.push({
+          page:page.page,
+          markerOffset:marker[0],
+          side,
+          start,
+          cipher,
+          plain:addPlain,
+          word:addWord.label,
+          source:addWord.source,
         });
       }
     }
@@ -400,6 +441,22 @@ for (const order of columnOrders) {
   }
 }
 assert.equal(columnTraversalControls.length, 48);
+const columnAdditiveRivalHits = columnTraversalControls
+  .map((row) => {
+    const plain = p0Receiver.cipher.map((value,index) => mod29(value + row.key[index]));
+    const leftWord = length8.find((candidate) =>
+      candidate.values.join(",") === plain.slice(0,8).join(",")
+    );
+    const rightWord = length5.find((candidate) =>
+      candidate.values.join(",") === plain.slice(8).join(",")
+    );
+    return {
+      order:row.order,
+      reverseMask:row.reverseMask,
+      lexicalPair:leftWord && rightWord ? [leftWord.label,rightWord.label] : null,
+    };
+  })
+  .filter((row) => row.lexicalPair);
 
 const markerRowsTopDown = [
   ["center",0],
@@ -447,6 +504,23 @@ for (let pairSwapMask = 0; pairSwapMask < 16; pairSwapMask += 1) {
   }
 }
 assert.equal(rowTraversalControls.length,32);
+const rowAdditiveRivalHits = rowTraversalControls
+  .map((row) => {
+    const key = hOutsideIn(row.packet);
+    const plain = p0Receiver.cipher.map((value,index) => mod29(value + key[index]));
+    const leftWord = length8.find((candidate) =>
+      candidate.values.join(",") === plain.slice(0,8).join(",")
+    );
+    const rightWord = length5.find((candidate) =>
+      candidate.values.join(",") === plain.slice(8).join(",")
+    );
+    return {
+      pairSwapMask:row.pairSwapMask,
+      bottomUp:row.bottomUp,
+      lexicalPair:leftWord && rightWord ? [leftWord.label,rightWord.label] : null,
+    };
+  })
+  .filter((row) => row.lexicalPair);
 
 const p0Hits = hits.filter((row) => row.page === 0 && row.ordinal === 1);
 const squareTypedHits = hits.filter((row) =>
@@ -463,10 +537,15 @@ console.log(JSON.stringify({
   status:"PASS",
   independentSquareState:{e,q,A,B,markerCenter,squareMetadataAlphabet},
   palindromeDecryptions,
+  palindromeAdditiveDecryptions,
   fullStatePalindromeDecryptions,
+  fullStatePalindromeAdditiveDecryptions,
   centerKeyMarkerTransfers,
+  centerKeyMarkerAddTransfers,
   columnTraversalHits:columnTraversalControls.filter((row) => row.lexicalPair),
+  columnAdditiveRivalHits,
   rowTraversalHits:rowTraversalControls.filter((row) => row.lexicalPair),
+  rowAdditiveRivalHits,
   family:{
     rowTraversalControls:rowTraversalControls.length,
     centerKeyMarkerWindows,
