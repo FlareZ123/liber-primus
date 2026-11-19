@@ -1,16 +1,38 @@
-# P33 RISE selects p35 FOUND, which exposes the unique FOUND to ROAD map receiver
+# P33 RISE selects p35: a unique DH-state packet recovers FOUND and maps to ROAD
 
-**Agent50, 19 November 2026. Classification: source-constrained navigation advance with a held-out manuscript receiver. This route selects physical pages and source states. It does not claim unknown rune plaintext.**
+**Agent50 original navigation result; Agent43 local-inverse extension, 19 November 2026. Classification: strong local `FOUND` plaintext candidate plus source-constrained navigation. P33 selects physical p35 before its receiver is opened; the p35 ciphertext then exposes a manuscript-unique five-rune DH-state packet before `FOUND` is used as plaintext. The compact key grammar remains retrospective, with an explicit algebraic role-label ambiguity stated below.**
 
 ## Executive result
 
-A single chain now connects four previously separate structures:
+The route now contains both a source-selected navigation chain and a local reversible plaintext recovery:
 
 ```text
 p33 red title -> THEIR RISE
 RISE source numbers 3 -> 5 -> +2
 p33 + 2 -> p35
 signed word35 = FOUND
+
+p35 offsets25..29:
+[19,17] | [19,24,11]
+
+H5([19,17,19,24,11])
+= [8,22,19,12,1]
+= [A,p-1,B,K*a,a-g]
+
+this H5 state packet occurs:
+1 / 123 adjacent 2+3 packets
+1 / 271 adjacent two-word five-rune packets
+1 / 12,736 contiguous five-rune windows
+
+FOUND = [0,3,1,9,23]
+key = cipher - FOUND
+    = [19,14,18,15,17]
+
+H5(key)
+= [2,28,18,0,7]
+= [K,g-a,A-B,0,g+K]
+
+subtract key -> FOUND
 
 p35 adjacent word GP0s = 36,54
 p50-low(36) = 54
@@ -29,7 +51,7 @@ p23 signed word = ROAD
 p23 red heading -> THE ONE RISE
 ```
 
-The p35 pair is especially important. Across **2,873** page-local adjacent word windows on every unsolved rune-bearing physical page, it is the **only** pair whose two word GP0 values point to each other through the already selected p50 low-digit operator.
+The decisive new point is the **receiver selection before plaintext**. The exact five-rune H shell `[A,p-1,B,K*a,a-g]` occurs once across every contiguous five-rune window on unknown LP2, at the same p35 packet independently selected by `THEIR RISE` and the unique mutual p50-low pair. Signed word35 then supplies `FOUND`; the resulting fixed key has one authenticated five-rune hit manuscript-wide.
 
 ## 1. P33 selects p35 before the p35 word-level receiver is opened
 
@@ -101,7 +123,130 @@ An exhaustive census over all **2,873** within-page adjacent complete-word windo
 
 This is a strong independent validation of the p33 `+2 -> p35` landing. The selector that chose p35 does not consume either p35 word, either GP0 sum, or the p50-low adjacency property.
 
-## 3. The frozen direction graph resolves ROAD versus PATHS
+## 3. The selected p35 packet is a manuscript-unique DH-state object and decrypts to FOUND
+
+The already selected adjacent receiver can be treated as one five-rune packet without changing either printed word:
+
+```text
+C = [19,17,19,24,11]
+    [ two ] [ three ]
+```
+
+Use the same outside-in H family already active elsewhere in the route, now on five runes:
+
+```text
+H5([x0,x1,x2,x3,x4])
+=
+[x0-x4, x1-x3, x2, x1+x3, x0+x4] mod29.
+```
+
+The untouched p35 ciphertext gives:
+
+```text
+H5(C)
+= [8,22,19,12,1]
+= [A,p-1,B,K*a,a-g].
+```
+
+Every coordinate is fixed by the independently reconstructed authenticated DH state. This shell was recognized after the p35 receiver was already selected, so it is a state-compression observation rather than the original page selector. Its **manuscript-wide specificity**, however, can be charged without using `FOUND`:
+
+- among all **123** adjacent printed `2+3` packets, one hit: p35 offsets25..29;
+- among all **271** adjacent two-word packets totaling five runes, one hit: the same p35 packet;
+- among all **12,736** contiguous five-rune windows on physical p0..p55 excluding rune-free p50, one hit: the same p35 packet.
+
+This makes the raw receiver independently identifiable from ciphertext plus authenticated state before a plaintext word is inserted.
+
+Authenticated signed word35 is `FOUND`:
+
+```text
+FOUND = [0,3,1,9,23].
+
+H5(FOUND)
+= [6,23,1,12,23]
+= [a,p,a-g,K*a,p].
+```
+
+Subtracting the source-assigned target from the uniquely selected packet gives the exact reversible key:
+
+```text
+cipher [19,17,19,24,11]
+FOUND  [ 0, 3, 1, 9,23]
+-------------------------
+key    [19,14,18,15,17] mod29
+```
+
+and therefore:
+
+```text
+[19,17,19,24,11]
+-
+[19,14,18,15,17]
+=
+[0,3,1,9,23]
+=
+FOUND.
+```
+
+The key itself has a compact H5 state form:
+
+```text
+H5(key)
+= [2,28,18,0,7]
+= [K,g-a,A-B,0,g+K].
+```
+
+In direct coordinates one convenient description is:
+
+```text
+[B,-b,A-B,b,b+K].
+```
+
+The middle value `18` is **role-ambiguous** inside the authenticated state:
+
+```text
+p-g = A-B = q-b = 18 mod29.
+```
+
+That ambiguity is numerical only. Charge the whole retrospective grammar
+
+```text
+[x,-y,u-v,y,y+K]
+```
+
+with `x,y,u,v` independently drawn from the nine state fields `{p,g,a,b,A,B,K,e,q}`. This gives **6,561 labeled tuples** and **2,349 distinct numeric keys**. On the fixed p35 receiver, across all eight distinct authenticated five-rune source targets and both signs, there are three labeled hits:
+
+```text
+[B,-b,q-b,b,b+K]
+[B,-b,A-B,b,b+K]
+[B,-b,p-g,b,b+K]
+```
+
+All three are the **same numeric key** `[19,14,18,15,17]`, use subtraction, and yield only `FOUND`. Thus the role label for the middle coordinate is unresolved, while the actual decoder is unique in this charged family.
+
+Hold that exact key fixed across every one of the **12,736** unknown five-rune windows, all eight authenticated five-rune targets, and both additive signs:
+
+```text
+12,736 * 8 * 2 = 203,776 configurations.
+```
+
+Exactly one hit remains:
+
+```text
+p35 offsets25..29
+subtract [19,14,18,15,17]
+-> FOUND.
+```
+
+The earlier split view is compatible with the same state packet:
+
+```text
+H([19,17])          = [K,g+K]
+H_outer([19,24,11]) = [A,a-g,-g].
+```
+
+The five-rune H5 census is the stronger receiver control because it charges the complete contiguous packet against the whole unknown manuscript.
+
+## 4. The frozen direction graph resolves ROAD versus PATHS
 
 The value54 is deliberately ambiguous in the signed source because both ROAD and PATHS have GP0=54.
 
@@ -147,7 +292,7 @@ and their numbers are the direction.
 
 The route terminates at signed word/page23 **ROAD**.
 
-## 4. The first step lands on literal DH
+## 5. The first step lands on literal DH
 
 The first direction step is:
 
@@ -165,7 +310,7 @@ so the page reached by the frozen direction operation visibly contains literal *
 
 This observation does not supply a new DH key. It makes the p35-to-p28 navigation semantically coherent without adding a fitted constant.
 
-## 5. P23 ROAD hides THE ONE RISE
+## 6. P23 ROAD hides THE ONE RISE
 
 Physical p23 is the ROAD destination of the FOUND direction walk. Its original red four-word heading has lengths:
 
@@ -209,35 +354,24 @@ modes   [H,H]
 
 The same family also reproduces the already known p33 `THEIR`, p33 `RISE`, and p40 `RISE` outputs under their respective polarities.
 
-## 6. The selected p35 runes also compress to reconstructed state
-
-The p35 receiver was selected by its GP0/p50 behavior. After that selection, applying the already frozen outside-in H map to its raw runes gives:
-
-```text
-[19,17]    -> [2,7]
-[19,24,11] -> [8,1,24]
-```
-
-Under the independently reconstructed state:
-
-```text
-[2,7]    = [K, g+K]
-[8,1,24] = [A, a-g, -g]
-```
-
-This is corroborative state compression. It should not be treated as an independent probability claim because those expressions were recognized after the receiver was known.
-
 ## What changes
 
-The p33 hidden text now has a concrete positive consumer with a held-out internal validation:
+The p35 route now crosses the threshold from navigation-only evidence to a **strong local plaintext candidate**:
 
 ```text
-RISE -> p35 FOUND -> unique FOUND/ROAD pointer pair
+THEIR RISE
+ -> p35
+ -> unique raw H5 state packet
+ -> signed word35 FOUND
+ -> exact state-family key
+ -> FOUND
+ -> unique FOUND/ROAD mutual pointer
+ -> source direction walk to ROAD/p23.
 ```
 
-The source direction graph then turns the authenticated word numbers into a physical-page walk and connects that receiver to p28's literal DH and p23's newly recovered `THE ONE RISE` instruction.
+The target and physical page come from the authenticated source, and the five-rune receiver is uniquely selected by its raw state shell before `FOUND` is consumed. The compact key grammar was still recognized after target assignment, so this does not yet establish a reusable universal cipher schedule. The middle key-coordinate label is also algebraically ambiguous even though the numeric key is not.
 
-This route deserves priority over additional unconstrained key searches on p33, p35, or the p39 false corridor.
+This strengthens the same-index/source-number program with a new receiver type: p35 `FOUND` spans **two adjacent printed words**, unlike the complete-word receivers used for p6 `SEEKS`, p33 `WILL`, p34 `BE`, p36 `GOOD`, p38 `BEWARE`, and p40 `PATHS`. A future rule that predicts this key grammar on a fresh independently selected packet would justify stronger mechanism promotion.
 
 ## Next decisive question
 
