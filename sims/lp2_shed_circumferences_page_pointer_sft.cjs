@@ -115,7 +115,7 @@ const p57Words = runeWords(p57.source_text);
 assert.equal(spell(p57Words[0]), "PARABLE");
 const p57BodySolved = p57Words.slice(1);
 const p57Spelling = p57BodySolved.map(spell);
-const instruction = ["WE", "MUST", "SHED", "OUR", "OWN", "CIRCUMFERENCES", "FIND", "THE", "DIVINITY", "WITHIN", "AND", "EMERGE"];
+const instruction = ["WE", "MUST", "SHED", "OUR", "OWN", "CIRCUMFERENCES", "FIND", "THE", "DIUINITY", "WITHIN", "AND", "EMERGE"];
 assert.ok(
   instruction.every((word, i) =>
     p57Spelling.slice(0, p57Spelling.length - instruction.length + 1).some(
