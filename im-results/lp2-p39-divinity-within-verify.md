@@ -218,4 +218,4 @@ This does not decrypt p39 prose. It produces a prospective source-instruction ca
 
 Reproducer: `sims/lp2_p39_divinity_within_verify_sft.cjs`.
 
-Windows Node22 verification should be recorded after the queued workflow completes.
+Windows Node22 strengthened SFT run **44454268513** passed, including the full tree-count address census, one-based-origin control, p39 five-rune source-vocabulary census, VERIFY/OPENPGP context assertion, and frozen RJCOEBL p28-transfer negative.
