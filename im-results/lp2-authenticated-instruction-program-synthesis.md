@@ -237,18 +237,18 @@ one-based source ordinal n
 -> canonical word n.
 ```
 
-Its sole missing direct coordinate is:
+Its sole missing direct **word** coordinate is:
 
 ```text
 YOU ordinal33
--> project p32
--> word33 absent
--> p32 has exactly22=p-1 words.
+-> physical page33 / project p32
+-> requested canonical word33 absent
+-> p32 has exactly21 complete page-local words.
 ```
 
-DIRECTION30 independently supplies `p-1=22`, allowing one wrap to p32 word11.
+DIRECTION30 still recovers group order `p-1=22`, but the corrected page length is21. The earlier modulo22 word wrap is therefore retired; no authenticated p32 word receiver for YOU is currently selected.
 
-Direct numbering resumes:
+The page coordinate itself remains fixed by source ordinal33, and direct word numbering resumes immediately:
 
 ```text
 WILL34   -> p33
@@ -259,17 +259,17 @@ LUCK38   -> p37
 BEWARE39 -> p38.
 ```
 
-The final three pages are exactly the red10 numbered packet. Its prospectively frozen output is32, returning to the unique YOU/p32 wrap page:
+The final three pages are exactly the red10 numbered packet. Its prospectively frozen output is32, returning to the same project p32 page already labeled by source ordinal33:
 
 ```text
-YOU/p32
+YOU33 labels project p32
 -> WILL -> BE -> FOUND -> GOOD -> LUCK -> BEWARE
 -> p36-p38 red10 packet
 -> 32
--> p32/YOU.
+-> project p32.
 ```
 
-This closes a page-level cycle with no new parameter chosen after the packet output was revealed.
+This remains a page-level cycle with no new parameter chosen after the packet output was revealed. It does not provide a wrapped p32 word for YOU.
 
 Local plaintext evidence overlaps five of the six post-YOU words:
 
@@ -378,7 +378,7 @@ The route has become much more constrained, but LP2 is still unsolved. The impor
 
 1. **General body decryption remains unknown.** The strong WILL/BE/FOUND/LUCK/BEWARE/PATHS/WORDS/MEANING candidates use different source-visible local grammars. No reusable page-wide cipher has been established.
 2. **The post-SHED state lacks an unknown-ciphertext consumer.** WE MUST SHED already selects the base60→drop-f-base59 transition and reaches EMERGE; the missing step is a reversible use of that state on unknown ciphertext or an authored exit from the navigation circuit.
-3. **The red10 p32 loop is structural.** It strongly constrains page navigation but does not itself decrypt p36-p38 body text.
+3. **The red10 p32 page loop is structural.** It returns to the project p32 page labeled by source ordinal33, while the canonical 21-word page supplies no direct or wrapped YOU receiver. It constrains page navigation but does not itself decrypt p36-p38 body text.
 4. **Some local key grammars remain retrospective.** Their finite controls establish selectivity, while another first-party operation is required for promotion to reusable mechanisms.
 5. **The OpenPGP route reconstructs state rather than unknown prose.** It is a strong intended-route selector and state recovery, not a manuscript-wide decryptor.
 
