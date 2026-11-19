@@ -179,5 +179,5 @@ The chronology still matters. The p39 statistic was recognized after READ OUT, s
 
 - SFT: `sims/lp2_p39_outer_readout_selector_sft.cjs`
 - Windows workflow retained for historical run provenance: `.github/workflows/agent45-p39-outer-readout-selector.yml`
-- Initial Windows PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44455010725
+- Windows PASS after FIND-control extension: https://github.com/FlareZ123/liber-primus/actions/runs/44455229537
 - Subsequent ordinary Node22 runs should use the repository's generic manual runner, per the Critic's workflow-reuse audit.
