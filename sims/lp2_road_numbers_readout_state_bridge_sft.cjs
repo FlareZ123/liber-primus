@@ -232,6 +232,41 @@ assert.deepEqual(
     ["OPENPGP", 1, [173, 176], [3, 1]],
   ]
 );
+
+// The complete qualifying source set is itself a 16-word-spaced triad, and its
+// raw dual-radix numerical residues serialize frozen state values.
+assert.deepEqual(
+  adjacentDualRadix.map((row) => row.sourceIndex),
+  [10, 26, 42]
+);
+assert.deepEqual(
+  adjacentDualRadix.slice(1).map((row, index) =>
+    row.sourceIndex - adjacentDualRadix[index].sourceIndex),
+  [16, 16]
+);
+const dualRadixStateTriad = adjacentDualRadix.map((row) => {
+  const token = tableTokens[row.address];
+  const value59 = decodeToken(token, alphabet59);
+  const value60 = decodeToken(token, alphabet60);
+  return {
+    source: row.source,
+    sourceIndex: row.sourceIndex,
+    token,
+    value59,
+    value60,
+    residue59: mod29(value59),
+    residue60: mod29(value60),
+  };
+});
+assert.deepEqual(
+  dualRadixStateTriad.map((row) => row.residue60),
+  [state.A, state.B, state.e]
+);
+assert.deepEqual(
+  dualRadixStateTriad.map((row) => row.residue59),
+  [state.a, H(state.K, state.b)[0], 0]
+);
+
 assert.deepEqual(backwardLengthMatches, [adjacentDualRadix[1]]);
 
 // NUMBERS is also the only authenticated source word whose addressed token is
@@ -766,6 +801,7 @@ console.log(JSON.stringify({
     starts: numbersPair.map((word) => word.start),
     lengths: numbersPair.map((word) => word.length),
     adjacentDualRadix,
+    dualRadixStateTriad,
     backwardLengthMatches,
     typedSourceTokens,
     tokenH: numbersTokenH,
