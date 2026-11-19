@@ -367,6 +367,76 @@ assert.deepEqual(
   andRow.object.values.map((value) => source[value].word),
   ["THE", "ROAD", "THE"]
 );
+
+// The source itself fixes THE at index1 as a unit-radius token around the four
+// later clause-center THE occurrences.
+assert.equal(source[1].word, "THE");
+assert.deepEqual(
+  [12, 17, 22, 28].map((center) => ({
+    center,
+    centerWord: source[center].word,
+    window: source.slice(center - 1, center + 2).map((row) => row.word),
+  })),
+  [
+    {center: 12, centerWord: "THE", window: ["IS", "THE", "WAY"]},
+    {center: 17, centerWord: "THE", window: ["ARE", "THE", "MAP"]},
+    {center: 22, centerWord: "THE", window: ["IS", "THE", "ROAD"]},
+    {center: 28, centerWord: "THE", window: ["ARE", "THE", "DIRECTION"]},
+  ]
+);
+
+// Charge all three-rune numbered-diagonal objects. Interpret [center,subject,
+// step] only when both center and step point to authenticated THE positions and
+// center±step remain in the source register. Exactly p30 and p31 are typed.
+const typedTheWindowRows = diagonal
+  .filter((row) => row.object && row.object.values.length === 3)
+  .map((row) => {
+    const [center, subject, step] = row.object.values;
+    const typed =
+      source[center].word === "THE"
+      && source[step].word === "THE"
+      && center - step >= 0
+      && center + step < source.length;
+    return {
+      sourceIndex: row.source.index,
+      sourceWord: row.source.word,
+      page: row.page,
+      ordinal: row.object.ordinal,
+      start: row.object.start,
+      values: row.object.values,
+      typed,
+      phrase: typed ? [
+        source[subject].word,
+        source[center - step].word,
+        source[center].word,
+        source[center + step].word,
+      ] : null,
+    };
+  })
+  .filter((row) => row.typed);
+
+assert.deepEqual(typedTheWindowRows, [
+  {
+    sourceIndex: 30,
+    sourceWord: "SEEK",
+    page: 30,
+    ordinal: 31,
+    start: 130,
+    values: [28, 4, 12],
+    typed: true,
+    phrase: ["EMPTY", "ARE", "THE", "PATHS"],
+  },
+  {
+    sourceIndex: 31,
+    sourceWord: "AND",
+    page: 31,
+    ordinal: 32,
+    start: 126,
+    values: [12, 23, 1],
+    typed: true,
+    phrase: ["ROAD", "IS", "THE", "WAY"],
+  },
+]);
 assert.equal(andRow.source.values.reduce((sum, value) => sum + value, 0), 56);
 
 // Original p31 layout. The selected receiver lies on printed line5. The
@@ -637,6 +707,7 @@ console.log(JSON.stringify({
   },
   helperPage56Layout: {
     sourceSelector: equalAdjacentGp0,
+    typedTheWindowRows,
     seekAndYouBackstepTrigrams,
     targetGp0: 56,
     receiverLine: receiverLine.index,
