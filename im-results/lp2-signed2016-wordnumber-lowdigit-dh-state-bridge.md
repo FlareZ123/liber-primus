@@ -166,6 +166,41 @@ THE(22) -> SEEKS -> AND -> THE(22)
 
 The navigation cycle is the one reached immediately from the message's first word.
 
+The same graph contains a second, more explicit human-facing selector. Five source words singled out by the signed clue map through their own semantics:
+
+```
+PATH -> WAY
+
+NUMBERS -> MEANING -> MAP -> ROAD -> HELLO
+```
+
+The second chain walks backward through the clue's own hierarchy: numbers carry meaning, meaning identifies the map, the map identifies the road, and the road returns to the opening word. These are authenticated source words rather than candidate LP2 plaintext.
+
+This semantic chain sharply selects the arithmetic. First charge the 256 nearby sign/origin/radix/component/length conventions: only the two algebraically identical forms of the frozen numeric rule satisfy all five edges; no competing mode satisfies four.
+
+Then broaden the family so the word-number and word-length coefficients are no longer assumed to be ±1. Test
+
+```
+component + a*word_index + b*word_length + constant mod29
+```
+
+with:
+
+- p50 high or low component;
+- original or +1 p50 address origin;
+- native base60 or drop-f base59 alphabet;
+- GP-rune or Latin-letter word length;
+- `a,b` independently in `[-3,3]`;
+- every constant `0..28`.
+
+Across **22,736** affine candidates, exactly one operation satisfies all five semantic edges:
+
+```
+low60(p50[i]) - i - GP_length(word_i) mod29.
+```
+
+This gives the residue rule a source-semantic selector that does not depend on recognizing the terminal DH packet.
+
 ### The graph topology reconstructs the DH state
 
 Extend the same directed map to all 43 authenticated words. Every edge lands in the first29 after one step, so the graph has two attractor basins. Its global topology is:
