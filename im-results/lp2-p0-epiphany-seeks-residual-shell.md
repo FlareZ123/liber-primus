@@ -147,16 +147,55 @@ Charging every signed-source candidate that exactly fits the 8+5 split under bot
 C-P : EPIPHANY SEEKS
 ```
 
-## Comparison with the older direct-Latin red-title candidate
+## Reconciliation with the older geometric title route
 
-For the separate conditional direct-Latin sequence `SECUENDI RATIO`, the same forward additive comparison to the original 13 p0 title runes gives:
+The older source-geometry construction produces the conditional raw 13-sign sequence:
+
+```
+SECUENDI | R-A-T-I-O
+```
+
+Treat that fixed geometric output as `G` and the authenticated-source candidate `EPIPHANY | SEEKS` as `P`. The forward additive bridge `(G-P) mod29` has physical-word GP0 sums:
+
+```
+[123,73]
+```
+
+while the candidate word sums are:
+
+```
+[121,71]
+```
+
+Therefore both words satisfy exactly:
+
+```
+GP0(bridge_word) - GP0(candidate_word) = 2 = K
+```
+
+where `K=2` is the independently reconstructed DH shared value.
+
+The same bridge has:
+
+```
+GP-prime(bridge)=707
+729-707=22=phi(23)=phi(p)
+```
+
+with independently reconstructed `p=23`.
+
+Charge every authenticated signed-source phrase that exactly fits the physical 8+5 shape, under both additive signs. There are16 sign/candidate cases. **EPIPHANY SEEKS under `G-P` is the sole case** satisfying the shared2 condition on both words, and independently the sole case whose bridge prime sum leaves the square deficit22.
+
+This is a substantive reconciliation: the newer authenticated-source candidate is selected by state invariants relative to the older source-geometry output rather than merely competing with it. It still does not define the rune-level inverse from original ciphertext to final plaintext.
+
+For completeness, applying the same forward additive comparison directly between the original p0 ciphertext and the older `SECUENDI RATIO` sequence gives:
 
 ```
 GP0(residual)=112
 GP-prime(residual)=384
 ```
 
-It therefore lacks the 192 and729 closures above. This comparison does not undo the finite geometric arithmetic that produced that older raw sequence. Its documented GP orthography problem remains, and the authenticated-source `EPIPHANY SEEKS` phrase now has substantially stronger cross-route checks on the original ciphertext.
+so that older raw sequence lacks the 192/729 original-ciphertext closures above. Its documented GP orthography problem also remains.
 
 ## Independent OPENPGP43 cube route to the same candidate
 
@@ -180,4 +219,4 @@ The evidence now selects and checks a concrete p0 title candidate through:
 
 A full decipherment still needs a source-selected rule that generates the 13 residual runes or predicts another untouched ciphertext interval. Until that operation is recovered, **EPIPHANY SEEKS remains a strong conditional plaintext candidate rather than authenticated recovered plaintext**.
 
-Reproduce with `sims/lp2_p0_epiphany_seeks_residual_shell_sft.cjs`.
+Reproduce with `sims/lp2_p0_epiphany_seeks_residual_shell_sft.cjs`. Latest Windows Node22 run pending after the shared2/phi(p) bridge assertions; prior full residual-shell PASS: **44466923037**.
