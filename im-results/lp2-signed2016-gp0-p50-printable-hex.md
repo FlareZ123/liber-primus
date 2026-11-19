@@ -96,6 +96,49 @@ with one uppercase letter X; at origin0, X=N.
 
 This exact shape check was defined after the origin0 string was observed, so its uniqueness is a diagnostic against trivial cyclic-origin freedom rather than a discovery p-value.
 
+## The contributing addresses are a DH-state direction tape
+
+The nine printable source occurrences are addressed by whole-word GP0 values:
+
+```text
+[62,56,54,56,83,56,56,31,54]
+```
+
+Their eight consecutive differences modulo 29 are:
+
+```text
+[23,27,2,27,2,0,4,23]
+= [p,-K,K,-K,K,0,q,p].
+```
+
+This consequence uses no character interpretation beyond the printable-token selection. The state values come from the independently authenticated signed-word DH reconstruction:
+
+```text
+p=23, K=2, q=4.
+```
+
+It is therefore a literal realization of the same signed clue's phrase **"their numbers are the direction"**: the selected words supply p50 addresses, and the address differences are a compact authenticated-state direction tape.
+
+A cyclic-origin control leaves this structure unusually localized. Repeating the printable extraction at all 256 cyclic p50 origins, then requiring every consecutive GP0-address difference to lie in the fixed set
+
+```text
+{0, K, -K, q, p} = {0,2,27,4,23}
+```
+
+gives only five origins at any nonzero path length. Origin0 is the only one with at least eight consecutive edges; the other surviving origins have at most six edges. At origin0 the exact eight-edge tape above is recovered.
+
+The small state subset was recognized after the origin0 tape was seen, so the 256-origin uniqueness is again a layout diagnostic rather than an unbiased significance estimate. The important operational fact is exact: the typed register carries its own DH-state-valued edge sequence.
+
+The canonical outside-in H serialization of the eight edges is also compact:
+
+```text
+H([p,-K,K,-K,K,0,q,p])
+= [0, B-K, p, K, K, K, p+K, 0]
+= [0,17,23,2,2,2,25,0].
+```
+
+This H form is a consequence only; no downstream receiver is assigned to it here.
+
 ## Independent convergence from the p0 DEVOTED state label
 
 The p0 state packet independently recovers the label DEVOTED. Its canonical GP rune numbers, interpreted through the already fixed zero-based source-word register, give:
@@ -136,7 +179,7 @@ Promote the exact typed output:
 $N*N=NN-*
 ```
 
-as a new source-derived p50 register worthy of downstream interpretation. It is deterministic from authenticated words, canonical GP0, the printed table order, and ordinary hex syntax. It also explains the `*N / N*` outer frame reached independently through DEVOTED.
+as a new source-derived p50 register worthy of downstream interpretation. It is deterministic from authenticated words, canonical GP0, the printed table order, and ordinary hex syntax. Its contributing GP0 addresses independently form the exact DH-state direction tape `[p,-K,K,-K,K,0,q,p]`, and it also explains the `*N / N*` outer frame reached independently through DEVOTED.
 
 Do not yet promote “North Star”, an algebraic reading of `N*N=NN-*`, or any control-code interpretation as an authored instruction. The next useful test must identify an independently visible consumer for this nine-character register or derive a held-out numeric/page consequence from one conventional interpretation without changing the extraction.
 
