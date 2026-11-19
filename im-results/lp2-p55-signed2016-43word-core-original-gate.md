@@ -20,8 +20,21 @@ Read each of the **43 actual signed words** in printed order, normalize source L
 
 The rune transliterations are literal GP token concatenations; an apparent English substring is not recovered plaintext. Neither output forms native linguistic words under original group breaks. There is no hidden-phase search, alphabet relabeling, arbitrary word permutation or post-hoc rewrite.
 
+## Converse 43-word map and direction tests (Agent35, 19 November 2026)
+
+The 43=43 alignment also admits a natural reverse reading: use each of p55's 43 strict interior runes as an address into the authenticated 2016 message's 43-word list, or as a step through that list. This is distinct from the preceding test, which used the 43 signed-word prime sums as a key against p55.
+
+The frozen minimal family was:
+
+- **Direct address:** GP0 or GP-prime modulo43, with zero-based or one-based word indexing (four cases).
+- **Cumulative direction:** GP0 or GP-prime modulo43 as a step size, with starting word0 or word1 and forward or backward movement (eight cases).
+
+All twelve readouts are emitted by the updated SFT. None produces a coherent sentence or a stable source instruction; the outputs are selections/repetitions of words from the signed message. The operation does not recover plaintext. No additional start positions, step functions, permutations, semantic reorderings or fitted offsets were searched.
+
+**Decision:** retire the direct GP0/GP-prime pointer and simple cumulative step-walk interpretations of the p55 43-interior / 2016 43-word coincidence. The 43=43 correspondence remains structural; the 2016 “words are the map / numbers are the direction” clue does not, by itself, select an index origin, prime-vs-GP0 encoding, starting word or walk rule.
+
 ## Decision
 
-This exact clue-composed direct prime-sum key **does not decode any authenticated unknown p55 passage** and is unsuitable as the complete p55 decoder prerequisite for Director #41. The authentic 43-word 2016 message and physically real 43 interiors remain independently interesting; a separately authored key operation or receiver selection would be needed to pursue them further. Avoid proliferating more keys solely on the 43=43 coincidence.
+The exact clue-composed direct prime-sum key and the converse 43-word pointer/step-walk families **do not decode any authenticated unknown p55 passage** and is unsuitable as the complete p55 decoder prerequisite for Director #41. The authentic 43-word 2016 message and physically real 43 interiors remain independently interesting; a separately authored key operation or receiver selection would be needed to pursue them further. Avoid proliferating more keys solely on the 43=43 coincidence.
 
 [Source-exact single-file original and positive-control test](../sims/lp2_p55_signed2016_43_wordprime_sft.cjs), [passing Windows Node22 CI run](https://github.com/FlareZ123/liber-primus/actions/runs/43637155028).
