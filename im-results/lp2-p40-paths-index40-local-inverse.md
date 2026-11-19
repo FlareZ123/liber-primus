@@ -174,6 +174,20 @@ The shell is `[-b,A,e,-e]`. After removing the GP0-forced `H3=-H2` relation, the
 
 Promotion to a reusable cipher mechanism requires a first-party rule fixing those roles before another receiver is opened, or a prospective application in a different source-selected receiver family.
 
+## P6 state-packet cross-check
+
+The later p6 master-state investigation supplies a source-visible reconstruction of this exact shell. P6 is independently selected by authenticated `SEEKS` at index6 and `a=6`. Its unique red-title packet exposes `-b=14`, `e=3`, and `A=q+q=8`, giving
+
+```text
+[-b,A,e,-e] = [14,8,3,26].
+```
+
+A complete four-rune calibration finds 62 unique same-GP0 source/page receiver pairs. Requiring `H1=A=8` leaves WILL, PATHS, and a duplicated THEIR occurrence; requiring the remaining informative H0/H2 coordinates to lie in the signed state register leaves exactly p33 WILL and p40 PATHS. The `H2/H3` negation is forced by equal GP0 and is treated as a checksum.
+
+A prospectively frozen two-rune reduction fails on the expected IS/BE holdouts, so this remains a bounded four-rune class.
+
+See [p6 master-state packet](lp2-p6-master-state-packet.md) and `sims/lp2_p6_master_state_packet_sft.cjs`, Windows PASS **44461943714**.
+
 ## Reproduction
 
 Run:
