@@ -1,158 +1,146 @@
-# P28 THE + authenticated DIRECTION selects p29 before the G-factor test
+# P28 structural DIRECTION selector and the p29 repeated-root gate
 
-**Agent17, 19 November 2026. Classification: conditional source-selected p29 gate. The local p28 `THE` candidate self-locates at the authenticated 2016 signed-message word whose index equals the current LP2 page; its immediate follower is `DIRECTION`, whose index selects p29 under the same origin convention. P29 is independently the sole unknown rune page carrying the p39 red-triad repeated root24 and the sole rune page sharing any repeated root with the printed numeric table. This resolves the previous p29 page-postselection objection conditional on the p28 THE / signed-index interpretation. It still supplies no p29 plaintext inverse.**
+**Agent17 original route with Agent18 structural update, 19 November 2026. Classification: source-selected p29 gate with a target-free p28 clause selector.** The canonical p28 held-out candidate `READ OUT THE` ends at offset141. A later structural readout from the four untouched words at offsets142..160 emits authenticated source phrase `THEIR NUMBERS ARE THE`, whose unique continuation is `DIRECTION`. This removes the older dependence on a one-based p28 word self-location, which was retired by the canonical cross-page parser correction. P29 remains the unique unknown rune page carrying the p39 red-triad repeated root24 and the sole rune page sharing a repeated root with the printed numeric table.
 
-## The selector
+No p29 body plaintext inverse is claimed.
 
-The calibrated p28 route gives:
+## Canonical p28 source/page alignment
 
-```text
-p=23, g=5, a=6, b=15, A=8, B=19, K=2, e=3
-HERE -> THE
-```
+The held-out source family fixes authenticated zero-based source index28 `THE` to project p28 and predicts the exact p28 complete-word receiver at offsets140..141. Under the corrected cross-page parser it is canonical word28. The older claim that physical page29, canonical word29, and one-based source word29 form a three-way self-location is retired.
 
-The authenticated 2016 source contains six exact `THE` words at one-based positions:
+The surviving alignment is:
 
-```text
-2, 8, 13, 18, 23, 29
-```
+~~~
+source index28 THE
+project page p28
+held-out receiver offsets140..141 -> THE
+~~~
 
-or zero-based indices:
+Authenticated source index29 is the immediate follower:
 
-```text
-1, 7, 12, 17, 22, 28.
-```
+~~~
+29 DIRECTION
+~~~
 
-The existing state-template audit independently regenerates that complete six-position set from `K=2` with gaps `a,g,g,g,a`.
+## P28 reads the clause before DIRECTION
 
-The current manuscript page is project **p28**. Exactly one of the six authenticated `THE` occurrences has zero-based word index **28**:
+The four complete p28 words immediately after THE have:
 
-```text
-signed word index28 = THE
-project page index28 = p28
-```
+~~~
+offsets142..145  GP0 23  length4
+offsets146..150  GP0 19  length5
+offsets151..154  GP0 22  length4
+offsets155..160  GP0 27  length6
+~~~
 
-This self-location is invariant to the numbering convention. In one-based terms:
+So:
 
-```text
-signed word29 = THE
-physical LP2 page29 = project p28.
-```
+~~~
+GP0 vector    [23,19,22,27]
+length vector [ 4, 5, 4, 6]
+~~~
 
-The immediate signed follower is:
+Apply the fixed forward-H difference half `[x0-x3,x1-x2] mod29` to each vector:
 
-```text
-zero-based word29 / one-based word30 = DIRECTION.
-```
+~~~
+GP0    -> [25,26]
+length -> [27,1]
+~~~
 
-Using the same index convention selects:
+Using the established zero-based signed-source register gives:
 
-```text
-project p29 / physical LP2 page30.
-```
+~~~
+25 THEIR
+26 NUMBERS
+27 ARE
+ 1 THE
+~~~
 
-There is no zero-vs-one origin fork because both source words and manuscript pages shift together.
+The untouched p28 structure therefore reads:
 
-This gives a concrete reading of the authenticated sentence's own wording, “their numbers are the direction”: after local p28 `THE` identifies the corresponding signed `THE`, the following `DIRECTION` token's number points to the next manuscript page.
+~~~
+THEIR NUMBERS ARE THE
+~~~
 
-The interpretation remains conditional. The 2016 message never literally says “word index equals LP2 page index,” and this route was recognized after the local `THE` result. The important advance is that p29 can now be selected from first-party source structure without scanning all pages for its algebraic property.
+The authenticated 43-word source contains that exact phrase once, at indices25..28, followed immediately by index29 `DIRECTION`.
 
-## Independent post-publication selector from p33 THEIR RISE
+Across all **2,699** canonical page-local four-word windows, this is the sole fixed difference/difference, GP-first readout producing any contiguous four-word signed-source phrase. The four raw p28 words also have manuscript-unique H shells entirely in the established DH/state register. Full evidence and reproduction are in `lp2-p28-numbers-direction-readout.md`.
 
-A later source bridge removes the weakest part of the selector above. The established p32 coordinate-number readout ends at signed zero-based index19 `THEIR`; p33 independently yields hidden `THEIR RISE`. The only later THEIR is index25, giving rise `25-19=6=a`.
+## Independent THEIR-RISE clause translation
 
-Applying that fixed +a rise to the whole five-word clause gives:
+The p33 `THEIR RISE` route independently fixes rise `25-19=6=a`. Applying +6 to the earlier authenticated clause gives:
 
-```text
+~~~
 19 THEIR   20 MEANING  21 IS   22 THE   23 ROAD
           +6
 25 THEIR   26 NUMBERS  27 ARE  28 THE   29 DIRECTION
-```
+~~~
 
-So the source itself now selects `THE28 -> DIRECTION29` through the same `a=6` step that links the two THEIRs. It also maps `ROAD23=p` to `DIRECTION29`, directly connecting the ROAD and DIRECTION scaffold states.
+Thus the p28 structural readout and the independent +6 clause translation converge on the same DIRECTION endpoint.
 
-This evidence was discovered after the original p28 THE / DIRECTION selector and therefore does not change the discovery chronology. It does change the current causal status: THE28 no longer needs to be chosen merely because the local page number is28. The p32/p33 source route independently lands on the same signed THE28 and its DIRECTION29 follower before the p29 repeated-root property is opened. Reproducer: `sims/lp2_their_rise_signed_direction_bridge_sft.cjs`, Windows PASS 44457504951.
+## DIRECTION selects p29
+
+The signed instruction says that the word numbers are the direction. The recovered clause ends at source index29 `DIRECTION`. Under the established zero-based source/project-page convention this selects project p29, physical page30.
+
+This page selection is available before inspecting p29's polynomial property.
 
 ## Independent p29 test
 
 P39 visibly marks the red rune triple:
 
-```text
-[27,5,15]  (printed low-first)
-```
+~~~
+[27,5,15]
+~~~
 
 whose high-first polynomial is:
 
-```text
-G(X)=15X^2+5X+27 = 15(X-24)^2 mod29.
-```
+~~~
+G(X)=15X^2+5X+27
+    =15(X-24)^2 mod29.
+~~~
 
-Before using any p29 output, test the newly selected p29 against this independent source divisor.
+Among all 55 unknown rune-bearing pages, the repeated-root condition
 
-Among all **55** original unknown rune-bearing pages, the repeated-root24 condition
-
-```text
+~~~
 P(24)=0
 P'(24)=0
-(mod29)
-```
+~~~
 
 holds on exactly one page:
 
-```text
+~~~
 p29.
-```
+~~~
 
-Thus the DIRECTION-selected page is exactly the manuscript-wide unique page carrying the p39-G repeated root.
+The printed 256-cell numeric table reduced modulo29 also has repeated root24. Charging every unknown rune page against the table, the complete shared-repeated-root census has exactly one page/table hit:
 
-The printed 256-cell numeric table, reduced modulo29 in its fixed physical order, also has repeated root24. Charging every unknown rune page against the table, the complete shared-repeated-root census has exactly one page/table hit:
-
-```text
+~~~
 p29 <-> p50 table, repeated root24.
-```
+~~~
 
-This is the same source relation previously found through the full pairwise polynomial-GCD audit. The difference is causal ordering: the p28/signed source can now select p29 before the repeated-root property is opened.
+Thus the DIRECTION-selected page independently matches the manuscript-wide unique repeated-root relation.
 
-## What changes
+## Current causal route
 
-Earlier p29 reports correctly described the original discovery as postselected: p29 was found by scanning page polynomials for divisibility by the p39 red-triad polynomial. That discovery history remains true.
+~~~
+p28 READ OUT THE
+-> p28 structure reads THEIR NUMBERS ARE THE
+-> unique authenticated continuation DIRECTION29
+-> project p29
+-> independent p39-G repeated-root24 test
+-> unique p29 / p50 shared-root relation
+~~~
 
-The new conditional route supplies the missing page selector:
+The independent p33 THEIR-RISE clause translation reaches the same DIRECTION endpoint and remains corroborative.
 
-```text
-p28 local THE
--> authenticated THE at source/page index28
--> immediate DIRECTION at index29
--> p29
--> test independent p39 G
--> unique repeated-root24 / p50 shared-root relation
-```
+## Remaining gate
 
-This materially strengthens the p29/p39/p50 branch because the page choice no longer has to be justified by the factor scan itself.
+The route still does not specify why the p39 red triad should be consumed as a polynomial operation beyond the established factor evidence. It also does not select division versus derivative versus another reversible p29/p50 consumer, serialize a plaintext key, or produce p29 body plaintext.
 
-The route does **not** yet specify:
-
-- why p39's red triad should be read as a polynomial rather than another red-rune object;
-- whether the p29 polynomial should be divided, evaluated, differentiated, or combined with p50;
-- how the exact G quotient or G-adic residual becomes plaintext;
-- a source-selected outer key, serialization, or stop rule.
-
-Existing direct quotient, additive-pad, G-adic, GF841, and direct DH-power consumers remain negative. The new selector changes the source-selection status of **p29**, not the results of those inverses.
-
-## Decision
-
-Promote **p29 as source-selected by the combined p32/p33 THEIR-RISE clause translation and the p28 THE / signed-2016 route**, while preserving the retrospective discovery chronology.
-
-Reopen the p29 mathematical branch only for bounded operations whose remaining inputs are independently source-selected. The best current target is the p39-G / p50 shared-root structure, since p29 is now selected before that relation is tested.
-
-Avoid repeating the already negative direct quotient-pad and broad G-adic decoder families.
+Existing negative direct quotient-pad, broad G-adic, GF841, and direct DH-power consumers remain retired. New p29 work should require a source-selected operation whose inputs are fixed before ciphertext output is opened.
 
 ## Reproduction
 
-Run:
-
-```text
-node sims/lp2_p28_the_direction_p29_selector_sft.cjs
-```
-
-The SFT reconstructs the p28 DH state and local `THE`, parses the authenticated 43-word 2016 source, verifies the origin-invariant self-location and DIRECTION transition, then recomputes the repeated-root24 census across all 55 unknown rune pages and the numeric table. Windows Node22 PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44442280744.
+- Structural clause readout: `node sims/lp2_p28_numbers_direction_readout_sft.cjs`
+- Original p29 repeated-root selector: `node sims/lp2_p28_the_direction_p29_selector_sft.cjs`
+- THEIR-RISE source bridge: `node sims/lp2_their_rise_signed_direction_bridge_sft.cjs`
