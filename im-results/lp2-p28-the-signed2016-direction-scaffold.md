@@ -216,4 +216,4 @@ Run:
 node sims/lp2_p28_the_signed2016_direction_sft.cjs
 ```
 
-The SFT reconstructs the p28 DH state, independently rechecks the local `THE` endpoint prediction, parses the authenticated 2016 cleartext, charges the full state-template family, and computes the exact fixed-multiset null.
+The SFT reconstructs the p28 DH state, independently rechecks the local `THE` endpoint prediction, parses the authenticated 2016 cleartext, charges the full state-template family, and computes the exact fixed-multiset null. Windows Node22 PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44441475944.
