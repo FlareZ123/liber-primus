@@ -50,3 +50,22 @@ Apply exactly subtraction modulo29 to p0 word6 offsets34..38.
 **Negative gate:** any other output. Do not permute the key, change sign, change origin, move to the adjacent four-rune word, or fit another authenticated target.
 
 No p0 rune value at offsets34..38 may be inspected before this precommit is remotely established.
+
+
+## Outcome
+
+After the precommit was remotely established, the selected untouched receiver was opened:
+
+```text
+p0 word6 / offsets34..38 = [9,25,6,10,2]
+```
+
+The frozen key gives:
+
+```text
+[9,25,6,10,2] - [12,28,10,1,8] mod29
+= [26,26,25,9,23]
+!= FOUND [0,3,1,9,23]
+```
+
+**Decision: negative.** The source-internal `BE -> FOUND -> GOOD` GP0/index pointer does not transfer through p50 geometry plus the existing FOUND key to the untouched upstream receiver. No sign, key order, receiver, origin, or target was changed.
