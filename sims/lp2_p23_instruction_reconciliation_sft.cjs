@@ -263,7 +263,7 @@ assert.deepEqual(
 assert.equal(p50Pair(oneRiseGp0)[0], 7);
 assert.equal(p50Pair(oneRiseGp0)[1] - p50Pair(oneRiseGp0)[0], 1);
 
-// ---- Prospective receiver opened only after freezing ONE RISE -> [7,8] ----
+// ---- Prospective p8 cross-check opened only after freezing ONE RISE -> [7,8] ----
 
 // The frozen holdout names p8 as the one-rise endpoint from p7.
 // Physical p8 itself equals A=8.
@@ -535,7 +535,7 @@ console.log(JSON.stringify({
       motifStartPage: 7,
       literalRise: 1
     },
-    prospectiveP8Receiver: {
+    prospectiveP8Crosscheck: {
       physicalPage: state.A,
       pageP50Pair: p50Pair(state.A),
       exactTwoWordRedSpanCount: exactTwoWordRedSpans.length,
@@ -544,5 +544,5 @@ console.log(JSON.stringify({
     }
   },
   reconciliation:
-    "Both survive as distinct p23 source objects. THE ORIGINAL uses the five-dot-selected complete five-word line plus local dot/terminal and the independently charged DH page handoff. THE ONE RISE uses only the four-word red span plus forward H on its two printed pairs. Their numeric holdouts differ: ORIGINAL closes 97=p_25 and p50[97]=[5,5]; ONE RISE uniquely within the charged red family closes p50[88]=[7,8], a literal one-rise from the other unsolved five-dot motif page p7. After freezing that consequence, p8 independently validates as a state receiver: page8=A, p50[8]=[e,g], its unique red two-word span is [q,A], and Hinv([q,A])=[a,K]. The p41 DH rivals also sum to88, so [7,8] is family-specific rather than globally unique."
+    "Both survive as distinct p23 source objects. THE ORIGINAL uses the five-dot-selected complete five-word line plus local dot/terminal and the independently charged DH page handoff. THE ONE RISE uses only the four-word red span plus forward H on its two printed pairs. Their numeric holdouts differ: ORIGINAL closes 97=p_25 and p50[97]=[5,5]; ONE RISE uniquely within the charged red family closes p50[88]=[7,8], a literal one-rise from the other unsolved five-dot motif page p7. After freezing that consequence, p8 independently validates as a state cross-check: page8=A, p50[8]=[e,g], its unique red two-word span is [q,A], and Hinv([q,A])=[a,K]. A concurrent stronger route establishes that the repeated RISE=[3,5] packet already carries a +2 page operation at p33 and p40, so THE ONE RISE preferentially means one +2 application from p23 to independently selected p25. The [7,8] p8 result remains secondary numeric corroboration. The p41 DH rivals also sum to88, so [7,8] is family-specific rather than globally unique."
 }, null, 2));
