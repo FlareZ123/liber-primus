@@ -178,6 +178,50 @@ assert.deepEqual(stateOnlyColumns, {
   center:[4,8,19,8,4],
   right:[7,13,20,28],
 });
+
+// Direct source-visible transcription of the standard 13-dot glyph geometry.
+// Nine horizontal levels alternate singleton/pair populations; columns are 4|5|4.
+const markerGeometry = {
+  singletonRow:1,
+  pairedRow:2,
+  sideColumn:4,
+  centerColumn:5,
+  totalDots:13,
+};
+const geometryParameters = {
+  u:markerGeometry.singletonRow,
+  K:markerGeometry.pairedRow,
+  q:markerGeometry.sideColumn,
+  g:markerGeometry.centerColumn,
+  w:markerGeometry.totalDots,
+};
+geometryParameters.t = geometryParameters.g + geometryParameters.K;
+assert.deepEqual(geometryParameters, {u:1,K:2,q:4,g:5,w:13,t:7});
+const geometryColumns = {
+  left:cumulative(-geometryParameters.q, [
+    geometryParameters.q-geometryParameters.u,
+    geometryParameters.w-geometryParameters.u,
+    geometryParameters.w+geometryParameters.u,
+  ]),
+  center:cumulative(geometryParameters.q, [
+    geometryParameters.q,
+    geometryParameters.q+geometryParameters.t,
+    geometryParameters.q+2*geometryParameters.t,
+    geometryParameters.q+3*geometryParameters.t,
+  ]),
+  right:cumulative(geometryParameters.t, [
+    geometryParameters.t-geometryParameters.u,
+    geometryParameters.t,
+    geometryParameters.t+geometryParameters.u,
+  ]),
+};
+assert.deepEqual(geometryColumns, stateOnlyColumns);
+const geometryKey = hOutsideIn([
+  ...geometryColumns.left,
+  ...geometryColumns.center,
+  ...geometryColumns.right,
+]);
+assert.deepEqual(geometryKey, [26,24,8,19,27,24,18,3,0,8,0,16,19]);
 const square5 = equal1033[0].order === 5 ? squares.find((sq) => sq.length === 5 && magicSum(sq) === 1033) : null;
 const square7 = squares.find((sq) => sq.length === 7 && magicSum(sq) === 1033);
 assert.ok(square5 && square7);
@@ -536,6 +580,9 @@ const signedAdjacentHits = hits.filter((row) => {
 console.log(JSON.stringify({
   status:"PASS",
   independentSquareState:{e,q,A,B,markerCenter,squareMetadataAlphabet},
+  markerGeometry,
+  geometryParameters,
+  geometryKey,
   palindromeDecryptions,
   palindromeAdditiveDecryptions,
   fullStatePalindromeDecryptions,
