@@ -337,5 +337,5 @@ console.log(JSON.stringify({
   },
   hits,
   classification:
-    "Target-free finite source-vocabulary selector. Independent square-derived DH state plus original p0 4|5|4 marker aggregates uniquely select EPIPHANY SEEKS among 12,996 canonical receiver/plaintext candidates. The full 13-atom serializer remains unresolved.",
+    "Target-free finite source-vocabulary selector. Independent square-derived DH state plus original p0 4|5|4 marker aggregates uniquely select EPIPHANY SEEKS among 12,996 canonical receiver/plaintext candidates. A separate state-only 4|5|4 rise serializer now generates the same 13-atom key locally; book-wide reuse remains unresolved.",
 }, null, 2));
