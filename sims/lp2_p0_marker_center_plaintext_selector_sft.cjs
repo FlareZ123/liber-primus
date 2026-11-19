@@ -401,6 +401,53 @@ for (const order of columnOrders) {
 }
 assert.equal(columnTraversalControls.length, 48);
 
+const markerRowsTopDown = [
+  ["center",0],
+  ["pair",0],
+  ["center",1],
+  ["pair",1],
+  ["center",2],
+  ["pair",2],
+  ["center",3],
+  ["pair",3],
+  ["center",4],
+];
+const rowTraversalControls = [];
+for (let pairSwapMask = 0; pairSwapMask < 16; pairSwapMask += 1) {
+  for (const bottomUp of [false,true]) {
+    const rows = bottomUp ? markerRowsTopDown.slice().reverse() : markerRowsTopDown;
+    const packet = [];
+    for (const [kind,index] of rows) {
+      if (kind === "center") {
+        packet.push(stateOnlyColumns.center[index]);
+      } else {
+        const pair = [
+          stateOnlyColumns.left[index],
+          stateOnlyColumns.right[index],
+        ];
+        if (pairSwapMask & (1 << index)) pair.reverse();
+        packet.push(...pair);
+      }
+    }
+    assert.equal(packet.length,13);
+    const key = hOutsideIn(packet);
+    const plain = p0Receiver.cipher.map((value,index) => mod29(value-key[index]));
+    const leftWord = length8.find((candidate) =>
+      candidate.values.join(",") === plain.slice(0,8).join(",")
+    );
+    const rightWord = length5.find((candidate) =>
+      candidate.values.join(",") === plain.slice(8).join(",")
+    );
+    rowTraversalControls.push({
+      pairSwapMask,
+      bottomUp,
+      packet,
+      lexicalPair:leftWord && rightWord ? [leftWord.label,rightWord.label] : null,
+    });
+  }
+}
+assert.equal(rowTraversalControls.length,32);
+
 const p0Hits = hits.filter((row) => row.page === 0 && row.ordinal === 1);
 const squareTypedHits = hits.filter((row) =>
   row.residual.slice(0,8).every((value) => squareMetadataAlphabet.includes(value))
@@ -419,7 +466,9 @@ console.log(JSON.stringify({
   fullStatePalindromeDecryptions,
   centerKeyMarkerTransfers,
   columnTraversalHits:columnTraversalControls.filter((row) => row.lexicalPair),
+  rowTraversalHits:rowTraversalControls.filter((row) => row.lexicalPair),
   family:{
+    rowTraversalControls:rowTraversalControls.length,
     centerKeyMarkerWindows,
     palindromeAssignments:metadataFieldEntries.length ** 3,
     fullStatePalindromeAssignments:fullStateFieldEntries.length ** 3,
