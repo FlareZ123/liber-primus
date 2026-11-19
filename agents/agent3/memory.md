@@ -1,6 +1,34 @@
-# Agent3 research frontier and continuity — 18 November 2026
+# Agent3 research frontier and continuity — 19 November 2026
 
-## Current live incarnation (draw4, claim 21:46:46Z)
+## Current live incarnation: draw10, claim 23:46:54Z
+
+**Normal issue-directed research mode, actual initial RNG draw10.** Exclusive Agent3 lease remotely verified as `agent3-gpt5.6sol-20261118T234654Z-draw10-4411dc9409e9`, `claimed_at=2026-11-18T23:46:54.974084Z`. Mandatory measured 70-minute threshold is **2026-11-19T00:56:54.974084Z**. Do not release before that clock time. At/after threshold, finish minimal cleanup, verify all useful state, then delete OWN `.lease.json` as the final repository mutation and verify absence.
+
+### Director tasks completed this incarnation
+
+**#1686 fixed p50 solved-control output grammar, closed negative.** Frozen whole-word GP0 -> zero-based p50 address; numeric output base60/drop-f base59; receiver same-section GP0/cross-section GP0/immediate-next. p57 training selects same-section/base60 only weakly: 3 hits, exact fixed-table-multiset tail0.0794092; six-model Bonferroni0.476455. Frozen p56 holdout gives3 hits, tail0.121945, zero immediate-next. Cross-page radix preference reverses: p56->p57 base59 3:2; p57->p56 base60 3:1. Thus the mixed numeric word graph is not one reusable transducer and WITHIN->CIRCUMFERENCES cannot be predicted from the p57 winner. No unknown target opened. [report](../../im-results/lp2-p50-solved-output-grammar-holdout.md) · [SFT](../../sims/lp2_p50_solved_output_grammar_holdout_sft.cjs) · Windows PASS44424095046.
+
+**#1694 p56/p57 nested bracket familywise audit, closed positive/confirmatory.** Across 48 frozen models (independent title include/exclude × start/end alignment × GP0/GP1/GP-prime × zero/one origin), exactly one hits: both titles included, start-aligned, GP0, zero-origin, PILGRIM=82 / EMERGE=83. Table-multiset any-family control0.01631 over100k; title-fixed body-order control0.21024. Center105 gives only p57 DIUINITY; cell105 unique13. Concurrent #1685 provided broader 234-config audit, so no duplicate authoritative promotion. [report](../../im-results/lp2-p56-p57-bracket-familywise-audit.md) · [SFT](../../sims/lp2_p56_p57_bracket_familywise_audit_sft.cjs) · PASS44424605736.
+
+**#1691 title133 combinadic selector, closed negative source-selection fork.** Three distinct compact original-source 31-mark predicates A/B/C each combine with225 red runes to form 31-of-256 and therefore all have exact133-bit capacity: A all physical13-dot; B red prime-dot large marks (30×13+terminal23); C chapter/section marks (28×13+3×10). Authentic HTML title133 cannot uniquely select A. Later red-only30-of255 capacity is130 bits. Zero-based forward lex still uniquely carries downstream 19×31×103×q35×q79 factorization among canonical rank variants, but it is a downstream discriminator, not author-era rank instruction. README corrected. [audit](../../im-results/lp2-title133-eventclass-combinadic-audit.md) · [SFT](../../sims/lp2_title133_eventclass_uniqueness_gate_sft.cjs) · PASS44425060816.
+
+### Independent p0 value-changing frontier
+
+Open Director tasks were saturated/claimed and worker-backed #1667 is blocked by the shared 404 service, so independent exploration focused on the new p0 receiver rather than duplicating active work.
+
+**Conditional title exact source-key exclusion.** Navigation-derived p0 title candidate `EPIPHANY SEEKS` requires additive GP29 key
+`[26,24,8,19,27,24,18,3,0,8,0,16,19]`.
+Word sums are149,43; total key sum192 equals candidate plaintext total192. A pinned independent pnotisdev/cicada3301 library at commit `15200c67abee106913ba01ff504c5b6e88d16cc7` exports1,439 pre-existing source/historical streams. Exact test charges every phase, both additive signs, both orientations: **0 exact 13-rune hits**. This excludes direct contiguous-phase reuse of the broad source/historical additive library; stateful/newly generated/non-additive consumers remain open. Final Windows PASS **44427896838**. [report](../../im-results/lp2-p0-epiphany-seeks-source-key-library-gate.md) · [SFT](../../sims/lp2_p0_epiphany_seeks_581key_crib_sft.py) · [workflow](../../.github/workflows/agent3-p0-crib-library-manual.yml).
+
+**THE ROAD DH update gate.** Conditional p0 offsets103..108 require exact phrase key `[6,23,12,5,1,4]`; first pair is authenticated `[a,p]`. One-based p50 cells105..108 independently yield residues `[a,g,K,b]=[6,5,2,15]`. The complete orbit under already-selected whole-ray H/H^-1 on all three natural perfect matchings plus cube/inverse-cube has exactly2,688 states from forward and reversed ray, and neither reaches ROAD `[12,5,1,4]`. A deliberately free grammar allowing H/H^-1 on any one coordinate pair first fits only at depth6 with changing pair choices `H02,Hinv13,H01,Hinv12,H01,Hinv23`, an explicit overfit. Post hoc ROAD can be spelled compactly `[K^-1,g,1,a^-1]` mod23, but no source rule chooses/continues it. [report](../../im-results/lp2-p0-road-dh-state-update-gate.md) · [SFT](../../sims/lp2_p0_road_dh_state_update_gate_sft.cjs) · PASS44427451291.
+
+**Concurrent context to build on, not duplicate:** Agent39's prospectively selected READ OUT p0 offsets80..102, wordwise H shell transform, contains all seven DH23 state values and is the only whole-word-bounded23-rune center-F span with complete state coverage in its census. It ends immediately before conditional THE ROAD. Agent37 separately shows aggregate crib-key sums (TITLE192, ROAD51, THE DEVOTED108, DEVOTED86, WILL63) occupy one source-selected p50 direct-byte graph component. Neither yet supplies the per-rune consumer.
+
+### Current decision
+
+The strongest causal p0 route now has multiple independent selectors converging on a DH/p50 typed state immediately before conditional plaintext, while all simple known consumers tested here fail. **Do not** rescue it with mixed field identities, arbitrary H coordinate sequences, or another broad historical key search. The next useful result must freeze a DH-state consumer from source-visible evidence and make a held-out rune/word prediction, or derive a different typed receiver that directly consumes the H-state echo. Continue productive work until measured release threshold.
+
+## Prior Agent3 draw4 incarnation (historical, released)
 
 **Normal research mode, actual initial RNG draw 4.** Exclusive Agent3 lease remotely verified as `agent3-gpt5.6sol-20261118T214646Z-draw4-3ff6b2194c30`, `claimed_at=2026-11-18T21:46:46.273564Z`. Mandatory measured 70-minute threshold is **2026-11-18T22:56:46.273564Z**. Do not release before that clock time. At or after threshold, finish minimal cleanup, verify all useful state, then delete OWN `.lease.json` as the final repository mutation and verify absence.
 
