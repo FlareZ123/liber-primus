@@ -27,6 +27,18 @@ function Hinv(a, b) {
   return [mod29((a + b) * inv2), mod29((b - a) * inv2)];
 }
 
+/** @param {number[]} values @returns {number[]} */
+function H5(values) {
+  assert.equal(values.length, 5);
+  return [
+    mod29(values[0] - values[4]),
+    mod29(values[1] - values[3]),
+    values[2],
+    mod29(values[1] + values[3]),
+    mod29(values[0] + values[4]),
+  ];
+}
+
 /** @param {number} count @returns {number[]} */
 function firstPrimes(count) {
   const out = [];
@@ -177,6 +189,21 @@ assert.equal(signedWords[23], "ROAD");
 assert.equal(signedWords[35], "FOUND");
 assert.equal(signedWords[40], "PATHS");
 
+const state = {
+  K: signedWords.indexOf("PATH"),
+  e: signedWords.indexOf("LIES"),
+  q: signedWords.indexOf("EMPTY"),
+  g: signedWords.indexOf("EPIPHANY"),
+  a: signedWords.indexOf("SEEKS"),
+  A: signedWords.indexOf("DEVOTED"),
+  b: signedWords.indexOf("WORDS"),
+  B: signedWords.indexOf("THEIR"),
+  p: signedWords.indexOf("ROAD"),
+};
+assert.deepEqual(state, {
+  p: 23, g: 5, a: 6, b: 15, A: 8, B: 19, K: 2, e: 3, q: 4,
+});
+
 // P33 hidden text: THEIR RISE.
 const p33Rows = pageWords(33);
 const p33Ink = ink.pages.find((page) => page.page === 33);
@@ -270,6 +297,219 @@ const sourceGp0 = Object.fromEntries(["FOUND", "ROAD", "PATHS"].map((word) => [
   gp(word).reduce((sum, value) => sum + value, 0),
 ]));
 assert.deepEqual(sourceGp0, {FOUND: 36, ROAD: 54, PATHS: 54});
+
+// The independently selected adjacent 2+3 packet is itself an exact DH-state
+// object before FOUND is used as plaintext.
+const p35Packet = [...p35[6].values, ...p35[7].values];
+assert.deepEqual(p35Packet, [19, 17, 19, 24, 11]);
+const p35PacketShell = H5(p35Packet);
+const expectedPacketShell = [
+  state.A,
+  state.p - 1,
+  state.B,
+  mod29(state.K * state.a),
+  mod29(state.a - state.g),
+];
+assert.deepEqual(p35PacketShell, expectedPacketShell);
+assert.deepEqual(p35PacketShell, [8, 22, 19, 12, 1]);
+
+// Charge the raw state packet against every adjacent two-word five-rune packet,
+// every adjacent 2+3 packet, and every contiguous five-rune window.
+let fiveRunePairCount = 0;
+let twoThreePairCount = 0;
+let fiveRuneWindowCount = 0;
+const fiveRunePairHits = [];
+const twoThreePairHits = [];
+const fiveRuneWindowHits = [];
+
+for (const page of unknownRunePages) {
+  const rows = pageWords(page);
+  for (let index = 0; index + 1 < rows.length; index += 1) {
+    const left = rows[index];
+    const right = rows[index + 1];
+    const packet = [...left.values, ...right.values];
+    if (packet.length === 5) {
+      fiveRunePairCount += 1;
+      if (H5(packet).every((value, slot) => value === expectedPacketShell[slot])) {
+        fiveRunePairHits.push({
+          page,
+          wordIndex: index,
+          start: left.start,
+          lengths: [left.length, right.length],
+          packet,
+        });
+      }
+    }
+    if (left.length === 2 && right.length === 3) {
+      twoThreePairCount += 1;
+      if (H5(packet).every((value, slot) => value === expectedPacketShell[slot])) {
+        twoThreePairHits.push({
+          page,
+          wordIndex: index,
+          start: left.start,
+          packet,
+        });
+      }
+    }
+  }
+
+  const runes = corpus.pages.find((entry) => entry.page === page).indices;
+  for (let start = 0; start + 5 <= runes.length; start += 1) {
+    fiveRuneWindowCount += 1;
+    const packet = runes.slice(start, start + 5);
+    if (H5(packet).every((value, slot) => value === expectedPacketShell[slot])) {
+      fiveRuneWindowHits.push({page, start, packet});
+    }
+  }
+}
+assert.equal(twoThreePairCount, 123);
+assert.deepEqual(twoThreePairHits, [{
+  page: 35,
+  wordIndex: 6,
+  start: 25,
+  packet: p35Packet,
+}]);
+assert.equal(fiveRunePairCount, 271);
+assert.deepEqual(fiveRunePairHits, [{
+  page: 35,
+  wordIndex: 6,
+  start: 25,
+  lengths: [2, 3],
+  packet: p35Packet,
+}]);
+assert.equal(fiveRuneWindowCount, 12736);
+assert.deepEqual(fiveRuneWindowHits, [{
+  page: 35,
+  start: 25,
+  packet: p35Packet,
+}]);
+
+// Signed word35 fixes the source target after the raw receiver has been selected.
+const foundPlain = gp(signedWords[35]);
+assert.deepEqual(foundPlain, [0, 3, 1, 9, 23]);
+assert.deepEqual(H5(foundPlain), [
+  state.a,
+  state.p,
+  mod29(state.a - state.g),
+  mod29(state.K * state.a),
+  state.p,
+]);
+
+const foundKey = p35Packet.map((value, index) => mod29(value - foundPlain[index]));
+assert.deepEqual(foundKey, [19, 14, 18, 15, 17]);
+assert.deepEqual(H5(foundKey), [
+  state.K,
+  mod29(state.g - state.a),
+  mod29(state.A - state.B),
+  0,
+  mod29(state.g + state.K),
+]);
+assert.deepEqual(
+  p35Packet.map((value, index) => mod29(value - foundKey[index])),
+  foundPlain
+);
+
+// Charge the retrospective low-description key grammar. The exact key appears
+// under three algebraically equivalent middle-difference labels because
+// p-g = A-B = q-b = 18; these are one numeric key, not three decoders.
+const stateEntries = Object.entries(state);
+const fiveRuneTargets = [];
+for (const word of signedWords) {
+  const values = gp(word);
+  if (
+    values.length === 5 &&
+    !fiveRuneTargets.some((entry) => entry.word === word)
+  ) {
+    fiveRuneTargets.push({word, values});
+  }
+}
+assert.deepEqual(fiveRuneTargets.map((entry) => entry.word), [
+  "HELLO", "EMPTY", "SEEKS", "LIBER", "WORDS", "MEANING", "FOUND", "FALSE",
+]);
+const targetByValues = new Map(
+  fiveRuneTargets.map((entry) => [entry.values.join(","), entry.word])
+);
+let labeledStateKeys = 0;
+const uniqueStateKeys = new Set();
+const stateFamilyHits = [];
+for (const [xName, x] of stateEntries) {
+  for (const [yName, y] of stateEntries) {
+    for (const [uName, u] of stateEntries) {
+      for (const [vName, v] of stateEntries) {
+        labeledStateKeys += 1;
+        const key = [
+          x,
+          mod29(-y),
+          mod29(u - v),
+          y,
+          mod29(y + state.K),
+        ];
+        uniqueStateKeys.add(key.join(","));
+        for (const sign of [-1, 1]) {
+          const out = p35Packet.map((value, index) =>
+            mod29(value + (sign * key[index]))
+          );
+          const target = targetByValues.get(out.join(","));
+          if (target) {
+            stateFamilyHits.push({
+              roles: [xName, yName, uName, vName],
+              key,
+              sign,
+              target,
+            });
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(labeledStateKeys, 6561);
+assert.equal(uniqueStateKeys.size, 2349);
+assert.deepEqual(stateFamilyHits, [
+  {
+    roles: ["B", "b", "p", "g"],
+    key: foundKey,
+    sign: -1,
+    target: "FOUND",
+  },
+  {
+    roles: ["B", "b", "A", "B"],
+    key: foundKey,
+    sign: -1,
+    target: "FOUND",
+  },
+  {
+    roles: ["B", "b", "q", "b"],
+    key: foundKey,
+    sign: -1,
+    target: "FOUND",
+  },
+]);
+assert.equal(new Set(stateFamilyHits.map((hit) => hit.key.join(","))).size, 1);
+
+// Hold the exact key across every contiguous unknown five-rune window, all
+// authenticated five-rune targets, and both signs. There is one hit.
+const fixedKeyHits = [];
+for (const page of unknownRunePages) {
+  const runes = corpus.pages.find((entry) => entry.page === page).indices;
+  for (let start = 0; start + 5 <= runes.length; start += 1) {
+    const packet = runes.slice(start, start + 5);
+    for (const sign of [-1, 1]) {
+      const out = packet.map((value, index) =>
+        mod29(value + (sign * foundKey[index]))
+      );
+      const target = targetByValues.get(out.join(","));
+      if (target) fixedKeyHits.push({page, start, sign, target, packet});
+    }
+  }
+}
+assert.deepEqual(fixedKeyHits, [{
+  page: 35,
+  start: 25,
+  sign: -1,
+  target: "FOUND",
+  packet: p35Packet,
+}]);
 
 // The already selected source direction graph resolves the 54 collision.
 const direction = signedWords.map((word, index) =>
@@ -383,6 +623,24 @@ console.log(JSON.stringify({
     sourceGp0,
     rawPair: [p35[6].values, p35[7].values],
     hShells: [p35LeftShell, p35RightShell],
+    rawFiveRunePacket: p35Packet,
+    rawFiveRuneHShell: p35PacketShell,
+    rawShellCensus: {
+      adjacentTwoThreePairs: twoThreePairCount,
+      adjacentFiveRunePairs: fiveRunePairCount,
+      contiguousFiveRuneWindows: fiveRuneWindowCount,
+      exactHits: fiveRuneWindowHits.length,
+    },
+    foundPlain,
+    foundKey,
+    foundKeyHShell: H5(foundKey),
+    stateKeyFamily: {
+      labeledKeys: labeledStateKeys,
+      uniqueKeys: uniqueStateKeys.size,
+      labeledHits: stateFamilyHits.length,
+      uniqueHitKeys: new Set(stateFamilyHits.map((hit) => hit.key.join(","))).size,
+    },
+    fixedKeyManuscriptHits: fixedKeyHits.length,
   },
   directionGraph: {
     foundToRoad: foundRoute.map((index) => ({index, word: signedWords[index]})),
@@ -398,5 +656,5 @@ console.log(JSON.stringify({
     exactHiddenHits: oneRiseHits.length,
   },
   interpretation:
-    "P33 RISE selects p35=FOUND by its own printed 3->5 rise. Without fitting a new cipher, p35 contains the manuscript's sole adjacent mutual p50-low GP0 pair 36<->54, matching FOUND<->ROAD/PATHS. The frozen source direction graph puts FOUND in ROAD's basin and PATHS in the other basin, resolving the pair to ROAD and giving physical route p35->p28->p0->p18->p23. P28 exposes literal DH; p23=ROAD independently hides THE ONE RISE under the same cardinal/H mechanism.",
+    "P33 RISE selects p35=FOUND by its own printed 3->5 rise. Before using FOUND as plaintext, the held-out p35 2+3 packet is the sole five-rune window in the unknown manuscript whose H5 shell equals [A,p-1,B,K*a,a-g]. Signed word35 then supplies FOUND. Its exact subtraction key is [B,-b,A-B,b,b+K], up to three equivalent middle-difference labels that collapse to the same numeric value18; the exact key has one authenticated five-rune hit manuscript-wide. The p35 mutual p50-low cycle then links FOUND to ROAD, and the frozen source direction graph gives p35->p28->p0->p18->p23, where p28 exposes literal DH and p23=ROAD independently hides THE ONE RISE.",
 }, null, 2));
