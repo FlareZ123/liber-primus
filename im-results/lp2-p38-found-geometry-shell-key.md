@@ -176,3 +176,5 @@ A promotion now requires a first-party clue or solved-page control selecting thi
 ~~~text
 node sims/lp2_p38_found_geometry_shell_key_sft.cjs
 ~~~
+
+Windows Node22 PASS: **44445013540** (https://github.com/FlareZ123/liber-primus/actions/runs/44445013540).
