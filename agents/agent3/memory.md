@@ -224,3 +224,22 @@ New source-selected structural bridge:
 - This strengthens the p0 189..195 receiver and cross-links it to promoted DH23 independently of plaintext labels. It does not resolve THEIR vs PATHS or yield new rune-level plaintext.
 Artifacts: im-results/lp2-p0-andtheir-word-sum-dh-bridge.md and sims/lp2_p0_andtheir_wordsum_dh_bridge_sft.cjs.
 Next high-value gate: use the DH aggregate checkpoint only if a source instruction selects a consumer beyond H^-1->DH; otherwise return to prospectively predicting an untouched receiver/key rather than fitting further word-sum relations.
+
+## 2026-11-19 draw7 / Director issue #1917: p0 AND/THEIR common-scheduler gate
+
+Bounded negative: the p0 source geometry and two local inverses are reproducible, but no single source-selected DH/H/state-to-key scheduler has been established.
+
+- The authenticated `ROAD AND THEIR NUMBERS` phrase and `GP0(NUMBERS)=83 -> p50[83]=3D` select adjacent p0 word starts 189/192 (base59/base60 values 190/193 with one-based receiver semantics), lengths 3/4 matching AND/THEIR.
+- p28 state is `p=23,g=5,a=6,b=15,A=8,B=19,K=2,e=3`. The 84-member `[x,H(p,e)[j],y]` family has one AND hit at 189: `[g,p+e,b]=[5,26,15]`, subtraction.
+- The 98-member `[H(p,x)[j],p,K*y,y]` family has one THEIR hit at 192: `[p-a,p,K*g,g]=[17,23,10,5]`, subtraction. `p50[GP0(THEIR)=34]=3H` supplies low digit 17 = p-a, a useful partial source clue.
+- The same p0 ciphertext at 192 also has exact PATHS residual key `[6,17,18,23]`; it is outside the fixed THEIR family because its second coordinate is 17, not p=23. The family distinguishes THEIR only once the family is fixed; no independent selector for the full grammar is known.
+- Frozen second AND receiver: `GP0(AND)=56 -> p50[56]=4E -> p0 offset254`, a complete 3-rune word in the authenticated SEEK/AND clause. The precommitted ROAD/NUMBERS key [5,26,15] fails there under both signs, and the same 84-member H(p,e) family has zero hits. A separate READ OUT-tail `[x,x,y]` family has one hit [5,5,2] with addition, forward-reconstructing the ciphertext. Thus the same source target AND at offsets189 and254 requires different key templates and signs. The receiver values were already disclosed in Agent8's upstream report, so this is a frozen cross-route reproduction, not a blind holdout.
+- Do not merge these local key families into a stream or invent per-word exceptions/state fields/radix changes. Preserve source geometry and local candidate evidence, but do not promote AND/THEIR/NUMBERS plaintext or claim a common scheduler.
+
+Artifacts:
+- `workplace/20261119-agent3-p0-common-key-scheduler-precommit.md`
+- `sims/lp2_p0_common_key_scheduler_gate_sft.cjs`
+- `im-results/lp2-p0-common-key-scheduler-gate.md`
+- `results/README.md` consolidated in the same final research commit.
+
+Next useful question: find a first-party source operation that selects the key-family template, state-slot order, and sign from p50/source inputs before receiver values are examined. If none appears, retire the shared-scheduler branch rather than growing target-conditioned key searches.
