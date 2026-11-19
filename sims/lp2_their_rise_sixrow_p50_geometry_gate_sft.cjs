@@ -93,6 +93,31 @@ const width = state.A;
 const height = 32;
 const rise = state.a;
 
+// The physical displacement itself bridges the two moduli:
+// width*rise = A*a = 48 = 29+B = 2*p+K.
+const displacement = width * rise;
+assert.equal(displacement, 48);
+assert.equal(mod29(displacement), state.B);
+assert.equal(displacement % state.p, state.K);
+assert.equal(displacement, 29 + state.B);
+assert.equal(displacement, 2 * state.p + state.K);
+
+const exactBKProducts = [];
+for (const [leftName, left] of Object.entries(state)) {
+  for (const [rightName, right] of Object.entries(state)) {
+    if (
+      mod29(left * right) === state.B &&
+      (left * right) % state.p === state.K
+    ) {
+      exactBKProducts.push([leftName, rightName, left * right]);
+    }
+  }
+}
+assert.deepEqual(exactBKProducts, [
+  ["a", "A", 48],
+  ["A", "a", 48],
+]);
+
 const directions = Object.freeze({
   N: [-1, 0],
   NE: [-1, 1],
