@@ -65,3 +65,24 @@ HELLO EMPTY SEEKS LIBER WORDS FOUND FALSE
 - **Negative:** no hit, multiple numeric hits, or a different authenticated target. Preserve the raw-LUCK geometry observation only; do not tune the grammar to rescue FALSE.
 
 No p0 rune value at offsets196..200 may be inspected before this precommit is remotely established.
+
+
+## Outcome after opening the sealed receiver
+
+The selected original p0 word is:
+
+```text
+offsets196..200 = [21,19,0,4,27]
+```
+
+The unchanged HERE/DH lookup family has **zero** hits against the frozen seven-word authenticated five-rune target family. In particular, it does not recover FALSE under either additive sign.
+
+The 14 source lookups contain 13 distinct numeric values:
+
+```text
+{3,5,7,8,10,12,17,20,22,23,24,26,28}
+```
+
+For each authenticated target, the exact required five-rune difference vector contains at least one value outside that set, so the full `14^5 * 2` labeled family cannot hit. No expanded source line, H layer, permutation, phase, or constant was tried.
+
+**Decision: negative.** Preserve only the source-native geometry observation that raw LUCK ciphertext `61 -> p50[61]=3G -> base60 196` lands at a five-rune word. The already frozen p38 HERE/DH lookup grammar does not transfer to this receiver, so this branch is closed unless a different operation is independently selected before reuse.
