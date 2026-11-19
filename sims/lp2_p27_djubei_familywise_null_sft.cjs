@@ -31,7 +31,7 @@ const alphabet60 = grid.alphabet;
 const alphabet59 = alphabet60.replace("f", "");
 const originalTokens = grid.pages.flatMap((page) => page.tokens);
 const p50PageLengths = grid.pages.map((page) => page.tokens.length);
-const outputTypes = ["literal", "base59", "base60"];
+const outputTypes = ["literal", "base59", "base60"];\nconst outputTypePairs = [["literal", "base59"], ["literal", "base60"], ["base59", "base60"]];
 
 assert.equal(originalTokens.length, 256);
 assert.equal(alphabet60.length, 60);
@@ -208,6 +208,12 @@ function evaluate(tokens) {
     anyOneOrTwoBoundary: false,
     anyTwoSameWord: false,
     anyTwoCarrier: false,
+    anyCrossTypeOneBoundaryCommonTarget: false,
+    anyCrossTypeTwoBoundaryCommonTarget: false,
+    anyCrossTypeOneOrTwoBoundaryCommonTarget: false,
+    anyCrossTypeTwoStableIntermediates: false,
+    djuCrossTypeOneOrTwoBoundaryCommonTarget: false,
+    djuCrossTypeTwoStableIntermediates: false,
     anyDualRadixConvergence: false,
     anyDualRadixBoundaryConvergence: false,
     anyDualRadixCommonTarget: false,
@@ -247,6 +253,43 @@ function evaluate(tokens) {
     }
   }
   metrics.anyOneOrTwoBoundary = metrics.anyOneBoundary || metrics.anyTwoBoundary;
+
+  for (let i = 0; i < p27.length - 1; i += 1) {
+    for (const [leftType, rightType] of outputTypePairs) {
+      const a = byPairType[i][leftType];
+      const b = byPairType[i][rightType];
+      if (!a || !b) continue;
+
+      const oneCommonTarget =
+        a.distinctFirst && b.distinctFirst &&
+        a.oneSameWord && b.oneSameWord &&
+        a.firstBothBoundary && b.firstBothBoundary &&
+        a.left.intermediate.index === b.left.intermediate.index;
+
+      const twoCommonTarget =
+        a.distinctFirst && b.distinctFirst &&
+        a.distinctIntermediate && b.distinctIntermediate &&
+        a.firstBothBoundary && b.firstBothBoundary &&
+        a.twoSameWord && b.twoSameWord &&
+        a.left.target.index === b.left.target.index;
+
+      const twoStableIntermediates =
+        twoCommonTarget &&
+        a.left.intermediate.index === b.left.intermediate.index &&
+        a.right.intermediate.index === b.right.intermediate.index;
+
+      if (oneCommonTarget) metrics.anyCrossTypeOneBoundaryCommonTarget = true;
+      if (twoCommonTarget) metrics.anyCrossTypeTwoBoundaryCommonTarget = true;
+      if (oneCommonTarget || twoCommonTarget) {
+        metrics.anyCrossTypeOneOrTwoBoundaryCommonTarget = true;
+        if (i === djuIndex) metrics.djuCrossTypeOneOrTwoBoundaryCommonTarget = true;
+      }
+      if (twoStableIntermediates) {
+        metrics.anyCrossTypeTwoStableIntermediates = true;
+        if (i === djuIndex) metrics.djuCrossTypeTwoStableIntermediates = true;
+      }
+    }
+  }
 
   for (let i = 0; i < p27.length - 1; i += 1) {
     const a = byPairType[i].base59;
@@ -294,6 +337,10 @@ assert.equal(observed.djuDualRadixShape, true);
 assert.equal(observed.anyDualRadixShape, true);
 assert.equal(observed.djuAnyTwoBoundary, true);
 assert.equal(observed.anyTwoCarrier, true);
+assert.equal(observed.anyCrossTypeOneOrTwoBoundaryCommonTarget, true);
+assert.equal(observed.djuCrossTypeOneOrTwoBoundaryCommonTarget, true);
+assert.equal(observed.anyCrossTypeTwoStableIntermediates, true);
+assert.equal(observed.djuCrossTypeTwoStableIntermediates, true);
 
 const dju59 = pairFeatures(djuIndex, originalTokens, "base59");
 const dju60 = pairFeatures(djuIndex, originalTokens, "base60");
@@ -334,6 +381,12 @@ function runNull(mode, trials) {
     anyOneOrTwoBoundary: 0,
     anyTwoSameWord: 0,
     anyTwoCarrier: 0,
+    anyCrossTypeOneBoundaryCommonTarget: 0,
+    anyCrossTypeTwoBoundaryCommonTarget: 0,
+    anyCrossTypeOneOrTwoBoundaryCommonTarget: 0,
+    anyCrossTypeTwoStableIntermediates: 0,
+    djuCrossTypeOneOrTwoBoundaryCommonTarget: 0,
+    djuCrossTypeTwoStableIntermediates: 0,
     anyDualRadixConvergence: 0,
     anyDualRadixBoundaryConvergence: 0,
     anyDualRadixCommonTarget: 0,
@@ -382,6 +435,7 @@ console.log(JSON.stringify({
   },
   chargedFamily: {
     outputTypes,
+    outputTypePairs,
     stepCounts: [1, 2],
     boundaryClasses: ["start", "end", "singleton", "interior"],
     targetCarrier: {wordIndex: carrier.index, start: carrier.start, length: carrier.length},
