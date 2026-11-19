@@ -15,6 +15,12 @@ Controls: only p49 and p55 have five page-level recursive word cores; only p55 h
 Artifacts: im-results/lp2-p55-recursive-word-core-within.md; sims/lp2_p55_recursive_word_core_sft.cjs; broadcast under communications/broadcast. This is a state/operation advance, not recovered prose. Next priority is a source-selected reversible consumer for the five-rune emerged state object. Avoid arbitrary additive keys or substitutions.
 
 
+### THE WAY + THEIR RISE uniquely recover THEIR25
+
+P24 H fixes ordered source directions12 THE ->13 WAY. Following those numbers on the same diagonal gives p12 receiver GP0=64 and p13 receiver GP0=98. The already established p33 instruction THEIR RISE selects the forward difference: 98-64=34=GP0(THEIR). Across all 40 adjacent diagonal pairs, this is the sole forward or absolute rise34. Since the upstream p55 fragment already ends AND24, source context fixes the recovered occurrence as THEIR25, extending the p55 readout to **THE ROAD AND THEIR** and overlapping exactly with p11's independent [25,26]=THEIR NUMBERS instruction.
+
+Prospective state corroboration from the same directed pages: p12 H shell is [8,19,15,16,0]=[A,B,b,hex-stride,0], and p12 GP0=64 addresses p50 token22=[K,K], unique across the complete diagonal. P13 H shell is [27,9,6,0,19,2]=[-K,9,a,0,B,K].
+
 ### AND24 prospectively selects p24 -> THE WAY / OPENPGP
 
 The newly recovered p55 phrase ends at source AND24. Following the already established numbered diagonal gives physical p24 canonical word25, untouched ciphertext [27,15]. Raw GP0=42=source OPENPGP. Fixed H gives [12,13], exact source **THE WAY**. Across the complete source-index/page/one-based-word diagonal there are 42 valid receivers and ten length2 receivers; p24 is the sole ascending consecutive H pair. P11 is the sole descending pair, [26,25], independently active in THEIR/NUMBERS work. This produces a source-selected route p55 THE ROAD AND -> AND24 -> p24 THE WAY -> OPENPGP42.
