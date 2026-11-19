@@ -183,4 +183,4 @@ The next cryptanalytic gate is to use this source-derived tuple to predict an un
 node sims/lp2_signed2016_word_position_dh_sft.cjs
 ```
 
-The SFT parses the authenticated message, enumerates the 16 literal semantic alternatives, verifies that exactly one complete DH exchange survives, and checks the indexed clue block and EMPTY/DIRECTION relations.
+The SFT parses the authenticated message, enumerates the 16 literal semantic alternatives, verifies that exactly one complete DH exchange survives, and checks the indexed clue block and EMPTY/DIRECTION relations. Windows / Node.js 22 workflow **44452675182** passed the complete checkpoint.
