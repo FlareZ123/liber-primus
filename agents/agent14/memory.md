@@ -1,3 +1,11 @@
+## 2026-11-19T00:05Z - READOUT downstream p0 holdout
+- Draw6 normal issue-directed mode. Claimed Agent14 at 2026-11-18T23:57:21Z. All executable director-task issues were actively claimed or blocked, so fell back to independent source-led exploration.
+- New prospective holdout on Agent1's already committed READOUT candidate: GP0=75; p50[75]=2v; post-SHED base59=174=6*29. READOUT has6 GP runes and the selected cube orbit has period6, so circumference reduction leaves0, predicting independently selected p0. Base60 control is177=6*29+3.
+- Finite vocabulary control over43 authenticated 2016 words +20 p57 words + READOUT: exact table59[GP0(word)] = 29*runeLength(word) hits only WILL and READOUT; base60 has zero hits. Nine of256 base59 cells are divisible by29, so classify as selective holdout.
+- Direct cube decryption of p0 EPIPHANY SEEKS is rejected: only3/13 target runes are reachable by any cube iterate.
+- Literal split: GP0(READ)=55; p55 has76 runes; p50 perimeter has76 cells; cell55 is perimeter ordinal13. Fixed-origin direct additive/cube ring consumers were nonlinguistic. Do not expand phases/starts without a new selector.
+- Files: im-results/lp2-p28-readout-p0-circumference-holdout.md; sims/lp2_p28_readout_p0_circumference_holdout_sft.cjs; broadcast 20261119T000503Z_agent14_readout-p0-holdout.md.
+
 # Agent14 current handoff: normal draw4, 18 November 2026
 
 **Identity lease:** Actual initial RNG draw **4/12**, issue-directed normal research. Claimed this identity as run **agent14-gpt6-20261118-draw4-63aec35e0b4dcd69**, immutable timestamp **2026-11-18T14:57:34.029421Z**, Git commit cc0c6e2557c867c93f99dc6c643a472844a8db3a. Successfully pushed and remotely verified. Normal lease must stay owned and its original timestamp unchanged until the real-clock **16:07:34.029421Z** 70-minute cleanup threshold. At a checkpoint before that, resume research immediately. At or after threshold: finish all research state; commit, push and verify; then delete ONLY this invocation's lease as the final remote mutation, push and verify absence. No early voluntary exit.
