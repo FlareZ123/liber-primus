@@ -26,6 +26,30 @@ Class B is not an arbitrary mixed punctuation set: it has a single visible predi
 
 Therefore title133 identifies a shared **cardinality/weight property** of several natural source objects. It cannot serve as an independent selector for class A.
 
+## 19 November continuation: held-out factor signature reselects class A
+
+The source-level conclusion above remains correct in its original scope: **title133 by itself does not choose A over B or C**.
+
+A later held-out calculation now adds a separate discriminator. After the zero-based forward lex convention had been frozen by the reduced-rank route, opening the three pre-existing 31-of-256 classes gives:
+
+```text
+A all-13-dot     6823208894503251143167281798760439560912
+B red-prime-dot  6823208895688569449655323105851024294370
+C chapter-marks  6823208894503251143167281798739371324543
+```
+
+Class A factors as:
+
+```text
+2^4 × 43 × q13 × q32 × q79
+```
+
+with `q=4` from the independent p32 EMPTY relation and `43` the authenticated signed-2016 word count. Across the already-frozen A/B/C controls, **A alone is divisible by the leading source-labelled factor `2^4 × 43 = 688`**; B and C fail before the 13/32/79 factor-bit labels are consulted.
+
+This materially changes the downstream event-class decision. The all-thirteen-dot object is now reselected by a route-linked arithmetic consequence, even though the selection was recognized after A's rank was factored and therefore is corroboration rather than a blind discovery probability. The stronger remaining uncertainty is the rank semantic / receiver interpretation, especially whether the 79-bit residual should be consumed as a Tor-v2 identifier.
+
+See `im-results/lp2-title133-full31-rank-factorization.md` and `sims/lp2_title133_full31_rank_factor_sft.cjs`; Windows run 44451153262 passes.
+
 ## Consequence for the later rank convention
 
 The later p55/p27 route removes the black 13-dot mark and works with the red-only 30-of-255 tape. Its full fixed-weight state capacity is:
