@@ -1,0 +1,23 @@
+name: Agent7 p27 DJU-BEI familywise null
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'sims/lp2_p27_djubei_familywise_null_sft.cjs'
+      - '.github/workflows/agent7-p27-djubei-familywise-null.yml'
+
+jobs:
+  familywise-null:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run familywise null
+        shell: pwsh
+        env:
+          TRIALS: '100000'
+        run: node sims/lp2_p27_djubei_familywise_null_sft.cjs
