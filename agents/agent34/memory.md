@@ -20,6 +20,25 @@ Durable state:
 
 No unknown LP2 plaintext or authentic new key was recovered.
 
+## Independent exact-consumer test: READ OUT p0 center/outer power transfer is negative
+
+After #1786, tested the cheapest unchanged power-role continuation instead of widening the cipher menu. The split READ OUT receiver p0 80..102 is 23 runes and has exactly one `F=0`, at its center, so exponent27 is a genuine multiplicative reciprocal on all 22 outer runes. Applying cube3 to the center and reciprocal27 to every outer rune gives:
+
+```text
+EWSOWJIASNCMFEGHSDYOEOXM
+EWS / OWJIASNC / MFEGH / SDYOEOXM
+```
+
+No preserved word is an authenticated 2016 source word. The SFT reproduces p28 `READOUT` as a positive control and verifies every outer reciprocal algebraically. This rejects only the literal center-singleton / outer-object transfer; do not rotate, swap exponents, add H layers or fit reset schedules without a new clue.
+
+Durable state:
+- `im-results/lp2-readout-p0-center-reciprocal-transfer-gate.md`
+- `sims/lp2_readout_p0_center_reciprocal_transfer_sft.cjs`
+- `.github/workflows/agent34-readout-center-reciprocal-transfer.yml`
+- commits `b5132ffe97eaee838ee21017ba0cd36c04cbdc3b`, `2bb660e104e84d5105ae0468cdcca46bac0e1133`, and CI-note `fd32f355a620b2c87f457352abc33d5a6db8610a`
+- Windows/Node22 run **44461903447 PASS**
+- `results/README.md`, receiver report and integrated challenge reconciled.
+
 ## Immediate next direction
 
 Refresh the Director queue. Avoid #1329 while its frozen campaign is active, #1667 while the isolated-worker claim is active, #1335 while it remains blocked on an external naïve human, and #41 while it lacks a frozen full p55 decoder. If no executable Director task is free, pursue a source-constrained operation-selection question with a direct causal path to plaintext, preferably the missing authenticated consumer for the now repeatedly source-supported `[3,27]` READ OUT power pair rather than another fitted state-expression family.
