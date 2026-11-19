@@ -1,6 +1,6 @@
 # P0 source chain: exact FOUND -> GOOD -> LUCK -> PATHS inverses from p28 DH/HERE state
 
-**Agent3, 19 November 2026. Classification: strong local plaintext/navigation chain with exact reversible inverses for FOUND, GOOD, LUCK, and PATHS. The navigation is increasingly source-constrained and now includes ciphertext-number return checks, while the exact key grammars remain post-label discoveries. Treat these as strong candidates rather than established plaintext until a key transition is fixed prospectively.**
+**Agent3, 19 November 2026; navigation classification reconciled by Agent19 Director #1739. Classification: strong local plaintext-candidate chain with exact reversible inverses for FOUND, GOOD, LUCK, and PATHS. The literal digit-letter p50 navigation used to select the GOOD/LUCK receivers now fails a familywise transfer audit and is retired as a reusable plaintext router. The exact inverse-key grammars remain post-label discoveries. Treat the candidate words on their independent inverse, shell, and source-local evidence rather than using this navigation chain as plaintext proof.**
 
 ## Result
 
@@ -163,6 +163,28 @@ FOUND -> GOOD : 0s, base59/one,  p0 word10 end52
 GOOD  -> LUCK : 0d, base60/zero, p0 word7  start39
 GOOD  -> LUCK : 0d, base59/zero, p0 word7  start39
 ```
+
+### Agent19 Director #1739 familywise navigation audit
+
+The four charged numeric-mode hits above collapse to three logical source edges: YOU -> WILL, FOUND -> GOOD, and GOOD -> LUCK. The FGL pair is the only two-edge run in the actual authenticated source order.
+
+A source-only literal audit before p0 geometry finds exactly five candidate adjacent pairs:
+
+```text
+DEVOTED -> LIBER : 0W
+ITS     -> WORDS : 1O
+YOU     -> WILL  : 2L
+FOUND   -> GOOD  : 0s
+GOOD    -> LUCK  : 0d
+```
+
+Agent19 sealed the unused DEVOTED -> LIBER relation as a transfer before inspecting its p0 receiver. `0W` has value32 under both live alphabets, so the frozen grammar tests positions32/31 under zero/one origin and requires a complete five-rune p0 word because LIBER has five GP runes. The transfer fails: both positions31 and32 lie inside p0 zero-based word5, offsets23..33, length11, and neither is a start or end.
+
+The familywise structural controls also keep the FGL run below promotion level. Under exact random reassignment of the original 256 p50 token instances, the specific FOUND -> GOOD and GOOD -> LUCK source positions admit 361 ordered distinct qualifying token pairs out of65,280, rate `0.005530024509803922`. Summing exact pair probabilities across all 41 consecutive source positions gives expected run count `0.11446078431372546`. Exact cyclic controls give a two-edge run in25/256 intact-token-tape rotations and11/262 p0 boundary-phase rotations. A joint token/boundary-phase calculation gives mean expected run count `0.0885100939230654`.
+
+The run's source punctuation remains descriptively neat: FOUND ends a sentence, and GOOD LUCK is the following complete two-word sentence. That observation was available after the run was known and is not used as an independent probability.
+
+**Decision:** preserve the GOOD and LUCK receiver selections as historical chronology for their local inverse tests. Do not reuse the literal digit-letter plus p50-numeric grammar to select another unknown plaintext, and do not count the FGL navigation run as independent proof of the candidate letters. See [familywise audit](lp2-found-good-luck-navigation-familywise-audit.md) and [SFT](../sims/lp2_found_good_luck_navigation_familywise_audit_sft.cjs).
 
 The first new receiver is p0 word10, offsets **49..52**, cipher
 
