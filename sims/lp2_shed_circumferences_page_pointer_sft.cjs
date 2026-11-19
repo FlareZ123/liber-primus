@@ -131,6 +131,12 @@ assert.equal(shedWords(p57BodySolved).length, 50);
 // The canonical physical transcription must independently reproduce the same
 // p57 body geometry selected by its red PARABLE title.
 const bodies = redStartedBodies();
+function p39BodyForCounts() {
+  const row = bodies.find((candidate) => candidate.page === 39 && candidate.start === 119);
+  assert.ok(row);
+  return row.body;
+}
+
 const p57Body = bodies.find((row) => row.page === 57 && row.start === 0);
 assert.ok(p57Body);
 assert.equal(p57Body.titleLength, 7);
@@ -207,6 +213,48 @@ assert.deepEqual(p39H2, [B, weGp0]);
 assert.deepEqual(p39H3, [p, b]);
 assert.equal(p39H3[1], p39Red[2]);
 
+// P39 source geometry continues the same state arithmetic around the p33
+// lower-body base p*g=115.
+const p39Sections = physicalPart(39)
+  .split(/^\s*&\s*$/m)
+  .map((section) => runeWords(section))
+  .filter((section) => section.length > 0);
+assert.equal(p39Sections.length, 2);
+const p39Upper = p39Sections[0];
+const p39Lower = p39Sections[1];
+const p39Body = p39BodyForCounts();
+assert.equal(p39Upper.length, p + e);
+assert.equal(p39Upper.flat().length, p * g + q);
+assert.equal(p39Lower.length, 29);
+assert.equal(p39Lower.flat().length, p * g + a);
+assert.equal(p39Body.length, p + g);
+assert.equal(p39Body.flat().length, p * g + e);
+
+const p39RuneLines = physicalPart(39)
+  .split(/\n/u)
+  .filter((line) => /[\u16A0-\u16FF]/u.test(line));
+assert.equal(p39RuneLines.length, 2 * a);
+assert.equal(
+  p39RuneLines.slice(0, a).reduce((sum, line) =>
+    sum + [...line].filter((rune) => runeIndex.has(rune)).length, 0),
+  p * g + q
+);
+assert.equal(
+  p39RuneLines.slice(a).reduce((sum, line) =>
+    sum + [...line].filter((rune) => runeIndex.has(rune)).length, 0),
+  p * g + a
+);
+
+// The arrived circumference operation itself is a state register on p39.
+// Depths [K,e,q,g]=[2,3,4,5] leave [p,a,K,0] runes.
+function shedDepthCount(words, depth) {
+  return words.reduce((sum, word) => sum + Math.max(word.length - 2 * depth, 0), 0);
+}
+assert.deepEqual(
+  [K, e, q, g].map((depth) => shedDepthCount(p39Body, depth)),
+  [p, a, K, 0]
+);
+
 const length3Red = [];
 for (const page of ink.pages) {
   for (const span of page.red_spans || []) {
@@ -249,6 +297,15 @@ assert.deepEqual(
   [[3,119,53],[33,0,39],[56,0,35],[57,0,50]]
 );
 
+const nestedStateHits = bodies
+  .filter((row) =>
+    shedDepthCount(row.body, K) === p &&
+    shedDepthCount(row.body, e) === a &&
+    shedDepthCount(row.body, q) === K
+  )
+  .map((row) => [row.page, row.start]);
+assert.deepEqual(nestedStateHits, [[39,119]]);
+
 console.log(JSON.stringify({
   status: "PASS",
   solvedInstruction: {
@@ -277,6 +334,21 @@ console.log(JSON.stringify({
       h1: p39H1,
       h2: p39H2,
       h3: p39H3,
+      geometry: {
+        upperLines: a,
+        upperWords: p39Upper.length,
+        upperRunes: p39Upper.flat().length,
+        lowerLines: a,
+        lowerWordsIncludingTitle: p39Lower.length,
+        lowerRunesIncludingTitle: p39Lower.flat().length,
+        lowerBodyWords: p39Body.length,
+        lowerBodyRunes: p39Body.flat().length,
+      },
+      nestedShedCounts: {
+        depths: [K, e, q, g],
+        counts: [K, e, q, g].map((depth) => shedDepthCount(p39Body, depth)),
+        uniqueRedBodyHit: nestedStateHits,
+      },
     },
   },
   thirdPrediction: {
@@ -288,5 +360,5 @@ console.log(JSON.stringify({
   },
   census,
   interpretation:
-    "Solved p57 literally says WE MUST SHED OUR OWN CIRCUMFERENCES. Removing each body's first and last rune leaves exactly 50 runes, selecting the p50 number table. P50 state B=19 selects p33; p33's source-visible H chain returns WE and the red 13-dot count. Reusing the solved instruction unchanged on p33's first black body leaves exactly 39 runes, selecting p39. The target p39 independently carries red title [-K,g,b]=[27,5,15], whose H chain is [p-1,e] -> [B,GP0(WE)] -> [p,b]. An independent original-image inventory also establishes p39 as the only other page sharing p33's reused three-dot divider graphic. The same operation on p3's second red-started body predicts p53, preserved separately without forced interpretation.",
+    "Solved p57 literally says WE MUST SHED OUR OWN CIRCUMFERENCES. Removing each body's first and last rune leaves exactly 50 runes, selecting the p50 number table. P50 state B=19 selects p33; p33's source-visible H chain returns WE and the red 13-dot count. Reusing the solved instruction unchanged on p33's first black body leaves exactly 39 runes, selecting p39. The target p39 independently carries red title [-K,g,b]=[27,5,15], whose H chain is [p-1,e] -> [B,GP0(WE)] -> [p,b]. Its geometry continues the p33 p*g state: upper runes=p*g+q=119, lower black runes=p*g+e=118, complete lower section=p*g+a=121, lower black words=p+g=28, and both source sections have a=6 lines. Repeated shedding at depths [K,e,q,g] leaves [p,a,K,0], uniquely among red-started bodies. An independent original-image inventory also establishes p39 as the only other page sharing p33's reused three-dot divider graphic. The same operation on p3's second red-started body predicts p53, preserved separately without forced interpretation.",
 }, null, 2));
