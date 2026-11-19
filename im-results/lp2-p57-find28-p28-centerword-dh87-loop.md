@@ -246,6 +246,21 @@ Several direct consumers are closed. A row-major additive pad from the 180 p50 v
 
 A separate p31-only p56 transfer is also closed. Because `K=87=pi(449)` and p31's exact center is F, I tested the authentic p56 F-transparent mechanism starting at prime449 on the whole page and the source-natural center-out rays, under both signs. Every automaton becomes impossible before finishing its input.
 
+
+## Fixed base59 turns 3301 into the terminal p55/p56 receiver
+
+A later held-out consumer uses two values already fixed above. The DH23 table traversal selects base59 because only base59 reaches cell189 from186 in exactly `A=8` hops. The p27 serialization independently gives `3QO=3301`. No new parameter is added when those outputs are composed:
+
+```text
+3301 = 55 * 59 + 56
+```
+
+Thus the two base59 digit values are **[55,56]**, selecting physical **p55→p56** in digit order. Base60 gives [55,1]. In the complete radix2..60 control, only57,58,59,60 make both digits valid physical page numbers0..57, and59 alone makes them adjacent.
+
+The receiver is functionally typed by independent evidence. P55 is the final unsolved page and the line-wrap H route now reconstructs the full authenticated signed-source register there and through its selected receivers. P56 is independently solved **AN END**, carrying the deep-web hash destination instruction. This converts the prior DH3301 receiver gap into a concrete terminal navigation handoff while leaving the p55 cipher inverse and p56 hash semantics unresolved.
+
+Reproduction: `sims/lp2_dh3301_base59_terminal_pair_sft.cjs`; Windows PASS **44478687965**.
+
 ## Decision
 
 Promote the **FIND→28 → p28 word28 / line6 DH23 → p50 token39 → p27 red19+13 / DIVINITY103 → 3QO=3301** construction as a leading intended-navigation hypothesis.
@@ -256,6 +271,6 @@ This materially demotes the earlier DH151/DH87 construction from primary operati
 
 The next receiver is also source-typed: `B=19` plus the already selected literal `13` identifies the unique p27 red19+13 object, where `19−13=6` repeats the p28 private exponent and the existing p27 transducer reconstructs the same DH23 tuple.
 
-No unknown ciphertext has yet been converted to authenticated plaintext. The productive next step is therefore to consume a source-selected DH23/p27 output in a reversible way on untouched ciphertext. Do not reopen arbitrary DH groups, p31 prime phases or broad p28 cipher menus.
+No unknown ciphertext has yet been converted to authenticated body plaintext. The DH3301 output now has the fixed terminal page receiver p55→p56. The productive next step is to use that receiver to select a reversible operation on untouched p55 ciphertext or to recover the p56 destination under authenticated hash semantics. Do not reopen arbitrary DH groups, p31 prime phases or broad p28 cipher menus.
 
 Reproducers: `sims/lp2_p28_centerline_dh23_sft.cjs` for the direct DH23 selector and `sims/lp2_p57_find28_p28_centerword_dh87_sft.cjs` for the retained DH151/DH87 loop.
