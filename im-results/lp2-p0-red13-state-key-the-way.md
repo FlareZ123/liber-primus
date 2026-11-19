@@ -163,6 +163,33 @@ This control closes one possible authentication argument. The residual is compac
 
 Reproducer: `sims/lp2_p0_red13_state_key_simplicity_gate_sft.cjs`.
 
+## The marker-state column-sum gate constrains the key serialization
+
+The authenticated square family now independently reconstructs the same DH state. That state predicts the p0 marker's visible column populations exactly:
+
+```text
+4|5|4 = [q,g,q].
+```
+
+Apply the fixed interleaved H transform to the exact residual key and partition only by those physical columns. The modulo29 column sums are:
+
+```text
+[13,23,6] = [A+g,p,a].
+```
+
+Charge this complete state packet against all 19 adjacent manuscript 8+5 receivers using the already source-selected `EPIPHANY SEEKS` target. P0 word1-word2 is the sole exact `[13,23,6]` hit. Agent14's independent inverse-H view of the same residual gives the complementary physical-center packet `[q,A,B,A,q]` and is likewise unique in the matched receiver family.
+
+Together the original marker and two reversible key views now satisfy:
+
+```text
+marker counts      [q,g,q]
+H(key) column sums [A+g,p,a]
+H^-1(key) center   [q,A,B,A,q]
+```
+
+This materially constrains the retrospective 13-atom order without generating all 13 atoms before subtraction. [Marker-state report](lp2-p0-marker-state-column-sums.md) · [SFT](../sims/lp2_p0_marker_state_column_sums_sft.cjs) · Windows Node22 PASS `44477849468`.
+
+
 ## Word-local state shells distinguish the candidate
 
 The candidate plaintext itself has:
