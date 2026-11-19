@@ -23,6 +23,60 @@ Among every adjacent manuscript 8+5 pair, p0 is the sole receiver whose same tit
 
 The plaintext candidate `EPIPHANY SEEKS` is therefore fixed before the residual construction below is inspected.
 
+## The original marker independently selects the generator anchors
+
+The large red p0 mark is the standard 13-dot glyph:
+
+```text
+.#.
+#.#
+.#.
+#.#
+.#.
+#.#
+.#.
+#.#
+.#.
+```
+
+Its source-visible counts are:
+
+```text
+outer dots      = 8
+center column   = 5
+left column     = 4
+right column    = 4
+total dots      = 13
+```
+
+These counts coincide exactly with independently reconstructed state values:
+
+```text
+A=8
+g=5
+q=4
+```
+
+and the two printed red title lengths are also `8|5`.
+
+The authenticated source register has unique `WAY13`. The independently reconstructed state has `K=2`, so the same visible center count gives:
+
+```text
+g + K = 5 + 2 = 7 = THE7
+```
+
+Thus the three anchors later used by the rise generator can be selected without reading the residual:
+
+```text
+q = 4      <- side-column population and state q
+THE7       <- center5 = g, then g+K
+WAY13      <- total 13 dots and unique authenticated WAY
+```
+
+The unknown-page marker family supplies a useful visual control. Deduplicating the ink annotation at the one p7 color-disputed position leaves **27 distinct 13-dot positions on unknown p0-p55**. P0 is the sole position immediately following two complete canonical words of lengths **8|5**. It is also the sole 13-dot position ending a red span of exactly13 runes.
+
+This does not prescribe the later cumulative-rise formulas by itself. It does remove the arbitrary choice of the three numerical anchors.
+
 ## Frozen local residual and marker geometry
 
 Original p0 title:
@@ -132,6 +186,20 @@ Across all 19 manuscript 8+5 residuals under the same source target:
 - p0 alone has a center whose rises form any arithmetic progression;
 - p0 alone has a right-column consecutive +1 rise sequence;
 - p0 alone satisfies both.
+
+The ordinary positive rise totals add another clue-constrained control:
+
+```text
+left rises   3+12+14       = 29
+center rises 4+11+18+25    = 58 = 2*29
+right rises  6+7+8          = 21
+```
+
+Therefore the left and center columns each return exactly to their own seed after one and two complete GP29 circumferences. The right column remains open; its net rise is21, and its reverse rise sequence is `21,22,23 = IS THE ROAD`.
+
+Among all 19 matched residuals, p0 alone has both left and center columns closed at their starting values. It is also the sole receiver with the exact rise totals `29|58` together with the `IS THE ROAD` reverse-right readout.
+
+This is structurally consistent with solved p57's instruction to shed our own circumferences. It is preserved as supporting mechanism evidence rather than treated as a proof that the p57 sentence specifically instructs this p0 marker.
 
 ## Complete three-anchor rise generator
 
@@ -375,7 +443,14 @@ original ciphertext     -> EPIPHANY SEEKS
 
 The complete key can now be written as one short source/state generator rather than 13 separately labelled expressions.
 
-The remaining weakness is chronology. The precise generator family was recognized after the residual packet had been inspected, and its first prospective marker-level consumer failed. Preserve it as strong candidate key-order provenance until an untouched original object predicts the same grammar, or the generator predicts a new plaintext/key consequence before that target is opened.
+The remaining weakness is the exact rise formula's chronology. The marker geometry and independent state now select all three numerical anchors before residual inspection, and the completed columns have unique circumference structure in the 19-receiver family. The precise cumulative-rise formulas were still recognized after the residual packet had been inspected.
+
+Two prospective generalizations have already failed cleanly:
+
+- raw marker-column sums used as numbered directions do not recover a complete held-out authenticated clause;
+- repeating the generated K13 continuously into held-out p0 body produces zero exact matches among 175 fixed 13-rune reference vectors, as documented in `lp2-p0-qtheway-k13-periodic-body-gate.md`.
+
+Preserve the rise generator as strong candidate key-order provenance until an untouched original object predicts the same formula or the generator predicts a new plaintext/key consequence before that target is opened.
 
 ## Negative reuse checks
 
