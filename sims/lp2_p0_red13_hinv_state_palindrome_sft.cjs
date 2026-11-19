@@ -206,6 +206,22 @@ function forwardRises(values) {
 
 assert.deepEqual(p0.columns.right, [7,13,20,28]);
 assert.deepEqual(forwardRises(p0.columns.right), [6,7,8]);
+assert.deepEqual(forwardRises(p0.columns.center), [4,11,18,25]);
+
+/** @param {number[]} values @returns {boolean} */
+function isArithmeticProgression(values) {
+  if (values.length < 3) return true;
+  const step = mod29(values[1] - values[0]);
+  return values.slice(1).every((value, index) => mod29(value - values[index]) === step);
+}
+
+const centerRiseProgressions = receivers.filter((row) =>
+  isArithmeticProgression(forwardRises(row.columns.center))
+);
+assert.deepEqual(
+  centerRiseProgressions.map((row) => [row.page, row.ordinal]),
+  [[0, 1]]
+);
 
 const consecutiveRightRamps = receivers.filter((row) => {
   const rises = forwardRises(row.columns.right);
@@ -262,13 +278,16 @@ console.log(JSON.stringify({
     markerColumns4_5_4: p0.columns,
     centerStateLabels: ["q", "A", "B", "A", "q"],
     rightColumn: p0.columns.right,
+    centerColumnRises: forwardRises(p0.columns.center),
+    centerRiseStep: 7,
     rightColumnRises: forwardRises(p0.columns.right),
     rightRiseSourceWords: ["SEEKS6", "THE7", "DEVOTED8"],
   },
-  rightRampControl: {
-    consecutiveRampHits: consecutiveRightRamps.map((row) => [row.page, row.ordinal]),
+  progressionControl: {
+    centerRiseArithmeticProgressionHits: centerRiseProgressions.map((row) => [row.page, row.ordinal]),
+    rightConsecutiveRampHits: consecutiveRightRamps.map((row) => [row.page, row.ordinal]),
   },
   orientationControl: transformHits,
   decision:
-    "After independent source selection of EPIPHANY SEEKS, the fixed residual H-inverse aligns with the visible 4|5|4 marker as [25,28,11,25] | [4,8,19,8,4] | [7,13,20,28]. The center is the state palindrome q,A,B,A,q. The right column rises by [6,7,8] = SEEKS6,THE7,DEVOTED8 and is the sole consecutive-rise right column among all 19 matched 8+5 receivers. These rules constrain nine of the thirteen H-inverse key coordinates; the left column remains without an independent serializer.",
+    "After independent source selection of EPIPHANY SEEKS, the fixed residual H-inverse aligns with the visible 4|5|4 marker as [25,28,11,25] | [4,8,19,8,4] | [7,13,20,28]. The center is q,A,B,A,q and has rises [4,11,18,25], the sole arithmetic-progression center-rise sequence among all 19 controls. The right rises [6,7,8] = SEEKS6,THE7,DEVOTED8. These two short progression rules constrain nine of thirteen H-inverse key coordinates; the left column remains without an independent serializer.",
 }, null, 2));
