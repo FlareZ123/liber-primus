@@ -225,6 +225,88 @@ assert.deepEqual(
 );
 assert.deepEqual(backwardLengthMatches, [adjacentDualRadix[1]]);
 
+
+// The immediately preceding p0 word is itself a state packet whose H-shell
+// coordinate sum equals GP0(NUMBERS). Charge this over the complete three-case
+// adjacent-dual-radix source family.
+const numbersPredecessor = p0[p0ByStart.get(189).index - 1];
+assert.equal(numbersPredecessor.index, 41);
+assert.equal(numbersPredecessor.start, 183);
+assert.equal(numbersPredecessor.end, 188);
+assert.deepEqual(numbersPredecessor.values, [0,20,7,12,16,25]);
+const numbersPredecessorShell = shell(numbersPredecessor.values);
+assert.deepEqual(numbersPredecessorShell, [4,25,4,7,24,19]);
+assert.deepEqual(numbersPredecessorShell, [
+  mod29(state.K * state.K),
+  mod29(state.p + state.K),
+  mod29(state.K * state.K),
+  mod29(state.g + state.K),
+  mod29(state.p + 1),
+  state.B,
+]);
+const numbersPredecessorSum = numbersPredecessorShell
+  .reduce((total, value) => total + value, 0);
+assert.equal(numbersPredecessorSum, gp0("NUMBERS"));
+assert.equal(numbersPredecessorSum, 83);
+
+let sixRuneWordCount = 0;
+const exactNumbersStatePackets = [];
+for (let partIndex = 0; partIndex < 55; partIndex += 1) {
+  const physicalPage = partIndex <= 49 ? partIndex : partIndex + 1;
+  for (const word of parsePage(parts[partIndex])) {
+    if (word.length !== 6) continue;
+    sixRuneWordCount += 1;
+    const wordShell = shell(word.values);
+    if (
+      wordShell.length === numbersPredecessorShell.length &&
+      wordShell.every((value, index) => value === numbersPredecessorShell[index])
+    ) {
+      exactNumbersStatePackets.push({
+        page: physicalPage,
+        word: word.index,
+        start: word.start,
+        values: word.values,
+        shell: wordShell,
+      });
+    }
+  }
+}
+assert.equal(sixRuneWordCount, 252);
+assert.deepEqual(exactNumbersStatePackets, [{
+  page: 0,
+  word: 41,
+  start: 183,
+  values: [0,20,7,12,16,25],
+  shell: [4,25,4,7,24,19],
+}]);
+
+const predecessorFamily = adjacentDualRadix.map((row) => {
+  const firstWord = p0ByStart.get(row.starts[0]);
+  const predecessor = p0[firstWord.index - 1];
+  const predecessorShell = shell(predecessor.values);
+  const predecessorSum = predecessorShell
+    .reduce((total, value) => total + value, 0);
+  return {
+    source: row.source,
+    gp0: row.address,
+    origin: row.origin,
+    pairStarts: row.starts,
+    predecessor: predecessor.index,
+    predecessorStart: predecessor.start,
+    predecessorShell,
+    predecessorSum,
+    matchesSourceGp0: predecessorSum === row.address,
+  };
+});
+assert.deepEqual(
+  predecessorFamily.map((row) => [row.source, row.predecessorSum, row.matchesSourceGp0]),
+  [
+    ["PRIMUS", 68, false],
+    ["NUMBERS", 83, true],
+    ["OPENPGP", 91, false],
+  ]
+);
+
 // Reconstruct the upstream ROAD receiver geometry.
 const roadGp = gp("ROAD");
 assert.deepEqual(roadGp, [4, 3, 24, 23]);
@@ -410,6 +492,15 @@ console.log(JSON.stringify({
     "source-selected plus post-location local-cycle bridge: authenticated NUMBERS is uniquely the only 2016 source word whose GP0 p50 dual-radix outputs form adjacent p0 word starts matching its two preceding GP lengths AND THEIR=[3,4]; the same [189,192] pair is independently reached by ROAD source geometry. ROAD source numbers select the unique zero bracket; its length sends p0 start192 to the seven-rune NUMBERS-shaped receiver at228. Its raw H shell is a unique DH-state packet and sums to75=GP0(READOUT). p50[75]=2v base60=177 is the center of the independently fixed whole READOUT packet166..188; its frozen DH boundary joins the split packet80..102, whose A/K selector yields the exact THE key immediately before the recovered ROAD receiver. The receiver values were exposed before the H/sum consequence was recognized, so this closes mechanism/state structure rather than proving NUMBERS plaintext.",
   numbersDirection: {
     sourceIndex: numbersIndex,
+    predecessor: {
+      word: numbersPredecessor.index,
+      start: numbersPredecessor.start,
+      values: numbersPredecessor.values,
+      shell: numbersPredecessorShell,
+      sum: numbersPredecessorSum,
+      exactPackets: exactNumbersStatePackets,
+      family: predecessorFamily,
+    },
     sourceContext: signedWords.slice(numbersIndex - 2, numbersIndex + 1),
     gp0: gp0("NUMBERS"),
     token: tableTokens[83],
