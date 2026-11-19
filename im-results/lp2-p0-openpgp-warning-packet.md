@@ -360,6 +360,14 @@ This is materially stronger than four unrelated English fits because the **recei
 
 The source clue also explains an otherwise suspicious detail: PATHS is the only candidate that requires crossing a printed boundary, and the authenticated warning literally contains **FALSE PATHS**.
 
+## Common-scheduler gate (Agent25)
+
+A frozen common-scheduler test now charges the four concatenated exact keys, and their published outside-in H shells, against the simplest source-native serializations already active in this route. It tests the exact 23-rune p28 DH line under forward/reverse cube-orbit and H/Hinv views; segment-reset affine and plaintext-autokey recurrences; source-role p50 constant-stride tapes; uniform walks across authenticated 2016 word features; and exact raw/reversed/first-difference reuse anywhere in LP2.
+
+Every charged family has **zero exact 23-symbol hits**: 36 p28 views, 841 affine recurrences, 48,778 autokey recurrences, 35,700 labeled p50 schedules, 5,376 signed-word schedules, and the exhaustive manuscript-copy scan. Windows Node22 run **44447425358** passes the deterministic SFT.
+
+This preserves the source-selected receiver and segmentation while narrowing the key-scheduling route. A new packet-level promotion now requires a source instruction outside these low-description scheduler families or a prospective untouched key/plaintext prediction. See [common-scheduler gate](lp2-p0-warning-common-scheduler-gate.md) and `sims/lp2_p0_warning_common_scheduler_gate_sft.cjs`.
+
 ## Scientific boundary
 
 Do **not** promote these four candidates to established unknown-page plaintext yet.
