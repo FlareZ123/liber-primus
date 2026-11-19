@@ -228,7 +228,7 @@ The integrated SFT is:
 sims/lp2_their_rise_h_rectangle_selector_sft.cjs
 ```
 
-It reconstructs THEIR RISE from the authenticated source positions, verifies the BE→PATHS rise, derives `H^-1([B,0])=[24,5]`, predicts p34 ciphertext `[12,23]`, checks the two old BE-state receivers, and charges the complete nine-word authenticated two-rune family.
+It reconstructs THEIR RISE from the authenticated source positions, verifies the BE→PATHS rise, derives `H^-1([B,0])=[24,5]`, predicts p34 ciphertext `[12,23]`, checks the two old BE-state receivers, and charges the complete nine-word authenticated two-rune family. The reconciled family, including the held-out p28 hit, passes Windows Node22 run **44461032220**.
 
 The historical ambiguity SFT remains useful for the older broad controls:
 
