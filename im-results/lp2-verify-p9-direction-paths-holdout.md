@@ -30,7 +30,7 @@ The independently authenticated low-digit operation therefore selects physical p
 
 ## P9 midpoint receiver
 
-Physical p9 has 268 runes and midpoint133.5. Its center-crossing word ends at134. The nearest complete `g=5` word begins immediately afterward:
+Physical p9 has 268 runes and midpoint133.5. Its center-crossing word ends at134. The first complete word strictly right of the midpoint begins immediately afterward and has the required `g=5` length:
 
 ```text
 word32 offsets135..139
@@ -102,7 +102,7 @@ The first returns to p28 through the established OUT(20) and FIND(42) states. Th
 Charge every p50 address under one rule:
 
 1. its low digit selects a physical page;
-2. on that page take the nearest complete midpoint word of state length `g=5`, requiring it to begin strictly after the midpoint;
+2. on that page take the first complete word strictly right of the midpoint and require its state length to be `g=5`;
 3. append its immediate outward successor;
 4. compare the raw packet sum with the full value of the same p50 cell.
 
@@ -171,7 +171,7 @@ VERIFY GP0=59
  -> full69 is held out
 
 p9 midpoint
- -> nearest complete g=5 word at135
+ -> first complete right-of-midpoint word at135, length g=5
  -> full69 selects outward successor
  -> raw six-rune packet totals69
  -> K=2 split gives signed indices29|40

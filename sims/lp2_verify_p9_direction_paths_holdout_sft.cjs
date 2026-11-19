@@ -226,22 +226,13 @@ for (let page = 0; page <= 55; page += 1) {
   const parsed = parsePhysical(physicalPart(page));
   if (!parsed.runes.length) continue;
   const mid = (parsed.runes.length - 1) / 2;
-  const gWords = parsed.words.filter((word) => word.values.length === state.g);
-  if (!gWords.length) continue;
-  const nearest = gWords.reduce((best, word) => {
-    const distance = Math.min(
-      Math.abs(word.start - mid),
-      Math.abs(word.end - mid)
-    );
-    return !best || distance < best.distance ? {word, distance} : best;
-  }, null);
-  assert.ok(nearest);
-  if (!(nearest.word.start > mid)) continue;
-  const boundaryAt = nearest.word.end + 1;
+  const rightWord = parsed.words.find((word) => word.start > mid);
+  if (!rightWord || rightWord.values.length !== state.g) continue;
+  const boundaryAt = rightWord.end + 1;
   if (boundaryAt >= parsed.runes.length) continue;
-  const packet = [...nearest.word.values, parsed.runes[boundaryAt]];
+  const packet = [...rightWord.values, parsed.runes[boundaryAt]];
   pageChecksums.set(page, {
-    start: nearest.word.start,
+    start: rightWord.start,
     packet,
     sum: packet.reduce((sum, value) => sum + value, 0),
   });

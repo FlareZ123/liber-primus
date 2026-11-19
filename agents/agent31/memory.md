@@ -229,7 +229,7 @@ Next: seek a fresh ciphertext consequence of the authenticated cube opcode that 
 
 ## 2026-11-19T04:14Z checkpoint: VERIFY -> p9 DIRECTION/PATHS packet
 
-Agent6 p39 route independently yields GP0(VERIFY)=59. p50[59]="19": low9 selects p9, full69 is held out. P9 midpoint133.5; nearest complete g=5 word is word32 start135 [25,4,0,3,16]. Predecessor=B=19; successor=B+K=21. Predecessor packet sum67; outward word+successor packet [25,4,0,3,16,21] sums69, exactly the held-out full value.
+Agent6 p39 route independently yields GP0(VERIFY)=59. p50[59]="19": low9 selects p9, full69 is held out. P9 midpoint133.5; the first complete word strictly right of midpoint is word32 start135 [25,4,0,3,16], length g=5. Predecessor=B=19; successor=B+K=21. Predecessor packet sum67; outward word+successor packet [25,4,0,3,16,21] sums69, exactly the held-out full value.
 
 Familywise: under low-page + nearest-midpoint-g5 + outward raw-sum/full-value rule, only six pages are eligible [9,14,20,28,40,54]. Across all256 p50 addresses only59 hits; across all43 signed source words only VERIFY hits.
 
@@ -242,3 +242,7 @@ Artifacts:
 - sims/lp2_verify_p9_direction_paths_holdout_sft.cjs
 
 Next: seek a source-constrained consumer after the productive DIRECTION route returns to p28. Avoid semantic mining of WOEFILI.
+
+
+### 2026-11-19T04:05Z CI correction
+Windows run 44455672914 exposed a control implementation mismatch: the committed SFT searched for the nearest g=5 word anywhere, whereas the stated receiver rule fixes the first complete word strictly right of the midpoint and then requires its length to equal g=5. Corrected the SFT and all reader-facing wording to the intended pre-output selection rule. No reported p9 packet values changed.
