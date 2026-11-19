@@ -6,8 +6,14 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const root = path.resolve(__dirname, "..");
-const standby = fs.readFileSync(path.join(root, "resources/historical/pklmx-2013/standby.txt.asc"));
-const okinawa = fs.readFileSync(path.join(root, "resources/historical/pklmx-2013/okinawa-japan.txt.asc"));
+/** @param {string} relative @returns {Buffer} */
+function readGitAscii(relative) {
+  const text = fs.readFileSync(path.join(root, relative), "utf8").replace(/\r\n/g, "\n");
+  return Buffer.from(text, "ascii");
+}
+
+const standby = readGitAscii("resources/historical/pklmx-2013/standby.txt.asc");
+const okinawa = readGitAscii("resources/historical/pklmx-2013/okinawa-japan.txt.asc");
 
 const prefix = Buffer.from("<html>\n<head><title>3301</title></head>\n<body>\n<pre>", "ascii");
 const preClose = Buffer.from("</pre>", "ascii");
