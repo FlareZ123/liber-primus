@@ -267,7 +267,44 @@ cipher [19,16,9,18]
 
 No other four-rune word anywhere in p0..p55 hits the target family under this fixed key.
 
-This empirical manuscript control is independent of the synthetic 29^4 null and makes the selected receiver exceptional under the exact source-derived inverse.
+This is fixed-key uniqueness only: it does not establish that the 686-member key grammar is unique across the manuscript. The complete key-by-manuscript cross-product below is the required familywise control.
+
+## Full key-by-manuscript cross-product and blind BE successor (Agent40)
+
+The previous controls separately tested all 686 keys on the selected YOU receiver and the exact selected key on all 524 four-rune words. Those are not the full joint family. The new SFT charges every admitted key against every four-rune word across all unknown pages:
+
+~~~text
+524 complete four-rune words × 686 DH-key configurations
+= 359,464 word/key combinations
+~~~
+
+The authenticated four-rune target vocabulary remains the same nine distinct GP sequences. The complete cross-product has **three** hits, at three distinct ciphertext locations:
+
+| LP2 page | word index | rune offset | authenticated target | key expression |
+|---:|---:|---:|---|---|
+| p0 | 32 | 141 | WILL | x=a, H(A,B), subtraction → [12,6,18,27] |
+| p2 | 28 | 150 | ROAD | x=B, H(g,a), subtraction → [9,19,28,11] |
+| p47 | 58 | 270 | LUCK | x=K, H(g,b), subtraction → [4,2,19,20] |
+
+Thus the key grammar is **not globally unique**: it generates two additional authenticated-word hits when every key is tried against every four-rune word. The exact WILL key still hits only p0 word32 among the 524 words, and the combined source selector still has only one authenticated next-word key hit. But the familywise cross-product is broad enough that key-grammar uniqueness alone cannot support plaintext promotion.
+
+The full source-word/receiver census has nine matching-length p0 receiver rows across all 42 adjacent signed-word pairs and four base59/base60 × zero/one modes. Only YOU → WILL also satisfies the positive digit-letter count condition; only that row decrypts to its authenticated next word under the 686-key family. Other matching-length rows include GOOD → LUCK at p0 offset39 and FALSE → PATHS at p0 offset141, but neither satisfies the literal-count condition or yields the corresponding next word under the frozen key family.
+
+**Blind BE successor fails as a value-changing prediction.** Keep the same GP0 source address, base60/zero interpretation, and exact four-symbol key:
+
+~~~text
+GP0(BE)=35
+p50[35]=0d
+base60/zero = p0 offset39
+p0 word at 39..42 has 4 GP runes
+next authenticated word FOUND has 5 GP runes
+~~~
+
+The length gate therefore fails. Applying the frozen WILL key [12,6,18,27] to that four-rune word produces AEJLF, not an authenticated target. The already observed two-hop WILL → BE path reaches p0 word 117..121 of length5, matching FOUND's length, but no value-changing inverse or plaintext is recovered there. This remains navigation only.
+
+**Decision:** retain WILL as a source-constrained crib/candidate with an exact local inverse and a unique compound receiver selector. Do not promote it to established plaintext. Retire the 2L/A1Z26 cross-check and the 686-key grammar as an established key source; they remain unauthenticated supporting hypotheses. The p50 numeric offset interpretation remains local to this candidate and does not become a manuscript-wide output rule.
+
+Reproduction: run the new SFT with node sims/agent40_will_familywise_blind_successor_sft.cjs. GitHub Actions PASS: [run 44441856115](https://github.com/FlareZ123/liber-primus/actions/runs/44441856115).
 
 ## Exact GP29 ciphertext null
 
@@ -328,28 +365,26 @@ So **WILL -> BE** is the sole base60 two-hop adjacent-word edge in the complete 
 
 ## Scientific boundary
 
-This result is substantially stronger than the earlier packet-dependent WILL note and supersedes that interpretation.
+The combined YOU/2L receiver selector and the exact WILL inverse remain a strong local candidate, but the full familywise and blind-successor controls narrow the claim.
 
-Its strongest points are:
+Established computationally:
 
-- authenticated YOU supplies the p50 address;
-- the original cell's literal token \`2L\` predicts the next signed word WILL;
-- the same token uniquely selects base60/zero among the four charged numeric receiver modes when complete-word geometry and word length are required;
-- p28 independently supplies the complete DH23 state;
-- the source-state key gives exact WILL and exact re-encryption;
-- the full DH-state family has one target hit;
-- the exact key hits an authenticated target at exactly one of 524 four-rune words across all unsolved LP2 pages;
-- the complete GP29 ciphertext null shows the selected ciphertext lies in the roughly 0.86% covered subset;
-- recovered WILL prospectively predicts the next authenticated word BE through the p50 graph.
+- authenticated YOU supplies GP0 address30 and the literal p50 token 2L;
+- across all 42 adjacent signed-word pairs, both live radices and both origins, the complete-word-start, next-word-length and literal-count conjunction selects only p0 word32 at offset141;
+- p28 line6 independently supplies the DH23 state, and the frozen source-state key [12,6,18,27] subtracts from the selected ciphertext to WILL with exact forward replay;
+- the exact fixed key hits only one of 524 complete four-rune words;
+- the 686-key grammar has one hit on the selected YOU receiver, but its full 686 × 524 manuscript cross-product yields three authenticated-target hits: WILL, ROAD and LUCK;
+- the direct BE successor fails the same-length gate and the frozen key outputs AEJLF; the two-hop WILL → BE → FOUND path is navigation only, with no FOUND plaintext or key recovered.
 
-The remaining uncertainty is local intent. No recovered first-party instruction explicitly says to read a token such as \`2L\` simultaneously as a letter-count clue and a base60 receiver. The finite source family sharply constrains that interpretation, while the mechanism still requires independent reproduction or another untouched continuation before promotion to authoritative plaintext.
+The remaining uncertainty is mechanistic and authorial. No recovered first-party instruction explicitly says to read 2L simultaneously as a letter-count clue and a base60 receiver, or to assemble the key as [K*a,a,H(A,B)]. The A1Z26 reading of 2L is an unauthenticated cross-check, not an established key source. The key grammar is not globally unique, and its blind BE successor does not decrypt. Therefore **WILL remains a source-constrained crib/candidate, not established unknown-page plaintext**. Do not generalize p50 numerals to LP rune offsets.
 
 ## Reproduction
 
-Run:
+Run both SFTs:
 
-\`\`\`text
+~~~text
 node sims/lp2_p0_you_will_packet_dh_inverse_sft.cjs
-\`\`\`
+node sims/agent40_will_familywise_blind_successor_sft.cjs
+~~~
 
-The SFT uses only committed original/source artifacts. It exhausts the adjacent signed-word selector family, reconstructs the p28 DH23 tuple, performs the WILL inverse and forward encryption, charges all 686 DH-state keys, enumerates all 707,281 four-rune ciphertexts for the exact null, and audits the WILL -> BE table-walk holdout.
+The original SFT exhausts the adjacent signed-word selector family, reconstructs the p28 DH23 tuple, performs the WILL inverse and forward encryption, charges all 686 DH-state keys on the selected receiver, enumerates all 707,281 four-rune ciphertexts for the exact null, and audits the WILL → BE table-walk holdout. The Agent40 SFT additionally charges all 686 keys against all 524 four-rune words and tests the fixed BE successor without changing the selector or key grammar.
