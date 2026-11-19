@@ -1,9 +1,25 @@
 # p0 red heading: source-constrained DH interpretations and the missing GP29 consumer
 
-****Status (17 November 2026): no LP2 plaintext recovered; the red-only K=3 arithmetic remains provisional, and its most direct group-orbit additive GP29 consumer is now rejected.**
+**Status update (19 November 2026): no LP2 body plaintext is recovered. The red-only K=3 arithmetic now has an independent p32 source-selected handoff predicting its ordered DH exponents `[2,8]`; its missing shared-secret-to-GP29 consumer remains unresolved, and the previously tested direct consumers remain rejected.**
 
 **Corrected original-image adjudication (16 November 2026):** Original p0 has **two RED heading words**, GP lengths **8 and 5**, with a SMALL red ordinary word dot between them, and then the LARGE RED thirteen-dot title marker **after all thirteen red runes at offset13**. The first black body rune is `TH` at offset13. The earlier same-day claim of red8/marker8/black5 was an [incorrect original-image interpretation and is retracted](lp2-p0-red13-13dot-blackbody-original-source-adjudication.md). The historical derived red13 and marker13 metadata were correct. All arithmetic using the first thirteen original GP rune values is unchanged.
 
+
+## Independent p32 prediction of the p0 DH exponent pair (Agent4, 19 November)
+
+The later YOU33 repair supplies an out-of-sample prediction for this p0 construction. Physical p32 contains exactly 121 runes and is already source-selected by the authenticated numbered route. Treat ordinal33 as the exact third 11-rune boundary; the ordered pair straddling it is:
+
+```text
+[2,8] = [K,A].
+```
+
+The boundary row begins with the manuscript-unique literal GP sequence `HOME`. Under the already established zero-based source-index convention and ordinary row-major 11×11 reading, the pair is also coordinate `(2,8)`, selecting p32 offset30 whose rune value is `F=0`. The numeric output therefore selects page0, independently reinforced by HOME.
+
+Only after that navigation is fixed, open p0's two visible red title words. Their GP-prime sums modulo the authenticated 2013 group are `2` and `16`; base-5 discrete logs are **2 and8**, exactly the ordered pair predicted by p32. Under the canonical unsolved-word parser there are 19 adjacent 8|5 word pairs, and the p0 red title is the only one with ordered residues `(2,16)`, equivalently ordered logs `(2,8)`.
+
+This materially strengthens the source-to-operand interpretation: p32 predicts which exponents the p0 red operands should encode before their arithmetic is inspected. It still does not tell us how to serialize the resulting shared secret3 into a GP29 keystream or cipher state. The direct K=3 consumers rejected below stay rejected.
+
+Reproduce the cross-page handoff with `node sims/lp2_p32_home_p0_dh23_handoff_sft.cjs`; see `im-results/lp2-p32-home-p0-dh23-handoff.md`.
 
 ## New red-only word-pair DH interpretation (K=3; candidate, not a solution)
 
@@ -22,7 +38,7 @@ K=B^2=16^2\bmod23=3=A^8\bmod23.
 \]
 The visible word-length difference is independently \(8-5=3\). The final rune of the second word is GP index 5 (C), matching the source-supplied generator 5; this is a consistency check, not an input used to choose the generator.
 
-The original transcription contains 2,896 parsed words and 19 adjacent 8|5 pairs. Only the actual p0 heading has residues \((2,16)\) and shared secret 3 among those 19 pairs. Across all 2,895 adjacent pairs, eight have residues \((2,16)\), so this is a finite source-window specificity check, **not** a p-value or proof of author intent. The wordwise-prime-sum-as-public-share interpretation remains the weakest premise: the signed 2013 protocol authenticates DH arithmetic, but does not explicitly tell a solver to sum the two LP2 red words.
+The original transcription contains 2,896 parsed words and 19 adjacent 8|5 pairs. Only the actual p0 heading has residues \((2,16)\) and shared secret 3 among those 19 pairs. Across all 2,895 adjacent pairs, eight have residues \((2,16)\), so this is a finite source-window specificity check, **not** a p-value or proof of author intent. The wordwise-prime-sum-as-public-share operation remains inferred, but the p32 handoff now independently predicts the ordered exponent pair `[2,8]` and navigates to p0 before the red words are opened. The signed 2013 protocol authenticates the DH arithmetic; p32 materially strengthens operand selection without yet specifying the exact sum-to-share operation as a general rule.
 
 This is nevertheless a new, checkable **red-only key prediction**: \(K=3\), fixed before looking at the black body.
 
@@ -209,4 +225,4 @@ The 4 February 2015 participant observation applies a fake preceding F, consecut
 
 Run \`node sims/p0_red_wordpair_dh23_key_sft.cjs\` for the new red-only K=3 derivation, full-corpus 8|5-pair specificity scan, direct GP29 consumer tests, first-rune p56 F-rule contradiction, synthetic positive control, and 2015 40-event comparator. Run \`node sims/p0_dh23_red_heading_candidate.cjs\` for the separate K=18 full-heading/body-assisted interpretation and its controls.
 
-**Research decision:** no unknown plaintext is recovered. Retain K=3 as a provisional red-only arithmetic candidate and K=18 as a separate full-heading/body-assisted candidate; they are competing interpretations of the same heading, not independent confirmations or layers. The K=3 wordwise prime-sum-as-DH-share premise remains inferred. Constant shifts, direct p56 prime-totient transfer, and the simplest group-native additive expansion \(K_i=3\cdot5^i\bmod23\) over p1–55 all fail; the exact 22×577 length alignment does not validate the GP29 mapping. K=18's previously tested direct consumers also fail. No source specifies a KDF or GP29 serialization from the 2013 DH scalar to the LP2 state. Do not expand into arbitrary KDF/PRNG/cipher searches without a new original clue. The independent 2015 40-event difference register remains separate and is not explained by either DH interpretation.
+**Research decision:** no unknown p0 body plaintext is recovered. Retain K=3 as the stronger red-only state candidate because p32 now independently predicts its ordered exponents `[2,8]` and numerically routes HOME/F0 to p0. Retain K=18 as a separate full-heading/body-assisted candidate; it is a competing interpretation of the same heading, not an additional confirmation or layer. The K=3 wordwise prime-sum-as-DH-share premise remains inferred. Constant shifts, direct p56 prime-totient transfer, and the simplest group-native additive expansion \(K_i=3\cdot5^i\bmod23\) over p1–55 all fail; the exact 22×577 length alignment does not validate the GP29 mapping. K=18's previously tested direct consumers also fail. No source specifies a KDF or GP29 serialization from the 2013 DH scalar to the LP2 state. Do not expand into arbitrary KDF/PRNG/cipher searches without a new original clue. The independent 2015 40-event difference register remains separate and is not explained by either DH interpretation.
