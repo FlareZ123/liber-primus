@@ -49,3 +49,19 @@ Equivalently, the predicted raw ciphertext difference is the exact inverse-H ima
 
 - **Hit:** preserve a source-selected two-receiver key-state transition and test whether the same fixed differential rule predicts another duplicated authenticated target or independently selected sibling.
 - **Miss:** reject this exact shared differential-shell interpretation. Do not rescue it with orientation/sign variants without a new first-party selector.
+
+## Revealed result
+
+After the precommit above was pushed and verified, the two frozen receivers were opened:
+
+```text
+p11 start49  C11 = [11,14]
+p21 start170 C21 = [24,1]
+
+D = C21 - C11 mod29 = [13,16]
+H(D) = [26,0]
+```
+
+The sealed prediction was `[10,5]`, so it **fails**.
+
+Per the precommitted fork, this exact shared differential-shell interpretation is rejected. No sign reversal, receiver reversal, H inverse, component swap, or alternate scalar target was tried as a rescue.
