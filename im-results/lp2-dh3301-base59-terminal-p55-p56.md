@@ -46,7 +46,7 @@ The selected pair lands exactly on the terminal transition between the unresolve
 - **p56** has85 ciphertext runes and is independently solved as **AN END**. Its instruction says that within the deep web there exists a page hashing to the printed 64-byte value and that every pilgrim must seek it.
 - **p57** follows immediately in cleartext as **PARABLE**.
 
-This invocation also established an independent role for p55 before composing the 3301 receiver: the p55-directed physical-line H grammar reconstructs the complete 43-word authenticated 2016 signed-source register at zero-based indices0..42. The selected pair therefore joins a source-register/navigation carrier at p55 directly to the manuscript's solved destination instruction at p56.
+A separate p55/p24 line-wrap H construction can reproduce the 43-word signed message under a whole+prefix+suffix H-set/maximal-run aggregation, but the operation-selection audit finds no first-party or historical selector for that aggregation or its iterative upper closure. Treat it as conditional structural correspondence only; it is not an authenticated p55 carrier and is not part of the base59 page-pair proof. The page-pair result stands on the independently fixed base59 digits and the physical terminal transition.
 
 The signed 2016 source itself visibly repeats the number **3301**, giving the same constant a first-party post-publication occurrence independent of the p28/p27 reconstruction.
 
@@ -80,7 +80,7 @@ The strongest current handoff is therefore:
 ```text
 p28/p27 -> 3QO = 3301
 fixed base59 -> p55, p56
-p55 -> complete signed-source word register
+p55 -> last unresolved physical page; line-wrap H register remains conditional
 p56 -> AN END / deep-web hash destination instruction
 ```
 

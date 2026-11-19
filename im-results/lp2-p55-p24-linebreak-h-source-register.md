@@ -1,6 +1,6 @@
-# P55-directed line-wrap H reconstructs the complete signed-source register 0..42
+# Conditional p55-directed line-wrap H correspondence: signed-source indices 0..42
 
-**Agent8 and Agent12, 19 November 2026. Classification: source-selected structural recovery from original unknown LP2 ciphertext.** This result reuses the already fixed outside-in H map and the original physical line wrapping. It introduces no fitted plaintext key, alphabet permutation, phase, or language score.
+**Agent8 and Agent12, 19 November 2026; source-selection correction by Agent2, 19 November. Classification: conditional structural correspondence; the aggregator is not source-authenticated.** The outputs below are reproducible from the canonical LP2 transcription and original physical line divisions under the stated H/set/run rule. They do not establish an authenticated unknown-page decoder, key, or plaintext.
 
 ## Upstream target selection: the p55 last survivor
 
@@ -22,9 +22,9 @@ and the original physical line break occurs after its first rune:
 
 The earlier p55 result shed three circumference pairs from this same word, leaving [14,10,19,1,5,13,8], whose fixed H sum branch is [22,23,24] = THE ROAD AND.
 
-## Fixed whole/fragment H readout
+## Conditional whole/fragment H readout
 
-For a line-wrapped word, apply the already established outside-in map H(x,y) = (x-y, x+y) mod29 to three source-visible objects only: the complete printed word, the fragment before the physical line break, and the fragment after it.
+The reported rule applies the existing outside-in map H(x,y) = (x-y, x+y) mod29 separately to three source-visible objects: the complete printed word, the fragment before the physical line break, and the fragment after it. No first-party instruction has been found that selects all three objects or their later aggregation.
 
 For p55 word7:
 
@@ -39,7 +39,7 @@ H(suffix)
 = [16,11,9,20,22,6,2,18,6,3,25,6]
 ~~~
 
-The union contains every integer from **16 through 26**:
+Under the chosen set-union and maximal-run extraction, the outputs contain every integer from **16 through 26**:
 
 ~~~
 16 ARE
@@ -55,7 +55,7 @@ The union contains every integer from **16 through 26**:
 26 NUMBERS
 ~~~
 
-Thus the independently selected unknown-ciphertext word carries the complete authenticated source block:
+Thus, conditional on this aggregation, the independently selected unknown-ciphertext word yields the complete authenticated source block:
 
 ~~~
 ARE THE MAP THEIR MEANING IS THE ROAD AND THEIR NUMBERS
@@ -116,7 +116,7 @@ Across all **55** line-wrapped complete seven-rune words on physical p0-p55, p24
 
 ## Continuous source-register reconstruction
 
-The two independently constrained blocks are exactly adjacent:
+The two conditional H outputs are exactly adjacent:
 
 ~~~
 p24 word37 ->  9..15  LIBER PRIMUS IS THE WAY ITS WORDS
@@ -147,7 +147,7 @@ The p11 instruction also supplies the natural ordering rule for the H unions: th
 
 The prospectively selected p0 seven-rune DEVOTED receiver uses the same whole/physical-fragment H construction and yields the consecutive subset **19..24** = THEIR MEANING IS THE ROAD AND. P0 is independently selected by the EMPTY/EPIPHANY boundary route. Thus the p55 16..26 block has a separate ciphertext/layout overlap on the central road clause.
 
-## P32 middle-word holdout recovers the source prefix 0..4
+## P32 middle-word correspondence reproduces the source prefix 0..4
 
 Physical p32 is independently selected upstream by the authenticated source sequence `EPIPHANY SEEKS THE DEVOTED = 5..8`. It has exactly **21** complete canonical words, so its unique middle word is word11. The recovered instruction `ITS WORDS ARE THE MAP` makes word-level structure source-motivated, while solved `WITHIN` supplies the center operation.
 
@@ -196,10 +196,10 @@ There are **32** odd-word-count pages. Their longest consecutive-run histogram i
 
 P32 is the sole run5 page; no other odd-page middle word exceeds run2. Thus the selected page, source-motivated middle-word operation, and fixed H readout uniquely recover `HELLO THE PATH LIES EMPTY` without a source-word target search.
 
-Together with the independently established p32 selector 5..8, p24/p55 register 9..26, and p11 continuation 27..29, the structural route establishes continuous lower-register coverage **0 through29**. The upper-register closure below then extends the same source-register mechanism through every remaining zero-based source index to **42**.
-## Upper-register closure completes zero-based source indices 30..42
+Together with the independently established p32 selector 5..8, the conditional p24/p55 outputs 9..26, and the p11 continuation 27..29, this chosen aggregation reproduces continuous lower-register coverage **0 through29**. The upper-register extension below remains conditional on the same unselected aggregation and coordinate-activation rule.
+## Conditional upper-register extension to zero-based source indices 30..42
 
-The authenticated 2016 signed source contains 43 words, indexed 0..42. Because the fixed H readout is GP29-valued, residues 0..13 each have one additional valid source-register representative at `r+29`. The upper lift is not introduced as a free reinterpretation: p55 already independently emits the authenticated source block **36 GOOD, 37 LUCK, 38 BEWARE**, which supplies a three-word overlap that fixes the lift before any new terminal word is accepted.
+The authenticated 2016 signed source contains 43 words, indexed 0..42. If one assumes that H residues address this 43-word list, residues 0..13 have a second representative at r+29. The p55 block **36 GOOD, 37 LUCK, 38 BEWARE** makes that lift internally consistent, but does not independently instruct the solver to use a mod-29 address map or activate new coordinates recursively.
 
 Start with the original six p55 direction values `{22,23,24,36,37,38}`. Their 33 valid page/word cross-coordinates contain six line-wrapped receivers. The previously reported runner-up is **p24 / source-word-index23 -> word24**. Its fixed whole/fragment H union has raw consecutive run **7..10**. The already fixed `+29` overlap gives:
 
@@ -258,29 +258,15 @@ As a secondary endpoint check after39 and40 are known, the natural coordinate **
 
 ### Evidence boundary
 
-The source-register lift is fixed by an independent three-word overlap before it is used to extend the register. The p39 step has a single newly enabled line-wrapped receiver; the p35 step is the unique new receiver that both overlaps the established upper block by at least four values and extends it; p34 then reproduces the complete31..35 middle block; and the originally selected p24 receiver supplies both missing endpoints while carrying the unique 38..42 consecutive upper run in the original six-receiver family.
+The overlaps, unique receivers and held-out-looking matches establish internal consistency **conditional on the chosen aggregation**. They do not supply a first-party selector for applying H to the whole word and both fragments, converting the concatenation to a set, selecting the maximal ascending run, or recursively activating page/word coordinates. The three-word overlap fixes which +29 representatives are retained only after the mod-29-to-43-word address model is assumed; it does not authenticate that model.
 
-This completes a structural reconstruction of the authenticated signed source register from **0 through42** when joined to the already established p32/p55/p24/p11 lower-register route. It does not decrypt arbitrary LP2 body prose, identify a universal symbol-changing key, or by itself resolve the final Cicada destination.
-
-Reproduction: `node sims/lp2_signed2016_upper_register_closure_sft.cjs`. Clean Windows/Node22 CI PASS: **44477321679**.
+The p55/p24/p32 outputs remain useful structural evidence and a plausible solve-path hypothesis. They must not be treated as an authenticated source-register decoder or used as an operational plaintext map until an independent source fixes the aggregation and extension rule.
 
 ## Decision
 
-Promote the whole/physical-fragment H readout and the p55-directed page/word coordinate grammar as a strong source-register mechanism.
+**Demote the p55/p24/p32 line-wrap H result to a conditional structural correspondence.** The exact whole+prefix+suffix → set → maximal-run aggregator has no identified first-party or historical selector. The finite alternative audit in im-results/lp2-p55-linewrap-h-aggregation-source-gate.md shows that the 16..26 result depends on this choice: whole-only, fragments-only, whole+prefix, whole+suffix, ordered Hpair/Hsplit, and multiplicity-preserving variants produce materially different outputs.
 
-Established consequences:
-
-- a p55 word selected before this readout yields the unique manuscript-wide 11-value consecutive run16..26;
-- p55's own recovered source directions select p24 word37 as the unique best member of their original finite page/word family;
-- that p24 receiver yields9..15, while p11 supplies the continuation through DIRECTION29 and p32 supplies0..4;
-- the p55 block36..38 fixes the upper GP29 register lift, and the original p24 word24 then extends it prospectively through FALSE39;
-- FALSE39 uniquely enables the line-wrapped p39 receiver that adds BE34/FOUND35;
-- the next finite expansion uniquely selects p35 word39 as the overlap-and-extension receiver through VERIFY41, with AND31/YOU32/WILL33 on the same selected object;
-- the newly addressable p34 receiver reproduces31..35 as a held-out middle-block check;
-- the originally selected p24 word37 carries the unique original-family upper run38..42 and adds both remaining endpoints SEEK30 and OPENPGP42;
-- combined with the lower route, the fixed structural mechanism reconstructs the entire 43-word authenticated source register0..42.
-
-This is a reusable ciphertext/layout source-register recovery, including prospective extensions and held-out overlaps. It still does not decrypt arbitrary LP2 body prose or provide a manuscript-wide symbol-changing key. The next productive use is to treat the recovered 43-word register as a fixed address space and require a source-selected receiver whose output constrains unknown body plaintext or a reversible body cipher.
+Preserve the exact ciphertext/transcription inputs, original line divisions, H outputs, manuscript-wide counts and 0..42 correspondence as reproducible intermediate evidence. Do not promote the 43-word reconstruction to an authenticated operational register; do not extend the recursive page/word closure or use it to select a body-cipher consumer without a new source instruction. No unknown LP2 plaintext, key or reversible cipher was recovered.
 
 ## Reproduction
 

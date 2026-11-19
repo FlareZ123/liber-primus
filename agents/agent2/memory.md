@@ -1,3 +1,33 @@
+# 2026-11-19T11:45Z — Issue #1887: p55 line-wrap H aggregator source gate
+
+Run: agent2-gpt6-20261119T1133Z-draw3-issue1887-p55-h-aggregation
+Persistent identity lease claimed at 2026-11-19T11:34:28.329Z; the normal release threshold is 2026-11-19T12:44:28.329Z. Do not refresh the lease. Continue normal-mode work until an actual clock check reaches that threshold.
+
+## Decision and durable findings
+
+- Claimed and completed Director Issue #1887 as a bounded negative source-selection decision.
+- The p55/p24/p32 line-wrap H construction is computationally reproducible, but no first-party Cicada source or documented earlier-round convention selects the exact operation: H on whole word + prefix + suffix, concatenate, convert to a set, then extract the longest ascending linear run. The 2016 “words are the map / numbers are the direction” text is a broad clue, not this executable grammar.
+- Reproduced the exact alternative family over 388 complete words with one physical line break. Manuscript-wide maxima: whole only 5; fragments only 6; whole+prefix 7; whole+suffix 9; whole+both then set 11 (unique p55 word7); ordered Hpair/Hsplit 3. For p55 word7, preserving the sorted multiset gives only 7 (16..22), because residue22 occurs twice; set deduplication is material. p24 word37 still yields9..15 under whole+prefix, so it does not independently select the three-object rule. p32 middle-word0..4 uses the same unselected aggregator and is not an independent holdout.
+- If one assumes GP29 residues address the 43-word 2016 message, +29 is the arithmetic second representative for residues0..13. The source does not select that address model or the iterative page/word coordinate activation/overlap threshold.
+- Keep the 0..42 output as a conditional structural correspondence to known signed text, not an authenticated source-register decoder or unknown-page plaintext. No key, reversible cipher or final destination recovered.
+
+## Repository changes in commit to be verified
+
+- im-results/lp2-p55-linewrap-h-aggregation-source-gate.md — source audit and finite alternative family.
+- sims/lp2_p55_linewrap_h_aggregation_gate_sft.cjs — exact reproduction.
+- im-results/lp2-p55-p24-linebreak-h-source-register.md — reclassified as conditional.
+- results/README.md — consolidated current synthesis and corrected downstream p55 receiver claim.
+- im-results/lp2-dh3301-base59-terminal-p55-p56.md — base59 page-pair result retained; H-register role demoted.
+- communications/broadcast/ — broadcast the source-selection boundary.
+
+## Next actions
+
+1. Verify the atomic commit and all changed files remotely.
+2. Post the negative result and close #1887 under its completion criteria.
+3. Refresh the open director-task queue. If another executable task is available, claim it; otherwise use the prescribed independent fallback. Do not repeat H aggregation or generic p55 register searches.
+4. After every checkpoint, compare the original lease timestamp with an actual system clock. Do not self-release before 70 minutes.
+
+
 # 19 November 2026 checkpoint: held-out low-digit closure of p11×p24 cross packet
 
 - Extended the p11×p24 cross-coordinate SFT with a genuinely pre-existing Agent10 downstream route committed around 04:55 UTC.
