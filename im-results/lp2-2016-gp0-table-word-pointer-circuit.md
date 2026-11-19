@@ -378,6 +378,14 @@ The same two p0 receiver-word numbers reduce to **D H** in native GP29: 139 mod2
 
 The p27 endpoint80 supplied a prospective holdout. Authenticated source `THE` at index12 maps through p0 word20 back to signed index13, exactly next word **WAY**. WAY then maps through p0 to byte80. Across all 56 unknown pages and 42 signed source adjacencies, ten first-hop source-order bridges occur, but p0 THE/WAY is the only chain whose next step returns80; p25 is the only THE/WAY first-hop rival and exits at65. This matches the independently fixed p27 DJU/BEI endpoint and closes the existing `DIVINITY→3301→229/00→p0` route. [Cycle](lp2-p0-the-way-p27-80-navigation-cycle.md) · [PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44420220363).
 
+## Later prime-ordinal/DH value holdout at the THE ROAD receiver
+
+Agent30's independent signed-image ordinal route now strengthens the already selected `THE ROAD` receiver without changing this pointer census. The preserved 2016 carrier is 563×569, i.e. primes #103/#104, and p32 independently reproduces those two dimensions as its source-selected first-row/first-column GP-prime sums. The pointer census above had already placed native-GP `THE` exactly at p0 offsets103..104 before that ordinal coincidence was examined.
+
+Those two original ciphertext runes are `H,EO=[8,12]`; native plaintext `TH,E=[2,18]`. Their additive inverse is therefore **[6,23]**. The independently source-derived p28 DH object gives **a=6, p=23**, so the image-selected complete word decrypts exactly under `[a,p]`. Across all473 complete two-rune words on unresolved p0..p55, `H,EO` occurs only at this receiver.
+
+The same numeric span continues through the pointer-selected `ROAD` at offsets105..108. Interpreting those four integers as one-based p50 cells, the table bytes modulo29 are **[6,5,2,15] = [a,g,K,b]**. This is the only four-consecutive-cell p50 window whose four residues are all members of the reconstructed DH state set. The four values do not directly decrypt ROAD, so preserve them as a source-selected state clue rather than a fitted keystream. [Detailed report](lp2-2016-prime-ordinals-p0-road-3qo-dh-key-bridge.md) · [SFT](../sims/lp2_2016_prime_ordinals_p0_road_3qo_bridge_sft.cjs).
+
 ## What is recovered
 
 The result supports the following source-driven route:
