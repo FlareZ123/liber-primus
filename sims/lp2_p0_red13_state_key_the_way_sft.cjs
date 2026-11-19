@@ -212,6 +212,23 @@ assert.equal(signedWords[1].text, "THE");
 assert.equal(signedWords[13].text, "WAY");
 assert.equal(signedWords[5].text, "EPIPHANY");
 assert.equal(signedWords[6].text, "SEEKS");
+const signedAdjacent8x5 = [];
+for (let index = 0; index + 1 < signedWords.length; index += 1) {
+  if (
+    signedWords[index].values.length === 8
+    && signedWords[index + 1].values.length === 5
+  ) {
+    signedAdjacent8x5.push({
+      index,
+      phrase: signedWords[index].text + " " + signedWords[index + 1].text,
+    });
+  }
+}
+assert.deepEqual(signedAdjacent8x5, [{
+  index: 5,
+  phrase: "EPIPHANY SEEKS",
+}]);
+
 
 const plainWord1 = signedWords[5].values;
 const plainWord2 = signedWords[6].values;
