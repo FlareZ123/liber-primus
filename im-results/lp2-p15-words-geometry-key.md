@@ -133,6 +133,8 @@ P15 has a compact five-number page summary:
 4. numerical-square column count = **4**;
 5. red-title length difference 11−9 = **2**.
 
+The final coordinate is independently duplicated by an already established p15 construction: the highlighted red cell is `3299 = 3301−2`, so the same page separately gives `3301−3299=2=K`.
+
 This gives:
 
 ```text
