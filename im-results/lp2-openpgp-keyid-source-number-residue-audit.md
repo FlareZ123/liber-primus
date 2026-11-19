@@ -99,6 +99,41 @@ Hence even this favorable forced-source restriction leaves **two** equally minim
 
 Choosing `g` over the literal source-visible `5` would be an extra rule. The current sources do not supply that rule.
 
+## Exact order-free random-key-ID control
+
+There is a stronger control that does not use the discovered eight-coordinate ordering or the observed duplicate multiplicities.
+
+Define the six-value source set from two independently interpretable classes:
+
+```text
+DH group constants:        {p, p-1, g} = {23,22,5}
+historical residues mod p: {1033,3299,3301} -> {21,10,12}
+combined set S = {5,10,12,21,22,23}
+```
+
+Now enumerate the entire ordinary 32-bit key-ID space. Each key ID is eight hexadecimal nibbles, so there are exactly `16^8 = 2^32` possibilities. For each ID:
+
+1. apply the same fixed outside-in H to its four nibble pairs;
+2. require all eight H outputs to lie in `S`;
+3. require the eight outputs collectively to cover all six members of `S`;
+4. do **not** require the observed coordinate order or duplicate pattern.
+
+A pairwise bitmask dynamic program counts exactly:
+
+```text
+3,456 / 4,294,967,296
+= 8.046627044677734e-7
+≈ 1 in 1,242,757
+```
+
+random 32-bit IDs satisfying that order-free set condition.
+
+The observed `7A35090F` shell is one of them.
+
+This is a conditional rarity calculation, not a discovery-adjusted proof of authorship. The combined six-value set was recognized after substantial study of the key ID, DH state and historical Cicada numbers, and an author could in principle vanity-search a 32-bit key suffix. The calculation does show that the source-number/group-constant closure is far more restrictive than merely finding three residues somewhere in eight random GP29 values.
+
+It still does not solve the template-selection problem: the set condition says **which values** populate the shell, while #1786 requires a source rule for **which semantic label occupies each coordinate** before opening a receiver.
+
 ## Decision
 
 The historical numbers are a genuine new compression of the OpenPGP shell and should be preserved. They do **not** overturn #1786.
