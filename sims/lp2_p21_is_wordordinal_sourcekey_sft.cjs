@@ -298,6 +298,35 @@ assert.ok(
   )
 );
 
+
+const p40 = receivers.find((row) => row.sourceIndex === 40);
+assert.ok(p40);
+assert.equal(p40.ordinal0, 16);
+assert.equal(p40.start, 71);
+assert.equal(signedWords[16], "ARE");
+assert.equal(gp("ARE").length, 3);
+
+const p16Word16 = pageWords(16)[16];
+assert.deepEqual(p16Word16, {
+  page: 16,
+  ordinal0: 16,
+  start: 76,
+  values: [1, 27],
+});
+assert.equal(p16Word16.values.length, 2);
+assert.notEqual(p16Word16.values.length, gp("ARE").length);
+
+const prospectiveOrdinalPointerGate = {
+  sourcePage: 40,
+  sourceTarget: "PATHS",
+  receiverOrdinal: p40.ordinal0,
+  destinationPage: 16,
+  destinationTarget: "ARE",
+  destinationReceiver: p16Word16,
+  targetLength: gp("ARE").length,
+  passed: false,
+};
+
 console.log(JSON.stringify({
   status: "PASS",
   receiverFamily: {
@@ -338,7 +367,7 @@ console.log(JSON.stringify({
     equivalentSubtractiveKey: [24, 5],
     plaintext: "BE",
   },
-  fixedKeyControl: {
+  prospectiveOrdinalPointerGate,\n  fixedKeyControl: {
     completeTwoRuneWords,
     targets: distinctTwoRuneTargets.map((row) => row.word),
     configurations:
