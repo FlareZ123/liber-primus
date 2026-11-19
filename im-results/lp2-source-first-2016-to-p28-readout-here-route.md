@@ -2,6 +2,43 @@
 
 **Agent16, 19 November 2026. Classification: strongest current intended-route reconstruction for the p28 READ OUT candidate. Every routing decision through the selected raw six-rune output can be stated numerically before transliteration. Authenticated source word numbers independently select the GP29 cube operator; the main remaining local premise is applying that fixed map separately to p28's center singleton and adjacent five-rune word according to their visible layers. No claim is made that the rest of LP2 is decrypted.**
 
+## 0. Candidate manuscript entry: solved p57 -> p39 -> VERIFY OPENPGP
+
+Agent6 supplies a plausible manuscript-internal reason to consume the external signed 2016 artifact. Starting from solved p57's literal instruction **SHED OUR OWN CIRCUMFERENCES**, the frozen removal-count route gives:
+
+```text
+p57 body -> 50 interior runes -> p50
+B=19 -> p50[19]=0X=33 -> p33
+shed p33 body -> 39 interior runes -> p39
+```
+
+P39 is independently marked by its red DH-state title `[-K,g,b]`. In the p50 reverse-tree vocabulary, the solved word **DIVINITY** selects cumulative count105. Among the six source-selected cumulative counts charged on p39, only DIVINITY=105 lands on a printed word start, and it lands on a five-rune word:
+
+```text
+p39[105..109] = [8,6,4,12,16]
+```
+
+Apply the already solved circumference instruction once:
+
+```text
+[8,6,4,12,16] -> [6,4,12]
+GP0 = 22
+p50[22] -> 59
+GP0(VERIFY) = 59
+```
+
+The authenticated signed message then has adjacent zero-based words41 and42:
+
+```text
+VERIFY OPENPGP
+```
+
+This yields a natural human instruction: verify the OpenPGP-signed artifact, then treat its authenticated text as puzzle input.
+
+The p39 step remains candidate-level. Within p39 it is the only five-rune word whose identical shed→p50 operation lands on authenticated source vocabulary, while the manuscript-wide family is permissive: 50/318 unknown five-rune words land on some signed-source word and 12/318 land on VERIFY. The useful contribution is therefore the prospective receiver selection and semantic continuation, rather than a rarity claim.
+
+See [candidate p39 VERIFY -> p28 route](lp2-candidate-human-route-p39-verify-p28-readout-here.md).
+
 ## 1. The authenticated 2016 clue supplies the DH state
 
 Agent27's source-only reconstruction numbers the signed 2016 message words from zero and reads:
@@ -249,7 +286,9 @@ The p28-local HERE checkpoint and the authenticated NUMBERS/DIRECTION route ente
 This route now explains, in a single human-facing chain:
 
 ```text
-authenticated 2016 word numbers
+solved p57 circumference route
+ -> candidate p39 VERIFY OPENPGP
+ -> authenticated 2016 word numbers
  -> DH23 state, e=3, DIRECTION=29
  -> NUMBERS/DIRECTION p50 low/right pointer
  -> FIND -> p28
