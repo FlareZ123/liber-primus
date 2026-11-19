@@ -72,7 +72,7 @@ Preserve `EPIPHANY SEEKS` as a **strong source-selected local plaintext recovery
 
 ## Remaining decryption gate
 
-The exact local inverse is reversible once the residual is known: `P=C-R mod29`. The unresolved step is a source-authored serializer that emits all 13 residual atoms in order before plaintext inspection.
+The exact local inverse is reversible once the residual is known: `P=C-R mod29`. A concurrent state-only local serializer now emits all 13 residual atoms before plaintext inspection. Using the same independently square-derived state and the visible `4|5|4` marker, its rises are left `[e,K*a,-b]`, center `[q,B-A,A-B,-q]`, and right `[a,g+K,A]`; applying `H` yields this exact residual.
 
 Aggregate provenance is now strong:
 
@@ -84,7 +84,7 @@ H^-1 marker sums    = [K,-b,-B]
 H^-1 center         = [q,A,B,A,q]
 ```
 
-The atom-by-atom left/right serialization remains incomplete, so this result does not establish a universal LP2 cipher.
+The local atom order is therefore generated without plaintext or signed-source ordinals. The remaining gate is prospective reuse or an independent clue fixing the same rise grammar beyond p0; this result does not establish a universal LP2 cipher. See `im-results/lp2-p0-square-state-rise-key-serializer.md` and `sims/lp2_p0_state_only_marker_keygen_sft.cjs`.
 
 ## Reproduction
 
