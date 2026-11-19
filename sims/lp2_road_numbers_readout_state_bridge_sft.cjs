@@ -237,10 +237,77 @@ const readoutLength = 188 - 166 + 1;
 assert.equal(readoutLength, state.p);
 assert.equal((166 + 188) / 2, 177);
 
+
+
+function transformWord(values) {
+  const output = [];
+  for (
+    let left = 0, right = values.length - 1;
+    left < right;
+    left += 1, right -= 1
+  ) {
+    output.push(...H(values[left], values[right]));
+  }
+  if (values.length % 2 === 1) {
+    output.push(values[(values.length - 1) / 2]);
+  }
+  return output;
+}
+
+function packetForSpan(start, end) {
+  const words = p0.filter((word) => word.start >= start && word.end <= end);
+  assert.ok(words.length > 0);
+  assert.equal(words[0].start, start);
+  assert.equal(words.at(-1).end, end);
+  return words.flatMap((word) => transformWord(word.values));
+}
+
+// The independently selected whole packet has the published [b,A] ... B
+// boundary and one-based (A,K) -> (K,A) self-swap.
+const wholePacket = packetForSpan(166, 188);
+assert.equal(wholePacket.length, state.p);
+assert.deepEqual(wholePacket.slice(0, 2), [state.b, state.A]);
+assert.equal(wholePacket.at(-1), state.B);
+assert.equal(wholePacket[state.A - 1], state.K);
+assert.equal(wholePacket[state.K - 1], state.A);
+
+// Its unique boundary join leads to the independently selected split READOUT
+// packet 80..102, whose boundary is [B,p] ... K.
+const splitPacket = packetForSpan(80, 102);
+assert.equal(splitPacket.length, state.p);
+assert.deepEqual(splitPacket.slice(0, 2), [state.B, state.p]);
+assert.equal(splitPacket.at(-1), state.K);
+assert.equal(wholePacket.at(-1), splitPacket[0]);
+
+// The already frozen one-based (A,K) selector on the split packet yields
+// [a,p], the exact additive key for the adjacent THE receiver.
+assert.deepEqual(
+  [splitPacket[state.A - 1], splitPacket[state.K - 1]],
+  [state.a, state.p]
+);
+const theReceiver = p0ByStart.get(103);
+assert.ok(theReceiver);
+assert.deepEqual(theReceiver.values, [8, 12]);
+const theKey = [state.a, state.p];
+const thePlain = theReceiver.values.map((value, index) =>
+  mod29(value - theKey[index])
+);
+assert.deepEqual(thePlain, gp("THE"));
+
+// ROAD follows immediately and replays with its published source-descriptor key.
+const roadReceiver = p0ByStart.get(105);
+assert.ok(roadReceiver);
+assert.deepEqual(roadReceiver.values, [16, 8, 25, 27]);
+const roadKey = roadDescriptor;
+const roadPlain = roadReceiver.values.map((value, index) =>
+  mod29(value - roadKey[index])
+);
+assert.deepEqual(roadPlain, gp("ROAD"));
+
 console.log(JSON.stringify({
   status: "PASS",
   classification:
-    "post-location receiver-content bridge: ROAD source numbers select the unique zero bracket; its length sends the ROAD-selected p0 start192 to the seven-rune NUMBERS-shaped receiver at228. That raw receiver has exact H shell [b-a,K*a,A+e,B,H(A,B)[0],g,a-g], unique among 214 seven-rune words, and shell-coordinate sum75=GP0(READOUT). p50[75]=2v base60=177 is the independently fixed center of the whole READOUT p0 interval166..188. The receiver values were exposed before this H/sum consequence was recognized, so preserve as mechanism/state corroboration rather than blind plaintext recovery.",
+    "post-location local-cycle bridge: ROAD source numbers select the unique zero bracket; its length sends p0 start192 to the seven-rune NUMBERS-shaped receiver at228. Its raw H shell is a unique DH-state packet and sums to75=GP0(READOUT). p50[75]=2v base60=177 is the center of the independently fixed whole READOUT packet166..188; its frozen DH boundary joins the split packet80..102, whose A/K selector yields the exact THE key immediately before the recovered ROAD receiver. The receiver values were exposed before the H/sum consequence was recognized, so this closes mechanism/state structure rather than proving NUMBERS plaintext.",
   road: {
     gp: roadGp,
     base29: roadNumber,
@@ -270,5 +337,12 @@ console.log(JSON.stringify({
     interval: [166, 188],
     center: 177,
     length: readoutLength,
+    wholePacket,
+    splitPacket,
+    boundaryJoin: wholePacket.at(-1),
+    theKey,
+    thePlain,
+    roadKey,
+    roadPlain,
   },
 }, null, 2));
