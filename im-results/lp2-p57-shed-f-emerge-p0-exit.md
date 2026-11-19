@@ -151,6 +151,27 @@ and the authenticated source indexes at those rows are independently `DEVOTED8=A
 
 This geometry does not by itself prove a decoder. It does show that the exact token singled out by both SURFACE and the EMERGE fixed point is uniquely organized by the already recovered state rather than being an arbitrary duplicate.
 
+The EMERGE walk supplies a stronger completion rule. Its seven visited table columns are:
+
+```
+[4,2,0,1,6,7,5]
+```
+
+They are all distinct and omit exactly **3=e**. The SURFACE cell67 is in column3. Adding SURFACE therefore completes all eight table columns exactly once.
+
+Charge the whole p57 word family under the frozen operation already used by EMERGE: `GP-prime(word) mod256` start, then exactly the word's rune length in base59 pointer edges. Require a fixed endpoint, then ask whether that endpoint's printed token has a duplicate in an unvisited column whose address is itself a p57 GP0 word address. Across all **20** p57 words, there is exactly one result:
+
+```
+EMERGE -> fixed 3C at189
+missing column e=3
+same-token copy in missing column -> address67
+GP0(SURFACE)=67
+```
+
+So EMERGE→SURFACE is no longer chosen from a menu of same-token copies. It is the unique p57 completion under the frozen path rule.
+
+A solved-corpus control is semantically revealing without adding parameters. Among **65** six-rune words in the pinned solved GP-native corpus, only four occurrences have a seven-distinct-column walk missing e and ending at the fixed root: two **EMERGE** occurrences and two **INSIDE** occurrences. Both lexical forms have GP-prime sum300 and therefore share the exact path. This is consistent with the solved Cicada language linking going within/inside to emerging, while the cryptographic claim remains the exact path equivalence and column completion.
+
 ## Candidate reset: let the shed digit EMERGE
 
 The solved instruction is literally **EMERGE**. With the new SURFACE holdout, the proposed reversal is source-linked rather than an arbitrary escape: EMERGE reaches the token numerically named by SURFACE, and the original pre-SHED base60 state is the only one of the two established numeral states that leaves the base59 trap.
@@ -257,7 +278,7 @@ No first-party sentence literally spells out that state-machine rule. The source
 
 This should therefore be treated as a high-priority exit candidate, not as recovered p0 plaintext. A decisive successor would use the resulting p0 receiver to predict a new original-page operation or ciphertext quantity before any language scoring.
 
-Reproduce with `sims/lp2_p57_shed_f_emerge_p0_exit_sft.cjs`. Windows Node22 PASS, including the SURFACE reset and complete 3C state-column census: **44464036754**.
+Reproduce with `sims/lp2_p57_shed_f_emerge_p0_exit_sft.cjs`. Windows Node22 PASS, including the complete p57 EMERGE→SURFACE completion-family exhaustion: **44464445892**.
 
 
 ## Plaintext-independent p0 opening backlink to p28
