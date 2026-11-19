@@ -15,6 +15,7 @@ const read = (relative) =>
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
 const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
+const solved = JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"));
 const tableTokens = grid.pages.flatMap((page) => page.tokens);
 
 const gpAlphabet = corpus.translit
@@ -224,6 +225,112 @@ assert.deepEqual(carrierHits, [
   },
 ]);
 
+/*
+ * Held-out solved-text transfer.
+ *
+ * The composite rule is fixed above before opening this corpus:
+ *   source GP0 -> literal digit+cardinal move -> intermediate state
+ *   -> intermediate token as hex ASCII cardinal -> one grid step.
+ * Test every adjacent solved word pair, requiring the final state to equal
+ * the next word's GP0. The one-stage movement grammar is also censused.
+ */
+const solvedRuneIndex = new Map(solved.runes.map((rune, index) => [rune, index]));
+
+/** @param {string} text @returns {number[][]} */
+function solvedWordVectors(text) {
+  const out = [];
+  let current = [];
+  for (const char of [...text]) {
+    if (solvedRuneIndex.has(char)) {
+      current.push(solvedRuneIndex.get(char));
+    } else if (current.length > 0) {
+      out.push(current);
+      current = [];
+    }
+  }
+  if (current.length > 0) out.push(current);
+  return out;
+}
+
+/** @param {number[]} vector */
+const vectorGp0 = (vector) => vector.reduce((sum, value) => sum + value, 0);
+
+/** @param {number[]} vector */
+const vectorText = (vector) =>
+  vector.map((value) => corpus.translit[value]).join("").toUpperCase();
+
+/** @param {number} index @param {string} token @returns {number|null} */
+function hexCardinalMove(index, token) {
+  if (!/^[0-9A-Fa-f]{2}$/.test(token)) return null;
+  const direction = String.fromCharCode(Number.parseInt(token, 16)).toUpperCase();
+  return deltas[direction] ? oneStep(index, direction) : null;
+}
+
+let solvedAdjacencies = 0;
+let directMovementEligible = 0;
+const directMovementHits = [];
+const compositeEligible = [];
+const compositeHits = [];
+
+for (const section of solved.sections) {
+  const words = solvedWordVectors(section.source_text);
+  for (let index = 0; index + 1 < words.length; index += 1) {
+    solvedAdjacencies += 1;
+    const sourceAddress = vectorGp0(words[index]);
+    const targetAddress = vectorGp0(words[index + 1]);
+    if (sourceAddress >= tableTokens.length) continue;
+
+    const middle = literalMove(sourceAddress, tableTokens[sourceAddress]);
+    if (middle === null) continue;
+    directMovementEligible += 1;
+    if (middle === targetAddress) {
+      directMovementHits.push({
+        section: section.name,
+        index,
+        sourceText: vectorText(words[index]),
+        targetText: vectorText(words[index + 1]),
+        sourceAddress,
+        token: tableTokens[sourceAddress],
+        targetAddress,
+      });
+    }
+
+    const destination = hexCardinalMove(middle, tableTokens[middle]);
+    if (destination === null) continue;
+    const row = {
+      section: section.name,
+      index,
+      sourceText: vectorText(words[index]),
+      targetText: vectorText(words[index + 1]),
+      sourceAddress,
+      sourceToken: tableTokens[sourceAddress],
+      middle,
+      middleToken: tableTokens[middle],
+      destination,
+      targetAddress,
+    };
+    compositeEligible.push(row);
+    if (destination === targetAddress) compositeHits.push(row);
+  }
+}
+
+assert.equal(solvedAdjacencies, 731);
+assert.equal(directMovementEligible, 81);
+assert.deepEqual(directMovementHits, []);
+assert.equal(compositeEligible.length, 11);
+assert.deepEqual(compositeHits, [{
+  section: "0_welcome",
+  index: 25,
+  sourceText: "WAY",
+  targetText: "HERE",
+  sourceAddress: 57,
+  sourceToken: "1w",
+  middle: 56,
+  middleToken: "4E",
+  destination: 48,
+  targetAddress: 48,
+}]);
+
 // Global control: full-byte -> authenticated-word GP-prime links are not unique.
 const distinctWords = [...new Set(signedWords.map((word) => word.toUpperCase()))];
 const globalPrimeLinks = [];
@@ -263,6 +370,13 @@ console.log(
         direction: "N",
         destination: 48,
       },
+      solvedTransfer: {
+        solvedAdjacencies,
+        directMovementEligible,
+        directMovementHits,
+        compositeEligible: compositeEligible.length,
+        compositeHits,
+      },
       directionToThe: {
         token: tableTokens[98],
         base59: 71,
@@ -271,7 +385,7 @@ console.log(
         globalPrimeLinks,
       },
       classification:
-        "Candidate solve-path closure; WAY->MAP is the unique literal movement edge in the fixed follower set and composes with frozen MAP->HERE. DIRECTION->THE is unique only in the fixed follower/radix/carrier-numbering family. Independent transfer is still required before either rule is generalized.",
+        "Strong clue-constrained solve-path candidate with solved-text transfer: WAY->MAP is the unique literal movement edge in the fixed follower set, and the fixed WAY->MAP->HERE composite is the sole hit among 731 solved GP29 word adjacencies (11 composite-eligible), exactly on solved WELCOME WAY HERE. DIRECTION->THE remains unique only in the fixed follower/radix/carrier-numbering family.",
     },
     null,
     2
