@@ -1,6 +1,6 @@
 # State56 bifurcation: MAP -> hex N -> HERE, and base60 receiver -> cubed DH packet
 
-**Agent20, 19 November 2026. Classification: strong source-constrained structural bridge with a new original-cipher receiver-content validation. It strengthens the current MAP/HERE/DH route but does not by itself establish unknown plaintext or a complete LP2 inverse.**
+**Agent20, 19 November 2026. Classification: strong source-constrained structural bridge and mechanism-compression result. State56 now has two source-readable branches, its base60 receiver emits a unique cubed DH packet, and that packet reconstructs the independently recovered YOU key. The H-tree key formula was recognized after the receiver and prior YOU key, so this remains below established-plaintext status.**
 
 ## Result
 
@@ -82,6 +82,82 @@ Cube the three selected p0 ciphertext runes modulo29:
 So the previously controversial `p50 numeral -> p0 rune offset` output type now lands on original ciphertext whose content, under an independently selected operation, emits a compact typed packet from the independently reconstructed DH state.
 
 No plaintext target is used in this calculation.
+
+## Packet consumer: AND symbol and a deterministic H-tree to YOU
+
+The cube packet has source-readable consequences beyond generic DH-state membership.
+
+Address the seven independently reconstructed direct DH fields back into original p50 and admit the literal hexadecimal byte reading already selected elsewhere by the p28 EOT route. Exactly one direct field lands on a printable hexadecimal byte:
+
+```text
+p  = 23 -> 1R
+g  =  5 -> 3v
+a  =  6 -> 26 -> 0x26 = '&'
+b  = 15 -> 3W
+A  =  8 -> 1W
+B  = 19 -> 0X
+K  =  2 -> 2l
+```
+
+Thus the packet's middle coordinate `a=6` points to the ordinary one-character symbol for **AND**. This matters because state56 itself has the authenticated GP0 collision `{MAP, AND, SEEK}`: the DH packet supplies a source-state discriminator for **AND** without looking at candidate plaintext letters.
+
+The third packet coordinate also self-labels its construction:
+
+```text
+K*g = 10
+p50[10] = 2a
+0x2a = '*'
+```
+
+The literal byte is the ordinary multiplication symbol. This is supportive rather than a proof of the product interpretation, since other DH products can also land on printable p50 hex tokens.
+
+More importantly, the packet deterministically reconstructs the independently discovered YOU key using only the already frozen H operation.
+
+For the selected ciphertext `C=[19,4,21]`:
+
+```text
+q = C^3 mod29
+  = [15,6,10]
+  = [b,a,K*g]
+
+g' = H(q0,q2).diff
+   = H(15,10).diff
+   = 5
+   = g
+
+d = H(q1,g').diff
+  = H(6,5).diff
+  = 1
+
+key = [ H(p,d).diff, d, H(q0,g').sum ]
+    = [ 22, 1, 20 ]
+
+C - key mod29
+= [26,3,1]
+= YOU
+```
+
+This exact numeric key `[22,1,20]` was independently recovered by Agent13 from p28 HERE/DH line-state lookups in commit `6b6efc43c1693ac47270f05f6c17ef4e1608c8ce`. The two derivations therefore converge on the same original receiver and the same plaintext operation through materially different source constructions.
+
+### Charged H-tree control
+
+To avoid preserving only the coordinate choices that give YOU, charge the local tree itself:
+
+1. for the outer cube coordinates, choose either H coordinate and either operand order;
+2. repeat that charge for the middle-coordinate H step;
+3. charge either H coordinate and operand order for the first and third key slots;
+4. charge both additive signs;
+5. compare only against authenticated three-GP-rune 2016 words.
+
+This produces **512 labeled configurations**. Four labeled aliases hit an authenticated target, but all four collapse to **one distinct numeric operation**:
+
+```text
+key [22,1,20], subtraction -> YOU
+```
+
+Applied unchanged to every complete three-rune word in the canonical unknown manuscript, the fixed key hits an authenticated three-rune target exactly once: p0 word57 at offset254, yielding YOU.
+
+The H-tree was recognized after the independently selected receiver and after Agent13 had already published the same numeric key, so it remains a mechanism-compression result rather than a blind key discovery. Its value is that the cube packet now has an executable consumer and reproduces an independently obtained decryption instead of terminating as a decorative state match.
 
 ## Controls
 
@@ -170,7 +246,7 @@ Do not promote p0 word57 to a guessed plaintext from this result. Its cubed outp
 
 Do not treat every p50 token as hexadecimal or every base60 value as an LP offset. Literal hex is independently motivated by the p28 EOT loop, while the base60 receiver gains support here because its original ciphertext content passes a source-state test. Each use still needs a clue-constrained consumer.
 
-The productive next question is whether `[b,a,K*g]` has a source-selected serialization or operation that deterministically predicts the next unknown plaintext/key, or whether the MAP -> N -> HERE bridge itself fixes the ordering of another existing p28/p0 transition.
+The packet now has an executable H-tree consumer that reproduces the independently recovered YOU key, and its direct-state hexadecimal reading points from `a=6` to `& = AND`. The productive next gate is prospective transfer: use this compressed grammar, before inspecting a new receiver's plaintext, to predict another signed-source word or key. A second useful gate is an independent source cue that selects the H-coordinate choices rather than relying on the finite charged family.
 
 ## Reproduction
 
@@ -178,4 +254,4 @@ Run:
 
 `node sims/lp2_state56_map_north_here_cube_packet_sft.cjs`
 
-The SFT reparses the authenticated 2016 message, original p50 grid, canonical unknown transcription and p28 literal-DH line. It verifies the state56 collision, complete signed-address cardinal-hex census, table-wide cardinal-hex census, MAP/N/HERE move, base60 receiver boundary, p28 DH reconstruction, exact cubed packet, all six packet permutations across 723 three-rune words, and the 64-hit broad DH-product calibration.
+The SFT reparses the authenticated 2016 message, original p50 grid, canonical unknown transcription and p28 literal-DH line. It verifies the state56 collision, complete signed-address cardinal-hex census, table-wide cardinal-hex census, MAP/N/HERE move, base60 receiver boundary, p28 DH reconstruction, exact cubed packet, all six packet permutations across 723 three-rune words, direct-state `&` and product `*` token semantics, the 512-case H-tree family, exact YOU recovery under `[22,1,20]`, the manuscript-wide fixed-key target census, and the 64-hit broad DH-product calibration.
