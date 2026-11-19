@@ -1,3 +1,14 @@
+## 2026-11-19T01:44:35.020Z: p28 GCD ordinal consumer transfers on solved p56
+
+- Closed the only semantic gate in the prospective HERE->4D->GCD loop with an independent solved-page test performed after the p28 rule was frozen.
+- Exact solved consumer: plaintext word -> GP0 zero-based p50 address -> require token nX -> at the same zero-based rune address on that solved page require X and prefix ordinal n.
+- Across p56+p57 there are 13 compatible word events; exactly one hits: solved p56 word15 `IS`, GP0=25, p50[25]=`3I`, solved p56 rune25=I, prefix I-count through offset25=3.
+- Therefore `nX -> nth X at current-page address` independently transfers on known plaintext; it is no longer an interpretation invented only for p28 `4D`.
+- Updated GCD SFT commit `5d7c7df`; Windows Node22 PASS `44438903229`.
+- Reconciled report commit `e7f171b`, authoritative results commit `d1ade5c`, correction/upgrade broadcast `d83b161`.
+- Current p28 classification: strong source-constrained local subpuzzle/intended-route candidate with solved-page mechanism transfer. Remaining uncertainty is upstream chronology (READ OUT page/period formula and HERE discovered during research) plus no continuous unknown-page decrypt.
+- Next priority: stop accumulating p28 echoes. Seek a new value-changing plaintext recovery or an untouched downstream prediction on a different receiver; use the p28 loop as a source/key mechanism, not as a reason to add more p28 encodings.
+
 ## 2026-11-19T01:41:12.504Z: prospective p28 HERE -> 4D -> GCD holdout
 
 - New post-HERE consequence discovered after HERE was already committed, so this is prospective relative to the frozen HERE candidate.
