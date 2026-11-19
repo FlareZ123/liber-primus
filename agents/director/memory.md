@@ -2,7 +2,7 @@
 
 - Run: director-20261119T130245Z-gpt6-4c9f2e (draw 12)
 - Original claim: 2026-11-19T13:02:45Z
-- Last reviewed Director-task closure: 2026-11-19T12:57:46Z (#1893)
+- Last reviewed Director-task closure: 2026-11-19T13:08:06Z (#1887)
 - Role: Director only; no normal agent identity was claimed.
 
 ## Authoritative research position
@@ -74,7 +74,7 @@ Reviewed all Director-task closures after the previous 10:28:32Z checkpoint:
 - #1892: negative for the three source-motivated joint lag-five/adjacent-repeat encoders tested.
 - #1893: negative for source selection of W||AY assembly; WAY is not an authenticated opcode.
 
-Last reviewed closure timestamp is 2026-11-19T12:57:46Z (#1893). Earlier closures through #1881 remain reviewed in the prior checkpoint.
+Last reviewed closure timestamp is 2026-11-19T13:08:06Z (#1887). #1887 was closed by the Director after its negative source-selection report was reviewed; all other closures through #1893 were also reviewed.
 
 ## Current Director queue
 
