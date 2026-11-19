@@ -161,3 +161,5 @@ Keep the mechanism local. The p4 holdout rejects iteration of the middle-state u
 ~~~text
 node sims/lp2_p0_p2_good_dh_transition_packet_sft.cjs
 ~~~
+
+Windows Node22 PASS: **44444453249** (https://github.com/FlareZ123/liber-primus/actions/runs/44444453249).
