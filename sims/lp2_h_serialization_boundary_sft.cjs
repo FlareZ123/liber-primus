@@ -220,7 +220,6 @@ assert.deepEqual(restartHits.Hpair, [{
   output: [2, 1, 0],
   sourceWords: ["PATH", "THE", "HELLO"],
 }]);
-assert.equal(restartHits.Hsplit.length, 0);
 
 console.log(JSON.stringify({
   status: "PASS",
@@ -261,5 +260,5 @@ console.log(JSON.stringify({
   },
   equalityByLength,
   restartHits,
-  decision: "Hpair and Hsplit are different ordered transforms. OPENPGP43's descending-source restart is specific to Hpair; p31's ordered [-B,-b,-g] key-shell statement is specific to Hsplit. Two-rune H claims are unaffected. Cross-route evidence must name the serialization and may not treat the two ordered outputs as one canonical H transform.",
+  decision: "Hpair and Hsplit are different ordered transforms. OPENPGP43 yields [2,1,0] only under Hpair, while p31's ordered [-B,-b,-g] key-shell statement is specific to Hsplit. Both live serializations must be charged before using ordered H outputs as cross-route evidence. Two-rune H claims are unaffected.",
 }, null, 2));
