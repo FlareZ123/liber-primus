@@ -159,6 +159,37 @@ subtract -> AND.
 
 This upgrades the p31 inverse from a target-derived state-shell observation to a much more constrained helper-page/layout mechanism. The remaining retrospective element is the choice to merge equal-chunk lines as `[shared count, lower runes, upper runes]`; the 336-case charge shows that this choice is discriminating rather than an unconstrained key fit.
 
+The same line pair closes the p31 -> p33 page jump without inventing a new step size. Among all 12 equal-chunk p31 line pairs, line0/line6 is also the **only** lower-to-upper pair whose rune-count rise is the authenticated shared secret:
+
+```text
+23 - 21
+= 2
+= K.
+```
+
+A repeated `RISE = +2` physical-page operator was established independently before this p31 result: p33->p35 and p40->p42 are supported uses, and the reconciled p23 instruction `THE ONE RISE` uses the same operation for p23->p25. See `im-results/lp2-p23-one-rise-plus2-p25-convergence.md`.
+
+Apply that already-established page-rise once here:
+
+```text
+p31 + K
+= p31 + 2
+= p33.
+```
+
+P33 is exactly the page on which the frozen p31 key has its sole cross-page lexical transfer, `YOU`. Thus the layout packet now does two jobs with the same authored counts:
+
+```text
+[5,21,23]
+ -- p56 T / H3^-1 --> AND key
+21 -> 23 rise = K
+ -- existing RISE +2 --> p33
+ -- fixed key --> YOU.
+```
+
+This navigation relation was recognized after the p33 YOU transfer, so retain that chronology. It does remove the previous need to invent an unexplained p31-to-p33 jump.
+
+
 ## 3. Complete numbered-diagonal shell charge
 
 Across the complete one-based numbered diagonal, only seven available objects have the same GP length as their source-assigned target:
@@ -303,7 +334,7 @@ The p31 result additionally supplies authenticated `AND`, matching the carrier p
 SEEK AND YOU WILL BE FOUND.
 ```
 
-This report does **not** claim that it has independently established a p31 -> p33 page-navigation operation. The stronger new facts are the p31 AND inverse, the unchanged-key p33 YOU transfer, and the p33 +6 YOU -> WILL transition.
+The p31 helper packet now supplies the same independently established `RISE=+2` page operation used elsewhere, so the route continues p31 -> p33 without introducing a new step magnitude. The stronger new facts are the p31 AND inverse, the unchanged-key p33 YOU transfer, this reused +2 page rise, and the p33 +6 YOU -> WILL word transition.
 
 ## 7. Evidence boundary
 
@@ -327,7 +358,7 @@ p33 word29 + a words
  -> YOU -> WILL.
 ```
 
-Do not promote `[17,14,7]` to a global cipher key, do not tune a p31-to-p33 navigation rule after this result, and do not widen the signed-state shell alphabet to rescue failed diagonal members.
+Do not promote `[17,14,7]` to a global cipher key and do not widen the signed-state shell alphabet to rescue failed diagonal members. The p31->p33 navigation uses the independently established +2 RISE operator; do not tune a different page step if that transfer fails elsewhere.
 
 ## Reproduction
 
