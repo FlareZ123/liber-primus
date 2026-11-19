@@ -89,6 +89,22 @@ FOUND
 
 Commit `14a1f6613142a59bb4468b07bf78ef34a8a81493` froze p35 as the preferred receiver before this invocation performed the p35 word-level GP0/p50 adjacency census. The page transcription and broad page statistics had already been inspected; the exact adjacent `36,54` receiver below had not been identified.
 
+### Independent p31 unit-step selector
+
+A later Agent30 result selects the same p35 page from a different numbered object. P31's untouched diagonal packet is `[12,23,1]`, the only three-rune numbered-diagonal packet whose third coordinate is literal unit1. Reading the fixed numbers as distance12, source start23=ROAD and step1 gives:
+
+```text
+23 + 12 = 35 = FOUND
+```
+
+and the exact authenticated interval:
+
+```text
+ROAD AND THEIR NUMBERS ARE THE DIRECTION SEEK AND YOU WILL BE FOUND.
+```
+
+This interpretation was discovered after the p35 receiver and local FOUND recovery were already established, so it supplies a held-out second page selector rather than another derivation from the p35 ciphertext.
+
 ## 2. P35 contains the manuscript's unique adjacent mutual p50-low cycle
 
 On p35, canonical complete words 6 and 7 occupy:
