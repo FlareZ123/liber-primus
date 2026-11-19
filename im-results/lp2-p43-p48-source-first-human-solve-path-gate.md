@@ -41,6 +41,10 @@ FLAYDUFEO-OEING-EOAEHS-OEOC-NEH-OETAE
 
 No extra phase, substitution, or key was added after this failed prediction.
 
+### Historical meaning of “knock/listen”
+
+The signed 2013 message containing “knock on the sky and listen to the sound” is followed in the preserved second-onion sequence by an ICMP-echo response carrying a signed message (the archived response is stored as the hex payload and decoded signed text). That is a historically demonstrated network-level reading of “knock/listen” — send an echo request and inspect the response — and is a stronger contextual interpretation than Morse. It does not create a page-local cipher: p43–p48 contain no visible IP address, hostname, onion endpoint, or packet payload specification. The fixed Morse test above remains a valid negative for the printed punctuation stream; the ICMP-echo route has no receiver on these six pages.
+
 ## p47 original-image word-boundary adjudication
 
 The low-digit road-map report had one open prerequisite: verify p47 word segmentation against original scan 64. That check is now complete.
