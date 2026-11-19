@@ -17,6 +17,7 @@ const read = (relative) =>
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const signedSource = read("resources/historical/cicada2016-4gq25-outguess.asc");
+const inkAnnotations = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
 
 const runeSet = new Set(corpus.runes);
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
@@ -216,6 +217,42 @@ const exactShell = [
 assert.deepEqual(exactShell, [14, 8, 3, 26]);
 assert.deepEqual(hInverse(exactShell), requiredKey);
 
+// Source-visible magnitude control for the selected three-word phrase.
+const bLengthWindows = [];
+for (let start = 0; start + statePool.e <= signed.length; start += 1) {
+  const phrase = signed.slice(start, start + statePool.e);
+  if (phrase.reduce((total, word) => total + word.values.length, 0) === primaryDh.b) {
+    const end = start + statePool.e - 1;
+    const annotation = inkAnnotations.pages.find((entry) => entry.page === end);
+    bLengthWindows.push({
+      start,
+      end,
+      labels: phrase.map((word) => word.label),
+      redSpanLengths: annotation
+        ? annotation.red_spans.map((span) => span.length)
+        : [],
+    });
+  }
+}
+
+assert.deepEqual(
+  bLengthWindows.map((window) => [window.start, window.end]),
+  [[5, 7], [29, 31], [37, 39], [38, 40], [39, 41]]
+);
+assert.deepEqual(
+  bLengthWindows.map((window) => window.redSpanLengths),
+  [[14], [], [3], [8], []]
+);
+const sourceShellWindow = bLengthWindows.filter((window) =>
+  window.redSpanLengths.includes(primaryDh.A)
+);
+assert.deepEqual(sourceShellWindow, [{
+  start: 38,
+  end: 40,
+  labels: ["BEWARE", "FALSE", "PATHS"],
+  redSpanLengths: [8],
+}]);
+
 // Retrospective family charge: [-v, x, y, LINE[p]].
 const shellFamily = [];
 for (const [vName, v] of Object.entries(primaryDh)) {
@@ -344,6 +381,12 @@ console.log(JSON.stringify({
     key: requiredKey,
     keyShell: h(requiredKey),
     shellLabels: "[-b,A,e,HERE[p]]",
+  },
+  sourceMagnitudeControl: {
+    bLengthThreeWordWindows: bLengthWindows,
+    uniqueAEndpoint: sourceShellWindow[0],
+    shellMagnitudes: [primaryDh.b, primaryDh.A, statePool.e, lineAtP.HEREp],
+    caveat: "The negative sign on b and serialization were recognized after the PATHS inverse.",
   },
   retrospectiveFamily: {
     configurations: shellFamily.length,
