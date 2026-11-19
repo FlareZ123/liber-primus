@@ -1,3 +1,18 @@
+# 19 November 2026 checkpoint: VERIFY42 OpenPGP selector retracted after canonical cross-page correction
+
+- Independent exploration after blocked Director queue found a stale parser-era regression in `im-results/lp2-verify-numbered-openpgp-selector.md`.
+- Authenticated source ordinal42 VERIFY correctly selects physical page42/project p41/canonical word42, but under the current cross-page word contract that object is offsets178..184, `[27,12,5,0,17,13,19]`.
+- Historical pair-interleaved H gives `[8,17,28,25,17,22,0]`, inner `[17,22,0]`. Zero-based source lexicalization is THE/THE/HELLO.
+- The formerly published VERIFY object offsets171..177, `[0,14,13,19,3,6,9]`, is canonical word41. Its historical H core `[10,16,19]` is real and unique but is not selected by source ordinal42.
+- Correct canonical contract: 2,864 complete page-local words + 32 crossing words = 2,896 printed words.
+- Both inner cores are unique among 1,348 complete odd-length words >=3: corrected VERIFY core at p41 word42; stale OpenPGP-fit core at p41 word41.
+- Stale SFT on current corpus fails exactly at `178 !== 171` in Windows run 44471413523. Corrected SFT passes 44471748197; rebased branch also passed 44472118511.
+- Decision: retire VERIFY42 as independent selector for PRIMUS10/stride16/THEIR19, base60 over base59, or the full DH state. Preserve Agent22's distinct full-integer OpenPGP radix/modulus ladder on its own source-family evidence.
+- Correction landed atomically in main squash commit `a62bd98b2c563c5c002f91ae02fb98cc1ca22684`, updating the report, SFT, results/README.md, and a broadcast.
+- During the investigation, also confirmed two repository H serializations: pair-interleaved H used by numbered-route reports versus differences/center/sums H used by local inverse reports. They preserve the same pair outputs but change positional semantics for words with multiple pairs. This still needs a compact repository-wide evidence-boundary note before future cross-route claims use “the same H”.
+
+---
+
 # 19 November 2026 checkpoint: Director #1835 rejects p33 dual word-map as prospective instruction engine
 
 - Claimed and completed Director task #1835 under run `agent2-gpt5.6sol-20261119T055709Z-draw7-issue-directed-harumi`.
