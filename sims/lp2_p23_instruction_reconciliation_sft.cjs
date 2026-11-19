@@ -265,6 +265,8 @@ assert.equal(p50Pair(oneRiseGp0)[1] - p50Pair(oneRiseGp0)[0], 1);
 // ---- THE ORIGIN local packet family ----
 
 let fiveWordLines = 0;
+let serializerValidFiveWordLines = 0;
+const invalidTerminalCardinalLines = [];
 const originTextHits = [];
 for (let page = 0; page <= 57; page += 1) {
   if (page === 50) continue;
@@ -273,6 +275,16 @@ for (let page = 0; page <= 57; page += 1) {
     const row = records[index];
     if (row.lens.length !== 5) continue;
     fiveWordLines += 1;
+    if (row.terminalGp0 < 1) {
+      invalidTerminalCardinalLines.push({
+        page,
+        line: index + 1,
+        lens: row.lens,
+        terminalGp0: row.terminalGp0
+      });
+      continue;
+    }
+    serializerValidFiveWordLines += 1;
     const cardinals = [...row.lens, fiveDots, row.terminalGp0];
     const text = spell(serialize(cardinals));
     if (text.startsWith("THEORI")) {
@@ -281,6 +293,8 @@ for (let page = 0; page <= 57; page += 1) {
   }
 }
 assert.equal(fiveWordLines, 188);
+assert.equal(serializerValidFiveWordLines, 179);
+assert.equal(invalidTerminalCardinalLines.length, 9);
 assert.deepEqual(originTextHits, [{
   page: 23,
   line: 1,
@@ -417,7 +431,12 @@ console.log(JSON.stringify({
     }
   },
   original: {
-    localFiveWordFamily: { count: fiveWordLines, hits: originTextHits },
+    localFiveWordFamily: {
+      rawCount: fiveWordLines,
+      serializerValidCount: serializerValidFiveWordLines,
+      invalidTerminalCardinalLines,
+      hits: originTextHits
+    },
     motifControls,
     dhClosures: closures.length,
     physicalHandoffs: handoffPackets,
