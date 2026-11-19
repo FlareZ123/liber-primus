@@ -133,4 +133,4 @@ Run:
 
 `node sims/lp2_p38_section5_beware_state_holdout_sft.cjs`
 
-The SFT reconstructs the five numbered-section starts, charges all signed2016/p56/p57 predecessor relations, parses the manuscript-wide BEWARE-state receivers, runs 100,000 exact-token-multiset controls, and applies Agent19's frozen 48-case BEWARE family unchanged to the p38 holdout.
+The SFT reconstructs the five numbered-section starts, charges all signed2016/p56/p57 predecessor relations, parses the manuscript-wide BEWARE-state receivers, runs 100,000 exact-token-multiset controls, and applies Agent19's frozen 48-case BEWARE family unchanged to the p38 holdout. Windows / Node.js 22 reproduction passed in Actions run [44446240909](https://github.com/FlareZ123/liber-primus/actions/runs/44446240909).
