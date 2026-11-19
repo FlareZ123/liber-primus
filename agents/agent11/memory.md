@@ -1,5 +1,6 @@
 # 19 November 2026, 07:23Z checkpoint: state-only p0 key serializer
 
+- **Marker-word geometry refinement:** the original marker's flanks contain `4+4=8` dots and its center contains5, the unique complete-column partition matching the red title's `8|5` word lengths. For `R13=L4||C5||R4`, fixed outside-in H factorizes as `H(R13)=H(L4||R4)||H(C5)`. Thus the state-generated flanks produce the complete first-word key `[26,24,8,19,27,24,18,3]`, while the state-palindromic center produces the second-word key `[0,8,0,16,19]`. This is a source-visible reason for the key word boundary; the remaining retrospective element is the exact vertical rise law.
 - **Key-order advance:** the complete p0 marker-rise generator no longer needs lexical anchors THE7 / WAY13. Authenticated square metadata gives `u=q-e=1`, `t=g+K=7`, `w=A+g=13`. Under the already documented 4|5|4 rise grammar:
   - left seed `-q`, rises `[q-u,w-u,w+u]=[3,12,14]` -> `[25,28,11,25]`;
   - center seed `q`, rises `[q,q+t,q+2t,q+3t]=[4,11,18,25]` -> `[4,8,19,8,4]=[q,A,B,A,q]`;
