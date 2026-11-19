@@ -119,6 +119,28 @@ Requiring only “signed word GP0 reaches p32 after one DH-state depth” produc
 
 Thus the evidence is not the bare fact that SEEKS reaches 32 in 23 steps. The discriminator is the full consecutive-source grammar, including the exact THE/DEVOTED penultimate states and EPIPHANY's independent 121-rune page-size constraint. That complete predicate is unique in the charged family.
 
+## Held-out PATH LIES EMPTY validation
+
+The 560-case selection predicate uses only the consecutive four-word clause `EPIPHANY SEEKS THE DEVOTED`. It does **not** use the immediately preceding word `EMPTY`.
+
+After the unique route is fixed, intersect its 24 states with every authenticated signed-word GP0 value. Only four distinct signed words occur anywhere on the route:
+
+```text
+step 0  : 71  = GP0(SEEKS)
+step 7  : 92  = GP0(EMPTY)
+step 21 : 20  = GP0(THE)
+step 22 : 102 = GP0(DEVOTED)
+step 23 : 32  = physical p32
+```
+
+The interior hit is therefore exactly the held-out word **EMPTY**. Its position is independently source-readable:
+
+`7 = g + K = 5 + 2`.
+
+This gives the preceding authenticated wording `THE PATH LIES EMPTY` a literal operational reading: **EMPTY lies on the selected table path**. The older literal-zero interpretation of “empty” is no longer the best-supported semantic receiver. The independently selected p50 zero bracket remains a valid structural object through the ROAD-number route, while this signed phrase now points more directly to the 23-step SEEKS path.
+
+This held-out match materially strengthens the intended-route hypothesis because EMPTY was not part of the family predicate that selected the route.
+
 ## Cryptanalytic consequence
 
 This supplies a concrete human solve path that was previously missing:
