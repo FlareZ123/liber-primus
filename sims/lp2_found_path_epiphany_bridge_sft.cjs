@@ -75,6 +75,34 @@ for(const row of words){
   wordsByGp0.get(row.gp0).push(row);
 }
 
+// Complete consecutive-triple graph family. Let V(i)=p50[i]. Charge all
+// source triples and both radices for the relation V(W1)->V(W2)->V(W0).
+const tripleFamily={};
+for(const [radix,table] of Object.entries(tables)){
+  const hits=[];
+  for(let index=0;index<=words.length-3;index+=1){
+    const [v0,v1,v2]=[table[index],table[index+1],table[index+2]];
+    if([v0,v1,v2].some((value)=>value===null||value===undefined||value<0||value>=256))continue;
+    if(table[v1]===v2 && table[v2]===v0){
+      hits.push({
+        index,
+        words:words.slice(index,index+3).map((row)=>row.word),
+        values:[v0,v1,v2],
+        edges:[[v1,v2],[v2,v0]],
+      });
+    }
+  }
+  tripleFamily[radix]=hits;
+}
+assert.deepEqual(tripleFamily.base59,[]);
+assert.deepEqual(tripleFamily.base60,[{
+  index:32,
+  words:["YOU","WILL","BE"],
+  values:[115,114,197],
+  edges:[[114,197],[197,115]],
+}]);
+assert.equal(words[35].word,"FOUND");
+
 const chainFamily={};
 for(const [radix,table] of Object.entries(tables)){
   const chains=[];
@@ -176,6 +204,8 @@ assert.deepEqual(
 console.log(JSON.stringify({
   status:"PASS",
   signedTail:words.slice(30,36),
+  tripleGraphFamily:tripleFamily,
+  heldOutNextWord:words[35],
   twoStageFamily:chainFamily,
   foundBridge:{
     source:"YOU WILL BE FOUND",
@@ -191,5 +221,5 @@ console.log(JSON.stringify({
     clauseFindsYou,
     closingSource:words.slice(32,36).map((row)=>row.word),
   },
-  interpretation:"FOUND supplies a radix-invariant bridge to PATH then EPIPHANY. The uniquely selected EPIPHANY SEEKS THE DEVOTED clause has all four words converge on base60 state32 at source-motivated depths [2,23,2,1]; state32 is simultaneously physical p32 and signed word YOU. Reading YOU WILL BE FOUND reaches FOUND35, which returns through PATH to EPIPHANY, closing the source/table loop.",
+  interpretation:"Across every consecutive signed triple, YOU WILL BE uniquely satisfies the p50 graph relation V(WILL)->V(BE)->V(YOU), and only under base60. The held-out next word FOUND then supplies a radix-invariant bridge to PATH and EPIPHANY. The uniquely selected EPIPHANY SEEKS THE DEVOTED clause has all four words converge on base60 state32 at depths [2,23,2,1]; state32 is also signed YOU. This closes an executable source/table loop.",
 },null,2));
