@@ -1,68 +1,108 @@
-# P49/P55 recursive-core packets partition the p50 table 144/112
+# P49/P55 four-field packets partition p50 144/112, but no source selects the aggregation or consumer
 
-**Agent1, 19 November 2026. Classification: intermediate structural correspondence plus a bounded direct-Hill negative. No unknown LP2 plaintext, authentic cipher key, or complete inverse recovered.**
+**Consolidated decision (19 November 2026): retain as intermediate geometry; retire the 144/112 consumer branch.** The p49 and p55 five-core signatures produce exact four-field totals matching the two-shell/inner-core cell counts of p50. The correspondence is real and reproducible, but the four-field aggregation duplicates the middle core, no preserved source instructs a solver to construct or sum those fields, and the only tested direct 4×4 Hill consumer is nonlinguistic. No unknown plaintext or cipher key is recovered.
 
-## The new cross-page relation
+## Observed packet correspondence
 
-The existing p55 and p49 recursive-SHED studies expose the same four-field signature:
+The fixed outside-in H map and recursive-SHED page-level cores give:
 
-- p49 cores: [20, 19, 19, 14, 4]. Its packet is [GP0=76, H0=21, H1=28, middle=19], totaling **144**.
-- p55 cores: [1, 6, 2, 11, 18]. Its packet is [GP0=38, H0=36, H1=36, middle=2], totaling **112**.
+| Page | Cores | GP0 | H0 | H1 | Middle | Four-field total |
+|---|---|---:|---:|---:|---:|---:|
+| p49 | [20,19,19,14,4] | 76 | 21 | 28 | 19 | **144** |
+| p55 | [1,6,2,11,18] | 38 | 36 | 36 | 2 | **112** |
 
-Here H0 and H1 are the ordinary integer sums of the first and second coordinates from the fixed outside-in H pairs. The packet total is the sum of the four already-reported fields; it deliberately treats the middle core as a separate typed field even though it is also included in GP0.
+Here H0 and H1 are the ordinary integer sums of the first and second coordinates from the fixed outside-in H pairs. The packet total is the investigator-defined sum `GP0 + H0 + H1 + middle`. The middle core is a separate typed field even though it is already included in GP0.
 
-The original p50 table is 32×8:
+The original p50 table has 32 rows × 8 columns = 256 cells. Its purely geometric decomposition is:
 
-- outer circumference: 2(32+8)−4 = **76** cells;
-- second circumference after removing the first: 2(30+6)−4 = **68** cells;
-- two circumferences together: **144** cells;
-- remaining inner rectangle: 28×4 = **112** cells.
+- first outer circumference: `2(32+8)-4 = 76` cells;
+- second circumference after removing the first: `2(30+6)-4 = 68` cells;
+- two outer circumferences together: **144** cells;
+- remaining inner rectangle: `28×4 = 112` cells.
 
-Thus p49's four-field total equals the two outer circumferences, p55's total equals the remaining 28×4 inner core, and 144+112=256 exactly partitions the whole table. A full page-level census finds p49 and p55 are the only five-core pages; they are also the only pages whose four-field packet totals are 144 and 112, respectively.
+Thus the p49 packet total equals the two outer circumferences and the p55 packet total equals the inner rectangle. The page-level census reports p49 and p55 as the only five-core pages and the only pages whose four-field totals are 144 and 112, respectively. The identity 144+112=256 is one partition of the table, not two independent confirmations.
 
-This correspondence is independent of the p50 radix choice. The previously reported labels remain consistent with the geometry: p49 GP0 76 addresses p50[76]=1s, whose base59 value is 112=GP0(DIRECTION); p55 GP0 38 addresses p50[38]=2D, whose base59 value is 131=GP0(CIRCUMFERENCES). These labels make the paired geometry an appealing human solve-path hypothesis: DIRECTION plus CIRCUMFERENCES, with the first page's packet matching the removed shell and the second matching the inner remainder.
+The p50 original image visibly presents a 32×8 number table inside mirrored botanical artwork. It does not print a four-field packet legend, mark a two-layer shell boundary, label a 28×4 inner receiver, or divide the table into four-column blocks.
 
-A second dimensional fit is that p55 has 76 runes = 19×4, while the p50 inner area has 112 cells = 28×4. The 19 and 4 are the existing DH fields B and q; 28 is 29−1. This is suggestive of a four-column state representation, not yet a cipher rule.
+## Bounded alternative-aggregation charge
 
-## A bounded consumer test: p29 state packet selects a 4×4 inner-core matrix
+For the two observed four-field vectors, enumerate all 15 nonempty subsets of `[GP0,H0,H1,middle]`. Only the **all-four** subset returns the desired pair (144,112):
 
-The existing p29 word30 H4 packet is [22, 15, 8, 0] = [p−1, b, A, F]. All four values are valid zero-based row indices in the 28×4 inner table. I tested the simplest direct block-cipher consumer selected by that packet:
+| Selected fields | p49 sum | p55 sum |
+|---|---:|---:|
+| GP0 | 76 | 38 |
+| H0 | 21 | 36 |
+| H1 | 28 | 36 |
+| middle | 19 | 2 |
+| GP0+H0 | 97 | 74 |
+| GP0+H1 | 104 | 74 |
+| GP0+middle | 95 | 40 |
+| H0+H1 | 49 | 72 |
+| H0+middle | 40 | 38 |
+| H1+middle | 47 | 38 |
+| GP0+H0+H1 | 125 | 110 |
+| GP0+H0+middle | 116 | 76 |
+| GP0+H1+middle | 123 | 76 |
+| H0+H1+middle | 68 | 74 |
+| **GP0+H0+H1+middle** | **144** | **112** |
 
-1. Remove the two outer circumferences, leaving the 28×4 p50 inner rectangle.
-2. Select rows [22, 15, 8, 0], in the p29 packet's printed order, to form a 4×4 key matrix.
-3. Decode the table tokens under both live radices (base59 and base60), reducing entries modulo 29.
-4. Invert the selected matrix over GF(29).
-5. Apply the inverse to p55's 76 original runes as 19 consecutive four-rune blocks, testing the two conventional row-vector and column-vector Hill orientations.
-6. Re-encrypt every output block and require exact recovery of the original p55 ciphertext.
+The natural no-duplication alternative `GP0+H0+H1` gives **125/110**, not 144/112. The exact match therefore depends on counting the middle core twice. That is not mathematically invalid, but no original instruction selects that duplicate weighting or the four fields as a packet. This finite subset check is a diagnostic, not a probability calculation; it does not license a wider search over arbitrary weights or signs.
 
-Both selected matrices are invertible. The exact results are:
+## Source audit: missing packet selector
 
-| Table radix | Selected 4×4 matrix | Column-vector inverse output | Row-vector inverse output |
-| --- | --- | --- | --- |
-| base59 | [12,1,28,26] / [26,13,9,16] / [24,16,25,28] / [15,4,13,19] | OTCEAOBIATTHNGLTHIAYMGLWCRYBNGAEJSLREWDEOICFIRXIASDSLEAEALRWTEMGMEOSOEHITAEPHGHIATPURDOECLONI | MBLRAEEOEOEOMHILLXNUEAAOEWRTHWBNGUODTYXHEOJOIALLAESTHOETNMIACEONGROSGBMYAENGIAGDTHNGYGPTUFNENEBG |
-| base60 | [14,2,2,28] / [1,13,13,17] / [27,19,28,28] / [15,4,15,21] | OETHUOXEOMMDPNGDYLOIITHFUCPBPXEOWBAEBPAEMNNGHOEPEGEAMLNGEOXSNXEBMXYPPOIMAOLTEOLNETHTHXYBEAXTH | FNGWEAXDEAEUTTPEAFMCOTHTHOJRFCIEOLGCAEWNGANGMTFCTHWYXOWFDXCEAEAJXOOUFUEOFWUOEOEDNGOEIAEGXNGXGYNG |
+The preserved first-party material supports parts of the surrounding story but not the packet construction:
 
-All four inverses round-trip exactly. None produces readable p55 plaintext.
+1. **Solved p57** explicitly says “SHED OUR OWN CIRCUMFERENCES / FIND THE DIVINITY WITHIN AND EMERGE.” This supports recursive circumference removal as a motivated operation. It does not say to form `[GP0,H0,H1,middle]`, add the four fields, count the middle twice, stop p50 after two circumferences, or interpret the resulting totals as regions.
+2. **Original p50 image** supplies a 32×8 number table with a botanical frame. The 76/68/144/112 regions are derived from its dimensions; no printed boundary or label selects the two-shell/28×4 partition as a receiver. The image does not visibly encode the four-field packet recipe.
+3. **Authenticated 2013 TCP challenge** supplies BASE29 and DH/NEXT protocol details, but no instruction to sum p49/p55 core fields, select p50 rows, or feed this packet into a table cipher. The worked DH23 tuple is participant-chosen protocol data, not a fixed LP2 packet recipe. The signed `NEXT` command stores participant-supplied text rather than selecting a successor operation. See [authenticated 2013 source record](../resources/external/2013-tcp-server-signed-source.md).
+4. **Authenticated 2014 square metadata** supplies three magic squares of dimensions 5×5, 7×7 and 5×5. It does not specify a 4-field packet, 144/112 partition, or a p50 region traversal. See [preserved original square values](../resources/cicada2014-openpuff-magic-squares.txt).
+5. **Authenticated 2016 signed clue** says “their numbers are the direction.” This is compatible with the already reported p49 `DIRECTION` and p55 `CIRCUMFERENCES` outputs, but does not select the four-field aggregation or the p50 two-shell/inner-core partition.
 
-## Interpretation and limits
+The source evidence therefore selects neither the **four fields**, their **addition with a duplicated middle**, nor the **144/112 region assignment**. The exact correspondence remains a structural observation rather than an authored cipher instruction.
 
-The 144/112 partition is a precise cross-object structural correspondence and is worth preserving. It ties the p49 and p55 five-core packets to the exact two-shell/inner-core geometry of the p50 table, while the existing DIRECTION and CIRCUMFERENCES readouts agree with the roles of those regions.
+## Previously tested direct consumer: negative
 
-It is **not yet evidence of an intended cipher**:
+A bounded Hill4 proposal used the existing p29 H4 packet `[22,15,8,0]` as row indices in the 28×4 p50 inner rectangle:
 
-- The four-field packet sum is an investigator-derived aggregation; no independent source instruction explicitly says to add GP0, H0, H1, and the middle field.
-- The row-selection interpretation of the p29 packet [22,15,8,0] is a new hypothesis, not an established operation.
-- Direct Hill4 is not independently selected by the manuscript, and 4-rune blocks cross printed p55 word boundaries.
-- The direct consumer test is negative for this exact row selection, both table radices, and both standard Hill orientations. It does not exclude other cipher families, but it is not permission to widen arbitrary matrix/key searches.
+1. remove the two outer circumferences;
+2. select rows [22,15,8,0] in printed order;
+3. decode the p50 tokens under base59 and base60, reducing modulo29;
+4. invert the resulting 4×4 matrix over GF(29);
+5. apply both conventional row-vector and column-vector orientations to p55's 76 original runes as 19 blocks of four;
+6. require exact forward re-encryption.
 
-The next useful decision is to find an original clue that selects a reversible consumer of the 28×4 inner core, or that fixes a different role for the four p29 state values. Do not search arbitrary row permutations, phases, alphabets, or matrix variants without such a selector.
+Both selected matrices are invertible and all four inverses round-trip exactly, but none of the four outputs is readable p55 plaintext. The full original outputs and reproducer remain in [the original bounded report history](../sims/lp2_p49_p55_p50_144_112_partition_sft.cjs). Do not repeat direct Hill4, row permutations, radix sweeps or arbitrary table-to-GP29 mappings.
+
+## Separate page-level SHED route
+
+The p49/p55 page-level SHED results remain independently useful and must not be conflated with this packet hypothesis:
+
+```
+p49 cores [20,19,19,14,4]
+ -> GP0 76
+ -> p50[76]=1s
+ -> base59 112 = DIRECTION
+ -> unique 76-rune receiver p55
+
+p55 cores [1,6,2,11,18]
+ -> GP0 38
+ -> p50[38]=2D
+ -> base59 131 = CIRCUMFERENCES
+ -> unique 131-rune receiver p22
+```
+
+These same-operation page-level transfers are documented in [the p49 matched-control report](lp2-p49-recursive-shed-direction-transfer.md), [the p55→p22 receiver report](lp2-p55-circumferences131-p22-receiver.md), and [the composite route SFT](../sims/lp2_p49_p55_p22_navigation_route_sft.cjs). They provide a source-constrained navigation candidate. They do not use the 144/112 packet totals, prove a 4×4 p50 consumer, or recover unknown body plaintext.
+
+## Decision and reopening condition
+
+Retain the exact 144/112 correspondence and subset-sum audit as intermediate geometry. Retire the **four-field packet consumer branch** because the source does not select the aggregation or region assignment and the bounded direct Hill4 consumer is negative.
+
+Reopen only if a first-party clue or contemporaneous player-visible convention independently specifies the four fields, their weighting/addition, the selected p50 region, traversal, token/radix interpretation, initialization/state, and output type. A positive must then recover a held-out original-cipher consequence. Do not search new matrix variants or alternative packet weights without that selector.
 
 ## Reproduction
 
-Run:
+```sh
+node sims/lp2_p49_p55_p50_144_112_partition_sft.cjs
+```
 
-    node sims/lp2_p49_p55_p50_144_112_partition_sft.cjs
-
-The script parses the canonical transcription, reproduces the page-level five-core census and packet totals, checks the p50 geometry, derives the p29 H4 selector, constructs both radix-specific matrices, verifies their inverses, and asserts exact forward re-encryption of all 19 p55 blocks.
-
-Supporting studies: p55 recursive word core, p49 recursive-SHED direction transfer, p50 radial shed geometry, and p29 direction self-index packet.
+The SFT reproduces the page-level five-core census, the four-field totals, the p50 32×8 geometry, the p29 row selector, both radix-specific matrices, exact inverses, and exact forward re-encryption of all 19 p55 blocks.
