@@ -243,4 +243,4 @@ Run:
 node sims/lp2_p28_here_borbit_the_sft.cjs
 ```
 
-The SFT rebuilds the full outer-H/count DH family, charges the field/inverse-scalar and coordinate alternatives, verifies the p28 endpoint prediction, runs the broader adjacent-fragment control, and asserts the state-coordinate and full-receiver uniqueness checks.
+The SFT rebuilds the full outer-H/count DH family, charges the field/inverse-scalar and coordinate alternatives, verifies the p28 endpoint prediction, runs the broader adjacent-fragment control, and asserts the next-line geometry, state-coordinate, and full-receiver uniqueness checks. Windows Node22 PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44440271426.
