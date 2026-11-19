@@ -148,6 +148,16 @@ const residueHits = rows.filter((row) =>
 const identityRows = rows.filter((row) => row.identity);
 const identityResidueHits = residueHits.filter((row) => row.identity);
 
+assert.equal(rows.length, 62);
+assert.deepEqual(
+  residueHits.map((row) => [row.page, row.index, row.target, row.start, row.shell]),
+  [
+    [33, 33, "WILL", 132, [23, 8, 2, 27]],
+    [40, 40, "PATHS", 71, [14, 8, 3, 26]],
+  ]
+);
+assert.deepEqual(identityResidueHits, residueHits);
+
 console.log(JSON.stringify({
   status: "PASS",
   uniqueFourRuneStatePairs: rows.length,
