@@ -127,11 +127,26 @@ The next strongest use is to treat the low-digit p50 transition as a candidate *
 
 ## Independent authenticated-source transfer
 
-A later source-only audit found that the same native base60 low-digit operation has an independent consumer inside the authenticated 2016 vocabulary. Canonical `GP0(ROAD)=GP0(PATHS)=54` and `GP0(FOUND)=36`; the untouched original table gives `p50[54]=2a -> 36` and `p50[36]=0s -> 54`. Across the complete 16-mode base60/base59 × high/low × address-origin × digit-origin family, this canonical reading is the only mode with any two-cycle among the signed vocabulary's 27 distinct GP0 states, and that sole cycle is `36 <-> 54`.
+A later source-only audit found two independent consumers of the same native base60 low-digit operation inside the authenticated 2016 vocabulary.
 
-This supplies the independent external low-digit consumer requested above. The source wording itself distinguishes **the road** from **false paths**, which is a plausible human-facing resolution of the state54 lexical collision. Preserve that semantic reading as interpretation; the source-only numeric cycle is the reproducible fact.
+First, canonical `GP0(ROAD)=GP0(PATHS)=54` and `GP0(FOUND)=36`; the untouched original table gives `p50[54]=2a -> 36` and `p50[36]=0s -> 54`. Across the complete 16-mode base60/base59 × high/low × address-origin × digit-origin family, this canonical reading is the only mode with any two-cycle among the signed vocabulary's 27 distinct GP0 states, and that sole cycle is `36 <-> 54`. The source wording distinguishes **the road** from **false paths**, a plausible human-facing resolution of the state54 lexical collision.
 
-See [authenticated ROAD / FOUND / PATHS low-digit cycle](lp2-2016-road-found-falsepaths-lowdigit-cycle.md).
+More decisively, the explicit relation **“their numbers are the direction”** gives:
+
+```text
+GP0(NUMBERS)   = 83 -> p50[83]  = 3D -> 13
+GP0(DIRECTION) =112 -> p50[112] = 1D -> 13
+
+13 -> 4 -> 37 -> 20 -> 42 -> 28
+```
+
+The tail is source-readable: `20=GP0(OUT)`, `42=GP0(FIND)`, and 28 is physical p28. So an authenticated 2016 clause reaches the same `OUT -> FIND -> p28` tail as READ OUT without inspecting unknown p28 ciphertext.
+
+Charge the three explicit clue relations `WORDS/MAP`, `MEANING/ROAD`, and `NUMBERS/DIRECTION` across all 16 conventions. Exactly one of the 48 relation/mode cases both converges after one step and reaches consecutive `FIND(42) -> 28` before its first repeat: `NUMBERS/DIRECTION` under native base60 low digit with zero-based address/value semantics.
+
+This supplies the independent external low-digit consumer requested above and upgrades the operation to a serious candidate state-navigation opcode. It still does not establish the READ OUT plaintext transform or provide the missing reversible GP29 ciphertext operation.
+
+See [authenticated 2016 low-digit routes](lp2-2016-road-found-falsepaths-lowdigit-cycle.md).
 
 ## Reproduction
 
