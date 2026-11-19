@@ -266,3 +266,13 @@ Source sentence positions9..13 are LIBER PRIMUS IS THE WAY, so the fixed half-tu
 WAY still candidate-level because its local W+AY assembly convention is retrospective.
 
 Artifacts: im-results/lp2-way-cube-e-liber-p9-holdout.md; sims/lp2_way_cube_e_liber_p9_holdout_sft.cjs; p29/p9 reports and results README reconciled.
+
+## 2026-11-19T04:31Z checkpoint: p9 PATHS half reconstructs 3301 polynomial and p29 parameters
+
+New SFT sims/lp2_p9_paths_hfactor_p29_way_sft.cjs passed Windows Node22 run 44457862429.
+
+Selected p9 packet [25,4|0,3,16,21] has PATHS half [0,3,16,21]. Adjacent-pair shell-preserving radial H gives [24,26,3,8]=[p+1,-e,e,A]. First3 [24,26,3] exactly equal reverse polynomial order of authenticated 2013 BASE29 3301 token 3QO=[3,26,24]; fourth=A=8.
+Existing outside-in H4 on the same block gives [8,16,19,21]=[A,C(p),B,B+K], with C(p)=23^3 mod29=16.
+Fixed radial H full target and 3301 prefix are each unique at p9 offsets137..140 across 12,791 unknown-page contiguous 4-rune windows. Broad 32 orientation/pair variants => 409,312 configs; full target has2 symmetry-equivalent config hits and prefix4, all on same physical p9 window. Existing H4 target is also unique across 12,791 windows.
+Packet supplies p29 repeated root r=24, derivative order e=3, and AY=[24,26]. P29 and table third derivative at24 produce W=7. Preserving packet branch order gives W||AY=WAY. Compact six insertion/direction family has only WAY as authenticated signed-source 3-rune word. Keep assembly candidate-level because radial serialization/composition rule was recognized after WAY, but previous 48-member assembly ambiguity is materially narrowed.
+Report: im-results/lp2-p9-paths-hfactor-p29-way.md.
