@@ -5,97 +5,27 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 const root = path.resolve(__dirname, "..");
-const read = (relative) =>
-  fs.readFileSync(path.join(root, relative), "utf8").replace(/\r/g, "");
-const readJson = (relative) => JSON.parse(read(relative));
 
-const corpus = readJson("resources/liber-primus/lp2-corpus.json");
+/** @param {string} relative @returns {string} */
+function read(relative) {
+  return fs.readFileSync(path.join(root, relative), "utf8").replace(/\r/g, "");
+}
+
+const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
 const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
-
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
-const parts = transcription.split(/^\s*%\s*$/m);
 
+/** @param {number} value @returns {number} */
 function mod29(value) {
   return ((value % 29) + 29) % 29;
 }
 
 /**
- * @param {number} base
- * @param {number} exponent
- * @param {number} modulus
- */
-function modPow(base, exponent, modulus) {
-  let result = 1 % modulus;
-  let x = ((base % modulus) + modulus) % modulus;
-  let e = exponent;
-  while (e > 0) {
-    if (e & 1) result = (result * x) % modulus;
-    x = (x * x) % modulus;
-    e = Math.floor(e / 2);
-  }
-  return result;
-}
-
-/**
- * Canonical unknown-word parser. Printed line wraps and physical page breaks
- * may continue a word. Retain only words wholly contained on one unknown page.
- */
-const unknownSegments = parts.slice(0, 55);
-const canonicalPages = unknownSegments.map((text, segment) => ({
-  page: segment >= 50 ? segment + 1 : segment,
-  words: [],
-  offset: 0,
-}));
-let currentWord = [];
-let startSegment = 0;
-let endSegment = 0;
-let startOffset = 0;
-function flushCanonicalWord() {
-  if (!currentWord.length) return;
-  if (startSegment === endSegment) {
-    const page = canonicalPages[startSegment];
-    page.words.push({
-      index: page.words.length,
-      ordinal: page.words.length + 1,
-      start: startOffset,
-      end: startOffset + currentWord.length - 1,
-      values: currentWord.slice(),
-    });
-  }
-  currentWord = [];
-}
-for (let segment = 0; segment < unknownSegments.length; segment += 1) {
-  for (const char of [...unknownSegments[segment]]) {
-    const value = runeIndex.get(char);
-    if (value !== undefined) {
-      if (!currentWord.length) {
-        startSegment = segment;
-        startOffset = canonicalPages[segment].offset;
-      }
-      endSegment = segment;
-      currentWord.push(value);
-      canonicalPages[segment].offset += 1;
-    } else if (char === "/" || /\s/u.test(char)) {
-      // Printed line/page wrap can continue a word.
-    } else {
-      flushCanonicalWord();
-    }
-  }
-}
-flushCanonicalWord();
-const canonicalWords = canonicalPages.flatMap((page) =>
-  page.words.map((word) => ({page: page.page, ...word}))
-);
-const wordsByPage = new Map(
-  canonicalPages.map((page) => [page.page, page.words])
-);
-function pageWords(page) {
-  return wordsByPage.get(page) || [];
-}
-
-/**
+ * Pair-interleaved outside-in H shell used by the numbered-route reports.
+ * Each outer pair emits difference then sum; an odd center is appended last.
  * @param {number[]} values
+ * @returns {number[]}
  */
 function shell(values) {
   const out = [];
@@ -113,11 +43,77 @@ function shell(values) {
   return out;
 }
 
+const parts = transcription.split(/^\s*%\s*$/m);
+const unknownSegments = parts.slice(0, 55);
+const canonicalPages = unknownSegments.map((text, segment) => ({
+  page: segment >= 50 ? segment + 1 : segment,
+  words: [],
+  offset: 0,
+}));
+let currentWord = [];
+let startSegment = 0;
+let endSegment = 0;
+let startOffset = 0;
+let crossingWords = 0;
+
+/** Flush one printed word under the canonical cross-page contract. */
+function flushCanonicalWord() {
+  if (!currentWord.length) return;
+  if (startSegment === endSegment) {
+    const page = canonicalPages[startSegment];
+    page.words.push({
+      ordinal: page.words.length + 1,
+      start: startOffset,
+      end: startOffset + currentWord.length - 1,
+      values: currentWord.slice(),
+    });
+  } else {
+    crossingWords += 1;
+  }
+  currentWord = [];
+}
+
+for (let segment = 0; segment < unknownSegments.length; segment += 1) {
+  for (const character of [...unknownSegments[segment]]) {
+    const value = runeIndex.get(character);
+    if (value !== undefined) {
+      if (!currentWord.length) {
+        startSegment = segment;
+        startOffset = canonicalPages[segment].offset;
+      }
+      endSegment = segment;
+      currentWord.push(value);
+      canonicalPages[segment].offset += 1;
+    } else if (character === "/" || /\s/u.test(character)) {
+      // Printed line and physical-page wraps can continue a word.
+    } else {
+      flushCanonicalWord();
+    }
+  }
+}
+flushCanonicalWord();
+
+const canonicalWords = canonicalPages.flatMap((page) =>
+  page.words.map((word) => ({page: page.page, ...word}))
+);
+const wordsByPage = new Map(
+  canonicalPages.map((page) => [page.page, page.words])
+);
+
+/** @param {number} page @returns {{ordinal:number,start:number,end:number,values:number[]}[]} */
+function pageWords(page) {
+  return wordsByPage.get(page) || [];
+}
+
+assert.equal(crossingWords, 32);
+assert.equal(canonicalWords.length, 2864);
+assert.equal(canonicalWords.length + crossingWords, 2896);
+
 const signedStart = signed2016.indexOf("Hello.");
 const signedEnd = signed2016.indexOf("-----BEGIN PGP SIGNATURE-----");
 assert.ok(signedStart >= 0 && signedEnd > signedStart);
-const body = signed2016.slice(signedStart, signedEnd);
-const source = body
+const source = signed2016
+  .slice(signedStart, signedEnd)
   .replace(/\b7A35090F\b/g, "")
   .match(/(?<![A-Za-z0-9])[A-Za-z]+(?![A-Za-z0-9])/g)
   .map((word, index) => ({
@@ -125,182 +121,127 @@ const source = body
     ordinal: index + 1,
     word: word.toUpperCase(),
   }));
-
 assert.equal(source.length, 43);
-const byWord = new Map();
-for (const row of source) {
-  if (!byWord.has(row.word)) byWord.set(row.word, row.index);
-}
-assert.equal(byWord.get("VERIFY"), 41);
-assert.equal(byWord.get("OPENPGP"), 42);
-assert.equal(byWord.get("NUMBERS"), 26);
-assert.equal(byWord.get("PRIMUS"), 10);
-assert.equal(byWord.get("WORDS"), 15);
-assert.equal(byWord.get("THEIR"), 19);
-assert.equal(byWord.get("ROAD"), 23);
 
-// Numbered route: source word42 VERIFY -> physical page42/project p41 -> word42.
 const verify = source[41];
-assert.equal(verify.word, "VERIFY");
-assert.equal(verify.ordinal, 42);
+assert.deepEqual(verify, {index: 41, ordinal: 42, word: "VERIFY"});
 
-const verifyObject = pageWords(41)[41];
+// Correct numbered route: source ordinal42 -> physical page42 -> project p41
+// -> complete page-local canonical word42.
+const p41 = pageWords(41);
+const verifyObject = p41[41];
 assert.ok(verifyObject);
 assert.equal(verifyObject.ordinal, 42);
-assert.equal(verifyObject.start, 171);
-assert.deepEqual(verifyObject.values, [0, 14, 13, 19, 3, 6, 9]);
+assert.equal(verifyObject.start, 178);
+assert.equal(verifyObject.end, 184);
+assert.deepEqual(verifyObject.values, [27, 12, 5, 0, 17, 13, 19]);
 
 const verifyShell = shell(verifyObject.values);
-assert.deepEqual(verifyShell, [20, 9, 8, 20, 10, 16, 19]);
-const innerCore = verifyShell.slice(-3);
-assert.deepEqual(innerCore, [10, 16, 19]);
+assert.deepEqual(verifyShell, [8, 17, 28, 25, 17, 22, 0]);
+const verifyInner = verifyShell.slice(-3);
+assert.deepEqual(verifyInner, [17, 22, 0]);
 
-const [endpoint, stride, expectedMiddleResidue] = innerCore;
-assert.equal(endpoint, byWord.get("PRIMUS"));
-assert.equal(expectedMiddleResidue, byWord.get("THEIR"));
+// The object formerly attributed to VERIFY42 is the immediately preceding
+// canonical word41. This freezes the exact off-by-one failure.
+const staleObject = p41[40];
+assert.ok(staleObject);
+assert.equal(staleObject.ordinal, 41);
+assert.equal(staleObject.start, 171);
+assert.equal(staleObject.end, 177);
+assert.deepEqual(staleObject.values, [0, 14, 13, 19, 3, 6, 9]);
+const staleShell = shell(staleObject.values);
+assert.deepEqual(staleShell, [20, 9, 8, 20, 10, 16, 19]);
+const staleInner = staleShell.slice(-3);
+assert.deepEqual(staleInner, [10, 16, 19]);
 
-// From zero-based OPENPGP=42, the source-selected stride16 reaches exactly
-// NUMBERS26 then PRIMUS10 without wrapping.
-const walk = [byWord.get("OPENPGP")];
-while (walk.at(-1) !== endpoint) {
-  const next = walk.at(-1) - stride;
-  assert.ok(next >= 0, "backward stride left authenticated source");
-  walk.push(next);
+// VERIFY42 no longer selects the old PRIMUS/16/THEIR triple.
+assert.notDeepEqual(verifyInner, staleInner);
+assert.notEqual(verifyInner[0], 10);
+assert.notEqual(verifyInner[1], 16);
+assert.notEqual(verifyInner[2], 19);
+
+/**
+ * @param {number[]} values
+ * @returns {(string|null)[]}
+ */
+function sourceWords0(values) {
+  return values.map((value) =>
+    value >= 0 && value < source.length ? source[value].word : null
+  );
 }
-assert.deepEqual(walk, [42, 26, 10]);
-assert.deepEqual(
-  walk.map((index) => source[index].word),
-  ["OPENPGP", "NUMBERS", "PRIMUS"]
+
+assert.deepEqual(sourceWords0(verifyInner), ["THE", "THE", "HELLO"]);
+assert.deepEqual(sourceWords0(staleInner), ["PRIMUS", "WORDS", "THEIR"]);
+
+// Exhaust the exact inner-core claims under the current canonical corpus.
+let eligibleOddWords = 0;
+const verifyCoreHits = [];
+const staleCoreHits = [];
+for (const word of canonicalWords) {
+  if (word.values.length < 3 || word.values.length % 2 === 0) continue;
+  eligibleOddWords += 1;
+  const core = shell(word.values).slice(-3);
+  if (core.every((value, index) => value === verifyInner[index])) {
+    verifyCoreHits.push({
+      page: word.page,
+      ordinal: word.ordinal,
+      start: word.start,
+      length: word.values.length,
+    });
+  }
+  if (core.every((value, index) => value === staleInner[index])) {
+    staleCoreHits.push({
+      page: word.page,
+      ordinal: word.ordinal,
+      start: word.start,
+      length: word.values.length,
+    });
+  }
+}
+
+assert.ok(
+  verifyCoreHits.some((hit) =>
+    hit.page === 41 && hit.ordinal === 42 && hit.start === 178
+  )
+);
+assert.ok(
+  staleCoreHits.some((hit) =>
+    hit.page === 41 && hit.ordinal === 41 && hit.start === 171
+  )
 );
 
-// Authentic printed OpenPGP key ID.
-const keyIdMatch = signed2016.match(/\b([0-9A-F]{8})\b/);
-assert.ok(keyIdMatch);
-assert.equal(keyIdMatch[1], "7A35090F");
-const N = Number.parseInt(keyIdMatch[1], 16);
-assert.equal(N, 0x7A35090F);
-
-// The walked labels supply the natural radix/moduli:
-// OPENPGP -> hex16, NUMBERS -> conventional base60 (with base59 rival),
-// PRIMUS -> GP/base29.
-const residues = {
-  hex16: N % 16,
-  base60: N % 60,
-  base59: N % 59,
-  base29: N % 29,
-};
-assert.deepEqual(residues, {
-  hex16: 15,
-  base60: 19,
-  base59: 0,
-  base29: 23,
-});
-
-// VERIFY's source-selected inner-core value19 selects base60 over base59.
-assert.equal(residues.base60, expectedMiddleResidue);
-assert.notEqual(residues.base59, expectedMiddleResidue);
-
-// The three source landings are exactly b,B,p.
-assert.equal(residues.hex16, byWord.get("WORDS"));
-assert.equal(residues.base60, byWord.get("THEIR"));
-assert.equal(residues.base29, byWord.get("ROAD"));
-
-const b = residues.hex16;
-const B = residues.base60;
-const p = residues.base29;
-const gCandidates = [];
-for (let g = 1; g < p; g += 1) {
-  if (modPow(g, b, p) === B) gCandidates.push(g);
-}
-assert.deepEqual(gCandidates, [5]);
-const g = gCandidates[0];
-
-// Reconstruct the remaining state without the p28 DH line.
-// THEIR occurs at zero-based positions19 and25, so authored RISE gives a=6.
-const theirPositions = source
-  .filter((row) => row.word === "THEIR")
-  .map((row) => row.index);
-assert.deepEqual(theirPositions, [19, 25]);
-const a = theirPositions[1] - theirPositions[0];
-const A = modPow(g, a, p);
-const K = modPow(B, a, p);
-const e = (() => {
-  for (let candidate = 1; candidate < p - 1; candidate += 1) {
-    if ((b * candidate) % (p - 1) === 1) return candidate;
-  }
-  return null;
-})();
-const q = e + 1;
-
-const recoveredState = {p, g, a, b, A, B, K, e, q};
-assert.deepEqual(recoveredState, {
-  p: 23,
-  g: 5,
-  a: 6,
-  b: 15,
-  A: 8,
-  B: 19,
-  K: 2,
-  e: 3,
-  q: 4,
-});
-
-// Every recovered value lands on the independently authenticated role word.
-assert.equal(byWord.get("ROAD"), recoveredState.p);
-assert.equal(byWord.get("EPIPHANY"), recoveredState.g);
-assert.equal(byWord.get("SEEKS"), recoveredState.a);
-assert.equal(byWord.get("WORDS"), recoveredState.b);
-assert.equal(byWord.get("DEVOTED"), recoveredState.A);
-assert.equal(byWord.get("THEIR"), recoveredState.B);
-assert.equal(byWord.get("PATH"), recoveredState.K);
-assert.equal(byWord.get("LIES"), recoveredState.e);
-assert.equal(byWord.get("EMPTY"), recoveredState.q);
-assert.equal(modPow(A, b, p), K);
-assert.equal(modPow(B, a, p), K);
-
-// Manuscript-wide inner-core control: every canonical odd-length word >=3,
-// same fixed outside-in shell, exact innermost [diff,sum,center] triple.
-let eligibleOddWords = 0;
-const coreHits = [];
-for (const word of canonicalWords) {
-    if (word.values.length < 3 || word.values.length % 2 === 0) continue;
-    eligibleOddWords += 1;
-    const core = shell(word.values).slice(-3);
-    if (core.every((value, index) => value === innerCore[index])) {
-      coreHits.push({
-        page,
-        ordinal: word.ordinal,
-        start: word.start,
-        length: word.values.length,
-      });
-    }
-}
-assert.equal(eligibleOddWords, 1354);
-assert.deepEqual(coreHits, [{
-  page: 41,
-  ordinal: 42,
-  start: 171,
-  length: 7,
-}]);
-
-console.log("PASS VERIFY numbered core selects OPENPGP modulus ladder");
 console.log(JSON.stringify({
-  verify: {
+  status: "PASS",
+  canonicalContract: {
+    completePageLocalWords: canonicalWords.length,
+    crossingWords,
+    totalPrintedWords: canonicalWords.length + crossingWords,
+  },
+  verify42: {
     sourceIndex: verify.index,
     sourceOrdinal: verify.ordinal,
     projectPage: 41,
-    localWord: verifyObject.ordinal,
+    canonicalWord: verifyObject.ordinal,
     start: verifyObject.start,
+    end: verifyObject.end,
     values: verifyObject.values,
     shell: verifyShell,
-    innerCore,
+    innerCore: verifyInner,
+    innerCoreSourceWords0: sourceWords0(verifyInner),
   },
-  openpgpWalk: {
-    indices: walk,
-    words: walk.map((index) => source[index].word),
+  staleWord41: {
+    canonicalWord: staleObject.ordinal,
+    start: staleObject.start,
+    end: staleObject.end,
+    values: staleObject.values,
+    shell: staleShell,
+    innerCore: staleInner,
+    innerCoreSourceWords0: sourceWords0(staleInner),
   },
-  keyId: keyIdMatch[1],
-  residues,
-  recoveredState,
-  control: {eligibleOddWords, coreHits},
+  controls: {
+    eligibleOddWords,
+    verifyCoreHits,
+    staleCoreHits,
+  },
+  decision: "The historical [10,16,19] core belongs to p41 canonical word41, not VERIFY-selected word42. Under the canonical cross-page word contract VERIFY42 is p41 word42 at 178..184 with H core [17,22,0]. Therefore VERIFY42 does not independently select the OPENPGP stride/base60/full-state route.",
 }, null, 2));
