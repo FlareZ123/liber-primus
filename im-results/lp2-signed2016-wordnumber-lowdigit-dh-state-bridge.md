@@ -132,6 +132,71 @@ The exact ordered terminal vector occurs only in the two algebraically identical
 
 Two further source-layout controls favor the literal table reading. Under the frozen numeric rule, all 256 cyclic table origins were charged. Only origins 0,93,253 keep all seven outputs inside the signed primitive-DH register, and **origin0 alone** gives the exact ordered state vector. Across the eight obvious 32x8 traversals, row/column major with independent reversals of the major and minor directions, **only original printed row-major forward order** gives either the all-signed-DH terminal block or the exact vector.
 
+## The signed-word direction graph
+
+The residue has one more source-native interpretation. Because every `s_i` is modulo29, it is also a zero-based index into the first 29 alphabetic words of the authenticated message. The source itself says that its words are the map and their numbers are the direction. Freeze the residue rule above, then define one directed edge:
+
+```
+word i -> word s_i
+```
+
+The source-selected starting point is the first signed word, **HELLO**. Its route is:
+
+```
+HELLO (0)
+  -> MAP  (18)
+  -> ROAD (23)
+  -> HELLO (0)
+```
+
+The exact arithmetic is:
+
+```
+HELLO: low60(p50[0])  = 23; 23 - 0  - GP_len(HELLO=5) = 18 = MAP
+MAP:   low60(p50[18]) = 15; 15 - 18 - GP_len(MAP=3)   = 23 = ROAD
+ROAD:  low60(p50[23]) = 27; 27 - 23 - GP_len(ROAD=4)  = 0  = HELLO
+```
+
+This is a direct human-puzzle reading of the authenticated clue: the first word enters a closed route through the literal source words **MAP** and **ROAD**. Among the first 29 words the frozen graph has exactly two cycles:
+
+```
+HELLO -> MAP -> ROAD -> HELLO
+THE(22) -> SEEKS -> AND -> THE(22)
+```
+
+The navigation cycle is the one reached immediately from the message's first word.
+
+Charge the exact first-word cycle across the 128 arithmetic conventions and both GP/Latin word-length definitions, 256 syntactic modes total. Eight syntactic modes reproduce it, and all eight collapse to the same numeric operation: zero-addressed low component, subtract word number, subtract word length. The remaining aliases arise because HELLO/MAP/ROAD have identical Latin and GP lengths, their relevant low characters have the same value in base60/base59, and the paired origin shifts cancel.
+
+The source layout is still selective. Across all 256 cyclic p50 table origins, **offset0 alone** gives the cycle. Across the eight obvious 32x8 traversals, **original row-major forward alone** gives the cycle.
+
+For the three fixed source addresses, uniform permutation of the 256 labeled original p50 token instances gives:
+
+```
+120 / 16,581,120
+= 7.237146827234831e-6
+```
+
+This is a post-discovery diagnostic because MAP/ROAD were noticed after the frozen graph was inspected, although both words are explicitly privileged by the source clue.
+
+There is also a direct connection to the unresolved warning-packet scheduler. The uncorrected p50 low digits at the three cycle nodes are:
+
+```
+HELLO p50[0]  low = 23 = p
+MAP   p50[18] low = 15 = b
+ROAD  p50[23] low = 27 = -K
+```
+
+One outside-in application of the already frozen H orientation gives:
+
+```
+H(p,-K), b
+= [p+K,p-K,b]
+= [25,21,15]
+```
+
+Those are **exactly the first three coordinates of the existing OPENPGP source-side key shell** in `lp2-p0-openpgp-warning-packet.md`. This does not yet serialize the remaining four coordinates, but it supplies the first source-selected prefix from one coherent directed-map mechanism instead of a per-coordinate expression menu.
+
 ## Independently selected transfer: EPIPHANY SEEKS THE DEVOTED
 
 Agent8 committed a separate p=23/base60 route selecting the authenticated source phrase **EPIPHANY SEEKS THE DEVOTED** at commit `33bbc28a6f726fef06675979414d6b7466e931fc`, timestamp 02:36:21Z, before this formula was applied to that phrase. That route selected the phrase from a 23-step p50 navigation ending at physical p32. It did not use the residue rule here.
@@ -233,4 +298,4 @@ The next decisive test should consume this recovered state **prospectively**. A 
 node sims/lp2_signed2016_p50_lowdigit_dh_state_bridge_sft.cjs
 ```
 
-The SFT re-parses the authentic 2016 signed text, original p50 table, p28 transcription, and canonical GP register; reconstructs the p28 DH tuple; verifies the seven terminal residues and punctuation H identities; charges the 256 arithmetic/length conventions, 256 cyclic table origins, and eight table traversals; reproduces the independent EPIPHANY/SEEKS/THE/DEVOTED transfer; and computes the exact labeled-token multiset counts.
+The SFT re-parses the authentic 2016 signed text, original p50 table, p28 transcription, and canonical GP register; reconstructs the p28 DH tuple; verifies the terminal state packet and punctuation H identities; charges the 256 arithmetic/length conventions, 256 cyclic table origins, and eight table traversals; reproduces the independent EPIPHANY/SEEKS/THE/DEVOTED transfer; constructs and charges the HELLO -> MAP -> ROAD direction cycle; verifies its `[p,b,-K] -> [p+K,p-K,b]` warning-shell prefix; and computes the exact labeled-token multiset counts.
