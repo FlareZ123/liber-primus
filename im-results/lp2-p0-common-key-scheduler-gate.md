@@ -24,7 +24,7 @@ The two keys share the use of the DH state and `H`, but not one fixed slot rule:
 
 ## Frozen second AND receiver: transfer fails
 
-The additional source-selected receiver at p0 **254..256** has original ciphertext `[19,4,21]` and printed length 3. Its source selector and target were fixed before this run's raw receiver read; the upstream SEEK/READ OUT report had already published the values, so this is a reproducible cross-route test, **not a blind holdout**.
+The additional source-selected receiver at p0 **254..256** has original ciphertext `[19,4,21]` and printed length 3. Its source selector, target, and predicted key were frozen in the precommit before independent receiver scoring. The upstream SEEK/READ OUT report had already published the values, so this is a reproducible cross-route test, **not a blind holdout**.
 
 The precommitted ROAD/NUMBERS key `[5,26,15]` fails at this receiver under both signs:
 
