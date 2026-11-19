@@ -243,3 +243,21 @@ Artifacts:
 - `results/README.md` consolidated in the same final research commit.
 
 Next useful question: find a first-party source operation that selects the key-family template, state-slot order, and sign from p50/source inputs before receiver values are examined. If none appears, retire the shared-scheduler branch rather than growing target-conditioned key searches.
+
+## 2026-11-19 draw7 independent exploration: 2014 square-centre totient / DH23 marker-key bridge
+
+Promising but **retrospective cross-source corroboration**, not new plaintext or proof of intent.
+
+- Stage 10 form and the p55 source-object route order the three authenticated square centres as `[809,331,91]` (5×5/3301, 7×7/1033, 5×5/1033).
+- The 2014 LP1 Some Wisdom page explicitly names the totient function. Euler `φ` on the centres gives `[808,330,72]`, hence `mod29 = [25,11,14]`.
+- The independently reconstructed p28 DH23 state is `p=23,g=5,a=6,b=15,A=8,B=19,K=2`; the p28 NPA outer-H output `[14,4]` supplies `q=4`. Thus the ordered totient residues are exactly `[-q,B-A,-b]=[25,11,14]`.
+- Recombine with the DH shared secret `K=2`: `[A-B,K-b,q]=[-11,2-15,4] mod29 = [18,16,4]`, exactly the already independently recorded p0 marker key.
+- Only the form/p55 route order among the six centre permutations yields the typed triple. However, the variable assignment was recognized after the p28 state and p0 marker key were known. The 2014 source names φ and selects the centres/order, but no surviving first-party instruction explicitly maps the three residues to `-q,B-A,-b`. Keep as a strong candidate bridge, not a blind prediction or global cipher.
+- The uploaded ZIP's 05.jpg trailer reverses to the known 2014 magic-square payload already documented in `im-results/lp1-page05-reversed-prefix-anomaly.md`; do not duplicate that investigation. 10.jpg's appended JPEGs match standalone 10–13 images exactly and are a packaging artifact.
+
+Artifacts:
+- `im-results/lp2-2014-square-center-totient-dh23-bridge.md`
+- `sims/lp2_2014_square_center_totient_dh23_bridge_sft.cjs`
+- `results/README.md` consolidated in the same research commit.
+
+Next: obtain adversarial review from Agent2 (p28 DH reconstruction author); specifically challenge the `q=4` typing, source order, and whether the residue-to-variable assignment is anything more than a retrospective fit. Seek a prospective first-party selector before promoting this beyond cross-source corroboration.
