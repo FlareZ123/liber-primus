@@ -86,7 +86,20 @@ def main() -> None:
     assert sum(plus_key) == sum(plaintext) == 192
 
     streams = parse_ksb(external / "work/kscreen/data/library.ksb")
-    assert len(streams) == 581
+    assert len(streams) == 1439
+
+    info_lines = (external / "work/kscreen/data/library.tsv").read_text(encoding="utf-8").splitlines()
+    assert info_lines[0].split("\t") == [
+        "name", "length", "period", "predicted_ioc_english", "excluded_by_global_ioc"
+    ]
+    excluded_by_name: dict[str, bool] = {}
+    for line in info_lines[1:]:
+        name, _length, _period, _pi, excluded = line.split("\t")
+        excluded_by_name[name] = excluded == "1"
+    assert len(excluded_by_name) == len(streams)
+    assert sum(excluded_by_name.values()) == 858
+    assert len(streams) - sum(excluded_by_name.values()) == 581
+
     variants = {
         "plus-forward": bytes(plus_key),
         "minus-forward": bytes(minus_key),
@@ -95,24 +108,33 @@ def main() -> None:
     }
 
     exact_hits: list[dict[str, object]] = []
-    nearest: list[tuple[int, str, int, str]] = []
     for name, stream in streams:
         for variant_name, needle in variants.items():
             for offset in find_all(stream, needle):
-                exact_hits.append({"stream": name, "variant": variant_name, "offset": offset})
-            if len(stream) >= len(needle):
-                best = (len(needle) + 1, -1)
-                for offset in range(len(stream) - len(needle) + 1):
-                    distance = sum(a != b for a, b in zip(stream[offset:offset + len(needle)], needle))
-                    if distance < best[0]:
-                        best = (distance, offset)
-                        if distance == 0:
-                            break
-                nearest.append((best[0], name, best[1], variant_name))
+                exact_hits.append({
+                    "stream": name,
+                    "variant": variant_name,
+                    "offset": offset,
+                    "excluded_by_prior_global_ioc": excluded_by_name[name],
+                })
 
-    assert exact_hits == []
+    survivor_hits = [hit for hit in exact_hits if not hit["excluded_by_prior_global_ioc"]]
+    status = (
+        "CANDIDATE: exact conditional p0 crib key found in frozen source library"
+        if exact_hits
+        else "PASS: no exact conditional p0 crib key in frozen source library"
+    )
+    decision = (
+        "Forward-test each exact source-stream hit on the untouched p0 body before promotion."
+        if exact_hits
+        else (
+            "No exact contiguous phase of any of the 1,439 frozen source/historical additive-key "
+            "streams generates the conditional EPIPHANY SEEKS title crib under either sign or "
+            "stream direction. A distinct source-selected operation or key generator is still required."
+        )
+    )
     print(json.dumps({
-        "status": "PASS: no exact conditional p0 crib key in frozen 581-stream library",
+        "status": status,
         "external_pin": PINNED_EXTERNAL,
         "cipher_gp29": cipher,
         "plaintext_gp29": plaintext,
@@ -126,17 +148,12 @@ def main() -> None:
             "required_plus_key_total": sum(plus_key),
         },
         "library_streams": len(streams),
+        "prior_global_ioc_excluded_streams": sum(excluded_by_name.values()),
+        "prior_global_ioc_survivor_streams": len(streams) - sum(excluded_by_name.values()),
         "charged_variants_per_stream": len(variants),
         "exact_hits": exact_hits,
-        "nearest_hamming_diagnostics": [
-            {"distance": d, "stream": name, "offset": offset, "variant": variant}
-            for d, name, offset, variant in sorted(nearest)[:12]
-        ],
-        "decision": (
-            "No exact contiguous phase of the frozen source/historical additive-key library "
-            "generates the conditional EPIPHANY SEEKS title crib under either sign or stream "
-            "direction. A distinct source-selected operation or key generator is still required."
-        ),
+        "survivor_exact_hits": survivor_hits,
+        "decision": decision,
     }, indent=2))
 
 if __name__ == "__main__":
