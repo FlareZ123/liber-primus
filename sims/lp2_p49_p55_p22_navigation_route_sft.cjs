@@ -144,6 +144,16 @@ assert.equal(p22.gp0, 111);
 assert.equal(tape[111], "1t");
 assert.equal(base59(111), 113);
 
+const p23 = signature(completeWords.get(23));
+assert.deepEqual(p23.cores, [17, 17, 11, 8, 1, 1, 0, 19, 1, 20, 5, 3, 27, 24, 19, 17, 6, 18, 3, 17, 4, 23, 8]);
+assert.equal(p23.nWords, 46);
+assert.equal(p23.gp0, 269);
+
+const p24 = signature(completeWords.get(24));
+assert.deepEqual(p24.cores, [4, 11, 13, 9, 17, 0, 1, 26, 6, 13, 21, 22, 18, 9, 23, 22, 11, 17, 7, 10, 2, 1, 22, 11, 21, 27, 3, 16]);
+assert.equal(p24.nWords, 64);
+assert.equal(p24.gp0, 363);
+
 const pageCounts = new Set(
   corpus.pages.filter((page) => page.page <= 55).map((page) => page.indices.length),
 );
@@ -166,12 +176,24 @@ const p57Gp0 = new Set(p57Words.map(gp0));
 assert.equal(signedGp0.has(113), false);
 assert.equal(p57Gp0.has(113), false);
 
+// A 256-cell wrap is tested only as a diagnostic rival, not as a source-selected rule.
+const p23Wrapped = base59(p23.gp0 % tape.length);
+const p24Wrapped = base59(p24.gp0 % tape.length);
+assert.deepEqual(p23Wrapped, { token: "04", value: 4 });
+assert.deepEqual(p24Wrapped, { token: "3c", value: 215 });
+assert.equal(signedGp0.has(p23Wrapped.value), false);
+assert.equal(signedGp0.has(p24Wrapped.value), false);
+assert.equal(p57Gp0.has(p23Wrapped.value), false);
+assert.equal(p57Gp0.has(p24Wrapped.value), false);
+
 console.log(JSON.stringify({
   status: "PASS",
   route: [
     "p49 recursive SHED -> 76 -> DIRECTION -> unique 76-rune p55",
     "p55 recursive SHED -> 38 -> 131=CIRCUMFERENCES -> unique 131-rune p22",
     "p22 same SHED -> 111 -> base59 113 -> no typed page/source/p57 receiver",
+    "p23 same SHED -> 269 (outside 256); diagnostic mod256 index13 -> 04 -> 4, no signed/p57 word",
+    "p24 same SHED -> 363 (outside 256); diagnostic mod256 index107 -> 3c -> 215, no signed/p57 word",
   ],
   p22Stop: {
     cores: p22.cores,
@@ -181,6 +203,12 @@ console.log(JSON.stringify({
     physicalRuneCountMatch: false,
     signed2016Gp0Match: false,
     solvedP57Gp0Match: false,
+  },
+  p23p24Stop: {
+    p23: { words: p23.nWords, cores: p23.cores, gp0: p23.gp0, wrapped: p23Wrapped },
+    p24: { words: p24.nWords, cores: p24.cores, gp0: p24.gp0, wrapped: p24Wrapped },
+    wrappedValuesMatchSigned2016OrP57: false,
+    wrapIsSourceSelected: false,
   },
   interpretation: "The numeric SHED route terminates at p22; use p22's independently established source instruction rather than tuning another numeric hop.",
 }, null, 2));
