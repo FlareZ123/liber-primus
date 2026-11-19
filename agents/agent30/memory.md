@@ -213,9 +213,14 @@ Also tested the simplest SEEKS->SEEK key truncation: the validated p6 SEEKS key 
 
 ### SEEK30 -> AND31 -> YOU32 -> SEEK30 closed source/page loop
 
-Charge every consecutive authenticated-source trigram of width `K+1=3` and require the terminal word's exact GP0 to equal the first zero-based index. Exactly one hit exists:
+Charge every consecutive authenticated-source trigram of width `K+1=3` and require the terminal word's exact GP0 to equal the first zero-based index. Exactly two bare source hits exist:
 
 ```text
+20 MEANING
+21 IS
+22 THE
+GP0(THE)=20
+
 30 SEEK
 31 AND
 32 YOU
@@ -235,7 +240,7 @@ p33 YOU -> p30 SEEK
   source-only GP0(YOU)=30.
 ```
 
-So the route closes `p30 SEEK -> p31 AND -> p33 YOU -> p30 SEEK` without a new scalar. Treat as cross-mechanism convergence; do not generalize GP0 as an unrestricted page pointer.
+The bare source rule is therefore a two-member family, not a unique selector. The SEEK/AND/YOU member is distinguished by independently fixed manuscript edges p30 SEEK -> p31 AND -> p33 YOU, so that route still closes to p30 without a new scalar. Do not generalize GP0 as an unrestricted page pointer. The MEANING/IS/THE member remains a separate lead worth testing only if an independent manuscript consumer appears.
 
 
 ### Four-edge p23 route closure
