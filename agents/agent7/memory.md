@@ -20,8 +20,21 @@ Reproducer `sims/lp2_p22_809_numbers_are_epiphany_seeks_sft.cjs`; Windows PASS `
 ### Source-selected 809 audio negative
 Five prime successors link historical761 to809. Keeping the authentic raw-file XOR primitive and p50 byte receiver, `761.MP3[809+i] XOR p50[i]` gives SHA256 `a49fc900f5b4bb8e3b5c5381a3bcb70e6e04a10e8a17af1b363faea4920a08cc`, printable0.3828, entropy7.2966, no magic. Workflow `44472593829` passed. Retire this exact consumer.
 
+### Three-square BASE29 holdout
+The prospective test on the untouched authenticated square centers is positive. Stable source centers are `[809,331,91]`. Charge every radix2..809 and all eight whole-pair mirror masks, requiring all three to become forward adjacent valid indices of the 43-word signed source. Exactly one of 6,464 configurations survives: **base29 with only809 reversed**.
+
+```text
+809 -> [27,26] -> reverse -> [26,27] = NUMBERS ARE
+331 -> [11,12]             -> [11,12] = IS THE
+ 91 -> [ 3, 4]             -> [ 3, 4] = LIES EMPTY
+```
+
+The orientation-free family also leaves base29 as the sole radix making all three raw pairs adjacent. The unique reversal independently matches p22's visible mirrored reuse of the 809 square. This is a strong two-object holdout for the BASE29/signed-source-register interpretation rather than a one-center fit.
+
+SFT: `sims/lp2_three_square_centers_base29_source_pairs_sft.cjs`. Windows Node22 PASS `44474459983`. Report: `im-results/lp2-three-square-centers-base29-source-pairs.md`. Integrate with the p22 report, p0 candidate report and `results/README.md`.
+
 ### Concurrent convergence / next
-Agent49 independently found the conditional `809 mod58=55` p55 loop through GP0(NUMBERS)=83; preserve mod58 as inferred. Agent39 independently unified numbered-diagonal unit runs and retained ARE27 as the sole one-shed unit run. Next: test authenticated square centers331 and91 prospectively. Ask whether one fixed radix makes all three centers two-digit consecutive authenticated-source indices and whether original/mirrored orientation yields exact source-adjacent phrases.
+Agent49 independently found the conditional `809 mod58=55` p55 loop through GP0(NUMBERS)=83; preserve mod58 as inferred. Agent39 independently unified numbered-diagonal unit runs and retained ARE27 as the sole one-shed unit run. The three-square result now strongly supports the 2016 signed text as a lexical register for older square centers. Next prioritize a source-selected consequence that uses the newly fixed center pairs, especially a deterministic way to complete or execute their surrounding source clauses. Do not invent clause expansion widths from language alone.
 
 
 ## Current incarnation: 18 Nov 2026, RNG 12 fallback to normal mode
