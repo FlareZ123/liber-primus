@@ -407,6 +407,284 @@ for (const inverse of [false, true]) {
   });
 }
 
+
+/*
+ * Cross-round five-coordinate DH-state fingerprint.
+ *
+ * The 2014 source's word-number rule is the sum of the first 29 primes
+ * assigned to Gematria Primus symbols. Applying that rule to the five
+ * LP2 words selected by the three square centers and two p33 cuneiform
+ * magic sums is a transfer hypothesis, not an established LP2 cipher.
+ */
+const crossRoundGpPrimeWeights = [];
+for (let candidate = 2; crossRoundGpPrimeWeights.length < 29; candidate += 1) {
+  let isPrime = true;
+  for (let divisor = 2; divisor * divisor <= candidate; divisor += 1) {
+    if (candidate % divisor === 0) {
+      isPrime = false;
+      break;
+    }
+  }
+  if (isPrime) crossRoundGpPrimeWeights.push(candidate);
+}
+const crossRoundP50Tokens = grid.rows.flat();
+const crossRoundMod = (value, modulus) => ((value % modulus) + modulus) % modulus;
+function crossRoundDecodeBase60(token) {
+  let value = 0;
+  for (const character of token) {
+    const digit = grid.alphabet.indexOf(character);
+    assert.ok(digit >= 0, "base60 token digit must exist");
+    value = value * 60 + digit;
+  }
+  return value;
+}
+function crossRoundWordFeature(item) {
+  const values = item.wordValues;
+  const gp0Sum = values.reduce((sum, value) => sum + value, 0);
+  const gpPrimeSum = values.reduce((sum, value) => sum + crossRoundGpPrimeWeights[value], 0);
+  const gp0Address = crossRoundMod(gp0Sum, 256);
+  const gpPrimeAddress = crossRoundMod(gpPrimeSum, 256);
+  const gp0Token = crossRoundP50Tokens[gp0Address];
+  const gpPrimeToken = crossRoundP50Tokens[gpPrimeAddress];
+  const gp0Base60 = crossRoundDecodeBase60(gp0Token);
+  const gpPrimeBase60 = crossRoundDecodeBase60(gpPrimeToken);
+  return {
+    number: item.number,
+    pageNumber: item.pageNumber,
+    wordOrdinal: item.wordOrdinal,
+    wordText: item.wordText,
+    length: values.length,
+    gp0Sum,
+    gp0Address,
+    gp0Token,
+    gp0Base60,
+    gp0Mapped: crossRoundMod(gp0Base60, 29),
+    gpPrimeSum,
+    gpPrimeAddress,
+    gpPrimeToken,
+    gpPrimeBase60,
+    gpPrimeMapped: crossRoundMod(gpPrimeBase60, 29),
+    positionalMapped: item.output,
+  };
+}
+const crossRoundCenterThenSum = fivePacket.map(crossRoundWordFeature);
+const crossRoundFirstSeen = squareFirstSeenPacket.map(crossRoundWordFeature);
+const crossRoundDh23State = {p:23,g:5,a:6,b:15,A:8,B:19,K:2,e:3,q:4};
+const crossRoundExpectedLengths = [
+  crossRoundDh23State.e,
+  crossRoundDh23State.A,
+  crossRoundDh23State.g,
+  crossRoundDh23State.a,
+  1,
+];
+const crossRoundExpectedPrimeMapped = [
+  crossRoundDh23State.B,
+  crossRoundDh23State.a,
+  28,
+  crossRoundMod(crossRoundDh23State.g + crossRoundDh23State.K, 29),
+  crossRoundMod(-crossRoundDh23State.g, 29),
+];
+const crossRoundExpectedGp0Mapped = [
+  crossRoundMod(-crossRoundDh23State.K, 29),
+  crossRoundDh23State.B,
+  crossRoundDh23State.B,
+  crossRoundDh23State.e,
+  crossRoundMod(crossRoundDh23State.B + crossRoundDh23State.K, 29),
+];
+const crossRoundSquareOrders = squareGroups.map((square) => square.length);
+assert.deepEqual(crossRoundSquareOrders, [5,7,5]);
+assert.deepEqual(crossRoundSquareOrders, [
+  crossRoundDh23State.g,
+  crossRoundDh23State.g + crossRoundDh23State.K,
+  crossRoundDh23State.g,
+]);
+assert.deepEqual(squareCenters, [809,331,91]);
+assert.deepEqual(squareSums, [3301,1033,1033]);
+assert.deepEqual(cuneiformNumbers, [1033,3301]);
+assert.deepEqual(centerThenSumNumbers, [809,331,91,1033,3301]);
+assert.deepEqual(squareFirstSeenNumbers, [809,3301,331,1033,91]);
+assert.deepEqual(crossRoundCenterThenSum.map((item) => item.wordText), [
+  "TEI","THYEOTHJTHRU","TXELR","FREAMEAA","NG",
+]);
+assert.deepEqual(crossRoundCenterThenSum.map((item) => item.length), crossRoundExpectedLengths);
+assert.deepEqual(crossRoundCenterThenSum.map((item) => item.gp0Sum), [44,60,72,103,21]);
+assert.deepEqual(crossRoundCenterThenSum.map((item) => item.gp0Mapped), crossRoundExpectedGp0Mapped);
+assert.deepEqual(crossRoundCenterThenSum.map((item) => item.gpPrimeSum), [157,210,257,399,79]);
+assert.deepEqual(crossRoundCenterThenSum.map((item) => item.gpPrimeAddress), [157,210,1,143,79]);
+assert.deepEqual(crossRoundCenterThenSum.map((item) => item.gpPrimeToken), ["4B","06","3p","2W","1M"]);
+assert.deepEqual(crossRoundCenterThenSum.map((item) => item.gpPrimeBase60), [251,6,231,152,82]);
+assert.deepEqual(crossRoundCenterThenSum.map((item) => item.gpPrimeMapped), crossRoundExpectedPrimeMapped);
+assert.deepEqual(crossRoundCenterThenSum.map((item) => item.positionalMapped), [18,28,6,19,21]);
+assert.deepEqual(
+  crossRoundFirstSeen.map((item) => item.length).sort((a,b)=>a-b),
+  crossRoundExpectedLengths.slice().sort((a,b)=>a-b),
+);
+assert.deepEqual(
+  crossRoundFirstSeen.map((item) => item.gpPrimeMapped).sort((a,b)=>a-b),
+  crossRoundExpectedPrimeMapped.slice().sort((a,b)=>a-b),
+);
+
+// Negative control: other unique values printed inside the three 2014 squares.
+const crossRoundSelectedNumberSet = new Set(centerThenSumNumbers);
+const crossRoundOtherCellValues = [...new Set(squareGroups.flat(2))]
+  .filter((number) => !crossRoundSelectedNumberSet.has(number));
+const crossRoundControlFeatures = crossRoundOtherCellValues.map((number) => {
+  const pageNumber = Math.floor(number / 60);
+  const wordOrdinal = number % 60;
+  if (pageNumber < 0 || pageNumber > 55 || wordOrdinal < 1) return null;
+  const wordValues = wordsAt(pageNumber)[wordOrdinal - 1];
+  if (!wordValues) return null;
+  return crossRoundWordFeature({
+    number,
+    pageNumber,
+    wordOrdinal,
+    wordText: wordValues.map((value) => corpus.translit[value]).join(""),
+    wordValues,
+    output: null,
+  });
+}).filter(Boolean);
+const crossRoundPairMatchCounts = crossRoundCenterThenSum.map((selectedWord) =>
+  crossRoundControlFeatures.filter((controlWord) =>
+    controlWord.length === selectedWord.length &&
+    controlWord.gpPrimeMapped === selectedWord.gpPrimeMapped
+  ).length
+);
+const crossRoundPairCollisions = crossRoundControlFeatures
+  .filter((controlWord) => controlWord.length === 5 && controlWord.gpPrimeMapped === 28)
+  .map((controlWord) => ({
+    number:controlWord.number,
+    pageNumber:controlWord.pageNumber,
+    wordOrdinal:controlWord.wordOrdinal,
+    wordText:controlWord.wordText,
+    length:controlWord.length,
+    gpPrimeMapped:controlWord.gpPrimeMapped,
+  }));
+assert.equal(crossRoundControlFeatures.length, 44);
+assert.deepEqual(crossRoundPairMatchCounts, [0,0,1,0,0]);
+assert.deepEqual(crossRoundPairCollisions.map((item) => [
+  item.number,item.pageNumber,item.wordOrdinal,item.wordText,
+]), [[341,5,41,"EAXIAEL"]]);
+
+const crossRoundStateFingerprint = {
+  sourceNumbersCenterThenSum:centerThenSumNumbers,
+  sourceNumbersFirstSeenBySquare:squareFirstSeenNumbers,
+  squareOrders:crossRoundSquareOrders,
+  squareCenters,
+  squareMagicSums:squareSums,
+  cuneiformNumbers,
+  dh23State:crossRoundDh23State,
+  centerThenSum:crossRoundCenterThenSum,
+  firstSeenBySquare:crossRoundFirstSeen,
+  expectedLengthVector:crossRoundExpectedLengths,
+  expectedPrimeSumMappedVector:crossRoundExpectedPrimeMapped,
+  expectedGp0MappedDiagnostic:crossRoundExpectedGp0Mapped,
+  control:{
+    uniqueOtherSquareCellValues:crossRoundOtherCellValues.length,
+    validP0ToP55Coordinates:crossRoundControlFeatures.length,
+    orderedPairMatchCounts:crossRoundPairMatchCounts,
+    isolatedPairCollision:crossRoundPairCollisions,
+  },
+  classification:"retrospective cross-round DH-state fingerprint; not plaintext or a selected cipher",
+};
+
+// Bounded cheapest consumer: use (word length, prime-sum-mapped rune) as
+// per-position affine (multiplier,offset) pairs over the five 553-rune passages.
+function crossRoundInverse29(value) {
+  const normalized = crossRoundMod(value, 29);
+  for (let candidate = 1; candidate < 29; candidate += 1) {
+    if ((normalized * candidate) % 29 === 1) return candidate;
+  }
+  throw new Error("noninvertible affine multiplier");
+}
+function crossRoundIoc(values) {
+  const counts = Array(29).fill(0);
+  for (const value of values) counts[value] += 1;
+  return counts.reduce((sum,count)=>sum+count*(count-1),0) /
+    (values.length * (values.length - 1));
+}
+const crossRoundAffineForms = [
+  "inverse(a)*(C-b)",
+  "inverse(a)*(C+b)",
+  "a*(C-b)",
+  "a*(C+b)",
+];
+const crossRoundAffineTests = [];
+for (const orderSpec of [
+  {name:"centerThenSum",features:crossRoundCenterThenSum},
+  {name:"firstSeenBySquare",features:crossRoundFirstSeen},
+]) {
+  for (const role of ["length-multiplier","prime-output-multiplier"]) {
+    const multipliers = orderSpec.features.map((item) =>
+      role === "length-multiplier" ? item.length : item.gpPrimeMapped
+    );
+    const offsets = orderSpec.features.map((item) =>
+      role === "length-multiplier" ? item.gpPrimeMapped : item.length
+    );
+    const basePairs = multipliers.map((multiplier,index)=>[multiplier,offsets[index]]);
+    for (const reverse of [false,true]) {
+      const keyPairs = reverse ? basePairs.slice().reverse() : basePairs;
+      for (const reset of [true,false]) {
+        for (let form = 0; form < 4; form += 1) {
+          const phaseBins = Array.from({length:5},()=>[]);
+          const output = [];
+          let globalOffset = 0;
+          for (const passage of passages) {
+            for (let index = 0; index < passage.length; index += 1) {
+              const phase = (reset ? index : globalOffset) % 5;
+              const [a,b] = keyPairs[phase];
+              const cipher = passage[index];
+              let plain;
+              if (form === 0) plain = crossRoundInverse29(a) * (cipher - b);
+              else if (form === 1) plain = crossRoundInverse29(a) * (cipher + b);
+              else if (form === 2) plain = a * (cipher - b);
+              else plain = a * (cipher + b);
+              plain = crossRoundMod(plain,29);
+              output.push(plain);
+              phaseBins[phase].push(plain);
+              globalOffset += 1;
+            }
+          }
+          const phaseIoc = phaseBins.map(crossRoundIoc);
+          crossRoundAffineTests.push({
+            order:orderSpec.name,
+            role,
+            reverse,
+            reset,
+            form:crossRoundAffineForms[form],
+            keyPairs,
+            overallIoc:crossRoundIoc(output),
+            phaseIoc,
+            preview:output.slice(0,80).map((value)=>corpus.translit[value]).join(""),
+          });
+        }
+      }
+    }
+  }
+}
+const crossRoundAllPhaseIoc = crossRoundAffineTests.flatMap((test)=>test.phaseIoc);
+const crossRoundAffineBest = crossRoundAffineTests.slice().sort((a,b)=>
+  Math.min(...b.phaseIoc)-Math.min(...a.phaseIoc)
+)[0];
+const crossRoundAffineWorst = crossRoundAffineTests.slice().sort((a,b)=>
+  Math.min(...a.phaseIoc)-Math.min(...b.phaseIoc)
+)[0];
+const period5AffineConsumer = {
+  variantCount:crossRoundAffineTests.length,
+  passageLengths:passages.map((passage)=>passage.length),
+  totalRunes:passages.reduce((sum,passage)=>sum+passage.length,0),
+  phaseIocRange:[
+    Math.min(...crossRoundAllPhaseIoc),
+    Math.max(...crossRoundAllPhaseIoc),
+  ],
+  bestVariant:crossRoundAffineBest,
+  worstVariant:crossRoundAffineWorst,
+  classification:"negative for this bounded period-five affine family; not a general cipher exclusion",
+};
+assert.equal(crossRoundAffineTests.length,64);
+assert.deepEqual(period5AffineConsumer.passageLengths,[139,91,98,96,129]);
+assert.equal(period5AffineConsumer.totalRunes,553);
+assert.ok(period5AffineConsumer.phaseIocRange[1] < 0.04);
+
 console.log(JSON.stringify({
   classification: "retrospective navigation/state-selector candidate; no plaintext or body cipher",
   squareCenters,
@@ -414,6 +692,8 @@ console.log(JSON.stringify({
   cuneiformNumbers,
   centerThenSumNumbers,
   fiveValuePacketCenterThenSums: fivePacket,
+  crossRoundStateFingerprint,
+  period5AffineConsumer,
   squareFirstSeenNumbers,
   fiveValuePacketFirstSeenBySquare: squareFirstSeenPacket,
   cuneiformMarkerPair: selected,

@@ -1,9 +1,9 @@
 # Agent9 durable memory
 
 ## Current incarnation
-- Run: `agent9-gpt5.6sol-20261118T223740Z-draw5-a4ad2d324b20`
-- Claimed: `2026-11-18T22:37:40.784912Z`; immutable lease. Normal-mode release threshold is `2026-11-18T23:47:40.784912Z`.
-- Initial RNG draw was 5, so issue-directed normal research mode.
+- Run: `agent9-gpt6-20261119T0913Z-draw2-independent`
+- Claimed: `2026-11-19T09:13:22.747Z`; immutable lease. Normal-mode release threshold is `2026-11-19T10:23:22.747Z`.
+- Initial RNG draw was 2, so independent-exploration normal research mode.
 - Current Director issue: #1329, frozen original LP2 pointer-direction campaign.
 
 ## Closed archival branch: #1610
@@ -80,31 +80,7 @@ Once p0 became a source-selected receiver, exact source-fixed reversible tests w
 - Red-ink historical-command GP0 aliases are not enriched: 5/50 red words versus199/2903 black words, one-sided Fisher p about0.261. Do not promote p0 title GOODBYE or other red command-number collisions.
 
 ## Best next questions
-1. Keep consuming #1329 until 216/216, then strict reducer. This is the only active finite search with pre-registered plaintext gates.
-2. Treat the DH family as selected but the **post-DH payload receiver** as the missing cryptographic primitive. Do not invent schedules from shared2, secret6/15, public8/19, or modulus23 without a source-typed consumer.
-3. The authenticated p0 cribs now strongly exclude periodic/linear/stationary simple value layers. Look for a source-visible nonperiodic receiver or transposition architecture, not another tuned Vigenere key.
-4. Preserve the closed navigation circuit as a major solve-path hypothesis. It may indicate historical protocol replay / lost infrastructure, but NEXT's authenticated payload itself contains no LP2 cipher instruction.
-
-## 2026-11-19 draw3 continuation: p6 SEEKS red-heading local inverse
-
-- Claimed Agent9 at 04:17:22Z after prior lease aged beyond100m; all available Director tasks were active or blocked, so fell back to independent exploration.
-- New strong local candidate: signed word6 `SEEKS` / DH `a=6` selects physical p6. P6 upper black passage has exactly71 runes = GP0(SEEKS); red heading starts71, first red word GP0=71, unique among source-indexed red spans.
-- Red heading end82 plus `K*p=46` selects complete receiver p6 offsets128..132. Cipher `[14,10,22,15,10]`.
-- Visible shell `[heading word count4, heading length11, max word length4, marker count2, p23]`; H^-1 => key `[28,21,4,10,24]`; subtract => SEEKS exactly.
-- Controls: 51,030 local structured-shell cases one hit; exact key sole authenticated five-rune hit across317 unknown words; wider red-span/permutation/product-step gate 2,400 valid receiver trials leaves p6/start128 only.
-- Caveat: arbitrary coordinate selection from broader visible/state scalar pool also fits SEEKS at p6 start103; receiver formula is essential. Preferred red-heading grammar transfers to p0/p15/p39 fail. Shell serialization was discovered after the inverse.
-- Artifacts: `im-results/lp2-p6-seeks-red-heading-local-inverse.md`, `sims/lp2_p6_seeks_red_heading_local_inverse_sft.cjs`. Initial Windows PASS 44458253259; rerun required after adding the unordered-shell rival assertion.
-
-## 2026-11-19 draw3 continuation: p6 master state packet
-
-- Strongest result of this incarnation: physical p6 red title is a globally unique DH-state packet under the existing frozen H operation. Canonical words: `[24,16,14,17] / [19] / [6,27,15,17] / [14,12]`; lengths `[4,1,4,2]`; `H(lengths)=[K,-e,g,a]=[2,26,5,6]`.
-- Full packet grammar: `W1=[-x1,K-y,-y,K+y], W2=[B], W3=[x3,-K,y,K+y], W4=[-y,x3*K]`. Across 2,699 page-local four-word windows × 9^3 assignments = 1,967,571 cases, sole hit p6 with x1=g,x3=a,y=b. Allowing all 24 word-role permutations gives 47,221,704 charged assignments, still p6 only in printed order. Strengthened Windows PASS 44462649433.
-- First-word grammar alone is unique across 509 complete four-rune manuscript words ×81 state pairs = 41,229 cases, p6 start71 x=g,y=b.
-- Local SEEKS route remains: red_end82 + K*p46 = start128, exact key `[28,21,4,10,24]` -> SEEKS; strengthened PASS 44458672388.
-- Four-rune consumers: p33 WILL shell `[-a,A,K,-K]`; p40 PATHS shell `[-b,A,e,-e]`. Complete calibration: 62 unique same-GP0 source/page pairs; H1=A leaves WILL/PATHS plus duplicated THEIR; requiring signed-state H0/H2 leaves exactly WILL/PATHS. H2+H3=0 is forced by equal GP0. Frozen two-rune [x,-y] reduction fails all expected p11/p21 IS and p34 BE receivers.
-- P38 BEWARE: p6 packet derives shell `[K-b,-g,p,p-e,0,-b]=[16,24,23,20,0,14]`; W1 unused `K+b=17` uniquely selects BEWARE among authenticated six-rune words. All 48 field-role/sign assignments give one hit. Broader p6+p28 family gives one authenticated hit over 24,096 manuscript configs. P0 VERIFY transfer empty.
-- Original p6 image `23.jpg` visibly places a giant red Fehu `ᚠ` beside the packet; Fehu is GP0. Machine red-span annotations omit this giant glyph, so treat as human-visible corroboration.
-- Chronologically independent follow-on: after packet commit, Agent43 published p37 LUCK receiver. Exact shell `[B,0,K,g]` uses four packet readouts. 24 scalar permutations ×10 authenticated four-rune source occurrences×2 signs =480 cases, one p37 LUCK hit. Order was recognized after p37, so treat as follow-on support. Integrated Windows PASS 44463756225.
-- Primary artifacts: `im-results/lp2-p6-master-state-packet.md`, `sims/lp2_p6_master_state_packet_sft.cjs`, authoritative synthesis in `results/README.md`, broadcast `communications/broadcast/20261119T0513Z_agent9_p6-master-state-packet.md`.
-- Existing p6 SEEKS, p33 WILL, p40 PATHS, and p38 BEWARE reports were reconciled/cross-linked to the packet. The p38 conclusion is upgraded from retrospective DH-shell compression to a finite source-derived p6 packet schedule.
-- Boundary: packet is strong cross-page key-schedule evidence, not a universal decoder. Two prospective extension failures, two-rune reduction and p0 VERIFY transfer, should remain explicit.
+1. Keep #1329's finite pointer-direction campaign separate; do not rerun completed shards or widen the frozen reducer. This draw2 independent-exploration incarnation did not touch that campaign.
+2. Treat the five-coordinate packet as retrospective DH-state corroboration, not a decoder. Seek an original clue that selects a reversible consumer before further experiments; do not add arbitrary affine, matrix, or key schedules.
+3. Keep the p33 dual-wordmap #1835 gate: no instruction-engine use until an original clue fixes the coordinate expression and consumer prospectively.
+4. Treat the p6 DH packet as cross-page state evidence; the post-DH payload receiver/KDF remains missing. Do not invent one from shared2, secret6/15, public8/19, or modulus23.
