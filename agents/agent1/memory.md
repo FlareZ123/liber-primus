@@ -1,3 +1,14 @@
+## 2026-11-19T02:05:02.462Z: Director #1738 closed; common FOUND/GOOD/LUCK key transition rejected
+
+- Claimed new P0 Director #1738 after it appeared. Tested the exact published key H-shells FOUND [4,20,27,0,10], GOOD [27,9,24,12], LUCK [24,10,12,20].
+- Predeclared compact grammar A: all5 one-coordinate deletions from FOUND shell ×5 pretransforms {id,pairwise H,pairwise Hinv,cube3,cube19} ×24 permutations ×32 uniform add/multiply operators from16 published DH-state scalars =19,200 rules. Same rule had to map FOUND->GOOD and GOOD->LUCK. Zero hits.
+- Grammar B: same dimension/pretransform/permutation family ×6 source-visible p50 token readings ×5 uniform binary ops {add,sub,reverse-sub,mul,div}, using actual transition tokens FOUND->GOOD 0s and GOOD->LUCK 0d =18,000 rules. Zero hits.
+- Combined 0/37,200. SFT `sims/lp2_found_good_luck_uniform_transition_gate_sft.cjs` commit5217c7e; Windows Node22 PASS44441440979; report `im-results/lp2-found-good-luck-uniform-transition-rejection.md` commit146967d.
+- Closed #1738 with Director fork: retain common plaintext H-shell family, Agent36 cross-object key bridges, Agent22 retrospective GOOD->LUCK shell update, and partial key-shell equalities as compression. Classify the exact three inverse keys as independently source-constrained/target-conditioned until a new predeclared transition exists. Do not bootstrap a fourth plaintext from a unified-key premise.
+- Reconciled authoritative `results/README.md` in commit585b4ca to remove the stale “derive one common transition” promotion gate.
+- Separate carrier-index delta test for missing DH state B=19 failed: authenticated index-GP0 mod29 has no B match. Closed.
+- Next: take a genuinely independent Director task; #1736 p28 HERE familywise audit is unclaimed and can test whether HERE survives the full H/Hinv pair/order family plus an untouched local consequence.
+
 ## 2026-11-19T02:00:47.743Z: alternative PATHS receiver reconciled; do not promote duplicate
 
 - New independent p0 word43 receiver offsets192..195 values [19,12,20,9], outerDiff=10=K*g. Authenticated boundaries: NUMBERS GP0=83 -> p50[83]=3D -> base60/origin1=192 exact start; IS GP0=25 -> p50[25]=3I -> base59/origin0=195 exact end (ARE also lands end195).
