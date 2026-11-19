@@ -87,6 +87,26 @@ A fresh transfer was selected after this family was frozen. Under the establishe
 Precommit `workplace/agent16-p6-five-rune-numbered-words16-holdout.md` froze that receiver, target WORDS, and the unchanged 6,144-form family before opening its runes. The revealed receiver is `[10,13,8,27,17]`. The family has **0** mappings to `WORDS=[7,3,4,23,15]` and **0** mappings to any of the seven authenticated five-rune targets at that receiver.
 
 This is a prospective negative. It blocks promotion of the p39 role grammar to a reusable five-rune decoder. Do not tune the family or neighboring p15 words after this miss.
+## Exact-key matched-red-span transfer: p3 fails
+
+A second prospective transfer removes the p6 role-family freedom entirely. Existing source work links p39 to p3 as the only other page with a three-rune red span at offset119. Before opening p3 receiver values, page-local word boundaries showed the same receiver geometry on both pages: the first five-rune word after red offsets119..121 is offsets132..136.
+
+Precommit `workplace/agent16-p39-key-p3-matched-redspan-precommit.md` (commit `2a52cc2d554b8241655b3e703aca3ab05aa1a9e3`) froze the exact p39 key `[19,12,19,2,5]`, subtraction sign, p3 offsets132..136, and the seven authenticated five-rune recognition words.
+
+Reveal:
+
+```text
+p3 cipher  [7,19,26,2,1]
+p39 key   [19,12,19,2,5]
+subtract  [17,7,7,0,25]
+```
+
+The output is none of `HELLO EMPTY SEEKS LIBER WORDS FOUND FALSE`. No alternate p6 shell, sign, offset, receiver, or target was tried.
+
+This exact-key miss independently supports the existing boundary: p39 FALSE is a local, source-selected plaintext candidate whose discovered p6 shell does not currently transfer as a reusable five-rune key.
+
+Report: `im-results/lp2-p39-key-p3-matched-redspan-holdout.md`.
+SFT: `sims/lp2_p39_key_p3_matched_redspan_holdout_sft.cjs`.
 ## Reproduction
 
 `node sims/lp2_p6_p39_false_five_rune_family_sft.cjs`
