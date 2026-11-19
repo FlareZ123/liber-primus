@@ -149,3 +149,98 @@ The useful next question is whether **one already-authenticated source operation
 - SFT: `sims/lp2_p28_terminal_cardinal_there_sft.cjs`
 - P23→p28 source handoff: `im-results/lp2-p23-pg-p28-handoff.md`
 - P28 HERE checkpoint: `im-results/lp2-p28-readout-here-page-start.md`
+
+
+## Director #1796 adversarial boundary/origin audit and blind semantic consumer
+
+Agent11 completed the requested follow-up on 19 November 2026.
+
+The published positive-cardinal serializer remains the solved-p56 operation:
+
+```text
+T1(n) = (prime_n - 1) mod29.
+```
+
+The explicit zero-based rival is:
+
+```text
+T0(n) = (prime_(n+1) - 1) mod29.
+```
+
+For the p28 terminal vector `[1,2,8,3,8]`:
+
+```text
+T1 -> UTHERE
+T0 -> THROEGOE
+```
+
+Charge first/last physical line × first/last four words × forward/reverse order across every eligible unknown page. Each serializer has **404** boundary configurations.
+
+Under T1 there are six numerical self-pointers:
+
+```text
+p25 last/first4 forward  -> UTGR  -> address27 -> p25
+p25 last/first4 reverse  -> RGTU  -> address27 -> p25
+p28 first/last4 forward  -> ITIG  -> address42 -> p28
+p28 first/last4 reverse  -> GITI  -> address42 -> p28
+p28 last/last4 forward   -> THERE -> address42 -> p28
+p28 last/last4 reverse   -> ERETH -> address42 -> p28
+```
+
+Under the zero-based T0 rival there are **zero** boundary self-pointers.
+
+The stricter terminal-last-four rule therefore remains unique under the solved serializer:
+
+```text
+p28 -> THERE -> GP0 42 -> p50[42] = 28.
+```
+
+The exact ordered state-pair result also remains specific to T1:
+
+```text
+U THERE -> GP0 43 -> p50[43] = 73
+73 divmod29 = [2,15] = [K,b].
+```
+
+No T0 terminal produces ordered `[K,b]`.
+
+### Prospective semantic consumer
+
+Before reading p50 cell1, issue #1796 froze one literal consumer:
+
+- `U` means the canonical GP rune/index value1;
+- `THERE` keeps the already established self-page role;
+- reuse the exact word-GP0 -> p50 native-byte operation on U;
+- accept only an in-range physical page0..57 or an audited state scalar.
+
+The held-out result is:
+
+```text
+GP0(U) = 1
+p50[1] = 3p
+native byte = 231
+```
+
+Byte231 is outside physical LP2 page range and outside the state scalar set `{2,3,4,5,6,8,15,19,23}`. The frozen consumer therefore **misses**.
+
+For transparency, the two natural homophone/source-number alternatives also fail to produce an eligible page/state byte under the same p50 consumer:
+
+```text
+YOU zero-based index32 -> p50[32] byte115
+YOU one-based ordinal33 -> p50[33] byte114
+```
+
+These were not used to rescue the frozen literal branch.
+
+### Decision
+
+Preserve `U THERE` / `THERE` as a strong source-constrained hidden-layout checkpoint:
+
+- the terminal vector is manuscript-unique;
+- THERE is the unique terminal-last-four self-pointer under the solved T1 serializer;
+- the complete line returns the exact ordered p28 state pair `[K,b]`;
+- the zero-based serializer rival produces no boundary self-pointers.
+
+The prospective semantic expansion fails. Do not use U THERE to launch further p50 walks, neighboring-page moves, homophone routes, or new local decoders without a new first-party selector.
+
+Reproducer: `sims/lp2_p28_terminal_cardinal_there_director_audit_sft.cjs`.
