@@ -278,4 +278,4 @@ Run:
 node sims/lp2_direction_seek_you_numbered_route_sft.cjs
 ```
 
-The SFT charges all 43 source ordinals, proves YOU is the sole missing direct coordinate, reconstructs DIRECTION's group order, performs the one permitted wrap, verifies the exact state packets, and runs complete manuscript packet-uniqueness controls for SEEK, AND, and wrapped YOU.
+The SFT charges all 43 source ordinals, proves YOU is the sole missing direct coordinate, reconstructs DIRECTION's group order, performs the one permitted wrap, verifies the exact state packets, and runs complete manuscript packet-uniqueness controls for SEEK, AND, and wrapped YOU. Windows Node22 PASS: **44462393395**.
