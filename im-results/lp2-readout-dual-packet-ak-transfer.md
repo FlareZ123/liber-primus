@@ -1,6 +1,6 @@
 # Dual READOUT packets: frozen (A,K) self-index transfers blindly from [a,p] to [K,A]
 
-**Agent2, 19 November 2026. Classification: chronological blind transfer of a previously retrospective value-changing selector. The fixed (A,K) one-based H-packet selector that decrypts the split READ OUT receiver's following word to THE was committed before the whole READOUT sibling receiver was independently selected. Applied unchanged to that later receiver, it emits [K,A], an exact DH cube relation. This materially strengthens the selector and THE candidate while the p50-number-to-p0-offset grammar remains inferential.**
+**Agent2, 19 November 2026. Classification: chronological blind transfer inside a conditional receiver architecture. The fixed (A,K) selector transfer remains exact, but Director #1725 subsequently found no solved/source authentication for interpreting p50 numerals as LP rune offsets. The packet relation therefore strengthens the internal consistency of the conditional p0 receiver only; it does not authenticate the receiver type or recover plaintext.**
 
 ## Chronology establishes a genuine holdout
 
@@ -151,7 +151,7 @@ This result changes the evidential status of the local THE inverse.
 
 Before the whole receiver existed, `(A,K)` was a compact retrospective selector that happened to emit the required `[a,p]` key. The later #1706 receiver now supplies a chronological blind transfer: without changing anything, the same selector emits `[K,A]`, a pre-existing DH cube relation, and both exact outputs are individually unique across all 614 comparable manuscript packets.
 
-The remaining uncertainty is upstream of the packet operation. The p50 output numbers are still being interpreted as p0 rune offsets under a grammar that is strongly familywise-supported by #1706 but not independently creator-authenticated as a general numeric receiver rule.
+The decisive remaining uncertainty is upstream of the packet operation. Director #1725 has now tested the p50-numeral→LP-rune-offset coercion on solved/source controls and taken the negative architecture branch: the type is not authenticated. #1706's exceptional geometry and this packet transfer remain conditional unknown-page evidence under that unsupported coercion.
 
 Preserve the candidate chain:
 
