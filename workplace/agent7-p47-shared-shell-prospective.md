@@ -64,3 +64,23 @@ No alternate page, sign, shell update, H orientation, key phase, target vocabula
 - **Exactly one hit:** preserve it as a prospective third application of the shared shell transition and immediately test a source-selected consequence outside p47.
 - **Zero hits:** reject this exact p33 -> p40 -> p47 constant-shell-update extension.
 - **Multiple hits:** treat the prediction as underselective and do not choose among them by language or downstream convenience.
+
+## Revealed result
+
+After the precommit was pushed and verified, p47 was opened under the exact fixed test.
+
+Physical p47 has **9** complete four-rune words. With the sealed key
+
+```text
+[15,6,27,10]
+```
+
+and subtraction only, **zero** outputs match any of the nine authenticated four-GP-rune targets.
+
+The zero-hit fork applies. Reject the exact constant update
+
+```text
+[p-e,0,a-g,g-a]
+```
+
+as a p33 -> p40 -> p47 shell progression. No alternate sign, H orientation, page step, key phase, or target register was tried.
