@@ -100,3 +100,14 @@ The shared source has a genuine solved **p15 numerical 4x4 Fibonacci-indexed pri
 - Common-rule result is decisive negative. The full p35 grammar has 6,561 labeled tuples / 2,349 distinct numeric keys. After all 120 coordinate permutations and both signs, only three p35 aliases survive and p38 has zero hits. The broader 17-value direct/HERE/DH lookup union cannot express p35 under either sign. The complete p38 2,304-formula geometry family, widened to 9,216 orientation/sign configurations, gives one p38 hit, zero p35 hits, zero shared rules.
 - No third receiver was opened, following #1799's fork. Preserve the two local FOUND candidates separately. Do not merge their current key grammars or widen to expression searches without a new source-visible receiver-dependent transition.
 - New artifacts: `im-results/lp2-p35-p38-found-common-decoder-gate.md` and `sims/lp2_p35_p38_found_common_decoder_gate_sft.cjs`.
+
+
+## 2026-11-19 draw10 checkpoint: #1800 p23/p28 2U alias gate
+
+- Director #1800 complete on the negative promotion fork.
+- Original p50 `2U` class is exactly addresses `[28,97,213]`: physical p28, `GP0(THE ORIGINAL)=97`, p23 rune count213.
+- Complete token census: 69 duplicate classes, 164/256 cells in duplicate classes, maximum multiplicity4.
+- Strict typed family (58 page numbers ×24 in-range physical-page rune counts × frozen phrase GP0 values81/97) has one hit only: `[28,213,97] -> 2U`. Conservative 25-value synthesis-GP0 control has one rival `[42,85,42] -> 0S`.
+- Prospective precommit before opening cells: p33 `THEIR RISE=81`, p33 rune count214, independent RISE destination p35 -> predict `[35,81,214]` one duplicate token class. Reveal: p50[35]=0d, p50[81]=0w, p50[214]=4B; all differ. Transfer fails.
+- Decision: retain 2U triple only as sparse corroborative p23/p28 structure. Do not promote duplicate-token identity as alias/navigation opcode or mine more classes absent a new source selector.
+- Artifacts: `im-results/lp2-p23-p28-2u-alias-family-holdout.md`; `sims/lp2_p23_p28_2u_alias_family_sft.cjs`.
