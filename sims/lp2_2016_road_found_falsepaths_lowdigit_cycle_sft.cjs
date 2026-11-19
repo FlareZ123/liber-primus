@@ -135,6 +135,26 @@ assert.equal(wordsByState.size, 27);
 assert.deepEqual(wordsByState.get(36), ["FOUND"]);
 assert.deepEqual(wordsByState.get(54), ["ROAD", "PATHS"]);
 
+
+// The source prose itself orders the cycle terms as ROAD, then FOUND, then
+// PATHS in successive clue-bearing clauses. Under the frozen pointer this is
+// ROAD -> FOUND -> PATHS -> FOUND, making PATHS a literal two-state trap.
+assert.equal(words[23], "ROAD");
+assert.equal(words[35], "FOUND");
+assert.equal(words[40], "PATHS");
+assert.equal(
+  alpha60.indexOf(table[gp0("ROAD")][1]),
+  gp0("FOUND")
+);
+assert.equal(
+  alpha60.indexOf(table[gp0("FOUND")][1]),
+  gp0("PATHS")
+);
+assert.equal(
+  alpha60.indexOf(table[gp0("PATHS")][1]),
+  gp0("FOUND")
+);
+
 // Charge the 16 obvious component conventions used in the READ OUT audit.
 const modeRows = [];
 for (const [radix, alphabet] of [
@@ -279,6 +299,15 @@ assert.deepEqual(
   [13, 13, 4, 37, 20, 42, 28]
 );
 
+
+// Independent p28-local checkpoint transfer. HERE is recovered by the frozen
+// outer-H page-start mechanism in a separate SFT. Once available, its GP0 state
+// enters the same source-selected state-13 tail without introducing a new
+// pointer rule.
+assert.equal(gp0("HERE"), 48);
+assert.equal(table[48], "4D");
+assert.equal(alpha60.indexOf(table[48][1]), 13);
+
 // Fixed seven-cell table-multiset calibration for the complete route.
 const routeOutputs = [13, 13, 4, 37, 20, 42, 28];
 const routeLowCounts = new Map();
@@ -331,6 +360,19 @@ console.log(JSON.stringify({
     p50_54: table[54],
     p50_36: table[36],
     transitions: [[54, 36], [36, 54]],
+  },
+  sourceOrderTrap: {
+    printedWords: [
+      {index: 23, word: words[23]},
+      {index: 35, word: words[35]},
+      {index: 40, word: words[40]},
+    ],
+    states: [gp0("ROAD"), gp0("FOUND"), gp0("PATHS"), gp0("FOUND")],
+  },
+  hereTransfer: {
+    gp0: gp0("HERE"),
+    token: table[gp0("HERE")],
+    nextState: alpha60.indexOf(table[gp0("HERE")][1]),
   },
   directionRoute: {
     relationHits: relationRouteHits,
