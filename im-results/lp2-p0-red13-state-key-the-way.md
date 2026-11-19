@@ -133,6 +133,29 @@ Forward addition reproduces all 13 original ciphertext runes exactly.
 
 This is a concrete local decipherment mechanism. The remaining caveat is key order provenance: the atom ordering was recognized after `EPIPHANY SEEKS` was already selected. An independent clue that emits this exact 13-atom schedule would promote the local recovery further.
 
+## Target-free algebraic simplicity does not select the key order
+
+A fixed control asks whether the residual stands out before choosing coordinate labels. Give residue 0 cost0, any signed single state field cost1, and any two-field expression `x+y` or `x-y` cost2. No coordinate-specific expressions are admitted.
+
+This grammar is broad enough to express all 29 GP residues: one residue has cost0, 16 have cost1, and 12 have cost2. Charge the same solved/authenticated source pool used below.
+
+For the 684 `C-P` ordered 8+5 source pairs:
+
+```text
+EPIPHANY SEEKS score = 13
+rank                  = 5 / 684
+pairs tied at score13 = 7
+
+best pair:
+BEHAUIARS SEEKS score = 12
+```
+
+Opening both additive signs gives 1,368 cases. The `C-P` EPIPHANY SEEKS residual ranks 9th, and 14 cases have score13. Under uniformly random 13-residue vectors, this grammar assigns total cost at most13 with probability about 0.0125084.
+
+This control closes one possible authentication argument. The residual is compact in the reconstructed state algebra, while that compactness does not independently choose `EPIPHANY SEEKS` or the 13-atom order. The active evidence remains the source-selected 8+5 pair, ciphertext-only `THE WAY`, the unique marker packet, and exact reversible replay. Key-order provenance remains unresolved.
+
+Reproducer: `sims/lp2_p0_red13_state_key_simplicity_gate_sft.cjs`.
+
 ## Word-local state shells distinguish the candidate
 
 The candidate plaintext itself has:
