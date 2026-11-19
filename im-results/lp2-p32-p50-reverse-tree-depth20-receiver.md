@@ -131,3 +131,12 @@ The [tree-transposition SFT](../sims/lp2_p32_reverse_tree_transposition_sft.cjs)
 - Held native-English 121-rune minimum: **−9.4370118**
 
 The best permutation remains substantially below even the worst held clear-English window and its preview is nonlinguistic. Therefore the fixed reverse-tree scaffold does **not** decode p32 by a plain BFS/DFS transposition alone. A useful next operation must consume the parent-child relation or another independently selected graph value rather than simply changing read order.
+
+
+## Parent-child graph difference/integration: negative
+
+The fixed tree also supports a more structural operation than a pad: interpret rune labels as a potential on tree nodes and take child-minus-parent differences, or interpret rune labels as edge differences and integrate from the root. The [edge-transform SFT](../sims/lp2_p32_reverse_tree_edge_transform_sft.cjs) charges six assignment traversals, six read traversals, three source-native root seeds (zero, root address 115 mod29 = 28, root successor 247 mod29 = 15), and both inverse operations, for **216** complete models.
+
+Windows Node 22 [run 44448056080](https://github.com/FlareZ123/liber-primus/actions/runs/44448056080) passed. The best result is BFS-ascending assignment/read, root-address seed, graph integration, at **−11.2315618** GP-native trigram score. Clear p57 remains **−8.1230342** and the held 121-rune native minimum is **−9.4370118**. The best preview is visibly nonlinguistic despite incidental short English fragments.
+
+This closes the simplest graph-difference and graph-integration interpretation of the selected tree. The next useful work should seek a structural instruction that changes the node selection or assigns an independent value to each selected node.
