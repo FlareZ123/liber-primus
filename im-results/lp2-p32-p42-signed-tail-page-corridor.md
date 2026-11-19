@@ -132,7 +132,7 @@ p36 = GOOD
 p37 = LUCK
 ```
 
-P36 independently has the unique same-state receiver and local exact `GOOD` candidate inverse at offsets87..90.
+The earlier claimed p36 local `GOOD` inverse at offsets87..90 is retired. Canonical parsing joins the line-wrap slash, so offsets87..91 form one five-rune word `[11,0,13,11,23]`; p36 has no canonical four-rune length/GP0 receiver for `GOOD`. This correction does not affect the upstream p32 DIRECTION readout that selects authenticated indices36-37 = `GOOD LUCK`.
 
 ## New operation: the printed 1-5 section numbers continue LUCK into the warning tail
 
@@ -221,7 +221,6 @@ The integrated SFT replays the exact original-ciphertext local inverses already 
 ```text
 p33 offsets132..135 -> WILL
 p34 offsets4..5     -> BE
-p36 offsets87..90   -> GOOD
 p38 offsets57..62   -> BEWARE
 p40 offsets71..74   -> PATHS
 ```
@@ -263,6 +262,6 @@ Do not infer plaintext for p35, p37, p39, p41, or p42 solely from their page lab
 
 `sims/lp2_p32_p42_signed_tail_corridor_sft.cjs`
 
-The SFT parses the authenticated source, reconstructs the p50 base60 tape, verifies the SEEKS depth-p terminal p32, checks p32->p33, FOUND->PATH->EPIPHANY, the DIRECTION GOOD LUCK fold, the new section-number warning enumeration, the LUCK->BEWARE low-digit relation, the five published local corridor inverses, the p39 VERIFY readout, and p40 RISE+2->p42 OPENPGP.
+The SFT parses the authenticated source, reconstructs the p50 base60 tape, verifies the SEEKS depth-p terminal p32, checks p32->p33, FOUND->PATH->EPIPHANY, the DIRECTION GOOD LUCK fold, the new section-number warning enumeration, the LUCK->BEWARE low-digit relation, the four surviving published local corridor inverses, the p39 VERIFY readout, and p40 RISE+2->p42 OPENPGP. P36 GOOD is intentionally absent because the corrected canonical parser retires that former line-wrap pseudo-word.
 
 The section numerals themselves are original-image visual observations on archive scans 53.jpg, 54.jpg, and 55.jpg (physical p36, p37, p38). No OCR-derived numeral assertion is used.

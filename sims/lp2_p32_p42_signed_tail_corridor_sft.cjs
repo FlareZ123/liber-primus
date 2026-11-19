@@ -14,9 +14,10 @@ const grid = JSON.parse(fs.readFileSync(GRID_JSON, 'utf8'));
 const corpus = JSON.parse(fs.readFileSync(CORPUS_JSON, 'utf8'));
 
 function parseSignedWords(md) {
-  const m = md.match(/```text\nHello\.[\s\S]*?\n```/);
-  assert(m, 'normalized authenticated 2016 text block not found');
-  const alpha = m[0].match(/[A-Za-z]+/g).map((x) => x.toUpperCase());
+  const start = md.indexOf('Hello.');
+  const finish = md.indexOf('```', start);
+  assert(start >= 0 && finish > start, 'normalized authenticated 2016 text block not found');
+  const alpha = md.slice(start, finish).match(/[A-Za-z]+/g).map((x) => x.toUpperCase());
   const end = alpha.indexOf('OPENPGP');
   assert(end >= 0, 'OPENPGP missing from normalized signed text');
   return alpha.slice(0, end + 1);
@@ -158,7 +159,6 @@ assert.strictEqual(words[38], 'BEWARE');
 const local = [
   { page: 33, start: 132, target: 'WILL', key: [25, 5, 26, 2] },
   { page: 34, start: 4, target: 'BE', key: [24, 5] },
-  { page: 36, start: 87, target: 'GOOD', key: [5, 26, 10, 17] },
   { page: 38, start: 57, target: 'BEWARE', key: [20, 7, 7, 7, 13, 4] },
   { page: 40, start: 71, target: 'PATHS', key: [20, 20, 12, 6] },
 ];
