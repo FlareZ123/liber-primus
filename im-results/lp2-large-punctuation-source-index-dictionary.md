@@ -49,6 +49,63 @@ THEIR MEANING IS THE ROAD.
 
 The mapping is complete over the manuscript's large-punctuation size classes. No size class is discarded and no alternative index origin is introduced.
 
+## Counts open the full SEEK AND YOU ... PATHS corridor
+
+The same original count inventory supplies the three source indices immediately before the existing p33-p40 route:
+
+```text
+30 red thirteen-dot marks -> source index30 = SEEK
+31 total thirteen-dot marks -> source index31 = AND
+32 rows in the p50 table -> source index32 = YOU
+```
+
+No modulus or offset is introduced. These are literal authored counts under the same zero-based source convention.
+
+The authenticated source interval from30 through40 is therefore:
+
+```text
+30 SEEK
+31 AND
+32 YOU
+33 WILL
+34 BE
+35 FOUND
+36 GOOD
+37 LUCK
+38 BEWARE
+39 FALSE
+40 PATHS
+```
+
+The central and later positions already have materially independent manuscript consumers:
+
+```text
+33 WILL   p33 source-selected local inverse
+34 BE     p34 source-selected local receiver
+35 FOUND  p35 manuscript-unique H5 state packet and local inverse
+36 GOOD   total count of all large punctuation marks
+37 LUCK   p37 manuscript-unique H4 packet and local inverse
+38 BEWARE p38 section-5 predecessor-state receiver
+39 FALSE  p39 dominant original red X
+40 PATHS  total dots in the complete 10-dot class
+```
+
+The first three positions now come directly from global manuscript counts:
+
+```text
+30 SEEK   red 13-dot count
+31 AND    all physical 13-dot count
+32 YOU    p50 row count
+```
+
+This yields a continuous source-visible scaffold for the complete authenticated imperative:
+
+```text
+SEEK AND YOU WILL BE FOUND GOOD LUCK BEWARE FALSE PATHS
+```
+
+Evidence type changes across the corridor. Counts30-32,36,40 are index/readout operands; p33-p38 include local reversible/state mechanisms; p39 is a visual semantic warning. The continuity is therefore a route synthesis, not evidence for one shared cipher.
+
 ## Global census brackets GOOD LUCK BEWARE FALSE PATHS
 
 The complete original large-punctuation census contains exactly **36** marks:
