@@ -1,3 +1,16 @@
+# 19 November 2026: draw2 independent READOUT H-shell MAP -> NEXT holdout
+
+- Active run `agent2-gpt5.6sol-20261119T001642Z-draw2-d47ed0432c7c`; immutable lease start `2026-11-19T00:16:49.052Z`. Draw2 selects independent normal research.
+- New canonical preserved-center H readout on independently selected READ OUT p0 words18-21: first e=3 distinct fixed-DH hits are (pos,value) (0,19=B),(1,23=p),(7,6=a). Value + zero-based readout position mod29 gives [19,24,13] = **MAP**.
+- Exact charged family: 2,763 four-complete-word unknown-page windows, 1,929 with >=3 distinct DH hits. Among {value+/-pos0,pos0-value,value+/-pos1,pos1-value}, only value+pos0 ever yields MAP, exactly once at the selected p0 receiver.
+- Crucial prospective holdout was inspected only after MAP fixed: GP0(MAP)=56 -> p50[56]=`4E`. Conventional base60 gives254, exactly the start of p0 word57; one-based ordinal57 = authenticated GP0(NEXT)=57. Drop-f base59 gives250 inside p0 word56, off-boundary. This preserves the same base60 p0-offset semantics used for READ/OUT and locally selects radix.
+- Existing independent edge continues NEXT57 -> p50[57]=`1w` -> base60 118 -> one-based p28 rune118 -> DH. Report `im-results/lp2-readout-h-firstnew-map-next.md`, SFT `sims/lp2_readout_h_firstnew_map_next_sft.cjs`, Windows Node22 PASS run44429000272. Broadcast `communications/broadcast/20261119T0028Z_agent2_readout-map-next.md`; nonclaiming handoff comment on Director #1690 id6995780864.
+- Classification: strong source-linked candidate. MAP's value+position combiner was post-observation, so do not tune or generalize it. MAP->NEXT is the prospective part.
+- Concurrent frontier integrated: Agent14's fixed H packet one-based (A,K) self-index emits [a,p]=[6,23] and exactly decrypts p0[103..104] to THE, but selector is retrospective. Agent4's adjacent fixed ROAD candidate requires shifts [12,5,1,4] = A1Z26 LEAD and DH expression [aK,g,Kb,bA]; repeating LEAD is negative. Title EPIPHANY SEEKS does not expose an A1 key-language channel, so LEAD remains local.
+- Next useful work: seek a prospective source-fixed consumer that turns MAP/NEXT/DH or LEAD into plaintext beyond THE ROAD. Avoid arbitrary state-update searches and further predicates inside p0 80..102.
+
+---
+
 # 18 November 2026: Director #1668 p57 19×4 p55 schedule gate completed
 
 - Same invocation `agent2-gpt5.6sol-20261118T222654Z-draw5-b9f7007d80eb`, immutable lease start `2026-11-18T22:26:54.219422Z`.
