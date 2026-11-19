@@ -281,6 +281,86 @@ const exactKey = p37Word37.values.map((value, index) =>
 assert.deepEqual(exactKey, [12, 1, 1, 22]);
 const exactKeyShell = H4(exactKey);
 assert.deepEqual(exactKeyShell, [state.B, 0, state.K, state.g]);
+
+// LUCK itself independently selects project p31 because GP0(LUCK)=31, and
+// no other authenticated source word has GP0=31.
+const signedGp0Rows = signedWords.map((word, index) => ({
+  index,
+  word,
+  gp0: gp(word).reduce((total, value) => total + value, 0),
+}));
+assert.deepEqual(
+  signedGp0Rows.filter((row) => row.gp0 === 31),
+  [{index: 37, word: "LUCK", gp0: 31}]
+);
+
+// Reuse the p31 line pair already fixed independently by the AND/p56 result:
+// top line0 is 5 chunks / 23 runes; line6 immediately after the selected AND
+// receiver line is 5 chunks / 21 runes. Its source-visible helper features are
+// equality=0, lower-to-upper rise=K=2, and shared chunk count=g=5.
+const p31Lines = unknownSegments[31]
+  .split("\n")
+  .filter((line) => line.length)
+  .map((line, index) => {
+    const runeCount = [...line].filter((char) => runeIndex.has(char)).length;
+    const chunkCount = line
+      .split(/[-.\/\s]+/u)
+      .filter((chunk) => [...chunk].some((char) => runeIndex.has(char))).length;
+    return {index, runeCount, chunkCount};
+  });
+
+assert.deepEqual(p31Lines[0], {index: 0, runeCount: 23, chunkCount: 5});
+assert.deepEqual(p31Lines[6], {index: 6, runeCount: 21, chunkCount: 5});
+const p31HelperFeatures = [
+  state.B,
+  mod29(p31Lines[0].chunkCount - p31Lines[6].chunkCount),
+  mod29(p31Lines[0].runeCount - p31Lines[6].runeCount),
+  p31Lines[0].chunkCount,
+];
+assert.deepEqual(p31HelperFeatures, [state.B, 0, state.K, state.g]);
+assert.deepEqual(p31HelperFeatures, exactKeyShell);
+
+// Charge every ordering of these four already-fixed helper values, both signs,
+// and all nine authenticated four-rune targets. The published shell ordering is
+// the sole target-producing member.
+function permutations(values) {
+  if (values.length === 0) return [[]];
+  const out = [];
+  for (let index = 0; index < values.length; index += 1) {
+    const rest = values.slice(0, index).concat(values.slice(index + 1));
+    for (const tail of permutations(rest)) {
+      out.push([values[index], ...tail]);
+    }
+  }
+  return out;
+}
+
+const p31HelperPermutationHits = [];
+const p31HelperPermutations = permutations(p31HelperFeatures);
+assert.equal(p31HelperPermutations.length, 24);
+for (const shell of p31HelperPermutations) {
+  const key = H4inv(shell);
+  for (const sign of [-1, 1]) {
+    const out = p37Word37.values.map((value, index) =>
+      mod29(value + (sign * key[index]))
+    );
+    const target = targetByValues.get(out.join(","));
+    if (target) {
+      p31HelperPermutationHits.push({shell, key, sign, target, output: out});
+    }
+  }
+}
+assert.equal(
+  p31HelperPermutations.length * fourRuneTargets.length * 2,
+  432
+);
+assert.deepEqual(p31HelperPermutationHits, [{
+  shell: [state.B, 0, state.K, state.g],
+  key: [12, 1, 1, 22],
+  sign: -1,
+  target: "LUCK",
+  output: [20, 1, 5, 5],
+}]);
 assert.deepEqual(exactKeyShell, [19, 0, 2, 5]);
 assert.deepEqual(
   p37Word37.values.map((value, index) => mod29(value - exactKey[index])),
@@ -487,6 +567,16 @@ console.log(JSON.stringify({
     exactKey,
     exactKeyShell,
     plaintext: luck,
+  },
+  p31Helper: {
+    selector: "GP0(LUCK)=31 uniquely selects p31",
+    sourceGp0Hits: signedGp0Rows.filter((row) => row.gp0 === 31),
+    fixedLines: [p31Lines[0], p31Lines[6]],
+    features: p31HelperFeatures,
+    permutations: p31HelperPermutations.length,
+    configurations:
+      p31HelperPermutations.length * fourRuneTargets.length * 2,
+    hits: p31HelperPermutationHits,
   },
   controls: {
     fourRuneWords: fourRuneWords.length,
