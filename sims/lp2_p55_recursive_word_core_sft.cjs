@@ -59,6 +59,49 @@ function recursiveCore(values) {
 }
 
 /**
+ * @param {number[][]} wordValues
+ * @returns {{
+ *   centers:{wordIndex:number,value:number,emergeRound:number}[],
+ *   batches:{round:number,values:number[],sum:number}[],
+ *   prefinal:number,
+ *   final:number
+ * }}
+ */
+function emergenceTimeline(wordValues) {
+  const centers = [];
+  for (let wordIndex = 0; wordIndex < wordValues.length; wordIndex += 1) {
+    const values = wordValues[wordIndex];
+    if (values.length % 2 === 0) continue;
+    centers.push({
+      wordIndex,
+      value: values[(values.length - 1) / 2],
+      emergeRound: (values.length - 1) / 2,
+    });
+  }
+
+  const rounds = [...new Set(centers.map((center) => center.emergeRound))]
+    .sort((left, right) => left - right);
+  const batches = rounds.map((round) => {
+    const batch = centers.filter((center) => center.emergeRound === round);
+    return {
+      round,
+      values: batch.map((center) => center.value),
+      sum: batch.reduce((sum, center) => sum + center.value, 0),
+    };
+  });
+
+  const final = centers.reduce((sum, center) => sum + center.value, 0);
+  const finalRound = rounds.length ? rounds[rounds.length - 1] : null;
+  const prefinal = finalRound === null
+    ? 0
+    : centers
+      .filter((center) => center.emergeRound < finalRound)
+      .reduce((sum, center) => sum + center.value, 0);
+
+  return { centers, batches, prefinal, final };
+}
+
+/**
  * Return the H coordinates for every recursive layer on which exactly one
  * active word remains and still has a circumference pair.
  * @param {number[][]} wordValues
@@ -348,6 +391,17 @@ assert.equal(p55.cores.length, state.g);
 assert.equal(p55.middle, state.K);
 assert.equal(p55.gp0, WITHIN_GP0);
 
+const p55Emergence = emergenceTimeline(p55Words);
+assert.deepEqual(p55Emergence.batches, [
+  { round: 1, values: [11, 18], sum: 29 },
+  { round: 3, values: [6, 2], sum: 8 },
+  { round: 6, values: [1], sum: 1 },
+]);
+assert.equal(p55Emergence.prefinal, 37);
+assert.equal(p55Emergence.final, 38);
+assert.deepEqual([p55.h0, p55Emergence.prefinal, p55Emergence.final], [36, 37, 38]);
+assert.deepEqual([p55.h1, p55Emergence.prefinal, p55Emergence.final], [36, 37, 38]);
+
 const p55HiddenCounts = hiddenRuneCounts(p55Words);
 assert.deepEqual(p55HiddenCounts, [75, 41, 23, 7, 5, 3, 0]);
 
@@ -456,6 +510,9 @@ let differenceAscendingTriples = 0;
 let eitherAscendingTriples = 0;
 let exactSource222324Sum = 0;
 let exactSource222324Difference = 0;
+let emergenceBranchCases = 0;
+let emergenceAscendingTriples = 0;
+const emergenceAscendingHits = [];
 const sourceTripleHits = [];
 const hiddenSequenceHits = [];
 const exactHits = [];
@@ -466,6 +523,27 @@ for (let page = 0; page <= 55; page += 1) {
     chargedWindows += 1;
     const windowWords = pageWords.slice(start, start + 16);
     const signature = coreSignature(windowWords);
+    const emergence = emergenceTimeline(windowWords);
+    for (const [branchName, branchValue] of [
+      ["difference", signature.h0],
+      ["sum", signature.h1],
+    ]) {
+      emergenceBranchCases += 1;
+      if (
+        emergence.prefinal === branchValue + 1
+        && emergence.final === emergence.prefinal + 1
+      ) {
+        emergenceAscendingTriples += 1;
+        emergenceAscendingHits.push({
+          physicalPage: page,
+          startWord: start + 1,
+          branchName,
+          branchValue,
+          prefinal: emergence.prefinal,
+          final: emergence.final,
+        });
+      }
+    }
     const hiddenCounts = hiddenRuneCounts(windowWords);
     const singleLayers = singleSurvivorHLayers(windowWords);
     for (let layerIndex = 0; layerIndex + 2 < singleLayers.length; layerIndex += 1) {
@@ -585,6 +663,26 @@ assert.equal(differenceAscendingTriples, 0);
 assert.equal(eitherAscendingTriples, 1);
 assert.equal(exactSource222324Sum, 1);
 assert.equal(exactSource222324Difference, 0);
+assert.equal(emergenceBranchCases, 4078);
+assert.equal(emergenceAscendingTriples, 2);
+assert.deepEqual(emergenceAscendingHits, [
+  {
+    physicalPage: 55,
+    startWord: 1,
+    branchName: "difference",
+    branchValue: 36,
+    prefinal: 37,
+    final: 38,
+  },
+  {
+    physicalPage: 55,
+    startWord: 1,
+    branchName: "sum",
+    branchValue: 36,
+    prefinal: 37,
+    final: 38,
+  },
+]);
 assert.deepEqual(sourceTripleHits, [{
   physicalPage: 55,
   startWord: 1,
@@ -626,6 +724,15 @@ console.log(JSON.stringify({
     hBranchGp0: [p55.h0, p55.h1],
     hBranchSourceLabel: "GOOD",
     hSumBranchState: ["B", "b+K"],
+    warningFragment: {
+      hBranchGp0: [p55.h0, p55.h1],
+      prefinalEmergedGp0: p55Emergence.prefinal,
+      finalEmergedGp0: p55Emergence.final,
+      signedWords: ["GOOD", "LUCK", "BEWARE"],
+      batches: p55Emergence.batches,
+      chargedBranchCases: emergenceBranchCases,
+      ascendingHits: emergenceAscendingHits,
+    },
     wayToLiber: {
       sourceIndex: 13,
       sourceWord: "WAY",
