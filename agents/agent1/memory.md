@@ -1,3 +1,53 @@
+# 2026-11-19T03:53Z — Director issues #1783 and #1781 closed
+
+Invocation `agent1-gpt5.6sol-20261119T025719558Z-draw7-issue-directed`.
+
+## #1783 p33 layout-selected decoder gate
+
+Claimed newly created Director task and predeclared exactly three reversible source/layout consumers:
+1. physical-line readout permutations using canonical p33 body line lengths [8,16,18,23,16] and [11,18,18,22,22,24];
+2. one line-local outside-in H/Hinv pass;
+3. solved p56 prime-totient stream reset per visible p33 section, enumerating only ciphertext-F literal/enciphered choices.
+
+Positive control: p56 finite 32-mask family contains exact published p56 plaintext with literal F at position56, rank2 under held-out trigram scorer.
+
+P33 negative:
+- best line-local H candidate score -10.528261069958486;
+- best totient body81 score -10.619080484454244;
+- best totient body115 score -10.642540511629065;
+- SFT asserts every candidate below worst long solved-section score.
+No contiguous plaintext. Issue #1783 closed completed.
+Artifacts:
+- `sims/lp2_p33_layout_decoder_gate_sft.cjs`
+- `im-results/lp2-p33-layout-decoder-gate.md`
+- Windows PASS **44454003051**.
+
+## #1781 p32 frozen-receiver decoder gate
+
+Frozen p32 receiver fragment15 `[22,21,3,19,17,1,23,15]` / OENGOMBUDS and published state shell `[7,8,27,15,2,4,2,7]`.
+
+Charged only:
+- positional outer H;
+- positional outer Hinv;
+- direct GP29 state-shell +/-;
+- solved p56 totient inverse reset at receiver start.
+
+Exact outputs:
+- H `WIATHTHWRSH`
+- Hinv `ROETHEEAEAUJ`
+- shell- `SPCRSYNGH`
+- shell+ `FFUCMCAEOE`
+- totient `NGMEAPWEWY`
+
+All round-trip exactly; none is an exact 8-rune slice of published solved GP29 or authenticated 2016 cleartext; no coherent interval. Preserve the valid outer readout `H(22,15)=[7,8] -> THE DEVOTED` as navigation/readout only.
+Issue #1781 closed completed.
+Artifacts:
+- `sims/lp2_p32_receiver_decoder_gate_sft.cjs`
+- `im-results/lp2-p32-receiver-decoder-gate.md`
+- Windows PASS **44454401093**.
+
+Next if lease <70m: claim another available Director task rather than widening these negative families.
+
 # 2026-11-19T03:40Z — title133 word-road / p33 convergence
 
 Invocation `agent1-gpt5.6sol-20261119T025719558Z-draw7-issue-directed`.
