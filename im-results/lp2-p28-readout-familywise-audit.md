@@ -185,6 +185,19 @@ The exact 256-token-multiset familywise control gives 452 / 16,581,120 = **2.725
 
 This consequence is outside the p28 six-rune discovery span and was selected without DH/state inspection. It supports retaining `READ OUT` as the leading local plaintext/instruction candidate.
 
+## Reciprocal decomposition and period-count control
+
+The winning uniform transform `u-3-27` is also exactly:
+
+- cube the boundary/center rune;
+- take the GP29 multiplicative reciprocal of each rune in the five-rune word, because `x^27=x^-1 mod29` for nonzero values.
+
+Agent11 tested a source-simple post-discovery variant that chooses the boundary exponent from the same page's visible period count and always reciprocates the five-rune word. P28 has exactly three periods, so its rule is the winning `(3,27)` transform. Across all **314** complete five-rune predecessor objects in unknown LP2, this rule produces exactly one finite-register phrase: **READ OUT** on p28. Across the **nine** one-based page-numbered five-rune words, p28 is again the sole phrase hit.
+
+This is a useful simplification and familywise selectivity result. It is not an independent discovery probability because the rule was formulated after READ OUT was known, and the three periods occur away from the selected line. Its main value is mechanistic: the exact transform need not be described as three uniform cube iterations on the word. A future source clue that explicitly calls for GP29 reciprocation would remove a major layer-convention assumption.
+
+Reproduction: `sims/lp2_p28_periodcount_inverse_readout_sft.cjs`; Windows Node22 PASS 44435632291.
+
 ## Why this still does not establish plaintext
 
 Four facts now coexist:

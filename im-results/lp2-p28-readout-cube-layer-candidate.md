@@ -46,6 +46,30 @@ The selected five-rune word admits **three combinatorial shell depths**: outer p
 
 Exponent27 is the multiplicative inverse map on GF(29)* and is self-inverse modulo the exponent group because `27^2 = 1 mod28`.
 
+## Equivalent cube-plus-reciprocal decomposition
+
+The exact winning transform has a simpler algebraic description that does not require interpreting the five-rune word as three repeatedly cubed layers:
+
+```text
+center: x -> x^3 mod29
+word:   x -> x^27 mod29 = x^-1 mod29 for nonzero x
+```
+
+So the p28 object is transformed by **cubing the center rune and taking GP29 multiplicative reciprocals of the complete five-rune word**. The same original input gives the same output:
+
+```text
+N + EAAIUL
+[9] + [28,24,10,1,20]
+ -> [4] + [28,23,3,1,16]
+ -> READ OUT
+```
+
+This removes the algebraic need for the three-layer iteration story. It does not by itself source-select the reciprocal operation. The center exponent3 has several exact source-number derivations, including the standard-DH inverse `15^-1 mod22=3`; the word exponent27 is the canonical reciprocal exponent in the 29-symbol field.
+
+A post-discovery source-simple control also uses p28's three printed periods as the boundary exponent and reciprocal exponent27 on the five-rune word. Applying that fixed rule to every complete five-rune predecessor object on unknown p0..p55 gives **READ OUT as the sole finite-register phrase among 314 objects**. Restricting to the nine one-based page-numbered five-rune words again leaves p28 as the sole phrase hit. This is useful selectivity, while its discovery after READ OUT means it remains corroborative rather than a prospective validation.
+
+Reproduction: `sims/lp2_p28_periodcount_inverse_readout_sft.cjs`, Windows Node22 run 44435632291.
+
 ## Exact plaintext candidate
 
 Apply exponent3 to the exact page-center rune and exponent27 to every rune of the immediately following selected word:
@@ -95,7 +119,7 @@ No other eligible five-rune word produces a comparable dictionary phrase.
 
 This is a broad post-discovery selectivity control rather than a prospective authorship probability. The selected p28 object had already been singled out by the FIND→28 route, exact-center placement, unique DH-start line, and DH23 geometry before the plaintext candidate was observed.
 
-A complete six-state cube-orbit calibration also grants every pair of cube iterates `{1,3,9,27,25,19}` independently to the predecessor and five-rune word. Across all36 exponent pairs ×314 boundaries, the source-selected `(3,27)` pair still has exactly one phrase hit, `READ / OUT`. Eleven other exponent pairs have a single dictionary split elsewhere, so the lexicon alone does not select the exponents. Exponent3 has compact arithmetic support from `g-K=a/K=3` and the later `b^-1 mod22=3` observation, while the p27 `[6,3]` relation is post-discovery corroboration; the three-layer word rule and cross-field application remain essential operation choices.
+A complete six-state cube-orbit calibration also grants every pair of cube iterates `{1,3,9,27,25,19}` independently to the predecessor and five-rune word. Across all36 exponent pairs ×314 boundaries, the source-selected `(3,27)` pair still has exactly one phrase hit, `READ / OUT`. Eleven other exponent pairs have a single dictionary split elsewhere, so the lexicon alone does not select the exponents. Exponent3 has compact arithmetic support from `g-K=a/K=3` and the later `b^-1 mod22=3` observation, while the p27 `[6,3]` relation is post-discovery corroboration. The exact word exponent27 also has the simpler interpretation of GP29 multiplicative inversion; what remains unresolved is why that reciprocal operation, rather than another source-supported power, should apply to the word.
 
 ## Why the candidate is plausible as an intended solve step
 
