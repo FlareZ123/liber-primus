@@ -1,129 +1,264 @@
-# Square-derived marker state selects the p0 title
+# Square-derived marker state sharply selects the p0 title
 
-**Agent17, 19 November 2026. Classification: strong source-constrained local plaintext-selection result. The finite selector does not require the retrospective 13-atom key order. The square-state alphabet conjunction was formulated after `EPIPHANY SEEKS` was already known, so preserve the chronology caveat and do not treat this as a blind first discovery.**
+**Agent17, 19 November 2026. Classification: strong source-constrained local p0 plaintext/key evidence. The five-rune word SEEKS now has a finite state-generated local inverse with exhaustive controls. EPIPHANY SEEKS is the unique title survivor under the combined marker/state controls and is independently source-selected by other square/register routes. The remaining caveat is discovery order for the complete three-column rise law, so this report does not claim a book-wide cipher or continuous p0 prose.**
 
-## Independent inputs
+## Source geometry correction
 
-The authenticated 2014 magic squares now recover the DH state from source metadata under the already fixed BASE29 representation. In particular, the equal-sum 1033 squares and the 3301 square supply:
+The original p0 scan shows two red words of GP lengths **8+5** immediately followed by a square-dot marker.
 
-```text
-K=2, e=3, q=4, g=5, a=6, A=8, A-B=18, B=19
--K=27, -e=26, -g=24
-```
-
-These values are obtained from square orders, centers, and magic-sum digits before the p0 title is opened.
-
-The original p0 source visibly supplies two red words of GP lengths **8+5** followed by the red thirteen-dot marker. The marker has physical column populations **4|5|4**. Agent14's matched-control result showed that, for the candidate residual, one exact H inverse makes the marker center column the state palindrome
+A direct image audit of the supplied original scan gives exactly **13 red squares**:
 
 ```text
-[q,A,B,A,q] = [4,8,19,8,4].
+left   4
+center 5
+right  4
 ```
 
-This test asks whether that center condition selects plaintext when charged against the full finite source-native lexical family rather than against a fixed target.
+The center column has five vertically aligned dots; four left/right pairs are staggered between the center levels. This independently agrees with the repository's 13-dot annotation. A concurrent 3|5|3 / 11-dot interpretation came from a visual miscount and was corrected to its author; do not use that 11-dot SHED branch.
 
-## Family charge
-
-Use the exact original adjacent page-local 8+5 receiver family:
+The authenticated 2014 square route independently reconstructs
 
 ```text
-19 manuscript receivers
+(p,g,a,b,A,B,K,e,q)
+=
+(23,5,6,15,8,19,2,3,4).
 ```
 
-Use the pinned solved/authenticated native-GP lexical control:
+Thus the visible marker populations themselves are state-typed:
+
+```text
+4|5|4 = q|g|q
+13    = b-K.
+```
+
+## The center column gives an executable five-rune key
+
+The five-dot marker center is the state palindrome
+
+```text
+[q,A,B,A,q]
+=
+[4,8,19,8,4].
+```
+
+Apply the already fixed outside-in H map:
+
+```text
+H([q,A,B,A,q])
+=
+[0,8,0,16,19].
+```
+
+Subtract this five-rune key from the untouched second red word:
+
+```text
+cipher = [15,26,18,21,5]
+key    = [ 0, 8, 0,16,19]
+plain  = [15,18,18, 5,15]
+       = SEEKS.
+```
+
+This is a complete reversible local decryption of the second title word once the square-derived state and visible five-dot center are accepted.
+
+## Full state-palindrome family
+
+The center rule was charged without fixing q/A/B in advance.
+
+First use only the seven fields recovered directly from square orders, centers, and sum digits:
+
+```text
+{g,K,e,q,A,a,B}
+```
+
+Every palindrome `[x,y,z,y,x]` was tested:
+
+```text
+7^3 = 343 assignments.
+```
+
+Only one assignment decrypts the untouched p0 five-rune word to any pinned solved/authenticated five-rune lexical control:
+
+```text
+[x,y,z] = [q,A,B]
+plaintext = SEEKS.
+```
+
+Then broaden the same family to the full independently reconstructed nine-field DH state, including `p` and `b`:
+
+```text
+9^3 = 729 assignments.
+```
+
+The result remains exactly one lexical hit:
+
+```text
+[q,A,B,A,q] -> SEEKS.
+```
+
+So the center result does not depend on omitting the two later state fields.
+
+## Marker-local transfer control
+
+Freeze the square-derived five-rune key
+
+```text
+[0,8,0,16,19].
+```
+
+Apply it with unchanged phase and subtraction sign to every eligible five-rune window immediately before or after every original red 13-dot marker.
+
+```text
+eligible marker-adjacent windows: 49
+pinned solved/authenticated lexical hits: 1
+sole hit: p0 marker, pre-marker window -> SEEKS
+```
+
+This localizes the key to the same physical marker/title object. It gives no support for unchanged transfer to other red13 markers.
+
+## Complete 8+5 title family
+
+Use every adjacent page-local unknown-manuscript 8+5 receiver:
+
+```text
+19 receivers.
+```
+
+Use the pinned solved/authenticated native-GP control:
 
 ```text
 18 distinct eight-rune words
-38 distinct five-rune words
+38 distinct five-rune words.
 ```
 
-For every receiver and every ordered 8+5 lexical pair:
-
-1. subtract the candidate plaintext from the untouched ciphertext modulo29;
-2. apply the fixed reversible outside-in H inverse to the 13-value residual;
-3. require marker positions4..8 to equal `[q,A,B,A,q]`.
-
-Total charged family:
+For all
 
 ```text
 19 * 18 * 38 = 12,996
 ```
 
-Result:
+receiver/plaintext combinations:
 
-```text
-18 hits
-all 18 are p0 word1-word2
-all 18 have second word SEEKS
-the first word ranges over all 18 eight-rune lexical controls
-```
+1. form `C-P mod29`;
+2. apply exact H inverse;
+3. require marker positions4..8 to equal `[q,A,B,A,q]`.
 
-So the independently square-derived five-dot center condition alone recovers the second p0 red word **SEEKS** and the p0 receiver, while leaving the first eight-rune word unresolved.
+Exactly 18 candidates survive. Every survivor is p0 word1-word2 and every second word is SEEKS. Only the first eight-rune word varies.
 
-The exact five-rune residual is then:
-
-```text
-[0,8,0,16,19] = [0,A,0,K-b,B].
-```
-
-Equivalently, applying H directly to the marker-center state palindrome gives that complete five-rune key:
-
-```text
-H([q,A,B,A,q])
-= [0,2q,0,2A,B]
-= [0,A,0,K-b,B]
-= [0,8,0,16,19].
-```
-
-Subtracting it from the untouched second red word gives **SEEKS** exactly.
-
-## First-word discriminator from the same source object
-
-The square metadata itself emits the finite residue alphabet
+The square metadata independently emits the finite residue alphabet
 
 ```text
 {K,e,q,g,a,A,A-B,B,-K,-e,-g}
-= {2,3,4,5,6,8,18,19,24,26,27}.
+=
+{2,3,4,5,6,8,18,19,24,26,27}.
 ```
 
-This set uses only authenticated square orders, center digits, sum digits, and the directly derived B relation. It excludes the later retrospective p,b cell lookup.
-
-Charge the 18 marker-center survivors with one additional condition:
-
-> every one of the eight first-word residual atoms must belong to that square-metadata alphabet.
-
-Exactly one survivor remains:
+Require all eight first-word residual atoms to belong to that source-derived alphabet. Exactly one center survivor remains:
 
 ```text
-EPIPHANY SEEKS
+EPIPHANY SEEKS.
 ```
 
-with complete residual
+Its exact residual is
 
 ```text
 [26,24,8,19,27,24,18,3 | 0,8,0,16,19]
+=
+[-e,-g,A,B,-K,-g,A-B,e | 0,A,0,K-b,B].
 ```
 
-and exact H inverse
+The H inverse is
 
 ```text
 [25,28,11,25 | 4,8,19,8,4 | 7,13,20,28].
 ```
 
-The first eight residual atoms are all direct square-metadata state values:
+The first-word alphabet constraint was formulated after EPIPHANY SEEKS was already known. Treat it as a discriminating holdout rather than a blind discovery.
+
+## State-only full key and visual order
+
+Subsequent independent work rewrote the complete marker rise generator using square-state arithmetic only. Define
 
 ```text
-[-e,-g,A,B,-K,-g,A-B,e].
+u = q-e = 1
+t = g+K = 7
+w = A+g = 13.
 ```
 
-No other marker-center survivor has all eight first-word atoms inside the square-metadata alphabet.
+The frozen marker rise grammar generates three physical columns:
 
-## What changed
+```text
+left   = [25,28,11,25]
+center = [ 4, 8,19, 8,4]
+right  = [ 7,13,20,28].
+```
 
-The p0 phrase already had several source-side selectors, including the independently frozen BASE29 square cell151 = `[5,6] = EPIPHANY SEEKS`. The unresolved objection was that the explicit 13-atom additive key order had been recognized after the phrase.
+Concatenate those columns in ordinary visual reading order and apply H:
 
-This experiment bypasses that ordering objection for plaintext selection. The marker-center condition recovers **SEEKS** over the complete 12,996-case family, and the independently emitted square-metadata value alphabet reduces the first-word ambiguity to **EPIPHANY**.
+```text
+H(left || center || right)
+=
+[26,24,8,19,27,24,18,3,0,8,0,16,19].
+```
 
-The chronology remains important. The alphabet-membership test was formulated after the target phrase was known, so this is a strong discriminating holdout rather than a blind historical discovery. The side-column serialization is still not independently generated, and no continuous p0 body inverse follows.
+That is the exact 13-rune additive title key and decrypts untouched p0 to EPIPHANY SEEKS.
+
+I charged the visible serialization rather than assuming it. All six column permutations and every independent top/bottom reversal were tested:
+
+```text
+6 * 2^3 = 48 visual column traversals.
+```
+
+Only
+
+```text
+left -> center -> right
+all columns top -> bottom
+```
+
+produces a pinned two-word lexical title. Reversing the center is algebraically identical because the center is a palindrome, so the raw output contains two equivalent records for the same physical packet.
+
+This removes a simple orientation ambiguity. It does not erase the chronology caveat on the exact rise formulas, which were recognized after the p0 residual had been inspected.
+
+## Independent plaintext selectors
+
+The title is also selected before its additive residual is opened by several separate source routes now in the repository. Most importantly, the authenticated-square state axis gives
+
+```text
+g=5 -> EPIPHANY
+a=6 -> SEEKS,
+```
+
+and the state-only source prefix reads indices1..8 as
+
+```text
+THE PATH LIES EMPTY EPIPHANY SEEKS THE DEVOTED.
+```
+
+Other established square/register routes independently emit the same source pair [5,6].
+
+These selectors matter because they separate candidate selection from retrospective key interpretation.
+
+## Evidence boundary
+
+The strongest local statement now justified is:
+
+```text
+authenticated 2014 square data
+-> independently reconstructed DH state
+-> visible p0 4|5|4 marker
+-> state-palindrome center key
+-> exact SEEKS decryption
+
+and, under the frozen state-only three-column rise serializer,
+
+square state + marker geometry
+-> exact 13-rune additive key
+-> EPIPHANY SEEKS.
+```
+
+The five-rune SEEKS inverse has a bounded exhaustive state family and a 49-window marker transfer control. The complete title has source-side plaintext selectors, a target-free same-shape receiver control, and a 48-view visual serialization control.
+
+The unresolved scientific weakness is the discovery order of the full left/center/right rise law. A genuinely prospective reuse or an independent original instruction that fixes those exact rise formulas would upgrade the full 13-rune mechanism further. No continuous p0 body inverse follows from this result.
 
 ## Reproduction
 
@@ -131,4 +266,11 @@ The chronology remains important. The alphabet-membership test was formulated af
 node sims/lp2_p0_marker_center_plaintext_selector_sft.cjs
 ```
 
-Windows Node22 PASS: workflow run **44478031775**.
+Windows Node22 PASS with the full 729-palindrome, 48-traversal and 49-window controls: workflow **44479738077**.
+
+Related state-only serializer:
+
+```text
+im-results/lp2-p0-square-state-rise-key-serializer.md
+sims/lp2_p0_square_state_rise_key_serializer_sft.cjs
+```
