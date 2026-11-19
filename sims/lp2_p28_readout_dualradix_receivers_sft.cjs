@@ -303,8 +303,8 @@ console.log(JSON.stringify({
     uniqueFourWordPatternHits: p0PatternHits,
   },
   controls: {
-    base59BoundaryHits,
-    base60BoundaryHits,
+    base59BoundaryHits: b59BoundaryHits,
+    base60BoundaryHits: b60BoundaryHits,
     fiveWordWindows,
     fourWordWindows,
     p27WordLayerConsumer: translit(p27Layer),
