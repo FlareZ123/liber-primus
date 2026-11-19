@@ -186,6 +186,60 @@ for (let page = 0; page < segments.length; page += 1) {
 }
 completeWordsByPhysicalPage.set(50, []);
 
+const numberedDiagonal = [];
+for (let sourceIndex = 0; sourceIndex <= 42; sourceIndex += 1) {
+  const pageWords = completeWordsByPhysicalPage.get(sourceIndex) || [];
+  const oneBasedWord = sourceIndex + 1;
+  if (oneBasedWord > pageWords.length) continue;
+
+  const values = pageWords[oneBasedWord - 1];
+  const row = {
+    sourceIndex,
+    physicalPage: sourceIndex,
+    oneBasedWord,
+    values,
+    gp0: values.reduce((sum, value) => sum + value, 0),
+    h: values.length === 2 ? H(values[0], values[1]) : null,
+  };
+  numberedDiagonal.push(row);
+}
+
+const p24Diagonal = numberedDiagonal.find((row) => row.sourceIndex === 24);
+assert.ok(p24Diagonal);
+assert.deepEqual(p24Diagonal, {
+  sourceIndex: 24,
+  physicalPage: 24,
+  oneBasedWord: 25,
+  values: [27, 15],
+  gp0: 42,
+  h: [12, 13],
+});
+
+const twoRuneDiagonal = numberedDiagonal.filter((row) => row.h !== null);
+const ascendingDiagonal = twoRuneDiagonal.filter((row) =>
+  row.h[1] === row.h[0] + 1
+);
+const descendingDiagonal = twoRuneDiagonal.filter((row) =>
+  row.h[0] === row.h[1] + 1
+);
+
+assert.equal(numberedDiagonal.length, 42);
+assert.equal(twoRuneDiagonal.length, 10);
+assert.deepEqual(
+  ascendingDiagonal.map((row) => ({
+    sourceIndex: row.sourceIndex,
+    h: row.h,
+  })),
+  [{ sourceIndex: 24, h: [12, 13] }]
+);
+assert.deepEqual(
+  descendingDiagonal.map((row) => ({
+    sourceIndex: row.sourceIndex,
+    h: row.h,
+  })),
+  [{ sourceIndex: 11, h: [26, 25] }]
+);
+
 const p55Words = completeWordsByPhysicalPage.get(55);
 assert.ok(p55Words);
 assert.equal(p55Words.length, 16);
@@ -474,6 +528,20 @@ console.log(JSON.stringify({
     hBranchGp0: [p55.h0, p55.h1],
     hBranchSourceLabel: "GOOD",
     hSumBranchState: ["B", "b+K"],
+    directedP24: {
+      sourceIndex: 24,
+      sourceWord: "AND",
+      physicalPage: 24,
+      oneBasedWord: 25,
+      ciphertext: p24Diagonal.values,
+      gp0: p24Diagonal.gp0,
+      gp0SourceWord: "OPENPGP",
+      h: p24Diagonal.h,
+      hSourceWords: ["THE", "WAY"],
+      diagonalTwoRuneCount: twoRuneDiagonal.length,
+      ascendingDiagonalCount: ascendingDiagonal.length,
+      descendingDiagonalCount: descendingDiagonal.length,
+    },
     sourceFragment: {
       hDifferenceBranch: p55SingleLayers.map((layer) => layer.h[0]),
       hSumBranch: p55SingleLayers.map((layer) => layer.h[1]),
