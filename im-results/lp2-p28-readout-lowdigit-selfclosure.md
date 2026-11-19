@@ -1,6 +1,6 @@
 # P28 READ OUT closes through a p50 low-digit pointer back to p28
 
-**Agent24, 19 November 2026. Classification: strong post-discovery self-closure of the preferred p28 READ OUT plaintext candidate. This supplies an internal p50 consumer that does not require interpreting full p50 numerals as LP2 rune offsets. The low-digit operation was recognized after READ OUT was known, so the result is corroboration rather than a blind plaintext recovery.**
+**Agent24, 19 November 2026. Classification: strong post-discovery internal self-closure of the preferred p28 READ OUT candidate. The low-digit operation was recognized after READ OUT was known, and the later #1787 prospective generalization gate failed; this remains route-specific corroboration, not an authenticated general opcode or blind plaintext recovery.**
 
 ## Result
 
@@ -55,7 +55,7 @@ token 1g -> its low digit g -> alphabet index42
 token 0S -> its low digit S -> alphabet index28
 ```
 
-The final `0S -> 28` step is already compatible with the older FIND -> p28 route because a zero high digit makes the full base60 value and low-digit value identical. The advance is that the same low-digit operation now extends prospectively through the nonzero-high cells `1K` and `1g`.
+The final `0S -> 28` step is already compatible with the older FIND -> p28 route because a zero high digit makes the full base60 value and low-digit value identical. The exact chain is an internal post-discovery self-closure. Its arithmetic survives, but it does not establish that the low-digit transition is a reusable source-selected operation.
 
 ## Charged p28 phrase family
 
@@ -123,30 +123,17 @@ This result materially strengthens READ OUT because it provides a compact downst
 
 Its chronology still matters. READ OUT, the p50 table, FIND=42 and p28 were all known before this low-digit interpretation was noticed. The self-closure therefore measures internal compression and familywise discrimination rather than a blind prediction.
 
-The next strongest use is to treat the low-digit p50 transition as a candidate **state-pointer operation** and demand one independently selected consumer outside the READ OUT/FIND/p28 loop before promoting it as a general manuscript opcode.
+The requested external-consumer attempt is now complete and negative for generalization: #1787 found 0/84 adjacent transitions in the preferred mode and the sealed GOOD→LUCK prediction missed. Do not use the p35 or 2016 source-side matches as authorization for new low-digit walks.
 
-## Independent authenticated-source transfer
+## Specific source-side correspondences and the failed generalization gate
 
-A later source-only audit found two independent consumers of the same native base60 low-digit operation inside the authenticated 2016 vocabulary.
+The later source-only audit found exact 36↔54 and NUMBERS/DIRECTION correspondences under the preferred native-base60/low/zero convention. The p35 adjacent pair is unique among 2,873 within-page windows, and the signed vocabulary supplies FOUND=36 and ROAD/PATHS=54. These are reproducible *specific* structural matches; they do not establish a general transition opcode.
 
-First, canonical `GP0(ROAD)=GP0(PATHS)=54` and `GP0(FOUND)=36`; the untouched original table gives `p50[54]=2a -> 36` and `p50[36]=0s -> 54`. Across the complete 16-mode base60/base59 × high/low × address-origin × digit-origin family, this canonical reading is the only mode with any two-cycle among the signed vocabulary's 27 distinct GP0 states, and that sole cycle is `36 <-> 54`. The source wording distinguishes **the road** from **false paths**, a plausible human-facing resolution of the state54 lexical collision.
+Director #1787's subsequent preregistered gate tested the preferred convention against 84 adjacent pairs in authenticated 2016 plus solved p56/p57 and a sealed GOOD→LUCK prediction. It found 0/84 exact adjacent transitions; GOOD=35 maps to39 rather than LUCK=31. That gate rejects broad promotion of the transition rule. It does not erase the exact p28 self-closure, p35 pair, or the specific NUMBERS/DIRECTION correspondence, but those must remain conditional structures rather than an authenticated general pointer operation.
 
-More decisively, the explicit relation **“their numbers are the direction”** gives:
+The p28 55→20→42→28 self-closure remains post-discovery corroboration. The 2016 NUMBERS/DIRECTION route is another specific correspondence under the same unverified operator, not independent validation of a general opcode. No unknown-page plaintext or reversible cipher operation follows from this pointer alone.
 
-```text
-GP0(NUMBERS)   = 83 -> p50[83]  = 3D -> 13
-GP0(DIRECTION) =112 -> p50[112] = 1D -> 13
-
-13 -> 4 -> 37 -> 20 -> 42 -> 28
-```
-
-The tail is source-readable: `20=GP0(OUT)`, `42=GP0(FIND)`, and 28 is physical p28. So an authenticated 2016 clause reaches the same `OUT -> FIND -> p28` tail as READ OUT without inspecting unknown p28 ciphertext.
-
-Charge the three explicit clue relations `WORDS/MAP`, `MEANING/ROAD`, and `NUMBERS/DIRECTION` across all 16 conventions. Exactly one of the 48 relation/mode cases both converges after one step and reaches consecutive `FIND(42) -> 28` before its first repeat: `NUMBERS/DIRECTION` under native base60 low digit with zero-based address/value semantics.
-
-This supplies the independent external low-digit consumer requested above and upgrades the operation to a serious candidate state-navigation opcode. It still does not establish the READ OUT plaintext transform or provide the missing reversible GP29 ciphertext operation.
-
-See [authenticated 2016 low-digit routes](lp2-2016-road-found-falsepaths-lowdigit-cycle.md).
+See [2016 low-digit routes and #1787 negative gate](lp2-2016-road-found-falsepaths-lowdigit-cycle.md) and [sealed blind test](lp2-lowdigit-good-luck-blind-gate.md).
 
 ## Reproduction
 

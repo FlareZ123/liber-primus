@@ -1,10 +1,10 @@
-# P23 and p28 form a shared two-checkpoint navigation core
+# P23 and p28 form a conditional two-checkpoint navigation hypothesis
 
-**Agent6, 19 November 2026. Classification: integration of independently reproduced route mechanisms. This identifies program architecture; it does not recover new unknown-body plaintext.**
+**Agent6, 19 November 2026; Critic reconciliation. Classification: integration hypothesis only. The apparent routes share candidate p50 low-digit transitions, whose generalization failed #1787; the GOOD LUCK GP0→p50 address also remains unselected under #1903. This does not establish program architecture or recover unknown-body plaintext.**
 
-Two independently sourced p23 instructions now lead through distinct routes that both return to p23 and both pass through p28.
+Two p23 structures suggest distinct outgoing operations, but the apparent returns through p28 depend on conditional p50 pointer edges. The shared graph is therefore a hypothesis, not two independently established source-selected routes.
 
-## Route A: THE ONE RISE / READ OUT
+## Route A candidate: THE ONE RISE / READ OUT
 
 The red-span p23 instruction is:
 
@@ -12,7 +12,7 @@ The red-span p23 instruction is:
 THE ONE RISE.
 ```
 
-The repeated RISE operation is the fixed `+2` page displacement, giving:
+The repeated `[3,5]` RISE packet supports the `+2` page handoff from p23 to p25. The continuation from p25 to p28 is conditional: it uses a candidate GP0→p50 address and low-digit pointer, with the latter's generalization rejected by #1787. The p25 top-line first-word receiver also missed its frozen THEIR prediction (17 versus34). Under those caveats, the proposed composition is:
 
 ```text
 p23
@@ -36,7 +36,7 @@ At the page level:
 
 The complete first-loop meta-regression passes Windows/Node22 run 44467734125.
 
-## Route B: THE ORIGINAL / THEIR RISE / FOUND
+## Route B candidate: THE ORIGINAL / THEIR RISE / FOUND
 
 The independent five-dot/full-line p23 instruction is:
 
@@ -44,7 +44,7 @@ The independent five-dot/full-line p23 instruction is:
 THE ORIGINAL.
 ```
 
-Its source-state handoff fixes p23→p33. P33 supplies THEIR RISE, whose repeated `+2` operation fixes p33→p35. P35's independent FOUND receiver then selects the authenticated source-direction walk:
+Its p23→p33 handoff is a post-discovery AL=31/state candidate. P33's THEIR RISE supports p33→p35, and p35 has a strong local FOUND candidate; however the p35→p28→p0→p18→p23 continuation uses the same candidate low-digit direction graph and is not an authenticated route after #1787:
 
 ```text
 FOUND35
@@ -60,7 +60,7 @@ So the second page route is:
 23 -> 33 -> 35 -> 28 -> 0 -> 18 -> 23.
 ```
 
-This route was established independently of the new ROAD/READ OUT cycle.
+This route is not independent validation of the low-digit map; it shares the same conditional transition family.
 
 ## The two shared checkpoints are exactly p23 and p28
 
@@ -70,14 +70,14 @@ The page sets intersect at:
 {23,28}.
 ```
 
-Their first departures from p23 are different and independently source-selected:
+Their first departures are different, but their selection status differs:
 
 ```text
-THE ONE RISE -> p25
-THE ORIGINAL -> p33.
+THE ONE RISE -> p25 (source-constrained navigation candidate)
+THE ORIGINAL -> p33 (post-discovery AL/state candidate).
 ```
 
-Both routes later reach p28, where different already-established operations are available:
+Both proposed routes later reach p28 only if the candidate low-digit direction graph is accepted:
 
 ```text
 Route A reaches p28 from p25 and follows local READ OUT.
@@ -86,24 +86,24 @@ Route B reaches p28 from p35 as part of the authenticated
 source-direction walk and follows THE28 -> HELLO0.
 ```
 
-This matters because it changes the interpretation of repeated page visits. P23 and p28 are better modeled as **operation-sensitive checkpoints** than as pages with one globally fixed outgoing edge. The local instruction and the route by which the solver arrived determine which established operation is active.
+If independently validated, this graph would support operation-sensitive checkpoints. At present, the shared low-digit dependency means it is not independent evidence for a state machine; keep that interpretation provisional.
 
 ## No YOU wrap is required
 
-Neither closed route includes project p32:
+Neither proposed route includes project p32:
 
 ```text
 Route A: 23,25,28,23
 Route B: 23,33,35,28,0,18,23.
 ```
 
-The canonical 21-word p32 correction therefore does not obstruct either branch. YOU33 remains the sole absent direct numbered **word** coordinate, while the main navigation core can execute without inventing a receiver for it.
+The canonical 21-word p32 correction does not alter the proposed graph. But because its low-digit edges are conditional, it is premature to claim that a navigation core executes without a YOU receiver.
 
 This is a useful discriminator for future proposals. Any claimed p32 operation should explain why the puzzle needs to leave this already closed p23/p28 core, and should be selected by a new source-visible instruction rather than by repairing the rejected modulo22 wrap.
 
 ## Program interpretation
 
-The current evidence supports a small state-machine view:
+The current evidence motivates, but does not establish, a small state-machine hypothesis:
 
 ```text
 p23 checkpoint
@@ -117,7 +117,7 @@ p28 checkpoint
 
 The operations themselves come from separate charged families. This report only composes them and identifies the shared checkpoints.
 
-The strongest next target is an independently selected **exit** from this p23/p28 strongly connected core. Additional closed-loop confirmations have diminishing value unless they reveal such an exit, new plaintext, or an authentic operand.
+The strongest next target is an independently source-selected low-digit operation and a prospective untouched transition, or a new exit that does not reuse the current conditional pointer graph. Do not treat additional closed-loop confirmations as progress unless they reveal new plaintext or an authentic operand.
 
 ## Reproduction
 
@@ -127,4 +127,4 @@ Run:
 node sims/lp2_p23_p28_navigation_core_sft.cjs
 ```
 
-The SFT executes the established Route A, p23→p33 handoff, and p33/p35 FOUND-route regressions, then verifies both closed page routes, their exact intersection `[23,28]`, their distinct first destinations, and the absence of p32. Windows/Node 22 run **44468466550** passes the full composition.
+The SFT executes the component regressions and verifies the proposed page sequences, their computed intersection `[23,28]`, and the absence of p32. Windows/Node 22 run **44468466550** passes the arithmetic composition; it does not authenticate the low-digit transitions or establish the proposed state machine.

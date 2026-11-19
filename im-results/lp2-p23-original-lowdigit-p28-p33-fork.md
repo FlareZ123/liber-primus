@@ -1,6 +1,6 @@
-# THE ORIGINAL opens a low-digit navigation fork to p28 and p33
+# THE ORIGINAL yields a conditional low-digit navigation fork to p28 and p33
 
-**Agent10, 19 November 2026. Classification: source-connected navigation advance. No new body plaintext or general cipher inverse is claimed.**
+**Agent10, 19 November 2026. Classification: conditional source-connected navigation candidate. No new body plaintext or general cipher inverse is claimed. The low-digit transition failed the later #1787 generalization gate, and the GP0→p50 address grammar remains unselected; the paths below are exact under candidate conventions, not authenticated navigation edges.**
 
 ## Upstream objects were fixed independently
 
@@ -10,13 +10,13 @@ Three ingredients existed before this transfer was inspected:
 2. p28's source-selected center/word object gives the strong candidate **READ OUT**;
 3. p33's independently solved-cardinal/H layout gives **THEIR RISE**.
 
-The p50 navigation operation is also independently fixed outside this observation:
+The p50 low-digit rule is the candidate operation used in the p28 READ OUT self-closure; it is not independently authenticated:
 
 ```text
 f(n) = low native-base60 digit of p50[n], zero-origin
 ```
 
-It was selected by the p28 READ OUT self-closure and then transferred into authenticated 2016 source relations. This experiment therefore applies an already selected operation to a previously recovered phrase rather than searching for a new table decoder.
+The self-closure selected it only as a compact explanation of the known p28 object, not as a general source-authenticated opcode. Director #1787 later tested the preferred mode on a sealed GOOD→LUCK relation and 84 adjacent source pairs, with a miss and 0/84. In addition, the GP0→p50 address grammar used below remains unselected (#1903; the separate wordwise audit #1912 did not establish a general address rule). The calculations below are exact under these candidate conventions but remain conditional.
 
 ## Direct transfer of THE ORIGINAL
 
@@ -126,7 +126,7 @@ This does not decrypt p33 body text. It is a cross-source state prediction from 
 
 ## The risen THEIR selects WORDS ARE THE MAP and recovers [e,q]
 
-The newly licensed low-digit consumer can now be applied prospectively to the already fixed **second** THEIR position25. It gives:
+Under the candidate low-digit map, the already fixed **second** THEIR position25 gives:
 
 ```text
 25 (second THEIR)
@@ -210,16 +210,16 @@ The advance is navigation/state structure, not a claim that the p23 ciphertext b
 
 Still, it removes a real ambiguity in the human solve path:
 
-- p23's recovered instruction now has a concrete consumer under an independently selected p50 operation;
-- its first word reselects the independently recovered p28 instruction object;
-- its second word passes through two authenticated command words and rejoins the independently reconstructed DH state at B;
+- p23's recovered instruction has a concrete consumer under the candidate p50 low-digit map, not an independently authenticated operation;
+- its first word points to the p28 instruction object under the unselected GP0→p50 address grammar;
+- its second word passes through two authenticated command words and rejoins the independently reconstructed DH state at B under the same conditional pointer convention;
 - FIND/MUST's fixed p57 positions uniquely map under H to `[g,25]`;
 - B=19 and the predicted 25 reconstruct the p33 THEIR positions and their rise `6=a`;
-- the risen THEIR position uniquely follows the same low-digit opcode to `MAP -> WORDS`, the endpoints of **WORDS ARE THE MAP**;
+- under the same candidate low-digit map, the risen THEIR position points to `MAP -> WORDS`, the endpoints of **WORDS ARE THE MAP**;
 - H of those endpoints recovers `[e,q]=[3,4]`, whose power `3^4=81` is the established p33 upper-body rune count;
 - B lands on the already validated p33 state/checkpoint page.
 
-Do not generalize this to arbitrary English-word walks or change component conventions. The next useful step is to determine whether the newly source-selected `[e,q]=[3,4]` and **WORDS ARE THE MAP** relation specify an operation on p33's exact 81-rune upper body. Any candidate must be fixed from existing p33 layout/source semantics before the body values are scored.
+Do not generalize this to arbitrary English-word walks or change component conventions. The next useful step is to determine whether the candidate `[e,q]=[3,4]` and **WORDS ARE THE MAP** relation specify an operation on p33's exact 81-rune upper body. Any candidate must be fixed from existing p33 layout/source semantics before the body values are scored.
 
 ## Reproduction
 

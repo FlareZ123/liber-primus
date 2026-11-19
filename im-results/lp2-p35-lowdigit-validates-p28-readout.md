@@ -1,6 +1,6 @@
-# P35 supplies the independent low-digit p50 consumer required by p28 READ OUT
+# P35 contains a unique mutual low-digit pair; general-opcode promotion fails
 
-**Agent50, 19 November 2026. Classification: cross-branch operator validation. The p35 receiver was selected independently of the p28 READ OUT loop, then exposed the manuscript's unique adjacent mutual p50-low GP0 cycle. This satisfies the explicit external-consumer gate left by the p28 self-closure work.**
+**Agent50, 19 November 2026. Classification: specific cross-branch structural correspondence, not general operator validation. The p35 receiver was selected independently of the p28 READ OUT loop and contains the only adjacent mutual pair under the candidate low-digit p50 map. The later #1787 prospective gate rejects generalization (0/84 preferred-mode adjacent transitions; sealed GOOD→LUCK miss).**
 
 ## Upstream gate
 
@@ -83,31 +83,19 @@ GP0(PATHS)=54
 
 and the already frozen direction graph puts FOUND in ROAD's basin while PATHS enters the other basin.
 
-Thus the independently selected p35 target contains a unique, semantically coherent external consumer of the same low-digit p50 operation.
+Thus p35 contains a unique, semantically coherent mutual pair under the candidate low-digit p50 map. This is a specific cross-branch structural correspondence, not evidence that the map is a general authenticated opcode.
 
 ## Consequence for READ OUT
 
-The p35 result changes the chronology of the low-digit operation.
+The p35 pair is a useful specific correspondence. The p33→p35 selector is independent of the p35 GP0 values, and the full 2,873-window census finds exactly one mutual pair under the candidate low-digit map. The authenticated source labels FOUND=36 and ROAD/PATHS=54, so the match is semantically coherent.
 
-Before this result, the p28 route was an internally discriminating self-closure with no untouched external consumer.
+It does not validate a general low-digit opcode. Director #1787 later froze the preferred base60/low/zero/zero convention and tested it on 84 adjacent pairs in authenticated 2016 plus solved p56/p57, obtaining 0/84; the sealed GOOD→LUCK prediction also missed (GP0(GOOD)=35 maps to39, not LUCK=31). That gate rejects broad promotion of the transition rule. It does not erase the p35-specific pair, but the pair must remain a conditional structural match, not an authenticated pointer operation.
 
-After this result:
-
-1. p33/p23/p56 source structure selects p35 without low-digit p50.
-2. A manuscript-wide p35 adjacency census is opened.
-3. The exact p28-selected low-digit operator has one mutual adjacent hit anywhere.
-4. That hit is on p35 and matches authenticated FOUND to ROAD/PATHS source states.
-5. The source direction graph resolves the collision toward ROAD.
-
-This is the external validation requested by the p28 report.
-
-The low-digit p50 transition should therefore be treated as a substantially stronger manuscript state-pointer opcode rather than a READ OUT-specific compression.
-
-The p28 READ OUT plaintext candidate also gains support because its downstream self-closure uses an operator now selected independently elsewhere.
+The p28 READ OUT self-closure and the p35 pair therefore do not authorize further unknown-page low-digit walks. Keep the READ OUT transform and the 36↔54 correspondence separate; require a new source-selected operation and untouched prediction before treating the low-digit map as a reusable opcode.
 
 ## A second independent p28 selector
 
-The same p35 branch independently selects physical p28 through the established direction graph:
+The same p35 branch has a candidate route to physical p28 through the proposed low-digit direction graph:
 
 ```text
 FOUND35 -> THE28
@@ -115,16 +103,16 @@ FOUND35 -> THE28
 
 Physical p28 then exposes the unique literal DH line whose fragment geometry and reconstructed DH state select the cube exponent and center/page-word object yielding READ OUT.
 
-Thus p28 now has two incoming routes from the p35 branch:
+Thus p28 has two related p35-side correspondences under the same candidate low-digit map:
 
-- the source direction graph selects **physical p28**;
-- p35's held-out adjacency selects the same **low-digit p50 opcode** used by READ OUT.
+- the source-direction graph proposes a p35→p28 path;
+- p35's unique adjacency is a specific match under that map.
 
-These routes do not consume the READ OUT plaintext while selecting the page and pointer convention.
+These are not independent authentication of a general opcode, because both depend on the same candidate transition.
 
 ## What remains
 
-This validation strengthens the p28 mechanism substantially, though it still does not turn READ OUT into authenticated unknown-page plaintext by itself. The cube transform and exact p28 source object remain local to the p28 mechanism.
+This specific correspondence is useful structural evidence, but #1787 prevents treating it as validation of a general low-digit mechanism. READ OUT remains a candidate local transform; no authenticated unknown-page plaintext or reusable low-digit opcode follows.
 
 The next productive use is operational: because the FOUND direction walk continues
 
@@ -132,7 +120,7 @@ The next productive use is operational: because the FOUND direction walk continu
 p35 -> p28 -> p0 -> p18 -> p23
 ```
 
-treat p28 READ OUT as an instruction encountered on a source-selected route and test it on the next source-selected object, p0, using only an outer/edge object fixed before plaintext inspection.
+do not extend the low-digit walk to p0 until a first-party selector fixes the transition and a single untouched receiver; the current route is conditional after #1787.
 
 ## Reproduction
 

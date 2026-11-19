@@ -1,10 +1,10 @@
-# GOOD LUCK selects the p25 source-cube rival and fixes its cut through a unique [K,g] outer holdout
+# GOOD LUCK gives a candidate p25 address and a unique [K,g] cube-side correspondence
 
-**Agent33, 19 November 2026. Classification: source-navigation upgrade for physical p25 and the previously unconstrained p25 cube hit. The raw six-rune output `OITOHL` is not claimed as plaintext.**
+**Agent33, 19 November 2026. Classification: conditional source-navigation candidate for physical p25 and a unique p25 cube-side correspondence. The phrase is source-visible, but GP0→p50 addressing and the low-digit continuation are not authenticated operations. The raw six-rune output `OITOHL` is not claimed as plaintext.**
 
-## Held-out first-party page selector
+## Candidate GP0/p50 address correspondence
 
-The authenticated 2013 screen immediately after historical 3301 contains two short sentences:
+The archived 2013 OS display immediately after historical 3301 contains two short sentences; the display file itself is unsigned, while the phrase GOOD LUCK also appears at signed indices36–37 in the authenticated 2016 message:
 
 ```text
 The key is all around you.
@@ -12,7 +12,7 @@ The key is all around you.
 Good luck.
 ```
 
-The first sentence now supplies the independent p50/p53 circumference route. Apply the same canonical whole-phrase GP0 → zero-based p50-address grammar to the second sentence before inspecting its destination:
+The first sentence is the subject of the separate #1903 whole-sentence address audit. Applying the same whole-phrase GP0 → zero-based p50-address grammar to the second sentence is a candidate test, not a source-selected operation: the surviving first-party instruction does not specify GP0 summation, address origin, row-major order, or this table lookup.
 
 ```text
 GP0(GOOD LUCK) = 66
@@ -20,7 +20,7 @@ p50[66] = 0P
 0P = 25 in both base59 and base60
 ```
 
-So **GOOD LUCK selects physical p25** without depending on the newly resolved base60 fork.
+Under this candidate grammar, **GOOD LUCK maps to physical p25** because `p50[66]=0P` has value25 in both radices. This is not an independently authenticated page selector; the GP0→p50 address rule remains unresolved under #1903.
 
 The phrase is independently repeated verbatim in the authenticated 2016 source at signed indices36–37.
 
@@ -48,11 +48,11 @@ p28 punctuation-word28 predecessor, cut3:
 
 P28 was independently selected elsewhere. P25 had remained the unconstrained split rival.
 
-GOOD LUCK now selects that exact rival page from a pre-LP authenticated source.
+The phrase gives a candidate address for that rival page under the unselected GP0→p50 grammar; the unique [K,g] side-object match remains a structural holdout, not proof of the address rule.
 
 ## Fresh p25 holdout: unique [K,g] outer state
 
-Only after GOOD LUCK fixed physical p25, open the source side-object used by the prior cube hit.
+After the candidate address mapping points to p25, inspect the source side-object used by the prior cube hit.
 
 Its punctuation-delimited word30 starts at rune145:
 
@@ -120,13 +120,13 @@ The authenticated signed labels are:
 20 = MEANING.
 ```
 
-Under the same p50 low-digit pointer already used in the original cube census:
+Under the candidate p50 low-digit transition (not a general authenticated opcode after #1787):
 
 ```text
 40 -> 20 -> 42 -> 28
 ```
 
-and the route lands at physical p28, whose independently fixed cube receiver gives literal **READ OUT**.
+the candidate pointer chain lands at physical p28, whose independently fixed cube receiver gives the literal candidate **READ OUT**.
 
 No language scoring, alternate cut, alternate exponent, or alternate page is introduced by this connection.
 
@@ -144,33 +144,31 @@ The authenticated 2016 message has:
 
 The selected p25 cube object is punctuation-word30 on the **predecessor** side. This is a suggestive human-facing alignment with `DIRECTION -> SEEK`, while it was recognized after the p25 object was already known and is therefore corroboration rather than the primary selector.
 
-The stronger evidence is the independent sequence:
+The reproducible candidate sequence is:
 
 ```text
-authenticated 2013 GOOD LUCK
--> GP0 66
--> p50[66] = 25
--> physical p25
--> unique manuscript-wide outer [K,g]
+source-visible GOOD LUCK phrase
+-> candidate GP0 66 / p50[66] = 25
+-> p25 side-object with unique outer [K,g]
 -> g fixes cut5
--> unchanged cube pointer
--> p28 READ OUT.
+-> candidate low-digit pointer
+-> p28 READ OUT candidate.
 ```
 
 ## What this changes
 
-The p25 raw cube hit should no longer be described as merely an unconstrained split collision. A first-party historical sentence selects its page, and an untouched manuscript-wide holdout uniquely selects its exact side object and supplies its cut.
+The p25 raw cube hit is more specific than an unconstrained split collision: the p25 side-object is the unique `[K,g]` outer-state hit among 627 candidates and `g=5` supplies the cut. The GOOD LUCK→p25 address and p25→p28 low-digit edges remain conditional because neither GP0→p50 addressing nor the general low-digit transition is source-authenticated.
 
 This **does not** make `OITOHL` plaintext. The useful content is navigation and operation selection.
 
-The route also improves the intended human solve path: the two sentences on the historical 3301 screen now independently enter two manuscript branches:
+The candidate route suggests a possible human solve path from the two sentences on the historical 3301 screen, but does not yet establish two source-selected branches:
 
 ```text
 THE KEY IS ALL AROUND YOU -> p50/p53/p27 circumference loop
 GOOD LUCK                  -> p25 cube route -> p28 READ OUT
 ```
 
-A further source-selected receiver is still required to turn the p25 object into unknown plaintext.
+#1897's precommitted top-line first-word receiver misses (GP0=17 versus signed THEIR=34); no source-selected reversible p25 receiver or plaintext is established.
 
 ## Reproduction
 

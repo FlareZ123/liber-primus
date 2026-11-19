@@ -203,7 +203,7 @@ assert.deepEqual(
 );
 assert.deepEqual(p25Cube.output, [3, 10, 16, 3, 8, 20]);
 
-// Fresh consequence after GOOD LUCK had selected physical page25.
+// Candidate consequence under the unselected whole-phrase GP0 -> p50 address grammar.
 const p25Source = [p25Cube.boundary, ...p25Word30.values];
 const p25Outer = H(p25Source[0], p25Source.at(-1));
 assert.deepEqual(p25Outer, [K, g]);
@@ -272,7 +272,7 @@ assert.equal(sourceWords[20], "MEANING");
 assert.equal(sourceWords[42], "OPENPGP");
 
 // Reproduce the two-hit source-cube pointer census to keep the prior family
-// boundary explicit. GOOD LUCK selects the previously unselected p25 rival.
+// boundary explicit. GOOD LUCK's p25 address is conditional on GP0 -> p50.
 const pointerHits = [];
 let splitConfigurations = 0;
 for (let page = 0; page <= 55; page += 1) {
@@ -364,7 +364,7 @@ console.log(JSON.stringify({
     exactKgHits: kgHits.length,
     outerState: p25Outer,
   },
-  sourceSelectedCubeRoute: {
+  candidateCubeRoute: {
     output: p25Cube.output,
     stateSelectedCut: cut,
     sums: [left, right],
@@ -377,5 +377,5 @@ console.log(JSON.stringify({
     pointerHits,
   },
   decision:
-    "GOOD LUCK independently selects physical p25, the previously unconstrained rival in the source-cube pointer census. After page selection, the p25 source side-object is the sole one of 627 whose outer H equals [K,g]=[2,5]; g=5 fixes its existing cut5, whose unchanged low-digit pointer lands at p28 READ OUT. This upgrades p25 from an unconstrained collision to a source-navigation route; OITOHL itself is not plaintext.",
+    "Under the candidate whole-phrase GP0 -> p50 address grammar, GOOD LUCK points to p25; that grammar is not yet source-selected. The p25 side-object is the sole one of 627 whose outer H equals [K,g]=[2,5], and g=5 fixes cut5. Its 40 -> 20 -> 42 -> 28 continuation uses the low-digit map whose generalization failed #1787. Preserve this as a structural navigation candidate; OITOHL is not plaintext.",
 }, null, 2));
