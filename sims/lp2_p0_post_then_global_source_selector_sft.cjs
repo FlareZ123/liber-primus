@@ -796,6 +796,13 @@ let recordedPostThenHits = 0;
 let firstPostThenHit = null;
 const visitedByStage = [0, 0, 0, 0, 0, 0];
 
+const shardCount = Number.parseInt(process.env.SHARD_COUNT || "1", 10);
+const shardIndex = Number.parseInt(process.env.SHARD_INDEX || "0", 10);
+assert.ok(Number.isInteger(shardCount) && shardCount >= 1);
+assert.ok(Number.isInteger(shardIndex) && shardIndex >= 0 && shardIndex < shardCount);
+let stageZeroPairOrdinal = 0;
+let stageZeroPairsAssigned = 0;
+
 /**
  * @param {number} stage
  * @param {object} current
@@ -845,6 +852,12 @@ function searchPostThen(
 
   for (const {node, operation} of source.rows) {
     for (const cipher of ciphers) {
+      if (stage === 0) {
+        const pairOrdinal = stageZeroPairOrdinal++;
+        if (pairOrdinal % shardCount !== shardIndex) continue;
+        stageZeroPairsAssigned++;
+      }
+
       if (cipher.length > maxLength) continue;
 
       const plain = cipher.map((cell, i) =>
@@ -904,17 +917,20 @@ searchPostThen(
   [],
   true);
 
-assert.ok(
-  recordedPostThenHits >= 1,
-  "recorded THE KEY IS TO GO geometry must survive prospective Reports 01-06");
-assert.ok(firstPostThenHit, "at least one exact post-THEN target hit is required");
-
-const postThenRecorded = recordedPostThenHits === 1 && postThenHits === 1
-  ? firstPostThenHit
-  : firstPostThenHit;
-
+if (shardCount === 1) {
+  assert.ok(
+    recordedPostThenHits >= 1,
+    "recorded THE KEY IS TO GO geometry must survive prospective Reports 01-06");
+  assert.ok(firstPostThenHit, "at least one exact post-THEN target hit is required");
+}
 
 console.log(JSON.stringify({
+  shard: {
+    index: shardIndex,
+    count: shardCount,
+    stageZeroPairsEnumerated: stageZeroPairOrdinal,
+    stageZeroPairsAssigned,
+  },
   status: postThenHits === 1
     ? "unique 11/122/429 hit under global-source prospective Reports 01-06"
     : "11/122/429 underselects global-source prospective Reports 01-06",
@@ -928,7 +944,7 @@ console.log(JSON.stringify({
   pathCountsAfterEachStage: visitedByStage,
   hits: postThenHits,
   recordedHits: recordedPostThenHits,
-  selected: {
+  selected: firstPostThenHit ? {
     sources: firstPostThenHit.steps.map(step =>
       step.node.map(at).map(value => translit[value])),
     sourceCoordinates: firstPostThenHit.steps.map(step => step.node),
@@ -939,5 +955,5 @@ console.log(JSON.stringify({
       step.operation.key.map(value => translit[value])),
     centerTotient: firstPostThenHit.steps.map(step =>
       step.operation.transformCenter),
-  },
+  } : null,
 }, null, 2));
