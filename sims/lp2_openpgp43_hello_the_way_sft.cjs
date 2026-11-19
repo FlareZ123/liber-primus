@@ -8,6 +8,7 @@ const root = path.resolve(__dirname, "..");
 const read = (relative) =>
   fs.readFileSync(path.join(root, relative), "utf8").replace(/\r/g, "");
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
+const ink = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
 const raw = read("resources/liber-primus/lp2-transcription.txt");
 const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
 
@@ -187,6 +188,43 @@ assert.deepEqual(diagonalPalindromes, [
   },
 ]);
 
+const p0Ink = ink.pages.find((row) => row.page === 0);
+assert.ok(p0Ink);
+const p0LeadingRed = p0Ink.red_spans.find((span) => span.start === 0);
+assert.deepEqual(p0LeadingRed, {
+  start: 0,
+  length: 13,
+  runes: p0LeadingRed.runes,
+});
+
+const endpointChecks = diagonalPalindromes.map((row) => ({
+  sourceWord: row.sourceWord,
+  returnedPage: row.h[0],
+  endpoint: row.h[2],
+  endpointEqualsLeadingRed:
+    row.h[0] === 0 && row.h[2] === p0LeadingRed.length,
+}));
+assert.deepEqual(endpointChecks, [
+  {
+    sourceWord: "THEIR",
+    returnedPage: 0,
+    endpoint: 20,
+    endpointEqualsLeadingRed: false,
+  },
+  {
+    sourceWord: "SEEK",
+    returnedPage: 0,
+    endpoint: 12,
+    endpointEqualsLeadingRed: false,
+  },
+  {
+    sourceWord: "OPENPGP",
+    returnedPage: 0,
+    endpoint: 13,
+    endpointEqualsLeadingRed: true,
+  },
+]);
+
 // Rejected literal packet consumer [page=0,start=22,length=13].
 const p0 = pageWords(0);
 const overlap = p0.filter((word) => word.end >= 22 && word.start <= 34);
@@ -209,6 +247,7 @@ console.log(JSON.stringify({
     forwardAuthenticatedBigramHits: forwardBigramHits.length,
   },
   diagonalPalindromes,
+  p0Return: { leadingRedLength: p0LeadingRed.length, endpointChecks },
   rejectedCoordinate: {
     page: 0,
     start: 22,
