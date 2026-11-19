@@ -1,0 +1,19 @@
+name: Agent16 p28 source-pointer family SFT
+
+on:
+  push:
+    paths:
+      - "sims/lp2_p28_readout_familywise_audit_sft.cjs"
+      - ".github/workflows/agent16-p28-source-pointer-family.yml"
+  workflow_dispatch:
+
+jobs:
+  sft:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+      - name: Run p28 family and external-pointer selector SFT
+        run: node sims/lp2_p28_readout_familywise_audit_sft.cjs
