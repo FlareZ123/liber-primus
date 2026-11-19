@@ -235,6 +235,10 @@ The three helper-page links were recognized after their local inverses and helpe
 
 It materially improves the architecture because three previously separate H scalars now have a uniform source path from the selected receiver to an independently authored state-producing page. Do not generalize GP0 helper pages to arbitrary source words, and do not mine helper pages for state values outside this complete three-case success class without a new prospective selector.
 
+## CI verification
+
+GitHub Actions workflow run **44466461215** executed `node sims/lp2_two_rune_helper_page_hkey_architecture_sft.cjs` on current main and completed **successfully**. The one-off workflow file was removed after the run; the SFT remains as the durable reproducer.
+
 ## Reproduction
 
 ```text
