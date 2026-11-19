@@ -127,6 +127,20 @@ const A = largeDigits[0] - smallDigits[0];
 const sumDigits = digits(1033, MOD);
 const B = mod29(A - sumDigits[2]);
 assert.deepEqual({e,q,A,B}, {e:3,q:4,A:8,B:19});
+const g = equal1033[0].order;
+const K = equal1033[1].order - equal1033[0].order;
+const a = sumDigits[1];
+const aMinusB = sumDigits[2];
+const firstCenterDigits = digits(meta[0].center, MOD);
+const firstSumDigits = digits(meta[0].sum, MOD);
+assert.deepEqual(firstCenterDigits, [mod29(-K), mod29(-e)]);
+assert.deepEqual(firstSumDigits, [e, mod29(-e), mod29(-g)]);
+const squareMetadataAlphabet = [...new Set([
+  K,e,q,g,a,A,aMinusB,B,
+  ...firstCenterDigits,
+  ...firstSumDigits,
+])].sort((left,right)=>left-right);
+assert.deepEqual(squareMetadataAlphabet, [2,3,4,5,6,8,18,19,24,26,27]);
 const markerCenter = [q,A,B,A,q];
 
 // Build the manuscript's complete adjacent page-local 8+5 receiver family.
@@ -238,6 +252,9 @@ for (const receiver of receivers) {
 }
 
 const p0Hits = hits.filter((row) => row.page === 0 && row.ordinal === 1);
+const squareTypedHits = hits.filter((row) =>
+  row.residual.slice(0,8).every((value) => squareMetadataAlphabet.includes(value))
+);
 const signedAdjacentHits = hits.filter((row) => {
   for (let index = 0; index + 1 < sourceWords.length; index += 1) {
     if (sourceWords[index] === row.words[0] && sourceWords[index+1] === row.words[1]) return true;
@@ -247,7 +264,7 @@ const signedAdjacentHits = hits.filter((row) => {
 
 console.log(JSON.stringify({
   status:"PASS",
-  independentSquareState:{e,q,A,B,markerCenter},
+  independentSquareState:{e,q,A,B,markerCenter,squareMetadataAlphabet},
   family:{
     receivers:receivers.length,
     length8:length8.length,
@@ -256,5 +273,6 @@ console.log(JSON.stringify({
   },
   hits,
   p0Hits,
+  squareTypedHits,
   signedAdjacentHits,
 }, null, 2));
