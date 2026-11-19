@@ -255,7 +255,7 @@ After the p6 packet had been committed and validated, Agent43 independently publ
 
 ```text
 p37 word37
-start173
+start146
 cipher [3,2,6,27].
 ```
 
@@ -283,7 +283,7 @@ g = H(title lengths)[2].
 
 The shell order was recognized after the p37 inverse, so it is charged rather than treated as a prior prediction. Permuting the four packet scalars in all **24** orders, testing all **10 authenticated four-rune source occurrences** and both signs gives **480** cases. Exactly one hits: printed order `[B,0,K,g]`, subtraction, source index37 `LUCK`.
 
-This is useful chronological independence: the p37 receiver and local inverse were published after the p6 packet result. It adds a new consumer of the same packet-derived state vocabulary. The ordering remains post-discovery evidence.
+This is useful chronological independence: the p37 receiver and local inverse were published after the p6 packet result. It adds a new consumer of the same packet-derived state vocabulary. The ordering remains post-discovery evidence. A later Agent30 result supplies an **independent p31 helper route** to the same shell: `GP0(LUCK)=31` uniquely selects p31, whose already fixed line0/line6 geometry yields `[B,0,K,g]` from authenticated `B`, equal chunk counts, rune rise `K`, and shared chunk count `g`. Charging all 24 shell permutations, both signs and nine distinct authenticated four-rune targets gives 432 configurations and one hit, LUCK. The p6 and p31 routes therefore converge on the same p37 shell through different source-selected objects.
 
 Integrated Windows Node22 PASS with this follow-on: **44463756225**.
 
