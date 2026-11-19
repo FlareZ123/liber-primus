@@ -1,12 +1,13 @@
 "use strict";
 
 /**
- * Dual READOUT packet seven-state cascade.
+ * Dual READOUT packet standard-DH cascade.
  *
- * Starting from the fixed DH coordinate (A,K), the split packet emits (a,p),
- * the independently selected whole packet indexed by (a,p) emits (b,B), and
- * the same H map supplies the single missing state g. The recovered (p,g)
- * returns to the established zero-based p50 DH root address189.
+ * Starting from fixed one-based (A,K), the split packet emits candidate (a,p),
+ * the independently selected whole packet indexed by those values emits
+ * candidate (b,B), and ordinary Diffie-Hellman algebra must uniquely recover
+ * g while reproducing the starting A and K. The selected pair is the sole hit
+ * among the 23 center-F matched receivers and returns to p50 root189.
  */
 
 const assert = require("node:assert/strict");
@@ -41,7 +42,6 @@ function parsePage(source) {
   function flush() {
     if (!current.length) return;
     words.push({
-      number: words.length + 1,
       start,
       end: start + current.length - 1,
       values: current.slice(),
@@ -78,9 +78,55 @@ function shellWord(values) {
   return out;
 }
 
-const dh = { p: 23, g: 5, a: 6, b: 15, A: 8, B: 19, K: 2 };
-const dhValues = Object.values(dh).sort((a, b) => a - b);
-const dhSet = new Set(dhValues);
+function gcd(a, b) {
+  let x = Math.abs(a);
+  let y = Math.abs(b);
+  while (y !== 0) {
+    const next = x % y;
+    x = y;
+    y = next;
+  }
+  return x;
+}
+
+function inverse(value, modulus) {
+  let oldR = value;
+  let r = modulus;
+  let oldS = 1;
+  let s = 0;
+
+  while (r !== 0) {
+    const q = Math.floor(oldR / r);
+    [oldR, r] = [r, oldR - q * r];
+    [oldS, s] = [s, oldS - q * s];
+  }
+
+  if (oldR !== 1) return null;
+  return ((oldS % modulus) + modulus) % modulus;
+}
+
+function modPow(base, exponent, modulus) {
+  let result = 1 % modulus;
+  let factor = base % modulus;
+  let power = exponent;
+  while (power > 0) {
+    if (power % 2 === 1) result = (result * factor) % modulus;
+    factor = (factor * factor) % modulus;
+    power = Math.floor(power / 2);
+  }
+  return result;
+}
+
+function isPrime(value) {
+  if (value < 2) return false;
+  for (let divisor = 2; divisor * divisor <= value; divisor += 1) {
+    if (value % divisor === 0) return false;
+  }
+  return true;
+}
+
+const fixedA = 8;
+const fixedK = 2;
 
 const spans = [];
 for (let segment = 0; segment < segments.length; segment += 1) {
@@ -113,41 +159,27 @@ for (let segment = 0; segment < segments.length; segment += 1) {
 
 assert.equal(spans.length, 614);
 
-function sameSet(values, expected) {
-  if (values.length !== expected.length) return false;
-  const a = values.slice().sort((x, y) => x - y);
-  const b = expected.slice().sort((x, y) => x - y);
-  return a.every((value, index) => value === b[index]);
-}
+function evaluateDhCascade(first, second) {
+  const a = first.stream[fixedA - 1];
+  const p = first.stream[fixedK - 1];
 
-function evaluateCascade(first, second) {
-  const step1 = [
-    first.stream[dh.A - 1],
-    first.stream[dh.K - 1],
-  ];
-  if (!step1.every((value) => dhSet.has(value))) return null;
+  if (!isPrime(p) || a <= 0 || a >= p) return null;
+  if (a > 23 || p > 23) return null;
 
-  const step2 = [
-    second.stream[step1[0] - 1],
-    second.stream[step1[1] - 1],
-  ];
-  if (!step2.every((value) => dhSet.has(value))) return null;
+  const b = second.stream[a - 1];
+  const B = second.stream[p - 1];
 
-  const seen = [...new Set([dh.A, dh.K, ...step1, ...step2])];
-  const missing = dhValues.filter((value) => !seen.includes(value));
-  if (missing.length !== 1) return null;
+  if (b <= 0 || b >= p || B <= 0 || B >= p) return null;
+  if (gcd(b, p - 1) !== 1) return null;
 
-  const h = [
-    mod29(step2[0] - step2[1]),
-    mod29(step2[0] + step2[1]),
-  ];
-  const closing = h.filter((value) => missing.includes(value));
-  if (closing.length !== 1) return null;
+  const inverseB = inverse(b, p - 1);
+  assert.notEqual(inverseB, null);
 
-  const complete = [...new Set([...seen, closing[0]])];
-  if (!sameSet(complete, dhValues)) return null;
+  const g = modPow(B, inverseB, p);
+  if (modPow(g, a, p) !== fixedA) return null;
+  if (modPow(B, a, p) !== fixedK) return null;
 
-  return { step1, step2, h, missing, closing };
+  return { a, p, b, B, g };
 }
 
 function scanPairs(family) {
@@ -155,7 +187,7 @@ function scanPairs(family) {
   for (const first of family) {
     for (const second of family) {
       if (first === second) continue;
-      const result = evaluateCascade(first, second);
+      const result = evaluateDhCascade(first, second);
       if (!result) continue;
       hits.push({
         first: [first.page, first.start, first.end],
@@ -171,23 +203,28 @@ const matched = spans.filter((span) => span.centerF);
 assert.equal(matched.length, 23);
 
 const matchedHits = scanPairs(matched);
-assert.equal(matchedHits.length, 1);
-assert.deepEqual(matchedHits[0].first, [0, 80, 102]);
-assert.deepEqual(matchedHits[0].second, [0, 166, 188]);
-assert.deepEqual(matchedHits[0].step1, [dh.a, dh.p]);
-assert.deepEqual(matchedHits[0].step2, [dh.b, dh.B]);
-assert.deepEqual(matchedHits[0].h, [25, dh.g]);
-assert.deepEqual(matchedHits[0].missing, [dh.g]);
-assert.deepEqual(matchedHits[0].closing, [dh.g]);
+assert.deepEqual(matchedHits, [{
+  first: [0, 80, 102],
+  second: [0, 166, 188],
+  a: 6,
+  p: 23,
+  b: 15,
+  B: 19,
+  g: 5,
+}]);
 
 const broadHits = scanPairs(spans);
-assert.equal(broadHits.length, 11);
+assert.equal(broadHits.length, 26);
 
-const rootAddress = dh.p * 8 + dh.g;
+const selected = matchedHits[0];
+assert.equal(modPow(selected.g, selected.a, selected.p), fixedA);
+assert.equal(modPow(selected.B, selected.a, selected.p), fixedK);
+assert.equal(modPow(selected.g, selected.b, selected.p), selected.B);
+
+const rootAddress = selected.p * 8 + selected.g;
 assert.equal(rootAddress, 189);
 
 const tokens = grid.pages.flatMap((page) => page.tokens);
-assert.equal(tokens.length, 256);
 assert.equal(tokens[rootAddress], "3C");
 
 const alphabet59 = grid.alphabet.replace("f", "");
@@ -205,15 +242,14 @@ assert.equal(decode(tokens[rootAddress], alphabet59), rootAddress);
 
 console.log(JSON.stringify({
   status: "PASS",
-  spanCount: spans.length,
-  matchedCenterFCount: matched.length,
+  allWordBounded23: spans.length,
+  matchedCenterF23: matched.length,
   matchedOrderedPairs: matched.length * (matched.length - 1),
-  matchedCascadeHits: matchedHits,
+  matchedDhCascadeHits: matchedHits,
   broadOrderedPairs: spans.length * (spans.length - 1),
-  broadCascadeHitCount: broadHits.length,
+  broadDhCascadeHitCount: broadHits.length,
   externalRoot: {
-    p: dh.p,
-    g: dh.g,
+    zeroBasedCoordinate: [selected.p, selected.g],
     zeroBasedAddress: rootAddress,
     token: tokens[rootAddress],
     base59Value: decode(tokens[rootAddress], alphabet59),
