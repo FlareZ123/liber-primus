@@ -188,33 +188,44 @@ function segmentTarget(target) {
   return walk(0).filter((items) => items.length <= 3);
 }
 
-const hits = [];
-const segmentedHits = [];
-for (const span of paths) {
-  if (!passesGcd(span)) continue;
-  const plain = span.values.map((cipher, index) =>
-    mod29(cipher - transformed[index % transformed.length]));
-  const match = dictionary.get(plain.join(","));
-  if (match) {
-    hits.push({
-      word: match.word,
-      B: span.B,
-      E: span.E,
-      length: plain.length,
-      plain,
-    });
+/**
+ * @param {number[]} key
+ * @returns {{hits:object[], segmentedHits:object[]}}
+ */
+function scanKey(key) {
+  const hits = [];
+  const segmentedHits = [];
+  for (const span of paths) {
+    if (!passesGcd(span)) continue;
+    const plain = span.values.map((cipher, index) =>
+      mod29(cipher - key[index % key.length]));
+    const match = dictionary.get(plain.join(","));
+    if (match) {
+      hits.push({
+        word: match.word,
+        B: span.B,
+        E: span.E,
+        length: plain.length,
+        plain,
+      });
+    }
+    for (const segmentation of segmentTarget(plain)) {
+      segmentedHits.push({
+        text: segmentation.map((item) => item.word).join(" "),
+        sources: segmentation.map((item) => item.source),
+        B: span.B,
+        E: span.E,
+        length: plain.length,
+        plain,
+      });
+    }
   }
-  for (const segmentation of segmentTarget(plain)) {
-    segmentedHits.push({
-      text: segmentation.map((item) => item.word).join(" "),
-      sources: segmentation.map((item) => item.source),
-      B: span.B,
-      E: span.E,
-      length: plain.length,
-      plain,
-    });
-  }
+  return { hits, segmentedHits };
 }
+
+const unaligned = scanKey(transformed);
+const hits = unaligned.hits;
+const segmentedHits = unaligned.segmentedHits;
 assert.deepEqual(hits, [{
   word: "GET",
   B: [15, 10],
@@ -222,6 +233,21 @@ assert.deepEqual(hits, [{
   length: 3,
   plain: [6, 18, 16],
 }]);
+
+const phase = rule.phase;
+assert.equal(phase, 1);
+const phaseAlignedForward = transformed.slice(phase)
+  .concat(transformed.slice(0, phase));
+const reversedTransformed = [raw[2], transformed[1], raw[0]];
+const phaseAlignedReverse = reversedTransformed.slice(phase)
+  .concat(reversedTransformed.slice(0, phase));
+const phaseForwardScan = scanKey(phaseAlignedForward);
+const phaseReverseScan = scanKey(phaseAlignedReverse);
+assert.equal(phaseForwardScan.hits.length, 0);
+assert.equal(phaseForwardScan.segmentedHits.length, 0);
+assert.equal(phaseReverseScan.hits.length, 0);
+assert.equal(phaseReverseScan.segmentedHits.length, 0);
+
 console.log(JSON.stringify({
   state,
   predictedSourceCenter: [12, 10],
@@ -230,6 +256,15 @@ console.log(JSON.stringify({
   rawTranslit: raw.map((value) => corpus.translit[value]),
   transformed,
   transformedTranslit: transformed.map((value) => corpus.translit[value]),
+  frozenPhase: phase,
+  phaseAlignedForward,
+  phaseAlignedForwardTranslit: phaseAlignedForward.map((value) => corpus.translit[value]),
+  phaseAlignedForwardHits: phaseForwardScan.hits,
+  phaseAlignedForwardSegmentedHits: phaseForwardScan.segmentedHits,
+  phaseAlignedReverse,
+  phaseAlignedReverseTranslit: phaseAlignedReverse.map((value) => corpus.translit[value]),
+  phaseAlignedReverseHits: phaseReverseScan.hits,
+  phaseAlignedReverseSegmentedHits: phaseReverseScan.segmentedHits,
   paths: paths.length,
   hits,
   segmentedHitCount: segmentedHits.length,
