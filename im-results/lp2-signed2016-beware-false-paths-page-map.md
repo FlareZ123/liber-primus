@@ -23,6 +23,30 @@ signed index29 = DIRECTION -> project p29
 
 The test here applies that existing convention unchanged to the later authenticated phrase. No new offset or origin is introduced.
 
+## Page36 section1 now yields MEANING
+
+The source/page corridor still assigns signed word36 `GOOD` to physical p36, but the earlier local `GOOD` inverse was retracted after canonical word parsing. A different, independently authored receiver now survives.
+
+The visible section-1 marker selects p36 canonical word19 at offsets99..102:
+
+```text
+cipher = [20,2,12,22]
+H4(cipher) = [-K,B,-b,b-K].
+```
+
+Across the complete five-section palindrome family `[section,x,...,x,section]`, only section1 with `x=e` and subtraction hits any matching-length authenticated target:
+
+```text
+key = [1,e,e,1] = [1,3,3,1]
+cipher - key = MEANING.
+```
+
+The family has one hit in 558 charged configurations; the exact key has one authenticated hit in 9,162 manuscript-wide four-rune configurations. The same rule does not continue to source `IS` because section1 word1 has three runes while `IS` has two.
+
+This makes p36 an instruction/state page with a strong local `MEANING` candidate. It does not restore the retracted `GOOD` plaintext claim.
+
+[Detailed report](lp2-p36-section1-meaning-state-inverse.md) · [SFT](../sims/lp2_p36_section1_meaning_state_sft.cjs).
+
 ## Page37 now carries a strong local LUCK candidate
 
 The same zero-based source-number convention selects:
@@ -140,7 +164,7 @@ The adjacent source words36-37 are `GOOD LUCK`. Physical pages p36-p38 are exact
 40 PATHS
 ```
 
-The strongest evidence now includes the p37 reversible `LUCK` candidate, the exact p38 word/state match, and the p39 red-X visual. P40 does not add an independent visual discriminator.
+The strongest evidence now includes the p36 section1 `MEANING` candidate, the p37 reversible `LUCK` candidate, the exact p38 word/state match, and the p39 red-X visual. P40 does not add an independent visual discriminator.
 
 ## Relationship to the new p0 XY route
 
