@@ -103,6 +103,22 @@ const extendedSet=new Set([23,5,6,15,8,19,2,12]);
 assert.equal(triples.filter((w)=>w.values.every((v)=>extendedSet.has(v))).length,11);
 assert.deepEqual([...H(5,19),12],[15,24,12]);
 
+const invA=5;
+const diffB=triples.filter((w)=>mod(w.values[0]-w.values[2])===15);
+const centerKa=triples.filter((w)=>w.values[1]===12);
+const bothStateRecovery=triples.filter((w)=>
+  mod(w.values[0]-w.values[2])===15 && mod(w.values[1]*invA)===2
+);
+const statePool=new Set([23,5,6,15,8,19,2,12,10]);
+const stateBoth=bothStateRecovery.filter((w)=>w.values.every((v)=>statePool.has(v)));
+assert.deepEqual([diffB.length,centerKa.length,bothStateRecovery.length,stateBoth.length],[17,32,2,1]);
+assert.deepEqual(bothStateRecovery.map((w)=>[w.page,w.start,w.values]),[
+  [36,221,[11,12,25]],
+  [38,54,[5,12,19]]
+]);
+assert.deepEqual(stateBoth.map((w)=>[w.page,w.start,w.values]),[[38,54,[5,12,19]]]);
+assert.equal(mod(stateWord.values[1]*invA),2);
+
 const primary=[["p",23],["g",5],["a",6],["b",15],["A",8],["B",19],["K",2]];
 const extended=[...primary,["Ka",12],["Kg",10]];
 
@@ -163,11 +179,33 @@ for(let start=0;start<29;start++){
 }
 assert.deepEqual(cycleEntrants,[10,19]);
 
+const immediate=words.find((w)=>w.page===38&&w.start===57);
+assert.ok(immediate);
+assert.deepEqual(immediate.values,[8,25,14,2,17,22]);
+const directKey=[5,12,19,5,12,19];
+const hKey=[15,24,12,15,24,12];
+const sixTargetKeys=new Set(
+  clear.split(/[^A-Za-z0-9]+/).filter((x)=>/^[A-Za-z]+$/.test(x))
+    .map((word)=>({word:word.toUpperCase(),values:gp(word)}))
+    .filter((x)=>x.values.length===6)
+    .map((x)=>x.values.join(","))
+);
+assert.equal(sixTargetKeys.size,3);
+const packetConsumers=[];
+for(const [name,key] of [["direct",directKey],["H",hKey]]){
+  for(const sign of [-1,1]){
+    const plain=immediate.values.map((v,i)=>mod(v+sign*key[i]));
+    packetConsumers.push({name,sign,plain,hit:sixTargetKeys.has(plain.join(","))});
+  }
+}
+assert.equal(packetConsumers.filter((x)=>x.hit).length,0);
+
 console.log(JSON.stringify({
   stateWord:{page:38,start:54,end:56,values:stateWord.values,gp0:stateWord.gp0,hShell:[...H(5,19),12]},
   reciprocal:{eligible:eligible.length,oneWay:oneWay.length,reciprocal:reciprocal.length,base59:[low(36,a59),low(54,a59)]},
-  triples:{count:triples.length,extendedPool:11,exactPermutationHits:permHits.length},
+  triples:{count:triples.length,extendedPool:11,exactPermutationHits:permHits.length,stateRecovery:{diffB:diffB.length,centerKa:centerKa.length,both:bothStateRecovery.length,stateBoth:stateBoth.length}},
   endpointSelector:{primary:statePairHits(primary,(i)=>low(i,a60)),extended:statePairHits(extended,(i)=>low(i,a60)),residueHits},
   modeHits,
-  lowDynamics:{B:[19,33,54,36,54],Kg:[10,36,54,36],cycleEntrants}
+  lowDynamics:{B:[19,33,54,36,54],Kg:[10,36,54,36],cycleEntrants},
+  immediatePacketConsumer:{cipher:immediate.values,tests:packetConsumers}
 },null,2));
