@@ -208,6 +208,53 @@ This joins the numbered packet directly to the authenticated continuation `PRIMU
 
 A deliberately narrow follow-up tested whether MAP itself also appears under the exact p32 state-address/cardinal grammar that produced THE. Keeping the same 49 addresses, all four directions, and extending from two cells to three yields **zero** authenticated three-rune hits on p32 and zero on the matched square page p6. That failure is recorded in `im-results/lp2-p32-state-native-the-readout.md`. Do not tune turns, wraps, or alternate starts to force MAP as local p32 plaintext.
 
+## Independent phrase replication on p15
+
+The packet's six-word authenticated readout is independently reconstructed by a different original-page geometry on p15.
+
+P15 visibly supplies:
+
+```text
+red span lengths 9,11
+red punctuation count13
+physical page15
+```
+
+forming the sole arithmetic progression in the complete manuscript family of pages with two red spans plus red punctuation:
+
+```text
+[9,11,13,15], step2=K.
+```
+
+Under the already fixed zero-based source convention:
+
+```text
+9  LIBER
+11 IS
+13 WAY
+15 WORDS.
+```
+
+The arithmetic midpoints are:
+
+```text
+10 PRIMUS
+12 THE
+14 ITS.
+```
+
+Interleaving terms and midpoints gives:
+
+```text
+LIBER PRIMUS IS THE WAY ITS WORDS.
+```
+
+So p15 independently reproduces the complete six-word packet phrase plus its immediate predecessor `LIBER`, using a different visible number structure.
+
+The numbered diagonal also independently selects p15's canonical word16 / zero-based word15 for authenticated `WORDS`. A separate p15 geometry-key analysis recovers a strong local WORDS candidate at that exact receiver, while retaining a chronology caveat on the key serialization.
+
+This makes `PRIMUS IS THE WAY ITS WORDS` a repeated manuscript-level instruction rather than a phrase obtained from only one numerical layout.
+
 ## Independent numbered-diagonal loop: BEWARE returns to YOU
 
 Agent1's independently recovered numbered route gives a second interpretation of the packet's p32 result.
