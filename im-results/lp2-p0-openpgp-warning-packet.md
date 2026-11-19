@@ -290,6 +290,62 @@ Controls:
 - **896 configurations** give two labeled aliases and **one distinct numeric target operation**, the key above to BEWARE;
 - fixed-key manuscript transfer gives **1/253** authenticated six-rune target hits, this receiver only.
 
+## Source-side H-shell compression
+
+Agent19 independently charged H-shell families for the packet keys and found the PATHS and BEWARE shells collapse to one numeric authenticated-target operation in their respective finite families. Combining those results with the carrier tape above removes the remaining ad hoc arithmetic constants from all four exact key shells.
+
+Apply one outside-in H shell to each exact additive key:
+
+```text
+OPENPGP key shell = [25,21,15,20,6,13,1]
+PATHS   key shell = [25,22,24,2]
+VERIFY  key shell = [11,16,19,2,18,24]
+BEWARE  key shell = [5,19,19,14,12,17]
+```
+
+Every coordinate can be read from the authenticated source-state tape or a single simple combination of already frozen source fields:
+
+```text
+PATHS =
+[ FALSE.Hsum,
+  p50[YOU.delta] mod29,
+  p50[OPENPGP.delta] mod29,
+  BEWARE.Hdiff ]
+= [25,22,24,2]
+
+BEWARE =
+[ VERIFY.Hdiff,
+  PATHS.Hsum,
+  PATHS.Hsum,
+  BEWARE.Hsum,
+  p50[SEEK.delta] mod29,
+  VERIFY.Hsum ]
+= [5,19,19,14,12,17]
+
+VERIFY =
+[ PATHS.Hdiff,
+  2*BEWARE.delta,
+  PATHS.Hsum,
+  BEWARE.Hdiff,
+  OPENPGP.Hdiff,
+  p50[OPENPGP.delta] mod29 ]
+= [11,16,19,2,18,24]
+
+OPENPGP =
+[ FALSE.Hsum,
+  FALSE.Hdiff + BEWARE.length,
+  FALSE.Hdiff,
+  FALSE.delta,
+  BEWARE.length,
+  BEWARE.delta + VERIFY.Hdiff,
+  GOOD.delta ]
+= [25,21,15,20,6,13,1]
+```
+
+H inversion of these shells reproduces the four exact additive keys already used in this report.
+
+This is **mechanism compression, not yet a solved scheduler**. The source values themselves are frozen and independently motivated, and Agent19's PATHS/BEWARE family charges are independent support, but the coordinate selection/order above was recognized after the target packet was known. The promotion gate remains a single source rule that predicts these shell serializations or an untouched key before its plaintext is inspected.
+
 ## Why the packet matters
 
 This is materially stronger than four unrelated English fits because the **receiver geometry is source-selected before the segment values are interpreted**:
