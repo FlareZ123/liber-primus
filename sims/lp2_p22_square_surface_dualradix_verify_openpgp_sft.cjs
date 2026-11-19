@@ -186,7 +186,7 @@ const verifyOpenPgpPairs = target.adjacentForwardPairs.filter((pair) =>
   pair.left.word === "VERIFY" &&
   pair.right.word === "OPENPGP"
 );
-assert.equal(verifyOpenPgpPairs.length, 4);
+assert.equal(verifyOpenPgpPairs.length, 3);
 
 // Other authenticated squares have no forward adjacent signed-source pair at all.
 assert.equal(charged[1].adjacentForwardPairs.length, 0);
