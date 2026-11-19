@@ -1,20 +1,29 @@
-# P0 residual H-inverse exposes a marker-aligned q-A-B-A-q state palindrome
+# P0 marker rise grammar reproduces the complete 13-atom local key
 
-**Agent14, 19 November 2026. Classification: new structural constraint on the p0-local key candidate. It strengthens key-order provenance without yet generating the complete 13-atom key independently.**
+**Agent14, 19 November 2026. Classification: strong candidate key-order provenance for the p0-local `EPIPHANY SEEKS` recovery. The generator reproduces the complete key from independently available `q=4`, `THE7`, and `WAY13`, while its exact rise grammar was recognized after the residual structure was visible. A prospective column-sum consumer failed, so the rule remains below an established general cipher.**
 
-## Why this test is now admissible
+## Independent plaintext selection
 
-The p0 candidate `EPIPHANY SEEKS` was already selected by source-side routes before inspecting its additive residual. The new p0 THE/WAY direction route further selects the authenticated source5..13 clause from original ciphertext without using the residual:
+The p0 target can now be selected without opening its additive residual.
+
+The original red title has H-shell sums:
 
 ```text
-EPIPHANY SEEKS THE DEVOTED. LIBER PRIMUS IS THE WAY.
+THE1 / WAY13
 ```
 
-See `im-results/lp2-p0-firstline-h-source-register.md`.
+Following those authenticated numbers through the established numbered diagonal, then using the fixed H readout, the rise `13-1=12`, and endpoint13 reconstructs source indices5..13:
 
-The residual can therefore be opened as a held-out structural object rather than used to choose the plaintext.
+```text
+EPIPHANY SEEKS THE DEVOTED.
+LIBER PRIMUS IS THE WAY.
+```
 
-## Frozen inputs
+Among every adjacent manuscript 8+5 pair, p0 is the sole receiver whose same title-to-direction-to-rise grammar recovers the complete source5..13 run. See `im-results/lp2-p0-firstline-h-source-register.md`.
+
+The plaintext candidate `EPIPHANY SEEKS` is therefore fixed before the residual construction below is inspected.
+
+## Frozen local residual and marker geometry
 
 Original p0 title:
 
@@ -23,31 +32,21 @@ C =
 [15,8,18,3,6,19,27,0,15,26,18,21,5]
 ```
 
-Authenticated/source-selected target:
+Authenticated target:
 
 ```text
 P = EPIPHANY SEEKS
   = [18,13,10,13,8,24,9,26,15,18,18,5,15]
 ```
 
-Exact additive residual:
+Ordinary additive residual:
 
 ```text
 K = C-P mod29
   = [26,24,8,19,27,24,18,3,0,8,0,16,19]
 ```
 
-Use the already fixed outside-in H transform and its exact inverse. The visible p0 marker has the documented left/center/right column population:
-
-```text
-4 | 5 | 4
-```
-
-No state-expression search is used to choose coordinates.
-
-## H-inverse of the complete residual
-
-Apply H inverse once to the complete 13-vector:
+Apply the fixed outside-in H inverse:
 
 ```text
 H^-1(K)
@@ -55,7 +54,13 @@ H^-1(K)
 [25,28,11,25, 4,8,19,8,4, 7,13,20,28]
 ```
 
-Partition only by the visible marker's 4|5|4 column population:
+The original red marker immediately after the title has visible column population:
+
+```text
+4 | 5 | 4
+```
+
+so the H-inverse packet partitions naturally as:
 
 ```text
 left   = [25,28,11,25]
@@ -63,35 +68,39 @@ center = [4,8,19,8,4]
 right  = [7,13,20,28]
 ```
 
-The center is an exact palindrome.
+## Center and right columns expose rise structure
 
-Under the independently reconstructed state
-
-```text
-(p,g,a,b,A,B,K,e,q)
-=
-(23,5,6,15,8,19,2,3,4)
-```
-
-the center is exactly:
+The center is the exact independently reconstructed state palindrome:
 
 ```text
-[q, A, B, A, q]
+[q,A,B,A,q]
 =
 [4,8,19,8,4]
 ```
 
-This is a direct state packet tied to the five-cell physical center column. The state now also has an independent authenticated-square reconstruction in `im-results/lp2-three-square-dh-state-extractor.md`, so the values `q,A,B` are not inferred from this residual.
+with:
 
-## The right marker column is a source-number ramp
+```text
+q=4, A=8, B=19
+```
 
-The four-cell right column is:
+The state now also has an authenticated-square reconstruction independent of p0, so these labels are not inferred from the residual.
+
+Its forward rises are:
+
+```text
+[4,11,18,25]
+```
+
+which form an arithmetic progression of step7 modulo29.
+
+The right column is:
 
 ```text
 [7,13,20,28]
 ```
 
-Its forward rises modulo29 are exactly:
+with forward rises:
 
 ```text
 [6,7,8]
@@ -99,71 +108,157 @@ Its forward rises modulo29 are exactly:
 [SEEKS6, THE7, DEVOTED8]
 ```
 
-All three source numbers belong to the authenticated clause recovered independently from p0. The seed `7` is the same authenticated `THE7` number and also the reconstructed state value `g+K`.
+The seed7 is authenticated `THE7` from the independently recovered clause and also state value `g+K`.
 
-The center has its own compact rise rule:
+Across all 19 manuscript 8+5 residuals under the same source target:
+
+- p0 alone has a center whose rises form any arithmetic progression;
+- p0 alone has a right-column consecutive +1 rise sequence;
+- p0 alone satisfies both.
+
+## Complete three-anchor rise generator
+
+The left column also has a compact rise representation once the same three source/state anchors are held fixed:
 
 ```text
-[q,A,B,A,q]
-= [4,8,19,8,4]
-forward rises = [4,11,18,25]
+q = 4
+t = 7  = THE7
+w = 13 = WAY13
 ```
 
-Those four rises are an arithmetic progression of step7 in GP29. Interpreted in the authenticated source register they are `EMPTY4 / IS11 / MAP18 / THEIR25`; the numerical progression, rather than that word sequence, is the charged invariant.
+Use cumulative rises modulo29.
 
-Thus nine of the 13 H-inverse residual coordinates now have compact source/state structure:
+### Left column
+
+Start at `-q` and rise by:
 
 ```text
-center5 = seed4 with AP rises 4,11,18,25 (step7)
-right4  = seed7 with AP rises 6,7,8 (step1)
+[q-1, w-1, w+1]
+=
+[3,12,14]
 ```
 
-The remaining unsourced packet is the four-cell left column `[25,28,11,25]`.
-
-## Matched receiver control
-
-The authenticated 2016 source contains exactly one adjacent native-GP **8+5** pair:
+Then:
 
 ```text
+25
++3  -> 28
++12 -> 11
++14 -> 25
+
+left = [25,28,11,25]
+```
+
+The three rises sum to29, so the column closes at its starting value.
+
+### Center column
+
+Start at `q` and rise by:
+
+```text
+[q, q+t, q+2t, q+3t]
+=
+[4,11,18,25]
+```
+
+Then:
+
+```text
+4
++4  -> 8
++11 -> 19
++18 -> 8
++25 -> 4
+
+center = [4,8,19,8,4]
+```
+
+### Right column
+
+Start at `t` and rise by:
+
+```text
+[t-1, t, t+1]
+=
+[6,7,8]
+```
+
+Then:
+
+```text
+7
++6 -> 13
++7 -> 20
++8 -> 28
+
+right = [7,13,20,28]
+```
+
+Concatenate the three physical marker columns:
+
+```text
+R13 =
+[25,28,11,25,4,8,19,8,4,7,13,20,28]
+```
+
+Apply the fixed forward H once:
+
+```text
+H(R13)
+=
+[26,24,8,19,27,24,18,3,0,8,0,16,19]
+=
+K
+```
+
+Subtract this generated key from the untouched title:
+
+```text
+C - H(R13) mod29
+=
+[18,13,10,13,8,24,9,26,15,18,18,5,15]
+=
 EPIPHANY SEEKS
 ```
 
-Charge that same fixed target against every adjacent manuscript 8+5 receiver on unknown p0-p55:
+Thus the three anchors generate every key coordinate and replay the complete local inverse exactly.
+
+## Authenticated THE-anchor control
+
+The signed source contains six occurrences of `THE`:
 
 ```text
-19 receivers
+1, 7, 12, 17, 22, 28
 ```
 
-For each receiver:
-
-1. compute the ordinary subtraction residual `C-P mod29`;
-2. apply H inverse once;
-3. partition positions as `4|5|4`;
-4. test whether the five-cell center is a palindrome.
-
-Result:
+and one `WAY`:
 
 ```text
-palindromic centers: 1 / 19
-sole hit: p0 word1-word2
-
-exact [q,A,B,A,q] centers: 1 / 19
-sole hit: p0 word1-word2
+13
 ```
 
-The result is therefore not a generic consequence of subtracting the same 8+5 source phrase from a same-shaped receiver.
+Hold `q=4` and `WAY13` fixed. Substitute each authenticated THE index into the identical three-column rise generator, then compare the generated 13-value H-inverse packet against every one of the 19 manuscript 8+5 residuals.
 
-Charge the progression rules on the same 19 receivers.
+Results:
 
-- P0 is the sole receiver whose four center-column rises form **any arithmetic progression**. Its rise sequence is `[4,11,18,25]`, step7.
-- Four receivers have an arithmetic-progression right rise sequence, while p0 is the sole receiver whose right rises are the consecutive +1 ramp `[6,7,8]`.
-- P0 is the sole receiver satisfying both progression properties.
+```text
+THE1  -> 0 hits
+THE7  -> p0 word1-word2 only
+THE12 -> 0 hits
+THE17 -> 0 hits
+THE22 -> 0 hits
+THE28 -> 0 hits
+```
 
-So the marker center and right column carry two independently simple progression structures inside the same natural receiver family.
+So the independently recovered `THE7` is the only authenticated THE occurrence that generates any member of the matched receiver family, and that member is p0 alone.
 
-## Orientation/control family
+This is a bounded family control on the source anchor. It does not erase the chronology that the algebraic form of the three column generators was recognized after the p0 packet was visible.
 
-Charge six simple views of every residual:
+## Orientation and receiver controls
+
+The authenticated source contains exactly one adjacent native-GP 8+5 pair, `EPIPHANY SEEKS`.
+
+Charge it against all 19 adjacent manuscript 8+5 receivers. For each receiver compute `C-P`, then inspect these six fixed views:
 
 ```text
 raw
@@ -174,49 +269,73 @@ H(reverse)
 H^-1(reverse)
 ```
 
-A five-cell center palindrome occurs only in:
+A five-cell center palindrome occurs only for:
 
 ```text
 H^-1, p0 word1-word2
 ```
 
-All other charged view/receiver combinations have zero center-palindrome hits.
+P0 is also the sole exact `[q,A,B,A,q]` center.
 
-H inverse is already part of the fixed reversible H mechanism, so this charge tests orientation rather than inventing a new transform family.
+This localizes both the H orientation and the marker packet inside the natural same-shape family.
 
-## What it contributes
+## Prospective column-sum consumer is negative
 
-The p0 key-order problem previously had an exact 13-atom state-labelled residual but no source-authored serialization.
+Before opening a new consumer, freeze the simplest marker-level handoff:
 
-This result supplies two physical constraints:
+1. sum each visible H-inverse marker column modulo29;
+2. use those three numbers as numbered-diagonal directions;
+3. apply the already fixed receiver H plus shell-sum readout;
+4. require a complete authenticated source clause of at least five words.
 
-```text
-H^-1(residual)
--> visible 4|5|4 marker columns
--> center seed4, rises 4,11,18,25 (step7)
--> right seed7, rises 6,7,8 (step1)
-```
-
-The center progression is unique in the natural 19-receiver family. The exact right ramp is also unique, and only p0 satisfies both.
-
-The remaining key-order gate is now narrower. The unsourced left column is:
+Column sums are:
 
 ```text
-[25,28,11,25]
+left   -> 2  = PATH2
+center -> 14 = ITS14
+right  -> 10 = PRIMUS10
 ```
 
-It can be labelled with simple state expressions after the fact, but this report does not count those labels as provenance. A source-visible serializer for these four values, or a prospective consumer of the full 4|5|4 packet, would complete the marker-aligned H-inverse schedule.
+The three directed receivers yield the unique source-index set:
 
-## Negative provenance checks
+```text
+[0,1,5,7,12,13,23,24,27,28]
+```
 
-The exact center packet `[4,8,19,8,4]` was searched as a contiguous five-value object under raw/H/H-inverse views of every unknown-manuscript five-rune word and five-rune window. No occurrence exists.
+No complete predeclared authenticated clause of at least five words is present.
 
-It also does not occur contiguously in the basic p50 full-byte/high-digit/low-digit mod29 streams or simple authenticated-source index/length/GP0/delta streams.
+This prospective consumer fails. No alternate column statistic, transform, address origin, or fallback direction is opened after the miss.
 
-So the current evidence is the marker-aligned state reduction itself, not reuse of a known five-value source tape.
+## Evidence boundary
+
+The result substantially narrows the p0-local key problem:
+
+```text
+authenticated p0 route -> EPIPHANY SEEKS
+independent state       -> q=4
+recovered source clause -> THE7, WAY13
+visible marker          -> 4|5|4
+three rise generators   -> full H^-1 key packet
+fixed H                 -> exact additive key
+original ciphertext     -> EPIPHANY SEEKS
+```
+
+The complete key can now be written as one short source/state generator rather than 13 separately labelled expressions.
+
+The remaining weakness is chronology. The precise generator family was recognized after the residual packet had been inspected, and its first prospective marker-level consumer failed. Preserve it as strong candidate key-order provenance until an untouched original object predicts the same grammar, or the generator predicts a new plaintext/key consequence before that target is opened.
+
+## Negative reuse checks
+
+The exact center packet `[4,8,19,8,4]` does not occur contiguously under raw/H/H-inverse views of any unknown-manuscript five-rune word or five-rune window.
+
+It also does not occur contiguously in basic p50 full-byte/high-digit/low-digit mod29 streams or simple authenticated-source index/length/GP0/delta streams.
+
+So the evidence is the marker-aligned rise grammar itself rather than verbatim reuse of a known five-value tape.
 
 ## Reproduction
 
 ```text
 node sims/lp2_p0_red13_hinv_state_palindrome_sft.cjs
 ```
+
+The SFT reconstructs the unique authenticated 8+5 source target, all 19 matched manuscript receivers, the H-inverse marker packet, progression controls, the six-THE anchor family, the generated exact key, and exact p0 plaintext replay.
