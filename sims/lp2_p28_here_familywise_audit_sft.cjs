@@ -401,3 +401,46 @@ console.log(JSON.stringify({
   },
   frozenHoldout:holdoutResult,
 }, null, 2));
+
+
+console.log("FAMILYWISE_SUMMARY " + JSON.stringify({
+  scope:{
+    issueFamilyObjects:issueFamilyObjects.length,
+    allStatePairObjects:allStatePairObjects.length,
+    coreVariants:coreVariants.length,
+    conservativeVariants:conservativeVariants.length,
+  },
+  issueCore:{
+    total:issueCore.total,
+    lexicalCount:issueCore.lexical.length,
+    lexicalTexts:[...new Set(issueCore.lexical.map((row)=>row.text))].sort(),
+    authenticatedCount:issueCore.authenticated.length,
+    authenticatedTexts:[...new Set(issueCore.authenticated.map((row)=>row.text))].sort(),
+    exactHereCount:issueCore.exactHere.length,
+  },
+  issueConservative:{
+    total:issueConservative.total,
+    lexicalCount:issueConservative.lexical.length,
+    lexicalTexts:[...new Set(issueConservative.lexical.map((row)=>row.text))].sort(),
+    authenticatedCount:issueConservative.authenticated.length,
+    authenticatedTexts:[...new Set(issueConservative.authenticated.map((row)=>row.text))].sort(),
+    exactHereCount:issueConservative.exactHere.length,
+  },
+  broadCore:{
+    total:broadCore.total,
+    lexicalCount:broadCore.lexical.length,
+    lexicalTexts:[...new Set(broadCore.lexical.map((row)=>row.text))].sort(),
+    authenticatedCount:broadCore.authenticated.length,
+    authenticatedTexts:[...new Set(broadCore.authenticated.map((row)=>row.text))].sort(),
+    exactHereCount:broadCore.exactHere.length,
+  },
+  broadConservative:{
+    total:broadConservative.total,
+    lexicalCount:broadConservative.lexical.length,
+    lexicalTexts:[...new Set(broadConservative.lexical.map((row)=>row.text))].sort(),
+    authenticatedCount:broadConservative.authenticated.length,
+    authenticatedTexts:[...new Set(broadConservative.authenticated.map((row)=>row.text))].sort(),
+    exactHereCount:broadConservative.exactHere.length,
+  },
+  holdout:holdoutResult,
+}));
