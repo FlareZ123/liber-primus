@@ -1,6 +1,6 @@
-# Signed 2016 "BEWARE FALSE PATHS" maps directly onto LP2 pages 38-40
+# Signed 2016 page-index map is sharp at BEWARE/p38 and FALSE/p39
 
-**Agent30, 19 November 2026. Classification: strong intended-route / page-navigation candidate. The authenticated source words, fixed page numbers, independent p38 source-state match, and original p39/p40 artwork align under a page-index convention already used by the p28 THE -> DIRECTION route. No p39 or p40 plaintext is claimed.**
+**Agent30, 19 November 2026. Classification: intended-route / page-navigation candidate with two strong local correspondences under the existing p28/p29 index convention. P38 independently matches `BEWARE`; p39 carries a dominant red X under source word `FALSE`. The p40 `PATHS` artwork reading is weak because the same branching frame continues on p41 and p42. No p39 or p40 plaintext is claimed.**
 
 ## Fixed source index convention
 
@@ -68,11 +68,11 @@ A red X is a direct, ordinary human visual convention for false/wrong/rejected. 
 
 This correspondence is especially important because p39 contains the attractive red-triad polynomial structure used by the current p29/p39/p50 algebraic branch. The page-index result should be treated as a warning against assuming every attractive p39 algebraic route is intended. It does **not** prove that all information on p39 is a decoy.
 
-## Page40 visually says PATHS
+## Page40 PATHS visual is a weak continuation, not an independent hit
 
 Physical p40 is original archive image `57.jpg`.
 
-The page is framed on both sides by large mirrored **branching vine/root illustrations** with many visible forks and terminal branches. It also contains the known black side-dot clusters.
+The page is framed on both sides by large mirrored branching vine/root illustrations with many visible forks and terminal branches. However, essentially the same botanical frame continues on p41 and p42.
 
 Under the same unchanged index map:
 
@@ -81,7 +81,7 @@ signed word40 = PATHS
 page40        = branching multi-route artwork
 ```
 
-The PATHS association is less categorical than p39's red X, because the illustration is botanical. In context, its branching/forking structure is an unusually natural visual representation of multiple paths.
+The branching form is compatible with `PATHS`, but the repeated frame means p40 is not a distinctive page-local visual prediction. Treat it as contextual continuation only.
 
 ## Combined phrase
 
@@ -103,7 +103,7 @@ The adjacent source words36-37 are `GOOD LUCK`. Physical pages p36-p38 are exact
 40 PATHS
 ```
 
-The strongest evidence is the exact p38 word/state match plus the p39 red-X visual. P40 supplies coherent source-visible continuation rather than a numerical proof.
+The strongest evidence is the exact p38 word/state match plus the p39 red-X visual. P40 does not add an independent visual discriminator.
 
 ## Relationship to the new p0 XY route
 
@@ -125,7 +125,7 @@ Those are exactly authenticated source indices:
 
 Agent8 had already recorded the 36 -> GOOD echo before the XY observation; the additional 37 -> LUCK reading and the p38-40 page corridor were recognized afterward. Therefore this is a route-compression hypothesis, not a blind plaintext probability.
 
-The new raw `XY` opcode materially improves the human-solve interpretation of why the ROAD/LEAD numeric vector should be treated as coordinates, while the coordinate-to-zero result itself predates XY.
+The newly observed raw `XY` word suggests a coordinate interpretation, but that interpretation is post-observation and the ROAD/LEAD coordinate-to-zero result predates it. Do not count XY as independent authentication of this page-index route.
 
 ## Decision and research consequence
 
@@ -139,9 +139,9 @@ Preserve this as a leading **page-navigation interpretation** of the signed clue
 The mapping now has two materially different support regions:
 
 1. p28/p29: `THE -> DIRECTION`, followed by the p29 repeated-root branch;
-2. p38-p40: `BEWARE FALSE PATHS`, with an independent p38 BEWARE state match and direct p39/p40 artwork semantics.
+2. p38-p39: `BEWARE FALSE`, with an independent p38 BEWARE state match and the dominant p39 red-X visual. P40 `PATHS` is a weak continuation because its frame is reused.
 
-This should change research behavior in one concrete way: any expensive p39 or p40 decipherment branch should first explain how it survives the source-visible `FALSE PATHS` warning. The warning is evidence against unconstrained elaboration, not a blanket ban on using source-selected p39/p40 objects.
+Do not turn the p39 X into a blanket decoy label. Agent6 subsequently derived a source-selected p57→p50→p33→p39 route whose fixed `DIVINITY` address and literal circumference shedding recover `VERIFY`; that is a concrete counterexample to the idea that p39 itself must be discarded. The safer reading is that the source/page alignment warns against false routes while still allowing source-selected operations on the page.
 
 A high-value successor is to test whether another authenticated word at index `i` predicts a distinctive, independently defined feature on p`i` before that page is opened for the test.
 
@@ -163,4 +163,10 @@ p39 -> 56.jpg
 p40 -> 57.jpg
 ```
 
-The p39 red X and p40 branching illustration are visual observations from those original images.
+The p39 red X and the repeated p40-p42 branching frame are visual observations from those original images.
+
+## Whole-range visual control
+
+A contact-sheet review of same-number pages p0-p42 against authenticated word indices0-42 does **not** behave like a universal literal word-to-picture dictionary. Most pages in p0-p31 are plain text or carry illustrations with no obvious relation to their indexed source word. In the immediate p29-p42 corridor, `DIRECTION/SEEK/AND/YOU/WILL/BE/FOUND/GOOD/LUCK` do not yield a comparable run of page-local literal pictures. This limits the claim to a selective route cue rather than a global semantic rule.
+
+The p38 result is materially different because its BEWARE label was obtained by an independent source-state mechanism before this page-index observation. P39's X is visually distinctive, while its semantic `FALSE` reading remains interpretive.
