@@ -18,4 +18,4 @@ Reproducers:
 - `sims/lp2_p32_p50_reverse_tree_depth20_sft.cjs` — Windows PASS 44447620241
 - `sims/lp2_p50_prime_cycle_components_sft.cjs` — Windows PASS 44449154221
 - `sims/lp2_p57_p50_tree_word_grammar_sft.cjs` — Windows PASS 44450273976
-- `sims/lp2_p32_signed_word_boundary_receiver_sft.cjs` — source receiver SFT
+- `sims/lp2_p32_signed_word_boundary_receiver_sft.cjs`, Windows Node22 run **44450837758** passed — source receiver SFT
