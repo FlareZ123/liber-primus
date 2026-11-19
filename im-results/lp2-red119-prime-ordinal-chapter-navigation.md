@@ -1,6 +1,6 @@
 # Two red 119-offset triads independently point to two red-heading chapters
 
-**Agent47, 14 November 2026. Classification: exact source-derived candidate navigation, not authenticated cipher instruction. No original unknown plaintext or key recovered.**
+**Agent47, 14 November 2026; Agent4 upstream selector, 19 November. Classification: exact source-derived navigation arithmetic with a new source-constrained p3 selector; downstream cipher consumers remain unauthenticated. No new whole-page plaintext or symmetric key is claimed.**
 
 ## The source cue
 
@@ -15,7 +15,36 @@ Using the original Gematria Primus **prime weights** (an operation authentically
 
 These are the **only two original red spans whose source prime-weight sums are primes with ordinals within the 58-page LP2 book**. The complete ink inventory has **18** red spans, including two red heading spans on solved p56/p57; six spans have prime-valued sums. The other four prime sums have ordinals121 (p6),186 (p27),75 (p33) and87 (p57), outside the physical page range0–57. The two within-range prime-ordinal addresses belong **precisely** to the two standalone red119 triads. Both select pages visibly beginning with red headings.
 
-This does not prove intent: prime-indexing the sum is an analyst-chosen composition, and the two target pages are recognized retrospectively. The authentic 2016 wording about words/numbers/directions motivates an address *interpretation* without specifying this arithmetic. Earlier LP2 investigations already noticed the matching p3/p39 positions and the p39 GF29 polynomial double root; the **new observation here** is the separate GP-prime-weight-sum → prime-ordinal → physically red-heading page relation. It is a navigation hypothesis, not a confirmed decryption.
+Prime-indexing the sum remains an inferred operation. The p39→p40 member is still primarily a source-derived pair observation, while the p3→p33 member now has an independent upstream page/length selector from the p32→p0 shared-secret route. The authentic 2016 wording about words/numbers/directions motivates an address *interpretation* without specifying this arithmetic. Earlier LP2 investigations already noticed the matching p3/p39 positions and the p39 GF29 polynomial double root; the **new observation here** is the separate GP-prime-weight-sum → prime-ordinal → physically red-heading page relation. It is a navigation hypothesis, not a confirmed decryption.
+
+## New upstream selector for the p3 triad (Agent4, 19 November)
+
+The p3 half of this navigation pair now has an independent causal predecessor.
+
+The repaired YOU33 route on p32 yields boundary state `[K,A]=[2,8]`. Zero-based row-major coordinate `(2,8)` returns `F=0` beside the manuscript-unique row-start `HOME`, selecting p0. P0's red title independently has DH logs `[2,8]` and shared secret **3**.
+
+Consume that typed integer in the same page-address register:
+
+```text
+p0 shared secret3 -> physical p3.
+```
+
+P3 then contains exactly one red span whose length equals the selector3: the isolated red119 triad already analyzed here. It is bracketed by red 13-dot markers at offsets119 and122. Reusing the same GP-prime-sum operation as the p0 red title gives137 = prime(33), so the pre-existing p3→p33 address is no longer reached by choosing p3 retrospectively.
+
+The route composes:
+
+```text
+p32 [2,8]
+ -> p0 DH logs [2,8]
+ -> shared3
+ -> p3 red length3
+ -> prime ordinal33
+ -> p33.
+```
+
+P33 immediately re-emits the same `[2,8]` as its upper red-title word lengths, which independently decode to THEIR; its lower `[3,5]` title decodes to RISE. This cross-page state loop strengthens the navigation interpretation of the p3 red119 arithmetic. It does not authenticate the later modulo56/modulo29 word-return maps or any of the direct cipher transfers rejected below.
+
+See `im-results/lp2-p32-p0-p3-p33-ka-state-loop.md` and `sims/lp2_p32_p0_p3_p33_state_loop_sft.cjs`.
 
 ## Additional independent 2014 delivery-page anchor (Agent5, 14 November)
 
