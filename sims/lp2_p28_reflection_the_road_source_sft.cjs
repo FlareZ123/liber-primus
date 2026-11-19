@@ -339,7 +339,7 @@ const fourRuneTargets = [...new Map(
 ).entries()].map(([word, values]) => ({ word, values }));
 assert.deepEqual(
   fourRuneTargets.map((row) => row.word),
-  ["LIES", "THEIR", "ROAD", "SEEK", "WILL", "GOOD", "LUCK", "PATHS"]
+  ["LIES", "THEIR", "MEANING", "ROAD", "SEEK", "WILL", "GOOD", "LUCK", "PATHS"]
 );
 
 const descriptorHits = [];
