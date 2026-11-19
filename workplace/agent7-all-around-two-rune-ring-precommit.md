@@ -69,7 +69,7 @@ The p34 offsets249..250 state match is structurally ineligible because it begins
 
 ## Revealed sibling holdouts
 
-After the precommit was pushed and verified, the exact unchanged rule was opened on the two other unique same-index two-rune receivers.
+After the precommit was pushed and verified, the exact unchanged rule was opened on p11 offset49 and the unique p21 state receiver. A later parser correction showed that p11 also has a second same-state receiver at offsets226..227 because `/` must terminate a printed word. Therefore the p11 offset49 replay below is only an exploratory negative, while p21 remains the unique state receiver.
 
 ```text
 p11 IS start49
@@ -87,7 +87,7 @@ key [25,1]
 cipher [24,1] - key -> [28,0] != IS
 ```
 
-Both sealed sibling transfers fail. The ALL AROUND ring derivation is therefore local to p34 under this exact grammar.
+Both opened replays fail, but the p11 replay is underselected after the parser correction. The complete structural family charge below is the decisive scope test for the ALL AROUND grammar.
 
 ## Complete authenticated two-rune same-index charge
 
@@ -106,7 +106,7 @@ For each occurrence, require all of the following before decoding:
 4. two complete symmetric source rings exist inside that same clause;
 5. use the frozen outer-to-inner left-minus-right ring shell, H inverse, and subtraction.
 
-Across the complete nine-occurrence family, exactly **one receiver is structurally eligible at all**:
+With canonical `/` line-boundary word termination enforced, across the complete nine-occurrence family exactly **one receiver is structurally eligible at all**:
 
 ```text
 index34 BE -> p34 offsets4..5, centered in clause0 offsets0..9.
