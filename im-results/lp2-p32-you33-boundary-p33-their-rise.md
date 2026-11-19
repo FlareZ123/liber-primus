@@ -70,6 +70,21 @@ The p32 row beginning at offset33 transliterates `HOMEXWDSLFD`, but that known p
 
 This does not claim a new general rule that every missing word ordinal should become a rune boundary. The repair is specific to p32 because the page has an independently established 11×11 geometry and the missing ordinal is exactly a row-boundary multiple. The exact p33 title match supplies the discriminating consequence.
 
+## Held-out row-start checksum and coordinate stop
+
+The boundary repair fixes **offset33** as the first rune after the selected 33-rune boundary before any row text is read. The first four runes of that row are:
+
+```text
+offsets33..36 = [8,3,19,18]
+GP transliteration = HOME.
+```
+
+A complete scan of every contiguous four-rune window on all unknown LP2 pages finds this exact `HOME` sequence **once**, at p32 offset33. None of the other ten 11-rune row starts begins with HOME. Because the boundary was selected from 11×11 geometry and the unique p33 [2,8] title match before this row prefix was consulted, preserve HOME as a secondary held-out checksum of the repaired coordinate.
+
+Do not yet turn HOME into a new page jump. The natural semantic reading "go home -> p0" lacks a source-authored numeric/output rule and p0 already participates in several separately selected navigation branches.
+
+The boundary pair itself also tempts a matrix coordinate: `[K,A]=[2,8]`. Charge the ordinary finite rivals first: zero- or one-based coordinates under the eight square dihedral orientations. The zero-based readings produce values `{0,b,21,17}`; the one-based readings produce `{10,13,18,e,B,a,1,0}`. Four different authenticated state fields (`b,e,B,a`) appear depending on origin/orientation. There is no unique state output. Retire `[2,8]` as an 11×11 coordinate consumer until the source selects an origin and orientation.
+
 ## Decision
 
 Restore YOU33 as a resolved navigation boundary:
