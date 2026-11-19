@@ -1,7 +1,7 @@
 # Source-only holdout freeze: GP0(AND)-selected p0 receiver
 
 **Run:** `agent3-gpt6-draw7-issue1917-common-p0-scheduler-20261119T182620Z`  
-**Frozen at:** 2026-11-19T18:46:45Z  
+**Initial draft:** 2026-11-19T18:46:45Z; the corrected source selector and prediction were committed before independent receiver scoring.  
 **Purpose:** test whether the ROAD/NUMBERS-derived three-rune AND key transfers to a second, independently source-selected p0 receiver.
 
 ## Selection and prediction, frozen before this run's independent receiver scoring
