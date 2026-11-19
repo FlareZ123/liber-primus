@@ -139,6 +139,75 @@ const reversedPlain = theCipher.values.map((value, index) =>
 assert.notDeepEqual(reversedPlain, thePlain);
 assert.notEqual(spell(reversedPlain), "THE");
 
+
+// Director #1724 source-authentication gate.
+const signedSources = [
+  "resources/historical/cicada2012-countdown-message.asc",
+  "resources/historical/cicada2012-midi-email.asc",
+  "resources/historical/cicada2012-song-is-your-own-path.asc",
+  "resources/historical/cicada2012-message-only-displayed.asc",
+  "resources/historical/cicada2013-first-onion-hello.asc",
+  "resources/historical/cicada2013-forest-clue.asc",
+  "resources/historical/cicada2013-second-onion-everything-you-need.asc",
+  "resources/historical/cicada2013-second-onion-icmp-echo.asc",
+  "resources/historical/cicada2013-welcome-and-congratulations.asc",
+  "resources/historical/cicada2013-if-you-followed.asc",
+  "resources/historical/cicada2013-no-more-testing.asc",
+  "resources/external/2013-do-not-share-this-information-2.asc",
+  "resources/historical/cicada2014-stage09-first-jpeg-recovered.asc",
+  "resources/historical/cicada2014-stage11-message.asc",
+  "resources/historical/cicada2016-4gq25-outguess.asc",
+  "resources/historical/cicada2017-yEiTHhvF.asc",
+];
+const semanticSelectorTerms = /\\b(?:a1z26|lead|atomic|periodic|chemical|chemistry|element)\\b/i;
+const sourceSemanticHits = signedSources.flatMap((relative) => {
+  const match = read(relative).match(semanticSelectorTerms);
+  return match ? [{relative, term: match[0]}] : [];
+});
+assert.deepEqual(sourceSemanticHits, []);
+assert.match(
+  read("resources/historical/cicada2012-message-only-displayed.asc"),
+  /The encrypted message is a number\\./
+);
+assert.match(
+  read("resources/historical/cicada2016-4gq25-outguess.asc"),
+  /their numbers are the direction\\./
+);
+
+const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+/** @param {number[]} values @param {number} origin @param {boolean} reversed @returns {string|null} */
+function latinOrdinal(values, origin, reversed) {
+  const indices = values.map((value) => value - origin);
+  if (!indices.every((value) => value >= 0 && value < 26)) return null;
+  return indices.map((value) => alphabet[reversed ? 25 - value : value]).join("");
+}
+/** @param {number[]} values @param {number} origin @returns {string|null} */
+function gpOrdinal(values, origin) {
+  const indices = values.map((value) => value - origin);
+  if (!indices.every((value) => value >= 0 && value < corpus.translit.length)) return null;
+  return indices.map((value) => corpus.translit[value]).join("");
+}
+const ordinalFamily = {
+  A1Z26: latinOrdinal(roadKey, 1, false),
+  A0Z25: latinOrdinal(roadKey, 0, false),
+  Z1A26: latinOrdinal(roadKey, 1, true),
+  Z0A25: latinOrdinal(roadKey, 0, true),
+  GP0: gpOrdinal(roadKey, 0),
+  GP1: gpOrdinal(roadKey, 1),
+};
+assert.deepEqual(ordinalFamily, {
+  A1Z26: "LEAD",
+  A0Z25: "MFBE",
+  Z1A26: "OVZW",
+  Z0A25: "NUYV",
+  GP0: "EOCUR",
+  GP1: "JRFO",
+});
+const fourLetterElements = new Set(["NEON", "IRON", "ZINC", "GOLD", "LEAD"]);
+const elementHits = Object.entries(ordinalFamily)
+  .filter(([, word]) => fourLetterElements.has(word));
+assert.deepEqual(elementHits, [["A1Z26", "LEAD"]]);
+
 console.log(JSON.stringify({
   status: "PASS",
   downstreamHoldout: {
@@ -165,5 +234,5 @@ console.log(JSON.stringify({
     plaintext: reversedPlain,
     text: spell(reversedPlain),
   },
-  classification: "LEAD=82 is a downstream semantic holdout on the previously committed (8,2) packet selector; page-wide inverse remains unknown",
+  classification: "Director #1724 negative semantic gate: LEAD=82 is a reproducible arithmetic echo without an authenticated Cicada chemistry or atomic-number selector; it cannot authenticate THE/ROAD or (8,2)",\n  ordinalFamily,\n  sourceSemanticHits,
 }, null, 2));
