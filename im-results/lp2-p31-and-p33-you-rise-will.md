@@ -65,9 +65,101 @@ Replay is exact:
 = AND.
 ```
 
-The shell ordering was recognized after AND was assigned by the authenticated source route, so it is not treated as a blind key discovery.
+The shell ordering was recognized after AND was assigned by the authenticated source route. The next section supplies a source-selected helper page and a charged original-layout construction for the exact shell.
 
-## 2. Complete numbered-diagonal shell charge
+## 2. GP0(AND)=56 selects solved p56; p31 layout derives the shell
+
+The authenticated target itself supplies a helper-page selector before any key is applied:
+
+```text
+GP0(AND)
+= 24 + 9 + 23
+= 56.
+```
+
+Solved p56 already supplies the authenticated positive-cardinal serializer:
+
+```text
+T(n) = phi(p_n) mod29 = (p_n - 1) mod29.
+```
+
+This is the same serializer that recovers the hidden p33 instruction `THEIR RISE` from authored counts.
+
+Now use only the original p31 printed layout around the already selected receiver. The receiver at start126 lies on printed line5. Two unambiguous page lines have the same visible chunk count:
+
+```text
+top line0:
+  5 printed chunks
+  23 runes
+
+line6 immediately below the receiver line:
+  5 printed chunks
+  21 runes
+```
+
+Those are authenticated state values:
+
+```text
+5  = g
+21 = -A = p-K
+23 = p.
+```
+
+Read the lower line toward the upper line, consistent with the already recovered `RISE` direction, and retain the shared chunk count once:
+
+```text
+[g,-A,p]
+= [5,21,23].
+```
+
+The solved p56 serializer gives:
+
+```text
+T([5,21,23])
+= [10,14,24]
+= [-B,-b,-g]
+= H3(key).
+```
+
+Invert H3:
+
+```text
+H3^-1([10,14,24])
+= [17,14,7].
+```
+
+That is exactly the p31 key, and it decrypts the fixed receiver to AND without changing any scalar:
+
+```text
+[12,23,1] - [17,14,7]
+= [24,9,23]
+= AND.
+```
+
+The layout merge was recognized after the local target was assigned, so charge it broadly rather than treating the line choice as free evidence. Among all **12** unordered pairs of p31 printed lines having equal visible chunk counts, both rune-count orders, both additive signs, and all seven distinct authenticated three-rune targets:
+
+```text
+12 pairs
+x 2 orders
+x 2 signs
+x 7 targets
+= 336 configurations.
+```
+
+Exactly one configuration hits any authenticated target:
+
+```text
+line0 / line6
+lower-to-upper
+packet [5,21,23]
+T -> [10,14,24]
+H3^-1 -> [17,14,7]
+subtract -> AND.
+```
+
+This upgrades the p31 inverse from a target-derived state-shell observation to a much more constrained helper-page/layout mechanism. The remaining retrospective element is the choice to merge equal-chunk lines as `[shared count, lower runes, upper runes]`; the 336-case charge shows that this choice is discriminating rather than an unconstrained key fit.
+
+## 3. Complete numbered-diagonal shell charge
 
 Across the complete one-based numbered diagonal, only seven available objects have the same GP length as their source-assigned target:
 
@@ -104,7 +196,7 @@ Related existing controls:
 - p11: `im-results/lp2-p11-is-occurrence-hrect.md`
 - p37: `im-results/lp2-p37-luck-doubleindex-state-inverse.md`
 
-## 3. Freeze the p31 key: the only transfer is p33 YOU
+## 4. Freeze the p31 key: the only transfer is p33 YOU
 
 Now freeze the exact p31 key:
 
@@ -148,7 +240,7 @@ The p33 recovery is exact:
 
 This gives p33 a new local YOU candidate under a key fixed on a different page.
 
-## 4. THEIR RISE moves YOU to the independent WILL receiver
+## 5. THEIR RISE moves YOU to the independent WILL receiver
 
 P33 already contains the independently recovered hidden instruction:
 
@@ -189,7 +281,7 @@ WILL(word35)
 
 No new rise magnitude is introduced.
 
-## 5. Relation to the existing suffix
+## 6. Relation to the existing suffix
 
 Independent work already recovers the page sequence:
 
@@ -213,9 +305,11 @@ SEEK AND YOU WILL BE FOUND.
 
 This report does **not** claim that it has independently established a p31 -> p33 page-navigation operation. The stronger new facts are the p31 AND inverse, the unchanged-key p33 YOU transfer, and the p33 +6 YOU -> WILL transition.
 
-## 6. Evidence boundary
+## 7. Evidence boundary
 
-Preserve as strong local candidates:
+Preserve p31 AND as a strong source-constrained local recovery candidate, and p33 YOU as a fixed-key transfer candidate. Preserve the independent WILL result unchanged.
+
+Preserve:
 
 ```text
 p31 word32 -> AND
