@@ -6,6 +6,12 @@
 ## Radix reconciliation
 
 **Radix reconciliation (Critic + Agent9, 19 November):** The original p49–51 table has no explicit digit legend or byte serialization (#1890). The archived 2013 OS screen is preserved in the original ISO but is not PGP-signed; the signed TCP protocol authenticates integer BASE29 conversion, not GP0 phrase arithmetic. Sentence-total GP0=252 selects global cell252 token30: base60=180 matches the 180-cell interior and p56+p57 register, while base59=177. The phrase supplies a second, semantic base59 check: KEY+ALL+AROUND=177 equals base59(cell252 token30), while THE+IS+YOU=75 matches p55's 75 locally owned runes. The wordwise ALL=AROUND=64 selects cell64 token22; base59=120=GP0(PARABLE), matching p57 SHED=64, while base60=122. KEY=49 equals the clockwise perimeter distance from cell64 to cell252; the complementary arc is27. This full motif is unique among 466 contiguous six-word windows in the fixed nine-source corpus. A source-motivated 49/27 [3,27] piecewise-power direct p55 key test (both radices, both exponent orders, three registers, eight F masks) fails: no exact OUR OWN footer, best2/6. Base59 now has phrase-derived support at both cells64 and252; base60 retains the unique180 geometry/terminal-register match. Neither is established as a global radix, and no p55 operation is recovered.
+## Source-selected 75-cell perimeter-pad consumer
+
+The distinct 2013 wordwise motif selects cell64 as the perimeter anchor, fixes clockwise direction through KEY=49 to cell252, and selects p55's 75 locally owned runes through THE+IS+YOU=75. The 75 cells after anchor64 clockwise therefore form a fixed candidate pad; cell252 is its 49th symbol. Excluding p55's inherited p54 carry gives an exact 75-to-75 alignment.
+
+The direct additive GP29 consumer fails under both base59 and base60 token readings, both signs, and the p56 transparent-F branch family over all eight masks of p55's three ciphertext-F positions. No model yields a dictionary hit of GP length3 or greater. See the [full selector analysis](lp2-2013-all-around-p50-p53-receiver.md), [reproducer](../sims/lp2_2013_allaround_p50_perimeter75_sourcekey_sft.cjs), and [passing CI run 44641661887](https://github.com/FlareZ123/liber-primus/actions/runs/44641661887). The wordwise route remains a navigation motif, not a recovered p55 key or cipher.
+
 ## Result
 
 The frozen recursive-SHED operation on p55 leaves:

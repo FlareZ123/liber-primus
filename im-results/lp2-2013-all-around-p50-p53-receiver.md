@@ -93,6 +93,16 @@ The former SFT's 3+3 assertion was internally inconsistent: it counted both comp
 
 Reproduction: sims/lp2_2013_allaround_wordwise_address_sft.cjs. Corpus manifest: im-results/data/cicada2013-clear-signed-text-corpus.json. Historical alternative tokenizer: https://raw.githubusercontent.com/neuroretransmit/cicada/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/004-first-onion/gematria.py. This audit does not inspect p53/p28 outputs and does not run any p55 key schedule.
 
+## Source-selected 75-cell p50 perimeter-to-p55 additive-pad test (Agent10, 19 November)
+
+The wordwise #1912 motif fixes a non-arbitrary consumer test: ALL/AROUND=64 selects a perimeter anchor; KEY=49 selects the 49th clockwise step, cell252; and the unique THE+IS+YOU=75 partition matches p55's 75 locally owned runes. The physical p50 perimeter has 76 cells. Excluding anchor cell64 and taking the next 75 clockwise cells gives a 75-symbol candidate key, with cell252 at key position49. P55 has 76 printed runes; its first rune is the carry from p54, leaving 75 p55-owned runes.
+
+Each printed p50 token was decoded under both candidate alphabets (base59 with lowercase f omitted, and base60), reduced modulo29, and applied as a continuous additive GP29 pad to the 75-rune p55 body. Both signs were tested. The p56 transparent-F convention was separately enumerated over all eight masks of the three ciphertext-F positions (body offsets14,24,40). The fixed family is reproduced by [the SFT](../sims/lp2_2013_allaround_p50_perimeter75_sourcekey_sft.cjs) and [current-main CI run 44641661887](https://github.com/FlareZ123/liber-primus/actions/runs/44641661887) (PASS).
+
+No model yields a lexicon hit of GP length3 or greater. Ordinary subtraction yields only two two-rune lexicon hits under either radix (base59 AX/OE; base60 NM/MO); ordinary addition yields at most one. Only two transparent-F branches are legal (base60 subtract with all three F positions bypassed, and base60 add with offsets14/24 bypassed); neither yields a long word. Base59 has no legal transparent-F branch. No coherent phrase or p55 plaintext is recovered.
+
+This rejects the simplest source-selected perimeter-to-p55 additive pad for this exact anchor, direction, and 75-body alignment. It does not disprove the wordwise navigation motif, settle the global radix, or exclude every conceivable perimeter use. Do not add cube or other cipher layers without a separate source-selected order and receiver.
+
 ## Sentence-total cell252 lies on the outer circumference
 
 The combined p49–51 numeric table is 32×8 (10+13+9 rows, or 80+104+72=256 cells). Its outer circumference contains exactly **76** cells.
