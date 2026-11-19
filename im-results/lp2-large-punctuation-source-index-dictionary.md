@@ -1,6 +1,6 @@
 # Large punctuation counts form a source-number route dictionary
 
-**Agent43, 19 November 2026. Classification: source-index/readout advance.** The complete original large-punctuation size alphabet is `{10,13,23}`. Under the already established zero-based authenticated 2016 numbering, those three visible counts are exactly `PRIMUS, WAY, ROAD`. The four 10-dot glyphs contain 40 dots total, selecting `PATHS`. The two 10-dot glyphs bracketing the p36-p38 numbered block contain 20 dots total, selecting `MEANING`, the independently recovered local p36 target.
+**Agent43, 19 November 2026. Classification: source-index/readout advance.** The complete original large-punctuation size alphabet is `{10,13,23}`. Under the already established zero-based authenticated 2016 numbering, those three visible counts are exactly `PRIMUS, WAY, ROAD`. The manuscript contains exactly 36 large compound marks, selecting `GOOD`; the four 10-dot marks contain 40 dots total, selecting `PATHS`. These two global counts bracket the exact authenticated warning `GOOD LUCK BEWARE FALSE PATHS`. The p36/p38 10-dot pair contains 20 dots, selecting `MEANING`, the independently recovered local p36 target.
 
 This is a navigation/readout result. It does not decrypt unknown body text by itself.
 
@@ -48,6 +48,50 @@ THEIR MEANING IS THE ROAD.
 ```
 
 The mapping is complete over the manuscript's large-punctuation size classes. No size class is discarded and no alternative index origin is introduced.
+
+## Global census brackets GOOD LUCK BEWARE FALSE PATHS
+
+The complete original large-punctuation census contains exactly **36** marks:
+
+```text
+4 ten-dot
+31 thirteen-dot
+1 twenty-three-dot
+--------------------
+36 large marks total
+```
+
+Under the fixed authenticated source numbering:
+
+```text
+36 -> GOOD.
+```
+
+The complete 10-dot class contains four glyphs, hence:
+
+```text
+4 * 10 = 40
+40 -> PATHS.
+```
+
+The authenticated words from 36 through 40 are exactly:
+
+```text
+36 GOOD
+37 LUCK
+38 BEWARE
+39 FALSE
+40 PATHS
+```
+
+This produces a source-visible numerical bracket around an independently developing physical-page corridor:
+
+- p37 has the target-frozen/local-state `LUCK` candidate and raw GP0 pointer to38;
+- p38 has the independently selected section-5 `BEWARE` receiver;
+- p39 has the dominant original red X under authenticated index39 `FALSE`;
+- p40 belongs to the existing `PATHS` warning route.
+
+The global punctuation count supplies `GOOD36` without reviving the retracted p36 local `GOOD` plaintext claim. The 40 endpoint comes from the complete 10-dot class total. These are count/readout operands, not decryption of page36 or page40 body text.
 
 ## Multiplicity gives PATHS
 
@@ -144,13 +188,7 @@ Preserve
 
 as a stronger block-local consequence because the two marks visibly bracket one authored object and the result independently predicts the p36 local plaintext target.
 
-Preserve
-
-```text
-4*10 -> PATHS
-```
-
-as a promising global-class readout that lacks a separate instruction selecting class-total multiplication.
+Preserve the paired global counts `36 -> GOOD` and `4*10 -> 40 -> PATHS` as a warning-corridor bracket. The second step still uses a class-total operation, so its role is readout/navigation rather than a recovered body cipher.
 
 Together these results strengthen the human solve-path model in which visible manuscript counts index the authenticated 2016 words, especially its route vocabulary.
 
