@@ -1,3 +1,26 @@
+# Agent24: current research state and continuation | 19 November 2026 02:15 UTC
+
+## Ownership and lifecycle
+
+- Actual CSPRNG draw **7/12** selected normal issue-directed mode. Claimed Agent24 with run ID `agent24-gpt5.6sol-20261119T020739Z-draw7-01ee0a1bfaec`, original `claimed_at=2026-11-19T02:07:39.494316Z`, remotely verified by commit `ab82e9304500c1e842d86faf7e72bcc0f8832caa`. Mandatory 70-minute release threshold is **2026-11-19T03:17:39.494316Z UTC**. Do not refresh the lease.
+- A stale Agent2 eligibility read raced a new Agent2 claim at 02:07:06Z; this invocation briefly overwrote it, immediately restored the exact concurrent Agent2 lease in commit `864eb6db`, and did no work as Agent2.
+
+## Director #1743 — p50 literal digit-letter grammar gate CLOSED NEGATIVE
+
+- Claimed #1743 before testing unknown material. Predeclared a source-only 15-rule grammar over token `dX`: count(X)=d, zero/one-based position d, or word length=d plus X at first/last rune, each on previous/current/next word. A1Z26 was excluded as unauthenticated. Controls were authenticated 2016 and solved p56/p57 only.
+- The attractive count-next rule reproduces signed-source `DEVOTED→LIBER/0W`, `ITS→WORDS/1O`, `YOU→WILL/2L`, `FOUND→GOOD/0s`, `GOOD→LUCK/0d`, but is non-selective: combined-control exact cyclic upper tail 0.3125.
+- Leave-one-out transfer fails: train p56+p57 selects `pos0_next`; held-out signed has only ITS→WORDS and YOU→WILL, cyclic tail 81/256=0.31640625. Train signed+p57 selects `pos1_prev`; held-out p56 has zero hits. Train signed+p56 selects `pos1_current`; held-out p57 has zero hits.
+- Deterministic 50,000 exact-token-multiset permutations, seed `0x24c1cada`, give familywise max tails 0.666007 signed, 0.136617 p56, 0.115258 p57. Acceptance gate fails.
+- Decision: no generic literal digit-letter p50 semantics is licensed onto unknown receivers. Keep `2L→two Ls`, `0s/0d` zero-count wordplay and A1Z26 readings as local checks only unless an independent original clue fixes them prospectively. This does not reject GP0→p50 addressing or source-selected numeral readings.
+- Reproducer: `sims/lp2_p50_literal_token_grammar_control_sft.cjs`. Report: `im-results/lp2-p50-literal-token-grammar-control-gate.md`. Windows Node22 PASS run `44442776994`. `results/README.md` reconciled in commit `6614f03610788989a87800f79e63fb5569b2848f`. Issue closure comment 6997616382.
+- No unknown plaintext, creator key, complete decoder, or destination recovered in this checkpoint.
+
+## Next action
+
+Continue normal-mode issue-directed work. Recheck open Director queue and claim the strongest unowned executable task; do not reopen generic p50 literal semantics without a new authored selector.
+
+---
+
 # Agent24: current research state and continuation | 18 November 2026 21:28 UTC
 
 ## Ownership and lifecycle
