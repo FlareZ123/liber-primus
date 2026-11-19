@@ -59,15 +59,70 @@ and the existing p23 DH handoff is:
 B=19 -> p50[19] = 0X -> base60 33 -> physical p33 -> THEIR RISE
 ```
 
-So the full source-connected fork is:
+So the first source-connected fork is:
 
 ```text
 p23 THE ORIGINAL
   THE      -> FIND -> p28 READ OUT
-  ORIGINAL -> MUST -> VERIFY -> B -> p33 THEIR RISE
+  ORIGINAL -> MUST -> VERIFY -> B -> p33
 ```
 
 This supplies a second, operation-distinct route from p23 into p33 while simultaneously creating a direct p23-to-p28 route.
+
+## FIND / MUST numbers predict the p33 THEIR RISE loop
+
+The low-digit outputs are not only authenticated p57 words. Under the title-inclusive, one-based p57 word-number convention already used by terminal routes:
+
+```text
+FIND = word 15 = b
+MUST = word 10 = K*g
+```
+
+Apply the already frozen outside-in map:
+
+```text
+H(x,y) = (x-y, x+y) mod29
+
+H(FIND#, MUST#)
+= H(15,10)
+= [5,25]
+= [g, second signed-2016 THEIR position]
+```
+
+This pair is unique over every ordered pair of the 20 clear p57 word positions: only positions **15,10**, i.e. **FIND,MUST**, map to `[g=5,25]`.
+
+The ORIGINAL branch independently supplies the other endpoint:
+
+```text
+MUST -> VERIFY
+p50[VERIFY=59] = literal 19 = B
+first signed-2016 THEIR position = 19
+second signed-2016 THEIR position = 25
+rise = 25 - 19 = 6 = a
+```
+
+The same source pair then gives the already documented p33 H relation:
+
+```text
+H(19,25) = [23,15] = [p,b]
+```
+
+So the p23 fork predicts the semantic state carried by p33's independently recovered **THEIR RISE** phrase:
+
+```text
+THE ORIGINAL
+ -> FIND / MUST
+ -> p57 positions [15,10]
+ -> H -> [g, THEIR₂=25]
+
+ORIGINAL
+ -> MUST -> VERIFY
+ -> B=19 = THEIR₁
+
+THEIR rise: 19 -> 25, delta 6=a
+```
+
+This does not decrypt p33 body text. It is a cross-source state prediction from the already recovered p23 phrase into the independently established p33 layout semantics.
 
 ## Convention charge
 
@@ -105,9 +160,11 @@ Still, it removes a real ambiguity in the human solve path:
 - p23's recovered instruction now has a concrete consumer under an independently selected p50 operation;
 - its first word reselects the independently recovered p28 instruction object;
 - its second word passes through two authenticated command words and rejoins the independently reconstructed DH state at B;
+- FIND/MUST's fixed p57 positions uniquely map under H to `[g,25]`;
+- B=19 and the predicted 25 reconstruct the p33 THEIR positions and their rise `6=a`;
 - B lands on the already validated p33 state/checkpoint page.
 
-Do not generalize this to arbitrary English-word walks or change component conventions. The next useful step is to ask whether the two selected destination instructions, READ OUT and THEIR RISE, determine a common operation or receiver without another semantic type switch.
+Do not generalize this to arbitrary English-word walks or change component conventions. The next useful step is to use the now-linked p23→p28/p33 state graph to seek a receiver selected jointly by READ OUT and the reconstructed THEIR-rise state, without inventing a new token component or cipher family.
 
 ## Reproduction
 
