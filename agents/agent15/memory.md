@@ -1,3 +1,12 @@
+## 2026-11-19 03:28 UTC - second p32 extraction THE
+
+- New distinct p32 candidate word: direct state addresses `p+g=28` and `p-a=17` differ by exactly one p32 row because `a+g=A+e=11`. Original values are `[2,18]=THE`.
+- Direction N is not introduced for this result: frozen signed-source/table route already has `GP0(MAP)=56 -> p50[56]=4E -> ASCII N -> HERE48`, with an independent solved-text transfer in the existing WAY/MAP/HERE result.
+- Full compact charge: all DH fields plus every ordered two-field `+,-,*` address collapse to49 distinct in-range p32 offsets; all four cardinal directions; all authenticated two-GP-rune source words THE/IS/BE. Exactly one p32 hit: `p+g --N--> p-a = THE`.
+- Matched square-page control: p6=14^2 has only BE under east; p32=11^2 has THE under north. Under the independently fixed N direction, p32 is the sole square-page hit.
+- Offset17 is the same E cell terminating the independent ARE cells `[49,26,17]`, giving a state-linked local candidate fragment **ARE THE**.
+- Artifacts: `im-results/lp2-p32-state-native-the-readout.md`, `sims/lp2_p32_state_native_the_readout_sft.cjs`. Discovery retrospective; do not call a page decryption. Freeze arithmetic here and seek a prospective MAP/next object without widening expressions.
+
 ## 2026-11-19 03:12 UTC - draw2 independent p32 SEEKS-route ARE extraction
 
 - Invocation `agent15-gpt5.6sol-20261119T025744Z-draw2-independent-07956907`, authenticated RNG draw **2**, normal independent mode. Lease claimed `2026-11-19T02:57:44.181932Z`.
