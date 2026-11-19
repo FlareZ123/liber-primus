@@ -11,7 +11,7 @@ The p32/p47 low-digit route supplies a compact candidate key with a natural targ
 - The same selector on p47 selects eight words in page order, totaling **32 GP29 runes**. Their GP0 sum is 534 and their GP-prime sum is **2013**.
 - Appending the ordered cycle states [54,36] gives **76 key items**, matching the 76 original GP29 runes on corpus page55.
 
-The 2013 prime-sum match and the 76-length alignment are post hoc observations, not authenticated instructions. But a contemporary solver familiar with Cicada's historically demonstrated bytewise XOR could reasonably try this one direct transfer before rejecting it.
+The 2013 prime-sum match and the 76-length alignment are post hoc observations, not authenticated instructions. But a contemporary solver familiar with Cicada's historically demonstrated bytewise XOR could reasonably try this one direct transfer before rejecting it. The original 2013 audio-stage bytewise XOR is independently documented in [the source-original XOR gate](lp2-2013-audio-direct-packed-gp29-original-xor-gate.md); that report does not select this p32/p47 key or p55 receiver.
 
 ## Source alignment correction
 
@@ -28,7 +28,7 @@ No other page p0–55 satisfies the same GP0 = 13m and prime-sum = m² relation 
 
 ## Exact XOR tests
 
-Target: the original 76 GP29 indices on corpus page55.
+Target: the original 76 GP29 indices on corpus page55 (the corresponding original scan is [72.jpg](../resources/liber-primus/72.jpg)). The p47 key material is drawn from original scan [64.jpg](../resources/liber-primus/64.jpg).
 
 Key order is frozen as p32 selected words in page order, then p47 selected words in page order, then the source-ordered cycle states [54,36]. No offset, reversal, key permutation, or fitted phase is introduced.
 
