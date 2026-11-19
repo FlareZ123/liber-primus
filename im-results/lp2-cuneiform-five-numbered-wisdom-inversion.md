@@ -83,13 +83,17 @@ The only next cryptographic operation in this bounded test is the known solved-p
 All six outputs have no discernible GP-native plaintext opening and remain near the uniform 29-symbol IoC of 0.03448. The exact inverses fully restore all **553/553** original symbols. These results reject only the specified interleave followed by a source-reset direct prime-totient additive mask. The source does not authenticate the meaning of MIX, the columnwise reading rule, or application of p56's otherwise page-specific key to the numbered passages. No unknown plaintext or key was recovered. [Single-file reproducible test](../sims/lp2_five_numbered_mix_primephi_sft.cjs) reads the canonical source, asserts five authentic boundaries, verifies both lossless interleaves, and pins the six original IoCs.
 
 
-## Word-level MIX interleave under the exact p56 F-transparent rule
+## Word-level MIX interleave under the exact p56 F-transparent rule — unverified
 
-The source-visible prompt is the five red-numbered passages; the 2014 Wisdom-square route also yields the interpretive candidate word MIX. The cheapest word-based reading is round-robin interleaving: take word 1 from passages 1–5, then word 2, continuing and skipping exhausted passages. I tested both 1→5 and 5→1 order. This is a hypothesis about the MIX instruction, not an established author directive.
+The source-visible prompt is the five red-numbered passages; the 2014 Wisdom-square route also yields the interpretive candidate word MIX. The cheapest word-based reading is round-robin interleaving: take word 1 from passages 1–5, then word 2, continuing and skipping exhausted passages. Both 1→5 and 5→1 orders were proposed. This is a hypothesis about the MIX instruction, not an established author directive.
 
-The consumer is the already-solved p56 prime-totient GP29 shift with its exact plaintext-F transparency rule: the key index advances only for non-F plaintext. A dynamic program retains every legal history. At each ciphertext F it branches between literal transparent F (no key advance) and a non-F decryption; at other symbols it accepts only non-F plaintext. The p56 key is continuous across the 553-rune composite stream, with no fitted phase or passage reset.
+The proposed consumer is the solved p56 prime-totient GP29 shift with its plaintext-F transparency rule: the key index advances only for non-F plaintext. The intended dynamic program retains every legal history, branching at ciphertext F between literal transparent F and non-F decryption.
 
-| Input ordering | Key sign | First impossible transformed-stream position (0-based) |
+**The committed SFT does not currently execute this new section.** Its only workflow run, **44501862911**, was triggered by the prohibited `push` event and failed at line 103 with `ReferenceError: ROOT is not defined`. Static inspection also finds a second scope error: `interleaveWholeWords()` references `starts[row]`, but `starts` is declared locally inside the separate `interleave()` function. The new DP assertions and p57 positive-control assertions were therefore not reached.
+
+The following first-impossible positions were recorded in the original report, but are **unverified claimed outputs**, not reproducible results:
+
+| Input ordering | Key sign | Claimed first impossible position (0-based) |
 | --- | ---: | ---: |
 | As printed | +1 | 1 |
 | As printed | −1 | 13 |
@@ -102,9 +106,7 @@ The consumer is the already-solved p56 prime-totient GP29 shift with its exact p
 | Word round-robin 5→1 | +1 | 45 |
 | Word round-robin 5→1 | −1 | 7 |
 
-All ten variants exhaust every legal F-transparent history before the stream ends. The word interleave is a lossless permutation of the original **122 words / 553 runes**; its passage word counts are [30,20,25,19,28]. A positive control repeats known p57 plaintext to 553 runes, encrypts it with the same F-transparent p56 rule, and the inverse retains legal paths for both signs (phase ranges 534–538 and 535–537). The DP is therefore not rejecting every input.
-
-This rejects the specific transfer of the p56 cipher to the as-printed five-passage stream and to the natural rune- and word-level round-robin MIX readings. The weakest premise is that the p56 cipher should transfer to p36–38 at all; no source explicitly establishes that. It is a bounded negative on this human-plausible route, not proof that the five passages are not ciphertext. Reproduction is in sims/lp2_five_numbered_mix_primephi_sft.cjs.
+Do not treat the ten-variant rejection, the claimed 122-word/553-rune interleave, or the claimed positive-control success as established until the implementation is repaired and a manual `workflow_dispatch` run passes. The earlier six fixed direct-additive variants remain a separate completed negative. The p56-to-five-passage transfer remains an unverified hypothesis; no conclusion about these F-transparent variants is currently supported.
 
 ## LP1 Wisdom 5×5 matrix applied to the five numbered streams
 
