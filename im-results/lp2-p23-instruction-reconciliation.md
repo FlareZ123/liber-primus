@@ -42,7 +42,7 @@ The copied stencil count5 and that selected line's terminal rune GP0=25 extend t
 [2,6,3,5,4,5,25] -> THE ORIGIN.
 ```
 
-Across all **188** five-word printed lines, even granting every line the same dot cardinal5 plus its own terminal GP0, p23 line1 is the only packet beginning `THEORI`; it yields the complete `THEORIGIN`.
+Across the manuscript there are **188** five-word printed lines. Nine end in GP0=0, which is outside the positive one-based prime-cardinal domain and are excluded before serialization. Among the remaining **179 serializer-valid** lines, even granting every line the same dot cardinal5 plus its own terminal GP0, p23 line1 is the only packet beginning `THEORI`; it yields the complete `THEORIGIN`.
 
 The three five-dot motif-adjacent controls remain:
 
