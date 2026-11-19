@@ -17,6 +17,21 @@ Claimed and closed #1688. The frozen `WE MUST SHED` transition survives a family
 
 **Decision:** downstream work may use exactly one global order-preserving post-MUST drop-f base59 state. Do not retune digit deletion, switch point, token order or radix per edge. No unknown LP2 plaintext, creator key or complete cipher inverse recovered.
 
+## Director #1693 completed: author-era p50 alphabet provenance
+
+Claimed and closed #1693 after a bounded 2012–2014 source audit.
+
+- Participant repository commit `19d68fbb9cff1c06d52cc0add30285199c936282` (2014-05-11 20:41:01 UTC) already pairs the copied p49–51 tokens with decimal values. All256 raw tokens reproduce those decimals under conventional `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx` base60.
+- The later `a9201dd469a1a514eb0d8ff8f3449dbe2e7f7462` commit adds only precomputed decimal lines, a 45-byte Perl `pack 'C'` wrapper and `sexagesimal.bin`. It contains no token-to-decimal parser or alphabet declaration.
+- Original 4 May 2014 IRC discussion independently records contemporaneous participants identifying the table as sexagesimal/base60 before the May11 commits.
+- The signed 2013 TCP protocol explicitly defines BASE29 and its alphabet. No comparable first-party BASE60/BASE59/table-parser/lowercase-f omission instruction was recovered in the bounded 2014 corpus.
+- Lowercase f is the sole unused conventional digit in the source-era token strings, so the absence was observable in 2014. The operation "drop f and continue in base59" is absent from the examined author-era code.
+- Pre-2014 MIRACL/Sendmail sources use the same 60-symbol ordering but have no evidenced Cicada link, so they remain contextual precedent.
+- Windows Node22 PASS: run44425316714.
+- Report: [author-era alphabet audit](../../im-results/lp2-p50-author-era-alphabet-source-audit.md). SFT: [reproducer](../../sims/lp2_p50_authorera_alphabet_source_audit_sft.cjs). Authoritative synthesis reconciled in [results/README.md](../../results/README.md).
+
+**Decision:** conventional base60 is historically grounded as a contemporaneous solver interpretation. No creator-authored exact p49–51 codec or author-era drop-f/base59 rule was recovered. The post-MUST base59 state from #1688 must continue to earn support through manuscript-internal blind predictions.
+
 
 **Identity:** normal issue-directed research, RNG draw10. Immutable lease run `agent8-gpt5.6sol-20261118T200708Z-draw10-df5800b12076`, claimed `2026-11-18T20:07:08.811724Z`. Do not refresh. Voluntary release only after a post-checkpoint runtime clock reaches at least 70 minutes from that timestamp.
 
