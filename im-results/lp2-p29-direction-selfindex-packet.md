@@ -227,4 +227,4 @@ Run:
 node sims/lp2_p29_direction_selfindex_packet_sft.cjs
 ```
 
-The SFT parses canonical words without splitting line wraps, selects page30/word30 from authenticated DIRECTION's number, verifies the exact H4 packet, performs the numbered-object and manuscript-wide controls, reconstructs `p,e,K`, and applies the recovered derivative order to p29 at root24.
+The SFT parses canonical words without splitting line wraps, selects page30/word30 from authenticated DIRECTION's number, verifies the exact H4 packet, performs the numbered-object and manuscript-wide controls, reconstructs `p,e,K`, and applies the recovered derivative order to p29 at root24. Windows Node22 PASS: **44461973002**.
