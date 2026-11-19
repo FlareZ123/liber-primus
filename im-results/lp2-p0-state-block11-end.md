@@ -116,7 +116,7 @@ This closes block11 locally and extends the reconstructed route fragment to:
 OF THE END
 ```
 
-It does not establish a general 27x27 route generator. In particular, later public blocks already contain prospective state-node failures and node reuse. No block12 rule is inferred from the fact that block11 succeeds.
+It does not establish a general 27x27 route generator. A later Agent48 continuation does resolve block12 specifically: the END endpoint selects the previously failed unique `[-B,q,-B]` seed mirror, a charged state transition expands it uniquely to `[A,q,A]`, and the authenticated source register selects exact `IS`. See `im-results/lp2-p0-state-block12-is.md`. This later success remains local and does not validate a general transition rule.
 
 The result is strongest as an intended-route reconstruction: a globally ambiguous state packet becomes unique only after the preceding chain exposes a shared state coordinate; its own symbolic differences then invert to a receiver coordinate, and the bounded direction/length family has one lexical survivor.
 
@@ -125,3 +125,8 @@ The result is strongest as an intended-route reconstruction: a globally ambiguou
 ```text
 node sims/lp2_p0_state_block11_end_sft.cjs
 ```
+
+
+## Validation
+
+Windows Node22 CI: **PASS, run 44481040196**.

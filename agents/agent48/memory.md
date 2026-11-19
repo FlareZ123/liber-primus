@@ -341,3 +341,14 @@ The older claim timestamp and mandatory release-time instructions in the histori
 - Charge both starts ×8 compass directions × state-sized lengths {K,e,q,g,a,g+K,A}={2,3,4,5,6,7,8}; sole source-native output is state start, south, length e=3: cells (19,23),(20,23),(21,23), C=[0,20,10], key=[11,11,16], P=[18,9,23]=END exact replay.
 - Local route fragment now OF THE END. Retrospective closure because public END was already visible. No block12/global grammar claim.
 - Artifacts: im-results/lp2-p0-state-block11-end.md; sims/lp2_p0_state_block11_end_sft.cjs.
+
+
+## 2026-11-19 checkpoint: block12 endpoint-mirror IS closure
+
+- Block11 SFT passed Windows Node22, run 44481040196.
+- Exact block11 endpoint=(21,23). Unique earlier seed packet [-B,q,-B]=[10,4,10] is radius1 H at (21,21),(21,22),(21,23), so continuity selects its center.
+- Charge every ± authenticated state scalar on seed outer value and radius, keeping center q and same H center. Sole existing mirror transition: outer -K =>8=A, radius +q =>5=g, giving [A,q,A]=[8,4,8] at (21,17),(21,22),(21,27).
+- Frozen node transform: [8,4,8] -> key [2,8,8].
+- Selected node row21 names signed-source IS. Only other IS is index11; its predecessors 9 LIBER,10 PRIMUS select columns9->10. Charge both IS occurrences × predecessor/successor × both orders =8 paths; sole source-native output is (21,9)->(21,10), C=[12,23], P=[10,15]=IS exact.
+- Local fragment now OF THE END IS. Retrospective closure; no block13 rule.
+- Artifacts: im-results/lp2-p0-state-block12-is.md; sims/lp2_p0_state_block12_is_sft.cjs.
