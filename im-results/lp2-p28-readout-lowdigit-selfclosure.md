@@ -131,4 +131,4 @@ Run:
 
 `node sims/lp2_p28_readout_lowdigit_selfclosure_sft.cjs`
 
-The SFT reconstructs the 11,304-member charged cube family from original LP2 data, rebuilds the 21 two-word parses from the pinned English register, charges all 16 token-component modes and asserts the unique forward READ OUT self-closure.
+The SFT reconstructs the 11,304-member charged cube family from original LP2 data, rebuilds the 21 two-word parses from the pinned English register, charges all 16 token-component modes and asserts the unique forward READ OUT self-closure. Windows / Node.js 22 reproduction passed in Actions run [44443888298](https://github.com/FlareZ123/liber-primus/actions/runs/44443888298).
