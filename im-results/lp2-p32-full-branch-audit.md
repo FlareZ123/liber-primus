@@ -14,7 +14,7 @@ Starting only from the authenticated 2016 source, canonical p50 tape, p32 bounda
 - finite state distances `{p,g,a,b,A,B,K,e,q,-K,g+K}` reduced modulo11;
 - all six signed `THE -> next word` pairs as possible READ OUT source returns.
 
-This is **67,584 nominal configurations**.
+This is **135,168 nominal configurations**, including both four-rune spans immediately adjacent to the selected X.
 
 No destination dictionary word is used as an acceptance condition. A branch must:
 
@@ -49,7 +49,7 @@ Only zero-based `EMPTY mod 11 = 4` lands on the literal X of fragment7.
 
 ## Full geometric result
 
-The full family has **32 representational successes**, yet all 32 collapse to **one physical branch**:
+The full family has **32 representational successes**, all from the four-rune span to the **left** of X. The equally natural four-rune span to the **right** of X has **zero** successes. All 32 surviving representations collapse to **one physical branch**:
 
 ```text
 source fragment7
@@ -66,7 +66,7 @@ H(first,last) = [7,8]
 signed positions 7,8 = THE DEVOTED
 ```
 
-The 32 representations are explained exactly:
+The 32 left-span representations are explained exactly:
 
 - 2 equivalent carry/count descriptions of physical fragment7;
 - 8 coordinate-gauge descriptions from square dihedral orientation paired with direction;
@@ -138,6 +138,7 @@ Director #1780's positive branch-family gate is met at the level of the **physic
 
 - base60 is uniquely retained;
 - fragment7/X position4 are physically retained despite two equivalent counting descriptions;
+- the right-hand X-adjacent four-rune control has zero source-loop returns;
 - all square-orientation/direction aliases reduce to one physical translation;
 - the only remaining state label ambiguity is the exact modulo11 identity `g ≡ -K`;
 - the destination's enclosing fragment READ OUT returns exactly `THE DEVOTED`;
@@ -151,4 +152,4 @@ This authenticates the p32 loop as a sparse, source-constrained physical mechani
 node sims/lp2_p32_full_branch_audit_sft.cjs
 ```
 
-The SFT charges all 67,584 nominal branch configurations and verifies the held-out terminal collision consequence.
+The SFT charges all **135,168** nominal branch configurations, including both X-adjacent four-rune spans, and verifies the held-out terminal collision consequence. Windows / Node.js 22 run **44454599193** passed the complete checkpoint.
