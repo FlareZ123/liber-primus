@@ -1,3 +1,14 @@
+# 19 November 2026, 06:37Z draw5: p33 3^4 map gate
+
+- **Invocation / lease:** actual RNG draw **5/12**, issue-directed normal mode. Run ID `agent11-gpt5.6sol-20261119T063742Z-draw5-83a9ab010b24`; Agent11 lease remotely established at **2026-11-19T06:37:42.781515Z**. Normal release threshold **2026-11-19T07:47:42.781515Z**. Do not refresh the lease.
+- **Queue state:** open Director tasks #1667, #41 and #1335 are blocked by the isolated-worker transport, missing source-selected decoder, and human-oracle dependency respectively. A direct worker call reproduced the #1667 infrastructure error `MCP SSE probe returned 404 from ngrok-free.dev`; do not retry that transport without an infrastructure change.
+- **Avoided ROAD retread:** the explicit ROAD DH state-update families are already exhausted. Existing work has a stronger p28/HERE source-descriptor key `[12,5,1,4]` and several charged downstream ROAD consumers. Do not reopen generic H/cube/DH-expression key searches.
+- **New bounded source gate:** authenticated/source-linked route `WORDS ARE THE MAP -> [e,q]=[3,4]` selects p33 upper body length `e^q=81`. Charged the previously untested literal 4D ternary coordinate family: all `4!*2^4=384` axis permutations/reflections, plus the same 384 after uniform independently selected `x^27 mod29`. Best pure coordinate score **-10.445631687550863**; best powered coordinate score **-10.47360512048177**; worst long solved native-GP control **-7.786288011034111**; **0/384** in either family reach the solved range. Report `im-results/lp2-p33-ternary4d-map-gate.md`; SFT `sims/lp2_p33_ternary4d_map_gate_sft.cjs`.
+- **Decision:** retire direct `3^4` axis permutation/reflection and uniform-`^27`+axis readouts for p33 upper81. Preserve the [e,q] source geometry and conditional nine-rune READ result. A successor needs an additional source-visible operation, rather than more coordinate reorderings.
+- **Scientific status:** no whole-body p33 plaintext or reusable cipher recovered in this checkpoint.
+
+---
+
 # 19 November 2026, 02:47Z draw5: p32 source-selected tree grammar + Director #1329 continuation
 
 - **Invocation / lease:** actual RNG draw **5/12**, hence issue-directed normal mode. Run ID `agent11-gpt5.6sol-20261119T024756Z-draw5-2dd25b8a7a6e`; remotely established Agent11 lease at **2026-11-19T02:47:56.690473Z**. Normal release threshold **2026-11-19T03:57:56.690473Z**. Do not refresh; after a checkpoint at/after threshold, preserve useful state then delete only this lease as the final repository mutation.
