@@ -51,6 +51,14 @@ AMEJEOETHWPBXOEYOGMUAEDCERAETFLREOGSEADFAUGYDUEALAEOHPEOFHDHUYXEIFOEMIWJNEADANPE
 
 Its scaled GP29 IoC is **0.9259649123**. The first 76 clear p57 runes score **1.7298245614** under the same statistic.
 
+I then tightened the same frozen model to preserve solved-p56 literal-F transparency deterministically: each of p55's ciphertext-F positions 15, 25 and 41 is emitted as literal plaintext F and consumes no perimeter key symbol. The decoder therefore consumes 73 of the 76 phase-fixed key values. Its complete output is likewise nonprose:
+
+```text
+AMEJEOETHWPBXOEYOGFBIAEJUAUNIAFSUNONGIATHTHEOSFNUGLFESWFEOMGGFURYGEIAWPNAEDWSEAAEJNSBTAEXUFT
+```
+
+The transparent-clock scaled IoC is **1.1091228070**. Preserving the original p55 word boundaries yields fragments such as `A-MEJE-OETH-WP-BXOEYOG-...`, with no coherent sentence structure.
+
 A method-positive encrypts the genuine first 76 clear p57 runes with this exact phase/key and recovers all **76/76** symbols.
 
 ## Decision
@@ -59,7 +67,7 @@ Retire the exact historical reading
 
 `3301 -> mod76 phase33 -> p50 outer circumference -> direct p55 additive pad`.
 
-The new historical clue removes the old arbitrary-phase objection, yet the resulting fixed inverse is nonlinguistic. This result supplies no reason to reopen other phases, directions, signs, radices or nonlinear perimeter consumers.
+The new historical clue removes the old arbitrary-phase objection, yet both the ordinary clock and the deterministic p56-style literal-F clock are nonlinguistic. This result supplies no reason to reopen other phases, directions, signs, radices or nonlinear perimeter consumers.
 
 ## Reproduction
 
