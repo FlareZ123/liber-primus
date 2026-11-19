@@ -77,6 +77,40 @@ H(g,B) || [K*a]
 
 So both direct and H coordinates are compact expressions in the independently reconstructed p28 state.
 
+## The packet recovers Bob/private state
+
+The selected values also act as a compact state checkpoint under operations already fixed upstream. The outer H difference gives Bob's private exponent directly:
+
+~~~text
+H(g,B)[0]
+= g-B mod29
+= 5-19 mod29
+= 15
+= b.
+~~~
+
+The center recovers the shared secret from Alice's already reconstructed private exponent:
+
+~~~text
+(K*a) / a mod29
+= 12 * 6^-1 mod29
+= 12 * 5 mod29
+= 2
+= K.
+~~~
+
+Charge both equations across every complete three-rune unknown word. Among 726 triples:
+
+~~~text
+outer difference = b:       17
+center = K*a:               32
+both equations:               2
+both and all runes in the
+published DH/derived pool:    1
+~~~
+
+The two raw both-equation hits are p36 offset221 `[11,12,25]` and the selected p38 offset54 `[5,12,19]`. Only the p38 word is itself entirely composed of reconstructed state values. This is a finite state-checkpoint property, not a new decryption.
+
 ## Packet endpoints select WILL without LP2 plaintext
 
 Use the same already selected base60 low-digit p50 operator on the packet's two outer state values:
@@ -173,11 +207,33 @@ B=19   -> 33 -> 54 -> 36 -> 54 ...
 
 Among all starting residues0..28, only 10 and19 ever enter that two-cycle. The B branch is the one that passes through signed index33 WILL before entering it. This is a compact description of the local automaton, not an instruction to iterate arbitrary p50 states.
 
+## Immediate repeated-key consumer: FAIL
+
+The selected state packet is immediately followed by a six-rune p38 word at offsets57..62:
+
+~~~text
+[8,25,14,2,17,22].
+~~~
+
+Before checking any target labels, freeze the two simplest packet-as-key consumers:
+
+~~~text
+direct packet repeated twice:
+[g,K*a,B,g,K*a,B]
+
+H-state repeated twice:
+[b,-g,K*a,b,-g,K*a]
+~~~
+
+Test both additive signs. None of the four outputs equals any authenticated six-GP-rune source target; the target family is `PRIMUS / BEWARE / VERIFY`.
+
+This rejects the obvious repeating-key use of the state packet on its immediate successor. Do not widen to rotations, clocks or mixed packet/H coordinates without an independent instruction.
+
 ## Decision
 
 Promote offsets54..56 from a merely selected next word to a **source-connected DH state packet**. Its reciprocal p50-low closure and its endpoint selection of WILL are both exact, finite, and use conventions fixed upstream.
 
-Keep the claim at the navigation/state level. The endpoint interpretation was discovered after opening the selected word, and this result does not produce a new ciphertext plaintext pair. The next useful test is whether the packet's middle field `K*a` or its H-state `[b,-g,K*a]` has an independently selected consumer, rather than inventing one from the table.
+Keep the claim at the navigation/state level. The endpoint interpretation was discovered after opening the selected word, and this result does not produce a new ciphertext plaintext pair. The direct and H packet forms already fail the immediate repeated-key consumer. The next useful test requires an independently selected consumer for the middle field `K*a` or H-state `[b,-g,K*a]`, rather than inventing rotations or clocks.
 
 ## Reproduction
 
