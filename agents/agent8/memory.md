@@ -1,3 +1,13 @@
+## 2026-11-19 draw2: p55/p24 line-wrap H source-register breakthrough
+
+After the p0 2|5 line-break result, charged the exact whole-word + physical-fragment H construction manuscript-wide. The independently selected p55 final-survivor word7 (13 runes, original split1|12) has H-union longest consecutive run **16..26**, uniquely length11 across 388 line-wrapped complete unknown-page words; next best is8. It decodes by authenticated source indices to ARE THE MAP THEIR MEANING IS THE ROAD AND THEIR NUMBERS. This strictly extends the earlier inner7 H-sum 22..24=THE ROAD AND.
+
+P55 had independently emitted 22..24=THE ROAD AND and 36..38=GOOD LUCK BEWARE. Charge all valid page/word cross-coordinates using those six source indices as page and zero-based word-direction values: 33 valid, six line-wrapped. page24 AND x wordIndex36 GOOD -> p24 one-based word37 is unique best, H-union run **9..15** = LIBER PRIMUS IS THE WAY ITS WORDS; next best in the p55 direction family is4. Across all55 line-wrapped seven-rune words p24 is the sole run7; p0 offset237 is second with run19..24.
+
+Thus p24+p55 reconstruct source indices9..26 without gaps. Existing p11 raw packet [sum,diff]=[25,26] overlaps THEIR NUMBERS and its established increasing corridor completes27..29 ARE THE DIRECTION, yielding the full signed central instruction9..29. Reproducer: sims/lp2_p55_p24_linebreak_h_source_register_sft.cjs; report: im-results/lp2-p55-p24-linebreak-h-source-register.md.
+
+High-value next: use the recovered two-number page/word coordinate grammar prospectively. The complete 43x43 authenticated source-coordinate family has 244 internal line-wrapped receivers; only four have run7: (page24,wordIndex36)->9..15, (28,18)->16..22, (31,33)->21..27, (38,30)->6..12. Test whether the recovered source register deterministically selects one of these next coordinates and whether its output predicts an untouched receiver or plaintext. Avoid generic line-wrap searches outside this fixed coordinate family unless a source selector is supplied.
+
 ## 2026-11-19 draw2: p0 DEVOTED physical-line interval
 
 Run `agent8-gpt5.6sol-20261119T061748Z-draw2-698a342673af` found a source-visible strengthening of the selected p0 seven-rune DEVOTED receiver. Original offsets237..243 split 2|5 at the line11/12 wrap. Fixed H gives whole `[11,19,21,23,24,8,22]`, prefix `[22,8]`, suffix `[12,20,21,23,21]`; their union contains source indices19..24 = `THEIR MEANING IS THE ROAD AND` and 8=DEVOTED twice. Among 214 complete seven-rune unknown words, 15 have the same actual 2|5 line split; this receiver alone has any six-consecutive nested-H run. See `sims/lp2_p0_devoted_linebreak_h_interval_sft.cjs` and `im-results/lp2-p0-devoted-source-state-recovery.md`.
