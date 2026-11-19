@@ -207,6 +207,19 @@ const redEvents = ink.pages
     .map((mark) => ({ page: page.page, offset: mark[0], count: mark[1] })))
   .sort((left, right) => left.page - right.page || left.offset - right.offset);
 
+/** @param {{page:number,offset:number,count:number}} left @param {{page:number,offset:number,count:number}} right */
+function firstPhysicalPageBreak(left, right) {
+  if (left.page === right.page) return null;
+  const firstWords = physicalPageWords(left.page)
+    .filter((word) => word.start >= left.offset);
+  let nextPage = left.page + 1;
+  while (nextPage === 50) nextPage += 1;
+  if (nextPage > right.page) return null;
+  const nextWords = physicalPageWords(nextPage);
+  if (!nextWords.length) return null;
+  return { wordsBefore: firstWords.length, nextPage, firstWord: nextWords[0] };
+}
+
 const comparable = [];
 for (let index = 0; index + 1 < redEvents.length; index += 1) {
   const left = redEvents[index];
@@ -215,6 +228,7 @@ for (let index = 0; index + 1 < redEvents.length; index += 1) {
   if (Math.abs(left.count - right.count) !== cubeExponent) continue;
   const interval = redInterval(left, right);
   const sixthWord = interval.words[5];
+  const pageBreak = firstPhysicalPageBreak(left, right);
   comparable.push({
     left,
     right,
@@ -228,15 +242,50 @@ for (let index = 0; index + 1 < redEvents.length; index += 1) {
       sixthWord?.values.length === 2 &&
       H(sixthWord.values)[0] === a &&
       H(sixthWord.values)[1] === p - 1,
+    lengthDivisibleByP: interval.runes.length % p === 0,
+    lengthQuotient: interval.runes.length % p === 0
+      ? interval.runes.length / p
+      : null,
+    pageBreak: pageBreak ? {
+      wordsBefore: pageBreak.wordsBefore,
+      nextPage: pageBreak.nextPage,
+      firstWordText: pageBreak.firstWord.text,
+      firstWordValues: pageBreak.firstWord.values,
+      firstWordH: pageBreak.firstWord.values.length === 2
+        ? H(pageBreak.firstWord.values)
+        : null,
+    } : null,
+    jointPageBreak:
+      interval.runes.length === 7 * p &&
+      pageBreak?.wordsBefore === A &&
+      pageBreak?.firstWord.values.length === 2 &&
+      pageBreak.firstWord.values[0] === b &&
+      pageBreak.firstWord.values[1] === interval.runes.length / p &&
+      H(pageBreak.firstWord.values)[0] === A &&
+      H(pageBreak.firstWord.values)[1] === p - 1,
   });
 }
 assert.equal(comparable.length, 6);
+const passageBoundaryKey = [38, 186, 10, 39, 119, 13];
 assert.deepEqual(
   comparable.filter((row) => row.jointMatch).map((row) => [
     row.left.page, row.left.offset, row.left.count,
     row.right.page, row.right.offset, row.right.count,
   ]),
-  [[38, 186, 10, 39, 119, 13]]
+  [passageBoundaryKey]
+);
+assert.deepEqual(
+  comparable.filter((row) => row.jointPageBreak).map((row) => [
+    row.left.page, row.left.offset, row.left.count,
+    row.right.page, row.right.offset, row.right.count,
+  ]),
+  [passageBoundaryKey]
+);
+assert.deepEqual(
+  comparable.filter((row) => row.lengthDivisibleByP).map((row) => [
+    row.left.page, row.right.page, row.lengthQuotient,
+  ]),
+  [[38, 39, 7]]
 );
 
 // The DH tuple closes exactly.
@@ -283,7 +332,9 @@ console.log(JSON.stringify({
   },
   familywise: {
     comparableIntervals: comparable.length,
-    jointMatches: comparable.filter((row) => row.jointMatch),
+    jointSixthCoordinateMatches: comparable.filter((row) => row.jointMatch),
+    pDivisibleIntervals: comparable.filter((row) => row.lengthDivisibleByP),
+    jointPageBreakMatches: comparable.filter((row) => row.jointPageBreak),
   },
   dh: { p, g, a, A, b, B, K },
 }, null, 2));
