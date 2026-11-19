@@ -199,6 +199,23 @@ assert.deepEqual(
 );
 assert.deepEqual(p0.columns.center, [4,8,19,8,4]);
 
+/** @param {number[]} values @returns {number[]} */
+function forwardRises(values) {
+  return values.slice(0, -1).map((value, index) => mod29(values[index + 1] - value));
+}
+
+assert.deepEqual(p0.columns.right, [7,13,20,28]);
+assert.deepEqual(forwardRises(p0.columns.right), [6,7,8]);
+
+const consecutiveRightRamps = receivers.filter((row) => {
+  const rises = forwardRises(row.columns.right);
+  return rises[1] === mod29(rises[0] + 1) && rises[2] === mod29(rises[1] + 1);
+});
+assert.deepEqual(
+  consecutiveRightRamps.map((row) => [row.page, row.ordinal]),
+  [[0, 1]]
+);
+
 const transforms = {
   raw: (values) => values,
   H: hOutsideIn,
@@ -244,8 +261,14 @@ console.log(JSON.stringify({
     inverseH: p0.inverse,
     markerColumns4_5_4: p0.columns,
     centerStateLabels: ["q", "A", "B", "A", "q"],
+    rightColumn: p0.columns.right,
+    rightColumnRises: forwardRises(p0.columns.right),
+    rightRiseSourceWords: ["SEEKS6", "THE7", "DEVOTED8"],
+  },
+  rightRampControl: {
+    consecutiveRampHits: consecutiveRightRamps.map((row) => [row.page, row.ordinal]),
   },
   orientationControl: transformHits,
   decision:
-    "After independent source selection of EPIPHANY SEEKS, the fixed residual H-inverse aligns with the visible 4|5|4 marker as [25,28,11,25] | [4,8,19,8,4] | [7,13,20,28]. The five-cell center is the exact independently reconstructed state palindrome q,A,B,A,q and is the sole palindrome among all 19 matched 8+5 receivers. This constrains p0-local key structure but does not generate the complete 13-atom key before ciphertext subtraction.",
+    "After independent source selection of EPIPHANY SEEKS, the fixed residual H-inverse aligns with the visible 4|5|4 marker as [25,28,11,25] | [4,8,19,8,4] | [7,13,20,28]. The center is the state palindrome q,A,B,A,q. The right column rises by [6,7,8] = SEEKS6,THE7,DEVOTED8 and is the sole consecutive-rise right column among all 19 matched 8+5 receivers. These rules constrain nine of the thirteen H-inverse key coordinates; the left column remains without an independent serializer.",
 }, null, 2));
