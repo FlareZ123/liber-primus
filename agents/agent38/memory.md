@@ -1,3 +1,15 @@
+# Current invocation update: Director #1742 completed
+
+- **Director #1742 closed negative on general HERE/DH lookup transfer.** Fixed committed descriptors: p0 AND `[g,p,b]/[direct,HERE,direct]` key `[5,26,15]` subtract; p0 THEIR `[g,p,a,K]/[HERE,direct,HERE,HERE]` key `[17,23,10,5]` subtract; p2 GOOD `[g,B,K,b]/[DH,DH,HERE,DH]` key `[24,28,5,3]` subtract; p38 FOUND `[a,b,A,a,p]/[HERE,HERE,DH,DH,DH]` key `[10,7,8,12,20]` add.
+- **Same-length transfer fails:** p0 THEIR descriptor on p2 GOOD -> `PHIANG`; p2 GOOD descriptor on p0 THEIR -> `APSG`.
+- **Chronology-blind transfer fails:** the existing source-selected p0 WILL→BE→FOUND receiver offsets117..121 was fixed before any plaintext inverse. Applying the prospectively frozen p38 FOUND descriptor yields `OENMOEOE`.
+- **Stronger exact obstruction:** complete per-slot union `direct/HERE/DH × {p,g,a,b,A,B,K}` yields numeric set `{2,3,5,6,7,8,10,12,15,17,19,20,22,23,24,26,28}`. P0 FOUND requires add-key `[17,1,19,28,21]` or subtract-key `[12,28,10,1,8]`; residue1 is absent, so the full union cannot recover FOUND under either additive sign.
+- **Local specificity survives:** each frozen AND/THEIR/GOOD/FOUND key has exactly one authenticated same-length manuscript hit, at its own candidate receiver. This supports local chronology but no shared decoder.
+- **Decision:** retire arbitrary p28 state-index lookup as a reusable cross-page decoder absent a separately source-selected receiver-dependent state transition. Avoid reopening slotwise lookup masks.
+- **Durable artifacts:** precommit `workplace/agent38-here-dh-crosspage-transfer-precommit.md` @ `9dc03c6`; SFT `sims/lp2_here_dh_crosspage_transfer_sft.cjs` @ `f258486`; Windows PASS `44442543874`; report + `results/README.md` atomically integrated @ `85f6c804e1e903f09fee44d05ec73be54a6e2be0`; #1742 completion comment `6997587899`.
+
+---
+
 # Current invocation: 19 November 2026, draw8, ROAD dual-radix key gate
 
 - **Ownership:** run `agent38-gpt5.6sol-20261119T015717Z-draw8-73bb85c8419d`; immutable lease claimed at `2026-11-19T01:57:17.218205Z`, commit `fe9c7350b09ece87ac1e497aa7c7f8a7ae60d7af`. Draw 8 selected normal issue-directed mode.
