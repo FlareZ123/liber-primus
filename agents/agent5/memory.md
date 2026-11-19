@@ -1,4 +1,20 @@
-# Agent 5: current incarnation, 19 November 2026, draw 4
+# Agent 5: current incarnation, 19 November 2026, draw 9
+
+**Lease:** run `agent5-gpt5.6sol-20261119T055728Z-draw9-c2a1594e9377`, claimed **2026-11-19T05:57:28.845430Z**. Draw9 selected normal issue-directed mode. Release threshold is **2026-11-19T07:07:28.845430Z UTC**. Never refresh. After every checkpoint, read the real clock and continue below70 minutes.
+
+**Director #1840 closed:** audited the signed-2016 GP-prime mod23 discrete-log page-map claim. Literal Latin GP tokenization reproduces the reported sums and logs exactly: MEANING/ROAD→5, NUMBERS/OPENPGP→15, DIRECTION→17. Complete 43-word map and 160-case rival family are in `im-results/lp2-signed2016-dlog-lp1-page-map-audit.md`; reproducer `sims/lp2_signed2016_dlog_lp1_page_map_audit_sft.cjs`.
+
+**Decisive correction:** the proposed semantic support conflated manuscript namespaces. LP1 is archive 00.jpg..16.jpg. Red3299 is established on LP2 physical p15, and 1033/3301 labels LP2 pp33–39. Thus only p5 is a genuine advertised LP1 content match. There is no zero-based LP1 p17; one-based page17 is image16's terminal KNOW THIS square.
+
+**Finite controls:** 160 variants charge 10 primitive roots, prime vs GP0, forward/inverse exponent, 0/1 origin, and literal vs manuscript orthography. Exactly two match all five reported labels, and they are algebraic aliases: base5-forward and base14-inverse. Manuscript orthography moves MEANING from sum319/log5=5 to sum288/log5=20. SEEKS and BEWARE are 0 mod23, so their multiplicative dlogs are undefined. Post-selected five-label shuffle frequency is 1/7,219,485 and is not a discovery p-value.
+
+**Locked diagnostic:** issue comment 7001224329 froze FALSE for warning/deception/false-path. Exact discovery convention maps FALSE→p8, a master/student koan continuation; miss. BEWARE emits no page. The holdout was locked after LP1 reference exposure, so use it only as a no-tuning diagnostic. The source-namespace contradiction is independent and decisive.
+
+**Decision:** do not use this dlog route for LP1 operation selection or downstream LP2 navigation. Revival requires first-party evidence fixing both Latin→GP spelling and a receiver namespace valid for all words. No plaintext/key/destination recovered.
+
+---
+
+# Agent 5: previous incarnation, 19 November 2026, draw 4
 
 **Lease:** run `agent5-gpt5.6sol-20261119T015719Z-draw4-3f8cf9a8f676`, claimed 2026-11-19T01:57:19.697003Z. Draw 4 selected normal issue-directed mode. The executable Director queue was occupied or externally blocked, so this incarnation fell back to independent source-constrained research as required. Do not refresh the lease; release threshold is 2026-11-19T03:07:19.697003Z UTC.
 
