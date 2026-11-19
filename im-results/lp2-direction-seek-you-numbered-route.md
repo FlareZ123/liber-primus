@@ -1,18 +1,18 @@
-# Canonical source-number route: YOU is the sole missing coordinate, while SEEK/AND changes EMPTY to ROAD
+# Canonical source-number route: YOU is the sole direct-word gap, now repaired by p32 boundary33; SEEK/AND changes EMPTY to ROAD
 
-**Agent6 correction, 19 November 2026. Classification: source-selected structural route evidence. The earlier p−1 YOU-wrap claim is retracted.**
+**Agent6 parser correction; Agent4 YOU33 boundary repair, 19 November 2026. Classification: source-selected structural route evidence. The earlier p−1 YOU-wrap claim remains retracted. P32's exact 11×11 geometry now supplies a different, source-visible repair for the one direct-word gap.**
 
 The source-number diagonal remains real under the repository's canonical printed-word contract, but the earlier page-local parser counted fragments created by physical page boundaries as separate words. Once the 32 words that cross physical page boundaries are kept intact, several local ordinals change. The strongest surviving facts are:
 
 - authenticated source ordinals still give **42/43** direct page/word coordinates;
-- **33 YOU** is still the sole missing direct coordinate;
+- **33 YOU** is the sole missing direct **word** coordinate, and is now repaired by the p32 boundary33 pair `[K,A]=[2,8]` rather than a wrap;
 - DIRECTION30 still selects the same exact p29 packet and recovers group order22;
 - p32 has **21** complete page-local words, so its length no longer equals group order22;
 - the former modulo22 YOU recovery is therefore unsupported;
 - corrected SEEK31 and AND32 form a unique lexical center transition
   `THE EMPTY THE -> THE ROAD THE` under the independently fixed zero-based source indexing.
 
-This correction preserves the source-selected route where it survives and removes the conclusions that depended on page-fragment numbering.
+This correction preserves the source-selected route where it survives and removes the conclusions that depended on page-fragment numbering. The later boundary repair preserves that correction: it does not manufacture a p32 word33.
 
 
 ## Upstream p28 mechanically selects the governing clause
@@ -25,7 +25,7 @@ THEIR NUMBERS ARE THE
 
 Across 2,699 canonical page-local four-word manuscript windows, this is the sole fixed difference/difference, GP-first readout producing any contiguous four-word phrase from the authenticated 43-word source. The source contains the phrase once and continues it with `DIRECTION`.
 
-P28 therefore selects the governing instruction before DIRECTION30 is consumed. This strengthens the surviving numbered route below. It does not restore the retired modulo-22 YOU wrap or the old boundary-fragment SEEK packet.
+P28 therefore selects the governing instruction before DIRECTION30 is consumed. This strengthens the surviving numbered route below. It does not restore the retired modulo-22 YOU wrap or the old boundary-fragment SEEK packet. The separate p32 boundary33 repair below uses the page's exact 11×11 rune geometry.
 
 See `im-results/lp2-p28-numbers-direction-readout.md` and `sims/lp2_p28_numbers_direction_readout_sft.cjs`.
 
@@ -33,7 +33,7 @@ See `im-results/lp2-p28-numbers-direction-readout.md` and `sims/lp2_p28_numbers_
 
 A later layout/receiver result now gives the route's post-YOU suffix a second, materially independent realization.
 
-The numbered diagonal already resumes after the single YOU wrap at:
+The numbered diagonal resumes after the former YOU direct-word gap at:
 
 ```text
 WILL34  -> project p33
@@ -84,7 +84,7 @@ length5: 311
 
 The older per-page parser restarted at every physical page and therefore promoted boundary fragments into local words. That is the source of the obsolete 731/320 counts and several shifted ordinals.
 
-## The direct numbered diagonal still has one failure
+## The direct numbered diagonal has one direct-word failure, now repaired by geometry
 
 For authenticated one-based source ordinal `n`, keep the existing route definition:
 
@@ -96,7 +96,7 @@ canonical local word = n
 
 Charge all 43 authenticated source ordinals using complete page-local canonical words.
 
-Exactly one direct coordinate is absent:
+Exactly one direct **word** coordinate is absent:
 
 ```text
 33 YOU
@@ -108,7 +108,27 @@ Exactly one direct coordinate is absent:
 
 P32 has exactly **21** complete page-local words.
 
-Every other source ordinal1..43 has the requested complete word on its numbered page. The unique failure at literal YOU therefore survives the parser correction.
+Every other source ordinal1..43 has the requested complete word on its numbered page. The unique direct-word failure at literal YOU survives the parser correction, but a later source-visible geometry repair resolves the route without pretending word33 exists.
+
+P32 has exactly 121 runes, so its established source geometry is an 11×11 square. Ordinal33 is exactly the third internal row boundary. Preserve the ordered pair straddling that boundary, offsets32/33:
+
+```text
+[2,8] = [K,A].
+```
+
+Among all ten internal p32 row boundaries this is the only pair whose two rune values are both direct authenticated DH fields. Charge all ten boundary pairs against all eight exact two-word red-span length pairs in the manuscript: **80 ordered comparisons, one match**. It is boundary33 `[2,8]` matching the immediately following p33 upper red title lengths `[2,8]`. That established p33 title decodes to `THEIR`, while its lower title `[3,5]` decodes to `RISE`.
+
+Thus the route now has a source-visible boundary handoff:
+
+```text
+YOU33
+ -> p32
+ -> 11x11 boundary33 [K,A]=[2,8]
+ -> p33 upper [2,8]
+ -> THEIR RISE.
+```
+
+See `im-results/lp2-p32-you33-boundary-p33-their-rise.md` and `sims/lp2_p32_you33_boundary_p33_their_rise_sft.cjs`.
 
 ## DIRECTION30 survives unchanged
 
@@ -173,7 +193,7 @@ p32 offset59
 
 Canonical numbering places it at **word10**, not word11. Group-order reduction therefore no longer selects it.
 
-The old statement that DIRECTION forces a unique p−1 wrap which finds YOU is retracted. P32 still has no justified direct YOU receiver. A later Agent30 result now supplies a different source-visible route that **bypasses p32** and reaches a p33 YOU receiver from the preceding AND object; that route is described below and does not revive the invalid wrap.
+The old statement that DIRECTION forces a unique p−1 wrap which finds YOU is retracted. P32 still has no justified direct **word**33 receiver. The boundary33 pair now repairs the numbered route at the page-geometry level. Separately, Agent30 supplies an independent source-visible route that reaches a p33 YOU receiver from the preceding AND object; neither result revives the invalid wrap.
 
 ## Corrected SEEK31 and AND32
 
@@ -285,9 +305,9 @@ SEEK AND
 
 This route deserves prospective testing at the next untouched consumer rather than further tuning of p32 wraps.
 
-## Replacement for the missing YOU coordinate
+## Independent p31 bypass of the former YOU word-coordinate gap
 
-The canonical correction leaves literal YOU as the sole absent direct page/word coordinate. Agent30 later found a separate continuation from the immediately preceding authenticated corridor, without choosing any p32 word.
+The canonical correction leaves literal YOU as the sole absent direct p32 word coordinate. Agent4's boundary33 repair now resolves that route through p32 geometry. Independently, Agent30 found a separate continuation from the immediately preceding authenticated corridor, without choosing any p32 word.
 
 The source pair is zero-based `30 SEEK / 31 AND / 32 YOU / 33 WILL`. Charge the source GP0 values. `SEEK` and `AND` are the **only adjacent equal-GP0 pair** in all 42 adjacent source pairs, with `GP0(SEEK)=GP0(AND)=56`. That source-only equality selects solved p56 before the p31 inverse is evaluated.
 
@@ -299,11 +319,11 @@ The same winning line pair has lower-to-upper rune rise `23-21=2=K`. A `RISE=+2`
 
 Freeze the p31 key `[17,14,7]` across all 716 complete canonical three-rune unknown-book words, the seven distinct authenticated three-rune targets and both signs: **10,024 configurations**. Exactly two hits survive: p31 word32 -> AND and p33 word29 start116 -> YOU. The p33 hit is therefore the sole cross-page transfer of the unchanged key.
 
-This supplies a concrete replacement for the retired p32 wrap: `SEEK AND -> shared GP0 56 -> solved p56 / p31 AND helper -> RISE +2 -> p33 -> fixed key -> YOU`.
+This supplies an independent bypass of the retired p32 wrap: `SEEK AND -> shared GP0 56 -> solved p56 / p31 AND helper -> RISE +2 -> p33 -> fixed key -> YOU`.
 
 P33 then continues internally under the independently recovered `THEIR RISE`: the YOU receiver is canonical word29 and the existing WILL receiver is word35, so `35-29=6=a`, giving `YOU -> WILL`. Independent p34/p35 local results already provide `BE -> FOUND`.
 
-This route does not recover p32 YOU plaintext and does not repair the invalid modulo-22 claim. It resolves the semantic missing-coordinate problem by a different authored path from AND into p33. The equal-chunk merge/order and this p31 application were recognized retrospectively, so preserve the stated family charges and do not generalize the key or page rise without a source selector.
+This route does not recover p32 YOU plaintext and does not repair the invalid modulo-22 claim. It bypasses p32 by a different authored path from AND into p33, while the boundary33 result independently repairs the p32 navigation coordinate itself. The equal-chunk merge/order and this p31 application were recognized retrospectively, so preserve the stated family charges and do not generalize the key or page rise without a source selector.
 
 See `im-results/lp2-p31-and-p33-you-rise-will.md` and `sims/lp2_p31_and_p33_you_rise_will_sft.cjs`.
 
@@ -331,8 +351,10 @@ READ OUT THE candidate
  -> numbered p29 word30
  -> exact [p-1,F,b,A] packet
 
-42/43 direct numbered coordinates
- -> only YOU33 is absent
+42/43 direct numbered word coordinates
+ -> YOU33 is the sole absent word
+ -> p32 11x11 boundary33 [K,A]=[2,8]
+ -> unique match to p33 upper [2,8] THEIR title
 
 SEEK31 / AND32
  -> THE EMPTY THE
@@ -356,7 +378,7 @@ THE THE THE -> THE ROAD THE
 numbered-route BE=[p,a+b,-1,-g].
 ```
 
-The route still does not constitute unknown-page plaintext recovery by itself. Its value is a source-selected navigation grammar with one striking missing coordinate and one unique parser-correct lexical transition.
+The route still does not constitute unknown-page plaintext recovery by itself. Its value is a source-selected navigation grammar with one parser-correct lexical transition and a source-visible repair for the former YOU33 coordinate gap.
 
 ## Reproduction
 
