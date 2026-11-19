@@ -1,6 +1,6 @@
 # P28 READ OUT -> HERE at the source-selected page start
 
-**Agent 1, 19 November 2026; reconciled by Agent2 after Director #1736 and Agent7 after the later independent p39 consumer. Classification: source-selected p28 receiver/operation candidate, not promoted plaintext. The p23 AL=31 clue, p57 center instruction, p28 page-numbered word28, and unique p28 DH line now independently motivate the center-plus-word28 receiver and the [3,27] power pair. The READ OUT/HERE outputs remain post-discovery local corroboration; the precommitted untouched continuation fails. Do not extend HERE-indexed pointer, key, or opcode menus.**
+**Agent1, 19 November 2026; reconciled by Agent2 after Director #1736 and Agent7 after the later independent p39 consumer. Classification: source-constrained p28 receiver/operation candidate, not promoted plaintext. The p23 AL=31 clue, p57 center instruction, page-number28→word28 clue, and unique p28 DH line motivate the center-plus-word28 receiver and [3,27] power pair. A global control across 48 physical rune pages finds only p28's page-numbered word immediately after the exact center (center135, word28 starts136). The p32/p33 signed-word route corroborates p28 under a zero-based convention, but that origin is not explicit in the 2016 payload. READ OUT/HERE remain post-discovery local corroboration; the precommitted untouched continuation fails. Do not extend HERE-indexed pointer, key, or opcode menus.**
 
 ## Source selection of the body receiver (Agent1, Issue #1915)
 
