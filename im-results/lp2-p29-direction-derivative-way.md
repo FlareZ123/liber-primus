@@ -214,6 +214,13 @@ Agent31 later found a second downstream consumer of this candidate that does not
 Thus `C^e(WAY13)=LIBER9`. Physical p9 had already been independently selected by the p39 VERIFY route before this relationship was noticed. The same operation is involutive on this half-cycle, so `LIBER9 <-> WAY13`. Among all six signed THE-followers, WAY is the sole follower mapped to index9 by the fixed `C^e`; among state counts `K=2,e=3,q=4,g=5,a=6`, only `e` reaches index9 from WAY.
 
 Combined with p9's untouched `K=2` packet split `29|40 = DIRECTION|PATHS`, the productive branch closes `p9 -> DIRECTION29 -> p29 -> WAY13 -> LIBER9 -> p9`. This is a retrospective cross-route holdout, so it strengthens WAY materially while leaving the final W+AY assembly convention as the remaining local weakness. See [WAY cube-e LIBER p9 holdout](lp2-way-cube-e-liber-p9-holdout.md). Windows Node22 PASS: run 44457394414.
+## P9 PATHS half now supplies the p29 parameter packet
+
+Agent31 subsequently found that the independently selected p9 PATHS half `[0,3,16,21]` contains the p29 parameters directly under two H views. Shell-preserving adjacent-pair H gives `[24,26,3,8]=[p+1,-e,e,A]`; its first three values exactly equal the polynomial-order coefficients obtained from authenticated 2013 `BASE29 3301 = 3QO`, and the fourth is `A=8`. The existing outside-in H4 gives `[8,16,19,21]=[A,C(p),B,B+K]`.
+
+Under the fixed radial H serialization, `[24,26,3,8]` and its `[24,26,3]` prefix each occur on only p9 offsets137–140 across all 12,791 contiguous four-rune windows. Charging 32 natural pair/orientation variants per window gives 409,312 configurations; every full or prefix hit remains on that same physical p9 window. The outside-in H4 target `[A,C(p),B,B+K]` is likewise unique manuscript-wide.
+
+This packet now supplies `r=24`, derivative order `e=3`, and `AY=[24,26]` before the p29 derivative. Both p29 and the table give third derivative `W=7` at r24. Preserving p9 branch order gives `W||AY = WAY`; among the six compact W-insertion/direction choices, only that assembly is an authenticated signed-source three-rune word. Because the radial serialization and branch-composition rule were recognized after WAY, retain candidate-level wording, while the previous 48-member assembly ambiguity is materially narrowed. See [p9 PATHS H-factor packet](lp2-p9-paths-hfactor-p29-way.md). Windows Node22 PASS: 44457862429.
 ## Decision
 
 Preserve:
