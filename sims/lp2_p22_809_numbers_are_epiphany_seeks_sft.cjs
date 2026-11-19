@@ -73,6 +73,32 @@ function shell(values) {
 }
 
 /**
+ * Split H serialization: differences outside-in, odd center, sums inside-out.
+ *
+ * @param {number[]} values
+ * @returns {number[]}
+ */
+function splitShell(values) {
+  const differences = [];
+  const sums = [];
+  let left = 0;
+  let right = values.length - 1;
+
+  while (left < right) {
+    differences.push(mod29(values[left] - values[right]));
+    sums.push(mod29(values[left] + values[right]));
+    left += 1;
+    right -= 1;
+  }
+
+  return [
+    ...differences,
+    ...(left === right ? [values[left]] : []),
+    ...sums.reverse(),
+  ];
+}
+
+/**
  * True when every successive digit increases by exactly one.
  *
  * @param {number[]} values
@@ -281,6 +307,7 @@ const direction = directedObject(29);
 assert.equal(direction.page, 29);
 assert.equal(direction.object.ordinal, 30);
 assert.deepEqual(shell(direction.object.values), [22, 0, 15, 8]);
+assert.deepEqual(splitShell(direction.object.values), [22, 15, 8, 0]);
 
 // Follow the newly emitted source words NUMBERS ARE as directions.
 const numbers = directedObject(26);
@@ -305,10 +332,16 @@ assert.deepEqual(
   ["THE", "THE", "EPIPHANY", "SEEKS"]
 );
 assert.deepEqual(shell(are.object.values).slice(-2), [5, 6]);
+assert.deepEqual(splitShell(are.object.values), [28, 5, 6, 1]);
+assert.deepEqual(
+  lexicalize(splitShell(are.object.values).slice(1, 3)),
+  ["EPIPHANY", "SEEKS"]
+);
 
-// Census the numbered objects available through the source register. The exact
-// H pair [5,6] occurs only in ARE27's directed object, and there it is terminal.
-const pairHits = [];
+// Census the numbered objects available through the source register under both
+// live ordered H serializations. The exact ordered pair [5,6] occurs only in
+// ARE27's directed object under each serialization.
+const pairHits = {Hpair: [], Hsplit: []};
 for (let sourceIndex = 0; sourceIndex < source.length; sourceIndex += 1) {
   const sourceWord = source[sourceIndex];
   const page = sourceWord.ordinal - 1;
@@ -316,23 +349,27 @@ for (let sourceIndex = 0; sourceIndex < source.length; sourceIndex += 1) {
   const object = words[sourceWord.ordinal - 1];
   if (!object) continue;
 
-  const transformed = shell(object.values);
-  for (let index = 0; index + 1 < transformed.length; index += 1) {
-    if (transformed[index] === 5 && transformed[index + 1] === 6) {
-      pairHits.push({
-        sourceIndex,
-        sourceWord: sourceWord.word,
-        page,
-        ordinal: object.ordinal,
-        start: object.start,
-        pairIndex: index,
-        terminal: index + 2 === transformed.length,
-      });
+  for (const [name, transformed] of [
+    ["Hpair", shell(object.values)],
+    ["Hsplit", splitShell(object.values)],
+  ]) {
+    for (let index = 0; index + 1 < transformed.length; index += 1) {
+      if (transformed[index] === 5 && transformed[index + 1] === 6) {
+        pairHits[name].push({
+          sourceIndex,
+          sourceWord: sourceWord.word,
+          page,
+          ordinal: object.ordinal,
+          start: object.start,
+          pairIndex: index,
+          terminal: index + 2 === transformed.length,
+        });
+      }
     }
   }
 }
 
-assert.deepEqual(pairHits, [{
+assert.deepEqual(pairHits.Hpair, [{
   sourceIndex: 27,
   sourceWord: "ARE",
   page: 27,
@@ -340,6 +377,15 @@ assert.deepEqual(pairHits, [{
   start: 111,
   pairIndex: 2,
   terminal: true,
+}]);
+assert.deepEqual(pairHits.Hsplit, [{
+  sourceIndex: 27,
+  sourceWord: "ARE",
+  page: 27,
+  ordinal: 28,
+  start: 111,
+  pairIndex: 1,
+  terminal: false,
 }]);
 
 // Independent p0 shape control. No p0 ciphertext values are used. The emitted
@@ -395,8 +441,10 @@ console.log(JSON.stringify({
       ordinal: are.object.ordinal,
       start: are.object.start,
       raw: are.object.values,
-      shell: shell(are.object.values),
-      lexical: lexicalize(shell(are.object.values)),
+      Hpair: shell(are.object.values),
+      HpairLexical: lexicalize(shell(are.object.values)),
+      Hsplit: splitShell(are.object.values),
+      HsplitPairLexical: lexicalize(splitShell(are.object.values).slice(1, 3)),
     },
   },
   pairHits,
@@ -409,6 +457,7 @@ console.log(JSON.stringify({
   },
   decision:
     "The p22 center independently source-routes EPIPHANY SEEKS without "
-    + "consulting p0 ciphertext values; the p0 13-atom key order remains "
-    + "a separate unresolved provenance question.",
+    + "consulting p0 ciphertext values. The [5,6] pair survives both live "
+    + "ordered H serializations; the p0 13-atom key order remains a separate "
+    + "unresolved provenance question.",
 }, null, 2));
