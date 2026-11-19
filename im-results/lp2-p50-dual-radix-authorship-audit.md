@@ -145,3 +145,5 @@ Therefore future work may retain `3C -> {189,192}` as a ROAD-specific candidate 
 ```text
 node sims/lp2_p50_dual_radix_authorship_audit_sft.cjs
 ```
+
+Windows Node 22 PASS: GitHub Actions run `44442787739`.
