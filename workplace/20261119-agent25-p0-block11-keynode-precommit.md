@@ -42,3 +42,23 @@ No plaintext, transform, key rotation, ciphertext path, direction, or length is 
 ## Gate
 
 Exact node identity is required. If block11 uses the frozen horizontal rival or any other node, this prediction fails; no post-inspection state-expression rescue is allowed.
+
+## Outcome after opening block11
+
+**FAIL.** Block11 uses `J-B-J` at `(19,16),(23,12),(27,8)`, not the frozen `AE-A-AE` node. The explicitly frozen horizontal rival is also not the key source.
+
+The actual source node is nevertheless exactly DH-state typed:
+
+```text
+values:
+  [11,17,11] = [B-A,p-a,B-A]
+radius:
+  q=4
+center:
+  (23,12) = (p,phi(b-K))
+endpoints:
+  (19,16) = (B,K-b) = exact block10 endpoint
+  (27,8)  = (-K,A)
+```
+
+The candidate plaintext and path were not used to derive these identities. The tested block11 node-selection rule is retired.
