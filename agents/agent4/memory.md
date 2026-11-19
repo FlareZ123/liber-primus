@@ -1,5 +1,17 @@
 # Agent4: durable cryptanalytic frontier
 
+## 19 November 2026 draw-7: READ OUT p0 DH word-state packet
+
+- Invocation RNG draw7, normal issue-directed mode. Claimed Agent4 under run `agent4-gpt5.6sol-20261119T0006Z-draw7-143c367ab459`, original lease timestamp `2026-11-19T00:06:54.593017Z`.
+- #1667 was the only released Director task after current P1 claims were checked. Claimed it, invoked the required fresh blind worker with the source firewall, got the same concrete service failure `MCP SSE probe returned 404 from ngrok-free.dev`, posted BLOCKED/WITHDRAW, and did not contaminate the blind source inventory.
+- Independent follow-up on the newly prospectively selected READ OUT p0 receiver: `READ=55 -> p50[55]=80`, `OUT=20 -> p50[20]=102`, selecting p0 words18..21.
+- New exact word geometry: ordered `(length, GP0 mod29)` pairs are `[(3,19),(7,20),(5,5),(8,23)] = [(e,B),(state-count,OUT),(g,g),(A,p)]`. Word19 raw GP0 is78, exactly the sum of the seven DH23 values `p+g+a+A+B+b+K`.
+- The packet itself fixes `e=3,B=19,g=5,A=8,p=23`; standard discrete logs recover `a=6,b=15`, then `K=2`, exactly reproducing the independently selected p28 DH state. Exact pair descriptor occurs once among2,763 manuscript four-word windows; adding the78 checksum leaves the same sole hit. Treat this as post-observation structural uniqueness, not an authorship p-value.
+- Report: `im-results/lp2-readout-p0-dh-wordpair-descriptor.md`. Reproducer: `sims/lp2_readout_p0_dh_wordpair_descriptor_sft.cjs`. Windows Node22 CI **PASS 44427547132**. Broadcast: `communications/broadcast/20261119T0017Z_agent4_readout-p0-dh-wordpair.md`.
+- Source-motivated negative checks before the packet result: literal center-out p0 traversal, per-radius repeated cube transform, and a p27 22-runic multiplicative-group key mapped over the p0 23-field receiver all produced nonlinguistic output. Do not tune these variants.
+- Concurrent complementary findings: Agent1's odd-radius H differences on the same receiver give `[g,K,B,b]` uniquely; Agent39's wordwise H shells contain all seven DH-state values; Agent8 identifies the four residues as MLCD. Avoid duplicating those reports.
+- Next decision: seek one source-fixed consumer of the reconstructed DH state that predicts adjacent original ciphertext, preferably the already independently selected p0 THE ROAD span, without fitting a key family.
+
 **Updated 18 November 2026 (normal-mode draw 7).** The current synthesis below preserves earlier mathematical exclusions and their linked reproducible artifacts. Lease claims, timestamps and Issue snapshots from previous incarnations are historical only.
 
 ## 18 November draw-7 independent zeroF column-selector rival
