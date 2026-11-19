@@ -12,6 +12,11 @@ on:
         required: true
         default: "44247310794"
         type: string
+      recovery_120_2_run_id:
+        description: Verified replacement for original failed convention 120, shard 2
+        required: false
+        default: ""
+        type: string
 permissions:
   contents: read
   actions: read
@@ -37,15 +42,33 @@ jobs:
           GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         run: |
           $ErrorActionPreference = "Stop"
-          gh run download "${{ inputs.recovery_run_id }}" --repo FlareZ123/liber-primus --dir from-rescue --pattern "pdir-sixsections-010-3-verified-replacement"
-          if ($LASTEXITCODE -ne 0) { throw "Verified rescue retrieval failed" }
-          $replacement = "from-rescue/pdir-sixsections-010-3-verified-replacement/pdir-sixsections-010-3.zip"
-          if (-not (Test-Path -LiteralPath $replacement -PathType Leaf)) { throw "Verified rescue ZIP missing" }
-          New-Item -ItemType Directory -Path source-verify -Force | Out-Null
-          Copy-Item -LiteralPath $replacement -Destination source-verify/pdir-sixsections-010-3.zip
-          python sims/lp2_pdir_1329_incremental_artifact_gate.py source-verify | Out-File -FilePath source-verify/gate.json -Encoding utf8
-          if ($LASTEXITCODE -ne 0) { throw "Recovered source shard fails exact original-score gate" }
+          gh run download "${{ inputs.recovery_run_id }}" --repo FlareZ123/liber-primus --dir from-rescue-010-3 --pattern "pdir-sixsections-010-3-verified-replacement"
+          if ($LASTEXITCODE -ne 0) { throw "Verified 010-3 rescue retrieval failed" }
+          $replacement = "from-rescue-010-3/pdir-sixsections-010-3-verified-replacement/pdir-sixsections-010-3.zip"
+          if (-not (Test-Path -LiteralPath $replacement -PathType Leaf)) { throw "Verified 010-3 rescue ZIP missing" }
+          New-Item -ItemType Directory -Path source-verify-010-3 -Force | Out-Null
+          Copy-Item -LiteralPath $replacement -Destination source-verify-010-3/pdir-sixsections-010-3.zip
+          python sims/lp2_pdir_1329_incremental_artifact_gate.py source-verify-010-3 | Out-File -FilePath source-verify-010-3/gate.json -Encoding utf8
+          if ($LASTEXITCODE -ne 0) { throw "Recovered 010-3 source shard fails exact original-score gate" }
           $original = "from-sixsections/pdir-sixsections-010-3"
+          if (Test-Path -LiteralPath $original) { Remove-Item -LiteralPath $original -Recurse -Force }
+          Expand-Archive -LiteralPath $replacement -DestinationPath $original -Force
+      - name: Insert independently verified original source shard 120-2 replacement
+        if: ${{ inputs.recovery_120_2_run_id != '' }}
+        shell: pwsh
+        env:
+          GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        run: |
+          $ErrorActionPreference = "Stop"
+          gh run download "${{ inputs.recovery_120_2_run_id }}" --repo FlareZ123/liber-primus --dir from-rescue-120-2 --pattern "pdir-sixsections-120-2-verified-replacement"
+          if ($LASTEXITCODE -ne 0) { throw "Verified 120-2 rescue retrieval failed" }
+          $replacement = "from-rescue-120-2/pdir-sixsections-120-2-verified-replacement/pdir-sixsections-120-2.zip"
+          if (-not (Test-Path -LiteralPath $replacement -PathType Leaf)) { throw "Verified 120-2 rescue ZIP missing" }
+          New-Item -ItemType Directory -Path source-verify-120-2 -Force | Out-Null
+          Copy-Item -LiteralPath $replacement -Destination source-verify-120-2/pdir-sixsections-120-2.zip
+          python sims/lp2_pdir_1329_incremental_artifact_gate.py source-verify-120-2 | Out-File -FilePath source-verify-120-2/gate.json -Encoding utf8
+          if ($LASTEXITCODE -ne 0) { throw "Recovered 120-2 source shard fails exact original-score gate" }
+          $original = "from-sixsections/pdir-sixsections-120-2"
           if (Test-Path -LiteralPath $original) { Remove-Item -LiteralPath $original -Recurse -Force }
           Expand-Archive -LiteralPath $replacement -DestinationPath $original -Force
       - name: Reject incomplete, duplicate or wrong-engine records
