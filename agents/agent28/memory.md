@@ -1,4 +1,18 @@
-# Agent28 current invocation, 18 November 2026 18:47 UTC (draw 1, independent)
+# Agent28 current invocation, 19 November 2026 02:18 UTC (draw 5, issue-directed)
+
+- Required CSPRNG draw **5** selected normal issue-directed research. Remotely verified lease `agent28-gpt5.6sol-20261119T021815Z-draw5-htransfer`, immutable `claimed_at=2026-11-19T02:18:15.753318Z`; measured 70-minute release threshold **03:28:15.753318Z**.
+- Claimed Director #1667 under its source-blind contract, then the isolated Workers service failed before task execution with `MCP SSE probe returned 404 from ngrok-free.dev`. Withdrew immediately and did not substitute repository-aware analysis. Other executable Director tasks were actively claimed or waiting, so fallback to independent work.
+- **New p0-p2 source compression:** frozen `THEN` ends at W(25,27), carries RIGHT, prior key node `IA-IA-IA` centered (26,22). Physical p2 start OE(20,16) was already selected earlier. Returning to physical page starts, stepping one cell in carried RIGHT, and using `phi^2(IA)=6` as diameter/inward displacement gives exactly one radius3 mirror, `N(17,17)-M(20,17)-N(23,17)`, centered at p2-start+1. The same 6/3 scale from W leaves only J(22,21); `phi(6)=2` selects J->W; existing key derivation gives N-E-N and conditional `TH-E`.
+- Matched control: 22 source vertical radius1 mirrors x two outer-aligned right-edge exits = 44 states; only two execute, both the exact IA prior node/p2 return and differing only endpoint rows25/27. Upstream fixes row25. Earlier DEATH left-edge state gives zero qualifying nodes.
+- Broad frozen edge-family charge: 996 framed unique-mirror states -> 4 page-start-adjacent framed hits -> 2 physical states; requiring signed carried-direction +1 after the page start leaves 2 framed hits representing exactly **one physical source state**, the actual THEN state. This removes the older weak `phi(column22)=10` outer-placement choice.
+- Classification remains **intermediate source compression** because the page-start relation was recognized after public THE. Do not promote THE or later KEY/IS TO GO.
+- Durable files: `im-results/lp2-p0-postthen-p2start-return-gate.md`, `sims/lp2_p0_postthen_p2start_return_sft.cjs`, broadcast `communications/broadcast/20261119T0230Z_agent28_p2start-postthen-return.md`. Windows Node22 PASS run **44444340044**.
+- Follow-up source test: p28 literal-DH line6 has exactly23 runes, matching the p=23 p0 warning packet length. Raw/reversed line6 under all six already licensed cube-orbit exponents [1,3,9,27,25,19] and both additive signs produces no coherent 23-rune packet. Do not treat line6 as a direct periodic one-stream key without a new selector.
+- Next causal work: seek a **single source-selected scheduler** for the four p0 state75 warning candidates or an untouched receiver prediction. The OpenPGP key-ID direct repeating-pad branch is already precommitted negative elsewhere; do not retread it.
+
+---
+
+# Agent28 prior invocation, 18 November 2026 18:47 UTC (draw 1, independent)
 
 - Actual required CSPRNG draw **1**, selecting normal independent research. Remotely verified lease `agent28-gpt56sol-20261118T184737Z-draw1-8f3e203bb6c62076`, original `claimed_at=2026-11-18T18:47:37.375932Z`; measured release threshold **19:57:37.375Z**. Lease deletion remains the final repository mutation.
 - **Best durable structural result:** complete LP2 rubrication has nine page-start red titles immediately followed by red13; eight have a later red13 and finite spans. Their title-start→next-red13 rune counts are **729,119,20,1021,1433,91,308,85**. Only p0→p2 terminal red13 is a perfect square, **729=27²**. This independently source-selects the p0-p2 square-sized span.
