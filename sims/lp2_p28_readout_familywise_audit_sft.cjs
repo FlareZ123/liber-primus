@@ -505,6 +505,100 @@ assert.deepEqual(rawNumericSelectorHits, [{
 }]);
 assert.equal(translit(rawNumericSelectorHits[0].output), "READOUT");
 
+// Broader reversible control: allow every exponent that is a unit modulo the
+// GP29 multiplicative-group order 28 independently on the boundary and word.
+// This charges every uniform reversible power map, not only the DH cube orbit.
+// Two parameterizations survive because the actual center value 9 satisfies
+// 9^3 == 9^17 mod29; both give the identical raw six-rune output.
+function gcd(a, b) {
+  let x = Math.abs(a);
+  let y = Math.abs(b);
+  while (y !== 0) [x, y] = [y, x % y];
+  return x;
+}
+const reversibleExponents = Array.from(
+  {length: 28},
+  (_, index) => index + 1
+).filter(exponent => gcd(exponent, 28) === 1);
+assert.deepEqual(
+  reversibleExponents,
+  [1, 3, 5, 9, 11, 13, 15, 17, 19, 23, 25, 27]
+);
+
+const reversiblePowerSelectorHits = [];
+for (const boundaryExponent of reversibleExponents) {
+  for (const wordExponent of reversibleExponents) {
+    for (const orientation of orientations) {
+      let output = [
+        modPow(p28.runes[centerOffset], boundaryExponent),
+        ...selected.values.map(value => modPow(value, wordExponent)),
+      ];
+      if (orientation === "reverse") output = output.slice().reverse();
+
+      for (let cut = 1; cut < output.length; cut += 1) {
+        const leftGp0 = output
+          .slice(0, cut)
+          .reduce((sum, value) => sum + value, 0);
+        const rightGp0 = output
+          .slice(cut)
+          .reduce((sum, value) => sum + value, 0);
+        if (
+          low60Step(leftGp0) === rightGp0 &&
+          low60Step(rightGp0) === 42 &&
+          low60Step(42) === 28
+        ) {
+          reversiblePowerSelectorHits.push({
+            boundaryExponent,
+            wordExponent,
+            orientation,
+            cut,
+            output,
+            leftGp0,
+            rightGp0,
+            walk: [leftGp0, rightGp0, 42, 28],
+          });
+        }
+      }
+    }
+  }
+}
+assert.equal(
+  reversibleExponents.length * reversibleExponents.length *
+    orientations.length * 5,
+  1440
+);
+assert.deepEqual(reversiblePowerSelectorHits, [
+  {
+    boundaryExponent: 3,
+    wordExponent: 27,
+    orientation: "forward",
+    cut: 3,
+    output: [4, 28, 23, 3, 1, 16],
+    leftGp0: 55,
+    rightGp0: 20,
+    walk: [55, 20, 42, 28],
+  },
+  {
+    boundaryExponent: 17,
+    wordExponent: 27,
+    orientation: "forward",
+    cut: 3,
+    output: [4, 28, 23, 3, 1, 16],
+    leftGp0: 55,
+    rightGp0: 20,
+    walk: [55, 20, 42, 28],
+  },
+]);
+const reversibleSelectorOutputs = new Set(
+  reversiblePowerSelectorHits.map(hit => hit.output.join(","))
+);
+assert.equal(reversibleSelectorOutputs.size, 1);
+assert.equal(translit(reversiblePowerSelectorHits[0].output), "READOUT");
+
+// The source-derived DH cube exponent removes the residual parameter alias.
+assert.equal((dh.g - dh.K + 29) % 29, 3);
+assert.equal(reversiblePowerSelectorHits[0].boundaryExponent, 3);
+
 // Independent center-ray family: every odd-length unknown page contributes
 // the six-rune ray from its exact center to each side. The right ray of p28 is
 // exactly the discovery span. This charges the left/right center-boundary rival
@@ -661,6 +755,15 @@ console.log(JSON.stringify({
       rule: "GP0(left) -> GP0(right) -> FIND(42) -> p28 over all raw outputs and rune-boundary splits",
       hits: rawNumericSelectorHits,
     },
+    allReversibleUniformPowers: {
+      exponents: reversibleExponents,
+      chargedConfigurations:
+        reversibleExponents.length * reversibleExponents.length *
+        orientations.length * 5,
+      hits: reversiblePowerSelectorHits,
+      uniqueRawOutputs: reversibleSelectorOutputs.size,
+      dhResolvedBoundaryExponent: 3,
+    },
     frozenSourceTransformPhraseObjects: sourceTransformPhraseObjects.length,
     frozenSourceTransformHits: sourceTransformPhraseObjects.map((item) => ({
       page: item.page,
@@ -680,5 +783,5 @@ console.log(JSON.stringify({
   },
   solvedControls,
   decisionRule:
-    "The externally supported native-base60 low-digit source route selects u-3-27 / forward / cut3 uniquely across all 440 raw p28 transform-orientation-split configurations before any language scoring. The selected raw output then spells READ OUT. Preserve the charged-family/model chronology caveat while treating this as a language-free external transform selector.",
+    "The externally supported native-base60 low-digit route selects one raw output before language scoring. It is unique across the charged 440 DH/shell configurations and remains the sole raw output across all 1,440 independent reversible uniform GP29 power-pair/orientation/split configurations. The two surviving uniform parameterizations differ only by center exponents 3 and 17, which coincide on source rune9; the source DH state fixes exponent3. The selected output spells READ OUT.",
 }, null, 2));
