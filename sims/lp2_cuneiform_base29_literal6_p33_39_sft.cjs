@@ -12,6 +12,9 @@ const path = require('node:path');
 const corpus = JSON.parse(fs.readFileSync(
   path.join(__dirname, '..', 'resources', 'liber-primus', 'lp2-corpus.json'), 'utf8'
 ));
+const transcription = fs.readFileSync(
+  path.join(__dirname, '..', 'resources', 'liber-primus', 'lp2-transcription.txt'), 'utf8'
+);
 const digits = '0123456789ABCDEFGHIJKLMNOPQRS';
 
 /** @param {number} value Positive integer. @returns {string} Historical numeral. */
@@ -87,12 +90,22 @@ assert.equal(key.map((idx) => corpus.translit[idx]).join(''), 'UGEOYA');
 const originals = corpus.pages.filter((p) => p.page >= 33 && p.page <= 39);
 assert.deepEqual(originals.map((p) => p.indices.length),
   [214, 261, 271, 238, 228, 228, 240]);
-const sections = originals.map((page, index) =>
-  index === 0 ? page.indices.slice(91) : page.indices);
+const runeSet = new Set(corpus.runes);
+const physicalParts = transcription.replace(/\r/g, '').split('%');
+const p39BeforeFirstAmpersand = physicalParts[39].split('&')[0];
+const p39MarkedLength = [...p39BeforeFirstAmpersand]
+  .filter((rune) => runeSet.has(rune)).length;
+assert.equal(p39MarkedLength, 119);
+
+const sections = originals.map((page, index) => {
+  if (index === 0) return page.indices.slice(91);
+  if (index === 6) return page.indices.slice(0, p39MarkedLength);
+  return page.indices;
+});
 assert.deepEqual(sections.map((v) => v.length),
-  [123, 261, 271, 238, 228, 228, 240]);
+  [123, 261, 271, 238, 228, 228, 119]);
 const marked = sections.flat();
-assert.equal(marked.length, 1589);
+assert.equal(marked.length, 1468);
 
 console.log('2013 BASE29: 1033 =>', base29(1033), '3301 =>', base29(3301));
 console.log('Hypothetical GP29 six-key:', numeral, '=>', key, '=> UGEOYA');
@@ -134,8 +147,8 @@ for (const sign of [1, -1]) {
       exact += 1;
     }
   }
-  assert.equal(exact, 1589);
-  console.log('  source-native original-shaped plant: 1589/1589 recovered');
+  assert.equal(exact, 1468);
+  console.log('  source-native original-shaped plant: 1468/1468 recovered');
 }
 
 console.log('PASS: both original signs contradicted; no unknown plaintext recovered.');
