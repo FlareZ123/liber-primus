@@ -6,7 +6,7 @@
 
 An independently reported original-source relation identifies the p39 red three-rune GP ordinal polynomial `G(X)=15X²+5X+27` and shows that physical LP2 p29 is the **only nonempty unknown page** whose original 277 rune indices form a polynomial exactly divisible by `G` over GF(29). This is a potentially actionable page-specific cue: multiplication by a degree-two source polynomial would add two cipher runes to a 275-rune native GP plaintext while providing a direct reversible quotient decoder.
 
-The divisor is selected by p39's original red triad. The choice of **page 29**, in contrast, came from scanning the original page polynomials for zero remainder, and is postselected. Nothing in the original evidence independently instructs a human solver to divide p29 by the p39 polynomial. This is an affordable test of the most literal available consequence, not a proven solve path.
+The original discovery history selected **page29** by scanning the page polynomials for zero remainder, so the first report correctly treated the page as postselected. Agent17's later p28/signed-2016 route now supplies a **conditional independent page selector**: the local p28 `THE` candidate self-locates at authenticated signed word index28 / physical word29, and its immediate follower `DIRECTION` at index29 / word30 selects project p29 / physical page30 under the same origin convention. P29 is then tested against the independently printed p39 red triad. This removes the page-scan circularity if that source-index interpretation is accepted; the manuscript still does not explicitly command polynomial division.
 
 Original input is `resources/liber-primus/lp2-corpus.json`, Git blob `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`, physical `pages[29].indices`, with rune indices 0..28 in printed order. GP symbols are polynomial coefficients from highest degree to constant. No symbol permutation, offset search, page rotation, alternate spacing or fitted key is used.
 
@@ -16,7 +16,7 @@ A separate source-wide necessary-condition check asks whether the original red h
 
 The stronger player-actionable variant says the opening red heading of a visual chapter encodes its own following chapter body by polynomial multiplication. All nine original red-heading/body cuts (p0–2, p3–7, p8–14, p15–22, p23–26, p27–32, p33–39, p40–53, p54–55) have **nonzero remainders**; respectively **12, 15, 11, 8, 15, 18, 9, 7, 8** nonzero coefficients remain. Thus no unmodified chapter can be decoded directly with its own source heading as a polynomial divisor. The canonical p29/G 275-rune quotient still round-trips, as does a planted 275-rune GP-native source control, but the original quotient stays nonlinguistic.
 
-[Exact-source single runnable test](../sims/lp2_redspan_polynomial_original_gate_sft.cjs). The exhaustive red-span comparison adds a finite **negative scope**, not new evidence that the p29 relation is deliberately authored, a recovered original key, or plaintext. The broader p29/source-selection objection remains the one already recorded in [the 2013 DH2 G-adic audit](p29-signed2013-dh2-gadic-congruence.md).
+[Exact-source single runnable test](../sims/lp2_redspan_polynomial_original_gate_sft.cjs). The exhaustive red-span comparison adds a finite **negative scope** and still does not authenticate polynomial division as the intended inverse. The earlier p29 page-selection objection has since been narrowed by the conditional [p28 THE / signed-DIRECTION selector](lp2-p28-the-direction-p29-selector.md), which selects p29 before the G test and then finds p29 alone carrying the repeated root24.
 
 ## Frozen inverse, original result and negative control
 
@@ -71,7 +71,7 @@ This proves a more general, **key-independent exclusion**: no identical six-para
 
 ## Decision and reproducibility
 
-The finite hypothesis `C_p29(X)=G(X)·P_GP(X)`, with the source G and the published coefficient order, fails as a **direct natural-language GP29 decipherment** despite its exact divisibility. The zero remainder might be a deliberate code/checksum, an intermediate transform or a coincidence. A source-fixed outer key, state, decoding register or independent page selector would be required before further interpretation. Do not salvage a readable output by trying arbitrary GP symbol permutations, text shifts or layouts after seeing the quotient.
+The finite hypothesis `C_p29(X)=G(X)·P_GP(X)`, with the source G and the published coefficient order, fails as a **direct natural-language GP29 decipherment** despite its exact divisibility. The zero remainder might be a deliberate code/checksum, an intermediate transform or a coincidence. The new p28/signed route conditionally supplies the previously missing independent **page selector**; a source-fixed opcode, outer key, decoding register and stopping rule remain absent. Do not salvage a readable output by trying arbitrary GP symbol permutations, text shifts or layouts after seeing the quotient.
 
 Reproduction: [single runnable CJS control](../sims/lp2_p29_g_polynomial_quotient_sft.cjs) using the existing canonical JSON and solved p57. The first bounded original-cipher test was independently executed by Agent31 and handed to Agent21, who reported the factor relation, in [its research mailbox](../communications/agent21/20261111T1409Z_agent31_p29-g-quotient-source-gate.md).
 
