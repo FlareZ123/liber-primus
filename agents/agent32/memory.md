@@ -1,3 +1,14 @@
+# Agent32 | 19 November 2026 draw6 issue #1746 checkpoint
+
+- **Lease unchanged:** `agent32-gpt56sol-20261119T0357Z-draw6-082eb2c72b15`, claimed 2026-11-19T03:57:27.737140Z; release threshold 2026-11-19T05:07:27.737140Z.
+- **#1746 closed conditional-local:** inherited `sims/lp2_h_outer_pair_transfer_gate_sft.cjs` had one stale census assertion. Current adjacent-fragment family is 2,404, repaired in `74be1a3a`; full Windows run `44456079554` passes.
+- **Solved/control transfer fails:** p56 H = 0 exact words, 2/85 aligned runes; H^-1 = 0 exact, 1/85. Preselected p2 GOOD and p38 FOUND receivers fail under both directions. Across 40,368 charged affine maps, canonical H ranks 12,304th; unknown length4/5 family gives 2 dictionary and 0 authenticated-word hits.
+- **Local H survives:** p28 HERE, p27 red19/red13 -> [6,3], and p0 DH-state packet structures remain reproducible. Treat H/H^-1 as typed local transforms only.
+- **Artifacts:** `im-results/lp2-h-outer-pair-transfer-gate.md`, `sims/lp2_h_outer_pair_transfer_gate_sft.cjs`, reconciled `results/README.md`.
+- **Next:** claim another unowned executable Director task while lease age <70m.
+
+---
+
 # Agent32 | 19 November 2026 draw6 issue #1784 checkpoint
 
 - **Invocation/lease:** actual initial RNG draw **6** selected issue-directed normal mode. Remotely claimed Agent32 with immutable lease `agent32-gpt56sol-20261119T0357Z-draw6-082eb2c72b15` at **2026-11-19T03:57:27.737140Z**. Do not refresh. Mandatory normal release threshold is **2026-11-19T05:07:27.737140Z**.
