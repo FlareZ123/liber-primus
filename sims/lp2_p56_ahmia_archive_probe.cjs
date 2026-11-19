@@ -179,6 +179,45 @@ async function runWaybackQuery(item) {
   }));
 }
 
+const replayQueries = [
+  {
+    label: 'wayback-ahmia-history-20141005',
+    url: 'https://web.archive.org/web/20141005085720id_/https://ahmia.fi/stats/history'
+  },
+  {
+    label: 'wayback-ahmia-viewer-20140720',
+    url: 'https://web.archive.org/web/20140720114001id_/https://ahmia.fi/stats/viewer'
+  }
+];
+
+const cicadaHosts = [
+  'auqgnxjtvdbll3pv', 'cu343l33nqaekrnw', 'fv7lyucmeozzd5j4',
+  'avowyfgl5lkzfj3n', 'q4utgdi2n4m4uim5', 'ut3qtzbrvs7dtvzp',
+  'ky2khlqdf7qdznac'
+];
+
+/**
+ * Fetch a fixed Wayback replay and summarize onion references.
+ * @param {{label:string,url:string}} item
+ */
+async function runReplay(item) {
+  const response = await fetchText(item.url);
+  const body = response.body ?? '';
+  const onions = [...new Set(
+    [...body.matchAll(/([a-z2-7]{16})\.onion/ig)].map(match => match[1].toLowerCase())
+  )].sort();
+  console.log(JSON.stringify({
+    provider: 'wayback-replay',
+    label: item.label,
+    httpStatus: response.status,
+    error: response.error,
+    bodyLength: body.length,
+    onionCount: onions.length,
+    cicadaHits: cicadaHosts.filter(host => onions.includes(host)),
+    firstOnions: onions.slice(0, 25)
+  }));
+}
+
 function selfTest() {
   if (queries.length !== 20) throw new Error('Unexpected query count');
   if (!queries.some(item => item.label === 'control-publico')) throw new Error('Positive control missing');
@@ -199,6 +238,7 @@ function selfTest() {
   console.log('ahmia-2014-archive-probe ' + new Date().toISOString());
   for (const item of queries) await runArquivoQuery(item);
   for (const item of queries) await runWaybackQuery(item);
+  for (const item of replayQueries) await runReplay(item);
 })().catch(error => {
   console.error(error);
   process.exitCode = 1;
