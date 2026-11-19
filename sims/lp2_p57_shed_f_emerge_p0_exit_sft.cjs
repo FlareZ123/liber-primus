@@ -181,6 +181,38 @@ assert.equal(emergeBase59.at(-1), root189);
 assert.equal(tokens[root189], "3C");
 assert.equal(decode(tokens[root189], alphabet59), root189);
 
+// New first-party reset support: the clear p57 word SURFACE directly addresses
+// the exact same radix-sensitive 3C token before WE MUST SHED.
+const surface = word("SURFACE");
+assert.equal(surface.position, 8);
+assert.equal(surface.gp0, 67);
+assert.equal(tokens[surface.gp0], "3C");
+assert.equal(tokens[surface.gp0], tokens[root189]);
+assert.equal(decode(tokens[surface.gp0], alphabet59), root189);
+assert.equal(decode(tokens[surface.gp0], alphabet60), 192);
+assert.equal(tokens[192], "00");
+
+// Within the complete 20-word p57 title+body, SURFACE alone directly lands on
+// the 3C root-token class by the frozen GP0 -> p50 address primitive.
+const p57RootTokenWords = p57Words
+  .filter((candidate) => candidate.gp0 < tokens.length)
+  .filter((candidate) => tokens[candidate.gp0] === tokens[root189])
+  .map((candidate) => ({
+    position: candidate.position,
+    text: candidate.text,
+    gp0: candidate.gp0,
+  }));
+assert.deepEqual(p57RootTokenWords, [
+  { position: 8, text: "SURFACE", gp0: 67 },
+]);
+
+// The source word order fixes the semantic state narrative:
+// SURFACE -> WE MUST SHED -> ... -> EMERGE.
+assert.equal(word("WE").position, 9);
+assert.equal(word("MUST").position, 10);
+assert.equal(shed.position, 11);
+assert.equal(emerge.position, 20);
+
 // Candidate EMERGE state reset: restoring the uniquely shed f restores base60.
 // Two steps, fixed upstream as the DH shared value, reach zero.
 const restored = walk(root189, alphabet60, dhShared);
@@ -280,6 +312,14 @@ console.log(JSON.stringify({
     token: tokens[root189],
     base59: decode(tokens[root189], alphabet59),
     base60: decode(tokens[root189], alphabet60),
+  },
+  surfaceResetSupport: {
+    wordPosition: surface.position,
+    gp0Address: surface.gp0,
+    token: tokens[surface.gp0],
+    base59: decode(tokens[surface.gp0], alphabet59),
+    base60: decode(tokens[surface.gp0], alphabet60),
+    p57RootTokenWords,
   },
   restoredShared2Walk: restored,
   literalZeroCells: zeroCells,
