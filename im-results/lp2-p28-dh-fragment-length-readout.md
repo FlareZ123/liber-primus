@@ -76,7 +76,29 @@ The exponent progression is also visible in the lengths:
  e    e^2  e^3
 ```
 
-Fragment2 supplies 3 and fragment3 supplies 9. Continuing the same cube-exponent orbit once gives27, the exact exponent used on the three-layer five-rune word under the existing action-count interpretation. The zero-index rival exponent9 is therefore present as the intermediate orbit state rather than the next state.
+Fragment2 supplies 3 and fragment3 supplies 9. Continuing the same cube-exponent orbit once gives27, the exact exponent used on the five-rune word. The zero-index rival exponent9 is therefore present as the intermediate orbit state rather than the next state.
+
+The selected word self-encodes the same exponent through the already fixed H operation. Its outer pair gives the DH public values:
+
+```text
+H(EA,L) = H(28,20) = [8,19] = [A,B]
+```
+
+Apply H once more to those labeled values:
+
+```text
+H(A,B) = H(8,19) = [18,27]
+```
+
+The second coordinate **27** now has three independent source descriptions:
+
+```text
+e^3 mod28 = 3^3 mod28 = 27
+physical page number - 1 = 28 - 1 = 27
+H(A,B)[1] = 27
+```
+
+Across the ten physical page-numbered five-rune words on unknown p0..p55, p28 is the **only** one whose twice-applied outer-H second coordinate equals `page-1 mod28`. This matched family does not use plaintext scoring.
 
 Applying the already frozen transform gives:
 
@@ -146,7 +168,7 @@ This creates a tighter human solve-path hypothesis:
 6. continue the visible exponent orbit from3 to9 to27 for the three-layer word28;
 7. decode the exact center-plus-word object to `READ OUT`.
 
-Step6 still interprets the visible three-layer word as three applications of the selected cube map. The fragment lengths now expose the first two orbit states directly and make the one-based action-count continuation substantially less arbitrary, while the chronology prevents calling this an independent prospective validation.
+The word exponent no longer depends only on interpreting three visible layers as three actions: the final selected fragment itself gives `[A,B]`, whose second H coordinate is27, and the page number independently gives27. The `3 -> 9 -> 27` action-count route remains a compatible interpretation. The chronology still prevents calling these convergences an independent prospective validation.
 
 ## Decision
 
