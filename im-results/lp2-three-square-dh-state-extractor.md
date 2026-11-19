@@ -310,4 +310,4 @@ The best next test is prospective: use this square-derived state grammar to pred
 node sims/lp2_three_square_dh_state_extractor_sft.cjs
 ```
 
-Windows Node 22 PASS: `44476954417` for the initial cell-assisted extractor; metadata-only algebra added on 19 November and revalidated in a later run.
+Windows Node 22 PASS: initial extractor `44476954417`; metadata-only `p,b` upgrade **PASS `44480670573`**.
