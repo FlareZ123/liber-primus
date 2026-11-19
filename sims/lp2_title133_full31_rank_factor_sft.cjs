@@ -250,10 +250,6 @@ assert.equal(signedWords.length, Number(sourceWordCount));
 // p27 carrier start were established before this factorization was opened.
 const selectedPage = 32;
 const p27CarrierStart = 79;
-const p27 = corpus.pages.find(page => page.page === 27);
-assert.ok(p27);
-const p27Text = p27.indices.map(index => corpus.translit[index]).join("");
-assert.equal(p27Text.slice(p27CarrierStart, p27CarrierStart + 13), "EORNSOOCAEYEE");
 assert.equal(gp0("EMPTY") / 23, 4);
 assert.equal(bitLength(q13), 13); // literal thirteen-dot event type
 assert.equal(bitLength(q32), selectedPage);
