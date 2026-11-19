@@ -69,6 +69,35 @@ FOUR
 
 Thus the lexical result does not depend on silently choosing among several equally readable component/direction variants.
 
+## FOUR types the existing HERE -> 4D self-index
+
+The solved source phrase ends on **HERE**, and the same GP0-address primitive already used in the route gives:
+
+~~~text
+GP0(HERE) = 48
+p50[48] = 4D
+~~~
+
+The phrase itself has now independently supplied the word **FOUR**. Read together, the source path literally presents:
+
+~~~text
+FOUR + D
+=> FOUR D
+=> p50 token 4D
+=> fourth D
+~~~
+
+That is exactly the ordinal consumer frozen independently in the earlier p28 HERE holdout. On original p28:
+
+~~~text
+rune offset48 = D
+D-count through offset48 = 4
+~~~
+
+and the same digit-letter self-index mechanism later transferred on solved p56. This gives a plausible human-facing reason to interpret the visible token `4D` ordinally rather than as an arbitrary numeral encoding: the solved phrase that leads to HERE emits the numeral word required by the token.
+
+This does not create a new decryption rule. It links two already validated pieces into a more coherent intended solve path.
+
 ## FOUR names the selected p28 source line
 
 The numeric pair has a direct source-level reading before any DH algebra is applied:
@@ -132,7 +161,7 @@ So the readout `FOUR` independently regenerates the **first two values of the or
 
 ## Interpretation
 
-This gives a compact human solve-path chain:
+The FOUR/HERE conjunction also authenticates the existing `HERE -> 48 -> 4D -> fourth D` branch. The DH continuation gives a compact second chain:
 
 ~~~text
 solved WELCOME: FIND THEIR WAY HERE
@@ -166,4 +195,4 @@ Run:
 node sims/lp2_find_their_way_here_four_sft.cjs
 ~~~
 
-The SFT reconstructs the solved phrase, p50 addresses and high digits, performs the 713-window all-high lexical census, charges all GP-valid high/low and forward/reverse variants, establishes the solved-word numeric uniqueness of FOUR, verifies `[GP-prime,GP0]=[23,8]=DH` against the original p28 line label, and verifies `H(23,8)=[15,2]` against that line's H-stream.
+The SFT reconstructs the solved phrase, p50 addresses and high digits, performs the 713-window all-high lexical census, charges all GP-valid high/low and forward/reverse variants, verifies `HERE -> 48 -> 4D -> fourth D` on original p28, establishes the solved-word numeric uniqueness of FOUR, verifies `[GP-prime,GP0]=[23,8]=DH` against the original p28 line label, and verifies `H(23,8)=[15,2]` against that line's H-stream.
