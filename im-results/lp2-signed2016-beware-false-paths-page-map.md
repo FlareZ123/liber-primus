@@ -32,7 +32,7 @@ signed word37 = LUCK
 physical page37
 ```
 
-Agent43 charged the natural double-index extension `i -> page i -> printed word i` across all 43 signed indices. Forty-two page/word receivers exist, and only nine have the same GP length as their source-assigned word. P37 word37 is one of the two four-rune cases and occupies offsets146..149:
+Agent43 charged the natural double-index extension `i -> page i -> printed word i` across all 43 signed indices. Forty-two canonical page/word receivers exist, and only seven have the same GP length as their source-assigned word. P37 word37 is one of the two four-rune cases and occupies offsets146..149:
 
 ```text
 cipher = [3,2,6,27]
@@ -40,7 +40,7 @@ H4(cipher) = [5,25,8,1]
            = [g,p+K,A,a-g].
 ```
 
-That untouched H shell is unique across all **514** complete four-rune words on unknown LP2.
+That untouched H shell is unique across all **509** canonical complete four-rune words on unknown LP2.
 
 The source-assigned target is `LUCK=[20,1,5,5]`. Its exact subtraction key is:
 
@@ -54,9 +54,9 @@ with:
 H4(key) = [19,0,2,5] = [B,0,K,g].
 ```
 
-Charge every direct-state shell from `{0,p,g,a,b,A,B,K,e,q}^4`, all nine authenticated four-rune targets and both signs: **180,000** configurations. One hit remains, `[B,0,K,g]` with subtraction to `LUCK`. Holding the exact key over all 514 four-rune words, nine targets and both signs gives one hit in **9,252** configurations, again p37 word37→LUCK.
+Charge every direct-state shell from `{0,p,g,a,b,A,B,K,e,q}^4`, all nine authenticated four-rune targets and both signs: **180,000** configurations. One hit remains, `[B,0,K,g]` with subtraction to `LUCK`. Holding the exact key over all 509 four-rune words, nine targets and both signs gives one hit in **9,162** configurations, again p37 word37→LUCK.
 
-Among all length-4-or-longer double-index length matches, p37 is the only receiver with any direct-state-shell authenticated target hit. Preserve this as a **strong local plaintext candidate**. The main caveat is the second use of index37 as the within-page word ordinal, which is a natural extension of the number-as-direction route but has not yet been stated by an independent source instruction.
+Under the canonical cross-page parser, p37 is additionally the sole one of all 42 double-index receivers with raw `GP0=i+1`: `GP0(p37 word37)=38`, pointing directly to authenticated word/page38 `BEWARE`. Among the seven target-length matches, p37 is also the only length-4-or-longer receiver with any direct-state-shell authenticated target hit. Preserve this as a **strong local plaintext candidate**. The main caveat is the second use of index37 as the within-page word ordinal, which is a natural extension of the number-as-direction route but has not yet been stated by an independent source instruction.
 
 [Detailed report](lp2-p37-luck-doubleindex-state-inverse.md) · [SFT](../sims/lp2_p37_luck_doubleindex_state_sft.cjs).
 
