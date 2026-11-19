@@ -307,17 +307,19 @@ console.log(JSON.stringify({
     lexical: row.lexical,
     contiguous: row.contiguous,
   })),
-  repeatedLexicalHits: repeatedLexicalHits.map((row) => ({
-    sourceIndex: row.sourceIndex,
-    sourceWord: row.sourceWord,
-    page: row.page,
-    ordinal: row.wordOrdinal,
-    transform: row.transform,
-    origin: row.origin,
-    values: row.values,
-    lexical: row.lexical,
-    distinctLexical: row.distinctLexical,
-  })),
+  repeatedLexicalSummary: {
+    count: repeatedLexicalHits.length,
+    byTransformOrigin: Object.fromEntries(
+      [...new Set(repeatedLexicalHits.map((row) => row.transform + "/" + row.origin))]
+        .sort()
+        .map((key) => [
+          key,
+          repeatedLexicalHits.filter(
+            (row) => row.transform + "/" + row.origin === key
+          ).length,
+        ])
+    ),
+  },
   will34: will34.map((row) => ({
     transform: row.transform,
     origin: row.origin,
