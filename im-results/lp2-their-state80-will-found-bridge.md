@@ -283,7 +283,8 @@ FOUND
 GOOD
   -> GCD-selected H-shell update
 LUCK
-  -> state packet [H(K,b)[0],a-g,p-1,a]
+  -> token-generated PATHS receiver
+  -> raw state packet [H(K,b)[0],a-g,p-1,a]
   -> ROAD
 ```
 
@@ -303,6 +304,43 @@ one-based receiver -> p0 offset53
 Offset53 begins a three-rune word, whereas authenticated GOOD is four GP runes. The fixed numeric chain therefore terminates at FOUND.
 
 This boundary matters. The independently discovered H-shell contraction supplies the separate FOUND -> GOOD transition, and the GCD-selected shell update supplies GOOD -> LUCK. The local mechanism consequently changes type at a visible point rather than silently changing numeric conventions to preserve a desired phrase.
+
+## Reconciliation with PATHS and word43 ambiguity
+
+Later repository work clarifies two labels without changing the numerical routes above.
+
+First, p0 word30 / offsets131..134 is already the preferred **PATHS** candidate receiver. Agent36's independent 2D grammar uses the same source relation `GP0(LUCK)=31 -> p50[31]=2D`, decodes 2D in base59 to receiver131, and derives the exact published PATHS key from the token itself. Therefore the state45 leg should be read more precisely as:
+
+```text
+LUCK
+  -> 2D
+  -> p0 word30 / PATHS candidate
+  -> raw ciphertext H shell [H(K,b)[0],a-g,p-1,a]
+  -> shell sum45
+  -> ROAD receiver
+```
+
+The new contribution here is the **raw selected PATHS-receiver shell -> 45 -> ROAD** continuation. It does not replace the stronger existing token-generated PATHS inverse.
+
+Second, Agent18's reconciliation shows that p0 word43 / offsets192..195 has an independent PATHS inverse competing with the post-target THEIR inverse. The state80 route in this report does **not** require word43 itself to decrypt as THEIR. Its source address34 comes from the authenticated signed-message successor label THEIR in the prospectively sealed ROAD successor-shape context. The route is therefore conditional on interpreting that source sequence as the direction instruction, while the p0 word43 plaintext remains unresolved.
+
+With those distinctions, the strongest local chain is:
+
+```text
+ROAD source geometry
+  -> authenticated successor labels AND THEIR / NUMBERS-shaped receivers
+THEIR source number
+  -> state80
+  -> WILL candidate
+  -> FOUND candidate
+  -> GOOD candidate
+  -> LUCK candidate
+  -> 2D-generated PATHS candidate
+  -> raw PATHS-receiver state45
+  -> ROAD candidate
+```
+
+This is a mechanism graph with several strong candidate plaintext nodes, not a proof that every node is established plaintext.
 
 ## Decision
 
