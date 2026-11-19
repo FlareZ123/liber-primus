@@ -145,16 +145,15 @@ p33 red packets [2,8] / [3,5]
 
 P23 line1 itself admits six abstract DH labelings if source roles are ignored. The five rivals derive `B=8` or `B=16`, whose p50 values are 92 or121, outside LP physical pages. Thus the authenticated source order is the only p23 closure in this charged family whose conditional base60 destination reproduces the p33 title packet. The uniqueness is conditional on B-as-address and base60-byte-as-page semantics; the family does not authenticate those output types.
 
-## 5. The handoff extends the instruction to `THE ORIGINAL`
+## 5. The p23/p56 page rise conditionally extends the instruction to `THE ORIGINAL`
 
-If the conditional B→p50[19]→base60→p33 pointer is accepted, the route supplies two further positive cardinals:
+The p7→p23 / p23→p56 stencil relations identify p23 and solved p56 as a half-turn pair. Their physical page-number rise is:
 
 ```text
-source physical page = 23
-derived destination page = 33
+56 - 23 = 33
 ```
 
-Applying the same fixed serializer to those physical page labels as positive one-based cardinals (another unverified output-type choice):
+The p33 layout independently yields `THEIR RISE`, giving a source-visible referent for the numerical rise33. If the physical page labels23 and33 are treated as positive one-based cardinal inputs to the fixed serializer (a post-discovery operation choice, not an explicit Cicada instruction):
 
 ```text
 T(23) = A
@@ -168,7 +167,7 @@ Appending those two already-forced page cardinals to the p23 packet gives
  -> THE ORIGINAL
 ```
 
-The strongest source-local result is `THE ORIGIN`. `THE ORIGINAL` is a conditional extension: it follows only if the B→p50/base60→physical-page pointer and the page-label-as-T-cardinal convention are accepted. The p50 cell0 cross-check is itself conditional on the p57-derived base60/divmod29 register, so it is cross-object consistency rather than independent creator authentication of the p50 encoding.
+The strongest source-local result is `THE ORIGIN`. `THE ORIGINAL` is a conditional extension of the separate p23/p56 page-rise relation: page labels23 and33 are fed to T as positive cardinals, yielding `AL`. This is a plausible source-structural interpretation, but the page-label-to-cardinal operation was not explicitly specified by Cicada and was recognized post-discovery. The DH-derived B→p50[19]→base60→33 pointer is a separate conditional convergence, not the source of page33; the p50 cell0 check is likewise conditional on the p57-derived register.
 
 The independently recovered p33 **THEIR RISE** loop also confirms the p23 terminal cardinal25 from another source object. Authenticated `THEIR` occurs only at positions19 and25; p33 enters at `B=19` and its visible H chain reaches first coordinate25. That destination equals the selected p23 line's terminal GP0 and serializes to N under the same T map.
 
@@ -192,24 +191,27 @@ The first and last edges predate recognition of the closed cycle. The cycle is a
 
 ## 6. Evidence boundary and failed transfer
 
-The strongest reproducible chain is now:
+The strongest reproducible chain separates the local packet from the page-rise extension:
 
 ```text
 original five-dot mirror selects p23 line1
 line lengths -> THEORIG
 dot5 + terminalGP0=25 -> THE ORIGIN
-line lengths + physical p=23 identify the authenticated DH origin state
-derived B=19 -> p50[19] -> p33
-p33 red packets replay the same state and yield THEIR RISE
-source page23 + destination page33 -> AL
-=> THE ORIGINAL
+p23/p56 half-turn stencil pair -> page rise 56-23=33
+p33 layout/solved serializer -> THEIR RISE
+page labels 23 and33 treated as positive T-cardinals -> A,L
+=> candidate THE ORIGINAL
+
+separate DH convergence:
+B=19 -> p50[19]=0X -> base60 33
+(conditional on B-as-address and byte-as-page semantics)
 ```
 
 This is a hidden-layout/state instruction candidate, not recovered p23 body plaintext.
 
 A prospective +5 physical-page continuation was also tested after noticing p23,p28,p33 are equally spaced. Before opening p43 counts, the frozen rule was: take p43's first printed line and apply the unchanged direct-T word-length serializer. It yields `THGGEI`, and the analogous direct first-line rule is nonlinguistic across the p23+5n sequence. Retire that direct-transfer version rather than tuning slices or transforms on p43.
 
-The phrase `THE ORIGINAL` does **not** justify reopening generic JPEG steganography. The repository already contains extensive original-JPEG OutGuess/JSteg/F5/steghide/DCT/container/metadata gates. Its actionable value is narrower: source-origin/original-artifact semantics and the p23→p33 state route are now independently tied to the fixed serializer.
+The phrase `THE ORIGINAL` does **not** justify reopening generic JPEG steganography. The repository already contains extensive original-JPEG OutGuess/JSteg/F5/steghide/DCT/container/metadata gates. Its actionable value is narrower: the source-local `THE ORIGIN` packet and p23/p56 page-rise relation are tied to the fixed serializer; the separate DH→p50 pointer remains conditional.
 
 The separately recovered p28 candidate **READ OUT** composes naturally as `READ OUT THE ORIGINAL`, but no source order currently fixes that two-phrase sentence. Preserve it as a hypothesis, not an instruction to select a receiver.
 

@@ -111,11 +111,11 @@ Across all 256 cyclic origin shifts, **14/256 = 0.0546875** shifts admit at leas
 
 Agent5's later source-state audit supersedes the old need for the local `5×5=25` construction. The selected p23 line itself ends in canonical GP0=25, so `[word lengths] + [five-dot count] + [terminal GP0]` gives `THE ORIGIN` directly. More importantly, the same line is exactly the authenticated `[K,a,e,g,q]` state on physical `p=23`; DH derives `B=19`. Only under the conditional B-as-p50-address/base60/page-label convention does this give destination p33, after which the T serializer applied to page labels23 and33 yields `AL`. The stronger stream therefore conditionally extends to **`THE ORIGINAL`**.
 
-This report's p50-cell0 relation remains valid and should now be read as an independent typed confirmation of the **THE ORIGIN prefix**, not as evidence that the hidden phrase necessarily stops there. See `im-results/lp2-p23-fivedot-totient-origin.md` and `sims/lp2_p23_origin_state_p33_handoff_sft.cjs`.
+This report's p50-cell0 relation is a conditional cross-object consistency check for the **THE ORIGIN prefix** under the p57-derived base60/divmod29 register; it is not independent creator authentication of the p50 encoding. See `im-results/lp2-p23-fivedot-totient-origin.md` and `sims/lp2_p23_origin_state_p33_handoff_sft.cjs`.
 
 ## Evidence boundary
 
-This result supplies an independent cross-object consumer for the semantic completion `THE ORIGIN`:
+This result supplies a conditional cross-object consistency check for the semantic completion `THE ORIGIN` under the p57-derived p50 register:
 
 - p23 supplies the source-selected `THEORIG` prefix and local `IN` completion;
 - the p57 solved-source control had conditionally preferred the canonical p50 register;
@@ -123,9 +123,9 @@ This result supplies an independent cross-object consumer for the semantic compl
 
 The p50 cell0 token and its value were public before this cross-check was formulated, so this is **not** a blind prediction. It should be treated as a strong, compact consistency relation under a conditional register, not as independent creator authentication of base60 or a discovery p-value.
 
-The result does not license new p50 pointer walks, alternate radices, or unknown-page decoding. Its useful consequence is narrower: the **THE ORIGIN** prefix has a separate cross-object consistency relation under a conditionally preferred register, while the later p23→p33 state handoff extends that prefix to **THE ORIGINAL** only if the additional pointer convention is accepted.
+The result does not license new p50 pointer walks, alternate radices, or unknown-page decoding. Its useful consequence is narrower: p50 cell0 conditionally corroborates the **THE ORIGIN** prefix; the separate p23/p56 page-rise relation is the candidate source of page33 for the later `AL` suffix.
 
-The later p23 state route extends the hidden phrase to **THE ORIGINAL**. Its natural English composition with the independently recovered p28 candidate is therefore `READ OUT THE ORIGINAL`. No source order currently binds those two phrases into one instruction, so do not use that English composition to select a receiver without a separate ordering clue. The shorter `READ OUT THE ORIGIN` remains a prefix-level reading only.
+The later p23/p56 page-rise route conditionally extends the local packet to **THE ORIGINAL** if physical page labels are accepted as positive T-cardinals. Its natural English composition with the independently recovered p28 candidate is therefore the candidate `READ OUT THE ORIGINAL`. No source order currently binds those two phrases into one instruction, so do not use that English composition to select a receiver without a separate ordering clue. The shorter `READ OUT THE ORIGIN` remains a prefix-level reading only.
 
 ## Reproduction
 

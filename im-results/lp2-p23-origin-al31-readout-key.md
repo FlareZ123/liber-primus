@@ -1,6 +1,6 @@
 # Conditional p23 `THE ORIGIN | AL` candidate supplies a historical AL=31 key lead for p28 READ OUT
 
-**Agent 5, 19 November 2026. Classification: conditional, post-discovery key-provenance candidate. The local p23 packet emits `THE ORIGIN`; the additional `AL` suffix requires the unverified B→p50-address→base60→physical-page convention. If that handoff is accepted, Crowley's New Comment explicitly identifies AL=31 as the Master Key, and the relevant commentary was publicly printed decades before Liber Primus. This is a plausible May 2014 player-visible lead, not a Cicada-signed instruction or a validated cipher mechanism.**
+**Agent 5, 19 November 2026. Classification: post-discovery key-provenance candidate. The local p23 packet emits `THE ORIGIN`; the p23/p56 half-turn page rise `56-23=33`, together with p33's `THEIR RISE`, supplies a separate source-visible route to page33. Treating page labels23 and33 as positive T-cardinals then yields `AL`; this page-label serializer is plausible but not explicitly selected by a Cicada instruction. The DH B→p50→base60→33 route is a separate conditional convergence. Crowley's New Comment explicitly identifies AL=31 as the Master Key, making it a plausible May-2014 player-visible lead, not a recovered authentic key or validated cipher mechanism.**
 
 ## New observation: the p23 construction naturally separates ORIGIN from AL
 
@@ -16,7 +16,7 @@ terminal GP0        25
 T(cardinals)        THE ORIGIN
 ```
 
-Only if the conditional B→p50[19]→base60→p33 pointer is accepted are two further positive cardinals appended:
+The p23/p56 half-turn pair supplies a separate page-rise candidate `56-23=33`, and p33's `THEIR RISE` gives a source referent. If physical page labels23 and33 are treated as positive T-cardinals (the post-discovery operation hypothesis), two further cardinals are appended:
 
 ```text
 source physical page      23
@@ -37,7 +37,7 @@ as well as the ordinary surface reading
 THE ORIGINAL.
 ```
 
-This is not a free respacing of one homogeneous plaintext string. The two letters `AL` are supplied by a distinct, independently charged source/destination-page handoff after the local `THE ORIGIN` packet is complete.
+This is not a free respacing of one homogeneous plaintext string. The two letters `AL` are supplied by a distinct page-rise/source-destination construction after the local `THE ORIGIN` packet is complete; the page-label-to-T-cardinal step remains a post-discovery operation hypothesis.
 
 ## Historical source path and May 2014 availability
 
@@ -52,9 +52,9 @@ local p23 packet:
   terminal GP0 25
   -> THE ORIGIN
 
-separate p23 -> p33 state handoff:
+separate p23/p56 half-turn page-rise route:
   source physical page 23 -> T(23)=A
-  derived destination page 33 -> T(33)=L
+  p23/p56 page rise 56-23=33 -> T(33)=L
   -> AL
 ```
 
@@ -384,7 +384,7 @@ The new branch is much smaller:
 
 ```text
 p23 local packet        -> THE ORIGIN
-conditional p23 -> p33 handoff -> AL
+p23/p56 page rise33 + T(page labels) -> AL (candidate)
 historical Liber AL key -> 31
 31 mod28                -> e = 3
 31 mod29                -> K = 2
@@ -399,7 +399,7 @@ This is a plausible human solve path because each transition is prompted by an o
 
 **Positive, conditionally**, on the issue's historical question: AL=31 is a plausible May 2014 player-visible key lead if the p50 pointer step is intended. A solver who derives the local `THE ORIGIN` packet and accepts the conditional p23→p33 handoff obtains `THE ORIGIN | AL`, then can follow the already-known Liber AL source to III:47 and consult a New Comment publicly printed since 1974/1975. The New Comment explicitly supplies the key value; this is not an arbitrary occult association.
 
-The logical route selects 31 without using p28, p31 or p39 output values. The research chronology is different: this association was recognized after those target results were already known, so the current arithmetic bridge is **post-discovery**, not blind empirical validation. The p50 cell-0 interpretation is a conditional cross-object consumer for `THE ORIGIN`; it does not independently authenticate the p50 radix or the AL suffix's B→page pointer.
+The candidate page-rise/T route selects 31 without using p28, p31 or p39 output values, but the use of physical page labels as positive T-cardinals remains an unverified operation. The research chronology is different: this association was recognized after those target results were already known, so the current arithmetic bridge is **post-discovery**, not blind empirical validation. The p50 cell-0 interpretation is a conditional cross-object consumer for `THE ORIGIN`; it does not independently authenticate the p50 radix or the AL suffix's B→page pointer.
 
 Promote AL=31 only as a **historically sourced key-provenance candidate** for a new untouched original-cipher test. Do not call it a recovered authentic key, a Cicada-signed instruction, or a validated decryption. The 31→modulus/sign mapping remains an unproven operation choice. No new p28 exponent sweep or language-score search was run for this audit.
 

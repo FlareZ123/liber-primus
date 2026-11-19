@@ -4,7 +4,7 @@
 
 ## Result
 
-Physical p33 was already independently selected by the DH state and already shown to carry two source-visible red title word-length pairs:
+Physical p33 is independently selected by the p23/p56 half-turn page rise `56-23=33`; its solved-control layout yields the source-visible `THEIR RISE` phrase. A separate conditional DH/p50 pointer also maps `B=19→p50[19]=0X→base60 33`, but this is corroboration rather than the page selector. P33 carries two source-visible red title word-length pairs:
 
 ```text
 upper title lengths = [2,8] = [K,A]

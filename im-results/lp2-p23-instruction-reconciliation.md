@@ -1,4 +1,4 @@
-# P23 carries two distinct hidden instructions: THE ORIGINAL and THE ONE RISE
+# P23 carries THE ORIGIN / candidate THE ORIGINAL and the separate THE ONE RISE
 
 **Agent42, 19 November 2026. Director #1797 reconciliation. Classification: both constructions survive as distinct source-object serializers with different numeric holdouts. They share four p23 word lengths and the solved-p56 positive-cardinal map, while their remaining operands and transforms are source-constrained. The `THE ORIGINAL` suffix additionally depends on a conditional B→p50/base60→physical-page pointer. Neither result decrypts p23 body ciphertext.**
 
@@ -9,9 +9,14 @@ The two p23 readings do **not** compete for the same segmentation.
 ```text
 full five-dot-selected first line:
 [2,6,3,5,4]
-  + dot5 + terminalGP0 25 + source23 + DH destination33
+  + dot5 + terminalGP0 25
   --T-->
-THE ORIGINAL
+THE ORIGIN
+
+p23/p56 half-turn page rise:
+56 - 23 = 33 -> p33 THEIR RISE
+page labels23,33 treated as positive T-cardinals -> A,L
+  -> candidate THE ORIGINAL
 
 exact red span only:
 [2,6] [3,5]
@@ -28,7 +33,7 @@ T(n) = (p_n - 1) mod29.
 
 The red span ends after those four words. The complete selected line contains a fifth black word of length4. That visible color/extent distinction fixes which source object belongs to each construction before either English output is scored.
 
-## 1. THE ORIGINAL family
+## 1. THE ORIGIN / candidate THE ORIGINAL family
 
 The exact p7→p23 five-dot mirror selects p23 line1. Its complete word lengths are
 
@@ -60,14 +65,14 @@ The selected five lengths also equal the independently reconstructed source stat
 
 with physical p=23. Charging all 53 five-word lines on prime physical pages under all 120 role assignments gives 54 DH closures. The further counts—four B→p50 results that decode to physical-page labels and one p33 packet match—are conditional on treating B as a zero-based p50 address and the token as base60 with page-number output. The family does not charge alternate pointer fields or output types.
 
-If that conditional p23→p33 handoff is accepted, applying the unchanged T serializer to page labels23 and33 as positive cardinals appends `AL`:
+The p23/p56 half-turn relation separately gives the source-visible page rise `56-23=33`; p33's `THEIR RISE` supplies a referent for that value. If page labels23 and33 are treated as positive T-cardinals, the unchanged serializer appends `AL`:
 
 ```text
 THE ORIGIN | AL
 THE ORIGINAL.
 ```
 
-The `AL` suffix and full phrase are therefore conditional; the local seven-cardinal packet still yields `THE ORIGIN` without this handoff.
+This full-phrase extension remains a post-discovery page-label serialization candidate. The B→p50 pointer is conditional corroboration, not the necessary source for p33.
 
 ### Conditional numeric holdout for THE ORIGINAL
 
@@ -228,16 +233,17 @@ The numeric value25 appears in both routes for different source reasons: it is t
 
 ## Director fork
 
-Both instructions survive the charged source families and have different held-out numeric closures. P23 should therefore be treated as a **multi-instruction checkpoint**:
+Both the local `THE ORIGIN` packet and the separate red-span `THE ONE RISE` construction survive their charged source families. The full `THE ORIGINAL` extension is a post-discovery candidate using the p23/p56 page rise and page-label T serialization; its B→p50 match is conditional corroboration. P23 should therefore be treated as a **multi-instruction checkpoint**:
 
 ```text
-five-dot/full-line/state route -> THE ORIGINAL
+five-dot/local packet         -> THE ORIGIN
+p23/p56 page-rise + T labels  -> candidate THE ORIGINAL
 red-span/H route              -> THE ONE RISE.
 ```
 
 The stronger next decision is to use each instruction only where its own source-selected consequence identifies a receiver. Do not merge them into one English sentence, and do not transfer operands between the two serializers.
 
-The `[7,8]` holdout has a prospective state cross-check at p8: page8=A, p50[8]=[e,g], and its unique two-word red heading `[q,A]` maps under inverse H to `[a,K]`. The preferred ONE-RISE operation is the separately established repeated `+2` operator, giving p23→p25. The ORIGINAL branch remains tied to its p23→p33 state route and its `97=p_25`, `[5,5]` closures. Keep the serializer branches separate while using the repeated RISE operation for navigation.
+The `[7,8]` holdout has a prospective state cross-check at p8: page8=A, p50[8]=[e,g], and its unique two-word red heading `[q,A]` maps under inverse H to `[a,K]`. The preferred ONE-RISE operation is the separately established repeated `+2` operator, giving p23→p25. The ORIGINAL branch uses the p23/p56 half-turn page rise33 and page-label T serialization; its `97=p_25` and `[5,5]` closures are post-discovery cross-checks, with the p50 leg conditional. Keep the serializer branches separate while using the repeated RISE operation for navigation.
 
 ## Reproduction
 

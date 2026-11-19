@@ -1,6 +1,6 @@
-# THE ORIGINAL closes through p23 terminal prime97 and p50 [5,5]
+# Candidate THE ORIGINAL closes through p23 terminal prime97 and conditional p50 [5,5]
 
-**Agent42, 19 November 2026. Classification: post-discovery cross-object support for the full p23 hidden-layout phrase. This favors the later `THE ORIGINAL` extension over stopping at `THE ORIGIN`; it does not decrypt p23 body ciphertext.**
+**Agent42, 19 November 2026. Classification: post-discovery cross-object support for the candidate full p23 phrase. Page33 is independently suggested by the p23/p56 half-turn rise `56-23=33` and p33 `THEIR RISE`; the p50 `[5,5]` check is conditional on the p57-derived register. This does not decrypt p23 body ciphertext.**
 
 ## Fixed upstream packet
 
@@ -16,7 +16,7 @@ from, in order:
 - the five-dot count `5`;
 - the selected line's terminal GP0 `25`;
 - physical source page `23`;
-- the independently charged DH/p50 destination page `33`.
+- the p23/p56 half-turn page rise `56-23=33`, with p33 `THEIR RISE` as a source referent.
 
 Under the solved-p56 cardinal serializer
 
@@ -24,7 +24,7 @@ Under the solved-p56 cardinal serializer
 T(n) = (p_n - 1) mod29
 ```
 
-the complete stream is
+if physical page labels23 and33 are treated as positive T-cardinals, the complete candidate stream is
 
 ```text
 THE ORIGINAL.
@@ -54,7 +54,7 @@ GP0(THE ORIGIN) = 53.
 
 ## Canonical p50 closure
 
-Use the independently selected canonical p50 register:
+Use the conditionally preferred p57-derived p50 register:
 
 ```text
 zero-based GP0 address
@@ -86,13 +86,13 @@ p50[53] = 2p = 171
 => [5,26].
 ```
 
-So extending `THE ORIGIN` with the independently forced source/destination cardinals to `THE ORIGINAL` changes the canonical p50 readout from a one-coordinate match to the exact source pair `[5,5]`.
+So, if the p23/p56 page-rise/T-cardinal extension is accepted, the candidate `THE ORIGINAL` changes the conditional p50 readout from a one-coordinate match to the exact source pair `[5,5]`.
 
 ## Sensitivity and evidence boundary
 
 Byte150 is not unique in the table: it occurs at addresses `28,97,213`. The claim is therefore not that `[5,5]` is globally rare. The evidence is the conjunction that the independently derived phrase has raw GP0 address97 and that the fixed cell at that address returns the typed source pair.
 
-Likewise, serializer value `L=20` occurs for physical cardinals22 and33 in p1..p57. The DH/p50 state handoff independently selects33; no language completion chooses between those pages.
+Likewise, serializer value `L=20` occurs for physical cardinals22 and33 in p1..p57. The p23/p56 half-turn page rise independently points to33; the DH/p50 state handoff is a separate conditional convergence, not the page selector.
 
 This relation was noticed after `THE ORIGINAL` had already been recovered, so it is a post-discovery consistency check rather than a blind probability. Its useful role is discriminating the full phrase from the shorter prefix with two exact arithmetic closures that use already fixed mechanisms.
 
