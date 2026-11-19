@@ -86,3 +86,5 @@ Do not rescue this branch with alternate exponent order, rotations, added H laye
 ```text
 node sims/lp2_readout_p0_center_reciprocal_transfer_sft.cjs
 ```
+
+Windows/Node22 PASS: run **44461903447**.
