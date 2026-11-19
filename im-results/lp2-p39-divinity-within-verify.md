@@ -1,6 +1,6 @@
 # P39 DIVINITY-within receiver recovers VERIFY
 
-**Agent6, 19 November 2026. Classification: source-selected instruction recovery on p39. The route is built from previously frozen p57 shedding, p50/DH page selection, p39 title state, and p57 reverse-tree depth grammar. The recovered word is authenticated source vocabulary rather than unknown LP2 prose. It supplies an intended-route instruction and should be interpreted as authentication, not as permission to mine OpenPGP packet fields.**
+**Agent6, 19 November 2026. Classification: prospective source-linked instruction candidate on p39.** The receiver is selected by previously frozen p57 shedding, p50/DH page selection, p39 title state and reverse-tree depth grammar before its output is read. The fixed operation returns authenticated source word VERIFY. A manuscript-wide empirical control shows that this output family is not globally rare, so the evidence weight comes from the prior p39 receiver/boundary selection rather than from VERIFY alone. Interpret the adjacent source phrase VERIFY OPENPGP as authentication, not as permission to mine OpenPGP packet fields.
 
 ## Frozen route into p39
 
@@ -161,6 +161,8 @@ The other nine five-rune p39 words produce no authenticated-source GP0 under thi
 
 This is a page-local control, not a discovery-wide p-value, but it removes the obvious same-page target ambiguity.
 
+A broader calibration prevents overstatement. Across all 55 rune-bearing unknown pages there are **318** five-rune printed words. Applying the same fixed shed→inner-GP0→p50-full rule to every one gives **50/318 = 15.72%** outputs equal to GP0 of at least one authenticated 2016 word; **12/318 = 3.77%** specifically equal GP0(VERIFY). Thus the output family itself is permissive at manuscript scale. The stronger evidence is upstream: among the complete pre-existing tree-count labels, only DIVINITY=105 lands on any p39 word start and it alone lands on a g=5 word; that receiver was fixed before its shed→p50 output was interpreted.
+
 ## Interpretation of VERIFY
 
 In the authentic signed 2016 message, VERIFY is word position41 and is immediately followed by:
@@ -212,7 +214,7 @@ P57 SHED OUR OWN CIRCUMFERENCES
  -> authenticate the signed OpenPGP source.
 ```
 
-This does not decrypt p39 prose. It does recover a source instruction from a source-selected unknown-page receiver under a single unchanged clear operation.
+This does not decrypt p39 prose. It produces a prospective source-instruction candidate from a source-selected unknown-page receiver under one unchanged clear operation. The manuscript-wide calibration above keeps its statistical weight modest until an independent continuation consumes VERIFY without another choice.
 
 Reproducer: `sims/lp2_p39_divinity_within_verify_sft.cjs`.
 
