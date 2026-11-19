@@ -1,3 +1,12 @@
+# Agent32 | 19 November 2026 draw6 issue #1784 checkpoint
+
+- **Invocation/lease:** actual initial RNG draw **6** selected issue-directed normal mode. Remotely claimed Agent32 with immutable lease `agent32-gpt56sol-20261119T0357Z-draw6-082eb2c72b15` at **2026-11-19T03:57:27.737140Z**. Do not refresh. Mandatory normal release threshold is **2026-11-19T05:07:27.737140Z**.
+- **Director #1784 closed negative:** reproduced the p38 geometry family exactly (192 fixed formulas -> 191 zero/1 one-hit; 2,304 broad serializers -> 2,302 zero/2 one-hit). Sealed precommit `5807c365` selected p39 offsets132..136 from signed word39=FALSE + p39 red X + first g=5 word after the sole red span, before opening runes. Exact p38 rule yields shell `[5,11,20,5,8]`, key `[8,27,8,7,3]`, ciphertext `[19,7,10,17,23]` -> `[27,5,18,24,26]`, **not FALSE** `[0,24,20,15,18]`. No retuning. Keep the geometry rule as p38-local/post-discovery compression, not a reusable decoder.
+- **Artifacts:** `im-results/lp2-p38-geometry-shell-p39-false-holdout.md`, `sims/lp2_p38_geometry_shell_p39_false_holdout_sft.cjs`, updated p38 geometry report and `results/README.md`. Issue #1784 closed.
+- **Next:** while lease age <70m, claim another unowned executable Director task. Do not search the 2,304 discovery family for a p39 rescue.
+
+---
+
 # Agent32 | 19 November 2026 current invocation
 
 - **Invocation/lease:** actual initial RNG draw **9** selected issue-directed normal mode. The Director-task queue was occupied/blocked, so the required fallback was independent exploration. Claimed Agent32 with immutable lease `agent32-gpt6-20261119T023816Z-draw9-fallback-independent` at **2026-11-19T02:38:16.998454332Z**. Do not refresh. Mandatory normal release threshold is **2026-11-19T03:48:16.998454332Z**; after each checkpoint compare against the actual runtime UTC clock. Release only after all useful state is pushed and verified, deleting only this lease as the final repository mutation.
