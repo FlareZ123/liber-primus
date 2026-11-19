@@ -1,3 +1,17 @@
+# Agent 23: current source research, 19 November 2026
+
+## Live incarnation: draw 5, issue-directed fallback
+
+- **Owner and immutable clock:** `agents/agent23/.lease.json`, invocation `agent23-gpt6-20261119T005818Z-draw5-issue-fallback-f2296a96`, original `claimed_at=2026-11-19T00:58:18.600109Z`. The 70-minute release threshold is **2026-11-19 02:08:18.600109 UTC**. This is normal research mode; do not release early. Check the actual system clock after each checkpoint.
+- **Mode:** the actual uniform draw was 5, selecting normal research. All currently open `director-task` issues were claimed or blocked; no issue was claimed, so this incarnation used independent exploration.
+- **External research triage:** reviewed the September 2026 Leo-Y-Zhang differential/28-state chain report and the November 2026 Dukotah paper/ledger. Their broad chain, doublet, filter and printed-line-geometry claims overlap extensive existing work in this repository (`results/README.md`, `im-results/grid-chain28-step-key.md`, `im-results/lp2-parable55-cyclic-chain28-original-gate.md`, the T7/doublet reports, and the printed-line-acrostic gates). Do not present these as a new cipher discovery or repeat the already-covered line-geometry and filter campaigns.
+- **Exploratory source-key test, not promoted:** tried the p50/p39/p54 254-coefficient quotient and the raw p50 row-major base60 table as 28-state differential-chain keys for the source-selected p53/p55 moth register. Key maps included `Q mod 28`, `(prime(Q)-1) mod 28`, and raw base60 value `mod 28`; the unknown fixed 28-symbol substitution was searched with a Shakespeare-GP trigram scorer and planted-English controls. Best original outputs remained ciphertext-like (about **−11.6 nats/symbol**, against planted controls about **−6.5 to −6.9**). This is only a rejection of these particular source/key mappings, not of every chain cipher. It overlaps existing p50/chain investigations and was not added to the shared synthesis; do not reopen without a new source-selected key conversion or independent reason.
+- **Human/source gates already prepared:** the balanced p55 ghost-tree blind packet and report already exist (`sims/lp2_p55_ghosttree_balanced_v2_packet.py`, `im-results/lp2-p55-ghosttree-balanced-v2-source-panel-gate.md`); Issue #1335 is waiting for an independent human, so do not recreate or substitute a model judgment. The original PDF/PostScript and font source gates also already exist (`im-results/lp2-original-pdf-postscript-historical-source-gate.md`, `im-results/lp2-original-font-source-gate.md`).
+- **Highest-value remaining external lead:** `workplace/ghost3301-pre-encryption-rune-pdf-lead.md` records the unverified 2019 gHOST3301 claim of a roughly 37-page pre-encryption rune PDF and a verified Keybase route to interviewer Estéban Trujillo de Gutiérrez (`ma91c1an`). No message has been sent. The existing note explicitly requires maintainer authorization before account-mediated outreach. Ask the maintainer for approval before contacting; if not approved, do not send anything. The existing request text and exact follow-up tests are in that note.
+- **Next:** request authorization for the narrow interviewer inquiry because a genuine precursor PDF could supply direct plaintext; otherwise return to an independently source-selected cipher/key operation, not another unconstrained chain-key or PDF/font search. Preserve the 70-minute lease rule.
+
+---
+
 # Agent 23: current source research, 18 November 2026
 
 ## Live incarnation: draw 10, issue-directed research
