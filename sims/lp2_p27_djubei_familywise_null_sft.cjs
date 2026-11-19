@@ -357,6 +357,40 @@ assert.deepEqual(
 assert.deepEqual([dju59.left.firstClass, dju59.right.firstClass, dju59.left.secondClass], ["end", "start", "start"]);
 assert.deepEqual([dju60.left.firstClass, dju60.right.firstClass, dju60.left.secondClass], ["end", "end", "interior"]);
 
+const holdoutIndex = djuIndex + 2;
+assert.equal(holdoutIndex, 7);
+const holdout59 = pairFeatures(holdoutIndex, originalTokens, "base59");
+const holdout60 = pairFeatures(holdoutIndex, originalTokens, "base60");
+
+/** @param {ReturnType<typeof pairFeatures>} a @param {ReturnType<typeof pairFeatures>} b */
+function passesFrozenHoldout(a, b) {
+  return Boolean(
+    a && b &&
+    a.distinctFirst && b.distinctFirst &&
+    a.distinctIntermediate && b.distinctIntermediate &&
+    a.firstBothBoundary && b.firstBothBoundary &&
+    a.twoSameWord && b.twoSameWord &&
+    a.left.target.index === b.left.target.index &&
+    a.left.intermediate.index === b.left.intermediate.index &&
+    a.right.intermediate.index === b.right.intermediate.index
+  );
+}
+
+/** @param {ReturnType<typeof pairFeatures>} row */
+function summarizeHoldoutRow(row) {
+  if (!row) return null;
+  return {
+    first: [row.left.firstValue, row.right.firstValue],
+    firstClasses: [row.left.firstClass, row.right.firstClass],
+    intermediateWordIndices: [row.left.intermediate.index, row.right.intermediate.index],
+    intermediateAddresses: [row.left.intermediateAddress, row.right.intermediateAddress],
+    second: [row.left.secondValue, row.right.secondValue],
+    secondClasses: [row.left.secondClass, row.right.secondClass],
+    targetWordIndices: [row.left.target ? row.left.target.index : null, row.right.target ? row.right.target.index : null],
+  };
+}
+const holdoutPass = passesFrozenHoldout(holdout59, holdout60);
+
 let rngState = 0x7f4a7c15;
 /** @returns {number} */
 function randomUnit() {
@@ -440,6 +474,24 @@ console.log(JSON.stringify({
     stepCounts: [1, 2],
     boundaryClasses: ["start", "end", "singleton", "interior"],
     targetCarrier: {wordIndex: carrier.index, start: carrier.start, length: carrier.length},
+  },
+  blindHoldout: {
+    selector: "canonical NEXT pair immediately after DJU/BEI",
+    pairIndex: holdoutIndex,
+    words: [p27[holdoutIndex].text, p27[holdoutIndex + 1].text],
+    starts: [p27[holdoutIndex].start, p27[holdoutIndex + 1].start],
+    gp0: [gp0(p27[holdoutIndex]), gp0(p27[holdoutIndex + 1])],
+    prediction: "base59/base60 two-step stable-intermediate common-target",
+    passes: holdoutPass,
+    base59: summarizeHoldoutRow(holdout59),
+    base60: summarizeHoldoutRow(holdout60),
+    commonTargetWordIndex: holdoutPass ? holdout59.left.target.index : null,
+    commonTarget: holdoutPass ? {
+      index: holdout59.left.target.index,
+      start: holdout59.left.target.start,
+      length: holdout59.left.target.length,
+      text: holdout59.left.target.text,
+    } : null,
   },
   observed: {
     metrics: observed,
