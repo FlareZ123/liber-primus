@@ -214,6 +214,42 @@ w = A+g = 13.
 
 They are no longer required inputs to generate the key.
 
+## Right-column RISE continues the title
+
+The original-image SFT fixes the marker as five center dots alternating with four left/right rows. The state-only serializer was already frozen before inspecting the lexical meaning of its vertical increments.
+
+The right physical column has exactly three rises:
+
+```text
+[t-u, t, t+u]
+=
+[6,7,8]
+=
+[a,g+K,A].
+```
+
+Under the complete independently reconstructed source register these are:
+
+```text
+6 SEEKS
+7 THE
+8 DEVOTED.
+```
+
+The recovered title itself is the adjacent state pair:
+
+```text
+g,a = [5,6] = EPIPHANY SEEKS.
+```
+
+Therefore the title followed by the marker's literal right-column RISE gives one continuous authenticated source span with an intentional one-word overlap:
+
+```text
+EPIPHANY SEEKS | SEEKS THE DEVOTED
+             => EPIPHANY SEEKS THE DEVOTED.
+```
+
+This does not derive the entire three-column rise grammar. It does give the right-column law a direct human-facing consequence in the exact source phrase immediately after the title candidate, using the marker's physical vertical direction and the independently reconstructed state register.
 ## Post-freeze original-marker row holdout
 
 The serializer above was already frozen and committed before inspecting a second consequence of the original staggered dot geometry.
