@@ -76,8 +76,81 @@ AND THEIR = [3,4].
 
 This is a source-only, familywise selector for the same p0 pair independently reached by the ROAD base29 branch. It materially strengthens the intended reading of **“their numbers are the direction”**: the word NUMBERS itself supplies the p50 address whose two numeric interpretations point back to the AND/THEIR-shaped pair.
 
+### The preceding p0 word computes NUMBERS before the pair is opened
+
+The immediately preceding original p0 word, offsets183..188, has ciphertext `[0,20,7,12,16,25]`.
+
+Its exact H shell is:
+
+```text
+[4,25,4,7,24,19]
+= [K^2,p+K,K^2,g+K,p+1,B].
+```
+
+The ordered shell occurs **once among all 252 complete unknown six-rune words**. Its coordinate sum is `83 = GP0(NUMBERS)`.
+
+Charge this against the complete three-case authenticated family that produces any adjacent dual-radix p0 word-start pair:
+
+```text
+source    preceding-shell sum    equals source GP0?
+PRIMUS            68                    no
+NUMBERS           83                    yes
+OPENPGP           91                    no
+```
+
+Thus NUMBERS alone has a local predecessor packet that computes its own GP0 state. Then `p50[83]=3D` points to the immediately following length-3/length-4 receiver pair. This gives a self-contained direction opcode: state packet -> 83 = NUMBERS -> 3D -> AND/THEIR-shaped pair.
 The p0 word43 plaintext remains ambiguous between current inverse families; this result authenticates the **source-label/receiver-shape relation**, not the receiver letters.
 
+## NUMBERS token state derives AND and a new THEIR family
+
+The addressed token has another independent state identity:
+
+```text
+p50[GP0(NUMBERS)] = p50[83] = 3D
+```
+
+Read its visible components against the already fixed p28/GCD state:
+
+```text
+3 = e = b^-1 mod(p-1)
+GP(D) = 23 = p
+```
+
+Across all authenticated 2016 source-word occurrences whose addressed p50 token has a nonzero leading digit and a GP-readable second character, **NUMBERS is the only one whose token is exactly (e,p)**.
+
+The token therefore fixes:
+
+```text
+H(p,e) = [p-e,p+e] = [20,26].
+```
+
+### First receiver: AND
+
+Charge the complete family `[x, H(p,e)[j], y]`, where x and y are distinct members of `{g,a,b,A,B,K,e}` and j is 0 or 1. This is **84** keys, fixed from the NUMBERS token and the already reconstructed state.
+
+Applying every key to p0 189..191 and scoring only against the distinct authenticated three-GP-rune source words gives exactly one hit:
+
+```text
+key = [g,p+e,b] = [5,26,15]
+[0,6,9] - [5,26,15] mod29 = [24,9,23] = AND
+```
+
+Its H-shell key form is `[B,p-e,p+e]`. This materially upgrades **AND** from a post-target inverse to a source-token/state recovery candidate.
+
+### Second receiver: THEIR
+
+Charge the complete family `[H(p,x)[j], p, K*y, y]` with x,y in `{g,a,b,A,B,K,e}` and j in {0,1}: **98** keys.
+
+Applying every key to p0 192..195 and scoring only against the distinct authenticated four-GP-rune source words gives exactly one hit:
+
+```text
+key = [p-a,p,K*g,g] = [17,23,10,5]
+[19,12,20,9] - [17,23,10,5] mod29 = [2,18,10,4] = THEIR
+```
+
+The key shell is `[K*a,p-1,p-K*g,K^2]`.
+
+This is a substantially more constrained THEIR mechanism than the earlier distinct-field grammar. A competing PATHS inverse at the same p0 receiver remains in the repository, so the current conclusion is **strong THEIR candidate under the NUMBERS-token mechanism**. The decisive next test is whether the two key-family forms can be derived from a common source instruction before another receiver is opened.
 ## Upstream source selection
 
 The current ROAD branch supplies two independent pieces of geometry.
