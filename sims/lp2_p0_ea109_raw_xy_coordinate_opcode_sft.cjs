@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * SFT for the prospectively selected p0 EA109 raw XY coordinate-opcode candidate.
+ * SFT for the conditionally preselected p0 EA109 raw XY word observation.
  *
  * Windows Node.js 22, CommonJS, no third-party dependencies.
  */
@@ -175,5 +175,5 @@ console.log(JSON.stringify({
     dhReading: ["g", "p"],
   },
   classification:
-    "Prospectively selected raw opcode candidate: EA prime109 lands on the sole complete XY two-rune word in unknown LP2. The immediate ROAD-selected p50 cell has Cartesian XY=(g,p). Coordinate semantics are supported; a global decoder is not established.",
+    "Conditionally preselected receiver: EA prime109 lands on the sole complete XY two-rune word in unknown LP2. The ROAD-cell Cartesian XY=(g,p) reading is post-observation and is not independent opcode evidence.",
 }, null, 2));
