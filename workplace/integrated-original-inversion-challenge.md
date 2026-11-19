@@ -116,7 +116,7 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 - **Cipher architecture:** #1892 may propose at most three source-motivated reversible encoders for the joint lag-five/adjacent-repeat constraints, with exact state and a blind original holdout.
 - **Human solve path:** #1891 covers original p1–p21 only, excluding already exhausted p0/p7 families.
 - **External hash:** #1894 is public-source-only DWM schema/coverage work. #1886 remains blocked on the exact Wikidot archive access path; no private contact is authorized.
-- **Active continuation:** #1873 tests DIRECTION→p50→scan72; #1877 tests the final signed-source p30–p42 route. #41, #1667 and #1335 remain blocked on a source-selected p55 decoder, worker transport, and a genuinely naïve human oracle respectively.
+- **Active continuation:** #1873 is complete: the full 43-word GP0→p50/base59 scan register gives 9 word hits and 6 pages, null-compatible (expected 6.27); no new destination has an independent source-selected receiver. Preserve only the specific p49→DIRECTION→p55 convergence. #1877 remains active. #41, #1667 and #1335 remain blocked on a source-selected p55 decoder, worker transport, and a genuinely naïve human oracle respectively.
 
 ### Completed decisions since the previous frontier
 

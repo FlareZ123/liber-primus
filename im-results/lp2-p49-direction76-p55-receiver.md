@@ -128,6 +128,84 @@ That is the exact `75 / 76` pair independently produced by the earlier RISE tabl
 
 The p49 route selects the physical value 76 directly. No radix choice is needed after DIRECTION has been read.
 
+## Full signed-2016 43-word register: physical-scan continuation is null-compatible
+
+The authenticated 2016 cleartext contains **43** alphabetic words. Freeze the canonical GP0 spelling, the original row-major 256-cell p50 grid, the exact post-SHED base59 alphabet (the 60-symbol printed alphabet with lowercase f removed), and physical scan mapping **LP2 page = scan − 17**. No word, radix, origin, or page is selected after seeing its output.
+
+| # | Signed word | GP0 | p50 token | Base59 | Scan | LP2 page |
+|---:|---|---:|---|---:|---:|---:|
+| 1 | HELLO | 69 | 1D | 72 | 72 | 55 |
+| 2 | THE | 20 | 1g | 100 | — | — |
+| 3 | PATH | 39 | 05 | 5 | — | — |
+| 4 | LIES | 63 | 0p | 50 | 50 | 33 |
+| 5 | EMPTY | 92 | 3u | 232 | — | — |
+| 6 | EPIPHANY | 121 | 3v | 233 | — | — |
+| 7 | SEEKS | 71 | 1m | 106 | — | — |
+| 8 | THE | 20 | 1g | 100 | — | — |
+| 9 | DEVOTED | 102 | 0W | 32 | 32 | 15 |
+| 10 | LIBER | 69 | 1D | 72 | 72 | 55 |
+| 11 | PRIMUS | 62 | 24 | 122 | — | — |
+| 12 | IS | 25 | 3I | 195 | — | — |
+| 13 | THE | 20 | 1g | 100 | — | — |
+| 14 | WAY | 57 | 1w | 116 | — | — |
+| 15 | ITS | 41 | 1O | 83 | — | — |
+| 16 | WORDS | 52 | 1Q | 85 | — | — |
+| 17 | ARE | 46 | 3J | 196 | — | — |
+| 18 | THE | 20 | 1g | 100 | — | — |
+| 19 | MAP | 56 | 4E | 250 | — | — |
+| 20 | THEIR | 34 | 3H | 194 | — | — |
+| 21 | MEANING | 77 | 2O | 142 | — | — |
+| 22 | IS | 25 | 3I | 195 | — | — |
+| 23 | THE | 20 | 1g | 100 | — | — |
+| 24 | ROAD | 54 | 2a | 154 | — | — |
+| 25 | AND | 56 | 4E | 250 | — | — |
+| 26 | THEIR | 34 | 3H | 194 | — | — |
+| 27 | NUMBERS | 83 | 3D | 190 | — | — |
+| 28 | ARE | 46 | 3J | 196 | — | — |
+| 29 | THE | 20 | 1g | 100 | — | — |
+| 30 | DIRECTION | 112 | 1D | 72 | 72 | 55 |
+| 31 | SEEK | 56 | 4E | 250 | — | — |
+| 32 | AND | 56 | 4E | 250 | — | — |
+| 33 | YOU | 30 | 2L | 139 | — | — |
+| 34 | WILL | 57 | 1w | 116 | — | — |
+| 35 | BE | 35 | 0d | 39 | 39 | 22 |
+| 36 | FOUND | 36 | 0s | 53 | 53 | 36 |
+| 37 | GOOD | 35 | 0d | 39 | 39 | 22 |
+| 38 | LUCK | 31 | 2D | 131 | — | — |
+| 39 | BEWARE | 88 | 3V | 208 | — | — |
+| 40 | FALSE | 77 | 2O | 142 | — | — |
+| 41 | PATHS | 54 | 2a | 154 | — | — |
+| 42 | VERIFY | 59 | 19 | 68 | 68 | 51 |
+| 43 | OPENPGP | 75 | 2v | 174 | — | — |
+
+The scan-range outputs are therefore **nine word hits, seven distinct GP0 addresses, and six distinct pages**: p15, p22, p33, p36, p51 and p55. The p55 landing is already known and cannot count as a new success. Address collisions are material: the 43 words occupy only **27** distinct GP0 addresses (16 collision excess). Repeated addresses are 20×6, 25×2, 34×2, 35×2, 46×2, 54×2, 56×4, 57×2, 69×2 and 77×2.
+
+### Null preserving the table distribution and GP0 collisions
+
+The 256 decoded p50 cell values range from **0 to 251**, with **161** distinct values. **63** cells fall in the physical scan interval 17–74, representing **37** distinct scan values. The null randomly permutes this exact 256-value multiset across the address slots while holding the 43 word GP0 addresses and their multiplicities fixed. Exact combinatorial dynamic programs calculate the weighted word-hit, distinct-address-hit and distinct-page distributions; no simulated or fitted English baseline is used.
+
+| Statistic | Observed | Null expectation | Upper-tail probability |
+|---|---:|---:|---:|
+| Word hits | 9 | 10.582 | 0.6600 |
+| Distinct hit addresses | 7 | 6.645 | 0.5143 |
+| Distinct destination pages | 6 | 6.270 | 0.6432 |
+
+The exact null probability of **six** distinct destination pages is **0.2011**. Six pages is ordinary under this null, not an excess. The 43-word scan map therefore fails its decisive test: its number of scan-range hits and distinct pages is fully compatible with the fixed p50 value distribution and the observed GP0 collisions.
+
+### Destination review
+
+- **p55** is the established receiver for the independent p49→DIRECTION route; it is not a new destination.
+- **p22** is already an independently supported receiver from the p55→CIRCUMFERENCES route and mirrored LP1 artwork; BE and GOOD also collide at GP0 35, so this is one address and one known page, not a new receiver.
+- **p33** is reached by LIES, but its M/NG cuneiform marker loop remains a retrospective correspondence without a source-selected body receiver; it also reuses p50 and supplies no held-out plaintext.
+- **p15** has an independently studied Fibonacci-prime square, but no source-selected scan receiver for DEVOTED.
+- **p36** has the numbered cuneiform passage, but no independently selected receiver for FOUND.
+- **p51** has no pre-existing source-selected receiver for VERIFY.
+
+No new destination meets the positive criterion. The exact p49→76→DIRECTION→p55 convergence remains a bounded positive route; the broader 43-word physical-scan interpretation is a **clean negative**. Do not rescue it with alternate radices, origins, semantic word/page matches, or post-reveal selectors.
+
+Reproducer: sims/lp2_p49_direction76_p55_receiver_sft.cjs.
+
+
 ## Interpretation
 
 The result supplies a plausible human solve path:
@@ -142,7 +220,7 @@ SHED the printed word circumferences
 
 This is stronger than treating `DIRECTION` as a detached semantic coincidence because the unreduced value has an independently established, unique manuscript receiver.
 
-It does not recover p49 or p55 prose, prove recursive SHED is a manuscript-wide cipher, or license arbitrary page-count navigation. The page-family charge shows exactly why p49 is special under the frozen conjunction.
+It does not recover p49 or p55 prose, prove recursive SHED is a manuscript-wide cipher, or license arbitrary page-count navigation. The full 43-word register above is null-compatible and does not generalize this receiver into a physical-scan map; the page-family charge shows exactly why p49 is special under the frozen conjunction.
 
 ## Reproduction
 
