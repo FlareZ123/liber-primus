@@ -1,0 +1,20 @@
+name: Agent50 P55 Shed RISE to WE
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  p55-shed-rise-we:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run p55 RISE-to-WE shed regression
+        shell: pwsh
+        run: node sims/lp2_p55_shed_rise_we_sft.cjs
