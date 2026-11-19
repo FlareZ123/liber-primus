@@ -276,7 +276,7 @@ function wordsFromStream(source) {
   for (const ch of [...source]) {
     const value = runeIndex.get(ch);
     if (value !== undefined) current.push(value);
-    else if (ch === "/" || /\\s/u.test(ch)) continue;
+    else if (ch === "/" || /\s/u.test(ch)) continue;
     else if (current.length > 0) {
       words.push(current);
       current = [];
