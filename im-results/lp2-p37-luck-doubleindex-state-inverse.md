@@ -57,6 +57,36 @@ p37 word37, offsets146..149.
 
 This raw-shell census consumes no plaintext target and gives an independent ciphertext-side discriminator for the double-index receiver.
 
+## Raw GP0 points to the next authenticated state
+
+The selected ciphertext has a second target-independent property:
+
+```text
+GP0([3,2,6,27]) = 38.
+```
+
+Authenticated index38 is `BEWARE`, and physical p38 is already independently selected by the numbered-section-5 `LUCK -> BEWARE` source-state gate.
+
+Charge this rule across every available double-index receiver `page i / word i`. Forty-two receivers exist. Exactly two satisfy:
+
+```text
+raw GP0 = i + 1:
+p20 word20: GP0 21 -> MEANING -> IS
+p37 word37: GP0 38 -> LUCK -> BEWARE
+```
+
+Now intersect with the independent requirement that the receiver length equal the source-assigned target length. Nine double-index receivers meet that length condition. **P37 is the only one that also has `GP0=i+1`.**
+
+Thus the p37 receiver is selected by three source/cipher properties before the `LUCK` key is scored:
+
+```text
+signed index37 -> physical p37 / printed word37
+source target length = receiver length = 4
+raw receiver GP0 = 38 -> next authenticated index BEWARE
+```
+
+The p38 closure is especially useful because the p38 section-5 selector independently runs in the opposite semantic direction: it identifies `BEWARE` by requiring p50-low state `31 = GP0(LUCK)`. The adjacent authenticated pair is therefore visible from both objects without transferring the p37 key to p38.
+
 ## Exact reversible inverse
 
 The source-assigned target is:
