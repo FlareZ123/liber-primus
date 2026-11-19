@@ -17,3 +17,6 @@ jobs:
       - name: Run consolidated source recovery SFT
         shell: cmd
         run: node sims\lp2_p28_reflection_the_road_source_sft.cjs
+      - name: Run p2 GOOD key-family audit SFT
+        shell: cmd
+        run: node sims\lp2_p2_good_key_family_audit_sft.cjs
