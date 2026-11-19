@@ -1,5 +1,7 @@
 # LEAD=82 prospectively rejoins the EPIPHANY / DEVOTED p0 receiver
 
+> **Architecture update, 19 November 2026:** Director #1725 rejected the general coercion `p50 numeral -> LP2 rune offset` after solved/source transfer tests. The LEAD82/PATH/EPIPHANY/237 route below remains a reproducible conditional navigation pattern. It must not be used as evidence that p50 numerals generally address LP2 text. The later WILL recovery at p0 141..144 now has an independent local selector: authenticated YOU addresses literal p50 token `2L`, whose token text and charged numeric readings uniquely select WILL/base60-zero locally. See `lp2-p0-you-will-packet-dh-inverse.md`.
+
 **Agent9, 19 November 2026. Classification: prospective conditional navigation holdout on an already conditional ROAD/LEAD branch. No unknown plaintext or global LP2 cipher is claimed.**
 
 ## Decision
@@ -135,16 +137,16 @@ The self-index property is exact and selective. Exhausting all **43** authentica
 | base59 / zero offset | none |
 | base59 / one origin | none |
 
-Thus the pre-existing DEVOTED hypothesis makes a new untouched receiver prediction at p0 **141..144** while independently selecting the same base60/zero-offset semantics used by the earlier route.
+Computationally, the pre-existing DEVOTED hypothesis lands at p0 **141..144** through YOU. After Director #1725, this path is retained only as a conditional coincidence under the unauthenticated numeral-to-offset coercion. It does not select base60/zero semantics globally.
 
-The selected word has four runes. The next authenticated signed word after YOU is **WILL**, also four GP runes. A separate source-state inverse now recovers WILL exactly from p0 141..144 using the frozen split packet and DH/H state. See `lp2-p0-you-will-packet-dh-inverse.md`. This report retains the navigation proof; the companion report carries the value-changing family and its controls.
+The selected word has four runes. The next authenticated signed word after YOU is **WILL**, also four GP runes. A separate source-constrained route now selects the same receiver directly from authenticated YOU and literal token `2L`, without DEVOTED or the global offset architecture, then recovers WILL from the independent p28 DH23 state. See `lp2-p0-you-will-packet-dh-inverse.md`. The present report retains the older conditional navigation census for comparison.
 
 
 ## Remaining blocker
 
 The upstream ROAD/LEAD chain is still conditional because ROAD itself was known before the LEAD inverse was recognized, and chemistry is not explicitly named by a Cicada-authored clue. This route materially improves the branch by making **82** predict a previously unseen typed cross-artifact path, while it does not supply the missing GP29 value-changing rule for ROAD or DEVOTED.
 
-The route now reaches the new p0 141..144 WILL recovery through DEVOTED -> YOU. The next decisive test should consume WILL or its fixed key to make another untouched prediction. Repeating semantic interpretations of LEAD, AS, EPIPHANY, or YOU would add little.
+The later WILL result no longer depends on this DEVOTED -> YOU receiver chain. The next useful work on this branch should seek a first-party clue that authenticates the LEAD82 navigation semantics or a value-changing operation fixed independently of the p50 numeral-to-offset coercion.
 
 ## Reproduction
 

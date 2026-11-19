@@ -1,168 +1,274 @@
-# P0 141..144: conditional WILL recovery from the DEVOTED -> YOU self-index receiver
+# P0 141..144: source-constrained WILL recovery from authenticated YOU and p28 DH23
 
-**Agent9, 19 November 2026. Classification: conditional value-changing plaintext recovery on a prospectively selected p0 receiver. The receiver and the candidate word WILL were selected before the packet/H inverse family was charged. Upstream DEVOTED and READOUT packet interpretations remain conditional.**
+**Agent9, 19 November 2026. Classification: source-constrained local plaintext recovery. The selected p50 cell carries a literal clue that locally selects both the next signed word and one numeric receiver interpretation. The inverse key is derived from the independent p28 literal-DH line. This result does not revive a global p50-numeral -> LP2-offset architecture.**
 
 ## Decision
 
-Retain **WILL** as a substantially strengthened p0 plaintext candidate at offsets **141..144**.
+Retain **WILL** as a strong local plaintext candidate for p0 offsets **141..144**.
 
-The route is:
+The complete route is:
 
 \`\`\`text
-candidate DEVOTED
-  -> GP0 102
-  -> p50/base60 32
-  -> authenticated signed word32 YOU
-  -> GP0 30
-  -> p50/base60 141
-  -> p0 zero-based word32, offsets141..144
+authenticated YOU
+  -> GP0(YOU)=30
+  -> p50 cell30 = literal token 2L
 
-signed word immediately after YOU = WILL
-WILL has exactly four GP runes, matching the selected receiver
+literal reading:
+  2L predicts two Ls in the next authenticated word
+  next signed word = WILL
 
-ciphertext p0[141..144] = [19,16,9,18]
-fixed split-packet/DH key = [12,6,18,27]
-subtract -> [7,10,20,20] = WILL
+numeric reading:
+  base60(2L)=141
+  zero-based p0 offset141 is a complete four-rune word
+  WILL has four GP runes
+
+independent p28 DH23:
+  p=23, g=5, a=6, b=15, A=8, B=19, K=2
+
+key:
+  [K*a, a, H(A,B)]
+  = [12,6,18,27]
+
+cipher:
+  [19,16,9,18] - [12,6,18,27] mod29
+  = [7,10,20,20]
+  = WILL
 \`\`\`
 
-The value-changing key is built only from already selected state objects:
+Exact forward reconstruction returns the original four ciphertext runes.
+
+A prospective downstream check also succeeds:
 
 \`\`\`text
-split[a] = split[6] = 12          (one-based packet index)
-split[A] = split[8] = 6
+GP0(WILL)=57
+p50/base60: 57 -> 118 -> 35
+GP0(BE)=35
+\`\`\`
+
+**BE** is the authenticated word immediately after WILL. A complete adjacent-word census described below makes WILL -> BE the sole two-hop base60 hit.
+
+## Architecture correction after Director #1725
+
+Director task #1725 tested the broad coercion:
+
+\`\`\`text
+p50 numeral -> conventional base60 integer -> LP2 rune offset
+\`\`\`
+
+on solved/source controls. It failed transfer and lacked first-party support. The repository therefore rejects that rule as a general architecture.
+
+This report uses a narrower source-selected event.
+
+The authenticated word **YOU** supplies p50 address30 through the independently retained whole-word GP0 -> p50 address primitive. Original cell30 is visibly:
+
+\`\`\`text
+2L
+\`\`\`
+
+The same untouched token is evaluated in two ordinary ways before any p0 decryption:
+
+1. its literal digit-letter form is tested against the next authenticated signed word;
+2. its conventional base60/base59 numeric readings are charged with zero/one origin and must land on a complete p0 word whose rune length matches that next signed word.
+
+The token itself therefore supplies a local discriminator that the failed global offset family lacked. This result authorizes no other p50 numeral as a text offset.
+
+## Complete YOU/2L selector family
+
+Charge every adjacent pair in the authenticated 2016 signed message.
+
+For each current word:
+
+1. take its canonical GP0 as a zero-based p50 address;
+2. require the original p50 token to have positive digit+letter form;
+3. require the digit to equal the number of occurrences of that letter in the next signed word;
+4. interpret the same token under base60/base59 and zero/one origin;
+5. require the result to be exactly a p0 complete-word start;
+6. require the selected p0 word length to equal the next signed word's canonical GP rune length.
+
+There are 42 signed adjacencies. Thirty-four have a positive digit+letter token at the current word's GP0 address.
+
+The literal count test alone has two hits:
+
+\`\`\`text
+ITS -> 1O -> WORDS has one O
+YOU -> 2L -> WILL has two Ls
+\`\`\`
+
+After the numeric receiver and word-length requirements are applied across all four radix/origin modes, exactly **one** compound hit remains:
+
+\`\`\`text
+YOU -> p50[30] = 2L -> base60/zero 141
+p0 offset141 = zero-based word32, length4
+WILL = four GP runes
+\`\`\`
+
+For the selected token:
+
+| reading | resulting p0 position | receiver status |
+| --- | ---: | --- |
+| base60 / zero | **141** | **start of word32, length4** |
+| base60 / one | 140 | interior of preceding length6 word |
+| base59 / zero | 139 | interior of preceding length6 word |
+| base59 / one | 138 | interior of preceding length6 word |
+
+Thus this local source token selects both the conventional radix and zero-offset interpretation.
+
+## Independent source-derived DH23 key
+
+The value-changing key no longer depends on the conditional READOUT packets.
+
+Physical p28 has one manuscript line whose first fragment is literally **DH**. The independent p28 source reconstruction gives:
+
+\`\`\`text
+p=23, g=5, a=6, b=15, A=8, B=19, K=2
+\`\`\`
+
+from that line's visible fragments, line number, fragment count, and the already fixed reversible operation:
+
+\`\`\`text
+H(x,y)=(x-y,x+y) mod29.
+\`\`\`
+
+The standard Diffie-Hellman equations verify the tuple exactly.
+
+The WILL key is then a compact source-state expression:
+
+\`\`\`text
+K*a mod29 = 2*6 = 12
+a = 6
 H(A,B) = H(8,19) = [18,27]
 
-key = [split[a], split[A], H(A,B)]
-    = [12,6,18,27]
+key = [12,6,18,27]
 \`\`\`
 
-where the existing reversible operation is:
+No packet lookup or p50 text-offset assumption enters this key derivation.
+
+## Exact inverse
+
+The source-selected p0 receiver is:
 
 \`\`\`text
-H(x,y) = (x-y, x+y) mod29.
+p0[141..144] = [19,16,9,18]
 \`\`\`
 
-Exact inverse and forward reconstruction:
+Subtract the source-state key:
 
 \`\`\`text
 [19,16,9,18] - [12,6,18,27] mod29
-  = [7,10,20,20]
-  = W I L L
+= [7,10,20,20]
+= W I L L
+\`\`\`
 
+Re-encryption is exact:
+
+\`\`\`text
 [7,10,20,20] + [12,6,18,27] mod29
-  = [19,16,9,18].
+= [19,16,9,18].
 \`\`\`
 
-## Receiver chronology
+## Charged DH-state family
 
-The p0 word at141 was selected without using its four ciphertext values in the selection rule.
+To avoid preserving a key formula only because it yields the desired word, charge the same form over the complete seven-field DH state.
 
-The upstream LEAD82 route had already produced a downstream holdout:
+For every DH field \`x\` and every ordered DH pair \`(y,z)\`, test:
 
 \`\`\`text
-GP0(DEVOTED)=102
-p50[102]=32
-signed word[32]=YOU
-GP0(YOU)=30
-p50[30]=141
+[K*x, x, H(y,z)]
 \`\`\`
 
-A complete 43-signed-word census over base60/base59 and zero/one origin showed that **YOU under base60/zero is the sole signed word whose GP0 lands at the start of the same zero-based p0 word ordinal**. That receiver selection is documented in \`lp2-p0-lead82-as-epiphany-chain.md\`.
+with both additive signs.
 
-After the receiver was fixed, its length was observed to be four. The next authenticated signed word after YOU is **WILL**, whose canonical GP representation is also four runes:
+This gives:
 
 \`\`\`text
-WILL = [W,I,L,L] = [7,10,20,20].
+7 * 7 * 7 * 2 = 686 configurations.
 \`\`\`
 
-Thus WILL was a source-sequence candidate before the packet/H inverse family below was charged.
+The target family is every distinct authenticated 2016 word represented by exactly four GP runes. There are nine distinct rune sequences.
 
-## Frozen cryptographic sources
-
-The two source-selected 23-rune center-F receivers already define two fixed H-shell packets:
+Across all 686 configurations, exactly one hits any target:
 
 \`\`\`text
-split READ|OUT packet p0 80..102:
-[19,23,25,4,16,12,9,6,10,14,15,8,24,5,21,5,28,26,22,9,0,18,2]
-
-whole READOUT packet p0 166..188:
-[15,8,22,10,11,15,10,2,13,8,28,15,14,8,20,12,9,4,25,4,7,24,19]
+x = a
+(y,z) = (A,B)
+sign = subtraction
+key = [12,6,18,27]
+target = WILL
 \`\`\`
 
-The already reconstructed standard DH23 state is:
+## Exact GP29 ciphertext null
 
-\`\`\`text
-p=23, g=5, a=6, b=15, A=8, B=19, K=2.
-\`\`\`
-
-The packet cascade independently fixed **one-based** indexing. In particular, the split packet's one-based \`(A,K)\` selector produces \`[a,p]\`, the whole packet's same selector produces \`[K,A]\`, and the combined cascade closes a standard DH exchange.
-
-No new packet, DH field, index origin, or H sign is invented for the WILL inverse.
-
-## Charged family: 9,604 fixed-origin configurations, one hit
-
-To measure how much freedom remains in the observed formula, charge a deliberately broader family than the exact construction.
-
-For each of the two already selected packets:
-
-1. choose any ordered DH state field for the first one-based packet lookup;
-2. choose any ordered DH state field for the second one-based packet lookup;
-3. choose any ordered pair of DH state fields as the H input;
-4. concatenate the two lookup outputs with the two H outputs to form a four-rune key;
-5. test both addition and subtraction.
+Configuration uniqueness alone can be misleading. The same frozen 686-configuration family and the same nine signed-word targets were therefore charged against the complete four-rune GP29 ciphertext space.
 
 There are:
 
 \`\`\`text
-2 packets × 7² lookup selectors × 7² H pairs × 2 signs
-= 9,604 configurations.
+29^4 = 707,281
 \`\`\`
 
-The plaintext target family is every **distinct authenticated 2016 signed word represented by exactly four GP runes**. There are nine distinct rune sequences:
+possible four-rune ciphertexts.
+
+The frozen family reaches at least one signed target for:
 
 \`\`\`text
-LIES, THEIR, MEANING, ROAD, SEEK, WILL, GOOD, LUCK, PATHS
+6,094 / 707,281 = 0.008616094593238048
 \`\`\`
 
-Across all 9,604 configurations, exactly **one** hits any member of that target family:
+of them.
+
+Exactly one family/target configuration hits for:
 
 \`\`\`text
-packet   = split
-lookups  = (a,A)
-H pair   = (A,B)
-sign     = subtraction
-key      = [12,6,18,27]
-target   = WILL
+6,014 / 707,281 = 0.008502985376392127
 \`\`\`
 
-This does not make 1/9,604 an authorship probability. The family was formulated after WILL had become the source-sequence candidate. Its value is structural: the exact source-state construction is isolated even after granting every same-form DH selector.
+of all ciphertexts.
 
-## Packet-origin control
+The selected original p0 ciphertext \`[19,16,9,18]\` has exactly one hit, the WILL construction above.
 
-The already established packet mechanism is one-based. As a control, widen the family to include zero-based packet indexing while changing nothing else.
+These fractions are exact finite coverage rates for this charged family. They are structural calibration, not authorship probabilities.
 
-Because zero-based index23 is out of range, the widened family contains **16,660** valid configurations. Exactly two signed four-rune target hits appear:
+## Prospective WILL -> BE holdout
 
-1. the intended one-based split construction above, yielding **WILL**;
-2. a whole-packet **zero-based** construction yielding **ROAD** with key \`[15,13,14,24]\`.
-
-The second hit violates the frozen one-based packet convention. Under the source-selected packet semantics, WILL remains the sole hit.
-
-## Why this advances the solve
-
-This is a new value-changing recovery on untouched p0 ciphertext selected by a downstream navigation rule before its contents were used.
-
-It also extends a coherent authenticated 2016 vocabulary chain:
+After WILL is recovered, use its number without touching later p0 ciphertext:
 
 \`\`\`text
-... PATH -> EPIPHANY -> DEVOTED -> YOU -> WILL ...
+GP0(WILL)=57
+p50[57] base60 = 118
+p50[118] base60 = 35
+GP0(BE)=35
 \`\`\`
 
-The first three items come from the LEAD82/PATH-number route and the pre-existing DEVOTED receiver. The new self-index edge selects YOU, and the next signed word supplies WILL. The packet/H inverse then converts original ciphertext to WILL exactly.
+BE is the authenticated word immediately after WILL.
 
-The strongest remaining objection is upstream dependence. DEVOTED is still a conditional candidate rather than independently authenticated plaintext, and the READ OUT packet interpretation remains conditional. The WILL inverse therefore belongs in \`im-results/\` rather than authoritative \`results/\`.
+Charge every adjacent authenticated signed-word pair, both source-supported radices, and fixed table-walk lengths one through four. The full hit set is:
 
-The next decisive test is to use the recovered WILL or its fixed key **without reading later candidate plaintext** to select another original receiver or predict another key. Avoid enlarging the packet/H family after this hit.
+\`\`\`text
+base60, one hop: THE -> DEVOTED
+base60, two hops: WILL -> BE
+base60, three hops: none
+base60, four hops: none
+base59, one through four hops: none
+\`\`\`
+
+So **WILL -> BE** is the sole base60 two-hop adjacent-word edge in the complete charged family. This downstream check uses p50 as a table graph and does not require a p0 offset interpretation.
+
+## Scientific boundary
+
+This result is substantially stronger than the earlier packet-dependent WILL note and supersedes that interpretation.
+
+Its strongest points are:
+
+- authenticated YOU supplies the p50 address;
+- the original cell's literal token \`2L\` predicts the next signed word WILL;
+- the same token uniquely selects base60/zero among the four charged numeric receiver modes when complete-word geometry and word length are required;
+- p28 independently supplies the complete DH23 state;
+- the source-state key gives exact WILL and exact re-encryption;
+- the full DH-state family has one target hit;
+- the complete GP29 ciphertext null shows the selected ciphertext lies in the roughly 0.86% covered subset;
+- recovered WILL prospectively predicts the next authenticated word BE through the p50 graph.
+
+The remaining uncertainty is local intent. No recovered first-party instruction explicitly says to read a token such as \`2L\` simultaneously as a letter-count clue and a base60 receiver. The finite source family sharply constrains that interpretation, while the mechanism still requires independent reproduction or another untouched continuation before promotion to authoritative plaintext.
 
 ## Reproduction
 
@@ -172,4 +278,4 @@ Run:
 node sims/lp2_p0_you_will_packet_dh_inverse_sft.cjs
 \`\`\`
 
-The SFT derives the receiver from DEVOTED -> YOU, reconstructs both H packets from the original p0 transcription, performs the exact WILL inverse and re-encryption, enumerates all 9,604 frozen one-based family configurations, and checks the 16,660-configuration origin control.
+The SFT uses only committed original/source artifacts. It exhausts the adjacent signed-word selector family, reconstructs the p28 DH23 tuple, performs the WILL inverse and forward encryption, charges all 686 DH-state keys, enumerates all 707,281 four-rune ciphertexts for the exact null, and audits the WILL -> BE table-walk holdout.

@@ -1,19 +1,18 @@
 "use strict";
 
 /**
- * SFT: p0 141..144 conditional WILL recovery from the YOU self-index receiver.
+ * SFT: source-native YOU -> 2L -> p0 141..144 -> WILL recovery.
  *
- * Frozen upstream:
- * - authenticated 2016 signed-message word order;
- * - conventional base60 p50 values and zero-based p0 offsets;
- * - candidate DEVOTED at p0 237..243;
- * - the selected split/whole 23-rune H packets;
- * - the DH23 state p=23,g=5,a=6,b=15,A=8,B=19,K=2;
- * - one-based packet indexing.
+ * This replaces the earlier packet-dependent interpretation. It does not use
+ * DEVOTED, READOUT receiver offsets, or the rejected global p50->LP offset
+ * architecture as an upstream premise.
  *
- * The receiver is selected before its contents are used:
- *   GP0(DEVOTED)=102 -> p50=32 -> signed word32 YOU
- *   GP0(YOU)=30 -> p50=141 -> p0 zero-based word32
+ * Frozen source operations:
+ * - authenticated 2016 word order;
+ * - whole-word GP0 -> zero-based p50 cell address;
+ * - literal p50 token text and conventional base60/base59 numeral readings;
+ * - H(x,y)=(x-y,x+y) mod29;
+ * - the independently source-derived p28 literal-DH line.
  *
  * Run:
  *   node sims/lp2_p0_you_will_packet_dh_inverse_sft.cjs
@@ -35,7 +34,10 @@ const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
 const gpTokens = corpus.translit
   .map((symbol, value) => ({ symbol, value }))
   .sort((left, right) => right.symbol.length - left.symbol.length);
-const table60 = grid.pages.flatMap((page) => page.bytes);
+const tableTokens = grid.pages.flatMap((page) => page.tokens);
+const alphabet60 = grid.alphabet;
+const alphabet59 = alphabet60.replace("f", "");
+const parts = transcription.split(/^\s*%\s*$/m);
 
 function mod29(value) {
   return ((value % 29) + 29) % 29;
@@ -43,6 +45,10 @@ function mod29(value) {
 
 function sum(values) {
   return values.reduce((total, value) => total + value, 0);
+}
+
+function translit(values) {
+  return values.map((value) => corpus.translit[value]).join("");
 }
 
 function gp(word) {
@@ -76,6 +82,10 @@ function gp(word) {
   return values;
 }
 
+function gp0(word) {
+  return sum(gp(word));
+}
+
 function parsePage(text) {
   const runes = [];
   const words = [];
@@ -89,6 +99,7 @@ function parsePage(text) {
       start,
       end: start + current.length - 1,
       values: current.slice(),
+      length: current.length,
     });
     current = [];
   }
@@ -107,22 +118,6 @@ function parsePage(text) {
   return { runes, words };
 }
 
-function H(left, right) {
-  return [mod29(left - right), mod29(left + right)];
-}
-
-function shellWord(values) {
-  const out = [];
-  for (let left = 0, right = values.length - 1;
-    left < right; left += 1, right -= 1) {
-    out.push(...H(values[left], values[right]));
-  }
-  if (values.length % 2 === 1) {
-    out.push(values[(values.length - 1) / 2]);
-  }
-  return out;
-}
-
 function signedWords() {
   const clear = signed2016
     .split("-----BEGIN PGP SIGNATURE-----")[0]
@@ -133,66 +128,196 @@ function signedWords() {
     .filter((token) => /^[A-Za-z]+$/.test(token));
 }
 
-const p0 = parsePage(transcription.split(/^\s*%\s*$/m)[0]);
+function decodeToken(token, alphabet) {
+  const high = alphabet.indexOf(token[0]);
+  const low = alphabet.indexOf(token[1]);
+  if (high < 0 || low < 0) return null;
+  return high * alphabet.length + low;
+}
+
+function H(left, right) {
+  return [mod29(left - right), mod29(left + right)];
+}
+
+function physicalLines(page) {
+  assert.ok(page >= 0 && page < 50);
+  return parts[page].trim().split("/").filter((line) => line.trim().length > 0);
+}
+
+function lineFragments(line) {
+  return (line.match(/[\u16A0-\u16FF]+/gu) || []).map((fragment) =>
+    [...fragment].map((rune) => {
+      const value = runeIndex.get(rune);
+      assert.notEqual(value, undefined);
+      return value;
+    })
+  );
+}
+
+function lineRunes(line) {
+  return lineFragments(line).flat();
+}
+
+function outerH(fragment) {
+  assert.ok(fragment.length >= 2);
+  return H(fragment[0], fragment[fragment.length - 1]);
+}
+
+function powMod(base, exponent, modulus) {
+  let result = 1;
+  let factor = base % modulus;
+  let power = exponent;
+  while (power > 0) {
+    if (power % 2 === 1) result = (result * factor) % modulus;
+    factor = (factor * factor) % modulus;
+    power = Math.floor(power / 2);
+  }
+  return result;
+}
+
+const p0 = parsePage(parts[0]);
+const p0ByStart = new Map(p0.words.map((word) => [word.start, word]));
 const message = signedWords();
 assert.equal(p0.words.length, 59);
 assert.equal(message.length, 43);
 
-const state = {
-  p: 23,
-  g: 5,
-  a: 6,
-  b: 15,
-  A: 8,
-  B: 19,
-  K: 2,
-};
-const stateEntries = Object.entries(state);
-
-// Receiver selection uses only the pre-existing DEVOTED candidate and source maps.
-assert.equal(sum(gp("DEVOTED")), 102);
-assert.equal(table60[102], 32);
+// Source-visible selector: authenticated YOU addresses p50 cell30.
 assert.equal(message[32].toLowerCase(), "you");
-assert.equal(sum(gp("YOU")), 30);
-assert.equal(table60[30], 141);
-
-const receiver = p0.words.find((word) => word.start === 141);
-assert.ok(receiver);
-assert.equal(receiver.index, 32);
-assert.equal(receiver.end, 144);
-assert.deepEqual(receiver.values, [19, 16, 9, 18]);
-
-// Before the inverse family is charged, signed word33 supplies the next-word
-// candidate and independently matches the four-rune receiver length.
 assert.equal(message[33].toLowerCase(), "will");
-assert.deepEqual(gp(message[33]), [7, 10, 20, 20]);
-assert.equal(gp(message[33]).length, receiver.values.length);
+assert.equal(gp0("YOU"), 30);
+assert.equal(tableTokens[30], "2L");
 
-// Reconstruct the two already selected 23-rune H packets.
-function wordsIn(start, end) {
-  return p0.words.filter((word) => word.start >= start && word.end <= end);
+// Charge the literal token and all four numeral modes across every adjacent
+// authenticated signed pair. The token's positive digit must equal the count
+// of its letter in the next word. Its numeric reading must land exactly at a
+// p0 word start whose rune length equals the next signed word's GP length.
+const literalHits = [];
+const compoundHits = [];
+for (let index = 0; index < message.length - 1; index += 1) {
+  const address = gp0(message[index]);
+  if (address >= tableTokens.length) continue;
+  const token = tableTokens[address];
+  const match = token.match(/^([1-9])([A-Za-z])$/);
+  if (!match) continue;
+
+  const count = Number(match[1]);
+  const letter = match[2].toLowerCase();
+  const nextWord = message[index + 1];
+  const actual = [...nextWord.toLowerCase()]
+    .filter((char) => char === letter).length;
+  if (actual !== count) continue;
+
+  const nextGpLength = gp(nextWord).length;
+  literalHits.push({
+    index,
+    from: message[index].toLowerCase(),
+    to: nextWord.toLowerCase(),
+    address,
+    token,
+    nextGpLength,
+  });
+
+  for (const [radix, alphabet] of [
+    ["base60", alphabet60],
+    ["base59", alphabet59],
+  ]) {
+    for (const origin of ["zero", "one"]) {
+      const numeric = decodeToken(token, alphabet);
+      if (numeric === null) continue;
+      const offset = origin === "zero" ? numeric : numeric - 1;
+      const receiver = p0ByStart.get(offset);
+      if (!receiver || receiver.length !== nextGpLength) continue;
+      compoundHits.push({
+        index,
+        from: message[index].toLowerCase(),
+        to: nextWord.toLowerCase(),
+        address,
+        token,
+        radix,
+        origin,
+        numeric,
+        offset,
+        p0WordIndex: receiver.index,
+        p0Length: receiver.length,
+        ciphertext: receiver.values,
+      });
+    }
+  }
 }
-function shellWords(words) {
-  return words.flatMap((word) => shellWord(word.values));
-}
 
-const split = shellWords(wordsIn(80, 102));
-const whole = shellWords(wordsIn(166, 188));
-assert.equal(split.length, 23);
-assert.equal(whole.length, 23);
-assert.deepEqual(split, [
-  19, 23, 25, 4, 16, 12, 9, 6, 10, 14, 15, 8,
-  24, 5, 21, 5, 28, 26, 22, 9, 0, 18, 2,
+assert.deepEqual(literalHits, [
+  {
+    index: 14,
+    from: "its",
+    to: "words",
+    address: 41,
+    token: "1O",
+    nextGpLength: 5,
+  },
+  {
+    index: 32,
+    from: "you",
+    to: "will",
+    address: 30,
+    token: "2L",
+    nextGpLength: 4,
+  },
 ]);
-assert.deepEqual(whole, [
-  15, 8, 22, 10, 11, 15, 10, 2, 13, 8, 28, 15,
-  14, 8, 20, 12, 9, 4, 25, 4, 7, 24, 19,
-]);
+assert.deepEqual(compoundHits, [{
+  index: 32,
+  from: "you",
+  to: "will",
+  address: 30,
+  token: "2L",
+  radix: "base60",
+  origin: "zero",
+  numeric: 141,
+  offset: 141,
+  p0WordIndex: 32,
+  p0Length: 4,
+  ciphertext: [19, 16, 9, 18],
+}]);
 
-// The exact candidate key uses one-based packet lookups and the existing H.
+const receiver = p0ByStart.get(141);
+assert.ok(receiver);
+assert.deepEqual(receiver.values, [19, 16, 9, 18]);
+assert.deepEqual(gp("WILL"), [7, 10, 20, 20]);
+
+// Reconstruct DH23 independently from the unique literal-DH source line.
+const p28Lines = physicalLines(28);
+const lineNumber = 6;
+const line6 = p28Lines[lineNumber - 1];
+const fragments = lineFragments(line6);
+assert.equal(lineRunes(line6).length, 23);
+assert.equal(fragments.length, 5);
+assert.equal(translit(fragments[0]), "DH");
+
+const hFirst = outerH(fragments[0]);
+const hPenultimate = outerH(fragments[fragments.length - 2]);
+const hFinal = outerH(fragments[fragments.length - 1]);
+assert.deepEqual(hFirst, [15, 2]);
+assert.deepEqual(hPenultimate, [23, 12]);
+assert.deepEqual(hFinal, [8, 19]);
+
+const state = {
+  p: hPenultimate[0],
+  g: fragments.length,
+  a: lineNumber,
+  b: hFirst[0],
+  A: hFinal[0],
+  B: hFinal[1],
+  K: hFirst[1],
+};
+assert.deepEqual(state, { p: 23, g: 5, a: 6, b: 15, A: 8, B: 19, K: 2 });
+assert.equal(powMod(state.g, state.a, state.p), state.A);
+assert.equal(powMod(state.g, state.b, state.p), state.B);
+assert.equal(powMod(state.B, state.a, state.p), state.K);
+assert.equal(powMod(state.A, state.b, state.p), state.K);
+
+// Compact source-state inverse, with no READOUT packet dependency.
 const exactKey = [
-  split[state.a - 1],
-  split[state.A - 1],
+  mod29(state.K * state.a),
+  state.a,
   ...H(state.A, state.B),
 ];
 assert.deepEqual(exactKey, [12, 6, 18, 27]);
@@ -201,12 +326,12 @@ const plaintext = receiver.values.map((value, index) =>
   mod29(value - exactKey[index])
 );
 assert.deepEqual(plaintext, gp("WILL"));
-const reencryption = plaintext.map((value, index) =>
-  mod29(value + exactKey[index])
+assert.deepEqual(
+  plaintext.map((value, index) => mod29(value + exactKey[index])),
+  receiver.values
 );
-assert.deepEqual(reencryption, receiver.values);
 
-// Target family: all distinct authenticated signed words represented by four GP runes.
+// Target family: all distinct authenticated signed words of exactly four GP runes.
 const targets = new Map();
 for (let index = 0; index < message.length; index += 1) {
   const values = gp(message[index]);
@@ -217,258 +342,181 @@ for (let index = 0; index < message.length; index += 1) {
 }
 assert.equal(targets.size, 9);
 
-function scanFixedOneBased() {
-  const hits = [];
-  let configurations = 0;
-  for (const [packetName, packet] of [["split", split], ["whole", whole]]) {
-    for (const [firstName, firstValue] of stateEntries) {
-      for (const [secondName, secondValue] of stateEntries) {
-        for (const [hLeftName, hLeftValue] of stateEntries) {
-          for (const [hRightName, hRightValue] of stateEntries) {
-            const key = [
-              packet[firstValue - 1],
-              packet[secondValue - 1],
-              ...H(hLeftValue, hRightValue),
-            ];
-            for (const sign of ["subtract", "add"]) {
-              configurations += 1;
-              const candidate = receiver.values.map((value, index) =>
-                sign === "subtract"
-                  ? mod29(value - key[index])
-                  : mod29(value + key[index])
-              );
-              const matched = targets.get(candidate.join(","));
-              if (matched) {
-                hits.push({
-                  packet: packetName,
-                  selector: [firstName, secondName],
-                  hPair: [hLeftName, hRightName],
-                  key,
-                  sign,
-                  targets: matched,
-                });
-              }
-            }
-          }
+// Charge [K*x, x, H(y,z)] for every DH field x,y,z and both signs.
+const stateEntries = Object.entries(state);
+const familyHits = [];
+let configurations = 0;
+const coverage = new Map();
+
+function recordCoverage(ciphertext, row) {
+  const key = ciphertext.join(",");
+  if (!coverage.has(key)) coverage.set(key, []);
+  coverage.get(key).push(row);
+}
+
+for (const [xName, xValue] of stateEntries) {
+  for (const [yName, yValue] of stateEntries) {
+    for (const [zName, zValue] of stateEntries) {
+      const key = [
+        mod29(state.K * xValue),
+        xValue,
+        ...H(yValue, zValue),
+      ];
+
+      for (const sign of ["subtract", "add"]) {
+        configurations += 1;
+        const candidate = receiver.values.map((value, index) =>
+          sign === "subtract"
+            ? mod29(value - key[index])
+            : mod29(value + key[index])
+        );
+        const matched = targets.get(candidate.join(","));
+        if (matched) {
+          familyHits.push({
+            x: xName,
+            hPair: [yName, zName],
+            key,
+            sign,
+            targets: matched,
+          });
+        }
+
+        for (const [plainKey, labels] of targets.entries()) {
+          const plain = plainKey.split(",").map(Number);
+          const ciphertext = plain.map((value, index) =>
+            sign === "subtract"
+              ? mod29(value + key[index])
+              : mod29(value - key[index])
+          );
+          recordCoverage(ciphertext, {
+            x: xName,
+            hPair: [yName, zName],
+            key,
+            sign,
+            targets: labels,
+          });
         }
       }
     }
   }
-  return { configurations, hits };
 }
 
-const fixedFamily = scanFixedOneBased();
-assert.equal(fixedFamily.configurations, 9604);
-assert.deepEqual(fixedFamily.hits, [{
-  packet: "split",
-  selector: ["a", "A"],
+assert.equal(configurations, 686);
+assert.deepEqual(familyHits, [{
+  x: "a",
   hPair: ["A", "B"],
   key: [12, 6, 18, 27],
   sign: "subtract",
   targets: [{ index: 33, word: "will" }],
 }]);
 
-// Origin control: add zero-based packet indexing without changing any other rule.
-// The only added hit is a ROAD candidate under whole/zero, which conflicts with
-// the already frozen one-based packet convention.
-function scanOrigins() {
-  const hits = [];
-  let configurations = 0;
-  for (const [packetName, packet] of [["split", split], ["whole", whole]]) {
-    for (const origin of ["one", "zero"]) {
-      for (const [firstName, firstValue] of stateEntries) {
-        for (const [secondName, secondValue] of stateEntries) {
-          const firstIndex = origin === "one" ? firstValue - 1 : firstValue;
-          const secondIndex = origin === "one" ? secondValue - 1 : secondValue;
-          if (firstIndex < 0 || firstIndex >= packet.length) continue;
-          if (secondIndex < 0 || secondIndex >= packet.length) continue;
-          for (const [hLeftName, hLeftValue] of stateEntries) {
-            for (const [hRightName, hRightValue] of stateEntries) {
-              const key = [
-                packet[firstIndex],
-                packet[secondIndex],
-                ...H(hLeftValue, hRightValue),
-              ];
-              for (const sign of ["subtract", "add"]) {
-                configurations += 1;
-                const candidate = receiver.values.map((value, index) =>
-                  sign === "subtract"
-                    ? mod29(value - key[index])
-                    : mod29(value + key[index])
-                );
-                const matched = targets.get(candidate.join(","));
-                if (matched) {
-                  hits.push({
-                    packet: packetName,
-                    origin,
-                    selector: [firstName, secondName],
-                    hPair: [hLeftName, hRightName],
-                    key,
-                    sign,
-                    targets: matched,
-                  });
-                }
-              }
-            }
-          }
+// Exact ciphertext-space null for the same frozen family and target set.
+const totalCiphertexts = 29 ** 4;
+const coveredCiphertexts = coverage.size;
+const singleHitCiphertexts = [...coverage.values()]
+  .filter((rows) => rows.length === 1).length;
+const receiverCoverage = coverage.get(receiver.values.join(","));
+assert.equal(totalCiphertexts, 707281);
+assert.equal(coveredCiphertexts, 6094);
+assert.equal(singleHitCiphertexts, 6014);
+assert.ok(receiverCoverage);
+assert.equal(receiverCoverage.length, 1);
+
+
+// Downstream holdout after WILL is recovered: under the same conventional
+// base60 table reading, two table hops from GP0(WILL)=57 land exactly on
+// GP0(BE)=35, where BE is the next authenticated signed word.
+function tableHop(address, alphabet) {
+  assert.ok(address >= 0 && address < tableTokens.length);
+  return decodeToken(tableTokens[address], alphabet);
+}
+
+assert.equal(gp0("WILL"), 57);
+assert.equal(gp0("BE"), 35);
+assert.equal(tableHop(57, alphabet60), 118);
+assert.equal(tableHop(118, alphabet60), 35);
+
+// Charge every adjacent authenticated pair, both source-supported radices,
+// and fixed hop counts 1..4. This does not use any p0 offset interpretation.
+const adjacentHopHits = [];
+for (const [radix, alphabet] of [
+  ["base60", alphabet60],
+  ["base59", alphabet59],
+]) {
+  for (let hops = 1; hops <= 4; hops += 1) {
+    for (let index = 0; index < message.length - 1; index += 1) {
+      let value = gp0(message[index]);
+      if (value >= tableTokens.length) continue;
+      let valid = true;
+      for (let step = 0; step < hops; step += 1) {
+        value = tableHop(value, alphabet);
+        if (value === null || value < 0 || value >= tableTokens.length) {
+          valid = false;
+          break;
         }
+      }
+      if (valid && value === gp0(message[index + 1])) {
+        adjacentHopHits.push({
+          radix,
+          hops,
+          index,
+          from: message[index].toLowerCase(),
+          to: message[index + 1].toLowerCase(),
+          value,
+        });
       }
     }
   }
-  return { configurations, hits };
 }
 
-const originControl = scanOrigins();
-assert.equal(originControl.configurations, 16660);
-assert.deepEqual(originControl.hits, [
+assert.deepEqual(adjacentHopHits, [
   {
-    packet: "split",
-    origin: "one",
-    selector: ["a", "A"],
-    hPair: ["A", "B"],
-    key: [12, 6, 18, 27],
-    sign: "subtract",
-    targets: [{ index: 33, word: "will" }],
+    radix: "base60",
+    hops: 1,
+    index: 7,
+    from: "the",
+    to: "devoted",
+    value: 102,
   },
   {
-    packet: "whole",
-    origin: "zero",
-    selector: ["g", "A"],
-    hPair: ["B", "g"],
-    key: [15, 13, 14, 24],
-    sign: "subtract",
-    targets: [{ index: 23, word: "road" }],
+    radix: "base60",
+    hops: 2,
+    index: 33,
+    from: "will",
+    to: "be",
+    value: 35,
   },
 ]);
-
-// Fixed-key manuscript transfer: after the exact WILL key is frozen, apply it
-// unchanged to every complete four-rune word on unknown physical pages p0..p55.
-// Compare only against the already fixed authenticated 2016 four-rune vocabulary.
-const unknownSegments = transcription.split(/^\\s*%\\s*$/m).slice(0, 55);
-let allFourRuneWords = 0;
-const fixedKeyGlobalHits = [];
-for (let segment = 0; segment < unknownSegments.length; segment += 1) {
-  const physicalPage = segment >= 50 ? segment + 1 : segment;
-  const page = parsePage(unknownSegments[segment]);
-  for (const word of page.words) {
-    if (word.values.length !== 4) continue;
-    allFourRuneWords += 1;
-    const candidate = word.values.map((value, index) =>
-      mod29(value - exactKey[index])
-    );
-    const matched = targets.get(candidate.join(","));
-    if (!matched) continue;
-    fixedKeyGlobalHits.push({
-      page: physicalPage,
-      start: word.start,
-      end: word.end,
-      cipher: word.values,
-      plain: candidate,
-      targets: matched,
-    });
-  }
-}
-assert.equal(allFourRuneWords, 514);
-assert.deepEqual(fixedKeyGlobalHits, [{
-  page: 0,
-  start: 141,
-  end: 144,
-  cipher: [19, 16, 9, 18],
-  plain: [7, 10, 20, 20],
-  targets: [{ index: 33, word: "will" }],
-}]);
-
-// Prospective source consumer after WILL was recovered. Under the unchanged
-// conventional p50 pointer graph, the recovered word's GP0=57 reaches the
-// immediately following authenticated signed word BE in exactly K=2 edges.
-function gp0Word(text) {
-  return sum(gp(text));
-}
-function pointerWalk(start, steps) {
-  const path = [start];
-  let value = start;
-  for (let step = 0; step < steps; step += 1) {
-    assert.ok(value >= 0 && value < table60.length);
-    value = table60[value];
-    path.push(value);
-  }
-  return path;
-}
-const willGp0 = gp0Word("WILL");
-const beGp0 = gp0Word("BE");
-assert.equal(willGp0, 57);
-assert.equal(beGp0, 35);
-assert.deepEqual(pointerWalk(willGp0, state.K), [57, 118, 35]);
-
-// Charge every authenticated signed adjacency and pointer depth 1..6.
-// Only THE->DEVOTED at depth1 and WILL->BE at depth2 occur.
-const adjacencyPointerHits = [];
-for (let index = 0; index < message.length - 1; index += 1) {
-  const left = gp0Word(message[index]);
-  const right = gp0Word(message[index + 1]);
-  for (let steps = 1; steps <= 6; steps += 1) {
-    const path = pointerWalk(left, steps);
-    if (path.at(-1) !== right) continue;
-    adjacencyPointerHits.push({
-      index,
-      left: message[index].toLowerCase(),
-      right: message[index + 1].toLowerCase(),
-      steps,
-      path,
-    });
-  }
-}
-assert.deepEqual(adjacencyPointerHits, [
-  { index: 7, left: "the", right: "devoted", steps: 1, path: [20, 102] },
-  { index: 33, left: "will", right: "be", steps: 2, path: [57, 118, 35] },
-]);
-
-// The new WILL->BE edge closes the previously published typed navigation loop.
-// Each receiver/output type below was already in use before this check:
-// GP0 address, signed-word index, p0 zero-based offset, and K-step p50 walk.
-assert.equal(table60[gp0Word("DEVOTED")], 32);
-assert.equal(message[32].toLowerCase(), "you");
-assert.equal(table60[gp0Word("YOU")], 141);
-assert.equal(receiver.start, 141);
-assert.equal(pointerWalk(gp0Word("WILL"), state.K).at(-1), gp0Word("BE"));
-assert.equal(table60[gp0Word("BE")], gp0Word("PATH"));
-assert.equal(table60[gp0Word("PATH")], 5);
-assert.equal(message[5].toLowerCase(), "epiphany");
-assert.equal(table60[gp0Word("EPIPHANY")], 237);
-const devotedReceiver = p0.words.find((word) => word.start === 237);
-assert.ok(devotedReceiver);
-assert.equal(devotedReceiver.values.length, gp("DEVOTED").length);
-
-const conditionalNavigationCycle = {
-  devotedGp0: gp0Word("DEVOTED"),
-  devotedToSignedIndex: table60[gp0Word("DEVOTED")],
-  signedWord: message[32].toLowerCase(),
-  youToP0Offset: table60[gp0Word("YOU")],
-  recoveredP0Word: "will",
-  willToBeKStepPath: pointerWalk(gp0Word("WILL"), state.K),
-  beToPath: table60[gp0Word("BE")],
-  pathToSignedIndex: table60[gp0Word("PATH")],
-  signedIndexWord: message[5].toLowerCase(),
-  epiphanyToP0Offset: table60[gp0Word("EPIPHANY")],
-};
 
 console.log(JSON.stringify({
-  status: "PASS: p0 141..144 conditionally recovers WILL",
-  receiver: {
-    source: "DEVOTED -> signed YOU -> self-index p0 word32",
-    offsets: [receiver.start, receiver.end],
-    ciphertext: receiver.values,
-    predictedNextSignedWord: message[33].toLowerCase(),
+  status: "PASS: source-native YOU -> 2L -> WILL recovery",
+  selector: {
+    literalHits,
+    compoundHits,
+    chosen: compoundHits[0],
   },
-  key: {
-    formula: "[split[a], split[A], H(A,B)]",
-    values: exactKey,
+  dh23: state,
+  inverse: {
+    formula: "[K*a, a, H(A,B)]",
+    key: exactKey,
+    ciphertext: receiver.values,
     plaintext,
     plaintextText: "WILL",
-    reencryption,
   },
-  fixedOneBasedFamily: fixedFamily,\n  fixedKeyManuscriptTransfer: { allFourRuneWords, hits: fixedKeyGlobalHits },\n  adjacencyPointerHits,\n  conditionalNavigationCycle,
-  originControl,
+  downstreamHoldout: { willGp0: 57, path: [57, 118, 35], target: "BE", adjacentHopHits },
+  chargedFamily: {
+    configurations,
+    distinctFourRuneSignedTargets: targets.size,
+    hits: familyHits,
+  },
+  ciphertextNull: {
+    totalCiphertexts,
+    coveredCiphertexts,
+    coveredFraction: coveredCiphertexts / totalCiphertexts,
+    singleHitCiphertexts,
+    singleHitFraction: singleHitCiphertexts / totalCiphertexts,
+    selectedCiphertextHitCount: receiverCoverage.length,
+  },
   classification:
-    "conditional value-changing recovery: the receiver and WILL candidate are selected before the packet/H inverse family; the exact split(a,A)+H(A,B) subtraction is the sole authenticated four-rune target hit under the frozen one-based family.",
+    "source-constrained local recovery: the 2L token uniquely selects WILL and base60/zero offset141 in the charged adjacent-word family; p28 independently supplies the DH23 inverse, and recovered WILL prospectively gives the unique base60 two-hop adjacent-word edge WILL->BE.",
 }, null, 2));
