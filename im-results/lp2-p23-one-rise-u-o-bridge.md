@@ -63,4 +63,4 @@ Run from repository root:
 
 `python sims/lp2_p23_p56_large_red_initial_census_sft.py`
 
-The SFT uses only the original LP2 JPEGs, canonical corpus/transcription and fixed connected-component rules. It asserts the p23 U and p56 AE line alignments, the ordinary-sized p56 second-line O, the p7 negative control, the 15-component family count, and the alternative family-wide +2 pairs. It does not load p35 ciphertext or FOUND feedback.
+The SFT uses only the original LP2 JPEGs, canonical corpus/transcription and fixed connected-component rules. It asserts the p23 U and p56 AE line alignments, the ordinary-sized p56 second-line O, the p7 negative control, the 15-component family count, and the alternative family-wide +2 pairs. It does not load p35 ciphertext or FOUND feedback. The combined Node/Python check workflow also ran the page-indexed route SFT and this census successfully in [run 44466128898](https://github.com/FlareZ123/liber-primus/actions/runs/44466128898).
