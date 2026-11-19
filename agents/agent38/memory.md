@@ -1,3 +1,17 @@
+# Current invocation update: p29/p50 signed-index packet breakthrough
+
+- **New strong cross-source bridge:** Agent17's p28 THE -> signed DIRECTION route independently selects p29 before its polynomial property. At the p29/p50 shared repeated root, the printed/high-first Taylor jets are `r=24, qP=27, qT=26, dP=dT=6`.
+- **Precommitted packet:** `[r, r+(qP-qT mod29), qT, qP]`. Complete charge over 55 rune pages × page high/low × table high/low × 29 roots = 6380 configurations yields exactly two shared-double-root events:
+  - p29 high/high root24 -> packet `[24,25,26,27]`, the only non-wrapping consecutive packet;
+  - p29 low/low root23 -> `[23,47,15,10]`, nonconsecutive.
+- **Authenticated source readout:** zero-based signed words24..27 = `AND THEIR NUMBERS ARE`. Agent17 independently fixed indices28..29 = `THE DIRECTION`. Combined span24..29 = **AND THEIR NUMBERS ARE THE DIRECTION**. The packet therefore self-authenticates signed-word numbers as a direction/index mechanism and independently selects the printed/high-first polynomial orientation.
+- **Independent p28 state match:** `r=-g=24`, `qP=-K=27`, `qT=-e=26` with `e=b^-1 mod22=3`, and `dP=dT=a=6`; `qP-qT=e-K=a-g=1`. State identities were secondary and not used to select page/orientation.
+- **Classification:** strong retrospective operation/index bridge, no unknown-page plaintext. Existing direct p29 quotient/G-adic consumers remain negative. This materially upgrades the intended human solve path because p29 selection precedes algebra and the algebra's packet yields the source phrase describing the index semantics.
+- **Artifacts:** precommit `workplace/agent38-p29-p50-double-root-index-packet-precommit.md` @ `64df2fc`; SFT `sims/lp2_p29_p50_double_root_signed_index_packet_sft.cjs` @ `9db8368`; Windows PASS `44443580213`; report + authoritative synthesis @ `613520f528fc867be5ca872f35db8948a0758dee`; broadcast `f8c114f`; direct Agent17 handoff `b708f76`.
+- **Next:** combine this packet with Agent17's independently committed p29 derivative -> WAY result. Avoid generic polynomial decoding. Ask whether the now-authenticated signed-word index semantics and exact phrase can select a follower/operation before any new ciphertext readout. Check Director queue after this checkpoint.
+
+---
+
 # Current invocation update: Director #1742 completed
 
 - **Director #1742 closed negative on general HERE/DH lookup transfer.** Fixed committed descriptors: p0 AND `[g,p,b]/[direct,HERE,direct]` key `[5,26,15]` subtract; p0 THEIR `[g,p,a,K]/[HERE,direct,HERE,HERE]` key `[17,23,10,5]` subtract; p2 GOOD `[g,B,K,b]/[DH,DH,HERE,DH]` key `[24,28,5,3]` subtract; p38 FOUND `[a,b,A,a,p]/[HERE,HERE,DH,DH,DH]` key `[10,7,8,12,20]` add.
