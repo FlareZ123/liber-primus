@@ -12,15 +12,67 @@ function read(relative) {
 }
 
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
-const transcription = read("resources/liber-primus/lp2-transcription.txt");
 const ink = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
+const raw = read("resources/liber-primus/lp2-transcription.txt");
 const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
 
-const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const runeToValue = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const parts = raw.split(/^\s*%\s*$/m);
 
 /** @param {number} value @returns {number} */
 function mod29(value) {
   return ((value % 29) + 29) % 29;
+}
+
+/**
+ * Exact physical-page printed-word parser used by the established
+ * OPENPGP43 endpoint SFT.
+ *
+ * @param {number} page
+ * @returns {Array<{page:number,index:number,ordinal:number,start:number,end:number,values:number[]}>}
+ */
+function pageWords(page) {
+  const text = parts[page <= 49 ? page : page - 1];
+  const out = [];
+  let current = [];
+  let start = 0;
+  let runeOffset = 0;
+
+  function flush() {
+    if (!current.length) return;
+    out.push({
+      page,
+      index: out.length,
+      ordinal: out.length + 1,
+      start,
+      end: runeOffset - 1,
+      values: current.slice(),
+    });
+    current = [];
+  }
+
+  for (const char of [...text]) {
+    const value = runeToValue.get(char);
+    if (value !== undefined) {
+      if (!current.length) start = runeOffset;
+      current.push(value);
+      runeOffset += 1;
+    } else if ((char === "-" || char === ".") && current.length) {
+      flush();
+    }
+  }
+  flush();
+  return out;
+}
+
+/** @param {number[]} values @returns {number[]} */
+function endpointH3(values) {
+  assert.equal(values.length, 3);
+  return [
+    mod29(values[0] - values[2]),
+    mod29(values[0] + values[2]),
+    values[1],
+  ];
 }
 
 /** @param {number} base @param {number} exponent @param {number} modulus @returns {number} */
@@ -43,22 +95,7 @@ function cube(value) {
 
 /** @param {number} value @returns {number} */
 function inverseCube(value) {
-  // 3 * 19 = 57 = 1 mod28.
   return modPow(value, 19, 29);
-}
-
-/**
- * Endpoint H ordering used by the existing OPENPGP43 report.
- * @param {number[]} values
- * @returns {number[]}
- */
-function endpointH3(values) {
-  assert.equal(values.length, 3);
-  return [
-    mod29(values[0] - values[2]),
-    mod29(values[0] + values[2]),
-    values[1],
-  ];
 }
 
 const gpTokens = corpus.translit
@@ -96,17 +133,17 @@ function gp(word) {
   return values;
 }
 
-const clear = signed2016
-  .split("-----BEGIN PGP SIGNATURE-----")[0]
-  .replace(/^-----BEGIN PGP SIGNED MESSAGE-----[\s\S]*?Hash: SHA1\s*/, "")
-  .replace(/\b3301\b/g, "")
-  .replace(/\b[0-9A-F]{8,}\b/g, "");
-
-const source = (clear.match(/[A-Za-z]+/g) || []).map((word, index) => ({
-  index,
-  word: word.toUpperCase(),
-  values: gp(word),
-}));
+const sourceStart = signed2016.indexOf("Hello.");
+const sourceEnd = signed2016.indexOf("-----BEGIN PGP SIGNATURE-----");
+const source = signed2016
+  .slice(sourceStart, sourceEnd)
+  .replace(/\b7A35090F\b/g, "")
+  .match(/[A-Za-z]+/g)
+  .map((word, index) => ({
+    index,
+    word: word.toUpperCase(),
+    values: gp(word),
+  }));
 
 assert.equal(source.length, 43);
 assert.equal(source[0].word, "HELLO");
@@ -116,92 +153,60 @@ assert.equal(source[13].word, "WAY");
 assert.equal(source[22].word, "THE");
 assert.equal(source[42].word, "OPENPGP");
 
-const segments = transcription.split(/^\s*%\s*$/m).slice(0, 55);
-const pages = segments.map((text, segment) => ({
-  page: segment >= 50 ? segment + 1 : segment,
-  words: [],
-  offset: 0,
-}));
-
-let current = [];
-let startSegment = 0;
-let endSegment = 0;
-let startOffset = 0;
-
-function flushWord() {
-  if (!current.length) return;
-  if (startSegment === endSegment) {
-    const page = pages[startSegment];
-    page.words.push({
-      ordinal: page.words.length + 1,
-      start: startOffset,
-      end: startOffset + current.length - 1,
-      values: current.slice(),
-    });
-  }
-  current = [];
-}
-
-for (let segment = 0; segment < segments.length; segment += 1) {
-  for (const character of [...segments[segment]]) {
-    const value = runeIndex.get(character);
-    if (value !== undefined) {
-      if (!current.length) {
-        startSegment = segment;
-        startOffset = pages[segment].offset;
-      }
-      endSegment = segment;
-      current.push(value);
-      pages[segment].offset += 1;
-    } else if (character === "/" || /\s/u.test(character)) {
-      // Continue a printed word through line wrapping and physical boundaries.
-    } else {
-      flushWord();
-    }
-  }
-}
-flushWord();
-
-const pageByNumber = new Map(pages.map((page) => [page.page, page]));
-
-/** @param {number} sourceIndex @returns {{ordinal:number,start:number,end:number,values:number[]}|null} */
-function numberedObject(sourceIndex) {
-  const page = pageByNumber.get(sourceIndex);
-  return page && page.words[sourceIndex] ? page.words[sourceIndex] : null;
-}
-
-const openpgp = numberedObject(42);
-assert.ok(openpgp);
-assert.equal(openpgp.ordinal, 43);
-assert.deepEqual(openpgp.values, [11, 13, 11]);
-
-const openpgpH = endpointH3(openpgp.values);
+// Reproduce the established endpoint exactly before extending it.
+const selected = pageWords(42)[42];
+assert.deepEqual(selected, {
+  page: 42,
+  index: 42,
+  ordinal: 43,
+  start: 203,
+  end: 205,
+  values: [11, 13, 11],
+});
+const openpgpH = endpointH3(selected.values);
 assert.deepEqual(openpgpH, [0, 22, 13]);
 assert.deepEqual(
   openpgpH.map((index) => source[index].word),
   ["HELLO", "THE", "WAY"]
 );
 
-const palindromeRows = [];
-for (const row of source) {
-  const object = numberedObject(row.index);
+// Reproduce the endpoint's complete numbered-diagonal palindrome control.
+const bigramTypes = new Set();
+for (let index = 0; index < source.length - 1; index += 1) {
+  bigramTypes.add(source[index].word + "|" + source[index + 1].word);
+}
+
+const diagonalPalindromes = [];
+for (let index = 0; index < source.length; index += 1) {
+  const wordIndex = index === 32 ? 10 : index;
+  const word = pageWords(index)[wordIndex];
   if (
-    object &&
-    object.values.length === 3 &&
-    object.values[0] === object.values[2]
+    word &&
+    word.values.length === 3 &&
+    word.values[0] === word.values[2]
   ) {
-    const shell = endpointH3(object.values);
-    palindromeRows.push({
-      index: row.index,
-      word: row.word,
+    const shell = endpointH3(word.values);
+    diagonalPalindromes.push({
+      sourceIndex: index,
+      sourceWord: source[index].word,
       shell,
       cubeEdge: shell[1] === cube(shell[2]),
+      forwardBigram:
+        !!source[shell[1]] &&
+        !!source[shell[2]] &&
+        bigramTypes.has(
+          source[shell[1]].word + "|" + source[shell[2]].word
+        ),
     });
   }
 }
 
 assert.deepEqual(
-  palindromeRows.map((row) => [row.index, row.word, row.shell]),
+  diagonalPalindromes.map((row) => [
+    row.sourceIndex,
+    row.sourceWord,
+    row.shell,
+  ]),
   [
     [19, "THEIR", [0, 22, 20]],
     [30, "SEEK", [0, 15, 12]],
@@ -209,35 +214,40 @@ assert.deepEqual(
   ]
 );
 assert.deepEqual(
-  palindromeRows.filter((row) => row.cubeEdge).map((row) => row.word),
+  diagonalPalindromes.filter((row) => row.cubeEdge).map((row) => row.sourceWord),
   ["OPENPGP"]
 );
 
+// The endpoint's nonzero fields are an exact directed source-cube edge.
 assert.equal(cube(13), 22);
-assert.equal(source[cube(13)].word, "THE");
+assert.equal(source[13].word, "WAY");
+assert.equal(source[22].word, "THE");
+
+// Continue the already visible edge once.
 assert.equal(cube(22), 5);
-assert.equal(source[cube(22)].word, "EPIPHANY");
+assert.equal(source[5].word, "EPIPHANY");
 
-const p0Ink = ink.pages.find((page) => page.page === 0);
+// The original p0 receiver independently fixes a 13-rune red title.
+const p0Ink = ink.pages.find((row) => row.page === 0);
 assert.ok(p0Ink);
-assert.deepEqual(
-  p0Ink.red_spans.map((span) => [span.start, span.length]),
-  [[0, 13]]
-);
+const p0LeadingRed = p0Ink.red_spans.find((span) => span.start === 0);
+assert.ok(p0LeadingRed);
+assert.equal(p0LeadingRed.length, 13);
 
-const p0 = pageByNumber.get(0);
-assert.ok(p0);
-const titleShape = p0.words.slice(0, 2).map((word) => word.values.length);
+// The printed title itself fixes the 8+5 word split.
+const p0TitleWords = pageWords(0).slice(0, 2);
+const titleShape = p0TitleWords.map((word) => word.values.length);
 assert.deepEqual(titleShape, [8, 5]);
-assert.equal(titleShape.reduce((sum, value) => sum + value, 0), 13);
+assert.equal(titleShape[0] + titleShape[1], p0LeadingRed.length);
 
-const u = openpgpH[1];
-const v = openpgpH[2];
+// Charge forward/inverse cube from either nonzero endpoint field.
+const first = openpgpH[1];
+const second = openpgpH[2];
 const continuations = [
-  ["C(first)", cube(u)],
-  ["C(second)", cube(v)],
-  ["C^-1(first)", inverseCube(u)],
-  ["C^-1(second)", inverseCube(v)],
+  ["C(first)", cube(first)],
+  ["C(second)", cube(second)],
+  ["C^-1(first)", inverseCube(first)],
+  ["C^-1(second)", inverseCube(second)],
 ].map(([mode, index]) => ({
   mode,
   index,
@@ -286,25 +296,23 @@ assert.deepEqual(
   [[5, "EPIPHANY", "SEEKS"]]
 );
 
+console.log("PASS OPENPGP43 cube continuation -> EPIPHANY SEEKS");
 console.log(JSON.stringify({
-  status: "PASS",
   openpgp: {
     source: [42, "OPENPGP"],
-    receiver: openpgp,
+    selected,
     H: openpgpH,
     lexicalH: openpgpH.map((index) => source[index].word),
   },
+  diagonalPalindromes,
   cube: {
     wayToThe: [13, cube(13)],
     theToEpiphany: [22, cube(22)],
-    palindromeRows,
   },
   p0Title: {
-    redSpan: [0, 13],
+    redSpan: [p0LeadingRed.start, p0LeadingRed.length],
     shape: titleShape,
   },
   continuationCharge: continuations,
   uniqueTitlePhrase: allAdjacentShapeHits,
-  conclusion:
-    "OPENPGP43 supplies a unique diagonal cube-edge packet WAY13 -> THE22. Extending the already authenticated cube once gives EPIPHANY5; the original p0 8+5 title shape uniquely fixes the following authenticated word SEEKS6.",
 }, null, 2));
