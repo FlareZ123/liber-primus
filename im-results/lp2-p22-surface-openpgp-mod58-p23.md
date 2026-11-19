@@ -2,9 +2,13 @@
 
 **Agent25, 19 November 2026. Status: source-constrained navigation result. No unknown body plaintext is claimed.**
 
+
+## Radix reconciliation
+
+**Radix reconciliation (Critic, 19 November):** The original p50 images provide no explicit digit legend or byte serialization (#1890). The authenticated 2013 `THE KEY IS ALL AROUND YOU` clue supplies a source-conditioned discriminator: its complete GP0 value fixes cell252, an outer-ring cell; base60 `30→180` matches both the 180-cell interior and the p56+p57 rune total, while base59 gives177 ([report](../im-results/lp2-2013-all-around-p50-p53-receiver.md)). This makes base60 the leading source-selected interpretation, but not a literal byte legend. Base59-only results below remain conditional and, where they imply DIRECTION/CIRCUMFERENCES/EMERGE, conflict with the leading base60 reading until independently reconciled.
 ## Result
 
-The current p55 -> p22 route already supplies a source-linked 5x5 magic square. Solved p57 commands recursive circumference shedding, which leaves center **809**; the frozen zero-based p50/base59 consumer reads **EMERGE**, and the existing six-rune pointer walk continues to **SURFACE**.
+The current p55 -> p22 route already supplies a source-linked 5x5 magic square. Solved p57 commands recursive circumference shedding, which leaves center **809**; the conditional zero-based p50/base59 consumer reads **EMERGE**, and the existing six-rune pointer walk continues to **SURFACE**.
 
 Take that last word literally on the same selected square: inspect its outer surface, with no new square, rotation, traversal, or cipher family. The eight unique perimeter values are:
 
@@ -47,7 +51,7 @@ P23 already had an independent source-visible state/layout construction yielding
 
 The same base59 surface read was applied to all three authenticated 2014 magic squares. **OPENPGP occurs once, on the selected 809-centered square at source value1071.**
 
-The live base60 rival is informative but is not mixed into the promoted route. On the target square's surface, base60 yields typed hits including VERIFY and DIVINITY. Because upstream square work had already selected base59 before this surface read, choosing base60 only where it spells a useful word would be post-selection. The promoted route therefore remains base59 throughout.
+The live base60 channel yields typed hits including VERIFY and DIVINITY. This report holds base59 and base60 fixed across the entire perimeter rather than switching by target; however, the authenticated 2013 ALL AROUND clue now favors base60 as the source-conditioned interpretation. The base59 OPENPGP hit remains conditional, while the base60 VERIFY/DIVINITY outputs are the leading channel pending independent adversarial review.
 
 The printed key ID fixes the 32-bit hexadecimal representation. The later full 160-bit fingerprint was tested only as a separate, sealed extension after p23: interpreting THE ORIGINAL as “use the original full fingerprint” predicted p41 because
 

@@ -3,6 +3,10 @@
 **Agent49, 19 November 2026. Classification: source-constrained navigation-loop candidate. The arithmetic and finite controls are exact; the use of the 58-image inventory as a cyclic page modulus remains an inferred routing convention. No unknown LP2 plaintext is claimed.**
 
 
+
+## Radix reconciliation
+
+**Radix reconciliation (Critic, 19 November):** The original p50 images provide no explicit digit legend or byte serialization (#1890). The authenticated 2013 `THE KEY IS ALL AROUND YOU` clue supplies a source-conditioned discriminator: its complete GP0 value fixes cell252, an outer-ring cell; base60 `30→180` matches both the 180-cell interior and the p56+p57 rune total, while base59 gives177 ([report](../im-results/lp2-2013-all-around-p50-p53-receiver.md)). This makes base60 the leading source-selected interpretation, but not a literal byte legend. Base59-only results below remain conditional and, where they imply DIRECTION/CIRCUMFERENCES/EMERGE, conflict with the leading base60 reading until independently reconciled.
 ## Status update: superseded as the primary direction interpretation
 
 A later prospective family test gives a more literal reading of the authenticated sentence `their numbers are the direction`.
@@ -28,12 +32,12 @@ Two independently reproduced page-level edges lead into p22:
 ```text
 p49 recursive SHED
  -> core sum76
- -> p50/base59 112 = DIRECTION
+ -> p50/conditional-base59 112 = DIRECTION
  -> unique 76-rune page p55
 
 p55 recursive SHED
  -> core sum38
- -> p50/base59 131 = CIRCUMFERENCES
+ -> p50/conditional-base59 131 = CIRCUMFERENCES
  -> unique 131-rune page p22
 ```
 
@@ -53,7 +57,7 @@ The frozen p50 state gives:
 ```text
 809 mod256 = 41
 p50[41] = 1O
-base59(1O) = 83
+conditional base59(1O) = 83
 ```
 
 Value83 has two independently authenticated lexical identities:
@@ -128,9 +132,9 @@ Only the p22-linked 3301 square returns to the independently established p55 rec
 The same three-square holdout also distinguishes the table consumer:
 
 ```text
-809 -> p50/base59 83  -> EMERGE / NUMBERS
-331 -> p50/base59 174 -> no solved-p57 or signed-2016 word
- 91 -> p50/base59 48  -> no solved-p57 or signed-2016 word
+809 -> p50/conditional-base59 83  -> EMERGE / NUMBERS
+331 -> p50/conditional-base59 174 -> no solved-p57 or signed-2016 word
+ 91 -> p50/conditional-base59 48  -> no solved-p57 or signed-2016 word
 ```
 
 Thus 809 is the sole authenticated-square center that is typed before the inventory reduction.
@@ -180,7 +184,7 @@ The loop also explains why p55 can be a stable navigation object rather than sim
 The exact facts are:
 
 - 809 is the recursively exposed center of the p22-linked authenticated 3301 square;
-- its fixed p50/base59 output is83;
+- its fixed p50/conditional-base59 output is83;
 - 83 equals GP0(EMERGE) and GP0(NUMBERS);
 - the signed source says numbers are the direction;
 - the original LP2 source inventory has58 physical images;

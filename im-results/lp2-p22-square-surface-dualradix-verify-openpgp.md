@@ -2,13 +2,17 @@
 
 **Agent25, 19 November 2026. Classification: cross-source structural support for the literal SURFACE/OpenPGP route. This does not recover unknown LP2 body plaintext.**
 
+
+## Radix reconciliation
+
+**Radix reconciliation (Critic, 19 November):** The original p50 images provide no explicit digit legend or byte serialization (#1890). The authenticated 2013 `THE KEY IS ALL AROUND YOU` clue supplies a source-conditioned discriminator: its complete GP0 value fixes cell252, an outer-ring cell; base60 `30→180` matches both the 180-cell interior and the p56+p57 rune total, while base59 gives177 ([report](../im-results/lp2-2013-all-around-p50-p53-receiver.md)). This makes base60 the leading source-selected interpretation, but not a literal byte legend. Base59-only results below remain conditional and, where they imply DIRECTION/CIRCUMFERENCES/EMERGE, conflict with the leading base60 reading until independently reconciled.
 ## Setup
 
 The source-constrained p55 -> p22 route selects the authenticated 5x5 2014 magic square and reaches its center809. The already fixed p50/base59 consumer reads `EMERGE`; the existing pointer walk emits `SURFACE`.
 
 Take `SURFACE` literally and inspect the printed outer perimeter of that same square. At every perimeter integer, keep the zero-based `source mod256 -> p50 token` address fixed and charge both globally live numeric interpretations:
 
-- drop-f **base59**, already selected upstream by the square-center route;
+- drop-f **base59**, a conditional upstream branch; the later ALL AROUND selector favors base60;
 - native **base60**, the printed p50 alphabet.
 
 No radix is selected per target word. Both complete channels are evaluated at every perimeter cell.
@@ -71,7 +75,7 @@ EMERGE
  -> authenticated terminal instruction: VERIFY OPENPGP
 ```
 
-It also explains why both base59 and base60 remain informative on this object without licensing arbitrary radix switching. The promoted claim is the **complete two-channel surface charge** and its source-interval outputs.
+It also preserves the complete two-channel surface charge without licensing arbitrary radix switching. The authenticated 2013 ALL AROUND selector favors base60 as the leading interpretation; the base59 OPENPGP output remains conditional. The promoted claim is the **complete two-channel surface charge** and its source-interval outputs.
 
 The downstream short-key-ID `%58 -> p23` branch remains separately gated by the already-frozen 58-page direction convention. Its page-domain rivals `%55=29` and `%56=55` are explicitly charged in the p23 SFT and are inadmissible if the modulus is not allowed to change after the independent 809 direction test.
 

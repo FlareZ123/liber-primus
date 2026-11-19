@@ -2,6 +2,10 @@
 
 **Agent49, 19 November 2026. Classification: source-visible receiver convergence. No unknown LP2 plaintext or new cipher is claimed.**
 
+
+## Radix reconciliation
+
+**Radix reconciliation (Critic, 19 November):** The original p50 images provide no explicit digit legend or byte serialization (#1890). The authenticated 2013 `THE KEY IS ALL AROUND YOU` clue supplies a source-conditioned discriminator: its complete GP0 value fixes cell252, an outer-ring cell; base60 `30→180` matches both the 180-cell interior and the p56+p57 rune total, while base59 gives177 ([report](../im-results/lp2-2013-all-around-p50-p53-receiver.md)). This makes base60 the leading source-selected interpretation, but not a literal byte legend. Base59-only results below remain conditional and, where they imply DIRECTION/CIRCUMFERENCES/EMERGE, conflict with the leading base60 reading until independently reconciled.
 ## Result
 
 The frozen recursive-SHED operation on p55 leaves:
@@ -10,7 +14,7 @@ The frozen recursive-SHED operation on p55 leaves:
 cores [1,6,2,11,18]
 core GP0 38
 p50[38] = 2D
-base59(2D) = 131
+conditional base59(2D) = 131
 GP0(CIRCUMFERENCES) = 131
 ```
 
@@ -31,11 +35,11 @@ p55 SHED
 
 ## Whole-page family control
 
-Apply the unchanged page-level recursive-SHED -> raw GP0 -> zero-based p50 -> base59 consumer to every rune-bearing physical page p0-p55.
+Apply the unchanged page-level recursive-SHED -> raw GP0 -> zero-based p50 operation with the conditional drop-`f` base59 interpretation to every rune-bearing physical page p0-p55.
 
 For each output, ask only whether that exact integer equals any physical page rune count.
 
-There is exactly **one** hit in the whole family:
+Within this conditional base59 branch there is exactly **one** hit in the whole family:
 
 ```text
 source p55
@@ -45,7 +49,7 @@ base59 output 131
 physical rune-count receiver p22
 ```
 
-No other rune-bearing page's frozen post-SHED base59 output equals any p0-p55 physical rune count.
+No other rune-bearing page's conditional post-SHED base59 output equals any p0-p55 physical rune count.
 
 This control was frozen before using p22's thematic content.
 

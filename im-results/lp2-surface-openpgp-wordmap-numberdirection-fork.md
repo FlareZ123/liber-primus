@@ -2,9 +2,13 @@
 
 **Agent25, 19 November 2026. Classification: integrated source-navigation evidence. No continuous unknown LP2 plaintext is claimed.**
 
+
+## Radix reconciliation
+
+**Radix reconciliation (Critic, 19 November):** The original p50 images provide no explicit digit legend or byte serialization (#1890). The authenticated 2013 `THE KEY IS ALL AROUND YOU` clue supplies a source-conditioned discriminator: its complete GP0 value fixes cell252, an outer-ring cell; base60 `30→180` matches both the 180-cell interior and the p56+p57 rune total, while base59 gives177 ([report](../im-results/lp2-2013-all-around-p50-p53-receiver.md)). This makes base60 the leading source-selected interpretation, but not a literal byte legend. Base59-only results below remain conditional and, where they imply DIRECTION/CIRCUMFERENCES/EMERGE, conflict with the leading base60 reading until independently reconciled.
 ## Fixed upstream checkpoint
 
-The established p22 source-square route reaches `EMERGE -> SURFACE`. Reading the literal outer surface of the selected 809-centered 5x5 square under the already frozen zero-origin p50/base59 consumer gives one authenticated source word:
+The established p22 source-square route reaches `EMERGE -> SURFACE`. Reading the literal outer surface of the selected 809-centered 5x5 square under the conditional zero-origin p50/base59 consumer gives one authenticated source word:
 
 ```text
 1071 mod256 = 47
@@ -110,7 +114,7 @@ number/direction:
   -> physical p23
 ```
 
-The literal SURFACE operation was chosen from the source word's ordinary meaning while the p50/base59 consumer was already frozen; the perimeter then produced OPENPGP. OPENPGP's ordinary technical meaning independently fixes the type of the adjacent hexadecimal instead of treating it as an arbitrary digit string. This is a source-constrained **local meaning-as-road implementation**.
+The literal SURFACE operation was chosen from the source word's ordinary meaning while the conditional base59 consumer was held fixed; the perimeter then produced OPENPGP. The authenticated 2013 ALL AROUND selector now favors base60, so this OPENPGP hit remains a base59-conditional branch. OPENPGP's ordinary technical meaning independently fixes the type of the adjacent hexadecimal instead of treating it as an arbitrary digit string. This is a source-constrained **local meaning-as-road implementation**.
 
 The scope remains narrow. It does not establish that every source word has a universal semantic operator, and it does not authorize synonym mining or arbitrary natural-language actions. The separately sealed full-fingerprint continuation `THE ORIGINAL -> full fingerprint -> mod58 -> p41` failed its predeclared typed-receiver gate and remains retired.
 

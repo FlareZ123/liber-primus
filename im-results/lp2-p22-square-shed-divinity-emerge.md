@@ -2,6 +2,10 @@
 
 **Agent49, 19 November 2026. Classification: source-constrained structural mechanism with a reproduced finite rival family. No unknown LP2 plaintext is claimed.**
 
+
+## Radix reconciliation
+
+**Radix reconciliation (Critic, 19 November):** The original p50 images provide no explicit digit legend or byte serialization (#1890). The authenticated 2013 `THE KEY IS ALL AROUND YOU` clue supplies a source-conditioned discriminator: its complete GP0 value fixes cell252, an outer-ring cell; base60 `30→180` matches both the 180-cell interior and the p56+p57 rune total, while base59 gives177 ([report](../im-results/lp2-2013-all-around-p50-p53-receiver.md)). This makes base60 the leading source-selected interpretation, but not a literal byte legend. Base59-only results below remain conditional and, where they imply DIRECTION/CIRCUMFERENCES/EMERGE, conflict with the leading base60 reading until independently reconciled.
 ## Route into the object
 
 The p55 recursive-SHED receiver now gives:
@@ -10,7 +14,7 @@ The p55 recursive-SHED receiver now gives:
 p55 cores [1,6,2,11,18]
  -> GP0 38
  -> p50[38]=2D
- -> base59 131 = CIRCUMFERENCES
+ -> conditional base59 131 = CIRCUMFERENCES
  -> unique 131-rune page p22
 ```
 
@@ -81,7 +85,7 @@ The p50 object has 256 cells and the established navigation origin is zero-based
 ```text
 809 mod 256 = 41
 p50[41] = 1O
-base59(1O) = 83
+conditional base59(1O) = 83
 GP0(EMERGE) = 83
 ```
 
@@ -96,7 +100,7 @@ This exact `809 -> 41 -> 1O -> 83 -> EMERGE` route was not present in earlier re
 
 ## Circumference checksum under the same fixed state
 
-Use the same zero-based modulo256 address and the same post-SHED base59 table state on all 25 source-square cells.
+Use the same zero-based modulo256 address and the same conditional post-SHED base59 interpretation on all 25 source-square cells.
 
 Exactly three cell positions land on solved-p57 GP0 words:
 
@@ -108,7 +112,7 @@ row5 col4   1311 mod256=31 -> p50[31]=2D -> base59 131 = CIRCUMFERENCES
 
 The two `1311` cells are 180-degree symmetric and both lie on the outer circumference. The center is the unique non-circumference hit.
 
-So the fixed base59 square read has the exact topology:
+So the conditional base59 square read has the exact topology:
 
 ```text
 outer circumference -> CIRCUMFERENCES
@@ -131,11 +135,11 @@ base60(1j)=105=GP0(DIVINITY)
 
 Those are at row1 col5 and row5 col1.
 
-The current route uses base59 because that state was independently fixed by the post-SHED p50 consumer before this square was examined. The base60 `DIVINITY` pair is retained as secondary structure rather than being mixed into the primary operation.
+The current report holds base59 fixed because the upstream p55/p49 work used that branch before this square was examined. That chronology prevents local radix switching, but it does not authenticate base59: the 2013 ALL AROUND selector favors base60, under which the symmetric outer cells return DIVINITY. All base59 EMERGE/CIRCUMFERENCES outputs here remain conditional; base60 is the leading source-conditioned alternative.
 
 ## Authenticated three-square holdout and NUMBERS cross-register hit
 
-The original 2014 submission stage supplied exactly three authenticated squares. Apply the same orientation-free circumference shedding to all three, then the same zero-based modulo256/base59 consumer:
+The original 2014 submission stage supplied exactly three authenticated squares. Apply the same orientation-free circumference shedding to all three, then the same zero-based modulo256/conditional-base59 consumer:
 
 ```text
 5x5, sum3301 -> center809 -> address41 -> 1O -> 83

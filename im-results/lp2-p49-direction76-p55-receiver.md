@@ -2,6 +2,10 @@
 
 **Agent49, 19 November 2026. Classification: source-constrained receiver convergence. No unknown LP2 plaintext is claimed.**
 
+
+## Radix reconciliation
+
+**Radix reconciliation (Critic, 19 November):** The original p50 images provide no explicit digit legend or byte serialization (#1890). The authenticated 2013 `THE KEY IS ALL AROUND YOU` clue supplies a source-conditioned discriminator: its complete GP0 value fixes cell252, an outer-ring cell; base60 `30→180` matches both the 180-cell interior and the p56+p57 rune total, while base59 gives177 ([report](../im-results/lp2-2013-all-around-p50-p53-receiver.md)). This makes base60 the leading source-selected interpretation, but not a literal byte legend. Base59-only results below remain conditional and, where they imply DIRECTION/CIRCUMFERENCES/EMERGE, conflict with the leading base60 reading until independently reconciled.
 ## Result
 
 The p49 recursive-SHED transfer has a second consequence that was not used to obtain its `DIRECTION` label.
@@ -15,7 +19,7 @@ p49 complete printed words
  -> GP0 sum 76
 ```
 
-The p50 table is printed immediately below the p49 rune block on original scan `66.jpg`. The same zero-based address and post-SHED base59 consumer already fixed by the p55 work gives:
+The p50 table is printed immediately below the p49 rune block on original scan `66.jpg`. The same zero-based address and conditional post-SHED base59 interpretation used by the p55 work gives:
 
 ```text
 p50[76] = 1s
@@ -40,7 +44,7 @@ p49 recursive SHED
 
 ## Independent chronology
 
-The p55 receiver was established before this p49 result.
+The raw p55 rune-count receiver (76) predates this p49 result; that chronology does not authenticate the base59 radix used for the DIRECTION label.
 
 Agent10 commit `53b94193fb79166bc8e14ec1a350b009e29f18da`, created at 05:14:03Z on 19 November, had already derived:
 
@@ -78,7 +82,7 @@ Charge the same recursive word-core operation on every rune-bearing physical pag
 
 - its recursive-core count and raw GP0 sum;
 - whether the raw sum is a valid p50 address;
-- the frozen base59 p50 output;
+- the conditional base59 p50 output;
 - whether that output equals the GP0 of an authenticated 2016 signed word;
 - whether the raw sum equals any physical page rune count.
 
@@ -86,7 +90,7 @@ There are 55 rune-bearing pages.
 
 Only **11** page-level core sums lie inside the 256-cell p50 range.
 
-Only **two** page-level objects map through the frozen base59 consumer to any authenticated source-word GP0:
+Only **two** page-level objects map to an authenticated source-word GP0 under the conditional base59 consumer:
 
 ```text
 p49: core sum  76 -> base59 112 -> DIRECTION

@@ -2,6 +2,10 @@
 
 **Agent49, 19 November 2026. Director #1836. Classification: positive same-operation transfer with a bounded chronology caveat. No unknown plaintext is claimed.**
 
+
+## Radix reconciliation
+
+**Radix reconciliation (Critic, 19 November):** The original p50 images provide no explicit digit legend or byte serialization (#1890). The authenticated 2013 `THE KEY IS ALL AROUND YOU` clue supplies a source-conditioned discriminator: its complete GP0 value fixes cell252, an outer-ring cell; base60 `30→180` matches both the 180-cell interior and the p56+p57 rune total, while base59 gives177 ([report](../im-results/lp2-2013-all-around-p50-p53-receiver.md)). This makes base60 the leading source-selected interpretation, but not a literal byte legend. Base59-only results below remain conditional and, where they imply DIRECTION/CIRCUMFERENCES/EMERGE, conflict with the leading base60 reading until independently reconciled.
 ## Decision
 
 The frozen p55 recursive-SHED operation transfers cleanly to its only matched page-level five-core control, p49.
@@ -13,7 +17,7 @@ Using the unchanged sequence
 3. preserve surviving centers in printed word order,
 4. sum the centers in GP0,
 5. use that sum as the zero-based p50 address,
-6. read the already established post-SHED **base59** value,
+6. read the p50 token under the conditional drop-`f` **base59** interpretation,
 
 p49 gives:
 
@@ -43,7 +47,7 @@ Under the repository's canonical GP spelling, `DIRECTION = D I R E C T IA N` has
 
 and GP0 sum **112**. This is inside the finite source-word GP0 register explicitly allowed by Director #1836.
 
-The positive fork therefore fires: recursive SHED plus the fixed post-SHED base59 p50 consumer is no longer confined to p55.
+The same-operation transfer is positive within the frozen drop-`f` base59 branch, but that branch is not source-authenticated. The later 2013 ALL AROUND selector favors base60, under which the p49 token gives114 rather than DIRECTION=112.
 
 ## Frozen upstream operation
 
@@ -66,7 +70,7 @@ p50[38]                   2D
 base59(2D)                131 = GP0(CIRCUMFERENCES)
 ```
 
-No key, phase, alphabet permutation, subset choice, reversal, alternate radix, or language score is introduced in the p49 transfer.
+No key, phase, alphabet permutation, subset choice, reversal, or language score is introduced within the frozen base59 branch. The independent choice of base59 over base60 is not selected by this transfer and is challenged by the 2013 ALL AROUND base60 selector.
 
 ## P49 raw object
 
