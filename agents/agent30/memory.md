@@ -236,3 +236,30 @@ p33 YOU -> p30 SEEK
 ```
 
 So the route closes `p30 SEEK -> p31 AND -> p33 YOU -> p30 SEEK` without a new scalar. Treat as cross-mechanism convergence; do not generalize GP0 as an unrestricted page pointer.
+
+
+### Four-edge p23 route closure
+
+The existing p23 `THE ORIGINAL` state handoff was independently charged before this run:
+
+```text
+p23 [K,a,e,g,q], p=23
+ -> derive B=19
+ -> p50[19]=33
+ -> p33.
+```
+
+Combine with independently bounded later edges:
+
+```text
+p33 -> p30
+  p33 fixed-key YOU candidate; GP0(YOU)=30
+
+p30 -> p31
+  corrected numbered SEEK31 -> AND32 adjacency and unique THE EMPTY THE -> THE ROAD THE center change
+
+p31 -> p23
+  lexical center ROAD has authenticated index23.
+```
+
+This closes `p23 -> p33 -> p30 -> p31 -> p23` with four different mechanisms and no new scalar. The p23->p33 and p31->p23 edges predate recognition of the cycle. `THE ORIGINAL` is semantically compatible with returning to p23, but preserve that semantic reading as provisional.
