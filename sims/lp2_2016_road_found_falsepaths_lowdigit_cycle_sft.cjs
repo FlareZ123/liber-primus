@@ -190,6 +190,108 @@ assert.deepEqual(cycleModes, [{
   cycles: [[36, 54]],
 }]);
 
+// Stronger authenticated relation route. The clue sentence explicitly relates
+// WORDS/MAP, MEANING/ROAD and NUMBERS/DIRECTION. Charge those three pairs
+// across the same 16 modes. A hit requires the two nouns to converge after one
+// pointer step and the shared pre-cycle path to contain FIND(42) -> p28.
+const relationPairs = [
+  ["WORDS", "MAP"],
+  ["MEANING", "ROAD"],
+  ["NUMBERS", "DIRECTION"],
+];
+
+function stepForMode(mode, state) {
+  const alphabet = mode.radix === "base60" ? alpha60 : alpha59;
+  const address = state + mode.addressOrigin;
+  if (address < 0 || address >= table.length) return null;
+  return componentValue(
+    table[address],
+    alphabet,
+    mode.component,
+    mode.digitOrigin
+  );
+}
+
+function traceUntilRepeat(mode, start) {
+  const output = [start];
+  const seen = new Set(output);
+  let state = start;
+  while (true) {
+    const next = stepForMode(mode, state);
+    if (next === null || seen.has(next)) return output;
+    output.push(next);
+    seen.add(next);
+    state = next;
+  }
+}
+
+const relationRouteHits = [];
+for (const mode of modeRows) {
+  for (const [leftWord, rightWord] of relationPairs) {
+    const left = stepForMode(mode, gp0(leftWord));
+    const right = stepForMode(mode, gp0(rightWord));
+    if (left === null || left !== right) continue;
+
+    const path = traceUntilRepeat(mode, left);
+    const hasFindTo28 = path.some((state, index) =>
+      state === gp0("FIND") && path[index + 1] === 28
+    );
+    if (!hasFindTo28) continue;
+
+    relationRouteHits.push({
+      radix: mode.radix,
+      component: mode.component,
+      addressOrigin: mode.addressOrigin,
+      digitOrigin: mode.digitOrigin,
+      relation: [leftWord, rightWord],
+      firstState: left,
+      path,
+    });
+  }
+}
+
+assert.deepEqual(relationRouteHits, [{
+  radix: "base60",
+  component: "low",
+  addressOrigin: 0,
+  digitOrigin: 0,
+  relation: ["NUMBERS", "DIRECTION"],
+  firstState: 13,
+  path: [13, 4, 37, 20, 42, 28, 30, 21, 17, 22, 59, 9],
+}]);
+
+// The source-only direction route joins the READ OUT route at OUT=20 and then
+// shares FIND=42 -> physical p28.
+assert.equal(gp0("NUMBERS"), 83);
+assert.equal(gp0("DIRECTION"), 112);
+assert.deepEqual(
+  [83, 112, 13, 4, 37, 20, 42].map(state =>
+    alpha60.indexOf(table[state][1])
+  ),
+  [13, 13, 4, 37, 20, 42, 28]
+);
+
+// Fixed seven-cell table-multiset calibration for the complete route.
+const routeOutputs = [13, 13, 4, 37, 20, 42, 28];
+const routeLowCounts = new Map();
+for (const token of table) {
+  const low = alpha60.indexOf(token[1]);
+  routeLowCounts.set(low, (routeLowCounts.get(low) || 0) + 1);
+}
+const usedOutputs = new Map();
+let routeFavorable = 1n;
+for (const output of routeOutputs) {
+  const used = usedOutputs.get(output) || 0;
+  routeFavorable *= BigInt(routeLowCounts.get(output) - used);
+  usedOutputs.set(output, used + 1);
+}
+let routeDenominator = 1n;
+for (let index = 0; index < routeOutputs.length; index += 1) {
+  routeDenominator *= BigInt(256 - index);
+}
+assert.equal(routeFavorable, 88000n);
+assert.equal(routeDenominator, 66335904391680000n);
+
 // Fixed-pair table-multiset calibration.
 const lowCounts = new Map();
 for (const token of table) {
@@ -221,6 +323,13 @@ console.log(JSON.stringify({
     p50_54: table[54],
     p50_36: table[36],
     transitions: [[54, 36], [36, 54]],
+  },
+  directionRoute: {
+    relationHits: relationRouteHits,
+    fixedRouteFavorable: routeFavorable.toString(),
+    fixedRouteDenominator: routeDenominator.toString(),
+    fixedRouteProbability:
+      Number(routeFavorable) / Number(routeDenominator),
   },
   conventionCharge: {
     modes: modeRows.length,
