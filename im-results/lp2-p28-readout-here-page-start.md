@@ -10,9 +10,15 @@ The current p28 route reconstructs the labeled standard DH state directly from t
 p=23, g=5, a=6, b=15, A=8, B=19, K=2
 ```
 
-Standard DH inversion gives `b^-1 mod22 = 3`, and the existing p28 center/page-word operation gives the candidate instruction **READ OUT** without using p50 as a rune-offset device.
+Standard DH inversion gives `b^-1 mod22 = 3`. A concurrent source-only exponent test then removes the remaining layer-count convention from the p28 center/page-word operation. On the original p28 source:
 
-Take that instruction literally on the same original page. The reversible shell operation was already fixed independently as
+- the page contains exactly **three printed periods**, supplying boundary exponent `3`;
+- the physical page number is **28**, the order of the nonzero GP29 multiplicative group, so its reciprocal exponent is `28-1=27`;
+- the page-numbered five-rune object is **word28**, immediately after the exact page center.
+
+The fixed rule `boundary exponent = same-page period count`, `five-rune exponent = physical page number-1 mod28` maps the six-rune source object `[9,28,24,10,1,20]` exactly to **READOUT**. Charged unchanged across all **314** five-rune/predecessor objects, only p5 word37 (`PUTATT`) and p28 word28 (`READOUT`) enter the finite one/two-word phrase register; among the **nine page-numbered five-rune objects**, p28 is the sole phrase hit. This is a post-discovery source formula, but it no longer depends on p50 output semantics or an assumed visible-layer count. The reproducer is `sims/lp2_p28_pageperiod_exponents_readout_sft.cjs`; Windows run **44437498443** passed.
+
+Take **READ OUT** literally on the same original page. The reversible shell operation was already fixed independently as
 
 ```text
 H(x,y) = (x-y, x+y) mod29.
@@ -42,13 +48,17 @@ No table lookup, radix choice, page-local numeric offset, Caesar shift, language
 
 ## Why the two fragments are source-selected rather than truncated for HERE
 
-The first two fragment lengths are exactly the ordered DH state pair:
+The opening line carries a stronger visible DH geometry before any output letters are read:
 
 ```text
-[K,g] = [2,5].
+[total line runes, fragment count, first length, second length]
+= [23,5,2,5]
+= [p,g,K,g].
 ```
 
-A full census of unknown physical pages p0..p55 gives **exactly one page start** whose first two multi-rune fragments have ordered lengths `[2,5]`: **p28**.
+Across all unknown physical lines, only **22** have all four of those geometric slots drawn from the seven recovered DH-state values, and HERE is the sole finite-register outer-H output among them. The exact `[p,g,K,g]` geometry occurs twice manuscript-wide, at p28 line1 and p44 line10, but **p28 is the only page-start occurrence**. At page starts, only four lines have all four slots drawn from the DH state at all; p28 is again the sole lexical output.
+
+The first two fragment lengths alone are the ordered pair `[K,g]=[2,5]`. A full census of unknown physical pages p0..p55 gives **exactly one page start** with that ordered pair: **p28**.
 
 To avoid privileging `[K,g]` after seeing the output, charge every ordered pair of distinct labels from the seven recovered DH fields `p,g,a,b,A,B,K`. There are **42** ordered field pairs. Eight page starts have first-two fragment lengths equal to some member of that family:
 
@@ -100,5 +110,7 @@ Because HERE was noticed after READ OUT, the next promotion gate should be an un
 ## Reproduction
 
 - SFT: `sims/lp2_p28_readout_here_page_start_sft.cjs`
-- Windows Node22 PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44436427345
-- Tested source family: 594 rune-bearing lines, 41 eligible page starts, 2,347 adjacent multi-rune fragment pairs, 42 ordered DH-field pairs.
+- Windows Node22 PASS after the four-slot DH-geometry upgrade: https://github.com/FlareZ123/liber-primus/actions/runs/44437679228
+- Source-derived READ OUT exponent SFT: `sims/lp2_p28_pageperiod_exponents_readout_sft.cjs`
+- READ OUT exponent Windows PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44437498443
+- Tested source family: 594 rune-bearing lines, 41 eligible page starts, 2,347 adjacent multi-rune fragment pairs, 42 ordered DH-field pairs, 22 all-DH four-slot geometry lines.
