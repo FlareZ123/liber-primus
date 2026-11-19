@@ -241,6 +241,58 @@ assert.deepEqual(squareHits.filter((hit) => hit.direction === "N"), [
   squareHits[1],
 ]);
 
+// Follow-up to the report's explicit next question: keep this exact 49-address
+// family and cardinal grammar, extend the read from two cells to three, and
+// charge every distinct authenticated three-rune source word. This is the
+// smallest unchanged-grammar test for the source continuation MAP.
+const distinctThreeRuneTargets = new Map();
+for (const word of words) {
+  if (word.gp.length !== 3) continue;
+  const key = word.gp.join(",");
+  if (!distinctThreeRuneTargets.has(key)) distinctThreeRuneTargets.set(key, word.word);
+}
+assert.deepEqual(
+  [...distinctThreeRuneTargets.values()].sort(),
+  ["AND", "ARE", "ITS", "MAP", "PATH", "WAY", "YOU"]
+);
+
+const squareThreeRuneHits = [];
+for (const page of squarePages) {
+  for (const [start, labels] of addressLabels) {
+    if (start >= page.indices.length) continue;
+    const row = Math.floor(start / page.side);
+    const col = start % page.side;
+    for (const direction of directions) {
+      const values = [];
+      let valid = true;
+      for (let step = 0; step < 3; step += 1) {
+        const nextRow = row + direction.dr * step;
+        const nextCol = col + direction.dc * step;
+        if (
+          nextRow < 0 || nextRow >= page.side ||
+          nextCol < 0 || nextCol >= page.side
+        ) {
+          valid = false;
+          break;
+        }
+        values.push(page.indices[nextRow * page.side + nextCol]);
+      }
+      if (!valid) continue;
+      const word = distinctThreeRuneTargets.get(values.join(","));
+      if (!word) continue;
+      squareThreeRuneHits.push({
+        page: page.page,
+        start,
+        labels,
+        direction: direction.name,
+        values,
+        word,
+      });
+    }
+  }
+}
+assert.deepEqual(squareThreeRuneHits, []);
+
 console.log(JSON.stringify({
   status: "PASS",
   p32: {
@@ -266,7 +318,9 @@ console.log(JSON.stringify({
     comparisons,
     hits,
     squareHits,
+    distinctThreeRuneTargets: [...distinctThreeRuneTargets.values()],
+    squareThreeRuneHits,
   },
   classification:
-    "second source-state p32 extraction; MAP-supplied north direction is independently frozen, but discovery remains retrospective",
+    "second source-state p32 extraction; exact 3-cell cardinal extension has no authenticated source-word hit on p32 or matched p6",
 }, null, 2));
