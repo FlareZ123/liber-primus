@@ -113,6 +113,9 @@ const tableValues = tokens.map(token => {
   return 60 * high + low;
 });
 assert.equal(tableValues[phraseAddress], 180);
+const selectedCellBase59Value = 3 * 59;
+assert.equal(selectedCellBase59Value, 177);
+assert.notEqual(selectedCellBase59Value, 180);
 assert.deepEqual(
   tableValues.map((value, index) => value === 180 ? index : -1)
     .filter(index => index >= 0),
@@ -392,6 +395,8 @@ console.log(JSON.stringify({
     token: selectedToken,
     tokenDigitPair: digitPair,
     base60Value: tableValues[phraseAddress],
+    base59Value: selectedCellBase59Value,
+    sourceConditionedRadixSelection: "base60 alone gives interior180",
   },
   terminalGeometry: {
     outerCells: ring.length,
@@ -432,5 +437,5 @@ console.log(JSON.stringify({
       typedProjectionRows.filter(row => row.matches === 6),
   },
   decision:
-    "The authenticated 2013 phrase self-selects p50 outer cell252. Its unique value180 types both the table interior and the known p56+p57 terminal register. Token30 maps through fixed H^-1 to the unique p53 terminal red-span start; its untouched length51=MUST and first shed27 reconnect to p27. The p53 receiver supplies the ordered raw key pair [3,27], which applied in source order to p28's fixed center and word28 operands yields READ OUT; reversing the key order yields PEALXUAE. The same source-selected cell252 phase closes the previously untested direct p50-ring pad start: all 24 raw-remainder and all 144 typed divmod29-projection direction/sign/F-clock variants miss the conditional OUR OWN footer, so that direct p55 consumer remains retired.",
+    "The authenticated 2013 phrase self-selects p50 outer cell252. Token30 is 177 in base59 and 180 in base60; base60 alone recovers both the table interior size and the known p56+p57 terminal register. Token30 maps through fixed H^-1 to the unique p53 terminal red-span start; its untouched length51=MUST and first shed27 reconnect to p27. The p53 receiver supplies the ordered raw key pair [3,27], which applied in source order to p28's fixed center and word28 operands yields READ OUT; reversing the key order yields PEALXUAE. The same source-selected cell252 phase closes the previously untested direct p50-ring pad start: all 24 raw-remainder and all 144 typed divmod29-projection direction/sign/F-clock variants miss the conditional OUR OWN footer, so that direct p55 consumer remains retired.",
 }, null, 2));
