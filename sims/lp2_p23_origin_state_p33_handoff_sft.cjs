@@ -214,6 +214,19 @@ assert.equal(powModulo(state.B, state.a, state.p), state.K);
 
 assert.equal(tokens[state.B], "0X");
 assert.equal(grid.bytes[state.B], 33);
+const destinationPage = grid.bytes[state.B];
+assert.equal(spellCardinals([state.p]), "A");
+assert.equal(spellCardinals([destinationPage]), "L");
+assert.equal(
+  spellCardinals([
+    ...p23Line1,
+    fiveDotCount,
+    p23Line1Record.terminalGp0,
+    state.p,
+    destinationPage
+  ]),
+  "THEORIGINAL"
+);
 
 const p33RedPairs = exactRedSpanWordLengths(33);
 assert.deepEqual(p33RedPairs.slice(0, 2), [
@@ -391,7 +404,22 @@ console.log(JSON.stringify({
     fiveDotCount,
     terminalGp0: p23Line1Record.terminalGp0,
     completedCardinals: [...p23Line1, fiveDotCount, p23Line1Record.terminalGp0],
-    completedInstruction: spellCardinals([...p23Line1, fiveDotCount, p23Line1Record.terminalGp0]),
+    completedOriginInstruction: spellCardinals([...p23Line1, fiveDotCount, p23Line1Record.terminalGp0]),
+    originalSuffixCardinals: [state.p, destinationPage],
+    completedOriginalCardinals: [
+      ...p23Line1,
+      fiveDotCount,
+      p23Line1Record.terminalGp0,
+      state.p,
+      destinationPage
+    ],
+    completedOriginalInstruction: spellCardinals([
+      ...p23Line1,
+      fiveDotCount,
+      p23Line1Record.terminalGp0,
+      state.p,
+      destinationPage
+    ]),
     fiveWordLineControlCount: fiveWordLines,
     localPacketPrefixHits,
     motifAdjacentControls,
@@ -401,7 +429,7 @@ console.log(JSON.stringify({
     addressField: "B",
     p50Address: state.B,
     p50Token: tokens[state.B],
-    base60DestinationPage: grid.bytes[state.B],
+    base60DestinationPage: destinationPage,
     destinationRedPairs: p33RedPairs.slice(0, 2),
     hiddenText: spellCardinals(upper) + " " + spellCardinals(lower)
   },
