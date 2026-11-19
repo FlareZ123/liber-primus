@@ -85,7 +85,23 @@ source target length = receiver length = 4
 raw receiver GP0 = 38 -> next authenticated index BEWARE
 ```
 
-The p38 closure is especially useful because the p38 section-5 selector independently runs in the opposite semantic direction: it identifies `BEWARE` by requiring p50-low state `31 = GP0(LUCK)`. The adjacent authenticated pair is therefore visible from both objects without transferring the p37 key to p38.
+Both +1 destinations have pre-existing independent source-state receivers:
+
+```text
+p20 word20 GP0 21
+ -> authenticated word21 IS
+ -> p21's unique length2/GP0=25 receiver at offsets170..171
+ -> existing paired p11/p21 H2D state object and exact joint IS inverse
+
+p37 word37 GP0 38
+ -> authenticated word38 BEWARE
+ -> p38 section-5 receiver at offsets57..62
+ -> existing LUCK -> BEWARE predecessor-state gate and exact local BEWARE inverse
+```
+
+The p38 closure is additionally reciprocal at the source-state level: p38's section-5 word has BEWARE's state `length6/GP0=88`, while `p50[88]` has low60 value `31 = GP0(LUCK)`. Thus the adjacent authenticated pair is visible from both objects without transferring the p37 key to p38.
+
+The two raw +1 pointers are therefore better interpreted as a small navigation mechanism than as isolated GP0 coincidences. P20 does not have the source-target length match required for a local `MEANING` decode, so the mechanism should not be promoted into a universal word-for-word cipher.
 
 ## Exact reversible inverse
 
