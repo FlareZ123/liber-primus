@@ -56,21 +56,55 @@ The exact handoff line therefore carries both **MUST** and **WE** checksum value
 
 Execute the next clear verb literally. Shed the first and last rune of each of the three red heading words. The remaining lengths are **1 / 10 / 2**, totaling **13**, exactly the following red 13-dot mark. The survivor is \`PSOAAEHLEEOIMSC\`; its GP-prime sum is673, the 122nd prime, and p50 cell122 again returns **86 = WE**.
 
-Shed those three surviving parts once more. The removed five-rune shell is \`PSMSC\`, prime sum233, and \(\varphi(233)=232 = SHED\). The full heading supplies **MUST=186** through its prime ordinal. The line-selected entry supplies both values, while their sentence order remains underselected. The natural nested-object derivation is **MUST / WE / SHED**; obtaining clear p57's **WE / MUST / SHED** uses p57's already-known semantic order.
+Shed those three surviving parts once more. The removed five-rune shell is `PSMSC`, prime sum233, and \(\varphi(233)=232 = SHED\). The full heading supplies **MUST=186** through its prime ordinal. The natural nested-object derivation remains **MUST / WE / SHED**, giving the numeric values **186 / 86 / 232**. A later independent p11 bridge now supplies the missing order: p11 word11 uniquely emits source indices **25 / 26 = THEIR / NUMBERS** under its untouched sum/difference packet, and the authenticated continuation is **ARE THE DIRECTION** at indices27..29. Following that source corridor in increasing numerical direction orders the p27 values as **86 / 186 / 232 = WE / MUST / SHED**. See [the p11-p27 ordering bridge](lp2-p11-p27-numbers-direction-order.md).
 
 A broad discovery-aware null preserves the 3/12/4 geometry, shuffles the exact multiset of 225 original red rune identities, permits prime sum, index sum, totient, prime ordinal, one p50 lookup, and all six object orders. Ten of 200,000 trials hit some consecutive p57 triple. Zero also satisfy the p27 full-heading 19 self-check. This calibrates the scale of the aggregate pattern; it is not an authorship p-value.
 
-## Ordering gate (#1653): the WE/MUST swap remains unselected
+## Ordering gate resolved by p11 THEIR NUMBERS
 
-The three source-natural orders admitted by Director #1653 do not independently turn the p27 checksum objects into the clear p57 sentence `WE MUST SHED`:
+Director #1653 correctly left the p27 values unordered because p27 itself supplied no independent layout rule for the WE/MUST swap. A later source-selected p11 result now provides that missing rule without changing any p27 arithmetic.
 
-1. **Printed/nested derivation order.** The whole heading yields **MUST=186** first; the once-shed survivor then yields **WE=86** through prime-rank address122 and p50; the second shed shell yields **SHED=232**. This is `MUST / WE / SHED`.
-2. **Top-to-bottom thirteen-dot order.** The stencil is applied only to the 13-rune once-shed survivor. It partitions that one object into center/side subsets and supplies the separate conditional values THE/WITHIN/OWN. It supplies no ordering relation among the whole heading, the survivor and the second-layer shell. #1633 additionally shows the 5+4+4 geometry is generic across all31 original thirteen-dot marks.
-3. **Explicit p57 instruction order.** The clear page itself prints `WE MUST SHED`. Using that already-known phrase to relabel the p27 values does recover the desired sentence order, but it is semantic target selection rather than an independent p27 layout rule. Under the issue's decisive test it also predicts no untouched p27/p50 object.
+P11 same-index word11 is the untouched two-rune packet `[11,14]`. Reading its fixed H coordinates as sum before difference gives:
 
-The p27 line2 duplication does not repair the order. Its direct index sum is **186=MUST**, while its prime-sum→prime-rank→p50 path is **86=WE**; the source does not mark one computation as second-to-first or instruct a swap.
+```text
+11 + 14 = 25
+11 - 14 = 26 mod29
+```
 
-**Decision:** retain MUST, WE and SHED as unusually selective conditional checksum matches tied to the p55→p27 handoff and circumference operation. Do not describe `WE MUST SHED` as recovered unknown plaintext or as a source-ordered p27 message. Reopen the ordering claim only if an independent original layout or first-party instruction fixes the WE/MUST swap before semantic interpretation and predicts a separate untouched object.
+Authenticated source indices25 and26 are **THEIR / NUMBERS**. Across all 465 complete two-rune manuscript words, p11 word11 is the only word whose sum/difference packet is `[25,26]`.
+
+The authenticated continuation is the increasing source-number corridor:
+
+```text
+25 THEIR
+26 NUMBERS
+27 ARE
+28 THE
+29 DIRECTION
+```
+
+so the first-party instruction is literally **THEIR NUMBERS ARE THE DIRECTION**. P27 is the corridor's index27 page.
+
+The three already-fixed p27 word values are:
+
+```text
+186 = MUST
+ 86 = WE
+232 = SHED
+```
+
+Following the corridor's increasing numerical direction gives:
+
+```text
+86 < 186 < 232
+WE   MUST  SHED
+```
+
+This fixes the formerly underselected order as **WE MUST SHED**. No p27 rune identity, checksum, prime operation, p50 lookup, or shedding rule is changed. The new bridge selects only the order of the three values.
+
+The p11 result does not turn **WE MUST SHED** into unknown LP2 plaintext. These words are still identified by equality to clear p57 word sums. Its contribution is narrower and important: it supplies the independent first-party ordering instruction that #1653 required.
+
+Reproduction: [p11-p27 ordering bridge](lp2-p11-p27-numbers-direction-order.md) and `sims/lp2_p11_p27_numbers_direction_order_sft.cjs`.
 
 ## Third sentence: FIND THE DIVINITY WITHIN
 
@@ -177,7 +211,7 @@ These exclusions prevent the strong p27 parser from becoming a license for uncon
 
 ## Decision
 
-The p55 -> p27 handoff now has a coherent structural relation to the clear p57 parable. The exact handoff line uniquely supplies the checksum pair **MUST=186 / WE=86**, while #1653 confirms that no independent source order swaps it to **WE MUST**. Nested heading words uniquely supply **LICE THE INSTAR** and **TO THE**; literal circumference shedding matches the 13-dot mark; the body contains a manuscript-unique **DIVINITY** interior selected by the same operation; the remaining structure closes on **WITHIN**, **AND=215**, and the upstream **EMERGE=300** boundary.
+The p55 -> p27 handoff now has a coherent structural relation to the clear p57 parable. The exact handoff line uniquely supplies the checksum pair **MUST=186 / WE=86**. The later p11 **THEIR NUMBERS ARE THE DIRECTION** bridge resolves the former #1653 ordering gate, placing the fixed p27 values in increasing order as **WE MUST SHED**. Nested heading words uniquely supply **LICE THE INSTAR** and **TO THE**; literal circumference shedding matches the 13-dot mark; the body contains a manuscript-unique **DIVINITY** interior selected by the same operation; the remaining structure closes on **WITHIN**, **AND=215**, and the upstream **EMERGE=300** boundary.
 
 The selected `NSOOCAEY` object now reconstructs terminal prime **3301** through p50, DH secret6 and the historical BASE29 protocol. The p27/DH `EMERGE` circuit also routes to p55/p56. A direct p56 clock beginning at prime3301 is algebraically excluded on p55, so the next useful work is to determine what 3301 selects **before** the p55/p56 receiver, or whether the page-pair route defines a different authenticated data operation. Keep this in `im-results/` until the circuit recovers unknown plaintext, an authentic key application, or another independently verifiable destination.
 
