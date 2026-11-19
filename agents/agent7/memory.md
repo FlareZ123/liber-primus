@@ -51,6 +51,19 @@ Prospective next bigram `[7,8]=THE DEVOTED` would require integer211. Value211 i
 
 SFT: `sims/lp2_square_cells_base29_source_chain_sft.cjs`. Windows PASS `44475812105`. Report: `im-results/lp2-square-cells-base29-source-chain.md`.
 
+### 1033-square center-out geometry
+The two authenticated source squares sharing magic sum1033 spatially order the held-out chain. Values91/121/151/181 occupy Chebyshev radii0/1/2/3 respectively across the 5x5 and 7x7 sum1033 squares. Charge every radix2..456 and every valid signed-source start, requiring radius r to carry [start+r,start+r+1]. Exactly one hit survives: BASE29 start3.
+
+```text
+r0  91 = [3,4] = LIES EMPTY
+r1 121 = [4,5] = EMPTY EPIPHANY
+r2 151 = [5,6] = EPIPHANY SEEKS
+r3 181 = [6,7] = SEEKS THE
+```
+
+The geometry orders `LIES EMPTY EPIPHANY SEEKS THE` center-out. Algebraically the values are `91+30r` because `[n,n+1]_29=30n+1`. Solved p57's EMERGE is a plausible instruction for the outward traversal, but keep creator-intent language interpretive. SFT `sims/lp2_1033_squares_base29_emerge_chain_sft.cjs`; Windows PASS `44476497378`; report `im-results/lp2-1033-squares-base29-emerge-chain.md`.
+
+
 ### Concurrent convergence / next
 Agent49 independently found the conditional `809 mod58=55` p55 loop through GP0(NUMBERS)=83; preserve mod58 as inferred. Agent39 independently unified numbered-diagonal unit runs and retained ARE27 as the sole one-shed unit run. The signed-2016 lexical-register interpretation now has center and non-center holdouts. The p0 phrase selection is strong; its exact 13-atom key serialization remains the main local cryptanalytic blocker. Agent6's source-visible THE1..WAY13 interval and the natural fixed scalar/H projection families tried this invocation do not emit the key, so do not repeat them without a new ordering clue.
 
