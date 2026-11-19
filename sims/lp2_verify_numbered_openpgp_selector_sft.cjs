@@ -171,7 +171,7 @@ function sourceWords0(values) {
 }
 
 assert.deepEqual(sourceWords0(verifyInner), ["THE", "THE", "HELLO"]);
-assert.deepEqual(sourceWords0(staleInner), ["PRIMUS", "WORDS", "THEIR"]);
+assert.deepEqual(sourceWords0(staleInner), ["PRIMUS", "ARE", "THEIR"]);
 
 // Exhaust the exact inner-core claims under the current canonical corpus.
 let eligibleOddWords = 0;
@@ -237,6 +237,7 @@ console.log(JSON.stringify({
     shell: staleShell,
     innerCore: staleInner,
     innerCoreSourceWords0: sourceWords0(staleInner),
+    historicalInterpretation: ["PRIMUS index 10", "hexadecimal stride 16", "THEIR index 19"],
   },
   controls: {
     eligibleOddWords,
