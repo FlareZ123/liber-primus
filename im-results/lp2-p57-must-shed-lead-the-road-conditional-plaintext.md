@@ -252,13 +252,15 @@ A separate attempt to continue the earlier ROAD/LEAD self-end rule recursively o
 
 ## Remaining uncertainty
 
-The downstream holdout now discriminates the receiver state more sharply. Starting from the already derived EA prime109, the untouched p0 word at109 has GP0=40. Zero-based signed word40 is PATHS, p50 address40 returns to80 only under conventional base60, and the source-only BEWARE FALSE PATHS triplet pair [b,e]=[15,3] is the exact additive inverse of that word's ciphertext [14,26].
+The downstream evidence now does more than discriminate the first receiver state. Starting from the derived EA prime109, the untouched p0 word at109 has GP0=40. Zero-based signed word40 is PATHS, p50 address40 returns to80 only under conventional base60, and the source-only BEWARE FALSE PATHS triplet pair [b,e]=[15,3] is the exact additive inverse of that word's ciphertext [14,26].
 
-The next two base60 return-to80 branches are source-labeled PATHS and LUCK. Applying the already-clear SHED CIRCUMFERENCES operation to them yields interior GP0 numbers1 and23, which are signed words THE and ROAD. Across all32 return-to80 triples in the manuscript, this PATHS, PATHS, LUCK route and the shed THE ROAD readout occur together exactly once. Base59 gives READ/OUT endpoints79/100 and supplies no competing return-to80 triple. One-based signed-word numbering gives FALSE, FALSE, GOOD with shed HELLO, THE.
+The next two base60 return-to80 branches are source-labeled PATHS and LUCK. Applying SHED CIRCUMFERENCES yields interior GP0 numbers1 and23, signed words THE and ROAD. Across all32 return-to80 triples in the manuscript, this PATHS/PATHS/LUCK route and shed THE ROAD readout occur together exactly once.
 
-This is a strong holdout on previously untouched ciphertext and substantially reduces the earlier base60/output-semantic ambiguity. The remaining uncertainty is concentrated in the p28 READ OUT construction itself and in whether GP0 was intended as the signed-word number operator. The branch readout was recognized after THE ROAD was already known from the authenticated 2016 source and the earlier conditional recovery, so keep offsets103..108 classified as conditional plaintext pending an independent source rule or an untouched prediction outside this local p0 cycle.
+The same frozen EA109 start now supplies an exit. Among all complete p0 words from109 onward, exactly one raw GP0 matches any authenticated warning word BEWARE/FALSE/PATHS/VERIFY/OPENPGP: word29 at124..126 has GP0=75, uniquely OPENPGP. Original p50[75]=177 under base60, selecting the independently derived second 23-rune center-F receiver166..188. Base59 gives174 and fails that receiver type.
 
-See im-results/lp2-p0-ea109-signed-paths-reset.md for the full census and reproducer.
+This is strong route convergence on untouched ciphertext and substantially reduces the earlier output-semantic ambiguity. The remaining uncertainty is concentrated in the p28 READ OUT construction itself and in whether the signed-word-number interpretation was intended. The downstream relations were recognized after THE ROAD and the warning packet were already known, so keep offsets103..108 classified as conditional plaintext pending an independent source rule or a new untouched plaintext prediction outside this p0 route.
+
+See im-results/lp2-p0-ea109-openpgp177-warning-bridge.md.
 
 ## Reproduction
 

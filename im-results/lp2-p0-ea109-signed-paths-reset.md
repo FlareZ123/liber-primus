@@ -66,15 +66,22 @@ The independent signed-message DH audit already selected zero-based word positio
 
 ## Decision
 
-This substantially narrows the earlier READ OUT ambiguity. Conventional base60 is now the only charged radix that closes both the original 80/102 receiver and the later EA-selected return branch, while zero-based signed-word numbering gives a unique source-semantic sequence whose shed interiors reproduce THE ROAD.
+This substantially narrows the READ OUT receiver ambiguity and now has a manuscript-local exit.
 
-The p28 READ OUT construction and GP0-as-signed-word-number interpretation were recognized during ongoing research rather than fixed by a blind precommit. Keep the earlier offsets103 through108 plaintext classified as conditional. The new downstream material is a strong holdout and a concrete human-solve-path candidate:
+Conventional base60 is the only charged radix that closes both the original 80/102 receiver and the later EA-selected return branch. Zero-based signed-word numbering gives a unique source-semantic PATHS/PATHS/LUCK sequence whose shed interiors reproduce THE ROAD.
 
-    READ OUT -> p0 receiver -> THE ROAD -> EA prime109
-    -> PATHS reset -> PATHS / LUCK return branches
-    -> SHED -> THE ROAD -> return to READ OUT
+A subsequent frozen-family check finds the missing exit. From the already selected EA109 start to the end of p0, exactly one complete word has raw GP0 equal to any of the authenticated warning values BEWARE/FALSE/PATHS/VERIFY/OPENPGP. It is p0 word29 at124..126 with GP0=75, uniquely matching OPENPGP. Original p50[75] is177 under base60 and174 under base59. The base60 value177 is the exact center of the independently selected second 23-rune center-F receiver166..188; base59 fails that receiver type.
 
-The next useful attack should seek a source-selected exit from this closed local cycle or a prediction on untouched material outside p0 offsets80 through121. Further serialization menus inside the same loop have low value.
+The p28 READ OUT construction and the zero-based GP0-as-signed-word-number interpretation were recognized during ongoing research rather than fixed by a blind precommit. Keep offsets103..108 classified as conditional plaintext. The combined route now has a concrete source-visible continuation:
+
+    READ OUT -> p0 receiver -> THE ROAD -> EA109
+    -> PATHS / LUCK
+    -> OPENPGP75 -> p50 center177
+    -> second p0 warning packet166..188
+
+Further serialization menus inside p0 80..165 have low value. The next useful work is an external consumer of the already fixed second packet or dual-packet DH cascade.
+
+See im-results/lp2-p0-ea109-openpgp177-warning-bridge.md.
 
 Reproducer: sims/lp2_p0_ea109_signed_paths_reset_sft.cjs
 

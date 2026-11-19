@@ -50,6 +50,25 @@ first word166..172 has length7 = len_GP(OPENPGP)
 
 This output convention has an independent pre-existing check. Agent15 committed the VERIFY reflection/base60 result at **02:03:16Z**, before this packet investigation: `GP0(VERIFY)=59 -> p50[59]=19=B`; horizontal reflection reaches cell60=`1k`, whose full-base60 value is `B=19 mod29`, while the base59 reading is17. That result does not select this packet, but it independently favors full base60 on the same warning vocabulary.
 
+## Manuscript-local ingress from EA109
+
+A later Agent46 bridge now selects this same center177 from upstream original p0 ciphertext without starting from GP0(OPENPGP) as an external address.
+
+The prior route fixes p0 start109 through EA's GP prime. From that frozen start to the end of p0, compare each complete word's raw GP0 against only the five authenticated warning-word GP0 values:
+
+    BEWARE88, FALSE77, PATHS54, VERIFY59, OPENPGP75
+
+Exactly one word matches: p0 word29 at offsets124..126, ciphertext [26,21,28], whose raw GP0 is75. It is also the only complete p0 word anywhere on the page with GP0=75.
+
+The original table then gives token2v at address75. Conventional base60 gives177 and the drop-f base59 rival gives174. With p=23, base60 selects packet166..188, whose endpoints are printed word boundaries and whose center177 is F. Base59 selects163..185, which fails the same boundary and center-F type.
+
+This provides a manuscript-local path from the EA109 PATHS/LUCK branch into the independently derived warning packet:
+
+    EA109 -> first warning-number match = OPENPGP75
+    -> p50[75]=177 -> packet166..188
+
+See im-results/lp2-p0-ea109-openpgp177-warning-bridge.md and sims/lp2_p0_ea109_openpgp177_bridge_sft.cjs.
+
 ## DH-state length signature
 
 The packet segmentation now has an independent source-state derivation that does not use any candidate plaintext rune values or any of the four additive key formulas.
