@@ -93,6 +93,8 @@ const gp0Hits = [], primeHits = [];
 const gp0Stats = newAddressStats(0);
 const a0Stats = newAddressStats(0), a1Stats = newAddressStats(0);
 const fullMessageControls = [];
+const fullMessageGp0Stats = newAddressStats(0);
+const fullMessagePrimeStats = newAddressStats(0);
 
 for (const file of corpus.files) {
   const tokens = tokenizeBody(file.body);
@@ -104,8 +106,11 @@ for (const file of corpus.files) {
     path:file.source_path, source_blob_sha:file.source_blob_sha,
     token_count:tokens.length, full_gp0_sum:fullGp0,
     full_prime_sum:fullPrime, full_prime_base29:base29(fullPrime),
+    full_gp0_cell:cellAt(fullGp0), full_prime_cell:cellAt(fullPrime),
     letter_count:letters.length, full_A0Z25_sum:fullA0, full_A1Z26_sum:fullA1
   });
+  addAddress(fullMessageGp0Stats, fullGp0);
+  addAddress(fullMessagePrimeStats, fullPrime);
 
   for (let start=0; start+19<=tokens.length; start++) {
     total19++;
@@ -134,6 +139,8 @@ for (const file of corpus.files) {
 gp0Stats.windows = total19;
 a0Stats.windows = total20;
 a1Stats.windows = total20;
+fullMessageGp0Stats.windows = corpus.files.length;
+fullMessagePrimeStats.windows = corpus.files.length;
 
 const os = fullMessageControls.find(item=>item.path.includes("message.txt.asc"));
 assert.equal(corpus.files.length, 10);
@@ -159,6 +166,13 @@ assert.equal(a1Stats.perimeter, 484);
 assert.equal(a1Stats.base60_180, 24);
 assert.equal(a1Stats.base59_180, 0);
 assert.ok(fullMessageControls.every(item=>item.full_gp0_sum!==252 && item.full_prime_sum!==931 && item.full_A0Z25_sum!==252 && item.full_A1Z26_sum!==252));
+assert.deepEqual(
+  fullMessageControls.filter(item=>item.token_count===0).map(item=>item.path).sort(),
+  ["2013/006-third-onion/annapolis-md.txt.asc", "2013/006-third-onion/okinawa-japan.txt.asc"]
+);
+assert.deepEqual(fullMessageGp0Stats,{windows:10,valid:2,perimeter:2,base60_180:0,base59_180:0,address252:0});
+assert.deepEqual(fullMessagePrimeStats,{windows:10,valid:2,perimeter:2,base60_180:0,base59_180:0,address252:0});
+assert.deepEqual(cellAt(0),{address:0,row:0,col:0,token:"3N",base60:203,base59:200,perimeter:true});
 
 const selectedCell = cellAt(252);
 assert.deepEqual(
@@ -190,6 +204,8 @@ console.log(JSON.stringify({
     character_20_letter_windows:total20, A0Z25_address_stats:a0Stats, A1Z26_address_stats:a1Stats
   },
   full_message_controls:fullMessageControls,
+  full_message_address_stats:{GP0:fullMessageGp0Stats,GP_prime:fullMessagePrimeStats},
+  cell0:cellAt(0),
   cell252:selectedCell,
   stage11:{title:stage11Title,ids:stage11Ids,image_count:stage11Images.length,first_image:stage11Images[0],last_image:stage11Images.at(-1),has_image_133:stage11Images.some(path=>/(?:^|\/)133\./.test(path))}
 }, null, 2));

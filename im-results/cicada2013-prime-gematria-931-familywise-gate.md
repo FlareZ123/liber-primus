@@ -50,7 +50,16 @@ The character-based controls use 20-letter windows after stripping spaces and pu
 | A0Z25 | 2,031 | 1,777 | 593 | 28 | 0 |
 | A1Z26 | 2,031 | 1,267 | 484 | 24 | 0 |
 
-The target phrase's own character sums are241 and261, neither252. Nevertheless, unrelated character windows produce 28 and24 base60=180 perimeter hits. This is not an exceptional physical address under the character controls. Full-message GP0, raw-prime, A0Z25, and A1Z26 sums for all ten messages are recorded by the reproducer; none selects252 or931.
+The target phrase's own character sums are 241 and 261, neither252. Nevertheless, unrelated character windows produce 28 and24 base60=180 perimeter hits (all are cell252 addresses), so this is not an exceptional physical address under the character controls.
+
+The precommitted whole-message controls also have valid direct addresses only for the two coordinate-only third-onion records: `annapolis-md.txt.asc` and `okinawa-japan.txt.asc` contain no alphabetic tokens, so both whole-message GP0 and raw-prime sums are zero. Each zero selects p50 cell0, token `3N` (base60=203, base59=200): an outer-perimeter cell, but neither a 180-value cell nor cell252. The other eight whole-message sums exceed255 under both numeric families. Thus each whole-message family has 2/10 valid direct addresses, 2 perimeter hits, 0 base60=180 hits, 0 base59=180 hits, and 0 cell252 hits. The two zero-token records remain included in the frozen corpus rather than being silently dropped.
+
+| Whole-message family | Source records | Valid direct addresses | Perimeter | base60=180 | base59=180 | cell252 |
+|---|---:|---:|---:|---:|---:|---:|
+| GP0 sum | 10 | 2 | 2 | 0 | 0 | 0 |
+| Raw GP-prime sum | 10 | 2 | 2 | 0 | 0 | 0 |
+
+Full-message A0Z25/A1Z26 sums are recorded as diagnostics, but the precommitted character-address family is the 20-letter sliding-window scan above.
 
 ## Cell252 and Stage11
 
@@ -60,7 +69,7 @@ The pinned Stage11 HTML has title `133`, numeric element ID `331`, and **58** im
 
 ## Conclusion
 
-The old two-letter-only tokenizer produced stale counts of 1,968 windows and12 prime-sum hits. The exact per-word participant tokenizer corrects these to **1,953 windows and13 hits**; the companion GP0 family has **20 hits** at252. Character controls independently produce many base60=180 hits. Therefore the whole-sentence `THE KEY IS ALL AROUND YOU` sum does **not** uniquely select p50 cell252, does not establish base60 over base59, and does not validate the downstream p53 receiver. The p53 H-inverse result remains a separate conditional consequence; it must not be used to tune or rescue the address grammar. The newer wordwise 49/27/75/177 motif is a separate family assigned under #1912 and is not part of this whole-sentence audit.
+The old two-letter-only tokenizer produced stale counts of 1,968 windows and12 prime-sum hits. The exact per-word participant tokenizer corrects these to **1,953 windows and13 hits**; the companion GP0 family has **20 hits** at252. Character controls independently produce 28/24 base60=180 perimeter hits, and the whole-message GP0/prime controls each have only two valid zero addresses, both landing at cell0 rather than cell252. Therefore the whole-sentence `THE KEY IS ALL AROUND YOU` sum does **not** uniquely select p50 cell252, does not establish base60 over base59, and does not validate the downstream p53 receiver. The p53 H-inverse result remains a separate conditional consequence; it must not be used to tune or rescue the address grammar. The newer wordwise 49/27/75/177 motif is a separate family assigned under #1912 and is not part of this whole-sentence audit.
 
 ## Reproduction
 
