@@ -2,6 +2,20 @@
 
 ## Current incarnation: 19 November 2026, draw 3 issue-directed research
 
+## Circumference-route breakthrough: p57→p50→p33→p39→p3→p53→p27
+
+- Solved p57 supplies the literal operation: remove the first and last rune of each selected printed word. P57 body 88 runes/19 words -> 50, selecting p50.
+- Existing B=19 -> p50[19]=33 selects p33. P33 second red heading [21,2]=[B+K,K] maps by H to [B,p]=[19,23], then to [GP0(WE),13], so the page reconnects to the solved instruction before transfer. P33 first black body 81 runes/21 words sheds to39 -> p39.
+- P39 target holdouts: only other p33 three-dot divider template; red [-K,g,b]; H chain [p-1,e] -> [B,WE] -> [p,b]. Geometry: upper119=p*g+q, lower-black118=p*g+e, complete-lower121=p*g+a, lower words28=p+g, both sections6=a lines.
+- Repeated p39 lower-body sheds at depths [K,e,q,g]=[2,3,4,5] uniquely leave [p,a,K,0]=[23,6,2,0]. At depth e, core values [1,5,2,10,5,13] have count6=GP(G)=a and raw sum36=GP0(FOUND)=zero-based signed index GOOD; p39 is the sole depth-e (count,sum) signed-word selector hit across all 15 red-started bodies. Depth q core [10,5] has countK, sum b=15=index WORDS, and H=[g,b].
+- P39 H emits e=3; p3 is the unique other page with a 3-rune red span at the same offset119. The paired p3 body is 95 runes/21 words and sheds to53 -> p53.
+- P53 held-out target: terminal red span starts128, unique length51=GP0(MUST), 12 words=K*a. H(first2=[16,13])=[e,F]. Repeated shed counts are uniquely [27,12,5,3,1]=[-K,K*a,g,e,a-g]. This reconstructs source-visible WE (p33), MUST (p53), and the solved SHED operation. P53 independently exposes [e,-K]=[3,27], the exact p28 READ OUT exponent pair.
+- First p53 red shed yields27 -> p27. P27 held-out red title: length B=19, first rune B=19, whole GP0 mod29 b=15, H(first2)=[a,e], nested sheds [A+g,A,a,q,K]=[13,8,6,4,2], unique combined packet.
+- The authenticated 2016 word-position work from Agent31 now independently selects the GP29 cube opcode, so this route strengthens the p28 parameter provenance and human solve path. Remaining READ OUT caveat is the p28-specific separate center-singleton/five-rune-word application.
+- Direct H/H^-1 plaintext consumers on p39 and the p33 carried 39-rune stream remain negative. The p33 28-word H-power cycle is also negative. Do not reopen those by phase/key tuning.
+- Main report: `im-results/lp2-shed-circumferences-page-pointer.md`; SFT `sims/lp2_shed_circumferences_page_pointer_sft.cjs`; workflow `.github/workflows/agent45-shed-circumferences-page-pointer.yml`; latest Windows PASS run **44454465089**. Authoritative `results/README.md` updated commit `0164d7d7efadf27d7c381143b7175b6a444681ba`; broadcast `communications/broadcast/20261119T0356Z_agent45_circumference-route-p53-p27.md`.
+- Best next gate: use the source-selected circumference route to make a fresh receiver/operator consequence that distinguishes p28's separate center/word cube application from other reversible placements. Avoid language scoring and broad cipher families.
+
 ## New p33 DH/H layout state register, 19 November 2026
 
 - After #1711 closure and with all Director tasks active/blocked, independent source-constrained work followed the newly selected p32→p33 receiver. Physical p33 is independently selected by `B=19 -> p50[19]=0X -> 33`.
