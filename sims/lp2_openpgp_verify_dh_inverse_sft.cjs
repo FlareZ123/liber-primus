@@ -171,6 +171,17 @@ function hChoices(left, right) {
   ];
 }
 
+function permutations3(values) {
+  return [
+    [values[0], values[1], values[2]],
+    [values[0], values[2], values[1]],
+    [values[1], values[0], values[2]],
+    [values[1], values[2], values[0]],
+    [values[2], values[0], values[1]],
+    [values[2], values[1], values[0]],
+  ];
+}
+
 const message = signedWords();
 assert.equal(message.length, 43);
 assert.deepEqual(message.slice(-2).map((row) => row.word), [
@@ -217,6 +228,7 @@ assert.equal(table[75], "2v");
 // whose length matches the adjacent source instruction VERIFY.
 const p0 = parsePage(parts[0]);
 const starts = new Map(p0.map((word) => [word.start, word]));
+const ends = new Map(p0.map((word) => [word.end, word]));
 const modes = [];
 for (const [radix, alphabet] of [
   ["base60", alpha60],
@@ -274,7 +286,7 @@ const verifyPlain = receiver.values.map((value, index) =>
   mod29(value - verifyKey[index])
 );
 assert.deepEqual(verifyPlain, gp("VERIFY"));
-assert.equal(spell(verifyPlain), "VERIFY");
+assert.equal(spell(verifyPlain), "UERIFY");
 assert.deepEqual(
   verifyPlain.map((value, index) => mod29(value + verifyKey[index])),
   receiver.values
@@ -413,6 +425,214 @@ assert.deepEqual(manuscriptHits, [{
   matches: ["VERIFY"],
 }]);
 
+// The same state75 value also selects a complete p-rune centered packet.
+// Under the independently corroborated base60/zero convention, center177
+// gives 166..188. Its first complete word is seven runes, exactly matching
+// OPENPGP itself. Among all distinct signed source words, this is the only
+// base60/zero p-centered packet whose endpoints are printed word boundaries
+// and whose first word length matches the source word.
+const halfGroup = (state.p - 1) / 2;
+assert.equal(halfGroup, 11);
+const packetCenter = decodeToken(table[gp0("OPENPGP")], alpha60);
+assert.equal(packetCenter, 177);
+const packetStart = packetCenter - halfGroup;
+const packetEnd = packetCenter + halfGroup;
+assert.equal(packetStart, 166);
+assert.equal(packetEnd, 188);
+assert.ok(starts.has(packetStart));
+assert.ok(ends.has(packetEnd));
+assert.equal(packetEnd - packetStart + 1, state.p);
+
+const distinctSignedWords = [...new Map(
+  message.map((row) => [row.word, row])
+).values()];
+const centeredBase60Hits = [];
+for (const row of distinctSignedWords) {
+  const address = gp0(row.word);
+  if (address < 0 || address >= table.length) continue;
+  const center = decodeToken(table[address], alpha60);
+  if (center === null) continue;
+  const start = center - halfGroup;
+  const end = center + halfGroup;
+  const first = starts.get(start);
+  const last = ends.get(end);
+  if (
+    first &&
+    last &&
+    first.length === row.gp.length
+  ) {
+    centeredBase60Hits.push({
+      word: row.word,
+      address,
+      token: table[address],
+      center,
+      start,
+      end,
+      firstWord: first.index,
+      firstLength: first.length,
+      lastWord: last.index,
+    });
+  }
+}
+assert.deepEqual(centeredBase60Hits, [{
+  word: "OPENPGP",
+  address: 75,
+  token: "2v",
+  center: 177,
+  start: 166,
+  end: 188,
+  firstWord: 37,
+  firstLength: 7,
+  lastWord: 41,
+}]);
+
+const openpgpReceiver = starts.get(packetStart);
+assert.deepEqual(openpgpReceiver, {
+  index: 37,
+  start: 166,
+  end: 172,
+  length: 7,
+  values: [26, 16, 13, 10, 2, 23, 11],
+});
+assert.equal(gp("OPENPGP").length, 7);
+assert.equal(receiver.start, packetCenter);
+
+// The first packet word has its own compact p28-state inverse.
+const pInverse29 = multiplicativeInverse(state.p, 29);
+assert.equal(pInverse29, 24);
+const openpgpKey = [
+  state.p,
+  e,
+  pInverse29,
+  H(state.a, state.g)[0],
+  H(state.p, state.g)[0],
+  H(state.b, state.K)[1],
+  H(state.A, state.B)[1],
+];
+assert.deepEqual(openpgpKey, [23, 3, 24, 1, 18, 17, 27]);
+const openpgpPlain = openpgpReceiver.values.map((value, index) =>
+  mod29(value - openpgpKey[index])
+);
+assert.deepEqual(openpgpPlain, gp("OPENPGP"));
+assert.equal(spell(openpgpPlain), "OPENPGP");
+assert.deepEqual(
+  openpgpPlain.map((value, index) => mod29(value + openpgpKey[index])),
+  openpgpReceiver.values
+);
+
+// Charge the OPENPGP key grammar independently:
+// - every permutation of [p,e,p^-1];
+// - Alice/Bob private-role swap;
+// - every H coordinate and operand order in each of four derived slots;
+// - both additive signs;
+// - every authenticated seven-rune target.
+const sevenRuneTargets = new Map();
+for (const row of message) {
+  if (row.gp.length !== 7) continue;
+  if (!sevenRuneTargets.has(row.gp.join(","))) {
+    sevenRuneTargets.set(row.gp.join(","), []);
+  }
+  sevenRuneTargets.get(row.gp.join(",")).push(row.word);
+}
+assert.deepEqual(
+  [...sevenRuneTargets.values()].map((names) => names[0]).sort(),
+  ["DEVOTED", "NUMBERS", "OPENPGP"]
+);
+
+let openpgpFamilyConfigs = 0;
+const openpgpFamilyHits = [];
+for (const trio of permutations3([state.p, e, pInverse29])) {
+  for (const role of [
+    { name: "a/b", first: state.a, other: state.b },
+    { name: "b/a", first: state.b, other: state.a },
+  ]) {
+    for (const firstG of hChoices(role.first, state.g)) {
+      for (const pG of hChoices(state.p, state.g)) {
+        for (const otherK of hChoices(role.other, state.K)) {
+          for (const AB of hChoices(state.A, state.B)) {
+            for (const sign of [-1, 1]) {
+              openpgpFamilyConfigs += 1;
+              const key = [
+                ...trio,
+                firstG.value,
+                pG.value,
+                otherK.value,
+                AB.value,
+              ];
+              const plain = openpgpReceiver.values.map((value, index) =>
+                mod29(value + (sign * key[index]))
+              );
+              const matches = sevenRuneTargets.get(plain.join(",")) || [];
+              if (matches.length) {
+                openpgpFamilyHits.push({
+                  trio,
+                  role: role.name,
+                  firstG: firstG.name,
+                  pG: pG.name,
+                  otherK: otherK.name,
+                  AB: AB.name,
+                  sign: sign === -1 ? "subtract" : "add",
+                  key,
+                  plain,
+                  matches,
+                });
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(openpgpFamilyConfigs, 6144);
+assert.equal(openpgpFamilyHits.length, 4);
+const distinctOpenpgpOps = new Map(
+  openpgpFamilyHits.map((hit) => [
+    [hit.key.join(","), hit.sign, hit.plain.join(",")].join("|"),
+    hit,
+  ])
+);
+assert.equal(distinctOpenpgpOps.size, 1);
+const openpgpOp = [...distinctOpenpgpOps.values()][0];
+assert.deepEqual(openpgpOp.key, openpgpKey);
+assert.equal(openpgpOp.sign, "subtract");
+assert.deepEqual(openpgpOp.matches, ["OPENPGP"]);
+
+let sevenRuneWords = 0;
+const openpgpManuscriptHits = [];
+for (let page = 0; page <= 55; page += 1) {
+  if (page === 50) continue;
+  for (const word of parsePage(parts[page])) {
+    if (word.length !== 7) continue;
+    sevenRuneWords += 1;
+    const plain = word.values.map((value, index) =>
+      mod29(value - openpgpKey[index])
+    );
+    const matches = sevenRuneTargets.get(plain.join(",")) || [];
+    if (matches.length) {
+      openpgpManuscriptHits.push({
+        page,
+        word: word.index,
+        start: word.start,
+        end: word.end,
+        cipher: word.values,
+        plain,
+        matches,
+      });
+    }
+  }
+}
+assert.equal(sevenRuneWords, 214);
+assert.deepEqual(openpgpManuscriptHits, [{
+  page: 0,
+  word: 37,
+  start: 166,
+  end: 172,
+  cipher: [26, 16, 13, 10, 2, 23, 11],
+  plain: gp("OPENPGP"),
+  matches: ["OPENPGP"],
+}]);
+
 // Broader receiver baseline: every adjacent signed pair, both directions,
 // both radices and both origins, requiring only a p0 word start whose printed
 // length matches the addressed source target. This intentionally shows that
@@ -482,7 +702,7 @@ assert.notEqual(mod29(decodeToken(table[60], alpha59)), state.B);
 console.log(JSON.stringify({
   status: "PASS",
   classification:
-    "strong source-constrained local VERIFY plaintext candidate: explicit authenticated VERIFY OPENPGP selects OPENPGP as the source object; GP0(OPENPGP)=75 addresses p50 2v whose base60/zero value177 uniquely matches VERIFY length among the four direct modes; the p28 DH key [p+g,p+K,b+a,e,a,b+K] decrypts the selected original word to VERIFY; an 8192-case symmetric key family collapses to one distinct authenticated-target operation and the fixed key has one manuscript-wide six-rune target hit. Key assembly remains retrospective.",
+    "strong source-constrained local OPENPGP/VERIFY plaintext-pair candidate: authenticated VERIFY OPENPGP selects source state75; base60/zero cell75=177 is both the center of the unique source-word-length-matched p=23 packet 166..188 and the start of a six-rune VERIFY receiver. The packet-start word decrypts to OPENPGP and the center word to canonical-GP UERIFY under compact p28 DH keys. Charged 6144/8192-case key families each collapse to one distinct authenticated-target operation; each fixed key has one manuscript-wide same-length target hit. Key assembly remains retrospective."
   state: { ...state, e },
   source: {
     phrase: message.slice(-2).map((row) => row.word),
@@ -490,8 +710,15 @@ console.log(JSON.stringify({
     readoutGp0: gp0("READOUT"),
     token: table[75],
     modes,
+    centeredPacket: {
+      center: packetCenter,
+      start: packetStart,
+      end: packetEnd,
+      centeredBase60Hits,
+    },
   },
   receiver,
+  openpgpReceiver,
   inverse: {
     key: verifyKey,
     plaintext: verifyPlain,
@@ -501,6 +728,16 @@ console.log(JSON.stringify({
     distinctFamilyOps: distinctFamilyOps.size,
     sixRuneWords,
     manuscriptHits,
+    openpgp: {
+      key: openpgpKey,
+      plaintext: openpgpPlain,
+      text: spell(openpgpPlain),
+      familyConfigs: openpgpFamilyConfigs,
+      labeledFamilyHits: openpgpFamilyHits.length,
+      distinctFamilyOps: distinctOpenpgpOps.size,
+      sevenRuneWords,
+      manuscriptHits: openpgpManuscriptHits,
+    },
   },
   controls: {
     adjacencyConfigs,
