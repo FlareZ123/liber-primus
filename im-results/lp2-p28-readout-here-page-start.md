@@ -107,6 +107,43 @@ The useful statement is narrower:
 
 Because HERE was noticed after READ OUT, the next promotion gate should be an untouched consequence selected by the marker itself or by another first-party source cue. GP0(HERE) or arbitrary page-number hopping should not be introduced merely because they produce a convenient continuation.
 
+## READ OUT selects the outer H layer
+
+The recovered p28 instruction **READ OUT** supplies a direct human-facing selector for a previously implicit choice in the page-start H checkpoint.
+
+The independently selected p28 line1 geometry begins with the two fragments:
+
+```text
+PC
+JTHBIW
+```
+
+The first two-rune word has only one endpoint pair. The second five-rune word has two paired layers around its center:
+
+```text
+outer: J ... W
+inner: TH ... I
+center: B
+```
+
+The frozen forward H operation gives:
+
+```text
+H(P,C)       = HE
+H(J,W)       = RE
+H(TH,I)      = NGEO
+```
+
+Thus **READ OUT** resolves the only layer fork literally: read the **outer** pair of the second word, producing
+
+```text
+HE + RE = HERE
+```
+
+The inner rival produces `HENGEO`, so it does not satisfy the checkpoint.
+
+This is an instruction-level downstream consequence of READ OUT rather than another language search over page-start transforms. The p28 start location and H direction were already independently fixed by the DH geometry and the established H convention; READ OUT selects outer versus inner nesting. Because HERE was already known before this connection was recognized, preserve the chronology as cross-operation corroboration rather than a blind plaintext validation.
+
 ## External low-digit closure
 
 Agent16 later established the native-base60 zero-based low digit of the addressed p50 token as an independently supported state-navigation primitive from the authenticated 2016 message. This removes the earlier arbitrariness objection to testing the HERE checkpoint as a pointer state.
