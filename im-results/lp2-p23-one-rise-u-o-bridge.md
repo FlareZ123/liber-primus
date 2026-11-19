@@ -1,188 +1,64 @@
-# P23 THE ONE RISE: U(1) to O(3) visually corroborates the source-selected +2 route
+# P23/p56 enlarged-initial bridge: the claimed U → O rise is rejected
 
-**Agent50, 19 November 2026. Current classification: visual corroboration for an independently source-selected +2 navigation operation. Later same-day work established the cleaner direct consumer `p23 + 2 = p25`; the U→O comparison remains an original-image cross-check and the p23/p56 page gap remains a secondary closure on p33. It does not decrypt unknown body text.**
+**Agent8, 19 November 2026. Classification: source-image correction.** The five-dot stencil relation is real, but the proposed enlarged-glyph pair U/index1 → O/index3 is not. The large p56 glyph is AE/index25. No p35 ciphertext or FOUND feedback was loaded or used in this adjudication.
 
-## Result
+## Correct source alignment
 
-P23's red heading independently decodes:
+The original scans are [p23, 40.jpg](../resources/liber-primus/40.jpg), [solved p56, 73.jpg](../resources/liber-primus/73.jpg), and [p7 control, 24.jpg](../resources/liber-primus/24.jpg).
 
-```text
-THE ONE RISE
-```
+The fixed image procedure in [the census SFT](../sims/lp2_p23_p56_large_red_initial_census_sft.py) finds the large red components and independently recovers the ordinary text rows. For p23 and p56, the first text row has **20 transcription runes but only 19 ordinary-sized connected components**. The large red initial occupies the missing first-rune position:
 
-The same original page contains a large red **U rune**:
+| Page | Large red component bbox (x,y,w,h) | Text row | Ordinary components / transcription runes | First rune supplied by large component |
+|---:|---|---:|---:|---|
+| 23 | [601,1155,230,498] | 0 | 19 / 20 | **U, index 1** |
+| 56 | [601,668,150,498] | 0 | 19 / 20 | **AE, index 25** |
 
-```text
-ᚢ = U = GP index 1
-```
+The p56 transcription begins with AE on line 0. Its second line begins with O/index3, but that line has **19 ordinary-sized components for 19 transcription runes** and no enlarged red component. The O is therefore not the enlarged p56 initial and is not the visual counterpart of p23's enlarged U.
 
-The five-dot stencil links p23 to solved p56 under an exact half-turn relation. Solved p56 contains a corresponding large red **O rune**:
+The proposed pair is consequently:
 
-```text
-ᚩ = O = GP index 3
-```
+`U_1 \rightarrow AE_{25}`
 
-The hidden phrase therefore has a concrete visual reading:
+not `U_1 \rightarrow O_3`. Its zero-based index difference is (25-1=24\equiv-5\pmod{29}), not +2. Under GP prime values, U maps to 3 and AE to 101, a difference of 98. Even the unselected U→O reading would give prime difference (7-3=4), not 2.
 
-```text
-THE ONE = the visible U rune, whose GP index is 1
-RISE    = compare it with the matched p56 rune O, index 3
+## Full comparable large-red-initial census
 
-3 - 1 = 2
-```
+A fixed red mask (R>70, R>1.35G, R>1.35B), followed by 8-connected components with height at least120, width at least35 and area at least1000, finds **15 components on 13 pages**. The text-row alignment maps 13 unambiguously to the first rune of their corresponding line; two remain ambiguous because their component deficits are two.
 
-Later independent route work supplied the cleaner direct consumer for the p23 instruction:
+| LP2 page | Row | First rune inferred from line alignment |
+|---:|---:|---|
+| 0 | 0 | S / 15 |
+| 3 | 0 | L / 20 |
+| 3 | 6 | P / 13 |
+| 6 | 4 | A / 24 |
+| 8 | 0 | X / 14 |
+| 15 | 1 | L / 20 |
+| 23 | 0 | **U / 1** |
+| 27 | 0 | M / 19 |
+| 33 | 0 | D / 23 |
+| 33 | 5 | ambiguous |
+| 39 | 6 | IA / 27 |
+| 40 | 0 | F / 0 |
+| 54 | 0 | A / 24 |
+| 56 | 0 | **AE / 25** |
+| 57 | 0 | ambiguous |
 
-```text
-THE ONE RISE
-ONE RISE = one +2 step
-p23 + 2 = p25
-```
+The p7 five-dot page has **zero** components under the same large-red-initial filter. It is a third stencil page, not a third member of a large-initial rune pair.
 
-P25 is independently selected by the GOOD/LUCK full-base60 pointer route and carries its own held-out state receiver, so p23→p25 is now the preferred operational use of the +2.
+Among the 13 unambiguous large initials, the other ordered +2 index pairs are p33 D/23 → p56 AE/25 and p39 IA/27 → p40 F/0 (mod29). Thus +2 is not a unique family-wide relation; importantly, neither pair is p23 U → p56 AE.
 
-P33 independently says:
+## What remains true, and what is rejected
 
-```text
-THEIR RISE
-```
+The original five-dot geometry remains established: p7↔p23 is a vertical reflection, p7↔p56 a horizontal reflection, and p23↔p56 a 180° rotation. See the [three-page original-image handoff](lp2-p23-p56-halfturn-five-dot-handoff.md) and [dihedral-triad report](lp2-p7-p23-p56-five-dot-dihedral-triad.md).
 
-and its own lower red pair `[3,5]` independently supplies the same local difference `+2`, selecting `p33+2=p35`. P35 then supplies the held-out unique adjacent mutual p50-low GP0 pair `36 <-> 54`, matching FOUND to ROAD/PATHS and resolving toward ROAD through the frozen source direction graph.
+But the dot transformation does not transform the large initials with it. The p23 large glyph is on the left margin at x=601; a 180° rotation sends its bounding box to the right half of the page, whereas the p56 large glyph is again at x=601. The stencil selects a three-page artwork family; it does not select the alleged U/O rune pair.
 
-The p23 U→O comparison therefore supports the shared +2 operation without carrying the burden of selecting p35.
+**Retire the U→O = +2 visual bridge.** The p23 red-heading reading and the separate p33 local RISE observation are not adjudicated here. The p23/p56 page-number relation (56-23=33) in the separate THEIR RISE report is also unaffected. None of these surviving observations authenticates a new cipher or plaintext.
 
-## Visual source evidence
+## Reproduction and scope
 
-Original archive p23 is `40.jpg`. Original solved p56 is `73.jpg`.
+Run from repository root:
 
-A simple red-pixel connected-component measurement on the native 2400×3600 files gives the large-rune bounding boxes:
+`python sims/lp2_p23_p56_large_red_initial_census_sft.py`
 
-```text
-p23 U: x 601..830, y 1156..1652, width230, height497
-p56 O: x 601..749, y  669..1165, width149, height497
-```
-
-Both large glyphs therefore begin at the same x-coordinate and have the same pixel height.
-
-Their shapes are the standard runes already present in the repository alphabet:
-
-```text
-corpus.runes[1] = ᚢ, translit U
-corpus.runes[3] = ᚩ, translit O
-```
-
-P23's enlarged `ᚢ` is also visually the same rune form as the first rune of its red heading. The classification does not depend on assigning an arbitrary numeral to an abstract drawing.
-
-## Why ONE matters
-
-Using rune primes would give a different numerical difference. The hidden text explicitly says **THE ONE**, and the visible U rune is index1 in the 29-rune GP ordering.
-
-That wording selects the ordinal/index reading required for:
-
-```text
-U = 1
-O = 3
-rise = 2
-```
-
-This removes a major ambiguity that would exist if the two large red runes were compared without the hidden title.
-
-## How the p56 relationship is selected
-
-The p23/p56 comparison is independently motivated by original artwork.
-
-The established stencil census found the same five-dot template on p7, p23, and solved p56. Relative to p7, p23 and p56 are opposite single-axis reflections, so p23 and p56 form the half-turn pair.
-
-P23 and p56 additionally share the large red rune placement and the solved-p56 cardinal mechanism used to decode p23's title. P7 lacks the corresponding large red rune pair and does not produce an English instruction under the small odd-pair H family tested in this invocation.
-
-Thus the U-to-O comparison is selected by multiple source-visible properties before the numerical difference is consumed.
-
-## Two independent RISE measurements converge on +2
-
-The +2 is also present inside p33 itself.
-
-The p33 lower red pair that serializes to RISE has printed lengths:
-
-```text
-[3,5]
-```
-
-so its local numerical rise is:
-
-```text
-5 - 3 = 2
-```
-
-The visual p23/p56 pair independently gives:
-
-```text
-O - U = 3 - 1 = 2
-```
-
-Both source-visible readings therefore agree on the same operation before the p35 target is evaluated.
-
-## Page-number closure supplies a second checksum
-
-The physical page gap between the same p23/p56 pair is:
-
-```text
-56 - 23 = 33
-```
-
-which points back to p33, the page carrying `THEIR RISE`.
-
-The pair therefore closes in two numerical spaces:
-
-```text
-page rise: 56 - 23 = 33 -> p33
-rune rise:  O - U = 3 - 1 = 2 -> p33 + 2 = p35
-```
-
-The first identifies the instruction page. The second executes the instruction.
-
-## Resulting human solve path
-
-The current route should be read with the later direct p23 consumer in front:
-
-```text
-authenticated ROAD index23 -> physical p23
-
-p23 red heading -> THE ONE RISE
-source-selected one-rise operation -> +2
-p23 + 2 -> p25
-
-independent p25 GOOD/LUCK pointer and state evidence
- -> p28 READ OUT / THE / DIRECTION route
-
-visual cross-check:
-p23 large U=1
-p56 half-turn stencil mate large O=3
-O-U = +2
-
-secondary page-number checksum:
-p56-p23 = 33 -> p33 THEIR RISE
-
-p33's own [3,5] RISE encoder also gives +2
-p33 + 2 -> p35 FOUND
-p35 held-out 36 <-> 54 state receiver
- -> ROAD basin
-```
-
-This keeps the original-image U→O observation as corroboration while using the more direct authored page operation for navigation.
-
-## Caveats
-
-The large-rune identification is a direct visual reading of the original scans rather than a machine-classified annotation currently stored in the repository.
-
-The p23/p56 five-dot relation is already independently measured to subpixel precision in `im-results/black-dot-template-reflections.md`.
-
-The p35 receiver remains a navigation/state result. No unknown p35 plaintext has been recovered.
-
-## Reproduction and supporting artifacts
-
-- `im-results/lp2-p33-p35-found-road-map.md`
-- `im-results/lp2-p23-p56-p33-their-rise-loop.md`
-- `im-results/black-dot-template-reflections.md`
-- `sims/black_dot_reflection.py`
-- `sims/lp2_p33_p35_found_road_map_sft.cjs`
-- original images `resources/liber-primus/40.jpg` and `resources/liber-primus/73.jpg`
+The SFT uses only the original LP2 JPEGs, canonical corpus/transcription and fixed connected-component rules. It asserts the p23 U and p56 AE line alignments, the ordinary-sized p56 second-line O, the p7 negative control, the 15-component family count, and the alternative family-wide +2 pairs. It does not load p35 ciphertext or FOUND feedback.
