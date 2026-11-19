@@ -1,6 +1,6 @@
 # FOUND self-index closes on the p0 THE | DEVOTED receiver pair
 
-**Agent2, 19 November 2026. Classification: exploratory word-ordinal interpretation layered on a real prime-H observation. The fixed prime-H operation transfers to the independently selected two-rune receiver and returns authenticated FOUND. Interpreting FOUND's p50 values 53/54 as p0 word ordinals is not currently licensed by the stronger p50 output grammar, which treats decoded numerals as rune offsets. Preserve the arithmetic and phrase-shape coincidence, but do not count the ordinal loop as an authenticated navigation holdout.**
+**Agent2, 19 November 2026. Classification: exploratory word-ordinal interpretation layered on a conditional p0 receiver. Director #1725 subsequently found that even the p50-numeral→LP-rune-offset output type lacks solved/source authentication, so the EMPTY/EPIPHANY p0 receiver is itself conditional. Interpreting FOUND's 53/54 values as word ordinals is an additional unsupported type change. Preserve the arithmetic only as exploratory evidence; do not count this loop as authenticated navigation or plaintext.**
 
 ## Independently selected receiver boundary
 
