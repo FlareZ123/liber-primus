@@ -125,6 +125,14 @@ Its chronology still matters. READ OUT, the p50 table, FIND=42 and p28 were all 
 
 The next strongest use is to treat the low-digit p50 transition as a candidate **state-pointer operation** and demand one independently selected consumer outside the READ OUT/FIND/p28 loop before promoting it as a general manuscript opcode.
 
+## Independent authenticated-source transfer
+
+A later source-only audit found that the same native base60 low-digit operation has an independent consumer inside the authenticated 2016 vocabulary. Canonical `GP0(ROAD)=GP0(PATHS)=54` and `GP0(FOUND)=36`; the untouched original table gives `p50[54]=2a -> 36` and `p50[36]=0s -> 54`. Across the complete 16-mode base60/base59 × high/low × address-origin × digit-origin family, this canonical reading is the only mode with any two-cycle among the signed vocabulary's 27 distinct GP0 states, and that sole cycle is `36 <-> 54`.
+
+This supplies the independent external low-digit consumer requested above. The source wording itself distinguishes **the road** from **false paths**, which is a plausible human-facing resolution of the state54 lexical collision. Preserve that semantic reading as interpretation; the source-only numeric cycle is the reproducible fact.
+
+See [authenticated ROAD / FOUND / PATHS low-digit cycle](lp2-2016-road-found-falsepaths-lowdigit-cycle.md).
+
 ## Reproduction
 
 Run:
