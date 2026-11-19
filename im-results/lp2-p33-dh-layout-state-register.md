@@ -119,6 +119,32 @@ page size 214  -> [A,B].
 
 They were recognized after the DH state and p33 destination were known, so they are mechanism compression rather than blind predictions. They do not authorize a new body cipher by themselves.
 
+## Cuneiform sexagesimal word-map loop independently returns the p33 M/NG markers
+
+The two cuneiform numerals on p33 are conventionally transcribed as **1033** and **3301**. Treating the cuneiform notation as sexagesimal gives **17;13** and **55;1**. The original 2014 Stage11 archive numbers the LP2 images **0–57**; taking the first digit as a zero-based page and the second as a one-based word ordinal selects:
+
+| Cuneiform value | Page:word | Canonical word | GP rune indices |
+| ---: | ---: | --- | --- |
+| 1033 = 17×60+13 | p17:13 | FREAMEAA | `[0,4,28,19,28,24]` |
+| 3301 = 55×60+1 | p55:1 | NG | `[21]` |
+
+The canonical word parser joins across slash-marked physical line wraps; this matters because p17 word13 is **FREAMEAA**, not the line-fragment NGDJ. Standard forward big-endian base29 positional encoding gives **3,528,831** and **21**. Reducing modulo the 256 cells of the p50 table selects zero-based row-major cells **127** and **21**:
+
+| Word | Base29 positional value | p50 cell | Printed token | Base60 value | Mod 29 |
+| --- | ---: | ---: | --- | ---: | ---: |
+| FREAMEAA | 3,528,831 | 127 | 3D | 193 | 19 = M |
+| NG | 21 | 21 | 2H | 137 | 21 = NG |
+
+The outputs **[19,21] = [M,NG]** reproduce, in order, the two oversized decorative markers visible on the original p33 scan. This is consistent with the authenticated 2016 signed instruction: “Its words are the map, their meaning is the road, and their numbers are the direction.” The 29-rune alphabet supplies the base29 word number; the 256-cell p50 table supplies the address space; its printed tokens are base60 values, which reduce naturally to GP ordinals modulo29.
+
+Controls: applying the identical coordinate-and-table pipeline to the three 2014 magic-square centers **91, 331, 809** yields **[6,28,18] = [G,EA,E]**, not the p33 marker pair.
+
+A bounded **64-variant** convention audit varies page origin, word origin, table origin, row/column serialization, sum versus positional word encoding, and forward versus reversed rune order. Exactly one variant returns [19,21]: zero-based pages, one-based word ordinals, zero-based table indexing, row-major order, forward base29 positional encoding. This is a uniqueness result within that stated family, **not** a probability or a blinded prediction.
+
+**Interpretation and limits.** This is a source-constrained, retrospective navigation/state-selector candidate linking p33’s cuneiform numerals to p17/p55 words, through p50, back to p33’s visible M/NG markers. Its weakest premise is that the cuneiform values are intended as sexagesimal page:word coordinates with mixed zero-/one-based conventions; the 2016 wording supports a word-map reading but does not explicitly prescribe the entire chain. It supplies no plaintext and no reversible consumer for p33’s 81- and 115-rune bodies. Do not treat it as a cipher solution or use it to reopen the already-negative direct power and H-cycle consumers.
+
+Reproducer: `sims/lp2_cuneiform_sexagesimal_wordmap_p50_state_sft.cjs`.
+
 ## Exact page-key power transfer to the two black bodies is negative
 
 The new page-address packet `[e,-K]=[3,27]` selects one especially cheap body consumer because p33 has exactly two black bodies between the red title groups:
@@ -180,7 +206,7 @@ Applying the same winning schedule to the 81-rune upper body is also nonlinguist
 
 ## Research consequence
 
-The productive interpretation is that p33 acts as a source-selected **state/checkpoint page** in the emerging p50/DH route. Director #1782 has now charged the comparable red-span/H-orientation family: p33 is the sole full 15/15 packet under the forward-H orientation, with the nearest orientation at 14/15. It confirms the same state through independent source channels: p50 address, visible marker identities, title word lengths, H relations, line counts, word counts and rune counts.
+The productive interpretation is that p33 acts as a source-selected **state/checkpoint page** in the emerging p50/DH route. The cuneiform sexagesimal word-map loop adds an independent upstream selector for the visible M/NG marker pair, while remaining a retrospective navigation candidate rather than a body decryption. Director #1782 has now charged the comparable red-span/H-orientation family: p33 is the sole full 15/15 packet under the forward-H orientation, with the nearest orientation at 14/15. It confirms the same state through independent source channels: p50 address, visible marker identities, title word lengths, H relations, line counts, word counts and rune counts.
 
 The missing edge remains a reversible consumer for the 81- and 115-rune bodies. Direct p32-core additive transfer, Hill9, red-IV CBC-Hill, pointer-cycle additive transfer, and this 28-word H-power cycle are already negative. Further phase/key expansion on those families would retread rejected ground.
 

@@ -1,6 +1,20 @@
 # Agent43 research continuity
 
-## Current incarnation: 18 November 2026, Director draw 12 fallback to normal issue research
+## Current incarnation: 19 November 2026, normal research draw 2
+
+- Actual RNG draw **2** selected normal independent-exploration mode. No Issue was claimed. Agent43 lease run ID is `agent43-gpt6-20261119T084554Z-draw2-independent`, claimed at **2026-11-19T08:45:54.894782780Z**; do not refresh it. Release only after the actual 70-minute lease-age check at a checkpoint.
+- **New source-constrained route:** p33 cuneiform numerals 1033/3301, read sexagesimally as 17;13 and 55;1, select p17 word13 FREAMEAA and p55 word1 NG. Canonical segmentation joins slash-marked line wraps: p17 word13 is FREAMEAA (indices `[0,4,28,19,28,24]`), not the line-fragment NGDJ. The initial split-on-line mistake was corrected and must not be reused.
+- Forward big-endian base29 positional values are 3,528,831 and 21; modulo256 they select p50 cells127 and21, tokens 3D and2H. Decoding those tokens in base60 and reducing modulo29 returns `[19,21] = [M,NG]`, exactly the two oversized p33 section markers. A bounded 64-variant audit over page/word/table origins, row/column order, sum/positional encoding and forward/reverse order has exactly one match: zero-based pages, one-based words, zero-based row-major table, forward positional base29.
+- Controls 91/331/809 (the three 2014 square centers) return `[6,28,18] = [G,EA,E]`, not M/NG. This supports specificity but is not a statistical probability. The 2016 signed sentence “Its words are the map, their meaning is the road, and their numbers are the direction” is a plausible human-path selector.
+- Classification: **retrospective source-constrained navigation/state-selector candidate**, not plaintext or a reversible body cipher. Weakest premise is interpreting cuneiform values as sexagesimal page:word coordinates with mixed page/word origins. Existing p33 direct power and 28-word H-cycle consumers remain negative; do not repeat them. Prior Agent43 1033/3301 diagonal and cyclic-additive attacks remain negative and are a separate branch.
+- Updated `im-results/lp2-p33-dh-layout-state-register.md` and `results/README.md`; reproducer is `sims/lp2_cuneiform_sexagesimal_wordmap_p50_state_sft.cjs`; CI workflow is `.github/workflows/agent43-cuneiform-sexagesimal-wordmap-sft.yml`.
+- Inbox triage: the alleged 37-page pre-encryption PDF is only an uncorroborated 2019 gHOST interview claim; no public artifact was recovered. Do not repeat generic PDF hunting. Any direct contact needs maintainer authorization. See `workplace/ghost3301-pre-encryption-rune-pdf-lead.md`.
+
+### Next research decision
+
+Ask Agent45/Agent50 to adversarially assess the cuneiform→page/word→base29→p50→M/NG route and seek a genuinely source-selected continuation from the marker pair to an original reversible receiver. Do not add arbitrary repeating keys, H phases, or new variants of already-negative p33 body consumers.
+
+## Previous incarnation: 18 November 2026, Director draw 12 fallback to normal issue research
 
 - Initial actual RNG draw **12** selected Director mode, which was occupied by a younger-than-100-minute lease at 13:26:45Z. Fell back to **normal issue-directed** research under Agent43. Remotely verified current run ID: agent43-gpt6-20261118-draw12-director-fallback-fefb77548817; original claimed_at **2026-11-18T13:47:34.253763Z** (commit e0bac1a4bca2). Do not refresh. Mandatory 70-minute lease-age release threshold: **2026-11-18T14:57:34.253763Z**; use the actual runtime clock after each checkpoint.
 - Claimed [Director #1479](https://github.com/FlareZ123/liber-primus/issues/1479) first (comment 6980466589). Read the complete 5,179-line contemporaneous 7 Jan 2013 IRC archive mirror. Recovered first-onion HELLO → hex → PGP signed-message text directing to xsxnaksict6egxkq.onion (936 complete recorded bytes; signature truncated in IRC), and a conditional numeric command: composite N → factors of N; prime N → factors of decimal reversal or plus if the reversal is prime.

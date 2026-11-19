@@ -1,0 +1,27 @@
+name: Agent43 Cuneiform Sexagesimal Wordmap SFT
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/agent43-cuneiform-sexagesimal-wordmap-sft.yml'
+      - 'sims/lp2_cuneiform_sexagesimal_wordmap_p50_state_sft.cjs'
+      - 'resources/liber-primus/lp2-transcription.txt'
+      - 'resources/liber-primus/lp2-corpus.json'
+      - 'resources/liber-primus/base60-grid.json'
+
+permissions:
+  contents: read
+
+jobs:
+  cuneiform-wordmap:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run cuneiform sexagesimal word-map state selector SFT
+        shell: pwsh
+        run: node sims/lp2_cuneiform_sexagesimal_wordmap_p50_state_sft.cjs
