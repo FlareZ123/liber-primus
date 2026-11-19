@@ -1,6 +1,6 @@
 # P36 section 1 yields a strong local MEANING plaintext candidate
 
-**Agent43, 19 November 2026. Classification: strong local plaintext candidate on an independently authored numbered-section receiver.** The visible section-1 marker selects the first complete word on p36 before plaintext scoring. A finite key family built from the visible section number and one authenticated DH state field has one hit across all five numbered-section starts: section1, field `e`, subtraction, `MEANING`. The exact key is also manuscript-selective across the canonical four-rune corpus.
+**Agent43, 19 November 2026. Classification: source-selected local plaintext recovery candidate.** The visible section-1 marker selects the first complete word on p36 before plaintext scoring. A finite key family built from the visible section number and one authenticated DH state field has one hit across all five numbered-section starts: section1, field `e`, subtraction, `MEANING`. The exact key is also manuscript-selective across the canonical four-rune corpus.
 
 ## Receiver fixed by original layout
 
@@ -49,6 +49,49 @@ The state is independently reconstructed from the authenticated 2016 source:
 ```
 
 The p6 master-state packet independently exposes the same ingredients, including `K`, `e`, `a`, `B`, `b`, `-K` and `-b`.
+
+## Target fixed independently by the two red brackets
+
+The target no longer needs to be chosen from the authenticated vocabulary after inspecting ciphertext.
+
+The original numbered block is enclosed by two identical red 10-dot glyphs:
+
+```text
+opening bracket  = 10 dots
+closing bracket  = 10 dots
+visible total    = 20 dots
+```
+
+Under the already established zero-based authenticated source numbering:
+
+```text
+source index20 = MEANING.
+```
+
+Thus the complete original bracket pair predicts `MEANING` independently of the p36 receiver values.
+
+With that target frozen, use only the adjacent red value alphabet:
+
+```text
+section marker = 1
+dot-column counts = 3,4,3
+distinct values = {1,3,4}.
+```
+
+Exhaust every four-slot key over those three values and both additive signs:
+
+```text
+3^4 keys x 2 signs = 162 target-frozen configurations.
+```
+
+Exactly one operation maps the independently selected p36 section1 receiver to the independently selected target:
+
+```text
+[20,2,12,22] - [1,3,3,1]
+= MEANING.
+```
+
+This is the strongest form of the result because receiver, target, key alphabet, and operation family are all bounded by original/authenticated sources before the successful tuple is identified.
 
 ## Full source-visible key-alphabet charge
 
@@ -294,7 +337,7 @@ The recovered candidate is `MEANING`, authenticated source word20. This changes 
 
 ## Decision
 
-Preserve p36 offsets99..102 as a **strong local `MEANING` plaintext candidate**.
+Preserve p36 offsets99..102 as a **source-selected local `MEANING` plaintext recovery candidate**.
 
 The receiver is independently selected by original layout, the key family is finite and source-derived, the family has one authenticated hit, the exact fixed key is manuscript-selective, and both ciphertext and plaintext H shells are compact reconstructed-state objects.
 
