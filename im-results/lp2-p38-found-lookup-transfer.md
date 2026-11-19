@@ -125,6 +125,8 @@ The result supports continuing to test the frozen HERE/DH lookup grammar on new 
 
 ## Reproduction
 
+Windows Node22 PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44439726694
+
 Run:
 
 `node sims\lp2_p38_found_lookup_transfer_sft.cjs`.
