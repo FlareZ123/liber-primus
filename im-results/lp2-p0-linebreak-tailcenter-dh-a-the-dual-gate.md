@@ -18,6 +18,17 @@ Among all 42 adjacent word pairs in the authenticated 2016 cleartext, native GP2
 - [2,4] selects **THE ROAD**;
 - [2,7] selects **THE DEVOTED**.
 
+This uniqueness is also visible from the p0 side before any rune values are compared. P0 contains only six printed words that cross a physical line break. Their predecessor/crossing length shapes have the following signed-2016 adjacency counts:
+
+- [3,7]: no signed adjacency;
+- [2,4]: exactly one, **THE ROAD**;
+- [3,4]: four;
+- [4,6]: two;
+- [4,3]: two;
+- [2,7]: exactly one, **THE DEVOTED**.
+
+Thus the two value hits below are also the only two p0 line crossings whose local word-length geometry uniquely selects a signed-2016 adjacency.
+
 The source-derived p28 literal-DH reconstruction fixes the standard DH23 state:
 
 p=23, g=5, a=6, b=15, A=8, B=19, K=2.
@@ -89,6 +100,18 @@ a | add | tail:center.
 
 That configuration has exactly two hits in the whole manuscript family, and both are the p0 pairs above. No other charged configuration reconstructs both.
 
+A decomposition of the frozen configuration gives 30 eligible signed-2016 assignments. Only two pass the first-rune equation source[0] + a = ciphertext[0]. They are the same THE ROAD and THE DEVOTED assignments, and both independently pass the second-rune equation.
+
+### Independent solved-source register control
+
+After freezing a | add | tail:center, the same rule was tested with independently solved Cicada plaintext as the source register rather than the 2016 message.
+
+P56 and p57 themselves contain no same-page line-crossing event with a two-rune predecessor, so they cannot supply a direct same-page replication. Using their solved adjacent plaintext pairs against the 66 unknown-page line-crossing events gives 59 eligible frozen-rule assignments and zero exact hits.
+
+Expanding the control to every native solved section in resources/external/relikd-solved-gp29-native-v1.json gives 756 eligible frozen-rule assignments and zero exact hits.
+
+This negative control limits the claim. The mechanism currently behaves as a local p0/2016-source relation rather than a manuscript-wide general cipher rule.
+
 Reproduction:
 
 node sims/lp2_p0_linebreak_tailcenter_dh_a_the_dual_sft.cjs
@@ -112,9 +135,11 @@ It also explains two previously separate additive inverses with one local schedu
 
 ## Strongest objection
 
-The post-break-center selector is still inferred. The manuscript visibly supplies the line breaks, and the two surviving source tails are odd-length, but no authenticated instruction currently says to take the center of the continuation.
+The post-break-center selector is still inferred. The manuscript visibly supplies the line breaks, and the two uniquely selected source tails are odd-length, but no authenticated instruction explicitly says to take the center of the continuation.
 
-The result therefore belongs in im-results rather than the established synthesis. The exact dual reconstruction and whole-manuscript uniqueness make it worth preserving as a candidate value-changing mechanism, while treating THE ROAD and THE DEVOTED as source-conditioned candidates rather than recovered unknown plaintext.
+P28 now independently supplies the source-derived instruction **READ OUT** from its exact center/page-word object. A spatial center-out reading would emit the center rune first for each odd continuation tail, which is compatible with this rule. That semantic bridge is only a hypothesis. The p28 DH reconstruction currently gives **READ OUT** a different local interpretation, reading the outer runes of the literal DH-line fragments. The words alone do not prove which spatial reading, if any, should transfer to p0.
+
+The result therefore belongs in im-results rather than the established synthesis. The exact dual reconstruction, the unique p0 shape selection, and the charged whole-manuscript value family make it worth preserving as a candidate local mechanism, while treating THE ROAD and THE DEVOTED as source-conditioned candidates rather than recovered unknown plaintext.
 
 ## Best next discriminator
 
