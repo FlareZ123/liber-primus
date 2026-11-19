@@ -190,6 +190,111 @@ while none of the four direct ±31 residue pairs supplies 17. The key therefore 
 
 This does not create a fresh blind probability. READ OUT, the p39 selector, and THE ORIGINAL were all known before this AL=31 bridge was noticed. The advance is **mechanism compression and intended-route provenance**: a historically available source key now derives the exact p28 exponents that had previously required separate p53 and state arguments.
 
+## Second receiver: AL=31 selects p31 and removes the source-ordinal page dependency for AND
+
+The same historical integer is itself a physical LP2 page number:
+
+```text
+AL = 31 -> physical p31.
+```
+
+This gives the existing p31 inverse a new entry point that does not begin by assigning authenticated ordinal32 `AND` to project p31.
+
+On p31, charge only original printed-line pairs with equal visible chunk count and require the lower-to-upper rune-count rise to equal the already reconstructed shared secret `K=2`. Exactly one pair survives:
+
+```text
+line0: 5 chunks / 23 runes
+line6: 5 chunks / 21 runes
+rise: 23 - 21 = 2 = K.
+```
+
+Serialize the selected pair lower-to-upper exactly as in the established p31 helper:
+
+```text
+[shared chunks, lower runes, upper runes]
+= [5,21,23]
+= [g,-A,p].
+```
+
+The solved p56 positive-cardinal serializer gives:
+
+```text
+T([5,21,23])
+= [10,14,24]
+= [-B,-b,-g].
+```
+
+Canonical `H3^-1` then derives the fixed key:
+
+```text
+k = [17,14,7].
+```
+
+No p31 plaintext receiver participates in that key derivation.
+
+Now scan every complete three-rune word on the AL-selected page against the complete distinct authenticated three-GP-rune vocabulary:
+
+```text
+PATH WAY ITS ARE MAP AND YOU.
+```
+
+P31 has 19 complete three-rune words. Charging both additive signs yields exactly one lexical hit:
+
+```text
+p31 word32 [12,23,1]
+- [17,14,7]
+= [24,9,23]
+= AND.
+```
+
+The only surviving sign is subtraction. Agent19 independently recovered a typed p50 printable-hex register after the first AL=31 report was committed. At the fixed AL address,
+
+```text
+p50[31] = 2D
+0x2D = "-".
+```
+
+The register's operational semantics are still unresolved, so this is corroboration for the subtraction sign rather than proof of an opcode. It is nevertheless exact convergence on the only sign that produces a p31 authenticated-source target.
+
+The selected p31 line pair already carries its own page transition:
+
+```text
+31 + K
+= 31 + 2
+= 33.
+```
+
+Freeze the same key on p33. Among its 12 complete three-rune words and the same seven authenticated targets, again charging both signs, there is exactly one hit:
+
+```text
+p33 word29 [14,17,8]
+- [17,14,7]
+= [26,3,1]
+= YOU.
+```
+
+P33's independently recovered instruction `THEIR RISE` fixes rise `a=6`. The independent WILL receiver is word35, and
+
+```text
+35 - 29 = 6 = a,
+```
+
+so the route continues:
+
+```text
+p31 AND
+ -- K-rise -->
+p33 YOU
+ -- THEIR RISE / +a words -->
+WILL.
+```
+
+Independent p34/p35 work already supplies `BE FOUND`, making this branch consistent with the authenticated source sentence `SEEK AND YOU WILL BE FOUND`.
+
+This is still post-discovery synthesis. The p31 line serialization and target vocabulary were already known before AL=31 was noticed. The advance is causal compression: p23 now emits a historically meaningful key whose numeric value selects p31, and p31's own state/layout supplies the inverse key before any local receiver word is chosen.
+
+Windows/Node22 reproduction: `sims/lp2_p23_al31_p31_and_p33_you_sft.cjs`, run **44472975782**.
+
 ## Relationship to previous Liber AL work
 
 This result does not reopen the already rejected direct Book-of-the-Law running-key, word-length quotation, arbitrary keyword, or III:47 10×8 shear models. Those tests used Liber AL as a large key text or geometric transform and remain negative under their declared mechanisms.
@@ -211,7 +316,7 @@ This is a plausible human solve path because each transition is prompted by an o
 
 ## Decision
 
-Promote **AL=31 as a serious first-party-adjacent provenance candidate for the p28 READ OUT key**. It materially reduces the unexplained cross-field exponent choice and removes the center-exponent 3/17 alias under the p39 numeric selector.
+Promote **AL=31 as a serious first-party-adjacent routing and key-provenance candidate**. It derives the p28 READ OUT exponent state, compresses `[A,e,K]` across the active moduli, and independently selects physical p31, where state/layout alone derives the fixed key whose only local authenticated three-rune hit is `AND`; the same `K` rise carries that key to p33 `YOU`.
 
 Do not treat the bridge as proof that Cicada intended Crowley's later commentary rather than only the Book of the Law text. The historical relationship is strong, and Cicada's prior use of Liber AL is genuine, while the exact AL=31 interpretation is inherited Thelemic context rather than a Cicada-signed instruction.
 
@@ -223,4 +328,4 @@ Run:
 
 `node sims/lp2_p23_origin_al31_readout_key_sft.cjs`
 
-The SFT reconstructs the p23 `THE ORIGIN | AL` split, the p23→p33 handoff, AL=31 residues, the p39 `[55,20]` selector and the p28 center/word28 receiver from repository source files. It charges all 40 direct ±31 sign/orientation/cut configurations and the full 1,440 reversible p28 power family. The exact AL-derived winner is `[3,27]`, producing the numerically selected raw output `READ OUT`.
+The SFT reconstructs the p23 `THE ORIGIN | AL` split, the p23→p33 handoff, AL=31 residues, the p39 `[55,20]` selector and the p28 center/word28 receiver from repository source files. It charges all 40 direct ±31 sign/orientation/cut configurations and the full 1,440 reversible p28 power family. The exact AL-derived winner is `[3,27]`, producing the numerically selected raw output `READ OUT`. The second reproducer, `sims/lp2_p23_al31_p31_and_p33_you_sft.cjs`, uses AL=31 to select p31, derives the p31 key solely from the unique equal-chunk `K`-rise line pair and solved p56, then charges every p31/p33 three-rune word against all authenticated three-rune source targets. It yields exactly p31 `AND` and p33 `YOU` under the unchanged key/sign.
