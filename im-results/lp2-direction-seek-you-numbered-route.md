@@ -413,7 +413,36 @@ The direct coordinate rule still resumes immediately:
 
 The old numbered-route BE state expression came from a boundary-shifted word and is retired. This does not invalidate the separate p34 BE plaintext receiver at offsets4..5, which is selected by the THEIR RISE family rather than by numbered-route word35.
 
-The later source ordinal38 LUCK still selects p37 word38 at start146, so the independent p37 LUCK convergence remains available as a downstream coordinate check.
+The later source ordinal38 LUCK still selects p37 word38 at start146, but its direct source-index output is LIES PATH SEEKS ARE; the separate p37 LUCK convergence remains an independent page-specific hypothesis, not a continuation of this diagonal.
+
+
+## P30–P42 tail execution and p43 held-out
+
+The task-fixed receiver rule is one-based source ordinal n → LP2 page n−1 → complete page-local canonical word n. The sole absent coordinate is YOU33; the only repair admitted is the already published p32 boundary33 pair at rune offsets32–33. The direct operation tested here is the same zero-based GP0-to-authenticated-source lookup that produced the original SEEK/AND center transition. No other offset, origin, page receiver, or cipher family is searched.
+
+| Source ordinal | Source word | LP2 page / receiver | Rune offset(s) | GP0 values | Zero-based source lookup |
+|---:|---|---|---:|---|---|
+| 31 | SEEK | p30 word31 | 130–132 | [28,4,12] | THE EMPTY THE |
+| 32 | AND | p31 word32 | 126–128 | [12,23,1] | THE ROAD THE |
+| 33 | YOU | p32 boundary33 | 32–33 | [2,8] | PATH DEVOTED |
+| 34 | WILL | p33 word34 | 130–131 | [12,24] | THE AND |
+| 35 | BE | p34 word35 | 148–152 | [25,14,18,9,7] | THEIR ITS MAP LIBER THE |
+| 36 | FOUND | p35 word36 | 164–165 | [14,5] | ITS EPIPHANY |
+| 37 | GOOD | p36 word37 | 174–179 | [1,2,15,1,23,20] | THE PATH WORDS THE ROAD MEANING |
+| 38 | LUCK | p37 word38 | 146–149 | [3,2,6,27] | LIES PATH SEEKS ARE |
+| 39 | BEWARE | p38 word39 | 184–185 | [8,5] | DEVOTED EPIPHANY |
+| 40 | FALSE | p39 word40 | 176–178 | [5,13,10] | EPIPHANY WAY PRIMUS |
+| 41 | PATHS | p40 word41 | 171–175 | [0,23,4,28,6] | HELLO ROAD EMPTY THE SEEKS |
+| 42 | VERIFY | p41 word42 | 178–184 | [27,12,5,0,17,13,19] | ARE THE EPIPHANY HELLO THE WAY THEIR |
+| 43 | OPENPGP | p42 word43 | 206–208 | [16,0,14] | ARE HELLO ITS |
+
+This does not form a continuous instruction. The already-known SEEK/AND transition remains exact, but the next receiver gives PATH DEVOTED; WILL gives THE AND; the remaining outputs are fragments, not a common state transition. The page-specific BE/FOUND/GOOD/LUCK/BEWARE/FALSE/PATHS/VERIFY candidates elsewhere in the repository use separate mechanisms and cannot be stitched into this one direct lookup without post-hoc operation changes.
+
+### Held-out continuation test
+
+Before opening p43's receiver value, the issue precommit froze p42 word43 [16,0,14], its H3 output [2,1,0], and the only direction-ordered source run [0,1,2] = HELLO THE PATH. The next source-register word is index3 = LIES. The frozen holdout was p43's first complete canonical word (not the two-rune page-crossing continuation): offsets2–5 are [10,18,16,27], which map under the same lookup to PRIMUS MAP ARE ARE, not LIES. The prediction fails.
+
+The p42 H3 unit-run remains a local source-index observation; it does not predict a value on p43 and therefore does not establish a sequential p30–p43 decoder. Retain the separate p55/p24 line-wrap H register closure as a navigation result, but do not conflate it with this failed direct page-word diagonal.
 
 ## Evidence boundary
 

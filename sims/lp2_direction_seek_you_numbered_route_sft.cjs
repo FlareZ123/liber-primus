@@ -377,7 +377,84 @@ assert.deepEqual(exactHits(and.object.values), [
   {page: 31, ordinal: 32, start: 126},
 ]);
 
-console.log("PASS canonical DIRECTION / SEEK AND numbered-route correction");
+
+/*
+ * Frozen tail test: source ordinal n -> LP2 page n-1 -> canonical word n.
+ * The sole missing coordinate is YOU33, repaired only by the published
+ * p32 boundary33 pair. Values are interpreted directly as zero-based
+ * indices into the authenticated 43-word source register.
+ */
+const tailRows = source.slice(30, 43).map((row) => {
+  const page = row.ordinal - 1;
+  const object = row.word === "YOU"
+    ? {
+        ordinal: "boundary33",
+        start: 32,
+        values: corpus.pages.find((candidate) => candidate.page === 32)
+          .indices.slice(32, 34),
+      }
+    : pageWords(page)[row.ordinal - 1];
+  assert.ok(object, "missing frozen receiver for " + row.word);
+  return {
+    sourceOrdinal: row.ordinal,
+    sourceWord: row.word,
+    page,
+    receiver: object.ordinal,
+    start: object.start,
+    values: object.values,
+    lookup: lexicalize(object.values, 0),
+    object,
+  };
+});
+assert.equal(tailRows.length, 13);
+assert.deepEqual(
+  tailRows.map((row) => [
+    row.sourceOrdinal, row.sourceWord, row.page, row.receiver,
+    row.start, row.values, row.lookup,
+  ]),
+  [
+    [31, "SEEK", 30, 31, 130, [28, 4, 12], ["THE", "EMPTY", "THE"]],
+    [32, "AND", 31, 32, 126, [12, 23, 1], ["THE", "ROAD", "THE"]],
+    [33, "YOU", 32, "boundary33", 32, [2, 8], ["PATH", "DEVOTED"]],
+    [34, "WILL", 33, 34, 130, [12, 24], ["THE", "AND"]],
+    [35, "BE", 34, 35, 148, [25, 14, 18, 9, 7], ["THEIR", "ITS", "MAP", "LIBER", "THE"]],
+    [36, "FOUND", 35, 36, 164, [14, 5], ["ITS", "EPIPHANY"]],
+    [37, "GOOD", 36, 37, 174, [1, 2, 15, 1, 23, 20], ["THE", "PATH", "WORDS", "THE", "ROAD", "MEANING"]],
+    [38, "LUCK", 37, 38, 146, [3, 2, 6, 27], ["LIES", "PATH", "SEEKS", "ARE"]],
+    [39, "BEWARE", 38, 39, 184, [8, 5], ["DEVOTED", "EPIPHANY"]],
+    [40, "FALSE", 39, 40, 176, [5, 13, 10], ["EPIPHANY", "WAY", "PRIMUS"]],
+    [41, "PATHS", 40, 41, 171, [0, 23, 4, 28, 6], ["HELLO", "ROAD", "EMPTY", "THE", "SEEKS"]],
+    [42, "VERIFY", 41, 42, 178, [27, 12, 5, 0, 17, 13, 19], ["ARE", "THE", "EPIPHANY", "HELLO", "THE", "WAY", "THEIR"]],
+    [43, "OPENPGP", 42, 43, 206, [16, 0, 14], ["ARE", "HELLO", "ITS"]],
+  ]
+);
+
+// p42 OPENPGP43's H3 unit-run orders to HELLO THE PATH. Its next
+// source-register word is LIES; freeze p43's first complete word as holdout.
+const openpgpTail = tailRows[12];
+const openpgpH3 = shell(openpgpTail.object.values);
+assert.deepEqual(openpgpH3, [2, 1, 0]);
+const directedOrder = openpgpH3.slice().sort((a, b) => a - b);
+assert.deepEqual(directedOrder, [0, 1, 2]);
+assert.deepEqual(directedOrder.map((index) => source[index].word), [
+  "HELLO", "THE", "PATH",
+]);
+const predictedNextSourceWord = source[3].word;
+assert.equal(predictedNextSourceWord, "LIES");
+const p43FirstCompleteWord = pageWords(43)[0];
+assert.deepEqual(
+  {
+    ordinal: p43FirstCompleteWord.ordinal,
+    start: p43FirstCompleteWord.start,
+    values: p43FirstCompleteWord.values,
+  },
+  {ordinal: 1, start: 2, values: [10, 18, 16, 27]}
+);
+const p43FirstLookup = lexicalize(p43FirstCompleteWord.values, 0);
+assert.deepEqual(p43FirstLookup, ["PRIMUS", "MAP", "ARE", "ARE"]);
+assert.notDeepEqual(p43FirstLookup, [predictedNextSourceWord]);
+
+console.log("PASS canonical DIRECTION / SEEK AND numbered-route tail + p43 held-out");
 console.log(JSON.stringify({
   state,
   completeWords: canonicalWords.length,

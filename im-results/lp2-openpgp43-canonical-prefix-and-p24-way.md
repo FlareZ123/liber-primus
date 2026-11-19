@@ -92,9 +92,16 @@ The unreduced sum42 is exactly the authenticated source index of OPENPGP. This i
 
 The previous p42 object `[11,13,11]` still satisfies `H=[0,22,13]`, but it is canonical word42 rather than the OPENPGP-selected word43. Therefore `OPENPGP43 -> HELLO THE WAY`, endpoint13 selecting the p0 red title, and the dependent OPENPGP cube continuation to `EPIPHANY SEEKS` are retired.
 
+
+## Next-page held-out test (negative)
+
+The precommitted p42 receiver is canonical word43, offsets206–208, values [16,0,14]. Its H3 shell is [2,1,0]; the authenticated “numbers are direction” instruction fixes ascending source-index order [0,1,2] = HELLO THE PATH. The next source-register word is index3 = LIES.
+
+The frozen held-out receiver is p43's first complete canonical word. The canonical parser excludes the two-rune word that continues across the p42/p43 page boundary; p43 word1 begins at offsets2–5 with [10,18,16,27]. The same zero-based lookup returns PRIMUS MAP ARE ARE, not LIES. The precommitted continuation fails. Preserve the p42 H3 unit-run as a local source-index observation only; it does not establish a page-to-page decoder.
+
 ## Decision
 
-Preserve the corrected checkpoint `OPENPGP43 -> p42 word43 -> [16,0,14] -> H3 [2,1,0]`, and preserve p24 `AND -> THE WAY` independently. The possible unreduced `sum=42=OPENPGP` bridge remains a hypothesis requiring independent support.
+Preserve the corrected checkpoint `OPENPGP43 -> p42 word43 -> [16,0,14] -> H3 [2,1,0]` as a local source-index unit-run, and preserve p24 `AND -> THE WAY` independently. The precommitted p43 word1 continuation fails as documented above; do not extend the p42 result into a page-to-page decoder. The possible unreduced `sum=42=OPENPGP` bridge remains a hypothesis requiring independent support.
 
 ## Reproduction
 
