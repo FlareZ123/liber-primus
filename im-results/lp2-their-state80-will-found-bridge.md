@@ -163,6 +163,45 @@ Only **nine** source/mode occurrences survive both word-start requirements. Only
 
 This is familywise selectivity for the discovered recipe, not a prospective p-value.
 
+## GOOD enters the unique p0 shell-sum cycle at the LUCK receiver
+
+The same raw-H-shell consumer yields a stronger structural control around GOOD/LUCK.
+
+Canonical:
+
+```text
+GP0(GOOD) = 35
+p50[35] = 0d
+base59(0d) = 39
+```
+
+Under base59/zero, source GOOD therefore lands exactly at p0 word7, offsets39..42, the independently recovered LUCK receiver. Its published key `[17,16,4,22]` subtracts to LUCK with exact replay.
+
+Now define one fixed graph operation on every p0 word:
+
+1. H-shell the original ciphertext word;
+2. take the ordinary integer shell-coordinate sum as a p50 address;
+3. decode that p50 token under one fixed radix/origin mode;
+4. retain the edge only if it lands exactly on another p0 word start.
+
+Enumerate all p0 words under all four base59/base60 × zero/one modes. The graph contains **no self-loops and exactly one mutual two-cycle**:
+
+```text
+base59 / zero
+
+p0 word7  start39  shell sum50
+  -> p50[50]=0l -> base59 46
+  -> p0 word9
+
+p0 word9  start46  shell sum35
+  -> p50[35]=0d -> base59 39
+  -> p0 word7
+```
+
+The return state35 is exactly `GP0(GOOD)`. Thus the authenticated source GOOD enters the only p0 shell-sum word-start cycle at the candidate LUCK receiver, and the cycle returns to GOOD's numeric state.
+
+This does not decrypt p0 word9. It supplies a target-independent graph property around the already recovered GOOD/LUCK pair and removes the need to treat their p50 numeric relation as an isolated edge.
+
 ## LUCK closes back onto ROAD through a second state packet
 
 The complete two-stage charge has another independently meaningful survivor. Canonical LUCK gives:
