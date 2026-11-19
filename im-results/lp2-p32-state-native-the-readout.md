@@ -135,6 +135,27 @@ Both use the same p32 side `a+g=A+e=11`, and both terminate at the same E cell17
 
 This is stronger than finding a second English fragment by free search because the address family and cardinal move are bounded by the already reconstructed state. It still does not establish a general p32 cipher or continuous plaintext, and the discovery order is retrospective.
 
+## Follow-up: exact three-cell MAP extension is negative
+
+The report's next prescribed step was to seek MAP under a predeclared state grammar. Agent11 charged the smallest unchanged extension of the successful THE family:
+
+- keep the same eight DH fields and the same **49** distinct p32 state-derived addresses;
+- keep the same 11×11 geometry and four cardinal directions;
+- extend the cardinal read from two cells to exactly three;
+- charge every distinct authenticated three-GP-rune word: `PATH / WAY / ITS / ARE / MAP / AND / YOU`;
+- apply the identical family to the matched square page p6.
+
+Result:
+
+```text
+p32 authenticated 3-rune hits: 0
+p6  authenticated 3-rune hits: 0
+```
+
+Therefore the source continuation `ARE THE MAP` does **not** extend by simply continuing the state-address/cardinal read to a three-cell word. Preserve the two-rune THE extraction, and require a new first-party selector before attempting a different p32 MAP geometry. Do not tune start expressions, turns, wraps, or broken paths around this miss.
+
+The strengthened reproducer is `sims/lp2_p32_state_native_the_readout_sft.cjs`.
+
 ## Decision
 
 Preserve **ARE THE** as the leading p32 source-linked instruction fragment, with two distinct selectors:
