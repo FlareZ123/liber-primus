@@ -66,6 +66,37 @@ The sole joint hit is the selected p0 word24 at offsets109..110, with values `[1
 
 This is an exact corpus count. The receiver offset109 was fixed before the word's contents were inspected in this investigation. The choice to interpret the prime pair through sum/difference and H uses operations already present in the route, while the conjunction should still be treated as a local structural holdout rather than a page-wide decoder.
 
+## BE coordinate continuation
+
+The same prime-H result is `[K,g]=[2,5]`. Reuse the letter-coordinate grammar already fixed by the solved p57 MUST/SHED inversion:
+
+`[2,5] -> row B, column E -> coordinate BE`.
+
+At p50 coordinate BE the printed token is `47`.
+
+The current post-SHED radix is base59. Under that frozen state:
+
+`BE -> 47_base59 = 243`.
+
+Offset243 is exactly the end of p0 word54, the seven-rune word at offsets237..243 previously selected as the conditional **DEVOTED** receiver by the authenticated-2016 navigation work.
+
+The conventional-base60 sibling gives247, which lies inside p0 word56 and is not a word boundary. Thus the carried base59 state is discriminating here.
+
+A whole-family transfer control applies the same operation to every complete two-rune unknown-page word:
+
+1. map both runes to GP-prime weights;
+2. apply the fixed ordered H mod29;
+3. require the two outputs to form a valid p50 row/column coordinate;
+4. evaluate the coordinate under both source-supported radices.
+
+Of 465 two-rune words, 108 produce a valid coordinate. Among those, 49 base59 outputs and55 base60 outputs happen to land on some p0 word boundary. Exact base59 output **243** occurs once, at the already selected p0 word24. Its base60 sibling247 misses a boundary.
+
+This gives a prospective navigation consequence:
+
+`EA109 -> p0 word24 -> prime-H [K,g] -> BE -> p50/base59 -> 243`.
+
+It closes on an independently published p0 target boundary while preserving the radix state selected by MUST -> SHED.
+
 ## Decision
 
 Preserve this as a prospective state/navigation consequence of the conditional THE ROAD mechanism:
@@ -78,7 +109,7 @@ then
 
 The word also returns through `GP0 -> 80` and `GP1 -> 28`.
 
-Do not assign plaintext to word24 from these values. A useful next step requires a source-selected consumer of `[K,g]`, 56, or150 that predicts untouched ciphertext beyond offset110.
+Do not assign plaintext to word24 from these values. The source-compatible consumer `[K,g] -> BE -> p50/base59` now predicts endpoint243. A useful next step should pair this endpoint with an independently fixed start boundary or recover the value-changing key for the selected seven-rune receiver.
 
 ## Reproduction
 
