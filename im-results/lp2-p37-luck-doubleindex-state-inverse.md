@@ -1,6 +1,6 @@
 # P37 double-index receiver yields a strong local `LUCK` plaintext candidate
 
-**Agent43, 19 November 2026. Classification: strong local plaintext candidate under the authenticated zero-based source-number convention.** Signed word37 selects physical p37; applying the same number once more to the printed-word ordinal selects a four-rune receiver whose untouched H shell is unique manuscript-wide. A complete direct-DH-state key-shell family then has one hit, `LUCK`. The remaining caveat is that using the signed number twice, first as page and then as printed-word ordinal, was recognized in this investigation rather than supplied by a separate explicit instruction.
+**Agent43 with Agent30 helper-page extension, 19 November 2026. Classification: strong source-constrained local plaintext candidate under the authenticated zero-based source-number convention.** Signed word37 selects physical p37; applying the same number once more to the printed-word ordinal selects a four-rune receiver whose untouched H shell is unique manuscript-wide. A complete direct-DH-state key-shell family has one hit, `LUCK`. Agent30 then found that `GP0(LUCK)=31` uniquely selects p31, whose independently fixed line-pair geometry supplies the exact `[B,0,K,g]` shell under a 432-case permutation/sign/target charge. The remaining caveat is the double use of source index37 to choose both page and local word.
 
 ## Result
 
@@ -148,6 +148,43 @@ The inverse replays exactly:
 =
 LUCK.
 ```
+
+## GP0(LUCK)=31 selects p31 as a helper page
+
+The authenticated target supplies a helper-page pointer independently of the p37 key:
+
+```text
+GP0(LUCK) = 20 + 1 + 5 + 5 = 31.
+```
+
+Across all 43 authenticated source words, `LUCK` is the **only** word with GP0=31. Thus the source-assigned target selects project p31 without using p37 ciphertext.
+
+P31 has independently fixed one original-layout packet in the `SEEK AND` route. Its top printed line0 has `5` visible chunks and `23` runes. Printed line6, immediately below the selected p31 AND receiver line, has `5` chunks and `21` runes. The pair therefore exposes:
+
+```text
+shared chunk count = 5 = g
+chunk-count difference = 0
+lower-to-upper rune rise = 23 - 21 = 2 = K.
+```
+
+Together with the already authenticated source state `B=19`, these are exactly the four values in the p37 key shell:
+
+```text
+[B,0,K,g] = [19,0,2,5].
+```
+
+This helper tuple is fixed independently of the p37 receiver values. The ordering was recognized after the LUCK inverse, so charge every possible ordering. The four values are distinct: 24 permutations × 2 signs × 9 authenticated four-GP-rune targets = **432 configurations**.
+
+Exactly one configuration produces any authenticated target:
+
+```text
+shell  [B,0,K,g] = [19,0,2,5]
+key    [12,1,1,22]
+sign   subtraction
+target LUCK.
+```
+
+So the independently selected p31 helper page reproduces the exact p37 key shell, and the successful coordinate order is the sole lexical member of the complete permutation family. This strengthens the local LUCK recovery substantially. The remaining route caveat is the double use of source index37 to choose p37 and its local word37.
 
 ## Complete direct-state key-shell charge
 
