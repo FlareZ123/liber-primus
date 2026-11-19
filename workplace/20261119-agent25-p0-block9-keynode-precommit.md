@@ -33,3 +33,17 @@ Only the source node is predicted. No plaintext, center transform, key rotation,
 ## Gate
 
 A positive requires exact node identity and coordinates. Any other source node rejects this transition hypothesis. No larger-radius or value-equivalent rescue is allowed.
+
+## Outcome after opening block9
+
+**PASS.** The published block9 key-generating node is exactly:
+
+```text
+J (15,20) - D (17,18) - J (19,16)
+```
+
+with center `(17,18)`, radius2, and raw indices `[11,23,11]`, exactly the sealed prediction.
+
+The published derivation transforms the center by `phi(23)=22`, yielding `J-OE-J`; no part of that transform or the candidate plaintext `OF` was used to select the node.
+
+This is a prospective source-geometry hit. It authenticates one transition component only; the block9 ciphertext start, direction, length, and plaintext were not predicted by this gate.
