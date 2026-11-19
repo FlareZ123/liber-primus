@@ -73,6 +73,26 @@ function parseArquivo(body) {
 }
 
 /**
+ * Parse Internet Archive CDX JSON rows into record objects.
+ * @param {string} body
+ * @returns {Array<Record<string, unknown>>}
+ */
+function parseWayback(body) {
+  const trimmed = body.trim();
+  if (!trimmed) return [];
+  try {
+    const rows = JSON.parse(trimmed);
+    if (!Array.isArray(rows) || rows.length < 2 || !Array.isArray(rows[0])) return [];
+    const header = rows[0];
+    return rows.slice(1).filter(Array.isArray).map(row =>
+      Object.fromEntries(header.map((key, index) => [key, row[index]]))
+    );
+  } catch {
+    return [];
+  }
+}
+
+/**
  * @param {Record<string, unknown>} record
  * @returns {Record<string, unknown>}
  */
@@ -91,7 +111,7 @@ function compactRecord(record) {
 /**
  * @param {{label:string,url:string,from:string,to:string,matchType?:string}} item
  */
-async function runQuery(item) {
+async function runArquivoQuery(item) {
   const endpoint = new URL('https://arquivo.pt/wayback/cdx');
   endpoint.searchParams.set('url', item.url);
   endpoint.searchParams.set('from', item.from);
@@ -119,12 +139,54 @@ async function runQuery(item) {
   }));
 }
 
+/**
+ * @param {{label:string,url:string,from:string,to:string,matchType?:string}} item
+ */
+async function runWaybackQuery(item) {
+  const endpoint = new URL('https://web.archive.org/cdx/search/cdx');
+  endpoint.searchParams.set('url', item.url);
+  endpoint.searchParams.set('from', item.from);
+  endpoint.searchParams.set('to', item.to);
+  endpoint.searchParams.set('output', 'json');
+  endpoint.searchParams.set('fl', 'timestamp,original,statuscode,mimetype,digest');
+  endpoint.searchParams.set('filter', 'statuscode:200');
+  endpoint.searchParams.set('collapse', 'digest');
+  endpoint.searchParams.set('limit', '1000');
+  if (item.matchType) endpoint.searchParams.set('matchType', item.matchType);
+
+  const response = await fetchText(endpoint.href);
+  const rows = response.body ? parseWayback(response.body) : [];
+  const records = rows.map(row => ({
+    timestamp: row.timestamp,
+    url: row.original,
+    status: row.statuscode,
+    mime: row.mimetype,
+    digest: row.digest
+  }));
+  const timestamps = records.map(record => String(record.timestamp ?? '')).filter(Boolean).sort();
+
+  console.log(JSON.stringify({
+    provider: 'wayback',
+    label: item.label,
+    query: item,
+    httpStatus: response.status,
+    error: response.error,
+    bodyPrefix: response.status === 200 ? undefined : response.body?.slice(0, 160),
+    recordCount: records.length,
+    firstTimestamp: timestamps[0] ?? null,
+    lastTimestamp: timestamps[timestamps.length - 1] ?? null,
+    sample: records.slice(0, 25).map(compactRecord)
+  }));
+}
+
 function selfTest() {
   if (queries.length !== 20) throw new Error('Unexpected query count');
   if (!queries.some(item => item.label === 'control-publico')) throw new Error('Positive control missing');
   if (parseArquivo('{"status":"200"}').length !== 1) throw new Error('Object parse failed');
   if (parseArquivo('[{"status":"200"}]').length !== 1) throw new Error('Array parse failed');
   if (parseArquivo('{"status":"200"}\n{"status":"404"}').length !== 2) throw new Error('NDJSON parse failed');
+  const wayback = parseWayback('[["timestamp","original"],["20140101000000","http://example.com/"]]');
+  if (wayback.length !== 1 || wayback[0].original !== 'http://example.com/') throw new Error('Wayback parse failed');
   console.log('PASS Ahmia/Tor2web archive probe self-test');
 }
 
@@ -135,7 +197,8 @@ function selfTest() {
   }
 
   console.log('ahmia-2014-archive-probe ' + new Date().toISOString());
-  for (const item of queries) await runQuery(item);
+  for (const item of queries) await runArquivoQuery(item);
+  for (const item of queries) await runWaybackQuery(item);
 })().catch(error => {
   console.error(error);
   process.exitCode = 1;
