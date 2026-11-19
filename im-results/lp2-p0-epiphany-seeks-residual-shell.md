@@ -186,6 +186,14 @@ with independently reconstructed `p=23`.
 
 Charge every authenticated signed-source phrase that exactly fits the physical 8+5 shape, under both additive signs. There are16 sign/candidate cases. **EPIPHANY SEEKS under `G-P` is the sole case** satisfying the shared2 condition on both words, and independently the sole case whose bridge prime sum leaves the square deficit22.
 
+A broader lexical holdout unions the authenticated 2016 vocabulary with every unique source-native word in the pinned solved Cicada corpus. This yields **295 unique words**, including18 eight-rune and38 five-rune forms. Across all **1,368** ordered 8+5/sign cases, requiring both wordwise shared2 closures and the prime-square deficit22 again leaves exactly one result:
+
+```
+G-P : EPIPHANY SEEKS
+```
+
+Both words come from the authenticated 2016 source.
+
 This is a substantive reconciliation: the newer authenticated-source candidate is selected by state invariants relative to the older source-geometry output rather than merely competing with it. It still does not define the rune-level inverse from original ciphertext to final plaintext.
 
 For completeness, applying the same forward additive comparison directly between the original p0 ciphertext and the older `SECUENDI RATIO` sequence gives:
