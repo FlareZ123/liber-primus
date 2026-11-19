@@ -344,7 +344,7 @@ console.log(JSON.stringify({
   },
   boundedNegatives: {
     runeLevelMirroredH: spell(runeH),
-    nestedDivinityMetricHits,
+    nestedDivinityMetricHits: nestedMetricHits,
   },
   classification:
     "source-constrained word-level state/instruction bridge; no unknown plaintext recovered",
