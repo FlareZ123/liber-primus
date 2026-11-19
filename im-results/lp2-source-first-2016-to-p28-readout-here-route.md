@@ -172,7 +172,17 @@ so the cube opcode is first-party source structure rather than a p28 output fit.
 
 P57's literal circumference grammar compresses the already fixed p28 source object but does not uniquely authenticate the word action count. The center singleton has one nonempty layer; the adjacent five-rune word has two circumference-removal actions and three nonempty layers. Those conventions yield competing source-typed word exponents `3^2 mod28=9` and `3^3 mod28=27`. Agent27's independent p39 circumference holdout favors literal removal-count semantics, so p57 must not be used as the selector for exponent27.
 
-The winning `(3,27)` raw output remains selected independently by the language-free external p50 relation charged below, while Agent31's authenticated source cycle fixes the cube operator class and exponent3. Applying that selected pair gives the raw output:
+The winning `(3,27)` raw output remains selected independently by the language-free external p50 relation charged below, while Agent31's authenticated source cycle fixes the cube operator class and exponent3.
+
+Agent45's independently frozen circumference route supplies the same ordered pair from a different manuscript location. P53's unique terminal red span has `GP0(MUST)=51`; its first two red runes give `H=[e,0]`, and one literal shed leaves **27 = -K mod29** runes. The source-selected p57→p50→p33→p39→p3→p53 chain therefore exposes:
+
+```text
+[e,-K] = [3,27]
+```
+
+before p28 language is consulted. P53 then points to p27, whose held-out red title independently re-registers the DH state, including `H(first2)=[a,e]`.
+
+Applying that externally repeated pair gives the raw p28 output:
 
 ```text
 [4,28,23] | [3,1,16]
@@ -300,7 +310,7 @@ solved p57 circumference route
  -> same p50 route back to p28
 ```
 
-The strongest remaining premise is the p28-specific two-part schedule: why the source-selected cube map should act separately on this exact center singleton and adjacent five-rune word with the selected `(3,27)` pair. The source fixes exponent3 and modulus29, p57 supplies circumference/object grammar but its independent holdout favors the competing removal-count exponent9, p28 supplies the literal DH marker and unique center-plus-word geometry, and the external numeric selector chooses the `(3,27)` raw output before language.
+The strongest remaining premise is the p28-specific two-part application: why the source-selected cube map and independently repeated `[e,-K]=[3,27]` packet should be assigned respectively to this exact center singleton and adjacent five-rune word. The source fixes exponent3 and modulus29, p57 supplies circumference/object grammar but its independent holdout favors the competing removal-count exponent9, p28 supplies the literal DH marker and unique center-plus-word geometry, and the external numeric selector chooses the `(3,27)` raw output before language.
 
 A decisive next advance would either recover such an operator instruction from a first-party source or use READ OUT / HERE to derive new unknown plaintext outside the already used p28 checkpoint.
 
