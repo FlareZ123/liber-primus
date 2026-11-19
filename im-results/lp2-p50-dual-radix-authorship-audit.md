@@ -37,8 +37,8 @@ Those lengths match the prospectively sealed source successors AND / THEIR.
 Across all 256 tokens, both origins, and all unknown rune pages, simultaneous base59/base60 readings land on consecutive word boundaries often:
 
 ```text
-consecutive-start events = 48
-consecutive-end events   = 47
+consecutive-start events = 670
+consecutive-end events   = 645
 ```
 
 These counts include repeated p50 token values at different cells because the Director test charges the exact token tape.
