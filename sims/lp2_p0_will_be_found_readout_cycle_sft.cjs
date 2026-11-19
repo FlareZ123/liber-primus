@@ -156,6 +156,52 @@ assert.equal(message.length, 43);
 // full tuple so the SFT states exactly which upstream object is frozen.
 const dh = { p: 23, g: 5, a: 6, b: 15, A: 8, B: 19, K: 2 };
 
+// Charge the hop count against every DH field before specializing to K.
+// Across all seven field values, both radices, and all signed adjacencies,
+// only K=2 under base60 connects one authenticated word to its successor.
+const stateHopHits = [];
+for (const [field, steps] of Object.entries(dh)) {
+  for (const [radix, alphabet] of [
+    ["base60", alphabet60],
+    ["base59", alphabet59],
+  ]) {
+    for (let index = 0; index < message.length - 1; index += 1) {
+      let value = gp0(message[index]);
+      let valid = true;
+      for (let step = 0; step < steps; step += 1) {
+        if (value < 0 || value >= tableTokens.length) {
+          valid = false;
+          break;
+        }
+        value = decodeToken(tableTokens[value], alphabet);
+        if (value === null) {
+          valid = false;
+          break;
+        }
+      }
+      if (valid && value === gp0(message[index + 1])) {
+        stateHopHits.push({
+          field,
+          steps,
+          radix,
+          index,
+          from: message[index].toLowerCase(),
+          to: message[index + 1].toLowerCase(),
+        });
+      }
+    }
+  }
+}
+
+assert.deepEqual(stateHopHits, [{
+  field: "K",
+  steps: 2,
+  radix: "base60",
+  index: 33,
+  from: "will",
+  to: "be",
+}]);
+
 // Charge every authenticated adjacent triple under both source-supported
 // p50 radices. K=2 fixes the walk depth before reading any p0 ciphertext.
 // The first intermediate table value is treated only as a rune direction:
@@ -279,7 +325,7 @@ for (const value of stateValues) assert.ok(readoutPacket.includes(value));
 console.log(JSON.stringify({
   status: "PASS: WILL -> BE -> FOUND uniquely selects p0 117..121 and returns to READ OUT/DH",
   frozenDh: dh,
-  tripleFamily: {
+  stateHopFamily: { fields: Object.keys(dh), radices: ["base60", "base59"], hits: stateHopHits },\n  tripleFamily: {
     authenticatedTriples: message.length - 2,
     radices: ["base60", "base59"],
     hits: tripleHits,
