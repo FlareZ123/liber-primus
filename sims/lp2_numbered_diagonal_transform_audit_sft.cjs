@@ -27,7 +27,7 @@ function mod29(value) {
  * @param {number[]} values
  * @returns {number[]}
  */
-function H(values) {
+function Hsplit(values) {
   const differences = [];
   const sums = [];
   let left = 0;
@@ -43,6 +43,29 @@ function H(values) {
     ...(left === right ? [values[left]] : []),
     ...sums.reverse(),
   ];
+}
+
+/**
+ * Pair-interleaved outside-in H serialization used by the numbered-route
+ * DIRECTION and OPENPGP43 scripts: each pair emits difference then sum, and an
+ * odd center is appended last.
+ * @param {number[]} values
+ * @returns {number[]}
+ */
+function Hpair(values) {
+  const out = [];
+  let left = 0;
+  let right = values.length - 1;
+  while (left < right) {
+    out.push(
+      mod29(values[left] - values[right]),
+      mod29(values[left] + values[right])
+    );
+    left += 1;
+    right -= 1;
+  }
+  if (left === right) out.push(values[left]);
+  return out;
 }
 
 const parts = transcription.split(/^\s*%\s*$/m);
@@ -169,7 +192,8 @@ for (const row of diagonal) {
   if (!row.object) continue;
   for (const [transform, values] of [
     ["raw", row.object.values],
-    ["H", H(row.object.values)],
+    ["Hpair", Hpair(row.object.values)],
+    ["Hsplit", Hsplit(row.object.values)],
   ]) {
     for (const origin of [0, 1]) {
       const lexical = lexicalize(values, origin);
@@ -202,7 +226,7 @@ const tailRows = rows.filter((row) => row.sourceIndex >= 28);
 // Predeclared controls from current synthesis.
 const p24 = rows.find((row) =>
   row.sourceIndex === 24
-  && row.transform === "H"
+  && row.transform === "Hpair"
   && row.origin === 0
 );
 assert.ok(p24);
@@ -216,7 +240,7 @@ assert.deepEqual(p24.contiguous, {
 
 const p42 = rows.find((row) =>
   row.sourceIndex === 42
-  && row.transform === "H"
+  && row.transform === "Hpair"
   && row.origin === 0
 );
 assert.ok(p42);
@@ -232,12 +256,37 @@ assert.deepEqual(p42.contiguous, {
 // beyond the two fixed transforms. This is the main neighboring control for
 // the missing YOU33 coordinate.
 const will34 = rows.filter((row) => row.sourceIndex === 33);
-assert.equal(will34.length, 4);
+assert.equal(will34.length, 6);
+
+const direction30Pair = rows.find((row) =>
+  row.sourceIndex === 29
+  && row.transform === "Hpair"
+  && row.origin === 0
+);
+const direction30Split = rows.find((row) =>
+  row.sourceIndex === 29
+  && row.transform === "Hsplit"
+  && row.origin === 0
+);
+assert.ok(direction30Pair);
+assert.ok(direction30Split);
+assert.deepEqual(direction30Pair.values, [22, 0, 15, 8]);
+assert.deepEqual(direction30Split.values, [22, 8, 15, 0]);
+assert.notDeepEqual(direction30Pair.values, direction30Split.values);
+
+const p42Split = rows.find((row) =>
+  row.sourceIndex === 42
+  && row.transform === "Hsplit"
+  && row.origin === 0
+);
+assert.ok(p42Split);
+assert.deepEqual(p42Split.values, [2, 0, 1]);
+assert.equal(p42Split.contiguous, null);
 
 console.log(JSON.stringify({
   status: "PASS",
   scope: {
-    transforms: ["raw", "canonical H"],
+    transforms: ["raw", "Hpair (pair-interleaved)", "Hsplit (differences/center/sums)"],
     origins: [0, 1],
     diagonalObjects: diagonal.filter((row) => row.object).length,
     missing: diagonal.filter((row) => !row.object).map((row) => ({
