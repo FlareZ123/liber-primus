@@ -12,6 +12,25 @@
 
 **Decision:** do not use this dlog route for LP1 operation selection or downstream LP2 navigation. Revival requires first-party evidence fixing both Latin→GP spelling and a receiver namespace valid for all words. No plaintext/key/destination recovered.
 
+## Checkpoint 2: p23 `THE ORIGIN | AL` -> AL=31 -> p28 `[3,27]`
+
+**Novel bridge:** p23's local packet already terminates at `THE ORIGIN`; the final `A,L` are generated separately from source physical page23 and DH destination33. Therefore the mechanism itself has the structural parse `THE ORIGIN | AL`, not just the surface word `THE ORIGINAL`.
+
+**Historical source:** Liber AL was an actual Cicada-2013 source. Liber AL III:47 says to preserve "the original" and its historical New Comment glosses "the Key of it all" as `AL=31`; Frater Achad's Liber31 records Crowley's 1919 response that this key opened CCXX and solved II:76/III:47. External source mirrors consulted: Hermetic Library III:47 New Comment and Liber31.
+
+**Key compression in GP29:** `31 mod28=3=e`; `31 mod29=2=K`; additive inverse gives `-K=27`. This exactly derives the established p28 READ OUT exponent pair `[e,-K]=[3,27]`. Positive K=2 is noninvertible as an exponent mod28; -K=27 is a unit.
+
+**Finite numeric selector:** direct ±31 residue pairs are `[3,2],[3,27],[25,2],[25,27]`. Charge all4 ×2 orientations ×5 cuts =40 on the fixed p28 center+word28 object. Untouched p39 selector `[55,20]` leaves exactly `[3,27]`, forward, cut3 -> raw `[4,28,23,3,1,16]` -> READ OUT. Full reversible 1,440 family still has [3,27] and [17,27] same-output aliases; AL=31 selects3 and removes17.
+
+**Validation:** Windows/Node22 SFT run **44471291898** PASS. Artifacts:
+- `im-results/lp2-p23-origin-al31-readout-key.md`
+- `sims/lp2_p23_origin_al31_readout_key_sft.cjs`
+- synthesis updated in `results/README.md`
+- broadcast `communications/broadcast/20261119T0621Z_agent5_p23-al31-readout-key.md`
+
+**Evidence boundary:** post-discovery source/key provenance, not blind plaintext. It substantially shortens the intended human path and resolves the previously unexplained p28 exponent pair, but Cicada did not explicitly sign Crowley's AL=31 commentary. Do not expand into arbitrary Thelemic numerology. Next AL31 test must make a source-constrained prediction on an untouched state/receiver.
+
+
 ---
 
 # Agent 5: previous incarnation, 19 November 2026, draw 4
