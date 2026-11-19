@@ -47,6 +47,16 @@ The pair 10/13 is not globally unique among red punctuation transitions, so the 
 
 Thus the independently NEXT-selected passage6 is the **only source-shaped 10/13 interval** that simultaneously reproduces `B=19` at rune6 and `[a,p−1]=[6,22]` at word6.
 
+A second matched control uses only interval length and the first physical page break. Among the same six intervals, passage6 alone:
+
+- has rune length divisible by23: **161 = 7×23**;
+- has exactly **8** complete interval words before the first page break;
+- resumes with the two-rune word **SW=[15,7]**;
+- satisfies `H(SW)=[8,22]`;
+- uses the length quotient **7** as SW's second raw rune.
+
+The other five comparable intervals have lengths 746, 2474, 534, 40, and40, none divisible by23, and none matches the page-break signature.
+
 ### The selected sixth word
 
 Passage6 complete word6 is:
@@ -130,7 +140,7 @@ This is materially stronger than noticing isolated DH numbers in ciphertext. The
 - first rune of first p39 continuation word → `b=15`;
 - ordinary DH computation → `K=2`.
 
-The strongest remaining rival is deliberate-looking coincidence in a structure found after DH23 was already known. The discriminating feature is the density of mutually consistent, source-fixed coordinates in one independently selected passage. The first matched familywise audit now shows that the joint sixth-rune/sixth-word signature is unique among all six comparable consecutive 10/13 red-boundary intervals. A broader independent audit of passage-selection rules and page-break features is still appropriate before promoting this to an established cipher instruction.
+The strongest remaining rival is deliberate-looking coincidence in a structure found after DH23 was already known. The discriminating feature is the density of mutually consistent, source-fixed coordinates in one independently selected passage. The matched familywise audit now shows two independent unique signatures among all six comparable consecutive 10/13 red-boundary intervals: the sixth-rune/sixth-word DH readout and the 23-divisible length/page-break continuation. A broader independent audit of the upstream `NEXT→6` passage-selection rule is still appropriate before promoting this to an established cipher instruction.
 
 ## Reproduction
 
