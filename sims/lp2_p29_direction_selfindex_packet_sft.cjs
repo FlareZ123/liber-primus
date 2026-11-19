@@ -49,39 +49,64 @@ function inverse(value, modulus) {
 }
 
 /**
- * Canonical LP2 word parser. A printed line wrap "/" is not a word boundary.
- *
- * @param {string} text
+ * Canonical unknown-word parser. Printed line wraps and physical page breaks
+ * may continue a word. Retain only words wholly contained on one unknown page.
  */
-function parseCanonical(text) {
-  const words = [];
-  let values = [];
-  let start = 0;
-  let offset = 0;
+const unknownSegments = parts.slice(0, 55);
+const canonicalPages = unknownSegments.map((text, segment) => ({
+  page: segment >= 50 ? segment + 1 : segment,
+  words: [],
+  offset: 0,
+}));
+let currentWord = [];
+let startSegment = 0;
+let endSegment = 0;
+let startOffset = 0;
 
-  function flush() {
-    if (!values.length) return;
-    words.push({
-      ordinal: words.length + 1,
-      start,
-      end: offset - 1,
-      values: values.slice(),
+function flushCanonicalWord() {
+  if (!currentWord.length) return;
+  if (startSegment === endSegment) {
+    const page = canonicalPages[startSegment];
+    page.words.push({
+      index: page.words.length,
+      ordinal: page.words.length + 1,
+      start: startOffset,
+      end: startOffset + currentWord.length - 1,
+      values: currentWord.slice(),
     });
-    values = [];
   }
+  currentWord = [];
+}
 
-  for (const char of [...text]) {
+for (let segment = 0; segment < unknownSegments.length; segment += 1) {
+  for (const char of [...unknownSegments[segment]]) {
     const value = runeIndex.get(char);
     if (value !== undefined) {
-      if (!values.length) start = offset;
-      values.push(value);
-      offset += 1;
-    } else if ((char === "-" || char === ".") && values.length) {
-      flush();
+      if (!currentWord.length) {
+        startSegment = segment;
+        startOffset = canonicalPages[segment].offset;
+      }
+      endSegment = segment;
+      currentWord.push(value);
+      canonicalPages[segment].offset += 1;
+    } else if (char === "/" || /\s/u.test(char)) {
+      // Printed line/page wrap can continue a word.
+    } else {
+      flushCanonicalWord();
     }
   }
-  flush();
-  return words;
+}
+flushCanonicalWord();
+
+const canonicalWords = canonicalPages.flatMap((page) =>
+  page.words.map((word) => ({page: page.page, ...word}))
+);
+const wordsByPage = new Map(
+  canonicalPages.map((page) => [page.page, page.words])
+);
+
+function pageWords(page) {
+  return wordsByPage.get(page) || [];
 }
 
 /**
@@ -159,7 +184,7 @@ assert.deepEqual(directionSource, {
   word: "DIRECTION",
 });
 
-const p29Words = parseCanonical(parts[projectPage]);
+const p29Words = pageWords(projectPage);
 const directionObject = p29Words[directionSource.ordinal - 1];
 assert.ok(directionObject);
 assert.equal(directionObject.ordinal, 30);
@@ -196,9 +221,8 @@ assert.equal(byWord.get("PATH"), K);
 const numberedObjects = [];
 for (let page = 0; page <= 55; page += 1) {
   const physical = page + 1;
-  const word = parseCanonical(parts[page])[physical - 1];
+  const word = pageWords(page)[physical - 1];
   if (!word) continue;
-
   numberedObjects.push({
     page,
     physical,
@@ -208,8 +232,7 @@ for (let page = 0; page <= 55; page += 1) {
     h4: word.values.length === 4 ? H4(word.values) : null,
   });
 }
-
-assert.equal(numberedObjects.length, 49);
+assert.equal(numberedObjects.length, 48);
 const numberedFourRune = numberedObjects.filter((row) => row.h4);
 assert.equal(numberedFourRune.length, 7);
 const numberedZeroOuterSum = numberedFourRune.filter((row) => row.h4[3] === 0);
@@ -225,23 +248,19 @@ assert.deepEqual(
 );
 
 // Manuscript-wide exact packet control.
-let fourRuneWords = 0;
+const fourRuneWords = canonicalWords.filter((word) => word.values.length === 4);
 const exactPacketHits = [];
-for (let page = 0; page <= 55; page += 1) {
-  for (const word of parseCanonical(parts[page])) {
-    if (word.values.length !== 4) continue;
-    fourRuneWords += 1;
-    const h4 = H4(word.values);
-    if (h4.every((value, index) => value === packet[index])) {
-      exactPacketHits.push({
-        page,
-        ordinal: word.ordinal,
-        start: word.start,
-      });
-    }
+for (const word of fourRuneWords) {
+  const h4 = H4(word.values);
+  if (h4.every((value, index) => value === packet[index])) {
+    exactPacketHits.push({
+      page: word.page,
+      ordinal: word.ordinal,
+      start: word.start,
+    });
   }
 }
-assert.equal(fourRuneWords, 520);
+assert.equal(fourRuneWords.length, 509);
 assert.deepEqual(exactPacketHits, [{
   page: 29,
   ordinal: 30,
@@ -289,7 +308,7 @@ console.log(JSON.stringify({
     })),
   },
   manuscriptControl: {
-    fourRuneWords,
+    fourRuneWords: fourRuneWords.length,
     exactPacketHits,
   },
   derivative: {
