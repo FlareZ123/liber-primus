@@ -82,7 +82,18 @@ ROAD
  -> 19 = B
 ```
 
-The reflected result also reconnects to the already visible p50 state address `B=19`, whose table token is `0X`; no continuation from that fact is claimed here.
+The reflected result also reconnects to the already visible p50 state address `B=19`, whose table token is `0X`.
+
+That endpoint has one literal composition with the selected payload token:
+
+```text
+p50[B] + cell189 token = 0X + 3C = 0X3C
+0x3c = 60
+```
+
+The value **60** is exactly the length of the printed p50 digit alphabet. It is also the pre-SHED radix in the independently documented `WE MUST SHED` transition. No new numeral convention is introduced: `0X` is already an independently selected source object, while `3C` is the token ROAD itself selected.
+
+Across the same 18 target/origin cases, ROAD/one-based is the only case where the reflected token decodes identically under base59 and base60 to an endpoint whose table token is literal `0X`, while the original selected token is a two-hex-digit payload. It is therefore also the sole case yielding the table alphabet size by the composed literal hex object.
 
 ## Charged target family
 
@@ -99,7 +110,8 @@ Require the complete ROAD closure:
 1. selected cell is row p, column g;
 2. selected token is a drop-f-base59 self-pointer;
 3. horizontal reflection reaches row p, column K;
-4. reflected token decodes to B under both base59 and base60.
+4. reflected token decodes to B under both base59 and base60;
+5. the endpoint token `0X` plus selected payload token forms literal `0X3C=60`, the printed alphabet size.
 
 Exactly one of the18 cases passes:
 
@@ -107,11 +119,11 @@ Exactly one of the18 cases passes:
 ROAD / one-based
 ```
 
-The zero-based ROAD rival lands at cell190 `(p,a)` and fails the self-pointer/reflection-token conditions.
+The zero-based ROAD rival lands at cell190 `(p,a)` and fails the self-pointer/reflection-token conditions. Every other authenticated four-rune target/origin case also fails before the `0X3C=60` closure.
 
 ## Decision
 
-This substantially strengthens the interpretation of ROAD as the intended four-rune plaintext at the p0 receiver because its independently derived number executes a source-selected table operation and lands on a compact DH state record.
+This substantially strengthens the interpretation of ROAD as the intended four-rune plaintext at the p0 receiver because its independently derived number executes a source-selected table operation, lands on a compact DH state record, and deterministically reconstructs the p50 radix **60** from literal source tokens.
 
 The chronology remains retrospective. Promotion to established plaintext should still be tied to the full upstream THE/ROAD receiver/key evidence or to an untouched downstream consequence that recovers new plaintext.
 
@@ -120,3 +132,5 @@ The chronology remains retrospective. Promotion to established plaintext should 
 ```text
 node sims/lp2_road_p50_dh_reflection_closure_sft.cjs
 ```
+
+Windows Node22 PASS before the `0X3C=60` extension: GitHub Actions run `44440012251`. The extended SFT adds the same 18-case literal-hex closure control.
