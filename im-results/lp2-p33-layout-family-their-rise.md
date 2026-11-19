@@ -133,6 +133,31 @@ base60  = 198
 
 The prospective continuation therefore **fails**. The source loop remains useful evidence for the p33 checkpoint, while no next-page route is licensed from cell25.
 
+## P33 body-value gate: negative (Issue #1932, Agent43, 19 November 2026)
+
+The heading's literal **THEIR RISE** motivated one finite test of whether the two black-body rune streams themselves select a reversible value-changing operation. The pre-registered receiver used the original p33 image and ink boundaries:
+
+- upper heading `[0,10)`; upper black body `[10,91)`, 81 runes;
+- lower heading `[91,99)`; lower black body `[99,214)`, 115 runes;
+- original `resources/liber-primus/50.jpg` SHA-256: `13ff4c8d8ab934032a001b8c1fda16433aa44a38dd7272b3ff0dd7ac8300c62d`.
+
+The only operation tested was the fixed forward transform
+`H(lower,upper)=(lower-upper,lower+upper) mod 29`. The difference channel `D` was the sole plaintext candidate; the sum channel `S` was retained only as the reversible complement. Exactly three alignments were tested, with unmatched runes unchanged:
+
+| Frozen alignment | Paired runes | D score | D prefix (first 2/3) | D suffix (last 1/3) | S score |
+|---|---:|---:|---:|---:|---:|
+| Flat body index | 81 | -10.84269254 | -10.88123080 | -10.75944990 | -10.63922075 |
+| Same printed line/column | 80 | -10.76933828 | -10.83421324 | -10.62804196 | -10.65515028 |
+| Same canonical word/within-word position | 61 | **-10.70770185** | -10.80111179 | -10.62882077 | -10.68170303 |
+
+Raw p33 body scores were upper `-10.72488684` and lower `-10.77512924`. The GP29 trigram model used eight long solved sections; their score range was `[-7.78628801,-7.12420755]`. The held-out solved p56 section scored `-8.52727496`; p57 scored `-7.52209916` but is included in the training set and is not a holdout. Even the best p33 difference channel is 2.18 nats/rune worse than the held-out p56 control and remains far below native solved text. Its preview is non-linguistic. Every prefix and withheld suffix also fails the calibration.
+
+The matched two-section p3 control gave similarly poor D scores (`-10.85544698`, `-10.76426030`, `-10.75839829`); p15 has no upper body and therefore no paired positions. Exact H-inverse reconstruction passed for all three p33 alignments, but that is automatic for this bijective transform and is only an implementation check.
+
+**Disposition:** negative for all three frozen p33 body-value alignments. No p33 plaintext, key, or original-cipher decoder was recovered. Do not add signs, phases, offsets, permutations, alternative segmentations, or extra layers to this branch. The distinct count-only result remains: `115-81=34` selects signed/physical p34 BE; it does not decrypt p33's bodies.
+
+Reproduction: `sims/lp2_p33_their_rise_vertical_difference_gate_sft.cjs`; Windows Node 22 manual SFT [PASS 44629615577](https://github.com/FlareZ123/liber-primus/actions/runs/44629615577).
+
 ## Decision
 
 Director #1782 is positive for p33 as a state/checkpoint page and negative for the first prospective p50 continuation derived from `THEIR RISE`.
@@ -143,7 +168,7 @@ The evidence boundary is now sharper:
 - solved p56 independently serializes its two headings into `THEIR RISE`;
 - the phrase closes an exact signed-2016 numerical loop `19 -> 25`, with rise6=`a`;
 - the precommitted attempt to treat 25 as the next p50 page address fails;
-- p33's 81- and 115-rune bodies remain ciphertext, while their authored counts now have a licensed navigation consumer: `115-81=34` selects signed/physical p34 BE.
+- p33's 81- and 115-rune bodies remain ciphertext: Issue #1932 rejects the three frozen H body-value alignments, with no key or plaintext. Their authored counts still have a separate licensed navigation consumer: `115-81=34` selects signed/physical p34 BE.
 
 Do not reopen p33 H phases, repeating keys or the failed address25 page-pointer route without a new authored selector.
 

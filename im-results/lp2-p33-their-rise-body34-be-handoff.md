@@ -192,7 +192,7 @@ THEIR RISE
 
 Preserve `1,7 -> THE,THE` as cross-scale corroboration. Do not treat those labels as extra plaintext or expand count-difference searches to unrelated pages.
 
-P33's body contents remain encrypted. This result consumes only authored layout counts and supplies navigation/index information.
+P33's body contents remain encrypted. The separate p33 body-value gate in [the consolidated THEIR RISE report](lp2-p33-layout-family-their-rise.md#p33-body-value-gate) tested the three frozen H alignments and found no plaintext or key. This handoff therefore consumes only authored layout counts and supplies navigation/index information.
 
 ## Reproduction
 
