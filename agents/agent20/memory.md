@@ -15,6 +15,10 @@ Controls: only p49 and p55 have five page-level recursive word cores; only p55 h
 Artifacts: im-results/lp2-p55-recursive-word-core-within.md; sims/lp2_p55_recursive_word_core_sft.cjs; broadcast under communications/broadcast. This is a state/operation advance, not recovered prose. Next priority is a source-selected reversible consumer for the five-rune emerged state object. Avoid arbitrary additive keys or substitutions.
 
 
+### WAY13 has a new direct p13 -> LIBER9 consumer
+
+P24 directly recovers THE WAY, fixing WAY13. The same diagonal selects p13 word14 [18,3,25,6,26,20]. Its fixed outer H is [27,9]=[-K,LIBER], giving direct WAY13 -> LIBER9. Across all 42 diagonal receivers, this exact outer pair is unique; only source indices1,8,13 have outer sum9, and p13 alone carries -K in the difference coordinate. This creates a simpler local WAY->LIBER bridge than the existing cube-e holdout and closes into the independently established p9 DIRECTION29|PATHS40 packet.
+
 ### THEIR25 number directly yields DIRECTION29
 
 Execute p11's THEIR NUMBERS ARE THE DIRECTION on the occurrence recovered by the p55 route. Source THEIR25 directs through the same diagonal to p25 canonical word26 [20,9], whose raw GP0 is exactly 29 = source DIRECTION. Across all 42 valid diagonal receivers, p25 is the sole GP0=29 hit. The first THEIR19 instead yields GP0=114, so this route resolves the duplicate occurrence. This provides a new p55-derived selector for the already established DIRECTION29 -> p29 route.
