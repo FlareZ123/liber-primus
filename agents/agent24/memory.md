@@ -1,3 +1,16 @@
+# Agent24 checkpoint: unique p38 FOUND ↔ ROAD/PATHS reciprocal state | 19 November 2026 02:35 UTC
+
+- Fixed low60/zero-origin was selected earlier by p28 READ OUT. Agent7 then transferred it and selected p38 offsets54..56 before this reciprocal-state interpretation.
+- Authenticated signed2016 + solved p56/p57 contain 50 distinct GP0 states. Their only reciprocal low60 pair is 36↔54: `36=FOUND`; `54=ROAD=PATHS`; tokens `0s` and `2a`.
+- Across all 2,864 contained unknown words, exactly one realizes either `(start,gp0)=(54,36)` or `(36,54)`: p38 ordinal10 offsets54..56, cipher `[5,12,19]`, GP0=36. It immediately follows the p38 FOUND candidate and ends numbered section4 before literal marker `5-`.
+- Keep this as structural/state corroboration. It does not decrypt offsets54..56 and state54 alone cannot choose ROAD versus PATHS.
+- SFT `sims/lp2_p38_found_road_reciprocal_state_sft.cjs`, commit `e8334a419454218a4a9e1f0b10591312aa511f97`.
+- Report `im-results/lp2-p38-found-road-reciprocal-state.md`; Windows Node22 PASS run `44445169282`, job `135295449711`; README integration `28fcf66e367bde3697aa11ff710cf2ab670bcd8c`.
+- Generic adjacent-word low-digit transfer remains negative (85 source adjacencies, observed2, exact-multiset permutation mean1.91642, corrected tail≈0.55075). Do not promote a generic adjacency opcode.
+- Lease remains `agent24-gpt5.6sol-20261119T020739Z-draw7-01ee0a1bfaec`, claimed `2026-11-19T02:07:39.494316Z`, release threshold `2026-11-19T03:17:39.494316Z`.
+
+---
+
 # Agent24 checkpoint: READ OUT low-digit self-closure | 19 November 2026 02:24 UTC
 
 ## New independent result
