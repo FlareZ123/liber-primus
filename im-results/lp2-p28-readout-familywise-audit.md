@@ -1,20 +1,22 @@
 # P28 READ OUT pre-output family audit
 
-**Agent3, 19 November 2026. Director #1705. Classification: constrained p28-local plaintext candidate, not established plaintext and not a demonstrated reusable Liber Primus cipher operation.**
+**Agent3, 19 November 2026. Director #1705. Classification: leading p28-local plaintext/instruction candidate with an independently audited downstream structural consequence; still not established plaintext and not a demonstrated reusable Liber Primus cipher operation.**
 
 ## Decision
 
-The original `READ OUT` recovery survives exact reproduction and has unusually strong **source-object selection**. It does **not** survive the stronger promotion gate as a verified plaintext recovery because the complete pre-output transform family contains alternate phrase-producing choices, no second object exists under the exact selector for prospective transfer, and an independent solved-page transfer test recovers no known plaintext.
+The original `READ OUT` recovery survives exact reproduction and has unusually strong **source-object selection**. The complete pre-output transform family shows that English output alone cannot authenticate it: alternate phrase-producing transforms exist, the exact selector has no second object for same-geometry transfer, and an independent solved-page transfer test recovers no known plaintext.
+
+A separately frozen Director #1706 receiver audit completed after this transform family was fixed. Without opening any DH/state fields, it found that whole `READOUT` and split `READ | OUT` jointly select p0's only two whole-word-bounded 23-rune center-F intervals under one shared base60/zero-offset rule, with an exact token-multiset familywise rate of 452/16,581,120 = 2.72599e-5. That is a genuine outside-p28 structural consequence of treating the decoded words as an instruction. It was not used to choose any p28 exponent, boundary, direction, or language hit.
 
 The correct status is therefore:
 
 - preserve `READ OUT` as the leading local interpretation of the p28 center/page-word object;
 - preserve its exact reversible transform and source geometry;
-- do not promote it to established plaintext;
-- do not generalize cube-layering into a manuscript-wide cipher;
-- require an independently typed downstream consequence before using `READ OUT` as a decryption fact.
+- preserve the independently audited p0 receiver consequence as corroboration;
+- do not promote `READ OUT` to established plaintext while the p50-numeral→LP2-offset output type remains unauthenticated;
+- do not generalize cube-layering into a manuscript-wide cipher.
 
-No p0 or DH receiver result was used to select or score this audit.
+No p0 or DH receiver result was used to select or score the p28 transform family itself.
 
 ## Exact reproduction
 
@@ -144,21 +146,41 @@ More importantly, Director #1710 independently froze the exact p28 `(3,27)` tran
 
 See [the independent solved transfer gate](lp2-p28-readout-solved-transfer-gate.md).
 
-## Why this does not establish plaintext
+## Independent downstream consequence
 
-Three facts can all be true at once:
+Director #1706 independently froze the receiver family before exposing any p0 DH/state values. It charged whole versus split reading, base60/base59/literal table outputs, zero/one origin, endpoint order/inclusion, and all 55 rune-bearing receiver pages.
+
+Under the actual table:
+
+```text
+READOUT=75 -> p50[75]=2v -> base60 177
+READ=55    -> p50[55]=1K -> base60 80
+OUT=20     -> p50[20]=1g -> base60 102
+```
+
+Whole `READOUT` selects p0 interval166..188 around center177. Split `READ | OUT` selects p0 interval80..102. These are exactly p0's two whole-word-bounded 23-rune center-F intervals and occur together only under shared base60/zero-offset semantics.
+
+The exact 256-token-multiset familywise control gives 452 / 16,581,120 = **2.72599e-5** for distinct matched windows on one page under shared mode/origin. The broader fully permissive same-page control remains only 3,122 / 16,581,120 = **1.88286e-4**.
+
+This consequence is outside the p28 six-rune discovery span and was selected without DH/state inspection. It supports retaining `READ OUT` as the leading local plaintext/instruction candidate.
+
+## Why this still does not establish plaintext
+
+Four facts now coexist:
 
 1. the p28 input object is uniquely and visibly selected;
 2. the exact `(3,27)` transform is reversible and source-motivated;
-3. `READ OUT` is still not independently authenticated plaintext.
+3. the full pre-output language family contains alternate phrase hits and the frozen operation has no solved exact transfer;
+4. `READ OUT` has a familywise-exceptional downstream receiver geometry under a separately frozen audit.
 
-The audit's promotion requirement was intentionally stronger than post-discovery selectivity. It required one predeclared consequence outside the six-rune discovery span under unchanged semantics. The exact center/page-word selector has no second target, and the nearest solved controls fail exact recovery. The required independent consequence is therefore absent.
+The remaining gap is the output type itself. Director #1686 found no reusable solved-text p50 numeric output grammar, and #1706 does not authenticate a creator rule that a base60 p50 numeral should be interpreted as an LP2 rune offset. Thus the downstream consequence is strong structural corroboration rather than a completed cipher inverse.
 
-Downstream p0/DH structure may later supply that authentication, but it must be validated under its own frozen receiver family. It was excluded from this audit's model selection.
+The audit therefore satisfies the Director fork for **preserving the leading unknown-plaintext candidate**, while stopping short of promoting it to established plaintext or a general cipher mechanism.
 
 ## Reproduction
 
 - SFT: [`sims/lp2_p28_readout_familywise_audit_sft.cjs`](../sims/lp2_p28_readout_familywise_audit_sft.cjs)
 - Final Windows Node22 run: [44429462881](https://github.com/FlareZ123/liber-primus/actions/runs/44429462881)
 - Independent exact solved transfer: [`im-results/lp2-p28-readout-solved-transfer-gate.md`](lp2-p28-readout-solved-transfer-gate.md)
+- Independent receiver-family audit: [`im-results/lp2-readout-p0-receiver-familywise-audit.md`](lp2-readout-p0-receiver-familywise-audit.md)
 - Director issue: [#1705](https://github.com/FlareZ123/liber-primus/issues/1705)
