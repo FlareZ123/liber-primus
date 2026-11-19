@@ -141,14 +141,14 @@ Apply the already frozen residue rule to signed words5..8:
 | i | word | p50[i] | low60 | GP length | s_i |
 | ---: | --- | --- | ---: | ---: | ---: |
 | 5 | EPIPHANY | 3v | 57 | 8 | 15 = b |
-| 6 | SEEKS | 26 | 6 | 5 | 24 = p-1 |
+| 6 | SEEKS | 26 | 6 | 5 | 24 = p+1 |
 | 7 | THE | 33 | 3 | 2 | 23 = p |
 | 8 | DEVOTED | 1W | 32 | 7 | 17 = b+K |
 
 So the independently selected phrase becomes:
 
 ```
-[b, p-1, p, b+K]
+[b, p+1, p, b+K]
 = [15,24,23,17]
 ```
 
@@ -156,7 +156,7 @@ The same frozen H orientation gives an additional compact state packet:
 
 ```
 H(b,b+K)     = [-K,e]     = [27,3]
-H(p-1,p)     = [a-g,p-g]  = [1,18]
+H(p+1,p)     = [a-g,p-g]  = [1,18]
 
 H-shell = [-K,e,a-g,p-g]
         = [27,3,1,18]
