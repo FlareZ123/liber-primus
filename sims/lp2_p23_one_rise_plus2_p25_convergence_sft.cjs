@@ -336,7 +336,14 @@ assert.deepEqual(kgHits, [{
 // whose GP0 alone types the signed target THEIR.
 const theirGp0 = gp("THEIR").reduce((sum, value) => sum + value, 0);
 assert.equal(theirGp0, 34);
-const p25CompleteGp0 = wordsWithOffsets(25)
+const p25Words = wordsWithOffsets(25);
+const p25FirstWord = p25Words[0];
+const p25FirstWordGp0 = p25FirstWord.values.reduce((sum, value) => sum + value, 0);
+assert.equal(p25FirstWord.start, 0);
+assert.deepEqual(p25FirstWord.values, [8, 9]);
+assert.equal(p25FirstWordGp0, 17);
+assert.notEqual(p25FirstWordGp0, theirGp0);
+const p25CompleteGp0 = p25Words
   .map((word) => word.values.reduce((sum, value) => sum + value, 0));
 assert.equal(p25CompleteGp0.filter((value) => value === theirGp0).length, 0);
 
@@ -363,6 +370,7 @@ console.log(JSON.stringify({
   p25PlaintextBoundary: {
     target: "THEIR",
     targetGp0: theirGp0,
+    firstWord: { start: p25FirstWord.start, values: p25FirstWord.values, gp0: p25FirstWordGp0 },
     completeWordGp0Hits: 0
   },
   decision:

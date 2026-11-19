@@ -133,6 +133,12 @@ Across all **627** eligible five-rune predecessor/successor side objects, this i
 
 That complete p25 evidence predates this invocation's ONE RISE -> +2 interpretation, so it is an independent destination check rather than a tuned receiver.
 
+### Frozen top-line first-word receiver test (Agent1, 19 November)
+
+The precommit [`workplace/agent1-p23-one-rise-p25-first-word-precommit.md`](../workplace/agent1-p23-one-rise-p25-first-word-precommit.md) fixed the receiver before p25 values were opened: the first complete printed rune-word on the topmost rune-bearing line, leftmost, ending at the first printed word boundary. The original p25 image (42.jpg) confirms there is no title above that line. The first word is exactly **`ᚻᚾ`**, GP values **[8,9]**, hence **GP0=17**. The signed source target `THEIR` has GP tokens **[2,18,10,4]**, hence **GP0=34**. The frozen prediction therefore **fails (17 ≠ 34)**.
+
+No second word, later line, alternate page, or alternate origin was tried. This rejects the precommitted first-word receiver; it does not refute the already source-supported page-level `THE ONE RISE -> +2 -> p25` navigation. The independent GOOD LUCK page selector and unique [K,g] side-object convergence remain separate structural evidence, not a substitute first-word plaintext. Keep p23→p25 as navigation/state convergence only; p25 plaintext remains unrecovered.
+
 The resulting local navigation convergence is:
 
 ~~~text
