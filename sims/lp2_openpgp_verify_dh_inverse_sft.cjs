@@ -683,9 +683,18 @@ for (const row of message) {
   fourRuneTargets.get(row.gp.join(",")).push(row.word);
 }
 
+const falsePathStateFields = [
+  ["p", state.p],
+  ["g", state.g],
+  ["a", state.a],
+  ["b", state.b],
+  ["A", state.A],
+  ["B", state.B],
+  ["K", state.K],
+];
 let falsePathFamilyConfigs = 0;
 const falsePathFamilyHits = [];
-for (const [factorName, factor] of directStateFields) {
+for (const [factorName, factor] of falsePathStateFields) {
   for (const [productPublicName, productPublic] of [
     ["A", state.A],
     ["B", state.B],
