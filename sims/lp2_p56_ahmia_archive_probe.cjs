@@ -28,7 +28,9 @@ const queries = [
   { label: 'tor2web-abcd-fi', url: 'https://abcd.tor2web.fi/antanistaticmap/stats/yesterday', from: '2014', to: '2014' },
   { label: 'tor2web-abcd-org', url: 'https://abcd.tor2web.org/antanistaticmap/stats/yesterday', from: '2014', to: '2014' },
   { label: 'tor2web-abcd-onion-to', url: 'https://abcd.onion.to/antanistaticmap/stats/yesterday', from: '2014', to: '2014' },
-  { label: 'tor2web-abcd-blutmagie', url: 'https://abcd.tor2web.blutmagie.de/antanistaticmap/stats/yesterday', from: '2014', to: '2014' }
+  { label: 'tor2web-abcd-blutmagie', url: 'https://abcd.tor2web.blutmagie.de/antanistaticmap/stats/yesterday', from: '2014', to: '2014' },
+  // Source-fixed node recommended by Tor2web operator Giovanni Pellerano on 5 Jul 2014.
+  { label: 'tor2web-specific-ip-65-112-221-20', url: 'https://65.112.221.20/antanistaticmap/stats/yesterday', from: '2014', to: '2014' }
 ];
 
 /**
@@ -219,7 +221,7 @@ async function runReplay(item) {
 }
 
 function selfTest() {
-  if (queries.length !== 20) throw new Error('Unexpected query count');
+  if (queries.length !== 21) throw new Error('Unexpected query count');
   if (!queries.some(item => item.label === 'control-publico')) throw new Error('Positive control missing');
   if (parseArquivo('{"status":"200"}').length !== 1) throw new Error('Object parse failed');
   if (parseArquivo('[{"status":"200"}]').length !== 1) throw new Error('Array parse failed');
