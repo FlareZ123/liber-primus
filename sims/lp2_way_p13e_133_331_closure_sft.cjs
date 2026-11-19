@@ -20,7 +20,8 @@ const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
 const historicalHtml = read("resources/cicada2014-onion7-index.html");
 
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
-const parts = transcription.split(/^\s*%\s*$/m);\nparts.splice(50, 0, ""); // physical p50 is the non-rune numerical table
+const parts = transcription.split(/^\s*%\s*$/m);
+parts.splice(50, 0, ""); // physical p50 is the non-rune numerical table
 const M = 29;
 const mod29 = (value) => ((value % M) + M) % M;
 
