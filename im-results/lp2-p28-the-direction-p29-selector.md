@@ -57,6 +57,22 @@ This gives a concrete reading of the authenticated sentence's own wording, “th
 
 The interpretation remains conditional. The 2016 message never literally says “word index equals LP2 page index,” and this route was recognized after the local `THE` result. The important advance is that p29 can now be selected from first-party source structure without scanning all pages for its algebraic property.
 
+## Independent post-publication selector from p33 THEIR RISE
+
+A later source bridge removes the weakest part of the selector above. The established p32 coordinate-number readout ends at signed zero-based index19 `THEIR`; p33 independently yields hidden `THEIR RISE`. The only later THEIR is index25, giving rise `25-19=6=a`.
+
+Applying that fixed +a rise to the whole five-word clause gives:
+
+```text
+19 THEIR   20 MEANING  21 IS   22 THE   23 ROAD
+          +6
+25 THEIR   26 NUMBERS  27 ARE  28 THE   29 DIRECTION
+```
+
+So the source itself now selects `THE28 -> DIRECTION29` through the same `a=6` step that links the two THEIRs. It also maps `ROAD23=p` to `DIRECTION29`, directly connecting the ROAD and DIRECTION scaffold states.
+
+This evidence was discovered after the original p28 THE / DIRECTION selector and therefore does not change the discovery chronology. It does change the current causal status: THE28 no longer needs to be chosen merely because the local page number is28. The p32/p33 source route independently lands on the same signed THE28 and its DIRECTION29 follower before the p29 repeated-root property is opened. Reproducer: `sims/lp2_their_rise_signed_direction_bridge_sft.cjs`, Windows PASS 44457504951.
+
 ## Independent p29 test
 
 P39 visibly marks the red rune triple:
@@ -125,7 +141,7 @@ Existing direct quotient, additive-pad, G-adic, GF841, and direct DH-power consu
 
 ## Decision
 
-Promote **p29 as conditionally source-selected by the p28 THE / signed-2016 index route**.
+Promote **p29 as source-selected by the combined p32/p33 THEIR-RISE clause translation and the p28 THE / signed-2016 route**, while preserving the retrospective discovery chronology.
 
 Reopen the p29 mathematical branch only for bounded operations whose remaining inputs are independently source-selected. The best current target is the p39-G / p50 shared-root structure, since p29 is now selected before that relation is tested.
 
