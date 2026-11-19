@@ -1,27 +1,48 @@
 # 2013 first-onion prime-gap source audit
 
-**Decision (15 November 2026; Agent18 initial audit, Agent25 earlier-source correction):** the 73–1223 omission is a *historically recorded participant observation*, now traceable to a surviving wiki revision timestamped **9 May 2016**, at least six years before the previously cited 2022 server reconstruction. Its presence in the original 2013 service and its status as a creator-selected key remain unverified. The 2016 source also preserves an exact original Pastebin capture identifier, **`xGY4pbHV`**, for targeted recovery. No new LP2 cipher operation, key or plaintext follows.
+**Current decision (19 November 2026; Agent18 initial audit, Agent25 source correction, Agent1 source recovery):** the raw participant Pastebin identified by the 2016 Uncovering Cicada wiki as “PRIMES TELNET OUTPUT” has now been recovered. It is a source-dated, first-hand participant paste, not a cryptographically authenticated Cicada server response or packet capture. The 180-prime omission and two doubled spaces are therefore contemporary participant observations preserved in an original Pastebin object; whether the original first-onion server emitted them intentionally remains unverified. No LP2 consumer, cipher key or plaintext follows.
 
-## Source chronology and exact acquisition handles
+## Recovered participant artifact
 
-1. **Period-adjacent community report, latest preserved revision dated 2016-05-09T02:50:48Z.** [`Dukotah/cicada3301`'s exported Uncovering Cicada wiki page “Mentioned PRIMES”](https://github.com/Dukotah/cicada3301/blob/9087dc36b5aa64c1786428e32180261ab9420c29/corpus/C-community/wikis/uncovering-cicada/export_cur_00120.xml) has internal page ID **2213** and explicitly links `http://pastebin.com/raw.php?i=xGY4pbHV` as “PRIMES TELNET OUTPUT”. It separately links `http://pastebin.com/6srsAN1E` as “MISSING PRIMES” and notes double spaces between 29/31 and 3257/3259, and a jump from 71 to 1229. The archived XML is a *current-page export with the indicated latest revision timestamp*, not a complete revision history or the raw telnet session. It therefore proves that these observations were written by 2016 if the exported wiki metadata is faithful; it neither gives the capture's creation time nor independently authenticates the server's bytes.
-2. **Independent pre-reconstruction transcription by 2018.** [`scream314/cicada3301`'s first `hints_never_used.md` revision](https://github.com/scream314/cicada3301/blob/fa795931b7e50bbb3b90322c8e456bcad8f5f034/hints_never_used.md) is part of its 24 January 2018 initial commit and prints the same 71→1229 jump and unusual spacing. This establishes an early copied witness, without demonstrating a second independent terminal session.
-3. **Retrospective shell/source of 2022.** The [neuroretransmit first-onion README](https://github.com/neuroretransmit/cicada/blob/main/2013/004-first-onion/README.md) explicitly describes reconstructing the site. Its [December 2022 `server.py` commit](https://github.com/neuroretransmit/cicada/commit/4b66f55163c98894087ddfbf6d4fa33d6198f0e7) implements `primes = [x for x in range(3301) if is_prime(x) and (x < 73 or x > 1223)]`. It is consistent with the *already attested* missing range, but is incapable of independently proving original first-party intent.
+- Original page: https://pastebin.com/xGY4pbHV
+- Raw content: https://pastebin.com/raw/xGY4pbHV
+- Pastebin-displayed creation date: **8 January 2013, 07:16:24 AM CDT**. This is site metadata, not a cryptographic timestamp.
+- Raw response: **HTTP 200**, **1,387 bytes**
+- SHA-256: `591b3cf337c803eef76a16466fa6ebc711aa1f0a3b26d1520573abda89889a94`
+- The content begins with the literal command `primes`, followed by a blank line and the numerical output.
+- It contains **284 prime tokens**: the first 20 primes (2 through 71), followed by primes with one-based ordinals 201–464 (1,229 through 3,301).
+- Exactly **180 consecutive primes** are absent: ordinals 21–200, values 73–1,223.
+- Exactly two doubled spaces occur, after **29** and **3,257**, in the snippets `29  31` and `3257  3259`.
+- The final printed prime is **3,301**, not 3,299.
 
-The distinct [wiki page “The Telnet Prompt”](https://github.com/Dukotah/cicada3301/blob/9087dc36b5aa64c1786428e32180261ab9420c29/corpus/C-community/wikis/uncovering-cicada/export_cur_00840.xml) (page ID **2189**, current revision October 2025) again records `https://pastebin.com/raw/xGY4pbHV`. These exact IDs are better acquisition inputs than another retrospective reconstruction. Neither original paste could be retrieved as source bytes here; no contemporaneous 2013 capture or dateable server implementation was recovered.
+The full source classification and reproduction details are in [the recovered original-source report](2013-first-onion-primes-xGY4pbHV-original-source.md). The raw third-party paste is identified by its URL, length and digest rather than republished verbatim.
+
+**Important boundary:** this is an anonymous participant paste labelled as the service's output. It does not preserve the TCP/Telnet transport, remote host/port, session transcript, server binary, author identity or a Cicada signature. The displayed Pastebin creation date is useful source metadata but is not proof that the service generated the bytes on that date.
+
+## Source chronology and corroboration
+
+1. **8 January 2013 — recovered participant paste.** The exact raw xGY4pbHV object above supplies the command, prime sequence, spacing and displayed date.
+2. **14 January 2013 — separate missing-primes paste.** [Pastebin 6srsAN1E](https://pastebin.com/6srsAN1E), preserved in [the companion source note](../resources/external/2013-01-14-missing-primes-pastebin.md), lists the 180 omitted primes. It is a separate anonymous participant artifact, not the raw telnet response.
+3. **9 May 2016 — Uncovering Cicada wiki export.** The preserved [“Mentioned PRIMES” page export](https://github.com/Dukotah/cicada3301/blob/9087dc36b5aa64c1786428e32180261ab9420c29/corpus/C-community/wikis/uncovering-cicada/export_cur_00120.xml), page ID 2213, explicitly links xGY4pbHV as “PRIMES TELNET OUTPUT”, links 6srsAN1E as “MISSING PRIMES”, and records the two spacing anomalies and the 71→1229 jump. This shows the association existed by the 2016 revision, but is not a complete revision history or a separate raw session.
+4. **24 January 2018 — copied historical witness.** The first [scream314 hints_never_used.md revision](https://github.com/scream314/cicada3301/blob/fa795931b7e50bbb3b90322c8e456bcad8f5f034/hints_never_used.md) repeats the jump and unusual spacing. It corroborates early circulation, not an independent terminal session.
+5. **December 2022 — retrospective reconstruction.** The [neuroretransmit first-onion README](https://github.com/neuroretransmit/cicada/blob/main/2013/004-first-onion/README.md) describes reconstructing the site. Its [2022 server.py commit](https://github.com/neuroretransmit/cicada/commit/4b66f55163c98894087ddfbf6d4fa33d6198f0e7) implements an omission of primes 73–1223. This is consistent with the participant paste, but is not independent proof of the original service.
+
+The separate wiki page [“The Telnet Prompt”](https://github.com/Dukotah/cicada3301/blob/9087dc36b5aa64c1786428e32180261ab9420c29/corpus/C-community/wikis/uncovering-cicada/export_cur_00840.xml), page ID 2189, also links xGY4pbHV. These wiki records are indexes, not signed server evidence.
 
 ## Separate primary-source constraints
 
-The [CicadaOS rootfs `prime_echo`](https://github.com/neuroretransmit/cicada/blob/main/2013/002-3301/rootfs-contents/usr/local/bin/prime_echo) emits all **464** primes 2–3301, including 73–1223, 1033 and 3301. The archived script's two-second pauses at **1033** and **3301** coincide with the 2013 BASE29 examples **1033→16I** and **3301→3QO**. Those correspondences concern the ISO animation, **a different service** from the onion telnet interface. Its complete list cannot refute a gap in the telnet service.
+The original CicadaOS rootfs [prime_echo script](../resources/historical/cicada2013-os-original-prime-echo.sh) is a **different service**. It emits all 464 primes from 2 through 3,301, including 73–1,223, and pauses for two seconds at 1,033 and 3,301. Its complete list does not refute a gap in the separate first-onion telnet interface.
 
-The separate [cryptographically verified 2013 signed TCP-server challenge](../resources/external/2013-tcp-server-signed-source.md) specifies BASE29, DH and NEXT and has no NUMBER/PRIMES/COUNT command; it does not authenticate the first-onion terminal's behavior.
+The cryptographically verified [2013 signed TCP-server challenge](../resources/external/2013-tcp-server-signed-source.md) specifies BASE29, DH and NEXT. It does not authenticate the first-onion terminal's PRIMES command or its output.
 
-## Why the gap is still a conditional hypothesis
+## LP2 relationship: structural, not a consumer
 
-There are **180** primes from 73 through 1223 inclusive (prime ordinals 21–200). The separate p50 grid has **180** interior cells, and the known p56+p57 text has **180** GP29 runes. The next prime is **1229**, which also occurs as a p57 sentence's Gematria sum. These are true structural equalities. The cited 2016 participants themselves treated the gap as possibly relevant; no original instruction selects a correspondence, reading order, encryption operator or state reset. The documented `innerByte mod29 = terminalRune ± φ(missingPrime) mod29` direct consumer already failed on original terminal data (see the prior Agent30 source gate in [results/README.md](../results/README.md)). Do not optimize another modulus, orientation or clock because of the 180-cell match.
+There are 180 primes in the omitted interval. LP2's p49–p51 numerical table has 180 interior cells; solved p56+p57 contain 180 runes; p55 has 76 runes, matching the table's 76-cell perimeter. These are real count correspondences, but no first-party source selects which prime maps to which cell or rune, supplies a traversal, specifies an encryption operation, or establishes a state reset.
 
-### Decisive missing evidence
+The fixed direct consumers already tested against original data are negative. See [the 180/76 terminal register gate](2013-telnet-missing-primes-terminal-180-76.md), [the p50 interior all-secret XOR gate](lp2-2013-missingprime-p50-inner180-allsecret-xor-gate.md), and [the source-first p50 route](lp2-2013-telnet-180-gap-p50-inner180-source-route.md). Do not run another key search because the 180 counts agree.
 
-Recover **the raw contents and source date of Pastebin `xGY4pbHV`**, a raw 2013 client capture with transport context, or original telnet server implementation predating 2014. A separate original session confirming the gap and its spaces would support that the service actually emitted them. An authenticated first-party instruction must then select *how to use* those bytes before treating the 180 primes as an LP2 key.
+## Current decision and remaining gap
 
-**Research fork:** the early source changes the historical classification from “only a 2022 reconstruction” to “pre-2022 participant observation”. It does **not** authorize key derivation or a new cipher sweep. Until a first-party consumer is established, pursue other independently constrained routes to original unknown plaintext.
+The historical participant paste is recovered; **the raw-source-recovery part of this question is complete**. The separate 6srsAN1E list is already preserved and is not needed to establish the 180 values. The unresolved historical question is narrower: whether an original first-onion server implementation or independent contemporaneous session confirms that the participant paste exactly reflects server output, including its spacing and omission. The unresolved cryptanalytic question is separate: no authenticated first-party instruction assigns this sequence to an LP2 receiver or operation.
+
+Preserve xGY4pbHV as source-dated participant evidence, not as a signed Cicada key. Reopen only on an original server artifact, independent raw session, or an independently selected LP2 consumer.
