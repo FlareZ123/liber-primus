@@ -275,6 +275,174 @@ assert.deepEqual(
   ["PATH", "WAY", "ITS", "ARE", "MAP", "AND", "YOU"]
 );
 
+
+function isPrime(value) {
+  if (value < 2) return false;
+  for (let divisor = 2; divisor * divisor <= value; divisor += 1) {
+    if (value % divisor === 0) return false;
+  }
+  return true;
+}
+
+function nthPrime(ordinal) {
+  let count = 0;
+  for (let value = 2; ; value += 1) {
+    if (!isPrime(value)) continue;
+    count += 1;
+    if (count === ordinal) return value;
+  }
+}
+
+function p56T(value) {
+  assert.ok(Number.isInteger(value) && value > 0);
+  return mod29(nthPrime(value) - 1);
+}
+
+function H3Inverse(shell) {
+  assert.equal(shell.length, 3);
+  const [difference, center, sum] = shell;
+  const inverseTwo = 15; // 2^-1 mod29
+  return [
+    mod29((difference + sum) * inverseTwo),
+    center,
+    mod29((sum - difference) * inverseTwo),
+  ];
+}
+
+// Solved p56 positive controls used by the existing THEIR RISE serializer.
+assert.deepEqual([2, 8, 5, 3].map(p56T), gp("THEIR"));
+assert.deepEqual([3, 5, 27, 8].map(p56T), gp("RISE"));
+assert.equal(andRow.source.values.reduce((sum, value) => sum + value, 0), 56);
+
+// Original p31 layout. The selected receiver lies on printed line5. The
+// immediately following line6 and the top line0 both have five visible chunks.
+// Lower-to-upper serialization gives [5,21,23]=[g,-A,p].
+const p31PrintedLines = unknownSegments[31]
+  .split("\n")
+  .filter((line) => line.length)
+  .map((line, index) => {
+    const runeCount = [...line].filter((char) => runeIndex.has(char)).length;
+    const chunks = line
+      .split(/[-.\/\s]+/u)
+      .filter((chunk) => [...chunk].some((char) => runeIndex.has(char)));
+    return {index, runeCount, chunkCount: chunks.length};
+  });
+
+let runningOffset = 0;
+const p31LineRanges = p31PrintedLines.map((line) => {
+  const row = {
+    ...line,
+    start: runningOffset,
+    end: runningOffset + line.runeCount - 1,
+  };
+  runningOffset += line.runeCount;
+  return row;
+});
+const receiverLine = p31LineRanges.find((line) =>
+  andRow.object.start >= line.start && andRow.object.start <= line.end
+);
+assert.ok(receiverLine);
+assert.equal(receiverLine.index, 5);
+
+const topLine = p31LineRanges[0];
+const afterReceiverLine = p31LineRanges[receiverLine.index + 1];
+assert.deepEqual(
+  [topLine.chunkCount, topLine.runeCount],
+  [state.g, state.p]
+);
+assert.deepEqual(
+  [afterReceiverLine.chunkCount, afterReceiverLine.runeCount],
+  [state.g, mod29(-state.A)]
+);
+
+const helperPacket = [
+  afterReceiverLine.chunkCount,
+  afterReceiverLine.runeCount,
+  topLine.runeCount,
+];
+assert.deepEqual(helperPacket, [state.g, mod29(-state.A), state.p]);
+const helperShell = helperPacket.map(p56T);
+assert.deepEqual(helperShell, H(andKey));
+assert.deepEqual(helperShell, [
+  mod29(-state.B),
+  mod29(-state.b),
+  mod29(-state.g),
+]);
+assert.deepEqual(H3Inverse(helperShell), andKey);
+
+// Charge every unordered p31 printed-line pair with equal visible chunk count,
+// both rune-count orders, both signs, and every distinct authenticated
+// three-rune target. The source-selected layout construction is the sole hit.
+const helperLayoutHits = [];
+let helperLayoutPairs = 0;
+let helperLayoutConfigurations = 0;
+for (let upper = 0; upper < p31LineRanges.length; upper += 1) {
+  for (let lower = upper + 1; lower < p31LineRanges.length; lower += 1) {
+    const upperLine = p31LineRanges[upper];
+    const lowerLine = p31LineRanges[lower];
+    if (upperLine.chunkCount !== lowerLine.chunkCount) continue;
+    helperLayoutPairs += 1;
+
+    const orientations = [
+      {
+        name: "lower_to_upper",
+        packet: [
+          lowerLine.chunkCount,
+          lowerLine.runeCount,
+          upperLine.runeCount,
+        ],
+      },
+      {
+        name: "upper_to_lower",
+        packet: [
+          upperLine.chunkCount,
+          upperLine.runeCount,
+          lowerLine.runeCount,
+        ],
+      },
+    ];
+
+    for (const orientation of orientations) {
+      const shell = orientation.packet.map(p56T);
+      const key = H3Inverse(shell);
+      for (const sign of [-1, 1]) {
+        const output = andRow.object.values.map((value, index) =>
+          mod29(value + sign * key[index])
+        );
+        for (const target of threeRuneTargets) {
+          helperLayoutConfigurations += 1;
+          if (output.every((value, index) => value === target.values[index])) {
+            helperLayoutHits.push({
+              upper,
+              lower,
+              orientation: orientation.name,
+              packet: orientation.packet,
+              shell,
+              key,
+              sign,
+              target: target.word,
+              output,
+            });
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(helperLayoutPairs, 12);
+assert.equal(helperLayoutConfigurations, 336);
+assert.deepEqual(helperLayoutHits, [{
+  upper: 0,
+  lower: 6,
+  orientation: "lower_to_upper",
+  packet: [5, 21, 23],
+  shell: [10, 14, 24],
+  key: [17, 14, 7],
+  sign: -1,
+  target: "AND",
+  output: [24, 9, 23],
+}]);
+
 const fixedKeyHits = [];
 for (const word of threeRuneWords) {
   for (const target of threeRuneTargets) {
@@ -365,6 +533,18 @@ console.log(JSON.stringify({
     signedHits: lengthCompatible
       .filter((row) => row.allSigned)
       .map((row) => row.word),
+  },
+  helperPage56Layout: {
+    targetGp0: 56,
+    receiverLine: receiverLine.index,
+    topLine,
+    afterReceiverLine,
+    packet: helperPacket,
+    shell: helperShell,
+    key: H3Inverse(helperShell),
+    chargedPairs: helperLayoutPairs,
+    configurations: helperLayoutConfigurations,
+    hits: helperLayoutHits,
   },
   fixedKeyTransfer: {
     threeRuneWords: threeRuneWords.length,
