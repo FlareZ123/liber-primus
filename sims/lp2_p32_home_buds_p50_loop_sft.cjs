@@ -323,6 +323,136 @@ const theFollowers = signedWords
 assert.deepEqual(theFollowers, ["PATH", "DEVOTED", "WAY", "MAP", "ROAD", "DIRECTION"]);
 assert.deepEqual(theFollowers.filter((word) => gp0(word) === 57), ["WAY"]);
 
+
+// Cross-route holdout: the independently selected p32 PARABLE/SURFACE path
+// uses GP-prime residues modulo B=19 from the final fragment at offset117.
+const parable = [
+  "LIKE","THE","INSTAR","TUNNELING","TO","THE","SURFACE",
+  "WE","MUST","SHED","OUR","OWN","CIRCUMFERENCES","FIND",
+  "THE","DIVINITY","WITHIN","AND","EMERGE",
+];
+const surfaceOffsets = [117,107,97,87];
+const surfaceResidues = surfaceOffsets.map((offset) => corpus.prime[p32.indices[offset]] % dh.B);
+assert.deepEqual(surfaceResidues, [2,3,4,5]);
+assert.deepEqual(surfaceResidues.map((value) => parable[value]), ["INSTAR","TUNNELING","TO","THE"]);
+assert.equal(dictionaryDiagonals[0].translatedX, surfaceOffsets[2]);
+assert.equal(corpus.translit[p32.indices[97]], "B");
+assert.equal(corpus.prime[p32.indices[97]], 61);
+assert.equal(corpus.prime[p32.indices[97]] % dh.B, 4);
+assert.equal(parable[4], "TO");
+
+const surfaceSet = new Set(surfaceOffsets);
+assert.deepEqual(
+  diagonalFamily.filter((row) => row.dictionary && surfaceSet.has(row.translatedX)),
+  dictionaryDiagonals
+);
+assert.deepEqual(
+  diagonalFamily.filter((row) => surfaceSet.has(row.translatedX)),
+  dictionaryDiagonals
+);
+
+// The HOME->BUDS destination is an 8-rune page-local fragment. Apply the
+// already fixed outer-pair H(x,y)=(x-y,x+y) mod29 shell to every 8-rune
+// fragment in unknown LP2 and charge only the pre-existing DH/cube vocabulary.
+/** @param {number} x @param {number} y @returns {[number,number]} */
+function H(x, y) {
+  return [((x - y) % 29 + 29) % 29, (x + y) % 29];
+}
+
+/** @param {string} raw @returns {number[][]} */
+function parseFragments(raw) {
+  const fragments = [];
+  let current = [];
+  const flush = () => {
+    if (current.length === 0) return;
+    fragments.push(current.slice());
+    current = [];
+  };
+  for (const char of raw) {
+    if (runeIndex.has(char)) current.push(runeIndex.get(char));
+    else if (char === "/" || /\s/u.test(char)) continue;
+    else flush();
+  }
+  flush();
+  return fragments;
+}
+
+/** @param {number[]} fragment @returns {number[]} */
+function outerHShell(fragment) {
+  assert.equal(fragment.length % 2, 0);
+  const out = [];
+  for (let layer = 0; layer < fragment.length / 2; layer += 1) {
+    out.push(...H(fragment[layer], fragment[fragment.length - 1 - layer]));
+  }
+  return out;
+}
+
+const e = 3;
+const q = gp0("EMPTY") / dh.p;
+assert.equal(q, 4);
+const stateVocabulary = new Set([
+  dh.p, dh.g, dh.a, dh.b, dh.A, dh.B, dh.K, e, q,
+  (29 - dh.K) % 29,
+  dh.g + dh.K,
+]);
+const eightRuneShells = [];
+for (let page = 0; page <= 55; page += 1) {
+  const fragments = parseFragments(pages[page]);
+  for (let fragment = 0; fragment < fragments.length; fragment += 1) {
+    const indices = fragments[fragment];
+    if (indices.length !== 8) continue;
+    const shell = outerHShell(indices);
+    eightRuneShells.push({
+      page,
+      fragment,
+      indices,
+      shell,
+      score: shell.filter((value) => stateVocabulary.has(value)).length,
+    });
+  }
+}
+assert.equal(eightRuneShells.length, 159);
+const perfectShells = eightRuneShells.filter((row) => row.score === 8);
+assert.deepEqual(perfectShells, [{
+  page:32,
+  fragment:15,
+  indices:[22,21,3,19,17,1,23,15],
+  shell:[7,8,27,15,2,4,2,7],
+  score:8,
+}]);
+const shellHistogram = Object.fromEntries(
+  Array.from({length:9}, (_, score) => [
+    String(score),
+    eightRuneShells.filter((row) => row.score === score).length,
+  ])
+);
+assert.deepEqual(shellHistogram, {
+  "0":2,"1":19,"2":31,"3":39,"4":31,"5":23,"6":10,"7":3,"8":1,
+});
+assert.deepEqual(perfectShells[0].shell, [
+  dh.g + dh.K,
+  dh.A,
+  (29 - dh.K) % 29,
+  dh.b,
+  dh.K,
+  q,
+  dh.K,
+  dh.g + dh.K,
+]);
+
+// The selected input itself has a compact fixed-state description. This is
+// recorded as structure, not used to select the fragment.
+assert.deepEqual(perfectShells[0].indices, [
+  dh.p - 1,
+  dh.p - dh.K,
+  e,
+  dh.B,
+  dh.B - dh.K,
+  1,
+  dh.p,
+  dh.b,
+]);
+
 console.log(JSON.stringify({
   status:"PASS",
   upstream:{route,emptyStep,selectedPage:32,selectedFragment:selectedFragment.text,selectedXOffset:37},

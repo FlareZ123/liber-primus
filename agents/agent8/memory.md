@@ -157,6 +157,8 @@ The 23-step route now supplies a second independently selected receiver for Agen
 - P32's complete eight-direction four-letter dictionary census contains only HOME and BUDS; `GP0(HOME)=48`, `GP0(BUDS)=56`.
 - The already frozen table-wide unique p50 composite is `57 --1w/west--> 56 --4E/N--> 48`, so it transfers unchanged as `WAY -> BUDS -> HOME` on the independently selected p32 receiver. `p50[48]=4D` is ASCII M and does not continue the frozen hex-cardinal parser.
 - Signed GP0=57 aliases WAY/WILL exist, while WAY is the sole value57 member of the fixed THE-follower scaffold.
+- The carried X lands at offset97, exactly the TO cell of the separately fixed PARABLE/SURFACE path [117,107,97,87]; no other charged DH/X diagonal lands its X on that four-cell route.
+- The enclosing destination fragment `OENGOMBUDS` = `[22,21,3,19,17,1,23,15]` is the sole 8/8 hit among all 159 unknown-page 8-rune fragments under the already fixed outside-in H shell when scored against `{p,g,a,b,A,B,K,e,q,-K,g+K}`: `[7,8,27,15,2,4,2,7]=[g+K,A,-K,b,K,q,K,g+K]`.
 
 Artifacts:
 - `im-results/lp2-p32-home-buds-p50-closed-loop.md`
