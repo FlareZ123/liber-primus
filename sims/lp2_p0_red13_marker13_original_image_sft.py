@@ -68,6 +68,49 @@ def main() -> None:
     assert sum(int(s[4]) for s in marker) == 1116
     assert all(5 <= s[2] <= 16 and 5 <= s[3] <= 16 for s in marker)
 
+    # The punctuation is a literal four-diamond chain.  Its thirteen
+    # connected components occupy nine scan rows:
+    #
+    #       C
+    #     L   R
+    #       C
+    #     L   R
+    #       C
+    #     L   R
+    #       C
+    #     L   R
+    #       C
+    #
+    # Sorting by centroid y then x therefore gives the physical slot order
+    # C,L,R,C,L,R,C,L,R,C,L,R,C.  This fixes the visual index groups used by
+    # the companion state-key SFT without reading any candidate plaintext.
+    centroids = []
+    for stat in marker:
+        x, y, width, height, area = map(int, stat[:5])
+        local = red[
+            CROPS["red13dot_marker"][1] + y:CROPS["red13dot_marker"][1] + y + height,
+            CROPS["red13dot_marker"][0] + x:CROPS["red13dot_marker"][0] + x + width,
+        ]
+        ys, xs = np.nonzero(local)
+        centroids.append((
+            float(CROPS["red13dot_marker"][0] + x + xs.mean()),
+            float(CROPS["red13dot_marker"][1] + y + ys.mean()),
+            area,
+        ))
+    centroids.sort(key=lambda row: (row[1], row[0]))
+    columns = []
+    for cx, _, _ in centroids:
+        if cx < 1416:
+            columns.append("L")
+        elif cx > 1430:
+            columns.append("R")
+        else:
+            columns.append("C")
+    assert columns == ["C", "L", "R", "C", "L", "R", "C", "L", "R", "C", "L", "R", "C"]
+    assert [i for i, column in enumerate(columns) if column == "L"] == [1, 4, 7, 10]
+    assert [i for i, column in enumerate(columns) if column == "C"] == [0, 3, 6, 9, 12]
+    assert [i for i, column in enumerate(columns) if column == "R"] == [2, 5, 8, 11]
+
     corpus = json.loads((root / "resources/liber-primus/lp2-corpus.json").read_text(encoding="utf-8"))
     prefix = "".join(corpus["runes"][i] for i in corpus["pages"][0]["indices"][:20])
     assert prefix == WORD1 + WORD2 + BODY7
@@ -81,7 +124,9 @@ def main() -> None:
     print(json.dumps({
         "result": "PASS: red8, small red divider, red5, large red13-dot after rune13, black body",
         "source_sha256": SHA, "title": [WORD1, WORD2],
-        "body_first7": BODY7, "large_mark_offset": 13, "census": result
+        "body_first7": BODY7, "large_mark_offset": 13, "census": result,
+        "marker_scan_columns": columns,
+        "marker_index_groups": {"L": [1,4,7,10], "C": [0,3,6,9,12], "R": [2,5,8,11]},
     }, indent=2))
 
 
