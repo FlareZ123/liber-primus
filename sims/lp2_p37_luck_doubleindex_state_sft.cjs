@@ -40,6 +40,7 @@ function H4inv(shell) {
 }
 
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
+const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
 const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
 
@@ -150,6 +151,41 @@ assert.deepEqual(
     [20, "MEANING", 21],
     [37, "LUCK", 38],
   ]
+);
+
+// Both raw +1 pointers land on next-word pages that were independently
+// source-selected before this double-index observation.
+const isValues = gp("IS");
+const p21IsReceivers = pageWords(21).filter(
+  (word) =>
+    word.values.length === isValues.length &&
+    word.values.reduce((total, value) => total + value, 0) ===
+      isValues.reduce((total, value) => total + value, 0)
+);
+assert.deepEqual(
+  p21IsReceivers.map((word) => [word.index, word.start, word.values]),
+  [[33, 170, [24, 1]]]
+);
+
+const bewareValues = gp("BEWARE");
+const p38BewareReceivers = pageWords(38).filter(
+  (word) =>
+    word.values.length === bewareValues.length &&
+    word.values.reduce((total, value) => total + value, 0) ===
+      bewareValues.reduce((total, value) => total + value, 0)
+);
+assert.deepEqual(
+  p38BewareReceivers.map((word) => [word.index, word.start, word.values]),
+  [[11, 57, [8, 25, 14, 2, 17, 22]]]
+);
+
+const tape = grid.pages.flatMap((page) => page.tokens);
+const base60Alphabet = grid.alphabet;
+assert.equal(tape[88], "3V");
+assert.equal(base60Alphabet.indexOf(tape[88][1]), 31);
+assert.equal(
+  31,
+  gp("LUCK").reduce((total, value) => total + value, 0)
 );
 
 const lengthMatches = doubleIndexRows.filter(
@@ -409,6 +445,27 @@ console.log(JSON.stringify({
       word: row.sourceWord,
       gp0: row.gp0,
     })),
+    independentDestinations: {
+      p20ToP21: {
+        pointer: 21,
+        target: "IS",
+        receiver: {
+          wordIndex: p21IsReceivers[0].index,
+          start: p21IsReceivers[0].start,
+          cipher: p21IsReceivers[0].values,
+        },
+      },
+      p37ToP38: {
+        pointer: 38,
+        target: "BEWARE",
+        receiver: {
+          wordIndex: p38BewareReceivers[0].index,
+          start: p38BewareReceivers[0].start,
+          cipher: p38BewareReceivers[0].values,
+        },
+        p50LowAtBewareGp0: 31,
+      },
+    },
     plusOneLengthMatches: lengthMatches
       .filter((row) => row.gp0 === row.index + 1)
       .map((row) => ({index: row.index, word: row.sourceWord, gp0: row.gp0})),
