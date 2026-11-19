@@ -146,8 +146,9 @@ function wordsWithOffsets(page) {
 const riseHits = [];
 for (const pageInk of ink.pages) {
   const words = wordsWithOffsets(pageInk.page);
-  for (let spanIndex = 0; spanIndex < pageInk.red_spans.length; spanIndex += 1) {
-    const span = pageInk.red_spans[spanIndex];
+  const redSpans = pageInk.red_spans || [];
+  for (let spanIndex = 0; spanIndex < redSpans.length; spanIndex += 1) {
+    const span = redSpans[spanIndex];
     const inside = words.filter((word) =>
       word.start >= span.start &&
       word.start + word.len <= span.start + span.length
