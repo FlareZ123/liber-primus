@@ -126,7 +126,7 @@ The productive route can now be stated more compactly:
 
 This turns the p9 object from a navigation packet into a plausible parameter packet for the p29 operation and provides an internal LP2 copy of the authenticated 2013 BASE29 3301 coefficient vector.
 
-The later p28 READ OUT THE DIRECTION gate (#1931) does not repair the assembly-order gap: p28's fixed readout yields `READ OUT THE` and `THEIR NUMBERS ARE THE`, while `DIRECTION` is the authenticated 2016 continuation (not p28 body plaintext). It selects page29 at most; it does not specify `W||AY`. Treat this file as a parameter derivation only, not a p29 decryption or authenticated opcode.
+The later p28 READ OUT THE DIRECTION gate (#1931) does not repair the assembly-order gap: p28's fixed readout yields `READ OUT THE` and `THEIR NUMBERS ARE THE`, while `DIRECTION` is the authenticated 2016 continuation (not p28 body plaintext). It selects page29 at most; it does not specify `W||AY`. Treat this file as a parameter derivation only, not a p29 decryption or authenticated opcode. The bounded [p28 source-order gate](lp2-p29-direction-derivative-way.md) rejected the final W||AY assembly as an authored instruction.
 
 ## Reproduction
 

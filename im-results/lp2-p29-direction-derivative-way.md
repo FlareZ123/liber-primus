@@ -223,7 +223,7 @@ Under the fixed radial H serialization, `[24,26,3,8]` and its `[24,26,3]` prefix
 This packet now supplies `r=24`, derivative order `e=3`, and `AY=[24,26]` before the p29 derivative. Both p29 and the table give third derivative `W=7` at r24. Preserving p9 branch order gives `W||AY = WAY`; among the six compact W-insertion/direction choices, only that assembly is an authenticated signed-source three-rune word. Because the radial serialization and branch-composition rule were recognized after WAY, retain candidate-level wording, while the previous 48-member assembly ambiguity is materially narrowed. See [p9 PATHS H-factor packet](lp2-p9-paths-hfactor-p29-way.md). Windows Node22 PASS: 44457862429.
 ## p28 READ OUT THE DIRECTION gate (Issue #1931) — negative
 
-The new bridge is not a complete source instruction. The fixed p28 readout produces the local candidate `READ OUT THE` and the four-word structural result `THEIR NUMBERS ARE THE`; the authenticated 2016 message then continues with `DIRECTION`. These pieces can motivate selecting physical p29 (the signed-source word index is 29), but the whole phrase `READ OUT THE DIRECTION` is not itself a single authenticated or p28-decrypted sentence.
+The new bridge is not a complete source instruction. The fixed [p28 readout report](lp2-p28-numbers-direction-readout.md) produces the local candidate `READ OUT THE` and the four-word structural result `THEIR NUMBERS ARE THE`; the authenticated 2016 message then continues with `DIRECTION`. These pieces can motivate selecting physical p29 (the signed-source word index is 29), but the whole phrase `READ OUT THE DIRECTION` is not itself a single authenticated or p28-decrypted sentence.
 
 The p28 readout report independently records that `DIRECTION SEEK AND YOU` is **0/2,699** canonical page-local four-word windows and explicitly classifies `DIRECTION` as a signed-source continuation, not p28 body plaintext. It therefore cannot be used as an authored instruction that specifies the p29 polynomial operation.
 
@@ -236,13 +236,13 @@ The remaining assembly gap is unchanged:
 
 The semantic fact that `WAY` is a synonym for `DIRECTION` is a lexical match, not an ordering rule. The p9 `LIBER` holdout is a retrospective cross-route check, not a p30 consequence.
 
-**Frozen receiver and holdout:** the receiver is the full canonical p29 rune body (original physical image `46.jpg`); the untouched consequence is the full canonical p30 rune body (original physical image `47.jpg`). No ciphertext span was opened. The only nearby `SEEK AND YOU` / `YOU WILL BE FOUND` continuation is already present in the same authenticated 2016 source and belongs to the separate Agent4 p29+p30→p32 precommit; it is not an independent p30 holdout for this assembly.
+**Frozen receiver and holdout:** the receiver is the full canonical p29 rune body (original physical image `46.jpg`); the untouched consequence is the full canonical p30 rune body (original physical image `47.jpg`). No ciphertext span was opened. The only nearby `SEEK AND YOU` / `YOU WILL BE FOUND` continuation is already present in the same authenticated 2016 source and belongs to the separate [Agent4 p29+p30→p32 precommit](../workplace/agent4-direction-seek-and-you-p32-precommit.md); it is not an independent p30 holdout for this assembly.
 
 **Decision:** retain `WAY` only as a conditional navigation-word candidate. Retire the derivative-assembly branch as a p29 cipher/plaintext path. No exact p29 or p30 original-cipher inversion/forward reconstruction exists, and no further roots, derivative orders, coefficient subsets, concatenations or language-fitting variants are authorized.
 
-## Decision
+## Parameter expression and reproduction
 
-Preserve the parameter derivation, not the plaintext claim:
+Preserve the parameter derivation, not the plaintext claim (negative source-order gate recorded in [Issue #1931](https://github.com/FlareZ123/liber-primus/issues/1931)):
 
 ```text
 P29^(e)(24) + H_{X^2,X}
