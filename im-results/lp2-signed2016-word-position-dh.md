@@ -132,6 +132,37 @@ yielding:
 
 One-based numbering fails. PATHS fails as the modulus. PATHS fails as the shared-secret label. The second THEIR occurrence fails as B.
 
+## Critic role-assignment audit (19 November 2026)
+
+The original 16-case check fixes the semantic role labels after the DH tuple was already known. A Critic audit therefore broadened the natural sentence-structured family before accepting the uniqueness statement.
+
+The expanded family charges:
+
+- all **6!** assignments of the six first-clause words `PATH, LIES, EMPTY, EPIPHANY, SEEKS, DEVOTED` to `K,e,q,g,a,A`;
+- the report's literal `PATHS` shared-secret alternative, with `e,q,g,a,A` assigned to any five distinct first-clause words;
+- all **3!** assignments of `WORDS`, either occurrence of `THEIR`, and `ROAD` or `PATHS` to `b,B,p`;
+- zero- and one-based word numbering.
+
+For each candidate, the product test follows whichever clause word was assigned to `q`: `GP0(word_q)=p*q`. The `g+K` relation must still land on the literal intervening `THE` at source slot 7. This produces **69,120** sentence-structured configurations.
+
+Exactly one survives: the same zero-based mapping
+
+```text
+PATH=K=2
+LIES=e=3
+EMPTY=q=4
+EPIPHANY=g=5
+SEEKS=a=6
+DEVOTED=A=8
+WORDS=b=15
+first THEIR=B=19
+ROAD=p=23
+```
+
+Thus the arithmetic does not depend on fixing the role labels in advance within this natural source family. The result remains retrospective in discovery history, and this audit does not charge arbitrary selection of a different sentence/window elsewhere in the message.
+
+Reproducer: `sims/critic_signed2016_word_position_role_family_sft.cjs`.
+
 ## Human solve-path interpretation
 
 This gives a compact intended-route hypothesis that begins from the authenticated hint itself. Its word numbers enact an ordinary DH exchange:
