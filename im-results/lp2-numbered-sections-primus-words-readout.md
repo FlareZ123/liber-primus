@@ -132,6 +132,47 @@ The result is a contiguous first-party clause rather than a collection of isolat
 
 There is no sensible reason to fit a cryptographic key to obtain these words. The packet is better modeled as a navigation/readout instruction embedded in layout.
 
+## New dual use of the same red brackets: target and key material
+
+Agent43 later found that the same original bracket pair also source-selects a local ciphertext recovery.
+
+The two identical red brackets contain **20 dots total**:
+
+```text
+10 + 10 = 20
+authenticated source index20 = MEANING
+```
+
+So the pair predicts `MEANING` as a target independently of the local ciphertext.
+
+The independent original-raster geometry audit gives each 10-dot glyph column signature:
+
+```text
+(3,4,3) = (e,q,e)
+```
+
+under the reconstructed DH state. The first numbered section contributes the adjacent visible value `1`.
+
+On the first complete word after marker `1-`, p36 offsets99..102 `[20,2,12,22]`, exhaust every four-slot key over the complete local visible value alphabet `{1,3,4}` and both signs. Across **162 target-frozen operations**, exactly one reaches the preselected target:
+
+```text
+key [1,3,3,1]
+subtraction
+-> MEANING.
+```
+
+The successful key is `[section1,e,e,section1]`; its H shell is `[0,0,a,K]`. The exact key has one authenticated target hit across the canonical manuscript-wide four-rune corpus.
+
+This gives the 10-dot punctuation a second, materially distinct role:
+
+```text
+count of one bracket -> source anchor10 PRIMUS
+count of both brackets -> source target20 MEANING
+column geometry -> state values e,q,e / local key alphabet
+```
+
+[Detailed p36 recovery](lp2-p36-section1-meaning-state-inverse.md) · [SFT](../sims/lp2_p36_section1_meaning_state_sft.cjs).
+
 ## Relationship to the p32-p42 corridor
 
 A separate current synthesis begins from p32 and recovers source-index states in the signed tail. It includes the independently selected GOOD LUCK indices36-37 and the warning words BEWARE/FALSE/PATHS/VERIFY/OPENPGP.
