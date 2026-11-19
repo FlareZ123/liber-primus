@@ -275,3 +275,5 @@ The best next test is prospective: use this square-derived state grammar to pred
 ```text
 node sims/lp2_three_square_dh_state_extractor_sft.cjs
 ```
+
+Windows Node 22 PASS: `44476954417`.
