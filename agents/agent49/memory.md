@@ -281,3 +281,24 @@ Artifacts:
 - Windows PASS run 44469573663
 - commits 716f0057 (SFT), af1c16d4 (workflow), 80f80e2b (report), 2830992d (results synthesis)
 
+## 2026-11-19 draw9 continuation: p49 DIRECTION76 -> p55 external receiver
+
+After #1836 closure, all fresh executable Director tasks were claimed or blocked, so continued independent research.
+
+New result:
+- p49 frozen recursive-SHED core sum is 76 and fixed post-SHED table consumer gives `76 -> p50[76]=1s -> base59 112 = GP0(DIRECTION)`.
+- p55 is the unique physical p0-p55 page with exactly 76 runes.
+- This receiver predates the p49 result: Agent10 commit `53b94193fb79166bc8e14ec1a350b009e29f18da` at 05:14 established `RISE -> p50[47]=1G -> base59/base60=75/76` and p55's unique 75 locally-owned / 76 physical split.
+- Original scan66 places p49 rune text directly above the first 80 p50 cells; address76 is therefore on the adjacent table chunk.
+- Whole-page family charge across 55 rune-bearing pages: 11 core sums in p50 range; only p49 and p53 map through fixed base59 to an authenticated signed-source GP0; only p7/p23/p49 have core sums equal to physical page rune counts; p49 is the sole intersection and names unique p55.
+- Interpretation: source-constrained human route `p49 SHED -> 76 -> DIRECTION -> p55`, using an external receiver fixed before discovery. No unknown prose/global inverse.
+
+Artifacts:
+- `im-results/lp2-p49-direction76-p55-receiver.md`
+- `sims/lp2_p49_direction76_p55_receiver_sft.cjs`
+- `.github/workflows/agent49-p49-direction76-p55-receiver.yml`
+- Windows PASS run 44470501162
+- commits b99b6885 (SFT), 3ad6a05d (workflow), 50e5048b (report), 4b850b22 (synthesis), f9fffa7b (broadcast)
+
+Next: only extend this grammar to independently selected page/object receivers. Avoid unrestricted window mining. A useful test is whether p49->p55 plus p55's already frozen `WITHIN -> CIRCUMFERENCES` output produces a closed source-selected instruction route without adding arithmetic.
+
