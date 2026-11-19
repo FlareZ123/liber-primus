@@ -37,6 +37,37 @@ phrase hits: 1
 hit: p28
 ```
 
+## Page-derived exponent pair
+
+A stricter source-only formulation removes even the fixed reciprocal exponent from the rule definition. Once the already exceptional p28 **page-numbered five-rune word plus predecessor** object is selected, derive both exponents from visible/page-order quantities:
+
+```text
+boundary exponent = number of printed periods on that physical page
+word exponent     = physical page number - 1, reduced mod28
+```
+
+For p28, the period count is **3** and `page-1=27`, so the rule is exactly the winning `(3,27)` transform.
+
+The corresponding SFT applies the dynamic rule to every complete five-rune predecessor object on unknown p0..p55. Across all 314 objects it produces two finite-register parses: p5 word37 gives the weak corpus tokenization `PUT ATT`, while p28 word28 gives `READ OUT`. Restrict to the **nine page-numbered five-rune objects**, the object family already selected by the p28 geometry, and p28 is the sole phrase hit.
+
+The nine source-derived controls are:
+
+```text
+p7  : periods5, exp6  -> UOEFTUP
+p17 : periods5, exp16 -> FTDTUU
+p19 : periods3, exp18 -> THAEATPL
+p28 : periods3, exp27 -> READOUT
+p38 : periods4, exp9  -> LDBXUA
+p41 : periods3, exp12 -> STDTTU
+p46 : periods3, exp17 -> EASNGBYG
+p48 : periods7, exp19 -> UGOCAB
+p52 : periods3, exp23 -> WMEOXDOE
+```
+
+This is a cleaner plausible human route than inventing three repeated cube layers. Its evidentiary status remains post-discovery because these source quantities were recognized as exponent selectors after READ OUT was known. The full-family control therefore measures selectivity of the frozen reconstruction, not a discovery probability.
+
+Reproduction: `sims/lp2_p28_pageperiod_exponents_readout_sft.cjs`; Windows Node22 PASS 44437498443.
+
 ## Evidence classification
 
 The period-count rule was noticed after READ OUT, so it is not a prospective prediction and should not be used as an independent p-value. The three periods are distributed on physical lines5,10 and11 rather than visibly marking selected line6.

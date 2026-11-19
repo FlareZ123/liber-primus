@@ -70,6 +70,16 @@ A post-discovery source-simple control also uses p28's three printed periods as 
 
 Reproduction: `sims/lp2_p28_periodcount_inverse_readout_sft.cjs`, Windows Node22 run 44435632291.
 
+### Direct page-derived exponent reading
+
+The same exact transform also has a source-only parameterization that avoids the three-shell count. On p28, the physical page contains **three printed periods**, and `page-1=27`. Applying `(period count, page-1)` to the already selected predecessor + page-numbered five-rune word therefore gives the exact `(3,27)` exponents.
+
+Across the nine page-numbered five-rune controls in unknown LP2, p28 is the sole finite-register phrase hit under this dynamic rule. Across all 314 five-rune predecessor objects there is one additional weak parse, p5 `PUT ATT`.
+
+This is a post-discovery intended-route hypothesis, not a blind validation, but it provides a materially simpler clue path: **page punctuation supplies 3; page order supplies 27**. It removes the need to claim that the five-rune word visibly has three cryptographic layers.
+
+SFT: `sims/lp2_p28_pageperiod_exponents_readout_sft.cjs`; Windows PASS 44437498443.
+
 ## Exact plaintext candidate
 
 Apply exponent3 to the exact page-center rune and exponent27 to every rune of the immediately following selected word:
