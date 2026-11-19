@@ -74,23 +74,13 @@ const gpTokens = corpus.translit
 function gp(word) {
   const normalized = word
     .toUpperCase()
-    .replace(/QU/g, "CW")
+    .replace(/K/g, "C")
     .replace(/V/g, "U")
-    .replace(/[KQ]/g, "C")
+    .replace(/Q/g, "C")
     .replace(/Z/g, "S")
     .replace(/[^A-Z]/g, "");
   const out = [];
   for (let offset = 0; offset < normalized.length;) {
-    if (normalized.startsWith("ING", offset)) {
-      out.push(21);
-      offset += 3;
-      continue;
-    }
-    if (normalized.startsWith("IO", offset)) {
-      out.push(27);
-      offset += 2;
-      continue;
-    }
     const token = gpTokens.find((candidate) => normalized.startsWith(candidate.symbol, offset));
     assert.ok(token, "unmapped GP spelling: " + normalized.slice(offset));
     out.push(token.value);
