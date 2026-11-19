@@ -160,4 +160,4 @@ Run:
 node sims/lp2_road_rise_readout_direction_cycle_sft.cjs
 ```
 
-The meta-regression executes all five upstream SFTs and then checks the authenticated source corridor, route coordinates and the exact state identity `q+B=p`.
+The meta-regression executes all five upstream SFTs and then checks the authenticated source corridor, route coordinates and the exact state identity `q+B=p`. Windows/Node 22 run **44467734125** passes the complete composition.
