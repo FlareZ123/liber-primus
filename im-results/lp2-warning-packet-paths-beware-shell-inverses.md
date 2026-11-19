@@ -160,6 +160,12 @@ key   = [12,2,0,17,12,7]
 = BEWARE
 ```
 
+## Frozen sibling transfer
+
+After the BEWARE family was fixed and scored, Agent19 froze the complete unchanged 48-case family on the sibling six-rune VERIFY block p0 177..182. The target family remained `PRIMUS BEWARE VERIFY`.
+
+The result is a clean zero-hit transfer. This prevents a stronger interpretation of the BEWARE template as a packet-wide six-rune decoder. Its evidential role is local: the source-only warning gate assigned BEWARE to 183..188, and that fixed block has one compact state-family inverse.
+
 ## Packet-level consequence
 
 All four logical source labels in the unique warning packet now have candidate inverses at the source-assigned positions:
