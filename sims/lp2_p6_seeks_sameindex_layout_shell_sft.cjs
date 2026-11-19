@@ -229,6 +229,7 @@ const redWords = p6.words.filter(
 );
 assert.deepEqual(redWords.map((word) => word.length), [4, 1, 4, 2]);
 assert.equal(redWords.reduce((sum, word) => sum + word.length, 0), 11);
+assert.deepEqual(H(redWords.map((word) => word.length)), [2, 26, 5, 6]); // [K,p+e,g,a]
 
 // The red title begins the second physical section. Its lower black body has 26 words.
 const p6Sections = pageRaw(6).split("&");
@@ -236,6 +237,11 @@ assert.equal(p6Sections.length, 2);
 const lowerWords = parseWords(p6Sections[1]).words;
 assert.deepEqual(lowerWords.slice(0, 4).map((word) => word.length), [4, 1, 4, 2]);
 assert.equal(lowerWords.length - 4, 26);
+const p6BlackBodyWords = p6.words.filter((word) => word.start >= 82);
+const receiverBodyOrdinal = p6BlackBodyWords.findIndex((word) => word.start === 128) + 1;
+const receiverPageOrdinal = p6.words.findIndex((word) => word.start === 128) + 1;
+assert.equal(receiverBodyOrdinal, 10); // K*g
+assert.equal(receiverPageOrdinal, 29);
 
 // The established p28 HERE line maps one-based state p=23 to value26, uniquely.
 const p28FirstLine = pageRaw(28)
@@ -287,6 +293,13 @@ for (let page = 0; page <= 55; page += 1) {
   }
 }
 assert.equal(fiveRuneWords.length, 318);
+
+const receiverStateShell = [4, 24, 22, 25, 24]; // [q,-g,p-1,p+K,-g]
+assert.deepEqual(H(receiver.values), receiverStateShell);
+const receiverStateShellHits = fiveRuneWords
+  .filter((word) => H(word.values).every((value, index) => value === receiverStateShell[index]))
+  .map((word) => ({ page: word.page, start: word.start }));
+assert.deepEqual(receiverStateShellHits, [{ page: 6, start: 128 }]);
 
 const fixedKeyHits = [];
 for (const word of fiveRuneWords) {
@@ -432,6 +445,11 @@ console.log(JSON.stringify({
     redTitleWordLengths: redWords.map((word) => word.length),
     redTitleRunes: p6Ink.red_spans[0].length,
     lowerBodyWords: lowerWords.length - 4,
+    redTitleLengthH: H(redWords.map((word) => word.length)),
+    receiverBodyOrdinal,
+    receiverPageOrdinal,
+    receiverH: H(receiver.values),
+    receiverStateShellHits,
     HEREInverse26: here26Positions[0],
     shell,
     key,
