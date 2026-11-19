@@ -318,17 +318,33 @@ console.log(JSON.stringify({
     lexical: row.lexical,
     distinctLexical: row.distinctLexical,
   })),
-  tailRows: tailRows.map((row) => ({
-    sourceIndex: row.sourceIndex,
-    sourceOrdinal: row.sourceOrdinal,
-    sourceWord: row.sourceWord,
-    page: row.page,
-    ordinal: row.wordOrdinal,
-    start: row.start,
+  will34: will34.map((row) => ({
     transform: row.transform,
     origin: row.origin,
     values: row.values,
     lexical: row.lexical,
     contiguous: row.contiguous,
   })),
+  direction30: {
+    pair: {
+      values: direction30Pair.values,
+      lexical: direction30Pair.lexical,
+    },
+    split: {
+      values: direction30Split.values,
+      lexical: direction30Split.lexical,
+    },
+  },
+  openpgp43: {
+    pair: {
+      values: p42.values,
+      lexical: p42.lexical,
+      contiguous: p42.contiguous,
+    },
+    split: {
+      values: p42Split.values,
+      lexical: p42Split.lexical,
+      contiguous: p42Split.contiguous,
+    },
+  },
 }, null, 2));
