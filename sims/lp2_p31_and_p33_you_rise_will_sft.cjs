@@ -334,6 +334,39 @@ assert.deepEqual(
   source.filter((row) => gp0(row) === 56).map((row) => [row.index, row.word]),
   [[18, "MAP"], [24, "AND"], [30, "SEEK"], [31, "AND"]]
 );
+const seekAndYouBackstepTrigrams = [];
+for (let index = 0; index + state.K < source.length; index += 1) {
+  const terminal = source[index + state.K];
+  if (gp0(terminal) === index) {
+    seekAndYouBackstepTrigrams.push({
+      start: index,
+      words: source.slice(index, index + state.K + 1).map((row) => row.word),
+      terminalGp0: gp0(terminal),
+      displacement: state.K,
+    });
+  }
+}
+assert.deepEqual(seekAndYouBackstepTrigrams, [{
+  start: 30,
+  words: ["SEEK", "AND", "YOU"],
+  terminalGp0: 30,
+  displacement: state.K,
+}]);
+
+const seekRow = diagonal[30];
+assert.equal(seekRow.source.word, "SEEK");
+assert.equal(seekRow.page, 30);
+assert.equal(seekRow.object.ordinal, 31);
+assert.equal(seekRow.object.start, 130);
+assert.deepEqual(seekRow.object.values, [28, 4, 12]);
+assert.deepEqual(
+  seekRow.object.values.map((value) => source[value].word),
+  ["THE", "EMPTY", "THE"]
+);
+assert.deepEqual(
+  andRow.object.values.map((value) => source[value].word),
+  ["THE", "ROAD", "THE"]
+);
 assert.equal(andRow.source.values.reduce((sum, value) => sum + value, 0), 56);
 
 // Original p31 layout. The selected receiver lies on printed line5. The
@@ -547,6 +580,20 @@ const p33YouValues = p33You.cipher.map((value, index) =>
 );
 assert.deepEqual(p33YouValues, gp("YOU"));
 assert.equal(p33You.page, p31RiseDestination);
+const seekAndYouPageCycle = {
+  seekPage: seekRow.page,
+  andPage: andRow.page,
+  youPage: p33You.page,
+  andToYouRise: p33You.page - andRow.page,
+  youGp0ToSeekPage: gp0(source[32]),
+};
+assert.deepEqual(seekAndYouPageCycle, {
+  seekPage: 30,
+  andPage: 31,
+  youPage: 33,
+  andToYouRise: state.K,
+  youGp0ToSeekPage: 30,
+});
 
 // Independently established p33 WILL receiver. The recovered THEIR RISE
 // instruction fixes rise a=6, and word29 + a lands exactly on word35 WILL.
@@ -590,6 +637,7 @@ console.log(JSON.stringify({
   },
   helperPage56Layout: {
     sourceSelector: equalAdjacentGp0,
+    seekAndYouBackstepTrigrams,
     targetGp0: 56,
     receiverLine: receiverLine.index,
     topLine,
@@ -602,6 +650,7 @@ console.log(JSON.stringify({
     hits: helperLayoutHits,
     kRiseLinePairs,
     pageRiseDestination: p31RiseDestination,
+    seekAndYouPageCycle,
   },
   fixedKeyTransfer: {
     threeRuneWords: threeRuneWords.length,
