@@ -290,7 +290,84 @@ const wayIndices = sourceWords
 assert.deepEqual(theIndices, [1,7,12,17,22,28]);
 assert.deepEqual(wayIndices, [13]);
 
+/**
+ * @param {number} base
+ * @param {number} exponent
+ * @param {number} modulus
+ * @returns {number}
+ */
+function powMod(base, exponent, modulus) {
+  let result = 1 % modulus;
+  let factor = ((base % modulus) + modulus) % modulus;
+  for (let power = exponent; power > 0; power = Math.floor(power / 2)) {
+    if (power % 2 === 1) result = (result * factor) % modulus;
+    factor = (factor * factor) % modulus;
+  }
+  return result;
+}
+
+/**
+ * @param {number} q
+ * @param {number} theIndex
+ * @param {number} wayIndex
+ * @returns {{p:number,g:number,a:number,b:number,A:number,B:number,K:number,e:number,q:number}}
+ */
+function stateFromAnchors(q, theIndex, wayIndex) {
+  return {
+    p: q + theIndex + wayIndex - 1,
+    g: q + 1,
+    a: theIndex - 1,
+    b: 2 * q + theIndex,
+    A: 2 * q,
+    B: theIndex + wayIndex - 1,
+    K: wayIndex - q - theIndex,
+    e: q - 1,
+    q,
+  };
+}
+
+/** @param {{p:number,g:number,a:number,b:number,A:number,B:number,K:number}} state @returns {boolean} */
+function validDhState(state) {
+  if (state.p <= 2 || state.K < 0 || state.K >= state.p) return false;
+  return (
+    powMod(state.g, state.a, state.p) === state.A &&
+    powMod(state.g, state.b, state.p) === state.B &&
+    powMod(state.B, state.a, state.p) === state.K &&
+    powMod(state.A, state.b, state.p) === state.K
+  );
+}
+
+const anchorState = stateFromAnchors(4, 7, 13);
+assert.deepEqual(anchorState, {p:23,g:5,a:6,b:15,A:8,B:19,K:2,e:3,q:4});
+assert.equal(validDhState(anchorState), true);
+
+const dhAnchorControl = theIndices.map((theIndex) => {
+  const state = stateFromAnchors(4, theIndex, 13);
+  return { theIndex, state, valid: validDhState(state) };
+});
+assert.deepEqual(
+  dhAnchorControl.filter((row) => row.valid).map((row) => row.theIndex),
+  [7]
+);
+
+const directPacketFromAnchors = [
+  mod29(-4),
+  mod29(-1),
+  mod29(4 + 7),
+  mod29(-4),
+  4,
+  mod29(2 * 4),
+  mod29(7 + 13 - 1),
+  mod29(2 * 4),
+  4,
+  7,
+  13,
+  mod29(7 + 13),
+  mod29(-1),
+];
+
 const generated = markerRiseGenerator(4, 7, 13);
+assert.deepEqual(directPacketFromAnchors, generated.inverse);
 assert.deepEqual(generated.inverse, p0.inverse);
 assert.deepEqual(generated.key, p0.key);
 assert.deepEqual(
@@ -368,6 +445,9 @@ console.log(JSON.stringify({
   },
   candidateRiseGenerator: {
     anchors: { q: 4, THE: 7, WAY: 13 },
+    generatedDhState: anchorState,
+    validTHEIndicesUnderDhGate: dhAnchorControl.filter((row) => row.valid).map((row) => row.theIndex),
+    directPacketFromAnchors,
     inversePacket: generated.inverse,
     columns: {
       left: generated.left,
@@ -390,5 +470,5 @@ console.log(JSON.stringify({
   },
   orientationControl: transformHits,
   decision:
-    "After independent source selection of EPIPHANY SEEKS, the residual H-inverse aligns with the visible 4|5|4 marker. A compact cumulative-rise generator using q=4, recovered THE7, and unique WAY13 reproduces all 13 inverse coordinates and therefore the exact additive key. Holding q and WAY fixed while charging all six authenticated THE indices leaves only THE7, and it hits p0 alone among 19 matched 8+5 receivers. The generator was recognized after the residual structure was visible, so it is a candidate key-order provenance rule pending an independent prospective consumer.",
+    "Visible q=4, source-selected THE7, and unique WAY13 generate the entire reconstructed DH state through simple linear relations; among all six authenticated THE occurrences, only THE7 yields a state satisfying the DH equations. The same three anchors directly generate the 13-value H-inverse marker packet and therefore the exact p0 additive key. The formulas were recognized after the residual structure was visible, so they remain candidate provenance pending a new prospective plaintext or key consequence.",
 }, null, 2));
