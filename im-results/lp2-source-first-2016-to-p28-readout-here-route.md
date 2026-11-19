@@ -133,14 +133,9 @@ PATH(2)
 
 so the cube opcode is first-party source structure rather than a p28 output fit.
 
-P57's literal circumference grammar gives a natural layer count for the already fixed p28 source object: the center singleton has one nonempty layer and the adjacent five-rune word has three. Repeated application of the source-selected cube therefore gives
+P57's literal circumference grammar compresses the already fixed p28 source object but does not uniquely authenticate the word action count. The center singleton has one nonempty layer; the adjacent five-rune word has two circumference-removal actions and three nonempty layers. Those conventions yield competing source-typed word exponents `3^2 mod28=9` and `3^3 mod28=27`. Agent27's independent p39 circumference holdout favors literal removal-count semantics, so p57 must not be used as the selector for exponent27.
 
-```text
-center exponent = 3
-word exponent   = 3^3 mod28 = 27
-```
-
-and the raw output:
+The winning `(3,27)` raw output remains selected independently by the language-free external p50 relation charged below, while Agent31's authenticated source cycle fixes the cube operator class and exponent3. Applying that selected pair gives the raw output:
 
 ```text
 [4,28,23] | [3,1,16]
@@ -266,7 +261,7 @@ authenticated 2016 word numbers
  -> same p50 route back to p28
 ```
 
-The strongest remaining premise is local application: why the source-selected cube map should act separately on this exact center singleton and adjacent five-rune word using their visible layer counts. The source fixes exponent3 and modulus29, p57 supplies circumference/layer grammar, p28 supplies the literal DH marker and unique center-plus-word geometry, and the external numeric selector chooses the resulting raw output before language.
+The strongest remaining premise is the p28-specific two-part schedule: why the source-selected cube map should act separately on this exact center singleton and adjacent five-rune word with the selected `(3,27)` pair. The source fixes exponent3 and modulus29, p57 supplies circumference/object grammar but its independent holdout favors the competing removal-count exponent9, p28 supplies the literal DH marker and unique center-plus-word geometry, and the external numeric selector chooses the `(3,27)` raw output before language.
 
 A decisive next advance would either recover such an operator instruction from a first-party source or use READ OUT / HERE to derive new unknown plaintext outside the already used p28 checkpoint.
 
