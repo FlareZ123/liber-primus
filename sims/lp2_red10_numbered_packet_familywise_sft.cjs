@@ -170,6 +170,68 @@ for (let step = 0; step < 23; step += 1) {
 }
 assert.equal(pointer, 32);
 
+// Integrated consequence: the packet returns to the already source-selected
+// p32 object exactly where the authenticated sentence continues ARE THE MAP.
+const dh = {p:23,g:5,a:6,b:15,A:8,B:19,K:2,e:3};
+assert.deepEqual(chain.slice(-4), [125,20,102,32]);
+const routeTail = chain.slice(-4,-1);
+const tableRows = routeTail.map((value) => Math.floor(value / dh.A));
+const tableCols = routeTail.map((value) => value % dh.A);
+assert.deepEqual(tableRows, [15,2,12]);
+assert.deepEqual(tableCols, [5,4,6]);
+assert.equal(tableRows.reduce((sum,value) => sum + value, 0), 29);
+assert.equal(tableCols.reduce((sum,value) => sum + value, 0), dh.b);
+
+const p32 = corpus.pages.find((page) => page.page === 32);
+assert.ok(p32);
+const p32Side = dh.A + dh.e;
+assert.equal(p32Side, 11);
+assert.equal(p32.indices.length, p32Side ** 2);
+const p32Offsets = routeTail.map((value) => {
+  const row = Math.floor(value / dh.A) % p32Side;
+  const col = value % dh.A;
+  return row * p32Side + col;
+});
+assert.deepEqual(p32Offsets, [49,26,17]);
+assert.deepEqual(p32Offsets.map((offset) => p32.indices[offset]), gp('ARE'));
+assert.equal(source[16], 'ARE');
+
+// Recover the containing zero-based p32 word indices without looking at the
+// rune values. Their sum independently selects signed source index16 ARE.
+const p32Words = (parts[32].replace(/\/\s*/gu, '').match(/[\u16A0-\u16FF]+/gu) || []);
+let wordCursor = 0;
+const wordRanges = p32Words.map((word, index) => {
+  const length = [...word].length;
+  const row = {index,start:wordCursor,end:wordCursor + length - 1};
+  wordCursor += length;
+  return row;
+});
+const containingWords = p32Offsets.map((offset) => {
+  const row = wordRanges.find((candidate) => candidate.start <= offset && offset <= candidate.end);
+  assert.ok(row);
+  return row.index;
+});
+assert.deepEqual(containingWords, [8,5,3]);
+assert.equal(containingWords.reduce((sum,value) => sum + value, 0), 16);
+
+// The independent state-native cardinal read uses the same terminal E cell.
+const theStart = dh.p + dh.g;
+const theEnd = dh.p - dh.a;
+assert.equal(theStart - p32Side, theEnd);
+assert.equal(theEnd, p32Offsets[2]);
+assert.deepEqual([p32.indices[theStart],p32.indices[theEnd]], gp('THE'));
+assert.equal(source[17], 'THE');
+
+// MAP is already a typed p50 direction operator rather than a required local
+// three-cell p32 plaintext. Its token is literal hex 4E = ASCII N, and one
+// p50 row north lands on GP0(HERE).
+assert.equal(gp0('MAP'), 56);
+assert.equal(tokens[56], '4E');
+assert.equal(String.fromCharCode(Number.parseInt(tokens[56],16)), 'N');
+assert.equal(gp0('MAP') - dh.A, gp0('HERE'));
+assert.equal(gp0('HERE'), 48);
+assert.equal(source[18], 'MAP');
+
 console.log('PASS lp2_red10_numbered_packet_familywise_sft');
 console.log('red punctuation counts:', Object.fromEntries(byCount));
 console.log('charged arithmetic configurations:', family.length);
@@ -178,3 +240,5 @@ console.log('packet readout:', targetIndices.map((index) => source[index]).join(
 console.log('frozen nth-word lengths:', selected.map((row) => row.length));
 console.log('T(length):', continuationValues, 'GP0=', continuationGp0);
 console.log('independent SEEKS depth-p terminal:', pointer);
+console.log('p32 continuation:', source.slice(16,19).join(' '), 'offsets', p32Offsets, 'containing words', containingWords);
+console.log('MAP opcode:', tokens[56], '=> N; HERE GP0', gp0('HERE'));
