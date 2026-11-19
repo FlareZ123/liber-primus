@@ -15,7 +15,7 @@ The four apparent one-rune starts on physical p42, p45, p49 and p52 are **cross-
 
 Body offsets count from the first rune after the eight-rune red p40 heading. In each image pair, the preceding page's final line has no printed word separator; the next page begins with one rune followed by the first word separator. This matches the p54 → p55 carry pattern (71.jpg → 72.jpg), whose complete carried word is 11 runes. The p53 → p54 boundary differs: p53 ends with terminal punctuation and the red13 chapter mark, and p54 begins a new red rubric (70.jpg → 71.jpg).
 
-The canonical parser reports 12,956 unknown runes, 2,896 complete words and 32 cross-page words. These four are already included in that 32-word count; do not count them again or split them into separate page-local singleton words.
+The canonical parser reports 12,956 unknown runes, 2,896 complete words and 32 cross-page words. These four are already included in that 32-word count; do not count them again or split them into separate page-local singleton words. The complete all-page source inventory, including page-local offsets and original-image checks, is in [the all-32 audit](lp2-all-32-cross-page-word-boundaries.md) and [CSV](lp2-all-32-cross-page-word-boundaries.csv). This report remains the focused p40–p53 subset.
 
 ## Why this does not repair the 14-column tail
 

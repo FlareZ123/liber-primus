@@ -8,7 +8,7 @@ The transferable p50 signal from #1508 was tested under exactly four source-visi
 
 For the first rune of each within-page adjacent pair, the p50 phase is one of four predeclared clocks: continuous global rune count, physical-page-local rune offset, visual-chapter-local rune offset, or original physical-line-local rune offset. Every clock starts at p50 cell0. There is no phase scan, word reset, punctuation reset, direction change, or ciphertext-dependent clock choice.
 
-The line clock is reconstructed directly from `resources/liber-primus/lp2-transcription.txt` and asserts the established **594** rune-bearing physical lines. Cross-page pairs stay excluded for every clock, matching #1508.
+The line clock is reconstructed directly from `resources/liber-primus/lp2-transcription.txt` and asserts the established **594** rune-bearing physical lines. Cross-page pairs stay excluded for every clock, matching #1508. The all-32 original-image audit confirms 32 of the 54 transitions between rune-bearing pages continue a printed word without a separator; the other 22 transitions are word-delimited. This is word-segmentation evidence, not a source-selected cipher-clock reset instruction. See [the all-32 boundary audit](lp2-all-32-cross-page-word-boundaries.md).
 
 ## Result
 

@@ -4,7 +4,7 @@
 
 Independent source-first reinspection of the original scans—p32 `49.jpg`, p54 `71.jpg`, p55 `72.jpg`, with p31 `48.jpg` and p53 `70.jpg` as page-edge controls—confirms the printed word separators, line-wrap joins and page-edge carries represented in `resources/lp2-transcription.txt`. Original-pixel row projections independently locate **6, 11 and 4** text lines on p32, p54 and p55; the measured line bands and the p54 initial-glyph control are reproducible with [the original-image SFT](../sims/lp2_p54_initial_rune_shape_sft.py). This is a source-boundary audit, not a fresh glyph-by-glyph OCR of every rune. The material correction is semantic: page-local tokenization counts **segments intersecting a page**, including incoming carry fragments. Such segments are not always complete word starts.
 
-The complete offset table is [lp2-original-page-boundary-audit-p32-p54-p55.csv](lp2-original-page-boundary-audit-p32-p54-p55.csv). Reproduce it with `node sims/lp2_original_page_boundary_audit.cjs`; use `--csv` for the table. The script cross-checks the continuous parser and hashes the five original page images.
+The complete 32-carry inventory is now in [the all-page original-image audit](lp2-all-32-cross-page-word-boundaries.md) and [its CSV](lp2-all-32-cross-page-word-boundaries.csv). This file remains the focused p32/p54/p55 analysis; the p31→p32 and p54→p55 carries described below are two members of the full 32. The focused offset table remains [here](lp2-original-page-boundary-audit-p32-p54-p55.csv); reproduce it with `node sims/lp2_original_page_boundary_audit.cjs` and use `--csv` for its table.
 
 ## Page counts and carries
 
