@@ -108,12 +108,39 @@ jobs:
           echo "=== result inventory ==="
           find outguess-results -maxdepth 1 -type f -printf '%f %s bytes\n' | sort
 
-          echo "=== calibrated positive control ==="
+          echo "=== calibrated positive control: upstream OutGuess test JPEG ==="
           printf 'OUTGUESS-CALIBRATION\nBEGIN PGP SIGNED MESSAGE\n' >/tmp/outguess-known.txt
-          outguess -k "READ OUT" -d /tmp/outguess-known.txt "$image" /tmp/outguess-calibrated.jpg >/tmp/outguess-embed.log 2>&1
-          outguess -r -k "READ OUT" /tmp/outguess-calibrated.jpg /tmp/outguess-recovered.txt >/tmp/outguess-recover.log 2>&1
-          cmp /tmp/outguess-known.txt /tmp/outguess-recovered.txt
-          cat /tmp/outguess-recovered.txt
+          outguess -k "READ OUT" -d /tmp/outguess-known.txt /tmp/outguess/tests/test.jpg /tmp/outguess-calibrated-test.jpg >/tmp/outguess-embed-test.log 2>&1
+          embed_test_status=$?
+          cat /tmp/outguess-embed-test.log
+          echo "embed-test-status=$embed_test_status"
+          if [ "$embed_test_status" -eq 0 ]; then
+            outguess -k "READ OUT" -r /tmp/outguess-calibrated-test.jpg /tmp/outguess-recovered-test.txt >/tmp/outguess-recover-test.log 2>&1
+            recover_test_status=$?
+            cat /tmp/outguess-recover-test.log
+            echo "recover-test-status=$recover_test_status"
+            cmp /tmp/outguess-known.txt /tmp/outguess-recovered-test.txt
+            echo "upstream-control=PASS"
+          else
+            echo "upstream-control=FAIL"
+          fi
+
+          echo "=== calibrated positive control: exact p28 carrier ==="
+          printf 'X' >/tmp/outguess-one-byte.txt
+          outguess -k "READ OUT" -d /tmp/outguess-one-byte.txt "$image" /tmp/outguess-calibrated-p28.jpg >/tmp/outguess-embed-p28.log 2>&1
+          embed_p28_status=$?
+          cat /tmp/outguess-embed-p28.log
+          echo "embed-p28-status=$embed_p28_status"
+          if [ "$embed_p28_status" -eq 0 ]; then
+            outguess -k "READ OUT" -r /tmp/outguess-calibrated-p28.jpg /tmp/outguess-recovered-p28.txt >/tmp/outguess-recover-p28.log 2>&1
+            recover_p28_status=$?
+            cat /tmp/outguess-recover-p28.log
+            echo "recover-p28-status=$recover_p28_status"
+            cmp /tmp/outguess-one-byte.txt /tmp/outguess-recovered-p28.txt
+            echo "p28-carrier-control=PASS"
+          else
+            echo "p28-carrier-control=FAIL"
+          fi
 
           echo "=== candidate statistics ==="
           python3 - <<'PY'
