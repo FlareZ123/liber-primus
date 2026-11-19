@@ -340,9 +340,9 @@ assert.equal(selectedHits[0].target, "FOUND");
 // Manuscript-wide control across every complete five-rune unknown-page word.
 const manuscriptHits = [];
 let fiveRuneWordCount = 0;
-for (let page = 0; page < 56; page += 1) {
-  if (page === 50) continue;
-  const parsed = parsePage(parts[page]);
+for (let partIndex = 0; partIndex < 55; partIndex += 1) {
+  const page = partIndex <= 49 ? partIndex : partIndex + 1;
+  const parsed = parsePage(parts[partIndex]);
   for (const word of parsed.words) {
     if (word.length !== 5) continue;
     fiveRuneWordCount += 1;
