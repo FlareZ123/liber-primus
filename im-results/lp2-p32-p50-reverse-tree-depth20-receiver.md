@@ -163,7 +163,7 @@ The solved p57 instruction supplies an independent entry into the same graph obj
 
 Root115 is exactly the 131-cell rooted component above, and `GP0(CIRCUMFERENCES)=131`. Across the unique solved-p57 vocabulary, SHED is the sole word for which “start at the word's GP0, walk for that word's GP-rune count, then read the endpoint component cardinality as another solved-p57 GP0” produces a p57 word pair: **SHED → CIRCUMFERENCES**.
 
-The fixed root115 depth histogram contains several authenticated cumulative counts: depth6 has 42 nonroot nodes = FIND; depth7 has 53 nodes including root = LIKE; depth10 has 78 including root = INSTAR; depth15 has 105 including root = DIVINITY; depth20 has 121 nonroot = EPIPHANY; the complete depth24 tree has 131 including root = CIRCUMFERENCES.
+The fixed root115 depth histogram contains several authenticated cumulative counts. The manuscript-native p28 DH selector reconstructs the standard DH23 private exponents **a=6** and **b=15** from the public tuple. At exactly depth a=6 the tree has **42 nonroot nodes = FIND**; at exactly depth b=15 it has **105 nodes including root = DIVINITY**. Depth7 has 53 including root = LIKE; depth10 has 78 including root = INSTAR; depth20 has 121 nonroot = EPIPHANY; the complete depth24 tree has 131 including root = CIRCUMFERENCES.
 
 The two root branches make the p57 wording more specific. The branch through physical p32 contains 93 cells in the complete tree; adding root115 gives **94 = TUNNELING**. The sibling branch through111 contains 37 cells; adding root115 gives **38 = WITHIN**. Their shared-root union is the full 131-cell CIRCUMFERENCES tree: `94 + 38 - 1 = 131`.
 
@@ -171,7 +171,7 @@ At reverse depth15, the sibling branch is already complete at 37 cells, while th
 
 At the authenticated `THE=20` cut, the p32 branch contributes 84 cells. Excluding physical p32 itself leaves exactly **83 = EMERGE** descendants. The other branch contributes 37 cells, so removing both root115 and p32 from the selected depth20 object leaves **37 + 83 = 120 = PARABLE**. Replacing the distinguished p32 node with root115 gives **WITHIN38 + EMERGE83 = EPIPHANY121** by cardinality. This one-node exchange is now explicit; it remains a structural grammar until a source instruction fixes the corresponding rune traversal or value operation.
 
-Reproducer: [`sims/lp2_p57_p50_tree_word_grammar_sft.cjs`](../sims/lp2_p57_p50_tree_word_grammar_sft.cjs), Windows Node22 run **44451652415** passed.
+Reproducer: [`sims/lp2_p57_p50_tree_word_grammar_sft.cjs`](../sims/lp2_p57_p50_tree_word_grammar_sft.cjs), Windows Node22 run **44452339078** passed.
 
 ## Authenticated 2016 words select p32 word boundaries
 
