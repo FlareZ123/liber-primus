@@ -26,3 +26,5 @@ Artifacts:
 Frozen audit of every signed-word/DH-depth path ending on p32 finds 14 routes, all base60. The coordinate gate produces no new state set beyond `[146,92]` and `[125,20,102]`; MEANING/FALSE only share the latter tail. No second independent cell set is claimed.
 
 Further compression: p50 width is exactly `A=8`; p32 side is `A+e=11`, with `121=(A+e)^2=EPIPHANY`. The selected tail is `[g^e, GP0(THE), GP0(DEVOTED)] = [125,20,102]`, and its base-A coordinates are the DH tuples above. The source-index closure is `A+g+e=16`, with `p50[16]=121=(A+e)^2`.
+
+Printed-coordinate compression: selected p32 cells are one-based `[(word9,rune6),(word6,rune2),(word4,rune9)] = [(e^2,a),(a,K),(K^2,e^2)]`. The word numbers sum to `B=19`; within-word positions are `[a,K,e^2]`. Across unknown pages, only p32 and p44 support all three positions; p32 gives ARE, p44 gives no authenticated 3-rune source word. The only other square unknown page p6 yields a source-word coincidence only under reversed route + column reflection, while p32 ARE is natural forward/source orientation.

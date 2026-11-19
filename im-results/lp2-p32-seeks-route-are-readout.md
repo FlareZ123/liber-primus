@@ -177,12 +177,21 @@ Their containing p32 word lengths are:
 sum = 22 = p-1.
 ```
 
-Their one-based p32 word numbers are:
+Their one-based p32 word/rune coordinates expose another state-only description:
 
 ```text
-[9,6,4]
-sum = 19 = B.
+p32[49] -> word9, rune6 = (e^2,a)
+p32[26] -> word6, rune2 = (a,K)
+p32[17] -> word4, rune9 = (K^2,e^2)
 ```
+
+Thus the selected cells can be addressed directly as:
+
+```text
+[(e^2,a), (a,K), (K^2,e^2)].
+```
+
+The one-based word numbers `[9,6,4]` sum to `19=B`, while the one-based within-word positions are `[6,2,9]=[a,K,e^2]`.
 
 The zero-based word-index sum16 disambiguates the two ARE occurrences in the signed message. They occur at indices16 and27. Only index16 points back to the selected page when the source word number is used as a p50 address under conventional base60:
 
@@ -235,7 +244,13 @@ offsets [49,26,17]
 -> ARE
 ```
 
-No reversed route or alternate square orientation yields any authenticated source word.
+No reversed route or alternate p32 orientation yields any authenticated source word.
+
+There is one matched perfect-square-page control. Among unknown rune-bearing pages, only p6 and p32 have nonzero square rune counts: `196=14^2` and `121=11^2`. Applying the same full route/orientation/lexical family to p6 produces one `IS` coincidence only after **reversing the route and reflecting columns**. P32 alone yields an authenticated source word in the natural forward/source orientation.
+
+The direct printed coordinate tuple `[(9,6),(6,2),(4,9)]` is also restrictive across receivers. Among all unknown pages p0-p55, only p32 and p44 even contain all three requested printed positions. P32 gives `ARE`; p44 gives `[NG,L,OE]`, which is not any authenticated three-rune source word.
+
+Finally, charge every consecutive e=3 window on the natural p32 projection. Several windows happen to land on small DH-derived printed coordinates, but only the final `[125,20,102]` window has its zero-based containing-word-index sum select an authenticated three-rune source word whose GP runes exactly equal the selected cells. That closure is ARE.
 
 ## Failed generic transfer
 

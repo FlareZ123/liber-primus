@@ -338,12 +338,16 @@ assert.equal(
   areClosure.containingWordIndices.reduce((sum, value) => sum + value, 0),
   16
 );
-assert.equal(
-  areClosure.containingWordIndices
-    .map((value) => value + 1)
-    .reduce((sum, value) => sum + value, 0),
-  dh.B
-);
+const areOneBasedWordNumbers = areClosure.containingWordIndices.map((value) => value + 1);
+assert.deepEqual(areOneBasedWordNumbers, [dh.e ** 2, dh.a, dh.K ** 2]);
+assert.equal(areOneBasedWordNumbers.reduce((sum, value) => sum + value, 0), dh.B);
+
+const areOneBasedPositions = areClosure.offsets.map((offset, index) => {
+  const word = containingWord(offset);
+  return offset - word.start + 1;
+});
+assert.deepEqual(areOneBasedPositions, [dh.a, dh.K, dh.e ** 2]);
+
 assert.equal(
   areClosure.containingWordLengths.reduce((sum, value) => sum + value, 0),
   dh.p - 1
@@ -365,6 +369,15 @@ for (const swap of [false, true]) {
   }
 }
 assert.equal(orientations.length, 8);
+
+// Matched square-page control. Among unknown rune-bearing pages, only p6 and
+// p32 have nonzero perfect-square rune counts. Apply the same route projection
+// and lexical family to both without changing width A or target orientation.
+const squareUnknownPages = corpus.pages
+  .filter((page) => page.page <= 55 && page.indices.length > 0)
+  .filter((page) => Number.isInteger(Math.sqrt(page.indices.length)))
+  .map((page) => ({ page: page.page, side: Math.sqrt(page.indices.length), indices: page.indices }));
+assert.deepEqual(squareUnknownPages.map((row) => [row.page, row.side]), [[6, 14], [32, 11]]);
 
 let lexicalComparisons = 0;
 const lexicalHits = [];
@@ -405,6 +418,62 @@ assert.deepEqual(lexicalHits, [
   },
 ]);
 
+const squarePageHits = [];
+for (const page of squareUnknownPages) {
+  for (const reverse of [false, true]) {
+    const directedRoute = reverse ? [...route].reverse() : route;
+    for (const orientation of orientations) {
+      const projected = directedRoute.map((state) => {
+        const source = p50Coordinate(state);
+        let row = source.row % page.side;
+        let col = source.col;
+        if (orientation.swap) [row, col] = [col, row];
+        if (orientation.rowReflect) row = page.side - 1 - row;
+        if (orientation.colReflect) col = page.side - 1 - col;
+        const offset = row * page.side + col;
+        return { offset, value: page.indices[offset] };
+      });
+      for (const target of distinctTargets.values()) {
+        for (let start = 0; start + target.gp.length <= projected.length; start += 1) {
+          const match = target.gp.every(
+            (value, index) => projected[start + index].value === value
+          );
+          if (!match) continue;
+          squarePageHits.push({
+            page: page.page,
+            reverse,
+            orientation,
+            start,
+            word: target.word,
+            states: directedRoute.slice(start, start + target.gp.length),
+            offsets: projected.slice(start, start + target.gp.length).map((cell) => cell.offset),
+          });
+        }
+      }
+    }
+  }
+}
+assert.deepEqual(squarePageHits, [
+  {
+    page: 6,
+    reverse: true,
+    orientation: { swap: false, rowReflect: false, colReflect: true },
+    start: 14,
+    word: "IS",
+    states: [238, 236],
+    offsets: [21, 23],
+  },
+  {
+    page: 32,
+    reverse: false,
+    orientation: { swap: false, rowReflect: false, colReflect: false },
+    start: 20,
+    word: "ARE",
+    states: [125, 20, 102],
+    offsets: [49, 26, 17],
+  },
+]);
+
 const areOccurrences = words
   .filter((word) => word.word === "ARE")
   .map((word) => word.index);
@@ -435,6 +504,63 @@ assert.deepEqual(occurrencePageClosures, [
   { index: 16, word: "ARE", radix: "base60", token: "21", value: 121 },
 ]);
 assert.equal(base60[dh.A + dh.g + dh.e], (dh.A + dh.e) ** 2);
+
+// The route-derived printed coordinate tuple itself is a narrow receiver gate.
+// Use one-based coordinates [(e^2,a),(a,K),(K^2,e^2)] on every unknown page.
+const printedCoordinateTuple = [
+  [dh.e ** 2, dh.a],
+  [dh.a, dh.K],
+  [dh.K ** 2, dh.e ** 2],
+];
+const coordinateReceiverRows = [];
+for (const page of corpus.pages.filter((candidate) => candidate.page <= 55 && candidate.indices.length > 0)) {
+  const pageText = transcription.split(/\n%\n/u)[page.page];
+  const ranges = [];
+  let pageCursor = 0;
+  let rangeStart = null;
+  for (const symbol of [...pageText.replace(/\/\n/gu, "").replace(/\n/gu, "")]) {
+    if (runeSet.has(symbol)) {
+      if (rangeStart === null) rangeStart = pageCursor;
+      pageCursor += 1;
+      continue;
+    }
+    if ("-.&$".includes(symbol) && rangeStart !== null) {
+      ranges.push({ start: rangeStart, end: pageCursor - 1, length: pageCursor - rangeStart });
+      rangeStart = null;
+    }
+  }
+  if (rangeStart !== null) {
+    ranges.push({ start: rangeStart, end: pageCursor - 1, length: pageCursor - rangeStart });
+  }
+
+  const selected = [];
+  let valid = true;
+  for (const [wordNumber, runePosition] of printedCoordinateTuple) {
+    const word = ranges[wordNumber - 1];
+    if (!word || runePosition > word.length) {
+      valid = false;
+      break;
+    }
+    const offset = word.start + runePosition - 1;
+    selected.push({ offset, value: page.indices[offset] });
+  }
+  if (!valid) continue;
+
+  const key = selected.map((cell) => cell.value).join(",");
+  const sourceWord = [...distinctTargets.values()].find(
+    (target) => target.gp.length === 3 && target.gp.join(",") === key
+  );
+  coordinateReceiverRows.push({
+    page: page.page,
+    offsets: selected.map((cell) => cell.offset),
+    values: selected.map((cell) => cell.value),
+    sourceWord: sourceWord ? sourceWord.word : null,
+  });
+}
+assert.deepEqual(coordinateReceiverRows, [
+  { page: 32, offsets: [49, 26, 17], values: [24, 4, 18], sourceWord: "ARE" },
+  { page: 44, offsets: [44, 27, 20], values: [21, 20, 22], sourceWord: null },
+]);
 
 assert.equal(words[17].word, "THE");
 assert.equal(17 + 1, dh.p - dh.g);
@@ -501,6 +627,58 @@ for (const terminal of terminalP32Routes) {
 }
 assert.deepEqual([...terminalCoordinateStateSets].sort(), ["125,20,102", "146,92"]);
 
+// Among all consecutive e=3 windows on the natural p32 projection, identify
+// windows whose selected cells are all addressed by simple DH-state-derived
+// one-based printed coordinates, then apply the fixed source-index prediction.
+const simpleStateCoordinates = new Set([
+  dh.p, dh.g, dh.a, dh.b, dh.A, dh.B, dh.K, dh.e,
+  dh.K ** 2, dh.e ** 2, dh.a * dh.K, dh.A + dh.A,
+  dh.p - dh.a, dh.p - dh.g, dh.p - 1, 29,
+]);
+const eWindowCoordinateAudit = [];
+for (let start = 0; start + dh.e <= route.length; start += 1) {
+  const states = route.slice(start, start + dh.e);
+  const cells = states.map((state) => {
+    const projected = projectNatural(state);
+    const word = containingWord(projected.offset);
+    return {
+      state,
+      offset: projected.offset,
+      value: projected.value,
+      word0: word.index,
+      word1: word.index + 1,
+      position1: projected.offset - word.start + 1,
+    };
+  });
+  const sourceIndex = cells.reduce((sum, cell) => sum + cell.word0, 0);
+  const target = words[sourceIndex] || null;
+  const exact = Boolean(
+    target &&
+    target.gp.length === dh.e &&
+    target.gp.every((value, index) => value === cells[index].value)
+  );
+  eWindowCoordinateAudit.push({
+    start,
+    states,
+    cells,
+    allSimple: cells.every(
+      (cell) => simpleStateCoordinates.has(cell.word1) && simpleStateCoordinates.has(cell.position1)
+    ),
+    sourceIndex,
+    targetWord: target ? target.word : null,
+    exact,
+  });
+}
+assert.deepEqual(
+  eWindowCoordinateAudit.filter((row) => row.exact).map((row) => ({
+    start: row.start,
+    states: row.states,
+    sourceIndex: row.sourceIndex,
+    targetWord: row.targetWord,
+  })),
+  [{ start: 20, states: [125, 20, 102], sourceIndex: 16, targetWord: "ARE" }]
+);
+
 console.log(JSON.stringify({
   status: "PASS",
   route,
@@ -518,6 +696,10 @@ console.log(JSON.stringify({
     },
     terminalP32Routes: terminalP32Routes.length,
     terminalCoordinateStateSets: [...terminalCoordinateStateSets].sort(),
+    squarePageHits,
+    coordinateReceiverRows,
+    printedCoordinateTuple,
+    eWindowExactClosures: eWindowCoordinateAudit.filter((row) => row.exact),
   },
   continuation: {
     sourceContext: words.slice(14, 19).map((word) => word.word),
