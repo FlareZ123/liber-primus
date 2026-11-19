@@ -1,31 +1,120 @@
 "use strict";
+
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
+
 const root = path.resolve(__dirname, "..");
-const read = (relative) => fs.readFileSync(path.join(root, relative), "utf8").replace(/\r/g, "");
+const read = (relative) =>
+  fs.readFileSync(path.join(root, relative), "utf8").replace(/\r/g, "");
+
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
-const transcription = read("resources/liber-primus/lp2-transcription.txt");
-const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
-const mod29 = (value) => ((value % 29) + 29) % 29;
-const H3 = (values) => [mod29(values[0]-values[2]),mod29(values[0]+values[2]),values[1]];
-/** @param {number} base @param {number} exponent */
-function modPow(base, exponent) {
-  let out=1,value=mod29(base),power=exponent;
-  while(power>0){if(power%2===1)out=mod29(out*value);value=mod29(value*value);power=Math.floor(power/2);}
-  return out;
+const raw = read("resources/liber-primus/lp2-transcription.txt");
+const runeToValue = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const parts = raw.split(/^\s*%\s*$/m);
+
+/** @param {string} text */
+function physicalResetWords(text) {
+  const words = [];
+  let current = [];
+  let start = 0;
+  let offset = 0;
+  function flush() {
+    if (!current.length) return;
+    words.push({
+      ordinal: words.length + 1,
+      start,
+      values: current.slice(),
+    });
+    current = [];
+  }
+  for (const char of [...text]) {
+    const value = runeToValue.get(char);
+    if (value !== undefined) {
+      if (!current.length) start = offset;
+      current.push(value);
+      offset += 1;
+    } else if (char === "/" || /\s/u.test(char)) {
+      // line/page formatting does not end a printed word
+    } else {
+      flush();
+    }
+  }
+  flush();
+  return words;
 }
-const parts=transcription.split(/^\s*%\s*$/m).slice(0,55);
-const pages=parts.map((text,segment)=>({page:segment>=50?segment+1:segment,words:[],offset:0}));
-let current=[],startSegment=0,endSegment=0,startOffset=0;
-function flushWord(){if(!current.length)return;if(startSegment===endSegment){const page=pages[startSegment];page.words.push({ordinal:page.words.length+1,start:startOffset,values:current.slice()});}current=[];}
-for(let segment=0;segment<parts.length;segment+=1){for(const char of [...parts[segment]]){const value=runeIndex.get(char);if(value!==undefined){if(!current.length){startSegment=segment;startOffset=pages[segment].offset;}endSegment=segment;current.push(value);pages[segment].offset+=1;}else if(char!=="/"&&!/\s/u.test(char))flushWord();}}flushWord();
-const p42=pages.find((page)=>page.page===42).words;
-assert.deepEqual(p42[41].values,[11,13,11]);
-assert.deepEqual(H3(p42[41].values),[0,22,13]);
-assert.deepEqual(p42[42].values,[16,0,14]);
-assert.deepEqual(H3(p42[42].values),[2,1,0]);
-assert.equal(modPow(13,3),22);
-assert.equal(modPow(22,3),5);
-assert.notDeepEqual(H3(p42[42].values),[0,22,13]);
-console.log("PASS: retire OPENPGP cube continuation after canonical word-carry correction");
+
+const oldP42 = physicalResetWords(parts[42]);
+assert.deepEqual(oldP42[42], {
+  ordinal: 43,
+  start: 203,
+  values: [11, 13, 11],
+});
+
+// Canonical parser keeps printed words intact across physical page boundaries.
+const segments = parts.slice(0, 55);
+const pages = segments.map((text, segment) => ({
+  page: segment >= 50 ? segment + 1 : segment,
+  words: [],
+  offset: 0,
+}));
+let current = [];
+let startSegment = 0;
+let endSegment = 0;
+let startOffset = 0;
+
+function flushCanonical() {
+  if (!current.length) return;
+  if (startSegment === endSegment) {
+    const page = pages[startSegment];
+    page.words.push({
+      ordinal: page.words.length + 1,
+      start: startOffset,
+      values: current.slice(),
+    });
+  }
+  current = [];
+}
+
+for (let segment = 0; segment < segments.length; segment += 1) {
+  for (const char of [...segments[segment]]) {
+    const value = runeToValue.get(char);
+    if (value !== undefined) {
+      if (!current.length) {
+        startSegment = segment;
+        startOffset = pages[segment].offset;
+      }
+      endSegment = segment;
+      current.push(value);
+      pages[segment].offset += 1;
+    } else if (char === "/" || /\s/u.test(char)) {
+      // a printed word may continue across this boundary
+    } else {
+      flushCanonical();
+    }
+  }
+}
+flushCanonical();
+
+const p42 = pages.find((page) => page.page === 42);
+assert.ok(p42);
+
+assert.deepEqual(p42.words[41], {
+  ordinal: 42,
+  start: 203,
+  values: [11, 13, 11],
+});
+assert.deepEqual(p42.words[42], {
+  ordinal: 43,
+  start: 206,
+  values: [16, 0, 14],
+});
+
+assert.notDeepEqual(p42.words[42].values, oldP42[42].values);
+
+console.log("PASS retracted OPENPGP cube endpoint is a physical-reset ordinal artifact");
+console.log(JSON.stringify({
+  oldPhysicalResetWord43: oldP42[42],
+  canonicalWord42: p42.words[41],
+  canonicalOPENPGP43: p42.words[42],
+}, null, 2));
