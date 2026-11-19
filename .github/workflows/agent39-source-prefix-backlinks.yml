@@ -2,10 +2,6 @@ name: Agent39 source prefix predecessor backlinks
 
 on:
   workflow_dispatch:
-  push:
-    paths:
-      - "sims/lp2_source_prefix_predecessor_backlinks_sft.cjs"
-      - ".github/workflows/agent39-source-prefix-backlinks.yml"
 
 jobs:
   sft:
