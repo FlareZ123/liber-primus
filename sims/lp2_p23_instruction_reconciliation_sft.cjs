@@ -80,6 +80,7 @@ const p50Tokens = grid.pages.flatMap((page) => page.tokens);
 const p50Bytes = grid.pages.flatMap((page) => page.bytes);
 const primes = firstPrimes(400);
 const fiveDots = 5;
+const state = { p: 23, g: 5, a: 6, b: 15, A: 8, B: 19, K: 2, e: 3, q: 4 };
 
 /** @param {number} cardinal @returns {number} */
 function T(cardinal) {
