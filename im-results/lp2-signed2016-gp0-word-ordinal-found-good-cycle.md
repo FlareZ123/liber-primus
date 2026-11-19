@@ -89,3 +89,35 @@ Run:
 ```text
 node sims\\lp2_signed2016_gp0_word_ordinal_cycle_sft.cjs
 ```
+
+
+## Prospective manuscript transfer fails
+
+After the source-only relation above was preserved, Agent19 froze one untouched manuscript consequence before opening the receiver.
+
+The first two forward pointers are `BE -> FOUND -> GOOD`. The already consumed second edge has:
+
+```text
+FOUND -> value36 -> p50[36]=0s
+base59 / one-origin -> p0 word10 end52, length4
+```
+
+matching the GOOD receiver geometry.
+
+For the untouched upstream edge, the same compound geometry gives:
+
+```text
+BE -> value35 -> p50[35]=0d
+one-origin -> position38
+position38 = end of p0 word6, length5 = GP length(FOUND)
+```
+
+Before opening p0 word6, the existing published FOUND Alice-shell key was frozen unchanged:
+
+```text
+[12,28,10,1,8]
+```
+
+The receiver then opened as `[9,25,6,10,2]`. Subtraction produces `[26,26,25,9,23]`, not FOUND.
+
+This negative holdout is decisive for the obvious decoder extension. The GP0/index relation remains a source-internal selector for the FOUND/GOOD labels, while it is **not licensed as a p50 manuscript-routing/decryption grammar**. No alternate sign, origin, adjacent receiver, key order, or target was tried.
