@@ -323,3 +323,32 @@ Artifacts:
 
 Possible next: inspect whether p22's already-established recovered signed clause supplies a deterministic return/continuation consistent with p49/p55 navigation, while preserving its existing failed p25 transfer and avoiding new cipher fitting.
 
+## 2026-11-19 draw9 continuation: p22 source-square SHED -> 809 -> EMERGE
+
+Major new source-constrained mechanism after p55->p22:
+- p22's mirrored LP1 p14-p16 source supplies `VOICE OF THE CIRCUMFERENCE`, `DISCOVER TRUTH INSIDE YOURSELF`, then original `KNOW THIS` 5x5 square with magic sum3301.
+- solved p57 says `SHED OUR OWN CIRCUMFERENCES / FIND THE DIVINITY WITHIN AND EMERGE`.
+- recursive circumference removal is orientation-free: 5x5 -> 3x3 -> center809.
+- 809 is the sole prime-valued cell among all25 square cells.
+- fixed post-SHED read: `809 mod256=41 -> p50[41]=1O -> base59 83 = GP0(EMERGE)`.
+- fixed base59 scan of all25 square cells has exactly 3 p57 hits: symmetric outer1311 cells -> `CIRCUMFERENCES`; center809 -> `EMERGE`; no other inner cells hit.
+- radix rival preserved: base60 maps symmetric outer966 cells -> DIVINITY; do not mix this into primary path because base59 is fixed upstream.
+- center rival family raw809/phi808/prime ordinal140/139 × zero/one origin × radix59/60 =16; sole p57 hit is raw809 zero-origin mod256 base59 -> EMERGE.
+- exact token-multiset fixed-address null for 2D at31 and 1O at41: 2/256 * 3/255 = 1/10880.
+- older p7 result independently reaches809 as fifth ordinary-prime successor after761. Its direct prime-totient cipher starts remain negative and are not revived.
+- old p22 circumference-square additive key remains negative. New result supplies a different literal consumer and resolves its missing first-party-selector objection.
+
+Artifacts:
+- `im-results/lp2-p22-square-shed-divinity-emerge.md`
+- `sims/lp2_p22_square_shed_divinity_emerge_sft.cjs`
+- `.github/workflows/agent49-p22-square-shed-emerge.yml`
+- Windows PASS 44471959972
+- commits 601ae88e (SFT), 14b3ebc4 (workflow), bce2850b (token null), 365883d8 (report), 8c66344b (synthesis), 96a290f7 (broadcast)
+
+Also added composite p49->p55->p22 meta-regression:
+- `sims/lp2_p49_p55_p22_navigation_route_sft.cjs`, Windows PASS 44471292695.
+- p22 same SHED produces 111 -> base59 113 with no page-count/signed/p57 typed receiver, so numeric word-SHED route naturally stops at p22 before the square/source handoff.
+- Director #1835 p33 word-map audit closed negative; none of this route uses the rejected map grammar.
+
+Next: investigate only source-native consumers of emerged prime809 / EMERGE. Preserve Agent1's failed p56-style prime-totient starts. Existing p57 EMERGE/SURFACE graph may be relevant but must be checked for which parts survived audits.
+
