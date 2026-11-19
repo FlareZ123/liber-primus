@@ -467,6 +467,141 @@ assert.deepEqual(p6PacketFirstWord, [
   mod29(packetState.K + packetState.b),
 ]);
 
+// Charge the first-word grammar over every four-rune red word and every
+// authenticated state-field pair. The p6 word is the only instance of
+// [-x, K-y, -y, K+y], fixing x=g and y=b without using p38 values.
+const redFourRuneWords = [];
+for (const annotation of ink.pages) {
+  const pageWords = pages.get(annotation.page) || [];
+  for (let spanIndex = 0; spanIndex < (annotation.red_spans || []).length; spanIndex += 1) {
+    const span = annotation.red_spans[spanIndex];
+    const inside = pageWords.filter((word) =>
+      word.start >= span.start &&
+      word.end < span.start + span.length
+    );
+    for (let wordIndex = 0; wordIndex < inside.length; wordIndex += 1) {
+      if (inside[wordIndex].length === 4) {
+        redFourRuneWords.push({
+          page: annotation.page,
+          spanIndex,
+          wordIndex,
+          word: inside[wordIndex],
+        });
+      }
+    }
+  }
+}
+assert.equal(redFourRuneWords.length, 9);
+
+const packetFieldEntries = Object.entries(packetState);
+const firstWordTemplateHits = [];
+for (const redWord of redFourRuneWords) {
+  for (const [xName, x] of packetFieldEntries) {
+    for (const [yName, y] of packetFieldEntries) {
+      const predicted = [
+        mod29(-x),
+        mod29(packetState.K - y),
+        mod29(-y),
+        mod29(packetState.K + y),
+      ];
+      if (predicted.every((value, index) => value === redWord.word.values[index])) {
+        firstWordTemplateHits.push({
+          page: redWord.page,
+          spanIndex: redWord.spanIndex,
+          wordIndex: redWord.wordIndex,
+          start: redWord.word.start,
+          xName,
+          yName,
+          predicted,
+        });
+      }
+    }
+  }
+}
+assert.deepEqual(firstWordTemplateHits, [{
+  page: 6,
+  spanIndex: 0,
+  wordIndex: 0,
+  start: 71,
+  xName: "g",
+  yName: "b",
+  predicted: [24, 16, 14, 17],
+}]);
+
+// The fourth field K+b is a target-initial selector. Among authenticated
+// six-rune source words it selects BEWARE alone.
+const packetTargetInitial = p6PacketFirstWord[3];
+assert.equal(packetTargetInitial, mod29(packetState.K + packetState.b));
+assert.deepEqual(
+  sixRuneTargets
+    .filter((target) => target.values[0] === packetTargetInitial)
+    .map((target) => target.word),
+  ["BEWARE"]
+);
+
+// Treat one of the four printed fields as the target-initial selector and
+// assign the remaining three, in every possible order, to d0,s0,s2 of the
+// six-rune interleaved H shell. The middle pair is fixed by p=-a and p-e;
+// d2=0. This charges all 4*3! = 24 role maps and both signs.
+const packetRoleHits = [];
+let packetRoleCases = 0;
+for (let targetSlot = 0; targetSlot < 4; targetSlot += 1) {
+  const remaining = [0, 1, 2, 3].filter((index) => index !== targetSlot);
+  for (const d0Slot of remaining) {
+    for (const s0Slot of remaining) {
+      if (s0Slot === d0Slot) continue;
+      for (const s2Slot of remaining) {
+        if (s2Slot === d0Slot || s2Slot === s0Slot) continue;
+        const shell = [
+          p6PacketFirstWord[d0Slot],
+          p6PacketFirstWord[s0Slot],
+          packetState.p,
+          mod29(packetState.p - packetState.e),
+          0,
+          p6PacketFirstWord[s2Slot],
+        ];
+        const key = invertHShell(shell);
+        const admissibleTargets = sixRuneTargets.filter((target) =>
+          target.values[0] === p6PacketFirstWord[targetSlot]
+        );
+        for (const sign of [-1, 1]) {
+          packetRoleCases += 1;
+          const candidate = receiver.values.map((value, index) =>
+            mod29(value + sign * key[index])
+          );
+          for (const target of admissibleTargets) {
+            if (candidate.every((value, index) => value === target.values[index])) {
+              packetRoleHits.push({
+                targetSlot,
+                d0Slot,
+                s0Slot,
+                s2Slot,
+                targetInitial: p6PacketFirstWord[targetSlot],
+                sign,
+                shell,
+                key,
+                target: target.word,
+              });
+            }
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(packetRoleCases, 48);
+assert.deepEqual(packetRoleHits, [{
+  targetSlot: 3,
+  d0Slot: 1,
+  s0Slot: 0,
+  s2Slot: 2,
+  targetInitial: 17,
+  sign: -1,
+  shell: [16, 24, 23, 20, 0, 14],
+  key: [20, 7, 7, 7, 13, 4],
+  target: "BEWARE",
+}]);
+
 /** @returns {number[][]} */
 function orderedTriplesOfFour() {
   const out = [];
@@ -758,6 +893,27 @@ console.log(JSON.stringify({
       shellLabels: "[-b,A,e,-e]",
     },
   },
+  p6FirstWordGrammar: {
+    redFourRuneWords: redFourRuneWords.length,
+    chargedTemplateCases:
+      redFourRuneWords.length * packetFieldEntries.length * packetFieldEntries.length,
+    hits: firstWordTemplateHits,
+    targetInitial: packetTargetInitial,
+    sixRuneTargetsWithInitial:
+      sixRuneTargets.filter((target) => target.values[0] === packetTargetInitial)
+        .map((target) => target.word),
+    roleAssignmentCases: packetRoleCases,
+    roleAssignmentHits: packetRoleHits,
+    deterministicShell: [
+      p6PacketFirstWord[1],
+      p6PacketFirstWord[0],
+      packetState.p,
+      mod29(packetState.p - packetState.e),
+      0,
+      p6PacketFirstWord[2],
+    ],
+    deterministicShellLabels: "[K-b,-g,p,p-e,0,-b]",
+  },
   p6P28SixRuneFamily: {
     keys: p6P28Family.length,
     configurationsPerReceiver: p6P28Family.length * 2,
@@ -817,5 +973,5 @@ console.log(JSON.stringify({
     pass: false,
   },
   classification:
-    "P6 is a source-selected state-packet candidate: its exact red-title layout encodes [K,-e,g,a], reconstructs the p33/p40 four-rune shells, and with literal p28 state gives a 48-key six-rune family whose sole manuscript hit is p38 BEWARE. The p0 VERIFY transfer is zero. Preserve this as cross-page key-schedule evidence with retrospective serialization, not as a universal decoder.",
+    "P6 is a source-selected state-packet candidate: its exact red-title layout encodes [K,-e,g,a]; its first red word is the unique red four-rune instance of [-x,K-y,-y,K+y] and fixes x=g,y=b; the unused K+b field uniquely selects BEWARE among authenticated six-rune targets; all 48 possible field-role/sign assignments leave the exact p38 shell [K-b,-g,p,p-e,0,-b] as the sole hit. The broader p6+p28 family is also manuscript-unique and the p0 VERIFY transfer is zero. Preserve as strong cross-page key-schedule evidence with one retrospective role assignment, not as a universal decoder.",
 }, null, 2));
