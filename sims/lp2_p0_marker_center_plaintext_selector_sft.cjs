@@ -466,6 +466,7 @@ function segmentLexicon(values) {
 }
 
 const fullKeyMarkerTransfers = [];
+const fullKeyScheduleTransfers = [];
 let fullKeyMarkerWindows = 0;
 for (const pageAnnotation of annotations.pages) {
   const page = corpus.pages.find((candidate) => candidate.page === pageAnnotation.page);
@@ -485,6 +486,22 @@ for (const pageAnnotation of annotations.pages) {
           page:page.page,offset,color,side,start,sign,
           segmentations,
         });
+      }
+
+      for (const reversed of [false,true]) {
+        const base = reversed ? geometryKey.slice().reverse() : geometryKey;
+        for (let phase = 0; phase < base.length; phase += 1) {
+          const schedule = base.slice(phase).concat(base.slice(0,phase));
+          for (const sign of [-1,1]) {
+            const plain = cipher.map((value,index) =>
+              mod29(value + sign*schedule[index]));
+            const segmentations = segmentLexicon(plain);
+            if (segmentations.length) fullKeyScheduleTransfers.push({
+              page:page.page,offset,color,side,start,
+              reversed,phase,sign,segmentations,
+            });
+          }
+        }
       }
     }
   }
@@ -692,7 +709,12 @@ console.log(JSON.stringify({
   geometryKey,
   riseRoleRivalHits:riseRoleRivals,
   sourceVisibleReceiverGate:{red13MarkerCount,exactRed13MarkerReceivers},
-  fullKeyMarkerTransferGate:{fullKeyMarkerWindows,fullKeyMarkerTransfers},
+  fullKeyMarkerTransferGate:{
+    fullKeyMarkerWindows,
+    fullKeyMarkerTransfers,
+    scheduleCases:fullKeyMarkerWindows * geometryKey.length * 2 * 2,
+    fullKeyScheduleTransfers,
+  },
   palindromeDecryptions,
   palindromeAdditiveDecryptions,
   fullStatePalindromeDecryptions,
