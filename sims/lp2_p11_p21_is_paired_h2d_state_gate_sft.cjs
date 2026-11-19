@@ -232,6 +232,117 @@ assert.deepEqual(duplicateSignatures, [
   { signature: "273/55", pages: [11, 21] },
 ]);
 
+// Complete common-source-length collision-receiver census.
+// For every equal-GP0 source pair, only source lengths are admissible.
+// Exactly two pair/length cases have one matching receiver on each page.
+const commonLengthCollisionReceivers = [];
+for (const row of gp0Pairs) {
+  const sourceLengths = [...new Set([
+    source[row.left].values.length,
+    source[row.right].values.length,
+  ])];
+  for (const length of sourceLengths) {
+    const leftMatches = parseWords(row.left).words.filter(
+      (word) => word.length === length && word.gp0 === row.gp0
+    );
+    const rightMatches = parseWords(row.right).words.filter(
+      (word) => word.length === length && word.gp0 === row.gp0
+    );
+    if (leftMatches.length === 1 && rightMatches.length === 1) {
+      commonLengthCollisionReceivers.push({
+        left: row.left,
+        right: row.right,
+        leftWord: row.leftWord,
+        rightWord: row.rightWord,
+        gp0: row.gp0,
+        length,
+        leftReceiver: leftMatches[0],
+        rightReceiver: rightMatches[0],
+      });
+    }
+  }
+}
+assert.deepEqual(
+  commonLengthCollisionReceivers.map((row) => ({
+    left: row.left,
+    right: row.right,
+    words: [row.leftWord, row.rightWord],
+    gp0: row.gp0,
+    length: row.length,
+    leftIndex: row.leftReceiver.index,
+    rightIndex: row.rightReceiver.index,
+  })),
+  [
+    {
+      left: 11,
+      right: 21,
+      words: ["IS", "IS"],
+      gp0: 25,
+      length: 2,
+      leftIndex: 11,
+      rightIndex: 33,
+    },
+    {
+      left: 13,
+      right: 33,
+      words: ["WAY", "WILL"],
+      gp0: 57,
+      length: 4,
+      leftIndex: 39,
+      rightIndex: 34,
+    },
+  ]
+);
+
+// WAY/WILL has source lengths 3/4. Only length4 survives on both pages,
+// so the source collision itself selects WILL rather than WAY.
+assert.equal(source[13].word, "WAY");
+assert.equal(source[13].values.length, 3);
+assert.equal(source[33].word, "WILL");
+assert.equal(source[33].values.length, 4);
+assert.equal(source[13].gp0, 57);
+assert.equal(source[33].gp0, 57);
+for (const page of [13, 33]) {
+  assert.equal(
+    parseWords(page).words.filter((word) => word.length === 3 && word.gp0 === 57).length,
+    0
+  );
+  assert.equal(
+    parseWords(page).words.filter((word) => word.length === 4 && word.gp0 === 57).length,
+    1
+  );
+}
+
+const wayWill = commonLengthCollisionReceivers.find(
+  (row) => row.left === 13 && row.right === 33 && row.length === 4
+);
+assert.ok(wayWill);
+assert.deepEqual(
+  {
+    index: wayWill.leftReceiver.index,
+    start: wayWill.leftReceiver.start,
+    end: wayWill.leftReceiver.end,
+    values: wayWill.leftReceiver.values,
+  },
+  { index: 39, start: 154, end: 157, values: [15, 27, 12, 3] }
+);
+assert.deepEqual(
+  {
+    index: wayWill.rightReceiver.index,
+    start: wayWill.rightReceiver.start,
+    end: wayWill.rightReceiver.end,
+    values: wayWill.rightReceiver.values,
+  },
+  { index: 34, start: 132, end: 135, values: [3, 15, 17, 22] }
+);
+
+// Receiver word numbers are themselves authenticated source directions.
+assert.equal(source[wayWill.leftReceiver.index].word, "FALSE");
+assert.equal(source[wayWill.rightReceiver.index].word, "BE");
+assert.equal(wayWill.rightReceiver.index, source[33].index + 1);
+assert.equal(source[34].word, "BE");
+assert.equal(source[39].word, "FALSE");
+
 // The original selected ciphertext block.
 const cipher = [r11.values, r21.values];
 assert.deepEqual(cipher, [[11, 14], [24, 1]]);
@@ -436,6 +547,24 @@ console.log(JSON.stringify({
   status: "PASS",
   classification:
     "source-selected p11/p21 IS paired H2D state packet; joint shell retrospective; frozen THE successor transfer fails",
+  collisionBranchSelector: {
+    commonLengthCases: commonLengthCollisionReceivers.map((row) => ({
+      sourceIndices: [row.left, row.right],
+      sourceWords: [row.leftWord, row.rightWord],
+      gp0: row.gp0,
+      length: row.length,
+      receiverWordIndices: [row.leftReceiver.index, row.rightReceiver.index],
+      receiverMappedWords: [
+        source[row.leftReceiver.index]?.word || null,
+        source[row.rightReceiver.index]?.word || null,
+      ],
+    })),
+    wayWillDecision: {
+      selectedTargetByCommonLength: "WILL",
+      falseBranch: { page: 13, receiverWordIndex: 39, mapsTo: "FALSE" },
+      continuationBranch: { page: 33, receiverWordIndex: 34, mapsTo: "BE" },
+    },
+  },
   sourcePair: {
     indices: [11, 21],
     word: "IS",
