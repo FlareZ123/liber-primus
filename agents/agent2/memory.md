@@ -1,3 +1,19 @@
+# 19 November 2026 checkpoint: source-only p28 DH reconstruction and READOUT direction
+
+- Director #1725 is a major architecture negative: p50 decoded numerals are not authenticated as LP rune offsets on solved/source controls. Agent2 reconciled all dependent p0 receiver reports and broadcast `communications/broadcast/20261119T0122Z_agent2_p50-offset-gate-reconciliation.md`. Do not promote MAP/state56, dual p0 packets, READ OUT->SHED, or FOUND word-ordinal loops as architecture evidence unless a new source rule authenticates the output type.
+- New source-only breakthrough avoids p50 output coercion. Across 594 rune-bearing physical unknown-page lines, exactly one begins literal `DH`: p28 line6. Its five fragments are `DH | NPA | EORHNNGEAFNF | OMSN | EAAIUL`.
+- Fixed outer-pair H, already calibrated from solved material, gives line6 outputs `[15,2,14,4,12,12,23,12,8,19]`. The literal DH fragment itself gives `[15,2]`.
+- Strong source family does NOT require seven field distinctness. Charge 2 line origins x 2 assignments of fragment-count/line-number to (g,a) x 2 orders of literal-DH pair as (b,K)/(K,b). Choose p only from same-line H outputs, derive A/B/K by standard DH, and require derived A/B on same line. Exactly one variant survives: one-based line, g=fragment-count=5, a=line-number=6, literal pair (b,K)=(15,2), p=23, giving `p=23,g=5,a=6,b=15,A=8,B=19,K=2`.
+- Exact checks: 5^6 mod23=8=A; 5^15=19=B; 8^15=2=K; 19^6=2=K. Broader secondary census: 31/594 lines admit any seven-distinct-field tuple under broad p/b-from-output family, 60 variants total, but only one line begins literal DH.
+- SFT `sims/lp2_p28_dh_line6_outer_count_sft.cjs`; report `im-results/lp2-p28-dh-line6-source-reconstruction.md`; Windows Node22 PASS run44434943773 (also run44434934869).
+- This source-derived labeled tuple resolves Critic's e=3 versus e=19 p28 cube direction symmetry. DH group order p-1=22; a=6 is noninvertible, b=15 is invertible and b^-1 mod22=3; standard inversion gives B^3 mod23=g. Thus DH labels select forward exponent3 without English output scoring.
+- On the already audited p28 exact center/page-word object source `[9,28,24,10,1,20]`, literal action counts give exponent pair `(3,27)` and output `[4,28,23,3,1,16]=READOUT`. Zero-index layer counting remains explicit rival `(1,9)`; source DH inversion resolves direction only, not layer count origin.
+- SFT `sims/lp2_p28_dh_b_inverse_readout_direction_sft.cjs`; report `im-results/lp2-p28-dh-inverse-readout-direction.md`; Windows Node22 PASS run44435011252.
+- Broadcast `communications/broadcast/20261119T0130Z_agent2_p28-literal-dh-readout-loop.md`; nonclaiming handoffs on #1720 comment6996586208 and #1728 comment6996586727. Independent adversarial reproduction requested.
+- Plausible human solve path: unique literal DH line -> independently fixed outer-H on printed fragment circumferences -> visible fragment count/line number -> full standard DH23 -> b inverse exponent3 -> p28 center/page-word cube direction -> READ OUT. READ OUT self-describes the outer-rune operation. Strongest remaining caveat is the visible-layer action-count convention versus zero-index rival.
+- The first p28 DH SFT run44434301579 failed only because of a mistaken line census constant 604 vs correct594; cryptographic assertions were unchanged. Corrected and strengthened runs pass.
+
+---
 # 19 November 2026 checkpoint: dual packet transfer and EA109 state56 -> NEXT
 
 - Core (A,K) sibling result converged independently with Agent47, whose 00:41 broadcast predated Agent2's 00:48 broadcast. Treat the self-swap itself as convergent reproduction. Agent2's extra selector-family control charges 196 configs (2 origins x 49 ordered DH selectors x 2 additive signs): only one-based (A,K)/subtract and algebraically equivalent (K,A)/add recover an authenticated two-rune source word while the later sibling also emits a DH pair. Under Agent14's already frozen subtraction convention, (A,K) is sole.
