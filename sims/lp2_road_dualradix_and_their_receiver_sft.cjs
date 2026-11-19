@@ -556,9 +556,146 @@ assert.equal(p0At196?.length, 5);
 assert.equal(gp("NUMBERS").length, 7);
 assert.equal(p0ByStart.has(194), false);
 
+
+// Later independent reconciliation and held-out consequences.
+
+// The radix difference itself carries the first receiver length at ROAD.
+assert.equal(decodeToken("3C", alphabet60) - decodeToken("3C", alphabet59), 3);
+assert.equal(andReceiver.length, 3);
+
+// The solved-p56-authenticated nX self-index consumer transfers to numeric
+// state56 on p0, but state56 is shared by MAP, AND and SEEK. It cannot by
+// itself identify AND. THEIR's own 3H self-index fails.
+const p0Values = p0.flatMap((word) => word.values);
+
+/** @param {string} word */
+function ordinalSelfIndex(word) {
+  const address = gp(word).reduce((sum, value) => sum + value, 0);
+  const token = tableTokens[address];
+  const match = token.match(/^([1-9])([A-Z])$/u);
+  if (!match) return { word, address, token, eligible: false, hit: false };
+  const ordinal = Number(match[1]);
+  const target = corpus.translit.findIndex((symbol) => symbol === match[2]);
+  if (target < 0) return { word, address, token, eligible: false, hit: false };
+  const count = p0Values.slice(0, address + 1).filter((value) => value === target).length;
+  return {
+    word,
+    address,
+    token,
+    eligible: true,
+    ordinal,
+    target,
+    valueAtAddress: p0Values[address],
+    count,
+    hit: p0Values[address] === target && count === ordinal,
+  };
+}
+const andOrdinal = ordinalSelfIndex("AND");
+const mapOrdinal = ordinalSelfIndex("MAP");
+const seekOrdinal = ordinalSelfIndex("SEEK");
+const theirOrdinal = ordinalSelfIndex("THEIR");
+assert.deepEqual(
+  [andOrdinal.address, mapOrdinal.address, seekOrdinal.address],
+  [56, 56, 56]
+);
+assert.equal(andOrdinal.token, "4E");
+assert.equal(andOrdinal.hit, true);
+assert.equal(mapOrdinal.hit, true);
+assert.equal(seekOrdinal.hit, true);
+assert.equal(theirOrdinal.address, 34);
+assert.equal(theirOrdinal.token, "3H");
+assert.equal(theirOrdinal.hit, false);
+assert.equal(theirOrdinal.valueAtAddress, 9);
+assert.equal(theirOrdinal.count, 1);
+
+// Agent8 independently made the ROAD source vector select the table's two
+// literal 00 cells. Their interior length gives a source-only next receiver:
+// 192 + (229 - 192 - 1) = 228, exactly a seven-rune p0 word start. This
+// extends the geometry from AND/THEIR [3,4] to NUMBERS [7] without using
+// word51 rune values.
+const zeroCells = tableTokens
+  .map((token, index) => token === "00" ? index : -1)
+  .filter((index) => index >= 0);
+assert.deepEqual(zeroCells, [192, 229]);
+const zeroInteriorLength = zeroCells[1] - zeroCells[0] - 1;
+assert.equal(zeroInteriorLength, 36);
+const numbersStart = zeroCells[0] + zeroInteriorLength;
+assert.equal(numbersStart, 228);
+const numbersReceiver = p0ByStart.get(numbersStart);
+assert.ok(numbersReceiver);
+assert.equal(numbersReceiver.length, 7);
+assert.deepEqual(message.slice(23, 27).map((row) => row.word), [
+  "ROAD", "AND", "THEIR", "NUMBERS"
+]);
+assert.deepEqual(message.slice(24, 27).map((row) => row.gp.length), [3, 4, 7]);
+
+// The value-changing distinct-DH-field grammar does not transfer to this
+// seven-rune receiver. Charge every permutation of all seven distinct state
+// labels, every direct/HERE/DH lookup mask, and both signs. Exact assignment
+// existence can be decided slotwise with a distinct-field backtrack instead
+// of materializing all 22,044,960 labeled configurations.
+const stateFields = Object.keys(state);
+const fieldReadings = Object.fromEntries(stateFields.map((field) => {
+  const position = state[field];
+  return [field, [
+    position,
+    hereLine[position - 1],
+    dhLine[position - 1],
+  ]];
+}));
+
+/** @param {number[]} required */
+function distinctFieldAssignments(required) {
+  let count = 0;
+  /** @param {number} index @param {Set<string>} used */
+  function visit(index, used) {
+    if (index === required.length) {
+      count += 1;
+      return;
+    }
+    for (const field of stateFields) {
+      if (used.has(field)) continue;
+      for (const value of fieldReadings[field]) {
+        if (value !== required[index]) continue;
+        used.add(field);
+        visit(index + 1, used);
+        used.delete(field);
+      }
+    }
+  }
+  visit(0, new Set());
+  return count;
+}
+
+const sevenRuneTargets = [...new Map(
+  message
+    .filter((row) => row.gp.length === 7)
+    .map((row) => [row.word, row])
+).values()];
+assert.deepEqual(sevenRuneTargets.map((row) => row.word), [
+  "DEVOTED", "NUMBERS", "OPENPGP"
+]);
+const sevenFamilySize = 5040 * (3 ** 7) * 2;
+assert.equal(sevenFamilySize, 22044960);
+const sevenTargetHits = [];
+for (const target of sevenRuneTargets) {
+  for (const sign of [-1, 1]) {
+    const required = numbersReceiver.values.map((cipher, index) =>
+      sign === -1
+        ? mod29(cipher - target.gp[index])
+        : mod29(target.gp[index] - cipher)
+    );
+    const assignments = distinctFieldAssignments(required);
+    if (assignments > 0) {
+      sevenTargetHits.push({ target: target.word, sign, required, assignments });
+    }
+  }
+}
+assert.deepEqual(sevenTargetHits, []);
+
 console.log(JSON.stringify({
   status: "PASS",
-  classification: "prospective ROAD dual-radix navigation; AND THEIR letters remain candidate because fixed keys fail and later atom-key assembly is retrospective",
+  classification: "prospective ROAD navigation is strengthened; AND THEIR remains candidate, word43 has an independent PATHS alternative, THEIR fails the ordinal self-index holdout, and the seven-rune distinct-field inverse does not transfer to the zero-bracket NUMBERS receiver",
   structural: {
     configurations: structuralConfigs,
     adjacentStartHits: adjacentHits.length,
@@ -593,6 +730,7 @@ console.log(JSON.stringify({
       globalHits: [theirGlobalA.hits, theirGlobalB.hits],
     },
   },
+  reconciliation: { andOrdinal, theirOrdinal, zeroCells, zeroInteriorLength, numbersStart, sevenFamilySize, sevenTargetHits },
   nextHop: {
     source: "THEIR",
     gp0: theirGp0,
