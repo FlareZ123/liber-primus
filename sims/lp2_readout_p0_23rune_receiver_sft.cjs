@@ -15,7 +15,7 @@ const grid = JSON.parse(fs.readFileSync(path.join(root, 'resources/liber-primus/
 
 const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
 const translitIndex = new Map(corpus.translit.map((t, i) => [t, i]));
-const parts = transcription.split(/^\\s*%\\s*$/m);
+const parts = transcription.split(/^\s*%\s*$/m);
 const table = grid.pages.flatMap(page => page.tokens);
 const alphabet60 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx';
 
