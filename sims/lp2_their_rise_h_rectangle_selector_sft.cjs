@@ -380,7 +380,8 @@ assert.deepEqual(
 );
 
 // Charge every authenticated two-GP-rune word whose +6 partner exists.
-// The same rise -> H^-1([rise,0]) predictor hits only p34 BE.
+// The frozen rule has two forward hits: p28 THE and p34 BE. The p28 hit
+// was exposed by a failed CI assertion that had expected no hit there.
 const twoRunePredictions = [];
 for (const source of message) {
   if (source.index + rise >= message.length) continue;
@@ -414,10 +415,27 @@ assert.deepEqual(
     [17, "THE", []],
     [21, "IS", []],
     [22, "THE", []],
-    [28, "THE", []],
+    [28, "THE", [140]],
     [34, "BE", [4]],
   ]
 );
+
+// Unexpected held-out consequence at signed/page index28.
+// THE28 rises to BE34 by b=15, forcing H^-1([b,0])=[p-1,g+K].
+// That predicts a manuscript-unique two-rune ciphertext immediately after
+// the existing p28 READ OUT object.
+const p28Source = message[28];
+assert.equal(p28Source.word, "THE");
+assert.equal(message[34].word, "BE");
+const p28Rise = mod29(message[34].gp0 - p28Source.gp0);
+assert.equal(p28Rise, state.b);
+const p28TheKey = HInv(p28Rise, 0);
+assert.deepEqual(p28TheKey, [22, 7]);
+assert.deepEqual(p28TheKey, [state.p - 1, state.g + state.K]);
+const p28TheCipher = gp(p28Source.word).map((value, index) =>
+  mod29(value + p28TheKey[index])
+);
+assert.deepEqual(p28TheCipher, [24, 25]);
 
 const p28Words = parsePage(parts[28]);
 const p28Runes = corpus.pages.find((page) => page.page === 28).indices;
@@ -427,8 +445,31 @@ assert.equal(centerOffset, 134);
 const word28 = p28Words[27];
 assert.equal(word28.start, 135);
 assert.equal(word28.length, state.g);
+const word29 = p28Words[28];
+assert.equal(word29.start, 140);
+assert.deepEqual(word29.values, p28TheCipher);
+const p28The = word29.values.map((value, index) =>
+  mod29(value - p28TheKey[index])
+);
+assert.deepEqual(p28The, gp("THE"));
+assert.equal(spell(p28The), "THE");
 
 const [centerExponent, wordExponent] = tailEvent.missing;
+// Manuscript-wide exact packet control for the held-out p28 prediction.
+let twoRuneWordCount = 0;
+const p28PacketHits = [];
+for (let page = 0; page <= 55; page += 1) {
+  for (const word of parsePage(parts[page])) {
+    if (word.values.length !== 2) continue;
+    twoRuneWordCount += 1;
+    if (word.values.every((value, index) => value === p28TheCipher[index])) {
+      p28PacketHits.push({ page, start: word.start });
+    }
+  }
+}
+assert.equal(twoRuneWordCount, 473);
+assert.deepEqual(p28PacketHits, [{ page: 28, start: 140 }]);
+
 const decoded = [
   Number(BigInt(p28Runes[centerOffset]) ** BigInt(centerExponent) % 29n),
   ...word28.values.map((value) =>
@@ -455,6 +496,13 @@ console.log(JSON.stringify({
   })),
   privatePair: privateEvent.missing,
   exponentPair: tailEvent.missing,
+  p28The: {
+    rise: p28Rise,
+    key: p28TheKey,
+    predictedCipher: p28TheCipher,
+    receiverStart: 140,
+    manuscriptPacketHits: p28PacketHits,
+  },
   p34Be: {
     rise: beRise,
     key: beKey,
@@ -462,4 +510,5 @@ console.log(JSON.stringify({
     receiverStart: 4,
   },
   p28Decoded: spell(decoded),
+  p28Extended: spell(decoded) + spell(p28The),
 }, null, 2));
