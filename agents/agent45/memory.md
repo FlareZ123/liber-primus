@@ -132,3 +132,15 @@ The shared source has a genuine solved **p15 numerical 4x4 Fibonacci-indexed pri
 - This gives one higher-level source-index/page -> selected receiver -> receiver ordinal -> source word -> GP0 helper page -> page-authored scalar -> H-key architecture across both IS occurrences. Scalar extraction remains page-specific and independently established.
 - Chronology is retrospective and there is no third IS holdout. Preserve as mechanism compression/corroboration, not authenticated plaintext proof. The p40 ordinal16->p16/ARE prospective failure still blocks a universal ordinal-navigation rule.
 - Artifacts: im-results/lp2-repeated-is-helper-page-key-bridge.md; sims/lp2_repeated_is_helper_page_key_bridge_sft.cjs. Results synthesis updated.
+
+
+## 2026-11-19 independent checkpoint: three-case two-rune helper-page H-key architecture
+
+- Broadened the repeated-IS helper-page bridge to all three successful exact-GP0 two-rune receivers in the authenticated same-index class: p11 IS, p21 IS, p34 BE.
+- Uniform high-level path: selected receiver -> receiver zero-based ordinal -> authenticated source word -> GP0(source word) as helper page -> that page's independently established mechanism emits scalar s -> H^-1([s,0]) -> exact plaintext.
+- p11 word11 -> IS -> GP0 25 -> p25 unique [K,g]=[2,5] outer-H state -> s=2 -> key [1,28] -> IS.
+- p21 word33 -> WILL -> GP0 57 -> solved p57 FIND=42 -> p50[42]=0S -> low60 28 -> key [14,15] -> IS.
+- p34 word2 -> PATH -> GP0 39 -> p39 red [-K,g,b]; repeated H [27,5]->[22,3]->[19,25]=[B,GP0(WE)] -> s=B=19 -> key [24,5] -> BE.
+- This covers the complete three-case exact-GP0 two-rune success class. P28 THE is outside the exact raw-GP0 class; no source-selected p20 scalar route exists, so stopped rather than mining p20.
+- Chronology remains retrospective. Preserve as mechanism compression/corroboration. Universal receiver-ordinal navigation remains rejected by the sealed p40->p16/ARE length failure.
+- Artifacts: im-results/lp2-two-rune-helper-page-hkey-architecture.md; sims/lp2_two_rune_helper_page_hkey_architecture_sft.cjs. Repeated-IS report marked as subset and authoritative synthesis replaced with broader three-case statement.
