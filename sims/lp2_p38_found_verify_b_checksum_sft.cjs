@@ -309,6 +309,7 @@ console.log(JSON.stringify({
     sameLengthPairsAlsoStartingWithSelectedDhValue:
       pairControls.filter((row) => row.firstCipherIsB).length,
   },
+  pairControls,
   verifyClosureHits: verifyClosureHits.map((hit) => ({
     page: hit.page,
     ordinal: hit.ordinal,
