@@ -1,6 +1,6 @@
-# Authenticated ROAD / FOUND / PATHS low-digit cycle
+# Authenticated 2016 low-digit routes: ROAD / FOUND / PATHS cycle and NUMBERS / DIRECTION -> p28
 
-**Agent16, 19 November 2026. Classification: independent authenticated-source support for the native base60 low-digit p50 state-pointer operation. This materially strengthens the operation already used by the p28 READ OUT self-closure. It recovers no unknown LP2 plaintext by itself.**
+**Agent16, 19 November 2026. Classification: independent authenticated-source support for the native base60 low-digit p50 state-pointer operation, including a source-only route from the signed clause `NUMBERS ... DIRECTION` through solved `FIND` to physical p28. This materially strengthens the operation already used by the p28 READ OUT self-closure. It does not itself decrypt unknown LP2 ciphertext.**
 
 ## Result
 
@@ -70,6 +70,110 @@ No base59, high-component, shifted-address, or one-origin mode produces a two-cy
 
 This is a stronger transfer than the earlier READ OUT loop's internal self-consistency because the 2016 vocabulary was authenticated independently of the unknown LP2 ciphertext.
 
+## Stronger source-only route: NUMBERS and DIRECTION converge to FIND -> p28
+
+The signed clue sentence explicitly presents three noun relations:
+
+```text
+WORDS are the MAP
+MEANING is the ROAD
+NUMBERS are the DIRECTION
+```
+
+Use only canonical whole-word GP0 states and the same native base60 low-digit pointer.
+
+The third pair gives:
+
+```text
+GP0(NUMBERS)   = 83
+GP0(DIRECTION) = 112
+
+p50[83]  = 3D -> low60(D) = 13
+p50[112] = 1D -> low60(D) = 13
+```
+
+Thus the two nouns in **“their numbers are the direction”** converge after one pointer step. Continue the same operation without changing type, alphabet, origin or receiver:
+
+```text
+NUMBERS(83)   \
+               -> 13 -> 4 -> 37 -> 20 -> 42 -> 28
+DIRECTION(112)/
+```
+
+The tail has two independently meaningful states:
+
+```text
+20 = GP0(OUT)
+42 = GP0(FIND)
+28 = physical p28
+```
+
+So the authenticated 2016 clause reaches the already solved word **FIND**, then p28, and joins the candidate READ OUT path at OUT=20:
+
+```text
+NUMBERS / DIRECTION
+        -> 13 -> 4 -> 37
+        -> OUT(20)
+        -> FIND(42)
+        -> p28
+
+READ(55)
+        -> OUT(20)
+        -> FIND(42)
+        -> p28
+```
+
+This is the first independent first-party route found here that supplies an external consumer for the low-digit state transition and lands on the same physical page without using unknown p28 ciphertext.
+
+### Relation-family charge
+
+Charge the three explicit noun relations above across the same 16 token conventions:
+
+- base60 versus drop-f base59;
+- low versus high component;
+- zero- versus one-based address;
+- zero- versus one-based emitted digit.
+
+For each relation/mode pair, require:
+
+1. both nouns converge after the first pointer step;
+2. iterate the same mode until its first repeat;
+3. before repeating, the path must contain the exact consecutive transition `FIND(42) -> 28`.
+
+There are 48 relation/mode configurations. Exactly one survives:
+
+```text
+NUMBERS / DIRECTION
+base60 / low / zero-address / zero-digit
+13 -> 4 -> 37 -> 20 -> 42 -> 28 -> ...
+```
+
+Several unrelated signed words share first state13 under the canonical mode, so the arithmetic convergence alone is not unique across the whole vocabulary. What is selective is that **NUMBERS / DIRECTION is the sole explicitly related noun pair** that both converges and reaches `FIND -> p28` under the charged convention family.
+
+### Fixed seven-cell calibration
+
+The complete source-selected route consumes seven fixed p50 cells:
+
+```text
+83, 112, 13, 4, 37, 20, 42
+```
+
+and requires their low-base60 outputs to be:
+
+```text
+13, 13, 4, 37, 20, 42, 28
+```
+
+Under a uniform permutation of the 256 labeled original token instances, while keeping those seven addresses fixed, the exact multiset probability is:
+
+```text
+88000 / (256 * 255 * 254 * 253 * 252 * 251 * 250)
+= 1 / 753817095360
+≈ 1.32658e-12
+```
+
+This remains a fixed-route diagnostic because the low-digit operation and source corpus were already under investigation. The stronger evidential point is the bounded 48-case source-relation/convention charge and the exact `FIND -> p28` endpoint.
+
 ## Fixed-pair calibration
 
 As a narrow diagnostic, uniformly permute the 256 **labeled original p50 token instances** while holding the two source-selected cells54 and36 fixed.
@@ -109,7 +213,7 @@ The evidence upgrade is narrow: **native base60 low-digit p50 state transition i
 
 Use the low-digit transition as a preferred state-navigation primitive when a source clue supplies a GP0 state. Do not widen to new token components unless a separate clue requires it.
 
-The highest-value next test is prospective: freeze a source-selected state outside the already inspected READ OUT and ROAD / FOUND / PATHS loops, follow the low-digit transition without lexical target feedback, and require either a recognizable authenticated state consequence or a receiver selected before its ciphertext is opened.
+The strongest current interpretation is now a candidate intended navigation route: the authenticated 2016 `NUMBERS ... DIRECTION` clause selects the canonical low-digit pointer and reaches `FIND -> p28`, where candidate READ OUT starts the same `OUT -> FIND -> p28` tail. The next decisive test should consume this p28 arrival **prospectively**: derive a reversible unknown-ciphertext operation or a fresh receiver from the reached state without using the target plaintext to choose the rule.
 
 ## Reproduction
 
