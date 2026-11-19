@@ -24,6 +24,20 @@ function phi(n) {
   return result;
 }
 
+/** @param {number} n */
+function mu(n) {
+  let rest = n;
+  let sign = 1;
+  for (let d = 2; d * d <= rest; d += 1) {
+    if (rest % d !== 0) continue;
+    rest /= d;
+    sign = -sign;
+    if (rest % d === 0) return 0;
+    while (rest % d === 0) rest /= d;
+  }
+  return rest > 1 ? -sign : sign;
+}
+
 /** @param {number} value */
 function mod29(value) {
   return (value % 29 + 29) % 29;
@@ -65,7 +79,7 @@ function passesGcd(span) {
     gcd(n0(center), n0(span.B)),
     gcd(n1(center), n3(span.E)),
     gcd(n0(center), n2(span.E)),
-  ].every((value) => external.mu(value) !== 0);
+  ].every((value) => mu(value) !== 0);
 }
 
 const state = { p: 23, g: 5, a: 6, b: 15, A: 8, B: 19, K: 2, e: 3, q: 4 };
