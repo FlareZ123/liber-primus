@@ -6,9 +6,9 @@
 
 - Pinned 2013 source archive: `neuroretransmit/cicada@ade9a02889ef8acbc8cde8edbfd0a785c369f4c3`.
 - Comparable corpus: the ten human-readable PGP clear-signed messages in `im-results/data/cicada2013-clear-signed-text-corpus.json`; exclusions are recorded in that file.
-- Exact prime lookup and greedy two-letter-digraph tokenizer from the pinned `2013/003-twitter/analyze_gematria.py`; same GP29 order as the LP2 corpus.
+- Exact behavior of pinned `2013/004-first-onion/gematria.py`: uppercase; replace `QU` with `CW`, then `Q` with `K`; greedily match the longest lookup token (including 3-letter `ING`), then 2-letter digraphs, then single letters. Preserve its aliases (`U/V`, `C/K`, `S/Z`, `NG/ING`, `IA/IO`). The GP0 index is the rank of the resulting prime value in the 29-prime GP29 order.
 - Target phrase, exactly as printed in the OS message: “THE KEY IS ALL AROUND YOU”.
-- The source phrase is segmented as 19 GP29 tokens after greedy digraph tokenization. Character-based controls use the uncompressed 20-letter string after stripping spaces/punctuation.
+- The source phrase is segmented as 19 GP29 tokens under the exact participant function. Character-based controls use the uncompressed 20-letter string after stripping spaces/punctuation.
 
 ## Frozen address grammar
 
