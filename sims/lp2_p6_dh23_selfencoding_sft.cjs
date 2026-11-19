@@ -107,6 +107,43 @@ const p39PrefixRaw = parts[39].split("&")[0];
 const p39PrefixRunes = runeValues(p39PrefixRaw);
 assert.equal(p39PrefixRunes.length, 119);
 
+/** @param {number} physicalPage */
+function physicalPageRaw(physicalPage) {
+  return parts[physicalPage < 50 ? physicalPage : physicalPage - 1];
+}
+
+/** @param {number} physicalPage */
+function physicalPageRunes(physicalPage) {
+  return runeValues(physicalPageRaw(physicalPage));
+}
+
+/** @param {number} physicalPage */
+function physicalPageWords(physicalPage) {
+  return pageWords(physicalPageRaw(physicalPage));
+}
+
+/**
+ * Complete-rune/complete-word interval between two red punctuation cuts.
+ * @param {{page:number,offset:number,count:number}} left
+ * @param {{page:number,offset:number,count:number}} right
+ */
+function redInterval(left, right) {
+  const runes = [];
+  const words = [];
+  for (let page = left.page; page <= right.page; page += 1) {
+    if (page === 50) continue;
+    const pageRunes = physicalPageRunes(page);
+    const pageWordRows = physicalPageWords(page);
+    const low = page === left.page ? left.offset : 0;
+    const high = page === right.page ? right.offset : pageRunes.length;
+    runes.push(...pageRunes.slice(low, high));
+    for (const word of pageWordRows) {
+      if (word.start >= low && word.end < high) words.push({ page, ...word });
+    }
+  }
+  return { runes, words };
+}
+
 const p38PassageRunes = p38Runes.slice(186);
 const passageRunes = [...p38PassageRunes, ...p39PrefixRunes];
 
@@ -163,6 +200,45 @@ assert.equal(table[word9.gp0], "0x");
 // A is independently repeated by the page-break word count.
 assert.equal(p38PassageWords.length, A);
 
+// Familywise matched control over every consecutive red 10/13-type interval.
+const redEvents = ink.pages
+  .flatMap((page) => (page.large_punctuation || [])
+    .filter((mark) => mark[2] === "red")
+    .map((mark) => ({ page: page.page, offset: mark[0], count: mark[1] })))
+  .sort((left, right) => left.page - right.page || left.offset - right.offset);
+
+const comparable = [];
+for (let index = 0; index + 1 < redEvents.length; index += 1) {
+  const left = redEvents[index];
+  const right = redEvents[index + 1];
+  if (left.count + right.count !== p) continue;
+  if (Math.abs(left.count - right.count) !== cubeExponent) continue;
+  const interval = redInterval(left, right);
+  const sixthWord = interval.words[5];
+  comparable.push({
+    left,
+    right,
+    runes: interval.runes.length,
+    words: interval.words.length,
+    rune6: interval.runes[5] ?? null,
+    word6Text: sixthWord?.text ?? null,
+    word6H: sixthWord?.values.length === 2 ? H(sixthWord.values) : null,
+    jointMatch:
+      interval.runes[5] === B &&
+      sixthWord?.values.length === 2 &&
+      H(sixthWord.values)[0] === a &&
+      H(sixthWord.values)[1] === p - 1,
+  });
+}
+assert.equal(comparable.length, 6);
+assert.deepEqual(
+  comparable.filter((row) => row.jointMatch).map((row) => [
+    row.left.page, row.left.offset, row.left.count,
+    row.right.page, row.right.offset, row.right.count,
+  ]),
+  [[38, 186, 10, 39, 119, 13]]
+);
+
 // The DH tuple closes exactly.
 assert.equal(powMod(g, a, p), A);
 assert.equal(powMod(g, b, p), B);
@@ -204,6 +280,10 @@ console.log(JSON.stringify({
     values: word9.values,
     H: H(word9.values),
     p50: table[word9.gp0],
+  },
+  familywise: {
+    comparableIntervals: comparable.length,
+    jointMatches: comparable.filter((row) => row.jointMatch),
   },
   dh: { p, g, a, A, b, B, K },
 }, null, 2));
