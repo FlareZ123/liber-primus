@@ -81,7 +81,34 @@ the center is exactly:
 [4,8,19,8,4]
 ```
 
-This is a direct state packet tied to the five-cell physical center column.
+This is a direct state packet tied to the five-cell physical center column. The state now also has an independent authenticated-square reconstruction in `im-results/lp2-three-square-dh-state-extractor.md`, so the values `q,A,B` are not inferred from this residual.
+
+## The right marker column is a source-number ramp
+
+The four-cell right column is:
+
+```text
+[7,13,20,28]
+```
+
+Its forward rises modulo29 are exactly:
+
+```text
+[6,7,8]
+=
+[SEEKS6, THE7, DEVOTED8]
+```
+
+All three source numbers belong to the authenticated clause recovered independently from p0. The seed `7` is the same authenticated `THE7` number and also the reconstructed state value `g+K`.
+
+Thus nine of the 13 H-inverse residual coordinates now have compact source/state structure:
+
+```text
+center5 = [q,A,B,A,q]
+right4  = start7, then rises [6,7,8]
+```
+
+The remaining unsourced packet is the four-cell left column `[25,28,11,25]`.
 
 ## Matched receiver control
 
@@ -116,6 +143,10 @@ sole hit: p0 word1-word2
 
 The result is therefore not a generic consequence of subtracting the same 8+5 source phrase from a same-shaped receiver.
 
+Charge the right-column rise rule on the same 19 receivers. P0 is the sole receiver whose three right-column rises form **any** consecutive +1 ramp, and its unique ramp is exactly `[6,7,8]`.
+
+So the center palindrome and right-column source-number ramp are independently selective inside the same natural receiver family.
+
 ## Orientation/control family
 
 Charge six simple views of every residual:
@@ -143,24 +174,24 @@ H inverse is already part of the fixed reversible H mechanism, so this charge te
 
 The p0 key-order problem previously had an exact 13-atom state-labelled residual but no source-authored serialization.
 
-This result supplies a new physical constraint:
+This result supplies two physical constraints:
 
 ```text
 H^-1(residual)
 -> visible 4|5|4 marker columns
--> center column = q,A,B,A,q
+-> center = q,A,B,A,q
+-> right rises = 6,7,8 = SEEKS,THE,DEVOTED
 ```
 
-That is a reproducible, marker-aligned state packet and it is unique in the natural 19-receiver family.
+Both are reproducible and unique in the natural 19-receiver family.
 
-It does **not** yet derive the side columns before subtraction. They are:
+The remaining key-order gate is now narrower. The unsourced left column is:
 
 ```text
-left  = [25,28,11,25]
-right = [7,13,20,28]
+[25,28,11,25]
 ```
 
-Those values can be described by simple state expressions after the fact, but this report does not use such labels as evidence. The promotion gate is a source-visible rule that emits the two side columns, or a prospective consumer of the full 4|5|4 packet.
+It can be labelled with simple state expressions after the fact, but this report does not count those labels as provenance. A source-visible serializer for these four values, or a prospective consumer of the full 4|5|4 packet, would complete the marker-aligned H-inverse schedule.
 
 ## Negative provenance checks
 
