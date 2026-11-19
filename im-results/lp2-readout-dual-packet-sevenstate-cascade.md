@@ -127,6 +127,30 @@ Thus the p0 packet cascade terminates on an independently existing manuscript ob
 
 This is the strongest external consumer currently available for the A/K packet-index mechanism.
 
+## Physical pagination and packet-boundary alignment
+
+The original numeric object is a single row-major 32×8 grid of 256 tokens, but it is physically distributed across three consecutive LP2 pages:
+
+| Physical page | Archive image | Grid tokens | Rows |
+|---:|---:|---:|---:|
+| p49 | `66.jpg` | 80 | 10 |
+| p50 | `67.jpg` | 104 | 13 |
+| p51 | `68.jpg` | 72 | 9 |
+
+Physical p50 is the rune-free central segment, not the entire grid; p49 and p51 also carry runic prose. The cumulative zero-based table-address boundaries are therefore **80** and **184**.
+
+The receiver-family audit had already fixed 23 whole-word-bounded, 23-rune, center-F windows before this pagination relation was examined. Against those 23 windows:
+
+- The only interval starting at the first table boundary 80 is **p0 80..102**.
+- Three intervals cross the second boundary 184: **p0 166..188**, p8 172..194, and p24 172..194.
+- Among all **506 ordered pairs** of distinct matched windows, the only same-page pair with a first interval starting at 80 and a second interval crossing 184 is **p0 80..102 → p0 166..188**.
+
+The fixed packet selectors also straddle the physical grid segments in a structured way. The split packet's one-based positions 8 and 2 emit a=6,p=23 at p0 offsets 87 and 81; both numeric addresses fall in the p50 segment. The whole packet's positions 6 and 23 emit b=15,B=19 at offsets 171 and 188; the former falls in p50 and the latter in p51. Thus the second packet's final DH field is the only selected field on the far side of the p50→p51 boundary.
+
+This is an exact original-layout alignment with the existing cascade, not a new decryption. It was identified after the receiver pair and packet selectors were already known. Treat it as **post-discovery structural corroboration**, not an authorship probability, an independent receiver selector, or proof that base60 table outputs are LP2 rune offsets. The existing output-type caveat remains unchanged.
+
+Reproduction: `node sims/lp2_readout_dual_packet_sevenstate_cascade_sft.cjs`.
+
 ## Evidentiary boundary
 
 The result materially upgrades the mechanism-level interpretation:
