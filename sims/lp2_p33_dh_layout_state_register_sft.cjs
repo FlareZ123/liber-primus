@@ -114,9 +114,8 @@ function shellPower(word, exponent) {
 }
 
 /**
- * @param {number[][]} words
- * @param {number} phase
- * @param {1|-1} direction
+ * @param {number[]} decoded
+ * @param {number} exponent
  * @returns {number[]}
  */
 function shellUnpower(decoded, exponent) {
@@ -252,6 +251,10 @@ assert.deepEqual(
 );
 
 const firstTitle = rowsInSpan(page33, 0, 10);
+const markerMOrdinal = corpus.translit.indexOf("M");
+const markerNGOrdinal = corpus.translit.indexOf("NG");
+assert.equal(markerMOrdinal, state.B);
+assert.equal(markerNGOrdinal, state.B + state.K);
 const firstBody = rowsInSpan(page33, 10, 91);
 const secondTitle = rowsInSpan(page33, 91, 99);
 const secondBody = rowsInSpan(page33, 99, 214);
@@ -265,6 +268,26 @@ assert.equal(firstTitle[0].values[0], state.p);
 assert.equal(secondTitle[0].values[0], state.p - state.K);
 assert.deepEqual(hadamardPair([state.K, state.A]), [state.p, state.A + state.K]);
 assert.deepEqual(hadamardPair([state.e, state.g]), [mod29(-state.K), state.A]);
+
+// Original-image source reading: a decorative red M precedes the first
+// transcribed p33 unit, while the second oversized red rubric begins NG TH.
+// The second heading's literal first two GP values therefore map through the
+// already frozen H orientation to [M,D] = [B,p].
+assert.deepEqual(secondTitle[0].values.slice(0, 2), [state.B + state.K, state.K]);
+assert.deepEqual(
+  hadamardPair(secondTitle[0].values.slice(0, 2)),
+  [markerMOrdinal, firstTitle[0].values[0]]
+);
+assert.deepEqual([markerMOrdinal, firstTitle[0].values[0]], [state.B, state.p]);
+
+// A second H step yields [25,13]. 25 is GP0(WE) in solved p57; 13 is the
+// literal red 13-dot punctuation count terminating the first p33 title.
+const weGp0 = corpus.translit.indexOf("W") + corpus.translit.indexOf("E");
+assert.equal(weGp0, 25);
+assert.deepEqual(hadamardPair([markerMOrdinal, firstTitle[0].values[0]]), [weGp0, 13]);
+assert.ok(p33Ink.large_punctuation.some(([offset, dots, color]) =>
+  offset === 10 && dots === 13 && color === "red"
+));
 
 assert.equal(firstUnit.length, state.p);
 assert.equal(firstBody.length, state.p - state.K);
@@ -282,10 +305,24 @@ const lineCounts = page33Sections.map((section) =>
 assert.deepEqual(lineCounts, [state.g, state.a]);
 
 const twoWordRedSpans = [];
+const redFirstPairTransforms = [];
 for (const page of ink.pages) {
   if (page.page === 50) continue;
   const rows = wordRows(page.page);
   for (const span of page.red_spans || []) {
+    const spanValues = [...span.runes].map((rune) => {
+      const value = runeIndex.get(rune);
+      assert.notEqual(value, undefined);
+      return value;
+    });
+    if (spanValues.length >= 2) {
+      redFirstPairTransforms.push({
+        page: page.page,
+        start: span.start,
+        first2: spanValues.slice(0, 2),
+        throughH: hadamardPair(spanValues.slice(0, 2)),
+      });
+    }
     const selected = rowsInSpan(rows, span.start, span.start + span.length);
     if (
       selected.length !== 2 ||
@@ -310,6 +347,12 @@ assert.deepEqual(
     .filter((row) => mod29(row.lengths[0] - row.lengths[1]) === row.firstRune)
     .map((row) => [row.page, row.start, row.firstRune, ...row.lengths]),
   [[33, 0, state.p, state.K, state.A]]
+);
+assert.deepEqual(
+  redFirstPairTransforms
+    .filter((row) => row.throughH[0] === state.B && row.throughH[1] === state.p)
+    .map((row) => [row.page, row.start, ...row.first2]),
+  [[33, 91, state.B + state.K, state.K]]
 );
 
 const H = [[1, 28], [1, 1]];
@@ -377,6 +420,15 @@ console.log(JSON.stringify({
     secondBodyWords: secondBody.length,
     secondBodyRunes: secondBody.reduce((sum, row) => sum + row.length, 0),
     twoWordRedSpanCount: twoWordRedSpans.length,
+    hChain: {
+      secondHeadingFirstTwo: secondTitle[0].values.slice(0, 2),
+      toTopMarkerAndInitial: hadamardPair(secondTitle[0].values.slice(0, 2)),
+      topMarkerAndInitial: [markerMOrdinal, firstTitle[0].values[0]],
+      toWeAndDots: hadamardPair([markerMOrdinal, firstTitle[0].values[0]]),
+      matchingRedSpanFirstPairCount: redFirstPairTransforms.filter(
+        (row) => row.throughH[0] === state.B && row.throughH[1] === state.p
+      ).length,
+    },
   },
   hCycleGate: {
     order,
@@ -396,5 +448,5 @@ console.log(JSON.stringify({
     solvedP57Trigram: model.p57Score,
   },
   interpretation:
-    "The independently selected B=19 state addresses p50[19]=0X=33. Physical p33 then self-registers the same DH/H state in its source layout: [K,A]=[2,8] is the unique exact two-word red span of that shape and H([2,8])=[p,A+K]=[23,10], matching its oversized first D and title length; the upper unit has g=5 lines, p=23 words, p-K=21 black words and e^q=81 black runes; the second red title has [e,g]=[3,5] and H=[-K,A]=[27,8], begins with GP21=p-K, and its lower unit has a=6 lines, p+g=28 black words and p*g=115 black runes. The 28-word lower body therefore motivates one bounded H-order cycle test over all 28 phases and both directions. No parameter outside that fixed family is searched.",
+    "The independently selected B=19 state addresses p50[19]=0X=33. Physical p33 then self-registers the same DH/H state in its source layout: the second red heading starts [B+K,K]=[21,2] and uniquely among all red-span first pairs maps through H to [B,p]=[19,23], the decorative M plus first title D; a second H step gives [GP0(WE),13]=[25,13], matching solved p57 WE and the literal red title punctuation count. Separately, [K,A]=[2,8] is the unique exact two-word red span of that shape and H([2,8])=[p,A+K]=[23,10], matching the first red title rune D and total title length; the upper unit has g=5 lines, p=23 words, p-K=21 black words and e^q=81 black runes; the second red title has [e,g]=[3,5] and H=[-K,A]=[27,8], begins with GP21=p-K, and its lower unit has a=6 lines, p+g=28 black words and p*g=115 black runes. The 28-word lower body therefore motivates one bounded H-order cycle test over all 28 phases and both directions. No parameter outside that fixed family is searched.",
 }, null, 2));
