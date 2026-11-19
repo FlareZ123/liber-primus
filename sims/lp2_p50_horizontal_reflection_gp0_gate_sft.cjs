@@ -340,7 +340,7 @@ console.log(JSON.stringify({
     directPlusMirrorFamilywiseBonferroni: Math.min(1, directFamily[0].p * family.length)
   },
   mirrorImmediateNextHits: next.filter((row) => row.mode === "mirror").reduce((sum, row) => sum + row.hits.length, 0),
-  exactTokenMirrorPairs,
+  exactTokenMirrorPairs: exactTokenPairs,
   valueEquivariance: {
     commutingPairs,
     sharedSolvedAddress67: { p56: p56ByAddress.get(67), p57: p57ByAddress.get(67) },
