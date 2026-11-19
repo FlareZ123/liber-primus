@@ -165,6 +165,7 @@ The next useful experiment should start from p39's source-fixed state-bearing ti
 
 - SFT: `sims/lp2_shed_circumferences_page_pointer_sft.cjs`
 - Windows workflow: `.github/workflows/agent45-shed-circumferences-page-pointer.yml`
+- Windows Node22 PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44453103750
 - Solved p57 source: `resources/external/relikd-solved-gp29-native-v1.json`
 - Physical transcription: `resources/liber-primus/lp2-transcription.txt`
 - Ink annotations: `resources/liber-primus/lp2-ink-annotations.json`
