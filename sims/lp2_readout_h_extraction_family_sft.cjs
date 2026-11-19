@@ -308,11 +308,10 @@ function applyOperation(hit, origin, operation) {
   return mod29(position - hit.value);
 }
 
-function extract(window, config, count, lexicon, selectionPrefix) {
+function extract(window, config, count, lexicon) {
   const sequence = orderedHits(
     window, config.direction, config.duplicate);
-  const selection = config.selection;
-  const selected = selection === selectionPrefix + "first"
+  const selected = config.selection === "first3"
     ? sequence.slice(0, count)
     : sequence.slice(-count);
   if (selected.length !== count) return null;
@@ -339,7 +338,7 @@ function evaluateThree(windowSet) {
     const configMapLocations = [];
 
     for (const window of windowSet) {
-      const result = extract(window, config, e, lexicon3, "first3");
+      const result = extract(window, config, e, lexicon3);
       if (!result || !result.word) continue;
 
       totalWordHits += 1;
