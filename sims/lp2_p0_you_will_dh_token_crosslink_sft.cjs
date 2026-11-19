@@ -358,7 +358,7 @@ const secondHop = decodeToken(secondHopToken, alphabet60);
 assert.equal(willAddress, 57);
 assert.equal(firstHopToken, "1w");
 assert.equal(firstHop, 118);
-assert.equal(secondHopToken, "0d");
+assert.equal(secondHopToken, "0Z");
 assert.equal(secondHop, gp0("BE"));
 assert.equal(secondHop, 35);
 
