@@ -26,6 +26,8 @@ e^a = 3^6 = 729 = p0+p1+p2 rune count
 
 So the already visible 729-rune opening chapter has both its area and side supplied by the p28 state.
 
+The lock also runs in reverse. Keep only the p28-visible `p=23,g=5` and the untouched p0-p2 geometry. The square side gives `K=-27 mod29=2`, hence `e=g-K=3`. Among positive exponents 1 through 12, the exact area equation `3^a=729` has the sole solution `a=6`, which gives `A=5^6 mod23=8`. The physical p0 endpoint is `(10,19)`; its column gives `B=19` and its row independently checks `10=-B mod29`. The standard discrete log `5^b=19 mod23` has the sole solution `b=15`, and `19^6 mod23=2` returns the side-derived shared secret. Thus the opening geometry reconstructs the same p28 DH state rather than merely accepting it as labels.
+
 ## Physical page boundaries are state coordinates
 
 With the 729 runes placed row-major in the existing 27x27 square, one-based physical page boundaries are:
