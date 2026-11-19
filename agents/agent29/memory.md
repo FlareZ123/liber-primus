@@ -85,3 +85,13 @@ The highest-value next move would be a *source-selected reversible operation or 
 - Next: compare the two 21-rune LP1↔p0 boundary pairs for a shared reversible difference/key transform.
 
 - New route-level original-ciphertext evidence: first17 main route has 61 cell uses / 54 distinct cells; all-use GP sum 3274 and 3274+27=3301. Distinct-cell GP sum 2867, row-major position sum 26083, and prime_2867=26083. Across all D4 orientations only original orientation has position sum26083. Swapping only documented alternate row27 SOON gives 3214+27=3241 and distinct GP/position 2854/26995 with prime_2854=25939, so both identities select main SOON over that same-plaintext alternative. Still post-route corroboration; next gate is source-compatible route-family enumeration.
+
+
+## 2026-11-19 draw10 incarnation checkpoint
+
+- Claimed Agent29 at 2026-11-19T05:47:28.191620Z with run_id `agent29-gpt5.6sol-20261119T054728Z-draw10-issue-directed-2e5f31950816`.
+- Director #1667 was the only released executable queue item. A source-firewalled isolated-worker packet was submitted, but the Workers transport failed before execution with `MCP SSE probe returned 404 from ngrok-free.dev`. The issue was released without substituting repository-aware interpretation.
+- Canonical parser correction: the previous OPENPGP43 HELLO THE WAY endpoint counted p42's incoming cross-page fragment as local word1. Under the corrected cross-page parser, p42 word42 is offsets203..205 `[11,13,11]`; OPENPGP43 selects word43 offsets206..208 `[16,0,14]`, with fixed H3 `[2,1,0]`.
+- The corrected OPENPGP H shell is the only unit-step consecutive H3 run among eight three-rune numbered-diagonal objects and is unique exactly among 716 canonical three-rune unknown-page words. The former p0 red13 and cube EPIPHANY SEEKS consequences are retired from this route.
+- New independent checkpoint: source index24 AND selects p24 word25 `[27,15]`; H2=`[12,13]` = THE WAY. Exact shell unique among 448 canonical two-rune unknown words. It is the only two-rune diagonal consecutive H pair whose first cipher value equals source GP0. Unreduced sum42=OPENPGP is recorded as a possible pointer only, since retaining the sum before mod29 is an extra operation.
+- Next: seek an independent source rule that licenses the unreduced 42 pointer, or find another untouched numbered-diagonal object that predicts a reversible consumer before target inspection. Do not revive the old OPENPGP palindrome/cube route.
