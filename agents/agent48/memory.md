@@ -319,3 +319,13 @@ The older claim timestamp and mandatory release-time instructions in the histori
 - Natural block10 source-number increasing order selects the same unordered pair but opposite the public THE direction. Do not invent a reversal rule.
 - Classification: source-derived exact local block9 inverse, strong retrospective closure because public OF was already visible when grammar reconstructed.
 - Artifacts: im-results/lp2-p0-source-window-block9-of.md; sims/lp2_p0_source_window_block9_of_sft.cjs.
+
+
+## 2026-11-19 checkpoint: block10 shared-node closure + SFT repair
+
+- Block9 CI run 44479695200 failed only because SFT redeclared CommonJS `path` as a local constant. Renamed local path and extended the SFT before rerun.
+- Prospectively sealed block10 node [22,11,22] is unique at (18,16),(19,16),(20,16); center (19,16) is exactly lower outer of block9 node.
+- Advance source pointer to indices16..19 = ARE THE MAP THEIR. Pair is row19 cols16/17. Require two-cell path to terminate at shared state coordinate (19,16), fixing (19,17)->(19,16) without English output.
+- Frozen block10 transform gives key [22,22,10]; original C=[24,11] decrypts [2,18]=THE. Blocks9–10 therefore close locally as OF THE.
+- Cardinal-neighbor charge around shared point has two lexical paths: left->center WE and right->center THE. Source pointer explicitly selects right neighbor17 THE; state continuity selects endpoint16.
+- Hard stop: block11 packet [11,17,11] has two exact placements. Naive map continuation gives HM/MH, not licensed. No general route claim.
