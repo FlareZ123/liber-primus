@@ -8,6 +8,7 @@ const mod=x=>((x%M)+M)%M;
 const sum=a=>mod(a.reduce((x,y)=>x+y,0));
 const digits=(n,b)=>{const o=[];do{o.unshift(n%b);n=Math.floor(n/b);}while(n);return o;};
 const H=v=>{const o=[];let l=0,r=v.length-1;while(l<r){o.push(mod(v[l]-v[r]),mod(v[l]+v[r]));l++;r--;}if(l===r)o.push(v[l]);return o;};
+const Hinv=v=>{const left=[],right=[];for(let i=0;i+1<v.length-1;i+=2){const d=v[i],s=v[i+1];left.push(mod((s+d)*15));right.push(mod((s-d)*15));}return [...left,v[v.length-1],...right.reverse()];};
 
 const corpus=JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const tx=read("resources/liber-primus/lp2-transcription.txt");
@@ -25,6 +26,15 @@ const counts=[q,g,q], target=[mod(A+g),p,a];
 assert.deepEqual(counts,[4,5,4]);
 assert.deepEqual(target,[13,23,6]);
 
+// The original 13-dot mark is a three-column object. Its top-to-bottom
+// physical scan is C,L,R,C,L,R,C,L,R,C,L,R,C. Test both ordinary ways
+// to serialize a 13-value H output onto that geometry.
+const physicalScanOrder=["C","L","R","C","L","R","C","L","R","C","L","R","C"];
+const columnMajor={L:[0,1,2,3],C:[4,5,6,7,8],R:[9,10,11,12]};
+const rowMajor={L:[],C:[],R:[]};
+physicalScanOrder.forEach((column,index)=>rowMajor[column].push(index));
+const stateCenter=[q,A,B,A,q];
+
 const ri=new Map(corpus.runes.map((r,i)=>[r,i]));
 const parts=tx.split(/^\s*%\s*$/m).slice(0,55);
 const pages=parts.map((_,s)=>({page:s>=50?s+1:s,words:[],offset:0}));
@@ -37,15 +47,51 @@ function gp(text){const s=text.toUpperCase().replace(/K/g,"C").replace(/V/g,"U")
 const plain=[...gp("EPIPHANY"),...gp("SEEKS")];assert.equal(plain.length,13);
 
 const rows=[];
-for(const pg of pages)for(let i=0;i+1<pg.words.length;i++){const w1=pg.words[i],w2=pg.words[i+1];if(w1.values.length!==8||w2.values.length!==5)continue;const C=[...w1.values,...w2.values],key=C.map((v,j)=>mod(v-plain[j])),h=H(key);const sums=[sum(h.slice(0,4)),sum(h.slice(4,9)),sum(h.slice(9,13))];rows.push({page:pg.page,ordinals:[w1.ordinal,w2.ordinal],start:w1.start,sums,match:JSON.stringify(sums)===JSON.stringify(target)});}
+for(const pg of pages)for(let i=0;i+1<pg.words.length;i++){
+ const w1=pg.words[i],w2=pg.words[i+1];
+ if(w1.values.length!==8||w2.values.length!==5)continue;
+ const C=[...w1.values,...w2.values],key=C.map((v,j)=>mod(v-plain[j]));
+ const h=H(key),hInv=Hinv(key);
+ const columnMajorSums=["L","C","R"].map(c=>sum(columnMajor[c].map(i=>h[i])));
+ const rowMajorSums=["L","C","R"].map(c=>sum(rowMajor[c].map(i=>h[i])));
+ const columnMajorCenterHinv=columnMajor.C.map(i=>hInv[i]);
+ const rowMajorCenterHinv=rowMajor.C.map(i=>hInv[i]);
+ rows.push({
+  page:pg.page,ordinals:[w1.ordinal,w2.ordinal],start:w1.start,
+  columnMajorSums,rowMajorSums,columnMajorCenterHinv,rowMajorCenterHinv,
+  columnMajorMatch:JSON.stringify(columnMajorSums)===JSON.stringify(target),
+  rowMajorMatch:JSON.stringify(rowMajorSums)===JSON.stringify(target),
+  columnMajorCenterMatch:JSON.stringify(columnMajorCenterHinv)===JSON.stringify(stateCenter),
+  rowMajorCenterMatch:JSON.stringify(rowMajorCenterHinv)===JSON.stringify(stateCenter)
+ });
+}
 assert.equal(rows.length,19);
-assert.deepEqual(rows.filter(r=>r.match),[{page:0,ordinals:[1,2],start:0,sums:[13,23,6],match:true}]);
+const columnMajorHits=rows.filter(r=>r.columnMajorMatch);
+assert.deepEqual(columnMajorHits.map(r=>({page:r.page,ordinals:r.ordinals,start:r.start,sums:r.columnMajorSums})),
+ [{page:0,ordinals:[1,2],start:0,sums:[13,23,6]}]);
+const centerHits=rows.filter(r=>r.columnMajorCenterMatch);
+assert.deepEqual(centerHits.map(r=>({page:r.page,ordinals:r.ordinals,start:r.start,center:r.columnMajorCenterHinv})),
+ [{page:0,ordinals:[1,2],start:0,center:[4,8,19,8,4]}]);
+const p0=rows.find(r=>r.page===0&&r.start===0);
+assert.deepEqual(p0.rowMajorSums,[14,16,12]);
+assert.deepEqual(p0.rowMajorCenterHinv,[25,25,19,7,28]);
 
 console.log(JSON.stringify({
  status:"PASS",
  state,
- marker:{counts,stateCountIdentity:["q","g","q"],columnSums:target,stateSumIdentity:["A+g","p","a"]},
- receiverFamily:{count:rows.length,matches:rows.filter(r=>r.match)},
+ marker:{
+  counts,stateCountIdentity:["q","g","q"],physicalScanOrder,
+  columnMajorIndexGroups:columnMajor,rowMajorIndexGroups:rowMajor,
+  stateColumnSums:target,stateSumIdentity:["A+g","p","a"],
+  expectedCenterHinv:stateCenter
+ },
+ receiverFamily:{
+  count:rows.length,
+  columnMajorSumMatches:rows.filter(r=>r.columnMajorMatch),
+  rowMajorSumMatches:rows.filter(r=>r.rowMajorMatch),
+  columnMajorCenterMatches:rows.filter(r=>r.columnMajorCenterMatch),
+  rowMajorCenterMatches:rows.filter(r=>r.rowMajorCenterMatch)
+ },
  all:rows,
- decision:"p0 is the sole adjacent 8+5 receiver whose H(key) column sums match the independently reconstructed marker/state packet."
+ decision:"The source marker fixes three columns but has two ordinary traversal choices. Column-major left-to-right is the only tested traversal matching both state packets on p0; direct top-down row-major is explicitly negative. The column-major convention remains a plausible source reading, not an authenticated cipher rule."
 },null,2));
