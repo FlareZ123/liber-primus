@@ -301,7 +301,7 @@ assert.deepEqual(commandPairHits, [{
   commands: ["BASE29"],
 }]);
 
-console.log(JSON.stringify({
+// Prospective transfer of the solved-page-validated nX ordinal consumer.\n// ROAD directs to p50 cell189 = 3C. On p0, rune189 would need to be\n// the third C for that consumer to transfer. It is instead the 11th F.\nconst p0Runes = [...parts[0]]\n  .filter((char) => runeSet.has(char))\n  .map((char) => runeIndex.get(char));\nconst p0OrdinalValue = p0Runes[189];\nconst p0OrdinalSymbol = corpus.translit[p0OrdinalValue];\nconst p0OrdinalCount = p0Runes\n  .slice(0, 190)\n  .filter((value) => value === p0OrdinalValue)\n  .length;\nconst p0OrdinalConsumer = {\n  address: 189,\n  token: flatTokens[189],\n  actualSymbol: p0OrdinalSymbol,\n  actualPrefixOccurrence: p0OrdinalCount,\n  expectedSymbol: "C",\n  expectedOccurrence: 3,\n  hit: p0OrdinalSymbol === "C" && p0OrdinalCount === 3,\n};\nassert.deepEqual(p0OrdinalConsumer, {\n  address: 189,\n  token: "3C",\n  actualSymbol: "F",\n  actualPrefixOccurrence: 11,\n  expectedSymbol: "C",\n  expectedOccurrence: 3,\n  hit: false,\n});\nconsole.log("prospective p0 ordinal consumer:", JSON.stringify(p0OrdinalConsumer));\nconsole.log(JSON.stringify({
   status: "PASS: THE ROAD numbers form a unique source-direction chain",
   theToRoad: {
     adjacentTwoFourPairs: adjacencyCount,
