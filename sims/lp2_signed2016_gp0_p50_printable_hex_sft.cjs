@@ -363,6 +363,97 @@ assert.deepEqual(
     mod29(state.p+state.K),0],
 );
 
+// Conventional decimal-concatenation/wildcard reading of the visible core.
+const nValue = gp0("N");
+assert.equal(nValue, 9);
+const nnConcatenated = Number.parseInt(String(nValue) + String(nValue), 10);
+assert.equal(nnConcatenated, 99);
+const starValue = nnConcatenated - nValue * nValue;
+assert.equal(starValue, 18);
+assert.equal(corpus.translit[nValue], "N");
+assert.equal(corpus.translit[starValue], "E");
+
+// Rival algebraic juxtaposition NN=N*N gives *=0=F and no ordinary
+// two-letter compass direction.
+const algebraicStar = nValue * nValue - nValue * nValue;
+assert.equal(algebraicStar, 0);
+assert.equal(corpus.translit[algebraicStar], "F");
+
+// Independent p49 SHED frontier already selects p50 cell76 as DIRECTION.
+// Charge all 8 ordinary compass directions from that cell.
+const sourceAliasesByGp0 = new Map();
+for (let index = 0; index < words.length; index += 1) {
+  const address = addresses[index];
+  if (!sourceAliasesByGp0.has(address)) sourceAliasesByGp0.set(address, []);
+  sourceAliasesByGp0.get(address).push({ index, word: words[index] });
+}
+
+const compass = Object.freeze({
+  N: [-1,0],
+  NE: [-1,1],
+  E: [0,1],
+  SE: [1,1],
+  S: [1,0],
+  SW: [1,-1],
+  W: [0,-1],
+  NW: [-1,-1],
+});
+const directionStart = 76;
+const startRow = Math.floor(directionStart / 8);
+const startColumn = directionStart % 8;
+const compassPaths = [];
+
+for (const [name,delta] of Object.entries(compass)) {
+  const [rowDelta,columnDelta] = delta;
+  const pathRows = [];
+  let row = startRow + rowDelta;
+  let column = startColumn + columnDelta;
+
+  while (row >= 0 && row < 32 && column >= 0 && column < 8) {
+    const address = row * 8 + column;
+    pathRows.push({
+      address,
+      aliases: sourceAliasesByGp0.get(address) || [],
+      token: grid.rows[row][column],
+    });
+    row += rowDelta;
+    column += columnDelta;
+  }
+
+  compassPaths.push({ name, path: pathRows });
+}
+
+const twoAliasedDirections = compassPaths.filter((candidate) =>
+  candidate.path.length >= 2 &&
+  candidate.path[0].aliases.length > 0 &&
+  candidate.path[1].aliases.length > 0
+);
+assert.deepEqual(
+  twoAliasedDirections.map((candidate) => candidate.name),
+  ["NE"],
+);
+
+const nePath = compassPaths.find((candidate) => candidate.name === "NE");
+assert.ok(nePath);
+assert.deepEqual(
+  nePath.path.slice(0,3).map((row) => row.address),
+  [69,62,55],
+);
+assert.deepEqual(
+  nePath.path[0].aliases,
+  [
+    { index:0, word:"HELLO" },
+    { index:9, word:"LIBER" },
+  ],
+);
+assert.deepEqual(
+  nePath.path[1].aliases,
+  [{ index:10, word:"PRIMUS" }],
+);
+assert.deepEqual(nePath.path[2].aliases, []);
+assert.equal(words[9], "LIBER");
+assert.equal(words[10], "PRIMUS");
+
 // Independent p0 DEVOTED zero-based source-number readout outer frame.
 const devoted = [23,18,1,3,16,18,23];
 assert.deepEqual(
@@ -394,7 +485,7 @@ console.log(JSON.stringify({
     length9: cyclicRows.filter((row) => row.string.length === 9).length,
     discoveredShape: cyclicRows.filter((row) => discoveredShape(row.string)),
   },
-  directionTape: {\n    addresses: originalPrintableAddresses,\n    directions: originalDirections,\n    shell: directionShell,\n    cyclicSurvivors: directionControl,\n  },\n  devotedOuterFrame: {
+  directionTape: {\n    addresses: originalPrintableAddresses,\n    directions: originalDirections,\n    shell: directionShell,\n    cyclicSurvivors: directionControl,\n  },\n  equationDirection: {\n    nValue,\n    nnConcatenated,\n    starValue,\n    starRune: corpus.translit[starValue],\n    rivalStar: algebraicStar,\n    compassPaths,\n    selected: "NE",\n    recoveredSourcePhrase: ["LIBER","PRIMUS"],\n  },\n  devotedOuterFrame: {
     sourceWords: devoted.map((index) => words[index]),
     left: "*N",
     right: "N*",
