@@ -59,7 +59,7 @@ function recursiveCore(values) {
 /** @param {number[][]} words @returns {{cores:number[],gp0:number}} */
 function signature(words) {
   const cores = words.map(recursiveCore).filter((value) => value !== null);
-  return { cores, gp0: cores.reduce((sum, value) => sum + value, 0) };
+  return { cores, gp0: cores.reduce((sum, value) => sum + value, 0), nWords: words.length };
 }
 
 /** @param {number} address @returns {number|null} */
