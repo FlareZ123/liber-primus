@@ -186,7 +186,7 @@ The next useful experiment should use the recovered state packet prospectively o
 
 ## Reproduction
 
-Windows Node 22 complete-gate PASS after the literal-DH assertion: [run 44447335966](https://github.com/FlareZ123/liber-primus/actions/runs/44447335966).
+Windows Node 22 complete-gate PASS after the literal-DH assertion: [run 44447335966](https://github.com/FlareZ123/liber-primus/actions/runs/44447335966). Final PASS including the FOUR/HERE -> 4D -> fourth-D assertion: [run 44448575206](https://github.com/FlareZ123/liber-primus/actions/runs/44448575206).
 
 
 Run:
