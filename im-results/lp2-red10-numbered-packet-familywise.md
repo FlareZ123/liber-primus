@@ -208,6 +208,77 @@ This joins the numbered packet directly to the authenticated continuation `PRIMU
 
 A deliberately narrow follow-up tested whether MAP itself also appears under the exact p32 state-address/cardinal grammar that produced THE. Keeping the same 49 addresses, all four directions, and extending from two cells to three yields **zero** authenticated three-rune hits on p32 and zero on the matched square page p6. That failure is recorded in `im-results/lp2-p32-state-native-the-readout.md`. Do not tune turns, wraps, or alternate starts to force MAP as local p32 plaintext.
 
+## Existing downstream continuation from MAP / HERE
+
+The MAP opcode does not terminate at an untyped pointer. Existing independently documented work gives a constrained continuation:
+
+```text
+MAP
+-> GP0 56
+-> p50[56] = 4E
+-> literal hex N
+-> one p50 row north
+-> 48 = GP0(HERE).
+```
+
+A later source-selected consumer revives exactly one HERE continuation under the reconstructed DH depth `K=2`:
+
+```text
+HERE = 48
+48 -> p50 base60 253
+253 -> p50 base60 36
+36 = GP0(FOUND)
+source index35 = FOUND.
+```
+
+The same two-step p50 map has a pre-existing authenticated source adjacency control `WILL -> BE`, so depth2 is not chosen from HERE after its result is known.
+
+FOUND then converges on an independently selected page/result pair in two ways:
+
+```text
+source number35
+-> p50[35] = 39
+-> physical p39
+
+35 + THEIR RISE(6)
+-> source index41 = VERIFY.
+```
+
+P39's independent DIVINITY/circumference receiver also yields VERIFY. The pre-existing VERIFY holdout then reaches p9 and an untouched source-index packet:
+
+```text
+VERIFY
+-> p9
+-> DIRECTION | PATHS.
+```
+
+Thus the broader candidate solve path is now:
+
+```text
+p36-p38 red10 numbered packet
+-> PRIMUS IS THE WAY ITS WORDS
+-> frozen section-word cardinal readout
+-> p32
+-> ARE THE
+-> MAP / N
+-> HERE
+-> T^K
+-> FOUND
+-> p39
+-> VERIFY
+-> p9
+-> DIRECTION | PATHS.
+```
+
+This synthesis does not upgrade every link to established plaintext. The p32 ARE/THE readouts, HERE route-state, and p39 VERIFY remain source-constrained candidates with their own finite controls and chronology caveats. Its value is causal compression: the new red10 packet now feeds an already existing chain of typed consumers instead of creating an isolated numeric coincidence.
+
+Dedicated downstream evidence remains in:
+
+- `im-results/lp2-state56-map-north-here-cube-packet.md`;
+- `im-results/lp2-p28-here-found-p39-verify-convergence.md`;
+- `im-results/lp2-p32-seeks-route-are-readout.md`;
+- `im-results/lp2-p32-state-native-the-readout.md`.
+
 ## Interpretation
 
 The resulting human-scale loop is:
