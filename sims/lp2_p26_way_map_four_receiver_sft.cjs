@@ -340,6 +340,54 @@ assert.equal(recoveredA, 8);
 assert.equal(translit([recoveredP, recoveredA]), "DH");
 
 /*
+ * Disambiguate "FOURTH DH" from "DH selects a source line; FOURTH D; H".
+ * Reconstructed DH uniquely names a physical line start on p28. Literal DH
+ * bigrams occur elsewhere, so charge the natural fourth-global-DH rival.
+ */
+const dhValue = [recoveredP, recoveredA];
+const transcriptionPages = transcription.split(/^\s*%\s*$/m);
+const dhLineStarts = [];
+for (let page = 0; page < transcriptionPages.length; page += 1) {
+  const lines = (transcriptionPages[page] || "").trim().split("/");
+  for (let line = 0; line < lines.length; line += 1) {
+    const values = [...lines[line]]
+      .map((char) => runeIndex.get(char))
+      .filter((value) => value !== undefined);
+    if (values[0] === dhValue[0] && values[1] === dhValue[1]) {
+      dhLineStarts.push({ page, line: line + 1 });
+    }
+  }
+}
+assert.deepEqual(dhLineStarts, [{ page: 28, line: 6 }]);
+
+const literalDh = [];
+for (const page of corpus.pages.filter((row) => row.page <= 55)) {
+  for (let offset = 0; offset + 1 < page.indices.length; offset += 1) {
+    if (
+      page.indices[offset] === dhValue[0] &&
+      page.indices[offset + 1] === dhValue[1]
+    ) {
+      literalDh.push({ page: page.page, offset });
+    }
+  }
+}
+assert.equal(literalDh.length, 11);
+assert.deepEqual(literalDh[3], { page: 21, offset: 244 });
+
+const p21Page = corpus.pages.find((page) => page.page === 21);
+assert.ok(p21Page);
+const rivalOffset = literalDh[3].offset;
+const rivalCentered = p21Page.indices.slice(rivalOffset - 1, rivalOffset + 2);
+assert.equal(translit(rivalCentered), "WDH");
+const rivalH = [
+  ((rivalCentered[0] - rivalCentered[2]) % 29 + 29) % 29,
+  (rivalCentered[0] + rivalCentered[2]) % 29,
+  rivalCentered[1],
+];
+assert.equal(translit(rivalH), "EASD");
+
+
+/*
  * Read FOURTH + DH as the pre-existing p28 instruction "fourth D; H".
  * The frozen p28 consumer is checked directly from original source runes:
  * offset48 is fourth D, centered L-D-X under H gives G-C-D.
@@ -467,7 +515,7 @@ console.log(JSON.stringify({
     dhResidues: p26Residues,
     dhPacketLabels: ["b", "p-1", "K", "p-1"],
     gcdChecks: { firstPairGcd, wayMapGcd, extendedInstruction: p26Four.output + translit([wayMapGcd]), fourExtensions },
-    reconstructedDhInstruction: { recoveredP, inverseB, recoveredA, label: translit([recoveredP, recoveredA]), p28Centered: translit(p28Centered), hOutput: translit(p28HOutput) },
+    reconstructedDhInstruction: { recoveredP, inverseB, recoveredA, label: translit([recoveredP, recoveredA]), dhLineStarts, literalDhCount: literalDh.length, fourthGlobalDh: literalDh[3], fourthGlobalDhHOutput: translit(rivalH), p28Centered: translit(p28Centered), hOutput: translit(p28HOutput) },
     uniqueState48Word: p26State48,
     state48CurrentPageSelfIndex: { offset48Rune: corpus.translit[p26Page.indices[48]], dCountThrough48: 1, pass: false },
     sharedSecretWordProbe: { plusK: translit(plusK), minusK: translit(minusK), threeRuneWords, signedKEnglishHits },
@@ -477,5 +525,5 @@ console.log(JSON.stringify({
     immediateCiphertextContinuation: 95,
   },
   classification:
-    "Bounded unknown-cipher receiver candidate. Among 3288 within-page unknown-word adjacencies, only two literal p50 movement tokens predict the next word GP0; p26 is the sole 57->56 hit selected by the independently fixed WAY->MAP table edge, and that same p26 boundary window reads FOUR under the independently authenticated high-digit rule. The selected p26 FOUR window also has the unique full-byte residue packet [15,22,2,22]=[b,p-1,K,p-1] across all 3176 unknown four-word windows. Applying the frozen GCD opcode to the WAY/MAP pair gives gcd(K,p-1)=2=TH, extending FOUR to FOURTH. The same packet reconstructs b^-1 mod(p-1)=3 and K^3 mod p=A=8, so [p,A]=[23,8]=DH. Interpreted as FOURTH D; H, this exactly reproduces the original p28 fourth-D centered H consumer LDX->GCD. The 56->48 table continuation does not equal p26's immediate next word; the unique p26 state48 word fails the frozen 4D current-page self-index; and the readable +K word SAD remains below plaintext threshold. No continuous plaintext is claimed.",
+    "Bounded unknown-cipher receiver candidate. Among 3288 within-page unknown-word adjacencies, only two literal p50 movement tokens predict the next word GP0; p26 is the sole 57->56 hit selected by the independently fixed WAY->MAP table edge, and that same p26 boundary window reads FOUR under the independently authenticated high-digit rule. The selected p26 FOUR window also has the unique full-byte residue packet [15,22,2,22]=[b,p-1,K,p-1] across all 3176 unknown four-word windows. Applying the frozen GCD opcode to the WAY/MAP pair gives gcd(K,p-1)=2=TH, extending FOUR to FOURTH. The same packet reconstructs b^-1 mod(p-1)=3 and K^3 mod p=A=8, so [p,A]=[23,8]=DH. DH uniquely selects the sole physical LP2 line beginning DH, p28 line6. The natural rival reading 'fourth global DH' selects p21:244 and yields EASD under the same H consumer. On the uniquely DH-labelled p28 page, FOURTH D; H exactly reproduces the fourth-D centered H consumer LDX->GCD. The 56->48 table continuation does not equal p26's immediate next word; the unique p26 state48 word fails the frozen 4D current-page self-index; and the readable +K word SAD remains below plaintext threshold. No continuous plaintext is claimed.",
 }, null, 2));
