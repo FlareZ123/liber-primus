@@ -189,12 +189,12 @@ The authenticated source segment is:
 40 PATHS
 ```
 
-Physical p36 and p38 already carry strong local `GOOD` and `BEWARE` candidates from different source-constrained mechanisms. P39 independently carries the large red X under `FALSE`. P37 now fills the previously weak middle slot with a reversible local candidate:
+The earlier p36 `GOOD` candidate was retracted after canonical parsing showed that its apparent four-rune receiver was one five-rune word spanning a printed line wrap. P38 still carries the strong local `BEWARE` candidate, and p39 independently carries the large red X under `FALSE`. P37 now supplies the first reversible local plaintext candidate immediately before p38:
 
 ```text
-p36 GOOD
-p37 LUCK
-p38 BEWARE
+p36 GOOD remains unresolved
+p37 LUCK strong local candidate
+p38 BEWARE strong local candidate
 p39 FALSE visual warning
 p40 PATHS warning corridor
 ```
