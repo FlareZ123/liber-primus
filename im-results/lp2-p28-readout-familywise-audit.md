@@ -1,22 +1,30 @@
 # P28 READ OUT pre-output family audit
 
-**Agent3, 19 November 2026. Director #1705. Classification: leading p28-local plaintext/instruction candidate with an independently audited downstream structural consequence; still not established plaintext and not a demonstrated reusable Liber Primus cipher operation.**
+**Agent3 with Agent16 external-selector update, 19 November 2026. Director #1705. Classification: leading p28-local plaintext/instruction candidate whose full local phrase family is now uniquely disambiguated by an independently supported authenticated-source p50 state transition. The exact `(3,27)` transform remains a p28-local operation candidate rather than a demonstrated reusable Liber Primus cipher.**
 
 ## Decision
 
-The original `READ OUT` recovery survives exact reproduction and has unusually strong **source-object selection**. The complete pre-output transform family shows that English output alone cannot authenticate it: alternate phrase-producing transforms exist, the exact selector has no second object for same-geometry transfer, and an independent solved-page transfer test recovers no known plaintext.
+The original `READ OUT` recovery survives exact reproduction and has unusually strong **source-object selection**. The earlier full pre-output family correctly showed that English output alone could not authenticate it because the exact p28 source object had two phrase-producing transforms: **READ OUT** and **LUNG DEAR**.
 
-A separately frozen Director #1706 receiver audit completed after this transform family was fixed. Without opening any DH/state fields, it found that whole `READOUT` and split `READ | OUT` jointly select p0's only two whole-word-bounded 23-rune center-F intervals under one shared base60/zero-offset rule, with an exact token-multiset familywise rate of 452/16,581,120 = 2.72599e-5. That is a genuine outside-p28 structural consequence of treating the decoded words as an instruction. It was not used to choose any p28 exponent, boundary, direction, or language hit.
+Agent16 later established an independent first-party p50 state-pointer route from the authenticated 2016 clue. The source relation **“their numbers are the direction”** gives `GP0(NUMBERS)=83` and `GP0(DIRECTION)=112`; the native-base60 zero-based low digit sends both to13 and then follows `13 -> 4 -> 37 -> 20 -> 42 -> 28`, where `20=GP0(OUT)`, `42=GP0(FIND)`, and 28 is physical p28. Across the three explicit clue noun relations and the complete 16 component conventions, only NUMBERS/DIRECTION under base60/low/zero/zero converges and reaches `FIND -> p28`.
 
-The correct status is therefore:
+Charge that externally supported operation against **every two-word parse produced by the complete 44-transform × 2-orientation family on the already fixed p28 center/right-edge object**. Exactly one survives the source-order condition
 
-- preserve `READ OUT` as the leading local interpretation of the p28 center/page-word object;
-- preserve its exact reversible transform and exceptional source geometry, while treating the cube-layer direction/count as inferred rather than visually instructed;
-- preserve the independently audited p0 receiver consequence as corroboration;
-- do not promote `READ OUT` to established plaintext while the p50-numeral→LP2-offset output type remains unauthenticated;
-- do not generalize cube-layering into a manuscript-wide cipher.
+```text
+first word -> second word -> FIND(42) -> p28
+```
 
-No p0 or DH receiver result was used to select or score the p28 transform family itself.
+and it is:
+
+```text
+READ(55) -> OUT(20) -> FIND(42) -> p28
+```
+
+The local rival `LUNG DEAR` has `GP0(LUNG)=42` and `GP0(DEAR)=55`; the same pointer sends LUNG directly to p28 and therefore rejects that phrase under the source-selected instruction order.
+
+This materially changes the acceptance status. The full local language family no longer leaves READ OUT tied with its p28 rival once the independently supported state-navigation operation is applied. The remaining weakness is upstream operation selection for the exact reversible `(3,27)` transform itself. P28's object is source-selected, exponent3 is DH-derived, exponent27 has page/field interpretations, and the transform is exactly reversible, while the original image still lacks a direct visual instruction saying to cube the center and reciprocate the word.
+
+The old full-p50-numeral → LP2-rune-offset receiver branch is no longer required for this output-selection result.
 
 ## Exact reproduction
 
@@ -198,18 +206,19 @@ This is a useful simplification and familywise selectivity result. It is not an 
 
 Reproduction: `sims/lp2_p28_periodcount_inverse_readout_sft.cjs`; Windows Node22 PASS 44435632291.
 
-## Why this still does not establish plaintext
+## Remaining evidence boundary
 
-Four facts now coexist:
+Five facts now coexist:
 
-1. the p28 input object is uniquely constrained by countable source geometry, and the matched original-image audit confirms the rightward line-edge object;
-2. the exact `(3,27)` transform is reversible and source-motivated, while #1728 finds no local visual cue that independently specifies its cube direction or three-layer repetition;
-3. the full pre-output language family contains alternate phrase hits and the frozen operation has no solved exact transfer;
-4. `READ OUT` has a familywise-exceptional downstream receiver geometry under a separately frozen audit.
+1. authenticated source text independently selects the native-base60 low-digit p50 transition and reaches physical p28 through solved `FIND`;
+2. p28's exact center-plus-page-word input object is uniquely constrained by visible/countable manuscript geometry;
+3. the complete p28 source-object transform family yields two English rivals, while the external low-digit route selects **READ OUT** alone through `READ -> OUT -> FIND -> p28`;
+4. the exact `(3,27)` transform is reversible and compactly related to the page-local DH/page state;
+5. solved-page transfer still does not establish `(3,27)` as a reusable manuscript-wide cipher, and the p28 scan does not visibly specify the exact cube/reciprocal operation.
 
-The remaining gap is the output type itself. Director #1686 found no reusable solved-text p50 numeric output grammar, and #1706 does not authenticate a creator rule that a base60 p50 numeral should be interpreted as an LP2 rune offset. Thus the downstream consequence is strong structural corroboration rather than a completed cipher inverse.
+Accordingly, the strongest defensible status is **high-confidence p28-local plaintext/instruction candidate with independently constrained output semantics**. A further promotion to established unknown plaintext should come from a source clue that fixes the exact p28 transform before language inspection, or from a fresh unknown-ciphertext consequence that specifically depends on the decoded READ OUT content and was not used to choose its transform.
 
-The audit therefore satisfies the Director fork for **preserving the leading unknown-plaintext candidate**, while stopping short of promoting it to established plaintext or a general cipher mechanism.
+The rejected full-numeral p50→LP-rune-offset model remains retired and is not an acceptance prerequisite for this branch.
 
 ## Reproduction
 
@@ -219,4 +228,5 @@ The audit therefore satisfies the Director fork for **preserving the leading unk
 - Independent receiver-family audit: [`im-results/lp2-readout-p0-receiver-familywise-audit.md`](lp2-readout-p0-receiver-familywise-audit.md)
 - Original-image selector SFT: [`sims/lp2_p28_visible_selector_gate_sft.py`](../sims/lp2_p28_visible_selector_gate_sft.py)
 - Original-image selector Windows run: [44433297532](https://github.com/FlareZ123/liber-primus/actions/runs/44433297532)
+- External source-pointer family Windows run: [44451715068](https://github.com/FlareZ123/liber-primus/actions/runs/44451715068)
 - Director issues: [#1705](https://github.com/FlareZ123/liber-primus/issues/1705), [#1728](https://github.com/FlareZ123/liber-primus/issues/1728)
