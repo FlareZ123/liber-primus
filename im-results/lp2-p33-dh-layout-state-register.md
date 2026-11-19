@@ -119,6 +119,37 @@ page size 214  -> [A,B].
 
 They were recognized after the DH state and p33 destination were known, so they are mechanism compression rather than blind predictions. They do not authorize a new body cipher by themselves.
 
+## Exact page-key power transfer to the two black bodies is negative
+
+The new page-address packet `[e,-K]=[3,27]` selects one especially cheap body consumer because p33 has exactly two black bodies between the red title groups:
+
+```text
+upper body offsets 10..90   = 81 runes
+lower body offsets 99..213 = 115 runes.
+```
+
+Freeze the source order and apply the already authenticated READ OUT power operation once:
+
+```text
+upper: x^e   = x^3  mod29
+lower: x^-K  = x^27 mod29.
+```
+
+No phase, alternate exponent, sign, reversal or repartition is searched.
+
+Windows Node22 CI run 44463108049 passes the reproducer. The source-native trigram scores are
+
+```text
+raw p33 bodies      -3.4439765254
+exact power transfer -3.4218617289
+solved p57 control  -2.4681447142.
+```
+
+The exact transfer remains far from the solved-language control and does not produce coherent plaintext. This direct two-body consumer is therefore closed. The p33 page-number and page-size state packets remain valid source structure, while they should not trigger a tuned power-cipher family on the bodies.
+
+Reproducer: `sims/lp2_p33_pagekey_power_transfer_sft.cjs`.
+CI: `https://github.com/FlareZ123/liber-primus/actions/runs/44463108049`.
+
 ## Bounded 28-word H-cycle consumer is negative
 
 The lower p33 black body has exactly **28 printed words**, while the frozen H matrix has exact order **28** in GF(29). This motivates one finite value-changing family without adding a new key:
