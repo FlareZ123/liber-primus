@@ -7,32 +7,13 @@ jobs:
     timeout-minutes: 8
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
       - name: Install historical OutGuess 0.2
         run: |
           wget -q https://security.ubuntu.com/ubuntu/pool/universe/o/outguess/outguess_0.2-8_amd64.deb -O /tmp/outguess.deb
           sudo dpkg -i /tmp/outguess.deb
           outguess 2>&1 | head -30 || true
-      - name: Test only source-motivated READ OUT keys on original p28 JPEG
-        shell: bash
-        run: |
-          set +e
-          for key in "READOUT" "READ OUT" "readout"; do
-            safe=$(printf '%s' "$key" | tr ' ' '_')
-            echo "=== KEY:$key ==="
-            rm -f "p28-$safe.out" "$safe.stdout" "$safe.stderr"
-            outguess -k "$key" -r resources/liber-primus/45.jpg "p28-$safe.out" >"$safe.stdout" 2>"$safe.stderr"
-            code=$?
-            echo "OUTGUESS_EXIT=$code"
-            cat "$safe.stderr"
-            cat "$safe.stdout"
-            if [ -f "p28-$safe.out" ]; then
-              wc -c "p28-$safe.out"
-              sha256sum "p28-$safe.out"
-              file "p28-$safe.out"
-              xxd -l 256 "p28-$safe.out"
-              strings -a -n 4 "p28-$safe.out" | head -80
-            else
-              echo "NO_OUTPUT_FILE"
-            fi
-          done
-          exit 0
+      - name: Verify exact READ OUT key and matched-key null
+        run: node sims/lp2_p28_outguess_readout_key_null_sft.cjs
