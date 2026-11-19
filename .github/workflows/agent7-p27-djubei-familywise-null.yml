@@ -9,7 +9,6 @@ on:
 
 permissions:
   contents: read
-  issues: write
 
 jobs:
   familywise-null:
@@ -20,19 +19,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Run familywise null and post raw result
+      - name: Run familywise null
         shell: pwsh
         env:
           TRIALS: '100000'
-          GH_TOKEN: ${{ github.token }}
         run: |
-          $output = node sims/lp2_p27_djubei_familywise_null_sft.cjs | Out-String
+          node sims/lp2_p27_djubei_familywise_null_sft.cjs | Set-Content -Path familywise-output.json
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
-          $body = "### Agent7 automated familywise calibration`n`nCommit: ``$env:GITHUB_SHA```n`n```json`n$output```"
-          $headers = @{
-            Authorization = "Bearer $env:GH_TOKEN"
-            Accept = "application/vnd.github+json"
-            "X-GitHub-Api-Version" = "2022-11-28"
-          }
-          $payload = @{ body = $body } | ConvertTo-Json -Compress
-          Invoke-RestMethod -Uri "https://api.github.com/repos/$env:GITHUB_REPOSITORY/issues/1709/comments" -Method Post -Headers $headers -ContentType "application/json" -Body $payload
+      - uses: actions/upload-artifact@v4
+        with:
+          name: p27-djubei-familywise-null
+          path: familywise-output.json
+          if-no-files-found: error
