@@ -237,6 +237,45 @@ assert.deepEqual(p0Target.values, [15,22,16,22,21,1,4]);
 assert.deepEqual(p0Target.breaks, [2]);
 assert.deepEqual(longestConsecutiveRuns(lineWrapUnion(p0Target.values, 2)), {best:6,runs:[[19,24]]});
 
+// P32 held-out center-word recovery.
+const p32Words = wordsByPage.get(32);
+assert.ok(p32Words);
+assert.equal(p32Words.length, 21);
+const p32Middle = p32Words[10];
+assert.equal(p32Middle.ordinal, 11);
+assert.equal(p32Middle.start, 64);
+assert.deepEqual(p32Middle.values, [7,17,15,4,14,27,14,24]);
+assert.deepEqual(p32Middle.breaks, [7]);
+const p32MiddleUnion = lineWrapUnion(p32Middle.values, 7);
+assert.deepEqual(longestConsecutiveRuns(p32MiddleUnion), {best:5,runs:[[0,4]]});
+assert.deepEqual(signedWords.slice(0,5).map((word) => word.toUpperCase()), ["HELLO","THE","PATH","LIES","EMPTY"]);
+assert.deepEqual(signedWords.slice(5,9).map((word) => word.toUpperCase()), ["EPIPHANY","SEEKS","THE","DEVOTED"]);
+
+const oddPageMiddles = [];
+for (let pageNumber = 0; pageNumber <= 55; pageNumber += 1) {
+  const pageWords = wordsByPage.get(pageNumber) || [];
+  if (pageWords.length === 0 || pageWords.length % 2 === 0) continue;
+  const middle = pageWords[(pageWords.length - 1) / 2];
+  const union = hSequence(middle.values);
+  if (middle.breaks.length === 1 && middle.breaks[0] > 0 && middle.breaks[0] < middle.values.length) {
+    union.push(...hSequence(middle.values.slice(0, middle.breaks[0])));
+    union.push(...hSequence(middle.values.slice(middle.breaks[0])));
+  }
+  oddPageMiddles.push({
+    page: pageNumber,
+    wordCount: pageWords.length,
+    middleOrdinal: middle.ordinal,
+    start: middle.start,
+    ...longestConsecutiveRuns(union),
+  });
+}
+assert.equal(oddPageMiddles.length, 32);
+const middleHistogram = {};
+for (const row of oddPageMiddles) middleHistogram[row.best] = (middleHistogram[row.best] || 0) + 1;
+assert.deepEqual(middleHistogram, {1:20,2:11,5:1});
+assert.deepEqual(oddPageMiddles.filter((row) => row.best >= 3), [{
+  page:32,wordCount:21,middleOrdinal:11,start:64,best:5,runs:[[0,4]],
+}]);
 console.log(JSON.stringify({
   status:"PASS",
   p55:{target:{page:55,word:7,start:23,length:13,split:1},sourceRun:[16,26],sourceWords:signedWords.slice(16,27).map((word)=>word.toUpperCase()),manuscriptLineWrapFamily:lineWrapped.length,uniqueRunAtLeast9:ge9},

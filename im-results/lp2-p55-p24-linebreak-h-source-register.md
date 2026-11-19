@@ -147,6 +147,56 @@ The p11 instruction also supplies the natural ordering rule for the H unions: th
 
 The prospectively selected p0 seven-rune DEVOTED receiver uses the same whole/physical-fragment H construction and yields the consecutive subset **19..24** = THEIR MEANING IS THE ROAD AND. P0 is independently selected by the EMPTY/EPIPHANY boundary route. Thus the p55 16..26 block has a separate ciphertext/layout overlap on the central road clause.
 
+## P32 middle-word holdout recovers the source prefix 0..4
+
+Physical p32 is independently selected upstream by the authenticated source sequence `EPIPHANY SEEKS THE DEVOTED = 5..8`. It has exactly **21** complete canonical words, so its unique middle word is word11. The recovered instruction `ITS WORDS ARE THE MAP` makes word-level structure source-motivated, while solved `WITHIN` supplies the center operation.
+
+P32 word11 starts at rune offset64, has values:
+
+~~~
+[7,17,15,4,14,27,14] | [24]
+~~~
+
+with its original physical line break after seven runes. Apply the unchanged whole/physical-fragment H readout:
+
+~~~
+H(whole)  = [12,2,3,2,17,13,19,18]
+H(prefix) = [22,21,19,15,1,0,4]
+H(suffix) = [24]
+~~~
+
+The union contains every source index **0 through4**:
+
+~~~
+0 HELLO
+1 THE
+2 PATH
+3 LIES
+4 EMPTY
+~~~
+
+This lands immediately before the already established p32 selector:
+
+~~~
+0..4  HELLO THE PATH LIES EMPTY
+5..8  EPIPHANY SEEKS THE DEVOTED
+~~~
+
+### Central-word control
+
+Charge the same rule across every physical p0-p55 page with an odd number of complete words. For each such page, select its unique middle word before examining values; apply H to the whole word and, when present, its original internal physical-line fragments.
+
+There are **32** odd-word-count pages. Their longest consecutive-run histogram is:
+
+~~~
+1: 20
+2: 11
+5:  1
+~~~
+
+P32 is the sole run5 page; no other odd-page middle word exceeds run2. Thus the selected page, source-motivated middle-word operation, and fixed H readout uniquely recover `HELLO THE PATH LIES EMPTY` without a source-word target search.
+
+Together with the independently established p32 selector 5..8, p24/p55 register 9..26, and p11 continuation 27..29, the structural route now covers the authenticated signed source continuously from **0 through29**.
 ## Decision
 
 Promote the whole/physical-fragment H readout as a strong local source-register mechanism on the selected p55 word and its p55-directed p24 receiver.

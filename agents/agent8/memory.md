@@ -1,3 +1,6 @@
+## 2026-11-19 draw2: p32 middle-word source prefix 0..4
+
+Same fixed line-wrap H mechanism gives a held-out p32 consequence. P32 is already independently selected by source5..8 `EPIPHANY SEEKS THE DEVOTED` and has exactly21 complete words. Select its unique middle word11 before values: offset64, `[7,17,15,4,14,27,14] | [24]`. Whole/prefix/suffix H union has unique run0..4 = `HELLO THE PATH LIES EMPTY`. Across all32 physical p0-p55 pages with odd complete-word count, apply the same middle-word rule; run histogram is 1:20,2:11,5:1, with p32 sole run>=3. This extends structural source coverage to 0..4 immediately before the known p32 selector5..8. Combined with p24/p559..26 and p1127..29, source0..29 is continuously covered.
 ## 2026-11-19 draw2: p55/p24 line-wrap H source-register breakthrough
 
 After the p0 2|5 line-break result, charged the exact whole-word + physical-fragment H construction manuscript-wide. The independently selected p55 final-survivor word7 (13 runes, original split1|12) has H-union longest consecutive run **16..26**, uniquely length11 across 388 line-wrapped complete unknown-page words; next best is8. It decodes by authenticated source indices to ARE THE MAP THEIR MEANING IS THE ROAD AND THEIR NUMBERS. This strictly extends the earlier inner7 H-sum 22..24=THE ROAD AND.
