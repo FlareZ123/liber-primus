@@ -298,6 +298,21 @@ assert.deepEqual(
   [12]
 );
 
+const firstTheirDiagonal = numberedDiagonal.find((row) => row.sourceIndex === 19);
+const secondTheirDiagonal = numberedDiagonal.find((row) => row.sourceIndex === 25);
+assert.ok(firstTheirDiagonal);
+assert.ok(secondTheirDiagonal);
+
+assert.equal(firstTheirDiagonal.gp0, 114);
+assert.deepEqual(secondTheirDiagonal.values, [20, 9]);
+assert.equal(secondTheirDiagonal.gp0, 29);
+
+const direction29DiagonalHits = numberedDiagonal.filter((row) => row.gp0 === 29);
+assert.deepEqual(
+  direction29DiagonalHits.map((row) => row.sourceIndex),
+  [25]
+);
+
 const p55Words = completeWordsByPhysicalPage.get(55);
 assert.ok(p55Words);
 assert.equal(p55Words.length, 16);
@@ -586,6 +601,17 @@ console.log(JSON.stringify({
     hBranchGp0: [p55.h0, p55.h1],
     hBranchSourceLabel: "GOOD",
     hSumBranchState: ["B", "b+K"],
+    theirNumberDirection: {
+      recoveredOccurrence: 25,
+      sourceWord: "THEIR",
+      directedPage: 25,
+      oneBasedWord: 26,
+      ciphertext: secondTheirDiagonal.values,
+      gp0: secondTheirDiagonal.gp0,
+      gp0SourceWord: "DIRECTION",
+      firstTheirGp0: firstTheirDiagonal.gp0,
+      direction29DiagonalHits: direction29DiagonalHits.map((row) => row.sourceIndex),
+    },
     theirRise: {
       directionWords: ["THE", "WAY"],
       sourceIndices: [12, 13],
