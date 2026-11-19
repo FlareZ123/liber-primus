@@ -63,6 +63,47 @@ GP0(WILL)=57
 
 Thus the exact two-step map already has a source-side control independent of HERE. The depth is the reconstructed DH value `K=2`, rather than a depth selected from HERE after reading its result.
 
+## The same operator closes p28 through p32 before HERE
+
+The p28 instruction itself supplies an additional fixed-state check. Apply the same `T^K` map separately to its two source words:
+
+```text
+GP0(READ)=55
+55 -> 80 -> 142
+```
+
+The result is outside the physical LP2 page range.
+
+For the operational word:
+
+```text
+GP0(OUT)=20
+20 -> 102 -> 32
+```
+
+so `OUT` selects physical p32 under the unchanged full-base60 map.
+
+P32 was independently selected by the authenticated SEEKS route before this relation was noticed. Its existing low-digit-selected word subset has exactly 42 runes:
+
+```text
+42 = GP0(FIND)
+p50[42] = "0S" = 28
+```
+
+which returns to physical p28. Therefore the same source-selected table grammar forms a closed route before the new HERE continuation is used:
+
+```text
+p28 READ OUT
+ -> OUT
+ -> T^K
+ -> p32
+ -> selected aggregate 42 = FIND
+ -> p50[42]
+ -> p28.
+```
+
+This does not require choosing a p32 page after inspecting its ciphertext. Both p32 and its 42-rune aggregate predate the present route.
+
 ## FOUND converges on p39 VERIFY in two independent ways
 
 The recovered source state is authenticated word35 `FOUND`.
