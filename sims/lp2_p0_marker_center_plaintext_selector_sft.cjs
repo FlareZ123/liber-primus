@@ -153,6 +153,12 @@ const squareMetadataAlphabet = [...new Set([
 ])].sort((left,right)=>left-right);
 assert.deepEqual(squareMetadataAlphabet, [2,3,4,5,6,8,18,19,24,26,27]);
 const markerCenter = [q,A,B,A,q];
+const square7 = squares.find((square) => square.length === 7 && magicSum(square) === 1033);
+assert.ok(square7);
+const p = square7[e - 1][a - 1];
+const b = square7[e - 1][g + K - 1];
+assert.deepEqual({p,b}, {p:23,b:15});
+
 const u = q - e;
 const t = g + K;
 const w = A + g;
