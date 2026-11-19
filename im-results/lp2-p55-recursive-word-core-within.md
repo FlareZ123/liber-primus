@@ -524,6 +524,46 @@ THEIR25
 
 This provides a new first-party selector for DIRECTION29 from the p55 chain without relying on the p28 clause continuation.
 
+## WAY13 has a direct numbered receiver to LIBER9
+
+The p24 ciphertext independently recovers THE WAY and therefore fixes WAY13 before this local receiver is interpreted.
+
+Follow WAY13 through the same numbered diagonal:
+
+~~~text
+WAY13
+ -> p13 canonical word14
+ -> [18,3,25,6,26,20]
+~~~
+
+Its fixed outer H pair is:
+
+~~~text
+H(18,20) = [27,9]
+          = [-K, LIBER]
+~~~
+
+The sum coordinate is therefore authenticated source index9, LIBER. This gives a direct source-visible transition:
+
+~~~text
+WAY13 -> p13 -> LIBER9
+~~~
+
+Across all 42 valid numbered-diagonal receivers, p13 is the sole exact outer-H pair [27,9]. Only three receivers have outer H sum9 at all, and p13 is the only one whose difference coordinate is -K=27.
+
+This is simpler than the previously published cube-e WAY13→LIBER9 bridge and uses a different original ciphertext object. It therefore supplies an independent local consumer for WAY rather than replacing or retuning the earlier route.
+
+LIBER9 can immediately use its source number as the already established direction to p9. The independently preserved p9 packet splits under K=2 into authenticated DIRECTION29 | PATHS40. Its productive DIRECTION branch returns to the existing p29 WAY route:
+
+~~~text
+p24 -> THE WAY
+ -> WAY13 -> p13 -> LIBER9
+ -> p9 -> DIRECTION29
+ -> p29 -> candidate WAY13
+~~~
+
+The p29 W+AY assembly retains its existing candidate-level caveat. The new p13 receiver strengthens the downstream WAY consumer and the source-number loop.
+
 ## Held-out external consumer: both 36 branches land on p36 GOOD
 
 The p55 result was committed at **05:45:03Z**, fixing both H branch sums at 36 before a separate p36 plaintext result existed in the authoritative synthesis.
