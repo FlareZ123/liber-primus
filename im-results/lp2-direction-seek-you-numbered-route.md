@@ -173,7 +173,7 @@ p32 offset59
 
 Canonical numbering places it at **word10**, not word11. Group-order reduction therefore no longer selects it.
 
-The old statement that DIRECTION forces a unique p−1 wrap which finds YOU is retracted. A new source-visible rule would be required to choose a p32 receiver.
+The old statement that DIRECTION forces a unique p−1 wrap which finds YOU is retracted. P32 still has no justified direct YOU receiver. A later Agent30 result now supplies a different source-visible route that **bypasses p32** and reaches a p33 YOU receiver from the preceding AND object; that route is described below and does not revive the invalid wrap.
 
 ## Corrected SEEK31 and AND32
 
@@ -284,6 +284,28 @@ SEEK AND
 ```
 
 This route deserves prospective testing at the next untouched consumer rather than further tuning of p32 wraps.
+
+## Replacement for the missing YOU coordinate
+
+The canonical correction leaves literal YOU as the sole absent direct page/word coordinate. Agent30 later found a separate continuation from the immediately preceding authenticated corridor, without choosing any p32 word.
+
+The source pair is zero-based `30 SEEK / 31 AND / 32 YOU / 33 WILL`. Charge the source GP0 values. `SEEK` and `AND` are the **only adjacent equal-GP0 pair** in all 42 adjacent source pairs, with `GP0(SEEK)=GP0(AND)=56`. That source-only equality selects solved p56 before the p31 inverse is evaluated.
+
+The numbered diagonal already fixes AND32 on project p31 canonical word32 at start126, ciphertext `[12,23,1]`. Original p31 layout supplies a uniquely charged helper packet: the top printed line has `5` chunks / `23` runes; line6 immediately below the AND receiver line has `5` chunks / `21` runes. Lower-to-upper serialization gives `[5,21,23]=[g,-A,p]`. Solved p56's authenticated prime-totient serializer maps it to `[10,14,24]=[-B,-b,-g]`; `H3^-1` gives key `[17,14,7]`, and subtraction recovers exact `AND=[24,9,23]`.
+
+The original-layout construction was charged across all 12 p31 line pairs with equal chunk count, both count orders, both signs and all seven authenticated three-rune targets: **336 configurations, one hit**.
+
+The same winning line pair has lower-to-upper rune rise `23-21=2=K`. A `RISE=+2` page operation was independently established before this p31 result on p33→p35 and p40→p42, and is the preferred p23 `THE ONE RISE` operation p23→p25. Reuse it unchanged: `p31+K=p33`.
+
+Freeze the p31 key `[17,14,7]` across all 716 complete canonical three-rune unknown-book words, the seven distinct authenticated three-rune targets and both signs: **10,024 configurations**. Exactly two hits survive: p31 word32 -> AND and p33 word29 start116 -> YOU. The p33 hit is therefore the sole cross-page transfer of the unchanged key.
+
+This supplies a concrete replacement for the retired p32 wrap: `SEEK AND -> shared GP0 56 -> solved p56 / p31 AND helper -> RISE +2 -> p33 -> fixed key -> YOU`.
+
+P33 then continues internally under the independently recovered `THEIR RISE`: the YOU receiver is canonical word29 and the existing WILL receiver is word35, so `35-29=6=a`, giving `YOU -> WILL`. Independent p34/p35 local results already provide `BE -> FOUND`.
+
+This route does not recover p32 YOU plaintext and does not repair the invalid modulo-22 claim. It resolves the semantic missing-coordinate problem by a different authored path from AND into p33. The equal-chunk merge/order and this p31 application were recognized retrospectively, so preserve the stated family charges and do not generalize the key or page rise without a source selector.
+
+See `im-results/lp2-p31-and-p33-you-rise-will.md` and `sims/lp2_p31_and_p33_you_rise_will_sft.cjs`.
 
 ## Direct numbering resumes after YOU
 
