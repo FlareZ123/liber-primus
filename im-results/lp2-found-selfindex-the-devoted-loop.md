@@ -1,6 +1,6 @@
 # FOUND self-index closes on the p0 THE | DEVOTED receiver pair
 
-**Agent2, 19 November 2026. Classification: source-navigation holdout strengthening the already conditional p0 THE DEVOTED receiver. The fixed prime-H operation transfers to the independently selected two-rune receiver and returns authenticated FOUND; FOUND's p50 token points to the receiver's exact word ordinals under the two source-supported radices. The pair's rune-length shape uniquely identifies THE DEVOTED among adjacent words of the authenticated 2016 message. This selects a phrase candidate and route; it does not yet decrypt the ciphertext values.**
+**Agent2, 19 November 2026. Classification: exploratory word-ordinal interpretation layered on a real prime-H observation. The fixed prime-H operation transfers to the independently selected two-rune receiver and returns authenticated FOUND. Interpreting FOUND's p50 values 53/54 as p0 word ordinals is not currently licensed by the stronger p50 output grammar, which treats decoded numerals as rune offsets. Preserve the arithmetic and phrase-shape coincidence, but do not count the ordinal loop as an authenticated navigation holdout.**
 
 ## Independently selected receiver boundary
 
@@ -46,7 +46,7 @@ Authenticated 2016:
 
 So the already selected original ciphertext word53 independently emits the number of signed word **FOUND** under a value operation fixed elsewhere.
 
-## FOUND points back to the exact receiver ordinals
+## Exploratory ordinal interpretation of FOUND
 
 Original p50 address36 is token:
 
@@ -57,7 +57,7 @@ Its two source-supported numeral interpretations are:
 - drop-f base59: **53**;
 - conventional base60: **54**.
 
-Those numbers are exactly the two p0 receiver word ordinals:
+Those numbers happen to equal the two p0 receiver word ordinals:
 
 `FOUND36 -> p50[36]=0s -> {53,54}`.
 
@@ -65,9 +65,9 @@ The post-SHED carried radix is base59, so under the route's active state the val
 
 The conventional sibling gives **54**, exactly the adjacent seven-rune word.
 
-No ciphertext plaintext letters are needed for this loop.
+Critical type caveat: the current familywise-positive p50 receiver grammar uses decoded numerals as **p0 rune offsets**, not word ordinals. Under that established type, offsets53/54 fall at the start/interior of p0 word12 rather than at words53/54. The ordinal reading below is therefore exploratory and must not be promoted without an independent first-party or familywise rule licensing p50 outputs as word ordinals.
 
-## Receiver shape selects THE DEVOTED
+## Conditional phrase-shape consequence under the ordinal hypothesis
 
 The selected p0 pair has GP-rune lengths:
 
@@ -91,7 +91,7 @@ while the receiver's source-visible shape selects:
 
 `[2,7] -> THE DEVOTED`.
 
-This is a closed locator/phrase-selection loop. It still does not provide the additive or other value-changing key that proves the original p0 runes decrypt to those words.
+This is a compact coincidence conditional on the unlicensed word-ordinal output type. It does not provide the additive or other value-changing key that proves the original p0 runes decrypt to those words.
 
 ## Whole-manuscript two-rune census
 
@@ -142,13 +142,13 @@ These are independent navigation constraints converging on one source object.
 
 ## Decision
 
-The evidence now supports treating p0 words53|54 as a strongly source-selected **THE DEVOTED candidate receiver**, with three separate source-facing constraints:
+Preserve the real, typed observation that the independently selected two-rune p0 word53 yields prime-H sum36 = GP0(FOUND). Keep the following word-ordinal loop as **exploratory only** unless a separate source rule authenticates p50 decoded values as word ordinals. Under that hypothesis, three source-facing constraints converge:
 
 1. EMPTY / EPIPHANY selects the exact physical boundary between the two words;
 2. transferred prime-H on original word53 emits FOUND, whose p50 token returns the exact receiver ordinals53/54;
 3. the source-visible rune lengths `[2,7]` uniquely select adjacent signed phrase THE DEVOTED.
 
-This does not establish unknown plaintext because the value-changing map from original p0 rune values to THE DEVOTED remains missing.
+Even under the ordinal hypothesis this does not establish unknown plaintext because the value-changing map from original p0 rune values to THE DEVOTED remains missing. Under the currently stronger rune-offset grammar, FOUND's 53/54 outputs do not select this receiver at all.
 
 The next useful experiment should derive that value operation from an already selected state or instruction, or make a new untouched prediction from the FOUND loop. Do not fit an unconstrained seven-rune key to DEVOTED.
 
