@@ -59,6 +59,54 @@ The recovered tuple is therefore exactly:
 
 This is the same DH23 state previously reconstructed from p28 and, more recently, from the signed-word direction-graph topology, now obtained from a materially different source-only invariant.
 
+## Held-out semantic consequence: the state indexes the clue text itself
+
+The state reconstruction above does not use the first signed clause after the opening `THE` as a target. Once the tuple is fixed, reuse the independently established source ratio
+
+```text
+q = GP0(EMPTY) / p = 92 / 23 = 4.
+```
+
+Now read the following state values as zero-based signed-word numbers:
+
+```text
+[K, e, q, g, a, g+K, A]
+= [2, 3, 4, 5, 6, 7, 8].
+```
+
+Those positions are exactly:
+
+```text
+2 PATH
+3 LIES
+4 EMPTY
+5 EPIPHANY
+6 SEEKS
+7 THE
+8 DEVOTED
+```
+
+so the reconstructed state points to the complete source wording
+
+```text
+PATH LIES EMPTY
+EPIPHANY SEEKS THE DEVOTED
+```
+
+without choosing a new cipher target.
+
+Three primary state values also index the later self-referential instruction anchors directly:
+
+```text
+b = 15 -> WORDS
+B = 19 -> THEIR
+p = 23 -> ROAD
+```
+
+This is a substantially stronger human-solve-path consequence than the algebra alone. It ties the recovered numeric state to the message's own clue vocabulary and gives literal operational force to the statement that the words are a map and their numbers are a direction.
+
+The chronology remains retrospective with respect to recognizing this index grammar, while the `q=GP0(EMPTY)/p` relation itself predates this collision reconstruction in the p32 DIVINITY route.
+
 ## Why these pairs are a bounded family
 
 The reconstruction does not start from an unconstrained search over arbitrary source word pairs.
@@ -138,7 +186,7 @@ The SFT includes a familywise calibration that preserves:
 
 It shuffles only the word positions. Ten deterministic seeds each run 100,000 shuffled messages, for **1,000,000** total positional controls. Every shuffled message is counted positive if **any** role assignment closes a valid DH system.
 
-This calibration is intentionally harder than testing the observed state alone. The final Windows run records the exact null count. Because the state grammar and H interpretation were recognized after the existing DH work, the null is a calibration of selectivity rather than a discovery p-value.
+This calibration is intentionally harder than testing the observed state alone. Windows / Node.js 22 run **44451118583** passed with **16 hits in 1,000,000 controls**, empirical familywise rate **0.000016**. Because the state grammar and H interpretation were recognized after the existing DH work, the null is a calibration of selectivity rather than a discovery p-value.
 
 ## Consequences
 
@@ -168,4 +216,4 @@ Run:
 node sims/lp2_signed2016_gp0_collision_dh_state_sft.cjs
 ```
 
-The SFT reconstructs GP29 word numbers from the authenticated 2016 source, enumerates the complete repeated-word and distinct-GP0 collision families, charges all 672 DH role assignments, proves uniqueness of the exact state closure, and runs the one-million-control exact-token-multiset positional calibration.
+The SFT reconstructs GP29 word numbers from the authenticated 2016 source, enumerates the complete repeated-word and distinct-GP0 collision families, charges all 672 DH role assignments, proves uniqueness of the exact state closure, verifies the state-indexed clue block and WORDS/THEIR/ROAD anchors, and runs the one-million-control exact-token-multiset positional calibration. Windows / Node.js 22 run 44451118583 passed the initial collision/null version; rerun the current SFT after the semantic-index assertions were added.
