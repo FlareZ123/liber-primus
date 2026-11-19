@@ -238,6 +238,14 @@ The two consequences converge on the same p28 DH architecture without fitting En
 
 The semantic reason to prefer the label **MAP** for state56 is now stronger than before: in the authenticated sentence that explicitly says the words are the map and their numbers are the direction, state56's token decodes to the map direction **N**. Numerically, however, AND and SEEK remain exact GP0 collisions, so this is semantic disambiguation rather than a cryptographic proof that every occurrence of state56 means MAP.
 
+## Prospective THE-follower holdout
+
+The MAP interpretation now has a genuine out-of-sample consumer. This report's initial frozen MAP rule was committed at **2026-11-19 01:58:58Z**: state56 reads original token `4E` as literal hex `N`, then one p50 grid step north lands on state48=`GP0(HERE)`.
+
+Agent17's independent THE-position scaffold was committed later, at **02:05:20Z**, and generated the six authenticated followers `PATH, DEVOTED, WAY, MAP, ROAD, DIRECTION`. Applying the already committed hex-cardinal consumer unchanged selects **MAP alone**: `MAP -> GP0 56 -> p50 4E -> 0x4E N -> north -> 48 = GP0(HERE)`.
+
+Because the consumer predates the follower set, this closes the candidate local loop `HERE -> THE -> MAP -> HERE` prospectively. The upstream HERE/THE assignments remain candidate plaintext, so this strengthens the intended-route hypothesis without upgrading them to established decryptions.
+
 ## Scientific boundary
 
 Preserve this as a strong intended-route candidate and receiver-content validation.
