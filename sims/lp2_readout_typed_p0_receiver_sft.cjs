@@ -148,6 +148,47 @@ assert.equal(gp0(OUT), 20);
 assert.equal(gp0(READOUT), 75);
 assert.equal(READOUT.length, 6);
 
+// Charge every boundary between the six recovered GP runes against the
+// frozen English control corpus. READ / OUT is the sole split into two
+// ordinary words, so the component parsing is source-readable rather than a
+// free segmentation.
+const splitLexiconWords = [];
+for (const relative of [
+  "resources/control/english_wordfreq_textblob.txt",
+  "resources/control/gibran_prophet_58585.txt",
+  "resources/control/shakespeare_first300k.txt",
+  "resources/control/emerson_essays_2944.txt",
+  "resources/liber-primus/lp1-plaintext-reference.txt",
+]) {
+  splitLexiconWords.push(
+    ...(read(relative).toUpperCase().match(/[A-Z]+/gu) || [])
+  );
+}
+const splitLexicon = new Set(splitLexiconWords);
+/** @param {number[]} values @returns {string} */
+function spell(values) {
+  return values.map((value) => {
+    if (value === 21) return "ING";
+    if (value === 27) return "IO";
+    return corpus.translit[value];
+  }).join("");
+}
+const splitCandidates = [];
+for (let split = 1; split < READOUT.length; split += 1) {
+  const left = spell(READOUT.slice(0, split));
+  const right = spell(READOUT.slice(split));
+  splitCandidates.push({
+    split,
+    left,
+    right,
+    bothWords: splitLexicon.has(left) && splitLexicon.has(right),
+  });
+}
+assert.deepEqual(
+  splitCandidates.filter((candidate) => candidate.bothWords),
+  [{split: 3, left: "READ", right: "OUT", bothWords: true}]
+);
+
 const readoutToken = tableTokens[gp0(READOUT)];
 assert.equal(readoutToken, "2v");
 const readout60 = numeralValue(readoutToken, alphabet60);
@@ -389,6 +430,7 @@ assert.equal(p0.indices[center], 0);
 console.log(JSON.stringify({
   status: "PASS",
   wholeReadoutPageSelector: {
+    splitCandidates,
     gp0: gp0(READOUT),
     token: readoutToken,
     base60: readout60,
