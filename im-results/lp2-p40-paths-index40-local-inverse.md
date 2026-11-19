@@ -134,7 +134,87 @@ key [20,20,12,6]
 
 No other p40 four-rune word / authenticated target / sign is hit by the charged family.
 
-## 5. Manuscript-wide exact-key control
+
+## 5. Source-visible reconstruction of the shell magnitudes
+
+The compact shell was discovered after the target, so this section is mechanism compression rather than a blind prediction. It nevertheless has a constrained source reading.
+
+The selected signed phrase is:
+
+```text
+BEWARE FALSE PATHS
+```
+
+Its canonical GP rune lengths are:
+
+```text
+BEWARE = 6
+FALSE  = 5
+PATHS  = 4
+total  = 15 = b
+```
+
+The phrase contains exactly three words:
+
+```text
+word count = 3 = e
+```
+
+Physical p40 has one red span at its start whose canonical length is:
+
+```text
+red heading length = 8 = A
+```
+
+The prior p28 HERE state supplies:
+
+```text
+HERE[p] = 26
+```
+
+Therefore the four **magnitudes** of the observed H-shell can be reconstructed from source-visible material as:
+
+```text
+[b, A, e, HERE[p]]
+= [15,8,3,26]
+```
+
+The required shell is:
+
+```text
+[-b,A,e,HERE[p]]
+= [14,8,3,26]
+```
+
+The remaining interpretive step is the sign on `b`. The literal middle word `FALSE` and the large red X on p39 make negation a plausible human instruction, but this sign was not frozen before the inverse was known. Preserve that chronology.
+
+### Three-word-window control
+
+Charge all contiguous authenticated three-word windows whose total GP-rune length equals `b=15`. There are five:
+
+```text
+5..7   EPIPHANY SEEKS THE       -> endpoint p7
+29..31 DIRECTION SEEK AND       -> endpoint p31
+37..39 LUCK BEWARE FALSE        -> endpoint p39
+38..40 BEWARE FALSE PATHS       -> endpoint p40
+39..41 FALSE PATHS VERIFY       -> endpoint p41
+```
+
+At those endpoint pages, the red-span lengths are:
+
+```text
+p7  -> 14
+p31 -> none
+p39 -> 3
+p40 -> 8 = A
+p41 -> none
+```
+
+Thus `BEWARE FALSE PATHS` is the only `b`-length three-word window whose endpoint page exposes a red span of length `A`.
+
+This substantially reduces the field-choice freedom behind the shell. It still does not prospectively establish the first-coordinate minus sign or prove that this serialization transfers to another block.
+
+## 6. Manuscript-wide exact-key control
 
 Hold the exact key `[20,20,12,6]` fixed.
 
@@ -148,7 +228,7 @@ subtract [20,20,12,6]
 
 This makes the local inverse manuscript-wide selective even though the shell-template discovery is retrospective.
 
-## 6. Relationship to the signed warning
+## 7. Relationship to the signed warning
 
 The three-word source corridor now has two independent state-selected endpoints:
 
@@ -162,7 +242,7 @@ The p40 state is deliberately unable, at the length+GP0 level, to tell ROAD from
 
 This is stronger than the earlier botanical-art reading of p40. The branch frame is reused on p41 and p42 and should not be counted as independent evidence.
 
-## 7. Evidence boundary
+## 8. Evidence boundary
 
 Preserve p40 offsets71..74 as a strong local PATHS plaintext candidate:
 
