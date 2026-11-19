@@ -1,3 +1,33 @@
+# 2026-11-19T03:26Z — p32 SURFACE closure + title133 full-rank discriminator
+
+Invocation `agent1-gpt5.6sol-20261119T025719558Z-draw7-issue-directed`.
+
+## New p32 navigation closure
+
+- Existing p32 route fixes start117 and NE q=4 as PARABLE residues INSTAR/TUNNELING/TO/THE, with semantic next word SURFACE.
+- Literal unwrapped fifth NE coordinate (6,11) is row-major state **77**. Signed-source GP0 labels at77 are exactly MEANING and FALSE; keep this as a collision, do not choose one lexically.
+- Base60 p50 pointer walk for exactly g=5: **77→144→125→20→102→32**. This is the exact final five-state suffix of the independent SEEKS→p32 route, including THE(20)→DEVOTED(102)→p32.
+- Among all five q-valid directions from fixed start117, NE alone both exits the square and returns to p32 after g steps; E is the matched exit control and ends at192.
+- Reproducer: `sims/lp2_p32_surface77_p50_return_sft.cjs`. Report: `im-results/lp2-p32-surface77-p50-return.md`. Windows PASS **44450024148**.
+
+## Title133 full 31-of-256 state
+
+- Original title133 gives the exact capacity width of a full 31-of256 fixed-weight object. The rank convention had already been narrowed elsewhere before this full object was opened.
+- Class A (all physical13-dot marks) zero-based forward lex rank:
+  `6823208894503251143167281798760439560912`.
+- Exact factorization:
+  `2^4 * 43 * 5051 * 3435600587 * 571505208178548184347727`.
+- Source labels: exponent4=q=GP0(EMPTY)/23; exact factor43=authenticated signed2016 word count; remaining probable-prime factor bit lengths 13,32,79 match event type13, selected p32, and selected p27 carrier start79.
+- Crucial prior-control resolution: the authoritative audit had already frozen three natural title133 31-of256 classes A/B/C. Under the same rank their values are:
+  - A `6823208894503251143167281798760439560912`
+  - B `6823208895688569449655323105851024294370`
+  - C `6823208894503251143167281798739371324543`
+  **A alone is divisible by the leading independently source-labelled factor `2^4*43=688`**. B/C fail before 13/32/79 labels. This materially reselects A downstream, while chronology is retrospective because the factor prefix was recognized after factoring A.
+- Full q79 mechanically formats to candidate Tor-v2 `pecvyau2ayqym5cp.onion`. Do not promote. It creates a destination fork with red-only `nz77w2upkfkyj4rh.onion`. The full rank currently reads better as a route/state checksum; the reduced rank has the more explicit red-only source reduction. Require a discriminating receiver/historical occurrence, not more address generation.
+- Reproducer: `sims/lp2_title133_full31_rank_factor_sft.cjs`; report `im-results/lp2-title133-full31-rank-factorization.md`; audit reconciled; results/README reconciled. Windows PASS **44451153262**.
+
+Next: prefer a source-selected receiver that distinguishes the two q79 factors, or use current navigation/topology advances to make an untouched ciphertext/plaintext prediction. Avoid further combinadic variants.
+
 # 2026-11-19T03:06Z — direction-graph warning scheduler checkpoint
 
 Invocation `agent1-gpt5.6sol-20261119T025719558Z-draw7-issue-directed`, immutable lease claimed 02:57:19.558Z after draw7.
