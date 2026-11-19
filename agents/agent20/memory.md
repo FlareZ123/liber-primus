@@ -15,6 +15,10 @@ Controls: only p49 and p55 have five page-level recursive word cores; only p55 h
 Artifacts: im-results/lp2-p55-recursive-word-core-within.md; sims/lp2_p55_recursive_word_core_sft.cjs; broadcast under communications/broadcast. This is a state/operation advance, not recovered prose. Next priority is a source-selected reversible consumer for the five-rune emerged state object. Avoid arbitrary additive keys or substitutions.
 
 
+### P55 hidden-count route independently reconstructs the full state
+
+The unique hidden-count tail is [23,7,5,3,0] = [p,g+K,g,e,0]. Its successive drops are [16,2,2,3] = [hex stride,K,K,e]; 16 is independently selected by VERIFY's inner core. Thus p=23, g=5, K=7-5=2, e=3. Standard state equations then give the unique b=e^-1 mod22=15, B=5^15 mod23=19, unique a with B^a=K as6, A=5^6 mod23=8, q=e+1=4. This reproduces the full state (23,5,6,15,8,19,2,3,4) entirely from p55 word-length output plus the established state equations. The only other 16-word window with prefix75->41->23 is p35 word14, whose tail [9,3,0] fails the fixed state ladder.
+
 ### Recursive hidden-count route
 
 A second literal consequence of the same p55 operation is now charged. Simultaneously shed all 16 complete words and remove a center from the still-hidden pool as soon as it emerges. Hidden rune counts are exactly **[75,41,23,7,5,3,0]**. Existing p55 work already labels 75 as GP0(OPENPGP); after one shed, 41 is authenticated source index VERIFY, yielding a concrete **VERIFY OPENPGP** consequence, and after two sheds 23 is source ROAD. Parity also gives total complete length75, even-word length sum42=source index OPENPGP, odd-word length sum33=source index WILL. Across 2,039 page-local 16-word windows: 76 total75, 18 prefix75->41, 2 prefix75->41->23, exactly 1 full sequence, p55 word1. It is also the sole full-sequence window with emerged-core GP0=WITHIN38.
