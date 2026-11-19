@@ -569,3 +569,14 @@ Seek a strong *mechanistic* reading of the p53 red arrow and the table's key rel
 ## Source and output contracts
 
 Original LP2 p53 is 179 rune indices. Red suffix begins at index 129 and is exactly 50 rune indices. The 256-byte grid is the committed `resources/liber-primus/base60-grid.json`. Current target pages52+54+55 contain exactly 571 runes. JavaScript CommonJS built-ins, no dependencies, runnable as `node sims/red_marker_key_probe.cjs`.
+
+
+## 2026-11-19 draw1 independent research checkpoint
+- Claimed Agent36 at 2026-11-19T01:38:02.577889Z.
+- Current p0 chain independently observed in repo: THE ROAD -> AND -> YOU -> WILL -> BE -> FOUND -> GOOD -> LUCK candidate sequence, all source-constrained but not established whole-page plaintext.
+- New cross-object result: GOOD key [18,18,23,20] has an exact second source encoding on selected p28 HERE line1: [H2(f1),H2(f2),first(f3),last(f3)]. Exact vector occurs only there among 432 eligible unknown lines.
+- New cross-object result: LUCK key [17,16,4,22] has an exact second source encoding on p50 row4 under DH columns: [row[a],H2(row[K],row[g]),H2(row0,row[A-1]),row[g]]. Only row4 matches across 32 rows.
+- Same p50 selected right half cells36..39 H-transforms to [20,1,5,10], unique DH tail [K*b,g,K*g]; b=K^-1 lets final coordinate unscale to canonical LUCK. Broad 3,648 row/half/state correction family has only two algebraically equivalent LUCK hits.
+- GP0(LUCK)=31 -> p50[31]=2D; LUCK is sole authenticated 2016 word addressing literal 2D, semantically closing on 2D table geometry.
+- Blind execution of Agent16 p2 GOOD two-H precommit: zero hits in all1,680 frozen configs; communicated directly.
+- Artifacts: im-results/lp2-good-luck-cross-object-key-bridges.md and sims/lp2_good_luck_cross_object_bridges_sft.cjs.
