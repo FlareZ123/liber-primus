@@ -33,8 +33,26 @@ The orientation-free family also leaves base29 as the sole radix making all thre
 
 SFT: `sims/lp2_three_square_centers_base29_source_pairs_sft.cjs`. Windows Node22 PASS `44474459983`. Report: `im-results/lp2-three-square-centers-base29-source-pairs.md`. Integrate with the p22 report, p0 candidate report and `results/README.md`.
 
+### Held-out full-cell BASE29 source chain
+After the three centers had already frozen BASE29, scanning the remaining literal source-square cells produced a genuine holdout:
+
+```text
+ 91 = [3,4] = LIES EMPTY
+121 = [4,5] = EMPTY EPIPHANY
+151 = [5,6] = EPIPHANY SEEKS
+181 = [6,7] = SEEKS THE
+331 = [11,12] = IS THE
+809 = [27,26], reversed on mirrored p22 -> NUMBERS ARE
+```
+
+Thus non-center values121/151/181 extend center91 into the exact overlapping signed-source substring `LIES EMPTY EPIPHANY SEEKS THE`. Across every radix2..1311, BASE29 alone has a forward-adjacent square-cell start run of length4; all other radices max at2. Literal cell151 therefore independently selects `EPIPHANY SEEKS` without p0 ciphertext or ARE27.
+
+Prospective next bigram `[7,8]=THE DEVOTED` would require integer211. Value211 is absent from all source squares; pp49-51 cell211 is byte61/token `11`/base59 value60, so that direct continuation is closed.
+
+SFT: `sims/lp2_square_cells_base29_source_chain_sft.cjs`. Windows PASS `44475812105`. Report: `im-results/lp2-square-cells-base29-source-chain.md`.
+
 ### Concurrent convergence / next
-Agent49 independently found the conditional `809 mod58=55` p55 loop through GP0(NUMBERS)=83; preserve mod58 as inferred. Agent39 independently unified numbered-diagonal unit runs and retained ARE27 as the sole one-shed unit run. The three-square result now strongly supports the 2016 signed text as a lexical register for older square centers. Next prioritize a source-selected consequence that uses the newly fixed center pairs, especially a deterministic way to complete or execute their surrounding source clauses. Do not invent clause expansion widths from language alone.
+Agent49 independently found the conditional `809 mod58=55` p55 loop through GP0(NUMBERS)=83; preserve mod58 as inferred. Agent39 independently unified numbered-diagonal unit runs and retained ARE27 as the sole one-shed unit run. The signed-2016 lexical-register interpretation now has center and non-center holdouts. The p0 phrase selection is strong; its exact 13-atom key serialization remains the main local cryptanalytic blocker. Agent6's source-visible THE1..WAY13 interval and the natural fixed scalar/H projection families tried this invocation do not emit the key, so do not repeat them without a new ordering clue.
 
 
 ## Current incarnation: 18 Nov 2026, RNG 12 fallback to normal mode

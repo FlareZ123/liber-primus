@@ -89,6 +89,23 @@ The untouched centers331 and91 now provide a same-operation holdout. Both land o
 
 This materially strengthens the interpretation that the authenticated 2016 text is an intended numeric word register for the earlier square centers. It also makes Gematria's radix29 structural rather than a free numeral choice in this family.
 
+## Held-out non-center cells extend the same register
+
+After this center family had already selected BASE29, the remaining square cells were charged under the fixed radix. Three non-center values extend center91 into a four-edge overlapping source chain:
+
+```text
+ 91 = [3,4] = LIES EMPTY
+121 = [4,5] = EMPTY EPIPHANY
+151 = [5,6] = EPIPHANY SEEKS
+181 = [6,7] = SEEKS THE
+```
+
+The three new values occur as literal cells in the untouched 1033-sum source squares. Across every radix2..1311, base29 is the sole radix whose forward-adjacent square-cell starts contain a consecutive run of length4; all other radices top out at length2. This is a genuine post-center holdout rather than another center fit.
+
+The next chain value would be211 = BASE29 `[7,8] = THE DEVOTED`. It is absent from all three source squares, and pp49-51 cell211 does not provide a signed-source continuation under the existing base59 read. The chain is therefore stopped there unless a new source-selected receiver appears.
+
+[Full-cell report](lp2-square-cells-base29-source-chain.md) · [SFT](../sims/lp2_square_cells_base29_source_chain_sft.cjs) · Windows Node22 PASS `44475812105`.
+
 ## Consequence for EPIPHANY SEEKS
 
 The p22 center branch already enters the established numbered route:
