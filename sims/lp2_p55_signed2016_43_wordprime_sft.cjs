@@ -31,4 +31,28 @@ for(const sign of [1,-1]){
 }
 assert.ok(Math.abs(result[0].IoC-0.03875968992248062)<1e-12);
 assert.ok(Math.abs(result[1].IoC-0.029900332225913623)<1e-12);
-console.log(JSON.stringify({source:"signed authentic 2016 43 exact words; p55 original 43 strict interiors",words:msgWords.length,runes:ciphertext.length,sourceGPKeys:key,baselineIoC:ioc(ciphertext),results:result},null,2));
+
+/** Converse 43-word map: treat each original p55 interior as a word address. */
+const mod43=n=>(n%43+43)%43;
+const directWordReadouts={
+  gp0ZeroBased:ciphertext.map(i=>msgWords[i]),
+  gp0OneBased:ciphertext.map(i=>i>0?msgWords[i-1]:null),
+  gpPrimeMod43ZeroBased:ciphertext.map(i=>msgWords[mod43(c.prime[i])]),
+  gpPrimeMod43OneBased:ciphertext.map(i=>msgWords[mod43(c.prime[i]-1)]),
+};
+/** Numbers-as-direction: cumulative steps through the same 43-word map. */
+const wordStepWalks={};
+for(const [name,steps] of [["GP0",ciphertext],["GPprimeMod43",ciphertext.map(i=>mod43(c.prime[i]))]]){
+  for(const start of [0,1]){
+    for(const direction of [1,-1]){
+      let position=start;
+      const sequence=steps.map(step=>{
+        position=mod43(position+direction*step);
+        return msgWords[position];
+      });
+      wordStepWalks[`${name}_start${start}_direction${direction}`]=sequence;
+    }
+  }
+}
+
+console.log(JSON.stringify({source:"signed authentic 2016 43 exact words; p55 original 43 strict interiors",words:msgWords.length,runes:ciphertext.length,sourceGPKeys:key,baselineIoC:ioc(ciphertext),results:result,wordMapDirectReadouts:directWordReadouts,wordMapStepWalks:wordStepWalks},null,2));
