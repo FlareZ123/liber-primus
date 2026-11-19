@@ -147,3 +147,10 @@ This invocation selected independent source-constrained research. It claimed the
 - Secondary same-rule identities: LIES63 - e*8 =39=GP0(PATH); EPIPHANY121 - g*8 =81=e^q (p33 upper body count).
 - This gives a human-facing selector for p=23, the unique depth used by established EPIPHANY SEEKS THE DEVOTED p50 route to p32. SFT `sims/lp2_their_rise_signed_direction_bridge_sft.cjs`, report `im-results/lp2-their-rise-signed-direction-bridge.md`, Windows PASS 44457129816. Updated p32 direction report and results synthesis.
 - Prospective transfer precommit `workplace/agent4-path-rise-pointer-precommit.md`: start GP0(PATH)=39, depth p=23, base60 p50 pointer. MISS terminal76 outside pages0..57; no rescue. Route incidentally passes state32 at step e=3 after opening, but this was not the success gate.
+## 2026-11-19 — THEIR RISE resolves p39 root24 orientation
+
+- New exact-source orientation SFT `sims/lp2_their_rise_polynomial_orientation_sft.cjs`; Windows PASS 44457869317.
+- P39 red triad is printed `[27,5,15]`. Consuming hidden `RISE` as increasing powers left-to-right gives `27+5X+15X^2=15(X-24)^2`, double root24. Opposite power direction `27X^2+5X+15` has double root23.
+- Recomputed p29/p50 common double-root orientation events: printed/high-first root24 yields qP27,qT26,dP=dT6 and packet `[24,25,26,27]`, the unique consecutive signed-index packet; reversed/reversed root23 yields `[23,47,15,10]`, nonconsecutive.
+- Current causal decision: root24 is source-selected by THEIR RISE plus the independent Taylor-packet consecutivity. Retire speculative root23 -> p23 page navigation absent new first-party evidence overriding the coefficient direction.
+- Report `im-results/lp2-their-rise-polynomial-orientation.md`; reconciled p29/p50 packet, root23 candidate, G quotient, p29/p50 GCD report, and `results/README.md`. Direct p29 quotient/G-adic/key consumers remain negative.
