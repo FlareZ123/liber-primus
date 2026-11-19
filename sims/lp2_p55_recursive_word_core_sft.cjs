@@ -240,6 +240,64 @@ assert.deepEqual(
   [{ sourceIndex: 11, h: [26, 25] }]
 );
 
+const p12Diagonal = numberedDiagonal.find((row) => row.sourceIndex === 12);
+const p13Diagonal = numberedDiagonal.find((row) => row.sourceIndex === 13);
+assert.ok(p12Diagonal);
+assert.ok(p13Diagonal);
+
+assert.deepEqual(p12Diagonal.values, [28, 1, 0, 15, 20]);
+assert.equal(p12Diagonal.gp0, 64);
+assert.deepEqual([
+  ...H(p12Diagonal.values[0], p12Diagonal.values[4]),
+  ...H(p12Diagonal.values[1], p12Diagonal.values[3]),
+  p12Diagonal.values[2],
+], [8, 19, 15, 16, 0]);
+
+assert.deepEqual(p13Diagonal.values, [18, 3, 25, 6, 26, 20]);
+assert.equal(p13Diagonal.gp0, 98);
+assert.deepEqual([
+  ...H(p13Diagonal.values[0], p13Diagonal.values[5]),
+  ...H(p13Diagonal.values[1], p13Diagonal.values[4]),
+  ...H(p13Diagonal.values[2], p13Diagonal.values[3]),
+], [27, 9, 6, 0, 19, 2]);
+
+const adjacentDiagonal = [];
+for (let sourceIndex = 0; sourceIndex < 42; sourceIndex += 1) {
+  const left = numberedDiagonal.find((row) => row.sourceIndex === sourceIndex);
+  const right = numberedDiagonal.find((row) => row.sourceIndex === sourceIndex + 1);
+  if (!left || !right) continue;
+  adjacentDiagonal.push({
+    from: sourceIndex,
+    to: sourceIndex + 1,
+    rise: right.gp0 - left.gp0,
+  });
+}
+const theirRise = adjacentDiagonal.filter((pair) => pair.rise === 34);
+const absoluteTheirRise = adjacentDiagonal.filter((pair) => Math.abs(pair.rise) === 34);
+
+assert.equal(adjacentDiagonal.length, 40);
+assert.deepEqual(theirRise, [{ from: 12, to: 13, rise: 34 }]);
+assert.deepEqual(absoluteTheirRise, [{ from: 12, to: 13, rise: 34 }]);
+
+assert.equal(tape[p12Diagonal.gp0], "22");
+assert.deepEqual([
+  grid.alphabet.indexOf(tape[p12Diagonal.gp0][0]),
+  grid.alphabet.indexOf(tape[p12Diagonal.gp0][1]),
+], [state.K, state.K]);
+
+const diagonalKkHits = numberedDiagonal.filter((row) => {
+  if (row.gp0 < 0 || row.gp0 >= tape.length) return false;
+  const token = tape[row.gp0];
+  return (
+    grid.alphabet.indexOf(token[0]) === state.K
+    && grid.alphabet.indexOf(token[1]) === state.K
+  );
+});
+assert.deepEqual(
+  diagonalKkHits.map((row) => row.sourceIndex),
+  [12]
+);
+
 const p55Words = completeWordsByPhysicalPage.get(55);
 assert.ok(p55Words);
 assert.equal(p55Words.length, 16);
@@ -528,6 +586,18 @@ console.log(JSON.stringify({
     hBranchGp0: [p55.h0, p55.h1],
     hBranchSourceLabel: "GOOD",
     hSumBranchState: ["B", "b+K"],
+    theirRise: {
+      directionWords: ["THE", "WAY"],
+      sourceIndices: [12, 13],
+      receiverGp0: [p12Diagonal.gp0, p13Diagonal.gp0],
+      rise: p13Diagonal.gp0 - p12Diagonal.gp0,
+      riseLabel: "THEIR",
+      adjacentPairCount: adjacentDiagonal.length,
+      exactRiseHits: theirRise,
+      p12HState: [8, 19, 15, 16, 0],
+      p12P50Token: tape[p12Diagonal.gp0],
+      p13HState: [27, 9, 6, 0, 19, 2],
+    },
     directedP24: {
       sourceIndex: 24,
       sourceWord: "AND",
