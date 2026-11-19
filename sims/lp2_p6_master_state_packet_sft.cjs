@@ -627,7 +627,7 @@ assert.deepEqual(firstWordTemplateHits, [{
 const completeFourRuneWords = [...pages.values()]
   .flat()
   .filter((word) => word.length === 4);
-assert.equal(completeFourRuneWords.length, 508);
+assert.equal(completeFourRuneWords.length, 509);
 const firstWordManuscriptHits = [];
 for (const word of completeFourRuneWords) {
   for (const [xName, x] of packetFieldEntries) {
@@ -670,7 +670,7 @@ assert.deepEqual(firstWordManuscriptHits, [{
 // fields. Directly solving the implied x1/x3/y values is exactly equivalent
 // to charging all 9^3 assignments per window.
 const completePageWords = [...pages.values()].flat();
-assert.equal(completePageWords.length, 2862);
+assert.equal(completePageWords.length, 2864);
 const pageLocalFourWordWindows = [];
 for (const [page, pageWords] of pages.entries()) {
   for (let windowIndex = 0; windowIndex + 4 <= pageWords.length; windowIndex += 1) {
@@ -681,7 +681,23 @@ for (const [page, pageWords] of pages.entries()) {
     });
   }
 }
-assert.equal(pageLocalFourWordWindows.length, 2697);
+assert.equal(pageLocalFourWordWindows.length, 2699);
+
+const packetLayoutHits = pageLocalFourWordWindows.filter((window) =>
+  window.words.map((word) => word.length).join(",") === "4,1,4,2"
+);
+assert.deepEqual(
+  packetLayoutHits.map((window) => ({
+    page: window.page,
+    windowIndex: window.windowIndex,
+    starts: window.words.map((word) => word.start),
+  })),
+  [{
+    page: 6,
+    windowIndex: 14,
+    starts: [71, 75, 76, 80],
+  }]
+);
 
 const stateNameByValue = new Map(
   packetFieldEntries.map(([name, value]) => [value, name])
@@ -1179,6 +1195,10 @@ console.log(JSON.stringify({
       completeFourRuneWords.length * packetFieldEntries.length * packetFieldEntries.length,
     manuscriptHits: firstWordManuscriptHits,
     pageLocalFourWordWindows: pageLocalFourWordWindows.length,
+    uniqueLayoutPattern: packetLayoutHits.map((window) => ({
+      page: window.page,
+      starts: window.words.map((word) => word.start),
+    })),
     fullPacketGrammarAssignments:
       pageLocalFourWordWindows.length * packetFieldEntries.length ** 3,
     fullPacketGrammarHits,
@@ -1259,5 +1279,5 @@ console.log(JSON.stringify({
     pass: false,
   },
   classification:
-    "P6 is a source-selected state-packet candidate: its four-word grammar is globally unique across 1,966,113 charged page-window/state assignments; its exact red-title layout encodes [K,-e,g,a]; its first red word is the unique red four-rune instance of [-x,K-y,-y,K+y] and fixes x=g,y=b; the unused K+b field uniquely selects BEWARE among authenticated six-rune targets; all 48 possible field-role/sign assignments leave the exact p38 shell [K-b,-g,p,p-e,0,-b] as the sole hit. The broader p6+p28 family is also manuscript-unique and the p0 VERIFY transfer is zero. Preserve as strong cross-page key-schedule evidence with one retrospective role assignment, not as a universal decoder.",
+    "P6 is a source-selected state-packet candidate: its four-word grammar is globally unique across 1,967,571 charged page-window/state assignments; its exact red-title layout encodes [K,-e,g,a]; its first red word is the unique red four-rune instance of [-x,K-y,-y,K+y] and fixes x=g,y=b; the unused K+b field uniquely selects BEWARE among authenticated six-rune targets; all 48 possible field-role/sign assignments leave the exact p38 shell [K-b,-g,p,p-e,0,-b] as the sole hit. The broader p6+p28 family is also manuscript-unique and the p0 VERIFY transfer is zero. Preserve as strong cross-page key-schedule evidence with one retrospective role assignment, not as a universal decoder.",
 }, null, 2));
