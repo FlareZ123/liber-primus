@@ -1,6 +1,6 @@
 # p26 as the first unknown-cipher receiver of the WAY -> MAP table move
 
-**Agent10, 19 November 2026. Classification: bounded unknown-cipher state-transition candidate. No continuous plaintext is claimed.**
+**Agent10, 19 November 2026. Classification: strong bounded unknown-cipher DH/meta-instruction packet. No continuous manuscript plaintext is claimed.**
 
 ## Upstream operation was fixed independently
 
@@ -100,6 +100,66 @@ Thus the only unknown occurrence of the exact `57,56` WAY/MAP address transition
 
 The other three unknown FOUR windows do not contain the fixed 57->56 transition.
 
+## The same window is a unique DH packet and extends FOUR to FOURTH
+
+Open the full conventional base60 byte values of the four p50 tokens already selected by the p26 FOUR window:
+
+~~~text
+addresses   18   61   57   56
+tokens      0F   3G   1w   4E
+base60      15  196  118  254
+mod29       15   22    2   22
+~~~
+
+The residues are exactly:
+
+~~~text
+[15,22,2,22]
+= [b, p-1, K, p-1]
+~~~
+
+for the independently reconstructed p28 DH state `b=15`, `p=23`, `K=2`.
+
+This exact four-residue packet occurs **once across all 3,176 unknown four-word windows**, at the same p26 location. The result is therefore independent of choosing the word FOUR after seeing the residues.
+
+The already frozen p28 HERE route supplies the opcode **GCD**. Apply it only to the final WAY/MAP pair, whose full-byte residues are now source-typed as `[K,p-1]=[2,22]`:
+
+~~~text
+gcd(K,p-1)
+= gcd(2,22)
+= 2
+= GP rune TH
+~~~
+
+The high-digit readout of the same four cells is FOUR, so the packet extends itself:
+
+~~~text
+FOUR + TH
+= FOURTH
+~~~
+
+The other three unknown FOUR windows give last-pair GCD suffixes `NG`, `O`, and `U`; only p26 yields **TH** and therefore the ordinary word **FOURTH**.
+
+There is also an internal redundancy in the p26 packet:
+
+~~~text
+gcd(b,p-1)
+= gcd(15,22)
+= 1
+= GP rune U
+~~~
+
+and that value equals the third high digit of FOUR. This is exactly the same `gcd(b,p-1)=1` relation used by the prior p28 GCD branch to justify the inverse exponent.
+
+Thus p26 is no longer merely a state-transition coincidence. The independently selected four-word receiver simultaneously carries:
+
+1. high digits `FOUR`;
+2. the unique unknown residue packet `[b,p-1,K,p-1]`;
+3. the fixed WAY/MAP `57->56` edge;
+4. a GCD-derived suffix `TH`, giving the executable instruction word **FOURTH**.
+
+This still does not identify what object FOURTH selects. The obvious pre-existing consumers are the p28 `4D -> fourth D` self-index and the fourth signed THE-follower `MAP`; treat those as candidate receivers until one predicts untouched data.
+
 ## Deterministic state48 continuation stops on p26
 
 The fixed table continuation from the selected state56 receiver is still:
@@ -162,7 +222,7 @@ Do not call `FOUR` recovered continuous plaintext on p26 yet. The all-high reado
 
 ## Decision
 
-Preserve p26 line10 words2-3 as the first bounded unknown-cipher receiver for the fixed WAY -> MAP state transition:
+Preserve the p26 line9/10 four-word block as a strong bounded unknown-cipher receiver: it contains the fixed WAY -> MAP state transition, emits FOUR, uniquely carries `[b,p-1,K,p-1]`, and extends through the pre-existing GCD opcode to FOURTH. In particular preserve:
 
 ~~~text
 unknown p26 word GP0 57
@@ -173,7 +233,7 @@ unknown p26 word GP0 57
 
 and preserve the enclosing `18,61,57,56 -> FOUR` boundary window as supporting evidence.
 
-The next decisive step should derive a source-selected use of the p26 state56 receiver, identify why p26 is chosen independently, or predict a plaintext/state at another unopened position before inspection. Avoid treating the p7 movement hit or the four generic FOUR windows as equivalent.
+The next decisive step should identify the source-selected object consumed by FOURTH and require that choice to predict untouched ciphertext/state before inspection. Avoid treating the p7 movement hit or the four generic FOUR windows as equivalent.
 
 ## Reproduction
 
@@ -186,4 +246,4 @@ Run:
 node sims/lp2_p26_way_map_four_receiver_sft.cjs
 ~~~
 
-The SFT performs the complete unknown-word movement census, proves uniqueness of the 57->56 adjacent pair, enumerates all unknown FOUR windows, verifies the p26 line/word coordinates, tests the failed immediate 56->48 continuation, follows state48 to its sole p26 word and rejects the frozen 4D self-index there, and charges the K=2 SAD/JLM word probe against the full three-rune signed-K English background.
+The SFT performs the complete unknown-word movement census, proves uniqueness of the 57->56 adjacent pair, enumerates all unknown FOUR windows, proves the `[b,p-1,K,p-1]` residue packet unique across 3,176 windows, derives GCD suffix TH and FOURTH, verifies the p26 line/word coordinates, tests the failed immediate 56->48 continuation, follows state48 to its sole p26 word and rejects the frozen 4D self-index there, and charges the K=2 SAD/JLM word probe against the full three-rune signed-K English background.
