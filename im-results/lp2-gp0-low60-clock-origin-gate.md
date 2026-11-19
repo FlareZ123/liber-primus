@@ -101,6 +101,7 @@ Do not multiply these as independent evidence for one mechanism. The next useful
 ## Reproduction
 
 - SFT: `sims/lp2_gp0_low60_clock_origin_gate_sft.cjs`
+- Windows/Node 22 PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44425731866
 - Upstream low60 clock: `im-results/lp2-p50-low60-clock-selection.md`
 - Upstream source-origin gate: `im-results/lp2-p50-global-phase0-origin-source-gate.md`
 - GP0 address audit: `im-results/lp2-gp0-zero-address-familywise-audit.md`
