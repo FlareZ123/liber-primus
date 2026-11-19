@@ -97,6 +97,10 @@ The reproducer asserts:
 
 The independent Agent4 census remains the appropriate broader calibration: at the fixed ROAD receiver, ROAD/A1 is the only authenticated four-rune target/simple-numbering combination producing a lexicon word, and for fixed ROAD across all514 four-rune unknown words only LEAD and GUMS are lexicon-key hits.
 
+## Chemistry stop condition
+
+After the atomic-number holdout was frozen, one canonical element datum was tested prospectively: lead's chemical symbol `Pb`. Native GP `PB=[13,17]` has `GP0=30`, and the established zero-based p50 address gives byte141. This does not continue any currently authenticated receiver grammar. No atomic mass, group, period, isotope, or other chemistry property was searched. The chemistry branch therefore stops at atomic number82 unless a new source clue selects another element property.
+
 ## Decision
 
 Preserve the following as the strongest local interpretation:
@@ -105,4 +109,4 @@ Preserve the following as the strongest local interpretation:
 
 The exact downstream LEAD=82 match upgrades `(8,2)` from an unexplained retrospective index pair to a selector with an independently committed later semantic echo. The next useful task is to find a prospective state update that continues beyond ROAD without choosing a new semantic convention.
 
-Reproducer: `sims/lp2_p0_lead82_ak_selector_holdout_sft.cjs`.
+Reproducer: `sims/lp2_p0_lead82_ak_selector_holdout_sft.cjs`. Windows Node22: **PASS 44429519913**.
