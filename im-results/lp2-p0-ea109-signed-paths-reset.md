@@ -64,6 +64,20 @@ The signed-word numbering convention is also discriminated locally. Zero-based n
 
 The independent signed-message DH audit already selected zero-based word positions in its full role-assignment family, so the local result agrees with a separately derived source convention.
 
+## Direct GP-origin warning interval
+
+The same EA109 word supplies a shorter source-visible exit than the later word29 scan. Its original rune values are [14,26]: GP0=40 and GP1=42. Authenticated source positions40..42 are exactly PATHS VERIFY OPENPGP.
+
+Among448 canonical complete two-rune unknown words, nine have GP0=40. Only one begins at a GP-prime offset, the already selected p0 start109. The independent signed-tail corridor had already established positions40..42 as the final suffix of its authored warning program.
+
+This yields:
+
+    EA109 -> PATHS VERIFY OPENPGP
+    -> GP0(OPENPGP)=75 -> p50[75]=177
+    -> packet166..188
+
+See im-results/lp2-p0-ea109-gp-origin-warning-interval.md.
+
 ## Decision
 
 This substantially narrows the READ OUT receiver ambiguity and now has a manuscript-local exit.

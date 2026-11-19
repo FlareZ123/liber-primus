@@ -20,6 +20,21 @@ Their canonical whole-word GP0 values are:
 
 No new word list or language model is used.
 
+## Stronger direct source ingress discovered later
+
+The present word29 bridge remains an independent local confirmation, while EA109 now supplies a shorter route. P0 109..110 is [14,26], with GP0=40 and GP1=42. Its inclusive source-position interval is:
+
+    40 PATHS
+    41 VERIFY
+    42 OPENPGP
+
+The signed-tail corridor independently established those words as an authored contiguous warning suffix. Therefore:
+
+    EA109 -> PATHS VERIFY OPENPGP
+    -> OPENPGP75 -> p50[75]=177
+
+See im-results/lp2-p0-ea109-gp-origin-warning-interval.md.
+
 ## First warning-number match after EA109
 
 Walk forward through complete original p0 words beginning at the frozen EA109 start. Compare each raw word GP0 only against those five warning values.

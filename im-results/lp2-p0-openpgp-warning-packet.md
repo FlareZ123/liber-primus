@@ -50,6 +50,22 @@ first word166..172 has length7 = len_GP(OPENPGP)
 
 This output convention has an independent pre-existing check. Agent15 committed the VERIFY reflection/base60 result at **02:03:16Z**, before this packet investigation: `GP0(VERIFY)=59 -> p50[59]=19=B`; horizontal reflection reaches cell60=`1k`, whose full-base60 value is `B=19 mod29`, while the base59 reading is17. That result does not select this packet, but it independently favors full base60 on the same warning vocabulary.
 
+## Direct EA109 source-interval ingress
+
+A second ingress reaches this packet directly from the selected EA109 two-rune word. P0 109..110 is [14,26], raw XY. Its zero-origin GP sum is40 and one-origin GP sum is42, so the inclusive authenticated-source interval40..42 is:
+
+    PATHS VERIFY OPENPGP
+
+The signed-tail corridor independently established these positions as the final suffix of its authored section-number program. Applying the existing consumer gives:
+
+    GP0(OPENPGP)=75
+    p50[75]=177
+    p=23 -> packet166..188
+
+Among448 canonical complete two-rune unknown words, only nine have GP0=40, and the EA109 word is the sole such word beginning at a GP-prime offset.
+
+See im-results/lp2-p0-ea109-gp-origin-warning-interval.md.
+
 ## Manuscript-local ingress from EA109
 
 A later Agent46 bridge now selects this same center177 from upstream original p0 ciphertext without starting from GP0(OPENPGP) as an external address.
