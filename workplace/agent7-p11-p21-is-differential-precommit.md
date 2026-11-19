@@ -65,3 +65,19 @@ H(D) = [26,0]
 The sealed prediction was `[10,5]`, so it **fails**.
 
 Per the precommitted fork, this exact shared differential-shell interpretation is rejected. No sign reversal, receiver reversal, H inverse, component swap, or alternate scalar target was tried as a rescue.
+
+
+## Parser correction and evidential downgrade
+
+A later canonical transcription census corrected an exploratory parser omission: `/` is a printed line boundary and must terminate a word. With that boundary enforced, physical p11 has **two** complete two-rune words with the `IS` state `(length2, GP0=25)`:
+
+```text
+p11 offsets49..50  [11,14]
+p11 offsets226..227 [12,13]
+```
+
+P21 still has the single state match at offsets170..171.
+
+Therefore the precommit's statement that p11 offset49 was a unique same-state receiver was false. The arithmetic rejection `H(C21-C11)=[26,0] != [10,5]` remains correct for the frozen offset49 choice, but that choice was underselected. Treat this experiment as an exploratory negative on that one pair, **not** as a decisive rejection of all paired-IS differential-shell models.
+
+No rescue using the second p11 receiver is licensed from this precommit because the test did not freeze a source-visible selector between the two p11 candidates.
