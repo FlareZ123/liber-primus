@@ -858,6 +858,78 @@ assert.deepEqual(rolePermutationPacketHits, [{
   y: "b",
 }]);
 
+// Chronologically independent follow-on consumer: Agent43's p37 double-index
+// receiver was published after the p6 packet result. Its exact H shell is
+// composed directly from packet readouts [B,0,K,g]. The serialization order
+// was recognized after the p37 shell, so charge all 24 permutations, every
+// authenticated four-rune source occurrence, and both signs.
+const p37Target = signedWords[37];
+assert.equal(p37Target.word, "LUCK");
+const p37Words = pages.get(37);
+assert.ok(p37Words);
+const p37Receiver = p37Words[37];
+assert.ok(p37Receiver);
+assert.equal(p37Receiver.start, 173);
+assert.deepEqual(p37Receiver.values, [3, 2, 6, 27]);
+
+const p37RequiredKey = p37Receiver.values.map((value, index) =>
+  mod29(value - p37Target.values[index])
+);
+assert.deepEqual(p37RequiredKey, [12, 1, 1, 22]);
+const p37RequiredShell = h4Canonical(p37RequiredKey);
+assert.deepEqual(p37RequiredShell, [
+  p6HeadingWords[1].values[0],
+  0,
+  p6LengthShell[0],
+  p6LengthShell[2],
+]);
+assert.deepEqual(p37RequiredShell, [
+  packetState.B,
+  0,
+  packetState.K,
+  packetState.g,
+]);
+
+const p37PacketScalars = [
+  p6HeadingWords[1].values[0],
+  0,
+  p6LengthShell[0],
+  p6LengthShell[2],
+];
+const p37PacketPermutationHits = [];
+let p37PacketPermutationCases = 0;
+for (const permutation of packetWordRolePermutations) {
+  const shell = permutation.map((index) => p37PacketScalars[index]);
+  const key = hInverse(shell);
+  for (const sign of ["sub", "add"]) {
+    for (const target of fourRuneSourceOccurrences) {
+      p37PacketPermutationCases += 1;
+      const output = applyKey(p37Receiver.values, key, sign);
+      if (output.every((value, index) => value === target.values[index])) {
+        p37PacketPermutationHits.push({
+          permutation,
+          shell,
+          key,
+          sign,
+          target: target.word,
+          sourceIndex: target.index,
+        });
+      }
+    }
+  }
+}
+assert.equal(p37PacketPermutationCases, 480);
+assert.deepEqual(p37PacketPermutationHits, [
+  {
+    permutation: [0, 1, 2, 3],
+    shell: [19, 0, 2, 5],
+    key: [12, 1, 1, 22],
+    sign: "sub",
+    target: "LUCK",
+    sourceIndex: 37,
+  },
+]);
+
 // The fourth field K+b is a target-initial selector. Among authenticated
 // six-rune source words it selects BEWARE alone.
 const packetTargetInitial = p6PacketFirstWord[3];
@@ -1300,6 +1372,14 @@ console.log(JSON.stringify({
       packetWordRolePermutations.length *
       packetFieldEntries.length ** 3,
     rolePermutationPacketHits,
+    p37FollowOn: {
+      receiver: [p37Receiver.start, p37Receiver.end],
+      packetScalars: p37PacketScalars,
+      requiredShell: p37RequiredShell,
+      permutationCases: p37PacketPermutationCases,
+      hits: p37PacketPermutationHits,
+      note: "p37 receiver was published after the p6 packet; shell order was recognized after p37 and is charged over all permutations",
+    },
     targetInitial: packetTargetInitial,
     sixRuneTargetsWithInitial:
       sixRuneTargets.filter((target) => target.values[0] === packetTargetInitial)
