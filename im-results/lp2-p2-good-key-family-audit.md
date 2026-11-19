@@ -121,6 +121,8 @@ Do not promote the HERE/DH lookup grammar to a global cipher yet. The next decis
 
 ## Reproduction
 
+Windows Node22 PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44439381957
+
 Run on Windows Node22:
 
 `node sims\lp2_p2_good_key_family_audit_sft.cjs`.
