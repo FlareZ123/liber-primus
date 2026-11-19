@@ -1,6 +1,6 @@
 # P0 THE ROAD DH state-update gate
 
-**Agent3, 19 November 2026. Classification: bounded negative for a natural H/cube state update. The upstream p0 receiver and DH state remain conditional/source-linked evidence. No new plaintext, key stream, or global LP2 inverse is claimed.**
+**Agent3 + Agent11, 19 November 2026. Classification: bounded negative for both a natural H/cube state update and an elementary DH-expression key update. The upstream p0 receiver and DH state remain conditional/source-linked evidence. No new plaintext, key stream, or global LP2 inverse is claimed.**
 
 ## Frozen input
 
@@ -65,6 +65,47 @@ Hinv23
 
 This path is a fitted construction, not a puzzle instruction. No original clue chooses those six pair operations.
 
+## Director #1727: bounded DH-expression grammar
+
+The later coordinate-specific proposal writes the required ROAD key as
+
+```text
+[a*K, g, K*b, b*A] mod29 = [12,5,1,4].
+```
+
+To test whether that description is selective, Agent11 froze a small grammar before comparing alternatives. It contains the seven DH fields `p,g,a,b,A,B,K`, then for each unordered pair admits only sum, product, and both subtraction orders modulo29. This produces **91 expressions** total. Before any inverse or constant is added, those 91 expressions already cover **all 29 GP residues**.
+
+ROAD is highly nonunique inside that grammar:
+
+- residue12 has `a-p`, `a*K`, and `K-B`;
+- residue5 has `g` and `b+B`;
+- residue1 has `g*a`, `a-g`, and `b*K`;
+- residue4 has `p-B`, `a-K`, `b*A`, and `B-b`.
+
+The four target coordinates therefore admit **72** coordinate-wise formula combinations. **36** have the minimum total description cost7. The reported `[a*K,g,K*b,b*A]` rule is one of those 36 minimum-cost fits.
+
+A stricter uniform-rule gate is also negative. Applying one field as the same scalar to all four entries of the source ray `[a,g,K,b]=[6,5,2,15]` under `x+h`, `x-h`, `h-x`, or `x*h` gives **28** natural vector rules and **zero** ROAD hits.
+
+### Authenticated four-rune family control
+
+The same frozen grammar was charged against every complete four-rune word in the canonical unknown LP2 corpus and every distinct four-rune word in the authenticated 2016 message. There are **513** ciphertext words and eight distinct authenticated targets: `LIES, THEIR, ROAD, SEEK, WILL, GOOD, LUCK, PATHS`, giving **4,104** comparisons.
+
+Minimum expression-cost distribution across that family:
+
+```text
+cost 4:    7
+cost 5:  190
+cost 6:  807
+cost 7: 1739
+cost 8: 1361
+```
+
+ROAD has cost7. **1,004/4,104** comparisons are strictly cheaper and **2,743/4,104** are at most as expensive. Another **86** comparisons match ROAD's full tuple of minimum cost7, 36 minimum-cost realizations, and 72 total realizations. Thus the coordinate-specific DH description is ordinary inside the very family it invokes.
+
+As a generous sensitivity check, the SFT also admits the previously reported mod23 inverses of the six invertible DH fields plus the group identity1. This lowers ROAD to cost6, but it remains nonselective: **291** comparisons are cheaper, **1,220** are at most as costly, and nine share ROAD's exact complexity statistics. Standard DH exponentiation identities such as `g^a=A`, `g^b=B`, and `A^b=B^a=K` add aliases of fields already present rather than a unique GP29 serializer.
+
+This fails #1727's positive gate. There is no compact uniform rule to freeze for an adjacent prediction, so extending the model to another target would be post-hoc rescue. The DH-expression ROAD key should be retired unless a new source-visible clue selects one exact update before target inspection.
+
 ## Postselected DH identities
 
 After the target is known, its values can be rewritten compactly in the DH23 field:
@@ -96,9 +137,10 @@ Reject as currently motivated updates:
 
 - any composition of the existing whole-ray H/cube operations;
 - the six-step changing-coordinate H fit;
-- promotion of the compact DH identity into a key generator without an independent rule or held-out prediction.
+- promotion of the compact DH identity into a key generator without an independent rule or held-out prediction;
+- the coordinate-specific `[a*K,g,K*b,b*A]` expression vector, which is one of many minimum-cost fits under the bounded #1727 grammar.
 
-The next useful advance must specify the DH-state consumer before reading another target, or predict an untouched p0 value under one frozen rule.
+The next useful advance must specify the DH-state consumer from an independent source clue before reading another target. The negative #1727 family audit leaves the DH-to-GP29 type conversion unresolved and provides no basis for an adjacent ROAD-derived prediction.
 
 ## Reproduction
 
@@ -106,3 +148,5 @@ The next useful advance must specify the DH-state consumer before reading anothe
 - Windows Node22: [PASS 44427451291](https://github.com/FlareZ123/liber-primus/actions/runs/44427451291)
 - Upstream DH bridge: [`im-results/lp2-2016-prime-ordinals-p0-road-3qo-dh-key-bridge.md`](lp2-2016-prime-ordinals-p0-road-3qo-dh-key-bridge.md)
 - Concurrent READ OUT H-state echo: [`im-results/lp2-p28-readout-p0-hadamard-dh-echo.md`](lp2-p28-readout-p0-hadamard-dh-echo.md)
+- #1727 expression-family SFT: [`sims/lp2_p0_road_dh_expression_grammar_sft.cjs`](../sims/lp2_p0_road_dh_expression_grammar_sft.cjs)
+- #1727 Windows Node22: [PASS 44432316914](https://github.com/FlareZ123/liber-primus/actions/runs/44432316914)
