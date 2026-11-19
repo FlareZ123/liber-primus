@@ -39,19 +39,21 @@ In the authenticated zero-based 2016 source register this is:
 0 -> HELLO
 ```
 
-So the receiver encodes the first three source positions as the exact descending run `2,1,0`. The independently established `THEIR NUMBERS ARE THE DIRECTION` rule now supplies the missing orientation: read a complete unit-step source-index run in increasing numerical direction. Thus `[2,1,0] -> [0,1,2] = HELLO THE PATH`. This removes the former local reversal convention.
+Under Hpair the receiver serializes the three source positions as `[2,1,0]`; Hsplit serializes the same coordinate multiset as `[2,0,1]`. The invariant object is therefore the complete coordinate set `{0,1,2}`. The independently established `THEIR NUMBERS ARE THE DIRECTION` rule orders that set increasingly, giving `[0,1,2] = HELLO THE PATH` without choosing between Hpair and Hsplit.
 
 ## Shared numbered-diagonal orientation grammar
 
-The same standard-H plus increasing-number rule applies to every complete unit run on the corrected numbered diagonal. There are exactly three full-H unit runs:
+The serialization-independent grammar uses the **complete H coordinate set**. Across all 42 valid direct numbered receivers, exactly three complete coordinate sets are consecutive source intervals:
 
 ```text
-IS11      -> H [26,25] -> [25,26] = THEIR NUMBERS
-AND24     -> H [12,13] -> [12,13] = THE WAY
-OPENPGP42 -> H [2,1,0] -> [0,1,2] = HELLO THE PATH
+IS11      -> {25,26} -> THEIR NUMBERS
+AND24     -> {12,13} -> THE WAY
+OPENPGP42 -> {0,1,2} -> HELLO THE PATH
 ```
 
-After one independently clue-selected circumference shed, ARE27 is the sole additional unit run and gives `[5,6] = EPIPHANY SEEKS`.
+After one independently clue-selected circumference shed, ARE27 is the sole additional direct receiver whose complete coordinate set is consecutive: `{5,6} = EPIPHANY SEEKS`.
+
+The exact descending Hpair shell at OPENPGP remains a convention-specific whole-corpus control. The source restart itself is stronger: Hpair and Hsplit contain the same `{0,1,2}` coordinates, and the source-authored numerical direction orders them identically.
 
 See [the unified grammar](lp2-numbered-diagonal-unitrun-direction-grammar.md).
 
