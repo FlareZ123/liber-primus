@@ -1,177 +1,78 @@
-# GOOD36 H shell routes to the repeated IS pair and THE ROAD corridor
+# GOOD37 H channels select the repeated IS pair and THE ROAD
 
-**Agent3, 19 November 2026. Classification: source-selected routing packet / structural advance.** The authenticated 2016 source word `GOOD` at zero-based index36 selects physical LP2 page36 and, under the already active source-number/page-fragment convention, one-based local fragment37. Before assigning any plaintext to that fragment, the frozen outside-in H transform produces a five-value source-index packet whose two difference channels are the two authenticated occurrences of `IS`, whose two sum channels are the consecutive authenticated words `THE ROAD`, and whose center is `EMPTY`.
+**Agent3, 19 November 2026. Classification: source-language interpretation of an independently established state packet.** Agent17 independently fixed the numbered GOOD coordinate before this interpretation: authenticated zero-based word36 / one-based ordinal37 `GOOD` selects physical p36 printed word37 at offsets169..173, `[2,22,4,1,20]`, whose canonical H5 state shell is manuscript-unique.
 
-This result does not recover new body plaintext. It supplies an independent first-party selector for the already-developed p11/p21 `IS` pair and p22/p23 `THE ROAD` corridor.
-
-## Receiver fixed by the numbered route
-
-The authenticated source has:
+Using the established H5 serialization
 
 ```text
-zero-based index36 = GOOD
+H5([x0,x1,x2,x3,x4])
+= [x0-x4, x1-x3, x2, x1+x3, x0+x4] mod29
 ```
 
-The active numbered route uses the source index as physical page and the corresponding one-based ordinal inside that physical page. Page-local physical fragments preserve printed `/` line wraps but terminate at a physical `%` page boundary. This is the same convention that yields the existing p28 THE receiver and p30 SEEK packet.
-
-Thus:
+the selected object is
 
 ```text
-GOOD36
- -> physical p36
- -> one-based local fragment37
- -> offsets169..173
- -> C = [2,22,4,1,20]
+[2,22,4,1,20]
+ -> [11,21,4,23,22]
+ -> [a+g, p-K, q, p, p-1].
 ```
 
-This wording is deliberately **page-local fragment**, not canonical whole word. A canonical word can continue across a physical page boundary, while the numbered route itself is page-local.
-
-## Frozen H readout
-
-For an odd five-rune vector, use the established outside-in pair operation
+The same shell has a direct authenticated-source readout. Read the two difference channels in printed outside-in order, retain the center, and read the sum channels outer-to-inner:
 
 ```text
-H(x,y) = (x-y, x+y) mod29
+differences [11,21] -> IS / IS
+center      [4]     -> EMPTY
+sums        [22,23] -> THE / ROAD
 ```
 
-and keep the center literal:
-
-```text
-C = [2,22,4,1,20]
-
-differences = [2-20, 22-1] mod29 = [11,21]
-sums        = [2+20, 22+1] mod29 = [22,23]
-center      = 4
-```
-
-The authenticated zero-based signed-source positions are:
+The source positions are exact:
 
 ```text
 11 IS
 21 IS
 22 THE
 23 ROAD
- 4 EMPTY
+4  EMPTY
 ```
 
-So the channel-aware readout is exactly:
+Thus the state packet simultaneously points at the two repeated `IS` positions and the consecutive `THE ROAD` positions, with `EMPTY` at the center.
+
+## Structural control
+
+Across all 318 five-rune printed words in the existing p36-style page parser, charge the broader semantic predicate without naming IS/THE/ROAD:
+
+1. the two H-difference positions name the same authenticated lexical word;
+2. the outer-to-inner H-sum positions are consecutive source indices;
+3. the center is authenticated source index4, `EMPTY`.
+
+Exactly one object passes: p36 word37 at169..173.
+
+The exact state shell itself was independently shown by Agent17 to be unique among all 318 five-rune words, so this semantic reading does not select a new receiver. It explains what the already-selected packet points to.
+
+## Branch meaning
+
+The outputs coincide with previously independent source-number routes:
+
+- indices11 and21 are the repeated `IS` pair used by the p11/p21 paired-state investigation;
+- indices22 and23 are `THE ROAD`, the terminal two positions of the developed p21-p23 `IS THE ROAD` corridor;
+- index4 is `EMPTY`, an authenticated DH-role position `q=4`.
+
+This gives GOOD37 a human-facing routing interpretation compatible with its stronger numeric state typing:
 
 ```text
-differences -> IS / IS
-sums        -> THE / ROAD
-center      -> EMPTY
+GOOD37
+ -> H5 state [a+g,p-K,q,p,p-1]
+ -> repeated IS anchors + THE ROAD + EMPTY
 ```
 
-The interleaved H serialization is therefore:
+## Boundary
 
-```text
-[11,22,21,23,4]
- = [IS,THE,IS,ROAD,EMPTY]
-```
+This is supporting route structure, not a separate plaintext decryption. The receiver and exact state shell are established independently in `im-results/lp2-p36-good37-state-shell-gate.md`.
 
-The channel structure matters more than the interleaved lexical phrase: the two differences select the repeated `IS` source positions, while the two sums select the consecutive `THE ROAD` positions.
-
-## Complete five-rune fragment control
-
-Charge every five-rune page-local fragment on the 55 rune-bearing unsolved pages. There are **318**.
-
-Use a broader structural predicate that does not name `IS`, `THE`, or `ROAD` in advance:
-
-1. the two H-difference values must index the same authenticated lexical source word;
-2. the two H-sum values must be consecutive authenticated source indices;
-3. the odd center must be source index4, `EMPTY`.
-
-Exactly one of the 318 five-rune fragments satisfies all three conditions:
-
-```text
-p36 fragment37 offsets169..173
-C = [2,22,4,1,20]
-differences = [11,21] -> IS / IS
-sums        = [22,23] -> THE / ROAD
-center      = 4       -> EMPTY
-```
-
-The exact H packet `[11,22,21,23,4]` itself also occurs once among all 318 five-rune page fragments.
-
-## Numbered-diagonal control
-
-Apply the unchanged source-number/page-fragment rule to all authenticated source indices0..42:
-
-```text
-source index i
- -> physical page i
- -> one-based local fragment i+1
-```
-
-Forty-two objects exist. The sole absent direct coordinate is the already known `YOU32` case. Within those 42 extant diagonal objects, GOOD36 is again the only object satisfying the broad structural predicate above.
-
-This control conditions on the actual route family rather than searching arbitrary page positions for the desired vocabulary.
-
-## Independent branch closure
-
-The output numbers already have source-selected consumers elsewhere in the repository.
-
-The two differences:
-
-```text
-11 IS
-21 IS
-```
-
-are exactly the repeated authenticated `IS` pair whose same-index pages p11 and p21 independently carry unique IS-state receivers and a paired H2D state object.
-
-The two sums:
-
-```text
-22 THE
-23 ROAD
-```
-
-are exactly the terminal two pages of the independently developed `IS THE ROAD` corridor p21-p23. P22 has the prospectively selected Bob-state receiver and local THEIR inverse; p23 exposes the compatible state checkpoint.
-
-The center:
-
-```text
-4 EMPTY
-```
-
-has no five-rune/GP0(EMPTY) state receiver on p4 under the same page-fragment census, so it is currently best treated as a sentinel or separator rather than a fifth routed plaintext page.
-
-Thus GOOD36 supplies a compact human-facing router:
-
-```text
-GOOD36 numbered object
- -> H differences: both IS branches
- -> H sums: THE ROAD corridor
- -> center: EMPTY sentinel
-```
-
-## Evidence boundary
-
-Preserve this as a strong routing/operation-selection result.
-
-Strong points:
-
-- GOOD36 fixes the receiver before its H output is interpreted;
-- the H operation and channel order predate this result;
-- the broad five-rune control is a manuscript-wide singleton without fixing IS/THE/ROAD;
-- the output numbers land on independently developed source-number routes;
-- the route uses the same physical page-fragment convention already required by p28 THE and p30 SEEK.
-
-Caveats:
-
-- the route's local objects are physical-page fragments, not canonical whole manuscript words;
-- interpreting `EMPTY` as a sentinel is semantic and remains provisional;
-- this does not decrypt the p36 fragment to GOOD or recover a general LP2 cipher.
-
-Do not replace the page-fragment convention with canonical cross-page word counting inside this route without re-deriving p28 THE and the later numbered packets.
+The more consequential downstream result is the predecessor transition documented in `im-results/lp2-good37-luck37-state-transition.md`: the GOOD37 shell predicts the untouched p37 LUCK receiver shell and derives its exact key shell.
 
 ## Reproduction
 
-Run:
+`node sims/lp2_good36_hshell_is_road_router_sft.cjs`
 
-```text
-node sims/lp2_good36_hshell_is_road_router_sft.cjs
-```
-
-The SFT reconstructs the authenticated source, the page-local fragment diagonal, the GOOD36 receiver, the H channels, the complete 318-fragment structural control, exact-packet uniqueness, and the diagonal singleton.
+The SFT reconstructs the same p36 object and checks the semantic channel singleton. Its local page parser is used only for this semantic census; the authoritative numeric state typing and downstream transition follow the canonical GOOD37 and LUCK37 reports.
