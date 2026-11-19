@@ -119,10 +119,13 @@ function parseWords() {
 function hInverse(shell) {
   const output = [...shell];
   const inv2 = 15;
-  for (let left = 0; left < 2; left += 1) {
-    const right = 3 - left;
+  for (let left = 0; left < Math.floor(shell.length / 2); left += 1) {
+    const right = shell.length - 1 - left;
     output[left] = mod29((shell[left] + shell[right]) * inv2);
     output[right] = mod29((shell[right] - shell[left]) * inv2);
+  }
+  if (shell.length % 2 === 1) {
+    output[Math.floor(shell.length / 2)] = shell[Math.floor(shell.length / 2)];
   }
   return output;
 }
@@ -727,6 +730,85 @@ assert.deepEqual(
   ]
 );
 
+
+// Prospectively frozen length reduction. In a four-rune H shell,
+// coordinates 0 and 3 are the outer pair, so deleting the inner pair predicts
+// [x,-y] for a two-rune member. Test it unchanged on every two-rune member of
+// the same-index class before any exact inverse is inspected.
+const twoRuneTargets = [...new Map(
+  signedWords
+    .filter((word) => word.values.length === 2)
+    .map((word) => [word.label, word])
+).values()];
+assert.deepEqual(twoRuneTargets.map((word) => word.label), ["THE", "IS", "BE"]);
+
+const twoRuneSameIndexReceivers = [];
+for (const sourceIndex of [11, 21, 34]) {
+  const sourceWord = signedWords[sourceIndex];
+  const sourceGp0 = sum(sourceWord.values);
+  const matches = words.filter((word) =>
+    word.page === sourceIndex &&
+    word.endPage === sourceIndex &&
+    word.values.length === 2 &&
+    sum(word.values) === sourceGp0
+  );
+  for (const word of matches) {
+    twoRuneSameIndexReceivers.push({
+      page: sourceIndex,
+      expected: sourceWord.label,
+      start: word.start,
+      values: word.values,
+    });
+  }
+}
+assert.deepEqual(
+  twoRuneSameIndexReceivers.map((row) => [
+    row.page, row.expected, row.start, row.values,
+  ]),
+  [
+    [11, "IS", 49, [11, 14]],
+    [21, "IS", 170, [24, 1]],
+    [34, "BE", 4, [12, 23]],
+    [34, "BE", 249, [28, 7]],
+  ]
+);
+
+const twoRuneReductionHits = [];
+let twoRuneReductionCases = 0;
+for (const receiver of twoRuneSameIndexReceivers) {
+  for (const x of signedStateValues) {
+    for (const y of signedStateValues) {
+      const shell = [x, mod29(-y)];
+      const key = hInverse(shell);
+      for (const sign of ["sub", "add"]) {
+        twoRuneReductionCases += 1;
+        const output = applyKey(receiver.values, key, sign);
+        const target = twoRuneTargets.find((candidate) =>
+          candidate.values.every((value, index) => value === output[index])
+        );
+        if (target) {
+          twoRuneReductionHits.push({
+            page: receiver.page,
+            start: receiver.start,
+            expected: receiver.expected,
+            x: stateAliases.get(x),
+            y: stateAliases.get(y),
+            sign,
+            target: target.label,
+            shell,
+          });
+        }
+      }
+    }
+  }
+}
+assert.equal(twoRuneReductionCases, 2048);
+assert.equal(twoRuneReductionHits.length, 14);
+assert.deepEqual(
+  twoRuneReductionHits.filter((hit) => hit.target === hit.expected),
+  []
+);
+
 console.log(JSON.stringify({
   status: "PASS",
   p6Heading: {
@@ -755,7 +837,12 @@ console.log(JSON.stringify({
     redSpans: spanRecords.length,
     hits: fixedFormulaHits,
   },
-  stateTemplateControl: {\n    sameIndexStateMatches,\n    recipientCases: stateTemplateRecipientCases,\n    recipientHits: stateTemplateHits,\n    globalCases: globalStateTemplateCases,\n    globalHits: globalStateTemplateHits,\n  },\n  broadFamilyControl: {
+  stateTemplateControl: {\n    sameIndexStateMatches,\n    recipientCases: stateTemplateRecipientCases,\n    recipientHits: stateTemplateHits,\n    globalCases: globalStateTemplateCases,\n    globalHits: globalStateTemplateHits,\n  },\n  prospectiveTwoRuneHoldout: {
+    cases: twoRuneReductionCases,
+    lexicalHits: twoRuneReductionHits,
+    expectedHits: twoRuneReductionHits.filter((hit) => hit.target === hit.expected),
+  },
+  broadFamilyControl: {
     p33Cases: p33FamilyCases,
     p33LexicalHits: p33FamilyHits.length,
     p6WillHits: p6WillFamilyHits,
@@ -763,5 +850,5 @@ console.log(JSON.stringify({
     p40LexicalHits: p40FamilyHits,
     dualHitSpans: dualSpanKeys,
   },
-  decision:\n    "The independently SEEKS-selected p6 red heading reconstructs a common [x,A,y,-y] state-shell family. On the only two four-rune members of the same-index receiver class, that family has exactly two authenticated hits: p33 WILL and p40 PATHS. The family has seven hits manuscript-wide, so recipient preselection is essential. The p6 layout-to-state readout was recognized after the recipient inverses, so preserve this as cross-page key-schedule evidence pending a fresh prospective transfer.",
+  decision:\n    "The independently SEEKS-selected p6 red heading reconstructs a common [x,A,y,-y] state-shell family. On the only two four-rune members of the same-index receiver class, that family has exactly two authenticated hits: p33 WILL and p40 PATHS. The family has seven hits manuscript-wide, so recipient preselection is essential. The p6 layout-to-state readout was recognized after the recipient inverses, so preserve this as cross-page key-schedule evidence and the prospectively frozen [x,-y] reduction fails on every expected two-rune same-index label. Preserve this as a four-rune class key-schedule candidate rather than a general length-independent mechanism.",
 }, null, 2));
