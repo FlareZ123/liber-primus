@@ -143,6 +143,10 @@ A bounded **64-variant** convention audit varies page origin, word origin, table
 
 **Interpretation and limits.** This is a source-constrained, retrospective navigation/state-selector candidate linking p33’s cuneiform numerals to p17/p55 words, through p50, back to p33’s visible M/NG markers. Its weakest premise is that the cuneiform values are intended as sexagesimal page:word coordinates with mixed zero-/one-based conventions; the 2016 wording supports a word-map reading but does not explicitly prescribe the entire chain. It supplies no plaintext and no reversible consumer for p33’s 81- and 115-rune bodies. Do not treat it as a cipher solution or use it to reopen the already-negative direct power and H-cycle consumers.
 
+
+
+The returned marker pair was also tested as a direct p33 body key. On the upper **81-rune** body (offsets 10–90), apply M=19; on the lower **115-rune** body (offsets 99–213), apply NG=21. Tested both additive signs for per-body constant shifts, period-2 additive keys reset per body and continuous across the concatenation, plus per-body multiplication and modular inverse. None produces recognizable text; the tested IoCs range **0.03244–0.03443** against raw **0.03354**. This excludes the obvious direct M/NG key consumers and supports treating the pair as a state/checkpoint marker rather than the body key in these simple families.
+
 Reproducer: `sims/lp2_cuneiform_sexagesimal_wordmap_p50_state_sft.cjs`.
 
 ## Exact page-key power transfer to the two black bodies is negative

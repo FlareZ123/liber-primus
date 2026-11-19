@@ -283,6 +283,55 @@ for (const inverse of [false, true]) {
   });
 }
 
+// Direct marker-key consumers on p33's two black bodies.
+const p33Indices = corpus.pages.find((page) => page.page === 33).indices;
+const p33Bodies = [
+  p33Indices.slice(10, 91),
+  p33Indices.slice(99, 214),
+];
+assert.deepEqual(p33Bodies.map((body) => body.length), [81, 115]);
+const p33MarkerKey = [19, 21];
+const p33RawIoc = indexOfCoincidence(p33Bodies.flat());
+const p33MarkerConsumers = [];
+for (const sign of [-1, 1]) {
+  const constant = p33Bodies.map((body, bodyIndex) =>
+    body.map((value) => mod(value + sign * p33MarkerKey[bodyIndex], 29)));
+  const period2Reset = p33Bodies.map((body) =>
+    body.map((value, index) => mod(value + sign * p33MarkerKey[index % 2], 29)));
+  const period2Continuous = p33Bodies.flat().map((value, index) =>
+    mod(value + sign * p33MarkerKey[index % 2], 29));
+  p33MarkerConsumers.push({
+    operation: "per-body constant additive M/NG",
+    sign,
+    ...summarizePassages(constant, corpus.translit),
+  });
+  p33MarkerConsumers.push({
+    operation: "period-2 additive key reset per body",
+    sign,
+    ...summarizePassages(period2Reset, corpus.translit),
+  });
+  p33MarkerConsumers.push({
+    operation: "period-2 additive key continuous across bodies",
+    sign,
+    length: period2Continuous.length,
+    ioc: indexOfCoincidence(period2Continuous),
+    adjacentEqual: adjacentEqualCount(period2Continuous),
+    head: period2Continuous.slice(0, 80).map((value) => corpus.translit[value]).join(" "),
+  });
+}
+for (const inverse of [false, true]) {
+  const multiplied = p33Bodies.map((body, bodyIndex) => {
+    const factor = inverse
+      ? inverseMod(p33MarkerKey[bodyIndex], 29)
+      : p33MarkerKey[bodyIndex];
+    return body.map((value) => mod(value * factor, 29));
+  });
+  p33MarkerConsumers.push({
+    operation: inverse ? "per-body multiplicative inverse" : "per-body multiplicative",
+    ...summarizePassages(multiplied, corpus.translit),
+  });
+}
+
 console.log(JSON.stringify({
   classification: "retrospective navigation/state-selector candidate; no plaintext or body cipher",
   sourceOrderNumbers,
@@ -300,4 +349,9 @@ console.log(JSON.stringify({
     original: originalPassageStats,
   },
   simpleFiveKeyConsumers: simpleConsumers,
+  p33MarkerKeyConsumers: {
+    bodyLengths: p33Bodies.map((body) => body.length),
+    rawIoc: p33RawIoc,
+    tests: p33MarkerConsumers,
+  },
 }, null, 2));
