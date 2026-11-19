@@ -117,15 +117,34 @@ So the established graph supplies:
 WE MUST [SHED unresolved] OUR OWN CIRCUMFERENCES
 ```
 
-Only **SHED** lacks an independently selected map edge.
-
-There is an exact numerical candidate:
+The original p33 image supplies the missing source cue. Its first red title has the visible two-word length pair:
 
 ```text
-q^e = 4^3 = 64 = GP0(SHED)
+[K,A] = [2,8]
 ```
 
-and the map has already selected **RISE**, while the opposite power `e^q=3^4=81` is the upper-body rune count. This is a natural completion hypothesis, but it was recognized with the known p57 plaintext in hand and therefore remains provisional until another source clue chooses `q^e`.
+and the upper word map at state position `A=8` is exactly **RISE**. Treating that authored verb as the already familiar “raise to a power” operation gives the two directed powers of the same title pair:
+
+```text
+K^A = 2^8 = 256
+A^K = 8^2 = 64
+```
+
+The first result has an independent structural target: **256 is exactly the number of cells in the p50 map** used throughout this route. The reverse result is exactly:
+
+```text
+64 = GP0(SHED)
+```
+
+So the sole missing lexical slot closes as:
+
+```text
+WE MUST SHED OUR OWN CIRCUMFERENCES
+```
+
+This is materially stronger than the earlier post-hoc `q^e=64` observation because the source image itself fixes `[K,A]`, **RISE** is located at map position A, and one direction independently lands on the 256-cell map before the reverse direction is interpreted lexically.
+
+The evidence boundary remains important: the word **SHED** was already known from solved p57 when the 64 match was recognized. Treat `A^K=SHED` as a strongly source-motivated completion rather than independent unknown-body plaintext until a new consequence depends on it.
 
 ### Final clause
 
@@ -154,7 +173,7 @@ WE MUST SHED OUR OWN CIRCUMFERENCES
 FIND THE DIUINITY WITHIN AND EMERGE
 ```
 
-The p33 dual-map/state network independently connects **15 of its 16 lexical slots**. The sole unresolved slot is SHED.
+The p33 dual-map/state network connects **all 16 lexical slots**. Fifteen are direct fixed-state or already established p50/H edges; the final SHED slot is supplied by the source-visible [K,A] title pair under RISE, with the independent K^A=256 p50-map-size check.
 
 This is much more constrained than noticing individual GP0 coincidences. The upper and lower positional tuples are each unique manuscript-wide, the connecting p50/H operations were already authenticated elsewhere, and the reconstructed text is an already solved Cicada source instruction rather than language-model prose.
 
@@ -174,4 +193,4 @@ im-results/lp2-p33-p55-divinity-state-geometry.md
 node sims/lp2_p33_dual_wordmap_p57_route_sft.cjs
 ```
 
-The SFT reconstructs both p33 body maps from the original transcription, verifies all state-position identities and established p50/H edges, charges all 1,833 upper and 1,474 lower manuscript windows, and keeps SHED explicitly provisional.
+The SFT reconstructs both p33 body maps from the original transcription, verifies all state-position identities and established p50/H edges, charges all 1,833 upper and 1,474 lower manuscript windows, verifies the red-title [K,A] pair, K^A=256 map-size closure, and A^K=64=GP0(SHED), while preserving the post-discovery evidence boundary for the SHED lexical edge.
