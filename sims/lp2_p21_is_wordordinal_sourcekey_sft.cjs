@@ -16,7 +16,7 @@ function mod29(value) {
   return ((value % 29) + 29) % 29;
 }
 
-const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
+const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));\nconst p50 = JSON.parse(read("resources/liber-primus/base60-grid.json")).rows.flat();
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
 const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
 const parts = transcription.split(/^\s*%\s*$/m);
@@ -299,6 +299,53 @@ assert.ok(
 );
 
 
+
+const ordinalSourceRows = receivers
+  .filter((row) => row.ordinal0 < signedWords.length)
+  .map((row) => {
+    const word = signedWords[row.ordinal0];
+    const gp0 = gp(word).reduce((sum, value) => sum + value, 0);
+    return {
+      page: row.sourceIndex,
+      ordinal0: row.ordinal0,
+      word,
+      gp0,
+      solvedPage: gp0 === 56 || gp0 === 57,
+    };
+  });
+
+assert.deepEqual(
+  ordinalSourceRows.filter((row) => row.solvedPage),
+  [{
+    page: 21,
+    ordinal0: 33,
+    word: "WILL",
+    gp0: 57,
+    solvedPage: true,
+  }]
+);
+
+const findGp0 = gp("FIND").reduce((sum, value) => sum + value, 0);
+assert.equal(findGp0, 42);
+assert.equal(p50[findGp0], "0S");
+const base60Digits =
+  "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx";
+const findLow60 = base60Digits.indexOf(p50[findGp0][1]);
+assert.equal(findLow60, 28);
+assert.deepEqual(scalarKey(findLow60), [14, 15]);
+
+const solvedP57Bridge = {
+  receiverOrdinal: 33,
+  sourceWord: "WILL",
+  sourceGp0: 57,
+  solvedPage: 57,
+  imperative: "FIND",
+  imperativeGp0: findGp0,
+  p50Token: p50[findGp0],
+  low60: findLow60,
+  key: scalarKey(findLow60),
+};
+
 const p40 = receivers.find((row) => row.sourceIndex === 40);
 assert.ok(p40);
 assert.equal(p40.ordinal0, 16);
@@ -367,7 +414,7 @@ console.log(JSON.stringify({
     equivalentSubtractiveKey: [24, 5],
     plaintext: "BE",
   },
-  prospectiveOrdinalPointerGate,\n  fixedKeyControl: {
+  solvedP57Bridge,\n  prospectiveOrdinalPointerGate,\n  fixedKeyControl: {
     completeTwoRuneWords,
     targets: distinctTwoRuneTargets.map((row) => row.word),
     configurations:
