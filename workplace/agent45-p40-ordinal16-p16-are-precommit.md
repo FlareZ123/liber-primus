@@ -46,3 +46,20 @@ If word16 is absent or has a different GP length, reject this ordinal-pointer co
 If and only if the length gate survives, inspect that fixed receiver. Any inverse test must be a pre-existing bounded family; no free key search, offset shift, or alternate word is allowed.
 
 This is a prospective route test.
+
+## Reveal
+
+The first gate fails exactly as predeclared:
+
+```text
+p16 zero-based word16
+start76
+cipher [1,27]
+length2
+
+ARE
+[24,4,18]
+length3
+```
+
+Reject the p40-ordinal16 -> p16 double-index ARE continuation. No alternate p16 word or inverse was tested.
