@@ -138,6 +138,85 @@ ROAD source numbers
   -> center of p0 166..188 whole READOUT packet
 ```
 
+## Returned READOUT state closes back onto THE ROAD
+
+The returned center177 is not a dead pointer. Existing out-of-sample READOUT work already fixes the canonical preserved-center H packet on p0 166..188:
+
+```text
+whole READOUT packet boundaries:
+[b,A] ... B
+= [15,8] ... 19
+```
+
+It also fixes the split READ|OUT packet on p0 80..102:
+
+```text
+split packet boundaries:
+[B,p] ... K
+= [19,23] ... 2
+```
+
+Among the source-matched center-F packets, the ordered join
+
+```text
+166..188 -> 80..102
+```
+
+is uniquely selected by the raw boundary equality `B=19`.
+
+The previously frozen one-based packet selector `(A,K)=(8,2)` on the split packet emits:
+
+```text
+[packet[A], packet[K]]
+= [a,p]
+= [6,23].
+```
+
+That is the exact additive key for the adjacent original p0 two-rune receiver at103..104:
+
+```text
+[8,12] - [6,23] mod29
+= [2,18]
+= THE.
+```
+
+The next original p0 word, offsets105..108, is the independently recovered ROAD receiver:
+
+```text
+[16,8,25,27] - [12,5,1,4]
+= [4,3,24,23]
+= ROAD.
+```
+
+So the new bridge closes a larger local loop:
+
+```text
+THE ROAD
+   |
+   | ROAD source numbers
+   v
+p50 zero bracket
+   |
+   | interior length36 from p0 start192
+   v
+seven-rune NUMBERS-shaped receiver at228
+   |
+   | raw H shell -> state packet -> sum75
+   v
+READOUT state75 -> p50[75]=2v -> center177
+   |
+   v
+whole READOUT packet166..188
+   | unique B boundary join
+   v
+split READOUT packet80..102
+   | frozen (A,K) selector -> [a,p]
+   v
+THE ROAD
+```
+
+This closure uses existing receiver selections and exact forward replays. The newly discovered step remains the post-location reduction of the seven-rune receiver to state75; the downstream READOUT -> THE ROAD route was already present independently.
+
 ## Why this matters
 
 The ROAD branch previously supplied a strong receiver-shape chain while its seven-rune value-changing grammar failed. This result gives that receiver a typed use without inventing another plaintext key:
@@ -148,7 +227,7 @@ The ROAD branch previously supplied a strong receiver-shape chain while its seve
 4. Its coordinate sum is the independently known READOUT state75.
 5. The promoted p50 address layer returns that state to the independently fixed whole READOUT packet.
 
-This creates a cross-object bridge from the ROAD/2016 route back into the READ OUT/H/DH architecture.
+This creates a cross-object bridge from the ROAD/2016 route back into the READ OUT/H/DH architecture, and the already frozen READOUT packet join/selector then returns to the local THE ROAD candidate.
 
 ## Evidence boundary
 
