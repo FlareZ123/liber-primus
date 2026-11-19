@@ -1,6 +1,6 @@
 # P28 READ OUT -> HERE at the source-selected page start
 
-**Agent 1, 19 November 2026; reconciled by Agent2 after Director #1736. Classification: unusually selective post-discovery local corroboration, not a promoted plaintext/checkpoint. The exact HERE observation survives a broad transform/object family, but its precommitted untouched local continuation fails. Do not extend HERE-indexed pointer, key, or opcode menus without a new independent source selector.**
+**Agent 1, 19 November 2026; reconciled by Agent2 after Director #1736 and Agent7 after the later independent p39 consumer. Classification: unusually selective post-discovery local corroboration and conditional route state, not a promoted plaintext/checkpoint. The exact HERE observation survives a broad transform/object family, but its precommitted untouched local continuation fails. Do not extend HERE-indexed pointer, key, or opcode menus without a new independent source selector.**
 
 ## Result
 
@@ -177,20 +177,46 @@ The inner rival produces `HENGEO`, so it does not satisfy the checkpoint.
 
 This is an instruction-level downstream consequence of READ OUT rather than another language search over page-start transforms. The p28 start location and H direction were already independently fixed by the DH geometry and the established H convention; READ OUT selects outer versus inner nesting. Because HERE was already known before this connection was recognized, preserve the chronology as cross-operation corroboration rather than a blind plaintext validation.
 
-## Retired HERE-indexed continuations
+## HERE-indexed continuations after the #1736 negative
 
-Earlier work used `GP0(HERE)=48` to enter p50 and developed `4D`, fourth-D, GCD, and related return loops. Those constructions remain reproducible historical observations in their supporting reports, but they are no longer an active decipherment route after the #1736 blind local continuation failed.
-
-The current research boundary is:
+The #1736 blind local continuation remains negative:
 
 ```text
 READ OUT
  -> selective local HERE corroboration
- -> blind next local boundary MPAEO
- -> stop
+ -> next local H boundary MPAEO
+ -> local H stream stops.
 ```
 
-A future revival of HERE as an instruction state requires a new first-party selector or a genuinely prospective independent receiver. Do not tune additional HERE-indexed pointer or key families from the existing post-discovery material.
+Earlier free HERE-derived `4D`, fourth-D, GCD, and key menus remain retired.
+
+A later Agent7 result now supplies the independent-receiver condition this report required. Use the already authenticated DH value `K=2` as a fixed p50 full-base60 iteration depth:
+
+```text
+GP0(HERE)=48
+48 -> p50[48]=253 -> p50[253]=36
+36 = unique signed-source GP0(FOUND), source index35.
+```
+
+The same exact `T^K` operation has one authenticated adjacent-source hit across all 42 source adjacencies, `WILL -> BE`. More importantly, FOUND has two independent downstream consequences fixed before this HERE route was recognized:
+
+```text
+source number35 -> p50[35]=39 -> physical p39
+THEIR RISE +6: 35 FOUND -> 41 VERIFY
+```
+
+P39 was already selected independently and already recovered VERIFY through its DIVINITY receiver and circumference-shed operation. VERIFY is then consumed by the existing p9 DIRECTION|PATHS holdout.
+
+The same `T^K` operator also closes p28 through independently selected p32:
+
+```text
+GP0(OUT)=20 -> T^K -> 32 -> p32
+p32 selected aggregate 42=GP0(FIND) -> p50[42]=28 -> p28.
+```
+
+This revives exactly the source-linked `HERE -> FOUND -> p39 -> VERIFY` continuation and the `OUT -> p32 -> FIND -> p28` loop. It does not revive arbitrary HERE-derived table menus, and the failed local MPAEO continuation remains a valid negative.
+
+See `im-results/lp2-p28-here-found-p39-verify-convergence.md` and `sims/lp2_p28_here_found_p39_verify_route_sft.cjs`.
 
 ## Reproduction
 
