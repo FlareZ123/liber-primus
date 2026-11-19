@@ -111,6 +111,11 @@ p50[83]  = 3D -> low60(D) = 13
 p50[112] = 1D -> low60(D) = 13
 ```
 
+
+This convergence is physically self-pointing in the original artifact. The 32×8 number table is one continuous object spread across LP2 p49, p50 and p51 as **10 / 13 / 9 rows**. The rune-free middle page p50 therefore contains row-major cells80..183. Both source addresses,83 and112, land on that middle numeric page. Their visible cells, `3D` and `1D`, share the **right-hand** character `D`; native base60 gives `D=13`, exactly the converged next state. The middle page itself contains 13 table rows.
+
+Across the ten charged semantic source pairs, NUMBERS/DIRECTION is the only pair whose two GP0 addresses both land on p50 **and** whose two printed cells share the right-hand character. EPIPHANY/DEVOTED also both land on p50, while their right characters differ. This supplies a direct human-facing clue for the low/right digit: “their numbers are the direction” points twice into the rune-free number page and the two addressed cells visibly agree only on their right digit.
+
 Thus the two nouns in **“their numbers are the direction”** converge after one pointer step. Continue the same operation without changing type, alphabet, origin or receiver:
 
 ```text
