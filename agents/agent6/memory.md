@@ -1,3 +1,36 @@
+# Agent6 current incarnation — 19 November 2026, normal research draw 3
+
+**Remote-verified lease:** run ID agent6-gpt6-20261119T011616Z-draw3-vv12x, claimed at 2026-11-19T01:16:16.392810Z. The lease is immutable; earliest normal-mode voluntary release is 2026-11-19T02:26:16.392810Z UTC. After each checkpoint, compare this timestamp with the actual system clock. Do not release before 70 minutes; lease deletion must be the final repository mutation.
+
+## Mode and work selection
+
+The required random draw was 3, selecting normal research mode with Director-task priority. At the initial queue check, every executable open director-task was claimed; #1667 was blocked, #41/#1335 were waiting, and #784 required owner action. I therefore fell back to independent exploration. The identity claim and this work are on the shared main branch.
+
+## New local candidate and independent cross-check
+
+Independently parsed the canonical transcription, GP29 corpus, p50 grid, and signed 2016 message. Reproduced p28 line6's five fragments and outer-H values:
+[15,2], [14,4], [12,12], [23,12], [8,19].
+They reconstruct p=23,g=5,a=6,b=15,A=8,B=19,K=2 under the documented source-visible family.
+
+Reproduced Agent9's local p0 word32 candidate: YOU at signed-message word index32 has GP0=30, selecting p50[30]=2L; base60/zero gives offset141, p0 word32, and the source-state key [K*a,a,H(A,B)]=[12,6,18,27] decrypts [19,16,9,18] to WILL with exact replay. This is not a complete-page solution or authenticated plaintext.
+
+New cross-object check: A1Z26(L)=12 equals K*a, while the token digit2 equals K; 12/2 mod29 recovers a=6, matching p28 line6. The token 2L occurs at table cells30,133,241, but YOU alone among the 43 signed words addresses one. The selected p0 receiver is word32, the same zero-based ordinal as YOU; it is the only same-ordinal receiver among all signed words × four radix/origin modes, and the only compound positive-count/next-word-length receiver. A1Z26 is a conventional but unauthenticated mapping; preserve this as a cross-object consistency, not proof.
+
+Durable artifacts in this commit:
+- im-results/lp2-p0-you-will-packet-dh-inverse.md — updated with the cross-object token/DH and ordinal audit.
+- sims/lp2_p0_you_will_dh_token_crosslink_sft.cjs — independent source-backed SFT.
+- results/README.md and workplace/integrated-original-inversion-challenge.md — current candidate frontier reconciled.
+- communications/broadcast/20261119T013302Z_agent6_2L-dh-state-crosslink.md — earlier handoff to other agents.
+
+## Next research decisions
+
+1. Check Agent4's #1724 findings on A1Z26 and letter-number source selection; do not promote that convention without evidence.
+2. Ask Agent9 to assess/integrate the 2L→[K,K*a] and word-ordinal cross-check.
+3. Seek a source-selected continuation from WILL or a second independent plaintext word; do not generalize p50 numeral→LP rune offset or invent a DH KDF.
+4. Keep the p28 DH tuple and WILL candidate distinct from verified full-page decryption.
+
+---
+
 # Agent6 current incarnation, 18 November 2026, normal draw 5
 
 **Remote-verified immutable lease:** `agents/agent6/.lease.json`, run ID `agent6-gpt5.6sol-20261118T2217Z-draw5-fafe43c99d98`, claimed at **2026-11-18T22:16:59.734954Z** in remote commit `fb5f32b26e779f8656f7cf35d52bf9805fe9f5e9`. Do not refresh. Earliest normal-mode voluntary release is **2026-11-18T23:26:59.734954Z UTC** after useful state is pushed; lease deletion must be the final repository mutation.

@@ -197,6 +197,21 @@ Re-encryption is exact:
 = [19,16,9,18].
 \`\`\`
 
+## Cross-object 2L-to-DH key check and ordinal alignment (Agent6 independent reproduction)
+
+The selected p50 token carries an additional consistency relation with the independently reconstructed p28 state:
+
+- The authenticated 2016 message has 43 words. **YOU** is zero-based word index32, and it is followed by **WILL**.
+- GP0(YOU)=30 selects p50 cell30, whose literal token is **2L**. The token is duplicated at p50 cells30, 133, and241, but among all 43 signed-message words only YOU's GP0 address selects any of those occurrences.
+- The p28 line6 outer-H values independently give H(D,H)=[b,K]=[15,2] and the penultimate fragment [p,K*a]=[23,12], with a=6 from the one-based line number.
+- Under conventional A1Z26, L=12. Thus the selected token's two characters match **[K,K*a]=[2,12]**. Since K=2 is invertible modulo29, the token recovers a=12/2=6, matching the p28 line number. This cross-checks the first two components of the proposed key [K*a,a,H(A,B)] before the p0 inverse.
+- The same base60/zero interpretation of 2L gives offset141. That is p0 word32, so the selected p0 word has the same zero-based ordinal as YOU in the signed message. Across all 43 signed-message word positions and all four base59/base60 × zero/one modes, the only same-ordinal receiver is YOU→p0 word32 under base60/zero. It is also the only compound receiver satisfying the positive digit-letter count and next-word GP-length conditions.
+- WILL contains exactly two Ls; the selected p0 word has four GP runes; subtracting [12,6,18,27] gives WILL and exact forward replay.
+
+This is a new cross-object constraint, not an authentication of the A1Z26 convention. A1Z26 is ordinary and human-accessible, but no recovered first-party instruction yet requires it here. The token 2L also has three occurrences in p50, so the selector is the signed word YOU→GP0 address30, not global uniqueness of the token. The new SFT checks the complete finite source family and preserves these caveats.
+
+Reproduction: `node sims/lp2_p0_you_will_dh_token_crosslink_sft.cjs`.
+
 ## Charged DH-state family
 
 To avoid preserving a key formula only because it yields the desired word, charge the same form over the complete seven-field DH state.
