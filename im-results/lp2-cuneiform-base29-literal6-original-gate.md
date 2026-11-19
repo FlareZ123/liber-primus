@@ -12,7 +12,7 @@ The separate authenticated 2013 TCP commands do not supply a stronger source-sel
 
 ## Frozen original-input test
 
-The marked chapter begins **after physical p33's 91-rune preface**, then includes pp34–39 without rearrangement. Exact source lengths are **[123,261,271,238,228,228,240]**, total **1,589 GP29 original runes**. With the source-derived six-key at phase zero per heading, test each of the two ordinary global signs of `C=P±K mod29`. Under the independently authenticated p56 convention, plaintext rune F (index0) bypasses encryption and consumes no key, while an original ciphertext F may be an encrypted non-F. Exhaust all such paths, including ambiguous F branches; forbid any non-F original ciphertext requiring plaintext F.
+The original-image section is bounded by the visible `&` separators in the canonical transcription: it begins **after physical p33's 91-rune preface** and ends at p39's first `&`, immediately after the visible three-dot separator and before the separate red-X section. Exact source lengths are **[123,261,271,238,228,228,119]**, total **1,468 GP29 original runes**. An earlier version of this report incorrectly included p39's 121-rune red-X tail, producing 1,589; that boundary is corrected here. With the source-derived six-key at phase zero per heading, test each of the two ordinary global signs of `C=P±K mod29`. Under the independently authenticated p56 convention, plaintext rune F (index0) bypasses encryption and consumes no key, while an original ciphertext F may be an encrypted non-F. Exhaust all such paths, including ambiguous F branches; forbid any non-F original ciphertext requiring plaintext F.
 
 | Physical LP2 page | Marked runes | C=P+K: first impossible local offset | C=P−K: first impossible local offset |
 | ---: | ---: | ---: | ---: |
@@ -22,13 +22,13 @@ The marked chapter begins **after physical p33's 91-rune preface**, then include
 | 36 | 238 | 9 | 105 |
 | 37 | 228 | 2 | 20 |
 | 38 | 228 | 0 | 82 |
-| 39 | 240 | 12 | 27 |
+| 39 | 119 | 12 | 27 |
 
-**Every page fails under both signs**. In particular the first marked p33 source fails at zero-based positions 13 and 8, so the direct hypothesis cannot be repaired by anything in the remaining 1,466 runes. Entire 1,589-rune direct no-bypass readouts have IoCs **0.0344869403** and **0.0346129641**, both essentially random-level against the unmodified source IoC **0.0343498200**; none yields readable GP29 prose. Re-encryption is an elementary identity for the no-bypass variant and is not a plaintext claim.
+**Every page fails under both signs**. In particular the first marked p33 source fails at zero-based positions 13 and 8, so the direct hypothesis is already contradicted before the corrected p39 boundary matters. Entire 1,468-rune direct no-bypass readouts have IoCs **0.0344082067** and **0.0346171634**, both essentially random-level against the unmodified source IoC **0.0343125510**; none yields readable GP29 prose. Re-encryption is an elementary identity for the no-bypass variant and is not a plaintext claim.
 
-The SFT also generates both independently recognizable source-native positive controls: all seven original segment lengths filled with exact solved **p57** runes, encrypted with the same periodic GP29 key and correct plaintext-F transparency. It recovers **1,589/1,589** for each sign, with the complete inverse phase-state machine retaining a legal path. Thus the original impossibilities are properties of the original ciphertext, not a broken decoder.
+The SFT also generates both independently recognizable source-native positive controls: all seven original segment lengths filled with exact solved **p57** runes, encrypted with the same periodic GP29 key and correct plaintext-F transparency. It recovers **1,468/1,468** for each sign, with the complete inverse phase-state machine retaining a legal path. Thus the original impossibilities are properties of the original ciphertext, not a broken decoder.
 
-**Reproduction:** [single-file CommonJS original-source SFT](../sims/lp2_cuneiform_base29_literal6_p33_39_sft.cjs) executed successfully on **Windows / Node.js 22** via the [manual read-only workflow, run 44168788930](https://github.com/FlareZ123/liber-primus/actions/runs/44168788930). It asserts the signed arithmetic example, every source page length and failure offset, and two full-length source-native plants.
+**Reproduction:** [single-file CommonJS original-source SFT](../sims/lp2_cuneiform_base29_literal6_p33_39_sft.cjs) executed successfully on **Windows / Node.js 22** via the [manual read-only workflow, run 44168788930](https://github.com/FlareZ123/liber-primus/actions/runs/44168788930). It asserts the signed arithmetic example, the original p39 `&` boundary, every corrected source segment length and failure offset, and two full-length source-native plants.
 
 ## Decision and next research gate
 
