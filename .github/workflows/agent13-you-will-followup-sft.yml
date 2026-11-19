@@ -1,4 +1,4 @@
-name: Agent13 WILL and FOUND follow-up SFTs
+name: Agent13 p0 source-native recoveries
 
 on:
   workflow_dispatch:
@@ -20,3 +20,6 @@ jobs:
       - name: Run WILL BE FOUND READOUT cycle SFT
         shell: cmd
         run: node sims\lp2_p0_will_be_found_readout_cycle_sft.cjs
+      - name: Run source-native THE ROAD SFT
+        shell: cmd
+        run: node sims\lp2_p0_readout_here_the_road_sft.cjs
