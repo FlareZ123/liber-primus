@@ -266,9 +266,9 @@ assert.ok(corpus.pages.some((page) => page.page === 0));
 // physical page opening among p0..p55.
 const signedBody = signed2016
   .split("-----BEGIN PGP SIGNATURE-----")[0]
-  .replace(/^-----BEGIN PGP SIGNED MESSAGE-----[\\s\\S]*?Hash: SHA1\\s*/, "")
-  .replace(/\\b3301\\b/g, "")
-  .replace(/\\b[0-9A-F]{8,}\\b/g, "");
+  .replace(/^-----BEGIN PGP SIGNED MESSAGE-----[\s\S]*?Hash: SHA1\s*/, "")
+  .replace(/\b3301\b/g, "")
+  .replace(/\b[0-9A-F]{8,}\b/g, "");
 const signedWords = (signedBody.match(/[A-Za-z]+/g) || []).map((text, index) => {
   const values = gpText(text);
   return { index, text: text.toUpperCase(), gp0: gp0(values), length: values.length };
@@ -292,7 +292,7 @@ assert.deepEqual(pair192, [
 ]);
 assert.equal(gp0(gpText("EPIPHANY")) + gp0(gpText("SEEKS")), 192);
 
-const parts = transcription.split(/\\r?\\n%\\r?\\n/);
+const parts = transcription.split(/\r?\n%\r?\n/);
 const openingRows = [];
 for (let page = 0; page <= 55; page += 1) {
   if (page === 50) continue;
