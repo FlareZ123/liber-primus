@@ -186,13 +186,47 @@ const AL = 31;
 const alExponentResidue = mod(AL, 28);
 const alFieldResidue = mod(AL, 29);
 const alNegativeFieldResidue = mod(-AL, 29);
+const alDhResidue = mod(AL, state.p);
 assert.equal(alExponentResidue, state.e);
 assert.equal(alFieldResidue, state.K);
 assert.equal(alNegativeFieldResidue, mod(-state.K, 29));
+assert.equal(alDhResidue, state.A);
 assert.deepEqual(
-  { AL, mod28: alExponentResidue, mod29: alFieldResidue, negMod29: alNegativeFieldResidue },
-  { AL:31, mod28:3, mod29:2, negMod29:27 }
+  {
+    AL,
+    mod23: alDhResidue,
+    mod28: alExponentResidue,
+    mod29: alFieldResidue,
+    negMod29: alNegativeFieldResidue,
+  },
+  { AL:31, mod23:8, mod28:3, mod29:2, negMod29:27 }
 );
+
+const stateResidueSolutions = [];
+for (let candidate = 0; candidate < 23 * 28 * 29; candidate += 1) {
+  if (
+    mod(candidate, 23) === state.A &&
+    mod(candidate, 28) === state.e &&
+    mod(candidate, 29) === state.K
+  ) stateResidueSolutions.push(candidate);
+}
+assert.deepEqual(stateResidueSolutions, [31]);
+
+assert.deepEqual(
+  [destination - AL, AL - state.p],
+  [state.K, state.A]
+);
+
+const historicalNumberControls = [31, 93, 418, 666].map((value) => ({
+  value,
+  residues:[mod(value,23), mod(value,28), mod(value,29)],
+}));
+assert.deepEqual(historicalNumberControls, [
+  {value:31,residues:[8,3,2]},
+  {value:93,residues:[1,9,6]},
+  {value:418,residues:[4,26,12]},
+  {value:666,residues:[22,22,28]},
+]);
 assert.equal(gcd(alExponentResidue, 28), 1);
 assert.equal(gcd(alFieldResidue, 28), 2);
 assert.equal(gcd(alNegativeFieldResidue, 28), 1);
@@ -321,7 +355,11 @@ console.log(JSON.stringify({
     exponentGroupResidue:alExponentResidue,
     fieldResidue:alFieldResidue,
     negativeFieldResidue:alNegativeFieldResidue,
-    stateMatch:{e:state.e,K:state.K,negativeK:mod(-state.K,29)},
+    dhResidue:alDhResidue,
+    stateMatch:{A:state.A,e:state.e,K:state.K,negativeK:mod(-state.K,29)},
+    stateResidueSolutions,
+    p33ToP23GapPacket:[destination - AL, AL - state.p],
+    historicalNumberControls,
     reversibility:{
       exponentResidueGcd28:gcd(alExponentResidue,28),
       positiveFieldResidueGcd28:gcd(alFieldResidue,28),
