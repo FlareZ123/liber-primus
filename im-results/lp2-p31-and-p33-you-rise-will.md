@@ -286,7 +286,56 @@ The p33 recovery is exact:
 
 This gives p33 a new local YOU candidate under a key fixed on a different page.
 
-## 5. THEIR RISE moves YOU to the independent WILL receiver
+## 5. SEEK AND YOU closes a source/page loop
+
+The p31 transfer has a source-only return edge that was not used to derive its key. Charge every consecutive source trigram of width `K+1=3` and ask whether the terminal word's exact GP0 equals the zero-based index of the first word.
+
+Exactly one trigram satisfies that relation:
+
+```text
+30 SEEK
+31 AND
+32 YOU
+
+GP0(YOU)
+= 26 + 3 + 1
+= 30
+= index(SEEK).
+```
+
+Thus the authenticated source itself closes:
+
+```text
+SEEK30 -> AND31 -> YOU32 -> SEEK30.
+```
+
+The manuscript side now has matching typed steps. The corrected numbered route fixes p30 SEEK and p31 AND as consecutive objects:
+
+```text
+p30 word31 start130 [28,4,12]
+ -> source-index readout THE EMPTY THE
+
+p31 word32 start126 [12,23,1]
+ -> source-index readout THE ROAD THE.
+```
+
+The unique lexical transition changes only the center, `EMPTY -> ROAD`. The p31 helper then uses the already established `RISE=K=+2` operation to reach p33, where the unchanged p31 key has its sole cross-page hit `YOU`. Finally `GP0(YOU)=30` returns to the SEEK index/page.
+
+The resulting loop is:
+
+```text
+p30 SEEK
+ -> numbered adjacency / lexical center transition
+p31 AND
+ -> RISE +K
+p33 YOU
+ -> GP0(YOU)=30
+p30 SEEK.
+```
+
+No new scalar is introduced. The source-side trigram relation is unique across all possible consecutive width-three windows, while the three manuscript edges were independently fixed by the corrected numbered route, the p31 helper, and source GP0 arithmetic. The page loop was recognized after the p33 YOU transfer, so preserve it as cross-mechanism convergence rather than a universal GP0 navigation law.
+
+## 6. THEIR RISE moves YOU to the independent WILL receiver
 
 P33 already contains the independently recovered hidden instruction:
 
@@ -327,7 +376,7 @@ WILL(word35)
 
 No new rise magnitude is introduced.
 
-## 6. Relation to the existing suffix
+## 7. Relation to the existing suffix
 
 Independent work already recovers the page sequence:
 
@@ -351,7 +400,7 @@ SEEK AND YOU WILL BE FOUND.
 
 The p31 helper packet now supplies the same independently established `RISE=+2` page operation used elsewhere, so the route continues p31 -> p33 without introducing a new step magnitude. The stronger new facts are the p31 AND inverse, the unchanged-key p33 YOU transfer, this reused +2 page rise, and the p33 +6 YOU -> WILL word transition.
 
-## 7. Evidence boundary
+## 8. Evidence boundary
 
 Preserve p31 AND as a strong source-constrained local recovery candidate, and p33 YOU as a fixed-key transfer candidate. Preserve the independent WILL result unchanged.
 
