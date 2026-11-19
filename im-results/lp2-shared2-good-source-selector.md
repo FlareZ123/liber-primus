@@ -38,6 +38,18 @@ The existing exhaustive receiver-family census across p0-p55 already shows that 
 
 This changes the causal order: shared2 selects GOOD first, then the unchanged table grammar finds the receiver. The original receiver sum37 exceeds `GP0(GOOD)=35` by exactly `K=2`.
 
+## Exact local reflection-pair inverse candidate
+
+A later exact-value candidate now exists for the same four original runes. Horizontal reflection pairs a four-rune key as outer `(k0,k3)` and inner `(k1,k2)`. Using four independently source-derived state values, impose `outer sum=-K=-2`, `outer difference=NG=21`, `inner sum=vertical signed-ray magnitude=4`, and `inner difference=DH modulus p=23`. Over GP29 this uniquely solves to `[24,28,5,3]`, and
+
+```text
+U TH H Y - A EA C O = G O O D
+```
+
+with exact forward reconstruction. Across all 384 signed assignments of the four selected residues to the four pair slots, this is the only GOOD hit; an expanded 126,720-assignment state pool has four hits, all residue-equivalent via `-8=21` and `-6=23`.
+
+The open defect is causal ordering: no first-party clue yet assigns those four state values to those four sum/difference slots. The candidate was formulated after GOOD was known, and repeating the key on the next p2 word does not yield LUCK. Treat it as an exact reversible candidate, not authenticated plaintext. [Report](lp2-p2-good-reflection-pair-key.md) · [SFT](../sims/lp2_p2_good_reflection_pair_key_sft.cjs).
+
 ## Evidentiary boundary
 
 The original p2 ciphertext is `U TH H Y`; conditional GOOD is `G O O D`. This result supplies a source-selected word-level checksum and vocabulary choice, but no letterwise inverse. Direct additive DH, prime/totient, half-turn, low-degree coordinate, monoalphabetic word, and small linear-feedback consumers tested in this invocation did not reproduce the four rune values.
