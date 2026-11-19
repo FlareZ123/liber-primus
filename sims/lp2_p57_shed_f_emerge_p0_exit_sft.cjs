@@ -297,6 +297,52 @@ assert.deepEqual(solvedSixRuneColumnHits, [
   { section: "p57_parable", position: 20, text: "EMERGE", start: 44, end: 189 },
 ]);
 
+// Exhaust the complete p57 word family under the frozen rule:
+// GP-prime mod256 start, word-length base59 walk, fixed endpoint. If the
+// endpoint token has a duplicate in a column not visited by the walk and that
+// duplicate is itself a p57 GP0 word address, record it. EMERGE is the sole
+// source word with any such completion, and SURFACE is the sole receiver.
+const p57ByGp0 = new Map(p57Words.map((row) => [row.gp0, row]));
+const p57FixedDuplicateCompletions = [];
+for (const sourceWord of p57Words) {
+  const sourcePath = walk(sourceWord.prime % tokens.length, alphabet59, sourceWord.length);
+  const end = sourcePath.at(-1);
+  if (decode(tokens[end], alphabet59) !== end) continue;
+  const visitedColumns = new Set(sourcePath.map((address) => address % tableWidth));
+  const endpointToken = tokens[end];
+  const completions = tokens
+    .map((token, address) => ({ token, address }))
+    .filter((row) => row.token === endpointToken)
+    .filter((row) => !visitedColumns.has(row.address % tableWidth))
+    .filter((row) => p57ByGp0.has(row.address))
+    .map((row) => ({
+      address: row.address,
+      column: row.address % tableWidth,
+      target: p57ByGp0.get(row.address).text,
+      targetPosition: p57ByGp0.get(row.address).position,
+    }));
+  if (completions.length) {
+    p57FixedDuplicateCompletions.push({
+      source: sourceWord.text,
+      sourcePosition: sourceWord.position,
+      end,
+      token: endpointToken,
+      completions,
+    });
+  }
+}
+assert.deepEqual(p57FixedDuplicateCompletions, [
+  {
+    source: "EMERGE",
+    sourcePosition: 20,
+    end: 189,
+    token: "3C",
+    completions: [
+      { address: 67, column: inverseExponent, target: "SURFACE", targetPosition: 8 },
+    ],
+  },
+]);
+
 // Candidate EMERGE state reset: restoring the uniquely shed f restores base60.
 // Two steps, fixed upstream as the DH shared value, reach zero.
 const restored = walk(root189, alphabet60, dhShared);
@@ -465,6 +511,7 @@ console.log(JSON.stringify({
     missingEmergeColumns,
     solvedSixRuneCount,
     solvedSixRuneColumnHits,
+    p57FixedDuplicateCompletions,
     rootTokenCopies,
     stateColumnTokenClasses,
     rootCopySourceRows,
