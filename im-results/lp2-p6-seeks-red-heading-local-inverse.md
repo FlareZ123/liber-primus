@@ -232,4 +232,4 @@ Run:
 
 `node sims/lp2_p6_seeks_red_heading_local_inverse_sft.cjs`
 
-Windows Node22 generic runner passed the original complete gate in Actions run **44458253259**. The SFT is subsequently strengthened with the unordered-shell rival assertion and should be rerun after that checkpoint.
+Windows Node22 passed the strengthened SFT, including the unordered-shell rival assertion, in Actions run **44458672388**. The later [p6 master-state packet report](lp2-p6-master-state-packet.md) supplies a broader source-visible interpretation of the same red title while preserving the local SEEKS receiver caveat.
