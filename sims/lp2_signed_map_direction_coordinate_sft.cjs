@@ -213,6 +213,74 @@ assert.equal(theToMap[0].pageIndex, anchors.theDirection);
 assert.equal(theToMap[0].best, 7);
 assert.equal(theToMap[1].best, 3);
 
+
+/** @param {number[]} bits @returns {number} */
+function binaryValue(bits) {
+  return bits.reduce((value, bit) => value * 2 + bit, 0);
+}
+
+/**
+ * Charge the complete authenticated source-coordinate family for physical
+ * line-wrapped receivers whose longest H-union run has length seven. For each
+ * run, ask whether every source number belongs exclusively to the whole-word
+ * H branch or to either physical-fragment H branch. Only then is a binary
+ * whole-vs-fragment provenance word defined.
+ */
+const provenanceRows = [];
+for (let pageIndex = 0; pageIndex < source.length; pageIndex += 1) {
+  const pageWords = wordsByPage.get(pageIndex) || [];
+  for (let wordIndex = 0; wordIndex < source.length; wordIndex += 1) {
+    const word = pageWords[wordIndex];
+    if (!word || word.breaks.length !== 1) continue;
+    const split = word.breaks[0];
+    if (split <= 0 || split >= word.values.length) continue;
+    const whole = hSequence(word.values);
+    const prefix = hSequence(word.values.slice(0, split));
+    const suffix = hSequence(word.values.slice(split));
+    const score = longestConsecutiveRuns([...whole, ...prefix, ...suffix]);
+    if (score.best !== 7) continue;
+    for (const run of score.runs) {
+      const values = Array.from(
+        {length: run[1] - run[0] + 1},
+        (_, index) => run[0] + index
+      );
+      const provenance = values.map((value) => {
+        const inWhole = whole.includes(value);
+        const inFragment = prefix.includes(value) || suffix.includes(value);
+        return {value, inWhole, inFragment};
+      });
+      const exclusive = provenance.every((row) => row.inWhole !== row.inFragment);
+      let readings = null;
+      if (exclusive) {
+        const wholeOne = provenance.map((row) => row.inWhole ? 1 : 0);
+        const fragmentOne = wholeOne.map((bit) => 1 - bit);
+        readings = {
+          wholeOneForward: binaryValue(wholeOne),
+          wholeOneReverse: binaryValue(wholeOne.slice().reverse()),
+          fragmentOneForward: binaryValue(fragmentOne),
+          fragmentOneReverse: binaryValue(fragmentOne.slice().reverse()),
+        };
+      }
+      provenanceRows.push({
+        pageIndex,
+        pageWord: upper[pageIndex],
+        wordIndex,
+        wordWord: upper[wordIndex],
+        ordinal: wordIndex + 1,
+        start: word.start,
+        split,
+        run,
+        provenance,
+        exclusive,
+        readings,
+        inSourceRegister: readings
+          ? Object.entries(readings).filter(([, value]) => value < source.length)
+          : [],
+      });
+    }
+  }
+}
+
 console.log(JSON.stringify({
   status: "PASS",
   sourceAnchors: anchors,
@@ -229,4 +297,5 @@ console.log(JSON.stringify({
     suffixH: semanticSuffixH,
   },
   theToMapFamily: theToMap,
+  run7ProvenanceFamily: provenanceRows,
 }, null, 2));
