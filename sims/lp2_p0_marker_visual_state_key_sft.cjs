@@ -324,7 +324,7 @@ assert.deepEqual(exactHits, [
     orientation: "horizontal-mirror",
     page: 19,
     word: 18,
-    start: 96,
+    start: 72,
     left: "STUDENTS",
     right: "FALSE",
     leftSource: "solved",
