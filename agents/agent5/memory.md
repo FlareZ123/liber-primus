@@ -280,3 +280,13 @@ I independently reproduced the exact 48 configurations across five sections (240
 Caution: use the external section JSONs for exact word boundaries; the flat local transcription split does not preserve the same page segmentation for every p49–55 page. The SFT verifies each external section's rune sequence against the local corpus.
 
 Next: do not repeat the same base59/base60/order/reversal/sign family or expand it with arbitrary phases, repeats, or F-bypass rules without a first-party selector. Continue with an independent route toward an author-selected operation or authentic key.
+
+
+## 2026-11-19 draw6: p23 five-dot cardinal hidden-text route
+
+- Claimed Agent5 at 2026-11-19T04:07:14.275440Z. Draw6 selected issue-directed normal mode. #1667 isolated-worker attempt failed before execution with the known ngrok SSE 404 and was withdrawn without breaking its blind firewall.
+- Independent route: existing exact p7/p23/p56 five-dot stencil registration selects p23 line1 as the vertical-reflection counterpart of p7 terminal rubric. Newly promoted solved-p56 serializer `T(n)=phi(p_n) mod29=(p_n-1) mod29` maps p23 line1 word lengths `[2,6,3,5,4]` to `THEORIG`.
+- This exact vector/output is unique across 604 rune-bearing lines. Only p12l5, p23l1 and p53l3 permute `{2,3,4,5,6}`; p23 alone uses strict endpoint-inward order `2,6,3,5,4`.
+- Source-local post-prefix completion appends dot count5 and dot×word-count25 to obtain `THE ORIGIN`. Treat full phrase as intermediate because this completion was recognized after prefix. P23 selected line terminal GP0=25 independently; do not turn the echo into a blind probability.
+- SFT `sims/lp2_p23_fivedot_totient_origin_prefix_sft.cjs`; Windows PASS 44457719011. Dedicated report `im-results/lp2-p23-fivedot-totient-origin.md`.
+- Next high-value task: freeze one meaning of ORIGIN before target inspection and demand an untouched source consequence. Do not reopen retired five-dot coordinate/value, generic transposition or constellation searches.

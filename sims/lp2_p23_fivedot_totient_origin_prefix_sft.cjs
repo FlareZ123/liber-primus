@@ -129,6 +129,24 @@ assert.deepEqual(
   [[23, 1]]
 );
 
+const consecutiveCardinalLines = allLines
+  .filter((row) => row.lens.length === 5)
+  .filter((row) => JSON.stringify([...row.lens].sort((a, b) => a - b)) === JSON.stringify([2, 3, 4, 5, 6]))
+  .map((row) => ({
+    page: row.page,
+    line: row.line,
+    lens: row.lens,
+    text: row.text,
+    endpointInward:
+      JSON.stringify(row.lens) === JSON.stringify([2, 6, 3, 5, 4]) ||
+      JSON.stringify(row.lens) === JSON.stringify([6, 2, 5, 3, 4])
+  }));
+assert.deepEqual(consecutiveCardinalLines, [
+  { page: 12, line: 5, lens: [6, 3, 2, 4, 5], text: "EORTHGI", endpointInward: false },
+  { page: 23, line: 1, lens: [2, 6, 3, 5, 4], text: "THEORIG", endpointInward: true },
+  { page: 53, line: 3, lens: [3, 4, 2, 5, 6], text: "RGTHIEO", endpointInward: false }
+]);
+
 /**
  * The stencil contributes d=5. For its adjacent text line, append d and d*m,
  * where m is that line's printed word count.
@@ -185,7 +203,9 @@ console.log(JSON.stringify({
     wordCount: p23[0].lens.length,
     extendedCardinals: motifControls.p23.cardinals,
     candidateInstruction: motifControls.p23.text,
-    uniqueAcross604Lines: true
+    uniqueAcross604Lines: true,
+    consecutiveCardinalPermutationControls: consecutiveCardinalLines,
+    endpointInwardOrderUniqueWithinThatFamily: true
   },
   matchedMotifControls: {
     p7TerminalAdjacent: motifControls.p7,
