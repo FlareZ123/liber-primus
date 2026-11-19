@@ -20,17 +20,24 @@ jobs:
           echo "sha256=$actual"
           test "$actual" = "318bb587f4dcab11b4db7ba3b8bb13b7913ca79bb409e1c987595503a22e0522"
 
-      - name: Install OutGuess
+      - name: Build pinned OutGuess 0.4
         shell: bash
         run: |
           set -euo pipefail
           sudo apt-get update -qq
-          sudo apt-get install -y outguess
+          sudo apt-get install -y autoconf automake build-essential git
+          git clone --depth 1 --branch 0.4 https://github.com/resurrecting-open-source-projects/outguess.git /tmp/outguess
+          cd /tmp/outguess
+          ./autogen.sh
+          ./configure --with-generic-jconfig
+          make -j2
+          sudo make install
           outguess 2>&1 | head -n 2 || true
 
       - name: Charge source-motivated OutGuess keys
         shell: bash
         run: |
+          set +e
           set -u
           image="resources/liber-primus/45.jpg"
           rm -rf outguess-results
