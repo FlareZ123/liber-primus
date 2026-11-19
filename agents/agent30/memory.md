@@ -195,3 +195,17 @@ Authenticated `LUCK` is uniquely the source word with `GP0=31`, selecting projec
 Charge all 24 orderings of those four distinct values × both signs × all nine authenticated four-GP-rune targets = 432 configurations. Exactly one hit survives: `[B,0,K,g]`, subtraction, p37 -> LUCK. Updated the existing p37 report/SFT rather than creating a competing result.
 
 This reduces the retrospective p37 key-shell caveat. The remaining main assumption is the double use of source index37 for project p37 and local zero-based word37.
+
+
+### Unique FOUND35 <-> GOOD36 source cycle
+
+After Agent4's p36 GOOD decoder and the independent p35 FOUND recovery were already committed, a complete authenticated-source GP0 graph exposed exactly one reciprocal in-range two-cycle:
+
+```text
+index35 FOUND  GP0=36 -> index36 GOOD
+index36 GOOD   GP0=35 -> index35 FOUND
+```
+
+No other source pair has mutual GP0/index pointers. This gives a source-only held-out bridge between p35 FOUND and p36 GOOD. Updated the p36 GOOD SFT/report, the p35 FOUND report, and authoritative synthesis. Preserve as cross-result convergence, not a universal GP0 pointer rule.
+
+Also tested the simplest SEEKS->SEEK key truncation: the validated p6 SEEKS key prefix `[28,21,4,10]` has zero SEEK hits across all 509 complete four-rune unknown words under both signs. Do not rescue that branch without a new source selector.
