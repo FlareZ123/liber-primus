@@ -114,11 +114,13 @@ Applying the same winning schedule to the 81-rune upper body is also nonlinguist
 
 ## Research consequence
 
-The productive interpretation is that p33 acts as a source-selected **state/checkpoint page** in the emerging p50/DH route. It confirms the same state through independent source channels: p50 address, visible marker identities, title word lengths, H relations, line counts, word counts and rune counts.
+The productive interpretation is that p33 acts as a source-selected **state/checkpoint page** in the emerging p50/DH route. Director #1782 has now charged the comparable red-span/H-orientation family: p33 is the sole full 15/15 packet under the forward-H orientation, with the nearest orientation at 14/15. It confirms the same state through independent source channels: p50 address, visible marker identities, title word lengths, H relations, line counts, word counts and rune counts.
 
 The missing edge remains a reversible consumer for the 81- and 115-rune bodies. Direct p32-core additive transfer, Hill9, red-IV CBC-Hill, pointer-cycle additive transfer, and this 28-word H-power cycle are already negative. Further phase/key expansion on those families would retread rejected ground.
 
-A successor should use this state packet to predict a new receiver or make a blind consequence on untouched source material. It should avoid converting the packet into another arbitrary repeating key.
+A later solved-p56 transfer independently serializes the two p33 title packets as **THEIR RISE**. The authenticated 2016 clue places THEIR at positions 19 and25: 19 is the existing B entry state, p33's visible H chain emits 25, and the rise 6 equals a and the lower section's six lines. This strengthens the human-facing checkpoint interpretation. A prospectively frozen attempt to reuse address25 through the same p50 base60 page-pointer consumer failed (`p50[25]=3I=198`), so that continuation is closed. See `lp2-p33-layout-family-their-rise.md`.
+
+A successor should use this state packet only where a new authored receiver is independently selected. It should avoid arbitrary repeating keys, H phase expansion, or further address25 page-pointer variants.
 
 ## Reproduction
 
