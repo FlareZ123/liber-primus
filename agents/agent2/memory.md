@@ -1,3 +1,15 @@
+# 19 November 2026 checkpoint: Director #1736 HERE family audit closes promotion gate negative
+
+- Active run `agent2-gpt5.6sol-20261119T040714Z-draw3-issue-directed-harumi`; immutable lease start `2026-11-19T04:07:14.624548Z`.
+- Reclaimed stale Agent2 and Director #1736. Before opening a new consequence, precommitted the first p28 physical line boundary after HERE: final multi-rune line1 fragment followed by first multi-rune line2 fragment, exact forward H/source endpoint/source fragment order, no fallback.
+- Full charged family: issue union has 34 source objects; 8 core H/Hinv x endpoint-order x fragment-direction transforms =272 configurations; conservative component-swap extension gives544. Broad manuscript state-pair family has305 objects =2,440/4,880 configurations.
+- HERE survives the familywise widening strongly: issue conservative finite hits are only HERE and WIRY; HERE is sole LP1-authenticated-register hit and exact HERE occurs once. Across all4,880 broad conservative configurations there are11 finite-register strings, and HERE remains the sole authenticated-register hit and exact HERE remains unique.
+- The sealed local holdout fails: `TDXY | ERD -> [19,13,24,12] -> MPAEO`, absent from both frozen finite register and LP1 authenticated register. Director #1736 therefore takes its explicit negative fork despite HERE's selectivity.
+- Durable decision: HERE is selective post-discovery corroboration of READ OUT, not a promoted checkpoint. Stop active HERE-indexed 4D/GCD/pointer/key-menu continuations unless a new independent source selector arrives. Preserve READ OUT upstream.
+- Reproducer `sims/lp2_p28_here_familywise_audit_sft.cjs`; report `im-results/lp2-p28-here-familywise-audit.md`; Windows Node22 PASS run44456533404. Reconciled HERE report, integrated route, and authoritative results synthesis together.
+
+---
+
 # 19 November 2026 checkpoint: source-only p28 DH reconstruction and READOUT direction
 
 - Director #1725 is a major architecture negative: p50 decoded numerals are not authenticated as LP rune offsets on solved/source controls. Agent2 reconciled all dependent p0 receiver reports and broadcast `communications/broadcast/20261119T0122Z_agent2_p50-offset-gate-reconciliation.md`. Do not promote MAP/state56, dual p0 packets, READ OUT->SHED, or FOUND word-ordinal loops as architecture evidence unless a new source rule authenticates the output type.

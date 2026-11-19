@@ -1,6 +1,6 @@
 # Source-first 2016 -> p50 -> p28 -> READ OUT -> HERE route
 
-**Agent16, 19 November 2026, reconciled after Director #1787. Classification: integrated candidate route around p28 READ OUT. The strongest READ OUT selector is the independently selected p39 circumference pair `[55,20]`, which selects the raw p28 output before transliteration and does not rely on p50 low-digit navigation. The ROAD/PATHS↔FOUND and NUMBERS/DIRECTION low/right-digit constructions remain reproducible route-specific structures, while a sealed GOOD→LUCK holdout rejects promotion of that transition to a general opcode. No claim is made that the 56 unknown LP2 pages are decrypted.**
+**Agent16, 19 November 2026, reconciled by Agent2 after Directors #1787 and #1736. Classification: integrated candidate route to p28 READ OUT, with HERE retained only as selective post-discovery corroboration. The strongest READ OUT selector is the independently selected p39 circumference pair `[55,20]`, which selects the raw p28 output before transliteration and does not rely on p50 low-digit navigation. Director #1736's precommitted local continuation from HERE fails, so HERE-indexed 4D/GCD/p29/p26 continuations are retired from the active solve path. No claim is made that the 56 unknown LP2 pages are decrypted.**
 
 ## 0. Candidate manuscript entry: solved p57 -> p39 -> VERIFY OPENPGP
 
@@ -220,189 +220,34 @@ READ | OUT
 ```
 
 This selector is independent of p50 low-digit navigation. The separately frozen p53 circumference packet also supplies `[e,-K]=[3,27]`, giving the same parameter pair from another manuscript object.
-## 7. READ OUT has a direct instruction-level consequence: HERE
+## 7. READ OUT -> HERE is selective, but its blind continuation fails
 
-P28 line1 has source-selected DH geometry `[p,g,K,g]=[23,5,2,5]`. Its first two fragments are:
-
-```text
-PC
-JTHBIW
-```
-
-The established forward H map is:
+P28 line1 has source-selected DH geometry `[p,g,K,g]=[23,5,2,5]`. Its first two fragments are `PC` and `JTHBIW`. Under the established forward H map:
 
 ```text
-H(x,y) = (x-y, x+y) mod29
+H(P,C) = HE
+H(J,W) = RE
 ```
 
-The first two-rune word has one endpoint pair. The five-rune word has an outer pair and an inner pair.
+so READ OUT selects the outer layer and yields `HERE`.
+
+Director #1736 charged the full local transform/object family instead of relying on that single reading. In 4,880 conservative manuscript-wide state-pair configurations, HERE occurs exactly once and is the sole authenticated LP1-register token. This makes the local echo selective within the charged family.
+
+The precommitted untouched continuation then fails. The first physical line-boundary pair after the HERE carrier is `TDXY | ERD`. Under the exact frozen forward H operation, source endpoint order, and source fragment order:
 
 ```text
-H(P,C)  = HE
-H(J,W)  = RE
-H(TH,I) = NGEO
+TDXY | ERD -> [19,13,24,12] -> MPAEO
 ```
 
-The recovered instruction **READ OUT** selects the outer pair, giving:
+`MPAEO` is outside both the prior finite lexical register and the authenticated LP1-word register. Under #1736's completion rule this closes the promotion gate on the negative branch.
 
-```text
-HE + RE = HERE
-```
+Earlier HERE-indexed constructions such as `GP0(HERE)=48 -> p50[48]=4D`, fourth-D/GCD, and the dependent p29/p26 return loop remain reproducible historical artifacts in their dedicated reports. They must not be used as an active continuation because they were developed downstream of a marker that failed its first sealed local extension.
 
-The inner rival does not give HERE.
-
-This is a direct downstream interpretation of READ OUT rather than a new transform search.
-
-## 8. HERE has a route-specific low/right echo
-
-Canonical:
-
-```text
-GP0(HERE) = 48
-p50[48]   = 4D
-```
-
-The low/right character `D=13` enters the same previously observed `13 -> 4 -> 37 -> OUT -> FIND -> p28` tail. After Director #1787 this is retained only as a local echo. It is not evidence that the low/right transition is a general navigation opcode.
-
-The stronger continuation uses the full visible token `4D` as an ordinal locator, with an independent solved-p56 holdout, as shown next.
-## 9. HERE self-indexes the fourth D and recovers GCD
-
-The p50 token at the HERE state is itself readable:
-
-```text
-GP0(HERE) = 48
-p50[48]   = 4D
-```
-
-Under the solved-page-transferred ordinal convention, `4D` means the rune at this same page address is the fourth D. On p28, rune offset48 is exactly the fourth D and is uniquely centered in its physical line fragment among the compatible self-index hits.
-
-Its local centered triple is:
-
-```text
-L D X = [20,23,14]
-```
-
-Applying the already fixed H map to the two outer neighbors and preserving the selected center gives:
-
-```text
-H(L,X) || D
-= [6,5] || [23]
-= G C D
-```
-
-The exact `nX -> nth X at this same address` consumer transfers independently to solved p56: solved `IS` has `GP0(IS)=25`, original `p50[25]=3I`, and solved-p56 rune offset25 is exactly the third I. This closes the earlier semantic objection to the self-index.
-
-The recovered operation label **GCD** immediately returns to the calibrated DH state:
-
-```text
-gcd(b,p-1) = gcd(15,22) = 1
-b^-1 mod22 = 3 = e
-B^e mod23 = g
-```
-
-So the p28 local route closes:
-
-```text
-READ OUT -> HERE -> 4D -> fourth D -> GCD -> e=3
-```
-
-## 10. THE / DIRECTION selects p29 and reconstructs WAY
-
-The independent HERE receiver also leads to the p28 local candidate `THE`. In the authenticated 2016 source, the six THE occurrences have zero-based indices:
-
-```text
-1, 7, 12, 17, 22, 28
-```
-
-The current project page p28 self-locates at the final THE, index28. Its immediate authenticated follower is `DIRECTION` at index29, selecting project p29 under the same origin convention before p29's algebraic property is opened.
-
-P39's red triad defines the repeated-root polynomial with root24. Among all 55 unknown rune pages, p29 alone has that repeated root, and p29 alone shares a repeated root with the printed p50 table.
-
-The authenticated words MAP and DIRECTION independently expose `e=3` in the fixed endpoint-H register. At the selected repeated root, derivative order3 gives:
-
-```text
-P29'''(24) = 7 = W
-```
-
-while the authenticated 2013 BASE29 factor contributes positive-degree coefficients:
-
-```text
-[24,26] = AY
-```
-
-The charged 48-way derivative/insertion/direction family has one authenticated three-rune output:
-
-```text
-W + AY = WAY
-```
-
-WAY remains candidate instruction material because its final assembly was recognized retrospectively, while its page, root and derivative order now have independent source selectors.
-
-## 11. WAY/MAP selects p26 and returns FOURTH DH to p28
-
-The fixed WAY/MAP p50 edge:
-
-```text
-57 --1w--> 56
-```
-
-occurs exactly once as adjacent unknown-word GP0 states, at p26 line10 words2-3 inside a four-word block.
-
-That block's p50 high digits independently read:
-
-```text
-FOUR
-```
-
-and its full base60 residues reduce to:
-
-```text
-[b, p-1, K, p-1]
-```
-
-Applying the already frozen GCD opcode to the final pair gives:
-
-```text
-gcd(K,p-1) = gcd(2,22) = 2 = TH
-```
-
-so the packet extends uniquely to:
-
-```text
-FOURTH
-```
-
-The same state packet reconstructs `A=K^e modp=8`, hence:
-
-```text
-[p,A] = [23,8] = DH
-```
-
-Read as **FOURTH D; H**, this lands exactly on the already selected p28 consumer:
-
-```text
-fourth D -> centered LDX
-H(L,X)||D -> GCD
-GCD -> e=3
-```
-
-This closes the bounded route:
-
-```text
-p28 GCD/e3
- -> p29 WAY
- -> WAY/MAP p50 edge
- -> unique p26 packet
- -> FOURTH DH
- -> p28 fourth-D/H
- -> GCD/e3
-```
-
-The p26 result is a meta-instruction/state packet rather than continuous plaintext; its immediate lexical continuations remain negative.
+See [#1736 family audit](lp2-p28-here-familywise-audit.md) and [local HERE observation](lp2-p28-readout-here-page-start.md).
 
 ## Current evidence boundary
 
-The most defensible integrated chain is now:
+The most defensible integrated chain now stops here:
 
 ```text
 solved p57 circumference route
@@ -414,24 +259,16 @@ solved p57 circumference route
  -> source-fixed p28 center + word28 object
  -> unique raw [4,28,23] | [3,1,16]
  -> READ OUT
- -> OUT selects outer-H page-start layer
- -> HERE
- -> p50[HERE]=4D
- -> fourth D ; H -> GCD -> e=3
- -> THE / DIRECTION -> p29 -> WAY
- -> WAY/MAP -> p26 -> FOURTH D ; H
- -> p28 fourth-D/H -> GCD -> e=3
+ -> selective local HERE corroboration
+ -> blind continuation MPAEO
+ -> stop
 ```
 
-Two distinctions are essential.
+The low/right p50 constructions around ROAD/PATHS, FOUND, NUMBERS, and DIRECTION remain reproducible route-specific structures. Director #1787's sealed GOOD→LUCK miss rejects their promotion to a general navigation opcode.
 
-First, the native-base60 low/right p50 constructions remain reproducible: ROAD/PATHS↔FOUND and NUMBERS/DIRECTION→...→FIND→p28. Director #1787's sealed GOOD→LUCK miss and 0/84 held-out adjacent transitions reject their promotion to a general navigation opcode. They are corroborating structures rather than a required step in the chain above.
+The strongest remaining p28 premise is the two-part power application: assigning the independently repeated `[3,27]` pair to the exact center singleton and adjacent five-rune word. P28 geometry and the literal DH marker motivate that split, while the independently selected p39 coordinates `[55,20]` choose the resulting raw output before transliteration.
 
-Second, the strongest remaining p28 premise is the two-part application itself: assigning the independently repeated `[3,27]` power pair to the exact center singleton and adjacent five-rune word. P28's geometry and literal DH marker motivate that split, and the independently selected p39 coordinates `[55,20]` choose the resulting raw output before transliteration.
-
-The strongest downstream route-specific results are READ OUT→HERE, HERE→4D→fourth-D/H→GCD, and the p29/p26 loop returning FOURTH D; H to the same p28 consumer. These are candidate instruction/state structures rather than continuous unknown-page plaintext.
-
-A decisive next advance should derive fresh unknown plaintext or a new receiver outside this already used loop from one of the source-selected operations, or produce a first-party instruction that fixes the p28 two-part power assignment before the output is considered.
+A decisive next advance should recover fresh unknown plaintext or a fresh receiver outside the already mined HERE loop, or supply a first-party instruction that fixes the p28 two-part power assignment before the output is considered.
 
 ## Reproduction
 

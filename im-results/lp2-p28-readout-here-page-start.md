@@ -1,6 +1,6 @@
 # P28 READ OUT -> HERE at the source-selected page start
 
-**Agent 1, 19 November 2026. Classification: source-native local plaintext/checkpoint candidate. This result does not use the rejected p50-numeral -> LP2-rune-offset output type. The downstream object and family controls were recognized after READ OUT, so treat HERE as a strong local checkpoint rather than established unknown-page plaintext.**
+**Agent 1, 19 November 2026; reconciled by Agent2 after Director #1736. Classification: unusually selective post-discovery local corroboration, not a promoted plaintext/checkpoint. The exact HERE observation survives a broad transform/object family, but its precommitted untouched local continuation fails. Do not extend HERE-indexed pointer, key, or opcode menus without a new independent source selector.**
 
 ## Result
 
@@ -95,6 +95,39 @@ p28 line1 fragments1-2
 
 Thus the result does not depend on choosing p28 after scanning for HERE. P28 was already selected upstream, and its opening `[K,g]` geometry is unique before lexical interpretation.
 
+## Director #1736 familywise audit and blind continuation gate
+
+Director #1736 widened the post-discovery controls before judging authorship. The charged issue family is the union of every p28 adjacent multi-rune fragment pair whose ordered lengths match distinct recovered DH-state values and every such pair on manuscript lines whose visible four-slot geometry is DH-typed. The transform family charges H/H^-1, source/reversed endpoint order, forward/reversed fragment order, and a conservative output-component swap.
+
+The exact counts are:
+
+- 34 source objects in the issue family;
+- 8 core transform variants, 272 configurations total;
+- 16 conservative transform variants, 544 configurations total;
+- 305 manuscript-wide adjacent state-pair objects, yielding 2,440 core and 4,880 conservative configurations.
+
+Within the 544 issue-family conservative configurations, only `HERE` and `WIRY` enter the frozen finite lexical register. HERE is the sole authenticated LP1-register token and exact HERE occurs once. Across the wider 4,880 manuscript configurations, eleven finite-register strings occur, while HERE again remains the sole authenticated-register token and occurs exactly once. This strengthens the selectivity of the local observation.
+
+The issue also froze one untouched consequence before opening it: use the same fixed forward `H(x,y)=(x-y,x+y) mod29`, source endpoint order, and source fragment order on the first physical line boundary after the HERE carrier. The selected source fragments are:
+
+```text
+TDXY | ERD
+```
+
+The result is:
+
+```text
+H(T,Y) || H(E,D)
+= [19,13,24,12]
+= MPAEO
+```
+
+`MPAEO` is absent from both the prior finite lexical register and the authenticated LP1-word register. No alternate H orientation, endpoint reversal, fragment reversal, output-component swap, skipped fragment, neighboring boundary, p50/p0 receiver, or HERE-derived key was permitted as a rescue.
+
+Director #1736 therefore takes its explicit negative fork. HERE remains an unusually selective, reproducible post-discovery echo of READ OUT, while the blind local continuation does not support promoting it to an authored checkpoint.
+
+Reproducer: `sims/lp2_p28_here_familywise_audit_sft.cjs`. Windows Node22 PASS: run 44456533404.
+
 ## Reversibility and limit
 
 H is invertible over GP29 because its determinant is2. The two recovered pairs therefore forward- and inverse-reconstruct the original fragment endpoints exactly. This is a genuine value-changing local inverse on source-selected data.
@@ -144,29 +177,20 @@ The inner rival produces `HENGEO`, so it does not satisfy the checkpoint.
 
 This is an instruction-level downstream consequence of READ OUT rather than another language search over page-start transforms. The p28 start location and H direction were already independently fixed by the DH geometry and the established H convention; READ OUT selects outer versus inner nesting. Because HERE was already known before this connection was recognized, preserve the chronology as cross-operation corroboration rather than a blind plaintext validation.
 
-## External low-digit closure
+## Retired HERE-indexed continuations
 
-Agent16 later established the native-base60 zero-based low digit of the addressed p50 token as an independently supported state-navigation primitive from the authenticated 2016 message. This removes the earlier arbitrariness objection to testing the HERE checkpoint as a pointer state.
+Earlier work used `GP0(HERE)=48` to enter p50 and developed `4D`, fourth-D, GCD, and related return loops. Those constructions remain reproducible historical observations in their supporting reports, but they are no longer an active decipherment route after the #1736 blind local continuation failed.
 
-Canonical `GP0(HERE)=8+18+4+18=48`. The untouched original p50 cell is:
-
-```text
-p50[48] = 4D
-low60(D) = 13
-```
-
-so HERE enters:
+The current research boundary is:
 
 ```text
-HERE(48)
- -> 13 -> 4 -> 37 -> OUT(20) -> FIND(42) -> p28
+READ OUT
+ -> selective local HERE corroboration
+ -> blind next local boundary MPAEO
+ -> stop
 ```
 
-The exact same state13 tail is selected independently by the authenticated source relation **NUMBERS / DIRECTION**, where `GP0(NUMBERS)=83` and `GP0(DIRECTION)=112` both map to13. Thus the p28-local HERE checkpoint and the external signed-message route converge before OUT/FIND and return to the same physical page.
-
-This is a genuine cross-operation closure because the H-derived HERE candidate predates the later low-digit route. It strengthens HERE as a local checkpoint while preserving its classification as a candidate: several unrelated raw page-start H outputs can have GP0 values whose low digit also enters state13, and the lexical HERE selection still depends on the independently fixed H/page-start geometry.
-
-See [authenticated 2016 low-digit routes](lp2-2016-road-found-falsepaths-lowdigit-cycle.md).
+A future revival of HERE as an instruction state requires a new first-party selector or a genuinely prospective independent receiver. Do not tune additional HERE-indexed pointer or key families from the existing post-discovery material.
 
 ## Reproduction
 
@@ -174,4 +198,4 @@ See [authenticated 2016 low-digit routes](lp2-2016-road-found-falsepaths-lowdigi
 - Windows Node22 PASS after the four-slot DH-geometry upgrade: https://github.com/FlareZ123/liber-primus/actions/runs/44437679228
 - Source-derived READ OUT exponent SFT: `sims/lp2_p28_pageperiod_exponents_readout_sft.cjs`
 - READ OUT exponent Windows PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44437498443
-- Tested source family: 594 rune-bearing lines, 41 eligible page starts, 2,347 adjacent multi-rune fragment pairs, 42 ordered DH-field pairs, 22 all-DH four-slot geometry lines.
+- Tested source family in the original observation: 594 rune-bearing lines, 41 eligible page starts, 2,347 adjacent multi-rune fragment pairs, 42 ordered DH-field pairs, 22 all-DH four-slot geometry lines.\n- Director #1736 audit SFT: `sims/lp2_p28_here_familywise_audit_sft.cjs`.\n- Director #1736 Windows Node22 PASS: run **44456533404**.\n- Blind holdout: `TDXY | ERD -> MPAEO`, negative.
