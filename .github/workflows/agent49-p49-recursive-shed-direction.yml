@@ -1,0 +1,15 @@
+name: Agent49 p49 recursive SHED DIRECTION transfer
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sft:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run p49 recursive SHED transfer SFT
+        run: node sims/lp2_p49_recursive_shed_direction_transfer_sft.cjs
