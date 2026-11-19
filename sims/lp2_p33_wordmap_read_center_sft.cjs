@@ -23,6 +23,11 @@ function mod29(value) {
   return ((value % 29) + 29) % 29;
 }
 
+/** @param {number} left @param {number} right @returns {[number, number]} */
+function H(left, right) {
+  return [mod29(left - right), mod29(left + right)];
+}
+
 /** @param {number} base @param {number} exponent @returns {number} */
 function pow29(base, exponent) {
   let result = 1;
@@ -90,6 +95,8 @@ function physicalPart(physicalPage) {
 
 const e = 3;
 const q = 4;
+const A = 8;
+const K = 2;
 const wordExponent = 27;
 const readGp = [4, 28, 23];
 assert.equal(spell(readGp), "READ");
@@ -107,6 +114,29 @@ assert.deepEqual(
   upperBodyWords.map((word) => word.values.length),
   [2, 9, 6, 3, 3, 5, 3, 2, 7, 3, 3, 6, 5, 8, 2, 3, 2, 2, 2, 3, 2]
 );
+
+const upperWordGp0 = upperBodyWords.map((word) =>
+  word.values.reduce((sum, value) => sum + value, 0)
+);
+assert.deepEqual(
+  upperWordGp0,
+  [34, 156, 94, 49, 40, 86, 20, 47, 105, 38, 33, 59, 63, 141, 40, 36, 19, 15, 31, 46, 31]
+);
+
+// Existing state quantities select four word positions before their values
+// are consumed as a map: e=3, H(e,q)[1]=7, e^2=9 and A+K=10.
+const hEq = H(e, q);
+assert.deepEqual(hEq, [28, 7]);
+const TUNNELNG_GP0 = 94;
+const THE_GP0 = 20;
+const FIND_GP0_MAP = 42;
+const DIVINITY_GP0 = 105;
+const WITHIN_GP0 = 38;
+assert.equal(upperWordGp0[e - 1], TUNNELNG_GP0);
+assert.equal(upperWordGp0[hEq[1] - 1], THE_GP0);
+assert.equal(low60(THE_GP0), FIND_GP0_MAP);
+assert.equal(upperWordGp0[e ** 2 - 1], DIVINITY_GP0);
+assert.equal(upperWordGp0[A + K - 1], WITHIN_GP0);
 
 // e^2=9 selects exactly one word inside the already selected 81-rune body.
 const selected = upperBodyWords
@@ -154,6 +184,57 @@ assert.equal(READ_GP0, 55);
 assert.equal(low60(READ_GP0), OUT_GP0);
 assert.equal(low60(OUT_GP0), FIND_GP0);
 assert.equal(low60(FIND_GP0), 28);
+
+// Charge the exact state-selected word map across every 21-word manuscript
+// window. The receiver is unique without language scoring.
+let mapWindows = 0;
+const mapTupleHits = [];
+const divinityWithinPairHits = [];
+for (let physicalPage = 0; physicalPage <= 55; physicalPage += 1) {
+  if (physicalPage === 50) continue;
+  const words = parseWords(physicalPart(physicalPage));
+  const sums = words.map((word) =>
+    word.values.reduce((sum, value) => sum + value, 0)
+  );
+
+  for (let start = 0; start + 21 <= words.length; start += 1) {
+    mapWindows += 1;
+    const window = sums.slice(start, start + 21);
+    if (
+      window[e - 1] === TUNNELNG_GP0
+      && window[hEq[1] - 1] === THE_GP0
+      && window[e ** 2 - 1] === DIVINITY_GP0
+      && window[A + K - 1] === WITHIN_GP0
+    ) {
+      mapTupleHits.push({
+        physicalPage,
+        startWord: start + 1,
+        startOffset: words[start].start,
+      });
+    }
+  }
+
+  for (let index = 0; index + 1 < sums.length; index += 1) {
+    if (sums[index] === DIVINITY_GP0 && sums[index + 1] === WITHIN_GP0) {
+      divinityWithinPairHits.push({
+        physicalPage,
+        word: index + 1,
+        pageOffset: words[index].start,
+      });
+    }
+  }
+}
+assert.equal(mapWindows, 1833);
+assert.deepEqual(mapTupleHits, [{
+  physicalPage: 33,
+  startWord: 3,
+  startOffset: 10,
+}]);
+assert.deepEqual(divinityWithinPairHits, [{
+  physicalPage: 33,
+  word: 11,
+  pageOffset: 43,
+}]);
 
 // Manuscript-wide fixed control: every complete nine-rune unknown-page word,
 // same exponent27, same central three-rune extraction.
@@ -241,7 +322,27 @@ for (const word of lowerNine) {
 
 console.log(JSON.stringify({
   status: "PASS",
-  sourceState: { e, q, upperBodyRunes: e ** q },
+  sourceState: { e, q, A, K, hEq, upperBodyRunes: e ** q },
+  wordMap: {
+    upperWordGp0,
+    selectedPositions: {
+      tunnelng: e,
+      the: hEq[1],
+      divinity: e ** 2,
+      within: A + K,
+    },
+    selectedValues: {
+      tunnelng: upperWordGp0[e - 1],
+      the: upperWordGp0[hEq[1] - 1],
+      findViaLowDigitOfThe: low60(THE_GP0),
+      divinity: upperWordGp0[e ** 2 - 1],
+      within: upperWordGp0[A + K - 1],
+    },
+    recoveredInstruction: "FIND THE DIVINITY WITHIN",
+    manuscriptWindowsCharged: mapWindows,
+    exactMapTupleHits: mapTupleHits,
+    exactDivinityWithinPairHits: divinityWithinPairHits,
+  },
   selection: {
     uniqueUpperBodyLength: e ** 2,
     bodyWord: selected[0].bodyWord,
@@ -290,5 +391,5 @@ console.log(JSON.stringify({
     lowerBodyNineRuneWords: lowerNine.length,
     analogousLowerOutHits: 0,
   },
-  decision: "Strong source-constrained p33 upper-body plaintext candidate: the risen-THEIR route recovers [e,q]=[3,4] and selects the 81-rune body; its unique e^2=9 word has source third sums [34,74,48] = [THEIR, p50-low->25(second THEIR), HERE], and under the already authenticated p28 word exponent27 its central e=3 GP runes are R-EA-D = READ. Across all 77 complete nine-rune words, only two have left THEIR, two have right HERE, one has both outer identities, and that same sole word is the unique center READ hit. Preserve as a conditional plaintext recovery pending independent adjudication; do not infer OUT or a whole-body cipher.",
+  decision: "Strong source-constrained p33 word-map and upper-body plaintext candidate: state-selected positions e=3, H(e,q)[1]=7, e^2=9 and A+K=10 yield TUNNELNG / THE / DIVINITY / WITHIN, with the pre-existing THE->FIND transition giving FIND THE DIVINITY WITHIN; this four-position tuple is unique across 1,833 manuscript 21-word windows. the risen-THEIR route recovers [e,q]=[3,4] and selects the 81-rune body; its unique e^2=9 word has source third sums [34,74,48] = [THEIR, p50-low->25(second THEIR), HERE], and under the already authenticated p28 word exponent27 its central e=3 GP runes are R-EA-D = READ. Across all 77 complete nine-rune words, only two have left THEIR, two have right HERE, one has both outer identities, and that same sole word is the unique center READ hit. Preserve as a conditional plaintext recovery pending independent adjudication; do not infer OUT or a whole-body cipher.",
 }, null, 2));
