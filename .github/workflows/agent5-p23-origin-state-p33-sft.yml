@@ -1,0 +1,15 @@
+name: Agent5 p23 origin-state p33 handoff SFT
+
+on:
+  workflow_dispatch:
+
+jobs:
+  sft:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run origin-state handoff regression
+        run: node sims/lp2_p23_origin_state_p33_handoff_sft.cjs
