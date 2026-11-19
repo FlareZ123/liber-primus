@@ -117,6 +117,9 @@ for (const relative of [
 const lexicon4 = new Set(
   dictionaryWords.filter((word) => /^[a-z]{4}$/u.test(word))
 );
+const lexiconAll = new Set(
+  dictionaryWords.filter((word) => /^[a-z]+$/u.test(word))
+);
 assert.equal(lexicon4.has("lead"), true);
 assert.equal(lexicon4.has("gums"), true);
 
@@ -252,6 +255,132 @@ for (const target of signedTargets) {
 assert.equal(signedTargets.length * fourRuneWords, 4112);
 assert.equal(allA1Hits.length, 12);
 
+// Conditional inverse gate: do not assume ROAD.  Start from the fixed four-rune
+// ciphertext word and require a four-letter A1Z26 English key whose canonical
+// GP0 -> p50 interpretation lands on either boundary of the same word.  Charge
+// both historically live radices (base60 and drop-f base59).  Ask whether the
+// resulting GP plaintext is also an English word.
+const tableTokens = grid.pages.flatMap((page) => page.tokens);
+const alphabet59 = grid.alphabet.replace("f", "");
+/** @param {string} token @returns {number|null} */
+function base59Value(token) {
+  const high = alphabet59.indexOf(token[0]);
+  const low = alphabet59.indexOf(token[1]);
+  if (high < 0 || low < 0) return null;
+  return high * 59 + low;
+}
+
+const inverseClosureCandidates = [];
+const inversePlaintextHits = [];
+for (const keyWord of lexicon4) {
+  const keyGp = gp(keyWord);
+  const address = keyGp.reduce((a, b) => a + b, 0);
+  if (address >= tableBytes.length) continue;
+
+  const token = tableTokens[address];
+  const value60 = tableBytes[address];
+  const value59 = base59Value(token);
+  const closure = [];
+  if (value60 === roadWord.start) closure.push("base60-start");
+  if (value60 === roadWord.end) closure.push("base60-end");
+  if (value59 === roadWord.start) closure.push("base59-start");
+  if (value59 === roadWord.end) closure.push("base59-end");
+  if (!closure.length) continue;
+
+  const key = [...keyWord.toUpperCase()].map(
+    (char) => char.charCodeAt(0) - 64
+  );
+  const plain = roadWord.values.map(
+    (value, index) => (value - key[index] + 29) % 29
+  );
+  const plaintext = plain
+    .map((value) => corpus.translit[value])
+    .join("")
+    .toLowerCase();
+
+  const row = {
+    keyWord,
+    address,
+    token,
+    value60,
+    value59,
+    closure,
+    plain,
+    plaintext,
+  };
+  inverseClosureCandidates.push(row);
+  if (lexiconAll.has(plaintext)) inversePlaintextHits.push(row);
+}
+assert.equal(inverseClosureCandidates.length, 74);
+assert.deepEqual(
+  inverseClosureCandidates.reduce((counts, row) => {
+    for (const item of row.closure) counts[item] = (counts[item] || 0) + 1;
+    return counts;
+  }, {}),
+  {"base60-end": 27, "base59-start": 47}
+);
+assert.deepEqual(inversePlaintextHits, [{
+  keyWord: "lead",
+  address: 71,
+  token: "1m",
+  value60: 108,
+  value59: 106,
+  closure: ["base60-end"],
+  plain: [4,3,24,23],
+  plaintext: "road",
+}]);
+
+// Global calibration of the same dual-English self-closure rule.  It is not
+// unique manuscript-wide, so the p0 recovery is conditional on the receiver
+// having already been fixed independently by the READ OUT/THE route.
+let dualEnglishSelfClosures = 0;
+const selectedDualClosures = [];
+for (let page = 0; page <= 55; page += 1) {
+  if (page === 50) continue;
+  const words = parseWords(physicalPart(page));
+  for (let wordIndex = 0; wordIndex < words.length; wordIndex += 1) {
+    const word = words[wordIndex];
+    if (word.values.length !== 4) continue;
+    for (const keyWord of lexicon4) {
+      const keyGp = gp(keyWord);
+      const address = keyGp.reduce((a, b) => a + b, 0);
+      if (address >= tableBytes.length) continue;
+      const token = tableTokens[address];
+      const value60 = tableBytes[address];
+      const value59 = base59Value(token);
+      if (
+        value60 !== word.start && value60 !== word.end &&
+        value59 !== word.start && value59 !== word.end
+      ) continue;
+
+      const key = [...keyWord.toUpperCase()].map(
+        (char) => char.charCodeAt(0) - 64
+      );
+      const plain = word.values.map(
+        (value, index) => (value - key[index] + 29) % 29
+      );
+      const plaintext = plain
+        .map((value) => corpus.translit[value])
+        .join("")
+        .toLowerCase();
+      if (!lexiconAll.has(plaintext)) continue;
+
+      dualEnglishSelfClosures += 1;
+      if (page === 0 && word.start === 105) {
+        selectedDualClosures.push({keyWord, plaintext, address, value60, value59});
+      }
+    }
+  }
+}
+assert.equal(dualEnglishSelfClosures, 45);
+assert.deepEqual(selectedDualClosures, [{
+  keyWord: "lead",
+  plaintext: "road",
+  address: 71,
+  value60: 108,
+  value59: 106,
+}]);
+
 // LEAD is local: repeating it beyond ROAD does not yield a prose continuation.
 const p0Runes = corpus.pages.find((page) => page.page === 0).indices;
 const repeated = p0Runes.slice(105, 145)
@@ -283,7 +412,11 @@ console.log(JSON.stringify({
     fixedReceiverHits,
     allA1PairCount: signedTargets.length * fourRuneWords,
     allA1HitCount: allA1Hits.length,
+    inverseClosureCandidates: inverseClosureCandidates.length,
+    inversePlaintextHits,
+    dualEnglishSelfClosures,
+    selectedDualClosures,
   },
   classification:
-    "ROAD->LEAD is a post-discovery semantic/key checksum on an independently selected receiver. It strengthens the local ROAD candidate but does not source-select A1Z26 as a general cipher or define the next state transition.",
+    "At the independently fixed p0 receiver, a finite boundary-self-closing English-key search conditionally recovers LEAD -> ROAD as its only dual-English pair. The rule is not unique manuscript-wide and A1Z26 remains a manuscript-internal conditional rather than an authenticated general KDF.",
 }, null, 2));
