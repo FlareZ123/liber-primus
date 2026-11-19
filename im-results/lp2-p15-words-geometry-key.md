@@ -64,6 +64,24 @@ No unknown ciphertext is inspected to obtain this readout.
 
 This has a useful independent overlap. The p36-p38 numbered packet has identical red ten-dot brackets and printed section numbers1..5; under the same already fixed zero-based source convention, `10 -> PRIMUS` and `10+[1..5] -> IS THE WAY ITS WORDS`. The two manuscript structures therefore reconstruct the same source clause by different visible number layouts.
 
+## 1.5 Complete red-span packet family
+
+The p15 arithmetic skeleton is also exceptional inside the exact manuscript visual family that can express it. Charge every page with at least two red spans and at least one red large-punctuation count, preserving natural span order, and form:
+
+```text
+[first red-span length, second red-span length, red-dot count, physical page].
+```
+
+Only three such packets exist:
+
+```text
+p3  -> [16,3,13,3]   differences [-13,10,-10]
+p15 -> [9,11,13,15]  differences [2,2,2]
+p33 -> [10,8,13,33]  differences [-2,5,20]
+```
+
+P15 is the sole arithmetic progression in this complete source-visible family. Its common difference is `2=K`, and the four terms are exactly authenticated source indices `LIBER / IS / WAY / WORDS`. This census was run after the p15 pattern had been noticed, so it is a finite visual-family control rather than a blind discovery probability.
+
 ## 2. The p8-p15 same-index corridor
 
 The source clause is not isolated from the existing navigation graph.
