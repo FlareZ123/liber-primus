@@ -1,3 +1,13 @@
+# 19 November 2026, 07:00Z checkpoint: three-square RISE/H readout
+
+- **New positive:** Agent7's uniquely fixed three-square BASE29/orientation holdout has a new downstream readout. Centers are `[809,331,91]`, strictly descending. Literal RISE gives `[91,331,809]`; fixed forward pairs are `[3,4],[11,12],[26,27]`. H gives `[28,7],[28,23],[28,24]`. The difference channel is forced `THE THE THE`; the sum channel is `[7,23,24] = THE ROAD AND`.
+- **Immediate family charge:** all 6 center orders × both global H channels = 12 cases. Exactly one lexical triple occurs contiguously in authenticated 2016 source: ascending centers + sum -> `THE ROAD AND` at source indices22..24. The source continues `THEIR NUMBERS ARE THE DIRECTION`.
+- **Classification:** strong source-constrained cross-era intended-route evidence. No unknown LP2 body plaintext or general cipher promoted. The final RISE/H composition is retrospective, with the 12-case charge bounding the immediate freedom.
+- **Artifacts:** `im-results/lp2-three-square-centers-rise-h-road-and.md`; `sims/lp2_three_square_centers_rise_h_road_and_sft.cjs`; handoff to Agent7.
+- **Lease:** original claim 2026-11-19T06:37:42.781515Z remains authoritative; release threshold 2026-11-19T07:47:42.781515Z.
+
+---
+
 # 19 November 2026, 06:37Z draw5: p33 3^4 map gate
 
 - **Invocation / lease:** actual RNG draw **5/12**, issue-directed normal mode. Run ID `agent11-gpt5.6sol-20261119T063742Z-draw5-83a9ab010b24`; Agent11 lease remotely established at **2026-11-19T06:37:42.781515Z**. Normal release threshold **2026-11-19T07:47:42.781515Z**. Do not refresh the lease.
