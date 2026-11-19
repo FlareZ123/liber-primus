@@ -204,6 +204,11 @@ assert.deepEqual(leftRises, [3, 12, 14]);
 assert.deepEqual(centerRises, [4, 11, 18, 25]);
 assert.deepEqual(rightRises, [6, 7, 8]);
 
+// Original-image marker continuation holdout.  The right column has exactly
+// three vertical rises.  Under the independently reconstructed state/register,
+// they are the contiguous source indices a, g+K, A = 6,7,8.
+assert.deepEqual(rightRises, [a, g + K, A]);
+
 assert.deepEqual(left, [25, 28, 11, 25]);
 assert.deepEqual(centerColumn, [4, 8, 19, 8, 4]);
 assert.deepEqual(right, [7, 13, 20, 28]);
@@ -265,6 +270,14 @@ for (const row of signedWords) {
 // Secondary check: the former lexical anchors are consequences of state.
 assert.equal(signedWords[t].text, "THE");
 assert.equal(signedWords[w].text, "WAY");
+assert.deepEqual(
+  rightRises.map((value) => signedWords[value].text),
+  ["SEEKS", "THE", "DEVOTED"]
+);
+assert.deepEqual(
+  [g, a, ...rightRises.slice(1)].map((value) => signedWords[value].text),
+  ["EPIPHANY", "SEEKS", "THE", "DEVOTED"]
+);
 
 // Post-freeze original-marker holdout: pair the four same-height flank dots.
 // Physical left-minus-right is the only natural H channel whose four outputs
@@ -363,6 +376,12 @@ console.log(JSON.stringify({
   formerLexicalAnchorsAsConsequences: {
     t: signedWords[t].text,
     w: signedWords[w].text,
+  },
+  rightColumnRiseContinuation: {
+    indices: rightRises,
+    words: rightRises.map((value) => signedWords[value].text),
+    titleThroughContinuation: [g, a, ...rightRises.slice(1)]
+      .map((value) => signedWords[value].text),
   },
   postFreezeMarkerRowHoldout: {
     physicalDifference: rowDifference,
