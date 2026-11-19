@@ -168,3 +168,5 @@ Run:
 `node sims/lp2_p33_will_index33_local_inverse_sft.cjs`
 
 The SFT verifies the upstream page selector, authenticated WILL state, unique p33 receiver, exact inverse, p33 layout-scalar family, and manuscript-wide exact-key control.
+
+Windows Node22 verification: generic read-only SFT run `44456442823` passed, including the 513-word manuscript-wide fixed-key control.
