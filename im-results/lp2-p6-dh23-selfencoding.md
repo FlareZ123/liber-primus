@@ -34,7 +34,18 @@ The passage is bracketed by red dot counts **10** and **13**.
 - ordinary difference: `13-10 = 3`, the independently selected GP29 cube exponent;
 - exact passage length: `161 = 7×23`.
 
-The pair 10/13 is not globally unique among all red punctuation transitions, so this is supporting structure rather than a standalone selector. Here the passage itself is already selected by `NEXT→6`.
+The pair 10/13 is not globally unique among red punctuation transitions, so the boundary arithmetic alone is supporting structure. There are exactly **six** consecutive red-boundary intervals in the manuscript whose endpoint counts sum to23 and differ by3. A matched familywise census applies the same sixth-rune/sixth-word readout to all six:
+
+| red-boundary interval | runes | words | sixth rune | sixth complete word / H | matches B=19 and H=[6,22]? |
+|---|---:|---:|---:|---|---|
+| p33:13 → p36:10 | 746 | 170 | 1 | `NW → [2,16]` | no |
+| **p38:10 → p39:13** | **161** | **34** | **19** | **`XH → [6,22]`** | **yes** |
+| p39:13 → p49:10 | 2474 | 560 | 23 | non-2-rune | no |
+| p49:10 → p53:13 | 534 | 120 | 20 | non-2-rune | no |
+| p56:13 → p56:10 | 40 | 11 | 3 | non-2-rune | no |
+| p56:10 → p56:13 | 40 | 12 | 18 | non-2-rune | no |
+
+Thus the independently NEXT-selected passage6 is the **only source-shaped 10/13 interval** that simultaneously reproduces `B=19` at rune6 and `[a,p−1]=[6,22]` at word6.
 
 ### The selected sixth word
 
@@ -119,7 +130,7 @@ This is materially stronger than noticing isolated DH numbers in ciphertext. The
 - first rune of first p39 continuation word → `b=15`;
 - ordinary DH computation → `K=2`.
 
-The strongest remaining rival is deliberate-looking coincidence in a structure found after DH23 was already known. The discriminating feature is the density of mutually consistent, source-fixed coordinates in one independently selected passage. This should be independently audited against a predeclared family of comparable passage/word/page-boundary statistics before promotion to an established cipher instruction.
+The strongest remaining rival is deliberate-looking coincidence in a structure found after DH23 was already known. The discriminating feature is the density of mutually consistent, source-fixed coordinates in one independently selected passage. The first matched familywise audit now shows that the joint sixth-rune/sixth-word signature is unique among all six comparable consecutive 10/13 red-boundary intervals. A broader independent audit of passage-selection rules and page-break features is still appropriate before promoting this to an established cipher instruction.
 
 ## Reproduction
 
