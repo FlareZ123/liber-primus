@@ -12,10 +12,7 @@ T(n) = phi(p_n) mod29 = (p_n - 1) mod29
 
 No parameter is fitted on p28.
 
-P28 now has two independent manuscript selectors that do not consume its candidate plaintext:
-
-- solved p57 `FIND` reaches physical p28 through the established p50 register;
-- p23 physical page `p=23` plus its visible five-dot/`g=5` cardinal lands at `p+g=28`, whose page start carries the unique full DH-cardinal vector `[K,g,g+K,g,q]`.
+P28 is independently selected before this terminal readout by solved p57 `FIND` through the established p50 register. Its center-line geometry then independently reconstructs the complete DH23 state `(p,g,a,b,A,B,K,e,q)=(23,5,6,15,8,19,2,3,4)`. The weaker retrospective p23 `p+g=28` displacement is preserved separately as secondary corroboration and is not needed here.
 
 This makes a fixed layout-cardinal check on p28 materially different from an unrestricted manuscript scan.
 
@@ -101,6 +98,24 @@ No other unknown-page terminal last-four vector self-addresses its page under th
 A wider source-boundary sensitivity check prevents overstating that uniqueness. Charge first/last physical line × first/last four words × forward/reverse order on every unknown page with an eligible boundary. This is 404 configurations. Six configurations self-address numerically: two on p25 and four on p28. P28's hits include the first-line last-four sum42 as well as the terminal THERE sum42, with reversal duplicating each sum. Therefore **the self-pointer is unique only under the terminal-last-four operand rule**, not across every plausible boundary slice. The lexical output THERE is what makes that terminal slice especially suggestive, and that recognition was post-discovery.
 
 Chronology still matters. `THERE` was noticed before this self-pointer census was run, so the self-pointer is a post-discovery cross-operation validation rather than a blind plaintext prediction. The p50 register itself predates this observation and was held out from the cardinal scan.
+
+## The complete U THERE line returns the p28 DH state [K,b]
+
+The leading `U` is also numerically consequential without interpreting it as a homophone:
+
+```text
+GP0(U THERE) = 1 + 42 = 43
+p50[43] = 1D
+native base60(1D) = 73
+73 = 2*29 + 15
+divmod29(73) = [2,15] = [K,b].
+```
+
+Here `K=2` and `b=15` are independently fixed by p28 source geometry and standard DH closure. Across all 57 rune-bearing page terminals, p28 is the **only** terminal whose complete fixed-T serialization addresses a p50 pair exactly equal to ordered `[K,b]`. Charging the broader nine-value DH-state vocabulary instead of the exact ordered pair produces five terminal hits, so the state-family background is real and the specific `[K,b]` ordering should not be treated as a discovery-wide probability.
+
+Across all 604 printed rune-bearing lines, 18 lines have the same serialized GP0 total43, so the state pair alone does not select p28. What is selective is the conjunction already present at the source boundary: p28 is independently selected, its terminal vector is manuscript-unique, that vector spells `U THERE`, `THERE` self-addresses p28, and the complete line returns the page's independently reconstructed `[K,b]` state.
+
+This adds a typed local checkpoint without requiring the rebus reading “you there.”
 
 ## Relation to the local p28 evidence
 
