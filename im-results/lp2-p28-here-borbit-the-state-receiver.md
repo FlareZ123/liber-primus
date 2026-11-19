@@ -140,6 +140,29 @@ Require the first-to-second recurrence and a same-page occurrence of the predict
 
 This control shows that the recurrence-plus-third-state condition is not globally unique without the already motivated page-start selector. Under the page-start condition fixed by `READ OUT HERE`, p28 is unique.
 
+## The next physical line independently carries the DH group geometry
+
+The predicted recipient is on **line7**, immediately after the literal-DH line6. Once that location was noticed, the complete line geometry supplied a simpler source-path hypothesis:
+
+```text
+line7 rune count      = 22 = p-1
+line7 fragment count  = 6  = a
+target fragment index = 3  = e
+target fragment length= 5  = g
+```
+
+The first two quantities select the receiver line without reading any line7 rune values. Charge this exact next-line rule across all **289** invertible nontrivial manuscript-wide DH variants:
+
+- every variant has a physical `a+1` line;
+- 10 have `a+1` line length `p-1`;
+- 69 have `a+1` fragment count `a`;
+- exactly **1** satisfies both line-level conditions: p28;
+- among the broader family, 110 have an in-range `e`th fragment and 7 have that fragment's length equal to `g`.
+
+Thus the line itself uniquely echoes the DH group's order and the private exponent coordinate before `H(fragment e)` is read. On p28, `e=3` selects fragment3 and `g=5` matches its length. Applying the already fixed outer-H readout then gives `[2,18]=THE`.
+
+This geometry was discovered after the recurrence had already predicted the target endpoint pair, so it is a post-location validation rather than a prospective discovery statistic. It materially improves the plausible human solve path because a player can move from the literal `DH` line to the immediately following `p-1`/ `a` line, then use the already derived inverse exponent `e` to choose a fragment.
+
 ## The predicted receiver closes on the DH state
 
 The target was selected first by its predicted **outer endpoints** `[10,8]`. Its interior then supplies independent local structure.
@@ -186,24 +209,9 @@ Within the 711-row nontrivial family, the individual equalities occur 22, 31, an
 
 ## State-coordinate control
 
-The predicted receiver also occupies a compact coordinate in the calibrated state:
+The predicted receiver also occupies the compact state coordinate `(line,fragment,length)=(a+1,e,g)=(7,3,5)`. The line-level `(p-1,a)` geometry above already isolates p28 among the 289 invertible nontrivial variants. The broader coordinate census records 110 in-range `(a+1,e)` fragments, 7 with recipient length `g`, exactly 1 with the predicted outer H pair, and exactly 1 with the complete five-rune DH-state formula. The sole final hit is p28.
 
-```text
-line = a+1 = 7
-fragment = e = 3
-fragment length = g = 5.
-```
-
-Charge this coordinate rule across all **289** invertible nontrivial DH variants from the independent manuscript-wide family:
-
-- 110 variants have an in-range `(a+1,e)` fragment;
-- 7 of those have recipient length `g`;
-- exactly 1 has the predicted outer H pair;
-- exactly 1 has the complete five-rune DH-state formula.
-
-The sole hit is p28.
-
-This coordinate relation was noticed after the endpoint prediction had already selected p28 line7 fragment3. It strengthens the local mechanism while remaining post-location evidence.
+The coordinate and line-geometry relations were noticed after the endpoint prediction had already selected p28 line7 fragment3. They strengthen the local mechanism while remaining post-location evidence.
 
 ## Interpretation
 
@@ -215,8 +223,9 @@ The useful causal path is now:
 4. the two H states expose one field-scaled transition, `A=8 -> 4`, with `p-g=18` fixed;
 5. the pre-existing state scalar `b=K^-1=15` exactly implements that transition;
 6. the same operation predicts `4 -> K=2`, hence `[K,p-g]=THE`;
-7. H inversion predicts source endpoints `[10,8]`, selecting the p28 line7 fragment before its interior is used;
-8. that recipient's source values and state coordinates close tightly on the same DH state.
+7. H inversion predicts source endpoints `[10,8]`, selecting p28 line7 fragment3 before its interior is used;
+8. independently, line7 has exactly `p-1=22` runes and `a=6` fragments, while `e=3` selects fragment3 and its length is `g=5`;
+9. that recipient's source values close tightly on the same DH state.
 
 This is materially stronger than obtaining `THE` by trying many keys against many fragments. The route still needs a prospective continuation or an independent first-party instruction that authenticates this H-coordinate recurrence. Applying the recurrence one more time predicts H `[1,18]`, and p28 contains no fragment with the corresponding endpoint pair. Do not repair that stop with a new scalar, skipped state, alternate coordinate, or fitted receiver.
 
