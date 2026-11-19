@@ -63,6 +63,8 @@ requested word33 absent.
 
 Every other authenticated ordinal1..43 has a direct numbered word on its corresponding physical page.
 
+As a semantic calibration only, hold the manuscript's one missing ordinal33 fixed and uniformly permute the 43 authenticated source-word labels across their positions. The literal token `YOU` lands at that fixed missing position in `1/43 ≈ 0.02326` of permutations. This is not an authorship p-value and is not multiplied by the packet uniqueness controls.
+
 The existence census alone is structural. The important point is that the unique failure occurs exactly after DIRECTION has recovered `p−1=22`.
 
 ## DIRECTION30 calibrates the register and the wrap modulus
