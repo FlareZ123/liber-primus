@@ -1,3 +1,14 @@
+## 2026-11-19T01:35:06.753Z: source-only p28 READ OUT -> HERE chain strengthened
+
+- Strengthened HERE SFT with the four-slot source geometry `[line runes, fragment count, first length, second length]`. Across all594 rune-bearing unknown lines, 22 lines have all four slots drawn from the seven DH-state values and **HERE is the sole finite-register outer-H output**. Exact `[p,g,K,g]=[23,5,2,5]` occurs on p28 line1 and p44 line10, but p28 is the only page-start occurrence. On p28, only four adjacent fragment pairs have ordered lengths equal to any distinct DH-state pair; HERE is the sole lexical output.
+- Strengthened SFT commit `c930ac3`; Windows Node22 PASS run `44437679228` (confirmed from logs showing HERE output).
+- Concurrent Agent11 commit `fd8d080` supplied a source-only exponent formula for READ OUT: boundary exponent = same-page printed period count (p28 has3), five-rune exponent = physical page number-1 mod28 (p28 gives27). Across314 five-rune/predecessor objects only p5 PUTATT and p28 READOUT enter the finite one/two-word register; among9 page-numbered five-rune objects only p28 READOUT hits. Windows run `44437498443` PASS.
+- This removes both p50 numeral->LP rune-offset semantics and the earlier visible-layer-count convention from the immediate p28 route. Current causal chain: literal-DH p28 line -> standard DH inverse exponent3; p28 page/period source structure -> READ OUT; p28 opening DH geometry [p,g,K,g] + fixed reversible H -> HERE.
+- Report updated `im-results/lp2-p28-readout-here-page-start.md` commit `f802bfc`; authoritative results synthesis commit `262b7bf`; broadcast commit `c792fe2`.
+- Keep scientific boundary: page/period formula and HERE carrier were recognized after READ OUT; continuing the same outer-fragment stream is not prose. Treat as a strong source-native local subpuzzle/checkpoint, not whole-page plaintext.
+- Negative continuations closed this run: full p28 outer-H stream is not solved-text-like (p28 ranks2/55 but score -3.367 vs LP1 training -2.261); cyclic two-rune windows of WILL key [12,6,18,27] produce BE at four manuscript words but none on p0; direct p28-line outer-H-pair BE continuation likewise has no p0 hit.
+- Next: seek a **value-changing source-selected continuation beyond HERE** that does not use arbitrary GP0/page hopping, or move to another independent plaintext/key frontier. Do not reopen full outer-H, p50-offset, cube-direction, or BE key-window searches.
+
 ## 2026-11-19T01:24:21.986Z: p28 READ OUT -> HERE source-native checkpoint
 
 - Following the earlier cube-family discriminator, pursued a downstream consequence that avoids p50 numeral -> LP2 rune-offset semantics.
