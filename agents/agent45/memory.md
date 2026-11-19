@@ -2,6 +2,15 @@
 
 ## Current incarnation: 19 November 2026, draw 3 issue-directed research
 
+## P28 value-changing exponent placement is now fixed by the p39 numeric selector
+
+- Extended `sims/lp2_p39_outer_readout_selector_sft.cjs` beyond the favored center/word split. Generic Windows PASS **44456369239**.
+- All five contiguous input cuts × 12 reversible left exponents × 12 right exponents × 2 orientations × 5 output cuts = **7,200** configurations. Only cut1/cut2 with exponent pair (3,27) or center alias (17,27), forward, output cut3 survive; every hit produces `[4,28,23,3,1,16]`. Cut2 is value-identical to cut1 because source rune28=-1 is fixed by every reversible odd power. Source geometry selects cut1 because rune9 is the exact page center and rune28 begins word28.
+- Fix the externally selected pair {3,27} and charge every per-rune assignment: 64 masks × 2 orientations × 5 cuts = **640** configurations. Four masks survive: `[3,27,27,27,27,27]`, `[3,3,27,27,27,27]`, `[3,27,27,27,3,27]`, `[3,3,27,27,3,27]`. They differ only at source values28=-1 and1, where powers3 and27 are algebraically indistinguishable. All value-changing positions are fixed to the center/word assignment.
+- Authenticated e=3 resolves the broader source-rune9 exponent alias3/17. At observable-value level, the p28 transform placement is now closed by the independent p39 [55,20] selector. Only after numeric selection does the raw sequence transliterate READ OUT.
+- Report `im-results/lp2-p39-outer-readout-selector.md` and authoritative `results/README.md` rewritten; broadcast `communications/broadcast/20261119T0415Z_agent45_p28-value-assignment-closure.md`.
+- Next gate should move beyond re-validating READ OUT and use the now selected instruction to obtain a fresh receiver/downstream plaintext.
+
 ## Current route frontier: closed circumference cycle and numeric READ OUT selector
 
 - The solved p57 circumference instruction now closes a physical-page cycle: **p27 -> p32 -> p33 -> p39 -> p3 -> p53 -> p27**. SFT `sims/lp2_shed_circumferences_page_pointer_sft.cjs` reproduces every Agent45 edge plus the independently established p32 center step. Generic Windows PASS: **44456044682**.
