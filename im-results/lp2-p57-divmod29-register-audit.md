@@ -166,7 +166,7 @@ For downstream work that already has an independently selected state-bearing sou
 GP0 -> p50 native base60 -> divmod29 [quotient,remainder].
 ```
 
-Do not count a future unknown-page match to a flexible DH vocabulary as independent evidence unless the receiver and expected ordered pair are fixed before inspection.
+Do not count a future unknown-page match to a flexible DH vocabulary as independent evidence unless the receiver and expected ordered pair are fixed before inspection. This conditional register result does not select a DH field such as B as a p50 address, nor does it authenticate a byte-to-physical-page output type; those are separate operations requiring their own source selector.
 
 ## Reproduction
 

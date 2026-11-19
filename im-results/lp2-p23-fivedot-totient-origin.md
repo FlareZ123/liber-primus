@@ -1,6 +1,6 @@
 # p23 five-dot / prime-totient route to `THE ORIGINAL` and the p23→p33 state handoff
 
-**Agent5, 19 November 2026. Classification: source-constrained hidden-layout instruction/state-route candidate. This does not decrypt p23 body ciphertext or by itself recover a general LP2 cipher. The seven-transliteration prefix `THEORIG` was found before the later suffix interpretation; the chronology and charged controls are kept explicit.**
+**Agent5, 19 November 2026. Classification: source-constrained hidden-layout candidate. The local packet yields `THE ORIGIN`; the `AL` suffix and p33 destination are conditional on an additional p50 pointer convention, not a creator-authenticated table instruction. This does not decrypt p23 body ciphertext or recover a general LP2 cipher. The seven-transliteration prefix `THEORIG` was found before the later suffix interpretation; the chronology and charged controls are kept explicit.**
 
 ## 1. Source selector and fixed serializer
 
@@ -89,16 +89,18 @@ B = g^b mod p     = 19
 A^b mod p = B^a mod p = 2 = K
 ```
 
-The already established state-to-page handoff uses `B` as a p50 address:
+The proposed state-to-page handoff treats `B` as a zero-based p50 address:
 
 ```text
 B=19
 p50[19] = 0X
 base60(0X) = 33
-=> physical p33
+=> candidate physical p33
 ```
 
-P33 then independently reproduces the same state in its red title packets:
+**Conditionality:** this step assumes (1) B is used as a zero-based p50 address, (2) the printed token is decoded in base60, and (3) the decoded integer is interpreted as a physical-page label. The original p50 table has no creator-authenticated digit legend/byte serialization or page-pointer output type. The p57 register audit conditionally prefers base60 for its tested solved-source mapping, and a 2014 participant repository shows that reading was available to a solver; neither specifies this B→page operation. The p23→p33 handoff is therefore conditional on this pointer grammar.
+
+If that destination is accepted, p33's red title packets provide a cross-object state match:
 
 ```text
 upper title lengths = [2,8] = [K,A]
@@ -125,12 +127,12 @@ Results:
 
 ```text
 54 assignments close the DH equations
-4 of those have p50[B] decoding to any physical page 0..57
-1 of those lands on a page whose first two exact red title packets
+4 of those yield a physical-page label under the assumed B→p50/base60 convention
+1 of those conditional destinations lands on a page whose first two exact red title packets
   equal that candidate's [K,A] and [e,g]
 ```
 
-That sole complete packet match is:
+That sole complete packet match within the assumed pointer convention is:
 
 ```text
 p23 line1
@@ -141,18 +143,18 @@ destination p33
 p33 red packets [2,8] / [3,5]
 ```
 
-P23 line1 itself admits six abstract DH labelings if source roles are ignored. The five rivals derive `B=8` or `B=16`, whose p50 values are 92 or121, outside LP physical pages. Thus the independently authenticated source order is also the only p23 closure with the pre-existing native-base60 physical-page handoff.
+P23 line1 itself admits six abstract DH labelings if source roles are ignored. The five rivals derive `B=8` or `B=16`, whose p50 values are 92 or121, outside LP physical pages. Thus the authenticated source order is the only p23 closure in this charged family whose conditional base60 destination reproduces the p33 title packet. The uniqueness is conditional on B-as-address and base60-byte-as-page semantics; the family does not authenticate those output types.
 
 ## 5. The handoff extends the instruction to `THE ORIGINAL`
 
-The state route supplies two further positive cardinals with no new operator:
+If the conditional B→p50[19]→base60→p33 pointer is accepted, the route supplies two further positive cardinals:
 
 ```text
 source physical page = 23
 derived destination page = 33
 ```
 
-Under the same fixed serializer:
+Applying the same fixed serializer to those physical page labels as positive one-based cardinals (another unverified output-type choice):
 
 ```text
 T(23) = A
@@ -166,15 +168,15 @@ Appending those two already-forced page cardinals to the p23 packet gives
  -> THE ORIGINAL
 ```
 
-This is the strongest current reading of the p23 hidden-layout route. It explains why stopping at `THE ORIGIN` was underdetermined: `THE ORIGIN` is a valid prefix, independently echoed by p50 cell0, while the same state handoff naturally supplies the next two cardinals and closes the longer phrase.
+The strongest source-local result is `THE ORIGIN`. `THE ORIGINAL` is a conditional extension: it follows only if the B→p50/base60→physical-page pointer and the page-label-as-T-cardinal convention are accepted. The p50 cell0 cross-check is itself conditional on the p57-derived base60/divmod29 register, so it is cross-object consistency rather than independent creator authentication of the p50 encoding.
 
 The independently recovered p33 **THEIR RISE** loop also confirms the p23 terminal cardinal25 from another source object. Authenticated `THEIR` occurs only at positions19 and25; p33 enters at `B=19` and its visible H chain reaches first coordinate25. That destination equals the selected p23 line's terminal GP0 and serializes to N under the same T map.
 
 Later numbered-route work closes the p33 handoff back to p23 through independently selected objects:
 
 ```text
-p23 -> p33
-  this report's B=19 / p50[19]=33 handoff
+p23 -> p33 (conditional)
+  this report's B=19 / p50[19]=33 base60/page handoff
 
 p33 -> p30
   fixed-key p33 YOU candidate, with GP0(YOU)=30
@@ -186,7 +188,7 @@ p31 -> p23
   unique lexical center change EMPTY -> ROAD, with ROAD index23.
 ```
 
-The first and last edges predate recognition of the closed cycle. The cycle therefore provides a downstream consumer for the p23→p33 handoff without modifying the p23 serializer or DH roles. The phrase `THE ORIGINAL` is descriptively compatible with returning to p23, but no direction word in this report explicitly commands that interpretation, so retain the semantic connection as provisional.
+The first and last edges predate recognition of the closed cycle. The cycle is a downstream consistency check conditional on the p23→p33 pointer convention; it does not independently authenticate the p50 address or output type. The phrase `THE ORIGINAL` is descriptively compatible with returning to p23, but no direction word in this report explicitly commands that interpretation, so retain the semantic connection as provisional.
 
 ## 6. Evidence boundary and failed transfer
 

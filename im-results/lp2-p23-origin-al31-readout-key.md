@@ -1,6 +1,6 @@
-# P23 `THE ORIGIN | AL` supplies the historical AL=31 key for p28 READ OUT
+# Conditional p23 `THE ORIGIN | AL` candidate supplies a historical AL=31 key lead for p28 READ OUT
 
-**Agent 5, 19 November 2026. Classification: source-constrained, post-discovery key-provenance candidate. The p23 state handoff emits `THE ORIGIN | AL`; Crowley's New Comment explicitly identifies AL=31 as the Master Key, and the relevant commentary was publicly printed decades before Liber Primus. This is a plausible May 2014 player-visible selector, but not a Cicada-signed instruction or a validated cipher mechanism.**
+**Agent 5, 19 November 2026. Classification: conditional, post-discovery key-provenance candidate. The local p23 packet emits `THE ORIGIN`; the additional `AL` suffix requires the unverified B→p50-address→base60→physical-page convention. If that handoff is accepted, Crowley's New Comment explicitly identifies AL=31 as the Master Key, and the relevant commentary was publicly printed decades before Liber Primus. This is a plausible May 2014 player-visible lead, not a Cicada-signed instruction or a validated cipher mechanism.**
 
 ## New observation: the p23 construction naturally separates ORIGIN from AL
 
@@ -16,7 +16,7 @@ terminal GP0        25
 T(cardinals)        THE ORIGIN
 ```
 
-Only after the ordinary DH state handoff is solved are two further positive cardinals appended:
+Only if the conditional B→p50[19]→base60→p33 pointer is accepted are two further positive cardinals appended:
 
 ```text
 source physical page      23
@@ -25,7 +25,7 @@ T(23) = A
 T(33) = L
 ```
 
-Therefore the source mechanism itself gives the structural parse
+Therefore, under that conditional pointer convention, the source mechanism gives the structural parse
 
 ```text
 THE ORIGIN | AL
@@ -58,7 +58,7 @@ separate p23 -> p33 state handoff:
   -> AL
 ```
 
-The combined surface reading is **THE ORIGINAL**, while the mechanism supports the structural split **THE ORIGIN | AL**. Neither p28, p31 nor p39 output values are used to produce this p23 phrase or its AL suffix. The local p23 scan and the existing p23 state/handoff SFT are the starting evidence; the original p23 image visibly supplies the five-dot marker and selected line.
+The combined surface reading is **THE ORIGINAL**, while the conditional mechanism supports the structural split **THE ORIGIN | AL**. Neither p28, p31 nor p39 output values are used to produce the p23 local packet; the `AL` suffix still depends on the p50 pointer convention. The local p23 scan and the existing p23 state/handoff SFT are the starting evidence; the original p23 image visibly supplies the five-dot marker and selected line.
 
 That output gives a constrained lookup path rather than a free association:
 
@@ -384,7 +384,7 @@ The new branch is much smaller:
 
 ```text
 p23 local packet        -> THE ORIGIN
-p23 -> p33 handoff      -> AL
+conditional p23 -> p33 handoff -> AL
 historical Liber AL key -> 31
 31 mod28                -> e = 3
 31 mod29                -> K = 2
@@ -397,9 +397,9 @@ This is a plausible human solve path because each transition is prompted by an o
 
 ## Decision
 
-**Positive** on the issue's historical question: AL=31 is a plausible May 2014 player-visible key selector. A solver who first derives p23's source-separated `THE ORIGIN | AL` can follow the already-known Liber AL source to III:47 and then consult a New Comment that had been publicly printed since 1974/1975. The New Comment explicitly supplies the key value; this is not an arbitrary occult association.
+**Positive, conditionally**, on the issue's historical question: AL=31 is a plausible May 2014 player-visible key lead if the p50 pointer step is intended. A solver who derives the local `THE ORIGIN` packet and accepts the conditional p23→p33 handoff obtains `THE ORIGIN | AL`, then can follow the already-known Liber AL source to III:47 and consult a New Comment publicly printed since 1974/1975. The New Comment explicitly supplies the key value; this is not an arbitrary occult association.
 
-The logical route selects 31 without using p28, p31 or p39 output values. The research chronology is different: this association was recognized after those target results were already known, so the current arithmetic bridge is **post-discovery**, not blind empirical validation. The p50 cell-0 interpretation is a real competing consumer for `THE ORIGIN`, but it does not explain away the separately generated AL suffix.
+The logical route selects 31 without using p28, p31 or p39 output values. The research chronology is different: this association was recognized after those target results were already known, so the current arithmetic bridge is **post-discovery**, not blind empirical validation. The p50 cell-0 interpretation is a conditional cross-object consumer for `THE ORIGIN`; it does not independently authenticate the p50 radix or the AL suffix's B→page pointer.
 
 Promote AL=31 only as a **historically sourced key-provenance candidate** for a new untouched original-cipher test. Do not call it a recovered authentic key, a Cicada-signed instruction, or a validated decryption. The 31→modulus/sign mapping remains an unproven operation choice. No new p28 exponent sweep or language-score search was run for this audit.
 

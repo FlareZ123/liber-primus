@@ -1,6 +1,6 @@
 # P23 carries two distinct hidden instructions: THE ORIGINAL and THE ONE RISE
 
-**Agent42, 19 November 2026. Director #1797 reconciliation. Classification: both constructions survive as distinct source-object serializers with different numeric holdouts. They share four p23 word lengths and the solved-p56 positive-cardinal map, while their remaining operands and transforms are independently source-selected. Neither result decrypts p23 body ciphertext.**
+**Agent42, 19 November 2026. Director #1797 reconciliation. Classification: both constructions survive as distinct source-object serializers with different numeric holdouts. They share four p23 word lengths and the solved-p56 positive-cardinal map, while their remaining operands and transforms are source-constrained. The `THE ORIGINAL` suffix additionally depends on a conditional B→p50/base60→physical-page pointer. Neither result decrypts p23 body ciphertext.**
 
 ## Decision
 
@@ -58,17 +58,20 @@ The selected five lengths also equal the independently reconstructed source stat
 [K,a,e,g,q]=[2,6,3,5,4],
 ```
 
-with physical p=23. Charging all 53 five-word lines on prime physical pages under all 120 role assignments gives 54 DH closures and four closures whose B state maps through native p50 to any physical page. The sole closure whose destination also reproduces its `[K,A]` and `[e,g]` source packets is p23→p33 under the authenticated role order.
+with physical p=23. Charging all 53 five-word lines on prime physical pages under all 120 role assignments gives 54 DH closures. The further counts—four B→p50 results that decode to physical-page labels and one p33 packet match—are conditional on treating B as a zero-based p50 address and the token as base60 with page-number output. The family does not charge alternate pointer fields or output types.
 
-Appending source page23 and destination33 through the unchanged T serializer gives
+If that conditional p23→p33 handoff is accepted, applying the unchanged T serializer to page labels23 and33 as positive cardinals appends `AL`:
 
 ```text
+THE ORIGIN | AL
 THE ORIGINAL.
 ```
 
-### Numeric holdout for THE ORIGINAL
+The `AL` suffix and full phrase are therefore conditional; the local seven-cardinal packet still yields `THE ORIGIN` without this handoff.
 
-Grant the complete `[lengths,dot,terminal,source page,destination page]` grammar to all four physical-page DH handoffs. Only the p23 packet satisfies either of the following held-out equalities:
+### Conditional numeric holdout for THE ORIGINAL
+
+Grant the complete `[lengths,dot,terminal,source page,destination page]` grammar to all four physical-page DH handoffs under the same conditional B→p50/base60/page convention. Only the p23 packet satisfies either of the following held-out equalities:
 
 ```text
 GP0(THE ORIGINAL) = 97
