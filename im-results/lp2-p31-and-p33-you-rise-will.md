@@ -127,6 +127,60 @@ which selects the same branch in source-authored vocabulary. The authenticated s
 
 This is the first route in this report that explains the ROAD/PATHS choice in human-readable terms without changing the established direction arithmetic.
 
+### Independent unit-step reading: ROAD to FOUND
+
+The p31 packet has a second numeric reading that does not depend on the subject-first source-window serialization.
+
+Among the eight complete three-rune objects on the authenticated numbered diagonal, p31 is the **only** packet whose third coordinate is literal unit1:
+
+```text
+p31 [12,23,1].
+```
+
+Read the untouched coordinates as:
+
+```text
+distance = 12
+start    = 23 = ROAD
+step     = 1.
+```
+
+Then the endpoint is fixed arithmetically:
+
+```text
+23 + 12*1
+= 35
+= FOUND.
+```
+
+Walking the authenticated source at that unchanged unit step gives the exact 13-word interval:
+
+```text
+23 ROAD
+24 AND
+25 THEIR
+26 NUMBERS
+27 ARE
+28 THE
+29 DIRECTION
+30 SEEK
+31 AND
+32 YOU
+33 WILL
+34 BE
+35 FOUND
+```
+
+or:
+
+```text
+ROAD AND THEIR NUMBERS ARE THE DIRECTION SEEK AND YOU WILL BE FOUND.
+```
+
+This interpretation requires no language search to choose the packet or step: the numbered route already fixes p31, and unit1 occurs in no other three-rune diagonal object. The endpoint p35 was independently selected and locally recovered as `FOUND` before this unit-walk interpretation was noticed.
+
+Therefore p31 supplies a second, purely numeric route to the same p35 receiver reached by p33 `THEIR RISE`. It also explains why the p31 object sits at the junction between the ROAD checkpoint and the recovered `YOU WILL BE FOUND` suffix.
+
 ### Held-out consumer: p24 already recovered THE WAY
 
 The p30/p31 source-window decoder was committed after Agent20 had independently recovered a different p24 object:
