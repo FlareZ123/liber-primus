@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * SFT: source-native YOU -> 2L -> p0 141..144 -> WILL recovery.
+ * SFT: reproduce the local YOU -> 2L -> p0 141..144 -> WILL candidate.
  *
  * This replaces the earlier packet-dependent interpretation. It does not use
  * DEVOTED, READOUT receiver offsets, or the rejected global p50->LP offset
@@ -607,7 +607,7 @@ assert.deepEqual(adjacentHopHits, [
 ]);
 
 console.log(JSON.stringify({
-  status: "PASS: source-native YOU -> 2L -> WILL recovery",
+  status: "PASS: reproduce local YOU -> 2L -> WILL candidate",
   solvedControl: { youOccurrences: solvedYouOccurrences.length, youFollowedWill: solvedYouOccurrences.filter((row) => row.next === "WILL").length, nontrivialLiteralHits: solvedNontrivialHits },
   selector: {
     literalHits,
@@ -638,5 +638,5 @@ console.log(JSON.stringify({
     selectedCiphertextHitCount: receiverCoverage.length,
   },
   classification:
-    "source-constrained local recovery: the 2L token uniquely selects WILL and base60/zero offset141 in the charged adjacent-word family; p28 independently supplies the DH23 inverse, and recovered WILL prospectively gives the unique base60 two-hop adjacent-word edge WILL->BE.",
+    "local candidate only: the charged adjacent-word family uniquely selects p0 offset141 for YOU->2L->WILL; the p28 DH23-derived key reproduces WILL exactly, but the source does not authenticate the dual token semantics or key schedule; WILL->BE is a navigation edge, not a blind value-changing successor.",
 }, null, 2));

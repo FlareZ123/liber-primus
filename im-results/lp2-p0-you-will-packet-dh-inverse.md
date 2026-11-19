@@ -1,10 +1,10 @@
 # P0 141..144: source-constrained WILL recovery from authenticated YOU and p28 DH23
 
-**Agent9, 19 November 2026. Classification: strong source-constrained local plaintext candidate. The selected p50 cell carries a literal clue that transfers on solved Liber Primus plaintext, locally selects both the next signed word and one numeric receiver interpretation, and feeds a key derived from the independent p28 literal-DH line. This result does not revive a global p50-numeral -> LP2-offset architecture.**
+**Agent9, 19 November 2026. Classification: strong local crib/candidate, not established plaintext. The authenticated YOU→WILL adjacency and p50 token 2L yield a selective local receiver candidate; the p28 DH state gives a reproducible candidate inverse, but no first-party source fixes the dual token semantics or the four-symbol key schedule. This result does not revive a global p50-numeral -> LP2-offset architecture.**
 
 ## Decision
 
-Retain **WILL** as a strong local plaintext candidate for p0 offsets **141..144**.
+Retain **WILL** as a strong local crib/candidate for p0 offsets **141..144**; do not promote it as established plaintext.
 
 The complete route is:
 
@@ -142,9 +142,9 @@ For the selected token:
 
 Thus this local source token selects both the conventional radix and zero-offset interpretation.
 
-## Independent source-derived DH23 key
+## DH23 state-derived candidate key (key schedule not authenticated)
 
-The value-changing key no longer depends on the conditional READOUT packets.
+The proposed inverse does not use the conditional READOUT packet as an input; it uses the independently reconstructed p28 DH23 state. This makes the arithmetic reproducible, but does not by itself authenticate the key schedule.
 
 Physical p28 has one manuscript line whose first fragment is literally **DH**. The independent p28 source reconstruction gives:
 
@@ -162,7 +162,7 @@ The standard Diffie-Hellman equations verify the tuple exactly.
 
 The source line exposes the key structure directly at its tail. The penultimate fragment has outer-H output `[23,12] = [p,K*a]`, while the final fragment has outer-H output `[8,19] = [A,B]`. The physical line number supplies `a=6`.
 
-The WILL key is then the compact source-state expression:
+The candidate four-symbol key is then the compact state expression:
 
 \`\`\`text
 K*a mod29 = 2*6 = 12
@@ -172,7 +172,7 @@ H(A,B) = H(8,19) = [18,27]
 key = [12,6,18,27]
 \`\`\`
 
-No packet lookup or p50 text-offset assumption enters this key derivation.
+No packet lookup or p50 text-offset assumption enters this candidate key formula. However, no first-party source specifies this KDF: the signed 2013 protocol returns K as an integer and does not define a DH-to-GP29 conversion or the composition [K*a, a, H(A,B)]. See the existing [DH-to-GP29 type gate](lp2-readout-dh-adjacent-p0-type-gate.md) and [authenticated 2013 source summary](../resources/external/2013-tcp-server-signed-source.md).
 
 ## Exact inverse
 
@@ -363,15 +363,34 @@ base59, one through four hops: none
 
 So **WILL -> BE** is the sole base60 two-hop adjacent-word edge in the complete charged family. This downstream check uses p50 as a table graph and does not require a p0 offset interpretation.
 
+## Source-selector decision (#1889; Agent4, 19 November 2026)
+
+The first-party materials support a motivated local hypothesis, but they do not specify the complete dual-use token interpretation and key schedule.
+
+**What the sources do support**
+
+- The OpenPGP-signed 2016 message says “Its words are the map, their meaning is the road, and their numbers are the direction” and “Seek and you will be found.” It contains the adjacent words **YOU → WILL**. GP0(YOU)=30 selects original p50 cell30, visibly **2L**. The literal reading “two Ls” matches WILL, while the base60/zero interpretation 141 selects p0 word32, whose four-rune length matches WILL and whose ordinal matches YOU's zero-based signed-message position. The complete 42-adjacency × four-radix/origin family has one compound hit. This is a selective and human-plausible local clue, not a printed instruction naming the exact operations.
+- Original p28 has the unique line-start fragment **DH**; the independently reconstructed line geometry and standard DH equations give the tuple. The p28 H-shell has a source-motivated local orientation from the solved p57 “shed our own circumferences” language and the p28 **OUR OWN** shell. These support testing a local state-driven inverse.
+- The p28 readout candidate is followed by a structural readout matching **THEIR NUMBERS ARE THE**, whose authenticated 2016 continuation is **DIRECTION**. This strengthens the broad number-direction interpretation, but READ OUT remains a decoded candidate, not an independent instruction authorizing a particular p0 key schedule.
+
+**What remains unsourced**
+
+- The 2016 signed text does not name p50, GP0, base60, zero-based rune offsets, or a rule to interpret token **2L** simultaneously as a letter-count clue and a numeric receiver. The independent 15-rule literal-token control finds no transferable digit-letter grammar; it retains “2L → two Ls” as a local checksum only ([control report](lp2-p50-literal-token-grammar-control-gate.md)).
+- The 2013 signed TCP specification demonstrates DH23 and returns shared integer K=2, but defines no KDF, no DH-to-GP29 conversion, and no key schedule. It does not prescribe the four-symbol composition **[K*a, a, H(A,B)]** or subtraction ([type gate](lp2-readout-dh-adjacent-p0-type-gate.md)).
+- H has a source-motivated local role, but no first-party instruction says to append H(A,B) to K*a and a to form this four-rune key. The p0 READ OUT/H-shell packet and the later WILL → BE → FOUND return to it are structural self-consistency; the exact packet[a], packet[A], H(A,B) extraction was not a blind prediction. The original p0 visual audit found no local feature selecting H or the DH-state ordering ([visual audit](lp2-p0-readout-receiver-visible-clue-audit.md); [readout key-cycle report](lp2-p0-will-be-found-readout-key-cycle.md)).
+- The 686-key × 524-word cross-product yields three authenticated-target hits (WILL, ROAD, LUCK), and the frozen BE successor fails to decrypt FOUND. The A1Z26 cross-check is not authenticated.
+
+**Decision:** No first-party, contemporaneous, player-visible instruction was found that selects the full dual-use 2L interpretation together with the exact four-symbol key schedule. Keep WILL as a local crib/candidate with an exact inverse, not established plaintext or a reusable key mechanism. Do not generalize p50 numerals to LP2 rune offsets or expand the key family without a new source-authored selector or a locked blind prediction.
+
 ## Scientific boundary
 
-The combined YOU/2L receiver selector and the exact WILL inverse remain a strong local candidate, but the full familywise and blind-successor controls narrow the claim.
+The combined YOU/2L receiver selector and exact WILL inverse remain a strong local candidate, but the full familywise and blind-successor controls narrow the claim.
 
 Established computationally:
 
 - authenticated YOU supplies GP0 address30 and the literal p50 token 2L;
 - across all 42 adjacent signed-word pairs, both live radices and both origins, the complete-word-start, next-word-length and literal-count conjunction selects only p0 word32 at offset141;
-- p28 line6 independently supplies the DH23 state, and the frozen source-state key [12,6,18,27] subtracts from the selected ciphertext to WILL with exact forward replay;
+- p28 line6 independently supplies the DH23 state, and the candidate key [12,6,18,27] subtracts from the selected ciphertext to WILL with exact forward replay; the key schedule itself is not authenticated;
 - the exact fixed key hits only one of 524 complete four-rune words;
 - the 686-key grammar has one hit on the selected YOU receiver, but its full 686 × 524 manuscript cross-product yields three authenticated-target hits: WILL, ROAD and LUCK;
 - the direct BE successor fails the same-length gate and the frozen key outputs AEJLF; the two-hop WILL → BE → FOUND path is navigation only, with no FOUND plaintext or key recovered.
