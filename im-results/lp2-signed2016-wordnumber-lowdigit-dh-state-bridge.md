@@ -124,9 +124,56 @@ subtract GP length
 
 Under this numeric operation, the only seven-word all-signed-DH run in the complete 43-word message starts at **GOOD**, index36. The only five-word runs start at 36, 37, and 38, so no earlier five-word block has the same property.
 
-Across all 128 conventions, only six modes produce any seven-word all-signed-DH run anywhere. Four of those are an unrelated one-address/high-component family; they do not hit the terminal state vector or its punctuation/H identities.
+Across all 128 conventions, only six modes produce any seven-word all-signed-DH run anywhere. Four of those form an unrelated one-address/high-component family and miss the terminal state vector plus its punctuation/H identities.
+
+Extend the same charge with ordinary Latin-letter count as the competing word-length definition. The family then contains 256 modes. **Zero** Latin-length modes keep the terminal seven inside the signed primitive-DH register. This matters at PATHS: its Latin length is5 while canonical GP length is4, and only the GP length yields g=5.
 
 The exact ordered terminal vector occurs only in the two algebraically identical syntactic forms above, at start36.
+
+Two further source-layout controls favor the literal table reading. Under the frozen numeric rule, all 256 cyclic table origins were charged. Only origins 0,93,253 keep all seven outputs inside the signed primitive-DH register, and **origin0 alone** gives the exact ordered state vector. Across the eight obvious 32x8 traversals, row/column major with independent reversals of the major and minor directions, **only original printed row-major forward order** gives either the all-signed-DH terminal block or the exact vector.
+
+## Independently selected transfer: EPIPHANY SEEKS THE DEVOTED
+
+Agent8 committed a separate p=23/base60 route selecting the authenticated source phrase **EPIPHANY SEEKS THE DEVOTED** at commit `33bbc28a6f726fef06675979414d6b7466e931fc`, timestamp 02:36:21Z, before this formula was applied to that phrase. That route selected the phrase from a 23-step p50 navigation ending at physical p32. It did not use the residue rule here.
+
+Apply the already frozen residue rule to signed words5..8:
+
+| i | word | p50[i] | low60 | GP length | s_i |
+| ---: | --- | --- | ---: | ---: | ---: |
+| 5 | EPIPHANY | 3v | 57 | 8 | 15 = b |
+| 6 | SEEKS | 26 | 6 | 5 | 24 = p-1 |
+| 7 | THE | 33 | 3 | 2 | 23 = p |
+| 8 | DEVOTED | 1W | 32 | 7 | 17 = b+K |
+
+So the independently selected phrase becomes:
+
+```
+[b, p-1, p, b+K]
+= [15,24,23,17]
+```
+
+The same frozen H orientation gives an additional compact state packet:
+
+```
+H(b,b+K)     = [-K,e]     = [27,3]
+H(p-1,p)     = [a-g,p-g]  = [1,18]
+
+H-shell = [-K,e,a-g,p-g]
+        = [27,3,1,18]
+```
+
+This is a genuine transfer test for the residue rule because the source phrase was independently selected before its residues were inspected here.
+
+Charge the exact four-value transfer across all 256 arithmetic/length modes and every possible four-word start in the 43-word signed message. Only the two algebraically identical forms of the frozen rule hit the vector, and both land at start5. Ordinary Latin length gives zero hits.
+
+For the fixed phrase addresses, an exact labeled-token multiset count gives:
+
+```
+7,200 / 4,195,023,360
+= 1.7163194056683395e-6
+```
+
+The value is a transfer diagnostic for this independently selected vector. All 256 cyclic table origins were also charged: **origin0 alone** reproduces it. Across the eight source-table traversals, **only original row-major forward order** reproduces it.
 
 ## Exact table-multiset calibration
 
@@ -186,4 +233,4 @@ The next decisive test should consume this recovered state **prospectively**. A 
 node sims/lp2_signed2016_p50_lowdigit_dh_state_bridge_sft.cjs
 ```
 
-The SFT re-parses the authentic 2016 signed text, original p50 table, p28 transcription, and canonical GP register; reconstructs the p28 DH tuple; verifies the seven terminal residues and punctuation H identities; charges the 128 nearby conventions; and computes the exact 256-token multiset counts.
+The SFT re-parses the authentic 2016 signed text, original p50 table, p28 transcription, and canonical GP register; reconstructs the p28 DH tuple; verifies the seven terminal residues and punctuation H identities; charges the 256 arithmetic/length conventions, 256 cyclic table origins, and eight table traversals; reproduces the independent EPIPHANY/SEEKS/THE/DEVOTED transfer; and computes the exact labeled-token multiset counts.
