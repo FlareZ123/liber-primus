@@ -83,30 +83,35 @@ The only next cryptographic operation in this bounded test is the known solved-p
 All six outputs have no discernible GP-native plaintext opening and remain near the uniform 29-symbol IoC of 0.03448. The exact inverses fully restore all **553/553** original symbols. These results reject only the specified interleave followed by a source-reset direct prime-totient additive mask. The source does not authenticate the meaning of MIX, the columnwise reading rule, or application of p56's otherwise page-specific key to the numbered passages. No unknown plaintext or key was recovered. [Single-file reproducible test](../sims/lp2_five_numbered_mix_primephi_sft.cjs) reads the canonical source, asserts five authentic boundaries, verifies both lossless interleaves, and pins the six original IoCs.
 
 
-## Word-level MIX interleave under the exact p56 F-transparent rule — unverified
+## Word-level MIX interleave under the exact p56 F-transparent rule — verified negative (19 November 2026)
 
-The source-visible prompt is the five red-numbered passages; the 2014 Wisdom-square route also yields the interpretive candidate word MIX. The cheapest word-based reading is round-robin interleaving: take word 1 from passages 1–5, then word 2, continuing and skipping exhausted passages. Both 1→5 and 5→1 orders were proposed. This is a hypothesis about the MIX instruction, not an established author directive.
+The source-visible prompt is the five red-numbered passages on p36–38; the 2014 Wisdom-square route supplies the *interpretive* candidate word `MIX`. This remains a human-solve hypothesis, not authenticated plaintext or an author directive. The cheapest whole-word reading is round-robin interleaving: take word 1 from passages 1–5, then word 2, continuing and skipping exhausted passages. Both 1→5 and 5→1 orders are tested.
 
-The proposed consumer is the solved p56 prime-totient GP29 shift with its plaintext-F transparency rule: the key index advances only for non-F plaintext. The intended dynamic program retains every legal history, branching at ciphertext F between literal transparent F and non-F decryption.
+The five original passage intervals contain **553 GP29 runes in 122 complete printed words**, with passage word counts **[30,20,25,19,28]**. The word-level interleaves preserve each word internally and are verified bijections: the SFT records original source positions, reconstructs the complete 553-rune input exactly, and confirms that all five source intervals and word boundaries match the canonical transcription.
 
-**The committed SFT does not currently execute this new section.** Its only workflow run, **44501862911**, was triggered by the prohibited `push` event and failed at line 103 with `ReferenceError: ROOT is not defined`. Static inspection also finds a second scope error: `interleaveWholeWords()` references `starts[row]`, but `starts` is declared locally inside the separate `interleave()` function. The new DP assertions and p57 positive-control assertions were therefore not reached.
+The consumer is the solved p56 prime-totient GP29 shift with its exact plaintext-F transparency rule. For successive primes (p_j=2,3,5,ldots), the key is (k_j=\varphi(p_j)\bmod29=(p_j-1)\bmod29), starting at phase zero once for the complete 553-rune stream. A literal plaintext F emits ciphertext F without consuming a key position; every non-F plaintext rune consumes one. The inverse dynamic program retains **all** legal histories at ciphertext F, branching between literal transparency and non-F decryption. Both arithmetic signs are tested.
 
-The following first-impossible positions were recorded in the original report, but are **unverified claimed outputs**, not reproducible results:
+**Original-input outcome:** every one of the ten fixed variants reaches an empty legal-history set. The first impossible position is zero-based in the transformed stream:
 
-| Input ordering | Key sign | Claimed first impossible position (0-based) |
+| Input ordering | (C=P+K) | (C=P-K) |
 | --- | ---: | ---: |
-| As printed | +1 | 1 |
-| As printed | −1 | 13 |
-| Rune round-robin 1→5 | +1 | 31 |
-| Rune round-robin 1→5 | −1 | 21 |
-| Rune round-robin 5→1 | +1 | 29 |
-| Rune round-robin 5→1 | −1 | 14 |
-| Word round-robin 1→5 | +1 | 1 |
-| Word round-robin 1→5 | −1 | 9 |
-| Word round-robin 5→1 | +1 | 45 |
-| Word round-robin 5→1 | −1 | 7 |
+| As printed | **1** | **13** |
+| Rune round-robin 1→5 | **31** | **21** |
+| Rune round-robin 5→1 | **29** | **14** |
+| Whole-word round-robin 1→5 | **1** | **9** |
+| Whole-word round-robin 5→1 | **45** | **7** |
 
-Do not treat the ten-variant rejection, the claimed 122-word/553-rune interleave, or the claimed positive-control success as established until the implementation is repaired and a manual `workflow_dispatch` run passes. The earlier six fixed direct-additive variants remain a separate completed negative. The p56-to-five-passage transfer remains an unverified hypothesis; no conclusion about these F-transparent variants is currently supported.
+These are exact reachability contradictions, not language-model scores. The DP implementation is not vacuously rejecting every input: repeating known solved p57 plaintext to 553 runes, encrypting it with the same F-transparent rule, and inverting it retains legal paths for both signs. The positive-control end states are:
+
+| Sign | Legal phase states | Path count |
+| --- | --- | ---: |
+| (C=P+K) | 534–538 (5 states) | 167,664 |
+| (C=P-K) | 535–537 (3 states) | 7,756,686 |
+
+The earlier first-impossible positions were not accepted as evidence until the broken source-path/scope errors in the word-interleave SFT were repaired and the complete original-input test was run. The corrected [single-file SFT](../sims/lp2_five_numbered_mix_primephi_sft.cjs) passed Node.js 22 under a manual `workflow_dispatch` run: [44527425170](https://github.com/FlareZ123/liber-primus/actions/runs/44527425170).
+
+**Decision:** reject only the exact p56 prime-totient/F-transparent transfer to the as-printed, rune-round-robin and whole-word-round-robin 1→5/5→1 streams under both signs. This does not refute other operations on the five passages, establish that the passages are not ciphertext, or authenticate the interpretive word `MIX`. No unknown-page plaintext or key is recovered. Do not reopen these ten variants without a new independent source selector.
+
 
 ## LP1 Wisdom 5×5 matrix applied to the five numbered streams
 
