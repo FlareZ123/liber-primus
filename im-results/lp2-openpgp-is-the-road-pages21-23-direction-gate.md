@@ -1,6 +1,6 @@
 # `IS THE ROAD` numbers select a p21–p23 DH-state corridor; p22 prospectively yields Bob's `(b,B)`
 
-**Agent22, 19 November 2026. Classification: source-selected navigation/state advance with a prospective p22 holdout. It does not decrypt the p22 body or establish a global LP2 cipher.**
+**Agent22, 19 November 2026. Classification: source-selected navigation/state advance plus a strong local `THEIR` plaintext candidate on the prospectively selected p22 receiver. The receiver selection is prospective; the compact key-shell grammar is retrospective and exhaustively charged. This does not establish a global LP2 cipher.**
 
 ## Upstream selector
 
@@ -122,6 +122,102 @@ p22 under native base60.
 
 So both p22 properties are familywise singletons in the complete authenticated source-index page family.
 
+
+## Local p22 inverse: the road corridor recovers THEIR
+
+The receiver was selected prospectively before any plaintext target or key was applied:
+
+```text
+p22 word19
+C = [22,28,28,24].
+```
+
+Its untouched outside-in shell is
+
+```text
+H4(C) = [27,0,27,17].
+```
+
+Across all **509** canonical complete four-rune words on unknown LP2, this exact raw shell occurs once: p22 word19.
+
+The selected corridor itself supplies a compact finite key family. The middle page is `THE`; the flanking authenticated words are `IS` and `ROAD`. Their canonical sums are equal modulo29:
+
+```text
+GP0(IS)   = 25
+GP0(ROAD) = 54 = 25 mod29
+
+H(25,25) = [0,21] = [0,p-K].
+```
+
+The endpoint p23 independently exposes the ordered state line
+
+```text
+[K,a,e,g,q] = [2,6,3,5,4].
+```
+
+Keep the flanking-word pair fixed. Charge **every ordered pair including repeats** from those five visible p23 fields for the remaining two H coordinates. For each of the `5*5=25` pairs, invert the four-coordinate shell, apply both additive signs to the fixed p22 receiver, and compare against all nine distinct authenticated four-rune source targets.
+
+The complete family is
+
+```text
+25 state pairs * 2 signs * 9 targets = 450 configurations.
+```
+
+It has exactly one hit:
+
+```text
+ordered p23 pair = (g,a) = (5,6)
+H(g,a)           = [28,11]
+
+H4(key) = [0,21,28,11]
+key     = H4^-1(...) = [20,10,18,20]
+
+[22,28,28,24]
+-
+[20,10,18,20]
+=
+[2,18,10,4]
+=
+THEIR.
+```
+
+The role labels are therefore compactly
+
+```text
+H4(key)
+=
+H(GP0(IS),GP0(ROAD)) || H(g,a)
+=
+[0,p-K,g-a,g+a].
+```
+
+This shell template was recognized after the receiver and source label were available, so it remains a retrospective key grammar rather than a blinded universal cipher rule. Its charged family is finite and target-complete.
+
+### Fixed-key manuscript control
+
+Hold the exact numeric key `[20,10,18,20]` fixed across all 509 unknown four-rune words, all nine authenticated four-rune targets, and both signs:
+
+```text
+509 * 9 * 2 = 9,162 configurations.
+```
+
+Exactly one hit remains:
+
+```text
+p22 word19 offsets99..102
+subtract key
+-> THEIR.
+```
+
+The local plaintext is especially coherent with the receiver's independently selected state metadata:
+
+```text
+receiver word ordinal = 19 = B = authenticated THEIR
+receiver raw sum mod29 = 15 = b = authenticated WORDS.
+```
+
+Thus p22 now supplies both a prospectively selected Bob-state packet and a reversible local `THEIR` candidate under a source-constrained, exhaustively charged key family.
+
 ## The directed pages form a state corridor
 
 The p22 holdout was new in this invocation. The two neighboring pages already had independent state results before this page-direction route was found.
@@ -200,7 +296,7 @@ authenticated OPENPGP key ID
  -> q-spaced source phrase IS THE ROAD
  -> numbers 21,22,23 are the direction
  -> p21 IS state object
- -> p22 self-addressed (b,B) Bob packet
+ -> p22 self-addressed (b,B) Bob packet -> local THEIR inverse
  -> p23 ROAD/origin state checkpoint
  -> B=19 -> p50 -> p33.
 ```
@@ -211,4 +307,4 @@ This route materially strengthens the role of the authenticated 2016 message as 
 
 `node sims/lp2_openpgp_is_the_road_pages21_23_direction_sft.cjs`
 
-The SFT reconstructs the upstream state and phrase, uses the repository's canonical cross-page word parser, exhausts the complete source-index pointer family, verifies the p21 prior state packet, verifies p23's state line, and checks the common p33 handoff.
+The SFT reconstructs the upstream state and phrase, uses the repository's canonical cross-page word parser, exhausts the complete source-index pointer family, charges the 450-case p22 key family, verifies the 509-word raw-shell and 9,162-case fixed-key controls, verifies the p21 prior state packet and p23 state line, and checks the common p33 handoff.
