@@ -103,6 +103,48 @@ assert.deepEqual(shapedPairs,[
   {from:"LUCK",to:"GOOD",delta:[26,4,4,0]},
 ]);
 
+
+// FOUND -> GOOD: given the already frozen shell-junction equality, contract an
+// odd five-rune shell to four coordinates by dropping its center, H-transforming
+// the two junction coordinates, duplicating one H coordinate to preserve the
+// equal-junction form, and charging both endpoint orientations / H coordinates.
+const fiveTargets=[...new Map(words.filter(row=>row.values.length===5)
+  .map(row=>[row.values.join(","),row])).values()];
+assert.deepEqual(fiveTargets.map(row=>row.word),
+  ["HELLO","EMPTY","SEEKS","LIBER","WORDS","FOUND","FALSE"]);
+
+function contractFiveShell(values,endpointOrder,hCoordinate){
+  const serialized=[];
+  for(let left=0,right=values.length-1;left<right;left++,right--)
+    serialized.push(...H(values[left],values[right]));
+  serialized.push(values[2]);
+  assert.equal(serialized.length,5);
+  const junction=H(serialized[1],serialized[2])[hCoordinate];
+  const outShell=endpointOrder==="reverse"
+    ? [serialized[3],junction,junction,serialized[0]]
+    : [serialized[0],junction,junction,serialized[3]];
+  return {sourceShell:serialized,outShell,output:unshell4(outShell)};
+}
+
+const contractionHits=[];
+for(const source of fiveTargets){
+  for(const endpointOrder of ["forward","reverse"]){
+    for(const hCoordinate of [0,1]){
+      const row=contractFiveShell(source.values,endpointOrder,hCoordinate);
+      const target=targetByGp.get(row.output.join(","));
+      if(target) contractionHits.push({
+        source:source.word,target,endpointOrder,hCoordinate,
+        sourceShell:row.sourceShell,outShell:row.outShell,output:row.output
+      });
+    }
+  }
+}
+assert.equal(fiveTargets.length*4,28);
+assert.deepEqual(contractionHits,[{
+  source:"FOUND",target:"GOOD",endpointOrder:"reverse",hCoordinate:0,
+  sourceShell:[6,23,23,12,1],outShell:[12,0,0,6],output:gp("GOOD")
+}]);
+
 let solvedAdjacent4=0,solvedExact=0,solvedShaped=0;
 const solvedBySection={};
 for(const section of solved.sections){
@@ -125,6 +167,22 @@ assert.equal(solvedExact,0);
 assert.equal(solvedShaped,0);
 assert.equal(solvedBySection.p56_an_end.adjacent,0);
 assert.equal(solvedBySection.p57_parable.adjacent,1);
+
+let solvedAdjacent5to4=0,solvedContractionHits=0;
+for(const section of solved.sections){
+  const sourceWords=(section.source_text.match(/[\u16A0-\u16FF]+/gu)||[])
+    .map(raw=>[...raw].map(rune=>runeIndex.get(rune)).filter(value=>value!==undefined));
+  for(let i=0;i+1<sourceWords.length;i++){
+    const left=sourceWords[i],right=sourceWords[i+1];
+    if(left.length!==5||right.length!==4) continue;
+    solvedAdjacent5to4++;
+    const output=contractFiveShell(left,"reverse",0).output;
+    if(output.join(",")===right.join(",")) solvedContractionHits++;
+  }
+}
+assert.equal(solvedAdjacent5to4,9);
+assert.equal(solvedContractionHits,0);
+
 
 const goodKey=[18,18,23,20];
 const luckKey=[17,16,4,22];
@@ -170,9 +228,10 @@ assert.deepEqual(repeatedKeyHits,[]);
 
 console.log(JSON.stringify({
   status:"PASS",
-  classification:"retrospective mechanism compression: frozen GCD/DH state gives the unique 225-family GOOD -> LUCK H-shell update [b^-1,p+K,p+K,0]; solved adjacent-4 controls miss the broader shape; repeated direct-key recurrence fails",
+  classification:"retrospective two-step H-shell mechanism compression: a 28-config center-drop/junction-H family uniquely maps FOUND -> GOOD, then frozen GCD/DH state gives the unique 225-family GOOD -> LUCK update [b^-1,p+K,p+K,0]; solved controls miss both transitions and repeated direct-key recurrence fails",
   state,goodShell,luckShell,delta,
   scalarFamilyConfigs:scalars.length**2,
+  contraction:{configs:fiveTargets.length*4,hits:contractionHits,solvedAdjacent5to4,solvedContractionHits},
   familyHits,exactPairs,shapedPairs,
   solved:{adjacent4:solvedAdjacent4,exact:solvedExact,shaped:solvedShaped,bySection:solvedBySection},
   rejectedDirectKeyRecurrence:{directKeyDelta,nextKey,fourRuneWords,repeatedKeyHits}
