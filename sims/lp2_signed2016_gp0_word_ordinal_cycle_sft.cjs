@@ -14,6 +14,7 @@ function read(relative) {
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const solved = JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"));
 const signed = read("resources/historical/cicada2016-4gq25-outguess.asc");
+const transcription = read("resources/lp2-transcription.txt");
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
 const gpTokens = corpus.translit
   .map((symbol, value) => ({ symbol, value }))
@@ -163,10 +164,55 @@ assert.equal(solvedWithAdjacentCycle, 8);
 assert.equal(solvedWithForwardRun2, 3);
 assert.equal(solvedWithForwardRun3, 0);
 
+const p0 = transcription.split(/^\\s*%\\s*$/m)[0];
+const p0Words = [];
+let p0Current = [];
+let p0Start = 0;
+let p0Offset = 0;
+
+/** @returns {void} */
+function flushP0Word() {
+  if (!p0Current.length) return;
+  p0Words.push({
+    index: p0Words.length,
+    start: p0Start,
+    end: p0Offset - 1,
+    values: p0Current.slice(),
+  });
+  p0Current = [];
+}
+
+for (const char of [...p0]) {
+  const value = runeIndex.get(char);
+  if (value !== undefined) {
+    if (!p0Current.length) p0Start = p0Offset;
+    p0Current.push(value);
+    p0Offset += 1;
+  } else if (char === "-" || char === ".") {
+    flushP0Word();
+  }
+}
+flushP0Word();
+
+const holdoutReceiver = p0Words[6];
+assert.deepEqual(holdoutReceiver, {
+  index:6,
+  start:34,
+  end:38,
+  values:[9,25,6,10,2],
+});
+const foundKey = [12,28,10,1,8];
+const foundTarget = gp("FOUND");
+const holdoutPlain = holdoutReceiver.values.map(
+  (value, index) => ((value - foundKey[index]) % 29 + 29) % 29
+);
+assert.deepEqual(holdoutPlain, [26,26,25,9,23]);
+assert.notDeepEqual(holdoutPlain, foundTarget);
+
 console.log(JSON.stringify({
   status: "PASS",
   classification:
-    "source-internal selector: zero-based GP0/index mapping has the sole cycle FOUND<->GOOD and the sole consecutive forward-pointer run BE->FOUND->GOOD; one-based numbering is null; solved-native controls make the exact run uncommon but not unique enough for authorship probability",
+    "source-internal selector only: zero-based GP0/index mapping has the sole cycle FOUND<->GOOD and the sole consecutive forward-pointer run BE->FOUND->GOOD, but the prospectively frozen BE->FOUND p50/FOUND-key transfer fails on untouched p0 word6",
   nextHits,
   previousHits,
   cycles: mutualCycles(sums, false),
@@ -176,6 +222,7 @@ console.log(JSON.stringify({
     previousHits: oneBasedPrevious,
   },
   rotations: rotationHits,
+  holdout: { receiver:holdoutReceiver, fixedKey:foundKey, output:holdoutPlain, target:foundTarget, result:"FAIL" },
   solved: {
     windows: solvedWindows,
     withCycle: solvedWithCycle,
