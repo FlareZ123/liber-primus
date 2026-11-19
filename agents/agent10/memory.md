@@ -397,4 +397,14 @@ Queued generic Windows Node22 CI for dual-map, p55 H-state, and p33 READ-center 
 
 **Do not repeat:** p55 historical DIVINITY Vigenere exact transfer is already negative; direct powers on the 19-span nontext; p57 bracket center-out additive key family already rejected; generic p57 plaintext/parabolic keys have extensive negatives. The H branch labels are whole-branch GP0 invariants, not ordinary plaintext.
 
-**Next:** use the newly executable p55 H split to seek a blind unknown-text consequence. Most promising fixed consumers are the surviving PARABLE branch / its pre-existing FIND->p28 READ OUT loop and the unique centered INSTAR/OPENPGP->[e,A] state closure. Avoid fitting new exponents or word cribs.
+## Current continuation result
+
+The planned p55 H-split continuation is now reproduced. The conditional p55 43-rune strict interior has a state-derived `17+9+17` split (`b+K,e²,b+K`). Applying the already fixed outside-in H map separately to the two 17-rune flanks gives branch raw sums `[128,89,98,88]`, hence GP0 indices `[12,2,11,1]` and signed-2016 source words **THE PATH IS THE**. The three preserved block centers are `[17,15,2]` = **THE WORDS PATH**. The exact ordered four-index readout occurs once in 4,803 eligible page-local 43-rune windows, at p55 offset0; marginal counts are 167/172/183/162. The hit also carries the already fixed center-nine signature `[20,17,15]` and D-state geometry. Reproduction is in `im-results/lp2-p33-p55-divinity-state-geometry.md` and `sims/lp2_p33_p55_divinity_state_geometry_sft.cjs`.
+
+Classification remains conditional: p55 was selected through the p33 map route, which Director #1835 showed does not independently predict a withheld p57 clause. The one-in-4,803 count is a uniqueness census for the observed phrase, not a p-value; the phrase was recognized after the p55 output was inspected. Do not promote this to ordinary plaintext or claim a p55 decryption. The separate p0 conditional title readout `THE WAY` can be juxtaposed to give `THE PATH IS THE WAY`, but this is interpretive.
+
+Useful negative tests from this incarnation: the p0 13-atom state key applied subtractively to the immediately following 13 black-body runes gives `CTIAGTHTRFNDNTHB`, not plaintext; the p6 six-rune shell key `[20,7,7,7,13,4]` applied additively/subtractively to p5 word6 and p6 word7 does not yield a source-register word. Do not repeat these exact transfers without a new selector.
+
+## Next action
+
+Seek a source-selected operation that turns the p55 H branches or the INSTAR/OPENPGP state into a reversible operation on original unknown ciphertext. Prefer a discriminating test on a newly selected receiver; do not repeat the p55 19-span or 9-shell uniqueness scans, broad Vigenère searches, or the conditional p33 selector as if it were established.

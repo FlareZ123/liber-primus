@@ -336,6 +336,81 @@ assert.deepEqual(typedCenterNineHits, [{
   center: state.b,
 }]);
 
+
+const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
+const signedClear = signed2016.match(/Hash: SHA1\n\n([\s\S]*?)\n-----BEGIN PGP SIGNATURE-----/u);
+assert.ok(signedClear);
+const sourceWords = (signedClear[1].match(/\b[A-Za-z]+\b/gu) || []).map((word) => word.toUpperCase());
+assert.equal(sourceWords.length, 43);
+
+function hBranches(values) {
+  assert.equal(values.length % 2, 1);
+  const differences = [];
+  const sums = [];
+  for (let index = 0; index < (values.length - 1) / 2; index += 1) {
+    const [difference, sum] = H(values[index], values[values.length - 1 - index]);
+    differences.push(difference);
+    sums.push(sum);
+  }
+  const differenceRaw = differences.reduce((total, value) => total + value, 0);
+  const sumRaw = sums.reduce((total, value) => total + value, 0);
+  return {
+    differences, sums, center: values[(values.length - 1) / 2],
+    differenceRaw, sumRaw,
+    differenceGp0: mod29(differenceRaw), sumGp0: mod29(sumRaw),
+  };
+}
+const flankLength = state.b + state.K;
+const innerLength = state.e ** 2;
+assert.deepEqual([flankLength, innerLength, flankLength], [17, 9, 17]);
+assert.equal(2 * flankLength + innerLength, p55.interior.length);
+const leftFlank = p55.interior.slice(0, flankLength);
+const rightFlank = p55.interior.slice(flankLength + innerLength);
+const leftFlankH = hBranches(leftFlank);
+const rightFlankH = hBranches(rightFlank);
+const centerIndices = [leftFlankH.center, centerNine[(centerNine.length - 1) / 2], rightFlankH.center];
+const centerWords = centerIndices.map((index) => sourceWords[index]);
+const emergeReadoutIndices = [leftFlankH.differenceGp0, leftFlankH.sumGp0, rightFlankH.differenceGp0, rightFlankH.sumGp0];
+const emergeReadoutWords = emergeReadoutIndices.map((index) => sourceWords[index]);
+assert.deepEqual([leftFlankH.differenceRaw,leftFlankH.sumRaw,rightFlankH.differenceRaw,rightFlankH.sumRaw],[128,89,98,88]);
+assert.deepEqual(emergeReadoutIndices,[12,2,11,1]);
+assert.deepEqual(emergeReadoutWords,["THE","PATH","IS","THE"]);
+assert.deepEqual(centerIndices,[17,15,2]);
+assert.deepEqual(centerWords,["THE","WORDS","PATH"]);
+
+let emergeFlankWindows=0;
+const emergeFlankMarginalHits=[0,0,0,0];
+const emergeFlankHits=[];
+for(const page of pageInteriors){
+  for(let start=0;start+43<=page.interior.length;start+=1){
+    emergeFlankWindows+=1;
+    const candidate=page.interior.slice(start,start+43);
+    const candidateLeft=hBranches(candidate.slice(0,flankLength));
+    const candidateCenter=hBranches(candidate.slice(flankLength,flankLength+innerLength));
+    const candidateRight=hBranches(candidate.slice(flankLength+innerLength));
+    const indices=[candidateLeft.differenceGp0,candidateLeft.sumGp0,candidateRight.differenceGp0,candidateRight.sumGp0];
+    indices.forEach((value,index)=>{if(value===[12,2,11,1][index])emergeFlankMarginalHits[index]+=1;});
+    if(indices.every((value,index)=>value===[12,2,11,1][index])){
+      emergeFlankHits.push({
+        physicalPage:page.physicalPage,start,indices,
+        words:indices.map(index=>sourceWords[index]),
+        centerIndices:[candidateLeft.center,candidateCenter.center,candidateRight.center],
+        centerNineSignature:[candidateCenter.differenceGp0,candidateCenter.sumGp0,candidateCenter.center],
+        matchesDStateGeometry:candidate[state.g-1]===state.p&&candidate[state.p-1]===state.p&&candidate[centerPosition-1]===state.K*state.g,
+      });
+    }
+  }
+}
+assert.equal(emergeFlankWindows,chargedWindows);
+assert.deepEqual(emergeFlankMarginalHits,[167,172,183,162]);
+assert.equal(emergeFlankHits.length,1);
+assert.deepEqual(emergeFlankHits.map(hit=>[hit.physicalPage,hit.start]),[[55,0]]);
+assert.deepEqual(emergeFlankHits[0].indices,[12,2,11,1]);
+assert.deepEqual(emergeFlankHits[0].words,["THE","PATH","IS","THE"]);
+assert.deepEqual(emergeFlankHits[0].centerIndices,[17,15,2]);
+assert.deepEqual(emergeFlankHits[0].centerNineSignature,[20,17,15]);
+assert.equal(emergeFlankHits[0].matchesDStateGeometry,true);
+
 console.log(JSON.stringify({
   status: "PASS",
   sourceState: state,
@@ -391,6 +466,14 @@ console.log(JSON.stringify({
       centerRune: "K*g",
     },
   },
+  emergeFlanks: {
+    structure:[flankLength,innerLength,flankLength],
+    left:{length:leftFlank.length,differenceBranch:leftFlankH.differences,differenceRaw:leftFlankH.differenceRaw,differenceGp0:leftFlankH.differenceGp0,differenceWord:sourceWords[leftFlankH.differenceGp0],sumBranch:leftFlankH.sums,sumRaw:leftFlankH.sumRaw,sumGp0:leftFlankH.sumGp0,sumWord:sourceWords[leftFlankH.sumGp0],center:leftFlankH.center,centerWord:sourceWords[leftFlankH.center]},
+    centerNine:{differenceGp0:instarBranchGp0,differenceWord:"INSTAR",sumGp0:openPgpBranchGp0,sumWord:"OPENPGP",center:centerNine[(centerNine.length-1)/2],centerWord:sourceWords[centerNine[(centerNine.length-1)/2]]},
+    right:{length:rightFlank.length,differenceBranch:rightFlankH.differences,differenceRaw:rightFlankH.differenceRaw,differenceGp0:rightFlankH.differenceGp0,differenceWord:sourceWords[rightFlankH.differenceGp0],sumBranch:rightFlankH.sums,sumRaw:rightFlankH.sumRaw,sumGp0:rightFlankH.sumGp0,sumWord:sourceWords[rightFlankH.sumGp0],center:rightFlankH.center,centerWord:sourceWords[rightFlankH.center]},
+    readoutIndices:emergeReadoutIndices,readoutWords:emergeReadoutWords,readout:emergeReadoutWords.join(" "),
+    centerIndices,centerWords,centerReadout:centerWords.join(" "),
+  },
   control: {
     strictInterior43Windows: chargedWindows,
     exactGeometryHits: geometryHits,
@@ -404,6 +487,9 @@ console.log(JSON.stringify({
     openPgpBranchHits: openPgpOnlyHits,
     centeredBranchPairHits: centerNinePairHits,
     exactTypedCenterNineHits: typedCenterNineHits,
+    emergeFlank43Windows: emergeFlankWindows,
+    emergeFlankMarginalHits,
+    emergeFlankExactHits: emergeFlankHits,
   },
-  decision: "P33's RISE road uniquely selects physical p55 by its 75/76 local/physical rune counts. After the source-instructed circumference peel, p55's 43-rune strict interior uniquely realizes D=p at [g,p]=[5,23] with B=19 and center K*g=10. Applying the already fixed H orientation to that B-span yields ordered nine-rune branches whose GP0 sums are exactly CIRCUMFERENCES=131 and PARABLE=120; among 6,112 strict-interior 19-rune windows, only three have that ordered pair and only this p55 span also has the fixed center10. Existing p50 graph edges SHED64/base59 and CIRCUMFERENCES131/base60 both converge to PARABLE120. The centered e^2=9 shell independently splits to INSTAR78 / OPENPGP75; H of those branch labels is [e,A]=[3,8], closing back to the p33 TUNNELNG/RISE selector positions. The INSTAR/OPENPGP ordered pair is unique among 6,662 strict-interior nine-rune windows. This is a source-constrained executable shed/circumference/state operation, not yet a full p55 plaintext decryption.",
+  decision: "P33's RISE road conditionally selects physical p55 by its 75/76 local/physical rune counts. After the source-instructed circumference peel, p55's 43-rune strict interior uniquely realizes D=p at [g,p]=[5,23] with B=19 and center K*g=10. The fixed H map on that B-span yields CIRCUMFERENCES=131 and PARABLE=120; the centered e^2=9 shell yields INSTAR=78 / OPENPGP=75 and H([78,75])=[e,A]. A further source-motivated 17+9+17 split applies H to the two 17-rune flanks and yields ordered branch GP0 indices [12,2,11,1] = THE PATH IS THE; the three preserved block centers are [17,15,2] = THE WORDS PATH. This exact four-index readout occurs once in 4,803 eligible 43-rune windows, at p55 offset0 (marginal counts 167/172/183/162). This is a conditional source-register readout, not ordinary plaintext or a recovered p55 cipher: the upstream p33 selector remains post-selected under Director #1835, and the phrase was recognized after observing the output.",
 }, null, 2));

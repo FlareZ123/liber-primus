@@ -267,6 +267,52 @@ RISE -> p55 -> SHED -> RISE -> WE
 
 Reproduction: [p55 RISE-to-WE report](lp2-p55-shed-rise-we.md) and `sims/lp2_p55_shed_rise_we_sft.cjs`, Windows PASS **44464233108**.
 
+## Conditional downstream consequence: emerging from both 17-rune flanks reads THE PATH IS THE
+
+The already selected 43-rune strict interior has a state-derived three-part geometry:
+
+```text
+17 + 9 + 17
+b+K   e²  b+K
+```
+
+The central nine-rune shell is the existing `e²=9` object. Interpreting the solved p57 instruction's final **AND EMERGE** as a direction to process the two flanks, apply the same fixed outside-in H map separately to the left and right 17-rune blocks. Each odd-length block produces eight differences, eight sums, and an unchanged center rune.
+
+The four branch sums, in fixed page order (left difference, left sum, right difference, right sum), are:
+
+| Branch | Eight GP values | Raw sum | GP0 | Signed-source word |
+|---|---|---:|---:|---|
+| Left difference | `[14,9,22,25,9,2,28,19]` | 128 | 12 | **THE** |
+| Left sum | `[24,11,2,16,8,2,26,0]` | 89 | 2 | **PATH** |
+| Right difference | `[23,7,5,16,4,7,26,10]` | 98 | 11 | **IS** |
+| Right sum | `[1,0,15,25,24,5,4,14]` | 88 | 1 | **THE** |
+
+Thus the p55 flank readout is exactly:
+
+```text
+[12,2,11,1] -> THE PATH IS THE
+```
+
+The three H-preserved block centers, read left/center/right, are `[17,15,2]` and index **THE / WORDS / PATH** in the same authenticated 2016 source register. The center nine-rune shell still has its previously established ordered branch sums `INSTAR=78` and `OPENPGP=75`, with center `b=15`; this new flank result does not alter that result.
+
+### Fixed-family control
+
+Charge the same `17+9+17` split and H-branch-sum readout over every complete 43-rune window in every page-local strict-interior stream on unknown p0–p55:
+
+- **4,803** windows total;
+- left-difference index12: 167 hits;
+- left-sum index2: 172 hits;
+- right-difference index11: 183 hits;
+- right-sum index1: 162 hits;
+- exact ordered four-index sequence `[12,2,11,1]`: **one hit**, p55 at offset0;
+- the joint hit also has the already fixed centered-shell signature `[20,17,15]` and the p55 D...D/center state geometry.
+
+This is a uniqueness census for the observed four-index sequence, **not a p-value**: the target phrase was recognized after the p55 output was seen, and the upstream p33 selector remains conditional after Director #1835. The result is an exact source-register readout, not recovered ordinary plaintext and not a complete p55 cipher.
+
+The separate conditional p0 red-title readout is **THE WAY**. Juxtaposing it with the p55 readout gives the cross-page phrase **THE PATH IS THE WAY**. Treat that as an interpretation of two conditional source-register outputs, not as an independently established plaintext sentence.
+
+Reproduction: `node sims/lp2_p33_p55_divinity_state_geometry_sft.cjs`.
+
 ## What remains closed
 
 Do **not** infer that the historical DIVINITY Vigenère cipher decrypts this interior. Its exact authentic phase-0 transfer to the 43-rune p55 strict interior has already been exhaustively rejected under the literal-F rule.
