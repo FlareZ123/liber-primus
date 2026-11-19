@@ -64,38 +64,72 @@ The rise graph now gives a separate navigation relation:
 p6 / SEEKS --RISE--> 23 / ROAD.
 ```
 
-## Physical p23 independently says THE ONE RISE
+## Physical p23 is a multi-instruction checkpoint
 
-P23's red heading, through the independently solved p56 cardinal mechanism and charged H pairing, decodes:
+Current p23 synthesis distinguishes two source-visible instructions that use different visible operands.
 
-```text
-THE ONE RISE.
-```
-
-P23 and solved p56 also share the original five-dot stencil under a half-turn. Their page-number rise is:
+The complete five-word/five-dot branch serializes to:
 
 ```text
-56 - 23 = 33.
+THE ORIGINAL.
 ```
 
-Physical p33 independently decodes:
+Its independently charged DH handoff selects physical p33. P33 independently decodes:
 
 ```text
 THEIR RISE.
 ```
 
-This supplies a closed human-readable route:
+This gives the reciprocal SEEKS↔ROAD route a self-authenticating loop:
 
 ```text
 p33 THEIR RISE
- -> fixes rise6 on p50
+ -> fixes source rise6
  -> SEEKS GP0 71 rises to 23 / ROAD
- -> physical p23 says THE ONE RISE
- -> p23/p56 half-turn rises by33
- -> p33 THEIR RISE.
+ -> physical p23 THE ORIGINAL branch
+ -> charged handoff to p33
+ -> THEIR RISE.
 ```
 
-The reverse authenticated edge `ROAD -> SEEKS` closes the p6 endpoint as well.
+The exact red-span branch on p23 separately decodes:
+
+```text
+THE ONE RISE.
+```
+
+Current stronger evidence gives that instruction a different local action: the repeated `[3,5]+H -> RISE` packet on p23/p33/p40 uses the printed difference `5-3=2`, so one rise from p23 selects p25. P25 was independently selected by authenticated GOOD LUCK and carries the unique `[K,g]` side object in its charged family.
+
+Thus p23 is a fork:
+
+```text
+THE ORIGINAL -> p33 -> THEIR RISE -> source six-row navigation
+THE ONE RISE -> p25 -> independent GOOD LUCK continuation.
+```
+
+Do not transfer operands between those two serializers.
+
+## Closed navigation structure
+
+The source rise graph therefore adds a new entrance to an already source-selected checkpoint:
+
+```text
+p6 SEEKS
+  -- six-row source RISE -->
+23 ROAD
+  -> physical p23 multi-instruction checkpoint
+     |-- THE ORIGINAL --> p33 THEIR RISE --> defines six-row source RISE
+     |-- THE ONE RISE --> p25.
+```
+
+The reverse authenticated edge:
+
+```text
+ROAD -> SEEKS
+```
+
+returns node23 to source word6, where physical p6 independently selects SEEKS.
+
+This is stronger than the older single reading of p23's RISE language because it respects the current reconciliation: p23's full-line and red-span instructions are different source objects with different consumers.
 
 ## Cycle-specific p23 ROAD-state consumer: FAIL
 
