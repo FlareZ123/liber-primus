@@ -86,9 +86,46 @@ base59(3C)=189
 
 so the route is now trapped at a fixed point. Staying base59 cannot continue.
 
+## SURFACE labels the exact radix-sensitive root token
+
+The solved parable itself now supplies a numeric cue for the missing state reset.
+
+The clear word **SURFACE** is p57 word8 and has:
+
+```
+GP0(SURFACE)=67
+p50[67]=3C
+```
+
+That is the **same original token** as the EMERGE root:
+
+```
+p50[189]=3C
+```
+
+The token is exactly state-sensitive in the required direction:
+
+```
+base59(3C)=189   // the shed-state fixed point
+base60(3C)=192   // the restored-state exit
+p50[192]=00 -> 0
+```
+
+Within the complete 20-word p57 title+body, **SURFACE alone** has a GP0 address whose p50 token equals the root token `3C`. The clear word order is also fixed:
+
+```
+SURFACE -> WE MUST SHED -> ... -> EMERGE
+```
+
+So the same source word that describes the pre-SHED exterior state numerically names the exact token on which the post-SHED walk becomes trapped. Before `MUST SHED`, conventional base60 is independently the active state; after SHED, the same `3C` token is the base59 fixed point. When the six-rune EMERGE walk later reaches that point, returning to **SURFACE** selects the pre-SHED interpretation of the same token and exposes192.
+
+This is materially stronger than a free semantic radix switch at189: the parable now labels the switch token itself. The remaining inference is narrower: **EMERGE returns from the shed/within state to the already numerically identified SURFACE state.**
+
+There are four `3C` cells in the table (67,162,189,247), so the token is not globally unique. The charged fact is that the solved word `SURFACE` fixes address67 through the already established GP0→p50 primitive, and p57 contains no other direct word hit on that root-token class.
+
 ## Candidate reset: let the shed digit EMERGE
 
-The solved instruction is literally **EMERGE**. If that instruction reverses the immediately preceding digit-state action, the unique removed symbol `f` returns and the original base60 alphabet is restored.
+The solved instruction is literally **EMERGE**. With the new SURFACE holdout, the proposed reversal is source-linked rather than an arbitrary escape: EMERGE reaches the token numerically named by SURFACE, and the original pre-SHED base60 state is the only one of the two established numeral states that leaves the base59 trap.
 
 At the same fixed-point token:
 
@@ -182,11 +219,13 @@ This also strengthens the pre-existing p0 title crib enough to use it as a fixed
 
 ## Evidence boundary
 
-Every numeric relation through the base59 fixed point is reproducible from original artifacts and solved p57 text. The new interpretive step is:
+Every numeric relation through the base59 fixed point is reproducible from original artifacts and solved p57 text. The reset now has a first-party numeric cue: `GP0(SURFACE)=67 -> p50[67]=3C`, exactly the root token, with base59 returning to189 and base60 exiting to192. Within p57, SURFACE is the sole direct GP0 hit on that root-token class.
 
-**EMERGE means restore the uniquely shed digit `f` after the six-edge EMERGE walk.**
+The remaining interpretive step is narrower:
 
-No first-party sentence literally states that reset rule. The fact that base59 is trapped and base60 immediately exits through `00 ->0` makes the switch operationally discriminating, while the semantic cue remains a hypothesis.
+**EMERGE means return to the pre-SHED SURFACE state, thereby restoring the uniquely shed digit `f` and conventional base60.**
+
+No first-party sentence literally spells out that state-machine rule. The source now names the transition token and orders SURFACE before `WE MUST SHED`; the final EMERGE-to-SURFACE reading is still an interpretation and must remain below authenticated plaintext.
 
 This should therefore be treated as a high-priority exit candidate, not as recovered p0 plaintext. A decisive successor would use the resulting p0 receiver to predict a new original-page operation or ciphertext quantity before any language scoring.
 
