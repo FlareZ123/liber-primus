@@ -141,6 +141,22 @@ This gives the preceding authenticated wording `THE PATH LIES EMPTY` a literal o
 
 This held-out match materially strengthens the intended-route hypothesis because EMPTY was not part of the family predicate that selected the route.
 
+## Later source entry: FOUND -> PATH -> EPIPHANY
+
+A later complete signed-source/p50 family now supplies a human-readable entry into this route from the closing instruction `SEEK AND YOU WILL BE FOUND`.
+
+Authenticated word35 is `FOUND`. Original p50 cell35 is `0d`, which decodes to39 under both live numeral alphabets; 39 is exactly `GP0(PATH)`. Reusing the established GP0-as-p50-address primitive gives `p50[39]=05=5`, again under both radices, and signed word5 is `EPIPHANY`.
+
+Thus:
+
+```text
+FOUND35 -> PATH39 -> EPIPHANY5
+```
+
+Across all43 signed starting indices, this is the only two-stage signed-index -> p50 -> signed-GP0 -> p50 -> signed-index chain present under base59; base60 has only one additional chain, `MEANING20 -> DEVOTED102 -> YOU32`. The FOUND chain is the sole one invariant across both live radices.
+
+It lands exactly at the first word of this report's independently unique 560-case navigation clause. See `lp2-found-path-epiphany-bridge.md`, Windows PASS 44458989990.
+
 ## Cryptanalytic consequence
 
 This supplies a concrete human solve path that was previously missing:
