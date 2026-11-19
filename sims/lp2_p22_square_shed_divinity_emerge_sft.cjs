@@ -228,7 +228,27 @@ assert.deepEqual(
   [cellHits59[1]],
 );
 
-const signedGp0 = new Set(signedWords.map(gp0));
+const signedByGp0 = new Map();
+for (const word of signedWords) {
+  const value = gp0(word);
+  if (!signedByGp0.has(value)) signedByGp0.set(value, []);
+  signedByGp0.get(value).push(word);
+}
+const crossRegisterValues = [...p57ByGp0.keys()]
+  .filter((value) => signedByGp0.has(value))
+  .map((value) => ({
+    gp0: value,
+    p57Words: p57ByGp0.get(value),
+    signed2016Words: signedByGp0.get(value),
+  }))
+  .sort((left, right) => left.gp0 - right.gp0);
+assert.deepEqual(crossRegisterValues, [
+  { gp0: 20, p57Words: ["THE", "THE", "THE"], signed2016Words: ["THE", "THE", "THE", "THE", "THE", "THE"] },
+  { gp0: 25, p57Words: ["WE"], signed2016Words: ["IS", "IS"] },
+  { gp0: 56, p57Words: ["AND"], signed2016Words: ["MAP", "AND", "SEEK", "AND"] },
+  { gp0: 83, p57Words: ["EMERGE"], signed2016Words: ["NUMBERS"] },
+]);
+
 const authenticatedSquareCenters = parsedSquareBlocks.map((squareBlock, index) => {
   let currentSquare = squareBlock;
   while (currentSquare.length > 1) currentSquare = shedCircumference(currentSquare);
@@ -244,13 +264,13 @@ const authenticatedSquareCenters = parsedSquareBlocks.map((squareBlock, index) =
     token: tape[address],
     base59: output59,
     p57Words: p57ByGp0.get(output59) || [],
-    signed2016Hit: signedGp0.has(output59),
+    signed2016Words: signedByGp0.get(output59) || [],
   };
 });
 assert.deepEqual(authenticatedSquareCenters, [
-  { sourceOrder: 1, order: 5, magicSum: 3301, center: 809, address: 41, token: "1O", base59: 83, p57Words: ["EMERGE"], signed2016Hit: false },
-  { sourceOrder: 2, order: 7, magicSum: 1033, center: 331, address: 75, token: "2v", base59: 174, p57Words: [], signed2016Hit: false },
-  { sourceOrder: 3, order: 5, magicSum: 1033, center: 91, address: 91, token: "0n", base59: 48, p57Words: [], signed2016Hit: false },
+  { sourceOrder: 1, order: 5, magicSum: 3301, center: 809, address: 41, token: "1O", base59: 83, p57Words: ["EMERGE"], signed2016Words: ["NUMBERS"] },
+  { sourceOrder: 2, order: 7, magicSum: 1033, center: 331, address: 75, token: "2v", base59: 174, p57Words: [], signed2016Words: [] },
+  { sourceOrder: 3, order: 5, magicSum: 1033, center: 91, address: 91, token: "0n", base59: 48, p57Words: [], signed2016Words: [] },
 ]);
 assert.deepEqual(authenticatedSquareCenters.filter((row) => row.p57Words.length), [authenticatedSquareCenters[0]]);
 
@@ -313,6 +333,7 @@ console.log(JSON.stringify({
     center,
     solePrimeCell: flat.filter(isPrime),
   },
+  crossRegisterValues,
   authenticatedSquareCenterHoldout: authenticatedSquareCenters,
   fixedBase59CellHits: cellHits59,
   radix60RivalHits: cellHits60,
