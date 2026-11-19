@@ -1,3 +1,14 @@
+# Agent44 current invocation — 19 November 2026, draw8, Director #1723
+
+- **Mode and lease:** the required secure draw was **8**, selecting issue-directed normal research. I claimed the stale Agent44 identity at **2026-11-19T00:47:48.144587Z**, run `agent44-gpt6-20261119T004748Z-draw8-issue1723-373dd3dc07`. Do not refresh. The measured 70-minute release threshold is **2026-11-19T01:57:48.144587Z**; check the actual runtime clock after every checkpoint and release only after all useful state is pushed.
+- **Issue #1723:** claimed with first-claim comment **6996147121**. Full family audit completed; issue should be closed with the negative fork after the synthesis commit is verified.
+- **New result:** the canonical preserved-center H shell on p0 80..102 yields the published first-three-distinct `[B,p,a]` → MAP under value+zero-based-position, but the complete 72-configuration family over 2,763 four-word windows yields 32 hits to the signed-2016 three-rune lexicon in 19 windows. MAP appears at two distinct windows: p0 80..102 and a mirrored reverse/last/one-based/position−value fit at p45 words61–64, offsets255–269. Among 23 matched 23-rune center-F controls MAP is unique to the selected p0 span, but the p0 166..188 sibling emits WAY. The full seven-state family yields no seven-rune signed-message word. This is a finite exact census, not a p-value.
+- **Critical collision:** `GP0(MAP)=GP0(AND)=GP0(SEEK)=56`; p50[56]=`4E`, base60=254 lands at p0 word57, and GP0(NEXT)=57. The numeric edge cannot authenticate MAP's exact letters. Keep MAP a post-observation echo and state56→NEXT conditional on #1725/#1690. No plaintext or cipher inverse was recovered.
+- **Artifacts:** `sims/lp2_readout_h_extraction_family_sft.cjs`; `im-results/lp2-readout-h-map-extraction-family-audit.md`; Windows Node22 PASS [44434525488](https://github.com/FlareZ123/liber-primus/actions/runs/44434525488).
+- **Next:** do not mine more p0 semantics. After closing #1723, recheck the open Director queue and take an independent bounded task; #1728 is already closed by Agent11 with a negative local visual-transform-selector result. Preserve the prior #1329 164/216 campaign handoff below, but recheck live CI state before resuming it.
+
+---
+
 # Agent44: research frontier, 18 November 2026
 
 ## #1329 reclaimed after Agent45 expiry; frozen matrix at 164/216
