@@ -123,6 +123,47 @@ For a manuscript-wide control, take every page-local 8-rune fragment on unknown 
 
 The **sole 8/8 hit is p32 fragment15**, the independently selected HOME→BUDS destination. The three nearest controls score 7/8. This converts the BUDS container from a literal-word coincidence into a uniquely state-saturated receiver under an operation fixed elsewhere.
 
+## READ OUT closes the receiver back to THE DEVOTED
+
+The p28 DH branch independently fixes two consumers that were not chosen from this p32 target:
+
+1. `READ OUT` describes reading the outer runes under the forward H operation.
+2. The authenticated-source DH transfer fixes state values as zero-based signed-word positions, with `7 -> THE` and `8 -> DEVOTED`.
+
+Apply only the outer H layer to the independently selected p32 destination fragment:
+
+```text
+fragment15 = [22,21,3,19,17,1,23,15]
+
+READ OUT:
+H(22,15) = [7,8]
+
+signed words 7,8 = THE DEVOTED
+```
+
+This exactly returns the suffix of the upstream authenticated selector `EPIPHANY SEEKS THE DEVOTED` that originally drove the 23-step route to p32.
+
+The exact `[7,8]` output is equivalent to outer endpoints `[22,15]`. Across every multi-rune fragment on unknown p0-p55, four fragments have those endpoints; their lengths are 5, 2, 8, and 6. The p32 target is the **only 8-rune fragment** with this exact readout. Within the already locked 159-fragment eight-rune family, it is therefore unique.
+
+A broader adjacency control prevents overclaiming. Five of 159 eight-rune outer H pairs happen to be consecutive signed-word positions, close to the random 29-state expectation. The discriminating fact is the pre-specified upstream suffix itself: the selected receiver returns exactly `THE DEVOTED`, rather than merely some adjacent source bigram.
+
+The route now closes as:
+
+```text
+EPIPHANY SEEKS THE DEVOTED
+  -> p=23 / base60 SEEKS walk
+  -> p32
+  -> EMPTY@step7
+  -> HOMEX
+  -> g=5 X-diagonal
+  -> OENGOMBUDS
+  -> READ OUT / outer H
+  -> [7,8]
+  -> THE DEVOTED
+```
+
+This is a source-to-unknown-ciphertext-to-source loop under previously fixed operations. It remains a receiver/readout closure, not a continuous plaintext decryption of p32.
+
 ## The frozen p50 composite returns BUDS to HOME
 
 The already fixed Agent10 composite has exactly one valid two-stage transition anywhere in the complete 256-cell p50 table:
@@ -153,7 +194,7 @@ Across the authenticated signed message, both WAY and WILL have GP0 value57. Wit
 
 The p50 composite previously had one independent solved-text transfer, WELCOME `WAY HERE`, while its own report explicitly asked for a second independently selected state or unknown receiver. The independently selected p32 now supplies exactly that receiver. Its two internal numerical states are labeled by the only two four-letter grid words on p32, and the separately reconstructed DH value g links those words geometrically through the EMPTY-selected X.
 
-The strongest rival remains coincidence in the p32 literal-word layer. The equal-axis move is motivated by the selected X and the adjacent `HOME|X` span length g, yet no first-party text explicitly says "move g cells diagonally." BUDS is a low-frequency dictionary word. The exact offset97=TO cross-route junction and the unique 8/8 fixed-H state shell materially reduce that rival, while the absence of a source-selected reversible plaintext transform still limits the result to mechanism authentication rather than plaintext recovery.
+The strongest rival remains coincidence in the p32 literal-word layer. The equal-axis move is motivated by the selected X and the adjacent `HOME|X` span length g, yet no first-party text explicitly says "move g cells diagonally." BUDS is a low-frequency dictionary word. The exact offset97=TO cross-route junction, the unique 8/8 fixed-H state shell, and the READ OUT closure back to the pre-specified source suffix THE DEVOTED materially reduce that rival, while the absence of a source-selected reversible full-page plaintext transform still limits the result to receiver/mechanism recovery rather than continuous plaintext.
 
 The causal path is now concrete:
 
@@ -175,4 +216,4 @@ This is a reusable route worth carrying forward. Further work should use HOME/BU
 
 `node sims/lp2_p32_home_buds_p50_loop_sft.cjs`
 
-The SFT reconstructs the 23-step upstream route, canonical p32 words and 11x11 checksum, the complete DH-diagonal family, the whole p32 four-letter grid census, the independent PARABLE/SURFACE offset97 junction, the 159-fragment H-shell control, the table-wide frozen p50 composite, and the signed-source value57 ambiguity.
+The SFT reconstructs the 23-step upstream route, canonical p32 words and 11x11 checksum, the complete DH-diagonal family, the whole p32 four-letter grid census, the independent PARABLE/SURFACE offset97 junction, the 159-fragment H-shell control, the READ OUT / THE DEVOTED source closure, the table-wide frozen p50 composite, and the signed-source value57 ambiguity.

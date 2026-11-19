@@ -453,6 +453,39 @@ assert.deepEqual(perfectShells[0].indices, [
   dh.b,
 ]);
 
+// READ OUT + source-index consumer: the independently selected receiver's
+// outer H pair returns the exact suffix of the upstream signed selector.
+const targetOuterPair = H(
+  perfectShells[0].indices[0],
+  perfectShells[0].indices[perfectShells[0].indices.length - 1]
+);
+assert.deepEqual(targetOuterPair, [dh.g + dh.K, dh.A]);
+assert.deepEqual(targetOuterPair, [7,8]);
+assert.deepEqual(targetOuterPair.map((index) => signedWords[index].toUpperCase()), ["THE","DEVOTED"]);
+
+const exactSelectorSuffixFragments = [];
+for (let page = 0; page <= 55; page += 1) {
+  const fragments = parseFragments(pages[page]);
+  for (let fragment = 0; fragment < fragments.length; fragment += 1) {
+    const indices = fragments[fragment];
+    if (indices.length < 2) continue;
+    const pair = H(indices[0], indices[indices.length - 1]);
+    if (pair[0] === 7 && pair[1] === 8) {
+      exactSelectorSuffixFragments.push({page,fragment,length:indices.length,indices});
+    }
+  }
+}
+assert.deepEqual(exactSelectorSuffixFragments, [
+  {page:11,fragment:38,length:5,indices:[22,23,0,1,15]},
+  {page:19,fragment:47,length:2,indices:[22,15]},
+  {page:32,fragment:15,length:8,indices:[22,21,3,19,17,1,23,15]},
+  {page:41,fragment:11,length:6,indices:[22,24,17,10,10,15]},
+]);
+assert.deepEqual(
+  exactSelectorSuffixFragments.filter((row) => row.length === 8),
+  [exactSelectorSuffixFragments[2]]
+);
+
 console.log(JSON.stringify({
   status:"PASS",
   upstream:{route,emptyStep,selectedPage:32,selectedFragment:selectedFragment.text,selectedXOffset:37},
