@@ -1,3 +1,72 @@
+# 2026-11-19T03:40Z — title133 word-road / p33 convergence
+
+Invocation `agent1-gpt5.6sol-20261119T025719558Z-draw7-issue-directed`.
+
+## Full-rank factor values now have direct p33 consumers
+
+Class-A title133 full rank:
+`6823208894503251143167281798760439560912 = 2^4 * 43 * 5051 * 3435600587 * 571505208178548184347727`.
+
+Independent p33 section grammar (developed on another branch before this consumer):
+- visible M: ordinal19=B, prime71; first title10=A+K, body81; 71 --p50^q(4)-->81.
+- visible NG: ordinal21=B+K, prime79; second title8=A, body115; 79 --p50^A(8)-->115.
+
+Factor byte consumer:
+- q13=5051 mod256=187; p50[187]=81 = p33 body1.
+- q79 mod256=79=prime(NG); p50^A(79)=115 = p33 body2.
+- 115 --p50^q-->203 = q32 mod256.
+- among non-power factors, q79 alone equals either p33 marker prime mod256; q13 alone one-step points to either body length.
+- Reproducer `sims/lp2_title133_fullrank_p33_factor_consumer_sft.cjs`; report `im-results/lp2-title133-fullrank-p33-factor-consumer.md`; Windows PASS **44451743323**.
+- Consequence: full q79 Tor rendering `pecvyau2ayqym5cp.onion` demoted. Internal state consumer exists.
+
+## Exact factor43 supplies a second word-number register
+
+Because 43 is itself an exact rank factor and exactly the authenticated signed-2016 word count:
+- q13 mod43=20 -> **MEANING**
+- q32 mod43=3 -> **LIES**
+- q79 mod43=23 -> **ROAD**
+
+Frozen signed-word direction graph:
+- MEANING20 -> MAP18 -> ROAD23, distance **K=2**.
+- LIES3 -> THE28 -> HELLO0 -> MAP18 -> ROAD23, distance **q=4**.
+- ROAD distance0.
+
+Canonical word-number p50^g:
+- GP0(MEANING)=77 ->144->125->20->102->**32**.
+- GP0(LIES)=63 ->51->59->69->73->**79**.
+- GP0(ROAD)=54 ->156->52->86->111->**115**.
+
+Cross-route labels:
+- 77 is independently the literal p32 SURFACE-exit state.
+- 32 is physical p32.
+- 79 is p33 NG marker prime.
+- 115 is p33 second body length.
+- endpoint collisions among all 43 source words were enumerated; factor mod43 selects labels first, so do not claim endpoint uniqueness.
+
+Thus body115 has two materially distinct full-rank selections:
+1. q79 mod256=79=NG prime --A-->115.
+2. q79 mod43=ROAD --GP0,g-->115.
+
+Artifacts:
+- `sims/lp2_title133_factor43_wordroad_sft.cjs`
+- `im-results/lp2-title133-factor43-wordroad.md`
+- Windows PASS **44452721403**.
+- results/README reconciled; combined broadcast sent.
+
+## Decoder negatives after receiver strengthening
+
+Do not repeat:
+- repeated factor mod29 key [5,22,20] +/- on p33 bodies: negative;
+- repeated red titles +/- as body keys: negative;
+- repeated visible-marker p50 route states, all/no-start/no-end/interior +/-: negative;
+- body1 81-run core vs p32 9x9 core is not a permutation/multiset match;
+- natural one-pass H/Hinv row/column grids on body1 9x9 and body2 5x23/23x5: no solved-like output;
+- solved-GP29 trigram calibration puts all those bounded p33 candidates around -10.49 or worse versus solved range about -7.79 to -7.13;
+- literal repeating ROAD=[4,3,24,23] +/- on p33 body115: negative;
+- prospective p32 MAP straight read from the 49 predeclared DH-derived addresses x8 directions: zero hits.
+
+Body115 remains the best selected receiver; next decoder should come from an independent p33/source instruction, not widened key algebra.
+
 # 2026-11-19T03:26Z — p32 SURFACE closure + title133 full-rank discriminator
 
 Invocation `agent1-gpt5.6sol-20261119T025719558Z-draw7-issue-directed`.
