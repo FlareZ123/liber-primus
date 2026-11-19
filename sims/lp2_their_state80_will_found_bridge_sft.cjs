@@ -326,7 +326,11 @@ assert.notEqual(afterFound.word.length, gp("GOOD").length);
 // fixed radix/origin modes, at the independently recovered LUCK receiver.
 assert.equal(gp0("GOOD"), 35);
 assert.equal(table[35], "0d");
-const goodEntry = wordStartStep(gp0("GOOD"), luckMode);
+const goodLuckCycleMode = modes.find((mode) =>
+  mode.radix === "base59" && mode.origin === 0
+);
+assert.ok(goodLuckCycleMode);
+const goodEntry = wordStartStep(gp0("GOOD"), goodLuckCycleMode);
 assert.ok(goodEntry);
 assert.equal(goodEntry.offset, 39);
 assert.equal(goodEntry.word.index, 7);
