@@ -53,6 +53,22 @@ fragment-2 length = e = 3
 fragment-4 length = 4 = R
 ```
 
+The already fixed outer-H operation makes this prediction redundant inside the same source line. Fragment2 is `NPA`, whose outer pair gives:
+
+```text
+H(N,A) = H(9,24) = [14,4]
+```
+
+So fragment2 simultaneously supplies the exponent through its length **3** and the decoded center value through its H second coordinate **4**. Fragment3 length **9** equals the actual page-center rune value, while fragment4 length **4** repeats the H output. The complete source equation is therefore:
+
+```text
+(center value)^(fragment2 length) mod29
+= 9^3 mod29
+= H(fragment2 outer pair)[1]
+= fragment4 length
+= 4 = R
+```
+
 The exponent progression is also visible in the lengths:
 
 ```text
@@ -96,6 +112,18 @@ occurs **once**: p28 line6.
 
 It is also the sole occurrence whose first four fragments end exactly at an odd page's rune center with center value9.
 
+A broader center-boundary control does not condition on the exact p28 length sequence. Across all594 lines, only **two** lines have at least four fragments, have fragment4 end exactly at the page center, and have the center rune value equal fragment3's length:
+
+```text
+p11 line6: lengths [8,9,2,2], center=2,
+            H(fragment2)[1]=27, 2^9 mod29=19  -> fails
+
+p28 line6: lengths [2,3,9,4,5], center=9,
+            H(fragment2)[1]=4, 9^3 mod29=4   -> passes
+```
+
+P28 alone also has that power output equal fragment4's length. This is a source-only matched control for the center equation itself.
+
 This census is a control on the source pattern, not an authorship probability. The pattern was noticed after READ OUT was already known.
 
 ## Relation to the existing DH reconstruction
@@ -133,3 +161,5 @@ Run:
 ```text
 node sims/lp2_p28_dh_fragment_length_readout_sft.cjs
 ```
+
+Windows Node22 PASS: GitHub Actions run `44437743319`.
