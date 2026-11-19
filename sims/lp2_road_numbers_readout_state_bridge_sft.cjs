@@ -11,6 +11,7 @@ const read = (relative) =>
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
+const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
 
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
 const gpTokens = corpus.translit
@@ -124,6 +125,105 @@ function parsePage(text) {
 
 const p0 = parsePage(parts[0]);
 const p0ByStart = new Map(p0.map((word) => [word.start, word]));
+
+
+
+const clear2016 = signed2016
+  .split("-----BEGIN PGP SIGNATURE-----")[0]
+  .split(/\n\n/)
+  .slice(1)
+  .join("\n");
+const signedWords = clear2016
+  .split(/[^A-Za-z0-9]+/)
+  .filter((token) => /^[A-Za-z]+$/.test(token))
+  .map((word) => word.toUpperCase());
+assert.equal(signedWords.length, 43);
+
+// The authenticated phrase itself supplies an independent backwards selector:
+// NUMBERS -> p50[GP0(NUMBERS)] dual-radix outputs reproduce the two preceding
+// source-word GP lengths AND THEIR = [3,4].
+const numbersIndex = signedWords.indexOf("NUMBERS");
+assert.equal(numbersIndex, 26);
+assert.deepEqual(signedWords.slice(numbersIndex - 2, numbersIndex + 1),
+  ["AND", "THEIR", "NUMBERS"]);
+assert.equal(gp0("NUMBERS"), 83);
+assert.equal(tableTokens[83], "3D");
+
+function decodeToken(token, alphabet) {
+  const high = alphabet.indexOf(token[0]);
+  const low = alphabet.indexOf(token[1]);
+  assert.ok(high >= 0 && low >= 0);
+  return high * alphabet.length + low;
+}
+
+const alphabet59 = alphabet60.replace("f", "");
+const numbersBase59 = decodeToken(tableTokens[83], alphabet59);
+const numbersBase60 = decodeToken(tableTokens[83], alphabet60);
+assert.deepEqual([numbersBase59, numbersBase60], [190, 193]);
+const numbersPair = [
+  p0ByStart.get(numbersBase59 - 1),
+  p0ByStart.get(numbersBase60 - 1),
+];
+assert.ok(numbersPair[0] && numbersPair[1]);
+assert.equal(numbersPair[0].end + 1, numbersPair[1].start);
+assert.deepEqual(numbersPair.map((word) => word.start), [189, 192]);
+assert.deepEqual(numbersPair.map((word) => word.length), [3, 4]);
+assert.deepEqual(
+  signedWords.slice(numbersIndex - 2, numbersIndex)
+    .map((word) => gp(word).length),
+  [3, 4]
+);
+
+// Charge the rule over every authenticated source occurrence and both receiver
+// origins. Only three source words produce any adjacent base59/base60 p0 pair;
+// only NUMBERS matches its two preceding source-word GP lengths.
+const adjacentDualRadix = [];
+const backwardLengthMatches = [];
+for (let sourceIndex = 0; sourceIndex < signedWords.length; sourceIndex += 1) {
+  const address = gp0(signedWords[sourceIndex]);
+  if (address < 0 || address >= tableTokens.length) continue;
+  const token = tableTokens[address];
+  const value59 = decodeToken(token, alphabet59);
+  const value60 = decodeToken(token, alphabet60);
+  for (const origin of [0, 1]) {
+    const word59 = p0ByStart.get(value59 - origin);
+    const word60 = p0ByStart.get(value60 - origin);
+    if (!word59 || !word60 || word59.end + 1 !== word60.start) continue;
+    const row = {
+      sourceIndex,
+      source: signedWords[sourceIndex],
+      address,
+      token,
+      origin,
+      starts: [word59.start, word60.start],
+      lengths: [word59.length, word60.length],
+      previous: sourceIndex >= 2
+        ? signedWords.slice(sourceIndex - 2, sourceIndex)
+        : [],
+      previousLengths: sourceIndex >= 2
+        ? signedWords.slice(sourceIndex - 2, sourceIndex)
+          .map((word) => gp(word).length)
+        : [],
+    };
+    adjacentDualRadix.push(row);
+    if (
+      sourceIndex >= 2 &&
+      row.lengths[0] === row.previousLengths[0] &&
+      row.lengths[1] === row.previousLengths[1]
+    ) {
+      backwardLengthMatches.push(row);
+    }
+  }
+}
+assert.deepEqual(
+  adjacentDualRadix.map((row) => [row.source, row.origin, row.starts, row.lengths]),
+  [
+    ["PRIMUS", 0, [122, 124], [2, 3]],
+    ["NUMBERS", 1, [189, 192], [3, 4]],
+    ["OPENPGP", 1, [173, 176], [3, 1]],
+  ]
+);
+assert.deepEqual(backwardLengthMatches, [adjacentDualRadix[1]]);
 
 // Reconstruct the upstream ROAD receiver geometry.
 const roadGp = gp("ROAD");
@@ -307,7 +407,18 @@ assert.deepEqual(roadPlain, gp("ROAD"));
 console.log(JSON.stringify({
   status: "PASS",
   classification:
-    "post-location local-cycle bridge: ROAD source numbers select the unique zero bracket; its length sends p0 start192 to the seven-rune NUMBERS-shaped receiver at228. Its raw H shell is a unique DH-state packet and sums to75=GP0(READOUT). p50[75]=2v base60=177 is the center of the independently fixed whole READOUT packet166..188; its frozen DH boundary joins the split packet80..102, whose A/K selector yields the exact THE key immediately before the recovered ROAD receiver. The receiver values were exposed before the H/sum consequence was recognized, so this closes mechanism/state structure rather than proving NUMBERS plaintext.",
+    "source-selected plus post-location local-cycle bridge: authenticated NUMBERS is uniquely the only 2016 source word whose GP0 p50 dual-radix outputs form adjacent p0 word starts matching its two preceding GP lengths AND THEIR=[3,4]; the same [189,192] pair is independently reached by ROAD source geometry. ROAD source numbers select the unique zero bracket; its length sends p0 start192 to the seven-rune NUMBERS-shaped receiver at228. Its raw H shell is a unique DH-state packet and sums to75=GP0(READOUT). p50[75]=2v base60=177 is the center of the independently fixed whole READOUT packet166..188; its frozen DH boundary joins the split packet80..102, whose A/K selector yields the exact THE key immediately before the recovered ROAD receiver. The receiver values were exposed before the H/sum consequence was recognized, so this closes mechanism/state structure rather than proving NUMBERS plaintext.",
+  numbersDirection: {
+    sourceIndex: numbersIndex,
+    sourceContext: signedWords.slice(numbersIndex - 2, numbersIndex + 1),
+    gp0: gp0("NUMBERS"),
+    token: tableTokens[83],
+    dualValues: [numbersBase59, numbersBase60],
+    starts: numbersPair.map((word) => word.start),
+    lengths: numbersPair.map((word) => word.length),
+    adjacentDualRadix,
+    backwardLengthMatches,
+  },
   road: {
     gp: roadGp,
     base29: roadNumber,
