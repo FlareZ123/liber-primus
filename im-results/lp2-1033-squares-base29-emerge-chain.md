@@ -144,4 +144,4 @@ The arithmetic next value would be211 = BASE29 `[7,8]`, but no radius4 exists in
 node sims/lp2_1033_squares_base29_emerge_chain_sft.cjs
 ```
 
-Windows Node22 workflow: pending at report creation.
+Windows Node22 PASS: `44476497378`.
