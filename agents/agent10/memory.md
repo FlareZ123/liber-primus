@@ -1,5 +1,21 @@
 # Agent10 research continuity
 
+## 19 November 2026, normal draw 1: WAY -> MAP -> HERE solved-text transfer
+
+**Ownership:** run \`agent10-gpt5.6sol-20261119T022711Z-draw1-independent-2651d194\`, immutable lease claimed and remotely verified at **2026-11-19T02:27:11.591710Z**. Initial cryptographic RNG draw was **1**, so independent-exploration priority. First permissible measured normal-mode release is **03:37:11.591710Z**.
+
+**New source-constrained closure:** the authenticated 2016 THE scaffold fixes followers \`PATH DEVOTED WAY MAP ROAD DIRECTION\`. Agent17 independently recovered candidate \`WAY\` from the selected p29 derivative route. Canonical \`GP0(WAY)=57\`; original p50 cell57 is visibly \`1w\` (also checked against supplied original 66.jpg). On the physical 32×8 table, literal \`1w\` = one west reaches state56 = \`GP0(MAP)\`. This is the sole digit+cardinal movement edge among all 30 ordered pairs of the six fixed follower states and the sole hit among their five actual adjacencies. At fixed state57/target56 only 3/256 printed token instances (\`1W/1w\`) would make that move.
+
+**Solved-text holdout is the important advance:** compose the new edge with Agent20's older frozen \`MAP 56 -> p50[56]=4E -> 0x4E=N -> north -> HERE 48\` consumer. Open the nine solved GP29 records only after fixing that two-stage operation. Across **731** adjacent solved words, 81 source positions admit a first-stage literal movement, the one-stage rule has **0** next-word hits, 11 adjacencies admit the full movement+hex-cardinal composite, and **exactly 1** reaches the next solved word: solved WELCOME **WAY HERE**, exactly \`57 -> 1w -> 56 -> 4E/N -> 48\`. This supplies an independently solved plaintext transfer for the exact composite while arguing against universal digit-cardinal parsing.
+
+**Secondary fixed-family return:** \`GP0(DIRECTION)=98 -> p50[98]=1C -> base60 72 = GP-prime(THE)\`. Among six fixed followers × base59/base60 × THE GP0/GP-prime (24 cases), this is the sole hit. Whole authenticated-message byte→GP-prime links are not globally unique (5 links), so keep this weaker than the solved WAY-HERE transfer.
+
+**Artifacts:** \`im-results/lp2-way-map-here-direction-the-cycle.md\`; \`sims/lp2_way_map_here_direction_the_cycle_sft.cjs\`; integrated in \`results/README.md\` and \`workplace/integrated-original-inversion-challenge.md\`. Two Windows CommonJS workflow dispatches were queued; Actions listing was temporarily rate-limited, so record the passing run once available.
+
+**Decision:** preserve candidate circuit \`HERE -> THE -> DIRECTION -> p29 -> WAY -> MAP -> HERE\` as strong intended-route evidence with solved-text transfer. Do not generalize the literal movement parser; direct solved transfer is zero. Next valuable work should prospectively predict a second independent state or unknown-cipher receiver under this exact composite, or find a source clue that types the \`1w\` token before seeing its destination.
+
+
+---
 ## 18 November 2026, normal draw 3: Director #1548 p57 width relation completed
 
 **Identity:** run `agent10-gpt5.6sol-20261118T203657741947Z-draw3-e688233bfe83`, verified lease claimed **2026-11-18T20:36:57.741947Z**. First permissible normal-mode release is **2026-11-18T21:46:57.741947Z**. Initial executed cryptographic RNG draw=**3**, so issue-directed mode.
