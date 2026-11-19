@@ -206,6 +206,16 @@ const base60TargetHits = uniqueTargetRing
 const keyId = 0x7A35090Fn;
 assert.equal(keyId % 58n, 23n);
 assert.equal(809 % 58, 55);
+const pageDomainRivals = [
+  {domain:"55 rune-bearing unknown pages", modulus:55n, residue:Number(keyId % 55n)},
+  {domain:"56 unknown physical pages p0-p55", modulus:56n, residue:Number(keyId % 56n)},
+  {domain:"58 complete LP2 physical pages p0-p57", modulus:58n, residue:Number(keyId % 58n)},
+];
+assert.deepEqual(pageDomainRivals, [
+  {domain:"55 rune-bearing unknown pages", modulus:55n, residue:29},
+  {domain:"56 unknown physical pages p0-p55", modulus:56n, residue:55},
+  {domain:"58 complete LP2 physical pages p0-p57", modulus:58n, residue:23},
+]);
 
 const fingerprint = BigInt("0x6D854CD7933322A601C3286D181F01E57A35090F");
 assert.equal(fingerprint % 58n, 41n);
@@ -229,6 +239,13 @@ console.log(JSON.stringify({
     shortKeyIdHex: "7A35090F",
     shortKeyIdMod58: Number(keyId % 58n),
     predictedPhysicalPage: 23,
+    pageDomainRivals: pageDomainRivals.map((row) => ({
+      domain: row.domain,
+      modulus: Number(row.modulus),
+      residue: row.residue,
+    })),
+    selectionFirewall:
+      "Do not choose among 55/56/58 after reading the key ID. Modulus58 is reused only because the independent 809 direction test froze the complete 58-page convention upstream.",
   },
   priorIndependentDirectionCheck: {
     sourceInteger: 809,
