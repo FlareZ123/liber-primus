@@ -33,3 +33,27 @@ Only the source node is predicted. No plaintext, ciphertext path, key-center tra
 ## Gate
 
 A positive requires the published block8 source node to be exactly those three original cells. Any other node rejects this exact transition hypothesis. No nearby-node, larger-radius, rotated-axis, or value-equivalent rescue is allowed.
+
+## Outcome after opening block8
+
+**FAIL.** Block8 uses the diagonal radius-three node `A-TH-A` at `(8,13),(11,16),(14,19)`, not the predicted vertical `TH-H-TH` node.
+
+The actual block8 geometry is itself compactly DH-state typed:
+
+```text
+source node values:
+  [24,2,24] = [-g,K,-g]
+source center:
+  (11,16) = (B-A,K-b)
+radius:
+  e=3
+
+ciphertext start:
+  (15,20) = (b,p-e) = exact block7 endpoint
+ciphertext end:
+  (17,18) = (p-a,A-B)
+path length:
+  e=3
+```
+
+The tested `[K,A,K]` node rule is retired. No axis/radius rescue is permitted.
