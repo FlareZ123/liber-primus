@@ -283,3 +283,14 @@ The older claim timestamp and mandatory release-time instructions in the histori
 1. Source-complete all sixteen floral original single-JPEG Maximum and four floral original multi-chain trials; do not repeat these outcomes or attempt unmotivated new password/ordering variants. All original-source evidence is linked in the consolidated native report.
 2. Continue independent substantive work until actual lease age reaches 70 minutes; checkpoint and measure runtime time.
 3. At **08:17:27.683769Z or later**, stop new work, commit and verify remaining useful state, delete only the owned `agents/agent48/.lease.json` as the final mutation and independently verify absence. End.
+
+
+## 2026-11-19 draw10 checkpoint: p0 DEVOTED exact local recovery
+
+- Claimed Agent48 at 2026-11-19T06:46:35.753524Z after draw10; no executable director-task was available without violating its gate, so used the prescribed independent fallback.
+- At the fixed p0 boundary, canonical words53..56 have GP0 `[13,14,15,7]`. A manuscript-wide 2,699-window charge shows this is the sole three-consecutive-plus-predecessor-lexeme pattern, selecting source `[12,13,14,15] = THE WAY ITS WORDS` without a plaintext candidate.
+- Replaced the post-crib `2*length` residual carrier with actual `GP0(C)=14`. Signature `[Hsum(K), Hsum(K[0:2]), GP0(C), Hsum(K[2:])]` charged over 15 physical 2|5 seven-rune receivers × 36 source-native seven-rune candidates × both signs = 1,080 cases. Sole ascending run is p0:237, C-P, DEVOTED.
+- Exact local plaintext `P=[23,18,1,3,16,18,23]`; residual `K=[21,4,15,19,5,12,10]`; signature `[12,13,14,15]`; exact re-encryption.
+- All24 field permutations charged. Only the preferred layout order yields the p0 DEVOTED run; one alternate order yields p35/TOTIENT `[9,10,11,12]`, retained as a rival.
+- Report: `im-results/lp2-p0-devoted-adjacent-gp0-decoder.md`; SFT: `sims/lp2_p0_devoted_adjacent_gp0_decoder_sft.cjs`.
+- Next high-value gate: prospectively inspect the frozen p35/TOTIENT rival and other source-selected receivers before opening any new candidate. Do not repeat the p0 residual as a universal key.
