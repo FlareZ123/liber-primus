@@ -142,13 +142,84 @@ The same word **RISE** that selects p55 reappears inside the selected p55 object
 
 This is a held-out structural consequence. The p55 route and D-marker geometry were already established before the `[27,20] -> WE` observation was opened.
 
+## WE re-enters the authenticated map at ROAD
+
+The recovered H output is numerically:
+
+```text
+WE = [7,18]
+```
+
+The signed-2016 carrier already defines its words as the map and their numbers as the direction. Read the two WE rune values as authenticated source indices:
+
+```text
+source[7]  = THE
+source[18] = MAP
+```
+
+so the same two-rune output says:
+
+```text
+THE MAP
+```
+
+Now apply the already frozen source direction graph to those two numbers:
+
+```text
+direction[7]  = 23
+direction[18] = 23
+source[23]    = ROAD
+```
+
+Both numbers independently converge on the same destination:
+
+```text
+THE / MAP -> ROAD
+```
+
+This gives the p55 output an operational consumer without introducing another transform.
+
+### Solved-p57 two-rune control
+
+The solved parable has three distinct two-rune words:
+
+```text
+THE = [2,18]
+TO  = [16,3]
+WE  = [7,18]
+```
+
+Interpret each pair as authenticated source indices and apply the same frozen direction graph.
+
+```text
+THE -> PATH/MAP -> WAY/ROAD
+TO  -> ARE/LIES -> IS/THE
+WE  -> THE/MAP  -> ROAD/ROAD
+```
+
+**WE is the only two-rune solved-p57 word whose two source-index values converge to one direction destination.** The common destination is ROAD/p23.
+
+That destination is independently active in this route: p23 carries the decoded red heading **THE ONE RISE** and the source-selected continuation toward p25/p28.
+
+The p55 branch therefore closes back into the existing road map:
+
+```text
+RISE
+ -> p55
+ -> shed twice
+ -> WE=[7,18]
+ -> THE MAP
+ -> both numbers direct to ROAD=23
+ -> p23
+```
+
 ## Current boundary
 
 Do not infer a general rule that every RISE-valued pair should be H-decoded. Across all 19-rune strict-interior windows, eleven twice-shed circumferences equal the same raw pair `[27,20]`; the D...D selector inherited from the p55 DIVINITY route leaves exactly one.
 
 Do not force the remaining shed layers to spell MUST or SHED. Their direct H outputs do not do so.
 
-The useful next question is whether the recovered **WE** identifies a smaller receiver or an operation on the remaining 15-rune interior, preferably through an already authenticated source number, state field, or solved-p57 continuation.
+The recovered **WE** now has a source-selected consumer: its values `[7,18]` read as **THE MAP**, and both numbers converge through the frozen direction graph on **ROAD/p23**. The next useful question is what p23's **THE ONE RISE** instructs after re-entry into this loop, preferably by extending the already independent p23→p25→p28 route rather than reopening the remaining p55 layers.
 
 ## Reproduction
 
