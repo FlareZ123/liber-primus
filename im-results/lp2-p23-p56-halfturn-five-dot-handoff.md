@@ -47,12 +47,27 @@ P23’s physical first16 source runes are a red heading, with no ciphertext F. A
 
 This **excludes only the four direct zero-offset prime-totient consumers of a full source chapter** under the established p56 F rule. It does not disprove the three-page geometric clue, a separate alphabet inversion, vertical line-order reflection, different source-selected starting prime, extra cipher state, or the possibility that the drawings are reused solely for design. No fresh unknown LP2 plaintext, source-selected key, inverse, digest preimage, or destination has been authenticated.
 
+## Additional source-selected pagewise reflection gate (19 November 2026)
+
+The five-dot image relation also motivates a narrower test than reversing the entire 1,021-rune chapter: vertically reverse the **printed-line order of p23 only**, or rotate **p23 only** by 180 degrees, leaving p24–p26 in their original order. Apply the established p56 prime-totient stream, first 1,021 primes with key (prime−1) mod 29, in forward and reversed order. Enumerate every admissible literal-F bypass clock state; no F mask is chosen.
+
+| p23-only transform | Prime-key order | First forced contradiction, zero-based |
+|---|---|---:|
+| Vertical line-order reflection | Forward | **0** |
+| Vertical line-order reflection | Reversed | **67** |
+| 180-degree page rotation | Forward | **17** |
+| 180-degree page rotation | Reversed | **143** |
+
+The contradiction occurs within p23, so extending the same pagewise transform to p24–p26 does not change these offsets. This rejects these four source-motivated **direct prime-totient consumers** under the established p56 F rule. It does not reject a navigation-map role for the emblem, a different alphabet permutation, a distinct key schedule, or a layered cipher.
+
+A separate source-constrained interpretation of the same line layout is now recorded in [the H-shell line-length navigation-map report](lp2-hshell-line-length-navigation-map.md). It should be evaluated as a navigation hypothesis, not silently folded into the prime-totient claim.
+
 ## Plausible intended route and next decisive input
 
-The **p7 lower** motif ends the preceding p3–7 chapter, **p23 upper** motif opens p23–26, and **p56 lower** motif closes solved AN END. The three authentic image transformations give specific candidates for how a creator might select a reading direction, an alphabet permutation or another reversible map. The fourth independent horizontal reflection is missing in the inspected 58-page corpus, but absence itself is *not* a key, stop instruction or cryptographic proof.
+The **p7 lower** motif ends the preceding p3–7 chapter, **p23 upper** motif opens p23–26, and **p56 lower** motif closes solved AN END. The three authentic image transformations give specific candidates for a creator-selected operation. The new [H-shell line-length navigation-map report](lp2-hshell-line-length-navigation-map.md) supplies a more constrained navigation interpretation of these marks and the original page typography; it is not yet a cipher or plaintext. The fourth independent horizontal reflection is missing in the inspected 58-page corpus, but absence itself is *not* a key, stop instruction or cryptographic proof.
 
 The old period log explicitly shows that human solvers noticed these echoes and guessed both alphabet and algorithm inversions. Their unsuccessful speculations are useful historical context but supply no authentic author-chosen cipher. Search for independent 2014–2016 creator text or a located historical worked example stating *what representation* should be reversed. A 17 January 2015 original message, line **74373**, references an unnamed participant’s **“PAGE 9 comments”** about the dot hint on p56; the exact page, preserved comment archive and author authority remain unresolved, so do not infer an instruction from that anecdote alone. Test a source-selected operation on withheld original ciphertext; demand at least **40 contiguous source-native plaintext runes** or a signed instruction, not an arbitrary key fit.
 
 **Hash-preimage guard:** [the existing source hash ledger](archive-hash-preimage.md) already records 232 direct digest tests of all 58 raw LP2 JPEGs against p56's 128-hex target under four digest families, with no matches. The emblem relation does not justify retesting raw JPEG preimages.
 
-**Status:** Three original-source image placements and their exact symmetries established; worldwide priority correctly assigned to archived 2015 solvers. The cryptographic meaning and full LP2 solution remain unresolved.
+**Status:** Three original-source image placements and their exact symmetries established; the source-selected pagewise vertical/180-degree direct prime-totient variants are rejected; a line-length H-shell navigation interpretation is now under test. Worldwide priority for the emblem relation correctly belongs to archived 2015 solvers. No unknown LP2 plaintext or final destination is established.
