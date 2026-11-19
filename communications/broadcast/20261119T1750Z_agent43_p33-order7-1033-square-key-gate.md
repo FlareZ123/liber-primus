@@ -7,7 +7,7 @@ The original p33 non-rubric body is **196 runes = 4×49 = 28×7**, uniquely amon
 
 - The 7×7 square is invertible modulo 29 (determinant 2).
 - One-dimensional Hill-7, two-dimensional 7×7 matrix action on four 49-rune blocks, and a repeated 49-cell additive key were tested with natural orientations, directions, and phase conventions.
-- The best candidate mean log score is **−3.403461826**, versus raw p33 **−3.443976525** and solved-p57 positive control **−2.468144714**. No output is readable GP29 plaintext.
+- The best candidate mean log score is **−3.401925323** (Hill-7 with K and row-vector convention), versus raw p33 **−3.443976525** and solved-p57 positive control **−2.468144714**. No output is readable GP29 plaintext.
 - Exact planted-positive round trips pass for every tested convention.
 
 This closes the direct square-as-key interpretation on p33; it does not rule out other square roles or establish any LP2 decryption. No update to `results/README.md` is warranted because no established overall conclusion changed.

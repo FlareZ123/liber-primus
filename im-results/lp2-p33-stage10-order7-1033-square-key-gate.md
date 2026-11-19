@@ -27,7 +27,7 @@ The LP1 source-native GP29 trigram model scores each original body separately, w
 | Candidate | Mean log score |
 | --- | ---: |
 | Original p33 body | **−3.443976525** |
-| Best one-dimensional Hill-7 variant | −3.411076246 |
+| Best one-dimensional Hill-7 variant | −3.401925323 |
 | Best two-dimensional 7×7 matrix variant | −3.408949152 |
 | Best repeated 49-cell additive-key variant | −3.403461826 |
 | Solved LP2 p57 positive control | **−2.468144714** |
@@ -38,7 +38,7 @@ The tested families were deliberately small and source-shaped:
 - **Two-dimensional 7×7 action:** (KXK^T), (K^TXK), (K^{-1}XK^{-T}), and (K^{-T}XK^{-1}), applied to four consecutive 7×7 blocks (four candidates).
 - **Repeated 49-cell additive key:** row-major or column-major serialization; values (v\bmod29) or ((v-1)\bmod29); addition or subtraction; continuous phase or reset at the upper/lower body boundary (16 candidates).
 
-No output is coherent GP29 prose. The best score is only about 0.041 nats above the raw body and remains far below the solved-p57 reference. The best 2D preview begins `RNGENGXIIBYOANGNIAWSDHYRSTFPCDBTHTHNDUECNGEOAETTTHLFNRXOEBHR`; it is not readable plaintext.
+No output is coherent GP29 prose. The best score is only about 0.042 nats above the raw body and remains far below the solved-p57 reference. The best one-dimensional Hill-7 candidate is K with row-vector convention. The best 2D preview begins `RNGENGXIIBYOANGNIAWSDHYRSTFPCDBTHTHNDUECNGEOAETTTHLFNRXOEBHR`; it is not readable plaintext.
 
 **Positive controls:** the exact matrix/inverse pairs recover planted 196-rune native-GP streams in both 1D orientations and both 2D orientations. All 16 additive-key/phase conventions also pass exact encrypt/decrypt round trips. The negative result is therefore not an implementation or invertibility failure.
 

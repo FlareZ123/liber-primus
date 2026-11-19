@@ -162,7 +162,7 @@ for (const flat of [rowFlat, colFlat]) for (const shift of [0, -1]) {
 
 const bestHill = best(hillVariants), best2D = best(twoDVariants), bestAdd = best(addVariants);
 assert(Math.abs(rawScore - (-3.4439765253728107)) < 1e-10);
-assert(Math.abs(bestHill.score - (-3.411076246233633)) < 1e-10);
+assert(Math.abs(bestHill.score - (-3.4019253228785833)) < 1e-10);
 assert(Math.abs(best2D.score - (-3.4089491515002455)) < 1e-10);
 assert(Math.abs(bestAdd.score - (-3.4034618259439253)) < 1e-10);
 console.log(JSON.stringify({
