@@ -263,6 +263,68 @@ const oldResidual = cipher.map((value, index) => mod29(value - oldLiteral[index]
 assert.equal(gp0(oldResidual), 112);
 assert.equal(gpPrime(oldResidual), 384);
 
+// Reconcile the older geometric raw sequence with the authenticated-source
+// candidate at the physical word boundary. The forward raw-minus-candidate
+// residual exceeds the candidate GP0 by shared K=2 on each word.
+const oldToCandidate = oldLiteral.map(
+  (value, index) => mod29(value - plain[index])
+);
+const oldToCandidateWordSums = [
+  gp0(oldToCandidate.slice(0, 8)),
+  gp0(oldToCandidate.slice(8)),
+];
+assert.deepEqual(oldToCandidateWordSums, [123, 73]);
+assert.deepEqual(
+  oldToCandidateWordSums.map((value, index) => value - plainWordSums[index]),
+  [2, 2]
+);
+assert.equal(gpPrime(oldToCandidate), 707);
+assert.equal(729 - gpPrime(oldToCandidate), 22);
+assert.equal(23 - 1, 22);
+
+// Charge every authenticated 8+5 source pair under both additive signs.
+const oldGeometryShared2Hits = [];
+let oldGeometryShared2Cases = 0;
+for (const sign of [1, -1]) {
+  for (const left of signedWords.filter(row => row.values.length === 8)) {
+    for (const right of signedWords.filter(row => row.values.length === 5)) {
+      oldGeometryShared2Cases += 1;
+      const candidate = [...left.values, ...right.values];
+      const bridge = oldLiteral.map((value, index) =>
+        mod29(sign === 1 ? value - candidate[index] : candidate[index] - value)
+      );
+      const candidateSums = [
+        gp0(candidate.slice(0, 8)),
+        gp0(candidate.slice(8)),
+      ];
+      const bridgeSums = [
+        gp0(bridge.slice(0, 8)),
+        gp0(bridge.slice(8)),
+      ];
+      if (
+        bridgeSums[0] - candidateSums[0] === 2 &&
+        bridgeSums[1] - candidateSums[1] === 2
+      ) {
+        oldGeometryShared2Hits.push({
+          sign: sign === 1 ? "G-P" : "P-G",
+          phrase: left.text + " " + right.text,
+          candidateSums,
+          bridgeSums,
+        });
+      }
+    }
+  }
+}
+assert.equal(oldGeometryShared2Cases, 16);
+assert.deepEqual(oldGeometryShared2Hits, [
+  {
+    sign: "G-P",
+    phrase: "EPIPHANY SEEKS",
+    candidateSums: [121, 71],
+    bridgeSums: [123, 73],
+  },
+]);
+
 console.log(JSON.stringify({
   candidate: "EPIPHANY SEEKS",
   residual,
@@ -292,5 +354,13 @@ console.log(JSON.stringify({
     candidate: "SECUENDI RATIO",
     residualGp0: gp0(oldResidual),
     residualPrime: gpPrime(oldResidual),
+    bridgeToEpiphanySeeks: {
+      residual: oldToCandidate,
+      wordSums: oldToCandidateWordSums,
+      shared2Cases: oldGeometryShared2Cases,
+      shared2Hits: oldGeometryShared2Hits,
+      primeSum: gpPrime(oldToCandidate),
+      squareMinusPrimeSum: 729 - gpPrime(oldToCandidate),
+    },
   },
 }, null, 2));
