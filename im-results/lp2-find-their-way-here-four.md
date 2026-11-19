@@ -69,6 +69,21 @@ FOUR
 
 Thus the lexical result does not depend on silently choosing among several equally readable component/direction variants.
 
+## FOUR names the selected p28 source line
+
+The numeric pair has a direct source-level reading before any DH algebra is applied:
+
+~~~text
+[GP-prime(FOUR), GP0(FOUR)]
+= [23,8]
+= [D,H]
+= DH
+~~~
+
+The independently selected p28 literal-DH line begins with the original rune fragment **DH**, whose canonical GP indices are exactly `[23,8]`. The opposite numbering order gives `[8,23] = HD`, so the visible source fragment fixes the orientation.
+
+Thus the solved-phrase readout does more than reproduce two state values: `FOUR` numerically names the original line it should feed.
+
 ## FOUR supplies the p28 DH state
 
 The solved corpus itself contains the word `FOUR` exactly once, in the solved instruction:
@@ -82,7 +97,7 @@ GP0(FOUR)       = 0+3+1+4 = 8
 GP-prime(FOUR)  = 2+7+3+11 = 23
 ~~~
 
-These are exactly the independently reconstructed p28 DH values:
+Those same two numbers are exactly the independently reconstructed p28 DH values:
 
 ~~~text
 A = 8
@@ -124,7 +139,8 @@ solved WELCOME: FIND THEIR WAY HERE
  -> GP0-address those four words into p50
  -> read high digits
  -> FOUR
- -> (GP-prime, GP0) = (p,A)
+ -> [GP-prime, GP0] = [23,8] = DH
+ -> the same pair is (p,A)
  -> H(p,A) = (b,K)
  -> exact opening of the p28 DH packet
 ~~~
@@ -147,4 +163,4 @@ Run:
 node sims/lp2_find_their_way_here_four_sft.cjs
 ~~~
 
-The SFT reconstructs the solved phrase, p50 addresses and high digits, performs the 713-window all-high lexical census, charges all GP-valid high/low and forward/reverse variants, establishes the solved-word numeric uniqueness of FOUR, and verifies `H(23,8)=[15,2]` against the original p28 DH line.
+The SFT reconstructs the solved phrase, p50 addresses and high digits, performs the 713-window all-high lexical census, charges all GP-valid high/low and forward/reverse variants, establishes the solved-word numeric uniqueness of FOUR, verifies `[GP-prime,GP0]=[23,8]=DH` against the original p28 line label, and verifies `H(23,8)=[15,2]` against that line's H-stream.
