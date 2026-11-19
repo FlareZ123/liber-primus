@@ -1,3 +1,14 @@
+## 2026-11-19 03:35 UTC - p32 coordinate numbers -> signed-source indices15..19
+
+- Freeze `C=components(ARE coordinates)∪{e}={2,3,4,6,9}`, where ARE coordinates are `[(e^2,a),(a,K),(K^2,e^2)]` and e is the already selected window length.
+- P32 CxC one-based printed word/rune coordinates have exactly five authenticated source words with unique realizations: THE `[(6,4),(4,9)]`; PATH `[(3,3),(9,6),(6,4)]`; ARE `[(9,6),(6,2),(4,9)]`; MAP `[(4,6),(9,6),(3,3)]`; BE `[(9,2),(4,9)]`.
+- Coordinate sums form unique longest run15..19: MAP-position15, MAP-word16, ARE-position17, PATH-word18, ARE-word19. Signed source indices15..19 read exactly `WORDS ARE THE MAP THEIR`.
+- All-page control: same frozen C gives p32 length5; next best p43 length3 `THE DEVOTED LIBER`; all other unknown pages <=2.
+- Direct state-native THE independently selects the same pair offsets28/17.
+- Widening C with g=5 loses selectivity, so do not generalize. Discovery retrospective; strong navigation candidate, not plaintext proof.
+- Artifacts: `im-results/lp2-p32-coordinate-number-direction.md`, `sims/lp2_p32_coordinate_number_direction_sft.cjs`.
+- Next gate: use source index19 THEIR / `MEANING IS THE ROAD` prospectively.
+
 ## 2026-11-19 03:28 UTC - second p32 extraction THE
 
 - New distinct p32 candidate word: direct state addresses `p+g=28` and `p-a=17` differ by exactly one p32 row because `a+g=A+e=11`. Original values are `[2,18]=THE`.

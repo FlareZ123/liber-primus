@@ -21,3 +21,6 @@ jobs:
       - name: Run p32 state-native THE SFT
         shell: pwsh
         run: node sims/lp2_p32_state_native_the_readout_sft.cjs
+      - name: Run p32 coordinate-number direction SFT
+        shell: pwsh
+        run: node sims/lp2_p32_coordinate_number_direction_sft.cjs
