@@ -24,3 +24,16 @@ both additive directions
 **Positive gate:** exactly one numeric/target hit and it is VERIFY. This would establish a reusable six-rune packet family.
 
 **Negative gate:** zero hits, multiple hits, or a different target. Then the BEWARE family remains receiver-specific compression. Do not widen the shell template after seeing the result.
+
+
+## Outcome
+
+The unchanged 48-case family has **zero** authenticated six-rune target hits on p0 177..182.
+
+```text
+configs = 48
+targets = PRIMUS BEWARE VERIFY
+hits = []
+```
+
+**Decision: negative transfer.** The BEWARE role-shell family is receiver-specific mechanism compression and is not licensed as a reusable six-rune packet decoder. No widening was attempted.
