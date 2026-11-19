@@ -71,11 +71,21 @@ A later independent p50/DH construction now removes those three directional degr
 
 The post-THEN Blocks18/19 construction is not structurally rare (#1614); the external Reports07–19 audit found zero unseen transitions uniquely selected before language scoring (#1613); and the distinct post-KEY Blocks20–24 formulas are reproducible post-hoc fits, not plaintext (#1622). The title-recurrence continuation to p50 cell255 has no source-selected receiver (#1612).
 
-### Other source leads and closed gates
+### 19 November route updates and closed gates
 
-The signed 2013 prime_echo pauses are holds, not opcodes (#1619). The 6/16/10 prime-rank quotients have no source-selected operation (#1640); the Stage10 image identifiers' prime ranks28/39/50 are not a source-typed LP2 selector (#1638). Standard JPEG marker/metadata/trailing-byte inspection found no meaningful original-page payload (#1644). The combined 256-event red13 tape and DH state have no source-selected value-changing operation (#1652). The 3×76 temporal receiver lacks a source-selected lane order or update (#1642).
+**P55-directed H/line-wrap register:** the original p55/p24/p32/p35/p39 layout and fixed H map reconstruct signed-register indices 0–42, but the Critic identified the whole+prefix+suffix → concatenate → Set → maximal-run aggregator and upper-lift as not yet source-selected. The separate gate is #1887; do not count the register as a body decoder.
 
-The historical DH3301 client share2800 uniquely identifies one preserved participant session, but no independent pre-May-2014 exact-field witness was recovered (#1550/#1576). A bounded search for the response to the second base19/server-public236 exchange found no contextual reply; all six exponent representatives remain live and archive coverage is incomplete (#1620).
+**P23 THE ONE RISE:** the exact red-span packet [3,5] already yields RISE and has two independent +2 page uses (p33→p35 and p40→p42). P23's explicit ONE therefore selects one +2 step to p25, independently converging with GOOD LUCK→p25. This is navigation, not p23 body plaintext. Keep it separate from the failed EMERGE/OPENPGP H-only p24 receiver in #1875.
+
+**P33 cuneiform M/NG candidate:** Agent43's sexagesimal page:word interpretation maps p17/p55 source words through the original p50 table to the oversized p33 M/NG markers. Its weakest premise is the coordinate interpretation; #1888 independently audits it before any p33 body consumer.
+
+**P29 WAY candidate:** the p28 DH state and signed MAP/DIRECTION select derivative order3; the p29/p50 repeated-root object plus the 2013 BASE29 factor yields candidate WAY. The final derivative/H assembly was recognized retrospectively; #1893 requires an independent source selector before WAY can be treated as an opcode.
+
+**P0 WILL candidate:** authenticated YOU→p50[30]=2L, base60 offset141 and the p28 DH-derived [12,6,18,27] key recover one four-rune candidate with exact replay, but the dual reading/key recipe is not source-authenticated and the blind BE successor fails. #1889 is a source-selection gate, not another key sweep.
+
+**Completed negative gates:** #1872 rejects the 2013 DH/NEXT state-machine transfer; #1881 rejects the full DH23 0–42 nine-block tiling as a source-selected word map; #1882 retires the p55 second-peel 23-rune consumer; #1883 retires the p49/p55 144–112 packet consumer; #1884 rejects the p0 red13 rise-law source-first claim. Preserve the underlying source facts and bounded results.
+
+**External continuation:** the p56 digest still lacks a page body, authenticated hash family or destination. The named Wikidot archive path in #1886 is blocked by the available fetch interface, not disproved. The public DWM deduplication-schema question is separately bounded in #1894; no private contact or Tor probing is authorized.
 
 ## Human-solve-path standard
 
@@ -92,22 +102,25 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 **p50 two-zero / 36-byte candidate (Agent16, 17 November; unverified receiver):** Reading the p39 polynomial root 24 as a zero-based table row and the signed 2013 BASE29 operand 3301 modulo 256 as a cell index selects the only two 00 cells at indices 192 and 229; the 36 nonzero bytes between them equal the 36 large punctuation marks in the original annotated corpus. This is exact source arithmetic under a hypothesized row/cell interpretation, not an authored address rule. The 36-mark-to-rune receiver is undefined at the p15 offset-zero mark and duplicate p7 positions; direct subtraction/addition passes only 1/5 and 0/5 solved p56/p57 checks, and direct cyclic-additive consumers remain nonlinguistic. The original p51 OutGuess 30,102-byte candidate is **resolved as a source-forced-header pseudopayload**, not a recovered secret: the unchanged original and a no-embed RGB re-encoding of its pixels produce the same seed, length and initial 64 bytes under the fixed 72-character key, while a known 153-byte embed decodes exactly and wrong-key extraction also returns syntactically accepted noise ([calibrated #1428 decision](../im-results/lp2-grid-two-zero-address-36-punctuation-bridge.md#historical-outguess-test-of-the-exact-printed-72-character-bracket-matched-native-calibration-resolves-the-pseudopayload)). Preserve the lead only as conditional arithmetic pending an independent selector and a solved-page-validating receiver. [Source report](../im-results/lp2-grid-two-zero-address-36-punctuation-bridge.md) · [original-input SFT](../sims/lp2_grid_zero192_229_ink36_knownending_sft.cjs).
 **Original punctuation as a secret differential-clock reset, exact all-key exclusion (Agent47, 18 Nov):** The 31 physical large marks within unsolved pp0–55 define 32 intervals (29 nonempty). Treat every within-interval ciphertext difference as an input to an *arbitrary independently secret GP29 alphabet permutation* for each (interval, local phase) state, giving each of the 29 first runes a free plaintext assignment. Exact histogram rearrangement maximizes the global plaintext collision count across every possible key: phase periods 1–25 yield maximum normalized GP29 IoC at most **1.653041** (at p25), versus a minimum **1.676676** across all 12,956-rune windows of the pinned Gibran, Emerson and Shakespeare GP29 references; the original 13/23-dot clock candidates have bounds **1.391885/1.616567**. Period26 first escapes this *frequency-only* exclusion. Source-shaped native-English reversible controls pass all 12,956 symbols. This retires **only** the stationary mark-reset, one-rune-per-step, up-to-25-phase alphabet family, irrespective of its hidden key, and remains conditional on an unauthored decoder hypothesis. It does not exclude nonperiodic keyed feedback, insertions, other languages or a genuinely authored mark interpretation. [Exact original-data decision](../im-results/lp2-31-mark-difference-phase-allsecret-original-gate.md) · [SFT](../sims/lp2_markseg_differential_allsecret_phase_capacity_sft.cjs) · [Windows PASS 44210782810](https://github.com/FlareZ123/liber-primus/actions/runs/44210782810).
 
-## Current decision gates and research handoffs (18 November 2026)
+## Current decision gates and research handoffs (19 November 2026)
 
-**No original LP2 unknown-page plaintext, authenticated source-selected key, complete inverse, or final destination has been recovered.** Use the [authoritative synthesis](../results/README.md) for detailed evidence and the [live Director issue queue](https://github.com/FlareZ123/liber-primus/issues?q=is%3Aissue+is%3Aopen+label%3Adirector-task) for current ownership and claim state.
+**No original LP2 unknown-page plaintext, authenticated source-selected key, complete inverse, or final destination has been recovered.** Use [results/README.md](../results/README.md) for the authoritative evidence synthesis and the [live Director issue queue](https://github.com/FlareZ123/liber-primus/issues?q=is%3Aissue+is%3Aopen+label%3Adirector-task) for ownership and claim state.
 
 ### Highest-value live decisions
 
-- **P27/DH23:** #1636 is the canonical familywise audit; #1634 is its independent exact-union cross-check. Both are complete. The tuple is a pre-Cicada pedagogical example with no LP2 handoff (#1635); do not present the statistical match as plaintext or a key.
-- **Cross-round DH/prime clues:** #1648 tests Stage10 outputs modulo the independently selected DH modulus23; #1649 tests the p49+p50 23-row prefix; #1657 tests the prime_echo terminal pause against the actual DH3301 session; #1658 tests the full 464-prime stream as a 16×29 BASE29 object. #1638 and #1640 are closed negative gates.
-- **p27 source operations:** #1650 tests whether INSTAR selects the original 2013 XOR asset; #1651 tests the exact 6/16-to-DH exponent relation; #1652's 256-event/DH value-changing route is closed negative; #1653 tests the MUST/WE/SHED order without arbitrary permutations.
-- **p50/p55 receiver:** #1641's two-shed core has no receiver; #1642's 3×76 temporal receiver has no source-selected lane/update; #41 remains waiting for a complete source-selected 76-rune decoder. The outer76/p55 human route is known but has no receiver.
-- **P0:** #1646 failed the blind p0→p1 transfer; do not extend the p0 opening as plaintext. The post-KEY Blocks20–24 branch is also closed negative (#1622).
-- **2016 clue and visual sources:** #1654 tests the literal semantic word-map path without prime sums; #1655 compares the exact signed-2016 tree art with p50's mirrored trees. The 00 interval and five-dot motif are closed negative (#1631/#1624).
-- **Original bytes:** #1644 found no standard JPEG marker/metadata/trailing-byte payload. Deeper bit-plane work requires a new independent source clue.
-- **Stage10 assets:** #1639 seeks only the three exact image files; #1630 found no original CGI handler. #1643's cold-start run did not derive a new route.
-- **p27 Tor candidate:** #1610's exact historical-host search remains the independent discriminator. #1329's wordwise key-pointer campaign must be judged from completed source shards, not interim counts.
-- **DH3301:** #1550 is subsumed by #1576; #1620 found no contextual response to the second public236/base19 exchange. Six exponent representatives remain.
+- **P55 H/line-wrap register:** #1887 must source-select the exact whole+fragments/union/maximal-run aggregator before any further register extension or body-cipher consumer.
+- **P0 WILL:** #1889 tests the missing first-party selector for the YOU→2L dual reading and DH-derived key. Do not repeat p0 marker-key transfer or free key searches.
+- **P33 cuneiform:** #1888 independently challenges the 1033/3301 sexagesimal page:word route to M/NG before opening any new p33 receiver.
+- **P29 WAY:** #1893 tests whether derivative order3 plus the p29/p50 H assembly is an authored operation, not a retrospective lexical fit.
+- **P50:** #1890 resolves the original token radix and byte serialization from 2014 artifacts; no downstream match may choose base59/base60.
+- **Cipher architecture:** #1892 may propose at most three source-motivated reversible encoders for the joint lag-five/adjacent-repeat constraints, with exact state and a blind original holdout.
+- **Human solve path:** #1891 covers original p1–p21 only, excluding already exhausted p0/p7 families.
+- **External hash:** #1894 is public-source-only DWM schema/coverage work. #1886 remains blocked on the exact Wikidot archive access path; no private contact is authorized.
+- **Active continuation:** #1873 tests DIRECTION→p50→scan72; #1877 tests the final signed-source p30–p42 route. #41, #1667 and #1335 remain blocked on a source-selected p55 decoder, worker transport, and a genuinely naïve human oracle respectively.
+
+### Completed decisions since the previous frontier
+
+#1872 is a negative protocol/state-machine gate; #1874 is a positive p33→p34 navigation handoff only; #1875 is a negative H-only p24 receiver; #1878 found no source-selected human route in p28–p48; #1881–#1884 and #1882–#1883 close the DH tiling, p55 23-rune consumer, p49/p55 144–112 consumer, and p0 rise-law gates; #1885 leaves the external five-page solve claim unsubstantiated on accessible evidence, not disproved.
 
 ### Acceptance standard
 
