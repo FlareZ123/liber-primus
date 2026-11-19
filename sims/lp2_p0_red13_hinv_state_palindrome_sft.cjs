@@ -224,6 +224,23 @@ assert.deepEqual(
   [[0, 1]]
 );
 
+const circumferenceControls = receivers.filter((row) => {
+  const leftRises = forwardRises(row.columns.left);
+  const centerRises = forwardRises(row.columns.center);
+  return (
+    row.columns.left[0] === row.columns.left[row.columns.left.length - 1] &&
+    row.columns.center[0] === row.columns.center[row.columns.center.length - 1] &&
+    leftRises.reduce((sum, value) => sum + value, 0) === 29 &&
+    centerRises.reduce((sum, value) => sum + value, 0) === 58
+  );
+});
+assert.deepEqual(
+  circumferenceControls.map((row) => [row.page, row.ordinal]),
+  [[0, 1]]
+);
+assert.equal(forwardRises(p0.columns.right).reduce((sum, value) => sum + value, 0), 21);
+assert.deepEqual(forwardRises(p0.columns.right.slice().reverse()), [21,22,23]);
+
 const consecutiveRightRamps = receivers.filter((row) => {
   const rises = forwardRises(row.columns.right);
   return rises[1] === mod29(rises[0] + 1) && rises[2] === mod29(rises[1] + 1);
@@ -363,6 +380,13 @@ console.log(JSON.stringify({
   progressionControl: {
     centerRiseArithmeticProgressionHits: centerRiseProgressions.map((row) => [row.page, row.ordinal]),
     rightConsecutiveRampHits: consecutiveRightRamps.map((row) => [row.page, row.ordinal]),
+    circumferenceHits: circumferenceControls.map((row) => [row.page, row.ordinal]),
+    p0RiseTotals: {
+      left: forwardRises(p0.columns.left).reduce((sum, value) => sum + value, 0),
+      center: forwardRises(p0.columns.center).reduce((sum, value) => sum + value, 0),
+      right: forwardRises(p0.columns.right).reduce((sum, value) => sum + value, 0),
+    },
+    rightReverseRises: forwardRises(p0.columns.right.slice().reverse()),
   },
   orientationControl: transformHits,
   decision:
