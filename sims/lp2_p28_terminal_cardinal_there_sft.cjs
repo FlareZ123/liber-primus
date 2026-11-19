@@ -73,6 +73,10 @@ const lineHits = [];
 const suffixWindowHits = [];
 const terminalHits = [];
 const terminalSelfPointers = [];
+const terminalStatePairs = [];
+const broadBoundarySelfPointers = [];
+const state = { p: 23, g: 5, a: 6, b: 15, A: 8, B: 19, K: 2, e: 3, q: 4 };
+const stateValues = Object.values(state);
 let runeBearingLines = 0;
 let fourWordWindows = 0;
 let pageTerminals = 0;
@@ -87,6 +91,26 @@ for (let page = 0; page <= 57; page += 1) {
     const finalLengths = lengths(lines.at(-1));
     if (JSON.stringify(finalLengths) === JSON.stringify(targetLine)) {
       terminalHits.push({ page, line: lines.length, lengths: finalLengths });
+    }
+    const finalSerialized = finalLengths.map(T);
+    const finalAddress = finalSerialized.reduce((sum, value) => sum + value, 0);
+    if (finalAddress < p50Bytes.length) {
+      const pair = [
+        Math.floor(p50Bytes[finalAddress] / 29),
+        p50Bytes[finalAddress] % 29
+      ];
+      if (stateValues.includes(pair[0]) && stateValues.includes(pair[1])) {
+        terminalStatePairs.push({
+          page,
+          line: lines.length,
+          lengths: finalLengths,
+          serialized: finalSerialized.map((value) => corpus.translit[value]).join(""),
+          gp0: finalAddress,
+          token: p50Tokens[finalAddress],
+          byte: p50Bytes[finalAddress],
+          pair
+        });
+      }
     }
     if (page <= 55 && finalLengths.length >= 4) {
       const suffix = finalLengths.slice(-4);
@@ -105,6 +129,36 @@ for (let page = 0; page <= 57; page += 1) {
       }
     }
   }
+  if (page <= 55 && lines.length > 0) {
+    for (const [lineRole, line] of [["first", lines[0]], ["last", lines.at(-1)]]) {
+      const boundaryLengths = lengths(line);
+      if (boundaryLengths.length < 4) continue;
+      for (const [windowRole, baseWindow] of [
+        ["first4", boundaryLengths.slice(0, 4)],
+        ["last4", boundaryLengths.slice(-4)]
+      ]) {
+        for (const reverse of [false, true]) {
+          const window = reverse ? [...baseWindow].reverse() : baseWindow;
+          const serialized = window.map(T);
+          const address = serialized.reduce((sum, value) => sum + value, 0);
+          if (address < p50Bytes.length && p50Bytes[address] === page) {
+            broadBoundarySelfPointers.push({
+              page,
+              lineRole,
+              windowRole,
+              reverse,
+              lengths: window,
+              serialized: serialized.map((value) => corpus.translit[value]).join(""),
+              gp0: address,
+              token: p50Tokens[address],
+              byte: p50Bytes[address]
+            });
+          }
+        }
+      }
+    }
+  }
+
   for (let index = 0; index < lines.length; index += 1) {
     runeBearingLines += 1;
     const row = lengths(lines[index]);
@@ -141,6 +195,33 @@ assert.deepEqual(terminalSelfPointers, [{
   token: "0S",
   byte: 28
 }]);
+assert.deepEqual(
+  terminalStatePairs.filter((row) => row.pair[0] === state.K && row.pair[1] === state.b),
+  [{
+    page: 28,
+    line: 12,
+    lengths: targetLine,
+    serialized: "UTHERE",
+    gp0: 43,
+    token: "1D",
+    byte: 73,
+    pair: [state.K, state.b]
+  }]
+);
+assert.equal(terminalStatePairs.length, 5);
+assert.deepEqual(
+  broadBoundarySelfPointers.map((row) => [
+    row.page, row.lineRole, row.windowRole, row.reverse, row.serialized, row.gp0
+  ]),
+  [
+    [25, "last", "first4", false, "UTGR", 27],
+    [25, "last", "first4", true, "RGTU", 27],
+    [28, "first", "last4", false, "ITIG", 42],
+    [28, "first", "last4", true, "GITI", 42],
+    [28, "last", "last4", false, "THERE", 42],
+    [28, "last", "last4", true, "ERETH", 42]
+  ]
+);
 
 console.log(JSON.stringify({
   status: "PASS",
@@ -158,7 +239,12 @@ console.log(JSON.stringify({
     exactFullVectorHits: lineHits,
     exactThereVectorHits: suffixWindowHits,
     exactTerminalVectorHits: terminalHits,
-    unknownPageTerminalSelfPointers: terminalSelfPointers
+    unknownPageTerminalSelfPointers: terminalSelfPointers,
+    terminalStatePairHits: terminalStatePairs,
+    exactKbTerminalHits: terminalStatePairs.filter(
+      (row) => row.pair[0] === state.K && row.pair[1] === state.b
+    ),
+    broadBoundarySelfPointers
   },
   classification:
     "Fixed-serializer hidden-layout candidate on independently selected p28. UTHERE/THERE was recognized after the scan, so uniqueness is descriptive rather than a blind authorship probability."
