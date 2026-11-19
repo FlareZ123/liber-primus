@@ -159,6 +159,11 @@ and loses PATHS. P9 therefore provides a fresh discriminator favoring exponent27
 
 The `WOEFILI` letters admit the already recorded finite-register parse `WOE FILI`, but no semantic reading is needed for this result and the letters remain provisional.
 
+## Direct-index branch consumer
+
+The raw `29|40` packet has a simpler consumer than another GP0 walk. Reuse the active source-number/page convention: `29=DIRECTION -> p29` and `40=PATHS -> p40`. P29 is uniquely the unknown rune page carrying repeated root24 shared with the printed table. P40 has one length4/GP0=54 PATHS-state receiver and the published local PATHS inverse. Same-index state matches also occur at 6, 11, 21, 33, 34, and 38, so the p40 state alone is supporting evidence.
+
+Prefer the direct-index consumer for route selection. Corrected VERIFY→p9 receiver/checksum SFT: Windows Node22 PASS 44455975890. See [direct-index fork](lp2-verify-p9-direct-index-fork.md).
 ## Decision
 
 Preserve this intended-route structure:
