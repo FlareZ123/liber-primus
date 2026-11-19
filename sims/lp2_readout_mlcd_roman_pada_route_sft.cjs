@@ -171,53 +171,91 @@ assert.deepEqual(highRomanWindows[0], {
 });
 
 // The same route independently selects the unresolved p33-p39 chapter.
-const chapter = corpus.pages
+const fullPhysicalChapter = corpus.pages
   .filter((page) => page.page >= 33 && page.page <= 39)
   .flatMap((page) => page.indices);
-assert.equal(chapter.length, 1680);
+assert.equal(fullPhysicalChapter.length, 1680);
 
-// Charge the finite natural coordinate family:
-// - original or reversed four-symbol order;
-// - absolute addresses or cumulative steps;
-// - forward or backward direction;
-// - zero- or one-origin indexing.
-//
-// Only the original-order, cumulative, forward, zero-origin read spells PADA.
-const variants = [];
-for (const reversed of [false, true]) {
-  const steps = reversed ? [...romanSteps].reverse() : romanSteps;
-  for (const cumulative of [false, true]) {
-    for (const sign of [1, -1]) {
-      for (const origin of [0, 1]) {
-        let accumulator = 0;
-        const positions = [];
-        for (const step of steps) {
-          accumulator = cumulative
-            ? accumulator + sign * step
-            : sign * step;
-          const position =
-            ((accumulator - origin) % chapter.length + chapter.length) %
-            chapter.length;
-          positions.push(position);
+// The source-visible cuneiform unit is narrower: p33 after its first '&'
+// through p39 before its first '&'. This corrected boundary is the stronger
+// source-selected receiver and must be checked before the full physical span.
+const physicalParts = transcription.replace(/\r/g, "").split("%");
+const markedText = [
+  physicalParts[33].split("&")[1],
+  ...physicalParts.slice(34, 39),
+  physicalParts[39].split("&")[0],
+].join("%");
+const markedChapter = [...markedText]
+  .map((char) => runeIndex.get(char))
+  .filter((value) => value !== undefined);
+assert.equal(markedChapter.length, 1468);
+
+/**
+ * @param {number[]} chapter
+ */
+function coordinateFamily(chapter) {
+  const variants = [];
+  for (const reversed of [false, true]) {
+    const steps = reversed ? [...romanSteps].reverse() : romanSteps;
+    for (const cumulative of [false, true]) {
+      for (const sign of [1, -1]) {
+        for (const origin of [0, 1]) {
+          let accumulator = 0;
+          const positions = [];
+          for (const step of steps) {
+            accumulator = cumulative
+              ? accumulator + sign * step
+              : sign * step;
+            const position =
+              ((accumulator - origin) % chapter.length + chapter.length) %
+              chapter.length;
+            positions.push(position);
+          }
+
+          const values = positions.map((position) => chapter[position]);
+          variants.push({
+            reversed,
+            cumulative,
+            sign,
+            origin,
+            positions,
+            values,
+            text: translit(values),
+          });
         }
-
-        const values = positions.map((position) => chapter[position]);
-        variants.push({
-          reversed,
-          cumulative,
-          sign,
-          origin,
-          positions,
-          values,
-          text: translit(values),
-        });
       }
     }
   }
+  return variants;
 }
 
-assert.equal(variants.length, 16);
-const padaVariants = variants.filter((variant) => variant.text === "PADA");
+const markedVariants = coordinateFamily(markedChapter);
+assert.equal(markedVariants.length, 16);
+assert.equal(markedVariants.filter((variant) => variant.text === "PADA").length, 0);
+assert.deepEqual(
+  markedVariants.find(
+    (variant) =>
+      !variant.reversed &&
+      variant.cumulative &&
+      variant.sign === 1 &&
+      variant.origin === 0
+  ),
+  {
+    reversed: false,
+    cumulative: true,
+    sign: 1,
+    origin: 0,
+    positions: [1000, 1050, 1150, 182],
+    values: [24, 24, 21, 15],
+    text: "AANGS",
+  }
+);
+
+// PADA appears only on the broader 1680-rune full physical span, which crosses
+// the source-visible p33/p39 section markers. Preserve it as a contingent
+// artifact and do not promote it as the marked-cuneiform continuation.
+const fullVariants = coordinateFamily(fullPhysicalChapter);
+const padaVariants = fullVariants.filter((variant) => variant.text === "PADA");
 assert.deepEqual(padaVariants, [{
   reversed: false,
   cumulative: true,
@@ -268,9 +306,12 @@ console.log(JSON.stringify({
       "descriptive only; Roman-numeral recognition was post-receiver inspection",
   },
   chapterWalk: {
-    length: chapter.length,
-    familySize: variants.length,
-    padaVariants,
+    markedLength: markedChapter.length,
+    markedFamilySize: markedVariants.length,
+    markedForwardCumulativeZero: "AANGS",
+    markedPadaCount: markedVariants.filter((variant) => variant.text === "PADA").length,
+    fullPhysicalLength: fullPhysicalChapter.length,
+    contingentFullSpanPadaVariants: padaVariants,
   },
   continuation: {
     padaGp0,
@@ -283,5 +324,5 @@ console.log(JSON.stringify({
     base60Rune: corpus.translit[p0.indices[base60Rival]],
   },
   classification:
-    "provisional source-linked continuation; PADA/roman recognition and K landing require independent blind confirmation before promotion",
+    "MLCD is a provisional receiver clue; PADA/K is a boundary-dependent full-span artifact and fails the stronger 1468-rune marked-cuneiform receiver",
 }, null, 2));
