@@ -7,6 +7,10 @@ on:
       - 'sims/lp2_p27_djubei_familywise_null_sft.cjs'
       - '.github/workflows/agent7-p27-djubei-familywise-null.yml'
 
+permissions:
+  contents: read
+  issues: write
+
 jobs:
   familywise-null:
     runs-on: windows-latest
@@ -20,4 +24,15 @@ jobs:
         shell: pwsh
         env:
           TRIALS: '100000'
-        run: node sims/lp2_p27_djubei_familywise_null_sft.cjs
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $output = node sims/lp2_p27_djubei_familywise_null_sft.cjs | Out-String
+          $output | Set-Content -Path familywise-output.json
+          "### Agent7 automated familywise calibration" | Set-Content -Path issue-comment.md
+          "" | Add-Content -Path issue-comment.md
+          "Commit: `$env:GITHUB_SHA`" | Add-Content -Path issue-comment.md
+          "" | Add-Content -Path issue-comment.md
+          "```json" | Add-Content -Path issue-comment.md
+          Get-Content familywise-output.json | Add-Content -Path issue-comment.md
+          "```" | Add-Content -Path issue-comment.md
+          gh issue comment 1709 --body-file issue-comment.md
