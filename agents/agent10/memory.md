@@ -332,3 +332,41 @@ Its unique central e=3 block is `[4,28,23]=READ`. Exponent27 is self-inverse and
 **Rejected during route adjudication:** p33 [e,q] 9x9 turtle interpretations (word length as distance or one step per word, GP0 mod4 as direction) fail source-motivated origin/readout tests; direct T(word lengths), T(word GP0), and one forward H pass on 21 word-number residues are nontext. Do not widen those families absent a new selector. A uniform ^27 scan has READ only on p24 and p33, while OUT only on p28; p28 OUT is part of the already known word28 READ OUT mechanism and not independent evidence.
 
 **Next:** seek an independently selected consumer of the recovered p33 READ center or a second p33 word/block predicted before inspection. Avoid changing exponent27, e-centered extraction, or e^2 word selection to manufacture OUT.
+
+
+## 19 November 2026 checkpoint: p33 dual word-map route, p55 selector, and unique DIVINITY state geometry
+
+**P33 dual word maps reconstruct solved p57 instruction.** The risen-THEIR route selects WORDS ARE THE MAP and [e,q]=[3,4]. P33 black bodies are already typed as upper 21 words = p-K = B+K and 81 runes = e^q, lower 28 words = p+g and 115 runes = p*g. Canonical word-GP0 sums at fixed state-derived positions now give:
+- upper e=3 -> 94 TUNNELNG
+- upper a=6 -> 86 ORIGINAL, whose established p50 low digit -> 51 MUST
+- upper H(e,q)[1]=7 -> 20 THE, whose established low digit -> 42 FIND
+- upper A=8 -> 47 RISE
+- upper e^2=9 -> 105 DIUINITY
+- upper A+K=10 -> 38 WITHIN; established p57 word-graph base59 edge -> 131 CIRCUMFERENCES
+- upper b+K=17 -> 19 TO/OWN
+- lower g=5 -> 67 SURFACE
+- lower p-e=20 -> 42 FIND (corroborative)
+- lower p+K=25 -> 83 EMERGE
+- upper TUNNELNG p50 base60 -> 56 AND
+- visible p33 H(B,p)=[25,13], and 25=GP0(WE)
+- A=8=GP0(OUR), B=19=GP0(OWN/TO).
+Exact upper pattern positions3/7/9/10/17 is unique across **1,833** 21-word windows. Exact lower pattern positions5/20/25 is unique across **1,474** 28-word windows, both p33. Established network therefore reconstructs 15/16 lexical slots of the solved p57 terminal instruction:
+`TUNNELNG TO THE SURFACE / WE MUST [SHED unresolved] OUR OWN CIRCUMFERENCES / FIND THE DIUINITY WITHIN AND EMERGE`.
+Only SHED lacks an independently selected edge. Symmetric `q^e=4^3=64=GP0(SHED)` is numerically exact and RISE/e^q makes it natural, but it was noticed with known p57 plaintext and is deliberately **provisional** until another source clue chooses q^e.
+Artifacts: `sims/lp2_p33_dual_wordmap_p57_route_sft.cjs`, `im-results/lp2-p33-dual-wordmap-p57-route.md`.
+
+**Executable DIVINITY WITHIN -> RISE -> p55 receiver.** In the selected upper 21-word map, DIUINITY is word9 and has 7 runes; its exact center rune value is **8=A**, and map word8 has GP0 **47=RISE**. Across all 1,833 21-word windows, the relative-map combination THE/RISE/DIUINITY/WITHIN + DIUINITY-center8 is unique to p33. RISE(47) addresses p50 token `1G`: base59=75, base60=76. P55 alone across p0-p55 has **76 physical runes and 75 locally owned runes after its one incoming carry**. Upper map e=3 independently gives TUNNELNG; p50[94]=0u gives 55/56 under base59/base60, so RISE resolves the adjacent terminal pair onto p55.
+
+**Unique p55 state geometry after the instructed circumference peel.** Reconstructed continuous word boundaries; p55 has 16 complete local words plus one incoming carry. Shed first/last rune of each complete word, carry as boundary -> exact 43-rune strict interior. Rune D has GP ordinal p=23 and occurs exactly at one-based positions **[5,23]=[g,p]**. The state packet is:
+- marker value D=p=23
+- positions [g,p]=[5,23]
+- gap 18=p-g
+- strict-between 17=b+K
+- inclusive span 19=B
+- midpoint position14 rune I value10=K*g.
+Charge every 43-rune window of complete-word strict-interior streams across p0-p55: **4,803** windows, exact condition D@g, D@p, center=K*g has **one hit**, p55 start0. Direct authenticated power exponents on the 19-rune span are nontext; do not widen.
+Artifacts: `sims/lp2_p33_p55_divinity_state_geometry_sft.cjs`, `im-results/lp2-p33-p55-divinity-state-geometry.md`. Updated `im-results/lp2-2016-p55-fold-circumference-keys.md` to replace its now-outdated “unselected geometry” status with this independent p33 selector while retaining prior NUMBER/cipher negatives.
+
+**P33 conditional READ remains strong and now has stronger causal support.** Existing selected e^2=9 word ^27 center READ is unique among 77 nine-rune words; the new map instruction FIND THE DIUINITY WITHIN supplies a source reason to inspect an interior/center rather than choosing center retrospectively. Same word source thirds [34,74,48] = [THEIR, p50-low->THEIR2=25, HERE]; READ55 -> OUT20 -> FIND42 -> p28 remains fixed.
+
+**Next productive question:** search for a source-selected consumer of the unique p55 [g,p,B,b+K,K*g] state geometry or an independent selector for the missing SHED edge. Do not fit q^e solely because it equals64; seek a blind consequence. Do not return to p55 direct DIVINITY Vigenere, power-span plaintext, perimeter pads, generic p33 word-GP0 vocabulary density, or turtle-map families.
