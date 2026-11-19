@@ -144,14 +144,20 @@ for (const [key, entry] of dictionary.entries()) {
     vocab.push({ word: entry.word, values, source: "SHAKESPEARE" });
   }
 }
+const runeIndex = new Map(corpus.runes.map((rune, value) => [rune, value]));
 for (const section of solved.sections) {
-  for (const word of section.plaintext.match(/[A-Za-z]+/g) || []) {
-    const values = wordToGp(word);
-    if (!values || values.length < 2 || values.length > 8) continue;
+  for (const runeWord of section.source_text.match(/[\u16A0-\u16FF]+/gu) || []) {
+    const values = [...runeWord].map((rune) => runeIndex.get(rune));
+    if (values.some((value) => value === undefined) ||
+        values.length < 2 || values.length > 8) continue;
     const key = values.join(",");
     if (seenVocab.has(key)) continue;
     seenVocab.add(key);
-    vocab.push({ word: word.toUpperCase(), values, source: "LP1" });
+    vocab.push({
+      word: values.map((value) => corpus.translit[value]).join(""),
+      values,
+      source: "LP1",
+    });
   }
 }
 
