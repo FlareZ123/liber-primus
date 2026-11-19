@@ -280,6 +280,14 @@ The word DIRECTION is source-authenticated rather than claimed as local p28 plai
 
 This convergence strengthens the existing p29 selector without requiring the more distant p28 word31 THE receiver as the sole local bridge.
 
+## Later structural instruction readout after THE
+
+A later target-free p28 result opens only the four complete words immediately after this held-out `THE`, at offsets142..160. Their GP0 residues are `[23,19,22,27]` and their GP lengths are `[4,5,4,6]`. Applying the already fixed forward-H difference half to those two four-vectors yields source indices `[25,26,27,1]`, which read `THEIR NUMBERS ARE THE` under the established zero-based authenticated-source register.
+
+The authenticated source contains that exact four-word phrase once and continues it with index29 `DIRECTION`. Across 2,699 canonical page-local four-word manuscript windows, the p28 object is the sole fixed difference/difference, GP-first readout that produces any contiguous four-word signed-source phrase.
+
+This strengthens the local instruction path from `READ OUT THE` into `THEIR NUMBERS ARE THE DIRECTION` without changing this report's held-out THE recovery or reviving the retired one-based self-location claim. See `lp2-p28-numbers-direction-readout.md`.
+
 ## Holdout chronology
 
 This result has unusually clean discovery chronology.
