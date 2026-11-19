@@ -186,3 +186,12 @@ AND31  GP0=56
 ```
 
 All source words with GP0=56 are MAP18, AND24, SEEK30, AND31, so the SEEK/AND adjacency is unique. This independently points the numbered SEEK AND corridor to solved p56 before the p31 key is evaluated. It materially strengthens the p56-helper interpretation and should be retained with the p31 layout derivation.
+
+
+### P31 -> p37 LUCK helper transfer
+
+Authenticated `LUCK` is uniquely the source word with `GP0=31`, selecting project p31 independently of p37 ciphertext. Reuse the p31 line0/line6 packet already fixed by the AND/p56 result: shared chunk count `g=5`, chunk-count difference `0`, lower-to-upper rune rise `K=2`. With authenticated `B=19`, the helper tuple is exactly p37's published H4 key shell `[B,0,K,g]=[19,0,2,5]`.
+
+Charge all 24 orderings of those four distinct values × both signs × all nine authenticated four-GP-rune targets = 432 configurations. Exactly one hit survives: `[B,0,K,g]`, subtraction, p37 -> LUCK. Updated the existing p37 report/SFT rather than creating a competing result.
+
+This reduces the retrospective p37 key-shell caveat. The remaining main assumption is the double use of source index37 for project p37 and local zero-based word37.
