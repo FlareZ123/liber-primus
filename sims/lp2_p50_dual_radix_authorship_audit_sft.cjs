@@ -171,8 +171,8 @@ assert.deepEqual(
     .map((event) => ({ page: event.page, origin: event.origin })),
   [
     { page: 0, origin: 0 },
-    { page: 24, origin: 1 },
     { page: 48, origin: 0 },
+    { page: 24, origin: 1 },
   ]
 );
 
