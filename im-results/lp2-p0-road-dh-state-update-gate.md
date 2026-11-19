@@ -106,6 +106,45 @@ As a generous sensitivity check, the SFT also admits the previously reported mod
 
 This fails #1727's positive gate. There is no compact uniform rule to freeze for an adjacent prediction, so extending the model to another target would be post-hoc rescue. The DH-expression ROAD key should be retired unless a new source-visible clue selects one exact update before target inspection.
 
+## Later HERE/source-scalar key recovery
+
+The negative #1727 result applies to **coordinate-specific DH-expression hunting**. A later source route supplies the same required ROAD key from ordinary descriptors of the independently recovered p28/HERE object, so the old negative must not be read as excluding ROAD itself.
+
+The most compact descriptor is:
+
+```text
+[p28 rune-line count, HERE-line fragment count, HERE line number, HERE output length]
+= [12,5,1,4].
+```
+
+Subtracting that vector from the fixed p0 word23 ciphertext `[16,8,25,27]` gives GP `[4,3,24,23] = ROAD`.
+
+Agent13 first charged the natural HERE descriptor family. Agent11 then widened the charge deliberately to **23** simple source scalars exposed by p28, HERE, the DH line, the page center, page-numbered word, reconstructed DH state, page period count and DH inverse exponent. The audit tests every ordered four-scalar tuple without replacement, both additive signs, and all eight distinct authenticated 2016 four-rune target words:
+
+```text
+23P4 × 2 signs = 425,040 configurations
+authenticated four-rune targets = 8
+total hits = 4
+distinct hit target = ROAD
+distinct hit key = [12,5,1,4]
+sign = subtraction
+```
+
+The four hits are source aliases of the second coordinate value5:
+
+- page-line count / HERE-fragment count / HERE-line one / HERE output length;
+- page-line count / DH-line fragment count / HERE-line one / HERE output length;
+- page-line count / page-word length / HERE-line one / HERE output length;
+- page-line count / DH generator `g` / HERE-line one / HERE output length.
+
+No other authenticated four-rune target survives anywhere in the 425,040-configuration family.
+
+This materially changes the ROAD assessment. The required key no longer depends on arbitrary DH algebraic expressions. It has a simple source-descriptor realization that remains target-unique under a much broader natural-scalar stress test.
+
+The chronology still prevents calling this blind plaintext recovery: ROAD and its required key were already known when the HERE descriptor grammar was recognized. Treat the result as a strong retrospective source-mechanism recovery and a plausible intended-route candidate. A genuinely untouched consumer downstream of ROAD remains the clean promotion test.
+
+Reproduction: `sims/lp2_p0_road_broad_source_scalar_family_sft.cjs`; Windows Node22 PASS 44437929153.
+
 ## Postselected DH identities
 
 After the target is known, its values can be rewritten compactly in the DH23 field:
@@ -140,7 +179,7 @@ Reject as currently motivated updates:
 - promotion of the compact DH identity into a key generator without an independent rule or held-out prediction;
 - the coordinate-specific `[a*K,g,K*b,b*A]` expression vector, which is one of many minimum-cost fits under the bounded #1727 grammar.
 
-The next useful advance must specify the DH-state consumer from an independent source clue before reading another target. The negative #1727 family audit leaves the DH-to-GP29 type conversion unresolved and provides no basis for an adjacent ROAD-derived prediction.
+The later HERE/source-scalar route now supplies a much stronger local ROAD key mechanism without DH-expression search. The remaining high-value gate is an untouched downstream consumer that uses ROAD under a frozen operation, or an independent first-party clue selecting the HERE descriptor serialization before target inspection.
 
 ## Reproduction
 
