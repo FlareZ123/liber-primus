@@ -164,3 +164,6 @@ Artifacts:
 - `sims/lp2_p31_and_p33_you_rise_will_sft.cjs`
 
 Boundary: do not infer a global key or tune a p31->p33 navigation rule. The strongest new evidence is the unchanged-key p33 YOU transfer plus the independent +6 landing on WILL.
+
+Strengthening after the first checkpoint: `GP0(AND)=56` selects solved p56's prime-totient serializer `T(n)=phi(p_n) mod29`. On original p31, the selected receiver is on printed line5. Top line0 has 5 visible chunks / 23 runes; line6 immediately after the receiver line has 5 chunks / 21 runes. Lower-to-upper packet `[5,21,23]=[g,-A,p]` maps under T to `[10,14,24]=[-B,-b,-g]`, and H3 inverse is exactly `[17,14,7]`. Charging all 12 equal-chunk line pairs, both count orders, both signs, and seven three-rune source targets gives 336 configurations and exactly one hit: this AND recovery. This materially reduces the p31 key-shell caveat. The equal-chunk merge/ordering itself was recognized retrospectively, so preserve a local rather than global claim.
+
