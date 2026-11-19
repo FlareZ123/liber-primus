@@ -285,11 +285,11 @@ Chronology matters: the p55 output 36/36 was public in the Agent20 commit before
 
 ## Evidence boundary
 
-This result does not decrypt the five center runes as ordinary text. Their direct transliteration is nonlinguistic, and no free substitution is licensed.
+The five emerged center runes are not claimed as ordinary plaintext. Their direct transliteration is nonlinguistic, and no free substitution is licensed.
 
-The strong claim is narrower: a literal recursive execution of SHED OUR OWN CIRCUMFERENCES on the independently selected p55 word object uniquely exposes WITHIN=38, reconstructs several authenticated state values under the already fixed H map, and feeds the already established post-SHED p50 edge to CIRCUMFERENCES=131.
+The established advance is operational and state-level. Literal recursive execution of SHED OUR OWN CIRCUMFERENCES on the independently selected p55 word object uniquely exposes WITHIN=38; the same word-length process yields VERIFY OPENPGP and independently reconstructs the complete authenticated DH state; the fixed H core branches then have a held-out external consumer at p36, where an independently committed reversible receiver recovers GOOD. The already established post-SHED p50 edge also returns WITHIN38 to CIRCUMFERENCES131.
 
-The next useful question is whether the emerged five-rune state object has a source-selected reversible consumer that yields unknown plaintext. Arbitrary additive keys, phases, or substitutions are outside this result.
+No general body cipher or unknown sentence follows yet. The remaining high-value question is a source-selected reversible consumer for this reconstructed state on untouched ciphertext. Arbitrary additive keys, phases, substitutions, or unconstrained KDFs remain outside the evidence.
 
 ## Reproduction
 
