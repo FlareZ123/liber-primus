@@ -187,6 +187,41 @@ assert.deepEqual(word28.values, [28, 24, 10, 1, 20]);
 
 const wordExponent = mod(e * e * e, 28);
 assert.equal(wordExponent, 27);
+assert.deepEqual(outerH[4], [state.A, state.B]);
+assert.deepEqual(H(state.A, state.B), [18, wordExponent]);
+assert.equal(wordExponent, mod(28 - 1, 28));
+
+const pageNumberedFiveRuneControls = [];
+for (let partIndex = 0; partIndex < parts.length; partIndex += 1) {
+  const page = physicalPageForPart(partIndex);
+  if (page < 1 || page > 55) continue;
+  const parsed = parsePage(parts[partIndex]);
+  const pageWord = parsed.words[page - 1];
+  if (!pageWord || pageWord.length !== 5) continue;
+  const firstH = H(
+    pageWord.values[0],
+    pageWord.values[pageWord.values.length - 1]
+  );
+  const secondH = H(firstH[0], firstH[1]);
+  pageNumberedFiveRuneControls.push({
+    page,
+    firstH,
+    secondH,
+    pageMinus1Mod28: mod(page - 1, 28),
+    match: secondH[1] === mod(page - 1, 28),
+  });
+}
+assert.equal(pageNumberedFiveRuneControls.length, 10);
+assert.deepEqual(
+  pageNumberedFiveRuneControls.filter((row) => row.match),
+  [{
+    page: 28,
+    firstH: [8, 19],
+    secondH: [18, 27],
+    pageMinus1Mod28: 27,
+    match: true,
+  }]
+);
 
 const output = [
   powMod(p28.runes[centerOffset], e, 29),
@@ -336,6 +371,7 @@ console.log(JSON.stringify({
     values: word28.values,
     exponent: wordExponent,
     output: output.slice(1),
+    pageNumberedFiveRuneControls,
   },
   plaintext: translit(output),
   census: {
