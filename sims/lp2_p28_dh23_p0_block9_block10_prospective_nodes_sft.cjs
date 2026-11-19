@@ -38,6 +38,52 @@ function discreteLog(base, target, modulus) {
   return hits;
 }
 
+/** @param {number} n @returns {number} */
+function phi(n) {
+  let result = n;
+  let value = n;
+  for (let prime = 2; prime * prime <= value; prime += 1) {
+    if (value % prime !== 0) continue;
+    while (value % prime === 0) value /= prime;
+    result -= result / prime;
+  }
+  if (value > 1) result -= result / value;
+  return result;
+}
+
+/** @param {number} n @returns {number} */
+function mobius(n) {
+  if (n === 1) return 1;
+  let value = n;
+  let factors = 0;
+  for (let prime = 2; prime * prime <= value; prime += 1) {
+    if (value % prime !== 0) continue;
+    value /= prime;
+    factors += 1;
+    if (value % prime === 0) return 0;
+    while (value % prime === 0) value /= prime;
+  }
+  if (value > 1) factors += 1;
+  return factors % 2 === 0 ? 1 : -1;
+}
+
+/**
+ * Frozen public 27x27 node-to-key rule: replace the center by its totient,
+ * then left-rotate by the sum of Möbius(phi(key-rune)) values modulo 3.
+ * @param {number[]} packet
+ * @returns {{unrotated:number[],rotation:number,key:number[]}}
+ */
+function deriveKey(packet) {
+  assert.equal(packet.length, 3);
+  assert.equal(packet[0], packet[2]);
+  const unrotated = [packet[0], phi(packet[1]), packet[2]];
+  const rotation = mod29(
+    unrotated.reduce((sum, value) => sum + mobius(phi(value)), 0)
+  ) % 3;
+  const key = unrotated.slice(rotation).concat(unrotated.slice(0, rotation));
+  return {unrotated, rotation, key};
+}
+
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const transcription = read("resources/liber-primus/lp2-transcription.txt");
 const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
@@ -161,6 +207,12 @@ assert.deepEqual(block9Hits, [{
   points: [[15,20],[17,18],[19,16]],
 }]);
 assert.deepEqual(block9Hits[0].points[1], block8End);
+const block9Key = deriveKey(block9Packet);
+assert.deepEqual(block9Key, {
+  unrotated: [11,22,11],
+  rotation: 0,
+  key: [11,22,11],
+});
 
 // Prospective block10 packet: the lower block9 outer becomes the next node center.
 const block9LowerOuter = block9Hits[0].points[2];
@@ -173,6 +225,12 @@ assert.deepEqual(block10Hits, [{
   points: [[18,16],[19,16],[20,16]],
 }]);
 assert.deepEqual(block10Hits[0].points[1], block9LowerOuter);
+const block10Key = deriveKey(block10Packet);
+assert.deepEqual(block10Key, {
+  unrotated: [22,10,22],
+  rotation: 2,
+  key: [22,22,10],
+});
 
 // Negative control from the later failed block11 gate: a state-looking packet need not be globally unique.
 const block11Packet = [B - A, p - a, B - A];
@@ -187,14 +245,16 @@ console.log(JSON.stringify({
     packet: block9Packet,
     globalExactHits: block9Hits,
     sealedCommitBeforeInspection: "783177e73c02a01e43ad9e2d4e97e58b33ec9897",
-    outcome: "published block9 key node matched exactly",
+    frozenNodeToKeyTransform: block9Key,
+    outcome: "published block9 key node and resulting J-OE-J key matched exactly",
   },
   block10ProspectiveNode: {
     priorBlock9Outer: block9LowerOuter,
     packet: block10Packet,
     globalExactHits: block10Hits,
     sealedCommitBeforeInspection: "90bac1d2d94090c15f48972d359596c8ca0358a8",
-    outcome: "published block10 key node matched exactly",
+    frozenNodeToKeyTransform: block10Key,
+    outcome: "published block10 key node and resulting OE-OE-I key matched exactly",
   },
   control: {
     laterBlock11Packet: block11Packet,
@@ -202,5 +262,5 @@ console.log(JSON.stringify({
     note: "State expressibility alone does not imply uniqueness; the later block11 selection attempt failed prospectively.",
   },
   decision:
-    "Retain two consecutive prospective exact key-node predictions as evidence that the independent DH23 state constrains the 27x27 route. Do not infer ciphertext paths or plaintext from these node hits alone.",
+    "Retain two consecutive prospective exact key-node predictions. Because the public node-to-key transform was already frozen, each node also fixes the exact key order. Ciphertext path/start/stop and plaintext remain unpredicted.",
 }, null, 2));
