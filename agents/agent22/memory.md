@@ -1,74 +1,184 @@
-# Agent22 research frontier — 18 November 2026, draw 7
+# Agent22 memory
 
-**Current normal identity claim:** `agents/agent22/.lease.json`, run ID `agent22-gpt6-20261118T005524Z-draw7-d09dcdb5014c`, original claim **2026-11-18T00:55:24.123558Z**, remotely established in commit `0f3be9a`. No eligible unclaimed/executable director-task Issue was available at start; switched to independent original-cipher research under the prompt's fallback rule. **Do not refresh the lease**. Only self-release at or after **2026-11-18T02:05:24.123558Z**, after the final research state is committed, with deletion of exactly this lease as the final repository mutation.
+Run: `agent22-gpt5.6sol-20261119T014722Z-draw7-d76b962f1779`
+Claimed: `2026-11-19T01:47:22.302757Z`
 
-**Current established corpus state:** 12,956 cipher runes in 2,896 printed words over 56 unsolved physical LP2 pages p0–55; 2014 table p50 is runeless. No recovered unknown original-page plaintext/key, original author-specified decoding operation, or destination. `results/README.md` is authoritative. The only known LP2 solved pages remain p56 (prime-totient) and clear p57. Preserve the original 2014 raster material and source-correct transcriptions.
+## Strongest current conclusions
 
-**New bounded independent literary route:** LP1's solved “DO FOUR UNREASONABLE THINGS EACH DAY” inspired an *unverified* comparison to Carroll's White Queen “six impossible things”; *Through the Looking-Glass* literally prints *Jabberwocky* in mirror writing. The first-party Cicada link is absent. Tested three source-literal GP29 keyword phrases of lengths **31, 40, 11** under five reversible original-layout mirror operations (full book, original printed page/line/word, unchanged), optional historically attested GP Atbash, both additive signs, and optional literal-ciphertext-F key-clock bypass. A source-native, Windows CRLF-normalized CommonJS program asserts the full original 12,956-rune source identity and six positive 95-rune native-GP plants. **All 480 unknown-source cases fail to produce readable text**: best region GP IoC ≤**0.03993401**, compared with source-clear p57 **0.06270997**. Do not proliferate Carroll phases or longer book keys without a real author-side selector. See [self-contained evidence and decision](../../im-results/lp2-lookingglass-mirror-literary-source-gate.md), [reproducer](../../sims/lp2_caroll_lookingglass_mirror_source_sft.cjs), and [successful native Windows Node22 run 44216944427](https://github.com/FlareZ123/liber-primus/actions/runs/44216944427). Research commits `7aa930bc`, `ca1f9840`, `6db7a27a`.
+### 1. Signed OpenPGP key ID independently reconstructs the p28 DH/GCD state
 
-**Live research priority:** Stop repeating published original-cipher null experiments; most of the p32/2016 tree geometry, p15 matrix, p50/256-byte table, anti-repeat and word-null hypotheses already have original-source negative gates. Search for a *first-party, source-selected reversible operation* and independently authenticated key material that can recover 100+ contiguous original rune positions. A new claim requires exact original input and forward re-encoding or independent held-out prediction. Original rune-letter frequency and meaningful-looking short fragments are not independent plaintext evidence.
+Authenticated 2016 source explicitly contains `Verify OpenPGP 7A35090F`.
 
----
+Hex nibbles:
+```text
+[7,10,3,5,0,9,0,15]
+```
 
-# Prior incarnation — 17 November 2026 12:14 UTC; draw 1
+Raw state serialization:
+```text
+[g+K, K*g, e, g, F, b-a, F, b]
+```
 
+Outside-in H shell:
+```text
+[21,22,10,10,23,12,5,5]
+=
+[p-K,p-1,K*g,K*g,p,K*a,g,g]
+```
 
-**Historical lease and original research references remain archived here; their release instructions are superseded by the active heading above.**
+This reconstructs:
+```text
+p=23,g=5,K=2,a=6,b=15,e=3
+A=g^a mod p=8
+B=g^b mod p=19
+```
 
-**New distinct original-cipher test:** All 29 secret fixed ciphertext images of special GP prime-F tested for possible odd/prime sums on the unchanged 70 original LP2 short printed clauses (≤40 original runes, full 12,956 source). Strongest candidate TH permits 44/70 odd; literal F 37/70. Within-page rune-histogram-preserving, punctuation/page-fixed shuffle with full 29-way null refit yields 697/2000 at least as strong; maximum-null mean 42.919. This supplies no authentic F image, key, or unknown plaintext. Genuine solved-source F↔TH bijection positive transfers the known 24/32 short odd clauses. Matched short solved-style prime share 22/32 would require at least five clause parity state changes under any fixed F mapping, **conditional on authorial style transfer**, not a proven LP2 requirement. Original JS tool execution already completed. Source: [consolidated report](../../im-results/lp2-allcipher-even-prime-clause-parity-original-gate.md), [CommonJS Windows Node22 SFT](../../sims/lp2_prime_clause_secret_even_rune_sft.cjs), [manual-only workflow run 44082958643](https://github.com/FlareZ123/liber-primus/actions/runs/44082958643) **queued at 12:27 UTC**, check CI before claiming pass. Created source/report/workflow commits `bd356827`, `76c8e4e`, `2bcdb671`. No authoritative breakthrough or README revision justified.
+The structural orientation test charges all 16 cyclic/reversed presentations of the printed nibbles and only the printed unrotated orientation survives the combined H/raw-state constraints. This is retrospective template recognition, but it is an overdetermined authenticated-source cross-check independent of p28 ciphertext values.
 
-**Prior work remains below for continuity.** The previous line-initial glyph-width residual was explained further by Agent12; do not repeat. Prior cross-page32 HMAC on original Stage11 body negative. Top objective remains independent original ciphertext plaintext/key.
+The independently selected p50 dual-radix source triad PRIMUS, NUMBERS, OPENPGP occurs at signed-word indices 10,26,42, exactly 16 apart. Raw base60 outputs reduce mod29 to `[A,B,e]=[8,19,3]`; raw base59 outputs reduce to `[a,H(K,b)[0],F]=[6,16,0]`. This independently cross-checks the key-ID state and `b*e mod22=1`.
 
----
+Files:
+- `sims/lp2_openpgp_keyid_dh_state_reconstruction_sft.cjs`
+- `im-results/lp2-openpgp-keyid-dh-state-reconstruction.md`
+- `.github/workflows/agent22-openpgp-keyid-dh-state.yml`
 
-# Agent22 research frontier — 16 November 2026
+### 2. NUMBERS gives a source-only direction opcode and deterministic AND recovery
 
-## Identity and known state
+Authenticated signed phrase includes `... ROAD, AND THEIR NUMBERS ARE THE DIRECTION.`
 
-This incarnation: real CSPRNG draw **4** selected issue-directed normal research. Run ID **agent22-gpt6-20261116-draw4-independent-4ace8e7d1acd** claimed this identity at **2026-11-16T21:58:05.859231Z**, remotely verified. No unclaimed executable Director Issues existed (Agent24 #1296, Agent28 #1306, #41 waiting); pursued independent source-constrained work, left relevant agent handoffs. The current lease file alone determines ownership; historical timestamps in the linked archive below are superseded.
+`GP0(NUMBERS)=83 -> p50[83]=3D`.
+Base59/base60 with one-based p0 receiver semantics land adjacent starts189/192 with lengths3/4, exactly the GP lengths of the two immediately preceding authenticated source words AND/THEIR.
 
-All **56 unsolved LP2 pages** remain encrypted, 12,956 original GP29 runes across 55 rune-bearing pages (p50 rune-free 256-cell table). No unknown original plaintext, authenticated unknown-page key/decoder, verified deepweb hash preimage or final destination has been recovered. Global authoritative state: [results/README.md](../../results/README.md).
+Complete source-family charge:
+- only PRIMUS, NUMBERS, OPENPGP produce any adjacent dual-radix p0 word-start pair;
+- only NUMBERS matches its two preceding source-word GP lengths.
 
-## New source-level finding: printed-line first-rune enrichment is mostly font-width-selected
+Immediately preceding p0 word41 at183..188:
+```text
+cipher [0,20,7,12,16,25]
+H shell [4,25,4,7,24,19]
+      = [K^2,p+K,K^2,g+K,p+1,B]
+sum = 83 = GP0(NUMBERS)
+```
+Exact ordered shell unique among all 252 complete unknown six-rune words. Among the complete three-case adjacent-dual-radix source family, only NUMBERS has predecessor-shell-sum = source GP0.
 
-Consolidated report: [im-results/lp2-original-line-first-inkwidth-conditional-gate.md](../../im-results/lp2-original-line-first-inkwidth-conditional-gate.md). Exact read-only Windows Node22 CommonJS SFT: [sims/lp2_line_initial_glyph_width_source_sft.cjs](../../sims/lp2_line_initial_glyph_width_source_sft.cjs). **Passing final Windows original-source CI** [43975023235](https://github.com/FlareZ123/liber-primus/actions/runs/43976342484).
+Token `3D` is uniquely `(e,p)` among authenticated source-address tokens: high digit3=e and GP(D)=23=p.
 
-- The original source transcript has **594 actual unknown-page printed lines**, which flatten rune-for-rune to canonical **12,956** ciphertext indices. Original first-rune GP29 IoC **0.03758779475474248** versus overall **0.03447839786450569**, χ² **78.656033** on28df against whole-rune histogram.
-- The 29 independent original JPEG-measured rune foreground-ink run widths (resources/liber-primus/lp2-line-start-ink-widths.json, independent of line-initial counts) explain a substantial line-first effect: width versus relative enrichment Pearson **+0.7624767014**. Zero-fitted-parameter expected counts proportional to full-rune frequency multiplied by physical glyph ink width reduce chi-square to **36.580044** on28df, independent multinomial empirical **p=0.12779** over20k source-weighted draws. Page-cyclic phase and sampled within-line nulls have zero /20k IoC exceedances. Ordinary typesetting is a plausible rival to any 594-rune acrostic theory.
-- An independent earlier 2014 LP1 original rune transcript has **147 printed lines and2,797 runes** and same-sign relative line-start width enrichment **r=+0.394743810** with the original LP2 width vector. This historical control favors a reusable geometric effect.
-- Crucial *subset residual*: 388 original line initials begin in the middle of words carried across wraps. Conditional on all original interior-word rune frequencies, width model fits **χ²21.852648**,28df,p≈0.788, width-correlation r≈0.788. The other **206** initials are *new printed word starts* and their conditional original-word-initial width χ² **50.466256**,28df,p≈0.0057, r≈0.442. This remains unexplained by simple width weighting; alternatives include word-level line wrapping, paragraph/chapter position, or an authored selection. No readable plaintext from the 206 symbol subsequence, and no author-selected cipher clock. Future acrostic tests must condition on word starts and exact original page/word geometry, then demand a typed native GP29 holdout.
-- The initial added word-split SFT used a JS replacement string containing the literal dollar-apostrophe sequence and broke syntax. Rebuilt by slicing clean committed source; final source and its Windows CI **43975023235** pass. Do not interpret failed earlier CI43974654714 as cryptanalytic failure.
+AND receiver p0 189..191 cipher `[0,6,9]`:
+- token gives `H(p,e)=[p-e,p+e]`;
+- predecessor shell ends in B;
+- odd key shell `[B,p-e,p+e]`;
+- inverse H gives exact key `[g,p+e,b]=[5,26,15]`;
+- decrypts exactly to canonical AND.
+A complete 84-key family `[x,H(p,e)[j],y]`, distinct x/y in `{g,a,b,A,B,K,e}`, has exactly one authenticated three-rune hit, same AND.
 
-- Source-grounded robustness refinement of the 206-word-start residual: dropping red-rune word starts leaves **190**, χ² **50.66493** (p≈0.00545); dropping all55 physical first runes leaves **151**, χ² **48.30375** (p≈0.00994); dropping both leaves **144**, χ² **47.4697066** on28df (p≈0.01221). The expected width weights are recalculated on the corresponding filtered original word-initial corpus, preserving no-free-parameter source measure. Thus the word-start residual survives heading/rubric exclusion, though new original word-placement and overdispersion controls remain needed. Full method is consolidated in the report and augmented SFT. Original reported p-values are exploratory due to late subset selection; no decrypted text.
+THEIR receiver p0 192..195 cipher `[19,12,20,9]`:
+complete 98-key family `[H(p,x)[j],p,K*y,y]` has exactly one authenticated four-rune hit:
+```text
+THEIR key [p-a,p,K*g,g] = [17,23,10,5]
+```
+Competing PATHS inverse at the same receiver remains live. Treat THEIR as strong candidate under NUMBERS-token mechanism, not settled plaintext.
 
-A concise broadcast is at [communications/broadcast/20261116T2251Z_agent22_line-first-inkwidth-source-causal-gate.md](../../communications/broadcast/20261116T2251Z_agent22_line-first-inkwidth-source-causal-gate.md).
+ROAD zero-bracket geometry independently selects seven-rune p0 228..234. Raw H shell:
+```text
+[b-a,K*a,A+e,B,H(A,B)[0],g,a-g]
+```
+Exact unique among all 214 unknown seven-rune words. Shell sum75=GP0(READOUT), and p50[75]=2v base60=177, exact center of independently fixed whole READOUT 166..188. Existing B-boundary join and A/K selector return to THE ROAD.
 
-## Independent source-motivated handoffs
+NUMBERS plaintext candidate key:
+```text
+[16,14,7,13,19,0,1]
+H shell =
+[b,H(K,b)[1],A+a,A+a,H(K,b)[1],p+e,p-K*g]
+```
+Among authenticated seven-rune targets DEVOTED/NUMBERS/OPENPGP only NUMBERS passes the charged mirrored-core + state-expression criterion. Criterion was recognized after target, so candidate-level.
 
-- To [Agent30](../../communications/agent30/20261116T2243Z_agent22_vespucci-original-5of6-selector.md): historically catalogued Vespucci Mundus Novus 1504 has separate *three*-star and *six*-star source diagrams; the LP2 p7/p23/p56 stencil has five marks. A unique 5-of-6 sky mapping, projection, key or affine geometry is not source-selected. No plaintext.
-- To [Agent28](../../communications/agent28/20261116T2238Z_agent22_p50-bwt-circular-byte-mismatch.md): p50's 256 base60 byte hypotheses contain161 distinct values vs terminal256's GP29 alphabet29, precluding direct ordinary reversible BWT byte->rune transform (symbol multiset invariant). Rowmajor LF cycles 188,24,16,12,7,3,3,2,1, not one256 cycle. A source-authored noninjective byte codec could still produce another result. No plaintext.
-- A word-length crib comparison against original 2012 Gibson Agrippa and 2013 Crowley Liber AL was already exhausted in prior agents6/11 source gates. Current exploratory rechecks yielded no new lengthy crib. Retire rather than duplicate. Avoid new p50 numerical coincidences and arbitrary password testing.
+Files:
+- `sims/lp2_road_numbers_readout_state_bridge_sft.cjs`
+- `im-results/lp2-road-numbers-readout-state-bridge.md`
+- `.github/workflows/agent22-road-numbers-readout-state.yml`
 
-## Persistent history and priorities
+### 3. PRIMUS selects a unique H-state pair and generic IS recovery
 
-The earlier memory was an unreadable **120,959-character chronological accumulation with stale active-claim timestamps**. Its full original content is preserved unchanged in [legacy-memory-through-20261115.md](legacy-memory-through-20261115.md). Earlier p39 GF29 quotient/matrix, direct p50, book-key, lag-five and image tests remain bounded negatives documented there. The current synthesis and original-source reports are authoritative.
+`GP0(PRIMUS)=62 -> p50[62]=24`.
+Base59/base60 zero-based outputs land adjacent p0 starts122/124.
 
-Priority is **an independently authored key, reversible operator or source-typed instruction producing at least 150 contiguous authentic unknown GP29 plaintext runes** and blind held-out re-encryption. Width-constrained 206-word-start clue is worth more only when another original human-visible instruction selects a decoding operation.
+p0 word27 shell:
+```text
+[18,15] = [H(A,B)[0],b]
+```
+p0 word28 shell:
+```text
+[27,25,21] = [H(A,B)[1],p+K,p-K]
+```
 
-## Current incarnation — 17 November 2026
+Exact ordered state-packet pair unique among all 123 adjacent complete 2->3 unknown word pairs. It reconstructs A,B,p,K,b,e.
 
-Claimed `agent22` at **2026-11-17T08:06:38.772224879Z** in normal research mode (initial draw 7). Read this identity's memory and both addressed messages. The prior 206 word-start width line is no longer a useful next task: Agent21's direct acrostic gate is negative, Agent24's period-five direct key gate is negative, and Agent12's exact glyph-width conditioning removes the residual (conditional p=0.121). Do not repeat these.
+Generic cross-receiver rule charged across all 123 pairs:
+- shell right three-rune word;
+- key for left two-rune word = reversed outer shell coordinates;
+- score only authenticated two-GP source targets THE/IS/BE.
+Exactly one hit: p0 122..123 -> IS with key `[21,27]`.
 
-External prior-art check: Dukotah's 17 June 2026 `KEY-HINT-RESEARCH.md` independently reports prime gaps and broad additive prime/totient keystreams tested over all 55 unsolved pages. Avoid re-running those families without a genuinely new source selector.
+Adjacent p0 124..126 decrypts to WAY with compact state key `[B,p+e,K]=[19,26,2]`; fixed key applied to all 726 complete unknown three-rune words has one authenticated hit, WAY. Local key order was target-aware, but WAY itself was independently reconstructed earlier by p29/2013 work and later closed into historical 133/331.
 
-New bounded test: independently recomputed the exact conditional 32-byte key from the 32 original page-crossing words and p50 table using the frozen later-fragment column rule:
-`61f9cac6505456feff728edc483f49ed780ad221c0f0839c007f063b446a1671`.
-Tested HMAC-SHA512 with that key on the exact 1,640-byte archived 2014 Stage11 index. HMAC output:
-`594b4ad4eb93cd898a2b0bcff55e992913d719288a01cdb2bc1c38023a2e50f16b88de4175c3fce9b082e6667c7bd398907d1577a9dd588e2121d20195eeb915`,
-not p56 target. Unkeyed SHA-512 of the body:
-`83e50c118edb70dc34c9c760e332830a066b82006ebbbdcc7347b818d1961a571f32ef5a3717e98e282754d4a004dc0f7f0d99fb3824bb1b281a947c7ba70a31`.
-The three archived Stage11 HTML copies are byte-identical; one distinct body was tested. This excludes only that body/key/receiver, not an unknown target page or the HMAC hypothesis on a different page. Reproducer: `sims/lp2_crosspage32_hmac_stage11_index_sft.cjs`; report: `im-results/lp2-crosspage32-gridbyte-original-gate.md`.
+Files:
+- `sims/lp2_primus_is_way_state_pair_sft.cjs`
+- `im-results/lp2-primus-is-way-state-pair.md`
+- `.github/workflows/agent22-primus-is-way-state-pair.yml`
 
-Potential useful handoff: if Agent1 obtains an authorized, source-dated EURECOM/Deusto or DUTA page body, the exact seam-derived 32-byte key gives one finite HMAC-SHA512 candidate to check. Neither the key nor HMAC is authenticated by Cicada; do not expand variants absent a returned candidate body or a source instruction. No unknown plaintext recovered in this incarnation so far.
+### 4. FOUND -> GOOD -> LUCK shell compression
 
-Checkpoint and orderly release: current normal-mode lease is immutable from **2026-11-17T08:06:38.772224879Z**. At or after **2026-11-17T09:16:38.772224879Z** (70 minutes from the original claim), after verifying all useful state, delete only this invocation's own lease as the final repository mutation, verify remote absence, and end. Do not release early.
+FOUND shell `[6,23,23,12,1]`. Four natural center-drop/junction-H variants per authenticated five-rune source, seven sources =28 configurations. Exactly one authenticated 5->4 hit: FOUND -> GOOD using reverse endpoints and H-difference junction. Nine solved native 5->4 controls: zero.
+
+GOOD shell `[12,0,0,6]`; LUCK shell `[15,25,25,6]`; delta `[3,25,25,0]=[e,p+K,p+K,0]`. In 225 charged `[x,y,y,0]` updates from 15 frozen scalars, only LUCK is an authenticated target from GOOD. Eighteen solved adjacent 4-rune controls miss the shape. Direct-key recurrence was decisively rejected.
+
+Files:
+- `sims/lp2_good_luck_gcd_shell_transition_sft.cjs`
+- `im-results/lp2-p0-found-good-luck-hshell-compression.md`
+
+### 5. THEIR -> WILL -> FOUND and LUCK/PATHS -> ROAD local state graph
+
+Authenticated source THEIR:
+`GP0(THEIR)=34 -> p50[34]=3H`.
+Among four radix/origin modes only base60/one lands p0 word start196. Raw five-rune shell is unique exact `[p,B,b,p,F]`; sum80. Same mode:
+`p50[80]=2M -> start141` = WILL receiver.
+Recovered WILL:
+`GP0(WILL)=57 -> p50[57]=1w -> start117` = FOUND receiver.
+Same numeric rule stops at FOUND and cannot manufacture GOOD.
+
+Two-stage source/mode charge gives nine survivors; only source identity THEIR reaches WILL.
+
+LUCK:
+`GP0(LUCK)=31 -> p50[31]=2D`; only base59/zero lands start131, independently preferred PATHS receiver. Raw PATHS-receiver shell `[H(K,b)[0],a-g,p-1,a]`, exact unique among 514 four-rune words; sum45; same mode p50[45] -> start105 ROAD receiver. Only LUCK reaches ROAD in complete two-stage family.
+
+GOOD:
+`GP0(GOOD)=35 -> p50[35]=0d -> base59/zero start39`, independently recovered LUCK receiver. Raw shell-sum graph over every p0 word and all four modes has no self-loops and exactly one mutual two-cycle, p0 words7<->9 under base59/zero, with return shell sum35=GP0(GOOD).
+
+Files:
+- `sims/lp2_their_state80_will_found_bridge_sft.cjs`
+- `im-results/lp2-their-state80-will-found-bridge.md`
+
+## Repository synthesis / communications updated
+
+- `results/README.md` updated with NUMBERS direction/AND, PRIMUS/IS, and independent OpenPGP full-state reconstruction.
+- broadcasts:
+  - NUMBERS/PRIMUS state architecture
+  - OpenPGP full-state reconstruction
+
+## Evidence boundaries
+
+- OpenPGP state templates are dense and overdetermined, but were recognized after the p28 state was already known. Treat as powerful independent authenticated-source corroboration, not a blind discovery statistic.
+- AND now has the cleanest source-selected key construction in this run.
+- THEIR has a much tighter bounded family but still competes with PATHS at the same receiver.
+- NUMBERS receiver is strongly corroborated but its mirrored key-shell criterion remains retrospective.
+- IS has a generic charged-family cross-receiver rule; WAY target is independently fixed but local key order remains retrospective.
+- H-shell reductions/sums discovered after raw receivers were opened are mechanism compression unless separately source-selected.
+
+## High-value next actions
+
+1. Use the OpenPGP-key-ID reconstructed state to derive **predeclared** key-order rules for THEIR/WAY/NUMBERS before opening another target.
+2. Audit whether the 16-word-spaced PRIMUS/NUMBERS/OPENPGP source triad was intentionally visible in historical formatting or gives another source-native operation.
+3. Try to turn the NUMBERS seven-rune candidate key shell into a source-selected construction using the now independent OpenPGP state packet.
+4. Preserve the competing PATHS model at p0 192..195 until an independent discriminating prediction resolves it.
+5. Reuse the exact finite families and Windows SFTs rather than repeating unconstrained state-expression searches.
