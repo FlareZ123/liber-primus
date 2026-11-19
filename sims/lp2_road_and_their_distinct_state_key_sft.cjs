@@ -219,11 +219,15 @@ function auditReceiver(ciphertext) {
   };
 }
 
-const p0Words = parsePage(parts[0]);
-assert.deepEqual(p0Words[41], [0, 6, 9]);
-assert.deepEqual(p0Words[42], [19, 12, 20, 9]);
+const p0Runes = [...parts[0]]
+  .map((rune) => runeIndex.get(rune))
+  .filter((value) => value !== undefined);
+const andCiphertext = p0Runes.slice(189, 192);
+const theirCiphertext = p0Runes.slice(192, 196);
+assert.deepEqual(andCiphertext, [0, 6, 9]);
+assert.deepEqual(theirCiphertext, [19, 12, 20, 9]);
 
-const andAudit = auditReceiver(p0Words[41]);
+const andAudit = auditReceiver(andCiphertext);
 assert.equal(andAudit.labelConfigurations, 11340);
 assert.equal(andAudit.rawHits.length, 3);
 assert.deepEqual(
@@ -259,7 +263,7 @@ assert.deepEqual(
   [andAudit.distinctNumericHits[0]]
 );
 
-const theirAudit = auditReceiver(p0Words[42]);
+const theirAudit = auditReceiver(theirCiphertext);
 assert.equal(theirAudit.labelConfigurations, 136080);
 assert.equal(theirAudit.rawHits.length, 2);
 assert.deepEqual(
@@ -286,17 +290,17 @@ const theirKey = theirAudit.distinctNumericHits[0].key;
 
 assert.deepEqual(
   gp("AND").map((value, index) => mod(value + andKey[index], 29)),
-  p0Words[41]
+  andCiphertext
 );
 assert.deepEqual(
   gp("THEIR").map((value, index) => mod(value + theirKey[index], 29)),
-  p0Words[42]
+  theirCiphertext
 );
 
 console.log(JSON.stringify({
   status: "PASS: distinct DH-field family compresses AND THEIR keys",
   AND: {
-    receiver: p0Words[41],
+    receiver: andCiphertext,
     configurations: andAudit.labelConfigurations,
     rawAuthenticatedHits: andAudit.rawHits.length,
     distinctNumericHits: andAudit.distinctNumericHits,
@@ -304,7 +308,7 @@ console.log(JSON.stringify({
       andAudit.distinctNumericHits.filter((hit) => hit.target === "AND"),
   },
   THEIR: {
-    receiver: p0Words[42],
+    receiver: theirCiphertext,
     configurations: theirAudit.labelConfigurations,
     rawAuthenticatedHits: theirAudit.rawHits.length,
     distinctNumericHits: theirAudit.distinctNumericHits,
