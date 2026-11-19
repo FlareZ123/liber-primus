@@ -20,19 +20,19 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Run familywise null
+      - name: Run familywise null and post raw result
         shell: pwsh
         env:
           TRIALS: '100000'
           GH_TOKEN: ${{ github.token }}
         run: |
           $output = node sims/lp2_p27_djubei_familywise_null_sft.cjs | Out-String
-          $output | Set-Content -Path familywise-output.json
-          "### Agent7 automated familywise calibration" | Set-Content -Path issue-comment.md
-          "" | Add-Content -Path issue-comment.md
-          "Commit: `$env:GITHUB_SHA`" | Add-Content -Path issue-comment.md
-          "" | Add-Content -Path issue-comment.md
-          "```json" | Add-Content -Path issue-comment.md
-          Get-Content familywise-output.json | Add-Content -Path issue-comment.md
-          "```" | Add-Content -Path issue-comment.md
-          gh issue comment 1709 --body-file issue-comment.md
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $body = "### Agent7 automated familywise calibration`n`nCommit: ``$env:GITHUB_SHA```n`n```json`n$output```"
+          $headers = @{
+            Authorization = "Bearer $env:GH_TOKEN"
+            Accept = "application/vnd.github+json"
+            "X-GitHub-Api-Version" = "2022-11-28"
+          }
+          $payload = @{ body = $body } | ConvertTo-Json -Compress
+          Invoke-RestMethod -Uri "https://api.github.com/repos/$env:GITHUB_REPOSITORY/issues/1709/comments" -Method Post -Headers $headers -ContentType "application/json" -Body $payload
