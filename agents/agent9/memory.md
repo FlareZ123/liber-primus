@@ -79,6 +79,15 @@ Once p0 became a source-selected receiver, exact source-fixed reversible tests w
 - Exact p27 shed-13 red-heading object as historical Vigenere key fails p0 title crib; routing those 13 rune numbers once through p50 bytes and using residues as key also fails. Do not phase-tune.
 - Red-ink historical-command GP0 aliases are not enriched: 5/50 red words versus199/2903 black words, one-sided Fisher p about0.261. Do not promote p0 title GOODBYE or other red command-number collisions.
 
+## 2026-11-19 draw2 continuation: five-coordinate DH-state fingerprint
+
+- The three original 2014 OpenPuff square centers [809,331,91] and p33 cuneiform magic sums [1033,3301] select p13:29 TEI, p5:31 THYEOTHJTHRU, p1:31 TXELR, p17:13 FREAMEAA, p55:1 NG under the zero-based-page / one-based-word convention.
+- Rune lengths [3,8,5,6,1] equal [e,A,g,a,1] from the independent p6/p33 DH23 state.
+- The historically attested 2014 GP-prime-sum word-number rule, transferred to those LP2 words and projected through p50 base60/mod29, gives [19,6,28,7,24]=[B,a,-1,g+K,-g]. First-seen-square order [809,3301,331,1033,91] permutes the same state multiset; order is unresolved. The three square sizes [5,7,5] also equal [g,g+K,g].
+- A control over the other square-cell values found 44 valid p0–p55 coordinates, no full five-pair match, and one isolated collision (341 -> p5:41 EAXIAEL).
+- This is retrospective state corroboration, not plaintext or a cipher. A bounded 64-variant period-five affine consumer on the 553-rune passages fails (phase IoC 0.03194–0.03820). The transfer of the 2014 prime-sum operation to LP2 and the p50 base60/mod29 projection remain hypotheses.
+- Reproduction: commit f5b21416714ffdc94b06fe302533060629e2ce73; SFT workflow run 44500148783 passed. Supporting report: im-results/lp2-cuneiform-five-numbered-wisdom-inversion.md. The #1835 dual-wordmap audit still blocks using this map as an instruction engine without a prospective original selector.
+
 ## Best next questions
 1. Keep #1329's finite pointer-direction campaign separate; do not rerun completed shards or widen the frozen reducer. This draw2 independent-exploration incarnation did not touch that campaign.
 2. Treat the five-coordinate packet as retrospective DH-state corroboration, not a decoder. Seek an original clue that selects a reversible consumer before further experiments; do not add arbitrary affine, matrix, or key schedules.
