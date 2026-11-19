@@ -138,11 +138,11 @@ subtract [25,5,26,2]
 
 This makes the exact local inverse manuscript-wide selective.
 
-## 6. Cross-page shell audit with p40 PATHS
+## 6. Conditioned cross-page H audit with p40 PATHS
 
-Agent2 later observed that p40's exact shell `[14,8,3,26]` does not require the HERE marker: because `e=3`, its last coordinate is simply `-e=26`. The p40 shell is therefore `[-b,A,e,-e]`.
+P40's exact shell `[14,8,3,26]` is `[-b,A,e,-e]` because `e=3` and `-e=26 mod29`; no HERE state is required.
 
-P33 and p40 then share the fixed shell skeleton:
+The earlier shared description
 
 ```text
 p33 [ p,A,K,-K]
@@ -150,13 +150,30 @@ p40 [-b,A,e,-e]
      [ x,A,y,-y]
 ```
 
-Charge `x` as either sign of one authenticated state value and `y` as one authenticated state value. After collapsing duplicate numeric x values this gives 16×9 = **144 shells**. Across every complete four-rune word on p33 and p40, the nine distinct authenticated four-rune targets, and both additive directions, exactly two hits survive: this p33 WILL receiver at132 and p40 PATHS at71.
+needs one algebraic correction. Exact GP0 equality forces the subtraction key sum to zero. For four-rune H, `H2+H3=sum(key)`, so `H3=-H2` is automatic after state selection. The `y,-y` pair is therefore not independent evidence.
 
-The source also pairs these pages visibly. Across the full ink annotations, p33 start91 and p40 start0 are the only exact two-word red spans with word lengths `[e,g]=[3,5]`. Signed indices33..40 contain exactly `A=8` words, and the endpoint rise is `g+K=7`.
+Charge the remaining criterion over the complete 43×43 source-word/page matrix: among all **62** page/target pairs having exactly one complete four-rune receiver with the target GP0, require only
 
-This cross-page compression materially strengthens the shared-mechanism interpretation. The field-role choices `x=p,y=K` here and `x=-b,y=e` on p40 were still recognized after the local inverses, so a prospective third receiver or a first-party selector for x/y remains the promotion gate.
+```text
+H0 = signed authenticated state value
+H1 = A = 8
+H2 = authenticated state value
+```
 
-See `im-results/lp2-p33-p40-shared-shell-pair.md` and `sims/lp2_p33_p40_shared_shell_sft.cjs` (Windows Node22 PASS 44457657138).
+Exactly two pairs survive:
+
+```text
+p33 / WILL  / start132 -> [23,8,2,27]
+p40 / PATHS / start71  -> [14,8,3,26]
+```
+
+No non-identity member of the 62-pair family satisfies the criterion. Under canonical word segmentation, p33 WILL and p40 PATHS are also the only four-rune same-index state cases.
+
+The source still pairs the pages independently: p33 start91 and p40 start0 are the only exact two-word red spans with `[e,g]=[3,5]` word lengths, while signed indices33..40 comprise `A=8` words with endpoint rise `g+K=7`.
+
+This is selective cross-page evidence after conditioning on the actual receiver selection. The free H-coordinate role labels remain retrospective, so a prospective different-family receiver or first-party coordinate selector remains the promotion gate.
+
+See `im-results/lp2-p33-p40-shared-shell-pair.md` and `sims/lp2_hshell_state_conditioned_crosspair_sft.cjs`.
 
 ## 7. Evidence boundary
 
@@ -179,7 +196,7 @@ and signed word33=WILL
 -> exact WILL inverse
 ```
 
-The H-shell `[p,A,K,-K]` is compact and page-local, while its serialization was learned after the target was assigned. A fresh source-selected transfer of this exact shell grammar would materially strengthen the cipher-mechanism claim.
+The H-shell `[p,A,K,-K]` is compact and page-local. After conditioning on GP0 selection, its non-automatic H residue is one of only two hits among 62 charged four-rune source-state page/target pairs, the other being p40 PATHS. The coordinate-role interpretation was learned after the targets were assigned, so a first-party selector for those roles or a prospective transfer in a different receiver family would materially strengthen the cipher-mechanism claim.
 
 ## Reproduction
 

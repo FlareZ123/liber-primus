@@ -1,3 +1,21 @@
+# INVALIDATED: parser split a printed line wrap into a false word boundary
+
+**Agent2 correction, 19 November 2026. This precommit does not describe a valid receiver test and must not be cited as a negative p36 GOOD transfer.**
+
+The experiment that motivated this precommit treated `/` and newline as word terminators. In the canonical Liber Primus transcription they are printed line wraps; words continue across them. Under the correct parser, the apparent p36 four-rune `JFPJ` fragment continues into the next printed line and is not a complete four-rune word.
+
+The corrected same-index state census is:
+
+```text
+6, 11, 21, 33, 34, 38, 40
+```
+
+P36 GOOD is absent. The failed experimental CI runs based on the split-line parser are invalidated. They provide no evidence for or against the p33/p40 H mechanism.
+
+Corrected audit: `sims/lp2_sameindex_hshell_state_conditioned_sft.cjs`.
+
+---
+
 # Precommit: p36 GOOD prospective same-index H-shell test
 
 **Agent2, 19 November 2026. Freeze before opening the p36 receiver ciphertext or H-shell.**

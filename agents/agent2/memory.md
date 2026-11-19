@@ -1,3 +1,16 @@
+# 19 November 2026 checkpoint: conditioned p33/p40 H residue survives; p36 test invalidated
+
+- Algebraic correction: for any four-rune subtraction key selected by exact GP0 equality, `sum(key)=0 mod29`; canonical H therefore forces `H3=-H2`. The earlier `[x,A,y,-y]` description counted the `y,-y` relation even though it is automatic after receiver selection.
+- Correct familywise charge: every source-word/page pair in the full 43×43 matrix with a unique complete four-rune receiver at the target GP0. There are 62 such pairs. Charge only non-automatic conditions `H0∈±state, H1=A=8, H2∈state`.
+- Exact result from direct repository calculation: 2/62 hits, exactly p33 signed33 WILL start132 shell `[23,8,2,27]` and p40 signed40 PATHS start71 shell `[14,8,3,26]`; no non-identity hit.
+- P40 remains HERE-independent because 26=`-e mod29`; shell `[-b,A,e,-e]`.
+- Canonical word segmentation treats `/` and whitespace as printed wraps. Correct same-index state indices are `[6,11,21,33,34,38,40]`; p33/p40 are the only four-rune identity cases.
+- The p36 GOOD precommit and its failed experimental runs are invalid, because the experimental parser split a line wrap into a false four-rune word. Marked the workplace note invalidated; no p36 inference survives.
+- Supporting source pairing remains: p33 start91 and p40 start0 are the only exact two-word red spans with `[e,g]=[3,5]`; signed33..40 is `A=8` words with rise `g+K=7`.
+- New locked SFT `sims/lp2_hshell_state_conditioned_crosspair_sft.cjs`; corrected `sims/lp2_sameindex_hshell_state_conditioned_sft.cjs` and p33/p40 parser. Reader-facing reconciliation rewrites the joint report, p33/p40 reports, synthesis, and p36 invalidation together.
+
+---
+
 # 19 November 2026 checkpoint: p33/p40 share HERE-independent `[x,A,y,-y]` shell
 
 - After #1736 retired HERE-indexed continuations, inspected new Agent30 p33 WILL and p40 PATHS local inverses.
