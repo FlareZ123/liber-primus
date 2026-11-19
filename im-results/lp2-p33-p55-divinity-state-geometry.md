@@ -75,6 +75,67 @@ The midpoint rune is native GP `I`, ordinal10.
 
 Thus the peeled object does not merely contain two D runes. The positions, distance, strict-interior count, inclusive span and center value all reuse the independently recovered DH state.
 
+## H splits the selected B-span into CIRCUMFERENCES and PARABLE
+
+The p33 layout already fixes the forward outside-in map:
+
+```text
+H(x,y) = (x-y, x+y) mod29
+```
+
+Apply it once to the selected 19-rune `B` span, pairing its two `D=p` endpoints and moving inward. The center `K*g=10` remains untouched. The nine first coordinates and nine second coordinates are:
+
+```text
+difference branch:
+[0,16,7,3,9,21,23,28,24]
+GP0 sum = 131 = CIRCUMFERENCES
+
+sum branch:
+[17,17,18,16,25,18,4,1,4]
+GP0 sum = 120 = PARABLE
+```
+
+These are not guessed plaintext transliterations. They are exact canonical GP0 labels of two independently fixed source objects: **CIRCUMFERENCES** is the noun in the p57 instruction, and **PARABLE** is the p57 title.
+
+The existing p57/p50 word graph already contains two convergent edges into that same title number:
+
+```text
+SHED(64)             --p50 base59--> 120 = PARABLE
+CIRCUMFERENCES(131)  --p50 base60--> 120 = PARABLE
+```
+
+and:
+
+```text
+PARABLE(120) --p50 base60/low--> 42 = FIND
+```
+
+So the p57 phrase **SHED ... CIRCUMFERENCES** now has a concrete operation on the uniquely selected p55 state object: the fixed H split produces a branch numerically typed **CIRCUMFERENCES** and its complementary branch is already typed **PARABLE**.
+
+This is stronger than reading a short English substring from transformed runes because the labels are whole-branch GP0 invariants and the p50 graph edges were documented before this p55 split was inspected.
+
+### 19-rune manuscript control
+
+Charge every complete 19-rune window in every page-local strict-interior stream on unknown p0–p55:
+
+- fixed outside-in H;
+- require difference-branch GP0=131;
+- require sum-branch GP0=120;
+- then require the already fixed center rune `K*g=10`.
+
+There are **6,112** windows.
+
+```text
+difference sum131 alone: 77
+sum sum120 alone:        93
+ordered pair 131/120:     3
+pair plus center10:        1
+```
+
+The sole fully typed hit is the p55 span beginning at strict-interior offset4, exactly the `D@g ... D@p` state span selected independently above.
+
+This supplies an executable **shed/circumference split**, although it still does not reveal ordinary prose for the p55 ciphertext.
+
 ## Corpus-wide fixed control
 
 Charge the exact geometry in the same source object on every unknown page:
@@ -112,7 +173,7 @@ p33 WORDS ARE THE MAP
  -> unique [g,p,B,b+K,K*g] DIVINITY state geometry
 ```
 
-This is now a concrete intended-route hypothesis rather than an untyped p55 coincidence.
+This is now a concrete intended-route hypothesis rather than an untyped p55 coincidence. The newly fixed H split additionally gives the selected B-span the ordered whole-branch labels CIRCUMFERENCES/PARABLE and connects directly to the pre-existing p57 word graph.
 
 ## Held-out consequence: literal shedding exposes RISE -> WE
 
