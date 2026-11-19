@@ -318,16 +318,26 @@ for (const radix of ["base60", "base59"]) {
   }
 }
 
+const boundarySelectedReceiverStates = receiverFamily.filter(
+  (state) => state.boundaryEvents.length > 0
+);
+assert.deepEqual(
+  boundarySelectedReceiverStates.map((state) => [state.radix, state.origin]),
+  [["base60", "zero"]]
+);
+
+// The bracket event class is retained as an independent replication, but is
+// unnecessary for selecting the p0 receiver state. This avoids using the
+// later THE ROAD shape to choose the state that will eventually decrypt it.
 const fullyTypedReceiverStates = receiverFamily.filter((state) =>
   state.boundaryEvents.length > 0 && state.bracketEvents.length > 0
 );
-
 assert.deepEqual(
   fullyTypedReceiverStates.map((state) => [state.radix, state.origin]),
   [["base60", "zero"]]
 );
 
-const base60Zero = fullyTypedReceiverStates[0];
+const base60Zero = boundarySelectedReceiverStates[0];
 assert.deepEqual(base60Zero.boundaryEvents, [{
   source: ["EMPTY", "EPIPHANY"],
   outputs: [236, 237],
