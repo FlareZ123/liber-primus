@@ -108,6 +108,60 @@ Applying the same H transform to their lengths and to their GP0 sums gives two m
     H([5,3])  = [2,8]   = [K,A]
     H([6,16]) = [19,22] = [B,p-1].
 
+### The numbers branch: a second state pair and the p25 convergence
+
+The p21 H2D output [12,26] is a pair of **2016 source-word indices**: THE / NUMBERS. Their Gematria Primus values are:
+
+    THE     -> [2,18] -> GP0 sum 20
+    NUMBERS -> [9,1,19,17,18,4,15] -> GP0 sum 83 -> 83 mod29 = 25
+
+Under the candidate modulo-29 page-address rule, these numbers select p20 fragment21 and p25 fragment26:
+
+    p20 fragment21 = [11,10]  length 2  GP0 sum 21
+    p25 fragment26 = [25,17]  length 2  GP0 sum 13
+
+The same H transform gives:
+
+    H([2,2])   = [0,4] = [0,q]
+    H([21,13]) = [8,5] = [A,g].
+
+The 42×42 ordered-pair census has **two** hits for this state signature: (p20,p25) and (p20,p38). The p20/p38 collision is real and must not be hidden. The p25 endpoint is independently supported by the p23 one-rise route and by the existing unique [K,g] side object on p25 (the 627-object census in [the p25 cube-route report](lp2-2013-goodluck-p25-cube-route.md)); p38 lacks that object. The GP0-sum-to-page reduction is still a hypothesis, not an explicit instruction. The separate raw-GP0/p50 prime-rank route remains an alternative reading of “their numbers”; see [the p50 page-triple report](lp2-2016-their-numbers-are-p50-prime-rank-page-triple.md).
+
+### A determinant-one state matrix decrypts p21 fragment22
+
+The three state pairs now close a triangle:
+
+    p12/p26 H(lengths)       = [K,A] = [2,8]
+    p20/p25 H(GP0 sums)      = [A,g] = [8,5]
+    p25 side-object H(outer) = [K,g] = [2,5].
+
+Stack the source-ordered [A,g] and [K,g] pairs as rows:
+
+\[
+N=\begin{bmatrix}A&g\\K&g\end{bmatrix}
+ =\begin{bmatrix}8&5\\2&5\end{bmatrix},
+\qquad \det(N)=30\equiv1\pmod{29}.
+\]
+
+Its inverse is:
+
+\[
+N^{-1}=\begin{bmatrix}5&24\\27&8\end{bmatrix}.
+\]
+
+The p21 fragment22 ciphertext is [19,7]. Decryption gives:
+
+\[
+N^{-1}\begin{bmatrix}19\\7\end{bmatrix}
+=\begin{bmatrix}2\\18\end{bmatrix}.
+\]
+
+These are **Gematria Primus rune values**, not 2016 word indices: rune 2 is TH and rune 18 is E. The recovered plaintext is therefore **THE**.
+
+This is not a global two-rune cipher. Search all **465** two-rune physical-page fragments under N, N⁻¹, Nᵀ, and N⁻ᵀ: only N⁻¹ has a hit for the plaintext rune pair [2,18], and that hit is p21 fragment22. p21 itself has nine two-rune fragments; the other eight do not yield THE. The row-reversed state matrix also fails. The determinant-one property is compatible with p23's “THE ONE RISE” output, but that connection remains an interpretation, not proof of key-construction intent.
+
+The same key does not turn the p25 cube output OITOHL into the p28 READ OUT candidate. Keep the p21 decryption local until another source-selected receiver validates a broader mechanism.
+
 ### Independent p23 red-span state cross-check
 
 The p36/p12/p26 route independently recovers q=4, K=2, and A=8. The first four p23 red-span fragment lengths are [2,6,3,5]. The same H operation gives:
@@ -135,10 +189,12 @@ The first two matrix outputs [b,B]=[15,19] also agree with the independently rep
 - The p4 instruction to treat the totient function as sacred, the 5×5 square, the signed 2016 word map, the p4 H marker, and the p21/p12/p26 fragments are observable source material.
 - The particular 2013 DH3301 participant exponent e=1661 remains from an **unsigned** transcript. Its \(\varphi(e)\bmod29\) selector is conditional; the signed 2016 word index 36 independently selects p36 under the physical-page fragment rule.
 - The matrix operation is a plausible simple Hill/state transform, but no source explicitly states “multiply this matrix by this five-rune fragment.” The exact state packet and unique downstream pair materially strengthen it, but do not establish a universal cipher.
+- The p20/p25 page selection depends on reducing GP0(NUMBERS)=83 modulo 29; the signed source says numbers give direction but does not explicitly specify this reduction. The p20/p38 collision means the [0,q]/[A,g] signature alone is not unique; p25 is favored by independent p23/GOOD LUCK and [K,g] evidence.
+- The [A,g]/[K,g] row stacking and determinant-one Hill key are inferred. “THE ONE RISE” may motivate det=1, but does not explicitly specify the matrix. The recovered THE is a one-word plaintext result, not a complete-page decryption.
 - The DH state tuple is pre-existing, not a new discovery here; see [the signed-source register](lp2-dh-state-signed-source-register.md) and [the adversarial register audit](lp2-dh-state-register-adversarial-audit.md). The exact p36 state-packet hit is absent under the adversarial audit's near-miss tuple with b and K swapped.
 - This does **not** reopen the rejected 7×7 Stage10 central-row phi/Stage05 composition on the 238-rune p36 body, nor the rejected 5×5 row-wise additive masks on the 553-rune numbered cuneiform enclosure. Those are different operations and remain negative; see [the bounded 7×7 composition test](lp2-cuneiform-p36-stage05-phi-composition-gate.md) and [the five-passage additive-mask audit](lp2-cuneiform-five-numbered-wisdom-inversion.md).
 - The DH state is partly derived from the same 2014 square that supplies M, so the exact state echo is a cross-source structural fit, not an independent random sample. The signed 2016 word selector and the unique downstream dual-channel pair add discrimination, but do not remove the route's hypothesis status.
-- No unknown LP2 plaintext has been recovered by this route. Preserve it as an intermediate source-selected state/navigation mechanism.
+- One two-rune plaintext fragment has been recovered: p21 fragment22 decrypts to THE under the state-derived determinant-one matrix. No complete page plaintext or general LP2 cipher has been recovered. Preserve the mechanism as an intermediate, source-constrained candidate pending independent validation.
 
 **Reproducer:** node sims/lp2_wisdom_phi_grid_p36_dh_state_route_sft.cjs.
 
@@ -146,6 +202,6 @@ The first two matrix outputs [b,B]=[15,19] also agree with the independently rep
 
 A plausible player-visible path is: recover the DH3301 client exponent class; encounter the Wisdom page's prime/totient clue and its 5×5 square; test the six exponent representatives under φ(e) mod29; notice that only one-based cell 21 yields a prime; then use 151's prime ordinal to identify p36. This path is substantially more discriminating than selecting 1661 by inspection, but its key dependency remains the unsigned participant transcript and the inferred cell-address rule.
 
-**Next:** determine whether the new p36/p12/p26 state packet supplies a source-selected reversible operation for a fresh LP2 receiver. Do not treat the source-index vector as plaintext, recursively iterate the failed p19/p22 continuation, or widen the Hill/phase family without a new clue.
+**Next:** obtain an independent reproduction or falsification of the p21 THE decryption and its state-derived matrix construction. Then seek a second source-selected receiver before generalizing the key. Do not apply the matrix globally, rescue the failed p25 OITOHL→READ OUT test, or recursively iterate the p19/p22 continuation.
 
 **Reproducer:** node sims/dh3301_phi29_wisdom_square_selector_sft.cjs.

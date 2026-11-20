@@ -196,6 +196,19 @@ for (const [i, word] of [[4, "EMPTY"], [12, "THE"], [15, "WORDS"], [19, "THEIR"]
   assert.equal(sourceWords[i], word);
 }
 
+function gpWord(word) {
+  const normalized = word.toUpperCase().replace(/QU/g, "CW").replace(/V/g, "U").replace(/[KQ]/g, "C").replace(/Z/g, "S");
+  const tokens = corpus.translit.map((token, value) => ({ token, value })).sort((a, b) => b.token.length - a.token.length);
+  const values = [];
+  for (let offset = 0; offset < normalized.length;) {
+    const match = tokens.find((entry) => normalized.startsWith(entry.token, offset));
+    if (!match) throw new Error("cannot GP0-encode " + word + " at " + offset);
+    values.push(match.value);
+    offset += match.token.length;
+  }
+  return values;
+}
+
 const state = { p: 23, g: 5, a: 6, b: 15, A: 8, B: 19, K: 2, e: 3, q: 4 };
 const statePacket = [state.b, state.B, state.q, mod(state.p - state.K), state.q];
 
@@ -280,6 +293,103 @@ const sumPacket = H2D([sumMod29(p12), sumMod29(p26)]);
 assert.deepEqual(lengthPacket, [state.K, state.A]);
 assert.deepEqual(sumPacket, [state.B, state.p - 1]);
 
+// "THE NUMBERS": their GP0 sums, reduced modulo 29, select p20 and p25.
+const theGP = gpWord(sourceWords[12]);
+const numbersGP = gpWord(sourceWords[26]);
+const theRawNumber = theGP.reduce((sum, value) => sum + value, 0);
+const numbersRawNumber = numbersGP.reduce((sum, value) => sum + value, 0);
+const numberPages = [mod(theRawNumber), mod(numbersRawNumber)];
+assert.deepEqual({ theGP, numbersGP, theRawNumber, numbersRawNumber, numberPages }, {
+  theGP: [2, 18],
+  numbersGP: [9, 1, 19, 17, 18, 4, 15],
+  theRawNumber: 20,
+  numbersRawNumber: 83,
+  numberPages: [20, 25],
+});
+const p20 = pageFragments(numberPages[0])[numberPages[0]];
+const p25Numbered = pageFragments(numberPages[1])[numberPages[1]];
+assert.deepEqual(p20.values, [11, 10]);
+assert.deepEqual(p25Numbered.values, [25, 17]);
+const numberLengthPacket = H2D([p20.values.length, p25Numbered.values.length]);
+const numberSumPacket = H2D([sumMod29(p20), sumMod29(p25Numbered)]);
+assert.deepEqual(numberLengthPacket, [0, state.q]);
+assert.deepEqual(numberSumPacket, [state.A, state.g]);
+
+// Charge the same 42x42 ordered-pair family. A p20/p38 collision exists;
+// p25 is distinguished by its independent one-rise route and unique [K,g] object.
+const agPairMatches = [];
+for (const left of indexed) {
+  for (const right of indexed) {
+    const lengths = H2D([left.fragment.values.length, right.fragment.values.length]);
+    const sums = H2D([sumMod29(left.fragment), sumMod29(right.fragment)]);
+    if (
+      JSON.stringify(lengths) === JSON.stringify([0, state.q]) &&
+      JSON.stringify(sums) === JSON.stringify([state.A, state.g])
+    ) {
+      agPairMatches.push({ i: left.i, j: right.i });
+    }
+  }
+}
+assert.deepEqual(agPairMatches, [{ i: 20, j: 25 }, { i: 20, j: 38 }]);
+
+// Existing p25 side object: predecessor rune plus p25 fragment30.
+const p25Fragments = pageFragments(25);
+const p25SideObject = [p25Fragments[28].values[p25Fragments[28].values.length - 1], ...p25Fragments[29].values];
+assert.deepEqual(p25SideObject, [18, 3, 20, 10, 11, 16]);
+const p25SideState = H2D([p25SideObject[0], p25SideObject[p25SideObject.length - 1]]);
+assert.deepEqual(p25SideState, [state.K, state.g]);
+
+// The three independently sourced pairs close a K-A-g state triangle.
+const N = [[state.A, state.g], [state.K, state.g]];
+assert.deepEqual(N, [[8, 5], [2, 5]]);
+assert.equal(detMod(N), 1);
+const Ni = inverseMatrix(N);
+assert.deepEqual(Ni, [[5, 24], [27, 8]]);
+const p21HillPlain = mulLeft(Ni, p21.values);
+assert.deepEqual(p21HillPlain, [2, 18]);
+assert.deepEqual(p21HillPlain.map((i) => corpus.translit[i]), ["TH", "E"]);
+assert.equal(p21HillPlain.map((i) => corpus.translit[i]).join(""), "THE");
+
+// Familywise two-rune control: only p21 fragment22 decrypts to THE.
+const twoRuneFragments = [];
+for (let page = 0; page <= 55; page++) {
+  if (page === 50) continue;
+  for (const fragment of pageFragments(page)) {
+    if (fragment.values.length === 2) twoRuneFragments.push(fragment);
+  }
+}
+assert.equal(twoRuneFragments.length, 465);
+const Nt = N.map((_, i) => N.map((row) => row[i]));
+const Nit = inverseMatrix(Nt);
+const twoRuneVariants = [
+  ["N-column", (v) => mulLeft(N, v)],
+  ["N-inverse-column", (v) => mulLeft(Ni, v)],
+  ["N-transpose-column", (v) => mulLeft(Nt, v)],
+  ["N-inverse-transpose-column", (v) => mulLeft(Nit, v)],
+];
+const theRuneHits = twoRuneVariants.map(([name, apply]) => ({
+  name,
+  hits: twoRuneFragments.filter((fragment) => JSON.stringify(apply(fragment.values)) === JSON.stringify([2, 18]))
+    .map((fragment) => ({ page: fragment.page, ordinal: fragment.ordinal, values: fragment.values })),
+}));
+assert.deepEqual(theRuneHits.map((entry) => [entry.name, entry.hits.length]), [
+  ["N-column", 0],
+  ["N-inverse-column", 1],
+  ["N-transpose-column", 0],
+  ["N-inverse-transpose-column", 0],
+]);
+assert.deepEqual(theRuneHits[1].hits, [{ page: 21, ordinal: 22, values: [19, 7] }]);
+assert.equal(pageFragments(21).filter((fragment) => fragment.values.length === 2).length, 9);
+
+// The p25 cube output OITOHL does not become the p28 READ OUT candidate
+// under this local p21 Hill key; do not generalize the key to every receiver.
+const p25CubeRaw = [3, 10, 16, 3, 8, 20];
+const p28ReadOut = [4, 28, 23, 3, 1, 16];
+const p25UnderNi = [];
+for (let i = 0; i < p25CubeRaw.length; i += 2) p25UnderNi.push(...mulLeft(Ni, p25CubeRaw.slice(i, i + 2)));
+assert.deepEqual(p25UnderNi, [23, 16, 7, 21, 27, 28]);
+assert.notDeepEqual(p25UnderNi, p28ReadOut);
+
 // The independently reported p23 red-span lengths are state-typed by the
 // q, K, A recovered above: H([2,6])=[-q,A], H([3,5])=[-K,A].
 const p23FirstFour = pageFragments(23).slice(0, 4);
@@ -340,7 +450,7 @@ assert.notDeepEqual(continuationLengths, [state.K, state.A]);
 assert.notDeepEqual(continuationSums, [state.B, state.p - 1]);
 
 console.log(JSON.stringify({
-  classification: "source-selected DH state/navigation route; no unknown plaintext recovered",
+  classification: "source-selected state route; p21 fragment22 decrypts to THE; no full-page plaintext recovered",
   phiSquare: square,
   phiGridMod29: M,
   determinantMod29: detMod(M),
@@ -353,6 +463,22 @@ console.log(JSON.stringify({
   p4H: p4H.values,
   p21: { values: p21.values, H2D: p21H2D, sourceWords: p21H2D.map((i) => sourceWords[i]) },
   p23CrossCheck: { redSpanLengths: p23Lengths, H2D: p23H2D, predictedFrom: { negativeQ: mod(-state.q), negativeK: mod(-state.K), A: state.A } },
+  theNumbersBranch: {
+    theGP, numbersGP, rawNumbers: [theRawNumber, numbersRawNumber], pageNumbersMod29: numberPages,
+    p20: { ordinal: p20.ordinal, values: p20.values, length: p20.values.length, sumMod29: sumMod29(p20) },
+    p25: { ordinal: p25Numbered.ordinal, values: p25Numbered.values, length: p25Numbered.values.length, sumMod29: sumMod29(p25Numbered) },
+    H2D_lengths: numberLengthPacket, H2D_sums: numberSumPacket,
+    familywiseMatches: agPairMatches,
+    p25SideObject, p25SideState,
+  },
+  stateTriangle: { KA: lengthPacket, Ag: numberSumPacket, Kg: p25SideState, N, determinant: detMod(N), inverse: Ni },
+  p21HillDecryption: {
+    ciphertext: p21.values, plaintextRuneValues: p21HillPlain,
+    plaintextRunes: p21HillPlain.map((i) => corpus.translit[i]).join(""),
+    allTwoRuneFragments: twoRuneFragments.length, variants: theRuneHits,
+    twoRuneFragmentsOnP21: 9,
+  },
+  p25CubeNegative: { OITOHL: p25CubeRaw, underNInverse: p25UnderNi, READ_OUT_target: p28ReadOut },
   p12p26: {
     p12: { ordinal: p12.ordinal, values: p12.values, length: p12.values.length, sumMod29: sumMod29(p12) },
     p26: { ordinal: p26.ordinal, values: p26.values, length: p26.values.length, sumMod29: sumMod29(p26) },

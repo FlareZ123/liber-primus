@@ -155,17 +155,32 @@ source-visible GOOD LUCK phrase
 -> p28 READ OUT candidate.
 ```
 
+## 20 November cross-route state triangle and p21 plaintext
+
+A separate p36 route now reaches p21 fragment22 and the p25 branch. H2D on p21 fragment22 [19,7] gives source-word indices [12,26] = THE / NUMBERS. Their GP0 sums are 20 and 83; reducing modulo 29 selects p20 and p25. The corresponding p20 fragment21 and p25 fragment26 produce H(GP0 sums)=[A,g]=[8,5] and H(lengths)=[0,q]=[0,4].
+
+The same route's p12/p26 branch gives [K,A]=[2,8]. This combines with the existing p25 side-object H output [K,g]=[2,5] to form the state triangle:
+
+    [K,A] = [2,8]
+    [A,g] = [8,5]
+    [K,g] = [2,5].
+
+Stacking [A,g] and [K,g] as rows gives the determinant-one matrix N=[[8,5],[2,5]]. Its inverse decrypts p21 fragment22 [19,7] to GP29 rune values [2,18] = TH,E = THE. This hit is unique among 465 two-rune fragments under the four tested orientations. Full method and controls are in [the p36 phi-grid state-route synthesis](dh3301_phi29_wisdom_square_selector_audit.md).
+
+This provides a second conditional route to p25 and independently confirms its [K,g] state object; it does **not** decrypt the p25 cube output. The p20/p25 state signature has a p20/p38 collision, and the page selection depends on GP0(NUMBERS)=83 being reduced modulo 29. p25 is favored by the independent p23 one-rise route and the unique [K,g] object. The raw-GP0/p50 interpretation remains a competing reading. Do not promote this cross-check to p25 plaintext.
+
 ## What this changes
 
 The p25 raw cube hit is more specific than an unconstrained split collision: the p25 side-object is the unique `[K,g]` outer-state hit among 627 candidates and `g=5` supplies the cut. The GOOD LUCK→p25 address and p25→p28 low-digit edges remain conditional because neither GP0→p50 addressing nor the general low-digit transition is source-authenticated.
 
 This **does not** make `OITOHL` plaintext. The useful content is navigation and operation selection.
 
-The candidate route suggests a possible human solve path from the two sentences on the historical 3301 screen, but does not yet establish two source-selected branches:
+The candidate route suggests a possible human solve path from the historical 3301 screen. The conditional THE/NUMBERS → p20/p25 state branch is an additional convergence, but its modulo-29 page step is not authenticated:
 
 ```text
 THE KEY IS ALL AROUND YOU -> p50/p53/p27 circumference loop
 GOOD LUCK                  -> p25 cube route -> p28 READ OUT
+THE NUMBERS                -> GP0 mod29 -> p20/p25 state triangle
 ```
 
 #1897's precommitted top-line first-word receiver misses (GP0=17 versus signed THEIR=34); no source-selected reversible p25 receiver or plaintext is established.
