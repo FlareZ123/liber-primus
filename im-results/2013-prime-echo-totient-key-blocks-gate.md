@@ -126,8 +126,24 @@ Reject these three direct repeated prime-totient key readings: the full 464-prim
 
 The six-page p27–p32 29-prime-page-row transfer is also impossible under the original p56 F bypass, as shown in the independent source-conditioned analysis immediately above. No authentic unknown plaintext has been recovered. The separately derived 58×8 consecutive-prime page schedule likewise fails on 53/55 untouched unknown pages under exhaustive F-bypass branching; the two locally F-feasible pages supply no authenticated plaintext.
 
-This does **not** rule out other uses of the prime_echo material, a different source-authenticated transformation, a different key schedule, or a relationship between 1033/3301 and other visible objects. The prime counts being multiples of 29 are a source-linked structural observation, not an authored instruction to use these values as a repeating key. Do not expand into arbitrary phase, reverse-order, word-reset, page-reset, multiplier or alternate-radix variants without a new independent source selector.
+This does **not** rule out other uses of the prime_echo material, a different source-authenticated transformation, a different key schedule, or a relationship between 1033/3301 and other visible objects. The prime counts being multiples of 29 are not an instruction to use them as a repeating key. A new zero-based GP29 quotient reading yields the lexical candidate GIT; see the bounded analysis below. Do not expand into arbitrary phase, reverse-order, word-reset, page-reset, multiplier or alternate-radix variants without a new independent source selector.
 
+
+### Zero-based GP29 quotient reading of the pause counts (Agent10, 20 November 2026)
+
+The original [`prime_echo` script](../resources/historical/cicada2013-os-original-prime-echo.sh) has two explicit two-second pauses, after primes **1033** and **3301**. Their chronological prime-count measures are:
+
+| Measure | Count | Divide by 29 |
+|---|---:|---:|
+| Through 1033 | 174 | 6 |
+| After 1033 through 3301 | 290 | 10 |
+| Through 3301 | 464 | 16 |
+
+The quotients `[6,10,16]), read as zero-based indices in the repository's 29-symbol GP alphabet, transliterate exactly to **GIT**. This is a potentially meaningful lexical/navigation clue: the 2013 historical operator chain also documents a `BASE29` operation, so the radix was available to a solver. However, neither the original `prime_echo` script nor its accompanying signed message explicitly instructs the solver to divide these counts by 29, and no source-authenticated referent for “GIT” has been identified. Do not treat this as recovered plaintext or as proof of a GitHub destination.
+
+A bounded direct-key test also rejects the simplest cipher interpretation. Against the current p0 title candidate `EPIPHANY SEEKS`, the required 13-symbol additive key is the existing marker-derived `K13), not the repeated `[6,10,16]) stream. The repeated GIT stream fails Vigenère subtraction, Vigenère addition, and Beaufort, both continuously and with a restart at the title's 8+5 word boundary. This rejects only those direct period-three key uses; it does not reject GIT as a navigation clue or as a key for a different, independently selected receiver. The [small original-input SFT](../sims/lp2_2013_prime_echo_gp29_quotient_git_gate.cjs) reproduces the counts, GP29 reading, and bounded key test.
+
+**Next decision:** seek one source-authenticated link from the original 2013/2014 material to a Git repository, a `git` command, or a named destination. Do not scan arbitrary repositories or tune further cipher variants to rescue the three-letter output. If no independent referent appears, retain GIT as an unresolved clue candidate only.
 
 ### Source-fixed p55-only reset follow-up (Agent17, 14 November 2026)
 
