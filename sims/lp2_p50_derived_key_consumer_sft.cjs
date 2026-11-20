@@ -269,6 +269,32 @@ function main() {
     }
   }
 
+  // Direct use of the two base-29 coordinate streams is an even simpler
+  // p0 consumer than the word-value arithmetic above: use q or r itself as
+  // the 13-symbol periodic key, in the source-oriented graph order.
+  const directCoordinateReceivers = [];
+  for (const item of [{ name: "quotient q", key: pairs.map(p => p.q) },
+                      { name: "remainder r", key: pairs.map(p => p.r) }]) {
+    for (const sign of [-1, 1]) {
+      const direct = directDecode(p0Body, item.key, sign, true);
+      const transparent = decodeTransparentF(p0Body, item.key, sign, true);
+      const best = bestPath(transparent);
+      directCoordinateReceivers.push({
+        key: item.name,
+        keyValues: item.key,
+        sign: sign < 0 ? "C-K" : "C+K",
+        directIoC: ioc(direct),
+        transparentPathCount: transparent.length,
+        bestTransparentIoC: best ? best.score : null,
+        bestTransparentText: best ? runeString(best.values, corpus.translit) : null
+      });
+      const planted = encodeTransparentF(p57, item.key, sign, true);
+      if (!includesExact(decodeTransparentF(planted, item.key, sign, true), p57)) {
+        fail("p57 planted positive control failed for " + item.name);
+      }
+    }
+  }
+
   const output = {
     classification: "bounded negative tests; no unknown plaintext or key recovered",
     sources: {
@@ -296,6 +322,11 @@ function main() {
       keyLengthZeroExtension: phiKey.length,
       keyLengthStrictOmission: phiKeySkipZero.length,
       receivers: phiReceivers
+    },
+    functionalGraphDirectCoordinateKey: {
+      quotientQ: pairs.map(p => p.q),
+      remainderR: pairs.map(p => p.r),
+      receivers: directCoordinateReceivers
     },
     functionalGraphWordPairKey: {
       orderedNodes,
