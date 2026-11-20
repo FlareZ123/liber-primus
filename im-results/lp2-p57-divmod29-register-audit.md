@@ -143,9 +143,35 @@ The unique matching window is exactly:
 THE DIVINITY WITHIN AND EMERGE.
 ```
 
+## Held-out 2016 signed-source pair inventory
+
+The contiguous-window control above remains negative: the authenticated 2016 source contains no contiguous four-pair training window or five-pair training-plus-holdout window. A distinct, noncontiguous control applies the same frozen five-pair vocabulary to every one of the 43 words in that source, without adding new DH expressions:
+
+| Frozen pair | 2016 source words (zero-based indices) |
+| --- | --- |
+| [e,b]=[3,15] | THE: 1, 7, 12, 17, 22, 28 |
+| [K,g]=[2,5] | no hit |
+| [q,b+K]=[4,17] | LUCK: 37 |
+| [A,p-1]=[8,22] | MAP: 18; AND: 24, 31; SEEK: 30 |
+| [a,B]=[6,19] | NUMBERS: 26 |
+
+This gives **12 exact occurrences across six distinct words**: THE, MAP, AND, NUMBERS, SEEK and LUCK. The matched words form a conspicuous semantic cluster in the signed message, including its explicit "its words are the map" and "their numbers are the direction" instructions. These are individual word hits, not a new contiguous copy of the p57 five-word sequence.
+
+Controls on the fixed pair vocabulary:
+
+- Across all 256 cyclic rotations of the p50 token tape, authored shift 0 is the **unique maximum**, with 12 hits; the next-best rotation has 8.
+- After deduplicating repeated source spellings, authored shift 0 remains the unique cyclic maximum: 6 distinct word types.
+- Across all 32,768 invertible affine address permutations, the authored mapping has 12 hits; 12 permutations reach at least 12, and the maximum is 14 (five permutations). Thus the canonical map is strongly placed in the upper tail but is **not** the unique affine maximum.
+
+This is useful held-out cross-source support for the canonical p50 register: an independently authenticated source uses several of the same typed DH pairs on semantically relevant words. It is not a blind historical prediction—the field labels were recognized after p57 inspection—and it does not yet specify how a pair is consumed to decrypt an unknown page.
+
+Two direct page-key interpretations were also tested on the 12 pages selected by these hits: repeat [quotient,remainder] as a period-two additive GP29 key, and use it as the affine map C=qP+r (mod 29). Neither yields a readable page or a score approaching the clear p57 control. The register is supported as a word-to-state mapping; it is not thereby established as a simple repeating or affine page key.
+
+Reproducer: sims/lp2_p57_divmod29_register_audit_sft.cjs.
+
 ## Interpretation
 
-This audit sharply reduces the post-discovery-relabeling objection at the **serialization** level. The held-out 2016 inventory adds a second-source check of the same fixed typed-pair vocabulary, although it is not a blind historical prediction.
+This audit sharply reduces the post-discovery-relabeling objection at the **serialization** level. The held-out 2016 inventory adds a second-source check of the same fixed typed-pair vocabulary, although it is not a blind historical prediction. The held-out 2016 inventory adds a second-source check of the same fixed typed-pair vocabulary, although it is not a blind historical prediction.
 
 The canonical choices are uniquely selected across:
 
@@ -166,7 +192,7 @@ For downstream work that already has an independently selected state-bearing sou
 GP0 -> p50 native base60 -> divmod29 [quotient,remainder].
 ```
 
-Do not count a future unknown-page match to a flexible DH vocabulary as independent evidence unless the receiver and expected ordered pair are fixed before inspection. This conditional register result does not select a DH field such as B as a p50 address, nor does it authenticate a byte-to-physical-page output type; those are separate operations requiring their own source selector. A downstream test on the authenticated 2016 words that interpreted divmod29 quotient as Latin-letter length and remainder as page displacement was negative: the authored table order gives 10/43 hits, while a cyclic rotation gives 14 (shift144). Do not treat the p33+2=p35 coincidence as a register-derived page pointer.
+Do not count a future unknown-page match to a flexible DH vocabulary as independent evidence unless the receiver and expected ordered pair are fixed before inspection. The held-out 2016 inventory adds cross-source support for the fixed typed-pair vocabulary, but does not select a DH field as a p50 address or authenticate a page-output type. Direct period-two additive and affine page-key interpretations fail; the separate quotient=Latin-length / remainder=page-displacement hypothesis is rejected in the p33/p40 report. The register is best treated as a word-to-DH-state mapping until an original clue specifies how its pair is consumed.
 
 ## Reproduction
 

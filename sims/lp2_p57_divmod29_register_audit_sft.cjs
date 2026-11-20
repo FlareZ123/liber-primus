@@ -20,7 +20,11 @@
  *   all 128*256 invertible affine address permutations mod256.
  *
  * Corpus controls:
- *   every contiguous five-word window in solved p56, solved p57,
+ *   every contiguous five-word window in solved p56, p57 and signed2016;
+ *   noncontiguous signed2016 pair inventory with cyclic and affine controls.
+ *
+ * Original contiguous-window controls:
+ *   every five-word window in solved p56, solved p57,
  *   and authenticated signed-2016 cleartext; plus a noncontiguous 43-word
  *   inventory against the frozen typed-pair vocabulary with cyclic/affine controls.
  */
@@ -207,7 +211,8 @@ const clear=signed.match(
   /Hash: SHA1\n\n([\s\S]*?)\n-----BEGIN PGP SIGNATURE-----/u
 );
 assert.ok(clear);
-const signedWords=(clear[1].match(/\b[A-Za-z]+\b/gu)||[]).map(gpWord);
+const signedWordText=(clear[1].match(/\b[A-Za-z]+\b/gu)||[]).map(word=>word.toUpperCase());
+const signedWords=signedWordText.map(gpWord);
 
 const sections=[
   {name:"p56_an_end",words:parseRuneWords(p56.source_text)},
@@ -242,6 +247,91 @@ assert.deepEqual(sectionControls,[
   {name:"signed2016",wordCount:43,trainingStarts:[],fullStarts:[]},
 ]);
 
+// Held-out, noncontiguous source control: apply the already frozen five
+// p57 DH-pair labels to every word of the authenticated 2016 signed message.
+// This is not a search for new DH expressions.
+const typedPairLabels = new Map([
+  ["3,15", "e,b"],
+  ["2,5", "K,g"],
+  ["4,17", "q,b+K"],
+  ["8,22", "A,p-1"],
+  ["6,19", "a,B"],
+]);
+const inventoryForTape = tape => signedWords.map((word,index) => {
+  const pair = mappedPair(word, canonical, tape);
+  const label = pair ? typedPairLabels.get(pair.join(",")) : undefined;
+  return label ? { index, word: signedWordText[index], pair, label, GP0: gp0(word) } : null;
+}).filter(Boolean);
+const signed2016Hits = inventoryForTape(tokens);
+const expectedHits = [
+  [1,"THE",[3,15],"e,b"], [7,"THE",[3,15],"e,b"],
+  [12,"THE",[3,15],"e,b"], [17,"THE",[3,15],"e,b"],
+  [18,"MAP",[8,22],"A,p-1"], [22,"THE",[3,15],"e,b"],
+  [24,"AND",[8,22],"A,p-1"], [26,"NUMBERS",[6,19],"a,B"],
+  [28,"THE",[3,15],"e,b"], [30,"SEEK",[8,22],"A,p-1"],
+  [31,"AND",[8,22],"A,p-1"], [37,"LUCK",[4,17],"q,b+K"],
+];
+assert.deepEqual(signed2016Hits.map(x=>[x.index,x.word,x.pair,x.label]),expectedHits);
+assert.equal(signed2016Hits.length,12);
+assert.deepEqual([...new Set(signed2016Hits.map(x=>x.word))],["THE","MAP","AND","NUMBERS","SEEK","LUCK"]);
+
+// Cyclic table-order control on the entire 43-word inventory.
+const signedCyclic=[];
+for(let shift=0;shift<256;shift++){
+  const tape=Array.from({length:256},(_,address)=>tokens[(address+shift)%256]);
+  signedCyclic.push({shift,hits:inventoryForTape(tape).length});
+}
+const signedCyclicMax=Math.max(...signedCyclic.map(x=>x.hits));
+const signedCyclicMaxShifts=signedCyclic.filter(x=>x.hits===signedCyclicMax).map(x=>x.shift);
+const signedCyclicNext=signedCyclic.slice().sort((a,b)=>b.hits-a.hits)[1];
+assert.equal(signedCyclic[0].hits,12);
+assert.equal(signedCyclicMax,12);
+assert.deepEqual(signedCyclicMaxShifts,[0]);
+assert.equal(signedCyclicNext.hits,8);
+
+// Deduplicate repeated source spellings to show the result is not solely repeated THE.
+const uniqueSourceIndices=[];
+const seenSourceWords=new Set();
+for(let i=0;i<signedWordText.length;i++){
+  if(!seenSourceWords.has(signedWordText[i])){
+    seenSourceWords.add(signedWordText[i]);
+    uniqueSourceIndices.push(i);
+  }
+}
+const uniqueEntries=uniqueSourceIndices.map(index=>({index,word:signedWords[index],text:signedWordText[index]}));
+const uniqueInventoryForTape=tape=>uniqueEntries.map(x=>{
+  const pair=mappedPair(x.word,canonical,tape);
+  const label=pair?typedPairLabels.get(pair.join(",")):undefined;
+  return label?{...x,pair,label}:null;
+}).filter(Boolean);
+const uniqueCyclic=[];
+for(let shift=0;shift<256;shift++){
+  const tape=Array.from({length:256},(_,address)=>tokens[(address+shift)%256]);
+  uniqueCyclic.push({shift,hits:uniqueInventoryForTape(tape).length});
+}
+const uniqueCyclicMax=Math.max(...uniqueCyclic.map(x=>x.hits));
+const uniqueCyclicMaxShifts=uniqueCyclic.filter(x=>x.hits===uniqueCyclicMax).map(x=>x.shift);
+assert.equal(uniqueCyclic[0].hits,6);
+assert.equal(uniqueCyclicMax,6);
+assert.deepEqual(uniqueCyclicMaxShifts,[0]);
+
+// Broader address-order control. All odd multipliers are invertible mod256.
+let affineMax=0,affineMaxCount=0,affineAtLeastCanonical=0,affineCanonical=0;
+for(let multiplier=1;multiplier<256;multiplier+=2){
+  for(let add=0;add<256;add++){
+    const tape=Array.from({length:256},(_,address)=>tokens[(multiplier*address+add)%256]);
+    const hits=inventoryForTape(tape).length;
+    if(multiplier===1&&add===0) affineCanonical=hits;
+    if(hits>affineMax){affineMax=hits;affineMaxCount=1;}
+    else if(hits===affineMax) affineMaxCount++;
+    if(hits>=12) affineAtLeastCanonical++;
+  }
+}
+assert.equal(affineCanonical,12);
+assert.equal(affineMax,14);
+assert.equal(affineMaxCount,5);
+assert.equal(affineAtLeastCanonical,12);
+
 console.log(JSON.stringify({
   status:"PASS",
   classification:
@@ -269,6 +359,30 @@ console.log(JSON.stringify({
     },
   },
   sectionControls,
+  signed2016PairInventory: {
+    sourceWordCount: signedWordText.length,
+    hits: signed2016Hits,
+    cyclicRotations: {
+      charged: 256,
+      canonicalHits: signedCyclic[0].hits,
+      maximumHits: signedCyclicMax,
+      maximumShifts: signedCyclicMaxShifts,
+      nextBest: signedCyclicNext,
+    },
+    uniqueWordTypes: {
+      sourceCount: uniqueEntries.length,
+      canonicalHits: uniqueCyclic[0].hits,
+      maximumHits: uniqueCyclicMax,
+      maximumShifts: uniqueCyclicMaxShifts,
+    },
+    affineAddressPermutations: {
+      charged: 128*256,
+      canonicalHits: affineCanonical,
+      maximumHits: affineMax,
+      maximumCount: affineMaxCount,
+      permutationsWithAtLeast12Hits: affineAtLeastCanonical,
+    },
+  },
   chronology:
     "The typed field labels were recognized after inspecting p57 historically; the holdout is formal/reproducible, not a blind historical prediction.",
   decision:
