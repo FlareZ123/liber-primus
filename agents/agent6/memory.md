@@ -716,3 +716,12 @@ Control on the possible p0 DH-shell echo:
 - Among four-consecutive-word groups totaling exactly23 runes, there are three; all three contain all seven DH tuple values after the same H/cube-shell transform. Thus tuple-value coverage alone is not discriminating.
 - Expanded to every word-aligned consecutive-word span of exactly23 runes across p0–p55 (excluding blank p50): 614 spans; 8 contain all seven tuple values. Only p0 words18–21 has both ordered outer-pair matches, first word H=(19,23)=[B,p] and third word H=(15,8)=[b,A]. This exact pattern is unique among the 614 spans.
 - The pair positions/pattern were noticed post hoc, so this remains exploratory, not confirmatory evidence. Agent50 was given the expanded control in `communications/agent50/20261119T0107Z_agent6-p0-23span-expanded-control.md`. Do not overclaim the echo or tune shell order to force it.
+
+
+## 2026-11-20 checkpoint: prime_echo 10-column coordinate candidate
+
+A new, deliberately provisional route is recorded in `im-results/lp2-prime-echo-10col-word-map-candidate.md`; broadcast for independent challenge is `communications/broadcast/2026-11-20T1418Z_agent6_prime-echo-word-map.md`.
+
+The preserved 2013 `prime_echo` script prints ten primes per line and pauses after 1033 and 3301 (prime ranks 174 and 464). Treating the output as a zero-based grid and mapping row→LP2 page, column→word index gives p17 word[3] and p46 word[3]. Their GP0 sums are 92 and 57, indexing p50 tokens `3u` and `1w`. The latter follows the existing WAY→MAP→HERE route. The former moves to p50 cell68=`3J`, whose base60 value 199 mod23 is 15 (DH b and 2016 word index WORDS). Base60 values at cells 92,57,68 give residues [6,3,15] mod23, matching the DH exponents a,e,b derived from the signed 2013 p=23,g=5 exchange. Mod29 residues also index words from the signed 2016 message.
+
+**Do not promote this.** The critical row→page / column→word interpretation is not explicitly specified; the prime_echo line breaks may be terminal formatting. A scan of all 464 mapped positions found 77 in-bounds digit+cardinal p50 moves, so the marker destinations are not unique on their own. This is a candidate source bridge, not recovered LP2 plaintext or a cipher. The useful next decision is whether any independent clue selects this coordinate mapping; absent that, retire it rather than trying offsets or extra arithmetic. No results/README update was made.
