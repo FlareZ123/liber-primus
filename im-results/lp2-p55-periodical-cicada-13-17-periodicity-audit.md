@@ -60,8 +60,30 @@ Treat the article's 221-year coincidence as the first zero-based address in the 
 
 The value 151 also occurs at two opposite corners of the 5×5/1033 Stage10 square. **Additional receiver test:** the BASE29 digit pairs were also tried as direct page/word coordinates into Liber Primus itself, as suggested by the pronoun “Its”; zero-based page/word gives UX / THP / ESGNGFX, one-based gives THAEIA / HEO / JM, and reversed coordinate order gives WNGGXDG / IG / IAL. Raw values 52/51/151 as page=mod58, word=quotient also fail. No simple LP-word receiver is established. **Critical receiver caveat:** closed issue #304 found no source-authenticated grammar selecting the signed 2016 message's own 43 words as the map; its “Its words” most naturally refers to Liber Primus. #304 did not test this exact BASE29 digit-pair lookup, but the receiver choice remains unsupported. The p0 phrase match is unblinded in this invocation. Direct additive GP29 tests using the table-value residues [23,22,6] and the full BASE29 digit stream [1,23,1,22,5,6], with both signs, fail on p55's 43 strict interiors and all 76 p55 runes. This is a candidate navigation/word-map route, not a p55 key or decryption. Reproducer: sims/lp2_cicada_article_row27_wordmap_sft.cjs.
 
+## 2016 continuation holdout (20 November 2026)
+
+The original candidate uses p50 cells 221–223, selected as a three-cell sequence from the 221-year cicada coincidence and the 2013–2015 year progression. I treated the immediately following cell 224 as a prospective 2016 holdout, without changing the table address, radix conversion, or word-index convention.
+
+Cell 224 is token 18:
+- Base60: 68, then BASE29 digits [2,10].
+- Drop-f base59: 67, then BASE29 digits [2,9].
+
+The 43-word signed 2016 register has THE DEVOTED at zero-based positions 7 and 8, immediately after EPIPHANY SEEKS at positions 5 and 6. The four fixed convention combinations give:
+
+| Fixed convention | Cell 223 (preceding pair) | Cell 224 (holdout pair) |
+|---|---|---|
+| Base60, zero-based words | EPIPHANY SEEKS | PATH PRIMUS |
+| Base60, one-based words | EMPTY EPIPHANY | THE LIBER |
+| Base59, zero-based words | EPIPHANY EMPTY | PATH LIBER |
+| Base59, one-based words | EMPTY LIES | THE DEVOTED |
+
+Only base59 plus one-based indexing hits THE DEVOTED at cell 224, but that same convention does not produce EPIPHANY SEEKS at cell 223. The convention that produced EPIPHANY SEEKS (base60, zero-based) instead gives PATH PRIMUS. No single fixed radix/index-origin convention recovers both the preceding pair and the predicted continuation.
+
+This is a negative holdout for the sequential article-to-p50-to-BASE29-to-2016-word-map interpretation. The isolated base59/one-based match is one of four convention combinations and cannot rescue the route because it fails the immediately preceding cell.
+
 ## Interpretation
 
-The fixed 13/17/221 periodic-key hypotheses remain rejected. A separate candidate uses 221 as a table index, not a repeat period, and selects three p50 values through the cicada article. Mapping their BASE29 digits into the signed 2016 message's own words is a further unsupported receiver choice, with the strong #304 pronoun objection. The candidate does not decrypt p55 or supply a reversible operation. The natural direct additive keys derived from those values fail. No exact image match has been established.
+The 13/17-year cicada article remains a plausible thematic source for the p55 illustration and its numerical motif. The article's branching lineage-tree figure has not been visually matched to the p55 artwork; the available PDF text establishes the subject, not an exact image correspondence.
 
-Do not run more unconstrained period-13/17/221 key searches or arbitrary key searches. The useful next decision is an independent, preferably blind evaluation of the article→221→p50→BASE29→2016 word-map route and whether it predicts a withheld LP2 feature. Keep this note in im-results, not results.
+The 221 → p50 → BASE29 → signed-2016-word-register chain is not supported as a sequential decoder: its prospective cell-224 continuation fails under the convention that generated the earlier EPIPHANY SEEKS match, while the only alternative that hits THE DEVOTED fails the preceding cell. Do not continue this word-map route without new independent evidence fixing the radix, index origin, and receiver. No plaintext or cryptographic key was recovered.
+

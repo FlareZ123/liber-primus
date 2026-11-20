@@ -118,6 +118,44 @@ if (JSON.stringify(decodedVariants.zeroBasedAddress.values59) !== JSON.stringify
   throw new Error('Unexpected drop-f base-59 alternative');
 }
 
+// Prospective 2016 continuation holdout: extend the consecutive 221-223 run by one cell.
+const holdoutIndex = 224;
+const holdoutLocation = locateTableIndex(grid, holdoutIndex);
+const holdoutToken = holdoutLocation.token;
+const holdoutValue60 = decodeBase60(holdoutToken);
+const holdoutValue59 = decodeBase59(holdoutToken);
+if (holdoutToken !== '18' || holdoutValue60 !== 68 || holdoutValue59 !== 67) {
+  throw new Error('Unexpected cell-224 holdout token/radix values');
+}
+const expectedNextPair = words.slice(7, 9).map(word => word.toUpperCase()).join(' ');
+const holdoutSequences = {
+  base60_origin0: {
+    preceding: decodedVariants.zeroBasedAddress.wordPairs.origin0.at(-1).toUpperCase(),
+    holdout: wordPair(holdoutValue60, words, 0).toUpperCase()
+  },
+  base60_origin1: {
+    preceding: decodedVariants.zeroBasedAddress.wordPairs.origin1.at(-1).toUpperCase(),
+    holdout: wordPair(holdoutValue60, words, 1).toUpperCase()
+  },
+  base59_origin0: {
+    preceding: decodedVariants.zeroBasedAddress.wordPairs59.origin0.at(-1).toUpperCase(),
+    holdout: wordPair(holdoutValue59, words, 0).toUpperCase()
+  },
+  base59_origin1: {
+    preceding: decodedVariants.zeroBasedAddress.wordPairs59.origin1.at(-1).toUpperCase(),
+    holdout: wordPair(holdoutValue59, words, 1).toUpperCase()
+  }
+};
+const holdout2016Continuation = {
+  tableIndex: holdoutIndex,
+  location: holdoutLocation,
+  token: holdoutToken,
+  base60: { value: holdoutValue60, base29: base29(holdoutValue60) },
+  base59: { value: holdoutValue59, base29: base29(holdoutValue59) },
+  expectedNextPair,
+  sequences: holdoutSequences
+};
+
 // Verify that 151 is also present in the third Stage10 square (5x5/1033).
 const squareValues = (read('resources/cicada2014-openpuff-magic-squares.txt').match(/-?\d+/g) || []).map(Number);
 const squareSpecs = [
@@ -204,6 +242,7 @@ console.log(JSON.stringify({
   article221DirectLPWordCoordinates: { base29Digits: article221Digits, base29Text: article221Text, tests: article221CoordinateTests },
   rawTableValueLPWordCoordinates: rawValuePageWordTests,
   tableVariants: decodedVariants,
+  holdout2016Continuation,
   stage10SquareCrossLink: { value: 151, positionsIn5x5_1033: square151 },
   directKeyTests
 }, null, 2));
