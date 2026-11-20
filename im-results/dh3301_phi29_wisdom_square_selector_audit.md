@@ -149,14 +149,14 @@ Its inverse is:
 N^{-1}=\begin{bmatrix}5&24\\27&8\end{bmatrix}.
 \]
 
-The p21 fragment22 ciphertext is [19,7] = GP29 runes M,G, visibly a standalone hyphen-bounded two-rune token in the original page image. Decryption gives:
+The p21 fragment22 ciphertext is [19,7] = GP29 runes M,G, visibly a standalone hyphen-bounded two-rune token in the original page image. It also equals the state expression [B,g+K]=[19,7], and this raw pair occurs only once among the 465 two-rune fragments. Decryption gives:
 
 \[
 N^{-1}\begin{bmatrix}19\\7\end{bmatrix}
 =\begin{bmatrix}2\\18\end{bmatrix}.
 \]
 
-These are **Gematria Primus rune values**, not 2016 word indices: rune 2 is TH and rune 18 is E. The recovered plaintext is therefore **THE**. Forward encryption rechecks exactly: N·[TH,E]=[M,G].
+These are **Gematria Primus rune values**, not 2016 word indices: rune 2 is TH and rune 18 is E. The recovered plaintext is therefore **THE**. Forward encryption rechecks exactly: N·[TH,E]=[M,G]=[B,g+K].
 
 This is not a global two-rune cipher. Search all **465** two-rune physical-page fragments under N, N⁻¹, Nᵀ, and N⁻ᵀ: only N⁻¹ has a hit for the plaintext rune pair [2,18], and that hit is p21 fragment22. p21 itself has nine two-rune fragments; the other eight do not yield THE. The row-reversed state matrix also fails. The determinant-one property is compatible with p23's “THE ONE RISE” output, but that connection remains an interpretation, not proof of key-construction intent.
 

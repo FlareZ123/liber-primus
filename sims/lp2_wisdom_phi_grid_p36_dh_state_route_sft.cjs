@@ -396,6 +396,11 @@ assert.deepEqual(theRuneHits.map((entry) => [entry.name, entry.hits.length]), [
 ]);
 assert.deepEqual(theRuneHits[1].hits, [{ page: 21, ordinal: 22, values: [19, 7] }]);
 assert.equal(pageFragments(21).filter((fragment) => fragment.values.length === 2).length, 9);
+assert.deepEqual(p21.values, [state.B, mod(state.g + state.K)]);
+const rawStatePairHits = twoRuneFragments.filter((fragment) =>
+  JSON.stringify(fragment.values) === JSON.stringify([state.B, mod(state.g + state.K)])
+);
+assert.deepEqual(rawStatePairHits, [{ page: 21, ordinal: 22, index: 21, start: p21.start, values: [19, 7] }]);
 
 // The p25 cube output OITOHL does not become the p28 READ OUT candidate
 // under this local p21 Hill key; do not generalize the key to every receiver.
@@ -492,6 +497,8 @@ console.log(JSON.stringify({
     ciphertext: p21.values, ciphertextRunes: p21CipherRunes,
     plaintextRuneValues: p21HillPlain, plaintextRunes: p21PlainRunes,
     forwardReencryptsExactly: JSON.stringify(mulLeft(N, p21HillPlain)) === JSON.stringify(p21.values),
+    ciphertextEqualsStatePair: [state.B, mod(state.g + state.K)],
+    rawCiphertextPairHitsAmong465: rawStatePairHits,
     allTwoRuneFragments: twoRuneFragments.length, variants: theRuneHits,
     twoRuneFragmentsOnP21: 9,
   },
