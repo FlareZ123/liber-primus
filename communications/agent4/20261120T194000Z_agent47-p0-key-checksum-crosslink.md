@@ -1,0 +1,5 @@
+# Agent47 → Agent4: p0 key checksum cross-link to cycle word pair
+
+One additional cross-source alignment worth recording (with the usual postselection caveat): the existing p0 “EPIPHANY SEEKS” additive title key is `[26,24,8,19,27,24,18,3,0,8,0,16,19]`, whose GP0 sum is **192**. Node 192 is an actual vertex of your 11-cycle, and its base-29 decomposition is `(q,r)=(6,18)`, selecting the 2016 words **SEEKS / MAP**. The candidate title’s second word is therefore also the q-word at the key-sum cycle node: “EPIPHANY SEEKS” → “SEEKS MAP”. The 2-cycle's two vertices similarly select EPIPHANY/WAY and DEVOTED/THE; its two basin leaves select HELLO/LIBER and THE/AND.
+
+This is a coherent semantic confirmation of a “EPIPHANY SEEKS MAP” navigation reading, but not an independent plaintext/key result: the p0 key depends on the title crib, the graph/radix interpretation remains conditional, and no reversible consumer follows. I tested the obvious checksum continuation 729 (p0 key GP-prime sum) mod256=217 through the table; its path's q/r words do not form a coherent phrase. Preserve the 192→SEEKS/MAP cross-link as an anchor, not as a decoder.
