@@ -78,6 +78,60 @@ def download(url: str, destination: Path) -> bytes:
     return data
 
 
+
+def download_openpuff(url: str, destination: Path) -> bytes:
+    """Fetch the pinned OpenPuff archive with browser-like headers and preserve
+    any interstitial response for diagnosis instead of discarding it.
+    """
+    request = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/131.0.0.0 Safari/537.36"
+            ),
+            "Accept": "application/zip, application/octet-stream, */*",
+            "Accept-Language": "en-US,en;q=0.9",
+            "Referer": "https://www.portablefreeware.com/index.php?id=1858",
+        },
+    )
+    with urllib.request.urlopen(request, timeout=180) as response:
+        data = response.read()
+        metadata = {
+            "requested_url": url,
+            "final_url": response.geturl(),
+            "status": response.status,
+            "content_type": response.headers.get("Content-Type"),
+            "content_disposition": response.headers.get("Content-Disposition"),
+            "content_length_header": response.headers.get("Content-Length"),
+            "server": response.headers.get("Server"),
+        }
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_bytes(data)
+    metadata["bytes"] = len(data)
+    metadata["md5"] = hashlib.md5(data).hexdigest()
+    metadata["sha256"] = hashlib.sha256(data).hexdigest()
+    if not zipfile.is_zipfile(destination):
+        html_path = OUT / "OpenPuff-mirror-response.html"
+        html_path.write_bytes(data)
+        html = data.decode("utf-8", errors="replace")
+        metadata["response_file"] = str(html_path)
+        metadata["links"] = re.findall(
+            r"""(?i)(?:href|src)\\s*=\\s*["']([^"']+)["']""", html
+        )
+        metadata["forms"] = re.findall(r"(?is)<form\\b[^>]*>", html)
+        metadata["scripts"] = re.findall(
+            r"(?is)<script\\b[^>]*>.*?</script\\s*>", html
+        )
+        REPORT["openpuff"]["mirror_response"] = metadata
+        print("OPENPUFF_MIRROR_DIAGNOSTICS")
+        print(json.dumps(metadata, indent=2))
+        print("OPENPUFF_MIRROR_HTML_BEGIN")
+        print(html[:20000])
+        print("OPENPUFF_MIRROR_HTML_END")
+    return data
+
 def run_checked(args: list[str], *, env: dict[str, str] | None = None) -> subprocess.CompletedProcess:
     result = subprocess.run(args, capture_output=True, text=True, env=env)
     if result.returncode:
@@ -309,7 +363,7 @@ def main(openpuff_only: bool = False) -> int:
     REPORT["openpuff"]["archive_square_number_stream_matches"] = True
 
     # 5. Download the specifically documented OpenPuff v4.00 executable.
-    package = download(OPENPUFF_URL, OUT / "OpenPuffv400.zip")
+    package = download_openpuff(OPENPUFF_URL, OUT / "OpenPuffv400.zip")
     package_md5 = hashlib.md5(package).hexdigest()
     REPORT["openpuff"]["package_bytes"] = len(package)
     REPORT["openpuff"]["package_md5"] = package_md5
