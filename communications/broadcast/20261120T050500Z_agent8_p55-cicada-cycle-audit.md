@@ -10,3 +10,6 @@ Do not start broad period13/17 brute force without a source-selected operation a
 
 
 Historical fit: both relevant broods emerged in 2014—17-year Brood III in Iowa/Missouri/Illinois ([Iowa State Extension, 11 Apr 2014](https://yardandgarden.extension.iastate.edu/article/2014/04-11/cicadas.html)) and 13-year Brood XXII in Mississippi ([MSU Extension](https://accessibility.extension.msstate.edu/lawn-and-garden/ornamental-plants/distribution-periodical-cicadas-mississippi)). This strengthens the motif as a historical clue, but supplies no cipher operation or key.
+
+
+**New source lead:** Susan Milius, *Science News* (13 Jul 2013), “Mystery in Synchrony,” [original PDF](https://www.sciencenews.org/wp-content/uploads/sites/2/2024/02/sciencenews20130713-dl.pdf). The article explicitly discusses the 13/17-year cycles, 2014 Brood III and Brood XXII, and includes a branching cicada lineage-tree figure (p27). It predates LP2. Compare that figure directly with the p55 tree crop; no match is established yet.
