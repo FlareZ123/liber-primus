@@ -1,6 +1,6 @@
 # Source-bounded 27×27 bootstrap through COLD, with held-out continuation through IDEA
 
-**Agents 28 and 29, 18 November 2026. Classification:** strong intermediate plaintext candidate, still below established-result status. This report narrows the external 27×27 route's opening from an English-selected path to a finite, source-driven bootstrap over the original p0-p2 artifact. A held-out continuation test now resolves the former block-5 tie in favor of `I MAY`, then uniquely extends it through `CRY NOW THE IDEA`, conditional on admitting the published endpoint-mirror/totient continuation family.
+**Agents 28 and 29, 18 November 2026; source-selector audit by Agent7, 20 November 2026. Classification:** strong intermediate plaintext candidate, still below established-result status; the node/movement grammar is not source-authenticated. This report narrows the external 27×27 route's opening from an English-selected path to a finite, source-bounded bootstrap over the original p0-p2 artifact. A held-out continuation test now resolves the former block-5 tie in favor of `I MAY`, then uniquely extends it through `CRY NOW THE IDEA`, conditional on admitting the published endpoint-mirror/totient continuation family.
 
 The recovered candidate is:
 
@@ -18,7 +18,7 @@ The companion red-heading audit establishes independently that LP2 rubrication s
 729 = 27²
 ```
 
-The red count and authenticated totient instruction give the natural anchor:
+The red heading length and separate, authenticated totient precedent make a candidate anchor plausible, but do not select a cipher coordinate:
 
 ```
 n = 13
@@ -26,15 +26,58 @@ phi(13) = 12
 J = (13,12)
 ```
 
-No candidate plaintext is used to place this anchor.
+No candidate plaintext is used to place this coordinate; nevertheless, the source does not say to treat the heading count as cipher state or to place (n, φ(n)) as a row/column coordinate.
 
 The original p0, p1, and p2 images also form a conspicuous visual unit: all three repeat the same paired black cross marginalia on left and right, while p2 closes the unit with the cicada illustration and the terminal red 13-dot mark. Independent original-image work established that each cross pair is related by the exact page-centered **180-degree half-turn**, and that pp0–2 are the only LP2 pages carrying this high-correlation arrangement. Earlier direct reverse, sum/difference, and prime-totient consumers failed. A narrower consumer now matters here: on the conditional 27×27 square, that already-established half-turn maps the X-OE-X endpoint center directly to the block-3 key center.
 
-## Blocks 1–3: source-selected opening through the physical p0 end
+## Agent7 source-only selector audit (Issue #1961, 20 November 2026)
+
+### What a solver could reasonably see
+
+The original LP2 images 17.jpg–19.jpg visibly form a three-page unit: the paired black cross marginalia recur on all three, and p2 closes with the cicada illustration and terminal red 13-dot mark. The canonical transcription gives 262 + 266 + 201 = 729 runes, so 27² is an attractive square factorization. Reading the stream in ordinary page/line order and trying a 27×27 reshape is a plausible experiment, not an arbitrary one.
+
+The original layout does not, however, display a 27-column grid. The source line widths are 19–25 runes (p0: 12 lines; p1: 12; p2: 9), not 27. The two physical page boundaries occur after rune offsets 262 and 528, which fall at columns 20 and 16 of a 27-wide row (zero-based residues 19 and 15). Thus the 27×27 is a flattened reinterpretation, not the page's printed row structure; row-major is the default reading order, not an independently marked matrix convention.
+
+| Source page | Rune count | Physical text lines | Rune width per line |
+|---|---:|---:|---:|
+| p0 (17.jpg) | 262 | 12 | 19–24 |
+| p1 (18.jpg) | 266 | 12 | 21–24 |
+| p2 (19.jpg) | 201 | 9 | 19–25 |
+| **Total** | **729 = 27²** | **33** | **no 27-rune line** |
+
+The p0 red heading contains 13 runes and is followed by a 13-dot red mark at offset 13. The original-image adjudication establishes that this mark separates the red heading from the black body; it is not a cipher initial state, key, direction, or reset. The same red 13-dot punctuation occurs 30 times across 58 LP2 pages (19 internal, 10 terminal, one at page offset 0); p2's mark is terminal at offset 201, exactly after its final body rune. See [the original-image source adjudication](lp2-p0-red13-13dot-blackbody-original-source-adjudication.md). Therefore J=(13,12), using φ(13)=12, is a plausible conjectured anchor but not a source-selected coordinate.
+
+The totient primitive itself is legitimate elsewhere: p56's red heading is solved with a page-specific consecutive-prime Euler-totient key beginning at prime 2, and the earlier Wisdom material gives a general totient motif. Those examples make trying φ reasonable; they do not instruct a solver to replace only the center rune of every p0–p2 triple by φ(center). The p56 operation is explicit and local, not a transferable global key.
+
+**Comparison with genuinely source-selected precedents.** The contrast is concrete:
+
+| Precedent | What the source actually fixes | What cannot be transferred to p0–p2 |
+|---|---|---|
+| LP2 p56 prime/totient page | Its red heading is decrypted with the consecutive-prime Euler-totient key beginning at prime 2, including the literal-F bypass. | A page-local key does not select φ on every three-rune node in p0–p2. See [p56 source inverse](lp2-red-rubric-p56-totient-source-inverse.md). |
+| 2014 Stage04 matrix | The signed update says “Let the text guide you” and the recovered payload contains an explicit 5×5 numeric square with 1033 row/column/diagonal sums. | It is a visible matrix object, unlike a 27×27 reshape of prose; it supplies no triple-node or μ(φ(k)) rule. See [the preserved Stage04 extraction](../resources/external/derived/2014-stage04/README.md). |
+| Cicada 2012 book code | Cicada names the two source texts (Agrippa and Britannica) and preserves the exact line/character coordinate convention. | It does not select either book or a line/character operation for LP2. See [the original-source book-code audit](lp2-2012-bookcode-original-source-inverse.md). |
+
+These precedents make matrix, totient, and book-code experiments reasonable hypotheses. They also show what a real selector looks like: a named source, a visible matrix, or an explicit page-local key rule. The p0–p2 images do not provide an equivalent instruction for the proposed node/movement grammar.
+
+The cicada artwork supplies a real Möbius clue: its repeated visual states correlate with μ(local page) = +1, 0, −1 across the documented LP1/LP2 appearances. This supports μ as an intended puzzle object. It does not select μ(φ(k)) as a per-node key-rotation amount, nor does it specify how that value should rotate the 13-atom key. The p2-art-to-block-5 direction consumer remains a separate conditional question (#1962).
+
+The paired cross marginalia have a genuine 180-degree page-centered half-turn. That source-visible symmetry can support the specific block-3 half-turn mapping; it does not select a variable per-node rotation or the movement formula φ(original center)+φ(transformed center). No original text or artwork specifies summing those two totients rather than taking a difference, product, or another operation.
+
+### First unsupported selector
+
+The earliest missing selector is the conversion of the 13-rune heading length into a cipher state J=(13,φ(13)). The page itself selects only the heading/body boundary. If one grants J as a working hypothesis, the next missing operation is grouping every three consecutive runes into a node and applying φ only to its center. The visible punctuation does not mark those triples: among the 158 hyphen/period separators in p0–p2, 111 fall inside a proposed three-rune group rather than at a triple boundary. No source instruction says to ignore those token boundaries or to use equal-outer triples as nodes.
+
+The unique X-OE-X endpoint and the existing 1/105 all-grid outlier are valuable structural observations **conditional on the frozen model**. They do not select the model's grid, node grouping, center transform, key rotation, or movement law. No new all-grid census was run for this audit.
+
+### Decision
+
+Retain the 27×27 opening and its candidate plaintext as strong intermediate structure, together with the source-visible three-page grouping, half-turn, and Möbius-art motif. Do not describe the node/movement grammar as source-selected or the candidate as authenticated plaintext. Close Issue #1961 under its negative completion criterion: no original source selector fixes the coordinate anchor and the complete node/movement operation sequence. The first further test, if new evidence appears, must identify a first-party instruction for the triple/center-φ rule before using candidate text as a selector.
+
+## Blocks 1–3: source-bounded opening through the physical p0 end
 
 The original bootstrap used English dictionary depth to choose the opening branch, stop `WEATHER`, and choose the `TURNS` direction. Those language gates are no longer needed once two original source boundaries are incorporated: the **exact matrix center** and the **physical end of p0**.
 
-### Block 1: eight natural nodes -> one admissible start -> one global endpoint
+### Block 1: eight candidate nodes under the assumed anchor -> one admissible start -> one global endpoint
 
 The red-13/totient premise gives:
 
@@ -116,7 +159,7 @@ The block-3 start and the physical p0 final rune already share column 19. Their 
 
 Those five cells decrypt to `T-U-R-N-S`, **TURNS**, ending exactly on the final physical rune of p0.
 
-Thus **blocks 1–3 no longer use English to select their node, start, stop, length or direction**. The cross half-turn now independently source-selects the block-3 key center and its radius, removing one reconstructed transition choice. The remaining node/key grammar was still recognized after the public route was known, and the later blind p0→p1 transfer still fails, so this remains strong intermediate source compression rather than creator-authenticated plaintext.
+Thus **blocks 1–3 no longer use English to select their node, start, stop, length or direction within the frozen model**. The cross half-turn independently selects the block-3 key center and radius. That does not authenticate the upstream 27×27/three-cell/center-φ grammar: it was recognized after the public route was known, and the later blind p0→p1 transfer still fails. The output remains a strong intermediate structural candidate, not creator-authenticated plaintext.
 
 Reproducers: `sims/lp2_p0_opening_physical_boundary_sft.cjs` and the independent half-turn consumer `sims/lp2_p0_cross_halfturn_block3_selector_sft.cjs`.
 
@@ -253,7 +296,7 @@ AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE IDEA
 
 The first three blocks are now selected without a dictionary by the natural-node movement family, the globally unique X-OE-X -> matrix-center endpoint, and the physical p0 end. COLD is selected inside its frozen 36-branch family by the locked LP1 numerical residual. The entire `I MAY CRY NOW THE IDEA` phase is selected by the physical p2 boundary plus equal-outer mirror geometry without a language score.
 
-This is substantially stronger than choosing one key/path because it looks English. It is still intermediate evidence because several transition operations were learned from the external route and have not yet been derived from an explicit original instruction. In particular, the horizontal endpoint-node construction, Möbius-based key rotation, and block-to-block geometric rules need prospective validation on later untouched blocks.
+This is substantially stronger than choosing one key/path because it looks English. It is still intermediate evidence because several transition operations were learned from the external route and have not been derived from an explicit original instruction. In particular, the three-cell node grouping, center-only totient transform, μ(φ(k)) key rotation, and sum-of-totients movement distance are not source-selected; the cicada art supports μ as a puzzle motif but not this composite consumer.
 
 ## Next decisive test
 
