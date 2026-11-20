@@ -110,12 +110,14 @@ Applying the same H transform to their lengths and to their GP0 sums gives two m
 
 ### Familywise control and stopping rule
 
-Use every available source-indexed fragment i → page i, fragment i+1, for signed indices 0 through 42. There are 42 extant objects; p32 is the already noted missing coordinate. Charge **all 42×42 ordered pairs, including repeats**. Exactly one pair simultaneously yields both predeclared state channels:
+Use every available source-indexed fragment i → page i, fragment i+1, for signed indices 0 through 42. There are 42 extant objects; p32 is the already noted missing coordinate. Charge **all 42×42 ordered pairs, including repeats**. The length channel alone is not decisive: 55 ordered pairs satisfy H(lengths)=[K,A]. In particular, the prefix [15,19] selects p15/p19; their lengths give [K,A], but their GP0 sums give [4,1], not [B,p-1].
+
+Requiring both predeclared channels simultaneously leaves exactly one pair:
 
     (p12,p26) -> H(lengths) = [K,A]
               -> H(GP0 sums) = [B,p-1].
 
-The pair is therefore a familywise singleton under this fixed page/fragment map and fixed H operation. As a nonrecursive continuation control, the resulting [B,p-1]=[19,22] pair selects p19/p22; that pair gives H(lengths) [0,6] and H(GP0 sums) [17,9], not the state packet. Do not keep iterating the map to manufacture a path.
+Thus the GP0-sum condition reduces 55 length-only candidates to a familywise singleton under this fixed page/fragment map and fixed H operation. As a nonrecursive continuation control, the resulting [B,p-1]=[19,22] pair selects p19/p22; that pair gives H(lengths) [0,6] and H(GP0 sums) [17,9], not the state packet. Do not keep iterating the map to manufacture a path.
 
 The first two matrix outputs [b,B]=[15,19] also agree with the independently reported p22 Bob-state receiver in [the p21–p23 corridor report](lp2-openpgp-is-the-road-pages21-23-direction-gate.md); that is corroboration from a different segmentation convention, not part of this fragment SFT. The same p36 ciphertext's earlier H5 shell [11,21,4,23,22]=[a+g,p-K,q,p,p-1] is documented in [the GOOD36 H-shell report](lp2-good36-hshell-is-road-router.md).
 

@@ -283,11 +283,15 @@ for (let i = 0; i <= 42; i++) {
 }
 assert.equal(indexed.length, 42);
 assert.deepEqual(missing, [32]);
+const lengthOnlyMatches = [];
 const pairMatches = [];
 for (const left of indexed) {
   for (const right of indexed) {
     const lengths = H2D([left.fragment.values.length, right.fragment.values.length]);
     const sums = H2D([sumMod29(left.fragment), sumMod29(right.fragment)]);
+    if (JSON.stringify(lengths) === JSON.stringify([state.K, state.A])) {
+      lengthOnlyMatches.push({ i: left.i, j: right.i });
+    }
     if (
       JSON.stringify(lengths) === JSON.stringify([state.K, state.A]) &&
       JSON.stringify(sums) === JSON.stringify([state.B, state.p - 1])
@@ -296,7 +300,16 @@ for (const left of indexed) {
     }
   }
 }
+assert.equal(lengthOnlyMatches.length, 55);
 assert.deepEqual(pairMatches, [{ i: 12, j: 26 }]);
+
+// The prefix indices [15,19] select a length-only control pair.
+const p15 = pageFragments(15)[15];
+const p19Prefix = pageFragments(19)[19];
+const prefixLengths = H2D([p15.values.length, p19Prefix.values.length]);
+const prefixSums = H2D([sumMod29(p15), sumMod29(p19Prefix)]);
+assert.deepEqual(prefixLengths, [state.K, state.A]);
+assert.deepEqual(prefixSums, [4, 1]);
 
 // A one-step continuation through [B,p-1]=[19,22] does not reproduce
 // the state packet; do not recursively extend the map.
@@ -326,7 +339,14 @@ console.log(JSON.stringify({
     H2D_lengths: lengthPacket,
     H2D_sums: sumPacket,
     orderedPairMatchesAmong: indexed.length * indexed.length,
-    uniquePairMatches: pairMatches,
+    lengthOnlyPairCount: lengthOnlyMatches.length,
+    uniqueDualChannelPair: pairMatches,
+    prefixControl_p15p19: {
+      p15: { ordinal: p15.ordinal, values: p15.values, length: p15.values.length, sumMod29: sumMod29(p15) },
+      p19: { ordinal: p19Prefix.ordinal, values: p19Prefix.values, length: p19Prefix.values.length, sumMod29: sumMod29(p19Prefix) },
+      H2D_lengths: prefixLengths,
+      H2D_sums: prefixSums,
+    },
   },
   sourceIndexedFragmentCount: indexed.length,
   missingSourceIndexedPages: missing,

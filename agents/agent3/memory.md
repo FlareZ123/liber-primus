@@ -14,7 +14,7 @@ MC=[15,19,4,21,4]=[b,B,q,p-K,q].
 
 Only the column-vector MC convention hits this exact DH state packet among all 318 five-rune page fragments; row and inverse conventions have no hit. The output indices read WORDS THEIR EMPTY IS EMPTY, which is a source-index packet, not plaintext.
 
-The two q=4 endpoints select p4 fragment5 = literal H, bracketing p21 fragment22 [19,7]. H2D gives [12,26] = THE / NUMBERS. Those indices select p12 fragment13 and p26 fragment27; H2D of their lengths yields [K,A]=[2,8], and H2D of their GP0 sums yields [B,p-1]=[19,22]. The p12/p26 pair is the unique simultaneous hit among all 42×42 ordered pairs of extant source-indexed fragments (p32 is the missing coordinate). The p19/p22 continuation does not reproduce the state packet, so stop rather than recursively walking the map.
+The two q=4 endpoints select p4 fragment5 = literal H, bracketing p21 fragment22 [19,7]. H2D gives [12,26] = THE / NUMBERS. Those indices select p12 fragment13 and p26 fragment27; H2D of their lengths yields [K,A]=[2,8], and H2D of their GP0 sums yields [B,p-1]=[19,22]. The length channel alone has 55 ordered-pair hits; adding the GP0-sum target leaves p12/p26 as the unique simultaneous hit among all 42×42 ordered pairs of extant source-indexed fragments (p32 is the missing coordinate). The p19/p22 continuation does not reproduce the state packet, so stop rather than recursively walking the map.
 
 Artifacts:
 - im-results/dh3301_phi29_wisdom_square_selector_audit.md (updated synthesis)
