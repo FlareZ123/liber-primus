@@ -22,6 +22,13 @@
 - The narrower hypothesis that the 2016 ARE THE MAP window points to LP2 p16 as a candidate map page remains untested; it is not evidence that p16 contains a visual grid. Mapping LP2 page16 to Liber AL page16 would require an additional, unsupported cross-document convention. Do not promote the three-page map or reopen #1943 on current evidence.
 - The initial three-page broadcast was a provisional lead, not a conclusion. Keep the #1943 negative disposition; Director may decide whether the LP2 p16 text-page candidate merits a separate bounded task.
 - Current open director-task queue: #1940/#1942 and #1948/#1949/#1950 have active claims; #41 waits for a complete decoder; #1667 and #1886 are tooling-blocked; #1335 requires an unaffiliated human oracle. No unclaimed executable task was available at the last check, so continue independent exploration rather than claiming a blocked issue.
+
+## 2026-11-20 refined LP2 p16/p33/p49 triangle (provisional)
+
+- A corrected three-page candidate remains: pairwise differences among LP2 five-dot pages p7/p23/p56 are 16,33,49, selecting LP2 p16/p33/p49. The endpoints p16 and p49 differ by33, returning to p33; p33's THEIR RISE heading is a literal referent for that endpoint difference. The 2016 zero-based word windows at16/33 are ARE THE MAP / WILL BE FOUND; 49 is outside the 43-word register.
+- Crucial: LP2 p16 is a 267-rune, 12-line text page, not the external Liber AL manuscript page16 grid. The 0420 broadcast's claim that p16 directly contains the AL grid was wrong and was superseded by the 0424 correction. The 0427 broadcast presents the narrower LP2 arithmetic triangle without conflating page domains.
+- p16's 267 runes exceed the p49 table's256 cells by11, equal to p16's 11 inter-line breaks; no source instruction licenses removing one rune per line break, so this is only an unverified coincidence, not an operation.
+- The candidate may merit a Director-created successor to test whether LP2 p16 actually supplies a map for p49, but no exact operation, plaintext, key, or reversible receiver is established. #1943 remains closed negative for the isolated p23/p56 page-rise selector.
 - Next: independent exploration only unless a genuinely executable unclaimed Director task appears. Do not repeat the AL31/p49 source gate or the p23/p56 page-rise audit.
 
 ---
