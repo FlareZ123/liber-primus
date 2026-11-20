@@ -61,7 +61,7 @@ The value **55** is independently the canonical GP0 sum of **READ**:
 =55.
 \]
 
-The p50 table then gives p50[55] = 1K, whose base60 byte value is **80**. This is the start of the already identified p0 receiver **80–102**, a 23-rune interval with exact center F. The existing OUT address is GP0(OUT)=20, and p50[20]=1g gives102.
+The 256-token table then gives table[55] = 1K, whose base60 byte value is **80**. This is the start of the already identified p0 receiver **80–102**, a 23-rune interval with exact center F. The existing OUT address is GP0(OUT)=20, and table[20]=1g gives102. The receiver's own positional GP29 integer is 3254642621893011102773814959809308, with residue **157 modulo179**; this independently satisfies (157=ecdot55-A=55+102pmod{179}), using the DH exponent (e=3), public share (A=8), and the two table outputs. Scanning all 240 23-rune windows on p0 finds only offsets80 and156 with residue157; their center runes are F and T respectively. The p28 DH line6 is also 23 runes with center F, so the combined coordinate, residue, and center constraint selects offset80 uniquely.
 
 The relation can be summarized compactly:
 
@@ -85,7 +85,7 @@ with the table quotient's residue \(55=\operatorname{GP0}(\mathrm{READ})\).
 - The p28 DH line6 is the unique literal-DH line and supplies \(p=23\), while the independently reconstructed p28 word28 has five runes and the line number is six. Its first two runes [23,8] map under the already calibrated outer-pair operation \(H(x,y)=(x-y,x+y)\bmod29\) to [15,2]=[b,K]. Standard DH verifies the complete tuple. See [the source reconstruction](lp2-p28-dh-line6-source-reconstruction.md) and [the exponent source gate](lp2-p28-exponent-source-gate.md).
 - The p15 window is a **rune-offset** extraction, not a word-aligned excerpt: it starts inside the p15 word span [20,24) and ends inside [71,76). The page/offset mapping \(b\to15,\ p\to23\) is an interpretation, not an explicit instruction.
 - The p53 red span is source-marked by original ink and contains 12 complete printed words with lengths [5,4,4,11,2,3,2,6,5,5,2,2].
-- A complete scan of all **10,206** contiguous 51-rune windows on unknown pages0–55 finds exactly **two** windows with the target remainder 29,535 modulo 179²: the source-marked p53 red span [53,128] and the DH-coordinate-selected p15 window [15,23]. Seventy windows are divisible by179, so divisibility alone is not the discriminator; the shared residue is.
+- A complete scan of all **10,206** contiguous 51-rune windows on unknown pages0–55 finds exactly **two** windows with the target remainder 29,535 modulo 179²: the source-marked p53 red span [53,128] and the DH-coordinate-selected p15 window [15,23]. Seventy windows are divisible by179, so divisibility alone is not the discriminator; the shared residue is. This is a finite corpus census, not a calibrated probability or a pre-registered significance test.
 - The drop-f base59 interpretation does not reproduce the p50 factorization: its big-endian integer has remainder **20,664** modulo179² and is not divisible by179.
 - Across the eight natural dihedral orientations and both byte orders, the only cases reproducing \(v_{179}=2\) and quotient residue55 are printed row-major/big-endian and its exact reverse-equivalent 180°/little-endian representation. This supports the natural printed order; it does not prove that the creator intended the big-endian integer operation.
 - The next 179-adic digit of \(N_{60}/179^2\) is **96**, not GP0(OUT)=20. The calculation therefore returns a local **READ** fingerprint, not a decoded READ OUT stream.
@@ -100,7 +100,7 @@ It is **not** a decryption of either 51-rune operand. The crucial interpretive s
 3. treating the p50 base60 byte stream as one printed-order big-endian integer;
 4. using the quotient/residue relationship as a navigation fingerprint.
 
-The base59 and orientation controls favor the conventional base60/printed reading, but the separate creator-authentication objection to interpreting p50 byte values as LP rune offsets remains open. The existing p0 receiver is still ciphertext, and the p0 H→cube output's initial LONG is not a recovered page plaintext. No additional transform was fitted to rescue either p15 or p53; direct H-shell→cube tests on these 51-rune operands were nonlinguistic.
+The base59 and orientation controls favor the conventional base60/printed reading, but the separate creator-authentication objection to interpreting table byte values as LP rune offsets remains open. The p0 receiver is still ciphertext, and the p0 H→cube output's initial LONG is not a recovered page plaintext. The new residue check validates receiver selection, not its decryption. No additional transform was fitted to rescue either p15 or p53; direct H-shell→cube tests on these 51-rune operands were nonlinguistic.
 
 ## Decision and next research action
 
@@ -112,4 +112,4 @@ The next useful step is a blind, independently selected consumer of the frozen 1
 
 Run **node sims/lp2_p15_p53_dh23_179adic_read_sft.cjs**.
 
-The SFT reads the canonical GP29 corpus, original ink annotations, signed transcription, and 256-token p50 table; reconstructs the DH23 tuple; checks both 51-rune operands and their exact base29 integers; scans all 10,206 unknown-page windows; charges base59 and eight table orientations/two byte orders; and verifies the READ value and p0 receiver geometry. It does not score candidate plaintext.
+The SFT reads the canonical GP29 corpus, original ink annotations, signed transcription, and 256-token table; reconstructs the DH23 tuple; checks both 51-rune operands and their exact base29 integers; scans all 10,206 unknown-page windows; charges base59 and eight table orientations/two byte orders; and verifies the READ value, p0 receiver residue, and center-F uniqueness. The original version passed GitHub Actions manual SFT run 44699886093; the p0-residue extension is being run separately. It does not score candidate plaintext.

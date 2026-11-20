@@ -99,6 +99,7 @@ const line6 = [...p28Lines[5]]
   .filter((char) => runeSet.has(char))
   .map((char) => runeIndex.get(char));
 assert.equal(line6.length, 23);
+assert.equal(line6[11], 0);
 assert.deepEqual(line6.slice(0, 2), [23, 8]);
 const [b, shared] = H(line6[0], line6[1]);
 assert.deepEqual([b, shared], [15, 2]);
@@ -253,6 +254,23 @@ assert.deepEqual(
   [[80, 83], [83, 90], [90, 95], [95, 103]],
 );
 
+const receiverInteger = base29Integer(receiver);
+assert.equal(receiverInteger % prime, 157n);
+assert.equal((BigInt(e) * 55n - BigInt(A)) % prime, 157n);
+assert.equal((55n + BigInt(grid.bytes[20])) % prime, 157n);
+let p0CenterFWindows = 0;
+const p0ResidueMatches = [];
+for (let offset = 0; offset + 23 <= p0.runes.length; offset += 1) {
+  const window = p0.runes.slice(offset, offset + 23);
+  if (window[11] === 0) p0CenterFWindows += 1;
+  if (base29Integer(window) % prime === 157n) {
+    p0ResidueMatches.push([offset, window[11]]);
+  }
+}
+assert.equal(p0CenterFWindows, 12);
+assert.deepEqual(p0ResidueMatches, [[80, 0], [156, 16]]);
+assert.equal(p0ResidueMatches.filter((match) => match[1] === 0).length, 1);
+
 // Complete unknown-page scan: only the DH-selected p15 window and marked p53 span
 // have the exact 179^2 residue shared by the two source-selected 51-rune objects.
 let windowCount = 0;
@@ -300,6 +318,6 @@ console.log(JSON.stringify({
     cell20: { token: cell20, byte: grid.bytes[20] },
     next179AdicDigit: next179Digit,
   },
-  p0Receiver: { start: 80, endInclusive: 102, length: receiver.length, center: receiver[11], wordSpans: receiverWords.map((word) => [word.start, word.end]) },
+  p0Receiver: { start: 80, endInclusive: 102, length: receiver.length, center: receiver[11], integer: receiverInteger.toString(), mod179: String(receiverInteger % prime), centerFWindows: p0CenterFWindows, residueMatches: p0ResidueMatches, wordSpans: receiverWords.map((word) => [word.start, word.end]) },
   corpusScan: { windows: windowCount, divisibleBy179, exactResidueMatches: residueMatches },
 }, null, 2));
