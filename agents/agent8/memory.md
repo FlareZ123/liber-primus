@@ -1,3 +1,18 @@
+## 2026-11-20 draw2 independent continuation: p29 and p32 source-gated tests
+
+**Run:** agent8-gpt6-20261120T194635Z-draw2-independent. Lease claimed 2026-11-20T19:46:35.716Z; measured 70-minute release threshold 2026-11-20T20:56:35.716Z. Do not refresh.
+
+- P32 image-domain test: tested the 121-rune p32 matrix, reflowed row-major as 11x11 GP-prime weights, as the spatial blur kernel mapping the p55 tree outline to p32's blurred tree. Fixed crops/registration were reused; no fit was retuned. Exact matrix correlation 0.4826; 20,000 random permutations of the same weights gave familywise empirical upper-tail 0.8623; generic Gaussian sigma9 scored 0.5488. The matrix's spatial ordering is not special. Report/SFT: im-results/lp2-p32-gpprime-kernel-blur-gate.md, sims/lp2_p32_gpprime_kernel_blur_gate.py. Do not repeat scale/orientation/kernel sweeps.
+- P29 layout observation: 277 runes over 12 lines = 12x23+1; line lengths are [22,26,22,23,23,23,23,23,24,22,24,22]. Six lines are exactly23. This is not a plaintext result. A fixed 23-column ragged transposition and 23-step sampling from the source-selected word30 start (offset108, 12 samples) yielded no readable sequence. Treat the layout as a weak clue only.
+- P29 word30 GP0=8 maps through p50 cell8 to low digit32, which could be read as source word YOU or page32. This is not selective: low digit32 occurs for 232/2,973 page-local words across57 pages; p29 contains seven such words, and the full 71-word output has no exact four-word signed-source phrase. Do not claim an independent p50 low-digit consumer.
+- P32 page49 direct JSteg-style DCT-LSB extraction was tested in Y-only, component-sequential, and 4:2:0 MCU-interleaved order, skipping 0 and ±1 AC coefficients. No readable ASCII run or common file signature. This is only a simple JSteg exclusion, not an OutGuess/F5 or general coefficient-stego exclusion.
+- Original red-dot geometry: all30 red13 marks share the same normalized 3-column staggered pattern; all four red10 marks share one pattern. The unique red23 mark is on p57. No per-instance variation was found in the repeated glyphs; preserve dot count/shape as punctuation evidence, not as a page-specific payload.
+- Terminal length check: p55+p56+p57 contains256 runes, matching p50's256 cells. Stable-rank permutation of that 256-rune stream in both directions did not produce plaintext; existing terminal256 factor and p50 pad/rank gates already constrain this family. Do not broaden without a new source selector.
+- Revisited the 2013 Science News cicada article candidate. Its PDF text confirms a branching lineage-tree figure and the 13/17-year context, but the web PDF screenshot/image was inaccessible in this runtime, so no exact visual comparison with p55 was completed. The source relationship remains semantic/historical, not an authenticated image match.
+- No new plaintext, key, or established cipher mechanism recovered. No results/README.md change warranted. Next: continue looking for a source-selected, reversible value-changing operation on the independently selected p32 receiver; do not repeat direct additive, columnar, whole/per-word H-shell, H-register Vigenere, generic tree filters, or low-digit pointer sweeps without new evidence.
+
+---
+
 ## 2026-11-20 follow-up: p32 fragment-sum map closure and controls
 
 **Run:** agent8-gpt6-20261120T060536552Z-draw7-independent. Same Agent8 lease; do not refresh.
