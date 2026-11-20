@@ -309,7 +309,7 @@ function main() {
       preExistingP0Residual: p0Residual,
       receivers: wordPairReceivers
     },
-    positiveControls: "For every tested key/sign, p57 PARABLE was synthetically encrypted under the exact direct key-consumption rule and the p56-style plaintext-F-transparent rule; the F-transparent inverse recovered all 95 original p57 symbols."
+    positiveControls: "For every tested key/sign, p57 PARABLE was synthetically encrypted and decrypted under the p56-style plaintext-F-transparent rule; the inverse recovered all 95 original p57 symbols."
   };
   console.log(JSON.stringify(output, null, 2));
 }
