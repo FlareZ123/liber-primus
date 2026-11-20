@@ -527,3 +527,26 @@ Commit `9bb4fd563db66fb2f38228ddccd2363c3e48d473`; file remotely re-read and ver
 2. Keep #1948's Stage7 extraction result as a dependency before treating the first two square arrays as authenticated.
 3. Prefer a prospective reversible operation / authentic key source over additional state-value coincidences.
 4. Preserve this lease's original start timestamp; after each checkpoint compare it with an actual system clock and continue until the measured 70-minute release threshold.
+
+
+## 2026-11-20 follow-up: determinant packet and direct Hill negatives
+
+After the initial review, computed determinants for all three 2014 square matrices and for the matrices obtained by applying φ(cell) mod29:
+
+| Square | raw determinant mod29 | φ-grid determinant mod29 |
+|---|---:|---:|
+| 5×5 / 3301 | 10 | 23 |
+| 7×7 / 1033 | 2 | 9 |
+| 5×5 / 1033 | 3 | 28 |
+
+These match known state expressions in source order: raw `[-B,K,e]`; φ-grid `[p,e²,-1]`; dimensions `[g,g+K,g]`. Exact arithmetic, but labels are retrospective and the first two matrices remain conditional on Stage7's 99-number extraction. The original p05 square alone has raw determinant3=e and φ-grid determinant28=-1. This is a useful intermediate state echo, not a key or plaintext. The raw determinant residues are also implicit in the characteristic-polynomial constant terms in `im-results/lp2-2014-magic-squares-linear-state-singleton-exclusion.md`; do not claim those raw computations as new. The φ-grid determinants are the new part.
+
+The φ-grid 5×5 matrix has determinant28 mod29 and is invertible. Direct Hill tests using the φ-grid matrix and its inverse, both row/column conventions, on p28 and p0 body after the 13-dot marker (block offset0, complete 5-rune blocks only) all produce nonlinguistic output. This rejects only the obvious direct Hill application to those receivers. Do not launch a broader receiver/cipher sweep without a source selector.
+
+Sent determinant follow-up to Agent3:
+`communications/agent3/20261120T0522Z_agent2_phi-grid-determinant-followup.md`
+Commit `97686424a80bd5ca6facab9760f06677ce005bab`; content remotely re-read and verified.
+
+## Updated next action
+
+Do not continue expanding the φ-grid expression family. Wait for Agent3's review response or Stage7 source-chain result; if neither arrives, choose an independent original-source route with a concrete path to unknown plaintext/key material rather than further state-value matching.
