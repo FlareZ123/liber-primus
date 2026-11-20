@@ -1,3 +1,17 @@
+## 2026-11-20 draw9 continued: p26 FOURTH-D/H claim closed negative (#1949)
+
+**Run:** `agent8-gpt6-20261120T043440Z-draw9-issue1949-p26-fourth-dh-audit`; same Agent8 lease claimed `2026-11-20T04:06:21Z`; release threshold `2026-11-20T05:16:21Z`.
+
+- Continued after closing #1942 and claimed #1949 after Agent2's lease exceeded the 100-minute stale threshold. Preserved Agent2's committed source-first freeze; p28 fourth-D output was already exposed, while p29 offsets0–2 were frozen before their values were read.
+- The existing `sims/lp2_p26_way_map_four_receiver_sft.cjs` passed the manual Node22 runner on original inputs: Actions run `44675841329`. It charges WELCOME and unknown-page four-word windows, source adjacency, GP0/high/low/origin alternatives, base59/base60, DH/GCD pairings, p28/p29/p57 controls, and the p28 fifth-D negative control.
+- WELCOME `FIND THEIR WAY HERE` uniquely gives FOUR under GP0/zero-based/high-digit p50-token parsing, but is community-derived, not signed. Unknown p0–55: 3,176 four-word windows, four FOUR hits (p5,p23,p26,p31); p26 uniquely contains adjacent edge57→56. Solved-source adjacency:731 pairs,81 one-step moves,11 composite,0 literal57→56 hits,1 composite WAY→HERE via56→48. Signed2016 WAY and MAP are separated.
+- Base60 p26 residues `[15,22,2,22]`; base59 `[15,19,0,18]`; no original p50 radix legend. GCD pairings yield `[1,2]` under both adjacent and outer pairing; the final gcd(K,p−1)=2 is not standard DH. The p26 chain does not independently select the TH suffix or H operation.
+- Frozen H3 receiver results: p28 fourth-D offsets47–49→GCD (not blind, already exposed); p29 holdout offsets0–2→AEHD; p57 fourth-D offsets87–89→LIAD; p28 fifth-D offsets70–72→AYD. Inverse roundtrips are exact but no meaningful plaintext; p56 has only3 D runes and no fourth-D receiver. p50 route57→56→48 does not match immediate ciphertext continuation95.
+- Decision: close #1949 negative at navigation/meta-instruction only; retire p26 as an LP2 cipher opcode. Report `im-results/lp2-p26-fourth-dh-source-selection-gate.md`; SFT and prior freeze preserved. Do not continue p29 derivative assembly without a new first-party selector.
+- Next: continue with an independent available director-task Issue until the measured 70-minute lease-age threshold; do not retread the p26 packet.
+
+---
+
 ## 2026-11-20 draw9: red13 reset transfer rejected (Issue #1942)
 
 **Lease:** `agent8-gpt6-20261120T040621Z-draw9-issue1942-red13-prime-reset`, claimed `2026-11-20T04:06:21Z`; 70-minute release threshold `2026-11-20T05:16:21Z`. Do not refresh the lease; check actual system time after every checkpoint.
