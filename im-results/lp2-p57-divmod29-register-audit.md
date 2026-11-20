@@ -163,11 +163,11 @@ Controls on the fixed pair vocabulary:
 - After deduplicating repeated source spellings, authored shift 0 remains the unique cyclic maximum: 6 distinct word types.
 - Across all 32,768 invertible affine address permutations, the authored mapping has 12 hits; 12 permutations reach at least 12, and the maximum is 14 (five permutations). Thus the canonical map is strongly placed in the upper tail but is **not** the unique affine maximum.
 
-This is useful held-out cross-source support for the canonical p50 register: an independently authenticated source uses several of the same typed DH pairs on semantically relevant words. It is not a blind historical prediction—the field labels were recognized after p57 inspection—and it does not yet specify how a pair is consumed to decrypt an unknown page.
+This is a useful secondary cross-source check of the canonical p50 register: the authenticated 2016 message uses several of the same typed DH pairs on semantically relevant words. It is not a blind historical prediction—the field labels were recognized after p57 inspection. It is also not an independent source-level replication of the other 2016/p50 analyses: it uses the same signed message and p50 object as Agent28's distinct low-digit/index/GP-length bridge. The transform tested here is different (GP0 word sum as table address, then divmod29), but the shared input must be kept explicit. Agent20's p55 recursive-shedding route remains the stronger held-out reconstruction of the full DH state and has a separate p36 GOOD consumer. This inventory does not specify how a pair is consumed to decrypt an unknown page.
 
 Two direct page-key interpretations were also tested on the 12 pages selected by these hits: repeat [quotient,remainder] as a period-two additive GP29 key, and use it as the affine map C=qP+r (mod 29). Neither yields a readable page or a score approaching the clear p57 control. The register is supported as a word-to-state mapping; it is not thereby established as a simple repeating or affine page key.
 
-Reproducer: sims/lp2_p57_divmod29_register_audit_sft.cjs.
+Reproducer: sims/lp2_p57_divmod29_register_audit_sft.cjs. Node 22 SFT passed on commit 76fc8dff37232423a9977dc93eba930f34daea85: https://github.com/FlareZ123/liber-primus/actions/runs/44712036829.
 
 ## Interpretation
 
@@ -186,13 +186,7 @@ The remaining limitation is chronology. The semantic field labels were discovere
 
 ## Decision
 
-For downstream work that already has an independently selected state-bearing source object, prefer:
-
-```text
-GP0 -> p50 native base60 -> divmod29 [quotient,remainder].
-```
-
-Do not count a future unknown-page match to a flexible DH vocabulary as independent evidence unless the receiver and expected ordered pair are fixed before inspection. The held-out 2016 inventory adds cross-source support for the fixed typed-pair vocabulary, but does not select a DH field as a p50 address or authenticate a page-output type. Direct period-two additive and affine page-key interpretations fail; the separate quotient=Latin-length / remainder=page-displacement hypothesis is rejected in the p33/p40 report. The register is best treated as a word-to-DH-state mapping until an original clue specifies how its pair is consumed.
+Treat GP0(word) -> p50 native base60 -> divmod29 as a reproducible secondary word-to-DH-state mapping, not as the preferred unknown-page decoder. Its 2016 pair inventory is distinct from Agent28's low-digit/index/GP-length bridge but shares the same signed message and p50 table, so it is not an independent source corpus. Agent20's p55 recursive-shedding route is the stronger current state reconstruction; prioritize its source-selected consumer and the existing Agent28 bridge rather than extending this pair inventory into more cipher guesses. Direct period-two additive and affine page-key interpretations fail; the quotient=Latin-length / remainder=page-displacement hypothesis is rejected in the p33/p40 report. No unknown-page plaintext is recovered here.
 
 ## Reproduction
 
