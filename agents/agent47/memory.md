@@ -1,5 +1,43 @@
 # Agent47: current frontier, 20 November 2026
 
+## Active invocation — draw 7 independent exploration (20 November 2026)
+
+Run: `agent47-gpt6-20261120T185617Z-draw7-exploration-0566c0ea`. Immutable lease claim: `2026-11-20T18:56:17.037Z`; measured 70-minute release threshold: `2026-11-20T20:06:17.037Z`. Actual secure RNG draw was 7 (normal independent research). The current issue queue had no unclaimed executable task: #41 is explicitly waiting for a maintainer-provided p55 selector and forbids model search while waiting; #1948 is claimed by Agent7, #1964 by Agent1, #1965 by Agent11, #1886 is blocked, and #1335 is waiting for human oracle. Do not claim these.
+
+### p0 156-word 23-cycle → 2014 sexagesimal table cross-gate
+
+Composed the frozen p0 156-word map's 23-cycle GP-prime sums with the 256-cell base60 successor map. All 23 starts entered the 11-cycle basin; only six cycle-entry vertices occurred, producing repetitive pairs rather than plaintext. The competing 158-word five-cycle starts and the p0 red-heading prime sums also entered the same 11-cycle. The basin has 252/256 states, so the convergence is unsurprising and does not distinguish the p0 map variants. Direct q/r, q±r, GP0/GP-prime word-sum, and rune-length streams against the p0 23-rune receiver yielded no prose under either additive sign. Report: `im-results/lp2-p0-23cycle-p50-pointer-wordmap-crossgate.md`. This is a bounded negative; do not continue arbitrary transforms on this graph.
+
+### OpenPGP / DH23 2-cycle cross-link — corroboration only
+
+A new retrospective correspondence is preserved in `im-results/lp2-p50-openpgp-dh-2cycle-crosslink.md`:
+
+- The signed 2016 message's final body word is OPENPGP; its canonical GP indices are `[3,13,18,9,13,6,13]`, prime weights `[7,43,67,29,43,17,43]`, sum **249** exactly.
+- The provisional p50 base60 successor graph has `249→158→249`; the historical 2014 sexagesimal witness preserves both edges. PGP key-ID byte `09` also has `f(9)=249`, but is from the same instruction and not independent.
+- Modulo the existing DH23 modulus: `158≡20=g^5`, `249≡19=g^{15}=B`; `20^3≡19` and `19^{15}≡20` use the existing `e=3,b=15` values exactly.
+- Node192 is in the 11-cycle and `192 mod23=8=A`; the prior p0 title-key checksum192 selects that node. Cycle lengths2 and11 multiply to22=p−1; the 2-basin size4 matches the p28 field q=4. Base29 labels give 249=(8,17)=DEVOTED/THE, 158=(5,13)=EPIPHANY/WAY, 192=(6,18)=SEEKS/MAP.
+
+This is **not** a new decryption, blind DH reconstruction, or proof that table values are pointers. The graph interpretation and GP-prime selection were not preregistered; the existing Critic caveat on target-aware topology labels remains controlling. Simple 2-cycle residue streams, DH power streams, and DH affine/power transforms against the p0 23-rune crib fail. Sent Agent4 and Agent27 an initial note, then a caveat explicitly downgrading this to corroboration only:
+- `communications/agent4/20261120T193100Z_agent47-openpgp-prime-sum-selects-p50-2cycle.md`
+- `communications/agent27/20261120T193100Z_agent47-openpgp-prime-sum-selects-p50-2cycle.md`
+- `communications/agent4/20261120T194400Z_agent47-openpgp-dh-cycle-caveat.md`
+- `communications/agent27/20261120T194400Z_agent47-openpgp-dh-cycle-caveat.md`
+
+### Existing low-digit bridge and p0 warning packet
+
+The stronger source-selected signed-word low-digit bridge already exists at `im-results/lp2-signed2016-wordnumber-lowdigit-dh-state-bridge.md`, with its Critic caveat. Do not conflate it with the separate base60 pointer graph or retread its 288-form OPENPGP key construction. The p0 warning packet report `im-results/lp2-p0-openpgp-warning-packet.md` has target-conditioned segment keys for OPENPGP/PATHS/VERIFY/BEWARE; a common source-selected scheduler remains missing. The independent NUMBERS receiver is a holdout on which the OPENPGP key fails. I traced the signed-word low-digit path NUMBERS→MEANING→MAP→ROAD→HELLO and tested its seven-step low-digit stream against the p0 NUMBERS receiver; direct additive use fails. Simple DH power/affine tests on the p0 crib also fail. Do not extend these into unconstrained key searches. The candidate p0 core crib `THE DEVOTED SEEKS EPIPHANY` remains unverified.
+
+### Original image control on p49–51
+
+The uploaded ZIP's physical LP2 pages49–51 are images `66.jpg`, `67.jpg`, `68.jpg` (not archive entries `49.jpg`–`51.jpg`). The base60 numerical table spans these three pages; p50 is image67. The left/right tree-border crops, including nearby black dots, are pixel-identical across all three pages. They are a repeated template, not page-specific data or a per-page selector. A generic tree/forest metaphor remains possible but does not authenticate pointer-chasing. Note sent to Agent4: `communications/agent4/20261120T194800Z_agent47-p49-51-tree-border-template-control.md`.
+
+No new unknown plaintext, authentic key, or reversible general cipher was recovered; no results/README promotion warranted.
+
+### Next
+
+Continue independent exploration only if a first-party clue prospectively specifies an operation or authentic key consumer. Avoid more base60 pointer transforms, target-conditioned p0 warning keys, or generic DH stream/affine tests. At the next checkpoint, read the original lease, obtain the actual clock, and release only at/after 20:06:17.037Z.
+
+
 ## Active invocation — draw 9, issue-directed research (20 November 2026)
 
 Run: `agent47-gpt6-20261120T145637Z-draw9-issue1968-p50-source-representation`. Immutable lease claim: `2026-11-20T14:56:43.282Z`; measured 70-minute release threshold: `2026-11-20T16:06:43.282Z`. Do not refresh the lease. This incarnation selected normal issue-directed mode (actual RNG draw 9), claimed Agent47, then claimed Director task #1968.
