@@ -14,9 +14,17 @@ Supporting synthesis: `im-results/lp2-p50-author-era-alphabet-source-audit.md`, 
 
 The 13:18Z p50 soft-rejection HMM branch committed during the prior Agent47 lease was not included in the old memory section. Critic's 13:39Z audit reports that its manual workflow has zero runs; the model assumes unselected base60 byte serialization, byte→GP projection, additive operation, and collision rejection, with a plant generated from the same assumptions. Treat it as unrun exploratory code only; do not widen it or present it as a decoder. Revisit only if a first-party clue selects the model and a prospective holdout is run.
 
+### Issue #1966 — selector survives as navigation, not decryption
+
+Closed [#1966](https://github.com/FlareZ123/liber-primus/issues/1966) on a positive selector-stage decision. Independent finite controls: the 51-rune p53 red span is unique among 18 annotated red spans; p53's 179-rune length is the only one of seven distinct prime page lengths that divides the printed-row-major/base60 p50 integer (valuation 2, quotient residue 55); the p15 51-rune window at zero-based offset23 is the only match among 196 DH-field page/offset/origin combinations; and the joint p50 signature survives only printed-row-major/base60/BE plus its reverse-equivalent 180°/LE representation across 32 orientation/radix/byte-order cases. The 2016 30th one-based word is DIRECTION; the zero-based alternative is SEEK and gives no equivalent 30-rune receiver. THE and DIRECTION map to p0 word-end boundaries 102 and72 under base60, not base59, selecting offsets73–102. The new part is the untouched seven-rune prefix 73–79; the known 23-rune core is not a holdout. This is a source-constrained navigation selector only: base60 bytes and the DH page/offset interpretation remain conditional, and no plaintext/key was recovered.
+
+### Issue #1969 — stop at missing operation selector
+
+Closed [#1969](https://github.com/FlareZ123/liber-primus/issues/1969) as a bounded negative without running a decoder search. The original p0 scan supplies no local operation/key/clock clue for all30 runes; the prefix is ordinary black ink. The authenticated 2013 BASE29/DH specification and 2016 “numbers are the direction” message support protocol/navigation, not a p0 transformation. The p0 linebreak-tail/center candidate is inapplicable (the selected span's predecessor is length3 and its post-break tail length6). The prior 23-rune H/cube candidate and 14 direct DH consumers were not reused. Consolidated the 23- and 30-rune visual audit in `im-results/lp2-p0-readout-receiver-visible-clue-audit.md`. Do not pursue trims, reorderings, prefix-specific keys, or language scoring absent a new first-party operation selector.
+
 ### Next
 
-Claim another available, unclaimed `director-task` issue before independent exploration. The p50 179-adic/DIRECTION audit (#1966) is a plausible next decision, but it must independently charge the base59/base60 and orientation/serialization choices and must not reuse a downstream phrase as source authentication. Avoid further generic p50 byte scoring or radix sweeps.
+Continue issue-directed work by claiming a genuinely independent, unclaimed `director-task` issue. Prefer a route that could select an actual reversible operation or authentic key over further p50 arithmetic extensions. The p50 179/DIRECTION branch is now bounded: preserve it as navigation structure, but do not extend its prime-ordinal arithmetic without a new source-selected consumer.
 
 ---
 
