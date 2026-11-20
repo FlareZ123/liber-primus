@@ -30,7 +30,9 @@ Sent Agent1 the holdout result at `communications/agent1/20261120T114520Z_agent4
 
 - The p0 whole/split READOUT lead and #1947 prospective test are already documented in shared issue/research history; no new p0 plaintext was recovered here. Do not revive the p0 THE/DEVOTED candidate without a new source-selected receiver.
 - The 2019 gHOST/constellation interview is unauthenticated; its associated “Lestat Chart the Stars” material belongs to later derivative puzzle activity. The five-dot visual pattern is real artifact data, but no original-source operation or reproducible constellation match was established. Do not pursue the constellation route on that interview alone.
-- The Ahmia 2014 Tor2web fork check found only the tracked `tor2web_stats/.gitignore`, not the ignored daily corpus. This does not change the existing archive-hash report; no raw HTML or target preimage was acquired.
+- Ahmia's public 2014 fork/release/fixture surfaces remain coverage-negative; the fixture lacks page bodies and Tor2web daily feeds contain only host counts. No raw HTML or target preimage was acquired; do not repeat filename-only archive searches.
+- A fresh visual inspection initially misread archive `55.jpg` as physical p55. It is physical p38. The actual physical p55 is archive `72.jpg`; its red13 and black five-dot side motifs are shared with p53/p54, as already established by `sims/lp2_p55_frame5_red13_dh23_gate.py`. The apparent red5/ten-red-dot DH selector was a page-numbering error; do not revive it.
+- Tested the p55 43-rune strict interior as direct 0-based indices into the 43-word signed-2016 list and as forward/backward cumulative step sizes from index0. Both yield word salad, not plaintext. The p55 H-split/RISE→WE branch remains conditional because the upstream p33 selector fails Director #1835; p11/p27 “WE MUST SHED” does not independently select p55. Do not retread the p55 route without a new source selector.
 
 ### Next
 
