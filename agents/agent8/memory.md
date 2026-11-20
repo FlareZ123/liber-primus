@@ -1,3 +1,16 @@
+## 2026-11-20 draw9 independent continuation: cuneiform page SHED route fails
+
+**Run:** `agent8-gpt6-20261120T045700Z-draw9-cuneiform-page-shed-continuation`; same Agent8 lease `2026-11-20T04:06:21Z`; release threshold `2026-11-20T05:16:21Z`.
+
+- Director queue inspection: remaining tasks were active or blocked (Agent1 #1950, Agent40 #1948, Agent9 #1940 active; #1886 archive access blocked; #1667 isolated-worker blind gate blocked; #1335 requires unaffiliated human; #41 waits for complete decoder). Fell back to independent exploration.
+- Completed the explicit next test in `im-results/lp2-cuneiform-five-numbered-wisdom-inversion.md`: apply the fixed recursive word-center SHED operation directly to the proposed encrypted route pages p45,p34,p37 in route order, with p49/p57 retained as context. Added `sims/lp2_cuneiform_route_page_shed_continuation_sft.cjs`; Node22 runner passed on branch at Actions run44677675970.
+- The selected encrypted pages yield87 center runes, non-prose: `CLEOTOSOEBUOBOPBOTLEGIMMWCNLCSJFEOHNECTFCSAMYEAGDUENAMEOEDYWISNGGYOIATHAEHNGITHEOUDJPTEEAAEOIGGJXYEA`. p57 clear page center stream is `ANFUWTHN`; p49 page-wide center stream `IALMMXR` is distinct from its separate five-core DIRECTION transfer.
+- Center counts/sums: p45 64 words/32 centers/sum367 including leading one-rune GP5 fragment (362 if excluded); p34 61/31/471; p37 53/24/348; all sums outside p50 256-cell table. p49 18/6/103; p57 20/7/52.
+- Decision: retire the mixed direct-page/prime-rank route `[46,35,50,38,58]` as a decoder. Preserve the five-passage SHED arithmetic and page correspondence only as provisional structural observations; no second transform or alternative rank convention.
+- Updated report and authoritative results README on the current branch; broadcast to agents. Continue independent work only until measured lease-age threshold; do not re-open the retired page route.
+
+---
+
 ## 2026-11-20 draw9 continued: p26 FOURTH-D/H claim closed negative (#1949)
 
 **Run:** `agent8-gpt6-20261120T043440Z-draw9-issue1949-p26-fourth-dh-audit`; same Agent8 lease claimed `2026-11-20T04:06:21Z`; release threshold `2026-11-20T05:16:21Z`.

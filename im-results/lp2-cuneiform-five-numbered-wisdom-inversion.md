@@ -1,6 +1,6 @@
 # Five numbered cuneiform passages: source-square tests and SHED navigation
 
-**Status (updated 19 November 2026):** The exact printed 553-rune, five-numbered passage enclosure remains independently image-readback verified 553/553. Direct Wisdom-row totient masks, five-passage interleave followed by the p56 cipher, five-way Wisdom 5×5 mixing, and literal ordinal/GF(29) share tests remain negative. A new fixed p57-SHED transfer of the five red-numbered units yields a provisional one-based page route **[46, 35, 50, 38, 58]** after the existing p50/base59 consumer and a prime-rank normalization. This is a source-selected navigation hypothesis, not a recovered cipher or plaintext: page-number interpretation is not authenticated, passage 5's sum 271 is outside the 256-cell p50 table, and the newly selected p34/p37/p45 pages remain undeciphered. Full details below.
+**Status (updated 20 November 2026):** The exact printed 553-rune, five-numbered passage enclosure remains independently image-readback verified 553/553. Direct Wisdom-row totient masks, five-passage interleave followed by the p56 cipher, five-way Wisdom 5×5 mixing, and literal ordinal/GF(29) share tests remain negative. The fixed p57-SHED transfer still yields the provisional number sequence **[46, 35, 229, 38]** (fifth raw sum 271), and the mixed direct-page/prime-rank interpretation still proposes **[p45, p34, p49, p37, p57]**. The decisive direct continuation has now been tested with the same word-center SHED operation on p45, p34, and p37 in the proposed order: 87 center runes produce non-prose strings, and the page sums remain outside the 256-cell p50 table. Retire the page-number/prime-rank interpretation as a decoder; preserve the five-passage arithmetic and page correspondence only as provisional structural observations. Full details below.
 
 ## Human-visible selection and scope
 
@@ -185,7 +185,33 @@ The same three small outputs also have a word reading in the repository's GP29 t
 
 The resulting one-based page ordinals **[46, 35, 50, 38, 58]** map to physical LP2 pages **[p45, p34, p49, p37, p57]**, archive scans **[62, 51, 66, 54, 74]**. This produces a source-visible alternation: the selected p45/p49 pages lie in the later repeated tree-border section, p34/p37 carry the repeated cuneiform header, and p57 is the terminal central-tree page. On the original JPEGs, p45 and p49 have pixel-identical left and right tree-border crops; p34 and p37 have a pixel-identical cuneiform-header crop. Exact crop boxes and hashes are reproduced by [the visual-target SFT](../sims/lp2_cuneiform_fivepassage_visual_targets_sft.py). The artwork is reused across sections, so these crop matches confirm the visual families but are not independent proof of the numeric mapping.
 
-This route is not yet a decoder. The selected p49 page is already the known SHED receiver that yields DIRECTION, and p57 is the solved instruction page. Applying page-level SHED to the other selected encrypted targets p34, p37, and p45 gives center sums 471, 348, and 362, all outside the p50 table; the same consumer therefore supplies no further plaintext from them. The decisive next test is a fixed, adversarial reading of p45, p34, and p37 in the proposed order, without adding another modulo, offset, reversal, or prime/page convention. If those pages do not supply a coherent source-selected continuation, retire the page-number interpretation.
+## Fixed page-route continuation test (20 November 2026)
+
+The specified adversarial continuation is now complete. I applied the same fixed word-center SHED operation to every complete printed word on the proposed encrypted pages p45, p34, and p37 in route order, preserving page-local word order and adding no modulo, offset, reversal, key, or second transform. p49 and p57 were retained as interleaved route context/control pages.
+
+| Page | Printed words | Odd-length centers | Center-index sum | Center stream |
+|---|---:|---:|---:|---|
+| p45 | 64 | 32 | 367* | `CLEOTOSOEBUOBOPBOTLEGIMMWCNLCSJFEOH` |
+| p34 | 61 | 31 | 471 | `NECTFCSAMYEAGDUENAMEOEDYWISNGGYOIATH` |
+| p49 | 18 | 6 | 103 | `IALMMXR` |
+| p37 | 53 | 24 | 348 | `AEHNGITHEOUDJPTEEAAEOIGGJXYEA` |
+| p57 | 20 | 7 | 52 | `ANFUWTHN` |
+
+The three encrypted targets p45+p34+p37 produce **87 GP29 center runes**:
+
+`CLEOTOSOEBUOBOPBOTLEGIMMWCNLCSJFEOHNECTFCSAMYEAGDUENAMEOEDYWISNGGYOIATHAEHNGITHEOUDJPTEEAAEOIGGJXYEA`
+
+The full proposed page order p45,p34,p49,p37,p57 produces:
+
+`CLEOTOSOEBUOBOPBOTLEGIMMWCNLCSJFEOHNECTFCSAMYEAGDUENAMEOEDYWISNGGYOIATHIALMMXRAEHNGITHEOUDJPTEEAAEOIGGJXYEAANFUWTHN`
+
+Neither sequence is coherent plaintext. No word segmentation, dictionary optimization, or additional cipher layer was applied. The p57 clear page's own center stream is `ANFUWTHN`, not a readable continuation. The page-wide p49 center stream `IALMMXR` is distinct from the previously selected five-core p49 transfer that yields DIRECTION; it does not extend that local result.
+
+\* The mechanical page parser includes a leading one-rune GP5 fragment at p45 offset0, giving 367. Excluding that single fragment gives 362, reproducing the earlier page-level sum. The p34 and p37 sums reproduce 471 and 348. Either p45 accounting leaves every sum outside the 256-cell p50 table.
+
+The exact source-only SFT validates all 58 transcription pages against the canonical GP29 corpus, asserts the word-center counts, strings, and sums above, and reproduces the proposed route output. It passed the manual Node22 runner on the frozen branch: [Actions run 44677675970](https://github.com/FlareZ123/liber-primus/actions/runs/44677675970).
+
+**Result:** the proposed page-number/prime-rank route does not continue under the same SHED operation. Retire it as a decoder. Retain the five-passage arithmetic and page correspondence only as provisional structural observations; do not rescue them with a second transform or a new rank convention.
 
 The numeric derivation is reproduced by [the read-only CommonJS SFT](../sims/lp2_cuneiform_fivepassage_shed_navigation_sft.cjs). The prime-rank context is distinct from the previously rejected floor(rank/58) proposal: here 229 and 271 are themselves prime values whose ordinary one-based ranks are 50 and 58. This remains a candidate navigation layer, not an established decryption.
 
@@ -242,6 +268,6 @@ Reproduction, both natural packet orders, both table radices, and direct-consume
 
 ## Research decision
 
-The original glyphs supply **five numbered passages and a precise 553-rune test interval**, independently image-readback verified 553/553. The direct source-square, totient, interleave, and five-way matrix inverses remain negative. The new source-selected SHED transfer supplies a reproducible **candidate five-page route [46,35,50,38,58]**, but it does not recover unknown plaintext, a key, or an authenticated cipher. The five-number cross-round packet now carries a retrospective DH-state fingerprint through selected word lengths and the 2014 GP-prime-sum operation, but the ordering and the operation that would consume it remain unresolved; the 64-variant period-five affine consumer is negative. Keep the page-number/prime-rank interpretation provisional until p45, p34, and p37 provide a coherent continuation under an independently source-selected operation. Do not add modulo, offsets, reversals, or alternative rank conventions to rescue it. The p33 dual-wordmap audit continues to block this map as an instruction engine. The earlier seven-page cuneiform issue's conclusion remains: the repeated header alone does not select an original-cipher inverse.
+The original glyphs supply **five numbered passages and a precise 553-rune test interval**, independently image-readback verified 553/553. The direct source-square, totient, interleave, and five-way matrix inverses remain negative. The fixed p57-SHED transfer still supplies the reproducible number sequence `[46,35,229,38]` (fifth raw sum271) and a mixed candidate page correspondence `[p45,p34,p49,p37,p57]`, but the page-number/prime-rank interpretation is not authenticated. The prescribed direct continuation on p45,p34,p37 yields 87 non-prose center runes; p57's clear-page center stream is also non-prose, and the page sums remain outside the p50 table. **Retire the page-number/prime-rank interpretation as a decoder; preserve the five-passage arithmetic and page correspondence only as provisional structural observations.** Do not add modulo, offsets, reversals, or alternative rank conventions to rescue it. The five-number cross-round packet carries a retrospective DH-state fingerprint through selected word lengths and the 2014 GP-prime-sum operation, but the ordering and operation that would consume it remain unresolved; the 64-variant period-five affine consumer is negative. The p33 dual-wordmap audit continues to block this map as an instruction engine. The earlier seven-page cuneiform issue's conclusion remains: the repeated header alone does not select an original-cipher inverse.
 
 **Inputs:** `resources/liber-primus/lp2-corpus.json`, `resources/lp2-transcription.txt`, `resources/liber-primus/lp2-ink-annotations.json`, `resources/cicada2014-openpuff-magic-squares.txt`, and the original JPEGs named above. The source-square arithmetic and roundtrips remain in the original test file; the new SHED/page-route arithmetic is in ../sims/lp2_cuneiform_fivepassage_shed_navigation_sft.cjs, and its original-image crop checks are in ../sims/lp2_cuneiform_fivepassage_visual_targets_sft.py.
