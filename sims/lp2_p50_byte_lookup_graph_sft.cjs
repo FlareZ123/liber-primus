@@ -211,6 +211,69 @@ assert.deepEqual(
   [[2, 0, 2], [6, 0, 6]]
 );
 
+// Independently selected unknown receiver p32: 121 runes = 11*11.
+// The p32 route ends at table state32; one more pointer enters the 11-cycle at115.
+// The 2014 three-pointer XOR key has an 18-step transient then period11.
+const p32Receiver = gp.pages.find((page) => page.page === 32).indices;
+assert.equal(p32Receiver.length, 121);
+const p32Prefix = gp.pages.filter((page) => page.page < 32).flatMap((page) => page.indices);
+const p32GlobalOffset = p32Prefix.length;
+const p32PrefixF = p32Prefix.filter((value) => value === 0).length;
+const p32PrefixNonF = p32GlobalOffset - p32PrefixF;
+assert.deepEqual([p32GlobalOffset, p32PrefixF, p32PrefixNonF], [7839, 283, 7556]);
+const keyAt = (index) => index < stage10ThreeXorKey.length
+  ? stage10ThreeXorKey[index]
+  : stage10ThreeXorKey[18 + ((index - 18) % 11)];
+const p32GlobalKeyPhase = 18 + ((p32GlobalOffset - 18) % 11);
+const p32GlobalFKeyPhase = 18 + ((p32PrefixNonF - 18) % 11);
+assert.equal(p32GlobalKeyPhase, 18);
+assert.equal(p32GlobalFKeyPhase, 21);
+const p32AdditiveTests = [];
+for (const [mode, start] of [['page-reset', 0], ['continuous-LP2', p32GlobalOffset]]) {
+  for (const sign of [-1, 1]) {
+    const decoded = p32Receiver.map((value, i) => (value + 29 + sign * keyAt(start + i)) % 29);
+    p32AdditiveTests.push({ mode, sign, ioc: ioc(decoded), translit: gpText(decoded) });
+  }
+}
+function applyFTransparent(input, start, sign) {
+  let clock = start;
+  const decoded = [];
+  for (const value of input) {
+    if (value === 0) { decoded.push(0); continue; }
+    decoded.push((value + 29 + sign * keyAt(clock)) % 29);
+    clock += 1;
+  }
+  return { decoded, clockEnd: clock };
+}
+const p32FTransparentTests = [];
+for (const [mode, start] of [['page-reset', 0], ['continuous-F-transparent', p32PrefixNonF]]) {
+  for (const sign of [-1, 1]) {
+    const result = applyFTransparent(p32Receiver, start, sign);
+    p32FTransparentTests.push({ mode, sign, ioc: ioc(result.decoded), clockEnd: result.clockEnd, translit: gpText(result.decoded) });
+  }
+}
+assert.deepEqual(p32AdditiveTests.map((row) => Number(row.ioc.toFixed(12))), [0.035674931129,0.035674931129,0.035399449035,0.035950413223]);
+assert.deepEqual(p32FTransparentTests.map((row) => Number(row.ioc.toFixed(12))), [0.043112947658,0.031955922865,0.036501377410,0.036914600551]);
+const p32CycleFromReceiver = [115,247,192,0,203,68,199,47,76,114,197];
+const p32ColumnOrder = p32CycleFromReceiver.map((value, index) => ({ value, index }))
+  .sort((a, b) => a.value - b.value).map((row) => row.index);
+assert.deepEqual(p32ColumnOrder, [3,7,5,8,9,0,2,10,6,4,1]);
+function p32ColumnarDecrypt(input) {
+  const columns = Array.from({ length: 11 }, () => []);
+  let cursor = 0;
+  for (const column of p32ColumnOrder) { columns[column] = input.slice(cursor, cursor + 11); cursor += 11; }
+  return Array.from({ length: 11 }, (_, row) => Array.from({ length: 11 }, (_, column) => columns[column][row])).flat();
+}
+function p32ColumnarEncrypt(input) {
+  const output = [];
+  for (const column of p32ColumnOrder) for (let row = 0; row < 11; row += 1) output.push(input[row * 11 + column]);
+  return output;
+}
+const p32ColumnarTests = [
+  { direction: 'inverse', ioc: ioc(p32ColumnarDecrypt(p32Receiver)), translit: gpText(p32ColumnarDecrypt(p32Receiver)) },
+  { direction: 'forward', ioc: ioc(p32ColumnarEncrypt(p32Receiver)), translit: gpText(p32ColumnarEncrypt(p32Receiver)) },
+];
+assert.ok(p32ColumnarTests.every((row) => Math.abs(row.ioc - 0.03415977961432507) < 1e-14));
 // Original solved p56 literal-F passthrough permits an optional key-clock
 // bypass only at each ciphertext F. Exhaust 2^3 p55 branch assignments.
 const originalFPositions = p55.map((v, i) => v === 0 ? i : -1).filter((i) => i >= 0);
@@ -306,11 +369,17 @@ console.log(JSON.stringify({
   stage10ThreeWayXor: { originalSeeds: stage10Names, keyFirst20: stage10ThreeXorKey.slice(0,20),
     p55CandidateControls: stage10ThreeXorP55, known180Checks: stage10ThreeXorHoldout,
     transparentFImpossibility: originalFContradictions },
+  p32ReceiverTransfer: {
+    p32Runes:p32Receiver.length, globalOffset:p32GlobalOffset, priorF:p32PrefixF, priorNonF:p32PrefixNonF,
+    globalKeyPhase:p32GlobalKeyPhase, globalFTransparentKeyPhase:p32GlobalFKeyPhase, keyPeriod:11,
+    additive:p32AdditiveTests, fTransparent:p32FTransparentTests,
+    cycleFromReceiver:p32CycleFromReceiver, columnOrder:p32ColumnOrder, columnar:p32ColumnarTests
+  },
   sourceSeeds: {
     3301: orbit(B, 3301 % 256),
     1033: orbit(B, 1033 % 256),
   },
   knownTerminalTests: trials,
   exploratoryNull: tally,
-  conclusion: 'No 180-position authenticated whole-terminal additive decode or p55 plaintext',
+  conclusion: 'No 180-position authenticated whole-terminal additive decode or p55/p32 plaintext under the frozen source-key consumers',
 }, null, 2));

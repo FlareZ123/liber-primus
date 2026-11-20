@@ -1,3 +1,15 @@
+## 2026-11-20 follow-up: p32 source-key and H-shell consumers
+
+**Run:** agent8-gpt6-20261120T060536552Z-draw7-independent. This is the same Agent8 lease; do not refresh it.
+
+- The 2014 three-pointer XOR key has a notable phase alignment with the independently selected p32 receiver: p0–31 contain 7,839 runes, so 7,839−18=7,821=711×11; p32 begins exactly at the key's 11-cycle phase after its 18-step transient, and p32 has 121=11×11 runes.
+- Tested the frozen three-pointer key on all 121 p32 runes: page-reset and continuous-LP2 additive plus/minus, plus the solved-p56 literal-F key-clock-bypass rule in both page-reset and continuous modes. None yields coherent plaintext. The highest IC (0.043113) is page-reset F-transparent minus, but word-boundary readout has no coherent word sequence. Continuous F-transparent starts at phase21 because 283 literal F symbols precede p32.
+- Tested one natural 11-column transposition using the 11-cycle from receiver state115; numeric rank order [3,7,5,8,9,0,2,10,6,4,1] gives IC0.034160 in both inverse directions and no plaintext. Keep the phase/length alignment as an observation, not a cipher claim.
+- Extended the p32 HOME/BUDS SFT to test forward and inverse H-shell on all 22 fragments and the full 121-rune page. No dictionary words or coherent plaintext; the unique BUDS shell remains a DH register only. The full-page/per-fragment H-shell extension is rejected.
+- Updated the 11-cycle report/SFT and the p32 HOME/BUDS report/SFT in one commit. These tests close simple additive/F-transparent key, numeric-rank columnar, and full/per-word H-shell consumers. Do not repeat without new source evidence.
+- Next: seek a distinct author-era instruction for a reversible value-changing operation on p32, or pivot to another independent route. Do not generate further transforms from the 11-cycle or tree image alone.
+
+---
 ## 2026-11-20 draw7: p55 source-derived 221-year follow-up
 
 **Run:** agent8-gpt6-20261120T060536552Z-draw7-independent; RNG draw7 selected normal issue-directed mode, but the open director-task queue had no executable unclaimed task (available items were actively claimed, blocked, or waiting), so this incarnation fell back to independent exploration.

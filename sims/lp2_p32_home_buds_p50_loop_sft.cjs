@@ -387,6 +387,40 @@ function outerHShell(fragment) {
   return out;
 }
 
+function outerHShellAny(fragment) {
+  const out = [];
+  for (let layer = 0; layer < Math.floor(fragment.length / 2); layer += 1) {
+    out.push(...H(fragment[layer], fragment[fragment.length - 1 - layer]));
+  }
+  if (fragment.length % 2) out.push(fragment[Math.floor(fragment.length / 2)]);
+  return out;
+}
+function inverseHShellAny(shell) {
+  const out = Array(shell.length);
+  for (let layer = 0; layer < Math.floor(shell.length / 2); layer += 1) {
+    const u = shell[2 * layer], v = shell[2 * layer + 1];
+    out[layer] = (15 * (u + v)) % 29;
+    out[shell.length - 1 - layer] = (15 * (v - u) % 29 + 29) % 29;
+  }
+  if (shell.length % 2) out[Math.floor(shell.length / 2)] = shell[shell.length - 1];
+  return out;
+}
+function localIoc(values) {
+  const counts = Array.from({ length: 29 }, (_, value) => values.filter((x) => x === value).length);
+  return counts.reduce((sum, count) => sum + count * (count - 1), 0) / (values.length * (values.length - 1));
+}
+const p32WordwiseForward = p32Fragments.flatMap((fragment) => outerHShellAny(fragment.indices));
+const p32WordwiseInverse = p32Fragments.flatMap((fragment) => inverseHShellAny(fragment.indices));
+const p32WholeForward = outerHShellAny(p32.indices);
+const p32WholeInverse = inverseHShellAny(p32.indices);
+assert.deepEqual(inverseHShellAny(outerHShellAny(p32.indices)), p32.indices);
+for (const fragment of p32Fragments) assert.deepEqual(inverseHShellAny(outerHShellAny(fragment.indices)), fragment.indices);
+const p32HText = (values) => values.map((value) => corpus.translit[value]).join('').toUpperCase();
+assert.ok(Math.abs(localIoc(p32WordwiseForward) - 0.03677685950413223) < 1e-14);
+assert.ok(Math.abs(localIoc(p32WordwiseInverse) - 0.03305785123966942) < 1e-14);
+assert.ok(Math.abs(localIoc(p32WholeForward) - 0.03608815426997245) < 1e-14);
+assert.ok(Math.abs(localIoc(p32WholeInverse) - 0.03402203856749311) < 1e-14);
+assert.deepEqual(outerHShellAny(p32Fragments[15].indices), [7,8,27,15,2,4,2,7]);
 const e = 3;
 const q = gp0("EMPTY") / dh.p;
 assert.equal(q, 4);
@@ -499,6 +533,13 @@ console.log(JSON.stringify({
   status:"PASS",
   upstream:{route,emptyStep,selectedPage:32,selectedFragment:selectedFragment.text,selectedXOffset:37},
   p32Grid:{side,topPrimeSum:563,leftPrimeSum:569,fourLetterWords:gridWords},
+  wholePageHShellTransfer:{
+    originalIoc:localIoc(p32.indices),
+    forwardWordwise:{ioc:localIoc(p32WordwiseForward),text:p32HText(p32WordwiseForward)},
+    inverseWordwise:{ioc:localIoc(p32WordwiseInverse),text:p32HText(p32WordwiseInverse)},
+    forwardWhole:{ioc:localIoc(p32WholeForward),text:p32HText(p32WholeForward)},
+    inverseWhole:{ioc:localIoc(p32WholeInverse),text:p32HText(p32WholeInverse)}
+  },
   diagonalTransfer:{
     dictionaryHits:dictionaryDiagonals,
     targetFragment:p32Fragments[15].text,

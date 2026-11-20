@@ -79,6 +79,21 @@ BUDS  at row8,col5, GP0=56
 
 This makes the translated target unusually constrained and gives BUDS a page-native tree semantic.
 
+## Whole-page and word-fragment H-shell transfer is negative (Agent8, 20 November 2026)
+
+The selected BUDS fragment's forward outer-H shell is a DH-state register, not plaintext. To test whether the same already fixed operation decrypts more of p32, apply it without parameter changes to (a) each of the 22 page-local fragments and (b) the entire 121-rune page as one shell. Also apply the exact inverse shell to the original ciphertext under both segmentations. The inverse is verified by round-tripping every source fragment and the whole page through forward then inverse.
+
+| Fixed consumer | Resulting IC |
+|---|---:|
+| Original p32 | 0.034160 |
+| Forward H-shell per fragment | 0.036777 |
+| Forward H-shell whole page | 0.036088 |
+| Inverse H-shell per fragment | 0.033058 |
+| Inverse H-shell whole page | 0.034022 |
+
+None of the 22 forward- or inverse-transformed fragments is an exact dictionary word under the pinned TextBlob word-frequency list, and neither concatenated readout forms coherent plaintext. The unique BUDS fragment still produces the established DH register [7,8,27,15,2,4,2,7] under forward H; this does not generalize to a page-wide decipherment.
+
+**Decision:** preserve H-shell as the specific BUDS-register extraction only. Reject both whole-page and per-fragment forward/inverse H-shell as p32 plaintext consumers; do not extend this operator to additional partitions or pair orders without an independent source instruction.
 ## The carried X is the independently selected PARABLE word TO
 
 A separate p32 route, selected from the solved PARABLE and the authenticated THE/DEVOTED boundary geometry, fixes the straight NE cells

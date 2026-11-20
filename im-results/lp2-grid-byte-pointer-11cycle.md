@@ -168,10 +168,33 @@ The corresponding signed-word first GP rune matches a visited p32 glyph at preci
 
 The [reproduction script](../sims/lp2_2016_43word_compass_sft.cjs) freezes the 43 signed words, exact mirrored table positions, original p32 HOMEX source word and dimensions, compass and torus orientation, original terminal glyph, full original first-letter checks, and seed-reproduced conditional p32 shuffle. A useful continuation must derive an independent instruction to read the intermediate glyphs or a reproducible cipher/key that decrypts original material. Varying compass orientations or using this sequence as another additive pad would be unmotivated.
 
+## p32 receiver transfer gate (Agent8, 20 November 2026)
+
+The independent 23-step route selects p32, which has **121 runes = 11×11**. The table pointer from terminal state32 enters the 11-cycle at115. Separately, the 2014 three-filename pointer-XOR key has an 18-symbol transient followed by an 11-symbol cycle. The total p0–31 rune count is **7,839**, and
+
+`7,839 − 18 = 7,821 = 711 × 11`.
+
+Thus a continuous key stream beginning at p0 would enter p32 exactly at the first phase of the 11-cycle; p32 then spans exactly eleven 11-symbol periods. This is a notable structural alignment, not a decryption.
+
+### Frozen three-pointer key transfer to p32
+
+Using the unchanged historical seeds **107, 167, 229**, the existing source-derived three-pointer XOR tape was applied to all 121 original p32 runes without fitting a phase:
+
+- page-reset additive plus/minus: IC **0.035675** for both signs; no coherent plaintext;
+- continuous-LP2 additive plus/minus at global rune offset 7,839 (cycle phase18): IC **0.035399 / 0.035950**; no coherent plaintext;
+- page-reset F-transparent plus/minus, using the literal-F key-clock bypass observed on solved p56: IC **0.031956 / 0.043113**; word-boundary inspection produces no coherent word sequence;
+- continuous F-transparent plus/minus, starting after the 7,556 non-F symbols in p0–31: IC **0.036915 / 0.036501**; no coherent plaintext.
+
+The page-reset F-transparent minus score is the largest, but it does not produce a readable sequence. The continuous F-transparent phase is21, not18, because 283 literal F symbols precede p32. No source evidence selects a page reset over the continuous stream.
+
+### One 11-column transposition check
+
+The 11-cycle starting at115 supplies eleven distinct numeric addresses. Sorting these addresses gives the fixed column-rank order **[3,7,5,8,9,0,2,10,6,4,1]**. Applying the corresponding standard 11-column transposition to the fixed row-major p32 square, in both inverse directions, gives IC **0.034160** in either direction and no coherent plaintext. This is a bounded exploratory test, not an authenticated instruction to sort or transpose.
+
+**Decision:** the 18+11 phase alignment is worth preserving, but the direct additive/F-transparent key consumers and the simple 11-column rank transposition do not decrypt p32. Do not add arbitrary row/column orders, offsets, or transforms to rescue them. The next useful step requires a separately motivated operation that consumes the 11-cycle or p32 grid and predicts readable original plaintext.
+
 ## Cryptanalytic next decision
 
-The actionable development is a **deterministic 11-state address schedule derived entirely from the original printed table**. An intended route would need a second human-visible operation specifying how addresses, their 32×8 coordinates, or their eleven order ranks interact with p32's 11×11 runes, a key, or a source-defined readout. Freeze that operation before evaluating original ciphertext. The known closed-cycle nodes in traversal order are:
+The actionable development remains a deterministic 11-state address schedule derived from the original printed table, plus the independent p32 receiver and its exact 11×11 geometry. A successful continuation must now specify, from an author-era clue, how the 11-cycle addresses or ranks interact with p32's runes and then recover original plaintext. The following have already been tested and should not be repeated without new source evidence: direct modulo-29/additive use of the cycle, the 2014 three-pointer additive key on p32 (including the solved-p56 F-transparent clock rule), and the simple 11-column numeric-rank transposition.
 
-`[0,203,68,199,47,76,114,197,115,247,192]`.
-
-Simply reducing them modulo29, using them as a repeating additive pad, or permuting p32 text without an independent instruction would revive already exhausted direct-GP and transposition families. A plausible decoder must produce independently recognizable original plaintext, including an explicit reversible encryption model. The table's authentic purpose and the 11-cycle's historical intentionality remain unknown.
+Do not interpret the 18+11 phase alignment, the p32 length121, or the tree/image dimension coincidences as a cipher by themselves. A plausible decoder must produce independently recognizable original plaintext and an explicit reversible encryption model. The table's authentic purpose and the 11-cycle's historical intentionality remain unknown.
