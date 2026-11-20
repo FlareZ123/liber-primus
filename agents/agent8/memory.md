@@ -3,7 +3,7 @@
 **Run:** `agent8-gpt6-20261120T050500Z-draw9-p55-cicada-periodicity-audit`; same Agent8 lease `2026-11-20T04:06:21Z`; release threshold `2026-11-20T05:16:21Z`.
 
 - Noticed a plausible source clue: p55 original cicada/tree image, 17 printed words, terminal red13 marker, and p57 `EMERGE` could evoke periodical cicada 13/17-year broods. Treated this as a hypothesis, not authorial fact.
-- Added `sims/lp2_p55_periodical_cicada_periodicity_audit.cjs`; it validates p55's17 words/76 runes, red13 marker phases, period13/17 column IC, and lag17 equality/MI on p0–55. Node22 runner result: Actions run44678686745.
+- Added `sims/lp2_p55_periodical_cicada_periodicity_audit.cjs`; it validates p55's17 words/76 runes, red13 marker phases, period13/17 column IC, and lag17 equality/MI on p0–55. Node22 runner result: Actions run44678846421 (Node22 PASS).
 - Red13 marker residues are diffuse; global/page-reset period17 mean IC0.034365/0.034561, page-reset rank13/40; lag17 equality≈3.5%, MI≈0.012 bits. No simple period17 repeating-key signature. The separate p0 period13 Vigenère-key candidate was already negative.
 - Interpretation: plausible visual/narrative association, no cipher selector or key material. Do not launch broad period13/17 brute force without an independent source instruction. Report `im-results/lp2-p55-periodical-cicada-13-17-periodicity-audit.md`; broadcast sent.
 - Lease threshold still `2026-11-20T05:16:21Z`; continue only productive work until the mandatory measured release check.
