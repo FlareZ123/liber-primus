@@ -188,9 +188,34 @@ def main() -> int:
         raise RuntimeError("GnuPG is not on PATH; workflow must install gnupg")
     gpg_home = OUT / "gnupg"
     gpg_home.mkdir(parents=True, exist_ok=True)
-    os.environ["GNUPGHOME"] = str(gpg_home)
-    run_checked([gpg, "--homedir", str(gpg_home), "--batch", "--import", str(KEY_FILE)])
-    listed = run_checked([gpg, "--homedir", str(gpg_home), "--batch", "--with-colons", "--fingerprint", "--list-keys"])
+
+    # MSYS2 GPG rewrites Windows drive paths into invalid mixed paths unless
+    # callers provide its native POSIX spelling. Native Windows GPG keeps the
+    # ordinary pathlib spelling. Convert every filesystem argument explicitly.
+    gpg_is_msys2 = "msys64" in str(gpg).casefold()
+
+    def gpg_path(path: Path) -> str:
+        if not gpg_is_msys2:
+            return str(path)
+        cygpath = shutil.which("cygpath.exe") or shutil.which("cygpath")
+        if not cygpath:
+            candidate = Path(gpg).with_name("cygpath.exe")
+            if candidate.exists():
+                cygpath = str(candidate)
+        if not cygpath:
+            raise RuntimeError("MSYS2 GPG was selected but cygpath.exe is unavailable")
+        converted = run_checked([cygpath, "-u", str(path)]).stdout.strip()
+        if not converted.startswith("/"):
+            raise RuntimeError(f"cygpath did not return a POSIX path for {path}: {converted!r}")
+        return converted
+
+    gpg_home_arg = gpg_path(gpg_home)
+    key_file_arg = gpg_path(KEY_FILE)
+    signed_page_arg = gpg_path(OUT / "cijhho" / "index.html")
+    clear_file_arg = gpg_path(OUT / "cleartext.hex")
+    os.environ["GNUPGHOME"] = gpg_home_arg
+    run_checked([gpg, "--homedir", gpg_home_arg, "--batch", "--import", key_file_arg])
+    listed = run_checked([gpg, "--homedir", gpg_home_arg, "--batch", "--with-colons", "--fingerprint", "--list-keys"])
     fingerprints = [
         line.split(":")[9]
         for line in listed.stdout.splitlines()
@@ -198,7 +223,7 @@ def main() -> int:
     ]
     assert CICADA_FPR in fingerprints, f"Imported key fingerprint mismatch: {fingerprints}"
     verify = subprocess.run(
-        [gpg, "--homedir", str(gpg_home), "--batch", "--status-fd", "1", "--verify", str(OUT / "cijhho" / "index.html")],
+        [gpg, "--homedir", gpg_home_arg, "--batch", "--status-fd", "1", "--verify", signed_page_arg],
         capture_output=True,
         text=True,
     )
@@ -210,12 +235,14 @@ def main() -> int:
         "status": "VALIDSIG",
         "fingerprint": CICADA_FPR,
         "gpg": gpg,
+        "path_mode": "msys2-cygpath" if gpg_is_msys2 else "native-windows",
+        "homedir": gpg_home_arg,
         "status_lines": valid_sigs,
     }
 
     # 3. Reproduce GPG cleartext extraction -> hex decode -> exact MP3.
     clear = subprocess.run(
-        [gpg, "--homedir", str(gpg_home), "--batch", "--yes", "--output", str(OUT / "cleartext.hex"), "--decrypt", str(OUT / "cijhho" / "index.html")],
+        [gpg, "--homedir", gpg_home_arg, "--batch", "--yes", "--output", clear_file_arg, "--decrypt", signed_page_arg],
         capture_output=True,
         text=True,
     )
