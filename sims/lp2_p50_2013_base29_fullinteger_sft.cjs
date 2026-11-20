@@ -190,3 +190,147 @@ for (const [name, digits] of Object.entries(runs)) {
   console.log(JSON.stringify({ name, length: digits.length,
     ioc: ioc(digits), results, plantedKnownPlaintext: positive }));
 }
+
+
+// Exploratory extension: convert each original p50 cell separately using the
+// authenticated 2013 BASE29 integer operation. The signed source does not
+// instruct this table transfer; test both live table radices and both the
+// literal minimal-width and structure-preserving two-digit serializations.
+const BASE29_CHARS = "0123456789ABCDEFGHIJKLMNOPQRS";
+const commonTrigrams = [
+  "THE","AND","ING","ION","ENT","HER","ERE","FOR","THI","TIO",
+  "TER","EST","ERS","ATI","HAT","ATE","ALL","ETH","NTH","ARE",
+  "YOU","THA","HEA","WIT","NOT","HIS","WAS","HEN","OUT","VER",
+  "THR","EVE","REA","NCE","CON","EDT","NTO","DTH","STH","OTH"
+];
+const commonWords = [
+  "THE","AND","YOU","ARE","NOT","ONE","THAT","THIS","FROM","WITH",
+  "FOR","OF","IN","IS","IT","TO","BE","AS","ON","HE","SHE","HIS",
+  "HER","WAS","WERE","HAVE","HAS","THERE","HERE","WHERE","WHEN",
+  "WHAT","WHO","WHY","HOW","THEIR","THEM","THESE","THOSE","EVER",
+  "NEVER","LIFE","DEATH","LIGHT","DARK","GOD","MAN","WOMAN","WORD",
+  "WORDS","BOOK","TREE","CICADA"
+];
+
+function countOverlapping(text, needle) {
+  let count = 0;
+  let at = 0;
+  while ((at = text.indexOf(needle, at)) !== -1) {
+    count++;
+    at++;
+  }
+  return count;
+}
+
+function englishSubstringScore(text) {
+  const trigramCounts = Object.fromEntries(commonTrigrams.map(term =>
+    [term, countOverlapping(text, term)]).filter(([, n]) => n > 0));
+  const wordCounts = Object.fromEntries(commonWords.map(term =>
+    [term, countOverlapping(text, term)]).filter(([, n]) => n > 0));
+  const trigramCount = Object.values(trigramCounts).reduce((a, b) => a + b, 0);
+  const wordCount = Object.values(wordCounts).reduce((a, b) => a + b, 0);
+  return {
+    score: trigramCount + 2 * wordCount,
+    trigramCount,
+    wordCount,
+    trigramCounts,
+    wordCounts
+  };
+}
+
+function xorshift32(seed) {
+  let state = seed >>> 0;
+  return () => {
+    state ^= state << 13;
+    state ^= state >>> 17;
+    state ^= state << 5;
+    return state >>> 0;
+  };
+}
+
+function cellOrderNull(chunks, observedScore, trials = 10000) {
+  const next = xorshift32(0x3301ab25);
+  const scores = [];
+  for (let trial = 0; trial < trials; trial++) {
+    const shuffled = chunks.slice();
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = next() % (i + 1);
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    const text = shuffled.flat().map(symbol => book.translit[symbol]).join("");
+    scores.push(englishSubstringScore(text).score);
+  }
+  const mean = scores.reduce((a, b) => a + b, 0) / trials;
+  const sd = Math.sqrt(scores.reduce((a, b) => a + (b - mean) ** 2, 0) / trials);
+  const upperTail = (scores.filter(score => score >= observedScore).length + 1)
+    / (trials + 1);
+  return { trials, mean, sd, z: (observedScore - mean) / sd, upperTail };
+}
+
+const base59Alphabet = base60.replace("f", "");
+assert.equal(base59Alphabet.length, 59);
+const cellwiseExpected = {
+  "59-variable": { length: 490, score: 45, min: [6, 8, 7], offsets: [108, 56, 104] },
+  "59-fixed2": { length: 512, score: 47, min: [5, 6, 6], offsets: [168, 295, 153] },
+  "60-variable": { length: 490, score: 73, min: [4, 11, 4], offsets: [261, 9, 191] },
+  "60-fixed2": { length: 512, score: 71, min: [4, 9, 5], offsets: [272, 83, 102] }
+};
+
+for (const radix of [59, 60]) {
+  const alphabet = radix === 59 ? base59Alphabet : base60;
+  const values = tokens.map(token => {
+    const hi = alphabet.indexOf(token[0]);
+    const lo = alphabet.indexOf(token[1]);
+    assert.ok(hi >= 0 && lo >= 0, "invalid base" + radix + " token " + token);
+    return radix * hi + lo;
+  });
+  assert.equal(values.length, 256);
+  assert.equal(new Set(values).size, 161);
+  const minimalDigits = values.map(value => toBase29([value], 256));
+
+  for (const width of ["variable", "fixed2"]) {
+    const chunks = minimalDigits.map(digits =>
+      width === "fixed2" && digits.length === 1 ? [0, ...digits] : digits);
+    const symbols = chunks.flat();
+    const transliteration = symbols.map(symbol => book.translit[symbol]).join("");
+    const observed = englishSubstringScore(transliteration);
+    const null = cellOrderNull(chunks, observed.score);
+    const gates = knownTargets.map(([targetName, target]) => ({
+      targetName,
+      ...allAlphabetWindowGate(symbols, target)
+    }));
+    const expected = cellwiseExpected[radix + "-" + width];
+    assert.equal(symbols.length, expected.length);
+    assert.equal(observed.score, expected.score);
+    assert.deepEqual(gates.map(x => x.minEdits), expected.min);
+    assert.deepEqual(gates.map(x => x.earliestOffset), expected.offsets);
+    assert.ok(gates.every(x => x.exactWindows === 0));
+    assert.ok(observed.score <= null.mean);
+    assert.ok(null.upperTail > 0.5);
+
+    const planted = symbols.slice();
+    for (let j = 0; j < p57Clear.length; j++) {
+      planted[j + 17] = (7 * p57Clear[j] + 3) % 29;
+    }
+    const positive = allAlphabetWindowGate(planted, p57Clear);
+    assert.equal(positive.minEdits, 0);
+    assert.ok(positive.exactWindows >= 1);
+
+    console.log(JSON.stringify({
+      name: "cellwise-base29-" + radix + "-" + width,
+      radix,
+      width,
+      cells: values.length,
+      uniqueValues: new Set(values).size,
+      symbols: symbols.length,
+      sha256Symbols: crypto.createHash("sha256").update(Buffer.from(symbols)).digest("hex"),
+      sha256Transliteration: crypto.createHash("sha256").update(transliteration, "utf8").digest("hex"),
+      ioc: ioc(symbols),
+      preview: transliteration.slice(0, 240),
+      observed,
+      cellOrderNull: null,
+      knownPlaintextGates: gates,
+      plantedP57Control: positive
+    }));
+  }
+}

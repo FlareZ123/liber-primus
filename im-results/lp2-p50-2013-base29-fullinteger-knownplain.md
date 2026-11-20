@@ -1,6 +1,6 @@
 # Literal 2013 BASE29 operation on the full original LP2 256-cell numeral table
 
-**Agent 28 · 14 November 2026. Original-input and independently solved-text decision.** The historically signed 2013 instruction **BASE29 3301 → 3QO** gives a genuine, human-executable numeral conversion. The original LP2 pp49–51 print **256 two-character base60 tokens**, 32 rows by eight. Directly converting either that complete published base60 integer or the ordinary 256-byte serialization into GP29 digits produces high-entropy sequences of **622** or **422** runes, respectively. None contains either already-solved ending page p56/p57 under *any stationary secret 29-symbol alphabet* even if arbitrary output rearrangement is generously permitted. No plaintext from an unknown LP2 page, original key or continuation is found.
+**Agent 28 · 14 November 2026. Original-input and independently solved-text decision.** The historically signed 2013 instruction **BASE29 3301 → 3QO** gives a genuine, human-executable numeral conversion. The original LP2 pp49–51 print **256 two-character base60 tokens**, 32 rows by eight. Directly converting the complete published base60 integer or ordinary 256-byte serialization into GP29 digits produces high-entropy sequences of **622** or **422** runes; per-row conversions produce **605** or **428**. A new cellwise extension (both base59/base60 and minimal/fixed-width forms) produces **490/512** runes, but its direct English-substring score is no better than a matched 10,000-permutation cell-order null, and none contains an exact p56/p57 known-text window under *any stationary secret 29-symbol alphabet*, even with arbitrary output rearrangement. No plaintext from an unknown LP2 page, original key or continuation is found.
 
 ## Source-backed operation and decisive target
 
@@ -31,6 +31,23 @@ A direct candidate might be masked by an unknown stationary GP29 substitution, o
 The minimum lower-bound offsets (zero-based in the respective converted streams) are [49,200,48], [156,3,147], [5,138,103], and [32,42,36] for [p56 clear,p56 cipher,p57] respectively. **Every original window in all 12 source/target comparisons fails exact histogram identity**. The modest two-rune bound for the 85-rune encrypted p56 target does not imply a recovered fragment; the original cipher text is nearly frequency-uniform and many unrelated windows have similar histograms. A real complete match would require zero replacements before further testing exact symbol order and a plausible source operation.
 
 The four converted whole/row registers have near-uniform GP29 IoC respectively **0.03602736**, **0.03533676**, **0.03432215** and **0.03417672**. These values provide independent language-scale context, but they are weaker evidence than the finite, *all-secret* equality obstruction against the known original texts. The bypass-to-plaintext reconstruction reproduces p56 source exactly; it does not posit the same cipher on any unknown page.
+
+## Cellwise BASE29 extension (20 November 2026; exploratory)
+
+The signed 2013 source specifies integer BASE29 conversion, but does **not** instruct a solver to apply it independently to the later p50 table. To test this simple extension without choosing a hidden receiver, each of the 256 p50 tokens was decoded under both still-live table radices (base59 and base60), then each cell integer was converted separately to BASE29. Two natural serializations were tested: literal minimal-width digits, and two-digit zero-padding to preserve the original two-character cell width. Both are row-major; no transposition, key, offset or receiver was added.
+
+| Table radix | BASE29 cell serialization | GP29 symbols | English-substring score | 10,000 shuffled-cell null (mean ± SD) | z | Upper-tail p |
+|---|---|---:|---:|---:|---:|---:|
+| 59 | minimal width | 490 | 45 | 49.95 ± 5.12 | -0.97 | 0.860 |
+| 59 | fixed two digits | 512 | 47 | 51.05 ± 5.08 | -0.80 | 0.814 |
+| 60 | minimal width | 490 | 73 | 74.12 ± 5.64 | -0.20 | 0.592 |
+| 60 | fixed two digits | 512 | 71 | 73.92 ± 5.38 | -0.54 | 0.731 |
+
+The score is deliberately simple and fixed in the reproducer: overlapping hits from a 40-item common-English-trigram list plus twice the hits from a 55-item common-word list in the canonical GP29 transliteration. The null shuffles the 256 whole-cell output chunks (same values, same within-cell order and widths) with xorshift32 seed 0x3301AB25; it therefore tests whether the printed row-major cell order contributes an English-like signal beyond the exact output-symbol multiset. Every observed score is **below** its matched null mean.
+
+A separate necessary-condition gate compares every output window with the 85-rune p56 plaintext, 85-rune p56 ciphertext and 95-rune p57 plaintext. It allows any fixed bijective relabeling of the 29 symbols and arbitrary reordering, so an exact histogram match is necessary for any such exact recovery. There are **zero exact windows** in all four variants. Minimum histogram edits (p56 clear / p56 cipher / p57 clear) are respectively **[6,8,7]**, **[5,6,6]**, **[4,11,4]**, and **[4,9,5]**. The synthetic p57 planted control under hidden affine relabeling 7x+3 mod29 passes in every run.
+
+**Disposition:** retire cellwise BASE29 as a direct plaintext readout of p50. This does not rule out a future source-selected use of the table as a key or address, but no such receiver is specified by the 2013 protocol; do not add speculative cipher layers to rescue these nonlinguistic outputs.
 
 ## Program, controls, result and scope
 
