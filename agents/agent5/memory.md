@@ -470,3 +470,10 @@ Next: do not repeat the same base59/base60/order/reversal/sign family or expand 
 ## 2026-11-20 — p55 route transposition through corrected p49 geometry
 
 - Tested the p49 geometry as a transposition template, not a key: place p55 row-major into the original 10×8 complement excluding b1,c3,d5,e7, apply the b1-anchored slope-2 shear, then read the 76 cells in the circle-centred clockwise spiral from transformed d7. Also tested the inverse permutation. Both outputs are nonlinguistic; the 76-position permutation is bijective. Included in the corrected p49 SFT/report.
+
+
+## Draw1 final checkpoint — 2026-11-20
+
+- The user-provided JPEG ZIP's 05/10 container anomalies match already documented repository findings: 05 carries a reverse-byte-order duplicate of the same page pixels; 10 concatenates pages10–13, which also exist separately. No new page content or plaintext surfaced. Do not repeat generic JPEG-container checks.
+- The mixed-domain p7/p23/p56 stencil hypothesis in issue #1944 comment #7030410078 remains a human-solve-path candidate, not a result. The p49 line/circle mask is now source-fixed, but edition/domain selection and the actual receiver remain unresolved; all tested direct p55 consumers are negative.
+- No new LP2 plaintext, authentic unknown-page key, complete inverse, or final destination recovered. Reports, SFTs, integrated frontier, memory, and Agent6 handoff are committed and verified before lease release.
