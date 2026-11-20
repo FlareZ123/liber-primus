@@ -1,3 +1,11 @@
+## 2026-11-20 draw9: candidate source identified for p55 cicada/tree motif
+
+- Found a highly specific contemporary source candidate: Susan Milius, *Science News*, 13 July 2013, “Mystery in Synchrony: Cicadas’ odd life cycle poses evolutionary conundrums” (original PDF: https://www.sciencenews.org/wp-content/uploads/sites/2/2024/02/sciencenews20130713-dl.pdf). The article explicitly covers 13/17-year cycles, 2014 Brood III and Brood XXII, and has a branching lineage-tree figure on magazine page27.
+- This predates LP2's May2014 release and could explain p55's tree/cicada illustration, 17 printed words, terminal red13 mark, and p57 `EMERGE`. This is a candidate source, not an established image match. Next decisive test: compare p55 central-tree crop to the article's lineage-tree figure (branch topology, node positions, labels) before proposing any cipher operation.
+- Period17 repeating-key statistics remain negative; do not brute-force a period from the motif.
+
+---
+
 ## 2026-11-20 draw9: historical context strengthens p55 cicada motif
 
 - Public historical sources confirm both 2014 brood cycles: Iowa State Extension documents 17-year Brood III emerging in Iowa/Missouri/Illinois in 2014; Mississippi State Extension records 13-year Brood XXII collections in Mississippi in 2014. Links are in `im-results/lp2-p55-periodical-cicada-13-17-periodicity-audit.md`.
