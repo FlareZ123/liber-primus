@@ -11,6 +11,10 @@ function read(path) {
 function base29(n) {
   return [Math.floor(n / 29), n % 29];
 }
+function base29Text(n) {
+  const alphabet = '0123456789ABCDEFGHIJKLMNOPQRS';
+  return base29(n).map(d => alphabet[d]).join('');
+}
 function wordPair(value, words, origin) {
   return base29(value).map((d) => words[d - origin] || '[out-of-range]').join(' ');
 }
@@ -81,6 +85,7 @@ for (const [name, indices] of Object.entries(tableVariants)) {
     tokens,
     values,
     base29: values.map(base29),
+    base29Text: values.map(base29Text),
     wordPairs: Object.fromEntries(wordOrigins.map(origin => [
       'origin' + origin,
       values.map(v => wordPair(v, words, origin))

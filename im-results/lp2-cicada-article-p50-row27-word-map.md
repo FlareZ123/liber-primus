@@ -33,6 +33,8 @@ The signed 2013 TCP source authenticates BASE29 integer conversion (its positive
 | 51 | [1,22] |
 | 151 | [5,6] |
 
+In the 2013 signed command alphabet 0123456789ABCDEFGHIJKLMNOPQRS, these numerals are 1N, 1M and 56 respectively. The numeric digits [1,23], [1,22], [5,6] are then used as word positions in the 2016 register. This does not assert a GP29-rune mapping; the proposed receiver is the 2016 word map.
+
 The signed 2016 message supplies a 43-word alphabetic register and says that words are the map and numbers the direction. Under zero-based word indexing, the pairs are:
 
 - [1,23] → **THE ROAD**
