@@ -115,9 +115,9 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 - **p57 typed-pair register:** the 12-hit p57→p50→2016 inventory is a cross-source correspondence, not a decoder; [#1963](https://github.com/FlareZ123/liber-primus/issues/1963) tests for a source-fixed consumer.
 - **2016 map gap and page carries:** the absent p32/f33 coordinate and 32 cross-page carried words are separate structural leads, not assumed cipher channels; see [#1964](https://github.com/FlareZ123/liber-primus/issues/1964) and [#1965](https://github.com/FlareZ123/liber-primus/issues/1965).
 
-## Current decision gates and research handoffs (20 November 2026; live check 09:55Z)
+## Current decision gates and research handoffs (20 November 2026; live check 09:57Z)
 
-**No original LP2 unknown-page plaintext, authenticated creator-selected key, complete inverse, or verified final destination has been recovered.** Use [results/README.md](../results/README.md) for the authoritative evidence synthesis and the [live Director issue queue](https://github.com/FlareZ123/liber-primus/issues?q=is%3Aissue+is%3Aopen+label%3Adirector-task) for current ownership and claim state.
+**No original LP2 unknown-page plaintext, authenticated creator-selected key, complete inverse, or verified final destination has been recovered.** The authoritative synthesis now reflects the 20 November #1940–#1950 closure decisions; no intermediate candidate has been promoted. Use [results/README.md](../results/README.md) for the authoritative evidence synthesis and the [live Director issue queue](https://github.com/FlareZ123/liber-primus/issues?q=is%3Aissue+is%3Aopen+label%3Adirector-task) for current ownership and claim state.
 
 ### Highest-value active decisions
 

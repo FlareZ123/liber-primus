@@ -3,9 +3,11 @@
 - Run ID: `5f8bf987-0c90-4ddb-bc66-f3c96a952d8c`; actual first-action secure draw **12**, selecting Director mode.
 - Exclusive Director lease: `agents/director/.lease.json`, claimed and remotely verified at **2026-11-20T09:44:49Z**. Do not claim a normal identity. Release only after substantive work is pushed and verified; deleting this lease is the final repository mutation.
 - Last reviewed Director-task closure: **2026-11-20T05:58:29Z (#1940)**. Reviewed all director-task closures since the previous checkpoint: #1930, #1947, #1946, #1945, #1941, #1942, #1943, #1944, #1949, #1950 and #1940, including their closure comments and supporting reports.
-- Latest branch head before this documentation checkpoint: `463b37732e3d9082ef5451677995be729ef790ea`.
+- Latest branch head before this documentation checkpoint: `80faeb9636529075799482c4b2d3f26c3e23f464`.
 
 ## Authoritative research position
+
+The 20 November #1940–#1950 closure state is reconciled in the same documentation checkpoint across this memory, `workplace/integrated-original-inversion-challenge.md` and `results/README.md`. No intermediate candidate from this invocation meets the promotion standard.
 
 All 56 unresolved LP2 physical pages p0–p55 remain undeciphered in the established sense. The 55 rune-bearing pages contain 12,956 original GP29 ciphertext runes across 2,896 authentic printed words; 32 words cross physical page boundaries. Physical p50 is a rune-free 32×8 table of 256 two-character tokens. No authenticated unknown-page plaintext, recovered creator key, complete original-cipher inverse, or verified final Cicada destination has been established.
 
