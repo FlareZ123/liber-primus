@@ -1,7 +1,7 @@
 # P55 cicada / 13–17-year periodicity: bounded hypothesis audit
 
 **Classification:** intermediate negative result; not an established clue or cipher.  
-**Reproduction:** [periodicity SFT](../sims/lp2_p55_periodical_cicada_periodicity_audit.cjs) · [Node22 run](https://github.com/FlareZ123/liber-primus/actions/runs/44678686745)
+**Reproduction:** [periodicity SFT](../sims/lp2_p55_periodical_cicada_periodicity_audit.cjs) · [Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44678846421)
 
 ## Why test it
 
@@ -9,7 +9,7 @@ The original p55 image contains a cicada and tree illustration; the canonical tr
 
 ## Discriminating tests
 
-1. **Marker phase.** The corpus contains 30 red 13-dot markers. Their global rune-offset residues modulo13 are `[2,4,4,2,3,1,2,4,2,2,1,1,2]`; page-local offset residues are identical; page-index residues are `[5,3,5,4,2,1,3,5,0,1,1,0,0]`. There is no single phase or concentrated modulo13 placement. The p55 marker is terminal at offset76, not a recurring 13-step boundary.
+1. **Marker phase.** The corpus contains 30 red 13-dot markers. Their global rune-offset residues modulo13 are `[2,4,4,2,3,1,2,4,2,2,1,1,2]`; page-local offset residues are `[4,1,2,2,2,4,4,4,1,2,2,1,1]`; page-index residues are `[5,3,5,4,2,1,3,5,0,1,1,0,0]`. There is no single phase or concentrated modulo13 placement. The p55 marker is terminal at offset76, not a recurring 13-step boundary.
 2. **Period17 repeating-key signature.** For the 12,956 unknown-page GP29 runes (p0–p55), the period17 mean column index of coincidence is `0.0343653` under a global clock and `0.0345609` when the key phase resets per page. The page-reset period17 profile ranks 13th among periods1–40; the global profile is not among the top15. These values are close to the uniform 29-symbol baseline `1/29 ≈ 0.034483`, not a distinctive period17 peak.
 3. **Lag17 echo.** The fixed lag17 equality/MI test likewise shows no standout echo; the page-local equality rate is about3.5% and mutual information is about0.012 bits. This does not support a simple repeated 17-symbol clock.
 4. **Period13 context.** The separate p0 13-rune red-title Vigenère-key candidate has already failed its fixed source-selected test; this audit does not reopen or retune it.
