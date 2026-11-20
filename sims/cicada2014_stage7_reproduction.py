@@ -118,11 +118,11 @@ def download_openpuff(url: str, destination: Path) -> bytes:
         html = data.decode("utf-8", errors="replace")
         metadata["response_file"] = str(html_path)
         metadata["links"] = re.findall(
-            r"""(?i)(?:href|src)\\s*=\\s*["']([^"']+)["']""", html
+            r"""(?i)(?:href|src)\s*=\s*["']([^"']+)["']""", html
         )
-        metadata["forms"] = re.findall(r"(?is)<form\\b[^>]*>", html)
+        metadata["forms"] = re.findall(r"(?is)<form\b[^>]*>", html)
         metadata["scripts"] = re.findall(
-            r"(?is)<script\\b[^>]*>.*?</script\\s*>", html
+            r"(?is)<script\b[^>]*>.*?</script\s*>", html
         )
         REPORT["openpuff"]["mirror_response"] = metadata
         print("OPENPUFF_MIRROR_DIAGNOSTICS")
