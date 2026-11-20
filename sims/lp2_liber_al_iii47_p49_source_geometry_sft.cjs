@@ -79,6 +79,11 @@ function buildShearedKey(tableValues) {
   assert.ok(start >= 0);
   const order = keep.slice(start).concat(keep.slice(0, start));
   const keyBytes = order.map((i) => sheared[i]);
+
+  const spiralOrder = spiralFromCircle(sheared);
+  const spiralKey = spiralOrder.map((i) => mod(sheared[i], 29));
+  const spiralMinus = p55.map((value, i) => mod(value - spiralKey[i], 29));
+  const spiralPlus = p55.map((value, i) => mod(value + spiralKey[i], 29));
   assert.equal(keyBytes.length, 76);
   return { sheared, lineTargets, circleTarget, order, keyBytes };
 }
@@ -137,6 +142,45 @@ function columnarEncrypt(plaintext, key) {
   return order.flatMap((col) => columns[col]);
 }
 
+function spiralFromCircle(sheared) {
+  // The corrected line is the sheared top row at cells 1..4; the circle d7
+  // maps to row2/column3 (index19). Start there and spiral outward clockwise,
+  // initially moving toward the straightened line.
+  const removed = new Set([1, 2, 3, 4]);
+  const seen = new Set();
+  const order = [];
+  let row = 2;
+  let col = 3;
+  const add = () => {
+    if (row >= 0 && row < 10 && col >= 0 && col < 8) {
+      const index = row * 8 + col;
+      if (!removed.has(index) && !seen.has(index)) {
+        seen.add(index);
+        order.push(index);
+      }
+    }
+  };
+  add();
+  const directions = [[-1, 0], [0, 1], [1, 0], [0, -1]];
+  let step = 1;
+  let direction = 0;
+  while (order.length < 76 && step < 40) {
+    for (let repeat = 0; repeat < 2; repeat += 1) {
+      const [dr, dc] = directions[direction % 4];
+      for (let k = 0; k < step; k += 1) {
+        row += dr;
+        col += dc;
+        add();
+      }
+      direction += 1;
+    }
+    step += 1;
+  }
+  assert.equal(order.length, 76);
+  assert.equal(seen.size, 76);
+  return order;
+}
+
 const outputs = [];
 for (const [radix, alphabet] of [['base60', BASE60], ['base59', BASE59]]) {
   const tableValues = tokens.map((token) => decodeToken(token, alphabet));
@@ -182,6 +226,10 @@ for (const [radix, alphabet] of [['base60', BASE60], ['base59', BASE59]]) {
     circleTargetAfterShear: built.circleTarget,
     keyLength: key.length,
     keyText: render(key),
+    spiralOrder,
+    spiralKeyText: render(spiralKey),
+    spiralPadMinus: render(spiralMinus),
+    spiralPadPlus: render(spiralPlus),
     primeIndexTotientKeyText: render(primeIndexTotientKey),
     primeIndexTotientMinus: render(primeIndexTotientMinus),
     primeIndexTotientPlus: render(primeIndexTotientPlus),

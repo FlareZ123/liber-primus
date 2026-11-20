@@ -445,3 +445,8 @@ Next: do not repeat the same base59/base60/order/reversal/sign family or expand 
 ## 2026-11-20 — corrected five-symbol line/circle key
 
 - Tested the source-point key b1,c3,d5,e7 plus the separate circled d7 (five p49 tokens) under base59/base60. Repeating GP29 additive/subtractive and stable 5-column transposition (line→circle, circle→line, reversed line→circle) all produce nonlinguistic p55 output; synthetic columnar roundtrip passes. Included in the corrected p49 SFT/report.
+
+
+## 2026-11-20 — circle-centred spiral receiver
+
+- Tested the 76-cell p49 complement in a standard expanding clockwise spiral starting at transformed circle d7 (row2/column3), initially moving up toward the straightened line, skipping line cells1–4. The path visits all76 remaining cells exactly once. Base59/base60 additive and subtractive GP29 pads on original p55 are nonlinguistic. This is now included in the corrected SFT/report.
