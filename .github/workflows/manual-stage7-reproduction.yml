@@ -2,6 +2,12 @@ name: Manual 2014 Stage 7 reproduction
 
 on:
   workflow_dispatch:
+    inputs:
+      openpuff_only:
+        description: "Run only the outstanding OpenPuff stage using the previously verified signed MP3"
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -15,6 +21,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Install GnuPG from MSYS2 without an interactive installer
+        if: ${{ !inputs.openpuff_only }}
         shell: pwsh
         run: |
           $bash = "C:/msys64/usr/bin/bash.exe"
@@ -40,16 +47,21 @@ jobs:
         shell: pwsh
         run: python -m pip install --disable-pip-version-check pywinauto
 
-      - name: Reproduce signed carrier and OpenPuff extraction
+      - name: Run full chain or OpenPuff-only continuation
         shell: pwsh
-        run: python sims/cicada2014_stage7_reproduction.py
+        run: |
+          if ("${{ inputs.openpuff_only }}" -eq "true") {
+            python sims/cicada2014_stage7_reproduction.py --openpuff-only
+          } else {
+            python sims/cicada2014_stage7_reproduction.py
+          }
 
       - name: Preserve exact reproduction evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: stage7-reproduction
-          if-no-files-found: warn
+          if-no-files-found: error
           path: |
             ${{ runner.temp }}/liber-primus-stage7-reproduction/report.json
             ${{ runner.temp }}/liber-primus-stage7-reproduction/openpuff-output/**

@@ -22,7 +22,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 KEY_FILE = ROOT / "resources" / "cicada-3301-authentic-public-key.asc"
 SQUARES_FILE = ROOT / "resources" / "cicada2014-openpuff-magic-squares.txt"
-OUT = Path(tempfile.gettempdir()) / "liber-primus-stage7-reproduction"
+OUT = Path(os.environ.get("RUNNER_TEMP") or tempfile.gettempdir()) / "liber-primus-stage7-reproduction"
 OUT.mkdir(parents=True, exist_ok=True)
 EXTRACT_DIR = OUT / "openpuff-output"
 EXTRACT_DIR.mkdir(parents=True, exist_ok=True)
@@ -154,126 +154,159 @@ def handle_file_dialog(app, file_path: Path, timeout: int = 20) -> None:
     raise RuntimeError("OpenPuff carrier file dialog did not appear or could not be filled")
 
 
-def main() -> int:
-    # 1. Acquire both pinned archive copies and the published square controls.
-    archive_data: dict[str, dict[str, bytes]] = {}
-    for name, source in SOURCES.items():
-        base = source["base"]
-        page = download(base + "/" + PAGE_REL, OUT / name / "index.html")
-        mp3 = download(base + "/" + MP3_REL, OUT / name / "index.mp3")
-        squares = download(base + "/" + SQUARES_REL, OUT / name / "magicsquares.txt")
-        archive_data[name] = {"page": page, "mp3": mp3, "squares": squares}
-        REPORT["sources"][name] = {
+def main(openpuff_only: bool = False) -> int:
+    if openpuff_only:
+        # Continue only the outstanding OpenPuff stage. The signed carrier and
+        # hex->MP3 stages were already verified in workflow run 44708710753.
+        source = SOURCES["cijhho"]
+        mp3 = download(source["base"] + "/" + MP3_REL, OUT / "decoded-interconnectedness.mp3")
+        squares = download(source["base"] + "/" + SQUARES_REL, OUT / "cijhho" / "magicsquares.txt")
+        assert len(mp3) == EXPECTED_MP3[1]
+        assert git_blob_sha1(mp3) == EXPECTED_MP3[0]
+        a = {"mp3": mp3, "squares": squares}
+        b = a
+        REPORT["scope"] = "2014 Stage 7 historical reproduction; OpenPuff-only continuation; upstream signature and hex stages referenced from run 44708710753"
+        REPORT["sources"]["cijhho"] = {
             "pinned_commit": source["commit"],
-            "page_bytes": len(page),
-            "page_git_blob_sha1": git_blob_sha1(page),
             "mp3_bytes": len(mp3),
             "mp3_git_blob_sha1": git_blob_sha1(mp3),
             "squares_bytes": len(squares),
             "squares_git_blob_sha1": git_blob_sha1(squares),
         }
+        REPORT["signature"] = {
+            "status": "VALIDSIG verified in prior workflow run",
+            "workflow_run_id": 44708710753,
+            "fingerprint": CICADA_FPR,
+        }
+        REPORT["hex_to_mp3"] = {
+            "status": "exact MP3 verified in prior workflow run",
+            "workflow_run_id": 44708710753,
+            "decoded_bytes": len(mp3),
+            "decoded_git_blob_sha1": git_blob_sha1(mp3),
+        }
+    else:
+        # 1. Acquire both pinned archive copies and the published square controls.
+        archive_data: dict[str, dict[str, bytes]] = {}
+        for name, source in SOURCES.items():
+            base = source["base"]
+            page = download(base + "/" + PAGE_REL, OUT / name / "index.html")
+            mp3 = download(base + "/" + MP3_REL, OUT / name / "index.mp3")
+            squares = download(base + "/" + SQUARES_REL, OUT / name / "magicsquares.txt")
+            archive_data[name] = {"page": page, "mp3": mp3, "squares": squares}
+            REPORT["sources"][name] = {
+                "pinned_commit": source["commit"],
+                "page_bytes": len(page),
+                "page_git_blob_sha1": git_blob_sha1(page),
+                "mp3_bytes": len(mp3),
+                "mp3_git_blob_sha1": git_blob_sha1(mp3),
+                "squares_bytes": len(squares),
+                "squares_git_blob_sha1": git_blob_sha1(squares),
+            }
 
-    a = archive_data["cijhho"]
-    b = archive_data["scream314"]
-    assert len(a["page"]) == EXPECTED_PAGE[1] == len(b["page"])
-    assert git_blob_sha1(a["page"]) == EXPECTED_PAGE[0]
-    assert git_blob_sha1(b["page"]) == EXPECTED_PAGE[0]
-    assert a["page"] == b["page"], "Pinned signed-page copies differ"
-    assert len(a["mp3"]) == EXPECTED_MP3[1] == len(b["mp3"])
-    assert git_blob_sha1(a["mp3"]) == EXPECTED_MP3[0]
-    assert git_blob_sha1(b["mp3"]) == EXPECTED_MP3[0]
-    assert a["mp3"] == b["mp3"], "Pinned MP3 copies differ"
+        a = archive_data["cijhho"]
+        b = archive_data["scream314"]
+        assert len(a["page"]) == EXPECTED_PAGE[1] == len(b["page"])
+        assert git_blob_sha1(a["page"]) == EXPECTED_PAGE[0]
+        assert git_blob_sha1(b["page"]) == EXPECTED_PAGE[0]
+        assert a["page"] == b["page"], "Pinned signed-page copies differ"
+        assert len(a["mp3"]) == EXPECTED_MP3[1] == len(b["mp3"])
+        assert git_blob_sha1(a["mp3"]) == EXPECTED_MP3[0]
+        assert git_blob_sha1(b["mp3"]) == EXPECTED_MP3[0]
+        assert a["mp3"] == b["mp3"], "Pinned MP3 copies differ"
 
-    # 2. Verify the original clear-signed page with the preserved Cicada key.
-    gpg = shutil.which("gpg") or shutil.which("gpg.exe")
-    if not gpg:
-        raise RuntimeError("GnuPG is not on PATH; workflow must install gnupg")
-    gpg_home = OUT / "gnupg"
-    gpg_home.mkdir(parents=True, exist_ok=True)
+        # 2. Verify the original clear-signed page with the preserved Cicada key.
+        gpg = shutil.which("gpg") or shutil.which("gpg.exe")
+        if not gpg:
+            raise RuntimeError("GnuPG is not on PATH; workflow must install gnupg")
+        gpg_home = OUT / "gnupg"
+        gpg_home.mkdir(parents=True, exist_ok=True)
 
-    # MSYS2 GPG rewrites Windows drive paths into invalid mixed paths unless
-    # callers provide its native POSIX spelling. Native Windows GPG keeps the
-    # ordinary pathlib spelling. Convert every filesystem argument explicitly.
-    gpg_is_msys2 = "msys64" in str(gpg).casefold()
+        # MSYS2 GPG rewrites Windows drive paths into invalid mixed paths unless
+        # callers provide its native POSIX spelling. Native Windows GPG keeps the
+        # ordinary pathlib spelling. Convert every filesystem argument explicitly.
+        gpg_is_msys2 = "msys64" in str(gpg).casefold()
 
-    def gpg_path(path: Path) -> str:
-        if not gpg_is_msys2:
-            return str(path)
-        cygpath = shutil.which("cygpath.exe") or shutil.which("cygpath")
-        if not cygpath:
-            candidate = Path(gpg).with_name("cygpath.exe")
-            if candidate.exists():
-                cygpath = str(candidate)
-        if not cygpath:
-            raise RuntimeError("MSYS2 GPG was selected but cygpath.exe is unavailable")
-        converted = run_checked([cygpath, "-u", str(path)]).stdout.strip()
-        if not converted.startswith("/"):
-            raise RuntimeError(f"cygpath did not return a POSIX path for {path}: {converted!r}")
-        return converted
+        def gpg_path(path: Path) -> str:
+            if not gpg_is_msys2:
+                return str(path)
+            cygpath = shutil.which("cygpath.exe") or shutil.which("cygpath")
+            if not cygpath:
+                candidate = Path(gpg).with_name("cygpath.exe")
+                if candidate.exists():
+                    cygpath = str(candidate)
+            if not cygpath:
+                raise RuntimeError("MSYS2 GPG was selected but cygpath.exe is unavailable")
+            converted = run_checked([cygpath, "-u", str(path)]).stdout.strip()
+            if not converted.startswith("/"):
+                raise RuntimeError(f"cygpath did not return a POSIX path for {path}: {converted!r}")
+            return converted
 
-    gpg_home_arg = gpg_path(gpg_home)
-    key_file_arg = gpg_path(KEY_FILE)
-    signed_page_arg = gpg_path(OUT / "cijhho" / "index.html")
-    clear_file_arg = gpg_path(OUT / "cleartext.hex")
-    os.environ["GNUPGHOME"] = gpg_home_arg
-    run_checked([gpg, "--homedir", gpg_home_arg, "--batch", "--import", key_file_arg])
-    listed = run_checked([gpg, "--homedir", gpg_home_arg, "--batch", "--with-colons", "--fingerprint", "--list-keys"])
-    fingerprints = [
-        line.split(":")[9]
-        for line in listed.stdout.splitlines()
-        if line.startswith("fpr:")
-    ]
-    assert CICADA_FPR in fingerprints, f"Imported key fingerprint mismatch: {fingerprints}"
-    verify = subprocess.run(
-        [gpg, "--homedir", gpg_home_arg, "--batch", "--status-fd", "1", "--verify", signed_page_arg],
-        capture_output=True,
-        text=True,
-    )
-    status_text = verify.stdout + "\n" + verify.stderr
-    assert verify.returncode == 0, f"PGP verification failed:\n{status_text[-5000:]}"
-    valid_sigs = [line for line in verify.stdout.splitlines() if line.startswith("[GNUPG:] VALIDSIG ")]
-    assert any(CICADA_FPR in line for line in valid_sigs), f"VALIDSIG not from expected Cicada key:\n{status_text[-3000:]}"
-    REPORT["signature"] = {
-        "status": "VALIDSIG",
-        "fingerprint": CICADA_FPR,
-        "gpg": gpg,
-        "path_mode": "msys2-cygpath" if gpg_is_msys2 else "native-windows",
-        "homedir": gpg_home_arg,
-        "status_lines": valid_sigs,
-    }
+        gpg_home_arg = gpg_path(gpg_home)
+        key_file_arg = gpg_path(KEY_FILE)
+        signed_page_arg = gpg_path(OUT / "cijhho" / "index.html")
+        clear_file_arg = gpg_path(OUT / "cleartext.hex")
+        os.environ["GNUPGHOME"] = gpg_home_arg
+        run_checked([gpg, "--homedir", gpg_home_arg, "--batch", "--import", key_file_arg])
+        listed = run_checked([gpg, "--homedir", gpg_home_arg, "--batch", "--with-colons", "--fingerprint", "--list-keys"])
+        fingerprints = [
+            line.split(":")[9]
+            for line in listed.stdout.splitlines()
+            if line.startswith("fpr:")
+        ]
+        assert CICADA_FPR in fingerprints, f"Imported key fingerprint mismatch: {fingerprints}"
+        verify = subprocess.run(
+            [gpg, "--homedir", gpg_home_arg, "--batch", "--status-fd", "1", "--verify", signed_page_arg],
+            capture_output=True,
+            text=True,
+        )
+        status_text = verify.stdout + "\n" + verify.stderr
+        assert verify.returncode == 0, f"PGP verification failed:\n{status_text[-5000:]}"
+        valid_sigs = [line for line in verify.stdout.splitlines() if line.startswith("[GNUPG:] VALIDSIG ")]
+        assert any(CICADA_FPR in line for line in valid_sigs), f"VALIDSIG not from expected Cicada key:\n{status_text[-3000:]}"
+        REPORT["signature"] = {
+            "status": "VALIDSIG",
+            "fingerprint": CICADA_FPR,
+            "gpg": gpg,
+            "path_mode": "msys2-cygpath" if gpg_is_msys2 else "native-windows",
+            "homedir": gpg_home_arg,
+            "status_lines": valid_sigs,
+        }
 
-    # 3. Reproduce GPG cleartext extraction -> hex decode -> exact MP3.
-    clear = subprocess.run(
-        [gpg, "--homedir", gpg_home_arg, "--batch", "--yes", "--output", clear_file_arg, "--decrypt", signed_page_arg],
-        capture_output=True,
-        text=True,
-    )
-    assert clear.returncode == 0, f"GPG cleartext extraction failed:\n{clear.stderr[-3000:]}"
-    hex_text = re.sub(rb"\s+", b"", (OUT / "cleartext.hex").read_bytes())
-    assert len(hex_text) % 2 == 0 and re.fullmatch(rb"[0-9a-fA-F]+", hex_text), "Signed cleartext is not an uninterrupted hex payload"
-    decoded = bytes.fromhex(hex_text.decode("ascii"))
-    (OUT / "decoded-interconnectedness.mp3").write_bytes(decoded)
-    assert len(decoded) == EXPECTED_MP3[1]
-    assert git_blob_sha1(decoded) == EXPECTED_MP3[0]
-    assert decoded == a["mp3"] == b["mp3"], "Hex-decoded MP3 differs from either pinned archive MP3"
-    REPORT["hex_to_mp3"] = {
-        "hex_characters": len(hex_text),
-        "decoded_bytes": len(decoded),
-        "decoded_git_blob_sha1": git_blob_sha1(decoded),
-        "matches_cijhho_mp3": decoded == a["mp3"],
-        "matches_scream314_mp3": decoded == b["mp3"],
-        "id3_header": decoded[:10].hex(),
-    }
+        # 3. Reproduce GPG cleartext extraction -> hex decode -> exact MP3.
+        clear = subprocess.run(
+            [gpg, "--homedir", gpg_home_arg, "--batch", "--yes", "--output", clear_file_arg, "--decrypt", signed_page_arg],
+            capture_output=True,
+            text=True,
+        )
+        assert clear.returncode == 0, f"GPG cleartext extraction failed:\n{clear.stderr[-3000:]}"
+        hex_text = re.sub(rb"\s+", b"", (OUT / "cleartext.hex").read_bytes())
+        assert len(hex_text) % 2 == 0 and re.fullmatch(rb"[0-9a-fA-F]+", hex_text), "Signed cleartext is not an uninterrupted hex payload"
+        decoded = bytes.fromhex(hex_text.decode("ascii"))
+        (OUT / "decoded-interconnectedness.mp3").write_bytes(decoded)
+        assert len(decoded) == EXPECTED_MP3[1]
+        assert git_blob_sha1(decoded) == EXPECTED_MP3[0]
+        assert decoded == a["mp3"] == b["mp3"], "Hex-decoded MP3 differs from either pinned archive MP3"
+        REPORT["hex_to_mp3"] = {
+            "hex_characters": len(hex_text),
+            "decoded_bytes": len(decoded),
+            "decoded_git_blob_sha1": git_blob_sha1(decoded),
+            "matches_cijhho_mp3": decoded == a["mp3"],
+            "matches_scream314_mp3": decoded == b["mp3"],
+            "id3_header": decoded[:10].hex(),
+        }
+
 
     # 4. Preserve the exact expected 99-number stream from both archive copies.
     local_squares = SQUARES_FILE.read_bytes()
     expected = numbers(local_squares)
     assert len(expected) == 99, f"Local square control has {len(expected)} numbers, expected 99"
     assert numbers(a["squares"]) == expected
-    assert numbers(b["squares"]) == expected
+    if not openpuff_only:
+        assert numbers(b["squares"]) == expected
     REPORT["openpuff"]["expected_square_count"] = len(expected)
     REPORT["openpuff"]["local_square_git_blob_sha1"] = git_blob_sha1(local_squares)
-    REPORT["openpuff"]["archive_square_number_streams_match"] = True
+    REPORT["openpuff"]["archive_square_number_streams_match"] = None if openpuff_only else True
+    REPORT["openpuff"]["archive_square_number_stream_matches"] = True
 
     # 5. Download the specifically documented OpenPuff v4.00 executable.
     package = download(OPENPUFF_URL, OUT / "OpenPuffv400.zip")
@@ -461,7 +494,7 @@ def main() -> int:
 
 if __name__ == "__main__":
     try:
-        exit_code = main()
+        exit_code = main(openpuff_only="--openpuff-only" in sys.argv[1:])
     except Exception as exc:
         REPORT["failure"] = str(exc)
         (OUT / "report.json").write_text(json.dumps(REPORT, indent=2), encoding="utf-8")
