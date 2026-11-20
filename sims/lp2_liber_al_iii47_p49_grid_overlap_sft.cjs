@@ -1,3 +1,14 @@
+/*
+ * SUPERSEDED HISTORICAL CANDIDATE.
+ *
+ * This script tests the earlier one-column-left mask a1,b3,c5,d7 and the
+ * phase-zero shear. The primary Liber AL III:47 scan instead places the
+ * diagonal at b1,c3,d5,e7, with the circled plus/cross separately at d7.
+ * Use lp2_liber_al_iii47_p49_source_geometry_sft.cjs for the corrected mask
+ * and b1-anchored shear. Results from this file are not tests of that geometry.
+ *
+ * Retained to preserve the earlier experiment and its reproducibility.
+ */
 #!/usr/bin/env node
 "use strict";
 
