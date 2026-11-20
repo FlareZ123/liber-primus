@@ -14,19 +14,20 @@ jobs:
       - name: Check out research repository
         uses: actions/checkout@v4
 
-      - name: Install GnuPG
+      - name: Install GnuPG from MSYS2 without an interactive installer
         shell: pwsh
         run: |
-          choco install gnupg --yes --no-progress
-          $candidates = @(
-            "C:\Program Files (x86)\GnuPG\bin\gpg.exe",
-            "C:\Program Files\GnuPG\bin\gpg.exe"
-          )
-          $gpg = $candidates | Where-Object { Test-Path $_ } | Select-Object -First 1
-          if (-not $gpg) {
-            $gpg = (Get-Command gpg.exe -ErrorAction SilentlyContinue).Source
+          $bash = "C:\\msys64\\usr\\bin\\bash.exe"
+          if (-not (Test-Path $bash)) { throw "MSYS2 bash is missing from the Windows runner image" }
+          $proc = Start-Process -FilePath $bash -ArgumentList '-lc "pacman -Sy --noconfirm gnupg"' -PassThru -NoNewWindow
+          if (-not $proc.WaitForExit(300000)) {
+            Get-Process pacman -ErrorAction SilentlyContinue | Stop-Process -Force
+            try { $proc.Kill() } catch {}
+            throw "MSYS2 GnuPG installation exceeded five minutes"
           }
-          if (-not $gpg) { throw "GnuPG installation did not expose gpg.exe" }
+          if ($proc.ExitCode -ne 0) { throw "MSYS2 pacman failed with exit code $($proc.ExitCode)" }
+          $gpg = "C:\\msys64\\usr\\bin\\gpg.exe"
+          if (-not (Test-Path $gpg)) { throw "MSYS2 installation did not expose gpg.exe" }
           Split-Path $gpg | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
           & $gpg --version | Select-Object -First 2
 
