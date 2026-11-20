@@ -51,6 +51,11 @@ Further alignments on the same provisional graph:
 - The cycle lengths are 2 and 11, whose product is `22 = p−1`. The shared secret `K=2` has multiplicative order 11 modulo 23. The graph's 2-cycle basin has four nodes, matching the p28 field `q=4`. These are structural correspondences; no claim is made that the 11-cycle is literally the orbit of 2.
 - The graph's base29 word-register labels are `249=(8,17) → DEVOTED/THE`, `158=(5,13) → EPIPHANY/WAY`, and `192=(6,18) → SEEKS/MAP`. These words echo the authenticated 2016 message's “epiphany seeks the devoted”, “Liber Primus is the way”, and “words are the map”.
 
+
+## Original-image visual control
+
+The original scans for physical LP2 pp49–51 are `66.jpg`, `67.jpg`, and `68.jpg` in the uploaded image set; the 32×8 numerical table spans these pages, with p50 on image67. The left and right tree-border crops (including adjacent black dot clusters) are pixel-identical across all three pages at fixed source coordinates. They are a repeated template, not page-specific data or a selector for the 2+11 graph. A generic tree/forest metaphor remains possible, but this visual motif does not independently authenticate pointer-chasing.
+
 ## What this does and does not establish
 
 This adds a source-visible reason to inspect the p50 2-cycle: the final explicit word “OpenPGP” has GP-prime sum 249, which is the exact cycle address, and the resulting edge residues satisfy the p28 DH exponents. The 2-cycle is stable in the historical 2014 byte witness.
