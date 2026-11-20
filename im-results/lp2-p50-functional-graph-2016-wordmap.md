@@ -41,6 +41,20 @@ The 13 printed tokens used by the two cycles were also checked visually against 
 
 All 13 tokens are legible in the original scans and agree with the canonical grid at the listed positions. This is a visual source check, not a new per-glyph pixel-metric adjudication. The repository's full-font audit reports 509 of 512 glyphs with same-class controls and no flagged mismatches; the three singleton labels are R, i, and h, none of which occurs in these 13 tokens. Cell 199 is also among the eleven separately adjudicated disputed positions.
 
+## Historical 2014 byte-witness negative control: cell 199 is decisive
+
+The archived 2014 byte stream has cycles of lengths **2 and 21**, not 2 and 11. Its 21-cycle is:
+
+0 → 203 → 68 → 199 → 21 → 137 → 129 → 179 → 175 → 44 → 230 → 117 → 171 → 54 → 156 → 52 → 86 → 111 → 115 → 247 → 192 → 0.
+
+The 2-cycle [249,158] is unchanged. The old 21-cycle's q-mode is 6 (four occurrences), but its r-mode is tied among 0, 1, 15, 21, 25 and 28; it does not have the source-correct 11-cycle's unique r-mode 18 = MAP.
+
+A one-at-a-time correction experiment isolates the historical disagreement that matters. Of the ten indices where the 2014 binary differs from the original printed table, correcting only index **199**—from old value **21** (alternative uppercase-L token 0L) to original value **47** (printed lowercase-l token 0l)—restores exactly the current 2-cycle and 11-cycle. Correcting any of the other nine indices individually does not restore the 11-cycle: eight leave the 21-cycle unchanged, while correcting index 175 alone produces a 23-cycle.
+
+Cell 199 is one of the eleven disputed glyphs independently adjudicated against the original JPEG. The image audit measures the lowercase l at 7×73 pixels, while the uppercase L control has a broad foot and width 26 pixels. The 2014 variant's error at this one cell breaks the 11-cycle; the original scan's reading restores it. The other nine historical differences are not needed for this cycle restoration.
+
+Thus the 2+11 cycle signature is absent from the old participant byte stream and is restored by the single original-image-supported correction at cell 199. This does not prove that the successor-map interpretation was intended, but it materially strengthens the connection between the original printed table and the cycle structure.
+
 ## Source-oriented cycle order and base-29 word pairs
 
 Write each cycle node n as n=29q+r. The GP alphabet has 29 symbols, and the 2016 signed message contains a natural zero-based 29-word register at indices 0–28. Its next word, at index 29, is "direction"; it is not addressable by a base-29 digit.
