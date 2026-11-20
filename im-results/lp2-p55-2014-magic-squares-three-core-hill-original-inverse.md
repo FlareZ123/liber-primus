@@ -97,9 +97,35 @@ The φ-core column output is the less poor of the two φ variants, but it remain
 
 **Decision:** reject this exact cellwise-φ / direct-Hill use of the 2014 square interiors on p55. The test does not reject the totient clue, the 43-cell geometry, a non-Hill use of φ, or a different source-selected transformation. It does remove the simplest direct interpretation of the φ-grid as three Hill key matrices. Do not add phases, matrix permutations, or alternative block boundaries without a new original selector.
 
+## Centre-only block shifts: bounded third consumer test
+
+The fixed 2014 form order gives the three square centres **[809, 331, 91]**. The solved LP1 p05 explicitly names Euler's totient function, while the p57 circumference instruction selects the same 3×3/5×5/3×3 interior blocks that align with p55's 43 strict word-interior runes. A particularly simple one-step interpretation is to use each corresponding square centre as a scalar Caesar shift for its **9/25/9** block.
+
+Two source-derived key packets were tested without fitting: raw centre residues **[26,12,4] mod29**, and totient-centre residues **[25,11,14] mod29**. For each packet, both (C-K) and (C+K) were applied blockwise in the original square order. Every output forward-reencrypts the exact 43-symbol input.
+
+| Centre packet | Direction | GP29 IoC | Within-word GP29 bigram score | Exact replay |
+|---|---|---:|---:|---:|
+| Raw [26,12,4] | (C-K) | 0.03433001 | −6.49585 | 43/43 |
+| Raw [26,12,4] | (C+K) | 0.02768549 | −5.62546 | 43/43 |
+| φ [25,11,14] | (C-K) | 0.02990033 | −6.38540 | 43/43 |
+| φ [25,11,14] | (C+K) | 0.03211517 | −5.81645 | 43/43 |
+
+The score uses the same independent Shakespeare-trained GP29 bigram model and the original seventeen-word boundary mask as the preceding Hill test: **32 within-interior adjacent pairs**, no invented cross-word pairs, and the same 0.25 successor pseudocount. The best centre-shift output ((-5.62546)) remains substantially below the weakest of the 60,000 source-native word-shape controls (minimum (-3.50531)); none resembles GP-native English.
+
+Complete outputs (dots separate GP rune identities):
+
+~~~text
+raw C-K: OE.P.S.N.Y.C.U.IA.L.OE.T.B.TH.IA.W.E.OE.U.AE.N.H.O.J.S.U.AE.F.G.IA.D.TH.D.O.F.IA.IA.X.A.G.S.U.W.X
+raw C+K: T.W.N.O.L.EA.A.NG.X.B.J.EO.Y.OE.TH.P.B.AE.L.R.O.IA.G.I.AE.L.A.U.OE.E.Y.E.IA.A.G.G.OE.O.X.D.N.S.OE
+φ C-K:   D.X.T.I.IA.G.TH.EA.NG.D.B.E.O.EA.H.M.D.TH.Y.I.N.R.EO.T.TH.Y.U.W.EA.A.O.A.R.U.B.B.R.X.AE.C.L.Y.R
+φ C+K:   S.G.H.TH.M.IA.D.L.P.T.I.J.AE.NG.U.EO.T.A.M.O.TH.Y.C.N.A.M.D.F.NG.B.AE.B.Y.D.T.T.O.P.A.R.M.AE.O
+~~~
+
+**Decision:** reject the direct centre-as-one-scalar-per-square Caesar interpretation on the 43 interiors. This is a bounded negative for the four exact consumers above, not a rejection of the historical square correspondence, the totient clue, or all possible centre-derived mechanisms. Reproducer: [`sims/lp2_p55_2014_center_block_shift_sft.cjs`](../sims/lp2_p55_2014_center_block_shift_sft.cjs).
+
 ## Exact conclusion and open branches
 
-**Reject the direct raw-square three-square-interior Hill cipher on the p55 43 strict interiors** in both standard whole-block vector orientations and source-printed block lengths under ordinary GP-native English. The attractive 43-cell source alignment survives; the separate cellwise-φ Hill candidate is also negative. It requires a different independently authored symbol transformation, a different original word/register interpretation, or an extra clue to become an actual decoder. This test leaves p55's 33 exterior runes untouched, so it is not a whole-page decoder and does not satisfy the waiting Director #41 handoff.
+**Reject the direct raw-square three-square-interior Hill cipher on the p55 43 strict interiors** in both standard whole-block vector orientations and source-printed block lengths under ordinary GP-native English. Also reject the direct centre-only scalar Caesar consumer: raw and φ-transformed centre residues used as fixed 9/25/9 block shifts fail in both directions. The attractive 43-cell source alignment survives; these bounded negatives require a different independently authored symbol transformation, a different original word/register interpretation, or an extra clue to become an actual decoder. This test leaves p55's 33 exterior runes untouched, so it is not a whole-page decoder and does not satisfy the waiting Director #41 handoff.
 
 The plausible human solve path through the historically required magic squares and the solved p57 “circumferences” instruction is better sourced than purely fabricated numerical keys, but the square-to-p55 core transfer is still interpretive and no 2014 author message specifies a Hill cipher. Do not rescue this direct result by searching key phases, word permutations or row rotations without a new original selector. Unlike the pure transposition exclusion, this is a negative for **only the two specified direct Hill operators**, not every possible secret GF29 matrix or position-keyed cipher.
 
