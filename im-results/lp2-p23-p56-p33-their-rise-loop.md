@@ -48,6 +48,24 @@ The three difference targets are physical p16, p33, and p49:
 
 P33 is the only target with a red heading, but THEIR RISE is the phrase that originally motivated this closure. It cannot be counted again as the independent consequence required to promote the page-rise route. The additional WILL BE FOUND register window is a cross-check, not a unique new LP2 heading or receiver; the competing ARE THE MAP window remains in the charged family.
 
+## Combined five-dot / Liber AL page16 / LP2 p49 map gate (#1960, 20 November 2026)
+
+The three page differences do select a consistent **LP2-only** set under the canonical zero-based physical-page convention:
+
+`p7/p23/p56 → differences 16, 33, 49 → LP2 p16/p33/p49`.
+
+The original page map is explicit in `resources/liber-primus/README.md`: LP2 physical p16/p33/p49 are archive images 33/50/66. P16 is a 267-rune text page; p33 has the already-known red THEIR RISE heading; p49 is the first **10×8** segment of the 32×8 numerical table, followed by p50 (13×8) and p51 (9×8). The external Liber AL holograph's page16 / III:47 grid (OTO scan image60) is a separate object. Its 8×10 shape matches the p49 10×8 segment exactly, but this is a cross-document shape correspondence, not evidence that LP2 p16 is that grid.
+
+The PGP-signed 2013 book-code makes Liber AL a player-visible source and the selected book text contains III:47's line/circle passage. It does not name the holograph page16, select a particular edition carrying the later grid, or instruct the solver to map only the first difference to Liber AL while the other two remain LP2 page addresses. Thus:
+
+- **Uniform LP2 grammar:** all three differences select LP2 p16, p33 and p49, but p16 is ordinary text and the result is only a set of page references.
+- **Mixed-domain reading:** difference16 selects external Liber AL page16 while differences33/49 select LP2 p33/p49. This makes the grid/p49 shape match salient, but the domain switch is not specified by the 2013 or 2016 source.
+- **Uniform Liber AL grammar:** would send all three differences to Liber AL pages16/33/49, not to LP2 p33/p49 and their known page features.
+
+The 2016 signed message provides two competing in-range word windows: zero-based index16 begins ARE THE MAP, and index33 begins WILL BE FOUND; index49 is outside its 43-word register. The two hits correspond to different stencil pairs (p7→p23 and p23→p56), so the register does not uniquely select the p23/p56 half-turn or the three-page destination set. The p33 heading is already known, not a blind prediction. The p49 grid-shape match is genuine but is not a new receiver: the corrected Liber AL III:47/p49 report already charges the line/circle geometry and its tested p55 consumers, which recover no plaintext.
+
+**Decision:** retain the measured stencil transformations, the 16/33/49 page references, the two 2016 word-window correspondences, and the Liber AL-page16 / p49 10×8 shape match as separate structural clues. They do not combine into a source-selected reversible operation, key, or unknown-page receiver. The triangle is navigation arithmetic at most; do not reopen the p49 direct-consumer families or create a dependent cipher search without a new first-party instruction.
+
 ## Decision
 
 The original artwork independently establishes a real three-page stencil family and a unique p23/p56 half-turn pair. It does **not** independently specify subtracting the physical page labels, choosing the positive direction, or indexing the 2016 word register by the difference. “RISE” on p33 supplies the subtraction interpretation only after the p33 phrase is known. The familywise register check produces two exact phrase windows (indices16 and33), not one unique hit; the only unique page-heading match is the already-known p33 phrase.
