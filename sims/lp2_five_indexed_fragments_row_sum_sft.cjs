@@ -234,7 +234,7 @@ assert.deepEqual(transformedRowIndices.map(index => words[index]),
 const transformedColumnIndices = columnSumsMod43(Y);
 assert.deepEqual(transformedColumnIndices,[38,4,34,20,28]);
 assert.deepEqual(transformedColumnIndices.map(index => words[index]),
-  ["BEWARE","EMPTY","WILL","MEANING","THE"]);
+  ["BEWARE","EMPTY","BE","MEANING","THE"]);
 const transformedDiagonalIndices = diagonalSumsMod43(Y);
 assert.deepEqual(transformedDiagonalIndices,[41,40]);
 assert.deepEqual(transformedDiagonalIndices.map(index => words[index]),
@@ -325,6 +325,124 @@ const secondPathFragments = transformedRowIndices.map(index =>
 assert.deepEqual(secondPathFragments.map(fragment => fragment.length),
   [3,4,2,2,3]); // No second 5x5 group; stop rather than recurse.
 
+
+// Finite source-indexed offset and matched-window familywise controls.
+// A control chooses five distinct indexed fragments (page order), then one
+// contiguous five-rune window from each. Longer fragments contribute every
+// possible window; no duplicate fragment is permitted.
+function matrixStats(matrix) {
+  return {
+    row: rowSumsMod43(matrix),
+    column: columnSumsMod43(matrix),
+    diagonal: diagonalSumsMod43(matrix)
+  };
+}
+function indexedMap(pageOffset,fragmentOffset) {
+  const result=[];
+  for(let i=0;i<words.length;i+=1) {
+    const page=i+pageOffset;
+    const ordinal=i+1+fragmentOffset;
+    const fragment=parseWords(page).words[ordinal-1];
+    if(fragment) result.push(fragment);
+  }
+  return result;
+}
+const oneBasedRawRowWords=rawRowIndices.map(index =>
+  index>0 ? words[index-1] : "INVALID");
+assert.deepEqual(oneBasedRawRowWords,["IS","THE","DIRECTION","IS","THEIR"]);
+const baseCoordinates=selected.map(fragment=>[fragment.page,fragment.ordinal]);
+const offsetVariants=[];
+for(const pageOffset of [-1,0,1]) {
+  for(const fragmentOffset of [-1,0,1]) {
+    const mapped=indexedMap(pageOffset,fragmentOffset);
+    const five=mapped.filter(fragment=>fragment.length===5);
+    offsetVariants.push({
+      pageOffset,fragmentOffset,indexedCount:mapped.length,
+      fiveRuneCount:five.length,
+      fiveRuneCoordinates:five.map(fragment=>[fragment.page,fragment.ordinal])
+    });
+  }
+}
+for(const [pageOffset,fragmentOffset] of [[-1,-1],[1,1]]) {
+  assert.deepEqual(
+    indexedMap(pageOffset,fragmentOffset)
+      .filter(fragment=>fragment.length===5)
+      .map(fragment=>[fragment.page,fragment.ordinal]),
+    baseCoordinates
+  );
+}
+
+const eligible=indexed.filter(fragment=>fragment.length>=5).map(fragment=>({
+  ...fragment,
+  windows:Array.from(
+    {length:fragment.length-4},
+    (_,start)=>fragment.values.slice(start,start+5)
+  )
+}));
+assert.equal(eligible.length,13);
+const currentStats={
+  raw:matrixStats(C),
+  phi:matrixStats(Y),
+  inverse:matrixStats(inverseOutput)
+};
+const targetVectors={
+  rawRow:currentStats.raw.row,
+  rawColumn:currentStats.raw.column,
+  rawDiagonal:currentStats.raw.diagonal,
+  phiRow:currentStats.phi.row,
+  phiColumn:currentStats.phi.column,
+  phiDiagonal:currentStats.phi.diagonal,
+  inverseRow:currentStats.inverse.row,
+  inverseColumn:currentStats.inverse.column,
+  inverseDiagonal:currentStats.inverse.diagonal
+};
+const familywiseCounts=Object.fromEntries(
+  Object.keys(targetVectors).map(key=>[key,0])
+);
+let controlSelections=0;
+function enumerateMatchedControls(start,chosen,windowChoices) {
+  if(chosen.length===5) {
+    controlSelections+=1;
+    const candidate=Array.from({length:5},(_,row)=>
+      chosen.map((fragment,column)=>
+        fragment.windows[windowChoices[column]][row]
+      )
+    );
+    const raw=matrixStats(candidate);
+    const phi=matrixStats(multiply(M,candidate));
+    const inverse=matrixStats(multiply(MInverse,candidate));
+    const actual={
+      rawRow:raw.row,rawColumn:raw.column,rawDiagonal:raw.diagonal,
+      phiRow:phi.row,phiColumn:phi.column,phiDiagonal:phi.diagonal,
+      inverseRow:inverse.row,inverseColumn:inverse.column,
+      inverseDiagonal:inverse.diagonal
+    };
+    for(const key of Object.keys(targetVectors)) {
+      if(JSON.stringify(actual[key])===JSON.stringify(targetVectors[key])) {
+        familywiseCounts[key]+=1;
+      }
+    }
+    return;
+  }
+  for(let i=start;i<=eligible.length-(5-chosen.length);i+=1) {
+    const fragment=eligible[i];
+    chosen.push(fragment);
+    for(let window=0;window<fragment.windows.length;window+=1) {
+      windowChoices.push(window);
+      enumerateMatchedControls(i+1,chosen,windowChoices);
+      windowChoices.pop();
+    }
+    chosen.pop();
+  }
+}
+enumerateMatchedControls(0,[],[]);
+assert.equal(controlSelections,133701);
+assert.deepEqual(familywiseCounts,{
+  rawRow:1,rawColumn:1,rawDiagonal:77,
+  phiRow:1,phiColumn:2,phiDiagonal:73,
+  inverseRow:1,inverseColumn:6,inverseDiagonal:109
+});
+
 console.log(JSON.stringify({
   status:"intermediate instruction-level readout; not a complete decryption",
   sourceWordCount:words.length,
@@ -353,5 +471,20 @@ console.log(JSON.stringify({
     lengthGp0Output,lengthGp0Words:lengthGp0Output.flat().map(index => words[index]),
     p12p26Control:p12p26.flat().map(index => words[index])
   },
-  secondPathLengths:secondPathFragments.map(fragment => fragment.length)
+  secondPathLengths:secondPathFragments.map(fragment => fragment.length),
+  oneBasedRawRowWords,
+  readoutAlternatives:{
+    rawColumnWords:currentStats.raw.column.map(index=>words[index]),
+    rawDiagonalWords:currentStats.raw.diagonal.map(index=>words[index]),
+    phiColumnWords:currentStats.phi.column.map(index=>words[index]),
+    phiDiagonalWords:currentStats.phi.diagonal.map(index=>words[index]),
+    inverseRowWords:currentStats.inverse.row.map(index=>words[index])
+  },
+  pageFragmentOffsetVariants:offsetVariants,
+  matchedControlFamily:{
+    description:"five distinct indexed fragments, page order, one contiguous five-rune window per fragment",
+    eligibleFragments:eligible.length,
+    selections:controlSelections,
+    exactCurrentVectorOccurrences:familywiseCounts
+  }
 },null,2));

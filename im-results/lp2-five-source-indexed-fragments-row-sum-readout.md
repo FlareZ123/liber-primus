@@ -106,10 +106,36 @@ Y=
 
 - Row sums mod43: ([17,5,21,28,10]) → **THE EPIPHANY IS THE PRIMUS**.
 - Main / anti-diagonal sums mod43: ([41,40]) → **VERIFY PATHS**.
-- Column sums mod43: ([38,4,34,20,28]) → **BEWARE EMPTY WILL MEANING THE**.
+- Column sums mod43: ([38,4,34,20,28]) → **BEWARE EMPTY BE MEANING THE**.
 - Inverse control (M^{-1}C) row sums mod43: ([23,36,21,29,12]) → **ROAD GOOD IS DIRECTION THE**.
 
 The source-derived operation and its orientation are fixed by the p36 state-packet result in [the φ-grid selector audit](dh3301_phi29_wisdom_square_selector_audit.md). The new five-column readout extends that investigation; it does not establish a universal cipher.
+
+## Familywise alternatives and source-selection decision
+
+The independent matched-window audit is now included in the reproducer. It enumerates every selection of five **distinct** source-indexed fragments among the 13 coordinates with at least five runes, in physical-page order, and every possible contiguous five-rune window from each chosen fragment. This gives **133,701** matched 5×5 matrices. For each matrix the test applies the same raw, \(M C\), and \(M^{-1}C\) constructions and records exact vector matches for row, column, and both diagonal sums modulo 43.
+
+| Current readout vector | Exact matches in 133,701 controls |
+|---|---:|
+| Raw \(C\), row sums \([12,29,30,12,26]\) | **1** |
+| Raw \(C\), column sums \([32,21,32,6,18]\) | **1** |
+| Raw \(C\), diagonals \([31,8]\) | 77 |
+| \(MC\), row sums \([17,5,21,28,10]\) | **1** |
+| \(MC\), column sums \([38,4,34,20,28]\) | 2 |
+| \(MC\), diagonals \([41,40]\) | 73 |
+| \(M^{-1}C\), row sums \([23,36,21,29,12]\) | **1** |
+| \(M^{-1}C\), column sums \([38,39,25,30,32]\) | 6 |
+| \(M^{-1}C\), diagonals \([29,25]\) | 109 |
+
+These are exact-vector counts in the declared control family, not p-values. The raw row vector and the \(MC\) row vector are both unique in this family, but so is the \(M^{-1}C\) row vector. Uniqueness therefore establishes a highly specific correspondence, not which algebraic consumer the creator intended. The transformed diagonal **VERIFY PATHS** is much less selective (73 matches).
+
+The 43-word codebook size motivates reduction modulo 43, and the five-by-five arrangement motivates a matrix. Neither source states that the **row** sums, rather than column or diagonal sums, are the readout. The 2014 square itself has all row, column, and diagonal sums equal to 1033, so it supplies no orientation discriminator. Moreover, the same five physical fragments survive simultaneous page/fragment offsets \((-1,-1)\) and \((+1,+1)\); other simple offsets yield different groups of three, five, or seven length-five fragments. The current zero-based output lookup is linguistically favored: one-based lookup of the same raw row vector gives **IS THE DIRECTION IS THEIR**, not **THE DIRECTION SEEK THE NUMBERS**. But the signed message does not explicitly declare a zero-based convention.
+
+The matched-window result strengthens the five-fragment correspondence; it does **not** fix the row-sum operation or authenticate a decipherment. The \(MC\) transform is invertible modulo 29, but the subsequent row-sum reduction modulo 43 is many-to-one. The p29/p30 follow-through still has two plausible feature orders: [GP0, length] yields **LIBER IS THE WAY**, while [length, GP0] yields **MEANING IS THE WAY**. Their common suffix is already present in the signed message, and no original instruction uniquely fixes the feature order. Thus there is no locked prediction of unknown plaintext on an untouched ciphertext span.
+
+A reproduction defect was also corrected: the \(MC\) column vector's third residue is **34**, which is zero-based signed-word index 34 = **BE** (not **WILL**; **WILL** is index 33). The old SFT assertion and report had the off-by-one word. The corrected output is **BEWARE EMPTY BE MEANING THE**; this is not a grammatical instruction.
+
+**Decision (Issue #1959): bounded negative at the operation-selector gate.** Preserve **THE DIRECTION SEEK THE NUMBERS** and **THE EPIPHANY IS THE PRIMUS** as rare, reproducible instruction-level correspondences. Do not promote them to recovered LP2 plaintext, and do not continue row/column/diagonal or feature-order searches without a new original-source instruction that selects the operation and a prospectively locked unknown-cipher prediction. The second \(MC\) row-sum path has fragment lengths [3,4,2,2,3], not another five-by-five receiver; stop rather than recurse.
 
 ## Following the raw row-sum direction
 
@@ -142,6 +168,6 @@ Reversing the feature order to **[length, GP0]** instead gives **MEANING IS THE 
 4. The p29/p30 H2D feature result is weaker because [GP0,length] is not yet a source-fixed representation; only “IS THE WAY” is invariant under swapping the two features.
 5. The second index set from the (MC) row sums selects fragment lengths [3,4,2,2,3], not another 5×5 group. Do not recursively iterate this branch without a new clue.
 
-**Next decisive work:** independently reproduce the 5×5 selection and raw row-sum phrase; establish whether the source supports the page/fragment index convention and row-sum readout; seek a source-fixed representation for the p29/p30 H2D input. Do not expand into arbitrary feature orderings or further recursive mappings.
+**Decision:** bounded negative at the operation-selector gate. Preserve the instruction-level correspondence, but do not extend it without a source-fixed operation and a prospectively locked unknown-cipher prediction.
 
 **Reproducer:** `node sims/lp2_five_indexed_fragments_row_sum_sft.cjs`.
