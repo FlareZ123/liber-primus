@@ -183,7 +183,7 @@ GOOD LUCK                  -> p25 cube route -> p28 READ OUT
 THE NUMBERS                -> GP0 mod29 -> p20/p25 state triangle
 ```
 
-#1897's precommitted top-line first-word receiver misses (GP0=17 versus signed THEIR=34); no source-selected reversible p25 receiver or plaintext is established.
+#1897's precommitted top-line first-word receiver misses (GP0=17 versus signed THEIR=34); no source-selected reversible p25 cube receiver or p25 plaintext is established. The separate THE/NUMBERS branch selects p25 fragment26 as a conditional state receiver, not as a decoded cube object.
 
 ## Reproduction
 

@@ -317,9 +317,15 @@ assert.deepEqual(numberSumPacket, [state.A, state.g]);
 
 // Charge the same 42x42 ordered-pair family. A p20/p38 collision exists;
 // p25 is distinguished by its independent one-rise route and unique [K,g] object.
+const numberIndexed = [];
+for (let i = 0; i <= 42; i++) {
+  const fragment = pageFragments(i)[i];
+  if (fragment) numberIndexed.push({ i, fragment });
+}
+assert.equal(numberIndexed.length, 42);
 const agPairMatches = [];
-for (const left of indexed) {
-  for (const right of indexed) {
+for (const left of numberIndexed) {
+  for (const right of numberIndexed) {
     const lengths = H2D([left.fragment.values.length, right.fragment.values.length]);
     const sums = H2D([sumMod29(left.fragment), sumMod29(right.fragment)]);
     if (
