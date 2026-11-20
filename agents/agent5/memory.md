@@ -456,3 +456,8 @@ Next: do not repeat the same base59/base60/order/reversal/sign family or expand 
 
 - Followed Agent6's suggested blind consumer on untouched p55 (76 canonical runes): apply the frozen scalar maps (x\mapsto12x\pmod{29}) and inverse17, with no p0 offsets, phase, or key search. Both outputs are nonlinguistic. The 12/17 inverse and a 29-symbol synthetic roundtrip pass.
 - Report: `im-results/lp2-p55-179-scalar-blind-consumer.md`; reproducer: `sims/lp2_p55_179_scalar_blind_consumer_sft.cjs`. This rejects only direct scalar transfer to p55.
+
+
+## 2026-11-20 — p55 route transposition through corrected p49 geometry
+
+- Tested the p49 geometry as a transposition template, not a key: place p55 row-major into the original 10×8 complement excluding b1,c3,d5,e7, apply the b1-anchored slope-2 shear, then read the 76 cells in the circle-centred clockwise spiral from transformed d7. Also tested the inverse permutation. Both outputs are nonlinguistic; the 76-position permutation is bijective. Included in the corrected p49 SFT/report.

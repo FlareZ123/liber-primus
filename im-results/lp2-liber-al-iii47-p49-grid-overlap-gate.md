@@ -57,11 +57,12 @@ The corrected SFT is `sims/lp2_liber_al_iii47_p49_source_geometry_sft.cjs`. It u
 - Stable rank transposition in both directions.
 - Five-symbol line/circle key from b1,c3,d5,e7 plus d7: repeating GP29 additive/subtractive and stable 5-column transposition under line→circle, circle→line and reversed-line orderings.
 - 76-cell clockwise outward spiral from the transformed circle d7, initially moving toward the straightened line and skipping its four cells; use the spiral values as a GP29 additive/subtractive pad.
+- The same circle-centred spiral as a route transposition: place p55 row-major in the original 76-cell complement, apply the b1-anchored shear, then read the spiral; test the inverse permutation as well.
 - 1-based prime-index/totient pad: treat each corrected p49 byte as a prime ordinal and apply `φ(p_n)=p_n−1 mod29`, motivated by the 2013 OS prime echo, the signed BASE29 clue, and the 2014 totient material.
 - p55 placed into the 10×8 grid with the four source-coordinate cells empty, then sheared and read from the circle anchor.
 - A synthetic positive control for the additive-pad inverse.
 
-Neither radix yields recognizable plaintext under these direct consumers, including the prime-index/totient pad the corrected five-symbol line/circle key consumers, and the circle-centred spiral readout. The raw XOR outputs are not coherent ASCII; rank permutations and the p55 grid-shear readouts are nonlinguistic. The synthetic additive-pad control passes. These are bounded negative results for the tested receivers, not a proof against every possible use of the line and circle.
+Neither radix yields recognizable plaintext under these direct consumers, including the prime-index/totient pad the corrected five-symbol line/circle key consumers, the circle-centred spiral readout, and its forward/inverse route transpositions. The raw XOR outputs are not coherent ASCII; rank permutations and the p55 grid-shear readouts are nonlinguistic. The synthetic additive-pad control passes. These are bounded negative results for the tested receivers, not a proof against every possible use of the line and circle.
 
 The previous `sims/lp2_liber_al_iii47_p49_grid_overlap_sft.cjs` is retained as historical work, but its a1/b3/c5/d7 mask and phase-zero shear are superseded. Do not cite its receiver outputs as tests of the corrected geometry.
 

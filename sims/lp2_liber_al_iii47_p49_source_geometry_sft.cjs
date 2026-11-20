@@ -85,7 +85,7 @@ function buildShearedKey(tableValues) {
   const spiralMinus = p55.map((value, i) => mod(value - spiralKey[i], 29));
   const spiralPlus = p55.map((value, i) => mod(value + spiralKey[i], 29));
   assert.equal(keyBytes.length, 76);
-  return { sheared, lineTargets, circleTarget, order, keyBytes };
+  return { sheared, lineTargets, circleTarget, order, keyBytes, spiralOrder };
 }
 
 function shearP55(directionValues) {
@@ -230,6 +230,31 @@ for (const [radix, alphabet] of [['base60', BASE60], ['base59', BASE59]]) {
     spiralKeyText: render(spiralKey),
     spiralPadMinus: render(spiralMinus),
     spiralPadPlus: render(spiralPlus),
+
+    spiralTranspositionForward: (() => {
+      const sourceCells = Array.from({ length: 80 }, (_, i) => i).filter((i) => !lineIndices.includes(i));
+      const sourceIndexBySheared = new Map(Array.from({ length: 80 }, (_, i) => {
+        const row = Math.floor(i / 8);
+        const col = i % 8;
+        return [mod(row - 2 * (col - 1), 10) * 8 + col, i];
+      }));
+      const permutation = spiralOrder.map((shearedIndex) => sourceCells.indexOf(sourceIndexBySheared.get(shearedIndex)));
+      assert.equal(new Set(permutation).size, 76);
+      return render(permutation.map((i) => p55[i]));
+    })(),
+    spiralTranspositionInverse: (() => {
+      const sourceCells = Array.from({ length: 80 }, (_, i) => i).filter((i) => !lineIndices.includes(i));
+      const sourceIndexBySheared = new Map(Array.from({ length: 80 }, (_, i) => {
+        const row = Math.floor(i / 8);
+        const col = i % 8;
+        return [mod(row - 2 * (col - 1), 10) * 8 + col, i];
+      }));
+      const permutation = spiralOrder.map((shearedIndex) => sourceCells.indexOf(sourceIndexBySheared.get(shearedIndex)));
+      const inverse = Array(76);
+      permutation.forEach((sourcePosition, outputPosition) => { inverse[sourcePosition] = outputPosition; });
+      assert.equal(new Set(inverse).size, 76);
+      return render(inverse.map((i) => p55[i]));
+    })(),
     primeIndexTotientKeyText: render(primeIndexTotientKey),
     primeIndexTotientMinus: render(primeIndexTotientMinus),
     primeIndexTotientPlus: render(primeIndexTotientPlus),
