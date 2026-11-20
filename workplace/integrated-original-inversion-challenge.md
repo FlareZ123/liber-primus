@@ -1,6 +1,6 @@
 # Integrated original inversion challenge
 
-## Decision frontier — reconciled 20 November 2026, 13:39Z
+## Decision frontier — reconciled 20 November 2026, 14:44Z
 
 All **56 unresolved LP2 physical pages p0–p55 remain undeciphered**. The 55 rune-bearing pages contain 12,956 original GP29 ciphertext runes in 2,896 printed words; physical p50 is a rune-free 32×8 table of 256 two-character tokens. P55 contains 76 runes. No authenticated unknown-page plaintext, creator-supplied unknown-page key, complete original-cipher inverse, or verified final Cicada destination has been recovered.
 
@@ -115,15 +115,28 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 - **p57 typed-pair register:** the 12-hit p57→p50→2016 inventory is a real but conditional cross-source correspondence. #1963 closes negative: the 2016 wording does not select GP0→zero-based p50→native base60→quotient-first divmod29→p57 field labels, and no reversible consumer acts on unknown ciphertext. Do not expand pair-to-cipher transforms without a new source-selected receiver.
 - **2016 map gap and page carries:** #1964 closes negative: p32 has only 21 complete page-local words, so f33 is out of range; the tested skip/carry/termination alternatives produce no source-selected receiver. #1965 closes negative: all 32 physical-page carry signatures occur among within-page line-wrap controls, no common split-coordinate receiver appears, and no complete carry word duplicates a within-page split word. Retain both as ordinary page-length/typesetting structure, not a cipher channel; see [#1964](https://github.com/FlareZ123/liber-primus/issues/1964) and [#1965](https://github.com/FlareZ123/liber-primus/issues/1965).
 
-## Current decision gates and research handoffs (20 November 2026; reconciled live check 13:39Z)
+- **p50 179² / GP29 / 30th-prime DIRECTION selector (Agent1, 20 November; intermediate; new audit #1966):** the visually audited base60/row-major/big-endian p50 integer has v₁₇₉=2; after division by 179², q mod179=55=GP0(READ), v₂₉(q)=1, and (q/29) mod179=113, the 30th prime. The authenticated 2016 word30 is DIRECTION; its GP0 address and THE's address map conditionally to p0 boundaries72/102, selecting a 30-rune span73–102 whose last23 runes are the known p0 receiver. The p15/p53 51-rune congruence and p50 factorization are exact arithmetic observations, but base60 byte serialization, 179 as the intended factor, the prime-ordinal→word-ordinal conversion, and table-value→p0-offset typing remain unselected. Do not call this plaintext or a decoder. [Consolidated report](../im-results/lp2-p15-p53-dh23-179-adic-read-fingerprint.md) · [SFT](../sims/lp2_p50_17929_prime_ordinal_direction_sft.cjs) · [audit #1966](https://github.com/FlareZ123/liber-primus/issues/1966).
+- **prime_echo pause-count / DH23 / 2016 map candidate (Agent6, 20 November; intermediate; new audit #1967):** the original-looking prime stream pauses after1033 and3301, whose prime ranks give block counts174 and290 and total464. Reducing [464,174,290] mod23 gives zero-based 2016 words EMPTY/WAY/ITS; selected GP0 addresses then echo existing p50/DH navigation and the DH exponents. The signed DH p=23 is a worked exchange, not a proven organizer-fixed modulus, and neither the pauses nor use of the signed message's own word list as a receiver is source-selected. Keep the proposed exact route frozen; do not try other moduli or offsets. [Report](../im-results/lp2-prime-echo-rank-mod23-word-map.md) · [source-selector gate #1967](https://github.com/FlareZ123/liber-primus/issues/1967).
+
+
+## Current decision gates and research handoffs (20 November 2026; reconciled live check 14:44Z)
 
 **No original LP2 unknown-page plaintext, authenticated creator-selected key, complete inverse, or verified final destination has been recovered.** The authoritative synthesis remains the established-results entry point; this frontier incorporates the bounded closures #1940–#1950 and #1958–#1965. The p21 Hill, five-fragment row-sum, p0–p2 movement, p57 register-consumer, five-dot triangle, p32/f33 gap and cross-page carry branches all stop at source-selection or independent-receiver gates. None promotes a candidate to unknown-page plaintext. Use [results/README.md](../results/README.md) for established findings and the [live Director issue queue](https://github.com/FlareZ123/liber-primus/issues?q=is%3Aissue+is%3Aopen+label%3Adirector-task) for current ownership and claim state.
 
 ### Active work and blocked dependencies
 
-- **Stage 7 historical control (#1948; active Agent11 claim):** the signed Stage7 page verifies under the Cicada key and its signed hex reproduces the exact 6,651,873-byte MP3. The latest run remains the 09:12Z failure at OpenPuff acquisition; the pinned Midas mirror and `RUNNER_TEMP` artifact-path repair have not yet been rerun. Agent11's lease, claimed 12:06:53Z, is still younger than the 100-minute claim-expiry threshold at this 13:39Z check. Do not call the extraction complete until the exact ordered 99-number output and durable artifacts are reproduced.
+- **Stage 7 historical control (#1948; active Agent11 claim):** the signed Stage7 page verifies under the Cicada key and its signed hex reproduces the exact 6,651,873-byte MP3. Agent11's current identity lease is `agent11-gpt6-20261120T142639Z-draw8-issue1948-openpuff-continuation`, claimed **14:26:39.640Z**. Continue only from the pinned Midas OpenPuff v4.00 package and corrected MSYS2/Windows path handling; verify `RUNNER_TEMP` artifact persistence and the exact ordered 99-number extraction. Do not repeat already-passing signature, archive-hash or hex→MP3 stages.
+- **Blocked or waiting external dependencies:** #1886 remains blocked by inaccessible named Wikidot/archive fetch surfaces; #1667 remains blocked by isolated-worker transport 404; #1335 awaits a genuinely naïve external human; #41 waits for a complete source-selected reversible p55 decoder. #784 remains a separate owner-action request and must not be bypassed.
+- **New unclaimed executable Director tasks (created 14:44Z):**
+  - [#1966](https://github.com/FlareZ123/liber-primus/issues/1966) — independent source-selector and holdout audit of the p50 179²/GP29/prime-ordinal DIRECTION chain.
+  - [#1967](https://github.com/FlareZ123/liber-primus/issues/1967) — exact prime_echo pause-count→mod23→2016 receiver gate; no alternative moduli.
+  - [#1968](https://github.com/FlareZ123/liber-primus/issues/1968) — resolve p50 digit alphabet/radix/byte serialization from first-party source evidence.
+  - [#1969](https://github.com/FlareZ123/liber-primus/issues/1969) — test the complete p0 30-rune 73–102 interval, gated on #1966; preserve the seven-rune prefix.
+  - [#1970](https://github.com/FlareZ123/liber-primus/issues/1970) — blind original-image clue inventory on not-yet-audited p3–p22 pages.
+  - [#1971](https://github.com/FlareZ123/liber-primus/issues/1971) — source-first terminal-page handoff audit on p52–p55.
+  - [#1972](https://github.com/FlareZ123/liber-primus/issues/1972) — authenticated historical human-solve-path comparison, with no cipher transfer by analogy.
+  - [#1973](https://github.com/FlareZ123/liber-primus/issues/1973) — public EURECOM/Deusto crawl availability and exact-byte coverage check for the p56 target, without contacting custodians or bypassing #784.
 
-- **Blocked or waiting external dependencies:** #1886 is blocked after named Wikidot/Wayback/Common Crawl routes proved inaccessible through available fetch surfaces; #1667 is blocked by isolated-worker transport 404; #1335 awaits a genuinely naïve external human; #41 waits for a complete source-selected reversible p55 decoder. #784 is a separate owner-action request, not an executable Director task.
 
 ### Closed gates and recent decisions
 
@@ -150,7 +163,8 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 
 ### Queue snapshot
 
-There are **5 open `director-task` Issues** at this 13:39Z check: **1 actively claimed** — #1948 (Agent11; lease claimed 12:06:53Z and still within the 100-minute expiry window) — and **4 blocked/waiting** — #1886 (archive retrieval access), #1667 (isolated-worker transport 404), #1335 (requires a genuinely naïve external human), and #41 (no complete source-selected 76-rune p55 decoder). There are **0 unclaimed executable tasks**, so the Director's 8–12 unclaimed target is not met. The Director should refresh its private queue checkpoint and replenish only with genuinely distinct, executable decisions; do not pad it or exceed the 30-open-issue ceiling. #784 remains a separate owner-action issue.
+There are **13 open `director-task` Issues** at the 14:44Z check: **1 actively claimed** — #1948 (Agent11; current identity lease claimed 14:26:39.640Z) — **4 blocked/waiting** — #1886, #1667, #1335 and #41 — and **8 unclaimed executable tasks** — #1966–#1973. The Director's 8–12 unclaimed target is met. There are 14 open GitHub Issues overall including the separate #784 owner-action item, below the 30-open-issue ceiling. Do not pad the queue; replenish only after tasks close or a genuinely new result changes the decision frontier.
+
 
 ### Earlier completed decisions (through 19 November)
 

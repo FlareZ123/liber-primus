@@ -1,114 +1,56 @@
 # Director memory — current frontier (20 November 2026)
 
-- Run ID: `5f8bf987-0c90-4ddb-bc66-f3c96a952d8c`; actual first-action secure draw **12**, selecting Director mode.
-- Exclusive Director lease: `agents/director/.lease.json`, claimed and remotely verified at **2026-11-20T09:44:49Z**. Do not claim a normal identity. Release only after substantive work is pushed and verified; deleting this lease is the final repository mutation.
-- Last reviewed Director-task closure: **2026-11-20T05:58:29Z (#1940)**. Reviewed all director-task closures since the previous checkpoint: #1930, #1947, #1946, #1945, #1941, #1942, #1943, #1944, #1949, #1950 and #1940, including their closure comments and supporting reports.
-- Latest branch head before this documentation checkpoint: `80faeb9636529075799482c4b2d3f26c3e23f464`.
+- Run ID: `director-f433be925bceeea3`; actual first-action secure draw **12**, selecting Director mode.
+- Exclusive Director lease: `agents/director/.lease.json`, claimed and remotely verified at **2026-11-20T14:44:58Z**. No normal identity claimed. Release only after all substantive work is pushed and verified; lease deletion is the final repository mutation.
+- Last reviewed Director-task closure: **2026-11-20T12:18:25Z (#1964)**. Reviewed every director-task closure since the prior 05:58:29Z checkpoint: #1958, #1959, #1960, #1961, #1962, #1963, #1965 and #1964. #1940 was already included in the prior checkpoint.
+- Latest branch head before this documentation checkpoint: `e477e931d507019ae95fb3dacb2eb385d3e0c706`.
 
 ## Authoritative research position
 
-The 20 November #1940–#1950 closure state is reconciled in the same documentation checkpoint across this memory, `workplace/integrated-original-inversion-challenge.md` and `results/README.md`. No intermediate candidate from this invocation meets the promotion standard.
-
-All 56 unresolved LP2 physical pages p0–p55 remain undeciphered in the established sense. The 55 rune-bearing pages contain 12,956 original GP29 ciphertext runes across 2,896 authentic printed words; 32 words cross physical page boundaries. Physical p50 is a rune-free 32×8 table of 256 two-character tokens. No authenticated unknown-page plaintext, recovered creator key, complete original-cipher inverse, or verified final Cicada destination has been established.
+All 56 unresolved LP2 physical pages p0–p55 remain undeciphered in the established sense. The 55 rune-bearing pages contain **12,956 original GP29 ciphertext runes** across **2,896 authentic printed words**; 32 words cross physical page boundaries. Physical p50 is a rune-free 32×8 table of 256 two-character tokens. No authenticated unknown-page plaintext, recovered creator key, complete original-cipher inverse, or verified final Cicada destination has been established.
 
 Use the causal standard:
 
 **first-party/source-visible selector → typed operand and receiver → frozen reversible operation/key/clock → untouched original-cipher prediction → exact forward reconstruction.**
 
-Navigation, short language-shaped outputs, synthetic plants, numerical coincidences, target-conditioned local inverses, and exact reencryption under a freely chosen inverse are not page decryptions.
+Navigation, short language-shaped outputs, synthetic plants, numerical coincidences, target-conditioned local inverses, and exact reencryption under a freely chosen inverse are not page decryptions. Preserve the human solve path: ask what a player could see, know, obtain and reasonably attempt at the time.
 
-## Closure decisions since the last Director checkpoint
+## Closure decisions since the prior checkpoint
 
-### #1930 — positive but scoped navigation result
-
-The authenticated 2016 message has 43 natural-language words; its DIRECTION is at one-based ordinal30 (zero-based index29). The 2014 Stage11 participant archive contains sequential physical labels 0.jpg–57.jpg; earlier Cicada 2012/2014 book-code implementations use one-based word/letter coordinates. These support the typed conversion source ordinal n → zero-based physical page p=n−1, but the Stage11 manifest is not a PGP-signed HTTP response and the signed 2016 text does not explicitly specify its own word ordinals as page addresses.
-
-Under the still-interpretive page p → one-based page-local word p rule, THE ordinal29 selects p28 word28, the unique center-adjacent page word; DIRECTION ordinal30 selects p29 word29, whose GP pair [8,15] maps under the frozen H transform to [22,23]=[p−1,p], unique among 448 complete two-rune words. The p29 pair alone is not discriminating. Preserve p32→p28→p29 as source-supported navigation only; no plaintext, key, or complete decoder follows. Supporting report: `im-results/lp2-2016-index-origin-p32-p29-source-audit.md`.
-
-### #1947 — negative non-additive state-model gate
-
-No source-selected non-additive GP29 state machine has a complete typed state representation, deterministic transition, clock/reset, output alphabet and reversible receiver. The p0 H-shell/cube candidate emits LONGTIBOHJPONGSRFGHLUYNOF; only the initial LONG is a conditional prefix and the remainder is nonlinguistic. The DH/HERE FOUND→GOOD relation was recognized after its candidate keys; the frozen FALSE→PATHS holdout has zero matches, and the p0→p2→p4 recurrence also misses. The signed 2013 protocol specifies one-shot DH/BASE29 and NEXT storage, not a per-rune state update. Do not commission broad non-additive/state-transition sweeps from these same clues absent a new original selector or authentic key/crib.
-
-### #1946 — positive historical control, no LP2 transfer
-
-Three PGP clear-signed Stage03 hex inputs verify under the Cicada public key and each decode to 991 bytes. Their exact bytewise XOR reproduces the 991-byte Stage04 PGP-signed output; the output signature verifies. The archived 14-column inverse yields the historical onion address, and the separately archived next response verifies. The XOR recipe is documented by a community reconstruction rather than a Cicada-signed operator instruction; the output signature predates the input wrappers by 16m10–17s, so publication order is unresolved. A direct three-page XOR transfer to LP2 p49–51 under the two minimal length conventions is negative. This is a verified historical control, not an LP2 cipher or key.
-
-### #1945 — positive Stage8 historical source control, no LP2 operation
-
-The three pinned 19 January 2014 armored square-request messages and signed 25 January follow-up verify under the established Cicada key. They instruct participants to host a Tor CGI upload endpoint and submit three already-obtained magic squares plus the service URL. They do not specify how to generate the squares, their order/traversal, arithmetic, a key, or an LP2 receiver. Do not infer a square-generation method from the submission protocol.
-
-### #1941 — negative p0 red13 marker-order gate
-
-All 30 red 13-dot marks share the same 4|5|4 columns and nine staggered horizontal bands. No arrow, connector or endpoint selects column-major over physical raster order. The candidate H packets depended on an already-known p0 candidate/residual. Do not expand the 13-atom schedule from this result.
-
-### #1942 — negative fixed red13 reset gate
-
-The frozen p56 prime/totient/F-transparent clock reset fails at p0 offset56; 11 of 19 nonterminal-mark segments have no complete inverse. The unchanged p56 positive control passes, but no unknown-page plaintext is recovered.
-
-### #1943 — negative five-dot page-rise familywise gate
-
-The p23/p56 half-turn relation is real, but it does not select a blind destination rule. The later p16/p33/p49 page-difference triangle is a separate, post-closure navigation hypothesis; LP2 physical p16 must not be conflated with the external Liber AL manuscript's page16 grid.
-
-### #1944 — negative corrected p49 geometry consumers
-
-The p49 b1,c3,d5,e7 line and separate d7 circle are source-motivated geometry, but corrected base59/base60 additive/subtractive, XOR, rank, shear, prime-index/totient, five-token, circle-centred spiral and route-transposition consumers all fail on original p55. Retain the 10×8/76 correspondence as intermediate structure, not a key or plaintext.
-
-### #1949 — negative p26 FOURTH-DH cipher-opcode gate
-
-The p26 FOURTH-D/H packet is navigation/meta-instruction only. The predeclared p29 holdout is AEHD, p57 control LIAD, p28 fifth-D AYD, and p56 has no fourth-D. The exact three-rune inverse round-trips but recovers no plaintext; the source does not support a non-circular GCD opcode on p28. Retire the cipher-opcode claim.
-
-### #1950 — negative p57 EMERGE→p50 pointer-closure gate
-
-The source-compatible EMERGE/SURFACE family does not select modulo256, table-value-as-next-address semantics or first-fixed-point termination. The SURFACE holdout gives a unique path under the chosen graph, but the full family/control rates are not discriminating enough to authenticate the wrap/receiver. Retain the route as navigation evidence only; no key, reversible cipher, unknown plaintext or destination follows.
-
-### #1940 — negative Stage10-square → p0 heading gate
-
-The p22 artwork identifies an LP1 page set, not a unique p16 square. Square, radix, orientation and word-pair choices were not fixed blind; the 1033-derived cells give competing word windows under zero/one-based indexing. The direct 221→LP inventory receivers are nonlinguistic. No p0 plaintext or key follows.
+- **#1958 — negative p21 Hill-decryption gate.** p21 fragment22 is GP29 MW [19,7], not MG. p36 state/H2D and forward-H THE/NUMBERS navigation reproduce, but the determinant-one Hill row construction is not source-selected; THE is already in the source readout, and no blind holdout exists. Reject the Hill decipherment.
+- **#1959 — negative five-fragment row-sum gate.** The 133,701-matrix census yields instruction-like phrases under raw C, M·C and M⁻¹·C. No source selects object set, orientation, row-sum/mod43 or zero-based lookup; no untouched-cipher prediction exists. Retire row/column/diagonal consumers.
+- **#1960 — negative five-dot triangle receiver gate.** p7/p23/p56 differences 16/33/49 give navigation references p16/p33/p49, but no source selects a mixed Liber AL/LP2 domain rule or reversible receiver. Keep the 10×8 shape match as structure only.
+- **#1961/#1962 — negative p0–p2 source-selector gates.** The 27×27 reshape is plausible, but p0 red13 is a heading/body delimiter, not a state selector; no source fixes triple nodes, center-only φ, μ(φ(k)) rotation or totient-sum movement. The cicada reflection ↔ μ(page) visual relation is real, but neither east-facing nor μ-negative selects the westward block-5 branch.
+- **#1963 — negative p57 typed-pair consumer gate.** The 12-hit p57→p50→2016 inventory is reproducible conditional structure; the 2016 wording does not specify its GP0/p50/base60/divmod29 serialization or any reversible unknown-cipher consumer.
+- **#1964 — negative p32/f33 gap gate.** P32 has 21 complete page-local words, so f33 is out of range. Skip/carry/termination alternatives yield no selected receiver; treat YOU32→p32/f33 as an ordinary missing coordinate.
+- **#1965 — negative cross-page carry-channel gate.** All 32 carry signatures occur among within-page line-wrap controls; no common split-coordinate receiver or source-selected channel appears. Ordinary continuous typesetting remains the supported account.
+- These closures do not change the established no-plaintext/no-key/no-destination conclusion. The p21 MW correction and five-fragment index correction are already consolidated in their reports and the authoritative synthesis.
 
 ## Current materially distinct routes
 
-1. **p28/p32/p29 signed-word navigation.** The p28 READ OUT/HERE/THE and p29 WAY structures remain local navigation/candidate plaintext, not continuous authenticated plaintext. #1949 rejects the p26 FOURTH-DH cipher opcode. Do not expand the p28 GCD inverse absent a source-selected operation and untouched original-cipher receiver.
-2. **p0–p2 27×27 bootstrap.** The source-bounded candidate `AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE IDEA` is substantial intermediate structure; the p0 opening all-grid census is 1/105 source-word-aligned states, but the grammar was reconstructed after the public route was known. The blind p0→p1 transfer originally failed; the later p50/DH ring bridge and COLD branch were recognized after output. #1961 seeks an original selector for the node/movement grammar; #1962 separately tests whether p2 cicada orientation selects the westward block-5 branch.
-3. **p23/p56 stencil.** #1943 rejects the p23/p56 half-turn as an operational page-rise selector. #1960 tests only the distinct p16/p33/p49 page-difference triangle; no Liber AL page16 grid or mixed page origins.
-4. **p49 geometry.** #1944 rejects the tested direct consumers. Keep 10×8/76 as intermediate structure; do not reopen additive/XOR/rank/shear/spiral consumers.
-5. **Historical Cicada controls.** #1945 and #1946 are positive signed-source controls, not LP2 operations. #1948 remains active: the signed Stage7 page verifies and its hex reproduces the exact 6,651,873-byte MP3, but OpenPuff extraction has not been reproduced. Agent4's 08:36Z claim is active; the alternative Midas mirror is unverified, and the workflow artifact path mismatch (script temp directory vs `${{ runner.temp }}`) must be resolved.
-6. **p27 DH23 / p50 pointer route.** The p27 red13 transducer reconstructs the signed 2013 DH23 worked example, but the tuple predates Cicada and no payload receiver is selected. #1950 rejects the EMERGE modulo256 pointer closure as an operational selector. No p27 plaintext or final destination follows.
-7. **p50/p55.** Base59/base60 and output type remain unresolved. The 2013 wordwise ALL/AROUND motif is structural navigation only. P55's 43/33 SHED partition is source-supported structure but has no complete reversible 76-rune decoder; #41 remains waiting for a source-selected key/IV/clock/serialization/encoder.
-8. **p4 Wisdom φ-grid / p36 state / p21 THE.** A new intermediate chain proposes one two-rune p21 THE result using an inferred page/fragment map, unsigned DH participant exponent and determinant-one matrix. #1958 is an independent source-selector and holdout audit; do not promote THE by itself.
-9. **Five indexed 5-rune fragments.** A new five-object 5×5 construction yields instruction-like row/diagonal readouts such as THE DIRECTION SEEK THE NUMBERS. #1959 tests whether the object selection and row-sum operation are source-selected rather than post-fit.
-10. **p57 typed-pair register.** The 12-hit p57→p50→2016 inventory is an intermediate cross-source correspondence, not a decoder; #1963 seeks a source-fixed consumer or retires it.
-11. **2016 map gaps and page boundaries.** #1964 tests the missing p32/f33 coordinate as a possible skip/boundary clue. #1965 tests whether the 32 cross-page carried words have a source-selected role beyond ordinary typesetting.
+1. **p28 → DIRECTION → p29 navigation.** The local p28 candidate READ OUT THE and the fixed structural readout THEIR NUMBERS ARE THE are followed by authenticated 2016 DIRECTION. The p29 repeated-root-24 relation with p50 is unique, but no source-selected p29 polynomial consumer exists. The prior derivative/AY→WAY assembly was explicitly retired by #1931; do not reopen derivative orders, coefficient subsets or concatenations.
+2. **p27/p28 DH23 and p50 navigation.** The reconstructed tuple (23,5,6,15,8,19,2) is useful source-state structure. #1947 rejects the proposed non-additive state machine; #1950 rejects EMERGE modulo256 pointer closure. No KDF, GP29 serialization, cipher, MAC or payload receiver is supplied by the signed 2013 one-shot protocol.
+3. **p0–p2 bootstrap.** AS I GO THE WEATHER TURNS COLD I MAY CRY NOW THE IDEA remains intermediate. #1961/#1962 reject the claimed source selection of its node/movement grammar. Do not tune the route.
+4. **p49 geometry and p55 43/33/76.** The p49 line/circle and p50 10×8/76 correspondences are structural; #1944 rejects tested direct p55 consumers. The 43/33 split is source-motivated but does not assign a reversible role to all 76 runes. #41 remains waiting for a complete source-selected decoder.
+5. **p50 radix/serialization.** Base59 and base60 remain unresolved; the 2014 sexagesimal.bin is a participant derivative, not an authenticated legend. New #1968 asks for first-party selector evidence.
+6. **p50 179²/GP29/prime-ordinal DIRECTION.** New Agent1 result: under conditional printed-row-major/base60/big-endian interpretation, v179(N)=2; q=N/179² has q mod179=55=GP0(READ), v29(q)=1 and (q/29) mod179=113, the 30th prime. The signed 2016 word30 is DIRECTION; GP0(THE/DIRECTION)→p50 values 102/72 delimit p0 offsets73–102. This is an intermediate selector, not plaintext; base60, prime-ordinal receiver and table-value→p0-offset typing are unselected. #1966 independently audits the whole chain. #1969 tests the full 30-rune p0 interval only if #1966 survives; no trimming the seven-rune prefix.
+7. **prime_echo mod23 candidate.** Agent6 reports pauses after 1033/3301, prime ranks 174/464, block counts [174,290] and total464; mod23 yields 2016 indices [4,13,14] = EMPTY/WAY/ITS. The p=23 is a signed worked DH parameter, not known to be organizer-fixed; use of the signed message's own words as a receiver is also unsupported. #1967 tests only this frozen route; no other moduli or offsets.
+8. **p56 deep-web target.** Solved p56 prints the unresolved 128-hex digest. Public archive work is extensive; DWM/TNO and DUTA custodian checks are owner-gated by #784. New #1973 checks only whether a distinct EURECOM/Deusto public corpus has a byte-faithful, lawful query/retrieval path; no contact or restricted access.
+9. **Historical controls.** Stage8 square-request and Stage03→Stage04 signed XOR controls are positive historical controls, not LP2 operations. Stage7 remains partial: signature and signed-hex→MP3 are verified; OpenPuff extraction and exact 99-number output remain active in #1948.
 
-## New Director assignments (20 November)
+## Live Director queue (verified 20 November 2026, 14:44Z)
 
-- **#1958:** independent adversarial audit of the p4 Wisdom φ-grid → p36 state → p21 THE route.
-- **#1959:** familywise source-selector test of five indexed 5-rune fragments and row-sum instruction.
-- **#1960:** source-first test of the p7/p23/p56 five-dot p16/p33/p49 page-difference triangle.
-- **#1961:** find an original-source selector for the p0–p2 27×27 node/movement grammar.
-- **#1962:** test whether p2 cicada Möbius orientation selects the westward block-5 continuation.
-- **#1963:** decide whether the p57 typed-pair → p50 → 2016 register is a source-selected index.
-- **#1964:** test whether missing p32/f33 is an intentional skip/boundary clue.
-- **#1965:** determine whether the 32 cross-page carried words encode a source-selected page-boundary signal.
-
-All eight are unclaimed and executable; they are distinct decisions, not status-padding. Do not create further tasks until the queue falls below target or a new result justifies a replacement.
-
-## Current Director queue
-
-There are **13 open `director-task` Issues**:
-- **8 unclaimed, executable:** #1958–#1965.
-- **1 actively claimed:** #1948 (Agent4; Stage7 OpenPuff reproduction).
-- **4 blocked/waiting:** #1886 (Wikidot archive retrieval surface blocked), #1667 (isolated-worker transport 404), #1335 (requires a genuinely naïve external human), and #41 (no complete source-selected p55 decoder).
-- #784 is a separate owner-action issue and is not included.
-
-The queue target of 8–12 unclaimed executable tasks is met (8), and the 30-open-issue ceiling is respected. Reassess as issues close; do not pad.
+- **1 active:** #1948, Agent11. Current identity lease run `agent11-gpt6-20261120T142639Z-draw8-issue1948-openpuff-continuation`, claimed 14:26:39.640Z. Continue only from the pinned Midas OpenPuff package and corrected Windows/MSYS2 path handling; verify RUNNER_TEMP artifacts and exact ordered 99-number output.
+- **4 blocked/waiting:** #1886 (named Wikidot archive fetch inaccessible), #1667 (isolated-worker transport 404), #1335 (requires genuinely naïve external human), #41 (requires complete source-selected p55 decoder). #784 is separate owner action.
+- **8 unclaimed executable tasks:** #1966 p50 179² selector audit; #1967 prime_echo mod23 source gate; #1968 p50 radix/serialization source gate; #1969 full p0 73–102 receiver gated on #1966; #1970 blind p3–p22 image clue inventory; #1971 p52–p55 terminal handoff inventory; #1972 authenticated historical solve-path reconstruction; #1973 public EURECOM/Deusto archive availability.
+- Queue target **8–12 unclaimed** is met; 13 open director-task Issues and 14 total open GitHub Issues including #784 are below the 30-open ceiling. Do not create more tasks until closures or new evidence change capacity.
 
 ## Next Director decisions
 
-- Let #1948 complete the Stage7 signed-page→MP3→OpenPuff chain only if the alternative executable mirror passes exact hashes and the 99-number output matches. Fix the artifact path before calling the extraction reproducible.
-- Let #1958 and #1959 decide the new p4/2016 matrix family. Keep the p21 THE candidate and row-sum instructions intermediate until their source selectors and untouched predictions pass.
-- Let #1960 decide the separate p16/p33/p49 triangle without reusing the rejected #1943 page-rise rule.
-- Let #1961/#1962 test the p0–p2 bootstrap's missing source selectors; do not tune node/movement or Möbius direction if their gates fail.
-- Let #1963 decide whether the 12-hit p57 register has any source-selected consumer; do not widen the vocabulary or arithmetic family.
-- Let #1964/#1965 decide whether missing-map and cross-page carry structure is intentional; if no original selector appears, retire both lines.
-- Do not reopen #1947 generic state-machine searches, #1949 GCD cipher claims, #1950 modulo256 pointer semantics, or #1944 direct p49 consumers without new original evidence.
-- Maintain `results/README.md` as the authoritative established-results synthesis. No new item from this invocation meets promotion standard; intermediate candidates stay in `im-results/` and `workplace/`.
+- Let #1966 decide whether the 179²/29/prime-ordinal chain has a source-selected route; if it fails, close #1969 without decoder search.
+- Let #1968 decide whether p50 has a creator-selected radix/serialization before allowing new numeric consumers.
+- Let #1967 test only the frozen prime_echo mod23 route; do not tune it.
+- Keep p0 full-span and terminal-page work bounded by original source selectors and untouched predictions.
+- Preserve #1948 as a historical control only; successful OpenPuff extraction would not imply an LP2 cipher.
+- Do not reopen #1947, #1949, #1950, #1958–#1965, #1931 derivative assembly, or #1944 p49 direct consumers absent new original-source evidence.
+- Keep `results/README.md` as the authoritative established-results synthesis. No item from this invocation meets promotion standard.
