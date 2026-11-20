@@ -313,7 +313,7 @@ The 43-word list includes the greeting **Hello**, the main text, **Good luck**, 
 | GP0 | one-based | right-to-left | `EEPEPNKTTLIIHYSSREARESHODEMAEEEAYWBNOLWAPEN` |
 | GP-prime | zero-based | left-to-right | `EHAIYAEHEERIEASDRHPRNSEDNISRHNKDUIEFDUEAHEP` |
 | GP-prime | zero-based | right-to-left | `LHTEEIEHEIUSTAIORHMTNITRNHNRHDSAYLBDGCRSAFE` |
-| GP-prime | one-based | left-to-right | `HTPLTHETTBPSHWTRATAIAIAHAAERATOENOWBDOLBFTVN` |
+| GP-prime | one-based | left-to-right | `HTPLTHETTBPSHWTRATAIAIHAAERATOENOWBDOLBFTVN` |
 | GP-prime | one-based | right-to-left | `OEHSMPKEVBSIHYTREEAHISHODEUEEIENOLEFOKEETYN` |
 
 None of the eight fixed outputs is a coherent plaintext. **Reject only this per-word cyclic-letter-index family**; the result does not exclude other semantic or navigational uses of the signed words, a different source-selected receiver, or stateful/nonlinear operations. The message does not itself specify modulo-word-length wrapping, so this remains an exploratory consumer rather than an intended-solve claim.
