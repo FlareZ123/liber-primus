@@ -41,6 +41,8 @@ The 32×8 table contains 23 contiguous row-aligned 10×8 windows: one is the pag
 
 The PGP-signed 2013 OutGuess book-code message identifies Liber AL vel Legis / The Book of the Law through its book riddle and chapter:verse:character coordinates. This is genuine Cicada-era evidence that Liber AL was a player-visible source. It does **not** name the New Comment, the later III:47 grid, page 16, or an LP2 traversal. [2013 signed book-code archive](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/001-232.jpg/README.md).
 
+The archived 2013 OS also provides a source-motivated prime/totient receiver to test. Its `prime_echo` script prints 464 primes; the OS message says “The key is all around you”; the signed 2013 TCP clue supplies `BASE29`; and the 2014 “Some Wisdom” material identifies Euler's totient. The corrected p49 complement bytes all fall in 1–255 (base60 range 4–255; base59 range 4–251), so they can be read as 1-based prime ordinals. This motivates the direct key `K_i = φ(p_{b_i}) mod 29 = (p_{b_i}-1) mod 29`, where `b_i` is the corrected p49 byte and `p_n` is the nth prime from the OS sequence. The corrected SFT tests this exact operation under both token radices and both additive signs; neither yields recognizable p55 plaintext. The OS message is archival rather than a signed instruction, so this is a plausible human route, not an authenticated cipher specification.
+
 The p23-to-AL proposal remains conditional: p23's red packet supplies a local THE ORIGIN candidate; the p23/p56 half-turn pair gives a 33-page rise to p33 THEIR RISE; applying the solved-p56 T serializer to physical page labels 23 and 33 as positive cardinals yields A and L; and Crowley's New Comment glosses AL=31 as a key. The T(page-label) step is post-discovery and not Cicada-authenticated. The 2013 book code selects Liber AL text, not that page-label operation or a commentary edition. See the qualified [p23 AL=31 report](lp2-p23-origin-al31-readout-key.md) and the Critic's [page-rise correction](../communications/broadcast/20261119T231411Z_critic_p23-page-rise-correction.md).
 
 The grid's historical status matters. The 2006 Red Flame source critique reports that the grid is absent from the 1912 Equinox I:7 facsimile, first appears in the limited 1925 Tunis edition, and is visible in the 1936 Equinox of the Gods. This does not make the grid unavailable to a 2014 solver, but it means the 2013 book-code clue cannot itself be treated as a selector for that later grid. [2006 source-history discussion](https://www.corneliuspublications.com/an-open-epistle-on-the-grid-from-liber-al-vel-legis/).
@@ -53,10 +55,11 @@ The corrected SFT is `sims/lp2_liber_al_iii47_p49_source_geometry_sft.cjs`. It u
 - GP29 additive and subtractive pads.
 - Modulo-29 XOR and raw byte XOR.
 - Stable rank transposition in both directions.
+- 1-based prime-index/totient pad: treat each corrected p49 byte as a prime ordinal and apply `φ(p_n)=p_n−1 mod29`, motivated by the 2013 OS prime echo, the signed BASE29 clue, and the 2014 totient material.
 - p55 placed into the 10×8 grid with the four source-coordinate cells empty, then sheared and read from the circle anchor.
 - A synthetic positive control for the additive-pad inverse.
 
-Neither radix yields recognizable plaintext under these direct consumers. The raw XOR outputs are not coherent ASCII; rank permutations and the p55 grid-shear readouts are nonlinguistic. The synthetic additive-pad control passes. These are bounded negative results for the tested receivers, not a proof against every possible use of the line and circle.
+Neither radix yields recognizable plaintext under these direct consumers, including the prime-index/totient pad. The raw XOR outputs are not coherent ASCII; rank permutations and the p55 grid-shear readouts are nonlinguistic. The synthetic additive-pad control passes. These are bounded negative results for the tested receivers, not a proof against every possible use of the line and circle.
 
 The previous `sims/lp2_liber_al_iii47_p49_grid_overlap_sft.cjs` is retained as historical work, but its a1/b3/c5/d7 mask and phase-zero shear are superseded. Do not cite its receiver outputs as tests of the corrected geometry.
 

@@ -23,6 +23,22 @@ const translit = corpus.translit;
 const BASE60 = grid.alphabet;
 const BASE59 = BASE60.replace('f', '');
 
+function firstPrimes(count) {
+  const out = [];
+  for (let n = 2; out.length < count; n += 1) {
+    let prime = true;
+    for (let d = 2; d * d <= n; d += 1) {
+      if (n % d === 0) { prime = false; break; }
+    }
+    if (prime) out.push(n);
+  }
+  return out;
+}
+
+// The archived 2013 OS prime_echo script prints 464 primes; the first 300
+// cover every p49 byte used below (maximum prime ordinal is 255).
+const PRIME_ECHO = firstPrimes(300);
+
 const mod = (n, m) => ((n % m) + m) % m;
 const decodeToken = (token, alphabet) => alphabet.length * alphabet.indexOf(token[0]) + alphabet.indexOf(token[1]);
 const render = (values) => values.map((value) => translit[value]).join(' ');
@@ -94,6 +110,13 @@ for (const [radix, alphabet] of [['base60', BASE60], ['base59', BASE59]]) {
   const keyBytes = built.keyBytes;
   const key = keyBytes.map((value) => mod(value, 29));
 
+  // Source-constrained alternative: treat each p49 byte as a 1-based prime
+  // ordinal, then apply the LP2 prime-totient operation and BASE29 reduction.
+  assert.ok(keyBytes.every((value) => value >= 1 && value <= PRIME_ECHO.length));
+  const primeIndexTotientKey = keyBytes.map((value) => mod(PRIME_ECHO[value - 1] - 1, 29));
+  const primeIndexTotientMinus = p55.map((value, i) => mod(value - primeIndexTotientKey[i], 29));
+  const primeIndexTotientPlus = p55.map((value, i) => mod(value + primeIndexTotientKey[i], 29));
+
   const minus = p55.map((value, i) => mod(value - key[i], 29));
   const plus = p55.map((value, i) => mod(value + key[i], 29));
   const xorMod29 = p55.map((value, i) => mod(value ^ key[i], 29));
@@ -125,6 +148,9 @@ for (const [radix, alphabet] of [['base60', BASE60], ['base59', BASE59]]) {
     circleTargetAfterShear: built.circleTarget,
     keyLength: key.length,
     keyText: render(key),
+    primeIndexTotientKeyText: render(primeIndexTotientKey),
+    primeIndexTotientMinus: render(primeIndexTotientMinus),
+    primeIndexTotientPlus: render(primeIndexTotientPlus),
     directPadMinus: render(minus),
     directPadPlus: render(plus),
     xorMod29: render(xorMod29),
@@ -150,6 +176,7 @@ const summary = {
     lineComplementLength: 80 - lineIndices.length,
     p55RuneCount: p55.length
   },
+  primeEchoPrimeCount: PRIME_ECHO.length,
   outputs
 };
 
