@@ -251,6 +251,28 @@ const openpgpDhIndex=modPow(openpgpRecord.pair[1],openpgpRecord.pair[0],23);
 assert.equal(openpgpDhIndex,16);
 assert.equal(words[openpgpDhIndex],"ARE");
 
+// Locked controls from the already-published 5x5 fragment readout.
+// They were not used to choose the exponent-first/base-second consumer.
+const holdoutSequences={
+  mcRow:["THE","EPIPHANY","IS","THE","PRIMUS"],
+  rawColumn:["YOU","IS","YOU","SEEKS","MAP"],
+  mcColumn:["BEWARE","EMPTY","BE","MEANING","THE"]
+};
+const consumeWords=sequence=>sequence.map(word=>{
+  const item=sourceInventory.find(candidate=>candidate.word===word);
+  const index=modPow(item.pair[1],item.pair[0],23);
+  return {word,pair:item.pair,index,outputWord:words[index]};
+});
+const dhConsumerHoldouts=Object.fromEntries(
+  Object.entries(holdoutSequences).map(([name,sequence])=>[name,consumeWords(sequence)])
+);
+assert.deepEqual(dhConsumerHoldouts.mcRow.map(x=>x.index),[17,16,1,17,2]);
+assert.deepEqual(dhConsumerHoldouts.mcRow.map(x=>x.outputWord),["THE","ARE","THE","THE","PATH"]);
+assert.deepEqual(dhConsumerHoldouts.rawColumn.map(x=>x.index),[16,1,16,15,1]);
+assert.deepEqual(dhConsumerHoldouts.rawColumn.map(x=>x.outputWord),["ARE","THE","ARE","WORDS","THE"]);
+assert.deepEqual(dhConsumerHoldouts.mcColumn.map(x=>x.index),[12,9,10,4,17]);
+assert.deepEqual(dhConsumerHoldouts.mcColumn.map(x=>x.outputWord),["THE","LIBER","PRIMUS","EMPTY","THE"]);
+
 console.log(JSON.stringify({
   status:"intermediate source-indexed DH-state path; no unknown-page plaintext",
   sourceWordCount:words.length,
@@ -272,7 +294,8 @@ console.log(JSON.stringify({
     cycleCollapsedGloss:"THE MAP THE PATH (normalization not source-authenticated)",
     reverseOrientation:{indices:reverseDhReadout,words:reverseDhWords},
     finalPairDhCheck:"19^6 mod 23 = 2 = K",
-    openpgpHoldout:{pair:openpgpRecord.pair,index:openpgpDhIndex,word:words[openpgpDhIndex]}
+    openpgpHoldout:{pair:openpgpRecord.pair,index:openpgpDhIndex,word:words[openpgpDhIndex]},
+    preselectedReadoutHoldouts:dhConsumerHoldouts
   },
   controls:{
     cyclicRotations:256,

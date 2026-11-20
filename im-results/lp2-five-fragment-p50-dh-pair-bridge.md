@@ -1,6 +1,6 @@
 # Five-fragment row-sum to p50 DH-pair bridge
 
-**Status: intermediate source-indexed state/navigation candidate. A standard-DH readout yields an instruction-like phrase, but no unknown LP2 plaintext or reusable cipher is recovered.**
+**Status: intermediate, bounded negative at the proposed DH-consumer selector. The original five-pair sequence has an attractive instruction-like readout, but the same operation fails pre-existing holdouts. No unknown LP2 plaintext or reusable cipher is recovered.**
 
 ## Result
 
@@ -37,9 +37,9 @@ The expected ordered sequence is:
 
 Reproducer: `sims/lp2_five_fragment_p50_dh_pair_bridge_sft.cjs`.
 
-## Candidate consumer: exponent-first DH readout
+## DH exponentiation: attractive readout, failed holdouts
 
-The signed 2013 protocol supplies a concrete modular operation: (B^a\bmod p=K), equivalently (A^b\bmod p=K), for the one-shot exchange. If the p57 divmod pair is interpreted as [exponent, base], applying the same operation to the five pairs gives:
+The signed 2013 protocol supplies a concrete modular operation for its one-shot exchange: (B^a\bmod p=K), equivalently (A^b\bmod p=K). If each p57 pair is interpreted as [exponent, base], applying (base^{exponent}\bmod23) to the five pairs gives:
 
 | Pair | Modular operation mod 23 | Output index | Signed-2016 word |
 |---|---:|---:|---|
@@ -49,26 +49,35 @@ The signed 2013 protocol supplies a concrete modular operation: (B^a\bmod p=K), 
 | [e,b] = [3,15] | (15^3\bmod23) | 17 | THE |
 | [a,B] = [6,19] | (19^6\bmod23) | 2 | PATH |
 
-The last pair validates the orientation against the source DH equation: (19^6\bmod23=2=K). The exact readout is **THE MAP THE THE PATH**. Collapsing the duplicate output associated with the repeated [e,b] pair gives the compact gloss **THE MAP THE PATH**, but that normalization is not independently selected.
+The exact output is **THE MAP THE THE PATH**. The final pair validates the orientation against the DH example: (19^6\bmod23=2=K). Collapsing the repeated output associated with the repeated [e,b] pair gives **THE MAP THE PATH**, but that normalization is not independently selected.
 
-Reversing the pair roles instead gives indices [12,16,1,12,18] and **THE ARE THE THE MAP**. The exponent-first/base-second orientation is therefore the more source-compatible candidate, not an arbitrary choice between the two orientations.
+The reverse pair orientation gives indices [12,16,1,12,18] → **THE ARE THE THE MAP**. The exponent-first/base-second orientation is therefore the more source-compatible candidate. However, the final [a,B] pair is the only exact standard DH input pair; the first four pairs are not the protocol's usual role-pairs. Applying modular exponentiation to all five is an extension, not an operation explicitly specified by the 2013 source.
 
-This is an instruction-level cross-route readout, not a decryption. The 2013 protocol defines a single DH exchange; it does not explicitly instruct solvers to apply modular exponentiation independently to every pair in this sequence. The first four pairs are not themselves standard DH exchange role-pairs. The sequence therefore does not establish a repeated DH state transition or a cipher.
+Crucially, the same consumer was applied without tuning to other already-published readouts from the same 5×5 fragment family:
 
-A simple holdout also blocks a global successor interpretation: applying the same p57 register and DH consumer to the signed word OPENPGP gives pair [6,3], output index 16 = ARE, not an obvious continuation of the signed message. The complete 43-word mapping is many-to-one. Treat the five-pair phrase as a candidate local navigation clue only.
+| Pre-existing readout | Input words | DH output words |
+|---|---|---|
+| (MC) row sums | THE EPIPHANY IS THE PRIMUS | **THE ARE THE THE PATH** |
+| Raw column sums | YOU IS YOU SEEKS MAP | **ARE THE ARE WORDS THE** |
+| (MC) column sums | BEWARE EMPTY BE MEANING THE | **THE LIBER PRIMUS EMPTY THE** |
+
+None yields a comparable instruction. A separate singleton check maps OPENPGP through the same p57 register to pair [6,3], then (3^6\bmod23=16) → ARE, not an obvious continuation. The complete 43-word mapping is many-to-one.
+
+These controls materially weaken the attractive original readout: it is not a general word successor, and the DH operation does not generalize across the most relevant alternative readouts. The final-pair identity is a local consistency check, not validation of the whole five-pair consumer.
 
 ## Why this matters
 
-The 2016 signed source says its words are the map and their numbers are the direction. The row-sum readout gives the instruction **THE DIRECTION SEEK THE NUMBERS**; the fixed p57 register turns those words into an ordered DH-state sequence; and the only orientation directly validated by the 2013 DH equation maps that sequence back into the signed word map as **THE MAP THE PATH** (with the duplicate THE retained in the exact output). This is stronger than a list of isolated DH vocabulary hits, but it still reuses the same p50 table and signed-2016 message and does not identify an unknown-cipher receiver.
+The raw row-sum phrase **THE DIRECTION SEEK THE NUMBERS** and its DH readout **THE MAP THE THE PATH** remain rare, reproducible instruction-level correspondences. But the row/column/diagonal selector is not fixed by the original sources, and the proposed DH consumer fails the pre-existing (MC)-row and raw-column holdouts. The evidence supports preserving the sequence as a local correspondence, not treating it as a cipher, key schedule, or route to unknown plaintext.
 
 ## Evidence limits and next decision
 
 1. The signed-word-index-to-page/fragment convention and five-fragment row-sum readout remain intermediate hypotheses; the p36 GOOD fragment is an existing anchor, not independent validation of this consumer.
 2. The p57 GP0 → p50 → divmod29 register was fixed before this five-word application, but the p50 table and 2016 message are shared across the routes.
-3. Only the final pair [a,B] is the exact standard DH input pair. Extending the same exponent/base operation to [e,b], [K,b] and [A,p−1] is plausible but not specified by the 2013 protocol.
-4. The OPENPGP singleton holdout maps to ARE, so the rule is not a general successor function. No page/word coordinate receiver or unknown plaintext has been identified.
+3. The 2013 protocol defines a single DH exchange and NEXT storage, not repeated per-pair exponentiation or a per-rune state transition.
+4. The alternative (MC)-row and raw-column readouts fail to produce comparable instructions under the same DH operation. OPENPGP also maps to ARE, so the rule is not a general successor.
+5. No unknown LP2 ciphertext span has been decrypted or prospectively predicted.
 
-**Next decisive question:** find an independent, source-selected second pair sequence or an original instruction that requires this per-pair DH consumer. Do not broaden to more cipher families or state-transition sweeps unless that selector appears. If no such independent receiver exists, retain this as a local navigation clue and do not promote it to a reusable decoder.
+**Decision:** bounded negative at the proposed DH-consumer selector. Preserve the original five-pair correspondence, but retire per-pair DH exponentiation as a general decoder unless an original instruction explicitly selects it or a new, independent receiver produces a locked prediction. Do not continue generic state-transition or cipher sweeps on this branch.
 
 Related work:
 - p57 register: `im-results/lp2-p57-divmod29-register-audit.md`
