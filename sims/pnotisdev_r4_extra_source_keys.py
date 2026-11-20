@@ -57,8 +57,6 @@ def build_keyset():
     # identity, Euler phi(p)=p-1, sigma(p)=p+1, prime ordinal, and next-prime gap.
     prime_streams = [
         ("2013_missing_primes_value", missing_primes),
-        ("2013_missing_primes_phi", [p - 1 for p in missing_primes]),
-        ("2013_missing_primes_sigma", [p + 1 for p in missing_primes]),
         ("2013_missing_primes_ordinal", rank),
         ("2013_missing_primes_gap", gaps),
     ]
