@@ -562,7 +562,7 @@ const sourceFirstAudit = (() => {
   const solvedFourHits = scanWindows(solvedPageWords, gp0, "high");
   const solvedLowFourHits = scanWindows(solvedPageWords, gp0, "low");
   assert.equal(solvedFourHits.length, 1);
-  assert.equal(solvedFourHits[0].page, 0);
+  assert.equal(solvedSections[solvedFourHits[0].page].name, "0_welcome");
   assert.deepEqual(solvedFourHits[0].words, ["FIND", "THEIR", "WAY", "HERE"]);
   assert.equal(solvedLowFourHits.length, 0);
 
