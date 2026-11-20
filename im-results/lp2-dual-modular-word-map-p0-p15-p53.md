@@ -78,6 +78,8 @@ The p0 prefix's residue pair is exactly (7,13) = (t,w). The p50 2-cycle has:
 
 This 2-cycle is independent of the p50 cell-199 correction issue.
 
+The underlying 256-token stream is a 32×8 table spanning LP2 pages 49–51 (10, 13, and 9 rows respectively), not a standalone page-50 table. The 2- and 11-cycle lengths sum to 13, matching the 13-row page-50 block; however, the cycle nodes are distributed across all three pages and no node-to-row mapping has been established. Treat this as a structural lead only.
+
 The p0 right-RISE phrase selects node \(197=29\cdot6+23=29a+p\), on the corrected 11-cycle. The 11-cycle also contains \(247=29\cdot8+15=29A+b\). Its corrected successor order is:
 
 \[
@@ -121,6 +123,7 @@ This remains intermediate evidence. It does not establish that the author intend
 
 ## Reproduction references
 
+- **sims/lp2_dual_residue_wordmap_sft.cjs** — deterministic reproduction of the residue table, cycle checks, and prefix-window control.
 - **resources/liber-primus/lp2-corpus.json** — canonical GP29 page indices.
 - **resources/liber-primus/lp2-grid-256.json** — p50 256-cell table used for the conditional pointer graph.
 - **resources/historical/cicada2016-4gq25-outguess.asc** — 2016 word register.
