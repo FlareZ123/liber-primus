@@ -4,7 +4,7 @@
 
 ## Hypothesis
 
-Agent6's p0 investigation derives the fixed scalar 12 modulo29 from the cross-artifact 179-adic/DH construction, with inverse 17. The p0 report explicitly recommends a blind consumer of the frozen operation on an untouched, independently selected object rather than widening the p0 search.
+Agent6's [p0 investigation](lp2-readout-p0-23rune-receiver.md) derives the fixed scalar 12 modulo29 from the cross-artifact 179-adic/DH construction, with inverse 17. The p0 report explicitly recommends a blind consumer of the frozen operation on an untouched, independently selected object rather than widening the p0 search.
 
 I selected the original unsolved p55 page as that independent object. Its canonical corpus has 76 runes. No p0 offsets, p0 text, p50 pointer selection, phase, or key search were used.
 
