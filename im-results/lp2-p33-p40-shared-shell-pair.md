@@ -130,6 +130,23 @@ It contains exactly `A=8` words and the endpoint rise is `g+K=7`.
 
 These observations support treating p33 and p40 as a related pair. They do not fix the particular state labels assigned to H0 and H2 before the inverses are known.
 
+## P50 register downstream page-direction hypothesis: rejected
+
+A tempting two-anchor extension applies the already conditionally authenticated p57 register to the p33/p40 local inverse words, then interprets the quotient as Latin-letter count and the remainder as a forward page displacement:
+
+| Receiver | GP0 address | Authored p50 byte | divmod29 | Latin letters | Proposed destination |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| p33 WILL | 57 | 118 | [4,2] | 4 | p35 |
+| p40 PATHS | 54 | 156 | [5,11] | 5 | p51 |
+
+The apparent p33 alignment is attractive because p33+2=p35 is already the independently recovered RISE→FOUND handoff. But this is not an independent confirmation: the proposed output type was inferred after seeing that handoff, and p40+11 merely lands on the final page of the numeric table.
+
+The decisive control applies the same fixed GP0→p50→divmod29 map to all 43 words of the authenticated 2016 signed message and asks whether quotient equals the source word's Latin-letter count. The authored table order yields 10 hits: THE (six occurrences), EPIPHANY, WILL, LUCK and PATHS. All ten proposed destinations happen to lie within p0–p55. However, across all 256 cyclic rotations of the same 256-cell table, the authored order has 10 hits while shift144 has 14 (the unique maximum); shift4 has 13. The authored ordering is therefore not selected by this predicate. Repeated THE occurrences account for most of the canonical hits.
+
+Reject the proposed quotient=Latin-length / remainder=page-displacement interpretation. Preserve the raw table lookups [4,2] and [5,11] as arithmetic observations only. The p33→p35 route remains supported by its independent red RISE and FOUND evidence; do not count the p50 lookup as a second confirmation. This test does not weaken the p57 serialization result at its original solved-p57 scope, but it supplies no unknown-page key, typed page pointer, or new plaintext.
+
+Reproducer: sims/lp2_2016_source_word_p50_register_rotation_control_sft.cjs.
+
 ## Evidence boundary
 
 Preserve:
