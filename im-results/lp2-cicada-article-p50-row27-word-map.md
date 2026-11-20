@@ -52,6 +52,20 @@ A one-based table-ordinal alternative (ordinals 221–223 correspond to zero-bas
 - The table values modulo 29 give the tempting three-symbol key [23,22,6]; the full BASE29 digit stream is [1,23,1,22,5,6]. Both natural direct additive GP29/Vigenère interpretations were tested with both signs on p55's 43 strict interiors and all 76 p55 runes. They are nonlinguistic. The output should therefore be treated as a word-map pointer, not a direct additive key.
 - The fixed 13/17/221 periodic-substitution family remains rejected by the separate all-key gate. This hypothesis uses 221 as a table address, not as a repeating period.
 
+## Direct receiver test against Liber Primus's own words
+
+Because the signed 2016 wording says “Its words are the map,” a more grammatical receiver is the LP2 physical-page word inventory, not the signed message's own 43 words. I tested only the direct coordinate readings of the BASE29 digit pairs against the canonical 58-page, 2,973-word transcription:
+
+| Coordinate reading | Selected LP words (GP transliteration) |
+|---|---|
+| digits as (zero-based page, zero-based word) | UX / THP / ESGNGFX |
+| digits as (one-based page, one-based word) | THAEIA / HEO / JM |
+| digits as (zero-based word, zero-based page) | WNGGXDG / IG / IAL |
+
+All three are nonlinguistic. Treating the raw table values 52/51/151 as page/word addresses via page = value mod 58 and word = floor(value/58) also fails: zero-based outputs are P / WWP / CTHENUIAEIUIA; the one-based variant gives WWP / no word on numeric-only p50 / EOD. These are the natural direct book-address interpretations; do not expand into arbitrary coordinate permutations.
+
+This test does not disprove every possible source-defined semantic map, but it removes the simplest grammar-consistent receiver for the row27 values. Combined with #304's objection to using the signed message's own words as the map, there is currently no validated consumer for 52/51/151.
+
 ## Critical prior objection: the 2016 word-register receiver
 
 Closed issue [#304](https://github.com/FlareZ123/liber-primus/issues/304) audited the signed 2016 message's 43-word map and found no authenticated grammar that selects the message's own words as the address register. Its strongest grammatical objection is that “Its words are the map” refers to **Liber Primus**, not to the words of the signed message itself. #304 tested a different GP-prime-sum → page/word proposal, so it does not directly falsify the BASE29 digit-pair lookup here; however, it exposes the same unsupported receiver choice. The present row27/221 result supplies candidate numbers, but it does not authenticate the 2016-message-word receiver.
