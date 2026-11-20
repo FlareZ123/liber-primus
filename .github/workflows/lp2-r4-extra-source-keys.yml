@@ -1,0 +1,59 @@
+name: LP2 R4 extra source-key screen
+
+on:
+  workflow_dispatch:
+    inputs:
+      workers:
+        description: "Worker processes for the R4 screen"
+        required: false
+        default: "2"
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - uses: dtolnay/rust-toolchain@stable
+
+      - name: Checkout pinned independent R4 implementation
+        run: |
+          git init pnotisdev
+          git -C pnotisdev remote add origin https://github.com/pnotisdev/cicada3301.git
+          git -C pnotisdev fetch --depth 1 origin 15200c395ab457c3196cb30319e8008fadd2b214
+          git -C pnotisdev checkout --detach FETCH_HEAD
+
+      - name: Install dependencies and fetch research data
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r pnotisdev/requirements.txt
+          python pnotisdev/scripts/fetch_data.py
+
+      - name: Build the R4 native decoder
+        run: |
+          mkdir -p pnotisdev/work/chanscreen/v2/build
+          rustc --crate-type cdylib --edition=2021 -C opt-level=3 \
+            pnotisdev/work/chanscreen/v2/backward_mid.rs \
+            -o pnotisdev/work/chanscreen/v2/build/libbackward_mid.so
+
+      - name: Run source-key controls and full LP2 screen
+        run: python sims/pnotisdev_r4_extra_source_keys.py pnotisdev "${{ inputs.workers }}"
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lp2-r4-extra-source-key-results
+          path: |
+            pnotisdev/results/chanscreen/phase60_r4_extra_source_keys
+            pnotisdev/results/analysis/phase60_r4_extra_source_keys.txt
+          if-no-files-found: warn
+          retention-days: 30
