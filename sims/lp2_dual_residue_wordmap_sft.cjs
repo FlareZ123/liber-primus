@@ -112,6 +112,17 @@ for (let page = 0; page <= 55; page++) {
   }
 }
 
+const window51Targets = new Set(["22,8", "7,9", "7,13", "6,23"]);
+const window51Matches = Object.fromEntries([...window51Targets].map(k => [k, []]));
+for (let page = 0; page <= 55; page++) {
+  const a = corpus.pages[page].indices;
+  for (let offset = 0; offset <= a.length - 51; offset++) {
+    const v = summarize(a.slice(offset, offset + 51));
+    const key = v.N_mod_23 + "," + v.N_mod_29;
+    if (window51Matches[key]) window51Matches[key].push({ page, offset });
+  }
+}
+
 const basinCounts = {};
 for (let i = 0; i < T.length; i++) {
   const z = trace(i);
@@ -131,7 +142,8 @@ const output = {
   },
   operands: results,
   prefix_7_13_window_count: prefixMatches.length,
-  prefix_7_13_window_matches: prefixMatches
+  prefix_7_13_window_matches: prefixMatches,
+  window51_residue_match_counts: Object.fromEntries(Object.entries(window51Matches).map(([k, v]) => [k, { count: v.length, matches: v }]))
 };
 
 console.log(JSON.stringify(output, null, 2));
