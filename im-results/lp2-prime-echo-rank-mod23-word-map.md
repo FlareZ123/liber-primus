@@ -1,74 +1,98 @@
-# Candidate: prime_echo block counts mod DH23 → 2016 word map
+# Prime-count mod-23 → 2016 word-map candidate
 
-**Status:** provisional cross-round navigation hypothesis. It does not decrypt an unknown LP2 page and is not an established cipher mechanism.
+**Decision (20 November 2026): bounded negative.** The arithmetic alignment is reproducible, but no first-party instruction selects modulus 23 for the pause-defined prime counts, and the one frozen original-LP2 receiver test returns **ITG**, not plaintext. Retain this as an intermediate cross-artifact observation only. It is not a decryption, key, or established continuation.
 
-## Source facts
+## Candidate construction
 
-The preserved `resources/historical/cicada2013-os-original-prime-echo.sh` emits the prime sequence through 3301 and pauses for two seconds after 1033 and 3301. These values have prime ranks 174 and 464. The first pause therefore separates the stream into:
+The archived resources/historical/cicada2013-os-original-prime-echo.sh emits consecutive primes through 3301. The two two-second pauses follow 1033 and 3301:
 
-- first block: 174 primes, ending at 1033;
-- trailing block: 290 primes, from the next prime through 3301;
+- 1033 is prime ordinal 174;
+- 3301 is prime ordinal 464;
+- first block: 174 primes;
+- trailing block: 290 primes;
 - total: 464 primes.
 
-A signed 2013 DH example in the repository uses modulus p=23 (with g=5, public shares 8 and 19, shared secret 2). The 2016 signed message is indexed zero-based in the existing research corpus. Its relevant word positions are 4=EMPTY, 13=WAY, 14=ITS, 15=WORDS, 18=MAP, 25=THEIR, and 26=NUMBERS.
+The proposed selector takes the natural ordered counts [total, first, trailing] = [464,174,290] and reduces them modulo 23:
 
-Important caveat: the signed DH example's p=23 is a worked exchange, not proven to be an organizer-fixed LP2 parameter. The p28 page's 23-rune DH line is a second structural echo, but neither fact by itself proves that prime counts should be reduced modulo 23.
+[464,174,290] mod 23 = [4,13,14].
 
-## Proposed prime-count selector
+In the zero-based 43-word list of the authenticated 2016 signed message (resources/historical/cicada2016-4gq25-outguess.asc), these positions are:
 
-Take the natural counts [total, first block, trailing block] = [464,174,290] and reduce modulo 23:
+- 4 → **EMPTY**
+- 13 → **WAY**
+- 14 → **ITS**
 
-`[464,174,290] mod 23 = [4,13,14]`.
+The 2016 message later says: “Its words are the map, their meaning is the road, and their numbers are the direction.” This is genuine support for a word-level map as a general solving idea. It does not state that prime ranks or pause counts should be reduced modulo 23.
 
-These are exactly the 2016 signed-message word positions:
+## Existing p50 correspondences (not a decryption)
 
-- 4 → EMPTY
-- 13 → WAY
-- 14 → ITS
+Under the candidate GP0-sum → p49–p51 256-cell table lookup:
 
-Read in the signed message's own order, the selected words are **EMPTY … WAY ITS**. The operation uses the prime ranks/block lengths, not the ten-column terminal layout. The earlier row→page / column→word interpretation has been retired and is not relied upon.
+| Signed word | GP0 address | Printed token | Conventional base60 value |
+|---|---:|---|---:|
+| EMPTY | 92 | 3u | 236 |
+| WAY | 57 | 1w | 118 |
+| ITS | 41 | 1O | 84 |
 
-## Feed the selected words through the p50 map
+The WAY address enters the already-known 57 → 56 MAP → 48 HERE route. The EMPTY address reaches cell 68, token 3J, base60 value 199. The resulting residue correspondences are:
 
-Using the manuscript's GP29 ordinal values (GP0) gives:
+| Table cell/value | mod 23 | 2016 word | mod 29 | 2016 word |
+|---|---:|---|---:|---|
+| 92 / 236 | 6 | SEEKS | 4 | EMPTY |
+| 57 / 118 | 3 | LIES | 2 | PATH |
+| 68 / 199 | 15 | WORDS | 25 | THEIR |
+| 41 / 84 | 15 | WORDS | 26 | NUMBERS |
 
-| 2016 word | GP0 address | p50 token |
-|---|---:|---|
-| EMPTY | 92 | `3u` |
-| WAY | 57 | `1w` |
-| ITS | 41 | `1O` |
+The same values at cells 92, 57, and 68 give [6,3,15] modulo 23, matching the private-exponent values a=6, e=3, b=15 in the signed 2013 DH23 worked example. The base59 alternative does not reproduce this same set of word-map/DH correspondences. These are conditional matches under the conventional base60 interpretation of the table, not proof of a global radix rule or of a cipher.
 
-The p50 table is the 256-cell row-major grid in `resources/liber-primus/lp2-grid-256.json`.
+## Frozen independent original-LP2 receiver test
 
-- **WAY → MAP → HERE:** cell 57 contains `1w`; move west one cell to 56, which is GP0(MAP) and contains `4E`. Read `4E` as hexadecimal ASCII N; move north one row to cell 48, GP0(HERE), which contains `4D` (hexadecimal ASCII M). This is the already-known WAY→MAP→HERE route, not a new result.
-- **EMPTY → WORDS/THEIR:** cell 92 contains `3u`; move three rows up to cell 68, which contains `3J`. In base60, `3J` = 199; 199 mod 23 = 15 (WORDS) and 199 mod 29 = 25 (THEIR).
-- **ITS → WORDS/NUMBERS:** cell 41 contains `1O`. In base60, `1O` = 84; 84 mod 23 = 15 (WORDS) and 84 mod 29 = 26 (NUMBERS).
+To test whether the three selected words actually direct the solver to unknown original ciphertext, I froze the most direct book-coordinate reading of the 2016 instruction:
 
-The same dual-modulus reading of the first two addresses gives:
-- cell 57: base60 118; mod 29 = 2 (PATH), mod 23 = 3 (LIES);
-- cell 92: base60 236; mod 29 = 4 (EMPTY), mod 23 = 6 (SEEKS).
+1. use the selected zero-based signed-word indices as zero-based LP2 page indices: pages 4, 13, 14;
+2. use the corresponding p50 base60 values as zero-based rune offsets: 236, 118, 84;
+3. read one original-corpus rune at each page/offset.
 
-Thus the selected map cells index PATH, LIES, EMPTY, SEEKS, THEIR, WORDS, and NUMBERS in the signed 2016 message. In particular, ITS maps to WORDS and NUMBERS, while WAY enters the established MAP route. This echoes the 2016 instruction that its words are the map and their numbers are the direction.
+The original lp2-corpus.json returns:
 
-## DH and radix cross-check
+| Signed word | LP2 page | p50 offset | Original rune index | Transliteration |
+|---|---:|---:|---:|---|
+| EMPTY | 4 | 236 | 10 | I |
+| WAY | 13 | 118 | 16 | T |
+| ITS | 14 | 84 | 6 | G |
 
-The base60 values at p50 cells 92, 57, and 68 are 236, 118, and 199. Modulo 23 they give [6,3,15], matching the private-exponent values a=6, e=3, b=15 derivable from the signed 2013 DH example:
+The frozen prediction is therefore **ITG**. It is not a recognizable plaintext word, and no source supplies a second operation that turns it into one. This receiver test fails. No alternate index origin, offset convention, permutation, or post-hoc transform was tried.
 
-- 5^6 mod 23 = 8;
-- 5^15 mod 23 = 19;
-- 15×3 mod 22 = 1;
-- 19^6 mod 23 = 2, the shared secret.
+Reproduction from the preserved JSON inputs:
 
-The base59 alternative does not produce the same word-map or DH matches. For example, the same cells 92, 57, 41, and 68 decode to 232, 116, 83, and 196; their residues do not yield the corresponding 2016 words and DH exponents. This is conditional support for base60 at these addresses, not proof of a global radix rule or of the p50 table's later transition semantics.
+    pages = {p["page"]: p for p in corpus["pages"]}
+    word_indices = [4, 13, 14]
+    addresses = [92, 57, 41]
+    offsets = [grid["bytes"][a] for a in addresses]
+    runes = [pages[p]["indices"][o] for p, o in zip(word_indices, offsets)]
+    # offsets == [236, 118, 84]
+    # runes == [10, 16, 6]
+    # corpus["translit"] lookup == ["I", "T", "G"]
 
-## Controls and limitations
+## Does a first-party source select p=23 for these counts?
 
-- Modulo 29, the natural GP alphabet size, gives [464,174,290] → [0,0,0], i.e. the same 2016 word index three times; it does not yield the EMPTY/WAY/ITS set.
-- Modulo 43, the canonical word count of the signed message, gives [34,2,32] → BE, PATH, YOU, not the same coherent phrase.
-- The use of p=23 is motivated by the signed DH example and the p28 DH structural clue, but applying it to prime counts is still an inference. No source explicitly says “reduce prime ranks modulo 23.”
-- The two-second pauses are source-observable, but the prime_echo artifact's authorial status should not be assumed beyond what its provenance supports.
-- This route reconstructs already-known words from the signed 2016 message and a p50 navigation loop. It does **not** recover unknown LP2 plaintext, identify a complete cipher, or resolve the final Cicada destination.
+No such selector was found.
 
-## Decision
+- The prime_echo executable and its custody are covered by im-results/lp2-2013-prime-echo-source-selector-gate.md. The preserved script is byte-identical to the pinned third-party archive extraction at commit ade9a02889ef8acbc8cde8edbfd0a785c369f4c3, blob SHA-1 65a569cf1b3eecb0f7c17ffc569a54ed8ecdf649. Its literal commands specify 462 sleeps of 0.05 seconds and two sleeps of 2 seconds, after primes 1033 and 3301. The wrapper does not turn those pauses into an audio or timing payload. The source is an archived extraction, not a newly verified physical-ISO chain of custody.
+- The authenticated 2013 TCP challenge (resources/external/2013-tcp-server-signed-source.md) includes a worked DH23 exchange with p=23, g=5, public shares 8 and 19, and shared value 2. The same complete toy tuple is documented in a Cibertec cryptography deck self-dated 17 April 2012. Thus the signed challenge proves that participants were shown the example; it does not make 23 a Cicada-specific parameter. The signed protocol has BASE29 and DH commands but no NUMBER, PRIMES, or COUNT command, and does not connect DH23 to prime_echo block counts.
+- The p28 23-rune DH line and the p0 DH-state reconstruction are independent reasons that 23 is relevant elsewhere in LP2. Neither instructs a solver to reduce the prime_echo counts modulo 23.
+- The 2016 signed sentence supports using words and word-associated numbers as a map. It does not identify the prime_echo pause counts as inputs, choose 23 as their modulus, or specify the page/offset interpretation tested above.
 
-Keep this as an intermediate candidate, not an established result. The decisive next test is to find an independent source cue that selects p=23 as the modulus for the prime-count map, or a blind holdout from the same source that predicts an unknown LP2 word. If that selector cannot be found, reject the route rather than trying more moduli, offsets, or reordered arithmetic.
+The p50 lookups mostly revisit known navigation correspondences, and the exponent match reuses the same DH23 tuple that motivated the modulus. They are not an independent source selector. The ITG receiver test supplies no unknown plaintext.
+
+## Controls already completed elsewhere
+
+Do not repeat the source/timing audit or broaden this candidate by trying other moduli, offsets, and layouts:
+
+- im-results/lp2-2013-prime-echo-source-selector-gate.md establishes the exact 464-event program, pause locations, and absence of a separate timing payload; it also records the source-custody limitation.
+- im-results/2013-prime-echo-totient-key-blocks-gate.md tests the full 464-prime stream, the 174- and 290-prime blocks, repeated streams, and source-inspired page/column projections against original LP2 ciphertext. No key or receiver was selected.
+- The signed TCP source note documents the DH23 example's pre-Cicada pedagogical provenance and the participant-controlled DH role split.
+
+## Final classification
+
+The exact chain prime ranks → mod 23 → EMPTY/WAY/ITS → p50 is a reproducible numerical correspondence. It has no first-party instruction connecting its inputs to that modulus, and its frozen independent receiver yields ITG rather than plaintext. **Reject it as a source-selected LP2 cipher or key route.** Preserve the correspondence for historical context, but do not promote it to results/ or use it to justify further dependent searches. No unknown LP2 plaintext, key, or final destination is recovered.
