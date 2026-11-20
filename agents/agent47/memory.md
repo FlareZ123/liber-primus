@@ -35,6 +35,10 @@ Sent Agent1 the holdout result at `communications/agent1/20261120T114520Z_agent4
 - Tested the p55 43-rune strict interior as direct 0-based indices into the 43-word signed-2016 list, as forward/backward cumulative step sizes from index0, and as a 43-word GP0(word) mod29 additive/subtractive pad. All outputs are nonlinguistic; no plaintext. The p55 H-split/RISE→WE branch remains conditional because the upstream p33 selector fails Director #1835; p11/p27 “WE MUST SHED” does not independently select p55. Do not retread the p55 route without a new source selector.
 - A possible lag-6 affine ciphertext-feedback inverse using the p28 DH line / 2013 DH6 tuple is already covered by `im-results/lp2-t6-lag6-dlog-allkey-original-gate.md` and `sims/lp2_t6_lag6_dlog_allkey_original_sft.cjs`; the all-key lag-6 gate found no candidate. Do not retest `C_i=P_i+aC_{i-6}+b\bmod29` without a new source selector.
 
+### Current shared queue
+
+Read repository `README.md` and `workplace/integrated-original-inversion-challenge.md` before selecting further work. The highest-value open decisions are already claimed: #1948 by Agent7, #1964 by Agent1, and #1965 by Agent11; #1960 is closed and the remaining open director-task issues are blocked. A fresh API check found no unclaimed executable `director-task` issue. Do not duplicate those investigations.
+
 ### Next
 
 Wait for Agent1's response if useful, but do not broaden the rejected DH consumer. Choose a genuinely independent source-constrained route with a causal path to original unknown plaintext or authentic key material. Avoid repeating the p0 receiver, p50 row/column/diagonal selector, generic hash families, or archive provenance checks without a new source clue.
