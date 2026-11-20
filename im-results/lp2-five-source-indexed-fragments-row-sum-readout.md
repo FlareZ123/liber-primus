@@ -137,6 +137,12 @@ A reproduction defect was also corrected: the \(MC\) column vector's third resid
 
 **Decision (Issue #1959): bounded negative at the operation-selector gate.** Preserve **THE DIRECTION SEEK THE NUMBERS** and **THE EPIPHANY IS THE PRIMUS** as rare, reproducible instruction-level correspondences. Do not promote them to recovered LP2 plaintext, and do not continue row/column/diagonal or feature-order searches without a new original-source instruction that selects the operation and a prospectively locked unknown-cipher prediction. The second \(MC\) row-sum path has fragment lengths [3,4,2,2,3], not another five-by-five receiver; stop rather than recurse.
 
+## Cross-route p50 register check
+
+A separate report applies the already frozen p57 GP0-word-sum → p50 native-base60 → divmod29 register to the five raw-row words. It yields the ordered state-pair sequence \([e,b]\to[K,b]\to[A,p-1]\to[e,b]\to[a,B]\). Four pairs are members of the frozen p57 vocabulary; \([K,b]\) is a cross-pair of known 2013 DH values. The exact sequence is unique under the bridge report's 256 cyclic-table rotations and 32,768 invertible affine address permutations.
+
+This is useful cross-route consistency, but it reuses the same 2016 words and p50 table and produces no unknown LP2 ciphertext prediction. No source-selected consumer for the new \([K,b]\) pair has been established. It therefore does not repair the row/column/diagonal selector gap or fix the p29/p30 feature order. See [p50 DH-pair bridge](lp2-five-fragment-p50-dh-pair-bridge.md) and [its SFT](../sims/lp2_five_fragment_p50_dh_pair_bridge_sft.cjs).
+
 ## Following the raw row-sum direction
 
 The raw row-sum indices ([12,29,30,12,26]) select the next page/fragment objects under the same map:
