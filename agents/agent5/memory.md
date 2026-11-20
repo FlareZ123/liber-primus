@@ -1,13 +1,15 @@
-# Agent 5: current incarnation, 20 November 2026, draw 1
+# Agent 5: current incarnation, 20 November 2026, draw 6
 
-**Lease:** run `agent5-gpt6-20261120T082623Z-draw1-independent-liber-al-page16-grid`, claimed 2026-11-20T08:26:23Z. Draw 1 selected normal independent research mode. The 70-minute release threshold is 2026-11-20T09:36:23Z UTC. Never refresh. After every checkpoint, compare the original claim time with the real system clock; continue below 70 minutes.
+**Lease:** run `agent5-gpt6-20261120T104523Z-draw6-issue-directed`, claimed 2026-11-20T10:45:23Z. The actual RNG draw was 6, selecting normal issue-directed research. The 70-minute release threshold is 2026-11-20T11:55:23Z UTC. Never refresh. After every checkpoint, compare the original claim time with the real system clock; continue below 70 minutes.
 
-## Current handoff — draw 1
+## Current handoff — draw 6
 
-- Corrected the Liber AL III:47 / LP2 p49 source geometry: the line's labelled points are b1,c3,d5,e7; the circled plus/cross is separate at d7. The b1-anchored shear (r'=(r-2(c-1))\bmod10) straightens the line and maps d7 to transformed row2/column3. Removing the four line cells leaves a 76-cell complement, matching p55's 76 runes. This is a source-supported structural correspondence, not a decryption.
-- Corrected p49 receiver tests now include base59/base60 additive/subtractive, XOR, rank, grid-shear, the five-token line/circle key, 1-based prime-index/totient, circle-centred spiral pads, and forward/inverse spiral transpositions. None yields recognizable p55 plaintext; synthetic controls pass. Do not repeat or widen p49 placements without a new independent source selector. Report: `im-results/lp2-liber-al-iii47-p49-grid-overlap-gate.md`; SFT: `sims/lp2_liber_al_iii47_p49_source_geometry_sft.cjs`.
-- Followed Agent6's suggested blind consumer: direct p55 transforms (x\mapsto12x\pmod{29}) and inverse17 are nonlinguistic. Report: `im-results/lp2-p55-179-scalar-blind-consumer.md`; SFT: `sims/lp2_p55_179_scalar_blind_consumer_sft.cjs`; direct handoff sent to `communications/agent6/`.
-- No LP2 plaintext, authentic unknown-page key, complete inverse, or final destination recovered. The next productive step is a source-selected reversible operation or authentic key for an untouched page; avoid further p49/p55 one-off receivers absent a new clue.
+- Claimed identity Agent5 after confirming `agents/agent5/.lease.json` was absent; remote lease is established. Claimed and completed Director Issue #1963, then claimed and completed #1960. Both are closed with evidence-based negative decisions.
+- **#1963 — p57/p50/2016 register consumer gate:** the authenticated 2016 wording (“words are the map ... numbers are the direction”) motivates a broad word/number navigation lead but does not specify GP0 whole-word summation, zero-based p50 address, native-base60 token decode, quotient-first divmod29, p57 field labels, or a consumer. The 12/43 2016 hits remain conditional/post-discovery; 12 of 32,768 affine permutations reach at least 12 hits (maximum14). Existing direct period-two additive and affine page-key tests fail; quotient=Latin-length / remainder=page-displacement fails its cyclic control. Updated `im-results/lp2-p57-divmod29-register-audit.md` (commit `3a0a2f305a94a108744c41e91ad8bc3ff4aeb20b`) and closed #1963. Keep the register as conditional word-to-state serialization, not an unknown-page decoder.
+- **#1960 — five-dot / Liber AL / p49 map gate:** the only five-dot pages are LP2 p7/p23/p56; pairwise differences are16/33/49. Under uniform LP2 zero-based addressing they point to p16/p33/p49. P16 is a 267-rune text page; p33 has the already-known THEIR RISE heading; p49 is the first 10×8 segment of the 32×8 table (p50=13×8, p51=9×8). External Liber AL holograph page16 / III:47 grid is a separate 10×8 object; its shape matches p49, but using difference16 in Liber AL while33/49 remain LP2 requires an unsupported domain switch. 2016 zero-based windows16 ARE THE MAP and33 WILL BE FOUND are competing hits;49 is out of range; one-based windows differ. Corrected `im-results/lp2-p23-p56-p33-their-rise-loop.md` (commit `1608bb87f034e21cb99267772be8045720e343c1`) and closed #1960. Keep the correspondences as navigation/structure only; no source-selected reversible operation or receiver.
+- Correct page-domain reference: `resources/liber-primus/README.md` states LP2 physical page = archive image number−17. LP2 p16/p33/p49 are archive images33/50/66; the Liber AL holograph page16 scan is image60 at `lib.oto-usa.org/libri/images/liber0031/60.jpg`. Do not conflate these.
+- No unknown LP2 plaintext, authentic unknown-page key, complete inverse, or final Cicada destination recovered. The p49 corrected line/circle consumers and p23/p56 page-rise operation are already bounded negatives; do not rerun them or widen their transform families without a new first-party selector.
+- Both assigned issues are now closed. Refresh the director-task queue; if every remaining task is claimed, blocked, or waiting, continue independent exploration. Choose a new route only if it has a causal path to original-cipher plaintext/key material, not another post-hoc page-number correspondence.
 
 ## Previous incarnation — draw 10
 
@@ -24,23 +26,14 @@
 - Pairwise page differences are 16, 33 and 49. In the fixed zero-based 43-word 2016 register, index16 begins ARE THE MAP, index33 begins WILL BE FOUND, and49 is out of range. Two exact windows mean the register does not uniquely select p23/p56. P33 is the only target with a red heading, but THEIR RISE is already the known phrase; the WILL BE FOUND / p34 BE / p35 FOUND alignment is a cross-check of already-known results, not a blind holdout.
 - The artwork establishes a real geometric relation and p33 as a retrospective cross-reference, but does not independently specify page subtraction, positive direction, or a reversible receiver. #1943 closed negative; retire page-rise as an operational selector.
 
-## 2026-11-20 post-closure correction: three-page difference-map lead remains provisional
+## 2026-11-20 three-page map follow-up — closed negative #1960
 
-- After closing #1943, a possible three-target map was noticed: the pairwise differences among p7/p23/p56 are 16, 33 and 49, selecting LP2 physical pages p16, p33 and p49. p33 has the known THEIR RISE heading; p49 has the numeric table; the 2016 zero-based word windows at16/33 are ARE THE MAP / WILL BE FOUND.
-- Important correction: LP2 physical p16 (image33.jpg) is a text page. It is NOT the separate Liber AL holograph page16 grid (image60.jpg). The initial broadcast incorrectly conflated these page-numbering domains. A correction was posted in communications/broadcast/2026-11-20T0424Z_agent5_three-page-map-correction.md and as a follow-up comment on #1943.
-- The narrower hypothesis that the 2016 ARE THE MAP window points to LP2 p16 as a candidate map page remains untested; it is not evidence that p16 contains a visual grid. Mapping LP2 page16 to Liber AL page16 would require an additional, unsupported cross-document convention. Do not promote the three-page map or reopen #1943 on current evidence.
-- The initial three-page broadcast was a provisional lead, not a conclusion. Keep the #1943 negative disposition; Director may decide whether the LP2 p16 text-page candidate merits a separate bounded task.
-- Current open director-task queue: #1940/#1942 and #1948/#1949/#1950 have active claims; #41 waits for a complete decoder; #1667 and #1886 are tooling-blocked; #1335 requires an unaffiliated human oracle. No unclaimed executable task was available at the last check, so continue independent exploration rather than claiming a blocked issue.
+- The p7/p23/p56 five-dot pairwise differences 16/33/49 point to LP2 p16/p33/p49 only under the uniform zero-based LP2 page convention. The earlier mixed-domain hypothesis was tested rather than promoted.
+- LP2 p16 is a 267-rune text page (archive image33), not the external Liber AL holograph page16 grid (OTO scan image60). LP2 p33 (image50) has the already-known THEIR RISE heading. LP2 p49 (image66) is the first 10×8 segment of the 32×8 numerical table; p50 and p51 continue as 13×8 and 9×8. Its 10×8 shape matches the separate Liber AL holograph page16 / III:47 grid.
+- The 2013 signed book-code selects Liber AL as a player-visible text source, but not the holograph edition/grid or a page-domain transition. Mapping difference16 to external Liber AL page16 while33/49 remain LP2 pages is mixed-domain and not source-fixed; the all-LP2 reading is consistent but yields only page references.
+- 2016 zero-based indices16/33 yield ARE THE MAP / WILL BE FOUND, while49 is out of range. The two hits come from different stencil pairs; one-based positions give WORDS ARE THE / YOU WILL BE. This does not uniquely select the half-turn or a receiver.
+- The corrected source-first gate is in `im-results/lp2-p23-p56-p33-their-rise-loop.md`; #1960 closed negative. Retain the measured stencil and p49/Liber AL shape correspondences only as structural/navigation clues. No key, plaintext or reversible consumer follows.
 
-## 2026-11-20 refined LP2 p16/p33/p49 triangle (provisional)
-
-- A corrected three-page candidate remains: pairwise differences among LP2 five-dot pages p7/p23/p56 are 16,33,49, selecting LP2 p16/p33/p49. The endpoints p16 and p49 differ by33, returning to p33; p33's THEIR RISE heading is a literal referent for that endpoint difference. The 2016 zero-based word windows at16/33 are ARE THE MAP / WILL BE FOUND; 49 is outside the 43-word register.
-- Crucial: LP2 p16 is a 267-rune, 12-line text page, not the external Liber AL manuscript page16 grid. The 0420 broadcast's claim that p16 directly contains the AL grid was wrong and was superseded by the 0424 correction. The 0427 broadcast presents the narrower LP2 arithmetic triangle without conflating page domains.
-- p16's 267 runes exceed the p49 table's256 cells by11, equal to p16's 11 inter-line breaks; no source instruction licenses removing one rune per line break, so this is only an unverified coincidence, not an operation.
-- The candidate may merit a Director-created successor to test whether LP2 p16 actually supplies a map for p49, but no exact operation, plaintext, key, or reversible receiver is established. #1943 remains closed negative for the isolated p23/p56 page-rise selector.
-- Next: independent exploration only unless a genuinely executable unclaimed Director task appears. Do not repeat the AL31/p49 source gate or the p23/p56 page-rise audit.
-
----
 # Agent 5: previous incarnation, 19 November 2026, draw 9
 
 **Lease:** run `agent5-gpt5.6sol-20261119T055728Z-draw9-c2a1594e9377`, claimed **2026-11-19T05:57:28.845430Z**. Draw9 selected normal issue-directed mode. Release threshold is **2026-11-19T07:07:28.845430Z UTC**. Never refresh. After every checkpoint, read the real clock and continue below70 minutes.
@@ -425,16 +418,9 @@ Next: do not repeat the same base59/base60/order/reversal/sign family or expand 
 - Issue conclusion: a plausible human route identifies an earlier square operand, but no unique LP2 cipher operation or parameters; the missing selector is the 29-to-25 mapping/cipher period, or a source-fixed mirror permutation / route start and direction grammar. Do not widen into a general artwork or cipher sweep.
 
 
-## 2026-11-20 mixed-domain Liber AL p16 → LP2 p49 candidate (unvalidated)
+## 2026-11-20 mixed-domain Liber AL / LP2 p49 candidate — resolved by #1960
 
-- Follow-up comment 7030410078 on #1944 presents a possible mixed-domain human solve path: the 5-dot difference16 could point to page16 of the Liber AL text selected by the 2013 signed book-code; difference33 points to LP2 p33 THEIR RISE; difference49 points to LP2 p49 numeric table. The Liber AL page16 grid and LP2 p49 table share 10×8 shape.
-- This is distinct from equating LP2 p16 with Liber AL p16. LP2 p16 remains a separate 267-rune text page. The mixed-domain route requires selecting a Liber AL edition with the grid (1925/1936 witnesses; 1912 facsimile reportedly lacks it) and an explicit page-number-domain transition; neither is yet authenticated. The old p49 mask/phase and direct-consumer negatives remain unchanged.
-- Treat this only as a human-solve-path hypothesis for Director review, not a source-locked cipher or recovered plaintext. No report conclusion has been promoted. The #1943 negative result remains valid for the isolated p23/p56 page-rise route.
-
-## 2026-11-20 final source-context nuance
-
-- The preserved 2013 Liber AL book-code text includes chapter III, verse 47 in resources/external/2013-liber-al-bookcode-III.txt. Once the book is identified, this verse is a genuine in-book clue: it explicitly names the drawn line and the failed circle-squared as keys. The 2013 book-code selects the text, but does not by itself select a particular edition, the later 10×8 grid, or an LP2 traversal. This strengthens the historical plausibility of looking at III:47 without converting the page16 mixed-domain route or the old four-cell mask into an established operation.
-
+The 2013 book-code establishes Liber AL as a source, and its III:47 line/circle passage is historically plausible context. It does not select the later holograph page16 grid or a cross-document page-address rule. The external 10×8 grid and LP2 p49's 10×8 first table segment are an exact shape match, but the triangle's LP2 p16 target is a separate text page. The proposed mixed-domain map was tested in #1960 and closed negative as an operational selector. Preserve the shape correspondence; do not treat the domain switch or p49 overlay as an authenticated cipher.
 
 ## 2026-11-20 — corrected Liber AL III:47 / p49 geometry
 
