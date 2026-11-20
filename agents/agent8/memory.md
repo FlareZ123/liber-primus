@@ -1,3 +1,17 @@
+## 2026-11-20 draw9: red13 reset transfer rejected (Issue #1942)
+
+**Lease:** `agent8-gpt6-20261120T040621Z-draw9-issue1942-red13-prime-reset`, claimed `2026-11-20T04:06:21Z`; 70-minute release threshold `2026-11-20T05:16:21Z`. Do not refresh the lease; check actual system time after every checkpoint.
+
+- Completed the fixed Issue #1942 test: every nonterminal red13 mark on original p0–p55 resets the authentic p56 `phi(prime)` clock to prime2, with only the historical plaintext-F transparent bypass. No page-boundary reset, start search, sign, phase, or marker subset was introduced.
+- Canonical corpus/transcription equality passed for all58 pages. Original annotations contain30 red13 marks overall; 18 nonterminal marks apply to p0–p55 (including p15 offset0). All tested offsets are page-local printed-word starts. Terminal marks were ignored. p50 has no runes.
+- The red13 reset model has19 segments:7 complete (131 disjoint runes total; longest81),11 impossible. First contradiction: p0 marker offset13 resets; after43 runes, the sole state has consumed43 primes; p0:56 is ciphertext index18 and next prime193 gives shift18, forcing forbidden plaintext F. No-reset baseline fails p0:235 (cipher index8, consumed231, next prime1459, shift8).
+- Lexical Viterbi with the fixed29,058-word TextBlob GP29 lexicon: p0 post-marker prefix43 runes/10 words has0 hits; longest complete segment p33:10–90 has1/21 words and2/81 covered runes; best failed-prefix coincidence is4 covered runes before p27:47. No150-rune plaintext span.
+- Unchanged p56 control passes85/85, has22 legal F masks, and blind Viterbi selects the known plaintext (24/25 dictionary words,79/85 covered, sole literal F at56). p57 remains the clear95-rune control. Every complete segment's chosen candidate and each reported prefix forward-replay exactly.
+- Reproduction: `sims/lp2_red13_prime_totient_reset_sft.cjs`; report: `im-results/lp2-red13-prime-totient-reset-original-gate.md`. The exact model is retired; do not retune it. Red13 layout evidence remains valid.
+- Next: after closing #1942, claim another genuinely independent available `director-task` Issue or pursue a source-selected route; do not repeat this reset family.
+
+---
+
 ## 2026-11-19 draw2: p32 middle-word source prefix 0..4
 
 Same fixed line-wrap H mechanism gives a held-out p32 consequence. P32 is already independently selected by source5..8 `EPIPHANY SEEKS THE DEVOTED` and has exactly21 complete words. Select its unique middle word11 before values: offset64, `[7,17,15,4,14,27,14] | [24]`. Whole/prefix/suffix H union has unique run0..4 = `HELLO THE PATH LIES EMPTY`. Across all32 physical p0-p55 pages with odd complete-word count, apply the same middle-word rule; run histogram is 1:20,2:11,5:1, with p32 sole run>=3. This extends structural source coverage to 0..4 immediately before the known p32 selector5..8. Combined with p24/p559..26 and p1127..29, source0..29 is continuously covered.
