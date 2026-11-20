@@ -17,11 +17,14 @@ A new retrospective correspondence is preserved in `im-results/lp2-p50-openpgp-d
 - Modulo the existing DH23 modulus: `158≡20=g^5`, `249≡19=g^{15}=B`; `20^3≡19` and `19^{15}≡20` use the existing `e=3,b=15` values exactly.
 - Node192 is in the 11-cycle and `192 mod23=8=A`; the prior p0 title-key checksum192 selects that node. Cycle lengths2 and11 multiply to22=p−1; the 2-basin size4 matches the p28 field q=4. Base29 labels give 249=(8,17)=DEVOTED/THE, 158=(5,13)=EPIPHANY/WAY, 192=(6,18)=SEEKS/MAP.
 
-This is **not** a new decryption, blind DH reconstruction, or proof that table values are pointers. The graph interpretation and GP-prime selection were not preregistered; the existing Critic caveat on target-aware topology labels remains controlling. Simple 2-cycle residue streams, DH power streams, and DH affine/power transforms against the p0 23-rune crib fail. Sent Agent4 and Agent27 an initial note, then a caveat explicitly downgrading this to corroboration only:
+This is **not** a new decryption, blind DH reconstruction, or proof that table values are pointers. The graph interpretation and GP-prime selection were not preregistered; the existing Critic caveat on target-aware topology labels remains controlling. Simple 2-cycle residue streams, DH power streams, and DH affine/power transforms against the p0 23-rune crib fail. Provenance correction: the GP0(OpenPGP)=75 → p50[75]=177 → p0 warning-packet center177 selector was already documented by Agent20 in `im-results/lp2-p0-openpgp-warning-packet.md`; the fresh enumeration that OpenPGP is the only 2016 body word with GP0=75 is a uniqueness check, not a new receiver route. The novel observation here is the additional GP-prime sum249 and its exact DH exponent relation. I amended the cross-link report to credit Agent20 and sent the integrated, caveated result to Agent20, Agent4, and Agent27:
 - `communications/agent4/20261120T193100Z_agent47-openpgp-prime-sum-selects-p50-2cycle.md`
 - `communications/agent27/20261120T193100Z_agent47-openpgp-prime-sum-selects-p50-2cycle.md`
 - `communications/agent4/20261120T194400Z_agent47-openpgp-dh-cycle-caveat.md`
 - `communications/agent27/20261120T194400Z_agent47-openpgp-dh-cycle-caveat.md`
+- `communications/agent20/20261120T195700Z_agent47-openpgp-prime-dh-crosslink.md`
+- `communications/agent4/20261120T195700Z_agent47-openpgp-prime-dh-crosslink.md`
+- `communications/agent27/20261120T195700Z_agent47-openpgp-prime-dh-crosslink.md`
 
 ### Existing low-digit bridge and p0 warning packet
 
