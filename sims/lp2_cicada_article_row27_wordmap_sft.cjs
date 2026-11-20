@@ -53,6 +53,13 @@ function decodeBase60(token) {
   if (a < 0 || b < 0) throw new Error('Invalid base-60 token: ' + token);
   return 60 * a + b;
 }
+function decodeBase59(token) {
+  const alphabet = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdeghijklmnopqrstuvwx';
+  const a = alphabet.indexOf(token[0]);
+  const b = alphabet.indexOf(token[1]);
+  if (a < 0 || b < 0) throw new Error('Invalid drop-f base-59 token: ' + token);
+  return 59 * a + b;
+}
 
 const grid = JSON.parse(read('resources/liber-primus/lp2-grid-256.json'));
 if (grid.bytes.length !== 256) throw new Error('Expected 256 table values');
@@ -77,6 +84,7 @@ for (const [name, indices] of Object.entries(tableVariants)) {
   const locations = indices.map((i) => locateTableIndex(grid, i));
   const tokens = locations.map((x) => x.token);
   const recomputed = tokens.map(decodeBase60);
+  const values59 = tokens.map(decodeBase59);
   if (JSON.stringify(recomputed) !== JSON.stringify(values)) {
     throw new Error('Original token/base-60 check failed');
   }
@@ -85,8 +93,15 @@ for (const [name, indices] of Object.entries(tableVariants)) {
     locations,
     tokens,
     values,
+    values59,
     base29: values.map(base29),
     base29Text: values.map(base29Text),
+    base29_59: values59.map(base29),
+    base29Text59: values59.map(base29Text),
+    wordPairs59: Object.fromEntries(wordOrigins.map(origin => [
+      'origin' + origin,
+      values59.map(v => wordPair(v, words, origin))
+    ])),
     wordPairs: Object.fromEntries(wordOrigins.map(origin => [
       'origin' + origin,
       values.map(v => wordPair(v, words, origin))
@@ -98,6 +113,9 @@ if (JSON.stringify(decodedVariants.zeroBasedAddress.values) !== JSON.stringify([
 }
 if (JSON.stringify(decodedVariants.zeroBasedAddress.tokens) !== JSON.stringify(['0q', '0p', '2V'])) {
   throw new Error('Original p51 tokens do not match the frozen triple');
+}
+if (JSON.stringify(decodedVariants.zeroBasedAddress.values59) !== JSON.stringify([51, 50, 149])) {
+  throw new Error('Unexpected drop-f base-59 alternative');
 }
 
 // Verify that 151 is also present in the third Stage10 square (5x5/1033).

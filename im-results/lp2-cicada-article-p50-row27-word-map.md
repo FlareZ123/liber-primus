@@ -25,6 +25,8 @@ The three cells are present in original LP2 p51 image 68 at local row 4, columns
 
 The tokens were checked against the original p51 JPEG crop, not just copied from the derived JSON.
 
+**Critical radix caveat:** the decimal values above assume base60. The original p50 release has no explicit digit legend or byte serialization; the repository's current p50 synthesis keeps base59 and base60 live. Under the competing drop-f base59 alphabet, the same tokens decode to **51, 50, 149**, not 52, 51, 151. BASE29 then gives [1,22], [1,21], [5,4] (strings 1M, 1L, 54), producing THE THE / THE IS / EPIPHANY EMPTY under zero-based indexing into the signed 2016 message. The more attractive base60 branch produces THE ROAD / THE THE / EPIPHANY SEEKS, but that lexical advantage cannot select base60; doing so would be post-selection against the known p0 candidate. Neither branch has an authenticated receiver.
+
 The signed 2013 TCP source authenticates BASE29 integer conversion (its positive control is 3301 → 3QO). Converting these three table values gives:
 
 | Value | BASE29 digits |
