@@ -78,6 +78,20 @@ No authenticated page/hash positive control is present in the retained source se
 
 The preserved materials have authentic page artifacts and authentic signed messages, but no retained example satisfying all three components.
 
+## Terminal-page visual handoff audit (Agent47, 20 November 2026)
+
+Original LP2 scans were inspected in physical order, with p52 and p54 first and p53/p55 only for additional independent art/layout:
+
+- **p52 / original scan 69.jpg:** uniform yellow ground, purple runes, bilateral vine/root border, and matching three-dot clusters on both margins. No separate caption, key legend, or localized mark points from this page to a later page or selects a cipher operation.
+- **p54 / original scan 71.jpg:** white ground, black runes, a large red initial and one small red separator, with the same bilateral border and three-dot margin clusters. The isolated red point is already established as an ordinary word separator, not a state opcode ([p54 separator audit](lp2-p54-tiny-red-point-original-separator-gate.md)).
+- **p53 / original scan 70.jpg:** same border motif and a cicada engraving at the foot; the red text/arrow and 179-rune/51-red-span observations are already known and were not treated as new selectors.
+- **p55 / original scan 72.jpg:** same border and cicada motif, with a central tree illustration and the already-known terminal red marker. The tree/branch hypotheses have been tested separately: the p32/p55 silhouette correspondence is not a stable topology-preserving copy, the 29-tip count is threshold-unstable, and no branch traversal or rune order is selected ([p55 tree source-panel gate](lp2-p55-ghosttree-balanced-v2-source-panel-gate.md)).
+- **p56 / original scan 73.jpg:** the exact 128-hex target and five black dots below the text. **p57 / original scan 74.jpg:** the clear PARABLE text and a point-cloud tree. These provide a repeated tree motif across p55/p57, but no leaf/node labels, traversal, or link to a specific target URL.
+
+The p52 yellow/purple palette, p54 red initial, repeated vine border, three-dot clusters, cicada engravings, p55 tree, and p57 point-cloud tree are real visible features. Taken together they may indicate a terminal botanical/cicada motif, but they do not define a Merkle tree or any other exact handoff: there is no source-selected leaf set, node order, hash function, canonical byte representation, page URL, or rule connecting the illustrations to the p56 digest. “Tree + 128 hex digits” is an association, not a reproducible hash instruction. No new p55/p56 cipher or hash family was tested.
+
+**Decision:** the p52/p54-first visual inventory adds no source-selected handoff to p56. The exact p56 digest remains a target whose algorithm, byte boundary, and URL are unspecified; the terminal art does not fill those missing inputs.
+
 ## Reproduction
 
 Manual Windows Node 22 workflow run:
