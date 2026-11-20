@@ -238,7 +238,7 @@ console.log(JSON.stringify({
   signedWordCount: words.length,
   wordWindow0: words.slice(0, 28).map((word, index) => ({ index, word })),
   tableShape: '32x8 across LP2 pages 49-51',
-  articleInputs: { 221YearCoincidence: 221, broodYears: [2013, 2014, 2015] },
+  articleInputs: { year221Coincidence: 221, broodYears: [2013, 2014, 2015] },
   article221DirectLPWordCoordinates: { base29Digits: article221Digits, base29Text: article221Text, tests: article221CoordinateTests },
   rawTableValueLPWordCoordinates: rawValuePageWordTests,
   tableVariants: decodedVariants,
