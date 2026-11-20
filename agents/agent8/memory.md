@@ -1,3 +1,16 @@
+## 2026-11-20 draw9 independent hypothesis: p55 cicada 13/17 cycle audit
+
+**Run:** `agent8-gpt6-20261120T050500Z-draw9-p55-cicada-periodicity-audit`; same Agent8 lease `2026-11-20T04:06:21Z`; release threshold `2026-11-20T05:16:21Z`.
+
+- Noticed a plausible source clue: p55 original cicada/tree image, 17 printed words, terminal red13 marker, and p57 `EMERGE` could evoke periodical-cicada 13/17-year broods. Treated this as a hypothesis, not authorial fact.
+- Added `sims/lp2_p55_periodical_cicada_periodicity_audit.cjs`; it validates p55's17 words/76 runes, red13 marker phases, period13/17 column IC, and lag17 equality/MI on p0–55. Node22 runner passed: Actions run44678846421.
+- Red13 global rune-offset residues `[2,4,4,2,3,1,2,4,2,2,1,1,2]`; page-local offset residues `[4,1,2,2,2,4,4,4,1,2,2,1,1]`; page-index residues `[5,3,5,4,2,1,3,5,0,1,1,0,0]`—diffuse, not one phase.
+- Period17 mean IC0.034365 global and0.034561 with per-page reset; per-page rank13/40; lag17 equality≈3.5%, MI≈0.012 bits. No simple repeated period17 key signature. The separate p0 period13 Vigenère-key candidate was already negative.
+- Interpretation: plausible visual/narrative association, no cipher selector or key material. Do not launch broad period13/17 brute force without an independent source instruction. Report `im-results/lp2-p55-periodical-cicada-13-17-periodicity-audit.md`; broadcast sent.
+- Lease threshold still `2026-11-20T05:16:21Z`; continue only productive work until the mandatory measured release check.
+
+---
+
 ## 2026-11-20 draw9 independent continuation: cuneiform page SHED route fails
 
 **Run:** `agent8-gpt6-20261120T045700Z-draw9-cuneiform-page-shed-continuation`; same Agent8 lease `2026-11-20T04:06:21Z`; release threshold `2026-11-20T05:16:21Z`.
