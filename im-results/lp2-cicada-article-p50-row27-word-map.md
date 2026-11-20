@@ -1,4 +1,4 @@
-# Cicada article → 221-index → p50 table → 2016 word map: candidate navigation route
+# Cicada article → 221-index → p50 row27: candidate table selector; word-map receiver unproven
 
 **Agent16, 20 November 2026. Intermediate finding only: a source-constrained word-map/navigation hypothesis, not a recovered cipher or complete plaintext.**
 
@@ -52,6 +52,12 @@ A one-based table-ordinal alternative (ordinals 221–223 correspond to zero-bas
 - The table values modulo 29 give the tempting three-symbol key [23,22,6]; the full BASE29 digit stream is [1,23,1,22,5,6]. Both natural direct additive GP29/Vigenère interpretations were tested with both signs on p55's 43 strict interiors and all 76 p55 runes. They are nonlinguistic. The output should therefore be treated as a word-map pointer, not a direct additive key.
 - The fixed 13/17/221 periodic-substitution family remains rejected by the separate all-key gate. This hypothesis uses 221 as a table address, not as a repeating period.
 
+## Critical prior objection: the 2016 word-register receiver
+
+Closed issue [#304](https://github.com/FlareZ123/liber-primus/issues/304) audited the signed 2016 message's 43-word map and found no authenticated grammar that selects the message's own words as the address register. Its strongest grammatical objection is that “Its words are the map” refers to **Liber Primus**, not to the words of the signed message itself. #304 tested a different GP-prime-sum → page/word proposal, so it does not directly falsify the BASE29 digit-pair lookup here; however, it exposes the same unsupported receiver choice. The present row27/221 result supplies candidate numbers, but it does not authenticate the 2016-message-word receiver.
+
+Accordingly, THE ROAD / THE THE / EPIPHANY SEEKS is only the output of a conditional lookup. It is not a source-fixed plaintext readout. The p0 phrase match remains unblinded and cannot override the #304 objection. Unless an independent instruction establishes that the signed message's own 43 words are intended as the lookup table, retire this receiver and preserve only the row27/221 table-selection observation as an intermediate lead.
+
 ## Weakest assumptions and next decision
 
 The strongest evidence is the exact, source-visible numerical chain: 221 → original table tokens 0q/0p/2V → 52/51/151 → BASE29 pairs in the signed 2016 register. The weakest assumptions are:
@@ -62,7 +68,7 @@ The strongest evidence is the exact, source-visible numerical chain: 221 → ori
 4. the 2016 word register inherits zero-based indexing;
 5. the three pairs should be assembled as a phrase or as a navigation instruction.
 
-This is worth independent source-first evaluation because it may supply a zero-based word-origin selector missing from the square-only Stage10 analysis. It does **not** yet provide a reversible operation on unknown LP2 ciphertext, a p55 key, or a complete plaintext. The decisive next step is a blind reproduction of the article→221→table→BASE29→word-map chain, followed by one locked test of whether its output predicts a previously withheld LP2 plaintext feature. Do not expand into generic 13/17-period searches or arbitrary Vigenère keys.
+The article→221→table segment is a candidate source-constrained table selector, but the proposed 2016-message-word receiver remains unsupported in light of #304. It does **not** provide a reversible operation on unknown LP2 ciphertext, a p55 key, or a complete plaintext. The decisive next step is not another word-index search: first establish independently that the signed message's own words, rather than Liber Primus's words, are the intended receiver. If that cannot be established, retain the table triple as an intermediate observation and retire the word-map interpretation. Do not expand into generic 13/17-period searches or arbitrary Vigenère keys.
 
 ## Reproduction
 
