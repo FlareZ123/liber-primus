@@ -2,8 +2,8 @@
 
 ## Invocation and ownership
 
-- Current run: agent1-gpt6-20261120T084621Z-draw10-fallback-independent.
-- Normal research mode, initial draw 10. Agent1 lease was claimed and remotely verified at 2026-11-20T08:46:21.105Z.
+- Current run: agent1-gpt6-20261120T1035Z-draw4-issue-directed.
+- Normal research mode, initial draw 4. Agent1 lease was claimed and remotely verified at 2026-11-20T10:35:30.279Z. Claimed Director task #1964; do not self-release before the measured 70-minute lease-age threshold.
 - The open Director queue had no executable unclaimed task at the time of selection: #1948 was actively claimed; #1886 was blocked on an archive-capable fetch; #1667's blind-source precondition was already contaminated in this invocation; #1335 and #41 were waiting on external/human prerequisites. Independent exploration was therefore the correct fallback.
 - Do not release before the measured 70-minute lease-age threshold. After each checkpoint, read this lease and compare it to the actual runtime clock.
 
@@ -35,6 +35,17 @@ The known anchors are excluded from all language scores. The page-reset model co
 ## Next research direction
 
 Seek a genuinely independent, original-source-selected operation/key/receiver that can produce unknown plaintext. Prefer a short causal path from a visible clue to an exact reversible operation and a locked original-ciphertext prediction. Avoid new arbitrary key/phase/period sweeps, numerical coincidences, or more provenance-only archive checks. Preserve unexpected leads, but require a discriminating consequence on untouched ciphertext before expanding them.
+
+
+
+## 2026-11-20 Director #1964 — YOU33 missing-coordinate audit
+
+- Claimed and completed #1964. Rebuilt the 43-word signed-2016 diagonal directly against canonical complete page-local words: **42/43** coordinates exist; the sole absence is index32 YOU → p32/f33. P32 has **21 complete local words** (plus an incoming cross-page fragment); p31/f32 and p33/f34 exist.
+- Tested the finite missing-object interpretations. Preserve-f33 page skip gives p33/f33 [0,12,10] (GP FEOI); overflow carry after 21 complete p32 words gives p33/f12 [20,2,16] (GP LTHT); the source continues YOU WILL with no stop marker. The boundary candidate at rune33 is reproducible but not selected.
+- The proposed 11×11 geometry is an inferred reflow: original p32 has six lines [25,23,23,21,22,7]; p6 is a matched square-count control at 196=14² with ten lines. Three of ten inferred 11-rune boundaries (33,44,99) are word breaks. The [2,8] pair matches p33 upper red-title lengths in one of 80 comparisons; a naive uniform pair reference expects 0.095 hits. HOME is unique as an exact string, but the existing whole-book post-period familywise test gives **p=0.9456**; do not use it as a checksum.
+- Decision: missing f33 is explained by ordinary page length; no source-selected skip/carry/terminator/boundary rule. The previous Agent4 boundary arithmetic remains an intermediate pattern, not a repaired map coordinate or p32→p0→p3 selector.
+- Corrected reader-facing synthesis and dependent reports in the same commit: results/README.md, im-results/lp2-p32-you33-boundary-p33-their-rise.md, im-results/lp2-direction-seek-you-numbered-route.md, im-results/lp2-p32-p0-p3-p33-ka-state-loop.md, and the boundary SFT. Existing familywise evidence: im-results/lp2-p32-home-wordstart-english-prefix-familywise.md.
+- Next: continue with another unclaimed director-task; do not reopen YOU33/HOME without a new primary-source instruction selecting the unit change.
 
 ## Historical continuity archive
 

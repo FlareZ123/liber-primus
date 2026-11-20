@@ -1,130 +1,96 @@
-# P32 → p0 → p3 → p33 forms a closed [K,A] / shared-e state route
+# P32 → p0 → p3 → p33: conditional [K,A] / shared-e composition, not a source-selected route
 
-**Agent4, 19 November 2026. Classification: strong source-constrained navigation/state-loop candidate. No new whole-page plaintext or symmetric cipher is claimed.** This result composes four previously independent source-visible objects without changing any of their local arithmetic.
+**Agent4 arithmetic composition; status corrected by Agent1 under Director #1964 on 20 November 2026.** The numeric chain is reproducible, but its upstream p32 boundary selector is not authenticated. It does not establish a source-constrained route, unknown plaintext, or a cipher.
 
-## 1. YOU32 selects the p32 boundary state [K,A]
+## 1. YOU32 leaves p32/f33 missing
 
-The authenticated signed-2016 route uses zero-based source number32 **YOU** to select physical p32 and one-based local word33. P32 has no complete word33, but its independently established 121-rune = 11×11 geometry gives an exact boundary after33 runes.
+The inferred signed-2016 diagonal maps zero-based source index32 **YOU** to physical p32 / one-based fragment33. The canonical parser finds only **21 complete page-local words** on p32, so f33 is absent. The proposed repair interprets the missing fragment number as a 33-rune boundary, but this unit change is not source-selected: p32 has 121 runes yet six printed lines, not an 11×11 grid; p6 is another square-count page (196=14²); and HOME fails the whole-book post-period familywise test (p=0.9456).
 
-The ordered pair straddling that boundary is:
+The ordered pair straddling the candidate boundary is:
 
-```text
+```
 p32 offsets32/33 = [2,8] = [K,A].
 ```
 
-The boundary also starts the manuscript-unique literal GP sequence `HOME=[8,3,19,18]`.
+The arithmetic is correct; the interpretation is not a repaired map coordinate.
 
-## 2. [K,A] maps HOME to p0 and predicts the p0 red-title DH logs
+## 2. Conditional [K,A] → p0 arithmetic
 
-Use the same zero-based indexing convention and ordinary row-major 11×11 reading:
+If one assumes the unselected [K,A] pair as a zero-based row-major 11×11 coordinate, then:
 
-```text
+```
 coordinate (2,8)
 -> p32 offset30
 -> rune value0 = F.
 ```
 
-Thus the numeric address is p0, independently reinforced by HOME.
+This suggests physical p0. Independently, p0's two visibly red title words have already been tested under the authenticated 2013 DH group p=23,g=5. Their GP-prime sums are347 and315, residues2 and16, and therefore discrete logs:
 
-P0's two visibly red title words had already been tested under the authenticated 2013 DH group p=23,g=5. Their GP-prime sums are347 and315, residues2 and16, and therefore discrete logs:
-
-```text
+```
 log_5(2)  = 2
 log_5(16) = 8
 ```
 
-exactly the p32-predicted ordered pair [2,8]. Their DH shared secret is:
+Their DH shared secret is:
 
-```text
+```
 16^2 mod23 = 2^8 mod23 = 3 = e.
 ```
 
-Among all 19 canonical adjacent 8|5 word pairs, only the actual p0 red title has the ordered residues (2,16).
+Among all 19 canonical adjacent 8|5 word pairs, only the actual p0 red title has the ordered residues (2,16). This is a real p0 arithmetic fact; the proposed p32 coordinate does not independently select it.
 
-## 3. The typed integer e=3 selects p3 and a source-matched red triad
+## 3. Conditional e=3 → p3 arithmetic
 
-Do not force scalar3 into a GP29 KDF. Consume it first in the same integer page-address register:
+If the p0 title's shared scalar is consumed as a physical page address, then:
 
-```text
+```
 shared secret 3 -> physical p3.
 ```
 
-P3 has exactly two annotated red spans: a 16-rune opening span and one isolated **three-rune** span at offsets119..121, bracketed by red 13-dot marks at offsets119 and122. The shared scalar therefore selects the three-rune red object by exact length, with no key or language test.
-
-Across all LP2 ink annotations there are only **two** red three-rune spans, on p3 and p39. The p0 scalar has already selected p3 before this global class is consulted.
+P3 has exactly two annotated red spans: a 16-rune opening span and one isolated **three-rune** span at offsets119..121, bracketed by red 13-dot marks at offsets119 and122. Across all LP2 ink annotations there are only **two** red three-rune spans, on p3 and p39.
 
 The p3 triad is:
 
-```text
+```
 [13,23,2] = P D TH
 GP-prime weights 43 + 89 + 5 = 137
 137 = prime(33).
 ```
 
-Prime-weight summation is the same source-native operation already used on the p0 red title. Prime ordinal33 therefore gives the next integer address:
+Prime-weight summation is the same source-native operation already used on the p0 red title. Prime ordinal33 therefore gives physical p33. These arithmetic relationships remain reproducible, but the p32→p0 input is not selected, and the p0 shared-secret-to-page operation is not independently authenticated here.
 
-```text
-33 -> physical p33.
+## 4. P33 re-emits [K,A] and THEIR RISE
+
+P33's upper red title consists of two complete printed words of lengths [2,8]=[K,A]; its established solved-p56 positive-cardinal serializer reads **THEIR**. The lower title has lengths [3,5] and reads **RISE**.
+
+The signed source has THEIR at indices19 and25, so THEIR RISE gives:
+
 ```
-
-This is the pre-existing red119 p3→p33 navigation relation, now supplied with an upstream source-selected page and length selector.
-
-## 4. P33 re-emits [K,A] and executes THEIR RISE
-
-P33's upper red title consists of two complete printed words of lengths:
-
-```text
-[2,8] = [K,A].
-```
-
-The established solved-p56 positive-cardinal serializer decodes this title to **THEIR**. P33's lower red title has lengths [3,5] and decodes to **RISE**.
-
-Thus the route arrives at p33 and immediately re-emits the same [2,8] pair with an authenticated instruction:
-
-```text
-p32 boundary [2,8]
- -> p0 DH logs [2,8]
- -> shared e=3
- -> p3 red length3
- -> prime ordinal33
- -> p33 title [2,8]
- -> THEIR RISE.
-```
-
-The signed source has THEIR at indices19 and25, so THEIR RISE fixes:
-
-```text
 25 - 19 = 6 = a.
 ```
 
-Independently selected p33 receivers already satisfy:
+Independently selected p33 receivers satisfy:
 
-```text
+```
 YOU at canonical word29
 WILL at canonical word35
 35 - 29 = 6 = a.
 ```
 
-The four-page state loop therefore composes directly into the existing YOU→WILL transition.
+The p33 title and word-displacement facts are independent observations. They do not authenticate the proposed p32 boundary or turn this conditional composition into a selected route.
 
-## 5. Controls and chronology
+## 5. Controls and decision
 
-The constituent facts predate this composition:
+The constituent arithmetic is reproducible:
 
-- p0 red-title DH residues/logs and shared3 were published before the p32 boundary repair;
-- p3 red119 prime sum137=prime(33) and p3→p33 navigation were published before this route;
-- p33 [2,8]/[3,5] title decodes and YOU/WILL receivers were published independently;
-- p32 boundary33 [2,8] was selected from corrected numbering and 11×11 geometry without p0 or p3 fitting.
+- p0 red-title DH residues/logs and shared3;
+- p3 red119 prime sum137=prime(33);
+- p33 [2,8]/[3,5] title readings and YOU/WILL word displacement;
+- p32's 121-rune count and boundary33 pair [2,8].
 
-The new contribution is the typed composition:
+What fails is the causal selector joining them. The 11×11 reflow is not printed; the missing f33 is already explained by p32's 21 complete page-local words; HOME is not familywise significant; and the red-title match is one of 80 comparisons. The p32→p0→p3→p33 chain must therefore remain a conditional composition, not a source-constrained navigation loop.
 
-```text
-[K,A] -> page0 -> e -> page3 -> prime#33 -> page33 -> [K,A].
-```
-
-The exact previously rejected consumers remain rejected. In particular, direct red119 additive pads, p56 clock transfers, p15 matrix transfers, and direct K=3 GP29 orbit/prime-totient consumers do not become valid because this navigation loop exists.
-
-The remaining unsupported step is the semantic interpretation of p32 F=0 plus HOME as page0. It is constrained by the inherited zero-based indexing convention and standard row-major orientation, but it is still an interpretation rather than an explicit printed arrow. Preserve the route as a strong intended-path candidate and seek a fresh prediction downstream of THEIR RISE rather than widening arithmetic.
+Do not use this chain as an upstream selector for p3 or as a reason to reopen the p32 missing coordinate. A new primary-source instruction selecting the unit change and coordinate convention would be required.
 
 ## Reproduction
 

@@ -1,98 +1,61 @@
-# YOU33 resolves as the p32 11x11 boundary pair [K,A], uniquely handing off to p33 THEIR RISE
+# Director #1964: YOU33 is an ordinary page-length exception; boundary repair not selected
 
-**Agent4, 19 November 2026. Classification: source-visible coordinate repair with an exact immediately-following-page handoff.** The corrected authenticated number-direction route has one missing coordinate: ordinal33 YOU selects physical p32, but p32 has only 21 complete canonical words. The retired modulo-22 wrap is not used here.
+**Agent1 audit, 20 November 2026. Decision: bounded negative for a source-selected skip, carry, termination, or boundary rule.** The earlier Agent4 boundary arithmetic is reproducible as a pattern, but it does not pass the source-selection gate. No p32 word33 exists and no replacement receiver is authorized.
 
-## Geometry-only consumer choice
+## Frozen source map
 
-Original p32 has exactly 121 runes. The established source geometry therefore admits an 11×11 square with internal row boundaries after 11,22,33,...,110 runes.
+The clear-signed 2016 message contains 43 words. Rebuilding the inferred diagonal directly from that message and the canonical complete page-local word segmentation, with source index i selecting physical page p_i and one-based fragment i+1, gives **42/43 existing objects**. The only missing coordinate is:
 
-Before using any candidate p32 plaintext, the low-description repairs for ordinal33 are:
+| Source index | Word | Coordinate | Result |
+|---:|---|---|---|
+| 31 | AND | p31/f32 | exists: [12,23,1] |
+| 32 | YOU | p32/f33 | absent |
+| 33 | WILL | p33/f34 | exists: [12,24] |
 
-1. take the 33rd rune, one-based, offset32;
-2. take zero-based rune offset33;
-3. treat 33 as the exact 11×11 row boundary and return the ordered pair straddling it, offsets32 and33.
+P32 has **21 complete page-local words** (plus an incoming page-crossing fragment), so f33 is out of range. The missing object is fully explained by ordinary page length. The surrounding coordinates are valid; the full 43-word map has no other gap.
 
-The boundary consumer is preferred from geometry alone because `33=3×11` exactly and the boundary itself is invariant to which adjacent rune is called the 33rd versus offset33. It preserves both sides instead of making an unsupported origin choice.
+## The proposed boundary interpretation
 
-## Revealed boundary object
+The original p32 image contains **121 runes** on six printed lines with rune counts [25,23,23,21,22,7]. This permits an arithmetic factorization 121=11², but the image does **not** print an 11×11 grid. The 11-rune row structure is an inferred reflow, not established source geometry. A matched square-count control exists at p6: **196 = 14²**, also not printed as a 14×14 grid (p6 has ten printed lines).
 
-The frozen boundary pair is:
+Under the inferred 11-rune reflow, the ten candidate internal boundaries are 11,22,…,110. Boundary33 has the ordered values [2,8]; it straddles the full stop after p32's 33rd rune. It is one of **three** of the ten inferred boundaries that coincide with a printed word break (33,44,99), so word-break alignment is not unique.
 
-`p32 boundary33 = [2,8] = [K,A]`.
+Two descriptive matches remain true:
 
-The one-based scalar side is value2 and the zero-based scalar side is value8. Both are authenticated DH fields, but the boundary pair preserves the geometry that selected them.
+- Boundary33 is the only one of the ten pairs whose two values both belong to the nine-value authenticated DH register. Under a simple uniform-symbol reference, however, ten pairs would yield about 10(9/29)² ≈ 0.96 such hits; one is not surprising.
+- Its values [2,8] equal the word-length pair of p33's upper red title [2,8]. This is the sole match among ten boundaries × eight exact two-word red spans (**one of 80**). A deliberately naive uniform-pair reference gives 0.095 expected matches and about 9.1% probability of at least one; this is not a calibrated null and does not establish a selected operation.
 
-Across all ten internal 11×11 boundaries, boundary33 is the only one whose two flanking rune values are both members of the direct authenticated DH register `{p,g,a,b,A,B,K,e,q}`.
+The boundary pair is a cross-full-stop pair, not a contiguous ciphertext digram. The match to p33 is an exact structural correspondence, but the source supplies no instruction to change the unit from a missing word ordinal to a rune boundary.
 
-## Held-out manuscript consequence
+## The HOME observation is not a checksum
 
-The manuscript already contains eight exact red spans that consist of exactly two complete printed words. Charge every p32 internal boundary pair against every ordered two-word red-span length pair:
+The four runes after the proposed boundary are [8,3,19,18], which transliterate to **HOME**; that exact four-rune sequence occurs once in the 12,956 unknown LP2 runes. This exact-string fact is reproducible, but its selection value has already been tested by the whole-book post-period familywise study:
 
-`10 boundaries × 8 red spans = 80 comparisons`.
+- six four-rune English-lexicon prefixes occur among 174 printed word starts following full stops;
+- the familywise maximum-prefix test gives **p = 0.94560544** for a post-period prefix of four runes or longer;
+- the specific HOME-only p = 0.00029997 is explicitly post-hoc and inadmissible as a selector.
 
-Exactly one ordered pair matches:
+Therefore HOME cannot validate the boundary or serve as an independent receiver. The original p32 word beginning HOMEX remains ciphertext, not recovered plaintext.
 
-`p32 boundary33 [2,8] -> p33 upper red title lengths [2,8]`.
+## Finite alternatives at the missing coordinate
 
-No other p32 row boundary equals any other exact two-word red-span length pair. The matched red span is on the immediately following page, p33, at start0.
+| Interpretation | Fixed coordinate | Canonical object | Result |
+|---|---|---|---|
+| Skip to next page, preserve f33 | p33/f33 | [0,12,10] | GP rendering FEOI; no source-selected receiver |
+| Overflow carry by p32's 21 complete words | p33/f12 | [20,2,16] | GP rendering LTHT; no source clue selects this carry arithmetic |
+| Terminate a run | stop at YOU32 | none | The signed source continues directly with **YOU WILL**; no stop marker is supplied |
+| Mark a boundary | p32 after rune33 | [2,8], then HOME | Reproducible pattern, but the unit switch is unselected and HOME fails the familywise test |
 
-This p33 object predates the present test and has an independently established reading under the solved-p56 positive-cardinal serializer:
-
-`p33 upper [2,8] -> THEIR`
-
-while the lower p33 red title is:
-
-`p33 lower [3,5] -> RISE`.
-
-The p32 boundary therefore supplies an exact source-visible handoff into the already established p33 instruction `THEIR RISE` without an arithmetic wrap.
-
-## Consequence for the YOU -> WILL transition
-
-Existing independent p33 work fixes a three-rune YOU receiver at canonical word29 and a four-rune WILL receiver at word35. Authenticated THEIR occurs at source indices19 and25, so the established instruction fixes:
-
-`THEIR RISE = 25-19 = 6 = a`.
-
-The local p33 word displacement is exactly:
-
-`35-29 = 6 = a`.
-
-Thus the repaired route composes as:
-
-`YOU33 -> p32 boundary33 [K,A] -> p33 [2,8] title -> THEIR RISE -> +a words -> WILL`.
-
-The downstream YOU and WILL candidates were not used to choose the p32 boundary. They are a consequence after the unique p32-to-p33 geometry match.
-
-## Controls and evidence boundary
-
-The scalar origin rivals are recorded rather than hidden: offset32 is value2=K and offset33 is value8=A. The new evidence comes from treating 33 as the exact row boundary, preserving the ordered pair, then finding the unique manuscript-wide red-span match on the next page.
-
-The p32 row beginning at offset33 transliterates `HOMEXWDSLFD`, but that known p32 lexical observation was excluded from coordinate selection and is not needed for this result.
-
-This does not claim a new general rule that every missing word ordinal should become a rune boundary. The repair is specific to p32 because the page has an independently established 11×11 geometry and the missing ordinal is exactly a row-boundary multiple. The exact p33 title match supplies the discriminating consequence.
-
-## Held-out row-start checksum and coordinate stop
-
-The boundary repair fixes **offset33** as the first rune after the selected 33-rune boundary before any row text is read. The first four runes of that row are:
-
-```text
-offsets33..36 = [8,3,19,18]
-GP transliteration = HOME.
-```
-
-A complete scan of every contiguous four-rune window on all unknown LP2 pages finds this exact `HOME` sequence **once**, at p32 offset33. None of the other ten 11-rune row starts begins with HOME. Because the boundary was selected from 11×11 geometry and the unique p33 [2,8] title match before this row prefix was consulted, preserve HOME as a secondary held-out checksum of the repaired coordinate.
-
-Do not yet turn HOME into a new page jump. The natural semantic reading "go home -> p0" lacks a source-authored numeric/output rule and p0 already participates in several separately selected navigation branches.
-
-The boundary pair itself also tempts a matrix coordinate: `[K,A]=[2,8]`. Charge the ordinary finite rivals first: zero- or one-based coordinates under the eight square dihedral orientations. The zero-based readings produce values `{0,b,21,17}`; the one-based readings produce `{10,13,18,e,B,a,1,0}`. Four different authenticated state fields (`b,e,B,a`) appear depending on origin/orientation. There is no unique state output. Retire `[2,8]` as an 11×11 coordinate consumer until the source selects an origin and orientation.
+None of the alternatives is an authenticated map operation. In particular, the boundary interpretation is a possible explanation to retain as intermediate evidence, not a completed repair.
 
 ## Decision
 
-Restore YOU33 as a resolved navigation boundary:
+**Close the missing-coordinate question negatively.** The 2016 diagonal has one page-length exception: YOU32 → p32/f33, absent because p32 has only 21 complete page-local words. The 33-rune boundary / p33 red-title correspondence is real but not sufficiently source-selected; the HOME prefix is not familywise significant. No skip, carry, terminator, or boundary rule is established.
 
-`ordinal33 YOU -> physical p32 -> 33-rune boundary -> [K,A]=[2,8] -> immediately following p33 THEIR RISE`.
-
-This removes the retired modulo-22 repair and restores a source-visible route through the sole missing numbered coordinate.
+Do not use p32/f33 as a resolved navigation receiver or as the upstream selector for the p32→p0→p3→p33 composition. Keep the arithmetic pattern in the intermediate record, but remove it from the active frontier unless a new primary-source instruction selects the unit change. No unknown plaintext, key, or destination follows.
 
 ## Reproduction
 
-`node sims/lp2_p32_you33_boundary_p33_their_rise_sft.cjs`
+- node sims/lp2_p32_you33_boundary_p33_their_rise_sft.cjs — canonical 43-word map, neighboring objects, candidate boundaries, and skip/carry alternatives.
+- Whole-book HOME/English-prefix familywise decision: im-results/lp2-p32-home-wordstart-english-prefix-familywise.md and its existing SFT — the decisive control on the HOME observation.
+- Original p32/p33 scans: resources/liber-primus/49.jpg and resources/liber-primus/50.jpg.

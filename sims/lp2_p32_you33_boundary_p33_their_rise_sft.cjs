@@ -350,6 +350,70 @@ for (let segment = 0; segment < 55; segment += 1) {
 }
 assert.deepEqual(homeHits, [{page:32, offset:33}]);
 
+// Charge the complete 43-word map directly against canonical complete page-local words.
+const mapRows = sourceWords.map((word, index) => {
+  const target = canonicalWords(index)[index];
+  return {
+    index,
+    word,
+    page: index,
+    fragment: index + 1,
+    target: target ? {start: target.start, end: target.end, values: target.values} : null,
+  };
+});
+assert.equal(mapRows.length, 43);
+assert.equal(mapRows.filter((row) => row.target).length, 42);
+assert.deepEqual(
+  mapRows.filter((row) => !row.target).map(({index, word, page, fragment}) => ({index, word, page, fragment})),
+  [{index: 32, word: "YOU", page: 32, fragment: 33}]
+);
+
+const p31f32 = canonicalWords(31)[31];
+const p33f34 = canonicalWords(33)[33];
+const p33f33 = canonicalWords(33)[32];
+const p33f12 = canonicalWords(33)[11];
+assert.deepEqual(p31f32.values, [12, 23, 1]);
+assert.deepEqual(p33f34.values, [12, 24]);
+assert.deepEqual(p33f33.values, [0, 12, 10]);
+assert.deepEqual(p33f12.values, [20, 2, 16]);
+const render = (values) => values.map((value) => corpus.translit[value]).join("");
+assert.equal(render(p33f33.values), "FEOI");
+assert.equal(render(p33f12.values), "LTHT");
+assert.deepEqual(sourceWords.slice(30, 36), ["SEEK", "AND", "YOU", "WILL", "BE", "FOUND"]);
+
+const p32LineCounts = physicalPart(32)
+  .split("\n")
+  .map((line) => [...line].filter((character) => runeToValue.has(character)).length)
+  .filter(Boolean);
+assert.deepEqual(p32LineCounts, [25, 23, 23, 21, 22, 7]);
+const p6 = pageValues(6);
+assert.equal(p6.length, 196);
+assert.equal(Math.sqrt(p6.length), 14);
+const p6LineCounts = physicalPart(6)
+  .split("\n")
+  .map((line) => [...line].filter((character) => runeToValue.has(character)).length)
+  .filter(Boolean);
+assert.equal(p6LineCounts.length, 10);
+
+const p32Words = canonicalWords(32);
+const wordBoundaryMultiples = boundaryPairs
+  .filter((row) =>
+    p32Words.some((word) => word.end + 1 === row.boundary) &&
+    p32Words.some((word) => word.start === row.boundary)
+  )
+  .map((row) => row.boundary);
+assert.deepEqual(wordBoundaryMultiples, [33, 44, 99]);
+let p32LineTotal = 0;
+const p32LineEnds = p32LineCounts.map((count) => (p32LineTotal += count));
+assert.deepEqual(p32LineEnds, [25, 48, 71, 92, 114, 121]);
+assert.equal(p32LineEnds.includes(33), false);
+
+const naiveUniformPairExpected = 80 / (29 * 29);
+const naiveUniformPairAtLeastOne = 1 - Math.pow(1 - 1 / (29 * 29), 80);
+const naiveUniformDirectStateExpected =
+  boundaryPairs.length * Math.pow(directState.size / 29, 2);
+
+
 const coordinateOutputs = [];
 function dihedralCoordinates(row, column) {
   return [
@@ -385,9 +449,11 @@ console.log(JSON.stringify({
   status: "PASS",
   geometry: {
     p32RuneCount: p32.length,
-    square: "11x11",
+    squareFactorization: "121=11x11; inferred reflow only, not printed geometry",
+    printedLineRuneCounts: p32LineCounts,
+    matchedSquareControl: {page: 6, runeCount: p6.length, factorization: "14x14", printedLineCount: p6LineCounts.length},
     missingOrdinal: 33,
-    consumer: "ordered pair straddling the 33-rune row boundary",
+    consumer: "candidate ordered pair straddling the 33-rune boundary; not an admitted repair",
     boundaryPair: selected.pair,
     stateTyping: ["K", "A"],
     oneBasedScalar: {offset: 32, value: p32[32], state: "K"},
@@ -399,6 +465,22 @@ console.log(JSON.stringify({
     pairComparisons: 80,
     directStateBoundaryHits: boundaryPairs.filter((row) => row.bothDirectState),
     redSpanPairMatches: pairMatches,
+    naiveUniformPairExpected,
+    naiveUniformPairAtLeastOne,
+    naiveUniformDirectStateExpected,
+    wordBoundaryMultiples,
+    lineBoundaryMultiples: p32LineEnds,
+  },
+  completeMap: {
+    sourceWords: mapRows.map(({index, word, page, fragment, target}) => ({
+      index, word, page, fragment, exists: Boolean(target),
+    })),
+    existing: mapRows.filter((row) => row.target).length,
+    missing: mapRows.filter((row) => !row.target).map(({index, word, page, fragment}) => ({index, word, page, fragment})),
+  },
+  fallbackCoordinates: {
+    skipToNextPagePreservingFragment: {page: 33, fragment: 33, values: p33f33.values, gp: render(p33f33.values)},
+    overflowCarryAfter21CompleteWords: {page: 33, fragment: 12, values: p33f12.values, gp: render(p33f12.values)},
   },
   immediateHandoff: {
     page: 33,
@@ -414,12 +496,17 @@ console.log(JSON.stringify({
     displacement: willReceiver.ordinal - youReceiver.ordinal,
     expected: "a=6",
   },
-  heldOutRowStart: {word:"HOME", values:home, uniqueHits:homeHits},
+  exactRowStartObservation: {
+    word: "HOME",
+    values: home,
+    exactOccurrences: homeHits,
+    familywiseSelection: "not selected; see im-results/lp2-p32-home-wordstart-english-prefix-familywise.md (p=0.94560544)",
+  },
   matrixCoordinateGate: {chargedReadings:coordinateOutputs.length, directStateOutputs:coordinateStateHits, result:"AMBIGUOUS"},
   excludedFromSelector: {
     selectedRowTranslit: "HOMEXWDSLFD",
     note: "Known p32 lexical material was not used to choose boundary33.",
   },
   decision:
-    "Resolve YOU33 as the ordered p32 11x11 boundary33 pair [K,A]=[2,8], which uniquely matches the immediately following p33 upper red title and hands off to established THEIR RISE. No modulo wrap is used.",
+    "BOUNDED NEGATIVE: the 43-word diagonal has 42 existing coordinates; YOU32 -> p32/f33 is absent because p32 has 21 complete page-local words. The boundary33/title match is reproducible but not source-selected, the 11x11 reflow is unprinted, and HOME fails the familywise post-period test. Skip/carry alternatives yield no selected receiver; no terminator is present. Treat this as a page-length exception, not a repaired map.",
 }, null, 2));
