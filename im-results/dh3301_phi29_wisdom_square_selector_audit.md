@@ -1,6 +1,6 @@
 # DH3301 six-representative φ(e) mod 29 Wisdom-square selector audit
 
-**Classification: positive, discriminating page-selector evidence; not a decryption.** Under the proposed one-based row-major rule, exactly one of the six DH3301 exponent representatives selects a prime-valued cell in the 5×5 Wisdom square: e=1661 → φ(e) mod29 = 21 → cell 21 = 151 → 36th prime → p36.
+**Classification: positive, source-constrained state/key route; one two-rune plaintext candidate recovered, not a page solution.** Under the proposed one-based row-major rule, exactly one of the six DH3301 exponent representatives selects a prime-valued cell in the 5×5 Wisdom square: e=1661 → φ(e) mod29 = 21 → cell 21 = 151 → 36th prime → p36.
 
 ## Evidence and provenance
 
@@ -149,7 +149,7 @@ Its inverse is:
 N^{-1}=\begin{bmatrix}5&24\\27&8\end{bmatrix}.
 \]
 
-The p21 fragment22 ciphertext is [19,7]. Decryption gives:
+The p21 fragment22 ciphertext is [19,7], visibly a standalone hyphen-bounded two-rune token in the original page image. Decryption gives:
 
 \[
 N^{-1}\begin{bmatrix}19\\7\end{bmatrix}
@@ -202,8 +202,17 @@ The first two matrix outputs [b,B]=[15,19] also agree with the independently rep
 
 ## Human solve-path hypothesis and next decision
 
-A plausible player-visible path is: recover the DH3301 client exponent class; encounter the Wisdom page's prime/totient clue and its 5×5 square; test the six exponent representatives under φ(e) mod29; notice that only one-based cell 21 yields a prime; then use 151's prime ordinal to identify p36. This path is substantially more discriminating than selecting 1661 by inspection, but its key dependency remains the unsigned participant transcript and the inferred cell-address rule.
+A plausible player-visible path is:
 
-**Next:** obtain an independent reproduction or falsification of the p21 THE decryption and its state-derived matrix construction. Then seek a second source-selected receiver before generalizing the key. Do not apply the matrix globally, rescue the failed p25 OITOHL→READ OUT test, or recursively iterate the p19/p22 continuation.
+1. The signed 2016 message supplies the “words are the map / their numbers are the direction” clue; the p4 Wisdom page supplies the totient and H markers.
+2. The unsigned DH3301 exponent class plus the 5×5 Wisdom square conditionally selects p36. The signed word index 36 independently selects the same page under the proposed page/fragment convention.
+3. The 5×5 φ-grid matrix on p36 fragment37 yields [b,B,q,p-K,q]=[15,19,4,21,4], which reads as source-word indices WORDS / THEIR / EMPTY / IS / EMPTY.
+4. The q endpoints select the p4 H markers around p21 fragment22 [19,7]. H([19,7])=[12,26] selects the 2016 words THE / NUMBERS.
+5. “Words are the map” sends indices 12 and 26 to p12/p26, whose two H channels recover [K,A] and [B,p−1]. “Their numbers are the direction” conditionally sends GP0 sums 20 and 83 mod29 to p20/p25, recovering [A,g] and [0,q].
+6. The existing unique p25 side object supplies [K,g]. The three pairs [K,A], [A,g], [K,g] form N=[[A,g],[K,g]], with determinant one. Its inverse maps the p21 receiver to GP29 runes TH,E = THE.
+
+This is a coherent human-solve-path hypothesis, not an established intended route. Its weakest links remain the unsigned DH participant exponent, the inferred one-based page/fragment convention, GP0(NUMBERS)=83 mod29 page reduction, and the source-unwritten row stacking used to form N. The p20/p38 collision is real; p25 is favored by independent p23 one-rise and [K,g] evidence.
+
+**Next:** obtain an independent reproduction or falsification of the p21 THE decryption and key construction. Then seek a second source-selected receiver before generalizing N. Do not apply the matrix globally, rescue the failed p25 OITOHL→READ OUT test, or recursively iterate the p19/p22 continuation.
 
 **Reproducer:** node sims/dh3301_phi29_wisdom_square_selector_sft.cjs.
