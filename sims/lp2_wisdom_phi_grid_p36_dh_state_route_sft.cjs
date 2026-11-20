@@ -351,6 +351,11 @@ assert.deepEqual(N, [[8, 5], [2, 5]]);
 assert.equal(detMod(N), 1);
 const Ni = inverseMatrix(N);
 assert.deepEqual(Ni, [[5, 24], [27, 8]]);
+const Nrev = [[state.K, state.g], [state.A, state.g]];
+const NrevI = inverseMatrix(Nrev);
+assert.equal(detMod(Nrev), 28);
+const rowReversedPlain = mulLeft(NrevI, p21.values);
+assert.deepEqual(rowReversedPlain, [27, 22]);
 const p21HillPlain = mulLeft(Ni, p21.values);
 assert.deepEqual(p21HillPlain, [2, 18]);
 assert.deepEqual(p21HillPlain.map((i) => corpus.translit[i]), ["TH", "E"]);
@@ -477,7 +482,7 @@ console.log(JSON.stringify({
     familywiseMatches: agPairMatches,
     p25SideObject, p25SideState,
   },
-  stateTriangle: { KA: lengthPacket, Ag: numberSumPacket, Kg: p25SideState, N, determinant: detMod(N), inverse: Ni },
+  stateTriangle: { KA: lengthPacket, Ag: numberSumPacket, Kg: p25SideState, N, determinant: detMod(N), inverse: Ni, rowReversedN: Nrev, rowReversedDeterminant: detMod(Nrev), rowReversedInverseOutput: rowReversedPlain },
   p21HillDecryption: {
     ciphertext: p21.values, plaintextRuneValues: p21HillPlain,
     plaintextRunes: p21HillPlain.map((i) => corpus.translit[i]).join(""),
