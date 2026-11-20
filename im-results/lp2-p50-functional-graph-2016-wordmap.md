@@ -19,6 +19,28 @@ Using resources/liber-primus/lp2-grid-256.json as supplied:
 
 There are exactly two cycles. Their lengths sum to 13 and multiply to 22; the small basin has size 4. These numbers are suggestive against the p0 marker's 13 dots and the 2013 DH register's group order p−1=22=2×11, with q=4. This is a cross-source alignment, not proof that the table was designed as a functional graph.
 
+### Original-scan check of the 13 cycle cells
+
+The 13 printed tokens used by the two cycles were also checked visually against the original 2400×3600 scans 66.jpg–68.jpg supplied with this run. Coordinates below are zero-based within each page's 8-column table; the base-60 byte is the successor index.
+
+| Cell index | LP2 page / scan | Row | Col | Printed token | Byte / successor |
+|---:|---|---:|---:|:---:|---:|
+| 158 | 50 / 67.jpg | 9 | 6 | 49 | 249 |
+| 249 | 51 / 68.jpg | 8 | 1 | 2c | 158 |
+| 115 | 50 / 67.jpg | 4 | 3 | 47 | 247 |
+| 247 | 51 / 68.jpg | 7 | 7 | 3C | 192 |
+| 192 | 51 / 68.jpg | 1 | 0 | 00 | 0 |
+| 0 | 49 / 66.jpg | 0 | 0 | 3N | 203 |
+| 203 | 51 / 68.jpg | 2 | 3 | 18 | 68 |
+| 68 | 49 / 66.jpg | 8 | 4 | 3J | 199 |
+| 199 | 51 / 68.jpg | 1 | 7 | 0l | 47 |
+| 47 | 49 / 66.jpg | 5 | 7 | 1G | 76 |
+| 76 | 49 / 66.jpg | 9 | 4 | 1s | 114 |
+| 114 | 50 / 67.jpg | 4 | 2 | 3H | 197 |
+| 197 | 51 / 68.jpg | 1 | 5 | 1t | 115 |
+
+All 13 tokens are legible in the original scans and agree with the canonical grid at the listed positions. This is a visual source check, not a new per-glyph pixel-metric adjudication. The repository's full-font audit reports 509 of 512 glyphs with same-class controls and no flagged mismatches; the three singleton labels are R, i, and h, none of which occurs in these 13 tokens. Cell 199 is also among the eleven separately adjudicated disputed positions.
+
 ## Source-oriented cycle order and base-29 word pairs
 
 Write each cycle node n as n=29q+r. The GP alphabet has 29 symbols, and the 2016 signed message contains a natural zero-based 29-word register at indices 0–28. Its next word, at index 29, is "direction"; it is not addressable by a base-29 digit.
