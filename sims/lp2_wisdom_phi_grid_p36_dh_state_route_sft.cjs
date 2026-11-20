@@ -359,6 +359,11 @@ assert.deepEqual(rowReversedPlain, [27, 22]);
 const p21HillPlain = mulLeft(Ni, p21.values);
 assert.deepEqual(p21HillPlain, [2, 18]);
 assert.deepEqual(p21HillPlain.map((i) => corpus.translit[i]), ["TH", "E"]);
+assert.deepEqual(mulLeft(N, p21HillPlain), p21.values);
+const p21CipherRunes = p21.values.map((i) => corpus.translit[i]).join("");
+const p21PlainRunes = p21HillPlain.map((i) => corpus.translit[i]).join("");
+assert.equal(p21CipherRunes, "MG");
+assert.equal(p21PlainRunes, "THE");
 assert.equal(p21HillPlain.map((i) => corpus.translit[i]).join(""), "THE");
 
 // Familywise two-rune control: only p21 fragment22 decrypts to THE.
@@ -484,8 +489,9 @@ console.log(JSON.stringify({
   },
   stateTriangle: { KA: lengthPacket, Ag: numberSumPacket, Kg: p25SideState, N, determinant: detMod(N), inverse: Ni, rowReversedN: Nrev, rowReversedDeterminant: detMod(Nrev), rowReversedInverseOutput: rowReversedPlain },
   p21HillDecryption: {
-    ciphertext: p21.values, plaintextRuneValues: p21HillPlain,
-    plaintextRunes: p21HillPlain.map((i) => corpus.translit[i]).join(""),
+    ciphertext: p21.values, ciphertextRunes: p21CipherRunes,
+    plaintextRuneValues: p21HillPlain, plaintextRunes: p21PlainRunes,
+    forwardReencryptsExactly: JSON.stringify(mulLeft(N, p21HillPlain)) === JSON.stringify(p21.values),
     allTwoRuneFragments: twoRuneFragments.length, variants: theRuneHits,
     twoRuneFragmentsOnP21: 9,
   },
