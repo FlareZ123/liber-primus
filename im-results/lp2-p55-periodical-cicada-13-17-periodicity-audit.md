@@ -18,7 +18,13 @@ The original p55 image contains a cicada and tree illustration; the canonical tr
 
 The visual association is unusually well-timed, not merely generic: Iowa State University Extension documented 17-year Brood III emerging in Iowa, Missouri, and Illinois in 2014 ([11 April 2014 notice](https://yardandgarden.extension.iastate.edu/article/2014/04-11/cicadas.html)); Mississippi State University Extension records 13-year Brood XXII collections in Mississippi in 2014 ([brood distribution and collection history](https://accessibility.extension.msstate.edu/lawn-and-garden/ornamental-plants/distribution-periodical-cicadas-mississippi)). Thus the p55 cicada/tree, its 17 printed words, the terminal 13-dot mark, and p57 `EMERGE` could intentionally point to the **two 2014 periodical-cicada broods**.
 
-This strengthens the motif as a historical/navigation clue, but still does not specify a cipher operation, key, page address, or extraction. The negative period17 periodicity result remains: do not turn the 13/17 brood clue into a generic repeating-key search. A future test should seek a further source-authenticated 2014 brood or geographic consequence before proposing a cryptographic consumer.
+This strengthens the motif as a historical/navigation clue, but still does not specify a cipher operation, key, page address, or extraction. The negative period17 periodicity result remains: do not turn the 13/17 brood clue into a generic repeating-key search. The next test is a direct visual comparison with the 2013 Science News lineage-tree figure; no cipher consumer is selected.
+
+## Candidate contemporary source: Science News, 13 July 2013
+
+A much more specific source candidate is Susan Milius's *Science News* feature **“Mystery in Synchrony: Cicadas’ odd life cycle poses evolutionary conundrums”** (13 July 2013; [original issue PDF](https://www.sciencenews.org/wp-content/uploads/sites/2/2024/02/sciencenews20130713-dl.pdf)). It explicitly discusses the 13- and 17-year cycles, the evolutionary family tree of periodical cicadas, and the 2014 emergences of both 17-year Brood III and 13-year Brood XXII. Its page 27 figure contains a branching lineage tree and brood-distribution map. This source predates the May 2014 LP2 release.
+
+This is a concrete candidate for the p55 tree/cicada illustration, 17 printed words, terminal red13 mark, and p57 `EMERGE`—stronger than a generic insect association. **No visual identity or copying relationship has yet been established.** The next discriminating test is to compare the p55 central-tree crop with the article's lineage-tree figure (branch topology, node positions, and labels). Do that before proposing any cipher consumer; the period17 repeating-key test remains negative.
 
 ## Interpretation
 
