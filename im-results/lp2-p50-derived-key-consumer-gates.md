@@ -80,12 +80,33 @@ The p0 body has 13 ciphertext F symbols. None of the four exact F-transparent in
 
 **Decision:** reject these exact GP0 word-pair difference/sum keys as p0-body consumers. This does not reject the p50 graph's structural observations or every possible use of the 2016 word pairs.
 
+## Gate C — direct base-29 coordinate streams as a p0 key
+
+A still simpler consumer uses the source-oriented graph decomposition n=29q+r directly, without converting the selected 2016 words to GP0 values. Use either the 13 quotients q or the 13 remainders r as a periodic phase-zero GP29 key on the same 249-rune p0 body. Test both signs, direct inversion, and the p56-style plaintext-F-transparent rule. This is the natural two-coordinate alternative to Gate B; no offset or reordering is introduced.
+
+The two candidate keys are:
+
+- quotient q: [5,8,3,8,6,0,7,2,6,1,2,3,6]
+- remainder r: [13,17,28,15,18,0,0,10,25,18,18,27,23]
+
+| Candidate 13-key | Inverse | Direct IoC | F-transparent full paths |
+|---|---|---:|---:|
+| quotient q | C−K | 0.03358596 | 0 |
+| quotient q | C+K | 0.03416893 | 0 |
+| remainder r | C−K | 0.03280865 | 0 |
+| remainder r | C+K | 0.03520534 | 0 |
+
+All four exact F-transparent inverses are empty. The direct outputs remain ciphertext-like. For each key/sign, a synthetic p57 PARABLE ciphertext under the same periodic F-transparent rule recovers all 95 planted symbols.
+
+**Decision:** reject q and r themselves as phase-zero 13-periodic p0-body keys under the tested direct and F-transparent rules. This does not reject the graph's navigation interpretation or every possible downstream use of its coordinates.
+
 ## Overall conclusion and next decision
 
 Both experiments close specific, motivated consumers without producing plaintext:
 
 - φ(table byte) mod 29 does not decode either complete sentence adjacent to the table.
 - The 2016 graph-selected word-pair GP0 difference/sum does not decode the p0 body.
+- The graph's direct quotient/remainder streams do not decode the p0 body as 13-periodic keys.
 
 The strongest objections remain upstream: the table's base-60 byte interpretation and the functional-graph interpretation are hypotheses; neither source explicitly commands the totient transfer, the word-pair subtraction/sum, or the selected cipher-consumer rule. These are not grounds for broadening into arbitrary offsets, permutations, phases, or further arithmetic fits.
 
