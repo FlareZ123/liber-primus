@@ -154,7 +154,7 @@ function main() {
     sourceFacts: {
       gridShape: grid.shape,
       tableBytes: bytes.length,
-      antipodalPairs: key.length,
+      antipodalPairs: sumKeyFull.length,
       p53BlackRunes: black.length,
       p53RedRunes: red.length,
       p55Runes: p55.length,
