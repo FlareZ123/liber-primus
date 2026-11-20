@@ -65,6 +65,5 @@ jobs:
           path: |
             ${{ runner.temp }}/liber-primus-stage7-reproduction/report.json
             ${{ runner.temp }}/liber-primus-stage7-reproduction/OpenPuffv400.zip
-            ${{ runner.temp }}/liber-primus-stage7-reproduction/OpenPuff-mirror-response.html
             ${{ runner.temp }}/liber-primus-stage7-reproduction/openpuff-output/**
             ${{ runner.temp }}/liber-primus-stage7-reproduction/openpuff-*-controls.json
