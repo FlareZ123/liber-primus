@@ -148,6 +148,31 @@ The fixed GP29 trigram scorer is trained on published solved plaintext while exc
 
 The strongest p33 candidate among all three consumer families is **-10.528261069958486**, and the SFT asserts that this remains below the worst long solved-section score. The gate therefore does not depend on visual inspection alone.
 
+
+## Follow-up: source-derived prime offsets for the 81-rune first body (Agent48, 20 November 2026; Director Issue #1976)
+
+The p32→p33 route supplies a receiver hypothesis: p33's oversized M has prime value 71, the frozen p50 route advances it by \(q=4\) to depth 81, and the first p33 unit has a 10-rune red title followed by an 81-rune black body. This selects a candidate body, but it does not by itself specify the start of a prime clock. To test the strongest two source-derived readings without searching arbitrary offsets, the p56 prime/totient inverse was frozen as \(P_i=C_i-(p_i-1)\pmod{29}\), retaining the historical transparent-F ambiguity.
+
+1. **Literal prime value:** start the body at prime 71, then use the next 80 primes.
+2. **Prime-index plus title length:** interpret 71 as the one-based prime-stream index at the title start, consume the ten visible title positions, and start the body at the 81st prime, 419.
+
+The original p33 body is rune offsets [7970,8051), exactly 81 runes. Its ciphertext F positions are 2 and 38, so all four possible literal-F masks were tested for each fixed start. Every candidate was exactly re-encryptable. None yields coherent GP-native plaintext:
+
+| Fixed start | Literal-F mask | Prime range used | Output opening |
+|---|---:|---:|---|
+| prime value 71 | none | 71–541 | FHNNGBPSNHDITXENOEEANGIIA |
+| prime value 71 | position 2 | 71–523 | FHFAEDNGMJEOAEXUEAJOUIATTH |
+| prime value 71 | position 38 | 71–523 | FHNNGBPSNHDITXENOEEANGIIA |
+| prime value 71 | positions 2, 38 | 71–521 | FHFAEDNGMJEOAEXUEAJOUIATTH |
+| 81st prime (419) | none | 419–947 | FHCMSSSOTHBREOGEOYTECIAU |
+| 81st prime (419) | position 2 | 419–941 | FHFNGNGMNGJGMHAXTCLABFM |
+| 81st prime (419) | position 38 | 419–941 | FHCMSSSOTHBREOGEOYTECIAU |
+| 81st prime (419) | positions 2, 38 | 419–937 | FHFNGNGMNGJGMHAXTCLABFM |
+
+The complete 81-rune outputs and IoCs are emitted by [the reproducer](../sims/lp2_p33_prime_offset71_sft.cjs). The p56 implementation's authentic positive control is already established in this report's original section-reset test. The p33 body itself fails both source-derived offsets, so no p40–p55 holdout was run.
+
+This does not refute the p32/p50 receiver navigation. It separates receiver selection from cipher selection: the M=71→depth81 relation does not authenticate a prime-stream start. Together with the already-negative p32-inner9 additive transfer and direct red-heading self-key Vigenère, there is no remaining source-selected value-changing inverse for this first body. Do not widen to arbitrary prime offsets, affine shifts, key transformations, or fitted resets.
+
 ## Decision
 
 These three layout-selected families are retired for p33:
@@ -158,7 +183,7 @@ These three layout-selected families are retired for p33:
 
 They do not recover p33 body plaintext and should not be widened with tuned line-specific choices or arbitrary prime offsets.
 
-The p33 state map remains valuable. In particular, body115 is still multiply selected by the title133 factor packet and the factor43 ROAD route. The next decoder must be supplied by a genuinely different source clue or reversible operation.
+The p33 state map remains valuable. In particular, body115 is still multiply selected by the title133 factor packet and the factor43 ROAD route. The next decoder must be supplied by a genuinely different source clue or reversible operation. The source-derived prime-offset extension in the follow-up section also fails; do not broaden this family with arbitrary prime starts.
 
 ## Reproduction
 
