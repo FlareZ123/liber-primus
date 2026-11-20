@@ -42,11 +42,11 @@ const routeOrder=[45,34,49,37,57];
 const results=routeOrder.map(readPage);
 const byPage=new Map(results.map(x=>[x.page,x]));
 const expected={
-  45:{wordCount:64,oddWordCount:32,centerSum:471,centerText:'CLEOTOSOEBUOBOPBOTLEGIMMWCNLCSJFEOH'},
-  34:{wordCount:61,oddWordCount:31,centerSum:348,centerText:'NECTFCSAMYEAGDUENAMEOEDYWISNGGYOIATH'},
-  49:{wordCount:18,oddWordCount:6,centerSum:106,centerText:'IALMMXR'},
-  37:{wordCount:53,oddWordCount:24,centerSum:362,centerText:'AEHNGITHEOUDJPTEEAAEOIGGJXYEA'},
-  57:{wordCount:20,oddWordCount:7,centerSum:43,centerText:'ANFUWTHN'}
+  45:{wordCount:64,oddWordCount:32,centerSum:367,centerText:'CLEOTOSOEBUOBOPBOTLEGIMMWCNLCSJFEOH'},
+  34:{wordCount:61,oddWordCount:31,centerSum:471,centerText:'NECTFCSAMYEAGDUENAMEOEDYWISNGGYOIATH'},
+  49:{wordCount:18,oddWordCount:6,centerSum:103,centerText:'IALMMXR'},
+  37:{wordCount:53,oddWordCount:24,centerSum:348,centerText:'AEHNGITHEOUDJPTEEAAEOIGGJXYEA'},
+  57:{wordCount:20,oddWordCount:7,centerSum:52,centerText:'ANFUWTHN'}
 };
 for(const [page,expect] of Object.entries(expected)){
   const got=byPage.get(Number(page));
@@ -56,6 +56,8 @@ const unknownOrder=[45,34,37];
 const unknownText=unknownOrder.map(p=>byPage.get(p).centerText).join('');
 const routeText=routeOrder.map(p=>byPage.get(p).centerText).join('');
 assert.equal(unknownOrder.reduce((n,p)=>n+byPage.get(p).oddWordCount,0),87);
+assert.equal(byPage.get(45).centerIndices[0],5,'p45 begins with a one-rune C fragment');
+assert.equal(byPage.get(45).centerSum-5,362,'excluding the leading p45 singleton reproduces the earlier page-level sum');
 assert.equal(unknownText,
 'CLEOTOSOEBUOBOPBOTLEGIMMWCNLCSJFEOHNECTFCSAMYEAGDUENAMEOEDYWISNGGYOIATHAEHNGITHEOUDJPTEEAAEOIGGJXYEA');
 assert.equal(routeText,
@@ -69,5 +71,6 @@ console.log(JSON.stringify({
   unknownCenterRuneCount:87,
   unknownCenterText:unknownText,
   completeRouteCenterText:routeText,
+  p45SumIfLeadingSingletonExcluded:byPage.get(45).centerSum-5,
   decision:'fixed direct SHED continuation yields no coherent plaintext; do not add an unselected key or second transform'
 },null,2));
