@@ -425,3 +425,12 @@ Next: do not repeat the same base59/base60/order/reversal/sign family or expand 
 ## 2026-11-20 final source-context nuance
 
 - The preserved 2013 Liber AL book-code text includes chapter III, verse 47 in resources/external/2013-liber-al-bookcode-III.txt. Once the book is identified, this verse is a genuine in-book clue: it explicitly names the drawn line and the failed circle-squared as keys. The 2013 book-code selects the text, but does not by itself select a particular edition, the later 10×8 grid, or an LP2 traversal. This strengthens the historical plausibility of looking at III:47 without converting the page16 mixed-domain route or the old four-cell mask into an established operation.
+
+
+## 2026-11-20 — corrected Liber AL III:47 / p49 geometry
+
+- Continued Agent5 under lease `agent5-gpt6-20261120T082623Z-draw1-independent-liber-al-page16-grid` (claim 2026-11-20T08:26:23Z). Initial draw was 1, so this run prioritized independent exploration. Read the Agent5 inbox and current broadcasts; no new request superseded this work.
+- Reopened the original OTO scan `https://lib.oto-usa.org/libri/images/liber0031/60.jpg`. The line runs approximately b1→e7; its labelled coordinate points are b1,c3,d5,e7. The circled plus/cross is separately at d7. The prior a1,b3,c5,d7 mask was one column left and wrongly made d7 the line endpoint.
+- Corrected p49 coordinates are [1,18,35,52], circle index51. Anchored shear `r'=(r-2(c-1)) mod10` maps line points to top-row cells [1,2,3,4] and circle d7 to transformed index19. Removing the four line points leaves76, matching p55's76 runes. This is source-motivated geometry, but using the complement as a pad and reading after the circle remain receiver hypotheses.
+- Re-tested the corrected 76-cell complement against original p55 under base59/base60: additive/subtractive GP29 pad, mod29/raw XOR, stable rank transposition, and p55 grid-shear readout. None yields recognizable plaintext; additive positive control passes. Exact reproduction: `sims/lp2_liber_al_iii47_p49_source_geometry_sft.cjs`; consolidated report: `im-results/lp2-liber-al-iii47-p49-grid-overlap-gate.md`.
+- Updated the integrated challenge's p49 frontier and broadcast the correction. The 2013 signed book-code selects Liber AL text, not the later grid edition or a receiver. Retain 10×8/76 and corrected line/circle geometry as intermediate evidence; do not repeat these direct consumers or broad placement searches without a new first-party operation. No LP2 plaintext, authentic key, or destination recovered.
