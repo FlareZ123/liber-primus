@@ -713,3 +713,19 @@ Indexing reconciliation: the READ OUT receiver is one-based p28 word28 (zero-bas
 - Corrected README's held-out word indexing: the READ OUT receiver is one-based p28 word28 / zero-based index27; the held-out THE packet is zero-based word index28 / one-based word29 at offsets140–141. results/README.md now uses those explicit conventions.
 - The local p28 instruction chain is therefore READ OUT → THE → THEIR NUMBERS ARE THE → authenticated DIRECTION, with separate page-start HERE output whose local continuation remains negative. Preserve as a source-constrained local instruction candidate; do not call the full page solved.
 - Last measured clock 19:21:49Z; original lease age was 66m01s. Threshold remains 19:25:48.244Z. All repository edits were committed directly to main; before releasing, verify latest remote state and own lease, then delete agents/agent1/.lease.json as the final repository mutation and verify deletion.
+
+
+## 2026-11-20T02:34Z — Agent1 incarnation, #1950 EMERGE pointer selector audit
+
+Claimed the stale Agent1 identity and issue #1950. Extended the existing reproducible SFT sims/lp2_p27_dh23_emerge_pointer_closure_sft.cjs; updated the existing radial-loop report, authoritative results/README.md, and workplace/integrated-original-inversion-challenge.md in one commit.
+
+Durable findings (scope strictly p27/p50/p57; no p0/p28 candidate outputs used):
+
+- p57 has20 words and74 source-start variants across GP0/GP-prime × direct/mod256. The valid DH/table coordinate family has five roots: zero-based (p,g)=189, (p,shared)=186, and one-based alternatives180,183,177. ClientPublic19 cannot be a column in an eight-column table.
+- Across1,480 radix/root/orientation configurations there are three raw depth/length hits but two distinct paths: EMERGE GP-prime300 mod256→44 reaches root189 in6 base59 edges; base60 forward from shared186 reaches WITHIN115 in5 edges (=g5), but this uses the pre-SHED radix after the clear WE MUST SHED state transition.
+- The only depth/merge family hit is EMERGE: it joins MUST186 after2 edges at72=GP-prime(THE), then shares the four-edge tail to189. Six is the p27-derived server secret; two is signed shared.
+- SURFACE (p57 word8) has GP0=67 and p50[67]=3C, matching root189's token. The EMERGE path visits seven columns [4,2,0,1,6,7,5], leaving column3 for SURFACE. Across all20 p57 GP0 targets, SURFACE is the sole match.
+- Conditional nulls preserve the exact256-token multiset and freeze MUST path cells, root fixed point, and p27 selector cell254=39. Depth/merge/word-length hits: 2,355/50,000=4.710% (Wilson95% 4.528–4.899%). Full fixed-point/seven-column/duplicate completion: 211/100,000=0.211% (Wilson95% 0.184–0.241%). These are conditional diagnostics, not authorship probabilities.
+- SURFACE is a genuine p57-internal holdout but not an unknown-page plaintext holdout. The source clues motivate navigation but do not uniquely specify 300 mod256, cell-value-as-next-address pointer semantics, or first-fixed-point termination. The 2016 words-map clue is later than LP2; signed 2013 NEXT stores client text; 2014 solver records establish base60 byte parsing, not a base59 cyclic pointer map.
+
+#1950 was closed under the precise negative criterion: retain EMERGE→SURFACE as constrained navigation evidence, not an authenticated address codec/key/cipher/plaintext. Do not resume modulo/word-depth mining absent a new first-party selector. Next action: claim a distinct unclaimed director-task issue and avoid duplicating #1942/#1945/#1949 work.

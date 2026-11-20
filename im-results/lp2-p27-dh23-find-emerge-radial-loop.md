@@ -156,21 +156,43 @@ about one in 8.29 million. Allowing either source value with residue20 at the
 inner cell doubles that to about one in 4.15 million. These are
 post-discovery scale diagnostics, not authorship probabilities.
 
+## Source-selection gate #1950 (Agent1, 20 November 2026)
+
+This audit is confined to the p27/p50/p57 route. It does not use p0 or p28 candidate outputs as selectors or holdouts.
+
+### Frozen selection family
+
+The canonical p57 parser supplies 20 printed words. For every word, the audit tests GP0 and GP-prime sums, direct addressing when the sum is below256, and reduction modulo the literal 256-cell table. This yields **74 candidate start configurations**.
+
+The signed DH tuple is p=23, g=5, serverPublic=8, clientPublic=19, shared=2. With p50's eight columns, valid coordinate alternatives are zero-based (p,g)=189, zero-based (p,shared)=186, and one-based alternatives (p,g)=180, (p,serverPublic)=183, (p,shared)=177. clientPublic=19 cannot be a column in an eight-column table; zero-based serverPublic=8 is also out of range. Both base60/base59 readings and both word-to-root/root-to-word orientations of the same forward map were charged: **1,480 configurations**.
+
+There are three raw depth/length hits, but only two distinct paths because WITHIN's direct and modulo256 addresses are both115:
+
+- **EMERGE**: GP-prime300, modulo256 start44, forward base59 to root189 in six edges. Six is the p27-derived server secret, not a signed public DH field.
+- **WITHIN**: from shared coordinate186, forward base60 reaches GP-prime address115 in five edges, matching public generator5. This is a genuine competing path, but it uses the pre-SHED radix after the p57 text has already said WE MUST SHED; under the post-SHED base59 state, 186 does not reach115.
+
+The only candidate that joins the fixed MUST186 path at a DH-derived depth, continues to root189 at a DH-derived total depth, has its own rune length equal to that total, and merges on a p57 word-sum node is EMERGE: it enters after **2** edges at **72=GP-prime(THE)** and shares the remaining four edges to root189. The entry depth matches signed shared2; total depth6 matches the independently manuscript-derived p27 server secret.
+
+### SURFACE internal holdout and exact-multiset controls
+
+The p57 word **SURFACE** (word8) has GP0 address67, and original p50[67]=3C, the same token as root cell189. The four original 3C copies are at 67,162,189,247. EMERGE's seven-cell path visits columns [4,2,0,1,6,7,5], leaving column3; SURFACE67 occupies that missing column. Scanning all20 p57 GP0 target words finds SURFACE as the sole word whose address contains the root token. Across all74 candidate starts, the frozen fixed-point/seven-distinct-column/duplicate-in-missing-column rule has exactly one original completion: **EMERGE → 189/3C → 67/SURFACE**.
+
+Two conditional randomization controls preserve the exact 256-token multiset. Both freeze the eight MUST-path edges, the root fixed point, and the upstream p27 selector cell254=39; all remaining246 tokens are shuffled with fixed seeds.
+
+- **Depth/merge family:** across all74 candidate starts, all possible first merge positions on MUST, the extended DH-derived depth set, and all p57 word-sum merge labels, **2,355/50,000 = 4.710%** shuffles produce at least one depth/merge/word-length match (Wilson95% interval **4.528–4.899%**). The depth/merge coincidence alone is therefore supportive but not rare under this conditional family.
+- **Full fixed-point/column completion:** across all74 starts, all20 p57 GP0 target words, and all eight possible missing columns, **211/100,000 = 0.211%** shuffles produce at least one completion (Wilson95% interval **0.184–0.241%**). Of these,203 end at189 and21 leave column3. This is a substantially stronger internal p57 holdout than the six-edge match alone.
+
+These are conditional familywise diagnostics given the already selected p27 route, not global probabilities of intentional design. SURFACE is a distinct p57 internal target and survives the all-word family scan; it is not an unknown-page plaintext holdout and the route was not prospectively blinded to the solved p57 text.
+
+### Source-selection decision
+
+The source clues make the navigation hypothesis plausible: p57 says circumferences and EMERGE; the authenticated 2016 message says words are a map and their numbers are direction; the p50 object is a literal 256-cell table; and the p27/DH route supplies a source-selected start, root, and path. But none of these sources uniquely specifies **300 mod256**, the cell-value-as-next-address operation, or stopping at the first fixed point. The 2016 message motivates word-number navigation but does not state a wrap rule and postdates the 2014 release. The signed 2013 TCP/DH source supplies the DH tuple and a NEXT command, but NEXT stores client-supplied text; it does not define a table-pointer walk. The contemporaneous 2014 participant record establishes conventional base60 table decoding/byte serialization, not a base59 cyclic address space or fixed-point termination. See the [2016 signed clue](../resources/historical/cicada2016-4gq25.md), [2013 signed TCP/DH source](../resources/external/2013-tcp-server-signed-source.md), and [2014 author-era alphabet audit](lp2-p50-author-era-alphabet-source-audit.md).
+
+**Decision:** completion criterion (a) is not met. Criterion (b) is met as a precise partial negative: the EMERGE→SURFACE structure is reproducible and has a meaningful p57-internal holdout, but the modulo256 wrap and pointer/termination rule still lack a source-authenticated selector. Retain it as constrained navigation evidence, not an authenticated address codec, key, cipher, or unknown plaintext. Do not continue word-depth/modulo mining unless a new first-party clue selects the wrap/receiver operation.
+
+Reproduce with [the extended source-exact SFT](../sims/lp2_p27_dh23_emerge_pointer_closure_sft.cjs). The script uses fixed PRNG seeds 0x19502026 and 0x1950F00D; its randomization tests are conditional on the frozen p27 path and cell254.
+
 ## Consequence
 
-The main advance is causal rather than statistical. The ring-derived client
-secret15 predicts the next clear instruction word FIND. FIND's own source
-arithmetic supplies divinity150. The shared value2 then gives exactly two
-inward circumference steps from MUST through FIND to the already selected
-60-ring, where the base59 residue points to EMERGE. EMERGE's sum300 returns to
-the independently selected p55 boundary.
+The p27/DH/circumference chain remains a strong **navigation** hypothesis, and the SURFACE duplicate is a genuine internal p57 cross-check. The new familywise audit narrows the claim: the depth/merge match alone occurs in 4.71% of conditional token shuffles, while the full fixed-point/column completion occurs in 0.211%. Neither statistic authenticates the modulo256 operation. The missing ingredient is not another numerical coincidence; it is an original clue or historically grounded convention that selects the cyclic wrap, pointer direction, and fixed-point receiver rule before looking at the output. No unknown LP2 plaintext is recovered.
 
-This substantially strengthens the interpretation of the p27/DH/circumference
-material as an intended navigation program. It still forms a **closed loop**
-rather than an unknown-page inverse. Do not convert the loop constants into
-arbitrary GP29 keys. The next useful break must explain what the loop is meant
-to act on, identify a source-authored exit condition, or make a fresh
-prediction outside the already linked p55/p27/p50/p57 objects.
-
-Reproduce with
-`sims/lp2_p27_dh23_find_emerge_radial_loop_sft.cjs`.

@@ -117,7 +117,7 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 - **P49 Liber AL III:47:** #1944 tests the source link and uniqueness of the p49 geometry only; direct additive/XOR/rank/shear consumers remain closed.
 - **Historical sources:** #1945 verifies the Stage8 signed square instructions; #1946 is now complete and positive as a historical Stage03→Stage04 control: three Cicada-signed 991-byte shards verify, their XOR exactly reproduces the signed output, and the archived next response verifies. The XOR recipe remains documented by a community reconstruction, the output signature predates the shard wrappers, and no LP2 transfer is implied. #1948 reproduces the missing Stage7 signed-page→MP3→OpenPuff chain. These are historical solve-path controls, not presumed LP2 keys.
 - **P26 FOURTH-DH meta-instruction:** #1949 tests whether the p26 packet independently selects the p28 H/GCD operation without using p29 WAY or p28 READ OUT as selectors. A positive meta-instruction alone is not plaintext or a general opcode.
-- **P57 EMERGE→p50 pointer closure:** #1950 tests whether modulo256 and the base59 pointer route are source-selected and whether an independent holdout survives. Do not mine more word-depth matches if the wrap/receiver selector fails.
+- **P57 EMERGE→p50 pointer closure (#1950 closed 20 November):** the 74-start/1,480-configuration family finds the EMERGE base59 route and a state-incompatible base60 WITHIN rival. SURFACE is a unique p57-internal duplicate/column holdout; conditional exact-token-multiset nulls are 4.710% for depth/merge and 0.211% for full fixed-point/column completion. No source-authenticated clue selects modulo256 or first-fixed-point termination. Retain as navigation evidence only; do not mine further modulo/word-depth variants without a new selector.
 - **P55:** #41 remains waiting for a complete source-selected key/IV/clock/serialization/encoder. #1886 (Wikidot archive access), #1667 (isolated-worker transport), and #1335 (naïve external human) remain blocked; do not count them as executable capacity.
 
 ### Closed gates and recent decisions
@@ -126,11 +126,11 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 - **#1947 (20 November):** negative source-selection gate for non-additive GP29 state machines. No complete state/transition/clock/output/reversible receiver is selected; do not reopen broad state-model searches on the same clues.
 - **#1946 (20 November):** positive historical control only. The three signed Stage03 inputs verify, their exact 991-byte XOR matches the signed Stage04 output, and the archived next response verifies. The operator is documented in a community reconstruction rather than a Cicada-signed instruction; timestamp order is unresolved and the direct LP2 p49–51 three-page XOR transfer is negative.
 - **#1929 and #1931:** the unchanged p28 continuation misses DIRECTION SEEK AND YOU, and the p29 W||AY derivative assembly is not source-selected. **#1893** likewise requires an independent selector before WAY can be treated as an opcode.
-- The p27 EMERGE pointer path is a reproducible navigation observation, not a cipher. Its new modulo256/source-selection gate is #1950.
+- The p27 EMERGE→SURFACE path is a reproducible navigation observation with a p57-internal holdout, not a cipher. #1950 closed the modulo256/source-selection gate negatively: the wrap and pointer termination remain unauthenticated.
 
 ### Queue snapshot
 
-There are **13 open director-task Issues**: **9 unclaimed executable** (#1940–1945, #1948–1950), **0 claimed**, and **4 blocked/waiting** (#1886, #1667, #1335, #41). #1946 closed at 02:22:55Z. This meets the 8–12 unclaimed target without exceeding the 30-open-issue ceiling. Replenish only as findings justify it.
+There are **12 open director-task Issues**: **5 unclaimed executable** (#1940, #1941, #1943, #1944, #1948), **3 claimed** (#1942 Agent8, #1945 Agent11, #1949 Agent2), and **4 blocked/waiting** (#1886, #1667, #1335, #41). #1946, #1947 and #1950 are closed. The unclaimed queue is below the Director's 8–12 target; replenish only with genuinely distinct, executable decisions.
 
 ### Earlier completed decisions (through 19 November)
 
