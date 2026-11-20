@@ -280,12 +280,12 @@ assert.deepEqual(p26Residues, [15, 22, 2, 22]);
 assert.deepEqual(p26Residues, [15, 23 - 1, 2, 23 - 1]);
 
 const firstPairGcd = gcd(p26Residues[0], p26Residues[1]);
-const wayMapGcd = gcd(p26Residues[2], p26Residues[3]);
+const finalPairGcd = gcd(p26Residues[2], p26Residues[3]);
 assert.equal(firstPairGcd, 1);
-assert.equal(wayMapGcd, 2);
+assert.equal(finalPairGcd, 2);
 assert.equal(firstPairGcd, p26Four.high[2]);
-assert.equal(translit([wayMapGcd]), "TH");
-assert.equal(p26Four.output + translit([wayMapGcd]), "FOURTH");
+assert.equal(translit([finalPairGcd]), "TH");
+assert.equal(p26Four.output + translit([finalPairGcd]), "FOURTH");
 
 const fourExtensions = fourHits.map((hit) => {
   const residues = hit.addresses.map((address) => grid.bytes[address] % 29);
@@ -498,7 +498,406 @@ assert.deepEqual(p26Line10Addresses.slice(0, 4), [61, 57, 56, 95]);
 assert.equal(hexCardinalMove(56, table[56]), 48);
 assert.notEqual(p26Line10Addresses[3], 48);
 
+
+const sourceFirstAudit = (() => {
+  const solvedGp29 = JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"));
+  const base60Grid = JSON.parse(read("resources/liber-primus/base60-grid.json"));
+  assert.deepEqual(base60Grid.rows.flat(), table);
+  assert.equal(base60Grid.rows.length, 32);
+  assert.deepEqual(base60Grid.page_row_counts, [10, 13, 9]);
+
+  const alphabet60 = base60Grid.alphabet;
+  const alphabet59 = alphabet60.replace("f", "");
+  const gpPrime = (word) => word.reduce((sum, value) => sum + corpus.prime[value], 0);
+  const addressModes = {
+    "GP0": gp0,
+    "GP0+1": (word) => gp0(word) + 1,
+    "GP0-1": (word) => gp0(word) - 1,
+    "GP-prime": gpPrime,
+    "GP-prime mod256": (word) => gpPrime(word) % 256,
+    "GP-prime+1 mod256": (word) => (gpPrime(word) + 1) % 256
+  };
+  const decodeWindow = (words, addressFn, side) => {
+    const addresses = words.map(addressFn);
+    if (addresses.some((value) => !Number.isInteger(value) || value < 0 || value >= table.length)) return null;
+    const tokens = addresses.map((address) => table[address]);
+    const values = tokens.map((token) => {
+      if (side === "high") return /^\d$/.test(token[0]) ? Number(token[0]) : -1;
+      return corpus.translit.findIndex((rune) => rune.toUpperCase() === token[1].toUpperCase());
+    });
+    if (values.some((value) => value < 0 || value >= 29)) return null;
+    return { addresses, tokens, values, output: translit(values) };
+  };
+  const scanWindows = (pageWords, addressFn, side) => {
+    const hits = [];
+    for (let page = 0; page < pageWords.length; page++) {
+      const words = pageWords[page];
+      for (let i = 0; i + 3 < words.length; i++) {
+        const decoded = decodeWindow(words.slice(i, i + 4), addressFn, side);
+        if (decoded && decoded.output === "FOUR") {
+          hits.push({ page, index: i, words: words.slice(i, i + 4).map(translit), ...decoded });
+        }
+      }
+    }
+    return hits;
+  };
+
+  const solvedSections = solvedGp29.sections.map((section) => ({
+    name: section.name,
+    words: runeWords(section.source_text)
+  }));
+  const solvedPageWords = solvedSections.map((section) => section.words);
+  const solvedWordCount = solvedSections.reduce((sum, section) => sum + section.words.length, 0);
+  const solvedWindowCount = solvedSections.reduce((sum, section) => sum + Math.max(0, section.words.length - 3), 0);
+  assert.equal(solvedSections.length, 9);
+  assert.equal(solvedWordCount, 740);
+  assert.equal(solvedWindowCount, 713);
+
+  const sourceReadoutCounts = {};
+  for (const [mode, addressFn] of Object.entries(addressModes)) {
+    for (const side of ["high", "low"]) {
+      sourceReadoutCounts[mode + "/" + side] = scanWindows(solvedPageWords, addressFn, side).length;
+    }
+  }
+  const solvedFourHits = scanWindows(solvedPageWords, gp0, "high");
+  const solvedLowFourHits = scanWindows(solvedPageWords, gp0, "low");
+  assert.equal(solvedFourHits.length, 1);
+  assert.equal(solvedFourHits[0].page, 0);
+  assert.deepEqual(solvedFourHits[0].words, ["FIND", "THEIR", "WAY", "HERE"]);
+  assert.equal(solvedLowFourHits.length, 0);
+
+  const welcomeSection = solvedSections.find((section) => section.name === "0_welcome");
+  const welcomeWords = welcomeSection.words;
+  const welcomePhraseIndex = welcomeWords.findIndex((word, i) =>
+    i + 3 < welcomeWords.length &&
+    welcomeWords.slice(i, i + 4).map(translit).join(" ") === "FIND THEIR WAY HERE"
+  );
+  assert.equal(welcomePhraseIndex, 23);
+  const welcomePhrase = welcomeWords.slice(welcomePhraseIndex, welcomePhraseIndex + 4);
+  const welcomeReadout = decodeWindow(welcomePhrase, gp0, "high");
+  assert.deepEqual(welcomeReadout.addresses, [42, 34, 57, 48]);
+  assert.deepEqual(welcomeReadout.tokens, ["0S", "3H", "1w", "4D"]);
+  assert.deepEqual(welcomeReadout.values, [0, 3, 1, 4]);
+  assert.equal(welcomeReadout.output, "FOUR");
+  assert.equal(translit(welcomePhrase[1]), "THEIR");
+  assert.equal(welcomePhrase[1].length, 4);
+
+  const sourcePairStats = {
+    pairs: 0, eligiblePairs: 0, firstMoves: 0, compositeMoves: 0,
+    literalHits: [], compositeHits: []
+  };
+  for (const section of solvedSections) {
+    for (let i = 0; i + 1 < section.words.length; i++) {
+      sourcePairStats.pairs++;
+      const from = gp0(section.words[i]);
+      const to = gp0(section.words[i + 1]);
+      if (from < 0 || from >= 256 || to < 0 || to >= 256) continue;
+      sourcePairStats.eligiblePairs++;
+      const token = table[from];
+      const middle = literalMove(from, token);
+      if (middle !== null) {
+        sourcePairStats.firstMoves++;
+        if (middle === to) sourcePairStats.literalHits.push({
+          section: section.name, index: i, from: translit(section.words[i]),
+          to: translit(section.words[i + 1]), source: from, token, target: to
+        });
+        const secondToken = table[middle];
+        const destination = hexCardinalMove(middle, secondToken);
+        if (destination !== null) {
+          sourcePairStats.compositeMoves++;
+          if (destination === to) sourcePairStats.compositeHits.push({
+            section: section.name, index: i, from: translit(section.words[i]),
+            to: translit(section.words[i + 1]), source: from, token,
+            middle, secondToken, destination
+          });
+        }
+      }
+    }
+  }
+  assert.equal(sourcePairStats.pairs, 731);
+  assert.equal(sourcePairStats.firstMoves, 81);
+  assert.equal(sourcePairStats.compositeMoves, 11);
+  assert.equal(sourcePairStats.literalHits.length, 0);
+  assert.equal(sourcePairStats.compositeHits.length, 1);
+  assert.equal(sourcePairStats.compositeHits[0].section, "0_welcome");
+  assert.equal(sourcePairStats.compositeHits[0].from, "WAY");
+  assert.equal(sourcePairStats.compositeHits[0].to, "HERE");
+  assert.equal(sourcePairStats.compositeHits[0].source, 57);
+  assert.equal(sourcePairStats.compositeHits[0].middle, 56);
+  assert.equal(sourcePairStats.compositeHits[0].secondToken, "4E");
+  assert.equal(sourcePairStats.compositeHits[0].destination, 48);
+
+  const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
+  const signedBody = signed2016
+    .slice(signed2016.indexOf("\n\n") + 2, signed2016.indexOf("\n-----BEGIN PGP SIGNATURE-----"))
+    .replace(/\r/g, "")
+    .replace(/7A35090F/gi, " ");
+  const signedWords = (signedBody.match(/[A-Za-z]+/g) || []).map((word) => word.toUpperCase());
+  assert.equal(signedWords.length, 43);
+  const wayPosition = signedWords.indexOf("WAY") + 1;
+  const mapPosition = signedWords.indexOf("MAP") + 1;
+  assert.equal(wayPosition, 14);
+  assert.equal(mapPosition, 19);
+  const betweenWayMap = signedWords.slice(wayPosition, mapPosition - 1);
+  assert.deepEqual(betweenWayMap, ["ITS", "WORDS", "ARE", "THE"]);
+  const translitEntries = corpus.translit
+    .map((spelling, index) => ({ spelling: spelling.toUpperCase(), index }))
+    .sort((a, b) => b.spelling.length - a.spelling.length);
+  const latinWordToGp = (word) => {
+    const out = [];
+    for (let offset = 0; offset < word.length;) {
+      const match = translitEntries.find((entry) => word.startsWith(entry.spelling, offset));
+      if (!match) return null;
+      out.push(match.index);
+      offset += match.spelling.length;
+    }
+    return out;
+  };
+  const signedGpWords = signedWords.map(latinWordToGp);
+  const signedPairStats = { pairs: 0, eligiblePairs: 0, literalHits: [], compositeHits: [] };
+  for (let i = 0; i + 1 < signedGpWords.length; i++) {
+    signedPairStats.pairs++;
+    if (!signedGpWords[i] || !signedGpWords[i + 1]) continue;
+    const from = gp0(signedGpWords[i]);
+    const to = gp0(signedGpWords[i + 1]);
+    if (from < 0 || from >= 256 || to < 0 || to >= 256) continue;
+    signedPairStats.eligiblePairs++;
+    const token = table[from];
+    const middle = literalMove(from, token);
+    if (middle === to) signedPairStats.literalHits.push({ index: i, from: signedWords[i], to: signedWords[i + 1] });
+    const destination = middle === null ? null : hexCardinalMove(middle, table[middle]);
+    if (destination === to) signedPairStats.compositeHits.push({ index: i, from: signedWords[i], to: signedWords[i + 1] });
+  }
+
+  const unknownPageWords = pages.slice(0, 56).map(runeWords);
+  const unknownWindowCount = unknownPageWords.reduce((sum, words) => sum + Math.max(0, words.length - 3), 0);
+  assert.equal(unknownWindowCount, 3176);
+  const unknownReadoutCounts = {};
+  const unknownReadoutHits = {};
+  for (const [mode, addressFn] of Object.entries(addressModes)) {
+    for (const side of ["high", "low"]) {
+      const hits = scanWindows(unknownPageWords, addressFn, side);
+      unknownReadoutCounts[mode + "/" + side] = hits.length;
+      unknownReadoutHits[mode + "/" + side] = hits;
+    }
+  }
+  assert.equal(unknownReadoutCounts["GP0/high"], 4);
+  assert.equal(unknownReadoutCounts["GP0/low"], 0);
+  assert.equal(unknownReadoutCounts["GP0+1/high"], 4);
+  assert.equal(unknownReadoutCounts["GP0-1/high"], 2);
+  assert.equal(unknownReadoutCounts["GP-prime/high"], 0);
+  assert.equal(unknownReadoutCounts["GP-prime mod256/high"], 0);
+  assert.equal(unknownReadoutCounts["GP-prime+1 mod256/high"], 6);
+  const p26FourHit = unknownReadoutHits["GP0/high"].find((hit) => hit.page === 26);
+  assert.ok(p26FourHit);
+  assert.deepEqual(p26FourHit.words, ["E", "SAOE", "CHISFIN", "POENG"]);
+  assert.deepEqual(p26FourHit.addresses, [18, 61, 57, 56]);
+  assert.deepEqual(p26FourHit.tokens, ["0F", "3G", "1w", "4E"]);
+
+  const unknownLiteralMovementHits = [];
+  for (let page = 0; page < unknownPageWords.length; page++) {
+    const words = unknownPageWords[page];
+    for (let i = 0; i + 1 < words.length; i++) {
+      const from = gp0(words[i]);
+      const to = gp0(words[i + 1]);
+      if (from < 0 || from >= 256 || to < 0 || to >= 256) continue;
+      if (literalMove(from, table[from]) === to) {
+        unknownLiteralMovementHits.push({
+          page, index: i, from: translit(words[i]), to: translit(words[i + 1]),
+          source: from, token: table[from], target: to
+        });
+      }
+    }
+  }
+  assert.equal(unknownLiteralMovementHits.length, 2);
+  assert.ok(unknownLiteralMovementHits.some((hit) => hit.page === 26 && hit.source === 57 && hit.target === 56));
+  const p26WordIndex = unknownPageWords[26].findIndex((word, i) =>
+    i + 3 < unknownPageWords[26].length &&
+    unknownPageWords[26].slice(i, i + 4).map(gp0).join(",") === "18,61,57,56"
+  );
+  assert.ok(p26WordIndex >= 0);
+  const p26NextWordAddress = gp0(unknownPageWords[26][p26WordIndex + 4]);
+  assert.equal(p26NextWordAddress, 95);
+
+  const tokenByte = (token, radix, alphabet) => {
+    const high = alphabet.indexOf(token[0]);
+    const low = alphabet.indexOf(token[1]);
+    return high < 0 || low < 0 ? null : radix * high + low;
+  };
+  const p26Base60Bytes = p26Four.tokens.map((token) => tokenByte(token, 60, alphabet60));
+  const p26Base59Bytes = p26Four.tokens.map((token) => tokenByte(token, 59, alphabet59));
+  const p26Base60Residues = p26Base60Bytes.map((value) => value % 29);
+  const p26Base59Residues = p26Base59Bytes.map((value) => value === null ? null : value % 29);
+  assert.deepEqual(p26Base60Bytes, [15, 196, 118, 254]);
+  assert.deepEqual(p26Base60Residues, [15, 22, 2, 22]);
+  assert.deepEqual(p26Base59Bytes, [15, 193, 116, 250]);
+  assert.deepEqual(p26Base59Residues, [15, 19, 0, 18]);
+
+  const packetHits = (radix, alphabet) => {
+    const hits = [];
+    for (let page = 0; page < unknownPageWords.length; page++) {
+      const words = unknownPageWords[page];
+      for (let i = 0; i + 3 < words.length; i++) {
+        const addresses = words.slice(i, i + 4).map(gp0);
+        if (addresses.some((address) => address < 0 || address >= 256)) continue;
+        const tokens = addresses.map((address) => table[address]);
+        const bytes = tokens.map((token) => tokenByte(token, radix, alphabet));
+        if (bytes.some((value) => value === null)) continue;
+        const residues = bytes.map((value) => value % 29);
+        if (residues.join(",") === "15,22,2,22") {
+          hits.push({ page, index: i, words: words.slice(i, i + 4).map(translit), addresses, tokens, bytes, residues });
+        }
+      }
+    }
+    return hits;
+  };
+  const base60PacketHits = packetHits(60, alphabet60);
+  const base59PacketHits = packetHits(59, alphabet59);
+  assert.equal(base60PacketHits.length, 1);
+  assert.equal(base60PacketHits[0].page, 26);
+  assert.equal(base59PacketHits.length, 0);
+
+  const gcdPairingSpecs = [
+    { name: "adjacent", pairs: [[0, 1], [2, 3]] },
+    { name: "crossed", pairs: [[0, 2], [1, 3]] },
+    { name: "outer", pairs: [[0, 3], [1, 2]] }
+  ];
+  const gcdPairings = (residues) => gcdPairingSpecs.map((spec) => {
+    const values = spec.pairs.map(([a, b]) => gcd(residues[a], residues[b]));
+    return { name: spec.name, pairs: spec.pairs, gcds: values, runes: values.map((value) => translit([value])) };
+  });
+  const base60GcdPairings = gcdPairings(p26Base60Residues);
+  const base59GcdPairings = gcdPairings(p26Base59Residues);
+  const dhSource = read("resources/external/2013-tcp-server-signed-source.md");
+  assert.ok(dhSource.includes("BASE29 3301"));
+  assert.ok(dhSource.includes("worked DH 23 exchange"));
+  assert.ok(dhSource.includes("server base 5"));
+  assert.ok(dhSource.includes("public share 8"));
+  assert.ok(dhSource.includes("client public share 19"));
+  assert.ok(dhSource.includes("shared key 2"));
+  const dhB = Array.from({ length: 22 }, (_, i) => i + 1).find((secret) => powModulo(5, secret, 23) === 19);
+  assert.equal(dhB, 15);
+  assert.deepEqual(p26Base60Residues, [dhB, 23 - 1, 2, 23 - 1]);
+  const cibertecPreCicada = dhSource.includes("17 April 2012") && dhSource.includes("b=15");
+  const miraclSource = read("resources/external/miracl-2007-base60-alphabet.md");
+  const miraclBase60Precedent = miraclSource.includes(alphabet60);
+
+  const mod29 = (value) => ((value % 29) + 29) % 29;
+  const H3 = (input) => [mod29(input[0] - input[2]), mod29(input[0] + input[2]), input[1]];
+  const H3Inverse = (output) => [
+    mod29((output[0] + output[1]) * 15),
+    output[2],
+    mod29((output[1] - output[0]) * 15)
+  ];
+  const p28Page = corpus.pages.find((page) => page.page === 28).indices;
+  const p29Page = corpus.pages.find((page) => page.page === 29).indices;
+  const dRune = corpus.translit.indexOf("D");
+  const p28DPositions = p28Page.map((value, index) => value === dRune ? index : -1).filter((index) => index >= 0);
+  assert.equal(p28DPositions[3], 48);
+  assert.equal(p28DPositions[4], 71);
+  const makeHTest = (name, offsets, input) => {
+    const output = H3(input);
+    const inverse = H3Inverse(output);
+    assert.deepEqual(inverse, input);
+    return {
+      name, offsets, input, inputText: translit(input),
+      output, outputText: translit(output), inverse,
+      exactForwardReconstruction: JSON.stringify(inverse) === JSON.stringify(input)
+    };
+  };
+  const p28HTest = makeHTest("p28 fourth-D target (not blind: prior report exposed GCD)", [47, 48, 49], p28Page.slice(47, 50));
+  const p28FifthDTest = makeHTest("p28 fifth-D negative control", [70, 71, 72], p28Page.slice(70, 73));
+  const p29HoldoutTest = makeHTest("p29 predeclared untouched holdout", [0, 1, 2], p29Page.slice(0, 3));
+  const p56Runes = runeWords(solvedGp29.sections.find((section) => section.name === "p56_an_end").source_text).flat();
+  const p57Runes = runeWords(solvedGp29.sections.find((section) => section.name === "p57_parable").source_text).flat();
+  const p56DPositions = p56Runes.map((value, index) => value === dRune ? index : -1).filter((index) => index >= 0);
+  const p57DPositions = p57Runes.map((value, index) => value === dRune ? index : -1).filter((index) => index >= 0);
+  assert.equal(p56DPositions.length, 3);
+  assert.equal(p57DPositions[3], 88);
+  const p57ControlTest = makeHTest("p57 solved-page fourth-D control", [87, 88, 89], p57Runes.slice(87, 90));
+
+  return {
+    source: {
+      solvedSectionCount: solvedSections.length,
+      solvedWordCount,
+      solvedFourWordWindows: solvedWindowCount,
+      solvedHighFourHits: solvedFourHits.map((hit) => ({
+        section: solvedSections[hit.page].name, index: hit.index,
+        words: hit.words, addresses: hit.addresses, tokens: hit.tokens
+      })),
+      solvedLowFourHitCount: solvedLowFourHits.length,
+      readoutCounts: sourceReadoutCounts,
+      welcomePhrase: {
+        oneBasedWordPositions: [welcomePhraseIndex + 1, welcomePhraseIndex + 2, welcomePhraseIndex + 3, welcomePhraseIndex + 4],
+        words: welcomePhrase.map(translit),
+        addresses: welcomeReadout.addresses,
+        tokens: welcomeReadout.tokens,
+        highDigits: welcomeReadout.values,
+        output: welcomeReadout.output
+      },
+      solvedAdjacency: sourcePairStats,
+      signed2016: {
+        naturalWordCount: signedWords.length,
+        wayOneBasedPosition: wayPosition,
+        mapOneBasedPosition: mapPosition,
+        wordsBetweenWayAndMap: betweenWayMap,
+        eligibleAdjacentPairs: signedPairStats.eligiblePairs,
+        literalMovementHits: signedPairStats.literalHits,
+        compositeMovementHits: signedPairStats.compositeHits
+      }
+    },
+    unknown: {
+      fourWordWindowCount: unknownWindowCount,
+      readoutCounts: unknownReadoutCounts,
+      gp0HighFourHits: unknownReadoutHits["GP0/high"].map((hit) => ({
+        page: hit.page, index: hit.index, words: hit.words,
+        addresses: hit.addresses, tokens: hit.tokens
+      })),
+      literalMovementHits: unknownLiteralMovementHits,
+      p26NextWordAfterState56GP0: p26NextWordAddress
+    },
+    dhPacket: {
+      p26Words: p26Four.sourceWords,
+      p26Addresses: p26Four.addresses,
+      p26Tokens: p26Four.tokens,
+      base60Alphabet: alphabet60,
+      base60Bytes: p26Base60Bytes,
+      base60Residues: p26Base60Residues,
+      base59Alphabet: alphabet59,
+      base59Bytes: p26Base59Bytes,
+      base59Residues: p26Base59Residues,
+      base60ExactPacketHits: base60PacketHits,
+      base59ExactPacketHits: base59PacketHits,
+      signed2013DH23: {
+        authenticatedSourceContainsDH23: true,
+        p: 23, g: 5, serverPublicShare: 8, clientPublicShare: 19, sharedKey: 2,
+        derivedServerSecretExponent: dhB,
+        pMinus1: 22,
+        fullTuplePredatesCicada: cibertecPreCicada,
+        externalMIRACLBase60Precedent: miraclBase60Precedent
+      },
+      gcdPairingsBase60: base60GcdPairings,
+      gcdPairingsBase59: base59GcdPairings,
+      standardDhGcd: gcd(dhB, 22),
+      extendedSharedKeyGcd: gcd(2, 22),
+      inverseExponent: inverseModulo(dhB, 22)
+    },
+    frozenHTest: {
+      operation: "H(x,y,z)=(x-z,x+z,y) mod29",
+      inverse: "x=(d+s)/2, z=(s-d)/2 mod29; y carried",
+      p28Target: p28HTest,
+      p57SolvedControl: p57ControlTest,
+      p56FourthDControl: { dCount: p56DPositions.length, status: "no fourth D; frozen ordinal receiver absent" },
+      p29PredeclaredHoldout: p29HoldoutTest,
+      p28FifthDNegativeControl: p28FifthDTest,
+      interpretation: "Exact H inversion reconstructs each input, but the outputs are GCD, LIAD, AEHD, and AYD; none is a meaningful plaintext span. The p28 GCD output is a short operation label. The p29 holdout was frozen at offsets 0-2 before p29 values were inspected."
+    },
+    decision: "Retain the p26 FOUR / WAY-MAP-HERE / DH23 chain as a source-constrained navigation and meta-instruction hypothesis. It selects the p28 fourth-D/H local receiver under the tested interpretation, but the only recovered output is the three-rune opcode GCD; the p57 control and predeclared p29 holdout do not produce plaintext, and p56 has no fourth D. The DH23 tuple is a pre-Cicada textbook example, base60 is not author-authenticated, and the final-pair GCD needed for TH is an extension beyond the standard gcd(b,p-1) check. No source-selected page cipher inverse or continuous unknown-page plaintext is established."
+  };
+})();
+
 console.log(JSON.stringify({
+  sourceFirstAudit,
   status: "PASS",
   tableComposite,
   unknownCorpus: {
@@ -514,7 +913,7 @@ console.log(JSON.stringify({
     dhResiduePacketHits,
     dhResidues: p26Residues,
     dhPacketLabels: ["b", "p-1", "K", "p-1"],
-    gcdChecks: { firstPairGcd, wayMapGcd, extendedInstruction: p26Four.output + translit([wayMapGcd]), fourExtensions },
+    gcdChecks: { firstPairGcd, finalPairGcd, extendedInstruction: p26Four.output + translit([finalPairGcd]), fourExtensions },
     reconstructedDhInstruction: { recoveredP, inverseB, recoveredA, label: translit([recoveredP, recoveredA]), dhLineStarts, literalDhCount: literalDh.length, fourthGlobalDh: literalDh[3], fourthGlobalDhHOutput: translit(rivalH), p28Centered: translit(p28Centered), hOutput: translit(p28HOutput) },
     uniqueState48Word: p26State48,
     state48CurrentPageSelfIndex: { offset48Rune: corpus.translit[p26Page.indices[48]], dCountThrough48: 1, pass: false },
@@ -525,5 +924,5 @@ console.log(JSON.stringify({
     immediateCiphertextContinuation: 95,
   },
   classification:
-    "Bounded unknown-cipher receiver candidate. Among 3288 within-page unknown-word adjacencies, only two literal p50 movement tokens predict the next word GP0; p26 is the sole 57->56 hit selected by the independently fixed WAY->MAP table edge, and that same p26 boundary window reads FOUR under the independently authenticated high-digit rule. The selected p26 FOUR window also has the unique full-byte residue packet [15,22,2,22]=[b,p-1,K,p-1] across all 3176 unknown four-word windows. Applying the frozen GCD opcode to the WAY/MAP pair gives gcd(K,p-1)=2=TH, extending FOUR to FOURTH. The same packet reconstructs b^-1 mod(p-1)=3 and K^3 mod p=A=8, so [p,A]=[23,8]=DH. DH uniquely selects the sole physical LP2 line beginning DH, p28 line6. The natural rival reading 'fourth global DH' selects p21:244 and yields EASD under the same H consumer. On the uniquely DH-labelled p28 page, FOURTH D; H exactly reproduces the fourth-D centered H consumer LDX->GCD. The 56->48 table continuation does not equal p26's immediate next word; the unique p26 state48 word fails the frozen 4D current-page self-index; and the readable +K word SAD remains below plaintext threshold. No continuous plaintext is claimed.",
+    "Source-constrained navigation/meta-instruction candidate only; no page cipher inverse or continuous plaintext. See sourceFirstAudit for the full source family, radix, GCD, and holdout audit.",
 }, null, 2));
