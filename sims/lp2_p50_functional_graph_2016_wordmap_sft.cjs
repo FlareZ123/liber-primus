@@ -23,6 +23,14 @@ const signed = fs.readFileSync(
 );
 
 const next = grid.bytes;
+const cells = grid.pages.flatMap(page => page.tokens.map((token, local) => ({
+  page: page.page,
+  image: page.image,
+  row: Math.floor(local / page.cols),
+  col: local % page.cols,
+  token
+})));
+if (cells.length !== 256) throw new Error('Expected 256 source cells');
 if (!Array.isArray(next) || next.length !== 256 ||
     next.some(x => !Number.isInteger(x) || x < 0 || x > 255)) {
   throw new Error('Expected exactly 256 byte values in lp2-grid-256.json');
@@ -165,7 +173,8 @@ function wordPair(node) {
   if (q >= 29 || r >= 29 || !words[q] || !words[r]) {
     throw new Error('Base-29 pair falls outside signed-message word register: ' + node);
   }
-  return { node, q, r, qWord: words[q], rWord: words[r] };
+  const cell = cells[node];
+  return { node, page: cell.page, image: cell.image, row: cell.row, col: cell.col, token: cell.token, byte: next[node], q, r, qWord: words[q], rWord: words[r] };
 }
 
 const pairs2 = ordered2.map(wordPair);
