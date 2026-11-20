@@ -59,7 +59,7 @@ The corrected SFT is `sims/lp2_liber_al_iii47_p49_source_geometry_sft.cjs`. It u
 - 76-cell clockwise outward spiral from the transformed circle d7, initially moving toward the straightened line and skipping its four cells; use the spiral values as a GP29 additive/subtractive pad.
 - The same circle-centred spiral as a route transposition: place p55 row-major in the original 76-cell complement, apply the b1-anchored shear, then read the spiral; test the inverse permutation as well.
 - 1-based prime-index/totient pad: treat each corrected p49 byte as a prime ordinal and apply `φ(p_n)=p_n−1 mod29`, motivated by the 2013 OS prime echo, the signed BASE29 clue, and the 2014 totient material.
-- p55 placed into the 10×8 grid with the four source-coordinate cells empty, then sheared and read from the circle anchor.
+- p55 placed row-major into the 10×8 grid with the four source-coordinate cells empty, then sheared and read row-major after the circle anchor.
 - A synthetic positive control for the additive-pad inverse.
 
 Neither radix yields recognizable plaintext under these direct consumers, including the prime-index/totient pad the corrected five-symbol line/circle key consumers, the circle-centred spiral readout, and its forward/inverse route transpositions. The raw XOR outputs are not coherent ASCII; rank permutations and the p55 grid-shear readouts are nonlinguistic. The synthetic additive-pad control passes. These are bounded negative results for the tested receivers, not a proof against every possible use of the line and circle.
@@ -68,7 +68,7 @@ The previous `sims/lp2_liber_al_iii47_p49_grid_overlap_sft.cjs` is retained as h
 
 ## Decision
 
-**Retain the corrected 10×8 / 76 structural correspondence and line/circle geometry; do not promote it to a decryption.** The source scan supports b1/c3/d5/e7 and the separate d7 circle. The resulting 76-cell candidate key has been tested with the simplest direct receivers and does not recover p55 plaintext. The 2013 clue authenticates Liber AL as a source, not the edition, page pairing, or receiver. No LP2 plaintext or authentic key has been recovered.
+**Retain the corrected 10×8 / 76 structural correspondence and line/circle geometry; do not promote it to a decryption.** The source scan supports b1/c3/d5/e7 and the separate d7 circle. The resulting 76-cell geometry has been tested with the simplest direct key and route receivers and does not recover p55 plaintext. The 2013 clue authenticates Liber AL as a source, not the edition, page pairing, or receiver. No LP2 plaintext or authentic key has been recovered.
 
 Do not repeat the corrected additive/XOR/rank/shear consumers or reopen broad placement searches. Reopen this branch only if an independent Cicada-era clue specifies a different reversible receiver or a testable consequence beyond the already failed direct consumers.
 
