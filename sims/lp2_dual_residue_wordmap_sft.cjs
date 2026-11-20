@@ -23,7 +23,7 @@ const tokens = corpus.translit
   .sort((a, b) => b.token.length - a.token.length);
 
 function gp29FromText(text) {
-  const s = text.toUpperCase().replace(/\\s+/g, "")
+  const s = text.toUpperCase().replace(/\s+/g, "")
     .replace(/K/g, "C").replace(/V/g, "U").replace(/Q/g, "C").replace(/Z/g, "S");
   const out = [];
   for (let pos = 0; pos < s.length;) {
