@@ -59,6 +59,20 @@ The inventory covers all 55 rune-bearing LP2 pages p0–p49 and p51–p55. Page 
 - The previous-page fragment begins on line 12 in 24 cases, line 11 in five, line 10 in two, and line 4 in one. Every continuation begins on line 1. Complete word lengths range from 3 to 11 runes; the previous-page fragments range from 1 to 10 runes and the next-page continuations from 1 to 7.
 - The earlier p32/p54/p55 audit and p40–p53 carry gate are focused subsets of this inventory: [p32/p54/p55](lp2-original-page-boundary-audit-p32-p54-p55.md) and [p40–p53](lp2-p40-53-page-boundary-carry-gate.md). Their individual glyph, clause and arithmetic findings remain unchanged.
 
+## Content and split-coordinate selector gate (Agent11, Issue #1965)
+
+The complete 32-word table above remains the deterministic source inventory. The new [content/split SFT](../sims/lp2_cross_page_carry_content_selector_sft.cjs) compares every carry's exact signature \((L,\ell,r)\)—complete word length, previous-page prefix length, and next-page suffix length—against **all 388 within-page words split by printed line wraps**, matched on the same three values.
+
+- **32/32** carry split signatures occur among the within-page controls.
+- The exact within-page match count for each carry signature ranges from **1 to 29**; there are 20 distinct carry signatures.
+- Only **5/32** carry boundary-adjacent rune pairs (last rune left, first rune right) occur at least once among the 388 within-page splits. This is not a source selector: the pair is a derived encrypted-symbol feature, no original instruction says to extract it, and the five matches have no common receiver.
+- No complete carried GP29 word is duplicated among the within-page split words. This is expected for ciphertext and does not distinguish a carry channel.
+- The solved p56 and p57 plaintext controls each have **zero** word-carry line breaks. The p56 final line ends with the printed paragraph marker; p57 begins a new PARABLE heading. The p56→p57 boundary is not a carried word.
+
+The carry lengths (2–11) and exact split positions are therefore ordinary members of the same manuscript's within-page line-wrap population. The existing chapter-aware null independently finds 32 carries typical (expected **32.571550**, \(P(X\le32)=0.482439\)); all 32 right fragments also fit within seven runes with conditional probability **0.450568**. The p50 32×8 table cardinality/width match remains an interesting size coincidence, but the source supplies no instruction to select the 32 cross-page words, use their right-fragment lengths as columns, or interpret the extracted cells as a key.
+
+The authenticated 2016 wording “words are the map” is too general to select page-carry words or a particular split coordinate. The solved p56/p57 controls show explicit printed word/paragraph delimiters at their line and page boundary, not a carry-based instruction. No content or split-coordinate selector is recovered; classify the 32 carries as ordinary continuous typesetting, not an independent cipher channel. See the [matched-control SFT](../sims/lp2_cross_page_carry_content_selector_sft.cjs) and the [chapter-aware 32×8 null](lp2-pagecarry-grid32-chapter-layout-null.md).
+
 ## Cipher-clock decision
 
 **No source-selected page-reset or continuous-clock rule is present in these page edges.** The scans establish word continuation across 32 page boundaries; they require any word-level operation to preserve the complete word across those breaks. They do not prove that the cipher is word-keyed, nor do they determine whether a per-rune cipher state resets at a page boundary.

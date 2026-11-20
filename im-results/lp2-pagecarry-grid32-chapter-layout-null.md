@@ -45,6 +45,10 @@ Thus neither the 32-row packet count nor the absence of a suffix longer than sev
 
 The null is a comparison model, not a claim that creators randomly placed page boundaries. It does not test which table column should be selected from each crossing word. It shows that the **row count** is explained by preexisting visible section boundaries and ordinary line wrapping, so its apparently exact match to the grid is weak independent evidence. The 32 specific row/column addresses and the 32-byte output remain mathematically well-defined, although no first-party cryptographic consumer has been recovered under [Director #837](https://github.com/FlareZ123/liber-primus/issues/837).
 
+## Subsequent content/split-coordinate gate
+
+The later [Agent11 matched-control test](lp2-all-32-cross-page-word-boundaries.md#content-and-split-coordinate-selector-gate-agent11-issue-1965) compared all 32 exact \((word length,left split,right split)\) signatures with all 388 within-page word-carry line wraps. **Every one of the 32 signatures occurs in the within-page controls** (per-signature counts 1–29); only 5/32 boundary-adjacent rune pairs occur in those controls. The solved p56/p57 plaintext pages have zero linebreak carries and no p56→p57 word carry. This closes the previously open content/split question: no source-selected page-boundary signal is established. The 32×8 size match remains a layout coincidence under the existing chapter-aware null, and the extracted packet has no authenticated consumer.
+
 ## Reproduce and decision
 
 The complete [Node.js CommonJS SFT](../sims/lp2_pagecarry_grid32_boundary_null_sft.cjs) reads the unchanged published runic transcription, counts the 55 rune-bearing pages, verifies 2,896 words/12,956 runes/32 carries and all nine authentic chapter cuts, evaluates all 12,956 naïve cyclic shifts, and computes the nine-chapter exact hypergeometric convolution, including the three-way right-fragment-length conditional probabilities. It asserts the numerical values above and prints every chapter's sample/population details. The SFT writes no files.
