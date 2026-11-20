@@ -1,14 +1,15 @@
 "use strict";
 
 /**
- * Bounded source-motivated 10x8 shear test for the p32/cuneiform tensor key.
+ * Bounded candidate 10x8 shear test for the p32/cuneiform tensor key.
  *
  * Primary visual source: O.T.O. USA, Liber AL holograph page 60 / III:47:
  * https://lib.oto-usa.org/libri/images/liber0031/60.jpg
  *
  * The page has 8 labelled columns (a-h), 10 numbered rows (1-10), a line
- * with visible rise/run 2, and a circled-cross at d7. Taking d7 as the
- * phase anchor gives phase = 6 - 2*3 = 0 in zero-based coordinates.
+ * with a diagonal stroke and a circled-cross near d7. Taking d7 as a
+ * phase anchor gives candidate phase = 6 - 2*3 = 0; the scan does not
+ * uniquely fix this phase or a four-cell rasterization.
  *
  * The 1,680-rune pp33-39 target is reshaped as 21 blocks x 10 rows x 8
  * columns. The 210-state source recurrence is likewise 21 x 10, with
@@ -17,8 +18,8 @@
  * coordinate; it is bijective within each 80-cell block.
  *
  * This is a bounded negative gate, not a general search. The 100 affine
- * slopes/phases are only a compact comparison control; the source-selected
- * candidate remains slope 2, phase 0.
+ * slopes/phases are only a compact comparison control; the frozen candidate
+ * remains slope 2, phase 0, not a source-authenticated operation.
  *
  * Run: node sims/liber_al_iii47_10x8_shear_sft.cjs
  * Node.js 22, built-ins only.
@@ -210,13 +211,14 @@ assert.deepEqual(recovered, planted, "source-shear planted control must round-tr
 
 const raw = {ioc: ioc(section), trigramScore: trigramScore(section)};
 const nativeControl = {ioc: ioc(native), trigramScore: trigramScore(native)};
-assert.equal(sourceRank, 33, "source-selected slope2/phase0 rank changed");
+assert.equal(sourceRank, 33, "candidate slope2/phase0 rank changed");
 assert.equal(all.length, 300);
 assert.ok(nativeControl.trigramScore > -8);
 assert.ok(raw.trigramScore < -10);
 
 console.log(JSON.stringify({
-  classification: "bounded negative: Liber AL III:47 source-motivated 10x8 shear",
+  classification: "bounded negative: candidate Liber AL III:47 10x8 shear",
+  geometryStatus: "candidate; original scan does not uniquely fix the mask or phase",
   sourceGeometry: {
     rows: 10, columns: 8,
     visibleLineRiseRun: [6, 3],
@@ -250,5 +252,5 @@ console.log(JSON.stringify({
     recovered: recovered.length,
     exact: recovered.every((x, i) => x === planted[i]),
   },
-  verdict: "The source-selected shear is reversible but ciphertext-like; 32/300 affine-shear/action controls score higher. No plaintext or key recovered.",
+  verdict: "The candidate shear is reversible but ciphertext-like; 32/300 affine-shear/action controls score higher. No plaintext or key recovered.",
 }, null, 2));

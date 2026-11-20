@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 "use strict";
 
-// Source-locked test of Liber AL III:47 page-16 geometry against the LP2 p49
-// 10x8 numeric block and p55's 76-rune page. No parameter sweep is performed.
+// Candidate-mapping test of Liber AL III:47 page-16 geometry against the LP2 p49
+// 10x8 numeric block and p55's 76-rune page. The scan does not uniquely fix the
+// four-cell rasterization or shear phase; this preserves one prior candidate only.
 
 const fs = require("node:fs");
 const assert = require("node:assert/strict");
@@ -40,15 +41,15 @@ function render(values) {
 }
 
 const lineCoords = [[0, 0], [2, 1], [4, 2], [6, 3]];
-const lineIndices = [0, 17, 34, 51]; // a1, b3, c5, d7
-const circleCoord = [6, 3]; // d7, the circled-cross endpoint
+const lineIndices = [0, 17, 34, 51]; // candidate mask a1, b3, c5, d7; not source-fixed
+const circleCoord = [6, 3]; // d7 circled-cross; candidate readout anchor, not proven line endpoint
 const lineTokens = lineIndices.map((i) => tokens[i]);
 
 assert.deepEqual(lineTokens, ["3N", "3M", "3H", "0x"]);
 
 function buildShearedKey(tableValues, direction) {
-  // direction=-1 is the forward shear r'=(r-2c) mod 10;
-  // direction=+1 is its inverse. The line a1,b3,c5,d7 is flattened.
+  // direction=-1 is the candidate forward shear r'=(r-2c) mod 10;
+  // direction=+1 is its inverse. The candidate four-cell mask is flattened.
   const sheared = Array(80);
   for (let r = 0; r < 10; r += 1) {
     for (let c = 0; c < 8; c += 1) {
@@ -73,8 +74,8 @@ function buildShearedKey(tableValues, direction) {
 }
 
 function shearP55(direction) {
-  // Place the 76 p55 runes into the 10x8 source grid, leaving the four
-  // source-line cells empty, then apply the same source-derived shear.
+  // Place the 76 p55 runes into the 10x8 candidate grid, leaving the four
+  // candidate mask cells empty, then apply the same candidate shear.
   const holes = new Set(lineIndices);
   const source = Array(80).fill(null);
   let j = 0;
@@ -156,14 +157,15 @@ for (const [radix, tableValues] of [["base60", base60], ["base59", base59]]) {
 }
 
 const summary = {
-  source: "OTO original Liber AL manuscript, page 16 / Chapter III verse 47; page image 60.jpg",
+  geometryStatus: "candidate rasterization; the source scan does not uniquely fix the four-cell mask or shear phase",
+  source: "OTO Liber AL holograph, page 16 / Chapter III verse 47; page image 60.jpg",
   sourceUrl: "https://lib.oto-usa.org/libri/images/liber0031/60.jpg",
   inheritedGeometry: {
     columns: "a-h",
     rows: "1-10",
     lineSlope: 2,
     circle: "d7",
-    lineCells: ["a1", "b3", "c5", "d7"],
+    candidateLineCells: ["a1", "b3", "c5", "d7"],
     lineIndices,
     circleIndex: 51
   },
