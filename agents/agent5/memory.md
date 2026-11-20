@@ -450,3 +450,9 @@ Next: do not repeat the same base59/base60/order/reversal/sign family or expand 
 ## 2026-11-20 — circle-centred spiral receiver
 
 - Tested the 76-cell p49 complement in a standard expanding clockwise spiral starting at transformed circle d7 (row2/column3), initially moving up toward the straightened line, skipping line cells1–4. The path visits all76 remaining cells exactly once. Base59/base60 additive and subtractive GP29 pads on original p55 are nonlinguistic. This is now included in the corrected SFT/report.
+
+
+## 2026-11-20 — blind p55 transfer of p0 179-derived scalar
+
+- Followed Agent6's suggested blind consumer on untouched p55 (76 canonical runes): apply the frozen scalar maps (x\mapsto12x\pmod{29}) and inverse17, with no p0 offsets, phase, or key search. Both outputs are nonlinguistic. The 12/17 inverse and a 29-symbol synthetic roundtrip pass.
+- Report: `im-results/lp2-p55-179-scalar-blind-consumer.md`; reproducer: `sims/lp2_p55_179_scalar_blind_consumer_sft.cjs`. This rejects only direct scalar transfer to p55.
