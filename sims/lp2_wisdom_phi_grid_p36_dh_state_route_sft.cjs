@@ -272,6 +272,15 @@ const sumPacket = H2D([sumMod29(p12), sumMod29(p26)]);
 assert.deepEqual(lengthPacket, [state.K, state.A]);
 assert.deepEqual(sumPacket, [state.B, state.p - 1]);
 
+// The independently reported p23 red-span lengths are state-typed by the
+// q, K, A recovered above: H([2,6])=[-q,A], H([3,5])=[-K,A].
+const p23FirstFour = pageFragments(23).slice(0, 4);
+const p23Lengths = p23FirstFour.map((fragment) => fragment.values.length);
+const p23H2D = [H2D(p23Lengths.slice(0, 2)), H2D(p23Lengths.slice(2, 4))];
+assert.deepEqual(p23Lengths, [2, 6, 3, 5]);
+assert.deepEqual(p23H2D, [[25, 8], [27, 8]]);
+assert.deepEqual(p23H2D, [[mod(-state.q), state.A], [mod(-state.K), state.A]]);
+
 // Familywise charge: every ordered pair, including repeats, from all
 // available source-indexed fragments page i / fragment i+1, i=0..42.
 const indexed = [];
@@ -333,6 +342,7 @@ console.log(JSON.stringify({
   variantMatches,
   p4H: p4H.values,
   p21: { values: p21.values, H2D: p21H2D, sourceWords: p21H2D.map((i) => sourceWords[i]) },
+  p23CrossCheck: { redSpanLengths: p23Lengths, H2D: p23H2D, predictedFrom: { negativeQ: mod(-state.q), negativeK: mod(-state.K), A: state.A } },
   p12p26: {
     p12: { ordinal: p12.ordinal, values: p12.values, length: p12.values.length, sumMod29: sumMod29(p12) },
     p26: { ordinal: p26.ordinal, values: p26.values, length: p26.values.length, sumMod29: sumMod29(p26) },

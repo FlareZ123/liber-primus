@@ -206,6 +206,16 @@ The original p8 image also visibly opens with an enlarged red initial beside a r
 
 This is a discriminating untouched numeric/state consequence for Director #1797. It no longer supplies the preferred semantic action of RISE. A concurrent stronger result shows that the same exact `[3,5]+H -> RISE` packet occurs on p23, p33 and p40, with independently supported `+2` page uses at p33→p35 and p40→p42. Under that repeated operator, `THE ONE RISE` means one `+2` application, giving p23→p25; p25 was independently selected by authenticated GOOD LUCK and contains the sole `[K,g]` side object in the charged 627-object family. Preserve the p8 packet above as secondary cross-check evidence rather than the main navigation receiver. See `im-results/lp2-p23-one-rise-plus2-p25-convergence.md`.
 
+## 3b. Independent p36 phi-grid state cross-check
+
+A separate source-selected route through the p4 Wisdom phi-grid and p36 fragment37 now recovers q=4, K=2, and A=8 (see [the phi-grid state-route synthesis](dh3301_phi29_wisdom_square_selector_audit.md)). This independently types the existing p23 red-span H outputs:
+
+    p23 red-span lengths = [2,6,3,5]
+    H([2,6]) = [25,8] = [-q,A]
+    H([3,5]) = [27,8] = [-K,A].
+
+The same p36 route also recovers K=2, which agrees with the p25 side object's [K,g]=[2,5] packet; p23's full-line state supplies g=5 (see [the p25 cube route](lp2-2013-goodluck-p25-cube-route.md)). This is independent state corroboration for the p23/p25 branch. It does not add plaintext or change the p23→p25 one-rise decision.
+
 ## 4. What is shared, and what is independent
 
 The overlap is now exact:

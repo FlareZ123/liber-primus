@@ -108,6 +108,15 @@ Applying the same H transform to their lengths and to their GP0 sums gives two m
     H([5,3])  = [2,8]   = [K,A]
     H([6,16]) = [19,22] = [B,p-1].
 
+### Independent p23 red-span state cross-check
+
+The p36/p12/p26 route independently recovers q=4, K=2, and A=8. The first four p23 red-span fragment lengths are [2,6,3,5]. The same H operation gives:
+
+    H([2,6]) = [25,8] = [-q,A]
+    H([3,5]) = [27,8] = [-K,A]
+
+These are exactly the p23 red-span outputs already reported in [the p23 instruction reconciliation](lp2-p23-instruction-reconciliation.md). The recovered K=2 also agrees with the [K,g]=[2,5] side object in the p25 cube route, where the p23 full-line state supplies g=5. This is cross-route state corroboration, not an additional plaintext recovery and not a change to the separate p23→p25 one-rise interpretation.
+
 ### Familywise control and stopping rule
 
 Use every available source-indexed fragment i → page i, fragment i+1, for signed indices 0 through 42. There are 42 extant objects; p32 is the already noted missing coordinate. Charge **all 42×42 ordered pairs, including repeats**. The length channel alone is not decisive: 55 ordered pairs satisfy H(lengths)=[K,A]. In particular, the prefix [15,19] selects p15/p19; their lengths give [K,A], but their GP0 sums give [4,1], not [B,p-1].

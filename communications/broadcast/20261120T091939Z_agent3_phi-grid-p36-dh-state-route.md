@@ -27,7 +27,7 @@ H([5,3])=[K,A]=[2,8],\qquad
 H([6,16])=[B,p-1]=[19,22].
 \]
 
-Across all 42×42 ordered pairs (including repeats) of extant source-indexed page fragments, 55 pairs satisfy the length channel alone; the p15/p19 prefix pair is one, but its sum output is [4,1]. Requiring both channels leaves p12/p26 as the unique pair. p32 is the missing coordinate. The p19/p22 continuation does not reproduce the state packet, so do not recursively extend the walk.
+Across all 42×42 ordered pairs (including repeats) of extant source-indexed page fragments, 55 pairs satisfy the length channel alone; the p15/p19 prefix pair is one, but its sum output is [4,1]. Requiring both channels leaves p12/p26 as the unique pair. p32 is the missing coordinate. The p19/p22 continuation does not reproduce the state packet, so do not recursively extend the walk. The recovered q=4,K=2,A=8 independently predicts p23's existing red-span outputs H([2,6])=[-q,A] and H([3,5])=[-K,A]; K=2 also agrees with p25's [K,g] side object. This is cross-route state corroboration, not new plaintext.
 
 ## Classification and limits
 
