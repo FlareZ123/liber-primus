@@ -415,3 +415,9 @@ Next: do not repeat the same base59/base60/order/reversal/sign family or expand 
 - Report: im-results/lp2-p22-p24-p26-human-solvepath-audit.md; preregistration remains frozen. results/README.md corrected the p22 square wording and integrated p24/p26 results. No new audio-XOR or other post-registration hypothesis was added.
 - Issue conclusion: a plausible human route identifies an earlier square operand, but no unique LP2 cipher operation or parameters; the missing selector is the 29-to-25 mapping/cipher period, or a source-fixed mirror permutation / route start and direction grammar. Do not widen into a general artwork or cipher sweep.
 
+
+## 2026-11-20 mixed-domain Liber AL p16 → LP2 p49 candidate (unvalidated)
+
+- Follow-up comment 7030410078 on #1944 presents a possible mixed-domain human solve path: the 5-dot difference16 could point to page16 of the Liber AL text selected by the 2013 signed book-code; difference33 points to LP2 p33 THEIR RISE; difference49 points to LP2 p49 numeric table. The Liber AL page16 grid and LP2 p49 table share 10×8 shape.
+- This is distinct from equating LP2 p16 with Liber AL p16. LP2 p16 remains a separate 267-rune text page. The mixed-domain route requires selecting a Liber AL edition with the grid (1925/1936 witnesses; 1912 facsimile reportedly lacks it) and an explicit page-number-domain transition; neither is yet authenticated. The old p49 mask/phase and direct-consumer negatives remain unchanged.
+- Treat this only as a human-solve-path hypothesis for Director review, not a source-locked cipher or recovered plaintext. No report conclusion has been promoted. The #1943 negative result remains valid for the isolated p23/p56 page-rise route.
