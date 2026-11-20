@@ -94,6 +94,12 @@ function H2D(pair) {
   return [mod(pair[0] - pair[1]), mod(pair[0] + pair[1])];
 }
 
+function H2DInverse(pair) {
+  assert.equal(pair.length, 2);
+  const half = invMod(2);
+  return [mod(half * (pair[0] + pair[1])), mod(half * (pair[1] - pair[0]))];
+}
+
 function H5(v) {
   assert.equal(v.length, 5);
   return [
@@ -220,6 +226,29 @@ assert.deepEqual(
 const matrixOutput = mulLeft(M, p36.values);
 assert.deepEqual(matrixOutput, statePacket);
 assert.deepEqual(matrixOutput.map((i) => sourceWords[i]), ["WORDS", "THEIR", "EMPTY", "IS", "EMPTY"]);
+
+const indexMapAudit = [];
+for (const sourceIndex of [36, 37]) {
+  for (const pageOffset of [-1, 0]) {
+    for (const fragmentOffset of [0, 1]) {
+      const page = sourceIndex + pageOffset;
+      const fragmentOrdinal = sourceIndex + fragmentOffset;
+      const fragment = pageFragments(page)[fragmentOrdinal - 1];
+      const output = fragment && fragment.values.length === 5 ? mulLeft(M, fragment.values) : null;
+      indexMapAudit.push({
+        sourceIndex, pageOffset, fragmentOffset, page, fragmentOrdinal,
+        values: fragment?.values ?? null, output,
+        packetHit: JSON.stringify(output) === JSON.stringify(statePacket),
+      });
+    }
+  }
+}
+assert.deepEqual(
+  indexMapAudit.filter((entry) => entry.packetHit).map((entry) =>
+    [entry.sourceIndex, entry.pageOffset, entry.fragmentOffset, entry.page, entry.fragmentOrdinal]
+  ),
+  [[36, 0, 1, 36, 37], [37, -1, 0, 36, 37]]
+);
 assert.deepEqual(H5(p36.values), [
   state.a + state.g,
   mod(state.p - state.K),
@@ -281,6 +310,15 @@ assert.deepEqual(p21.values, [19, 7]);
 const p21H2D = H2D(p21.values);
 assert.deepEqual(p21H2D, [12, 26]);
 assert.deepEqual(p21H2D.map((i) => sourceWords[i]), ["THE", "NUMBERS"]);
+const p21Glyphs = p21.values.map((i) => corpus.runes[i]).join("");
+const p21CipherTranslit = p21.values.map((i) => corpus.translit[i]).join("");
+assert.equal(p21Glyphs, "ᛗᚹ");
+assert.equal(corpus.translit[6], "G");
+assert.equal(corpus.translit[7], "W");
+assert.equal(p21CipherTranslit, "MW");
+const p21H2DInverse = H2DInverse(p21.values);
+assert.deepEqual(p21H2DInverse, [13, 23]);
+assert.deepEqual(p21H2DInverse.map((i) => sourceWords[i]), ["WAY", "ROAD"]);
 
 // THE / NUMBERS selects p12 fragment13 and p26 fragment27.
 const p12 = pageFragments(12)[12];
@@ -348,7 +386,22 @@ assert.deepEqual(p25SideObject, [18, 3, 20, 10, 11, 16]);
 const p25SideState = H2D([p25SideObject[0], p25SideObject[p25SideObject.length - 1]]);
 assert.deepEqual(p25SideState, [state.K, state.g]);
 
-// The three independently sourced pairs close a K-A-g state triangle.
+const p13Indexed = pageFragments(13)[13];
+const p23Indexed = pageFragments(23)[23];
+const inverseBranchLengths = H2DInverse([p13Indexed.values.length, p23Indexed.values.length]);
+const inverseBranchSums = H2DInverse([
+  sumMod29(p13Indexed), sumMod29(p23Indexed),
+]);
+assert.deepEqual([p13Indexed.values.length, p23Indexed.values.length], [6, 8]);
+assert.deepEqual([sumMod29(p13Indexed), sumMod29(p23Indexed)], [11, 26]);
+assert.deepEqual(inverseBranchLengths, [7, 1]);
+assert.deepEqual(inverseBranchSums, [4, 22]);
+const inverseBranchN = [inverseBranchLengths, inverseBranchSums];
+const inverseBranchNReversed = [inverseBranchSums, inverseBranchLengths];
+assert.deepEqual(mulLeft(inverseMatrix(inverseBranchN), p21.values), [1, 12]);
+assert.deepEqual(mulLeft(inverseMatrix(inverseBranchNReversed), p21.values), [27, 21]);
+
+// The three previously derived pairs close a K-A-g state triangle; their row assembly is tested below.
 const N = [[state.A, state.g], [state.K, state.g]];
 assert.deepEqual(N, [[8, 5], [2, 5]]);
 assert.equal(detMod(N), 1);
@@ -365,7 +418,7 @@ assert.deepEqual(p21HillPlain.map((i) => corpus.translit[i]), ["TH", "E"]);
 assert.deepEqual(mulLeft(N, p21HillPlain), p21.values);
 const p21CipherRunes = p21.values.map((i) => corpus.translit[i]).join("");
 const p21PlainRunes = p21HillPlain.map((i) => corpus.translit[i]).join("");
-assert.equal(p21CipherRunes, "MG");
+assert.equal(p21CipherRunes, "MW");
 assert.equal(p21PlainRunes, "THE");
 assert.equal(p21HillPlain.map((i) => corpus.translit[i]).join(""), "THE");
 
@@ -401,7 +454,7 @@ assert.deepEqual(
 );
 console.log("2016 INDEX MAP: 42 objects, missing p32; only singleton p4/5=H; four H singletons in full corpus; only p21/22 -> THE among ten mapped digraphs.");
 
-// Familywise two-rune control: only p21 fragment22 decrypts to THE.
+// Familywise two-rune control: only N-inverse maps p21 fragment22 to the already-known THE target.
 const twoRuneFragments = [];
 for (let page = 0; page <= 55; page++) {
   if (page === 50) continue;
@@ -430,6 +483,43 @@ assert.deepEqual(theRuneHits.map((entry) => [entry.name, entry.hits.length]), [
   ["N-inverse-transpose-column", 0],
 ]);
 assert.deepEqual(theRuneHits[1].hits, [{ page: 21, ordinal: 22, values: [19, 7] }]);
+
+const statePairRows = [
+  ["KA", [state.K, state.A]],
+  ["Ag", [state.A, state.g]],
+  ["Kg", [state.K, state.g]],
+];
+const matrixPairAudit = [];
+for (let i = 0; i < statePairRows.length; i++) {
+  for (let j = 0; j < statePairRows.length; j++) {
+    if (i === j) continue;
+    const candidate = [statePairRows[i][1], statePairRows[j][1]];
+    const candidateInverse = inverseMatrix(candidate);
+    const p21Output = mulLeft(candidateInverse, p21.values);
+    const theHits = twoRuneFragments
+      .filter((fragment) => JSON.stringify(mulLeft(candidateInverse, fragment.values)) === JSON.stringify([2, 18]))
+      .map((fragment) => [fragment.page, fragment.ordinal]);
+    matrixPairAudit.push({
+      rows: [statePairRows[i][0], statePairRows[j][0]],
+      determinant: detMod(candidate),
+      p21Output,
+      theHits,
+    });
+  }
+}
+assert.deepEqual(
+  matrixPairAudit.map((entry) => [
+    entry.rows.join("/"), entry.determinant, entry.p21Output, entry.theHits,
+  ]),
+  [
+    ["KA/Ag", 4, [17, 9], [[8, 10], [41, 24]]],
+    ["KA/Kg", 23, [8, 4], []],
+    ["Ag/KA", 25, [7, 10], []],
+    ["Ag/Kg", 1, [2, 18], [[21, 22]]],
+    ["Kg/KA", 6, [5, 25], [[46, 15]]],
+    ["Kg/Ag", 28, [27, 22], []],
+  ]
+);
 assert.equal(pageFragments(21).filter((fragment) => fragment.values.length === 2).length, 9);
 assert.deepEqual(p21.values, [state.B, mod(state.g + state.K)]);
 const rawStatePairHits = twoRuneFragments.filter((fragment) =>
@@ -506,7 +596,7 @@ assert.notDeepEqual(continuationLengths, [state.K, state.A]);
 assert.notDeepEqual(continuationSums, [state.B, state.p - 1]);
 
 console.log(JSON.stringify({
-  classification: "source-selected state route; p21 fragment22 decrypts to THE; no full-page plaintext recovered",
+  classification: "intermediate state/navigation route reproduced; p21 Hill THE is a numerical candidate with no source-selected row construction; no plaintext recovered",
   phiSquare: square,
   phiGridMod29: M,
   determinantMod29: detMod(M),
@@ -517,7 +607,7 @@ console.log(JSON.stringify({
   wrongNearMissPacket,
   wrongNearMissHits: wrongNearMissHits.length,
   p4H: p4H.values,
-  p21: { values: p21.values, H2D: p21H2D, sourceWords: p21H2D.map((i) => sourceWords[i]) },
+  p21: { glyphs: p21Glyphs, values: p21.values, transliteration: p21CipherTranslit, H2D: p21H2D, H2DWords: p21H2D.map((i) => sourceWords[i]), H2DInverse: p21H2DInverse, H2DInverseWords: p21H2DInverse.map((i) => sourceWords[i]) },
   p23CrossCheck: { redSpanLengths: p23Lengths, H2D: p23H2D, predictedFrom: { negativeQ: mod(-state.q), negativeK: mod(-state.K), A: state.A } },
   theNumbersBranch: {
     theGP, numbersGP, rawNumbers: [theRawNumber, numbersRawNumber], pageNumbersMod29: numberPages,
@@ -527,8 +617,10 @@ console.log(JSON.stringify({
     familywiseMatches: agPairMatches,
     p25SideObject, p25SideState,
   },
-  stateTriangle: { KA: lengthPacket, Ag: numberSumPacket, Kg: p25SideState, N, determinant: detMod(N), inverse: Ni, rowReversedN: Nrev, rowReversedDeterminant: detMod(Nrev), rowReversedInverseOutput: rowReversedPlain },
-  p21HillDecryption: {
+  stateTriangle: { KA: lengthPacket, Ag: numberSumPacket, Kg: p25SideState, N, determinant: detMod(N), inverse: Ni, rowReversedN: Nrev, rowReversedDeterminant: detMod(Nrev), rowReversedInverseOutput: rowReversedPlain, allSixOrderedRowPairConstructions: matrixPairAudit },
+  p21HillCandidate: {
+    validatedPlaintext: false,
+    reason: "THE is already present in the forward-H signed-source readout; row stacking has no source-visible selector and no untouched receiver holds out",
     ciphertext: p21.values, ciphertextRunes: p21CipherRunes,
     plaintextRuneValues: p21HillPlain, plaintextRunes: p21PlainRunes,
     forwardReencryptsExactly: JSON.stringify(mulLeft(N, p21HillPlain)) === JSON.stringify(p21.values),
@@ -553,6 +645,8 @@ console.log(JSON.stringify({
       H2D_sums: prefixSums,
     },
   },
+  indexMapAlternatives: indexMapAudit,
+  inverseHBranch: { p13: { values: p13Indexed.values, length: p13Indexed.values.length, sumMod29: sumMod29(p13Indexed) }, p23: { values: p23Indexed.values, length: p23Indexed.values.length, sumMod29: sumMod29(p23Indexed) }, inverseHLengths: inverseBranchLengths, inverseHSums: inverseBranchSums, rowStackOutputs: [mulLeft(inverseMatrix(inverseBranchN), p21.values), mulLeft(inverseMatrix(inverseBranchNReversed), p21.values)] },
   sourceIndexedFragmentCount: indexed.length,
   missingSourceIndexedPages: missing,
   nonrecursiveContinuation: { lengths: continuationLengths, sums: continuationSums },

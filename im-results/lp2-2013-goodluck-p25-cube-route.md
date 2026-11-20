@@ -165,7 +165,7 @@ The same route's p12/p26 branch gives [K,A]=[2,8]. This combines with the existi
     [A,g] = [8,5]
     [K,g] = [2,5].
 
-Stacking [A,g] and [K,g] as rows gives the determinant-one matrix N=[[8,5],[2,5]]. Its inverse decrypts the original p21 fragment22 ciphertext MG ([19,7]=[B,g+K]) to GP29 rune values [2,18] = TH,E = THE; forward re-encryption reproduces MG exactly. This hit is unique among 465 two-rune fragments under the four tested orientations. Full method and controls are in [the p36 phi-grid state-route synthesis](dh3301_phi29_wisdom_square_selector_audit.md).
+Stacking [A,g] and [K,g] as rows gives the determinant-one matrix N=[[8,5],[2,5]]. Its inverse maps the original p21 fragment22 ciphertext MW ([19,7]=[B,g+K]) numerically to GP29 rune values [2,18] = TH,E = THE; forward multiplication reproduces MW exactly. This hit is unique among 465 two-rune fragments under the four tested orientations, but the row-stacking rule is not source-selected and THE is already present in the forward-H source-word readout. Full method and adversarial controls are in [the p36 phi-grid state-route synthesis](dh3301_phi29_wisdom_square_selector_audit.md).
 
 This provides a second conditional route to p25 and independently confirms its [K,g] state object; it does **not** decrypt the p25 cube output. The p20/p25 state signature has a p20/p38 collision, and the page selection depends on GP0(NUMBERS)=83 being reduced modulo 29. p25 is favored by the independent p23 one-rise route and the unique [K,g] object. The raw-GP0/p50 interpretation remains a competing reading. Do not promote this cross-check to p25 plaintext.
 

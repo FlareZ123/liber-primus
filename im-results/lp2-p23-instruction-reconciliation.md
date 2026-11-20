@@ -214,7 +214,7 @@ A separate source-selected route through the p4 Wisdom phi-grid and p36 fragment
     H([2,6]) = [25,8] = [-q,A]
     H([3,5]) = [27,8] = [-K,A].
 
-The same p36 route also recovers K=2, which agrees with the p25 side object's [K,g]=[2,5] packet; p23's full-line state supplies g=5 (see [the p25 cube route](lp2-2013-goodluck-p25-cube-route.md)). This is independent state corroboration for the p23/p25 branch. The extended state triangle also yields a separate p21 fragment22 decryption MG→THE, with the ciphertext itself equal to [B,g+K]; it does not decrypt the p23 page or change the p23→p25 one-rise decision.
+The same p36 route also recovers K=2, which agrees with the p25 side object's [K,g]=[2,5] packet; p23's full-line state supplies g=5 (see [the p25 cube route](lp2-2013-goodluck-p25-cube-route.md)). This is independent state corroboration for the p23/p25 branch. The extended state triangle also yields a numerical p21 fragment22 inverse candidate MW→THE, with the ciphertext itself equal to [B,g+K]. The Hill row-stacking rule is not source-selected and THE is already present in the forward-H source-word readout; see the independent audit in the p36 phi-grid report. This does not decrypt the p23 page or change the p23→p25 one-rise decision.
 
 ## 4. What is shared, and what is independent
 
