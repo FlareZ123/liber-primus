@@ -126,6 +126,38 @@ const p55Interior = interiorMatch[1].split(',').map(x => Number(x.trim()));
 if (p55Interior.length !== 43) throw new Error('Expected 43 p55 interiors');
 const p55Full = corpus.pages.find(p => p.page === 55).indices;
 const alphabet = corpus.translit;
+
+// Test the literal LP-word receiver implied by "Its words are the map".
+// Physical page order is the canonical 58-slot order; p50 is numeric-only.
+const printedSource = read('resources/lp2-transcription.txt').split('%');
+function printedWords(page) {
+  const source = page.replaceAll('/', '').replaceAll('\n', '').replaceAll('\r', '');
+  return source.split(/[-.&$§,:!?]/u)
+    .map(piece => (piece.match(/[ᚠ-᛿]+/gu) || []).join(''))
+    .filter(Boolean);
+}
+const lp2Pages = Array.from({length: 58}, (_, p) =>
+  p === 50 ? [] : printedWords(printedSource[p > 50 ? p - 1 : p]));
+if (lp2Pages.reduce((n, p) => n + p.length, 0) !== 2973) {
+  throw new Error('Canonical LP2 physical-word inventory changed');
+}
+function renderPageWord(page, word, origin) {
+  const runeWord = lp2Pages[page - origin]?.[word - origin];
+  return runeWord ? [...runeWord].map(r => corpus.translit[corpus.runes.indexOf(r)]).join('') : null;
+}
+const article221Digits = base29(221);
+const article221Text = base29Text(221);
+const article221CoordinateTests = [
+  {orientation: 'page-word', origin: 0, page: 7, word: 18, output: renderPageWord(7, 18, 0)},
+  {orientation: 'page-word', origin: 1, page: 7, word: 18, output: renderPageWord(7, 18, 1)},
+  {orientation: 'word-page', origin: 0, page: 18, word: 7, output: renderPageWord(18, 7, 0)},
+  {orientation: 'word-page', origin: 1, page: 18, word: 7, output: renderPageWord(18, 7, 1)}
+];
+const rawValuePageWordTests = decodedVariants.zeroBasedAddress.values.map(value => ({
+  value,
+  zeroBased: renderPageWord(value % 58, Math.floor(value / 58), 0),
+  oneBased: renderPageWord((value - 1) % 58 + 1, Math.floor((value - 1) / 58) + 1, 1)
+}));
 const bytes = decodedVariants.zeroBasedAddress.values;
 const keys = [
   { name: 'table-values-mod29', key: bytes.map(v => v % 29) },
@@ -151,6 +183,8 @@ console.log(JSON.stringify({
   wordWindow0: words.slice(0, 28).map((word, index) => ({ index, word })),
   tableShape: '32x8 across LP2 pages 49-51',
   articleInputs: { 221YearCoincidence: 221, broodYears: [2013, 2014, 2015] },
+  article221DirectLPWordCoordinates: { base29Digits: article221Digits, base29Text: article221Text, tests: article221CoordinateTests },
+  rawTableValueLPWordCoordinates: rawValuePageWordTests,
   tableVariants: decodedVariants,
   stage10SquareCrossLink: { value: 151, positionsIn5x5_1033: square151 },
   directKeyTests

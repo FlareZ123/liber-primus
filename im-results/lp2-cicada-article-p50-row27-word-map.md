@@ -62,7 +62,7 @@ Because the signed 2016 wording says “Its words are the map,” a more grammat
 | digits as (one-based page, one-based word) | THAEIA / HEO / JM |
 | digits as (zero-based word, zero-based page) | WNGGXDG / IG / IAL |
 
-All three are nonlinguistic. Treating the raw table values 52/51/151 as page/word addresses via page = value mod 58 and word = floor(value/58) also fails: zero-based outputs are P / WWP / CTHENUIAEIUIA; the one-based variant gives WWP / no word on numeric-only p50 / EOD. These are the natural direct book-address interpretations; do not expand into arbitrary coordinate permutations.
+All three are nonlinguistic. The article's 221-year number itself converts to BASE29 **7I** ([7,18]); using it directly as (page,word) gives AECIARIALD zero-based or GIASB one-based, while reversing the coordinates gives XH or NGAELOEIEOY. These are also nonlinguistic. Treating the raw table values 52/51/151 as page/word addresses via page = value mod 58 and word = floor(value/58) also fails: zero-based outputs are P / WWP / CTHENUIAEIUIA; the one-based variant gives WWP / no word on numeric-only p50 / EOD. These are the natural direct book-address interpretations; do not expand into arbitrary coordinate permutations.
 
 This test does not disprove every possible source-defined semantic map, but it removes the simplest grammar-consistent receiver for the row27 values. Combined with #304's objection to using the signed message's own words as the map, there is currently no validated consumer for 52/51/151.
 
