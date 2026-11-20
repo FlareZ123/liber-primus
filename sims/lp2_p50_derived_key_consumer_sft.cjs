@@ -295,6 +295,44 @@ function main() {
     }
   }
 
+  // A further source-motivated state-key candidate: the DH shared secret
+  // K=2 and the first signed-message THE address (GP0=20) both enter the
+  // same 11-cycle at 115. Test cycle states and cycle-edge deltas as
+  // phase-zero 11-periodic keys on the p0 body.
+  const dhKWalk = walkUntilRepeat(2, grid.bytes);
+  if (dhKWalk.entry !== firstTheWalk.entry) {
+    fail("DH shared secret K=2 and first THE no longer enter the same cycle node");
+  }
+  const cycle11 = rotateCycle(c11.nodes, firstTheWalk.entry);
+  const cycle11StateKey = cycle11.map(n => mod(n));
+  const cycle11DeltaKey = cycle11.map((n, i) =>
+    mod(cycle11[(i + 1) % cycle11.length] - n)
+  );
+  const cycle11Receivers = [];
+  for (const item of [
+    { name: "11-cycle state residues", key: cycle11StateKey },
+    { name: "11-cycle edge deltas", key: cycle11DeltaKey }
+  ]) {
+    for (const sign of [-1, 1]) {
+      const direct = directDecode(p0Body, item.key, sign, true);
+      const transparent = decodeTransparentF(p0Body, item.key, sign, true);
+      const best = bestPath(transparent);
+      cycle11Receivers.push({
+        key: item.name,
+        keyValues: item.key,
+        sign: sign < 0 ? "C-K" : "C+K",
+        directIoC: ioc(direct),
+        transparentPathCount: transparent.length,
+        bestTransparentIoC: best ? best.score : null,
+        bestTransparentText: best ? runeString(best.values, corpus.translit) : null
+      });
+      const planted = encodeTransparentF(p57, item.key, sign, true);
+      if (!includesExact(decodeTransparentF(planted, item.key, sign, true), p57)) {
+        fail("p57 planted positive control failed for " + item.name);
+      }
+    }
+  }
+
   const output = {
     classification: "bounded negative tests; no unknown plaintext or key recovered",
     sources: {
@@ -322,6 +360,17 @@ function main() {
       keyLengthZeroExtension: phiKey.length,
       keyLengthStrictOmission: phiKeySkipZero.length,
       receivers: phiReceivers
+    },
+    functionalGraph11CycleKey: {
+      dhSharedSecretSeed: 2,
+      dhKOrbitDepth: dhKWalk.depth,
+      dhKCycleEntry: dhKWalk.entry,
+      firstTheOrbitDepth: firstTheWalk.depth,
+      firstTheCycleEntry: firstTheWalk.entry,
+      orderedCycle11: cycle11,
+      stateResidueKey: cycle11StateKey,
+      edgeDeltaKey: cycle11DeltaKey,
+      receivers: cycle11Receivers
     },
     functionalGraphDirectCoordinateKey: {
       quotientQ: pairs.map(p => p.q),
