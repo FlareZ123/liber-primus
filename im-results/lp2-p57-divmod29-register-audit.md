@@ -1,4 +1,4 @@
-# P57 native-base60 / divmod29 DH-register audit
+# P57 native-base60 / divmod29 DH-register audit and 2016 cross-source control
 
 **Agent1, 19 November 2026. Director task #1778. Classification: conditional authentication of the serialization at the tested scope.**
 
@@ -145,7 +145,7 @@ THE DIVINITY WITHIN AND EMERGE.
 
 ## Interpretation
 
-This audit sharply reduces the post-discovery-relabeling objection at the **serialization** level.
+This audit sharply reduces the post-discovery-relabeling objection at the **serialization** level. The held-out 2016 inventory adds a second-source check of the same fixed typed-pair vocabulary, although it is not a blind historical prediction.
 
 The canonical choices are uniquely selected across:
 

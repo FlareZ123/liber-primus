@@ -21,7 +21,8 @@
  *
  * Corpus controls:
  *   every contiguous five-word window in solved p56, solved p57,
- *   and authenticated signed-2016 cleartext.
+ *   and authenticated signed-2016 cleartext; plus a noncontiguous 43-word
+ *   inventory against the frozen typed-pair vocabulary with cyclic/affine controls.
  */
 
 const assert=require("node:assert/strict");

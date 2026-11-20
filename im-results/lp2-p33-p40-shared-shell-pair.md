@@ -139,7 +139,7 @@ A tempting two-anchor extension applies the already conditionally authenticated 
 | p33 WILL | 57 | 118 | [4,2] | 4 | p35 |
 | p40 PATHS | 54 | 156 | [5,11] | 5 | p51 |
 
-The apparent p33 alignment is attractive because p33+2=p35 is already the independently recovered RISE→FOUND handoff. But this is not an independent confirmation: the proposed output type was inferred after seeing that handoff, and p40+11 merely lands on the final page of the numeric table.
+The apparent p33 alignment is attractive because p33+2=p35 is already the independently recovered RISE→FOUND handoff. But this is not an independent confirmation: the proposed output type was inferred after seeing that handoff, and p40+11 merely lands on the final page of the numeric table. Separately, neither [4,2] nor [5,11] is one of the five frozen p57 typed DH pairs; the held-out 2016 pair-inventory result therefore does not authenticate WILL or PATHS.
 
 The decisive control applies the same fixed GP0→p50→divmod29 map to all 43 words of the authenticated 2016 signed message and asks whether quotient equals the source word's Latin-letter count. The authored table order yields 10 hits: THE (six occurrences), EPIPHANY, WILL, LUCK and PATHS. All ten proposed destinations happen to lie within p0–p55. However, across all 256 cyclic rotations of the same 256-cell table, the authored order has 10 hits while shift144 has 14 (the unique maximum); shift4 has 13. The authored ordering is therefore not selected by this predicate. Repeated THE occurrences account for most of the canonical hits.
 

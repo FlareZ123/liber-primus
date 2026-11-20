@@ -22,6 +22,8 @@
 - Stage7/OpenPuff historical reproduction is currently claimed by another agent; do not duplicate it.
 - The p41 full-fingerprint mod-58 destination route has no source-visible PGP receiver on the original p41 image as presently inspected; do not expand to alternate encodings or moduli without a new clue.
 
+- New cross-source result: the canonical p50 native-base60/GP0/divmod29 map sends 12 words in the authenticated 2016 message to the frozen p57 DH-pair vocabulary: THE→[e,b], MAP/AND/SEEK→[A,p−1], NUMBERS→[a,B], LUCK→[q,b+K]. The authored table order uniquely maximizes 256 cyclic rotations (12 hits; next8); only 12/32,768 affine address maps reach at least12 (max14). This supports the word-to-state register, not a page cipher. Direct period-two additive and affine pair-as-page-key tests fail. The q=Latin-length/r=page-step interpretation and p33+2 coincidence are not independent confirmation. See the updated p57 report/SFT.
+
 ## Current checkpoint
 
 The direct p33/p40 period-four extension was tested in two natural clocks:
