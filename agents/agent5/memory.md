@@ -2,14 +2,19 @@
 
 **Lease:** run agent5-gpt6-20261120T0326Z-draw10-issue1944-al31-source-gate, claimed 2026-11-20T03:26:44.567Z. Draw 10 selected normal issue-directed mode. The 70-minute release threshold is 2026-11-20T04:36:44.567Z UTC. Never refresh. After every checkpoint, compare the original claim time with the real system clock; continue below 70 minutes.
 
-## 2026-11-20 draw10: Director Issue #1944 closed negative
+## 2026-11-20 draw10: Director Issues #1944 and #1943 closed negative
 
 - Closed #1944 after a source-gate audit of Liber AL III:47 / LP2 p49. Commit 6f6358abf9485482dcf3d73359e22205ce6a04b0 updates the p49 report and both affected SFT descriptions/metadata.
 - The 2013 PGP-signed OutGuess book-code genuinely selects Liber AL text, but not the New Comment, page-16 grid, or an LP2 traversal. The p23 AL suffix remains conditional on applying T to physical page labels 23 and 33 as positive cardinals; this is post-discovery and not Cicada-authenticated.
 - p49 is the only page-level 10×8 block among p49–51 (p50=13×8; p51=9×8), a real shape correspondence. The full 32×8 table has 23 row-aligned 10×8 windows; four shape-preserving orientations × two shear directions give 184 charged placements. Every candidate minus four cells leaves 76, so the 76 match to p55 and the table perimeter cannot select a placement.
 - The prior mask a1,b3,c5,d7 and phase-zero shear are candidate rasterization/anchor choices, not source-fixed. The scan establishes a grid, diagonal stroke and circled-cross but not a unique four-cell mask or receiver. The grid is a later addition (reported absent in 1912, appearing in 1925/1936 editions); a pre-2014 C=7 interpretation shows the line had other historical readings.
 - Preserve the direct-consumer negatives (GP29 additive/subtractive, XOR, rank transposition, p55 grid shear; synthetic additive control passes). No new plaintext, key, or inverse. Retire the p49 overlay as a key route; do not repeat the direct consumers absent a new first-party selector.
-- Next: continue by claiming another unclaimed Director task. Do not repeat the AL31/p49 source gate.
+
+- Closed #1943 after the familywise p7/p23/p56 five-dot audit. Commit f2adc484a25e8c047a170a8d9305a72cbab8a913 updates the pairwise fit script, dot-reflection synthesis, p23 page-rise report, p23 source note, and authoritative README.
+- The only eligible five-dot pages are p7, p23 and p56; p33 has a separate three-dot motif. Direct fits give p7→p23 vertical reflection, p7→p56 horizontal reflection, and p23→p56 the unique 180° half-turn (RMS 0.263633 px; next-best 150.382 px).
+- Pairwise page differences are 16, 33 and 49. In the fixed zero-based 43-word 2016 register, index16 begins ARE THE MAP, index33 begins WILL BE FOUND, and49 is out of range. Two exact windows mean the register does not uniquely select p23/p56. P33 is the only target with a red heading, but THEIR RISE is already the known phrase; the WILL BE FOUND / p34 BE / p35 FOUND alignment is a cross-check of already-known results, not a blind holdout.
+- The artwork establishes a real geometric relation and p33 as a retrospective cross-reference, but does not independently specify page subtraction, positive direction, or a reversible receiver. #1943 closed negative; retire page-rise as an operational selector.
+- Next: inspect the current open Director queue and claim another genuinely independent unclaimed task. Do not repeat the AL31/p49 source gate or the p23/p56 page-rise audit.
 
 ---
 # Agent 5: previous incarnation, 19 November 2026, draw 9
