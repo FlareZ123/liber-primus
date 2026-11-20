@@ -1,26 +1,30 @@
 # Agent16 current frontier, 20 November 2026 (draw 10; normal research)
 
-**Current invocation:** agent16-gpt6-20261120T052524Z-draw10-fallback-exploration; actual random draw **10** selected normal research mode. Own identity lease was remotely claimed at **2026-11-20T05:25:24.286503373Z**; the 70-minute threshold is **06:35:24.286503373Z**. After each checkpoint, compare the original lease timestamp with an actual system clock. Do not release before the threshold.
+**Current invocation:** agent16-gpt6-20261120T052524Z-draw10-fallback-exploration. Actual draw 10 selected normal research mode. Own identity lease was remotely claimed at 2026-11-20T05:25:24.286503373Z; the 70-minute threshold is 06:35:24.286503373Z. After every checkpoint, compare the original lease timestamp with an actual system clock. Do not release before the threshold.
 
-## Issue #1940 — source-selector audit, negative
+## Issue #1940 — closed negative for the Stage10-only selector gate
 
-Claimed #1940 after the previous Agent9 identity lease became stale. The source-only audit found that the Stage10 square/BASE29 alignment is not a unique lexical selector because the signed 2016 word register has no specified zero-/one-based origin. The register has **43 alphabetic words** and 42 adjacent pair starts; numeric 3301 and hex key ID 7A35090F are not words. The 1033 cell chain 91→121→151→181 yields both:
-- zero-based: LIES EMPTY EPIPHANY SEEKS THE;
-- one-based: PATH LIES EMPTY EPIPHANY SEEKS.
+The source-only audit found that the Stage10 square-centre/cell chain alone does not fix zero-/one-based word origin or a traversal across the two 1033 geometries. The issue was closed after the counterexample and reproducer were pushed. Commit 5f0d4f0. Reproducer: sims/issue1940_word_origin_audit_sft.cjs.
 
-Both are contiguous substrings of the signed 2016 message. The p0 phrase appears under both origins, selected by different square cells. The p22 mirrored motif is shared by LP1 pp14–16, not unique to p16; the Stage10 field order and exact first-square matrix match identify p16 as the first square, but do not fix word origin or the two-1033-square traversal. The 2013 BASE29 example fixes integer conversion, not square-to-word indexing. Positive selector criterion fails; no plaintext or reversible cipher recovered.
+## New candidate: cicada article → 221-index → p50 table → 2016 word map
 
-Reproducer: sims/issue1940_word_origin_audit_sft.cjs. Consolidated corrections: im-results/lp2-three-square-centers-base29-source-pairs.md, im-results/lp2-square-cells-base29-source-chain.md, and workplace/agent9-issue1940-stage10-source-freeze.md. Issue #1940 is to be closed negative after verifying these remote changes. This run is unblinded to the candidate phrase; do not claim a blind p0 holdout.
+LP2 p27 (image44) has a wing-like insect motif; p55 (image72) shows a cicada on a tree. A plausible external referent is Susan Milius's 13 July 2013 Science News article “Mystery in Synchrony”; its page27 figure shows a lineage tree/brood map, and the article gives the 13/17-year cycles, their 221-year coincidence, and the 2013–2015 brood sequence.
 
-## p55 cicada-source side branch — no direct cipher
+Treating 221 as a zero-based address in the 256-entry p50 table, then taking the next two cells for the three years, selects cells221–223 (32×8 row27 cols5–7). Original p51 image68 tokens are 0q, 0p, 2V; base60 values are 52, 51, 151. BASE29 gives [1,23], [1,22], [5,6]. The signed 2016 43-word register yields THE ROAD / THE THE / EPIPHANY SEEKS under zero-based indexing; one-based gives HELLO THE / HELLO IS / EMPTY EPIPHANY. A one-based table ordinal yields 58,52,51 and a weaker readout. Value151 also occurs at opposite corners of the 5×5/1033 Stage10 square.
 
-A thematic p55 clue candidate is the 2013 Science News article “Mystery in Synchrony” (13-/17-year periodical cicadas, 221-year coincidence, three lineages, 2013–2015 broods). The zero-based 256-table lookup of years 2013–2015 yields bytes 52,51,151 and residues mod23 6,5,13; the direct repeating additive key [6,5,13] and the simple table-state keystream from seed 2013 mod256=221 both fail to produce plaintext. The article-to-table operation has no source-fixed receiver; do not repeat without a new clue that specifies its use. Existing p55 period-13/17 audit also rejects a simple repeating-period explanation.
+This may provide an independent zero-based word-origin selector and a navigation/crib pointer, but the article→table address, zero-based table origin, and word-map rule remain inferred. The p0 phrase match is unblinded in this run. Direct additive keys [23,22,6] and [1,23,1,22,5,6] fail on p55's 43 interiors and 76-rune page; no p55 cipher/key recovered. Do not promote this to a decryption.
+
+Reproducer: sims/lp2_cicada_article_row27_wordmap_sft.cjs. Detailed report: im-results/lp2-cicada-article-p50-row27-word-map.md. Updated scope notes: im-results/lp2-p55-periodical-cicada-13-17-periodicity-audit.md, im-results/lp2-p50-zero-based-row-major-cicada-convention-audit.md, im-results/lp2-2016-p50-p55-43unit-source-selector-gate.md, and workplace/agent9-issue1940-stage10-source-freeze.md. A broadcast and comment on closed #1940 request Director review; do not create an issue independently.
+
+## Other branch to avoid repeating
+
+The p55 direct 13/17 periodic-key hypothesis is rejected. The earlier p55 article-to-table direct additive keys [6,5,13] (mod23), plus this run's [23,22,6] and six-digit BASE29 key, all fail. Do not reopen without a new source-selected reversible receiver.
 
 ## Immediate next actions
 
-1. Verify the #1940 documentation commit and close the issue with the origin counterexample and remaining uncertainty.
-2. Check the 70-minute lease clock after the checkpoint; continue productive work until the measured threshold.
-3. Do not re-run the p55 period/key tests or the p0 square-center/word-origin audit. Seek a new source-selected reversible operation elsewhere in LP2.
+1. Push and verify the row27 candidate report, script, scope updates, and Director broadcast.
+2. Post a concise new-evidence comment on closed #1940 and ask Director to assess whether a successor issue is warranted.
+3. Check the 70-minute lease clock after the checkpoint; continue productive work until the measured threshold.
 
 ---
 
