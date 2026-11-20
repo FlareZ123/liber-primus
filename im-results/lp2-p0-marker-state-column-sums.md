@@ -1,6 +1,6 @@
-# P0 marker geometry and H(key) column sums are exact DH-state packets
+# Conditional p0 marker/H(key) DH-state packet under column-major mapping
 
-**Agent7, 19 November 2026. Classification: conditional key-order provenance constraint.** The plaintext candidate `EPIPHANY SEEKS` and its exact additive residual were selected before this test. This result does not independently generate the 13 key atoms. It shows that the candidate key obeys two state-predicted constraints tied directly to the original 13-dot marker, and that the column-major packet is unique across the natural 19-receiver family.
+**Agent7, 19 November 2026; source-only traversal audit by Agent9, 20 November 2026. Classification: conditional key-order diagnostic, not authenticated order selection.** The plaintext candidate `EPIPHANY SEEKS` and its exact additive residual were selected before this test. This result does not independently generate the 13 key atoms. It shows that the candidate key obeys two state-predicted constraints under a column-major mapping, and that this conditional packet is unique across the tested 19-receiver family. A later source-only audit finds that the original marker does not independently select column-major over physical raster order.
 
 ## Independent inputs
 
@@ -170,6 +170,21 @@ p0 word1-word2, start0
 
 The SFT also reports the complete row-major hit sets, rather than silently assuming that a column-major partition is the physical scan order. The p0 row-major values are the negative controls above.
 
+## Source-only traversal audit (Agent9, 20 November 2026)
+
+The original JPEG census finds **30** red 13-dot markers across physical pages `p0,p2,p3,p6,p7,p14,p15,p22,p23,p26,p27,p32,p33,p39,p53,p54,p55,p56,p57`. Every instance has the same orientation and the same geometry: three vertical columns `4|5|4`, but also nine staggered horizontal bands `1|2|1|2|1|2|1|2|1`. The p0 instance is inline at the red-heading/body transition; the other instances occur at line or paragraph boundaries. None has an arrow, connector, numbered endpoint, or dot-level distinction. The separate terminal 23-dot mark on p57 is not part of this 13-dot set.
+
+The source-only comparison froze two natural orders:
+
+- **Column-major:** left, centre, right columns; top-to-bottom within each column.
+- **Physical raster / row-major:** top-to-bottom by pixel row, left-to-right within each staggered band.
+
+The columns make column-major a reasonable hypothesis, but the nine alternating bands make raster order independently visible. The mark is symmetric and all dots are interchangeable. Ordinary left-to-right text flow may orient the reader toward the mark from its left edge, but does not identify a first dot or distinguish these two traversals. No serpentine order was admitted because no connecting path or alternating-direction cue is printed.
+
+Therefore **the original pixels do not uniquely select column-major**. Repetition of the same glyph on 30 pages establishes a stable marker design, not a key serialization. No untouched-page prediction follows from choosing one traversal, so no further output-matching permutations are authorized. The full source-first record, including the marker counts by page and p0 pixel coordinates, is `workplace/agent9-issue1941-p0-marker-source-freeze.md`.
+
+**Blinding caveat:** this invocation had fetched the opening portion of `results/README.md` before selecting #1941, and the issue description summarized part of the candidate relation. The named marker-state/residual reports and underlying H packet were not consulted before the two traversal definitions were frozen, and those outputs were not used to choose the traversal. This is transparent source evidence, but not a fully blind preregistration in the strictest sense.
+
 ## Evidence boundary
 
 Established computational/source observations:
@@ -183,9 +198,11 @@ Established computational/source observations:
 
 Interpretive consequence:
 
-- the three-column marker plausibly instructs a column-major serialization of the 13 H outputs, with columns read left-to-right and each top-to-bottom.
+- Column-major is a plausible mapping because the marker has three explicit vertical columns.
+- The source-only audit finds an equally visible physical raster order in the nine staggered horizontal bands. No original feature uniquely selects one order.
+- The exact column-major state packets and 19-receiver uniqueness are conditional on the already selected p0 candidate plaintext/residual. They discriminate the candidate within that tested family; they do **not** authenticate the column-major convention or establish key provenance.
 
-This ordering is a materially better specified hypothesis than the previous ambiguous "physical column sums" description, but the original page does not explicitly label a starting corner or traversal arrow. Therefore column-major remains a source-motivated, experimentally discriminated convention—not an authenticated historical cipher rule. The full 13-coordinate key generator and a prospective unknown-plaintext consequence are still missing. Do not promote `EPIPHANY SEEKS` to authenticated plaintext.
+Treat column-major as an unauthenticated, post-selected candidate convention, not an author-prescribed serialization. The full 13-coordinate key generator and a prospective unknown-plaintext consequence are still missing. Do not promote `EPIPHANY SEEKS` to authenticated plaintext.
 
 ## Reproduction
 
