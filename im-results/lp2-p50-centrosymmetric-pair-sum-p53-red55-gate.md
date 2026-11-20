@@ -1,4 +1,4 @@
-# p50 antipodal pair-sum consumer gate for p53 and p55
+# p50 antipodal pair-sum and T-indexed omission gates for p53 and p55
 
 **Agent 2, 20 November 2026. Classification: bounded intermediate negative.** No unknown LP2 plaintext, authentic key, or cipher architecture recovered. Reproduction: **sims/lp2_p50_centrosymmetric_pair_sum_p53_red55_sft.cjs**.
 
@@ -49,8 +49,29 @@ The full 128-symbol key and complete decoded strings are emitted by the reproduc
 
 **Positive control:** for each receiver key/sign, p57 PARABLE was synthetically encrypted under the same F-transparent rule. The inverse recovered all 95 planted original symbols.
 
+## Source-indexed omission of one antipodal pair
+
+The red+p55 receiver has 127 runes while the table has 128 antipodal pairs. The first red rune is ᛏ, whose GP29 index is 16. A single source-indexed missing-entry hypothesis is therefore: omit antipodal pair 16, producing a 127-symbol key. This treats the rune's alphabet index as an omission selector; it does not treat the glyph as a separate arrow.
+
+Tested without any omission scan:
+
+- pair-sum key with pair 16 removed;
+- historically motivated XOR key with pair 16 removed;
+- both signs, direct one-use inversion, and the p56-style F-transparent inverse.
+
+| 127-symbol key | Inverse | Direct IoC | F-transparent full paths | Best F-transparent IoC |
+|---|---|---:|---:|---:|
+| pair-sum, omit pair 16 | C−K | 0.03474566 | 0 | — |
+| pair-sum, omit pair 16 | C+K | 0.03687039 | 4 | 0.03312086 |
+| XOR, omit pair 16 | C−K | 0.03262092 | 0 | — |
+| XOR, omit pair 16 | C+K | 0.03349581 | 1 | 0.03224597 |
+
+None of the surviving F-transparent paths is coherent GP29 prose. All four p57 synthetic controls recover all 95 planted symbols.
+
+**Decision:** reject the single T-indexed pair-16 omission for both the pair-sum and XOR antipodal keys. This closes the most direct source-indexed way to reconcile 128 pairs with the 127-rune red+p55 receiver; it does not exclude a different, independently sourced stateful mechanism.
+
 ## Decision
 
-Reject the exact antipodal pair-sum GP29 pad for p53 black128 and p53 red51+p55 76 under both signs and both direct/F-transparent consumption rules. The higher red+p55 direct IoC is not plaintext evidence: the sequence remains incoherent and the source-exact F-transparent inverse has no legal path.
+Reject the exact antipodal pair-sum GP29 pad for p53 black128 and p53 red51+p55 76 under both signs and both direct/F-transparent consumption rules. Also reject the single T-indexed omission of antipodal pair 16 for both pair-sum and XOR keys on the 127-rune red+p55 receiver. The higher red+p55 direct IoC is not plaintext evidence: the sequence remains incoherent and the source-exact F-transparent inverse has no legal path.
 
 This does not reject the established 128-pair geometry, the separate XOR experiment, or all possible uses of the table. The strongest objection is upstream: neither the manuscript nor historical source material explicitly instructs the solver to sum antipodal bytes or to use this pair-sum stream as a GP29 key. Do not expand this into arbitrary offsets, reverse order, or other arithmetic projections without an independent source selector.
