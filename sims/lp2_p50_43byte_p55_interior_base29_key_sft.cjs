@@ -4,7 +4,7 @@
 // node sims/lp2_p50_43byte_p55_interior_base29_key_sft.cjs
 //
 // Frozen 43:43 hypothesis:
-// - The 43 bytes strictly between p50's two 0x3D markers are the key source.
+// - The 43 base60 bytes strictly between p50's two literal 3D token markers are the key source.
 // - p57's circumference instruction selects p55's 43 word-interior runes.
 // - 2013 BASE29 converts each byte B into high=floor(B/29), low=B mod 29.
 // - The solved p56 inverse supplies the additive direction P=C-key mod 29.
@@ -24,12 +24,18 @@ const corpus = JSON.parse(fs.readFileSync(
   path.join(ROOT, "resources", "liber-primus", "lp2-corpus.json"), "utf8"
 ));
 
+const p50Tokens = grid.rows.flat();
 const p50Bytes = grid.byte_rows.flat();
 assert.equal(p50Bytes.length, 256);
-assert.equal(p50Bytes[83], 0x3d);
-assert.equal(p50Bytes[127], 0x3d);
+assert.equal(p50Tokens.length, 256);
+assert.equal(p50Tokens[83], "3D");
+assert.equal(p50Tokens[127], "3D");
+assert.equal(p50Bytes[83], 193); // base60 value of token 3D, i.e. 0xC1
+assert.equal(p50Bytes[127], 193);
+const tokenBase60Value = (token) => grid.alphabet.indexOf(token[0]) * 60 + grid.alphabet.indexOf(token[1]);
 const interval = p50Bytes.slice(84, 127);
 assert.equal(interval.length, 43);
+assert.deepEqual(p50Tokens.slice(84, 127).map(tokenBase60Value), interval);
 assert.deepEqual(interval, [
   173, 28, 111, 65, 211, 220, 198, 49, 236, 84, 56, 35, 222, 150, 72,
   34, 83, 229, 32, 206, 122, 63, 31, 218, 14, 184, 32, 115, 73, 143,
@@ -93,12 +99,14 @@ const grouped = (plain) => {
 
 console.log(JSON.stringify({
   classification: "SOURCE-CONSTRAINED ORIGINAL-INPUT NEGATIVE",
-  hypothesis: "p50 43-byte interval between 0x3D markers -> BASE29 digit channel -> additive GP29 key for p55 43 word interiors",
+  hypothesis: "p50 43-byte interval between literal 3D token markers (base60 value 193) -> BASE29 digit channel -> additive GP29 key for p55 43 word interiors",
   p50: {
-    leftMarkerOffset: 83,
-    leftMarker: p50Bytes[83],
-    rightMarkerOffset: 127,
-    rightMarker: p50Bytes[127],
+    leftMarkerTokenOffset: 83,
+    leftMarkerToken: p50Tokens[83],
+    leftMarkerBase60Value: p50Bytes[83],
+    rightMarkerTokenOffset: 127,
+    rightMarkerToken: p50Tokens[127],
+    rightMarkerBase60Value: p50Bytes[127],
     intervalOffsets: "84..126 inclusive",
     intervalBytes: interval
   },

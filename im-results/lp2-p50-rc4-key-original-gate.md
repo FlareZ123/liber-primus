@@ -1,10 +1,10 @@
-# p50 base60 table as an RC4 key: bounded original-input negative
+# p50 base60 table and bracketed interval as RC4/OutGuess key material: bounded original-input negatives
 
-**Agent 1, 14 November 2026.** This closes one previously untested, simple consumer of the original p50 table. It recovers no LP2 plaintext, historical key, or final destination.
+**Agent 1, 14 November 2026; inner43 follow-up by Agent3, 20 November 2026.** This note covers the full p50 table, its 76-cell perimeter, and the separately selected 43-byte interval. None recovers LP2 plaintext, historical key, or final destination.
 
 ## Why this candidate was worth one bounded test
 
-The original physical pp49–51 table contains exactly **256** two-character cells. A conventional base60 reading gives 256 bytes, matching RC4's 256-state key-scheduling domain; unlike an S-box, an ordinary RC4 key may contain repeated bytes. Separately, the 32×8 table's outer ring has **76** cells, exactly the 76 ciphertext runes on p55, and the solved p57 says to “shed our own circumferences.” These are recognizable, source-visible reasons a solver might try the table or its perimeter as an RC4 key.
+The original physical pp49–51 table contains exactly **256** two-character cells. A conventional base60 reading gives 256 bytes, matching RC4's 256-state key-scheduling domain; unlike an S-box, an ordinary RC4 key may contain repeated bytes. Separately, the 32×8 table's outer ring has **76** cells, exactly the 76 ciphertext runes on p55, and the solved p57 says to “shed our own circumferences.” A later nested-marker analysis also selected the **43** base60 bytes between the two literal 3D tokens, matching p55's 43 strict word-interior runes. These are bounded reasons to test the full table, perimeter, and inner interval as candidate key material.
 
 The operation itself is **not** authenticated by a Cicada instruction or a solved-stage precedent. The base60 byte mapping is a derived interpretation, and the standard RC4→GP29 adaptation below is an exploratory test, not an established cipher.
 
@@ -36,8 +36,33 @@ The operation itself is **not** authenticated by a Cicada instruction or a solve
 
 For comparison, untouched p0–p55 has IoC **0.03447840**, untouched p55 has **0.03789474**, and clear p57 has **0.06270997**. None of the tested outputs moves toward the clear native-GP control; the whole-book results remain at the uniform-rune baseline and the p55 results are no better than the original short page. No readable passage is recovered.
 
+
+## Inner43 interval as RC4/OutGuess key material (Agent3, 20 November 2026)
+
+The marker identity needs precise notation. The p50 cells at flattened offsets **83** and **127** are the literal token string "3D"; each token base60-decodes to **193 decimal (0xC1)**, not **0x3D** (61 decimal). The 43 base60-decoded bytes at offsets 84–126 are unchanged from the interval in the [BASE29 43:43 gate](p50-43byte-base29-p55-interior-key-gate.md).
+
+Frozen candidates:
+- The 43 decoded interval bytes themselves as a raw standard-RC4 key.
+- The literal 86-character concatenation of the 43 p50 tokens as an OutGuess password, using the source-compatible MD5("Encryption" || password) KDF and ARC4.
+- The OutGuess "Seeding" role is included only as a wrong-role control.
+
+The target is p55's 43 strict word-interior runes, selected by p57's circumference instruction. The 2016 image carrier's use of OutGuess is historical motivation only; no Cicada source currently instructs solvers to apply OutGuess to LP2.
+
+| Candidate | Readout | IoC | Direct XOR values in GP29 range |
+|---|---|---:|---:|
+| Raw inner43 RC4 key | subtract keystream mod 29 | 0.03211517 | 3/43 |
+| Raw inner43 RC4 key | add keystream mod 29 | 0.03433001 | 3/43 |
+| OutGuess "Encryption" | subtract keystream mod 29 | 0.03211517 | 0/43 |
+| OutGuess "Encryption" | add keystream mod 29 | 0.03543743 | 0/43 |
+| OutGuess "Seeding" control | subtract keystream mod 29 | 0.04208195 | 3/43 |
+| OutGuess "Seeding" control | add keystream mod 29 | 0.05426357 | 3/43 |
+
+The source-compatible "Encryption" role yields no valid GP29 symbols under direct bytewise XOR, and neither mod-29 direction produces readable plaintext. The highest IoC belongs to the wrong-role "Seeding" control; its output is nonlinguistic and is not evidence for the intended operation. No statistical significance is claimed for a 43-symbol sample. The RC4 known-answer vector and synthetic XOR/mod-29 round trips pass.
+
+The separate reproducer is [sims/lp2_p50_inner43_outguess_key_gate.cjs](../sims/lp2_p50_inner43_outguess_key_gate.cjs).
+
 ## Decision and scope
 
-Reject only the direct standard-RC4 candidates specified above: the exact base60 table or its exact 76-cell perimeter as key, row-major/reverse order, standard KSA/PRGA, byte-mod-29 stream and the two additive signs. The test does **not** exclude a separately sourced key derivation, another radix, RC4-drop variant, a different stateful transform, or a table used for a different purpose. No Cicada source currently selects RC4, so do not expand this into a search over arbitrary phases, hashes, salts, or key transformations without a new clue.
+Reject only the tested direct candidates: the full 256-byte table and its 76-cell perimeter as raw RC4 keys, plus the marker-selected inner43 bytes as a raw RC4 key or literal-token OutGuess password under the stated KDF/roles. The tested orders, stream starts, byte-mod-29 readout, direct XOR validity, and additive signs recover no plaintext. This does **not** exclude a separately sourced key derivation, another radix, another cipher, or the table used for a different purpose. The 2016 carrier's use of OutGuess does not establish it as an LP2 cipher; do not expand this into arbitrary phases, hashes, salts, or key transformations without a new source clue.
 
-**Reproducer:** [`sims/lp2_p50_rc4_key_original_gate.cjs`](../sims/lp2_p50_rc4_key_original_gate.cjs). It loads the pinned canonical corpus and table, asserts the 256/76 lengths, verifies the RC4 known-answer vector and a native-GP planted round trip, and prints every frozen original-input result.
+**Reproducers:** [sims/lp2_p50_rc4_key_original_gate.cjs](../sims/lp2_p50_rc4_key_original_gate.cjs) covers the full table and outer ring; [sims/lp2_p50_inner43_outguess_key_gate.cjs](../sims/lp2_p50_inner43_outguess_key_gate.cjs) covers the marker-selected inner43 key and OutGuess transfer test; [sims/lp2_p50_43byte_p55_interior_base29_key_sft.cjs](../sims/lp2_p50_43byte_p55_interior_base29_key_sft.cjs) covers the BASE29 high/low digit channels and correctly asserts the literal 3D token markers.

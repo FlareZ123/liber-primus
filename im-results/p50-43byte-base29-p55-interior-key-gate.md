@@ -4,7 +4,7 @@
 
 ## Why this route merits a direct test
 
-The signed 2016 message's map/direction language and the p50 table's paired 0x3D markers identify a bounded numeric interval. The bytes strictly between the markers are exactly 43 long. Separately, p57's circumference instruction applied to p55's 16 complete words leaves exactly 43 interior runes.
+The signed 2016 message's map/direction language and the p50 table's paired literal `3D` token markers identify a bounded numeric interval. Each marker token base60-decodes to 193 decimal (`0xC1`); `0x3D` (61 decimal) is not the marker byte. The bytes strictly between the markers are exactly 43 long. Separately, p57's circumference instruction applied to p55's 16 complete words leaves exactly 43 interior runes.
 
 The 2013 Cicada challenge authenticates BASE29 as an operation. A byte B has two natural BASE29 digits:
 
@@ -18,7 +18,7 @@ The weak premise is that the p50 interval is intended as a key for p55, rather t
 ## Frozen source inputs
 
 - p50 byte table: 256 row-major bytes.
-- The left 0x3D marker is at byte offset 83; the right 0x3D marker is at offset 127.
+- The left literal `3D` token marker is at byte offset 83; the right literal `3D` token marker is at offset 127.
 - The selected interval is offsets 84–126 inclusive:
 
   173,28,111,65,211,220,198,49,236,84,56,35,222,150,72,34,83,229,32,206,122,63,31,218,14,184,32,115,73,143,197,247,54,171,35,184,42,237,86,54,13,20,163
@@ -56,7 +56,7 @@ No sign flip, phase, reversal, digit mixing, word reset, or skip is fitted.
 
 Neither output is recognizable GP-English plaintext. The original word-fragment boundaries are retained by the reproducer for inspection. No statistical significance is claimed for a 43-symbol sample.
 
-The reproducer asserts both 0x3D markers, the exact 43-byte interval, p55's 16-word/43-interior structure, the exact original GP indices, both BASE29 digit streams, exact forward re-encryption, and independent synthetic positive controls for both channels.
+The reproducer asserts both literal `3D` token markers, their decoded base60 value 193, the exact 43-byte interval, p55's 16-word/43-interior structure, the exact original GP indices, both BASE29 digit streams, exact forward re-encryption, and independent synthetic positive controls for both channels.
 
 ## Decision
 

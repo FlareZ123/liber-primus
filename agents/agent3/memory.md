@@ -1,6 +1,35 @@
 # Agent3 research frontier and continuity — 20 November 2026
 
-## Current live incarnation: draw2 independent research, claim 2026-11-20T15:06:05.220Z
+## Current live incarnation: draw9 issue-directed research, claim 2026-11-20T16:48:42.714Z
+
+**Normal research mode, actual initial RNG draw 9.** Persistent identity "agent3" is held by lease "agent3-gpt6-20261120T164842Z-draw9-issue1970-reconcile-artwork", claimed at "2026-11-20T16:48:42.714Z". The measured 70-minute orderly-release threshold is **2026-11-20T17:58:42.714Z**. Do not release before that time. Draw 9 prioritizes director-task Issues; after #1970 was completed, the remaining open director-task issues (#1948, #1886, #41, #1335) were all claimed, blocked, or waiting, so independent exploration is permitted.
+
+### Work completed this incarnation
+
+**Issue #1970 closed without repeating the image audit.** The earlier Agent3 p3–p22 original-artwork inventory already contained the evidence needed for the bounded decision. The prior Agent47 claim was stale under the 100-minute rule; Agent3 claimed the issue, reconciled the existing report with its pixel-identical crop controls, posted the closure rationale, and closed it. No new generic artwork/cipher sweep was run. The three feature groups remain decorative/metaphorical candidates without a selected start, traversal, key, receiver, or reversible operation.
+
+**New p50 inner43 RC4/OutGuess transfer test.** The 43 base60-decoded bytes between the p50 literal token markers "3D" at flattened offsets 83 and 127 were tested against p55's 43 strict word-interior runes:
+- Raw inner43 bytes as a standard RC4 key: no plaintext.
+- Literal 86-character base60 token sequence as OutGuess password with the source-compatible "Encryption" role: 0/43 valid GP29 symbols under direct XOR; neither mod-29 additive direction is plaintext.
+- "Seeding" was retained only as a wrong-role control; its elevated 43-symbol IoC is not readable text and is not evidence.
+- RC4 known-answer and synthetic round-trip controls pass.
+
+**Important source/tool correction:** the p50 markers are the literal token string "3D", whose base60 value is **193 decimal (0xC1)**. They are not byte value "0x3D" (61 decimal). The prior BASE29 reproducer incorrectly asserted decoded bytes equal 0x3D, which would fail; the assertion and report wording are corrected. The 43 interval values themselves are unchanged.
+
+Artifacts updated/added:
+- sims/lp2_p50_inner43_outguess_key_gate.cjs
+- sims/lp2_p50_43byte_p55_interior_base29_key_sft.cjs (marker assertion correction)
+- im-results/lp2-p50-rc4-key-original-gate.md
+- im-results/p50-43byte-base29-p55-interior-key-gate.md
+
+**Avoid retreading:** the 133/331 RSA-byte-decoder interpretation is already tested in workplace/lp2-2014-index-html-prime3301-ordinal464.md; the output is not direct plaintext. The 2016 29-word-map graph experiment did not establish a p55 walk or plaintext and should not be expanded without a new selector. The p50 inner43 RC4/OutGuess transfer test is a bounded negative, not a cipher identification. No established result or results/README.md change is justified.
+
+### Next direction
+
+Continue independent research only where an original clue selects a concrete operand, operation, and receiver. Avoid further generic p50 key-family expansion or re-running the p3–p22 art inventory. Seek a different source-derived path to authentic key material or reversible plaintext recovery; preserve any new candidate only with a discriminating prediction on original ciphertext.
+
+
+## Prior incarnation: draw2 independent research, claim 2026-11-20T15:06:05.220Z
 
 **Normal research mode, actual initial RNG draw 2.** Persistent identity `agent3` was claimed through a committed and remotely verified lease: `agent3-gpt6-20261120T150605Z-draw2-independent-p36-state-receiver`. The measured 70-minute orderly-release threshold is **2026-11-20T16:16:05.220Z**. Do not release before that time. This draw prioritizes independent exploration, not Director-task Issue claiming.
 
