@@ -547,6 +547,24 @@ Sent determinant follow-up to Agent3:
 `communications/agent3/20261120T0522Z_agent2_phi-grid-determinant-followup.md`
 Commit `97686424a80bd5ca6facab9760f06677ce005bab`; content remotely re-read and verified.
 
-## Updated next action
+## 2026-11-20 — independent p50-derived key-consumer gates (draw 3)
 
-Do not continue expanding the φ-grid expression family. Wait for Agent3's review response or Stage7 source-chain result; if neither arrives, choose an independent original-source route with a concrete path to unknown plaintext/key material rather than further state-value matching.
+- This invocation drew 3, so normal issue-directed mode applied. At selection time #1948 was actively claimed, #1886 was archive-tooling blocked, #41 awaited a frozen decoder, #1335 required an external human reviewer, and #784 was owner-action only. With no executable unclaimed Director task, fell back to independent research.
+- Reclaimed stale Agent2 identity through a remotely verified lease at 2026-11-20T18:37:50.859Z. Run ID: agent2-gpt6-20261120T183700Z-draw3-independent-29566c38.
+- Read the three previously referenced Agent3 review requests in communications/agent2 and the 20 November Agent3 p3–p22 artwork broadcast. No new actionable dependency was identified.
+
+### New bounded p50 consumer tests
+
+- Added sims/lp2_p50_derived_key_consumer_sft.cjs and im-results/lp2-p50-derived-key-consumer-gates.md. The SFT reads only canonical table/corpus and signed-message resources; it includes p57 synthetic positive controls.
+- Totient-table test: row-major base-60 p49–p51 values -> φ(byte) mod29, one-use phase0 key for the complete 138-rune pre-table and 170-rune post-table sentences. Both signs, direct and p56-style plaintext-F-transparent consumption. Only the pre-table C−K branch has legal transparent paths (4), with best IoC 0.03850629 and non-prose output; the other three have zero full paths. Direct outputs remain near uniform. Strict omission of the two zero-valued cells and φ(0)=0 give identical tested prefixes. This closes only the exact totient-table consumer; base60 remains unauthenticated.
+- Functional-graph consumers: using the source-oriented 13 nodes [158,249,115,247,192,0,203,68,199,47,76,114,197], tested (a) q/r word-pair GP0 difference and sum as 13-periodic keys, and (b) q and r coordinate streams directly as 13-periodic keys, on the p0 body after the 13-rune title/marker boundary. All eight p56-style F-transparent inverse path sets are empty; direct IoCs stay 0.03281–0.03521. The conditional p0 title residual is not reproduced. Each key/sign passes a synthetic p57 95-symbol positive control. This closes only those exact p0 consumers, not the graph's structural/navigation observations.
+- Final SFT path: sims/lp2_p50_derived_key_consumer_sft.cjs. Final report path: im-results/lp2-p50-derived-key-consumer-gates.md. Latest script commit 17f24204dc2fb92cd2c0b5b6806b2df92d8a5ce8; latest report commit d0c3742c2bae00b73e3438d5e628bb28e40116e7.
+- Sent the graph-key negative to Agent4 (communications/agent4/2026-11-20T185536Z_agent2_wordpair-key-consumer-gate.md and 2026-11-20T185818Z_agent2-direct-qr-key-consumer-gate.md) and the totient-table negative to Agent3 (communications/agent3/2026-11-20T185536Z_agent2_totient-table-consumer-gate.md). All three messages were remotely re-read and verified.
+- Did not modify results/README.md: these bounded negatives do not change the overarching frontier, which still requires an author-selected nonperiodic state rule, extraction coordinate, or historical key. Do not repeat the same φ(table), q/r, or word-pair consumers without new source evidence.
+
+## Next
+
+1. Continue independent exploration only on a distinct original-source route with a plausible causal path to unknown plaintext or authentic key material.
+2. Read any substantive Agent3/Agent4 replies when they arrive, but do not wait on them or repeat their current p50 graph work.
+3. Avoid expanding these negative tests into arbitrary phases, permutations, offsets, or new arithmetic fits.
+4. After each checkpoint, compare the original lease timestamp with an actual runtime clock; continue until the measured 70-minute threshold, then release in the required order.
