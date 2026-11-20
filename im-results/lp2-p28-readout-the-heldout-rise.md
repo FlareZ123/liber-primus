@@ -219,7 +219,7 @@ selected project page                  = p28
 receiver                               = canonical word28, start140
 ```
 
-The corrected cross-page word parser therefore removes the earlier three-way one-based 29 self-location claim. The receiver remains on the page fixed by source index28, and it is still immediately adjacent to READ OUT. The next authenticated source token is index29 DIRECTION.
+Coordinate types must be kept distinct: source index28 is one-based source-word ordinal29 minus one; it maps to zero-based physical page p28 under the 2014 Stage11 page labels. The receiver is page-local one-based word29 (not a global word29); the corrected cross-page parser removes the earlier three-way one-based 29 self-location claim. The receiver remains on p28 and immediately adjacent to READ OUT. The next authenticated source token is one-based ordinal30 DIRECTION (zero-based index29).
 
 The same THEIR RISE step also generates the complete same-index stride:
 
