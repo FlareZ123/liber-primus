@@ -53,7 +53,7 @@ Using the p50 base60 alphabet `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklm
 
 The mod-29 residues 2, 4, 25 index PATH, EMPTY, THEIR in the 2016 signed message. The mod-23 residues 3, 6, 15 index LIES, SEEKS, WORDS. These are all words in the signed 2016 text and echo its wording about the path lying empty, seeking, words, and their meaning.
 
-The mod-23 values also match the private-exponent state derivable from the signed 2013 DH example (p=23, g=5, public shares 8 and 19, shared secret 2):
+The mod-23 values also match the private-exponent state derivable from the signed 2013 DH example (**p=23, g=5, public shares 8 and 19, shared secret 2**):
 
 - cell 92 gives 6 = a, since 5^6 mod 23 = 8;
 - cell 68 gives 15 = b, since 5^15 mod 23 = 19;
