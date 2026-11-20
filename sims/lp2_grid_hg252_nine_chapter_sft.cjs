@@ -272,6 +272,46 @@ for (let chapter = 0; chapter < chapters.length; chapter++) {
 }
 assert.equal(literalFPlant.length, 12956);
 
+/*
+ * Natural per-chapter substitution consumer of the 252-value quotient:
+ * one 28-value row per chapter, indexed by each non-F GP symbol. F (0)
+ * follows the solved p56 literal-bypass rule. Test the two natural matrix
+ * orientations, coefficient reversal, and both additive signs. A lossless
+ * monoalphabetic chapter map must be a permutation of all 29 GP outputs.
+ */
+const chapterSubstitutionMaps = [];
+for (const [orientation, values] of [
+  ["printed-coefficient-order", quotient],
+  ["reversed-coefficient-order", quotient.slice().reverse()]
+]) {
+  for (const layout of ["chapter-major", "symbol-major"]) {
+    for (const sign of [-1, 1]) {
+      const chapterStats = [];
+      for (let chapter = 0; chapter < 9; chapter++) {
+        let key = layout === "chapter-major"
+          ? values.slice(chapter * 28, chapter * 28 + 28)
+          : Array.from({ length: 28 }, (_, symbol) => values[symbol * 9 + chapter]);
+        const outputs = [0]; // literal F bypass
+        for (let plain = 1; plain <= 28; plain++)
+          outputs.push(mod29(plain + sign * key[plain - 1]));
+        const distinct = new Set(outputs).size;
+        chapterStats.push({
+          chapter: chapter + 1,
+          distinctOutputs: distinct,
+          collisions: 29 - distinct
+        });
+      }
+      chapterSubstitutionMaps.push({ orientation, layout, sign, chapterStats });
+    }
+  }
+}
+assert.equal(chapterSubstitutionMaps.length, 8);
+const substitutionDistinct = chapterSubstitutionMaps.flatMap(model =>
+  model.chapterStats.map(chapter => chapter.distinctOutputs));
+assert.ok(substitutionDistinct.every(n => n < 29));
+assert.equal(Math.min(...substitutionDistinct), 15);
+assert.equal(Math.max(...substitutionDistinct), 23);
+
 const max = Math.max(...experiments.map(x => x.ioc));
 assert.equal(experiments.length, 14);
 assert(max < 0.045);
@@ -287,5 +327,6 @@ console.log(JSON.stringify({
   models:experiments,
   p56LiteralFBypassModels:p56LiteralFBypass,
   p56LiteralFBypassPositivePlant:{runes:literalFPlant.length,exact:true},
+  chapterSubstitutionMaps,
   conclusion:"no unknown original GP-native plaintext or authentic key recovered"
 }, null, 2));
