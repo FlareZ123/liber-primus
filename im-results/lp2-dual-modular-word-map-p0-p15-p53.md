@@ -109,7 +109,7 @@ The obvious 3×17 split of each 51-rune operand was checked; its six output pair
 
 ## Controls and limitations
 
-1. **The p0 prefix residue pair is not globally unique.** The pair (7,13) occurs in 21 seven-rune windows across LP2 pages 0–55; only one is on p0, at offset 73. Its relevance depends on the independent DIRECTION/THE selection of the p0 73–102 span.
+1. **The residue pairs are not globally unique.** The pair (7,13) occurs in 21 seven-rune windows across LP2 pages 0–55; only one is on p0, at offset 73. In the full 51-rune-window scan, (22,8) occurs 19 times and (7,9) occurs 14 times; the selected p15 and p53 spans are among those matches. Their relevance depends on the independent DH-coordinate / original-red-ink selection and shared 179² fingerprint, not uniqueness of the residue pairs.
 2. **Basin convergence is weak.** The corrected p50 11-cycle basin contains 252 of 256 table cells. The p0 prefix address 216, horizontal address 15, and p53 address 212 enter that basin, but this alone is not discriminating.
 3. **Do not wrap out-of-range pair-addresses without a clue.** The title address 537 and p15 address 646 exceed the 256-cell p50 table. Reducing them modulo 256 is an extra assumption, not part of the fixed dual-residue rule.
 4. **The p50 graph is conditional.** Its direct-pointer interpretation is not creator-authenticated. Membership in the corrected 11-cycle depends on the cell-199 stream repair; the 2-cycle does not.
