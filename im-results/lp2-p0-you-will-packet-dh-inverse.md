@@ -101,37 +101,35 @@ Thus there are only two distinct solved nontrivial word-pair relations, and **YO
 
 This control authenticates the literal \`2L\` reading as a transferable source relation. It does not by itself authenticate interpreting base60(2L)=141 as a p0 offset; the compound local selector below supplies that additional discrimination.
 
-## Complete YOU/2L selector family
+## Positive-digit YOU/2L selector subfamily (not the complete literal-token family)
 
-Charge every adjacent pair in the authenticated 2016 signed message.
+The original p0-local test below deliberately restricts the count stage to positive digit+letter tokens. That is a useful restricted hypothesis, but no first-party instruction says to exclude zero. Its uniqueness is therefore conditional.
 
-For each current word:
+Within the positive-digit subfamily, charge every adjacent pair in the authenticated 2016 signed message. For each current word:
 
 1. take its canonical GP0 as a zero-based p50 address;
 2. require the original p50 token to have positive digit+letter form;
 3. require the digit to equal the number of occurrences of that letter in the next signed word;
-4. interpret the same token under base60/base59 and zero/one origin;
+4. interpret the token under base60/base59 and zero/one origin;
 5. require the result to be exactly a p0 complete-word start;
 6. require the selected p0 word length to equal the next signed word's canonical GP rune length.
 
-There are 42 signed adjacencies. Thirty-four have a positive digit+letter token at the current word's GP0 address.
+There are 42 signed adjacencies; 34 have a positive digit+letter token at the current word's GP0 address. The positive-only literal count test has two hits:
 
-The literal count test alone has two hits:
-
-\`\`\`text
+~~~text
 ITS -> 1O -> WORDS has one O
 YOU -> 2L -> WILL has two Ls
-\`\`\`
+~~~
 
-After the numeric receiver and word-length requirements are applied across all four radix/origin modes, exactly **one** compound hit remains:
+After the numeric receiver and word-length requirements are applied across all four radix/origin modes, exactly one positive-only compound hit remains:
 
-\`\`\`text
+~~~text
 YOU -> p50[30] = 2L -> base60/zero 141
 p0 offset141 = zero-based word32, length4
 WILL = four GP runes
-\`\`\`
+~~~
 
-For the selected token:
+For this restricted token family:
 
 | reading | resulting p0 position | receiver status |
 | --- | ---: | --- |
@@ -140,7 +138,31 @@ For the selected token:
 | base59 / zero | 139 | interior of preceding length6 word |
 | base59 / one | 138 | interior of preceding length6 word |
 
-Thus this local source token selects both the conventional radix and zero-offset interpretation.
+This is a discriminating local relation, not proof that positive-only tokens are the creator's rule.
+
+### Zero-inclusive receiver census (#1739)
+
+The later full audit admits digit zero and charges both p0 word starts and word ends. Before p0 geometry is opened, exactly five of the 42 source adjacencies satisfy the literal digit/letter-count relation:
+
+~~~text
+DEVOTED -> LIBER : 0W, LIBER has zero W
+ITS     -> WORDS : 1O, WORDS has one O
+YOU     -> WILL  : 2L, WILL has two Ls
+FOUND   -> GOOD  : 0s, GOOD has zero s
+GOOD    -> LUCK  : 0d, LUCK has zero d
+~~~
+
+After both numeral alphabets, both origins, start/end boundaries and next-word length are charged, three logical edges survive:
+
+~~~text
+YOU   -> WILL : 2L, base60/zero, p0 start141, length4
+FOUND -> GOOD : 0s, base59/one,  p0 end52,    length4
+GOOD  -> LUCK : 0d, base60/zero and base59/zero, p0 start39, length4
+~~~
+
+The zero-count GOOD -> LUCK edge is a real receiver alternative, not a second decryption under the p28 686-key family. GP0(GOOD)=35 selects p50[35]=0d; both base59 and base60 give offset39. The selected p0 word is ciphertext [8,17,9,27] (HBNIA), a complete four-rune word matching LUCK's length, but none of the 686 admitted DH-derived keys maps it to LUCK. FOUND -> GOOD lands at the end boundary52. The unused DEVOTED -> LIBER edge was sealed before its p0 check and fails: offsets31/32 are interior to p0 word5 (23..33), whose length11 does not match LIBER's five runes.
+
+The exact familywise controls in [the #1739 audit](lp2-found-good-luck-navigation-familywise-audit.md) show a two-edge run in 25/256 intact-token rotations and 11/262 p0 boundary phases. The literal digit-letter rule is therefore **not licensed as a reusable navigation operator**. Preserve the local YOU/2L receiver as a cross-check only; do not claim that it is the unique receiver in the complete zero-inclusive family.
 
 ## DH23 state-derived candidate key (key schedule not authenticated)
 
@@ -288,7 +310,7 @@ The authenticated four-rune target vocabulary remains the same nine distinct GP 
 
 Thus the key grammar is **not globally unique**: it generates two additional authenticated-word hits when every key is tried against every four-rune word. The exact WILL key still hits only p0 word32 among the 524 words, and the combined source selector still has only one authenticated next-word key hit. But the familywise cross-product is broad enough that key-grammar uniqueness alone cannot support plaintext promotion.
 
-The full source-word/receiver census has nine matching-length p0 receiver rows across all 42 adjacent signed-word pairs and four base59/base60 × zero/one modes. Only YOU → WILL also satisfies the positive digit-letter count condition; only that row decrypts to its authenticated next word under the 686-key family. Other matching-length rows include GOOD → LUCK at p0 offset39 and FALSE → PATHS at p0 offset141, but neither satisfies the literal-count condition or yields the corresponding next word under the frozen key family.
+The original start-only, positive-digit census has nine matching-length p0 receiver rows; within that restricted family, only YOU → WILL satisfies the literal count, receiver-start and next-word-length conjunction, and only that row decrypts to its authenticated next word under the 686-key family. This is not the full literal-token family: the zero-inclusive #1739 audit admits FOUND → GOOD at p0 end52 and GOOD → LUCK at p0 start39 as additional compound receiver edges. The latter's ciphertext [8,17,9,27] has no LUCK inverse under any of the 686 keys. The older start-only census also lists FALSE → PATHS at p0 offset141, but it does not satisfy the source literal count.
 
 **Blind BE successor fails as a value-changing prediction.** Keep the same GP0 source address, base60/zero interpretation, and exact four-symbol key:
 
@@ -302,7 +324,7 @@ next authenticated word FOUND has 5 GP runes
 
 The length gate therefore fails. Applying the frozen WILL key [12,6,18,27] to that four-rune word produces AEJLF, not an authenticated target. The already observed two-hop WILL → BE path reaches p0 word 117..121 of length5, matching FOUND's length, but no value-changing inverse or plaintext is recovered there. This remains navigation only.
 
-**Decision:** retain WILL as a source-constrained crib/candidate with an exact local inverse and a unique compound receiver selector. Do not promote it to established plaintext. Retire the 2L/A1Z26 cross-check and the 686-key grammar as an established key source; they remain unauthenticated supporting hypotheses. The p50 numeric offset interpretation remains local to this candidate and does not become a manuscript-wide output rule.
+**Decision:** retain WILL as a strong local crib/candidate with an exact inverse, but do not describe the positive-only YOU/2L selector as globally unique. The later p38 state packet independently selects WILL in two output types and reconstructs the exact key before the p0 ciphertext is consumed ([cross-page report](lp2-p38-to-p0-will-crosspage-inverse.md)); this strengthens the local recovery without authenticating a general p50 digit-letter grammar. The zero-inclusive #1739 audit retires that grammar as a reusable router. The 2L/A1Z26 cross-check and the 686-key family remain unauthenticated as a general key source; no manuscript-wide p50 offset rule follows.
 
 Reproduction: run the new SFT with node sims/agent40_will_familywise_blind_successor_sft.cjs. GitHub Actions PASS: [run 44441856115](https://github.com/FlareZ123/liber-primus/actions/runs/44441856115).
 
@@ -369,7 +391,7 @@ The first-party materials support a motivated local hypothesis, but they do not 
 
 **What the sources do support**
 
-- The OpenPGP-signed 2016 message says “Its words are the map, their meaning is the road, and their numbers are the direction” and “Seek and you will be found.” It contains the adjacent words **YOU → WILL**. GP0(YOU)=30 selects original p50 cell30, visibly **2L**. The literal reading “two Ls” matches WILL, while the base60/zero interpretation 141 selects p0 word32, whose four-rune length matches WILL and whose ordinal matches YOU's zero-based signed-message position. The complete 42-adjacency × four-radix/origin family has one compound hit. This is a selective and human-plausible local clue, not a printed instruction naming the exact operations.
+- The OpenPGP-signed 2016 message says “Its words are the map, their meaning is the road, and their numbers are the direction” and “Seek and you will be found.” It contains the adjacent words **YOU → WILL**. GP0(YOU)=30 selects original p50 cell30, visibly **2L**. The literal reading “two Ls” matches WILL, while base60/zero value141 selects p0 word32, whose four-rune length and ordinal match WILL/YOU. This is the only hit in the restricted positive-digit, p0-word-start subfamily, not the complete literal-token family: the zero-inclusive #1739 audit finds three compound edges (YOU→WILL, FOUND→GOOD, GOOD→LUCK) and familywise controls retire the literal rule as a reusable router. The p38 packet later selects WILL independently by GP0 and signed-index outputs, then regenerates the key before p0 ciphertext is read. This remains a local inverse, not a printed instruction naming a general operation.
 - Original p28 has the unique line-start fragment **DH**; the independently reconstructed line geometry and standard DH equations give the tuple. The p28 H-shell has a source-motivated local orientation from the solved p57 “shed our own circumferences” language and the p28 **OUR OWN** shell. These support testing a local state-driven inverse.
 - The p28 readout candidate is followed by a structural readout matching **THEIR NUMBERS ARE THE**, whose authenticated 2016 continuation is **DIRECTION**. This strengthens the broad number-direction interpretation, but READ OUT remains a decoded candidate, not an independent instruction authorizing a particular p0 key schedule.
 
@@ -380,22 +402,22 @@ The first-party materials support a motivated local hypothesis, but they do not 
 - H has a source-motivated local role, but no first-party instruction says to append H(A,B) to K*a and a to form this four-rune key. The p0 READ OUT/H-shell packet and the later WILL → BE → FOUND return to it are structural self-consistency; the exact packet[a], packet[A], H(A,B) extraction was not a blind prediction. The original p0 visual audit found no local feature selecting H or the DH-state ordering ([visual audit](lp2-p0-readout-receiver-visible-clue-audit.md); [readout key-cycle report](lp2-p0-will-be-found-readout-key-cycle.md)).
 - The 686-key × 524-word cross-product yields three authenticated-target hits (WILL, ROAD, LUCK), and the frozen BE successor fails to decrypt FOUND. The A1Z26 cross-check is not authenticated.
 
-**Decision:** No first-party, contemporaneous, player-visible instruction was found that selects the full dual-use 2L interpretation together with the exact four-symbol key schedule. Keep WILL as a local crib/candidate with an exact inverse, not established plaintext or a reusable key mechanism. Do not generalize p50 numerals to LP2 rune offsets or expand the key family without a new source-authored selector or a locked blind prediction.
+**Decision:** No first-party, contemporaneous, player-visible instruction selects a reusable dual-use 2L grammar or the exact four-symbol key schedule. Keep the p0 WILL inverse as a strong local candidate, strengthened by the later p38 packet route, but not as a global cipher. The full zero-inclusive #1739 family is not a unique router. Do not generalize p50 numerals to LP2 rune offsets or expand the key family without a new source-authored selector or a locked blind prediction.
 
 ## Scientific boundary
 
-The combined YOU/2L receiver selector and exact WILL inverse remain a strong local candidate, but the full familywise and blind-successor controls narrow the claim.
+The positive-only YOU/2L selector and exact WILL inverse remain a strong local candidate; the full zero-inclusive #1739 audit shows that literal-token navigation is not unique or reusable, while the p38 packet independently strengthens the local WILL target/key selection.
 
 Established computationally:
 
 - authenticated YOU supplies GP0 address30 and the literal p50 token 2L;
-- across all 42 adjacent signed-word pairs, both live radices and both origins, the complete-word-start, next-word-length and literal-count conjunction selects only p0 word32 at offset141;
+- within the restricted positive-digit, p0-word-start family, the complete-word-start, next-word-length and literal-count conjunction selects p0 word32 at offset141; the full zero-inclusive start/end family instead has three logical edges and is not a reusable navigation rule;
 - p28 line6 independently supplies the DH23 state, and the candidate key [12,6,18,27] subtracts from the selected ciphertext to WILL with exact forward replay; the key schedule itself is not authenticated;
 - the exact fixed key hits only one of 524 complete four-rune words;
 - the 686-key grammar has one hit on the selected YOU receiver, but its full 686 × 524 manuscript cross-product yields three authenticated-target hits: WILL, ROAD and LUCK;
 - the direct BE successor fails the same-length gate and the frozen key outputs AEJLF; the two-hop WILL → BE → FOUND path is navigation only, with no FOUND plaintext or key recovered.
 
-The remaining uncertainty is mechanistic and authorial. No recovered first-party instruction explicitly says to read 2L simultaneously as a letter-count clue and a base60 receiver, or to assemble the key as [K*a,a,H(A,B)]. The A1Z26 reading of 2L is an unauthenticated cross-check, not an established key source. The key grammar is not globally unique, and its blind BE successor does not decrypt. Therefore **WILL remains a source-constrained crib/candidate, not established unknown-page plaintext**. Do not generalize p50 numerals to LP rune offsets.
+The remaining uncertainty is mechanistic and authorial. No recovered first-party instruction explicitly says to read 2L simultaneously as a letter-count clue and a base60 receiver, or to assemble the key as [K*a,a,H(A,B)]. The zero-inclusive family also admits FOUND→GOOD and GOOD→LUCK; its nulls retire literal-token navigation as a reusable operator. The later p38 packet supplies an independent source-state route to WILL and its key, but the local receiver convention and key construction still do not define a global cipher. The A1Z26 reading of 2L is an unauthenticated cross-check. Therefore **WILL remains a strong local plaintext candidate, not established unknown-page plaintext**. Do not generalize p50 numerals to LP rune offsets.
 
 ## Reproduction
 

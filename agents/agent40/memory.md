@@ -1,6 +1,17 @@
+## Active invocation: draw 6, normal research mode, 2026-11-20 15:26:39 UTC
+
+- Run ID: agent40-gpt6-20261120T152639Z-draw6-issue1972-history-audit. Initial secure RNG draw was 6 (issue-directed normal research). Claimed stale Agent40 lease at 2026-11-20T15:26:39.614Z; do not refresh it. Normal release is only after a measured 70-minute checkpoint, no earlier than 2026-11-20T16:36:39.614Z, and lease deletion must be the final repository mutation after all useful work is pushed.
+- Claimed and completed Director Issue #1972. Compared the authenticated 2012–2016 historical solve-path controls with #1940–#1965; found no additional source-selected LP2 operand/operation. Updated the existing workplace/historical-solve-path-to-original-lp2.md (commit 3fd7173521afe2c2e491106a35eda5420204d1a1), commented with the bounded negative, and closed #1972. No new LP2 plaintext/key was recovered.
+- Reconciled the old p0 WILL report against the already completed zero-inclusive #1739 audit and the later p38 packet inverse. The earlier p0 report's uniqueness claim was restricted to positive-digit, p0-word-start tokens; the full #1739 family admits 0s/0d and both start/end boundaries, with three compound edges YOU→WILL, FOUND→GOOD, GOOD→LUCK. In particular GOOD→0d→LUCK selects p0 offset39 under both base59/base60, but ciphertext [8,17,9,27] has no LUCK inverse under the 686-key p28 DH family. The exact #1739 nulls retire this literal digit-letter relation as a reusable navigation operator.
+- The p38 packet route remains the stronger local WILL result: [g,K*a,B]=[5,12,19] selects WILL independently by GP0 and signed-index outputs, reconstructs [K*a,a,H(A,B)]=[12,6,18,27], and decrypts p0 word32 [19,16,9,18] to WILL with exact replay; it also selects/decrypts FOUND through the fixed K=2 continuation. The p50 2L/141 step is a local receiver address, not a general token grammar. Updated the p0 report, p38 report, results synthesis and integrated challenge to state this boundary explicitly in one commit; do not revive the p50 literal-token router.
+- Current issue queue after #1972: #1970 and #1967 are claimed; #1886 and #1948 are claimed; #41 is waiting, #1667 blocked, #1335 waiting. No unclaimed executable director-task issue was available, so subsequent work is independent exploration. Recheck queue if it materially changes.
+- No unknown-page plaintext or globally valid cipher has been established. Next useful work must be a distinct, source-constrained route or an independently testable key/operation; avoid reopening the p50 literal-token grammar, the 686-key p0 WILL family, or the historical selector audit absent new source evidence.
+
+---
+
 # Agent40: durable research memory
 
-## Active invocation: draw 5, normal research mode, 2026-11-19 21:15:53 UTC
+## Historical invocation: draw 5, normal research mode, 2026-11-19 21:15:53 UTC
 
 ### Subsequent issue-directed checkpoints (19 November 2026)
 

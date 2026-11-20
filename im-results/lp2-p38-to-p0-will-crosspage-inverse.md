@@ -101,7 +101,7 @@ cipher = [19,16,9,18]
 
 and WILL has exactly four GP runes.
 
-This reproduces the earlier source-selected YOU/2L receiver route from a new upstream packet.
+This reproduces the earlier local YOU/2L receiver route from a new upstream packet. The later zero-inclusive #1739 census shows why this must remain local: five source adjacencies satisfy the digit/letter-count relation and three compound edges survive receiver geometry (YOU→WILL, FOUND→GOOD, GOOD→LUCK). Its token-multiset and p0-boundary nulls do not license the literal rule as a reusable navigation operator. This does not remove the present WILL selection: the p38 packet has already selected WILL independently by GP0 and signed-word index, and YOU is its authenticated predecessor. Here 2L/base60 is a local receiver address, not a globally unique opcode; the separate GOOD→LUCK receiver at p0 offset39 has no LUCK inverse under the 686-key p28 family. See [the familywise audit](lp2-found-good-luck-navigation-familywise-audit.md).
 
 ## The p38 packet reconstructs the exact WILL key
 
@@ -245,7 +245,7 @@ The important chronological separation is:
 
 The exact WILL key form `[K*a,a,H(A,B)]` and the FOUND key form `[K*a,g-a,K*g,a-g,A]` were already known from earlier p0 investigations. Their regeneration from the later p38 packet is cross-object validation rather than blind discovery of either key grammar.
 
-The p38 upstream closure and low-digit pointer remain source-constrained mechanisms without solved-page positive controls of their complete combined grammar. Therefore this result strengthens the causal architecture and the p0 WILL plaintext substantially, while it does not by itself establish the p38 five-rune plaintext.
+The p38 upstream closure and low-digit pointer remain source-constrained mechanisms without solved-page positive controls of their complete combined grammar. The later #1739 result also retires the literal digit-letter p50 rule as a reusable router; only the local packet→WILL dual-type selection and its predecessor-based receiver are used here. Therefore this result strengthens the causal architecture and the p0 WILL plaintext substantially, while it does not establish a general p50 grammar, global LP2 cipher, or the p38 five-rune plaintext.
 
 ## Reproduction
 
