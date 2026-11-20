@@ -37,7 +37,7 @@ for(const m of marks){
   residues.global[(pageStart[m.page]+m.offset)%13]++;
 }
 assert.deepEqual(residues.page,[5,3,5,4,2,1,3,5,0,1,1,0,0]);
-assert.deepEqual(residues.offset,[2,4,4,2,3,1,2,4,2,2,1,1,2]);
+assert.deepEqual(residues.offset,[4,1,2,2,2,4,4,4,1,2,2,1,1]);
 assert.deepEqual(residues.global,[2,4,4,2,3,1,2,4,2,2,1,1,2]);
 
 const unknown=corpus.pages.slice(0,56);
