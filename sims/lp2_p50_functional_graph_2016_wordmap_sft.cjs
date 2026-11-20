@@ -21,6 +21,7 @@ const signed = fs.readFileSync(
   path.join(ROOT, 'resources/historical/cicada2016-4gq25-outguess.asc'),
   'utf8'
 );
+const historical2014 = readJson('resources/cicada2014-sexagesimal-source.json');
 
 const next = grid.bytes;
 const cells = grid.pages.flatMap(page => page.tokens.map((token, local) => ({
@@ -143,6 +144,26 @@ function mode(values) {
 }
 
 const cycles = decomposeFunctionalGraph(next);
+const oldBytes = historical2014.decimal_values;
+if (!Array.isArray(oldBytes) || oldBytes.length !== 256) {
+  throw new Error('Expected the archived 2014 256-byte witness');
+}
+const oldCycles = decomposeFunctionalGraph(oldBytes);
+const historicalDiffs = next.map((value, index) => value !== oldBytes[index] ? index : null)
+  .filter(index => index !== null);
+const historicalOneAtATime = historicalDiffs.map(index => {
+  const candidate = oldBytes.slice();
+  candidate[index] = next[index];
+  const candidateCycles = decomposeFunctionalGraph(candidate);
+  return {
+    correctedIndex: index,
+    cycleLengths: candidateCycles.map(c => c.nodes.length).sort((a, b) => a - b),
+    basinSizes: candidateCycles.map(c => c.basin).sort((a, b) => a - b)
+  };
+});
+const only199Corrected = oldBytes.slice();
+only199Corrected[199] = next[199];
+const only199Cycles = decomposeFunctionalGraph(only199Corrected);
 const cycle2 = cycles.find(c => c.nodes.length === 2);
 const cycle11 = cycles.find(c => c.nodes.length === 11);
 if (cycles.length !== 2 || !cycle2 || !cycle11) {
@@ -203,6 +224,23 @@ const output = {
       pathToCycle: firstTheWalk.path.slice(0, firstTheWalk.depth + 1),
       cycleEntry: firstTheWalk.entry
     }
+  },
+  historical2014Control: {
+    source: 'resources/cicada2014-sexagesimal-source.json',
+    differingIndices: historicalDiffs,
+    archivedCycles: oldCycles.map(c => ({ nodes: c.nodes, length: c.nodes.length, basin: c.basin })),
+    archived21CycleModes: (() => {
+      const c = oldCycles.find(x => x.nodes.length === 21);
+      if (!c) return null;
+      return {
+        q: mode(c.nodes.map(node => Math.floor(node / 29))),
+        r: mode(c.nodes.map(node => node % 29))
+      };
+    })(),
+    oneAtATimeOriginalCorrections: historicalOneAtATime,
+    correctingOnlyCell199: only199Cycles.map(c => ({
+      nodes: c.nodes, length: c.nodes.length, basin: c.basin
+    }))
   },
   graph: {
     cycles: cycles.map(c => ({ nodes: c.nodes, length: c.nodes.length, basin: c.basin })),
