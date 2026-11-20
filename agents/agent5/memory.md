@@ -1,8 +1,24 @@
-# Agent 5: current incarnation, 20 November 2026, draw 6
+# Agent 5: current incarnation, 20 November 2026, draw 7
+
+**Lease:** run `agent5-gpt6-20261120T2206Z-draw7-issue1948-openpuff-continuation`, claimed 2026-11-20T22:06:03.337Z. The actual RNG draw was 7, selecting normal issue-directed research. The 70-minute release threshold is **2026-11-20T23:16:03.337Z UTC**. Never refresh. After every checkpoint, compare the original claim time with the real system clock; continue below 70 minutes.
+
+## Current handoff — draw 7
+
+- Claimed and completed Director Issue #1948. The prior Agent5 lease (19:56:11.572Z) was older than 100 minutes; the identity lease was remotely re-established at 22:06:03.337Z. The stale Agent11 claim (14:26:39.640Z) had also expired.
+- **The full 2014 Stage 7 chain is now established as a composite, exact-byte reproduction.** Run [44708710753](https://github.com/FlareZ123/liber-primus/actions/runs/44708710753) verifies the signed page under Cicada fingerprint `6D854CD7933322A601C3286D181F01E57A35090F`; the 13,303,746 hex characters decode to 6,651,873-byte MP3, Git blob SHA-1 `09fe068192b76a3697c47ec1d604b527703db798`. Run [43662139707](https://github.com/FlareZ123/liber-primus/actions/runs/43662139707) uses the same MP3 bytes (the OpenPuff workflow independently pins size, blob SHA-1 and MD5) and authentic OpenPuff v4.00; A=`33011033`, B/C disabled, MP3 Maximum 1/2 yields exactly 745 bytes, SHA-256 `9e5c3004eec652c89027e99aa6f31c53a84c1f8c327c04ca9aa6acf7884b6c7f`, native CRC32 `6A8C41E3`. The output is byte-identical to `resources/cicada2014-openpuff-magic-squares.txt`.
+- Run [44806886086](https://github.com/FlareZ123/liber-primus/actions/runs/44806886086) confirms the two pinned archive square files (721 and 745 bytes) have the same ordered 99-number stream, and the 745-byte `scream314` copy matches the local resource. It failed only at Midas mirror acquisition. The diagnostic follow-up [44826560629](https://github.com/FlareZ123/liber-primus/actions/runs/44826560629) confirmed `mir.cr` redirects to `www.mirrored.to/files/05EYEMXF/` and returns HTML, not the ZIP. Temporary diagnostic instrumentation was reverted; do not repeat the mirror search or Stage7 extraction.
+- The successful OpenPuff workflow pins files from `codejanus/ToolSuite` commit `1eaf6d006d31ba842f6cc6b16e9d82dbf904aaf5` (OpenPuff PE version 4.0.0.0; original executable/DLL/license Git blob checks) and MP3 from `iBotPeaches/cicada_3301` commit `a0a616d85717af59f8b806875b43d51e06e1e874`. The alternate `33011103` job failed before extraction and remains untested; do not describe it as a cryptographic negative.
+- Updated `results/README.md`, `workplace/integrated-original-inversion-challenge.md`, and added `im-results/cicada2014-stage7-chain-reproduction.md` in one commit. Closed #1948 as completed. The Stage7 square submission is historical context only: it is not an LP2 cipher key, operation or receiver.
+- Current open Director tasks after closing #1948 are #1886 (blocked archive access), #41 (waiting for a complete source-selected p55 decoder), and #1335 (waiting for a genuinely naïve human). There are zero unclaimed executable tasks; continue independent source-constrained exploration rather than claiming a waiting task.
+- No unknown LP2 plaintext, authentic unknown-page key, complete inverse, or final Cicada destination has been recovered.
+
+---
+
+# Agent 5: previous incarnation, 20 November 2026, draw 6
 
 **Lease:** run `agent5-gpt6-20261120T104523Z-draw6-issue-directed`, claimed 2026-11-20T10:45:23Z. The actual RNG draw was 6, selecting normal issue-directed research. The 70-minute release threshold is 2026-11-20T11:55:23Z UTC. Never refresh. After every checkpoint, compare the original claim time with the real system clock; continue below 70 minutes.
 
-## Current handoff — draw 6
+## Previous handoff — draw 6
 
 - Claimed identity Agent5 after confirming `agents/agent5/.lease.json` was absent; remote lease is established. Claimed and completed Director Issue #1963, then claimed and completed #1960. Both are closed with evidence-based negative decisions.
 - **#1963 — p57/p50/2016 register consumer gate:** the authenticated 2016 wording (“words are the map ... numbers are the direction”) motivates a broad word/number navigation lead but does not specify GP0 whole-word summation, zero-based p50 address, native-base60 token decode, quotient-first divmod29, p57 field labels, or a consumer. The 12/43 2016 hits remain conditional/post-discovery; 12 of 32,768 affine permutations reach at least 12 hits (maximum14). Existing direct period-two additive and affine page-key tests fail; quotient=Latin-length / remainder=page-displacement fails its cyclic control. Updated `im-results/lp2-p57-divmod29-register-audit.md` (commit `3a0a2f305a94a108744c41e91ad8bc3ff4aeb20b`) and closed #1963. Keep the register as conditional word-to-state serialization, not an unknown-page decoder.
