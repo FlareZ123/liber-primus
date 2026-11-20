@@ -298,6 +298,28 @@ Neither edge stream yields plausible plaintext. The best initial-letter result i
 
 Reproducer: [`sims/p32_p55_43symbol_additive_bridge.cjs`](../sims/p32_p55_43symbol_additive_bridge.cjs), [CI run 43427367469](https://github.com/FlareZ123/liber-primus/actions/runs/43427367469).
 
+
+## Signed 2016 words as per-word letter maps (bounded negative, Agent1, 20 November)
+
+A further direct reading of the authenticated message's “words are the map … numbers are the direction” pairs each of the **43 source-ordered alphabetic words** with the **43 p55 strict-interior runes**. Treat the rune number as a cyclic letter offset within its paired word. This is distinct from the already-tested first/last-letter running keys, word-prime-sum shifts, and direct word-index/address uses.
+
+The 43-word list includes the greeting **Hello**, the main text, **Good luck**, and the warning words through **OpenPGP**; numeric **3301** and the alphanumeric key ID **7A35090F** are not alphabetic words. No word permutation, phase, or key fitting is used. The fixed family charges both standard GP number readings (GP0 and prime weight), zero- and one-based offsets, and left-to-right and right-to-left counting, wrapping each offset modulo its paired word length:
+
+| Rune number | Offset origin | Direction | 43-letter output |
+|---|---|---|---|
+| GP0 | zero-based | left-to-right | `OHPETIETOLUIEATOEHPHGSEDNIRAHIEAYWBUOLREPYP` |
+| GP0 | zero-based | right-to-left | `HHHIMAEEORRSTATDAHMIMITRNHUEHREDULEUOKEFSVE` |
+| GP0 | one-based | left-to-right | `LTHIPPEEVRMSHWIWRTATNIHAAEEETTEDULEOOKASSFN` |
+| GP0 | one-based | right-to-left | `EEPEPNKTTLIIHYSSREARESHODEMAEEEAYWBNOLWAPEN` |
+| GP-prime | zero-based | left-to-right | `EHAIYAEHEERIEASDRHPRNSEDNISRHNKDUIEFDUEAHEP` |
+| GP-prime | zero-based | right-to-left | `LHTEEIEHEIUSTAIORHMTNITRNHNRHDSAYLBDGCRSAFE` |
+| GP-prime | one-based | left-to-right | `HTPLTHETTBPSHWTRATAIAIHAAEEETTEDULEOOKASSFN` |
+| GP-prime | one-based | right-to-left | `OEHSMPKEVBSIHYTREEAHISHODEUEEIENOLEFOKEETYN` |
+
+None of the eight fixed outputs is a coherent plaintext. **Reject only this per-word cyclic-letter-index family**; the result does not exclude other semantic or navigational uses of the signed words, a different source-selected receiver, or stateful/nonlinear operations. The message does not itself specify modulo-word-length wrapping, so this remains an exploratory consumer rather than an intended-solve claim.
+
+Reproducer: [`sims/lp2_2016_wordletter_direction_sft.cjs`](../sims/lp2_2016_wordletter_direction_sft.cjs). The script asserts the exact 43-word source order and emits all eight fixed outputs.
+
 ## Direct signed-2016 word-prime-sum key → p55 interior (bounded negative)
 
 The signature-verified 2016 clear-signed message contains **43 alphabetic words**, matching the 43 p55 interior runes. A simple reading of “their numbers are the direction” is to encode each word in GP, sum its rune prime weights, reduce modulo29, and use that 43-value sequence as a one-symbol-per-rune shift key in source order. This is a motivated test, not an authenticated cipher instruction: the message does not explicitly prescribe prime sums, modulo29 reduction, or Vigenère.
