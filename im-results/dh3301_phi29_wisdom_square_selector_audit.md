@@ -52,7 +52,7 @@ The signed 2016 message's zero-based word index 36 is **GOOD**. Under the alread
 C=[2,22,4,1,20].
 \]
 
-The p4 Wisdom square is transformed entrywise by Euler's \(\varphi\) function and reduced modulo 29:
+The 2014 LP1 p05 / Stage04 Wisdom square is transformed entrywise by Euler's \(\varphi\) function and reduced modulo 29:
 
 \[
 M=\begin{bmatrix}
@@ -87,6 +87,8 @@ The two endpoint values 4 select p4 fragment5, a literal one-rune **H**. The mid
     p4 fragment5   = [8]       = H
     p21 fragment22 = [19,7]
     p4 fragment5   = [8]       = H
+
+Under the proposed signed-2016 map i → physical page i / one-based fragment i+1, there are 42 extant indexed objects (p32 is absent). Exactly one is a singleton of any rune value: p4 fragment5 = H. This is not global uniqueness: a full p0–p55 scan finds four one-rune H fragments (p4/5, p7/36, p30/52, p39/35). The uniqueness is conditional to the 42 source-indexed coordinates, and makes the repeated q=4 endpoints a discriminating H bracket within that map.
 
 Thus the tail of the matrix output selects H — [19,7] — H. Apply the already established two-dimensional transform
 
@@ -180,13 +182,13 @@ Requiring both predeclared channels simultaneously leaves exactly one pair:
     (p12,p26) -> H(lengths) = [K,A]
               -> H(GP0 sums) = [B,p-1].
 
-Thus the GP0-sum condition reduces 55 length-only candidates to a familywise singleton under this fixed page/fragment map and fixed H operation. As a nonrecursive continuation control, the resulting [B,p-1]=[19,22] pair selects p19/p22; that pair gives H(lengths) [0,6] and H(GP0 sums) [17,9], not the state packet. Do not keep iterating the map to manufacture a path.
+Thus the GP0-sum condition reduces 55 length-only candidates to a familywise singleton under this fixed page/fragment map and fixed H operation. In the same 42-object family, ten coordinates are two-rune fragments; applying the fixed N⁻¹ to those ten yields [2,18]=THE only at p21 fragment22. This is a restricted source-indexed confirmation of the 465-fragment census, not an independent blind crib. As a nonrecursive continuation control, the resulting [B,p-1]=[19,22] pair selects p19/p22; that pair gives H(lengths) [0,6] and H(GP0 sums) [17,9], not the state packet. Do not keep iterating the map to manufacture a path.
 
 The first two matrix outputs [b,B]=[15,19] also agree with the independently reported p22 Bob-state receiver in [the p21–p23 corridor report](lp2-openpgp-is-the-road-pages21-23-direction-gate.md); that is corroboration from a different segmentation convention, not part of this fragment SFT. The same p36 ciphertext's earlier H5 shell [11,21,4,23,22]=[a+g,p-K,q,p,p-1] is documented in [the GOOD36 H-shell report](lp2-good36-hshell-is-road-router.md).
 
 ### Evidence limits
 
-- The p4 instruction to treat the totient function as sacred, the 5×5 square, the signed 2016 word map, the p4 H marker, and the p21/p12/p26 fragments are observable source material.
+- The 2014 LP1 p05 Wisdom instruction to treat the totient function as sacred and its 5×5 square, the signed 2016 word map, the separate LP2 p4 H marker, and the p21/p12/p26 fragments are observable source material.
 - The particular 2013 DH3301 participant exponent e=1661 remains from an **unsigned** transcript. Its \(\varphi(e)\bmod29\) selector is conditional; the signed 2016 word index 36 independently selects p36 under the physical-page fragment rule.
 - The matrix operation is a plausible simple Hill/state transform, but no source explicitly states “multiply this matrix by this five-rune fragment.” The exact state packet and unique downstream pair materially strengthen it, but do not establish a universal cipher.
 - The p20/p25 page selection depends on reducing GP0(NUMBERS)=83 modulo 29; the signed source says numbers give direction but does not explicitly specify this reduction. The p20/p38 collision means the [0,q]/[A,g] signature alone is not unique; p25 is favored by independent p23/GOOD LUCK and [K,g] evidence.
@@ -204,10 +206,10 @@ The first two matrix outputs [b,B]=[15,19] also agree with the independently rep
 
 A plausible player-visible path is:
 
-1. The signed 2016 message supplies the “words are the map / their numbers are the direction” clue; the p4 Wisdom page supplies the totient and H markers.
+1. The signed 2016 message supplies the “words are the map / their numbers are the direction” clue; the 2014 LP1 p05 Wisdom page supplies the prime/totient clue and 5×5 square; the separate LP2 p4 page supplies the literal H marker.
 2. The unsigned DH3301 exponent class plus the 5×5 Wisdom square conditionally selects p36. The signed word index 36 independently selects the same page under the proposed page/fragment convention.
 3. The 5×5 φ-grid matrix on p36 fragment37 yields [b,B,q,p-K,q]=[15,19,4,21,4], which reads as source-word indices WORDS / THEIR / EMPTY / IS / EMPTY.
-4. The q endpoints select the p4 H markers around p21 fragment22 [19,7]. H([19,7])=[12,26] selects the 2016 words THE / NUMBERS.
+4. The q endpoints select the p4 H marker around p21 fragment22 [19,7]. Within the 42 source-indexed page/fragment coordinates, p4 fragment5 is the only singleton and is H. H([19,7])=[12,26] selects the 2016 words THE / NUMBERS.
 5. “Words are the map” sends indices 12 and 26 to p12/p26, whose two H channels recover [K,A] and [B,p−1]. “Their numbers are the direction” conditionally sends GP0 sums 20 and 83 mod29 to p20/p25, recovering [A,g] and [0,q].
 6. The existing unique p25 side object supplies [K,g]. The three pairs [K,A], [A,g], [K,g] form N=[[A,g],[K,g]], with determinant one. Its inverse maps the p21 receiver to GP29 runes TH,E = THE.
 

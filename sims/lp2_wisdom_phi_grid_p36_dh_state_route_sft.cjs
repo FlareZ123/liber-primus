@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 "use strict";
 
-// Reproduce the p4 Wisdom phi-grid -> p36 state packet -> p21 H2D
-// -> p12/p26 state-pair route. This is a state/navigation result,
-// not unknown plaintext recovery.
+// Reproduce the 2014 LP1 p05 / Stage04 Wisdom phi-grid -> p36 state packet
+// -> p21 H2D/Hill candidate. This is a state/navigation result,
+// not a page decryption.
 
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
@@ -318,11 +318,14 @@ assert.deepEqual(numberSumPacket, [state.A, state.g]);
 // Charge the same 42x42 ordered-pair family. A p20/p38 collision exists;
 // p25 is distinguished by its independent one-rise route and unique [K,g] object.
 const numberIndexed = [];
+const missingSourceIndices = [];
 for (let i = 0; i <= 42; i++) {
   const fragment = pageFragments(i)[i];
   if (fragment) numberIndexed.push({ i, fragment });
+  else missingSourceIndices.push(i);
 }
 assert.equal(numberIndexed.length, 42);
+assert.deepEqual(missingSourceIndices, [32]);
 const agPairMatches = [];
 for (const left of numberIndexed) {
   for (const right of numberIndexed) {
@@ -365,6 +368,38 @@ const p21PlainRunes = p21HillPlain.map((i) => corpus.translit[i]).join("");
 assert.equal(p21CipherRunes, "MG");
 assert.equal(p21PlainRunes, "THE");
 assert.equal(p21HillPlain.map((i) => corpus.translit[i]).join(""), "THE");
+
+// The proposed signed-2016 index map has 42 extant coordinates (p32 is absent).
+// Its only singleton is p4 fragment5 = H; the full corpus has four H singletons,
+// so uniqueness is conditional to this source-indexed family, not global.
+const sourceIndexedSingletons = numberIndexed.filter(({ fragment }) => fragment.values.length === 1);
+assert.deepEqual(
+  sourceIndexedSingletons.map(({ i, fragment }) => [i, fragment.ordinal, fragment.values]),
+  [[4, 5, [8]]]
+);
+assert.equal(corpus.translit[sourceIndexedSingletons[0].fragment.values[0]], "H");
+const allSingletonH = [];
+for (let page = 0; page <= 55; page++) {
+  if (page === 50) continue;
+  for (const fragment of pageFragments(page)) {
+    if (fragment.values.length === 1 && fragment.values[0] === 8) {
+      allSingletonH.push([page, fragment.ordinal]);
+    }
+  }
+}
+assert.deepEqual(allSingletonH, [[4, 5], [7, 36], [30, 52], [39, 35]]);
+
+// Only one of the ten source-indexed two-rune objects maps to THE under N^-1.
+const sourceIndexedTwoRune = numberIndexed.filter(({ fragment }) => fragment.values.length === 2);
+assert.equal(sourceIndexedTwoRune.length, 10);
+const sourceIndexedTheHits = sourceIndexedTwoRune.filter(({ fragment }) =>
+  JSON.stringify(mulLeft(Ni, fragment.values)) === JSON.stringify([2, 18])
+);
+assert.deepEqual(
+  sourceIndexedTheHits.map(({ i, fragment }) => [i, fragment.ordinal, fragment.values]),
+  [[21, 22, [19, 7]]]
+);
+console.log("2016 INDEX MAP: 42 objects, missing p32; only singleton p4/5=H; four H singletons in full corpus; only p21/22 -> THE among ten mapped digraphs.");
 
 // Familywise two-rune control: only p21 fragment22 decrypts to THE.
 const twoRuneFragments = [];
