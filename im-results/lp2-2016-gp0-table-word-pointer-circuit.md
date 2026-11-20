@@ -386,6 +386,10 @@ Those two original ciphertext runes are `H,EO=[8,12]`; native plaintext `TH,E=[2
 
 The same numeric span continues through the pointer-selected `ROAD` at offsets105..108. Interpreting those four integers as one-based p50 cells, the table bytes modulo29 are **[6,5,2,15] = [a,g,K,b]**. This is the only four-consecutive-cell p50 window whose four residues are all members of the reconstructed DH state set. The four values do not directly decrypt ROAD, so preserve them as a source-selected state clue rather than a fitted keystream. [Detailed report](lp2-2016-prime-ordinals-p0-road-3qo-dh-key-bridge.md) · [SFT](../sims/lp2_2016_prime_ordinals_p0_road_3qo_bridge_sft.cjs).
 
+## Whole-corpus successor holdout
+
+The local p0/p27 pointer circuits do not generalize under the simplest direct adjacent-word rule. A canonical pass over all 2,896 complete words on physical p0–p55 (12,956 runes; all 32 cross-page carries preserved) finds only ten base60 exact transitions across 2,895 adjacent pairs, versus 11.83984375 expected under a fixed-token multiset shuffle (50,000 deterministic draws; upper-tail p=0.73624). There are no consecutive edges. The base59 sensitivity gives eleven isolated edges. This rejects the generic successor interpretation, not the additional source-selected local receiver conditions described above. Full details and the reproducer are in [the whole-corpus holdout](lp2-full-corpus-gp0-wordgraph-gate.md) and [SFT](../sims/lp2_full_corpus_gp0_wordgraph_sft.cjs).
+
 ## What is recovered
 
 The result supports the following source-driven route:
