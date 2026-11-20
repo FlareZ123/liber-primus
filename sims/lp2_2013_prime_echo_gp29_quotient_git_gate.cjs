@@ -19,9 +19,9 @@ const read = (relative) => fs.readFileSync(path.join(root, relative), "utf8");
 const primeEcho = read("resources/historical/cicada2013-os-original-prime-echo.sh");
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 
-const primes = [...primeEcho.matchAll(/echo(?:\\s+-n)?\\s+"?(\\d+)\\t"?;/g)]
+const primes = [...primeEcho.matchAll(/echo(?:\s+-n)?\s+"?(\d+)\t"?;/g)]
   .map((match) => Number(match[1]));
-const pauseValues = [...primeEcho.matchAll(/echo -n "(\\d+)\\t"; sleep 2/g)]
+const pauseValues = [...primeEcho.matchAll(/echo -n "(\d+)\t"; sleep 2/g)]
   .map((match) => Number(match[1]));
 
 assert.deepEqual(pauseValues, [1033, 3301]);
@@ -32,7 +32,30 @@ assert.equal(primes[primes.indexOf(3301)], 3301);
 const i1033 = primes.indexOf(1033);
 const i3301 = primes.indexOf(3301);
 const counts = [i1033 + 1, i3301 - i1033, i3301 + 1];
+
 assert.deepEqual(counts, [174, 290, 464]);
+
+// Specificity control: enumerate every reversed-prime pair in this exact
+// 464-prime source stream. Only the two pause primes have ranks divisible by 29.
+const rank = new Map(primes.map((prime, index) => [prime, index + 1]));
+const emirpPairs = [];
+for (const prime of primes) {
+  const reverse = Number(String(prime).split("").reverse().join(""));
+  if (reverse > prime && rank.has(reverse)) {
+    emirpPairs.push({
+      prime, reverse,
+      primeRank: rank.get(prime),
+      reverseRank: rank.get(reverse),
+    });
+  }
+}
+const bothRanksDivisible29 = emirpPairs.filter((pair) =>
+  pair.primeRank % 29 === 0 && pair.reverseRank % 29 === 0
+);
+assert.equal(emirpPairs.length, 35);
+assert.deepEqual(bothRanksDivisible29, [{
+  prime: 1033, reverse: 3301, primeRank: 174, reverseRank: 464,
+}]);
 
 const quotients = counts.map((count) => count / 29);
 assert.deepEqual(quotients, [6, 10, 16]);
@@ -75,6 +98,8 @@ console.log(JSON.stringify({
   primeOrdinals: [i1033 + 1, i3301 + 1],
   pauseCounts: counts,
   quotients,
+  emirpPairCount: emirpPairs.length,
+  unique29RankReversal: bothRanksDivisible29,
   gp29Letters,
   candidateWord,
   p0TitleCandidate: "EPIPHANY SEEKS",
