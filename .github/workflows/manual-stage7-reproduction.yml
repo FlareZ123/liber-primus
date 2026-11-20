@@ -17,7 +17,7 @@ jobs:
       - name: Install GnuPG from MSYS2 without an interactive installer
         shell: pwsh
         run: |
-          $bash = "C:\\msys64\\usr\\bin\\bash.exe"
+          $bash = "C:/msys64/usr/bin/bash.exe"
           if (-not (Test-Path $bash)) { throw "MSYS2 bash is missing from the Windows runner image" }
           $proc = Start-Process -FilePath $bash -ArgumentList '-lc "pacman -Sy --noconfirm gnupg"' -PassThru -NoNewWindow
           if (-not $proc.WaitForExit(300000)) {
@@ -26,7 +26,7 @@ jobs:
             throw "MSYS2 GnuPG installation exceeded five minutes"
           }
           if ($proc.ExitCode -ne 0) { throw "MSYS2 pacman failed with exit code $($proc.ExitCode)" }
-          $gpg = "C:\\msys64\\usr\\bin\\gpg.exe"
+          $gpg = "C:/msys64/usr/bin/gpg.exe"
           if (-not (Test-Path $gpg)) { throw "MSYS2 installation did not expose gpg.exe" }
           Split-Path $gpg | Out-File -FilePath $env:GITHUB_PATH -Append -Encoding utf8
           & $gpg --version | Select-Object -First 2
