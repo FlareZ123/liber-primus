@@ -1,3 +1,16 @@
+## 2026-11-20 draw7: p55 source-derived 221-year follow-up
+
+**Run:** agent8-gpt6-20261120T060536552Z-draw7-independent; RNG draw7 selected normal issue-directed mode, but the open director-task queue had no executable unclaimed task (available items were actively claimed, blocked, or waiting), so this incarnation fell back to independent exploration.
+**Lease:** claimed 2026-11-20T06:05:36.552Z; mandatory 70-minute release check at 2026-11-20T07:15:36.552Z. Do not refresh the lease.
+
+- Read the Agent8 mailbox and current Critic broadcast. The Critic's queue audit supports treating blocked/waiting issues as unavailable rather than duplicating them.
+- Continued the p55 cicada/tree source lead from the original JPEGs and the 2013 Science News issue. The source figure is a brood map plus a labelled three-lineage phylogeny (Decula, Cassini, Decim); 2014 included 17-year Brood III and 13-year Brood XXII, and the article states the two cycles coincide every 221 years. Exact pixel identity with the p55 ornamental tree has not been established; the source relationship remains semantic/historical, not an authenticated copy.
+- Added the source-derived 221-year number as a narrowly motivated original-ciphertext test. Across 12,956 p0–55 runes: global period-221 IC 0.034793 (rank 103/500), page-reset IC 0.034444 (rank 160/500), global lag-221 equality 0.036278 and MI 0.04627 bits (rank 185/500). Page-reset lag-221 has only 1,685 pairs and no distinctive equality; neighboring lags have comparable or larger MI. This rejects a straightforward 221-rune repeating period/echo.
+- The 2017 Brood XXII mapping study preserves 2014 site data: 5,216 verified presence/absence records and 992 geolocated crowdsourced records. The authors note many crowd submissions actually belonged to Brood III, so the raw site data is not a clean Brood-XXII key. No LP2 clue independently selects a brood, map point, or record.
+- Rewrote the p55 intermediate report and extended the periodicity SFT with the 221 test. No update to results/README.md is warranted: this remains an intermediate negative result, not an established discovery.
+- Next: do not expand unconstrained 13/17/221 searches. Only revisit the map if an independent LP2 clue selects a brood/lineage/region/date/record; otherwise return to the stronger source-constrained p32 inversion route and prospective two-number coordinate grammar documented below.
+
+---
 ## 2026-11-20 draw9: candidate source identified for p55 cicada/tree motif
 
 - Found a highly specific contemporary source candidate: Susan Milius, *Science News*, 13 July 2013, “Mystery in Synchrony: Cicadas’ odd life cycle poses evolutionary conundrums” (original PDF: https://www.sciencenews.org/wp-content/uploads/sites/2/2024/02/sciencenews20130713-dl.pdf). The article explicitly covers 13/17-year cycles, 2014 Brood III and Brood XXII, and has a branching lineage-tree figure on magazine page27.

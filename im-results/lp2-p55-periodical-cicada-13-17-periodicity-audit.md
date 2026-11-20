@@ -26,8 +26,36 @@ A much more specific source candidate is Susan Milius's *Science News* feature *
 
 This is a concrete candidate for the p55 tree/cicada illustration, 17 printed words, terminal red13 mark, and p57 `EMERGE`—stronger than a generic insect association. **No visual identity or copying relationship has yet been established.** The next discriminating test is to compare the p55 central-tree crop with the article's lineage-tree figure (branch topology, node positions, and labels). Do that before proposing any cipher consumer; the period17 repeating-key test remains negative.
 
+## Source-derived 221-year follow-up
+
+The article explicitly states that 13- and 17-year broods synchronize only once every 221 years. This gives one more source-derived number beyond the earlier 1–40 period scan. Treating 221 years as a 221-rune period/lag is only a falsification experiment; the article does not prescribe that cipher operation.
+
+| Test | Result |
+|---|---:|
+| Global period-221 mean column IC | 0.034793 |
+| Uniform 29-symbol baseline | 0.034483 |
+| Global period-221 IC rank among periods 1–500 | 103/500 |
+| Page-reset period-221 mean column IC | 0.034444 |
+| Page-reset period-221 IC rank among periods 1–500 | 160/500 |
+| Global lag-221 equality rate | 0.036278 |
+| Global lag-221 mutual information | 0.04627 bits |
+| Global lag-221 MI rank among lags 1–500 | 185/500 |
+
+The page-reset lag-221 comparison has only 1,685 pairs (3.09% equality; 0.416 bits MI). Nearby lags produce comparable or larger MI, so this sparse statistic is not evidence of a 221-step key.
+
+**Decision:** reject a straightforward global or page-reset 221-symbol repeating-key/synchronization mechanism. This does not reject every possible narrative use of the cicada motif, nor does it test an independently specified map-based extraction.
+
+## Historical source and surviving 2014 data
+
+The magazine page-27 figure attributes its map to T. Sota et al./PNAS 2013 and Magicicada.org; page 28 directs readers to Magicicada.org for sightings and sounds. A later study of Brood XXII reports 5,216 verified presence/absence records collected in 2014 and 992 geolocated crowdsourced records submitted to Magicicada.org between 8 May and 15 June 2014 ([Kritsky et al., 2017, American Entomologist](https://doi.org/10.1093/ae/tmx066); [NSF-hosted paper](https://par.nsf.gov/servlets/purl/10063713)). The authors note that many public submissions clearly belonged to 17-year Brood III in the upper Midwest, rather than 13-year Brood XXII. Therefore the raw 2014 crowd-sourced set is not a clean Brood-XXII-only key.
+
+UConn's retrospective on the site says its citizen-reporting and mapping functions were eventually retired as website technology changed, with citizen-science collection moving to Cicada Safari ([site history](https://draft.cicadas.uconn.edu/about-this-site/)). The 2017 paper and its figures are surviving documentary evidence of the 2014 data, but neither supplies a cipher operation or a unique LP2-selected coordinate.
+
+## Direct image comparison status
+
+The accessible PDF extraction identifies the page-27 figure as a brood-distribution map plus a labelled phylogeny with three lineages (Decula, Cassini, and Decim). It does not provide the figure's original image bytes for a pixel-level comparison with the p55 ornamental tree. No exact image match has been established. The evidence currently supports a thematic/historical association, not a verified copying relationship.
 ## Interpretation
 
-The historical 2014 brood coincidence makes the visual association more compelling as a navigation/context clue, but it still does not select a cryptographic operation or key. The marker phases are diffuse and the simple global/page-reset period17 Vigenère signature is absent. This rejects the cheap hypothesis that the unknown pages use a straightforward repeating 17-symbol key; it does **not** rule out a narrative use of the cicada motif or a nonperiodic mechanism.
+The p55 cicada/tree + 17-word count + terminal red-13 mark + p57 EMERGE make the periodical-cicada association worth preserving as a possible historical/navigation clue. The 2013 article is a concrete candidate source, and its 2014 map is a recoverable historical artifact. However, no exact source-image match has been established; the 13-, 17-, and 221-period cipher hypotheses have no distinctive original-ciphertext signature; and no brood, lineage, map point, location, or external record is independently selected by another LP2 clue. No plaintext or key material follows from this association.
 
-**Do not launch broad period13/17 brute force from this association alone.** A future attempt needs an independent source instruction that specifies the operation and supplies key material or a locked extraction coordinate. Keep this note in `im-results/`, not `results/`.
+Do not run more unconstrained period-13/17/221 key searches or treat arbitrary brood/map coordinates as a key. Revisit the historical map only if an independent LP2 clue selects a specific brood, lineage, region, date, or record. Otherwise retire this branch and return effort to source-constrained inversion routes with a defined reversible consumer and held-out plaintext prediction.

@@ -52,7 +52,13 @@ function periodProfile(period,resetPages){
 }
 const globalProfiles=Array.from({length:40},(_,i)=>periodProfile(i+1,false));
 const pageProfiles=Array.from({length:40},(_,i)=>periodProfile(i+1,true));
+const globalProfiles500=Array.from({length:500},(_,i)=>periodProfile(i+1,false));
+const pageProfiles500=Array.from({length:500},(_,i)=>periodProfile(i+1,true));
+const globalLagProfiles500=Array.from({length:500},(_,i)=>lagMetrics(i+1,false));
 const rank=(arr,p)=>1+arr.slice().sort((a,b)=>b.mean-a.mean).findIndex(x=>x.period===p);
+const lagRank=(arr,k)=>1+arr.slice().sort((a,b)=>b.mutualInformationBits-a.mutualInformationBits).findIndex(x=>x.lag===k);
+const pageLocalLag221=lagMetrics(221,true);
+const pageLocalLagNeighborhood=Array.from({length:21},(_,i)=>lagMetrics(211+i,true));
 function lagMetrics(k,resetPages){
   const joint=Array.from({length:29},()=>Array(29).fill(0)),left=Array(29).fill(0),right=Array(29).fill(0);
   let n=0,equal=0;
@@ -75,6 +81,14 @@ const result={
     global:globalProfiles[12],globalRank:rank(globalProfiles,13),
     pageReset:pageProfiles[12],pageResetRank:rank(pageProfiles,13)
   },
-  decision:'No concentrated red13 modulo-13 placement and no standout period17 column-IC or lag17 echo. This rejects a simple global/page-reset period17 Vigenere clock, not every possible use of the cicada motif. No source-selected key or reversible operation is supplied by the visual association alone.'
+  sourceDerived221:{
+    rationale:'The cited 2013 Science News article states that 13- and 17-year broods coincide every 221 years. Testing 221 as a rune period/lag is a falsification experiment, not an asserted cipher rule.',
+    uniform29SymbolBaseline:1/29,
+    globalPeriod:globalProfiles500[220],globalPeriodRank:rank(globalProfiles500,221),
+    pageResetPeriod:pageProfiles500[220],pageResetPeriodRank:rank(pageProfiles500,221),
+    globalLag:globalLagProfiles500[220],globalLagRank:lagRank(globalLagProfiles500,221),
+    pageLocalLag:pageLocalLag221,pageLocalLagNeighborhood
+  },
+  decision:'No distinctive 13-, 17-, or 221-rune periodic signature. Reject simple global/page-reset repeating-period mechanisms; preserve the cicada association only as a possible historical/navigation clue pending an independent source-selected consumer.'
 };
 console.log(JSON.stringify(result,null,2));
