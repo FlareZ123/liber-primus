@@ -184,9 +184,25 @@ The held-out EMERGE pair closes as `[a,B]` without retuning.
 
 The remaining limitation is chronology. The semantic field labels were discovered after the solved p57 material was already available, so this result cannot be treated as a historically blind prediction of the DH state. It is best classified as **conditional authentication**: the native-base60, zero-origin, forward-token, quotient-first divmod29 representation is strongly preferred for p57 state serialization, while p57-derived state labels should not by themselves authenticate an unknown-page plaintext or receiver.
 
+## Source-consumer gate (#1963, 20 November 2026)
+
+The authenticated 2016 message says: “Its words are the map, their meaning is the road, and their numbers are the direction.” This makes word- and number-based navigation a reasonable human-solver lead. It does **not** specify the executable chain used in this report:
+
+1. normalize each Latin word to Gematria Primus;
+2. sum the complete word as GP0;
+3. use that sum as a zero-based address in the row-major p50 tape;
+4. decode each two-character token in native base60;
+5. split the value by Euclidean divmod29, quotient first;
+6. identify the quotient/remainder pair with a p57 DH field pair; and
+7. use that pair as a key, state transition, page/word clock, direction, or receiver on unknown ciphertext.
+
+The 16-way convention audit and the cyclic/affine tape controls establish selectivity **conditional on** the chosen GP0 address rule, p50 object, base60 decoding and already-recognized DH labels. They do not establish that the 2016 wording selects those choices. In particular, the five typed labels were recognized after p57 had been inspected; the 12/43 2016 word hits are therefore not a blind historical prediction. The 2016 inventory shares the same signed message and p50 table with other cross-source analyses. Authored order is the unique cyclic maximum, but 12 of 32,768 affine address permutations reach at least 12 hits and the maximum is 14, not 12.
+
+No source-authenticated consumer of the frozen pairs was found. The direct period-two additive and affine (C=qP+r\pmod{29}) page-key readings already fail on the 12 selected pages. The separate quotient-as-Latin-length / remainder-as-forward-page-displacement reading also fails its full-source cyclic-rotation control (authored order: 10 hits; shift 144: 14). Other pair-to-cipher transformations would require inventing a receiver grammar not fixed by the source, so this issue does not justify expanding the cipher or address family.
+
 ## Decision
 
-Treat GP0(word) -> p50 native base60 -> divmod29 as a reproducible secondary word-to-DH-state mapping, not as the preferred unknown-page decoder. Its 2016 pair inventory is distinct from Agent28's low-digit/index/GP-length bridge but shares the same signed message and p50 table, so it is not an independent source corpus. Agent20's p55 recursive-shedding route is the stronger current state reconstruction; prioritize its source-selected consumer and the existing Agent28 bridge rather than extending this pair inventory into more cipher guesses. Direct period-two additive and affine page-key interpretations fail; the quotient=Latin-length / remainder=page-displacement hypothesis is rejected in the p33/p40 report. No unknown-page plaintext is recovered here.
+Retain GP0(word) → p50 native-base60 → divmod29 as a reproducible **conditional word-to-state serialization** and retain the 2016 inventory as a semantically suggestive cross-source check. Do **not** promote it to a source-selected unknown-page index, key, or decoder. The 2016 wording points toward using words and numbers but does not uniquely specify the operation or its consumer. No original-cipher plaintext, authentic unknown-page key, or reversible unknown-page mechanism is recovered by this route.
 
 ## Reproduction
 
