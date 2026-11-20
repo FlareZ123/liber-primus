@@ -33,6 +33,17 @@ const parts = transcription.split(/^\s*%\s*$/m);
 const runeIndex = new Map(corpus.runes.map((rune,index) => [rune,index]));
 const mod = (value,n) => ((value%n)+n)%n;
 
+function modPow(base,exponent,modulus) {
+  let result=1;
+  base=mod(base,modulus);
+  while(exponent>0) {
+    if(exponent%2) result=(result*base)%modulus;
+    base=(base*base)%modulus;
+    exponent=Math.floor(exponent/2);
+  }
+  return result;
+}
+
 function parsePageWords(page) {
   const words=[];
   let values=[];
@@ -218,6 +229,28 @@ const pairOccurrences=Object.fromEntries(["3,15","2,15","8,22","6,19"].map(key=>
     .map(item=>({index:item.index,word:item.word}))
 ]));
 
+// Candidate consumer test. The 2013 DH example fixes p=23 and the
+// exponent-first/base-second orientation through B^a mod p = K.
+const dhReadout=divmodPairs.map(([exponent,base])=>modPow(base,exponent,23));
+const dhWords=dhReadout.map(index=>words[index]);
+assert.deepEqual(dhReadout,[17,18,1,17,2]);
+assert.deepEqual(dhWords,["THE","MAP","THE","THE","PATH"]);
+assert.equal(modPow(19,6,23),2); // B^a mod p = K
+
+// Reverse pair orientation is a control, not the DH convention.
+const reverseDhReadout=divmodPairs.map(([base,exponent])=>modPow(base,exponent,23));
+const reverseDhWords=reverseDhReadout.map(index=>words[index]);
+assert.deepEqual(reverseDhReadout,[12,16,1,12,18]);
+assert.deepEqual(reverseDhWords,["THE","ARE","THE","THE","MAP"]);
+
+// A preselected singleton source-word holdout is not a general successor:
+// OPENPGP maps to ARE, not to the next word in the signed message.
+const openpgpRecord=sourceInventory.find(item=>item.word==="OPENPGP");
+assert.deepEqual(openpgpRecord.pair,[6,3]);
+const openpgpDhIndex=modPow(openpgpRecord.pair[1],openpgpRecord.pair[0],23);
+assert.equal(openpgpDhIndex,16);
+assert.equal(words[openpgpDhIndex],"ARE");
+
 console.log(JSON.stringify({
   status:"intermediate source-indexed DH-state path; no unknown-page plaintext",
   sourceWordCount:words.length,
@@ -230,6 +263,17 @@ console.log(JSON.stringify({
   selectedWordRecords,
   frozenP57VocabularyHits:4,
   pairOccurrencesInAll43Words:pairOccurrences,
+  candidateDhConsumer:{
+    modulus:23,
+    convention:"[exponent,base] -> base^exponent mod p",
+    outputIndices:dhReadout,
+    outputWords:dhWords,
+    exactReadout:"THE MAP THE THE PATH",
+    cycleCollapsedGloss:"THE MAP THE PATH (normalization not source-authenticated)",
+    reverseOrientation:{indices:reverseDhReadout,words:reverseDhWords},
+    finalPairDhCheck:"19^6 mod 23 = 2 = K",
+    openpgpHoldout:{pair:openpgpRecord.pair,index:openpgpDhIndex,word:words[openpgpDhIndex]}
+  },
   controls:{
     cyclicRotations:256,
     cyclicExactSequenceCount:cyclicExact.length,
