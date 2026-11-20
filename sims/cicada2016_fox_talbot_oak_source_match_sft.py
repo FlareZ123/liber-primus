@@ -17,6 +17,8 @@ import cv2
 import numpy as np
 
 TALBOT_URL = "https://foxtalbot.dmu.ac.uk/resources/LrgeImg/oakTree.jpg"
+TALBOT_SHA256 = "904b6b4000758211789e94747f8c8ddf68b1e6c3909a4236d306023dc52fcbf4"
+TALBOT_SHAPE = (689, 600)
 SIGNED = Path("resources/historical/cicada2016-4gq25.jpg")
 P55 = Path("resources/liber-primus/72.jpg")
 P8 = Path("resources/liber-primus/25.jpg")
@@ -36,7 +38,12 @@ def decode_remote() -> tuple[np.ndarray, str]:
     image = cv2.imdecode(np.frombuffer(raw, dtype=np.uint8), cv2.IMREAD_GRAYSCALE)
     if image is None:
         raise ValueError("Cannot decode the Fox Talbot source image")
-    return image, hashlib.sha256(raw).hexdigest()
+    sha = hashlib.sha256(raw).hexdigest()
+    if sha != TALBOT_SHA256:
+        raise AssertionError(f"Fox Talbot source bytes changed: {sha}")
+    if image.shape != TALBOT_SHAPE:
+        raise AssertionError(f"Fox Talbot source dimensions changed: {image.shape}")
+    return image, sha
 
 
 def prepared(image: np.ndarray, kind: str) -> np.ndarray:
