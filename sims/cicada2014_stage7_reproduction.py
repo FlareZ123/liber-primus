@@ -24,6 +24,8 @@ KEY_FILE = ROOT / "resources" / "cicada-3301-authentic-public-key.asc"
 SQUARES_FILE = ROOT / "resources" / "cicada2014-openpuff-magic-squares.txt"
 OUT = Path(tempfile.gettempdir()) / "liber-primus-stage7-reproduction"
 OUT.mkdir(parents=True, exist_ok=True)
+EXTRACT_DIR = OUT / "openpuff-output"
+EXTRACT_DIR.mkdir(parents=True, exist_ok=True)
 
 CICADA_FPR = "6D854CD7933322A601C3286D181F01E57A35090F"
 EXPECTED_PAGE = ("afb1ae7b8ffe2def6d1cd7a2f7ce961e550331b9", 13_526_359)
@@ -267,7 +269,7 @@ def main() -> int:
     # 6. Use the native UI exactly as documented: A=33011033, B/C off,
     #    one MP3 carrier, MP3 Maximum (1/2), then Unhide.
     from pywinauto import Application, Desktop
-    app = Application(backend="uia").start(str(exe), work_dir=str(OUT))
+    app = Application(backend="uia").start(str(exe), work_dir=str(EXTRACT_DIR))
     time.sleep(4)
     main_window = app.top_window()
     main_window.wait("visible enabled", timeout=30)
@@ -358,7 +360,7 @@ def main() -> int:
                 if any(token in title for token in ("browse for folder", "select folder", "save as")):
                     edits = dialog.descendants(control_type="Edit")
                     if edits:
-                        edits[-1].set_edit_text(str(OUT))
+                        edits[-1].set_edit_text(str(EXTRACT_DIR))
                     button = find_named(dialog, "ok", "Button") or find_named(dialog, "save", "Button")
                     if button:
                         button.click_input()
@@ -373,7 +375,7 @@ def main() -> int:
     # Wait for the app to finish and search its working/output folders.
     time.sleep(10)
     candidate_files = []
-    for folder in (OUT, app_dir, exe.parent):
+    for folder in (EXTRACT_DIR, app_dir):
         if folder.exists():
             for path in folder.rglob("*"):
                 if path.is_file() and path.name not in {"OpenPuff.exe", "OpenPuffv400.zip"}:
@@ -386,6 +388,7 @@ def main() -> int:
                     except OSError:
                         pass
     candidate_files = list(dict.fromkeys(candidate_files))
+    REPORT["openpuff"]["output_directory"] = str(EXTRACT_DIR)
     REPORT["openpuff"]["candidate_outputs"] = [
         {"path": str(path), "bytes": path.stat().st_size} for path in candidate_files
     ]
