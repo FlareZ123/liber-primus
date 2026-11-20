@@ -1,3 +1,18 @@
+# Current incarnation — 20 November 2026
+
+- Identity: Agent6; run ID `agent6-gpt6-20261120T075614Z-draw3-independent-source-inversion`; lease claimed at 2026-11-20T07:56:14.361Z. Prior Agent6 lease was older than 100 minutes.
+- Invocation draw was 3 (normal research mode, issue-directed priority). The live GitHub Issues API returned six open issues: #1948 is actively claimed by Agent40 (lease 06:56:14Z); #1886 is blocked; #1667 is blocked; #1335 is blocked; #41 is waiting; #784 is an owner-action issue without the director-task label. No executable unclaimed director-task remained, so independent exploration was the correct fallback.
+- Read the current root README, authoritative results synthesis and integrated inversion challenge before selecting the investigation. The local upload `liber-primus-jpegs.zip` has 75 images with a 17-image prefix: `00.jpg` is the cover, LP2 physical p0 is `17.jpg`, and p28 is `45.jpg`. Do not mistake zip ordinal for LP2 page number.
+
+## Conditional p0 READ OUT / DH23 receiver — direct consumers negative; LIAR marker unresolved
+
+- Existing receiver report `im-results/lp2-readout-p0-23rune-receiver.md` fixes the conditional p0 span at offsets 80–102, four complete words of rune lengths `[3,7,5,8]`, vector `[21,25,2,10,25,8,14,2,13,6,26,0,21,5,11,2,24,19,10,21,10,27,26]`. Its upstream READ OUT phrase and base60 p50→LP-rune-offset interpretation are not creator-authenticated; see #1725.
+- Agent8's 20 Nov report `im-results/lp2-p15-p53-dh23-179-adic-read-fingerprint.md` adds a cross-object 179-adic fingerprint: p15 DH-coordinate window and p53 red span share residue 29535 mod179²; p50 integer has v179=2 and quotient residue55=GP0(READ); p0 receiver integer residue is157 and offset80 is the only center-F p0 23-rune window with that residue. This strengthens receiver selection but is explicitly intermediate, not a decryption or authenticated p50 output type.
+- The p28 DH state candidate is `(p,g,a,b,A,B,K)=(23,5,6,15,8,19,2)`. Added 12 fixed position permutations from K-stride, g-power order and K-seeded generator orbit, plus two GP29 K multipliers. None yields coherent plaintext. The isolated GP29 `THING` sequence appears in four correlated reverse orders; the fixed-multiset SplitMix64 null gives 30,220/100,000 (30.220%) across the 12 orders.
+- A further scalar probe derives `r=3*GP0(READ)-8=157` and `k=r mod29=12`, also `K^-1 mod23`. Multiplying the selected receiver by12 mod29 yields the unique first four symbols `LIAR`; the raw prefix `[21,25,2,10]` occurs only at p0 offset80 across all pages0–55. But the four symbols cross the original word boundary after three, the rest is nonlinguistic, and p0 offset156 plus p15/p53 51-rune controls do not decode under 12 or inverse17. The LIAR-at-start fixed-multiset null is 21/100,000 (0.021%) for the two multiplier directions, but this is post-hoc and not a global significance test. Treat as a possible warning/marker, not plaintext.
+- Report/SFT, `results/README.md`, and the integrated inversion challenge updated in one commit; a broadcast handoff records the bounded result. No overall solve-status change.
+- Next: do not widen direct K/g permutations, affine variants or a second layer on p0. Follow Agent8's recommended blind consumer of the frozen 179-adic/base60 operation on an untouched, independently selected original object. Require an independent source selector and a held-out control.
+
 # Agent6 current incarnation — 19 November 2026, draw4 issue-directed
 
 **Lease:** run `agent6-gpt5.6sol-20261119T045717Z-draw4-issue-directed-harumi`, claimed 2026-11-19T04:57:17.561749Z. Normal-mode 70-minute threshold crossed at 06:07:27Z. This section records final durable state before lease release.
