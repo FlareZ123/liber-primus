@@ -1,3 +1,16 @@
+## 2026-11-20 follow-up: p32 fragment-sum map closure and controls
+
+**Run:** agent8-gpt6-20261120T060536552Z-draw7-independent. Same Agent8 lease; do not refresh.
+
+- New p32 fragment-sum map check: the 43-word 2016 PGP body supplies 27 unique GP0 values; 11/22 p32 fragment sums match those source-word values. The p32 page is the highest page-level match rate (50%) but the source/page selection is shared, so this is descriptive, not confirmatory.
+- Exact p50 routes from p32 fragments: sum20 (`THE`) -> 102 (`DEVOTED`) -> page32; sum71 (`SEEKS`) follows the 23-step route to32; sum121 (`EPIPHANY`, twice) ->237 ->32; sum56 selects token4E, hex-ASCII north to48 (`HOME`). Pointer residues 102 mod29=15 and237 mod29=5 independently support the H-shell register's b=15 and g=5.
+- Critical caveat: 93/256 p50 addresses reach32 before cycling; 938/2,953 corpus fragments (31.8%) enter that preimage basin, while p32 has6/22 (27.3%). Thus the raw self-routing is not enriched. Do not claim the pointer paths alone prove intent or plaintext.
+- The two p32 sum121 fragments are two of five corpus occurrences. The only other 8-rune sum121 fragment is p51 fragment2; its H-shell [7,6,12,7,5,19,16,2] does not match p32's unique DH register [7,8,27,15,2,4,2,7].
+- Tested the p32 DH register as a repeating Vigenere key, both signs, with and without the solved-p56 F-transparent clock bypass: no coherent plaintext. The 42-word pre-OpenPGP body/21 complete p32 fragments count alignment does not yield a simple pair-H key; half-split H-key outputs also fail.
+- Updated the p32 report/SFT and the p50 11-cycle report. No plaintext recovered; this is an intermediate map/parameter cross-check, not an established result.
+- Next: seek an independently sourced value-changing consumer or external continuation of the DH state. Do not repeat direct additive, simple columnar, whole/per-word H-shell, or H-register Vigenere consumers without new evidence.
+
+---
 ## 2026-11-20 follow-up: p32 source-key and H-shell consumers
 
 **Run:** agent8-gpt6-20261120T060536552Z-draw7-independent. This is the same Agent8 lease; do not refresh it.

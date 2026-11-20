@@ -421,6 +421,93 @@ assert.ok(Math.abs(localIoc(p32WordwiseInverse) - 0.03305785123966942) < 1e-14);
 assert.ok(Math.abs(localIoc(p32WholeForward) - 0.03608815426997245) < 1e-14);
 assert.ok(Math.abs(localIoc(p32WholeInverse) - 0.03402203856749311) < 1e-14);
 assert.deepEqual(outerHShellAny(p32Fragments[15].indices), [7,8,27,15,2,4,2,7]);
+const mod29Local = (value) => ((value % 29) + 29) % 29;
+const pointerDistance = (start, target) => {
+  let state = start;
+  const seen = new Set();
+  for (let step = 0; step <= 256; step += 1) {
+    if (state === target) return step;
+    if (seen.has(state)) return null;
+    seen.add(state);
+    state = table60[state];
+  }
+  return null;
+};
+const p32FragmentMapRows = p32Fragments.map((fragment, index) => {
+  const sum = fragment.indices.reduce((total, value) => total + value, 0);
+  const first = table60[sum];
+  const second = table60[first];
+  return {
+    index, start: fragment.start, length: fragment.indices.length, sum,
+    sourceWords: signedWords.filter((word) => gp0(word) === sum).map((word) => word.toUpperCase()),
+    tableToken: tableTokens[sum], tableByte: first, pointerPath2: [sum, first, second],
+    literalMove: literalMove(sum, tableTokens[sum]), hexCardinalMove: hexCardinalMove(sum, tableTokens[sum]),
+    distanceToPage32: pointerDistance(sum, 32),
+  };
+});
+const signedWordValueSet = new Set(signedWords.map(gp0).filter(Number.isInteger));
+const allFragmentRows = pages.slice(0, 56).flatMap((raw, page) => parseFragments(raw).map((indices, fragment) => ({
+  page, fragment, length: indices.length, sum: indices.reduce((total, value) => total + value, 0),
+})));
+const allSourceWordMatches = allFragmentRows.filter((row) => signedWordValueSet.has(row.sum));
+const p32SourceWordMatches = p32FragmentMapRows.filter((row) => signedWordValueSet.has(row.sum));
+const sourceWordPageRates = pages.slice(0, 56).map((raw, page) => {
+  const fragments = parseFragments(raw);
+  const hits = fragments.filter((indices) => signedWordValueSet.has(indices.reduce((total, value) => total + value, 0))).length;
+  return { page, fragments: fragments.length, hits, rate: hits / fragments.length };
+}).sort((a, b) => b.rate - a.rate);
+const allPreimage32 = Array.from({ length: 256 }, (_, address) => ({ address, distance: pointerDistance(address, 32) })).filter((row) => row.distance !== null);
+const globalPreimage32Hits = allFragmentRows.filter((row) => row.sum < 256 && pointerDistance(row.sum, 32) !== null);
+const p32Preimage32Hits = p32FragmentMapRows.filter((row) => row.distanceToPage32 !== null);
+const sum121Rows = allFragmentRows.filter((row) => row.sum === 121);
+const len8Sum121Rows = allFragmentRows.filter((row) => row.length === 8 && row.sum === 121);
+const p51Fragment2 = parseFragments(pages[51])[2];
+const p51Fragment2Shell = outerHShell(p51Fragment2);
+const thePath = [gp0('THE'), table60[gp0('THE')], table60[table60[gp0('THE')]]];
+const epiphanyPath = [gp0('EPIPHANY'), table60[gp0('EPIPHANY')], table60[table60[gp0('EPIPHANY')]]];
+const seeksPath = [gp0('SEEKS')];
+let seeksState = gp0('SEEKS');
+for (let step = 0; step < 23; step += 1) { seeksState = table60[seeksState]; seeksPath.push(seeksState); }
+const budsHexMove = hexCardinalMove(gp0('BUDS'), tableTokens[gp0('BUDS')]);
+assert.equal(signedWords.length, 43);
+assert.equal(p32Fragments.length, 22);
+assert.equal(p32Fragments.length - 1, 21);
+assert.deepEqual([gp0('THE'), gp0('SEEKS'), gp0('EPIPHANY'), gp0('DEVOTED'), gp0('BUDS'), gp0('HOME')], [20,71,121,102,56,48]);
+assert.deepEqual(thePath, [20,102,32]);
+assert.deepEqual(epiphanyPath, [121,237,32]);
+assert.equal(seeksState, 32);
+assert.equal(seeksPath.length, 24);
+assert.equal(tableTokens[56], '4E');
+assert.equal(budsHexMove, 48);
+assert.equal(table60[20] % 29, 15);
+assert.equal(table60[121] % 29, 5);
+assert.equal(p32SourceWordMatches.length, 11);
+assert.equal(allFragmentRows.length, 2953);
+assert.equal(allSourceWordMatches.length, 771);
+assert.equal(signedWordValueSet.size, 27);
+assert.equal(sourceWordPageRates[0].page, 32);
+assert.equal(allPreimage32.length, 93);
+assert.equal(globalPreimage32Hits.length, 938);
+assert.equal(p32Preimage32Hits.length, 6);
+assert.equal(sum121Rows.length, 5);
+assert.equal(p32FragmentMapRows.filter((row) => row.sum === 121).length, 2);
+assert.deepEqual(len8Sum121Rows.map((row) => [row.page, row.fragment]).sort((a,b) => a[0]-b[0]), [[32,15],[51,2]]);
+assert.deepEqual(p51Fragment2Shell, [7,6,12,7,5,19,16,2]);
+const p32DhRegister = outerHShell(p32Fragments[15].indices);
+const dhRegisterVigenereTests = [];
+for (const [mode, bypassF] of [['none', false], ['F-transparent', true]]) {
+  for (const sign of [-1, 1]) {
+    let clock = 0;
+    const decoded = [];
+    for (const value of p32.indices) {
+      if (bypassF && value === 0) { decoded.push(0); continue; }
+      decoded.push(mod29Local(value + sign * p32DhRegister[clock % p32DhRegister.length]));
+      clock += 1;
+    }
+    dhRegisterVigenereTests.push({ mode, sign, ioc: localIoc(decoded), clockEnd: clock, text: p32HText(decoded) });
+  }
+}
+assert.deepEqual(dhRegisterVigenereTests.map((row) => Number(row.ioc.toFixed(12))), [0.037407407407,0.038842975207,0.036088154270,0.035812672176]);
 const e = 3;
 const q = gp0("EMPTY") / dh.p;
 assert.equal(q, 4);
@@ -533,6 +620,15 @@ console.log(JSON.stringify({
   status:"PASS",
   upstream:{route,emptyStep,selectedPage:32,selectedFragment:selectedFragment.text,selectedXOffset:37},
   p32Grid:{side,topPrimeSum:563,leftPrimeSum:569,fourLetterWords:gridWords},
+  p32FragmentMap:{
+    fragmentSums:p32FragmentMapRows,
+    sourceWordStats:{messageWords:signedWords.length,uniqueGp0Values:signedWordValueSet.size,allFragments:allFragmentRows.length,globalMatches:allSourceWordMatches.length,globalRate:allSourceWordMatches.length/allFragmentRows.length,p32Matches:p32SourceWordMatches.length,p32Rate:p32SourceWordMatches.length/p32Fragments.length,topPages:sourceWordPageRates.slice(0,5)},
+    pointerRoutes:{the:thePath,epiphany:epiphanyPath,seeks23:seeksPath,budsToken:tableTokens[56],budsHexNorth:budsHexMove},
+    preimage32:{addresses:allPreimage32.length,globalHits:globalPreimage32Hits.length,globalRate:globalPreimage32Hits.length/allFragmentRows.length,p32Hits:p32Preimage32Hits.length,p32Rate:p32Preimage32Hits.length/p32Fragments.length},
+    sum121:{globalOccurrences:sum121Rows.length,p32Occurrences:p32FragmentMapRows.filter((row)=>row.sum===121).length,len8Occurrences:len8Sum121Rows,p51Fragment2Shell},
+    dhParameterResidues:{thePointer102mod29:table60[20]%29,epiphanyPointer237mod29:table60[121]%29,p32Register:p32DhRegister},
+  },
+  dhRegisterVigenereTests,
   wholePageHShellTransfer:{
     originalIoc:localIoc(p32.indices),
     forwardWordwise:{ioc:localIoc(p32WordwiseForward),text:p32HText(p32WordwiseForward)},

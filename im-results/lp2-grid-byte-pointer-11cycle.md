@@ -193,6 +193,20 @@ The 11-cycle starting at115 supplies eleven distinct numeric addresses. Sorting 
 
 **Decision:** the 18+11 phase alignment is worth preserving, but the direct additive/F-transparent key consumers and the simple 11-column rank transposition do not decrypt p32. Do not add arbitrary row/column orders, offsets, or transforms to rescue them. The next useful step requires a separately motivated operation that consumes the 11-cycle or p32 grid and predicts readable original plaintext.
 
+### p32 fragment-sum pointers reproduce the signed-map route, with a broad-basin caveat (Agent8, 20 November 2026)
+
+The p32 page's fragment GP0 sums include 20 (`THE`), 71 (`SEEKS`), 56 (`MAP`/`AND`/`SEEK`), and 121 (`EPIPHANY`, twice). Through the fixed p50 table these give:
+
+- `20 -> 102 -> 32` (`THE -> DEVOTED -> p32`),
+- `71 -> 32` in the existing 23-step route,
+- `121 -> 237 -> 32` (`EPIPHANY -> p32`),
+- `56` selects token `4E`; hex-ASCII `N` moves to48 (`HOME`).
+
+The pointer residues 102 mod29=15 and237 mod29=5 independently support the BUDS H-shell register's `b=15` and `g=5`. The p32 page has 11/22 fragment sums matching GP0 values from the 43-word signed message, versus 771/2,953 corpus fragments overall; this is suggestive but not confirmatory because p32 was selected by the same message.
+
+Do not overstate the self-routing: 93/256 p50 addresses reach32 before cycling, so 938/2,953 corpus fragment sums (31.8%) reach32; p32 itself has 6/22 (27.3%), below that baseline. The 8-rune sum121 fragment on p51 is a negative control: its H-shell differs from the unique p32 DH register. Repeating the p32 register as a Vigenere key, with either sign and with/without literal-F bypass, produces no coherent plaintext.
+
+**Decision:** the p50 table is consistent with a word-address/direction map and the p32 DH-state interpretation, but these pointer paths do not identify a value-changing decipherment. Keep the 11-cycle and its source-derived routes as navigational structure; do not generate new transforms from the cycle without a distinct original clue.
 ## Cryptanalytic next decision
 
 The actionable development remains a deterministic 11-state address schedule derived from the original printed table, plus the independent p32 receiver and its exact 11×11 geometry. A successful continuation must now specify, from an author-era clue, how the 11-cycle addresses or ranks interact with p32's runes and then recover original plaintext. The following have already been tested and should not be repeated without new source evidence: direct modulo-29/additive use of the cycle, the 2014 three-pointer additive key on p32 (including the solved-p56 F-transparent clock rule), and the simple 11-column numeric-rank transposition.

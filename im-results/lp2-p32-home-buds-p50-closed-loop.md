@@ -94,6 +94,31 @@ The selected BUDS fragment's forward outer-H shell is a DH-state register, not p
 None of the 22 forward- or inverse-transformed fragments is an exact dictionary word under the pinned TextBlob word-frequency list, and neither concatenated readout forms coherent plaintext. The unique BUDS fragment still produces the established DH register [7,8,27,15,2,4,2,7] under forward H; this does not generalize to a page-wide decipherment.
 
 **Decision:** preserve H-shell as the specific BUDS-register extraction only. Reject both whole-page and per-fragment forward/inverse H-shell as p32 plaintext consumers; do not extend this operator to additional partitions or pair orders without an independent source instruction.
+## Fragment-sum pointers echo the 2016 map words, but do not decrypt p32 (Agent8, 20 November 2026)
+
+The authenticated 2016 PGP body contains **43 words** (the final `OpenPGP` footer word included). The p32 transcription parses into 22 fragments, of which 21 are complete word starts. Their raw GP0 sums are:
+
+`[20,34,71,171,56,49,5,150,121,145,52,122,54,136,46,121,28,54,27,96,44,59]`.
+
+Eleven of the 22 sums equal GP0 values of words in the signed message: fragment0=20 (`THE`, a one-rune page carry), fragment1=34 (`THEIR`), fragment2=71 (`SEEKS`), fragment4=56 (`MAP`/`AND`/`SEEK`), fragments8 and15=121 (`EPIPHANY`), fragment10=52 (`WORDS`), fragments12 and17=54 (`ROAD`/`PATHS`), fragment14=46 (`ARE`), and fragment21=59 (`VERIFY`). The 27 distinct GP0 values in the 43-word message occur in 771/2,953 corpus fragments (26.1%); p32 has 11/22 (50%), the highest page-level rate. This is descriptive only: p32 was selected using the same signed message, and common GP0 collisions make this unsuitable as an independent significance test.
+
+### Exact p50 pointer routes
+
+- `GP0(THE)=20 -> p50[20]=102 -> p50[102]=32`. The intermediate 102 is `GP0(DEVOTED)`, so the fragment's address follows `THE -> DEVOTED -> p32`.
+- `GP0(SEEKS)=71` follows the already frozen 23-step pointer route to page32.
+- `GP0(EPIPHANY)=121 -> p50[121]=237 -> p50[237]=32`. Both p32 fragments with sum121 take this same two-step route.
+- `GP0(BUDS)=56` selects token `4E`; under the already documented hex-ASCII cardinal interpretation this is north, taking table address56 to48 (`HOME`).
+
+The first and third paths also independently reproduce two DH-state residues in the BUDS H-shell register: `102 mod 29 = 15` (the register's `b`) and `237 mod 29 = 5` (its `g`). This is a source-consistent cross-check of the existing register interpretation, not a new plaintext recovery.
+
+### Controls and limits
+
+- The two p32 fragments with sum121 are globally rare (5 occurrences among all 2,953 fragments); p32 contains two. The only other 8-rune sum121 fragment is p51 fragment2. Its H-shell is `[7,6,12,7,5,19,16,2]`, not the p32 DH register `[7,8,27,15,2,4,2,7]`. The p32 register remains the unique exact 8-rune H-shell match in the 159-fragment search.
+- The p50 pointer preimage basin of page32 contains 93/256 possible starting addresses. Across the corpus, 938/2,953 fragment sums (31.8%) reach32 before cycling; p32 itself has 6/22 such fragments (27.3%). Therefore the raw self-routing count is not enriched and must not be treated as independent proof.
+- The 42-word core before the `OpenPGP` footer is exactly 21 pairs, matching p32's 21 complete word starts. The obvious symmetric and half-split H-derived pair-key tests do not produce coherent plaintext.
+- Repeating the p32 DH register `[7,8,27,15,2,4,2,7]` as a Vigenere key, in both signs with and without the solved-p56 literal-F clock bypass, produces no coherent plaintext (ICs 0.037407, 0.038843, 0.036088, 0.035813 respectively).
+
+**Decision:** preserve the fragment-sum paths as a plausible internal map/self-reference and as independent support for `g` and `b`; do not promote them to a cipher or plaintext. The H-shell remains a DH-state register. The next step must identify a source-constrained value-changing consumer or an external continuation, not another arbitrary use of the sums or register.
 ## The carried X is the independently selected PARABLE word TO
 
 A separate p32 route, selected from the solved PARABLE and the authenticated THE/DEVOTED boundary geometry, fixes the straight NE cells
