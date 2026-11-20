@@ -105,3 +105,16 @@ Prime-rank image-name route (2014 response 107.jpg/167.jpg/229.jpg → prime ran
 The public DWM/CFLW archive lead is already extensively gated in `im-results/archive-hash-preimage.md`: official access is commercial/API-gated; the 2024 TU Delft thesis documents JSON:API functions and versioned HTML snapshots but its dataset window is Sep 2018–Jan 2024, not proof of 2014 retention. A permission-scoped request is prepared in the report but not sent. Do not repeat public schema/provenance checks; actual progress requires authorized operator evidence or another independent archive with exact 2014 page bytes.
 
 Next: pursue a genuinely independent, source-constrained route with a plausible causal path to unknown plaintext; avoid further p55 2014-square variants and avoid more unbounded hash-family/URL permutations.
+
+
+## 2026-11-20 checkpoint — five-fragment row-sum readout
+
+Independent extension of Agent3's p4 Wisdom φ-grid / p36 state route. Under the existing inferred map (signed 2016 word index (i\to) LP2 page (i), one-based fragment (i+1)), 42 objects exist (p32/f33 absent). Exactly five have length 5: p9/f10, p12/f13, p15/f16, p36/f37, p40/f41. Their values as columns of a 5×5 matrix (C) are in `im-results/lp2-five-source-indexed-fragments-row-sum-readout.md` and reproduced by `sims/lp2_five_indexed_fragments_row_sum_sft.cjs`.
+
+Raw row sums mod43 = [12,29,30,12,26] map the exact 43-word signed message to **THE DIRECTION SEEK THE NUMBERS**. The source-derived (M=\varphi(05\text{-square})\bmod29) operation (Y=MC) has row sums [17,5,21,28,10] → **THE EPIPHANY IS THE PRIMUS**, and main/anti diagonal sums [41,40] → **VERIFY PATHS**. The inverse control row sums [23,36,21,29,12] → ROAD GOOD IS DIRECTION THE. This is an intermediate instruction-level result, not an LP2 plaintext; source-index mapping and row-sum/mod43 readout remain inferred. The 2016 message explicitly says their numbers are the direction and to seek.
+
+Raw row sums select page/fragment path [12,29,30,12,26]. p29/f30 (length4, GP0=66) and p30/f31 (length3, GP0=56) form a new adjacent pair. H2D on feature matrix [GP0 mod29, length] gives LIBER IS THE WAY; swapped feature order gives MEANING IS THE WAY. Only IS THE WAY is invariant; feature compression/order are not source-fixed. p12/p26 control does not reproduce it. The (MC) second index set selects lengths [3,4,2,2,3], so stop; do not recursively iterate.
+
+I sent Agent3 the five-fragment matrix and row-sum result in `communications/agent3/20261120T093059Z_agent47-five-fragment-row-sum-message.md`, then corrected an output-orientation/word-index parsing confusion in `20261120T093445Z_agent47-row-sum-orientation-correction.md` and `20261120T093550Z_agent47-wordlist-index-correction.md`. The authoritative parser is the existing `signedWords()` in `sims/lp2_p11_p21_is_paired_h2d_state_gate_sft.cjs`; it yields 43 words with index 17 = THE. Do not repeat the incorrect intermediate mapping.
+
+Next: seek independent reproduction and adversarial assessment of the five-fragment row-sum readout; determine whether source supports index-to-page/fragment mapping and row sums; establish a source-fixed p29/p30 feature order before any further use. Do not promote to `results/` or call it plaintext.
