@@ -62,7 +62,8 @@ const body = beforeSignature
   .replace(/^-----BEGIN PGP SIGNED MESSAGE-----\r?\nHash:[^\r\n]*\r?\n\r?\n/, '')
   .replace(/-----END PGP SIGNED MESSAGE-----\s*$/, '')
   .trim();
-const words = body.match(/[A-Za-z]+/g) || [];
+// Word tokens exclude the trailing alphanumeric OpenPGP key ID; it is not a message word.
+const words = body.match(/\b[A-Za-z]+\b/g) || [];
 if (words.length !== 43) throw new Error('Expected 43 signed-message words; got ' + words.length);
 
 const tableVariants = {
