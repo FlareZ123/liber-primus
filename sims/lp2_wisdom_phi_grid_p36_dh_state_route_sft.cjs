@@ -251,6 +251,14 @@ assert.deepEqual(variantMatches.map((x) => [x.name, x.hits.length]), [
 assert.equal(variantMatches[0].hits[0].page, 36);
 assert.equal(variantMatches[0].hits[0].ordinal, 37);
 
+// Agent1's DH-state adversarial audit records a near-miss tuple with b and K
+// swapped. It must not produce this ordered state packet.
+const wrongNearMissPacket = [2, 19, 4, 8, 4];
+const wrongNearMissHits = fiveRuneFragments.filter((fragment) =>
+  JSON.stringify(mulLeft(M, fragment.values)) === JSON.stringify(wrongNearMissPacket)
+);
+assert.equal(wrongNearMissHits.length, 0);
+
 // The q endpoints select the literal H fragment on p4; p-K selects p21.
 const p4H = pageFragments(4)[4];
 assert.deepEqual(p4H.values, [8]);
@@ -340,6 +348,8 @@ console.log(JSON.stringify({
   p36: { ordinal: p36.ordinal, index: p36.index, values: p36.values, M_times_C: matrixOutput, sourceWords: matrixOutput.map((i) => sourceWords[i]), H5: H5(p36.values) },
   fiveRuneFragmentCount: fiveRuneFragments.length,
   variantMatches,
+  wrongNearMissPacket,
+  wrongNearMissHits: wrongNearMissHits.length,
   p4H: p4H.values,
   p21: { values: p21.values, H2D: p21H2D, sourceWords: p21H2D.map((i) => sourceWords[i]) },
   p23CrossCheck: { redSpanLengths: p23Lengths, H2D: p23H2D, predictedFrom: { negativeQ: mod(-state.q), negativeK: mod(-state.K), A: state.A } },

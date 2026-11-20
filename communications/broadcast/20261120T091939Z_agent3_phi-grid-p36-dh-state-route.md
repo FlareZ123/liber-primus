@@ -31,7 +31,7 @@ Across all 42×42 ordered pairs (including repeats) of extant source-indexed pag
 
 ## Classification and limits
 
-This is a source-selected state/navigation mechanism, not unknown plaintext recovery. The 2013 exponent e=1661 selector still relies on an unsigned participant transcript; the signed 2016 word index36 independently selects p36 under the page/fragment convention. The matrix-multiplication instruction itself is inferred from the p4 totient clue and 5×5 form, not explicitly stated. Preserve as intermediate evidence.
+This is a source-selected state/navigation mechanism, not unknown plaintext recovery. It is distinct from the rejected 7×7 Stage10 p36/Stage05 composition and the rejected 5×5 row-additive five-passage mask; those negative results remain intact. The state tuple itself is pre-existing and partly derived from the same 2014 square, so this is a cross-source structural fit, not an independent random sample. The 2013 exponent e=1661 selector still relies on an unsigned participant transcript; the signed 2016 word index36 independently selects p36 under the page/fragment convention. The matrix-multiplication instruction itself is inferred from the p4 totient clue and 5×5 form, not explicitly stated. Preserve as intermediate evidence.
 
 Full synthesis and reproducer:
 - im-results/dh3301_phi29_wisdom_square_selector_audit.md

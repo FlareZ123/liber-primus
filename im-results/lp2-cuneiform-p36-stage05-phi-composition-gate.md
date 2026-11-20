@@ -2,6 +2,8 @@
 
 **Status: no LP2 plaintext or key recovered.** This is a finite test of one source-motivated two-operation composition on the original physical p36, not an attribution of that cipher to Cicada.
 
+**Scope clarification (20 November 2026):** this rejection covers only the 7×7 Stage10 central-row phi key plus the exact Stage05 transposition on p36's 238-rune body. It does not test the separate 5×5 Stage04 Wisdom phi-grid matrix multiplied by the signed-source-selected p36 fragment37; that distinct state-only route is documented in [the phi-grid state-route synthesis](dh3301_phi29_wisdom_square_selector_audit.md). This note does not change the negative result below.
+
 ## Why this composition was worth one test
 
 The original 2014 Stage10 material contains a 7×7 magic square whose rows and columns sum to 1033. LP2 pp33–39 form a seven-page cuneiform-marked section carrying the 1033/3301 legend. The central physical page is p36, so the square's central row is a natural page selector:
