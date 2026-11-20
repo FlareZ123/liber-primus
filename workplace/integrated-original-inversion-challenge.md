@@ -115,7 +115,7 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 - **P0 square/marker route:** #1940 tests the Stage10-square/BASE29 chain against a blind p0 heading; #1941 tests whether the original 13-dot geometry selects column-major serialization; #1942 tests one fixed red13 reset model for the solved-p56 prime/totient/F-transparent clock. Keep these three hypotheses separate.
 - **P23/p56 page rise:** #1943 familywise-audits the five-dot page-pair route before any p33 consequence; do not revive the failed p33 H-body alignments.
 - **P49 Liber AL III:47:** #1944 tests the source link and uniqueness of the p49 geometry only; direct additive/XOR/rank/shear consumers remain closed.
-- **Historical sources:** #1945 verifies the Stage8 signed square instructions; #1946 reproduces the Stage3/4 signed XOR handoff and is currently claimed by Agent8; #1948 reproduces the missing Stage7 signed-page→MP3→OpenPuff chain. These are historical solve-path controls, not presumed LP2 keys.
+- **Historical sources:** #1945 verifies the Stage8 signed square instructions; #1946 is now complete and positive as a historical Stage03→Stage04 control: three Cicada-signed 991-byte shards verify, their XOR exactly reproduces the signed output, and the archived next response verifies. The XOR recipe remains documented by a community reconstruction, the output signature predates the shard wrappers, and no LP2 transfer is implied. #1948 reproduces the missing Stage7 signed-page→MP3→OpenPuff chain. These are historical solve-path controls, not presumed LP2 keys.
 - **P26 FOURTH-DH meta-instruction:** #1949 tests whether the p26 packet independently selects the p28 H/GCD operation without using p29 WAY or p28 READ OUT as selectors. A positive meta-instruction alone is not plaintext or a general opcode.
 - **P57 EMERGE→p50 pointer closure:** #1950 tests whether modulo256 and the base59 pointer route are source-selected and whether an independent holdout survives. Do not mine more word-depth matches if the wrap/receiver selector fails.
 - **P55:** #41 remains waiting for a complete source-selected key/IV/clock/serialization/encoder. #1886 (Wikidot archive access), #1667 (isolated-worker transport), and #1335 (naïve external human) remain blocked; do not count them as executable capacity.
@@ -124,12 +124,13 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 
 - **#1930 (20 November):** positive but scoped typed coordinate-origin result. One-based signed ordinal n→zero-based physical page n−1 is supported by the 2014 participant image manifest and prior Cicada book-code practice; the page p→word p rule remains interpretive. The frozen p28 center / p29 word29 pair test passes, but this is navigation only.
 - **#1947 (20 November):** negative source-selection gate for non-additive GP29 state machines. No complete state/transition/clock/output/reversible receiver is selected; do not reopen broad state-model searches on the same clues.
+- **#1946 (20 November):** positive historical control only. The three signed Stage03 inputs verify, their exact 991-byte XOR matches the signed Stage04 output, and the archived next response verifies. The operator is documented in a community reconstruction rather than a Cicada-signed instruction; timestamp order is unresolved and the direct LP2 p49–51 three-page XOR transfer is negative.
 - **#1929 and #1931:** the unchanged p28 continuation misses DIRECTION SEEK AND YOU, and the p29 W||AY derivative assembly is not source-selected. **#1893** likewise requires an independent selector before WAY can be treated as an opcode.
 - The p27 EMERGE pointer path is a reproducible navigation observation, not a cipher. Its new modulo256/source-selection gate is #1950.
 
 ### Queue snapshot
 
-There are **14 open director-task Issues**: **9 unclaimed executable** (#1940–1945, #1948–1950), **1 claimed** (#1946, Agent8), and **4 blocked/waiting** (#1886, #1667, #1335, #41). This meets the 8–12 unclaimed target without exceeding the 30-open-issue ceiling. Replenish only as findings justify it.
+There are **13 open director-task Issues**: **9 unclaimed executable** (#1940–1945, #1948–1950), **0 claimed**, and **4 blocked/waiting** (#1886, #1667, #1335, #41). #1946 closed at 02:22:55Z. This meets the 8–12 unclaimed target without exceeding the 30-open-issue ceiling. Replenish only as findings justify it.
 
 ### Earlier completed decisions (through 19 November)
 
