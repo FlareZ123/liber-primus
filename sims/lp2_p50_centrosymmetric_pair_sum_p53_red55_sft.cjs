@@ -88,28 +88,51 @@ function main() {
   }
 
   // 128 physical antipodal pairs under a 180-degree rotation of the 32x8
-  // printed table. Pairwise sum is the simple additive companion to the
-  // historically motivated XOR operation. Reduce the sum into GP29.
-  const key = Array.from({ length: 128 }, (_, i) =>
+  // printed table. Test pairwise sum as a companion to historical XOR.
+  const sumKeyFull = Array.from({ length: 128 }, (_, i) =>
     mod(bytes[i] + bytes[255 - i])
   );
+  const xorKeyFull = Array.from({ length: 128 }, (_, i) =>
+    mod(bytes[i] ^ bytes[255 - i])
+  );
+
+  // A source-indexed one-cell omission: the first p53 red rune is GP29 T
+  // (index 16). Since the red+p55 receiver is 127 runes versus 128 pairs,
+  // test the one key omission selected by that rune index, without a scan.
+  const firstRedRune = redMeta.red_text.runes[0];
+  const omittedPairIndex = corpus.runes.indexOf(firstRedRune);
+  if (firstRedRune !== "ᛏ" || omittedPairIndex !== 16) {
+    fail("p53 first red rune no longer selects GP29 index 16");
+  }
+  const sumKeyOmitT = sumKeyFull.filter((_, i) => i !== omittedPairIndex);
+  const xorKeyOmitT = xorKeyFull.filter((_, i) => i !== omittedPairIndex);
+
+  const cases = [
+    { keyName: "antipodal pair-sum full128", key: sumKeyFull,
+      receiver: "p53 black128", cipher: black },
+    { keyName: "antipodal pair-sum full128", key: sumKeyFull,
+      receiver: "p53 red51 + p55 76", cipher: redThen55 },
+    { keyName: "antipodal pair-sum omit T-index16", key: sumKeyOmitT,
+      receiver: "p53 red51 + p55 76", cipher: redThen55 },
+    { keyName: "antipodal XOR omit T-index16", key: xorKeyOmitT,
+      receiver: "p53 red51 + p55 76", cipher: redThen55 }
+  ];
 
   const receivers = [];
-  for (const receiver of [
-    { name: "p53 black128", cipher: black },
-    { name: "p53 red51 + p55 76", cipher: redThen55 }
-  ]) {
+  for (const item of cases) {
     for (const sign of [-1, 1]) {
-      const direct = directDecode(receiver.cipher, key, sign);
-      const transparent = decodeTransparentF(receiver.cipher, key, sign);
-      const planted = encodeTransparentF(p57, key, sign);
-      if (!includesExact(decodeTransparentF(planted, key, sign), p57)) {
-        fail("p57 planted positive control failed");
+      const direct = directDecode(item.cipher, item.key, sign);
+      const transparent = decodeTransparentF(item.cipher, item.key, sign);
+      const planted = encodeTransparentF(p57, item.key, sign);
+      if (!includesExact(decodeTransparentF(planted, item.key, sign), p57)) {
+        fail("p57 planted positive control failed for " + item.keyName);
       }
       receivers.push({
-        receiver: receiver.name,
-        runeCount: receiver.cipher.length,
-        ciphertextFCount: receiver.cipher.filter(x => x === 0).length,
+        keyName: item.keyName,
+        receiver: item.receiver,
+        keyLength: item.key.length,
+        runeCount: item.cipher.length,
+        ciphertextFCount: item.cipher.filter(x => x === 0).length,
         inverse: sign < 0 ? "C-K" : "C+K",
         directIoC: ioc(direct),
         directText: runeString(direct, corpus.translit),
@@ -138,13 +161,23 @@ function main() {
       redThen55Runes: redThen55.length,
       p53RedStart: redMeta.red_text.start_rune_inclusive,
       p53RedEndExclusive: redMeta.red_text.end_rune_exclusive,
-      p53ArrowShapedGlyphIsRune: "ᛏ",
+      p53FirstRedRune: firstRedRune,
+      p53FirstRedRuneGP29Index: omittedPairIndex,
       p53ArrowShapedGlyphIsNotSeparateDirectionMarker: true,
       p57ControlRunes: p57.length,
       p57IoC: ioc(p57)
     },
-    keyRule: "K[i] = (B[i] + B[255-i]) mod29, i=0..127; printed row-major bytes",
-    keyValues: key,
+    keyRules: {
+      pairSumFull128: "(B[i] + B[255-i]) mod29, i=0..127",
+      pairSumOmitT: "pairSumFull128 with index 16 removed",
+      xorOmitT: "((B[i] XOR B[255-i]) mod29) with index 16 removed",
+      omittedPairIndex: omittedPairIndex
+    },
+    keyValues: {
+      pairSumFull128: sumKeyFull,
+      pairSumOmitT: sumKeyOmitT,
+      xorOmitT: xorKeyOmitT
+    },
     receivers
   }, null, 2));
 }
