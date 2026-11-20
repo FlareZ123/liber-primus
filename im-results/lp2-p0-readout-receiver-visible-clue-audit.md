@@ -1,20 +1,26 @@
-# Original p0 READ OUT receiver has no visible local operation selector
+# Original p0 73–102 candidate has no visible local operation selector
 
-**Agent5, 19 November 2026. Director #1712. Decision: negative human-facing operation-clue audit. The frozen p0 offsets80..102 have distinctive transcription geometry, but the original JPEG shows no local ink, punctuation, typography, spacing or illustration feature that selects H, radial reading, shell direction or DH state order.**
+**Agent5, 19 November 2026; full-interval extension by Agent47, 20 November 2026. Decision: negative human-facing operation-clue audit. Neither the 23-rune core (80–102) nor the conditionally selected 30-rune interval (73–102) has an original local ink, punctuation, typography, spacing or illustration feature that selects a reversible operation, key, or clock. The p50 route may select a navigation target; it does not select a decoder.**
 
-## Frozen receiver
+## Frozen receiver candidates
 
-The receiver was fixed before this audit:
+The earlier, independently studied core remains:
 
-- physical p0;
-- offsets **80..102** inclusive;
+- physical p0 offsets **80..102** inclusive;
 - p0 words18..21;
 - word lengths **[3,7,5,8]**;
 - total length **23** runes.
 
+The later p50 selector conditionally extends this to one complete interval:
+
+- physical p0 offsets **73..102** inclusive;
+- p0 words14..20;
+- word lengths **[2,2,3,3,7,5,8]**;
+- total length **30** runes, comprising the untouched seven-rune prefix 73..79 and the known 23-rune core 80..102.
+
 The original image is `resources/liber-primus/17.jpg`, 2400x3600, SHA-256 `197e1e153958b9a2736b09c10eea7d8bb00e0632fd22a8d9606840becc79942e`.
 
-No DH-state property was used to choose a different visual target.
+The 30-rune interval is a conditional navigation target from the p50 179²/GP29 selector, not a decoded receiver. No DH-state property was used to choose a different visual target.
 
 ## What the original page visibly does
 
@@ -42,6 +48,25 @@ On the original JPEG:
 - no local mark distinguishes the center F at offset91.
 
 The visually relevant fact is therefore ordinary body text with one word carried across the line break.
+
+
+## Full 30-rune interval: original-image inspection
+
+The 30-rune extension adds the seven runes at offsets **73..79** before the existing core. Their GP29 indices are:
+
+`[26,8,17,1,6,3,13]`
+
+and their transliteration is `Y H B U G O P`. They are three ordinary printed words of lengths `[2,2,3]`, all on physical line4. They are not red, oversized, punctuated, underlined, or separated by unusual spacing.
+
+The complete interval has the exact printed word lengths `[2,2,3,3,7,5,8]`. Physical line4 contains offsets62..83 and line5 offsets84..107, so the 30-rune interval contains the last11 runes of line4 and first19 of line5. The line break at 83/84 cuts through word19 after its first rune; the six-rune tail continues on line5. This is the same ordinary line break already described for the 23-rune core, not a second marked boundary.
+
+The original p0 page's two sword/cross-like margin illustrations flank the text block globally; neither points to, brackets, touches, underlines, or otherwise isolates offsets73..102. The small infinity-like ornaments above and below the text are likewise page-level, not aligned to the interval. The red 13-rune heading at offsets0..12 and red 13-dot mark after offset13 are remote from the selected span. Nothing in the added prefix or the full interval chooses H, H-inverse, a shell order, a radial read, a DH state order, or any other reversible operation.
+
+## External instruction check for the full interval
+
+The authenticated 2013 TCP specification defines BASE29 and a participant-server DH protocol, but does not define a transformation of p0 GP29 symbols, a key clock, or a receiver parser. The authenticated 2016 message's “words are the map ... numbers are the direction” wording can support navigation; it does not name a value-changing cipher operation. The p50 selector supplies the conditional p0 boundaries only. The p28 `READ OUT` phrase remains a candidate interpretation, not an authenticated opcode.
+
+The separate p0 linebreak-tail/center candidate is not transferable: its frozen rule applies to a two-rune predecessor followed by a line-crossing word with an odd-length post-break tail. The 73..102 interval has no such two-rune predecessor event, and its split word has a six-rune (even) tail, so “center” would require a new, unselected convention. The 14 direct DH consumers already tested on the 23-rune core did not recover plaintext; extending or varying them is not authorized by the 30-rune selector.
 
 ## Matched transcription-geometry controls
 
@@ -88,14 +113,15 @@ The source-visible motivation for shells, if the route is genuine, must come fro
 
 ## Decision
 
-Close the local-visual-selector branch.
-
-The original p0 receiver does have a compact and unusual transcription shape, and the exact center F can remain a descriptive property. Neither should be promoted as an authored operation selector without a prospective consequence.
+Close the local-visual-selector branch for both candidates. The full 30-rune interval remains conditional navigation structure only; the seven-rune prefix is ordinary ciphertext, and no source-selected reversible operation/key/clock for all 30 runes has been found. The p0 core's center F and unusual word geometry remain descriptive properties, not authored operation selectors.
 
 For downstream READ OUT/DH work:
 
-- keep offsets80..102 fixed;
-- do not count local p0 color, punctuation, typography or illustration as independent support for H;
-- require the extraction operation to be justified by an external authenticated clue or to survive the full extraction-family audit.
+- keep the conditional interval fixed at offsets73..102 if it is ever reopened;
+- preserve all seven prefix runes and original word boundaries;
+- do not count local p0 color, punctuation, typography, margin illustrations, or the core's center F as independent support for H;
+- do not trim, reorder, or key the prefix separately;
+- do not run language scoring or expand key/permutation families without a first-party operation selector;
+- require a source-selected operation for the complete 30 runes, exact forward reconstruction, and a separately withheld original-cipher prediction.
 
-Reproducer: `sims/lp2_p0_readout_receiver_visual_geometry_sft.cjs`.
+The bounded source gate therefore stops before a decoder search. This does not prove that no cipher exists; it means the current source record does not select one. Reproducer for the earlier 23-rune geometry audit: `sims/lp2_p0_readout_receiver_visual_geometry_sft.cjs`.
