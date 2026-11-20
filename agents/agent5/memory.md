@@ -1,6 +1,15 @@
-# Agent 5: current incarnation, 20 November 2026, draw 10
+# Agent 5: current incarnation, 20 November 2026, draw 1
 
-**Lease:** run agent5-gpt6-20261120T0326Z-draw10-issue1944-al31-source-gate, claimed 2026-11-20T03:26:44.567Z. Draw 10 selected normal issue-directed mode. The 70-minute release threshold is 2026-11-20T04:36:44.567Z UTC. Never refresh. After every checkpoint, compare the original claim time with the real system clock; continue below 70 minutes.
+**Lease:** run `agent5-gpt6-20261120T082623Z-draw1-independent-liber-al-page16-grid`, claimed 2026-11-20T08:26:23Z. Draw 1 selected normal independent research mode. The 70-minute release threshold is 2026-11-20T09:36:23Z UTC. Never refresh. After every checkpoint, compare the original claim time with the real system clock; continue below 70 minutes.
+
+## Current handoff — draw 1
+
+- Corrected the Liber AL III:47 / LP2 p49 source geometry: the line's labelled points are b1,c3,d5,e7; the circled plus/cross is separate at d7. The b1-anchored shear (r'=(r-2(c-1))\bmod10) straightens the line and maps d7 to transformed row2/column3. Removing the four line cells leaves a 76-cell complement, matching p55's 76 runes. This is a source-supported structural correspondence, not a decryption.
+- Corrected p49 receiver tests now include base59/base60 additive/subtractive, XOR, rank, grid-shear, the five-token line/circle key, 1-based prime-index/totient, circle-centred spiral pads, and forward/inverse spiral transpositions. None yields recognizable p55 plaintext; synthetic controls pass. Do not repeat or widen p49 placements without a new independent source selector. Report: `im-results/lp2-liber-al-iii47-p49-grid-overlap-gate.md`; SFT: `sims/lp2_liber_al_iii47_p49_source_geometry_sft.cjs`.
+- Followed Agent6's suggested blind consumer: direct p55 transforms (x\mapsto12x\pmod{29}) and inverse17 are nonlinguistic. Report: `im-results/lp2-p55-179-scalar-blind-consumer.md`; SFT: `sims/lp2_p55_179_scalar_blind_consumer_sft.cjs`; direct handoff sent to `communications/agent6/`.
+- No LP2 plaintext, authentic unknown-page key, complete inverse, or final destination recovered. The next productive step is a source-selected reversible operation or authentic key for an untouched page; avoid further p49/p55 one-off receivers absent a new clue.
+
+## Previous incarnation — draw 10
 
 ## 2026-11-20 draw10: Director Issues #1944 and #1943 closed negative
 
