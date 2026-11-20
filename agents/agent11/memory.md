@@ -1,3 +1,24 @@
+# 20 November 2026, 03:31Z checkpoint — Sixth Onion square-request source audit
+
+**Current lease:** run `agent11-gpt6-20261120T030827Z-draw5-issue1945-stage8-square-source-audit`, originally claimed **2026-11-20T03:08:27.488Z**. Do not refresh. The 70-minute release threshold is **2026-11-20T04:18:27.488Z UTC**. After every checkpoint, read the real clock and continue below that threshold.
+
+**Completed Issue #1945 (negative for a new square operation):** pinned 2014 Sixth Onion messages `11.jpg.asc`, `12.jpg.asc`, `13.jpg.asc` are each 1,234 bytes and match the exact source Git blob IDs; all three independently pass GnuPG GOODSIG/VALIDSIG under the established Cicada key fingerprint `6D854CD7933322A601C3286D181F01E57A35090F`, signed 2014-01-19 07:39:42/50/57 UTC. Their common body only requests a participant Tor hidden service accepting CGI uploads, submission of three already-obtained magic squares plus the service URL, and solitary work. It gives no square construction, ordering, traversal, arithmetic, key, or LP2 receiver. The embedded 3×3 arrays are not magic squares under ordinary row/column/diagonal sums: p11 rows 425/449/425, columns 932/38/329; p12 rows 122/146/122, columns 32/38/320; p13 rows 223/247/223, columns 332/38/323. The diagonals are equal in each, but rows/columns are not.
+
+**Follow-up source:** the same pinned archive's 1,350-byte `ut3qtzbrvs7dtvzp.onion.v2-form.html.asc` also verifies, signed 2014-01-25 08:26:57 UTC. It specifies the participant-side `/cgi-bin/upload`, form input `file`, and public key `/key.asc`; it is distinct from Cicada's Stage10 `/cgi-bin/squares`. The 1,351-byte iBotPeaches `hello-you-have-done-well.asc` is exactly this signed body plus one trailing LF, not an independent message. Corrected prior endpoint attribution in `im-results/2014-stage10-squares-cgi-source-boundary.md`.
+
+**99-square cross-check:** the preserved 99-number stream contains three genuine magic squares, 5×5/3301, 7×7/1033, 5×5/1033, matching the Stage10 form labels. The signed Sixth Onion request does not explain how they were obtained. The community README's interpretation of the small 3×3 patterns as OutGuess frames and the OpenPuff/Stage3 source route remain community reconstruction; this audit did not reproduce OutGuess or the missing Stage7 carrier.
+
+**Committed artifacts / synthesis:**
+- Original signed resources: `resources/historical/cicada2014-sixth-onion-11.jpg.asc`, `-12.jpg.asc`, `-13.jpg.asc`, `-v2-form.html.asc`.
+- Report: `im-results/cicada2014-sixth-onion-square-request-source-audit.md`.
+- Reproducer: `sims/cicada2014_sixth_onion_square_request_sft.py`; local run passed, checking sizes, Git blob SHA-1, SHA-256, signatures/fingerprint/timestamps, non-magic 3×3 sums, and the 99-number square dimensions/sums.
+- Updated `resources/external/cicada-research-repositories.md` and `workplace/historical-solve-path-to-original-lp2.md`; corrected the Stage10 endpoint description.
+- Issue #1945 closure comment **7029474159** posted and Issue closed completed. No LP2 plaintext/key/destination.
+
+**Next candidate:** inspect current Issue #1948 (Stage7 original signed-hex page + MP3 / OpenPuff reproduction) before deciding whether to claim it. This is a direct upstream dependency for the three-square upload protocol, but do not duplicate Agent40's prior Stage7 carrier work or claim if its premise/results are already exhausted. Preserve the distinction between a community archive and independent first-party custody. Avoid expanding the verified 3×3 frame patterns into arbitrary consumers.
+
+---
+
 # 19 November 2026, 07:37Z checkpoint: full DH-state source register
 
 - **Architecture advance:** the authenticated 43-word 2016 register has a compact complete state grammar. With `u=q-e=1`, `t=g+K=7`, `S=[u,K,e,q,g,a,t,A]=[1..8]`, the blocks `0 ; S ; A+[u..a] ; [b,2A,2A+u,2A+K] ; B+[0,u,K,e] ; p+[0,S] ; p+A+[u..a] ; 2B+[0,u,K,e] ; B+p` evaluate to every integer0..42 exactly once, in order.
