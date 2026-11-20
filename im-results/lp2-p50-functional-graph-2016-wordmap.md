@@ -88,6 +88,42 @@ Consequently, the graph independently selects the word anchors EPIPHANY, SEEKS, 
 
 The 11-cycle's base-29 nodes also contain several 2013 DH values: 247 = 8×29+15 (A=8, b=15), 197 = 6×29+23 (a=6, p=23), 115 = 3×29+28 (e=3), and 68 = 2×29+10 (K=2). The 2-cycle basin size 4 matches q=4, and 249 mod 23 = 19 matches B=19. This is an intriguing numerical convergence; it does not yet provide a single extraction rule for the entire DH tuple or the p0 additive key.
 
+## Direct p0 13-atom consumer gate (Agent10, 20 November)
+
+The previous next-step question—whether the source-oriented 13 word-pairs specify a simple operation on the p0 13-atom key—has now been tested against the fixed p0 marker serializer. The source-oriented node order remains the report's two-cycle `[158,249]` followed by the 11-cycle beginning at its independently selected entry `115`; each node is decomposed as `n=29q+r) into the first 29 authenticated 2016 words.
+
+The paired word indices and raw GP0 sums are:
+
+```text
+q index:  [5,8,3,8,6,0,7,2,6,1,2,3,6]
+r index:  [13,17,28,15,18,0,0,10,25,18,18,27,23]
+
+GP0(q):   [121,102,63,102,71,69,20,39,71,20,39,63,71]
+GP0(r):   [57,20,20,52,56,69,69,62,34,56,56,46,54]
+```
+
+The finite direct-consumer family was fixed before reading the comparison: raw q/r columns; directed index differences and index sums modulo 29; GP0-value differences and sums modulo 29; and the existing p0 outside-in transform (H(x,y)=(x-y,x+y)\bmod29) applied to each 13-vector. The p0 targets are the frozen marker input `R13=[25,28,11,25,4,8,19,8,4,7,13,20,28]` and generated key `K13=[26,24,8,19,27,24,18,3,0,8,0,16,19]`, with the positive control `H(R13)=K13).
+
+The four central pair reductions are:
+
+```text
+q-r mod29:       [21,20,4,22,17,0,7,21,10,12,13,5,12]
+q+r mod29:       [18,25,2,23,24,0,7,12,2,19,20,1,0]
+GP0(q)-GP0(r):   [6,24,14,21,15,0,9,6,8,22,12,17,17]
+GP0(q)+GP0(r):   [4,6,25,9,11,22,2,14,18,18,8,22,9]
+```
+
+None equals `K13` or `R13). Applying (H) to those vectors also gives no match:
+
+```text
+H(q-r):          [9,4,15,25,20,17,10,5,7,27,8,21,7]
+H(q+r):          [18,18,24,26,11,22,4,13,22,26,17,12,7]
+H(GP0(q)-GP0(r)):[18,23,7,12,2,26,28,14,7,23,23,6,9]
+H(GP0(q)+GP0(r)):[24,13,13,28,17,4,20,27,22,0,8,7,2]
+```
+
+This closes the obvious direct pair-to-key readings, not every imaginable permutation or nonlinear map. Do not expand into fitted permutations or extra cipher layers: the p50 graph remains a provisional navigation/anchor observation, not a p0 decryption, unless another independent artifact selects a typed consumer. The [single-file SFT](../sims/lp2_p50_cycle_wordpair_p0_key_consumer_sft.cjs) reconstructs the 13 pairs from the original table and signed message, verifies the p0 H positive control, and asserts the negative result.
+
 ## Conditional permutation null
 
 A fixed-multiset null was run by uniformly shuffling the observed 256 byte values among the 256 cell positions, preserving the table's byte-frequency distribution. With seed 0x20261120 and 100,000 permutations:
@@ -117,4 +153,4 @@ node sims/lp2_p50_functional_graph_2016_wordmap_sft.cjs --null=100000
 
 ## Best next decision
 
-Do not expand into unconstrained arithmetic searches. First independently adjudicate the cycle nodes and their predecessor paths against the original p49–p51 images. Then ask whether the source-oriented 13 word-pairs specify a unique, independently motivated permutation or operation on the p0 13-atom key. If no such operation is selected by the artifact, retain this as a navigation/anchor result rather than promoting it to a decryption.
+The source-oriented 13 word-pairs have now been tested as direct GP29 index and GP0-value vectors under directed difference, sum, and the p0 marker's fixed outside-in H transform. None reproduces the p0 marker input or generated key. Retain the graph only as a provisional navigation/anchor result; do not continue with unconstrained permutations, alternative radices, or fitted pair functions. Reopen this p0-key connection only if an independent artifact selects a specific mapping from the 13 pairs to the marker atoms or supplies a new receiver on unknown ciphertext.
