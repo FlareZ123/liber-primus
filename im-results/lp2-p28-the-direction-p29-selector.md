@@ -84,6 +84,16 @@ The signed instruction says that the word numbers are the direction. The recover
 
 This page selection is available before inspecting p29's polynomial property.
 
+## Independent p50 arithmetic selector of DIRECTION
+
+A new p50 arithmetic route independently reselects the same signed-2016 word that this page-local reconstruction identifies. On the original 256-token p50 table, the printed row-major/base-60/big-endian integer (N) has (v_{179}(N)=2). With (q=N/179^2), the exact additional observation is (v_{29}(q)=1) and ((q/29)\bmod179=113), the 30th prime. The authenticated 2016 message's 30th one-based alphabetic word is **DIRECTION** (zero-based index 29).
+
+This is a distinct arithmetic selector, but it shares the p50 table and signed 2016 source with the existing pointer analysis; treat it as corroboration of the DIRECTION endpoint, not independent plaintext evidence. The full 256-cell transcription was visually audited against original images 66–68, and the reproducer is `sims/lp2_p50_17929_prime_ordinal_direction_sft.cjs`.
+
+Under the existing conditional GP0→p50 base-60 pointer interpretation, DIRECTION has GP0 98 and selects p50[98]=`1C`=72; the preceding THE has GP0 20 and selects p50[20]=`1g`=102. This reselects the existing p0 72/102 boundaries, whose 30-rune interval contains the 23-rune p0 receiver at offsets 80–102. It does not select a new operation for p29, and the p50 base-60 output type remains unauthenticated.
+
+Do not reinterpret `1C` as hexadecimal page 28 or `4E` as ASCII N: that mixed-radix output type is not selected by the source and is nonunique across the 2016 word list. The p29 repeated-root-24 consumer gate remains open.
+
 ## Independent p29 test
 
 P39 visibly marks the red rune triple:

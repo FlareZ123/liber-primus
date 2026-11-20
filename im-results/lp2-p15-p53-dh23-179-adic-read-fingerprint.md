@@ -90,23 +90,52 @@ with the table quotient's residue \(55=\operatorname{GP0}(\mathrm{READ})\).
 - Across the eight natural dihedral orientations and both byte orders, the only cases reproducing \(v_{179}=2\) and quotient residue55 are printed row-major/big-endian and its exact reverse-equivalent 180°/little-endian representation. This supports the natural printed order; it does not prove that the creator intended the big-endian integer operation.
 - The next 179-adic digit of \(N_{60}/179^2\) is **96**, not GP0(OUT)=20. The calculation therefore returns a local **READ** fingerprint, not a decoded READ OUT stream.
 
+## New GP29 factor and prime-ordinal selector (Agent1, 20 November 2026)
+
+The earlier audit stopped at the 179-adic quotient residue. A complete visual audit of all 256 p50 table cells against original archive images 66–68 now confirms the exact token transcription in `resources/liber-primus/lp2-grid-256.json`; the image hashes match the repository manifest. The 32 visually checked rows are pinned in the reproducer `sims/lp2_p50_17929_prime_ordinal_direction_sft.cjs`.
+
+Let `N` be the 256-byte integer obtained from the printed row-major table using the conventional base-60 alphabet, interpreted big-endian, and let `q=N/179²). The exact arithmetic is:
+
+- `v179(N)=2`.
+- `q mod 179 = 55 = GP0(READ)` (the previously reported result).
+- `v29(q)=1): the quotient has exactly one factor of 29, the GP29 alphabet size.
+- `(q/29) mod 179 = 113).
+- 113 is the **30th prime**.
+
+This is a separate division by the newly observed GP29 factor, **not** the next 179-adic digit of `q`. That next digit remains 96 and still fails the known `GP0(OUT)=20) comparison; do not merge the two observations or extend 96 into a word stream.
+
+The authenticated 2016 signed cleartext has 43 alphabetic words. Its 30th one-based word (zero-based index 29) is **DIRECTION**, followed by **SEEK**. The 30th-prime selector therefore independently reselects DIRECTION. Under the existing, still conditional GP0→p50 base-60 pointer interpretation:
+
+- `GP0(DIRECTION)=98`; p50 table cell 98 is `1C`, whose base-60 value is 72.
+- The preceding word `THE` is word 29; `GP0(THE)=20`; p50 table cell 20 is `1g`, whose base-60 value is 102.
+
+These reproduce the already observed p0 boundaries 72 and 102. The intervening p0 runes are offsets 73–102 inclusive: 30 runes in seven printed words of lengths `[2,2,3,3,7,5,8]`. The final four words occupy offsets 80–102, exactly the existing 23-rune p0 receiver; the preceding three words form a seven-rune prefix. As a secondary, post-discovery alignment, `113 mod 29 = 26), equal to the first rune value at p0 offset 73. This is corroboration, not an independent test.
+
+The following word `SEEK` has `GP0=56); p50 cell 56 is `4E`, base-60 value 254. If the same candidate pointer type is retained, DIRECTION→SEEK gives a larger p0 span of 182 runes, and `182=179+3). This is only a candidate extension: no source rule currently selects a three-rune trim, a 179-rune subspan, or an operation on that span.
+
+**Controls and limits.** Across eight dihedral orientations, both byte orders, and base-60/base-59 interpretations, only printed row-major/base-60/big-endian and its equivalent 180°/little-endian representation retain the joint signature `v179(N)=2`, `q mod 179=55`, `v29(q)=1`, and `(q/29) mod 179=113`. The 2014 participant-derived decimal table differs at ten cells and does not reproduce the factors. The tempting hexadecimal readings `1C=28` and `4E=N` are not retained: no source-authenticated mixed-radix output type selects them, and the same untyped hex-pair rule also yields ROAD/AND→42/N in the 2016 word list. The current candidate output type remains base-60 values as p0 offsets, which is itself not creator-authenticated.
+
+This is an intermediate cross-artifact selector, not plaintext, a global cipher key, or a complete decryption.
+
 ## Interpretation and limits
 
-This is a new cross-object arithmetic fingerprint tying the p28 DH coordinates, p15, the p53 red span, and the p50 base60 table. It gives a second route to the numerical READ address and is consistent with the existing p0 80–102 receiver geometry. The exact match is stronger than a language-score coincidence and survives a whole-unknown-corpus window census.
+The 179²/base-60 fingerprint now has a second arithmetic layer: the quotient contains one GP29 factor, and dividing it out yields 113, the 30th prime. That ordinal selects the 30th one-based word DIRECTION in the authenticated 2016 message. Its existing GP0→p50 mapping reselects p0 boundary 72; the preceding THE maps to 102. This is a distinct arithmetic route to an already known navigation endpoint and strengthens the p28→DIRECTION→p29 chain.
 
-It is **not** a decryption of either 51-rune operand. The crucial interpretive steps remain:
-1. reading DH \(b,p\) as page and rune-offset coordinates;
-2. converting the two 51-rune streams to positional GP29 integers;
-3. treating the p50 base60 byte stream as one printed-order big-endian integer;
-4. using the quotient/residue relationship as a navigation fingerprint.
+It does **not** recover plaintext or specify a reversible operation for p29. The 29 factor is exact for the visually audited original table under the conditional printed-row-major/base-60 interpretation, but the manuscript does not provide an explicit base-60 digit legend or byte serialization. The 30th-prime→30th-word mapping is a plausible source-constrained selector, not an explicit instruction in the signed message. The GP0→p50→p0-offset typing remains a working interpretation rather than creator-authenticated fact.
 
-The base59 and orientation controls favor the conventional base60/printed reading, but the separate creator-authentication objection to interpreting table byte values as LP rune offsets remains open. The p0 receiver is still ciphertext, and the p0 H→cube output's initial LONG is not a recovered page plaintext. The new residue check validates receiver selection, not its decryption. No additional transform was fitted to rescue either p15 or p53; direct H-shell→cube tests on these 51-rune operands were nonlinguistic.
+Keep the following distinctions:
+1. The p50 integer's 179² divisibility, quotient residue 55, and new GP29 factor are exact arithmetic observations on the audited table.
+2. The 113→30th-prime→DIRECTION selection is an intermediate cross-artifact interpretation; it is not itself a decryption.
+3. The p0 interval 73–102 and its nested 23-rune receiver are a source-linked object, but the seven-rune prefix has no selected decoder.
+4. The 182-rune DIRECTION→SEEK span and its 179+3 length are only a candidate extension. Do not trim three runes without an independent directional rule.
+5. The untyped hex interpretation of table cells is rejected as nonunique; retain the current base-60 pointer hypothesis only conditionally.
+
 
 ## Decision and next research action
 
-Retain this as an **intermediate source-constrained route to READ**, not as established plaintext or a general p50 opcode. It materially narrows the p50 question: base60 printed order is the only tested natural representation that participates in this 179-adic crosslink, while base59 fails.
+Retain the p50 179²/GP29/prime-ordinal result as a promising source-constrained selector. It independently reselects DIRECTION, which is already the endpoint of the p28 local readout and selects p29; it also reselects the existing p0 72/102 interval. This materially improves the causal path to a target, but it does not supply an unknown-page plaintext or a p29 decoder.
 
-The next useful step is a blind, independently selected consumer of the frozen 179-adic/base60 operation that predicts an untouched original-ciphertext object or a new destination **without reusing p0 80–102**. Do not extend the p50 quotient's remaining digits into a word stream: the immediate next digit already fails the known OUT value.
+The next high-value question is whether the DIRECTION-selected p29 object and its shared p50/p29 root-24 structure admit a source-selected reversible consumer. Do not reopen broad p50 cipher menus or repeat the p0 80–102 readout. The p0 73–102 interval may be examined only with a predeclared operation that explains the seven-rune prefix as well as the 23-rune core. The 182=179+3 observation is not permission to discard three runes. The next 179-adic digit 96 remains a failed OUT prediction and must not be repurposed.
 
 ## Reproduction
 
