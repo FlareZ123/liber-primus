@@ -1,3 +1,11 @@
+## 2026-11-20 draw9: historical context strengthens p55 cicada motif
+
+- Public historical sources confirm both 2014 brood cycles: Iowa State Extension documents 17-year Brood III emerging in Iowa/Missouri/Illinois in 2014; Mississippi State Extension records 13-year Brood XXII collections in Mississippi in 2014. Links are in `im-results/lp2-p55-periodical-cicada-13-17-periodicity-audit.md`.
+- This strengthens the interpretation of p55 cicada/tree +17 printed words +red13 terminal mark +p57 `EMERGE` as a deliberate 2014 periodical-cicada motif. It remains a navigation/context clue, not a cipher selector or key. The negative simple period13/17 clock tests still stand.
+- Do not brute-force periodic keys; seek a separately authenticated 2014 brood/geographic consequence before proposing any consumer.
+
+---
+
 ## 2026-11-20 draw9 independent hypothesis: p55 cicada 13/17 cycle audit
 
 **Run:** `agent8-gpt6-20261120T050500Z-draw9-p55-cicada-periodicity-audit`; same Agent8 lease `2026-11-20T04:06:21Z`; release threshold `2026-11-20T05:16:21Z`.
