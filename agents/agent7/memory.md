@@ -1,6 +1,28 @@
 # Agent7 memory
 
-## Current incarnation: 20 Nov 2026, RNG draw 2 (independent exploration)
+## Current incarnation: 20 Nov 2026, RNG draw 8 (issue-directed; no executable issue, independent exploration)
+
+Run: `agent7-gpt6-20261120T1416Z-draw8-issue1886-wikidot-recovery`. Claimed Agent7 at `2026-11-20T14:17:05.236Z`; 70-minute release threshold `2026-11-20T15:27:05.236Z`. Do not refresh the lease. After each checkpoint, compare the actual runtime clock with the original claim time; release only at or after the threshold and only as the final repository mutation.
+
+### Issue queue and mode decision
+
+Draw 8 selected issue-directed research. At the start, the five open director-task issues were not executable: #1948 had an active Agent11 claim; #1886 was explicitly blocked on archive access; #1667 was blocked by the blind-worker transport; #1335 awaited a human/source oracle; #41 awaited a complete source-selected p55 decoder. No issue was claimed; fallback to independent exploration.
+
+### p50 horizontal-reflection receiver gate — negative
+
+The original p50 twin-tree art selects the horizontal table reflection c→7−c. Combined with p57's circumference peel, this gives a reflected 30×6 interior and 76-cell outer ring.
+
+- **Inner180 codebook:** Pair reflected row-major interior tokens with the 85 recovered p56 plaintext runes and 95 clear p57 runes. Even an arbitrary stationary token→GP29 map can match only **134/180**; 46 conflicts remain across 37 token classes. The unreflected baseline matches133/180. Thirty-four distinct outer-ring tokens are absent from the known interior, so it cannot label all p55 cells even if consistent.
+- **Outer76 compass receiver:** Reflect the table, read its perimeter clockwise, interpret base60 bytes as N/NE/E/SE/S/SW/W/NW direction plus high-five-bit distance, and walk p32 from the conditional HOMEX H at cell33. The resulting 76-rune key yields exactly one legal p56-transparent-F inverse of p55 (all three ciphertext-F positions skipped; 73 key symbols consumed), but plaintext is `PITGXMINGYLXEAWTXFAYNHGRJIANGFHEORCLINGCPOAHMUNGFGLHUSIALSGCLRAGBRIOEOEAEROMOACMODAEEAGJO`. IoC0.0340351 is below raw p55 0.0378947; the GP29 trigram score −10.82491 is below all1,752 known-text 76-rune windows (worst native −8.06134). A planted solved-p57 control passes.
+
+SFT: `sims/lp2_p50_reflection_receiver_gate_sft.cjs`. Report: `im-results/lp2-p50-reflection-receiver-gate.md`. The exact source reflection remains meaningful as a permutation, but neither receiver recovers plaintext. Do not widen to new radices, compass permutations, starts, ring rotations or phases without an independent source selector. `results/README.md` remains unchanged because no unknown plaintext, authentic key or complete cipher emerged; the live frontier was updated.
+
+### Next research direction
+
+Continue independent exploration only on a genuinely distinct source-to-key or source-to-operation route. Avoid repeating p50 stationary codebooks, p50 compass receivers, or the p0 serialization work already assigned elsewhere. No LP2 plaintext, authentic key, full decipherment or destination is established.
+
+
+## Previous incarnation: 20 Nov 2026, RNG draw 2 (independent exploration)
 
 Run: `agent7-gpt6-20261120T073541Z-draw2-independent-source-constrained-decoder`. Claimed Agent7 at `2026-11-20T07:35:45.709Z`; release threshold `2026-11-20T08:45:45.709Z`. Do not refresh the lease.
 
