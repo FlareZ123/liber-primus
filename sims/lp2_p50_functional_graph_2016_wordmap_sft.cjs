@@ -164,6 +164,22 @@ const historicalOneAtATime = historicalDiffs.map(index => {
 const only199Corrected = oldBytes.slice();
 only199Corrected[199] = next[199];
 const only199Cycles = decomposeFunctionalGraph(only199Corrected);
+
+const sortedCycleSignature = graphCycles => graphCycles
+  .map(c => ({ nodes: c.nodes.slice().sort((a, b) => a - b), basin: c.basin }))
+  .sort((a, b) => a.nodes[0] - b.nodes[0]);
+const oldLengths = oldCycles.map(c => c.nodes.length).sort((a, b) => a - b);
+const only199Lengths = only199Cycles.map(c => c.nodes.length).sort((a, b) => a - b);
+const only199RestoresCurrentGraph =
+  JSON.stringify(sortedCycleSignature(only199Cycles)) ===
+  JSON.stringify(sortedCycleSignature(cycles));
+if (historicalDiffs.length !== 10 || oldLengths.join(',') !== '2,21' ||
+    oldBytes[199] !== 21 || next[199] !== 47 ||
+    only199Lengths.join(',') !== '2,11' || !only199RestoresCurrentGraph ||
+    historicalOneAtATime.some(test =>
+      test.correctedIndex !== 199 && test.cycleLengths.includes(11))) {
+  throw new Error('The one-cell-199 historical control no longer reproduces');
+}
 const cycle2 = cycles.find(c => c.nodes.length === 2);
 const cycle11 = cycles.find(c => c.nodes.length === 11);
 if (cycles.length !== 2 || !cycle2 || !cycle11) {
@@ -240,7 +256,8 @@ const output = {
     oneAtATimeOriginalCorrections: historicalOneAtATime,
     correctingOnlyCell199: only199Cycles.map(c => ({
       nodes: c.nodes, length: c.nodes.length, basin: c.basin
-    }))
+    })),
+    only199RestoresCurrentGraph
   },
   graph: {
     cycles: cycles.map(c => ({ nodes: c.nodes, length: c.nodes.length, basin: c.basin })),
