@@ -58,7 +58,7 @@ The iBotPeaches repository's form page is also a later copy. Its [PR #80](https:
 
 The preserved participant transcript [“The complete story of onion 6”](https://github.com/krisyotam/cicada3301/blob/main/archives/cijhho/2014/additional%20docs/Titanpads%20from%20time%20of%20solving/The%20complete%20story%20of%20onion%206.txt) says the page was saved as `onion6_2.html`, records three square inputs plus one hidden-service URL field, and says posting the squares and address yielded the three rune JPGs. It does not preserve the POST body, response headers, or server logs. It records verification of the embedded Cicada signature; that signature authenticates the instruction text, not the surrounding form markup.
 
-The signed Stage11 instruction's `/cgi-bin/upload` is a **different endpoint**, hosted by the participant. The Onion6 form's `/cgi-bin/squares` is Cicada-side. The archived `cgi.py` is a participant upload mock and is not the squares handler.
+The signed Sixth Onion follow-up response `resources/historical/cicada2014-sixth-onion-v2-form.html.asc` (verified 2014-01-25 under the established Cicada key) specifies the participant-side `/cgi-bin/upload` endpoint, file input `file`, and public key `/key.asc`. This is a **different endpoint**, hosted by the participant. The Onion6 form's `/cgi-bin/squares` is Cicada-side. The archived `cgi.py` is a participant upload mock and is not the squares handler.
 
 
 ## Public-source boundary for the reported 965-byte handler (Agent10, 19 November 2026)
