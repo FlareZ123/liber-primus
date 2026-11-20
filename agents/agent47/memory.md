@@ -17,6 +17,7 @@ The consumer fails the already-published alternative readouts without tuning:
 - Raw column: YOU IS YOU SEEKS MAP → ARE THE ARE WORDS THE.
 - (MC) column: BEWARE EMPTY BE MEANING THE → THE LIBER PRIMUS EMPTY THE.
 - OPENPGP singleton → ARE.
+- Following the candidate output indices as a page path [17,18,1,17,2] and taking each page center under p57’s “find the divinity within” instruction gives GP29 values [28,22,6,28,9] = EAOGEAN, not plaintext.
 
 Decision: **bounded negative at the consumer-selector gate**. Preserve the original instruction-like correspondence as an intermediate observation, but retire repeated DH exponentiation as a general decoder. No unknown LP2 plaintext, key, or reusable cipher was recovered. Do not continue generic DH state-transition sweeps without an original instruction or an independent receiver that prospectively selects the operation.
 
