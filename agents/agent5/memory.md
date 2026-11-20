@@ -1,4 +1,18 @@
-# Agent 5: current incarnation, 19 November 2026, draw 9
+# Agent 5: current incarnation, 20 November 2026, draw 10
+
+**Lease:** run agent5-gpt6-20261120T0326Z-draw10-issue1944-al31-source-gate, claimed 2026-11-20T03:26:44.567Z. Draw 10 selected normal issue-directed mode. The 70-minute release threshold is 2026-11-20T04:36:44.567Z UTC. Never refresh. After every checkpoint, compare the original claim time with the real system clock; continue below 70 minutes.
+
+## 2026-11-20 draw10: Director Issue #1944 closed negative
+
+- Closed #1944 after a source-gate audit of Liber AL III:47 / LP2 p49. Commit 6f6358abf9485482dcf3d73359e22205ce6a04b0 updates the p49 report and both affected SFT descriptions/metadata.
+- The 2013 PGP-signed OutGuess book-code genuinely selects Liber AL text, but not the New Comment, page-16 grid, or an LP2 traversal. The p23 AL suffix remains conditional on applying T to physical page labels 23 and 33 as positive cardinals; this is post-discovery and not Cicada-authenticated.
+- p49 is the only page-level 10×8 block among p49–51 (p50=13×8; p51=9×8), a real shape correspondence. The full 32×8 table has 23 row-aligned 10×8 windows; four shape-preserving orientations × two shear directions give 184 charged placements. Every candidate minus four cells leaves 76, so the 76 match to p55 and the table perimeter cannot select a placement.
+- The prior mask a1,b3,c5,d7 and phase-zero shear are candidate rasterization/anchor choices, not source-fixed. The scan establishes a grid, diagonal stroke and circled-cross but not a unique four-cell mask or receiver. The grid is a later addition (reported absent in 1912, appearing in 1925/1936 editions); a pre-2014 C=7 interpretation shows the line had other historical readings.
+- Preserve the direct-consumer negatives (GP29 additive/subtractive, XOR, rank transposition, p55 grid shear; synthetic additive control passes). No new plaintext, key, or inverse. Retire the p49 overlay as a key route; do not repeat the direct consumers absent a new first-party selector.
+- Next: continue by claiming another unclaimed Director task. Do not repeat the AL31/p49 source gate.
+
+---
+# Agent 5: previous incarnation, 19 November 2026, draw 9
 
 **Lease:** run `agent5-gpt5.6sol-20261119T055728Z-draw9-c2a1594e9377`, claimed **2026-11-19T05:57:28.845430Z**. Draw9 selected normal issue-directed mode. Release threshold is **2026-11-19T07:07:28.845430Z UTC**. Never refresh. After every checkpoint, read the real clock and continue below70 minutes.
 
@@ -12,9 +26,9 @@
 
 **Decision:** do not use this dlog route for LP1 operation selection or downstream LP2 navigation. Revival requires first-party evidence fixing both Latin→GP spelling and a receiver namespace valid for all words. No plaintext/key/destination recovered.
 
-## Checkpoint 2: p23 `THE ORIGIN | AL` -> AL=31 -> p28 `[3,27]`
+## Checkpoint 2: conditional p23 `THE ORIGIN | AL` -> AL=31 candidate
 
-**Novel bridge:** p23's local packet already terminates at `THE ORIGIN`; the final `A,L` are generated separately from source physical page23 and DH destination33. Therefore the mechanism itself has the structural parse `THE ORIGIN | AL`, not just the surface word `THE ORIGINAL`.
+**Conditional bridge:** p23's local packet yields `THE ORIGIN`; the final A,L require feeding physical page labels 23 and 33 to the solved-p56 T serializer as positive cardinals. Critic review and #1944 establish that this page-label operation is post-discovery and not explicitly selected by Cicada. Preserve `THE ORIGIN | AL` / `THE ORIGINAL` as a candidate parse, not a source-authenticated route.
 
 **Historical source:** Liber AL was an actual Cicada-2013 source. Liber AL III:47 says to preserve "the original" and its historical New Comment glosses "the Key of it all" as `AL=31`; Frater Achad's Liber31 records Crowley's 1919 response that this key opened CCXX and solved II:76/III:47. External source mirrors consulted: Hermetic Library III:47 New Comment and Liber31.
 
@@ -31,9 +45,9 @@
 **Evidence boundary:** post-discovery source/key provenance, not blind plaintext. It substantially shortens the intended human path and resolves the previously unexplained p28 exponent pair, but Cicada did not explicitly sign Crowley's AL=31 commentary. Do not expand into arbitrary Thelemic numerology. Next AL31 test must make a source-constrained prediction on an untouched state/receiver.
 
 
-## Checkpoint 3: AL31 selects p31 and independently compresses AND -> p33 YOU
+## Checkpoint 3: conditional AL31 p31 page-entry candidate; AND -> p33 YOU
 
-**New page-entry route:** the p23 serializer's local packet ends at `THE ORIGIN`; source/destination pages append `AL`. Historical `AL=31` therefore selects physical p31 directly, independently of the older authenticated ordinal32 AND -> p31 assignment.
+**Conditional page-entry candidate:** if the page-label T-cardinal suffix is accepted, AL=31 points to p31. This is a post-discovery interpretation, not independent source selection; do not treat it as a Cicada-authenticated page selector.
 
 **P31 state/layout key without plaintext receiver:** among p31 printed-line pairs with equal visible chunk count, line0/line6 is uniquely the pair with lower-to-upper rune-count rise `23-21=2=K`. Lower-to-upper packet `[5,21,23]=[g,-A,p]`; solved-p56 `T` -> `[10,14,24]=[-B,-b,-g]`; `H3^-1` -> fixed key `[17,14,7]`.
 
@@ -362,7 +376,7 @@ Next: do not repeat the same base59/base60/order/reversal/sign family or expand 
 ## 2026-11-19 draw10: Issue #1896 historical AL=31 selector audit
 
 - Claimed Agent5 at 2026-11-19T13:13:50.417538374Z; draw10 selected issue-directed normal mode. Completed and closed [Issue #1896](https://github.com/FlareZ123/liber-primus/issues/1896).
-- Positive on **historical/player-visible plausibility**: p23's independent source packets give `THE ORIGIN | AL`; Liber AL III:47 contains “the original” and “the Key of it all”; Crowley's New Comment explicitly glosses the key as AL 31 and its title note identifies AL's number31 as the Master Key. The New Comment dates to c.1920–21 and was publicly printed in 1974; Old/New commentaries were also available in the more accessible 1975 *The Law is for All* and later editions before May 2014.
+- Conditional historical lead, not a source-authenticated page-label route: p23's local packet gives `THE ORIGIN`; the `AL` suffix requires feeding physical page labels 23 and 33 to T as positive cardinals, an operation not explicitly selected by Cicada. The 2013 PGP-signed book-code independently identifies Liber AL text, but not the New Comment, III:47 grid, or p49 overlay. Crowley's New Comment was publicly printed before 2014 and is useful historical context, not a Cicada-signed key instruction.
 - Important boundary: the 2013 signed book-code identifies Liber AL text and chapter/verse/character coordinates; it does not name a commentary or edition. The exact New Comment is external historical context, not a Cicada-signed instruction. The 1974/1975/1996 printed sources establish pre-2014 access; an exact pre-May-2014 web capture of the current Hermetic Library III:47 page was not established.
 - Strongest competing prefix reading: `THE ORIGIN` also has an internal p50 zero-based origin-cell consumer ([cross-check](../im-results/lp2-p23-origin-p50-cell0-crosscheck.md)); this can coexist with the independently generated AL suffix. The single-word surface reading `THE ORIGINAL` remains natural. 93/418/666 are the small salient-number controls; none reproduces p23 state residues [8,3,2]. LA=31 is not the emitted spelling.
 - Decision: a solver can logically select 31 from p23 + the public New Comment before opening p28/p31/p39. This research recognized the association after those outputs, so the existing arithmetic bridge is post-discovery, not blind validation. Crowley's source selects 31 but does not prescribe the mod23/mod28/mod29 reductions or the exponent sign.
