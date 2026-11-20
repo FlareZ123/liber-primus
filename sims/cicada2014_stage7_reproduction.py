@@ -44,7 +44,9 @@ SOURCES = {
 PAGE_REL = "q4utgdi2n4m4uim5.onion/index.html"
 MP3_REL = "index.mp3"
 SQUARES_REL = "magicsquares.txt"
-OPENPUFF_URL = "https://packetstormsecurity.com/files/download/114680/OpenPuffv400.zip"
+OPENPUFF_URL = "https://mir.cr/05EYEMXF"
+OPENPUFF_ZIP_MD5 = "ab4ec8401743a6937b50daae4f338417"
+OPENPUFF_EXE_SHA256 = "b100ccd77a9159a1057f9bb2abca471ab05f3ab551d11aa114b78f2226a0aa4c"
 
 REPORT: dict[str, object] = {
     "scope": "2014 Stage 7 historical reproduction only; no LP2 inference",
@@ -275,12 +277,19 @@ def main() -> int:
 
     # 5. Download the specifically documented OpenPuff v4.00 executable.
     package = download(OPENPUFF_URL, OUT / "OpenPuffv400.zip")
+    package_md5 = hashlib.md5(package).hexdigest()
     REPORT["openpuff"]["package_bytes"] = len(package)
+    REPORT["openpuff"]["package_md5"] = package_md5
     REPORT["openpuff"]["package_sha256"] = hashlib.sha256(package).hexdigest()
+    if package_md5 != OPENPUFF_ZIP_MD5:
+        raise RuntimeError(
+            "OpenPuff mirror response does not match the published v4.00 ZIP MD5 "
+            f"({package_md5}); first bytes: {package[:120]!r}"
+        )
     if not zipfile.is_zipfile(OUT / "OpenPuffv400.zip"):
         raise RuntimeError(
-            "PacketStorm did not return a ZIP archive; inspect the downloaded response. "
-            f"First bytes: {package[:120]!r}"
+            "OpenPuff mirror response is not a ZIP archive; "
+            f"first bytes: {package[:120]!r}"
         )
     app_dir = OUT / "OpenPuffv400"
     app_dir.mkdir(exist_ok=True)
@@ -290,8 +299,14 @@ def main() -> int:
     if not exe_candidates:
         raise RuntimeError("OpenPuff.exe not found in the v4.00 package")
     exe = exe_candidates[0]
+    exe_sha256 = hashlib.sha256(exe.read_bytes()).hexdigest()
+    if exe_sha256 != OPENPUFF_EXE_SHA256:
+        raise RuntimeError(
+            "Extracted OpenPuff.exe does not match the independently published "
+            f"v4.00 SHA-256 ({exe_sha256})"
+        )
     REPORT["openpuff"]["exe_path"] = str(exe)
-    REPORT["openpuff"]["exe_sha256"] = hashlib.sha256(exe.read_bytes()).hexdigest()
+    REPORT["openpuff"]["exe_sha256"] = exe_sha256
 
     # 6. Use the native UI exactly as documented: A=33011033, B/C off,
     #    one MP3 carrier, MP3 Maximum (1/2), then Unhide.
