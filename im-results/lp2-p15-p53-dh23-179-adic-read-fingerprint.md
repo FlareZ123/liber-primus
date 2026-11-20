@@ -131,11 +131,28 @@ Keep the following distinctions:
 5. The untyped hex interpretation of table cells is rejected as nonunique; retain the current base-60 pointer hypothesis only conditionally.
 
 
+
+## Direct p53-red → p15 one-use GP29 pad test (Agent48, 20 November 2026; Director Issue #1977)
+
+The p15/p53 fingerprint suggests a natural, falsifiable consumer: use the visibly red 51-rune p53 span as a one-use GP29 key for the DH-coordinate-selected 51-rune p15 window. The extraction was frozen exactly as in the preceding report: p15 rune offsets [23,73] (inside printed words at both ends), p53 red offsets [128,178] (12 complete printed words). No rotation, reversal, phase, repetition, skip, or second layer was permitted.
+
+The source-native sign control is the authenticated 2014 Stage04 Vigenère inverse with key **WELCOME PILGRIM TO THE GREAT**. Its original runic onion ciphertext recovers the known **AUOWYFGL5LCSFJ3 NONIAN** output, fixing \(P=C-K\pmod{29}\). The opposite sign was retained only as the issue's explicit control.
+
+| Candidate | Complete 51-rune output | LP1 GP29 trigram score | IoC |
+|---|---|---:|---:|
+| Original p15 window | UOEAEJFAEUGXEOPXYEALAXOEXIATHHEANACUGNPENTHOUIIARTIBEOCFGOTHAIPH | -3.44877302 | 0.03059 |
+| Source-exact \(C-K\) | XNEEAXEPDEOOCHSAOEUTLMBMEOXEEOGOJIACXWENMEAIATIAIAWYGOTYDGFEA | -3.44763783 | 0.03451 |
+| Opposite-sign \(C+K\) | BGODSOEETNGNGLHOEEEOANHXRPFWREAULNGOEJSYEOTHUITOEWBPDNMWAEXYB | -3.44325285 | 0.02431 |
+
+Both signs re-encrypt exactly. The small score changes are negligible beside authentic controls: solved p56 plaintext scores **-2.43618991** and clear p57 scores **-2.48574591** on the same LP1 GP29 trigram reference. Neither output contains coherent GP-native plaintext. The source-exact sign is not even the best-scoring sign; that does not rescue the opposite-sign control.
+
+**Decision:** reject the direct p53-red→p15 one-use additive pad. Retain the shared 179² residue only as an intermediate structural fingerprint. Do not try alternate offsets, pairings, rotations, reversals, or another arithmetic layer. See [the reproducer](../sims/lp2_p15_p53_direct_pad_sft.cjs).
+
 ## Decision and next research action
 
 Retain the p50 179²/GP29/prime-ordinal result as a promising source-constrained selector. It independently reselects DIRECTION, which is already the endpoint of the p28 local readout and selects p29; it also reselects the existing p0 72/102 interval. This materially improves the causal path to a target, but it does not supply an unknown-page plaintext or a p29 decoder.
 
-The next high-value question is whether the DIRECTION-selected p29 object and its shared p50/p29 root-24 structure admit a source-selected reversible consumer. Do not reopen broad p50 cipher menus or repeat the p0 80–102 readout. The p0 73–102 interval may be examined only with a predeclared operation that explains the seven-rune prefix as well as the 23-rune core. The 182=179+3 observation is not permission to discard three runes. The next 179-adic digit 96 remains a failed OUT prediction and must not be repurposed.
+The direct p53-red→p15 one-use additive GP29 pad is now rejected: both signs in original order and phase zero produce nonlinguistic outputs, and the native LP1 trigram scores remain at the original ciphertext level and far below p56/p57. Do not try rotations, reversals, shifts, or another pairing. Retain the 179² equality and p50/READ/prime-ordinal selectors as intermediate structure only. The next high-value question remains whether the DIRECTION-selected p29 object and its shared p50/p29 root-24 structure admit a different source-selected reversible consumer. Do not reopen broad p50 cipher menus or repeat the p0 80–102 readout. The p0 73–102 interval may be examined only with a predeclared operation that explains the seven-rune prefix as well as the 23-rune core. The 182=179+3 observation is not permission to discard three runes. The next 179-adic digit 96 remains a failed OUT prediction and must not be repurposed.
 
 ## Reproduction
 
