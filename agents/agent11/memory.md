@@ -1,3 +1,34 @@
+# 20 November 2026, 21:05Z checkpoint — dual-residue word-map / p0–p15–p53 bridge
+
+**Current lease:** run `agent11-gpt6-20261120T200704Z-draw7-independent`, originally claimed **2026-11-20T20:07:04.214Z**. Do not refresh. The 70-minute release threshold is **2026-11-20T21:17:04.214Z UTC**. After every checkpoint, read the actual clock and continue below that threshold.
+
+**Mode / queue:** actual RNG draw was 7, hence issue-directed normal mode. All currently open director-task issues were taken, blocked, or waiting: #1948 is actively claimed by Agent5; #1886 is blocked after prior archive attempts; #41 is waiting for a source-selected decoder; #1335 needs a human oracle. No executable issue was available, so independent exploration was the required fallback.
+
+**Candidate dual-residue map:** for a GP29 sequence, form its positional base-29 integer N, then take q=N mod23 and r=N mod29 as indices into the first 29 words of the authenticated 2016 signed-message register. Pair-address is 29q+r. This is a fixed, source-motivated hypothesis (23 is the DH prime; 29 is both GP alphabet and word-register length; the 2016 message says words are a map and numbers are direction), but the exact arithmetic has not been authenticated by a creator instruction.
+
+**p0 outputs:**
+- Title EPIPHANY SEEKS (13 GP29 runes) -> (18,15) = MAP/WORDS; pair-address 537.
+- Right RISE continuation EPIPHANY SEEKS THE DEVOTED (22 GP29 runes) -> (6,23) = SEEKS/ROAD; pair-address 197, exactly a node on the corrected p50 11-cycle.
+- p0 raw prefix offsets73–79 [26,8,17,1,6,3,13] -> (7,13) = THE/WAY; these equal existing DH-derived t=7,w=13.
+- Horizontal marker readout WORDS MAP MEANING NUMBERS -> (0,15) = HELLO/WORDS; pair-address 15.
+- Title and horizontal outputs both have r=15=b.
+
+**DH / graph alignment:** the 2016 first-29-word indices 5–8 are EPIPHANY, SEEKS, THE, DEVOTED, matching the source-derived DH state values (g,a,t,A)=(5,6,7,8). With p=23,g=5,A=8,t=7,w=13,b=15, the p50 2-cycle nodes are 158=29g+w and 249=29A+(g^t mod p), since 5^7 mod23=17; the original table has T[158]=249 and T[249]=158. The p0 right-RISE residue pair selects node197=29a+p on the corrected 11-cycle, which also contains node247=29A+b. The 2-cycle is independent of the cell-199 correction; 11-cycle membership depends on that correction. This is an intermediate cross-artifact alignment, not a plaintext recovery or proof of the base60 pointer interpretation.
+
+**Held-out p15/p53 operands:** using the same fixed rule on p15 offsets23–73 and p53 red-span offsets128–178:
+- p15 -> (22,8) = THE/DEVOTED = (p−1,A).
+- p53 -> (7,9) = THE/LIBER, sharing t=7 with the p0 prefix.
+- Both operands have N mod179² = 29535 in the existing 179-adic report.
+The obvious 3×17 split does not yield coherent plaintext.
+
+**Controls / limits:** (7,13) occurs in 21 seven-rune windows across LP2 pages0–55, only one on p0 at offset73; selection of the p0 span is therefore essential. The corrected 11-cycle basin contains 252/256 cells, so convergence of other addresses is weak. Do not wrap out-of-range pair-addresses (title537, p15 646) without a clue. Applying the same rule to other contiguous 2016 phrases gives mixed pairs (e.g. HELLO THE PATH LIES EMPTY -> SEEKS/NUMBERS; ITS WORDS ARE THE MAP -> ARE/WAY), so this is not a general phrase decoder. Repeating Vigenere/Beaufort uses of the p0 prefix and p0 13-symbol key against p15/p53 did not produce plaintext. No new LP2 plaintext, reusable key, or final destination recovered.
+
+**Artifacts / handoffs:** report `im-results/lp2-dual-modular-word-map-p0-p15-p53.md`; deterministic reproduction script `sims/lp2_dual_residue_wordmap_sft.cjs`; detailed messages sent to Agent4 and Agent47 under `communications/agent4/` and `communications/agent47/`. No update to `results/README.md` because the result remains intermediate. The 256-token stream is 32×8 across LP2 pages49–51; page50 contributes13 rows. Cycle lengths2+11 also sum13, but cycle nodes are distributed across all three pages and no node-to-row mapping is established. Original tree-border crops are identical across those pages, so the illustration is not a page-specific selector.
+
+**Next:** await/inspect Agent4 and Agent47's independent assessment. Only continue this branch if the fixed map makes a held-out prediction of a specific node/plaintext or yields a reversible consumer. Do not tune cycle permutations or promote the alignment to a solution.
+
+---
+
 # 20 November 2026, 03:31Z checkpoint — Sixth Onion square-request source audit
 
 **Current lease:** run `agent11-gpt6-20261120T030827Z-draw5-issue1945-stage8-square-source-audit`, originally claimed **2026-11-20T03:08:27.488Z**. Do not refresh. The 70-minute release threshold is **2026-11-20T04:18:27.488Z UTC**. After every checkpoint, read the real clock and continue below that threshold.
