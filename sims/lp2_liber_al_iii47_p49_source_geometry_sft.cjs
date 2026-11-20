@@ -103,6 +103,40 @@ function shearP55(directionValues) {
   return built.order.map((i) => target[i]);
 }
 
+
+function columnarDecrypt(ciphertext, key) {
+  const n = key.length;
+  const rows = Math.ceil(ciphertext.length / n);
+  const full = Math.floor(ciphertext.length / n);
+  const rem = ciphertext.length % n;
+  const lengths = Array.from({ length: n }, (_, i) => full + (i < rem ? 1 : 0));
+  const order = key.map((value, i) => ({ value, i }))
+    .sort((a, b) => a.value - b.value || a.i - b.i)
+    .map((item) => item.i);
+  const columns = Array(n);
+  let offset = 0;
+  for (const col of order) {
+    columns[col] = ciphertext.slice(offset, offset + lengths[col]);
+    offset += lengths[col];
+  }
+  const out = [];
+  for (let row = 0; row < rows; row += 1) {
+    for (let col = 0; col < n; col += 1) {
+      if (row < columns[col].length) out.push(columns[col][row]);
+    }
+  }
+  return { out, order };
+}
+
+function columnarEncrypt(plaintext, key) {
+  const n = key.length;
+  const columns = Array.from({ length: n }, (_, col) => plaintext.filter((_, i) => i % n === col));
+  const order = key.map((value, i) => ({ value, i }))
+    .sort((a, b) => a.value - b.value || a.i - b.i)
+    .map((item) => item.i);
+  return order.flatMap((col) => columns[col]);
+}
+
 const outputs = [];
 for (const [radix, alphabet] of [['base60', BASE60], ['base59', BASE59]]) {
   const tableValues = tokens.map((token) => decodeToken(token, alphabet));
@@ -164,6 +198,42 @@ for (const [radix, alphabet] of [['base60', BASE60], ['base59', BASE59]]) {
   });
 }
 
+
+const pointKeyCandidates = [];
+for (const [radix, alphabet] of [['base60', BASE60], ['base59', BASE59]]) {
+  const tableValues = tokens.map((token) => decodeToken(token, alphabet));
+  const lineValues = lineIndices.map((i) => tableValues[i]);
+  const circleValue = tableValues[circleIndex];
+  const pointOrders = [
+    { name: 'line-then-circle', values: lineValues.concat(circleValue) },
+    { name: 'circle-then-line', values: [circleValue].concat(lineValues) },
+    { name: 'reverse-line-then-circle', values: lineValues.slice().reverse().concat(circleValue) }
+  ];
+  for (const candidate of pointOrders) {
+    const pointKey = candidate.values.map((value) => mod(value, 29));
+    const vigenereMinus = p55.map((value, i) => mod(value - pointKey[i % pointKey.length], 29));
+    const vigenerePlus = p55.map((value, i) => mod(value + pointKey[i % pointKey.length], 29));
+    const columnar = columnarDecrypt(p55, pointKey);
+    const columnarForward = columnarEncrypt(p55, pointKey);
+    const synthetic = Array.from({ length: 76 }, (_, i) => i % 29);
+    assert.deepEqual(columnarDecrypt(columnarEncrypt(synthetic, pointKey), pointKey).out, synthetic);
+    pointKeyCandidates.push({
+      radix,
+      order: candidate.name,
+      lineTokens: lineIndices.map((i) => tokens[i]),
+      circleToken: tokens[circleIndex],
+      keyValues: candidate.values,
+      keyText: render(pointKey),
+      vigenereMinus: render(vigenereMinus),
+      vigenerePlus: render(vigenerePlus),
+      columnarDecrypt: render(columnar.out),
+      columnarEncrypt: render(columnarForward),
+      columnarOrder: columnar.order,
+      positiveControl: true
+    });
+  }
+}
+
 const summary = {
   sourceUrl: 'https://lib.oto-usa.org/libri/images/liber0031/60.jpg',
   sourceGeometry: {
@@ -177,7 +247,8 @@ const summary = {
     p55RuneCount: p55.length
   },
   primeEchoPrimeCount: PRIME_ECHO.length,
-  outputs
+  outputs,
+  pointKeyCandidates
 };
 
 console.log(JSON.stringify(summary, null, 2));

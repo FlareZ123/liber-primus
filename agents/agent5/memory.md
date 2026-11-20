@@ -440,3 +440,8 @@ Next: do not repeat the same base59/base60/order/reversal/sign family or expand 
 
 - Tested a new source-constrained consumer on the corrected p49 76-byte complement: interpret each base60/base59 byte as a 1-based prime ordinal (b_i), then use (K_i=\phi(p_{b_i})=p_{b_i}-1\pmod{29}). Motivation: the 2013 OS prime_echo prints 464 primes, the signed 2013 TCP clue supplies BASE29, and 2014 LP2 material names Euler's totient. All p49 bytes are within 1–255 (base60 max255, base59 max251).
 - Both radices and both additive signs fail to produce recognizable p55 plaintext; synthetic additive control passes. This does not rescue the p49 receiver. The exact test is now included in `sims/lp2_liber_al_iii47_p49_source_geometry_sft.cjs` and the report.
+
+
+## 2026-11-20 — corrected five-symbol line/circle key
+
+- Tested the source-point key b1,c3,d5,e7 plus the separate circled d7 (five p49 tokens) under base59/base60. Repeating GP29 additive/subtractive and stable 5-column transposition (line→circle, circle→line, reversed line→circle) all produce nonlinguistic p55 output; synthetic columnar roundtrip passes. Included in the corrected p49 SFT/report.
