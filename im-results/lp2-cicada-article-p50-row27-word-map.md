@@ -11,7 +11,7 @@ The article provides two unusually specific numerical inputs:
 - the 13- and 17-year cycles coincide every **221 years**;
 - the article tracks broods across **2013, 2014 and 2015**, giving a natural three-year sequence.
 
-LP2's 256-entry table is preserved as a 32×8 row-major transcription across pages 49–51. Treating 221 as the first zero-based table address and the three brood years as three successive cells selects indices **221, 222, 223**. These are row 27, columns 5–7 (zero-based). This address rule is an inference, not an explicit Cicada instruction; the article's page-27 figure and LP2 p27 image provide a possible row-27 cross-reference.
+LP2's 256-entry table is physically read left-to-right, top-to-bottom as a 32×8 sequence across pages 49–51; this row-major reading order is supported by the original layout (see closed #1918). The unresolved convention is the **index origin**. Treating 221 as the first zero-based table address and taking three cells selects indices **221, 222, 223**, row 27, columns 5–7 (zero-based). This address rule is an inference, not an explicit Cicada instruction; the article's page-27 figure and LP2 p27 image provide a possible row-27 cross-reference.
 
 ## Original table cells and BASE29 readout
 
@@ -77,8 +77,8 @@ Accordingly, THE ROAD / THE THE / EPIPHANY SEEKS is only the output of a conditi
 The strongest evidence is the exact, source-visible numerical chain: 221 → original table tokens 0q/0p/2V → 52/51/151 → BASE29 pairs in the signed 2016 register. The weakest assumptions are:
 
 1. the p27/p55 insect imagery intentionally points to this particular 2013 Science News article;
-2. 221 is a zero-based address in the 256-cell table, with 2013–2015 selecting the next two cells;
-3. the table is read in zero-based row-major order;
+2. 221 is a zero-based address in the 256-cell table rather than a one-based ordinal, with the three-lineage/three-year clue selecting the next two cells;
+3. the original table's physical row-major reading order is source-native, but its numeric index origin is not explicitly labeled;
 4. the 2016 word register inherits zero-based indexing;
 5. the three pairs should be assembled as a phrase or as a navigation instruction.
 
