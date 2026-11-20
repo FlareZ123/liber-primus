@@ -100,6 +100,28 @@ All four exact F-transparent inverses are empty. The direct outputs remain ciphe
 
 **Decision:** reject q and r themselves as phase-zero 13-periodic p0-body keys under the tested direct and F-transparent rules. This does not reject the graph's navigation interpretation or every possible downstream use of its coordinates.
 
+## Gate D — DH-seeded 11-cycle states and edge deltas as p0 keys
+
+The p50 functional graph has an 11-cycle. Starting from the authenticated 2013 DH shared secret K=2, the table successor walk enters that cycle at node 115 after 19 transient steps. The first THE word in the signed 2016 message has GP0=20 and independently enters the same cycle at node 115 after three transient steps. The cycle length 11 is a factor of the DH multiplicative-group order 22.
+
+This convergence motivates two fixed phase-zero 11-periodic p0-body keys:
+
+- cycle-state residues: [28,15,18,0,0,10,25,18,18,27,23]
+- forward cycle-edge deltas, (next−current) mod29: [16,3,11,0,10,15,22,0,9,25,5]
+
+Test both signs, direct inversion, and p56-style plaintext-F transparency on the 249-rune p0 body. No phase or cycle rotation is fitted: start at the shared entry node 115.
+
+| Candidate 11-key | Inverse | Direct IoC | F-transparent full paths | Best F-transparent IoC |
+|---|---|---:|---:|---:|
+| cycle-state residues | C−K | 0.03394222 | 0 | — |
+| cycle-state residues | C+K | 0.03740770 | 4 | 0.03552921 |
+| cycle-edge deltas | C−K | 0.03319731 | 0 | — |
+| cycle-edge deltas | C+K | 0.03478430 | 0 | — |
+
+No output is coherent GP29 plaintext. Each key/sign passes the synthetic p57 95-symbol F-transparent positive control.
+
+**Decision:** reject the direct 11-cycle state-residue and forward-edge-delta keys as phase-zero p0-body consumers. The shared DH/THE cycle entry is a structural correspondence, not an established cipher instruction or recovered key.
+
 ## Overall conclusion and next decision
 
 Both experiments close specific, motivated consumers without producing plaintext:
@@ -107,6 +129,7 @@ Both experiments close specific, motivated consumers without producing plaintext
 - φ(table byte) mod 29 does not decode either complete sentence adjacent to the table.
 - The 2016 graph-selected word-pair GP0 difference/sum does not decode the p0 body.
 - The graph's direct quotient/remainder streams do not decode the p0 body as 13-periodic keys.
+- The DH-seeded 11-cycle state residues and forward-edge deltas do not decode the p0 body as 11-periodic keys.
 
 The strongest objections remain upstream: the table's base-60 byte interpretation and the functional-graph interpretation are hypotheses; neither source explicitly commands the totient transfer, the word-pair subtraction/sum, or the selected cipher-consumer rule. These are not grounds for broadening into arbitrary offsets, permutations, phases, or further arithmetic fits.
 
