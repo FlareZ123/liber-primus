@@ -14,8 +14,14 @@ The original p55 image contains a cicada and tree illustration; the canonical tr
 3. **Lag17 echo.** The fixed lag17 equality/MI test likewise shows no standout echo; the page-local equality rate is about3.5% and mutual information is about0.012 bits. This does not support a simple repeated 17-symbol clock.
 4. **Period13 context.** The separate p0 13-rune red-title Vigenère-key candidate has already failed its fixed source-selected test; this audit does not reopen or retune it.
 
+## Historical fit: both brood cycles occurred in 2014
+
+The visual association is unusually well-timed, not merely generic: Iowa State University Extension documented 17-year Brood III emerging in Iowa, Missouri, and Illinois in 2014 ([11 April 2014 notice](https://yardandgarden.extension.iastate.edu/article/2014/04-11/cicadas.html)); Mississippi State University Extension records 13-year Brood XXII collections in Mississippi in 2014 ([brood distribution and collection history](https://accessibility.extension.msstate.edu/lawn-and-garden/ornamental-plants/distribution-periodical-cicadas-mississippi)). Thus the p55 cicada/tree, its 17 printed words, the terminal 13-dot mark, and p57 `EMERGE` could intentionally point to the **two 2014 periodical-cicada broods**.
+
+This strengthens the motif as a historical/navigation clue, but still does not specify a cipher operation, key, page address, or extraction. The negative period17 periodicity result remains: do not turn the 13/17 brood clue into a generic repeating-key search. A future test should seek a further source-authenticated 2014 brood or geographic consequence before proposing a cryptographic consumer.
+
 ## Interpretation
 
-The visual association is plausible enough to explain why a solver might notice 13 and17, especially alongside `EMERGE`, but it does not select a cryptographic operation or key. The marker phases are diffuse and the simple global/page-reset period17 Vigenère signature is absent. This rejects the cheap hypothesis that the unknown pages use a straightforward repeating 17-symbol key; it does **not** rule out a narrative use of the cicada motif or a nonperiodic mechanism.
+The historical 2014 brood coincidence makes the visual association more compelling as a navigation/context clue, but it still does not select a cryptographic operation or key. The marker phases are diffuse and the simple global/page-reset period17 Vigenère signature is absent. This rejects the cheap hypothesis that the unknown pages use a straightforward repeating 17-symbol key; it does **not** rule out a narrative use of the cicada motif or a nonperiodic mechanism.
 
 **Do not launch broad period13/17 brute force from this association alone.** A future attempt needs an independent source instruction that specifies the operation and supplies key material or a locked extraction coordinate. Keep this note in `im-results/`, not `results/`.
