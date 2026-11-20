@@ -90,7 +90,7 @@ jobs:
             curl.exe --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 $item.url --output $path
             if ($LASTEXITCODE -ne 0) { throw "Download failed: $($item.url)" }
             $length = (Get-Item -LiteralPath $path).Length
-            $blob = (& git hash-object -- $path).Trim().ToLowerInvariant()
+            $blob = (& git hash-object --no-filters -- $path).Trim().ToLowerInvariant()
             if ($LASTEXITCODE -ne 0 -or $length -ne $item.size -or $blob -ne $item.blob) {
               throw "Pinned Stage07 object mismatch: $($item.name), size=$length, blob=$blob"
             }
@@ -154,7 +154,7 @@ jobs:
             $path = Join-Path $folder $name
             curl.exe --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 "$base/$name" --output $path
             if ($LASTEXITCODE -ne 0) { throw "OpenPuff dependency download failed: $name" }
-            $blob = (& git hash-object -- $path).Trim().ToLowerInvariant()
+            $blob = (& git hash-object --no-filters -- $path).Trim().ToLowerInvariant()
             if ($LASTEXITCODE -ne 0 -or $blob -ne $expected[$name]) { throw "Pinned OpenPuff blob mismatch: $name" }
           }
           $version = (Get-Item (Join-Path $folder 'OpenPuff.exe')).VersionInfo
