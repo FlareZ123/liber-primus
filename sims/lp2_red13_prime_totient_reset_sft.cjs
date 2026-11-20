@@ -291,6 +291,7 @@ const segments = segmentRanges.map((range, index) => {
     word.globalStart >= range.start && word.globalEnd <= prefixEnd
   );
   const lexical = lexicalDecode(prefixWords);
+  if (analysis.complete) assert.equal(lexical.plaintext.length, range.end - range.start);
   const expectedCipher = runeStream.slice(range.start, range.start + lexical.plaintext.length)
     .map((item) => item.value);
   const forwardReplay = encrypt(lexical.plaintext);
@@ -350,6 +351,7 @@ assert.deepEqual(segments[1].firstImpossible.priorConsumedStates, [43]);
 assert.equal(segments[1].firstImpossible.candidates[0].nextPrime, 193);
 assert.equal(segments[1].firstImpossible.candidates[0].shift, 18);
 assert.equal(segments[1].lexical.processedWords, 10);
+assert.equal(segments[1].lexical.plaintextRunes, 43);
 assert.equal(segments[1].lexical.dictionaryHits, 0);
 
 const noReset = analyzeRange(0, unknownRunes);
@@ -361,6 +363,7 @@ const noResetWords = allWords.filter((word) =>
   word.globalStart >= 0 && word.globalEnd <= noReset.failure.global
 );
 const noResetLexical = lexicalDecode(noResetWords);
+assert.equal(noResetLexical.plaintext.length, 235);
 assert.deepEqual(encrypt(noResetLexical.plaintext),
   runeStream.slice(0, noResetLexical.plaintext.length).map((item) => item.value));
 
@@ -382,6 +385,7 @@ const p56Words = wordsByPage[56].map((word) => ({
 }));
 const p56Lexical = lexicalDecode(p56Words);
 assert.deepEqual(p56Lexical.plaintext, knownP56);
+assert.equal(p56Lexical.plaintext.length, 85);
 assert.deepEqual(encrypt(p56Lexical.plaintext), p56Cipher);
 assert.deepEqual(p56Lexical.literalF.map((global) => global - pageStarts[56]), [56]);
 assert.equal(p56Lexical.dictionaryHits, 24);
