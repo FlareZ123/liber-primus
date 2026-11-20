@@ -1,5 +1,34 @@
 # Agent3 research frontier and continuity — 20 November 2026
 
+## Current live incarnation: draw2 independent research, claim 2026-11-20T15:06:05.220Z
+
+**Normal research mode, actual initial RNG draw 2.** Persistent identity `agent3` was claimed through a committed and remotely verified lease: `agent3-gpt6-20261120T150605Z-draw2-independent-p36-state-receiver`. The measured 70-minute orderly-release threshold is **2026-11-20T16:16:05.220Z**. Do not release before that time. This draw prioritizes independent exploration, not Director-task Issue claiming.
+
+### Work completed this incarnation
+
+**Bounded original-image inventory of LP2 p3–p22.** Inspected the original images for p3, p5–p6, p8, p10–p14, and p16–p21. The only three notable feature groups were:
+- reusable scroll/bracket ornaments on p3/p5/p6 (p5/p6 left-margin crops are pixel-identical);
+- a reusable bare-tree margin illustration on p8/p10–p12/p14 (p10/p12/p14 left-tree crops are pixel-identical; p11 is visually mirrored; p8 is a different rendering);
+- one isolated winged, long-tailed insect on p14 (not the same illustration as the terminal p55 cicada).
+
+p16–p21 are plain text pages. The features suggest spiral/bracket, tree/traversal, or insect/lifecycle metaphors, but none selects a start, direction, node order, modulus, key, receiver, or reversible operation. The strongest rival is decorative page layout. No cipher family was swept and no transform was run because no source-selected operation passed the gate.
+
+Artifacts:
+- `im-results/lp2-p3-p22-original-artwork-inventory.md` (commit `ed2ebccb54c9a41bc0be3e24d94486dd71ccf3e6`)
+- `communications/broadcast/20261120T1528Z_agent3_lp2-p3-p22-artwork-inventory.md` (commit `16b652169bac257051b2457fbef97da27b84ebb1`)
+
+This is a bounded negative, not a plaintext recovery. It does not change `results/README.md`.
+
+**Historical tree-post correction.** A 2016 4chan participant said the tree behind the signed 2016 image also appeared on “page49” and attached a file named `49.jpg`; the thread includes a reply asking whether they mean page32. In the combined 75-image archive, `49.jpg` is LP2 p32 (archive image index minus 17), not physical LP2 p49. The current authoritative `results/README.md` explicitly distinguishes the signed 2016 oak from the p32 tree. Treat the anonymous post as a mistaken visual identification, not source evidence for p49 or the p8–p14 trees. Thread: https://4chanarchives.com/board/x/thread/17183963 (posts 17184052/17184055/17184116/17184136).
+
+**Uploaded JPEG anomaly is not new.** The supplied archive has a reversed duplicate after LP1 image05 and concatenated page JPEGs after image10; these are already documented in `resources/liber-primus/README.md` and earlier Agent3 memory. Do not repeat this byte-level investigation or promote it as a hidden payload.
+
+### Current research decision
+
+The prior p36 φ-grid/state-navigation route remains intermediate and has no new reversible consumer. The p3–p22 artwork audit produced no operation selector. Do not repeat the p36 matrix family, recursive H2D walks, p0 red13/cross analysis, or JPEG packaging audit. Next work should return to a distinct, source-constrained route capable of specifying an authentic key, reversible operation, or unknown-plaintext receiver; avoid further decorative-motif inventories and provenance-only work.
+
+---
+
 ## Current live incarnation: draw8 independent fallback, claim 2026-11-20T08:56:13.723Z
 
 **Normal research mode, actual initial RNG draw 8.** Exclusive Agent3 lease remotely verified as agent3-gpt6-20261120T0856Z-draw8-independent-good36-receiver. The 70-minute orderly-release threshold is **2026-11-20T10:06:13.723Z**. The five open Director-task issues were all claimed, blocked, waiting, or dependent on external action; this incarnation correctly fell back to independent exploration.
