@@ -13,7 +13,7 @@
 - p28 has a source-constrained local instruction candidate: READ OUT → THE → THEIR NUMBERS ARE THE → authenticated DIRECTION. This is not full p28 plaintext. See im-results/lp2-p28-numbers-direction-readout.md, lp2-p28-readout-the-heldout-rise.md, and lp2-direction-seek-you-numbered-route.md.
 - The p32→p33→p35 and p27→p32 navigation candidates are useful solve-path structure, not recovered body text. See im-results/lp2-p32-you33-boundary-p33-their-rise.md, lp2-are27-shed-h-epiphany-seeks-p32-bridge.md, and the current synthesis.
 - The p57 GP0→p50 base60→divmod29 register is conditionally authenticated on solved p57 only; it is not a general unknown-page cipher. See im-results/lp2-p57-divmod29-register-audit.md.
-- The p33 WILL and p40 PATHS local inverse candidates have key vectors [25,5,26,2] and [20,20,12,6], with H shells [23,8,2,27] and [14,8,3,26]. A new bounded test rejects their direct period-four additive extension across each page or each printed word. See im-results/lp2-p33-p40-anchor-period4-page-inverse.md and its reproducer.
+- The p33 WILL and p40 PATHS local inverse candidates have key vectors [25,5,26,2] and [20,20,12,6], with H shells [23,8,2,27] and [14,8,3,26]. The canonical-parser test rejects their direct period-four additive extension across each page or each complete page-local word. Correct scores: p33 page/word −3.399072/−3.425334; p40 −3.420880/−3.418402. See im-results/lp2-p33-p40-anchor-period4-page-inverse.md and its reproducer.
 
 ## Avoid repeating
 
@@ -26,9 +26,9 @@
 
 The direct p33/p40 period-four extension was tested in two natural clocks:
 - page-reset key, with phase fixed from the known anchor offset;
-- word-reset key, with phase zero at each printed word.
+- word-reset key, with phase zero at each complete page-local printed word.
 
-The known anchors are excluded from all language scores. Both outputs remain near uniform GP29 IoC and far below the clear p57 trigram control. The exact metrics and source inputs are in the report and deterministic Node SFT above. This is a bounded negative, not a rejection of the local anchor candidates or of other cipher families.
+The known anchors are excluded from all language scores. The page-reset model covers all page runes; the word-reset model covers 213/229 complete page-local runes and omits 1/2 runes from cross-page words. Both outputs remain near uniform GP29 IoC and far below the clear p57 trigram control. The first quick word-parser metrics were superseded by the canonical cross-page parser; the report and script now contain the corrected values. This is a bounded negative, not a rejection of the local anchor candidates or of other cipher families.
 
 ## Next research direction
 
