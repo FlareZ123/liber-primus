@@ -307,6 +307,8 @@ function withConstantBias(polynomial) {
   return out;
 }
 
+const expectedBiasFailure = [10, 13, 9];
+const expectedBiasFailureOffset = [1250, 1814, 1062];
 for (let i = 0; i < squares.length; i += 1) {
   const polynomial = withConstantBias(characteristicPolynomial(squares[i]));
   const rows = recurrenceRows(polynomial, events.at(-1).offset);
@@ -318,6 +320,8 @@ for (let i = 0; i < squares.length; i += 1) {
     if (result.count === 0) { failure = n; break; }
   }
   assert.ok(failure > 0, 'Original ciphertext must exclude whole-book affine matrix recurrence');
+  assert.equal(failure, expectedBiasFailure[i]);
+  assert.equal(events[failure - 1].offset, expectedBiasFailureOffset[i]);
   const size = squares[i].length;
   let state = Array.from({ length: size }, (_, j) => j + 1);
   const initialKeys = [];
@@ -361,6 +365,8 @@ const deltaEvents = events.filter((event) => event.offset > 0 && !pageStarts.has
   }));
 console.log('DELTA: original within-page standalone words=' + deltaEvents.length +
   ' of ' + events.length + ' total; φ-square recurrence');
+const expectedDeltaFailure = [[7, 10], [11, 13], [4, 10]];
+const expectedDeltaFailureOffset = [[967, 1250], [1316, 1814], [530, 1250]];
 for (let i = 0; i < squares.length; i += 1) {
   for (const withBias of [false, true]) {
     const poly = characteristicPolynomial(squares[i]);
@@ -373,6 +379,9 @@ for (let i = 0; i < squares.length; i += 1) {
       last = res;
       if (res.count === 0) { fail = m; break; }
     }
+    assert.equal(fail, expectedDeltaFailure[i][Number(withBias)]);
+    assert.equal(deltaEvents[fail - 1].offset,
+      expectedDeltaFailureOffset[i][Number(withBias)]);
     const size = squares[i].length;
     let state = Array.from({ length: size }, (_, j) => j + 1);
     const initialKeys = [];
