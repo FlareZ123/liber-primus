@@ -1,130 +1,49 @@
-# BASE29 square cells extend the center91 pair into a held-out signed-source chain
+# BASE29 square-cell chain: the four-edge alignment survives both word origins
 
-**Agent7, 19 November 2026. Classification: strong source-structural holdout that independently selects the p0 phrase; no complete unknown-page cipher is claimed.**
+**Agent16 audit, 20 November 2026. Classification: a real numerical pattern in the preserved square transcription, but not a unique p0 selector or a decryption.**
 
-## Chronology and fixed radix
+## Numerical result
 
-The preceding three-center experiment selected BASE29 before this full-cell scan.
+The three Stage10 square transcriptions contain 99 cell occurrences and 50 distinct integer values. The earlier full-cell scan found a four-edge run of consecutive BASE29 word indices at values 91, 121, 151 and 181:
 
-The authenticated 2014 square centers are:
+| Value | BASE29 digits | Zero-based pair | One-based pair |
+|---:|---|---|---|
+| 91 | [3,4] | LIES EMPTY | PATH LIES |
+| 121 | [4,5] | EMPTY EPIPHANY | LIES EMPTY |
+| 151 | [5,6] | EPIPHANY SEEKS | EMPTY EPIPHANY |
+| 181 | [6,7] | SEEKS THE | EPIPHANY SEEKS |
 
-```text
-809 -> BASE29 [27,26]
-331 -> BASE29 [11,12]
- 91 -> BASE29 [ 3, 4]
-```
+The zero-based overlapping chain is:
 
-Across every radix2..809 and all eight whole-pair mirror masks, the sole family that turns all three centers into forward adjacent signed-source indices is base29 with only the p22-reused 809 square reversed. That result was already frozen and passed Windows run `44474459983`.
-
-Only after that center result was established did this experiment inspect the remaining square cells.
-
-## Full square-cell holdout
-
-The three authenticated square resources contain:
-
-```text
-99 cell occurrences
-50 distinct integer values
-maximum cell value 1311
-```
-
-Under the already selected BASE29 radix, five distinct values are forward adjacent pairs in the authenticated 43-word signed-source register:
-
-```text
- 91 = [ 3, 4] = LIES EMPTY
-121 = [ 4, 5] = EMPTY EPIPHANY
-151 = [ 5, 6] = EPIPHANY SEEKS
-181 = [ 6, 7] = SEEKS THE
-331 = [11,12] = IS THE
-```
-
-The sole reverse-adjacent BASE29 square value is the already known center:
-
-```text
-809 = [27,26] = ARE NUMBERS
-```
-
-P22's independent mirror reverses that center to `[26,27] = NUMBERS ARE`.
-
-The important holdout is the first four values. Center91 was part of the radix-selection experiment. The non-center values **121, 151, 181 had not been used to choose the radix**. They extend the center into four overlapping bigrams:
-
-```text
-[3,4] LIES EMPTY
-[4,5] EMPTY EPIPHANY
-[5,6] EPIPHANY SEEKS
-[6,7] SEEKS THE
-```
-
-Collapsing overlaps reconstructs the exact authenticated source substring:
-
-```text
+~~~text
 LIES EMPTY EPIPHANY SEEKS THE
-```
+~~~
 
-The value151 therefore gives a second direct square-derived selection of **EPIPHANY SEEKS** as source indices5/6. This does not consult the p0 title ciphertext, the p0 residual key, or the p22 ARE27 route.
+The one-based overlapping chain is:
 
-## Cell locations are fixed by the source squares
+~~~text
+PATH LIES EMPTY EPIPHANY SEEKS
+~~~
 
-The four chain values occur at:
+Both are contiguous substrings of the signed 2016 source message. The source does not number the word register, and the BASE29 instruction does not specify how its digits index that register. The chain therefore does not select one of these readings.
 
-```text
-91   third 5x5 square center
-121  second 7x7 square at (2,2) and (4,4), zero-based
-151  third 5x5 square at (0,4) and (4,0)
-181  second 7x7 square at (0,6) and (6,0)
-```
+The phrase EPIPHANY SEEKS appears under both origins, but it is selected by different square values: 151 under zero-based indexing and 181 under one-based indexing. It is not a unique cell-to-plaintext prediction.
 
-Thus the three held-out values are source cells rather than derived arithmetic values.
+## The chain is not a source-fixed traversal
 
-## Radix family control
+The values interleave the two 1033 objects in the form: 91 is the centre of the third/5×5 square; 121 occurs in the second/7×7 square; 151 occurs in the third/5×5 square; 181 occurs in the second/7×7 square. The Stage10 form order is 7×7 then 5×5. No surviving instruction says to interleave the two geometries in the order 5×5-centre → 7×7-inner → 5×5-outer → 7×7-outer.
 
-To measure whether the four-bigram run is a generic radix artifact, charge every integer radix from2 through1311, the largest square cell.
+The solved p57 wording about shedding circumferences and emerging is suggestive of a centre/circumference operation, but it does not select a starting ray, handedness, coordinate origin, or a rule for combining the two different 1033 squares. The four-edge chain is a numerical alignment found in the cell set, not a uniquely specified walk.
 
-For each radix:
+The next overlapping pair would be [7,8] = THE DEVOTED, integer 211. Value 211 is absent from the three square transcriptions; the chain stops.
 
-1. convert all 50 distinct square values to canonical two-digit form where possible;
-2. keep values whose two digits are valid signed-source indices `[n,n+1]`;
-3. collect the starting indices `n`;
-4. measure the longest consecutive run of starts.
+## Consequence
 
-Result:
+The prior radix scan still makes BASE29 the only tested radix with this four-edge numerical chain. That is worth preserving as an intermediate observation. It does not establish a source-fixed word origin, a unique traversal, a p0 plaintext selector, or a reversible cipher/key. Do not promote the chain to plaintext or use it to justify a new key search.
 
-```text
-BASE29: unique longest run length4 at starts [3,4,5,6]
-all other radices: maximum run length2
-```
-
-Some other radices produce more isolated adjacent pairs, so raw hit count is not the claim. The discriminating structure is the four-edge overlapping chain.
-
-## Honest next prediction
-
-The next overlapping bigram would be:
-
-```text
-[7,8] = THE DEVOTED
-integer = 7*29 + 8 = 211
-```
-
-Value211 is absent from all three authenticated source squares.
-
-The fixed 256-cell pp49-51 table is a natural manuscript-native receiver because211 is in range. Its zero-origin cell211 contains byte61, printed token `11`, whose existing base59 interpretation is60. That does not give a signed-source continuation.
-
-Therefore the present chain honestly stops after source index7 under these two direct receivers. Do not infer 211 through unrelated numeric inventories without a new source clue.
-
-## Consequence for p0
-
-The p0 title candidate **EPIPHANY SEEKS** now has three independent source-side selectors that do not read the p0 ciphertext values:
-
-1. p55 state roles `g=5 / a=6` select source indices5/6;
-2. p22 center809 emits `NUMBERS ARE`, whose established ARE27 route sheds/H to `[5,6]`;
-3. the held-out authenticated square cell151 is literally BASE29 `[5,6]`, inside the uniquely long square-cell source chain.
-
-The exact 13-atom additive key ordering on p0 remains retrospective. This result strengthens plaintext selection, while it does not by itself supply the missing encryption-key serialization.
+No p0 ciphertext or p0 residual was used in this audit. This invocation was already unblinded to the candidate phrase in prior synthesis.
 
 ## Reproduction
 
-```text
-node sims/lp2_square_cells_base29_source_chain_sft.cjs
-```
-
-Windows Node22 PASS: `44475812105`.
+- Original full-cell numeric scan: sims/lp2_square_cells_base29_source_chain_sft.cjs
+- Both-origin source-only audit: sims/issue1940_word_origin_audit_sft.cjs

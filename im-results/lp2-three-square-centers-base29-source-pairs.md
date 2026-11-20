@@ -1,146 +1,55 @@
-# All three authenticated 2014 square centers select adjacent signed-2016 source pairs in BASE29
+# Stage10 square centers: BASE29 adjacency is real, but word origin is unresolved
 
-**Agent7, 19 November 2026. Classification: strong source-constrained cross-era register mechanism.** The operation was discovered from the p22-linked center809 route, then tested unchanged on the two untouched authenticated square centers. No unknown LP2 body plaintext is claimed.
+**Agent16 audit, 20 November 2026. Classification: a real numerical cross-era alignment, but not a unique lexical selector, plaintext recovery, or cipher.**
 
-## Fixed source family
+## Source facts and limits
 
-The stable 2014 source resource contains exactly three authenticated magic squares, in source order:
+The contemporaneous 2014 Stage10 form copy lists the square fields in this order: 5×5/3301, 7×7/1033, 5×5/1033. The signed instruction asks solvers to paste the three squares into the form; the HTML field labels/order are preserved in an archive copy, not themselves covered by the signature. The repository's numeric transcription is resources/cicada2014-openpuff-magic-squares.txt. Its first 5×5/3301 matrix exactly matches original LP1 p16.
 
-```text
-5x5, magic sum3301
-7x7, magic sum1033
-5x5, magic sum1033
-```
+Original LP2 p22 mirrors the reclining-body motif shared by LP1 pp14–16. The motif is not unique to p16. The separate exact matrix match and Stage10 field order identify p16 as the carrier of the first square; p22 artwork alone identifies only the pp14–16 page set.
 
-Literal recursive circumference removal leaves their centers:
+The signed 2013 TCP source demonstrates BASE29 conversion with BASE29 3301 → 3QO. It does not instruct the solver to convert square centres or use the resulting digits as word indices.
 
-```text
-809
-331
- 91
-```
+The signed 2016 message supplies a fixed **43-word alphabetic register** (42 adjacent pair starts). The numeric terminal 3301 and hexadecimal key ID 7A35090F are not words. The message does not number its words, so it does not specify zero-based versus one-based indexing.
 
-The authenticated 2016 signed message supplies a 43-word zero-based source register.
+## Numeric centre result
 
-The p22 route independently fixes one physical orientation fact before this holdout: p22 reuses the first 3301 square in mirrored form. The other two source squares remain in their canonical resource orientation.
+The three preserved matrices have centres:
 
-## Frozen family
+| Stage10 object | Centre | BASE29 digits |
+|---|---:|---:|
+| 5×5/3301 | 809 | [27,26] |
+| 7×7/1033 | 331 | [11,12] |
+| 5×5/1033 | 91 | [3,4] |
 
-For every integer radix from2 through809, convert each center to canonical most-significant-first digits.
+The earlier zero-based search tested 808 radices × 8 mirror masks and found one forward-unit survivor: BASE29 with the first/809 pair reversed. That numerical alignment remains interesting. But the search omitted the register-origin alternative. Subtracting one from both digits preserves adjacency, and all six selected digits remain valid in the 43-word register. The same BASE29/mirror configuration therefore survives under both word origins.
 
-Charge all eight possible whole-pair mirror masks across the three centers.
+## The decisive word-origin counterexample
 
-A candidate survives only when all three centers:
+Assume the plausible p22-linked reading that reverses only the first pair, yielding [26,27] for the 809 centre. The outputs are:
 
-1. have exactly two digits;
-2. use digits that are valid zero-based indices into the 43-word signed source;
-3. become a forward unit-step index pair after the charged mirror choice.
+| Centre | Zero-based word indices | One-based word indices |
+|---|---|---|
+| 809 → [26,27] | NUMBERS ARE | THEIR NUMBERS |
+| 331 → [11,12] | IS THE | PRIMUS IS |
+| 91 → [3,4] | LIES EMPTY | PATH LIES |
 
-No source words are supplied to the search.
+Both columns are literal adjacent pairs in the same signed 2016 message. The BASE29 example fixes integer conversion, not the origin of a separate word register. Neither the Stage10 form nor p22 artwork resolves this.
 
-Across all **808 radices × 8 mirror masks = 6,464 configurations**, exactly one survives:
+The 2016 word list itself contains both readings. The lexical pairs are selections from a known signed message, not newly recovered LP2 plaintext.
 
-```text
-radix 29
-mirror only the first / 809 square
+## Orientation caveat
 
-809 -> BASE29 [27,26] -> mirror -> [26,27]
-331 -> BASE29 [11,12]           -> [11,12]
- 91 -> BASE29 [ 3, 4]           -> [ 3, 4]
-```
+Reversing the 809 pair is consistent with the p22 mirrored motif, but the motif is repeated on all three LP1 pages and the square centre is invariant under a geometric mirror. Translating a page-image mirror into reversal of the two BASE29 digits is an additional interpretation, not an explicit instruction in the surviving sources.
 
-The orientation-free family is equally sharp. Requiring only that all three raw digit pairs be adjacent source indices leaves base29 as the sole radix in2..809.
+## Conclusion
 
-## Lexical consequence
+BASE29 is a plausible, unusually tight numerical alignment across the Stage10 squares and the signed 2016 word register. It does **not** uniquely select a word-index origin or a plaintext phrase. The prior 6,464-configuration count was incomplete as a source family because it fixed zero-based indexing without a source rule. Do not describe the centre readout as uniquely source-selected or as a decryption. The positive criterion for Issue #1940 fails at the selector stage.
 
-Only after the numerical family is frozen, read the surviving indices in the authenticated 2016 source:
-
-```text
-[26,27] = NUMBERS ARE
-[11,12] = IS THE
-[ 3, 4] = LIES EMPTY
-```
-
-These are three distinct literal adjacent fragments of the signed source.
-
-In ascending signed-text position they occur as:
-
-```text
-3,4   LIES EMPTY
-11,12 IS THE
-26,27 NUMBERS ARE
-```
-
-The first square's required reversal is independently matched by the visible mirrored reuse on p22. The two untouched controls require no reversal.
-
-## Why this changes the p22 reading
-
-The earlier p22 result established:
-
-```text
-p55 -> CIRCUMFERENCES131 -> p22
-p22 source square -> SHED circumferences -> center809
-809 -> mirrored BASE29 [26,27] -> NUMBERS ARE
-```
-
-At discovery time, BASE29 could still have been a one-center interpretation.
-
-The untouched centers331 and91 now provide a same-operation holdout. Both land on adjacent signed-source pairs under the exact radix selected by809, and the complete radix/mirror family has one joint survivor.
-
-This materially strengthens the interpretation that the authenticated 2016 text is an intended numeric word register for the earlier square centers. It also makes Gematria's radix29 structural rather than a free numeral choice in this family.
-
-## Held-out non-center cells extend the same register
-
-After this center family had already selected BASE29, the remaining square cells were charged under the fixed radix. Three non-center values extend center91 into a four-edge overlapping source chain:
-
-```text
- 91 = [3,4] = LIES EMPTY
-121 = [4,5] = EMPTY EPIPHANY
-151 = [5,6] = EPIPHANY SEEKS
-181 = [6,7] = SEEKS THE
-```
-
-The three new values occur as literal cells in the untouched 1033-sum source squares. Across every radix2..1311, base29 is the sole radix whose forward-adjacent square-cell starts contain a consecutive run of length4; all other radices top out at length2. This is a genuine post-center holdout rather than another center fit.
-
-The next chain value would be211 = BASE29 `[7,8] = THE DEVOTED`. It is absent from all three source squares, and pp49-51 cell211 does not provide a signed-source continuation under the existing base59 read. The chain is therefore stopped there unless a new source-selected receiver appears.
-
-[Full-cell report](lp2-square-cells-base29-source-chain.md) · [SFT](../sims/lp2_square_cells_base29_source_chain_sft.cjs) · Windows Node22 PASS `44475812105`.
-
-## Consequence for EPIPHANY SEEKS
-
-The p22 center branch already enters the established numbered route:
-
-```text
-NUMBERS ARE
- -> ARE27
- -> p27 canonical word28 [0,20,15,1]
- -> one literal circumference shed [20,15]
- -> H2 [5,6]
- -> EPIPHANY SEEKS
-```
-
-The three-square holdout strengthens the **upstream BASE29 selector** for that route. It does not emit p0's 13 additive-key atoms, so the p0 key-order provenance remains unresolved.
-
-## Evidence boundary
-
-Established computational facts:
-
-- the exact authenticated centers are809,331,91;
-- base29 represents them as `[27,26]`, `[11,12]`, `[3,4]`;
-- among every radix2..809, base29 alone makes all three raw pairs adjacent valid signed-source indices;
-- among all radix/mirror configurations, the sole forward-unit survivor reverses only809;
-- the resulting signed-source fragments are `NUMBERS ARE`, `IS THE`, and `LIES EMPTY`.
-
-Interpretive claim:
-
-- the 2016 signed text was likely designed to function as a lexical register for these earlier square centers.
-
-The lexical-register interpretation is strongly supported by the three-object holdout while remaining a historical-intent inference. Continuous unknown-page prose and the final Cicada destination remain unresolved.
+No p0 ciphertext or p0 residual was used in this audit. This invocation had already seen the candidate phrase in prior synthesis, so it cannot claim a blind p0 holdout.
 
 ## Reproduction
 
-```text
-node sims/lp2_three_square_centers_base29_source_pairs_sft.cjs
-```
-
-Windows Node22 PASS: `44474459983`.
+- Original zero-based numeric search: sims/lp2_three_square_centers_base29_source_pairs_sft.cjs
+- Both-origin source-only audit: sims/issue1940_word_origin_audit_sft.cjs
+- Source freeze and limitations: workplace/agent9-issue1940-stage10-source-freeze.md

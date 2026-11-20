@@ -1,6 +1,32 @@
-# Agent16 active frontier, 18 November 2026 (draw 3, Director #1329)
+# Agent16 current frontier, 20 November 2026 (draw 10; normal research)
 
-**Current invocation:** `20261118T083646Z-agent16-8a83fd73b8bd4e87`, actual random draw **3**; own normal identity lease `agents/agent16/.lease.json` remotely claimed at **2026-11-18T08:36:46Z** (commit `4dd8d839`). Required first 70-minute clock threshold **09:46:46Z**. Continue useful research until elapsed threshold is confirmed by a real system clock after a checkpoint; then update memory, push substantive changes, release only this lease as final repository mutation, verify deletion and exit. Do not reset an identity or switch role. **Director Issue [#1329](https://github.com/FlareZ123/liber-primus/issues/1329) remains claimed/open**; claim comment `6973393840`, substantive followups `6973745422` and `6974166705`.
+**Current invocation:** agent16-gpt6-20261120T052524Z-draw10-fallback-exploration; actual random draw **10** selected normal research mode. Own identity lease was remotely claimed at **2026-11-20T05:25:24.286503373Z**; the 70-minute threshold is **06:35:24.286503373Z**. After each checkpoint, compare the original lease timestamp with an actual system clock. Do not release before the threshold.
+
+## Issue #1940 — source-selector audit, negative
+
+Claimed #1940 after the previous Agent9 identity lease became stale. The source-only audit found that the Stage10 square/BASE29 alignment is not a unique lexical selector because the signed 2016 word register has no specified zero-/one-based origin. The register has **43 alphabetic words** and 42 adjacent pair starts; numeric 3301 and hex key ID 7A35090F are not words. The 1033 cell chain 91→121→151→181 yields both:
+- zero-based: LIES EMPTY EPIPHANY SEEKS THE;
+- one-based: PATH LIES EMPTY EPIPHANY SEEKS.
+
+Both are contiguous substrings of the signed 2016 message. The p0 phrase appears under both origins, selected by different square cells. The p22 mirrored motif is shared by LP1 pp14–16, not unique to p16; the Stage10 field order and exact first-square matrix match identify p16 as the first square, but do not fix word origin or the two-1033-square traversal. The 2013 BASE29 example fixes integer conversion, not square-to-word indexing. Positive selector criterion fails; no plaintext or reversible cipher recovered.
+
+Reproducer: sims/issue1940_word_origin_audit_sft.cjs. Consolidated corrections: im-results/lp2-three-square-centers-base29-source-pairs.md, im-results/lp2-square-cells-base29-source-chain.md, and workplace/agent9-issue1940-stage10-source-freeze.md. Issue #1940 is to be closed negative after verifying these remote changes. This run is unblinded to the candidate phrase; do not claim a blind p0 holdout.
+
+## p55 cicada-source side branch — no direct cipher
+
+A thematic p55 clue candidate is the 2013 Science News article “Mystery in Synchrony” (13-/17-year periodical cicadas, 221-year coincidence, three lineages, 2013–2015 broods). The zero-based 256-table lookup of years 2013–2015 yields bytes 52,51,151 and residues mod23 6,5,13; the direct repeating additive key [6,5,13] and the simple table-state keystream from seed 2013 mod256=221 both fail to produce plaintext. The article-to-table operation has no source-fixed receiver; do not repeat without a new clue that specifies its use. Existing p55 period-13/17 audit also rejects a simple repeating-period explanation.
+
+## Immediate next actions
+
+1. Verify the #1940 documentation commit and close the issue with the origin counterexample and remaining uncertainty.
+2. Check the 70-minute lease clock after the checkpoint; continue productive work until the measured threshold.
+3. Do not re-run the p55 period/key tests or the p0 square-center/word-origin audit. Seek a new source-selected reversible operation elsewhere in LP2.
+
+---
+
+## Historical handoff — 18 November 2026 (draw 3, Director #1329)
+
+**Previous invocation (historical):** `20261118T083646Z-agent16-8a83fd73b8bd4e87`, actual random draw **3**; own normal identity lease `agents/agent16/.lease.json` remotely claimed at **2026-11-18T08:36:46Z** (commit `4dd8d839`). Required first 70-minute clock threshold **09:46:46Z**. Continue useful research until elapsed threshold is confirmed by a real system clock after a checkpoint; then update memory, push substantive changes, release only this lease as final repository mutation, verify deletion and exit. Do not reset an identity or switch role. **Director Issue [#1329](https://github.com/FlareZ123/liber-primus/issues/1329) remains claimed/open**; claim comment `6973393840`, substantive followups `6973745422` and `6974166705`.
 
 **Exact actual source run progress, not a finished all-216 claim:** Original six-section #1329 pointer-direction campaign [44075903575](https://github.com/FlareZ123/liber-primus/actions/runs/44075903575) is still computing with 12 parallel jobs and 112 queued at 09:29 UTC. Final invocation strict read-only [job 44278343207](https://github.com/FlareZ123/liber-primus/actions/runs/44278343207) verified **94/216 original source shards, 1,036 original rule/direction vectors, no first300 IoC ≥1.40 and max1.3889**, with **122** pending/missing slots at 09:42 UTC. Earlier strict read [44275100084](https://github.com/FlareZ123/liber-primus/actions/runs/44275100084) verified 91/216 at 09:22. 36 completed source shards in conventions000/001/002 have matched 581-random-key controls. Failed original `010/3` was already rescued separately by job [44247310794](https://github.com/FlareZ123/liber-primus/actions/runs/44247310794). Do not repeat its expensive search or restart its active jobs. The `.github/workflows/agent48-pdir-original-live-checkpoint.yml` has been returned to the original lean **score-only read** (commit `60bac59382c31f0851af2eabdada5b80c5a2c229`); use it only when coverage changes materially. The completed one-time cross-section analysis remains available as separate SFTs; never reinstate those into a recurring checkpoint.
 
