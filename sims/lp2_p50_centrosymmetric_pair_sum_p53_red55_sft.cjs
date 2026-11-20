@@ -83,7 +83,7 @@ function main() {
   if (bytes.length !== 256 || grid.byte_count !== 256) fail("Expected 256 table bytes");
   if (black.length !== 128 || red.length !== 51 || p55.length !== 76 ||
       redThen55.length !== 127 || p57.length !== 95) fail("Source receiver lengths changed");
-  if (redMeta.adjacent_visual_marker.indexOf("not a separate direction arrow") < 0) {
+  if (redMeta.visual_method.indexOf("not a separate direction arrow") < 0) {
     fail("p53 rune-vs-arrow source annotation changed");
   }
 
