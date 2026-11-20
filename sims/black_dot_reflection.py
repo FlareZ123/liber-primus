@@ -14,6 +14,12 @@ import cv2
 import numpy as np
 
 IMAGE_DIR = Path(__file__).resolve().parent.parent / 'resources' / 'liber-primus'
+PAGE_NUMBERS = {24: 7, 40: 23, 73: 56}
+PAIR_SPECS = [
+    (24, 40, (1, -1), 'vertical reflection'),
+    (24, 73, (-1, 1), 'horizontal reflection'),
+    (40, 73, (-1, -1), '180-degree half-turn'),
+]
 
 
 def image_and_dots(path: Path) -> tuple[np.ndarray, list[tuple[float, float]]]:
@@ -94,19 +100,36 @@ def main() -> dict:
     assert {page: len(dots) for page, dots in occurrences.items()} == {
         24: 5, 40: 5, 50: 3, 73: 5
     }, 'The compact black-dot census has changed'
+
     comparisons = {}
-    for page, expected_flips in [(40, (1, -1)), (73, (-1, 1))]:
-        fits = orientation_fits(occurrences[24], occurrences[page])
+    page_pairs = []
+    for source_image, target_image, expected, relation in PAIR_SPECS:
+        fits = orientation_fits(occurrences[source_image], occurrences[target_image])
         best = fits[0]
-        assert (best['flip_x'], best['flip_y']) == expected_flips
+        assert (best['flip_x'], best['flip_y']) == expected
         assert best['rms_px'] < 0.5 and fits[1]['rms_px'] > 100
-        iou = matched_dot_iou(images[24], images[page],
-                              occurrences[24], occurrences[page], best)
+        iou = matched_dot_iou(
+            images[source_image], images[target_image],
+            occurrences[source_image], occurrences[target_image], best
+        )
         assert min(iou) > 0.90
-        comparisons[f'24_to_{page}'] = {
-            **best, 'second_best_rms_px': fits[1]['rms_px'],
+        source_page = PAGE_NUMBERS[source_image]
+        target_page = PAGE_NUMBERS[target_image]
+        comparisons[f'{source_image}_to_{target_image}'] = {
+            'relation': relation,
+            'best_fit': best,
+            'all_orientation_fits': fits,
+            'second_best_rms_px': fits[1]['rms_px'],
             'dot_mask_iou': iou
         }
+        page_pairs.append({
+            'source_page': source_page,
+            'target_page': target_page,
+            'relation': relation,
+            'positive_difference': target_page - source_page,
+            'reverse_difference': source_page - target_page
+        })
+
     return {
         'source': 'Original JPEG files 17.jpg through 74.jpg',
         'threshold': 'gray<70; 60..80 px width/height; 2900..3800 dark pixels',
@@ -115,7 +138,8 @@ def main() -> dict:
             for page, dots in occurrences.items()
         },
         'comparisons': comparisons,
-        'interpretation': 'Five-dot geometric template reuse; key significance unknown'
+        'page_pairs': page_pairs,
+        'interpretation': 'One reused five-dot stencil on p7, p23, p56; p23/p56 is the unique half-turn pair. Key significance remains unestablished.'
     }
 
 

@@ -1,6 +1,6 @@
-# Repeated LP2 five-dot stencil under exact reflections
+# Repeated LP2 five-dot stencil: complete pairwise orientation census
 
-**Classification:** directly measured original-image structure, with reproducible point fitting and pixel-mask confirmation. **No LP2 plaintext, key, or destination recovered.** Agent 28, 2026-11-10.
+**Classification:** directly measured original-image structure, with reproducible point fitting and pixel-mask confirmation for all three pairings, including the p23/p56 half-turn. **No LP2 plaintext, key, or destination recovered.** Agent 28, 2026-11-10; familywise extension Agent5, 2026-11-20.
 
 ## Source and scope
 
@@ -15,7 +15,9 @@ Exactly four source images contain these components:
 | `50.jpg` | 33 | 3 | Collinear horizontal dots; a different motif |
 | `73.jpg` | 56, previously solved | 5 | Below the closing-page text |
 
-**Prior art:** the five-dot and three-dot motifs themselves have been noted in public Liber Primus page-decoration inventories. The new contribution of this report is measuring **subpixel-exact reuse of the same five-point pattern under two different reflections**, not claiming first discovery of the presence of black dots.
+The three eligible five-dot pages generate exactly three unordered pairs: p7/p23 (vertical reflection), p7/p56 (horizontal reflection), and p23/p56 (180° half-turn). Their physical page differences are respectively 16, 49, and 33.
+
+**Prior art:** the five-dot and three-dot motifs themselves have been noted in public Liber Primus page-decoration inventories. The new contribution of this report is measuring **subpixel-exact reuse of the same five-point pattern under all three pairwise relations**, including the direct p23/p56 half-turn, not claiming first discovery of the presence of black dots.
 
 ## Template alignment
 
@@ -25,6 +27,7 @@ Treat the five centers in `24.jpg` as coordinate pairs `(x,y)`, with origin at t
 | --- | --- | --- | ---: | ---: |
 | `40.jpg` | `(+1,−1)` (vertical) | `(+0.000081, +3674.018416)` | **0.036832 px** | 150.436 px |
 | `73.jpg` | `(−1,+1)` (horizontal) | `(+2400.627012, −419.357683)` | **0.246264 px** | 150.361 px |
+| `73.jpg`, fitted directly from `40.jpg` | `(−1,−1)` (180° half-turn) | `(+2400.627093, +3254.660733)` | **0.263633 px** | 150.382 px |
 
 The five recovered `24.jpg` centers, sorted by x, are:
 
@@ -38,13 +41,13 @@ The five recovered `24.jpg` centers, sorted by x, are:
 
 The five `40.jpg` centers are at approximately the identical x positions and y values `(568.227,507.363,807.211,546.500,737.939)`; this is effectively an exact vertical mirror of the source dot pattern. In `73.jpg` the five centers, sorted by x, are `(873.267,2517.000)`, `(921.154,2708.061)`, `(1103.931,2447.221)`, `(1408.066,2747.282)`, `(1603.926,2686.500)`.
 
-A second control compares thresholded 89×89-pixel patches centered on each corresponding dot, flipped back to the source orientation. The five Jaccard pixel-overlap scores are `1,1,1,1,0.99736` for image 40 and `0.96938,0.95626,0.97796,0.96122,0.97768` for image 73. This distinguishes a reused graphical stencil from an accidental approximate arrangement of five circles. Differences in image 73 are compatible with JPEG rasterization and minor positioning shifts.
+A second control compares thresholded 89×89-pixel patches centered on each corresponding dot, flipped back to the source orientation. The five Jaccard pixel-overlap scores are `1,1,1,1,0.99736` for image 40 and `0.96938,0.95626,0.97796,0.96122,0.97768` for image 73 from image24. The direct image40→image73 half-turn fit has scores `0.96938,0.95626,0.97796,0.96122,0.98024`. This distinguishes a reused graphical stencil from an accidental approximate arrangement of five circles. Differences are compatible with JPEG rasterization and minor positioning shifts.
 
 The three dots in `50.jpg` lie at `(766.221,1743.931)`, `(1183.846,1743.939)`, `(1662.000,1743.939)`, making a separate horizontal element.
 
 ## Consequence for cryptanalysis
 
-The five-point geometry is **reused artwork**, and the change of orientation is a concrete observable manuscript choice. Treating every five-dot coordinate as a fresh independent set of cipher parameters would be incorrect. The two single-axis reflections and the unobserved double-axis reflection supply a small, testable orientation vocabulary, but **no evidence currently identifies an encoding, associates orientations with a cryptographic key, or specifies a reading order**. Page 56 is already solved, providing a possible authentic-control location for a future key hypothesis.
+The five-point geometry is **reused artwork**, and the change of orientation is a concrete observable manuscript choice. Treating every five-dot coordinate as a fresh independent set of cipher parameters would be incorrect. The three pairwise relations form a complete small orientation family: p7/p23 vertical reflection, p7/p56 horizontal reflection, and p23/p56 half-turn. The half-turn pair is unique among the three, but **no evidence identifies an encoding, associates orientations with a cryptographic key, or specifies a reading order**. Page 56 is already solved, providing a possible authentic-control location for a future key hypothesis. The familywise page-rise/word-register audit is in im-results/lp2-p23-p56-p33-their-rise-loop.md.
 
 This finding does not show whether the illustrations were inserted by the Cicada designer as a cipher clue or by a later layout/template operation. The strongest direct inference is one exact underlying five-dot stencil rendered in at least three orientations/positions.
 
@@ -62,4 +65,4 @@ Reproduce all scores and the exact null with `node sims/black_dot_constellation_
 
 ## Reproduce
 
-Run `python sims/black_dot_reflection.py` from repository root after installing `numpy` and `opencv-python-headless`. The script uses only the tracked original image bytes, reads all 58 LP2 scans, asserts the exact dot census, searches orientations and all 120 assignments, compares local binary pixel masks, and emits the full center coordinates and errors in deterministic JSON. Native image files stay unmodified.
+Run `python sims/black_dot_reflection.py` from repository root after installing `numpy` and `opencv-python-headless`. The script uses only the tracked original image bytes, reads all 58 LP2 scans, asserts the exact dot census, tests all three pairings across all four axis-sign orientations and all 120 assignments, compares local binary pixel masks, and emits the full center coordinates and errors in deterministic JSON. Native image files stay unmodified.

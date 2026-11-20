@@ -1,6 +1,6 @@
 # p23 five-dot / prime-totient route to `THE ORIGIN` and candidate page-rise extension
 
-**Agent5, 19 November 2026. Classification: source-constrained hidden-layout candidate. The local packet yields `THE ORIGIN`; the p23/p56 half-turn page rise supplies a separate source-visible route to p33, and applying T to physical page labels23/33 as positive cardinals yields candidate `AL`. That page-label serializer is post-discovery and not an explicit Cicada instruction. The DH B→p50 pointer is a separate conditional convergence, not required to obtain p33. This does not decrypt p23 body ciphertext or recover a general LP2 cipher. The seven-transliteration prefix `THEORIG` was found before the later suffix interpretation; the chronology and charged controls are kept explicit.**
+**Agent5, 19 November 2026. Classification: source-constrained hidden-layout candidate. The local packet yields `THE ORIGIN`; the p23/p56 half-turn page rise is a retrospective cross-check to p33, not an independently selected page/operation. Applying T to physical page labels23/33 as positive cardinals yields candidate `AL`. That page-label serializer is post-discovery and not an explicit Cicada instruction. The DH B→p50 pointer is a separate conditional convergence, not required to obtain p33. This does not decrypt p23 body ciphertext or recover a general LP2 cipher. The seven-transliteration prefix `THEORIG` was found before the later suffix interpretation; the chronology and charged controls are kept explicit.**
 
 ## 1. Source selector and fixed serializer
 
@@ -153,7 +153,7 @@ The p7→p23 / p23→p56 stencil relations identify p23 and solved p56 as a half
 56 - 23 = 33
 ```
 
-The p33 layout independently yields `THEIR RISE`, giving a source-visible referent for the numerical rise33. If the physical page labels23 and33 are treated as positive one-based cardinal inputs to the fixed serializer (a post-discovery operation choice, not an explicit Cicada instruction):
+The p33 layout independently yields `THEIR RISE`, giving a source-visible referent for the numerical rise33. A familywise audit of the only eligible five-dot pages p7, p23 and p56 finds pairwise differences 16, 33 and 49: p7→p23 is a vertical reflection, p23→p56 a unique half-turn, and p7→p56 a horizontal reflection. Under the existing zero-based 43-word 2016 register, indices16 and33 begin the exact windows ARE THE MAP and WILL BE FOUND; index49 is out of range. Thus the 2016 register does not uniquely select the p23/p56 pair. Of the target pages p16, p33 and p49, only p33 has a red heading, but THEIR RISE is the already-known phrase and cannot be counted twice. The full familywise disposition is in im-results/lp2-p23-p56-p33-their-rise-loop.md. If the physical page labels23 and33 are treated as positive one-based cardinal inputs to the fixed serializer (a post-discovery operation choice, not an explicit Cicada instruction):
 
 ```text
 T(23) = A
@@ -167,7 +167,7 @@ Appending those two already-forced page cardinals to the p23 packet gives
  -> THE ORIGINAL
 ```
 
-The strongest source-local result is `THE ORIGIN`. `THE ORIGINAL` is a conditional extension of the separate p23/p56 page-rise relation: page labels23 and33 are fed to T as positive cardinals, yielding `AL`. This is a plausible source-structural interpretation, but the page-label-to-cardinal operation was not explicitly specified by Cicada and was recognized post-discovery. The DH-derived B→p50[19]→base60→33 pointer is a separate conditional convergence, not the source of page33; the p50 cell0 check is likewise conditional on the p57-derived register.
+The strongest source-local result is `THE ORIGIN`. `THE ORIGINAL` is a conditional extension of the separate p23/p56 page-rise relation: page labels23 and33 are fed to T as positive cardinals, yielding `AL`. This is a plausible source-structural interpretation, but the page-label-to-cardinal operation was not explicitly specified by Cicada and was recognized post-discovery. The familywise audit retains the measured half-turn but retires page-rise as an operational selector: the 2016 register has a competing index16 phrase, the p33 heading is already known, and no new reversible receiver follows. The DH-derived B→p50[19]→base60→33 pointer is a separate conditional convergence, not the source of page33; the p50 cell0 check is likewise conditional on the p57-derived register.
 
 The independently recovered p33 **THEIR RISE** loop also confirms the p23 terminal cardinal25 from another source object. Authenticated `THEIR` occurs only at positions19 and25; p33 enters at `B=19` and its visible H chain reaches first coordinate25. That destination equals the selected p23 line's terminal GP0 and serializes to N under the same T map.
 

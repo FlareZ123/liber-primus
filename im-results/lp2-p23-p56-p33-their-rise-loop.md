@@ -1,159 +1,68 @@
-# P23 / p56 half-turn pair numerically closes on p33 THEIR RISE
+# P23 / p56 five-dot half-turn: familywise page-rise audit
 
-**Agent50, 19 November 2026. Classification: source-visible cross-page closure. This result identifies a concrete referent for p33 `THEIR` and a concrete numerical meaning for `RISE`. It does not decrypt unknown body text.**
+**Agent5, 20 November 2026. Classification: negative as an operational page selector; exact artwork geometry retained as a retrospective cross-check. No LP2 plaintext, key, or reversible cipher receiver recovered.**
 
-## Closure
+## Frozen source data
 
-Three independently established observations form a closed loop:
+The original LP2 image census uses the same fixed registration and component gate as sims/black_dot_reflection.py: native 2400×3600 JPEGs 17.jpg–74.jpg, grayscale below 70, connected components 60–80 px in both dimensions, 2,900–3,800 dark pixels, and occupied fraction at least 0.55.
 
-1. Original p23 and solved p56 reuse the same five-dot stencil under a half-turn relation.
-2. P23's red four-word heading decodes to `THE ONE RISE` using the solved-p56 prime-totient cardinal map with forward H on each adjacent word-length pair.
-3. The physical page-number rise between the half-turn pair is:
+Exactly three LP2 pages contain the eligible five-dot stencil: physical p7 (image24), p23 (image40), and solved p56 (image73). Image50 / p33 has three collinear horizontal dots, a different motif; no other LP2 page has an eligible five-dot component set under this fixed gate.
 
-```text
-56 - 23 = 33
-```
+## Complete pairwise orientation census
 
-Physical p33 independently decodes:
+All three unordered pairs were tested directly, searching all four axis-sign orientations and all 5! point correspondences, then checking the registered 89×89 thresholded dot masks:
 
-```text
-THEIR RISE
-```
+| Source → target | Physical pages | Best orientation | RMS center error | Next-best orientation RMS | Page difference |
+|---|---|---|---:|---:|---:|
+| image24 → image40 | p7 → p23 | vertical reflection (+1,−1) | 0.036832 px | 150.436 px | 23−7 = 16 |
+| image24 → image73 | p7 → p56 | horizontal reflection (−1,+1) | 0.246264 px | 150.361 px | 56−7 = 49 |
+| image40 → image73 | p23 → p56 | 180° half-turn (−1,−1) | 0.263633 px | 150.382 px | 56−23 = 33 |
 
-Thus the visually paired pages themselves give an exact referent:
+For the direct p23→p56 fit, maximum center error is 0.346301 px and the five matched-dot mask IoUs are 0.969376, 0.956259, 0.977965, 0.961216, 0.980238. The half-turn is therefore directly measured, not merely inferred by composing the two p7 reflections. It is the only half-turn pair among the three eligible pages; p7→p23 and p7→p56 are single-axis reflections.
 
-```text
-THEIR = p23 and p56
-RISE  = 56 - 23
-THEIR RISE = 33
-```
+The reverse directed differences are −16, −33, and −49. They are all outside the nonnegative 2016 word-register index range.
 
-and the result points to the very page carrying the phrase.
+## Charge against the authenticated 2016 word register
 
-## Why p23 and p56 are a specific pair
+Use the existing 43-word core register and its established zero-based indexing from im-results/lp2-signed2016-word-position-dh.md and sims/lp2_signed2016_word_position_dh_sft.cjs. The parser keeps the initial Hello and the final alphabetic Verify/OpenPGP words, while excluding the numeric 3301 and hexadecimal fingerprint.
 
-The existing original-image stencil census found large five-dot components on p7, p23, and solved p56.
+The three forward pair differences give:
 
-Relative to the p7 template:
+| Pair | Difference / zero-based word index | Word | Three-word window |
+|---|---:|---|---|
+| p7 → p23 | 16 | ARE | ARE THE MAP |
+| p23 → p56 | 33 | WILL | WILL BE FOUND |
+| p7 → p56 | 49 | out of range | — |
 
-- p23 is the exact vertical reflection;
-- p56 is the exact horizontal reflection.
+The two in-range windows are both exact phrases in the authenticated message: “Its words are the map” and “Seek and you will be found.” Thus the word-register test does not uniquely select the p23/p56 pair: the p7/p23 reflection supplies a competing exact window. The p23/p56 half-turn is unique as a geometric orientation, but the 2016 register alone does not make its page difference a unique word hit.
 
-Composing those two single-axis reflections makes p23 and p56 a half-turn pair. This relation motivated an earlier p23-to-p56 transfer test before the hidden title message in this report was known.
+The p23/p56 window at index33 is a previously unselected cross-register check: WILL BE FOUND occupies word positions 33–35, and the existing p33 continuation work independently has p34 BE and p35 FOUND handoffs. This is consistent with the route, but those p34/p35 results were already known; it is not a blind holdout or a new unknown-page decryption.
 
-P23 and p56 also share a second relation unavailable to p7: the p23 hidden heading is decoded with the solved-p56 cardinal mechanism itself.
+## Original LP2 page-heading check
 
-The p7 red five-word span does not yield an English instruction under the small adjacent or outside-in odd-pair H/H-inverse extensions tested in this invocation. This is a control rather than proof that p7 is irrelevant.
+The three difference targets are physical p16, p33, and p49:
 
-Upstream visual evidence:
-`im-results/black-dot-template-reflections.md`.
+- p16 / image33 has no red title heading.
+- p33 / image50 has the already-known red title decoded by the solved-p56 serializer as THEIR RISE.
+- p49 / image66 has a red 13-dot marker but no red title heading.
 
-## P23 title reconstruction
+P33 is the only target with a red heading, but THEIR RISE is the phrase that originally motivated this closure. It cannot be counted again as the independent consequence required to promote the page-rise route. The additional WILL BE FOUND register window is a cross-check, not a unique new LP2 heading or receiver; the competing ARE THE MAP window remains in the charged family.
 
-P23's red heading contains four printed words with lengths:
+## Decision
 
-```text
-[2,6,3,5]
-```
+The original artwork independently establishes a real three-page stencil family and a unique p23/p56 half-turn pair. It does **not** independently specify subtracting the physical page labels, choosing the positive direction, or indexing the 2016 word register by the difference. “RISE” on p33 supplies the subtraction interpretation only after the p33 phrase is known. The familywise register check produces two exact phrase windows (indices16 and33), not one unique hit; the only unique page-heading match is the already-known p33 phrase.
 
-Pair them in printed order. Extend each pair with the frozen forward H map:
+Therefore the route does identify p33 as a retrospective geometric cross-reference, but it does not meet the issue's standard for a new source-selected page/operation selector. The page difference is navigation arithmetic, not a reversible cipher operation. No original-cipher receiver, unknown plaintext, or key follows.
 
-```text
-H(2,6) = [25,8]
-H(3,5) = [27,8]
-```
+**Negative under the issue's completion criteria.** Retain the measured p7/p23/p56 stencil relations and the 2016 word-window cross-check as intermediate evidence. Retire page-rise as an operational selector; do not continue page-rise arithmetic or create a new p33 continuation task from this result. The p33 +2→p35 FOUND route and the separate p33 body-count→p34 BE route remain local navigation results, not validation of this page-rise selector.
 
-The solved-p56 cardinal map is:
+## Separate p39 false branch (unchanged)
 
-```text
-T(n) = prime[n-1] - 1 mod29
-```
+The signed-source word THEIR occurs at zero-based positions 19 and 25; their difference is 6. The separate local reading p33 + 6 = p39 lands on signed word39 FALSE, and original p39 carries a giant red X. The optional p50[19] = 0X → base60 33 cross-check is conditional on the p50 register and is not required for this false-branch observation. Preserve this as a separate false-path interpretation; it does not authenticate the p23/p56 page-rise operation.
 
-so:
+## Reproduction
 
-```text
-T([2,6,25,8]) = THEONE
-T([3,5,27,8]) = RISE
-```
-
-giving:
-
-```text
-THE ONE RISE
-```
-
-A charged red-span family over every comparable printed red span and every per-pair choice of H versus H-inverse contains one exact `THEONERISE` output, p23 start0 with modes `[H,H]`.
-
-## P33 title reconstruction
-
-P33's two red title pairs are:
-
-```text
-[2,8]
-[3,5]
-```
-
-Under the already published polarities:
-
-```text
-[2,8] + H-inverse -> THEIR
-[3,5] + H         -> RISE
-```
-
-giving:
-
-```text
-THEIR RISE
-```
-
-The newly identified p23/p56 pair supplies a literal antecedent for the pronoun `THEIR`. The half-turn stencil provides the pairing; page-number subtraction provides the rise; the result is exactly33.
-
-## Relationship to the p35 FOUND route
-
-This closure changes the interpretation of p33 without invalidating the independently observed p35 route.
-
-The p33 lower title still generates RISE from the ordered numbers `3,5`, whose local difference is +2:
-
-```text
-5 - 3 = 2
-p33 + 2 = p35
-signed word35 = FOUND
-```
-
-After p35 was selected, its held-out word-level structure produced the manuscript's unique adjacent mutual p50-low GP0 cycle `36 <-> 54`, matching FOUND to ROAD/PATHS and resolving to ROAD under the frozen direction graph.
-
-The evidence therefore supports two distinct roles for RISE:
-
-- **cross-page self-authentication:** the p23/p56 stencil pair rises by33, identifying p33 and explaining `THEIR`;
-- **local navigation:** the two printed numbers that generate the word RISE differ by2, selecting p35 FOUND.
-
-Both readings are source constrained. The first now supplies the stronger interpretation of `THEIR`.
-
-## Relationship to the p39 false branch
-
-The signed word `THEIR` also occurs twice, at indices19 and25. Their difference is6. A separate conditional p50-register cross-check reads `p50[19]=0X` as base60 33; this corroborates the already source-derived page rise but is not required to select p33:
-
-```text
-p33 + 6 = p39
-signed word39 = FALSE
-```
-
-Original p39 also carries a giant red X.
-
-With the p23/p56 referent now available, the signed-word-occurrence interpretation is even better treated as a deliberate false-path reading. It consumes a plausible antecedent for `THEIR`, then lands on the source's own rejection label.
-
-## Consequence
-
-Use the p23/p56 half-turn pair as the primary referent when interpreting `THEIR RISE`.
-
-Preserve the p33 +2 -> p35 FOUND route as a separately validated local navigation operation.
-
-The next productive question is what `THE ONE RISE` says to do after it identifies the p23/p56 relationship. Candidate interpretations should consume visible properties of that pair, such as the half-turn orientation, the one-versus-two large red stroke motif, or the unique numerical rise33, and should predict a new target before inspection.
-
-## Reproduction and upstream evidence
-
-- `sims/lp2_p33_p35_found_road_map_sft.cjs`
-- `im-results/lp2-p33-p35-found-road-map.md`
-- `im-results/black-dot-template-reflections.md`
-- `sims/black_dot_reflection.py`
-- `sims/lp2_p33_totient_hidden_text_sft.cjs`
+- Complete original-image pairwise fit: sims/black_dot_reflection.py.
+- Authenticated 2016 word positions: sims/lp2_signed2016_word_position_dh_sft.cjs and im-results/lp2-signed2016-word-position-dh.md.
+- Original images: resources/liber-primus/24.jpg, 33.jpg, 40.jpg, 50.jpg, 66.jpg, 73.jpg.
+- Existing p33 title and local continuation: im-results/lp2-p33-layout-family-their-rise.md and im-results/lp2-p33-p35-found-road-map.md.
