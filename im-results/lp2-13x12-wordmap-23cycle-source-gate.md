@@ -315,6 +315,43 @@ The 2016 message supplies no modulus, index origin, extraction position, word/ru
 
 [Full-cycle p32 readout and original-source assertions are included in the focused SFT](../sims/lp2_13x12_wordmap_p32_withheld_readout_sft.cjs), which passed in Node 22 on [manual run 44179939759](https://github.com/FlareZ123/liber-primus/actions/runs/44179939759). The passing run verifies the cycle, six-position phase relation, complete p32 readout, and original punctuation/word-count assertions.
 
+## Self-keyed p0–2 receiver gate (Agent40, 20 November)
+
+The most direct untested receiver for the 156-word map is its own 716-rune p0–2 black-body stream. The 23-cycle is therefore a self-keyed hypothesis. The p57 red 23-dot mark makes the cycle length plausible, the 2016 signed message supplies the word-map instruction, and the solved p56 cipher supplies a concrete additive/F-transparent operation. This is a bounded test of that route, not a general key search.
+
+I froze two encodings of the 23 cycle's original GP-prime word sums:
+
+- **23-symbol key:** each sum reduced modulo 29.
+- **46-symbol BASE29 key:** each sum represented as two fixed-width base29 digits, high digit then low digit. This is a candidate serialization of the signed 2013 BASE29 instruction, not an independently authenticated key format.
+
+The receiver is the original p0–2 black-body stream: p0's 13 red heading runes are excluded, then pages 0–2 are concatenated in printed order. It contains **716 runes**, including **33 ciphertext F** symbols. The 23-cycle itself is recomputed from the original 156 body words and GP-prime values; the second red heading enters the same cycle six places after the first.
+
+At ciphertext F, the inverse DP retains both legal branches: literal plaintext F with no key advance, or a non-F ordinary inverse with key advance. A non-F ciphertext may not decrypt to plaintext F. I tested both additive signs, both source-derived heading starts, and the obvious body-clock phases: phase 0 (reset at black body), phase 13 (red heading consumes the key), and, for the 23-symbol key only, phase 3 as a sensitivity case if the 13-dot marker also consumes 13 key steps.
+
+**23-symbol modulo-29 key — first impossible body offset, zero-based:**
+
+| Cycle start | Inverse | Phase 0 | Phase 13 | Phase 3 (marker consumed) |
+|---|---|---:|---:|---:|
+| First heading | P=C−K | 27 | 13 | 28 |
+| First heading | P=C+K | 162 | 3 | 126 |
+| Second heading (rotate 6) | P=C−K | 100 | 21 | 22 |
+| Second heading (rotate 6) | P=C+K | 126 | 40 | 17 |
+
+**46-symbol fixed-width BASE29 key — first impossible body offset, zero-based:**
+
+| Cycle start | Inverse | Phase 0 | Phase 13 |
+|---|---|---:|---:|
+| First heading | P=C−K | 41 | 32 |
+| First heading | P=C+K | 257 | 216 |
+| Second heading (rotate 12 digits) | P=C−K | 3 | 21 |
+| Second heading (rotate 12 digits) | P=C+K | 19 | 3 |
+
+Every original-ciphertext variant dies before the 716-rune stream ends; the largest surviving key-phase set never exceeds five. Synthetic 716-rune positive controls recover complete legal paths for both key lengths and both signs, confirming that the DP correctly handles transparent F and key advancement.
+
+**Decision:** reject the direct additive transfer of this 23-cycle to its own p0–2 body under both the simple modulo-29 and fixed-width BASE29 key encodings. No plaintext is recovered. Do not retune the key order, digit endianness, phases, or cipher layer. This does not rule out a non-additive or navigational use of the 23-cycle; it closes the most direct self-keyed p0–2 receiver.
+
+Reproducer: [sims/lp2_13x12_wordmap_23cycle_p0body_key_gate.cjs](../sims/lp2_13x12_wordmap_23cycle_p0body_key_gate.cjs).
+
 ## Weakest premise and next decisive work
 
 The core pointer graph's weakest step remains the unselected **`GPPrimeSum(word) mod156`** index rule. The additional **p50 compass continuation is now retired**: it depends on unselected byte and coordinate conventions, the full 23-step readout is nonlinguistic, and both red headings necessarily have the same toroidal endpoint regardless of order. The 2016 and p32 trees are distinct stock assets, and no printed 11×11 p32 square or compass instructions select this navigation.
