@@ -1,10 +1,20 @@
-name: Agent31 source-authentic 2014 Stage07 audio metadata (manual)
+name: Agent31 source-authentic 2014 Stage07 audio checks (manual)
 on:
   workflow_dispatch:
+    inputs:
+      mode:
+        description: Choose the independent metadata audit or full signed-hex and OpenPuff chain reproduction.
+        type: choice
+        required: true
+        default: id3-metadata
+        options:
+          - id3-metadata
+          - signed-hex-openpuff
 permissions:
   contents: read
 jobs:
   original-stage07-id3:
+    if: ${{ inputs.mode == 'id3-metadata' }}
     runs-on: windows-latest
     timeout-minutes: 20
     steps:
@@ -35,3 +45,183 @@ jobs:
           name: stage07-original-id3-source-crib
           path: ${{ runner.temp }}/stage07_source_id3_crib_result.json
           if-no-files-found: warn
+
+  signed-stage07-chain:
+    if: ${{ inputs.mode == 'signed-hex-openpuff' }}
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: 'x86'
+      - name: Install native OpenPuff and OpenPGP verification dependencies
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python -c "import struct; assert struct.calcsize('P') == 4, 'OpenPuff requires 32-bit Python'"
+          python -m pip install --disable-pip-version-check pywinauto Pillow filelock
+          if (-not (Get-Command gpg -ErrorAction SilentlyContinue)) {
+            choco install gnupg -y --no-progress
+          }
+          gpg --version
+          New-Item -ItemType Directory -Force -Path probe-output/stage07-source | Out-Null
+          New-Item -ItemType Directory -Force -Path probe-output/stage07-openpuff | Out-Null
+
+      - name: Retrieve both pinned Stage07 archive copies and verify exact source objects
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $sourceRoot = Join-Path $env:RUNNER_TEMP 'stage07-source'
+          New-Item -ItemType Directory -Force -Path $sourceRoot | Out-Null
+          $cijhho = 'https://raw.githubusercontent.com/cijhho123/cicada3301/d360ad97d39c4719e42dc88b0cbbb81ed54aa02c/assets/2014/stage07'
+          $scream = 'https://raw.githubusercontent.com/scream314/cicada3301/10733feb487bb8beb9966d534727ee5897aa54fc/assets/2014/stage07'
+          $objects = @(
+            @{ name = 'cijhho-signed.html'; url = "$cijhho/q4utgdi2n4m4uim5.onion/index.html"; size = 13526359; blob = 'afb1ae7b8ffe2def6d1cd7a2f7ce961e550331b9' },
+            @{ name = 'scream314-signed.html'; url = "$scream/q4utgdi2n4m4uim5.onion/index.html"; size = 13526359; blob = 'afb1ae7b8ffe2def6d1cd7a2f7ce961e550331b9' },
+            @{ name = 'cijhho-index.mp3'; url = "$cijhho/index.mp3"; size = 6651873; blob = '09fe068192b76a3697c47ec1d604b527703db798' },
+            @{ name = 'scream314-index.mp3'; url = "$scream/index.mp3"; size = 6651873; blob = '09fe068192b76a3697c47ec1d604b527703db798' },
+            @{ name = 'cijhho-magicsquares.txt'; url = "$cijhho/magicsquares.txt"; size = 721; blob = 'bc26dcc8bf6c6da12fa16006374831225fe225da' },
+            @{ name = 'scream314-magicsquares.txt'; url = "$scream/magicsquares.txt"; size = 745; blob = '0cff0a94f16a8603443619b6338def411c9f7bd5' }
+          )
+          foreach ($item in $objects) {
+            $path = Join-Path $sourceRoot $item.name
+            curl.exe --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 $item.url --output $path
+            if ($LASTEXITCODE -ne 0) { throw "Download failed: $($item.url)" }
+            $length = (Get-Item -LiteralPath $path).Length
+            $blob = (& git hash-object -- $path).Trim().ToLowerInvariant()
+            if ($LASTEXITCODE -ne 0 -or $length -ne $item.size -or $blob -ne $item.blob) {
+              throw "Pinned Stage07 object mismatch: $($item.name), size=$length, blob=$blob"
+            }
+            $sha256 = (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash.ToLowerInvariant()
+            Write-Host "SOURCE_OBJECT $($item.name) bytes=$length git_blob=$blob sha256=$sha256"
+          }
+
+      - name: Verify both Cicada signatures and recover their exact signed hex bodies
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $sourceRoot = Join-Path $env:RUNNER_TEMP 'stage07-source'
+          $evidenceRoot = Join-Path $env:GITHUB_WORKSPACE 'probe-output/stage07-source'
+          $gpgHome = Join-Path $env:RUNNER_TEMP 'stage07-gnupg'
+          New-Item -ItemType Directory -Force -Path $gpgHome | Out-Null
+          $env:GNUPGHOME = $gpgHome
+          $key = Join-Path $env:GITHUB_WORKSPACE 'resources/cicada-3301-authentic-public-key.asc'
+          & gpg --homedir $gpgHome --batch --import $key
+          if ($LASTEXITCODE -ne 0) { throw 'Could not import the repository-pinned Cicada public key' }
+          $keyLines = & gpg --homedir $gpgHome --batch --with-colons --fingerprint --list-keys
+          $fprLine = $keyLines | Where-Object { $_.StartsWith('fpr:') } | Select-Object -First 1
+          if (-not $fprLine) { throw 'Imported Cicada public key has no fingerprint record' }
+          $fingerprint = $fprLine.Split(':')[9].ToUpperInvariant()
+          if ($fingerprint -ne '6D854CD7933322A601C3286D181F01E57A35090F') {
+            throw "Unexpected Cicada signing-key fingerprint: $fingerprint"
+          }
+          foreach ($label in @('cijhho','scream314')) {
+            $page = Join-Path $sourceRoot "$label-signed.html"
+            $verifyStatus = Join-Path $evidenceRoot "$label.verify.status"
+            $verifyError = Join-Path $evidenceRoot "$label.verify.stderr"
+            & gpg --homedir $gpgHome --batch --status-fd 1 --verify $page 1> $verifyStatus 2> $verifyError
+            if ($LASTEXITCODE -ne 0) { throw "PGP signature verification failed for $label signed page" }
+            $pattern = '^\[GNUPG:\] VALIDSIG ' + $fingerprint + '(\s|$)'
+            if (-not (Select-String -LiteralPath $verifyStatus -Pattern $pattern -Quiet)) {
+              throw "GPG did not report the expected Cicada VALIDSIG for $label"
+            }
+            $hex = Join-Path $sourceRoot "$label-cleartext.hex"
+            $decryptStatus = Join-Path $evidenceRoot "$label.decrypt.status"
+            $decryptError = Join-Path $evidenceRoot "$label.decrypt.stderr"
+            & gpg --homedir $gpgHome --batch --yes --status-fd 1 --output $hex --decrypt $page 1> $decryptStatus 2> $decryptError
+            if ($LASTEXITCODE -ne 0) { throw "GPG cleartext recovery failed for $label" }
+            if (-not (Select-String -LiteralPath $decryptStatus -Pattern $pattern -Quiet)) {
+              throw "GPG cleartext recovery did not report the expected Cicada VALIDSIG for $label"
+            }
+            Write-Host "VALIDSIG $fingerprint for $label; recovered signed cleartext body"
+          }
+
+      - name: Retrieve and verify the historical OpenPuff v4.00 executable and DLL
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $base = 'https://raw.githubusercontent.com/codejanus/ToolSuite/1eaf6d006d31ba842f6cc6b16e9d82dbf904aaf5/OpenPuff'
+          $folder = Join-Path $env:RUNNER_TEMP 'OpenPuff-v400-stage07'
+          New-Item -ItemType Directory -Force -Path $folder | Out-Null
+          $expected = @{
+            'OpenPuff.exe' = '466e03c792075313ce533a5dc7a789e8a41209f9'
+            'libObfuscate.dll' = 'f3b1c3315f8286346416fefd6141410f422f2454'
+            'OpenPuff_license.txt' = 'b0bab97d3c9906caada26fbb890a2a6fe028baa4'
+          }
+          foreach ($name in $expected.Keys) {
+            $path = Join-Path $folder $name
+            curl.exe --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 "$base/$name" --output $path
+            if ($LASTEXITCODE -ne 0) { throw "OpenPuff dependency download failed: $name" }
+            $blob = (& git hash-object -- $path).Trim().ToLowerInvariant()
+            if ($LASTEXITCODE -ne 0 -or $blob -ne $expected[$name]) { throw "Pinned OpenPuff blob mismatch: $name" }
+          }
+          $version = (Get-Item (Join-Path $folder 'OpenPuff.exe')).VersionInfo
+          $versionText = "$($version.FileMajorPart).$($version.FileMinorPart).$($version.FileBuildPart).$($version.FilePrivatePart)"
+          if ($versionText -ne '4.0.0.0') { throw "Unexpected OpenPuff version: $versionText" }
+          if (-not (Select-String -LiteralPath (Join-Path $folder 'OpenPuff_license.txt') -Pattern 'OpenPuff v4.00' -Quiet)) {
+            throw 'Pinned OpenPuff license does not identify v4.00'
+          }
+          "OPENPUFF_EXE=$(Join-Path $folder 'OpenPuff.exe')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Run original OpenPuff v4.00 with the published Stage07 settings
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $sourceRoot = Join-Path $env:RUNNER_TEMP 'stage07-source'
+          $mp3 = Join-Path $sourceRoot 'cijhho-index.mp3'
+          $pyArgs = @(
+            '--exe', "$env:OPENPUFF_EXE",
+            '--carrier', "$mp3",
+            '--password', '33011033',
+            '--bit-format', 'Mp3 (Audio)',
+            '--bit-level', '1/2 (50%) - Maximum',
+            '--out', 'probe-output/stage07-openpuff',
+            '--output-name', 'magicsquares.txt',
+            '--wait-seconds', '60',
+            '--expected-crc32', '6A8C41E3',
+            '--expected-size', '745'
+          )
+          python sims/openpuff_v400_extract.py @pyArgs
+          if ($LASTEXITCODE -ne 0) { throw 'Native OpenPuff v4.00 extraction driver failed' }
+          $result = Get-Content 'probe-output/stage07-openpuff/result.json' -Raw | ConvertFrom-Json
+          if (-not $result.carrier_added -or -not $result.bit_selection_verified -or -not $result.expected_match -or $result.native_probe_outcome -ne 'output-file') {
+            throw "Stage07 OpenPuff did not recover the expected payload: $($result.native_probe_outcome)"
+          }
+          $completed = @($result.completion_dialogs | Where-Object { $_.message -match '\b1\s*/\s*1\s+carriers?\s+processed\b' })
+          if ($completed.Count -eq 0) { throw 'OpenPuff did not witness native 1/1 carrier completion' }
+          Write-Host 'NATIVE OPENPUFF PASS: exact expected size/CRC output and 1/1 carrier completion'
+
+      - name: Verify the exact signed-hex inversion and 99-number OpenPuff payload
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $sourceRoot = Join-Path $env:RUNNER_TEMP 'stage07-source'
+          $sftArgs = @(
+            '--signed-a', (Join-Path $sourceRoot 'cijhho-signed.html'),
+            '--signed-b', (Join-Path $sourceRoot 'scream314-signed.html'),
+            '--mp3-a', (Join-Path $sourceRoot 'cijhho-index.mp3'),
+            '--mp3-b', (Join-Path $sourceRoot 'scream314-index.mp3'),
+            '--hex-a', (Join-Path $sourceRoot 'cijhho-cleartext.hex'),
+            '--hex-b', (Join-Path $sourceRoot 'scream314-cleartext.hex'),
+            '--verify-status-a', 'probe-output/stage07-source/cijhho.verify.status',
+            '--verify-status-b', 'probe-output/stage07-source/scream314.verify.status',
+            '--decrypt-status-a', 'probe-output/stage07-source/cijhho.decrypt.status',
+            '--decrypt-status-b', 'probe-output/stage07-source/scream314.decrypt.status',
+            '--magic-a', (Join-Path $sourceRoot 'cijhho-magicsquares.txt'),
+            '--magic-b', (Join-Path $sourceRoot 'scream314-magicsquares.txt'),
+            '--magic-local', 'resources/cicada2014-openpuff-magic-squares.txt',
+            '--openpuff-output', 'probe-output/stage07-openpuff/extracted/magicsquares.txt',
+            '--report', 'probe-output/stage07-source/reproduction.json'
+          )
+          python sims/stage07_signed_hex_chain_sft.py @sftArgs
+          if ($LASTEXITCODE -ne 0) { throw 'Stage07 source and payload reproducibility assertions failed' }
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: stage07-signed-hex-openpuff-reproduction
+          path: probe-output/
+          if-no-files-found: warn
+          retention-days: 30
