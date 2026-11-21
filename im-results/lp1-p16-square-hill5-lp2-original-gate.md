@@ -68,7 +68,7 @@ All sixteen outputs remain at the near-uniform ciphertext baseline; none exhibit
 
 The 25 p16 cells contain only **13 distinct numerical values**: twelve values occur twice at opposite positions under 180° rotation, and center **809** occurs once. The specific 25-position route below sorts cells by numeric value and **breaks the twelve ties by increasing original row-major cell index**. This tie-break is deterministic but **not specified by the source image**. This gate therefore tests one particular 25-position tie convention. A separate [13-orbit quotient and original p0 gate](lp1-p16-centrosym13-p0-red-orbit-gate.md) preserves the natural 12 pairs plus center. This is a materially different standard operation from Hill substitution. It is motivated by the square's literal 5×5 structure and the 2016 signed instruction that the book's numbers are a direction. The weakest assumption is that the table controls consecutive 25-rune blocks across LP2, rather than being only an earlier-stage answer.
 
-Two natural ways to fill the 5×5 block (row-major or column-major), each with direct ascending-rank read or inverse placement, were tested under book-global and physical-page-reset clocks. No phase, rotation, tie rule, padding, or language-fit parameter is involved; the square has no repeated values.
+Two natural ways to fill the 5×5 block (row-major or column-major), each with direct ascending-rank read or inverse placement, were tested under book-global and physical-page-reset clocks. No phase, rotation, padding, or language-fit parameter was fitted; numeric ties are broken by ascending original row-major cell index, which is a declared convention rather than a source instruction.
 
 The zero-based rank routes are:
 
