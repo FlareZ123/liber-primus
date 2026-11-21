@@ -174,6 +174,18 @@ assert.deepEqual(inferredTail, [180, 36, 189, 80]);
 assert.deepEqual(inferredTail, data.slice(252));
 assert.ok(inferredTail.every((n) => n < 256));
 
+// Read each mod29-syndrome carry pair as zero-based (row,column).
+// This source-typed operation is a hypothesis, not an authenticated command.
+const xy0 = [expectedCarry[0] * 8 + expectedCarry[1],
+  expectedCarry[2] * 8 + expectedCarry[3]];
+const xy1 = [(expectedCarry[0] - 1) * 8 + expectedCarry[1] - 1,
+  (expectedCarry[2] - 1) * 8 + expectedCarry[3] - 1];
+assert.deepEqual(xy0, [69, 122]);
+assert.deepEqual(xy0.map((i) => data[i]), [73, 86]);
+assert.equal(String.fromCharCode(...xy0.map((i) => data[i])), 'IV');
+assert.deepEqual(xy1, [60, 113]);
+assert.deepEqual(xy1.map((i) => data[i]), [106, 143]);
+
 const changed = data.slice();
 changed[0] += 29; // Still a valid byte; unchanged full mod29 factorization
 assert.ok(changed[0] <= 255);
@@ -199,10 +211,13 @@ function randomInt(bound) {
   return (seed >>> 0) % bound;
 }
 const trials = 300000;
-const counts = { exactFour: 0, exactH: 0, exactG: 0, allInDHSet: 0 };
+const counts = { exactFour: 0, exactH: 0, exactG: 0, allInDHSet: 0,
+  validXY: 0, bothUppercase: 0, bothRoman: 0, exactIV: 0 };
+const romanAlphabet = new Set('IVXLCDM');
 const dhSet = new Set([DH.p, DH.g, DH.a, DH.b, DH.A, DH.B, DH.K]);
 for (let t = 0; t < trials; t++) {
   const carrier = expectedCarry.slice();
+  const candidateValues = data.slice();
   for (const group of groups) {
     if (group.length < 2) continue;
     const lifts = group.map((item) => item.q);
@@ -213,6 +228,7 @@ for (let t = 0; t < trials; t++) {
     for (let j = 0; j < group.length; j++) {
       const delta = lifts[j] - group[j].q;
       if (delta === 0) continue;
+      candidateValues[group[j].index] += 29 * delta;
       const w = weight29[group[j].index];
       for (let k = 0; k < 4; k++) carrier[k] += delta * w[k];
     }
@@ -222,9 +238,21 @@ for (let t = 0; t < trials; t++) {
   if (carrier[2] === DH.b && carrier[3] === DH.K) counts.exactG++;
   if (carrier.every((n, i) => n === expectedCarry[i])) counts.exactFour++;
   if (carrier.every((n) => dhSet.has(n))) counts.allInDHSet++;
+  if (carrier[1] < 8 && carrier[3] < 8) {
+    counts.validXY++;
+    const left = candidateValues[8 * carrier[0] + carrier[1]];
+    const right = candidateValues[8 * carrier[2] + carrier[3]];
+    if (left === 73 && right === 86) counts.exactIV++;
+    if (left >= 65 && left <= 90 && right >= 65 && right <= 90) {
+      counts.bothUppercase++;
+      if (romanAlphabet.has(String.fromCharCode(left)) &&
+        romanAlphabet.has(String.fromCharCode(right))) counts.bothRoman++;
+    }
+  }
 }
 assert.deepEqual(counts, {
   exactFour: 1, exactH: 376, exactG: 348, allInDHSet: 1001,
+  validXY: 22726, bothUppercase: 399, bothRoman: 47, exactIV: 3,
 });
 
 console.log(JSON.stringify({
@@ -234,6 +262,7 @@ console.log(JSON.stringify({
   reverse73Carry: [27, 22, 23, 10],
   secondCarry29: [4, 13, 9, 18],
   inSampleTailReconstruction: inferredTail,
+  originalXYZeroBased: { indices: xy0, bytes: [73, 86], ASCII: 'IV' },
   null: { trials, seed: '0x3301bc23', counts },
-  interpretation: 'Retrospective correspondence; no source-selected LP2 inverse',
+  interpretation: 'Retrospective source-typed IV read; no source-selected LP2 inverse',
 }, null, 2));
