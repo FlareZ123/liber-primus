@@ -21,6 +21,20 @@ Freeze the seven-number set `{2,5,6,8,15,19,23}` and count membership across the
 
 The independent, later-proposed p28 `THE→DIRECTION` source-index navigation already conditionally selects p29 before testing the original page. If that navigation is independently authenticated, the endpoints become a possible *player-observable page-state clue*, rather than merely an arbitrary page selected from 55. But the original 2013 TCP source does **not** instruct its reader to interpret later LP2 page-edge rune words as ordered DH values, and p29 does not provide a cipher operand, clock/reset, or an unknown-body decoder.
 
+## Frozen original-cipher receiver: a 3×3 matrix fails
+
+The three printed source words naturally supply **nine numeric coordinates** in their historical/page order: p29 first word, p29 last word, then p39 red triple. Consider exactly one reversible, source-order Hill-3 hypothesis:
+
+```text
+M = [ 2 23  6 ]    M^-1 = [15 14 13]
+    [ 6  8 19 ]           [16  2 22]
+    [27  5 15 ]           [16  7  8]    (mod29)
+```
+
+The matrix has determinant **21 mod29**, so it is invertible. The original p39 ciphertext contains **240** runes; its source-marked three red runes are at offsets119–121. Exclude these key-bearing runes and read the remaining **237** as 79 consecutive three-rune blocks in original order, resetting the clock at p39 start. With original GP29 column vectors `C=M·P`, invert `P=M^-1·C mod29`. The exact unmodified p39 GP-index input scores IoC **0.0357219480798112**; the inverse yields **0.032789816205392265** and an incoherent opening (`U H S J B I E G J W D G U E P ...`). All 237 original runes forward-reencrypt exactly; an independent known-clear p57 plant round-trips **93/93**. This is a **bounded negative** for this one literal Hill consumer, and a source-derived matrix is **not thereby an authentic LP2 cipher key**. The source nowhere instructs concatenating the three words into matrix rows; no additional row/phase/receiver sweep is warranted.
+
+The [same consolidated SFT](../sims/lp2_p29_dh_word_bookend_sft.cjs) now reproduces both the boundary relationship and this full untouched original-p39 inverse/known-clear positive. No previously unknown original plaintext was obtained.
+
 ## Direct cryptanalytic consequence and limit
 
 The new observation makes one concrete receiver question sharper: **does a source-authored instruction select p29 first/last printed words as `[K,p,a] | [a,A,B]`, with p39's red `[-K,g,b]` fixing a reversible operation on an untouched p29 or neighboring passage?** Under this hypothesis all seven state integers and source locations are fixed before inspecting any body plaintext. A positive follow-up must identify a previously unseen original instruction that fixes **operator, orientation, interval, phase and key use** and must recover a substantial untouched original ciphertext passage, with exact forward replay and independent holdout. Further mere G-adic remainders or arbitrary DH-key sweeps are not a response.
