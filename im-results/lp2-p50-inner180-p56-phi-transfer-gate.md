@@ -116,3 +116,7 @@ The p56 positive control is complete, with terminal consumed-key counts 81–85.
 ## Decision and limit
 
 Reject the direct p56 prime-totient/F-transparent cipher as the decoder of the p50 inner-180 under the fixed historical start and the four natural traversals. This does not reject the structural perimeter/interior correspondence, a p50-derived key, another source-selected value operation, or a different use of the 180-cell object. Do not rescue this branch with arbitrary prime starts, custom permutations, or language-tuned exceptions.
+
+## DH-state five-value receiver control
+
+The source-derived p57→p28→p6/p7 DH state gives p=23, A=8, B=19, K=2. Its p6/p7 red-product packet is [A⁻¹,B⁻¹,A,K⁻¹,K] mod23 = [3,17,8,12,2]. As a narrow candidate consumer for the 180-cell interior, I reduced the base60 inner values mod29 and tested this period-5 packet under additive and multiplicative/inverse-multiplicative GP29 forms. IoCs are 0.03513, 0.03451, 0.03402 and 0.03371; none yields readable text. This rejects only these direct periodic consumers of the DH packet on p50 inner180; it does not falsify the DH-state reconstruction or other possible roles.
