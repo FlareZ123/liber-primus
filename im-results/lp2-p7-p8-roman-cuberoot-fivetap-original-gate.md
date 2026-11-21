@@ -81,3 +81,17 @@ Identically sized **source-native GP** windows from genuinely unrelated historic
 **Result:** exclude the complete full-book or floral-chapter always-advancing GP29-bijective fifth-order LFSR architecture specified by the p7 complete five-word product coefficients. The exclusion covers **all keys and all unknown periodic state substitution alphabets**, a much wider family than testing particular seeds. It **does not** exclude feedback-dependent key state, punctuation/transparent-F clock skips, different reset states, non-GP plaintext, or extra cryptographic layers.
 
 The [reproducible single-file Windows Node22 all-secret gate](../sims/lp2_p7_fiveproduct_lfsr1876_original_sft.cjs) checks the original red packet, polynomial factorization, entire state-matrix period, the untouched p0–p55 and p40–p53 originals, exact known-native encrypted plants, and source-native holdouts. Both original-cipher models in this consolidated note are now independently archived; neither recovers unknown-page plaintext. Future work should find an author-given **state update involving the ciphertext or a different output register**, if any, before investing in another p7-product-derived generator.
+
+## Stronger full-state exclusion for previous-ciphertext differential emission
+
+The original adjacent-equal-runic deficit motivates a self-synchronizing receiver. An independently testable adjacent-difference family is
+
+\[
+D_i=(C_i-C_{i-1})\bmod29=\pi_{K_i}(P_i),
+\]
+
+where \(P_i\) is a source-native plaintext GP symbol and \(\pi\) is **any secret bijection selected by the p7-defined LFSR state**. This covers arbitrary additive shifts, nonlinear symbol relabelings and the differential cipher \(C_i=C_{i-1}+\pi_{K_i}(P_i)\) whose ciphertext feeds the next output by integration. Here **equality of original first differences** at lag1,876 must equal plaintext symbol equality at the same lag for **every secret initial state and per-state alphabet**.
+
+Untouched original whole p0–p55 contains **389 of11,079** equal first-difference pairs at lag1,876; floral p40–p53 contains **41 of1,131**. Native source controls must be compared to plaintext **GP rune** equalities, *not* differences between native GP runes: nine original-length shifted Gibran controls yield622–726 equal rune pairs for the whole register and53–80 for floral; Shakespeare 610–692 and50–71; Emerson 648–727 and55–85; Latin Vulgate 756–844 and71–91. All exceed their untouched original counterparts. The test therefore rejects this **entire integrated, ciphertext-feedback family**, including every undisclosed 5-rune LFSR seed. A known-native affine-state differential encrypt/decrypt plant recovers all plaintext and satisfies the exact lag-invariance identity.
+
+This eliminates another plausible way to turn the source five-dot/no-repeat observation into a keyed differential stream. It does **not** exclude a cryptosystem whose future state changes in response to ciphertext or plaintext, whose schedule skips particular runes, or whose position resets independently. The key distinction is whether the **full key state repeats exactly after1,876 physical runes**. This section reports a motivated original-input exclusion rather than an unknown-page decryption.

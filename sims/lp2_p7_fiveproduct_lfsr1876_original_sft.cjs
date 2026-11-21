@@ -86,6 +86,12 @@ function lagEqual(x,lag){
 }
 const originalGlobal=lagEqual(unknown,1876);
 const originalFloral=lagEqual(floral,1876);
+/** @param {number[]} x */
+const ciphertextDifferences=x=>x.slice(1).map((value,i)=>mod(value-x[i]));
+const originalDifferenceGlobal=lagEqual(ciphertextDifferences(unknown),1876);
+const originalDifferenceFloral=lagEqual(ciphertextDifferences(floral),1876);
+assert.deepEqual([originalDifferenceGlobal.n,originalDifferenceGlobal.matches],[11079,389]);
+assert.deepEqual([originalDifferenceFloral.n,originalDifferenceFloral.matches],[1131,41]);
 assert.deepEqual([originalGlobal.n,originalGlobal.matches],
   [11080,375]);
 assert.deepEqual([originalFloral.n,originalFloral.matches],
@@ -128,6 +134,35 @@ const affineDecoded=affineEncoded.map((v,i)=>{
 assert.deepEqual(affineDecoded,firstNative);
 assert.deepEqual(lagEqual(affineEncoded,1876),lagEqual(firstNative,1876),
   'all-secret state-conditioned GP29 permutation preserves 1876-lag equality');
+/**
+ * Integrated differential family: C_i = C_(i-1) + sigma_(K_i)(P_i).
+ * Previous ciphertext can change arbitrarily. Taking one ciphertext
+ * difference removes it and restores the same repeated-state equality
+ * invariant, for EVERY secret bijective sigma and 29^5 seed choices.
+ */
+const differentialCipher=[];
+let previous=0;
+for(let i=0;i<firstNative.length;i++){
+  previous=mod(previous+bijectionAt(firstNative[i],keystream[i]));
+  differentialCipher.push(previous);
+}
+const emittedDifferences=ciphertextDifferences([0,...differentialCipher]);
+const differentialRecovered=emittedDifferences.map((delta,i)=>{
+  const k=keystream[i], a=1+(k*7)%28;
+  return mod(pow29(a,27)*mod(delta-k*11));
+});
+assert.deepEqual(differentialRecovered,firstNative);
+assert.deepEqual(lagEqual(emittedDifferences,1876),lagEqual(firstNative,1876),
+  'ciphertext first differences inherit the exact all-secret state equality invariant');
+const nativeDifferenceGlobal=[],nativeDifferenceFloral=[];
+for(let offset=0;offset<=40000;offset+=4000){
+  nativeDifferenceGlobal.push(lagEqual(native.slice(
+    offset+1,offset+unknown.length),1876));
+  nativeDifferenceFloral.push(lagEqual(native.slice(
+    offset+1,offset+floral.length),1876));
+}
+assert.ok(nativeDifferenceGlobal.every(x=>x.matches>originalDifferenceGlobal.matches));
+assert.ok(nativeDifferenceFloral.every(x=>x.matches>originalDifferenceFloral.matches));
 /** Disjoint native historical sources; exact data-derived gates, no threshold tuning. */
 const additionalSources=[
   ['Shakespeare','resources/control/shakespeare_first300k.txt'],
@@ -142,12 +177,20 @@ const additionalControls=additionalSources.map(([name,filename])=>{
     text.slice(offset,offset+unknown.length),1876));
   const floral=sampleOffsets.map(offset=>lagEqual(
     text.slice(offset,offset+3008),1876));
+  const globalDifference=sampleOffsets.map(offset=>lagEqual(
+    text.slice(offset+1,offset+unknown.length),1876));
+  const floralDifference=sampleOffsets.map(offset=>lagEqual(
+    text.slice(offset+1,offset+floral.length),1876));
   assert.ok(global.every(x=>x.matches>originalGlobal.matches));
   assert.ok(floral.every(x=>x.matches>originalFloral.matches));
+  assert.ok(globalDifference.every(x=>x.matches>originalDifferenceGlobal.matches));
+  assert.ok(floralDifference.every(x=>x.matches>originalDifferenceFloral.matches));
   return {name,calibratedRunes:text.length,
     sourceWindows:sampleOffsets.length,
     globalLag1876Same:global.map(x=>x.matches),
-    floralLag1876Same:floral.map(x=>x.matches)};
+    floralLag1876Same:floral.map(x=>x.matches),
+    globalLag1876DifferentialModelNativeTarget:globalDifference.map(x=>x.matches),
+    floralLag1876DifferentialModelNativeTarget:floralDifference.map(x=>x.matches)};
 });
 
 assert.ok(nativeGlobal.every(c=>c.matches>originalGlobal.matches));
@@ -166,6 +209,8 @@ console.log(JSON.stringify({
   untouchedOriginal:{
     global:originalGlobal,
     floralP40toP53:originalFloral,
+    integratedDifferentialGlobal:originalDifferenceGlobal,
+    integratedDifferentialFloralP40toP53:originalDifferenceFloral,
     globalHalfPeriod:lag938
   },
   stateKeyedPermutationPlant:{
@@ -174,14 +219,22 @@ console.log(JSON.stringify({
     plaintextExactlyRecovered:true,
     sameLag1876:lagEqual(affineEncoded,1876)
   },
+  integratedDifferentialPermutationPlant:{
+    family:'C_i=C_(i-1)+secret_state_bijection(P_i) modulo29',
+    originalLength:firstNative.length,
+    exactPlaintextRecovery:JSON.stringify(differentialRecovered)===JSON.stringify(firstNative),
+    repeatedPeriodEquality:lagEqual(emittedDifferences,1876)
+  },
   additionalIndependentNativeSources:additionalControls,
   sourceNativeControls:{
     author:'Kahlil Gibran',
     calibratedRunes:native.length,
     independentlyEncryptedRecovered:true,
     global:nativeGlobal,
-    floral:nativeFloral
+    floral:nativeFloral,
+    integratedDifferentialNativeGlobal:nativeDifferenceGlobal,
+    integratedDifferentialNativeFloral:nativeDifferenceFloral
   },
-  result:'No shared 1876-period, always-advancing arbitrary per-state GP29 bijection can explain native-language plaintext over the whole original or the p40-p53 chapter. Lag1876 equality is invariant under ALL 29^5 seed choices and all state-dependent secret bijections; this includes but is stronger than the additive pad case.',
-  limitation:'Recurrent plaintext/ciphertext feedback, clock skips, page-local resets with different unknown states, non-GP source alphabets or additional encryption remain possible. The 19th-prime correspondence does not prove creator intent.'
+  result:'No shared 1876-period, always-advancing secret GP29 bijection fits source-native plaintext in the whole book or p40-53, whether the emitted ciphertext is the current permuted rune or is the prior ciphertext plus the permuted rune. Raw and first-difference lag1876 equalities independently fail across all 29^5 keys and all secret per-state bijections.',
+  limitation:'History-dependent nonlinear feedback beyond fixed integrated differencing, clock skips, independent per-page resets, non-GP alphabets and additional layers remain possible. The 19th-prime correspondence does not prove creator intent.'
 },null,2));
