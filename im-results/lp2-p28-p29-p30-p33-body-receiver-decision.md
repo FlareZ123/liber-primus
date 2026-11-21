@@ -98,6 +98,12 @@ A final bounded semantic reading of signed `DIRECTION29 SEEK30 AND31 YOU32` trea
 
 Only **three** of all 121 original p32 positions qualify: zero-based **31, 66, 118**. Their unmodified p32 values are **[3,15,6] = O S G**, a three-glyph accidental-looking string that **fails the exact predeclared YOU target**. No alternative order, offset, length, page or interpolation is licensed. [Precommit](../workplace/agent5-p29-p30-coefficient-intersection-p32-precommit.md) `2245519` and [source-exact SFT](../sims/lp2_p29_p30_quotient_intersection_to_p32_sft.cjs) `c6007dd` preserve this decision. A sparse OSG match with no source-specified target is not authentic plaintext.
 
+## P15 characteristic-polynomial remainder versus authenticated WILL33
+
+The original signed p15 four-dimensional matrix defines the monic characteristic polynomial `F(X)=(X−8)(X−17)(X−24)^2=[1,14,27,10,7]` in high-first GF29 coefficients. The independently known p29 and p30 ciphertext factors divide its complementary quadratic pieces. The signed source sequence `DIRECTION29 SEEK30 AND31 YOU32 WILL33` therefore permits one fully specified short arithmetic gate: sum original page polynomials with constant terms aligned, reduce the result modulo F, and read the **four** high-first remainder coefficients as GP29 symbols. The predicted exact four-symbol target was precommitted as signed `WILL=[7,10,20,20]`.
+
+Original untouched p29 (277 runes) and p30 (263) instead give the exact four coefficient residues **[5,17,15,20]=C B S L**. This fails the frozen next-word gate. The operation is a canonical source-polynomial reduction, but its supposed message semantics are an exploratory interpretation; the observed `CBSL` does not establish any code. [Precommit](../workplace/agent5-p29-p30-p15-matrix-remainder-will-precommit.md) `767185a`, [CJS SFT](../sims/lp2_signed_will_p15_polynomial_remainder_sft.cjs) `9094dad`. No alternative target or coefficient order is claimed.
+
 ## Scope and successor criterion
 
 The prospective extension rejects this **one** source-motivated derivative-to-initials interpretation. It does not disprove every use of the p29 root or every historical Cicada operation. The smallest missing input is a first-party instruction specifying a **lossless** target interval, how the DH23 state and DIRECTION/WAY determine a complete receiver, and how output is serialized as GP29/plaintext. The existing signs and navigation words do not specify that information.
