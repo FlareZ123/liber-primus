@@ -67,6 +67,33 @@ function isIdentityAt(k){
   return true;
 }
 assert.ok(isIdentityAt(1876));
+/** Specificity control: exhaust every word-product coefficient order. */
+const alternatives=[];
+function enumerateOrders(x,k=0){
+ if(k===5){alternatives.push(x.slice());return;}
+ for(let i=k;i<5;i++){
+  [x[k],x[i]]=[x[i],x[k]];
+  enumerateOrders(x,k+1);
+  [x[k],x[i]]=[x[i],x[k]];
+ }
+}
+enumerateOrders(coeff.slice());
+assert.equal(alternatives.length,120);
+function orderReturnsAt1876(w){
+ for(let basis=0;basis<5;basis++){
+  const state=Array(5).fill(0);state[basis]=1;
+  for(let j=5;j<1881;j++)state.push(mod(w.reduce(
+    (s,v,k)=>s+v*state[j-k-1],0)));
+  for(let j=0;j<5;j++)if(state[1876+j]!==Number(j===basis))return false;
+ }
+ return true;
+}
+const eligiblePrintedOrders=alternatives.filter(orderReturnsAt1876);
+assert.deepEqual(eligiblePrintedOrders,[
+ [11,26,8,15,2],[26,8,11,15,2],
+ [8,15,26,2,11],[15,11,2,8,26]
+]);
+
 for(const primeFactor of [2,7,67])
   assert.equal(isIdentityAt(1876/primeFactor),false,
     'LFSR order must contain '+primeFactor);
@@ -246,6 +273,8 @@ console.log(JSON.stringify({
   sourceFactorization:'(x+9)(x+14)(x^3-5x^2-8x-6) (mod29)',
   firstTwoRootOrders:[7,28],
   fullCompanionMatrixOrder:1876,
+  allFiveWordCoefficientOrdersTested:120,
+  ordersReturningAt1876:eligiblePrintedOrders,
   periodFactorization:'28*67',
   oneBasedNineteenthGPPrime:corpus.prime[18],
   assumptions:'unbroken mod29 additive stream, fixed fifth-order recurrence; lag1..lag5 coefficients in original printed word order, any secret five-symbol seed',
