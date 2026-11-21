@@ -204,6 +204,87 @@ function main() {
   });
   const recoveredState = p7State;
 
+
+  // Entire original-book conditional family for a source-only DH exponent
+  // equation, without consulting the 2013 authenticated worked example.
+  // Freeze the p7 literal five-red-word shape: third and fifth words are
+  // both three rune signs, and the sum of word3 is the original p7 p=23.
+  // Interpret first rune of word3 as g; first/last word5 as a/B;
+  // the third/fourth/fifth GP29 products as A/b/K. Charge every contiguous
+  // five-word window on the 56 unknown original pages.
+  const originalPages = fs.readFileSync(
+    path.join(__dirname, '..', 'resources', 'lp2-transcription.txt'),
+    'utf8').split('%');
+  /** @param {number} page @returns {{start:number,runes:number[]}[]} */
+  function wordsAt(page) {
+    const out = [];
+    let runes = [];
+    let offset = 0;
+    /** @returns {void} */
+    function flush() {
+      if (runes.length) {
+        out.push({ start: offset - runes.length, runes });
+        runes = [];
+      }
+    }
+    for (const ch of originalPages[page]) {
+      const rune = index.get(ch);
+      if (rune !== undefined) {
+        runes.push(rune);
+        offset++;
+      } else if ('-.  // The already published, explicitly retrospective p0 vertical RISE§'.includes(ch)) {
+        flush();
+      }
+    }
+    flush();
+    return out;
+  }
+  const sourceProduct = (runes) => runes.reduce((v, x) => mod29(v * x), 1);
+  const family = {
+    windows: 0, doubleTriple: 0, p23: 0, firstEquation: 0,
+    secondEquation: 0, thirdEquation: 0, matches: []
+  };
+  for (let page = 0; page <= 55; page++) {
+    const list = wordsAt(page);
+    for (let start = 0; start + 5 <= list.length; start++) {
+      family.windows++;
+      const word3 = list[start + 2].runes;
+      const word4 = list[start + 3].runes;
+      const word5 = list[start + 4].runes;
+      if (word3.length !== 3 || word5.length !== 3) continue;
+      family.doubleTriple++;
+      const prime = word3.reduce((sum, v) => sum + v, 0);
+      if (prime !== 23) continue;
+      family.p23++;
+      const g = word3[0];
+      const a = word5[0];
+      const A = sourceProduct(word3);
+      const b = sourceProduct(word4);
+      const B = word5[2];
+      const K = sourceProduct(word5);
+      const first = power(g, a, prime) === A;
+      const second = power(B, a, prime) === K;
+      const third = power(g, b, prime) === B;
+      if (first) family.firstEquation++;
+      if (second) family.secondEquation++;
+      if (third) family.thirdEquation++;
+      if (first && second && third) {
+        family.matches.push({ page, offset: list[start].start,
+          prime, g, a, b, A, B, K });
+      }
+    }
+  }
+  assert.equal(family.windows, 2729);
+  assert.equal(family.doubleTriple, 151);
+  assert.equal(family.p23, 4);
+  assert.equal(family.firstEquation, 1);
+  assert.equal(family.secondEquation, 1);
+  assert.equal(family.thirdEquation, 1);
+  assert.deepEqual(family.matches, [{
+    page: 7, offset: 194, prime: 23,
+    g: 5, a: 6, b: 15, A: 8, B: 19, K: 2
+  }]);
+
   // The already published, explicitly retrospective p0 vertical RISE
   // grammar receives the reconstructed p7 state, p0 4|5|4 marker geometry
   // and the p0 13-dot count. Neither a plaintext word nor an external
@@ -281,6 +362,9 @@ function main() {
     invertibleDhTuples + '/484 nonsingular; inverse identity only at a=6,b=15.');
   console.log('p7 original red indices/products-only state (circulant NOT used as key input): ' +
     JSON.stringify(recoveredState));
+  console.log('Global source-only DH field-equation gate: 2729 five-word windows; ' +
+    family.doubleTriple + ' with two 3-rune operand words, ' +
+    family.p23 + ' with word3 sum23, unique three-equation match p7 offset194.');
   console.log('p7 state + previously documented p0 RISE/H serializer: key=' +
     p0Key.join(','));
   console.log('Untouched p0 title GP source-only local recovery: ' + p0Reading +
