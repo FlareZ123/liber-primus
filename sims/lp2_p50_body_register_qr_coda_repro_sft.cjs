@@ -7,6 +7,7 @@ const root = path.resolve(__dirname, "..");
 const read = (p) => fs.readFileSync(path.join(root, p), "utf8");
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
+const p0Override = JSON.parse(read("resources/liber-primus/lp2-p0-physical-ink-override.json"));
 const signed = read("resources/historical/cicada2016-4gq25-outguess.asc").replace(/\r\n/g, "\n");
 assert.equal(grid.bytes.length, 256);
 const lines = signed.split("\n");
@@ -99,6 +100,17 @@ const targetHits = Object.entries(candidates).flatMap(([name, values]) => {
   return hits;
 });
 assert.deepEqual(targetHits, []);
+
+const redCipher13 = p0Override.physical_zero_based.red_words.flatMap((word) => word.gp_indices);
+assert.deepEqual(redCipher13, [15,8,18,3,6,19,27,0,15,26,18,21,5]);
+const codaGp0Raw = codaWords.map(gp0);
+const codaPadKey = codaGp0Raw.map(mod29);
+const codaPadPlain = redCipher13.map((cipher, i) => mod29(cipher - codaPadKey[i]));
+assert.deepEqual(codaGp0Raw, [56,56,30,57,35,36,35,31,88,77,54,59,75]);
+assert.deepEqual(codaPadKey, [27,27,1,28,6,7,6,2,1,19,25,1,17]);
+assert.deepEqual(codaPadPlain, [17,10,17,4,0,12,21,27,14,7,22,20,17]);
+assert.equal(codaPadPlain.map((v) => corpus.translit[v]).join(""), "BIBRFEONGIAXWOELB");
+
 const cycleLookup = new Map();
 cycle11.forEach((node, i) => cycleLookup.set(node, {cycle:"11-cycle", cycleIndex:i, codaWord:coda11[i]}));
 cycle2.forEach((node, i) => cycleLookup.set(node, {cycle:"2-cycle", cycleIndex:i, codaWord:verify2[i]}));
@@ -119,6 +131,8 @@ assert.deepEqual(codaAddresses.slice(11).map((x) => x.terminal), [76,114]);
 console.log(JSON.stringify({
   source: "2016 clear-signed payload; exact body-only 29-word register",
   nodeOrder: "11-cycle from T[32]=115, then 2-cycle 158->249",
-  rows, vectors, transformed, R13, K13, targetHits, codaAddresses,
+  rows, vectors, transformed, R13, K13, targetHits,
+  codaPadTest: {redCipher13, codaGp0Raw, codaPadKey, codaPadPlain, plaintextRunes:codaPadPlain.map((v) => corpus.translit[v])},
+  codaAddresses,
   conclusion: "The corrected direct q/r and H family does not reproduce the p0 marker/key. GP0-addressing the 13 coda words sends all 13 into the 11-cycle, including Verify/OpenPGP; the 11+2 length match is not an operational cycle selector."
 }, null, 2));
