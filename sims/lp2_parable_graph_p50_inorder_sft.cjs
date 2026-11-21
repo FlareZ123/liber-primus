@@ -124,6 +124,66 @@ const asGp = (numbers) => numbers.map((n) => corpus.translit[n % 29]).join('');
 assert.equal(asGp(terminalNodes), 'EOEALOETJIEO');
 assert.equal(asGp(terminalBytes), 'OEXESUUMEOIA');
 
+
+/**
+ * Independently visible alternative: use the table's literal printed-order
+ * addresses within the 50 and five node branches rather than n-ary inorder.
+ * Test the simplest page-entry/exit rune anchors against node and byte mod29.
+ * Multiple interpretations must be charged together: no claim from one hit.
+ */
+const sortedBranch50 = closure(rev60, 82).sort((a, b) => a - b);
+const sortedBranch5 = closure(rev60, 128).sort((a, b) => a - b);
+const sortedPageNodes = [...sortedBranch50, 201, ...sortedBranch5, 74, 205];
+assert.equal(sortedPageNodes.length, 58);
+assert.deepEqual(sortedPageNodes.slice(50), [201, 24, 109, 119, 128, 184, 74, 205]);
+/** @param {number[]} nodes @returns {number[]} */
+function matchChannels(nodes) {
+  const count = [0, 0, 0, 0];
+  for (let p = 0; p < nodes.length; p++) {
+    const runes = corpus.pages[p].indices;
+    if (!runes.length) continue;
+    const raw = nodes[p] % 29;
+    const byte = values60[nodes[p]] % 29;
+    if (runes[0] === raw) count[0]++;
+    if (runes[0] === byte) count[1]++;
+    if (runes[runes.length - 1] === raw) count[2]++;
+    if (runes[runes.length - 1] === byte) count[3]++;
+  }
+  return count;
+}
+const observedAnchorMatches = matchChannels(sortedPageNodes);
+assert.deepEqual(observedAnchorMatches, [6, 2, 1, 2]);
+let seed = 0x33012014;
+/** @returns {number} */
+function prng() {
+  seed ^= seed << 13;
+  seed ^= seed >>> 17;
+  seed ^= seed << 5;
+  return seed >>> 0;
+}
+/** @param {number[]} v */
+function shuffle(v) {
+  for (let i = v.length - 1; i > 0; i--) {
+    const j = prng() % (i + 1);
+    const saved = v[i];
+    v[i] = v[j];
+    v[j] = saved;
+  }
+}
+const nullTrials = 100000;
+let familyExceeds = 0, singleExceeds = 0;
+for (let t = 0; t < nullTrials; t++) {
+  const l = sortedBranch50.slice();
+  const r = sortedBranch5.slice();
+  shuffle(l);
+  shuffle(r);
+  const trial = matchChannels([...l, 201, ...r, 74, 205]);
+  if (trial[0] >= observedAnchorMatches[0]) singleExceeds++;
+  if (Math.max(...trial) >= Math.max(...observedAnchorMatches)) familyExceeds++;
+}
+assert.equal(singleExceeds, 693);
+assert.equal(familyExceeds, 9091);
+
 console.log(JSON.stringify({
   status: 'PASS: source graph structure, NOT a decrypted page',
   source: 'original LP2 grid256 and solved PARABLE prime ordinals [205,173,201]',
@@ -133,6 +193,7 @@ console.log(JSON.stringify({
   remainingSolvedNodes: [74,205],
   fixedTraversal: 'first/lowest-numbered predecessor subtree, node, remaining predecessor subtrees ascending',
   candidatePageToCell: pageNodes,
+  printedSortedCandidate: {lastEight: sortedPageNodes.slice(50), originalFirstLastRuneMatches: observedAnchorMatches, nullTrials, unadjustedFirstRuneExceed: singleExceeds, fourChannelFamilyMaxExceed: familyExceeds},
   visualTerminalDirectReadout: {
     pages: visualTerminals,
     nodes: terminalNodes,
