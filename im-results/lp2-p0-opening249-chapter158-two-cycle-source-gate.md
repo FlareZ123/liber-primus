@@ -49,6 +49,26 @@ Of the four chapter-pairs with both addresses in range, only **(249,158)** and *
 
 **Interpretation boundary:** these are original-multiset **fixed-hypothesis** frequencies, not discovery-adjusted evidence for deliberate encoding. The chapter choice, first-page black versus all-chapter words, omission of the 13 red heading symbols, alphabet radix, and address semantics were explored in a repository with thousands of hypotheses. A source-selected, prospective operation on a different page remains absent. Uniformly shuffled table values are also a deliberately limited null, rather than an authenticated model of Cicada's table construction.
 
+## Source-motivated 27×27 opening half-turn: both graph-cycle residues match original ciphertext
+
+This second relationship combines the **previously fixed** original pp0–2 rune count, 729=27², and the original cross illustrations' already established **180-degree half-turn** with the newly selected p50 249↔158 two-cycle. Existing original JPEG crop measurements already show paired cross ornaments are the same artwork under 180-degree rotation; they do not independently prescribe 27×27 rune-square arrangement or a GP29 table operation (see [prior original-geometry report](lp2-p0-cross-halfturn-original-geometry-gate.md)). The present observation checks a **different, value-level original-cipher receiver**, rather than reexamining the cross geometry.
+
+Let `C[0..728]` be the exact 729 GP29 rune indices on pp0–2 in physical reading order, including p0's two red heading words, arranged as a row-major 27×27 matrix. Under a whole-square half-turn, zero-based row-major location `i` maps to `728−i`. For the **two already source-selected table-cycle cells**, compare the actual original rune at that rotated location with the table *successor* reduced modulo29:
+
+| p50 cell `i` | Original printed token | `T[i]` | `T[i] mod29` | Half-turn `728−i` | Original GP29 `C[728−i]` |
+|---:|---|---:|---:|---:|---:|
+| 249 | `2c` | 158 | **13** | **479** | **13**, rune **P** |
+| 158 | `49` | 249 | **17** | **570** | **17**, rune **B** |
+
+**Both original rune equalities are exact.** These positions lie across original p1/p2, not only the p0 body that originally supplied the number249. Of **all eight D4 square symmetries** tested with the same fixed table-cycle indices, **only 180 degrees** has **2/2** residue matches. Other orientations have 0 or1. On the 180-degree readout, exactly **11/256** table-to-original-rune residues match, including both selected two-cycle nodes; none of the separate eleven-cycle's 11 nodes match. The two highlighted matches are special primarily because their addresses were selected by the earlier independent count bridge, not because the full 256-rune residue stream has above-background fit.
+
+To quantify how often *some* of the eight D4 mappings would hit both exact source-cycle residues by chance, deterministic **25,000** null permutations preserving the complete first-chapter 729-rune multiset yield **232/25,000** successes, add-one **0.00931963**. Preserving each of the three physical page rune histograms yields **297/25,000**, add-one **0.01191952**. These are **conditional, retrospective** exploratory controls. They do not correct for the extensive prior 27-square, half-turn, p50, and residue investigations, and cannot establish intended author encoding. Moreover, the apparent number17 from `249=8×29+17` must **not** be treated as an author-selected reference to archive scan `17.jpg`: the 17-image offset is a later merged archive convention, not the original 2014 LP2 page numbering.
+
+The obvious complete reversible consumer would invert the 256-rune 180-degree-rotated prefix against the original p50 table:
+`P[i]=(C[728−i]−T[i]) mod29` for `0≤i<256`, with positive sign as a rival. Under subtraction, both selected cycle cells become literal GP F (index0), but the output has **11 zeros overall**, an **IoC 0.0340993** and LP1-native log-trigram mean **−3.4205941**, far below solved clear p57's **−2.4681447**. The opposite sign has IoC **0.0358150**, trigram mean **−3.4012635**, likewise no readable prose. Exact forward reconstruction of either trial is automatic. **This direct rotated-table additive decoder fails to recover plaintext.**
+
+The original-operand arithmetic and all eight D4 controls are preserved in [single-source Windows/Node22 reproducer](../sims/lp2_p0_27square_rot180_p50_249_158_residue_sft.cjs), [successful CI44964289794](https://github.com/FlareZ123/liber-primus/actions/runs/44964289794). This upgrades the **structural route from page-count correspondence to two exact original-cipher residue matches**, while retaining the unresolved critical question: what source-given operation uses these matching runes to decode new original ciphertext? The two equalities alone remain compatible with coincidence.
+
 ## Original-cipher consumer gate and next decision
 
 The p50 cycle provides a very specific **158-rune original-source key candidate**: the printed pp49+p51 table flanks have 66+92=158 GP29 runes. The corresponding **249-rune original target** is the entire black body of p0. Rather than infer arbitrary key phases, word resets or cipher layers, freeze the simplest lossless operator before reading output:
