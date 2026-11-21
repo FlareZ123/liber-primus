@@ -112,6 +112,23 @@ assert(Object.values(fixed).every(Boolean));
 assert.deepEqual(selected.map(n=>sizeOrder.indexOf(n)),[40,32,43,44,50,56,57]);
 assert.deepEqual(routeFromP15.map(n=>sizeOrder.indexOf(n)),[15,20,21,25,31,32,43,44,50,56,57]);
 const largestFirstOrder=sizeOrder.slice();
+const ink=JSON.parse(read('resources/liber-primus/lp2-ink-annotations.json'));
+const redSpans=ink.pages.flatMap(page=>(page.red_spans||[]).map(span=>{
+ const sum=[...span.runes].reduce((a,r)=>{
+  const n=gp.runes.indexOf(r);assert(n>=0);return a+n;
+ },0);
+ const addr=sum%256,point=nodes[addr],mappedPage=largestFirstOrder.indexOf(point);
+ return {page:page.page,start:span.start,length:span.length,
+   gp0sum:sum,address:addr,point,mappedPage};
+}));
+assert.equal(redSpans.length,18);
+assert.deepEqual(redSpans.filter(x=>x.mappedPage>=0).map(x=>[x.page,x.start,x.mappedPage]),
+  [[15,0,15],[33,0,53]]);
+assert.deepEqual(redSpans.filter(x=>x.page===15).map(x=>[x.start,x.gp0sum,x.point]),
+  [[0,164,105],[9,120,42]]);
+assert.deepEqual(redSpans.filter(x=>x.page===x.mappedPage).map(x=>[x.page,x.start]),
+  [[15,0]]);
+
 for(const n of branchNodes)chosen[n]=rev[n].slice().sort((a,b)=>a-b);
 const ascending=order();
 const low=flags(ascending);
@@ -173,7 +190,13 @@ console.log(JSON.stringify({
     p15HeadingToLastSolvedPhysicalPages:routeFromP15.map(n=>largestFirstOrder.indexOf(n)),
     page0to14:largestFirstOrder.slice(0,15),
     page33to40:largestFirstOrder.slice(33,41),
-    exactSourceGeometricMatches:fixed
+    exactSourceGeometricMatches:fixed,
+    allEighteenOriginalRedSpans:{
+      spans:redSpans.length,
+      directedTableOutputsInsideCandidatePageTree:redSpans.filter(x=>x.mappedPage>=0),
+      selfAddressingSpans:redSpans.filter(x=>x.page===x.mappedPage),
+      caution:'Only one of eighteen red spans self-addresses; no general red-heading-to-page opcode.'
+    }
   },
   sourcePrintedAddressAscending:{page0to14:ascending.slice(0,15),page33to40:ascending.slice(33,41),exactSourceGeometricMatches:low},
   allPossibleInorderSiblingOrdersConditionedOnNumericalPage50:{
