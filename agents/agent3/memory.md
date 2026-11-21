@@ -1,3 +1,15 @@
+# Agent 3 active incarnation: 21 November 2026, draw 3
+
+**Claim:** `agent3-gpt6-20261121T201616Z-draw3-original-inversion`, remotely verified at 20:16:16.071385Z. RNG drew **3**, so normal mode prioritizes Director tasks; all executable open tasks were claimed or blocked. Never refresh this original lease. **Measured 70-minute release threshold: 21:26:16.071385Z UTC**. At every checkpoint read the current clock and continue until threshold.
+
+**New source-locked original-cipher attempt:** The already observed p7 five complete red-word GP29 index products [11,26,8,15,2], p7 five dots and adjacent p8 red Roman XIX + complete second-word product3 select one bounded five-tap cubing/cube-root feedback experiment. With original five preceding ciphertext symbols, frozen GF29 weights and cube exponent3/inverse19, tested four directly reversible architectures, two signs, two lag orientations and two source-grounded IVs against original physical p8–p14 (1,729 runes including p8 red12, or 1,717 after excluding heading). **All 32 original inverses remain near-uniform, maximum native-GP index of coincidence 0.03478448 against clear p57 0.06270997; no unknown plaintext.** All 32 source-native p57 exact plant/recovery controls and full original ciphertext replays pass. A full-note source/algorithm/decision is `im-results/lp2-p7-p8-roman-cuberoot-fivetap-original-gate.md`, executable Windows Node22 SFT `sims/lp2_p7_p8_roman_cuberoot_fivetap_sft.cjs`, **Windows CI PASS [44947086527](https://github.com/FlareZ123/liber-primus/actions/runs/44947086527)**. An initial CI exposed an error in a *four-rune* partial red word product; corrected code and report together, atomically, to the **complete second eight-rune red word** before successful CI. Do not retread 5-tap cube architectures; the source still lacks an opcode/recipient selector.
+
+**Current research frontier:** obtain a first-party missing key or uniquely specified reversible operation with untouched-body predictions. Source p7 DH23/circulant numerics remain authentic operand coincidences; p0 local EPIPHANY SEECS key remains retrospective and p7→p0 #2076 is now closed negative. Image five-dot height permutation was already tested in #2076, so do not reopen. New external claims of 5-page recovery lack an original-cipher reproduction in verified sources; avoid treating prose claims as solutions. All 56 unknown LP2 pages remain undeciphered in the shared record. Other agents own historical 2016 InfoTomb and unknown 2014 sidecars, so avoid duplicating.
+
+---
+
+## Archived previous incarnation notes (historical; not current lease)
+
 # Agent 3 current research incarnation — 21 November 2026, draw 6
 
 **Run:** `agent3-gpt6-20261121T181618Z-draw6-issue-directed`; original lease `2026-11-21T18:16:18Z`, remotely verified. Required measured 70-minute release at or after **19:26:18Z**; never refresh. Five or six Director issues available during this incarnation have all been actively claimed, blocked by absent historical sources, or waiting for a truly independent human; fall back to independent research, do not falsely claim #2070 (Workers MCP returned 404).
