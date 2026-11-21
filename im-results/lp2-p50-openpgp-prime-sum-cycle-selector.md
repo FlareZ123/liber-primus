@@ -25,6 +25,8 @@ The GP prime weights are the first 29 primes in canonical rune order (from resou
 - G = 17
 - P = 43
 
+The independent 2013 CICADA OS title THE INSTAR EMERGENCE has the historically documented GP-prime sum 761 (matching 761.mp3). Because p50 has 256 cells, its natural address reduction is 761 mod 256 = 249. Thus the 2013 title and the 2016 final word OPENPGP independently select the same p50 address 249. The modulo-256 step is a natural inference from the table size, not an explicit printed modulo instruction.
+
 Therefore:
 \[
 7+43+67+29+43+17+43 = \mathbf{249}.
