@@ -3,16 +3,16 @@
 
 Source path:
   resources/liber-primus/03.jpg
-    -- OutGuess 0.4, empty key -->
+    -- OutGuess 0.4, empty/default key -->
   page03.out (historical community copy: rtkd/iddqd/lp_outguessed/03.txt)
     -- extract embedded JPEG hex -->
   2.jpg (15,188 bytes)
-    -- OutGuess 0.4, empty key -->
-  T2.bin (reported by independent research as seed=38370, len=7524)
+    -- source-motivated OutGuess key candidates -->
+  T2.bin (independent report: seed=38370, len=7524)
 
-This script deliberately does not interpret T2.bin as a key or plaintext.
-It preserves the exact intermediate files and emits hashes/entropy for later
-cryptanalytic tests.
+The second-stage key list is deliberately small and source-derived:
+the 2014 Vigenere key phrase, its recovered onion address, and the later
+LP2 "divinity" clue. No password brute force is performed.
 """
 from __future__ import annotations
 
@@ -21,6 +21,7 @@ import hashlib
 import json
 import math
 import re
+import shutil
 import subprocess
 from collections import Counter
 from pathlib import Path
@@ -31,6 +32,12 @@ EXPECTED_T2_SEED = 38370
 EXPECTED_T2_LENGTH = 7524
 JPEG_SOI = bytes([0xFF, 0xD8])
 JPEG_EOI = bytes([0xFF, 0xD9])
+CANDIDATE_KEYS = [
+    ("default", None),
+    ("2014-vigenere-key", "welcome pilgrim to"),
+    ("2014-onion-address", "avowyfgl5lkzfj3n"),
+    ("lp2-divinity-clue", "divinity"),
+]
 
 
 def sha256(data: bytes) -> str:
@@ -50,17 +57,18 @@ def entropy(data: bytes) -> float:
     return -sum((count / n) * math.log2(count / n) for count in counts.values())
 
 
-def run_outguess(executable: Path, source: Path, destination: Path) -> str:
-    command = [str(executable), "-r", str(source), str(destination)]
+def run_outguess(executable: Path, source: Path, destination: Path, key: str | None):
+    destination.unlink(missing_ok=True)
+    command = [str(executable)]
+    if key is not None:
+        command.extend(["-k", key])
+    command.extend(["-r", str(source), str(destination)])
     proc = subprocess.run(command, capture_output=True, text=True, errors="replace")
     log = (proc.stdout or "") + (proc.stderr or "")
     print("$ " + " ".join(command))
     print(log.rstrip())
-    if proc.returncode != 0:
-        raise RuntimeError(f"OutGuess failed ({proc.returncode}) for {source}")
-    if not destination.is_file():
-        raise RuntimeError(f"OutGuess reported success but did not create {destination}")
-    return log
+    data = destination.read_bytes() if destination.is_file() else b""
+    return proc.returncode, log, data
 
 
 def extract_embedded_jpeg(source: Path, destination: Path) -> bytes:
@@ -103,17 +111,39 @@ def main() -> None:
 
     page03_out = out_dir / "page03.out"
     hidden_jpeg = out_dir / "2.jpg"
-    t2_path = out_dir / "T2.bin"
-
-    page03_log = run_outguess(outguess, image, page03_out)
-    page03_bytes = page03_out.read_bytes()
+    page03_rc, page03_log, page03_bytes = run_outguess(outguess, image, page03_out, None)
+    if page03_rc != 0 or not page03_bytes:
+        raise RuntimeError(f"Default OutGuess extraction failed on original page03 (exit {page03_rc})")
     page03_seed, page03_reported_len = parse_seed_length(page03_log)
     page03_blob_sha1 = git_blob_sha1(page03_bytes)
 
     jpeg_bytes = extract_embedded_jpeg(page03_out, hidden_jpeg)
-    t2_log = run_outguess(outguess, hidden_jpeg, t2_path)
-    t2_bytes = t2_path.read_bytes()
-    t2_seed, t2_reported_len = parse_seed_length(t2_log)
+    candidates = []
+    matched = None
+    for i, (label, key) in enumerate(CANDIDATE_KEYS):
+        output = out_dir / f"T2-candidate-{i:02d}-{label}.bin"
+        rc, log, data = run_outguess(outguess, hidden_jpeg, output, key)
+        seed, reported_len = parse_seed_length(log)
+        record = {
+            "label": label,
+            "key": key,
+            "return_code": rc,
+            "output_path": output.name if data else None,
+            "output_length": len(data),
+            "output_sha256": sha256(data) if data else None,
+            "entropy_bits_per_byte": round(entropy(data), 6) if data else None,
+            "outguess_seed": seed,
+            "outguess_reported_length": reported_len,
+            "matches_independent_report": (
+                seed == EXPECTED_T2_SEED and
+                reported_len == EXPECTED_T2_LENGTH and
+                len(data) == EXPECTED_T2_LENGTH
+            ),
+        }
+        candidates.append(record)
+        if record["matches_independent_report"] and matched is None:
+            shutil.copyfile(output, out_dir / "T2.bin")
+            matched = record
 
     manifest = {
         "source_image": str(image),
@@ -136,21 +166,9 @@ def main() -> None:
             "starts_jpeg": jpeg_bytes.startswith(JPEG_SOI),
             "ends_jpeg": jpeg_bytes.endswith(JPEG_EOI),
         },
-        "T2": {
-            "path": t2_path.name,
-            "length": len(t2_bytes),
-            "sha256": sha256(t2_bytes),
-            "entropy_bits_per_byte": round(entropy(t2_bytes), 6),
-            "first_32_bytes_hex": t2_bytes[:32].hex(),
-            "last_32_bytes_hex": t2_bytes[-32:].hex(),
-            "outguess_seed": t2_seed,
-            "outguess_reported_length": t2_reported_len,
-            "matches_independent_report": (
-                t2_seed == EXPECTED_T2_SEED and
-                t2_reported_len == EXPECTED_T2_LENGTH and
-                len(t2_bytes) == EXPECTED_T2_LENGTH
-            ),
-        },
+        "second_stage_candidates": candidates,
+        "T2_match": matched,
+        "T2_created": matched is not None,
     }
     (out_dir / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(manifest, indent=2))
