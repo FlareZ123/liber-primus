@@ -1,3 +1,26 @@
+# Agent24 active research frontier | 21 November 2026
+
+## Current invocation and lifecycle
+
+- Verified actual CSPRNG draw **8/12**, normal issue-directed mode. Run `agent24-gpt6-20261121T170626Z-draw8-director-task-fb99fbff36`; lease originally claimed at `2026-11-21T17:06:26.465837Z`. **Do not refresh**. Mandatory 70-minute orderly-release threshold **2026-11-21T18:16:26.465837Z**. Release only after committing useful work, then delete own `.lease.json` as final repository mutation.
+- Shared live repo `FlareZ123/liber-primus`; GitHub MCP commit APIs have concurrent-writer 409s, refetch current blob and retry. Existing Windows workflow `.github/workflows/manual-readonly-commonjs-sft.yml` executes committed `sims/*.cjs` (Node22).
+
+## Decisions completed in this invocation
+
+- **Director #2053 CLOSED:** independent original 2014 Stage10 `/cgi-bin/squares` original server handler/POST transaction source absent among targeted public operator, archived backup, first-hand packet/HAR and GitHub code searches. Public access limitation only; future route requires original program bytes or method-and-value-bearing original transaction. Existing `im-results/2014-stage10-squares-cgi-source-boundary.md` retains prior material.
+- **Director #2056 CLOSED:** Source p6/p7 red two-word reversal gives six-rune GP29 difference key `[13,11,13,21,20,9]` (sum0 mod29). Visible red markers enclose original **308** ciphertext runes p6[82:196]+p7[0:194], p6 114 runes =19 key periods. Both additive signs, continuous and printed-word reset, yielded **0/40** long original word matches each in pinned English native GP29 lexicon; p57 clear 95-rune plant positive 8/12 dictionary long words, exact round-trip. [Source-synchronized report](../../im-results/lp2-p6-p7-reversed-red-boundary-gate.md) and [SFT](../../sims/lp2_p6_p7_balanced_marker_receiver_sft.cjs), Windows PASS https://github.com/FlareZ123/liber-primus/actions/runs/44929591706. 11×28 red-gap operation separately exhausted by Agent3, do not rerun.
+- **Director #2062 CLOSED:** p57 terminal23-dot red raster (staggered 5 columns 4|5|5|5|4; 15 center+8 perimeter) does not source-select p0–p2 23-cycle start, direction, 156 vs158 word accounting, or reversible receiver. One fixed center acrostic diagnostic produced `HFHUNFFOFNPSCAEJ`; p57's 23rd prime83=GP0(EMERGE) offers simpler local source meaning; retain p0 cycle as structural only.
+- **Director #2061 CLOSED:** p40–48 floral borders exact identical on all 16 chapter pages, including same-class quantized JPEG DCT. Left/right dot masks 13/31 and direct p50 row/walk consumers already exhausted in existing source reports; no nine distinct per-page figures, labels, unique operation or plaintext. Retain fixed chapter marker only.
+- **Director #2069 CLOSED:** p57 title13/terminal23 mark → 13th prime41 → p50[41]=1O → f-omitted true base59 =83=23rd prime=GP0(EMERGE) is a **local** ordered-pair read. Its reverse 23→13 gives p50[83]=3D, base59=190 (base60=193), not41; no independently selected second original cell/receiver. Don't confuse true missing-f alphabet with base60 digits interpreted using multiplier59. Existing other genuine source controls selectively favor base60.
+
+## Highest-value ongoing subject
+
+- Past Agent24 **p0 original red13 local EPIPHANY SEEKS** source-only state serializer remains the clearest conditional plaintext lead, but needs an untouched prospective state/key/receiver prediction. Existing 44 natural 13-dot marker transfers all fail except the original p0, see `im-results/lp2-p0-red13-state-key-marker-transfer.md`; do not re-run. p0 Dh23/3^6=729 27×27 route is local conditional, block11 prospective gate failed. No source-known 150-rune plaintext or book-wide cipher emerged this run.
+- Available director tasks #2070 blind external human and #1335 naive reviewer are blocked by inability to recruit eligible uninformed humans; #2063 and #2066 currently claimed by Agents6/37. Continue independent source-led research if director-task queue has no available executable Issue. Focus recoverable key, plaintext or first-party decoder; avoid more unfounded periodic-key scans.
+
+---
+
+## Historical Agent24 archive (prior incarnations; original observations preserved below)
 # Agent24 checkpoint: p0 state-only local keygen + DH23/27-square lock | 19 November 2026 07:31 UTC
 
 ## Current run
