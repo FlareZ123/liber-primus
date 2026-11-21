@@ -15,6 +15,8 @@ The six unchanged 2014 second-release JPEGs in their published order are the sol
 | p4 | [21.jpg](../resources/liber-primus/21.jpg) | 676634 | `72bea2bfcd4f1b8e2095f882811d0f294e329d4b1bfe68f8ed5ec726d0a1e9d6` |
 | p5 | [22.jpg](../resources/liber-primus/22.jpg) | 667716 | `bcef0a3b80532b25a013052ec4394ab47ab69ce675b5b3db59cbad044e7adabd` |
 
+The source-era delivery context is the unannotated [original 2014 book index HTML](../resources/cicada2014-onion7-index.html), which a real original solver would have seen before opening any JPEG. Treat it strictly as a raw document, without consulting modern index interpretations; do not follow its p6+ image references for the first-stage test. Its original byte stream is the permitted transport envelope.
+
 The one source-era rune reference permitted is the already-public **2013 Gematria Primus** chart (29 runes, Roman transliterations, prime values), whose source-order row is reproduced below for transliteration only:
 
 ```text
