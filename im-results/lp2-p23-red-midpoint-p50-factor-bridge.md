@@ -81,8 +81,46 @@ Neither is a codeword. A further potential systematic use of the lengths is to r
 
 **Decision:** p23/p39 *center alignment* and **16+240=256** offer additional potentially intended visual premises, but their two most literal polynomial receivers fail on original untouched source. The extra source equalities alone do not establish a cipher key or plaintext; further extension needs a differently motivated operation, not an arbitrary additional key phase.
 
+## DH-seeded H/G recurrence as an actual cipher key
+
+The factor equation suggests a separate *reversible key generator* that uses both original p23 source channels rather than the quotient directly. Normalize the original degree-four product `R×G` to the monic GF29 polynomial `[14,9,13,28,1]`, in ascending-power order. This defines the exact source-motivated four-state recurrence
+
+```text
+k[i+4] = -14*k[i] - 9*k[i+1] - 13*k[i+2] - 28*k[i+3] (mod29)
+seed = [K,a,e,g] = [2,6,3,5] (p23 printed first-line word lengths)
+first sixteen key digits = [2,6,3,5,0,27,27,12,27,4,8,9,13,0,15,4]
+```
+
+The original printed word-length order is source-derived, but choosing the first four as the key state and using the polynomial as a recurrence remain hypothetical. Both ordinary GP29 additive signs leave the source ciphertext language statistics essentially flat. More decisively, the actual historically solved p56 cipher has a **plaintext-F-transparent clock**. We therefore ran an exact all-path original inverse allowing the literal printed F to skip the key, while consuming any non-F plaintext. Any branch that consumes the key and would emit an encrypted plaintext F is invalid. Every possible key-clock path dies on the unchanged original ciphertext:
+
+| Source-delimited original receiver | Runes | First impossible, P=C−K | First impossible, P=C+K |
+|---|---:|---:|---:|
+| p23–26 complete chapter, including red16 | 1,021 | 22 | 12 |
+| p39 entire physical page | 240 | 26 | 7 |
+| p55 entire physical page | 76 | 59 | 21 |
+| Immediate posttable pages p51+p52 | 355 | 24 | 16 |
+
+Offsets are zero-based within each receiver, each starting from the same visible p23-derived seed and using its own key origin. The original clear p57 is independently encrypted with this exact key and the authentic literal-F bypass, and all 95 symbols retain a valid original-plaintext inverse path for both signs. Thus this bounded **source-state recurrence has a hard necessary-condition contradiction**, without guessing English. This does not rule out the polynomial acting on some as-yet-unidentified register.
+
+## Source-red AES-128 key against the 16+240 table frame
+
+A separate binary interpretation uses p23's literal sixteen original red GP symbols as a full AES-128 key, rather than a polynomial factor. The original p49–51 panel contains **256 source bytes** under the conventional base60 reading. Reading the first **16** as CBC IV and the following **240** as a complete ciphertext is a typed, reversible block-cipher candidate; 240 also equals p39's whole-page rune count. This is a 2014-plausible byte cipher, although no original instruction selects AES, this key, CBC mode or the byte codec.
+
+Freeze the two direct source serializations of the p23 red16 key: GP indices `[1,24,7,21,6,14,23,6,10,17,10,12,16,17,10,26]`, and the corresponding GP primes `[3,97,19,79,17,47,89,17,31,61,31,41,59,61,31,103]`. Decrypt once with IV-first CBC on 240 payload bytes, and check two conventional full-256-byte controls: CBC with zero IV and ECB. Padding is disabled; no password derivation, header offset, key search or ciphertext fitting is performed.
+
+| Exact literal source key | AES-128 mode | Output bytes | Printable ASCII | Bytes 0–28 |
+|---|---|---:|---:|---:|
+| GP index bytes | CBC, first16 as IV | 240 | 68 | 25 |
+| GP index bytes | CBC, zero IV | 256 | 75 | 25 |
+| GP index bytes | ECB | 256 | 99 | 24 |
+| GP prime bytes | CBC, first16 as IV | 240 | 79 | 33 |
+| GP prime bytes | CBC, zero IV | 256 | 84 | 37 |
+| GP prime bytes | ECB | 256 | 105 | 29 |
+
+No output is ordinary ASCII instructions or 240 byte-valued GP29 plaintext symbols. The original-source test includes the published all-zero AES-128 known-answer vector. The complete six-case Windows Node22 test passed [Actions 44946667987](https://github.com/FlareZ123/liber-primus/actions/runs/44946667987). Retire this exact AES consumer instead of inventing new AES modes or arbitrary password/KDF layers. All source-specific H/G conclusions above remain conditional; no authentic LP2 cipher architecture or original unknown plaintext has been recovered.
+
 ## Decision and next useful gate
 
 Preserve the **p23 source-only H projector** as a provisional, unusually centered in-manuscript echo of the independently signed 2013 H factor. The strongest objection is decisive: the original heading visibly fixes a boundary, but it does **not tell a solver to take two runes on the left and one on the right**. A future claim must obtain that 2|1 rule independently from the original 2014 visual artwork, authenticated historical clue, or a blind original-cipher prediction, and must identify a reversible *ciphertext consumer* of the p50 quotient or factor. More fitted polynomial factors, source-shuffled duplicate counts or arbitrary Q key phases cannot solve that missing operation.
 
-Complete original Windows/Node22 reproduction, including red-boundary randomized controls, five-lane rejections, 16+240 codeword obstruction and positive receiver plant: [successful run 44946219695](https://github.com/FlareZ123/liber-primus/actions/runs/44946219695). Reproduce with [single-file Windows Node22 original-source test](../sims/lp2_p23_red_midpoint_dualfactor_original_sft.cjs), which pins the five relevant original scans and complete 256-byte source, verifies red-span and punctuation offsets, enumerates the 69-boundary comparison family, asserts the factorization and quotient, executes the 200,000-draw shuffled controls, and prints the three actual original-cipher readouts. Relevant earlier independent factor report: [2013 H and p39 G table link](2013-base29-gf29-grid-factor.md).
+Complete original Windows/Node22 reproduction, including red-boundary randomized controls, 5×201 strand and 16+240 codeword obstructions, DH-seeded F-transparent key rejection, and six AES consumer controls: [successful run 44946667987](https://github.com/FlareZ123/liber-primus/actions/runs/44946667987). Reproduce with [single-file Windows Node22 original-source test](../sims/lp2_p23_red_midpoint_dualfactor_original_sft.cjs), which pins the five relevant original scans and complete 256-byte source, verifies red-span and punctuation offsets, enumerates the 69-boundary comparison family, asserts the factorization and quotient, executes the 200,000-draw shuffled controls, and prints the three actual original-cipher readouts. Relevant earlier independent factor report: [2013 H and p39 G table link](2013-base29-gf29-grid-factor.md).
