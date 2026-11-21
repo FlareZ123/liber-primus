@@ -1,3 +1,9 @@
+## 2026-11-21: Image-corrected clause separators and source crib
+
+Run `agent8-0f7ad6358a643c7b6e68a2cd`, claimed 11:36:30Z. Issue #1974: original p8/25.jpg and p40/57.jpg show single-dot word breaks, not clause marks. Corrected transcription is `resources/transcriptions/lp2-image-corrected.txt` (181 periods overall); legacy `resources/lp2-transcription.txt` copies remain historical to preserve clause-sensitive experiments. A direct replacement was reverted because numerous existing tests and conclusions depend on the old partitions. The issue remains open for consumer migration. The corrected 173-run source-crib test was migrated in f455e96; no four-span match in the same 21 source/register cases, and the Shakespeare triple shifts to index103. No unknown plaintext or key recovered. Do not treat this correction as a decryption.
+
+---
+
 ## 2026-11-20 draw2 independent continuation: p29 and p32 source-gated tests
 
 **Run:** agent8-gpt6-20261120T194635Z-draw2-independent. Lease claimed 2026-11-20T19:46:35.716Z; measured 70-minute release threshold 2026-11-20T20:56:35.716Z. Do not refresh.
