@@ -18,6 +18,23 @@ Intra-page steps:   3316 - 15 = 3301
 
 The 15 source rune counts, in printed page order excluding p50, are `[231,273,272,274,273,270,270,274,271,66,92,263,179,232,76]`. Their 3,301 transitions contain **21** equal-rune (`delta=0`) events. Across **all 1,596 contiguous physical-page intervals** drawn from the 56 unresolved pages p0–p55, **only p40–p55** has exactly 3,301 within-page steps. Among all 41 sixteen-page intervals, the next-nearest has 3,461 transitions, 160 away. These interval controls were assessed **after** noticing this particular artwork-defined scope; therefore their uniqueness is descriptive and does not by itself provide an unconditional chance probability of intentional design.
 
+## An independent source-visible unit count and the old root24 checksum relation
+
+The same **3301** emerges from a second source-typed convention **without page-local differences**. Among all colored spans inside the floral p40–p55 block, exactly two are marked **red from the first rune of their physical page**: p40's original eight-rune rubric `F N M Y G D AE H` and p54's original nine-rune rubric `A M NG D IA TH X I M`. The p53 internal red 51-rune prose span starts at offset128 and is kept verbatim in this reading.
+
+If one counts each of those two **visually delimited opening rubric spans as one atomic token** while counting every other rune separately, the 3316 original rune units lose `(8−1)+(9−1)=15` positions and become **3301 mixed rune/rubric tokens**. The equality between the 15-rune-page count and the 15 internal characters suppressed by this second unitization is exact and does not depend on any cipher transformation:
+
+```text
+Page-initial transition units:    3316 − 15 = 3301
+Single-token opening red rubrics:  3316 − (8−1) − (9−1) = 3301
+```
+
+The two constructions are **not independent statistical events**. They share exactly the same 3316-rune original page group, and the second representation specifically selects opening red spans (as opposed to the p53 red passage) because of their layout role. Neither count alone demonstrates that Cicada intended an encryption clock or collapsed-rubric tokenizer.
+
+This provides a further link to the **already documented** p40/p54 mathematical root24. The number `3301 mod29 = 24`. Under the same high-first GP29 polynomial convention for each original page-start red span, p40 has roots `[1,2,7,24]` and p54 has `[19,24]`. Their **only common field root is 24**. In the full original source-red-span census these are the **only** two red spans with a high-first root at24. Thus the newly identified internal 3301 count independently *suggests the already known common root value* if the human solver has first been led to interpret rubrics as polynomial coefficients modulo the 29-rune alphabet. The prerequisite polynomial interpretation remains unauthenticated; the prior [p40/p54 root24 and exhaustive negative inverse study](lp2-floral-red-headings-root24-original-inverse.md) must take precedence over any new decoding speculation.
+
+This is a **potential human solve-path bridge** from original visual section boundaries to the existing 3301→24 polynomial clue. Its strongest alternative is coincidental arithmetic plus retrospective selection of a unitization and polynomial operation. Reproducing the numbers is evidence of the source relations, not of a cipher mechanism.
+
 ## Possible causal path and rival
 
 One candidate historical design interpretation is that the distinct 16-page floral block was laid out to expose **3,301 ciphertext transitions** under a page-local chained or difference-based cipher. The 15 first runes would then be separately supplied initial states, or could carry another source-defined kind of state. The original printed 256-cell table is inside this same decorated block and may have some key/control role. A designer familiar with the 29-symbol alphabet and Cicada's `3301` name could conceivably have chosen such a count intentionally. This is a **candidate cipher-clock selector** and, if substantiated by a successful inverse, would remove a large amount of arbitrary position/clock ambiguity.
@@ -32,7 +49,7 @@ A separate original-input test, `im-results/lp2-p50-28step-chain-original-gate.m
 
 ## Reproduction and decision
 
-- Source-image and corpus read-only SFT: `sims/lp2_p40_p55_floral_3301_source_sft.py`, Pillow11.3/NumPy2.2, with original JPEG hash assertions, the complete 16-page margin match, all 1,596 interval controls, and zero-step count. **Windows Python3.12 PASS:** [run 44936746394](https://github.com/FlareZ123/liber-primus/actions/runs/44936746394).
+- Source-image and corpus read-only SFT: `sims/lp2_p40_p55_floral_3301_source_sft.py`, Pillow11.3/NumPy2.2, with original JPEG hash assertions, the complete 16-page margin match, all 1,596 interval controls, and zero-step count. **Windows Python3.12 PASS:** [run 44936746394](https://github.com/FlareZ123/liber-primus/actions/runs/44936746394) (initial 3301/image gate); the rerun also checks the two-rubric token count and root24.
 - Main source inputs: `resources/liber-primus/{57.jpg..72.jpg}` from the original archive, `SHA256SUMS.txt`, and `lp2-corpus.json`. Source reader should preserve physical page p50 as rune-free and avoid confusing source text-section numbering with physical image numbering.
 - Decision: retain this objective **3301-transition art-block boundary** in supporting research as a prospective original-cipher clock constraint. **No recovered plaintext, authentic source-selected key, cipher inverse, or continuation address.** Require a distinct original image/text clue that specifies the transition operator, key/IV provenance, and recipient ciphertext before committing compute to any dependent decryption hypothesis.
 
