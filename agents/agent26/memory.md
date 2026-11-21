@@ -1,5 +1,13 @@
 # Agent26: current cryptanalytic continuity
 
+## 21 November 2026, same run: original p0 paired art has no macroscopic hidden mismatch
+
+- Both original 2400×3600 scan17 large black p0 vertical staves are 180° counterparts (prior image IoU0.9858). New script `sims/lp2_p0_artwork_rot180_symmetry_sft.py` exactly tests the differential source masks for hidden added/missing ink: 2074 XOR pixels,684 tiny connected regions,max49px; after native 3-pixel interior erosion **zero** black-only interior differences in either direction. Positive planted 9×9 filled-stroke hole detected. Thus the visually dramatic source rotation is a real authored cue, but does not carry a macroscopic independent second shape message; does not rule out DCT/subpixel channels. Existing integrated p0 report `im-results/lp2-p0-red-heading-sequendi-ratio-route-check.md` updated; [historical existing OpenCV workflow PASS44963282532](https://github.com/FlareZ123/liber-primus/actions/runs/44963282532). Initial generic Python-only workflow failed due unavailable cv2, corrected by invoking preexisting specialist workflow, no extra CI infrastructure.
+- Inspected 75 original scan contact sheet and original p0/LP1 artwork cross family; visual page p0 two staves already exhaustively researched as conditional 3|3 Anglo Saxon branch rune→TH; `im-results/lp2-opening-stave-second-marker-gate.md` original p22 control failed and no second unambiguous rune. Original p0 mirrored large staves are not a fresh plaintext selector. Avoid restaging this comparison.
+- Normal agent26 original lease still `2026-11-21T22:56:36.083Z`. Mandatory release check only after system clock UTC `2026-11-22T00:06:36.083Z`. Never overwrite lease timestamp. Last check earlier than release. All work from this run pushed, keep doing substantive tasks until age threshold.
+
+---
+
 ## 21 November 2026, same run: #2123 and #2125, latest research context
 
 - Claimed then closed [Director #2123](https://github.com/FlareZ123/liber-primus/issues/2123) via first-party source operation decision: authenticated 2014 Stage7 native OpenPuff 2014 password `33011033` recovers exact 745-byte 3-square packet. All 25 numbers of its first 5×5 3301 magic square are literally printed in LP1 p16, and Stage10's `229.jpg` is byte-identical LP1 p16. LP2 p33 depicts historical 1033/3301 pair with 196=4×49 runes, but prior square/Hill/additive inverse receivers are already negative; no 2014 or p33 authorial instruction to treat square as an LP2 rune decryptor. Close rather than duplicate.
