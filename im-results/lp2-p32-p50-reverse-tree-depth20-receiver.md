@@ -143,30 +143,45 @@ The fixed root115, noncycle reverse-depth20, 121-rune receiver is a meaningful s
 
 These failures do not invalidate the graph's 121-node coincidence or rule out a keyed tree transducer; they reject direct order-only, edge-calculus and subtree-zeta interpretations. **None recovers unknown plaintext or authentic key material.** A successor needs a source-visible instruction fixing a different value operation, tree-to-glyph assignment, or external operand, rather than tuning more GP29 affine offsets against the same 121 symbols.
 
-## The original p32 13-dot mark picks a unique signed 13-word / 92-rune split
+## P32's printed six lines and red thirteen-dot mark: a signed 71/50 route to root115
 
-**Additional original-clue test (Agent49, 21 November): source-visible structural positive, direct GP29 decoder negative.** The original p32 (49.jpg) terminates in the manuscript's standard **red 13-dot punctuation**. Unlike other rune-bearing pages, p32 prints **exactly 26 physical rune-word groups**. Divide these in two consecutive groups of **13**, using the punctuation's printed **13** as a *candidate count*. The first13 words contain exactly **71 runes = GP0(SEEKS)**, the second13 exactly **50 runes = physical page50**, the numeral-only middle page of the 256-cell table:
+**Agent49, 21 November 2026. Original-source structural positive; direct decryption negative.** The original physical p32 (49.jpg) has an actual **red 13-dot** terminal punctuation mark and exactly **six printed rune lines**. The line lengths, counted on unaltered original runes, are **[25,23,23,21,22,7]**; their counts of complete printed rune-word groups are **[5,4,4,5,6,2]**. Splitting at the *visually obvious middle line break* gives two **three-line halves**, each with exactly **13 printed words**, and totals:
 
-`p32 words 1–13 = 71; words 14–26 = 50; total121 = GP0(EPIPHANY).`
+```text
+printed lines 1–3: 13 words,  25+23+23 = 71 GP29 runes = GP0(SEEKS)
+printed lines 4–6: 13 words,  21+22+ 7 = 50 GP29 runes = physical p50
+whole page p32:    26 words,              121 GP29 runes = GP0(EPIPHANY)
+```
 
-The 2016 signed sentence actually contains **EPIPHANY SEEKS THE DEVOTED**, and the following source language refers to words as map and numbers as direction. These now align with the unique p32 half-word count and the actual table page name.
-Taking those typed halves as **starting table cell50** and **SEEKS71 forward pointer steps** through the unchanged **base60** table gives the exact endpoint `T^71(50)=115`. This is the same original source-constrained p32 reverse-tree root115. The forward route first reaches115 after five steps: `50→47→76→114→197→115`, then returns after six revolutions of the original 11-cycle, `71=5+6×11`. Under the competing hypothetical base59 numeral mapping, 71 forward steps terminate instead at fixedpoint **189**, with no root115. This yields a conditional, human-computable base60 route from p32's own word geometry to its independently selected tree; the manuscript does not explicitly require the 71-step walk or provide a cipher inverse. This is a possible **author-visible 13-pair hint**, but the manuscript does not explicitly say to divide words into groups of13 or assign 71/50 their signed-word/page-number meanings. The 13-dot punctuation appears at ten different original physical page endings, so it is not exclusive to p32. The match's post-discovery selection is uncalibrated.
+Only **two** of the manuscript's 57 rune-bearing physical pages contain exactly six printed lines: p22 has **16/16 word groups** with **69/62 runes** in its respective three-line halves, while p32 alone has **13/13 groups with 71/50 runes**. Across all 57 pages, p32 is also the sole 26-group page and the sole whose first13 words contain exactly71 runes. The 13-dot punctuation appears at ten different original physical page endings, so the symbol alone does not uniquely select p32. Reading the observed marker13 as a group count is an inference; the page's literal line break makes the chosen split substantially more source-visible than an arbitrary 13-word cut.
 
-The already source-constrained p50 base60 reverse in-tree at root115 produces another exact **13 cut**: its first13 noncycle reverse-depth layers contain **92 nodes = GP0(EMPTY)**, the signed opening line's visible word **EMPTY**. Layers14–20 add exactly **29 nodes**, reaching all121 p32 runes. Physical p32 has an actual printed rune-word boundary at **offset92**, separating a final **29-rune** suffix. That yields a concrete linked original structure:
+The independently PGP-authenticated 2016 words include **“The path lies empty; epiphany seeks the devoted”** and identify LP's **words** as the **map** and its **numbers** as the **direction**. Freeze the two printed three-line sums as a typed pointer instruction: begin at numerical-table **cell50** and take **71 forward steps**, selected by `GP0(SEEKS)`, in the original row-major conventional-base60 table `T[i]=byte[i]`. The output lands at the already independently identified **p32 reverse-tree root115**:
 
-`signed EMPTY92 -> tree depth13 nonroot nodes92 -> p32 first92 ciphertext runes | last29 rune suffix = size of GP29 alphabet.`
+`50→47→76→114→197→115` (five steps); then six traversals of the table's original eleven-cycle return to root115, because **71=5+6×11**. Equivalently **`T^71(50)=115`**, exact on the untouched table. The competing base59 numeral mapping instead gives `T^71(50)=189`, its fixed tree root, so it does not reach the already selected p32 component. This is a concrete, human-computable, *conditional* alternative to the prior 23-step DH route. A source-authenticated instruction that demands this exact start/step operand typing has **not** been found. The 11-cycle makes return-to-root constraints easier than an unconstrained 256-cell address coincidence; retrospective selection is not an authorship probability.
 
-This is a **separate tree-depth interpretation** from the established `THE=20` depth selection and it does not establish a particular ciphertext-to-node assignment. The 29 final cipher rune symbols have **20 distinct GP29 values**, so they are **not literally a 29-rune permutation alphabet**. As a minimal no-free-key consumer, treat those exact final29 cipher runes as a repeatable GP29 additive key on the 92 preceding runes, with both original signs:
+### The red13 marker also selects a 92/29 graph and rune split
 
-| Physical p32 first92 inverse | Exact IoC | Native-GP prose |
-|---|---:|---|
-| Unchanged first92 ciphertext | **0.037505972** | none identified |
-| Subtract last29 repeated | **0.030339226** | **none** |
-| Add last29 repeated | **0.037744864** | **none** |
+On the same original base60 reverse tree rooted at115, reverse depths **1–13** contain exactly **92 noncycle nodes = GP0(EMPTY)** from the same 2016 signed phrase; depths14–20 contribute **29 more nodes**, reaching **121** total noncycle nodes = GP0(EPIPHANY). Independently, original p32 has a **printed word boundary at rune index92**, leaving precisely **29 final cipher runes** after its first92. The resulting proposed paired registers are:
 
-Both signs preserve the full original 92-rune roundtrip and recover all92 authentic p57 plaintext control runes from independently encrypted native-GP plants. A separate preselected direct consumer follows exactly the 71 table pointers from cell50 while decrypting the **first71 original p32 runes**. The emitted GP29 key is the current cell address or printed next byte, with both arithmetic signs. All four original IoCs remain flat: **0.035412475 / 0.035412475** for current-address subtract/add, and **0.037826962 / 0.035010060** for next-byte subtract/add. No readable passage appears. All tests re-encrypt their own original candidate and recover 71/71 GP29 authentic solved-p57 control runes from separately encrypted source-native plants. Neither gives a recognizable complete instruction, and the 29-rune suffix fails the simple literal-alphabet hypothesis. Among all **57** original rune-bearing physical pages, p32 alone has exactly26 printed word groups, and p32 alone has **71 runes across its first13 groups**; this finite comparison is descriptive, not an independent calibrated probability of author intent.
+`p32 original ciphertext 92+29 runes  ↔  p50 reverse-tree depth13+outer-shell nodes 92+29`.
 
-[Source-exact 13-cut, reverse-depth, 57-page uniqueness and original 92/29 key-gate SFT](../sims/lp2_p32_thirteen_word_empty92_tail29_source_sft.cjs), [updated Windows Node22 PASS run44951416536](https://github.com/FlareZ123/liber-primus/actions/runs/44951416536). The source-selected scaffold is thereby more tightly associated with **p32's actual printed word segmentation**, while the missing operation to recover genuine plaintext remains unresolved. Future work should attempt an original-clue-specified 92/29 interpretation rather than fitting a new generic substitution to this correspondence.
+The physical text has six lines rather than 13 layers, and there is still no author-selected order for assigning p32 rune positions to the selected tree addresses. The final29 ciphertext positions contain **20 distinct GP29 symbols**, so they cannot directly be an ordinary permutation of all 29 runes. The source did not label the shell as a key schedule, and this precise graph-to-rune architecture remains provisional.
+
+### Exact direct original-source readout failures
+
+The first no-free-parameter consumer treats the **last29 original p32 runes** as a key repeated over the first92 original p32 runes, using both GP29 additive inverse signs. The second follows exactly **71 source table pointers from cell50** and consumes the *first71 original p32 ciphertext runes*, using either the visited address or emitted byte reduced modulo29 as the shift, with both signs:
+
+| Direct original candidate | GP29 IoC | Readable native plaintext |
+| --- | ---: | --- |
+| Unmodified first92 original rune ciphertext | **0.037505972** | No |
+| First92 minus repeated last29 | **0.030339226** | No |
+| First92 plus repeated last29 | **0.037744864** | No |
+| First71 minus / plus visited address | **0.035412475 / 0.035412475** | No |
+| First71 minus / plus emitted next byte | **0.037826962 / 0.035010060** | No |
+
+All six candidate outputs exactly reencrypt their **unchanged original** input, and all six corresponding native-GP29 plants drawn from genuinely solved p57 recover **92/92** or **71/71** original plaintext rune values as appropriate. This confirms that each guessed operation was executable, while **none identifies the LP2 cipher**, recovers unknown p32 plaintext, supplies an independent historical key or locates the hidden destination.
+
+[Original-source GP29, line/word/dot, table root-route and all six inverse-gate read-only Node22 SFT](../sims/lp2_p32_thirteen_word_empty92_tail29_source_sft.cjs), updated [successful Windows Node22 CI run 44952132724](https://github.com/FlareZ123/liber-primus/actions/runs/44952132724). The earlier selected root115/tree-depth20 receiver, p32 121-node in-tree and signed 2016 route are preserved in the surrounding report. A worthwhile successor must identify an original **graph node-to-cipher rune assignment and value-changing operation**, preferably one validated on an independent signed or solved register. Choosing another pad phase merely because the structural route is appealing will not recover the text.
 
 ## Complete tree cardinality independently returns page 32
 
