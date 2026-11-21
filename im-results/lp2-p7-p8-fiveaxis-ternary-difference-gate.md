@@ -38,11 +38,29 @@ The fixed native-GP trigram model uses only the repository's solved LP1/p56/p57 
 
 The untouched p8 black-body IoC is **0.03404415**, with trigram score **-10.77785568**. Across all 12 decoded candidates, IoC spans **0.03258 to 0.03649**. The independently clear p57 has IoC **0.06270997** and trigram score **-7.55821**.
 
-As an intentionally permissive native-language diagnostic, the worst of **1,752** contiguous **76-rune** windows from the solved reference scores **-8.06134395**. Every transformed p8 output of length 243 scores **below** even that shorter-reference-window minimum; the best candidate is **-10.67440529**. These are conditional language diagnostics, not a calibrated discovery probability. The complete 12-output record and the bidirectional positive-plant checks are emitted by the reproducer.
+As an intentionally permissive native-language diagnostic, the worst of **1,752** contiguous **76-rune** windows from the solved reference scores **-8.06134395**. Every transformed p8 output of length 243 scores **below** even that shorter-reference-window minimum; the best candidate is **-10.67440529**. These are conditional language diagnostics, not a calibrated discovery probability. The complete 12-output record and the exact positive-plant checks are emitted by the reproducer. The separate polynomial family below adds 18 exact source-constrained candidates.
+
+## Independent five-axis polynomial-interpolation gate
+
+An additional historically distinct premise comes from Cicada's use of polynomial secret sharing in 2013. In its recorded historical form that system used **GF(2^n)** and five-share interpolation, so it does **not** specify a 3-point GF29 tensor transform. The original p8 3^5 shape and the five source-visible p7 word values nevertheless make a **bounded GF29 interpolation hypothesis** executable, with no fitted symbols.
+
+Treat each length-three coordinate fiber of the same untouched p8 243-rune body as either three evaluations or three coefficients of a quadratic over GF29. For each of five axes use the standard 3x3 Vandermonde matrix whose rows are **[1,x,x²]** at three fixed sample coordinates. The admissible coordinate triples are the two conventional global assignments **[0,1,2]** and **[1,2,3]**; the three-point runs beginning or centered at the five printed p7 word products **[11,26,8,15,2]**; and scaling the conventional [1,2,3] triple by those products or by the already-established inverse first row **[23,2,5,2,19]**. Those six source-cued families are each evaluated in direct, inverse, and transposed-inverse matrix orientation: **18** variants in total.
+
+All matrices are invertible in GF29, and all **18/18** source-native 243-rune positive plants reconstruct exactly after all five axes. Every original p8 candidate independently reencrypts to the untouched ciphertext in **243/243** positions.
+
+| Polynomial family | Best orientation | IoC | Mean GP29 trigram score |
+|---|---|---:|---:|
+| Conventional [0,1,2] | transpose of inverse | 0.03407816 | **-10.64113250** |
+| P7-product-scaled [1,2,3] | transpose of inverse | 0.03520049 | **-10.65925456** |
+| P7-inverse-scaled [1,2,3] | direct | 0.03503044 | **-10.68494393** |
+
+All 18 remain below the same worst native **76-rune** window score of **-8.06134395**, including the best **-10.64113250**; all have IoC below **0.037**. The complete 18 results and roundtrip checks are reproduced in the same SFT linked below.
+
+**Decision:** the direct 3-point tensor polynomial families are negative on original p8, even when constrained by the actual printed p7 state vector. This does not exclude historically documented GF(2^n) Shamir sharing or an independently specified different p8 cipher. The original source gives no command to convert its 243 GP29 runes to the five-axis evaluation/coefficients representation, so arbitrary evaluation coordinates or new matrix layouts are unwarranted.
 
 ## Decision
 
-**Reject the exact p7-to-p8 five-axis triangular-difference architecture under its frozen source coefficient choices.** The 243=3^5 black-body alignment is an interesting original-source shape but supplies no reversible *intended* operation on its own; this bounded value-changing extension produces no plaintext. Do not rescue it by trying arbitrary GF29 axis matrices, mixed directions, offsets, higher-order neighbors, or post-output key shifts without an additional independent manuscript instruction.
+**Reject the two tested p7-to-p8 five-axis value-changing families: triangular differences and fixed three-point polynomial interpolation.** The 243=3^5 black-body alignment is an interesting original-source shape but supplies no reversible *intended* operation on its own; neither bounded reversible extension produces plaintext. Do not rescue it by trying arbitrary GF29 axis matrices, mixed directions, offsets, higher-order neighbors, or post-output key shifts without an additional independent manuscript instruction.
 
 A genuine successor would need an original clue that uniquely specifies a different five-dimensional transformation and selects an untouched GP29 receiver with a clear language or authenticated-crib success criterion.
 
