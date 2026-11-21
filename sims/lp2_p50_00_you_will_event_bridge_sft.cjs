@@ -52,6 +52,18 @@ assert.deepEqual(phase[192].map((index) => events[index].rune), [26, 3, 1, 24]);
 assert.deepEqual(phase[192].map((index) => events[index].page), [9, 24, 25, 34]);
 assert.deepEqual(phase[229].map((index) => events[index].rune), [14]);
 
+const phase210Runes = phase[210].map((index) => events[index].rune);
+assert.deepEqual(phase210Runes, [21, 14, 3]); // NG, X, O
+assert.deepEqual(phase[210].map((index) => events[index].page), [4, 20, 27]);
+const phase192RuneSum = phase[192].reduce((sum, index) => sum + corpus.prime[events[index].rune], 0);
+const phase210RuneSum = phase[210].reduce((sum, index) => sum + corpus.prime[events[index].rune], 0);
+assert.equal(phase192RuneSum, 210); // Y 103 + O 7 + U 3 + A 97
+assert.equal(phase210RuneSum, 133); // NG 79 + X 47 + O 7
+assert.equal(phase210Runes.reduce((sum, rune) => sum + rune, 0), 38);
+assert.equal(tokens[210], "06");
+const stage11 = read("resources/historical/stage11-2014-index.html");
+assert.ok(stage11.includes("<title>133</title>"));
+
 const gpTokens = corpus.translit
   .map((symbol, value) => ({ symbol, value }))
   .sort((a, b) => b.symbol.length - a.symbol.length);
@@ -211,6 +223,15 @@ assert.equal(number60(tokens[30]), 141);
 const readout = phase[192].map((index) => events[index].rune);
 const readoutGp0 = readout.reduce((sum, rune) => sum + rune, 0);
 assert.equal(readoutGp0, 54);
+
+// The same four original runes' GP-PRIME sum gives 210, indexing
+// another source-observed three-event group NG-X-O. Its GP index sum
+// gives physical page38, while the first group's index sum gives
+// source offset54: the complete original page:offset address 38:54.
+assert.equal(phase192RuneSum, 210);
+const derivedPage = phase210Runes.reduce((sum, rune) => sum + rune, 0);
+assert.equal(derivedPage, 38);
+assert.equal(phase210RuneSum, 133); // original 2014 stage11 title
 assert.equal(tokens[54], "2a");
 assert.equal(tokens[36], "0s");
 /** @param {number} index @returns {number} */
@@ -235,11 +256,28 @@ assert.deepEqual(phase.flatMap((indices, cell) => {
 }), [192]);
 const p0 = pages.find((page) => page.page === 0);
 const p38 = pages.find((page) => page.page === 38);
+assert.equal(number60(tokens[phase192RuneSum]), 6);
+assert.equal(low60(phase192RuneSum), 6);
+assert.equal(low60(6), 6);
 assert.ok(p0 && p38);
 assert.deepEqual(p38.indices.slice(54, 57), [5, 12, 19]);
+assert.equal(derivedPage, p38.page);
+assert.equal(readoutGp0, 54);
+assert.deepEqual(p38.indices.slice(readoutGp0, readoutGp0 + 3), [5, 12, 19]);
 const packet = p38.indices.slice(54, 57);
 assert.equal(packet.reduce((sum, rune) => sum + rune, 0), low60(readoutGp0));
-const K = 2, a = packet[1] / K, A = modPow(packet[0], a, 23);
+// Independently source-selected private a=6 from literal p50[210]="06".
+// In the preexisting typed packet grammar, slot1 = K*a mod29.
+// The packet recovers K=2 by division mod29; the *different* DH mod23
+// operation with source packet B=19 confirms the very same K=19^6 mod23.
+const a = number60(tokens[phase192RuneSum]);
+assert.equal(a, 6);
+const inverseA = Array.from({ length: 28 }, (_, i) => i + 1).find((x) => a * x % 29 === 1);
+assert.ok(Number.isInteger(inverseA));
+const K = mod29(packet[1] * inverseA);
+const A = modPow(packet[0], a, 23);
+assert.equal(K, 2);
+assert.equal(modPow(packet[2], a, 23), K);
 assert.equal(a, 6);
 assert.equal(A, 8);
 const H = [mod29(A - packet[2]), mod29(A + packet[2])];
@@ -260,6 +298,9 @@ console.log("first source token 00: cell192 -> Y O U A (pages9,24,25,34); other 
 console.log("43 signed words, 31 unique >=3-rune words, five eligible phase groups");
 console.log("exact signed-word literal matches: YOU, cell192, first three events");
 console.log("full YOUA GP0=54 -> unique diagonal p50 low-digit cycle 54 -> 36 -> 54 -> p38[54..56] GP0=36");
+console.log("first00 YOUA prime sum210 -> second event phase210 NG-X-O GP0=38, prime sum133 (historical title)");
+console.log("complete original event coordinates: page38, rune offset54; literal p50[210]=06 gives DH private a=6");
+console.log("typed packet [5,12,19] derives K=2 both via GP29 12/6 and DH mod23 19^6");
 console.log("exact original-chapter identity assignments: " + assignments + " possibilities; "
   + cycleMatches + " cycle, " + lexicalMatches + " signed-word, " + jointMatches + " joint");
 console.log("retrospective 50000-shuffle signed-vocabulary null: global " + globalHits
