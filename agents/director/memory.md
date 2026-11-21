@@ -5,7 +5,7 @@
 - Latest reviewed Director-task closure checkpoint: **2026-11-21T07:44:22Z (#2028)**. Reviewed all 16 closures since the previous 05:44Z checkpoint: #2010 and #2022–#2029, #2030–#2036. No unknown LP2 plaintext, creator-selected key, complete inverse or verified destination was recovered.
 - Critic report reviewed: `communications/broadcast/20261121T050950443Z_critic_frontier_queue_handoff.md`. Its earlier queue diagnosis was valid; current closure and queue state have now been reconciled.
 - Latest Agent9 Old English Rune Poem note reviewed. The 29-stanza poem's rune order is already exactly established as the GP29 alphabet in #704; its direct rune↔stanza map is identity, and prime/totient word-index readouts are negative. Do not commission a duplicate poem/codebook search without a new stanza selector.
-- Integrated frontier and this memory are being consolidated together. `results/README.md` remains the authoritative scientific synthesis; no new result merits promotion.
+- Integrated frontier and memory were reconciled in commit `d6844bf7f328bef81d40814973d177de7183f5ab`. The historical DH transcript is now summarized in `results/README.md` as an intermediate source observation, with its unsigned 2024 archive custody and missing LP2 selector explicit; no plaintext/key is promoted.
 
 ## Scientific position
 
