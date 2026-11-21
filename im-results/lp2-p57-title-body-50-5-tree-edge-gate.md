@@ -123,5 +123,5 @@ These independently visible round-spanning source counts yield a concrete possib
 
 - [Source title/body 50+5 and eight edge-path/2 prime-seed original gates](../sims/lp2_p57_title_body_50_5_edge_key_sft.cjs), [Windows Node22 PASS run44954179759](https://github.com/FlareZ123/liber-primus/actions/runs/44954179759).
 - [Full 58-node/57-edge color-tape source gate, real solved-p56 known plaintext and 55 original outer-layer inverses](../sims/lp2_p57_58node_color_edges_p56_outerlayer_sft.cjs), [Windows Node22 PASS run44954785155](https://github.com/FlareZ123/liber-primus/actions/runs/44954785155).
-- [Reverse edge-ordinal p56 clock gate, original 55-page inverse and p56/p57 controls](../sims/lp2_p57_edge_ordinal_p56_clock_gate_sft.cjs).
+- [Reverse edge-ordinal p56 clock gate, original 55-page inverse and p56/p57 controls](../sims/lp2_p57_edge_ordinal_p56_clock_gate_sft.cjs), [Windows Node22 PASS run44956724063](https://github.com/FlareZ123/liber-primus/actions/runs/44956724063).
 - Earlier independent [PARABLE prime-rank graph](lp2-parable-threeprime-whole-graph-58-8-56.md) and [p57 unpartitioned 55 interior rune seed gate](../sims/lp2_p57_55interior_pageprime_fskip_sft.cjs).
