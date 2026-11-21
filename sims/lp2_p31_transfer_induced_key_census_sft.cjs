@@ -216,3 +216,43 @@ console.log(JSON.stringify({
   crossPageTrainingConfigurations: crossPage,
   pagePlusTwoTrainingConfigurations: pagePlusTwo,
 }, null, 2));
+
+// Independently add a uniform 3-vector to every three-rune word on each page.
+// Page+2 edges form a forest, so their relative offsets are independent.
+let logNoHit = 0;
+let comparisons = 0;
+let edgeCount = 0;
+for (let page = 0; page <= 53; page += 1) {
+  const firstPage = words.filter(word => word.page === page);
+  const secondPage = words.filter(word => word.page === page + 2);
+  if (!firstPage.length || !secondPage.length) continue;
+  const offsets = new Set();
+  for (const first of firstPage) {
+    for (const second of secondPage) {
+      for (const row of adjacentTargets) {
+        const following = source[row.index + 1];
+        const delta = first.values.map((value, i) =>
+          mod29((value - row.values[i]) -
+            (second.values[i] - following.values[i]))
+        );
+        offsets.add(delta.join(","));
+        comparisons += 1;
+      }
+    }
+  }
+  logNoHit += Math.log1p(-offsets.size / 29 ** 3);
+  edgeCount += 1;
+}
+const expectedHits = comparisons / 29 ** 3;
+const probabilityAtLeastOne = -Math.expm1(logNoHit);
+assert.equal(comparisons, 17554);
+assert.equal(edgeCount, 52);
+assert.ok(Math.abs(expectedHits - 0.7197507072860715) < 1e-12);
+assert.ok(Math.abs(probabilityAtLeastOne - 0.5136663792417163) < 1e-12);
+console.log(JSON.stringify({
+  pagePairEdges: edgeCount,
+  wordPairTargetComparisons: comparisons,
+  observedHits: adjacentHits.length,
+  expectedHits,
+  probabilityAtLeastOne,
+}, null, 2));
