@@ -2,7 +2,7 @@
 
 ## Decision
 
-The authentic 2012 P.S. integer is a 131-digit, 432-bit number with a published factorization into two 216-bit primes. A later research status labels the P.S. object a 435-bit modulus; exact parsing of the original signed message gives 432 bits and the factorization is already published. Appending an accidental trailing `1` would create a different 132-digit, 436-bit integer, not the source value.
+The authentic 2012 P.S. integer is a 131-digit, 432-bit number with a published factorization into two 216-bit primes. A later research status labels the P.S. object a 435-bit modulus; exact parsing of the original signed message gives 432 bits. The same 2012 archive also contains a matching recreated Crypt::RSA public/private key pair, so the RSA reconstruction is not merely inferred from the factorization. Appending an accidental trailing `1` would create a different 132-digit, 436-bit integer, not the source value.
 
 The P.S. integer is **not** the 2014 Stage 2 RSA modulus. Its direct base-29 representations and the obvious RSA-derived values do not decrypt LP2 under an additive/subtractive running-key model. Treat it as a historical RSA-like object, not an established LP2 key. Do not expand this into unconstrained exponent or key-family searches without a specific ciphertext or source instruction.
 
@@ -67,10 +67,13 @@ The script checks the factor product, modulus sizes, Stage 2 modulus inequality,
 ## Sources
 
 - Original signed 2012 *Valēte!* message: https://github.com/neuroretransmit/cicada/blob/main/2012/011-valete/README.md
-- Published P.S. factorization and discussion of the RSA hypothesis: https://github.com/scream314/cicada3301/blob/master/hints_never_used.md
+- Published P.S. factorization and discussion of the clue: https://github.com/scream314/cicada3301/blob/master/hints_never_used.md
+- Recreated public key (exact N, e=65537): https://github.com/neuroretransmit/cicada/blob/main/2012/011-valete/numbers.public
+- Recreated private key (matching p, q, phi, d): https://github.com/neuroretransmit/cicada/blob/main/2012/011-valete/numbers.private
+- Factor pair: https://github.com/neuroretransmit/cicada/blob/main/2012/011-valete/numbers.factors
 - 2014 Stage 2 signed payload and its separate modulus: https://github.com/micheloosterhof/cicada-2014/blob/master/stage02/1033.jpg.outguess
 - Later research status (describes the P.S. object as 435-bit and leaves the integer interpretation open): https://github.com/pnotisdev/cicada3301/blob/main/work/log/phase60_clue_review.md
 
 ## Remaining uncertainty
 
-There is no source-authenticated ciphertext paired with the 2012 P.S. modulus, and no source instruction connecting it to LP2. The RSA interpretation may explain the number's factorization, but it does not currently provide a route to unknown LP2 plaintext. Revisit only if a concrete ciphertext or a first-party cross-round instruction is recovered.
+The RSA key reconstruction is established in the 2012 archive, but no source-authenticated ciphertext is paired with it and no source instruction connects it to LP2. The 2013 cookie values do not decrypt under this key, and the 2014 Stage 2 modulus is different. Revisit only if a concrete ciphertext or a first-party cross-round instruction is recovered.
