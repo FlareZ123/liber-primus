@@ -102,3 +102,5 @@ Two additional narrow candidates were checked on the same 158-rune p49+p51 bridg
 - The p55 recursive five-core [1,6,2,11,18] was tested as a repeating period-5 additive key in both signs. IoCs are 0.03531 and 0.03604; neither output is readable.
 
 These reject only the direct short-period GP29 consumers above. They do not establish that the 2-cycle or five-core has no other role. The p49/p51 bridge still has no source-selected reversible receiver.
+
+A final source-motivated graph-stream control was also negative: using the GP-prime sum of VERIFY (216, with V→F) as the base60 p50 graph start, the 158 visited addresses form an 11-step preperiod followed by the 11-cycle. Mapping each visited address mod29 to a key symbol and applying it additively to the p49+p51 bridge, both signs and the one-step successor-shifted stream, gives IoCs 0.03177–0.03515 and no plaintext. This rejects only the direct p50-walk additive keystream receiver; the V→F start itself remains a transliteration-dependent hypothesis.
