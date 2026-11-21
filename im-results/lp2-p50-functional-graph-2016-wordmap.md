@@ -57,26 +57,26 @@ Thus the 2+11 cycle signature is absent from the old participant byte stream and
 
 ## Source-selected 2016 body register and 29+11+2 structure
 
-The exact OpenPGP clear-signed payload at \`resources/historical/cicada2016-4gq25-outguess.asc\` has a source-visible segmentation that was missed when the greeting was counted as a map word:
+The exact OpenPGP clear-signed payload at `resources/historical/cicada2016-4gq25-outguess.asc` has a source-visible segmentation that was missed when the greeting was counted as a map word:
 
 | Message unit | Exact text / structure | Alphabetic words |
 |---|---|---:|
-| Separate salutation | \`Hello.\` | 1 |
-| Core paragraph 1 | \`The path lies empty; epiphany seeks the devoted.\` | 8 |
-| Core paragraph 2 | \`Liber Primus is the way. Its words are the map, their meaning is the road, and their numbers are the direction.\` | 21 |
-| Coda sentence 1 | \`Seek and you will be found.\` | 6 |
-| Coda sentence 2 | \`Good luck.\` | 2 |
-| Coda sentence 3 | \`Beware false paths.\` | 3 |
-| Verification sentence | \`Verify OpenPGP.\` | 2 |
-| Numeric/footer material | \`3301\` and key ID \`7A35090F\` | excluded |
+| Separate salutation | `Hello.` | 1 |
+| Core paragraph 1 | `The path lies empty; epiphany seeks the devoted.` | 8 |
+| Core paragraph 2 | `Liber Primus is the way. Its words are the map, their meaning is the road, and their numbers are the direction.` | 21 |
+| Coda sentence 1 | `Seek and you will be found.` | 6 |
+| Coda sentence 2 | `Good luck.` | 2 |
+| Coda sentence 3 | `Beware false paths.` | 3 |
+| Verification sentence | `Verify OpenPGP.` | 2 |
+| Numeric/footer material | `3301` and key ID `7A35090F` | excluded |
 
-The two body paragraphs between the salutation and the \`Seek...\` coda contain **exactly 29 words** and end at the complete sentence-final word \`direction.\`. The remaining prose coda contains **13 words**. It has a natural **11+2** split: \`Seek and you will be found. Good luck. Beware false paths.\` (11 words), followed by the distinct technical sentence \`Verify OpenPGP.\` (2 words). Excluding the salutation, footer and key ID, the payload therefore partitions as **29-word core + 11-word coda + 2-word verification = 42 words**; including the salutation gives the previously reported 43 alphabetic tokens.
+The two body paragraphs between the salutation and the `Seek...` coda contain **exactly 29 words** and end at the complete sentence-final word `direction.`. The remaining prose coda contains **13 words**. It has a natural **11+2** split: `Seek and you will be found. Good luck. Beware false paths.` (11 words), followed by the distinct technical sentence `Verify OpenPGP.` (2 words). Excluding the salutation, footer and key ID, the payload therefore partitions as **29-word core + 11-word coda + 2-word verification = 42 words**; including the salutation gives the previously reported 43 alphabetic tokens.
 
-Freeze the map register as the **29 body words from \`The\` through \`direction\`**, in natural one-based human word order (body ordinals 1–29). Thus \`direction\` is body word 29. A base-29 remainder \(r\in[0,28]\) must be translated to the human word ordinal \(r+1\); do not count the separate \`Hello.\` salutation as map entry zero. The former first-29-of-43 prefix included \`Hello\` and stopped at \`the\` inside the phrase \`the direction\`; it is not the source-selected core.
+Freeze the map register as the **29 body words from `The` through `direction`**, in natural one-based human word order (body ordinals 1–29). Thus `direction` is body word 29. A base-29 remainder \(r\in[0,28]\) must be translated to the human word ordinal \(r+1\); do not count the separate `Hello.` salutation as map entry zero. The former first-29-of-43 prefix included `Hello` and stopped at `the` inside the phrase `the direction`; it is not the source-selected core.
 
 This is a positive source-structure result: the 29-word core aligns with GP29's 29 symbols; the 13-word coda aligns with p0's red13 mark and the p50 graph's 13 cycle vertices; and the coda's 11+2 split aligns with the graph's 11- and 2-cycles. These alignments do **not** yet specify which coda words map to which cycle nodes, a cycle start/orientation, or the exact q/r consumer. The corrected q/r word-pair readout has not been generated; the earlier 13-pair table and direct p0 consumer test below use the superseded register and must not be treated as evidence against the corrected one.
 
-The sentence \`Its words are the map\` refers grammatically to Liber Primus, not literally to the signed message itself. The 29-word signed-message core is therefore a source-visible indexing scaffold for the navigation hypothesis, not LP plaintext and not proof that the message's own words are the intended map.
+The sentence `Its words are the map` refers grammatically to Liber Primus, not literally to the signed message itself. The 29-word signed-message core is therefore a source-visible indexing scaffold for the navigation hypothesis, not LP plaintext and not proof that the message's own words are the intended map.
 
 The exact segmentation is reproduced by [the signed-message register SFT](../sims/lp2_2016_signed_message_29_11_2_register_sft.cjs). No graph traversal, word permutation or new p50 address search was run for this source gate.
 
@@ -185,7 +185,7 @@ node sims/lp2_p50_functional_graph_2016_wordmap_sft.cjs --null=100000
 
 The forward base60 row-major successor map remains a source-selected **navigation mechanism**: one distinct EPIPHANY / SEEKS / THE / DEVOTED → p32 route survives the 62,720 source-plausible configurations, and the original scan independently confirms the critical 0l cell. The signed 2016 payload now also selects the body-only 29-word register (one-based ordinals 1–29) and a 13-word coda split 11+2. The 11+2 coda aligns with the graph's 11- and 2-cycles and the total 13 aligns with p0's red13 mark.
 
-The previous q/r word-pair readout counted \`Hello\` as the first map entry and is superseded. The next bounded step is **one independent reproduction** of the existing q/r navigation prediction using the frozen body-only register and mapping base-29 digits q,r to one-based word ordinals q+1,r+1. That reproduction should preserve the already selected forward base60 row-major successor map and test the source-order 11-word coda / 2-word verification split without opening new graph, radix, rotation or permutation families.
+The previous q/r word-pair readout counted `Hello` as the first map entry and is superseded. The next bounded step is **one independent reproduction** of the existing q/r navigation prediction using the frozen body-only register and mapping base-29 digits q,r to one-based word ordinals q+1,r+1. That reproduction should preserve the already selected forward base60 row-major successor map and test the source-order 11-word coda / 2-word verification split without opening new graph, radix, rotation or permutation families.
 
 Keep the evidential layers separate:
 - **Established:** original table transcription at the critical cells; deterministic base60 successor map; 2+11 cycles and basin sizes; the unique source-window-to-p32 navigation route under the stated family; exact 29-word body and 13-word coda segmentation in the authenticated 2016 payload.
