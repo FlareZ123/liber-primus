@@ -39,6 +39,23 @@ The full regular continued fraction is `3301/1033=[3;5,8,1,3,1,1,2]`. Its *exact
 
 This offers a constrained *candidate* human source route: the two historical 5×5 squares → Euclidean convergents → source-visible original red-rune count 225 → predecessor denominator 179 → unique p53 or p50's 179² factor. Neither the red count nor its predecessor selection is a cryptographic opcode supplied by the creator; this precise operation was conceived after the table's factor179 was known.
 
+## Unique internal prime convergent: a source-only p50 row/factor selector
+
+A stronger selection criterion is available before using any encrypted LP2 rune or numeric table. The original solved LP1 text says **THE PRIMES ARE SACRED**, and the first-release OpenPuff password fixes the exact ratio order as `3301/1033`. Within its eight regular continued-fraction convergents, there is **exactly one strictly internal convergent with both numerator and denominator prime**: the third, **131/41**. The two endpoints 3301/1033 are also primes, but excluded by the prespecified *internal* criterion.
+
+The ordinary one-based prime-enumeration operations on this unique prime/prime pair produce two independent original LP2 table features without using them as selection inputs:
+
+```text
+3301/1033  ->  CF convergents -> first internal prime/prime pair 131/41
+
+prime_ordinal(131)  = 32    ->  original p50's 32 physically printed rows
+prime_at_ordinal(41)= 179   ->  original p50 integer factor: v179(N)=2
+```
+
+The number **131** is also written twice in the original first-release p5 source square. The computed **179** reappears two positions later as a regular continued-fraction denominator, then **225** immediately after it matches the source-annotated red-rune count, and physical p53 alone contains exactly179 cipher runes. This is the strongest **standalone source-selected numeric candidate** in this report: a single prime/prime convergent naturally yields **both the layout and the special factor of the unmodified p50 table**.
+
+The prime/prime criterion and prime-ordinal projections were identified **retrospectively** while 32, 179 and 225 were already visible in repository research. The matching values are exact and independently reproduced, but this is not a valid blinded creator-intent test; it does not identify an original instruction to apply continued fractions, nor does it specify the reversible GP29 plaintext cipher. The one-off selection should be treated as a hypothesis for *which artifact to inspect next*, never as a solved page.
+
 ## Simultaneous DH23 connection to original page28
 
 Under a *candidate* field assignment fixed to the observed Euclid positions, assign the first three Euclidean quotients `3,5,8` to `e,g,A`, the second remainder `23` to `p`, and the penultimate nonunit remainder `2` to `K`:
