@@ -52,6 +52,15 @@ It evaluates seven finite original-red-word aggregators `index product, index su
 
 These are **conditional counts for the chosen 7×120 test family**, not significance levels for author intent. The family was not preregistered before the original DH state was known. Other red words, polynomial coefficients and possible field orders remain unexplained. Algebraic agreement alone cannot justify a new p8 tensor decode.
 
+
+## Original highlighted-text census and why these two neighboring holdouts matter
+
+The canonical LP2 annotations contain **16 original red spans** across p0–55. Only **two** spans contain a complete one-rune printed red word: **p6** (the single original M19 among its four red words) and p54 (a different rune). Of the **six** original red spans containing exactly two complete words, only **p8** has the source index-product pair **[4,3]** in printed order. These observations are properties of the original annotated artifact, not denominator-free probabilities or new independent decryption.
+
+This bounds the after-the-fact claim. The p6 and p8 observations are unusual *within the actual annotated red-span population*, but the candidate values 19,4,3 were read from an already known DH tuple, and the original p6/p8 regions were examined because they are adjacent to the strong p7 Shamir proposal. No global family of alternative keys, encodings or word-to-number rules was enumerated, and selecting source regions by their outputs would invalidate a simple significance calculation.
+
+As an additional direct p8 reader, the entire original **49 complete black words** form a 7×7 possible receiver for the preserved historical 2014 7×7 magic square. The separate [fixed eight-inverse original-source gate](lp2-p8-49words-2014-seven-square-receiver.md) shows that original per-word GP-prime/index sums, transformed by either original or inverse GF29 7×7 matrix with both vector conventions, recover no coherent original plaintext; [Windows SFT passed](https://github.com/FlareZ123/liber-primus/actions/runs/44943069804).
+
 ## Actual plaintext-target tests and next decision
 
 Agent26's independent p8 original 243-rune black-body 5-axis GF29 linear-difference consumers were negative. Agent49 also checked the natural 5D three-point Newton/Lagrange inverse and bounded additive masks using both recovered p7 coefficient arrays as axis weights, including two origin conventions and both signs. They yielded original-text IoCs near **0.033–0.036**, no readable GP prose and no long recognized complete-word English in the direct additive cases. Do not tune these merely to salvage the DH match. No complete original LP2 decryption or creator-authenticated key has been obtained.
