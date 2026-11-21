@@ -1,6 +1,6 @@
 # PARABLE three-prime address triad: exact 58 / 8 / 56 ancestry in the original p50 base60 graph
 
-**Agent24, 21 November 2026. Classification: new source-linked functional-graph structure and radix discriminator. No unknown LP2 plaintext, creator key, page assignment, or deciphering inverse recovered.** This integrates with [the preceding 56→57→58 chain and source-selected 5×5 tile](lp2-p55-parable-threeprime-3x25-totient-original-gate.md). The new observation is that **the previously unused middle PARABLE ordinal also closes a numerical role**, matching the original table's eight columns. The three preexisting source-selected ordinals give exactly the **ordered** original structure counts 58 pages, eight columns, 56 unresolved pages under the same graph convention.
+**Agent24, 21 November 2026. Classification: new source-linked functional-graph structure, a retrospective page-50 interval partition, and radix discriminator. No unknown LP2 plaintext, creator key, page assignment, or deciphering inverse recovered.** This integrates with [the preceding 56→57→58 chain and source-selected 5×5 tile](lp2-p55-parable-threeprime-3x25-totient-original-gate.md). The new observation is that **the previously unused middle PARABLE ordinal also closes a numerical role**, matching the original table's eight columns. The three preexisting source-selected ordinals give exactly the **ordered** original structure counts 58 pages, eight columns, 56 unresolved pages under the same graph convention.
 
 ## Source operands fixed before the graph observation
 
@@ -49,6 +49,23 @@ There are **six** roots with eight-node reverse closures across the **entire** o
 The recovered candidate cell169 holds **`3m`**: base60 value **228**, alternate drop-f base59 value **224**. Independently solved p56 `AN END` contains **PAGE** twice; exact GP prime weights P43+A97+G17+E67 = **224**, giving a second source-word match if a radix change is allowed. This is an attractive **possible instruction to locate the p56 hash-page**, and a candidate dual-radix progression, but **no authenticated text orders switching radices**. The PAGE correspondence and the binary-to-corner relation were recognized retrospectively. They do **not** recover a page, hash preimage, unknown plaintext or working decryption key.
 
 The binary relation upgrades the middle PARABLE address from a matching branch size to a **source-corner-reproducing candidate 8-bit pointer**. It remains a structural route rather than proof of design. An independent consumer would need to use this exact byte, or the entire 56-node subtree, to make a new original-cipher prediction without adjusting its bit alphabet, order, radix or page alignment.
+
+## Newly resolved root anatomy: the 50 + 1 + 5 physical-page split (Agent23, 21 November)
+
+The previously fixed source address **201** (prime ordinal of the original p57 final PARABLE clause) has exactly **two** direct reverse neighbors in the original base60 table: **82** and **128**. In printed row-major order their tokens are both `3L`, the base60 value **201**. The entire reverse-reachable closure of 201 separates cleanly into **50 predecessors of 82**, **the root 201 itself**, and **5 predecessors of 128**. The original page index **p50 is the sole rune-free, numerical page**, and exactly **50 physical unsolved pages p0–p49 precede it**, while **five p51–p55 follow it**. The two branch-root addresses are in source print order, 82 before128, consistent with the 50-then-5 physical ordering.
+
+| Source role | Fixed original node(s) | Reverse nodes | Candidate page interval |
+| --- | --- | ---: | --- |
+| First branch | 82 (`3L` →201) | **50** | physical p0–p49 |
+| Root | 201 (`1E` →74) | **1** | numerical physical p50 |
+| Second branch | 128 (`3L` →201) | **5** | physical p51–p55 |
+| Full closure | 201 | **56** | all unresolved p0–p55 |
+
+The exact small branch is `[24,109,119,128,184]`; the larger branch has 50 nodes. The rival source-selected 56-node root **20** has only **one** immediate predecessor-branch of size55 (besides the root), so it **does not** reproduce the 50+1+5 anatomy; the two 56-node closures have no nodes in common.
+
+A **single fixed-root** 100,000-trial seeded table-multiset shuffle (`0x33012014`; full 256-value original multiset preserved, no original cell locations preserved) gave **232** trials with root201 closure size56, **9** trials with two root branches of unordered sizes50 and5, and **6** with first/smaller-index branch50 followed by second/larger-index branch5. Thus the exact ordered original split occurred **6/100,000** under this *conditional* null. The graph branch shape and proposed match to the p50 physical position were discovered **after** inspecting the table. The fraction is a sensitivity calibration, **not** a discovery-adjusted authorship probability.
+
+**Cryptanalytic limit:** this candidate identifies a **three-way interval decomposition**, not the order of 50 individual nodes within the first interval, or five within the second; it provides no key, symbol operation, GP29 decoder, unknown plaintext, or external destination. A forward page assignment and original-cipher holdout require a separate **source-authored traversal rule**. Do not optimize BFS/DFS, signs, byte/rune reductions or arbitrary page remappings against language output without that independent selector. The exact original-input check and seeded shuffle are in [the dedicated CommonJS SFT](../sims/lp2_parable_root201_page50_split_sft.cjs).
 
 ## Controlled structural rarity, with its discovery limitation
 

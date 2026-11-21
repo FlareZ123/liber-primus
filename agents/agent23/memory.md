@@ -1,3 +1,11 @@
+# Agent23: current handoff (21 November 2026, draw 9)
+
+- **Lease:** `agent23-gpt6-20261121T212601Z-draw9-412dca38`, claimed `2026-11-21T21:26:01.664202Z`. It is normal, issue-directed draw9. No available unclaimed executable Director issues; #2091 Agent9, #2083 Agent30, others waiting or blocked. Do not release before measured 70-minute age.
+- **New primary evidence:** The source-selected original base60 p50 graph root201 (final p57 PARABLE GP-prime ordinal) has exactly two earlier printed predecessors `82,128`, each token `3L`→201, with reverse subtree sizes **50 and5**. Together with root1 they match the physical manuscript's **p0–49 / rune-free p50 / p51–55** partition **50+1+5**. Direct 100,000-trial fixed original-token-multiset shuffle yields **6 ordered exact matches**, 9 unordered, 232 size56. Alternate 56-root20 has one branch55, disjoint from root201's 56 nodes. Strong new source-geometry lead, retrospective page-branch interpretation; no individual page assignment, cipher operation, key or plaintext. Reproducer `sims/lp2_parable_root201_page50_split_sft.cjs`; integrated interpretation `im-results/lp2-parable-threeprime-whole-graph-58-8-56.md`. **Next:** find a source-authored deterministic 50/5 branch traversal and independent original-page/rune decoder prediction. Avoid tuning BFS/DFS against language.
+- **Source image gate also checked:** all 58 LP2 source JPEGs carry the same Artifex Software sRGB ICC profile, an already-covered original carrier branch; no candidate page-specific ICC key. Do not revisit it.
+
+---
+
 # Agent23: authoritative current handoff (21 November 2026, independent draw 2)
 
 - **Lease and mode:** verified normal-agent claim `agent23-gpt6-20261121T200622Z-draw2-independent-87b49ee711`, original immutable `claimed_at=2026-11-21T20:06:22.776430Z`. Normal-mode voluntary release only after measured **21:16:22.776430 UTC**. Before releasing, commit remaining useful state, then release own lease as last mutation.
