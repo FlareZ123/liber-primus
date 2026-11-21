@@ -154,6 +154,17 @@ const accuracy=controlSolved.pt.filter((n,i)=>n===plainNative[i]).length;
 const source=originalSolved.pt;
 const sourceScore=originalSolved.score;
 const trainLast=languageScore(controls.slice(-729));
+// The planted source text is external to model training. A second,
+ // independently selected control is every 729-rune sliding window of
+ // already-solved LP1 GP-native prose, with no masks. This provides a
+ // frozen absolute-scale reference for the original best-score.
+const benchmark=[];
+for(let start=0;start+729<=controls.length;start++)
+  benchmark.push(languageScore(controls.slice(start,start+729)));
+benchmark.sort((a,b)=>a-b);
+const trainingFloor=benchmark[0],trainingMedian=benchmark[Math.floor(benchmark.length/2)];
+assert.ok(benchmark.length>1000);
+assert.ok(originalSolved.score<trainingFloor);
 console.log(JSON.stringify({
   hypothesis:'C[r,c]=P[r,c]+R[r]+K[c] mod29, arbitrary 27+27 secret mask, R0=0',
   originalGrid:[27,27], originalFirst13GP:title,
@@ -161,6 +172,9 @@ console.log(JSON.stringify({
     originalNativeModelScore:+nativeScore.toFixed(5),
     solvedNativeModelScore:+controlSolved.score.toFixed(5),
     recoveredRunes:accuracy,of:729,positiveModelRunes:controls.length,
+    heldoutNativeWindows:benchmark.length,
+    heldoutNativeMinimum:+trainingFloor.toFixed(5),
+    heldoutNativeMedian:+trainingMedian.toFixed(5),
     correctRows:controlSolved.R.filter((v,i)=>v===plantedR[i]).length,
     correctCols:controlSolved.K.filter((v,i)=>v===plantedK[i]).length
   },
