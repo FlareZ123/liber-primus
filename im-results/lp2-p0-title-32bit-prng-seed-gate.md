@@ -41,7 +41,7 @@ Every one of the `2^32` possible unsigned 32-bit seeds was evaluated for the fiv
 
 The four LCG output functions were `state % 29`, `((state >> 16) & 32767) % 29`, `(state >> 16) % 29`, `(state >> 24) % 29`. Java exact `nextInt(29)` includes its signed-overflow rejection path, rather than assuming every `next(31)` is accepted. A first-output filter skips full streams whose first residue cannot match either sign; this filter is logically necessary and does not discard any valid seed.
 
-**Executable evidence:** [read-only C++17 SFT](../sims/lp2_p0_title_prng32_crib_sft.cpp). The `smoke` mode uses the first 65,536 seeds and synthetic planted-output checks; each named engine runs the full unsigned 32-bit state domain using an optional OpenMP speedup. The independent original xorshift / LCG / exact-Java local runs completed with zero hits before this shared source was committed. No Windows CI verification of this new combined file is claimed.
+**Executable evidence:** [read-only C++17 SFT](../sims/lp2_p0_title_prng32_crib_sft.cpp). The `smoke` mode uses the first 65,536 seeds and synthetic planted-output checks; each named engine runs the full unsigned 32-bit state domain using an optional OpenMP speedup. The independent full-domain original xorshift / LCG / exact-Java local runs completed with zero hits before this shared source was committed. The combined C++17 file subsequently passed its synthetic controls and 65,536-seed-per-engine smoke in [successful Linux GCC CI run 44964006701](https://github.com/FlareZ123/liber-primus/actions/runs/44964006701). The combined file has not itself been run across all 2^32 seeds in CI.
 
 ## First-order generator-free extrapolation of the crib key
 
