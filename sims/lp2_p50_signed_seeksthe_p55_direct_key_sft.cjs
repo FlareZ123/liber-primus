@@ -207,6 +207,66 @@ assert.ok(Math.abs(folded[0].score + 11.292399894818) < 1e-7);
 assert.ok(Math.abs(held121Min + 9.345100027365) < 1e-7);
 assert.ok(folded.every((candidate) => candidate.score < held121Min));
 
+
+/**
+ * Original p55 contains one incoming page-carry rune, followed by 16 complete
+ * words. The independent p32 physical address-to-node244 path has 15 edges,
+ * or 16 vertices. Apply one graph-derived Caesar key per intact source word.
+ */
+const p55WordLengths = [4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3];
+assert.equal(p55WordLengths.length, 16);
+assert.equal(p55WordLengths.reduce((sum, length) => sum + length, 0), 75);
+const path32To244 = [32];
+for (let node = 32; node !== selected;) {
+  node = parent[node];
+  path32To244.push(node);
+}
+assert.equal(path32To244.length, 16);
+assert.deepEqual(path32To244,
+  [32,113,141,45,105,62,122,85,28,148,242,41,83,190,167,244]);
+const sourceWordTrials = [];
+for (const reverse of [false, true]) {
+  const pathNodes = reverse ? [...path32To244].reverse() : path32To244;
+  for (const kind of ['node', 'parent', 'edge-delta', 'depth']) {
+    const keys = pathNodes.map((node, index) =>
+      kind === 'node' ? node : kind === 'parent' ? parent[node] :
+        kind === 'edge-delta' ? node - parent[node] : index);
+    for (const sign of [-1, +1]) {
+      const output = [original[0]];
+      let cursor = 1;
+      for (let word = 0; word < 16; word++) {
+        for (let offset = 0; offset < p55WordLengths[word]; offset++) {
+          output.push(mod29(original[cursor++] + sign * keys[word]));
+        }
+      }
+      assert.equal(cursor, 76);
+      assert.equal(output.length, 76);
+      assert.deepEqual(output.slice(1).map((value, i) => {
+        const word = p55WordLengths.findIndex((_, j) => {
+          let previous = 0;
+          for (let k = 0; k < j; k++) previous += p55WordLengths[k];
+          return i < previous + p55WordLengths[j];
+        });
+        return mod29(value - sign * keys[word]);
+      }), original.slice(1));
+      sourceWordTrials.push({
+        orientation: reverse ? 'reverse' : 'forward', kind, sign,
+        score: score(output.slice(1))
+      });
+    }
+  }
+}
+sourceWordTrials.sort((a, b) => b.score - a.score);
+const held75 = [];
+for (let i = 0; i + 75 <= held.length; i += 50) {
+  held75.push(score(held.slice(i, i + 75)));
+}
+const held75Min = Math.min(...held75);
+assert.equal(sourceWordTrials.length, 16);
+assert.ok(Math.abs(sourceWordTrials[0].score + 11.38721771841) < 1e-7);
+assert.ok(Math.abs(held75Min + 9.561579642004) < 1e-7);
+assert.ok(sourceWordTrials.every((trial) => trial.score < held75Min));
+
 console.log(JSON.stringify({
   selected: { source: 'SEEKS GP0=71; THE GP0=20', address: selected,
     subtreeSize: orders[0].nodes.length },
@@ -216,6 +276,10 @@ console.log(JSON.stringify({
   },
   numericKeys: { tested: keyTrials.length, best: keyTrials.slice(0, 3),
     candidatesReachingNativeMin: keyTrials.filter((entry) => entry.score >= heldMin).length },
+  wordPath16: { path: path32To244, p55WordLengths, tested: sourceWordTrials.length,
+    scoreRaw: score(original.slice(1)), nativeHeldMin: held75Min,
+    best: sourceWordTrials.slice(0, 3),
+    candidatesReachingNativeMin: sourceWordTrials.filter((entry) => entry.score >= held75Min).length },
   p32LeafFold: { fromP55StrictInteriors: originalInteriors.length,
     p32Nodes: p32.length, leaves: leaves.length, internal: p32.length - leaves.length,
     p32AddressToP55NodeSteps: p32Distance, tested: folded.length,
