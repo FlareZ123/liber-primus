@@ -531,6 +531,82 @@ peelTrials.sort((a, b) => b.score - a.score);
 assert.equal(peelTrials.length, 29);
 assert.ok(Math.abs(peelTrials[0].score + 11.126415100916) < 1e-7);
 
+
+/**
+ * Dual-radix source-constrained transfer candidate: the authenticated
+ * base60 23-step SEEKS route has exactly 24 visited nodes, and the conditional
+ * base59 p32 subtree58 has exactly 24 successive SHED leaf-peeling shells.
+ * Assign one known base60 route state per shell, then mask p32 by shell.
+ * No observed source text commands switching radices; gate is exploratory.
+ */
+const alpha60 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx';
+const parent60 = grid.pages.flatMap((page) => page.tokens).map((cell) =>
+  60 * alpha60.indexOf(cell[0]) + alpha60.indexOf(cell[1]));
+const seekRoute60 = [71];
+for (let i = 0; i < 23; i++) seekRoute60.push(parent60[seekRoute60.at(-1)]);
+assert.deepEqual(seekRoute60.slice(-3), [20,102,32]);
+assert.equal(seekRoute60.length, 24);
+const shell32 = peelingRounds(innerTreeRoot);
+assert.equal(shell32.length, seekRoute60.length);
+const shellIndex = new Map(shell32.flatMap((shell, index) =>
+  shell.map((node) => [node, index])));
+const sourceOrders32 = [
+  ...bigOrders,
+  { name: 'rowmajor-asc', nodes: [...bigOrders[0].nodes].sort((a, b) => a - b) },
+  { name: 'rowmajor-desc', nodes: [...bigOrders[0].nodes].sort((a, b) => b - a) }
+];
+for (const inward of [false, true]) for (const descending of [false, true]) {
+  sourceOrders32.push({
+    name: 'peel-' + inward + '-' + descending,
+    nodes: (inward ? [...shell32].reverse() : shell32)
+      .flatMap((shell) => descending ? [...shell].reverse() : shell)
+  });
+}
+const mixedRouteTrials = [];
+const originalF32 = p32.flatMap((x, i) => x === 0 ? [i] : []);
+for (const reading of sourceOrders32) {
+  for (const inward of [false, true]) {
+    for (const reverseRoute of [false, true]) {
+      const key = reading.nodes.map((node) => {
+        let index = shellIndex.get(node);
+        if (inward) index = 23 - index;
+        if (reverseRoute) index = 23 - index;
+        return seekRoute60[index];
+      });
+      for (const sign of [-1, +1]) {
+        for (let mask = 0; mask < 16; mask++) {
+          const skips = new Set(originalF32.filter(
+            (_, i) => (mask & (1 << i)) !== 0));
+          const plain = [];
+          let clock = 0, legal = true;
+          for (let i = 0; i < p32.length; i++) {
+            if (skips.has(i)) { plain.push(0); continue; }
+            const value = mod29(p32[i] + sign * key[clock++]);
+            if (value === 0) { legal = false; break; }
+            plain.push(value);
+          }
+          if (!legal) continue;
+          const restored = [];
+          clock = 0;
+          for (let i = 0; i < plain.length; i++) {
+            restored.push(skips.has(i) ? 0 : mod29(plain[i] - sign * key[clock++]));
+          }
+          assert.deepEqual(restored, p32);
+          const ll = score(plain);
+          assert.ok(ll < held121Min);
+          mixedRouteTrials.push({
+            reading: reading.name, inward, reverseRoute, sign, mask, score: ll
+          });
+        }
+      }
+    }
+  }
+}
+mixedRouteTrials.sort((a, b) => b.score - a.score);
+assert.equal(sourceOrders32.length, 12);
+assert.equal(mixedRouteTrials.length, 40);
+assert.ok(Math.abs(mixedRouteTrials[0].score + 11.459476347069) < 1e-7);
+
 console.log(JSON.stringify({
   selected: { source: 'SEEKS GP0=71; THE GP0=20', address: selected,
     subtreeSize: orders[0].nodes.length },
@@ -540,6 +616,10 @@ console.log(JSON.stringify({
   },
   numericKeys: { tested: keyTrials.length, best: keyTrials.slice(0, 3),
     candidatesReachingNativeMin: keyTrials.filter((entry) => entry.score >= heldMin).length },
+  mixedRadixSignedRouteToShells: { route: seekRoute60,
+    shells: shell32.length, attempted: 1536, legal: mixedRouteTrials.length,
+    nativeHeldMin: held121Min, best: mixedRouteTrials.slice(0, 3),
+    candidatesAtOrAboveNativeMin: 0 },
   leafPeelFBypass: { counts: peelCounts, best: peelTrials.slice(0, 4) },
   literalFBypass: { counts: transparentFCounts,
     best: transparentFTrials.slice(0, 4) },
