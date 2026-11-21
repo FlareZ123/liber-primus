@@ -19,7 +19,7 @@ The source is `resources/liber-primus/lp2-corpus.json`, physical p0–p55, in pr
 
 There is no fitted key, nonce, selected original page, preferred magic prefix, word reset, or unknown output transformation.
 
-The integer is converted directly into a minimally sized unsigned big-endian byte sequence. Every candidate is examined for exact file magic (GZIP, ZIP, PDF, PNG, BZIP2, XZ, GIF and valid zlib CMF/FLG); each is also passed through Node 22 GZIP, zlib, raw DEFLATE and Brotli decoders. Valid decompression must consume the entire byte stream and yield at least 64 bytes with 80% printable ASCII. Accidental header compliance alone is not reported as a solution.
+The integer is converted directly into a minimally sized unsigned big-endian byte sequence. This test extends **already published** full-stream and chapter-scoped direct-difference compression negatives; its incremental feature is treating the **86 actual zero-difference sites as boundaries for 87 independently encoded candidate byte packets**, rather than merely omitting those sites. The earlier full-stream family is not a new exclusion here: [all-register DEFLATE gate](lp2-delta28-direct-compressed-transport-original-gate.md), [chapter-scoped and byte-pair gates](lp2-gp28-difference-direct-binary-transport-gate.md), [rank28 framed binary gate](lp2-gp28-unframed-compressed-binary-gate.md). Every candidate is examined for exact file magic (GZIP, ZIP, PDF, PNG, BZIP2, XZ, GIF and valid zlib CMF/FLG); each is also passed through Node 22 GZIP, zlib, raw DEFLATE and Brotli decoders. Valid decompression must consume the entire byte stream and yield at least 64 bytes with 80% printable ASCII. Accidental header compliance alone is not reported as a solution.
 
 ## Reproduced original result
 
@@ -36,4 +36,4 @@ A **synthetic native positive** compresses twelve copies of the original solved 
 
 ## Decision
 
-Retire this *particular direct byte-carrier serialization* as a route to the unsolved plaintext. It neither rejects arbitrary GP28 transforms nor excludes an externally keyed cipher or other serialization. The actual obstacle remains a first-party clue selecting the 29→28 operation, the escape semantics, and a legitimate binary/plaintext consumer. Further byte-order, container, or page-subset sweeps need such a selector; unconstrained extensions would repeat the streetlight search.
+The **new zero-delimited-packet reading** of this already extensively tested direct transport also fails. Retire this *particular direct byte-carrier serialization* as a route to the unsolved plaintext. It neither rejects arbitrary GP28 transforms nor excludes an externally keyed cipher or other serialization. The actual obstacle remains a first-party clue selecting the 29→28 operation, the escape semantics, and a legitimate binary/plaintext consumer. Further byte-order, container, or page-subset sweeps need such a selector; unconstrained extensions would repeat the streetlight search.
