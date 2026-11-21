@@ -232,6 +232,8 @@ console.log("CONTROL exact recovered plaintext positions " +
 console.log("CONTROL true source score "+(score(known)/(N-3)).toFixed(5)+
   ", source IoC "+ioc(known).toFixed(5));
 const original=attack(Q,0x3301c25a,64);
+assert.deepEqual(encrypt(original.plain,original.key),Q,
+  "exact forward reencryption of untouched original quotient");
 reveal("ORIGINAL p50 quartic quotient",original);
 console.log("ORIGINAL raw quotient score "+(score(Q)/(N-3)).toFixed(5)+
   ", source original raw IoC "+ioc(Q).toFixed(5));
