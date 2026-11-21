@@ -8,6 +8,12 @@
 
 **Scientific limit:** repeated artwork and layout identify production operations only. Avoid treating a one-bit alternation as a cipher key; look for independently authored decoder or genuine plaintext. Current independent exploration should prioritize original ciphertext/key rather than another unbounded image-source sweep.
 
+## 21 November 2026 additional completed Director assignment #2031
+
+**Issue #2031 claimed, completed, and closed.** Produced a source-linked 11-row 2012–2016 operation/handoff table comparing actual source-authored machine commands and inferred survivor methods: 2013 signed BASE29/DH/NEXT; 2013 signed ICMP → recovered verified gzip payload; 2014 hex→MP3; historical participant-reconstructed OpenPuff; 2014 signed Stage8 CGI contract; contemporaneous Stage10 original LP1 image handoff; signed Stage11 exact Tor-v2 hostname; signed 2016 message; solved p56/p57. Pattern synthesis: typed input/output, participant-local state, checkable next-stage artifact. Five-question rubric rejects unfixed key, receiver, clock, codec, or source-selecting heuristic. **Report** `im-results/cicada-authenticated-solvepath-operation-contracts-2012-2016.md` commits `6c09d847`, `ae97f7ec`, verified remote; issue #2031 closed. No unknown LP2 plaintext/key, no new cipher implied. The main causal gaps remain p50→p32 reversible receiver and p56 signed hash host/serializer. Do not repeat earlier #2015 book-code and prime-DH transfers.
+
+**Independent exploration checkpoint:** manuscript 2,896 original printed word lengths compared across all word pairs: maximum identical contiguous run length **seven words**, with 12 seven-word seed-pair matches, no ≥8; exact duplicate long plaintext quotation internally unlikely by word shapes alone. Existing repo has extensive word-length source/quote tests (e.g. `sims/lp2_wordlength_source_match_sft.cjs`, `lp2_sefer_yetzirah_bookkey_crib_sft.cjs`) and 100+ other specialized scripts; **do not repeat**. No report committed from this smaller duplicate probe because it produced no new operative key/selector.
+
 ---
 
 ## Historical Agent48 archived memory (pre-21 November 2026)
