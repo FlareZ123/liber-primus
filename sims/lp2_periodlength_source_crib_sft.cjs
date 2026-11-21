@@ -4,7 +4,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs'),path=require('n
 const root=path.resolve(__dirname,'..');
 /** @param {string} p */const load=p=>fs.readFileSync(path.join(root,p),'utf8');
 const corpus=JSON.parse(load('resources/liber-primus/lp2-corpus.json'));
-const parts=load('resources/liber-primus/lp2-transcription.txt').split(/\r?\n%\r?\n/);
+const parts=load('resources/transcriptions/lp2-image-corrected.txt').split(/\r?\n%\r?\n/);
 assert.equal(parts.length,57);const rune=new Set(corpus.runes);
 /** @param {string} s */function runes(s){let v=[],n=0;for(const c of s){if(rune.has(c))n++;else if(c==='.'&&n){v.push(n);n=0;}}assert.equal(n,0);return v;}
 const groups=['ING','IO','TH','NG','EO','OE','AE','IA','EA'];
@@ -13,7 +13,7 @@ const groups=['ING','IO','TH','NG','EO','OE','AE','IA','EA'];
 function sentences(s,mode){return s.split(/[.!?]/).map(x=>mode==='gp'?gp(x):(x.match(/[A-Za-z]/g)||[]).length).filter(Boolean);}
 /** @param {number[]} a @param {number[]} b */
 function longest(a,b){const map=new Map();for(let j=0;j+2<b.length;j++){const k=b.slice(j,j+3).join(',');if(!map.has(k))map.set(k,[]);map.get(k).push(j);}let max=0, hits=[];for(let i=0;i+2<a.length;i++){const key=a.slice(i,i+3).join(',');for(const j of map.get(key)||[]){let n=3;while(i+n<a.length&&j+n<b.length&&a[i+n]===b[j+n])n++;if(n>max){max=n;hits=[];}if(n===max)hits.push({i,j,values:a.slice(i,i+n)});}}return{max:max||2,hits:hits.slice(0,3)};}
-const dotRuns=runes(parts.slice(0,-2).join('\n'));assert.equal(dotRuns.length,175);
+const dotRuns=runes(parts.slice(0,-2).join('\n'));assert.equal(dotRuns.length,173);
 assert.equal(dotRuns.reduce((a,b)=>a+b,0),12956);
 assert.deepEqual(dotRuns.slice(0,5),[13,141,121,22,53]);
 const solved=runes(parts.at(-1));assert.deepEqual(solved,[7,30,30,28]);
@@ -33,6 +33,6 @@ const sources=[
 const result=[];for(const source of sources){const t=load(source);for(const mode of ['latin','gp']){const ref=sentences(t,mode);const match=longest(dotRuns,ref);assert.ok(match.max<=3);result.push({source,mode,sourceStops:ref.length,...match});}}
 const trip=result.filter(x=>x.max===3);assert.equal(trip.length,1);
 assert.equal(trip[0].source,'resources/control/shakespeare_first300k.txt');
-assert.equal(trip[0].mode,'gp');assert.deepEqual(trip[0].hits[0],{i:104,j:3142,values:[61,41,71]});
+assert.equal(trip[0].mode,'gp');assert.deepEqual(trip[0].hits[0],{i:103,j:3142,values:[61,41,71]});
 const lp1=longest(dotRuns,runes(load('resources/transcriptions/lp1_wulfic_canonical.txt')));assert.equal(lp1.max,2);
-console.log(JSON.stringify({transcriptionDotRuns:175,unknownRunes:12956,solvedP57:solved,plant:'four-span authentic positive recovered',sources:result,solvedLP1:lp1,verdict:'no four-span literal quotation'},null,2));
+console.log(JSON.stringify({transcriptionDotRuns:173,unknownRunes:12956,solvedP57:solved,plant:'four-span authentic positive recovered',sources:result,solvedLP1:lp1,verdict:'no four-span literal quotation'},null,2));
