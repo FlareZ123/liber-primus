@@ -92,8 +92,8 @@ function backPredict(known,recurrence,previousLength){
   assert(L>0 && C[L]!==0);
   const all=known.slice();
   for(let j=0;j<previousLength;j++){
-    let s=all[0];
-    for(let i=1;i<L;i++)s+=C[i]*all[i];
+    let s=all[L-1];
+    for(let i=1;i<L;i++)s+=C[i]*all[L-1-i];
     all.unshift(mod(-s*inverses[C[L]]));
   }
   for(let i=0;i<all.length-L;i++){
@@ -126,8 +126,8 @@ const first46Words=lens.slice(0,10).map(len=>{
   start+=len;return word;
 });
 assert.deepEqual(first46Words,[
-  "OE","OENGH","FX","DTH","NGAYWWN","PPCWAW",
-  "XIA","PBEATHWGTHYYFEAN","LWTHNGIAA","SIFI"
+  "EA","LWFD","JB","MF","NHNIAOOE","ASGEABJ",
+  "DTH","EWAETHOEYFGIMAEIAL","FOEEOOEEH","EOUTB"
 ]);
 
 // Unrelated positive control with a true 14th-degree key recurrence,
