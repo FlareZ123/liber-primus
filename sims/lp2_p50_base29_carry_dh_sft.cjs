@@ -186,6 +186,29 @@ assert.equal(String.fromCharCode(...xy0.map((i) => data[i])), 'IV');
 assert.deepEqual(xy1, [60, 113]);
 assert.deepEqual(xy1.map((i) => data[i]), [106, 143]);
 
+// One source-shaped IV continuation, fixed before decrypting: p23 red16
+// rune values or GP primes as the 16-byte CBC IV, the first16 p50 bytes
+// as AES-128 key, and the remaining240 printed bytes as ciphertext.
+// This reverses the roles of the previously rejected p23-key/table-IV
+// AES test. It remains only an exploratory role assignment.
+const sourceIVs = [
+  ['p23 red GP indices', [1,24,7,21,6,14,23,6,10,17,10,12,16,17,10,26],
+    '6ac2d31a38fae8bb61a8a82569b8c3c1'],
+  ['p23 red GP primes', [3,97,19,79,17,47,89,17,31,61,31,41,59,61,31,103],
+    '68bbc7402fdba6ac7484bd004294d6bc'],
+];
+for (const [name, iv, expectedStart] of sourceIVs) {
+  const decoder = crypto.createDecipheriv('aes-128-cbc',
+    Buffer.from(data.slice(0, 16)), Buffer.from(iv));
+  decoder.setAutoPadding(false);
+  const plain = Buffer.concat([decoder.update(Buffer.from(data.slice(16))),
+    decoder.final()]);
+  assert.equal(plain.length, 240);
+  assert.equal(plain.subarray(0, 16).toString('hex'), expectedStart, name);
+  assert.equal([...plain].filter((v) => v >= 32 && v <= 126).length, 81);
+  assert.equal([...plain].filter((v) => v <= 28).length, 30);
+}
+
 const changed = data.slice();
 changed[0] += 29; // Still a valid byte; unchanged full mod29 factorization
 assert.ok(changed[0] <= 255);
@@ -263,6 +286,7 @@ console.log(JSON.stringify({
   secondCarry29: [4, 13, 9, 18],
   inSampleTailReconstruction: inferredTail,
   originalXYZeroBased: { indices: xy0, bytes: [73, 86], ASCII: 'IV' },
+  aesCBCOriginalBytes: 'p23-red16-IV/table-first16-key/direct-240 payload nonlinguistic',
   null: { trials, seed: '0x3301bc23', counts },
   interpretation: 'Retrospective source-typed IV read; no source-selected LP2 inverse',
 }, null, 2));
