@@ -39,6 +39,16 @@ The neighboring p7 source provides modulus **23**, and the two p8 red words have
 
 That natural local conservation law is **algebraically impossible for every assignment of the original leaves**. Both original parents `X=14` require `a×b≡14²≡12 (mod23)`. Inspecting **all 28 unordered pairs** of the eight original leaf values `[1,14,19,5,2,13,3,17]` gives **zero** pairs with product12. For the other two parents, the target product8 has one available leaf pair and target16 has two, so the complete parent target list `[12,8,12,16]` admits local candidate-pair counts **[0,1,0,2]** before enforcing disjointness. No choice of leaf pairing, binary-tree traversal, or position-aware factor split can satisfy this *specific* per-parent squaring law. A planted `[1,12]` GF23 pair passes the same local-product check.
 
+### Literal four-digit to eight-digit squaring also fails with arbitrary leaf order
+
+A second direct interpretation of the same 4→8 red title and aggregate product-square is to treat the **four first-word indices as one base23 integer**, square it, and print its **eight base23 digits** as the second word. This supplies an explicit reversible-up-to-sign numerical operation without guessing a cipher table. Even allowing the tree drawing to rearrange the eight result digits arbitrarily, the required **digit multiset is wrong**.
+
+- Original 4 digits `[14,10,14,19]` form base23 integer **175,969**. Its square **30,965,088,961** has exactly eight base23 digits **[9,2,3,22,10,1,18,16]**.
+- Reversing the four source digits gives integer **238,823**. Its square **57,036,425,329** has exactly eight base23 digits **[16,17,6,14,5,21,12,12]**.
+- The printed red second-word digits are **[1,14,19,5,2,13,3,17]**. Its sorted multiset differs from **both** square-digit multisets, independent of any output traversal.
+
+Thus neither natural source direction nor any eight-leaf reorder can implement **literal positional base23 squaring**. This and the local GF23 product-square obstruction are separate models; they do not refute the original *aggregate* product relation, a nonlocal enciphering program, or an unspecified multistage decoder. Both checks are now included in the same original-source SFT, with the eight-digit width verified rather than assumed.
+
 The aggregate `3→9` relation remains a true source property, but **does not lift to a per-parent GF23 squaring expansion**. This excludes a larger algebraic family than the fixed-rune lookup above; it does not exclude a separately specified nonlocal permutation or changing-state cipher. The full arbitrary-leaf-order certificate is reproduced by the same [source-exact SFT](../sims/lp2_p8_binary_tree_expansion_gate_sft.cjs).
 
 This excludes the simplest binary key-expansion reading of the p8 art without testing the black ciphertext. A **position-dependent** branch transformation could still explain the words, but the drawing contains no parent labels, child labels, traversal arrows, per-branch state, reset, or prescribed GP29 arithmetic to select such a transformation. The previous modulo23 product-square relation is only one aggregate checksum, insufficient to determine eight descendants. The 243-rune body remains an untouched independent receiver; no 150-rune decipherment, key, or reversible original cipher follows from this gate.
