@@ -47,13 +47,16 @@ const pages = runeGroups.map((raw, index) => ({
   lineChunks: runeWords(raw),
 }));
 const physical = pages.find(p => p.page === 32);
-assert.equal(physical.words.length, 22,'line-spanning runes form 22 complete words');
+assert.equal(physical.words.length, 22,
+  'source has 22 page-local word segments, including an incoming p31 carry');
 assert.equal(physical.lineChunks.length, 26,
   '26 artificial fragments appear only when physical line breaks are word boundaries');
 assert.equal(physical.words.flatMap(word => [...word]).length,121);
+assert.equal(physical.words[0].length,1,
+  'first page-local segment is one rune carried from p31, not a new whole word');
 const lengths = physical.lineChunks.map(chunk => [...chunk].length);
-const realWordLengths=physical.words.map(word=>[...word].length);
-assert.deepEqual(realWordLengths,
+const pageLocalWordLengths=physical.words.map(word=>[...word].length);
+assert.deepEqual(pageLocalWordLengths,
   [1,3,5,11,5,5,3,11,6,9,5,8,4,9,4,8,2,3,2,8,5,4]);
 const sum = values => values.reduce((a,b)=>a+b,0);
 assert.equal(sum(lengths.slice(0, 13)), 71);
@@ -157,7 +160,7 @@ assert.equal(tail29.length,29);
 assert.equal(new Set(tail29).size,20, 'tail is not a GP29 permutation');
 const boundaries = lengths.reduce((arr,n)=>(arr.push((arr.at(-1)||0)+n),arr),[]);
 assert.ok(boundaries.includes(92),'artificial line-fragment cut at EMPTY92');
-const wholeBoundaries=realWordLengths.reduce((arr,n)=>
+const wholeBoundaries=pageLocalWordLengths.reduce((arr,n)=>
   (arr.push((arr.at(-1)||0)+n),arr),[]);
 assert.equal(wholeBoundaries.includes(71),false,
   'visible line3 break does not end a complete original word');
@@ -214,10 +217,11 @@ console.log(JSON.stringify({
   source: 'p32 six physical lines / 22 whole words / 26 line fragments / terminal red13-dot',
   signed_gp0: {SEEKS:71, EMPTY:92, EPIPHANY:121, THE:20},
   fragment_halves13: [sum(lengths.slice(0,13)),sum(lengths.slice(13))],
-  original_complete_word_count:physical.words.length,
+  page_local_word_segments:physical.words.length,
+  complete_new_word_starts:physical.words.length-1,
   original_line_fragment_count:physical.lineChunks.length,
   source_line_cut_rune_indices:[25,48,71,92,114,121],
-  whole_word_boundary_at_71_or_92:false,
+  page_local_word_end_at_71_or_92:false,
   physical_line_lengths:p32Lines.lengths,
   physical_line_fragment_counts:p32Lines.chunks,
   unique_6_line_13_and_13_fragments:true,
