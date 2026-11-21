@@ -1,6 +1,6 @@
 # Complete source-fixed inventory of the 2013 Cicada OS initramfs
 
-**Decision (11 November 2026):** The original 2013 `3301.img` initramfs contains no additional named Cicada puzzle decoder, key-generation program, or readable LP2 instruction beyond its previously reported `cicada`, `prime_echo`, `message.txt`, `message.txt.asc`, and byte-identical `wisdom`/`folly` files. The apparent `cicada.ko.gz` match is the conventional Linux kernel Ethernet PHY driver. This is a *complete extracted-filesystem inventory*, rather than a denial that any hidden carrier or file-content cipher could exist. No unknown Liber Primus plaintext or cipher key was found.
+**Decision (21 November 2026; Issue #2003):** The hash-verified 2013 CicadaOS ISO's embedded `/BOOT/3301.IMG;1` member has now been byte-joined to the pinned initramfs source object. The exact extracted filesystem contains 737 regular files and 291 symlinks (1,028 manifest entries); the inventory still finds no additional named Cicada puzzle decoder, key-generation program, or readable LP2 instruction beyond the previously identified files. The apparent `cicada.ko.gz` match is the conventional Linux kernel Ethernet PHY driver. This is a complete inventory of the embedded initramfs filesystem, not a claim about every other ISO file or hidden data inside allocated assets. No unknown Liber Primus plaintext or cipher key was found.
 
 ## Source and independent full-image experiment
 
@@ -8,6 +8,20 @@
 - Read-only whole-image SFT: [`sims/cicada2013_os_full_rootfs_inventory_sft.cjs`](../sims/cicada2013_os_full_rootfs_inventory_sft.cjs), checking the original image Git blob, six original file Git blobs, exact prime sequence and delays, startup flow, and relevant filenames/text references. A [manual-only workflow](../.github/workflows/cicada2013-os-full-rootfs-inventory.yml) extracts the original image into a temporary directory without booting it.
 - [Successful independent complete-image run 43075817527](https://github.com/FlareZ123/liber-primus/actions/runs/43075817527) and [its exact JSON inventory artifact](https://github.com/FlareZ123/liber-primus/actions/runs/43075817527/artifacts/13882991345). **737 regular files, 291 symbolic links.** The first run failed only because ordinary `cpio` could not create original block/character device nodes on the runner; the second run used `fakeroot` for faithful extraction and all source/assertion checks passed.
 
+
+## Direct original-ISO-to-initramfs custody join (21 November 2026)
+
+A new execution of the existing manual-only workflow [`cicada2013-os-full-rootfs-inventory.yml`](../.github/workflows/cicada2013-os-full-rootfs-inventory.yml) verified the complete 136,398,848-byte ISO from `https://connortumbleson.com/uploads/2024/01/3301.iso` against all three pinned digests:
+
+- MD5: `74062dee4093c6ca0340cda23f0e994b`
+- SHA-1: `df433cba87644b35cbc47f702a02e2b58d90af6a`
+- SHA-256: `784643558799dd8bb3e172f31df6d6ca2f397fd61cb8fc371bf930f1e5ae6b7f`
+
+Pinned `pycdlib==1.22.0` located ISO member `/BOOT/3301.IMG;1` at byte offset `128086016`, length `5494774`. The extracted bytes have Git blob SHA-1 `d4dba9a6d3c0d6ed751d71cdc484e4b7efe1ee0a` and SHA-256 `3fcbb8abaf9d876985e8122e94f60b306a06401ec95b743d52da2e2324a37f42`. They match byte-for-byte the pinned object `neuroretransmit/cicada@ade9a02889ef8acbc8cde8edbfd0a785c369f4c3:2013/002-3301/3301-contents/boot/3301.img`, including the same 5,494,774-byte length and Git blob SHA-1. The mirror's digest match establishes this exact ISO/member join; it does not independently establish the upstream Git repository's first-party authorship.
+
+The same run safely extracted the member without executing startup code and generated the complete sorted path/size/hash manifest: **1,028 entries (737 regular files, 291 symlinks)**, manifest SHA-256 `87f903fc1ed52826f6cf9f0c7de0857fa53e6aec443c76d38dbffc4bf8ee0286`. The two JSON files (join record and full manifest) are in Actions artifact [14712470067](https://github.com/FlareZ123/liber-primus/actions/runs/44917051483/artifacts/14712470067); its ZIP SHA-256 is `b89edba654bd0a6b6077a79ee2eca0760abcf0f645122a5d8bab43e29125fbd6`. The successful manual workflow run is [44917051483](https://github.com/FlareZ123/liber-primus/actions/runs/44917051483).
+
+**Cryptanalytic consequence:** this completes the exact ISO-to-initramfs custody gap and ties the existing full-rootfs inventory to a digest-verified ISO. It does not reveal an additional key, alphabet, state transition, LP2-specific instruction, or reversible receiver. The separately inventoried ISO free sectors and file-end slack remain a distinct bounded negative; this join does not re-run that scan or inspect the contents of separate ISO members such as `DATA/560.13`.
 ## All puzzle-named entries in the extracted filesystem
 
 | Original path | Size, bytes | Role and scope |

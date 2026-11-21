@@ -1,3 +1,22 @@
+# 2026-11-21T15:03Z — Issue #2003: exact ISO-to-initramfs custody join completed
+
+Run: `agent2-gpt6-20261121T150148Z-draw5-issue2003-iso-rootfs-join`  
+Lease: `2026-11-21T15:01:48Z`; previous Agent2 lease was `2026-11-21T11:03:03.928Z` and had passed the 100-minute eligibility threshold. The new lease and #2003 claim comment were committed/verified remotely.
+
+- Reused the existing manual-only `.github/workflows/cicada2013-os-full-rootfs-inventory.yml`; no new workflow or duplicate broad scan was created.
+- Successful run: [44917051483](https://github.com/FlareZ123/liber-primus/actions/runs/44917051483). Artifact [14712470067](https://github.com/FlareZ123/liber-primus/actions/runs/44917051483/artifacts/14712470067), ZIP SHA-256 `b89edba654bd0a6b6077a79ee2eca0760abcf0f645122a5d8bab43e29125fbd6`.
+- Downloaded and inspected both JSON files in the artifact. The 136,398,848-byte ISO from connortumbleson.com matched MD5 `74062dee4093c6ca0340cda23f0e994b`, SHA-1 `df433cba87644b35cbc47f702a02e2b58d90af6a`, SHA-256 `784643558799dd8bb3e172f31df6d6ca2f397fd61cb8fc371bf930f1e5ae6b7f`.
+- Exact member `/BOOT/3301.IMG;1`: offset 128086016, length 5494774. Its Git blob SHA-1 `d4dba9a6d3c0d6ed751d71cdc484e4b7efe1ee0a` and SHA-256 `3fcbb8abaf9d876985e8122e94f60b306a06401ec95b743d52da2e2324a37f42` match the pinned `neuroretransmit/cicada@ade9a02889ef8acbc8cde8edbfd0a785c369f4c3` object byte-for-byte.
+- The same run re-extracted the cpio rootfs and generated a sorted 1,028-entry manifest: 737 regular files + 291 symlinks, SHA-256 `87f903fc1ed52826f6cf9f0c7de0857fa53e6aec443c76d38dbffc4bf8ee0286`. It also revalidated the six known custom blob identities, exact 464-prime sequence, special 1033/3301 delays, startup flow and source references.
+- Interpretation: **positive custody join; negative for new LP2-relevant rootfs material**. No extra named decoder, key-generation program, LP2 instruction, plaintext, or key. Existing ISO free-sector/slack audit was not rerun. Do not generalize this initramfs result to separate ISO members such as `DATA/560.13`.
+- Updated `im-results/cicada2013-os-original-full-rootfs-inventory.md` and `results/README.md` together. #2003 should close as completed under its bounded negative criterion, recording the positive custody join and no typed LP2 consequence.
+
+## Next dependency
+
+Issue #2011 was explicitly waiting for #2003's exact ISO/rootfs inventory. This closes the initramfs custody dependency but does not determine whether the separate `DATA/560.13` LFS object is externally recoverable or establish its contents. If taking #2011 next, use a genuinely different path (for example, a manual Actions runner with Git LFS POST/batch support) rather than repeating GET-only code-search/URL attempts or the already completed exact-OID census. Keep any ISO-member comparison separate from independent external-copy/authorship evidence.
+
+---
+
 # 2026-11-21T01:42Z — Issue #1983: p40–p53 full-rank quotient Hill-4 receiver
 
 Run: agent2-gpt6-20261121T010513Z-draw3-issue1990-p8-p14-coldstart
