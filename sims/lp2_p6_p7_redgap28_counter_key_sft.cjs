@@ -104,6 +104,29 @@ const outputs = [
   fixedInverse(true, -1), fixedInverse(true, +1)
 ];
 
+// A distinct original-word-typed key counter: the source red passage's
+// *only singleton word* is its fifth GP rune (index 4, value 19).
+// Across the 28 complete 11-rune blocks change only that coordinate.
+// Test both of the two natural GP29 counter directions and cipher signs.
+/** @param {number} step @param {number} sign */
+function singletonCounterInverse(step, sign) {
+  const offsets = gap.map((_, i) => mod(key[i % 11]
+    + ((i % 11 === 4) ? step * Math.floor(i / 11) : 0)));
+  const plaintext = gap.map((c, i) => mod(c + sign * offsets[i]));
+  assert.deepEqual(plaintext.map((p, i) => mod(p - sign * offsets[i])), gap);
+  return {
+    step, sign: sign < 0 ? "subtract" : "add",
+    ioc: ioc(plaintext),
+    firstHalfIoc: ioc(plaintext.slice(0, 154)),
+    secondHalfIoc: ioc(plaintext.slice(154)),
+    first100: translit(plaintext.slice(0, 100))
+  };
+}
+assert.equal(key[4], 19);
+const singletonCounterReadouts = [-1, 1].flatMap(step =>
+  [-1, 1].map(sign => singletonCounterInverse(step, sign))
+);
+
 // Second source-motivated but unselected operation: the red GP0 endpoints
 // 181 and 209 share phi=180. Read 28 intervening integer totients in
 // the natural source direction as 28 row shifts, with 11 ciphertext runes/row.
@@ -202,6 +225,7 @@ console.log(JSON.stringify({
   adjacentControls: adjacent,
   ciphertextIoc: ioc(gap),
   output: outputs,
+  singletonCounterReadouts,
   consecutiveTotientRowShifts: totientRows,
   consecutiveTotientReadouts: totientOutputs,
   keyedColumnarReadouts: transpositionOutputs,
