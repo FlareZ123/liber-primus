@@ -1,6 +1,6 @@
 # LP2 opening red heading: prime-count navigation to the tree map and numerical page
 
-**Status (Agent25, 13 November; Agent2, 17 November 2026): provisional source-exact candidate navigation rule, with two direct consumers tested negative.** It does not recover unknown plaintext or authenticate a decryption. The p0 arithmetic identifies a candidate p0-to-p32/p50 route, but the operations were recognized retrospectively and no manuscript instruction explicitly selects them. The simplest p32-ring-key decoder of the p33 body and the direct p50 five-cell repeating-additive key are both negative.
+**Status (Agent25, 13 November; Agent2, 17 November; Agent44, 21 November 2026): provisional source-exact navigation hypothesis.** The opening arithmetic is now joined by a repeated p0/p6 red-span prime checksum and a single fixed start-181 path through the original p50 base60 map to p32. The direct p32-ring and p50 five-cell consumers remain negative. This strengthens source selection but does not recover unknown plaintext or authenticate a decryption.
 
 **Corrected original-image adjudication (16 November 2026):** The first **eight** GP runes on original p0 are red, followed by a **small ordinary red word dot**, **five additional red GP runes**, then the **large red 13-dot mark at rune offset13**. The first black body rune is **TH** at offset13. A same-day red8/marker8/black5 report confused the small red word dot with the large punctuation and is [retracted](lp2-p0-red13-13dot-blackbody-original-source-adjudication.md). The older derivative annotation of a **13-rune red heading (8+5)** and marker at13 was correct. Calculations depending only on the original first 13 GP values remain unchanged; any physically asserted colour change at8 must be retired.
 
@@ -17,6 +17,31 @@ The two-word sum and difference are:
 - The two opening **word lengths** give `8 × 5 = 40`. The **11×11** page32 square has exactly **40 outer-ring cells** and **81 interior cells**. Physical **p33 has an original 13-dot/red-heading-bounded 81-rune body** at page-local rune offsets [10,91). This supplies a concrete candidate boundary-to-interior transfer rather than a fitted phrase.
 
 There is an independent, previously established historical clue for the proposed destination: the signed **2016 563×569 tree image** repeats the p32 tree illustration. Its width and height exactly match the **top-row (563) and left-column (569) GP-prime sums** of original p32 under the natural 11×11 row-major arrangement. See [the tree image and source axis report](lp2-tree121-signed2016-source-gate.md). The current link only supplies an *additional possible origin at the opening phrase*; it does not upgrade that image linkage to a cipher key.
+
+## Independent p0/p6 red-span checksum and start-181 path (Agent44, 21 November 2026)
+
+A second original-ink route uses GP0 index sums of red spans rather than the earlier p0 prime-weight word sums. The original annotation identifies the p0 opening red span at [0,13) and a separate p6 red span at [71,82). Both have **GP0 sum 181**, a prime, so both independently select the same candidate table address. Across all 18 annotated red spans, this is the only repeated prime sum. Applying the LP1 totient clue gives φ(181)=180, matching the **180 interior cells** of the original 32×8 p50 table after its 76-cell circumference is removed.
+
+The word boundaries in the original transcription give:
+
+| Red span | Rune count | Word lengths | Product |
+|---|---:|---|---:|
+| p0 [0,13) | 13 | 8, 5 | **40** |
+| p6 [71,82) | 11 | 4, 1, 4, 2 | **32** |
+
+The original row-major base60 table's zero-based cell 181 is printed as token **0e**, whose decimal value is **40**. This is the only red span among the 18 for which the table value at its GP0 sum equals the product of its complete word lengths: p0 gives 40=8×5. The p6 product 32 independently names physical p32.
+
+Treat the original base60 table values as the already documented forward successor map T(i). Its single fixed path from the source-derived start 181 is:
+
+181 → 40 → 80 → 142 → 160 → 233 → 234 → 196 → 176 → 235 → 121 → 237 → **32** → 115 → 247 → 192 → 0 → 203 → 68 → 199 → 47 → 76 → 114 → 197 → 115 …
+
+There are **13 transient nodes** before the 11-cycle, and the last transient node is **32**. The p0 red span length13 matches the transient-node count; the p6 red span length11 matches the cycle length. The separate 2-cycle has length2. The authenticated 2016 coda's 13 words split 11+2, matching the already documented cycle decomposition; this new evidence adds a source-derived start and destination, not a new coda decoder.
+
+The destination is independently cross-selected: p32 has 121 runes (11×11), its perimeter is 40 and its interior is 81; the p6 word-length product is 32; and the earlier p0 prime-weight difference already selected p32. The p32 inner9/p33 body81 transfer has been tested separately and its direct additive/Hill consumers remain negative. The p6 11-rune span was also tested once as a direct period-11 additive key on p32, both signs and with/without the known ciphertext-F bypass; no readable output resulted. The new route is therefore a **navigation/selection hypothesis**, not a plaintext or key.
+
+**Familywise controls:** p7 has a red-span sum 209, composite but φ(209)=180, and its base60 path also has transient depth13; p15 has an 11-rune red span but composite sum120. Therefore φ=180, depth13, or length11 alone is not unique. The stronger combination is the repeated prime sum181 on p0/p6, the unique p0 cell181=word-length-product40 match, p6's product32, and the 13/11 path/cycle alignment. The inference that one should sum GP0 red-span values and use the result as a zero-based row-major p50 address remains unproven; “amass”/“numbers are the direction” are plausible cues, not an explicit instruction.
+
+Reproduction: [the red-span 181 / p50 path source-gate SFT](../sims/lp2_redspan_181_p50_path_p32_source_gate.cjs). This bounded gate does not reopen the existing 62,720-configuration graph family.
 
 ## Finite original-corpus selector comparison
 
@@ -77,6 +102,6 @@ These are effectively the uniform GP29 baseline of 1.0, not evidence of language
 
 ## Research decision
 
-The p0 red-heading arithmetic offers a **candidate entry point** that independently names p32 (page and rune count) and original numerical image67/p50, while its word lengths reproduce p32's outer-vs-inner 40/81 geometry. The page32 tree image and p33 81-rune body preexist this discovery and supply a potential next step, **but the navigation rule remains an unverified interpretation**. The simplest p32-ring consumer and the direct modulo256 five-cell p50 additive consumer are both negative; the latter fails under both index bases and arithmetic signs. The strongest missing input remains an author-attributable instruction fixing another exact readout from the chosen p32/p50 sources. No actual ciphertext key, decryption algorithm, unknown LP2 plaintext or destination is established. Prefer discriminating source-controlled consumers of this combined p0→p32/p50 pointer to repeated exact-number coincidences.
+The p0 red-heading arithmetic and the independent p6 red-span checksum now converge on p32 and the original p50 table. The repeated GP0 prime sum181, φ(181)=180, the unique p50 cell181=40 / p0 word-length product40 match, p6 product32, and the 13-transient/11-cycle route to node32 form a plausible human navigation sequence. The p32 tree image and p33 81-rune body remain possible next-stage material, but direct p32-ring, p32-inner9 and p50 five-cell additive consumers remain negative. The decisive unresolved premise is still the authorial operation that turns the selected p32/p50 material into plaintext; do not replace it with arbitrary graph, phase, or cipher variants.
 
-**Reproduction:** `sims/lp2_p0_red_primecount_p32_p50_map_sft.cjs` reads only canonical checked-in GP indices, the original transcript/ink annotations and the 256-byte grid; it asserts the full-corpus selector matches and the original exact ring inverses.
+**Reproduction:** `sims/lp2_p0_red_primecount_p32_p50_map_sft.cjs` reproduces the earlier prime-count route. The independent red-span checksum and fixed start-181 path are asserted by `sims/lp2_redspan_181_p50_path_p32_source_gate.cjs`.
