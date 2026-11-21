@@ -247,3 +247,39 @@ console.log(JSON.stringify({test:"p8 black-body natural source clock",
  originalBlackRunes:243,firstBlackRuneIndex:12,
  sourceCycle:orbit,exactReplays:10,nativePlants:10,
  recoveredUnknownPlaintext:false,blackClockResults},null,2));
+
+
+/** Natural orbit order as rival to the physically printed five-word order.
+ * Starting at the p7 last product 2, cube around the unique six-cycle and
+ * remove the separately printed p8 M=19. No arbitrary axis permutation.
+ */
+const cubicAxisOrder=orbit.filter(x=>x!==19);
+assert.deepEqual(cubicAxisOrder,[2,8,15,11,26]);
+assert.deepEqual([...cubicAxisOrder].sort((a,b)=>a-b),
+  [...products].sort((a,b)=>a-b));
+const cubeOrderedTensor=[];
+for(const exponent of [3,19]){
+  const samplePoints=cubicAxisOrder.map(x=>[
+    x,pow(x,exponent),pow(pow(x,exponent),exponent)]);
+  const matrices=samplePoints.map(v=>v.map(x=>[1,x,mod(x*x)]));
+  for(const mode of ["inverse","direct","transpose-inverse","transpose-direct"]){
+    const mapping=matrices.map(m=>{
+      const b=mode.includes("inverse")?inverse3(m):m;
+      return mode.startsWith("transpose")?transpose(b):b;
+    });
+    const reverse=mapping.map(inverse3);
+    const d=fiveAxisTransform(black,mapping);
+    assert.deepEqual(fiveAxisTransform(d,reverse),black);
+    const plant=[...native,...native,...native.slice(0,53)];
+    assert.deepEqual(fiveAxisTransform(fiveAxisTransform(plant,reverse),
+      mapping),plant);
+    const score=ioc(d);
+    assert(score<.037);
+    cubeOrderedTensor.push({exponent,mode,ioc:score,
+      first70:spell(d.slice(0,70))});
+  }
+}
+console.log(JSON.stringify({test:"p8 3^5 axes in source-selected cube order",
+ orderedProducts:cubicAxisOrder,sourceBlack:243,
+ exactCipherReplays:8,exactNativePlants:8,
+ recoveredUnknownPlaintext:false,cubeOrderedTensor},null,2));
