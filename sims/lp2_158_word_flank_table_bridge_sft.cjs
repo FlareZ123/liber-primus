@@ -122,6 +122,32 @@ for (let i = 0; i < pageCounts.length; i++) {
 }
 assert.deepEqual(pairs158.map(pair => pair.map(x => x.page)), [[49, 51]]);
 
+
+const tablePointers = [];
+for (const [wordMode, wordNumbers] of [['GP0', wordGP0], ['prime', wordPrime]]) {
+  const selectedFlank = wordNumbers.map(x => mod(grid.bytes[mod(x, 256)], 158));
+  const flankValues = selectedFlank.map(i => flank[i]);
+  tablePointers.push({
+    direction: 'word-to-table-to-flank',
+    wordMode,
+    uniqueFlankSymbols: new Set(flankValues).size,
+    ioc: ioc(flankValues),
+    stream: flankValues.map(x => alphabet[x]).join('')
+  });
+}
+for (const [keyMode, keyNumbers] of [['GP0', flankGP0], ['prime', flankPrime]]) {
+  const selectedWords = keyNumbers.map(x => mod(grid.bytes[mod(x, 256)], 158));
+  const values = selectedWords.map(i => mod(wordGP0[i], 29));
+  tablePointers.push({
+    direction: 'flank-to-table-to-word',
+    keyMode,
+    uniqueWordSelections: new Set(selectedWords).size,
+    ioc: ioc(values),
+    selectedWordIndices: selectedWords,
+    stream: values.map(x => alphabet[x]).join('')
+  });
+}
+
 const report = {
   counts: {
     p0p2Words: words.length,
@@ -141,7 +167,8 @@ const report = {
     firstHeading: { transient: x.firstHeading.transient, cycle: x.firstHeading.cycle },
     secondHeading: { transient: x.secondHeading.transient, cycle: x.secondHeading.cycle }
   })),
-  p50TableBytePads: tableBytes
+  p50TableBytePads: tableBytes,
+  tablePointers
 };
 
 console.log(JSON.stringify(report, null, 2));
