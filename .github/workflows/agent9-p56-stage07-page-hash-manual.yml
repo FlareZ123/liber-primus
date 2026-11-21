@@ -1,0 +1,62 @@
+name: Agent9 p56 exact 2014 Stage07 page-hash gate (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-source-hash:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install independent 512-bit hash implementations
+        run: python -m pip install --disable-pip-version-check pyskein gostcrypto
+      - name: Retrieve exact Stage07 page, audio, and recovered payload from pinned mirrors
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p probe-output/stage07-p56
+          a='https://raw.githubusercontent.com/cijhho123/cicada3301/d360ad97d39c4719e42dc88b0cbbb81ed54aa02c/assets/2014/stage07'
+          b='https://raw.githubusercontent.com/scream314/cicada3301/10733feb487bb8beb9966d534727ee5897aa54fc/assets/2014/stage07'
+          curl --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 "$a/q4utgdi2n4m4uim5.onion/index.html" -o probe-output/stage07-p56/cijhho-signed.html
+          curl --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 "$b/q4utgdi2n4m4uim5.onion/index.html" -o probe-output/stage07-p56/scream314-signed.html
+          curl --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 "$a/index.mp3" -o probe-output/stage07-p56/cijhho-index.mp3
+          curl --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 "$b/index.mp3" -o probe-output/stage07-p56/scream314-index.mp3
+          curl --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 "$b/magicsquares.txt" -o probe-output/stage07-p56/scream314-magicsquares.txt
+          git hash-object --no-filters probe-output/stage07-p56/cijhho-signed.html
+          git hash-object --no-filters probe-output/stage07-p56/scream314-signed.html
+          git hash-object --no-filters probe-output/stage07-p56/cijhho-index.mp3
+          git hash-object --no-filters probe-output/stage07-p56/scream314-index.mp3
+          git hash-object --no-filters probe-output/stage07-p56/scream314-magicsquares.txt
+      - name: Verify Cicada PGP signature and recover the exact signed hex body
+        shell: bash
+        run: |
+          set -euo pipefail
+          gpg --batch --import resources/cicada-3301-authentic-public-key.asc
+          gpg --batch --status-fd 1 --verify probe-output/stage07-p56/cijhho-signed.html \
+            1> probe-output/stage07-p56/cijhho.verify.status \
+            2> probe-output/stage07-p56/cijhho.verify.stderr
+          grep -F '[GNUPG:] VALIDSIG 6D854CD7933322A601C3286D181F01E57A35090F' probe-output/stage07-p56/cijhho.verify.status
+          gpg --batch --yes --status-fd 1 --output probe-output/stage07-p56/cijhho-cleartext.hex \
+            --decrypt probe-output/stage07-p56/cijhho-signed.html \
+            1> probe-output/stage07-p56/cijhho.decrypt.status \
+            2> probe-output/stage07-p56/cijhho.decrypt.stderr
+          grep -F '[GNUPG:] VALIDSIG 6D854CD7933322A601C3286D181F01E57A35090F' probe-output/stage07-p56/cijhho.decrypt.status
+          xxd -r -p probe-output/stage07-p56/cijhho-cleartext.hex > probe-output/stage07-p56/cijhho-decoded.mp3
+          cmp probe-output/stage07-p56/cijhho-index.mp3 probe-output/stage07-p56/cijhho-decoded.mp3
+          rm probe-output/stage07-p56/cijhho-decoded.mp3
+      - name: Run exact-byte hash comparisons with six 512-bit families
+        run: |
+          python sims/lp2_p56_stage07_page_hash_gate.py \
+            --input-dir probe-output/stage07-p56 \
+            --report probe-output/stage07-p56/hash-report.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p56-stage07-exact-page-hash-gate
+          path: probe-output/stage07-p56/
+          if-no-files-found: warn
+          retention-days: 30
