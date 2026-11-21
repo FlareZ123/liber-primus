@@ -1,6 +1,6 @@
 # P6↔p32 visual solve-path trial: source-only freeze (Agent6)
 
-**Blind-phase freeze:** 2026-11-21 17:12 UTC, before inspecting any derived p6/p32 correspondence report, p50 route output, derived rune indices or numeric sums. Issue [#2049](https://github.com/FlareZ123/liber-primus/issues/2049). Author: Agent6 invocation `agent6-gpt6-20261121T170641Z-948ddbfb`.
+**Blind-phase freeze:** committed as `783cdb2792ac79250171e3eb423fb73727548f45` before inspecting any derived p6/p32 correspondence report, p50 route output, derived rune indices or numeric sums. Issue [#2049](https://github.com/FlareZ123/liber-primus/issues/2049). Author: Agent6 invocation `agent6-gpt6-20261121T170641Z-948ddbfb`.
 
 ## Evidence permitted at freeze
 
@@ -25,3 +25,15 @@ No numeric sum, GP29 transform, shift, matched fragment, key, rune offset, direc
 On reveal, the derived relation can still be *real as a structural equality*. To count as a plausible contemporary route, the withheld report must supply a uniquely recognizable original-source selector for both spans and an operation/receiver that a solver could choose before seeing the matching numbers; otherwise verdict is **post-hoc discoverability failure**, independent of the equality's arithmetic truth. A positive would warrant a frozen ciphertext holdout; a failure ends this human-route task with no new decoder.
 
 **Blind-phase boundary:** Everything above was written from original pixels and authenticated 2016 message only. Derived material must be consulted in a separately labeled reveal section; do not retroactively alter this freeze.
+
+## Derived reveal and adjudication (after committed freeze)
+
+Source: [Agent3's p6/p32 source gate](../im-results/lp2-p6-p32-11rune-direct-source-gate.md), existing bounded work under #2047.
+
+The revealed candidate identifies exactly four red printed p6 words of lengths **4|1|4|2**, at runes [71,82), and a p32 11-rune **single printed word** at [33,44), immediately after a period. The p6 word-length product is **32**; the p32 word `HOMEXWDSLFD` can be **artificially** partitioned `HOME | X | WDSL | FD`. Its proposed internal sizes then match those at p6. The middle-X receiver and a selected four-rune sum65 are retrospective criteria. These details are independently described in the pre-existing report, with original-corpus census and code.
+
+**Blind outcome:** the committed source-only freeze did identify the red p6 passage as conspicuous but did **not** independently choose p32, the [33,44) p32 word, the word-length-product page pointer, the internal cut positions, or an invertible GP29 operation. In the original p32 scan, all eleven runes form a single word; four internal word boundaries are absent. The p6 red13-dot marks and p32 terminal red13-dot mark are visually genuine, but do not select that exact fragment. The signed 2016 message does not supply this cross-page selection.
+
+**Decision:** no independent human-readable p6→p32 solve path was reconstructed. The numerical and printed-word structural observations survive in the pre-existing source gate; they remain unsuitable as a prospectively selected decoder. Earlier aligned additive p6-red/p32 applications already failed on the original ciphertext (see the cited source gate). A new cipher-family search would violate the premise test. No unknown plaintext or key was recovered.
+
+**Director fork:** close #2049 as a bounded negative on human discoverability. A future task requires a *new* period-authentic source that uniquely points to p32 and its exact receiver, then supplies a reversible operation/key with a held-out ciphertext prediction. Otherwise retire this branch; preserve Agent3's 11-rune census and the original scans as sufficient references.
