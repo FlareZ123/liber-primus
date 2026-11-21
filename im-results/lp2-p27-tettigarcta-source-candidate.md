@@ -1,6 +1,6 @@
 # p27 Tettigarcta forewing source candidate: exact crop, historical locator, unresolved registration
 
-**21 November 2026, Agent8; Director task #2021.** This report records a new, clue-constrained source candidate for the isolated LP2 physical-p27 wing. It does **not** claim an exact image attribution or a decipherment.
+**21 November 2026; source lead Agent8, retrieval gate closed by Agent9 under #2021.** This report records a clue-constrained historical source candidate for the isolated LP2 physical-p27 wing. It does **not** claim an exact image attribution or a decipherment.
 
 ## Candidate sources
 
@@ -8,7 +8,7 @@
 
 J. W. Evans, “The Morphology of Tettigarcta tomentosa White (Homoptera, Cicadidae),” Papers and Proceedings of the Royal Society of Tasmania, 1940 volume, pp.35–49 (bibliographic citation commonly dated 1941). The paper's printed p.41 contains **Fig.12, “Tettigarcta tomentosa. Forewing.”** The figure labels Sc, R + Sc, and NL. The text says that the subcostal vein fuses with the upper radial-sector branch up to the nodal line, that the radial sector divides before the nodal line, that all four branches of the median vein are developed, that there is a third anal vein, and that the nodal line extends across the wing. [Original paper PDF](https://eprints.utas.edu.au/13273/1/1940-evans-morphology.pdf).
 
-This is a strong locator because it is a **specific isolated cicada forewing with an explicitly labelled nodal line**, not a generic insect-wing resemblance. It offers a plausible human route from the p27 wing image to an anatomical source. But the PDF's text was accessible while its figure raster was not: attempts to retrieve the figure image/screenshot returned access/cache failures. Therefore no pixel registration, vein-by-vein match, or source-authored face order is established.
+This is a strong locator because it is a **specific isolated cicada forewing with an explicitly labelled nodal line**, not a generic insect-wing resemblance. BHL's 1939–1940 volume record (item 339447) identifies Museums Victoria as holding institution, Atlas of Living Australia as sponsor, scan date 2025-02-24, and copyright status “In copyright. Digitized with permission,” with the Royal Society of Tasmania named as rights holder ([BHL volume record](https://www.biodiversitylibrary.org/bibliography/9494)). The linked [Archive.org directory](https://www.archive.org/download/papersproceedin1939roya) lists a 17.5 MB PDF, a 16.1 MB black-and-white PDF, and a 1.5 GB JP2 ZIP, plus OCR assets. The UTAS PDF's extracted text confirms Fig.12 and its labels, but the BHL item/PDF/JP2 page-image endpoints return cache misses in the current retrieval surface; direct local downloads of the UTAS and Archive.org PDFs also failed. No raster is copied into this repository; use an authorized BHL/rights-holder route if access becomes available. Therefore no pixel registration, vein-by-vein match, or source-authored face order is established. This is a retrieval limitation, not an image mismatch.
 
 ### Earlier Tettigarcta reference
 
@@ -42,10 +42,10 @@ The prior exact-source comparisons of Moulds 2005/2012 and other designated ento
 
 ## Decisive next test
 
-1. Obtain a verified original raster of Evans Fig.12 (or the 1845 Tettigarcta plate).
-2. Register it against the original p27 crop using the existing frozen full-span similarity gate; do not use anisotropic warping to rescue a mismatch.
-3. If the image match passes, map Sc, R + Sc, and NL onto the p27 graph and determine whether the source actually selects one of the four paths. Freeze that order **before** examining ciphertext output.
+1. Do not retry the same cache-miss endpoints. Reopen retrieval only if a locally supplied or BHL/rights-holder-authorized original raster becomes available.
+2. Preserve the exact raster bytes and source hash, then register against the original p27 crop using the frozen full-span similarity gate; do not use anisotropic warping to rescue a mismatch.
+3. If the pixel match passes, map Sc, R + Sc, and NL onto the p27 graph and determine whether the source actually selects one of the four paths. The text labels are vein/line identifiers, not a face order; freeze a unique source-derived order **before** examining ciphertext output.
 4. Require a source-motivated, reversible **value-changing** operation and an independent original-page prediction. A pure face permutation is already insufficient.
-5. If the original image fails the exact match or provides no unique order, retire this candidate and do not restart generic cicada/wing/species searches.
+5. If an authorized raster still provides no unique order, retire this candidate and do not restart generic cicada/wing/species searches.
 
 **Status:** specific historical source lead; exact raster match unavailable; no source-authored fifteen-face order, key, reversible operation, or LP2 plaintext recovered.
