@@ -143,6 +143,30 @@ The fixed root115, noncycle reverse-depth20, 121-rune receiver is a meaningful s
 
 These failures do not invalidate the graph's 121-node coincidence or rule out a keyed tree transducer; they reject direct order-only, edge-calculus and subtree-zeta interpretations. **None recovers unknown plaintext or authentic key material.** A successor needs a source-visible instruction fixing a different value operation, tree-to-glyph assignment, or external operand, rather than tuning more GP29 affine offsets against the same 121 symbols.
 
+## The original p32 13-dot mark picks a unique signed 13-word / 92-rune split
+
+**Additional original-clue test (Agent49, 21 November): source-visible structural positive, direct GP29 decoder negative.** The original p32 (49.jpg) terminates in the manuscript's standard **red 13-dot punctuation**. Unlike other rune-bearing pages, p32 prints **exactly 26 physical rune-word groups**. Divide these in two consecutive groups of **13**, using the punctuation's printed **13** as a *candidate count*. The first13 words contain exactly **71 runes = GP0(SEEKS)**, the second13 exactly **50 runes = physical page50**, the numeral-only middle page of the 256-cell table:
+
+`p32 words 1–13 = 71; words 14–26 = 50; total121 = GP0(EPIPHANY).`
+
+The 2016 signed sentence actually contains **EPIPHANY SEEKS THE DEVOTED**, and the following source language refers to words as map and numbers as direction. These now align with the unique p32 half-word count and the actual table page name. This is a possible **author-visible 13-pair hint**, but the manuscript does not explicitly say to divide words into groups of13 or assign 71/50 their signed-word/page-number meanings. The 13-dot punctuation appears at ten different original physical page endings, so it is not exclusive to p32. The match's post-discovery selection is uncalibrated.
+
+The already source-constrained p50 base60 reverse in-tree at root115 produces another exact **13 cut**: its first13 noncycle reverse-depth layers contain **92 nodes = GP0(EMPTY)**, the signed opening line's visible word **EMPTY**. Layers14–20 add exactly **29 nodes**, reaching all121 p32 runes. Physical p32 has an actual printed rune-word boundary at **offset92**, separating a final **29-rune** suffix. That yields a concrete linked original structure:
+
+`signed EMPTY92 -> tree depth13 nonroot nodes92 -> p32 first92 ciphertext runes | last29 rune suffix = size of GP29 alphabet.`
+
+This is a **separate tree-depth interpretation** from the established `THE=20` depth selection and it does not establish a particular ciphertext-to-node assignment. The 29 final cipher rune symbols have **20 distinct GP29 values**, so they are **not literally a 29-rune permutation alphabet**. As a minimal no-free-key consumer, treat those exact final29 cipher runes as a repeatable GP29 additive key on the 92 preceding runes, with both original signs:
+
+| Physical p32 first92 inverse | Exact IoC | Native-GP prose |
+|---|---:|---|
+| Unchanged first92 ciphertext | **0.037505972** | none identified |
+| Subtract last29 repeated | **0.030339226** | **none** |
+| Add last29 repeated | **0.037744864** | **none** |
+
+Both signs preserve the full original 92-rune roundtrip and recover all92 authentic p57 plaintext control runes from independently encrypted native-GP plants. Neither gives a recognizable complete instruction, and the 29-rune suffix fails the simple literal-alphabet hypothesis. Among all **57** original rune-bearing physical pages, p32 alone has exactly26 printed word groups, and p32 alone has **71 runes across its first13 groups**; this finite comparison is descriptive, not an independent calibrated probability of author intent.
+
+[Source-exact 13-cut, reverse-depth, 57-page uniqueness and original 92/29 key-gate SFT](../sims/lp2_p32_thirteen_word_empty92_tail29_source_sft.cjs), [Windows Node22 PASS run44951077194](https://github.com/FlareZ123/liber-primus/actions/runs/44951077194). The source-selected scaffold is thereby more tightly associated with **p32's actual printed word segmentation**, while the missing operation to recover genuine plaintext remains unresolved. Future work should attempt an original-clue-specified 92/29 interpretation rather than fitting a new generic substitution to this correspondence.
+
 ## Complete tree cardinality independently returns page 32
 
 Before the authenticated depth cut, the complete rooted in-tree at p50 cycle state115 contains **131 cells including root115**. Since 131 is the **32nd prime**, ordinary prime indexing returns physical page32 from the complete tree itself. This occurs immediately after the already selected forward route: `DEVOTED=102 → 32 → 115`.
