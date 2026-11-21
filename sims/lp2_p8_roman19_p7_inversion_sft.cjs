@@ -56,6 +56,32 @@ assert.equal(redInverseProduct, 26);
 assert.equal((romanNumber * redInverseProduct) % 29, 1);
 assert.equal(p7[p7.length - 1], romanNumber);
 
+// Two fully frozen field readings of the *same* p8 source operand.
+// 23 is p7's first red rune, 29 is the solved Gematria Primus alphabet size.
+// The second original p8 red word is [1,14,19,5,2,13,3,17] and
+// its complete GP29 product is exponent 3.
+/** @param {number} base @param {number} exponent @param {number} modulus @returns {number} */
+function modPow(base, exponent, modulus) {
+  let result = 1;
+  for (let i = 0; i < exponent; i++) result = (result * base) % modulus;
+  return result;
+}
+const originalRedP7Modulus = p7[194]; // first p7 red word starts 23,3
+const firstRedP7Exponent = p7[195]; // same original field, 3
+const thirdRedP7Generator = p7[200]; // third red word starts 5
+const fourthRedP7Private = (p7[203] * p7[204]) % 29;
+const secondRedP8Exponent = p8.slice(4, 12).reduce(
+  (product, symbol) => (product * symbol) % 29, 1
+);
+assert.deepStrictEqual([
+  originalRedP7Modulus, firstRedP7Exponent,
+  thirdRedP7Generator, fourthRedP7Private, secondRedP8Exponent
+], [23, 3, 5, 15, 3]);
+assert.equal((fourthRedP7Private * secondRedP8Exponent) % 22, 1);
+assert.equal(modPow(romanNumber, secondRedP8Exponent, 23), thirdRedP7Generator);
+assert.equal(modPow(romanNumber, secondRedP8Exponent, 29), fourthRedP7Private);
+assert.equal(modPow(thirdRedP7Generator, fourthRedP7Private, 23), romanNumber);
+
 /**
  * Complete finite original-cipher scan for canonical Roman 1..28 followed
  * by the identical zero-based GP symbol. Freeze minimum Roman length 3.
@@ -96,6 +122,10 @@ console.log(JSON.stringify({
   selfCheckingGpSymbol: 'M',
   p7RedSecondWordProductMod29: redInverseProduct,
   multiplicativeInverseIdentity: '19 * 26 mod 29 = 1',
+  p8SecondRedWordProductExponent: secondRedP8Exponent,
+  doubleFieldPower23: modPow(romanNumber, secondRedP8Exponent, 23),
+  doubleFieldPower29: modPow(romanNumber, secondRedP8Exponent, 29),
+  dhGroupInverseExponent: '15 * 3 mod 22 = 1',
   originalUnknownRunes: source.pages
     .filter(page => page.page < 56)
     .reduce((sum, page) => sum + page.indices.length, 0),
