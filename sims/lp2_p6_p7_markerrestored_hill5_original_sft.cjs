@@ -166,6 +166,49 @@ assert.deepEqual(apply(M,wordReads.product.plain),productWords);
 assert.deepEqual(apply(transpose(M),wordReads.gp0sum.transposed),sumWords);
 assert.deepEqual(apply(transpose(M),wordReads.product.transposed),productWords);
 
+
+/**
+ * Different original-source key: join exactly the p6 red11 and p7 red14
+ * runes into the 25-element Hill-5 matrix, independently investigated
+ * previously on p8 and pp8..14. Test it here only on our new p6/p7
+ * marker-bounded and 70-complete-word receivers.
+ */
+const red25 = [...p6.slice(71,82), ...p7.slice(194,208)];
+assert.equal(red25.length,25);
+const R = Array.from({length:5},(_,i)=>red25.slice(5*i,5*i+5));
+const Rinv = [[12,24,21,20,25],[12,25,15,15,20],
+  [0,17,15,1,17],[3,28,11,21,16],[24,24,1,25,27]];
+assert.deepEqual(R,[[24,16,14,17,19],[6,27,15,17,14],
+  [12,23,3,22,16],[2,25,5,7,11],[14,28,6,28,19]]);
+for(let i=0;i<5;i++)
+  for(let j=0;j<5;j++)
+    assert.equal(R[i].reduce((sum,v,k)=>sum+v*Rinv[k][j],0)%29,Number(i===j));
+const red25Decoders=[['inverse',Rinv,R],['forward',R,Rinv],
+  ['transpose-inverse',transpose(Rinv),transpose(R)],
+  ['transpose-forward',transpose(R),transpose(Rinv)]];
+const red25Receivers=[
+  ['marker-restored-310',input],
+  ['word-index-sums-70',sumWords],
+  ['word-index-products-70',productWords]
+];
+const red25Results = [];
+for(const [receiver,source] of red25Receivers) {
+  for(const [direction,decoder,encoder] of red25Decoders) {
+    const plain=apply(decoder,source);
+    assert.deepEqual(apply(encoder,plain),source);
+    const item={receiver,direction,runes:plain.length,IoC:ioc(plain),
+      text:plain.slice(0,receiver==='marker-restored-310'?35:70)
+        .map(x=>book.translit[x]).join(' ')};
+    if(receiver==='marker-restored-310') {
+      item.exactLongWords=longHits(plain.slice(1,-1));
+    }
+    red25Results.push(item);
+  }
+}
+assert(Math.abs(red25Results[0].IoC-0.035243762396909906)<1e-12);
+assert(Math.abs(red25Results[4].IoC-0.03602484472049689)<1e-12);
+assert(Math.abs(red25Results[10].IoC-0.0443064182194617)<1e-12);
+
 const observed={
   inputSource:'p6 offsets82..195, p7 offsets0..193, two literal red13-dot counts',
   sourceCount:{bodyRunes:308,restoredLength:310,blackWords:70,longWords:40},
@@ -181,6 +224,8 @@ const observed={
     [name,{standardIoC:ioc(r.plain),transposedIoC:ioc(r.transposed),
       standardText:r.plain.map(x=>book.translit[x]).join(' '),
       transposedText:r.transposed.map(x=>book.translit[x]).join(' ')}])),
+  originalRed25Matrix:R,
+  red25OriginalReceivers:red25Results,
   forwardReplay:true,solvedPlant:true,
   decision:'Both exact marker-restored 310-rune Hill5 consumers reject direct native-GP reading under fixed printed words.'
 };
