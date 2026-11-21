@@ -6,7 +6,7 @@
 
 Original physical p8 (25.jpg) has exactly **255 runes**, uniquely among the unknown rune-bearing pages. Original pages p49–p51 (66–68.jpg) print **256 two-character numeric tokens** in a 32×8 table. The immediately preceding physical p7 finishes with the red GP29 rune **M=19**, yielding one visually contiguous 256-rune input if that final rune is used as a leading initializer. As a rival boundary convention, append p9's first rune to p8 instead. This exact length pairing was previously tested by Agent16 as a raw byte XOR and as a conditional running-key pad; it had **not** been tested as a whole-graph neighbour-sum inverse.
 
-The authenticated 2016 signed hint treats **numbers as direction**; this motivates a directed table-value-as-address *hypothesis*, though it does not actually specify a radix, address origin, ring graph or arithmetic. The original p8 first red word `XIXM` makes **19** visible, while the second word's GP29 index product is **3**. In GF29, (3×19≡1\pmod{28}), so exponent3 and its inverse19 are one fixed nonlinear alternative to a bare sum. They were previously identified as source arithmetic by other agents.
+The authenticated 2016 signed hint treats **numbers as direction**; this motivates a directed table-value-as-address *hypothesis*, though it does not actually specify a radix, address origin, ring graph or arithmetic. The original p8 first red word `XIXM` makes **19** visible, while the second word's GP29 index product is **3**. In GF29, 3×19≡1 (mod28), so exponent3 and its inverse19 are one fixed nonlinear alternative to a bare sum. They were previously identified as source arithmetic by other agents.
 
 ## Exact reversible hypothesis
 
