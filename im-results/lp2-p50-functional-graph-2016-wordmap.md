@@ -1,12 +1,12 @@
-# p50 functional graph and the 2016 29-word register
+# p50 source-selected successor map and 2+11 functional graph
 
-**Classification:** intermediate structural finding and candidate navigation mechanism. This is not an established decryption of an unsolved LP2 page.
+**Classification:** source-selected navigation structure on the original p50 base60 successor map. The 2+11 graph is a reproducible structural feature; the 13-node q/r word-pair readout remains an intermediate cross-source interpretation, not plaintext or a key. This is not an established decryption of an unsolved LP2 page.
 
 ## Hypothesis
 
-The 2016 signed message says that the book is a map and that numbers provide direction. The LP2 p49–p51 numerical object is a 32×8 table of 256 two-character tokens. The repository currently interprets each token as a base-60 byte, using the documented rule 60d1+d2, producing values 0–255. If cell i points to cell T[i], the table becomes a 256-node functional graph.
+The authenticated 2016 message's "numbers are the direction" clue, together with the source-native **EPIPHANY SEEKS THE DEVOTED → p32** route, selects the forward base-60 byte-as-next-address operation on the original 32×8 p49–p51 table. The independent route charges all 40 consecutive four-word windows, seven DH-state depths and both live radices (560 cases); exactly one hits: EPIPHANY SEEKS THE DEVOTED, depth p=23, base60, terminal p32, whose 121 runes equal GP0(EPIPHANY). Its held-out EMPTY word occurs at step 7=g+K. The route does not use the 2+11 cycle decomposition or the q/r cycle-word pairs. Thus the successor-map semantics are no longer merely an arbitrary functional graph induced by one conventional radix.
 
-This reading is motivated by the signed message and by the table's 256-cell shape, but the repository explicitly classifies the base-60 byte interpretation as a hypothesis. The successor-pointer interpretation is an additional hypothesis.
+The 2+11 cycle structure is a deterministic property of that source-selected map. The additional n=29q+r decomposition of cycle nodes into the first 29 signed-message words is a second-layer readout. Its quotient-first, zero-based form aligns with the independently reconstructed signed-message DH word-position register, but the 13 word-pairs are not recovered LP plaintext and have no demonstrated body-cipher inverse. The p0 title candidate EPIPHANY SEEKS is a post-discovery cross-check, not a blind prediction.
 
 ## Reproducible graph
 
@@ -19,7 +19,7 @@ Using resources/liber-primus/lp2-grid-256.json as supplied:
 
 There are exactly two cycles. Their lengths sum to 13 and multiply to 22; the small basin has size 4. These numbers are suggestive against the p0 marker's 13 dots and the 2013 DH register's group order p−1=22=2×11, with q=4. This is a cross-source alignment, not proof that the table was designed as a functional graph.
 
-### Original-scan check of the 13 cycle cells
+### Original-scan audit of the 256-cell table and 13 cycle cells
 
 The 13 printed tokens used by the two cycles were also checked visually against the original 2400×3600 scans 66.jpg–68.jpg supplied with this run. Coordinates below are zero-based within each page's 8-column table; the base-60 byte is the successor index.
 
@@ -39,7 +39,9 @@ The 13 printed tokens used by the two cycles were also checked visually against 
 | 114 | 50 / 67.jpg | 4 | 2 | 3H | 197 |
 | 197 | 51 / 68.jpg | 1 | 5 | 1t | 115 |
 
-All 13 tokens are legible in the original scans and agree with the canonical grid at the listed positions. This is a visual source check, not a new per-glyph pixel-metric adjudication. The repository's full-font audit reports 509 of 512 glyphs with same-class controls and no flagged mismatches; the three singleton labels are R, i, and h, none of which occurs in these 13 tokens. Cell 199 is also among the eleven separately adjudicated disputed positions.
+All 13 cycle tokens are legible in the original scans and agree with the canonical grid at the listed positions. In this audit, all **256** two-character tokens were also re-read row-major from scans 66.jpg–68.jpg (10 rows on p49, 13 on p50, 9 on p51); the manual transcription matches `lp2-grid-256.json` exactly. The reproducible visual transcription is embedded in the SFT. Its normalized row-major token-string SHA-256 is `463c57a3949a941027c416522d1b0463a196efb2faa3550377ba15829dcdf6c4`.
+
+The original-image SHA-256s match `resources/liber-primus/SHA256SUMS.txt`: scan66 `aa3f89156756edf8b796a470a14a3db96516ad2fedf1ed98ccabc1a1cddc0335`, scan67 `bd6d4a3678fa37197bd43c58861273dc59604b5b68dfa20de1ec13f0704be776`, scan68 `2b9d60f62b2bc65d040f7ae1bc0960d5a44ca251d2730d049a618074a83e208b`. This is a full manual visual reread, not pixel-metric adjudication of every glyph. The separate full-font audit still supplies repeated controls for 509/512 glyphs; the three singleton labels are R, i, and h. Cell199 remains one of the eleven separately adjudicated disputed positions.
 
 ## Historical 2014 byte-witness negative control: cell 199 is decisive
 
@@ -62,7 +64,7 @@ Write each cycle node n as n=29q+r. The GP alphabet has 29 symbols, and the 2016
 The cycles can be oriented using source values rather than arbitrary rotation:
 
 - Start the 2-cycle at node 158 because its base-29 quotient is 5, matching the 2013 DH generator g=5. Its successor is 249, whose quotient is 8, matching the published public value A=8.
-- Start the 11-cycle at node 115, reached by following the p50 map from the GP0 value of the first "The" in the signed 2016 message (word index 1, GP0 20). The path is 20 → 102 → 32 → 115. The selected cycle entry has quotient 3, matching the DH exponent e=3.
+- Fix the 11-cycle phase at node 115 from the independent p32 route: the 23-step source-selected route terminates at state32, and the next p50 pointer is T[32]=115. The same phase is reached by the consistency path GP0(THE)=20 → 102 → 32 → 115; its entry quotient3 matches DH e=3. The THE path alone is not selective because the 11-cycle basin contains 252 of 256 nodes.
 
 This gives the following 13 ordered pairs of zero-based word indices into the first 29 signed-message words:
 
@@ -84,9 +86,23 @@ This gives the following 13 ordered pairs of zero-based word indices into the fi
 
 The 11-cycle has unique marginal modes q=6 and r=18, each occurring three times: SEEKS and MAP. It also contains the exact pair (6,18), SEEKS / MAP. The source-oriented first 2-cycle node yields (5,13), EPIPHANY / WAY; the second yields (8,17), DEVOTED / THE.
 
-Consequently, the graph independently selects the word anchors EPIPHANY, SEEKS, WAY, and MAP from the signed message. EPIPHANY SEEKS matches the p0 title candidate already recovered through a separate p0 route. The 13 cycle nodes also match the 13-dot p0 marker count. The 2-cycle remainders 13 and 17 additionally coincide with the Cicada 13/17-year period numbers, though that association should be treated cautiously.
+Under the source-supported quotient-first, zero-based register interpretation, the graph yields the word anchors EPIPHANY, SEEKS, WAY, and MAP. EPIPHANY SEEKS matches the p0 title candidate already recovered through a separate route, but that match was known before this audit and is not counted as a blind prediction. The 13 cycle nodes match the p0 13-dot marker count. The 2-cycle remainders 13 and 17 additionally coincide with the Cicada 13/17-year period numbers, though that association remains cautious.
 
 The 11-cycle's base-29 nodes also contain several 2013 DH values: 247 = 8×29+15 (A=8, b=15), 197 = 6×29+23 (a=6, p=23), 115 = 3×29+28 (e=3), and 68 = 2×29+10 (K=2). The 2-cycle basin size 4 matches q=4, and 249 mod 23 = 19 matches B=19. This is an intriguing numerical convergence; it does not yet provide a single extraction rule for the entire DH tuple or the p0 additive key.
+
+## Source-selector family audit (Agent4, 21 November)
+
+The small human-plausible family was frozen around the source-available choices: forward versus inverse pointer direction; the two possible 2-cycle starts; the 11-cycle phase; quotient/remainder order; and zero- versus one-based word indexing.
+
+**Pointer direction.** The source-native 560-case p32 route selects the forward base60 successor operation. The inverse relation is not a function: 95 nodes have no predecessor, 92 have one, 49 have two, 14 have three, and 6 have four. Forward is the only total deterministic traversal. The route's terminal p32 also fixes the 11-cycle phase because T[32]=115.
+
+**Cycle orientation and phase.** The 2-cycle is 158→249→158. Starting at 158 is selected by q=5=g; its successor 249 has q=8=A. Starting at 249 reverses the source DH order. The 11-cycle phase 115 is independently selected by the p32 route's final pointer T[32]=115; the separate THE path 20→102→32→115 corroborates it.
+
+**q/r word-map family.** For n=29q+r, quotient-first and zero-based indexing are the ordinary base-29 decomposition. This is the only tested reading whose q-channel matches the independently reconstructed DH roles: the 2-cycle q values are [5,8]=[g,A], the 11-cycle entry has q=3=e, and the 11-cycle q-mode is 6=a. The r-channel gives 13/17 on the 2-cycle and r-mode18=MAP. Reversing q/r moves the DH matches out of the q-channel; one-based cyclic indexing shifts the 2-cycle q values to [4,7] and the entry q to2, losing g/A/e alignment. The independent 69,120-case signed-word-position DH audit selects zero-based word numbering; DIRECTION is word index29, immediately after the first 29-word register. Excluding the signed greeting would move DIRECTION to28 and break the independently observed DIRECTION-29 page selector.
+
+**Independent prediction and scope.** The separate EPIPHANY SEEKS THE DEVOTED route selects base60 and p=23 in exactly one of 560 source-family cases, predicts physical p32 with 121 runes=GP0(EPIPHANY), and has the held-out EMPTY@7=g+K path hit. It does not use the 2+11 topology or q/r pairs, so it independently validates the pointer map and the 11-cycle phase rather than merely rephrasing the cycle readout. The 2+11 graph has 13 cycle vertices, length product22 and small basin4, matching the independent p0 marker count and DH p−1/q values. The conditional 100,000-shuffle null gives zero joint hits for the fixed graph/2-cycle/q-r-mode signature; this remains conditional, not a discovery-adjusted global p-value.
+
+The p0 title candidate EPIPHANY SEEKS is not counted as the independent prediction because it was already known. The 13 q/r pairs remain a structural cross-source readout, not a sentence, plaintext, or key. The direct p0 13-atom consumer gate below remains negative.
 
 ## Direct p0 13-atom consumer gate (Agent10, 20 November)
 
@@ -145,12 +161,13 @@ node sims/lp2_p50_functional_graph_2016_wordmap_sft.cjs --null=100000
 
 ## Objections and negative controls
 
-1. The base-60 byte mapping and the successor-pointer interpretation remain hypotheses. The grid's source notes say only 11 cell readings have been checked against original JPEGs; the remaining table is based on the canonical transcription and is not fully independently adjudicated.
-2. The 2016 source-word GP0 values are poor selectors by themselves: all 28 distinct word addresses tested enter the 252-node 11-cycle basin.
+1. All 256 tokens have now been visually re-read from original scans and match the canonical grid; the eleven disputed glyphs retain their pixel-level adjudication. The base60 forward successor map is selected by the separate 560-case p32 route. What remains a second-layer interpretation is the q/r mapping of cycle nodes into signed-message words.
+2. The 2016 source-word GP0 values are poor selectors by themselves: all 28 distinct word addresses tested enter the 252-node 11-cycle basin. The first-THE path alone is therefore not a selector; the four-word p32 grammar is selective because it also fixes the depth, penultimate states, terminal page, and page-rune-count match.
 3. The graph does not simply reproduce the signed message's word order. Only 1 of 42 adjacent word transitions is a direct successor under the current GP0/base-60 interpretation; only 5 of 42 targets are reachable by any number of forward steps. A 100,000-permutation test of the latter count gave p≈0.146.
 4. Interpreting the base-29 pair as LP2 page/word coordinates (page q, word r) selects ciphertext words, not readable plaintext, under the current transcription.
-5. Direct use of the 13 cycle-node residues, their obvious H/H-inverse transforms, and the p56 prime/totient transform did not reproduce the existing p0 13-atom additive key.
+5. The 2016 phrase's pronoun "Its" refers to Liber Primus, not literally to the signed message's own words; the q/r-to-signed-message register is therefore a secondary interpretation, albeit one aligned with the independent zero-based DH word-position map.
+6. Direct use of the 13 cycle-node residues, their obvious H/H-inverse transforms, and the p56 prime/totient transform did not reproduce the existing p0 13-atom additive key.
 
 ## Best next decision
 
-The source-oriented 13 word-pairs have now been tested as direct GP29 index and GP0-value vectors under directed difference, sum, and the p0 marker's fixed outside-in H transform. None reproduces the p0 marker input or generated key. Retain the graph only as a provisional navigation/anchor result; do not continue with unconstrained permutations, alternative radices, or fitted pair functions. Reopen this p0-key connection only if an independent artifact selects a specific mapping from the 13 pairs to the marker atoms or supplies a new receiver on unknown ciphertext.
+The forward base60 map is now source-selected as a navigation mechanism, and its 2+11 decomposition is a reproducible structural feature with independently anchored orientation/phase. The q/r word-pair layer remains a cross-source readout, not plaintext. The direct p0 consumer family is closed: none of its frozen residue, difference, sum, or H transforms reproduces the p0 marker input or generated key. Do not continue with unconstrained permutations, alternative radices, or fitted pair functions. The next productive target is a source-selected reversible operation on the p32/p33 receiver, not another p0 key consumer.

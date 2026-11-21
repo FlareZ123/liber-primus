@@ -23,6 +23,360 @@ const signed = fs.readFileSync(
 );
 const historical2014 = readJson('resources/cicada2014-sexagesimal-source.json');
 
+const crypto = require('crypto');
+
+// Full row-major human visual transcription from original scans 66/67/68.
+// This is a recorded source read, not an OCR inference from lp2-grid-256.json.
+const visualRowsByPage = {
+  "49": [
+    [
+      "3N",
+      "3p",
+      "2l",
+      "36",
+      "1b",
+      "3v",
+      "26",
+      "33"
+    ],
+    [
+      "1W",
+      "49",
+      "2a",
+      "3g",
+      "47",
+      "04",
+      "33",
+      "3W"
+    ],
+    [
+      "21",
+      "3M",
+      "0F",
+      "0X",
+      "1g",
+      "2H",
+      "0x",
+      "1R"
+    ],
+    [
+      "1n",
+      "3I",
+      "2r",
+      "0P",
+      "2U",
+      "16",
+      "2L",
+      "2D"
+    ],
+    [
+      "1t",
+      "1s",
+      "3H",
+      "0d",
+      "0s",
+      "1K",
+      "2D",
+      "05"
+    ],
+    [
+      "1K",
+      "1O",
+      "0S",
+      "1D",
+      "3o",
+      "1l",
+      "3J",
+      "1G"
+    ],
+    [
+      "4D",
+      "0G",
+      "0l",
+      "0x",
+      "1Q",
+      "2p",
+      "2a",
+      "1K"
+    ],
+    [
+      "4E",
+      "1w",
+      "2Q",
+      "19",
+      "1k",
+      "3G",
+      "24",
+      "0p"
+    ],
+    [
+      "22",
+      "4F",
+      "0P",
+      "3C",
+      "3J",
+      "1D",
+      "2n",
+      "1m"
+    ],
+    [
+      "2i",
+      "1J",
+      "3P",
+      "2v",
+      "1s",
+      "2O",
+      "0k",
+      "1M"
+    ]
+  ],
+  "50": [
+    [
+      "2M",
+      "0w",
+      "3L",
+      "3D",
+      "2r",
+      "0S",
+      "1p",
+      "15"
+    ],
+    [
+      "3V",
+      "3e",
+      "3I",
+      "0n",
+      "3u",
+      "1O",
+      "0u",
+      "0Z"
+    ],
+    [
+      "3g",
+      "2U",
+      "1C",
+      "0Y",
+      "1N",
+      "3n",
+      "0W",
+      "3Q"
+    ],
+    [
+      "22",
+      "13",
+      "0V",
+      "3c",
+      "0E",
+      "34",
+      "0W",
+      "1t"
+    ],
+    [
+      "1D",
+      "2N",
+      "3H",
+      "47",
+      "0s",
+      "2p",
+      "0Z",
+      "34"
+    ],
+    [
+      "0g",
+      "3v",
+      "1Q",
+      "0s",
+      "0D",
+      "0K",
+      "2h",
+      "3D"
+    ],
+    [
+      "3L",
+      "2x",
+      "1Q",
+      "20",
+      "2n",
+      "2L",
+      "1C",
+      "2p"
+    ],
+    [
+      "0A",
+      "29",
+      "3r",
+      "0D",
+      "45",
+      "0k",
+      "2e",
+      "2W"
+    ],
+    [
+      "25",
+      "3U",
+      "1W",
+      "2r",
+      "46",
+      "2s",
+      "2X",
+      "39"
+    ],
+    [
+      "3p",
+      "0X",
+      "0E",
+      "1q",
+      "0q",
+      "4B",
+      "49",
+      "48"
+    ],
+    [
+      "3r",
+      "3b",
+      "3C",
+      "1M",
+      "1j",
+      "0I",
+      "4A",
+      "48"
+    ],
+    [
+      "40",
+      "3m",
+      "4E",
+      "0s",
+      "2S",
+      "1v",
+      "3T",
+      "0I"
+    ],
+    [
+      "3t",
+      "2B",
+      "2k",
+      "2t",
+      "2O",
+      "0e",
+      "2l",
+      "1L"
+    ]
+  ],
+  "51": [
+    [
+      "28",
+      "2a",
+      "0J",
+      "1L",
+      "0c",
+      "3C",
+      "2o",
+      "0X"
+    ],
+    [
+      "00",
+      "2Z",
+      "2d",
+      "1T",
+      "2u",
+      "1t",
+      "1j",
+      "0l"
+    ],
+    [
+      "1o",
+      "1E",
+      "3T",
+      "18",
+      "3E",
+      "1G",
+      "27",
+      "0L"
+    ],
+    [
+      "0v",
+      "2t",
+      "06",
+      "11",
+      "1A",
+      "2U",
+      "4B",
+      "1O"
+    ],
+    [
+      "2M",
+      "3d",
+      "2S",
+      "0x",
+      "0w",
+      "0q",
+      "0p",
+      "2V"
+    ],
+    [
+      "18",
+      "0q",
+      "1D",
+      "49",
+      "2O",
+      "00",
+      "1v",
+      "2t"
+    ],
+    [
+      "1k",
+      "3s",
+      "3G",
+      "21",
+      "3w",
+      "0W",
+      "29",
+      "2r"
+    ],
+    [
+      "2O",
+      "2L",
+      "0g",
+      "3Y",
+      "0M",
+      "0u",
+      "3I",
+      "3C"
+    ],
+    [
+      "1r",
+      "2c",
+      "2q",
+      "3o",
+      "30",
+      "0a",
+      "39",
+      "1K"
+    ]
+  ]
+};
+const visualTokens = [49, 50, 51].flatMap(page => visualRowsByPage[page].flat());
+const visualTokenText = [49, 50, 51]
+  .flatMap(page => visualRowsByPage[page].map(row => row.join(' ')))
+  .join(String.fromCharCode(10)) + String.fromCharCode(10);
+const visualTokenHash = crypto.createHash('sha256').update(visualTokenText).digest('hex');
+const expectedVisualTokenHash = '463c57a3949a941027c416522d1b0463a196efb2faa3550377ba15829dcdf6c4';
+if (visualTokens.length !== 256 || visualTokenHash !== expectedVisualTokenHash) {
+  throw new Error('The full original-scan visual transcription changed');
+}
+const expectedScanHashes = {
+  '66.jpg': 'aa3f89156756edf8b796a470a14a3db96516ad2fedf1ed98ccabc1a1cddc0335',
+  '67.jpg': 'bd6d4a3678fa37197bd43c58861273dc59604b5b68dfa20de1ec13f0704be776',
+  '68.jpg': '2b9d60f62b2bc65d040f7ae1bc0960d5a44ca251d2730d049a618074a83e208b'
+};
+for (const [name, expected] of Object.entries(expectedScanHashes)) {
+  const actual = crypto.createHash('sha256')
+    .update(fs.readFileSync(path.join(ROOT, 'resources/liber-primus', name)))
+    .digest('hex');
+  if (actual !== expected) throw new Error('Original scan checksum mismatch: ' + name);
+}
+
+
 const next = grid.bytes;
 const cells = grid.pages.flatMap(page => page.tokens.map((token, local) => ({
   page: page.page,
@@ -32,6 +386,9 @@ const cells = grid.pages.flatMap(page => page.tokens.map((token, local) => ({
   token
 })));
 if (cells.length !== 256) throw new Error('Expected 256 source cells');
+if (JSON.stringify(visualTokens) !== JSON.stringify(cells.map(cell => cell.token))) {
+  throw new Error('Original-scan visual transcription disagrees with canonical grid tokens');
+}
 if (!Array.isArray(next) || next.length !== 256 ||
     next.some(x => !Number.isInteger(x) || x < 0 || x > 255)) {
   throw new Error('Expected exactly 256 byte values in lp2-grid-256.json');
@@ -199,7 +556,21 @@ const firstTheWalk = walkUntilRepeat(wordValues[firstTheIndex], next);
 if (!cycle11.nodes.includes(firstTheWalk.entry)) {
   throw new Error('First THE does not enter the 11-cycle');
 }
-const cycle11Start = firstTheWalk.entry;
+const p32Route = [wordValues[6]];
+let p32State = wordValues[6];
+for (let step = 0; step < 23; step++) {
+  p32State = next[p32State];
+  p32Route.push(p32State);
+}
+const p32RuneCount = corpus.pages.find(page => page.page === 32).indices.length;
+const emptyIndex = words.findIndex(word => word.toUpperCase() === 'EMPTY');
+if (p32Route[23] !== 32 || p32Route[21] !== wordValues[firstTheIndex] ||
+    p32Route[22] !== wordValues[8] || p32RuneCount !== wordValues[5] ||
+    p32Route[7] !== wordValues[emptyIndex] || p32Route[7] !== 92 ||
+    next[32] !== 115 || firstTheWalk.entry !== 115) {
+  throw new Error('The independent p32 route / 11-cycle phase bridge no longer reproduces');
+}
+const cycle11Start = next[32];
 
 const ordered2 = rotateCycle(cycle2.nodes, cycle2Start);
 const ordered11 = rotateCycle(cycle11.nodes, cycle11Start);
@@ -221,13 +592,13 @@ const rMode = mode(pairs11.map(pair => pair.r));
 const first29 = words.slice(0, 29);
 
 const output = {
-  classification: 'intermediate hypothesis; not a verified LP2 decryption',
+  classification: 'source-selected navigation map; q/r cycle word-pair readout remains intermediate; not a verified LP2 decryption',
   table: {
     source: 'resources/liber-primus/lp2-grid-256.json',
     shape: grid.shape,
     byteRule: grid.byte_rule,
     byteCount: next.length,
-    note: 'The repository marks the base-60 byte interpretation as a hypothesis.'
+    note: 'The forward base60 byte-as-next-address operation is selected by the separate unique 560-case EPIPHANY SEEKS THE DEVOTED → p32 route; q/r cycle-word readout remains intermediate.'
   },
   signedMessage: {
     source: 'resources/historical/cicada2016-4gq25-outguess.asc',
@@ -239,6 +610,16 @@ const output = {
       gp0: wordValues[firstTheIndex],
       pathToCycle: firstTheWalk.path.slice(0, firstTheWalk.depth + 1),
       cycleEntry: firstTheWalk.entry
+    },
+    sourceSelectedP32Route: {
+      startWord: words[6],
+      startAddress: wordValues[6],
+      dhDepth: 23,
+      route: p32Route,
+      terminalPage: 32,
+      terminalRuneCount: p32RuneCount,
+      heldOutEmpty: { step: 7, address: p32Route[7], gp0: wordValues[emptyIndex] },
+      cyclePhase: next[32]
     }
   },
   historical2014Control: {
@@ -276,9 +657,10 @@ const output = {
     exactElevenCyclePair: pairs11.find(pair => pair.q === 6 && pair.r === 18) || null
   },
   caveats: [
-    'The successor-map interpretation of the 256 base-60 values is not yet established by an explicit instruction.',
-    'The 2016 word-index interpretation of base-29 quotient/remainder is a candidate reading, not a proven cipher.',
-    'The source-word GP0 values mostly enter the 252-node basin, so convergence to the 11-cycle alone is not selective.',
+    'The 13-node q/r word-pair sequence is a second-layer cross-source readout, not plaintext or a proven cipher.',
+    'The 2016 source pronoun "Its" refers to Liber Primus; using the signed message words as the q/r register is an additional interpretation, though its zero-based form aligns with the independent DH word-position audit.',
+    'The source-word GP0 values mostly enter the 252-node basin, so the first-THE path alone is not selective; the four-word p32 route supplies the selective grammar and fixes phase115.',
+    'The p0 title candidate EPIPHANY SEEKS was already known and is not counted as a blind prediction.',
     'The direct successor relation does not reproduce the signed message word order.',
     'The cycle values have not yielded the existing p0 13-atom additive key by direct mod-29, H/H-inverse, or p56 prime/totient transforms.'
   ]
