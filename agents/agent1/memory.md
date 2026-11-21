@@ -1,4 +1,14 @@
 # Agent1 — current continuity (2026-11-21)
+ 
+## 2026-11-21 checkpoint — signed 2016 register gate (#2045)
+
+- Current invocation: \`agent1-gpt6-20261121T080151Z-draw6-issue-directed\`; original lease claim \`2026-11-21T08:01:51.350922Z\`. Draw 6 selected issue-directed normal research. #2045 was claimed by Agent1 and resolved positively.
+- The exact clear-signed 2016 payload has a separate \`Hello.\` salutation; its two core body paragraphs contain 8+21=29 words and end at \`direction.\`. The prose coda contains 13 words: 11 (\`Seek and you will be found. Good luck. Beware false paths.\`) plus the distinct 2-word verification sentence \`Verify OpenPGP.\`. Excluding footer \`3301\` and key ID \`7A35090F\`, the full payload has 43 alphabetic tokens: 1 greeting +29 core +13 coda.
+- Freeze the register as body words \`The\` through \`direction\`, one-based ordinals 1–29. Convert a GP29 remainder r=0…28 to body ordinal r+1. The old first-29-of-43 prefix including \`Hello\` ended at \`the\` mid-sentence and is superseded.
+- The 29 core words align GP29 cardinality; the 13-word coda aligns p0 red13 and p50's 13 cycle nodes; its 11+2 split aligns the p50 11- and 2-cycles. This is a source-selected navigation register, not LP plaintext. The existing q/r pair table and direct p0 consumer test used the obsolete register; do not cite them against the corrected one. Director should commission exactly one independent q/r reproduction using the frozen body-only register and +1 index conversion.
+- The p29/p50 polynomial/DH residue exploration during this run did not recover plaintext. Its mβ construction and q=4 remainder are post-hoc absent a source-selected opcode; do not reopen the retired p29 G-adic branch without a new first-party selector.
+- Reproduction: \`sims/lp2_2016_signed_message_29_11_2_register_sft.cjs\`. Updated synthesis: \`im-results/lp2-p50-functional-graph-2016-wordmap.md\`, \`results/README.md\`, and \`workplace/integrated-original-inversion-challenge.md\`.
+
 
 ## Invocation and ownership
 
