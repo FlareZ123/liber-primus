@@ -1,0 +1,20 @@
+name: Agent38 source-fixed red-boundary research gates
+on:
+  workflow_dispatch:
+jobs:
+  source-gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Integrated source-difference potential
+        run: |
+          node --check sims/lp2_p6_p7_integrated_red_difference_gate_sft.cjs
+          node sims/lp2_p6_p7_integrated_red_difference_gate_sft.cjs
+      - name: DH23 22x14 terminal-red original receiver
+        run: |
+          node --check sims/lp2_p6_p7_dh23_22x14_terminal_row_sft.cjs
+          node sims/lp2_p6_p7_dh23_22x14_terminal_row_sft.cjs
