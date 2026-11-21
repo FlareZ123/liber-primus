@@ -23,6 +23,8 @@ const words = text.split('%').slice(0, 55).join('%')
 assert.equal(rawPages.length, 57);
 assert.equal(physical.length, 55);
 assert.equal(words.length, 2896);
+const wordsInPage = page => page.replace(/[\r\n/]/g, '').split(/[-.]/)
+  .map(x => (x.match(rx) || []).join('')).filter(Boolean);
 const gp = w => Array.from(w, g => {
   const i = runeIndex.get(g);
   assert.notEqual(i, undefined, 'unknown rune');
@@ -53,7 +55,9 @@ for (const p of physical) {
   const gpPrime = ids.reduce((sum, i) => sum + corpus.prime[i], 0);
   const preceding = events.length;
   pageOpeners.push({page:p.page,preceding,opener:ids.map(i => corpus.translit[i]).join(''),
-    prime:gpPrime,firstDoublet:p.indices[0] === p.indices[1]});
+    prime:gpPrime,firstRunePrime:corpus.prime[ids[0]],
+    wordCount: wordsInPage(local).length,
+    firstDoublet:p.indices[0] === p.indices[1]});
   for (let i = 1; i < p.indices.length; i++) {
     if (p.indices[i] !== p.indices[i-1]) continue;
     const pos = global + i - 1;
@@ -74,6 +78,8 @@ assert.deepEqual(exactEvent.map(p => [p.rank, p.page, p.word, p.prime]),
   [[81,51,'WWP',81]]);
 assert.deepEqual(exactPage.map(p => [p.page, p.opener, p.prime, p.preceding]),
   [[51,'WWP',81,81]]);
+const firstRuneSelfCount = pageOpeners.filter(p => p.firstRunePrime === p.wordCount - 1);
+assert.deepEqual(firstRuneSelfCount.map(p => [p.page,p.firstRunePrime,p.wordCount]), [[51,19,20]]);
 const p51 = events.find(e => e.page === 51);
 assert.equal(p51.rank, 81);
 assert.equal(p51.pos, 12114);
@@ -108,7 +114,8 @@ const N = 200000;
 const random = xorshift(0x81c1cada);
 const eventPrimeValues = events.map(e => e.prime);
 const pagePrimeValues = pageOpeners.map(e=>e.prime);
-const simulated = {anyEventRankHit:0,observedP51EventRankHit:0,anyPageOpenerRankHit:0,observedP51PageRankHit:0};
+const pageFirstRunePrimeValues = pageOpeners.map(e=>e.firstRunePrime);
+const simulated = {anyEventRankHit:0,observedP51EventRankHit:0,anyPageOpenerRankHit:0,observedP51PageRankHit:0,anyFirstRuneBodyCount:0,observedP51FirstRuneBodyCount:0};
 for (let r=0;r<N;r++){
   const candidateEvents=eventPrimeValues.slice();
   shuffle(candidateEvents, random);
@@ -122,13 +129,18 @@ for (let r=0;r<N;r++){
   for (let i=0;i<55;i++) if(candidateOpener[i]===pageOpeners[i].preceding) {anyPage=true;break;}
   simulated.anyPageOpenerRankHit+=Number(anyPage);
   simulated.observedP51PageRankHit+=Number(candidateOpener[50]===81);
+  const firstRune = pageFirstRunePrimeValues.slice();
+  shuffle(firstRune, random);
+  simulated.anyFirstRuneBodyCount += Number(firstRune.some((v,i)=>v===pageOpeners[i].wordCount-1));
+  simulated.observedP51FirstRuneBodyCount += Number(firstRune[50]===19);
 }
 console.log(JSON.stringify({
   sources: {ciphertextRunes:global,printedWords:words.length,adjacentEqualEvents:events.length,
     firstSameRunePageCount:headDoubletPages.length,firstSameRunePages:headDoubletPages,
-    allEventIndexPrimeMatches:exactEvent,allPageOpeningPrimePrecedingMatches:exactPage},
+    allEventIndexPrimeMatches:exactEvent,allPageOpeningPrimePrecedingMatches:exactPage,
+    allPageFirstRuneCountMatches:firstRuneSelfCount},
   p51: {eventOrdinalZeroBased:p51.rank,eventOrdinalOneBased:p51.rank+1,
-    globalZeroBasedEventPosition:p51.pos,firstWordPrimeSum:p51.prime,
+    globalZeroBasedEventPosition:p51.pos,firstWordPrimeSum:p51.prime,bodyWordCountAfterHeader:19,firstRunePrime19:19,
     tableAddress:p51.rank,tableToken:grid.pages[1].tokens[1],firstSuccessor:f[81],
     afterWPrime19Steps:32,afterOwn20WordsSteps:115},
   conditionalMultisetNull:{N,seed:0x81c1cada,simulated,
