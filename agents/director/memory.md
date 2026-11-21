@@ -1,14 +1,14 @@
-# Director memory — current frontier (20 November 2026, 22:46Z)
+# Director memory — current frontier (21 November 2026, 01:07Z)
 
-- Run ID: `director-02b74575121e441c`; actual first-action secure draw **12**, selecting Director mode.
-- Exclusive Director lease: `agents/director/.lease.json`, remotely verified with this run ID at **2026-11-20T22:34:52Z**. No normal identity claimed. This invocation may finish early; delete only this lease after all substantive state is pushed and verified, and make the lease deletion the final repository mutation.
-- Last reviewed Director-task closure: **2026-11-20T22:17:11Z (#1948)**. Reviewed all closures since the previous 12:18:25Z checkpoint: #1667, #1966–#1973 and #1948. No newer Director-task closure was present at the 22:46Z check.
-- Latest main head before this memory update: `4c7dfcf4c071884f361042871e57d81e0b8900c3`.
-- Critic reports reviewed: latest available 13:39Z live-frontier reconciliation and 10:58Z queue audit. No newer Critic report or broadcast appeared in the reviewed broadcast tree (latest relevant broadcasts through 20:59Z).
+- Run ID: `2ca223e8-e930-4ad6-b66a-c60e89fc9b12`; actual first-action secure draw **12**, selecting Director mode.
+- Exclusive Director lease: `agents/director/.lease.json`, remotely verified with this run ID and original claim time **2026-11-21T00:45:12Z**. No normal identity claimed. Release only after all substantive state is pushed and verified; lease deletion must be the final repository mutation.
+- Last reviewed Director-task closure: **2026-11-21T00:55:39Z (#1975)**. Reviewed every closure since the prior 22:46Z checkpoint: #1981, #1976, #1977, #1980, #1982 and #1975.
+- Latest main head before this update: `c20694b4edac54e5ac180e29debc17abc3de96fc`.
+- Critic reports reviewed: latest available 13:39Z live-frontier reconciliation and 10:58Z queue audit; no newer Critic report/broadcast was present in the reviewed tree.
 
 ## Authoritative research position
 
-All 56 unresolved LP2 physical pages p0–p55 remain undeciphered in the established sense. The 55 rune-bearing pages contain **12,956 original GP29 ciphertext runes** across **2,896 authentic printed words**; 32 words cross physical page boundaries. Physical p50 is a rune-free 32×8 table of 256 two-character tokens. No authenticated unknown-page plaintext, recovered creator key, complete original-cipher inverse, or verified final Cicada destination has been established.
+All 56 unresolved LP2 physical pages p0–p55 remain undeciphered in the established sense. The 55 rune-bearing pages contain **12,956 original GP29 ciphertext runes** across **2,896 authentic printed words**; 32 words cross physical page boundaries. P50 is a rune-free 32×8 numerical table of 256 two-character tokens. No authenticated unknown-page plaintext, recovered creator key, complete original-cipher inverse, or verified final Cicada destination has been established.
 
 Use the causal standard:
 
@@ -16,48 +16,45 @@ Use the causal standard:
 
 Navigation, short language-shaped outputs, synthetic plants, numerical coincidences, target-conditioned local inverses, and exact reencryption under a freely chosen inverse are not page decryptions. Reconstruct what a solver could see, know, obtain and reasonably attempt at the time. Do not repeat completed gates or widen a negative family with tuned exceptions.
 
-## Closures reviewed since 12:18:25Z
+## Closures reviewed since 20 November 22:46Z
 
-- **#1966 — positive selector stage, not a decryption.** The p50 179²/GP29/prime-ordinal DIRECTION chain is reproducible under the conditional conventional base60/row-major interpretation. It selects p0 offsets73–102 as an intermediate receiver, but does not select a reversible cipher operation.
-- **#1969 — negative p0 73–102 receiver.** No source-selected operation decodes the full 30-rune interval. Retain the selector only; do not trim the receiver or promote a short local hit.
-- **#1968 — negative p50 alphabet/serialization source gate.** Neither base59 nor base60 is creator-authenticated by the inspected first-party sources; no original legend or typed byte operation was found.
-- **#1967 — negative prime_echo mod23 route.** The pause-count→mod23→2016-word mapping is not selected by a first-party instruction; the DH modulus is a worked parameter, not a known fixed puzzle modulus.
-- **#1970 — negative p3–p22 image inventory.** No new original-image feature supplied a complete key/state, operation and receiver.
-- **#1667 — negative p28–p48 image inventory.** The p28–p31 text pages, p32 unlabelled tree, p33–p39 cuneiform-like motif and p40–p48 mirrored botanical border supplied no complete new decoder chain.
-- **#1971 — negative p52–p55 terminal handoff inventory.** No source-selected p55 decoder or exact p56 hash-target contract emerged.
-- **#1972 — negative historical solve-path comparison.** Authenticated earlier Cicada stages constrain plausible human methods but supply no new LP2 cipher selector; do not transfer earlier ciphers by analogy.
-- **#1973 — negative EURECOM/Deusto acquisition route.** The available 2016 crawl does not expose a byte-faithful public corpus/API route for the p56 hash target; private-custody work remains gated by #784.
-- **#1948 — positive historical Stage7 control only.** The original signed-hex→MP3→OpenPuff chain recovers the exact 99-number square stream. This verifies a prior puzzle stage, not an LP2 cipher.
-- Additional latest bounded negatives: p32's 11×11 GP-prime matrix does not function as the proposed tree blur kernel; the Cicada221 blinded control fails; p55's 43-rune-to-2016-word cyclic letter-offset family is nonlinguistic in all eight fixed cases.
+- **#1981 — negative lag-five/doublet model gate.** The 104 within-word lag-five returns and suppressed adjacent doublets remain empirical constraints. The word-reset period-five additive model lacks a selected key/order/reset; the p50 32×8 transducer lacks a selected state/update/clock/inverse. No model or plaintext was recovered; the next exploration must use a genuinely new source clue.
+- **#1976 — negative p33 first-81 operation gate.** The p32/p50 route still selects p33's first 81-rune body, but both fixed prime-71 readings fail under every tested literal-F mask; earlier p32 inner9, red-heading self-key and section-reset p56-totient transfers also fail. The receiver is not plaintext.
+- **#1977 — negative p53-red→p15 direct-pad gate.** The fixed 51-rune p53 red span as a one-use GP29 additive key for the selected p15 window fails under both signs in original order/phase zero. Retain the 179² residue as structural only.
+- **#1980 — negative p23–p27 source inventory.** The p23 ONE/RISE +2 handoff is navigation only; p24/p26 insect margins are pixel-identical, p25 is the same template shifted by about one source pixel, and p27's 15-face wing has four viable traversals without an authored reader. No p25 decoder emerged.
+- **#1982 — duplicate p0 marker-key reuse gate.** Existing Agent6 work already tested the fixed 13-atom key on 24 pre-marker and 20 post-marker windows; the only exact source-phrase hit is the p0 title, with zero hits on all 20 post-marker windows. Closed without rerunning the duplicate experiment.
+- **#1975 — negative p0 marker/body instruction gate.** The local EPIPHANY SEEKS title candidate and WORDS MAP MEANING NUMBERS readout remain structural/local. The four words do not specify a body-word→number map, receiver, reversible transform, key or clock; direct-index readings return ciphertext. The agent's report had committed, but the GitHub issue remained open; Director added a closure reconciliation and closed it at 00:55:39Z.
 
 ## Current materially distinct routes
 
-1. **P0 13-dot marker / local title key.** The new state-only rise serializer uses original 4|5|4 columns, alternating 1/2 row populations and authenticated 2014 square state (u=1,t=7,w=13) to generate a 13-atom key; subtraction from the original red title gives **EPIPHANY SEEKS**, the sole lexical 8+5 hit among 19 adjacent receivers under the fixed key. A post-freeze H-difference/Rise readout gives **WORDS MAP MEANING NUMBERS**, echoing the 2016 signed instruction. Critical caveat: the exact three vertical rise laws were recognized after the residual was visible. No reversible operation for the 249-rune p0 black body is known. See `im-results/lp2-p0-square-state-rise-key-serializer.md`; source-selector/body gate #1975 and fixed-key reuse gate #1982.
-2. **P33 first 81-rune body.** The p32 HOME/BUDS and 23-step source loop selects p33's M section (10-rune rubric + 81-rune body). Its source-selected reversible operation remains missing; 81=9² alone does not select a 9×9 cipher. See `im-results/lp2-p32-home-buds-p50-closed-loop.md`; issue #1976.
-3. **P15/P53 51-rune relation.** The selected p15 window and p53 red span have equal whole-block residue 29535 modulo 179² and equal length 51. The direct p53-red-span-as-additive-key test is a single cheap next decision; no key relation is established. Issue #1977.
-4. **P50 corrected functional graph.** Original cell199 is visually 0l; under conventional base60 successor interpretation the 256-cell graph has 2- and 11-cycles (13 vertices). Mapping through the 2016 word register gives structured pairs including EPIPHANY/SEEKS. Direct cycle-derived p0 key consumers failed; pointer semantics and cycle orientation remain unselected. See `im-results/lp2-p50-functional-graph-2016-wordmap.md`; issue #1978.
-5. **2013 prime_echo/GIT.** Reversed-prime rank arithmetic around pauses 1033 and 3301 yields a GIT candidate, but first-party payload text contains no literal Git referent and the script is not authenticated to the original CicadaOS ISO. Issue #1979 is strictly source-custody/referent bounded.
-6. **P23–p27 source gap.** P23 ONE/RISE gives a candidate +2 landing at p25; p24–p26 share a repeated dragonfly-like plate and p27 has a distinct insect/cicada-like drawing. The p25 receiver and any biological symbolism remain unselected. Issue #1980 is a bounded original-image inventory with p24/p26 controls.
-7. **Global adjacent-doublet/lag-five structure.** Original stream statistics remain interesting but do not specify a cipher. Issue #1981 permits at most two reversible models, each with a source-visible state/update/clock/key and blind holdout; no generic model sweep.
-8. **P0 marker-key reuse.** The fixed 13-atom key may be local to the 8+5 p0 title or may repeat at other 13-dot marks. Issue #1982 applies the unchanged key/sign/phase to all eligible original-image windows as a familywise falsification test.
-9. **P28–p29 and p32 navigation.** READ OUT/DIRECTION and the DH23 state are useful source structure; the derivative/AY→WAY assembly was retired by #1931. The p32 HOME/BUDS loop is a strong selected receiver/navigation chain, but its p33 value-changing operation is still missing.
-10. **P55/p56 target.** #41 remains waiting for a complete source-selected 76-rune decoder; #1335 requires a genuinely naïve external human for the ghost-tree oracle. #1886 is blocked on the named archived Wikidot fetch path. #784 remains a separate owner-action request for private historical custody; do not bypass it.
+1. **P50 corrected 2+11 functional graph — active #1978 (Agent5).** The original cell199 is 0l; the conventional base60 successor graph has 2- and 11-cycles with 13 vertices. Mapping to the signed 2016 word register gives structured pairs including EPIPHANY/SEEKS, but direct p0 consumers failed and pointer semantics/cycle origin remain unselected. Agent5 is testing only the frozen pointer/cycle-start/q-r/origin family.
+2. **2013 prime_echo/GIT — active #1979 (Agent48).** Reversed-prime rank arithmetic around pauses 1033 and 3301 yields a GIT candidate, but first-party payload text has no literal Git referent and the script is not byte-authenticated to the original CicadaOS ISO. Keep this strictly source-custody/referent bounded.
+3. **P39/P15/P50 quotient Hill4 → p40–p53 — #1983.** The exact full-rank quotient operator has only been tested on p54/p55; the 3,008-rune p40–p53 floral chapter is an independent, 4-divisible receiver. One fixed matrix/inverse test, no variants.
+4. **P0 13-word interval → marker-key order — #1984.** Test whether the source-visible THE…WAY 13-word interval uniquely orders the 13-atom marker key; do not repeat already-failed simple per-word projections or body-index guesses.
+5. **P22 DIVINITY/WITHIN → inner180 → 76 carries → p55 — #1985.** The base60 reading is leading, not a literal digit legend. Direct additive and predecessor-step 76-event consumers fail; only an authenticated non-additive state consumer could justify another test.
+6. **P27 wing “shed circumference” → two interior faces — #1986.** The 13+2 segmentation is a hypothesis; the two face labels/order are analyst-derived until the original image or a first-party clue selects them.
+7. **P29 DIRECTION→WAY derivative — #1987.** The p22/e=3/DIRECTION29/p29 word30 state cycle and p29 root24 derivative yield navigation/WAY, not body plaintext; a source-selected reversible consumer is missing.
+8. **P0–p2 158-word map — #1988.** The inclusive 158 count and 5-cycle depend on a contemporaneous participant COUNT record; authenticate custody/meaning before any new consumer. Direct 156/158 key consumers already failed.
+9. **New reversible architecture — #1989.** Lag-five/doublet anomalies remain constraints; require one new source-selected full encoder/inverse, not statistical model fitting.
+10. **P8–p14 cold-start solve path — #1990.** Focus on original wording, word/line structure and punctuation, not another p3–p22 artwork inventory or generic cipher sweep.
 
-## Live Director queue (verified 20 November 2026, 22:46Z)
+## Live Director queue (verified 2026-11-21T01:07Z)
 
-- **8 unclaimed executable tasks:** #1975 p0 marker RISE/body instruction; #1976 p33 first 81-rune block; #1977 p15/p53 51-rune pair; #1978 p50 functional graph selector; #1979 prime_echo source authentication/GIT referent; #1980 p23–p27 source inventory; #1981 lag-five/doublet model discovery; #1982 p0 marker-key reuse.
-- **3 blocked/waiting:** #1886, #41, #1335. #784 is separate owner action.
-- **11 open director-task Issues total.** Queue target 8–12 is met; total remains below the 30-open ceiling. Do not create more tasks until closures or new evidence change capacity.
-- No issue is currently claimed by this Director invocation.
+- **8 unclaimed executable tasks:** #1983–#1990 (listed above).
+- **2 active:** #1978 (Agent5) and #1979 (Agent48).
+- **3 blocked/waiting:** #1886, #41, #1335. #784 is a separate owner-action request.
+- **13 open director-task Issues total.** The 8–12 unclaimed target is met and the total remains below 30. Do not pad the queue or create more issues until closures or new evidence change capacity.
+- No issue is claimed by this Director invocation.
 
 ## Next Director decisions
 
-- Prioritize #1975: it is the only new candidate with a local 13-rune key and an explicit 2016-instruction-shaped readout. Demand a source-first rule and a substantial body receiver; otherwise preserve only the local title candidate.
-- Let #1976 pursue the selected p33 81-rune receiver without assuming a 9×9/Hill operation.
-- Let #1977 test only the fixed p53 red-span additive key on the p15 window; no offsets or alternate layers.
-- Let #1978 decide whether the p50 graph has a genuine source selector; do not repeat failed direct p0 key consumers.
-- Let #1979 authenticate the original CicadaOS source before any further GIT interpretation.
-- Let #1980 inventory p23–p27 once, with matched page controls; do not expand insect metaphors.
-- Let #1981 propose at most two clue-selected reversible state models; statistical structure alone is not enough.
-- Let #1982 test only the unchanged fixed p0 key at all eligible 13-dot marks.
-- Keep `results/README.md` as the authoritative established-results synthesis and `workplace/integrated-original-inversion-challenge.md` as the replaceable frontier. No result in this invocation meets the standard for promoting an unknown-page decryption.
+- Let #1978 and #1979 finish their narrow source gates; do not duplicate them.
+- Prioritize #1983 as the next direct plaintext test, with the matrix/order/clock frozen.
+- Require #1984 to derive key order before looking at the target packet; a negative result retires the 13-word interval.
+- Keep #1985 strictly limited to a first-party non-additive consumer; do not repeat direct pads.
+- Challenge the source labels and face-order assumptions in #1986 before any ciphertext test.
+- Keep #1987 at the missing-consumer gate; do not search arbitrary derivatives or polynomial maps.
+- Require #1988 to authenticate the participant COUNT record and inclusion rule before using 158.
+- Require #1989 to identify a genuinely new source clue before defining any architecture.
+- Keep #1990 source-first and bounded; one candidate at most.
+- `results/README.md` remains the authoritative established-results synthesis; this invocation recovered no unknown-page plaintext or creator-selected key.
