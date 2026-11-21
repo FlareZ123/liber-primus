@@ -150,6 +150,22 @@ const baseline=longHits(body);
 const direct=longHits(plain.slice(1,-1));
 const other=longHits(transposed.slice(1,-1));
 assert.deepEqual([baseline,direct,other],[0,0,0]);
+
+const sumWords = bounds.map(([start,end]) =>
+  body.slice(start,end).reduce((total,value) => total+value,0)%29);
+const productWords = bounds.map(([start,end]) =>
+  body.slice(start,end).reduce((total,value) => total*value%29,1));
+assert.equal(sumWords.length,70);
+assert.equal(productWords.length,70);
+const wordReads = {
+  gp0sum: {plain:apply(I,sumWords),transposed:apply(transpose(I),sumWords)},
+  product: {plain:apply(I,productWords),transposed:apply(transpose(I),productWords)}
+};
+assert.deepEqual(apply(M,wordReads.gp0sum.plain),sumWords);
+assert.deepEqual(apply(M,wordReads.product.plain),productWords);
+assert.deepEqual(apply(transpose(M),wordReads.gp0sum.transposed),sumWords);
+assert.deepEqual(apply(transpose(M),wordReads.product.transposed),productWords);
+
 const observed={
   inputSource:'p6 offsets82..195, p7 offsets0..193, two literal red13-dot counts',
   sourceCount:{bodyRunes:308,restoredLength:310,blackWords:70,longWords:40},
@@ -160,6 +176,11 @@ const observed={
     ciphertext:baseline,standard:direct,transposed:other},
   standardPrefix:plain.slice(0,30).map(x=>book.translit[x]).join(' '),
   transposedPrefix:transposed.slice(0,30).map(x=>book.translit[x]).join(' '),
+  wordLevelSourceCount:70,
+  wordLevelReadouts:Object.fromEntries(Object.entries(wordReads).map(([name,r])=>
+    [name,{standardIoC:ioc(r.plain),transposedIoC:ioc(r.transposed),
+      standardText:r.plain.map(x=>book.translit[x]).join(' '),
+      transposedText:r.transposed.map(x=>book.translit[x]).join(' ')}])),
   forwardReplay:true,solvedPlant:true,
   decision:'Both exact marker-restored 310-rune Hill5 consumers reject direct native-GP reading under fixed printed words.'
 };
