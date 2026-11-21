@@ -78,6 +78,47 @@ for i in range(len(unknown)):
 assert all_window_count == 1596
 assert matches == [(40, 55)]
 
+# A different, art-local mixed unitization reaches the same count:
+# shrink the *two page-start red spans*, lengths 8/9, to one rubric
+# token each, retaining every other printed rune including p53's red body.
+INK = json.loads((JPEG_ROOT / "lp2-ink-annotations.json").read_text(encoding="utf8"))
+red_starts = [
+    (p["page"], s["length"])
+    for p in INK["pages"]
+    if 40 <= p["page"] <= 55
+    for s in p.get("red_spans", [])
+    if s["start"] == 0
+]
+assert red_starts == [(40, 8), (54, 9)]
+assert sum(n - 1 for _, n in red_starts) == len(rune_pages)
+mixed_units = runes - sum(n - 1 for _, n in red_starts)
+assert mixed_units == 3301
+
+
+def horner(coefficients: list[int], at: int) -> int:
+    value = 0
+    for v in coefficients:
+        value = (value * at + v) % 29
+    return value
+
+
+all_red_root24 = []
+for p in INK["pages"]:
+    for span in p.get("red_spans", []):
+        glyphs = CORPUS["pages"][p["page"]]["indices"]
+        red = glyphs[span["start"]:span["start"] + span["length"]]
+        assert len(red) == span["length"]
+        if horner(red, 3301 % 29) == 0:
+            all_red_root24.append((p["page"], span["start"], span["length"]))
+assert all_red_root24 == [(40, 0, 8), (54, 0, 9)]
+roots = [
+    [x for x in range(29) if horner(
+        CORPUS["pages"][page]["indices"][:length], x) == 0]
+    for page, length in red_starts
+]
+assert roots == [[1, 2, 7, 24], [19, 24]]
+assert set(roots[0]) & set(roots[1]) == {3301 % 29}
+
 duplicates = sum(
     a == b
     for p in rune_pages
@@ -90,6 +131,10 @@ assert duplicates == 21
 print("Source group: physical p40..p55, printed folio count:", len(border))
 print("Rune pages:", len(rune_pages), "runes:", runes)
 print("Within-page GP29 transitions:", steps, "zero-delta transitions:", duplicates)
+print("Two opening red spans:", red_starts,
+      "collapsed header-and-rune units:", mixed_units)
+print("Only common original-heading root:", 3301 % 29,
+      "first roots:", roots[0], "second roots:", roots[1])
 print("Contiguous intervals among p0..55:", all_window_count)
 print("Intervals with exactly 3301 transitions:", matches)
 print("PASS: unique source-art block has exactly 3301 page-local GP29 transitions.")
