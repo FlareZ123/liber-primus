@@ -391,7 +391,7 @@ for (const target of conditionalP56Receivers) {
       corpus.translit[v]).join(' '));
 }
 console.log('One source-fixed p56 transfer at DH-derived K193 is nonlinguistic',
-  'on three original targets; exact forward controls pass.');
+  'on four original targets; exact forward controls pass.');
 
 console.log('PASS. Exact source-index linkage. No deciphered LP2 text or');
 console.log('independently sourced instruction selecting this DH bookend grammar.');
