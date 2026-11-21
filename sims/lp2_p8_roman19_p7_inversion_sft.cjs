@@ -116,6 +116,100 @@ assert.deepStrictEqual(hits, [
   { page: 8, offset: 0, numeral: 'XIX', gpSymbolIndex: 19 }
 ]);
 
+// P7's five red products plus p8's self-described 19 are exactly one
+// complete six-element orbit under the source-selected x => x^3 mod29.
+// 3 and 19 are inverse exponents modulo 28, so cubing is bijective.
+assert.equal((romanNumber * secondRedP8Exponent) % 28, 1);
+const redWordProducts = [
+  p7.slice(194, 196), p7.slice(196, 200), p7.slice(200, 203),
+  p7.slice(203, 205), p7.slice(205, 208)
+].map(word => word.reduce((product, symbol) => product * symbol % 29, 1));
+assert.deepStrictEqual(redWordProducts, [11, 26, 8, 15, 2]);
+const cubeOrbit = [2];
+for (let index = 0; index < 6; index++) {
+  cubeOrbit.push(modPow(cubeOrbit.at(-1), secondRedP8Exponent, 29));
+}
+assert.deepStrictEqual(cubeOrbit, [2, 8, 19, 15, 11, 26, 2]);
+assert.deepStrictEqual(
+  redWordProducts.concat(romanNumber).sort((a, b) => a - b),
+  cubeOrbit.slice(0, 6).sort((a, b) => a - b)
+);
+for (const value of Array.from({ length: 29 }, (_, index) => index)) {
+  assert.equal(modPow(modPow(value, 3, 29), romanNumber, 29), value);
+}
+
+/**
+ * Two direct reversible source-selected cube-root/precedence decoders.
+ * The preceding original rune for p8 black is the last red heading glyph.
+ * @param {number[]} cipher
+ * @param {number} first
+ * @param {'delta-root'|'root-delta'} model
+ * @returns {number[]}
+ */
+function decryptBody(cipher, first, model) {
+  const output = [];
+  let previous = first;
+  for (const symbol of cipher) {
+    const value = model === 'delta-root'
+      ? modPow((symbol - previous + 29) % 29, 19, 29)
+      : (modPow(symbol, 19, 29) - modPow(previous, 19, 29) + 29) % 29;
+    output.push(value);
+    previous = symbol;
+  }
+  return output;
+}
+
+/**
+ * Exact inverse including original red-field IV.
+ * @param {number[]} plain
+ * @param {number} first
+ * @param {'delta-root'|'root-delta'} model
+ * @returns {number[]}
+ */
+function encryptBody(plain, first, model) {
+  const output = [];
+  let previous = first;
+  for (const symbol of plain) {
+    const value = model === 'delta-root'
+      ? (previous + modPow(symbol, 3, 29)) % 29
+      : modPow((modPow(previous, 19, 29) + symbol) % 29, 3, 29);
+    output.push(value);
+    previous = value;
+  }
+  return output;
+}
+
+/** @param {number[]} indices @returns {number} */
+function coincidence(indices) {
+  const counts = Array(29).fill(0);
+  indices.forEach(index => { counts[index]++; });
+  return counts.reduce((sum, count) => sum + count * (count - 1), 0)
+    / (indices.length * (indices.length - 1));
+}
+
+const body = p8.slice(12);
+assert.equal(body.length, 243);
+const originalFirst = p8[11];
+const knownP57 = source.pages[57].indices;
+const cubeRootReceivers = [];
+for (const model of ['delta-root', 'root-delta']) {
+  const decoded = decryptBody(body, originalFirst, model);
+  assert.deepStrictEqual(encryptBody(decoded, originalFirst, model), body);
+  const positive = Array.from({ length: body.length }, (_, index) =>
+    knownP57[index % knownP57.length]
+  );
+  const plantedCipher = encryptBody(positive, originalFirst, model);
+  assert.deepStrictEqual(decryptBody(plantedCipher, originalFirst, model), positive);
+  cubeRootReceivers.push({
+    model,
+    originalIoC: Number(coincidence(decoded).toFixed(9)),
+    sourceFIndexZeroCount: decoded.filter(index => index === 0).length,
+    first44Transliterated: decoded.slice(0, 44)
+      .map(index => source.translit[index]).join('')
+  });
+}
+assert.ok(cubeRootReceivers.every(record => record.originalIoC < 0.04));
+
 console.log(JSON.stringify({
   source: 'Original LP2 p8 opening red XIXM and p7 second red product',
   p8RomanNumber: romanNumber,
@@ -126,6 +220,9 @@ console.log(JSON.stringify({
   doubleFieldPower23: modPow(romanNumber, secondRedP8Exponent, 23),
   doubleFieldPower29: modPow(romanNumber, secondRedP8Exponent, 29),
   dhGroupInverseExponent: '15 * 3 mod 22 = 1',
+  gp29CubeInverseExponent: '19 * 3 mod 28 = 1',
+  red5ProductsAndMissingRoman19CubeOrbit: cubeOrbit,
+  unchangedOriginalP8Black243TwoReversibleReceivers: cubeRootReceivers,
   originalUnknownRunes: source.pages
     .filter(page => page.page < 56)
     .reduce((sum, page) => sum + page.indices.length, 0),
