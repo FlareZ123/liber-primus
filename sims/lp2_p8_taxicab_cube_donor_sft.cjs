@@ -69,6 +69,7 @@ function encodeGP(text) {
   for (let i = 0; i < normalized.length;) {
     if (!/[A-Z]/.test(normalized[i])) { i++; continue; }
     if (normalized.startsWith("ING", i)) { runes.push(21); i += 3; continue; }
+    if (normalized.startsWith("IO", i)) { runes.push(27); i += 2; continue; }
     const token = tokens.find((part) => normalized.startsWith(part, i));
     if (token) { runes.push(index.get(token)); i += token.length; }
     else i++;

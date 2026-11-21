@@ -79,6 +79,7 @@ function encodeGP(text) {
     if (normalized.startsWith("ING", i)) {
       result.push(21); i += 3; continue;
     }
+    if (normalized.startsWith("IO", i)) { result.push(27); i += 2; continue; }
     const tok = tokens.find((token) => normalized.startsWith(token, i));
     if (tok) { result.push(gpIndex.get(tok)); i += tok.length; }
     else i++;

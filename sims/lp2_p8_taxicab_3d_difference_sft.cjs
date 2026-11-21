@@ -74,6 +74,7 @@ function encode(txt) {
   for(let i=0;i<str.length;){
     if(!/[A-Z]/.test(str[i])){i++;continue}
     if(str.startsWith("ING",i)){out.push(21);i+=3;continue}
+    if(str.startsWith("IO",i)){out.push(27);i+=2;continue}
     const hit=tokens.find(x=>str.startsWith(x,i));
     if(hit){out.push(lookup.get(hit));i+=hit.length}else i++;
   }

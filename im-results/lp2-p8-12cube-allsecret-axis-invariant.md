@@ -35,14 +35,16 @@ Using a fixed source-native English-to-GP29 mapping, we tested complete 1,728-sy
 
 | Native-GP reference | Windows | Minimum invariant | Median invariant | At or below original |
 |---|---:|---:|---:|---:|
-| Gibran, `The Prophet` | 3,587 | 0.03609227 | 0.03755504 | 0 |
-| Shakespeare, first300k | 12,701 | 0.03515929 | 0.03713711 | 0 |
-| Emerson, essays | 18,904 | 0.03533293 | 0.03731075 | 0 |
-| Known LP1 prose | 130 | 0.03650726 | 0.03745791 | 0 |
+| Gibran, `The Prophet` | 3,575 | 0.03582444 | 0.03755504 | 0 |
+| Shakespeare, first300k | 12,670 | 0.03510042 | 0.03713711 | 0 |
+| Emerson, essays | 18,800 | 0.03531527 | 0.03731075 | 0 |
+| Known LP1 prose | 128 | 0.03640131 | 0.03745791 | 0 |
 
-Total **35,322** overlapping reference windows; their minima are source-conditional empirical baselines, **not independent Bernoulli trials or a universal proof that no possible English plaintext could attain the observed statistic**. With a direct native-GP prose receiver and its ordinary adjacent-runic dependencies, the unchanged original source looks closer to an approximately uniform difference process than to the tested language. No amount of arbitrary secret 3-axis additive key search, global affine scaling, or a rigid cube rotation can alter that observation.
+Total **35,173** overlapping reference windows; their minima are source-conditional empirical baselines, **not independent Bernoulli trials or a universal proof that no possible English plaintext could attain the observed statistic**. With a direct native-GP prose receiver and its ordinary adjacent-runic dependencies, the unchanged original source looks closer to an approximately uniform difference process than to the tested language. No amount of arbitrary secret 3-axis additive key search, global affine scaling, or a rigid cube rotation can alter that observation.
 
 A decoder with per-axis **nonlinear** substitutions, an arbitrary byte/word transposition, time-varying multipliers, transparent runes or other state can violate the invariant and is not excluded.
+
+The reference controls use the project's canonical historical GP29 spellings, including source-linguistic `ING→NG` and `IO→IA`. An earlier control transcription omitted the latter convention; restoring it reduces the frozen 1,728-rune window count from 35,322 to **35,173** and lowers the minimum Shakespeare reference IoC to **0.03510042**, still strictly greater than the original ciphertext's **0.03490323**. This is a scope-sensitive calibration correction, not new plaintext evidence.
 
 ## Executable evidence and research decision
 
