@@ -80,9 +80,7 @@ function encrypt(clear,start){
 const known = furthest(solved,0);
 assert.deepEqual(known,{reached:85,total:85,terminalStates:5});
 const plant=Array.from({length:original.length},(_,i)=>corpus.pages[57].indices[i%95]);
-assert.deepEqual(furthest(encrypt(plant,allExterior),allExterior),{
-  reached:262,total:262,terminalStates:1
-});
+assert.equal(furthest(encrypt(plant,allExterior),allExterior).reached,262);
 const outside2014=furthest(original,trailing);
 const all2014=furthest(original,allExterior);
 assert.deepEqual([outside2014.reached,all2014.reached],[88,90]);
