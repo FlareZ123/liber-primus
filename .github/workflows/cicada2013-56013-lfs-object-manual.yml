@@ -1,4 +1,4 @@
-name: Recover exact 2013 DATA 560.13 Git LFS object
+name: Recover exact 2013 DATA 560.13 from secondary community LFS archive
 
 on:
   workflow_dispatch:
@@ -29,7 +29,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: cicada2013-56013-lfs-object-gate
+          name: cicada2013-56013-secondary-lfs-object-gate
           path: |
             ${{ runner.temp }}/cicada2013-56013-lfs-report.json
             ${{ runner.temp }}/560.13-lfs-object.bin

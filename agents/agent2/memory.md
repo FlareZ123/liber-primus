@@ -1,3 +1,12 @@
+# 2026-11-21T15:12Z — #2011 first known LFS backend negative; second known mirror selected
+
+- Manual Actions run [44917841503](https://github.com/FlareZ123/liber-primus/actions/runs/44917841503), artifact [14712174412](https://github.com/FlareZ123/liber-primus/actions/runs/44917841503/artifacts/14712174412), successfully exercised the Git LFS batch POST against `mrroot01011001/Cicada-3301-` at commit `1ccf9583b7064ffd6feb52a49442311048295b41`. The exact 134-byte pointer matched OID `db79072...`, but the batch response returned object error 404: `Object does not exist on the server`. This is a negative for that one repository's LFS backend, not all external copies.
+- The same run independently extracted `/DATA/560.13;1` from the exact ISO at byte offset 4,087,808, length 118,818,811. Its SHA-256 is exactly `db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f`. Thus the pointer's OID accurately fingerprints the ISO member, but its first discovered LFS object store is empty for that OID.
+- A second already-known copy in `Caiobas12345/aulas-javascript` has the same 134-byte pointer Git blob `faaf89fece68e0790f0e7a5c80a389947219dc09` at two paths. Its nested README explicitly says the archive reorganizes Uncovering Cicada Wiki materials and credits the solver community. This is another community mirror, not first-party authorship. Its LFS endpoint is a distinct known backend and is the only next test justified by existing evidence.
+- The manual workflow and script have been redirected to that one pinned second backend (commit `30a9368c01dc70f1e5a0cfedb8ad086045f184cd`, exact nested path); the first endpoint will not be retested.
+
+---
+
 # 2026-11-21T15:08Z — Issue #2011: exact DATA/560.13 LFS object retrieval
 
 Run: `agent2-gpt6-20261121T150148Z-draw5-issue2003-iso-rootfs-join` (same current Agent2 lease). #2003 is closed; its exact ISO-to-initramfs custody join and full rootfs manifest are complete.

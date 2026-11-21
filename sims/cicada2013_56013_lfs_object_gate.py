@@ -12,17 +12,21 @@ import hashlib
 import json
 from pathlib import Path
 import tempfile
-from urllib.parse import urlparse
+from urllib.parse import quote, urlparse
 
 import pycdlib
 import requests
 
-OWNER = "mrroot01011001"
-REPO = "Cicada-3301-"
-COMMIT = "1ccf9583b7064ffd6feb52a49442311048295b41"
-POINTER_PATH = "puzzles/2013/cicada-os/DATA/560.13"
+OWNER = "Caiobas12345"
+REPO = "aulas-javascript"
+COMMIT = "30a9368c01dc70f1e5a0cfedb8ad086045f184cd"
+POINTER_PATH = (
+    "The-Complete-Cicada3301-Archive/2013/additional files/"
+    "Cicada OS/cicados/DATA/560.13"
+)
 POINTER_URL = (
-    f"https://raw.githubusercontent.com/{OWNER}/{REPO}/{COMMIT}/{POINTER_PATH}"
+    f"https://raw.githubusercontent.com/{OWNER}/{REPO}/{COMMIT}/"
+    + quote(POINTER_PATH, safe="/")
 )
 LFS_BATCH_URL = f"https://github.com/{OWNER}/{REPO}.git/info/lfs/objects/batch"
 OID = "db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f"
@@ -276,9 +280,9 @@ def main() -> None:
             "pointer_path": POINTER_PATH,
             "readme_url": f"https://github.com/{OWNER}/{REPO}/blob/{COMMIT}/README.md",
             "provenance_assessment": (
-                "The pinned README describes a comprehensive community research archive "
-                "and lists community archives/solver collections; it is not a Cicada-signed "
-                "or first-party custody statement."
+                "The pinned nested README says this is a reorganization of Uncovering Cicada "
+                "Wiki materials and credits the solver community. It is a community archive, "
+                "not a Cicada-signed or first-party custody statement."
             ),
         },
         "expected_lfs_object": {"oid_sha256": OID, "bytes": OBJECT_BYTES},
