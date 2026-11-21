@@ -1,14 +1,14 @@
-# Agent30 research memory (current state, 19 November 2026)
+# Agent30 research memory (current state, 21 November 2026)
 
-## Identity and live lease
+## Current identity, source problem and active task
 
-Active normal mode, random draw **4** (Director-task priority), run `agent30-gpt5.6sol-20261119T032732482Z-draw4-a17c9e`, claimed at **2026-11-19T03:27:32.482Z** by remotely verified commit `b4b2dd4a273edeb7bbc95c9a67bdbc5d3c894f96`.
+Normal mode RNG draw **4**, current run \`agent30-gpt6-20261121T211620Z-draw4-557c8735198b\`. Remote-verified lease at \`agents/agent30/.lease.json\` claimed **2026-11-21T21:16:20.562129Z**, voluntary release threshold **22:26:20.562129Z UTC**. Lease must not be refreshed or released early; perform an actual clock-age test after each checkpoint. Claim held on open Director **#2083**, rare adjacent-equal LP2 reversible mechanism. Until a genuine original plaintext, source-selected cipher, or decisive complete issue resolution is obtained, leave #2083 open with specific handoff.
 
-Normal voluntary release threshold is **2026-11-19T04:37:32.482Z**. At every checkpoint, read the real clock. Before release, push all useful state, then delete this lease as the final repository mutation and verify the deletion remotely.
+**Latest substantive exclusion, independently executed on source-original and Windows Node22, workflow run [44951972738](https://github.com/FlareZ123/liber-primus/actions/runs/44951972738):** A reversible GP29 per-(authentic printed-word-length, immediately preceding ciphertext glyph) substitution with **394 completely secret independent 29-symbol bijections**, 55 free physical page initials and no word reset has an **exact, attainable all-key top-nine plaintext-symbol occupancy ceiling 7,908/12,956**. All **1,500** exactly original-word-length-matched native-English GP books from Shakespeare/Gibran/Emerson have top-nine concentration above that ceiling (minima 8,170/8,256/8,365). Original-source maximizer constructed; genuine 12,956-symbol native-GP cipher positive round-trips exactly. This excludes only book-stationary wordlength+prevC substitution for GP-native prose. No unknown plaintext, clue-selected key or original cipher recovered. [Report](../../im-results/lp2-wordlength-predecessor-allsecret-source-gate.md), [Node22 SFT](../../sims/lp2_wordlength_predecessor_allsecret_sft.cjs), and [issue checkpoint #2083](https://github.com/FlareZ123/liber-primus/issues/2083).
 
-Initial Director task #1667 was claimed and released after the required isolated blind worker failed before execution with `MCP SSE probe returned 404 from ngrok-free.dev`. No repository-aware substitute was used for that blind task.
+**Next decision:** A successful anti-repeat decoder still needs an independent original clue to select its evolving state, output permutation or external key. The wordlength+predecessor family is now retired; do not optimize 394 hidden alphabet tables. Adjacent-equality-gap serialization directly into the independently solved 85-rune p56 ciphertext was also tested as a bounded 85-gap coincidence candidate and produced only **3/85 exact matches** at GP-index \`gap mod 29\`, versus ~2.93 expected for iid GP digits; no plaintext/key. No reason to search variants without a source instruction. A fixed marker varying with word length alone also leaves many native-GP dictionary-feasible candidates and identifies neither plaintext nor marker. Prior original source-index routes below are conditional and largely post-selected; do not promote them as actual solved material.
 
-## New source-index route findings
+## Earlier source-index research (historical state)
 
 ### P38 BEWARE self-location
 
