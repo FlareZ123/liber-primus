@@ -1,6 +1,6 @@
 # Integrated original inversion challenge
 
-## Decision frontier — research evidence reconciled through 21 November 2026, 17:27Z; Director queue snapshot checked 21 November 2026, 17:27Z
+## Decision frontier — research evidence reconciled through 21 November 2026, 17:33Z; Director queue snapshot checked 21 November 2026, 17:33Z
 
 All **56 unresolved LP2 physical pages p0–p55 remain undeciphered**. The 55 rune-bearing pages contain 12,956 original GP29 ciphertext runes in 2,896 printed words; physical p50 is a rune-free 32×8 table of 256 two-character tokens. P55 contains 76 runes. No authenticated unknown-page plaintext, creator-supplied unknown-page key, complete original-cipher inverse, or verified final Cicada destination has been recovered.
 
@@ -148,24 +148,28 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 - **p6/p7 red-boundary and DH23 inverse-state packet (21 Nov; structural, not plaintext).** The last two p6 red words have (length,GP0 sum) [(4,65),(2,26)] and the first two p7 red words [(2,26),(4,65)]; this is the only reversed length-and-sum pair among four adjacent red-span boundaries. The five p7 red-word GP29 products modulo29 are [11,26,8,15,2], while p6's one-rune red word is B=19. For the authenticated DH23 state A=8,B=19,K=2 these serialize [A^-1,B^-1,A,K^-1,K]; the middle p7 word [5,7,11] also sums to p=23 and multiplies to A=8. A 2,729-window / 15-pairing family control leaves only p7 with the reciprocal pattern plus p6 B-inverse26. The direct additive six-rune body key, p8 periodic five-product key and 308-rune full-GF29-cycle affine consumer all fail language despite exact re-encryption. #2056 closed; #2066 is restricted to finding a first-party instruction for a different receiver/consumer.
 - **p6/p32 and other p6 branches closed:** p32's internal 4|1|4|2 cut is not printed; [23,5,0,3] is a post-hoc difference with no DH tuple semantics; p6's length11 is not unique (p15 has another red11); the prime_echo, p55 11/33, p50 address and blind human-path tests all failed their source gates. No plaintext is established.
 
-## Current decision gates and research handoffs (21 November 2026; reconciled 17:27Z)
+- **Solved p57 punctuation pair → local p50 base59 bridge and p28 DH modulus (21 Nov; source-visible selector, not plaintext).** p57 has a red 13-dot mark after PARABLE and the unique terminal red 23-dot mark. The fixed family over large-mark counts {10,13,23} gives exactly one base59 edge, 13→23, and none under base60: 13th prime41→p50[41]=1O→base59 83; 23rd prime83; GP0(EMERGE)=83 for the solved word immediately before the terminal23 mark. The 23-dot mark independently reselects p=23 for the FIND-selected p28 DH line. The 13-dot count is common (31/36), so the base59 result is a local ordered-pair discriminator, not a global radix. See [source report](../im-results/lp2-p57-terminal23-p28-dh-modulus-selector.md) and [SFT](../sims/lp2_p57_terminal23_p28_dh_modulus_sft.cjs).
+- **p57 23-dot → p0–p2 23-cycle (negative).** The original terminal object has 23 dots in five staggered columns [4,5,5,5,4] and no marked start/direction. The body-only p0–p2 construction gives a 23-cycle only after excluding the two red title words; the equally literal inclusive construction gives a 5-cycle. The mark instead has the source-supported p28 DH modulus and local p50 base59 roles; it does not authenticate the p0 pointer graph.
 
-**Established scientific status is unchanged:** all 56 unresolved LP2 physical pages p0–p55 remain undeciphered in the independently reproducible sense. No authenticated unknown-page plaintext, creator-selected unknown-page key, complete original-cipher inverse, or verified final Cicada destination has been recovered. Use results/README.md as the authoritative scientific synthesis; this section is the replaceable coordination frontier.
+## Current decision gates and research handoffs (21 November 2026; reconciled 17:33Z)
+
+**Established scientific status is unchanged:** all 56 unresolved LP2 physical pages p0–p55 remain undeciphered in the independently reproducible sense. No authenticated unknown-page plaintext, complete original-cipher inverse, or verified final Cicada destination has been recovered. Use results/README.md as the authoritative scientific synthesis; this section is the replaceable coordination frontier.
 
 ### Leading routes and their weakest assumptions
 
-- **2016 p50 word-map / 2+11 graph (#2046, closed):** the EPIPHANY / SEEKS / THE / DEVOTED route to p32/121 survives four discovery-aware exact-token-multiset permutation nulls (0/10,000 global; 3/10,000 within-page; 15/10,000 within-row; 5/10,000 within-column). It is comparatively selective under these conditional nulls, but the endpoint and EMPTY step 7 were retrospective. No key, unknown plaintext or reversible receiver.
-- **p6/p7 red-word DH-state serialization (#2056, closed structural; #2066 gated):** the unique reversed red-word boundary and five-product inverse-state packet are highly specific original-image structures, matching the authenticated DH23 values and inverses. However, the tested additive and two multiplicative/affine body consumers produce no plaintext. #2066 may proceed only if a first-party source selects a different receiver/consumer; no generic GP29/DH search.
-- **p6/p32 and other p6 receivers — negative:** p32's internal partition is not printed; the [23,5,0,3] difference is post-hoc; the prime_echo, p55 11/33, p50 address and blind human-path gates all failed. Do not revive these without new independent source evidence.
+- **p57→p50→p28 DH parameter path:** the unique terminal p57 red23 mark independently selects p=23 for the FIND-selected p28 DH line. The ordered p57 red punctuation counts13 and23 also select a local base59 bridge through p50[41]=1O→83=23rd prime=GP0(EMERGE); the finite {10,13,23} count family gives exactly one base59 edge13→23 and none under base60. This is a local radix discriminator, not a global p50 legend or plaintext.
+- **p6/p7 red-word DH-state serialization (#2056, closed structural; #2066 open):** the p6/p7 red boundary reverses the adjacent word-length/sum pairs; p7's five red-word products [11,26,8,15,2] plus p6 B=19 match [A^-1,B^-1,A,K^-1,K] for the authenticated DH23 state A=8,B=19,K=2. The family control is specific, but the tested additive and two multiplicative/affine body consumers produce no plaintext. #2066 asks only for a first-party instruction selecting a different receiver/consumer.
+- **p6/p32 and other p6 receivers — negative:** p32's internal partition is not printed; [23,5,0,3] is post-hoc; prime_echo, p55 11/33 and p50 address gates failed. Do not revive these without new independent source evidence.
 - **p50 token table — source confirmed:** the original pixel audit confirms 256/256 tokens; no JSON change or new cipher consumer. The p50 graph remains navigation only.
+- **p16–p21 text-only route — negative:** original pages provide no source-selected cross-page operation; #2058 closed.
 - **p28→p29 navigation chain:** local DH23 and DIRECTION→WAY clues are known, but no reversible p30–p33 body receiver; #2059 tests that handoff.
 - **p34–p39 cuneiform-like sequence:** source/read conventions have been studied, but no source-authenticated body consumer; #2060 is bounded to that missing operation.
 - **p40–p48 ornament sequence:** no selected cipher operation; #2061 tests one concrete visual-to-body route.
-- **p57 23-dot mark / p0–p2 23-cycle:** possible source selector only; #2062 tests whether it fixes cycle start/direction and a real receiver.
 - **LP2 doublet-gap / lag-five constraints:** several stationary and finite-state candidates are retired; #2063 seeks one source-selected state update, not a generic automaton sweep.
 - **Historical continuation:** #2011 is active on DATA/560.13; #2042 is active on the exact 4gq25.jpg host capture; #1886 is waiting on its exact archive dependency; #2053 closed with no independent Stage10 CGI/transaction source.
+- **p57 23-dot → p0–p2 23-cycle — negative:** no source-selected cycle start/direction or receiver; #2062 closed. The same p57 terminal mark has the stronger p28 DH modulus role above.
 
-### Recent closures reviewed through 21 Nov 2026, 17:22Z
+### Recent closures reviewed through 21 Nov 2026, 17:27Z
 
 - **#2040 — negative:** tested 32-state × 8-input transducer supplied no source-selected plaintext receiver.
 - **#2003 — positive custody join only:** 5.49 MB initramfs matches byte-for-byte; no LP2-relevant payload or key.
@@ -173,26 +177,29 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 - **#2047/#2049 — negative human/source selector:** p32's 4|1|4|2 partition is not printed; the blinded source-only path did not select p32, its 11-rune fragment, internal cuts, page pointer or receiver.
 - **#2048 — positive source integrity:** blind image-derived read matched the canonical p50 table at 256/256 after resolving six apparent I/l confusions; cell90 is 3I. No JSON/token change or cipher search.
 - **#2050 — negative:** prime_echo's 71/181 are ordinary outputs among 464 consecutive primes; no p6-selected key schedule.
-- **#2051 — negative:** p6 sums/product32 do not select a unique p50 address or inverse; p6/p7 red-boundary and p6/p32 [23,5,0,3] relations preserved separately.
+- **#2051 — negative:** p6 sums/product32 do not select a unique p50 address or inverse.
 - **#2052 — negative:** p55 11+11+11 repetition has no source-authored reset and bisects a printed word; p15 supplies a second red11 span.
 - **#2053 — negative:** no independent Stage10 operator/deployment copy or first-hand transaction; do not repeat public CDX/Common Crawl/client searches.
-- **#2055 — negative:** p32's internal cuts and p6−p32 order are not selected; 2013 DH p=23,g=5, A=8,B=19,K=2 does not assign 0/3 as DH fields.
-- **#2056 — structural, no plaintext:** the p6/p7 reversal and five-product DH inverse-state packet survive original-image/family controls, but the 308-rune additive inverse and two frozen multiplicative/affine consumers fail language despite exact re-encryption. No body receiver is established.
-- #2021 remains an Evans-raster retrieval limitation; #2041 corrected a source-date claim; #2043 found no new primary material; #2045's 29-word segmentation remains conditional.
+- **#2055 — negative:** p32's internal cuts and p6−p32 order are not selected; 2013 DH p=23,g=5,A=8,B=19,K=2 does not assign 0/3 as DH fields.
+- **#2056 — structural, no plaintext:** p6/p7 red-boundary and DH inverse-state packet survive original-image/family controls, but the 308-rune additive inverse and two frozen multiplicative/affine consumers fail language despite exact re-encryption.
+- **#2058 — negative:** p16–p21 text-only pages show no source-selected cross-page operation; the frozen line-presence register gives no direct ASCII instruction.
+- **#2062 — negative for p0–p2 cycle:** p57's terminal23 graphic has no selected p0 cycle start/direction or receiver. Its stronger p28 modulus and local p50 base59 selector are recorded above.
 
 ### Active work, gated successors and blocked dependencies
 
 - **#2011 — active:** Agent2 tests only the exact DATA/560.13 LFS object OID via a batch/POST-capable runner.
 - **#2042 — active:** Agent16 checks only the exact original-host 4gq25.jpg URL in named Wayback/Common Crawl sources.
-- **#2066 — gated:** identify a first-party instruction selecting a new LP2 receiver for the p6/p7 DH inverse-state packet; the already-tested consumers are excluded.
 - **#1886 — waiting:** exact archival dependency unresolved.
 - **#41 — waiting:** no complete source-selected reversible decoder covers all 76 p55 runes.
 - **#1335 — waiting:** the p55 ghost-tree packet requires a genuinely naïve human reviewer.
-- **#2058–#2065 — open and unclaimed:** eight bounded assignments covering p16–p21, p28–p33, p34–p39, p40–p48, the p57 23-dot/p0–p2 cycle, a source-selected state update, external solver-source indexing, and cross-round human solve-path reconstruction.
+- **#2059, #2060, #2061, #2063, #2064, #2065 — open/unclaimed:** six bounded page-range, cipher-architecture, source-index and human-path assignments.
+- **#2066 — open/unclaimed:** identify a first-party instruction selecting an LP2 receiver for the p6/p7 DH inverse-state packet; the already-tested consumers are excluded.
+- **#2069 — open/unclaimed:** test whether the p57 local base59 bridge generalizes beyond its single 13→23 edge.
+- **#2070 — open/unclaimed:** blind-test the p57→p28→p6/p7 DH-state human solve path.
 
-### Queue snapshot at 17:27Z
+### Queue snapshot at 17:33Z
 
-There are **14 open director-task Issues**: 2 actively claimed (#2011, #2042), 3 waiting/blocked (#1886, #41, #1335), **8 unclaimed executable assignments** (#2058–#2065), and 1 gated successor (#2066). The 8–12 unclaimed target is met. Do not create more issues unless new evidence changes the frontier; let the current agents resolve these distinct decisions.
+There are **14 open director-task Issues**: 2 actively claimed (#2011, #2042), 3 waiting/blocked (#1886, #41, #1335), and **9 unclaimed executable assignments** (#2059, #2060, #2061, #2063, #2064, #2065, #2066, #2069, #2070). The 8–12 unclaimed target is met. Do not create more issues unless new evidence changes the frontier; let the current agents resolve these distinct decisions.
 
 ### Acceptance standard
 
