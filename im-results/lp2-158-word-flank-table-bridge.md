@@ -28,6 +28,7 @@ The reproducer tests:
 1. **One-symbol-per-word additive pad.** For each p0–2 word, compute either its GP0 sum or GP-prime sum; pair it in source order with the corresponding p49/p51 rune, represented either by GP0 index or GP-prime weight; test both additive signs modulo 29. This is the eight-combination direct family.
 2. **Word-pointer direction.** Test f(i) = (wordNumber[i] ± flankNumber[i]) mod 158, using the first two red headings as the two source-derived seeds. This tests the simplest interpretation of each flank rune as a direction offset on the 158-word map.
 3. **Table-mediated byte pad.** Index the p50 byte table by each word number modulo 256, then add or subtract the corresponding flank-rune value modulo 256. Test both word-number systems, both rune-number systems, and both signs.
+4. **Direct table-pointer readout.** Test word number → p50 byte table → flank-rune index, and the reverse flank-rune → p50 byte table → word index, using the same base60 table reading.
 
 ## Results
 
@@ -39,11 +40,12 @@ The reproducer tests:
   - prime words / prime flanks: [6] or [3,4,4,12]
   These do not reproduce the separate 23-cycle or 5-cycle in the existing p0–2 word-map work.
 - The eight table-mediated byte streams have printable-ASCII ratios from **0.304 to 0.437** and no coherent ASCII text. The best ratio is not a plaintext result.
+- Direct word→table→flank readout selects only 27 or 29 distinct flank symbols and has IoC 0.044828 or 0.037007; it is not readable. The reverse flank→table→word readout selects only 26 or 28 distinct words, with GP0-output IoC 0.086108 or 0.060711; the repeated selections do not form a plaintext or bijective word map.
 - No test recovers an address, authentic key, unknown-page plaintext, or reusable inverse.
 
 ## Decision
 
-Preserve the 158/158/256 alignment as an **interesting, uniquely located structural coincidence**, not as a decipherment. Retire these direct additive, pointer-offset, and byte-additive consumers. Do not expand the family with arbitrary offsets, reorderings, nonlinear functions, or fitted key schedules absent a new source-visible selector.
+Preserve the 158/158/256 alignment as an **interesting, uniquely located structural coincidence**, not as a decipherment. Retire these direct additive, pointer-offset, byte-additive, and direct table-pointer consumers. Do not expand the family with arbitrary offsets, reorderings, nonlinear functions, or fitted key schedules absent a new source-visible selector.
 
 A genuinely useful successor would need to explain, from original artifact or historically available clue, why p49/p51 pair with p0–2, which number representation is intended, and what role p50's 256 entries play. Without that, more arithmetic over this alignment risks the streetlight effect.
 
@@ -55,4 +57,4 @@ From the repository root:
 node sims/lp2_158_word_flank_table_bridge_sft.cjs
 ~~~
 
-The script asserts the source counts and unique page-pair result, then emits all tested outputs and metrics. It uses the existing sims/lp2_word_pages.cjs parser and the canonical corpus/grid resources.
+The script asserts the source counts and unique page-pair result, then emits all tested outputs and metrics, including the direct table-pointer readouts. It uses the existing sims/lp2_word_pages.cjs parser and the canonical corpus/grid resources.
