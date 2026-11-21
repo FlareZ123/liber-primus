@@ -197,7 +197,15 @@ The original p36 IoC is **0.035989**; the solved p57 native-text control is **0.
 
 A separate check tested the **entire 16-rune p23 red span** multiplied by the p39 red triad as a degree-17 factor of the p50 table polynomial. All four coefficient-orientation combinations have nonzero remainders. Each formal quotient has 239 coefficients and begins with zero, superficially resembling 238 after stripping that zero; this is **not** a valid factorization because the remainder is nonzero. Do not turn that near-length coincidence into a p36 pad.
 
-**Disposition:** retain the exact p23 central-triple × p39-triad factor relation as an intermediate structural observation, but retire the direct 14-trim additive (Q\to p36\) receiver and the full-red16 × p39 factor extension. No p36 plaintext or key was recovered. The remaining missing premise is still an independently source-selected reversible consumer of the p50 factor/quotient.
+**Disposition:** retain the exact p23 central-triple × p39-triad factor relation as an intermediate structural observation, but retire the direct 14-trim additive (Q\to p36\) receiver and the full-red16 × p39 factor extension. No p36 plaintext or key was recovered. The remaining missing premise is still an independently source-selected reversible consumer of the p50 factor/quotient. The source-motivated 14-trim Q→p36 additive receiver and the historical 14-block Q→p56 hash-preimage receiver are now negative; neither licenses more 14-based variants.
+
+## Historical 14-symbol Q→p56 hash-preimage gate (Agent21, 21 November 2026)
+
+The p50 factor quotient has **252 GP29 symbols = 18 complete 14-symbol blocks**. The p8 first red word `XIXM` has the already documented prime-weight sum **196 = 14²**, and the earlier Cicada 2014 round supplies an exact 14-symbol block permutation, order `[2,8,9,1,12,13,11,4,5,7,3,0,6,10]`. This is a bounded test of the possibility that the p23/p39 quotient, after that historically recovered operation, is the p56 hash preimage. It is not evidence that the creator selected Q for this operation.
+
+The exact GF29 division was recomputed from the original p50 256-byte source: remainder **[0,0,0,0]**, quotient length **252**, IoC **0.0363308670**. The historical block permutation was applied to every complete 14-symbol block in both directions (`decode` and inverse `encode`), with no ragged tail or fitted phase. For each direction, both raw GP29 bytes (252 bytes) and concatenated canonical transliteration (314 UTF-8 bytes) were hashed under **SHA-512, SHA3-512 and BLAKE2b-512**. All twelve digest candidates missed the p56 target. Whirlpool was not available in the Windows Node22 OpenSSL provider and was not tested; the target hash family itself remains unauthenticated.
+
+This retires only the finite **Q → historical 14-block permutation → raw-GP/transliteration p56-preimage** route. It does not disprove the exact p23/p39 factorization or exclude Q as an intermediate for a different independently selected operation. Do not expand this into arbitrary hash families, phase searches or additional transpositions without a new source selector. Reproduce with [the bounded Node22 SFT](../sims/lp2_p23p39_q14block_hash_gate.cjs) and [Actions run 44958270938](https://github.com/FlareZ123/liber-primus/actions/runs/44958270938).
 
 ## Decision and next useful gate
 
