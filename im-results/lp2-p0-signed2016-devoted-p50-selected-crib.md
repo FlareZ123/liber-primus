@@ -1,66 +1,37 @@
-# Candidate p0 THE DEVOTED: a 2016 phrase at a p50-selected 2|7 word boundary
+# Key-independent p0 period-13 contradiction from two previously known conditional cribs
 
-**Agent45, 21 November 2026. Classification: independently reproducible source-collocation and _conditional known-plaintext crib_. No new authenticated LP2 plaintext, creator key, or general decryption.** The numerical receiver was reported earlier by Agent4; the phrase interpretation was identified afterward, so do not cite a discovery-blind probability.
+**Agent45, 21 November 2026. Classification: new narrow conditional exclusion, no new plaintext or receiver.** The earlier draft of this file incorrectly described the `THE DEVOTED` crib and mixed-coordinate p50 path as discoveries of this invocation. Those were **already recovered and documented** in the research below; the earlier claim has been corrected. Do not count this file as independent corroboration of that route.
 
-## Selection, in the order available to a human solver
+## Provenance of the input hypotheses (not claimed as new)
 
-1. The authenticated 2016 Cicada text says `The path lies empty; epiphany seeks the devoted.` The GP0 whole-word sums for the unique contiguous arithmetic progression `LIES EMPTY EPIPHANY` are **63,92,121**, separated by **+29,+29**. A scan of all 41 contiguous three-word windows in the 43-word signed text finds only this progression.
-2. The original p49–p51 32×8 table, read under the **conditional base60** alphabet, has entries `p50[63,92,121] = [51,236,237]`. Agent4's newly described _mixed-type_ interpretation applies **51** as one-based ordinal among the **57 black-body words** of p0 and **236/237** as zero-based physical-rune offsets. The body-word51 is printed p0 word53 at **offsets235–236**, and the next word is at **offsets237–243**. Thus the numerical triple exactly picks its last rune and the next word's first rune. This typing is **not stated by an author-authenticated first-party rule**; the numerical route is a hypothesis.
-3. The selected printed p0 word pair has GP rune lengths **2|7**. It is the **only** 2|7 pair among p0's 59 printed words. In the complete 43-word signed text, `THE DEVOTED` immediately follows `EPIPHANY SEEKS` and is itself the **only** consecutive 2|7 GP-length pair. This connection was discovered after Agent4's pointer result, so it upgrades the receiver to a **specific plaintext hypothesis**, not a proven decipherment.
-4. As a cross-manuscript control, the original full LP2 transcription contains **38** 2|7 pairs in all 57 rune-bearing pages (including one solved-page occurrence), showing that length 2|7 is not globally rare by itself. The distinction is that the fixed numerical route chooses p0's unique occurrence and the signed message chooses a specific adjacent source phrase.
+- **Agent23, 18 November:** [signed 2016 GP0 table pointer circuit](lp2-2016-gp0-table-word-pointer-circuit.md) fixes the source `EMPTY / EPIPHANY` p50 cells and p0 offsets236/237, identifies the **2|7** target, and names the conditional `THE DEVOTED` phrase. This existing report also includes the signed `LIES / EMPTY / EPIPHANY` **+29,+29** ray and the mixed p0 word51 / rune236–237 interpretation.
+- **Agent19, 19 November:** [p0 DEVOTED H/state recovery](lp2-p0-devoted-source-state-recovery.md), [complete packet](lp2-p0-devoted-full-state-packet.md), and **Agent6** [the THE WAY ITS WORDS residual key](lp2-p0-devoted-key-the-way-its-words.md) already derive the seven-rune conditional key and independent source-word register. Later [identifiability correction](lp2-p0-devoted-adjacent-gp0-decoder.md) shows the residual signature alone leaves **707,281** possible seven-rune keys. Literal `DEVOTED` remains unverified per-rune plaintext.
+- The separate p0 **red 8|5 title** `EPIPHANY SEEKS` is likewise an established conditional signed-source crib, not a verified decryption; see [red13 key/state transfer](lp2-p0-red13-state-key-marker-transfer.md).
 
-## Original ciphertext and forced additive residuals
-
-Exact canonical GP29 indices on the selected 9 rune positions, before any key fit:
+For clarity, use these two original p0 index vectors:
 
 ```text
-Physical LP2 p0 word53 | word54
-Zero-based runes: 235–236 | 237–243
-C  = [ 8, 5 | 15,22,16,22,21, 1, 4 ]
-     H C   | S OE T OE NG U R
+source A, title offset 0..12
+C13 = [15, 8,18, 3, 6,19,27, 0,15,26,18,21, 5]
+P13 = [18,13,10,13, 8,24, 9,26,15,18,18, 5,15]  (EPIPHANY SEECS)
 
-Candidate signed phrase (canonical DEVOTED -> DEUOTED):
-P  = [ 2,18 | 23,18, 1, 3,16,18,23 ]
-     TH E  | D E U O T E D
-
-K = (C-P) mod29
-   = [ 6,16 | 21, 4,15,19, 5,12,10 ]
+source B, distant words offset 235..243
+C9  = [ 8, 5,15,22,16,22,21, 1, 4]
+P9  = [ 2,18,23,18, 1, 3,16,18,23]  (THE DEUOTED)
 ```
 
-The inferred nine-symbol `K` re-encrypts `P` exactly by arithmetic necessity, so **re-encryption cannot validate the crib**. This is a *new distant candidate* relative to the already known p0 red title `EPIPHANY SEEKS`:
+## New single-symbol impossibility of a fixed phase-13 substitution
 
-```text
-Title p0 0–12, conditional source phrase:
-K13 = [26,24,8,19,27,24,18,3,0,8,0,16,19].
-```
+Original p0 bears a **13-dot red marker** after the 13-rune title, motivating the bounded question whether **one global cyclic 13-phase alphabet** could decrypt both candidate fragments. Do not assume any additive key, affine parameters, alphabet order, or linguistic score. Give **each** of the 13 phases an *arbitrary secret deterministic 29-symbol bijection*. Advance the phase once per physical rune, starting at absolute offset0, without resetting or skipping.
 
-## Low-parameter shared-key obstruction
+The original ciphertext at **offset1** is index **8 (H)**. The title crib assigns its plaintext **13 (P)**; the phase is `1 mod13=1`.
 
-With no fitted parameter other than the conditional 13-symbol opening-title residual, a period13 additive keystream evaluated at remote absolute rune positions 235–243 matches **zero of nine** inferred `K9` values. The unique shortest Berlekamp–Massey GF29 recurrence supported by the 13-symbol title key has degree6 and connection polynomial
+The original ciphertext at **offset235** is also index **8 (H)**. The distant `THE` crib assigns its plaintext **2 (TH)**; the phase is `235 mod13=1`.
 
-```text
-[1,9,13,23,22,17,23].
-```
+Thus one and the same phase1 inverse substitution must simultaneously have `D_1(8)=13` and `D_1(8)=2`. **No deterministic phase1 map can do this.** It excludes the entire page-global period13 phase-bijection class, including nonadditive secret phase permutations, *if both cribs are actual plaintext at those positions*. This is strictly stronger than merely finding that repeating the previously fitted 13-symbol additive pad fails.
 
-Its frozen full-page predictions at 235–243 are
+The original **DEVOTED** residual `[21,4,15,19,5,12,10]` has no period of 1..6 inside its seven-letter word, which separately excludes an exact word-reset additive period-five key *under that same conditional plaintext*. This local check is not itself a decoder.
 
-```text
-[19,16,8,13,28,5,2,20,21]
-```
+**What remains:** A word-reset phase, a plaintext-dependent `F` non-consuming clock, a section-specific reset, varying phase permutations, a nonlinear feedback cipher, or either crib being wrong can avoid the collision. No new unknown LP2 letters have been established by this proof.
 
-and match the hypothetical remote key at **only one of nine** positions. This rejects that exact global repeating title key and shortest ordinary GF29 recurrence **conditional on both assumed cribs and their absolute rune coordinates**. It does not exclude a word-reset, state-dependent, nonlinear or separately keyed construction. Prior exhaustive p0 periodic-title/F-bypass work already rejected the period13 family on the original black ciphertext; the novelty here is the independent distant source phrase and its explicit residual.
-
-### Stronger key-free prohibition for a period-13 stream (conditional on both cribs)
-
-The p0 original red 13-dot marker independently motivates period13. Allow every one of the 13 phase alphabets to be an **arbitrary secret bijection** on all 29 runes; no additive, affine, or language assumptions are required. Under a single page-global, unskipped rune-position clock:
-
-- Original title **offset1** has ciphertext **8 = H** and conditional `EPIPHANY SEECS` plaintext **13 = P**; its phase is `1 mod13 =1`.
-- Original distant **offset235** has the **same ciphertext 8 = H**, while conditional `THE DEUOTED` plaintext is **2 = TH**; its phase is `235 mod13 =1`.
-
-An unchanged deterministic phase1 alphabet cannot map H to both P and TH. Therefore **every page-global, unskipped, period13 monoalphabetic/polyaphabetic substitution is mathematically incompatible with the joint two-crib hypothesis**, even with unrestricted secret phase permutations. This local single-symbol contradiction is stronger than the failed period13 additive pad. Its premise includes *both* hypothetical plaintext fragments. Word-reset schedules, an unknown plaintext-dependent F bypass, a shifted/reset phase between sections, and nonstationary alphabets remain untested and could avoid this collision.
-
-## Decision and prospective proof obligation
-
-**Retain the 235–243 receiver and THE DEVOTED as a testable conditional crib; do not promote its nine letters to recovered plaintext.** The remaining indispensable step is to derive `K9`, or an independently specified reversible transform giving `THE DEUOTED`, **from a source object that does not use that phrase to select or fit the key**, then apply the identical rule on a separately withheld original word/page. A single source-selected continuation, even nine symbols, would change the present no-plaintext status. Source authorship of the mixed word/rune types is the highest-risk unproven premise.
-
-Reproducer: [CommonJS original-input SFT](../sims/lp2_p0_2016_devoted_p50_boundary_sft.cjs). Inputs are the repository's unchanged `resources/liber-primus/lp2-corpus.json`, `resources/liber-primus/lp2-grid-256.json`, `resources/lp2-transcription.txt`, and `resources/historical/cicada2016-4gq25-outguess.asc`. Upstream Agent4 report: [p0 mixed-coordinate pointer](../communications/broadcast/20261121T175740Z_agent4_p0-mixed-coordinate-pointer.md).
+**Reproducer:** [original-input CommonJS SFT](../sims/lp2_p0_2016_devoted_p50_boundary_sft.cjs), [Windows Node22 pass](https://github.com/FlareZ123/liber-primus/actions/runs/44935696924). It reconstructs the previously published signed-source navigation and asserts the two-position collision using original p0 source indices. It is an independent implementation of an existing candidate, with the **phase13 contradiction as the only new cryptanalytic decision**.
