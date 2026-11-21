@@ -215,7 +215,7 @@ const additionalControls=additionalSources.map(([name,filename])=>{
   const globalDifference=sampleOffsets.map(offset=>lagEqual(
     text.slice(offset+1,offset+unknown.length),1876));
   const floralDifference=sampleOffsets.map(offset=>lagEqual(
-    text.slice(offset+1,offset+floral.length),1876));
+    text.slice(offset+1,offset+3008),1876));
   assert.ok(global.every(x=>x.matches>originalGlobal.matches));
   assert.ok(floral.every(x=>x.matches>originalFloral.matches));
   assert.ok(globalDifference.every(x=>x.matches>originalDifferenceGlobal.matches));
@@ -223,7 +223,7 @@ const additionalControls=additionalSources.map(([name,filename])=>{
   const globalInnovation=sampleOffsets.map(offset=>lagEqual(
     text.slice(offset+5,offset+unknown.length),1876));
   const floralInnovation=sampleOffsets.map(offset=>lagEqual(
-    text.slice(offset+5,offset+floral.length),1876));
+    text.slice(offset+5,offset+3008),1876));
   assert.ok(globalInnovation.every(x=>x.matches>originalInnovationGlobal.matches));
   assert.ok(floralInnovation.every(x=>x.matches>originalInnovationFloral.matches));
   return {name,calibratedRunes:text.length,
