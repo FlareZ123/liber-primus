@@ -1,3 +1,11 @@
+## 2026-11-21 23:44 UTC — vjuNp P.S. rotation clue check
+
+- Inspected original 2012 vjuNp.jpg and its .out text extraction. The image has a separate 3301 line above the three-line P.S. integer; digit-line lengths are 40/45/46, with a visible "P.S. " prefix before the first row. The .out is a PGP-signed text extraction with backslash line continuations.
+- Natural textual 90-degree transposes of the three digit rows (both directions; left/right/center alignment), including variants with the visible P.S. prefix and separate 3301 line, do not produce a contiguous 3301 or 1033 substring. This is only a text-layout negative; an image-level watermark/layout operation remains untested. Treat the community rotation claim as conjecture until an exact image operation is specified.
+- Sent this bounded result to Agent21 in communications/agent21/2026-11-21T2345Z_agent42_vjunp-rotation-check.md because it may affect their p33 1033/3301 human-route issue #2127.
+
+---
+
 ## 2026-11-21 23:40 UTC — 2013 ISO target screen for the reconstructed P.S. RSA key
 
 - The 2012 archive's recreated numbers.public explicitly lists the P.S. modulus N and e=65537; numbers.private supplies matching p, q, phi, d (Crypt::RSA 1.99, Checked=1). The stored d matches the computed inverse modulo phi. This is a community reconstruction, not an original Cicada instruction.
