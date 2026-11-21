@@ -176,35 +176,33 @@ function main() {
   // Cross-page reconstruction using ORIGINAL INSCRIPTION ONLY. The
   // historical state declaration 'dh' is an assertion/semantic control,
   // and is never used to generate any candidate p0 key byte.
+
+  // Prefer the simpler source-first reconstruction: ordinary original-red
+  // rune indices, red-word products, a single GP29 reciprocal and the five
+  // product checksum. The circulant is now an independent equality check,
+  // not a prerequisite for computing p0's numeric input.
   const p7State = {
-    p: red[0].runic[0],      // p7 source first red word starts 23
-    e: red[0].runic[1],      // p7 source first red word ends 3
-    g: inverse[0][2],        // one natural recognized inverse-row role
-    A: products[2],         // center word product
-    B: inverse[0][4],
-    K: inverse[0][1],
+    p: red[0].runic[0],
+    e: red[0].runic[1],
+    g: red[2].runic[0],
+    a: red[4].runic[0],
+    b: products[3],
+    A: products[2],
+    B: power(products[1], 27, 29),
+    K: products[4],
     q: mod29(products.reduce((sum, product) => sum + product, 0)),
   };
-  /** @type {number[]} */
-  const privateA = [];
-  /** @type {number[]} */
-  const privateB = [];
-  for (let exponent = 1; exponent < p7State.p; exponent++) {
-    if (power(p7State.g, exponent, p7State.p) === p7State.A) {
-      privateA.push(exponent);
-    }
-    if (power(p7State.g, exponent, p7State.p) === p7State.B) {
-      privateB.push(exponent);
-    }
-  }
-  assert.deepEqual(privateA, [6]);
-  assert.deepEqual(privateB, [15]);
-  const recoveredState = { ...p7State, a: privateA[0], b: privateB[0] };
-  assert.equal(power(recoveredState.B, recoveredState.a, recoveredState.p),
-    recoveredState.K);
-  assert.deepEqual(recoveredState, {
-    p: 23, e: 3, g: 5, A: 8, B: 19, K: 2, q: 4, a: 6, b: 15
+  // These two exponentiation equations and the inverse matrix are
+  // independent source-cipher readouts of the same numbered register.
+  assert.equal(power(p7State.g, p7State.a, p7State.p), p7State.A);
+  assert.equal(power(p7State.g, p7State.b, p7State.p), p7State.B);
+  assert.equal(power(p7State.B, p7State.a, p7State.p), p7State.K);
+  assert.deepEqual(inverse[0],
+    [p7State.p, p7State.K, p7State.g, p7State.K, p7State.B]);
+  assert.deepEqual(p7State, {
+    p: 23, e: 3, g: 5, a: 6, b: 15, A: 8, B: 19, K: 2, q: 4
   });
+  const recoveredState = p7State;
 
   // The already published, explicitly retrospective p0 vertical RISE
   // grammar receives the reconstructed p7 state, p0 4|5|4 marker geometry
@@ -281,7 +279,7 @@ function main() {
     [dh.p, dh.K, dh.g, dh.K, dh.B].join(','));
   console.log('DH23 exponent-pair conditional census: ' +
     invertibleDhTuples + '/484 nonsingular; inverse identity only at a=6,b=15.');
-  console.log('p7-only reconstructed state (no historical values used as inputs): ' +
+  console.log('p7 original red indices/products-only state (circulant NOT used as key input): ' +
     JSON.stringify(recoveredState));
   console.log('p7 state + previously documented p0 RISE/H serializer: key=' +
     p0Key.join(','));
