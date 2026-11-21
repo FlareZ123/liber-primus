@@ -26,7 +26,7 @@ assert.deepEqual(words.flat(), P(7).slice(194));
 const w = words.map(a => a.reduce((s, v) => mod(s * v), 1));
 assert.deepEqual(w,[11,26,8,15,2]);
 assert.deepEqual(P(8).slice(0,8),[14,10,14,19,1,14,19,5]);
-assert.equal(P(8).slice(8,12).reduce((s,v)=>mod(s*v),1),3);
+assert.equal(P(8).slice(4,12).reduce((s,v)=>mod(s*v),1),3);
 const orbit = [2];
 for(let i=0;i<6;i++) orbit.push(pow(orbit.at(-1),3));
 assert.deepEqual(orbit,[2,8,19,15,11,26,2]);

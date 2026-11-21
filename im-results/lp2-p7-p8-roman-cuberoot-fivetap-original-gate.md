@@ -14,7 +14,7 @@ Original physical LP2 p7 ends with **five red words and five black dots**. Prese
 | [14,28] | 15 |
 | [6,28,19] | 2 |
 
-Thus the frozen five-tap weights are **[11,26,8,15,2]**. The immediately next physical LP2 page, p8, opens with a red12 title. Its first eight indices **[14,10,14,19,1,14,19,5]** are from the Roman-numeral alphabet; its first four are `XIXM`, visibly containing `XIX` = **19**. The last four red indices **[2,13,3,17]** have product **3** in GF29. These are prior-reported facts (see [the p7 and p8 Roman source study](lp2-p6-p7-redgap-28cycle-inversion-gate.md)), not new discoveries here.
+Thus the frozen five-tap weights are **[11,26,8,15,2]**. The immediately next physical LP2 page, p8, opens with a red12 title. Its first eight indices **[14,10,14,19,1,14,19,5]** are from the Roman-numeral alphabet; its first four are `XIXM`, visibly containing `XIX` = **19**. The **complete second red word** of eight runes, **[1,14,19,5,2,13,3,17]**, has product **3** in GF29. These are prior-reported facts (see [the p7 and p8 Roman source study](lp2-p6-p7-redgap-28cycle-inversion-gate.md)), not new discoveries here.
 
 In GF29, cubing has inverse exponent **19** since `3 × 19 ≡ 1 mod 28`. Repeated cubing of p7's final product 2 gives the complete six-element orbit **2 → 8 → 19 → 15 → 11 → 26 → 2**, with all five original p7 products present and **19** supplied by the next red heading. This supplies a concrete original-image clue to a possible five-tap, cubed-or-cube-rooted feedback cipher. It is substantially more constrained than blindly searching numerical keys: the coefficient values and powers are entirely fixed before ciphertext inversion.
 
