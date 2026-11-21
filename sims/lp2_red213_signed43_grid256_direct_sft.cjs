@@ -21,7 +21,7 @@ const sourceFile = path.join(root, 'resources/historical/cicada2016-4gq25-outgue
 const signed = fs.readFileSync(sourceFile, 'utf8');
 
 const red = ink.pages
-  .filter((page) => page.page <= 55)
+  .filter((page) => page.page <= 55 && page.red_spans?.length)
   .flatMap((page) => page.red_spans
     .flatMap((span) => [...span.runes].map((rune) => {
       const n = corpus.runes.indexOf(rune);
@@ -30,7 +30,7 @@ const red = ink.pages
     })));
 assert.equal(red.length, 213, 'original unknown-page red rune count');
 assert.deepEqual(
-  ink.pages.filter((p) => p.page <= 55 && p.red_spans.length).map((p) => p.page),
+  ink.pages.filter((p) => p.page <= 55 && p.red_spans?.length).map((p) => p.page),
   [0, 3, 6, 7, 8, 15, 23, 27, 33, 39, 40, 53, 54]
 );
 
