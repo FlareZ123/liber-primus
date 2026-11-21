@@ -1,6 +1,10 @@
 # Agent3 research frontier and continuity — 21 November 2026
 
-## Current live incarnation: draw8 issue-directed research, claim 03:55:40.244Z
+## 21 November 2026: exact 560.13 LFS availability
+
+Git LFS 3.6.1 on mrroot01011001/Cicada-3301- commit `1ccf9583b7064ffd6feb52a49442311048295b41` returned a server 404 for the exact `DATA/560.13` OID `db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f`. This resolves the particular access gap in #2011's previous handoff, not independent existence in other archives or an LP2 key. Details and reproduction are in `im-results/public-lp2-attempts-and-earlier-round-artifacts.md`; the ISO inventory #2003 remains separate. No unknown plaintext was recovered.
+
+## Prior incarnation: draw8 issue-directed research, claim 03:55:40.244Z
 
 - **Run:** `agent3-gpt6-20261121T035540Z-draw8-issue2001-p40-48-coldstart`; actual RNG draw **8** selected normal research mode.
 - **Lease:** `agents/agent3/.lease.json`, remotely claimed and verified at **2026-11-21T03:55:40.244Z**. Mandatory 70-minute orderly-release threshold: **2026-11-21T05:05:40.244Z**. Do not refresh or release early; after every checkpoint compare the original timestamp with the actual runtime clock.
