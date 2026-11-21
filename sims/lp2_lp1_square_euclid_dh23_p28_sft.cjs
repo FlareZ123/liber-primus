@@ -242,6 +242,40 @@ function sourceTotientFactorization() {
     exactProduct:phi===redCount*gridRows*squareWidth*signedWords.length};
 }
 
+
+/** @param {number} ordinal @returns {number} */
+function nthPrime(ordinal) {
+  assert(Number.isInteger(ordinal)&&ordinal>=1);
+  let count=0;
+  for (let k=2;;k++) if(isPrime(k)&&++count===ordinal) return k;
+}
+
+/** @param {number} n @returns {number} */
+function primeOrdinal(n) {
+  assert(isPrime(n));
+  let ordinal=0;
+  for(let x=2;x<=n;x++)if(isPrime(x))ordinal++;
+  return ordinal;
+}
+
+/**
+ * Source-only prime/convergent selection, conceived retrospectively:
+ * first STRICTLY INTERNAL convergent whose numerator and denominator
+ * are both prime. Project numerator to its one-based prime ordinal;
+ * project denominator to the prime at that one-based ordinal.
+ * @param {ReturnType<convergents>} cf
+ */
+function uniqueInternalPrimeConvergent(cf) {
+  const hits=cf.map((c,index)=>({index,...c}))
+    .slice(1,-1)
+    .filter(c=>isPrime(c.numerator)&&isPrime(c.denominator));
+  assert.equal(hits.length,1);
+  const h=hits[0];
+  return {index:h.index,numerator:h.numerator,denominator:h.denominator,
+    numeratorPrimeOrdinal:primeOrdinal(h.numerator),
+    primeAtDenominatorOrdinal:nthPrime(h.denominator)};
+}
+
 function main() {
   const rows1 = square(5), rows2 = square(16);
   const sum1 = rows1[0].reduce((a,b) => a+b,0);
@@ -272,7 +306,11 @@ function main() {
     [3,3,1],[5,16,5],[8,131,41],[1,147,46],
     [3,572,179],[1,719,225],[1,1291,404],[2,3301,1033]
   ]);
+  const primePair=uniqueInternalPrimeConvergent(cf);
+  assert.deepEqual(primePair,{index:2,numerator:131,denominator:41,
+    numeratorPrimeOrdinal:32,primeAtDenominatorOrdinal:179});
   const crossTable=tableConvergentControl(cf);
+  assert.equal(primePair.primeAtDenominatorOrdinal,crossTable.convergent179);
   const totientCoordinates=sourceTotientFactorization();
 
   // Original LP2 p28 contains a literal 'DH' fragment [23,8], followed by
@@ -319,6 +357,7 @@ function main() {
     sourceSquares:{LP1p5:sum1,LP1p16:sum2,decimalReverse:true},
     euclid:state.steps,
     convergents:cf,
+    sourceOnlyPrimeConvergentSelector:primePair,
     originalSourceTableCrossing:crossTable,
     totientCrossArtifactCounts:totientCoordinates,
     constructedState:{p:state.p,g:state.g,a:state.a,b:state.b,
@@ -336,4 +375,4 @@ function main() {
   },null,2));
 }
 if(require.main===module)main();
-module.exports={square,euclid,inverse,power,candidate,fragments,convergents,valuation,tableConvergentControl,sourceTotientFactorization};
+module.exports={square,euclid,inverse,power,candidate,fragments,convergents,valuation,tableConvergentControl,sourceTotientFactorization,uniqueInternalPrimeConvergent,nthPrime,primeOrdinal};
