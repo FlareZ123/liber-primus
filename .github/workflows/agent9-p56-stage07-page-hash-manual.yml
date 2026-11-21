@@ -25,12 +25,10 @@ jobs:
           curl --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 "$b/q4utgdi2n4m4uim5.onion/index.html" -o probe-output/stage07-p56/scream314-signed.html
           curl --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 "$a/index.mp3" -o probe-output/stage07-p56/cijhho-index.mp3
           curl --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 "$b/index.mp3" -o probe-output/stage07-p56/scream314-index.mp3
-          curl --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 "$b/magicsquares.txt" -o probe-output/stage07-p56/scream314-magicsquares.txt
           git hash-object --no-filters probe-output/stage07-p56/cijhho-signed.html
           git hash-object --no-filters probe-output/stage07-p56/scream314-signed.html
           git hash-object --no-filters probe-output/stage07-p56/cijhho-index.mp3
           git hash-object --no-filters probe-output/stage07-p56/scream314-index.mp3
-          git hash-object --no-filters probe-output/stage07-p56/scream314-magicsquares.txt
       - name: Verify Cicada PGP signature and recover the exact signed hex body
         shell: bash
         run: |

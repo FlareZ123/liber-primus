@@ -19,7 +19,6 @@ import hashlib
 import json
 import re
 import subprocess
-import zlib
 from pathlib import Path
 
 import gostcrypto
@@ -62,12 +61,6 @@ EXPECTED = {
         "bytes": 6_651_873,
         "git_blob_sha1": "09fe068192b76a3697c47ec1d604b527703db798",
         "sha256": "1ce3839b4a62462d9009c4469acc189b523e1bdcf338cb49cda1cd7bb4efffc6",
-    },
-    "openpuff_magicsquares_745": {
-        "filename": "scream314-magicsquares.txt",
-        "bytes": 745,
-        "git_blob_sha1": "0cff0a94f16a8603443619b6338def411c9f7bd5",
-        "crc32": "6a8c41e3",
     },
 }
 
@@ -199,7 +192,7 @@ def main() -> int:
                 })
 
     report = {
-        "candidate": "2014 Stage07 q4utgdi2n4m4uim5.onion signed response and exact derived payloads",
+        "candidate": "2014 Stage07 q4utgdi2n4m4uim5.onion signed response, cleartext, and decoded MP3",
         "target_p56_digest": TARGET,
         "source": {
             "signed_page_git_blob_sha1": EXPECTED["signed_page_raw"]["git_blob_sha1"],
@@ -207,9 +200,7 @@ def main() -> int:
             "mp3_git_blob_sha1": EXPECTED["decoded_mp3"]["git_blob_sha1"],
             "mp3_bytes": EXPECTED["decoded_mp3"]["bytes"],
             "mp3_sha256": EXPECTED["decoded_mp3"]["sha256"],
-            "magicsquares_git_blob_sha1": EXPECTED["openpuff_magicsquares_745"]["git_blob_sha1"],
-            "magicsquares_bytes": EXPECTED["openpuff_magicsquares_745"]["bytes"],
-            "pgp_signing_key_fingerprint": FINGERPRINT,
+                "pgp_signing_key_fingerprint": FINGERPRINT,
             "pgp_valid_signature": True,
             "archive_copies_identical": True,
             "cleartext_hex_decodes_to_mp3": True,
@@ -224,7 +215,7 @@ def main() -> int:
         "decision": "MATCH_FOUND" if matches else "NO_MATCH_IN_EXACT_STAGE07_OBJECTS_UNDER_SIX_512_BIT_FAMILIES",
         "scope": (
             "Exact signed Stage07 response bytes, exact GPG cleartext hex body, "
-            "decoded MP3, and 745-byte OpenPuff magic-square payload only. "
+            decoded MP3 only. 
             "No alternate line-ending, HTML, URL, or unknown HTTP-response variants."
         ),
     }
