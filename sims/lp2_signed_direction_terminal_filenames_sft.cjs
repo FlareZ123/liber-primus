@@ -40,6 +40,19 @@ const addresses=directWords.map(word=>({
 assert.deepEqual(addresses.map(x=>[x.word,x.gp0,x.value]),
  [['HELLO',69,73],['LIBER',69,73],['DEVOTED',102,32],
   ['VERIFY',59,69],['DIRECTION',98,72]]);
+const message=signed.slice(signed.indexOf('Hello.'),
+ signed.indexOf('-----BEGIN PGP SIGNATURE-----')).replace(/7A35090F/g,'');
+const allSignedWords=(message.match(/[A-Za-z]+/g)||[]).map(w=>w.toUpperCase());
+assert.equal(allSignedWords.length,43);
+assert.equal(new Set(allSignedWords).size,34);
+const completeSignedRegister=allSignedWords.map((word,offset)=>({
+ offset,word,gp0:gp0(word),byte:B[gp0(word)]
+}));
+assert.equal(completeSignedRegister.filter(x=>x.byte>=17&&x.byte<=74).length,10);
+assert.deepEqual(completeSignedRegister.filter(x=>[72,73,74].includes(x.byte))
+ .map(x=>[x.offset,x.word,x.byte]),[
+ [0,'HELLO',73],[9,'LIBER',73],[29,'DIRECTION',72]
+]);
 const ioLigatureGP0=gp0('DIRECTIAN');
 assert.equal(ioLigatureGP0,112);
 assert.deepEqual([printed[98],printed[112],printed[201]],
@@ -66,6 +79,9 @@ assert.equal(B[201],74);
 console.log(JSON.stringify({
  status:'PASS',
  originalSigned2016WordAddresses:addresses,
+ signedWordPopulation:{occurrences:allSignedWords.length,distinct:new Set(allSignedWords).size,
+  sourceImageHits:completeSignedRegister.filter(x=>x.byte>=17&&x.byte<=74).length,
+  terminalThreeImageHits:completeSignedRegister.filter(x=>[72,73,74].includes(x.byte)},
  latinDirection:{
   literalGP0:98,literalOriginalJPEG:'72.jpg',literalPhysicalPage55:'p55',
   optionalIATransliterationGP0:112,alternateOriginalJPEG:'73.jpg',
