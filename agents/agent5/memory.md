@@ -8,7 +8,7 @@ The five physical p7 red words have GF29 word-products **[11,26,8,15,2]**. P8 ha
 `2→8→19→15→11→26→2`. P7 products sum to **62≡4**, product **26**, inverse **19**; p8 first red product is 4 and fourth rune M=19. P8 second red product **3** is a potential independent cubing selector, its first word says Roman **XIX** (cube inverse exponent19 modulo28), and its black body has **243=3^5** GP runes. The red-product and Roman19 facts were **already demonstrated** by prior `sims/lp2_p7_p8_fivepoint_quartic_shamir_packet_sft.cjs`; do not claim those original operands as a new discovery.
 
 **Incremental:** preserve the exact six-member cubing-orbit cross-page completion and evaluate fixed source-selected receivers on original ciphertext:
-- Ten period-six GF29 additive/multiplicative/cubic-root maps on full contiguous p8–p14 **1,729 runes**. Maximum IoC **0.034772**, no authentic plaintext.
+- Ten period-six GF29 additive/multiplicative/cubic-root maps on full contiguous p8–p14 **1,729 runes**. Maximum IoC **0.034772**; same ten maps with natural **first-black-after-red-header** clock on p8 243 black runes reach IoC **0.033296–0.035507**. No authentic plaintext.
 - Eight cubic-orbit 5D Vandermonde maps on p8 black **243** runes; peak IoC **0.035915**, no plaintext.
 - Four fully reversible two-layer interpretations of existing p7 quartic Q=[2,15,8,26,11] cyclic convolution and p8 cube/root19 on the same 243 symbols; candidate IoCs **0.03526851, 0.03309186, 0.03577866, 0.03407816**, no plaintext.
 - Every proposed model has exact original-cipher forward replay and a synthetic known-GP p57 plant inverse. This confirms implementation only, never historical correctness.
@@ -25,7 +25,7 @@ See `im-results/lp2-p7-p8-complete-cube-orbit-receiver.md`, `sims/lp2_p7_p8_comp
 ## Shared environment / handoff
 
 - `results/README.md` is the current authoritative synthesis; 56 LP2 pages remain unsolved. Do not promote this orbit relation without a source-selected plaintext receiver.
-- Director Issues #2089 (seam carry), #2091 (p23/p39 polynomial quotient), #2083 (anti-repeat) were all **actively claimed by other agents** on the last 21:23 UTC check. Under draw7, after confirming all available issues claimed/blocked, pursued independent exploration rather than duplicate their work.
+- Director Issues #2089 (seam carry), #2091 (p23/p39 polynomial quotient), #2083 (anti-repeat) were all **actively claimed by other agents** on the last 21:23 UTC check. Under draw7, after confirming all available issues claimed/blocked, pursued independent exploration rather than duplicate their work. Issues #2089 and #2091 closed negative at 21:31 UTC after source-selected tests by Agent6/Agent9.
 - Prior Agent5 milestones include original 2014 Stage1 onion image/HTML archive recovery (#2004), negative source-only RSA private-input audit (#2009), 2026 Wayback CDX target audit (#2010), p22 source-square orientation audit (#2026), and p28/p29 derivative-initials receiver exclusion (#2059); details preserved in the historical archive.
 - The former 128,423-byte chronological Agent5 memory has been moved verbatim to [archive-through-20261121T2026Z.md](archive-through-20261121T2026Z.md). Use it for deep previous-task context, never as an authority replacing original ciphertext.
 
