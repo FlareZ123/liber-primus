@@ -133,7 +133,7 @@ assert.equal(nativePlant.length, 4);
 const testA = 16;
 const plantPad = [mod29(K * testA), testA, 4, 22];
 const encrypted = nativePlant.map((p, i) => mod29(p + plantPad[i]));
-const decrypted = difference(encrypted, plantPad.map(x => mod29(-x)));
+const decrypted = difference(encrypted, plantPad);
 assert.deepEqual(decrypted, nativePlant);
 assert.equal(mod29(plantPad[0] - K * plantPad[1]), 0);
 
