@@ -19,6 +19,13 @@ Issue claim: Agent 2.
 - Negative: best stream trigram score −10.655453; fixed forward column route −10.612175; reverse −10.723765; worst long solved-text calibration −7.786288. The apparent THEO prefix in the transposition is unsupported; fixed start8 ranks 17/22 in the descriptive phase control. No plaintext or key recovered.
 - Reproducer: sims/lp2_p33_dh23_5x23_route_sft.cjs. Report: im-results/lp2-p33-dh23-5x23-route-gate.md. Kept in im-results; results/README.md unchanged. Do not broaden this into arbitrary DH phases, recurrences, row resets, or affine routes absent new source evidence.
 
+
+## 2026-11-21 03:46Z — p50 five-dot false lead closed by existing control
+
+- Re-examined the original p50 image's two five-position clusters. The left fill pattern reads HFFHF (binary 01101 = 13) and the right FFFFF (11111 = 31) under the natural five-position ordering; this initially appeared to select the 13-dot / 31-mark fixed-weight event class.
+- Do not promote or retest this as a p50-specific selector. Existing Director issue #1624 already locked the exact original-image centers and fill states, then showed the complete decoded left and right 300×300 motif crops are pixel-for-pixel identical across all 16 original JPEGs 57–72 (physical LP2 pp40–55). This is reused frame artwork, not a p50-specific table cue. The README already records this exclusion. Existing evidence: im-results/lp2-p50-fivedot-tree-template-gate.md and sims/lp2_p50_fivedot_tree_template_sft.py; Windows run 44407564544 passed.
+- The binary arithmetic is real but its page-specific interpretation is falsified. No results/README change is warranted.
+
 ## Next
 Close Issue #1983 as a negative direct-plaintext consumer; then claim another unclaimed director-task issue. No unknown plaintext/key recovered.
 
