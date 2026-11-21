@@ -259,6 +259,7 @@ assert.deepEqual(mixedCoordinateResults.base60BodyOneBased[0], {
   nextStart: 237,
   nextEnd: 243,
   nextCipher: [15, 22, 16, 22, 21, 1, 4],
+  nextWordLineSplit: [2, 5],
 });
 assert.equal(mixedCoordinateResults.base60BodyZeroBased.length, 0);
 assert.equal(mixedCoordinateResults.base60PageOneBased.length, 0);
