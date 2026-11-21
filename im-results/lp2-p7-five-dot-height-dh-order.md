@@ -22,6 +22,8 @@ Five isolated black dots lie immediately below this red inscription. The followi
 
 Consequently the ordered red-word first indices are `[5,6,23,14,22]`; their products modulo29 are `[8,2,11,15,26]`. This is a completely specified and reproducible permutation from image geometry, **conditional on** pairing the dots and words by horizontal rank. The image does not explicitly say to sort vertically or assign one dot to each word.
 
+This five-dot artwork is **not unique to p7**: earlier whole-artifact work already established original-image congruence at physical p7, p23 and solved p56 under vertical/horizontal/half-turn reflections, respectively. The present experiment does **not** claim to discover the dihedral triad; it isolates the new conditional pairing between p7 red-word positions and the stencil's five height ranks. The inherited triad is documented in [the original five-dot dihedral study](lp2-p7-p23-p56-five-dot-dihedral-triad.md).
+
 ## Conditional DH consequence and its weak assumption
 
 One particularly suggestive set of readouts is: first two ordered words' first indices `g=5, a=6`; third ordered word's first index `p=23`; first two ordered word products `A=8, K=2`; second ordered word's last index `B=19`; fourth ordered word's product `b=15`. The last ordered word's product26 is independently `B^-1 mod29`. The third ordered word's second index is `e=3`, and the total five original word products have sum62, giving `q=4 mod29`. Thus the source word digits alone yield:
