@@ -62,6 +62,31 @@ for (let i = 0; i < english.length;) {
 const titlePrimeSum = titleUnits.reduce((sum, index) => sum + corpus.prime[index], 0);
 assert.equal(titlePrimeSum, historicalFilename);
 assert(isPrime(historicalFilename));
+
+// Archived 2013 onion TCP response controls are independently original-era.
+// count THE INSTAR EMERGENCE -> 761+
+// count PARABLE -> 449*
+const printedParablePrimeSum = titleRuneIndices.reduce((sum, i) => sum + corpus.prime[i], 0);
+assert.equal(printedParablePrimeSum, 449);
+function reverseDecimal(n) {
+  return Number(String(n).split("").reverse().join(""));
+}
+/** @param {number} n @returns {string} */
+function tcpCountSuffix(n) {
+  return !isPrime(n) ? "" : isPrime(reverseDecimal(n)) ? "+" : "*";
+}
+assert.equal(reverseDecimal(titlePrimeSum), 167);
+assert.equal(reverseDecimal(printedParablePrimeSum), 944);
+assert.equal(tcpCountSuffix(titlePrimeSum), "+");
+assert.equal(tcpCountSuffix(printedParablePrimeSum), "*");
+const archivedTcpResponses = {
+  "count the instar emergence": String(titlePrimeSum) + tcpCountSuffix(titlePrimeSum),
+  "count parable": String(printedParablePrimeSum) + tcpCountSuffix(printedParablePrimeSum)
+};
+assert.deepEqual(archivedTcpResponses, {
+  "count the instar emergence": "761+",
+  "count parable": "449*"
+});
 console.log(JSON.stringify({
   status: "PASS",
   primaryHistoricalArtifact: "Cicada OS, AUDIO/761.mp3 (2013)",
@@ -69,6 +94,8 @@ console.log(JSON.stringify({
   historicalID3Title: expectedTitle,
   historicalMP3Name: "761.mp3",
   titlePrimeSum,
+  originalPrintedParableTitlePrimeSum: printedParablePrimeSum,
+  archivedTcpResponses,
   historicalID3TextLabel: "Parable 1,595,277,641",
   originalPrintedLP2Page: 57,
   originalRunesTotal: 95,

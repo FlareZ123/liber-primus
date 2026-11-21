@@ -26,6 +26,21 @@ Use the exact 29-rune GP transliteration and **prime weights**, with TH and ING 
 
 The same source-author numerical language supplies an independent second calculation. Parse the 2013 track's Latin-letter title **THE INSTAR EMERGENCE** with the exact published GP digraphs (TH as one rune). Its Gematria prime sum is **761**, identical to the independently named `761.mp3` file; 761 is prime. The two independent matches share the same author-used rune/prime mapping: the title is a **sum**, and the Parable index is a **product of three clause sums**. There is no conflicting delimiter, index origin, or arbitrary parameter.
 
+## The author-era TCP server explicitly implements the operation
+
+The independently preserved [2013 Cicada first-onion server command transcript](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/2013/004-first-onion/README.md#commands) provides a **direct historical executable instruction and output**, stronger than a retrospective fit to the audio filename. Its interface lists `count [phrase]` and `number [number]`. The `count` command sums prime-weight Gematria values, then prints `+` when the sum and its decimal reversal are both prime, or `*` when the sum is prime but its reversal is composite. The archived literal original interaction reads:
+
+```text
+count the instar emergence
+761+
+count parable
+449*
+```
+
+Both first-party transcripts are independently reproduced by the original runic arithmetic, including the exact signs: **761 and its decimal reversal 167 are prime**, while the GP-prime sum of the seven-rune printed LP2 p57 title **PARABLE** is **449**, a prime whose reversal **944 is composite**. The value `761+` is a **recorded positive command result**, so the operation no longer depends on inferring intent from filename matching alone. The printed command's `number` branch factors composites; it supplies a historically plausible, executable 2013 route from the audio's labeled number **1,595,277,641** to its three prime factors **1,259, 1,031, 1,229**, and the written Parable clauses independently confirm those exact factors. No direct historical interaction invoking `number 1595277641` has been located, so this last step is a reconstruction of the documented interface, not a claimed preserved server response.
+
+The server transcript was collected in a solver archive, not retrieved from a live 2013 server or cryptographically authenticated in this invocation. It is an **independent recorded author-era behavior** and an exact repeatable known-operation control, subject to that provenance distinction. The 2014 clear text may deliberately re-use the 2013 already-published text; the repeated match alone does not add a new independent plaintext source.
+
 ## Cryptanalytic implications and limit
 
 - **Confirmed creator habit:** GP prime sums of meaningful text, including prose clauses and titles, and products of those sums, were deliberate numeric objects in the earlier Cicada path. This informs which operations are historically worth attempting when the original manuscript supplies a sentence/word selector.
@@ -34,4 +49,4 @@ The same source-author numerical language supplies an independent second calcula
 
 The surviving issue is specific: discover a first-party clue connecting this **now authenticated numeric grammar** to one original unsolved ciphertext recipient and a reversible operation. Pure numerical matching alone remains insufficient.
 
-**Reproduce without external packages:** [Node 22 CJS test of all original p57 runes and both metadata numbers](../sims/lp2_2013_761_parable_prime_product_sft.cjs); source data `resources/liber-primus/lp2-corpus.json` and `resources/liber-primus/lp2-transcription.txt`. [Manual-only Windows workflow](../.github/workflows/agent47-2013-parable-primes-manual.yml). The test checks 95/95 original page indices, all three original clause boundaries, sums, primality, exact product, and the title 761 computation. ID3 transcription is a frozen external source input; test does not parse MP3 binary.
+**Reproduce without external packages:** [Node 22 CJS test of all original p57 runes, both metadata numbers, and two period-authored TCP server count outputs](../sims/lp2_2013_761_parable_prime_product_sft.cjs); source data `resources/liber-primus/lp2-corpus.json` and `resources/liber-primus/lp2-transcription.txt`. [Manual-only Windows workflow](../.github/workflows/agent47-2013-parable-primes-manual.yml). The test checks 95/95 original page indices, all three original clause boundaries, sums, primality, exact product, and the title 761 computation, the original p57 PARABLE title449, and the server's 761+/449* prime-and-reverse-prime suffix rules. ID3 transcription is a frozen external source input; test does not parse MP3 binary.
