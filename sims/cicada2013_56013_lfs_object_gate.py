@@ -59,9 +59,10 @@ def stream_download(
     expected_bytes: int | None = None,
 ) -> dict:
     path.parent.mkdir(parents=True, exist_ok=True)
+    request_headers = headers if headers is not None else {}
     with requests.get(
-        url, headers=headers or {}, stream=True, timeout=(30, 300),
-        allow_redirects=True, headers=None if headers is None else headers,
+        url, headers=request_headers, stream=True, timeout=(30, 300),
+        allow_redirects=True,
     ) as response:
         response.raise_for_status()
         with path.open("wb") as output:
@@ -181,8 +182,10 @@ def fetch_lfs_object(destination: Path) -> dict:
             expected_bytes=OBJECT_BYTES,
         )
     except (requests.RequestException, OSError, ValueError) as exc:
+        destination.unlink(missing_ok=True)
         return {
             "available": False,
+            "downloaded": False,
             "pointer": pointer_info,
             "batch_url": LFS_BATCH_URL,
             "batch": batch_record,
@@ -191,7 +194,8 @@ def fetch_lfs_object(destination: Path) -> dict:
         }
     download_info["sha256_matches_pointer_oid"] = download_info["sha256"] == OID
     return {
-        "available": bool(download_info["sha256_matches_pointer_oid"]),
+        "available": True,
+        "downloaded": True,
         "pointer": pointer_info,
         "batch_url": LFS_BATCH_URL,
         "batch": batch_record,
@@ -289,7 +293,7 @@ def main() -> None:
     result["iso_member"] = member
 
     result["iso_member_sha256_matches_pointer_oid"] = member["sha256"] == OID
-    if lfs.get("available"):
+    if lfs.get("downloaded"):
         result["lfs_object_byte_identical_to_iso_member"] = files_equal(
             args.lfs_out, args.iso_member_out
         )
@@ -297,7 +301,8 @@ def main() -> None:
         result["lfs_object_byte_identical_to_iso_member"] = None
 
     if (
-        lfs.get("available")
+        lfs.get("downloaded")
+        and lfs["download"].get("sha256_matches_pointer_oid")
         and result["lfs_object_byte_identical_to_iso_member"]
         and result["iso_member_sha256_matches_pointer_oid"]
     ):
@@ -305,7 +310,7 @@ def main() -> None:
             "exact LFS object recovered and byte-identical to the verified ISO member; "
             "this is a public community-archive copy, not first-party authorship evidence"
         )
-    elif lfs.get("available"):
+    elif lfs.get("downloaded"):
         result["classification"] = (
             "LFS object was retrieved but did not establish byte identity with the ISO member"
         )
