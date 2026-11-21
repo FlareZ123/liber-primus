@@ -113,7 +113,7 @@ assert.deepEqual([table[201], table[74], table[205]], [74,205,76]);
 assert.deepEqual([tableTokens[201],tableTokens[74],tableTokens[205]],
   ["1E","3P","1G"]);
 assert.equal(corpus.pages.find(page=>page.page===55).runic_count, 76);
-const signed = read("resources/historical/cicada2016-4gq25-outguess.asc");
+const signed = read("resources/historical/cicada2016-4gq25-outguess.asc").replace(/\r/g, "");
 const firstCoda = signed.slice(signed.indexOf("Seek and"),
   signed.indexOf("\n\n3301")).match(/[A-Za-z]+/g);
 const lastCoda = signed.slice(signed.indexOf("Beware false paths"),
