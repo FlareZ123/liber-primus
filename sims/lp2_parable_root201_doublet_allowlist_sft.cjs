@@ -124,6 +124,65 @@ for (const page of pages) {
 }
 assert.deepEqual([branch50AllowedEvents, branch50ForbiddenEvents], [17, 69]);
 
+
+/**
+ * The authenticated 2016 clue says the book's words are the map and their
+ * numbers give direction. Test the independently specified GP-prime sum of
+ * each original complete ciphertext word as a p50 table address. A strict
+ * 50-state or 56-state equal-rune exception mask must have no duplicates in
+ * words whose sum is outside its source-selected reverse closure.
+ */
+const transcript = fs.readFileSync(path.join(root,
+  'resources/liber-primus/lp2-transcription.txt'), 'utf8');
+const stream = transcript.split('%').slice(0, 55).join('%');
+const lookup = new Map(corpus.runes.map((symbol, index) => [symbol, index]));
+const wordTokens = [];
+let currentWord = [];
+for (const symbol of stream) {
+  if (lookup.has(symbol)) currentWord.push(lookup.get(symbol));
+  else if (symbol === '/' || symbol === '%' || /\s/u.test(symbol)) {
+    // Page and printed line wrapping do not split lexical words.
+  } else if (currentWord.length) {
+    wordTokens.push(currentWord);
+    currentWord = [];
+  }
+}
+if (currentWord.length) wordTokens.push(currentWord);
+assert.equal(wordTokens.length, 2896);
+assert.equal(wordTokens.reduce((s, w) => s + w.length, 0), 12956);
+
+/** @param {Set<number>} allow */
+function wordPrimeSumMask(allow) {
+  let selectedWords = 0, inside = 0, outside = 0, eligible = 0, other = 0;
+  for (const word of wordTokens) {
+    const address = word.reduce((s, symbol) => s + corpus.prime[symbol], 0) % 256;
+    const selected = allow.has(address);
+    selectedWords += selected ? 1 : 0;
+    for (let i=1; i<word.length; i++) {
+      const repeated = word[i] === word[i-1];
+      if (selected) {
+        eligible++;
+        inside += repeated ? 1 : 0;
+      } else {
+        other++;
+        outside += repeated ? 1 : 0;
+      }
+    }
+  }
+  return {selectedWords, inside, outside, eligible, other,
+    expectedInsideUnderLocationBlindNull:
+      Number(((inside+outside)*eligible/(eligible+other)).toFixed(4)),
+    strictExceptionMaskRejected: outside > 0};
+}
+const wordSource50 = wordPrimeSumMask(source50);
+const wordSource56 = wordPrimeSumMask(subset);
+assert.deepEqual([wordSource50.selectedWords, wordSource50.inside,
+  wordSource50.outside, wordSource50.eligible, wordSource50.other],
+  [584, 10, 53, 1988, 8072]);
+assert.deepEqual([wordSource56.selectedWords, wordSource56.inside,
+  wordSource56.outside, wordSource56.eligible, wordSource56.other],
+  [647, 10, 53, 2190, 7870]);
+
 console.log(JSON.stringify({
   status: 'PASS: source-graph literal allowlist is rejected on original cipher',
   source: 'p57 prime-ordinal201 reversed through original p50 base60 table',
@@ -131,6 +190,7 @@ console.log(JSON.stringify({
   unknownRunes: pages.reduce((s,p)=>s+p.indices.length,0),
   literalMaskPhases: subset.size,
   source50Branch: {size: source50.size, prediction: 50/(256*29), equalEventsInside: branch50AllowedEvents, equalEventsOutside: branch50ForbiddenEvents},
+  signed2016WordNumbers: {source50: wordSource50, source56: wordSource56},
   sourcePredictedUnconditionalDoubletRate: 56/(256*29),
   actualWithinPageDoubletRate: 86/12901,
   cases,
