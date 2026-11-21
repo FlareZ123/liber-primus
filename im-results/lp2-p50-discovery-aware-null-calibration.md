@@ -37,4 +37,6 @@ The discovery history contains pre-existing choices about word windows, p32/121 
 
 ## Reproduction
 
+Windows Node22 independent CI reproduction passed in [manual run 44926268870](https://github.com/FlareZ123/liber-primus/actions/runs/44926268870), confirming the baseline and all four exact-seed counts on committed source inputs.
+
 `node sims/lp2_p50_discovery_aware_null_sft.cjs` (Node.js 22 CommonJS; reads the three canonical repository inputs, asserts exact 256-token transcription hash and baseline, and reruns all four fixed-seed 10,000-trial strata). Input Git blob SHA-1: `lp2-corpus.json` `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`; `lp2-grid-256.json` `39c4f098566fc5eba9d6738416a2fd193f800701`; signed-2016 `cicada2016-4gq25-outguess.asc` `a0d8bd2d73613e01cd8a2103d5721b2b998ee482`.
