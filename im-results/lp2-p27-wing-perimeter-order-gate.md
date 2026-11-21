@@ -1,6 +1,6 @@
 # Original p27 wing: thirteen perimeter faces and two unnumbered internal faces
 
-**Agent5, 15 November 2026; Agent14 16 November full-face traversal gate. Original-image structural observation and two bounded cipher/reader negatives. Zero recovered unknown LP2 plaintext or historical key.**
+**Agent5, 15 November 2026; Agent14 16 November full-face traversal gate; Agent3 21 November inner-face order gate. Original-image structural observation and bounded cipher/reader negatives. Zero recovered unknown LP2 plaintext or historical key.**
 
 ## Source-visible result
 
@@ -30,7 +30,11 @@ The existing reciprocal-near-contour contact criterion requires at least 25 boun
 
 For the stricter 18px graph, *both* 1,2,5,7,4,3,6,8,11,12,9,14,10,13,15 and 1,2,5,7,4,3,6,8,11,12,14,9,10,13,15 are valid distinct complete self-avoiding paths through actual neighboring face regions. Across source thresholds80,120,160,200,235 and contact radii18,22,26,30, the observed path-count minimum is **4**; only threshold235/radius22 differs from the usual six with four, still nonunique. The path algorithm detects exactly one route on a native synthetic 15-node chain and two on a complete four-node graph with specified endpoints.
 
-Thus even selecting the endpoints, disallowing revisits and requiring local image contacts cannot specify a unique full-wing cipher reading order. The proximity radius remains an investigator's convention, and no labels select one of these alternatives or map it to a GP29 inverse. [Read-only original-JPEG reproducible test](../sims/lp2_p27_wing_15face_root_tip_nonunique_sft.py) asserts exact source hash, all 20 image settings, and two admissible rival orders. No key, unknown plaintext, or original-cipher claim is derived.
+Thus even selecting the endpoints, disallowing revisits and requiring local image contacts cannot specify a unique full-wing cipher reading order. The proximity radius remains an investigator's convention, and no labels select one of these alternatives or map it to a GP29 inverse.
+
+**Specific inner-face order gate (#1986, Agent3, 21 November).** The two source-visible internal components are distinct in position and are stable across all five thresholds. Under the analyst's left-to-right component ranking, face 6 has centroid about (1221,698) and face 9 about (1379,647); their areas differ by only about 1%. A simple horizontal sort therefore gives 6 then 9, but the numbers 6/9 are analyst-assigned ranks, not printed labels. More importantly, the existing root-to-tip proximity model does not force this sequence: **all 20 combinations** of five grayscale thresholds and four contact radii admit complete paths with both face 6 before face 9 and face 9 before face 6. At threshold160/radius18, one reversed-order witness is `1,2,5,7,4,3,9,6,8,11,12,14,10,13,15`. The graph remains an investigator-defined near-contour proxy, not a physical shared-vein graph; the result shows that it cannot authenticate the left-to-right convention as the author's reading order. The updated [original-JPEG reproducer](../sims/lp2_p27_wing_15face_root_tip_nonunique_sft.py) asserts the original hash, the 13+2 partition, both pair orders in every tested setting, and the existing chain/K4 positive controls.
+
+No key, unknown plaintext, or original-cipher claim is derived.
 
 
 ## Cipher consequence and bounded test
@@ -50,8 +54,17 @@ All four are opaque and no original GP-native prose is recovered. Every inverse 
 
 The chosen shell append/columnar rule is explicitly an investigator attempt, **not** a source-authenticated decipherment. The original repeated p27/p55 two-word motif and page55's 75-rune body were already documented by previous agents; neither fact is newly claimed here.
 
+## Inner-face values and a possible competing target
+
+The only two low-description numerical readings were considered and rejected at the source-selector gate:
+
+- **Interior count 2 → DH shared value K=2.** The equality is exact, but no original clue identifies the number of surviving compartments with the DH shared secret rather than another state field or a simple count. It supplies no separate value for either face and no reversible receiver.
+- **Analyst x-ranks 6 and 9 → GP29 indices G and N.** The x-ranks are not printed on the source image. No first-party instruction says to convert face ranks to GP29 ordinals, and `GN` does not identify a typed operation or receiver.
+
+The p27 heading **WE MUST SHED** and solved p57's “SHED OUR OWN CIRCUMFERENCES” make the perimeter-removal interpretation plausible. They do not specify the numeric mapping or a cipher. The p57 phrase “FIND THE DIVINITY WITHIN” also has a serious competing referent in the 809-centred 5×5 square, whose recursive circumference removal leaves one centre value; no evidence uniquely transfers that instruction to the p27 wing's two remaining cells. The p22→ARE27 route selects a p27 text word and its local H readout, not the wing's face labels or a rune-key consumer.
+
 ## Decision
 
-**Preserve the exact 13-rim/2-inner geometry as a candidate visual clue; retire the tested fixed shell transposition and any claim that the unlabeled wing supplies one unique fifteen-step key.** Full root-to-tip traversal remains nonunique even under restrictive self-avoiding graph adjacency, with at least four routes in the native-image settings tested. An independently dated plate with unambiguous registered vein labels, or a separately authored rule distinguishing these valid routes, is needed to fix the fifteen-position sequence. A second author-selected operation must establish the ciphertext receiver and GP29 key mapping. Neither exists in the current source, so another path or shift selected from language scores would fit the output after the fact.
+**Preserve the exact 13-rim/2-inner geometry as a candidate visual clue; retire the tested fixed shell transposition and close the claim that the unlabeled wing supplies a unique fifteen-step key.** The two inner faces are geometrically distinguishable and can be sorted left-to-right by an ordinary reading convention, but that convention is not authored on the image; the source-derived root-to-tip proximity family admits both orders in every tested setting. Neither the face count nor analyst ranks select a GP29/DH mapping, reversible operation, or ciphertext receiver. A separately authored order and typed consumer are required before any new cipher test; do not select a path or key by language score.
 
-**Reproducer:** sims/lp2_p27_wing_perimeter_sft.py, reading resources/liber-primus/44.jpg and resources/liber-primus/lp2-corpus.json. Full root-to-tip test: sims/lp2_p27_wing_15face_root_tip_nonunique_sft.py. Prior face audit: im-results/lp2-p27-fifteenth-wing-face-source-gate.md; prior fifteen-transition graph ambiguity: im-results/lp2-p27-p15-fifteen-transition-order-gate.md.
+**Reproducer:** sims/lp2_p27_wing_perimeter_sft.py, reading resources/liber-primus/44.jpg and resources/liber-primus/lp2-corpus.json. Full root-to-tip and inner-pair order test: sims/lp2_p27_wing_15face_root_tip_nonunique_sft.py. Prior face audit: im-results/lp2-p27-fifteenth-wing-face-source-gate.md; prior fifteen-transition graph ambiguity: im-results/lp2-p27-p15-fifteen-transition-order-gate.md.
