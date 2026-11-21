@@ -233,6 +233,43 @@ const positive = divideDescending(encoded, originalH);
 assert.deepEqual(positive.remainder, [0, 0]);
 assert.deepEqual(positive.quotient, message);
 
+// Two uniquely centered red selectors yield a separate source-length identity:
+// p23's red heading has 16 runes and p39's complete page has 240, 16+240=256.
+// The p39 red triad begins at119 and crosses the page midpoint120.
+const red16 = corpus.pages.find((p) => p.page === 23).indices.slice(0, 16);
+const p39Whole = corpus.pages.find((p) => p.page === 39).indices;
+assert.equal(red16.length, 16);
+assert.equal(p39Whole.length, 240);
+assert.deepEqual(spans.find((span) => span.page === 39).digits, p39Whole.slice(119, 122));
+for (const [order, composite, expected] of [
+  ['p23red16+p39page240', [...red16, ...p39Whole], [26, 3, 27, 10]],
+  ['p39page240+p23red16', [...p39Whole, ...red16], [13, 1, 16, 21]],
+]) {
+  assert.equal(composite.length, 256);
+  assert.deepEqual(divideDescending(composite, rg).remainder, expected, order);
+}
+for (const [order, candidate16, expectedRemainder, nonzero] of [
+  ['source 16 ascending', red16, [23, 25, 0, 6, 9, 24, 4, 27, 24, 0, 25, 3, 13, 9, 18, 7], 14],
+  ['source 16 descending', red16.slice().reverse(), [6, 22, 14, 3, 8, 28, 18, 13, 22, 17, 9, 7, 15, 14, 10, 15], 16],
+]) {
+  const degree16 = [...candidate16, 1]; // implicit monic coefficient.
+  const trial = divideDescending(bytes, degree16);
+  assert.equal(trial.quotient.length, 240);
+  assert.deepEqual(trial.remainder, expectedRemainder, order);
+  assert.equal(trial.remainder.filter((digit) => digit !== 0).length, nonzero);
+  assert.equal(trial.quotient.filter((digit, pos) => digit === p39Whole[pos]).length, 7);
+}
+// Plant the entire source p39 240-rune passage as an exact degree16-codeword
+// under p23's 16 red coefficients; the inverse must recover all 240 exactly.
+const degree16Positive = [...red16, 1];
+const positive256 = Array(256).fill(0), descending16 = degree16Positive.slice().reverse();
+for (let i = 0; i < p39Whole.length; i++)
+  for (let j = 0; j < descending16.length; j++)
+    positive256[i + j] = mod(positive256[i + j] + p39Whole[i] * descending16[j]);
+const recovered240 = divideDescending(positive256, degree16Positive);
+assert.deepEqual(recovered240.remainder, Array(16).fill(0));
+assert.deepEqual(recovered240.quotient, p39Whole);
+
 function ioc(values) {
   const counts = Array(29).fill(0);
   for (const value of values) counts[value]++;
@@ -254,4 +291,6 @@ console.log('NULL: ' + anyHit + '/' + runs + ' any factor; ' + centerHit + '/' +
 console.log('NULL fixed -K H: ' + literalAnyHit + '/' + runs + ' any exact source triple; '
   + literalCenterHit + '/' + runs + ' p23 center');
 console.log('PASS: five original 201-rune p23–26 lanes not direct red H/G codewords; positive plant recovered');
+console.log('PASS: p23 red16 + p39 whole240 composites are not source H/G codewords');
+console.log('PASS: both source p23 monic degree16 factors fail, 240-rune positive plant succeeds');
 console.log('NO PLAINTEXT: reversible quotient key reads remain ciphertext-like');
