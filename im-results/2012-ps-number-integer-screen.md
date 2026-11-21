@@ -43,14 +43,14 @@ It is also 432 bits, but has 130 decimal digits and is a different integer; (gcd
 
 ### 2013 cookie values as RSA ciphertexts
 
-Using the published 2013 cookie values labelled `167` and `761` as integers, and deriving (d=e^{-1}mod (p-1)(q-1)) with (e=65537), RSA decryption produces 54-byte high-entropy values. Neither begins with PKCS#1 v1.5 type-2 padding or yields readable text. This rejects the direct hypothesis that those two cookie values are RSA ciphertexts under the P.S. modulus with (e=65537). It does not establish what the cookies mean.
+Using the published 2013 cookie values labelled `167` and `761` as integers and deriving the RSA inverse exponent for the *assumed* `e=65537`, decryption gives two fixed-width 54-byte blocks beginning `0cff` and `4b10`, respectively. Neither has the required `00 02` PKCS#1 v1.5 type-2 prefix or recognizable plaintext. The earlier reproducer mistakenly tested the literal ASCII backslash-escape sequence and converted the result to a variable-width byte string, making its padding predicate invalid. An independent fixed-width recalculation and the corrected reproducer agree on the negative result. This excludes only direct PKCS#1 v1.5 type-2 decryption of these two candidates under the assumed exponent; their original role remains unknown.
 
 ### Direct GP29 key screen
 
 The 2012 integer and its obvious RSA-derived quantities were converted to base 29:
 - (N): 89 digits
 - (p), (q): 45 digits each
-- (arphi(N)), and (d) for (e=65537): 89 digits each
+- `φ(N)`, and (d) for (e=65537): 89 digits each
 
 Each stream was repeated over the 12,956 unsolved LP2 runes and tested with both additive signs, with and without treating ciphertext F as transparent. The best (29\times IoC) was 1.039 (the ciphertext baseline is 1.000); no language-like plaintext appeared. This is a bounded negative for these direct GP29 running-key readings, not for every imaginable use of the 2012 object.
 
