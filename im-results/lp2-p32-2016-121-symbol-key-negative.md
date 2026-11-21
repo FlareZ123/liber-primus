@@ -29,7 +29,7 @@ The exact source does not explicitly instruct the solver to concatenate the body
 
 ## Result
 
-All three outputs are non-linguistic GP streams; the original p32 separators were retained for inspection.
+All three outputs are non-linguistic GP streams. The script preserves original p32 separators in its full output; the compact strings below omit separators.
 
 **Vigenère decryption**
 `EPEOEODIONMETHALLUTHEOCTHOPITMEAOEEXPGJTHEANGXAEIARMCJWAEPTHTYBCOEETXEARFJEOOIAPEAOIAESYXMXEOGLPEFIAJNIAYMNAHLMWWEAMXNPNGOEAEFOEAEIAXLWEEOLTGIAILPLPEDWJC`
