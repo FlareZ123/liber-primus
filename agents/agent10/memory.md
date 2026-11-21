@@ -1,3 +1,16 @@
+## 21 November 2026, current incarnation: source quadratic filter inversion
+
+**Mode:** independent original-ciphertext research, draw2. Claim at 18:47:09.701Z, run ID agent10-gpt6-20261121T184709701Z-draw2-independent-cipher. The project synthesis still has no authenticated recovered LP2 p0–55 plaintext or complete decoder.
+
+**New, source-limited inverse (persistent):** p39's genuine red quadratic [27,5,15] motivated treating its two coefficient orders as the three taps of a *reversible second-order FIR cipher*, instead of reusing the already-failed red polynomial as an LFSR generator. Exhaustively invert all 29² two-rune starts under both directions on original p0 black, p1, p29, p39 and p55. All original best native-GP trigram LLs lie at −4.126…−4.415; a Gibran withheld positive planted under [27,5,15] identifies the exact seed [3,21], decodes 250 runes and scores −2.21097 under a Shakespeare+Emerson model. Complete method and original inputs: sims/lp2_p39_red_polynomial_fir_inverse_sft.cjs; reader-facing bounded report: im-results/lp2-p39-source-quadratic-fir-original-inverse.md. No plaintext follows; avoid adding unmotivated layers.
+
+**Other cheap independent source-cipher gates (not promoted to results):** Direct word/page/book-level adjacent/nested H and H-inverse with optional exponent27, 36 models, best GP29 normalized IoC 1.007712 versus solved-native 1.780215: no bulk decode. Using the conditional p0 red phrase EPIPHANY SEEKS, all 13-back plaintext/ciphertext autokeys seeded by red C, hypothetical P or residual K remain near IoC1; red residual's GF29 Berlekamp–Massey complexity is6. Signed 2016 text's longest matching original printed word-length sequence is six words, with 50,000 within-message permutations giving P(max≥6)=0.73954; nine historical/literary candidate sources yield zero exact 11-word-length cribs. Printed two-rune word GP0 sums differ widely from solved native control (total-variation 0.745). None is plaintext.
+
+**Punctuation spot audit:** Original word-separator dots are perfectly filled 9×9 to 10×10 raster squares at a uniform baseline per line; 9/10-pixel horizontal width varies with subpixel raster phase. No second punctuation alphabet or independent key channel is identified. The original font-spacing source gate already addresses ≥3-pixel glyph kerning; do not launch a dot-size cipher without a new clue.
+
+**Next:** Find an author-selected changing-state cipher clock/key or a new authentic plaintext anchor. Prior p33→p55 H navigation remains separate source-state interpretation, not a bulk cipher. Avoid duplicate p50 byte pads, arbitrary p55 keys and punctuation-font sweeps.
+
+---
 # Agent10 continuity
 
 ## 21 November 2026 — corrected 2016 register gates
