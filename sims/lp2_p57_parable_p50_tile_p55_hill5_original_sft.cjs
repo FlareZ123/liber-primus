@@ -541,6 +541,54 @@ const s58 = new Set(descendants60(205));
 assert.deepEqual([...s57].filter(i => !s56.has(i)), [74]);
 assert.deepEqual([...s58].filter(i => !s57.has(i)), [205]);
 assert.equal(descendants60(173).length, 8);
+
+/* Whole-manuscript physical page layout is finer than the 58/8/56 count.
+ * LP2 physical p50 is itself the unique rune-free 256-cell numeric table;
+ * p0..49 are 50 preceding rune-bearing pages, p51..55 are 5 following.
+ * The source-frozen 56-node S(201) splits into child subtrees of exactly
+ * 50 and5; its 50-node child splits again into 44 and5 at root82.
+ * These exact nested counts are not sufficient to prove an authored page
+ * permutation; they are independent fixed page-layout targets.
+ */
+assert.equal(gp.pages[50].indices.length, 0);
+assert.equal(gp.pages.slice(0, 50).filter(p => p.indices.length > 0).length, 50);
+assert.equal(gp.pages.slice(51, 56).filter(p => p.indices.length > 0).length, 5);
+/** @param {number} node */
+function treeChildren60(node) {
+  return Array.from({length: 256}, (_, i) => i).filter(i => parent60[i] === node);
+}
+assert.deepEqual(treeChildren60(201), [82, 128]);
+assert.deepEqual([82, 128].map(i => graphSizes60[i]), [50, 5]);
+assert.deepEqual([82, 128].map(i => allTokens[i]), ["3L", "3L"]);
+assert.deepEqual(treeChildren60(82), [79, 163]);
+assert.deepEqual([79, 163].map(i => graphSizes60[i]), [44, 5]);
+assert.deepEqual([79, 163].map(i => allTokens[i]), ["1M", "1M"]);
+const core = new Set(descendants60(201));
+assert.equal(core.size, 56);
+assert.equal(descendants60(82).filter(i => descendants60(128).includes(i)).length, 0);
+/* A source-ordered candidate, not a verified plaintext/page alignment:
+ * recurse into the largest child subtree, read its parent, then append
+ * smaller children (descending size, ties printed address). This places
+ * the unique numeral-table page at physical position50 without padding.
+ */
+function hypothesisInorder60(node) {
+  const children = treeChildren60(node)
+    .filter(i => core.has(i))
+    .sort((a, b) => graphSizes60[b] - graphSizes60[a] || a - b);
+  if (!children.length) return [node];
+  return [
+    ...hypothesisInorder60(children[0]),
+    node,
+    ...children.slice(1).flatMap(hypothesisInorder60),
+  ];
+}
+const hypothesized56PageNodes = hypothesisInorder60(201);
+assert.equal(hypothesized56PageNodes.length, 56);
+assert.equal(new Set(hypothesized56PageNodes).size, 56);
+assert.deepEqual([32, 43, 44, 49, 50, 51, 55]
+  .map(i => hypothesized56PageNodes[i]),
+  [73, 79, 82, 163, 201, 24, 128]);
+
 assert.equal(parent60[173], 117);
 assert.equal(readToken(allTokens[173], 59), 115);
 assert.equal(parent60[32], readToken(allTokens[173], 59));
@@ -568,6 +616,8 @@ console.log(JSON.stringify({
   shedInner3HillVariants: shed3Results,
   shedInner3BlurVariants: shed3BlurResults,
   base60ManuscriptLadder: fullManuscriptLadder,
+  physicalPageSplit: {numericPage:50, branch50:82, branch5:128, secondSplit44:79, secondSplit5:163},
+  fixedCandidateInorder56: hypothesized56PageNodes,
   sourcePrimeOrdinalSubtrees: ranks.map(i => ({address:i, token:allTokens[i], subtree:graphSizes60[i]})),
   signedTheDevotedSubtreeCounts: [20,102].map(i => graphSizes60[i]),
   control: "4/4 raw and 8/8 phi p55 replays/plants 75/75; 4/4 p32 blur 121/121 and 16/16 p32 direct 120/120",
