@@ -1,0 +1,46 @@
+name: CicadaOS original ISO rootfs audit
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  extract-and-inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out research repository
+        uses: actions/checkout@v4
+
+      - name: Install ISO and rootfs tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y 7zip binwalk cpio file
+
+      - name: Syntax-check reproducible audit script
+        run: bash -n sims/cicadaos_rootfs_audit.sh
+
+      - name: Download pinned historical ISO
+        env:
+          ISO_URL: https://connortumbleson.com/uploads/2024/01/3301.iso
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 5 --retry-all-errors --connect-timeout 30 \
+            "$ISO_URL" --output "$RUNNER_TEMP/3301.iso"
+          stat --printf='Downloaded ISO bytes: %s\n' "$RUNNER_TEMP/3301.iso"
+
+      - name: Verify original ISO and extract rootfs
+        run: |
+          bash sims/cicadaos_rootfs_audit.sh \
+            "$RUNNER_TEMP/3301.iso" \
+            "$RUNNER_TEMP/cicadaos-audit"
+
+      - name: Upload reproducible manifests and relevant source files
+        uses: actions/upload-artifact@v4
+        with:
+          name: cicadaos-rootfs-audit
+          path: ${{ runner.temp }}/cicadaos-audit/
+          if-no-files-found: error
+          retention-days: 90
