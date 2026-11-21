@@ -14,7 +14,7 @@ Inverse: a=(d+s)/2,  b=(s−d)/(2k)    (mod 29)
 2^(-1)=15 mod29
 ~~~
 
-To avoid fitting an arbitrary parameter, interpret the literal red word as **(axis size14, row coefficient10), (axis size14, column coefficient19)**. These are the actual 2nd and 4th original red rune indices. Apply the inverse across all fourteen symmetrical column pairs per row, then across all fourteen symmetrical row pairs per column. The operations commute, so the ordering does not introduce a searched parameter. Each round-trip recreates **all 196 original GP29 runes** without punctuation changes, changed boundaries, phase optimization, chosen ciphertext offsets or a fitted English crib.
+To avoid fitting an arbitrary parameter, interpret the literal red word as **(axis size14, row coefficient10), (axis size14, column coefficient19)**. These are the actual 2nd and 4th original red rune indices. Apply the inverse across all seven symmetric column-end pairs in each of the fourteen rows, then across all seven symmetric row-end pairs in each of the fourteen columns. The operations commute, so the ordering does not introduce a searched parameter. Each round-trip recreates **all 196 original GP29 runes** without punctuation changes, changed boundaries, phase optimization, chosen ciphertext offsets or a fitted English crib.
 
 **Most important objection:** neither the source's rooted tree nor the spiral art instructs the player to compute addition/subtraction, to write a 14×14 row-major matrix, to associate 10/19 with the two axes, or to take the GF29 inverse. The source-derived numbers select a *possible operand*, while the proposed opcode is an interpretive test. This is not presented as a discovered cipher.
 
