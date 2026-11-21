@@ -93,6 +93,49 @@ assert.deepEqual(p50Endpoints, [
   114,47,68,114,115,197,114,197,115,32,199,114,114,47,114,76,32,192,192,114,47,
   199,115,114,192,192,68,197,47,114,114,114,199,68,197,197,197,199,47,114,32,114,197
 ]);
+
+// Cross-apply the established p50 8-way compass encoding to the selected
+// words' raw GP0 numbers, starting at the p32 compass route's fixed (3,0).
+const p32 = corpus.pages.find((p) => p.page === 32).indices;
+assert.equal(p32.length, 121);
+const directions = [
+  [-1,0],[-1,1],[0,1],[1,1],[1,0],[1,-1],[0,-1],[-1,-1]
+];
+const mod11 = (n) => ((n % 11) + 11) % 11;
+let compassRow = 3, compassCol = 0;
+const compassCoordinates = [];
+const compassKey = [];
+for (const value of rawKey) {
+  const [dy, dx] = directions[value & 7];
+  const distance = value >> 3;
+  compassRow = mod11(compassRow + dy * distance);
+  compassCol = mod11(compassCol + dx * distance);
+  compassCoordinates.push([compassRow, compassCol]);
+  compassKey.push(p32[compassRow * 11 + compassCol]);
+}
+assert.deepEqual([compassRow, compassCol], [0,3]);
+const compassPlain = interior.map((cipher, i) => mod29(cipher - compassKey[i]));
+let compassSourceOffset = 0, compassPlainOffset = 0;
+const compassReconstructedWords = [];
+for (let i = 0; i < fragmentLengths.length; i++) {
+  const length = fragmentLengths[i];
+  const original = page.slice(compassSourceOffset, compassSourceOffset + length);
+  if (i === 0) {
+    compassReconstructedWords.push(gpText(original));
+  } else {
+    const decodedInterior = compassPlain.slice(compassPlainOffset, compassPlainOffset + length - 2);
+    compassReconstructedWords.push(gpText([original[0], ...decodedInterior, original[length - 1]]));
+    compassPlainOffset += length - 2;
+  }
+  compassSourceOffset += length;
+}
+assert.equal(compassPlainOffset, 43);
+assert.equal(gpText(compassKey), "BSTNGLLXHGTHHBYNGBBNGOYWNATHXFJWIAJEOBTHIATHABNGOXBANGW");
+assert.equal(gpText(compassPlain), "THAAEXOJPTJOLEOBETHPPIJXJLNGPPYCLEADYRBIWXYAEAETHIMJ");
+assert.deepEqual(compassReconstructedWords, [
+  "NG","AETHAW","SB","XM","SAEXOJAE","FPTJOU","WR","BLEOBETHPPIJXJEO",
+  "MLNGPPF","BYCC","EOE","EALEADYRS","EBIWXYS","THOE","CAEAETHIX","DMU","BJI"
+]);
 console.log(JSON.stringify({
   source: "p55 original page-local 43 strict-word-interior runes; authenticated 2016 body-only 29-word register",
   bodyWords: core, fragmentLengths, interiorPositions,
@@ -103,5 +146,6 @@ console.log(JSON.stringify({
   subtractivePlaintext: gpText(plain),
   reconstructedWordsWithOriginalExteriors: reconstructedWords,
   p50T23Endpoints: p50Endpoints, seeksPositions, seeksEndpoints: [32,32,32],
-  conclusion: "The direct one-based 29-word book map is not plaintext. Its GP0 word values used as a continuous C-K key also fail; the fixed p50 T^23 route sends only the three SEEKS selections to p32 state 32, a navigation observation rather than a cipher."
+  p32CompassFromMappedWordGP0: {origin:[3,0],end:[compassRow,compassCol],coordinates:compassCoordinates,key:gpText(compassKey),subtractivePlaintext:gpText(compassPlain),reconstructedWords:compassReconstructedWords},
+  conclusion: "The direct one-based 29-word book map is not plaintext. Its GP0 word values used as a continuous C-K key also fail; the fixed p50 T^23 route sends only the three SEEKS selections to p32 state 32, a navigation observation rather than a cipher. A fixed-origin (3,0) p32 compass walk driven by the same mapped words' raw GP0 values also fails to provide a C−K plaintext."
 }, null, 2));
