@@ -67,6 +67,27 @@ A **single fixed-root** 100,000-trial seeded table-multiset shuffle (`0x33012014
 
 **Cryptanalytic limit:** this candidate identifies a **three-way interval decomposition**, not the order of 50 individual nodes within the first interval, or five within the second; it provides no key, symbol operation, GP29 decoder, unknown plaintext, or external destination. A forward page assignment and original-cipher holdout require a separate **source-authored traversal rule**. Do not optimize BFS/DFS, signs, byte/rune reductions or arbitrary page remappings against language output without that independent selector. The exact original-input check and seeded shuffle are in [the dedicated CommonJS SFT](../sims/lp2_parable_root201_page50_split_sft.cjs).
 
+### Exact graph-to-page prime clock: source-native p56 positive, all five terminal unknowns impossible (Agent4, 21 November)
+
+The 50+1+5 root201 branch anatomy suggests a **complete printed-order page assignment** without fitting any rune: assign the 50 predecessor cells of82 in increasing original p50 cell index to physical pp0–49, node201 to the numerical p50, the five predecessor cells of128 in increasing index `[24,109,119,128,184]` to pp51–55, and the unique two upward cells `[74,205]` to solved pp56–57. This gives a bijection from all 58 page indices to the full reverse closure of205. A human could sort original printed cell addresses. **The manuscript does not explicitly authorize this page ordering** and it contradicts no known graph count by construction.
+
+A concrete one-operator cipher hypothesis then takes each assigned node's unchanged **base60 successor byte modulo29**, starts at the *first prime greater than or equal to that residue*, and applies the **authentic p56 GP29 `phi(prime)` additive encoder** to the complete page, resetting this one prime clock at each page and transparently passing plaintext F without consuming a prime. This requires no search or plaintext fit and uniquely reproduces the **known p56 prime2 initializer**: p56 maps to node74, source table cell74=`3P`=205, and 205 mod29=2. The complete actual **85/85 p56 known ciphertext** reencryption passes, including F-bypass. A double-independent positive takes 76 source-clear p57 runes, encrypts under the p55 start, and recovers a complete legal inverse.
+
+But for all five original unknown pp51–55, **every** legal transparent-F inverse history becomes algebraically impossible on the unchanged ciphertext, even before language scoring:
+
+| Physical unknown page | Assigned table node | Original byte / mod29 | First prime | First impossible original rune (1-based) |
+| ---: | ---: | ---: | ---: | ---: |
+| 51 | 24 | 109 / 22 | 23 | **22** of 92 |
+| 52 | 109 | 184 / 10 | 11 | **224** of 263 |
+| 53 | 119 | 184 / 10 | 11 | **33** of 179 |
+| 54 | 128 | 201 / 27 | 29 | **20** of 232 |
+| 55 | 184 | 128 / 12 | 13 | **59** of 76 |
+| **56 solved positive** | **74** | **205 / 2** | **2** | **none** of 85 |
+
+The exact dynamic program retains both legal interpretations of ciphertext F (transparent plaintext F and a non-F plaintext whose encryption happens to produce F), merging by consumed prime index. It has no branch cap, fitted key, alphabet mutation or guessed plaintext. Original and planted positives pass [Windows Node22 CI 44960576015](https://github.com/FlareZ123/liber-primus/actions/runs/44960576015), with source assertions and full [single-file CommonJS reproducer](../sims/lp2_root201_pageprime_exact_sft.cjs).
+
+**Decision:** the promising p56 seed match is a **conditional single-stage control**, not evidence that p50's graph supplies the unknown pages' prime clocks. Under this exact fixed row-major page mapping, prime-ceiling rule, page reset and authentic F behavior, the model cannot possibly encode original terminal ciphertext. Retire this complete model; further graph address permutations, prime-start sweeps or altered F semantics require a fresh first-party selector. The base60 58/8/56 structural relation remains unchanged and no unknown LP2 plaintext/key follows.
+
 ## Signed 2016 DIRECTION locates the three original terminal scans, and corner169 rejoins THE DEVOTED
 
 A second independently signed *post-publication* Cicada clue reads **“words are the map ... their numbers are the direction.”** The **literal** GP29 transliteration of Latin DIRECTION (I+O as separate runes) gives **GP0=98**. The independent earlier signed-2016 hex analysis instead coalesces IO→IA and obtains **GP0=112**; the signed Latin wording does not specify a unique convention. Under conventional base60 the original p50 table has **cell98 = `1C` = 72**, the exact original archive file number of p55, `72.jpg` (the 76-rune encrypted page). Iterating the *unchanged* published 256-byte functional graph from this source-selected byte produces:
