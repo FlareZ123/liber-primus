@@ -17,12 +17,50 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Install OutGuess for exact carrier extraction
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y outguess
       - name: Validate the offline parser and source contract
         run: |
           node --check sims/lp2_2016_infotomb_original_capture_sft.cjs
           node sims/lp2_2016_infotomb_original_capture_sft.cjs --selftest
       - name: Query the cited Wayback capture and exact 2016 Common Crawl indexes
         run: node sims/lp2_2016_infotomb_original_capture_sft.cjs
+      - name: Extract and compare the signed payload from both original-host captures
+        run: |
+          set +e
+          mkdir -p infotomb-2016-original-recovery/outguess
+          report=infotomb-2016-original-recovery/outguess/comparison.txt
+          : > "$report"
+          for stamp in 20160109171430 20160116224659; do
+            image="infotomb-2016-original-recovery/wayback/"
+            if [ "$stamp" = "20160109171430" ]; then
+              image="${image}capture-${stamp}.jpg"
+            else
+              image="${image}cited-${stamp}.jpg"
+            fi
+            output="infotomb-2016-original-recovery/outguess/${stamp}.asc"
+            log="infotomb-2016-original-recovery/outguess/${stamp}.log"
+            if [ ! -f "$image" ]; then
+              echo "$stamp: capture file missing" >> "$report"
+              continue
+            fi
+            outguess -r "$image" "$output" > "$log" 2>&1
+            status=$?
+            echo "$stamp: outguess_exit=$status" >> "$report"
+            if [ -f "$output" ]; then
+              sha256sum "$output" >> "$report"
+              if cmp -s "$output" resources/historical/cicada2016-4gq25-outguess.asc; then
+                echo "$stamp: extracted payload byte-identical to authenticated reference" >> "$report"
+              else
+                echo "$stamp: extracted payload differs from authenticated reference" >> "$report"
+              fi
+            else
+              echo "$stamp: no output payload" >> "$report"
+            fi
+          done
+          cat "$report"
       - name: Preserve exact index metadata and any recovered original bytes
         if: always()
         uses: actions/upload-artifact@v4
