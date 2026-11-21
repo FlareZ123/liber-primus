@@ -53,7 +53,7 @@ The aggregate `3→9` relation remains a true source property, but **does not li
 
 This excludes the simplest binary key-expansion reading of the p8 art without testing the black ciphertext. A **position-dependent** branch transformation could still explain the words, but the drawing contains no parent labels, child labels, traversal arrows, per-branch state, reset, or prescribed GP29 arithmetic to select such a transformation. The previous modulo23 product-square relation is only one aggregate checksum, insufficient to determine eight descendants. The 243-rune body remains an untouched independent receiver; no 150-rune decipherment, key, or reversible original cipher follows from this gate.
 
-Reproduction: [original-corpus Node22/CommonJS SFT](../sims/lp2_p8_binary_tree_expansion_gate_sft.cjs). This adds a general structural impossibility test rather than another fitted key-clock sweep.
+Reproduction: [original-corpus Node22/CommonJS SFT](../sims/lp2_p8_binary_tree_expansion_gate_sft.cjs), [Windows Node22 PASS, run 44946523865](https://github.com/FlareZ123/liber-primus/actions/runs/44946523865). This is a source-exact structural impossibility test without ciphertext-fitted key clocks.
 
 ## Prime-sum back-reference into the preceding spiral-framed spread
 
