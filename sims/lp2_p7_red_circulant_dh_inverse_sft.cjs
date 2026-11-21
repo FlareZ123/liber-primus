@@ -172,6 +172,87 @@ function main() {
   assert.equal(invertibleDhTuples, 456);
   assert.deepEqual(inverseIdentityMatches, [[6, 15]]);
 
+
+  // Cross-page reconstruction using ORIGINAL INSCRIPTION ONLY. The
+  // historical state declaration 'dh' is an assertion/semantic control,
+  // and is never used to generate any candidate p0 key byte.
+  const p7State = {
+    p: red[0].runic[0],      // p7 source first red word starts 23
+    e: red[0].runic[1],      // p7 source first red word ends 3
+    g: inverse[0][2],        // one natural recognized inverse-row role
+    A: products[2],         // center word product
+    B: inverse[0][4],
+    K: inverse[0][1],
+    q: mod29(products.reduce((sum, product) => sum + product, 0)),
+  };
+  /** @type {number[]} */
+  const privateA = [];
+  /** @type {number[]} */
+  const privateB = [];
+  for (let exponent = 1; exponent < p7State.p; exponent++) {
+    if (power(p7State.g, exponent, p7State.p) === p7State.A) {
+      privateA.push(exponent);
+    }
+    if (power(p7State.g, exponent, p7State.p) === p7State.B) {
+      privateB.push(exponent);
+    }
+  }
+  assert.deepEqual(privateA, [6]);
+  assert.deepEqual(privateB, [15]);
+  const recoveredState = { ...p7State, a: privateA[0], b: privateB[0] };
+  assert.equal(power(recoveredState.B, recoveredState.a, recoveredState.p),
+    recoveredState.K);
+  assert.deepEqual(recoveredState, {
+    p: 23, e: 3, g: 5, A: 8, B: 19, K: 2, q: 4, a: 6, b: 15
+  });
+
+  // The already published, explicitly retrospective p0 vertical RISE
+  // grammar receives the reconstructed p7 state, p0 4|5|4 marker geometry
+  // and the p0 13-dot count. Neither a plaintext word nor an external
+  // source register supplies any key component.
+  const ink = JSON.parse(fs.readFileSync(
+    path.join(root, 'lp2-p0-physical-ink-override.json'), 'utf8'));
+  const p0Marker = ink.physical_zero_based.large_punctuation[0].dots;
+  assert.equal(p0Marker, 13);
+  assert.deepEqual([recoveredState.q, recoveredState.g, recoveredState.q],
+    [4, 5, 4]);
+  const u = mod29(recoveredState.q - recoveredState.e);
+  const t = mod29(recoveredState.g + recoveredState.K);
+  const w = mod29(recoveredState.A + recoveredState.g);
+  assert.equal(w, p0Marker);
+  /** @param {number} seed @param {number[]} rises @returns {number[]} */
+  function cumulative(seed, rises) {
+    let value = mod29(seed);
+    const result = [value];
+    for (const rise of rises) {
+      value = mod29(value + rise);
+      result.push(value);
+    }
+    return result;
+  }
+  /** @param {number[]} values @returns {number[]} */
+  function outsideInH(values) {
+    const output = [];
+    for (let i = 0, j = values.length - 1; i < j; i++, j--) {
+      output.push(mod29(values[i] - values[j]));
+      output.push(mod29(values[i] + values[j]));
+    }
+    if (values.length % 2) output.push(values[(values.length - 1) / 2]);
+    return output;
+  }
+  const left = cumulative(-recoveredState.q, [recoveredState.q - u, w - u, w + u]);
+  const center = cumulative(recoveredState.q,
+    Array.from({ length: 4 }, (_, i) => recoveredState.q + i * t));
+  const right = cumulative(t, [t - u, t, t + u]);
+  const p0Key = outsideInH([...left, ...center, ...right]);
+  const p0Source = ink.physical_zero_based.red_words.flatMap((word) => word.gp_indices);
+  assert.equal(p0Source.length, p0Marker);
+  const p0Recovered = p0Source.map((c, i) => mod29(c - p0Key[i]));
+  assert.deepEqual(p0Recovered.map((p, i) => mod29(p + p0Key[i])), p0Source);
+  const p0Reading = p0Recovered.map((p) => source.translit[p]).join('');
+  assert.deepEqual(p0Key, [26, 24, 8, 19, 27, 24, 18, 3, 0, 8, 0, 16, 19]);
+  assert.equal(p0Reading, 'EPIPHANYSEECS');
+
   // The immediately following p8 is exactly 255 = 51*5 source runes.
   // Test the unmodified complete original page with no fitting.
   const original = source.pages[8].indices;
@@ -200,6 +281,12 @@ function main() {
     [dh.p, dh.K, dh.g, dh.K, dh.B].join(','));
   console.log('DH23 exponent-pair conditional census: ' +
     invertibleDhTuples + '/484 nonsingular; inverse identity only at a=6,b=15.');
+  console.log('p7-only reconstructed state (no historical values used as inputs): ' +
+    JSON.stringify(recoveredState));
+  console.log('p7 state + previously documented p0 RISE/H serializer: key=' +
+    p0Key.join(','));
+  console.log('Untouched p0 title GP source-only local recovery: ' + p0Reading +
+    ' (human reading EPIPHANY SEEKS), exact 13/13 reencryption.');
   console.log('p8 original 255-runic IoC: ' + indexOfCoincidence(original).toFixed(8));
   console.log('p8 standard-circulant inverse IoC: ' +
     indexOfCoincidence(decoded).toFixed(8));
