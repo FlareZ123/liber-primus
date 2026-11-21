@@ -101,6 +101,37 @@ console.log('per-parent square targets:', JSON.stringify(targets));
 console.log('matching leaf pairs in ANY order:', JSON.stringify(feasibleLeafPairs));
 console.log('all-order local multiplicative square expansion: IMPOSSIBLE, two parents have zero candidates');
 
+// Literal base23 whole-word square is another natural 4=>8 explanation.
+// Allow both original parent reading directions and any child traversal:
+// every ordering of the same leaves has the same multiset of digits.
+/** @param {number[]} digits @param {number} base @returns {bigint} */
+function numeral(digits, base) {
+  return digits.reduce((value, digit) => value * BigInt(base) + BigInt(digit), 0n);
+}
+/** @param {bigint} number @param {number} base @param {number} width @returns {number[]} */
+function digitsOf(number, base, width) {
+  const digits = Array(width).fill(0);
+  for (let i = width - 1; i >= 0; i -= 1) {
+    digits[i] = Number(number % BigInt(base));
+    number /= BigInt(base);
+  }
+  assert.equal(number, 0n, 'square must fit exactly in eight base23 digits');
+  return digits;
+}
+const sorted = (digits) => [...digits].sort((a, b) => a - b);
+const childInventory = sorted(children);
+for (const [orientation, originalDigits] of [['printed', parents], ['reversed', [...parents].reverse()]]) {
+  const squareDigits = digitsOf(numeral(originalDigits, 23) ** 2n, 23, 8);
+  assert.notDeepEqual(sorted(squareDigits), childInventory);
+  console.log(orientation, 'base23 whole-word square digits:', JSON.stringify(squareDigits),
+    'matches any permutation of printed leaves:', false);
+}
+assert.deepEqual(
+  digitsOf(numeral(parents, 23) ** 2n, 23, 8),
+  digitsOf(numeral(parents, 23) ** 2n, 23, 8),
+  'planted whole-number square positive control'
+);
+
 // Positive control: a true fixed expansion must be accepted despite repeated parents.
 const positive = parents.flatMap((value) => [(value + 1) % 29, (value + 2) % 29]);
 assert.ok(canBeStatelessExpansion(parents, adjacentPairs(positive)));
