@@ -260,4 +260,62 @@ console.log('27x27 all-secret phase-bijection invariant',JSON.stringify({
   secretBijectionPlantExactReconstruction:true,
   conclusion:'period27 phase-fixed GP29 bijections do not explain original opening chapter'
 }));
+// Repeat the all-secret necessary condition with two physically motivated
+// clock resets: each printed page, and each page with red13 peeled off p0.
+// Invariance holds even when each reset starts an independently secret
+// 27-position alphabet of arbitrary fixed bijections.
+function columnEqualGrouped(groups) {
+  const hist=Array.from({length:27},()=>Array(29).fill(0));
+  for(const symbols of groups)
+    symbols.forEach((rune,i)=>{hist[i%27][rune]++;});
+  let hits=0,pairs=0;
+  for(const cells of hist){
+    const n=cells.reduce((sum,c)=>sum+c,0);
+    pairs+=n*(n-1)/2;
+    hits+=cells.reduce((sum,c)=>sum+c*(c-1)/2,0);
+  }
+  return {hits,pairs,rate:hits/pairs};
+}
+const splitRivals=[
+  {name:'physical-page-reset', groups:[p0,p1,p2], expected:[298,9493]},
+  {name:'marker13-plus-page-reset',groups:[p0.slice(13),p1,p2],expected:[282,9149]}
+];
+for(const entry of splitRivals){
+  const counts=columnEqualGrouped(entry.groups);
+  assert.deepEqual([counts.hits,counts.pairs],entry.expected);
+  let nativeMinimum=Infinity,nativeAtOrBelow=0,nativeCount=0;
+  const len=entry.groups.reduce((sum,g)=>sum+g.length,0);
+  for(let start=0;start+len<=nativeRunes.length;start++){
+    let at=start;
+    const sourceGroups=entry.groups.map(group=>{
+      const slice=nativeRunes.slice(at,at+group.length);
+      at+=group.length;
+      return slice;
+    });
+    const rate=columnEqualGrouped(sourceGroups).rate;
+    nativeMinimum=Math.min(nativeMinimum,rate);
+    nativeAtOrBelow+=Number(rate<=counts.rate);
+    nativeCount++;
+  }
+  assert.equal(nativeAtOrBelow,0);
+  assert.ok(nativeMinimum>0.05);
+  const plaintext=Array.from({length:len},(_,i)=>nativeRunes[i]);
+  let offset=0;
+  const planted=entry.groups.map(g=>{
+    const encrypted=plaintext.slice(offset,offset+g.length)
+      .map((rune,i)=>allSecretMappings[i%27][rune]);
+    offset+=g.length;return encrypted;
+  });
+  const decrypted=planted.map(group=>group.map((rune,i)=>inversePerm[i%27][rune]));
+  assert.deepEqual(decrypted.flat(),plaintext);
+  const clean=[];
+  let pos=0;
+  for(const g of entry.groups){clean.push(plaintext.slice(pos,pos+g.length));pos+=g.length;}
+  assert.deepEqual(columnEqualGrouped(planted),columnEqualGrouped(clean));
+  console.log('27x27 reset phase-bijection invariant',JSON.stringify({
+    sourceClock:entry.name,original:counts,solvedNativeWindows:nativeCount,
+    solvedNativeMinimum:+nativeMinimum.toFixed(7),
+    controlsAtOrBelowOriginal:nativeAtOrBelow,plantedSecretRoundtrip:true
+  }));
+}
 console.log('PASS: frozen complementary-27 Trifid tests; no plaintext claim');
