@@ -377,7 +377,7 @@ The direct C−K output is not linguistic under the original word boundaries. Th
 
 The same mapped words were passed through the already selected p50 GP0-to-base60 forward map for the fixed DH depth p=23. The three occurrences of SEEKS (interior positions 10, 17 and 41) all reach state 32 (p32); the other 40 endpoints lie on the 11-cycle. This is a navigation observation inherited from the known SEEKS-to-p32 route, not a cipher or plaintext recovery. It supplies no missing operation for the 43 interiors and does not assign a role to the 33 exteriors.
 
-**Decision:** retire the direct one-based 29-word book-map plus GP0 additive-pad consumer. Preserve the 43-word map sequence and the three SEEKS-to-p32 navigation hits as intermediate evidence only. This does not refute a different semantic route through the 2016 register, but it does not justify trying arbitrary word rearrangements, alternate offsets, or extra cipher layers. Reproducer: sims/lp2_p55_interior_2016_body_register_map_sft.cjs.
+**Decision:** retire the direct one-based 29-word book-map plus GP0 additive-pad consumer. Preserve the 43-word map sequence and the three SEEKS-to-p32 navigation hits as intermediate evidence only. This does not refute a different semantic route through the 2016 register, but it does not justify trying arbitrary word rearrangements, alternate offsets, or extra cipher layers. Reproducer: sims/lp2_p55_interior_2016_body_register_map_sft.cjs; manual GitHub Actions run 44894524597 passed both register-gate SFTs.
 
 ## Full-book 43×301 / 7×43² source-shape gate (bounded negative)
 
