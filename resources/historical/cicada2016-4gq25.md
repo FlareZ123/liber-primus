@@ -14,7 +14,7 @@ Both files have Git blob SHA 22027296dcd7df53c5127e6aadbabeaf3223f72d. The first
 
 ## Original-host Wayback captures recovered 21 November 2026
 
-A direct archive replay now preserves **two January 2016 HTTP 200 responses for the exact original URL** `https://infotomb.com/4gq25.jpg`. The Wayback `Memento-Datetime` and `x-archive-src` fields date them to their respective 2016 collections; these are historical host captures, not independent Cicada signatures. Full replay headers, CDX records, raw bytes and hashes are in [run 44939817654, artifact 14720889155](https://github.com/FlareZ123/liber-primus/actions/runs/44939817654/artifacts/14720889155).
+A direct archive replay now preserves **two January 2016 HTTP 200 responses for the exact original URL** `https://infotomb.com/4gq25.jpg`. The Wayback `Memento-Datetime` and `x-archive-src` fields date them to their respective 2016 collections; these are historical host captures, not independent Cicada signatures. Full replay headers, CDX records, raw bytes and hashes are in [run 44940185981, artifact 14721027998](https://github.com/FlareZ123/liber-primus/actions/runs/44940185981/artifacts/14721027998).
 
 | Source response | Raw bytes | Raw SHA-256 | Meaning |
 | --- | ---: | --- | --- |
@@ -31,7 +31,7 @@ var/www/infotomb/tmp/208771_text
 
 Immediately after its final newline is JPEG SOI `FF D8 FF`; the remaining **26,342 bytes are byte-for-byte identical** to the 16 January original-host JPEG and checked-in archive, including the JPEG EOI. Thus the Jan9/Jan16 different raw SHA-256 values arise solely from a server-side text preamble. The preamble supplies an InfoTomb temporary file identifier `208771` and two related pathnames, with no creator-authenticated instruction or demonstrated GP29 receiver. The 9 January replay had `Content-Type: image/jpeg` despite the non-JPEG prefix. The original captured `server` is `nginx/1.4.6 (Ubuntu)`; both replay headers report `x-archive-orig-content-length: -1`. The 16 January host response confirms exact byte fidelity for the 26,342-byte canonical carrier.
 
-Reproduction: [source-envelope SFT](../../sims/lp2_2016_infotomb_capture_envelope_sft.cjs) concatenates the preserved 99-byte preamble and local canonical JPEG, asserting both original-host raw hashes; the [archive-fetch SFT](../../sims/lp2_2016_infotomb_original_capture_sft.cjs) retrieves the exact captures and preserves their origin metadata. The source-oriented result is a **recovered host response and verified carrier identity**, without a new LP2 decryption.
+Reproduction: [source-envelope SFT](../../sims/lp2_2016_infotomb_capture_envelope_sft.cjs) concatenates the preserved 99-byte preamble and local canonical JPEG, asserting both original-host raw hashes; the [archive-fetch SFT](../../sims/lp2_2016_infotomb_original_capture_sft.cjs) retrieves the exact captures and preserves their origin metadata. The successful [pinned OutGuess 0.4 native extraction run 44940185981](https://github.com/FlareZ123/liber-primus/actions/runs/44940185981) additionally recovers **identical 1,136-byte signed payloads** from both the 9-Jan embedded JPEG and 16-Jan host JPEG (SHA-256 `fe89e77519dfaca998a257ed39c2861303029de2a49183db00eea0fda3a28010`), byte-identical to the already authenticated reference. The source-oriented result is a **recovered host response, verified carrier identity and native signed-payload extraction**, without a new LP2 decryption.
 
 ## Exact binary inventory
 

@@ -15,7 +15,7 @@ The original Twitter status `684596461628223488` (account `@1231507051321`) carr
 - JPEG structure: 563×569 pixels, 8-bit, three components; JFIF APP0 only. No EXIF APP1 or JPEG COM segment was present. The EOI marker is at byte offset 26,340, with zero trailing bytes.
 - The raster shows the signed text over a faint leafless tree. The pixels do not establish the tree species or location.
 - The header/metadata check does **not** test OutGuess's DCT-coefficient payload; that is a separate steganographic channel.
-- The [original-host Wayback capture](historical/cicada2016-4gq25.md) from 2016-01-16 matches this JPEG byte-for-byte. The distinct 2016-01-09 host response has 99 preceding ASCII bytes naming server temporary paths and then **the identical JPEG**. Its original raw SHA-256 is `2aa61b8393e6d993646445caabccbf03812f553b24c8752c66eb1c9526b458f4`; see [original-host reconstruction SFT](../sims/lp2_2016_infotomb_capture_envelope_sft.cjs) and [archived raw responses, run 44939817654](https://github.com/FlareZ123/liber-primus/actions/runs/44939817654/artifacts/14720889155).
+- The [original-host Wayback capture](historical/cicada2016-4gq25.md) from 2016-01-16 matches this JPEG byte-for-byte. The distinct 2016-01-09 host response has 99 preceding ASCII bytes naming server temporary paths and then **the identical JPEG**. Its original raw SHA-256 is `2aa61b8393e6d993646445caabccbf03812f553b24c8752c66eb1c9526b458f4`; see [original-host reconstruction SFT](../sims/lp2_2016_infotomb_capture_envelope_sft.cjs) and [archived raw responses, run 44939817654](https://github.com/FlareZ123/liber-primus/actions/runs/44940185981/artifacts/14721027998).
 
 ### Independent January 2016 repost carrier, byte-variant positive (17 November 2026)
 
