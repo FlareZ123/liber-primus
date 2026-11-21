@@ -228,3 +228,22 @@ console.log(JSON.stringify({test:"p7 quartic convolution plus p8 red cube/root",
  quartic,sourceBlackRunes:black.length,recoveredUnknownPlaintext:false,
  exactOriginalReplays:4,exactNativePlantedRecoveries:4,
  composedResults},null,2));
+
+
+/**
+ * Physical boundary rival: the red 12-rune p8 header may supply metadata
+ * and the key clock might start at the first BLACK rune rather than at the
+ * chapter's first RED rune. Hold the six-cycle and all maps exactly fixed.
+ */
+const blackClockResults=maps.map(mapping=>{
+  const decoded=apply(black,mapping,"de");
+  assert.deepEqual(apply(decoded,mapping,"en"),black);
+  assert.deepEqual(apply(apply(native,mapping,"en"),mapping,"de"),native);
+  return {map:mapping.name,ioc:ioc(decoded),
+    first75:spell(decoded.slice(0,75))};
+});
+assert(blackClockResults.every(x=>x.ioc<.037));
+console.log(JSON.stringify({test:"p8 black-body natural source clock",
+ originalBlackRunes:243,firstBlackRuneIndex:12,
+ sourceCycle:orbit,exactReplays:10,nativePlants:10,
+ recoveredUnknownPlaintext:false,blackClockResults},null,2));
