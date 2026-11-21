@@ -141,16 +141,11 @@ function main() {
   assert.ok(observed.rate < 0.04, 'observed original unexpectedly concentrated; re-examine hypothesis');
 
   console.log('LP2 page-position shared-bijection source gate: PASS');
-  console.log('Original: rune-bearing pages=%d, same-position rune pairs=%d/%d, rate=%.8f',
-    pages.length, observed.matches, observed.pairs, observed.rate);
-  console.log('Circular-shift null (1000): mean=%.8f sd=%.8f upper-tail=%.5f',
-    globalMean, globalSd, globalUpper);
-  console.log('Max among %d page pairs (overlap >=200): p%d/p%d, %d/%d, z=%.4f',
-    pairTests.length, selected.pages[0], selected.pages[1], selected.matches, selected.n, selected.z);
-  console.log('Full-family circular-shift null (400): mean=%.4f upper-tail=%.5f',
-    average(maxPairNull), pairUpper);
-  console.log('p57-distribution common-pad positive control: %.8f (original %.8f)',
-    positive.rate, observed.rate);
+  console.log(`Original: rune-bearing pages=${pages.length}, same-position rune pairs=${observed.matches}/${observed.pairs}, rate=${observed.rate.toFixed(8)}`);
+  console.log(`Circular-shift null (1000): mean=${globalMean.toFixed(8)} sd=${globalSd.toFixed(8)} upper-tail=${globalUpper.toFixed(5)}`);
+  console.log(`Max among ${pairTests.length} page pairs (overlap >=200): p${selected.pages[0]}/p${selected.pages[1]}, ${selected.matches}/${selected.n}, z=${selected.z.toFixed(4)}`);
+  console.log(`Full-family circular-shift null (400): mean=${average(maxPairNull).toFixed(4)} upper-tail=${pairUpper.toFixed(5)}`);
+  console.log(`p57-distribution common-pad positive control: ${positive.rate.toFixed(8)} (original ${observed.rate.toFixed(8)})`);
   console.log('Scope: no evidence for one common page-position bijective pad across all pages;');
   console.log('this does not exclude different keys on different pages or nonbijective stateful ciphers.');
 }
