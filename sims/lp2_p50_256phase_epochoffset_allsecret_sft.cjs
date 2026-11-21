@@ -57,19 +57,37 @@ if (wordLength) wordLengths.push(wordLength);
 assert.equal(wordLengths.length, 2896);
 assert.equal(wordLengths.reduce((sum, n) => sum + n, 0), cipher.length);
 
+// The stronger model grants an independent additional GP29 offset at
+// every printed word, on top of its 256-phase and 256-epoch shifts.
+const samePrintedWord = new Uint8Array(cipher.length);
+const wordIdAt = new Uint16Array(cipher.length);
+let wordStart = 0;
+wordLengths.forEach((length, wordId) => {
+  for (let i = 0; i < length; i++) {
+    wordIdAt[wordStart + i] = wordId;
+    if (i > 0) samePrintedWord[wordStart + i] = 1;
+  }
+  wordStart += length;
+});
+assert.equal(wordStart, cipher.length);
+
 /**
  * Count across-cycle equality of adjacent-rune increments at each fixed
  * phase. This value is EXACTLY invariant under every choice of 256
  * phase-specific additive keys and every choice of 51 epoch shifts.
  * @param {number[]} sequence
- * @returns {{equal:number,pairs:number,normalized:number}}
+ * @param {boolean} wordOffsets  Cancel independently secret word offsets.
+ * @returns {{equal:number,pairs:number,normalized:number,edges:number}}
  */
-function deltaCoincidence(sequence) {
+function deltaCoincidence(sequence, wordOffsets = false) {
   assert.equal(sequence.length, cipher.length);
   const bins = Array.from({ length: 255 }, () => new Uint16Array(29));
+  let edges = 0;
   for (let i = 1; i < sequence.length; i++) {
     const phase = (i - 1) & 255;
-    if (phase === 255 || !samePhysicalPage[i]) continue;
+    if (phase === 255 || !samePhysicalPage[i] ||
+        (wordOffsets && !samePrintedWord[i])) continue;
+    edges++;
     const delta = (sequence[i] - sequence[i - 1] + 29) % 29;
     bins[phase][delta]++;
   }
@@ -83,13 +101,18 @@ function deltaCoincidence(sequence) {
     }
     pairs += n * (n - 1) / 2;
   }
-  return { equal, pairs, normalized: 29 * equal / pairs };
+  return { equal, pairs, normalized: 29 * equal / pairs, edges };
 }
 
 const actual = deltaCoincidence(cipher);
 assert.equal(actual.equal, 11301);
 assert.equal(actual.pairs, 317458);
-console.log('original exact all-secret invariant', actual);
+const actualWord = deltaCoincidence(cipher, true);
+assert.equal(actualWord.equal, 6870);
+assert.equal(actualWord.pairs, 191774);
+assert.equal(actualWord.edges, 9990);
+console.log('original 256phase+51epoch exact all-secret invariant', actual);
+console.log('original 256phase+51epoch+2896words exact all-secret invariant', actualWord);
 
 const gp = new Map(corpus.translit.map((glyph, i) => [glyph, i]));
 const digraphs = new Set(['TH', 'EO', 'NG', 'OE', 'AE', 'IA', 'EA']);
@@ -170,9 +193,14 @@ for (const file of sourceFiles) {
   let maximum = -Infinity;
   let sum = 0;
   let lower = 0;
+  let wordMinimum = Infinity;
+  let wordMaximum = -Infinity;
+  let wordSum = 0;
+  let wordLower = 0;
   for (let i = 0; i < 250; i++) {
     const sample = drawEnglish(words);
     const observed = deltaCoincidence(sample);
+    const observedWord = deltaCoincidence(sample, true);
     if (i === 0) {
       // Independent secret keys and cycle offsets leave this invariant
       // unchanged even though ciphertext and plaintext look different.
@@ -180,18 +208,30 @@ for (const file of sourceFiles) {
         (p + (37 * (index & 255) + 3) % 29
            + (17 * Math.floor(index / 256) + 2) % 29) % 29);
       assert.deepEqual(deltaCoincidence(plant), observed);
+      const wordPlant = sample.map((p, index) =>
+        (plant[index] + (11 * wordIdAt[index] + 5) % 29) % 29);
+      assert.deepEqual(deltaCoincidence(wordPlant, true), observedWord);
     }
     minimum = Math.min(minimum, observed.normalized);
     maximum = Math.max(maximum, observed.normalized);
     sum += observed.normalized;
     if (observed.normalized <= actual.normalized) lower++;
+    wordMinimum = Math.min(wordMinimum, observedWord.normalized);
+    wordMaximum = Math.max(wordMaximum, observedWord.normalized);
+    wordSum += observedWord.normalized;
+    if (observedWord.normalized <= actualWord.normalized) wordLower++;
   }
   assert.equal(lower, 0);
   assert.ok(minimum > actual.normalized);
+  assert.equal(wordLower, 0);
+  assert.ok(wordMinimum > actualWord.normalized);
   console.log(JSON.stringify({
-    corpus: file, samples: 250, mean: sum / 250,
-    minimum, maximum, atOrBelowOriginal: lower,
-    original: actual.normalized
+    corpus: file, samples: 250,
+    epochOnly: { mean: sum / 250, minimum, maximum,
+      atOrBelowOriginal: lower, original: actual.normalized },
+    epochPlusWord: { mean: wordSum / 250, minimum: wordMinimum,
+      maximum: wordMaximum, atOrBelowOriginal: wordLower,
+      original: actualWord.normalized }
   }));
 }
-console.log('PASS: 750/750 source-native word-shape controls exceed the source-exact original invariant.');
+console.log('PASS: both all-secret invariants, 750/750 source-native word-shape controls, two positive plants.');
