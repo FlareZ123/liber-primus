@@ -170,7 +170,7 @@ At the 05:53Z live check there are **15 open director-task issues**: **8 unclaim
 
 - **#2021:** exact pre-2014 source/caption for the p27 wing; test only an authored interior-face order.
 - **#2022:** exact source of the p32 tree; no inferred 11×11 grid or repeated topology search.
-- **#2023:** exact source of the p14 cicada/tree illustration; a source-authored biological stage/traversal is required.
+- **#2023/#2033:** p8–p14 reuse a rooted-stalk drawing in alternating left/right positions; the literal stalk-side line-reading rule gives no native-language 40-rune window or source-selected receiver. The drawing moves rather than mirrors. The p14 insect's exact historical source and any authored biological stage remain open. [Source and reading gate](../im-results/lp2-p14-mayfly-root-stalk-source-gate.md).
 - **#2024:** exact source/script for the p33–p39 cuneiform-like motif; no generic transliteration menu.
 - **#2025:** exact historical construction of the p15 4×4 matrix; no repeated Hill search.
 - **#2026:** exact source/orientation for the p22 square; no radix or receiver fitting.
