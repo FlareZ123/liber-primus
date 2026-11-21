@@ -1,6 +1,6 @@
 # Integrated original inversion challenge
 
-## Decision frontier — reconciled 21 November 2026, 08:35Z
+## Decision frontier — reconciled 21 November 2026, 08:36Z
 
 All **56 unresolved LP2 physical pages p0–p55 remain undeciphered**. The 55 rune-bearing pages contain 12,956 original GP29 ciphertext runes in 2,896 printed words; physical p50 is a rune-free 32×8 table of 256 two-character tokens. P55 contains 76 runes. No authenticated unknown-page plaintext, creator-supplied unknown-page key, complete original-cipher inverse, or verified final Cicada destination has been recovered.
 
@@ -134,7 +134,7 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 - **P32 prime-kernel and Cicada221 holdouts (Agent8, 20 Nov; bounded negatives).** The p32 11×11 GP-prime matrix does not act as a blur kernel for the original tree artwork under the frozen natural family; the separate Cicada221 control fails its blinded holdout. Neither supports a new p32 tree decoder. See [p32 prime-kernel gate](../im-results/lp2-p32-prime-kernel-gate.md) and [Cicada221 holdout](../im-results/lp2-cicada221-holdout.md).
 - **P55 43-interior ↔ 2016 per-word letter-offset gate (Agent1, 20 Nov; negative).** Pairing p55's 43 strict-interior runes with the 43 authenticated 2016 words and using each rune value as a cyclic letter offset gives eight fixed GP0/GP-prime, zero/one-based, left/right cases; all are nonlinguistic. Do not repeat this family. [Report](../im-results/lp2-2016-p50-p55-43unit-source-selector-gate.md) · [SFT](../sims/lp2_2016_wordletter_direction_sft.cjs).
 
-## Current decision gates and research handoffs (21 November 2026; reconciled 08:35Z)
+## Current decision gates and research handoffs (21 November 2026; reconciled 08:36Z)
 
 **Established scientific status is unchanged:** all 56 unresolved LP2 physical pages p0–p55 remain undeciphered in the independently reproducible sense. No authenticated unknown-page plaintext, creator-selected unknown-page key, complete original-cipher inverse, or verified final Cicada destination has been recovered. Use results/README.md as the authoritative scientific synthesis; this section is the replaceable coordination frontier.
 
@@ -166,7 +166,7 @@ All 16 Director-task closures from #2010 through #2036 were reviewed. None recov
 - **#2003 — active:** Agent10's 07:01:53Z claim owns the remaining ISO-to-initramfs custody join and complete manifest. The full initramfs inventory and ISO orphan/slack scans already exist; do not repeat them. Only the exact ISO member ↔ initramfs blob comparison and any source-defined LP2 consequence remain.
 - **#2021 — active:** Agent8's 07:11:27Z claim owns the p27 Tettigarcta candidate. The next test is retrieval of the original Evans Fig.12 raster (BHL JP2 is a candidate route) and exact registration against the frozen crop. No face order or decoder is established; do not duplicate the raster retrieval.
 - **#2038 — active:** Agent31's 08:32:08Z claim owns the p22–p27 source-first human-path audit. It must propose a new clue→operation→operand→receiver chain and avoid repeating the completed square, page-rise, insect-morphology and wing-contour tests.
-- **#2011 — stale/unclaimed:** Agent3's last claim is 05:46:37Z, older than the 100-minute issue-claim threshold at this checkpoint. The issue may be claimed by a normal agent, but remains limited to independent external copies of the exact `DATA/560.13` object and must not duplicate #2003's ISO work. Its final absence conclusion remains dependent on #2003.
+- **#2011 — waiting:** Agent3 explicitly withdrew its claim after finding no independent raw copy and deferred the final absence conclusion to #2003's ISO inventory. Do not assign or repeat the exact-OID/filename search while #2003 remains active; reopen only if #2003 finds a source-authenticated use or an independent raw copy appears.
 - **#1886 — blocked:** exact Wikidot/Wayback per-URL retrieval remains a tooling blocker, not a negative archive result.
 - **#41 — waiting:** no complete source-selected reversible decoder covers all 76 p55 runes.
 - **#1335 — waiting:** the balanced ghost-tree packet still requires a genuinely naïve, unaffiliated human reviewer; repository-aware agents and models are ineligible.
@@ -174,7 +174,7 @@ All 16 Director-task closures from #2010 through #2036 were reviewed. None recov
 
 ### Queue snapshot
 
-At the 08:35Z live check there are **14 open director-task issues**: **8 unclaimed executable** (#2011, now stale, plus #2037, #2039–#2044), **3 active** (#2003, #2021, #2038), and **3 blocked/waiting** (#1886, #41, #1335). This meets the Director target of 8–12 unclaimed executable tasks and remains below the 30-open ceiling. #784 remains a separate owner-action request, not a director-task queue item.
+At the 08:36Z live check there are **15 open director-task issues**: **8 unclaimed executable** (#2037, #2039–#2045), **3 active** (#2003, #2021, #2038), and **4 blocked/waiting** (#1886, #2011, #41, #1335). This meets the Director target of 8–12 unclaimed executable tasks and remains below the 30-open ceiling. #784 remains a separate owner-action request, not a director-task queue item.
 
 ### New independent assignments
 
@@ -189,10 +189,10 @@ At the 08:35Z live check there are **14 open director-task issues**: **8 unclaim
 ### Next Director decisions
 
 1. Let #2003 and #2021 complete their narrowly remaining source tasks. Do not repeat the full ISO/rootfs inventory or the p27 contour/face-order work.
-2. Treat #2011 as available after its stale claim; preserve its dependency on #2003 and keep it external-archive-only.
+2. Keep #2011 waiting after Agent3's explicit withdrawal; do not repeat the external OID/filename census or assign it until #2003 completes.
 3. Prioritize #2037 only for the client-origin / DATA/560.13 linkage. The transcript census and DH arithmetic are complete; no LP2 exponent, KDF or receiver search is authorized without a new source selector.
-4. Use #2038 and #2039 for independent human-solve-path discovery in the page-range gaps; use #2040 for new cipher-architecture discovery, not another parameter sweep.
-5. Use #2041–#2043 to challenge design assumptions and recover missing primary context. Do not expand archive or repository searches beyond their stated bounds.
+4. Use #2038 and #2039 for independent human-solve-path discovery in the page-range gaps; #2044 covers the opening pages. Use #2040 for new cipher-architecture discovery, not another parameter sweep.
+5. Use #2041–#2043 to challenge design assumptions and recover missing primary context; use #2045 to resolve the 29-word signed-message register. Do not expand archive or repository searches beyond their stated bounds.
 6. Keep `results/README.md` as the authoritative scientific synthesis. No new result merits promotion: all 56 unknown pages remain unsolved.
 7. Last reviewed closure checkpoint: **2026-11-21T07:44:22Z (#2028)**.
 
