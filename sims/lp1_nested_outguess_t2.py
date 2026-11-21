@@ -29,6 +29,8 @@ from pathlib import Path
 EXPECTED_PAGE03_GIT_BLOB_SHA1 = "2a355d1bf14d37041384f09d8700e2ee274a13e6"
 EXPECTED_T2_SEED = 38370
 EXPECTED_T2_LENGTH = 7524
+JPEG_SOI = bytes([0xFF, 0xD8])
+JPEG_EOI = bytes([0xFF, 0xD9])
 
 
 def sha256(data: bytes) -> str:
@@ -36,7 +38,7 @@ def sha256(data: bytes) -> str:
 
 
 def git_blob_sha1(data: bytes) -> str:
-    header = f"blob {len(data)}\\0".encode("ascii")
+    header = ("blob " + str(len(data)) + chr(0)).encode("ascii")
     return hashlib.sha1(header + data).hexdigest()
 
 
@@ -76,14 +78,14 @@ def extract_embedded_jpeg(source: Path, destination: Path) -> bytes:
     if len(hex_text) % 2:
         raise RuntimeError(f"Odd-length JPEG hex payload: {len(hex_text)}")
     image = bytes.fromhex(hex_text)
-    if not image.startswith(b"\\xff\\xd8") or not image.endswith(b"\\xff\\xd9"):
+    if not image.startswith(JPEG_SOI) or not image.endswith(JPEG_EOI):
         raise RuntimeError("Extracted bytes do not have JPEG SOI/EOI markers")
     destination.write_bytes(image)
     return image
 
 
 def parse_seed_length(log: str) -> tuple[int | None, int | None]:
-    match = re.search(r"seed\\s*:\\s*(\\d+)\\s*,\\s*len\\s*:\\s*(\\d+)", log, re.IGNORECASE)
+    match = re.search(r"seed\s*:\s*(\d+)\s*,\s*len\s*:\s*(\d+)", log, re.IGNORECASE)
     return (int(match.group(1)), int(match.group(2))) if match else (None, None)
 
 
@@ -131,8 +133,8 @@ def main() -> None:
             "path": hidden_jpeg.name,
             "length": len(jpeg_bytes),
             "sha256": sha256(jpeg_bytes),
-            "starts_jpeg": jpeg_bytes.startswith(b"\\xff\\xd8"),
-            "ends_jpeg": jpeg_bytes.endswith(b"\\xff\\xd9"),
+            "starts_jpeg": jpeg_bytes.startswith(JPEG_SOI),
+            "ends_jpeg": jpeg_bytes.endswith(JPEG_EOI),
         },
         "T2": {
             "path": t2_path.name,
@@ -150,7 +152,7 @@ def main() -> None:
             ),
         },
     }
-    (out_dir / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\\n", encoding="utf-8")
+    (out_dir / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
     print(json.dumps(manifest, indent=2))
 
 
