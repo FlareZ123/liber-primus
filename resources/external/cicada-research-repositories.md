@@ -2,6 +2,19 @@
 
 These are useful independent research and historical references. They are not authoritative proof of an LP2 solution; preserve the distinction between archived facts, community transcription, simulations, and hypotheses.
 
+## micheloosterhof/cicada-2014 (contemporaneous 2014 participant archive)
+
+Repository: https://github.com/micheloosterhof/cicada-2014
+
+The pinned 13 February 2014 commit (https://github.com/micheloosterhof/cicada-2014/commit/2547f5f08f06f8f514329c5d533b0a99968e365e), authored by micheloosterhof, contains the first 2014 onion service's root page and linked image under stage2/:
+
+- Root HTML: https://github.com/micheloosterhof/cicada-2014/blob/2547f5f08f06f8f514329c5d533b0a99968e365e/stage2/index.html — 104 bytes, Git blob SHA-1 807541d764ed33c976717b7ee2d08ac0720ce56b; title “For Every Thing That Lives Is Holy,” with an image link to 1033.jpg.
+- Linked image: https://github.com/micheloosterhof/cicada-2014/blob/2547f5f08f06f8f514329c5d533b0a99968e365e/stage2/1033.jpg — 342,361 bytes, Git blob SHA-1 90d04bc54e9a35e3171a92386b5932a2dfb8e98f. The SHA-256 recorded for the same blob in the Dukotah mirror manifest is 15b2b99fe15ff34ef3eab574bb84bfaad0a119674be2ca5baf65951e6a9bd865.
+- Stage 2 README: https://github.com/micheloosterhof/cicada-2014/blob/2547f5f08f06f8f514329c5d533b0a99968e365e/stage2/README.md — directs solvers to fetch http://auqgnxjtvdbll3pv.onion/ and /1033.jpg, run OutGuess, verify the PGP signature, then decrypt the RSA message.
+- Preserved OutGuess output: https://github.com/micheloosterhof/cicada-2014/blob/2547f5f08f06f8f514329c5d533b0a99968e365e/stage2/1033.jpg.outguess — 1,498-byte signed RSA-OAEP challenge, Git blob SHA-1 cd529671eac6458a790f047d23895af264b11751; byte-identical to the signed 1033.jpg.asc in the pinned neuroretransmit archive: https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/002-first-onion/1033.jpg.asc.
+
+The root HTML and image blob IDs also match the later iBotPeaches onion snapshot (https://github.com/iBotPeaches/cicada_3301/tree/09a6fa4848e5943dbb48c738584f2ec8442ec2a4/onions/auqgnxjtvdbll3pv.onion/post) and krisyotam mirror (https://github.com/krisyotam/cicada3301/tree/76d3ee8c762f60025822c8c05edbf31351636469/puzzles/2014/assets/stage02/auqgnxjtvdbll3pv.onion). These are byte-identity corroboration, not independent custody. Treat the 2014 GitHub snapshot as a contemporaneous participant archive: it proves the files were present by that commit, but preserves neither HTTP response headers nor a Cicada-signed HTML response.
+
 ## pnotisdev/cicada3301
 
 Repository: https://github.com/pnotisdev/cicada3301

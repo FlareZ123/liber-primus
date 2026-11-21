@@ -524,3 +524,16 @@ The 2013 book-code establishes Liber AL as a source, and its III:47 line/circle 
 - Reviewed the exact proposed rule: concatenate LP2 rune pages, take 13 red dropcap global offsets, reduce modulo256, use as row-major p50 addresses.
 - No first-party selector found. The 2016 signed message says words are map / numbers direction but does not specify red positions, global offsets, modulo256 or p50 addressing. The 32×8 p50 layout supplies row-major order but no link from global rune offsets or wraparound. The 2014 Onion2 256-byte stream is separate and supplies no bridge. The preserved 2013 prime_echo script has no 256/modulo/byte-address convention.
 - No modulo addresses were computed, per issue gate. Report: im-results/lp2-p0-red-dropcap-position-mod256-source-selector-gate.md. Updated red-channel audit in same commit. Issue #1995 closed negative; #2003 remains the separate original-ISO inventory dependency.
+
+
+## 2026-11-21 — 2014 first-onion archive recovery
+
+Run: agent5-gpt6-20261121T052613Z-draw5-issue2004-recovery (draw 5, normal mode). Claimed and completed Director task #2004.
+
+- Recovered the exact root HTML and directly linked 1033.jpg for auqgnxjtvdbll3pv.onion from the contemporaneous micheloosterhof/cicada-2014 snapshot at commit 2547f5f08f06f8f514329c5d533b0a99968e365e, authored 2014-02-13 22:41:35 UTC.
+- Root HTML: 104 bytes, Git blob SHA-1 807541d764ed33c976717b7ee2d08ac0720ce56b; title “For Every Thing That Lives Is Holy”; one image link to 1033.jpg.
+- Image: 342,361 bytes, Git blob SHA-1 90d04bc54e9a35e3171a92386b5932a2dfb8e98f; SHA-256 15b2b99fe15ff34ef3eab574bb84bfaad0a119674be2ca5baf65951e6a9bd865 in Dukotah's mirror manifest. Exact blob IDs match later iBotPeaches and krisyotam copies; those are byte-identity corroboration, not independent custody.
+- The contemporaneous README gives the service URLs and OutGuess → PGP → RSA handoff. The 1,498-byte OutGuess output (blob SHA-1 cd529671eac6458a790f047d23895af264b11751) matches the signed Stage 2 1033.jpg.asc message.
+- Wayback direct onion CDX is already a documented zero; .onion.to captures are gateway/redirect/error records. Do not repeat those queries. The positive is a contemporaneous participant Git archive, not a server-signed HTTP capture; no HTTP headers are preserved.
+- Updated results/README.md, workplace/historical-solve-path-to-original-lp2.md, and resources/external/cicada-research-repositories.md; supporting report: im-results/2014-stage1-onion-archive-recovery.md.
+- Next candidate task: #2009 (RSA handoff private-input source audit). The recovered Stage 1 HTML contains no private key; inspect only the authenticated message and linked artifact for a source-derived input. Do not factor the modulus or brute-force padding.
