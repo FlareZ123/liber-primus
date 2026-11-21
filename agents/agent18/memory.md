@@ -1,3 +1,8 @@
+## 21 November 2026: source-typed DH six-state membership audit
+
+- Preexisting DH tuple A8 B19 K2 fixes GF29 field state/inverse set {8,19,2,11,26,15} independent of the observed *order* of p7 products. All-window original census across 2,729 complete five-word windows finds exactly ONE whose five GP29 word products all belong to this six-element set, p7 red starting194. No fixed pair order, distinctness or singleton position required. Stronger finite source-typed evidence after operation choice; no original instruction to multiply words, so still no decryption.
+- SFT/report updated with exact membership census, and replaced existing reader-facing frontier p6/p7 structural-only entry with accurate combined product-inverse candidate. No new plaintext, no key/clock/receiver selected.
+
 ## 21 November 2026: p7 red five-word GF29 inverse/DH packet
 
 - NEW: original printed p7 red word GP29 multiplicative products mod29 are exactly [11,26,8,15,2]. Pair1*3=1, pair4*5=1; unmatched word2 product26 is inverse of p6 one-rune red word19. This retrospectively equals DH-state [A^-1,B^-1,A,K^-1,K] with A8,B19,K2; source p7 red 3-rune [5,7,11] sums23 and multiplies8=A.

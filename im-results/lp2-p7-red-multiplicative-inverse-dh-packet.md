@@ -24,6 +24,12 @@ The independently established signed 2013 DH worked example is `p=23,g=5,a=6,b=1
 
 This is substantially more algebraically organized than the previously observed p6/p7 **equal sums across reversed word lengths**: the five p7 words admit two internal multiplicative inverse pairs and a third inverse linked to the p6 singleton.
 
+## First-party DH-state family without choosing inverse pairing positions
+
+The independently authenticated `(A,B,K)=(8,19,2)` also fixes the six-member modular state/inverse set **S = {A,B,K,A^-1,B^-1,K^-1} = {8,19,2,11,26,15}** in GF29. This is a more conservative finite selector than choosing the exact observed p7 pair positions: count **every five-consecutive-word window** whose **all five printed-word GP29 products** lie anywhere in S, allowing repeats, any order and either member of each inverse pair. Among the **2,729** original complete-page windows, **exactly one** qualifies: the p7 red five-word run with products [11,26,8,15,2]. Its values are five different members of S (missing only B=19), and its inverse partners come from p7 itself and p6's independent singleton19.
+
+This is a **source-typed uniqueness result conditional on first using GF29 word multiplication**. The DH23 values were known before this test, but the choice to multiply printed words modulo29 arose after observing the p6/p7 boundary. Therefore the all-window count does not establish the original authors intended multiplication. It does, however, show that the full five-product DH-state alignment is absent from every other original five-word window even without fixing its order or selecting the inverse-pair arrangement.
+
 ## Source-population and multiple-comparison control
 
 All **2,729** five-consecutive-printed-word windows within physical pages p0–p55 were parsed from the canonical rune transcription, preserving original separators. Under the **observed fixed** pairing positions `(word1,word3)` and `(word4,word5)`, exactly **one** window satisfies both GF29 reciprocal equations, p7's red colophon.

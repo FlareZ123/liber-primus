@@ -82,6 +82,21 @@ const p = 23, g = 5, a = 6, b = 15;
 const A = powmod(g, a, p), B = powmod(g, b, p), K = powmod(B, a, p);
 assert.deepEqual([A,B,K], [8,19,2]);
 assert.deepEqual(products, [inverse(A), inverse(B), A, inverse(K), K]);
+const allWords = Array.from({ length: 56 }, (_, page) => wordsOnPage(page));
+const dhStates = new Set([A,B,K,inverse(A),inverse(B),inverse(K)]);
+assert.deepEqual([...dhStates].sort((x,y)=>x-y), [2,8,11,15,19,26]);
+const dhStateWindows = [];
+for (let page = 0; page < 56; page++) {
+  const list = allWords[page];
+  for (let j = 0; j + 5 <= list.length; j++) {
+    const values = list.slice(j, j+5).map(w => w.gpProduct);
+    if (values.every(v => dhStates.has(v)))
+      dhStateWindows.push({ page, start:list[j].start, products:values });
+  }
+}
+assert.deepEqual(dhStateWindows,
+  [{page:7,start:194,products:[11,26,8,15,2]}]);
+
 
 // Five positions yield 5 choices of unpaired singleton and 3 pairings of
 // the remaining four: charge all 15 possible two-disjoint-inverse matches.
@@ -94,7 +109,7 @@ for (let singleton = 0; singleton < 5; singleton++) {
   }
 }
 assert.equal(pairings.length, 15);
-const allWords = Array.from({ length: 56 }, (_, page) => wordsOnPage(page));
+
 const matches = [], fixed = [];
 let windows = 0;
 for (let page = 0; page <= 55; page++) {
@@ -164,7 +179,7 @@ console.log(JSON.stringify({
     externalInverseWord: "p6 red singleton 19" },
   dh23: {p,g,a,b,A,B,K, inversePacket:products},
   originalCorpusControls: {windows, fixedPairMatches:fixed,
-    all15Matchings:matches.length, labeledMatchingPairings:
+    dhStateMembershipWindows:dhStateWindows, all15Matchings:matches.length, labeledMatchingPairings:
     matches.reduce((n,x)=>n+x.count,0), withP6SingletonInverse:
     matches.filter(x=>x.singleton26), spansWithFiveWords:redSpanFiveCount},
   failedFixedConsumers: {
