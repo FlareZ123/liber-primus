@@ -120,6 +120,78 @@ function planted(mode) {
     return (7*a+11*b+3*d+15*e+a*b+d*e+5)%29;
   });
 }
+/**
+ * Exact all-secret search over EVERY consecutive five-cell omission.
+ * For a gap after g surviving runes, target rune j maps to slot
+ * j (j<g), or slot j+5 (j>=g). Increasing g by one moves precisely
+ * target[g] between two source contexts. This makes all 6396 gap
+ * positions testable without 6396 full histogram rescans.
+ *
+ * @param {number[]} surviving 6395 original rune outcomes
+ * @param {number} mode dihedral neighborhood orientation
+ */
+function allConsecutiveGaps(surviving,mode) {
+  assert.equal(surviving.length,6395);
+  const contexts=Array.from({length:6400},(_,i)=>{
+    const [r,c]=orient(Math.floor(i/80),i%80,mode);
+    return keyOf(neighborhood(r,c));
+  });
+  const hist=new Map();
+  for(const key of contexts) if(!hist.has(key))
+    hist.set(key,new Uint16Array(29));
+  // Gap at output slots 0–4; all original surviving outcomes shifted +5.
+  for(let j=0;j<surviving.length;j++)
+    hist.get(contexts[j+5])[surviving[j]]++;
+  const dominant=row=>Math.max(...row);
+  let bestMatches=0;
+  for(const row of hist.values()) bestMatches+=dominant(row);
+  let currentMatches=bestMatches;
+  let bestAfter=0, ties=1;
+  let scans=1;
+  let bestErrors=surviving.length-bestMatches;
+  // Move one survivor into the newly exposed slot at each step.
+  for(let j=0;j<surviving.length;j++){
+    const oldContext=contexts[j+5],newContext=contexts[j];
+    if(oldContext!==newContext){
+      const previous=hist.get(oldContext);
+      const next=hist.get(newContext);
+      const oldMax=dominant(previous)+dominant(next);
+      const symbol=surviving[j];
+      assert(previous[symbol]>0);
+      previous[symbol]--;
+      next[symbol]++;
+      currentMatches+=dominant(previous)+dominant(next)-oldMax;
+    }
+    scans++;
+    const errors=surviving.length-currentMatches;
+    if(errors<bestErrors){
+      bestErrors=errors;
+      bestAfter=j+1;
+      ties=1;
+    }else if(errors===bestErrors)ties++;
+  }
+  assert.equal(scans,6396);
+  return {mode,scans,bestGapAfterSurvivor:bestAfter,
+    tiedBestGaps:ties,minForcedEdits:bestErrors};
+}
+const fullGap=Array.from({length:8},(_,mode)=>
+  allConsecutiveGaps(tail,mode));
+const positiveGapAt=1307;
+const positiveFull=planted(5);
+const positiveTail=positiveFull.filter((_,i)=>
+  i<positiveGapAt || i>=positiveGapAt+5);
+const positiveGap=allConsecutiveGaps(positiveTail,5);
+assert.equal(positiveTail.length,6395);
+assert.equal(positiveGap.minForcedEdits,0);
+const explicitPositive=Array.from({length:6400},(_,i)=>{
+  if(i>=positiveGapAt && i<positiveGapAt+5)return null;
+  return positiveTail[i<positiveGapAt ? i : i-5];
+});
+assert.equal(fit(explicitPositive,5).forcedEdits,0);
+console.log("ALL 8×6396 ORIGINAL GAP POSITIONS " +
+  JSON.stringify(fullGap));
+console.log("PLANT EXACT 1307-gap test "+JSON.stringify(positiveGap));
+
 const plant=planted(5);
 const pfull=fit(plant,5);
 assert.equal(pfull.forcedEdits,0);
@@ -145,6 +217,7 @@ console.log(JSON.stringify({
   terminalFiveKnownP56:direct,
   terminalFiveCompletelyFree:terminalFree,
   ordinalFiveHoles:ordinal,
-  plantedPositive:{terminal:pfull,ordinal:pholes},
-  verdict:"Neither original five-slot completion, including absolutely free appended symbols, can be emitted by a stationary unrestricted two-by-two source neighborhood function, under any of eight orientations. No plaintext recovered."
+  plantedPositive:{terminal:pfull,ordinal:pholes,allGap:positiveGap},
+  arbitraryContiguousFiveErasures:fullGap,
+  verdict:"Neither fixed source-selected five-slot completion, including absolutely free appended symbols, can be emitted by a stationary unrestricted two-by-two source neighborhood function, under any of eight orientations. No plaintext recovered."
 },null,2));
