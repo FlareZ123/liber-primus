@@ -1,48 +1,72 @@
-# P50 table key plus arbitrary secret 256-cycle shifts: keyless original-cipher obstruction
+# P50 256-phase mask with arbitrary secret cycle and printed-word shifts: keyless original-cipher obstruction
 
-**Agent46, 21 November 2026. Original source; bounded negative.** The 256-cell table can suggest a long-running source key, but the original unknown LP2 ciphertext fails a test of a substantially more permissive additive family than a naked 256-rune repeating pad. **No key, plaintext, or intended historical operation is claimed.** This report supplies an operationally relevant new exclusion without repeating static 256-phase screens.
+**Agent46, 21 November 2026. Classification: bounded original-cipher negative, including a stronger printed-word extension.** The 256-cell table might be a repeating source key whose phase values are combined with secret, changing additive offsets. Two independent key-free original-input invariants now exclude both a 307-value epoch model and a stronger **3,203-value epoch-plus-word model** for unchanged-source-word GP29 English. Neither operation is a Cicada-authored key schedule. No recovered unknown-page plaintext, key or destination follows.
 
-## The finite source-motivated architecture
+## Why this exact family
 
-The original pp49–51 numeric field is printed as **32×8 = 256 cells**. An important alternative to already-excluded static 256-phase pads is to reuse an arbitrary unknown 256-symbol phase key but rekey with one freely secret offset every 256 original runes:
+Physical LP2 pp49–51 print **32 rows × 8 cells = 256 two-character numeral tokens**. The source-visible global rune clock has 50 complete 256-rune cycles and one final partial cycle across the 12,956 original unknown GP29 runes. A basic repeating 256-phase additive mask was already contradicted. A plausible escape is to combine an unknown phase pad with an **independent unknown shift** each time the 256-cell table resets, and optionally a further unknown shift each time a printed original word begins.
 
-`C[i] = (P[i] + K[i mod 256] + L[floor(i/256)]) mod 29`.
+The two nested models are:
 
-Here all **256** values of `K` and all **51** values of `L` are unconstrained **secret** GP29 residues. This includes all original p0–55 runes, the 55 original rune-bearing pages, and each of the 50 complete plus one partial 256-position cycles. The test permits any values in the actual table to select `K`, but does not assume the original tokens' base59/base60 codec, their numeric order, or an independently authenticated key. The phase-zero continuous clock is the empirical p50 reading selected in existing #1528; no new phase is fitted.
+```text
+A: C[i] = (P[i] + K[i mod 256] + L[floor(i/256)]) mod 29
+B: C[i] = (P[i] + K[i mod 256] + L[floor(i/256)] + U[word(i)]) mod 29
+```
 
-This two-factor model escapes the earlier all-secret static-256-phase collision bound: ciphertext at the same table phase changes by the unknown cycle offset `L`. A suitable invariant must eliminate **both** secret factors.
+**All** 256 values of `K`, **all** 51 values of `L`, and in B **all** 2,896 values of `U` are secret and unconstrained. The models retain the printed rune order and word boundaries. Neither p50 radix59/base60 uncertainty nor any cipher-key search can affect the necessary condition below. Models A and B encompass every possible selection of secret additive values with these public clocks; they do not encompass stateful nonlinear encryption or a distinct additive key per rune.
 
-## Key-independent invariant that survives 307 freely chosen residues
+The weakest premise is still a hypothesis: the 2016 signed source says the book's numbers are the direction but does **not** prescribe summing GP29 offsets at table phases, cycle ends, or printed-word boundaries.
 
-At every source-valid adjacent ciphertext pair inside one 256-position cycle, define `D[i] = (C[i+1] - C[i]) mod 29`. For `j=i mod256` with `0 <= j < 255`, we have
+## Exact cancellation of the unknown keys
 
-`D[256r+j] = (P[256r+j+1] - P[256r+j]) + (K[j+1] - K[j]) mod29`.
+Consider a same-page source rune pair `i,i+1` wholly inside one 256-position cycle. With `j=i mod 256<255`, its difference is
 
-**The unknown cycle offset cancels exactly.** For a fixed phase `j`, the remaining additive constant `K[j+1]-K[j]` is the same in every cycle. Thus the equality pattern of all `D` values with the same phase is invariant under **every** possible `K` and `L`. The 256th transition of each cycle is excluded because it crosses the unknown offset; the 54 original adjacent physical-page transitions are also excluded.
+```text
+D[i] = (C[i+1] - C[i]) mod 29
+     = (P[i+1] - P[i] + K[j+1] - K[j]) mod 29
+```
 
-Count unordered equal-difference pairs within each of the 255 phase classes, and sum over classes. This statistic is invariant under any 307-symbol key choice, without decrypting, estimating or optimizing any secret.
+under model A. Its `L` offset cancels for *every* choice of all secret epoch values. The unobserved phase difference `K[j+1]-K[j]` is identical for every repetition of phase j, so whether two observed `D` values at the same j are equal is invariant under all key assignments.
 
-## Original ciphertext and original-word-matched English controls
+For model **B**, use only pairs inside the **same complete original printed word**. Then each word's independent unknown `U` also cancels, leaving the exact same invariant for every choice of all **3,203** secret values. Both tests omit the 255→0 cycle transitions, which can cross an `L` change; both omit physical-page crossing pairs, which the manuscript may treat separately. Model B additionally omits printed word-separator transitions. The original 32 cross-page word carries are joined correctly before word grouping, without creating false word boundaries.
 
-The unchanged `resources/liber-primus/lp2-corpus.json` provides **12,956** GP rune values across 55 physical rune-bearing pages. The original `lp2-transcription.txt` provides exactly **2,896 genuine printed words**, including cross-page carried words. The rune-free physical p50 is omitted from its `%`-delimited pieces, so p0–55 occupy the first 55 pieces; their total remains 12,956.
+The reported statistic counts unordered equal-difference pairs within **each** of the 255 phase classes, sums the matches and divides by all unordered same-phase comparisons. Multiply the collision fraction by 29 for an interpretable normalized equality score. **It is an algebraic invariant of these model families, regardless of secret key entropy.**
 
-| Register / same-phase-difference statistic | Equal-pair count or control mean | Pair comparisons | Normalized coincidence `29 * equal / pairs` |
-| --- | ---: | ---: | ---: |
-| **Untouched LP2 original** | **11,301** | **317,458** | **1.032354** |
-| Gibran, 250 independently drawn word-shaped books | mean norm 1.118055 | same | **minimum 1.076202** |
-| Shakespeare, 250 independently drawn books | mean norm 1.104487 | same | **minimum 1.064875** |
-| Emerson, 250 independently drawn books | mean norm 1.100206 | same | **minimum 1.056014** |
+## Original-cipher results and source-word-matched controls
 
-Each of the 750 independent draws samples one reference word of **exactly the same GP rune length** at each original word position. The deterministic normalization uppercases source prose, maps K→C/V→U/Q→C/Z→S, and greedily recognizes the source GP digraphs TH/EO/NG/OE/AE/IA/EA. This yields a conservative native-style English register, with its exact original word-length geometry preserved. The source texts are the repository's pinned Gibran, Shakespeare and Emerson controls. They are comparison registers, not alleged manuscript plaintext.
+Immutable input: [physical LP2 rune corpus](../resources/liber-primus/lp2-corpus.json), [original word separators](../resources/liber-primus/lp2-transcription.txt), 55 rune-bearing physical pages of p0–55, **12,956 GP29 runes**, exactly **2,896 complete original printed words**.
 
-The fixed-seed sampling sequence (0x33013301, 32-bit LCG) gives **zero of 750** matched controls at or below the original score; the closest, Emerson, is still above the original by 0.02366 normalized units. This is a conditional reference-distribution separation, **not** a universal probability of all possible GP texts or a multiple-hypothesis-corrected discovery p-value.
+| Key-independent invariant | Eligible source transitions | Same-phase unordered comparisons | Equal-difference pairs | Normalized score |
+| --- | ---: | ---: | ---: | ---: |
+| A: 256 phase + 51 secret cycle offsets | **12,851** | **317,458** | **11,301** | **1.032353886** |
+| B: same, plus 2,896 secret word offsets | **9,990** | **191,774** | **6,870** | **1.038879097** |
 
-The SFT additionally encrypts one independently sampled native-English control with nonconstant deterministic phase key `(37*j+3) mod29` and epoch shift `(17*r+2) mod29`; the resulting **complete 12,956-rune ciphertext exactly preserves the full invariant**, proving that the unknown-key cancellation is implemented correctly and an actual two-factor encryption cannot make the native English control score look like the original.
+The controls preserve the entire exact original **2,896-word GP rune-length vector**. For each source slot, one independently chosen word of that exact length is sampled from the checked-in Gibran, Shakespeare or Emerson prose. Source normalization uppercases, maps K→C/V→U/Q→C/Z→S, and greedily recognizes GP digraphs TH/EO/NG/OE/AE/IA/EA. Every control book contains exactly 12,956 GP29 runes in the same printed word lengths. Samples are independent draws from fixed word pools; they are not reconstructed target plaintext.
 
-## Decision and escape conditions
+| Source-native GP English control, 250 draws each | A: mean | A: minimum | B: mean | B: minimum |
+| --- | ---: | ---: | ---: | ---: |
+| Gibran, *The Prophet* | 1.118054697 | 1.076202206 | **1.169075599** | **1.114488930** |
+| Shakespeare, first 300k | 1.104487296 | 1.064874723 | **1.151900675** | **1.108893802** |
+| Emerson, *Essays* | 1.100206238 | 1.056013708 | **1.139851492** | **1.085303534** |
 
-The original source's same-phase step coincidences are near the uniform-rank28 limit (1.03235), where word-shaped normal GP English under this all-secret two-factor construction remains appreciably more structured. **Retire a static unknown 256-symbol additive pad masked by arbitrary one-residue-per-256-cycle additive shifts as a direct, unchanged-GP-word English decoder.** Optimizing phase-key bytes, epoch offsets or the key source cannot repair this invariant.
+For **each model**, all **750/750** length-matched English draws score **above** the corresponding original ciphertext statistic. The closest B control is 1.08530, compared with 1.03888 original. These are conditional reference-register comparisons; the finite empirical tail alone is not proof against *every possible English plaintext*, adversarially chosen language, or altered word boundaries. We did not optimize sampled keys or fit plaintext.
 
-This does **not** exclude per-rune/per-word changing states inside a 256-rune cycle, non-additive secret permutations, source-selected nonperiodic PRFs, unequal / skipped key consumption, intermediate non-GP language, or deliberate altered word boundaries. P50's original key opcode remains unknown. The result changes the next research decision by removing an otherwise appealing 307-secret-residue escape from the already-rejected static 256-phase family. Further additive phase+cycle parameter fitting would be wasted compute.
+### Reversible positives under nontrivial secret components
 
-**Reproducer:** [`sims/lp2_p50_256phase_epochoffset_allsecret_sft.cjs`](../sims/lp2_p50_256phase_epochoffset_allsecret_sft.cjs), read-only, Windows Node.js 22, with exact native-source positive and 750 frozen word-shape controls. Does not decrypt or alter source data.
+The reproducer constructs a complete independent 12,956-rune source-native English text with the authentic word lengths and encrypts it using these fully specified, nonconstant components:
+
+```text
+K[j] = (37*j + 3) mod29
+L[r] = (17*r + 2) mod29
+U[w] = (11*w + 5) mod29
+```
+
+With K+L, the complete planted output has exactly the same A invariant as its plaintext. With K+L+U, it has exactly the same B invariant as its plaintext. Both hold bit-for-bit on the same source positions, including every original page boundary exclusion. The positive plants show that **no secret value assignment in the specified family can reduce B's fixed coincidence count**. Every choice preserves the collision pattern under this model.
+
+## Decision and surviving routes
+
+**Exclude both p50 stationary-phase additive families, including the stronger variant with an arbitrary independent shift at every printed word, as direct intact-word native-English LP2 decoders.** The exact 256-phase key and epoch, page-level or word-level additive corrections cannot rescue the observed near-uniform within-phase difference pattern. Model B rules out a class with more than three thousand unrestricted key values, and is therefore a sharper answer than testing a few candidate keys.
+
+This does **not** exclude a source-authored nonlinear changing alphabet, a per-rune cryptographic keystream, a different plaintext language, an intervening byte compression code, a key clock whose phase skips symbols, or a transformation changing the original printed word contract. Any positive candidate requires its own authentic clue-selected operation and an original-cipher holdout.
+
+**Single-file read-only reproducer:** [`sims/lp2_p50_256phase_epochoffset_allsecret_sft.cjs`](../sims/lp2_p50_256phase_epochoffset_allsecret_sft.cjs). Executed on the exact committed repository sources with a CommonJS-compatible runner, with both positive plants and **750/750 controls passing for each invariant**. Windows Node.js 22 is the intended native runtime. No CI or arbitrary key search was used.
