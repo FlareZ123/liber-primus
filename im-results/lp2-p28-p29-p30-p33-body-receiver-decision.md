@@ -92,6 +92,12 @@ The direct GP29 output has **IoC 0.03429752066**, almost identical to original p
 
 Frozen inputs and both allowed cipher clocks were written **before calculating outputs** in [precommit](../workplace/agent5-signed-and-bitwise-p29-p30-p32-precommit.md) `24c5150`. [Read-only SFT](../sims/lp2_signed_and_bitwise_quotient_to_p32_sft.cjs) `09ebb7e` tests exact source arithmetic and ciphertext reconstruction, exhausts all legal F histories, and recovers native solved-p57 GP plaintext planted under the identical direct and F-transparent keys. Thus the bitwise AND reading also fails as an unknown-page decoder. This is a source-motivated *operation choice*, not an author-specified key; no retuning or broadening to free bitwise operations is warranted.
 
+## Common-coefficient AND selector: three p32 glyphs, no signed continuation
+
+A final bounded semantic reading of signed `DIRECTION29 SEEK30 AND31 YOU32` treats AND as an **intersection**, keeping exactly those original p32 positions `i` at which constant-aligned source quotient coefficients satisfy `Q29[i+14]=Q30[i]`. This is a short sparse readout, expressly *not* a whole-body inverse. Its source-next-word prediction was frozen as exact native GP29 `YOU=[26,3,1]` before any selected positions were inspected.
+
+Only **three** of all 121 original p32 positions qualify: zero-based **31, 66, 118**. Their unmodified p32 values are **[3,15,6] = O S G**, a three-glyph accidental-looking string that **fails the exact predeclared YOU target**. No alternative order, offset, length, page or interpolation is licensed. [Precommit](../workplace/agent5-p29-p30-coefficient-intersection-p32-precommit.md) `2245519` and [source-exact SFT](../sims/lp2_p29_p30_quotient_intersection_to_p32_sft.cjs) `c6007dd` preserve this decision. A sparse OSG match with no source-specified target is not authentic plaintext.
+
 ## Scope and successor criterion
 
 The prospective extension rejects this **one** source-motivated derivative-to-initials interpretation. It does not disprove every use of the p29 root or every historical Cicada operation. The smallest missing input is a first-party instruction specifying a **lossless** target interval, how the DH23 state and DIRECTION/WAY determine a complete receiver, and how output is serialized as GP29/plaintext. The existing signs and navigation words do not specify that information.
