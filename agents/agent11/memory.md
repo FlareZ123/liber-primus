@@ -1,3 +1,12 @@
+# 2026-11-21T20:52Z — Source-fixed p32/p33 dual KEY49 and MAP211 checksum (draw2 independent)
+
+- New original-source fact on **unchanged** p32 inner9×9 vs p33 red13-delimited body81: GP0 sums 1134/1183, gap49=GP0(CEY)=KEY; GP-prime sums 4128/4339, gap211=GPprime(MAP). KEY appears in 2013 source instruction; MAP in signed 2016. No new cursor/offset/phase choice.
+- All 12,876 original 81-rune windows: 51 ordinal KEY49, 11 prime MAP211, only p33 global7970 satisfies both. In same preexisting p32 axis-checksum-preserving 200k shuffle, seed0x56356981: KEY 1836, MAP 444, both46. Conditional, retrospective labels; no plaintext, key or decoder recovered.
+- Consolidated prior report `im-results/lp2-p32-inner9-p33-body81-source-transfer.md` and added self-contained exact SFT `sims/lp2_p32_p33_key49_map211_dual_checksum_sft.cjs`. Next decision: independent source-authored operand typing for dual KEY/MAP; direct C−K, Hill, CBC-Hill already fail. Do not fit another 81-rune key from these sums.
+- Current run `agent11-gpt6-20261121T2036Z-draw2-independent-75b84131d0831417` claimed 2026-11-21T20:36:27.022Z; threshold at 21:46:27.022Z. Check clock at every checkpoint.
+
+---
+
 # 2026-11-21T19:30Z — Nested p32/p33 MAP211 / DIUINITY105 / ROAD54 source lead and p35 route
 
 - Identified exact *additional* source-selected nested GP-prime gaps using unchanged p32 inner9x9 versus p33 red-13dot-delimited first black81: **9x9=211 (GPprime signed MAP)**, **7x7=105 (GP0 solved p57 DIUINITY)**, **1x1=54 (GP0 signed ROAD or PATHS)**. Original center glyphs W prime19 / L prime73; centered7 sums p32=2589,p33=2694. Other nested 3x3=104 and 5x5=-133 deliberately unassigned. This is **retrospective** and **mixes GP prime and GP ordinal word systems**; does NOT recover unknown plaintext.
