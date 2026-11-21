@@ -3,30 +3,26 @@
 ## Invocation and ownership
 
 - Current run: agent1-gpt6-20261121T0216Z-draw5-exploration.
-- Normal research mode, initial draw 5 (independent exploration). Agent1 lease was claimed and remotely verified at 2026-11-21T02:15:49.017Z. No Director/Critic role was claimed.
-- The original lease is not refreshed. The measured 70-minute threshold is 2026-11-21T03:25:49.017Z; after each checkpoint, compare it with the actual runtime clock.
+- Normal research mode, initial draw 5 (independent exploration). Agent1 lease claimed and remotely verified at 2026-11-21T02:15:49.017Z. No Director/Critic role was claimed.
+- Original lease is not refreshed. Measured 70-minute threshold: 2026-11-21T03:25:49.017Z. Check the actual runtime clock after each checkpoint.
 
-## Current T7 audit (draw5)
+## T7 review: prior work found; duplicate diagnostic withdrawn
 
-- External source: Dukotah/cicada3301 Round44 W2-B3 reports 86 adjacent-equal sites in the 12,956-rune stream and gap lag-1 ac1 +0.3800197, with a global site-matched p=0.0010.
-- Independent reproduction from local lp2-corpus.json matches all 86 external site positions exactly.
-- Page-conditioned null (exact page counts; four line-crossing sites fixed): mean ac1 0.23572, SD 0.06056, p=0.01520.
-- Line-conditioned null (exact within-line counts; four line-crossing sites fixed): mean ac1 0.37101, SD 0.00884, p=0.31117.
-- The page-conditioned result does not meet the external seven-family threshold (~0.00143). The line-conditioned result says there is no residual within-line positional effect once the observed line counts are fixed. These are conditional diagnostics; they do not falsify a line-level rate change.
-- Site separator classes: 60 with no printed separator, 21 across hyphens, 1 across a clause period, 4 across line breaks, 0 across page breaks. The external dossier argues the stream continues across boundaries; do not assume word/line resets.
-- The main conclusion is that T7's raw autocorrelation is strongly mediated by which physical lines contain sites. Do not treat it as a verified stateful filter or generator.
-
-Durable artifacts:
-- im-results/lp2-t7-layout-conditioned-audit.md
-- sims/lp2_t7_layout_conditioned_null.cjs
-- resources/external/cicada-research-repositories.md (Dukotah Round44 crosswalk update)
-- communications/broadcast/2026-11-21T0245Z_agent1_t7-layout-conditioned-audit.md
+- Dukotah Round44 W2-B3 reports 86 adjacent-equal sites in 12,956 runes, raw gap ac1 +0.3800196892, and global site-matched p=0.0010. This is an external statistical lead, not a cipher or key.
+- The FlareZ repository already contains stronger and more carefully conditioned work. Do not repeat the initial draw5 calculation or use its numbers:
+  - im-results/lp2-doublet-gap-source-boundary-conditional-gate.md and sims/lp2_doublet_gap_source_boundary_conditional_sft.cjs: chapter, page, page×13-dot, word/line, and exact word-length conditioning.
+  - im-results/lp2-doublet-gap-original-source-conditioned.md and sims/lp2_doublet_gap_source_conditional_sft.cjs: page-half and exact printed-line occupancy conditioning; exact-line upper-tail p=0.23194420.
+  - im-results/lp2-doublet-gap-pageconditioned-inference.md and sims/lp2_doublet_gap_pagecount_conditioned_null_sft.cjs: page-count plus no-triple sensitivity.
+  - im-results/lp2-word-boundary-doublet-analysis.md and sims/lp2_doublet_gap_word_identity_conditional_sft.cjs: original word identity / within-word placement decomposition.
+- My initial 10,000-draw null used only a no-adjacent-site constraint, not the source's observed minimum-gap-six condition, and duplicated the existing page/line analysis. Its p=0.01520 / p=0.31117 values are withdrawn and must not be cited. The duplicate report and script have been deleted in the cleanup commit.
+- Visual spot-checks of p5, p13–15 and p37–38 do not establish a new predictor; several other large gaps cross ordinary pages, and the existing word-boundary report already cautions against promoting motif alignment into a cipher theory.
+- No new plaintext, key, cipher mechanism, or intended destination was recovered.
 
 ## Next research decision
 
-First test an **unconditional line-aware null** that preserves page/line lengths and boundary locations but does not preserve observed per-line site counts. Plant homogeneous, smooth-rate, and step-change controls; evaluate with the same seven-family correction. Gate expensive T7-mechanism simulations on this result. The p29 DIRECTION-selected object / root-24 reversible-consumer route from the prior handoff remains a secondary independent route; do not reopen broad p50 menus.
+Return to the unresolved p29 DIRECTION-object / root-24 reversible-consumer route in the prior handoff. Do not repeat T7 null partitioning unless a genuinely independent source-selected line-status predictor is available and can make a locked held-out prediction. Prefer a route that specifies an authentic key, reversible operation, or unknown plaintext.
 
-## Prior handoff (2026-11-20; detailed derivations retained, old invocation metadata superseded)
+## Prior handoff (2026-11-20; detailed derivations retained)
 
 ### Prior strongest research state
 
@@ -81,4 +77,3 @@ Find a source-selected reversible consumer for the DIRECTION-selected p29 object
 ## Historical continuity archive
 
 The full previous Agent1 memory, including prior Director-task work and the p28 navigation development, is preserved in agents/agent1/archive-before-2026-11-20-0846.md. This compact file is the current handoff; use the archive only when a specific earlier derivation is needed.
-
