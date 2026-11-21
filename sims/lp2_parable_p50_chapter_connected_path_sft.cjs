@@ -143,11 +143,53 @@ function evaluate(children,root,leftRoot,rightRoot){
     distinctPartitions:distinct.size,singleEdgePaths:path,
     orderedChapterPaths:ordered,maxDegreeHistogram:degrees};
 }
+/**
+ * An even broader independent control removes the speculative mapping of
+ * the source 50-node and 5-node branches to the two physical sides of p50.
+ * The sole positional assumption is that root201 belongs to the original
+ * 14-page chapter containing rune-free physical p50.
+ * @param {number[][]} children
+ * @param {number} root
+ */
+function evaluateAnySide(children,root){
+  const chapterSizes=[3,5,7,8,4,6,7,14,2];
+  const outside=chapterSizes.filter((_,index)=>index!==7);
+  const cases=partitions(root,children,outside,14);
+  const expected=new Set(Array.from({length:8},(_,i)=>i+':'+(i+1)));
+  let paths=0,ordered=0;
+  const cutsSeen=new Set(),maxDegreeHistogram={};
+  for(const cuts of cases){
+    const normalized=cuts.map(([u,v,k])=>[u,v,k<7?k:k+1]);
+    const quotientGraph=quotient(root,children,normalized);
+    assert.equal(quotientGraph.n,56);
+    assert.deepEqual(quotientGraph.sizes,chapterSizes);
+    assert.equal(quotientGraph.edges.size,8);
+    maxDegreeHistogram[quotientGraph.maxDegree]=
+      (maxDegreeHistogram[quotientGraph.maxDegree]??0)+1;
+    const signature=cuts.map(([,child])=>child).sort((a,b)=>a-b).join(',');
+    cutsSeen.add(signature);
+    if(quotientGraph.maxDegree<=2)paths++;
+    if([...quotientGraph.edges].every(edge=>expected.has(edge)))ordered++;
+  }
+  return {
+    labeledAssignments:cases.length,
+    distinctEightEdgeCuts:cutsSeen.size,
+    singleEdgeChapterPaths:paths,
+    printedOrderChapterPaths:ordered,
+    maxDegreeHistogram
+  };
+}
 const originalChildren=reverse(successors);
 assert.equal(descendants(205,originalChildren).length,58);
 assert.deepEqual(originalChildren[205],[74]);
 assert.deepEqual(originalChildren[74],[201]);
 const observed=evaluate(originalChildren,201,82,128);
+const broadOriginal=evaluateAnySide(originalChildren,201);
+assert.deepEqual(broadOriginal,{
+  labeledAssignments:610,distinctEightEdgeCuts:305,
+  singleEdgeChapterPaths:0,printedOrderChapterPaths:0,
+  maxDegreeHistogram:{3:368,4:178,5:52,6:12}
+});
 assert.deepEqual(observed,{
   leftCases:32,rightCuts:[[184,109,8]],classified:32,
   distinctPartitions:16,singleEdgePaths:0,orderedChapterPaths:0,
@@ -166,7 +208,7 @@ assert.equal(positive.singleEdgePaths,5040);
 console.log(JSON.stringify({
   physicalChapterSizes:[3,5,7,8,4,6,7,14,2],
   base60SourceGraph:{root:201,leftSubtree:50,rightSubtree:5},
-  observed,positive,
+  broadOriginal,observed,positive,
   interpretation:'A strict single-edge connected-chapter reading cannot assign all 56 original pages to the source-selected graph. Nonlocal jumps remain possible.'
 },null,2));
-console.log('PASS: all original connected partitions and a true positive chapter path');
+console.log('PASS: all 305 unrestricted original cut sets, 16 side-fixed sets, and planted path');
