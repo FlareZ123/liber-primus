@@ -111,12 +111,14 @@ def main() -> None:
     for label, hex_value in COOKIE_HEX.items():
         ciphertext = int(hex_value, 16)
         plaintext = pow(ciphertext, d, N)
-        raw = plaintext.to_bytes((plaintext.bit_length() + 7) // 8, "big")
+        raw = plaintext.to_bytes((N.bit_length() + 7) // 8, "big")
         cookies[label] = {
             "ciphertext_less_than_N": ciphertext < N,
-            "decrypted_hex": format(plaintext, "x"),
+            "decrypted_hex": raw.hex(),
+            "rsa_modulus_octets": len(raw),
+            "rsa_block_first_octets": raw[:2].hex(),
             "decrypted_ascii": raw.decode("ascii", errors="replace"),
-            "pkcs1_v15_type2_prefix": raw.startswith(b"\\x00\\x02"),
+            "pkcs1_v15_type2_prefix": raw.startswith(bytes((0, 2))),
         }
 
     wrong_trailing_one = int(str(N) + "1")
