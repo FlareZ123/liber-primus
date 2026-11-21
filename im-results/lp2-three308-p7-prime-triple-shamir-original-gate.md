@@ -33,6 +33,21 @@ For a substantive positive test, an independent **308-rune planted source-native
 
 **Reproducer:** [single-file read-only CommonJS test](../sims/lp2_three308_p7prime_triple_shamir_original_sft.cjs) · [Windows Node 22 PASS, GitHub Actions run 44943306250](https://github.com/FlareZ123/liber-primus/actions/runs/44943306250).
 
+## Literal red13-dot output point, independent of Shamir's zero convention
+
+The original p6/p7 passage is delimited by **two red 13-dot punctuation groups**, a source-visible candidate for **evaluating the recovered polynomial at x=13**, rather than adopting a generic Shamir secret-at-zero convention. Keep the same frozen three x coordinates `[5,7,11]`, identical three 308-rune source arrays, and all six register assignments. Exact GF29 Lagrange weights now simplify to:
+
+~~~text
+f(13)[i] = 1 × A[i] + 27 × B[i] + 2 × C[i] (mod 29)
+         = A[i] − 2 × B[i] + 2 × C[i] (mod 29)
+~~~
+
+The natural physically ordered output has GP29 IoC **0.03432886**; the five alternate share assignments range **0.03422311–0.03595753**. All six are nonprose. A separate planted **degree-two GP29 polynomial whose 308 independent values at x=13 are known** reconstructs every target value exactly, demonstrating the alternate evaluation is implemented correctly.
+
+To preserve the actual historical alternative to GP-native text, interpret each complete 308-output register as a **single big-endian BASE29 integer**, the explicit conversion performed in authentic 2013 Cicada stages. The resulting **187- or 188-byte** binary values in all six arrangements fail the actual first-byte magic of contemporary bzip2 (`BZh`), gzip (`1F8B`), ZIP (`PK03`), PNG, and XZ. The physically ordered output begins hexadecimal **`992f29a48b423bba`**; no typed historical payload is recovered. There is no source instruction selecting BASE29 serialization for these particular outputs, so this is a bounded transport check.
+
+This alternate output coordinate is arguably more directly clue-motivated than x0, but it **does not rescue the Shamir interpretation**: the omitted authentication of three share regions and a page-to-coordinate map remains fatal. [Expanded original-source SFT](../sims/lp2_three308_p7prime_triple_shamir_original_sft.cjs); [Windows Node22 expanded run 44943596200](https://github.com/FlareZ123/liber-primus/actions/runs/44943596200).
+
 ## Research decision
 
-The precise original p7 red word yields a uniquely computable three-share inverse on any three selected complete 308-rune regions, but the first direct original outputs have no legible plaintext. The **critical missing source selection is assigning the visually separated flanks as a share at all**. The identical lengths and red prime triple alone should therefore not be promoted to an author-selected secret-sharing layer. Do not vary polynomial degree, insert artificial symbols, change the 308 cutpoints or scan arbitrary triplets in search of language after this failure. Seek an independently authenticated three-share grouping or alternative first-party reversible opcode before revisiting.
+The original p7 red word and physical 13-dot endpoints define two concrete, testable interpolation points (0 by classical secret-sharing convention; 13 by original punctuation) on any proposed three-share register; neither produces original plaintext or a typed 2013 BASE29 payload. The **critical missing source selection is assigning the visually separated flanks as a share at all**. The identical lengths and red prime triple alone should therefore not be promoted to an author-selected secret-sharing layer. Do not vary polynomial degree, insert artificial symbols, change the 308 cutpoints or scan arbitrary triplets in search of language after this failure. Seek an independently authenticated three-share grouping or alternative first-party reversible opcode before revisiting.
