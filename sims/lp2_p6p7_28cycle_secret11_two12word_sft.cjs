@@ -174,6 +174,65 @@ assert.equal(common.length,0);
 assert.equal(fromA.size,23);
 assert.equal(new Set(candidatesB.map(x=>x.key.join(","))).size,72);
 
+/**
+ * Additional equally source-typed 28-cycle readings:
+ *  - reading from the opposite end of the primitive-root orbit
+ *  - the literal 308 runes serialized as 11 contiguous 28-rune columns
+ * Each native word imposes one or more exact secret column residues.
+ * @param {number[]} ciphertext
+ * @param {number[]} plain
+ * @param {number} start
+ * @param {"row"|"column"} order
+ * @param {1|-1} polarity
+ * @returns {number[]|null}
+ */
+function inferVariant(ciphertext,plain,start,order,polarity) {
+  assert.equal(plain.length,12);
+  const key=Array(11).fill(-1);
+  for(let i=0;i<plain.length;i++) {
+    const location=start+i;
+    const row=order==="row"?Math.floor(location/11):location%28;
+    const col=order==="row"?location%11:Math.floor(location/28);
+    const exponent=((polarity*row)%28+28)%28;
+    const candidate=mod(inverse[powers[exponent]]*
+      (ciphertext[location]-plain[i]));
+    if(key[col]>=0&&key[col]!==candidate)return null;
+    key[col]=candidate;
+  }
+  return key;
+}
+function variantCandidateKeys(ciphertext,start,order,polarity) {
+  return candidates.flatMap(x=>{
+    const key=inferVariant(ciphertext,x.runes,start,order,polarity);
+    return key===null?[]:[{word:x.word,source:x.source,key}];
+  });
+}
+const variants=[];
+for(const order of ["row","column"])
+  for(const polarity of /** @type {(1|-1)[]} */([1,-1])) {
+    const left=variantCandidateKeys(source,first.site,order,polarity);
+    const right=variantCandidateKeys(source,second.site,order,polarity);
+    const leftKeys=new Set(left.map(x=>x.key.join(",")));
+    const shared=right.filter(x=>leftKeys.has(x.key.join(","))).length;
+    const details={order,polarity,firstWordViable:left.length,
+      secondWordViable:right.length,
+      common11ColumnKeys:shared};
+    variants.push(details);
+  }
+assert.deepEqual(variants,[
+  {order:"row",polarity:1,firstWordViable:30,
+    secondWordViable:98,common11ColumnKeys:0},
+  {order:"row",polarity:-1,firstWordViable:34,
+    secondWordViable:50,common11ColumnKeys:0},
+  {order:"column",polarity:1,firstWordViable:0,
+    secondWordViable:0,common11ColumnKeys:0},
+  {order:"column",polarity:-1,firstWordViable:0,
+    secondWordViable:0,common11ColumnKeys:0}
+]);
+// No column-major candidate survives even one registered 12-rune
+// word. The row-major first/last printed words independently determine
+// all 11 residues, and no complete vectors agree.
+
 // Native GP positive control in the same 308-rune original-source geometry.
 const planted=encodeSourceNativeGP(read(controlTexts[0])).slice(1000,1308);
 const earlyWord=encodeSourceNativeGP("COMPANIONSHIP");
@@ -192,6 +251,26 @@ const plantB=matching(plantedCipher,second.site);
 const plantKeys=new Set(plantA.map(x=>x.key.join(",")));
 assert(plantB.some(x=>plantKeys.has(x.key.join(",")) &&
   x.key.join(",")===red11.join(",") && x.word==="ACQUAINTANCE"));
+for(const variant of variants) {
+  const {order,polarity}=variant;
+  const plantedCipherVariant=planted.map((p,position)=>{
+    const r=order==="row"?Math.floor(position/11):position%28;
+    const c=order==="row"?position%11:Math.floor(position/28);
+    const power=powers[((polarity*r)%28+28)%28];
+    return mod(p+red11[c]*power);
+  });
+  const decrypted=plantedCipherVariant.map((c,position)=>{
+    const r=order==="row"?Math.floor(position/11):position%28;
+    const j=order==="row"?position%11:Math.floor(position/28);
+    return mod(c-powers[((polarity*r)%28+28)%28]*red11[j]);
+  });
+  assert.deepEqual(decrypted,planted);
+  for(const [word,site] of [[earlyWord,first.site],[lateWord,second.site]]) {
+    const inferred=inferVariant(plantedCipherVariant,word,site,order,polarity);
+    assert(inferred!==null);
+    assert(inferred.every((v,i)=>v<0||v===red11[i]));
+  }
+}
 console.log(JSON.stringify({
   decision:"Finite source-native lexicon exclusion of the entire secret 11-column root2 additive family",
   originalSource:"p6[82..195]+p7[0..193]",
@@ -206,8 +285,9 @@ console.log(JSON.stringify({
   inferredFirstKeys:fromA.size,
   inferredSecondKeys:new Set(candidatesB.map(x=>x.key.join(","))).size,
   commonCompleteKeyVectors:common.length,
+  four28CycleVariantTests:variants,
   positive:{secretKey:red11,earlyWord:"COMPANIONSHIP",
     lateWord:"ACQUAINTANCE",exactOriginalSizeForwardInverse:true,
     bothLongWordKeysRecovered:true,commonPlantKey:true},
-  conclusion:"No source-registered two-long-word plaintext pair can share even one of all 29^11 secret keys. Other source languages, nonnative spelling, changed word boundaries and other ciphers remain open. No original unknown plaintext recovered."
+  conclusion:"No source-registered two-long-word plaintext pair can share even one secret key in the row-major 28-cycle families; column-chunk families fail even one original long word. Other source languages, nonnative spelling, changed word boundaries and other ciphers remain open. No original unknown plaintext recovered."
 },null,2));
