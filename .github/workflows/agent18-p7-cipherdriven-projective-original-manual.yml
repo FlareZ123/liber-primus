@@ -25,3 +25,6 @@ jobs:
 
       - name: Search GP-native source English for cross-word reused feedback keys
         run: node sims/lp2_p7_fivefeedback_sharedkey_fullenglish_sft.cjs
+
+      - name: Test p8 243-entry source-defined five-trit nonlinear lookup consumer
+        run: node sims/lp2_p8_ternary5_nonlin_lookup_consumer_sft.cjs
