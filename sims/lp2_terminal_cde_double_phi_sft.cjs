@@ -21,6 +21,13 @@ const path = require('node:path');
 const source = JSON.parse(fs.readFileSync(path.resolve(
   __dirname, '..', 'resources', 'liber-primus', 'lp2-corpus.json'), 'utf8'));
 
+const table = JSON.parse(fs.readFileSync(path.resolve(
+  __dirname, '..', 'resources', 'liber-primus', 'base60-grid.json'), 'utf8'));
+assert.deepEqual([98, 112, 201].map(i => table.rows.flat()[i]),
+  ['1C', '1D', '1E']);
+assert.deepEqual([98, 112, 201].map(i => table.byte_rows.flat()[i]),
+  [72, 73, 74], 'All three source-level filename pointers must be unchanged');
+
 const mod29 = n => ((n % 29) + 29) % 29;
 
 /** @param {number} needed @returns {number[]} */
