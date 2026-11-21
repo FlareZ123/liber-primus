@@ -68,6 +68,15 @@ const primeSums8 = redWords.map((w) =>
 const indexSums8 = redWords.map((w) =>
   w.reduce((sum, rune) => sum + rune, 0));
 assert.deepEqual(products8, [state.q, state.e]);
+// P6 and p7 share a printed spiral border. The p7 196-rune square
+// boundary lies exactly after the first complete two-rune red word, leaving
+// a source-red 12-rune suffix to pair with p8's 12-rune red prefix.
+assert.equal(p6.length, 14 ** 2);
+assert.equal(p7.slice(0, 196).length, 14 ** 2);
+assert.deepEqual(p7.slice(194, 196), fiveWords[0]);
+assert.equal(p7.slice(196).length, 12);
+assert.equal(p7.length - 196, heading.length);
+
 assert.deepEqual(redWords.map((w) => w.length), [state.q, state.A]);
 assert.deepEqual(indexSums8, [57, 74]);
 assert.deepEqual(primeSums8, [196, 250]);
@@ -265,6 +274,8 @@ console.log(JSON.stringify({
     p7FiveWordProducts: products7,
     p7State: state,
     p8HeadingWordLengths: redWords.map((w) => w.length),
+    p6AndP7SpiralRuneSquares: [p6.length, p7.slice(0,196).length],
+    p7TrailingRedMatchedToP8LeadingRed: p7.length - 196,
     p8HeadingWordProducts: products8,
     p8HeadingIndexSums: indexSums8,
     p8HeadingPrimeSums: primeSums8,
