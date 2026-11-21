@@ -30,7 +30,7 @@ const corpus = JSON.parse(fs.readFileSync(path.join(root, 'resources',
  * @returns {number[][]}
  */
 function square(page) {
-  const prefix = '### ' + page + '\n';
+  const prefix = '### ' + page;
   const start = source.indexOf(prefix);
   assert(start >= 0, 'missing solved page ' + page);
   const next = source.indexOf('### ', start + prefix.length);
