@@ -356,6 +356,58 @@ for (const sign of [-1, 1]) {
     '66e94bd4ef8a2c3b884cfa59ca342b2e', 'hex')), known.final()]), Buffer.alloc(16));
 }
 
+// Original-cipher polynomial multiplication/inversion is a genuinely
+// different receiver from an additive LFSR keystream: C(X)=F(X)P(X) mod X^N.
+// Each source-selected polynomial has invertible nonzero constant term.
+function truncateConvolution(plain, factor) {
+  const out = Array(plain.length).fill(0);
+  for (let i = 0; i < plain.length; i++)
+    for (let j = 0; j < factor.length && i + j < out.length; j++)
+      out[i + j] = mod(out[i + j] + plain[i] * factor[j]);
+  return out;
+}
+function invertConvolution(cipher, factor) {
+  const out = [];
+  const scale = inverse[factor[0]];
+  for (let i = 0; i < cipher.length; i++) {
+    let v = cipher[i];
+    for (let j = 1; j < factor.length; j++)
+      if (i >= j) v -= factor[j] * out[i - j];
+    out.push(mod(v * scale));
+  }
+  return out;
+}
+const complete = corpus.pages.filter((p) => p.page <= 55).flatMap((p) => p.indices);
+assert.equal(complete.length, 12956);
+const native = corpus.pages.find((p) => p.page === 57).indices;
+const planted = Array.from({ length: 729 }, (_, i) => native[i % native.length]);
+const directInverseExpectations = [
+  ['F', rg, [0.034469675530361406, 0.034467780924994]],
+  ['H', originalH, [0.034495032261316366, 0.034467101726843426]],
+  ['G', originalG, [0.03446591015114065, 0.0345067454504746]],
+];
+function checkFullStreamConvolution() {
+  const count = Array(29).fill(0);
+  for (const [name, factor, expected] of directInverseExpectations) {
+    for (const reverse of [false, true]) {
+      const input = reverse ? complete.slice().reverse() : complete;
+      const decoded = invertConvolution(input, factor);
+      assert.deepEqual(truncateConvolution(decoded, factor), input);
+      const restored = reverse ? decoded.slice().reverse() : decoded;
+      count.fill(0);
+      for (const digit of restored) count[digit]++;
+      const ic = count.reduce((sum, n) => sum + n * (n - 1), 0)
+        / (complete.length * (complete.length - 1));
+      assert.ok(Math.abs(ic - expected[Number(reverse)]) < 1e-12);
+      const synthetic = truncateConvolution(planted, factor);
+      assert.deepEqual(invertConvolution(synthetic, factor), planted);
+      console.log('POLYNOMIAL C=F*P original inverse ' + name
+        + ' reversed=' + reverse + ' full-book IoC=' + ic.toFixed(10));
+    }
+  }
+}
+checkFullStreamConvolution();
+
 function ioc(values) {
   const counts = Array(29).fill(0);
   for (const value of values) counts[value]++;
@@ -381,4 +433,5 @@ console.log('PASS: p23 red16 + p39 whole240 composites are not source H/G codewo
 console.log('PASS: both source p23 monic degree16 factors fail, 240-rune positive plant succeeds');
 console.log('PASS: source-DH-seeded quartic recurrence fails p56-style F-transparent necessary path');
 console.log('PASS: p23 original red16 source bytes are not an AES128 plaintext receiver for the table');
+console.log('PASS: original source H/G/FG direct polynomial inverses recover no native prose');
 console.log('NO PLAINTEXT: reversible quotient key reads remain ciphertext-like');
