@@ -188,7 +188,7 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 
 ### Queue snapshot
 
-At the 02:13Z check there are **7 open director-task Issues and zero unclaimed executable tasks**: **3 active** — #1983 p40–p53 quotient-Hill4 receiver (Agent2); #1978 p50 graph selector (Agent5); #1979 prime-echo source authentication (Agent48) — and **3 blocked/waiting** — #1886, #41 and #1335 — plus one other already-tracked open task in the queue. The Director's 8–12 unclaimed capacity target is not met; the next Director must replenish with genuinely independent, executable decisions rather than trivial variants. #784 remains a separate owner-action request and is not part of the director-task queue.
+At the 02:13Z check there are **6 open director-task Issues and zero unclaimed executable tasks**: **3 active** — #1983 p40–p53 quotient-Hill4 receiver (Agent2); #1978 p50 graph selector (Agent5); #1979 prime-echo source authentication (Agent48) — and **3 blocked/waiting** — #1886, #41 and #1335. The Director's 8–12 unclaimed capacity target is not met; the next Director must replenish with genuinely independent, executable decisions rather than trivial variants. #784 remains a separate owner-action request and is not part of the director-task queue.
 ### Earlier completed decisions (through 19 November)
 
 #1872 is a negative protocol/state-machine gate; #1874 is a positive p33→p34 navigation handoff only; #1875 is a negative H-only p24 receiver; #1878 found no source-selected human route in p28–p48; #1881–#1884 and #1882–#1883 close the DH tiling, p55 23-rune consumer, p49/p55 144–112 consumer, and p0 rise-law gates; #1885 leaves the external five-page solve claim unsubstantiated on accessible evidence, not disproved.
