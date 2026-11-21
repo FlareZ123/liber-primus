@@ -127,8 +127,10 @@ assert.equal(reflectedSteps[0][0] ** 2 + reflectedSteps[0][1] ** 2, 25);
 assert.ok(reflected[0][1] - 3 < 0);
 assert.ok(reflected[2][1] + 3 >= 8);
 
+assert.equal(grid.bytes[63], 51);
 assert.equal(grid.bytes[92], 236);
 assert.equal(grid.bytes[121], 237);
+assert.equal(TOKENS[63], '0p');
 assert.equal(TOKENS[92], '3u');
 assert.equal(TOKENS[121], '3v');
 
@@ -145,7 +147,7 @@ let start = 0;
 let offset = 0;
 const flush = () => {
   if (!current.length) return;
-  p0Words.push({ start, indices: current });
+  p0Words.push({ start, end: offset - 1, indices: current });
   current = [];
 };
 for (const ch of [...p0Source]) {
@@ -160,6 +162,10 @@ for (const ch of [...p0Source]) {
 }
 flush();
 assert.equal(offset, p0.length);
+assert.equal(p0Words.length, 59);
+assert.deepEqual(p0Words.slice(0, 2).map((word) => word.indices.length), [8, 5]);
+const p0BodyWords = p0Words.slice(2);
+assert.equal(p0BodyWords.length, 57);
 
 const later27 = [];
 for (let i = 2; i + 1 < p0Words.length; i += 1) {
@@ -170,6 +176,84 @@ for (let i = 2; i + 1 < p0Words.length; i += 1) {
 assert.deepEqual(later27, [52]);
 assert.equal(p0Words[52].start + p0Words[52].indices.length - 1, 236);
 assert.equal(p0Words[53].start, 237);
+assert.equal(p0Words[52].end, 236);
+assert.equal(p0Words[52].indices.length, 2);
+assert.equal(p0Words[53].indices.length, 7);
+
+// Provisional mixed-coordinate reading of the three source-selected bytes:
+// the first value is a 1-based ordinal in p0's black body (the two red title
+// words are excluded); the next two are absolute page-rune positions.
+// This typing is plausible from "words are the map" plus the visible
+// red-title/body boundary, but is not explicitly stated by a first-party clue.
+function mixedCoordinateHits(alphabet, targetWords, zeroBased) {
+  const hits = [];
+  for (let i = 0; i + 2 < rows.length; i += 1) {
+    const triple = rows.slice(i, i + 3);
+    const addresses = triple.map((row) => row.gp0 % 256);
+    const values = addresses.map((address) => tokenValue(TOKENS[address], alphabet));
+    const wordIndex = zeroBased ? values[0] : values[0] - 1;
+    const word = targetWords[wordIndex];
+    const next = targetWords[wordIndex + 1];
+    if (
+      word &&
+      next &&
+      word.start + word.indices.length - 1 === values[1] &&
+      next.start === values[2]
+    ) {
+      hits.push({
+        sourceIndex: i,
+        sourceWords: triple.map((row) => row.word.toLowerCase()),
+        gp0: triple.map((row) => row.gp0),
+        addresses,
+        values,
+        wordIndex,
+        bodyWordOrdinal: zeroBased ? values[0] + 1 : values[0],
+        targetStart: word.start,
+        targetEnd: word.start + word.indices.length - 1,
+        targetCipher: word.indices.slice(),
+        nextStart: next.start,
+        nextEnd: next.start + next.indices.length - 1,
+        nextCipher: next.indices.slice(),
+      });
+    }
+  }
+  return hits;
+}
+
+const mixedCoordinateResults = {
+  base60BodyOneBased: mixedCoordinateHits(A60, p0BodyWords, false),
+  base60BodyZeroBased: mixedCoordinateHits(A60, p0BodyWords, true),
+  base60PageOneBased: mixedCoordinateHits(A60, p0Words, false),
+  base60PageZeroBased: mixedCoordinateHits(A60, p0Words, true),
+  base59BodyOneBased: mixedCoordinateHits(A59, p0BodyWords, false),
+};
+assert.equal(mixedCoordinateResults.base60BodyOneBased.length, 1);
+assert.deepEqual(mixedCoordinateResults.base60BodyOneBased[0], {
+  sourceIndex: 3,
+  sourceWords: ['lies', 'empty', 'epiphany'],
+  gp0: [63, 92, 121],
+  addresses: [63, 92, 121],
+  values: [51, 236, 237],
+  wordIndex: 50,
+  bodyWordOrdinal: 51,
+  targetStart: 235,
+  targetEnd: 236,
+  targetCipher: [8, 5],
+  nextStart: 237,
+  nextEnd: 243,
+  nextCipher: [15, 22, 16, 22, 21, 1, 4],
+});
+assert.equal(mixedCoordinateResults.base60BodyZeroBased.length, 0);
+assert.equal(mixedCoordinateResults.base60PageOneBased.length, 0);
+assert.equal(mixedCoordinateResults.base60PageZeroBased.length, 0);
+assert.equal(mixedCoordinateResults.base59BodyOneBased.length, 0);
+const rune51Container = p0Words.find((word) =>
+  word.start <= 51 && word.end >= 51
+);
+assert.ok(rune51Container);
+assert.notEqual(rune51Container.start, 51);
+assert.notEqual(rune51Container.end, 51);
+
 assert.equal(gp('THE').length, 2);
 assert.equal(gp('DEVOTED').length, 7);
 
@@ -232,8 +316,21 @@ console.log(JSON.stringify({
   reflectedSteps,
   stepLength: 5,
   tableEndpoints: {
+    lies: { address: 63, token: TOKENS[63], byte: grid.bytes[63] },
     empty: { address: 92, token: TOKENS[92], byte: grid.bytes[92] },
     epiphany: { address: 121, token: TOKENS[121], byte: grid.bytes[121] },
+  },
+  mixedCoordinatePointer: {
+    status: 'provisional mixed-coordinate receiver; not plaintext',
+    typing: '1-based black-body word ordinal, then absolute page-rune offsets',
+    uniqueBase60Hit: mixedCoordinateResults.base60BodyOneBased,
+    controls: {
+      base60BodyZeroBased: mixedCoordinateResults.base60BodyZeroBased.length,
+      base60WholePageOneBased: mixedCoordinateResults.base60PageOneBased.length,
+      base60WholePageZeroBased: mixedCoordinateResults.base60PageZeroBased.length,
+      base59BodyOneBased: mixedCoordinateResults.base59BodyOneBased.length,
+      runeOffset51IsBoundary: false,
+    },
   },
   p0Boundary: {
     theWord: 52,
@@ -253,5 +350,5 @@ console.log(JSON.stringify({
     base59Add: additiveHits(A59, 1),
     totalCribSymbols: 28,
   },
-  decision: 'preserve +29 / reflected (+4,+3) as a source-selected navigation direction; direct additive table-byte use is rejected',
+  decision: 'preserve +29 / reflected (+4,+3) as a source-selected navigation direction and the base60 [51,236,237] body-word/rune-boundary interpretation as a provisional mixed-coordinate receiver; neither recovers plaintext or specifies a reversible cipher; direct additive table-byte use is rejected',
 }, null, 2));

@@ -221,3 +221,13 @@ This invocation selected independent source-constrained research. It claimed the
 - The source-selected map and 2+11 structure do not decrypt p32/p33. Next: pursue a source-selected reversible receiver operation on p32/p33; do not reopen p0 pair-to-key transforms, p29 derivative-order variants, or unconstrained q/r/cycle searches.
 
 Persistent identity lease run_id: `agent4-gpt6-20261121T020558Z-draw5-issue1987-p29-consumer`; claimed_at `2026-11-21T02:05:58.238Z`.
+
+
+## 2026-11-21 — mixed-coordinate p0 pointer follow-up
+
+- This incarnation selected normal research mode (initial draw 3), continued eligible identity agent4, and found no unclaimed executable `director-task` issue; work proceeded as independent exploration.
+- New provisional interpretation of the authenticated 2016 `LIES / EMPTY / EPIPHANY` triple: GP0 sums `[63,92,121]` address p50 cells whose base60 outputs are `[51,236,237]`. p0's original red heading is 8+5 runes and its 13-dot marker separates it from 57 black-body words. If 51 is a **one-based black-body word ordinal**, while 236/237 are absolute rune offsets, the tuple selects body word51 (full-page zero-based word index52, ciphertext `HC`, offsets235–236) and the next word `SOETOENGUR` at237–243 (2|7).
+- A full 41-consecutive-triple census yields exactly this one match under base60 + one-based body indexing. No match under base59, zero-based body indexing, or either whole-page word-index convention. The old interpretation of51 as a rune offset remains negative (it is inside a word); this is a distinct mixed-coordinate hypothesis.
+- Evidence boundary: plausible because the signed 2016 text says words are the map and the original p0 red title/13-dot divider makes a separate black-body word list visible. Still **not source-authenticated**: no first-party instruction explicitly specifies this mixed type assignment. It selects a receiver, not plaintext and not a reversible cipher. Do not promote `THE DEVOTED` from this route alone.
+- Updated `sims/lp2_2016_lies_empty_epiphany_direction_sft.cjs` and `im-results/lp2-2016-gp0-table-word-pointer-circuit.md` with the typed census and controls. Next decisive step: find an independent source-visible rule for the mixed typing or an independently selected replication; otherwise retain as provisional only.
+- Negative exploratory test: direct period-3 additive use of the p0 marker state packet `[13,23,6]` on the 249-rune p0 body yields no readable opening under either sign, with or without plaintext-F key bypass. Do not repeat that direct consumer without a new selector.
