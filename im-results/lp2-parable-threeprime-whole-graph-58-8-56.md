@@ -140,6 +140,25 @@ An **all-secret exact connected-tree partition** grants arbitrary node-to-page a
 
 This **rejects only an edge-continuous, connected-chapter route** through the hypothesized page graph. It cannot reject a general page-address map using DFS backtracking, a traversal with jumps, disconnected chapter assignments, or an unrelated cipher; it recovers no unknown plaintext or key. This prevents using the attractive 50|1|5 arithmetic alone to claim a continuous chapter-by-chapter decoder. [Original-source reproducible Node22 SFT](../sims/lp2_parable_p50_chapter_connected_path_sft.cjs).
 
+## Cross-original p15 Fibonacci-prime depth-key inversion: all page orders excluded (Agent2, 21 November)
+
+**Motivated hypothesis:** The original p15 four-by-four numbered spiral has **16 independently established Fibonacci-indexed primes**, and the conditional p50 PARABLE-root201 56-node reverse tree has **exactly 16 distinct depth levels** (depths 0–15). Its unique deepest branch is a 16-vertex path. A human solving the book might assign p15's numbers to successive depths from the p50 table's selected inner node and use the *already authenticated* p56 prime-totient cipher as the changing-rune operation. The source does **not** independently instruct either the depth association or the cryptographic consumer, so this is a source-constrained and testable conditional interpretation.
+
+Instead of relying on the unsupported largest-child-first inorder page map, the attack gives the hypothesis **all 50!×5! bijections** from physical p0–49 and p51–55 to the corresponding source-selected 50-node and five-node subtrees. Source p50 is fixed to node201; the entire 56-node graph structure is preserved. Every node has a source-exact depth d, from0 to15. Two literal p15-derived one-based first-prime ordinals are considered at each depth: (i) the Fibonacci+1 index of p15's prime (the primary historical prime-index construction), or (ii) the corresponding prime value itself (a more permissive natural numeric interpretation). Every original page's full 29-symbol stream must admit at least one exact p56-style inverse using its assigned depth's **consecutive-prime φ key** and *all legal plaintext-F bypass choices*. Ciphertext F may be literal or a genuine encryption of non-F; a non-F ciphertext glyph that would decode to F necessarily kills that state.
+
+**Exact result, no page-order assumption:**
+
+| Initial prime ordinal at tree depth d | Pages admitting any legal depth on their physical side | Algebraically impossible pages | Maximum one-to-one page-node matching |
+|---|---:|---:|---:|
+| P15 Fibonacci prime **index** F(d)+1 | **10/55** | **45** | 10 |
+| P15 Fibonacci prime **value** | **18/55** | **37** | 18 |
+
+For the source-index interpretation the only individually admissible page IDs are **p0,p1,p2,p8,p14,p15,p23,p32,p43,p49**. Every other rune-bearing original page fails at **every** key depth available in its proper 50-or-5 branch. Even the more flexible prime-value interpretation cannot decode 37 pages. Therefore **no arrangement whatsoever of the 55 unknown pages can make the proposed depth-key plus p56 φ cipher work**. It is unnecessary to guess sibling order, a page permutation, a language crib or 55 hidden page starting offsets. The result is a complete exclusion of these two source-defined consumers under the conditional graph premise.
+
+The standalone SFT verifies the complete p15 numeric spiral, solved p57 source prime clause ranks [205,173,201], original p50 branch sizes50/1/5, and authentic solved-p56 known plaintext **85/85 with literal plaintext-F bypass**. It then constructs, for **each of the two key schedules**, 55 independent p57-native GP plaintext pages encrypted under a deliberately arbitrary correct graph-node assignment, preserving every original page's length; all **55/55** planted pages admit a valid all-secret graph bijection by exact maximum matching. [Source-original all-assignment reproducer](../sims/lp2_parable_p15_depthkey_allpermutation_phi_sft.cjs).
+
+**What remains:** A 16-level correspondence is an operational clue candidate, even though its direct historically known cipher interpretation is falsified. This does not reject an independently specified non-totient decryptor, a graph traversal that uses the table's *values* instead of depth, or an originally missing external key. Do not restart φ prime-offset tuning on different speculative page permutations.
+
 ## Direct consumer status and next decryption decision
 
 The graph independently singles out a **56-node reverse closure rooted at cell201** that could supply one address per unresolved physical page, while the outer two nodes `74,205` could describe p56/p57. This is the first bounded practical route suggested by the complete ordered triad. To produce actual plaintext, a player needs **one rule specifying which of the 56 addresses corresponds to each p0–p55 page** and **one reversible operation consuming the chosen address or its outgoing byte**. Neither follows from descendant cardinality.
