@@ -150,6 +150,23 @@ assert.equal(matches, 1);
 const periodic = remoteKey.filter((v, j) =>
   v === titleKey[(left.start + j) % 13]).length;
 assert.equal(periodic, 0);
+// Period-13 substitution collision is key-free and stronger than Vigenere.
+// It applies to every fixed, bijective alphabet at each absolute rune phase,
+// even if all 13 alphabets are completely unknown.
+const period13Witness = {
+  title: { offset: 1, phase: 1 % 13, cipher: titleCipher[1], plain: titlePlain[1] },
+  distant: {
+    offset: left.start, phase: left.start % 13,
+    cipher: remoteCipher[0], plain: inferredPlain[0]
+  }
+};
+assert.deepEqual(period13Witness, {
+  title: { offset: 1, phase: 1, cipher: 8, plain: 13 },
+  distant: { offset: 235, phase: 1, cipher: 8, plain: 2 }
+});
+assert.equal(period13Witness.title.cipher, period13Witness.distant.cipher);
+assert.notEqual(period13Witness.title.plain, period13Witness.distant.plain);
+// This does not apply after an unknown plaintext-dependent phase skip/reset.
 const report = {
   status: "CONDITIONAL CRIB ONLY, NO PLAINTEXT RECOVERED",
   sourceTriple: triples[0],
@@ -164,7 +181,8 @@ const report = {
   minimalLinearRecurrence: recurrence,
   remoteLinearPredictions: extrapolated,
   linearMatches: matches,
-  repeatedTitleKeyMatches: periodic
+  repeatedTitleKeyMatches: periodic,
+  arbitraryPeriod13SubstitutionImpossible: period13Witness
 };
 if (require.main === module) console.log(JSON.stringify(report, null, 2));
 module.exports = { run: () => report };
