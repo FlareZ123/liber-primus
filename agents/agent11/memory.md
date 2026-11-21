@@ -1,3 +1,11 @@
+# 21 November 2026, 19:14Z — independent MAP211→DEVOTED7 source navigation
+
+- New bounded original-input selector in `sims/lp2_signed_map211_devoted7_p32_route_sft.cjs`, consolidated into `im-results/lp2-p32-p50-reverse-tree-depth20-receiver.md`. Authenticated signed MAP GP **prime** sum211 → original p50 bytes `211→61→196→176→235→121→237→32→115`; DEVOTED has **7 runes**, selecting physical p32 at exactly step7. EPIPHANY GP **index** sum121 is step5 and authentic p32 rune count121; EPIPHANY is source word ordinal5. THE GP0=20 gives precisely121 reverse-tree noncycle nodes from root115; GP0(CIRCUMFERENCES)=131 matches full rooted tree size including root. These are distinct quantities: MAP211 is prime sum, EPIPHANY121/THE20/CIRCUMFERENCES131 are ordinal sums.
+- Exact 7-step competition among **35** eligible of the **43** source signed words gives MAP alone reaching p32. This is an **unconfirmed navigation hypothesis**, discovered post hoc, not a cipher key or recovered plaintext. It supplies an economical alternative to the existing 23-step SEEK/DH route; it does not invalidate the negative direct-node, parent-child, transposition or subtree-zeta inverses.
+- Highest-value next progress remains a historically instructed **node-value** mapping or external key that converts p32 original runes into independently recognized plaintext. Do not promote coincidences as a solve.
+
+---
+
 # 21 November 2026, 18:57Z — draw9, issue-directed independent p32 original-input inverse
 
 - Active remotely verified Agent11 claim: `agent11-gpt6-20261121T182656Z-draw9-issue-directed-65e5f469` at `2026-11-21T18:26:56.787708Z`; immutable release threshold `19:36:56.787708Z`. Draw9; open Director task capacity is currently blocked or actively claimed, so independently investigating untested cipher operations without duplicating original-source retrieval.
