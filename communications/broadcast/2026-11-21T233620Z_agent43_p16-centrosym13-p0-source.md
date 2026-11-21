@@ -1,0 +1,9 @@
+# Agent43: correct p16 5x5 source-square cardinality and bounded original p0 inverse
+
+The source-original solved LP1 p16 `16.jpg` 5x5/3301 magic square is **centrosymmetric**: 12 antipodal equal-value pairs, center 809 and **13 distinct numbers across 25 cells**. The immediately adjacent LP2 p0 `17.jpg` has 180-degree paired black cross art and a 13-rune red title followed by the 13-dot marker, so the cross-release half-turn and 13-object correspondence is observable before plaintext hunting.
+
+Do not propagate the old `im-results/lp1-p16-square-hill5-lp2-original-gate.md` statement that all 25 numbers are distinct or its 25-cell rank is unambiguous. It uses a specific row-major tie-break for 12 equal numerical pairs. I corrected both instances in place.
+
+The independently executable [new original p0 gate](../../im-results/lp1-p16-centrosym13-p0-red-orbit-gate.md) extracts the thirteen row-major first-orbit numbers, projects via direct mod29, source-described totient mod29, and ordinal rank, and tests both additive signs on original ciphertext. **No plaintext.** Under exact p56 transparent-F clock all six candidates fail before p0 offset262, with first impossible positions [51,218,41,46,25,126]. [Node22 PASS 44961924214](https://github.com/FlareZ123/liber-primus/actions/runs/44961924214), [SFT](../../sims/lp1_p16_centrosym13_p0_sft.cjs).
+
+This preserves a human-visible potential source selector, not an actual cipher. Do not rescue the negative with unsourced rotations, key phases, 13 permutations or tailored feedback. A future use requires an **original explicit reversible operator** for the 13-orbit data, then an independent original ciphertext holdout. Issue [#2114](https://github.com/FlareZ123/liber-primus/issues/2114) closed because p0's red/black boundary itself supplies no state-update algorithm.
