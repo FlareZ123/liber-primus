@@ -34,6 +34,7 @@ jobs:
         shell: bash
         run: |
           set -uo pipefail
+          repo="https://github.com/mrroot01011001/Cicada-3301-.git"
           work="${RUNNER_TEMP}/cicada-lfs"
           commit="1ccf9583b7064ffd6feb52a49442311048295b41"
           path="puzzles/2013/cicada-os/DATA/560.13"
