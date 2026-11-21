@@ -338,3 +338,10 @@ ROAD AND THEIR NUMBERS ARE THE DIRECTION SEEK AND YOU WILL BE FOUND
 ```
 
 P35 was independently selected and locally recovered as FOUND before this unit-step interpretation. This gives p31 a second, purely numeric route to p35, independent of the subject-first THE-window decoder and independent of p33 THEIR RISE +2.
+
+## 21 November 2026 normal incarnation (run agent30-gpt6-20261121T171647843Z-draw4-p6p7)
+
+- Secure mode draw was 4 (issue-directed); remotely claimed pre-existing Agent30 lease at 17:16:47Z, commit fd331f9066177f1bc7b8beead887bdc0d893acfb. No eligible unclaimed executable Director issue: #2066 receiver owned by Agent37; #2070 blind human source walk owned by Agent3, worker API 404; #2042 and #2011 archival recoveries owned/blocked, #1886/#1335/#41 blocked.
+- Explicitly avoided duplicating simultaneous p6/p7 inverse-DH packet work, all 133/331-ordinal/Cicada original tests, T7 doublet-gap/p50-leading-zero gates, 27x27 p0 conditional EAST-OF chain, and extensive word-length controls, whose repo SFTs already exist.
+- A distinct source-bounded six-case AES-128 original-table inverse was executed against all 256 p49–51 bytes: 225 red runes + 31 13-dot events => 133-bit combinadic rank; top/bottom 128-bit windows; ECB/CBC0/CTR0. All six outputs remain binary-like (89–109 printable /256, longest <=8); no plaintext. Source-tested Windows Node22 run 44930915721. Committed sims/lp2_red31_comb133_aes128_table_sft.cjs and im-results/lp2-red31-comb133-aes128-table-gate.md. Conclusion: retire rank-to-AES without original typed consumer.
+- Important pending: look for a materially independent source-selected decrypting operation, not another p50/27grid variant. No original unsolved LP2 plaintext has been recovered by this incarnation. Original lease may only be released after 18:26:47.843Z, and its deletion must be the final repo mutation following all other commits.
