@@ -101,6 +101,18 @@ function quantile(xs, q) {
 const sample = Array.from({length: 24}, (_, i) =>
   native.slice(i * 1319 + 3000, i * 1319 + 3000 + 308));
 assert.ok(sample.every(s => s.length === 308));
+const independentSource = [
+  ["shakespeare", "resources/control/shakespeare_first300k.txt"],
+  ["emerson", "resources/control/emerson_essays_2944.txt"]
+];
+const independentSamples = independentSource.map(([name, sourceFile]) => {
+  const gpText = encodeSourceNativeGP(read(sourceFile));
+  assert.ok(gpText.length > 33000);
+  const sourceWindows = Array.from({length: 24}, (_, i) =>
+    gpText.slice(i * 1319 + 3000, i * 1319 + 3000 + 308));
+  assert.ok(sourceWindows.every(w => w.length === 308));
+  return {name, sourceLength: gpText.length, sourceWindows};
+});
 const branches = [];
 for (let type = 0; type < 3; type++) {
   assert.deepEqual(decode(type, encode(type, sample[0], seed), seed), sample[0],
@@ -111,7 +123,26 @@ for (let type = 0; type < 3; type++) {
   const fullControls = sample.map(p => recover(type, encode(type, p, seed), 28));
   const held = control.map(x => x.holdout);
   const oracle = fullControls.map(x => x.oracleAllRows);
+  const externalControls = independentSamples.map(entry => {
+    const fits = entry.sourceWindows.map(plain =>
+      recover(type, encode(type, plain, seed), 14));
+    const fullFits = entry.sourceWindows.map(plain =>
+      recover(type, encode(type, plain, seed), 28));
+    const hold = fits.map(x => x.holdout);
+    const max = fullFits.map(x => x.oracleAllRows);
+    return {
+      corpus: entry.name, originalGPEncodedLength: entry.sourceLength,
+      controls: hold.length,
+      heldoutMin: Math.min(...hold),
+      heldoutMedian: quantile(hold, 0.5),
+      oracleMin: Math.min(...max),
+      oracleMedian: quantile(max, 0.5),
+      originalBelowEveryHeldout: originalFit.holdout < Math.min(...hold),
+      originalBelowEveryOracle: originalAll.oracleAllRows < Math.min(...max)
+    };
+  });
   branches.push({
+    independentCorpusControls: externalControls,
     operation: ["affine_2power_GP29","additive_2power_GP29","multiplicative_2power_GP29"][type],
     keySecretSearch: type === 2 ? "28^11" : "29^11",
     inferredOriginalKeyTrain14: originalFit.key,
