@@ -104,6 +104,28 @@ function run(){
   assert.deepEqual([13,24,2,15].map(i=>corpus.translit[i]),
     ["P","A","TH","S"]);
   assert.equal(13+24+2+15,54); // PATHS also GP0=54: ambiguity is explicit.
+  // Conditional, previously evidenced p35 handoff: the native p50 low60
+  // opcode sends ROAD/PATHS54 to FOUND36, and p35 has the independently
+  // documented unique 2+3 native-word mutual-pointer packet.
+  const table=JSON.parse(fs.readFileSync(path.join(ROOT,
+    "resources/liber-primus/base60-grid.json"),"utf8")).byte_rows.flat();
+  assert.equal(table[54],156);
+  assert.equal(table[54]%60,36);
+  assert.equal(table[36],54);
+  assert.equal(table[36]%60,54);
+  const found=[0,3,1,9,23];
+  assert.deepEqual(found.map(i=>corpus.translit[i]),["F","O","U","N","D"]);
+  assert.equal(found.reduce((sum,i)=>sum+i,0),36);
+  const p35=corpus.pages[35].indices;
+  const p35Selected=p35.slice(25,30);
+  assert.deepEqual(p35Selected,[19,17,19,24,11]);
+  assert.equal(p35Selected.slice(0,2).reduce((sum,i)=>sum+i,0),36);
+  assert.equal(p35Selected.slice(2).reduce((sum,i)=>sum+i,0),54);
+  const foundLocalKey=p35Selected.map((value,i)=>(value-found[i]+29)%29);
+  assert.deepEqual(foundLocalKey,[19,14,18,15,17]);
+  assert.deepEqual(foundLocalKey.map((key,i)=>(found[i]+key)%29),
+    p35Selected);
+
   assert.equal(original.equal,7);
   assert.equal(original.minSubstitutions,17);
   assert.equal(original.decodedIoC,0.04197530864197531);
@@ -204,6 +226,10 @@ function run(){
     centeredSignedWordCheck:{originalP32Prime:P[key[40]],
       originalP33Prime:P[body[40]],delta54:original.centerPrimeDelta,
       signedCandidateWords:["ROAD","PATHS"],nativeGP0Value:54,
+      onwardConditionalHandoff:{center54ToP50Low60:36,
+        foundNativeGP0:36,p35Offset25to29:p35Selected,
+        p35FoundCandidate:found,p35LocalInverseKey:foundLocalKey,
+        status:"Known candidate FOUND; source-derived selector remains conditional"},
       center7GpPrimeDelta:original.inner7PrimeDelta,
       center7P57SolvedWord:"DIUINITY",center7NativeGp0:105,
       interpretation:"Retrospective semantic label, not a plaintext rune"},
