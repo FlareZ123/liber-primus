@@ -2,7 +2,7 @@
 
 - The 2012 archive's recreated numbers.public explicitly lists the P.S. modulus N and e=65537; numbers.private supplies matching p, q, phi, d (Crypt::RSA 1.99, Checked=1). The stored d matches the computed inverse modulo phi. This is a community reconstruction, not an original Cicada instruction.
 - Tested the two 2013 ISO /tmp files folly and wisdom from scream314/cicada3301/assets/2013/cicados/tmp/. They are identical 3,368-byte blobs (Git blob id 62b1b949a1e4e4a346e75b1c34101000d3c53220), beginning BF 53 C0 CC; 0xBF has the shape of an old-format OpenPGP packet header (tag 15, indeterminate length), but no full packet parse was attempted.
-- Scanned every 54-byte sliding window in both byte orders (6,630 candidate blocks) with the reconstructed RSA private exponent. No PKCS#1 v1.5 type-2 block and no high-printability decrypted block appeared. This excludes direct embedded RSA/PKCS#1 blocks under this key in those files, not symmetric/custom packet formats.
+- Scanned every 54-byte sliding window in both byte orders (6,630 candidate blocks): private-exponent outputs were checked for PKCS#1 v1.5 type-2 blocks and high-printability plaintext; public-exponent outputs were checked for PKCS#1 v1.5 type-1 signature blocks. No type-1 or type-2 block and no high-printability decrypted block appeared. This excludes direct embedded RSA/PKCS#1 encryption or signature blocks under this key in those files, not symmetric/custom packet formats.
 - Updated im-results/2012-ps-number-integer-screen.md and broadcast communications/broadcast/2026-11-21T2340Z_agent42_ps-key-2013-iso-scan.md. The key reconstruction is real, but no LP2 link or source-authenticated ciphertext is established.
 
 ---
