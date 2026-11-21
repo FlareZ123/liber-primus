@@ -68,6 +68,11 @@ const primeSums8 = redWords.map((w) =>
 const indexSums8 = redWords.map((w) =>
   w.reduce((sum, rune) => sum + rune, 0));
 assert.deepEqual(products8, [state.q, state.e]);
+const product23 = (xs) => xs.reduce((v, x) => v * x % state.p, 1);
+const redProduct23 = redWords.map(product23);
+assert.deepEqual(redProduct23, [3, 9]);
+assert.equal(redProduct23[1], redProduct23[0] ** 2 % state.p);
+
 // P6 and p7 share a printed spiral border. The p7 196-rune square
 // boundary lies exactly after the first complete two-rune red word, leaving
 // a source-red 12-rune suffix to pair with p8's 12-rune red prefix.
@@ -106,6 +111,9 @@ for (const pg of ink.pages) {
           (total, index) => total + corpus.prime[index], 0);
         completeRedWords.push({
           page: pg.page, start, indices: running,
+          redStart: (pg.red_spans || []).find((span) =>
+            start >= span.start &&
+            start + running.length <= span.start + span.length).start,
           primeSum: wordPrimeSum,
           squareRoot: Math.sqrt(wordPrimeSum)
         });
@@ -126,6 +134,23 @@ for (const pg of ink.pages) {
   flush();
 }
 assert.equal(completeRedWords.length, 50);
+const redAdjacentPairs = completeRedWords.slice(0, -1).flatMap((word, i) => {
+  const next = completeRedWords[i + 1];
+  return word.page === next.page && word.redStart === next.redStart
+    ? [{ word, next }] : [];
+});
+assert.equal(redAdjacentPairs.length, 34);
+const doubledLengthPairs = redAdjacentPairs.filter(
+  ({ word, next }) => next.indices.length === 2 * word.indices.length);
+assert.deepEqual(doubledLengthPairs.map(({ word, next }) => [
+  word.page, word.start, word.indices.length, next.indices.length
+]), [[7, 194, 2, 4], [8, 0, 4, 8]]);
+const squaredFieldPairs = redAdjacentPairs.filter(({ word, next }) =>
+  word.indices.concat(next.indices).every((v) => v > 0 && v < 23) &&
+  product23(next.indices) === product23(word.indices) ** 2 % 23);
+assert.deepEqual(squaredFieldPairs.map(({ word }) => [
+  word.page, word.start
+]), [[8, 0]]);
 const perfectSquares = completeRedWords.filter(
   (word) => Number.isInteger(word.squareRoot));
 assert.deepEqual(perfectSquares.map((word) => [
@@ -277,6 +302,8 @@ console.log(JSON.stringify({
     p6AndP7SpiralRuneSquares: [p6.length, p7.slice(0,196).length],
     p7TrailingRedMatchedToP8LeadingRed: p7.length - 196,
     p8HeadingWordProducts: products8,
+    p8HeadingWordProductsModulo23: redProduct23,
+    doubledRedPairs: doubledLengthPairs.map(({ word, next }) => [word.page, word.start, word.indices.length, next.indices.length]),
     p8HeadingIndexSums: indexSums8,
     p8HeadingPrimeSums: primeSums8,
     p8FirstHeadingSquareRoot: Math.sqrt(primeSums8[0]),
