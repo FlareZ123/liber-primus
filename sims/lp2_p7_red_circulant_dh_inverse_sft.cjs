@@ -232,7 +232,7 @@ function main() {
       if (rune !== undefined) {
         runes.push(rune);
         offset++;
-      } else if ('-.  // The already published, explicitly retrospective p0 vertical RISE§'.includes(ch)) {
+      } else if ('-.$&§'.includes(ch)) {
         flush();
       }
     }
