@@ -138,6 +138,33 @@ This excludes a **second material family** that the preceding ciphertext-feedbac
 
 [Separate source-native plaintext-autokey Gaussian SFT](../sims/lp2_p7_five_plain_taps_allsecret_longword_sft.cjs) · [Windows PASS44953418085](https://github.com/FlareZ123/liber-primus/actions/runs/44953418085).
 
+## Cross-word actual key recovery attempt: 29,229 independent GP-native English candidates
+
+The preceding source dictionary is demonstrably incomplete. A further **recovery-oriented** experiment therefore changes the decision target: rather than rejecting each printed word under freely changing unknown coefficients, demand that **one actual secret five-component feedback key recur in different printed words**. This supplies an independent prediction: two apparent long-word plaintexts must induce **exactly the same q**, and preferably the same rune output multiplier a, even though the other word-specific key components and five-rune initialization are fully unknown.
+
+Expand the English words to the pinned original public `dwyl/english-words` Git blob `d3a119e7ce57d068c3f3c9cbd694fc2ff14571ab`, preserving its historically independent 370,105-item source inventory. Apply the **same fixed source-native GP spelling encoder**, retaining exactly **17,772 distinct GP13 terms** and **11,457 distinct GP14 terms** in [the committed filtered long-word control corpus](../resources/control/dwyl-english-alpha-gp13-14-only.txt). Unlike the original 175-term source corpus, this wider dictionary includes highly technical and uncommon words; matches are inherently *candidates*, not credible semantic plaintext.
+
+For each of the seven untouched original printed words of length 13 or 14 GP symbols, compute **all exact** ciphertext- and separately plaintext-driven q and a solutions by GF29 Gaussian elimination over `n−6` residual equations in six unknowns. Require full rank, `a != 0`, and consistency on every extra position. Compute cross-page intersections of recovered **five-coordinate q vectors**, with no human-picked key, output shift or word. Independently encrypt `APPROXIMATELY` (13 GP) and authentic solved-p57 `CIRCUMFERENCES` (14 GP) with one planted q/a under each feedback model, allowing arbitrary new word seeds, and recover the exact planted q/a in all **four** positive trials.
+
+| Original physical page | GP length | Ciphertext-feedback compatible terms | Plaintext-autokey compatible terms |
+| ---: | ---: | ---: | ---: |
+| 11 | 13 | 570 | 604 |
+| 13 | 14 | 10 | 8 |
+| 16 | 13 | 569 | 581 |
+| 25 | 14 | 15 | 14 |
+| 43 | 14 | 18 | 14 |
+| 52 | 13 | 598 | 598 |
+| 55 | 13 | 617 | 592 |
+
+Across every original long-word pair:
+
+- **Ciphertext feedback:** exactly **one q collision**, namely `q=[24,3,16,21,17]`. It would read physical p16's long word as `unpresentably` with output multiplier `a=4`, and physical p52's as `operationalism` with **different multiplier `a=10`**. Their grammatical/semantic pairing is weak and they are far apart in the manuscript. **No common (q,a) occurs across any original long-word pair**. For the four GP13 original words alone, the observed cross-key pair population is `2,077,181`; against 29⁵ possible q, the uniform-key expectation is approximately **0.101 matches** and probability of at least one roughly **9.63%**, *before* considering other tried models. This isolated collision does not independently authenticate itself and **must not be presented as recovered ciphertext/plaintext or creator-selected key**.
+- **Plaintext autokey:** **zero** shared q across different original long words; zero shared (q,a).
+
+A positive *shared source key* would have been an unusually constraining lead if it also matched coherent native phrasing, contextual pages and an independent original segment; the observed source-wide outcome offers none. Across all 29,229 enlarged long-word candidates, **there is still no authenticated word/key bridge**. This result is more useful than a small-lexicon exclusion: it directly searches for a reusable key to test elsewhere and reports its one low-significance coincidental competitor instead of discarding it silently.
+
+[Single-file original-input cross-word key-recovery SFT](../sims/lp2_p7_fivefeedback_sharedkey_fullenglish_sft.cjs) · [pinned filtered external corpus](../resources/control/dwyl-english-alpha-gp13-14-only.txt) · [Windows PASS44954956331](https://github.com/FlareZ123/liber-primus/actions/runs/44954956331). All models, source spelling rules, planted controls, and original source page mapping are frozen in the executable.
+
 ## Cryptanalytic decision and boundaries
 
 Retire the direct word-interior family `K[i]=Σ w*Kprev + q*C[i-1] + r, C[i]=a*P[i]+b+K[i]` as a decoder of ordinary source-native dictionary English, even with fresh per-word keys, page/chapter resets and unrestricted secret affine output scalars. This is a **substantive strengthening** of the earlier autonomous-period original-input exclusion: it excludes an entire ciphertext-dependent feedback update that that earlier work explicitly left unresolved. It applies equally to a single fixed hidden `q` and per-word changing `q`.
