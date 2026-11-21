@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Source-led p32 red thirteen-dot / 26-word half and 13-deep tree read.
+ * Source-led p32 six-line 71/50 and 92/29 boundaries, pointer tree read.
  *
  * Exact input: original LP2 rune transcription, physical p32 original
  * 13-dot terminal mark, authenticated 2016 signed clause, original
@@ -43,21 +43,28 @@ assert.equal(runeGroups.length, 57, 'p50 is rune-free');
 const runeWords = s => s.split(/[^\u16A0-\u16FF]+/).filter(Boolean);
 const pages = runeGroups.map((raw, index) => ({
   page: index < 50 ? index : index + 1,
-  words: runeWords(raw),
+  words: runeWords(raw.replace(/\/[\r\n]*/g, '')),
+  lineChunks: runeWords(raw),
 }));
 const physical = pages.find(p => p.page === 32);
-assert.equal(physical.words.length, 26);
-assert.equal(physical.words.flatMap(word => [...word]).length, 121);
-const lengths = physical.words.map(word => [...word].length);
+assert.equal(physical.words.length, 22,'line-spanning runes form 22 complete words');
+assert.equal(physical.lineChunks.length, 26,
+  '26 artificial fragments appear only when physical line breaks are word boundaries');
+assert.equal(physical.words.flatMap(word => [...word]).length,121);
+const lengths = physical.lineChunks.map(chunk => [...chunk].length);
+const realWordLengths=physical.words.map(word=>[...word].length);
+assert.deepEqual(realWordLengths,
+  [1,3,5,11,5,5,3,11,6,9,5,8,4,9,4,8,2,3,2,8,5,4]);
 const sum = values => values.reduce((a,b)=>a+b,0);
 assert.equal(sum(lengths.slice(0, 13)), 71);
 assert.equal(sum(lengths.slice(13)), 50);
-assert.equal(pages.filter(p => p.words.length === 26).length, 1);
-assert.equal(pages.filter(p => sum(p.words.slice(0,13).map(x => [...x].length)) === 71).length, 1);
+assert.equal(pages.filter(p => p.words.length === 22).length, 1);
+assert.equal(pages.filter(p => p.lineChunks.length === 26).length, 1);
+assert.equal(pages.filter(p => sum(p.lineChunks.slice(0,13).map(x => [...x].length)) === 71).length, 1);
 
 /**
- * The 13/13 word split is exactly the *visually printed* 3-line/3-line
- * split, a much stronger author-visible boundary than a guessed word cut.
+ * The 13/13 line-fragment split is exactly the *visually printed* 3/3
+ * six-line split. Four original words straddle a physical line break.
  * The source transcript uses / to preserve image line endings.
  */
 const lineInfo=runeGroups.map((text,index)=>{
@@ -65,21 +72,23 @@ const lineInfo=runeGroups.map((text,index)=>{
   return {
     page:index<50?index:index+1,
     lengths:lines.map(line=>runeWords(line).join('').length),
-    words:lines.map(line=>runeWords(line).length),
+    chunks:lines.map(line=>runeWords(line).length),
   };
 });
 const p32Lines=lineInfo.find(x=>x.page===32);
 assert.deepEqual(p32Lines.lengths,[25,23,23,21,22,7],
   'original image six printed lines are visibly asymmetric');
-assert.deepEqual(p32Lines.words,[5,4,4,5,6,2]);
+assert.deepEqual(p32Lines.chunks,[5,4,4,5,6,2]);
 assert.equal(sum(p32Lines.lengths.slice(0,3)),71);
 assert.equal(sum(p32Lines.lengths.slice(3)),50);
-assert.equal(sum(p32Lines.words.slice(0,3)),13);
-assert.equal(sum(p32Lines.words.slice(3)),13);
+assert.equal(sum(p32Lines.chunks.slice(0,3)),13);
+assert.equal(sum(p32Lines.chunks.slice(3)),13);
+assert.equal(sum(p32Lines.lengths.slice(0,4)),92);
+assert.equal(sum(p32Lines.lengths.slice(4)),29);
 assert.deepEqual(lineInfo.filter(x=>x.lengths.length===6).map(x=>x.page),[22,32]);
-assert.deepEqual(lineInfo.filter(x=>x.words.length===6
-  && sum(x.words.slice(0,3))===13
-  && sum(x.words.slice(3))===13).map(x=>x.page),[32]);
+assert.deepEqual(lineInfo.filter(x=>x.chunks.length===6
+  && sum(x.chunks.slice(0,3))===13
+  && sum(x.chunks.slice(3))===13).map(x=>x.page),[32]);
 
 
 // Exact GP29 terms in the authenticated signed words, encoding K as C.
@@ -147,7 +156,13 @@ assert.equal(original92.length,92);
 assert.equal(tail29.length,29);
 assert.equal(new Set(tail29).size,20, 'tail is not a GP29 permutation');
 const boundaries = lengths.reduce((arr,n)=>(arr.push((arr.at(-1)||0)+n),arr),[]);
-assert.ok(boundaries.includes(92), 'word boundary at GP0 EMPTY cut');
+assert.ok(boundaries.includes(92),'artificial line-fragment cut at EMPTY92');
+const wholeBoundaries=realWordLengths.reduce((arr,n)=>
+  (arr.push((arr.at(-1)||0)+n),arr),[]);
+assert.equal(wholeBoundaries.includes(71),false,
+  'visible line3 break does not end a complete original word');
+assert.equal(wholeBoundaries.includes(92),false,
+  'visible line4 break does not end a complete original word');
 
 const mod = x => ((x%29)+29)%29;
 const io = seq => {
@@ -174,7 +189,7 @@ for (const sign of [-1,+1]) {
 }
 assert.ok(tests.every(t=>t.body92_ioc<0.04));
 
-// Original first 13 printed words = 71 rune source-selected route.
+// Original first three printed lines = 71 rune source-selected route.
 // Four literal GP29 additive consumers use visited address or emitted byte.
 const pointerTests=[];
 for(const emission of ['visited-address','emitted-byte']) {
@@ -196,19 +211,23 @@ for(const emission of ['visited-address','emitted-byte']) {
 assert.equal(pointerTests.length,4);
 
 console.log(JSON.stringify({
-  source: 'p32 121 runes / 26 physical word groups / terminal red13-dot',
+  source: 'p32 six physical lines / 22 whole words / 26 line fragments / terminal red13-dot',
   signed_gp0: {SEEKS:71, EMPTY:92, EPIPHANY:121, THE:20},
-  word_half13: [sum(lengths.slice(0,13)),sum(lengths.slice(13))],
+  fragment_halves13: [sum(lengths.slice(0,13)),sum(lengths.slice(13))],
+  original_complete_word_count:physical.words.length,
+  original_line_fragment_count:physical.lineChunks.length,
+  source_line_cut_rune_indices:[25,48,71,92,114,121],
+  whole_word_boundary_at_71_or_92:false,
   physical_line_lengths:p32Lines.lengths,
-  physical_line_wordcounts:p32Lines.words,
-  unique_6_line_13_and_13_wordgroups:true,
-  uniqueness: 'only p32 in all 57 rune-bearing physical pages has exactly26 words and first13 total71 runes',
+  physical_line_fragment_counts:p32Lines.chunks,
+  unique_6_line_13_and_13_fragments:true,
+  uniqueness: 'p32 alone has 26 line fragments and line3 cut71; only p32 and p22 have six physical lines',
   base60_root115_tree_depth13_nonroot:sum(layers.slice(0,13)),
   base60_root115_outer14to20:sum(layers.slice(13)),
   terminal29_unique_symbols:new Set(tail29).size,
   table50_walk71_base60_endpoint:path50.at(-1),
   table50_walk71_base59_endpoint:reducedState,
-  first13_words_pointer_key_gates:pointerTests,
+  first_three_line_pointer_key_gates:pointerTests,
   tests,
   recovered_unknown_plaintext:false,
 }, null, 2));
