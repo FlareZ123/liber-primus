@@ -446,6 +446,39 @@ for (const model of [
 }
 assert.ok(sevenPageCycleConsumers.every(x => x.originalCandidateIoC < 0.038));
 
+// The first EIGHT original red p8 glyphs are all from the seven-rune
+// Roman-numeral alphabet I,V(U),X,L,C,D,M. Its last four red glyphs are not.
+// The illuminated, oversized X is already the counted first glyph in p8.
+const romanDigitGp = new Set([10, 1, 14, 20, 5, 23, 19]);
+assert.deepStrictEqual(p8.slice(0, 8), [14, 10, 14, 19, 1, 14, 19, 5]);
+assert.ok(p8.slice(0, 8).every(value => romanDigitGp.has(value)));
+assert.ok(p8.slice(8, 12).every(value => !romanDigitGp.has(value)));
+const romanOnlyMaximalRuns = [];
+for (const page of source.pages.filter(item => item.page < 56)) {
+  const indices = page.indices;
+  for (let start = 0; start < indices.length;) {
+    if (!romanDigitGp.has(indices[start])) {
+      start++;
+      continue;
+    }
+    let end = start + 1;
+    while (end < indices.length && romanDigitGp.has(indices[end])) end++;
+    if (end - start >= 6) {
+      romanOnlyMaximalRuns.push({
+        page: page.page,
+        start,
+        length: end - start,
+        runeIndices: indices.slice(start, end)
+      });
+    }
+    start = end;
+  }
+}
+assert.deepStrictEqual(romanOnlyMaximalRuns, [
+  { page: 8, start: 0, length: 8,
+    runeIndices: [14, 10, 14, 19, 1, 14, 19, 5] }
+]);
+
 console.log(JSON.stringify({
   source: 'Original LP2 p8 opening red XIXM and p7 second red product',
   p8RomanNumber: romanNumber,
@@ -467,5 +500,7 @@ console.log(JSON.stringify({
     .reduce((sum, page) => sum + page.indices.length, 0),
   canonicalRomanTemplatesLengthAtLeast3: templates.length,
   matchingOriginalOccurrences: hits,
+  originalRomanDigitAlphabet: [...romanDigitGp].sort((a, b) => a - b),
+  uniqueOriginalRomanOnlyMaximalRunAtLeastSix: romanOnlyMaximalRuns,
   interpretation: 'Original numeric/index clue, not decrypted unknown plaintext'
 }, null, 2));
