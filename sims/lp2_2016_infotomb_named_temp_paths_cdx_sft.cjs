@@ -44,7 +44,7 @@ async function inspect(path) {
       original,
       status: 200,
       available: true,
-      total_rows: data.length - 1,
+      total_rows: Math.max(0, data.length - 1),
       year2016_rows: rows.length,
       year2016_http200: hits.map(x => ({
         timestamp: x[0], captured_url: x[1], mimetype: x[2],
