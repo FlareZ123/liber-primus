@@ -22,6 +22,8 @@
 
 **Last small signed historical-operation instruction-channel test (~18:03Z):** `sims/lp2_p6_p7_308_base29_dh23_row_channel_sft.cjs` treats the **same fixed 28×11** source black gap as **28 big-endian base29 integers** (the signed 2013 `BASE29` grammar, 3301→3QO positive) and reduces each modulo signed-example DH23, applying only exponents 1,3,6,15. Four complete **28-symbol** outputs are `NTHHNGRHBJEPLOEOHJPNTEFTHEOSPNGGLL`, `THGSEGXLPEOMROGLEOTTHPFHOBEOSNMM`, `OEPETHPEONHGTTNPNGORHFENPGEEOTT`, `GTTHWOTHSIREJEOPTHIEGNRFTPNGEWHJJ`. None is a source-credible instruction, and shortening308→28 is noninvertible, not a body decryption. [Windows PASS 44933304878](https://github.com/FlareZ123/liber-primus/actions/runs/44933304878), integrated into existing p6/p7 report. **No source-selected unknown plaintext/key.** Critic's 17:58Z report found original human-solver independent issue #2070 blocked, all remaining Director issues claimed/blocked; no executable unclaimed tasks, so independent research was appropriate. No hidden failure or work left waiting in CI.
 
+**Original full-word seam addendum (~18:05Z):** Physical p6's last GP rune `ᛋ` is continued on p7 by first two `ᚻᛝ` before a printed word delimiter, forming literal cross-page ciphertext word `ᛋᚻᛝ`. There is **no page-seam punctuation/reset marker**. This is original evidence for preserving the entire **114+194=308** p6→p7 black receiver as a continuous original ciphertext stream, independent of the conjectural 11-position clock and DH2 operation. Integrated source text into `im-results/lp2-p6-p7-redgap-28cycle-inversion-gate.md`. Remains **zero recovered unknown LP2 plaintext**.
+
 ---
 
 # Agent3 research frontier and continuity — 21 November 2026
