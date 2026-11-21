@@ -89,12 +89,84 @@ function ioc(input){
     (input.length*(input.length-1));
 }
 assert.equal(ioc(decoded),0.03571585274889211);
+
+/** 
+ * Key indexed by actual consumed rune clock. The original p33 WILL crib
+ * consumes four successive key symbols and C[132..135] has no F.
+ * There are five printed F ciphertext positions before rune132, so
+ * any F-transparent receiver can begin WILL at consumed index127..132.
+ * This is exhaustive over every earlier unknown literal-F mask.
+ * @param {number} anchor 
+ * @returns {number[]}
+ */
+function keyAtConsumedAnchor(anchor){
+  const key=Array(original.length).fill(0);
+  for(let i=0;i<4;i++)key[anchor+i]=sourceSeed[i];
+  for(let i=anchor+4;i<key.length;i++)
+    key[i]=mod(-inverse(poly[4])*poly.slice(0,4).reduce(
+      (sum,a,j)=>sum+a*key[i-4+j],0));
+  for(let i=anchor-1;i>=0;i--)
+    key[i]=mod(-inverse(poly[0])*poly.slice(1).reduce(
+      (sum,a,j)=>sum+a*key[i+1+j],0));
+  return key;
+}
+/**
+ * Exact p56 plaintext-F-transparent inverse under one source LFSR key:
+ * ciphertext F may be literal bypass (clock unchanged), or an encrypted
+ * non-F consuming the clock. Other ciphertexts must consume and give non-F.
+ * Native WILL at offsets132..135 is held fixed. No English score used.
+ * @param {number[]} C 
+ * @param {number} anchor
+ */
+function fTransparentGate(C,anchor){
+  const key=keyAtConsumedAnchor(anchor);
+  let states=new Set([0]),maximum=1;
+  for(let i=0;i<C.length;i++){
+    const next=new Set();
+    for(const clock of states){
+      if(i===132&&clock!==anchor)continue;
+      if(C[i]===0)next.add(clock);
+      const plain=mod(C[i]-key[clock]);
+      if(plain!==0 && (i<132||i>135||plain===expectedWILL[i-132]))
+        next.add(clock+1);
+    }
+    states=next;
+    maximum=Math.max(maximum,states.size);
+    if(states.size===0)return{
+      anchor,full:false,firstImpossible:i,maxStates:maximum
+    };
+  }
+  return{anchor,full:true,firstImpossible:C.length,maxStates:maximum};
+}
+const printedFBefore=original.slice(0,132).filter(x=>x===0).length;
+assert.equal(printedFBefore,5);
+const exactAllFModels=Array.from({length:printedFBefore+1},
+  (_,j)=>fTransparentGate(original,132-printedFBefore+j));
+assert.deepEqual(exactAllFModels.map(x=>x.firstImpossible),
+  [39,17,87,87,3,68]);
+assert.ok(exactAllFModels.every(x=>!x.full));
+// A genuine native-GP plaintext with four literal Fs before WILL,
+// plus the original 4-rune WILL source seed, is an independent positive.
+const plantedPage=Array.from({length:original.length},
+  (_,i)=>clear[i%clear.length]);
+for(let j=0;j<4;j++)plantedPage[132+j]=expectedWILL[j];
+const consumedBefore=plantedPage.slice(0,132).filter(v=>v!==0).length;
+assert.equal(consumedBefore,128);
+const plantKey=keyAtConsumedAnchor(consumedBefore);
+let consumed=0;
+const plantedCipher=plantedPage.map(v=>v===0?0:mod(v+plantKey[consumed++]));
+assert.deepEqual(plantedCipher.slice(132,136),original.slice(132,136));
+const positiveModel=fTransparentGate(plantedCipher,consumedBefore);
+assert.equal(positiveModel.full,true);
+
 console.log(JSON.stringify({
   classification:'No recovered original p33 prose: exact 4-rune source-crib quartic stream is excluded',
   originalSource:'p50 modulo29 H(2013 signed BASE29) times G(p39 red); original p33 WILL local inverse',
   coefficientAscending:poly,quotientSymbols:quotient.length,
   divisionRemainder:remain.slice(-4),
   originalPage33Runes:original.length,
+  exactAllFiveCipherFBypassAnchors:exactAllFModels,
+  full214NativeGpFTransparentPositive:positiveModel.full,
   plantedNativePage57Runes:clear.length,
   knownP33SourceWord:'WILL',originalCribOffset:132,
   sourceCribKey:sourceSeed,
