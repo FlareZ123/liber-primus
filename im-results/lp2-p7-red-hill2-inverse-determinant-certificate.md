@@ -61,10 +61,24 @@ As a second source-bound length check, apply the same pair rule without refittin
 
 The test separately encrypts all 94 paired native-clear GP29 runes of authentic solved p57 under `M` and recovers **94/94** exactly under `M^-1`; this confirms the matrix consumer would recover a genuine source-native positive when the proposed key really was used. Matrix inversion/replay is mathematical correctness, not authenticity.
 
+## Source-selected five-dot composite receiver: complete 1,730-rune negative
+
+The adjacent p7 **five-dot artwork** has independently recorded top-to-bottom column order `[2,4,0,3,1]`. The following physical illustrated pp8–14 contain **1,729 original runes**, and the printed p10 inline numeral `7` occurs after original rune692. Earlier [p7-dot / 2014-square Hill-5 study](lp2-p7-3301-hill5-gate.md) already fixed the literal human-readable operation: insert the numeral as GP index7, giving **1,730 symbols = 5 columns ×346**; interleave those columns in the authentic p7 five-dot order. This moves the inserted `7` to output position zero, an independent structural control. That earlier study tried the **2014 5×5 magic-square** matrix and got a negative. The **new p7 red-word matrix** is a distinct, exact and independently available smaller key.
+
+Freeze one composite without altering the established dot order or seeking offsets: perform the above unique 1,730-symbol source-selected interleave, then `P=M^-1*C` in 865 consecutive **two-rune** column vectors, with `M^-1=[[1,6],[13,22]]`. Unlike a naked p8 255-rune interval, this concrete receiver has **no unmatched symbol**, recovers precisely the embedded original numeral, and supplies an exact inverse for the entire 1,730-symbol stream. Each runic plaintext candidate can be reencrypted and deinterleaved with no loss.
+
+On the original source, normalized GP29 IoC is **0.9992651705** after fixed dot interleave and **1.0002153004** after the Hill-2 inverse, both essentially uniform. Decoded prefix:
+
+```text
+NGWIABMIANGORWHPNNRTLHWOETHJFMOTHGMSMSIAEOEANNGTHWEOTHNSXEOJEONIATHTHICIYA
+```
+
+This source-composed, fully typed 1,730-symbol reversible consumer **fails to recover coherent language** and does not explain the source's original word-boundary semantics. It was added to the same [exact SFT](../sims/lp2_p7_red_hill2_certificate_sft.cjs) with explicit assertions of the seven original page lengths, 1,730-byte receiver length, unique numeral-first property, full inverse, and unchanged inputs. Full 1,730/1,730 re-encryption succeeds, proving only implementation correctness. No further dot order / Hill sign / key phase / padding permutation was searched.
+
 ## Research decision
 
-Preserve the source-exact p7 five-word Hill-2 inverse-determinant **candidate key packet** as a distinct interpretation of the DH inverse-state register. **Reject** its one natural next-illustrated-page, phase-zero Hill-2 receiver and continuous p8–14 paired-section consumer. The packet is not a verified Liber Primus encryption key. Do not rescue this negative with extra pair offsets, changed read direction, nonlinear key adaptations, other original pages chosen by IoC, or a free Hill-family search.
+Preserve the source-exact p7 five-word Hill-2 inverse-determinant **candidate key packet** as a distinct interpretation of the DH inverse-state register. **Reject** its two natural complete source-bound consumers: the literal next-illustrated-page phase-zero Hill-2 receiver, and the manuscript's independently discovered p7 five-dot interleaver + p10 numeral7 + Hill-2 inverse across the entire 1,730-symbol p8–14 section. A continuous p8–14 raw paired-section inverse also fails. The packet is not a verified Liber Primus encryption key. Do not rescue this negative with extra pair offsets, changed read direction, nonlinear key adaptations, other original pages chosen by IoC, or a free Hill-family search.
 
 To make this a genuine plaintext route, an independent original Cicada clue must specify which ciphertext is consumed, the block origin and the handling of odd input lengths. An unseen 150-rune prediction and exact native-language recovery would then distinguish a valid cipher from the algebraic coincidence.
 
-**Reproducer:** [`sims/lp2_p7_red_hill2_certificate_sft.cjs`](../sims/lp2_p7_red_hill2_certificate_sft.cjs), source-exact CommonJS; executed successfully against the fetched original repository sources with all five-word census, matrix identities, original inverse and known-clear positive.
+**Reproducer:** [`sims/lp2_p7_red_hill2_certificate_sft.cjs`](../sims/lp2_p7_red_hill2_certificate_sft.cjs), source-exact CommonJS; executed successfully against the fetched original repository sources with all five-word census, matrix identities, original inverse, five-dot source-composed receiver, and known-clear positive.
