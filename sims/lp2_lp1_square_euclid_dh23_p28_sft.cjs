@@ -140,6 +140,85 @@ function fragments(text) {
   return out;
 }
 
+
+/**
+ * Standard continued-fraction convergents of the original magic-square ratio.
+ * Every input quotient comes from exact Euclidean division, not table factor
+ * selection. p/q is a reduced rational convergent to larger/smaller.
+ * @param {ReturnType<euclid>} steps
+ * @returns {{quotient:number,numerator:number,denominator:number}[]}
+ */
+function convergents(steps) {
+  let p0 = 0, p1 = 1, q0 = 1, q1 = 0;
+  const out = [];
+  for (const {quotient:a} of steps) {
+    [p0,p1] = [p1,a*p1+p0];
+    [q0,q1] = [q1,a*q1+q0];
+    out.push({quotient:a,numerator:p1,denominator:q1});
+  }
+  return out;
+}
+
+/** @param {bigint} value @param {bigint} prime */
+function valuation(value,prime) {
+  let count = 0, n = value;
+  while (n % prime === 0n) {count++;n /= prime;}
+  return count;
+}
+
+/**
+ * Cross-artifact checkpoint: exact 256 printed table cells, conventional
+ * base60 token decoding to bytes, naturally read big-endian as one 2048-bit
+ * integer. Neither byte serialization nor the convergent index is authored.
+ * @param {{denominator:number}[]} cf
+ */
+function tableConvergentControl(cf) {
+  const grid = JSON.parse(fs.readFileSync(path.join(root, 'resources',
+    'liber-primus', 'lp2-grid-256.json'), 'utf8'));
+  const ink = JSON.parse(fs.readFileSync(path.join(root, 'resources',
+    'liber-primus', 'lp2-ink-annotations.json'), 'utf8'));
+  const bytes = grid.pages.flatMap(page => page.bytes);
+  assert.equal(bytes.length,256);
+  const redCount = ink.pages.reduce((n,page)=>n+(page.red_spans||[])
+    .reduce((m,span)=>m+span.length,0),0);
+  assert.equal(redCount,ink.counts.red);
+  const c179 = cf[4].denominator, c225 = cf[5].denominator;
+  assert.equal(c179,179);
+  assert.equal(c225,225);
+  assert.equal(redCount,c225);
+  const number = bytes.reduce((n,b)=>256n*n+BigInt(b),0n);
+  const cube = BigInt(c179)**3n;
+  const square = BigInt(c179)**2n;
+  assert.equal(valuation(number,BigInt(c179)),2);
+  const q = number/square;
+  assert.equal(number%square,0n);
+  assert.equal(q%BigInt(c179),55n);
+  assert.equal(valuation(q,29n),1);
+  assert.equal(q/29n%BigInt(c179),113n);
+  const next179Digit = q/BigInt(c179)%BigInt(c179);
+  assert.equal(next179Digit,96n);
+  // A radix-independent source control: interpreting the raw printed token
+  // order under alternative byte radices must be an explicit separate test.
+  const base59 = grid.pages.flatMap(page=>page.tokens)
+    .map(token=> {
+      const alphabet='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvw';
+      if (!alphabet.includes(token[0])||!alphabet.includes(token[1])) return null;
+      return alphabet.indexOf(token[0])*59+alphabet.indexOf(token[1]);
+    });
+  // Invalid for this source if nonstandard char mapping; never silently
+  // reuse these values in the main source check.
+  return {
+    convergent179:c179,convergent225:c225,sourceRedRunes:redCount,
+    numericTableCells:bytes.length,bitLength:number.toString(2).length,
+    base256:{v179:valuation(number,179n),qMod179:Number(q%179n),
+      v29OfQuotient:valuation(q,29n),
+      after29Mod179:Number(q/29n%179n),
+      next179AdicDigit:Number(next179Digit)},
+    base59DigitsRecognized:base59.filter(v=>v!==null).length,
+    derivedPrimeOrdinal:30
+  };
+}
+
 function main() {
   const rows1 = square(5), rows2 = square(16);
   const sum1 = rows1[0].reduce((a,b) => a+b,0);
@@ -165,6 +244,12 @@ function main() {
   assert(state.successful);
   assert.equal(power(state.B,state.a,state.p),state.K);
   assert.equal(state.steps[3].remainder,state.g);
+  const cf=convergents(state.steps);
+  assert.deepEqual(cf.map(x=>[x.quotient,x.numerator,x.denominator]),[
+    [3,3,1],[5,16,5],[8,131,41],[1,147,46],
+    [3,572,179],[1,719,225],[1,1291,404],[2,3301,1033]
+  ]);
+  const crossTable=tableConvergentControl(cf);
 
   // Original LP2 p28 contains a literal 'DH' fragment [23,8], followed by
   // the known source geometry of a 22-rune / 6-fragment line.
@@ -209,6 +294,8 @@ function main() {
     classification:'retrospective source-to-DH state hypothesis; local H readout only',
     sourceSquares:{LP1p5:sum1,LP1p16:sum2,decimalReverse:true},
     euclid:state.steps,
+    convergents:cf,
+    originalSourceTableCrossing:crossTable,
     constructedState:{p:state.p,g:state.g,a:state.a,b:state.b,
       A:state.A,B:state.B,K:state.K,e:state.e,checks:state.conditions},
     originalP28:{line6DH:line6[0],line7RuneCount:22,
@@ -224,4 +311,4 @@ function main() {
   },null,2));
 }
 if(require.main===module)main();
-module.exports={square,euclid,inverse,power,candidate,fragments};
+module.exports={square,euclid,inverse,power,candidate,fragments,convergents,valuation,tableConvergentControl};
