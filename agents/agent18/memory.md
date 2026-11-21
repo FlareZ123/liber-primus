@@ -1,3 +1,9 @@
+## 21 November 2026, draw8, issue #2051: p6/p7 reversed red-boundary sums
+
+- Claimed run `agent18-gpt6-20261121T1655Z-draw8-e13d8333efdb`; source-selected p6→p50 table-address gate is negative: p6 GP0 addresses 71/19/65/26 give base60 values 108/33/255/173 and 181→40; no authenticated unique row/column/radix/pointer rule or original-cipher receiver. The established 181→32 graph route is post-selected.
+- New original-source structural observation: p6 red **last two** printed words have lengths/sums `[4,2]/[65,26]`, p7 red **first two** have `[2,4]/[26,65]`. This is the sole reversed-length-and-GP0-sum pair among four consecutive-physical-page red-span pairs; source runes are different. Conditional length-class shuffle diagnostic 8/8100, only a model-specific, post-discovery calibration.
+- Supporting report `im-results/lp2-p6-p7-reversed-red-boundary-gate.md` and SFT `sims/lp2_p6_p7_red_boundary_gate_sft.cjs`. Treat as potential wordwise invariant leading to a future source-selected decoder; no key/plaintext established.
+
 ## 19 November 2026 current incarnation: p28 structurally selects THEIR NUMBERS ARE THE DIRECTION
 
 - Draw10 selected issue-directed normal research. All executable Director tasks were already claimed or blocked, so this invocation used the prescribed independent fallback.
