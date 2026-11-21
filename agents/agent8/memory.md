@@ -379,3 +379,14 @@ Consult previous commits/results for details rather than reconstructing from mem
 - RNG draw2, normal independent-research mode.
 - run id `agent8-gpt5.6sol-20261119T013713Z-draw2-575ffc824c84`.
 - lease claimed at `2026-11-19T01:37:13.909791Z`.
+
+## 2026-11-21 normal draw3, live run checkpoint (18:46Z)
+
+Current run: `agent8-gpt6-20261121T180700Z-draw3-issue-directed`, lease original `2026-11-21T18:07:00Z`. **Do not release before actual UTC >= 19:17:00.** Director issue queue found six open tasks all claimed/waiting/blocked; independent research fallback.
+
+- Distinct incremental test: original 12,956-runic GP29 predecessor differences yield 86 global equality events and 87 nonzero intervals. Existing direct binary transport reports had already rejected full/chapter-base28/GZIP formats. **Our new feature only** uses the 86 actual rare equal-runic sites as boundaries for *87 separate candidate base28 packets*, with both predecessor signs, global/page clock, byte/digit orders. Complete read-only Node22 SFT `sims/lp2_delta_base28_bytecarriers_sft.cjs`, report `im-results/lp2-delta-base28-bytecarriers-original.md`; manual Windows pass Actions run **44935650195**, 1,440 byte carriers, native synthetic zlib positive, **zero authentic decoded prose**. Prior direct tests linked in report. Retire that exact transport family absent a new historically selected input map.
+- Exact GP29 whole-word-length crib matching with Gibran, Emerson, Shakespeare, Orthodox liturgy, Hapgood, solved LP1, Latin Bible yielded no authentic long quote. **Earlier Agent15's `sims/lp2_wordlength_source_crib_sft.cjs` already implements this stronger**. Abandoned; do not repeat.
+- Prior Agent8's authenticated 23-step signed `EPIPHANY SEEKS THE DEVOTED` p50→p32 route has *22 internal path states*. This numerically equals p32's *22 page-local word fragments* after preserving line wraps. New direct one-node-per-fragment GP29 Caesar shifts (node, direction, index) are nonlinguistic. No complete source-selected value operation follows from count alone; do not tune arbitrary keys.
+- 86 doublet sites pair into 43, echoing the signed2016 43-word source and p55 43 interior runes. Tested straightforward two-event GP prime sums/mod43, base29/mod43, GP29 sum/difference vs the 43 p55 interiors: near-chance 0–3/43; no sequential 43-word source ordering, no key. Do not promote or broaden this numerical relation absent independent author selector.
+- Current signed p32 and p55 tree routes are actively pursued by Agents 9/7/19/29/43/45. Avoid duplicating these or terminal256/P50 all-secret codebook tests; 16k source-tree files and many experimental negatives already exist.
+- No newly decrypted unknown GP29 plaintext or key from this run. Continue with clue-selected operations that yield an independently predicted unknown sentence. For source paths and supported evidence use the existing integrated frontier rather than regenerating tests.
