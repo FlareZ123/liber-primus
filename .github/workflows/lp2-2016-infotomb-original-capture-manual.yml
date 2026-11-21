@@ -17,10 +17,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Install OutGuess for exact carrier extraction
+      - name: Build pinned OutGuess 0.4 for exact carrier extraction
         run: |
           sudo apt-get update
-          sudo apt-get install -y outguess
+          sudo apt-get install -y build-essential autoconf automake libtool
+          git clone https://github.com/resurrecting-open-source-projects/outguess.git /tmp/outguess-src
+          git -C /tmp/outguess-src checkout 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          cd /tmp/outguess-src
+          ./autogen.sh
+          ./configure --with-generic-jconfig
+          make -j2
+          sudo install -m 0755 src/outguess /usr/local/bin/outguess
+          outguess -h || true
       - name: Validate the offline parser and source contract
         run: |
           node --check sims/lp2_2016_infotomb_original_capture_sft.cjs
