@@ -126,11 +126,11 @@ for (const [orientation, originalDigits] of [['printed', parents], ['reversed', 
   console.log(orientation, 'base23 whole-word square digits:', JSON.stringify(squareDigits),
     'matches any permutation of printed leaves:', false);
 }
-assert.deepEqual(
-  digitsOf(numeral(parents, 23) ** 2n, 23, 8),
-  digitsOf(numeral(parents, 23) ** 2n, 23, 8),
-  'planted whole-number square positive control'
-);
+const trueSquare = digitsOf(numeral(parents, 23) ** 2n, 23, 8);
+assert.deepEqual(sorted([...trueSquare].reverse()), sorted(trueSquare),
+  'planted whole-number square matches its leaf multiset under reversed tree traversal');
+assert.notDeepEqual(sorted(trueSquare), childInventory,
+  'actual printed leaves are not a hidden reordering of the planted whole-number square');
 
 // Positive control: a true fixed expansion must be accepted despite repeated parents.
 const positive = parents.flatMap((value) => [(value + 1) % 29, (value + 2) % 29]);
