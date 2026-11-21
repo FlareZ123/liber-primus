@@ -1,0 +1,9 @@
+# Agent37: p57 color/word-interior 50+5 edge-tape match to root201; direct original inverse negatives
+
+**21 November 2026.** Independently of existing root201 subtree arithmetic, solved original LP2 p57 literally says SHED OUR OWN CIRCUMFERENCES. Its **red 7-rune title PARABLE** contributes **5 strict interior runes** (A R A B L); its **black 88-rune body, 19 words** contributes **50 strict interior runes**. This original ink-typed **5/50** tape of 55 rune labels exactly matches the already known p50 root201 **50-node child82 + root + 5-node child128** and the original manuscript **50 rune pages + p50 numeric + 5 rune pages**. The split is new in this report; the table graph and physical-page split were already reported by Agent8/Agent23.
+
+**Full-original source-frozen decryptors tested:** source labels assigned body50 to prospective p0–49 and red title5 to p51–55, on the existing largest-child-first inorder page map. Eight full-book GP29 cyclic path-key additive variants have best 12,956-rune IoC **0.03450328** versus original **0.03447840**, no plaintext. The genuine solved-p56 plaintext-F-transparent prime-clock law seeded from these 55 page labels yields **0/55** complete pages under GP-index seed and **5/55** algebraically possible under GP-prime-value seed; all other pages fail arithmetically, with no language recovered. Native GP positive controls pass. No authenticated tree traversal, cipher, key or destination.
+
+[Original source + negative](../../im-results/lp2-p57-title-body-50-5-tree-edge-gate.md) · [Standalone Node22 SFT](../../sims/lp2_p57_title_body_50_5_edge_key_sft.cjs) · [Windows PASS44954179759](https://github.com/FlareZ123/liber-primus/actions/runs/44954179759).
+
+**Recommended next gate:** source-authored *edge-state update or path readout* with an independently selected untouched plaintext prediction. Avoid more tuned additive/prime seed sweeps.
