@@ -1,12 +1,48 @@
 # LP2 p27 isolated wing: original-image source attribution gate
 
-**Current conclusion (16 November 2026).** No verified pre-2014 illustration plate has been attributed to the isolated wing on Liber Primus physical p27. Original-source registrations have now tested three previously identified published entomology PDFs and two *new, independently dated Victorian illustrated-book TIFFs* with native positive controls. All five fail the same full-wing near-exact-match criterion. This is a **bounded no-near-exact-match**, not proof that the p27 design has no historical source, was never redrawn from one, or cannot contain an instruction. **No author-selected key, operation, or unknown-page plaintext was recovered.**
+**Current conclusion (21 November 2026).** No exact pre-2014 source image has yet been verified. The five prior native-pixel registrations still fail the frozen full-wing match criterion. A distinct, specific candidate has now emerged: J. W. Evans's 1940-volume Fig.12, the forewing of *Tettigarcta tomentosa*, with labels Sc, R + Sc, and NL (nodal line). This is **not yet an image match**: the figure raster could not be retrieved for direct registration, and the labels are vein identifiers rather than a numbering of p27's fifteen faces. The 1845 Eyre/Adam White illustration of *Tettigarcta* is an earlier related source candidate. This is a new provenance lead, not an attribution. **No author-selected key, operation, or unknown-page plaintext was recovered.**
 
 ## Original artifact and decisive source question
 
 The primary source is `resources/liber-primus/44.jpg`, 2400×3600 pixels, SHA-256 `c92c972f41dd038e136d8589aa7b113e268c36f2860c279cce712cd037cb3a8e`. The isolated wing near its top has a thick left basal wedge, an extended upper margin, differentiated central vein branches, and a cluster of distal cells. The 1,144×339-pixel test crop is `[643,516,1787,855]` in half-open x/y coordinates. The adjacent GP29 red heading gives **no printed source title, species name, or reading order**.
 
 Another reproducible source audit found **15 actual enclosed white faces** when 200-pixel compartments are retained, including the small triangular face at centroid (1231,839). A 500-pixel post-hoc threshold drops that real region and gives fourteen. Neither count implies an authored key. See [fifteenth-face original-image test](lp2-p27-fifteenth-wing-face-source-gate.md) and [current wing synthesis](../workplace/lp2-p27-wing-venation-source-route.md). The concrete human solve-path question was whether an *exact dated illustration* carries a label sequence, caption, or operation independently selecting what to do with the p27 ciphertext.
+
+## New distinct Tettigarcta source lead (21 November 2026; not yet registered)
+
+A new, source-constrained candidate is **J. W. Evans, “The Morphology of Tettigarcta tomentosa White (Homoptera, Cicadidae),” Papers and Proceedings of the Royal Society of Tasmania (1940 volume), pp.35–49; published 1941**. The paper's printed p.41 contains **Fig.12, “Tettigarcta tomentosa. Forewing.”** The figure labels Sc, R + Sc, and NL. Its accompanying text describes the subcostal vein joining the upper radial-sector branch up to the nodal line, the radial sector dividing before that line, all four median branches, a third anal vein, and the nodal line extending across the wing. [Original paper PDF](https://eprints.utas.edu.au/13273/1/1940-evans-morphology.pdf).
+
+An earlier species reference is Adam White's description in Edward John Eyre's 1845 Journals of Expeditions of Discovery into Central Australia, volume I. The volume's plate list calls Plate III “New Insects” and lists figure 4 as Tettigarcta tomentosa and figure 5 as its pupa; White's text refers to “pl. 4, fig. 4” and fig. 5. The plate-number discrepancy is retained rather than silently reconciled. The Gutenberg transcription explicitly omits plates; the [Wikimedia scan of volume I](https://commons.wikimedia.org/wiki/File:Journals_of_Expeditions_of_discovery_into_Central_Australia,_and_overland_from_Adelaide_to_King_George%27s_Sound,_in_1840-1_(IA_journalsofexpedi01eyre).pdf) is the primary scan lead. [Plate list and transcription](https://www.gutenberg.org/files/5344/5344-h/5344-h.htm).
+
+### Why it is worth one exact test
+
+The p27 original has a fifteen-face wing graph and a prominent cross-wing line. Evans's isolated forewing figure is the first specific historical source located in this invocation that explicitly labels a nodal line and describes the associated venation topology. That gives a plausible human solve path: recognize a cicada forewing, identify Tettigarcta, then inspect the source's labels and anatomy. It is materially more constrained than generic insect-wing searches.
+
+This remains **only a candidate**. The p27 line has not been proven to be Evans's nodal line; no figure12 raster was available to compare; and Sc, R + Sc, NL label veins/line, not the fifteen enclosed faces. The 1845 plate's figure order identifies an insect and pupa, not a cell traversal. The prior Moulds 2005/2012 registrations remain negative and do not establish that Evans 1940 is the source.
+
+### Reproducible extraction of the p27 source crop and two interior faces
+
+Primary artifact: resources/liber-primus/44.jpg, **2400×3600** pixels, source JPEG SHA-256:
+
+c92c972f41dd038e136d8589aa7b113e268c36f2860c279cce712cd037cb3a8e
+
+No resizing, rotation, perspective correction, or anisotropic scaling was applied. The whole-wing crop is the tight bounding box of the largest 8-connected ink component (grayscale <160) inside analysis window x=520..1939, y=450..929; coordinates below are half-open source-pixel bounds. The crop is 8-bit grayscale (PIL mode L), with wing base left and tip right.
+
+| Extract | Source-pixel bbox [x0,y0,x1,y1) | Size | Raw-pixel SHA-256 | PNG SHA-256 |
+|---|---|---:|---|---|
+| Complete wing | [643,514,1787,858) | 1144×344 | 68727642411ed535df167e55efcb82cb7caf4ccad6e2065139df198c44114d98 | dc780f2c31bb8d40d6b9b3776409108387edb913751b165f8847100ab99c6bb5 |
+| Interior face 6 mask | [1011,618,1440,772) | 429×154 | 461f467f141c293ffc5aba2ef717a580e6ec07cdc86a7f28834cc7fb3f613bf4 | 5899acdb98edfef939f016558dcb10104dd5d04690e2e66cb2b6718c104546d2 |
+| Interior face 9 mask | [1158,552,1602,721) | 444×169 | a9333ee6d984aa961f51ce9d0fbeb13aa9954d53691997cea4f2fe41e3eeb3ed | b6fa9f15dbfcff5a73dd2a34210d0a4992908ac418130c7a82e19edb24846b4d |
+
+Face masks were extracted from the analysis window using 8-connected components of grayscale >160, retaining area >=200, excluding components touching the crop boundary, and sorting by increasing horizontal centroid. Face 6 has area 31,908 and centroid (1221.40, 698.35); face 9 has area 32,212 and centroid (1378.59, 647.01). Their masked original-grayscale sample hashes are respectively e82529e29e11241bca105924ec8d97049c1fbd02cc854d948a6e369c393c326f and 2f4d5d6d03503ab8fb0a6edecb92cfa6ae649bbd876c66a18e0335d41824a829. Their masked-source grayscale crop hashes are a53bd134c0b4b6b96ffb15700807f5146a6000741e23e72adf0978b14f3fb1e6 and 7eaec04823b396103989117614261ec861614ed4604429e21f4f0cdd9a33010d.
+
+These are analysis labels, not author-printed numbers. The independent [15-face graph report](lp2-p27-original-wing-15face-graph-source-gate.md) records four possible basal-to-tip Hamiltonian paths. No one of those four is selected by the current evidence.
+
+### Decisive next experiment and stop rule
+
+Obtain the original raster for Evans Fig.12 (or a verified scan of the 1845 plate), then compare it against the above native-pixel crop using the already calibrated full-span similarity-registration gate; do not rescue a mismatch with anisotropic warping. If the exact figure matches, map the source's labelled veins and nodal line to the fifteen-face graph, freeze one source-derived ordering **before** examining ciphertext output, and require a value-changing reversible decoder with an independent original-page prediction. If the figure does not match, retire this candidate and do not resume generic cicada, wing, or species searches. A pure face permutation remains insufficient by itself: the existing graph report shows it preserves the original ciphertext rune histogram and cannot explain the native plaintext-like IOC.
+
+**Status:** unverified source lead; no source-authored fifteen-face order, cryptographic operation, key, or LP2 plaintext recovered.
 
 ## Five dated original plate sources, native-pixel registration
 
