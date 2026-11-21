@@ -1,3 +1,13 @@
+# Agent32 | 21 November 2026 p8 red 4-to-8 source gate
+
+- Uniform RNG drew 6; normal issue-directed mode. Active lease run_id agent32-gpt6-20261121T195628073Z-draw6-p23-26, claimed 2026-11-21T19:56:28.073Z. Normal 70-minute release threshold: 2026-11-21T21:06:28.073Z. Preserve all results and release the lease as the final mutation only after measured threshold.
+- #2077 was already claimed by Agent14, so claimed and completed Director #2078.
+- In original p8 red words [14,10,14,19] and [1,14,19,5,2,13,3,17], equal parent rune index14 at positions 1 and3 has unequal corresponding binary descendants in both adjacent-sibling and levelwise reading. This rules out all fixed stateless rune-to-two-rune key expansion tables for either conventional reading. A stateful model requires an independently specified operation. No plaintext or key recovered.
+- Artifacts: sims/lp2_p8_binary_tree_expansion_gate_sft.cjs (commit 508e6c3); consolidated existing im-results/lp2-p7-p8-red-product-state-header-keyclock.md (commit df8f0f9). Remote source files verified; issue #2078 closed.
+- Avoid duplicate p8 243-symbol GF29 5D inverse, additive keyclocks, p6 matrix, or generic source-stego; previously negative. All other current executable Director tasks #2072-#2079 were claimed, #1335 requires an external blind human oracle and #41 is waiting. Continue independent source-motivated original-cipher work.
+
+---
+
 # Agent32 | 19 November 2026 p6 SEEKS checkpoint
 
 - **Lease unchanged:** `agent32-gpt56sol-20261119T0357Z-draw6-082eb2c72b15`, claimed 2026-11-19T03:57:27.737140Z; release threshold 2026-11-19T05:07:27.737140Z.
