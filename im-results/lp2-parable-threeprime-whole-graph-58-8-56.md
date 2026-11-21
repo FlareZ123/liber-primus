@@ -126,6 +126,24 @@ Here GP0(**THE**)=20, GP0(**DEVOTED**)=102 and `p50[20]=102`, `p50[102]=32`; bot
 
 **Independent spelling-fork control:** Under the prior IO→IA convention, DIRECTION112→p50[112]=`1D`=73 (original p56 scan `73.jpg`), then follows **73→79→82→201→74** to p57 scan `74.jpg` in four steps. Under literal GP spelling, DIRECTION98→p50[98]=`1C`=72, then reaches p56 scan73 in seven steps and p57 scan74 in eleven. Both source-coherent conventions converge at scan73→p57 and PARABLE ordinal201; only the literal branch has the entire 72→73→74 route and the `1C/1E/1G` consecutive-radix ribbon. The choice of English→GP ligature is investigator-defined and must not be portrayed as an authenticated original instruction.
 
+## New source-authored terminal punctuation as a candidate graph clock (Agent4, 21 November 2026)
+
+The exact original-source signed DIRECTION/p50/p57 pointer path above has another independently printed operand: **large page-end punctuation consists of literal dot counts**. The original physical p55 `72.jpg` ends in one **red thirteen-dot mark immediately after local rune76**. Original solved p56 `73.jpg` also ends in a **red thirteen-dot mark after rune85**. Clear p57 `74.jpg` ends in the distinct **red twenty-three-dot mark after rune95**. These counts and rune offsets are taken from the unchanged scan-verified `resources/liber-primus/lp2-ink-annotations.json`, independent of the candidate table walk.
+
+Interpreting one such dot count as a successor-graph **hop count** yields two exact original-data terminal closures without selecting phases, keys, or target words after the calculation:
+
+| Original input and visible stop | Exact source table route | Independent readout |
+| --- | --- | --- |
+| 2016 signed literal **DIRECTION**, GP0=98; p50 cell98=`1C`=72, selecting original p55 scan; **p55 final red13** | `98→72→164→105→63→51→59→69→73→79→82→201→74→205`, **exactly 13 steps** | terminal cell **205** is the already established first-clause PARABLE prime ordinal of 1,259 |
+| Solved **PARABLE** first-clause ordinal **205**; original **p57 final red23** | `205→76` enters the 11-node cycle at76, then completes two exact 11-step laps: `f^23(205)=76` | terminal **76** equals the actual complete rune count of original p55 and the p50 32×8 perimeter-cell count |
+| Signed-word **DIRECTION** under the *alternative*, unauthenticated IO→IA transliteration, GP0=112; p50 cell112=`1D`=73, selecting original p56; **p56 final red13** | `112→73→79→82→201→74→205→76→114→197→115→247→192→0`, **exactly 13 steps** | terminal table **cell0** rather than p57 ordinal205, a checkable competing outcome |
+
+The **literal-spelling branch** therefore forms a closed, finite link across **signed-word→terminal scan→page-end punctuation→p57 sourced ordinal→page-end punctuation→p55 length**. Both 13-dot and 23-dot clocks use *unmodified* first-party symbols, and the 23-step result depends specifically on the distinct 23-dot mark plus the table's independently established 11-cycle. The alternative spelling reaches a different table register, so the signed wording alone does not authenticate which GP rendering the author preferred.
+
+**Critical limitation:** the original dots are also conventional **punctuation** repeated at page ends, and neither the 2016 signed instruction nor p57 explicitly says to follow one table pointer per dot. The numeric addresses, the conditional base60 table reading, and the 11-cycle were recognized during previous research; this stop-rule pairing was discovered subsequently. The closure is an **exact navigation hypothesis**, not recovered ciphertext plaintext, a p55 decipherment, or a proof the authors intended the graph. The remaining causal decision is to identify a source-selected operator that consumes *all 76 original p55 runes* after this navigation, with an independent solved-text prediction. Avoid tuning any new rune keys to the two closures.
+
+[Exact source-native CommonJS SFT](../sims/lp2_signed_terminal_dotclock_graph_sft.cjs) · [Windows Node22 PASS 44961375731](https://github.com/FlareZ123/liber-primus/actions/runs/44961375731).
+
 ## Controlled structural rarity, with its discovery limitation
 
 To calibrate the complete ordered triple, freeze source addresses `[205,173,201]`, original source targets `[58,8,56]`, the base60 parent convention and the entire 256-value multiset. In each of **100,000** seeded Fisher–Yates shuffles, redistribute the 256 source values to 256 cell positions and count reverse-reachable closures at the same three addresses. The 2014-style deterministic seed is `0x33012014`.
