@@ -6,7 +6,7 @@
  * Hypothetical cipher: C[r,c] = (P[r,c]+R[r]+K[c]) mod29; arbitrary unknown
  * 27 row and 27 column mask values, with gauge R[0]=0. Under the historical
  * signed "epiphany seeks" heading, the 13 initial red title runes fix the
- * 13 first-row K values. Optimize the 39 remaining additive variables using
+ * 13 first-row K values. Optimize the 40 remaining additive variables using
  * an independent GP29 trigram language model, with known-GP native planted
  * controls. This is a genuine 729-rune original-cipher inverse attempt, NOT
  * authenticated inventor selection. Run Node.js 22 CJS on Windows, read-only.
@@ -188,6 +188,6 @@ console.log(JSON.stringify({
     fullCipherInverse:true,
     recoveredNoVerifiedPlaintext:true
   },
-  warning:'Language-optimized 39 free key variables can hallucinate partial English; no phrase is verified without independently source-fixed key/operation and a heldout full-run decoder'
+  warning:'Language-optimized 40 free key variables can hallucinate partial English; no phrase is verified without independently source-fixed key/operation and a heldout full-run decoder'
 },null,2));
 console.log('PASS: full original grid key search and positive plant are reversibly implemented');
