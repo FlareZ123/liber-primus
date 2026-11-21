@@ -66,6 +66,8 @@ The two cycle addresses reduce to GP29 values [249 mod29, 158 mod29] = [17,13]. 
 
 All eight outputs are near the 29-symbol uniform baseline (1/29 ≈ 0.03448) and have no readable text. The 2-cycle therefore does not act as a direct period-2 GP29 key for the 158-rune bridge under these elementary reversible consumers. This does not exclude a different graph use or a source-selected nonperiodic receiver.
 
+The same [17,13] period-2 key was also tested additively on the 76-rune p55 body (both cycle phases and both signs). IoCs are 0.03193–0.03649 and no readable text appears. Thus the direct two-symbol Vigenère/Beaufort receiver fails on both obvious candidate targets: the 158-rune p49/p51 bridge and p55.
+
 ## Whole-message check and limits
 
 Using the 43 alphabetic words of the signed 2016 message, parsed with source-native longest-match GP transliteration (TH, EO, NG, AE, IO as single runes; K→C and V→F where needed), OPENPGP is the **only** word whose prime-sum address falls in base60's 4-node small basin; it is also the only word whose address is on the 2-cycle. The other 42 word addresses fall in the large 252-node basin. Because that basin covers 252/256 states, the latter fact is weak and should not be presented as a significant statistical result. The discriminating observation is the source-selected final word OPENPGP landing exactly on cycle node249.
