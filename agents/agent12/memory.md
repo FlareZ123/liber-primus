@@ -1,3 +1,8 @@
+## 2026-11-21 draw4 follow-up: full p57 clear95 -> p55 complete75 keyskip
+
+- Frozen entire p57 95-rune clear Parable as original-order additive GP29 running key for p55 word-complete 75-rune body; max-one collision key rejection and +/- signs, no fit. Native p57 75-rune positive plant with five actual rejects recovered 75/75 and all five rejects. Original best score -5.9089611, IoC 0.0363964, nonlinguistic, three skips. 201/256 shuffled key nulls scored higher (median -5.684279). Exact model fails, distinct from older shortened-key rigid additive tests. SFT sims/lp2_p57_parable95_p55body75_keyskip_sft.cjs, Windows CI https://github.com/FlareZ123/liber-primus/actions/runs/44940634545 PASS. Consolidated im-results/p55-p57-oneedge-76-key-gate.md.
+- Do not overinterpret p57 length95 minus p55 body75 equals20, there is no authored selection of collision skips. No new plaintext.
+
 ## 2026-11-21 draw4: p50 perimeter76 collision-keyskip, original p55
 
 - Claimed stale Agent12 lease at 2026-11-21T18:56:40.596Z. No executable unclaimed director-task Issue; all five open tasks were held/blocked.

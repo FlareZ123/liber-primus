@@ -19,6 +19,23 @@ Untouched original p55-body IoC is **0.03855856**, lower than the minimum **0.04
 
 This **corrected 75-body test is distinct** from the previously archived 76-rune page-local read below, which keeps the seven-rune heading and shaves only the 19 body words. Both exact mappings are now tested, rather than interpreting either numerical coincidence as a decoder. The [standalone CJS original SFT](../sims/p55_p57_title20_shed75_source_sft.cjs) passed [manual GitHub Actions step 4](https://github.com/FlareZ123/liber-primus/actions/runs/43261681429). That whole workflow concludes failure at a **later, unrelated legacy `p55_2016_sha1_exterior_crib_inner_sft.cjs` score assertion**; its first four research steps, including this new test, all passed. The source-led 75-body edge key is therefore retired as a *direct* GP29 additive plaintext route, while other independently specified operations remain open.
 
+## Collision-keyskip of the complete p57 Parable on p55's word-complete body (Agent12, 21 November 2026)
+
+The older 75-rune operation shaved the first or last rune of all20 printed p57 words to form a literal 75-rune key. It did not allow a hidden key draw to be rejected when its prospective ciphertext would duplicate the preceding ciphertext. This bounded inverse instead retains the entire **95-rune** authenticated solved p57 Parable in original runic order and consumes it as a running additive key on the **75 complete original p55 body runes**, omitting the opening carry rune which belongs to p54. The source-length difference is exactly20, but the source does not instruct collision avoidance.
+
+Freeze key phase0, source rune order, no page/word reset, both GP29 additive signs. Permit an extra key draw only if its tentative cipher rune matches the previous cipher rune, at most one rejection per cipher rune, skip penalty3.5. The existing exact Viterbi decoder admits up to34 latent skips; the 95-rune source is repeated only to fill its tail lookahead. All actual original best paths consume at most78 of the95 source runes, so none uses recycled material.
+
+| Original 75-rune p55 body | Decoded GP29 IoC | Per-rune GP language score | Inferred skips |
+| --- | ---: | ---: | ---: |
+| Unmodified source ciphertext | 0.038558559 | Not scored | N/A |
+| C=P+K with conditional key rejection | 0.036396396 | **-5.9089611** | 3 |
+| C=P-K with conditional key rejection | 0.035675676 | **-5.9824922** | 0 |
+| Native clear p57 75-rune control | 0.063783784 | Positive plant | N/A |
+
+The stronger original inverse begins EOASMAYRXYIBPOEIPOLURNGIASYWPJHUSRN in GP transliteration and is nonlinguistic. A 75-rune solved-p57 control, forward-encrypted with the exact source key and five actual collision rejects, is recovered **75/75** with exactly five inferred skips. In **256** deterministic shuffled-95-key controls with both signs admitted, **201** outperform the authentic p57 source order (upper-tail `(201+1)/(256+1)=0.7859922`; null median -5.684279). The original source order gives no evidence of authentic key or prose under this model.
+
+**Decision:** retire this exact source-key, phase0, collision-only GP29 inverse. Distinct from shaved75 and shaved76 rigid-key alternatives; no unknown plaintext. A different author-authenticated cipher, key selector or state transition remains outside the gate. Read-only [Node22 SFT](../sims/lp2_p57_parable95_p55body75_keyskip_sft.cjs), [Windows PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44940634545).
+
 ## Direct 52-rune SHED key on the last three p55 lines (Agent43, 12 November 2026)
 
 A more local interpretation of the exact **52-rune** innermost-ring/SHED motif uses the source *without* shaving its 20 words. The last three original p55 printed lines contain **22+22+8=52** GP29 runes, starting at physical p55 rune **24**. The original clear p57 imperative begins with *SHED* at rune **43** and occupies its last **52** GP29 runes. This gives two independently source-cut, same-length strings. Under one frozen authentic 2014 additive-key operation, subtract the **unchanged p57 final52** GP values from the **unchanged p55 final52** ciphertext in order, with no fitted start/phase, F skip, per-line reset or additional alphabet mapping.
