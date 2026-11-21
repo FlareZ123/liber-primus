@@ -30,9 +30,27 @@ The first 180 original-body output GP-normalized letters from the best fitted se
 
 This is nonprose and **not** recovered authentic LP2 plaintext.
 
+## Rank-one bilinear mask rival: independent full-key recovery
+
+A second algebraically distinct source-motivated 2D key is the **outer product** `R[row] × K[column]` over GF(29), motivated by the original prime-field arithmetic and crossed 27×27 page geometry. Its encryption is
+
+`C[27r+c] = P[27r+c] + R[r] × K[c] mod29`.
+
+Fix the multiplicative scale gauge `R[0]=1`. The historical red title again fixes `K[0..12]` via the 13 source ciphertext-minus-plaintext differences. This leaves **40 independent row/column field elements**, identical in count to the additive model, although the nonlinear interaction creates a fundamentally different set of possible masks. The original artifact still does not explicitly authorize this multiplication, and all inferred keys remain hypothetical.
+
+An **independent Windows CJS test** implements this cipher, an exact decryptor/encryptor, and a 14-restart variable-coordinate descent search over the full 729 GP29 original runes under the identical external-source trigram language model. During each trial it changes one secret row/column element, computes the full row- or column-sensitive plaintext updates and rescored trigrams, then retains the highest-scoring result. Its controls decrypt **729/729 planted original-style GP29 runes**, recovering **27/27 unknown row keys and 27/27 column keys** from the same 13-rune title crib. This proves the optimiser can actually recover unknown full-page outer-product keys under an independently written source-native plaintext plant.
+
+The untouched original p0–p2 best decrypts to **−11.51615 mean native trigram log likelihood**. The trained-source-independent solved-LP1 control windows have minimum **−8.07946** (2,559 windows), while the exact planted plaintext scores **−7.88995**. Original body remains nonprose despite fitting all forty secret parameters:
+
+`DOESDMWERHEINAUDDSEAMFWIAEEAIBAISARULDUEONJFEOFDTHERAEADSYTYRXXSBDMEISRHXEELPREAAEOEGLFNIACONOBEWGELLTHEAPANCHEATDONLTHIAFILREATHOUHMIOEDRDOUOSIAAETUNWEAEUNORRXJGSEBYMBEABSJLUNMTHEJEOWSATHLYAEEJOURIDSLLRE`
+
+This is a bounded independent negative for an original-body rank-one product field mask. It is not evidence that a fully general source-authored 2D matrix transform is impossible. No independent clue selects the multiplication itself, the key, or a successor stage.
+
+**Separate reproducible original-bilinear solver:** [sims/lp2_p0_27square_rankone_mask_recovery_sft.cjs](../sims/lp2_p0_27square_rankone_mask_recovery_sft.cjs) · [Windows CI PASS 44949050946](https://github.com/FlareZ123/liber-primus/actions/runs/44949050946).
+
 ## Scientific decision
 
-The direct secret `R[row]+K[column]` GP29 pad is computationally recoverable from known original-style plaintext under the source-fixed 13-rune heading, and the solver is exact on the planted full-cipher 729-rune case. The original 729-rune body remains overwhelmingly unlike the independently held-out known-GP source under the best recovered **40-parameter** secret. This is a strong bounded negative for the specified arbitrary separable row/column additive mask and direct natural-language layer.
+Both directly source-motivated secret matrix masks `R[row]+K[column]` and `R[row]×K[column]` over GF29 are computationally recoverable from known original-style plaintext under the source-fixed 13-rune heading, and the solver is exact on the planted full-cipher 729-rune case. The original 729-rune body remains overwhelmingly unlike the independently held-out known-GP source under the best recovered **40-parameter** secret. These are strong bounded negatives for both the arbitrary separable additive and arbitrary rank-one multiplicative GP29 grid-mask families with direct natural-language plaintext.
 
 The experiment does not exclude a fully general **729-symbol** pad, a nonseparable or nonlinear matrix transform, varying keyed alphabets, dynamic state/ciphertext feedback, further transposition, a compressed/intermediate encrypted layer, or a different plaintext register. It offers no first-party authorship proof for the row-column model and makes no claim to have recovered unknown p0–p2 plaintext or a creator-selected cryptographic operation. Do **not** rescue the branch by introducing untethered per-cell secrets; those can fit arbitrary text and have no source-selected key.
 
