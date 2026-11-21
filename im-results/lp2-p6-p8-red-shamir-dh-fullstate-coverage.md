@@ -46,6 +46,8 @@ This is a **source-number reconstruction of a historically known DH tuple**, rat
 
 The exact [single-file original-input reproducibility test](../sims/lp2_p6_p7_p8_red_dh_field_coverage_sft.cjs) enforces complete printed-word-to-original-ciphertext alignment and original annotated red span offsets, 5-point GF29 interpolation, DH equation checks, and planted GF29 polynomial reconstruction.
 
+The source-native original-input regression passed [Windows Node22 run 44942453250](https://github.com/FlareZ123/liber-primus/actions/runs/44942453250), covering the complete red-source products, coefficients, equations and finite controls.
+
 It evaluates seven finite original-red-word aggregators `index product, index sum, prime product, prime sum, first rune, last rune, word length`. Under the frozen field typing and source p6 counterpart, **the index-product method is the only one of seven** that satisfies all four DH equations. Among all **120 permutations of p7's five index-products**, only the *original printed order* satisfies that complete DH system with `B=19`. The vertical polynomial's first coefficient independently equals23, the modulus selected by horizontal coefficient2.
 
 These are **conditional counts for the chosen 7×120 test family**, not significance levels for author intent. The family was not preregistered before the original DH state was known. Other red words, polynomial coefficients and possible field orders remain unexplained. Algebraic agreement alone cannot justify a new p8 tensor decode.
