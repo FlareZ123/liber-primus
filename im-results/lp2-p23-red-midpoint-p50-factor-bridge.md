@@ -66,6 +66,21 @@ Original whole-body remainders are **H=[28,14]**, **G=[17,2]**, and **H×G=[12,4
 
 **Decision:** retire unkeyed direct p23 five-lane H/G codeword readings, but retain the p23→p50 scalar factor observation as a provisional clue; further search needs a source-authored intermediate operation.
 
+## Complementary red centers and a 16+240 original receiver
+
+A second source distinction strengthens the *geometric* case for comparing these two red objects, independently of the table factorization: p39 has **240 total original runes**, and its only marked red 3-rune group starts at local index119. Thus that one red group is **the only red span anywhere in LP2 that straddles its whole-page midpoint** at offset120. Relative to the whole-page midpoint, it contains **one rune left and two right**. P23's red-16 midpoint has the complementary **two-left/one-right** selection. These two different centered selections yield the two independently exact quadratic factors. Their pairing is a source-visible hypothesis; the original has no explicit instruction to couple a red-heading center on one page with a whole-page center on the other.
+
+There is also a natural whole-table length match: original p23 red heading **16** runes plus original p39 page **240** runes equals the **256** source p49–51 table cells. The alternative all-source receiver asks whether the literal composite GP29 rune stream itself satisfies the H×G polynomial code. In untouched source order:
+
+| Complete 256-symbol composite | GF29 H×G remainder (descending coefficients) |
+|---|---|
+| p23 red16 followed by p39 whole240 | **[26,3,27,10]** |
+| p39 whole240 followed by p23 red16 | **[13,1,16,21]** |
+
+Neither is a codeword. A further potential systematic use of the lengths is to read the 16 p23 red GP indices as the **16 nonleading coefficients of a monic degree-16 polynomial**, with the quotient expected to have **240 symbols** like p39's full page. Under source runes as ascending factor coefficients, the exact 16-dimensional remainder contains **14 nonzero values**. Under the reversed coefficient orientation, it has **16 nonzero values**. Each associated quotient matches only **7/240** original p39 GP rune indices in position. Both fail exact divisibility, so neither selected factor encodes the original numerical table. An exact synthetic 256-coefficient product using the *real p39 240 GP rune sequence* as quotient passes the same division and recovers all **240/240** original p39 runes, proving that the gate would recognize the model if valid.
+
+**Decision:** p23/p39 *center alignment* and **16+240=256** offer additional potentially intended visual premises, but their two most literal polynomial receivers fail on original untouched source. The extra source equalities alone do not establish a cipher key or plaintext; further extension needs a differently motivated operation, not an arbitrary additional key phase.
+
 ## Decision and next useful gate
 
 Preserve the **p23 source-only H projector** as a provisional, unusually centered in-manuscript echo of the independently signed 2013 H factor. The strongest objection is decisive: the original heading visibly fixes a boundary, but it does **not tell a solver to take two runes on the left and one on the right**. A future claim must obtain that 2|1 rule independently from the original 2014 visual artwork, authenticated historical clue, or a blind original-cipher prediction, and must identify a reversible *ciphertext consumer* of the p50 quotient or factor. More fitted polynomial factors, source-shuffled duplicate counts or arbitrary Q key phases cannot solve that missing operation.
