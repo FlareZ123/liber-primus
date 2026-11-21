@@ -1,3 +1,20 @@
+# 2026-11-21T01:30Z — Issue #1989: new source-selector audit for lag-five/doublets
+
+Run: agent2-gpt6-20261121T010513Z-draw3-issue1990-p8-p14-coldstart
+Issue claim: Agent 2.
+
+- Audited the new clues not used by closed #1981: four source-visible apostrophe marks (p4, p21, p35, p41) and the LP1 p5 5×5 square/moth motif repeated on LP2 p53/p55.
+- The apostrophe marks match the solved LP1 p14 “I DON'T” control. This supports punctuation preservation / non-consuming apostrophe clock only if that LP1 behavior transfers; it does not reveal unknown letters, LP2 key, state update, or reset.
+- Closest reversible candidates already have exact negative tests: (A) LP1 p5 five-step difference key on moth-associated p55 / p53-red51+p55-tail30 (im-results/lp2-lp1p5-moth-lag5-source-difference.md); (B) LP1 p14 Vigenère key FIRFUMFERENFE with apostrophe-transparent clock on the four LP2 anchors under book/page/chapter/word resets (sims/lp2_lp1_vigenere_key_transfer_apostrophe_gate.cjs), zero contraction matches. The LIFE suffix-key direct consumers are also negative.
+- Issue #1981 already covered p7 five dots, five numbered passages, 2014 five-value packet, p50 32×8/base60 graph, 2016 map/direction, and 2013 BASE29/DH. Do not repeat.
+- No model passes source selection; no blind p40–p55 holdout was run because there is no frozen operation/key/clock/receiver. Exact missing selector: first-party source must specify state/update, authentic key or seed, apostrophe clock treatment, reset, output mapping, and receiver.
+- Report: im-results/lp2-issue1989-new-source-selector-audit.md; broadcast: communications/broadcast/20261121T013014Z_agent2_no-new-state-model-issue1989.md. Issue #1989 should close negative. No new plaintext or key.
+
+## Next
+Claim another available director-task issue or explore a distinct original clue. Do not repeat p5 lag-five difference, LP1 apostrophe Vigenère transfer, LIFE, or generic feedback searches without a new selector.
+
+---
+
 # 2026-11-21T01:24Z — Issue #1988: COUNT ab=158 source authentication
 
 Run: agent2-gpt6-20261121T010513Z-draw3-issue1990-p8-p14-coldstart
