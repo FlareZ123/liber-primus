@@ -201,12 +201,99 @@ for (let trial = 0; trial < permutations; trial++) {
 assert.deepEqual([rooted, has121, has76, has33, triple, nested],
   [682, 73, 124, 323, 8, 2]);
 
+
+// The actual 2016 PGP-signed source says "epiphany seeks the devoted"
+// and explicitly directs the player to use words/numbers. Freeze the simple
+// adjacent-word grammar: GP0(word_i) = address, GP0(word_(i+1)) = step count.
+const signed = fs.readFileSync(
+  path.join(ROOT, 'resources/historical/cicada2016-4gq25-outguess.asc'), 'utf8'
+);
+const body = signed.split('Hash: SHA1')[1]
+  .split('-----BEGIN PGP SIGNATURE-----')[0].split('7A35090F')[0];
+const sourceWords = body.toUpperCase().match(/[A-Z]+/g);
+assert.equal(sourceWords.length, 43);
+const translit = 'F U TH O R C G W H N I J EO P X S T B E M L NG OE D A AE Y IA EA'.split(' ');
+const gpDigits = new Map(translit.map((symbol, i) => [symbol, i]));
+/** @param {string} original Original 2016 source word. */
+function gp0(original) {
+  const word = original.replaceAll('K', 'C').replaceAll('V', 'U');
+  let sum = 0;
+  for (let i = 0; i < word.length;) {
+    const double = word.slice(i, i + 2);
+    const symbol = gpDigits.has(double) ? double : word[i];
+    assert.ok(gpDigits.has(symbol), 'Unknown original word sign ' + symbol);
+    sum += gpDigits.get(symbol);
+    i += symbol.length;
+  }
+  return sum;
+}
+const sourceValues = sourceWords.map(gp0);
+const pageCounts = corpus.pages.filter((page) => page.page <= 55 && page.runic_count > 0);
+const follow = (start, count) => {
+  let node = start;
+  for (let i = 0; i < count && parent[node] !== node; i++) node = parent[node];
+  return node;
+};
+const pageMatches = (start, count) => {
+  const selected = follow(start, count);
+  return pageCounts.filter((page) => page.runic_count === size[selected])
+    .map((page) => ({ page: page.page, address: selected, size: size[selected] }));
+};
+const adjacentHits = [];
+for (let i = 0; i < sourceValues.length - 1; i++) {
+  for (const m of pageMatches(sourceValues[i], sourceValues[i + 1])) {
+    adjacentHits.push({ index: i, pair: sourceWords[i] + ' ' + sourceWords[i + 1], ...m });
+  }
+}
+assert.deepEqual(adjacentHits, [
+  { index: 6, pair: 'SEEKS THE', page: 55, address: 244, size: 76 }
+]);
+let allOrderedHits = 0, allOrdered55 = 0;
+for (let i = 0; i < sourceValues.length; i++) {
+  for (let j = 0; j < sourceValues.length; j++) {
+    if (i === j) continue;
+    const matches = pageMatches(sourceValues[i], sourceValues[j]);
+    allOrderedHits += matches.length;
+    allOrdered55 += matches.filter((m) => m.page === 55).length;
+  }
+}
+assert.deepEqual([allOrderedHits, allOrdered55], [28, 6]);
+let wordState = 0xBEEFC301 >>> 0;
+const nextWordRandom = () => {
+  wordState ^= wordState << 13;
+  wordState ^= wordState >>> 17;
+  wordState ^= wordState << 5;
+  return wordState >>> 0;
+};
+const wordShuffles = 20000;
+let anyPage = 0, any55 = 0;
+for (let trial = 0; trial < wordShuffles; trial++) {
+  const order = Array.from({ length: sourceWords.length }, (_, i) => i);
+  for (let i = order.length - 1; i > 0; i--) {
+    const j = nextWordRandom() % (i + 1);
+    const old = order[i];
+    order[i] = order[j];
+    order[j] = old;
+  }
+  let matchedPage = false, matched55 = false;
+  for (let i = 0; i < order.length - 1; i++) {
+    const matches = pageMatches(sourceValues[order[i]], sourceValues[order[i + 1]]);
+    if (matches.length) matchedPage = true;
+    if (matches.some((m) => m.page === 55)) matched55 = true;
+  }
+  if (matchedPage) anyPage++;
+  if (matched55) any55++;
+}
+assert.deepEqual([anyPage, any55], [10187, 2740]);
+
 console.log(JSON.stringify({
   source: { root, uniqueSubtrees: { 121: 58, 76: 244, 33: 146 },
     partition: '121=76+33+12', p32AddressDepth: depth, selfDepthPages },
   commonPad: { model: 'same additive key on overlapping tree nodes',
     traversalPairs: pairs.length, realBest: real, realBestPair: preferred.name,
     circularShiftCount: shiftScores.length, nullAtLeastReal: better },
+  signedSource: { words: sourceWords.length, adjacentHits, allOrderedHits, allOrdered55,
+    wordOrderControl: { seed: '0xBEEFC301', trials: wordShuffles, anyPage, any55 } },
   fixedMultiset: { seed: '0xC1CADA29', permutations, rooted, has121, has76,
     has33, triple, nested }
 }, null, 2));
