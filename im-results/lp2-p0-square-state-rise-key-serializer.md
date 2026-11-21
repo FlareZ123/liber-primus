@@ -341,7 +341,7 @@ authenticated 2014 square metadata
 -> EPIPHANY SEEKS.
 ```
 
-The original marker geometry now independently fixes how the generated packet maps onto the title word boundary: the two flanks carry the first eight key atoms under H, and the five-dot center carries the final five. The remaining requirement for an established general cipher is a prospective reuse of this serializer, or an independent clue that fixes the same three vertical rise laws before p0 is consulted. Do not search arbitrary state-expression permutations to manufacture such a reuse.
+The original marker geometry now independently fixes how the generated packet maps onto the title word boundary: the two flanks carry the first eight key atoms under H, and the five-dot center carries the final five. The unchanged 13-atom key has been tested against all 44 natural red13-adjacent windows (24 pre-marker and 20 post-marker); the only exact source-phrase hit is the p0 pre-marker title, while every post-marker window is negative. Direct reuse of this key at other red13 marks is therefore rejected. A different page-specific state update is not excluded, but it would require its own source-selected rule. The remaining open question is whether an independent clue fixes the same three vertical rise laws before p0 is consulted. Do not repeat the fixed-key transfer or search arbitrary state-expression permutations. See [the marker-transfer result](lp2-p0-red13-state-key-marker-transfer.md) and [its SFT](../sims/lp2_p0_red13_state_key_marker_transfer_sft.cjs).
 
 ## Issue #1975 — source-first body-instruction gate (21 November 2026; negative)
 
