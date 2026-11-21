@@ -270,6 +270,55 @@ const recovered240 = divideDescending(positive256, degree16Positive);
 assert.deepEqual(recovered240.remainder, Array(16).fill(0));
 assert.deepEqual(recovered240.quotient, p39Whole);
 
+// A distinct candidate full receiver uses the quartic's own recurrence,
+// seeded by the first four p23 printed word lengths [K,a,e,g]=[2,6,3,5].
+// Test the actual solved-p56 F-transparent consumption rule with BOTH signs.
+const recurrence = rg.slice(0, 4).map((digit) => mod(digit * inverse[rg[4]]));
+assert.deepEqual(recurrence, [14, 9, 13, 28]);
+const key = [2, 6, 3, 5], maxKey = 18000;
+for (let i = 0; key.length < maxKey; i++)
+  key.push(mod(-recurrence[0] * key[i] - recurrence[1] * key[i + 1]
+    - recurrence[2] * key[i + 2] - recurrence[3] * key[i + 3]));
+assert.deepEqual(key.slice(0, 16), [2,6,3,5,0,27,27,12,27,4,8,9,13,0,15,4]);
+/** Exhaust all legal key-clock paths under plaintext F transparency. */
+function firstImpossible(cipher, sign) {
+  let states = new Set([0]);
+  for (let i = 0; i < cipher.length; i++) {
+    const next = new Set();
+    for (const j of states) {
+      if (cipher[i] === 0) next.add(j); // Literal plaintext F did not consume.
+      if (mod(cipher[i] + sign * key[j]) !== 0) next.add(j + 1);
+    }
+    states = next;
+    if (states.size === 0) return i;
+  }
+  return null;
+}
+const chapter23 = corpus.pages.filter((p) => p.page >= 23 && p.page <= 26)
+  .flatMap((p) => p.indices);
+const posttable = [...corpus.pages.find((p) => p.page === 51).indices,
+  ...corpus.pages.find((p) => p.page === 52).indices];
+for (const [cipher, minusIndex, plusIndex] of [
+  [chapter23, 22, 12],
+  [p39Whole, 26, 7],
+  [corpus.pages.find((p) => p.page === 55).indices, 59, 21],
+  [posttable, 24, 16],
+]) {
+  assert.equal(firstImpossible(cipher, -1), minusIndex);
+  assert.equal(firstImpossible(cipher, 1), plusIndex);
+}
+// Real solved p57 plaintext positive: exact F-bypass encoding must retain
+// a full inverse key path at the correct source consumption count.
+const realClear57 = corpus.pages.find((p) => p.page === 57).indices;
+for (const sign of [-1, 1]) {
+  let j = 0;
+  const encoded57 = realClear57.map((digit) => {
+    if (digit === 0) return 0;
+    return mod(digit - sign * key[j++]);
+  });
+  assert.equal(firstImpossible(encoded57, sign), null);
+}
+
 function ioc(values) {
   const counts = Array(29).fill(0);
   for (const value of values) counts[value]++;
@@ -293,4 +342,5 @@ console.log('NULL fixed -K H: ' + literalAnyHit + '/' + runs + ' any exact sourc
 console.log('PASS: five original 201-rune p23–26 lanes not direct red H/G codewords; positive plant recovered');
 console.log('PASS: p23 red16 + p39 whole240 composites are not source H/G codewords');
 console.log('PASS: both source p23 monic degree16 factors fail, 240-rune positive plant succeeds');
+console.log('PASS: source-DH-seeded quartic recurrence fails p56-style F-transparent necessary path');
 console.log('NO PLAINTEXT: reversible quotient key reads remain ciphertext-like');
