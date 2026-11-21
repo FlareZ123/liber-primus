@@ -75,6 +75,9 @@ const exactChapters = chapters.flatMap(([start,end],j) =>
   subtreeIntervals.some(([a,b],k) =>
     a===start && b===end && subtreeSize(pageNode[k])===end-start+1) ? [j] : []);
 assert.deepEqual(exactChapters, [0,6]);
+// Topology-only: no reordering of nodes can create a 14-member rooted subtree.
+assert.equal([...sizes.values()].filter(n => n === 14).length, 0);
+assert.equal(chapters[7][1] - chapters[7][0] + 1, 14);
 console.log('printed illustrated chapters as complete graph subtrees:',
   exactChapters.length, '/', chapters.length, 'chapters', exactChapters);
 
