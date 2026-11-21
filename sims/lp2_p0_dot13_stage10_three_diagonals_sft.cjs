@@ -19,8 +19,11 @@ const mod = value => ((value % 29) + 29) % 29;
 const CIPHER = corpus.pages.find(p=>p.page===0).indices.slice(0,13);
 const CANDIDATE = [18,13,10,13,8,24,9,26,15,18,18,5,15]; // EPIPHANY SEECS
 const RESIDUAL = CIPHER.map((v,i)=>mod(v-CANDIDATE[i]));
+const RAW_CANDIDATE = [15,18,5,1,18,9,23,10,4,24,16,10,3]; // prior raw SECUENDI RATIO
+const RAW_RESIDUAL = CIPHER.map((v,i)=>mod(v-RAW_CANDIDATE[i]));
 assert.deepEqual(CIPHER,[15,8,18,3,6,19,27,0,15,26,18,21,5]);
 assert.deepEqual(RESIDUAL,[26,24,8,19,27,24,18,3,0,8,0,16,19]);
+assert.deepEqual(RAW_RESIDUAL,[0,19,13,2,17,10,4,19,11,2,2,11,2]);
 
 /** @returns {number[][][]} */
 function squares() {
@@ -84,11 +87,15 @@ function main() {
       equal:RESIDUAL[i]===RESIDUAL[12-i]
     }));
     assert(differingPairs.every(x=>!x.equal));
+    const rawDifferingPairs = Array.from({length:6},(_,i)=>
+      RAW_RESIDUAL[i] !== RAW_RESIDUAL[12-i]);
+    assert.equal(rawDifferingPairs.filter(Boolean).length,5);
     const direct=[];
     for(const op of ["number","totient"])for(const sign of [-1,1]){
       const key=values.map(x=>mod(op==="number"?x:phi(x)));
       const output=CIPHER.map((x,i)=>mod(x+sign*key[i]));
       assert.notDeepEqual(output,CANDIDATE);
+      assert.notDeepEqual(output,RAW_CANDIDATE);
       const known=corpus.pages.find(p=>p.page===57).indices.slice(0,13);
       const plant=known.map((x,i)=>mod(x+key[i]));
       assert.deepEqual(plant.map((x,i)=>mod(x-key[i])),known);
@@ -97,6 +104,7 @@ function main() {
     passes.push({squareOrdinal:index===0?1:3,
       diagonalBandValues:values,sourceSymmetryPairs:6,
       incompatibleCandidatePairs:differingPairs.filter(x=>!x.equal).length,
+      incompatibleRawSequendiRatioPairs:rawDifferingPairs.filter(Boolean).length,
       direct,syntheticPositive:"exact"});
   }
   console.log(JSON.stringify({status:"PASS",
@@ -105,8 +113,10 @@ function main() {
     conditionalCandidate:"EPIPHANY SEEKS (GP29 spelled EPIPHANY SEECS)",
     exactOriginalTitle:CIPHER,
     candidateResidual:RESIDUAL,
+    secondConditionalCandidate:"SECUENDI RATIO in the one-rune-per-letter historic branch",
+    secondResidual:RAW_RESIDUAL,
     results:passes,
-    decision:"Both original 2014 5x5 central diagonal bands naturally model the 13-dot shape; however every stationary number-to-shift key from either band is palindromic, whereas all six candidate title pairs require different shifts. The proposed local source-to-title decoder fails even with arbitrary secret numeric substitutions."
+    decision:"Both original 2014 5x5 central diagonal bands naturally model the 13-dot shape; however every stationary number-to-shift key from either band is palindromic, whereas all six candidate title pairs require different shifts. The proposed local source-to-title decoder fails for both published conditional title candidates even with arbitrary secret numeric substitutions."
   },null,2));
 }
 if(require.main===module)main();
