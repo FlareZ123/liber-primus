@@ -37,13 +37,16 @@ The fifth original red word therefore supplies **exactly the inverse of the dete
 
 This is an interesting independent algebraic *use* of the packet, but the source supplies **no printed 2×2 matrix bracket, matrix multiplication command, padding convention, pair clock, selected receiver, or encryption direction**. A determinant certificate could be accidental among the project-wide numbers and other studied transforms. It cannot be promoted to a genuine historical key without a plaintext witness.
 
-## Cross-field original-red determinant triad: DH values 2, 3, 15
+## Cross-field original-red determinant register: DH values K, K², e, b
 
 The **printed words** of the two adjacent red spans provide a second, more tightly typed algebraic interpretation than the Hill key alone. P6's four original red words have whole-word **GP0 sums** `[71,19,65,26]`; p7's five have sums `[26,65,23,42,53]`. The p6 last two sums and p7 first two sums are literally reversed, an independently established original-page boundary clue. Interpret *each natural first-four-word sequence*, without inventing cuts, as one row-major 2×2 matrix of numerical values and take its determinant modulo29:
 
 ```text
 p6 red4, whole-word GP0 sums: [[71,19],[65,26]]
       det = 71*26 - 19*65 = 611 = 2 mod29
+
+p6 red4, whole-word GP29 products: [[13,19],[14,23]]
+      det = 13*23 - 19*14 = 33 = 4 = 2² mod29
 
 p7 red5, whole-word GP0 sums: [[26,65],[23,42]]
       det = 26*42 - 65*23 = -403 = 3 mod29
@@ -53,7 +56,7 @@ p7 red5, whole-word GP0 products: [[11,26],[8,15]]
       fifth word product = 2 = inverse(15) mod29
 ```
 
-These **three distinct source-original determinants are exactly `[2,3,15]`**. In the separately reconstructed signed 2013/2016 DH23 worked example, they match the labeled values `K=2` (shared secret), `e=3` (the inverse of private b modulo22), and `b=15` (server private exponent). Their existing cross-field relations hold exactly:
+These **four distinct source-original determinants are exactly `[2,4,3,15]`**. In the separately reconstructed signed 2013/2016 DH23 worked example, they match the labeled values `K=2` (shared secret), `K²=4` (its square in GP29), `e=3` (the inverse of private b modulo22), and `b=15` (server private exponent). Their existing cross-field relations hold exactly:
 
 ```text
 15 * 2 = 1 mod29        (p6 sum determinant, p7 product determinant)
@@ -64,7 +67,7 @@ The p7 first red word's rune values already spell the operand pair `[p,e]=[23,3]
 
 ### Original source-wide family census
 
-Charge the exact **first-four-word row-major determinant** operation against every permissible complete-page original word window. The p6 sum-side condition `det(sum4)=2` occurs in **106 of 2,785 four-word windows**. For all **2,729 five-word windows**, the p7-side clauses have these counts:
+Charge the exact **first-four-word row-major determinant** operation against every permissible complete-page original word window. The p6 sum-side condition `det(sum4)=2` occurs in **106 of 2,785 four-word windows**, while `det(product4)=4` occurs in **89**. The two occur together in **three** four-word windows; only **one** of those three has all four constituent word products nonzero, namely p6 red offset71. For all **2,729 five-word windows**, the p7-side clauses have these counts:
 
 | Condition on five consecutive source words | Original windows |
 | --- | ---: |
@@ -73,9 +76,9 @@ Charge the exact **first-four-word row-major determinant** operation against eve
 | Both determinant values 3 and15 | 5 |
 | Both, and fifth-word GP29 product is shared DH `K=2` | **1**, p7 red offset194 |
 
-The five-word simultaneous triple is unique under the fixed order, *conditional on selecting the DH numbers and GP sum/product choice after viewing the source*. It is distinct from the 83 generic Hill inverse-determinant certificates and the existing reciprocal-pair census, but these conditions are correlated and must **not** be multiplied into a tiny authorship probability. We did not scan arbitrary matrix layouts or scramble selected numbers to force a signal.
+The four-word p6 simultaneous sum/product pair and five-word p7 simultaneous triple both select their original red colophons under the nonzero-product filter and fixed order. The p7 five-word triple is unique under the fixed order, *conditional on selecting the DH numbers and GP sum/product choice after viewing the source*. It is distinct from the 83 generic Hill inverse-determinant certificates and the existing reciprocal-pair census, but these conditions are correlated and must **not** be multiplied into a tiny authorship probability. We did not scan arbitrary matrix layouts or scramble selected numbers to force a signal.
 
-The cross-field inverses strengthen the **DH-state serialization** interpretation of p6/p7 red text and explain why considering word sums *and* word products yields the exact same previously authenticated state values. What remains missing is a first-party rule connecting that state to a specific ciphertext receiver and an actual original plaintext. There is no independent evidence that a GP29 determinant itself encrypts the black text.
+The p6 square and the cross-field inverses strengthen the **DH-state serialization** interpretation of p6/p7 red text and explain why considering word sums *and* word products yields the exact same previously authenticated state values. What remains missing is a first-party rule connecting that state to a specific ciphertext receiver and an actual original plaintext. There is no independent evidence that a GP29 determinant itself encrypts the black text.
 
 ## Finite source population: generic certificates are frequent
 
