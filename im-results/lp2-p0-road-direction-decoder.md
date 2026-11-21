@@ -223,11 +223,27 @@ pre P -> H -> post P -> marker0 - g -> H
 
 and that word is ROAD.
 
+## Five-rune direction extension (negative)
+
+The p57 terminal red stencil has five columns, while the p50 table's leading base-60 digits range over `0..4`. This motivates one bounded question: does the exact ROAD receiver mechanism extend to five-rune words whose five corresponding p50 cells have a first-digit permutation of `0,1,2,3,4`?
+
+The scan preserves the ROAD cell convention: a word at page-local rune offset *s* uses one-based p50 cells *s* through *s+4*. Across pages 0–55 there are **355** five-rune words, **348** addressable against the 256-cell table, and only **six** with the required five-digit permutation. They collapse to three repeated table windows:
+
+| First cell | p50 tokens | Direction digits | Residues mod 29 | Quotients by 29 |
+|---:|---|---|---|---|
+| 113 | `1D 2N 3H 47 0s` | `[1,2,3,4,0]` | `[15,27,23,15,25]` | `[2,4,6,8,1]` |
+| 170 | `3m 4E 0s 2S 1v` | `[3,4,0,2,1]` | `[25,22,25,3,1]` | `[7,8,1,5,4]` |
+| 171 | `4E 0s 2S 1v 3T` | `[4,0,2,1,3]` | `[22,25,3,1,6]` | `[8,1,5,4,7]` |
+
+For the minimal embedding of the frozen ROAD rule, omit the position whose direction digit is `4`, order the remaining four residues by direction digits `0..3`, apply the same `H4`, and return the four outputs to their original positions. **None** of the six candidates produces the boundary marker `28` (`-1 mod 29`), so the authenticated `-g` correction cannot even be invoked. The six rune-word transliterations are `LEIAHL`, `IATJM`, `JNGYEOA`, `HJLEAOE`, `FDREAG`, and `HDOTC`; none is a source-native plaintext.
+
+This rejects only the simple five-cell embedding of the four-point ROAD decoder. It does **not** establish a five-symbol cipher, and it is not grounds for inventing an unconstrained `H5` or other transform. Keep the exact ROAD inverse local unless an independent clue selects a different receiver and operation.
+
 ## Decision
 
 Promote p0 offsets105..108 from a source-selected ROAD receiver with a crib-implied key to a **source-derived exact local ROAD inverse**. The key is generated from original p50 cells105..108, their visible numeric direction permutation, the independently recovered DH23 state, and the fixed reversible H map.
 
-Chronology still matters. ROAD was already selected when this transform was recognized, so this is strong retrospective cryptographic closure rather than a blinded plaintext discovery. The first frozen transfer was applied immediately to the independently selected p0 DEVOTED receiver at offsets237..243. Its one-based p50 cells print `3w 0W 29 2r 2O 2L 0g`, whose first digits are `[3,0,2,2,2,2,0]`; they do not form a seven-position direction permutation, so the ROAD rule does **not** transfer mechanically. Keep the decoder local. A future promotion requires a different clue-selected receiver that independently supplies a compatible direction object.
+Chronology still matters. ROAD was already selected when this transform was recognized, so this is strong retrospective cryptographic closure rather than a blinded plaintext discovery. The first frozen transfer was applied immediately to the independently selected p0 DEVOTED receiver at offsets237..243. Its one-based p50 cells print `3w 0W 29 2r 2O 2L 0g`, whose first digits are `[3,0,2,2,2,2,0]`; they do not form a seven-position direction permutation, so the ROAD rule does **not** transfer mechanically. Keep the decoder local. A bounded five-rune extension was also tested and failed to produce the boundary marker; do not generalize to an arbitrary five-symbol transform. A future promotion requires a different clue-selected receiver that independently supplies a compatible direction object.
 
 ## Reproduction
 

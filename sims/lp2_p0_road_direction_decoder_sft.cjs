@@ -405,6 +405,53 @@ assert.deepEqual(operationLexical, [{
   label: "ROAD",
 }]);
 
+// Five-rune extension: test whether the ROAD H4 marker mechanism transfers.
+function isPermutation04(values) {
+  return values.slice().sort((a, b) => a - b).join(",") === "0,1,2,3,4";
+}
+
+let fiveRuneWords = 0;
+let fiveRuneAddressable = 0;
+let fiveRunePermutationCandidates = 0;
+let fiveRuneMarkerHits = 0;
+const fiveRuneCandidates = [];
+
+for (const page of pages) {
+  for (const word of page.words) {
+    if (word.values.length !== 5) continue;
+    fiveRuneWords += 1;
+    if (word.start < 1 || word.start + 4 > 256) continue;
+    fiveRuneAddressable += 1;
+    const cells = Array.from({ length: 5 }, (_, index) => word.start + index);
+    const tableIndices = cells.map((cell) => cell - 1);
+    const rayTokens = tableIndices.map((index) => tokens[index]);
+    const direction5 = rayTokens.map((token) => alphabet60.indexOf(token[0]));
+    if (!isPermutation04(direction5)) continue;
+    fiveRunePermutationCandidates += 1;
+    const values = rayTokens.map((token) => tokenValue(token, alphabet60));
+    const residues5 = values.map(mod29);
+    const quotients5 = values.map((value) => Math.floor(value / 29));
+    const activePositions = [0, 1, 2, 3, 4].filter((index) => direction5[index] !== 4);
+    const orderedResidues = [0, 1, 2, 3].map((digit) => residues5[direction5.indexOf(digit)]);
+    const shell = h4(orderedResidues);
+    const returned = activePositions.map((index) => shell[direction5[index]]);
+    const markerPositions = returned.map((value, index) => value === 28 ? activePositions[index] : null).filter((index) => index !== null);
+    if (markerPositions.length > 0) fiveRuneMarkerHits += 1;
+    fiveRuneCandidates.push({
+      page: page.page, start: word.start,
+      translit: word.values.map((value) => corpus.translit[value]).join(""),
+      cells, tokens: rayTokens, direction: direction5,
+      residues: residues5, quotients: quotients5, returned, markerPositions,
+    });
+  }
+}
+
+assert.equal(fiveRuneWords, 355);
+assert.equal(fiveRuneAddressable, 348);
+assert.equal(fiveRunePermutationCandidates, 6);
+assert.equal(fiveRuneMarkerHits, 0);
+assert.deepEqual(fiveRuneCandidates.map((candidate) => [candidate.page, candidate.start]), [[9, 170], [13, 113], [37, 113], [38, 171], [40, 171], [52, 170]]);
+
 console.log(JSON.stringify({
   status: "PASS",
   receiver: {
@@ -430,5 +477,10 @@ console.log(JSON.stringify({
     markerHits,
     correctionLexical,
     operationLexical,
+    fiveRuneWords,
+    fiveRuneAddressable,
+    fiveRunePermutationCandidates,
+    fiveRuneMarkerHits,
+    fiveRuneCandidates,
   },
 }, null, 2));
