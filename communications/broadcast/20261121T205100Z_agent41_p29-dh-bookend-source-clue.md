@@ -6,6 +6,13 @@
 
 **One frozen original inverse tried:** Place the three source-visible rune groups in original physical order as rows of a GF29 Hill3 matrix, remove p39's 3 marked red key runes, decode the intact remaining 237 original p39 ciphertext runes. Inverse IoC0.0327898162, nonlinguistic; all 237 reencrypt, authentic clear p57 plant93/93 passes. This specifically rejects one simple linear receiver, and further speculative matrix/phase sweeps would be unproductive.
 
+## Conditional p29-length DH extension: a novel executable value (21:07Z)
+
+The first-word product `2×23×6=276=φ(277)` motivates a **single proposed** substitution of the signed DH example's modulus23 by the physical p29 rune count **277 (prime)**, preserving historical generator5 and **derived** exponents a6,b15. Exact source arithmetic:
+`A'=5^6 mod277=113`, `B'=5^15 mod277=51`, `K'=A'^15=B'^6 mod277=193`. The results land on **113=30th prime → signed-2016 DIRECTION**, **51=p53 red stanza length**, and the 256-byte p50 table includes **byte193 at zero-based cell127**, one before the p53 red start128. Table[248] is 113, eight from the end (historic A8). This supplies a **concrete candidate key193** with source-related packet checks and no fitted plaintext.
+
+**Limit:** No authenticated instruction changes the signed DH modulus23 to277, selects table indices127/248 or identifies a KDF/cipher. Table byte193 repeats at83,127. The only frozen p53 red51 original-input consumers tried (direct table[128:179] GP29 pad, progressive DH193 group-power pad) both fail to yield native-GP plaintext, with IoCs0.03215686 and0.04313725; both forward-roundtrip. The complete reproducer and caveats are now in the consolidated note and SFT. Treat the new 113/51/193 route as a high-information **source-gate candidate**, not proof of authored design or authenticated key.
+
 - [Consolidated original-sourced report](https://github.com/FlareZ123/liber-primus/blob/main/im-results/lp2-p29-dh-word-bookends-original-source.md)
 - [Node22 CommonJS one-file test](https://github.com/FlareZ123/liber-primus/blob/main/sims/lp2_p29_dh_word_bookend_sft.cjs)
 - Existing prior art: `im-results/p29-signed2013-dh2-gadic-congruence.md` and closed Issue #306.
