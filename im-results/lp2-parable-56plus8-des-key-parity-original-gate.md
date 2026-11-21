@@ -1,0 +1,24 @@
+# PARABLE prime-ranked p50 branches 56+8 as a hypothetical DES key: exact source gate
+
+**Agent16, 21 November 2026. Original-input exploratory negative.** The 2013-authenticated PARABLE product is an exact factorization of the three 2014 clear p57 clause prime sums. Their one-based prime ordinals [205,173,201] are conditional original p50 table addresses. The conventional base60 source graph has `S(201)=56` predecessor nodes and **`S(173)=8` disjoint predecessor nodes**. Their exact union contains **64 original numeric cells**, suggestive of DES's 56 effective key bits plus eight parity bit positions. This *does not select DES*: no Cicada source says to convert these graph positions to key bits, use their least significant bits, order them as bytes or choose ECB/CBC.
+
+The printed p50 table is already 32×8 bytes, so its 32 unchanged physical rows provide native eight-byte DES ciphertext blocks if this algorithm were intended. The other independently solved source has 85+95=180 p56+p57 runes, exactly the 30×6 rectangle after removing the table's 76-cell rim. These dimensions motivated a **readout of the complete source byte stream and a 95-rune known-p57 holdout**, without selecting a cryptographic key by looking at its output. Prior direct DES decryptions with literal `DIVINITY` and original p0 red13 were negative, and this is a distinct previously untested factor-subtree key source.
+
+## Frozen key derivations and original results
+
+Take exactly the 56 original numeric cell addresses in `S(201)` and eight from `S(173)`; use either ascending original printed-cell address order or the existing conditional largest-child-first inorder traversal. For every cell use either the low bit of its source **address** or low bit of the **base60 printed byte** (four combinations). Interpret each successive seven bits from S201 as the seven DES data bits of an eight-bit key byte, followed by the corresponding one bit from S173 as its DES parity bit. For the original 32×8-byte source ciphertext, apply DES ECB or zero-IV CBC to all 256 source bytes without added padding. All keys are independent of the output, and no secret bit or mode is fitted. The node ordering is conditional, and the usual one-bit DES parity check is an independent diagnostic, never a license to alter a chosen source bit.
+
+| 56/8 source bit derivation | Actual candidate 8-byte key | Odd DES parity bytes /8 | ECB printable bytes /256 | CBC printable bytes /256 | Best exact p57 match /95 |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Printed positions, address LSB | `4efb683da5e15341` | 3 | 90 | 92 | 0 |
+| Printed positions, original value LSB | `35fe595271516a71` | 3 | 93 | 84 | 1 |
+| Conditional inorder, address LSB | `071643cf9dda51d5` | 7 | 105 | 97 | 0 |
+| Conditional inorder, original value LSB | `042b46aebbf7a323` | 5 | 86 | 100 | 0 |
+
+The most suggestive conditional address-inorder mapping has **seven of eight odd parity bits**, with the **fourth** parity byte wrong. An eight-bit random parity mask matches seven or more independently specified odd parity constraints with probability 9/256, and four source-bit/order choices increase the opportunity for an accidental near-hit. It is therefore only a weak post hoc observation, **not** a valid DES key verification; no original instruction selects one correction or validates the 56/8 interpretation. None of the eight original decryptions yields a plausible ASCII document (at most 105/256 printable bytes and longest printable run seven), an actual native GP29 180-rune interior (12–32 values in GP range versus 180 required), or the independently clear 95-rune p57 text (at most 1/95 exact byte match, 7/95 under forgiving byte modulo29). Full outputs were re-encrypted byte-for-byte to the original table.
+
+The independent NIST single-DES test vector (`133457799BBCDFF1`, `0123456789ABCDEF`, `85E813540F0AB405`) passed using Node22 `des-ede3` with all three 8-byte keys equal. This implements the standard single-DES permutation. Tested the original 256 bytes on [Windows Node22 PASS 44954261114](https://github.com/FlareZ123/liber-primus/actions/runs/44954261114). [Original-input single-file reproducer](../sims/lp2_parable_source56plus8_des56_parity_original_sft.cjs). Official Node crypto supports `createDecipheriv` and `setAutoPadding(false)` for exactly block-aligned ciphertext.
+
+## Decision
+
+Preserve as an **exact disjoint-64 original graph fact** and a bounded specific DES negative. The first source-cued DES key construction does not reveal any unknown plaintext or key, and the seven-of-eight parity coincidence cannot justify fitting a correction or expanding arbitrary DES modes. An intended DES route needs an independent author-selected key serialization and cipher instruction. The more fundamental unresolved step remains a reproducible source-selected graph-to-plaintext operation.
