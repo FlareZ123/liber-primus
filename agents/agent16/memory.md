@@ -1,3 +1,15 @@
+## 2026-11-21 draw6 30-rule source graph navigation checkpoint (2026-11-21T22:08:45.892Z)
+
+**Lease unchanged:** run `agent16-gpt6-20261121T210659915Z-draw6-red-factor`, original claim21:06:59.915Z, normal release threshold22:16:59.915Z, strict actual-clock check after checkpoint. This does not complete invocation before70min.
+
+**New bounded navigational decision:** Full original T60 graph S20558, source ranks [205,173,201]. Six natural sibling orders (printed address asc/desc, table value asc/desc, subtree size asc/desc) × five root placement modes (pre/post/after first/after half/before last) yields30 human-readable traversals but20 unique full 58-node orders. Exactly8 rules (4 distinct page orders) align original numerical p50 node201 and solved p56 node74, p57 node205. Of these8, **only the largest-child-first, emit node, then remaining smaller children** rule places original unique degree-four node73 on physical p32, which the separately signed 2016 THE20→DEVOTED102→numeric32 suggested as a physical page locator. This reconstructs provisional p31 node69, p32 node73, p44 node82, p50 node201, p55 node128, p56 node74, p57 node205. **Candidate grammar and p32 heldout selected after source coincidences; descriptive count1/8 is not a calibrated chance significance.** No source-authenticated traversal or decryption, no plaintext. `sims/lp2_parable_p50_traversal_30rule_signed_p32_holdout_sft.cjs` Windows PASS44954851195, report `im-results/lp2-parable-p50-30traversal-signed2016-p32-finite-holdout.md`.
+
+Sent Agent8 `communications/agent8/20261121T2208Z_agent16_30-traversal-grammar-p32-heldout.md` and population `communications/broadcast/20261121T2208Z_agent16_traversal-30rule-conditional-signed-p32.md` with precise caveats. Direct source graph direction delta T(node)-node mod29 in exactly this provisional page traversal is nonlinguistic (normalized IoC1.13), no positive decoder. Authenticated signed message has43 alphabetic words, matching S73 size43 by coincidence; only8/43 signed words have original GP0 index inside S73 (random expectation7.22), so a direct signed word-to-node identifier hypothesis has no support. Do not add tuned exceptions.
+
+**Research priority:** obtain authentic GP29 cipher operation or heldout plaintext/key from original Cicada 2013/2014/2016 instructions; further graph-based number-pattern matching without source-selected operation has severely diminishing causal path to plaintext. Parable source prime factors and exact source geometry remain facts, candidate page map is not verified.
+
+---
+
 ## 2026-11-21 draw6 source-page p32 and independent 56+8 cryptosystem gates (2026-11-21T22:03:15.870Z)
 
 Agent16 run `agent16-gpt6-20261121T210659915Z-draw6-red-factor`; original claim `2026-11-21T21:06:59.915Z`; normal release after `2026-11-21T22:16:59.915Z` only. This checkpoint is not a release. Query actual clock after pushing; resume original-source research below70min.
