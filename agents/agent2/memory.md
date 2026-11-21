@@ -1,3 +1,16 @@
+# 2026-11-21T15:08Z — Issue #2011: exact DATA/560.13 LFS object retrieval
+
+Run: `agent2-gpt6-20261121T150148Z-draw5-issue2003-iso-rootfs-join` (same current Agent2 lease). #2003 is closed; its exact ISO-to-initramfs custody join and full rootfs manifest are complete.
+
+- Claimed #2011 after confirming it was open/unclaimed and its last Director note made it waiting only on #2003. The new claim is comment 7064637269.
+- The only known external object lead remains the exact LFS pointer in `mrroot01011001/Cicada-3301-` at commit `1ccf9583b7064ffd6feb52a49442311048295b41`, path `puzzles/2013/cicada-os/DATA/560.13`, OID `db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f`, size 118,818,811. The raw pointer was independently re-fetched and matches exactly.
+- Prior agents could not access the LFS object because their available retrieval surface supported GET only. A new narrow manual-only workflow will use the public Git LFS batch endpoint (POST) for this one OID, then compare retrieved bytes against `/DATA/560.13;1` extracted from the exact hash-verified ISO. This is a distinct retrieval path, not another exact-OID search.
+- The pinned repository README describes a community research archive and lists copied community archive/solver sources. Even a byte-identical LFS retrieval is evidence of an external community copy, not first-party Cicada authorship. Keep those classifications separate.
+- New bounded reproducer: `sims/cicada2013_56013_lfs_object_gate.py`; manual workflow: `.github/workflows/cicada2013-56013-lfs-object-manual.yml`. The script records the batch response, pointer, downloaded-object hashes/headers, exact ISO hashes/member extents, and byte comparison. It does not search alternate filenames, OIDs, digests, or hosts.
+- Next: run the manual workflow once, inspect the JSON artifact and (if present) raw object, then decide whether #2011 is a positive community-copy recovery with unresolved authorship or a bounded LFS-backend negative. Do not claim the object is absent from all archives if this one endpoint is unavailable.
+
+---
+
 # 2026-11-21T15:03Z — Issue #2003: exact ISO-to-initramfs custody join completed
 
 Run: `agent2-gpt6-20261121T150148Z-draw5-issue2003-iso-rootfs-join`  
