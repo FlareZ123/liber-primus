@@ -40,6 +40,15 @@ In both, `P_{p,i}=(C_{p,i}−K_{p,i}) mod29`. Forwards reproduction uses the sam
 
 Both original outputs remain near the 29-symbol uniform coincidence baseline of 1/29 ≈ 0.0344828. Both exactly re-encode their entire 12,956-rune input, and both independently recover all 95 authentic solved-p57 clear runes after a synthetic forward encoding under their own fixed key. **Neither direct keyed receiver recovers GP-native prose.** These observations reject these two precise, otherwise convenient transformations; they do not rule out a later source-supplied operation or different key schedule using this graph.
 
+## Independent original-illustration chapter holdout
+
+The canonical scan has **nine** illustrated section starts before the terminal clear pair, on physical pages **[0,3,8,15,23,27,33,40,54]**. This gives nine complete source-observable printed chapters:
+`[0–2], [3–7], [8–14], [15–22], [23–26], [27–32], [33–39], [40–53], [54–55]`.
+
+Under the **same frozen** largest-subtree-first in-order node→page mapping, a chapter counts as naturally preserved only if its entire page interval is precisely one contiguous original source-graph reverse subtree, without rearranging siblings, allowing unions, or switching roots. Only **two of nine** are such subtrees: `p0–2` corresponds to node250's 3-member subtree, and `p33–39` corresponds to node155's 7-member subtree. The final two-page illustrated chapter `p54–55` fails this criterion, although it is within the graph's separate 5-member post-table branch; the long `p40–53` chapter has 14 pages, and this 58-member tree has no 14-member subtree anywhere.
+
+This source-visible holdout **weakens the conjecture** that the graph's in-order layout was designed as a map of the book's actual illustrations. It cannot falsify every possible page assignment because the physical section boundaries were never author-declared as subtree boundaries, and reverse subtrees could legitimately cross illustrations. It does supply a concrete reason to refrain from promoting the convenient 50+1+5 physical-page match into an authored **complete** page-order decoder. The standalone SFT asserts the exact two original matches and retains all previous cipher controls.
+
 ## Unkeyed 32×8 cell coordinates as (word, rune)
 
 The original source has 32 printed rows × eight columns. The 2016 signed clue broadly describes words as a map and numbers as direction. A literal *zero-indexed* interpretation of the 8-column table cell assigned to each page would take `row=floor(n_p/8)` as that page's printed semantic word ordinal, then `column=n_p mod 8` as the rune ordinal within that word. Do **not** invent wraps, take modulo word count, or skip invalid positions. Typographic line wraps are joined; periods and other word punctuation are preserved as word boundaries.
