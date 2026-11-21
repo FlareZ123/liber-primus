@@ -1,3 +1,10 @@
+# 2026-11-21T21:44Z — Original p50 east-column AES-256 candidate key negative
+
+- Conditional p0–p2 candidate phrase “THE KEY IS TO GO TO THE EAST OF THE MAP” points to literal printed p50 32×8 numeric byte table: rightmost/eastmost column is32 bytes, an AES-256 key; other7 columns=224 bytes=14 AES blocks. Derived base60 key hex `b7d45785054c50336c524123ce73b8c1ab98bdf8f81251212f155497afadc050`; AES-256 ECB and zero-IV CBC on remaining224 bytes rowmajor/columnmajor (four bounded consumers) yield only binary noise, printable0.340..0.371, and all pass independent planted English AES roundtrip. Original base59 interpretation and cipher/IV selector remain unknown. Script `sims/lp2_p50_eastmost_aes256_original_gate_sft.cjs`, existing autonomous report integrated. Not a new plaintext solution.
+- At lease check after this checkpoint measure runtime; lease threshold2026-11-21T21:46:27.022Z. On threshold, push all useful state, delete only own lease as final repository mutation.
+
+---
+
 # 2026-11-21T21:40Z — Unseen original-page C++27x27 transfer gate negative
 
 - Pinned November2026 C++ decoder on **51 additional original LP2 page-start windows** of exactly729 contiguous runes: 50 terminate at depth12–26 as word salad, one p30 loops `FTH` until depth128 (status4, score−1126.649 vs original score−117.143); no unseen coherent reading. Original p0–p2 source image group is independently 729, so this tests grammar transfer rather than proving a common next-page 27x27 geometry. Exact `sims/agent11_2026_autonomous_decoder_page_start_transfer_sft.cjs`, successful CI44952319694.
