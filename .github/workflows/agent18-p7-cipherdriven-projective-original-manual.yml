@@ -28,3 +28,6 @@ jobs:
 
       - name: Test p8 243-entry source-defined five-trit nonlinear lookup consumer
         run: node sims/lp2_p8_ternary5_nonlin_lookup_consumer_sft.cjs
+
+      - name: Test p7 fifth-order filtered through p8 nonlinear 243-lookup table
+        run: node sims/lp2_p7p8_243trit_fivelag_nonlinear_stream_sft.cjs
