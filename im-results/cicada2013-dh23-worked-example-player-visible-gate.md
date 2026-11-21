@@ -49,13 +49,16 @@ This materially changes the historical interpretation. Matching the tuple can id
 
 ## Why it is a worked example rather than a live key
 
-The procedure text says the participant server chooses its own base and secret for each `DH [p]` request. Preserved live sessions follow that rule and do not replay the printed DH23 exchange.
+The procedure text says the participant server chooses its own base and secret for each `DH [p]` request. The pinned archive census contains exactly ten clientlog files, with three executed DH requests: DH 118818811 on 26 January, DH 5 later that day, and DH 3301 on 3 March. All three use participant-selected bases/secrets and none replays the printed DH23 exchange. Only the March log contains an executed NEXT request; its separately signed payload does not authenticate the preceding DH exchange or log.
 
 | Date | request | participant base | participant secret | server public | client public | shared |
 |---|---:|---:|---:|---:|---:|---:|
 | 2013-01-26 | 118818811 | 65551251 | 65974449 | 76477436 | 123 | 8686271 |
 | 2013-01-26 | 5 | 3 | 3 | 2 | 3 | 2 |
 | 2013-03-03 | 3301 | 2757 | 331 | 1264 | 2800 | 1067 |
+
+
+The 26 January DH 118818811 record is irc-logs/clientlog-1359224026-2.txt: 1,759 bytes, Git blob SHA-1 8c0a93d7d620c35805d9be71206d593df8e15dca, raw SHA-256 6d70a085df5909fd72a64490066c3453f345a87ff23adc2d36efe2208cdb41cd. It first entered the community archive in unsigned commit f403afb9e6db2a2fb3825c7b4801c2af0ddd7228 (24 April 2024), retained in pinned commit ade9a02889ef8acbc8cde8edbfd0a785c369f4c3 (3 May 2024). The embedded 2013 timestamp is therefore not independently authenticated by archive custody. Its unique client exponent 44073865 is derived by discrete log; it is not printed. The full ten-file census and raw hashes are in the live-test vector index. The January exchange has no NEXT; the client supplies p and its public share, while the participant server selects the base and secret. This is a participant-side session, not an LP2 key handoff.
 
 The example also sits in the specification beside analogous examples for WELCOME, RAND, QUINE, BASE29, CODE, KOAN, NEXT and GOODBYE. No source emphasis such as “remember these numbers” was found.
 

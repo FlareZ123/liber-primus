@@ -1,6 +1,6 @@
 # 2013 large-DH session as an LP2 chain-key source: direct gate
 
-**Classification:** intermediate negative. This is conditional on the current Agent3 reconstruction of a 2013 session; the contemporaneous transcript search remains active under issue #2028. No LP2 plaintext is recovered.
+**Classification:** intermediate negative for LP2 key use. The 26 January 2013 participant transcript is now byte-verified in the pinned 2024 community archive (raw SHA-256 `6d70a085df5909fd72a64490066c3453f345a87ff23adc2d36efe2208cdb41cd`; Git blob SHA-1 `8c0a93d7d620c35805d9be71206d593df8e15dca`). It is not OpenPGP-signed as a whole, the client identity is not authenticated, and no LP2 selector or receiver is established. No LP2 plaintext is recovered.
 
 ## Why this was tested
 
@@ -18,20 +18,23 @@ s_i=1+(p_i+k_i)\bmod28,\qquad c_i=(c_{i-1}+s_i)\bmod29.
 
 This naturally explains the strong deficit of equal adjacent ciphertext runes, but the independent chain analysis has not found a key source. See the external [Liber Primus analysis report](https://github.com/Leo-Y-Zhang/LiberPrimusAnalysis/blob/main/docs/REPORT.md) and the repository's [GIMP/chain-stream gate](lp2-gimp-prng-chain-stream-gate.md).
 
-Agent3's current 2013-session reconstruction supplies a concrete candidate tuple:
+The byte-verified January 26 participant transcript records the following live exchange:
 
-- \(p=118{,}818{,}811\)
-- \(g=5\)
-- shared secret \(K=8{,}686{,}271\)
-- client exponent \(44{,}073{,}865\)
+- client-supplied modulus p = 118,818,811
+- participant-server-selected base h = 65,551,251
+- participant-server-selected secret a_s = 65,974,449
+- server public share = 76,477,436
+- client public share = 123
+- returned shared value K = 8,686,271
+- uniquely derived client exponent = 44,073,865 (not printed in the log)
 
-These values are provisional inputs from the active [2013 transcript investigation](https://github.com/FlareZ123/liber-primus/issues/2028), not yet an independently closed LP2 key-source link. The smallest natural stream-generator hypothesis is the multiplicative recurrence
+The signed protocol assigns the modulus and client public share to the client and the base/secret to the participant server. These are participant-session values, not organizer-authenticated key material. The g=5 below is imported from the separate signed DH23 worked example; it is **not** the January session's actual base h=65,551,251. The following is a cross-session hybrid hypothesis, not a native transcript-derived keystream. The smallest natural stream-generator hypothesis is the multiplicative recurrence
 
-\[
-x_0=K,\qquad x_{n+1}=g x_n\bmod p,\qquad k_n=x_n\bmod28.
-\]
+\\[
+x_0=K,\\qquad x_{n+1}=5 x_n\\bmod p,\\qquad k_n=x_n\\bmod28.
+\\]
 
-This uses the recovered DH state, generator and modulus directly, without a fitted seed, extra hash, table lookup or language-dependent parameter.
+This deliberately uses the January shared value and modulus with the separate DH23 example's generator, without a fitted seed, extra hash, table lookup or language-dependent parameter.
 
 ## Frozen experiment
 
@@ -62,6 +65,8 @@ The recurrence has no short period over this corpus: the reconstructed modulus g
 - \(\operatorname{ord}_p(5)=59{,}409{,}405\)
 - \(\operatorname{ord}_p(K)=720{,}114\)
 
+The actual January base h=65551251 is a primitive root with order p−1 = 118,818,810. It is distinct from g=5 used in the frozen hybrid test and is not an LP2 generator candidate absent a source selector.
+
 The failure is therefore not explained by a trivially short key period.
 
 ## The tempting 257/256 connection
@@ -86,7 +91,15 @@ Reject this specific cross-round construction:
 - direct output projection \(x\bmod28\);
 - the independently proposed 28-symbol chain inverse.
 
-The test does **not** disprove the 2013 transcript reconstruction, nor every possible use of the session in Cicada's wider puzzle. It rejects the simplest direct DH-LCG chain key and the direct 257-cycle byte-table interpretation. Do not rescue either by adding arbitrary KDFs, offsets, table lookups or exponent schedules without a new source clue selecting that operation.
+The test does **not** disprove the January transcript or every possible use of the session in Cicada's wider puzzle. It rejects only the specified hybrid that seeds from the January shared value but multiplies by g=5 from the separate DH23 example, plus the direct 257-cycle byte-table interpretation. The actual January server base h=65551251 has order p−1; it was **not** tested as an LP2 stream generator because no source selects that use. Do not add that or arbitrary KDFs, offsets, table lookups or exponent schedules without a new source clue selecting the operation.
+
+## Transcript byte provenance and finite session census
+
+The January record is the raw file irc-logs/clientlog-1359224026-2.txt at pinned archive commit ade9a02889ef8acbc8cde8edbfd0a785c369f4c3: **1,759 bytes**, raw SHA-256 **6d70a085df5909fd72a64490066c3453f345a87ff23adc2d36efe2208cdb41cd**, Git blob SHA-1 **8c0a93d7d620c35805d9be71206d593df8e15dca**. The raw bytes retain CRLF; the recomputed Git blob hash matches the pinned tree. The file was first added by unsigned commit f403afb9e6db2a2fb3825c7b4801c2af0ddd7228 on 24 April 2024; the pinned archive snapshot is 3 May 2024. Its embedded 2013 timestamps are not independent proof of contemporaneous capture or custody.
+
+A complete census of the ten irc-logs/clientlog-* files at that commit is preserved in 2013-tcp-live-test-vectors.json. Exactly three contain executed DH requests: 26 January DH 118818811, 26 January DH 5, and 3 March DH 3301. Only the March record contains an executed NEXT request; its separately signed payload does not sign the surrounding log. The other seven clientlogs contain no executed DH request; three contain the string DH only inside server-source text sent to the client. The companion mainlog.txt lists ten loopback connections matching the clientlog timestamps. Loopback is expected under the signed protocol's Tor hidden-service instructions and does not establish a local self-test.
+
+The January exchange itself contains no NEXT, no signed response, and no authenticated client identity. Its modulus and client share are client inputs; its base and secret are participant-server choices. The exact file-size correspondence with DATA/560.13 is a participant-era hypothesis, not a source-authenticated LP2 selector. No candidate value is to be tested against LP2 until a separate original clue selects a typed receiver and operation.
 
 ## Reproduction
 

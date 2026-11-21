@@ -1,5 +1,5 @@
 {
-  "classification": "Mixed provenance: the TCP protocol specification is authenticated by Cicada's 2013 signing key; participant/server transcripts are contemporaneous but not OpenPGP-signed as a whole. The March DH3301 transcript's subsequent NEXT payload is independently signed. Tor hidden-service instructions and the participant server's localhost binding mean 127.0.0.1 log addresses are expected and do not establish self-testing.",
+  "classification": "Mixed provenance: the TCP protocol specification is authenticated by Cicada's 2013 signing key; the participant logs are timestamped 2013 but first appear in the pinned public GitHub archive in 2024, and are not OpenPGP-signed as a whole. The March DH3301 transcript's subsequent NEXT payload is independently signed, but that signature does not authenticate the surrounding log. The January DH118818811 session has no signed NEXT payload. Tor hidden-service instructions and the participant server's localhost binding mean 127.0.0.1 log addresses are expected and do not establish self-testing.",
   "archiveCommit": "ade9a02889ef8acbc8cde8edbfd0a785c369f4c3",
   "sources": [
     {
@@ -75,7 +75,20 @@
           179
         ]
       },
-      "provenanceNote": "The protocol requires the participant server to select the DH base and server secret. Those values, its public share, and the resulting shared key therefore depend on participant-side randomness. The request arguments 1033 and 3301 are the stable organizer-side test values. The exact seven RAND response bytes are transcribed in observed.randResponses/randByteSequence; they are participant-session outputs, not organizer-selected key material."
+      "provenanceNote": "The protocol requires the participant server to select the DH base and server secret. Those values, its public share, and the resulting shared key therefore depend on participant-side randomness. The request arguments 1033 and 3301 are the stable organizer-side test values. The exact seven RAND response bytes are transcribed in observed.randResponses/randByteSequence; they are participant-session outputs, not organizer-selected key material.",
+      "archiveRecord": {
+        "path": "irc-logs/clientlog-1362290293-9.txt",
+        "rawUrl": "https://raw.githubusercontent.com/neuroretransmit/cicada/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/clientlog-1362290293-9.txt",
+        "bytes": 10636,
+        "gitBlobSha1": "02b25b72a183b8e83ef6876de69eb64218190846",
+        "sha256": "28c9e908c594c8cc48194ebd73308cfb9b3765cf69755e7bc3556548521d43d2",
+        "first": "2013-03-03 05:58:13.723",
+        "last": "2013-03-03 06:01:31.223",
+        "dhRequest": 3301,
+        "serverBase": 2757,
+        "serverSecret": 331,
+        "next": true
+      }
     },
     {
       "role": "full participant server transcript of a January 2013 DH file-size-modulus exchange",
@@ -91,7 +104,25 @@
         "derivedClientExponent": 44073865,
         "derivedClientExponentMethod": "unique discrete logarithm: base^x = clientPublic (mod p); base has multiplicative order p-1"
       },
-      "provenanceNote": "The signed TCP specification assigns modulus and client public share to the client, while the participant server selects its own base and secret. The participant server binds to localhost and the instructions require publishing it as a Tor hidden service, so loopback is consistent with remote onion forwarding. This Jan26 log has no signed NEXT payload; treat the client as a plausible Cicada test client, not a cryptographically authenticated organizer identity. The modulus equals the declared byte size of DATA/560.13 and is discussed as a data-file size in the contemporaneous IRC archive. No LP2 selector or downstream consumer for this session's shared value/exponent is established."
+      "provenanceNote": "The signed TCP specification assigns modulus and client public share to the client, while the participant server selects its own base and secret. The participant server binds to localhost and the instructions require publishing it as a Tor hidden service, so loopback is consistent with remote onion forwarding. This Jan26 log has no signed NEXT payload; treat the client as a plausible Cicada test client, not a cryptographically authenticated organizer identity. The modulus equals the declared byte size of DATA/560.13 and is discussed as a data-file size in the contemporaneous IRC archive. No LP2 selector or downstream consumer for this session's shared value/exponent is established.",
+      "archiveRecord": {
+        "path": "irc-logs/clientlog-1359224026-2.txt",
+        "rawUrl": "https://raw.githubusercontent.com/neuroretransmit/cicada/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/clientlog-1359224026-2.txt",
+        "bytes": 1759,
+        "gitBlobSha1": "8c0a93d7d620c35805d9be71206d593df8e15dca",
+        "sha256": "6d70a085df5909fd72a64490066c3453f345a87ff23adc2d36efe2208cdb41cd",
+        "first": "2013-01-26 18:13:46.877",
+        "last": "2013-01-26 18:17:12.863",
+        "dhRequest": 118818811,
+        "serverBase": 65551251,
+        "serverSecret": 65974449,
+        "next": false,
+        "fileIntroductionCommit": "f403afb9e6db2a2fb3825c7b4801c2af0ddd7228",
+        "fileIntroductionDateUtc": "2024-04-24T01:06:41Z",
+        "fileIntroductionCommitSignature": "unsigned",
+        "archiveCommit": "ade9a02889ef8acbc8cde8edbfd0a785c369f4c3",
+        "archiveCommitDateUtc": "2024-05-03T18:10:17Z"
+      }
     },
     {
       "role": "full participant server transcript of a January 2013 small-modulus DH exchange",
@@ -105,7 +136,20 @@
         "clientPublic": 3,
         "sharedKeyReturned": 2
       },
-      "provenanceNote": "A complete participant-side exchange, but no signed NEXT payload or other session-level organizer authentication is preserved. It is a live-protocol record, not the signed DH23 worked example."
+      "provenanceNote": "A complete participant-side exchange, but no signed NEXT payload or other session-level organizer authentication is preserved. It is a live-protocol record, not the signed DH23 worked example.",
+      "archiveRecord": {
+        "path": "irc-logs/clientlog-1359239635-3.txt",
+        "rawUrl": "https://raw.githubusercontent.com/neuroretransmit/cicada/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/clientlog-1359239635-3.txt",
+        "bytes": 18221,
+        "gitBlobSha1": "db9c74299aa61ba14ef5367d45384d32fc936aa3",
+        "sha256": "bcaa0d237487651f81ea906d5aed6e00d5a6857655b98c63b7ff2be8f094521a",
+        "first": "2013-01-26 22:33:55.757",
+        "last": "2013-01-26 22:36:44.288",
+        "dhRequest": 5,
+        "serverBase": 3,
+        "serverSecret": 3,
+        "next": false
+      }
     }
   ],
   "stableOrganizerTestVector": {
@@ -140,7 +184,7 @@
         "2013 Jan 10 12:54 <Ymgve> also, what's up with the file names 560.xx",
         "2013 Jan 10 12:55 <Tech1_Phone> the .13 and .17 is easy enough"
       ],
-      "classification": "Contemporaneous community discussion, not an authenticated creator instruction.",
+      "classification": "Timestamped 2013 community discussion preserved in the same 2024 archive; not an authenticated creator instruction or independent capture.",
       "significance": "A plausible human-visible prompt to test the two prime file sizes as DH moduli and to relate them to the 560.xx data-file names."
     },
     {
@@ -156,7 +200,7 @@
         "2013 Jan 13 01:35 <soulseekah> shave off the sides and xor",
         "2013 Jan 13 01:35 <Ymgve> 818 ^ 3 = 817!"
       ],
-      "classification": "Contemporaneous community hypothesis; exact target and operation remain unresolved."
+      "classification": "Timestamped 2013 community hypothesis preserved in the same 2024 archive; exact target and operation remain unresolved."
     },
     {
       "role": "later confirmation of the 118818811-byte size discussion",
@@ -169,7 +213,7 @@
         "2013 Jan 14 21:29 <Ymgve> to be 118818811 bytes long",
         "2013 Jan 14 21:29 <soulseekah> sempf, when you're inside the cicada os"
       ],
-      "classification": "Contemporaneous community discussion."
+      "classification": "Timestamped 2013 community discussion preserved in the same 2024 archive; not an authenticated creator instruction."
     },
     {
       "role": "later community inventory of the 560.13/560.17 data-file sizes",
@@ -203,12 +247,12 @@
   "dataFileSizeCrossReference": {
     "sizeBytes": 118818811,
     "file": "DATA/560.13",
-    "evidence": "The public Git-LFS pointer declares 118818811 bytes; the 2013 IRC discussion independently names 118818811 as one of the data-file sizes and discusses 560.xx filenames. The 2013 CicadaOS README identifies DATA/560.13 among the three data files and notes that its OpenPGP file-type identification is a false positive.",
+    "evidence": "A public Git-LFS pointer declares 118818811 bytes for DATA/560.13; a separate 2013-timestamped IRC channel log in the same 2024 community archive names 118818811 as one of the data-file sizes and discusses 560.xx filenames. This is a cross-artifact equality across community-preserved material, not independent first-party custody or a Cicada instruction.",
     "exactEquality": "DH modulus 118818811 equals the declared DATA/560.13 byte length.",
     "secondPrimeFileSize": 1183811,
     "secondSizeProperties": "prime, palindrome, digit sum 23",
     "firstSizeProperties": "118818811 is prime, palindrome, digit sum 37",
-    "caution": "The IRC excerpts do not themselves map each size to a specific extension; only the 118818811 = DATA/560.13 size equality is independently matched here. No content recovery is claimed."
+    "caution": "The IRC excerpts do not themselves authenticate the extension-to-size mapping. The January DH request's modulus and client public share are client-supplied under the signed protocol; the equality does not establish creator selection or an LP2 key."
   },
   "derivedCandidate": {
     "dh118818811": {
@@ -220,9 +264,152 @@
       "verification": "65551251^44073865 mod 118818811 = 123",
       "serverPublicVerification": "65551251^65974449 mod 118818811 = 76477436",
       "sharedKeyVerification": "123^65974449 mod 118818811 = 8686271",
-      "classification": "Derived candidate client exponent/shared value from a contemporaneous participant transcript; client identity not cryptographically authenticated at session level."
+      "classification": "Derived candidate client exponent/shared value from a contemporaneous participant transcript; client identity not cryptographically authenticated at session level.",
+      "serverBase": 65551251,
+      "serverSecret": 65974449,
+      "serverPublic": 76477436,
+      "clientPublic": 123,
+      "sharedKey": 8686271,
+      "serverBaseOrderVerified": true,
+      "clientExponentDerivation": "Baby-step/giant-step reproduces the unique exponent 44073865 because the logged server base has order p-1."
     },
-    "lp2SelectorStatus": "No LP2 selector for 118818811, 44073865, or 8686271 is established. The existing LP2-native route selects DH 3301 and client share 2800; it does not select this January session's state.",
+    "lp2SelectorStatus": "No LP2 selector for the January modulus 118818811, client share 123, participant-selected base 65551251, participant-selected secret 65974449, client exponent 44073865, or shared value 8686271 is established. The LP2-native route selects the separate DH 3301 / client share 2800 context; it does not select this January session state.",
     "receiverStatus": "No source-defined KDF, rune/byte serialization, or LP2 ciphertext receiver for the January session's shared value is established."
+  },
+  "archiveCensus": {
+    "repository": "neuroretransmit/cicada",
+    "archiveCommit": "ade9a02889ef8acbc8cde8edbfd0a785c369f4c3",
+    "archiveCommitDateUtc": "2024-05-03T18:10:17Z",
+    "fileIntroductionCommit": "f403afb9e6db2a2fb3825c7b4801c2af0ddd7228",
+    "fileIntroductionDateUtc": "2024-04-24T01:06:41Z",
+    "fileIntroductionCommitSignature": "unsigned",
+    "directory": "irc-logs/",
+    "directoryEntryCount": 29,
+    "clientLogPrefixCount": 10,
+    "mainLog": {
+      "path": "irc-logs/mainlog.txt",
+      "bytes": 782,
+      "gitBlobSha1": "52b97e8acbeb60a99f0624439670854d1d1a6d02",
+      "note": "Records ten loopback connections whose timestamps align with the ten clientlog files."
+    },
+    "clientLogs": [
+      {
+        "path": "irc-logs/clientlog-1359221703-0.txt",
+        "bytes": 1127,
+        "gitBlobSha1": "e8587d0d5fda9555edc3d6d9050c676f89e803f4",
+        "sha256": "4dfccc94efbb4ff3038943462c302cfcb9067a086d0b304c1c86384cd41c9df9",
+        "first": "2013-01-26 17:35:03.267",
+        "last": "2013-01-26 17:36:45.504",
+        "dhRequest": null,
+        "next": false
+      },
+      {
+        "path": "irc-logs/clientlog-1359222219-1.txt",
+        "bytes": 221,
+        "gitBlobSha1": "224df6a57cc980211ca520bee16ca0ff82584ae9",
+        "sha256": "46e01adbb3362a835119055c19eb4e27a43a6eee8bfb10aa5ecdd5eb41ad5cf4",
+        "first": "2013-01-26 17:43:39.407",
+        "last": "2013-01-26 17:43:45.669",
+        "dhRequest": null,
+        "next": false
+      },
+      {
+        "path": "irc-logs/clientlog-1359224026-2.txt",
+        "bytes": 1759,
+        "gitBlobSha1": "8c0a93d7d620c35805d9be71206d593df8e15dca",
+        "sha256": "6d70a085df5909fd72a64490066c3453f345a87ff23adc2d36efe2208cdb41cd",
+        "first": "2013-01-26 18:13:46.877",
+        "last": "2013-01-26 18:17:12.863",
+        "dhRequest": 118818811,
+        "serverBase": 65551251,
+        "serverSecret": 65974449,
+        "next": false
+      },
+      {
+        "path": "irc-logs/clientlog-1359239635-3.txt",
+        "bytes": 18221,
+        "gitBlobSha1": "db9c74299aa61ba14ef5367d45384d32fc936aa3",
+        "sha256": "bcaa0d237487651f81ea906d5aed6e00d5a6857655b98c63b7ff2be8f094521a",
+        "first": "2013-01-26 22:33:55.757",
+        "last": "2013-01-26 22:36:44.288",
+        "dhRequest": 5,
+        "serverBase": 3,
+        "serverSecret": 3,
+        "next": false
+      },
+      {
+        "path": "irc-logs/clientlog-1359374802-4.txt",
+        "bytes": 16481,
+        "gitBlobSha1": "44ea1b4c11bd8a44faf97ae21fb8174fa42d9653",
+        "sha256": "4da9db66afa1ef48b15252ed3fff6665046dccc9a67291fa687202edf241221f",
+        "first": "2013-01-28 12:06:42.888",
+        "last": "2013-01-28 12:07:02.261",
+        "dhRequest": null,
+        "next": false,
+        "note": "DH appears only inside transmitted server-source text, not as an executed request"
+      },
+      {
+        "path": "irc-logs/clientlog-1359753535-5.txt",
+        "bytes": 16481,
+        "gitBlobSha1": "a7199df12da9b10e5457adddd7dcebd78e37e45a",
+        "sha256": "66b40c5290e2c342132811b4c1535ab62319708409ed1aa864f996a8dd86f9a1",
+        "first": "2013-02-01 21:18:55.557",
+        "last": "2013-02-01 21:19:31.324",
+        "dhRequest": null,
+        "next": false,
+        "note": "DH appears only inside transmitted server-source text, not as an executed request"
+      },
+      {
+        "path": "irc-logs/clientlog-1360235007-6.txt",
+        "bytes": 16481,
+        "gitBlobSha1": "5cca6ddeb82411bae0e469f1600e945b928b0295",
+        "sha256": "be6911f78a308d77a59717af31feed23b6b5abe06478de8a9bd97ac38c8cc271",
+        "first": "2013-02-07 11:03:27.555",
+        "last": "2013-02-07 11:03:46.519",
+        "dhRequest": null,
+        "next": false,
+        "note": "DH appears only inside transmitted server-source text, not as an executed request"
+      },
+      {
+        "path": "irc-logs/clientlog-1361059633-7.txt",
+        "bytes": 190,
+        "gitBlobSha1": "4aee3c7e44dbac0e5e17dcfe6f819edf6226414e",
+        "sha256": "ac458872059cecd0df70bac5ca843a0149000c1da903ebc8dad645b7a826a092",
+        "first": "2013-02-17 00:07:13.217",
+        "last": "2013-02-17 00:07:23.014",
+        "dhRequest": null,
+        "next": false
+      },
+      {
+        "path": "irc-logs/clientlog-1361129810-8.txt",
+        "bytes": 221,
+        "gitBlobSha1": "ab7e0d219887b0184cd36a04fb56eae84158c928",
+        "sha256": "fac429b16d19ff842e687d3a8b640b8cb96e2bb88a918a94cb38ced836992218",
+        "first": "2013-02-17 19:36:50.656",
+        "last": "2013-02-17 19:37:04.643",
+        "dhRequest": null,
+        "next": false
+      },
+      {
+        "path": "irc-logs/clientlog-1362290293-9.txt",
+        "bytes": 10636,
+        "gitBlobSha1": "02b25b72a183b8e83ef6876de69eb64218190846",
+        "sha256": "28c9e908c594c8cc48194ebd73308cfb9b3765cf69755e7bc3556548521d43d2",
+        "first": "2013-03-03 05:58:13.723",
+        "last": "2013-03-03 06:01:31.223",
+        "dhRequest": 3301,
+        "serverBase": 2757,
+        "serverSecret": 331,
+        "next": true
+      }
+    ],
+    "scopeNotes": [
+      "The pinned irc-logs tree contains exactly ten clientlog-* files. All ten raw files were retrieved at the pinned commit; each byte count and locally recomputed Git blob SHA-1 matched the Git tree. Raw SHA-256 values are recorded above.",
+      "Only clientlog-1359224026-2.txt (2013-01-26, DH 118818811), clientlog-1359239635-3.txt (2013-01-26, DH 5), and clientlog-1362290293-9.txt (2013-03-03, DH 3301) contain executed DH requests. Only the March DH3301 log contains an executed NEXT request.",
+      "The three 16481-byte clientlogs from 2013-01-28, 2013-02-01 and 2013-02-07 contain DH command strings only inside transmitted server-source text, not as executed client requests.",
+      "The other nineteen irc-logs entries are channel logs, mainlog.txt, hippo.txt and received1.txt, not additional clientlog-* session traces.",
+      "The participant logs' embedded 2013 timestamps are not independently authenticated by their 2024 GitHub archive custody. The January 118818811 session has no signed NEXT payload and no authenticated client identity.",
+      "The mainlog's 127.0.0.1 addresses are consistent with the signed protocol's Tor hidden-service instructions and localhost server binding; they do not establish a local self-test."
+    ]
   }
 }
