@@ -267,6 +267,50 @@ assert.ok(Math.abs(sourceWordTrials[0].score + 11.38721771841) < 1e-7);
 assert.ok(Math.abs(held75Min + 9.561579642004) < 1e-7);
 assert.ok(sourceWordTrials.every((trial) => trial.score < held75Min));
 
+
+/**
+ * Independent 43-to-121 candidate: all 43 source-authenticated 2016 words as
+ * the leaf labels of the 43-leaf p32 table subtree, then sum upward mod29.
+ * The 43 leaves are data-chosen; neither leaf order nor fold is authoritative.
+ */
+const signedWords43 = load('resources/historical/cicada2016-4gq25-outguess.asc')
+  .split('Hash: SHA1')[1].split('-----BEGIN PGP SIGNATURE-----')[0]
+  .split('7A35090F')[0].toUpperCase().match(/[A-Z]+/g);
+assert.equal(signedWords43.length, 43);
+const signedLeafKeys = {
+  GP0: signedWords43.map((word) => gpText(word).reduce((sum, x) => sum + x, 0) % 29),
+  prime: signedWords43.map((word) =>
+    gpText(word).reduce((sum, x) => sum + corpus.prime[x], 0) % 29)
+};
+const signedLeafTrials = [];
+for (const [keyKind, keys] of Object.entries(signedLeafKeys)) {
+  for (const assignment of bigOrders) {
+    const leafOrder = assignment.nodes.filter((node) => children[node].length === 0);
+    assert.equal(leafOrder.length, 43);
+    const values = new Map(leafOrder.map((node, i) => [node, keys[i]]));
+    const fold = (node) => {
+      if (values.has(node)) return values.get(node);
+      const value = children[node].reduce((sum, child) => sum + fold(child), 0) % 29;
+      values.set(node, value);
+      return value;
+    };
+    fold(innerTreeRoot);
+    for (const reading of bigOrders) {
+      const pad = reading.nodes.map((node) => values.get(node));
+      for (const sign of [-1, 1]) {
+        const output = p32.map((value, i) => mod29(value + sign * pad[i]));
+        assert.deepEqual(output.map((value, i) => mod29(value - sign * pad[i])), p32);
+        signedLeafTrials.push({ keyKind, assignment: assignment.name,
+          reading: reading.name, sign, score: score(output) });
+      }
+    }
+  }
+}
+signedLeafTrials.sort((a, b) => b.score - a.score);
+assert.equal(signedLeafTrials.length, 144);
+assert.ok(Math.abs(signedLeafTrials[0].score + 11.29122225863) < 1e-7);
+assert.ok(signedLeafTrials.every((trial) => trial.score < held121Min));
+
 console.log(JSON.stringify({
   selected: { source: 'SEEKS GP0=71; THE GP0=20', address: selected,
     subtreeSize: orders[0].nodes.length },
@@ -276,6 +320,10 @@ console.log(JSON.stringify({
   },
   numericKeys: { tested: keyTrials.length, best: keyTrials.slice(0, 3),
     candidatesReachingNativeMin: keyTrials.filter((entry) => entry.score >= heldMin).length },
+  signedWord43LeafFold: { words: signedWords43.length, treeLeaves: leaves.length,
+    tested: signedLeafTrials.length, best: signedLeafTrials.slice(0, 3),
+    nativeHeldMin: held121Min,
+    candidatesReachingNativeMin: signedLeafTrials.filter((trial) => trial.score >= held121Min).length },
   wordPath16: { path: path32To244, p55WordLengths, tested: sourceWordTrials.length,
     scoreRaw: score(original.slice(1)), nativeHeldMin: held75Min,
     best: sourceWordTrials.slice(0, 3),
