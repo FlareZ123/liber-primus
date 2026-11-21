@@ -21,11 +21,17 @@ actual_sha1="$(sha1sum "$ISO_PATH" | awk '{print $1}')"
   printf 'size\t%s\nmd5\t%s\nsha1\t%s\n' "$actual_size" "$actual_md5" "$actual_sha1"
   printf 'expected_size\t%s\nexpected_md5\t%s\nexpected_sha1\t%s\n' "$EXPECTED_SIZE" "$EXPECTED_MD5" "$EXPECTED_SHA1"
 } > "$OUT/iso-verification.tsv"
+cat "$OUT/iso-verification.tsv"
 test "$actual_size" = "$EXPECTED_SIZE"
 test "$actual_md5" = "$EXPECTED_MD5"
 test "$actual_sha1" = "$EXPECTED_SHA1"
 
-7z x -y -o"$ISO_ROOT" "$ISO_PATH" > "$OUT/iso-extraction.log"
+SEVENZIP="$(command -v 7z || command -v 7zz || true)"
+if [ -z "$SEVENZIP" ]; then echo "Neither 7z nor 7zz is installed." >&2; exit 1; fi
+command -v binwalk >/dev/null || { echo "binwalk is not installed." >&2; exit 1; }
+command -v cpio >/dev/null || { echo "cpio is not installed." >&2; exit 1; }
+
+"$SEVENZIP" x -y -o"$ISO_ROOT" "$ISO_PATH" > "$OUT/iso-extraction.log"
 find "$ISO_ROOT" -type f -print0 | sort -z | while IFS= read -r -d '' file; do
   rel="${file#"$ISO_ROOT"/}"
   printf '%s\t%s\t%s\n' "$rel" "$(stat -c '%s' "$file")" "$(sha256sum "$file" | awk '{print $1}')"
