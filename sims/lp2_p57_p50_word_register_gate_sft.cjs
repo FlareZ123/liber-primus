@@ -20,7 +20,7 @@ assert.equal(corpus.pages[57].indices.length, 95);
 
 const end = transcription.lastIndexOf('§');
 const start = transcription.lastIndexOf('%', end);
-const printed = transcription.slice(start + 1, end).trim().replace(/\/\r?\n/g, '').replace(/\r?\n/g, '');
+const printed = transcription.slice(start + 1, end).trim().replace(/\//g, '').replace(/\r?\n/g, '');
 const wordRunes = printed.split(/[.\-]/).filter(Boolean).map((word) => Array.from(word));
 const lengths = wordRunes.map((word) => word.length);
 assert.deepEqual(lengths, [7,4,2,6,7,2,2,7,2,4,4,3,3,14,4,2,8,5,3,6]);
