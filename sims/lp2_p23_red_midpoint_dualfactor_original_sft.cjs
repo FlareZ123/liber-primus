@@ -166,10 +166,10 @@ function randomInt(n) {
   return (seed >>> 0) % n;
 }
 const runs = 200000;
-let anyHit = 0, centerHit = 0;
+let anyHit = 0, centerHit = 0, literalAnyHit = 0, literalCenterHit = 0;
 const histogram = [0, 0, 0, 0, 0, 0];
 for (let t = 0; t < runs; t++) {
-  let hits = 0, centralHit = false;
+  let hits = 0, centralHit = false, literalHits = 0, literalCenter = false;
   for (const span of spans) {
     const permuted = span.digits.slice();
     for (let j = permuted.length - 1; j > 0; j--) {
@@ -177,6 +177,10 @@ for (let t = 0; t < runs; t++) {
       [permuted[j], permuted[k]] = [permuted[k], permuted[j]];
     }
     for (const i of span.starts) {
+      if (permuted[i] === 23 && permuted[i + 1] === 6 && permuted[i + 2] === 10) {
+        literalHits++;
+        if (span.page === 23 && (i === 6 || i === 7)) literalCenter = true;
+      }
       if (isFactor(permuted[i], permuted[i + 1], permuted[i + 2])) {
         hits++;
         if (span.page === 23 && (i === 6 || i === 7)) centralHit = true;
@@ -185,11 +189,49 @@ for (let t = 0; t < runs; t++) {
   }
   if (hits >= 1) anyHit++;
   if (centralHit) centerHit++;
+  if (literalHits >= 1) literalAnyHit++;
+  if (literalCenter) literalCenterHit++;
   histogram[Math.min(hits, 5)]++;
 }
 assert.equal(anyHit, 25122);
 assert.equal(centerHit, 824);
+assert.equal(literalAnyHit, 2883);
+assert.equal(literalCenterHit, 713);
 assert.deepEqual(histogram, [174878, 23533, 1528, 61, 0, 0]);
+
+// The five-dot p23–26 body is five source-length 201-rune strands.
+// Direct H/G codeword use on these original lanes is excluded before any key fit.
+const originalBody = corpus.pages
+  .filter((p) => p.page >= 23 && p.page <= 26)
+  .flatMap((p) => p.indices).slice(16);
+assert.equal(originalBody.length, 1005);
+assert.deepEqual(remainderQuadratic(originalBody, originalH), [28, 14]);
+assert.deepEqual(remainderQuadratic(originalBody, originalG), [17, 2]);
+assert.deepEqual(divideDescending(originalBody, rg).remainder, [12, 4, 27, 2]);
+const layouts = [
+  Array.from({ length: 5 }, (_, lane) => originalBody.slice(lane * 201, lane * 201 + 201)),
+  Array.from({ length: 5 }, (_, lane) => originalBody.filter((_, offset) => offset % 5 === lane)),
+];
+for (const layout of layouts) {
+  for (const reverse of [false, true]) {
+    for (const lane of layout) {
+      const digits = reverse ? lane.slice().reverse() : lane;
+      assert.ok(remainderQuadratic(digits, originalH).some((x) => x !== 0));
+      assert.ok(remainderQuadratic(digits, originalG).some((x) => x !== 0));
+    }
+  }
+}
+// Positive: construct a valid length-201 H-codeword from 199 known clear p57
+// symbols and recover its complete source payload through the same division.
+const clear = corpus.pages.find((p) => p.page === 57).indices;
+const message = Array.from({ length: 199 }, (_, i) => clear[i % clear.length]);
+const encoded = Array(201).fill(0), descendingH = originalH.slice().reverse();
+for (let i = 0; i < message.length; i++)
+  for (let j = 0; j < descendingH.length; j++)
+    encoded[i + j] = mod(encoded[i + j] + message[i] * descendingH[j]);
+const positive = divideDescending(encoded, originalH);
+assert.deepEqual(positive.remainder, [0, 0]);
+assert.deepEqual(positive.quotient, message);
 
 function ioc(values) {
   const counts = Array(29).fill(0);
@@ -209,4 +251,7 @@ for (const [name, original] of [
 console.log('PASS: 18 source red spans, unique p23 midpoint, 69 boundary candidates');
 console.log('PASS: p23 red H (scalar27), p39 red G, 256-byte four-zero syndrome, Q length252');
 console.log('NULL: ' + anyHit + '/' + runs + ' any factor; ' + centerHit + '/' + runs + ' p23 center');
+console.log('NULL fixed -K H: ' + literalAnyHit + '/' + runs + ' any exact source triple; '
+  + literalCenterHit + '/' + runs + ' p23 center');
+console.log('PASS: five original 201-rune p23–26 lanes not direct red H/G codewords; positive plant recovered');
 console.log('NO PLAINTEXT: reversible quotient key reads remain ciphertext-like');
