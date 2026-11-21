@@ -53,6 +53,7 @@ function compare(sourceKey,ciphertext){
   }
   const minSubstitutions=f1.reduce((n,x,i)=>n+Math.abs(x-f2[i]),0)/2;
   return {delta:primeSum(ciphertext)-primeSum(sourceKey),
+    centerPrimeDelta:P[ciphertext[40]]-P[sourceKey[40]],
     equal,decodedIoC:ioc(p),minSubstitutions};
 }
 /** @param {number[]} p32 */
@@ -83,6 +84,12 @@ function run(){
   assert.equal(primeSum(key),4128);
   assert.equal(primeSum(body),4339);
   assert.equal(original.delta,211);
+  assert.deepEqual([key[40],body[40],P[key[40]],P[body[40]]],[7,20,19,73]);
+  assert.equal(original.centerPrimeDelta,54);
+  const gp0=word=>Array.from(word).reduce((sum,char)=>
+    sum+corpus.translit.indexOf(char),0);
+  assert.equal(gp0('ROAD'),54);
+  assert.equal(gp0('PATHS'),54); // Competing signed label, no unique semantic claim.
   assert.equal(original.equal,7);
   assert.equal(original.minSubstitutions,17);
   assert.equal(original.decodedIoC,0.04197530864197531);
@@ -99,7 +106,8 @@ function run(){
     for(let c=0;c<9;c++)innerSites.push(10*r+c);
   const seed=0x56356981,rand=rng32(seed),N=200000;
   const hits={difference211:0,equalAtLeast7:0,
-    iocAtLeastOriginal:0,equalAndIoc:0,allThree:0,editAtMost17:0};
+    iocAtLeastOriginal:0,equalAndIoc:0,allThree:0,editAtMost17:0,
+    centerDelta54:0,mapAndCenter:0,allThreeAndCenter:0};
   for(let t=0;t<N;t++){
     const b=move.slice();
     for(let i=b.length-1;i>0;i--){
@@ -110,13 +118,17 @@ function run(){
     const q=compare(candidate,body);
     const a=q.delta===211,
       e=q.equal>=original.equal,
-      v=q.decodedIoC>=original.decodedIoC;
+      v=q.decodedIoC>=original.decodedIoC,
+      center=q.centerPrimeDelta===54;
     hits.difference211+=a;
     hits.equalAtLeast7+=e;
     hits.iocAtLeastOriginal+=v;
     hits.equalAndIoc+=e&&v;
     hits.allThree+=a&&e&&v;
     hits.editAtMost17+=q.minSubstitutions<=17;
+    hits.centerDelta54+=center;
+    hits.mapAndCenter+=a&&center;
+    hits.allThreeAndCenter+=a&&e&&v&&center;
   }
   assert.deepEqual({
     difference211:hits.difference211,equalAtLeast7:hits.equalAtLeast7,
@@ -126,26 +138,33 @@ function run(){
     difference211:444,equalAtLeast7:7173,iocAtLeastOriginal:4593,
     equalAndIoc:572,allThree:2
   });
+  assert.deepEqual([hits.centerDelta54,hits.mapAndCenter,
+    hits.allThreeAndCenter],[16152,38,0]);
   const entire=all.slice(0,12956),M=entire.length-80;
   let windows={difference211:0,equalAtLeast7:0,
-    iocAtLeastOriginal:0,allThree:0,allFour:0};
+    iocAtLeastOriginal:0,allThree:0,allFour:0,
+    centerDelta54:0,mapAndCenter:0};
   const allFourOffsets=[];
   for(let i=0;i<M;i++){
     const q=compare(key,entire.slice(i,i+81));
     const a=q.delta===211,e=q.equal>=original.equal,
       v=q.decodedIoC>=original.decodedIoC,
-      d=q.minSubstitutions<=17;
+      d=q.minSubstitutions<=17,
+      center=q.centerPrimeDelta===54;
     windows.difference211+=a;
     windows.equalAtLeast7+=e;
     windows.iocAtLeastOriginal+=v;
     windows.allThree+=a&&e&&v;
     windows.allFour+=a&&e&&v&&d;
+    windows.centerDelta54+=center;
+    windows.mapAndCenter+=a&&center;
     if(a&&e&&v&&d)allFourOffsets.push(i);
   }
   assert.deepEqual([M,windows.difference211,windows.equalAtLeast7,
     windows.iocAtLeastOriginal,windows.allThree,windows.allFour],
     [12876,11,286,305,1,1]);
   assert.deepEqual(allFourOffsets,[7970]);
+  assert.deepEqual([windows.centerDelta54,windows.mapAndCenter],[460,1]);
   const report={
     sourceGitBlob:blob(source),originalImageSelectedP32:{
       GP11x11:true,topPrimeSum:563,leftPrimeSum:569,
@@ -154,12 +173,17 @@ function run(){
     },originalP33:{titleRunes:10,bodyRunes:81,bodyPrimeSum:primeSum(body),
       red13DotAfterTitle:true},
     signedKeyword:{value:"MAP",primeWeights:mapWord.map(i=>P[i]),primeSum:211},
+    centeredSignedWordCheck:{originalP32Prime:P[key[40]],
+      originalP33Prime:P[body[40]],delta54:original.centerPrimeDelta,
+      signedCandidateWords:["ROAD","PATHS"],nativeGP0Value:54,
+      interpretation:"Retrospective semantic label, not a plaintext rune"},
     exactCrossPageObservations:original,
     frozenLocalSourceOffsets:controls,
     adjacentNextSectionControl:following,
     originalImageChecksumPreservingShuffle:{
       trials:N,seed,firstRowAndColumnFrozen:true,other100CellsPermuted:true,
-      hits,plusOneJointTail:(hits.allThree+1)/(N+1)},
+      hits,plusOneJointTail:(hits.allThree+1)/(N+1),
+      plusOneMapCenterTail:(hits.mapAndCenter+1)/(N+1)},
     originalUnknownCiphertextWindowControl:{
       totalWindows:M,hits:windows,allFourOffsets},
     interpretation:"Causal source-link hypothesis; no recovered plaintext or decoder; null rates conditional on postselected signals"
