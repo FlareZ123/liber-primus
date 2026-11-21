@@ -1,0 +1,16 @@
+name: Agent14 p50 00 event YOU to p0 known inverse
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-event-bridge:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check sims/lp2_p50_00_you_will_event_bridge_sft.cjs
+      - run: node sims/lp2_p50_00_you_will_event_bridge_sft.cjs
