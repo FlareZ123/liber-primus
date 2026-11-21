@@ -15,7 +15,9 @@ const DEFAULT_KEYS=[
   "15","22","53","78","79","435","638","2262","3299","3301",
   "fibonacci","FIBONACCI","totient","TOTIENT","divinity","DIVINITY",
   "firfumferenfe","FIRFUMFERENFE","cicada3301","CICADA3301",
-  "liberprimus","LIBERPRIMUS"
+  "liberprimus","LIBERPRIMUS",
+  // Conditional 2016 signed-message PRNG-marker candidate; not authenticated as a password.
+  "LCBPNGPARRTHBPC"
 ];
 // Allow a single preselected historical password without rerunning the 22-key gate.
 const KEYS=process.env.LP2_OUTGUESS_PASSWORD

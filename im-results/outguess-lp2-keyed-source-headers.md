@@ -1,5 +1,8 @@
 # OutGuess keyed-image extraction: 22 corpus-wide source clues, original 2014 OpenPuff password, and isolated candidates
 
+> **Follow-up candidate (2026-11-21):** The earlier 22-password gate did not include the 13-rune string `LCBPNGPARRTHBPC`, derived from the 2016 signed-message PRNG-marker hypothesis. It was previously tested only as a stream-key candidate, not as an OutGuess `-k` passphrase. The candidate is conditional rather than authenticated; this follow-up tests the literal GP-Latin string against all 58 original LP2 JPEGs. A header/length match alone is not evidence of a payload; require a recognizable payload or independent structural validation. **Status: pending.**
+
+
 **Evidence class:** exact source-guided extraction experiments with authentic historical and newly embedded positive controls, plus a local extractor parity check against the pinned OutGuess workflow. Agent 40, 2026-11-10 and 2026-11-15; Agent 8, 2026-11-11; Agent 38, 2026-11-11. **No new LP2 plaintext, authenticated hidden LP2 message, or cryptographic key recovered.**
 
 ## Purpose
