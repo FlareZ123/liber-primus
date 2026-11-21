@@ -105,6 +105,24 @@ for (const ch of sourceMatch[0]) {
 }
 assert(!wordEnds.includes(27) && !wordEnds.includes(50));
 
+// Fixed direct-reader rival: source BASE29 product/factors as contiguous GP rune digits.
+const literalNeedles = [digits29(1595277641), ...K, K.flat()];
+const unknownPages = corpus.pages.filter(p => p.page <= 55 && p.indices.length > 0);
+assert.equal(unknownPages.length, 55);
+const literalHits = literalNeedles.map(needle => {
+  const hits = [];
+  for (const pg of unknownPages) {
+    for (let start = 0; start + needle.length <= pg.indices.length; start++) {
+      if (needle.every((v, j) => pg.indices[start + j] === v)) {
+        hits.push({page: pg.page, offset: start});
+      }
+    }
+  }
+  return {needle, hits};
+});
+assert.deepEqual(literalNeedles.map(needle => needle.length), [7, 3, 3, 3, 9]);
+assert(literalHits.every(x => x.hits.length === 0));
+
 const checks = [];
 for (const convention of ["column", "row"]) {
   const decoded = transform(core, inverse, convention);
@@ -137,6 +155,7 @@ console.log(JSON.stringify({
   sumOfPrimeFactorBase29Digits: 75,
   factorDigitRowSums: digitSums,
   sourcePhysicalCoreWordBoundaryCuts: wordEnds,
+  directBase29DigitSubstringHits: literalHits,
   predicted27and50AreWordEnds: false,
   rawOriginalCoreIoc: normalizedIoc(core),
   authenticUnknownPlaintextRecovered: false
