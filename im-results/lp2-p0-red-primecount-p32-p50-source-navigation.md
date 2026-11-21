@@ -1,6 +1,6 @@
 # LP2 opening red heading: prime-count navigation to the tree map and numerical page
 
-**Status (Agent25, 13 November; Agent2, 17 November; Agent44, 21 November 2026): provisional source-exact navigation hypothesis.** The opening arithmetic is now joined by a repeated p0/p6 red-span prime checksum and a single fixed start-181 path through the original p50 base60 map to p32. The direct p32-ring and p50 five-cell consumers remain negative. This strengthens source selection but does not recover unknown plaintext or authenticate a decryption.
+**Status (Agent25, 13 November; Agent2, 17 November; Agent44, 21 November 2026): provisional source-exact navigation/structure hypothesis.** The p0/p6 red spans now independently select the p50 interior and the existing p32 source loop: p6's first red word sums to SEEKS=71, its unique 4-1-4-2 signature matches p32 fragment7, and its total sum181 gives a fixed path to p32. The direct p32-ring and p50 five-cell consumers remain negative. No unknown plaintext or key is recovered.
 
 **Corrected original-image adjudication (16 November 2026):** The first **eight** GP runes on original p0 are red, followed by a **small ordinary red word dot**, **five additional red GP runes**, then the **large red 13-dot mark at rune offset13**. The first black body rune is **TH** at offset13. A same-day red8/marker8/black5 report confused the small red word dot with the large punctuation and is [retracted](lp2-p0-red13-13dot-blackbody-original-source-adjudication.md). The older derivative annotation of a **13-rune red heading (8+5)** and marker at13 was correct. Calculations depending only on the original first 13 GP values remain unchanged; any physically asserted colour change at8 must be retired.
 
@@ -20,28 +20,26 @@ There is an independent, previously established historical clue for the proposed
 
 ## Independent p0/p6 red-span checksum and start-181 path (Agent44, 21 November 2026)
 
-A second original-ink route uses GP0 index sums of red spans rather than the earlier p0 prime-weight word sums. The original annotation identifies the p0 opening red span at [0,13) and a separate p6 red span at [71,82). Both have **GP0 sum 181**, a prime, so both independently select the same candidate table address. Across all 18 annotated red spans, this is the only repeated prime sum. Applying the LP1 totient clue gives φ(181)=180, matching the **180 interior cells** of the original 32×8 p50 table after its 76-cell circumference is removed.
+The original ink annotations contain 18 red spans. The p0 opening span [0,13) and the p6 span [71,82) each have **GP0 sum 181**, a prime; this is the only repeated prime sum among the 18 spans. φ(181)=180, matching the **180 interior cells** of the original 32×8 p50 table after removing its 76-cell circumference.
 
-The word boundaries in the original transcription give:
+The complete p0/p6 word structures are:
 
-| Red span | Rune count | Word lengths | Product |
-|---|---:|---|---:|
-| p0 [0,13) | 13 | 8, 5 | **40** |
-| p6 [71,82) | 11 | 4, 1, 4, 2 | **32** |
+| Red span | Rune count | Word lengths | Word GP0 sums | Length product |
+|---|---:|---|---|---:|
+| p0 [0,13) | 13 | 8, 5 | 96, 85 | **40** |
+| p6 [71,82) | 11 | 4, 1, 4, 2 | **71, 19, 65, 26** | **32** |
 
-The original row-major base60 table's zero-based cell 181 is printed as token **0e**, whose decimal value is **40**. This is the only red span among the 18 for which the table value at its GP0 sum equals the product of its complete word lengths: p0 gives 40=8×5. The p6 product 32 independently names physical p32.
+The first p6 red word has GP0 values [24,16,14,17], sum **71**. It is the only one of **51 words** fully contained in the 18 red spans with GP0 sum71. The signed 2016 body word **SEEKS** also has GP0 sum71, and the positive p32 full-branch audit uses precisely SEEKS=71 as its p50 start. The original base60 successor path from 71 is 71→108→14→183→81→58→146→**92**→236→238→129→179→175→18→15→212→70→169→228→144→125→20→102→**32**→115…; it hits EMPTY=92 at step7 and p32 at step23, then enters the same 11-cycle as the start-181 path. The p6 red word is not plaintext SEEKS; this is a GP0 address match.
 
-Treat the original base60 table values as the already documented forward successor map T(i). Its single fixed path from the source-derived start 181 is:
+The p6 red span's unique word-length signature **4-1-4-2** also matches the exact partition of p32 fragment7: four runes, a central X at position4, four runes, then two runes. Among the 22 p32 fragments, fragment7 is the only 11-rune fragment with X at position4. Its left four-rune block sums to 48 (= the audited HOME=48 source word); its right four-rune block sums to 65, exactly matching the GP0 sum of p6's third red word. The p32 full-branch audit found the left side survives and the equally natural right side has zero successes. The p6 signature may therefore be an instruction to distinguish the true left branch from the false right branch; that interpretation remains a hypothesis, not a proven plaintext reading.
 
-181 → 40 → 80 → 142 → 160 → 233 → 234 → 196 → 176 → 235 → 121 → 237 → **32** → 115 → 247 → 192 → 0 → 203 → 68 → 199 → 47 → 76 → 114 → 197 → 115 …
+The original row-major base60 table's zero-based cell181 is token **0e**, decimal **40**. This is the only red span among the 18 for which the table value at its GP0 sum equals the product of its complete word lengths: p0 gives 40=8×5. The p6 word-length product **32** independently names physical p32. A second fixed start, 181, follows 181→40→80→142→160→233→234→196→176→235→121→237→**32**→115…; it has 13 transient nodes ending at32 before entering the 11-cycle. Thus p0 length13 matches the transient-node count, p6 length11 matches the cycle length, and the 2016 coda's 13 words split 11+2 as documented in the p50 graph report.
 
-There are **13 transient nodes** before the 11-cycle, and the last transient node is **32**. The p0 red span length13 matches the transient-node count; the p6 red span length11 matches the cycle length. The separate 2-cycle has length2. The authenticated 2016 coda's 13 words split 11+2, matching the already documented cycle decomposition; this new evidence adds a source-derived start and destination, not a new coda decoder.
+**Familywise controls:** p7 has composite red-span sum209 with φ(209)=180 and a 13-step path; p15 and p57 both have composite sum120 (p15 length11; p57 is the seven-rune PARABLE heading). Thus φ=180, depth13, length11, or sum120 alone is not unique. The combined evidence is the repeated prime181 pair, unique p0 cell/product match, unique p6 red-word sum71 among 51 red words, unique p6 4-1-4-2 signature, its match to the unique p32 fragment7 geometry, and the two source-selected starts converging on p32.
 
-The destination is independently cross-selected: p32 has 121 runes (11×11), its perimeter is 40 and its interior is 81; the p6 word-length product is 32; and the earlier p0 prime-weight difference already selected p32. The p32 inner9/p33 body81 transfer has been tested separately and its direct additive/Hill consumers remain negative. The p6 11-rune span was also tested once as a direct period-11 additive key on p32, both signs and with/without the known ciphertext-F bypass; no readable output resulted. The new route is therefore a **navigation/selection hypothesis**, not a plaintext or key.
+The inference that one should sum GP0 red-span values and use the result as a zero-based row-major p50 address remains unproven. The word-level p6 sum71 → SEEKS=71 route is more directly supported by the 2016 “words/numbers/direction” clue and the already audited p32 branch, but it still does not itself decrypt unknown text. The direct p6 11-rune period-11 additive key on p32, both signs and with/without ciphertext-F bypass, produced no readable output. p32/p55 branch-count and junction mining has already been closed for lack of a stable graph isomorphism; do not reopen visual topology as a substitute for a plaintext operation.
 
-**Familywise controls:** p7 has a red-span sum 209, composite but φ(209)=180, and its base60 path also has transient depth13; p15 has an 11-rune red span but composite sum120. Therefore φ=180, depth13, or length11 alone is not unique. The stronger combination is the repeated prime sum181 on p0/p6, the unique p0 cell181=word-length-product40 match, p6's product32, and the 13/11 path/cycle alignment. The inference that one should sum GP0 red-span values and use the result as a zero-based row-major p50 address remains unproven; “amass”/“numbers are the direction” are plausible cues, not an explicit instruction.
-
-Reproduction: [the red-span 181 / p50 path source-gate SFT](../sims/lp2_redspan_181_p50_path_p32_source_gate.cjs). This bounded gate does not reopen the existing 62,720-configuration graph family.
+Reproduction: [the red-span 181 / SEEKS=71 / p32 fragment source-gate SFT](../sims/lp2_redspan_181_p50_path_p32_source_gate.cjs). This bounded gate does not reopen the existing 62,720-configuration graph family.
 
 ## Finite original-corpus selector comparison
 
@@ -102,6 +100,6 @@ These are effectively the uniform GP29 baseline of 1.0, not evidence of language
 
 ## Research decision
 
-The p0 red-heading arithmetic and the independent p6 red-span checksum now converge on p32 and the original p50 table. The repeated GP0 prime sum181, φ(181)=180, the unique p50 cell181=40 / p0 word-length product40 match, p6 product32, and the 13-transient/11-cycle route to node32 form a plausible human navigation sequence. The p32 tree image and p33 81-rune body remain possible next-stage material, but direct p32-ring, p32-inner9 and p50 five-cell additive consumers remain negative. The decisive unresolved premise is still the authorial operation that turns the selected p32/p50 material into plaintext; do not replace it with arbitrary graph, phase, or cipher variants.
+The p0/p6 red spans now supply an independent human-visible selector for the existing p32 source loop: the p6 first red word sums to SEEKS=71, its unique 4-1-4-2 structure matches p32 fragment7, and the p50 base60 path from71 hits EMPTY=92 at step7 and p32 at step23. The total p0/p6 sum181, φ(181)=180, p0 cell/product40 match, p6 product32, and 13/11 path/cycle lengths provide independent corroboration. The p32 full-branch audit's left-side survivor and right-side zero-success control are consistent with the p6 signature, but this is not a decryption. p32/p55 tree topology mining is closed; the remaining task is to find a source-authenticated operation from the selected branch to continuous plaintext, not another visual or generic cipher sweep.
 
 **Reproduction:** `sims/lp2_p0_red_primecount_p32_p50_map_sft.cjs` reproduces the earlier prime-count route. The independent red-span checksum and fixed start-181 path are asserted by `sims/lp2_redspan_181_p50_path_p32_source_gate.cjs`.

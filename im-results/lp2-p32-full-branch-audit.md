@@ -47,6 +47,16 @@ Both are descriptions of the same physical object. The other two conventions fai
 
 Only zero-based `EMPTY mod 11 = 4` lands on the literal X of fragment7.
 
+## Independent p6 red-word anchor for SEEKS=71 and fragment7 (Agent44, 21 November 2026)
+
+The p6 red span at [71,82) is split into four words of lengths **4-1-4-2**, with GP0 word sums **[71,19,65,26]**. Its first four-rune word has GP0 sum **71**, uniquely among 51 words fully contained in the 18 annotated red spans. The signed 2016 body word **SEEKS** also has GP0 sum71 under the same GP29 transliteration conventions used in this audit. Thus an original red span independently selects the exact SEEKS=71 start used by the positive base60 route below; this is a numeric address match, not a claim that the red word literally decrypts to SEEKS.
+
+The fixed base60 route from71 is 71→108→14→183→81→58→146→**92**→236→238→129→179→175→18→15→212→70→169→228→144→125→20→102→**32**→115… . It hits EMPTY=92 at step7 and p32 at step23, then enters the same 11-cycle as the independent p0/p6 total-sum start181 route. The p6 red span's total GP0 sum is181 (prime, φ=180), and its word-length product is32; p0's red span also sums to181 and its word-length product40 matches p50 cell181=40.
+
+The p6 4-1-4-2 signature also matches the exact partition of this audit's physical fragment7: four runes, central X at position4, four runes, two-rune tail. Fragment7 is the only of 22 p32 fragments with length11 and X at position4. Its left four-rune block sums to48 (= audited HOME=48); its right four-rune block sums to65, matching p6's third red word sum65. This is consistent with the branch result: left-side transfer survives, right-side transfer has zero successes. The p6 signature may be a human clue to the left-vs-right decision, with the right block functioning as a false path; do not promote that interpretation to plaintext.
+
+This is independent source selection, not an expansion of the 135,168 branch family. The existing p32/p55 tree-topology work is closed; this anchor does not reopen visual branch-count mining. Reproduction: [p0/p6 red-span and p32-fragment source-gate SFT](../sims/lp2_redspan_181_p50_path_p32_source_gate.cjs).
+
 ## Full geometric result
 
 The full family has **32 representational successes**, all from the four-rune span to the **left** of X. The equally natural four-rune span to the **right** of X has **zero** successes. All 32 surviving representations collapse to **one physical branch**:
@@ -140,11 +150,13 @@ Director #1780's positive branch-family gate is met at the level of the **physic
 - fragment7/X position4 are physically retained despite two equivalent counting descriptions;
 - the right-hand X-adjacent four-rune control has zero source-loop returns;
 - all square-orientation/direction aliases reduce to one physical translation;
-- the only remaining state label ambiguity is the exact modulo11 identity `g ≡ -K`;
-- the destination's enclosing fragment READ OUT returns exactly `THE DEVOTED`;
-- the frozen terminal HOME cell gives a new exact source-register consequence, `4D -> 77 -> MEANING/FALSE -> [K*g,a-g]`.
+- the only remaining state label ambiguity is the exact modulo11 identity g ≡ -K;
+- the destination's enclosing fragment READ OUT returns exactly THE DEVOTED;
+- the frozen terminal HOME cell gives the source-register consequence 4D → 77 → MEANING/FALSE → [K*g,a-g].
 
-This authenticates the p32 loop as a sparse, source-constrained physical mechanism. It still does **not** recover continuous unknown plaintext. The next downstream work should treat the physical offsets93..97, fragment15, and terminal collision77 as fixed objects rather than reopening HOME/BUDS selection.
+The new p6 red-span evidence independently anchors the route's SEEKS=71 start and reproduces the unique 4-1-4-2 fragment7 geometry. Its third red word's GP0 sum65 matches the right-side block, the zero-success control, while the first red word's sum71 matches SEEKS=71. This is consistent with the audit's left-side survivor and with the source's warning about false paths, but is not a new plaintext or key.
+
+This authenticates the p32 loop as a sparse, source-constrained physical mechanism and now supplies an independent original-ink selector for its entry. It still does **not** recover continuous unknown plaintext. The next downstream work should treat physical offsets93..97, fragment15, and terminal collision77 as fixed objects rather than reopening HOME/BUDS selection or tree-topology mining.
 
 ## Reproduction
 
