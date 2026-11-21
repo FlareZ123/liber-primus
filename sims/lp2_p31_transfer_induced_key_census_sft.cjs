@@ -256,3 +256,24 @@ console.log(JSON.stringify({
   expectedHits,
   probabilityAtLeastOne,
 }, null, 2));
+
+// Narrower conditional null: keep p31's AND-derived key fixed and randomize
+// only p33's shared three-coordinate page offset; target is fixed as YOU.
+const sourceWord = pageWords(31).find(word => word.ordinal === 32);
+assert.ok(sourceWord);
+const fixedKey = sourceWord.values.map((value, i) => mod29(value - gp("AND")[i]));
+assert.deepEqual(fixedKey, [17, 14, 7]);
+const p33Words = pageWords(33).filter(word => word.values.length === 3);
+const youOffsets = new Set(p33Words.map(word =>
+  word.values.map((value, i) =>
+    mod29(value - gp("YOU")[i] - fixedKey[i])
+  ).join(",")
+));
+assert.equal(p33Words.length, 12);
+assert.equal(youOffsets.size, 12);
+assert.ok(youOffsets.has("0,0,0"));
+console.log(JSON.stringify({
+  conditionalP33WordCount: p33Words.length,
+  distinctSuccessfulOffsets: youOffsets.size,
+  probabilityAtLeastOne: youOffsets.size / 29 ** 3,
+}, null, 2));
