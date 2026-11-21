@@ -44,7 +44,7 @@ Crucially, pairing positions were recognized **after inspecting** the products. 
 
 The source also fixes a **308-rune black-body interval** between the p6 red11 and p7 red14: p6 ciphertext offsets82–195 (114 runes) plus p7 offsets0–193 (194 runes). Thus `308 = 11·28`, the p6 red key length multiplied by `29−1` and by `GP0(p7 red)−GP0(p6 red)=209−181=28`. This interval/row equation predated the inverse-packet discovery and was already tested with fixed additive/columnar candidates; it does not authenticate a key schedule by itself. Among p7 products, 11 is a primitive root modulo29 (order28), and its partner 8 is its inverse, so one **concrete** full-cycle row hypothesis follows without arbitrary generator search.
 
-## Two frozen, direct original-cipher consumer gates
+## Source-bounded direct original-cipher consumer gates
 
 Both below use source-visible original locations and exact invertible mappings on GP29 indices. Neither recovers prose. Exact forward reencryption verifies implementation only; it does not by itself evidence plaintext.
 
@@ -53,6 +53,15 @@ Both below use source-visible original locations and exact invertible mappings o
 2. **P6→p7 original black 308-rune gap, 28×11 full-multiplicative-cycle affine map.** Under the one naturally complete cycle selected by p7 word1 product11 (order28), let `K_j` be the 11 original GP29 indices of p6 red text, `a_r=11^r mod29` for `r=0..27`, and freeze `C_{r,j}=a_r·P_{r,j}+K_j mod29`. The exact decoder `P_{r,j}=a_r^{-1}(C_{r,j}−K_j) mod29` yields nonlinguistic output, GP29 IoC **0.03375777317145395** versus original **0.034350014806040864**, with exact reencryption. This gate is a single source-motivated affine operation, not an origin/sign/phase/exponent sweep.
 
 The inverse products constitute a **recoverable original-runic arithmetic register**, possibly a source clue to reversibility, yet no first-party LP2 instruction specifies the multiplication rule, cipher architecture, receiver, key placement or plaintext test. The exact standard direct consumers above fail. Do not widen them with arbitrary shifts, phases, lookup masks or page targets absent a further independent instruction.
+
+
+## Five-word circulant inverse and adjoining p8 (Agent37, 21 November)
+
+The five source-red-word products are also the first row of a natural GF29 **right-circulant** 5×5 matrix. Its computed inverse first row is **`[23,2,5,2,19]=[p,K,g,K,B]`** from the authenticated 2013 DH example, with source determinant **19=B**. This is an exact, independently programmed field identity and a newly recognized historical-state readout. Conditional on a fixed `p=23,g=5`, the authenticated `(a,b)=(6,15)` is the **sole** exponent pair among 484 with this exact inverse-row relation; that finite census does not adjust for choosing circulants and the register ordering after source inspection.
+
+The black **five dots immediately under the p7 red five-word inscription** might have prompted a human to try a cyclic 5×5 map, but no Cicada text authenticates that operation or specifies a consumer. The immediately following **p8 has 255 complete original runes = 51 five-rune blocks**, so a single zero-phase whole-page Hill inverse is source-plausible and testable. Its standard and transposed directions yield ciphertext-like p8 IoC **0.03637486** and **0.03415161**, respectively, against clear solved p57 **0.06270997**. Exact forward p8 replay and a planted native p57 clear-text control pass. Thus the **p8 direct Hill consumer fails**; other receiver/key-use choices cannot be assumed without a new first-party instruction.
+
+This strengthens the possible **DH register serialization** interpretation, and leaves the cipher-consumer question unresolved. Full exact matrices, source offsets, 484-exponent control and p8 results: [circulant source identity](lp2-p7-red-circulant-dh-original-inverse.md) · [read-only Node22 SFT](../sims/lp2_p7_red_circulant_dh_inverse_sft.cjs) · [passing updated Windows CI](https://github.com/FlareZ123/liber-primus/actions/runs/44930877683).
 
 ## Reproduction
 
