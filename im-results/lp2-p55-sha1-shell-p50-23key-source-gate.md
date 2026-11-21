@@ -14,6 +14,8 @@ The frozen p55 exterior GP values, treated as a single most-significant-first ba
 
 \`efe89bff1c7eff588ec80605c99a364067960320\`
 
+**Capacity check:** 33 base-29 symbols span 33 log₂(29) = **160.3133728392 bits**. Even under a uniform random exterior vector, the probability that its numeric value fits in exactly 20 bytes is 2^160 / 29^33 = **0.8047581351**. Thus the shell's 160-bit *fit* alone is expected roughly **80.48%** of the time and supplies **no independent SHA-1 evidence**. The typed digest-equality test below bears the full evidential burden.
+
 The 43 original strict interior GP values are checked independently of their transcription labels and encoded under four natural, source-specific serializers:
 
 1. 43 zero-based GP29 symbols as raw bytes.
