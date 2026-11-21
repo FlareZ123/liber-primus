@@ -98,8 +98,8 @@ assert.equal(p57.length,95);
 const synthetic=encrypt(p57).reverse();
 const plant=inverse(synthetic.reverse());
 assert.equal(plant.survives,true);
-const reencrypted=encrypt(p57);
-assert.deepEqual(reencrypted,page(57).map((_,i)=>reencrypted[i]));
+assert.equal(plant.firstImpossible,p57.length,
+  'Planted p57 target must survive all 95 runes');
 console.log(JSON.stringify({
  classification:'source-selected p28 route to p23 remains navigation; mirrored p56 cipher cannot decode p23',
  p28Indices:[25,26,27,1],p28Phrase:'THEIR NUMBERS ARE THE',
