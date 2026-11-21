@@ -72,6 +72,17 @@ assert.deepEqual(redWords.map((w) => w.length), [state.q, state.A]);
 assert.deepEqual(indexSums8, [57, 74]);
 assert.deepEqual(primeSums8, [196, 250]);
 assert.equal(primeSums8[0], p6.length);
+// Natural preceding two-page spiral spread (p6 and p7) as a one-based
+// source-reading tape. The two printed p8 red GP-prime sums index exactly
+// the final two p7 red-word product values. This is a cross-page candidate
+// intended address, not evidence of unknown prose or a GP29 decoder.
+const priorTwoPageTape = [...p6, ...p7];
+assert.equal(priorTwoPageTape.length, 404);
+const redWordAddresses = primeSums8.map((sum) => priorTwoPageTape[sum - 1]);
+assert.deepEqual(redWordAddresses, [15, 2]);
+assert.deepEqual(redWordAddresses, products7.slice(-2));
+assert.deepEqual(primeSums8.map((sum) => priorTwoPageTape[sum]), [8, 7]);
+
 assert.equal(redWords[1].filter((r) => r === state.e).length, 1);
 const eShed = redWords[1].filter((r) => r !== state.e);
 assert.equal(product29(eShed), 1);
@@ -202,6 +213,7 @@ console.log(JSON.stringify({
     p8HeadingWordProducts: products8,
     p8HeadingIndexSums: indexSums8,
     p8HeadingPrimeSums: primeSums8,
+    p8PrimeSummedOneBasedPreviousSpreadReadout: redWordAddresses,
     p8SecondShedEPrimeSum: primeSums8[1] - corpus.prime[state.e],
     p8SecondShedEProduct: product29(eShed),
     p8BlackLength: black.length,
