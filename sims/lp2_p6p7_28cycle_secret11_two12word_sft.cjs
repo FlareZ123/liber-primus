@@ -271,12 +271,135 @@ for(const variant of variants) {
     assert(inferred.every((v,i)=>v<0||v===red11[i]));
   }
 }
+
+/**
+ * A second source-selected candidate is the multiplicative (DH) log2
+ * alphabet over GF(29)^*. To retain all 29 manuscript glyphs, reserve
+ * any ONE GP rune E for the ciphertext zero. All other 28 runes are
+ * ranked 0..27 in GP order with E removed and mapped bijectively to
+ * powers of 2. Every possible E in 0..28 is independently tested.
+ * No status is assigned to the reserved rune by reading candidate
+ * plaintext, so the family of 29 reserved-rune choices is complete.
+ *
+ * C[loc]=0 iff P[loc]=E.
+ * C[loc]=2^(compressed(P)+sign*row+K[col]) mod29 otherwise.
+ * K consists of 11 arbitrary residues modulo 28.
+ */
+const mod28=x=>(x%28+28)%28;
+const log2=Array(29).fill(-1);
+for(let r=0;r<28;r++) {
+  assert.equal(log2[powers[r]],-1);
+  log2[powers[r]]=r;
+}
+assert.deepEqual(log2.slice(1).slice().sort((a,b)=>a-b),
+  Array.from({length:28},(_,i)=>i));
+/**
+ * @param {number[]} plaintext
+ * @param {number} start
+ * @param {number} escape one of all 29 reserved source rune IDs
+ * @param {"row"|"column"} order
+ * @param {1|-1} sign
+ * @param {number[]} ciphertext
+ * @returns {number[]|null}
+ */
+function inferLogKey(plaintext,start,escape,order,sign,ciphertext=source) {
+  assert.equal(plaintext.length,12);
+  const key=Array(11).fill(-1);
+  for(let i=0;i<12;i++) {
+    const at=start+i,p=plaintext[i],c=ciphertext[at];
+    if((p===escape)!==(c===0))return null;
+    if(c===0)continue;
+    const row=order==="row"?Math.floor(at/11):at%28;
+    const col=order==="row"?at%11:Math.floor(at/28);
+    const compressed=p-Number(p>escape);
+    const proposed=mod28(log2[c]-compressed-sign*row);
+    if(key[col]!==-1&&key[col]!==proposed)return null;
+    key[col]=proposed;
+  }
+  return key;
+}
+/** @param {number[]} values @param {number[]} key
+ *  @param {number} escape @param {"row"|"column"} order
+ *  @param {1|-1} sign
+ *  @returns {number[]}
+ */
+function encryptLog(values,key,escape,order,sign) {
+  return values.map((p,at)=>{
+    if(p===escape)return 0;
+    const row=order==="row"?Math.floor(at/11):at%28;
+    const col=order==="row"?at%11:Math.floor(at/28);
+    return powers[mod28(p-Number(p>escape)+sign*row+key[col])];
+  });
+}
+/** @param {number[]} values @param {number[]} key
+ *  @param {number} escape @param {"row"|"column"} order
+ *  @param {1|-1} sign
+ *  @returns {number[]}
+ */
+function decryptLog(values,key,escape,order,sign) {
+  return values.map((c,at)=>{
+    if(c===0)return escape;
+    const row=order==="row"?Math.floor(at/11):at%28;
+    const col=order==="row"?at%11:Math.floor(at/28);
+    const compressed=mod28(log2[c]-sign*row-key[col]);
+    return compressed>=escape?compressed+1:compressed;
+  });
+}
+assert.deepEqual(source.flatMap((value,i)=>value===0?[i]:[]),[42,74,138]);
+const logVariants=[];
+const plantedLogKey=red11.map(x=>x%28);
+for(const order of ["row","column"])
+  for(const sign of /** @type {(1|-1)[]} */([-1,1])) {
+    let individualFirst=0,individualSecond=0,common=0;
+    let maxPerEscape=0;
+    for(let escape=0;escape<29;escape++) {
+      const firstKeys=new Set();
+      let perEscape=0;
+      for(const candidate of candidates) {
+        const inferred=inferLogKey(candidate.runes,first.site,escape,order,sign);
+        if(inferred!==null) {
+          individualFirst++;
+          firstKeys.add(inferred.join(","));
+        }
+      }
+      for(const candidate of candidates) {
+        const inferred=inferLogKey(candidate.runes,second.site,escape,order,sign);
+        if(inferred!==null) {
+          individualSecond++;
+          if(firstKeys.has(inferred.join(","))) {common++;perEscape++;}
+        }
+      }
+      maxPerEscape=Math.max(maxPerEscape,perEscape);
+      // Every synthetic GP rune, including reserved zero, must survive.
+      const literal=encryptLog(planted,plantedLogKey,escape,order,sign);
+      assert.deepEqual(decryptLog(literal,plantedLogKey,escape,order,sign),
+        planted);
+      if(!earlyWord.includes(escape)&&!lateWord.includes(escape)) {
+        assert.deepEqual(inferLogKey(earlyWord,first.site,escape,order,sign,
+          literal).filter(x=>x!==-1),
+          plantedLogKey.filter((x,j)=>order==="row"||
+            j===Math.floor(first.site/28)||
+            j===Math.floor((first.site+11)/28)));
+        const q=inferLogKey(lateWord,second.site,escape,order,sign,literal);
+        assert(q!==null);
+        assert(q.every((v,j)=>v===-1||v===plantedLogKey[j]));
+      }
+    }
+    logVariants.push({order,sign,escapeChoices:29,
+      viableFirstWordsAcrossEscapes:individualFirst,
+      viableSecondWordsAcrossEscapes:individualSecond,
+      sharedKeysAcrossAllEscapes:common,maxWithinOneEscape:maxPerEscape});
+  }
+assert.deepEqual(logVariants.map(x=>[
+  x.viableFirstWordsAcrossEscapes,x.viableSecondWordsAcrossEscapes,
+  x.sharedKeysAcrossAllEscapes]),
+  [[1462,797,0],[489,922,0],[0,0,0],[0,0,0]]);
 console.log(JSON.stringify({
   decision:"Finite source-native lexicon exclusion of the entire secret 11-column root2 additive family",
   originalSource:"p6[82..195]+p7[0..193]",
   printedWords:words.length,originalRunes:source.length,
   longWords:[{start:165,length:12},{start:293,length:12}],
-  keyFamily:"all 29^11 source-secret GP29 additive column keys",
+  keyFamily:"all 29^11 GP29 cyclic additive keys; also all 29 escape choices and 28^11 log2-residue keys",
   fieldPower:"2^row mod29, row0..27",
   lexiconTypes:{english:english.length,latin:latin.length,
     oldEnglish:oldEnglish.length,total:candidates.length},
@@ -286,6 +409,7 @@ console.log(JSON.stringify({
   inferredSecondKeys:new Set(candidatesB.map(x=>x.key.join(","))).size,
   commonCompleteKeyVectors:common.length,
   four28CycleVariantTests:variants,
+  allReservedSymbolLog2Variants:logVariants,
   positive:{secretKey:red11,earlyWord:"COMPANIONSHIP",
     lateWord:"ACQUAINTANCE",exactOriginalSizeForwardInverse:true,
     bothLongWordKeysRecovered:true,commonPlantKey:true},
