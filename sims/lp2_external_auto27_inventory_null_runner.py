@@ -85,8 +85,8 @@ print("AUTO27-NULL-RESULT " + json.dumps({
 
 
 def execute(case: int) -> None:
-    """Case 0 original, 1..5 reproducible fixed-inventory shuffles."""
-    assert 0 <= case <= 5
+    """Case 0 original, 1..20 inventory shuffles, 99 next 729 source runes."""
+    assert 0 <= case <= 20 or case == 99
     for attempt in range(8):
         try:
             with urllib.request.urlopen(URL, timeout=45) as response:
@@ -136,10 +136,15 @@ def execute(case: int) -> None:
         transformed = [identity[symbol] for symbol in names]
         assert transformed == original, "upstream matrix must be original pp0..2 source"
 
-        if case:
+        if case == 99:
+            later = [rune for page in canonical["pages"][3:] for rune in page["indices"]][:729]
+            assert len(later) == 729
+            names = [LABELS[rune] for rune in later]
+        elif case:
             seeded = random.Random(0x3301A00D + case * 0x10001)
             seeded.shuffle(names)
             assert sorted(names) == sorted(source.split())
+        if case:
             shuffled = "\n".join(
                 " ".join(names[row * 27 : (row + 1) * 27]) for row in range(27)
             ) + "\n"
@@ -149,6 +154,7 @@ def execute(case: int) -> None:
         print("AUTO27-CASE " + json.dumps({
             "case": case,
             "original": case == 0,
+            "heldoutNext729": case == 99,
             "sourceBlob": blob_hash,
             "originalRuneInventory": [original.count(i) for i in range(29)],
             "sourceInputSha256": input_sha256,
