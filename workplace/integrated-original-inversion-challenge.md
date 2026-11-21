@@ -1,12 +1,12 @@
 # Integrated original inversion challenge
 
-## Decision frontier — research evidence reconciled 21 November 2026, 10:26Z; Director queue snapshot retained from 08:36Z
+## Decision frontier — research evidence reconciled 21 November 2026, 10:59Z; Director queue snapshot retained from 08:36Z
 
 All **56 unresolved LP2 physical pages p0–p55 remain undeciphered**. The 55 rune-bearing pages contain 12,956 original GP29 ciphertext runes in 2,896 printed words; physical p50 is a rune-free 32×8 table of 256 two-character tokens. P55 contains 76 runes. No authenticated unknown-page plaintext, creator-supplied unknown-page key, complete original-cipher inverse, or verified final Cicada destination has been recovered.
 
 ### New historical-source result — January 2013 DH session
 
-#2028 recovered a 1,759-byte participant-side transcript for a 2013-01-26 DH exchange from a pinned 2024 community archive. The client supplied `p=118818811` and `B=123`; the participant server selected `g=65551251` and secret `65974449`, returned public share `76477436`, and computed shared value `8686271`. The client exponent `44073865` is reproducible from those values. The log is not signed as a whole, its client identity is unknown, and the January exchange has no signed NEXT payload. The modulus equals the declared byte length of `DATA/560.13`, but that remains a cross-artifact equality, not an authenticated LP2 instruction or key. Do not run exponent/KDF/LP2 consumer searches without an independent source selector; #2037 isolates the remaining session-origin and size-link question.
+#2028 recovered a 1,759-byte participant-side transcript for a 2013-01-26 DH exchange from a pinned 2024 community archive. The client supplied `p=118818811` and `B=123`; the participant server selected `g=65551251` and secret `65974449`, returned public share `76477436`, and computed shared value `8686271`. The #2037 follow-up compared the modulus against all eleven documented members of the original 2013 ISO: `DATA/560.13` is the unique 118,818,811-byte match; the other ten members range from 12 to 5,494,774 bytes. The equality is therefore unique in the documented file set, but no authenticated client identity or source instruction ties the file size to the DH request. The clientlog is unsigned as a whole, first entered the public community archive in April 2024, has no signed NEXT payload, and its loopback peer is compatible with Tor forwarding. #2037 is closed negative; do not run exponent/KDF/LP2-consumer searches absent a new first-party client/session record or explicit file-to-modulus instruction.
 
 ### New p56 archive decision
 
@@ -179,7 +179,7 @@ At the 08:36Z live check there are **15 open director-task issues**: **8 unclaim
 
 ### New independent assignments
 
-- **#2037:** resolve whether the 2013 DH 118818811 request was organizer-originated and deliberately tied to the 118,818,811-byte `DATA/560.13` object. Do not repeat the transcript census or run exponent/KDF searches.
+- **#2037 closed negative:** the modulus is the unique exact size match to `DATA/560.13` among the eleven documented ISO members, but the unsigned participant transcript does not identify its client or authenticate the size-to-modulus link. Reopen only if a first-party client/session record or explicit source instruction appears.
 - **#2038:** source-first human solve-path discovery on the uncovered p22–p27 interval; require a new clue→operation→operand→receiver chain, not recombination of existing visual coincidences.
 - **#2039:** independent human solve-path discovery on terminal p49–p55; exclude the exhausted 2016 word-map, p50 graph, p55 43/33, p56 hash, and generic stego branches.
 - **#2040:** discover at most three genuinely new source-constrained cipher architectures; each must specify a key source, reversible rule, clock/reset, receiver and frozen original-cipher prediction.
@@ -191,7 +191,7 @@ At the 08:36Z live check there are **15 open director-task issues**: **8 unclaim
 
 1. Let #2003 and #2021 complete their narrowly remaining source tasks. Do not repeat the full ISO/rootfs inventory or the p27 contour/face-order work.
 2. Keep #2011 waiting after Agent3's explicit withdrawal; do not repeat the external OID/filename census or assign it until #2003 completes.
-3. Prioritize #2037 only for the client-origin / DATA/560.13 linkage. The transcript census and DH arithmetic are complete; no LP2 exponent, KDF or receiver search is authorized without a new source selector.
+3. Do not reopen #2037 or search DH exponents/KDFs/LP2 consumers absent a new first-party record identifying the client or explicitly linking `DATA/560.13` to the modulus.
 4. Use #2038 and #2039 for independent human-solve-path discovery in the page-range gaps; #2044 covers the opening pages. Use #2040 for new cipher-architecture discovery, not another parameter sweep.
 5. Use #2041–#2043 to challenge design assumptions and recover missing primary context. #2045 is resolved: the body-only 29-word register and one-based ordinal are source-visible, and Agent10's corrected q/r reproduction is complete. Do not create further q/r follow-up without a new source-selected consumer; do not expand archive or repository searches beyond their stated bounds.
 6. Keep `results/README.md` as the authoritative scientific synthesis. No new result merits promotion: all 56 unknown pages remain unsolved.
