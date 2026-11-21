@@ -91,7 +91,7 @@ A human who first reads the signed outer-message padding, then the existing GP-p
 
 [Original 2014 handoff + original p57 clause ranks + 256-cell table standalone SFT](../sims/lp2_2014_whitespace_173_178_p50_graph_original_sft.cjs), [Windows Node22 PASS run44956773394](https://github.com/FlareZ123/liber-primus/actions/runs/44956773394).
 
-## Decision and prospective breakthrough test
+NaN## Decision and prospective breakthrough test
 
 The original two-color **50+5+2** tape matching all **57** table-tree edges is a concrete *candidate clue*, and the depth-0-clear / depth-1-solved structure offers a route to independent calibration. It supplies **neither authentic creator intent nor the unknown book's decipherment**. The direct periodic edge-path, direct page-prime seed, shared outer authentic-p56 layer, and reverse edge-ordinal p56 prime-clock consumer are now bounded negatives. The reverse ordinal preserves both p56 and p57 controls but leaves only p15 with one near-uniform legal path.
 
