@@ -56,6 +56,30 @@ Original LP2 p28 physical line6 begins with the literal runes `DH`, numerical in
 
 For a descriptive sensitivity control only, the SFT charges all **102 unordered decimal-reversal pairs of distinct four-digit primes** under the same fixed Euclid field grammar. Five yield formally eligible triples and just the original pair `3301/1033` satisfies all three DH closure conditions. This is **not** a discovery-corrected statistical significance estimate because the field grammar was selected after the source output was known.
 
+## The source-text's explicit totient clue yields a four-count factorization
+
+The solved LP1 p5 source explicitly says **“THE PRIMES ARE SACRED / THE TOTIENT FUNCTION IS SACRED / ALL THINGS SHOULD BE ENCRYPTED.”** Both matrix sums are prime. Hence computing Euler's totient of their product is directly source-motivated, regardless of the weaker continued-fraction hypothesis:
+
+```text
+p = 1033, q = 3301, N_RSA = p·q = 3,409,933
+phi(N_RSA) = (1033−1)(3301−1) = 3,405,600
+           = 2⁵ · 3² · 5² · 11 · 43
+           = 225 · 32 · 11 · 43
+```
+
+All four factors have **real independent manuscript counts**:
+
+| Factor | Source-observable role | Exact source |
+| ---: | --- | --- |
+| **225** | Total runes inked red over original 58 LP2 pages | Image-corrected [ink inventory](../resources/liber-primus/lp2-ink-annotations.json) |
+| **32** | Number of physically printed rows in p49–51's 32×8 token table | [Original p50 table transcription](../resources/liber-primus/lp2-grid-256.json) |
+| **11** | Square root of original p32's **121** ciphertext runes, the existing 11×11 candidate grid | [Canonical original corpus](../resources/liber-primus/lp2-corpus.json); note p6 is also square-length (196=14²) |
+| **43** | Alphabetic words in the PGP-signed 2016 original message, excluding 3301 and the hexadecimal OpenPGP key ID | [Byte-exact signed 2016 source](../resources/historical/cicada2016-4gq25-outguess.asc) |
+
+This yields an exact product across two solved first-release pages, the later encrypted pages and an authenticated subsequent Cicada message. It provides a *possible register-size budget* for source-driven cryptanalysis, as the components arise from a source-text operation rather than arbitrary modular factor fitting. The four-factor partition was recognized **after the counts were known**; there is no authenticated indication that the creator designated these four counts as RSA state dimensions or that a source-selected input can address a unique coordinate. Its statistical significance cannot be inferred by multiplying unrelated chance estimates.
+
+**Most direct RSA consumer tested, rejected.** The conventional public exponent candidate `e=179` is now a separate original-source convergent; it is coprime to `phi=3,405,600`, giving private inverse `d=1,198,619`. A source-exact Windows [positive-control RSA SFT](../sims/lp2_lp1_magic_square_rsa179_p50_sft.cjs) [PASS 44945089406](https://github.com/FlareZ123/liber-primus/actions/runs/44945089406) recovers a planted ASCII `READ OUT` by two-byte plaintext/three-byte ciphertext RSA blocks. Applied unchanged to original p50, the whole 2048-bit integer `N mod 3,409,933` decrypts to **936,887**, GP29 digits `UNEOFP`; decryption after the independently obtained 179² factor gives `THEOLOEI`, also nonprose. Under natural consecutive three-byte RSA ciphertext framing, only **20/85**, **17/85**, and **8/84** blocks at byte phases0,1,2 satisfy the required condition ciphertext < modulus, rejecting all three whole-stream models. A direct whole-printed-word GP29 RSA representation is likewise impossible for **1,081/2,896** original words, whose numeric ciphertexts exceed the public modulus. The fixed direct word/page/table RSA model therefore fails despite the plausible factorization; the factorization alone does not identify a different consumer or plaintext.
+
 ## Existing p50 consumer now has a selected upstream number
 
 Let `N` be the exact 2048-bit integer obtained by concatenating the printed original table's 256 decoded bytes. The SFT independently checks:
