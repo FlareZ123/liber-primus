@@ -18,11 +18,13 @@ const originalH = [3, 26, 24]; // Signed 2013 BASE29 3301 -> 3QO.
 const originalG = [27, 5, 15]; // Physical p39 isolated red triad.
 
 for (const [name, sha] of [
+  ['25.jpg', '6b1026dfdfb447a5a76819883fe576254e8a47fdf1e97ecf1825166833bc6f00'],
   ['40.jpg', 'd31a23cb3a2e50b505e1c468ffbb0106f5353f469bb5958b87ab929fc88decee'],
   ['56.jpg', 'd1b7ea5a6ffb79709753e3565d1d46e05edbe3d82ca70c3ed6065d46b131bd00'],
   ['66.jpg', 'aa3f89156756edf8b796a470a14a3db96516ad2fedf1ed98ccabc1a1cddc0335'],
   ['67.jpg', 'bd6d4a3678fa37197bd43c58861273dc59604b5b68dfa20de1ec13f0704be776'],
   ['68.jpg', '2b9d60f62b2bc65d040f7ae1bc0960d5a44ca251d2730d049a618074a83e208b'],
+  ['53.jpg', '3b54a31a9e796e2c01b4e80d46e1092dee2e1142a7c61873e282078e2c776cb9'],
 ]) assert.equal(digest(fs.readFileSync(source(name))), sha, name);
 
 const ink = json('lp2-ink-annotations.json');
@@ -423,6 +425,104 @@ for (const [name, original] of [
   console.log(name + ': length=' + original.length + ', IoC original=' + ioc(original).toFixed(9)
     + ', C-Q=' + ioc(minus).toFixed(9) + ', C+Q=' + ioc(plus).toFixed(9));
 }
+
+const p36Values = page(36);
+const p8FirstRed = page(8).slice(0, 4);
+assert.deepEqual(p8FirstRed, [14, 10, 14, 19]);
+const p8FirstRedPrimeSum = p8FirstRed.reduce((sum, digit) => sum + corpus.prime[digit], 0);
+assert.equal(p8FirstRedPrimeSum, 196);
+assert.equal(q.length, 252);
+assert.equal(p36Values.length, 238);
+assert.equal(q.length - p36Values.length, 14);
+
+function originalPageWords(raw) {
+  const result = [];
+  let current = [];
+  for (const character of raw) {
+    if (index.has(character)) current.push(index.get(character));
+    else if (character === '/' || /\s/u.test(character)) continue;
+    else if ('-.$§'.includes(character)) {
+      if (current.length) { result.push(current); current = []; }
+    }
+  }
+  if (current.length) result.push(current);
+  return result;
+}
+const p36Words = originalPageWords(pages[36]);
+assert.equal(p36Words.length, 50);
+assert.equal(p36Words.reduce((sum, word) => sum + word.length, 0), 238);
+const wordListPath = path.join(process.cwd(), 'resources', 'control', 'english_wordfreq_textblob.txt');
+const dictionary = new Set(fs.readFileSync(wordListPath, 'utf8').split(/\r?\n/)
+  .filter((line) => line && !line.startsWith(';'))
+  .map((line) => line.split(/\s+/)[0].toUpperCase()));
+assert.equal(dictionary.size, 29157);
+
+const q238Candidates = [
+  ['Q[0:238]', q.slice(0, 238)],
+  ['Q[14:252]', q.slice(14)],
+  ['reverse(Q[14:252])', q.slice(14).slice().reverse()],
+  ['reverse(Q[0:238])', q.slice(0, 238).slice().reverse()],
+];
+const expectedDictionaryHits = [1, 2, 3, 5, 2, 2, 3, 1];
+const p36QResults = [];
+let expectedIndex = 0;
+for (const [windowName, key] of q238Candidates) {
+  assert.equal(key.length, 238);
+  for (const sign of [-1, 1]) {
+    const plain = p36Values.map((digit, i) => mod(digit + sign * key[i]));
+    const restored = plain.map((digit, i) => mod(digit - sign * key[i]));
+    assert.deepEqual(restored, p36Values);
+    let offset = 0;
+    const decodedWords = p36Words.map((word) => {
+      const decoded = plain.slice(offset, offset + word.length)
+        .map((digit) => corpus.translit[digit]).join('');
+      offset += word.length;
+      return decoded;
+    });
+    assert.equal(offset, p36Values.length);
+    const dictionaryHits = decodedWords.filter((word) => dictionary.has(word)).length;
+    assert.equal(dictionaryHits, expectedDictionaryHits[expectedIndex++]);
+    p36QResults.push({
+      window: windowName,
+      operation: sign < 0 ? 'C-Q' : 'C+Q',
+      ioc: Number(ioc(plain).toFixed(6)),
+      dictionaryHits: dictionaryHits + '/50',
+      head: plain.slice(0, 36).map((digit) => corpus.translit[digit]).join(' '),
+    });
+  }
+}
+assert.equal(expectedIndex, 8);
+assert.equal(ioc(p36Values).toFixed(6), '0.035989');
+assert.equal(ioc(page(57)).toFixed(6), '0.062710');
+assert.ok(Math.max(...p36QResults.map((row) => row.ioc)) < 0.036);
+console.log('p36 Q252-to-238 source-motivated receiver:', JSON.stringify(p36QResults));
+console.log('p36 native IoC=' + ioc(p36Values).toFixed(9)
+  + '; solved p57 native IoC=' + ioc(page(57)).toFixed(9));
+
+const fullP23Red16 = central[0].digits;
+const fullFactorRemainders = [];
+for (const reverseP23 of [false, true]) {
+  for (const reverseP39 of [false, true]) {
+    const p23Polynomial = reverseP23 ? fullP23Red16.slice().reverse() : fullP23Red16;
+    const p39Polynomial = reverseP39 ? originalG.slice().reverse() : originalG;
+    const product = multiply(p23Polynomial, p39Polynomial);
+    const division = divideDescending(bytes, product);
+    assert.equal(product.length, 18);
+    assert.equal(division.quotient.length, 239);
+    assert.equal(division.quotient[0], 0);
+    assert.ok(division.remainder.some((value) => value !== 0));
+    fullFactorRemainders.push(division.remainder);
+  }
+}
+assert.deepEqual(fullFactorRemainders, [
+  [17, 3, 8, 7, 14, 13, 14, 23, 24, 0, 14, 10, 11, 10, 18, 22, 27],
+  [5, 23, 17, 20, 14, 17, 23, 12, 18, 16, 1, 21, 19, 4, 6, 12, 24],
+  [7, 27, 3, 14, 2, 10, 20, 18, 14, 26, 20, 21, 15, 18, 12, 18, 22],
+  [18, 0, 27, 6, 18, 13, 27, 3, 2, 0, 26, 27, 5, 15, 18, 4, 25],
+]);
+console.log('p23 full-red16 × p39-red3 factor remainders (all orientations):',
+  JSON.stringify(fullFactorRemainders));
+
 console.log('PASS: 18 source red spans, unique p23 midpoint, 69 boundary candidates');
 console.log('PASS: p23 red H (scalar27), p39 red G, 256-byte four-zero syndrome, Q length252');
 console.log('NULL: ' + anyHit + '/' + runs + ' any factor; ' + centerHit + '/' + runs + ' p23 center');

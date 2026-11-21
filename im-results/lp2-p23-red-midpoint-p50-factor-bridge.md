@@ -137,8 +137,31 @@ with zero values before the source stream starts. A whole-book original order an
 
 All six original plaintext candidates remain indistinguishable from near-uniform GP29 output at the whole-book frequency level; the prefixes are nonlinguistic. Each inverse exactly **re-multiplies** to the corresponding 12,956 original ciphertext symbols. Positive controls encrypt and recover a 729-rune source-native GP-English plant formed from the original clear p57. These rule out all six simple unkeyed polynomial deconvolutions without relying on key search. They do not rule out an externally instructed variable polynomial, independent shift/clock or second layer.
 
+## Candidate p36 Q252→238 pad: the 14-symbol trim is negative
+
+*Follow-up by Agent48, 21 November 2026.* The established p23-midpoint/p39-triad factor gives the 252-symbol quotient (Q\). A possible receiver appeared on p36: the original page has exactly **238** runes, while (252-238=14\). The p8 first red word is **XIXM**, with GP29 indices `[14,10,14,19]` and prime-weight sum (196=14^2\). That motivates one bounded test, but does **not** authenticate “drop fourteen symbols” as an instruction.
+
+The only direct contiguous 238-symbol reads are (Q[0:238]\) and (Q[14:252]\). Both directions and both additive signs were tested against the original 238-rune p36 page; no free phase search was performed. Word boundaries were taken from the original p36 transcription (50 printed words), and dictionary hits use the repository's 29,157-entry TextBlob control list.
+
+| Q window | operation | IoC | dictionary hits |
+|---|---|---:|---:|
+| (Q[0:238]\) | (C-Q\) | 0.034323 | 1/50 |
+| (Q[0:238]\) | (C+Q\) | 0.035599 | 2/50 |
+| (Q[14:252]\) | (C-Q\) | 0.032798 | 3/50 |
+| (Q[14:252]\) | (C+Q\) | 0.035032 | 5/50 |
+| reverse (Q[14:252]\) | (C-Q\) | 0.034039 | 2/50 |
+| reverse (Q[14:252]\) | (C+Q\) | 0.034713 | 2/50 |
+| reverse (Q[0:238]\) | (C-Q\) | 0.033684 | 3/50 |
+| reverse (Q[0:238]\) | (C+Q\) | 0.034713 | 1/50 |
+
+The original p36 IoC is **0.035989**; the solved p57 native-text control is **0.062710**. All eight p36 outputs remain near-uniform and linguistically unconvincing. Each candidate exactly re-encrypts to the original p36 symbols, so the negative is about the proposed receiver, not implementation invertibility.
+
+A separate check tested the **entire 16-rune p23 red span** multiplied by the p39 red triad as a degree-17 factor of the p50 table polynomial. All four coefficient-orientation combinations have nonzero remainders. Each formal quotient has 239 coefficients and begins with zero, superficially resembling 238 after stripping that zero; this is **not** a valid factorization because the remainder is nonzero. Do not turn that near-length coincidence into a p36 pad.
+
+**Disposition:** retain the exact p23 central-triple × p39-triad factor relation as an intermediate structural observation, but retire the direct 14-trim additive (Q\to p36\) receiver and the full-red16 × p39 factor extension. No p36 plaintext or key was recovered. The remaining missing premise is still an independently source-selected reversible consumer of the p50 factor/quotient.
+
 ## Decision and next useful gate
 
-Preserve the **p23 source-only H projector** as a provisional, unusually centered in-manuscript echo of the independently signed 2013 H factor. The strongest objection is decisive: the original heading visibly fixes a boundary, but it does **not tell a solver to take two runes on the left and one on the right**. A future claim must obtain that 2|1 rule independently from the original 2014 visual artwork, authenticated historical clue, or a blind original-cipher prediction, and must identify a reversible *ciphertext consumer* of the p50 quotient or factor. More fitted polynomial factors, source-shuffled duplicate counts or arbitrary Q key phases cannot solve that missing operation.
+Preserve the **p23 source-only H projector** as a provisional, unusually centered in-manuscript echo of the independently signed 2013 H factor. The strongest objection is decisive: the original heading visibly fixes a boundary, but it does **not tell a solver to take two runes on the left and one on the right**. A future claim must obtain that 2|1 rule independently from the original 2014 visual artwork, authenticated historical clue, or a blind original-cipher prediction, and must identify a reversible *ciphertext consumer* of the p50 quotient or factor. More fitted polynomial factors, source-shuffled duplicate counts or arbitrary Q key phases cannot solve that missing operation; the source-motivated 14-trim Q→p36 additive receiver is now also negative.
 
-Complete original Windows/Node22 reproduction, including red-boundary randomized controls, 5×201 strand and 16+240 codeword obstructions, DH-seeded F-transparent key rejection, and six AES consumer controls: [successful run 44946667987](https://github.com/FlareZ123/liber-primus/actions/runs/44946667987). Reproduce with [single-file Windows Node22 original-source test](../sims/lp2_p23_red_midpoint_dualfactor_original_sft.cjs), which pins the five relevant original scans and complete 256-byte source, verifies red-span and punctuation offsets, enumerates the 69-boundary comparison family, asserts the factorization and quotient, executes the 200,000-draw shuffled controls, and prints the three actual original-cipher readouts. Relevant earlier independent factor report: [2013 H and p39 G table link](2013-base29-gf29-grid-factor.md).
+The prior complete original Windows/Node22 reproduction passed [run 44946667987](https://github.com/FlareZ123/liber-primus/actions/runs/44946667987); this follow-up adds the p36 Q14 receiver and full-p23-red16 factor check. Reproduce with [single-file Windows Node22 original-source test](../sims/lp2_p23_red_midpoint_dualfactor_original_sft.cjs), which now pins seven original scans (including p8 `25.jpg` and p36 `53.jpg`) plus the complete 256-byte source, verifies red-span and punctuation offsets, enumerates the 69-boundary comparison family, asserts the factorization and quotient, executes the 200,000-draw shuffled controls, and prints the p36 Q-window readouts. Relevant earlier independent factor report: [2013 H and p39 G table link](2013-base29-gf29-grid-factor.md).

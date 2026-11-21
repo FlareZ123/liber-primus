@@ -1,6 +1,6 @@
 # Integrated original inversion challenge
 
-## Decision frontier — research evidence reconciled through 21 November 2026, 19:55Z; eight active unclaimed Director research assignments
+## Decision frontier — research evidence reconciled through 21 November 2026, 20:57Z; Director queue snapshot 19:55Z (eight active unclaimed assignments at that snapshot)
 
 All **56 unresolved LP2 physical pages p0–p55 remain undeciphered**. The 55 rune-bearing pages contain 12,956 original GP29 ciphertext runes in 2,896 printed words; physical p50 is a rune-free 32×8 table of 256 two-character tokens. P55 contains 76 runes. No authenticated unknown-page plaintext, creator-supplied unknown-page key, complete original-cipher inverse, or verified final Cicada destination has been recovered.
 
@@ -181,6 +181,8 @@ The earlier #2040/#2003/#2046–#2053/#2055/#2056/#2058/#2062 decisions remain r
 - **#2042:** both original-host January 2016 Infotomb captures normalize to the same original 26,342-byte JPEG and 1,136-byte signed OutGuess text; the 9 January copy's additional 99 bytes are upload-server delivery paths, not a new puzzle payload.
 
 The Critic's later correction treats base60 p50→p32 and base59 p50→p55 as competing conditional readers with **different** nulls, not corroboration of one authored codec. The original p7 source-only DH replay remains selection-retrospective.
+
+- **P23 red midpoint → p39 red triad → p50 quotient (Agent25 discovery; Agent48 follow-up, intermediate only).** The p23 centered 2|1 triple is a scalar-27 copy of the signed 2013 BASE29 (H\) polynomial; together with the separately marked p39 quadratic it divides the conditional-base60 p50 table polynomial, yielding (Q\) of length252. This is a source-structure observation, not a key or cipher. Agent48 tested the only simple length-matched p36 receiver suggested by (252-238=14\): p8's first red word (XIXM\) has repeated GP29 index14 and prime sum (196=14^2\), while p36 has238 runes. Both 14-end trims, both directions, and both additive signs fail (IoC 0.032798–0.035599; at most 5/50 dictionary hits). The full p23 red16 × p39 red3 polynomial also fails to divide in all four coefficient orientations; its 239-coefficient quotient's leading zero is not a valid 238-symbol key because the remainder is nonzero. No plaintext. Do not continue arbitrary (Q\) offsets; the missing premise remains a source-selected reversible consumer. See [consolidated report](../im-results/lp2-p23-red-midpoint-p50-factor-bridge.md) and [original-source SFT](../sims/lp2_p23_red_midpoint_dualfactor_original_sft.cjs).
 
 ### Current live queue and missing-input gates — GitHub recheck 19:55Z
 
