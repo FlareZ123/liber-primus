@@ -134,4 +134,21 @@ for (const [reset, parts] of [
 }
 console.log('source p0 body IoC:',ioc(p0.slice(13)).toFixed(7),
   'solved p57 IoC:',ioc(solved).toFixed(7));
+// An independent, simpler 27-character-pad reading: start with the
+// previously recovered retrospective title's 13-key, then append the
+// unmodified 14-rune p7 red colophon. Because first 13 plaintext symbols
+// were used to derive the title key, that opening match is NOT evidence.
+const titleKey = [26,24,8,19,27,24,18,3,0,8,0,16,19];
+const additive27 = [...titleKey, ...red7];
+assert.equal(additive27.length, 27);
+const complete = [ ...p0, ...p1, ...p2 ];
+assert.equal(complete.length, 27*27);
+const mod = (n) => ((n % 29)+29)%29;
+const padDecoded = complete.map((n,i)=>mod(n-additive27[i%27]));
+assert.equal(latin(padDecoded.slice(0,13)), 'EPIPHANYSEECS');
+assert.deepEqual(padDecoded.map((n,i)=>mod(n+additive27[i%27])),complete);
+console.log('repeated27-pad title positive by construction:',latin(padDecoded.slice(0,13)),
+  'original all-body IoC:',ioc(padDecoded.slice(13)).toFixed(7),
+  'p0 body first100:',latin(padDecoded.slice(13,113)));
+
 console.log('PASS: frozen complementary-27 Trifid tests; no plaintext claim');
