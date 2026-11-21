@@ -108,6 +108,24 @@ assert.deepEqual(path27to74,
 assert.equal(path27to74.indexOf(ordinal), 11);
 assert.equal(path27to74.length, 13);
 assert.equal(corpus.pages.find(page => page.page === 0).indices.length, 262);
+assert.equal(K%256, A);
+assert.deepEqual([table[201], table[74], table[205]], [74,205,76]);
+assert.deepEqual([tableTokens[201],tableTokens[74],tableTokens[205]],
+  ["1E","3P","1G"]);
+assert.equal(corpus.pages.find(page=>page.page===55).runic_count, 76);
+const signed = read("resources/historical/cicada2016-4gq25-outguess.asc");
+const firstCoda = signed.slice(signed.indexOf("Seek and"),
+  signed.indexOf("\n\n3301")).match(/[A-Za-z]+/g);
+const lastCoda = signed.slice(signed.indexOf("Beware false paths"),
+  signed.indexOf("7A35090F")).match(/[A-Za-z]+/g);
+assert.deepEqual(firstCoda, ["Seek","and","you","will","be","found","Good","luck"]);
+assert.deepEqual(lastCoda, ["Beware","false","paths","Verify","OpenPGP"]);
+const coda = [...firstCoda,...lastCoda];
+assert.equal(coda.length, 13);
+assert.deepEqual(coda.slice(11),["Verify","OpenPGP"]);
+const edgesBefore201 = path27to74.indexOf(ordinal);
+assert.equal(edgesBefore201, 11);
+assert.equal(table[table[201]],205);
 
 // Historical 2013 participant DH3301 transcript: the actual server used
 // generator2757, secret331, serverPublic1264, clientPublic2800, shared1067.
@@ -188,7 +206,11 @@ console.log(JSON.stringify({
     exponentInverseMod3300:inverseA,orderOfG:order},
   p50:{ordinal,token:tableTokens[ordinal],value:fromTable,
     pathFromBToA:path27to74,vertices:path27to74.length,
-    p57OrdinalPosition:path27to74.indexOf(ordinal)},
+    p57OrdinalPosition:path27to74.indexOf(ordinal),
+    terminalRoute:[201,table[201],table[74],table[205]],
+    p55RuneCount:corpus.pages.find(page=>page.page===55).runic_count,
+    shared586LowByte:K%256, signed2016CodaSize:coda.length,
+    signedCodaSplit:[coda.length-2,2]},
   historicalGeneratorBridge:{g2757ExponentBase1033:discreteLog,
     primeOrdinalOfExponent:primeRank(discreteLog),
     actualHistoricalPublicShare:historical.B},
