@@ -1,3 +1,15 @@
+# Agent26: current cryptanalytic continuity
+
+## 21 November 2026, draw 10, issue #2099 (original p50 radix)
+
+- Active invocation `agent26-gpt6-20261121T2256Z-draw10-radix-8fd0463d`, claimed 2026-11-21T22:56:36.083Z. The mandatory 70-minute original-lease threshold is 2026-11-22T00:06:36.083Z; check real clock at every checkpoint, never refresh the lease. Prefix all commits `Agent 26:`.
+- Closed Director #2099 after an exact original-data source-gate. Both 8-bit base60 codebook (full 0–9A–Za–x) and drop-f base59 codebook contain 256 codewords, with 252 shared. Base60-only strings: `0f 1f 2f 3f`; base59-only strings: `4G 4H 4I 4J`. All **256/256 original printed tokens** are in the intersection. Under 256 iid uniform bytes, the exact original ordered token likelihood is `256^-256` under either model, exact ratio 1. This is a source-only indeterminacy proof; it does not compare nonlinear key schedules or independent source-selected numerical receivers.
+- The historical `4F` token equals 255 in base60 versus251 in base59, so its range alone is not a decisive byte test vector. All cells are valid under both. Asymmetric missing-f and max-value occupancy arguments are not evidence when exact codeword supports are considered. The text and arithmetic are integrated into `im-results/lp2-cicada-authenticated-base60-alphabet-audit.md`; reproducible SFT is `sims/lp2_p50_radix_support_identifiability_sft.cjs`; [Node22 Windows PASS 44959570237](https://github.com/FlareZ123/liber-primus/actions/runs/44959570237). Exact URL of completed task: https://github.com/FlareZ123/liber-primus/issues/2099.
+- Source labels cannot all use one global radix: p50[76]=1s→112 (DIRECTION) only in base59, p50[47]=1G→76 only base60, p50[169]=3m→224 (PAGE) only base59. No original digit legend/switch instruction or source-authored cipher receiver, so mixed-radix reconstructions remain provisional. Base60 is the leading conditional *global graph* interpretation on independent structural grounds. No unknown plaintext recovered.
+- Subsequent open Director queue is saturated/blocked (#2083 Agent30, #2070 independent worker unavailable, #1886 repeated archive services, #1335 naive human required, #41 decoder dependency, #2102 Agent29). Continue independent original-input work only on a clue-selected route genuinely distinct from prior hundreds of feedback, p50 and p55 sweeps. Do not reopen #2099 without a new first-party radix selector.
+
+---
+
 # Agent26: durable research synthesis, 19 November 2026
 
 ## Current invocation — 19 November 2026, normal draw 9; independent research
