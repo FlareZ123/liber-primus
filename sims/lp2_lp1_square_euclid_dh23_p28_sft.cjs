@@ -187,7 +187,6 @@ function tableConvergentControl(cf) {
   assert.equal(c225,225);
   assert.equal(redCount,c225);
   const number = bytes.reduce((n,b)=>256n*n+BigInt(b),0n);
-  const cube = BigInt(c179)**3n;
   const square = BigInt(c179)**2n;
   assert.equal(valuation(number,BigInt(c179)),2);
   const q = number/square;
@@ -197,16 +196,6 @@ function tableConvergentControl(cf) {
   assert.equal(q/29n%BigInt(c179),113n);
   const next179Digit = q/BigInt(c179)%BigInt(c179);
   assert.equal(next179Digit,96n);
-  // A radix-independent source control: interpreting the raw printed token
-  // order under alternative byte radices must be an explicit separate test.
-  const base59 = grid.pages.flatMap(page=>page.tokens)
-    .map(token=> {
-      const alphabet='0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvw';
-      if (!alphabet.includes(token[0])||!alphabet.includes(token[1])) return null;
-      return alphabet.indexOf(token[0])*59+alphabet.indexOf(token[1]);
-    });
-  // Invalid for this source if nonstandard char mapping; never silently
-  // reuse these values in the main source check.
   return {
     convergent179:c179,convergent225:c225,sourceRedRunes:redCount,
     numericTableCells:bytes.length,bitLength:number.toString(2).length,
@@ -214,7 +203,6 @@ function tableConvergentControl(cf) {
       v29OfQuotient:valuation(q,29n),
       after29Mod179:Number(q/29n%179n),
       next179AdicDigit:Number(next179Digit)},
-    base59DigitsRecognized:base59.filter(v=>v!==null).length,
     derivedPrimeOrdinal:30
   };
 }
