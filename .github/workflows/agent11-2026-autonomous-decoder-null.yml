@@ -32,7 +32,7 @@ jobs:
           sed -n '1,100p' /tmp/nov2026-original-output.txt
           echo '--- MATRIX TOKEN COUNT ---'
           node -e "const fs=require('fs');const s=fs.readFileSync('matrix.txt','utf8');const lines=s.trim().split(/\\r?\\n/);console.log('lines',lines.length,'whitespaceTokens',s.trim().split(/\\s+/).length,'bytes',s.length);"
-      - name: Finite original-versus-20 inventory-preserving controls
+      - name: Finite original-versus-160 inventory-preserving controls
         shell: bash
         run: |
           set -euo pipefail
