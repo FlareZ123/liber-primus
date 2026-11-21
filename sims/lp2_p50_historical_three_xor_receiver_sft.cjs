@@ -131,7 +131,7 @@ function main() {
   assert(historical.every(x=>x.length===256));
   const combinations=[];
   for(let mask=0;mask<8;mask++) {
-    const row = xor([source,...historical.filter((_,i)=>(mask&(1<<i))!==0)]);
+    const row = xor([source,Buffer.alloc(256),...historical.filter((_,i)=>(mask&(1<<i))!==0)]);
     const cnt=printableCount(row);
     const entry={mask,printable:cnt,total:256,
       header:hasPlainHeader(row),prefix:row.subarray(0,8).toString("hex")};
