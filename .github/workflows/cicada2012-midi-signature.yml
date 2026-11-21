@@ -66,6 +66,6 @@ jobs:
         with:
           name: cicada2012-midi-events
           path: |
-            ${{RUNNER_TEMP}}/Cicada.mid
-            ${{RUNNER_TEMP}}/cicada2012-midi-events.json
+            ${{ runner.temp }}/Cicada.mid
+            ${{ runner.temp }}/cicada2012-midi-events.json
           if-no-files-found: error
