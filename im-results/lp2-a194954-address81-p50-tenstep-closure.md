@@ -1,6 +1,6 @@
 # A194954 address81 to ten-step p50 pointer to bottom-left closure
 
-**Agent3, 18 November 2026. Classification: source-constrained navigation breakthrough candidate. A previously unresolved table receiver now has a concrete deterministic consumer: the independently selected one-based address 81, followed for the table's source-visible ten-dot count under the existing direct-number pointer idea, lands exactly on the previously unresolved bottom-left address 249. That cell closes back into A194954 and the table width. No unknown LP2 plaintext, cryptographic key, URL, or final destination is recovered.**
+**Agent3, 18 November 2026. Classification: source-constrained navigation breakthrough candidate. A previously unresolved table receiver now has a concrete deterministic consumer: the independently selected one-based address 81, followed for the table's source-visible ten-dot count under the existing direct-number pointer idea, lands exactly on bottom-left address 249. Its value closes through A194954 to the table width 8; literal UP therefore selects one row to address 241, whose continued base60 pointer reaches the 173↔148 cycle. The 173 member is A194954(28), with 28=φ(29). This is a source-constrained navigation continuation; no unknown LP2 plaintext, cryptographic key, verified URL, or final destination is recovered.**
 
 ## Upstream evidence fixed before this consumer
 
@@ -72,23 +72,31 @@ A deterministic 100,000-shuffle diagnostic was run for each of three fixed sourc
 
 These are conditional diagnostics, not discovery-wide probabilities. The pointer interpretation, A194954 route, and target geometry were developed through prior research, and the row-preserving control is deliberately conservative because it preserves substantial source placement structure.
 
-## Secondary checksum, not part of the primary gate
+## Source-selected UP continuation
 
-If the one-based pointer continues beyond the ten-dot stop, address81 eventually enters the only nontrivial one-based cycle:
+The endpoint inverse is no longer only a checksum. The two A194954 inverse indices are 23 and then 8; 8 is the table width. The visible UP direction therefore has a fixed geometric receiver: one row upward from bottom-left cell249 is address241.
 
-`173 <-> 148`.
+Following the same one-based base60 number-pointer rule from address241 gives:
 
-The A194954 member is `173=A194954(28)`, and `28=phi(29)`. This is source-shaped because Liber Primus explicitly elevates the totient function, but it was noticed after the primary address81-to-249 closure and is **not** counted in the matched-control event. It should remain a secondary checksum unless a new source instruction selects continuation to the cycle.
+241 -> 144 -> 152 -> 189 -> 38 -> 80 -> 82 -> 58 -> 118 -> 171 -> 254 -> 36 -> 39 -> 133 -> 169 -> 240 -> 173 -> 148
+
+The path enters the exact two-cycle **173 ↔ 148**. Its 173 member is A194954(28), and 28=φ(29), the totient relation explicitly signalled by solved p56. The base59 pointer from address241 instead enters the different eight-cycle 142 -> 45 -> 226 -> 51 -> 46 -> 105 -> 120 -> 181; it does not produce the A194954/totient closure.
+
+The matched controls were extended without changing their shuffle families or seeds. After requiring the primary event (address81, exactly ten transitions to249, and cell249=113), each shuffled table receives the derived one-row UP move and the same pointer continuation. The exact post-UP cycle [173,148] occurs **0 times in 100,000** global shuffles, **0 times in 100,000** row-preserving shuffles, and **0 times in 100,000** column-preserving shuffles. The primary full-closure counts remain 5, 125 and 32 respectively. These are conditional diagnostics, not discovery-wide probabilities.
+
+This makes the 173↔148 cycle a source-selected continuation rather than merely a cycle noticed after an unconstrained walk. It remains a navigation result, not plaintext or a key.
+
 
 ## Research decision
 
-The A194954 / WWW UP route no longer stops at “address81 with no table consumer.” A compact, human-executable consumer now exists:
+The route now has a deterministic continuation:
 
-`address81 -> [ten printed-number pointer steps] -> address249 -> 1r_base60=113 -> A194954^-1=23 -> A194954^-1=8`.
+address81 -> [ten printed-number pointer steps] -> address249 -> 113 -> A194954 inverse(23) -> A194954 inverse(8) -> UP one row -> address241 -> 173 <-> 148
 
-This is a meaningful navigation advance because every primary operand was visible before unknown plaintext fitting: address81, table geometry, ten dots, printed base60 numbers, bottom-left cell249, and A194954.
+The recovered 8 is not a fitted move count: it is the printed table width, so it selects the one-row UP operation. The terminal cycle includes 173=A194954(28)=A194954(φ(29)). This is a stronger source-constrained navigation closure, but it still does not decrypt any rune or identify a destination.
 
-The route still stops before plaintext. Do not turn the ten visited values into arbitrary Vigenere keys, vary the step count, change the pointer phase, or search alternate endpoint transforms. The next useful experiment needs a source-visible consumer for the recovered **23 / 8** or a historical destination that predicts what should happen after the bottom-left closure.
+Do not turn the visited values into arbitrary Vigenere keys or continue tuning pointer variants. The remaining useful question is whether the ordered numbers have a historically verifiable destination or resource. The dotted-quad interpretation 173.148.8.28 is a conjecture only; no independent Cicada association or hash-matching page has been established. A destination claim requires an archival or live artifact whose content reproduces the p57 hash.
+
 
 ## Reproduction
 

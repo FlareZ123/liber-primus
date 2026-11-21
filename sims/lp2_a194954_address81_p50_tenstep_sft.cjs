@@ -98,6 +98,12 @@ function a194954(count) {
 const sequence = a194954(40);
 assert.equal(sequence[7], 23);
 assert.equal(sequence[22], 113);
+const inverse113 = sequence.indexOf(TARGET_VALUE) + 1;
+const inferredUpStride = sequence.indexOf(inverse113) + 1;
+assert.equal(inverse113, 23);
+assert.equal(inferredUpStride, WIDTH);
+const UP_ADDRESS = TARGET_ADDRESS - inferredUpStride;
+assert.equal(UP_ADDRESS, 241);
 
 const sourcePath = walkOneBased(base60, START_ADDRESS, RED_DOT_STEPS);
 assert.deepEqual(sourcePath, [81, 142, 46, 107, 31, 141, 245, 22, 137, 10, 249]);
@@ -149,6 +155,17 @@ assert.deepEqual(continued.cycle, [173, 148]);
 assert.equal(sequence[27], 173);
 assert.equal(29 - 1, 28);
 
+// Source-selected continuation: the nested inverse gives the table width,
+// so literal UP from bottom-left address249 means one row upward to241.
+const upContinuation = walkToCycle(base60, UP_ADDRESS);
+assert.deepEqual(upContinuation.order, [
+  241, 144, 152, 189, 38, 80, 82, 58, 118, 171, 254,
+  36, 39, 133, 169, 240, 173, 148,
+]);
+assert.deepEqual(upContinuation.cycle, [173, 148]);
+const base59UpContinuation = walkToCycle(base59, UP_ADDRESS);
+assert.deepEqual(base59UpContinuation.cycle, [142, 45, 226, 51, 46, 105, 120, 181]);
+
 /** @param {number} seed @returns {()=>number} */
 function makeRandom(seed) {
   let state = seed >>> 0;
@@ -164,12 +181,13 @@ function makeRandom(seed) {
  * @param {number[][]} groups
  * @param {number} seed
  * @param {number} rounds
- * @returns {{rounds:number,land249At10:number,fullClosure:number}}
+ * @returns {{rounds:number,land249At10:number,fullClosure:number,upExactCycle:number}}
  */
 function shuffleControl(groups, seed, rounds) {
   const random = makeRandom(seed);
   let land249At10 = 0;
   let fullClosure = 0;
+  let upExactCycle = 0;
 
   for (let trial = 0; trial < rounds; trial++) {
     const values = base60.slice();
@@ -185,10 +203,16 @@ function shuffleControl(groups, seed, rounds) {
     const route = walkOneBased(values, START_ADDRESS, RED_DOT_STEPS);
     if (route.at(-1) === TARGET_ADDRESS) {
       land249At10++;
-      if (values[TARGET_ADDRESS - 1] === TARGET_VALUE) fullClosure++;
+      if (values[TARGET_ADDRESS - 1] === TARGET_VALUE) {
+        fullClosure++;
+        const upCycle = walkToCycle(values, UP_ADDRESS).cycle;
+        if (upCycle.length === 2 && upCycle[0] === 173 && upCycle[1] === 148) {
+          upExactCycle++;
+        }
+      }
     }
   }
-  return {rounds, land249At10, fullClosure};
+  return {rounds, land249At10, fullClosure, upExactCycle};
 }
 
 const globalGroups = [Array.from({length: 256}, (_, index) => index)];
@@ -203,9 +227,9 @@ const controls = {
   columnPreserving: shuffleControl(columnGroups, 0x813303, 100000),
 };
 assert.deepEqual(controls, {
-  global: {rounds: 100000, land249At10: 1103, fullClosure: 5},
-  rowPreserving: {rounds: 100000, land249At10: 1148, fullClosure: 125},
-  columnPreserving: {rounds: 100000, land249At10: 943, fullClosure: 32},
+  global: {rounds: 100000, land249At10: 1103, fullClosure: 5, upExactCycle: 0},
+  rowPreserving: {rounds: 100000, land249At10: 1148, fullClosure: 125, upExactCycle: 0},
+  columnPreserving: {rounds: 100000, land249At10: 943, fullClosure: 32, upExactCycle: 0},
 });
 
 const planted = base60.slice();
@@ -231,14 +255,22 @@ console.log(JSON.stringify({
     endpointValue: TARGET_VALUE,
     nestedA194954Inverse: [TARGET_VALUE, 23, 8],
     originalStartsLanding249AtStep10: exactOriginalStarts,
-    continuedCycle: continued.cycle,
+    continuedCycleFrom81: continued.cycle,
+    upContinuation: {
+      from: TARGET_ADDRESS,
+      inferredStride: inferredUpStride,
+      to: UP_ADDRESS,
+      pointerOrder: upContinuation.order,
+      cycle: upContinuation.cycle,
+    },
     secondaryCycleA194954Inverse: [173, 28],
   },
   wrongConventions: {
     dropFBase59Path: base59Path,
     dropFCell249Value: base59[TARGET_ADDRESS - 1],
+    dropFBase59UpCycle: base59UpContinuation.cycle,
     zeroBasedPathFromOneBased81: zeroBasedFromAddress81,
   },
   controls,
-  decision: "Source-fixed one-based address81 plus ten number-pointer steps selects bottom-left cell249; base60 cell249=113 -> A194954^-1 23 -> A194954^-1 8, the table width.",
+  decision: "Source-fixed address81 plus ten pointer steps selects cell249; 113 -> A194954^-1 23 -> A194954^-1 8 gives the table width, so UP moves to241 and the base60 pointer reaches cycle173<->148, with173=A194954(28)=A194954(phi(29)).",
 }, null, 2));
