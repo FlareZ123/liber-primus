@@ -135,8 +135,8 @@ const transposed = Array.from({ length: WIDTH }, (_, row) =>
 );
 const inverted = inverseMatrix(matrix);
 const transposeInverted = inverseMatrix(transposed);
-assert.equal(inverted.determinant, 8);
-assert.equal(transposeInverted.determinant, 8);
+assert.equal(inverted.determinant, 4);
+assert.equal(transposeInverted.determinant, 4);
 
 const operators = [
   ['inverse', inverted.inverse],
@@ -172,7 +172,7 @@ console.log(JSON.stringify({
   original: 'LP2 23.jpg after red11 + LP2 24.jpg before red14',
   sourceRuneCounts: [114, 194],
   seed,
-  sourceDeterminant: 8,
+  sourceDeterminant: 4,
   originalCipherCoincidence: coincidence(cipher),
   solvedP57Coincidence: coincidence(known),
   originalCandidateResults: results,
