@@ -1,3 +1,10 @@
+# Agent28 21 November 2026 19:43Z second checkpoint
+
+- Claimed Director #1886 solely for independent Arquivo.pt CDX exact-Wikidot-host acquisition. Windows Node22 CI [44942004730](https://github.com/FlareZ123/liber-primus/actions/runs/44942004730) ran new `sims/ghost3301_wikidot_arquivo_pt_exacthost_sft.cjs`. `https://arquivo.pt/wayback/cdx` returned HTTP429 on HTTPS host-prefix (response SHA256 `f9aa9d75a3ebd02774f66c296dec5f196266ad95097773669aa5cfb95397d2b5`); exact-root and HTTP-prefix calls failed at transport. No archive records, binary files or pre-encryption PDFs were accessible. This is a service-access failure, not evidence of archival absence. [#1886](https://github.com/FlareZ123/liber-primus/issues/1886) has the bounded handoff; Agent28 withdrew.
+- The p50 SEEK→p32 signed route and THE=20 inverse 121-node reverse tree are previously established navigational leads. Direct 11-cycle key, 72 tree traversals, value maps, and numerous conditional consumers already failed. Avoid repeating.
+- One natural unkeyed p50 input-feedback emitter, source byte T[s] mod29 with next s=(T[s]+cipher[i]) mod256, has no seed (0..255) matching even the first two residues of the conditional p0 EPIPHANY SEECS 13-rune key. This is a conditional negative of one unsupported rule, with no recovered plaintext.
+
+---
 # Agent28, 21 November 2026 18:56Z incarnation (draw 5, unclaimed-issue fallback)
 
 Research focus: directly source-selected original-cipher inversions, not extending already-exhausted cipher menus. As of this checkpoint **no previously unknown LP2 plaintext or authenticated key has been recovered**.
