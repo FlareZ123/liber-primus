@@ -150,3 +150,81 @@ console.log(JSON.stringify({test:"p7 cubing-orbit GF29 three-point five-axis p8 
  originalBodyIOC:ioc(black),solvedP57IOC:ioc(native),
  exactOriginalRoundTrips:8,syntheticNativeRecoveries:8,
  recoveredUnknownPlaintext:false,tensorResults},null,2));
+
+
+/**
+ * Independent two-layer receiver: the source p7 products reversed are the
+ * previously established quartic/Shamir coefficients [2,15,8,26,11].
+ * The p8 second red-word product 3 selects a pointwise cube; Roman XIX
+ * selects its inverse x^19. Test only the four unkeyed layer-order choices.
+ * GF29 cyclic convolution is invertible on the exact 243-rune p8 body.
+ * Earlier Shamir gate tested standalone convolution but not this composition.
+ */
+const quartic=products.slice().reverse();
+assert.deepEqual(quartic,[2,15,8,26,11]);
+/** @param {number[]} a @returns {number[]} */
+const cube=a=>a.map(x=>pow(x,3));
+/** @param {number[]} a @returns {number[]} */
+const cubeRoot=a=>a.map(x=>pow(x,19));
+/** @param {number[]} a @returns {number[]} */
+function convolute(a) {
+  const out=Array(a.length).fill(0);
+  for(let i=0;i<a.length;i++)
+    for(let j=0;j<quartic.length;j++)
+      out[(i+j)%a.length]=mod(out[(i+j)%a.length]+quartic[j]*a[i]);
+  return out;
+}
+/** @param {number[]} a @returns {number[]} */
+function unconvolute(a) {
+  const n=a.length;
+  const rows=Array.from({length:n},(_,i)=>{
+    const row=Array(n+1).fill(0);
+    for(let j=0;j<quartic.length;j++)row[(i-j+n)%n]=quartic[j];
+    row[n]=a[i];return row;
+  });
+  for(let col=0;col<n;col++){
+    let pivot=col;
+    while(pivot<n && rows[pivot][col]===0)pivot++;
+    assert(pivot<n,"quartic must be invertible in GF29[X]/(X^243-1)");
+    [rows[col],rows[pivot]]=[rows[pivot],rows[col]];
+    const reciprocal=pow(rows[col][col],27);
+    for(let j=col;j<=n;j++)rows[col][j]=mod(rows[col][j]*reciprocal);
+    for(let r=col+1;r<n;r++)if(rows[r][col]){
+      const factor=rows[r][col];
+      for(let j=col;j<=n;j++)rows[r][j]=mod(rows[r][j]-factor*rows[col][j]);
+    }
+  }
+  const solved=Array(n).fill(0);
+  for(let i=n-1;i>=0;i--){
+    let val=rows[i][n];
+    for(let j=i+1;j<n;j++)val=mod(val-rows[i][j]*solved[j]);
+    solved[i]=val;
+  }
+  assert.deepEqual(convolute(solved),a);
+  return solved;
+}
+const composition=[
+ {name:"Qinverse-then-root",decode:a=>cubeRoot(unconvolute(a)),
+  encode:a=>convolute(cube(a))},
+ {name:"root-then-Qinverse",decode:a=>unconvolute(cubeRoot(a)),
+  encode:a=>cube(convolute(a))},
+ {name:"Q-then-root",decode:a=>cubeRoot(convolute(a)),
+  encode:a=>unconvolute(cube(a))},
+ {name:"root-then-Q",decode:a=>convolute(cubeRoot(a)),
+  encode:a=>cube(unconvolute(a))}
+];
+const fullPlant=[...native,...native,...native.slice(0,53)];
+const composedResults=[];
+for(const model of composition){
+  const decoded=model.decode(black);
+  assert.deepEqual(model.encode(decoded),black);
+  assert.deepEqual(model.decode(model.encode(fullPlant)),fullPlant);
+  const score=ioc(decoded);
+  assert(score<.037);
+  composedResults.push({map:model.name,ioc:score,
+    first100:spell(decoded.slice(0,100))});
+}
+console.log(JSON.stringify({test:"p7 quartic convolution plus p8 red cube/root",
+ quartic,sourceBlackRunes:black.length,recoveredUnknownPlaintext:false,
+ exactOriginalReplays:4,exactNativePlantedRecoveries:4,
+ composedResults},null,2));
