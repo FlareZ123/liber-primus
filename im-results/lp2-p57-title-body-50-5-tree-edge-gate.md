@@ -1,6 +1,6 @@
 # PARABLE black/red rune tape and the conditional 58-node p50 tree
 
-**Agent37, 21 November 2026 | Evidence:** exact source-visible 50+5+2 rune/graph edge correspondence, with original ciphertext and solved-source consumer gates. **No unknown LP2 plaintext, authentic new cipher key or solved destination.**
+**Agent37, 21 November 2026 | Evidence:** exact source-visible 50+5+2 rune/graph edge correspondence, with original ciphertext and solved-source consumer gates, including the reverse-edge-ordinal p56-clock rejection. **No unknown LP2 plaintext, authentic new cipher key or solved destination.**
 
 ## Source geometry: a 57-rune label tape for a 57-edge tree
 
@@ -56,14 +56,35 @@ Fix the same provisional inorder mapping over the 56-node component rooted201. A
 
 All claims refer to source-fixed inverse families; no source key, page order, crib location, or ciphertext symbol has been fitted after decoding. The real clear p57 has GP29 IoC **0.06270997**, and the proposed decoded unknown pages remain essentially uniform.
 
+## Reverse edge-ordinal p56 prime-clock consumer (Agent11, 21 November 2026)
+
+**Fixed source-motivated hypothesis.** Use the existing conditional root205 tree and the published 57-edge label assignment: p0–49 receive the 50 black body interiors, p50 receives red title endpoint P, p51–55 receive the five red PARABLE interiors, and p56 receives endpoint E; clear p57 is the unlabelled root. The p50 numerical page keeps its edge slot despite containing no runes. Since the solved p56 page is the last labelled edge and its authentic consecutive-prime-totient clock starts at prime index0, count edge positions backward from p56: for each physical page p0–56, set the p56 prime-stream start to **56−p**. Thus p56 starts0, p50 occupies blank slot6, and p57 has no edge/clock. This is a single fixed ordinal consumer, distinct from using node addresses or edge-rune values as prime starts.
+
+**Known controls.** The independently encoded 85-rune solved p56 plaintext re-encrypts exactly to its original ciphertext at the predicted start0. Clear p57 remains the 95-rune zero-edge endpoint. The full original p57 57-label inventory is checked from the printed word boundaries and canonical GP transcription.
+
+**Exact unknown-page result.** Across55 rune-bearing pages (12,956 original runes), **54 are algebraically impossible** under the authentic p56 F-transparent inverse. Only **p15** survives, with start41 and exactly one legal inverse path. That full-page candidate has GP29 IoC **0.03463100**, still essentially the untouched-ciphertext baseline and far below clear p57 **0.06270997**. No unknown plaintext is recovered. First impossible zero-based rune offsets:
+
+```text
+p0:41 p1:3 p2:18 p3:167 p4:7 p5:41 p6:18 p7:103 p8:14 p9:2
+p10:7 p11:187 p12:11 p13:71 p14:0 p16:17 p17:17 p18:25 p19:165
+p20:141 p21:0 p22:9 p23:90 p24:23 p25:20 p26:4 p27:3 p28:11 p29:5
+p30:5 p31:3 p32:13 p33:91 p34:2 p35:63 p36:10 p37:35 p38:142 p39:28
+p40:60 p41:112 p42:93 p43:19 p44:5 p45:7 p46:114 p47:0 p48:4 p49:57
+p51:31 p52:223 p53:152 p54:11 p55:3
+```
+
+**Decision.** Retire this exact reverse-edge-ordinal prime-clock consumer. The positive p56 and clear p57 controls pass, but the frozen original pages do not. This does not reject the 50+5+2 edge inventory, the provisional page-node assignment, or a different independently sourced edge-state update. Do not extend this branch to alternative offsets or traversal orders without a new original clue.
+
+**Reproduction:** [standalone original-input Node22 SFT](../sims/lp2_p57_edge_ordinal_p56_clock_gate_sft.cjs). Run with `node sims/lp2_p57_edge_ordinal_p56_clock_gate_sft.cjs` from the repository root.
 ## Decision and prospective breakthrough test
 
-The original two-color **50+5+2** tape matching all **57** table-tree edges is a new concrete *candidate clue*, and the depth-0-clear / depth-1-solved structure offers a rare path to independent calibration. It supplies **neither authentic creator intent nor the unknown book's decipherment**. The direct periodic edge-path, direct page-prime seed and shared outer authentic-p56 layer are now bounded negatives.
+The original two-color **50+5+2** tape matching all **57** table-tree edges is a concrete *candidate clue*, and the depth-0-clear / depth-1-solved structure offers a route to independent calibration. It supplies **neither authentic creator intent nor the unknown book's decipherment**. The direct periodic edge-path, direct page-prime seed, shared outer authentic-p56 layer, and reverse edge-ordinal p56 prime-clock consumer are now bounded negatives. The reverse ordinal preserves both p56 and p57 controls but leaves only p15 with one near-uniform legal path.
 
-The next causal experiment should start with a **specific edge-state rule independently selected from original Cicada instructions**. It must reproduce **both** the genuine 85-rune p56 encryption under its real initial clock and the 95-rune clear p57 endpoint, then predict at least one untouched original ciphertext passage such as p55's 76 runes without tuning that passage. Until this is possible, assigning additional arbitrary permutations or cipher layers to the graph would be numerological overfitting.
+The next causal experiment should start with a **different specific edge-state rule independently selected from original Cicada instructions**. It must reproduce **both** the genuine 85-rune p56 encryption under its real initial clock and the 95-rune clear p57 endpoint, then predict at least one untouched original ciphertext passage such as p55's 76 runes without tuning that passage. Until this is possible, assigning additional arbitrary permutations or cipher layers to the graph would be numerological overfitting.
 
 ## Standalone original-input evidence
 
 - [Source title/body 50+5 and eight edge-path/2 prime-seed original gates](../sims/lp2_p57_title_body_50_5_edge_key_sft.cjs), [Windows Node22 PASS run44954179759](https://github.com/FlareZ123/liber-primus/actions/runs/44954179759).
 - [Full 58-node/57-edge color-tape source gate, real solved-p56 known plaintext and 55 original outer-layer inverses](../sims/lp2_p57_58node_color_edges_p56_outerlayer_sft.cjs), [Windows Node22 PASS run44954785155](https://github.com/FlareZ123/liber-primus/actions/runs/44954785155).
+- [Reverse edge-ordinal p56 clock gate, original 55-page inverse and p56/p57 controls](../sims/lp2_p57_edge_ordinal_p56_clock_gate_sft.cjs).
 - Earlier independent [PARABLE prime-rank graph](lp2-parable-threeprime-whole-graph-58-8-56.md) and [p57 unpartitioned 55 interior rune seed gate](../sims/lp2_p57_55interior_pageprime_fskip_sft.cjs).
