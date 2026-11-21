@@ -56,6 +56,53 @@ const plant=Array.from({length:C.length},(_,i)=>solved[i%solved.length]);
 const plantCipher=plant.map((x,i)=>mod29(x+key[i]));
 assert.deepEqual(plantCipher.map((x,i)=>mod29(x-key[i])),plant);
 assert.ok(ioc(P)>0.037 && ioc(P)<0.0371);
+/**
+ * Exhaust the source-authenticated p56 plaintext-F-transparent clock.
+ * @param {number[]} ciphertext
+ * @param {number[]} keystream
+ */
+function decodeTransparentF(ciphertext,keystream){
+  let states=[{consumed:0,plain:[]}];
+  for(let i=0;i<ciphertext.length;i++){
+    const next=[];
+    for(const state of states){
+      if(ciphertext[i]===0){
+        next.push({consumed:state.consumed,plain:state.plain.concat(0)});
+      }
+      if(state.consumed<keystream.length){
+        const value=mod29(ciphertext[i]-keystream[state.consumed]);
+        if(value!==0){
+          next.push({consumed:state.consumed+1,plain:state.plain.concat(value)});
+        }
+      }
+    }
+    states=next;
+    if(states.length===0)return {firstImpossible:i,states};
+  }
+  return {firstImpossible:null,states};
+}
+const originalTransparent=decodeTransparentF(C,key);
+assert.equal(originalTransparent.firstImpossible,13);
+assert.equal(originalTransparent.states.length,0);
+assert.equal(C[13],17);
+assert.equal(key[13],17);
+assert.equal(C.findIndex(x=>x===0),29);
+
+// Independent native solved-GP positive for the same transparent-F operation.
+let consumed=0;
+const transparentPlantCipher=plant.map((plain)=>{
+  if(plain===0)return 0;
+  const value=mod29(plain+key[consumed]);
+  consumed++;
+  return value;
+});
+assert.equal(consumed,118);
+const transparentPlant=decodeTransparentF(transparentPlantCipher,key);
+assert.equal(transparentPlant.firstImpossible,null);
+assert.equal(transparentPlant.states.length,27);
+assert.ok(transparentPlant.states.some(({plain})=>
+  plain.every((value,i)=>value===plant[i])
+));
 console.log(JSON.stringify({
   classification:"NEGATIVE: no 121-rune p32 original plaintext from fixed quotient-sum key",
   source:"P29/G plus P30/J aligned on constants, then signed AND/YOU",
@@ -67,5 +114,11 @@ console.log(JSON.stringify({
   decodedIoc:ioc(P),
   decodedAll121:asText(P),
   exactReencryption:true,
-  exactNativeGPPlant:true
+  exactNativeGPPlant:true,
+  p56TransparentF:{originalFirstImpossibleZeroBased:originalTransparent.firstImpossible,
+    originalFirstCipherF:C.findIndex(x=>x===0),
+    impossibleCipherAndKeyValue:C[13],
+    completedOriginalPaths:originalTransparent.states.length,
+    nativePlantCompletePaths:transparentPlant.states.length,
+    exactNativePlantRecovered:true}
 },null,2));
