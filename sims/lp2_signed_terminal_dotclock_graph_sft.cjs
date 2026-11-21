@@ -86,6 +86,21 @@ const page56Length = assertEndDots(56, 13);
 const page57Length = assertEndDots(57, 23);
 assert.deepEqual([page55Length, page56Length, page57Length], [76, 85, 95]);
 
+const selectedP55Scan = bytes[rawDirection];
+const p55ScanClock = walk(selectedP55Scan, 13);
+const p56ScanClock = walk(bytes[variantDirection], 13);
+const p57ScanClock = walk(bytes[201], 23);
+assert.deepEqual(p55ScanClock, [
+  72,164,105,63,51,59,69,73,79,82,201,74,205,76
+]);
+assert.equal(p55ScanClock.at(-1), page55Length,
+  'p55 physical scan72 plus original red13 terminates at its exact 76-rune count');
+// A universal physical-scan-root punctuation clock has two known failures.
+assert.equal(p56ScanClock.at(-1), 203);
+assert.notEqual(p56ScanClock.at(-1), page56Length);
+assert.equal(p57ScanClock.at(-1), 47);
+assert.notEqual(p57ScanClock.at(-1), page57Length);
+
 const route55 = walk(98, 13);
 const route56Alternate = walk(112, 13);
 const route57 = walk(205, 23);
@@ -118,6 +133,8 @@ console.log(JSON.stringify({
     originalPage: 55,
     terminalDots: 13,
     route: route55,
+    physicalScanRootRoute: p55ScanClock,
+    scanRootMatchesRuneCount: p55ScanClock.at(-1) === page55Length,
     reached: route55.at(-1),
     independentP57ClausePrimeOrdinal: 205
   },
@@ -137,6 +154,11 @@ console.log(JSON.stringify({
     cycleSize: 11,
     reached: route57.at(-1),
     p55SourceRuneCount: page55Length
+  },
+  physicalScanRootSolvedControls: {
+    p56: {terminalDots: 13, result: p56ScanClock.at(-1), actualRunes: page56Length},
+    p57: {terminalDots: 23, result: p57ScanClock.at(-1), actualRunes: page57Length},
+    universalLengthRule: false
   },
   interpretation: 'Punctuation-sized pointer walks are a prospective human route, not a written opcode; no plaintext recovered'
 }, null, 2));
