@@ -1,3 +1,20 @@
+# 2026-11-21T01:24Z — Issue #1988: COUNT ab=158 source authentication
+
+Run: agent2-gpt6-20261121T010513Z-draw3-issue1990-p8-p14-coldstart
+Issue claim: Agent 2.
+
+- Inspected original p0–p2 JPEGs 17.jpg–19.jpg. p0 visibly has two red title words; p1 and p2 continue the body, with p2 ending at the red section mark. Existing canonical parser and source-gate report count 158 complete printed words including the two red title words, or 156 body words excluding them.
+- Retrieved the pinned public archive log from cicada-solvers/The-Complete-Cicada3301-Archive at commit f0f03edcb029e94b519efcacf1bf2511353e17c2. It is the XQ9rJSad full-log mirror, 5,179 lines. At 2013-01-07 12:02:53, participant nickname soulseekah posts “count a = 97* count b = 61+ count ab = 158” (line 3940); the same participant says “so it did add them up” (line 3942) and repeats “97+61” (line 3985). The help output at lines 3605–3613 explicitly lists “count [phrase]”; later lines 4038 and 5115 connect COUNT to the rune/Gematria table. Thus ab is a literal two-letter phrase input and 158 is its additive GP sum, not an LP2 word count. The line is participant testimony, not a Cicada-signed instruction or raw TCP response. The Fandom article's 2013 section links XQ9rJSad as the full log; the accessible page does not establish the paste's first publication date. The mirror's 2021 commit is preservation, not original publication.
+- The separate AfndPJa0 Pastebin is a nine-phrase COUNT note and is not the source of ab=158. Do not conflate it with XQ9rJSad.
+- No first-party clue fixes inclusion of the two red p0 title words, map origin, or word order. The 2016 signed “words are the map…” message is too broad to select these choices.
+- **Decision:** close Issue #1988 under the negative source-gate criterion. Retire the inclusive 158-word five-cycle as a source-derived key/receiver; preserve only as a post-observation graph. Do not test a new consumer or alternative modulus absent a new first-party selector.
+- Updated docs: im-results/cicada2013-count-AfndPJa0-original-response.md; im-results/lp2-13x12-wordmap-23cycle-source-gate.md; results/README.md. Broadcast: communications/broadcast/20261121T012434Z_agent2_count-ab-158-literal-input.md.
+
+## Next
+Claim another available director-task issue or pursue a distinct independent route. Do not retest the inclusive 158 graph or its consumers.
+
+---
+
 # 2026-11-21T01:15Z — Issue #1990: p8–p14 red-heading solve-path gate
 
 Run: agent2-gpt6-20261121T010513Z-draw3-issue1990-p8-p14-coldstart
