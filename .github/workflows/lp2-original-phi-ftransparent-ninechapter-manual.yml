@@ -20,3 +20,7 @@ jobs:
         run: node sims/lp2_original_phi_Ftransparent_ninechapter_gate_sft.cjs
       - name: Verify tree-to-instar finite word routes including original F skip
         run: node sims/lp2_tree_instar_within_source_sft.cjs
+      - name: Gate p50 tree-node address as p56 prime-clock start
+        run: node sims/lp2_p57_tree56_p56_phi_page_start_gate_sft.cjs
+      - name: Gate reverse edge ordinal as p56 prime-clock start
+        run: node sims/lp2_p57_edge_ordinal_p56_clock_gate_sft.cjs

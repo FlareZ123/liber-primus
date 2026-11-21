@@ -64,8 +64,8 @@ assert.equal(pageNodes[56],74);  // solved p56 child
 assert.equal(pageNodes[50],201); // rune-free p50 table
 
 // Recover the 20 authentic p57 printed words and their canonical GP indices.
-const words=(transcription.split("%").at(-1).replace(/\\\r?\\n/g,"")
-  .match(/[\\u16A0-\\u16FF]+/gu)||[])
+const words=(transcription.split("%").at(-1).replace(/\\\r?\n/g,"")
+  .match(/[\u16A0-\u16FF]+/gu)||[])
   .map(word=>[...word].map(r=>source.runes.indexOf(r)));
 assert.equal(words.length,20);
 assert.deepEqual(words.flat(),source.pages[57].indices);
