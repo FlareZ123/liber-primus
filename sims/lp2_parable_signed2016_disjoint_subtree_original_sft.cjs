@@ -100,6 +100,17 @@ function canonicalShape(rootId,nodes) {
 const isomorphic56 = canonicalShape(201,parable56) === canonicalShape(20,signed56);
 assert.equal(isomorphic56,false);
 
+/** @param {number[]} a */
+function normalizedIoc(a) {
+  const freq = Array(29).fill(0);
+  for (const n of a) freq[n]++;
+  return 29 * freq.reduce((s,n)=>s+n*(n-1),0)/(a.length*(a.length-1));
+}
+const directParable56GP = parable56.map(n=>parent[n]%29);
+const directSigned56GP = signed56.map(n=>parent[n]%29);
+assert(Math.abs(normalizedIoc(directParable56GP)-1.3558441558441559)<1e-12);
+assert(Math.abs(normalizedIoc(directSigned56GP)-1.111038961038961)<1e-12);
+
 const op = orbit(201), os = orbit(20);
 const shared = op.filter(n=>os.includes(n));
 assert.deepEqual(new Set(shared),new Set([76,114,197,115,247,192,0,203,68,199,47]));
@@ -128,6 +139,7 @@ console.log(JSON.stringify({
   signedTHE_DEVOTED_Physical32:signed,
   signedDescendantSizes:signed.slice(0,2).map(n=>descendants(n).length),
   twoSource56Trees:{sizeEach:56,intersectingNodes:[],unlabeledTreeIsomorphism:isomorphic56},
+  directBase60GP29LowDigitReadoutIoC:{parable56:normalizedIoc(directParable56GP),signed56:normalizedIoc(directSigned56GP)},
   signedNode32BelongsToParable58:false,
   sharedDownstream11Cycle:shared,
   sortedChildrenPostorderFinalThree:post.slice(-3),
