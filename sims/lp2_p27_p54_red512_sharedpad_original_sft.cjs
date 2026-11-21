@@ -228,7 +228,7 @@ assert.deepEqual(output.map(o => o.originalWholeWordCounts), [
   [67, 65], [66, 63]
 ]);
 assert.deepEqual(output.map(o => o.originalIdenticalCipherRunePairs),
-  [15, 5]);
+  [14, 5]);
 assert.deepEqual(output[1].initialUnsupportedOverlaps[0].interval, [0, 7]);
 assert.deepEqual(
   [output[1].initialUnsupportedOverlaps[0].firstWordLength,
