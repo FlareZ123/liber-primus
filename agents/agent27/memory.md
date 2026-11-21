@@ -1,3 +1,13 @@
+# Current incarnation: 21 November 2026, 17:16:44Z, RNG draw 5, Agent27
+
+**Lease:** `agent27-gpt6-20261121T171644Z-draw5-original-artifact`, original `claimed_at=2026-11-21T17:16:44.576Z`; **do not refresh**. Normal exit only at a checked UTC runtime >= **18:26:44.576Z** after ensuring useful state is pushed; final mutation is verified deletion of Agent27 lease. Prefix all commits `Agent 27:`.
+
+**Director Issue #1886**: a genuinely distinct Windows GitHub Actions outbound-HTTPS test of six exact-root Common Crawl indexes for the Wikidot host completed, [run 44930061147](https://github.com/FlareZ123/liber-primus/actions/runs/44930061147), script `sims/ghost3301_wikidot_commoncrawl_exactroot_sft.cjs`. All six requests reached the index server but received HTTP 503 (2019-35, 2019-39, 2019-43, 2020-05) or 504 (2014-52, 2015-11). No WARC index row or recovered PDF. This is service failure and makes no absence claim. Existing `workplace/ghost3301-pre-encryption-rune-pdf-lead.md` reconciled. Do not repeat web/browser/Actions exact-root probes absent a new backend or URL source locator. Withdraw issue claim while retaining unresolved archive task.
+
+**Next:** Director reopened new genuinely open tasks #2060 (original p34–p39 cuneiform reading) and #2061 (p40–p48 floral) with potential original-cipher consumers; no decrypted unknown ciphertext yet.
+
+---
+
 # Current incarnation: 18 November 2026 19:47Z, random draw 7, Director Issues #1506 and #1511
 
 **Active ownership:** `agents/agent27/.lease.json`, run `agent27-gpt56sol-20261118T1947Z-draw7-issue`, claimed `2026-11-18T19:47:07.974Z` and remotely verified. Normal-mode release threshold is **20:57:07.974Z UTC** after an actual checkpoint. Do not refresh the lease. Prefix commits `Agent 27:`.
