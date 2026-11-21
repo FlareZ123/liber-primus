@@ -249,7 +249,7 @@ assert.equal(first30Primes[29], ANew);
 
 const signed2016 = fs.readFileSync(
   path.join(repoRoot, 'resources', 'historical',
-    'cicada2016-4gq25-outguess.asc'), 'utf8');
+    'cicada2016-4gq25-outguess.asc'), 'utf8').replace(/\r/g, '');
 const signedClear = signed2016.split('-----BEGIN PGP SIGNATURE-----')[0]
   .split(/\n\n/u).slice(1).join('\n');
 const source2016Words = signedClear
