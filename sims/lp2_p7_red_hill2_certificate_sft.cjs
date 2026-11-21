@@ -182,6 +182,44 @@ const dotHill2Prefix = dotHill2Plain.slice(0,55)
 assert.ok(Math.abs(29*ioc(dotHill2Plain)-1.0002153003674148)<1e-12);
 assert.ok(Math.abs(29*ioc(dotInterleaved)-0.9992651704851279)<1e-12);
 
+// Original p6 red11 ends at offset82; p7 red14 begins at offset194.
+// This prints exactly 308 = 28*11 unred GP rune symbols. The source
+// p7 Hill2 matrix itself has multiplicative order28 over GF29, checked
+// explicitly, so the 28x11 shape is a genuinely source-addressable
+// alternate receiver. Apply ONE row-adjacent columnwise Hill2 inverse.
+let order = 0;
+let power = [1,0,0,1];
+do {
+  power = matrixProduct(power,matrix);
+  order++;
+  assert.ok(order <= 840);
+} while (!power.every((v,i)=>v===[1,0,0,1][i]));
+assert.equal(order,28);
+const betweenReds = corpus.pages[6].indices.slice(82)
+  .concat(corpus.pages[7].indices.slice(0,194));
+assert.equal(betweenReds.length,308);
+const rows = 28, columns = 11;
+/**
+ * @param {number[]} source
+ * @param {number[]} key
+ * @returns {number[]}
+ */
+function rowPairHill2(source,key) {
+  assert.equal(source.length,rows*columns);
+  const target = source.slice();
+  for(let row=0;row<rows;row+=2) {
+    for(let column=0;column<columns;column++) {
+      const i=row*columns+column, j=(row+1)*columns+column;
+      target[i]=mod(key[0]*source[i]+key[1]*source[j]);
+      target[j]=mod(key[2]*source[i]+key[3]*source[j]);
+    }
+  }
+  return target;
+}
+const rowPairPlain = rowPairHill2(betweenReds,inverse);
+assert.deepEqual(rowPairHill2(rowPairPlain,matrix),betweenReds);
+assert.ok(Math.abs(29*ioc(rowPairPlain)-0.9832691738229198)<1e-12);
+
 const result = {
   classification:"New exact p7 GP29 2x2 matrix+inverse-determinant certificate; direct receiver negative",
   fiveOriginalRedWordProducts:products, matrix, determinant:det,
@@ -202,6 +240,14 @@ const result = {
     ciphertextNormalizedIoC:29*ioc(dotInterleaved),
     decodedNormalizedIoC:29*ioc(dotHill2Plain),
     decodedPrefix55:dotHill2Prefix,exactReencrypt:true
+  },
+  sourceBracketingGapHill2Receiver:{
+    sourceMatrixOrder:order,sourceRedP6KeyWidth:11,
+    gap:308,rows,columns,
+    inputNormalizedIoC:29*ioc(betweenReds),
+    decodedNormalizedIoC:29*ioc(rowPairPlain),
+    prefix80:rowPairPlain.slice(0,80).map(v=>corpus.translit[v]).join(""),
+    exactReencrypt:true
   },
   recoveredUnknownPlaintext:false
 };
