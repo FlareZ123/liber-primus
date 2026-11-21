@@ -55,6 +55,33 @@ assert.equal(sum(lengths.slice(13)), 50);
 assert.equal(pages.filter(p => p.words.length === 26).length, 1);
 assert.equal(pages.filter(p => sum(p.words.slice(0,13).map(x => [...x].length)) === 71).length, 1);
 
+/**
+ * The 13/13 word split is exactly the *visually printed* 3-line/3-line
+ * split, a much stronger author-visible boundary than a guessed word cut.
+ * The source transcript uses / to preserve image line endings.
+ */
+const lineInfo=runeGroups.map((text,index)=>{
+  const lines=text.split('/').filter(line=>runeWords(line).length>0);
+  return {
+    page:index<50?index:index+1,
+    lengths:lines.map(line=>runeWords(line).join('').length),
+    words:lines.map(line=>runeWords(line).length),
+  };
+});
+const p32Lines=lineInfo.find(x=>x.page===32);
+assert.deepEqual(p32Lines.lengths,[25,23,23,21,22,7],
+  'original image six printed lines are visibly asymmetric');
+assert.deepEqual(p32Lines.words,[5,4,4,5,6,2]);
+assert.equal(sum(p32Lines.lengths.slice(0,3)),71);
+assert.equal(sum(p32Lines.lengths.slice(3)),50);
+assert.equal(sum(p32Lines.words.slice(0,3)),13);
+assert.equal(sum(p32Lines.words.slice(3)),13);
+assert.deepEqual(lineInfo.filter(x=>x.lengths.length===6).map(x=>x.page),[22,32]);
+assert.deepEqual(lineInfo.filter(x=>x.words.length===6
+  && sum(x.words.slice(0,3))===13
+  && sum(x.words.slice(3))===13).map(x=>x.page),[32]);
+
+
 // Exact GP29 terms in the authenticated signed words, encoding K as C.
 /** @param {string} source */
 function gp0(source) {
@@ -172,6 +199,9 @@ console.log(JSON.stringify({
   source: 'p32 121 runes / 26 physical word groups / terminal red13-dot',
   signed_gp0: {SEEKS:71, EMPTY:92, EPIPHANY:121, THE:20},
   word_half13: [sum(lengths.slice(0,13)),sum(lengths.slice(13))],
+  physical_line_lengths:p32Lines.lengths,
+  physical_line_wordcounts:p32Lines.words,
+  unique_6_line_13_and_13_wordgroups:true,
   uniqueness: 'only p32 in all 57 rune-bearing physical pages has exactly26 words and first13 total71 runes',
   base60_root115_tree_depth13_nonroot:sum(layers.slice(0,13)),
   base60_root115_outer14to20:sum(layers.slice(13)),
