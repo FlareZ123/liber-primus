@@ -37,6 +37,46 @@ The fifth original red word therefore supplies **exactly the inverse of the dete
 
 This is an interesting independent algebraic *use* of the packet, but the source supplies **no printed 2×2 matrix bracket, matrix multiplication command, padding convention, pair clock, selected receiver, or encryption direction**. A determinant certificate could be accidental among the project-wide numbers and other studied transforms. It cannot be promoted to a genuine historical key without a plaintext witness.
 
+## Cross-field original-red determinant triad: DH values 2, 3, 15
+
+The **printed words** of the two adjacent red spans provide a second, more tightly typed algebraic interpretation than the Hill key alone. P6's four original red words have whole-word **GP0 sums** `[71,19,65,26]`; p7's five have sums `[26,65,23,42,53]`. The p6 last two sums and p7 first two sums are literally reversed, an independently established original-page boundary clue. Interpret *each natural first-four-word sequence*, without inventing cuts, as one row-major 2×2 matrix of numerical values and take its determinant modulo29:
+
+```text
+p6 red4, whole-word GP0 sums: [[71,19],[65,26]]
+      det = 71*26 - 19*65 = 611 = 2 mod29
+
+p7 red5, whole-word GP0 sums: [[26,65],[23,42]]
+      det = 26*42 - 65*23 = -403 = 3 mod29
+
+p7 red5, whole-word GP0 products: [[11,26],[8,15]]
+      det = 11*15 - 26*8 = -43 = 15 mod29
+      fifth word product = 2 = inverse(15) mod29
+```
+
+These **three distinct source-original determinants are exactly `[2,3,15]`**. In the separately reconstructed signed 2013/2016 DH23 worked example, they match the labeled values `K=2` (shared secret), `e=3` (the inverse of private b modulo22), and `b=15` (server private exponent). Their existing cross-field relations hold exactly:
+
+```text
+15 * 2 = 1 mod29        (p6 sum determinant, p7 product determinant)
+15 * 3 = 1 mod22        (DH private exponent b and inverse e)
+```
+
+The p7 first red word's rune values already spell the operand pair `[p,e]=[23,3]`; here the exact determinant `3` is independently computed from its full first four original **word sums**, rather than taking that rune as an exponent. The typed identity links two visible red spans and the separately sourced DH line6 state, though the matrix/determinant operation was **noticed after** studying that DH tuple. Neither p6 nor p7 prints an explicit 2×2 matrix boundary or a direction to compute determinants. This is mathematically reproducible **candidate key/state material**, still not authenticated author-intended decoding.
+
+### Original source-wide family census
+
+Charge the exact **first-four-word row-major determinant** operation against every permissible complete-page original word window. The p6 sum-side condition `det(sum4)=2` occurs in **106 of 2,785 four-word windows**. For all **2,729 five-word windows**, the p7-side clauses have these counts:
+
+| Condition on five consecutive source words | Original windows |
+| --- | ---: |
+| `det(first4 whole-word GP0 sums)=3` | 95 |
+| `det(first4 whole-word GP29 products)=15` | 90 |
+| Both determinant values 3 and15 | 5 |
+| Both, and fifth-word GP29 product is shared DH `K=2` | **1**, p7 red offset194 |
+
+The five-word simultaneous triple is unique under the fixed order, *conditional on selecting the DH numbers and GP sum/product choice after viewing the source*. It is distinct from the 83 generic Hill inverse-determinant certificates and the existing reciprocal-pair census, but these conditions are correlated and must **not** be multiplied into a tiny authorship probability. We did not scan arbitrary matrix layouts or scramble selected numbers to force a signal.
+
+The cross-field inverses strengthen the **DH-state serialization** interpretation of p6/p7 red text and explain why considering word sums *and* word products yields the exact same previously authenticated state values. What remains missing is a first-party rule connecting that state to a specific ciphertext receiver and an actual original plaintext. There is no independent evidence that a GP29 determinant itself encrypts the black text.
+
 ## Finite source population: generic certificates are frequent
 
 Freeze the five-word row-major rule exactly as above for all **2,729 original same-physical-page consecutive five-word windows** on unknown LP2 p0–55. For each candidate `q0..q4` of word products, count:
@@ -101,8 +141,8 @@ This fully reproducible, source-shaped **nonstationary matrix-pad candidate is a
 
 ## Research decision
 
-Preserve the source-exact p7 five-word Hill-2 inverse-determinant **candidate key packet** as a distinct interpretation of the DH inverse-state register. **Reject** its three natural complete source-bound consumers: the literal next-illustrated-page phase-zero Hill-2 receiver, and the manuscript's independently discovered p7 five-dot interleaver + p10 numeral7 + Hill-2 inverse across the entire 1,730-symbol p8–14 section. The 28×11 red-bracketed vertical Hill-2 consumer, the source-seeded 28-step matrix pad, and a continuous p8–14 raw paired-section inverse also fail. The packet is not a verified Liber Primus encryption key. Do not rescue this negative with extra pair offsets, changed read direction, nonlinear key adaptations, other original pages chosen by IoC, or a free Hill-family search.
+Preserve the source-exact p7 five-word Hill-2 inverse-determinant **candidate key packet** as a distinct interpretation of the DH inverse-state register. **Reject** its three natural complete source-bound consumers: the literal next-illustrated-page phase-zero Hill-2 receiver, and the manuscript's independently discovered p7 five-dot interleaver + p10 numeral7 + Hill-2 inverse across the entire 1,730-symbol p8–14 section. The 28×11 red-bracketed vertical Hill-2 consumer, the source-seeded 28-step matrix pad, and a continuous p8–14 raw paired-section inverse also fail. The packet, together with the new p6/p7 DH-determinant triad, is source-exact candidate key/state material. Neither is a verified Liber Primus encryption key. Do not rescue this negative with extra pair offsets, changed read direction, nonlinear key adaptations, other original pages chosen by IoC, or a free Hill-family search.
 
 To make this a genuine plaintext route, an independent original Cicada clue must specify which ciphertext is consumed, the block origin and the handling of odd input lengths. An unseen 150-rune prediction and exact native-language recovery would then distinguish a valid cipher from the algebraic coincidence.
 
-**Reproducer:** [`sims/lp2_p7_red_hill2_certificate_sft.cjs`](../sims/lp2_p7_red_hill2_certificate_sft.cjs), source-exact CommonJS; executed successfully against the fetched original repository sources with all five-word census, matrix identities, original inverse, five-dot source-composed receiver, 28×11 red-bracketed receiver, source-seeded matrix pad, and known-clear positive.
+**Reproducer:** [`sims/lp2_p7_red_hill2_certificate_sft.cjs`](../sims/lp2_p7_red_hill2_certificate_sft.cjs), source-exact CommonJS; executed successfully against the fetched original repository sources with all five-word determinant and DH-triad censuses, matrix identities, original inverse, five-dot source-composed receiver, 28×11 red-bracketed receiver, source-seeded matrix pad, and known-clear positive.
