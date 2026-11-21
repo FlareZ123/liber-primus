@@ -1,0 +1,3 @@
+var/www/infotomb/tmp/208771
+var/www/infotomb/tmp/208771.thumb.jpg
+var/www/infotomb/tmp/208771_text

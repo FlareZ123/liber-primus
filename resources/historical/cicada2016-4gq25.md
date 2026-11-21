@@ -1,6 +1,6 @@
 # 2016 image archive: 4gq25.jpg
 
-**Artifact class:** archived binary copy of the image linked from the 5 January 2016 Cicada tweet; not a direct capture from the original host.
+**Artifact class:** original-host Wayback responses from 9 and 16 January 2016 plus byte-identical independently held community JPEG copies. The historical host response, not the original Twitter HTTP envelope, is now recovered.
 
 ## Source copies
 
@@ -10,6 +10,28 @@ The identical JPEG is preserved in two public Cicada archives:
 - https://github.com/micheloosterhof/cicada-2016/blob/master/stage01/4gq25.jpg
 
 Both files have Git blob SHA 22027296dcd7df53c5127e6aadbabeaf3223f72d. The first archive's 2016.md identifies the original image URL as https://infotomb.com/4gq25.jpg. The second archive's stage01/README.md records the OutGuess extraction.
+
+
+## Original-host Wayback captures recovered 21 November 2026
+
+A direct archive replay now preserves **two January 2016 HTTP 200 responses for the exact original URL** `https://infotomb.com/4gq25.jpg`. The Wayback `Memento-Datetime` and `x-archive-src` fields date them to their respective 2016 collections; these are historical host captures, not independent Cicada signatures. Full replay headers, CDX records, raw bytes and hashes are in [run 44939817654, artifact 14720889155](https://github.com/FlareZ123/liber-primus/actions/runs/44939817654/artifacts/14720889155).
+
+| Source response | Raw bytes | Raw SHA-256 | Meaning |
+| --- | ---: | --- | --- |
+| 2016-01-09 17:14:30 UTC | 26,441 | `2aa61b8393e6d993646445caabccbf03812f553b24c8752c66eb1c9526b458f4` | **99 bytes of ASCII server paths followed immediately by the canonical JPEG** |
+| 2016-01-16 22:46:59 UTC | 26,342 | `a8340ad04b83fb3130e7ed9172867a440812e87089d6aa2b932d97c6ae38aebe` | **Exactly the same JPEG as the two repository mirrors** |
+
+The entire 9 January response begins with this exact 99-byte UTF-8 preamble (also preserved verbatim as [source text](./cicada2016-4gq25-20160109-prefix.txt)):
+
+```text
+var/www/infotomb/tmp/208771
+var/www/infotomb/tmp/208771.thumb.jpg
+var/www/infotomb/tmp/208771_text
+```
+
+Immediately after its final newline is JPEG SOI `FF D8 FF`; the remaining **26,342 bytes are byte-for-byte identical** to the 16 January original-host JPEG and checked-in archive, including the JPEG EOI. Thus the Jan9/Jan16 different raw SHA-256 values arise solely from a server-side text preamble. The preamble supplies an InfoTomb temporary file identifier `208771` and two related pathnames, with no creator-authenticated instruction or demonstrated GP29 receiver. The 9 January replay had `Content-Type: image/jpeg` despite the non-JPEG prefix. The original captured `server` is `nginx/1.4.6 (Ubuntu)`; both replay headers report `x-archive-orig-content-length: -1`. The 16 January host response confirms exact byte fidelity for the 26,342-byte canonical carrier.
+
+Reproduction: [source-envelope SFT](../../sims/lp2_2016_infotomb_capture_envelope_sft.cjs) concatenates the preserved 99-byte preamble and local canonical JPEG, asserting both original-host raw hashes; the [archive-fetch SFT](../../sims/lp2_2016_infotomb_original_capture_sft.cjs) retrieves the exact captures and preserves their origin metadata. The source-oriented result is a **recovered host response and verified carrier identity**, without a new LP2 decryption.
 
 ## Exact binary inventory
 
@@ -28,7 +50,7 @@ A separate 2017 signed warning is now preserved at [`cicada2017-yEiTHhvF.asc`](c
 
 ## Interpretation limits
 
-The two image archives are byte-identical mirrors, not independent captures from the original infotomb host or tweet CDN. A separate contemporaneous Boards.net repost of the signed message by `wetsand` on 2016-01-19 11:32:05 UTC is documented in the [2016 source record](../cicada2016-4gq25.md) and [whitespace audit](../../im-results/2016-signed-payload-whitespace-audit.md). It is an independent period posting of the signed text, not a second OutGuess extraction or original-host capture. The matching image Git blob SHA establishes that the checked-in resource preserves the archived image bytes exactly; it does not independently authenticate the image's original delivery or prove that its dimensions were intentionally selected as a cipher clue.
+The two community image archives are byte-identical mirrors. The independently dated 16 January 2016 InfoTomb host memento now confirms their exact JPEG bytes; the 9 January original-host response contains the same JPEG after its 99-byte transient server-path preamble. Neither historic host response recovers the original Twitter HTTP envelope. A separate contemporaneous Boards.net repost of the signed message by `wetsand` on 2016-01-19 11:32:05 UTC is documented in the [2016 source record](../cicada2016-4gq25.md) and [whitespace audit](../../im-results/2016-signed-payload-whitespace-audit.md). It is an independent period posting of the signed text, not a second OutGuess extraction or original-host capture. The matching image Git blob SHA establishes that the checked-in resource preserves the archived image bytes exactly; it does not independently authenticate the image's original delivery or prove that its dimensions were intentionally selected as a cipher clue.
 
 The 563 × 569 dimensions used in the lag-six source hypothesis are now confirmed from the archived binary rather than only from a contemporaneous 4chan post. This strengthens the input datum, not the interpretation: no LP2 plaintext, key, or complete mechanism follows from the image inventory.
 

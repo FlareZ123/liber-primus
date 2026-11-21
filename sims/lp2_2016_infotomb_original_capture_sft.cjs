@@ -321,11 +321,30 @@ async function waybackAudit() {
     earlierItem.git_blob_sha1 = gitBlobSha1(earlier.body);
     earlierItem.expected_length_match = earlier.body.length === EXPECTED.bytes;
     earlierItem.expected_git_blob_match = earlierItem.git_blob_sha1 === EXPECTED.git_blob_sha1;
-    const isJpeg = earlier.body.length >= 3 && earlier.body[0] === 0xff &&
-      earlier.body[1] === 0xd8 && earlier.body[2] === 0xff;
-    earlierItem.jpeg_magic = isJpeg;
-    if (isJpeg) save('wayback/capture-20160109171430.jpg', earlier.body);
-    else save('wayback/capture-20160109171430-response.bin', earlier.body);
+    // Original 9-Jan host response is 99 bytes of ASCII temporary-file paths
+    // followed by the unchanged image; preserve BOTH the raw response and JPEG.
+    const jpegOffset = earlier.body.indexOf(Buffer.from([0xff, 0xd8, 0xff]));
+    const embedded = jpegOffset >= 0 ? earlier.body.subarray(jpegOffset) : null;
+    const validJpeg = !!embedded && embedded.length > 3 &&
+      embedded[embedded.length - 2] === 0xff &&
+      embedded[embedded.length - 1] === 0xd9;
+    earlierItem.jpeg_magic = jpegOffset === 0;
+    earlierItem.jpeg_offset = jpegOffset;
+    if (validJpeg) {
+      earlierItem.embedded_jpeg_sha256 = sha256(embedded);
+      earlierItem.embedded_jpeg_git_blob_sha1 = gitBlobSha1(embedded);
+      earlierItem.embedded_matches_reference =
+        embedded.length === EXPECTED.bytes &&
+        earlierItem.embedded_jpeg_git_blob_sha1 === EXPECTED.git_blob_sha1;
+      if (jpegOffset > 0) {
+        earlierItem.server_prefix = earlier.body.subarray(0, jpegOffset).toString('utf8');
+        earlierItem.server_prefix_sha256 = sha256(earlier.body.subarray(0, jpegOffset));
+        save('wayback/capture-20160109171430-response.bin', earlier.body);
+      }
+      save('wayback/capture-20160109171430.jpg', embedded);
+    } else {
+      save('wayback/capture-20160109171430-response.bin', earlier.body);
+    }
   }
   findings.push(earlierItem);
 
@@ -432,6 +451,7 @@ async function main() {
     wayback: output.wayback.map(x => ({
       type: x.type, original: x.original, timestamp: x.timestamp,
       status: x.status, bytes: x.bytes, git_blob_sha1: x.git_blob_sha1,
+      jpeg_offset: x.jpeg_offset, embedded_matches_reference: x.embedded_matches_reference,
       records: x.records, error: x.error
     })),
     commoncrawl: output.commoncrawl.map(x => ({
