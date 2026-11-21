@@ -67,6 +67,42 @@ A **single fixed-root** 100,000-trial seeded table-multiset shuffle (`0x33012014
 
 **Cryptanalytic limit:** this candidate identifies a **three-way interval decomposition**, not the order of 50 individual nodes within the first interval, or five within the second; it provides no key, symbol operation, GP29 decoder, unknown plaintext, or external destination. A forward page assignment and original-cipher holdout require a separate **source-authored traversal rule**. Do not optimize BFS/DFS, signs, byte/rune reductions or arbitrary page remappings against language output without that independent selector. The exact original-input check and seeded shuffle are in [the dedicated CommonJS SFT](../sims/lp2_parable_root201_page50_split_sft.cjs).
 
+## Signed 2016 DIRECTION locates the three original terminal scans, and corner169 rejoins THE DEVOTED
+
+A second independently signed *post-publication* Cicada clue reads **“words are the map ... their numbers are the direction.”** The native GP0 alphabet converts its actual word **DIRECTION** to **98**. Under conventional base60 the original p50 table has **cell98 = `1C` = 72**, the exact original archive file number of p55, `72.jpg` (the 76-rune encrypted page). Iterating the *unchanged* published 256-byte functional graph from this source-selected byte produces:
+
+```text
+DIRECTION GP0=98 -> p50[98]=72
+72 ->164 ->105 ->63 ->51 ->59 ->69 ->73 ->79 ->82 ->201 ->74 ->205 ->76
+ ^                            ^                         ^
+72.jpg                       73.jpg                   74.jpg
+ p55                          p56                       p57
+```
+
+Thus the **original final three scan filenames 72,73,74 appear in strictly increasing order**, at graph steps0,7,11; the walk then reaches the third original PARABLE prime ordinal **201**, travels to the first ordinal **205** and exits at **76**, which is also the exact original p55 rune count. The original second-release scans are numbered from `17.jpg` at p0 to `74.jpg` at p57, so these are authentic archival filenames, not renumbered page indices. The p55+p56+p57 source rune counts **76+85+95=256** exactly match the original table size; the earlier distinct [direct known-suffix 256-cell table attacks](lp2-p50-terminal180-known-lfsr-original-gate.md) and [terminal GF29 factor/codelength gate](lp2-terminal256-p50-dualfactor-original-codeword-gate.md) already tested direct consumers and found none. Do not rerun those original-table matching models.
+
+The **three source-selected addresses** [signed 2016 GP0(DIRECTION)=98, p57 third-clause prime ordinal201, p57 first-clause prime ordinal205] expose a **consecutive numeric ribbon in both source-discussed radices**:
+
+| Source address | Exact original token | base59 reading | base60 reading | Source-object coincidence |
+| ---: | --- | ---: | ---: | --- |
+| 98: DIRECTION | `1C` | **71** | **72** | `71.jpg` p54; `72.jpg` p55 |
+| 201: third PARABLE ordinal | `1E` | **73** | **74** | `73.jpg` p56; `74.jpg` p57 |
+| 205: first PARABLE ordinal | `1G` | **75** | **76** | 75 intact-body p55 runes; 76 total p55 runes |
+
+Interleaving these preselected tokens gives all six integers **71,72,73,74,75,76** in order without changing a source byte. This may be a compact human-readable terminal navigation hint. However using both alternative radices and selecting which integers mean filenames versus rune counts is still an **investigator-authored interpretation**, not a recovered written instruction.
+
+The separately derived binary pointer **169**, the exact fourth source tile corner, has an additional pointer-walk convergence under the **same base60 graph**:
+
+```text
+169 -> 228 -> 144 -> 125 -> 20 -> 102 -> 32
+                                 ^     ^     ^
+                                 THE  DEVOTED p32
+```
+
+Here GP0(**THE**)=20, GP0(**DEVOTED**)=102 and `p50[20]=102`, `p50[102]=32`; both words occur in the authenticated 2016 message **“EPIPHANY SEEKS THE DEVOTED”**, and p32 carries the blurred tree whose original prime-weight 11×11 axes match the signed 2016 563×569 tree image. Across all 256 possible start nodes, only **[168,169,252]** reach THE20 at exactly four table steps. This links the p57 prime-ordinal-to-binary route to the preexisting signed-phrase-to-p32 route. P32 source-selected 3×3 matrix cipher inverses were negative, and no true p32 plaintext follows merely from graph convergence.
+
+**Original-source positive reproducibility:** [single-file CJS route SFT](../sims/lp2_signed_direction_parable_terminal_p50_routes_sft.cjs), [Windows Node22 PASS 44952493246](https://github.com/FlareZ123/liber-primus/actions/runs/44952493246). The test reads the authentic 2016 clear-signed wording, 2013 prime clause sums, original 2014 p50 table, and actual scan filenames, then asserts both source-driven walks and the native GP0 words. It reconstructs **zero unknown text**; direct 256-alignment and kernel consumers remain negative.
+
 ## Controlled structural rarity, with its discovery limitation
 
 To calibrate the complete ordered triple, freeze source addresses `[205,173,201]`, original source targets `[58,8,56]`, the base60 parent convention and the entire 256-value multiset. In each of **100,000** seeded Fisher–Yates shuffles, redistribute the 256 source values to 256 cell positions and count reverse-reachable closures at the same three addresses. The 2014-style deterministic seed is `0x33012014`.
