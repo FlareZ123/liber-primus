@@ -242,6 +242,62 @@ assert.ok(evolvingResults.every(result =>
   result.coincidence > 0.032 && result.coincidence < 0.038
 ));
 
+/**
+ * Original source-key stream: the p6 red11 is the initial 11-rune key, advanced
+ * once per 11-rune row by its own right-circulant matrix or matrix inverse.
+ * @param {number[]} symbols
+ * @param {number[][]} generator
+ * @param {number} firstPower
+ * @param {number} sign
+ * @returns {number[]}
+ */
+function stateStreamTransform(symbols, generator, firstPower, sign) {
+  let state = seed.slice();
+  for (let tick = 0; tick < firstPower; tick++) {
+    state = multiply(generator, state);
+  }
+  const output = [];
+  for (let start = 0; start < symbols.length; start += WIDTH) {
+    for (let col = 0; col < WIDTH; col++) {
+      output.push(mod(symbols[start + col] + sign * state[col]));
+    }
+    state = multiply(generator, state);
+  }
+  return output;
+}
+
+const streamResults = [];
+for (const [name, generator] of [
+  ['M', matrix], ['inverse-M', inverted.inverse]
+]) {
+  for (const firstPower of [0, 1]) {
+    for (const sign of [-1, 1]) {
+      const originalOutput = stateStreamTransform(cipher, generator, firstPower, sign);
+      assert.deepStrictEqual(
+        stateStreamTransform(originalOutput, generator, firstPower, -sign), cipher
+      );
+      const plantedCipher = stateStreamTransform(
+        plantedClear, generator, firstPower, -sign
+      );
+      assert.deepStrictEqual(
+        stateStreamTransform(plantedCipher, generator, firstPower, sign),
+        plantedClear
+      );
+      streamResults.push({
+        keyUpdate: name,
+        firstPower,
+        sign,
+        coincidence: Number(coincidence(originalOutput).toFixed(9)),
+        first44Transliterated: originalOutput.slice(0, 44)
+          .map(index => source.translit[index]).join('')
+      });
+    }
+  }
+}
+assert.ok(streamResults.every(result =>
+  result.coincidence > 0.032 && result.coincidence < 0.038
+));
+
 assert.ok(results.every(result =>
   result.coincidence > 0.032 && result.coincidence < 0.038
 ));
@@ -257,7 +313,8 @@ console.log(JSON.stringify({
   solvedP57Coincidence: coincidence(known),
   originalCandidateResults: results,
   evolvingCandidateResults: evolvingResults,
-  cipherRoundTrips: 12,
-  plantedKnownSourceRoundTrips: 12,
-  conclusion: 'P8 red words match p6 matrix det/trace, but neither fixed nor evolving powers decrypt prose'
+  sourceKeyStreamResults: streamResults,
+  cipherRoundTrips: 20,
+  plantedKnownSourceRoundTrips: 20,
+  conclusion: 'P8 red words match p6 det/trace, but fixed Hill-11, evolving powers and source-seed streams do not recover prose'
 }, null, 2));
