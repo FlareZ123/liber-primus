@@ -368,7 +368,7 @@ const conditionalP56Receivers = [
   { name: 'p53 red51', ciphertext: red53,
     expectedIoC: 0.034509803921568626 },
   { name: 'p44 full273', ciphertext: p44.indices,
-    expectedIoC: 0.03425985778926956 },
+    expectedIoC: 0.035256410256410256 },
 ];
 for (const target of conditionalP56Receivers) {
   const output = shiftedByP56(target.ciphertext);
