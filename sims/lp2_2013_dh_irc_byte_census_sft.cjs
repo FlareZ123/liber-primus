@@ -1,12 +1,9 @@
 "use strict";
 
 /**
- * Agent3 / Director #2028: byte-safe census of archived 2013/2014 IRC logs.
- *
- * Reads raw bytes and decodes as Latin-1 solely so ASCII protocol tokens
- * survive arbitrary legacy encodings. This is not a text normalization or
- * source correction. Run:
- *   node sims/lp2_2013_dh_irc_byte_census_sft.cjs external-cicada
+ * Agent3 / Director #2028: byte-safe census of archived IRC logs.
+ * Raw bytes are decoded as Latin-1 only to preserve ASCII protocol tokens.
+ * Run: node sims/lp2_2013_dh_irc_byte_census_sft.cjs external-cicada
  */
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
@@ -31,44 +28,35 @@ const files = walk(logDir)
   .filter(full => /\.(?:log|txt)$/iu.test(full))
   .sort((a, b) => a.localeCompare(b));
 
-const all = [];
+const results = [];
 for (const full of files) {
   const bytes = fs.readFileSync(full);
-  // Latin-1 preserves ASCII bytes 1:1, including command names and integers.
+  // ASCII protocol tokens survive byte-preserving Latin-1 regardless of the
+  // original legacy encoding; no UTF-8 replacement or normalization occurs.
   const lines = bytes.toString("latin1").split(/\r?\n/u);
-  const dhLines = [];
-  const diffieLines = [];
-  const literal56013 = [];
-  const protocolLines = [];
+  const anchors = [];
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
-    const dh = [...line.matchAll(/\bDH\s+(\d+)\b/giu)].map(m => Number(m[1]));
-    if (/\bDH\b/iu.test(line)) dhLines.push({ line: i + 1, moduli: dh, text: line.slice(0, 500) });
-    if (/diffie[ -]?hellman/iu.test(line)) diffieLines.push({ line: i + 1, text: line.slice(0, 500) });
-    if (/118818811|db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f/iu.test(line)) {
-      literal56013.push({ line: i + 1, text: line.slice(0, 500) });
+    const commands = [...line.matchAll(/\bDH\s+(\d+)\b/giu)].map(m => Number(m[1]));
+    const diffie = /diffie[ -]?hellman/iu.test(line);
+    const special = /118818811|db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f/iu.test(line);
+    if (commands.length || diffie || special) {
+      anchors.push({ line: i + 1, commands, diffie, special, text: line.slice(0, 500) });
     }
-    if (/\b(?:01 OK|03 DATA)\b/iu.test(line)) protocolLines.push({ line: i + 1, text: line.slice(0, 500) });
   }
-  if (dhLines.length || diffieLines.length || literal56013.length) {
-    const anchors = [...dhLines, ...diffieLines, ...literal56013].map(x => x.line);
-    const selected = new Set();
-    for (const n of anchors) {
-      for (let j = Math.max(1, n - 3); j <= Math.min(lines.length, n + 5); j++) selected.add(j);
-    }
-    const context = [...selected].sort((a, b) => a - b)
-      .map(n => ({ line: n, text: lines[n - 1].slice(0, 500) }));
-    all.push({
-      path: path.relative(root, full).replaceAll("\\", "/"),
-      bytes: bytes.length,
-      lines: lines.length,
-      dhCommandLines: dhLines,
-      diffieHellmanLines: diffieLines,
-      literal56013Lines: literal56013,
-      protocolResponseLineCount: protocolLines.length,
-      contexts: context
-    });
+  if (!anchors.length) continue;
+  const selected = new Set();
+  for (const hit of anchors) {
+    for (let j = Math.max(1, hit.line - 3); j <= Math.min(lines.length, hit.line + 5); j++) selected.add(j);
   }
+  results.push({
+    path: path.relative(root, full).replaceAll("\\", "/"),
+    bytes: bytes.length,
+    lines: lines.length,
+    anchors,
+    context: [...selected].sort((a, b) => a - b)
+      .map(n => ({ line: n, text: lines[n - 1].slice(0, 500) }))
+  });
 }
 
 const summary = {
@@ -76,11 +64,11 @@ const summary = {
   commit: "ade9a02889ef8acbc8cde8edbfd0a785c369f4c3",
   scannedFiles: files.length,
   scannedBytes: files.reduce((n, f) => n + fs.statSync(f).size, 0),
-  filesWithRelevantTokens: all.length,
-  dhCommandCount: all.reduce((n, f) => n + f.dhCommandLines.length, 0),
-  diffieHellmanMentionCount: all.reduce((n, f) => n + f.diffieHellmanLines.length, 0),
-  literal56013MentionCount: all.reduce((n, f) => n + f.literal56013Lines.length, 0),
-  results: all
+  filesWithProtocolOrExactValueAnchors: results.length,
+  dhCommandCount: results.reduce((n, f) => n + f.anchors.reduce((m, a) => m + a.commands.length, 0), 0),
+  diffieHellmanMentionCount: results.reduce((n, f) => n + f.anchors.filter(a => a.diffie).length, 0),
+  exact56013NumberOrHashMentions: results.reduce((n, f) => n + f.anchors.filter(a => a.special).length, 0),
+  results
 };
 console.log(JSON.stringify(summary, null, 2));
 assert.ok(files.some(f => f.endsWith("#33012013.freenode.log")), "expected 2013 channel log missing");
