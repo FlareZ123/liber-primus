@@ -116,7 +116,7 @@ function main() {
     secondConditionalCandidate:"SECUENDI RATIO in the one-rune-per-letter historic branch",
     secondResidual:RAW_RESIDUAL,
     results:passes,
-    decision:"Both original 2014 5x5 central diagonal bands naturally model the 13-dot shape; however every stationary number-to-shift key from either band is palindromic, whereas all six candidate title pairs require different shifts. The proposed local source-to-title decoder fails for both published conditional title candidates even with arbitrary secret numeric substitutions."
+    decision:"Both original 2014 5x5 central diagonal bands naturally model the 13-dot shape; however every stationary number-to-shift key from either band is palindromic, whereas the EPIPHANY SEEKS candidate requires six unequal mirror pairs and SECUENDI RATIO requires five. The proposed local source-to-title decoder fails for both published conditional title candidates even with arbitrary secret numeric substitutions."
   },null,2));
 }
 if(require.main===module)main();
