@@ -27,6 +27,21 @@ The products of these p8 words in printed order are **[4,3] = [q,e]**, calculate
 
 A possible human-facing chain is therefore p7 red words→field register→p8 header products/lengths→243-rune p8 receiver. The strongest rival is ordinary page composition and opportunistic algebra: word products, word lengths and page lengths all offer numerous distinct ways to find coincidences, and the specific interpretation of 243 as a 5D ternary object was recognized after the source was inspected. The header does **not** by itself dictate a cipher equation, an initial state, where to reset, or which operation is reversible.
 
+## Prime-sum back-reference into the preceding spiral-framed spread
+
+Original p6 and p7 are visually paired by the **same large mirrored spiral marginalia**. Their complete printed GP29 rune streams contain **196 + 208 = 404** runes, in that source order. This makes their concatenation a definite, reader-visible predecessor from which a two-word p8 heading might address material. Use the ordinary one-based “numbers are the direction” convention and the preexisting GP-prime word sums above; no ciphertext value or fitted arithmetic parameter is used to choose the addresses:
+
+| p8 red heading | GP-prime word sum | One-based predecessor-spread address | Original rune there |
+|---|---:|---|---|
+| first (length4) | **196** | last rune of physical p6, local rune196 | **S**, GP index **15** |
+| second (length8) | **250** | p7 rune54, after p6's196 runes | **TH**, GP index **2** |
+
+The two source-addressed GP indices are **[15,2]**, **exactly the last two original p7 red-word products [15,2]** from the five-product vector [11,26,8,15,2]. Thus a source-visible pair of red words on p8, using the historically natural prime-sum-as-ordinal operation, independently reproduces an ordered two-number fragment from the previous page's red inscription by extracting two **actual original ciphertext runes** from the distinct p6/p7 spiral spread. The first address lies exactly on the p6→p7 rune boundary; the second is in p7's black text.
+
+The zero-based address convention produces **[8,7]** and does **not** reproduce the p7 products, so the exact match depends on one-based indexing. That convention is plausible for human-directed word/rune ordinals but was selected upon discovering the result, and therefore cannot be called a blind confirmation. In a comparison with the other visually less similar p53→p54 red-word case, p54's first four red prime sums [79,222,114,118] read against the immediately preceding p52+p53 tape as [13,20,24,25], whereas the preceding p53 final two red-word products are [4,4]. The proposed two-word pointer is **not a generic universal red-heading decoder**. No new plaintext or body key follows automatically from the p8 equality.
+
+This gives a **stronger concrete interpretation** for p8's first red prime sum196 than merely matching p6's page length: it selects an exact p6 terminal rune that agrees numerically with a different p7 red value. It makes the p6/p7 spread a motivated input to a future source-defined operation, while leaving that operation and its independent receiver unknown.
+
 ## Bounded original black-body inverse: no source-native plaintext
 
 To test one natural source-defined action without fitting a key, use the ordered p8 product pair as a GP29 key-clock seed and rate: either geometric **4×3^i mod29** or its literal operand swap **3×4^i mod29**, or additive progressions **4+3i** and **3+4i mod29**. Include the two direct prior-p7 generator controls **4×5^i** and **3×5^i mod29**. Each of the six deterministic keystreams is tested under both signs with the **exact historically verified p56 transparent-plaintext-F convention**: if P=0, C=0 and the key clock does not advance; a non-F plaintext consumes the next key value. When the ciphertext rune is F, both mathematically permissible explanations are exhaustively handled by dynamic programming.
@@ -61,7 +76,7 @@ All eight source-native p57 positive plants are feasible under the exact same de
 
 ## Research decision
 
-Preserve the **source arithmetic** as an unusually compact adjacent-page packet with independently fixed earlier operands. Treat its proposed **state-header function as a falsifiable hypothesis**, because no known 2014 author instruction selects product arithmetic over other natural GP word values or specifies how 243 black runes consume the state. Retire the 12 exact GP29 additive clocks above, the eight direct p6/p7 raw-page additive key donor transfers, and the already tested 30 tensor receivers. Do not multiply speculative exponents, key phases or traversal permutations around this packet until a clue selects one.
+Preserve the **source arithmetic and the conditional prime-sum predecessor-spread pointer** as an unusually compact adjacent-page packet with independently fixed earlier operands. Treat its proposed **state-header function as a falsifiable hypothesis**, because no known 2014 author instruction selects product arithmetic over other natural GP word values or specifies how 243 black runes consume the state. Retire the 12 exact GP29 additive clocks above, the eight direct p6/p7 raw-page additive key donor transfers, and the already tested 30 tensor receivers. Do not multiply speculative exponents, key phases or traversal permutations around this packet until a clue selects one.
 
 **Progress criterion for a successor:** an original-source instruction specifying a unique reversible state update, a key source with its clock, and a legible untouched p8 ciphertext window, supported by the existing p56/p57 native controls. A map to original p6 from prime sum196 must be tested prospectively, retaining printed word boundaries and avoiding claims based on modern community 17-page-offset JPEG numbering.
 
