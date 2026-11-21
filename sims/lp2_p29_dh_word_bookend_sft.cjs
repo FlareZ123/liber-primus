@@ -158,5 +158,57 @@ console.log('p39 decoded first72 GP: ',
   decoded39.slice(0, 72).map((v) => corpus.translit[v]).join(' '));
 console.log('Original 237/237 re-encryption and solved p57 93/93 plant pass.');
 
+
+/**
+ * A independently source-checkable candidate word-navigation path.
+ * Page 29's first-word GP0 product is exactly phi(277)=276, the terminal
+ * zero-based rune address, whose original symbol is B=19. The reversed
+ * three-rune word exists exactly once, at source offset15 on p53.
+ */
+const { parseLP2Words } = require('./lp2_word_pages.cjs');
+const parsed = parseLP2Words(originalText);
+assert.equal(parsed.runeCount, 12956);
+assert.equal(parsed.words.length, 2896);
+assert.equal(parsed.crossPageWords, 32);
+const p53 = pages.find((page) => page.page === 53);
+assert(p53);
+assert.equal(p53.indices.length, 179);
+assert.equal(p29.indices.length, 277);
+const firstProduct = startExpected.reduce((value, digit) => value * digit, 1);
+assert.equal(firstProduct, 276);
+assert.equal(firstProduct, p29.indices.length - 1);
+assert.equal(p29.indices[firstProduct], signedDh.B);
+assert.equal(p29.indices.length - p53.indices.length, 98);
+const direction = [23, 10, 4, 18, 5, 16, 10, 3, 9];
+assert.equal(direction.map((v) => corpus.translit[v]).join(''),
+  'DIRECTION');
+assert.equal(direction.reduce((sum, x) => sum + x, 0), 98);
+const reversedFirst = startExpected.toReversed();
+assert.deepEqual(p53.indices.slice(signedDh.b, signedDh.b + 3),
+  reversedFirst);
+const reverseRunes = reversedFirst.map((index) => corpus.runes[index]).join('');
+const matched = parsed.words.filter((word) => word.runes === reverseRunes);
+assert.equal(matched.length, 1);
+assert.equal(matched[0].startPage, 52);
+assert.equal(matched[0].endPage, 52);
+console.log('P29 first word GP product:', firstProduct,
+  '= phi(277) = last local index, ending with B=19.');
+console.log('Unique complete reversed word:', reverseRunes,
+  'physical p53 at rune offset b=15; page-runecount difference:',
+  p29.indices.length - p53.indices.length,
+  '= GP0(DIRECTION) [postselected interpretation].');
+
+// The p53 red 51-rune stanza is exactly 17 three-rune blocks.
+const red53 = p53.indices.slice(128, 179);
+assert.equal(red53.length, 51);
+const decodedRed53 = hill3(red53, inverseM);
+assert.deepEqual(hill3(decodedRed53, M), red53);
+assert(Math.abs(coincidence(decodedRed53) - 0.03529411764705882) < 1e-12);
+console.log('Frozen p53 51-red-rune Hill3 consumer:',
+  'decoded IoC', coincidence(decodedRed53),
+  'first15 GP', decodedRed53.slice(0, 15)
+    .map((v) => corpus.translit[v]).join(' '));
+console.log('Exact p53 red51 forward re-encryption passes; no recognizable text.');
+
 console.log('PASS. Exact source-index linkage. No deciphered LP2 text or');
 console.log('independently sourced instruction selecting this DH bookend grammar.');
