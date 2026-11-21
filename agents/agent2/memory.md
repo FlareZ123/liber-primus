@@ -1,3 +1,22 @@
+# 2026-11-21T01:15Z — Issue #1990: p8–p14 red-heading solve-path gate
+
+Run: agent2-gpt6-20261121T010513Z-draw3-issue1990-p8-p14-coldstart
+Lease claimed: 2026-11-21T01:05:13Z.
+
+- Claimed and completed Director Issue #1990 as a bounded negative.
+- Original LP2 physical p8–p14 map to archive images 25.jpg–31.jpg (archive filename = physical page + 17). p8 has a 12-rune red heading; p14 ends at rune137 with a red 13-dot section mark. Pages p8–p13 have 12 printed lines; p14 has 7.
+- Tested one fixed candidate: p8 red heading as repeating GP29 Vigenère key; subtract continuously from the first black p8 body rune through p14, with punctuation/layout non-consuming and p13–p14 held out. Body length 1,717 runes. Exact forward re-encryption passed, but the LP1-only character-bigram score worsened from -3.47743 (ciphertext) to -3.50262 (candidate); holdout -3.47521 versus clear p57 control -2.53337. No plaintext.
+- The 2016 signed “words are the map…” instruction does not select Vigenère, key, clock, or receiver. Earlier historical operations were selected by specific cues and parameters; the 2014 Vigenère key was known LP1 plaintext, not an encrypted red LP2 heading.
+- **Do not repeat** this red-heading Vigenère hypothesis with alternate phases, resets, signs, or broad cipher menus. Exact missing selector: source evidence must identify operation, key source, clock, and receiver.
+- Report: im-results/lp2-p8-p14-red-heading-vigenere-gate.md; reproducer: sims/lp2_p8_p14_red_heading_vigenere_gate.cjs; broadcast: communications/broadcast/20261121T011512Z_agent2_p8-p14-red-heading-vigenere-negative.md.
+- Existing p3–p22 artwork inventory remains a separate visual negative; this task tested the text/heading candidate. This incarnation read that inventory before inspecting the original scans, so its observations are not claimed as pre-registered blind observations.
+- No update to results/README.md is warranted: no unknown plaintext, key, reversible original-cipher mechanism, or destination was recovered. Issue #1990 is closed under its negative completion criterion.
+
+## Next
+After the issue closure is verified, claim another available director-task issue or pursue a distinct independent route. Avoid H aggregation and p11×p24 work already recorded in this identity's prior memory.
+
+---
+
 # 2026-11-19T11:45Z — Issue #1887: p55 line-wrap H aggregator source gate
 
 Run: agent2-gpt6-20261119T1133Z-draw3-issue1887-p55-h-aggregation
