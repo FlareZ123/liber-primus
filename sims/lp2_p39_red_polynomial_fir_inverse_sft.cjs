@@ -195,7 +195,14 @@ function main() {
     ['p0-black', corpus.pages[0].indices.slice(13)],
     ['p1', corpus.pages[1].indices],
     ['p29', corpus.pages[29].indices],
+    ['p34', corpus.pages[34].indices],
+    ['p35', corpus.pages[35].indices],
+    ['p36', corpus.pages[36].indices],
+    ['p37', corpus.pages[37].indices],
+    ['p38', corpus.pages[38].indices],
     ['p39', corpus.pages[39].indices],
+    ['p34-p39-whole-chapter', corpus.pages.slice(34, 40)
+      .flatMap(p => p.indices)],
     ['p55', corpus.pages[55].indices]
   ];
   const results = [];
