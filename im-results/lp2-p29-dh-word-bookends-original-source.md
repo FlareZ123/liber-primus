@@ -57,6 +57,19 @@ The derived DH candidate **K'=193** is also an exact original numeric-table byte
 
 The decisive missing prerequisite remains a **creator-visible instruction to replace signed DH modulus23 by the physical page rune count277 and consume K'=193 on a uniquely fixed original ciphertext field**. Until such a rule or untouched plaintext holdout is found, 193 is a reproducible **candidate** and not authenticated LP2 key material. Neither 113 nor51 independently decrypts a manuscript passage.
 
+
+## Conditional shared-value193 → prime ordinal44 → p44 → p23
+
+If **prime ordinal** is used as a direction, the new DH shared value193 is the **44th prime**, selecting original **p44**. Its final **three physical runes** are exactly `[19,23,15]`, which can be read as the **DH client `[B,p,b]`** packet. They are a page-terminal triple, not a separate complete word: the original printed p44 terminal word continues onto p45. The source-derived client fields are `B=19,p=23,b=15` from the same authenticated 2013 worked example. This exactly complements p29's first `[K,p,a]`, p29's physical tail `[a,A,B]`, and p39's marked `[-K,g,b]`. All are original-source GP indices, not a fitted decryption.
+
+P44's final triple has GP prime **weight sum `71+89+53=213`**. The *middle* source value is **23** and physical **p23 has exactly 213 original runes**. Across all 55 rune-bearing unknown physical pages, only **p44** satisfies the fixed page-local rule `GP-prime-sum(last three) = rune-count(page[last-runic-index-2])` where the middle of the terminal triple selects the destination page. That source-family observation is exact. It was recognized after noticing p44; its nominal frequency should not be treated as a calibrated discovery p-value.
+
+Thus a **testable candidate human navigation** is `p29 277 → DH K193 → ordinal44/p44 → middle index23 + weight sum213 → p23`. Both the prime-ordinal transfer and the terminal-triple/prime-sum rule lack an authenticated original opcode. Nevertheless they are usable unchanged in a one-file all-page discriminator and, unlike an unconstrained cipher search, fix the next physical page before inspecting that page's own ciphertext.
+
+The original **p23 16-rune red opening** is a uniquely marked potential recipient. Applying the already established p28 forward H-difference half **without any key or phase tuning** to its four consecutive GP-index quadruples emits signed-2016 word numbers `[9,17,0,20,27,7,19,7]`, read as **LIBER THE HELLO MEANING ARE THE THEIR THE**. This is neither a contiguous authentic source phrase nor recognizable plaintext. That one bounded original H receiver therefore fails. A proposed decipherment still requires an independently selected operator on a fixed, unmodified page23/p44/p53 passage and must forward-reencrypt a substantial recovered text.
+
+**Additional cross-protocol arithmetic:** `3301 = 29×113 + 24`. The new DH public `A'=113` is the quotient of the signed 2013 BASE29 challenge `3301→3QO`, while **24** is the already established p29/p39 polynomial double-root residue `3301 mod29`. The same signed 2013 challenge specifies both DH and BASE29 protocols; this is an exact source arithmetic convergence. The decomposition is an algebraic identity once113 and24 are chosen, and provides no additional independent cipher clock or key.
+
 ## Frozen original-cipher receiver: a 3×3 matrix fails
 
 Three source-visible rune groups supply **nine numeric coordinates** in their physical/page order: p29 first complete word, p29 last three page-local runes (an incomplete cross-page word), then p39 red triple. Consider exactly one reversible, source-order Hill-3 hypothesis:
