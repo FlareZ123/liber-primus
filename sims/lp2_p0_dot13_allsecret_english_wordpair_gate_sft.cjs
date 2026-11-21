@@ -144,10 +144,41 @@ function main(){
       allConsumed:normal,transparentF:transparent,positivePlants:2
     };
   }
+  // Independent pinned source-language control: Latin Vulgate source-word
+  // GP29 spellings, with exactly the manuscript's whole-word boundaries.
+  const latinAlphabet="0123456789ABCDEFGHIJKLMNOPQRS";
+  const latinSource=read("resources/control/latin-vulgate-gp-wholewords.txt")
+    .split(/\r?\n/).filter(line=>/^[0-9A-S]{5}$|^[0-9A-S]{8}$/.test(line));
+  const latin={eights:new Map(),fives:new Map()};
+  for(const code of latinSource){
+    const target=code.length===8?latin.eights:latin.fives;
+    const key=[...code].map(ch=>latinAlphabet.indexOf(ch)).join(",");
+    if(!target.has(key))target.set(key,[]);
+    target.get(key).push(code);
+  }
+  assert.deepEqual([latin.eights.size,latin.fives.size],[1130,793]);
+  const latinNormal=screen(originals,latin.eights,latin.fives,false);
+  const latinTransparent=screen(originals,latin.eights,latin.fives,true);
+  for(const check of [latinNormal,latinTransparent]){
+    assert.equal(check.matchedDistinctPairs,1);
+    assert.equal(check.matches[0].first,"5I41A5IF");
+    assert.equal(check.matches[0].second,"JO42O");
+  }
+  const latinFull=read("resources/control/latin-vulgate-latin26-wholewords.txt");
+  assert.ok(latinFull.includes("CERVICES"));
+  assert.ok(latinFull.includes("MARTHA"));
+  assert.equal(latinFull.includes("CERVICES MARTHA"),false);
+  results.latinVulgate={
+    distinctSourceWords8:latin.eights.size,distinctSourceWords5:latin.fives.size,
+    allConsumed:latinNormal,transparentF:latinTransparent,
+    oneConditionalNormalizedPair:"CERVICES MARTHA",
+    attestedAdjacentSourcePhrase:false
+  };
+
   console.log(JSON.stringify({
     status:"PASS",source:"Original 2014 two 5x5 numerical squares, original p0 13 glyphs, pinned TextBlob English wordfreq.",
     originalCipher:originals,geometry:"rotated 4|5|4 source square band is symmetric",
-    results,decision:"No original 8+5 English word pair in either fixed spelling convention is compatible with ANY stationary 13-cell symmetric additive GP29 key, with or without plaintext-literal-F bypass. This is a conditional language-coverage exclusion, not recovery of unknown plaintext."
+    results,decision:"No original 8+5 English word pair in either fixed spelling convention is compatible with ANY stationary symmetric additive GP29 key, with or without plaintext-literal-F bypass; the independent Latin Vulgate whole-word corpus admits exactly one unattested and ungrammatical cross-sample pair, CERVICES MARTHA. This is a finite language-source coverage decision, not recovery of unknown plaintext."
   },null,2));
 }
 if(require.main===module)main();
