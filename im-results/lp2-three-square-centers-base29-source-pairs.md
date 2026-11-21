@@ -42,6 +42,10 @@ The 2016 word list itself contains both readings. The lexical pairs are selectio
 
 Reversing the 809 pair is consistent with the p22 mirrored motif, but the motif is repeated on all three LP1 pages and the square centre is invariant under a geometric mirror. Translating a page-image mirror into reversal of the two BASE29 digits is an additional interpretation, not an explicit instruction in the surviving sources.
 
+## Uniform-orientation control
+
+Applying the same digit reversal to each original center, instead of the retrospective first-center-only mask, yields [26,27], [12,11], [4,3]. With zero-based word indexing these read NUMBERS ARE / THE IS / EMPTY LIES; one-based indexing yields THEIR NUMBERS / IS PRIMUS / LIES PATH. The mixed mask used in the earlier candidate produces ascending pairs, but no source text assigns the mirrored LP2 body motif to BASE29 digit order. This comparison preserves the exact signed BASE29 conversion and both word origins, without choosing a new cipher or claiming that the squares are irrelevant. [Original-input SFT](../sims/lp2_p22_square_shed_source_gate_sft.cjs).
+
 ## Conclusion
 
 BASE29 is a plausible, unusually tight numerical alignment across the Stage10 squares and the signed 2016 word register. It does **not** uniquely select a word-index origin or a plaintext phrase. The prior 6,464-configuration count was incomplete as a source family because it fixed zero-based indexing without a source rule. Do not describe the centre readout as uniquely source-selected or as a decryption. The positive criterion for Issue #1940 fails at the selector stage.
