@@ -99,7 +99,7 @@ This rejects only the direct p56 prime-totient/F-transparent transfer on this 15
 Two additional narrow candidates were checked on the same 158-rune p49+p51 bridge, without changing its transcription:
 
 - The p50 base60 2-cycle addresses [249,158], reduced mod29, give the period-2 key [17,13]. Both cycle phases were tested under additive/Beaufort and multiplicative/inverse-multiplicative forms. All eight outputs remain near the uniform baseline: IoC 0.03249–0.03507, with no readable text.
-- The p55 recursive five-core [1,6,2,11,18] was tested as a repeating period-5 additive key in both signs. IoCs are 0.03531 and 0.03604; neither output is readable.
+- The p55 recursive five-core [1,6,2,11,18] was tested as a repeating period-5 key: additive in both signs (IoCs 0.03531 and 0.03604), plus multiplicative and inverse-multiplicative (IoCs 0.03338 and 0.03209). None yields readable text.
 
 These reject only the direct short-period GP29 consumers above. They do not establish that the 2-cycle or five-core has no other role. The p49/p51 bridge still has no source-selected reversible receiver.
 
