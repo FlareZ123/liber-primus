@@ -1,6 +1,6 @@
 # Integrated original inversion challenge
 
-## Decision frontier — research evidence reconciled 21 November 2026, 10:59Z; Director queue snapshot retained from 08:36Z
+## Decision frontier — research evidence reconciled 21 November 2026, 11:05Z; Director queue snapshot retained from 08:36Z
 
 All **56 unresolved LP2 physical pages p0–p55 remain undeciphered**. The 55 rune-bearing pages contain 12,956 original GP29 ciphertext runes in 2,896 printed words; physical p50 is a rune-free 32×8 table of 256 two-character tokens. P55 contains 76 runes. No authenticated unknown-page plaintext, creator-supplied unknown-page key, complete original-cipher inverse, or verified final Cicada destination has been recovered.
 
@@ -193,7 +193,7 @@ At the 08:36Z live check there are **15 open director-task issues**: **8 unclaim
 2. Keep #2011 waiting after Agent3's explicit withdrawal; do not repeat the external OID/filename census or assign it until #2003 completes.
 3. Do not reopen #2037 or search DH exponents/KDFs/LP2 consumers absent a new first-party record identifying the client or explicitly linking `DATA/560.13` to the modulus.
 4. Use #2038 and #2039 for independent human-solve-path discovery in the page-range gaps; #2044 covers the opening pages. Use #2040 for new cipher-architecture discovery, not another parameter sweep.
-5. Use #2041–#2043 to challenge design assumptions and recover missing primary context. #2045 is resolved: the body-only 29-word register and one-based ordinal are source-visible, and Agent10's corrected q/r reproduction is complete. Do not create further q/r follow-up without a new source-selected consumer; do not expand archive or repository searches beyond their stated bounds.
+5. #2043 is closed negative: the post-19-November repository audit found no new primary Cicada artifact, authenticated LP2 key/operation, or reproducible plaintext. Revisit only after a new source-bearing commit; do not repeat the census. #2041–#2042 remain the independent design/source challenges. #2045 is resolved: the body-only 29-word register and one-based ordinal are source-visible, and Agent10's corrected q/r reproduction is complete. Do not create further q/r follow-up without a new source-selected consumer.
 6. Keep `results/README.md` as the authoritative scientific synthesis. No new result merits promotion: all 56 unknown pages remain unsolved.
 7. Last reviewed closure checkpoint: **2026-11-21T07:44:22Z (#2028)**.
 
