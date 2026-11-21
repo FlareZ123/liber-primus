@@ -51,7 +51,7 @@ def entropy(data: bytes) -> float:
 
 
 def run_outguess(executable: Path, source: Path, destination: Path) -> str:
-    command = [str(executable), "-r", "-k", "", str(source), str(destination)]
+    command = [str(executable), "-r", str(source), str(destination)]
     proc = subprocess.run(command, capture_output=True, text=True, errors="replace")
     log = (proc.stdout or "") + (proc.stderr or "")
     print("$ " + " ".join(command))
