@@ -479,6 +479,45 @@ assert.deepStrictEqual(romanOnlyMaximalRuns, [
     runeIndices: [14, 10, 14, 19, 1, 14, 19, 5] }
 ]);
 
+// Source-selected Roman numeral VALUES form one eight-symbol numeric key.
+// Standard one-pass GP29 Vigenere is the simplest reversible immediate
+// consumer, with fixed chapter-continuous phase zero and both signs.
+const romanValueKey = [10, 1, 10, 1000, 5, 10, 1000, 100]
+  .map(number => number % 29);
+assert.deepStrictEqual(romanValueKey, [10, 1, 10, 14, 5, 10, 14, 13]);
+const originalChapterBody = treePages.flat();
+assert.equal(originalChapterBody.length, 1717);
+/** @param {number[]} values @param {number} sign @returns {number[]} */
+function romanKeyTranslate(values, sign) {
+  return values.map((value, index) =>
+    (value + sign * romanValueKey[index % romanValueKey.length] + 29) % 29
+  );
+}
+const originalRomanValueKeyConsumers = [];
+for (const sign of [-1, 1]) {
+  const candidate = romanKeyTranslate(originalChapterBody, sign);
+  assert.deepStrictEqual(
+    romanKeyTranslate(candidate, -sign), originalChapterBody
+  );
+  const nativePlant = Array.from({ length: originalChapterBody.length },
+    (_, index) => knownP57[index % knownP57.length]);
+  assert.deepStrictEqual(
+    romanKeyTranslate(romanKeyTranslate(nativePlant, -sign), sign),
+    nativePlant
+  );
+  originalRomanValueKeyConsumers.push({
+    sign,
+    sourceKeyValues: romanValueKey,
+    unchangedOriginalRunes: candidate.length,
+    coincidence: Number(coincidence(candidate).toFixed(9)),
+    first44Transliterated: candidate.slice(0, 44)
+      .map(value => source.translit[value]).join('')
+  });
+}
+assert.ok(originalRomanValueKeyConsumers.every(x =>
+  x.coincidence < 0.038
+));
+
 console.log(JSON.stringify({
   source: 'Original LP2 p8 opening red XIXM and p7 second red product',
   p8RomanNumber: romanNumber,
@@ -502,5 +541,6 @@ console.log(JSON.stringify({
   matchingOriginalOccurrences: hits,
   originalRomanDigitAlphabet: [...romanDigitGp].sort((a, b) => a - b),
   uniqueOriginalRomanOnlyMaximalRunAtLeastSix: romanOnlyMaximalRuns,
+  fullChapterOriginalRomanValueVigenereConsumers: originalRomanValueKeyConsumers,
   interpretation: 'Original numeric/index clue, not decrypted unknown plaintext'
 }, null, 2));
