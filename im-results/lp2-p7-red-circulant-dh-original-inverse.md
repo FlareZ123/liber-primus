@@ -72,17 +72,17 @@ The circulant inverse has a stronger and more actionable consequence than matchi
 
 | State variable | Extraction from original p7 | Value |
 | --- | --- | ---: |
-| `p` | First p7 red word, first GP29 index `[23,3][0]` | **23** |
-| `e` | First p7 red word, second GP29 index `[23,3][1]` | **3** |
-| `g` | Third slot of the inverted circulant's first row | **5** |
-| `K` | Second/fourth slots of the inverted circulant's first row | **2** |
-| `B` | Fifth slot of the inverted circulant's first row | **19** |
-| `A` | Product of third red word `[5,7,11]`, modulo29 | **8** |
+| `p` | First index of first p7 red word `[23,3]` | **23** |
+| `e` | Second index of first red word `[23,3]` | **3** |
+| `g` | First index of third red word `[5,7,11]` | **5** |
+| `a` | First index of fifth red word `[6,28,19]` | **6** |
+| `b` | Fourth red word's product modulo29: `14×28 mod29` | **15** |
+| `A` | Third red word's product modulo29: `5×7×11 mod29` | **8** |
+| `B` | Multiplicative inverse of second red-word product `26` in GF29 | **19** |
+| `K` | Fifth red word's product modulo29: `6×28×19 mod29` | **2** |
 | `q` | Sum of the five products `11+26+8+15+2 = 62 mod29` | **4** |
-| `a` | Unique nonzero discrete logarithm `5^a=8 mod23` in `1..22` | **6** |
-| `b` | Unique nonzero discrete logarithm `5^b=19 mod23` in `1..22` | **15** |
 
-The original p7 source therefore yields `(p,e,g,A,B,K,q,a,b)=(23,3,5,8,19,2,4,6,15)` entirely from its own runes. Independent signed-source facts *verify the labels* but do not enter the arithmetic. One additional cross-page relation is `q=4` and `g=5`, equal to the visible `4|5|4` source marker geometry immediately beside the **p0 red title**, and `A+g=13`, the number of dots in that marker.
+The original p7 source therefore yields `(p,e,g,a,b,A,B,K,q)=(23,3,5,6,15,8,19,2,4)` entirely from its **literal rune indices, word products, one GF29 reciprocal, and the five-word product sum**, without invoking a circulant matrix or solving a discrete logarithm. The resulting `g=5,a=6,A=8,B=19,K=2` satisfy `g^a mod23=A`, `g^b mod23=B` and `B^a mod23=K`. The independently computed circulant inverse first row `[p,K,g,K,B]` gives a separate exact algebraic check on that same source state. Independent signed-source facts *verify the labels* but do not enter the arithmetic. One additional cross-page relation is `q=4` and `g=5`, equal to the visible `4|5|4` source marker geometry immediately beside the **p0 red title**, and `A+g=13`, the number of dots in that marker.
 
 Feed these **p7-derived values**, and the original p0 `4|5|4` /13-dot geometry, into the **previously published, unchanged** three-column RISE rules ([existing p0 state-only key construction](lp2-p0-square-state-rise-key-serializer.md)):
 
@@ -103,7 +103,7 @@ Subtracting this **source-only regenerated key** from all **13 original p0 red-t
 
 **Critical limitation:** this is a reconstruction using the earlier RISE/H grammar, which was originally found after the 13-rune p0 residual was visible. The source provides five words and five dots, but still does not tell a blind solver to form a circulant or to assign its row entries exactly to `[p,K,g,K,B]`. The `q` row sum and `[23,3]` interpretation are arithmetic observations recognized after the DH state was known. Therefore this is a reproducible **source-only key donor for an already-known local reading**, not a prospective solution of the unknown LP2 bodies or evidence that the exact proposed path was intended in 2014.
 
-The expanded [single-file original-source SFT](../sims/lp2_p7_red_circulant_dh_inverse_sft.cjs) now derives all state variables from p7 bytes **before** opening p0's printed title, runs the existing serializer, verifies the full 13-rune forward replay and separately preserves the negative 255-rune p8 body test. [Windows Node22 original-p7-only key recovery PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44932016786).
+The expanded [single-file original-source SFT](../sims/lp2_p7_red_circulant_dh_inverse_sft.cjs) now derives all state variables directly from p7 original rune indices and red-word products **before** opening p0's printed title, using the circulant inversion only as an independent check, runs the existing serializer, verifies the full 13-rune forward replay and separately preserves the negative 255-rune p8 body test. [Windows Node22 original-p7-only key recovery PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44932016786).
 
 ## Decoding decision
 
