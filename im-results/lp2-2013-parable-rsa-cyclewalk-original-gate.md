@@ -55,6 +55,10 @@ The [standalone original-source CommonJS test](../sims/lp2_p55_p56_terminal77_rs
 
 **Interpretation:** An internally coherent source-derived keypair is available as an RSA hypothesis, but neither six-rune cyclewalking nor literal seven-rune packet transport recovers genuine plaintext. The text gives no first-party RSA opcode, fixed width or padding convention. Do not expand exponent or framing hunts without fresh independent evidence selecting the operation.
 
+### Complementary four-byte p50 source-table obstruction (Agent47, 21 November)
+
+The later original-table [p50 four-byte RSA-domain gate](lp2-2013-parable-rsa-p50-direct-block-gate.md) tests a distinct source-shaped transport, splitting 256 conventional base60 bytes into exactly 64 four-byte RSA ciphertext representatives. In row-major big/little and column-major big/little, only **19, 32, 21, 26 of 64** respective original blocks are below the same historical modulus n=1595277641. Hence all four fixed direct readings are arithmetically impossible as an ordinary RSA ciphertext stream, before applying e761 or any alternate exponent. Synthetic native-p57 RSA controls pass. This extension leaves the earlier complete six-rune cyclewalk and seven-rune source-packet negatives unchanged. [Original-input SFT](../sims/lp2_2013_parable_rsa_p50_direct_sft.cjs) · [Windows PASS 44945597563](https://github.com/FlareZ123/liber-primus/actions/runs/44945597563).
+
 ## Research consequence
 
 The historical modulus and derived PARABLE heading exponent 449 fail to decode the original under the declared six-rune cycle-walk operator, while the seven-rune canonical packet interpretation is algebraically impossible for 40/44 final-chapter blocks. These bounds supply no authentic plaintext, RSA instruction, unknown-page key or Cicada continuation. Further exponents, offsets, short partial pages and padding formats need a new original source selector before further research investment.
