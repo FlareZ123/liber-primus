@@ -217,6 +217,15 @@ function number60(token) {
 }
 assert.equal(number60(tokens[30]), 141);
 
+// Independent original-source convergence: first-phase prefix YOU has
+// GP0=30, second-phase complete NGXO has GPprime=133.
+// Both originally printed table entries are the same 2L word token,
+// whose exact base60 numeric reading selects original offset 141.
+assert.deepEqual(tokens.flatMap((token, index) => token === "2L" ? [index] : []), [30, 133, 241]);
+assert.equal(tokens[phase210RuneSum], "2L");
+assert.equal(tokens[you.reduce((sum, rune) => sum + rune, 0)], "2L");
+assert.equal(number60(tokens[phase210RuneSum]), 141);
+
 // The COMPLETE four-rune original readout YOUA is a numerical selector:
 // GP0(YOUA)=54, the row6/col6 member of the only nontrivial
 // reciprocal low-base60 index pair across all 256 printed table cells.
@@ -247,6 +256,24 @@ for (let cell = 0; cell < 256; cell += 1) {
 }
 assert.deepEqual(cycles, [[36, 54]]);
 assert.deepEqual(fixed, [6, 9]);
+
+// Independent numeration choice: dropping the absent lower-case f
+// would instead produce the sole reciprocal pair 26<->52,
+// while the source-elected 54->36 no longer closes (36->53).
+const alphabet59 = alphabet.replace("f", "");
+assert.equal(alphabet59.length, 59);
+/** @param {number} index @returns {number} */
+function low59(index) {
+  return alphabet59.indexOf(tokens[index][1]);
+}
+const cycles59 = [];
+for (let cell = 0; cell < 256; cell += 1) {
+  const next = low59(cell);
+  if (next !== cell && next >= 0 && next < 256
+      && low59(next) === cell && cell < next) cycles59.push([cell, next]);
+}
+assert.deepEqual(cycles59, [[26, 52]]);
+assert.deepEqual([low59(54), low59(36)], [36, 53]);
 assert.deepEqual([low60(54), low60(36)], [36, 54]);
 assert.ok([36, 54].every((cell) => Math.floor(cell / 8) === cell % 8));
 assert.deepEqual(phase.flatMap((indices, cell) => {
@@ -285,6 +312,21 @@ assert.deepEqual(H, [18, 27]);
 const willKey = [packet[1], a, ...H];
 const willCipher = p0.indices.slice(141, 145);
 assert.deepEqual(willCipher, [19, 16, 9, 18]);
+
+// Reduced-assumption original plaintext check: the packet's unadjusted
+// middle rune Ka=12 and p50 original 06 give the FIRST TWO plaintext
+// runes WI without using the earlier postulated H(A,B) trailing key.
+// Both other plaintext runes are then forced to L by the literal token 2L
+// at the independently selected original cell133 (also cell30).
+const decodedHead = willCipher.slice(0, 2).map((rune, i) =>
+  mod29(rune - [packet[1], a][i]));
+assert.deepEqual(decodedHead, gpEnglish("WI"));
+assert.equal(willCipher.length, 4);
+const L = gpEnglish("L")[0];
+assert.equal(L, 20);
+assert.deepEqual([...decodedHead, L, L], will);
+const directlyInferredTailKey = willCipher.slice(2).map((rune) => mod29(rune - L));
+assert.deepEqual(directlyInferredTailKey, H);
 assert.deepEqual(willCipher.map((r, i) => mod29(r - willKey[i])), will);
 assert.equal(will.reduce((a, b) => a + b, 0), 57);
 assert.equal(number60(tokens[57]), 118);
@@ -301,6 +343,9 @@ console.log("full YOUA GP0=54 -> unique diagonal p50 low-digit cycle 54 -> 36 ->
 console.log("first00 YOUA prime sum210 -> second event phase210 NG-X-O GP0=38, prime sum133 (historical title)");
 console.log("complete original event coordinates: page38, rune offset54; literal p50[210]=06 gives DH private a=6");
 console.log("typed packet [5,12,19] derives K=2 both via GP29 12/6 and DH mod23 19^6");
+console.log("GPprime(NGXO)=133 -> original p50[133]=2L; GP0(YOU)=30 -> original p50[30]=2L");
+console.log("first two p0[141..144] symbols: [C-Ka, C-a]=WI; literal 2L fixes remaining two L; no H KDF needed");
+console.log("base60 sole reciprocal pair [36,54] fits readout; radix59-missing-f pair [26,52] does not");
 console.log("exact original-chapter identity assignments: " + assignments + " possibilities; "
   + cycleMatches + " cycle, " + lexicalMatches + " signed-word, " + jointMatches + " joint");
 console.log("retrospective 50000-shuffle signed-vocabulary null: global " + globalHits
