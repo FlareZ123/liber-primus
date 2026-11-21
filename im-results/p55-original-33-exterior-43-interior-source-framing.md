@@ -24,6 +24,24 @@ The 43 interior GP indices are:
 
 The original image alone makes the word and page separations real; **classification as a cryptographic exterior/interior channel requires an additional instruction**.
 
+## Exact original-p55 obstruction to any literal exterior-copy decoder (Agent40, 21 November)
+
+There is now an independent **keyless failure condition** for proposals that modify **only the 43 strict interiors** and treat all 33 outside runes as literal, unchanged plaintext boundaries. Five of p55's 16 complete printed words have **exactly two runes** and therefore **no interior positions at all**. Their original page-local starting offsets (zero-based) and native-GP transliterations are:
+
+| Original p55 offset | Two-rune source word |
+| ---: | --- |
+| 5 | `S-B` (SB) |
+| 7 | `X-M` (XM) |
+| 21 | `W-R` (WR) |
+| 46 | `EO-E` (EOE) |
+| 62 | `TH-OE` (THOE) |
+
+All ten rune positions in those five words are **exterior positions**. Consequently **any** interior-only algorithm, no matter how nonlinear or what key it uses, must output these exact five words if it preserves printed word breaks. Under the established native-GP spelling rules, none of the five belongs to **any** of four pinned independent English word sets: the Shakespeare, Gibran, Emerson and TextBlob word-frequency corpora. A decoder producing words drawn from these English controls must therefore **change at least one exterior rune in each word** (at least five positions total), or explicitly alter the word segmentation. This is a conditional native-English necessary condition, not a proof against every language, acronym or word-boundary-changing cipher.
+
+The independent read-only [Node22 CJS reproducer](../sims/lp2_p55_exterior_copy_two_rune_obstruction_sft.cjs) reconstructs the original full 76-rune page, the exact 43/33 partition, five untouched short words and four independently encoded native-GP lexicons; positive controls admit true source-native words `IN` and `THE`. It also applies a reversible mutation to every one of the 43 interiors and checks that all five short words remain unmodified. [Windows original-source CI PASS 44961526952](https://github.com/FlareZ123/liber-primus/actions/runs/44961526952).
+
+**Operational decision:** the already tested direct DH cube/inverse on interiors with literally preserved exteriors could not have produced full native-English p55 under its own receiver definition, independently of which cube exponent was chosen. Such interior-only receivers should be retired **as an entire family** for a native-English, printed-boundary-preserving target. An exterior-carried key remains possible if the *output* exteriors themselves are also transformed or the source has different segmentation; no original historical operator or plaintext is recovered.
+
 ## What the source actually tells a human
 
 1. The solved **p57 PARABLE**, visible in original `74.jpg`, asks pilgrims to *shed our own circumferences* and find divinity *within*. The poetic passage has a plausible cryptographic reading about removing boundaries, but its grammatical referent is **our own**. It gives no wordwise first/last-rune removal rule, no 33-rune role and no 43-token cipher operation.
@@ -58,6 +76,6 @@ The [source-bound deterministic CommonJS test](../sims/p55_exterior33_framing_sf
 
 ## Closure and next decryption decision
 
-The p55 **43/33 split is now source-supported as a structural partition**, but it is still **not a demonstrated reversible cipher frame**. The 2013 value and p57 wording support the count relation; they do not assign the 33 exteriors as a key/checksum/header, define the 43-interior key/operation, set an order or clock, or specify how to restore all 76 runes. Existing p50 perimeter/bracket keys, affine and multiplicative families, source-word key candidates, SHA-1 framing tests, and the direct p28 DH-derived cube/inverse on the 43 interiors fail or lack a source-selected p55 role. Keep all **76 unchanged original runes** in the target state for Director #41's blind decoder gate. Do not use a 43-rune proposal as a full p55 solve or silently discard the 33 exteriors. The direct cube/inverse receiver is reproduced by sims/lp2_p55_dh_cube_43interior_receiver_sft.cjs. Reopen only if a first-party instruction or original-page feature binds the two parts to a different complete reversible operation.
+The p55 **43/33 split is now source-supported as a structural partition**, but it is still **not a demonstrated reversible cipher frame**. The exact two-rune short-word gate now rules out **every** interior-only receiver that copies all exteriors verbatim while demanding native-English original word shapes; see the necessary condition above. Such proposals require a changed exterior glyph or word segmentation rather than more interior-key tuning. The 2013 value and p57 wording support the count relation; they do not assign the 33 exteriors as a key/checksum/header, define the 43-interior key/operation, set an order or clock, or specify how to restore all 76 runes. Existing p50 perimeter/bracket keys, affine and multiplicative families, source-word key candidates, SHA-1 framing tests, and the direct p28 DH-derived cube/inverse on the 43 interiors fail or lack a source-selected p55 role. Keep all **76 unchanged original runes** in the target state for Director #41's blind decoder gate. Do not use a 43-rune proposal as a full p55 solve or silently discard the 33 exteriors. The direct cube/inverse receiver is reproduced by sims/lp2_p55_dh_cube_43interior_receiver_sft.cjs. Reopen only if a first-party instruction or original-page feature binds the two parts to a different complete reversible operation.
 
 **Outcome:** the source-supported 43/33 structural partition is retained; no p55 plaintext, key, complete inverse, or independent p55 continuation is recovered. The earlier “no source-selected split” classification is superseded, while the negative conclusion on cryptographic roles remains.

@@ -63,6 +63,10 @@ MMAEOGF / BTHBC / EOE / EAXNGRIRS / EMBYYXS / THOE / CEANGHOEX / DSU / BXI
 
 Neither direction produces recognizable plaintext. The operation preserves the symbol histogram because it is a permutation, but the reconstructed words remain nonlinguistic.
 
+## Later exact exterior-copy impossibility (Agent40, 21 November)
+
+The original p55 has five complete two-rune words `SB`, `XM`, `WR`, `EOE`, `THOE`. They contain **zero strict interiors**, so any algorithm changing only the 43 interiors and copying the original 33 exterior glyphs leaves **all five** fixed. All are absent from four pinned source-native English lexical sets. This establishes a stronger, **key-independent** necessary-condition failure for the entire original-word-preserving interior-only family; the cube/inverse decoder was never capable of full ordinary GP-native English even with a different exponent. See the [integrated 43/33 report](p55-original-33-exterior-43-interior-source-framing.md) and [exact original-source SFT](../sims/lp2_p55_exterior_copy_two_rune_obstruction_sft.cjs) ([Windows PASS 44961526952](https://github.com/FlareZ123/liber-primus/actions/runs/44961526952)). This does not exclude transformations that also change exterior values, nor word resegmentation.
+
 ## Decision
 
 Reject the **direct one-step cube and inverse-cube transforms on the p55 43-rune strict interior**. This does not refute the p28 DH state, the p55 43/33 structural partition, or other independently selected operations. It does not identify a role for the 33 exteriors and does not recover any p55 plaintext, key, or complete inverse.
