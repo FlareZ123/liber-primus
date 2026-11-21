@@ -47,8 +47,9 @@ assert.equal(114 % key.length, 0);
  * page-crossing printed word. ±1 are symmetric difference-key directions.
  * @param {-1|0|1} sign
  * @param {boolean} wordReset
+ * @param {boolean} [reverseClock=false]
  */
-function invert(sign, wordReset) {
+function invert(sign, wordReset, reverseClock = false) {
   let phase = 0;
   const positions = [];
   let body = "";
@@ -58,8 +59,9 @@ function invert(sign, wordReset) {
       const value = runeIndex.get(char);
       if (value !== undefined) {
         if (offset >= start && offset < end) {
-          positions.push(phase % key.length);
-          body += gp.runes[(value + sign * key[phase % key.length] + 29) % 29];
+          const index = reverseClock ? (307 - phase) % key.length : phase % key.length;
+          positions.push(index);
+          body += gp.runes[(value + sign * key[index] + 29) % 29];
           phase++;
         }
         offset++;
@@ -121,6 +123,17 @@ for (const reset of [false, true]) for (const sign of [-1, 1]) {
   assert.equal(current.anyLexicon, 0);
   results.push({sign, clock: reset ? "printed-word reset" : "continuous", ...current});
 }
+const mirroredResults = [];
+for (const sign of [-1, 1]) {
+  const candidateWords = invert(sign, false, true);
+  const reading = score(candidateWords);
+  const backReading = score(candidateWords.map(word => [...word].reverse().join("")));
+  assert.equal(reading.longWords, 40);
+  assert.equal(reading.anyLexicon, 0);
+  assert.equal(backReading.anyLexicon, 0);
+  mirroredResults.push({sign, clock: "red-reversed physical runes", ...reading,
+    reversedWordLexicon: backReading.anyLexicon});
+}
 const original = score(invert(0, false));
 assert.equal(original.longWords, 40);
 assert.equal(original.anyLexicon, 0);
@@ -141,7 +154,7 @@ console.log(JSON.stringify({
   key, keySumMod29: 0,
   receiver: {p6: [82, 196], p7: [0, 194], runes: 308,
     pageCrossingWordJoined: true, p6TailIs19KeyCycles: true},
-  original, results,
+  original, results, mirroredResults,
   positiveControl: {originalClearP57Runes: 95, longWords: 12,
     lexiconMatches: 8, exactRecoveredRunes: plant.length},
   verdict: "No plaintext in either source-difference key direction or source-motivated clock"
