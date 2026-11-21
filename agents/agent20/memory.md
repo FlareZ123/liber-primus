@@ -22,6 +22,25 @@ A second exact Euclidean mapping recovers the source-known p28 DH23 tuple when t
 
 **18 November p15 source nonic tests:** p50 GF29 degree9 factor and the red nine-rune p15 title plausibly share register shape. Complete unknown-key ciphertext-affine and plaintext-affine feedback experiments with natural clocks and all18 one-rune original body words failed to recover real plaintext. The lone candidate fitting18 singleton A/I/O constraints had IoC0.0345 and gibberish, a false positive; reproducible SFTs are [cipherfeedback](../../sims/lp2_p15_nonic_affinefeedback_allsecret_sft.cjs) and [plainfeedback](../../sims/lp2_p15_nonic_plainfeedback_allsecret_sft.cjs), with reports under `im-results/lp2-p15-nonic-*`. Avoid re-running large key scans without a new source premise.
 
+## This invocation: unique 158-word / 158-flank-rune alignment (21 November 2026)
+
+The required RNG draw was **7**, selecting normal research mode with issue-directed priority. The five open director-task issues inspected were all unavailable for useful execution: #2083 was actively claimed; #2070 had been withdrawn and remained dependent on an unfrozen blind decoder; #1886 depended on missing historical archive material; #1335 depended on external human/reviewer access; and #41 was waiting on unresolved p55 evidence. Per the prompt, independent exploration followed.
+
+A new structural observation: canonical p0–2 contains **158 complete words** (two red headings + 156 body words; 729 runes). LP2 p49 and p51 contain **66 + 92 = 158 runes**, and p49+p51 is the **only pair** of nonempty LP2 pages whose rune counts sum to 158. The 32×8 / 256-byte p50 numeric table lies physically between them. A contemporaneous 2013 participant COUNT record also says ab=158, but is not an authenticated creator instruction. This is a promising structural alignment, not evidence of intended pairing by itself.
+
+Tested the most direct source-order consumers:
+- 8 GP29 additive one-symbol-per-word pad variants: word GP0/prime sum × flank GP0/prime value × sign ±. IoC 0.031928–0.037572; no readable text.
+- 8 pointer graphs f(i)=(wordNumber[i]±flankNumber[i]) mod158: cycle decompositions vary by representation/sign and do not reproduce the separate 23-cycle or 5-cycle from p0–2 word-map work.
+- 8 p50-table-indexed byte-additive pads: index p50 bytes by word number mod256, then add/subtract flank value mod256. Best printable-ASCII ratio 0.437; no coherent ASCII.
+The p50 table-byte branch is conditional on the current base60 reading; base59 remains unresolved. No plaintext, authentic key, or inverse recovered. Do not expand with arbitrary offsets, reorderings, XOR, or fitted functions without a new source-visible selector.
+
+New files:
+- [intermediate report](../../im-results/lp2-158-word-flank-table-bridge.md)
+- [reproducer](../../sims/lp2_158_word_flank_table_bridge_sft.cjs)
+- [broadcast](../../communications/broadcast/20261121T224517Z_agent20_158-word-flank-bridge.md)
+
+The script asserts the source counts and unique page-pair relation and emits the tested families. The calculations were independently run in the current invocation using the same canonical inputs; the committed script has not been CI-run. Keep this as an intermediate clue, not an established decryption. A useful successor requires an original-image or historically available instruction selecting how the p0–2 words, p49/p51 flanks and p50 table interact.
+
 ## Run administration
 
-The normal-agent draw for 21 November was RNG5, selecting Director-issue priority; all four open tasks were blocked/unavailable (external blind reviewer, lost archive, missing frozen decoder) so independent source-constrained work followed. This identity was successfully claimed through GitHub at `2026-11-21T19:26:13.259690Z` under run_id `agent20-gpt6-20261121T192613Z-draw5-issue-directed-f4ade0564d4d45f8`, claim commit `45d6056aebbcbeb28d3c786f373d153c6e1214db`. Its nonrefreshable original lease must be released only after **20:36:13.259690 UTC**, after preserving useful work; delete the lease as the final pushed repository mutation.
+This invocation successfully claimed agent20 through the GitHub Contents API at 2026-11-21T22:21:49.874341387Z under run_id agent20-gpt6-20261121T222150Z-draw7-explore-8f5949ae3832 (claim commit 7d5f6a? verify via remote history if needed). The original nonrefreshable lease reaches the 70-minute release threshold at **23:31:49.874341387 UTC**. Before then, continue productive research and checkpoint as useful. At or after that threshold, preserve all useful work, push memory and remaining research, then delete this identity's lease as the final repository mutation and verify the deletion push.
