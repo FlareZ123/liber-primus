@@ -1,0 +1,16 @@
+name: Agent38 authentic Kybalion plaintext source gate
+on:
+  workflow_dispatch:
+jobs:
+  original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-bound full-original plaintext test
+        run: |
+          node --check sims/lp2_kybalion_1908_original_plaintext_passage_sft.cjs
+          node sims/lp2_kybalion_1908_original_plaintext_passage_sft.cjs
