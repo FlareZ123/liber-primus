@@ -400,6 +400,25 @@ The strongest target-free evidence is the untouched ciphertext itself:
 3. the complete H13 shell is state-typed;
 4. the visible 4|5|4 marker collapses it to `[A-B,K-b,q]`, uniquely among all 12,296 page-local 13-rune windows.
 
-The remaining research problem is now specific: recover a source-authored ordering rule for the 13 state-key atoms, or transfer the exact schedule prospectively to a new independently selected 13-rune receiver. Do not expand into arbitrary state-expression fitting or free key permutations.
+## 13-word interval / 2014 square order gate (#1984, Agent3, 21 November)
+
+The independent p0 shell readout selects **THE** and **WAY** as the endpoints of a consecutive interval in the preserved 2016 signed message. The exact 13 words, in original text order, are:
+
+`THE PATH LIES EMPTY EPIPHANY SEEKS THE DEVOTED | LIBER PRIMUS IS THE WAY`
+
+The sentence/paragraph boundary is a genuine **8+5** split: the first sentence ends after DEVOTED; the next begins LIBER PRIMUS IS THE WAY. This matches the p0 red title's 8+5 rune lengths and the marker's 8 outer / 5 centre dots. It is a real structural alignment, but by itself only supplies two group sizes; it does not say which individual word is assigned to which key atom, nor how the 13 words become DH-state values. The interval contains **54 GP29 runes** after digraph tokenization (not 58; 58 is the ordinary A–Z letter count), so do not treat the latter as a GP29 page-count match.
+
+The 2014 material was checked before consulting the frozen 13-atom key:
+
+1. **Direct word-number correspondence to the 2014 5×5 / 1033 square.** The original 2013 `0_wisdom` table contributes 13 word cells to the reconstructed 2014 square. Their row-major GP-prime sums are `[341,366,199,130,320,245,91,226,320,130,199,366,341]`. The 13 interval words in signed-source order have GP-prime sums `[72,145,224,343,436,253,72,381,243,212,84,72,219]`. The two sets have **zero exact intersections**; the interval does not supply the square's 13 word-cell values or a direct row-major substitution.
+2. **The existing 2014 number-as-bearing convention.** The pre-existing direction-map model takes a number modulo 360, rounds to the nearest 45 degrees, uses 0°=E and the eight compass directions, and does not wrap at the 5×5 boundary. With the independently selected start cell 6 (`φ(761) mod 29 = 6)), using each interval word's GP-prime sum as its bearing gives only one successful forward move: THE (72°) moves cell 6→1; PATH (145°) then points NW off-grid. The reverse-order control begins WAY (219°), which points SW off-grid from cell 6. Neither ordering yields thirteen outputs. This reuses an existing analyst-defined convention; the 2014 first-party form itself does **not** authenticate a number-to-bearing grammar.
+
+The 2014 Stage10 form authenticates the submitted square metadata (orders 5/7/5 and target sums 3301/1033/1033), not a traversal of the cells. The 7×7 square's 13-cell central cross (7+7−1) is an attractive count match, but no first-party instruction says to extract that cross or chooses row-first versus column-first. The earlier [2014 square direction-map audit](2014-magic-square-direction-map.md) likewise finds no source-authored start/movement grammar. The p0 marker's natural outer-first 8+5 dot serialization has already been tested in the [dot-topology report](lp2-p0-red13-dot-topology-readout.md); this issue does not repeat it.
+
+The frozen 13-atom packet was not used to choose the interval, word numbers, square cells, start cell, or bearing convention. After those source objects and rules were fixed, neither candidate path produced a complete 13-output sequence to compare with the packet. The shared 13 count and 8+5 grouping therefore support a **candidate structural bridge**, not a source-authenticated atom order.
+
+**Reproducer:** [2014 square direction-map script](../sims/2014_magic_square_direction_map.cjs), now including the p0 interval extraction, GP-prime sums, direct 13-word-cell comparison, and forward/reverse bearing-path controls. It asserts the original p0 JPEG SHA-256 and the 2016 signed-message interval before producing the gate output.
+
+The 13-word interval supplies a source-visible 8+5 grouping that matches the p0 title/marker partition, but it does **not** supply a unique atom-level ordering rule. The 2014 square metadata adds no authenticated traversal or number-to-bearing grammar; the bounded word-number tests above fail to produce thirteen outputs. Retain the 13-atom packet as a typed *candidate state packet*, not recovered plaintext or a creator-authenticated ordered key. Further ordering work requires a new first-party selector or a prospective independent holdout; do not expand into arbitrary state-expression fitting or free key permutations.
 
 Reproducer: `sims/lp2_p0_red13_state_key_the_way_sft.cjs`.
