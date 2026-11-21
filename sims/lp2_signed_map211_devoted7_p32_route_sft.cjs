@@ -102,6 +102,39 @@ const hits = eligible.filter(record => pointerPath(record.seed, depth)[depth] ==
 assert.equal(eligible.length,35);
 assert.deepEqual(hits, [{word:"MAP",index:18,seed:211}]);
 
+// Cheapest prospective receiver: use the literal 121 successive table
+// states from the newly selected MAP=211 address as GP29 additive shifts.
+// Source selects the seed and index clock; converting bytes mod29 and choosing
+// additive arithmetic remain hypotheses, tested in the two canonical signs.
+const p32Cipher = corpus.pages[32].indices;
+const keyStates = [seed];
+for (let i = 1; i < p32Cipher.length; i++) keyStates.push(table[keyStates[i-1]]);
+const key = keyStates.map(value => value % 29);
+const mod29 = value => ((value % 29) + 29) % 29;
+/** @param {number[]} values @returns {number} */
+function ioc(values) {
+  const frequencies = Array(29).fill(0);
+  for (const value of values) frequencies[value] += 1;
+  return frequencies.reduce((sum, n) => sum + n * (n-1), 0) /
+    (values.length * (values.length-1));
+}
+const plantedNative = corpus.pages[57].indices.concat(corpus.pages[57].indices.slice(0, 26));
+assert.equal(plantedNative.length, 121);
+const directInverseResults = [];
+for (const sign of [-1, 1]) {
+  const recovered = p32Cipher.map((value, i) => mod29(value + sign * key[i]));
+  assert.deepEqual(recovered.map((v,i) => mod29(v-sign*key[i])),p32Cipher);
+  const encryptedPlant = plantedNative.map((v,i) => mod29(v-sign*key[i]));
+  assert.deepEqual(encryptedPlant.map((v,i) => mod29(v+sign*key[i])),plantedNative);
+  directInverseResults.push({
+    sign, ioc:ioc(recovered),
+    preview:recovered.slice(0, 80).map(v => corpus.translit[v]).join("")
+  });
+}
+assert(Math.abs(directInverseResults[0].ioc-0.03526170798898071)<1e-12);
+assert(Math.abs(directInverseResults[1].ioc-0.03305785123966942)<1e-12);
+assert(directInverseResults.every(row => row.ioc < 0.04));
+
 console.log(JSON.stringify({
   status:"PASS",source:"Original 2016 signed words + original p50 base60 byte table",
   selectors:{mapGpPrime:seed,devotedGpRuneLength:depth,
@@ -113,5 +146,8 @@ console.log(JSON.stringify({
     fullComponentIncludingRoot:treeCount(256)},
   signedWordCompetition:{count:words.length,eligibleCount:eligible.length,
     exactDepth7ToP32Hits:hits},
+  directAdditiveInverse:{sourceP32IoC:ioc(p32Cipher),
+    clearP57IoC:ioc(corpus.pages[57].indices),
+    plantedGP57Runcount:plantedNative.length,candidates:directInverseResults},
   interpretation:"Alternative clue-constrained route to already selected p32; it gives a receiver, not a GP29 ciphertext key or plaintext. Exact path observed post hoc, no design-level authentication."
 },null,2));
