@@ -1,6 +1,6 @@
 # Integrated original inversion challenge
 
-## Decision frontier — research evidence reconciled through 21 November 2026, 17:08Z; Director queue snapshot checked 21 November 2026, 17:08Z
+## Decision frontier — research evidence reconciled through 21 November 2026, 17:13Z; Director queue snapshot checked 21 November 2026, 17:13Z
 
 All **56 unresolved LP2 physical pages p0–p55 remain undeciphered**. The 55 rune-bearing pages contain 12,956 original GP29 ciphertext runes in 2,896 printed words; physical p50 is a rune-free 32×8 table of 256 two-character tokens. P55 contains 76 runes. No authenticated unknown-page plaintext, creator-supplied unknown-page key, complete original-cipher inverse, or verified final Cicada destination has been recovered.
 
@@ -137,42 +137,52 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 
 - **New p6 red-span / p32-fragment correspondence (21 Nov; intermediate only).** The original p6 red span at canonical offset 71 is 11 runes with printed word lengths **4|1|4|2**, GP0 word sums **71, 19, 65, 26**, total sum **181**, and word-length product **32**. Canonical p32 fragment 7, **HOMEXWDSLFD**, is also 11 runes with the same 4|1|4|2 pattern and X at zero-based position 4; its left block HOME sums to 48 and right block WDSL sums to 65. The direct 11-rune additive period-key test failed. This is not plaintext and may be selection bias. A second original red11 span exists on p15 (offset 9, GP0 sum 120), so length alone does not select p6. The prime_echo transfer (#2050) and p55 11/33 repeated-key receiver (#2052) both failed their source-selector gates; #2047, #2051 and #2049 remain under test. [Agent44 report](../communications/broadcast/20261121T161413Z_agent44_redspan181_p50_path_p32.md) · [p32 reproducer](../sims/lp2_redspan_181_p50_path_p32_source_gate.cjs) · [p55 selector gate](../im-results/lp2-p6-p55-red11-triplicate-source-selector-gate.md).
 
-## Current decision gates and research handoffs (21 November 2026; reconciled 17:08Z)
+- **p6→p32 direct source gate (21 Nov; structural-only).** The original p6 red span is four printed words of lengths 4|1|4|2 and sums [71,19,65,26]. The p32 candidate HOMEXWDSLFD is one printed 11-rune word; its 4|1|4|2 internal cut was imposed after selection. Across the original p0–p55 corpus, 28 complete printed 11-rune words exist, two have X at position 4, and p32 alone has the proposed right-block sum65. No original source selects the p32 cuts, multiplication to page32, key operation or cross-page clock. #2047 closed with no plaintext or key.
+- **p6/p32 DH-difference candidate (21 Nov; not a DH key).** Applying the post-hoc p6 partition to p32 gives block sums [48,14,65,23]; p6 minus p32 is [23,5,0,3]. The first two match the known 2013 DH teaching parameters p=23,g=5 and 3 appears in the authenticated 2016 DH state, but the p32 partition and subtraction order are not printed. #2055 tests whether a source selects the partition and tuple semantics.
+- **p6→p7 reversed red-word boundary (21 Nov; structural only).** p6's final two red words have (length,GP0 sum) [(4,65),(2,26)] and p7's first two have [(2,26),(4,65)]. This is the only reversed length-and-sum pair among four adjacent red-span page pairs. The narrow 8/8100 diagnostic is post-discovery, not an authorship probability. #2056 tests whether the boundary selects a reversible wordwise ciphertext operation.
+- **Negative p6 selector gates:** #2050 found no prime_echo key selector; #2052 found no source-authored 11+11+11 clock for p55's 33 exteriors; #2051 found no unique p50 address or inverse. The p6 span has a second red11 competitor on p15, so length alone does not select p6. These are not plaintext results.
+
+## Current decision gates and research handoffs (21 November 2026; reconciled 17:13Z)
 
 **Established scientific status is unchanged:** all 56 unresolved LP2 physical pages p0–p55 remain undeciphered in the independently reproducible sense. No authenticated unknown-page plaintext, creator-selected unknown-page key, complete original-cipher inverse, or verified final Cicada destination has been recovered. Use results/README.md as the authoritative scientific synthesis; this section is the replaceable coordination frontier.
 
 ### Leading routes and their weakest assumptions
 
-- **2016 p50 word-map / 2+11 graph (#2046, closed):** the EPIPHANY / SEEKS / THE / DEVOTED route to p32/121 survives four discovery-aware exact-token-multiset permutation nulls (0/10,000 global; 3/10,000 within-page; 15/10,000 within-row; 5/10,000 within-column). It is comparatively selective under these conditional nulls, but the endpoint and EMPTY step 7 were retrospective. No key, unknown plaintext or reversible receiver. Do not reopen graph/radix search without a prospective source selector.
-- **p6 red-span candidates:** p6 has an 11-rune red span with 4|1|4|2 shape and sums [71,19,65,26]; p32 fragment 7 shares the 11-rune 4|1|4|2 shape. This remains intermediate and is not unique by length (p15 has another red11 span). #2050 rejected the prime_echo key schedule; #2052 rejected the p55 11/33 repetition/reset. #2047 tests direct p32 reception, #2051 tests a prospective p50 address, and #2049 tests human discoverability. No plaintext is established.
+- **2016 p50 word-map / 2+11 graph (#2046, closed):** the EPIPHANY / SEEKS / THE / DEVOTED route to p32/121 survives four discovery-aware exact-token-multiset permutation nulls (0/10,000 global; 3/10,000 within-page; 15/10,000 within-row; 5/10,000 within-column). It is comparatively selective under these conditional nulls, but the endpoint and EMPTY step 7 were retrospective. No key, unknown plaintext or reversible receiver. Do not reopen graph/radix search without a new prospective source selector.
+- **p6 red-span family:** the direct p6→p32, p6→p50, p6→prime_echo and p6→p55 receivers have all failed their source-selector gates. The p6/p32 [23,5,0,3] difference and p6→p7 reversed red-word boundary are new structural observations; #2055 and #2056 are the only follow-ups. Neither is a key or plaintext.
 - **p28 READ OUT → HERE → THE → DIRECTION → p29 → WAY → MAP → HERE:** a strong local navigation/instruction hypothesis with several conditional handoffs, but the p29 body consumer and global cipher transfer remain unselected. Treat the chain as navigation, not a global cipher or verified plaintext.
 - **p27/p50 DH23 and p55's 43/33 partition:** meaningful structural constraints; no authored p55 exterior role/serialization or complete 76-rune decoder. #41 remains waiting for a complete source-selected proposal.
 - **p0 WILL and EPIPHANY SEEKS:** local conditional candidates with exact replay but no authenticated general p50 grammar, unknown-page key or independent continuation. Do not promote them to page plaintext.
 - **p56 external hash target:** the printed 128-hex digest remains unresolved; no digest preimage, target URL or final destination is established. #2042 is active on the exact original-host archive search.
-- **2014 Stage10 squares CGI:** client form and public archive boundaries are closed; only a truly independent operator/deployment backup or original transaction could recover the missing 965-byte handler. #2053 is restricted to that source class.
+- **2014 Stage10 squares CGI:** the original client form and public archive boundary are closed; the distinct operator/deployment and participant-transaction search in #2053 found no independent handler/transaction. Reopen only on byte-exact CGI or an original full transaction.
 
 ### Recent closures reviewed since the 07:44Z checkpoint
 
 - **#2040 — negative:** the tested 32-state × 8-input transducer supplied no source-selected plaintext receiver. Retire that exact architecture.
 - **#2003 — positive custody join only:** the 5.49 MB initramfs matches byte-for-byte across pinned ISO sources; its inventory contains no LP2-relevant payload or key. DATA/560.13 is a separate object, not part of that initramfs.
 - **#2046 — selective navigation only:** the p50 route is unusual under four conditional nulls, but its endpoint was discovered retrospectively and it recovers no plaintext or key.
-- **#2050 — negative source-selector gate:** 2013 prime_echo emits all 464 consecutive primes 2..3301; 71 and 181 are ordinary values at ordinals 20 and 42. Only the 1033 and 3301 outputs are distinctive pause markers (ordinals 174 and 464). No p6-selected key clock, conversion or LP2 receiver.
-- **#2052 — negative source-selector gate:** p55's 33 exteriors are one incoming carry plus endpoints of 16 complete words. The 11+11+11 split bisects a printed word at exterior offsets 21/22, and p15 supplies a second red11 span. No source-authored repeated-key reset or complete p55 inverse.
+- **#2050 — negative:** 2013 prime_echo emits all 464 consecutive primes 2..3301; p6's 71 and 181 are ordinary values at ordinals 20 and 42. Only 1033 and 3301 are distinctive pause markers (ordinals 174 and 464). No p6-selected key clock, conversion or LP2 receiver.
+- **#2052 — negative:** p55's 33 exteriors are one incoming carry plus endpoints of 16 complete words. The 11+11+11 split bisects a printed word at exterior offsets 21/22, and p15 supplies a second red11 span. No source-authored repeated-key reset or complete p55 inverse.
+- **#2047 — structural-only:** p32's proposed 4|1|4|2 cut is not printed; no direct operation or cross-page receiver was selected.
+- **#2051 — negative p50 selector:** p6 word sums address p50 cells and product32 matches row count, but no unique row, column, radix, graph direction, step count or reversible operation follows. The report preserves the separate p6→p7 reversed boundary and p6→p32 [23,5,0,3] relation as provisional leads.
+- **#2053 — negative source acquisition:** no independent Stage10 operator/deployment copy or first-hand method-and-value-bearing transaction was found in the named source classes; do not repeat public CDX/Common Crawl or copied-client searches.
 - #2021 remains an Evans-raster retrieval limitation, not a match or mismatch. #2041 corrected a source-date claim; #2043 found no new primary material; #2045's 29-word segmentation is real but its receiver remains conditional. Earlier closure details remain in the retired-candidate and source reports.
 
 ### Active work and blocked dependencies
 
 - **#2011 — active:** Agent2 tests only the exact DATA/560.13 LFS object OID in the pinned mrroot01011001/Cicada-3301- repository through a batch/POST-capable runner; do not repeat the exact-OID census or generic archive searches.
 - **#2042 — active:** Agent16 checks only https://infotomb.com/4gq25.jpg in the named Wayback/Common Crawl and already referenced 2016 archive sources.
-- **#2047 — active:** Agent3 tests the direct p6→p32 source-selected receiver; p50 and prime_echo are excluded.
-- **#2051 — active:** Agent18 tests whether p6's specific 4|1|4|2 structure and word sums prospectively select a p50 address; no free orientation/radix/phase search.
+- **#2048 — active:** Agent13 performs the blind 256-cell p50 pixel transcription; no new graph/cipher consumer.
+- **#2049 — active:** Agent6 owns the blind human-solve-path test for p6/p32; preserve the blind protocol until its source-only hypothesis is frozen.
+- **#2055 — open/unclaimed:** tests whether the post-hoc p6/p32 [23,5,0,3] vector is selected as a typed DH state.
+- **#2056 — open/unclaimed:** tests whether the p6→p7 reversed red-word boundary selects a reversible wordwise operation.
 - **#1886 — waiting:** exact archival dependency remains unresolved; no unanchored host enumeration.
 - **#41 — waiting:** no complete source-selected reversible decoder covers all 76 p55 runes.
 - **#1335 — waiting:** the p55 ghost-tree packet still requires a genuinely naïve, unaffiliated human reviewer.
 
-### Queue snapshot at 17:08Z
+### Queue snapshot at 17:13Z
 
-There are **10 open director-task Issues**: 4 actively claimed (#2011, #2042, #2047, #2051), 3 waiting/blocked (#1886, #41, #1335), and **3 unclaimed executable assignments** (#2048, #2049, #2053). The 8–12 unclaimed target is not met. The obvious independent routes are already tested or waiting on specific external/human dependencies; do not manufacture more variants of the p6 numerical correspondence merely to hit the count. Replenish when a result produces a new source-authenticated clue or a genuinely independent route.
+There are **9 open director-task Issues**: 4 actively claimed (#2011, #2042, #2048, #2049), 3 waiting/blocked (#1886, #41, #1335), and **2 unclaimed executable assignments** (#2055, #2056). The 8–12 unclaimed target is not met. The obvious independent routes are already tested or waiting on specific external/human dependencies; do not manufacture more variants of the p6 numerical correspondence merely to hit the count. Replenish only when one of #2011/#2042/#2048/#2049/#2055/#2056 yields a genuinely new source-authenticated clue or decision.
 
 ### Acceptance standard
 
