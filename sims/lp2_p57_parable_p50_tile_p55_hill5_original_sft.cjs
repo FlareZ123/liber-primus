@@ -79,6 +79,60 @@ function readToken(token, radix) {
 assert.deepEqual([205, 173, 201, 169].map(cell).map(t => readToken(t, 59)),
   [75, 115, 73, 224]);
 
+/* A new independently checkable original-source relation: the source-selected
+ * tile totals and peeled center reproduce the historical Cicada magic-square
+ * row totals and phi(1033) under base59. This was noticed after the tile was
+ * identified, so it is an arithmetic clue candidate, not an author instruction.
+ */
+/** @param {number} n */
+function phi(n) {
+  let value = n;
+  for (let p = 2; p <= n; p++) {
+    if (n % p === 0) {
+      while (n % p === 0) n /= p;
+      value -= value / p;
+    }
+  }
+  return value;
+}
+/** @param {number} radix @param {string[][]} block */
+function numeralMatrix(radix, block) {
+  return block.map(row => row.map(token => readToken(token, radix)));
+}
+/** @param {number[][]} a */
+const total = a => a.flat().reduce((s, n) => s + n, 0);
+/** @param {number[][]} a */
+const center = a => total(a.slice(1, 4).map(row => row.slice(1, 4)));
+const originalSquares = read("resources/cicada2014-openpuff-magic-squares.txt")
+  .trim().split(/\r?\n\s*\r?\n/u)
+  .map(section => section.trim().split(/\r?\n/u)
+    .map(row => row.trim().split(/\s+/u).map(Number)));
+assert.deepEqual(originalSquares.map(s => s.length), [5, 7, 5]);
+assert.deepEqual(originalSquares.map(s => sumNumbers(s[0])), [3301, 1033, 1033]);
+assert.equal(originalSquares[2][2][2], 91);
+assert.equal(phi(1033), 1032);
+assert.equal(total(numeralMatrix(59, tile)), 3210);
+assert.equal(center(numeralMatrix(59, tile)), 1032);
+assert.equal(total(numeralMatrix(60, tile)), 3258);
+assert.equal(center(numeralMatrix(60, tile)), 1047);
+assert.equal(3210 + originalSquares[2][2][2], 3301);
+assert.equal(center(numeralMatrix(59, tile)), phi(sumNumbers(originalSquares[1][0])));
+/** @param {number[]} a */
+function sumNumbers(a) {return a.reduce((s, x) => s + x, 0);}
+const allWindows = [];
+for (let row = 0; row <= 27; row++) {
+  for (let col = 0; col <= 3; col++) {
+    const block = Array.from({length: 5}, (_, dr) =>
+      Array.from({length: 5}, (_, dc) => allTokens[(row + dr) * 8 + col + dc]));
+    const values = numeralMatrix(59, block);
+    allWindows.push({row, col, sum: total(values), inner: center(values)});
+  }
+}
+assert.equal(allWindows.length, 112);
+assert.deepEqual(allWindows.filter(x => x.sum === 3210 && x.inner === 1032),
+  [{row: 21, col: 1, sum: 3210, inner: 1032}]);
+
+
 /** @param {number[][]} source @returns {number[][]} */
 function invert(source) {
   const n = source.length;
@@ -212,6 +266,39 @@ assert.equal(results.length, 4);
 assert.deepEqual(results.map(r => Math.round(r.normalizedIC * 1e12)), [
   982342342342, 1055495495495, 836036036036, 982342342342,
 ]);
+
+/* The totient identity provides a historically motivated *new key
+ * representation*, distinct from raw token values. Try exactly a repeated
+ * 25-glyph phi-pad, both additive signs, and a phi(Hill5) matrix for both
+ * vector conventions. Word punctuation and all original positions stay fixed.
+ */
+const phiResults = [];
+for (const radix of [59, 60]) {
+  const phiKey = numeralMatrix(radix, tile).map(row => row.map(x => mod(phi(x))));
+  const tape = phiKey.flat();
+  for (const sign of [-1, 1]) {
+    const candidate = body.map((c, i) => mod(c + sign * tape[i % tape.length]));
+    assert.deepEqual(candidate.map((p, i) => mod(p - sign * tape[i % tape.length])), body);
+    const clearEncrypted = plant.map((p, i) => mod(p - sign * tape[i % tape.length]));
+    assert.deepEqual(clearEncrypted.map((c, i) => mod(c + sign * tape[i % tape.length])), plant);
+    const hits = longWords.filter(w => dictionary.has(w.map(i => candidate[i]).join(","))).length;
+    assert.equal(hits, 0);
+    phiResults.push({radix, kind: "phi25_additive", sign, normalizedIC: normalizedIC(candidate),
+      dictionaryHits: hits});
+  }
+  const phiInverse = invert(phiKey);
+  for (const convention of ["col", "row"]) {
+    const candidate = apply(phiInverse, body, convention);
+    assert.deepEqual(apply(phiKey, candidate, convention), body);
+    assert.deepEqual(apply(phiInverse, apply(phiKey, plant, convention), convention), plant);
+    const hits = longWords.filter(w => dictionary.has(w.map(i => candidate[i]).join(","))).length;
+    assert.equal(hits, 0);
+    phiResults.push({radix, kind: "phi_hill5", convention,
+      normalizedIC: normalizedIC(candidate), dictionaryHits: hits});
+  }
+}
+assert.equal(phiResults.length, 8);
+
 console.log(JSON.stringify({
   sourcePrimeSums: clauseSums,
   originalP50PrimeRanks: ranks,
@@ -220,5 +307,7 @@ console.log(JSON.stringify({
   sourceNormalizedIC: normalizedIC(body),
   authenticClear75NormalizedIC: normalizedIC(plant),
   variants: results,
-  control: "4/4 original complete reencrypt and source-native 75/75 Hill5 plants",
+  historicalSquareChecksums: {tileSum59:3210,inner59:1032,magicTotal3301:3301,magicTotal1033:1033,center91:91,phi1033:1032,physicalWindows:allWindows.length},
+  phiVariants: phiResults,
+  control: "4/4 raw and 8/8 phi original complete reencrypt and source-native 75/75 positive plants",
 }, null, 2));
