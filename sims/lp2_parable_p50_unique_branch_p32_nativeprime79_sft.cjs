@@ -81,7 +81,7 @@ function gp0(word){
   return n;
 }
 const signedBody=signed.slice(signed.indexOf("Hello."),signed.indexOf("-----BEGIN PGP SIGNATURE-----"));
-const words=(signedBody.match(/[A-Za-z]+/g)||[]).map(w=>w.toUpperCase()).filter(w=>w!=="SHA");
+const words=(signedBody.replace(/\b7A35090F\b/g,"").match(/[A-Za-z]+/g)||[]).map(w=>w.toUpperCase());
 assert.equal(words.length,43);
 const atFourChildren=words.map((word,index)=>({word,index,gp0:gp0(word)}))
   .filter(x=>children.get(73).includes(x.gp0));
