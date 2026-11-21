@@ -28,12 +28,12 @@ cat "$OUT/iso-verification.tsv"
 test "$actual_size" = "$EXPECTED_SIZE"
 test "$actual_sha256" = "$EXPECTED_SHA256"
 
-SEVENZIP="$(command -v 7z || command -v 7zz || true)"
-if [ -z "$SEVENZIP" ]; then echo "Neither 7z nor 7zz is installed." >&2; exit 1; fi
+command -v xorriso >/dev/null || { echo "xorriso is not installed." >&2; exit 1; }
 command -v binwalk >/dev/null || { echo "binwalk is not installed." >&2; exit 1; }
 command -v cpio >/dev/null || { echo "cpio is not installed." >&2; exit 1; }
+command -v fakeroot >/dev/null || { echo "fakeroot is not installed." >&2; exit 1; }
 
-"$SEVENZIP" x -y -o"$ISO_ROOT" "$ISO_PATH" > "$OUT/iso-extraction.log"
+xorriso -osirrox on -indev "$ISO_PATH" -extract / "$ISO_ROOT" > "$OUT/iso-extraction.log" 2>&1
 find "$ISO_ROOT" -type f -print0 | sort -z | while IFS= read -r -d '' file; do
   rel="${file#"$ISO_ROOT"/}"
   printf '%s\t%s\t%s\n' "$rel" "$(stat -c '%s' "$file")" "$(sha256sum "$file" | awk '{print $1}')"
