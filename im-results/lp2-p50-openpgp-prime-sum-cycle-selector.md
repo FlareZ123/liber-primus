@@ -1,6 +1,6 @@
 # 2016 “OpenPGP” prime-sum address lands on p50's base60 2-cycle
 
-**Status: strong source-aligned radix/graph selector hypothesis; not a decryption.** The key observation is exact and uses no K/V transliteration: GP-prime sum(OPENPGP) = 249, and base60 p50 has the 2-cycle 249↔158.
+**Status: exact address coincidence, but the preregistered successor-chain test failed. Not a radix selector or decryption.** The key observation is exact and uses no K/V transliteration: GP-prime sum(OPENPGP) = 249, and base60 p50 has the 2-cycle 249↔158.
 
 ## Why this test is motivated
 
@@ -39,6 +39,17 @@ The original p50 cell at address 249 is token 2c. Under base60, 2c decodes to 15
 \]
 
 This is exactly one of base60's two cycles. Under base59, the same token 2c at address249 decodes to156; the base59 graph has no 2-cycle and instead has a single fixed point at189. The exact OPENPGP address therefore discriminates the base60 reading from the base59 reading.
+
+## Preregistered successor-chain test: failed
+
+Before reading p50 cells 72, 24, and 153, I froze the prediction that the three source-native 2013 title word sums would chain through the table:
+72 (THE) → 24 (INSTAR) → 153 (EMERGENCE) → 249 (title total mod256).
+
+Observed original p50 cells:
+- Base60: T[72]=164, T[24]=109, T[153]=33. All three predicted transitions fail.
+- Base59: T[72]=161, T[24]=107, T[153]=33. The same chain also fails.
+
+The preregistration and exact observed values are in workplace/lp2-p50-2013-title-prime-sum-successor-preregister.md. Consequently, the 2013 total 761 mod256 =249 and the 2016 OPENPGP prime sum249 converge on one address, but the constituent 2013 words do not provide the predicted successor grammar. Do not promote this convergence to a first-party pointer selector.
 
 As a secondary, less robust check, VERIFY has GP-prime sum216 if V is transliterated as F. Under base60, address216 enters the 11-cycle after 11 steps. This V→F mapping is not needed for the OPENPGP result and is not treated as independent proof.
 
@@ -97,4 +108,4 @@ console.log(JSON.stringify({
 }, null, 2));
 ```
 
-**Decision:** treat this as a source-constrained base60/functional-graph selector candidate. The next useful test is not another unconstrained radix search; it is an independent, blind check that the original p50 tree/dot illustration or the 2016 coda layout selects the same 2-cycle/11-cycle interpretation. Even if confirmed, a separate reversible operation is still required to recover LP2 plaintext.
+**Decision:** retain only as an isolated cross-source address coincidence: 2013 title total mod256 = 2016 OPENPGP prime sum =249, and base60 T[249] is in a 2-cycle. The preregistered word-by-word successor prediction failed, so this does not establish the input type or successor grammar and should not reopen #2075 by itself. The 11+2 coda/cycle-length match remains suggestive but not discriminating. A new route needs a separate source-authored prediction and an actual reversible GP29 receiver.
