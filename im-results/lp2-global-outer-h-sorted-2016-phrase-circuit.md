@@ -1,6 +1,6 @@
 # Three exact signed-2016 word-index packets in original LP2 outer runes
 
-**Agent43, 21 November 2026. Evidence class: newly observed, bounded cross-page structural match under a retrospective source-meaning operation. It is not recovered unknown plaintext, an authenticated key or a global LP2 decipherer.**
+**Agent43, 21 November 2026. Evidence class: newly observed, bounded cross-page structural match under a retrospective source-meaning operation. Seventy-two immediate source-clause additive consumers fail on original page tails. No unknown plaintext, authenticated key or global LP2 decipherer is recovered.**
 
 ## Human-visible premise
 
@@ -63,6 +63,22 @@ The most direct proposed continuation would decode the very next printed word af
 The surviving interpretation is three local *source index stencils*, potentially navigation or selected-clause markers. Their fragments overlap semantically with earlier independently found p0 EPIPHANY/DEVOTED and p0 ROAD source-selection routes, but no source-visible consumer ties the p12, p14 or p46 packets to another untouched cipher receiver. The sorted-H packet is also sensitive to original outer rune endings X and S; a more complete punctuation/ink/direction rule might explain why those glyphs were chosen, or a broader cipher-corpus search may show the matches are accidental.
 
 **Decision:** preserve this exact three-site operation and its early negative successor test as a finite new clue candidate. Seek an independent original illustration, page reference, or historical source that selects **sort each H pair and treat the four results as signed-word addresses** before further decoding. If no such selector exists, avoid a new numerical multi-step walk chosen to fit the already-known signed source phrases. Do not promote any of the three English clauses to unknown ciphertext plaintext.
+
+## Direct original-cipher key consumer (negative)
+
+The strongest immediate receiver is the **original continuation on the same physical page** after the two-word H packet. Here the selected authentic 2016 clause itself supplies a complete GP29 Vigenere-style key, rather than requiring an unrelated source. This is an independently reversible operation of the same additive family used on solved LP1 and p56. It is a **testable consequence of the hypothesized local key handoff**; H sorting itself remains retrospective.
+
+The frozen bounded test covers **24 decoders per matched page, 72 in total**: both additive signs; the verbatim key and its reverse; three key-clock origins (page start, H packet start, H packet end); and two literal-cipher-F policies (consume every original rune, or leave ciphertext F literal without consuming key). No external plaintext or language model selects parameters. Each no-F additive candidate exactly reencrypts its original page. Score only the complete *original ciphertext tail beyond the packet* against a native-GP trigram model trained on **218,800** Shakespeare runes, calibrated using independent Gibran source windows exactly matching the target tail lengths and authentic solved clear p57.
+
+| Original source packet | Tail after packet | Best of 24 GP29 tail scores (nats/rune; larger is more native) | Weakest independent Gibran window of same length | Native-like candidate count |
+| --- | ---: | ---: | ---: | ---: |
+| p12: EPIPHANY SEEKS THE DEVOTED, 22 GP runes in key | 131 runes | **-3.978484** | **-3.086957** (481 windows) | **0** |
+| p14: THEIR MEANING IS THE, 13 GP key runes | 64 runes | **-3.881136** | **-3.236490** (986 windows) | **0** |
+| p46: PRIMUS IS THE WAY, 13 GP key runes | 224 runes | **-4.049470** | **-2.879505** (281 windows) | **0** |
+
+The independently authentic p57 clear plaintext scores **-2.475702** under the same frozen model. The original undecephered tails score **-4.316444**, **-4.082084**, and **-3.975741**, respectively. None of the seventy-two original-input inverses approaches even the weakest heldout native prose. The two literal-cipher-F schedules are common finite policies, **not** an exhaustive inversion of every legal ambiguous-F path.
+
+**Decision of consumer test:** reject direct cyclic GP29 use of the three source-selected signed phrases as local page keys under these fixed historical arithmetic options. A prospective mechanism now needs an independent selector for a genuinely different receiver or operation. No arbitrary key-phase or offset rescue is justified. Reproducer: [source-read GP29 inverse SFT](../sims/lp2_outer_h_signed_phrase_direct_vigenere_sft.cjs), [Windows Node22 PASS 44939562541](https://github.com/FlareZ123/liber-primus/actions/runs/44939562541).
 
 ## Reproduction
 
