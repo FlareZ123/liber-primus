@@ -182,3 +182,21 @@ The AMASS GREAT WEALTH and prime/totient lines in the referenced translation are
 - 4c8c5bf4: add direct p55 center-as-key inverse result to existing report.
 - ad9a2a09: add the direct center-key gate to the existing p55 SFT script.
 - Issue #2039 closed as completed with a bounded negative; no successor should be opened for another variant search. The smallest useful new input is a contemporaneous Cicada-authenticated instruction or missing artifact that ties one operand (table, centers, or DH orbit) to a specific LP2 receiver and specifies the reversible transformation, origin and traversal.
+
+
+## 2026-11-21 checkpoint — historical design-prior audit (#2041)
+
+Claimed and completed [#2041](https://github.com/FlareZ123/liber-primus/issues/2041), now closed. The source-pinned 2012–2016 operation profile largely survives; its strongest conclusion remains that Cicada sometimes supplied explicit, typed local operations/interfaces, but operand selection and execution were often participant-local, and no single cipher family transfers reliably across stages.
+
+One material evidence-class correction: the Cibertec DH23 teaching-deck copy carries a self-reported 17 April 2012 date and prints the same p=23, g=5, a=6, b=15, A=8, B=19, shared=2 tuple as the signed 2013 TCP source. No independent timestamped archive or authenticated publication record for that date was found. It is a plausible alternate teaching-source analogue, not proof of pre-Cicada circulation. The signed 2013 protocol still assigns base and private exponent selection to the participant server, so the tuple is not an organizer-selected LP2 key.
+
+Consolidated this correction in commit ba6ae3a470e6c32f002c09bd9bba161908a6f1cb across:
+- resources/external/2013-tcp-server-signed-source.md
+- im-results/cicada-authenticated-solvepath-operation-contracts-2012-2016.md
+- im-results/cicada2013-dh23-worked-example-player-visible-gate.md
+- im-results/lp2-p27-dh23-shared2-circumference-client-secret.md
+- results/README.md
+
+The profile now treats confidence labels as qualitative and sample-conditional, downgrades broad type/typed-output priors, and explicitly rejects a low total-step-count prior. Counterexamples: 2013 ICMP reconstruction with incomplete capture and inferred framing; 2014 Stage7/8 multi-layer signed hex→MP3→participant-reconstructed OpenPuff→magic squares→participant-run Tor/CGI; solver-inferred Stage03→04 XOR/seven-column composition; and the abstract 2016 word/map/number/direction instruction without cipher grammar or receiver. The profile's concrete implication for LP2 is to demand a page-specific selector for operand, key/clock, receiver, and reversible transformation.
+
+No new LP2 plaintext or cipher mechanism found. No successor issue needed; avoid broad creator-history speculation. #2041 comment contains the detailed audit and counterexamples.
