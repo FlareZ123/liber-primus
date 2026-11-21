@@ -26,7 +26,7 @@ Supporting synthesis: [2013 source-selector gate](lp2-2013-prime-echo-source-sel
 
 ## What is genuinely selected, but is not a decoder
 
-The 2016 wording and the original p50 numeric table do support the fixed base-60 successor-map interpretation. The independently reproduced 2+11 functional graph has one source-selected word route, **EPIPHANY SEEKS THE DEVOTED → p32**. This is a navigation/receiver clue, not plaintext: the p32 page still contains 121 unknown GP29 runes, and the graph does not specify a value-changing operation on them. Treating the graph as an LP2 cipher would conflate navigation with decryption.
+The signed 2016 wording motivates word-aware navigation tests with the original p50 numeric table, but neither the base-60 digit convention nor the table-value-as-successor rule is explicitly selected by the original source. Under those two conditional choices, the reproducible 2+11 functional graph gives **EPIPHANY SEEKS THE DEVOTED → p32**. A separate drop-`f` base-59 convention gives the conditional **SEEKS THE → p55** subtree route; these competing readings of the same table and signed words cannot be combined as independent authentication of one decoder. The [discovery-aware p32 calibration](lp2-p50-discovery-aware-null-calibration.md) finds the base-60 route rare under four specified token-permutation controls, while retaining the unresolved original source selector. Neither route supplies a value-changing operation on p32's 121 unknown GP29 runes or p55's 76 unknown runes.
 
 The recent fixed 2014 Atbash-order +3 check on the 13 red-dropcap components also returns `TJEWBJUEOHIRTHW`, not an independently meaningful instruction or key ([report](lp2-p0-red-dropcap-atbash3-message-gate.md)). Its +3 implementation is a participant reconstruction from historical 2014 pages, not an LP2-specific signed selector. This is a supporting negative, not a third route.
 
@@ -39,6 +39,6 @@ No new human solve path passes all four requirements:
 3. a source-derived operand/key with fixed serialization and origin; and
 4. a typed receiver on untouched unknown-page ciphertext.
 
-The strongest current positive is navigation to p32 through the 2016 word-map clue and p50 table. The strongest historical precedents—2013 BASE29/DH/prime_echo and 2014 book codes—do not supply the missing LP2 key schedule or book/coordinate selector. The p15 16-cell prime spiral/infinity-to-p50 transfer is already retired by its dedicated original-input gates; it is not a new replacement route.
+The strongest currently calibrated navigation candidate is the conditional base-60 route to p32 from the signed 2016 word-map clue and p50 table. The strongest historical precedents—2013 BASE29/DH/prime_echo and 2014 book codes—do not supply the missing LP2 key schedule or book/coordinate selector. The p15 16-cell prime spiral/infinity-to-p50 transfer is already retired by its dedicated original-input gates; it is not a new replacement route.
 
 A future assignment should reopen one of these branches only if a new original LP2 or authenticated contemporaneous source fixes the missing receiver/clock, or names the source text and coordinate grammar. Numerical coincidences, the shared GP29 alphabet, or a generic “words/numbers” hint are not sufficient.
