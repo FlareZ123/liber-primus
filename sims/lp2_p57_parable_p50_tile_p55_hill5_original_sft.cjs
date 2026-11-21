@@ -379,10 +379,7 @@ for (const ch of transcription[32]) {
   if (rune !== undefined) {
     if (page32Offset > 0) page32Word.push(page32Offset - 1);
     page32Offset++;
-  } else if ("-.assert.deepEqual(blurResults.map(r => Math.round(r.normalizedIC * 1e12)), [
-  1010606060606, 1022589531680, 1074517906336, 1026584022039,
-]);
-§".includes(ch)) {
+  } else if ("-.$&§".includes(ch)) {
     if (page32Word.length) page32Words.push(page32Word);
     page32Word = [];
   }
