@@ -74,6 +74,44 @@ assert(Math.abs(reports[0].IoC-0.033186683023816575)<1e-12);
 assert(Math.abs(reports[1].IoC-0.034519226701637123)<1e-12);
 assert(Math.abs(reports[3].IoC-0.03447692372773806)<1e-12);
 assert(reports.every(x=>x.IoC<0.04));
+
+// The two original 13-dot red bounds also nominate a nonstandard but literal
+// target coordinate x=13. That changes the frozen Lagrange coefficients
+// from [4,4,22] at x0 to exactly [1,-2,2] at x13.
+const target=13;
+const weights13=x.map((v,i)=>x.reduce((c,w,j)=>j===i?c:
+  mod(c*mod(target-w)*inverse(mod(v-w))),1));
+assert.deepEqual(weights13,[1,27,2]);
+for(let degree=0;degree<3;degree++)
+  assert.equal(mod(weights13.reduce((sum,v,i)=>sum+v*x[i]**degree,0)),
+    target**degree%29);
+/** @param {number[][]} shares @returns {number[]} */
+const decode13=shares=>shares[0].map((_,i)=>
+  mod(shares.reduce((sum,share,k)=>sum+weights13[k]*share[i],0)));
+const planted13=planted.map((v,i)=>
+  mod(v+(7*i+13)*target+(11*i+23)*target*target));
+assert.deepEqual(decode13(plantedShares),planted13);
+/** @param {number[]} digits */
+function base29Header(digits) {
+  let value=0n;
+  for(const digit of digits)value=value*29n+BigInt(digit);
+  let hex=value.toString(16);
+  if(hex.length%2)hex='0'+hex;
+  return {byteLength:hex.length/2,header8:hex.slice(0,16),
+    knownTransportMagic:/^(425a68|1f8b|504b03|89504e47|fd377a585a00)/iu.test(hex)};
+}
+const reportsAt13=assignments.map(order=>{
+  const plaintext=decode13(order.map(i=>originals[i]));
+  return {shareOrder:order.map(i=>['p6-p7-red-bracket',
+    'pre+post-table-flanks','terminal-p54-p55'][i]),
+    IoC:ioc(plaintext),first40:spell(plaintext.slice(0,40)),
+    asHistoricalBASE29:base29Header(plaintext)};
+});
+assert(Math.abs(reportsAt13[0].IoC-0.03432886331909133)<1e-12);
+assert(Math.abs(reportsAt13[1].IoC-0.03595752781420534)<1e-12);
+assert(reportsAt13.every(x=>x.IoC<0.04));
+assert(reportsAt13.every(x=>!x.asHistoricalBASE29.knownTransportMagic));
+
 console.log(JSON.stringify({
   originalSourceGroups:'original p6-p7 marker308; table flank138+170; p54-p55 terminal308',
   lengths:originals.map(x=>x.length),
@@ -83,5 +121,9 @@ console.log(JSON.stringify({
   clearSolvedP57ControlIoC:ioc(solved),
   positiveDegree2Recovered:planted.length,
   originalSixAssignments:reports,
+  two13DotTargetCoordinate:target,
+  LagrangeAt13:weights13,
+  positiveQuadraticAt13Recovered:planted13.length,
+  originalSixAssignmentsAt13:reportsAt13,
   conclusion:'No GP-native readable secret recovered from the 3-of-3 source-selected hypothesis; original share coordinates are not authenticated.'
 },null,2));
