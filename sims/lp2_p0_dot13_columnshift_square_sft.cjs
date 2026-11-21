@@ -148,6 +148,32 @@ function hasCodebook(k,band,delta){
   return codebook.size===7;
 }
 
+/** @param {number} value @returns {number} */
+function eulerPhi(value){
+  let n=value,result=value;
+  for(let p=2;p*p<=n;p++){
+    if(n%p===0){
+      while(n%p===0)n/=p;
+      result=result/p*(p-1);
+    }
+  }
+  if(n>1)result=result/n*(n-1);
+  return result;
+}
+
+/** @param {number[]} residual @param {{value:number,column:string}[]} band
+ * @param {(v:number)=>number} valueMap @returns {boolean} */
+function hasFrozenNumericMap(residual,band,valueMap){
+  const h=new Map();
+  for(let i=0;i<13;i++){
+    const column=band[i].column;
+    const diff=mod(residual[i]-valueMap(band[i].value));
+    if(h.has(column)&&h.get(column)!==diff)return false;
+    h.set(column,diff);
+  }
+  return h.size===3;
+}
+
 function main(){
   const bands=squareBands(),out={};
   for(const spelling of ['native','letter']){
@@ -166,6 +192,18 @@ function main(){
       assert.equal(plain.length,13);
       for(const band of bands)assert(hasCodebook(keyOf(plain),band,hit.delta));
     }
+    // Historical 2014 numeric source candidates, raw residue and Euler phi:
+    // even with arbitrary independent column shifts, none of the surviving
+    // phrases can be produced by these two first-party-style value maps.
+    let sourceMapMatches=0;
+    for(const hit of exact.exactWordPairs){
+      const plain=[...encode(hit.first,spelling),...encode(hit.second,spelling)];
+      const key=keyOf(plain);
+      for(const band of bands)for(const f of [
+        v=>mod(v),v=>mod(eulerPhi(v))
+      ])if(hasFrozenNumericMap(key,band,f))sourceMapMatches++;
+    }
+    assert.equal(sourceMapMatches,0);
     // The historically quoted EPIPHANY SEEKS can no longer be rescued by
     // static column offsets (two mirrored center pairs disagree).
     const quoted=[...encode('epiphany',spelling),...encode('seeks',spelling)];
@@ -192,7 +230,7 @@ function main(){
       positive++;
     }
     assert.equal(positive,8);
-    out[spelling]={uninterrupted:exact,fixedPositionLiteralF:bypass,positive};
+    out[spelling]={uninterrupted:exact,fixedPositionLiteralF:bypass,positive,sourceMapMatches};
   }
   console.log(JSON.stringify({
     status:'PASS',
