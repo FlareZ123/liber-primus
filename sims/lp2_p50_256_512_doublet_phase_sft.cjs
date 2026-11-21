@@ -262,6 +262,72 @@ function wordConditionedNull(preserveZero, seed, trials) {
 }
 
 /**
+ * Remove the single largest observed source-table hotspot, literal token "00"
+ * at predecessor cell192 (four original equalities, six S256 pairs).
+ * Exactly condition on each original event-bearing word/page AND the counts
+ * in all three printed-table categories: low60 excluding cell192, non-low60,
+ * and the singled-out original cell192. Retain the 82 independent non-hotspot
+ * events for the scored test. This is a *diagnostic* chosen after inspecting
+ * the original, never an independent confirmatory p-value.
+ * @param {number} seed
+ * @param {number} trials
+ */
+function hotspotExcludedNull(seed,trials) {
+  const isHot = x => (x.global - 1) % 256 === 192;
+  assert.equal(tableTokens[192],"00");
+  const realEvents = events.filter(global => (global - 1) % 256 !== 192);
+  const excluded = events.length - realEvents.length;
+  assert.equal(excluded,4);
+  const expected256=score(realEvents,256),expected512=score(realEvents,512);
+  assert.deepEqual([expected256.pairs,expected512.pairs],[21,13]);
+  const partitions=activeWords.map(word=>{
+    const cells=[
+      word.sites.filter(x=>!x.zero),
+      word.sites.filter(x=>x.zero&&!isHot(x)),
+      word.sites.filter(isHot)
+    ];
+    const counts=cells.map(group=>group.filter(x=>
+      eligibleByGlobal.get(x.global).event).length);
+    assert.equal(counts.reduce((n,k)=>n+k,0),word.count);
+    return {cells,counts};
+  });
+  const random32=xorshift32(seed);
+  let upper256=0,upper512=0,upperEither=0,mean256=0,mean512=0;
+  for(let trial=0;trial<trials;trial++){
+    const filtered=[];
+    for(const gr of partitions){
+      for(let kind=0;kind<2;kind++){
+        const pool=gr.cells[kind],n=gr.counts[kind],seen=new Set();
+        for(let k=0;k<n;k++){
+          let selected;
+          do { selected=random32()%pool.length; }
+          while(seen.has(selected));
+          seen.add(selected);
+          filtered.push(pool[selected].global);
+        }
+      }
+    }
+    assert.equal(filtered.length,82);
+    const a=score(filtered,256),b=score(filtered,512);
+    mean256+=a.pairs;mean512+=b.pairs;
+    const exceed256=a.pairs>=expected256.pairs;
+    const exceed512=b.pairs>=expected512.pairs;
+    upper256+=+exceed256;
+    upper512+=+exceed512;
+    upperEither+=+(exceed256||exceed512);
+  }
+  const prob=n=>(n+1)/(trials+1);
+  return {label:"post-inspection leave-four-at-cell192 diagnostic",
+    removed:excluded,remaining:realEvents.length,trials,
+    sourceToken:"00",sourceCell:192,
+    originalPairs256:expected256.pairs,
+    originalPairs512:expected512.pairs,
+    mean256:mean256/trials,mean512:mean512/trials,
+    p256:prob(upper256),p512:prob(upper512),
+    pEither:prob(upperEither)};
+}
+
+/**
  * Synthetic positive control: original per-page event totals, but require
  * every event to land at a phase whose *actual printed table byte* is below64.
  * This is a calibration of detection power for a fixed phase-gated event
@@ -323,6 +389,8 @@ const output = {source:"original 32x8 two-digit p50 base60 table",
   original:{runes:totalRunes,pages:pages.length,eligible:eligible.length,
     equalityEvents:events.length,midpoint,period256:original256,
     period512:original512},neighbors,positive:plantedTableGate(),nulls,wordNulls,
+  hotspot:hotspotExcludedNull(0x33015053,trials),
   interpretation:"Source-length-aligned phase recurrence only; no key/plaintext"};
 console.log(JSON.stringify(output,null,2));
-module.exports={score,conditionedNull,wordConditionedNull,plantedTableGate};
+module.exports={score,conditionedNull,wordConditionedNull,
+  hotspotExcludedNull,plantedTableGate};
