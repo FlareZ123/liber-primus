@@ -3,9 +3,11 @@ set -euo pipefail
 
 ISO_PATH="${1:?usage: cicadaos-rootfs-audit.sh ISO_PATH OUTPUT_DIR}"
 OUT="${2:?usage: cicadaos-rootfs-audit.sh ISO_PATH OUTPUT_DIR}"
-EXPECTED_MD5="74062dee4093c6ca0340cda23f0e994b"
-EXPECTED_SHA1="df433cba87644b35cbc47f702a02e2b58d90af6a"
+EXPECTED_MD5="74062dee4093c6ca0340cda23f0e994b" # informational cross-check
+EXPECTED_SHA1="df433cba87644b35cbc47f702a02e2b58d90af6a" # informational cross-check
+EXPECTED_SHA256="784643558799dd8bb3e172f31df6d6ca2f397fd61cb8fc371bf930f1e5ae6b7f"
 EXPECTED_SIZE="136398848"
+EXPECTED_INITRAMFS_GIT_BLOB="d4dba9a6d3c0d6ed751d71cdc484e4b7efe1ee0a"
 EXPECTED_PRIME_ECHO_GIT_BLOB="65a569cf1b3eecb0f7c17ffc569a54ed8ecdf649"
 
 mkdir -p "$OUT"
@@ -16,15 +18,15 @@ mkdir -p "$ISO_ROOT" "$ROOTFS"
 actual_size="$(stat -c '%s' "$ISO_PATH")"
 actual_md5="$(md5sum "$ISO_PATH" | awk '{print $1}')"
 actual_sha1="$(sha1sum "$ISO_PATH" | awk '{print $1}')"
+actual_sha256="$(sha256sum "$ISO_PATH" | awk '{print $1}')"
 {
   printf 'path\t%s\n' "$ISO_PATH"
-  printf 'size\t%s\nmd5\t%s\nsha1\t%s\n' "$actual_size" "$actual_md5" "$actual_sha1"
-  printf 'expected_size\t%s\nexpected_md5\t%s\nexpected_sha1\t%s\n' "$EXPECTED_SIZE" "$EXPECTED_MD5" "$EXPECTED_SHA1"
+  printf 'size\t%s\nmd5\t%s\nsha1\t%s\nsha256\t%s\n' "$actual_size" "$actual_md5" "$actual_sha1" "$actual_sha256"
+  printf 'expected_size\t%s\nexpected_sha256\t%s\nexpected_md5_reference\t%s\nexpected_sha1_reference\t%s\n' "$EXPECTED_SIZE" "$EXPECTED_SHA256" "$EXPECTED_MD5" "$EXPECTED_SHA1"
 } > "$OUT/iso-verification.tsv"
 cat "$OUT/iso-verification.tsv"
 test "$actual_size" = "$EXPECTED_SIZE"
-test "$actual_md5" = "$EXPECTED_MD5"
-test "$actual_sha1" = "$EXPECTED_SHA1"
+test "$actual_sha256" = "$EXPECTED_SHA256"
 
 SEVENZIP="$(command -v 7z || command -v 7zz || true)"
 if [ -z "$SEVENZIP" ]; then echo "Neither 7z nor 7zz is installed." >&2; exit 1; fi
@@ -39,6 +41,9 @@ done > "$OUT/iso-manifest.tsv"
 
 IMG="$ISO_ROOT/boot/3301.img"
 test -f "$IMG"
+BOOT_GIT_BLOB="$(git hash-object "$IMG")"
+printf '%s\n' "$BOOT_GIT_BLOB" > "$OUT/3301-img-git-blob-sha1.txt"
+test "$BOOT_GIT_BLOB" = "$EXPECTED_INITRAMFS_GIT_BLOB"
 file "$IMG" > "$OUT/3301-img-file.txt"
 cp "$IMG" "$OUT/3301-decompressed.img.gz"
 gzip -df "$OUT/3301-decompressed.img.gz"
@@ -49,7 +54,7 @@ mkdir -p "$OUT/binwalk"
 binwalk -eM -C "$OUT/binwalk" "$DECOMPRESSED" > "$OUT/binwalk.log" 2>&1 || true
 
 if file "$DECOMPRESSED" | grep -qi 'cpio'; then
-  (cd "$ROOTFS" && cpio -idm --no-absolute-filenames < "$DECOMPRESSED") > "$OUT/cpio-extraction.log" 2>&1
+  fakeroot sh -c 'cd "$1" && cpio -idm --no-absolute-filenames < "$2"' _ "$ROOTFS" "$DECOMPRESSED" > "$OUT/cpio-extraction.log" 2>&1
 else
   CPIO_FILE="$(find "$OUT/binwalk" -type f \( -name '*.cpio' -o -name '*.cpio.gz' \) -print -quit || true)"
   if [ -n "$CPIO_FILE" ]; then
@@ -93,6 +98,10 @@ import hashlib, pathlib, sys
 from collections import Counter
 root, out = pathlib.Path(sys.argv[1]), pathlib.Path(sys.argv[2])
 files = sorted(p for p in root.rglob("*") if p.is_file() and not p.is_symlink())
+symlinks = sorted(p for p in root.rglob("*") if p.is_symlink())
+with (out / "rootfs-symlinks.tsv").open("w") as f:
+    f.write("path\ttarget\n")
+    for p in symlinks: f.write(f"{p.relative_to(root).as_posix()}\t{p.readlink()}\n")
 with (out / "rootfs-manifest.tsv").open("w") as f:
     f.write("path\tsize\tsha256\n")
     for p in files:
@@ -134,8 +143,10 @@ lines = [
   "# CicadaOS rootfs audit",
   "",
   f"Extracted regular files: {max(0,len(manifest)-1)}",
+  f"Extracted symlinks: {len(symlinks)}",
   f"Relevant text/script/config matches: {len(relevant)}",
   "Rootfs manifest: rootfs-manifest.tsv",
+  "Rootfs symlinks: rootfs-symlinks.tsv",
   "File types: rootfs-file-types.tsv",
   "ISO verification: iso-verification.tsv",
   "ISO top-level manifest: iso-manifest.tsv",
