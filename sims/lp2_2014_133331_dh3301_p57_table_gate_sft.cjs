@@ -156,7 +156,8 @@ const gpTokens = corpus.translit.map((s,i) => ({s,i}))
   .sort((u,v) => v.s.length-u.s.length);
 /** @param {string} text */
 function encode(text) {
-  const s = text.toUpperCase().replace(/\s/g, "");
+  const s = text.toUpperCase().replace(/\s/g, "").replace(/[KQ]/g, "C")
+    .replace(/V/g, "U").replace(/Z/g, "S");
   const out = [];
   for(let i=0;i<s.length;) {
     const t = gpTokens.find(t => s.startsWith(t.s, i));
