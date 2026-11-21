@@ -32,6 +32,8 @@ function gp0(sourceWord){
  return sum;
 }
 assert.equal(gp0("DIRECTION"),98);
+const ioAliasAddress=gp0("DIRECTION".replace(/IO/gu,"IA"));
+assert.equal(ioAliasAddress,112);
 assert.equal(gp0("THE"),20);
 assert.equal(gp0("DEVOTED"),102);
 const p50=table.pages.flatMap(page=>page.tokens);
@@ -61,6 +63,11 @@ const directionAddress=gp0("DIRECTION");
 assert.equal(p50[directionAddress],"1C");
 const firstScan=f[directionAddress];
 assert.equal(firstScan,72);
+assert.equal(p50[ioAliasAddress],"1D");
+const ioAliasFirstScan=f[ioAliasAddress];
+assert.equal(ioAliasFirstScan,73);
+const ioAliasOrdered=follow(ioAliasFirstScan,4);
+assert.deepEqual(ioAliasOrdered,[73,79,82,201,74]);
 const ordered=follow(firstScan,13);
 assert.deepEqual(ordered,[72,164,105,63,51,59,69,73,79,82,201,74,205,76]);
 const milestones=ordered.filter(x=>x===72||x===73||x===74);
@@ -149,15 +156,16 @@ assert.deepEqual(eightRoots.filter(i=>
 console.log(JSON.stringify({
  status:"PASS",
  sourceRoute:"2016 signed DIRECTION and p57 2013 authenticated PARABLE prime indices",
- sourceWordAddresses:{DIRECTION:98,THE:20,DEVOTED:102},
+ sourceWordAddresses:{DIRECTION_LITERAL:98,DIRECTION_IO_TO_IA:112,THE:20,DEVOTED:102},
  threeTokenRadixPair:{addresses:[98,201,205],printed:["1C","1E","1G"],
    base59:[71,73,75],base60:[72,74,76]},
- originalImageScanPath:ordered,
+ originalImageScanPathLiteral:ordered,
+ originalImageScanPathIOAlias:ioAliasOrdered,
  matchingFileNames:["72.jpg","73.jpg","74.jpg"],
  sourceP55RuneCount:76,sourceP55IntactBody:75,
  sourcePrimeOrdinals:primes,sourceReverseAncestorSizes:[58,8,56],
  middleEightDigitReadout:digitLine,bitString:bits,decodedCorner:corner,
  cornerToSignedWordsAndP32:follow(corner,6),
  exactOriginalFourStepStartersForTHE20:parent20AtFour,
- caveat:"No source-authored instruction fixes radix switching, pointer stopping, page-node assignment, or original decryption operator. Zero unknown-page plaintext recovered."
+ caveat:"The Latin DIRECTION admits both literal GP spelling (98) and the existing IO-to-IA ligature convention (112). Neither codec is source-authenticated. No source-authored instruction fixes radix switching, pointer stopping, page-node assignment or original decryption. Zero unknown-page plaintext recovered."
 },null,2));
