@@ -286,6 +286,10 @@ const p38 = pages.find((page) => page.page === 38);
 assert.equal(number60(tokens[phase192RuneSum]), 6);
 assert.equal(low60(phase192RuneSum), 6);
 assert.equal(low60(6), 6);
+assert.equal(tokens[6], "26"); // printed fixed-point cell6
+// Literal source table cell6 encodes the candidate pair K=2,a=6 as its
+// two printed glyphs; this is a consistency observation, not a cipher key
+// instruction. The independent packet equations derive the same pair.
 assert.ok(p0 && p38);
 assert.deepEqual(p38.indices.slice(54, 57), [5, 12, 19]);
 assert.equal(derivedPage, p38.page);
@@ -304,6 +308,7 @@ assert.ok(Number.isInteger(inverseA));
 const K = mod29(packet[1] * inverseA);
 const A = modPow(packet[0], a, 23);
 assert.equal(K, 2);
+assert.equal(tokens[6], String(K) + String(a));
 assert.equal(modPow(packet[2], a, 23), K);
 assert.equal(a, 6);
 assert.equal(A, 8);
@@ -343,6 +348,7 @@ console.log("full YOUA GP0=54 -> unique diagonal p50 low-digit cycle 54 -> 36 ->
 console.log("first00 YOUA prime sum210 -> second event phase210 NG-X-O GP0=38, prime sum133 (historical title)");
 console.log("complete original event coordinates: page38, rune offset54; literal p50[210]=06 gives DH private a=6");
 console.log("typed packet [5,12,19] derives K=2 both via GP29 12/6 and DH mod23 19^6");
+console.log("p50[210]=06 low->6; fixed point p50[6]=26 literally renders derived K2,a6");
 console.log("GPprime(NGXO)=133 -> original p50[133]=2L; GP0(YOU)=30 -> original p50[30]=2L");
 console.log("first two p0[141..144] symbols: [C-Ka, C-a]=WI; literal 2L fixes remaining two L; no H KDF needed");
 console.log("base60 sole reciprocal pair [36,54] fits readout; radix59-missing-f pair [26,52] does not");
