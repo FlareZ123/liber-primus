@@ -1,6 +1,6 @@
 # Base59 table tree: the 121 / 76 / 33 nested source partition
 
-**Agent9, 21 November 2026. Classification: new exact structural coincidence, exploratory conditional null, and failed bounded shared-pad decoder. No unknown LP2 plaintext, authentic key, or destination was recovered.**
+**Agent9, 21 November 2026. Classification: exact structural relation with a signed-word route, exploratory conditional nulls, and failed bounded shared-pad decoder. No unknown LP2 plaintext, authentic key, or destination was recovered.**
 
 Reproducer: [source-exact single-file CommonJS test](../sims/lp2_p50_base59_121_76_33_subtree_sft.cjs). Inputs: the original-image-adjudicated 256 tokens in [the p49–51 grid](../resources/liber-primus/lp2-grid-256.json), GP29 original ciphertext in [the LP2 corpus](../resources/liber-primus/lp2-corpus.json), and independent [solved GP29 language controls](../resources/external/relikd-solved-gp29-native-v1.json).
 
@@ -19,6 +19,22 @@ Orient every nonroot pointer toward189 and define the subtree of node `i` to be 
 These are unique matches at each size among all 256 tree nodes. Both the 76-node subtree at244 and the 33-node subtree at146 lie inside the 121-node subtree at58; the two smaller subtrees are disjoint. The **remaining twelve** nodes of subtree58 are outside both. Thus the observed decomposition is exactly **121 = 76 + 33 + 12**. The 12-remainder matches `phi(13)`, but that is an after-the-fact additional interpretation and has **no identified source-selected use**.
 
 The source table also has a distinct self-indexing property: starting at global address32 and following the base59 parent pointers takes **exactly 32 edges** to root189. Among all physical page addresses 0–55, 32 alone has `depth(page)=page`. The p32 address is a descendant of node244 and node58, so the partition and this fixed original address do overlap structurally. They are not independent evidence.
+
+## Authenticated-source word route to the 76-node receiver
+
+The [exact 2016 PGP-signed message](../resources/historical/cicada2016-4gq25-outguess.asc) says `epiphany seeks the devoted` and later instructs the player that the manuscript's words are a map and its numbers a direction. This motivates a **specific, still hypothetical reader**: transliterate adjacent original message words into their canonical zero-based GP29 sums, use the first word's sum as a base59 table address, and follow parent pointers for the second word's sum.
+
+The original adjacent pair **`SEEKS THE`** gives the exact integer values `GP0(SEEKS)=71` and `GP0(THE)=20`. From original cell71, follow exactly20 base59 parent pointers:
+
+`71→106→31→131→118→35→39→5→233→230→115→243→211→60→104→120→41→83→190→167→244`.
+
+The endpoint is **node244**, the **unique 76-node subtree** identified above. The same signed sentence's `EPIPHANY=121` and `DEVOTED=102` both happen to lie **inside** this exact 76-node subtree, as does the original page address32. Therefore a player following the words/numbers clue could encounter a node set sized exactly to all of physical **p55**, which depicts the same tree as p32.
+
+A complete source-order control is necessary. Tokenize the **43 alphabetic words** from the signed 2016 text (excluding its trailing OpenPGP identifier), retaining its punctuation only as boundaries; apply the same GP0, row-major, base59, fixed parent-clock, and exact LP2 page-runecount matcher to all **42 adjacent word pairs**. **Only SEEKS THE** selects any original p0–55 physical page's complete rune count, and it selects p55. Across **all 43×42 ordered non-self pairs**, regardless of source adjacency, there are **28 pair×page matches** in total, including **six** copies of the same SEEKS/THE→p55 result due to the six occurrences of THE.
+
+For a source-order comparison, the SFT shuffles those exact 43 words **20,000 times** with a separate fixed xorshift32 seed `0xBEEFC301`. Preserving word values and multiplicities, **10,187/20,000** shuffles contain *some* adjacent pair selecting *some* unknown page count, and **2,740/20,000** contain a pair selecting **p55's 76**. The p55-specific shuffled-order incidence is thus **13.70%**, before charging how many word-pair/table/target interpretations were noticed. This is a finite selectivity check, not a discovery-adjusted probability that Cicada intended the route.
+
+Crucially, the 2016 source **does not specify** zero-based GP29 sum as the starting address, next-word sum as a pointer count, the conditional base59 radix, a 76-node traversal or a ciphertext/key operation. The signed source and original image make this navigation hypothesis comparatively concrete, but the reader is not authenticated simply because its endpoint matches p55.
 
 ## Conditional source-multiset test
 
@@ -47,6 +63,6 @@ Therefore this test provides **no discrimination in favor of a shared additive p
 
 ## Research decision
 
-Retain the 121/76/33 inclusion as one bounded structural observation on the already provisional base59 tree. Its selective conditional frequency justifies looking for an **independent original instruction** that actually addresses nodes58,244,146 or selects an exclusive subtree traversal. Do **not** resume broad traversal, shift, phrase-fitting or language-scored pad searches from the postselected cardinality match. The historical source's missing exact operation, typed data receiver and authentic unknown-page key remain the hard barriers to plaintext.
+Retain the 121/76/33 inclusion alongside the **SEEKS THE → node244** signed-word route as a single bounded candidate on the provisional base59 graph. The signed clue narrows one plausible navigation to p55, but does not specify an executable ciphertext reader. Its modest source-word-order control and the negative pad-cancellation test prevent promotion to plaintext or a recovered key. The next useful input would explicitly choose a 76-node traversal, label type, or reversible operation. Do **not** resume broad traversal, shift, phrase-fitting or language-scored pad searches from the postselected cardinality match. The historical source's missing exact operation, typed data receiver and authentic unknown-page key remain the hard barriers to plaintext.
 
 The prior p32 art and tree work already tested [base60's reverse-tree 121-node scaffold](lp2-p32-p50-reverse-tree-depth20-receiver.md), [direct 254-byte Prüfer-code consumers](lp2-base59-tree-prufer-reversible-code.md), and a [contiguous offset19 p32/p55 shared-pad inverse](lp2-tree-p32-p55-boundaryfree-twotimepad-plaintext-gate.md); none returned authenticated unknown plaintext. This report is restricted to the newly identified **nested base59 subtree source alignment** and the exact original-input paired-key test it allows.
