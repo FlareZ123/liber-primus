@@ -32,4 +32,4 @@ The issue requires stopping at this source gate if the four ordered branches are
 
 An independently visible fourth-branch labeling or a first-party source instruction prescribing a specific cut, orientation and key operation would change this conclusion. In its absence, retire this exact p32 four-branch decoder rather than continue tuning image thresholds, branches or key permutations.
 
-**Reproduction:** Windows Python 3.12 with NumPy and `opencv-python-headless`, run `python sims/lp2_p32_tree_fourbranch_source_sft.py` against the unchanged original repository scan. No image file is modified.
+**Reproduction:** Windows Python 3.12 with NumPy and `opencv-python-headless`, run `python sims/lp2_p32_tree_fourbranch_source_sft.py` against the unchanged original repository scan. No image file is modified. **Original-source Windows Python 3.12 CI passed:** [run 44959241110](https://github.com/FlareZ123/liber-primus/actions/runs/44959241110).
