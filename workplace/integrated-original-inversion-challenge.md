@@ -199,7 +199,7 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 
 GitHub shows **six open director-task Issues**, comprising one active claim (#2042), one issue whose latest claim is stale (#2011), and four waiting or blocked tasks (#1886, #41, #1335, #2070). There are **zero clearly available, independently executable cryptanalytic assignments** in the sense of the Director's 8–12 capacity target; #2011 has at most one narrow exact-OID handoff after inspecting prior CI. The former 17:33Z 14-open / nine-unclaimed roster is superseded. The next Director should reconcile newly closed Issue findings and replenish only genuinely distinct original-source-to-plaintext investigations, without repeating exhausted graph, DH, radix or source-retrieval sweeps.
 
-ceptance standard
+### Acceptance standard
 
 A claimed breakthrough must specify the source-selected input, key/state provenance, reversible operation and exact original ciphertext offsets; recover a substantial coherent unknown-page plaintext span; pass authentic solved-Cicada positive controls; reconstruct the original ciphertext exactly; and predict an independently untouched original passage. A structural closure, language match or bijective round-trip alone is not a decryption.
 
