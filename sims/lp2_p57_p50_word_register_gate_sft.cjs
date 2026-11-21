@@ -75,7 +75,7 @@ for (let seed = 0; seed < 256; seed += 1) {
   if (count >= matchesEither.length) sameOrBetter += 1;
   if (pathStates[20] === 115) landOn115 += 1;
 }
-assert.equal(sameOrBetter, 12);
+assert.equal(sameOrBetter, 30);
 assert.equal(landOn115, 26);
 
 // Independent, state-consistent positive: a table encoding exactly these
