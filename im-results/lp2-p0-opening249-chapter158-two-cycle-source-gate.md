@@ -69,4 +69,21 @@ The p50 cycle provides a very specific **158-rune original-source key candidate*
 
 Neither direct inverse yields recognizable original word-boundary prose; both preserve essentially ciphertext-like frequencies and trigram scores. Re-encryption succeeds by construction and cannot distinguish correct additive keys. The solved p57 native GP plaintext correctly recovers **95/95** symbols from a planted ciphertext under the same source key. Therefore **retire this direct cyclic-key GP29 addition/subtraction consumer**, including any plaintext-autokey or ciphertext-autokey extension that shares its same first158 decoded characters. Do not rescue it by fitting a phase, alphabet substitution, modified length, or trial-specific word resegmentation.
 
+### Source-seeded original-p56 prime/totient inverse: exact impossibility
+
+A second historically demonstrated operation is the *actual solved p56 prime/totient cipher*: the key stream is `φ(prime[j]) mod29`, ordinary prime index `j` advances after each **non-F plaintext** rune, and literal plaintext F (index0) emits F without consuming a prime. A displayed ciphertext F may independently be an encrypted non-F and consume a prime. Any valid original inverse must retain **both** branches at every such site. The p50 reciprocal pair supplies exactly two unmodified candidate zero-based prime starting indices, **158 and249**, without tuning an offset. Retain the original visible p0 red13→black249 boundary as the receiver; include both signs (the authentic p56 encryption sign `+` and a generous `−` rival).
+
+The exact finite-state original-cipher inverse over *every possible F skip* returns:
+
+| Prime start index | Encryption sign | First impossible black-body rune (zero based) | Printed p0 rune offset |
+|---:|:---:|---:|---:|
+| 158 | + | **111** | 124 |
+| 158 | − | 24 | 37 |
+| 249 | + | 27 | 40 |
+| 249 | − | 31 | 44 |
+
+**No full original black249 inverse exists in any of these four source-locked cases.** This is an exact ciphertext-only contradiction, independent of English scoring or missing key knowledge. Native p57 GP plaintext repeated to 249 original-length positions, encrypted with the genuine F-transparent clock, gives a complete inverse for all four seed/sign combinations. [Windows Node22 PASS44963465270](https://github.com/FlareZ123/liber-primus/actions/runs/44963465270), [self-contained original-data SFT](../sims/lp2_p0_158_249_primephi_trueF_original_sft.cjs).
+
+The completed candidate tests therefore rule out (i) the source-flank158 repeating additive pad with these exact source-order parameters and (ii) the solved-p56 prime/totient F-transparent cipher seeded by either end of this two-cycle on the p0 black-body receiver. They do not rule out other source-independent ciphers.
+
 The structural 249↔158 two-cycle remains a coherent conditional navigation match. The original source still supplies no explicit instruction to address the numeric table with these counts, select the cyclic flank key as a cipher, or decrypt a different original page. A prospective solution needs a *separately evidenced* reversible operation that produces recognizable, withheld original plaintext and exact forward replay. The chapter-to-cell match alone does not supply that missing equation.
