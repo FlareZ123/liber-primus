@@ -1,6 +1,6 @@
 # Original LP2 equality-site phase recurrence on the p50 table dimensions
 
-**Status:** Provisional original-cipher structural observation. Tested 21 November 2026; no authenticated key, reversible original-page decoder, or unknown plaintext.
+**Status:** Original-source structural observation, **global-clock hypothesis downgraded after hotspot conditioning**. Tested 21 November 2026; no authenticated key, reversible original-page decoder, or unknown plaintext.
 
 ## The question and rival
 
@@ -16,7 +16,7 @@ The principal rival is a noncryptographic concentration of 86 rare equality even
 - Main statistic `S_P`: count unordered **pairs of events** sharing a global index modulo `P`. Two source-licensed periods `P=256,512`. Fixed cross-half diagnostic divides the book at rune 6,478.
 - Comparators draw the **same 86 event counts** without replacement at eligible locations within exact page, 1,000-rune block, physical page-and-line, page+line+preceding glyph, and original event-bearing word/page groups. The strongest word control preserves the count of original literal-leading-zero events **inside every event-bearing word/page**, so its ability to produce the already-established 33/86 enrichment cannot create an independent positive. The original has 85 such word/page groups; one contains two equality events.
 
-All tests and the table-byte-based source-shaped event plant are executable in **[the standalone CommonJS reproducer](../sims/lp2_p50_256_512_doublet_phase_sft.cjs)**, checked against original source counts. **[Windows Node22 CI passed, run 44959148760](https://github.com/FlareZ123/liber-primus/actions/runs/44959148760).** Each null was evaluated with its own deterministic seed and **50,000 trials**.
+All tests, the source cell192 post-inspection exclusion, and the table-byte-based source-shaped event plant are executable in **[the standalone CommonJS reproducer](../sims/lp2_p50_256_512_doublet_phase_sft.cjs)**, checked against original source counts. **[Windows Node22 CI passed, run 44960294158](https://github.com/FlareZ123/liber-primus/actions/runs/44960294158).** Each null was evaluated with its own deterministic seed and **50,000 trials**.
 
 ## Original event-phase result
 
@@ -54,11 +54,27 @@ The four events at predecessor table cell192 encode **four different repeated GP
 
 The separately planted event-channel control restricts events to 62 table cells whose byte value is below64, retaining the original per-page event totals. It produces **55 pairs at period256** and **31 at period512**, showing that a fixed table-phase event selector can in fact be detected by this statistic. This is an event-location positive control, rather than a working original-cipher encrypter.
 
+## Decisive post-inspection hotspot challenge
+
+The local phase recurrence is fragile to one already-source-visible concentration. Under the **correct predecessor token** index `(globalCurrentOffset-1)%256`, cell **192 is printed `00`**. Four equality events share that cell (on separate original pages), accounting for **6 of the 27 same-phase pairs** at period256. Their repeated ciphertext rune values are all different: `Y`, `O`, `U`, `A`. The source-position spike alone does not map to a literal GP29 output symbol or recover a cipher exception.
+
+A stricter **post-inspection** diagnostic removes those four sites from the scored events and holds their original event counts fixed inside each exact event-bearing word/page group. It also fixes the separate count of events within each word/page at the already-established 60-cell leading-zero class. Thus it cannot manufacture additional evidence by redistributing the four cell192 events or changing the known #1500 source-mask association.
+
+| Conditional statistic | Original remaining 82 events | Null mean, 50,000 | One-sided empirical tail |
+|---|---:|---:|---:|
+| P256 same-phase event pairs | **21** | 14.60636 | 0.047499 |
+| P512 same-phase event pairs | **13** | 8.58736 | 0.068219 |
+| Either table-derived period exceeds original | — | — | **0.089458** |
+
+The executable fixed-seed source test `hotspotExcludedNull(0x33015053,50000)` passed **[Windows CI run 44960294158](https://github.com/FlareZ123/liber-primus/actions/runs/44960294158)**. A separate 100,000-trial direct computation gave nearly the same familywise result (0.089019). Because the source `00` hotspot was singled out **after seeing the observed event histogram**, these are sensitivity diagnostics rather than fresh independent p-values. Their relevance is the change in inference: a single four-event source cell accounts for much of the full-clock excess, and the evidence no longer justifies elevating a manuscript-wide 256/512 exception-state clock.
+
+The two-period test is necessarily dependent since 512 is twice256. Wider historic search and numerous prior LP2 period investigations prevent assigning any of the above tails a discovery-wide significance.
+
 ## Boundary on inference and next decision
 
 An independently executed page-count-conditioned full-difference negative control shuffled **all 12,901 exact original GP29 predecessor differences**, retaining physical-page difference counts, 2,500 times. For original nonzero deltas, same-phase pair collisions were **11,328 at P256** versus null mean **11,241.9** (upper-tail ≈0.204), and **5,558 at P512** versus null mean **5,506.7** (upper-tail ≈0.241). This is a low-resolution exploratory negative, but it indicates the observed recurrence is **concentrated on equality events**, with no corresponding demonstrated full-alphabet periodic delta signature. The already-tested full-page additive p50 pad and fixed special-rune carrier models remain negative.
 
-**Decision:** Retain continuous p50-sized event-phase recurrence as a provisional clue to a *rare exception clock*. It has an original-source-sized period and a modest residual after exact known-mask conditioning, but there is no source-authenticated opcode or recoverable exception payload. Do **not** launch a new unconstrained period/phase/KDF search, or treat these correlations as deciphered runes. A useful successor must name a specific first-party rule consuming original p50 tokens, predict previously withheld equality or non-equality locations from **the actual token values**, and then deliver a reversible decoder that recovers full GP29 plaintext, including the 53 events outside the literal-leading-zero class. A model that merely reproduces these event counts has not solved Liber Primus.
+**Decision: downgrade the global p50-sized event-clock hypothesis.** The source table's literal-leading-zero enrichment remains established by prior conditional analyses. The new 256/512 same-phase recurrence is mostly tied to a four-event spike at the original literal `00` cell; after conditioning that cell and the known word/leading-zero geometry, its two-period familywise upper tail is approximately **0.089**. This is weak evidence for a transferable book-wide clock and supplies no authenticated opcode, GP29 key, exception payload or plaintext. Do **not** commission a global 256/512 KDF or phase sweep on this result. A genuinely useful successor must identify an independent first-party rule for consuming actual p50 token values, predict held-out source events without postselection, and deliver a reversible decoder capable of recovering the full unknown ciphertext, including the 53 equality sites outside the established leading-zero class.
 
 ## Relation to existing research
 
