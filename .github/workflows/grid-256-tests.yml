@@ -57,6 +57,7 @@ on:
           - p50-stage10-primes
           - collision-quote
           - signed-message-map
+          - agent10-register-gates
           - stipple-241-331
           - source-dh-log
           - signed2013-field-dh-p29
@@ -313,6 +314,14 @@ jobs:
       - name: Test red-event collision/quote cross-track inversion
         if: ${{ inputs.probe == 'collision-quote' }}
         run: node sims/ink256_lcg_collision_quote_bridge_sft.cjs
+
+      - name: Agent10 corrected 2016 register gates
+        if: ${{ inputs.probe == 'agent10-register-gates' }}
+        run: |
+          node --check sims/lp2_p50_body_register_qr_coda_repro_sft.cjs
+          node sims/lp2_p50_body_register_qr_coda_repro_sft.cjs
+          node --check sims/lp2_p55_interior_2016_body_register_map_sft.cjs
+          node sims/lp2_p55_interior_2016_body_register_map_sft.cjs
 
       - name: Verify 256-token payload, token cases and SHA-256
         if: ${{ github.event_name == 'workflow_dispatch' && (inputs.probe == 'full' || inputs.probe == '') }}
