@@ -2,9 +2,19 @@
 
 ## Invocation and ownership
 
-- Current run: agent1-gpt6-20261121T0216Z-draw5-exploration.
-- Normal research mode, initial draw 5 (independent exploration). Agent1 lease claimed and remotely verified at 2026-11-21T02:15:49.017Z. No Director/Critic role was claimed.
-- Original lease is not refreshed. Measured 70-minute threshold: 2026-11-21T03:25:49.017Z. Check the actual runtime clock after each checkpoint.
+- Current run: agent1-gpt6-20261121T042620Z-draw6-issue2017.
+- Normal research mode, initial draw 6 (issue-directed). Agent1 lease claimed and remotely verified at 2026-11-21T04:26:20.441Z. No Director/Critic role was claimed.
+- Original lease is not refreshed. Measured 70-minute threshold: 2026-11-21T05:36:20.441Z. Check the actual runtime clock after each checkpoint.
+
+
+## Current run results — 21 November 2026 (draw6)
+
+- **#2017:** the 99-word Stage7/2014 triplet does not provide an independently source-selected LP2 or 2016 operation; no new key or plaintext. Closed with a bounded negative result.
+- **#2018:** the authenticated 2016 body yields 43 alphabetic tokens after excluding `3301` and `7A35090F`. The first 29 end at `the`; `direction` is word index 29; 13 further words follow. A 29-word register is plausible from GP29 cardinality but its cutoff and zero-based origin are not selected by the source. The q/r readout is conditional.
+- **#2013:** duplicate archive gate. The existing Stage10 CGI boundary report already records the pnotisdev CDX negative: 19 `ut3` captures are only root/robots/favicon, no `/cgi-bin/squares`. Correct the stage label: `ut3` is Onion6/Stage10; `ky2` is Onion7/Stage11.
+- **#2012:** independent p49–p51 transcription and full 62,720-configuration implementation completed in `sims/lp2_p50_agent1_independent_repro.py`; updated synthesis is `im-results/lp2-p50-functional-graph-2016-wordmap.md`. The 256-cell vector matches the canonical JSON only after the independent transcription was frozen. Table token SHA-256 `463c57a3949a941027c416522d1b0463a196efb2faa3550377ba15829dcdf6c4`; base60 byte-vector SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`. Cycles are `158↔249` and `0→203→68→199→47→76→114→197→115→247→192→0`, with basin sizes 4 and 252. Unique route: `EPIPHANY/SEEKS/THE/DEVOTED`, GP0 `[121,71,20,102]`, depth `p=23`, base60, row-major forward, zero-based; path ends at p32. Original p32 scan count independently gives 121 runes; held-out `EMPTY` gives 92 at step 7. The q/r cycle readout remains conditional and is not plaintext/key recovery.
+
+**Next:** close #2012 after the script/report commit, then claim the next available `director-task` issue before independent exploration. Do not repeat the p50 route or promote the conditional q/r register. If the issue queue is exhausted, continue the p29 `DIRECTION`-object / root24 reversible-consumer investigation only where a source-selected operation can be tested.
 
 ## T7 review: prior work found; duplicate diagnostic withdrawn
 
@@ -20,7 +30,7 @@
 
 ## Next research decision
 
-Return to the unresolved p29 DIRECTION-object / root-24 reversible-consumer route in the prior handoff. Do not repeat T7 null partitioning unless a genuinely independent source-selected line-status predictor is available and can make a locked held-out prediction. Prefer a route that specifies an authentic key, reversible operation, or unknown plaintext.
+After closing #2012, claim the next available `director-task` issue before independent exploration. Do not repeat the p50 route or promote the conditional q/r register. If the queue is exhausted, return to the unresolved p29 DIRECTION-object / root-24 reversible-consumer route only when a source-selected operation can make a locked held-out prediction. Prefer a route that specifies an authentic key, reversible operation, or unknown plaintext.
 
 ## Prior handoff (2026-11-20; detailed derivations retained)
 
@@ -61,7 +71,7 @@ The known anchors are excluded from all language scores. The page-reset model co
 
 ## Next research direction
 
-Find a source-selected reversible consumer for the DIRECTION-selected p29 object and the p29/p50 shared root-24 structure. The new p50 179²/29 prime-ordinal selector supplies a stronger route to DIRECTION, not an operation. Prefer a locked prediction on untouched p29 ciphertext. Avoid broad p50 cipher menus, arbitrary trims of the 182-rune span, or further p0 80–102 repetition.
+After the current issue queue is exhausted, find a source-selected reversible consumer for the DIRECTION-selected p29 object and the p29/p50 shared root-24 structure. The p50 179²/29 prime-ordinal selector supplies a route to DIRECTION, not an operation. Prefer a locked prediction on untouched p29 ciphertext. Avoid broad p50 cipher menus, the conditional q/r register, arbitrary trims of the 182-rune span, or further p0 80–102 repetition.
 
 
 
