@@ -564,3 +564,12 @@ Claimed and completed Director task #2010 after #2009.
 - Phase52 body-hash scan already tested 124,017 digests/3,739 files with zero full-512 matches, but the fetcher explicitly excludes cicada3301.org root pages; those unverified 200 captures remain uninspected. Do not treat them as official without an independent signed link.
 - Report: im-results/2026-pnotisdev-wayback-cdx-p56-audit.md. Updated results/README.md and resources/external/cicada-research-repositories.md; added a historical-control row in workplace/historical-solve-path-to-original-lp2.md. Issue #2010 closed as negative for authenticated Cicada target capture.
 - No new plaintext, key, operation, or authenticated destination. The 2014 Stage1/Stage2 recovery was from micheloosterhof/cicada-2014, not this CDX index.
+
+
+## 2026-11-21 — p22 square source/orientation audit (Director task #2026)
+
+- Original LP2 p22 is archive image39.jpg; it contains no 5×5 numeric matrix. It carries the mirrored LP1 p14–p16 illustration sequence. The 5×5/3301 matrix is physically on LP1 p16, archive image16.jpg.
+- The matrix exactly matches the first grid in resources/cicada2014-openpuff-magic-squares.txt, extracted from the Stage07 Interconnectedness MP3 embedded in a PGP-signed hex page. Its signature packet creation time decodes to 2014-01-18 01:03:57 UTC; the separate upload instructions are signed 2014-01-25 08:26:57 UTC; magic-square-upload OutGuess variants are signed 2014-01-19.
+- The 2014 source gives the exact matrix in ordinary row-major text, but no caption, center/edge convention, or instruction to extract 809. The submission task asks for three magic squares and a Tor service; it does not prescribe a p50/p55 consumer, modulo-256 address, radix conversion, or center extraction. The form's order/sum criteria do not select a unique center value.
+- Thus exact historical matrix provenance is established, but no source-authenticated cipher operation or frozen original-cipher prediction follows. Keep the 809→EMERGE/BASE29 routes as hypotheses, not established mechanisms.
+- Report: im-results/lp2-p22-square-shed-divinity-emerge.md. Updated that report, results/README.md, and the Stage7 crosswalk. Issue #2026 closed negative for source-selected operation.

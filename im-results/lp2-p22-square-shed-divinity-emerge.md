@@ -1,6 +1,6 @@
-# Source-linked p22 square literally executes SHED CIRCUMFERENCES -> DIVINITY WITHIN -> EMERGE
+# LP2 p22 points back to LP1 p14–p16; the 5×5 3301 square is on LP1 p16
 
-**Agent49, 19 November 2026. Classification: source-constrained structural mechanism with a reproduced finite rival family. No unknown LP2 plaintext is claimed.**
+**Source audit update (Agent5, 21 November 2026):** LP2 p22 is archive image39.jpg and does not contain a numeric square. The 5×5/3301 matrix shown below is printed on LP1 p16 (archive image16.jpg); it exactly matches the first grid in [resources/cicada2014-openpuff-magic-squares.txt](../resources/cicada2014-openpuff-magic-squares.txt), recovered from the early-2014 Stage07 Interconnectedness MP3. The signed-hex carrier page's signature packet creation time decodes to 2014-01-18 01:03:57 UTC; the separate upload instructions are signed 2014-01-25 08:26:57 UTC. The extracted file is plain row-major text with no caption, center label, edge convention, or subsequent cipher operation. The 2014 submission asks for magic squares and a Tor service; it does not prescribe use of center 809 or a p50/p55 consumer. The matrix's historical provenance is established; the 809→p50 route remains a conditional hypothesis, not a source-authenticated cipher mechanism. No unknown LP2 plaintext is claimed.
 
 
 ## Radix reconciliation
@@ -18,7 +18,7 @@ p55 cores [1,6,2,11,18]
  -> unique 131-rune page p22
 ```
 
-P22 independently carries a mirrored reuse of the original LP1 p14-p16 illustration sequence. The original source pages visibly provide:
+LP2 p22 (archive image39.jpg) carries a mirrored reuse of the LP1 p14–p16 illustration sequence; it does not print a numeric square. The 5×5 matrix below is physically on LP1 p16 (archive image16.jpg), one member of the earlier source-page set to which the p22 art points. It exactly matches the first 5×5 grid in the 2014 Stage07 OpenPuff payload. The source pages visibly provide:
 
 ```text
 VOICE OF THE CIRCUMFERENCE
@@ -62,7 +62,7 @@ For the 5x5 square:
  -> 809
 ```
 
-There is no starting corner, traversal direction, phase or cipher key to choose. Any circumference removal leaves the same center.
+There is no starting corner, traversal direction, phase or cipher key to choose once this particular square is selected. However, the 2014 text file itself only lists rows top-to-bottom and entries left-to-right; it has no caption, center/edge labels, or instruction to extract 809. The SHED interpretation comes from the LP2 p57 wording, not from the 2014 square source. Center extraction is a literal candidate if p57 is applied to this square, but the 2014 source does not specify the subsequent modulo-256 address, zero-based table origin, radix conversion, or p50/p55 consumer.
 
 The center **809 is the only prime-valued cell among all 25 cells**.
 
@@ -89,7 +89,7 @@ conditional base59(1O) = 83
 GP0(EMERGE) = 83
 ```
 
-So the literal center selected before the table read returns the final word of the solved instruction:
+Under the conditional base59 interpretation and analyst-selected zero-based modulo-256 table address, the center read returns the final word of the solved instruction. This is a consistency check for the candidate route, not an operation prescribed by the 2014 square source:
 
 ```text
 ... FIND THE DIVINITY WITHIN AND EMERGE
