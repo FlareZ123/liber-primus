@@ -347,5 +347,53 @@ assert.equal(source2016Words.join(' ').includes(words23.join(' ')), false);
 console.log('Locked p23 marked-red16 H-D4 original consumer:',
   words23.join(' '), '(non-phrase, rejected).');
 
+
+/**
+ * One direct authentic-p56 cipher transfer with the candidate DH K'=193.
+ * Select its 44th-prime index 43 (zero based), reset once at each natural
+ * receiver, apply the existing p56 ciphertext-F bypass rule and subtract
+ * prime-1 modulo29. No fitted masks, keyword or plaintext scoring.
+ */
+const primeStream = [...first44Primes];
+for (let n = primeStream.at(-1) + 1; primeStream.length < 350; n++)
+  if (isPrime(n)) primeStream.push(n);
+const shiftedByP56 = (source) => {
+  let cursor = 43;
+  return source.map((value) =>
+    value === 0 ? value : mod29(value - (primeStream[cursor++] - 1)));
+};
+const p56Reencode = (decoded) => {
+  let cursor = 43;
+  return decoded.map((value) =>
+    value === 0 ? value : mod29(value + (primeStream[cursor++] - 1)));
+};
+const conditionalP56Receivers = [
+  { name: 'p23 black197', ciphertext: p23.indices.slice(16),
+    expectedIoC: 0.036827929141199624 },
+  { name: 'p53 red51', ciphertext: red53,
+    expectedIoC: 0.034509803921568626 },
+  { name: 'p44 full273', ciphertext: p44.indices,
+    expectedIoC: 0.03425985778926956 },
+];
+for (const target of conditionalP56Receivers) {
+  const output = shiftedByP56(target.ciphertext);
+  assert(Math.abs(coincidence(output) - target.expectedIoC) < 1e-12);
+  // Note: the literal-F bypass branch is not unconditionally self-inverting
+  // if a non-F ciphertext rune happens to decrypt to F. Re-encryption of a
+  // particular ciphertext must recover its original bypass bit mask.
+  let cursor = 43;
+  const reproduced = output.map((value, i) => {
+    if (target.ciphertext[i] === 0) return 0;
+    return mod29(value + (primeStream[cursor++] - 1));
+  });
+  assert.deepEqual(reproduced, target.ciphertext);
+  console.log('K193 p56 prime-totient transfer on', target.name,
+    'n=', output.length, 'decoded IoC=', coincidence(output),
+    'opening40=', output.slice(0, 40).map((v) =>
+      corpus.translit[v]).join(' '));
+}
+console.log('One source-fixed p56 transfer at DH-derived K193 is nonlinguistic',
+  'on three original targets; exact forward controls pass.');
+
 console.log('PASS. Exact source-index linkage. No deciphered LP2 text or');
 console.log('independently sourced instruction selecting this DH bookend grammar.');
