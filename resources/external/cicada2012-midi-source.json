@@ -1,6 +1,6 @@
 {
   "schema": "cicada2012-midi-source-pointer-v1",
-  "artifact": "Decrypted MIDI file from the 2012/009 MIDI puzzle archive",
+  "artifact": "Signed literal MIDI file embedded in the original 2012/009 MIDI-puzzle email",
   "repository": "neuroretransmit/cicada",
   "commit": "b13600373d3400d75ec4208198019f3d92a304dd",
   "path": "2012/009-midi-puzzle/song.mid",
@@ -9,8 +9,24 @@
   "raw_url": "https://raw.githubusercontent.com/neuroretransmit/cicada/b13600373d3400d75ec4208198019f3d92a304dd/2012/009-midi-puzzle/song.mid",
   "readme_url": "https://github.com/neuroretransmit/cicada/blob/b13600373d3400d75ec4208198019f3d92a304dd/2012/009-midi-puzzle/README.md",
   "decoder_url": "https://github.com/neuroretransmit/cicada/blob/b13600373d3400d75ec4208198019f3d92a304dd/2012/009-midi-puzzle/decode.py",
-  "authentication": "The outer clear-signed email is cryptographically verified against the preserved Cicada 2012 public key (key ID 181F01E57A35090F). This authenticates the signed instruction and embedded encrypted-message block relative to that key, not the real-world identity of its controller. The decrypted song.mid is a participant-archive artifact and is not separately signed.",
-  "notes": "The README documents two GPG decryptions from midi.asc to song.mid. The timing-gate parser verifies the exact Git blob SHA-1 before parsing. The 49-word submission list is recipient-specific.",
+  "authentication": "The outer clear-signed email verifies against the preserved Cicada 2012 public key (key ID 181F01E57A35090F). The embedded PGP block is ZIP-compressed signed literal data, not encrypted: packet sequence tag 8 compressed data, tag 4 one-pass signature, tag 11 literal data named Cicada.mid, tag 2 signature; no encrypted-session or encrypted-data packet is present. The inner signature verifies against the same key, full fingerprint 6D854CD7933322A601C3286D181F01E57A35090F. The 10,889-byte MIDI has SHA-256 e6c5b86bb1a95f1a2239237eaf9d060ba708f07d46ffe8c4bce4fca06a5c529c and Git blob SHA-1 11924e0e195208c2eea757655035e149fb8a190f. The 49-word list is deterministically decoded from the signed MIDI and is authentic for this participant, but remains recipient-specific. GnuPG trust remains unknown.",
+  "notes": "The archived README's use of gpg --decrypt extracts/decompresses and verifies this signed message; the command name does not imply that the PGP block is encrypted. The MIDI note-off substitution is reproducible from the signed bytes. The 49-word submission list is participant-specific.",
+  "midi_artifact": {
+    "filename": "Cicada.mid",
+    "size_bytes": 10889,
+    "sha256": "e6c5b86bb1a95f1a2239237eaf9d060ba708f07d46ffe8c4bce4fca06a5c529c",
+    "git_blob_sha1": "11924e0e195208c2eea757655035e149fb8a190f",
+    "inner_signature_key_id": "181F01E57A35090F",
+    "inner_signature_status": "verified",
+    "signer_fingerprint": "6D854CD7933322A601C3286D181F01E57A35090F",
+    "packet_sequence": [
+      "compressed_data_zip (tag 8)",
+      "one_pass_signature (tag 4)",
+      "literal_data (tag 11)",
+      "signature (tag 2)"
+    ],
+    "encrypted": false
+  },
   "email_artifact": {
     "repository": "neuroretransmit/cicada",
     "commit": "b13600373d3400d75ec4208198019f3d92a304dd",

@@ -24,3 +24,36 @@ jobs:
           set -euo pipefail
           gpg --batch --status-fd 1 --verify resources/historical/cicada2012-midi-email.asc 2>&1 | tee "$RUNNER_TEMP/verify.log"
           grep -F '[GNUPG:] GOODSIG 181F01E57A35090F' "$RUNNER_TEMP/verify.log"
+      - name: Audit and verify the embedded signed MIDI
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          lines = Path("resources/historical/cicada2012-midi-email.asc").read_text().splitlines()
+          start = lines.index("- -----BEGIN PGP MESSAGE-----")
+          end = lines.index("- -----END PGP MESSAGE-----", start)
+          block = lines[start:end + 1]
+          assert block[0].startswith("- ") and block[-1].startswith("- ")
+          block[0] = block[0][2:]
+          block[-1] = block[-1][2:]
+          out = Path(os.environ["RUNNER_TEMP"]) / "cicada2012-midi.pgp"
+          out.write_text("\n".join(block) + "\n")
+          PY
+          gpg --batch --list-packets "$RUNNER_TEMP/cicada2012-midi.pgp" > "$RUNNER_TEMP/inner-packets.log" 2>&1
+          grep -F ':compressed packet: algo=1' "$RUNNER_TEMP/inner-packets.log"
+          grep -F ':onepass_sig packet: keyid 181F01E57A35090F' "$RUNNER_TEMP/inner-packets.log"
+          grep -F ':literal data packet:' "$RUNNER_TEMP/inner-packets.log"
+          grep -F 'name="Cicada.mid"' "$RUNNER_TEMP/inner-packets.log"
+          grep -F ':signature packet: algo 1, keyid 181F01E57A35090F' "$RUNNER_TEMP/inner-packets.log"
+          if grep -Ei 'pubkey enc packet|symkey enc packet|encrypted data packet|integrity protected encrypted data packet|AEAD encrypted data packet' "$RUNNER_TEMP/inner-packets.log"; then
+            echo "Unexpected encrypted packet in the embedded MIDI message" >&2
+            exit 1
+          fi
+          gpg --batch --decrypt --output "$RUNNER_TEMP/Cicada.mid" "$RUNNER_TEMP/cicada2012-midi.pgp" 2>&1 | tee "$RUNNER_TEMP/inner-verify.log"
+          grep -F 'Good signature from "Cicada 3301 (845145127)"' "$RUNNER_TEMP/inner-verify.log"
+          test "$(wc -c < "$RUNNER_TEMP/Cicada.mid")" -eq 10889
+          printf '%s  %s\n' 'e6c5b86bb1a95f1a2239237eaf9d060ba708f07d46ffe8c4bce4fca06a5c529c' "$RUNNER_TEMP/Cicada.mid" | sha256sum -c -
+          test "$(git hash-object "$RUNNER_TEMP/Cicada.mid")" = '11924e0e195208c2eea757655035e149fb8a190f'
+          echo "Verified signed literal MIDI; embedded PGP block is compressed, not encrypted."
+          cat "$RUNNER_TEMP/inner-packets.log"
