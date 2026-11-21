@@ -45,6 +45,12 @@ It is also 432 bits, but has 130 decimal digits and is a different integer; (gcd
 
 Using the published 2013 cookie values labelled `167` and `761` as integers and the reconstructed private exponent from `numbers.private`, decryption gives two fixed-width 54-byte blocks beginning `0cff` and `4b10`, respectively. Neither has the required `00 02` PKCS#1 v1.5 type-2 prefix or recognizable plaintext. This excludes only direct PKCS#1 v1.5 type-2 decryption of these two candidates under the reconstructed key; their original role remains unknown.
 
+### 2013 ISO /tmp files as RSA targets
+
+The 2013 ISO archive lists `folly` and `wisdom` under `assets/2013/cicados/tmp/`. They are identical 3,368-byte blobs (Git blob id `62b1b949a1e4e4a346e75b1c34101000d3c53220`); the first bytes are `BF 53 C0 CC...`. The `0xBF` prefix has the shape of an old-format OpenPGP packet header (tag 15, indeterminate length), although no full packet parse is claimed.
+
+Using the reconstructed 2012 RSA private exponent, every 54-byte sliding window was tested in both byte orders (3,315 offsets × 2 = 6,630 candidates). No window decrypted to a PKCS#1 v1.5 type-2 block, and no decrypted block had a high printable-ASCII ratio. This rejects direct embedded 54-byte RSA/PKCS#1 ciphertext blocks under this key in these two files; it does not rule out a symmetric/custom packet format or another use of the files.
+
 ### Direct GP29 key screen
 
 The 2012 integer and its obvious RSA-derived quantities were converted to base 29:
@@ -73,7 +79,8 @@ The script checks the factor product, modulus sizes, Stage 2 modulus inequality,
 - Factor pair: https://github.com/neuroretransmit/cicada/blob/main/2012/011-valete/numbers.factors
 - 2014 Stage 2 signed payload and its separate modulus: https://github.com/micheloosterhof/cicada-2014/blob/master/stage02/1033.jpg.outguess
 - Later research status (describes the P.S. object as 435-bit and leaves the integer interpretation open): https://github.com/pnotisdev/cicada3301/blob/main/work/log/phase60_clue_review.md
+- 2013 ISO /tmp files (identical `folly` and `wisdom` blobs): https://github.com/scream314/cicada3301/tree/master/assets/2013/cicados/tmp
 
 ## Remaining uncertainty
 
-The RSA key reconstruction is established in the 2012 archive, but no source-authenticated ciphertext is paired with it and no source instruction connects it to LP2. The 2013 cookie values do not decrypt under this key, and the 2014 Stage 2 modulus is different. Revisit only if a concrete ciphertext or a first-party cross-round instruction is recovered.
+The RSA key reconstruction is established in the 2012 archive, but no source-authenticated ciphertext has been linked to it or to LP2. The 2013 cookie values and the 2013 ISO /tmp files do not yield direct RSA plaintext under this key, and the 2014 Stage 2 modulus is different. Revisit only if a concrete ciphertext or a first-party cross-round instruction is recovered.
