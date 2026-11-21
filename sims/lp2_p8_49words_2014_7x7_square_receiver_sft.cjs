@@ -35,6 +35,10 @@ const originalPrimeSum = black.map(w =>
   w.reduce((sum, rune) => sum + gp.prime[rune], 0));
 const originalIndexSum = black.map(w =>
   w.reduce((sum, rune) => sum + rune, 0));
+const originalIndexProduct = black.map(w =>
+  w.reduce((product, rune) => product * rune % 29, 1));
+const originalPrimeProduct = black.map(w =>
+  w.reduce((product, rune) => product * gp.prime[rune] % 29, 1));
 const mod = n => (n % 29 + 29) % 29;
 const inv = x => {
   for (let j = 1; j < 29; j++) if (mod(j * x) === 1) return j;
@@ -86,7 +90,9 @@ function ioc(values) {
 const tests = [];
 for (const [aggregate, original] of [
   ["historical_prime_sum", originalPrimeSum.map(mod)],
-  ["GP_index_sum", originalIndexSum.map(mod)]
+  ["GP_index_sum", originalIndexSum.map(mod)],
+  ["GP_index_product", originalIndexProduct],
+  ["GP_prime_product", originalPrimeProduct]
 ]) for (const direction of ["decrypt", "encrypt"])
   for (const orientation of ["row", "column"]) {
     const key = direction === "decrypt" ? inverse : matrix;
@@ -106,7 +112,7 @@ for (const [aggregate, original] of [
       gpRender: result.map(x => gp.translit[x]).join(" ")
     });
   }
-assert.equal(tests.length, 8);
+assert.equal(tests.length, 16);
 assert.ok(tests.every(x => x.recoveredIoc < 0.045));
 console.log(JSON.stringify({
   source: "Original LP2 p8 49 complete black words and historical 2014 7x7 numeric square",
@@ -115,6 +121,6 @@ console.log(JSON.stringify({
     originalPrimeSum.slice(i * 7, i * 7 + 7).reduce((sum, v) => sum + v, 0)),
   magicSum: 1033,
   tests: tests,
-  positiveControls: 8,
-  result: "Eight complete 7x7 GF29 row/column transforms of original p8 word sums do not reveal GP29 language, though all inverse and planted GP29 controls pass. No authored selector or decoded p8 plaintext."
+  positiveControls: 16,
+  result: "Sixteen complete 7x7 GF29 row/column transforms of original p8 word sums do not reveal GP29 language, though all inverse and planted GP29 controls pass. No authored selector or decoded p8 plaintext."
 }, null, 2));
