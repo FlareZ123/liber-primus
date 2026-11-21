@@ -87,10 +87,22 @@ PYNSSOEAEAEYAEMWSXHAGYFEONUXXFGMDOCSAYTHIEEAIUTHIAEAOEOOJIAGRRUTMCTLEABNBFIRDEYG
 
 This yields **no coherent unknown LP2 plaintext**. It supersedes any temptation to tune 28×11 phases or pairing directions in the absence of a first-party instruction. The same [SFT](../sims/lp2_p7_red_hill2_certificate_sft.cjs) asserts the original source brackets, exact matrix order, word-width, GP29 output statistic and full inverse.
 
+## A complete source-seeded 28-step matrix pad also fails
+
+The source p6 red11 immediately before the 308-rune black interval provides an exact **eleven-value original seed** and the later p7 red matrix provides an exact **28-step invertible state update**. One simple nonstationary key construction needing no guessed parameter initializes, for each of the eleven columns, a state `s_j=[p6_red11[j],1]`. The `1` is the source field's multiplicative identity, a hypothesis rather than a printed instruction. For each of 28 consecutive 11-rune rows, take the state first coordinate as the GP29 additive keystream, then advance `s_j <- M*s_j`. Because the actual matrix has order28, after the 28th row **every original column state returns to its starting pair**, providing a round-trip internal consistency check. The decoder is `P[r,j]=(C[r,j]-s_j[0]) mod29`, and the complete source-bracketed interval reencrypts exactly.
+
+On the unchanged **308** original black-runic source the decoded normalized IoC is **1.0127120437**, with prefix
+
+```text
+JOEXHTSAEEAUTHLGEASIAPFGNUINSPFGNWNEELOMFAATBDBNSDBDFAEHUAECITYWXIAEOHLIANWJHDYONTRBHIAAOEOHA
+```
+
+This fully reproducible, source-shaped **nonstationary matrix-pad candidate is also negative** as a direct GP29 English decoder. No alternate affine offset, second seed coordinate, multiplication sign, row direction, carrier, or additional key phase was tuned. Matrix period and interval arithmetic alone are insufficient to identify a decipherment.
+
 ## Research decision
 
-Preserve the source-exact p7 five-word Hill-2 inverse-determinant **candidate key packet** as a distinct interpretation of the DH inverse-state register. **Reject** its three natural complete source-bound consumers: the literal next-illustrated-page phase-zero Hill-2 receiver, and the manuscript's independently discovered p7 five-dot interleaver + p10 numeral7 + Hill-2 inverse across the entire 1,730-symbol p8–14 section. The 28×11 red-bracketed vertical Hill-2 consumer and a continuous p8–14 raw paired-section inverse also fail. The packet is not a verified Liber Primus encryption key. Do not rescue this negative with extra pair offsets, changed read direction, nonlinear key adaptations, other original pages chosen by IoC, or a free Hill-family search.
+Preserve the source-exact p7 five-word Hill-2 inverse-determinant **candidate key packet** as a distinct interpretation of the DH inverse-state register. **Reject** its three natural complete source-bound consumers: the literal next-illustrated-page phase-zero Hill-2 receiver, and the manuscript's independently discovered p7 five-dot interleaver + p10 numeral7 + Hill-2 inverse across the entire 1,730-symbol p8–14 section. The 28×11 red-bracketed vertical Hill-2 consumer, the source-seeded 28-step matrix pad, and a continuous p8–14 raw paired-section inverse also fail. The packet is not a verified Liber Primus encryption key. Do not rescue this negative with extra pair offsets, changed read direction, nonlinear key adaptations, other original pages chosen by IoC, or a free Hill-family search.
 
 To make this a genuine plaintext route, an independent original Cicada clue must specify which ciphertext is consumed, the block origin and the handling of odd input lengths. An unseen 150-rune prediction and exact native-language recovery would then distinguish a valid cipher from the algebraic coincidence.
 
-**Reproducer:** [`sims/lp2_p7_red_hill2_certificate_sft.cjs`](../sims/lp2_p7_red_hill2_certificate_sft.cjs), source-exact CommonJS; executed successfully against the fetched original repository sources with all five-word census, matrix identities, original inverse, five-dot source-composed receiver, 28×11 red-bracketed receiver, and known-clear positive.
+**Reproducer:** [`sims/lp2_p7_red_hill2_certificate_sft.cjs`](../sims/lp2_p7_red_hill2_certificate_sft.cjs), source-exact CommonJS; executed successfully against the fetched original repository sources with all five-word census, matrix identities, original inverse, five-dot source-composed receiver, 28×11 red-bracketed receiver, source-seeded matrix pad, and known-clear positive.
