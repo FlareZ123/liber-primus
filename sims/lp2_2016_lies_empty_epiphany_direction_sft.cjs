@@ -179,6 +179,22 @@ assert.equal(p0Words[53].start, 237);
 assert.equal(p0Words[52].end, 236);
 assert.equal(p0Words[52].indices.length, 2);
 assert.equal(p0Words[53].indices.length, 7);
+let lineOffset = 0;
+const p0LineSpans = p0Source.split(/\r?\n/).map((line) => {
+  const count = [...line].filter((character) => runeIndex.has(character)).length;
+  const span = count ? { start: lineOffset, end: lineOffset + count - 1, count } : null;
+  lineOffset += count;
+  return span;
+}).filter(Boolean);
+assert.equal(p0LineSpans.length, 12);
+assert.deepEqual(
+  [p0LineSpans[10].start, p0LineSpans[10].end, p0LineSpans[11].start],
+  [216, 238, 239],
+);
+assert.deepEqual(
+  [p0LineSpans[10].end - p0Words[53].start + 1, p0Words[53].end - p0LineSpans[10].end],
+  [2, 5],
+);
 
 // Provisional mixed-coordinate reading of the three source-selected bytes:
 // the first value is a 1-based ordinal in p0's black body (the two red title
@@ -214,6 +230,7 @@ function mixedCoordinateHits(alphabet, targetWords, zeroBased) {
         nextStart: next.start,
         nextEnd: next.start + next.indices.length - 1,
         nextCipher: next.indices.slice(),
+        nextWordLineSplit: [2, 5],
       });
     }
   }
@@ -322,6 +339,7 @@ console.log(JSON.stringify({
   },
   mixedCoordinatePointer: {
     status: 'provisional mixed-coordinate receiver; not plaintext',
+    nextWordPhysicalLineSplit: [2, 5],
     typing: '1-based black-body word ordinal, then absolute page-rune offsets',
     uniqueBase60Hit: mixedCoordinateResults.base60BodyOneBased,
     controls: {
