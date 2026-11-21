@@ -20,6 +20,8 @@ The red-sum difference is **209−181=28**. The intervening black glyph count is
 
 Separately, as previously recorded, `φ(181)=φ(209)=180`. The final two p6 printed red words have GP0 sums **65,26**, and p7 begins **26,65** with corresponding reversed printed word lengths. Those comparisons make the p6/p7 boundary a more motivated receiver than a random 11-period region elsewhere in LP2. However the **11-column reshape is not printed in the manuscript**; it is a mathematical interpretation of original runic positions. The red numbers also require a GP0 summation rule that has yet to be authenticated for this particular chapter.
 
+**Page seam is physically continuous inside a printed word.** The original p6 final source rune is `ᛋ`; original p7 starts `ᚻᛝ` followed by a word delimiter. In the canonical source transcription, the p6/p7 join therefore carries the same printed word `ᛋᚻᛝ` across the page boundary; there is **no printed word stop or reset marker at the seam**. This independently supports treating p6 black tail114 plus p7 black prefix194 as one uninterrupted ciphertext receiver, while leaving the proposed eleven-rune block size and field operator conjectural.
+
 As a compact source-family check, there are four consecutive-physical-page red-span pairs among unsolved p0–55: p6/p7, p7/p8, p39/p40 and p53/p54. Only p6/p7 satisfies `gap = first_red_length × (second_red_sum − first_red_sum)`. This is a within-family observation, **not** a calibrated probability under all ways of choosing red gaps, sums, totients or arithmetic relations.
 
 ## Three fixed, historically plausible inverses
