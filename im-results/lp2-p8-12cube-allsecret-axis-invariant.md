@@ -49,7 +49,7 @@ The reference controls use the project's canonical historical GP29 spellings, in
 ## Executable evidence and research decision
 
 - [Complete original-input one-file Node22 CommonJS SFT](../sims/lp2_p8_c12_allsecret_axis_difference_invariant_sft.cjs).
-- [Windows Node22 PASS, workflow44954461568](https://github.com/FlareZ123/liber-primus/actions/runs/44954461568). The log identifies the exact SFT path, original 1,729 and derived 1,728 inputs, the controls above, and exact all-secret/ridig-symmetry positives.
+- [Windows Node22 PASS, workflow44957186696](https://github.com/FlareZ123/liber-primus/actions/runs/44957186696). The log identifies the exact SFT path, original 1,729 and derived 1,728 inputs, the controls above, and exact all-secret/ridig-symmetry positives.
 - Sources: `resources/liber-primus/lp2-corpus.json`, `lp2-ink-annotations.json`, the physically enlarged original X in `25.jpg`, and checked-in source-native calibration corpora.
 
 **Decision:** the 12³ interpretation now has an independently observed source-selection weakness: *every* major heading has a decorative giant initial. Retire *separable additive 12×12×12 axis masks with a global affine symbol layer* as a direct ordinary-GP-English cipher of this unchanged 1,728-rune section. The **12³ physical-source hypothesis itself remains unproven** and is worth revisiting only if an image-derived coordinate route specifies a genuine nonseparable transformation or key material. The ordinary native-GP prose assumption remains conditional. No plaintext has been recovered.
