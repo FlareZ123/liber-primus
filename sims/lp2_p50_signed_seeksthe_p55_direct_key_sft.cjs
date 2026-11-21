@@ -356,6 +356,11 @@ assert.ok(Math.abs(rowMajorTrials[0].score + 11.15231681556) < 1e-7);
  * consume key. All nonliteral consumptions MUST decrypt to a non-F GP rune.
  * All 2^3 and 2^4 exact original F masks are charged, no tuned mask.
  */
+const primes256 = [];
+for (let n = 2; primes256.length < 256; n++) {
+  if (primes256.every((prime) => n % prime !== 0 || prime * prime > n)) primes256.push(n);
+}
+assert.equal(primes256.length, 256);
 const transparentFTrials = [];
 const transparentFCounts = [];
 for (const { page, root, ciphertext: tape, baseOrders, nativeMin } of [
@@ -371,14 +376,21 @@ for (const { page, root, ciphertext: tape, baseOrders, nativeMin } of [
     page === 55 ? [15,25,41] : [29,30,42,114]);
   let valid = 0;
   for (const order of readingOrders) {
-    for (const sourceKey of ['node', 'parent', 'edge-delta', 'depth']) {
+    for (const sourceKey of ['node', 'parent', 'edge-delta', 'depth',
+      'totient-node', 'totient-parent', 'totient-edge-delta', 'totient-depth']) {
       const pad = order.nodes.map((node) => {
-        if (sourceKey === 'node') return node;
-        if (sourceKey === 'parent') return parent[node];
-        if (sourceKey === 'edge-delta') return node - parent[node];
-        let steps = 0;
-        for (let current = node; current !== root; current = parent[current]) steps++;
-        return steps;
+        const kind = sourceKey.replace('totient-', '');
+        let basis;
+        if (kind === 'node') basis = node;
+        else if (kind === 'parent') basis = parent[node];
+        else if (kind === 'edge-delta') basis = Math.abs(node - parent[node]);
+        else {
+          let steps = 0;
+          for (let current = node; current !== root; current = parent[current]) steps++;
+          basis = steps;
+        }
+        return sourceKey.startsWith('totient-') ? primes256[basis] - 1 :
+          kind === 'edge-delta' ? node - parent[node] : basis;
       });
       for (const sign of [-1, +1]) {
         for (let fmask = 0; fmask < 2 ** originalFPositions.length; fmask++) {
@@ -413,17 +425,17 @@ for (const { page, root, ciphertext: tape, baseOrders, nativeMin } of [
       }
     }
   }
-  const proposed = readingOrders.length * 4 * 2 * 2 ** originalFPositions.length;
-  assert.equal(proposed, page === 55 ? 512 : 1024);
-  assert.equal(valid, page === 55 ? 34 : 10);
+  const proposed = readingOrders.length * 8 * 2 * 2 ** originalFPositions.length;
+  assert.equal(proposed, page === 55 ? 1024 : 2048);
+  assert.equal(valid, page === 55 ? 85 : 25);
   transparentFCounts.push({
     page, originalFPositions, proposed, valid, nativeMin,
     candidatesAtOrAboveNativeFloor: 0
   });
 }
 transparentFTrials.sort((a, b) => b.score - a.score);
-assert.equal(transparentFTrials.length, 44);
-assert.ok(Math.abs(transparentFTrials[0].score + 11.32524186516) < 1e-7);
+assert.equal(transparentFTrials.length, 110);
+assert.ok(Math.abs(transparentFTrials[0].score + 11.213207216832) < 1e-7);
 
 console.log(JSON.stringify({
   selected: { source: 'SEEKS GP0=71; THE GP0=20', address: selected,
