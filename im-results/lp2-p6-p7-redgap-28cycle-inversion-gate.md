@@ -1,0 +1,61 @@
+# P6→p7: 308-rune black gap forms 28 complete cycles of the red 11-rune seed
+
+**Classification (21 November 2026, Agent3): new source-aligned numerical relation; original-cipher inverse attempts negative. No unknown LP2 plaintext, authentic key or final destination.** This report extends the independently observed p6/p7 red-word checksum reversal in [the existing original-page boundary report](lp2-p6-p7-reversed-red-boundary-gate.md). The numerical alignment is a testable hint rather than an instruction that the manuscript's authors intended this cipher.
+
+## The new, exact physical packet
+
+Original physical p6 and p7 are the original scans `23.jpg` and `24.jpg`. They are consecutive pages in the same illustrated chapter. Each has an original red passage bounded by large dot punctuation.
+
+| Original ink field | Physical location | Runes | GP0 sum |
+| --- | --- | ---: | ---: |
+| p6 opening red span | p6 offsets [71,82) | **11** | **181** |
+| Intervening black ciphertext | p6 [82,196) + p7 [0,194) | **114+194=308** | not a key |
+| p7 closing red span | p7 offsets [194,208) | **14** | **209** |
+
+The red-sum difference is **209−181=28**. The intervening black glyph count is **308=11×28**. Hence the **same value 28** is the number of whole 11-rune periods and the change between the two red sums:
+
+[
+rac{308}{11}=209-181=28.
+]
+
+Separately, as previously recorded, `φ(181)=φ(209)=180`. The final two p6 printed red words have GP0 sums **65,26**, and p7 begins **26,65** with corresponding reversed printed word lengths. Those comparisons make the p6/p7 boundary a more motivated receiver than a random 11-period region elsewhere in LP2. However the **11-column reshape is not printed in the manuscript**; it is a mathematical interpretation of original runic positions. The red numbers also require a GP0 summation rule that has yet to be authenticated for this particular chapter.
+
+As a compact source-family check, there are four consecutive-physical-page red-span pairs among unsolved p0–55: p6/p7, p7/p8, p39/p40 and p53/p54. Only p6/p7 satisfies `gap = first_red_length × (second_red_sum − first_red_sum)`. This is a within-family observation, **not** a calibrated probability under all ways of choosing red gaps, sums, totients or arithmetic relations.
+
+## Three fixed, historically plausible inverses
+
+Rather than tuning phases, radicals or cipher signs to an English score, the [read-only original-input SFT](../sims/lp2_p6_p7_redgap28_counter_key_sft.cjs) freezes the p6 red source key in original rune order:
+
+`K = [24,16,14,17,19,6,27,15,17,14,12]` (GP indices).
+
+It takes **exactly the 308 contiguous original black GP runes** between the red spans. Its three finite consumer families, each evaluated without phase rotation, resets at the page boundary or free keys, are:
+
+1. **Repeating red11 additive key:** `P[i] = C[i] ± K[i mod 11] (mod 29)`. This uses only the red-key width as the clock.
+2. **One step per printed 11-rune block:** `P[i] = C[i] ± (K[i mod 11] + floor(i/11)) (mod 29)`. The +1 advance per block is the most economical explanation of the red sum difference 28 over 28 complete blocks.
+3. **Consecutive-integer totient row state:** `P[i] = C[i] ± φ(181+floor(i/11)) (mod 29)`. This uses exactly the red sum endpoints and the established historical p56 precedent of Euler-totient arithmetic; it does *not* assume the integers 181–208 are all prime. The `φ(181)=φ(209)` equality is an observed endpoint relation and does not independently command this operation.
+
+A separate **standard keyed 11-column transposition** uses the original GP rune order to rank the 11 red key symbols, breaking duplicate-symbol ties in source order. The 308 ciphertext symbols form 28 full rows. The SFT tests the two natural serializations (28-token column chunks or row-wise 11-token groups) under ascending and descending GP rank. This is a standard historically available operation and is a simpler rival to adding speculative arithmetic layers.
+
+## Exact negative readouts and controls
+
+The original 308 ciphertext runes have **index of coincidence 0.03435001**. The independent halves of each candidate are both 154 runes; no candidate recovers contiguous English in either half:
+
+| Fixed additive receiver | GP IoC, subtract | GP IoC, add |
+| --- | ---: | ---: |
+| Repeating red11 | **0.03458268** | **0.03572486** |
+| Red11 with +1 per eleven-rune block | **0.03451923** | **0.03464614** |
+| `φ(181+block)` row shifts | **0.03407505** | **0.03405389** |
+
+The first 100-rune subtractive counter readout starts `JOEXHTSAEEAUTHLIIGMAEIAJIOEUNGMB...`; the first 100-rune subtractive totient readout starts `FOOEMFSBHEOIYNGPWDTHLAEEOY...`. Neither extends to a source-credible plaintext instruction. The standard columnar inverses likewise yield nonlinguistic starts, for example ascending column chunks `LEASWLGCAIAUIAUNGWHOENOSLSOL...` and descending column chunks `IAEAIAUSCGWALLONGLSWONHSOE...`. A transposition preserves the ciphertext's rune histogram and IoC exactly, so its negative is based on the resulting order rather than a frequency score.
+
+As a separate transfer of the *authentic p56 F-transparent arithmetic clock*, exhaustive ciphertext-F branching of the frozen period11 additive key loses all legal plaintext/key phases by original **gap offset28** under subtraction and by **gap offset7** under addition. Those are exact impossibility results for that specific F-transparent key schedule, not exclusions of other ciphers. None of the 308-rune candidate readouts is coherent plaintext. All deterministic additive and transposition consumers exactly forward-reproduce their complete original input, which confirms the implementation while providing **no independent key evidence**.
+
+The 28 columns/rows also fail an elementary alternative: if each 28-symbol column were intended as a permutation through all 28 non-F GP states, every one of the eleven observed 28-glyph columns would have 28 distinct values. Instead their unique-rune counts are **19,20,19,19,20,17,18,16,16,18,18**, typical collision-rich ciphertext. This rules out the literal source-order state-permutation table interpretation without searching new row orders.
+
+## Remaining missing input and next decision
+
+The exact red→black→red length/sum relationship deserves preservation as an **original-source packet hypothesis**. The tested direct key, monotone block counter, totient row clock and standard key-sorted transpositions do not solve the 308-symbol receiver. A new source clue would need to specify which of the red heading's 11 runes acts as a **key schedule versus width marker**, how the 28 intervening rows transform it, and how the p7 red checksum should be validated *prospectively*. Without that clue, changing start phases, GP reductions, routes, 11×28 orientations, key permutations or word clocks would simply fit an unbounded family.
+
+## Reproduction
+
+`node sims/lp2_p6_p7_redgap28_counter_key_sft.cjs` reads the exact canonical GP corpus and ink annotations; asserts red starts, sums, original black length, adjacent-page control family and positive round trips; prints all direct readouts and the two authentic-F impossibility positions. The original source images are `resources/liber-primus/23.jpg` and `24.jpg`. The separately established red-word reversal appears in [Agent18's report](lp2-p6-p7-reversed-red-boundary-gate.md).
