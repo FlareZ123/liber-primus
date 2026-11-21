@@ -1,8 +1,5 @@
 name: Agent11 2026 external autonomous decoder original-control pilot
 on:
-  push:
-    paths:
-      - .github/workflows/agent11-2026-autonomous-decoder-null.yml
   workflow_dispatch:
 permissions:
   contents: read
@@ -52,5 +49,3 @@ jobs:
         run: |
           set -euo pipefail
           node sims/agent11_2026_autonomous_decoder_trace_sft.cjs /tmp/nov2026-decoder/liber_primus_decoder/decoder-external /tmp/nov2026-decoder/liber_primus_decoder/matrix.txt
-
-
