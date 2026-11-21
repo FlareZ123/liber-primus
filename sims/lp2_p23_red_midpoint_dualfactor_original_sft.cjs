@@ -205,8 +205,8 @@ const originalBody = corpus.pages
   .filter((p) => p.page >= 23 && p.page <= 26)
   .flatMap((p) => p.indices).slice(16);
 assert.equal(originalBody.length, 1005);
-assert.deepEqual(remainderQuadratic(originalBody, originalH), [28, 14]);
-assert.deepEqual(remainderQuadratic(originalBody, originalG), [17, 2]);
+assert.deepEqual(remainderQuadratic(originalBody, originalH), [14, 28]); // ascending constant, linear
+assert.deepEqual(remainderQuadratic(originalBody, originalG), [2, 17]); // ascending constant, linear
 assert.deepEqual(divideDescending(originalBody, rg).remainder, [12, 4, 27, 2]);
 const layouts = [
   Array.from({ length: 5 }, (_, lane) => originalBody.slice(lane * 201, lane * 201 + 201)),
