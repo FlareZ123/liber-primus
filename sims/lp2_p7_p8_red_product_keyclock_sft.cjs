@@ -71,6 +71,61 @@ assert.deepEqual(products8, [state.q, state.e]);
 assert.deepEqual(redWords.map((w) => w.length), [state.q, state.A]);
 assert.deepEqual(indexSums8, [57, 74]);
 assert.deepEqual(primeSums8, [196, 250]);
+// The illustrated p8 tree prominently depicts roots. Its first red GP-prime
+// sum is exactly the square of its FIRST and THIRD rune indices, unique
+// among the original complete red words. Treat ROOT as a potential author
+// instruction only, not as demonstrated original-cipher plaintext.
+assert.equal(primeSums8[0], redWords[0][0] ** 2);
+assert.equal(primeSums8[0], redWords[0][2] ** 2);
+const transcription = fs.readFileSync(
+  path.join(root, 'resources/liber-primus/lp2-transcription.txt'), 'utf8')
+  .split(/\n%\s*\n/);
+const runeIndex = new Map(corpus.runes.map((rune, i) => [rune, i]));
+const completeRedWords = [];
+for (const pg of ink.pages) {
+  if (pg.page > 55 || !transcription[pg.page]) continue;
+  let offset = 0;
+  let start = 0;
+  let running = [];
+  function flush() {
+    if (running.length > 0) {
+      const red = (pg.red_spans || []).some((span) =>
+        start >= span.start &&
+        start + running.length <= span.start + span.length);
+      if (red) {
+        const wordPrimeSum = running.reduce(
+          (total, index) => total + corpus.prime[index], 0);
+        completeRedWords.push({
+          page: pg.page, start, indices: running,
+          primeSum: wordPrimeSum,
+          squareRoot: Math.sqrt(wordPrimeSum)
+        });
+      }
+      running = [];
+    }
+  }
+  for (const char of transcription[pg.page]) {
+    const index = runeIndex.get(char);
+    if (index !== undefined) {
+      if (running.length === 0) start = offset;
+      running.push(index);
+      offset++;
+    } else if (char === '-' || char === '.') {
+      flush();
+    }
+  }
+  flush();
+}
+assert.equal(completeRedWords.length, 50);
+const perfectSquares = completeRedWords.filter(
+  (word) => Number.isInteger(word.squareRoot));
+assert.deepEqual(perfectSquares.map((word) => [
+  word.page, word.start, word.primeSum, word.squareRoot
+]), [[8, 0, 196, 14], [15, 13, 16, 4], [23, 0, 100, 10]]);
+assert.deepEqual(perfectSquares.filter(
+  (word) => word.indices[0] === word.squareRoot)
+  .map((word) => [word.page, word.start]), [[8, 0]]);
+
 assert.equal(primeSums8[0], p6.length);
 // Natural preceding two-page spiral spread (p6 and p7) as a one-based
 // source-reading tape. The two printed p8 red GP-prime sums index exactly
@@ -213,6 +268,9 @@ console.log(JSON.stringify({
     p8HeadingWordProducts: products8,
     p8HeadingIndexSums: indexSums8,
     p8HeadingPrimeSums: primeSums8,
+    p8FirstHeadingSquareRoot: Math.sqrt(primeSums8[0]),
+    fullRedWords: completeRedWords.length,
+    perfectSquarePrimeSums: perfectSquares.map((w) => [w.page, w.start, w.primeSum]),
     p8PrimeSummedOneBasedPreviousSpreadReadout: redWordAddresses,
     p8SecondShedEPrimeSum: primeSums8[1] - corpus.prime[state.e],
     p8SecondShedEProduct: product29(eShed),
