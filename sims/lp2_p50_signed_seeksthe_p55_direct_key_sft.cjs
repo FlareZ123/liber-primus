@@ -666,6 +666,39 @@ const maxShiftedEqual = Math.max(...checksumTrials.map((row) => row.maxShiftedEq
 assert.equal(maxEqual, 4);
 assert.equal(maxShiftedEqual, 5);
 
+
+/**
+ * Key-free overlap consistency: if the 43 p55 interior runes and the 33
+ * exterior runes directly label the two graph subsets, their 11 shared
+ * vertex IDs must carry the same value. No arithmetic or language scoring.
+ */
+const sharedNodeTrials = [];
+for (const assign of largeAssign) {
+  const leafOrder = assign.nodes.filter((node) => children[node].length === 0);
+  const leafValues = new Map(leafOrder.map((node, i) => [node, originalInteriors[i]]));
+  for (const reading of smallRead) {
+    let overlap = 0, equal = 0;
+    const shiftHistogram = Array(29).fill(0);
+    for (let i = 0; i < reading.nodes.length; i++) {
+      const node = reading.nodes[i];
+      if (!leafValues.has(node)) continue;
+      overlap++;
+      if (leafValues.get(node) === outer33[i]) equal++;
+      shiftHistogram[mod29(leafValues.get(node) - outer33[i])]++;
+    }
+    assert.equal(overlap, 11);
+    sharedNodeTrials.push({
+      assign: assign.name, reading: reading.name, overlap, equal,
+      maxShiftedEqual: Math.max(...shiftHistogram)
+    });
+  }
+}
+assert.equal(sharedNodeTrials.length, 64);
+const sharedBestExact = Math.max(...sharedNodeTrials.map((row) => row.equal));
+const sharedBestShifted = Math.max(...sharedNodeTrials.map((row) => row.maxShiftedEqual));
+assert.equal(sharedBestExact, 2);
+assert.equal(sharedBestShifted, 3);
+
 console.log(JSON.stringify({
   selected: { source: 'SEEKS GP0=71; THE GP0=20', address: selected,
     subtreeSize: orders[0].nodes.length },
@@ -675,6 +708,9 @@ console.log(JSON.stringify({
   },
   numericKeys: { tested: keyTrials.length, best: keyTrials.slice(0, 3),
     candidatesReachingNativeMin: keyTrials.filter((entry) => entry.score >= heldMin).length },
+  p55InteriorExteriorSharedNodeConsistency: {
+    tested: sharedNodeTrials.length, overlappingNodes: 11,
+    maximumExact: sharedBestExact, maximumWithGlobalShift: sharedBestShifted },
   p55InteriorLeafToExteriorSubtreeChecksum: {
     interior: originalInteriors.length, exterior: outer33.length,
     subtree: 146, subnodes: smallRow.length, tested: checksumTrials.length,
