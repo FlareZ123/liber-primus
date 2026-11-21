@@ -358,6 +358,27 @@ The two original outputs are nonlinguistic, including when separated at source p
 
 **Decision:** the two-stage original-ciphertext-word-number pad does not decrypt p55's 43 interiors. Retire only its exact stationary +/-GP29 consumer. It does not refute a map to actual **plaintext meanings**, nonlinear navigation, or an unknown original key; those require distinct evidence and cannot be inferred from this negative.
 
+
+## p55 43-interior values as a 29-word body-register map (Agent10, 21 November; bounded negative)
+
+The newly source-selected 2016 register is distinct from the earlier 43-word signed-message tests: it excludes the standalone Hello salutation and uses the exact 29-word core from The through direction, with one-based body ordinals 1–29. The p55 interior rune value v∈[0,28] therefore has a direct, frozen address interpretation: select body word ordinal v+1. The original 43 interior values and original p55 word boundaries are preserved; no phase, reversal, or permutation is used.
+
+The resulting 43-word map sequence is:
+
+MEANING IS WAY THE AND LIES THE THEIR MAP SEEKS DIRECTION THE WORDS IS MEANING PATH SEEKS ITS LIBER THE IS ARE AND THE ITS LIBER WAY THEIR IS THE WORDS THE ARE WAY LIES LIES THEIR DIRECTION IS MEANING SEEKS THE THEIR
+
+This is a reproducible register readout, not coherent LP2 plaintext. A direct numerical consumer is also motivated by the 2016 wording that the words' numbers provide direction: compute each selected word's GP0 sum modulo29 and use the resulting 43-symbol stream as a continuous additive key against the 43 p55 interior runes. Using the established p56 subtractive direction C−K gives:
+
+- GP0 key modulo29: [0,25,28,20,27,5,20,5,27,13,11,20,23,25,0,10,13,12,11,20,25,17,27,20,12,11,28,5,25,20,23,20,17,28,5,5,5,11,25,0,13,20,5]
+- C−K plaintext runes: MXPSAEYWMMNGBNLXMLNGUYUAIAAEWUYPPXSLSIAPYYPBXMNGLP
+- Reconstructed page-local words with the original first/last exterior runes left unchanged: NG / AEMXW / SB / XM / SPSAEYAE / FWMMNGU / WR / BBNLXMLNGUYUAEO / MIAAEWUF / BYPC / EOE / EAPXSLSS / EIAPYYPS / THOE / CBXMNGX / DLU / BPI
+
+The direct C−K output is not linguistic under the original word boundaries. The SFT reconstructs the signed-message register, derives the exact p55 interiors from page-local word lengths, and asserts the map, key and plaintext.
+
+The same mapped words were passed through the already selected p50 GP0-to-base60 forward map for the fixed DH depth p=23. The three occurrences of SEEKS (interior positions 10, 17 and 41) all reach state 32 (p32); the other 40 endpoints lie on the 11-cycle. This is a navigation observation inherited from the known SEEKS-to-p32 route, not a cipher or plaintext recovery. It supplies no missing operation for the 43 interiors and does not assign a role to the 33 exteriors.
+
+**Decision:** retire the direct one-based 29-word book-map plus GP0 additive-pad consumer. Preserve the 43-word map sequence and the three SEEKS-to-p32 navigation hits as intermediate evidence only. This does not refute a different semantic route through the 2016 register, but it does not justify trying arbitrary word rearrangements, alternate offsets, or extra cipher layers. Reproducer: sims/lp2_p55_interior_2016_body_register_map_sft.cjs.
+
 ## Full-book 43×301 / 7×43² source-shape gate (bounded negative)
 
 The 55 rune-bearing LP2 pages contain 12,956 runes. The p0 red heading is the first **13** runes (two words of lengths 8 and 5); the next black line is **7** runes (two words of lengths 4 and 3), with GP indices **[2,11,6,25,0,11,22]**. Removing only the red heading leaves **12,943 = 43×301 = 7×43²** runes. Removing the following seven-rune line as a putative key leaves **12,936 = 7×1,848 = 7×(43²−1)**. The 2016 signed message contains **43 alphabetic words**. These are exact source counts, and they motivate a 43-position clock and a seven-layer reading; they do **not** establish that the text is a 43×43×7 tensor or that either preamble is a key.
@@ -629,7 +650,7 @@ The authenticated 2013 BASE29/DH value `3301 = 43×76+33`, original p55's 76-run
 The three source-nearest reversible consumers are exhausted or untyped:
 1. **p50 perimeter76 → p55 full76, GP29 additive pad at phase33** (`3301 mod76`): the original p55 test is negative ([report](../im-results/lp2-p55-3301-mod76-rim-pad.md)).
 2. **p50 marker-bracketed 43-byte interval → p55 strict interiors43:** all six additive/Beaufort alignments and raw-byte XOR fail; the 841-pair global affine family, GF29 multiplication/division, and square-derived address consumers also fail. Their planted 43/43 controls pass, but no source-native p56/p57 positive control supports the key ([gate](../sims/p50_43byte_to_p55_interior_mod29_gate.cjs)).
-3. **p55 exterior33 → interior43 as key/checksum/frame:** no source assigns the shell such a role or specifies a key clock. The six SHA-1 serializations fail; direct 2016 word-length/GP-prime-sum keys fail; the p32 33-rune transfer is incompatible. The 2016 43-word “words/map, numbers/direction” register is a plausible companion, but it does not specify a word-to-byte or numeric-to-rune operation for p55.
+3. **p55 exterior33 → interior43 as key/checksum/frame:** no source assigns the shell such a role or specifies a key clock. The six SHA-1 serializations fail; direct 2016 word-length/GP-prime-sum keys fail; the p32 33-rune transfer is incompatible. The 2016 29-word body register now supplies one natural numeric-to-word interpretation: each p55 interior value v selects body ordinal v+1. That 43-word sequence is not plaintext, and its GP0 values as a continuous C−K key also fail. This retires that direct book-map/pad consumer, but does not assign a role to the 33 exteriors or establish a complete decoder.
 
 The source-native p56/p57 control is negative: the p50 inner180 values do not act as a direct mod29 key for the solved 180-rune p56+p57 register (only **6/180** required shifts match), and the separate 24-way terminal256/255 known-plaintext family also fails ([control report](../im-results/terminal-grid-circumference-knownplain-gate.md)). Thus the exact 76/180 geometry does not authenticate a table-key operation.
 

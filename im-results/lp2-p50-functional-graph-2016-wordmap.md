@@ -1,12 +1,12 @@
 # p50 source-selected successor map and 2+11 functional graph
 
-**Classification:** source-motivated, computationally unique navigation structure on the original p50 base60 successor map, independently reproduced from original scans. The exact signed 2016 payload now source-selects a 29-word body register after its separate `Hello.` salutation, with natural one-based body ordinals 1–29; its 13-word coda splits 11+2. This aligns with the p50 graph's 11+2 cycles and p0 red13 mark. The earlier q/r word-pair table used the wrong first-29-of-43 prefix including `Hello` and is superseded; a corrected q/r readout has not yet been independently reproduced. No unknown-page plaintext or key is recovered.
+**Classification:** source-motivated, computationally unique navigation structure on the original p50 base60 successor map, independently reproduced from original scans. The exact signed 2016 payload source-selects a 29-word body register after its separate `Hello.` salutation, with natural one-based body ordinals 1–29; its 13-word coda splits 11+2. Agent10 independently reproduced the corrected q/r readout in source order (11-cycle then 2-cycle): none of the fixed q/r, GP0-pair, or H-transformed vectors matches the p0 marker R13 or generated key K13. The 13 coda words' GP0 addresses all enter the 11-cycle, including the two verification words, so the 11+2 length match remains structural rather than an operational cycle selector. No unknown-page plaintext or key is recovered.
 
 ## Hypothesis
 
 The authenticated 2016 message's "numbers are the direction" clue, together with the source-native **EPIPHANY SEEKS THE DEVOTED → p32** route, selects the forward base-60 byte-as-next-address operation on the original 32×8 p49–p51 table. The original 560-case family (40 consecutive four-word windows × seven DH-state depths × two live radices) has one hit. A stronger audit expands to seven natural GP word-number encodings (GP0, GP0 mod 256, GP1, GP1 mod 256, GP-prime sum, GP-prime sum mod 256, and rune count), zero- and one-based table addressing, and all eight obvious row/column traversals. Across 62,720 configurations there are two raw hits, but they are the same route under GP0 and GP0 mod 256 because the selected four word values are already below 256. There is exactly one distinct route: EPIPHANY SEEKS THE DEVOTED, depth p=23, base60, row-major forward, zero-based, terminal p32, whose 121 runes equal GP0(EPIPHANY). Its held-out EMPTY word occurs at step 7=g+K. The route does not use the 2+11 cycle decomposition or q/r cycle-word pairs. Thus the successor-map semantics are selected by an independent source phrase and receiver, not merely by choosing a conventional radix after noticing a functional graph.
 
-The 2+11 cycle structure is a deterministic property of that source-selected map. A separate audit of the exact clear-signed 2016 payload now selects a 29-word body register after the standalone `Hello.` salutation, followed by a 13-word coda split 11+2. The old n=29q+r word-pair readout used the first 29 of all 43 alphabetic tokens, including `Hello`, and is superseded; a corrected readout against body ordinals 1–29 has not yet been reproduced. The 13-node/coda length alignment is structural, not recovered LP plaintext or a demonstrated body-cipher inverse. The p0 title candidate EPIPHANY SEEKS is a post-discovery cross-check, not a blind prediction.
+The 2+11 cycle structure is a deterministic property of that source-selected map. A separate audit of the exact clear-signed 2016 payload now selects a 29-word body register after the standalone `Hello.` salutation, followed by a 13-word coda split 11+2. The old n=29q+r word-pair readout used the first 29 of all 43 alphabetic tokens, including `Hello`, and is superseded; a corrected readout against body ordinals 1–29 has not yet been reproduced. The 13-node/coda length alignment is structural, not recovered LP plaintext or a demonstrated body-cipher inverse. Agent10's corrected q/r readout and direct coda-address test are now complete: the direct pair/H family has no p0 key match, and GP0-addressing the coda words does not realize the 11+2 cycle split. The p0 title candidate EPIPHANY SEEKS is a post-discovery cross-check, not a blind prediction.
 
 ## Reproducible graph
 
@@ -109,7 +109,7 @@ The route is selected without consulting the p0 title candidate, the 2+11 cycle 
 
 **Cycle orientation and phase.** The 2-cycle is 158→249→158. Starting at 158 is selected by q=5=g; its successor 249 has q=8=A. Starting at 249 reverses the independently sourced DH order. The p32 route ends at 32 and T[32]=115, fixing the 11-cycle entry phase at 115. The separate THE path 20→102→32→115 corroborates the same phase.
 
-**q/r word-map family (register now source-selected; corrected readout pending).** The exact signed payload selects the 29-word body core and natural one-based ordinals 1–29. The old 13 word-pairs in the preceding version were computed against the first 29 of all 43 alphabetic tokens, including `Hello`; that prefix is superseded. For a corrected n=29q+r readout, both base-29 digits q,r∈[0,28] must address body words at ordinals q+1 and r+1. The coda's 11+2 split aligns with the graph's cycle lengths, but does not yet select the assignment of coda words to cycle nodes or a new q/r consumer. The old pair labels, q/r-to-p0 negative, and word-pair permutation null do not test the corrected register. One independent reproduction under the frozen body-only register is the next bounded action; do not broaden the graph family.
+**q/r word-map family (corrected body-only register; Agent10, 21 November; bounded negative).** The exact signed payload selects the 29-word body core and natural one-based ordinals 1–29. The source-order node list is the 11-cycle beginning at 115 (fixed by T[32]=115), followed by the 2-cycle 158→249 (the q=5=g phase). For each node n=29q+r, q and r address body words at ordinals q+1 and r+1. The corrected 13-pair table and all fixed direct consumers are reproduced below; the old first-29-of-43 register including `Hello` is obsolete. The 11+2 coda split is tested as an ordering hypothesis, not assumed as a cipher.
 
 **Independent DH-label caveat.** Do not assign DH fields to cycle count, common cycle length, cycle-node total, maximum tail depth, or basin sizes. The separate conservative topology-label audit found 18 equally simple provenance aliases for the exact tuple and 161 DH-valid numeric tuples / 1,736 source-expression assignments across its broader global-simple family. The authenticated signed-word-position source independently reconstructs the DH tuple; it does not resolve those topology-label aliases. See lp2-signed2016-graph-dh-label-family-gate.md and lp2-signed2016-word-position-dh.md.
 
@@ -153,6 +153,35 @@ H(GP0(q)+GP0(r)):[24,13,13,28,17,4,20,27,22,0,8,7,2]
 
 This closes the obvious direct pair-to-key readings, not every imaginable permutation or nonlinear map. Do not expand into fitted permutations or extra cipher layers: the p50 graph remains a provisional navigation/anchor observation, not a p0 decryption, unless another independent artifact selects a typed consumer. The [single-file SFT](../sims/lp2_p50_cycle_wordpair_p0_key_consumer_sft.cjs) reconstructs the 13 pairs from the original table and signed message, verifies the p0 H positive control, and asserts the negative result.
 
+
+## Corrected body-only q/r readout and coda test (Agent10, 21 November)
+
+The fixed node order is the 11-cycle beginning at 115, followed by the 2-cycle beginning at 158. This preserves the independently selected 11-cycle phase T[32]=115 and the q=5=g orientation of the 2-cycle. The signed-message coda is aligned in source order as 11 words followed by the two-word Verify/OpenPGP verification sentence. This is a single fixed alignment; no cycle rotation or permutation is searched.
+
+For each node n, write n=29q+r with q,r∈[0,28]. The digits select one-based body ordinals q+1 and r+1 in the exact 29-word core:
+
+| Cycle | Node | q,r | Body ordinals | q/r words | GP0(q), GP0(r) mod29 | Coda position |
+|---|---:|---:|---:|---|---:|---|
+| 11 | 115 | 3,28 | 4,29 | empty / direction | 5,11 | Seek |
+| 11 | 247 | 8,15 | 9,16 | Liber / are | 11,17 | and |
+| 11 | 192 | 6,18 | 7,19 | the / their | 20,5 | you |
+| 11 | 0 | 0,0 | 1,1 | The / The | 20,20 | will |
+| 11 | 203 | 7,0 | 8,1 | devoted / The | 15,20 | be |
+| 11 | 68 | 2,10 | 3,11 | lies / is | 5,25 | found |
+| 11 | 199 | 6,25 | 7,26 | the / numbers | 20,25 | Good |
+| 11 | 47 | 1,18 | 2,19 | path / their | 10,5 | luck |
+| 11 | 76 | 2,18 | 3,19 | lies / their | 5,5 | Beware |
+| 11 | 114 | 3,27 | 4,28 | empty / the | 5,20 | false |
+| 11 | 197 | 6,23 | 7,24 | the / and | 20,27 | paths |
+| 2 | 158 | 5,13 | 6,14 | seeks / Its | 13,12 | Verify |
+| 2 | 249 | 8,17 | 9,18 | Liber / map | 11,27 | OpenPGP |
+
+The finite direct-consumer family is fixed: q and r columns; q−r and q+r; GP0(q), GP0(r), their difference and sum, and the reversed difference; then the existing p0 outside-in H transform applied to each vector. The p0 controls are R13=[25,28,11,25,4,8,19,8,4,7,13,20,28] and K13=H(R13)=[26,24,8,19,27,24,18,3,0,8,0,16,19]. No vector or H(vector) equals either target. The exact arrays and assertions are emitted by the corrected q/r SFT.
+
+A separate direct test applies the same GP0-to-base60-forward-successor operation to each of the 13 coda words. All 13 addresses enter the 11-cycle. In particular, Verify and OpenPGP enter at nodes 76 and 114, not the 2-cycle. Since the 11-cycle basin contains 252 of 256 states, the first eleven words entering it is unsurprising; the two verification words failing to enter the 2-cycle rejects this simple coda-as-cycle-selector reading. The 11+2 count alignment remains structural only.
+
+This closes the corrected q/r reproduction and the direct coda-address split test. It does not decrypt p0, does not provide a plaintext/key for any unknown page, and does not justify searching additional q/r permutations, rotations, or nonlinear consumers. Retain the p50 graph as a navigation structure only.
+
 ## Conditional permutation null for graph structure (legacy word-pair labels)
 
 A fixed-multiset null was run by uniformly shuffling the observed 256 byte values among the 256 cell positions, preserving the table's byte-frequency distribution. With seed 0x20261120 and 100,000 permutations. The cycle/basin statistics remain a graph-structure control; any word labels attached to q/r pairs in the former first-29-of-43 register are legacy only and do not test the corrected body register:
@@ -185,11 +214,11 @@ node sims/lp2_p50_functional_graph_2016_wordmap_sft.cjs --null=100000
 
 The forward base60 row-major successor map remains a source-selected **navigation mechanism**: one distinct EPIPHANY / SEEKS / THE / DEVOTED → p32 route survives the 62,720 source-plausible configurations, and the original scan independently confirms the critical 0l cell. The signed 2016 payload now also selects the body-only 29-word register (one-based ordinals 1–29) and a 13-word coda split 11+2. The 11+2 coda aligns with the graph's 11- and 2-cycles and the total 13 aligns with p0's red13 mark.
 
-The previous q/r word-pair readout counted `Hello` as the first map entry and is superseded. The next bounded step is **one independent reproduction** of the existing q/r navigation prediction using the frozen body-only register and mapping base-29 digits q,r to one-based word ordinals q+1,r+1. That reproduction should preserve the already selected forward base60 row-major successor map and test the source-order 11-word coda / 2-word verification split without opening new graph, radix, rotation or permutation families.
+The corrected q/r reproduction is complete. It uses the frozen body-only register, source-order 11-cycle then 2-cycle, and one-based body ordinals q+1,r+1. The direct q/r/GP0/H family does not match the p0 R13/K13 controls, and the 13 coda words' GP0 addresses all enter the 11-cycle, including Verify/OpenPGP. Do not expand this branch into more graph, radix, rotation, permutation, or nonlinear-consumer families.
 
 Keep the evidential layers separate:
 - **Established:** original table transcription at the critical cells; deterministic base60 successor map; 2+11 cycles and basin sizes; the unique source-window-to-p32 navigation route under the stated family; exact 29-word body and 13-word coda segmentation in the authenticated 2016 payload.
-- **Intermediate interpretation:** the corrected q/r-to-body-word readout and the alignment of the coda's 11+2 split with graph cycles. No corrected pair table has yet been independently reproduced.
+- **Intermediate interpretation:** the corrected q/r-to-body-word pair table is now independently reproduced, but it is not plaintext and does not recover the p0 marker/key. The 11+2 coda/cycle alignment remains structural; direct GP0 addressing of the coda does not select the 2-cycle.
 - **Not established:** an LP2 body-cipher inverse, plaintext, authentic encryption key, or final destination. The signed-message register is an index scaffold, not a decryption.
 
-No unknown LP2 plaintext, authentic encryption key, or final destination is recovered. Do not repeat the old first-29-of-43 q/r output or its p0 consumer test as if they covered the corrected register; do not broaden beyond the single independent reproduction.
+No unknown LP2 plaintext, authentic encryption key, or final destination is recovered. Do not repeat the old first-29-of-43 q/r output, and do not broaden beyond the completed corrected body-only reproduction.

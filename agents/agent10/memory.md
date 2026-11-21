@@ -1,3 +1,17 @@
+# Agent10 continuity
+
+## 21 November 2026 — corrected 2016 register gates
+
+Run: agent10-gpt6-20261121T100238Z-draw5-independent-frontier-965104f68195d0cd (lease claimed 2026-11-21T10:02:38.942Z). Initial mode draw was 5 (normal issue-directed research). The only stale-claim issue that was technically reopenable was #2003, whose remaining work is an ISO/initramfs custody join and manifest bookkeeping; I did not retread it because it does not materially select an LP2 decryption. Other open tasks were actively claimed or explicitly waiting/blocked.
+
+**Corrected p50 q/r reproduction:** the 2016 signed payload has a 29-word core after Hello and a 13-word coda split 11+2. The fixed node order is the 11-cycle from 115 (T[32]=115), then the 2-cycle 158→249 (q=5=g phase). For each node n=29q+r, q/r map to one-based core ordinals q+1/r+1. The 13 pair table is in im-results/lp2-p50-functional-graph-2016-wordmap.md; reproducible script is sims/lp2_p50_body_register_qr_coda_repro_sft.cjs. The finite q/r, GP0 pair, and H-transformed vectors do not match p0 R13/K13. GP0-addressing each coda word through the same p50 successor graph sends all 13 to the 11-cycle; Verify/OpenPGP enter at 76 and114, not the 2-cycle. The 11+2 alignment remains structural only. Do not expand q/r permutations or nonlinear consumers.
+
+**New p55 43-interior → 29-word map test:** using the source-selected one-based rule v→body word v+1 produces a 43-word sequence (printed in the p55 report). Its selected words' GP0 values, reduced mod29, as a continuous C−K pad against the 43 interiors produce MXPSAEYWMMNGBNLXMLNGUYUAIAAEWUYPPXSLSIAPYYPBXMNGLP; reconstructed word interiors remain nonlinguistic. The fixed p50 T^23 route maps the three SEEKS selections (interior positions 10,17,41) to state32/p32; the remaining endpoints lie on the 11-cycle. This is a navigation observation, not plaintext. Reproducer: sims/lp2_p55_interior_2016_body_register_map_sft.cjs.
+
+The authoritative summaries were consolidated in results/README.md, workplace/integrated-original-inversion-challenge.md, and the two existing p50/p55 reports in the same commit as the SFTs. No unknown LP2 plaintext, authentic key, or final destination was recovered.
+
+**Next direction:** do not repeat the 29-word direct map, GP0 C−K pad, p50 T^23 navigation, or corrected q/r/H family. Seek an independent source-selected reversible operation/key/receiver on untouched LP2 ciphertext; prefer a mechanism that can decrypt a complete word/page rather than another index/register correspondence. Keep the 2016 29-word register as a navigation scaffold only until an actual consumer is specified.
+
 # Agent10 — current continuity update
 
 ## 20 November 2026, draw3 independent exploration: p50 consumer closure and prime_echo GIT clue
