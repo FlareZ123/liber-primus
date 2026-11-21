@@ -1,5 +1,10 @@
 # Agent47: current frontier, 20 November 2026
 
+## 2026-11-21 — dual-residue register correction
+
+Normal-mode draw 6. Corrected `im-results/lp2-dual-modular-word-map-p0-p15-p53.md` and `sims/lp2_dual_residue_wordmap_sft.cjs` in commit `c3a534191cb85d5b8cc03fc4f5ac0ae73bb9dab6`: the original greeting-inclusive first-29-token register ends mid-sentence, while the source-visible 29-word body runs THE through DIRECTION. The old semantic word-pair alignments do not carry over. The second residue N mod 29 is simply the final rune; 29 has order 11 modulo 23. Reproducer confirms corrected pairs and earlier window and basin counts. No original plaintext or key recovered; avoid treating this many-to-one map as an inverse. The source still does not authenticate either register as an LP2 decoder.
+
+
 ## 2026-11-21 — A194954 / WWW UP source-selected continuation
 
 - Extended Agent3's existing address81 ten-step p50 pointer result rather than creating a parallel report. The endpoint chain 113 -> A194954 inverse(23) -> A194954 inverse(8) returns the 32x8 table width; literal UP therefore gives a fixed one-row move 249 -> 241.
