@@ -1,3 +1,18 @@
+## 2026-11-21 draw6 continued checkpoint (2026-11-21T21:38:51.384Z)
+
+Run agent16-gpt6-20261121T210659915Z-draw6-red-factor. Fixed claim 21:06:59.915Z, normal-mode release threshold 22:16:59.915Z. Mandatory current clock check after each persistence checkpoint.
+
+**New independently executable results beyond prior #2082 closure:**
+
+- PARABLE S(201) and signed2016 S(20) base60 p50 graph trees each 56 nodes, zero intersecting nodes, nonisomorphic rooted tree shapes. Signed S(102) 57 entirely outside PARABLE S(205) 58. Both paths enter same 11-cycle; no direct node-identity mapping treats their source-specific 56 as one manuscript roster. Saved sims/lp2_parable_signed2016_disjoint_subtree_original_sft.cjs; report im-results/lp2-parable-signed2016-disjoint-56-subtree-original-gate.md; expanded Windows PASS44951283557. Agent8 notified via communications/agent8/20261121T2125Z_agent16_parable-signed56-disjoint-source.md. This does not rule out a signed pointer to physical p32.
+- Source prime ordinal201 graph orbit 201->74->205->76 and 11-cycle as direct 76-rune GP29 additive key on original p55, both signs: source-negative nonprose with complete reencryption and independent p57 76/76 plants. Saved sims/lp2_parable_source201_p50_walk_p55_additive_sft.cjs; im-results/lp2-parable-p50-source201-orbit-p55-additive-original.md; Windows PASS44951414120. p50[205]=76 matching p55 full rune count alone does not supply an authenticated modulo29 decoder.
+- Full 75 original p55 complete-word core under one uninterrupted known p56 prime-totient/plaintext-F-bypass clock, starting at source PARABLE primes1259/1031/1229. Native p56 sign algebraically impossible at local offsets19/11/39; reverse sign fails except1259 nonlinguistic candidate. Six p57 true plaintext 75/75 plants pass. Saved sims/lp2_parable_singleprime_whole75_totient_original_sft.cjs; im-results/lp2-parable-singleprime-whole75-totient-original-gate.md; Windows PASS44952419092. Distinct from Agent8 previous 3×25 reset gates.
+- Agent8 and Agent23 separately discovered exact S(201) child sizes50+5+root201, matching physical 50 text pages p0–49, sole numeric table p50, five p51–55, plus ancestor74 and205 fitting solved p56/57. Also S(82) splits44+1+5. See revised im-results/lp2-p55-parable-threeprime-3x25-totient-original-gate.md. This still supplies neither individual page ordering nor original-author-derived GP29 inverse; avoid blind source-key tuning.
+
+**Next:** Original-author-selected irreversible-to-reversible operation, plaintext, key, or source-predicted individual page/node relation. Historical 2014 Onion2 256 bytes vs p50 table was already comprehensively tested negative; do not repeat. Open Director #41 WAITING for full source-selected all76 decoder; do not claim without a real handoff. No unknown page plaintext recovered.
+
+---
+
 ## 2026-11-21 draw6 invocation: PARABLE digit-matrix and literal-number original gate (21:18 UTC)
 
 **Live identity:** `agent16-gpt6-20261121T210659915Z-draw6-red-factor`, claimed 2026-11-21T21:06:59.915Z, initial RNG 6 issue-directed normal mode. Original 70-minute threshold: **2026-11-21T22:16:59.915Z**. Do not refresh the lease; at each persistence checkpoint query an actual clock; if below70min continue, otherwise finalize and release `.lease.json` as final repository mutation. Issue [#2082](https://github.com/FlareZ123/liber-primus/issues/2082) claimed comment `7069251010`, research followup `7069340576`.
