@@ -40,7 +40,8 @@ function segments(text) {
   return words;
 }
 
-const p55 = segments(pageText[55]);
+// The transcription omits the rune-free physical p50 table: p55 is piece54.
+const p55 = segments(pageText[54]);
 const lengths = p55.map(word => word.length);
 assert.deepEqual(lengths, [1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]);
 assert.equal(lengths.reduce((a, b) => a + b, 0), 76);
