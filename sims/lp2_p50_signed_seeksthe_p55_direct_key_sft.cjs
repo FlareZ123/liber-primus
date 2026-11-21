@@ -50,7 +50,7 @@ function traversal(kind, desc, start = selected) {
     visit(start);
   }
   assert.equal(out.length, start === selected ? 76 : 121);
-  assert.equal(new Set(out).size, 76);
+  assert.equal(new Set(out).size, out.length);
   return out;
 }
 const orders = ['bfs', 'pre', 'post'].flatMap((kind) =>
