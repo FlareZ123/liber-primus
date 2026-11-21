@@ -19,7 +19,7 @@ const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
 const asc = read("resources/historical/cicada2016-4gq25-outguess.asc");
 const source = asc.slice(asc.indexOf("Hello."), asc.indexOf("-----BEGIN PGP SIGNATURE-----"));
-const sourceWords = source.match(/[A-Za-z]+/g) || [];
+const sourceWords = source.match(/(?<![A-Za-z0-9])[A-Za-z]+(?![A-Za-z0-9])/g) || [];
 assert.equal(sourceWords.length, 43);
 const symbols = corpus.translit.map((s, i) => ({ s, i }))
   .sort((a, b) => b.s.length - a.s.length);
