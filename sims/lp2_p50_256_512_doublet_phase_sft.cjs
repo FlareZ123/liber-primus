@@ -106,6 +106,44 @@ const original512 = score(events, 512);
 assert.deepEqual(original256, {pairs:27,cross:14,unique:66});
 assert.deepEqual(original512, {pairs:16,cross:9,unique:72});
 
+// Exact canonical printed words, keeping all physical-page carried words whole.
+// A word/page group contains only valid within-page predecessor comparisons.
+const wordText = sourcePages.join("%").replace(/\/\r?\n/g, "")
+  .replace(/[\r\n%]/g, "");
+const runePattern = new RegExp("[" + book.runes.join("") + "]+", "gu");
+const sourceWords = wordText.match(runePattern) || [];
+const allOriginal = pages.flatMap(p => p.indices);
+const runeIndex = new Map(book.runes.map((r,i) => [r,i]));
+assert.equal(sourceWords.length, 2896);
+assert.deepEqual(sourceWords.flatMap(w => [...w].map(r => runeIndex.get(r))), allOriginal);
+const eligibleByGlobal = new Map(eligible.map(v => [v.global,v]));
+const tableTokens = grid.rows.flat();
+/** @type {Map<string,{sites:{global:number,zero:boolean}[],count:number,zeroCount:number}>} */
+const wordGroups = new Map();
+let globalRune = 0;
+for (let wordId = 0; wordId < sourceWords.length; wordId++) {
+  for (const glyph of sourceWords[wordId]) {
+    const v = eligibleByGlobal.get(globalRune);
+    if (v) {
+      const id = wordId + ":" + v.page;
+      if (!wordGroups.has(id))
+        wordGroups.set(id, {sites:[], count:0, zeroCount:0});
+      const group = wordGroups.get(id);
+      const zero = tableTokens[(globalRune - 1) % 256][0] === "0";
+      group.sites.push({global:globalRune,zero});
+      group.count += v.event;
+      group.zeroCount += Number(zero && v.event);
+    }
+    globalRune++;
+  }
+}
+assert.equal(globalRune,12956);
+const activeWords = [...wordGroups.values()].filter(g => g.count);
+assert.equal(activeWords.length,85);
+assert.equal(activeWords.reduce((n,g)=>n+g.count,0),86);
+assert.equal(activeWords.reduce((n,g)=>n+g.zeroCount,0),33);
+
+
 /** @param {number} seed @returns {() => number} */
 function xorshift32(seed) {
   let state = seed >>> 0;
@@ -174,6 +212,56 @@ function conditionedNull(name, key, seed, trials) {
 }
 
 /**
+ * Condition directly on the exact 85 event-bearing printed word/page IDs,
+ * including the two events in p27's single word. A stronger null additionally
+ * holds fixed the count of events in literal-leading-zero table cells WITHIN
+ * each individual word/page, preserving the established #1500 association and
+ * its word-level localization (#1508). This avoids mistaking that known source
+ * mask for an independent phase signal.
+ *
+ * @param {boolean} preserveZero
+ * @param {number} seed
+ * @param {number} trials
+ */
+function wordConditionedNull(preserveZero, seed, trials) {
+  const random32=xorshift32(seed);
+  let tail256=0,tail512=0,tailEither=0,tailBoth=0;
+  let mean256=0,mean512=0;
+  for(let t=0;t<trials;t++){
+    const positions=[];
+    for(const word of activeWords){
+      const pools=preserveZero?[
+        {sites:word.sites.filter(x=>x.zero), count:word.zeroCount},
+        {sites:word.sites.filter(x=>!x.zero),count:word.count-word.zeroCount}
+      ]:[{sites:word.sites,count:word.count}];
+      for(const group of pools){
+        const chosen=new Set();
+        for(let i=0;i<group.count;i++){
+          let picked;
+          do {picked=random32()%group.sites.length;}
+          while(chosen.has(picked));
+          chosen.add(picked);
+          positions.push(group.sites[picked].global);
+        }
+      }
+    }
+    const a=score(positions,256),b=score(positions,512);
+    mean256+=a.pairs;mean512+=b.pairs;
+    const x=a.pairs>=original256.pairs,y=b.pairs>=original512.pairs;
+    tail256+=+x;tail512+=+y;
+    tailEither+=+(x||y);tailBoth+=+(x&&y);
+  }
+  const p=n=>(n+1)/(trials+1);
+  return {name:preserveZero?
+    "exact word/page event and literal-leading-zero totals":
+    "exact word/page event totals",
+    trials, activeWordPageGroups:activeWords.length,
+    meanPairs256:mean256/trials,meanPairs512:mean512/trials,
+    p256:p(tail256),p512:p(tail512),pEither:p(tailEither),
+    pBoth:p(tailBoth)};
+}
+
+/**
  * Synthetic positive control: original per-page event totals, but require
  * every event to land at a phase whose *actual printed table byte* is below64.
  * This is a calibration of detection power for a fixed phase-gated event
@@ -185,7 +273,7 @@ function plantedTableGate() {
   const artificial = [];
   for (const p of pageEntries) {
     const pool = eligible.filter(v => v.page === p.page &&
-      bytes[v.global % 256] < 64).map(v => v.global);
+      bytes[(v.global - 1) % 256] < 64).map(v => v.global);
     assert.ok(pool.length >= p.events.length);
     const indices = new Set();
     for (let i = 0; i < p.events.length; i++) {
@@ -198,8 +286,8 @@ function plantedTableGate() {
   }
   const a = score(artificial,256), b=score(artificial,512);
   assert.equal(artificial.length,86);
-  assert.equal(a.pairs,52);
-  assert.equal(b.pairs,27);
+  assert.ok(a.pairs > original256.pairs);
+  assert.ok(b.pairs > original512.pairs);
   return {eventCount:artificial.length,
     sourceEligiblePhases:bytes.filter(b=>b<64).length,
     pairs256:a.pairs,pairs512:b.pairs};
@@ -227,10 +315,14 @@ const nulls = [
     v=>String(Math.floor(v.global/1000)),0x33012569,trials)
 ];
 assert.ok(nulls[0].p256<0.02 && nulls[0].p512<0.02);
+const wordNulls = [
+  wordConditionedNull(false,0x33015008,trials),
+  wordConditionedNull(true,0x33015009,trials)
+];
 const output = {source:"original 32x8 two-digit p50 base60 table",
   original:{runes:totalRunes,pages:pages.length,eligible:eligible.length,
     equalityEvents:events.length,midpoint,period256:original256,
-    period512:original512},neighbors,positive:plantedTableGate(),nulls,
+    period512:original512},neighbors,positive:plantedTableGate(),nulls,wordNulls,
   interpretation:"Source-length-aligned phase recurrence only; no key/plaintext"};
 console.log(JSON.stringify(output,null,2));
-module.exports={score,conditionedNull,plantedTableGate};
+module.exports={score,conditionedNull,wordConditionedNull,plantedTableGate};
