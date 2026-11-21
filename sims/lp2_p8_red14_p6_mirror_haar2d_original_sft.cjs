@@ -95,6 +95,59 @@ assert.equal(originalWords.length,plainWords.length);
 const spell=arr=>arr.map(k=>gp.translit[k]).join(' ');
 // Length and sentence punctuation are preserved; every 196 ciphertext rune
 // is consumed, and the proposed inverse is static and exactly reversible.
+
+/**
+ * More constrained reading of literal p8 red IXIX word [14,10,14,19]:
+ * (axis width14, pair mixing weight10), (axis width14, mixing weight19).
+ * These values are fixed from source, not optimized for GP language.
+ * @param {number[]} row @param {number} k
+ */
+function weightedInverse(row,k) {
+  assert.equal(row.length,14);
+  const out=row.slice();
+  let inverse=1;
+  while(k*inverse%29!==1)inverse++;
+  for(let j=0;j<7;j++) {
+    const d=row[j],s=row[13-j];
+    out[j]=mod(15*(d+s));
+    out[13-j]=mod(15*inverse*(s-d));
+  }
+  return out;
+}
+/** @param {number[]} row @param {number} k */
+function weightedForward(row,k) {
+  assert.equal(row.length,14);
+  const out=row.slice();
+  for(let j=0;j<7;j++) {
+    const a=row[j],b=row[13-j];
+    out[j]=mod(a-k*b);
+    out[13-j]=mod(a+k*b);
+  }
+  return out;
+}
+/**
+ * @param {number[]} source
+ * @param {(row:number[])=>number[]} rowFn
+ * @param {(row:number[])=>number[]} colFn
+ */
+function weighted2D(source,rowFn,colFn) {
+  assert.equal(source.length,196);
+  const rows=Array.from({length:14},(_,i)=>source.slice(14*i,14*i+14))
+    .map(rowFn);
+  const trans=Array.from({length:14},(_,j)=>rows.map(row=>row[j]))
+    .map(colFn);
+  return Array.from({length:14},(_,i)=>
+    Array.from({length:14},(_,j)=>trans[j][i])).flat();
+}
+const weighted=weighted2D(p6,r=>weightedInverse(r,10),r=>weightedInverse(r,19));
+assert.deepEqual(weighted2D(weighted,r=>weightedForward(r,10),
+  r=>weightedForward(r,19)),p6);
+const weightedPlant=weighted2D(planted,r=>weightedForward(r,10),
+  r=>weightedForward(r,19));
+assert.deepEqual(weighted2D(weightedPlant,r=>weightedInverse(r,10),
+  r=>weightedInverse(r,19)),planted);
+assert(Math.abs(ioc(weighted)-0.034170591313448455)<1e-12);
+
 const report={
   source:'p8 original red heading GP prime sum196 = 14^2 = p6 original196',
   p6BilateralMirroredSpirals:true,
@@ -102,6 +155,10 @@ const report={
   exactGrid:[14,14],
   originalIoC:ioc(p6),
   inverseIoC:ioc(proposed),
+  sourceRed4AxisWeights:[14,10,14,19],
+  sourceWeightedInverseIoC:ioc(weighted),
+  sourceWeightedOpening:spell(weighted.slice(0,150)),
+  sourceWeightedReencrypted:196,
   solvedP57ControlIoC:ioc(p57),
   nativeSolvedPlantRecovered:planted.length,
   reencryptRecovered:p6.length,
