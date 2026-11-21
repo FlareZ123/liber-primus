@@ -311,6 +311,44 @@ assert.equal(signedLeafTrials.length, 144);
 assert.ok(Math.abs(signedLeafTrials[0].score + 11.29122225863) < 1e-7);
 assert.ok(signedLeafTrials.every((trial) => trial.score < held121Min));
 
+
+/**
+ * Row-major printed-table order (and its reverse) is a stronger physical
+ * selector than graph DFS/BFS; test this fixed 2x4x2 family on each page.
+ */
+const rowMajorTrials = [];
+for (const [page, sourceNodes, originalCipher, subtreeRoot] of [
+  [55, orders[0].nodes, original, selected],
+  [32, bigOrders[0].nodes, p32, innerTreeRoot]
+]) {
+  const sorted = [...sourceNodes].sort((left, right) => left - right);
+  const nativeMin = page === 55 ? heldMin : held121Min;
+  for (const direction of ['asc', 'desc']) {
+    const nodes = direction === 'asc' ? sorted : [...sorted].reverse();
+    for (const kind of ['node', 'parent', 'edge-delta', 'depth']) {
+      const pad = nodes.map((node) => {
+        if (kind === 'node') return node;
+        if (kind === 'parent') return parent[node];
+        if (kind === 'edge-delta') return node - parent[node];
+        let depth = 0;
+        for (let current = node; current !== subtreeRoot; current = parent[current]) depth++;
+        return depth;
+      });
+      for (const sign of [-1, +1]) {
+        const plaintext = originalCipher.map((value, i) => mod29(value + sign * pad[i]));
+        assert.deepEqual(plaintext.map((value, i) => mod29(value - sign * pad[i])),
+          originalCipher);
+        const result = { page, direction, kind, sign, score: score(plaintext) };
+        assert.ok(result.score < nativeMin);
+        rowMajorTrials.push(result);
+      }
+    }
+  }
+}
+rowMajorTrials.sort((a, b) => b.score - a.score);
+assert.equal(rowMajorTrials.length, 32);
+assert.ok(Math.abs(rowMajorTrials[0].score + 11.15231681556) < 1e-7);
+
 console.log(JSON.stringify({
   selected: { source: 'SEEKS GP0=71; THE GP0=20', address: selected,
     subtreeSize: orders[0].nodes.length },
@@ -320,6 +358,8 @@ console.log(JSON.stringify({
   },
   numericKeys: { tested: keyTrials.length, best: keyTrials.slice(0, 3),
     candidatesReachingNativeMin: keyTrials.filter((entry) => entry.score >= heldMin).length },
+  rowMajorNumeric: { tested: rowMajorTrials.length, best: rowMajorTrials.slice(0, 4),
+    candidatesReachingNativeMin: 0 },
   signedWord43LeafFold: { words: signedWords43.length, treeLeaves: leaves.length,
     tested: signedLeafTrials.length, best: signedLeafTrials.slice(0, 3),
     nativeHeldMin: held121Min,
