@@ -65,6 +65,8 @@ The existing original-input test already covers the natural direct uses of the 7
 - Two-dimensional 7×7 actions: the four natural K/K-transpose and inverse orientations on four consecutive blocks.
 - Repeated 49-cell additive key: row-/column-major serialization, v mod 29 or (v−1) mod 29, addition/subtraction, and continuous/reset phase (16 cases).
 
+A separate, narrowly motivated structural check tested the literal four-square reading: concatenate the 196 body rune indices in source order, reshape them row-major as 14×14, and split into four 7×7 quadrants. If those were four magic squares keyed by the Stage7 constants, each quadrant's seven row and column sums would all equal 1033 mod 29 = 17 (or the other printed constant 3301 mod 29 = 22). None does. The row residues by quadrant are Q1 [2,0,28,4,6,22,8], Q2 [19,3,21,11,19,12,6], Q3 [19,22,26,21,15,11,25], Q4 [8,18,8,18,1,21,5]; the column residues are Q1 [0,3,10,2,19,20,16], Q2 [15,5,23,16,20,8,4], Q3 [6,16,3,22,15,3,16], Q4 [1,24,16,1,11,22,4]. This retires only the straightforward four-quadrant magic-sum interpretation; the 14×14 reshape itself is not selected by the page layout and crosses the 81/115 visible-body boundary.
+
 None produces coherent GP29 plaintext. The best language score remains close to the raw p33 score and far below solved p57; the positive controls recover planted native-GP streams exactly. These tests retire only the listed direct consumers, not every imaginable use of the square. Do not reopen them with fitted rotations, offsets, padding or extra layers absent a new original selector.
 
 ## Cold-start status and decision
