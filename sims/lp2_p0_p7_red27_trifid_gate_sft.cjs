@@ -151,4 +151,39 @@ console.log('repeated27-pad title positive by construction:',latin(padDecoded.sl
   'original all-body IoC:',ioc(padDecoded.slice(13)).toFixed(7),
   'p0 body first100:',latin(padDecoded.slice(13,113)));
 
+// Historical Cicada used Vigenere/autokey; the exactly 27-rune seed
+// also admits a 27-back autokey with a fixed starting orientation.
+// Test the four feedback/sign branches on untouched 729 runes.
+// Each must forward-roundtrip and pass a solved-page planted fixture.
+for (const feedback of ['plain', 'cipher']) {
+  for (const sign of [-1, 1]) {
+    const decode27 = (ciphertext) => {
+      const plaintext = [];
+      for (let i = 0; i < ciphertext.length; i++) {
+        const key = i < 27 ? additive27[i] :
+          feedback === 'plain' ? plaintext[i-27] : ciphertext[i-27];
+        plaintext.push(mod(ciphertext[i] + sign*key));
+      }
+      return plaintext;
+    };
+    const encode27 = (plaintext) => {
+      const ciphertext = [];
+      for (let i = 0; i < plaintext.length; i++) {
+        const key = i < 27 ? additive27[i] :
+          feedback === 'plain' ? plaintext[i-27] : ciphertext[i-27];
+        ciphertext.push(mod(plaintext[i] - sign*key));
+      }
+      return ciphertext;
+    };
+    const decoded = decode27(complete);
+    assert.deepEqual(encode27(decoded), complete);
+    const nativePlant = Array.from({length:729}, (_,i)=>solved[i%solved.length]);
+    assert.deepEqual(decode27(encode27(nativePlant)),nativePlant);
+    if (sign===-1) assert.equal(latin(decoded.slice(0,13)), 'EPIPHANYSEECS');
+    console.log('27-back autokey',feedback,sign,
+      'original 716-body IoC',ioc(decoded.slice(13)).toFixed(7),
+      'p0 black head (first100)',latin(decoded.slice(13,113)));
+  }
+}
+
 console.log('PASS: frozen complementary-27 Trifid tests; no plaintext claim');
