@@ -103,6 +103,37 @@ const outputs = [
   fixedInverse(false, -1), fixedInverse(false, +1),
   fixedInverse(true, -1), fixedInverse(true, +1)
 ];
+
+// Second source-motivated but unselected operation: the red GP0 endpoints
+// 181 and 209 share phi=180. Read 28 intervening integer totients in
+// the natural source direction as 28 row shifts, with 11 ciphertext runes/row.
+/** @param {number} n */
+function phi(n) {
+  let rest = n, result = n;
+  for (let p = 2; p * p <= rest; p++) {
+    if (rest % p !== 0) continue;
+    while (rest % p === 0) rest /= p;
+    result -= result / p;
+  }
+  if (rest > 1) result -= result / rest;
+  return result;
+}
+assert.deepEqual([phi(181), phi(209)], [180, 180]);
+const totientRows = Array.from({length: 28}, (_, row) => mod(phi(181 + row)));
+const totientOutputs = [-1, +1].map(sign => {
+  const decoded = gap.map((c, i) => mod(c + sign * totientRows[Math.floor(i / 11)]));
+  assert.deepEqual(
+    decoded.map((p, i) => mod(p - sign * totientRows[Math.floor(i / 11)])),
+    gap
+  );
+  return {
+    sign: sign < 0 ? "subtract" : "add",
+    ioc: ioc(decoded),
+    firstHalfIoc: ioc(decoded.slice(0, 154)),
+    secondHalfIoc: ioc(decoded.slice(154)),
+    first100: translit(decoded.slice(0, 100))
+  };
+});
 const transparent = {
   subtract: transparentReachability(-1),
   add: transparentReachability(+1)
@@ -123,5 +154,7 @@ console.log(JSON.stringify({
   adjacentControls: adjacent,
   ciphertextIoc: ioc(gap),
   output: outputs,
+  consecutiveTotientRowShifts: totientRows,
+  consecutiveTotientReadouts: totientOutputs,
   authenticFTransparentFixedPeriod: transparent
 }, null, 2));
