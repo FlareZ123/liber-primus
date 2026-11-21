@@ -50,6 +50,15 @@ Its frozen full-page predictions at 235–243 are
 
 and match the hypothetical remote key at **only one of nine** positions. This rejects that exact global repeating title key and shortest ordinary GF29 recurrence **conditional on both assumed cribs and their absolute rune coordinates**. It does not exclude a word-reset, state-dependent, nonlinear or separately keyed construction. Prior exhaustive p0 periodic-title/F-bypass work already rejected the period13 family on the original black ciphertext; the novelty here is the independent distant source phrase and its explicit residual.
 
+### Stronger key-free prohibition for a period-13 stream (conditional on both cribs)
+
+The p0 original red 13-dot marker independently motivates period13. Allow every one of the 13 phase alphabets to be an **arbitrary secret bijection** on all 29 runes; no additive, affine, or language assumptions are required. Under a single page-global, unskipped rune-position clock:
+
+- Original title **offset1** has ciphertext **8 = H** and conditional `EPIPHANY SEECS` plaintext **13 = P**; its phase is `1 mod13 =1`.
+- Original distant **offset235** has the **same ciphertext 8 = H**, while conditional `THE DEUOTED` plaintext is **2 = TH**; its phase is `235 mod13 =1`.
+
+An unchanged deterministic phase1 alphabet cannot map H to both P and TH. Therefore **every page-global, unskipped, period13 monoalphabetic/polyaphabetic substitution is mathematically incompatible with the joint two-crib hypothesis**, even with unrestricted secret phase permutations. This local single-symbol contradiction is stronger than the failed period13 additive pad. Its premise includes *both* hypothetical plaintext fragments. Word-reset schedules, an unknown plaintext-dependent F bypass, a shifted/reset phase between sections, and nonstationary alphabets remain untested and could avoid this collision.
+
 ## Decision and prospective proof obligation
 
 **Retain the 235–243 receiver and THE DEVOTED as a testable conditional crib; do not promote its nine letters to recovered plaintext.** The remaining indispensable step is to derive `K9`, or an independently specified reversible transform giving `THE DEUOTED`, **from a source object that does not use that phrase to select or fit the key**, then apply the identical rule on a separately withheld original word/page. A single source-selected continuation, even nine symbols, would change the present no-plaintext status. Source authorship of the mixed word/rune types is the highest-risk unproven premise.
