@@ -25,6 +25,19 @@ The last two preterminal states are exactly `THE=20` and `DEVOTED=102`; terminal
 
 This report begins after that route. It does not rescore or retune the 23-step selector.
 
+## A shorter signed-MAP entry to the same p32 receiver (21 November 2026)
+
+There is a distinct, more direct *candidate* human route to the identical destination, using the authenticated 2016 sentence “Its words are the map, their meaning is the road, and their numbers are the direction” and its earlier “Epiphany seeks the devoted.” It uses two source-defined numerical readings and literal forward pointers; it derives **no unknown key**.
+
+- In standard GP prime weights, `MAP = M(71)+A(97)+P(43) = 211`. Address **211** is a valid cell in the original 256-entry p50 pointer table.
+- `DEVOTED` contains **7** canonical GP runes. Following seven original bytes from **211** gives `211→61→196→176→235→121→237→32`, ending at **physical p32**.
+- The fifth pointer state is **121**, independently `GP0(EPIPHANY)=121` and the unchanged p32 glyph count. `EPIPHANY` itself is signed-message word **5** (zero-based); this 5-step coincidence is retrospective, not a demanded input. The next pointer leads `32→115` into the very same 121-node reverse tree below.
+- The complete noncycle in-tree at state115 has **131 nodes including its root**, equal to `GP0(CIRCUMFERENCES)=131` from independently clear p57. The depth-`GP0(THE)=20` nonroot cut has **121 nodes**. The 131 equality is further suggestive post-discovery context.
+
+A full, source-frozen competition holds the **7-step** count fixed and starts from every 2016 signed word whose GP prime sum is a valid p50 byte address: **35 of the 43** word occurrences are eligible. **MAP is the only one** whose 7-step endpoint is 32. The 2016 text expressly highlights MAP, reducing the reason to choose its seed after seeing the result. On the other hand, choosing `DEVOTED`'s *rune count* as a pointer depth, using GP-prime instead of GP0 for MAP, and expecting physical p32 all remain inferred interpretations; do not treat this as a calibrated design probability.
+
+The alternative entrance is independently reproducible at [`sims/lp2_signed_map211_devoted7_p32_route_sft.cjs`](../sims/lp2_signed_map211_devoted7_p32_route_sft.cjs), which pins the source phrase positions and all nine table states. It narrows the navigation story and makes an original-reader route more economical than the earlier DH23 address. **It does not specify how to read the 121 ciphertext values as plaintext**, and the direct tree inverse failures recorded below remain decisive for their own tested operators.
+
 ## The next pointer enters a rooted reverse tree
 
 The same original base60 table gives
@@ -55,7 +68,7 @@ and
 
 `EPIPHANY = 121 selected nodes`.
 
-The complete attached in-tree at 115 contains 130 nonroot nodes, or 131 including the cycle root. The equality 131 = the established GP-prime value of `CIRCUMFERENCES` is suggestive context, but it was recognized after the tree construction and is not needed for the 121-node result.
+The complete attached in-tree at 115 contains 130 nonroot nodes, or 131 including the cycle root. The equality 131 = the established GP0 index sum of `CIRCUMFERENCES` is suggestive context, but it was recognized after the tree construction and is not needed for the 121-node result.
 
 ## Familywise uniqueness
 
