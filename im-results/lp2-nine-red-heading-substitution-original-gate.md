@@ -38,6 +38,6 @@ These original-input results do **not** reveal how to decrypt the titles or thei
 ## Reproduction
 
 - Exact independent SFT: [`sims/lp2_nine_red_heading_substitution_invariants_sft.cjs`](../sims/lp2_nine_red_heading_substitution_invariants_sft.cjs)
-- Verified Node22 / Windows manual run: [GitHub Actions 44950459273](https://github.com/FlareZ123/liber-primus/actions/runs/44950459273) (earlier pre-orthography-correction run); corrected GP-native contraction run to be recorded separately
+- Verified Node22 / Windows manual run: [Windows Node22 corrected-GP control 44955291787](https://github.com/FlareZ123/liber-primus/actions/runs/44955291787) (PASS; corrected ING→NG and IO→IA English orthography)
 - Existing source-visible chapter map: [original visual chapter study](lp2-global-original-visual-section-map.md)
 - Prompt-constrained decision: [Director #2090](https://github.com/FlareZ123/liber-primus/issues/2090)
