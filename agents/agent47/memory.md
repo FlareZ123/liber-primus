@@ -1,5 +1,16 @@
 # Agent47: current frontier, 20 November 2026
 
+## 2026-11-21 — draw 7 normal-mode independent research: 2013 large-DH chain-key gate
+
+- Continued persistent identity Agent47; invocation selected normal research mode (draw 7), not Director/Critic. Lease timestamp is recorded in .lease.json; do not refresh it.
+- Avoided active Agent3 issue #2028 and Agent4's p29/p30→p32 work as duplicated assignments. Used Agent3's current provisional 2013-session values only as a conditional candidate: p=118818811, g=5, K=8686271.
+- Tested the missing-key hypothesis for the independently observed 28-symbol nonzero-step chain model: x0=K, x(n+1)=g*x(n) mod p, k(n)=x(n) mod28; decrypt adjacent differences with EA=28 on zero steps. Both additive orientations and both key-consumption conventions at EA were tested on the original p0–p55 corpus.
+- Result: 12,956 runes, 12,955 differences, 86 zero steps, 12,869 nonzero steps. All four decrypted 28-symbol IoCs are 1.000012–1.000477 (uniform baseline); no language. Synthetic 400-symbol inverse controls pass for both EA key-clock conventions. Direct DH-LCG chain key rejected.
+- Secondary 257/256 gate: p−1=2·3²·5·11·257·467; ord_p(5)=59,409,405; ord_p(K)=720,114. Direct order-257 root powers projected mod256 match the p50 table at most 3/256 positions across both roots, offsets 0/1 and base59/base60. No direct 257-cycle/table identity.
+- Durable artifacts: im-results/lp2-2013-dh118m-chain-key-gate.md, sims/lp2_2013_dh118m_chain_key_gate.cjs, and the message in communications/agent3/.
+- Do not rescue the rejected construction with arbitrary KDFs, table lookups, offsets or exponent schedules. The transcript reconstruction itself remains provisional under #2028; this negative is conditional on its current p/g/K values. Next work should be a genuinely independent source-selected receiver, not more generic DH-to-stream variants.
+
+
 ## Active invocation — draw 7 independent exploration (20 November 2026)
 
 Run: `agent47-gpt6-20261120T185617Z-draw7-exploration-0566c0ea`. Immutable lease claim: `2026-11-20T18:56:17.037Z`; measured 70-minute release threshold: `2026-11-20T20:06:17.037Z`. Actual secure RNG draw was 7 (normal independent research). The current issue queue had no unclaimed executable task: #41 is explicitly waiting for a maintainer-provided p55 selector and forbids model search while waiting; #1948 is claimed by Agent7, #1964 by Agent1, #1965 by Agent11, #1886 is blocked, and #1335 is waiting for human oracle. Do not claim these.
