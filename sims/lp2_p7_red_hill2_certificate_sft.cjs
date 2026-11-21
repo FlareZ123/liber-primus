@@ -56,6 +56,18 @@ const packet = p7.filter((word) => word.start >= 194 && word.end <= 208);
 assert.deepEqual(packet.map((word) => word.values), [
   [23,3], [22,16,2,25], [5,7,11], [14,28], [6,28,19]
 ]);
+// Source-visible 4-word red p6 inscription supplies an independent
+// determinant in the SUM register. P7's same first four printed words
+// produce another determinant under sums and under products.
+const p6Red = wordsOnPage(6).filter((word) =>
+  word.start >= 71 && word.end <= 82);
+assert.deepEqual(p6Red.map(word=>word.values), [
+  [24,16,14,17], [19], [6,27,15,17], [14,12]
+]);
+const p6Sums = p6Red.map(word=>word.values.reduce((a,b)=>a+b,0));
+const p7Sums = packet.map(word=>word.values.reduce((a,b)=>a+b,0));
+assert.deepEqual(p6Sums,[71,19,65,26]);
+assert.deepEqual(p7Sums,[26,65,23,42,53]);
 const products = packet.map((word) => word.product);
 assert.deepEqual(products, [11,26,8,15,2]);
 
@@ -75,6 +87,11 @@ function matrixProduct(a, b) {
 const matrix = products.slice(0,4);
 const certificate = products[4];
 const det = determinant(matrix);
+assert.equal(determinant(p6Sums.slice(0,4)),2);
+assert.equal(determinant(p7Sums.slice(0,4)),3);
+// Authenticated prior DH state: b=15, K=2 in DH23; e=b^-1 mod22=3.
+assert.equal(mod(15*2),1);
+assert.equal((15*3)%22,1);
 assert.equal(det, 15);
 assert.equal(mod(det * certificate), 1);
 const inverse = [
@@ -108,6 +125,45 @@ for (let p = 0; p <= 55; p++) {
     }
   }
 }
+// Whole-original-source charge for the cross-field DH determinant triad.
+let fourWordWindows=0, p6Det2Windows=0;
+let p7SumDet3Windows=0, p7ProductDet15Windows=0;
+let p7BothDetWindows=0, p7BothWithK2Windows=0;
+/** @type {{page:number,start:number,products:number[],sums:number[]}[]} */
+const typedDeterminants=[];
+for(let p=0;p<=55;p++) {
+  const words=wordsOnPage(p);
+  for(let i=0;i+4<=words.length;i++) {
+    fourWordWindows++;
+    const s=words.slice(i,i+4).map(word =>
+      word.values.reduce((sum,v)=>sum+v,0));
+    if(determinant(s)===2)p6Det2Windows++;
+  }
+  for(let i=0;i+5<=words.length;i++) {
+    const five=words.slice(i,i+5);
+    const s=five.map(word=>word.values.reduce((sum,v)=>sum+v,0));
+    const q=five.map(word=>word.product);
+    const sum3=determinant(s.slice(0,4))===3;
+    const product15=determinant(q.slice(0,4))===15;
+    if(sum3)p7SumDet3Windows++;
+    if(product15)p7ProductDet15Windows++;
+    if(sum3&&product15)p7BothDetWindows++;
+    if(sum3&&product15&&q[4]===2) {
+      p7BothWithK2Windows++;
+      typedDeterminants.push({page:p,start:five[0].start,
+        products:q,sums:s});
+    }
+  }
+}
+assert.equal(fourWordWindows,2785);
+assert.equal(p6Det2Windows,106);
+assert.equal(p7SumDet3Windows,95);
+assert.equal(p7ProductDet15Windows,90);
+assert.equal(p7BothDetWindows,5);
+assert.equal(p7BothWithK2Windows,1);
+assert.deepEqual(typedDeterminants,[{page:7,start:194,
+  products:[11,26,8,15,2],sums:[26,65,23,42,53]}]);
+
 assert.equal(windows,2729);
 assert.equal(certified,83);
 assert.equal(reciprocal,1);
@@ -250,6 +306,16 @@ const result = {
   fiveOriginalRedWordProducts:products, matrix, determinant:det,
   finalWordInverseDeterminant:certificate, inverse,
   census:{windows,certificates:certified,fixedInversePairWindows:reciprocal,joint},
+  crossFieldDHDeterminants:{
+    p6FourWordSums:p6Sums,p7FiveWordSums:p7Sums,
+    p6SumDetK:2,p7SumDetExponent:3,
+    p7ProductDetServerB:15,p7LastProductK:2,
+    inverseInGF29:mod(15*2),inverseInDHGroup:(15*3)%22,
+    sourcePopulation:{fourWordWindows,p6Det2Windows,
+      fiveWordWindows:windows,p7SumDet3Windows,
+      p7ProductDet15Windows,p7BothDetWindows,
+      p7BothWithK2Windows,typedDeterminants}
+  },
   knownClearPositive:{runes:94,recovered:94},
   p8FixedReceiver:{runes:254,unchangedOddTail:1,
     ciphertextNormalizedIoC:29*ioc(first254),
