@@ -451,9 +451,12 @@ const nullMaxIoC28 = Math.max(...nullResults.map((result) => result.maxIoC28));
 const nullMaxNgram4 = Math.max(...nullResults.map((result) => result.maxNgram4));
 const bestByIoC = sourceModels[0];
 const bestByNgram = sourceModels.slice().sort((a, b) => b.ngram4 - a.ngram4)[0];
-const candidate = bestByIoC.ioc28 >= 1.4 &&
-  bestByIoC.ioc28 > nullMaxIoC28 &&
-  bestByNgram.ngram4 > nullMaxNgram4;
+const candidateModel = sourceModels.find((model) =>
+  model.ioc28 >= 1.4 &&
+  model.ioc28 > nullMaxIoC28 &&
+  model.ngram4 > nullMaxNgram4
+);
+const candidate = Boolean(candidateModel);
 
 const output = {
   experiment: "p15-selected DATA/560.13 key under the external 28-symbol chain-cipher model",
@@ -500,6 +503,7 @@ const output = {
   sourceOffsetResults: {
     bestByIoC,
     bestByNgram,
+    bestCandidate: candidateModel || null,
     topByIoC: sourceModels.slice(0, 12),
     topByNgram: sourceModels.slice().sort((a, b) => b.ngram4 - a.ngram4).slice(0, 12)
   },
