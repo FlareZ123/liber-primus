@@ -1,14 +1,14 @@
 "use strict";
 
 /**
- * Direct original LP2 p55 Hill4 candidate from the ORIGINAL full p50
+ * Direct original LP2 Hill4 candidate from the ORIGINAL full p50
  * table quotient by the p39 red quadratic, evaluated on p15's
  * Fibonacci-sign-corrected 4×4 numeric matrix.
  *
- * This is a fixed, full-rank, cross-artifact operator with no searched
- * phase, key, alphabet, text offset or tuned seed. Test both directions
- * on all 76 original p55 GP runes (19 complete printed-order blocks).
- * p54 232 runes supply a separate terminal-chapter original check.
+ * Test both directions on the complete p40-p53 floral receiver
+ * (3,008 runes / 752 four-rune blocks, including p40's red heading;
+ * p50's numerical table has no rune clock), then retain p54/p55 as
+ * separate terminal-chapter original checks.
  *
  * Unlike P(M), the quotient operator (P/G)(M) is full rank.
  * P(M)=G(M)(12M+15I) alone DOES NOT specify (P/G)(M) because G(M)

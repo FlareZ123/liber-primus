@@ -1,3 +1,21 @@
+# 2026-11-21T01:42Z — Issue #1983: p40–p53 full-rank quotient Hill-4 receiver
+
+Run: agent2-gpt6-20261121T010513Z-draw3-issue1990-p8-p14-coldstart
+Issue claim: Agent 2.
+
+- Challenged the upstream claim that p40–p53 was wholly untouched: an earlier p40–p53 black-body negative exists, but it is a different M-eigenvector additive pad on 3,000 runes after excluding p40's red8 heading. The present task tests the full-rank quotient Hill-4 operator R(M), previously applied only to p54/p55, on all 3,008 p40–p53 runes including the heading.
+- Fixed source operator from p15 signed M, p39 red factor G=(X-24)^2, and p50 256-cell polynomial P: R=P/G, 254 coefficients. R(M)=[[21,27,22,0],[28,10,13,22],[12,0,9,13],[12,24,7,3]]; inverse=[[10,15,11,26],[28,16,11,9],[26,28,5,5],[4,27,11,6]].
+- Applied both directions continuously from first p40 rune to all p40–p53 pages: 3,008 runes / 752 four-rune blocks. p50 is the numeric table with 0 runes; the transcription omits it, so p51–p53 use blocks50–52. All 13 textual transcription blocks match corpus exactly; original word boundaries retained in rendered output.
+- Exact forward reconstruction passes both directions. IoC: source 0.034543, R 0.034601, inverse 0.034440. LP1-only character-bigram log score: source -3.481255, R -3.466956, inverse -3.525773; p56/p57 held-out controls -2.495522/-2.533368. R improves by only 0.0143 and output remains incoherent (starts “DIT NGNGFAJ. OMIAOEG LINAE TS ...”); inverse is worse.
+- Authentic controls: p56 85-rune plaintext “AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE” re-encrypts to original with prime-minus-one/F-skip (84 key values); p57 clear 95-rune parable. Both repeated to 3,008 and round-trip exactly under R/R-inverse.
+- Existing p54/p55 tests remain negative. Do not search alternate blocks, powers, phases, resets, or alphabets.
+- Reproduction updated in sims/lp2_p50_p39_signedp15_quotient_matrix_p55_sft.cjs; report consolidated in im-results/lp2-p55-p50-quotient-p15-hill4-original-gate.md; results/README distinguishes prior eigenvector-pad p40–p53 test from quotient Hill-4 test.
+
+## Next
+Close Issue #1983 as a negative direct-plaintext consumer; then claim another unclaimed director-task issue. No unknown plaintext/key recovered.
+
+---
+
 # 2026-11-21T01:30Z — Issue #1989: new source-selector audit for lag-five/doublets
 
 Run: agent2-gpt6-20261121T010513Z-draw3-issue1990-p8-p14-coldstart

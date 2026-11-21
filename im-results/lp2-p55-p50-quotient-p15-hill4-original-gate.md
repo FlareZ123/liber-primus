@@ -1,55 +1,95 @@
-# Source-derived 4×4 quotient operator from p39, p50 and p15: complete terminal-page inverse
+# Source-derived full-rank Hill-4 quotient: original p40–p53 and p54–p55 receiver tests
 
-**Agent9, 14 November 2026. Evidence class:** exact original-source matrix arithmetic and a bounded, fully reversible original-cipher negative. **No unknown LP2 plaintext, authentic key or final destination recovered.**
+**Status:** direct plaintext-consumer hypothesis negative on the full p40–p53 floral receiver and the previously tested p54/p55 terminal receivers. The source-derived operator, inverse, exact forward reconstruction, and positive controls all pass.
 
-## Distinct source-to-operator construction
+## Fixed source-derived operator
 
-A previous exact three-artifact relation used the original **p15 signed** Fibonacci-prime 4×4 matrix `M`, the **p39 red** factor `G(X)=(X−24)²` over GF29 and the unchanged 256-byte **pp49–51 printed table** polynomial `P(X)`. That work calculated `P(M)=G(M)(12M+15I)` and found `P(M)` **rank two**, so it cannot be a direct reversible four-rune Hill cipher. The crucial ambiguity is that `G(M)` is singular. The equality does **not** imply that the independently defined full polynomial quotient `R(X)=P(X)/G(X)` satisfies `R(M)=12M+15I`.
+The operator is frozen from three independent artifacts:
 
-The original table is *exactly divisible* by `G`, without a remainder. An explicit new candidate avoids the singular projection: **divide the complete 256 original printed table bytes by the source p39 factor, retaining all 254 high-first quotient coefficient slots, then evaluate that quotient at the signed p15 matrix**.
+- p15 supplies the Fibonacci-sign-corrected 4×4 matrix
+  \[
+  M=\begin{bmatrix}
+  10&3&20&22\\
+  1&22&21&25\\
+  11&17&19&7\\
+  8&12&12&22
+  \end{bmatrix}.
+  \]
+- The p39 red triad is \([27,5,15]\), giving the monic factor \(G(X)=(X-24)^2\) over GF(29).
+- The original p50 256-cell table supplies the 256 coefficients \(P\), reduced mod 29. Its SHA-256 is \`3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290\`.
 
-Exactly as identified in the earlier Fibonacci rule, the signed matrix (with two inferred negative Fibonacci differences at printed cells 12 and 13) is
+The exact high-first quotient \(R(X)=P(X)/G(X)\) has 254 coefficients and zero remainder. Evaluating the full quotient at M gives the fixed full-rank operator
 
-```text
-M = 10  3 20 22
-     1 22 21 25
-    11 17 19  7
-     8 12 12 22
-```
+\[
+R(M)=\begin{bmatrix}
+21&27&22&0\\
+28&10&13&22\\
+12&0&9&13\\
+12&24&7&3
+\end{bmatrix},
+\quad
+R(M)^{-1}=\begin{bmatrix}
+10&15&11&26\\
+28&16&11&9\\
+26&28&5&5\\
+4&27&11&6
+\end{bmatrix}.
+\]
 
-The leading table coefficient is 203≡0 (mod29), so `P` has formal length256 and actual degree254; the monic factor `G=[1,10,25]` yields a **254-slot quotient with a leading zero**, and a zero remainder. Evaluating all original quotient coefficients with Horner arithmetic over GF29 gives a **full-rank**, source-only operator:
+The quotient is not interchangeable with the singular \(P(M)\) or the shortened identity \(12M+15I\). The reproducer recomputes the quotient from the original table and asserts both matrix products equal identity.
 
-```text
-R(M)             R(M)^(-1)
-21 27 22  0      10 15 11 26
-28 10 13 22      28 16 11  9
-12  0  9 13      26 28  5  5
-12 24  7  3       4 27 11  6
-```
+## Receiver selection and distinction from earlier work
 
-Both products `R(M)·R(M)^(-1)` and `R(M)^(-1)·R(M)` are exactly `I4`. The full original polynomial identity `P(M)=G(M)R(M)` is exact. As an important contrast to previous work, **`R(M)` differs from `12M+15I`**. Prior rank-two analysis of `P(M)` alone cannot identify this full-rank quotient map.
+The p39 red factor and p40 red heading both select root 24. The original p40 ink annotation has an 8-rune red span at the start; the p40 scan begins immediately after p39. The present receiver includes that red heading.
 
-## A concrete original p55 19-block test
+The earlier p40–p53 “black-body” negative in \`lp2-p15-p39-signed-matrix-eigen-crosslink.md\` is a **different operator**: an M-eigenvector additive pad on the 3,000-rune body after excluding p40's red 8-rune heading. It is not this full-rank quotient Hill-4 transform. The quotient operator had previously been tested only on p54 and p55. This test therefore covers the previously untested full 3,008-rune p40–p53 receiver, including the red heading.
 
-The original **physical p55 contains exactly 76 GP29 runes**, equivalent to 19 complete 4-rune blocks. This makes p55 one possible literal consumer of the independent 4×4 operator, especially because it lies after the numeric table. The hypothesis is still **not source-authenticated**: the manuscript does not instruct the reader to divide the table polynomial, evaluate it on p15's restored-sign matrix, or apply a Hill cipher to p55. A separate distinct terminal control is physical **p54's 232 runes**, likewise divisible into 58 complete blocks. No phase, padding, alternate rune alphabet, key, offset or page reorder was fitted.
+The canonical corpus page counts are p40–p53: 231, 273, 272, 274, 273, 270, 270, 274, 271, 66, 0, 92, 263, 179, totaling **3,008 runes = 752 four-rune blocks**. p50 is the numerical table and contributes zero runes. The transcription omits that table: blocks 0–49 map to p0–p49 and blocks 50–56 map to p51–p57. The reproducer explicitly checks each of the 13 textual page blocks against the corpus before preserving its word boundaries in the transformed output. The rune clock is continuous from the first p40 rune through p53; no page reset or phase search is used.
 
-At each original four-rune block in printed order, apply either `R(M)` or its inverse as the proposed decipherment map, and reapply the inverse to reconstruct the entire unchanged original ciphertext.
+## Fixed test and results
 
-| Original original-cipher page | Runes/blocks | Original GP IoC | Apply R(M): GP IoC | Apply inverse: GP IoC |
-| --- | --- | --- | --- | --- |
-| p54, including its 9-red heading | 232/58 | **0.0331392745** | **0.0354903717** | **0.0349305867** |
-| p55 | 76/19 | **0.0378947368** | **0.0308771930** | **0.0347368421** |
+Both directions were applied to the complete 3,008-rune p40–p53 stream in consecutive printed-order vectors of four, with no reset:
 
-P55's complete candidate inverse transliterated into original GP letter names is:
+- \(R(M)\) applied to the original stream.
+- \(R(M)^{-1}\) applied to the original stream.
 
-`IJEAPCAOHWUEJPDAESMNCTNGEHLIAPWWEAOREAEEANGWNGRYOXEAYEOXOEBREWMOEOUIAIAXNGEOPWOEOEUEASXTLAENGIAHRAE`
+Both opposite-direction transforms exactly reconstruct the original ciphertext. This is the expected algebraic property of an invertible matrix, not evidence of decryption.
 
-This is not readable GP-language prose. The matrix direction gives an equally nonlinguistic output, and the separate p54 controls are similarly near uniform. (The listed transliteration is a symbol-for-symbol concatenation; digraphs such as IA, EA and NG can increase its Latin-character length beyond the original 76 runes.)
+| Diagnostic | Original p40–p53 | \(R(M)\) output | \(R(M)^{-1}\) output |
+|---|---:|---:|---:|
+| Rune IoC | 0.034543 | 0.034601 | 0.034440 |
+| LP1-only character-bigram log score | −3.481255 | −3.466956 | −3.525773 |
 
-Every output is **exactly inverted and re-encrypted back to the entire source page** in both directions. An independent **source-native planted text** made of the solved p57 GP runes, repeated to each page's exact length, was encrypted and decoded with the unchanged `R(M)`, recovering **76/76 and 232/232** original planted GP runes; each plant also round-trips by re-encryption. A wrong-sign *unsigned* p15 original matrix produces a different operator. These are legitimate implementation and source-selection controls, not evidence that the actual unknown is a Hill cipher.
+The fixed \(R(M)\) direction improves the bigram score by only 0.0143 per character; the inverse direction is worse. Both remain far below the held-out authentic plaintext controls: p56 scores −2.495522 and p57 scores −2.533368. The word-boundary-preserving output begins:
 
-**Passing reproducible [single-file Node22 SFT](../sims/lp2_p50_p39_signedp15_quotient_matrix_p55_sft.cjs)** and [GitHub Actions 43565067944](https://github.com/FlareZ123/liber-primus/actions/runs/43565067944), dispatched through the [manual-only Agent9 test workflow](../.github/workflows/agent9-two-plain-feedback-manual.yml). All table input bytes are hash-checked against SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`; long division, source quotient, both matrix identities, full original input and planted recovery are asserted.
+**\(R(M)\):**
+\`DIT NGNGFAJ. OMIAOEG LINAE TS ...\`
+
+**\(R(M)^{-1}\):**
+\`CWP EAEPHJ. ENGEAOH YOST AEU ...\`
+
+The complete output contains no substantial coherent GP-native plaintext. The per-page scores and full word-boundary-preserving previews are emitted by the reproducer.
+
+### Source-native positive controls
+
+The p56 plaintext control is the 85-rune GP encoding of:
+
+\`AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE\`
+
+It is authenticated before use: applying the original p56 prime-minus-one stream, with the literal F at offset 56 not consuming a key value, exactly recreates the original p56 ciphertext; 84 key values are consumed. The p57 parable is the separate 95-rune clear-text control.
+
+Each control was repeated to 3,008 runes, transformed by \(R(M)\) and by \(R(M)^{-1}\), and recovered exactly by the opposite matrix. Thus the positive controls verify the four-rune serialization, both directions, and the implementation on authentic GP plaintext. They do not validate the candidate as an LP2 cipher.
+
+The earlier p54/p55 results remain unchanged: p54 (232 runes) and p55 (76 runes) also produce nonlinguistic outputs in both directions, with exact reconstruction and a p57 planted-text control.
 
 ## Decision
 
-**Source-derived full-rank `R(M)` is a new algebraic object; its direct Hill4 plaintext interpretation fails on both complete original terminal pages.** Preserve the full-quotient/singular-matrix distinction. Do not turn the negative into a permission to search all matrix powers, block phases or new alphabets. This hypothesis could only be revived by a new original creator-visible instruction selecting another output register, feedback clock or consumer; present evidence specifies none.
+The full-rank quotient is a reproducible algebraic object, but the direct Hill-4 plaintext-consumer hypothesis fails on the strongest remaining p40–p53 receiver as well as p54/p55. The slight bigram-score movement is not coherent plaintext and does not justify tuning. The strongest rival remains that the quotient is an integrity/algebraic construction rather than a direct text cipher.
+
+Close the exact consumer as negative. Do not search other block orders, matrix powers, phases, resets, alphabets, or page receivers without a new source-selected instruction. No unknown plaintext, authentic LP2 key, or destination was recovered.
+
+## Reproduction
+
+- Script: \`sims/lp2_p50_p39_signedp15_quotient_matrix_p55_sft.cjs\`
+- Original inputs: \`resources/liber-primus/lp2-corpus.json\`, \`lp2-transcription.txt\`, \`lp2-grid-256.json\`, and the original p15/p39/p40/p50 scans.
+- Existing terminal-page evidence: this report's earlier p54/p55 test is retained in the same script.
