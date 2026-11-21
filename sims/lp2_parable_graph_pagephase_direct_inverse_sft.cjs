@@ -54,6 +54,30 @@ assert.equal(pageNode.length, 58);
 assert.equal(new Set(pageNode).size, 58);
 assert.deepEqual([pageNode[50], pageNode[55], pageNode[56], pageNode[57]],
   [201, 128, 74, 205]);
+/**
+ * The pre-existing nine original illustrated chapter starts (p0,3,8,15,23,
+ * 27,33,40,54) supply an independent holdout for this conjectural traversal.
+ * Only whole reverse subtrees count; unions or fitted swaps are not allowed.
+ * @type {[number,number][]}
+ */
+const chapters = [[0,2],[3,7],[8,14],[15,22],[23,26],
+  [27,32],[33,39],[40,53],[54,55]];
+const pageOf = new Map(pageNode.map((node, page) => [node, page]));
+/** @param {number} node @returns {number[]} */
+function descendants(node) {
+  return [node, ...child[node].flatMap(descendants)];
+}
+const subtreeIntervals = pageNode.map(node => {
+  const positions = descendants(node).map(n => pageOf.get(n));
+  return [Math.min(...positions), Math.max(...positions)];
+});
+const exactChapters = chapters.flatMap(([start,end],j) =>
+  subtreeIntervals.some(([a,b],k) =>
+    a===start && b===end && subtreeSize(pageNode[k])===end-start+1) ? [j] : []);
+assert.deepEqual(exactChapters, [0,6]);
+console.log('printed illustrated chapters as complete graph subtrees:',
+  exactChapters.length, '/', chapters.length, 'chapters', exactChapters);
+
 
 /** @param {number} n @returns {number} */
 const mod29 = n => ((n % 29) + 29) % 29;
