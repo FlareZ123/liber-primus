@@ -108,7 +108,7 @@ console.log(JSON.stringify({
     epiphanyGp0:gp0("EPIPHANY"),theGp0:gp0("THE"),
     circumferencesGp0:gp0("CIRCUMFERENCES")},
   path:route,
-  p32Rues:corpus.pages[32].indices.length,
+  p32Runes:corpus.pages[32].indices.length,
   reverseTree:{depth20Nonroot:treeCount(20)-1,
     fullComponentIncludingRoot:treeCount(256)},
   signedWordCompetition:{count:words.length,eligibleCount:eligible.length,
