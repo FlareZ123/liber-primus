@@ -1,4 +1,4 @@
-# Original p27 word excludes strict one-null-after-anti-repeat model R3
+# Original p27 word: anti-repeat null and strict block-clock obstructions
 
 **17 November 2026 · Agent 6 · exact original-input impossibility; no unknown plaintext or key.**
 
@@ -24,6 +24,24 @@ Indices 0-based:            4 5           10 11
 The two doubled-pair sites are **O O at local offsets 4–5** and **E E at offsets 10–11**; they are separated by five other symbols, and the pairs share no character. The word is zero-based **global printed word 1476**, starting at zero-based global GP rune **6606**, at source p27 local rune **79**. Inspection of the original 2400×3600 source JPEG confirms both repeated glyph pairs visibly, rather than relying on automated transcription alone.
 
 The full exact book has **63 within-word adjacent equalities in 62 distinct words**. Sixty-one of those 62 doubled words have exactly one doubled pair. **Exactly one** has two disjoint pairs and fails every possible single-rune deletion: word1476 above. The repository [read-only CommonJS SFT](../sims/lp2_r3_one_null_per_word_original_obstruction_sft.cjs) asserts all exact counts, positions, the original GP29 ordinal sequence, original page/JPEG mapping, and completeness of the source. It exhausts all **12 insertion positions ×29 rune values =348** one-null plants of an 11-rune no-repeat source word (all must be admitted) and checks a two-distant-null negative (must fail). This SFT **passed direct V8 execution on the unchanged GitHub source bytes**. Native Node22 [GitHub Actions run 44068644635](https://github.com/FlareZ123/liber-primus/actions/runs/44068644635) **passed** the specific original-input R3 step, independently executed in job [133988848226](https://github.com/FlareZ123/liber-primus/actions/runs/44068644635/job/133988848226).
+
+## All-phase strict fixed-block anti-repeat obstruction (21 November 2026)
+
+An independent cipher-family question follows from the same original word. Suppose an unknown GP29 encoder divides ciphertext into fixed-length blocks of **L >= 2 runes**, forbids equal adjacent emitted runes **strictly within** each block, and permits repeat pairs only at block joins. The key, substitution and plaintext can be completely secret. Every observed repeated-pair *end* within one reset scope must therefore have the same residue modulo L. The gcd of all pairwise repeat-position differences is an exact necessary condition, with no bound on L.
+
+The [new read-only CommonJS SFT](../sims/lp2_antirepeat_blockclock_allphase_obstruction_sft.cjs) uses all 12,956 source runes, 86 same-page doublets, the original 2,896 word delimitations and 63 within-word doublets. The exact gcd by clock model is:
+
+| Origin scope | Gcd | Possible L > 1 |
+| --- | ---: | --- |
+| Continuous global clock | 1 | none |
+| Shared page-reset phase | 1 | none |
+| Completely arbitrary phase independently on each page | 1 | none |
+| Shared printed-word-reset phase | 1 | none |
+| Completely arbitrary phase independently on each printed word | 6 | 2, 3, 6 |
+
+A **single original p3 page** already proves the strongest page-based claim: its page-local doublet ends are **53, 180, 203**, whose differences 127 and 23 have gcd1. No choice of page phase or secret key can fit an L>1 strict block clock there. For independent word phases, the original p27 12-rune word (global start6606) has the two doubled end positions **5** and **11**, whose distance6 restricts L to divisors of6. A **five-rune strictly collision-free block** is therefore impossible even with freely chosen phase for each word.
+
+The test's 12-rune planted positive has precisely the same two repeated end offsets, passes the strict L6 boundary condition and fails L5; the unchanged-source [Windows Node22 CI run 44959806793](https://github.com/FlareZ123/liber-primus/actions/runs/44959806793) passed. The exclusion requires a **strict zero-within-block-repeat rule**. It leaves within-block exceptions, variable block lengths, extra nulls, changed word boundaries and dynamic repair mechanisms open. No unknown plaintext, source key or cipher inverse is recovered.
 
 ## Separate R7 checked-word-end null diagnostic (conditional evidence)
 
