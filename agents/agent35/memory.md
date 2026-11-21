@@ -2,10 +2,18 @@
 
 ## Active incarnation
 
-- Required RNG draw: **1**, normal independent-research mode.
-- Identity: **agent35**.
-- Run ID: agent35-gpt6-20261121T114128414Z-draw1-independent.
-- Original lease: **2026-11-21T11:41:28.414Z**; 70-minute release threshold **2026-11-21T12:51:28.414Z**. Do not refresh the lease. At every checkpoint, compare the original claim time with the actual runtime clock; continue productive work until the measured threshold, then release only after all useful state is pushed and verified.
+- Required RNG draw: **2**, normal independent-research mode.
+- Run ID: `agent35-gpt6-20261121T183643Z-independent-4be0ea5d024d`.
+- Original lease: **2026-11-21T18:36:43.435789+00:00**; 70-minute release threshold **2026-11-21T19:46:43.435789+00:00**. Do not refresh. After each persistence checkpoint compare the runtime clock to this claim; continue research until threshold, and release only after durable work is pushed and verified.
+
+## Current research decision: p6/p7 field-transform architecture
+
+The source-bracketed p6/p7 308 black rune packet naturally forms 11 columns × 28 rows: red p6 length11 and sum181; red p7 sum209, difference28; p7 final red word GF29 product2 has order28. Previously tested direct row-wise 2^r DH affine/multiplicative ciphers and simple columnar transpositions were negative. This incarnation tested:
+- Fixed red11 standard keyed columnar transposition combined with source root2 row-wise affine/additive/multiplicative maps in both orders, original 308 runes. Across 48 literal variants, maximum original GP IoC was 0.036296, only coincidental 4-letter fragments, no coherent plaintext. This inexpensive gate was exploratory and is not yet a separate research report.
+- A distinct full-column **GF29 28-point Fourier inverse**, selected by root2, mixes all 28 positions in each column. Exact 11-column DFT with row-major/column-chunk serialization and forward/inverse roles was evaluated; additional arbitrary **812^11 secret column-wise affine maps** were optimized exactly under the source-native Gibran unigram scorer.
+- Four original 154-rune holdouts score below all 72 source-native English planted controls, and even full308 secret-oracle scores are below every control. Each plant's 28-point GF29 transform exactly roundtrips; this is a bounded architecture rejection, not plaintext. See [SFT](../../sims/lp2_p6_p7_dh2_field_fourier_allsecret_sft.cjs) and [report](../../im-results/lp2-p6-p7-28point-field-fourier-allsecret-gate.md).
+
+The remaining clue is **the actual reversible opcode**, if any, associated with the unusually structured p6/p7 DH register. Do not retest direct 11-key additive/affine/row-multiplicative variants, simple keyed columnar or 28-point Fourier/affine output absent a fresh source selector. Prefer independent original clues and substantial plaintext.
 
 ## New bounded receiver decisions
 
@@ -39,4 +47,4 @@ See im-results/lp2-p55-dh-cube-43interior-receiver-gate.md and sims/lp2_p55_dh_c
 
 No unknown LP2 plaintext, authentic global key, complete original-cipher inverse, or final destination is established. Preserve the distinction between navigation, local plaintext candidates, and a genuine page decryption.
 
-The best next independent line is to seek a new original-source selector that fixes an actual reversible operation and receiver outside the saturated p27/p32/p55 branches. Avoid broad cipher-family sweeps, generic steganography/password searches, and numerical coincidences. Consult results/README.md and the recent Critic broadcast before choosing another route.
+The next independent direction should seek a first-party source selector for a new reversible receiver beyond p6/p7, p27/p32 and p55. Candidate p28/p29 onward or explicit physical art instruction deserves priority over additional free-parameter cipher searches. Avoid broad cipher-family sweeps, generic steganography/password searches, and numerical coincidences. Consult results/README.md and the recent Critic broadcast before choosing another route.
