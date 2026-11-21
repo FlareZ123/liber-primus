@@ -87,6 +87,14 @@ const subtraction=src.map((v,i)=>mod(v-tableRem[i]));
 const addition=src.map((v,i)=>mod(v+tableRem[i]));
 const directMatches=src.filter((v,i)=>v===tableRem[i]).length;
 assert.equal(directMatches,8);
+/** @param {number[]} a @returns {number} */
+const equalPairs=a=>{const f=Array(29).fill(0);for(const x of a)f[x]++;return f.reduce((sum,n)=>sum+n*(n-1)/2,0);};
+const originalEqualPairs=equalPairs(src);
+const tableResidueEqualPairs=equalPairs(tableRem);
+assert.deepEqual([originalEqualPairs,tableResidueEqualPairs],[1123,1213]);
+assert.notEqual(originalEqualPairs,tableResidueEqualPairs);
+// Any position transposition or static alphabet relabeling preserves equal-pair count.
+
 assert.ok(ioc(subtraction)<0.04&&ioc(addition)<0.04);
 const positive=Array.from({length:256},(_,i)=>gp.pages[57].indices[i%95]);
 const planted=positive.map((v,i)=>mod(v+tableRem[i]));
@@ -195,6 +203,8 @@ console.log(JSON.stringify({
   originalGPIndicesSHA256:crypto.createHash('sha256').update(Buffer.from(src)).digest('hex'),
   selectedWordLengths:len,cyclicWraps:wraps},
  receiver:{tableRemainderDirectMatches:directMatches,
+  exactEqualPairs:[originalEqualPairs,tableResidueEqualPairs],
+  anyTranspositionWithStaticSymbolPermutationPossible:false,
   sourceIoC:ioc(src),simpleTableMinusIoC:ioc(subtraction),
   simpleTablePlusIoC:ioc(addition),solvedPlainPlantIoC:ioc(positive),
   sourceNineChapterKeyed16TopIoC:top,hashedRepresentations:Object.keys(reps),
