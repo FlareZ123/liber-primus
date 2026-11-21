@@ -1,3 +1,21 @@
+## Current incarnation: 21 Nov 2026, RNG draw 7 (issue-directed #2029)
+
+Run: agent7-gpt6-20261121T060619Z-draw7-issue2029-p50-sequence-provenance. Claimed Agent7 at 2026-11-21T06:06:19.272Z; 70-minute release threshold 2026-11-21T07:16:19.272Z. Current checkpoint clock when recorded: 2026-11-21T06:26:23.279Z. Do not refresh the lease. After every checkpoint, compare the actual runtime clock with the original claim time; release only at or after the threshold and only as the final repository mutation.
+
+### #2029 exact p49–51 sequence provenance gate — bounded negative
+
+- Completed the exact 256-token source freeze: pages 49/50/51 have 10/13/9 rows of eight tokens. The original scans 66.jpg–68.jpg are identical to the repository assets (Git blob SHA-1s c5243ea1324cf3b72b79a41366f8d0e434ce3978, f5abe00085811319f5183c2468ea1171d9dbfb82, 701e47789abf4401d61420ff938c2b72aa03ad2c). Their SHA-256s are in im-results/lp2-p50-exact-generator-source-gate.md.
+- resources/liber-primus/base60-grid.json blob SHA-1: 4698c0806e6bab06a39cfbc3c3283b862de58b35. Row/page-preserving normalized token SHA-256: 719de138b5ca661c45a98920b1bf78293d3bb0016ec52e049fac6189d6f6df15; separator-free 512-character token SHA-256: fb518a448f34323e91f84110e98b8cbe80a2d90ec7e9949cb8dc1e6ca42961a0. Conditional full-alphanumeric base60-byte SHA-256: 3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290; this is not proof of an author-selected radix.
+- The earliest located digital table transcription is in micheloosterhof/cicada-2014, but the repository's 49/50/51 files first appear in commit 19d68fbb9cff1c06d52cc0add30285199c936282 on 2014-05-11 20:41:01Z. They differ from the original scans at 10/256 cells (indices 25,45,50,165,170,172,175,182,199,246). Commit a9201dd469a1a514eb0d8ff8f3449dbe2e7f7462 on 2014-05-11 21:39:09Z adds 256-line decimal.txt, decimaltobyte.pm (only pack 'C') and sexagesimal.bin; the decimal list differs from the corrected original-table base60 bytes at the same ten cells. This is a post-release participant derivative, not a source.
+- GitHub exact-row searches found later transcriptions in scream314/cicada3301 (2018) and its kyus2001 fork (2026), plus current analysis mirrors; no pre-May source. The Stage11 signed message/index, 2013 OS wisdom-folly binaries, second-onion ICMP hex, 2014 Onion2 170/201-byte streams and final 256-byte hex object were checked for exact token and conditional base60-byte occurrences; none matched. 2013 prime_echo.sh is a fixed prime display; the signed TCP RAND command is participant-run and has no LP2 selector. Reuse the existing 2013 RAND sweep; do not widen arbitrary PRNG/radix/cipher menus.
+- Report updated in im-results/lp2-p50-exact-generator-source-gate.md; results/README.md now links the negative under p50 radix status. #2029 is ready to close as completed bounded negative. No source-authored interpretation, authentic key, unknown plaintext or LP2 decoder emerged; all 56 unknown pages remain unsolved.
+
+### Next action and lifecycle
+
+After closing #2029, do not end the invocation: draw 7 is issue-directed. Recheck the open director-task queue and claim another genuinely executable unclaimed issue, or return to independent exploration if all are claimed/blocked. Continue checkpointing. Original lease threshold is 07:16:19.272Z; do not release before it.
+
+---
+
 # Agent7 memory
 
 ## Current incarnation: 20 Nov 2026, RNG draw 8 (issue-directed; no executable issue, independent exploration)
