@@ -23,6 +23,24 @@ The original-image region `x=[740,1620), y=[2800,3260)` contains the complete fi
 
 A strict 99.95% pixel overlap in the p7–23 pair is compelling evidence for literal reuse of a reflected graphic. The p56 pair retains 97.19% overlap. Differences can be due to JPEG or raster resampling, and do not prove any intentional cipher direction. The same simple five-dot drawing should therefore **not be counted as three independent confirmations of a constellation or key**.
 
+### Independently held-out geometric census (Agent26, 21 November 2026)
+
+A separate [source-only all-page detector and original-pixel holdout test](../sims/lp2_fivedot_allpage_centroid_holdout_sft.py) examines **all 58 original LP2 images** at an invariant grayscale threshold90. It finds every isolated original-size approximately 70-pixel filled black circle by connected components in a 4× downsample, then measures the centroid again on the unchanged 2400×3600 JPEG, including its antialiased rim. **Exactly four scans** contain matching disks: `24.jpg` (p7, five), `40.jpg` (p23, five), `50.jpg` (p33, three in a horizontal row), and `73.jpg` (p56, five). The filter is deliberately specific to large circular dots; this is a complete census of comparable *disk* symbols, not a census of noncircular decorative stars.
+
+To rule out transform and landmark postselection, the new SFT charges **all eight axis-aligned rigid rotations/reflections and all 5! point correspondences** without a 180° prior. It independently refits on each of the **ten** three-dot subsets, then scores the two withheld dots under the selected model. The full five-dot RMS and **worst two-dot holdout RMS** are:
+
+| Original source pair | Best map | Full five-dot RMS | Worst held-out RMS |
+| --- | --- | ---: | ---: |
+| p7 → p23 | vertical mirror | **0.036832 px** | **0.065110 px** |
+| p7 → p56 | horizontal mirror | **0.246264 px** | **0.436255 px** |
+| p23 → p56 | 180° rotation | **0.263633 px** | **0.444509 px** |
+
+The separate **three-dot original p33 illustration** cannot be registered even as a three-dot subset of any of the five-dot shapes: after charging all original source triples, all destination permutations and all eight rigid maps, the best corresponding RMS is **105.58–105.76 px**. For a supplementary random-geometry null, the report compares p23 to **10,000** independently generated five-dot patterns in the exact p56 bounding rectangle, preserving each approximately 69-pixel dot's nonoverlap. Each control is charged the full 8×5! map/label family. **0/10,000** match the p23→p56 RMS 0.263633 px; the best control is **38.39693 px**, add-one Monte Carlo bound 0.00009999. This null measures how diagnostic literal source artwork copying is under independent point placement; it is **not** a probability that Cicada chose an encryption method.
+
+The physical artwork relationship is thus exceptionally reproducible and survives held-out dots, but **p23→p56 is not a uniquely source-selected pair**: p7→p23 matches *even more closely* and p7→p56 also passes every holdout. The same inherited five-dot stencil is reused at three different textual boundaries. **No printed instruction maps the rotation/reflection to a rune operation or yields a p23/p7 key.** Avoid promoting this source-art match to decryption evidence without a separate, irreversible prediction on original ciphertext.
+
+**Independent Windows Python3.12/Pillow11.3.0/NumPy2.2.6 PASS:** [Actions run 44961544889](https://github.com/FlareZ123/liber-primus/actions/runs/44961544889); source centroid output, random seed `0x33012356`, complete comparison family and planted geometric controls are in the reproducible test.
+
 **Reproduction:** [original-image pixel SFT](../sims/lp2_fivedot_original_jpeg_reflection_sft.py), successful [Windows Python3.12/Pillow original-input GitHub Actions job 43534224289](https://github.com/FlareZ123/liber-primus/actions/runs/43534224289), and shared [manual SFT workflow](../.github/workflows/manual-readonly-python-image-sft.yml).
 
 ## One frozen reversible p56-key inheritance test
