@@ -72,6 +72,10 @@ assert.deepEqual(redWords.map((w) => w.length), [state.q, state.A]);
 assert.deepEqual(indexSums8, [57, 74]);
 assert.deepEqual(primeSums8, [196, 250]);
 assert.equal(primeSums8[0], p6.length);
+assert.equal(redWords[1].filter((r) => r === state.e).length, 1);
+const eShed = redWords[1].filter((r) => r !== state.e);
+assert.equal(product29(eShed), 1);
+assert.equal(primeSums8[1] - corpus.prime[state.e], p8.length - 12);
 assert.ok(heading.every((r) => r > 0 && r < state.p));
 const black = p8.slice(12);
 assert.equal(black.length, state.e ** state.g);
@@ -159,6 +163,37 @@ assert.deepEqual(results.map((r) => r.firstImpossibleLocalBlackOffset), [
   17, 39, 68, 4, 60, 15, 40, 42, 1, 15, 11, 7
 ]);
 
+
+// P8 red word1 GP-prime sum is exactly the complete p6 rune count (196).
+// The remaining 243-196=47 runes could be borrowed from adjacent p7.
+// Test the four canonical raw-order concatenations, with no secret phase or
+// free source symbols, under the same solved p56 transparent-F convention.
+// These are separate bounded source-key candidates, not a discovered key.
+assert.equal(black.length - p6.length, 47);
+const pageKeys = [
+  ['p6+first47-p7', [...p6, ...p7.slice(0, 47)]],
+  ['p6+last47-p7', [...p6, ...p7.slice(-47)]],
+  ['last47-p7+p6', [...p7.slice(-47), ...p6]],
+  ['first47-p7+p6', [...p7.slice(0, 47), ...p6]]
+];
+const pageKeyResults = [];
+for (const [name, key] of pageKeys) {
+  assert.equal(key.length, black.length);
+  for (const sign of [-1, 1]) {
+    const schedule = (clock) => key[clock];
+    assert.equal(feasible(encode(positive, schedule, sign), schedule, sign).legal,
+      true, 'cross-page key positive control failed');
+    const original = feasible(black, schedule, sign);
+    assert.equal(original.legal, false);
+    pageKeyResults.push({
+      key: name, sign, firstImpossibleLocalBlackOffset: original.failOffset
+    });
+  }
+}
+assert.deepEqual(pageKeyResults.map((r) => r.firstImpossibleLocalBlackOffset), [
+  16, 2, 16, 2, 28, 18, 38, 14
+]);
+
 console.log(JSON.stringify({
   source: {
     p7FiveWordProducts: products7,
@@ -167,11 +202,14 @@ console.log(JSON.stringify({
     p8HeadingWordProducts: products8,
     p8HeadingIndexSums: indexSums8,
     p8HeadingPrimeSums: primeSums8,
+    p8SecondShedEPrimeSum: primeSums8[1] - corpus.prime[state.e],
+    p8SecondShedEProduct: product29(eShed),
     p8BlackLength: black.length,
     allP8HeadingSymbolsInGF23Nonzero: true,
     sourceSelectedP6PageLength: p6.length
   },
   tested: 'p8 black243, source-derived seed/step GP29 key clocks, exact plaintext-F bypass',
   results,
-  conclusion: 'All 12 source-shaped p8 key clocks become impossible before rune69, with all 12 original native-positive plants recovered exactly.'
+  pageKeyResults,
+  conclusion: 'All 12 source-shaped p8 key clocks and eight source-page concat keys become impossible on original p8; 20 positive plants round-trip.'
 }, null, 2));
