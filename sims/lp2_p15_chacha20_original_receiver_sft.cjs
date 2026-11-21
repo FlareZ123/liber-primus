@@ -1,7 +1,7 @@
 "use strict";
 /**
  * Finite p15 4x4 uint16 -> 256-bit ChaCha20 key against the authentic p50
- * 256-byte grid and next visual chapter p16–22 (1883 untouched black runes).
+ * 256-byte grid and p15 post-rubric through p22 (1883 untouched black runes).
  * Zero counter/nonce baseline. Native Node crypto implementation.
  * node sims/lp2_p15_chacha20_original_receiver_sft.cjs
  */
@@ -60,7 +60,10 @@ function ioc(runes) {
   for(const n of runes)bins[n]++;
   return bins.reduce((sum,n)=>sum+n*(n-1),0)/(runes.length*(runes.length-1));
 }
-const lp2=corpus.pages.filter(p=>p.page>=16&&p.page<=22).flatMap(p=>p.indices);
+const lp2=[
+  ...corpus.pages.find(p=>p.page===15).indices.slice(20),
+  ...corpus.pages.filter(p=>p.page>=16&&p.page<=22).flatMap(p=>p.indices)
+];
 assert.equal(lp2.length,1883);
 assert.equal(grid.bytes.length,256);
 const byteCipher=Buffer.from(grid.bytes);
@@ -89,7 +92,7 @@ assert(bestAscii[0].asciiFraction<0.65);
 assert(bestAscii[0].rawGpFraction<0.30);
 assert(bestGp[0].ioc<0.048);
 console.log(JSON.stringify({
-  source:"LP2 p15 16 printed 4-digit values and p49–51 256 literal bytes; p16–22 1883 literal ciphertext runes",
+  source:"LP2 p15 16 printed 4-digit values and p49–51 256 literal bytes; p15 black suffix through p22, 1883 literal ciphertext runes",
   hypotheses:"16 input values as UINT16LE/BE32-byte ChaCha20 key; zero counter and nonce; original byte-grid XOR and GP29 additive stream receiver",
   candidateKeys:result.length,
   originalByteGridBest:bestAscii.slice(0,3),
