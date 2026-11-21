@@ -105,6 +105,17 @@ Subtracting this **source-only regenerated key** from all **13 original p0 red-t
 
 The expanded [single-file original-source SFT](../sims/lp2_p7_red_circulant_dh_inverse_sft.cjs) now derives all state variables directly from p7 original rune indices and red-word products **before** opening p0's printed title, using the circulant inversion only as an independent check, runs the existing serializer, verifies the full 13-rune forward replay and separately preserves the negative 255-rune p8 body test. [Windows Node22 original-p7-only key recovery PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44932016786).
 
+
+## Corpus-wide source-only DH law: unique original five-word packet
+
+A stricter, **circulant-free** source-first discriminator tests whether the original red-word DH tuple is a local algebraic accident. Freeze a five-consecutive-word grammar directly from p7: require the third and fifth words each to contain exactly three runes, set `p` to the **literal GP29 index sum of word3**, and only retain `p=23`. Define `g` as word3's first GP29 index, `A` as word3's GP29 index product, `a` as word5's first index, `B` as word5's last index, `K` as word5's product, and `b` as word4's product. On every eligible window, require all three DH equations `g^a mod p=A`, `B^a mod p=K`, and `g^b mod p=B`.
+
+The **full original source transcription** (`resources/lp2-transcription.txt`, preserving its historically established printed word separators) contains **2,729** windows of five contiguous complete words inside physical p0–p55. **151** have the specified two three-rune operands; only **4** of those have the word3 index sum23. Exactly **one** of the four satisfies *each of the three equations*, and the sole all-three survivor is **physical p7, first red-word offset194**, yielding `(p,g,a,b,A,B,K)=(23,5,6,15,8,19,2)`. No 2013 signed tuple values enter this search. The corpus-wide specificity is over source-fixed word positions and these three equations; the formulas were recognized from the known p7 packet, so `1/2729` must **not** be described as a multiple-hypothesis-adjusted design probability.
+
+This identifies the historical signed DH example exactly from original word indices and products alone, and narrows the earlier source-only route to the one original terminal red five-word packet even before using the 5×5 circulant. It still supplies **only source-authored candidate state material**. The original p0 RISE/H serializer and its 13-rune word-level key remain retrospective, so this corpus census does not validate a new universal decipherment.
+
+[Updated Windows Node22 PASS, global 2,729-window source-native census](https://github.com/FlareZ123/liber-primus/actions/runs/44933184790) · [reproducing one-file script](../sims/lp2_p7_red_circulant_dh_inverse_sft.cjs).
+
 ## Decoding decision
 
 The inverse could serve as a **register recovery clue** to the historical DH source rather than a ready-made ciphertext key. A genuine next step would require an independent first-party instruction tying one specified body interval to that 5×5 map (or another uniquely specified use), an exact reset/direction and an untouched plaintext prediction. Until then, retain the algebraic observation without promoting it to a recovered cipher. The preceding [p7 reciprocal-product report](lp2-p7-red-multiplicative-inverse-dh-packet.md) covers the original red structure and earlier failed direct consumers.
