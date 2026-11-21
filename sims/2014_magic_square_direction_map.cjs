@@ -761,7 +761,7 @@ const p0WordIntervalOrderGate = {
   },
   intervalWords,
   totals:{englishWords:interval.length,gp29Runes:intervalGpLength,primeSum:intervalWords.reduce((sum,x) => sum+x.primeSum,0)},
-  2014Square:{
+  "2014Square":{
     source:"2013 0_wisdom 13 word cells, reconstructed by GP-prime sums in the 2014 stage04 5x5/1033 square",
     rowMajorWordCellPrimeSums:wisdomWordCellSums,
     intervalWordPrimeSums:intervalPrimeSums,
