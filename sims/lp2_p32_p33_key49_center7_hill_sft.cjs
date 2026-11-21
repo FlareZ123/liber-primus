@@ -56,6 +56,24 @@ function ioc(seq) {
   const f=Array(29).fill(0);for(const v of seq)f[v]++;
   return f.reduce((s,n)=>s+n*(n-1),0)/(seq.length*(seq.length-1));
 }
+/**
+ * @param {number[][]} matrix @param {number[]} sequence
+ * @param {"left"|"right"} orientation @returns {number[]}
+ */
+function applyVectorBlocks(matrix,sequence,orientation) {
+  assert.equal(sequence.length%7,0);
+  const result=[];
+  for(let pos=0;pos<sequence.length;pos+=7) {
+    const block=sequence.slice(pos,pos+7);
+    const decoded=Array(7).fill(0);
+    for(let row=0;row<7;row++)for(let col=0;col<7;col++) {
+      if(orientation==="left")decoded[row]=mod(decoded[row]+matrix[row][col]*block[col]);
+      else decoded[col]=mod(decoded[col]+block[row]*matrix[row][col]);
+    }
+    result.push(...decoded);
+  }
+  return result;
+}
 /** @param {number[]} source @param {number} row @param {number} col */
 const crop7=(source,row,col)=>Array.from({length:7},(_,r)=>
   Array.from({length:7},(_,c)=>source[(r+row)*11+col+c]));
@@ -122,12 +140,36 @@ function run() {
   }
   assert.deepEqual(twoSided.map(v=>v.ioc),
     [0.02806122448979592,0.03486394557823129]);
+  // Physical red13 at p32 end and p33 [10,91) delimit 10+81=91=13*7:
+  // a second boundary-defined consumer uses 13 contiguous 7-rune vectors
+  // across the original p33 red-title plus first black body interval.
+  const redToBlack91=p33.slice(0,91);
+  assert.equal(redToBlack91.length,91);
+  const genuineControl=corpus.pages[56].indices.concat(corpus.pages[57].indices).slice(0,91);
+  assert.equal(genuineControl.length,91);
+  const redToBlackHill=[];
+  for(const [name,K,I] of [
+    ["ordinal",original,indexInfo.inverse],
+    ["prime",matrixPrime,primeInfo.inverse]
+  ])for(const trans of [false,true])for(const side of ["left","right"]) {
+    const E=trans?transpose(K):K;
+    const D=trans?transpose(I):I;
+    const v=applyVectorBlocks(D,redToBlack91,side);
+    assert.deepEqual(applyVectorBlocks(E,v,side),redToBlack91);
+    const sample=applyVectorBlocks(E,genuineControl,side);
+    assert.deepEqual(applyVectorBlocks(D,sample,side),genuineControl);
+    redToBlackHill.push({name,trans,side,ioc:ioc(v),
+      runeTranslit:v.map(i=>corpus.translit[i]).join("")});
+  }
+  assert.equal(redToBlackHill.length,8);
+  assert.ok(redToBlackHill.every(v=>v.ioc<0.036));
   const result={source:"original p32 central7 and p33 black81 central7",
     key49:7*7,originalGPOrdinalDet23:indexInfo.det,
     originalGPPrimeDet13:primeInfo.det,
     matchingCropping:matches,eligiblePageFirst121:52,
     pagesMatchingBothDeterminants:samePages,
-    directHill:out,twoSided,nativeP57PositiveControl:49,
+    directHill:out,twoSided,redToBlack91VectorHill:redToBlackHill,
+    nativeP57PositiveControl:49,
     originalPlaintext:"none"};
   console.log(JSON.stringify(result,null,2));
   return result;
