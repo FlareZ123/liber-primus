@@ -206,7 +206,7 @@ const originalCol=columnEqual27(wholeCipher);
 assert.deepEqual([originalCol.hits,originalCol.pairs],[326,9477]);
 const lp1Reference=fs.readFileSync(path.resolve(__dirname,'..',
   'resources/liber-primus/lp1-plaintext-reference.txt'),'utf8')
-  .replace(/^#.*$/gm,' ').replace(/\\[[^\\]]*\\]/g,' ')
+  .replace(/^#.*$/gm,' ').replace(/\[[^\]]*\]/g,' ')
   .toUpperCase();
 const gpAlphabet=corpus.translit.map((sp,i)=>({sp,i}))
   .sort((a,b)=>b.sp.length-a.sp.length);
