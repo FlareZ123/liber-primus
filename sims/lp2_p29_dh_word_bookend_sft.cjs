@@ -89,5 +89,74 @@ console.log('p29 P(24) and formal derivative P\'(24):',
   evalPoly(p29.indices, root), evalPoly(derivative, root));
 console.log('Boundary six-value DH membership; top three:',
   JSON.stringify(ranking.slice(0, 3)));
+
+/** Locked three-row DH bookend Hill candidate, original source print order. */
+const M = [startExpected, endExpected, G];
+const p39 = pages.find((page) => page.page === 39);
+assert(p39);
+assert.equal(p39.indices.length, 240);
+assert.deepEqual(p39.indices.slice(119, 122), G);
+const body39 = p39.indices.filter((_, index) => index < 119 || index >= 122);
+assert.equal(body39.length, 237);
+
+/** @param {number[][]} source */
+function inverse3(source) {
+  const q = source.map((row, i) => row.concat(
+    [0, 1, 2].map((j) => Number(i === j))));
+  for (let j = 0; j < 3; j++) {
+    const pivot = q.findIndex((row, k) => k >= j && row[j] !== 0);
+    assert(pivot >= 0);
+    [q[j], q[pivot]] = [q[pivot], q[j]];
+    const fieldInverse = [1, ...Array.from({ length: 27 }, (_, k) => k + 2)]
+      .find((value) => mod29(value * q[j][j]) === 1);
+    assert(fieldInverse);
+    q[j] = q[j].map((value) => mod29(value * fieldInverse));
+    for (let i = 0; i < 3; i++) {
+      if (i === j) continue;
+      const factor = q[i][j];
+      q[i] = q[i].map((value, k) => mod29(value - factor * q[j][k]));
+    }
+  }
+  return q.map((row) => row.slice(3));
+}
+
+/** @param {number[]} input @param {number[][]} matrix */
+function hill3(input, matrix) {
+  assert.equal(input.length % 3, 0);
+  const output = [];
+  for (let i = 0; i < input.length; i += 3) {
+    for (let row = 0; row < 3; row++) {
+      output.push(mod29(input[i] * matrix[row][0] +
+        input[i + 1] * matrix[row][1] + input[i + 2] * matrix[row][2]));
+    }
+  }
+  return output;
+}
+
+/** @param {number[]} input */
+function coincidence(input) {
+  const counts = Array(29).fill(0);
+  input.forEach((v) => counts[v]++);
+  return counts.reduce((sum, n) => sum + n * (n - 1), 0) /
+    (input.length * (input.length - 1));
+}
+
+const inverseM = inverse3(M);
+assert.deepEqual(inverseM, [[15, 14, 13], [16, 2, 22], [16, 7, 8]]);
+const decoded39 = hill3(body39, inverseM);
+assert.deepEqual(hill3(decoded39, M), body39);
+const solvedP57 = corpus.pages.find((page) => page.page === 57);
+assert(solvedP57);
+const clear93 = solvedP57.indices.slice(0, 93);
+assert.deepEqual(hill3(hill3(clear93, M), inverseM), clear93);
+assert(Math.abs(coincidence(decoded39) - 0.032789816205392265) < 1e-12);
+console.log('Frozen p39 237-rune, red3-excluded Hill3 consumer:');
+console.log('M:', M, 'inverse:', inverseM);
+console.log('Decoded p39 IoC:', coincidence(decoded39),
+  'unmodified IoC:', coincidence(body39));
+console.log('p39 decoded first72 GP: ',
+  decoded39.slice(0, 72).map((v) => corpus.translit[v]).join(' '));
+console.log('Original 237/237 re-encryption and solved p57 93/93 plant pass.');
+
 console.log('PASS. Exact source-index linkage. No deciphered LP2 text or');
 console.log('independently sourced instruction selecting this DH bookend grammar.');
