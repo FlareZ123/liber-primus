@@ -70,7 +70,7 @@ That is the manuscript-selected tuple. This is a finite conditional census insid
 
 ## Immediate receiver tests
 
-The bridge selects an operation, but does not yet select a ciphertext span or clock.
+The bridge selects an operation. The p27 DIVINITY core is now a source-selected candidate receiver, but its direct one-step cube/inverse test is negative; no other plaintext-producing receiver or clock is established.
 
 Several minimal consumers were checked to avoid mistaking the arithmetic closure for a decryption:
 
@@ -78,6 +78,7 @@ Several minimal consumers were checked to avoid mistaking the arithmetic closure
 - Using the six primitive roots as a repeating six-phase discrete-log alphabet on p0, under page-clock rotations, forward/reverse order and F/EA repeat sentinels, reaches at most **3 of 27** differential constraints from the conditional p0 phrase islands.
 - Using the six roots or their base-2 exponent orbit `[1,3,9,27,25,19]` as raw/differential six-period additive keys reaches at most **4 of 27** conditional p0 constraints.
 - A whole-book finite scan of direct six-period raw GP29 shifts, six-root discrete-log decoding and exponent-orbit differential shifts, under page-reset/continuous clocks, six rotations and both signs, remains random-like. The strongest GP trigram score was about **-3.526 nats/rune** under the repository's solved-GP reference register. An 80/20 score of the reference itself gives about **-2.619** on held-out text.
+- The source-selected p27 DIVINITY receiver is the unique 12-rune body word EORNSOOCAEYEE whose twice-shed eight-rune interior NSOOCAEY has GP-prime sum376, matching solved p57 DIUINITY; its whole-word totient280 matches INSTAR. Applying x³ and inverse x¹⁹ directly gives RJIAIANLOTH and CMEEOEWXJ. Neither matches any complete p57 word or produces readable plaintext. This is a bounded negative, not a new global cipher result (p27 receiver report: lp2-p27-divinity-dh-cube-receiver-gate.md; SFT: ../sims/lp2_p27_divinity_dh_cube_receiver_sft.cjs).
 
 These negative consumers are deliberately small. They show that the new bridge should not be promoted into a six-period manuscript cipher by default.
 
@@ -87,7 +88,7 @@ The p28/DH23 route previously reached a point where it selected Diffie-Hellman s
 
 `x -> x^3 mod29`, inverse `x -> x^19 mod29`.
 
-The missing input is now narrower: **which source-selected ciphertext state is meant to receive that permutation, which direction/layer convention is intended, and whether it is applied once, iterated as the six-root orbit, or used only to derive another state.** The red19+13 object corroborates the operation parameter after discovery but does not prospectively fix its use or identify a downstream ciphertext span. Future work should require an independently selected receiver or an untouched ciphertext prediction. Broad cube-key phase searches would recreate the same underselection the repository is trying to avoid.
+The obvious p27 DIVINITY core has now been tested under both direct and inverse cube, and neither yields plaintext. The missing input is therefore another independently selected ciphertext state or a source-specified alternative application; the p27 core is not a successful receiver. The red19+13 object corroborates the operation parameter after discovery but does not prospectively validate its use. Future work should require a new independent receiver or an untouched ciphertext prediction. Broad cube-key phase searches would recreate the same underselection the repository is trying to avoid.
 
 ## Reproduction
 
@@ -95,4 +96,4 @@ Run:
 
 `node sims/lp2_p28_dh23_gp29_cube_bridge_sft.cjs`
 
-The CommonJS SFT reconstructs the DH values, verifies both selectors of exponent3, checks the four-value chain and six-value primitive-root orbit, proves inverse cubing over all29 residues, and exhausts all484 secret pairs in the fixed DH23 group.
+The CommonJS SFT reconstructs the DH values, verifies both selectors of exponent3, checks the four-value chain and six-value primitive-root orbit, proves inverse cubing over all29 residues, and exhausts all484 secret pairs in the fixed DH23 group. The p27 receiver SFT independently selects NSOOCAEY and reproduces the negative direct/inverse outputs.
