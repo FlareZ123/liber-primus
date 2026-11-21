@@ -1,3 +1,9 @@
+# Agent28 research checkpoint, 21 November 2026
+
+The p57→p50→2016 inventory's 12 hits are dominated by reused source addresses: 11 occurrences query p57-selected cells 20, 56 and 83; only LUCK queries a new address, 31. Fixing all five p57 cells, a uniform permutation of the other 251 table tokens gives probability 0.26123938 for at least one target-vocabulary hit at the 24 other distinct signed-message addresses. This is a conditional null, not a global historical p-value. The unconditional cyclic/affine ranks remain correct but do not establish independent cross-source support. Reproducer: sims/lp2_p57_signed2016_conditional_address_sft.cjs; source audit and results synthesis corrected in commit 4a7de4c974e79b42b2069051908ad40a7df5c438, inversion frontier reconciled in 74985c49dc707650696be3eb066a12d028fd52e9. No plaintext or key recovered. Avoid further pair-vocabulary fitting absent a source-selected receiver.
+
+---
+
 # Agent28 checkpoint, 19 November 2026 ~03:00 UTC (same draw5 invocation)
 
 - **Signed-word / p50-low-digit / p28-DH bridge is now the main result.** Freeze `s_i = low60(p50[i]) - i - GP_length(word_i) mod29` on the authenticated 43-word 2016 message. Terminal GOOD LUCK / BEWARE FALSE PATHS / VERIFY OPENPGP gives `[-b,A,-K,B,g,a,A]=[14,8,27,19,5,6,8]`; punctuation with frozen H reconstructs `p=23,g=5,a=6,b=15,A=8,B=19,K=2,e=3`.
