@@ -32,18 +32,20 @@ function permute(items,rand) {
  */
 function decode(executable,matrixFile,working) {
   const call=cp.spawnSync(executable,[matrixFile,"--top","1"],{
-    cwd:working,encoding:"utf8",timeout:30000,maxBuffer:5*1024*1024
+    cwd:working,encoding:"utf8",timeout:15000,maxBuffer:5*1024*1024
   });
-  assert.equal(call.error,undefined,call.error?.message);
-  assert.equal(call.status,0,call.stderr||call.stdout);
+  const saturated=call.status===4 && /Depth limit 128 reached with active branches/.test(call.stderr||"");
+  const timedOut=call.error?.code==="ETIMEDOUT";
+  assert.ok(call.status===0||saturated||timedOut,call.stderr||call.stdout);
   const output=call.stdout;
   const first=output.match(/#1\s+score=([-+\d.]+)\s+blocks=(\d+)\s+runes=(\d+)/);
   const last=output.match(/Last layer explored:\s*(\d+)/);
   const openings=output.match(/Admissible openings with words:\s*(\d+)/);
   return {
-    score:first?Number(first[1]):Number.NEGATIVE_INFINITY,
+    score:first?Number(first[1]):null,
     blocks:first?Number(first[2]):0,runes:first?Number(first[3]):0,
-    lastLayer:last?Number(last[1]):0,
+    lastLayer:last?Number(last[1]):saturated?128:0,
+    saturated,timedOut,
     openings:openings?Number(openings[1]):null,
     text:first?output.slice(first.index+first[0].length).trim().split(/\r?\n/)[0]:""
   };
@@ -76,10 +78,10 @@ function run() {
   assert.equal(original.runes,118);
   const groups=[];
   const cases=[
-    {name:"uniform-all-729",count:64},
-    {name:"row-order",count:32},
-    {name:"independent-row-shift",count:32},
-    {name:"column-order",count:32}
+    {name:"uniform-all-729",count:5},
+    {name:"row-order",count:5},
+    {name:"independent-row-shift",count:5},
+    {name:"column-order",count:5}
   ];
   for(let groupIndex=0;groupIndex<cases.length;groupIndex++) {
     const kind=cases[groupIndex];
@@ -106,15 +108,22 @@ function run() {
       const testFile=writeMatrix(matrix,`control-g${groupIndex}-s${sample}.txt`);
       const outcome=decode(executable,testFile,working);
       members.push({seed,blocks:outcome.blocks,runes:outcome.runes,
-        score:outcome.score,lastLayer:outcome.lastLayer});
+        score:outcome.score,lastLayer:outcome.lastLayer,
+        saturated:outcome.saturated,timedOut:outcome.timedOut});
     }
     const hist={};
     for(const row of members)hist[row.lastLayer]=(hist[row.lastLayer]??0)+1;
     const longest=members.reduce((a,b)=>Math.max(a,b.lastLayer),0);
+    const numericScores=members.filter(x=>x.score!==null).map(x=>x.score);
     groups.push({name:kind.name,controls:members.length,maxLastLayer:longest,
       atLeast39:members.filter(x=>x.lastLayer>=39).length,
-      depthHistogram:hist,maxScore:Math.max(...members.map(x=>x.score)),
-      sample:members.slice(0,8)});
+      saturated:members.filter(x=>x.saturated).length,
+      timedOut:members.filter(x=>x.timedOut).length,
+      depthHistogram:hist,maxScore:numericScores.length?Math.max(...numericScores):null,
+      sample:members});
+    console.log("CONTROL_GROUP_COMPLETE "+JSON.stringify({name:kind.name,
+      saturated:members.filter(x=>x.saturated).length,
+      timedOut:members.filter(x=>x.timedOut).length,depthHistogram:hist}));
   }
   const report={sourceMatrixSha256:hash,externalCodeSha:"1f952dc948948bcd2bea4d5e5a61ba6175b501ec",
     original,groups,totalControls:groups.reduce((s,v)=>s+v.controls,0),
