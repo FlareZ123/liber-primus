@@ -9,7 +9,7 @@ The five physical p7 red words have GF29 word-products **[11,26,8,15,2]**. P8 ha
 
 **Incremental:** preserve the exact six-member cubing-orbit cross-page completion and evaluate fixed source-selected receivers on original ciphertext:
 - Ten period-six GF29 additive/multiplicative/cubic-root maps on full contiguous p8–p14 **1,729 runes**. Maximum IoC **0.034772**; same ten maps with natural **first-black-after-red-header** clock on p8 243 black runes reach IoC **0.033296–0.035507**. No authentic plaintext.
-- Eight cubic-orbit 5D Vandermonde maps on p8 black **243** runes; peak IoC **0.035915**, no plaintext.
+- Eight cubic-orbit 5D Vandermonde maps on p8 black **243** runes in printed source-word order; peak IoC **0.035915**. Eight further maps use the uniquely source-selected *cubing orbit* axis order **[2,8,15,11,26]** after omitting p8's missing M19; peak IoC **0.035813**. All fail.
 - Four fully reversible two-layer interpretations of existing p7 quartic Q=[2,15,8,26,11] cyclic convolution and p8 cube/root19 on the same 243 symbols; candidate IoCs **0.03526851, 0.03309186, 0.03577866, 0.03407816**, no plaintext.
 - Every proposed model has exact original-cipher forward replay and a synthetic known-GP p57 plant inverse. This confirms implementation only, never historical correctness.
 
