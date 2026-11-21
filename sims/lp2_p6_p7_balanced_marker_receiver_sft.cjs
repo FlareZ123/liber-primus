@@ -124,7 +124,7 @@ for (const reset of [false, true]) for (const sign of [-1, 1]) {
 const original = score(invert(0, false));
 assert.equal(original.longWords, 40);
 assert.equal(original.anyLexicon, 0);
-const p57 = solved.split("### 57\n")[1];
+const p57 = solved.replace(/\r\n/gu, "\n").split("### 57\n")[1];
 const clearWords = p57.match(/[A-Z]+/gu) || [];
 const clearGP = clearWords.map(encodeNative);
 assert.deepEqual(clearGP.flat(), gp.pages[57].indices);
