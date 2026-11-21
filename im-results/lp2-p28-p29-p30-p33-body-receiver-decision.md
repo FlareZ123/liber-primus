@@ -84,6 +84,14 @@ All ≤16 legal histories fail at **zero-based p32 offset13**, before the first 
 
 Both p30's p29/G quotient key and p32's source-summed quotient key happen to yield their first forced plaintext-F contradiction at zero-based index13. Their keys and ciphertexts differ; this shared stop index was observed after testing and supplies **no independent proof** of an intended WAY13 alignment or phase-reset instruction. Never rotate either key retrospectively to salvage the failure.
 
+## Literal bitwise signed AND: a different full p32 key (negative)
+
+The signed-source phrase `DIRECTION29 SEEK30 AND31 YOU32` can also read AND as its literal computer-science operation: the 5-bit bitwise AND of the two original quotient-symbol integer values. This distinct receiver uses the exact previously frozen p29/G and p30/J quotients, constant-aligned for 261 common coefficients, with the first 121 bitwise-conjoined values as a one-shot **C−K** key on every original p32 rune. No external key or key-phase fitting was allowed.
+
+The direct GP29 output has **IoC 0.03429752066**, almost identical to original p32 **0.03415977961**, and is nonlinguistic over its entire 121-rune span. The stronger authenticated solved-p56 plaintext-F clock permits exactly **three complete legal histories**, each using precisely one literal F (at p32 zero-based 29, 30, or 42). Their IoCs are **0.03539944904, 0.03539944904, and 0.03402203857**, with no valid original English sentence. The fourth ciphertext F at114 is encrypted non-F in every surviving path; no extra skip assumption is introduced.
+
+Frozen inputs and both allowed cipher clocks were written **before calculating outputs** in [precommit](../workplace/agent5-signed-and-bitwise-p29-p30-p32-precommit.md) `24c5150`. [Read-only SFT](../sims/lp2_signed_and_bitwise_quotient_to_p32_sft.cjs) `09ebb7e` tests exact source arithmetic and ciphertext reconstruction, exhausts all legal F histories, and recovers native solved-p57 GP plaintext planted under the identical direct and F-transparent keys. Thus the bitwise AND reading also fails as an unknown-page decoder. This is a source-motivated *operation choice*, not an author-specified key; no retuning or broadening to free bitwise operations is warranted.
+
 ## Scope and successor criterion
 
 The prospective extension rejects this **one** source-motivated derivative-to-initials interpretation. It does not disprove every use of the p29 root or every historical Cicada operation. The smallest missing input is a first-party instruction specifying a **lossless** target interval, how the DH23 state and DIRECTION/WAY determine a complete receiver, and how output is serialized as GP29/plaintext. The existing signs and navigation words do not specify that information.
