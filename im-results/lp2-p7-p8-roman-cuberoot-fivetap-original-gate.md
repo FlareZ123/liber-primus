@@ -95,3 +95,18 @@ where \(P_i\) is a source-native plaintext GP symbol and \(\pi\) is **any secret
 Untouched original whole p0–p55 contains **389 of11,079** equal first-difference pairs at lag1,876; floral p40–p53 contains **41 of1,131**. Native source controls must be compared to plaintext **GP rune** equalities, *not* differences between native GP runes: nine original-length shifted Gibran controls yield622–726 equal rune pairs for the whole register and53–80 for floral; Shakespeare 610–692 and50–71; Emerson 648–727 and55–85; Latin Vulgate 756–844 and71–91. All exceed their untouched original counterparts. The test therefore rejects this **entire integrated, ciphertext-feedback family**, including every undisclosed 5-rune LFSR seed. A known-native affine-state differential encrypt/decrypt plant recovers all plaintext and satisfies the exact lag-invariance identity.
 
 This eliminates another plausible way to turn the source five-dot/no-repeat observation into a keyed differential stream. It does **not** exclude a cryptosystem whose future state changes in response to ciphertext or plaintext, whose schedule skips particular runes, or whose position resets independently. The key distinction is whether the **full key state repeats exactly after1,876 physical runes**. This section reports a motivated original-input exclusion rather than an unknown-page decryption.
+
+## Direct original five-tap ciphertext-feedback receiver
+
+A further **separately reversible** model uses the same five originally printed products as feedback coefficients on the previous **ciphertext** symbols:
+
+\[
+R_i=C_i-11C_{i-1}-26C_{i-2}-8C_{i-3}-15C_{i-4}-2C_{i-5}
+\pmod{29}=\pi_{K_i}(P_i).
+\]
+
+This receiver is fully specified by source integers, ciphertext and any secret per-state GP29 bijection. The first five original source symbols serve solely as a source-provided initial feedback register; the test begins at original rune index5, with no fitted ciphertext IV, no postselected key, and no changes to text order. For the full book, the untouched five-tap innovation stream has **402 of11,075** lag1,876 equalities; for independently delimited floral p40–p53, **47 of1,127**. Native GP English controls at the matching offsets give Gibran **612–702 /11,075** and **50–79 /1,127**; Shakespeare **610–692** and **50–71**; Emerson **647–726** and **55–85**. Each nine-window Latin Vulgate control also exceeds both originals.
+
+Because a fixed, bijective transformation \(\pi_{K_i}\) repeats whenever the full autonomous source-defined key state repeats, the same **all-keys equality impossibility** applies to this entire 5-tap autoregressive family, regardless of which of 29⁵ initial key states or secret per-state alphabets are used. The fully reversible positive ciphertext-feedback plant in the SFT reconstructs every native control rune after the five-symbol IV. The result excludes a **specific source-motivated reversible feedback architecture**, a materially sharper exclusion than a free additive-key sweep. A feedback cipher that changes its **key-state evolution** based on ciphertext, plaintext, punctuation, or a skipping counter is outside this theorem.
+
+**Most useful next discriminator:** recover a first-party key-state update that provably differs from the autonomous 1,876-period LFSR, or an exact original unknown-page plaintext fragment. Further searches over five source coefficients, fixed phases or secret bijections cannot rescue these three tested receivers without modifying their state law.

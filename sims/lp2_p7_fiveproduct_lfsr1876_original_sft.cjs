@@ -92,6 +92,14 @@ const originalDifferenceGlobal=lagEqual(ciphertextDifferences(unknown),1876);
 const originalDifferenceFloral=lagEqual(ciphertextDifferences(floral),1876);
 assert.deepEqual([originalDifferenceGlobal.n,originalDifferenceGlobal.matches],[11079,389]);
 assert.deepEqual([originalDifferenceFloral.n,originalDifferenceFloral.matches],[1131,41]);
+/** Five-tap source-locked inverse of a ciphertext autoregressive feedback.
+ * @param {number[]} cipher */
+const fiveInnovation=cipher=>cipher.slice(5).map((c,i)=>mod(c-
+  coeff.reduce((sum,a,j)=>sum+a*cipher[i+4-j],0)));
+const originalInnovationGlobal=lagEqual(fiveInnovation(unknown),1876);
+const originalInnovationFloral=lagEqual(fiveInnovation(floral),1876);
+assert.deepEqual([originalInnovationGlobal.n,originalInnovationGlobal.matches],[11075,402]);
+assert.deepEqual([originalInnovationFloral.n,originalInnovationFloral.matches],[1127,47]);
 assert.deepEqual([originalGlobal.n,originalGlobal.matches],
   [11080,375]);
 assert.deepEqual([originalFloral.n,originalFloral.matches],
@@ -163,6 +171,33 @@ for(let offset=0;offset<=40000;offset+=4000){
 }
 assert.ok(nativeDifferenceGlobal.every(x=>x.matches>originalDifferenceGlobal.matches));
 assert.ok(nativeDifferenceFloral.every(x=>x.matches>originalDifferenceFloral.matches));
+const nativeInnovationGlobal=[],nativeInnovationFloral=[];
+for(let offset=0;offset<=40000;offset+=4000){
+  nativeInnovationGlobal.push(lagEqual(native.slice(
+    offset+5,offset+unknown.length),1876));
+  nativeInnovationFloral.push(lagEqual(native.slice(
+    offset+5,offset+floral.length),1876));
+}
+assert.ok(nativeInnovationGlobal.every(x=>x.matches>originalInnovationGlobal.matches));
+assert.ok(nativeInnovationFloral.every(x=>x.matches>originalInnovationFloral.matches));
+/**
+ * Source-five-tap ciphertext-feedback plant:
+ * C_i=Σ_j w_j*C_(i-j)+sigma_(K_i)(P_i) mod29.
+ * It remains exactly reversible for EVERY secret 5-rune ciphertext IV.
+ */
+const innovationCipher=p7.slice(-5);
+for(let i=5;i<firstNative.length;i++){
+  const feedback=coeff.reduce((sum,a,j)=>sum+a*innovationCipher[i-1-j],0);
+  innovationCipher.push(mod(feedback+bijectionAt(firstNative[i],keystream[i])));
+}
+const innovationEmitted=fiveInnovation(innovationCipher);
+const innovationRecovered=innovationEmitted.map((delta,i)=>{
+  const k=keystream[i+5], a=1+(k*7)%28;
+  return mod(pow29(a,27)*mod(delta-k*11));
+});
+assert.deepEqual(innovationRecovered,firstNative.slice(5));
+assert.deepEqual(lagEqual(innovationEmitted,1876),
+  lagEqual(firstNative.slice(5),1876));
 /** Disjoint native historical sources; exact data-derived gates, no threshold tuning. */
 const additionalSources=[
   ['Shakespeare','resources/control/shakespeare_first300k.txt'],
@@ -185,12 +220,20 @@ const additionalControls=additionalSources.map(([name,filename])=>{
   assert.ok(floral.every(x=>x.matches>originalFloral.matches));
   assert.ok(globalDifference.every(x=>x.matches>originalDifferenceGlobal.matches));
   assert.ok(floralDifference.every(x=>x.matches>originalDifferenceFloral.matches));
+  const globalInnovation=sampleOffsets.map(offset=>lagEqual(
+    text.slice(offset+5,offset+unknown.length),1876));
+  const floralInnovation=sampleOffsets.map(offset=>lagEqual(
+    text.slice(offset+5,offset+floral.length),1876));
+  assert.ok(globalInnovation.every(x=>x.matches>originalInnovationGlobal.matches));
+  assert.ok(floralInnovation.every(x=>x.matches>originalInnovationFloral.matches));
   return {name,calibratedRunes:text.length,
     sourceWindows:sampleOffsets.length,
     globalLag1876Same:global.map(x=>x.matches),
     floralLag1876Same:floral.map(x=>x.matches),
     globalLag1876DifferentialModelNativeTarget:globalDifference.map(x=>x.matches),
-    floralLag1876DifferentialModelNativeTarget:floralDifference.map(x=>x.matches)};
+    floralLag1876DifferentialModelNativeTarget:floralDifference.map(x=>x.matches),
+    globalLag1876FiveTapModelNativeTarget:globalInnovation.map(x=>x.matches),
+    floralLag1876FiveTapModelNativeTarget:floralInnovation.map(x=>x.matches)};
 });
 
 assert.ok(nativeGlobal.every(c=>c.matches>originalGlobal.matches));
@@ -211,6 +254,8 @@ console.log(JSON.stringify({
     floralP40toP53:originalFloral,
     integratedDifferentialGlobal:originalDifferenceGlobal,
     integratedDifferentialFloralP40toP53:originalDifferenceFloral,
+    fiveTapInnovationGlobal:originalInnovationGlobal,
+    fiveTapInnovationFloralP40toP53:originalInnovationFloral,
     globalHalfPeriod:lag938
   },
   stateKeyedPermutationPlant:{
@@ -225,6 +270,14 @@ console.log(JSON.stringify({
     exactPlaintextRecovery:JSON.stringify(differentialRecovered)===JSON.stringify(firstNative),
     repeatedPeriodEquality:lagEqual(emittedDifferences,1876)
   },
+  fullFiveTapInnovationPlant:{
+    family:'C_i=sum(w_j*C_(i-j))+secret_state_bijection(P_i) modulo29',
+    originalLength:innovationCipher.length,
+    firstFiveCipherIv:p7.slice(-5),
+    exactPlaintextRecovery:innovationRecovered.length===firstNative.length-5,
+    recoveredRemainder:innovationRecovered.length,
+    repeatedPeriodEquality:lagEqual(innovationEmitted,1876)
+  },
   additionalIndependentNativeSources:additionalControls,
   sourceNativeControls:{
     author:'Kahlil Gibran',
@@ -233,8 +286,10 @@ console.log(JSON.stringify({
     global:nativeGlobal,
     floral:nativeFloral,
     integratedDifferentialNativeGlobal:nativeDifferenceGlobal,
-    integratedDifferentialNativeFloral:nativeDifferenceFloral
+    integratedDifferentialNativeFloral:nativeDifferenceFloral,
+    fiveTapInnovationNativeGlobal:nativeInnovationGlobal,
+    fiveTapInnovationNativeFloral:nativeInnovationFloral
   },
-  result:'No shared 1876-period, always-advancing secret GP29 bijection fits source-native plaintext in the whole book or p40-53, whether the emitted ciphertext is the current permuted rune or is the prior ciphertext plus the permuted rune. Raw and first-difference lag1876 equalities independently fail across all 29^5 keys and all secret per-state bijections.',
-  limitation:'History-dependent nonlinear feedback beyond fixed integrated differencing, clock skips, independent per-page resets, non-GP alphabets and additional layers remain possible. The 19th-prime correspondence does not prove creator intent.'
+  result:'No shared 1876-period GP29 state-keyed bijection fits normal native-language plaintext for all 56 pages or the floral chapter in three original ciphertext receivers: direct, one-lag integrated difference, or source-fixed five-lag autoregressive feedback. All original lag1876 equality gates are seed-independent and immune to all secret per-state alphabet substitutions.',
+  limitation:'Nonlinear feedback changing the key state, clock skips, independent per-page resets, non-GP alphabets, and additional layers remain possible. The 19th-prime correspondence does not prove creator intent.'
 },null,2));
