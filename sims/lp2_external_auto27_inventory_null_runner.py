@@ -16,6 +16,8 @@ import random
 import subprocess
 import sys
 import tempfile
+import time
+import urllib.error
 import urllib.request
 import zipfile
 
@@ -85,8 +87,15 @@ print("AUTO27-NULL-RESULT " + json.dumps({
 def execute(case: int) -> None:
     """Case 0 original, 1..5 reproducible fixed-inventory shuffles."""
     assert 0 <= case <= 5
-    with urllib.request.urlopen(URL, timeout=40) as response:
-        payload = response.read()
+    for attempt in range(8):
+        try:
+            with urllib.request.urlopen(URL, timeout=45) as response:
+                payload = response.read()
+            break
+        except urllib.error.HTTPError as error:
+            if error.code not in (429, 500, 502, 503, 504) or attempt == 7:
+                raise
+            time.sleep(min(6 * (attempt + 1) + case * 2, 35))
     blob_hash = hashlib.sha1(
         ("blob " + str(len(payload)) + "\0").encode("ascii") + payload
     ).hexdigest()
