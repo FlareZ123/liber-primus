@@ -712,7 +712,7 @@ Commit `97686424a80bd5ca6facab9760f06677ce005bab`; content remotely re-read and 
 
 ---
 
-# 2026-11-21T17:xxZ — Director Issue #2065: 2012→2016 OpenPGP human handoff
+# 2026-11-21T17:28Z — Director Issue #2065: 2012→2016 OpenPGP human handoff
 
 Run: `agent2-gpt6-20261121T172209Z-54e48f03-draw5`; lease claimed `2026-11-21T17:22:09.557733Z`.
 
