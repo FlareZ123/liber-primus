@@ -4,22 +4,22 @@
 
 ## Hypothesis and human trigger
 
-The original p39 red triple is \`[27,5,15]\`. As established in the source analysis, the triple can be interpreted as the polynomial \`G(X)=27+5X+15X²\`, with a repeated root in GF29. The source-visible quadratic suggests a compact *direct signal-filter operation* distinct from treating \`G\` as a pseudorandom generator or as a word-number navigation checksum.
+The original p39 red triple is `[27,5,15]`. As established in the source analysis, the triple can be interpreted as the polynomial `G(X)=27+5X+15X²`, with a repeated root in GF29. The source-visible quadratic suggests a compact *direct signal-filter operation* distinct from treating `G` as a pseudorandom generator or as a word-number navigation checksum.
 
-A human solver might apply its three coefficients to successive runes, then reverse the process. The two natural coefficient orientations are \`(a,b,d)=(27,5,15)\` and \`(15,5,27)\`. Both constant terms are invertible modulo 29. This yields a complete local decryptor after only two secret starting runes:
+A human solver might apply its three coefficients to successive runes, then reverse the process. The two natural coefficient orientations are `(a,b,d)=(27,5,15)` and `(15,5,27)`. Both constant terms are invertible modulo 29. This yields a complete local decryptor after only two secret starting runes:
 
-\`\`\`text
+```text
 C[i] = (a*P[i] + b*P[i-1] + d*P[i-2]) mod 29
 P[i] = inverse(a)*(C[i] - b*P[i-1] - d*P[i-2]) mod 29
-\`\`\`
+```
 
-This is a **candidate operation**, not an authenticated instruction to use the red polynomial as a cipher. It is motivated by the actual original quadratic, has only \`29²=841\` possible starts, and supports an exact forward replay that distinguishes a solution from a numerical label.
+This is a **candidate operation**, not an authenticated instruction to use the red polynomial as a cipher. It is motivated by the actual original quadratic, has only `29²=841` possible starts, and supports an exact forward replay that distinguishes a solution from a numerical label.
 
 ## Complete finite inverse and original results
 
-The [standalone Windows CommonJS test](../sims/lp2_p39_red_polynomial_fir_inverse_sft.cjs) reads the canonical original GP29 runes from \`resources/liber-primus/lp2-corpus.json\`. On each named source interval it enumerates every one of the 841 starting pairs, both original/reversed reading directions and both red-coefficient orders. There are no fitted internal transforms or plaintext cribs.
+The [standalone Windows CommonJS test](../sims/lp2_p39_red_polynomial_fir_inverse_sft.cjs) reads the canonical original GP29 runes from `resources/liber-primus/lp2-corpus.json`. On each named source interval it enumerates every one of the 841 starting pairs, both original/reversed reading directions and both red-coefficient orders. There are no fitted internal transforms or plaintext cribs.
 
-To detect actual prose, a fixed smoothed GP29 trigram model is trained on native-orthography Shakespeare plus Emerson (**538,433** runes). The separate withheld Gibran source contains **62,492** encoded runes. It is not in the training model. A 250-rune excerpt beginning at withheld rune offset 5,000 is deliberately encrypted under coefficients \`(27,5,15)\`, seed \`(3,21)\`. Exhaustive key-blind inversion identifies **exactly that seed**, returns **all 250 authentic original plaintext runes**, and re-encrypts them byte-for-byte. Its held-out log-likelihood score is **−2.210972** nats per trigram transition.
+To detect actual prose, a fixed smoothed GP29 trigram model is trained on native-orthography Shakespeare plus Emerson (**538,433** runes). The separate withheld Gibran source contains **62,492** encoded runes. It is not in the training model. A 250-rune excerpt beginning at withheld rune offset 5,000 is deliberately encrypted under coefficients `(27,5,15)`, seed `(3,21)`. Exhaustive key-blind inversion identifies **exactly that seed**, returns **all 250 authentic original plaintext runes**, and re-encrypts them byte-for-byte. Its held-out log-likelihood score is **−2.210972** nats per trigram transition.
 
 | Untouched LP2 receiver | Original runes | Best of four source modes and 841 starts, nats/transition |
 | --- | ---: | ---: |
@@ -39,4 +39,4 @@ The exact, simple quadratic FIR inverse **does not recover native GP29 English o
 
 This does not exclude a different coefficient clock, a convolution over a transformed alphabet, ciphertext-driven feedback, nonlinear equations, nonlocal rune order, or plaintext outside the tested native-orthography register. Such added mechanisms need a new source clue before more parameter searches.
 
-**Reproduction:** [\`sims/lp2_p39_red_polynomial_fir_inverse_sft.cjs\`](../sims/lp2_p39_red_polynomial_fir_inverse_sft.cjs), runs with local repository resources on Windows Node22. Exact original input, both coefficient interpretations, initial states, forward replay, reference-language training split and positive control are specified in the script.
+**Reproduction:** [`sims/lp2_p39_red_polynomial_fir_inverse_sft.cjs`](../sims/lp2_p39_red_polynomial_fir_inverse_sft.cjs), runs with local repository resources on Windows Node22. Exact original input, both coefficient interpretations, initial states, forward replay, reference-language training split and positive control are specified in the script. **Actual execution:** [Windows-portable Node22 SFT, GitHub Actions 44942169635](https://github.com/FlareZ123/liber-primus/actions/runs/44942169635), status **success** against the original repository inputs.
