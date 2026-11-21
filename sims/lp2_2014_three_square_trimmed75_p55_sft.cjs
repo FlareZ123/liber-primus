@@ -170,6 +170,61 @@ for (const order of ["rowMajor", "inwardSpiral", "reverseSpiral"]) {
     }
   }
 }
+
+/**
+ * Complete 76-rune feedback receiver: first physical rune is the IV, all
+ * 75 adjacent differences are consumed. This is mathematically invertible,
+ * unlike discarding an unmatched first rune. No source selects this clock.
+ */
+const sourceDifferences = physical.slice(1).map((v, i) =>
+  (v - physical[i] + 29) % 29
+);
+const feedbackTests = [];
+for (const trial of tests) {
+  const values = stripped.flatMap(matrix => {
+    const row = trial.order === "rowMajor" ? matrix.flat() : spiral(matrix);
+    return trial.order === "reverseSpiral" ? row.reverse() : row;
+  });
+  const mask = values.map(n =>
+    trial.keyTransform === "raw" ? n % 29 : phi(n) % 29
+  );
+  const decoded = shift(sourceDifferences, mask, trial.sign);
+  const recipheredDifferences = shift(decoded, mask, -trial.sign);
+  const reciphered = [physical[0]];
+  for (const increment of recipheredDifferences) {
+    reciphered.push((reciphered[reciphered.length - 1] + increment) % 29);
+  }
+  assert.deepEqual(reciphered, physical, "complete 76-rune inverse");
+
+  const plantedDifferences = shift(control, mask, -trial.sign);
+  const plantedCipher = [physical[0]];
+  for (const increment of plantedDifferences) {
+    plantedCipher.push((plantedCipher[plantedCipher.length - 1] + increment) % 29);
+  }
+  const plantedReadout = shift(plantedCipher.slice(1).map((v, i) =>
+    (v - plantedCipher[i] + 29) % 29
+  ), mask, trial.sign);
+  assert.deepEqual(plantedReadout, control, "complete solved-native planted inverse");
+
+  let cursor = 0;
+  const wordHits = wordLengths.map(length => {
+    const word = decoded.slice(cursor, cursor + length);
+    cursor += length;
+    return {length, known: english.has(word.join(","))};
+  });
+  assert.equal(cursor, 75);
+  feedbackTests.push({
+    order: trial.order, keyTransform: trial.keyTransform, sign: trial.sign,
+    ioc: Number(ioc(decoded).toFixed(9)),
+    longLexiconMatches: wordHits.filter(w => w.length >= 6 && w.known).length,
+    lexiconMatches: wordHits.filter(w => w.known).length,
+    renderedGp: decoded.map(x => gp.translit[x]).join(" ")
+  });
+}
+assert.equal(feedbackTests.length, 12);
+assert.ok(feedbackTests.every(t => t.longLexiconMatches === 0));
+assert.ok(feedbackTests.every(t => t.ioc < 0.04));
+
 assert.equal(tests.length, 12);
 const best = tests.slice().sort((a, b) => b.ioc - a.ioc)[0];
 assert.equal(best.order, "rowMajor");
@@ -186,10 +241,16 @@ process.stdout.write(JSON.stringify({
   trials: tests.map(({order, keyTransform, sign, ioc, chunkIocs}) =>
     ({order, keyTransform, sign, ioc, chunkIocs})),
   best: best,
-  sourceNativePositiveControls: 12,
+  complete76Feedback: {
+    firstRuneAsIv: physical[0], originalDifferenceZeroes: sourceDifferences.filter(x => x === 0).length,
+    trials: feedbackTests.map(({order, keyTransform, sign, ioc, longLexiconMatches, lexiconMatches}) =>
+      ({order, keyTransform, sign, ioc, longLexiconMatches, lexiconMatches})),
+    bestIoc: Math.max(...feedbackTests.map(x => x.ioc))
+  },
+  sourceNativePositiveControls: 24,
   sourceNativeLexiconControl: { gpTypes: english.size, solvedP57Words: 20,
     recognizedP57Words: solvedPositiveCount,
     recognizedP57LongWords: solvedLongPositiveCount,
-    recognizedOriginalCandidateLongWords: 0 },
-  conclusion: "The exact three-25-cell alignment supplies no direct ordinary GP29 plaintext under canonical additive masks or totient masks. Every tested inverse reproduces ciphertext; this is not evidence for an intended operation."
+    recognizedOriginalCandidateLongWords: 0, recognizedFeedbackCandidateLongWords: 0 },
+  conclusion: "Neither fixed original GP additive masks nor invertible first-difference feedback with those masks decrypts the original p55 76-runic cipher into ordinary GP29 English; full reciphering alone is no evidence of an author-selected operation."
 }, null, 2) + "\n");
