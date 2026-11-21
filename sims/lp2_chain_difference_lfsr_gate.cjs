@@ -7,7 +7,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const INPUT = path.join(__dirname, '..', 'resources', 'liber-primus', 'lp2-corpus.json');
-const EXPECTED_CORPUS_BLOB = '054f2a0f780b7d46901acbe3d9bf4f0ac1801165';
+const REFERENCE_CORPUS_BLOB_SHA = '054f2a0f780b7d46901acbe3d9bf4f0ac1801165';
 const corpus = JSON.parse(fs.readFileSync(INPUT, 'utf8'));
 const ciphertext = corpus.pages
   .filter(page => page.page >= 0 && page.page <= 55)
@@ -225,7 +225,7 @@ const binarySequences = [
 const output = {
   input: {
     path: 'resources/liber-primus/lp2-corpus.json',
-    expectedGitBlobSha: EXPECTED_CORPUS_BLOB,
+    referenceGitBlobSha: REFERENCE_CORPUS_BLOB_SHA,
     runeCount: ciphertext.length,
     transitionCount: steps.length
   },
