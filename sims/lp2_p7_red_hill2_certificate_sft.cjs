@@ -220,6 +220,31 @@ const rowPairPlain = rowPairHill2(betweenReds,inverse);
 assert.deepEqual(rowPairHill2(rowPairPlain,matrix),betweenReds);
 assert.ok(Math.abs(29*ioc(rowPairPlain)-0.9832691738229198)<1e-12);
 
+// Source-seeded, fully typed matrix keystream candidate on exactly the
+// 28x11 bracketed gap: initialize one 2D state [p6_red_rune,1] for each
+// column; step it by source M once per row, subtract its first coordinate.
+// There are NO fitted secret parameters, alternate state origins or offsets.
+const p6Red11 = [24,16,14,17,19,6,27,15,17,14,12];
+const states = p6Red11.map(value=>[value,1]);
+/** @type {number[]} */
+const matrixPad = [];
+for(let row=0;row<28;row++) {
+  for(let column=0;column<11;column++) {
+    const [a,b] = states[column];
+    matrixPad.push(a);
+    states[column] = [
+      mod(matrix[0]*a+matrix[1]*b),
+      mod(matrix[2]*a+matrix[3]*b)
+    ];
+  }
+}
+assert.deepEqual(states,p6Red11.map(value=>[value,1]));
+assert.equal(matrixPad.length,betweenReds.length);
+const padPlain = betweenReds.map((cipher,i)=>mod(cipher-matrixPad[i]));
+assert.deepEqual(padPlain.map((plain,i)=>mod(plain+matrixPad[i])),
+  betweenReds);
+assert.ok(Math.abs(29*ioc(padPlain)-1.012712043656669)<1e-12);
+
 const result = {
   classification:"New exact p7 GP29 2x2 matrix+inverse-determinant certificate; direct receiver negative",
   fiveOriginalRedWordProducts:products, matrix, determinant:det,
@@ -248,6 +273,13 @@ const result = {
     decodedNormalizedIoC:29*ioc(rowPairPlain),
     prefix80:rowPairPlain.slice(0,80).map(v=>corpus.translit[v]).join(""),
     exactReencrypt:true
+  },
+  sourceSeededMatrixPad28x11:{
+    p6RedSeed:p6Red11,initialSecondCoordinate:1,
+    sourceOrder:28,columns:11,
+    decodedNormalizedIoC:29*ioc(padPlain),
+    outputPrefix80:padPlain.slice(0,80).map(v=>corpus.translit[v]).join(""),
+    exactReencrypt:true,returnStateExactly:true
   },
   recoveredUnknownPlaintext:false
 };
