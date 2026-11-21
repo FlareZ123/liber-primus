@@ -156,6 +156,12 @@ The **second p7 red word** (four source runes `[22,16,2,25]`) has complete GP29 
 
 The [standalone original-input Roman-to-GP-index SFT](../sims/lp2_p8_roman19_p7_inversion_sft.cjs) freezes all **18 canonical Roman numerals 1..28 with at least three characters** (with historical `V` written as GP `U`) and appends the exact same zero-based GP rune index. It scans **every physical p0–55 rune, 12,956 total**, without modifying boundaries or learning a key. The **only complete occurrence** of any of these 18 Roman+GP templates is **p8 offset0 `XIXM`**, at the source-selected first red word. Shorter Roman forms were intentionally excluded from this particular length-qualified census; this is a post-observation finite census, **not a global probability for deliberate design**.
 
+The **second red p8 word** has complete GP29 product **3**, which is independently also the **second rune** of the first red p7 word `[23,3]`. Reading the **source-printed 23** as a modular DH prime and this **source-printed 3** as exponent gives an exact, *reversible historical operation*:
+
+`15×3≡1 (mod φ(23)=22)`, `5^15≡19 (mod23)`, hence `19^3≡5 (mod23)`.
+
+The result **5** is precisely the **first rune of the third p7 red word**. In the different native GP29 field, the **same fixed p8 operand and exponent** give `19^3≡15 (mod29)`, exactly the previously established product of the fourth p7 red word. The GF29 `B^3=b` relation is **already established** independently in the p28 DH-line inverse-chain work cited by the authoritative synthesis, so this is a new **original p8 Roman/ink selector** for that known exponent, rather than a novel algebraic DH identity. The mod23 inverse is a deterministic consequence of the historical example's `b=15,B=19`, and does not establish authorial selection or independent probability. The accompanying SFT freezes the two source moduli, source values and both exponent outcomes, with no search or fitted key.
+
 This supplies an **independent original-facing candidate reason to select GF29 inverse arithmetic and the operand19** across the p7→p8 boundary. It still does **not** specify an inverse for the remaining 243 black p8 runes, nor recover any unknown LP2 plaintext, key or continuation. Do not turn 19 into an adjustable Caesar shift or search for Roman templates with new length criteria after viewing this match.
 
 ## Remaining missing input and next decision
