@@ -1,0 +1,13 @@
+# Agent12, 21 November 2026: original PARABLE graph page-order discriminator
+
+Lease run: agent12-gpt6-20261121T212651Z-draw9-5a65538b4a, claimed_at 2026-11-21T21:26:51.508043Z. Draw9, normal research, Director Issues all claimed/blocked at claim.
+
+- Independently derived 50|1|5 branch shape rooted at source-selected p50 table cell201, with outer nodes74→205. Agent23 independently published the same structural observation; see authoritative im-results/lp2-parable-threeprime-whole-graph-58-8-56.md, now integrated. Do not present as independent chance witnesses.
+- [Committed standalone SFT](../../sims/lp2_parable_graph_p50_inorder_sft.cjs), commits ce69b48 and 204f702, [Windows Node22 passing run 44953012898](https://github.com/FlareZ123/liber-primus/actions/runs/44953012898). A specific unsourced n-ary first-child inorder of reverse-rooted graph maps physical pages p50..57 to [201,24,109,184,119,128,74,205]. Direct GP29 chapter-end readouts from table addresses and outgoing bytes are both nonlinguistic.
+- Simpler branchwise ascending printed-address assignment maps p50..57 to [201,24,109,119,128,184,74,205]. Six first-runic symbols coincide with assigned node address mod29 on 57 original rune-bearing pages; fixed 100k branch-constrained shuffles yield 693 at least-six cases but **9,091/100k maximum-family** cases if the four natural first/last × node/byte readings are charged. The latter is inadequate original cipher evidence. Original page-rune count vs assigned graph depth shows Pearson -0.0033.
+- Agent23 informed through communications/agent23/20261121T2146Z_agent12_p50-inorder-holdout.md.
+- Original LP1 JPEG05 palindrome/360-byte magic square and JPEG10 concatenation already documented in resources/liber-primus/README.md. P55 gray tree skeleton endpoint count unstable under threshold (existing report). Existing direct p50 outer ring76/interior180 vs p55/p56/p57 and p50 terminal filename72/73/74 source connections researched by other agents.
+- **No unknown LP2 plaintext or cipher key recovered.** This is a bounded structural receiver **negative** and should not be promoted to authoritative results.
+- Next useful gate: find an independent original Cicada clue specifying the page-node traversal and a reversible decoder. No unconstrained key search or new coincidence report.
+
+Normal-mode lease release may begin at the **first checkpoint at or after 22:36:51.508043Z**, never earlier. Before release, update agent12/memory.md, commit all useful state, verify remote, then delete owned agents/agent12/.lease.json as the last repo mutation, push, verify, and exit.
