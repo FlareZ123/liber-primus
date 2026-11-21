@@ -424,6 +424,60 @@ assert.equal(Math.max(...direct32Results.map(r => r.dictionaryHits)), 0);
 assert(Math.abs(Math.max(...direct32Results.map(r => r.normalizedIC)) -
   1.242857142857143) < 1e-12);
 
+
+/* Independent new whole-book hypothesis from the same three frozen 2013
+ * prime ordinals: under base60 their original p50 pointer nodes have
+ * subtree sizes 58,8,56. Particularly 201 -> 74 -> 205 is the unique
+ * 56->57->58 ancestor chain: exact count of all LP2 pages, then the
+ * 56 encrypted and two clear terminal pages. Existing signed 2016
+ * THE(20)->DEVOTED(102) is another 56->57 ancestry. This structural
+ * association is retrospective and is not an authenticated page decoder.
+ */
+const parent60 = allTokens.map(token => readToken(token, 60));
+/** @param {number} from @returns {number[]} */
+function orbit60(from) {
+  const seen = new Set(), visited = [];
+  let node = from;
+  while (!seen.has(node)) {
+    seen.add(node);
+    visited.push(node);
+    node = parent60[node];
+  }
+  return visited;
+}
+/** @param {number} target @returns {number[]} */
+function descendants60(target) {
+  return Array.from({length: 256}, (_, i) => i)
+    .filter(i => orbit60(i).includes(target));
+}
+const graphSizes60 = Array.from({length: 256}, (_, i) => descendants60(i).length);
+assert.deepEqual(ranks.map(i => graphSizes60[i]), [58, 8, 56]);
+assert.deepEqual([parent60[201], parent60[74], parent60[205]], [74, 205, 76]);
+assert.deepEqual([201, 74, 205].map(i => graphSizes60[i]), [56, 57, 58]);
+assert.deepEqual([20, 102].map(i => graphSizes60[i]), [56, 57]);
+assert.equal(parent60[20], 102);
+assert.equal(parent60[102], 32);
+assert.equal(parent60[32], 115);
+assert.deepEqual(Array.from({length: 256}, (_, i) => i)
+  .filter(i => graphSizes60[i] === 58), [205]);
+assert.deepEqual(Array.from({length: 256}, (_, i) => i)
+  .filter(i => graphSizes60[i] === 57), [74, 102]);
+assert.deepEqual(Array.from({length: 256}, (_, i) => i)
+  .filter(i => graphSizes60[i] === 56), [20, 201]);
+const s56 = new Set(descendants60(201)), s57 = new Set(descendants60(74));
+const s58 = new Set(descendants60(205));
+assert.deepEqual([...s57].filter(i => !s56.has(i)), [74]);
+assert.deepEqual([...s58].filter(i => !s57.has(i)), [205]);
+assert.equal(descendants60(173).length, 8);
+assert.equal(parent60[173], 117);
+assert.equal(readToken(allTokens[173], 59), 115);
+assert.equal(parent60[32], readToken(allTokens[173], 59));
+assert.equal(readToken(allTokens[205], 60), gp.pages[55].indices.length);
+assert.equal(readToken(allTokens[205], 59), body.length);
+const fullManuscriptLadder = [201, 74, 205].map(i => ({
+  address: i, token: allTokens[i], parent: parent60[i], subtree: graphSizes60[i],
+}));
+
 console.log(JSON.stringify({
   sourcePrimeSums: clauseSums,
   originalP50PrimeRanks: ranks,
@@ -438,5 +492,8 @@ console.log(JSON.stringify({
   page32BlurVariants: blurResults,
   page32SourceBody: {carriedOpeningRune:20,completeRunes:body32.length,fullWords:page32Words.length,longWords:long32.length,normalizedIC:normalizedIC(body32)},
   page32DirectVariants: direct32Results,
+  base60ManuscriptLadder: fullManuscriptLadder,
+  sourcePrimeOrdinalSubtrees: ranks.map(i => ({address:i, token:allTokens[i], subtree:graphSizes60[i]})),
+  signedTheDevotedSubtreeCounts: [20,102].map(i => graphSizes60[i]),
   control: "4/4 raw and 8/8 phi p55 replays/plants 75/75; 4/4 p32 blur 121/121 and 16/16 p32 direct 120/120",
 }, null, 2));
