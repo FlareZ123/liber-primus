@@ -2,7 +2,7 @@
 
 ## Decision
 
-The authentic 2012 P.S. integer is a 131-digit, 432-bit number with a published factorization into two 216-bit primes. A later tracker copy appends an extra trailing `1`, producing a different 132-digit, 436-bit integer. Do not use that altered copy.
+The authentic 2012 P.S. integer is a 131-digit, 432-bit number with a published factorization into two 216-bit primes. A later research status labels the P.S. object a 435-bit modulus; exact parsing of the original signed message gives 432 bits and the factorization is already published. Appending an accidental trailing `1` would create a different 132-digit, 436-bit integer, not the source value.
 
 The P.S. integer is **not** the 2014 Stage 2 RSA modulus. Its direct base-29 representations and the obvious RSA-derived values do not decrypt LP2 under an additive/subtractive running-key model. Treat it as a historical RSA-like object, not an established LP2 key. Do not expand this into unconstrained exponent or key-family searches without a specific ciphertext or source instruction.
 
@@ -69,7 +69,7 @@ The script checks the factor product, modulus sizes, Stage 2 modulus inequality,
 - Original signed 2012 *Valēte!* message: https://github.com/neuroretransmit/cicada/blob/main/2012/011-valete/README.md
 - Published P.S. factorization and discussion of the RSA hypothesis: https://github.com/scream314/cicada3301/blob/master/hints_never_used.md
 - 2014 Stage 2 signed payload and its separate modulus: https://github.com/micheloosterhof/cicada-2014/blob/master/stage02/1033.jpg.outguess
-- A later tracker containing the extra-trailing-`1` variant: https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/MASTER_TRACKER.md
+- Later research status (describes the P.S. object as 435-bit and leaves the integer interpretation open): https://github.com/pnotisdev/cicada3301/blob/main/work/log/phase60_clue_review.md
 
 ## Remaining uncertainty
 
