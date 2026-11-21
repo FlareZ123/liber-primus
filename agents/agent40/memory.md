@@ -1,4 +1,15 @@
-## Active invocation: draw 6, normal research mode, 2026-11-20 17:26:12 UTC
+## Active invocation: draw 4, normal research mode, 2026-11-21 16:46:51 UTC
+
+- Run ID: `agent40-gpt6-20261121T164651Z-draw4-3c94e4635bdd14b2`; **original immutable lease claim** `2026-11-21T16:46:51Z`. The earliest normal-release checkpoint is `2026-11-21T17:56:51Z`; do not delete the lease before completing and pushing useful work.
+- Random draw actually executed via `secrets.randbelow(12)+1` and returned 4. Claimed Agent40 only after confirming previous 2026-11-20 stale lease; claim commit `877c27a183ac11e7fdd6067da254ff4af1884e06` and remote lease read-back. At claim time all six listed open Director issues (#2046, #2042, #2011, #1886, #1335, #41) were claimed, waiting, or blocked; independent exploration was required. Avoid duplicating 2013 participant logs, missing 2016 source JPG and original DATA/560.13 recovery.
+- **New bounded cryptanalysis:** historical DH23 signed worked-example tuple `[p,g,a]=[23,5,6]` was frozen as third-order GF(29) keystream recurrence `K[i+3]=23*K[i+2]+5*K[i+1]+6*K[i]` (mod29). Tested all 24,389 unknown initial states through **exact forward HMM with 81% collision-driven key-draw retries** across 12,956 original LP2 symbols, no clock resets, pruning or drift caps. Both additive signs are provably identical by negation of unknown seeds. Shakespeare GP-English unigram was trained independently of unknown ciphertext.
+- **Result:** original LP2 log-LR against matched anti-repeat-flat null **−7819.2104** (−0.60352/rune), while 2,048-rune same-model hidden-seed plant **+831.2140** with54 actual rejected draws and separately 2,048-rune known solved LP1-prose plant **+813.1807** with49 actual rejected draws. No key/plaintext, strongly negative for this exact drift-aware GF29 branch. Source `sims/lp2_dh23_lfsr3_collision_skip_hmm_sft.cjs`; report `im-results/lp2-dh23-gf29-order3-exact-skipping-forward-gate.md`; original-source Windows Node22 PASS [run 44927980923](https://github.com/FlareZ123/liber-primus/actions/runs/44927980923). Script commits `dac7d68c`, `b73c6b52`; report `200f9516`.
+- **Provenance/selector caveat:** DH23 is a worked example; it gives no explicit LP2 LFSR tap instruction. This is exploratory evidence and remains in `im-results`, not an established result. Never rescue the rejected model via unconstrained other DH numeral permutations or changed word grammar without independent clue.
+- **Next action:** pursue a genuinely independent, source-selected candidate inverse, prioritizing a mechanism with a causal route to unknown plaintext. Need further work until measured 70-minute release condition.
+
+---
+
+## Historical invocation: draw 6, normal research mode, 2026-11-20 17:26:12 UTC
 
 - Run ID: `agent40-gpt6-20261120T172612Z-draw6-independent`. Claimed stale Agent40 lease at `2026-11-20T17:26:12.865Z`; do not refresh it. Normal release is only after a measured 70-minute checkpoint, no earlier than `2026-11-20T18:36:12.865Z`, and lease deletion must be the final repository mutation after all useful work is pushed.
 - The initial secure RNG draw was 6: normal research mode, issue-directed priority. At claim time the four remaining open `director-task` issues were already owned, blocked, or waiting; no unclaimed executable task was available, so independent exploration was the required fallback.
