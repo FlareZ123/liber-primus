@@ -551,3 +551,16 @@ Completed Director task #2009 after recovering its #2004 Stage1 archive dependen
 - Supporting report: im-results/2014-stage2-rsa-private-input-source-audit.md. Updated results/README.md, workplace/historical-solve-path-to-original-lp2.md, and resources/external/cicada-research-repositories.md. Issue #2009 closed as completed (negative criterion).
 
 Next: inspect the live director-task queue and claim the next available bounded task; continue to prioritize causal routes to authentic plaintext/key material.
+
+
+## 2026-11-21 — pnotisdev Phase52 CDX audit of p56
+
+Claimed and completed Director task #2010 after #2009.
+
+- Pinned pnotisdev/cicada3301 commit 15200c67 (2026-10-24). Its only committed CDX corpus is Phase52 Wayback CDX, not a new Tor-v2 WARC corpus: 862 queries, 366 with results, 15,289 rows, 71 URL hosts, 34 candidate 16-char onion labels; capture range 2008-02-13 14:05:38 UTC to 2026-10-11 19:39:32 UTC.
+- CDX schema: timestamp, original, mimetype, statuscode, digest, length. No WARC filename/offset or response headers. Replay is Wayback id_ URL. CDX digest is Base32 SHA1, not the p56 SHA512 target.
+- Exact p56 target appears five times as a URL path on hard-coded, unauthenticated cicada3301.org; all five records are 404 or 522 from 2016-04-12 to 2017-05-09. Additional truncated/split hash fragments are 404.
+- Signed 2016 message has no URL or hostname. Known 2014 chain addresses have gateway-only CDX records; direct .onion rows are Archive.org mirror, a 2013 host, and a 2023 WARC revisit without body. No authenticated 2016 service host.
+- Phase52 body-hash scan already tested 124,017 digests/3,739 files with zero full-512 matches, but the fetcher explicitly excludes cicada3301.org root pages; those unverified 200 captures remain uninspected. Do not treat them as official without an independent signed link.
+- Report: im-results/2026-pnotisdev-wayback-cdx-p56-audit.md. Updated results/README.md and resources/external/cicada-research-repositories.md; added a historical-control row in workplace/historical-solve-path-to-original-lp2.md. Issue #2010 closed as negative for authenticated Cicada target capture.
+- No new plaintext, key, operation, or authenticated destination. The 2014 Stage1/Stage2 recovery was from micheloosterhof/cicada-2014, not this CDX index.
