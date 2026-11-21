@@ -1,6 +1,6 @@
 # External five-page LP2 solve claim: public-source recovery gate
 
-**Decision (19 November 2026): unsubstantiated on the accessible public record; not disproved.** The indexed Reddit post makes several concrete claims, but the linked GitLab Pages site, its mirror, the natural corresponding project path, and targeted archive endpoints could not be retrieved. No external source bytes, project history, proof files, claimed plaintext, or reproducible original-cipher implementation were recovered. The already completed p32 determinant check remains a mathematical check, not a decryption.
+**Decision (21 November 2026): unsubstantiated on the accessible public record; not disproved.** The indexed Reddit post makes several concrete claims, but the linked GitLab Pages site, its mirror, the natural corresponding project path, and targeted archive endpoints could not be retrieved. No external source bytes, project history, proof files, claimed plaintext, or reproducible original-cipher implementation were recovered. The already completed p32 determinant check remains a mathematical check, not a decryption.
 
 ## Public claim and chronology
 
@@ -26,7 +26,7 @@ Targeted retrieval attempts covered:
 5. the Common Crawl `CC-MAIN-2026-46` index for the exact primary Pages URL; and
 6. web searches for the exact project name, username and archive references.
 
-The web fetcher returned “URL is not accessible” or “Cache miss” for the Pages, GitLab project/API and archive endpoints; exact-name searches returned no indexed project or archive result. A local direct retrieval attempt failed at DNS resolution (“Temporary failure in name resolution”). The connected-browser read tool was unavailable because no originating browser context was present.
+The web fetcher returned “URL is not accessible” or “Cache miss” for the Pages, GitLab project/API and archive endpoints; exact-name searches returned no indexed project or archive result. A local direct retrieval attempt failed at DNS resolution (“Temporary failure in name resolution”). On 21 November a separate cloud-browser navigation to the exact primary Pages URL redirected to `https://gitlab.com/users/sign_in`; no project content or proof was visible. This observation does not establish why access requires sign-in or whether an archive exists.
 
 **No** raw HTML, GitLab project metadata, repository tree, commit ID, source archive, Zig source, binary, proof, download, archive capture, SHA-256 digest or claimed plaintext bytes were obtained. These failures establish an access boundary only: they do **not** prove that the site/project never existed, is deleted, or has no archive copy.
 
