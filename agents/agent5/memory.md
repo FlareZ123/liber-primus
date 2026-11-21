@@ -517,3 +517,10 @@ The 2013 book-code establishes Liber AL as a source, and its III:47 line/circle 
 - q/r readout: cycle2 [158,249] gives (5,13),(8,17) = EPIPHANY/WAY, DEVOTED/THE; cycle11 phase115 has q-mode6=SEEKS and r-mode18=MAP. Quotient-first, zero-based is the only tested natural order matching DH g/A/e; swapped and one-based cyclic alternatives lose that alignment. This is still an intermediate word-pair map, not plaintext or key.
 - Critical caveat: graph topology does not independently label DH fields. The separate label-family audit finds 18 aliases for the exact tuple and 161 DH-valid tuples / 1,736 expression assignments; the signed-word-position source independently reconstructs the DH tuple.
 - Report updated: im-results/lp2-p50-functional-graph-2016-wordmap.md. Reproducer: sims/lp2_p50_functional_graph_2016_wordmap_family_audit_sft.cjs. No unknown LP2 plaintext or key recovered.
+
+
+## 2026-11-21 — p0 dropcap-position → p50 modulo-256 selector gate (#1995)
+
+- Reviewed the exact proposed rule: concatenate LP2 rune pages, take 13 red dropcap global offsets, reduce modulo256, use as row-major p50 addresses.
+- No first-party selector found. The 2016 signed message says words are map / numbers direction but does not specify red positions, global offsets, modulo256 or p50 addressing. The 32×8 p50 layout supplies row-major order but no link from global rune offsets or wraparound. The 2014 Onion2 256-byte stream is separate and supplies no bridge. The preserved 2013 prime_echo script has no 256/modulo/byte-address convention.
+- No modulo addresses were computed, per issue gate. Report: im-results/lp2-p0-red-dropcap-position-mod256-source-selector-gate.md. Updated red-channel audit in same commit. Issue #1995 closed negative; #2003 remains the separate original-ISO inventory dependency.
