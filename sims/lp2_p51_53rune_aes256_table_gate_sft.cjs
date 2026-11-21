@@ -73,6 +73,11 @@ const cbcZero=decipher('aes-256-cbc',ciphertext,Buffer.alloc(16));
 const ecb=decipher('aes-256-ecb',ciphertext,null);
 const ctrZero=decipher('aes-256-ctr',ciphertext,Buffer.alloc(16));
 const cbcPrefixIV=decipher('aes-256-cbc',ciphertext.subarray(16),ciphertext.subarray(0,16));
+const xors = {
+  key32Repeated: Buffer.from(ciphertext.map((v,i)=>v ^ key[i%32])),
+  key32PerGridRow: Buffer.from(ciphertext.map((v,i)=>v ^ key[Math.floor(i/8)])),
+  interior53GpIndicesRepeated: Buffer.from(ciphertext.map((v,i)=>v ^ interior[i%53]))
+};
 const output={
   hypothesis:'Whole printed word circumference removal, 53 GP29-digit base29 big-endian 256-bit key, original contiguous 256-byte table',
   source:{firstWord:page51[0].map(i=>book.translit[i]).join(''),
@@ -84,7 +89,10 @@ const output={
     aes256EcbNoPadding:describe(ecb),
     aes256CbcZeroIvNoPadding:describe(cbcZero),
     aes256CtrZeroCounter:describe(ctrZero),
-    aes256CbcFirst16BytesAsIvNoPadding:describe(cbcPrefixIV)
+    aes256CbcFirst16BytesAsIvNoPadding:describe(cbcPrefixIV),
+    xorKey32Repeated:describe(xors.key32Repeated),
+    xorKey32PerGridRow:describe(xors.key32PerGridRow),
+    xorInterior53GpIndicesRepeated:describe(xors.interior53GpIndicesRepeated)
   },
   caution:'AES and the mode/IV are not specified by original art. Output must be independently plaintext or a cryptographically identified structured payload; bytes which merely fit a 256-bit key are not an authenticated AES key.'
 };
