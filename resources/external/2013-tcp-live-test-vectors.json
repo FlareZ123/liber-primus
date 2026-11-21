@@ -1,5 +1,5 @@
 {
-  "classification": "mixed provenance: the TCP protocol specification is authenticated by a separate signed 2013 artifact; the participant/server session transcript remains secondary and is not OpenPGP-signed as a whole",
+  "classification": "Mixed provenance: the TCP protocol specification is authenticated by Cicada's 2013 signing key; participant/server transcripts are contemporaneous but not OpenPGP-signed as a whole. The March DH3301 transcript's subsequent NEXT payload is independently signed. Tor hidden-service instructions and the participant server's localhost binding mean 127.0.0.1 log addresses are expected and do not establish self-testing.",
   "archiveCommit": "ade9a02889ef8acbc8cde8edbfd0a785c369f4c3",
   "sources": [
     {
@@ -76,6 +76,36 @@
         ]
       },
       "provenanceNote": "The protocol requires the participant server to select the DH base and server secret. Those values, its public share, and the resulting shared key therefore depend on participant-side randomness. The request arguments 1033 and 3301 are the stable organizer-side test values. The exact seven RAND response bytes are transcribed in observed.randResponses/randByteSequence; they are participant-session outputs, not organizer-selected key material."
+    },
+    {
+      "role": "full participant server transcript of a January 2013 DH file-size-modulus exchange",
+      "url": "https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/clientlog-1359224026-2.txt",
+      "observed": {
+        "timestamp": "2013-01-26 18:14:03.388",
+        "dhModulus": 118818811,
+        "serverSelectedBase": 65551251,
+        "serverSelectedSecret": 65974449,
+        "serverPublic": 76477436,
+        "clientPublic": 123,
+        "sharedKeyReturned": 8686271,
+        "derivedClientExponent": 44073865,
+        "derivedClientExponentMethod": "unique discrete logarithm: base^x = clientPublic (mod p); base has multiplicative order p-1"
+      },
+      "provenanceNote": "The signed TCP specification assigns modulus and client public share to the client, while the participant server selects its own base and secret. The participant server binds to localhost and the instructions require publishing it as a Tor hidden service, so loopback is consistent with remote onion forwarding. This Jan26 log has no signed NEXT payload; treat the client as a plausible Cicada test client, not a cryptographically authenticated organizer identity. The modulus equals the declared byte size of DATA/560.13 and is discussed as a data-file size in the contemporaneous IRC archive. No LP2 selector or downstream consumer for this session's shared value/exponent is established."
+    },
+    {
+      "role": "full participant server transcript of a January 2013 small-modulus DH exchange",
+      "url": "https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/clientlog-1359239635-3.txt",
+      "observed": {
+        "timestamp": "2013-01-26 22:35:47.064",
+        "dhModulus": 5,
+        "serverSelectedBase": 3,
+        "serverSelectedSecret": 3,
+        "serverPublic": 2,
+        "clientPublic": 3,
+        "sharedKeyReturned": 2
+      },
+      "provenanceNote": "A complete participant-side exchange, but no signed NEXT payload or other session-level organizer authentication is preserved. It is a live-protocol record, not the signed DH23 worked example."
     }
   ],
   "stableOrganizerTestVector": {
@@ -94,5 +124,105 @@
     "verification": "Good signature / VALIDSIG with resources/control/cicada-3301-public-key.asc; full verification and limitations in 2013-tcp-server-signed-source.md",
     "scope": "Authenticates BASE29/DH/NEXT protocol specification; does not authenticate first-onion NUMBER/PRIMES/COUNT grammar or participant DH log as a whole"
   },
-  "provenanceNote": "The signed TCP challenge is a separate authenticated protocol specification. The DH3301 values in the participant transcript remain participant-recorded; the March NEXT payload verifies independently, but this does not sign the preceding exchange."
+  "provenanceNote": "The signed TCP challenge is a separate authenticated protocol specification. It says the participant server chooses its DH base and secret, while the client supplies the modulus and public share. The participant logs are secondary and not signed as a whole. The March DH3301 session's subsequent NEXT payload is independently signed; this authenticates the payload and supports organizer involvement, but does not sign the preceding DH exchange. The January DH118818811 session has no signed NEXT payload. Because the server instructions require a Tor hidden service and the server binds to localhost, 127.0.0.1 log addresses are expected under Tor forwarding and are not evidence of a local self-test.",
+  "ircEvidence": [
+    {
+      "role": "contemporaneous participant discussion of the two prime-sized data files",
+      "url": "https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/%23ARG.freenode.log",
+      "lines": [
+        13316,
+        13321
+      ],
+      "excerpts": [
+        "2013 Jan 10 12:52 <Ymgve> anyone tested stuff with 1183811 and 118818811?",
+        "2013 Jan 10 12:52 <Ymgve> the file sizes of two of the data files",
+        "2013 Jan 10 12:53 <Ymgve> curiously enough, the third data file is not of size prime",
+        "2013 Jan 10 12:54 <Ymgve> also, what's up with the file names 560.xx",
+        "2013 Jan 10 12:55 <Tech1_Phone> the .13 and .17 is easy enough"
+      ],
+      "classification": "Contemporaneous community discussion, not an authenticated creator instruction.",
+      "significance": "A plausible human-visible prompt to test the two prime file sizes as DH moduli and to relate them to the 560.xx data-file names."
+    },
+    {
+      "role": "follow-up discussion of the same two file-size numbers and an XOR suggestion",
+      "url": "https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/%23ARG.freenode.log",
+      "lines": [
+        18712,
+        18717
+      ],
+      "excerpts": [
+        "2013 Jan 13 01:34 <soulseekah> 118818811",
+        "2013 Jan 13 01:34 <soulseekah> 1183811",
+        "2013 Jan 13 01:35 <soulseekah> shave off the sides and xor",
+        "2013 Jan 13 01:35 <Ymgve> 818 ^ 3 = 817!"
+      ],
+      "classification": "Contemporaneous community hypothesis; exact target and operation remain unresolved."
+    },
+    {
+      "role": "later confirmation of the 118818811-byte size discussion",
+      "url": "https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/%23ARG.freenode.log",
+      "lines": [
+        21901,
+        21905
+      ],
+      "excerpts": [
+        "2013 Jan 14 21:29 <Ymgve> to be 118818811 bytes long",
+        "2013 Jan 14 21:29 <soulseekah> sempf, when you're inside the cicada os"
+      ],
+      "classification": "Contemporaneous community discussion."
+    },
+    {
+      "role": "later community inventory of the 560.13/560.17 data-file sizes",
+      "url": "https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/%23cicada3301.freenode.log",
+      "lines": [
+        119,
+        123
+      ],
+      "excerpts": [
+        "2014 Jan 05 18:58 <doodleninja> 13 17 DATA FILES (118818811 and 1183811; size of data files)",
+        "2014 Jan 05 18:58 <doodleninja> 761.mp3",
+        "2014 Jan 05 18:58 <doodleninja> 571 577 resolution of first original image"
+      ],
+      "classification": "Later community discussion, not independent first-party evidence."
+    },
+    {
+      "role": "later community observation that 118818811 is a palindromic prime",
+      "url": "https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/%23cicada3301.freenode.log",
+      "lines": [
+        1744,
+        1769
+      ],
+      "excerpts": [
+        "2014 Jan 06 03:11 <cluosh> i wonder if they produced 118818811 bytes of garbage for no actual reason",
+        "2014 Jan 06 03:20 <Lurker69> > produced 118818811 bytes of garbage  another palindromic prime",
+        "2014 Jan 06 03:22 <Lurker69> 118818811 is tetradic prime with a prime sum of digits."
+      ],
+      "classification": "Later community analysis."
+    }
+  ],
+  "dataFileSizeCrossReference": {
+    "sizeBytes": 118818811,
+    "file": "DATA/560.13",
+    "evidence": "The public Git-LFS pointer declares 118818811 bytes; the 2013 IRC discussion independently names 118818811 as one of the data-file sizes and discusses 560.xx filenames. The 2013 CicadaOS README identifies DATA/560.13 among the three data files and notes that its OpenPGP file-type identification is a false positive.",
+    "exactEquality": "DH modulus 118818811 equals the declared DATA/560.13 byte length.",
+    "secondPrimeFileSize": 1183811,
+    "secondSizeProperties": "prime, palindrome, digit sum 23",
+    "firstSizeProperties": "118818811 is prime, palindrome, digit sum 37",
+    "caution": "The IRC excerpts do not themselves map each size to a specific extension; only the 118818811 = DATA/560.13 size equality is independently matched here. No content recovery is claimed."
+  },
+  "derivedCandidate": {
+    "dh118818811": {
+      "modulusPrime": true,
+      "modulusMinusOneFactorization": "2 × 3^2 × 5 × 11 × 257 × 467",
+      "serverBaseOrder": 118818810,
+      "serverBaseIsPrimitiveRoot": true,
+      "clientExponent": 44073865,
+      "verification": "65551251^44073865 mod 118818811 = 123",
+      "serverPublicVerification": "65551251^65974449 mod 118818811 = 76477436",
+      "sharedKeyVerification": "123^65974449 mod 118818811 = 8686271",
+      "classification": "Derived candidate client exponent/shared value from a contemporaneous participant transcript; client identity not cryptographically authenticated at session level."
+    },
+    "lp2SelectorStatus": "No LP2 selector for 118818811, 44073865, or 8686271 is established. The existing LP2-native route selects DH 3301 and client share 2800; it does not select this January session's state.",
+    "receiverStatus": "No source-defined KDF, rune/byte serialization, or LP2 ciphertext receiver for the January session's shared value is established."
+  }
 }
