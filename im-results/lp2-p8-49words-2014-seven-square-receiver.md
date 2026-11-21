@@ -29,7 +29,7 @@ None of the sixteen reversible GF29 matrix operations yields legible GP-native p
 
 Example of the historically motivated **prime-sum, inverse row** 49-rune readout: `D O N R L F A H O I R C TH H IA G D IA P F S M X L W P X EO M NG R U A OE EA H X R O P R W H N O S D TH S`. This is GP-rune transliteration, not plaintext.
 
-The source-reconstructed inputs, precise numerical matrix, inversion, complete sixteen-model inverse controls and observed outputs are in [the original-source Windows/Node22 SFT](../sims/lp2_p8_49words_2014_7x7_square_receiver_sft.cjs). [Windows Node22 run 44943069804 passed](https://github.com/FlareZ123/liber-primus/actions/runs/44943069804). Its test does not assume English word boundaries in the 49-symbol extracted message, so a decisive positive would have been a coherent continuous GP rune phrase. The existing broader square-vs-page rune-stream tests did **not** cover this distinct 49-*word*-sum matrix receiver.
+The source-reconstructed inputs, precise numerical matrix, inversion, complete sixteen-model inverse controls and observed outputs are in [the original-source Windows/Node22 SFT](../sims/lp2_p8_49words_2014_7x7_square_receiver_sft.cjs). [Windows Node22 original-eight run 44943069804 passed](https://github.com/FlareZ123/liber-primus/actions/runs/44943069804), as did [the sixteen-case source-product extension, run 44943436899](https://github.com/FlareZ123/liber-primus/actions/runs/44943436899). Its test does not assume English word boundaries in the 49-symbol extracted message, so a decisive positive would have been a coherent continuous GP rune phrase. The existing broader square-vs-page rune-stream tests did **not** cover this distinct 49-*word*-sum matrix receiver.
 
 ## Research decision
 
