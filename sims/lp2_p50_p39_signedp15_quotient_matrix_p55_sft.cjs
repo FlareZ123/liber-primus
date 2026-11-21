@@ -28,6 +28,8 @@ const root=path.resolve(__dirname,"..");
 const read=file=>fs.readFileSync(path.join(root,file),"utf8");
 const c=JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const table=JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
+const transcription=read("resources/liber-primus/lp2-transcription.txt");
+const lp1Reference=read("resources/liber-primus/lp1-plaintext-reference.txt");
 const B=table.bytes;
 assert.equal(B.length,256);
 assert.equal(crypto.createHash("sha256").update(Buffer.from(B)).digest("hex"),
@@ -152,6 +154,163 @@ function ioc(seq){
 }
 const solved=c.pages[57].indices;
 assert.equal(solved.length,95);
+
+function encodeGP(text){
+  const tokens=c.translit.map((token,index)=>({token,index})).sort((a,b)=>b.token.length-a.token.length);
+  const out=[];
+  for(const word of text.trim().split(/\s+/u)){
+    for(let i=0;i<word.length;){
+      const found=tokens.find(x=>word.startsWith(x.token,i));
+      if(!found)throw new Error("No GP token at "+word.slice(i));
+      out.push(found.index);
+      i+=found.token.length;
+    }
+  }
+  return out;
+}
+function firstPrimes(n){
+  const out=[];
+  for(let x=2;out.length<n;x++){
+    let prime=true;
+    for(let d=2;d*d<=x;d++)if(x%d===0){prime=false;break;}
+    if(prime)out.push(x);
+  }
+  return out;
+}
+const p56Plain=encodeGP("AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE");
+assert.equal(p56Plain.length,85);
+assert.equal(p56Plain[56],0);
+const p56Cipher=c.pages[56].indices;
+const p56Totients=firstPrimes(90).map(p=>p-1);
+let p56Clock=0;
+const p56Recreated=p56Plain.map(v=>v===0?0:mod(v+p56Totients[p56Clock++]));
+assert.deepEqual(p56Recreated,p56Cipher);
+assert.equal(p56Clock,84);
+
+const lp1Only=lp1Reference.split(/^### 56\s*$/m)[0];
+const reference=lp1Only.split(/\r?\n/).filter(x=>x.trim()&&!x.trim().startsWith("#")&&!x.trim().startsWith("[")&&!/^\d/.test(x.trim())).join(" ").toUpperCase().replace(/[^A-Z]/g,"");
+const bigramCounts=Array.from({length:26},()=>Array(26).fill(0));
+const bigramTotals=Array(26).fill(0);
+for(let i=1;i<reference.length;i++){
+  const a=reference.charCodeAt(i-1)-65,b=reference.charCodeAt(i)-65;
+  bigramCounts[a][b]++;
+  bigramTotals[a]++;
+}
+function bigramLogScore(seq){
+  const text=seq.map(i=>c.translit[i]).join("").toUpperCase().replace(/[^A-Z]/g,"");
+  if(text.length<2)return null;
+  let sum=0;
+  for(let i=1;i<text.length;i++){
+    const a=text.charCodeAt(i-1)-65,b=text.charCodeAt(i)-65;
+    sum+=Math.log((bigramCounts[a][b]+1)/(bigramTotals[a]+26));
+  }
+  return sum/(text.length-1);
+}
+
+const floralPages=c.pages.filter(p=>p.page>=40&&p.page<=53);
+const floralSource=floralPages.flatMap(p=>p.indices);
+assert.equal(floralSource.length,3008);
+assert.equal(floralSource.length%4,0);
+const runeIndex=new Map(c.runes.map((r,i)=>[r,i]));
+const transcriptionBlocks=transcription.split(/^\s*%\s*$/m);
+assert.equal(transcriptionBlocks.length,57);
+const floralTextPages=floralPages.filter(p=>p.page!==50).map(p=>{
+  const blockIndex=p.page<50?p.page:p.page-1;
+  const block=transcriptionBlocks[blockIndex];
+  const parsed=Array.from(block).filter(ch=>runeIndex.has(ch)).map(ch=>runeIndex.get(ch));
+  assert.deepEqual(parsed,p.indices);
+  return {page:p.page,block};
+});
+assert.equal(floralTextPages.length,13);
+
+const floralR=transform(floralSource,sourceMatrix);
+const floralInverse=transform(floralSource,sourceInverse);
+assert.deepEqual(transform(floralR,sourceInverse),floralSource);
+assert.deepEqual(transform(floralInverse,sourceMatrix),floralSource);
+
+function renderFloral(values){
+  let cursor=0;
+  const pages=floralTextPages.map(({page,block})=>{
+    let out="";
+    for(const ch of block){
+      if(runeIndex.has(ch))out+=c.translit[values[cursor++]];
+      else if(ch==="-")out+=" ";
+      else if(ch===".")out+=". ";
+      else if(ch==="/")out+="\n";
+      else if(ch==="\r"||ch==="\n")out+=ch;
+      else out+=ch;
+    }
+    return {page,text:out};
+  });
+  assert.equal(cursor,values.length);
+  return pages;
+}
+const floralRenderedR=renderFloral(floralR);
+const floralRenderedInverse=renderFloral(floralInverse);
+
+function plantedControl(plain){
+  const planted=Array.from({length:floralSource.length},(_,i)=>plain[i%plain.length]);
+  const encryptedR=transform(planted,sourceMatrix);
+  const recoveredR=transform(encryptedR,sourceInverse);
+  assert.deepEqual(recoveredR,planted);
+  const encryptedInverse=transform(planted,sourceInverse);
+  const recoveredInverse=transform(encryptedInverse,sourceMatrix);
+  assert.deepEqual(recoveredInverse,planted);
+  return {
+    plainRunes:plain.length,
+    plantedRunes:planted.length,
+    RThenInverse:true,
+    inverseThenR:true,
+    plainBigramLogScore:bigramLogScore(plain)
+  };
+}
+const p56Planted=plantedControl(p56Plain);
+const p57Planted=plantedControl(solved);
+
+let pageOffset=0;
+const floralPageScores=floralPages.map(p=>{
+  const start=pageOffset,end=start+p.indices.length;
+  pageOffset=end;
+  return {
+    page:p.page,
+    runes:p.indices.length,
+    source:bigramLogScore(floralSource.slice(start,end)),
+    R:bigramLogScore(floralR.slice(start,end)),
+    inverse:bigramLogScore(floralInverse.slice(start,end))
+  };
+});
+const floralResult={
+  pages:floralPages.map(p=>({page:p.page,runes:p.indices.length})),
+  transcriptionPagesMatched:floralTextPages.length,
+  runes:floralSource.length,
+  fourRuneBlocks:floralSource.length/4,
+  ioc:{
+    source:ioc(floralSource),
+    R:ioc(floralR),
+    inverse:ioc(floralInverse)
+  },
+  lp1OnlyBigramLogScore:{
+    source:bigramLogScore(floralSource),
+    R:bigramLogScore(floralR),
+    inverse:bigramLogScore(floralInverse),
+    p56HeldOutControl:bigramLogScore(p56Plain),
+    p57HeldOutControl:bigramLogScore(solved)
+  },
+  exactOriginalReconstruction:{RThenInverse:true,inverseThenR:true},
+  p56SourcePlaintextControl:{
+    runes:p56Plain.length,
+    literalFPosition:56,
+    primeMinusOneRecreatesOriginal:true,
+    keyValuesConsumed:p56Clock
+  },
+  plantedControls:{p56:p56Planted,p57:p57Planted},
+  wordBoundaryPreservingPreview:{
+    R:floralRenderedR.slice(0,3).map(p=>({page:p.page,text:p.text.slice(0,320)})),
+    inverse:floralRenderedInverse.slice(0,3).map(p=>({page:p.page,text:p.text.slice(0,320)}))
+  },
+  pageScores:floralPageScores
+};
+
 const result=[];
 for(const number of [54,55]){
   const original=c.pages[number].indices;
@@ -179,11 +338,12 @@ for(const number of [54,55]){
   });
 }
 if(require.main===module)console.log(JSON.stringify({
-  conclusion:"source-only direct Hill4 quotient matrix negative on original terminal pages",
+  conclusion:"source-only direct Hill4 quotient matrix negative on original p40-p53 floral and p54-p55 terminal receivers",
   rawTableBytes:256,exactFactor:"(x-24)^2",
   quotientCoefficients:quotient.length,
   operator:sourceMatrix,inverse:sourceInverse,
   wrongUnsignedMatrixDifferent:true,
   scope:"no author's instruction selects Hill4; no original LP2 plaintext",
+  floral:floralResult,
   pages:result
 },null,2));
