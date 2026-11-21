@@ -17,6 +17,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+      - name: Validate the offline parser and source contract
+        run: |
+          node --check sims/lp2_2016_infotomb_original_capture_sft.cjs
+          node sims/lp2_2016_infotomb_original_capture_sft.cjs --selftest
+      - name: Query the cited Wayback capture and exact 2016 Common Crawl indexes
+        run: node sims/lp2_2016_infotomb_original_capture_sft.cjs
       - name: Build pinned OutGuess 0.4 for exact carrier extraction
         run: |
           sudo apt-get update
@@ -25,16 +31,10 @@ jobs:
           git -C /tmp/outguess-src checkout 24810e14327c2bbeedeaadd3e24491f2a4425c02
           cd /tmp/outguess-src
           ./autogen.sh
-          ./configure --with-generic-jconfig
+          ./configure --with-generic-jconfig CFLAGS='-O2 -std=gnu17'
           make -j2
           sudo install -m 0755 src/outguess /usr/local/bin/outguess
           outguess -h || true
-      - name: Validate the offline parser and source contract
-        run: |
-          node --check sims/lp2_2016_infotomb_original_capture_sft.cjs
-          node sims/lp2_2016_infotomb_original_capture_sft.cjs --selftest
-      - name: Query the cited Wayback capture and exact 2016 Common Crawl indexes
-        run: node sims/lp2_2016_infotomb_original_capture_sft.cjs
       - name: Extract and compare the signed payload from both original-host captures
         run: |
           set +e
