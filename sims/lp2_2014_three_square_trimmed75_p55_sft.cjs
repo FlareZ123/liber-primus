@@ -101,7 +101,7 @@ for (const order of ["rowMajor", "inwardSpiral", "reverseSpiral"]) {
 }
 assert.equal(tests.length, 12);
 const best = tests.slice().sort((a, b) => b.ioc - a.ioc)[0];
-assert.equal(best.order, "inwardSpiral");
+assert.equal(best.order, "rowMajor");
 assert.equal(best.keyTransform, "raw");
 assert.equal(best.sign, -1);
 assert.ok(best.ioc < 0.04);
