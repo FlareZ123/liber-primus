@@ -37,6 +37,10 @@ The two four-rune red words (sums 71 and 65) point into the same p50 row, but di
 
 **Decision:** close the *prospective p6→p50 table-address decoder* branch as unsupported by a unique source-authenticated address/operation. Do not re-run the previously investigated p50 path or reselect its radix to fit p32. Retain the new p6→p7 **sum-conserving reversed two-word boundary** as a narrowly described lead: it may guide an independently source-selected **wordwise operation preserving length and GP0 sum**, but it does not yet select a symbol mapping, a key, a receiver, or unknown plaintext. Any successor must first identify that operation from the original artifact and predict an untouched input; equality of checksums cannot by itself invert a cipher.
 
+## Related independent p6→p32 difference
+
+The 4|1|4|2 p6 red-word sums minus the identically partitioned p32 fragment7 GP0 block sums are exactly **[23,5,0,3]**. This recovers the 2013 DH teaching modulus/base numerically, without specifying a cipher or plaintext. The separately scoped [28-fragment original-input control](./lp2-p6-p32-dh23-word-block-difference.md) is preserved as a provisional candidate for the active #2047 investigation.
+
 ## Reproduction
 
 The read-only Node 22/CommonJS SFT `sims/lp2_p6_p7_red_boundary_gate_sft.cjs` regenerates every word, the four adjacent-page controls, the conditional probabilities and direct p50 lookups from the canonical repository inputs. It asserts the exact values reported here and logs the complete diagnostic object.

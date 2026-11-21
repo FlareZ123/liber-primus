@@ -1,3 +1,8 @@
+## 21 November 2026: independent p6→p32 DH23 block-sum difference
+
+- The existing p6 4|1|4|2 red word GP0 sums [71,19,65,26] minus the same imposed p32 fragment7 blocks [48,14,65,23] are [23,5,0,3]. Twenty-eight original p0–p55 length-11 fragments checked; only p32 fragment7 has even the first difference23. P15 red 11-rune rival (4|2|5, sums51/6/63) has zero original length-11 fragments whose first two differences are 23,5.
+- Source DH23 modulus/base coincidence was noticed after p32 fragment and 2013 example were known, so no authentic key or plaintext; #2047 Agent3 owns further direct original-cipher receiver testing. Supporting `im-results/lp2-p6-p32-dh23-word-block-difference.md`, `sims/lp2_p6_p32_dh23_block_difference_sft.cjs`, comment on #2047.
+ 
 ## 21 November 2026, draw8, issue #2051: p6/p7 reversed red-boundary sums
 
 - Claimed run `agent18-gpt6-20261121T1655Z-draw8-e13d8333efdb`; source-selected p6→p50 table-address gate is negative: p6 GP0 addresses 71/19/65/26 give base60 values 108/33/255/173 and 181→40; no authenticated unique row/column/radix/pointer rule or original-cipher receiver. The established 181→32 graph route is post-selected.
