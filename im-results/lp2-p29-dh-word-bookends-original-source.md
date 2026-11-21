@@ -34,6 +34,29 @@ A further exact arithmetic alignment is **277−179=98**, the difference between
 
 These observations suggest a bounded possible authored navigation: an operator from the already conditional p28 DIRECTION route selects p29; **φ(277)** resolves the p29 terminal B, and a selected reversal leads to the complete p53 word at DH-derived position15. A genuine plaintext-solving continuation would require a first-party instruction that selects *word reversal and the p53 key consumer before inspecting the destination*. The byte/table key, symbol clock and use of p53's red51 are still unspecified; no unknown original plaintext has been read.
 
+
+## Conditional DH at the page-length modulus277: a reproducible candidate shared value193
+
+The first-word product `2×23×6=276=φ(277)` identifies a **prime local rune count277** in p29. This motivates exactly one new, still *unselected* historical-protocol transfer: use **277 rather than the signed worked-example's original DH modulus23**, retaining the actual signed generator `g=5` and its **derived** private exponents `a=6,b=15`. The resulting complete DH exchange is:
+
+```text
+p = 277 (p29 original rune count, prime)
+phi(p) = 276 = 2 × 23 × 6 (p29 first-word GP0 product)
+g = 5, a = 6, b = 15 (2013 worked example and its derived logs)
+A' = 5^6  mod 277 = 113
+B' = 5^15 mod 277 = 51
+K' = 51^6 mod 277 = 113^15 mod 277 = 193
+gcd(5^6 - 113, 5^15 - 51) = 554 = 2 × 277
+```
+
+**Two outputs land on independently identified original/preserved clue objects:** 113 is the **30th prime** and selects **DIRECTION**, the 30th one-based word of the authenticated signed 2016 message (zero-based29); 51 is **exactly the original 51-rune red span** on physical p53, at offsets128–178 of its original 179 rune symbols. These are exact consequences of the frozen displayed arithmetic, not fitted English decipherments. The earlier p50 factor-179 route already recovered a conditional 113→DIRECTION mapping by different arithmetic and cannot count as wholly independent source support.
+
+The derived DH candidate **K'=193** is also an exact original numeric-table byte: p50's 256-byte table has **value193 at cells83 and127**; cell127 is the last before the grid's 128-cell midpoint, and p53 red begins at local rune offset128. Another table occurrence is **table[248]=113** (eight cells from the end, where 8 is the signed DH server public share). These positional matches were noticed *after* the new DH calculation; no authenticated page instruction identifies byte127, reverse-count8, a table/red copy operation or a key derivation, and byte193 is duplicated. They are provisional packet-alignment clues. Do not multiply their naïve random-hit probabilities as though these were separately preregistered predictions.
+
+**Two complete, natural original-cipher receiver checks fail:** (i) directly subtract `table[128..178] mod29` from the p53 red51 GP indices at their matching physical offsets, giving IoC **0.03215686274509804**; and (ii) subtract the exponent-stream pad `(193^(i+1) mod277) mod29` from the same original red51, giving IoC **0.043137254901960784**. Both ciphertext streams are exactly reconstructed by their forward operation; neither output contains coherent native-GP plaintext. The single-file SFT reproduces all arithmetic, signed-word, table, original-red and forward-control values. No AES/XOR/hash derivation, nonce, alternate phase or cipher opcode is selected by the sources, so further KDF searches are **not** authorized solely by this exact arithmetic.
+
+The decisive missing prerequisite remains a **creator-visible instruction to replace signed DH modulus23 by the physical page rune count277 and consume K'=193 on a uniquely fixed original ciphertext field**. Until such a rule or untouched plaintext holdout is found, 193 is a reproducible **candidate** and not authenticated LP2 key material. Neither 113 nor51 independently decrypts a manuscript passage.
+
 ## Frozen original-cipher receiver: a 3×3 matrix fails
 
 Three source-visible rune groups supply **nine numeric coordinates** in their physical/page order: p29 first complete word, p29 last three page-local runes (an incomplete cross-page word), then p39 red triple. Consider exactly one reversible, source-order Hill-3 hypothesis:
