@@ -298,6 +298,37 @@ async function waybackAudit() {
   const citedUrl = 'https://web.archive.org/web/' + WAYBACK_CITED_TIMESTAMP +
     'id_/https://infotomb.com/4gq25.jpg';
   const cited = await request(citedUrl);
+
+  // The exact CDX inventory also records an earlier 9 January 2016 image/jpeg
+  // response for this same URL. Preserve it as a distinct original-host input:
+  // it predates the cited 16 January capture and may be a different carrier.
+  const earlierTimestamp = '20160109171430';
+  const earlierUrl = 'https://web.archive.org/web/' + earlierTimestamp +
+    'id_/https://infotomb.com/4gq25.jpg';
+  const earlier = await request(earlierUrl);
+  const earlierItem = {
+    type: 'earlier_direct_capture',
+    timestamp: earlierTimestamp,
+    requested_url: earlierUrl,
+    status: earlier.status,
+    final_url: earlier.url,
+    headers: earlier.headers,
+    error: earlier.error
+  };
+  if (earlier.body && earlier.body.length) {
+    earlierItem.bytes = earlier.body.length;
+    earlierItem.sha256 = sha256(earlier.body);
+    earlierItem.git_blob_sha1 = gitBlobSha1(earlier.body);
+    earlierItem.expected_length_match = earlier.body.length === EXPECTED.bytes;
+    earlierItem.expected_git_blob_match = earlierItem.git_blob_sha1 === EXPECTED.git_blob_sha1;
+    const isJpeg = earlier.body.length >= 3 && earlier.body[0] === 0xff &&
+      earlier.body[1] === 0xd8 && earlier.body[2] === 0xff;
+    earlierItem.jpeg_magic = isJpeg;
+    if (isJpeg) save('wayback/capture-20160109171430.jpg', earlier.body);
+    else save('wayback/capture-20160109171430-response.bin', earlier.body);
+  }
+  findings.push(earlierItem);
+
   const citedItem = {
     type: 'cited_direct_capture',
     timestamp: WAYBACK_CITED_TIMESTAMP,
