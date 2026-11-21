@@ -1,6 +1,6 @@
-# A p33 WILL crib anchors the source H×G quartic LFSR: original inverse impossible even with all plaintext-F bypasses
+# Source polynomial feedback hypotheses tested against p33 WILL and p34 BE: exact original F-transparent inverses impossible
 
-**21 November 2026, Agent10. Status: bounded negative for an explicit source-selected four-state cipher hypothesis. No unknown LP2 plaintext, key or manuscript-wide mechanism recovered.**
+**21 November 2026, Agent10. Status: three bounded source-motivated LFSR cipher hypotheses rejected on original p33/p34. The p33 H×G quartic and separate p34 H/G quadratic factors each fail exact original-cipher inversion under authenticated F-transparency. No unknown LP2 plaintext, key or manuscript-wide mechanism recovered.**
 
 ## Why test this particular nonperiodic key?
 
@@ -48,8 +48,25 @@ Original p33 has five printed F/0 positions before the frozen `WILL` at offsets1
 
 The single-file SFT constructs a full **214-rune synthetic native-GP manuscript-shaped plaintext**, using original solved-p57 GP text cycled into its native rune stream and the exact sourced WILL at offsets132–135. It encrypts using the same H×G LFSR and real F-bypass semantics, checks original ciphertext equality at the four WILL anchor positions, and confirms the exhaustive inverse admits the entire planted 214-rune ciphertext. It also directly enciphers/deciphers 95 original clear p57 runes. This demonstrates that the six original contradictions arise from the original ciphertext, rather than an invalid decoder.
 
+## Independent source-factor test on p34's original BE crib
+
+The same exact factorization offers two **lower-state** alternatives to the quartic H×G. Test `H(E)K=0` and `G(E)K=0` individually. Physical p34 contains an independently source-selected `BE` candidate at original offsets4–5, ciphertext `[12,23]` and candidate plaintext `[17,18]`, whose subtraction key is `[24,5]`; see [p34 BE source](lp2-p34-be-same-index-transfer-gate.md). The independent p33 THEIR-RISE body length difference selects physical p34 before the receiver is inspected. **No original p34 ciphertext F occurs before the BE pair**, so the fully authentic p56 plaintext-F cipher semantics fix the consumed key clock at **4** with no phase ambiguity.
+
+With that fixed **two-symbol** key and each exact original H/G factor as a GF29 characteristic recurrence, both models generate their complete 261-rune prospective p34 keystream in forward and backward directions, without parameter search. Native p34 words under the direct no-F `C-K` model remain uniformly distributed: IoC(H) **0.035543766578249335**, IoC(G) **0.03445328617742411**. More decisively, enumerate all authentic plaintext-F branches for each 261-rune original receiver:
+
+| Source characteristic | Crib-derived seed | First original rune impossible, zero-based | Full inverse |
+| --- | --- | ---: | --- |
+| H=[3,26,24] | [24,5] | **42** | No |
+| G=[27,5,15] | [24,5] | **12** | No |
+
+Both models become algebraically impossible even before a substantial plaintext prediction. A complete original **261-rune native GP29 positive plant** for *each* factor uses solved p57 clear runes with only the exact original BE candidate inserted at positions4–5. The same authentic F-bypass emitter produces ciphertext matching source p34 at both BE glyphs, and the exact exhaustive inverse remains valid for all261 planted runes. The null result is therefore on the unchanged original 261-rune p34 page, with correct factor arithmetic, sourced BE seed and decoder.
+
+**Additional decision:** the separately grounded H and G two-state feedback streams also fail as p34 BE keys. This now excludes the most direct **quartic product on p33** and **its two native quadratic factors on p34**, each seeded only by a preexisting local source candidate and checked on untouched original ciphertext. None of the three recurrence proposals is a first-party LP2 cipher instruction.
+
+[Original p34 H/G both-factor single-file SFT](../sims/lp2_hg_factor_p34_be_allf_sft.cjs) · [Windows Node22 original-source pass 44961282271](https://github.com/FlareZ123/liber-primus/actions/runs/44961282271).
+
 ## Decision
 
-**Retire the exact p50 H×G quartic characteristic stream seeded by p33 WILL, whether every rune consumes a digit or the authentic p56 plaintext-F transparency is used.** The original table's polynomial factor and the candidate local WILL relation remain independently documented objects, but their composition here produces no authentic plaintext. A different nonperiodic generator, source-selected state update, new first-party opcode, or a different original cipher architecture remains open.
+**Retire the exact p50 H×G quartic characteristic stream seeded by p33 WILL and the H/G quadratic characteristic streams separately seeded by p34 BE, whether every rune consumes a digit or the authentic p56 plaintext-F transparency is used.** The original table's polynomial factor and the candidate local WILL relation remain independently documented objects, but their composition here produces no authentic plaintext. A different nonperiodic generator, source-selected state update, new first-party opcode, or a different original cipher architecture remains open.
 
-[Read-only Node.js 22 SFT](../sims/lp2_hg_quartic_p33_will_holdout_sft.cjs) · [original p33 WILL source](lp2-p33-will-index33-local-inverse.md) · [GF29 source H×G factor](2013-base29-gf29-grid-factor.md) · [Actions original-source test](https://github.com/FlareZ123/liber-primus/actions/workflows/agent10-hg-p33-will-holdout-manual.yml).
+[Read-only Node.js 22 SFT](../sims/lp2_hg_quartic_p33_will_holdout_sft.cjs) · [original p33 WILL source](lp2-p33-will-index33-local-inverse.md) · [GF29 source H×G factor](2013-base29-gf29-grid-factor.md) · [Windows Node22 original-source pass 44961128190](https://github.com/FlareZ123/liber-primus/actions/runs/44961128190).
