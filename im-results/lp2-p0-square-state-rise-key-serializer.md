@@ -343,6 +343,26 @@ authenticated 2014 square metadata
 
 The original marker geometry now independently fixes how the generated packet maps onto the title word boundary: the two flanks carry the first eight key atoms under H, and the five-dot center carries the final five. The remaining requirement for an established general cipher is a prospective reuse of this serializer, or an independent clue that fixes the same three vertical rise laws before p0 is consulted. Do not search arbitrary state-expression permutations to manufacture such a reuse.
 
+## Issue #1975 — source-first body-instruction gate (21 November 2026; negative)
+
+The original p0 marker and its local title result remain reproducible, but the four-word readout does **not** select a reversible operation on the black body.
+
+The fixed horizontal channel is
+```text
+left-right H difference = [18,15,20,26]
+RISE order               = [15,18,20,26]
+signed 2016 word register = WORDS MAP MEANING NUMBERS
+```
+The register positions are zero-based in the 43-word signed-message list. The phrase is a genuine readout of the four marker values, but it is not an executable cipher specification. The signed message says that words are the map and their meaning and numbers provide road/direction; it does not define a function from an LP2 body word to a number or specify how that number controls a reversible transform.
+
+A bounded literal test treated the four source-register indices as word addresses into p0's black body. The unchanged original transcription has 262 p0 runes, a red 8+5 title, and a 249-rune body in 57 printed words. The direct index interpretation is not source-selected: zero-based body positions `[15,18,20,26]` return `NGAETH THAMINGIIAY THAEIA YNGEA`; one-based positions return `GOP YFNGCJ HEO THP`. These are still original ciphertext words, not a plaintext readout. The different outputs expose the missing origin convention rather than resolving it.
+
+The four signed words themselves also admit several natural numberizations—GP0 sums `[52,56,87,83]`, GP-prime sums `[179,211,319,295]`, or rune lengths `[5,3,5,7]`—and no first-party instruction selects one. Nor does the four-word phrase supply a body receiver, key, direction/sign, phase, reset, or rune/word clock. The original-image adjudication classifies the recurring red13 glyph as layout punctuation, not a generic cipher initial state; the marker occurs in internal, terminal, and page-start positions. The existing marker-local control finds no post-marker lexical reuse, and the separate fixed-period-13 title-key continuation is contradicted by original p0 ciphertext under the exhaustive transparent-F affine/autokey audit.
+
+**Decision:** close Issue #1975 at the missing-operation gate. No 150-rune native-GP plaintext, reversible body decoder, or blind body holdout exists because the source has not selected the required map/operation. Preserve `EPIPHANY SEEKS` as a strong local title candidate and the four-word readout as structural evidence; do not launch arithmetic or cipher-family tuning to fill the missing selector.
+
+Supporting source gates: [original p0 image adjudication](lp2-p0-red13-13dot-blackbody-original-source-adjudication.md), [title-key continuation audit](lp2-p0-epiphany-seeks-signed2016-crib-fclock.md), and [marker/title selector](lp2-p0-square-marker-plaintext-selector.md). The existing SFT now also reproduces the bounded body-index control.
+
 ## Reproduction
 
 ```text

@@ -263,6 +263,36 @@ const signedWords = clear
   .match(/[A-Za-z]+/gu)
   .map((text) => ({text: text.toUpperCase(), values: gpText(text)}));
 assert.equal(signedWords.length, 43);
+
+// Issue #1975: test the literal interpretation that the four signed-register
+// indices are word addresses into p0's black body. Neither indexing origin is
+// selected by the source, so preserve both natural conventions as controls.
+const p0Physical = unknownPhysicalWords().find((row) => row.page === 0);
+assert.ok(p0Physical);
+const p0BodyWords = p0Physical.words.slice(2);
+const p0TotalRunes = p0Physical.words.reduce(
+  (sum, word) => sum + word.values.length, 0
+);
+const p0BodyRunes = p0BodyWords.reduce(
+  (sum, word) => sum + word.values.length, 0
+);
+assert.deepEqual(p0Physical.words.slice(0, 2).map((word) => word.values.length), [8, 5]);
+assert.equal(p0TotalRunes, 262);
+assert.equal(p0BodyWords.length, 57);
+assert.equal(p0BodyRunes, 249);
+const instructionIndices = [15, 18, 20, 26];
+const instructionWords = instructionIndices.map((index) => signedWords[index].text);
+assert.deepEqual(instructionWords, ["WORDS", "MAP", "MEANING", "NUMBERS"]);
+const zeroBasedBodyIndexReadout = instructionIndices.map((index) =>
+  p0BodyWords[index].values.map((value) => corpus.translit[value]).join("")
+);
+const oneBasedBodyIndexReadout = instructionIndices.map((index) =>
+  p0BodyWords[index - 1].values.map((value) => corpus.translit[value]).join("")
+);
+assert.deepEqual(zeroBasedBodyIndexReadout,
+  ["NGAETH", "THAMINGIIAY", "THAEIA", "YNGEA"]);
+assert.deepEqual(oneBasedBodyIndexReadout,
+  ["GOP", "YFNGCJ", "HEO", "THP"]);
 for (const row of signedWords) {
   lexical.set(row.values.join(","), {text: row.text, source: "signed2016"});
 }
@@ -394,5 +424,14 @@ console.log(JSON.stringify({
     },
     riseOrderedDifference: risingRowDifference,
     riseOrderedWords: risingRowDifference.map((value) => signedWords[value].text),
+  },
+  bodyInstructionGate: {
+    sourceRegisterIndices: instructionIndices,
+    sourceWords: instructionWords,
+    bodyRunes: p0BodyRunes,
+    bodyWords: p0BodyWords.length,
+    zeroBasedBodyIndexReadout,
+    oneBasedBodyIndexReadout,
+    decision: "The four-word readout does not select a reversible body operation or an indexing origin.",
   },
 }, null, 2));
