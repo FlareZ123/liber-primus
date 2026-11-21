@@ -97,6 +97,28 @@ The original two-color **50+5+2** tape matching all **57** table-tree edges is a
 
 The next causal experiment should start with a **different specific edge-state rule independently selected from original Cicada instructions**. It must reproduce **both** the genuine 85-rune p56 encryption under its real initial clock and the 95-rune clear p57 endpoint, then predict at least one untouched original ciphertext passage such as p55's 76 runes without tuning that passage. Until this is possible, assigning additional arbitrary permutations or cipher layers to the graph would be numerological overfitting.
 
+
+## Cross-round 178→197 original pointer closure: omitted W, 20 words, 11-cycle
+
+The preserved original **2 May 2014** signed-text handoff displays eleven positive whitespace groups **[2,3,5,7,11,13,17,23,29,31,37]**, sum **178**. These are exactly the first twelve Gematria Primus alphabet prime weights **except 19**, the weight of rune **W**. The complete twelve weights total **197=178+19**. Omitting the sole leading indentation before the onion address instead leaves ten trailing groups summing **173**, which independently equals the prime rank of the solved PARABLE second-clause sum **1031**.
+
+The original solved p57 PARABLE has **20 complete printed words**, including the red title, joining printed line carries. The literal base60 successor interpretation of the original p50 256-token register produces this **exact twenty-step route from the original 2014 all-padding sum178 to the restored full-GP prime sum197**:
+
+```text
+178 → 166 → 250 → 172 → 148 → 246 → 198 → 105 → 63 → 51 → 59 → 69
+→ 73 → 79 → 82 → 201 → 74 → 205 → 76 → 114 → 197
+```
+
+The source-selected root205 of the conditional 58-node graph occurs at **step17**. Address197 belongs to an **eleven-node directed cycle**, agreeing with the count of 2014 prime-shaped whitespace groups:
+
+```text
+197 → 115 → 247 → 192 → 0 → 203 → 68 → 199 → 47 → 76 → 114 → 197
+```
+
+These independently visible round-spanning source counts yield a concrete possible *starting point and stopping condition* for a human solver following p57's “TUNNELING TO THE SURFACE” clue. The exact 20-hop and 11-cycle closure was found retrospectively after graph discovery; **the instructions to sum padding and interpret base60 table cells as pointers are hypotheses**, and OpenPGP canonicalization does not authenticate the exact spacing. No actual unknown-page plaintext, cipher state operation or key projection is recovered. Reversibility of the table pointer *walk* does not establish reversibility of an LP2 cipher.
+
+[Full original-source, exact 20-step and 11-cycle Node22 SFT](../sims/lp2_2014_whitespace_173_178_p50_graph_original_sft.cjs), [Windows Node22 PASS 44957314982](https://github.com/FlareZ123/liber-primus/actions/runs/44957314982).
+
 ## Standalone original-input evidence
 
 - [Source title/body 50+5 and eight edge-path/2 prime-seed original gates](../sims/lp2_p57_title_body_50_5_edge_key_sft.cjs), [Windows Node22 PASS run44954179759](https://github.com/FlareZ123/liber-primus/actions/runs/44954179759).
