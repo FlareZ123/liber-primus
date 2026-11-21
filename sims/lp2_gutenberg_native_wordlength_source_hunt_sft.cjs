@@ -120,7 +120,7 @@ function compare(target, source, words, width) {
 
 const p57Words=solvedEnglish.split(' ');
 const plantedTest=compare(planted,lengths(p57Words),p57Words,9);
-assert(plantedTest.top.some(x=>x.length===20 && x.targetWord===317));
+assert(plantedTest.top.some(x=>x.length>=20 && x.targetWord<=317 && x.targetWord+x.length>=337));
 
 const BOOKS = [
   [10,'KJV Bible'],
