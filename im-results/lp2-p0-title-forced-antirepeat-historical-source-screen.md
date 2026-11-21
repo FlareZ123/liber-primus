@@ -12,7 +12,7 @@ P13 = 18,13,10,13,8,24,9,26,15,18,18,5,15
 K13 = 26,24,8,19,27,24,18,3,0,8,0,16,19
 ```
 
-The whole unsolved rune manuscript has only **86 adjacent identical symbols among 12,901 within-page adjacent comparisons**, suggesting the testable but otherwise unconfirmed possibility that an encoder **rejects tentative ciphertext symbols equal to the previously accepted ciphertext** and draws a new key symbol.
+The whole unsolved rune manuscript has only **86 adjacent identical symbols among 12,901 within-page adjacent comparisons**, motivating a tentative key-draw rejection layer. **A universal hard rejection rule is already falsified by those 86 surviving repeats:** it can explain only the repeat-free **local p0 red title**, or would require an independently specified exempt class/state elsewhere in the book. The test below confines its inverse to that title and makes no claim about a manuscript-wide exception schedule.
 
 If `C_i = P_i + K_t mod29`, an unobserved rejected key draw `K_t` before original rune `i>0` must obey exactly
 
