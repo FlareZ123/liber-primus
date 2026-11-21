@@ -437,6 +437,100 @@ transparentFTrials.sort((a, b) => b.score - a.score);
 assert.equal(transparentFTrials.length, 110);
 assert.ok(Math.abs(transparentFTrials[0].score + 11.213207216832) < 1e-7);
 
+
+/**
+ * Solved p57 says SHED YOUR OWN CIRCUMFERENCES. Instead of undirected BFS or
+ * DFS, compute the exact leaf-removal shells of each base59 subtree. The
+ * original node IDs order each shell without postselection.
+ */
+function peelingRounds(root) {
+  const descendants = new Set();
+  const queue = [root];
+  for (let i = 0; i < queue.length; i++) {
+    descendants.add(queue[i]);
+    queue.push(...children[queue[i]]);
+  }
+  const remaining = new Set(descendants), shells = [];
+  while (remaining.size) {
+    const shell = [...remaining].filter((node) =>
+      children[node].every((child) => !remaining.has(child)))
+      .sort((a, b) => a - b);
+    assert.ok(shell.length > 0);
+    for (const node of shell) remaining.delete(node);
+    shells.push(shell);
+  }
+  return shells;
+}
+assert.equal(peelingRounds(189)[0].length, 95);
+const peelTrials = [], peelCounts = [];
+for (const { page, root, cipher: tape, controlMin } of [
+  { page: 55, root: selected, cipher: original, controlMin: heldMin },
+  { page: 32, root: innerTreeRoot, cipher: p32, controlMin: held121Min }
+]) {
+  const shells = peelingRounds(root);
+  assert.equal(shells[0].length, page === 55 ? 28 : 43);
+  assert.equal(shells.length, page === 55 ? 22 : 24);
+  const fPositions = tape.flatMap((value, i) => value === 0 ? [i] : []);
+  const readOrders = ['outside-in', 'inside-out'].flatMap((sense) =>
+    [false, true].map((reverse) => ({
+      name: sense + '-' + (reverse ? 'desc' : 'asc'),
+      nodes: (sense === 'outside-in' ? shells : [...shells].reverse())
+        .flatMap((shell) => reverse ? [...shell].reverse() : shell)
+    })));
+  const peelKeys = ['node', 'parent', 'edge', 'depth',
+    'prime-node', 'prime-parent', 'prime-edge', 'prime-depth'];
+  let valid = 0;
+  for (const reader of readOrders) {
+    assert.equal(reader.nodes.length, tape.length);
+    for (const sourceKey of peelKeys) {
+      const kind = sourceKey.replace('prime-', '');
+      const key = reader.nodes.map((node) => {
+        let v;
+        if (kind === 'node') v = node;
+        else if (kind === 'parent') v = parent[node];
+        else if (kind === 'edge') v = Math.abs(node - parent[node]);
+        else {
+          v = 0;
+          for (let current = node; current !== root; current = parent[current]) v++;
+        }
+        return sourceKey.startsWith('prime-') ? primes256[v] - 1 : v;
+      });
+      for (const sign of [-1, 1]) {
+        for (let mask = 0; mask < 2 ** fPositions.length; mask++) {
+          const copiedF = new Set(fPositions.filter((_, i) =>
+            (mask & (1 << i)) !== 0));
+          const plain = [];
+          let clock = 0, validDecode = true;
+          for (let i = 0; i < tape.length; i++) {
+            if (copiedF.has(i)) { plain.push(0); continue; }
+            const rune = mod29(tape[i] + sign * key[clock++]);
+            if (rune === 0) { validDecode = false; break; }
+            plain.push(rune);
+          }
+          if (!validDecode) continue;
+          const check = [];
+          clock = 0;
+          for (let i = 0; i < plain.length; i++) {
+            check.push(copiedF.has(i) ? 0 : mod29(plain[i] - sign * key[clock++]));
+          }
+          assert.deepEqual(check, tape);
+          const ll = score(plain);
+          assert.ok(ll < controlMin);
+          valid++;
+          peelTrials.push({ page, order: reader.name, sourceKey, sign, mask, score: ll });
+        }
+      }
+    }
+  }
+  assert.equal(valid, page === 55 ? 20 : 9);
+  peelCounts.push({ page, rounds: shells.length, firstShell: shells[0].length,
+    attempted: readOrders.length * peelKeys.length * 2 * 2 ** fPositions.length,
+    valid, nativeFloor: controlMin });
+}
+peelTrials.sort((a, b) => b.score - a.score);
+assert.equal(peelTrials.length, 29);
+assert.ok(Math.abs(peelTrials[0].score + 11.126415100916) < 1e-7);
+
 console.log(JSON.stringify({
   selected: { source: 'SEEKS GP0=71; THE GP0=20', address: selected,
     subtreeSize: orders[0].nodes.length },
@@ -446,6 +540,7 @@ console.log(JSON.stringify({
   },
   numericKeys: { tested: keyTrials.length, best: keyTrials.slice(0, 3),
     candidatesReachingNativeMin: keyTrials.filter((entry) => entry.score >= heldMin).length },
+  leafPeelFBypass: { counts: peelCounts, best: peelTrials.slice(0, 4) },
   literalFBypass: { counts: transparentFCounts,
     best: transparentFTrials.slice(0, 4) },
   rowMajorNumeric: { tested: rowMajorTrials.length, best: rowMajorTrials.slice(0, 4),
