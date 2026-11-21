@@ -1,3 +1,12 @@
+# 2026-11-21T21:00Z — KEY49 central7 determinant pair and failed Hill receiver
+
+- KEY49=7² suggests p32's exact central 7×7 from its established 11×11. Original GP ordinal matrix determinant mod29=23; GP-prime matrix determinant mod29=13; independently verified in SymPy. This pair appears only at the central crop of p32's 25 possible 7×7 crops and at p32 alone among 52 original eligible first121 page-start crops.
+- Dot-count echoes: solved p57 final red 23 and original p33 red13, interpreted retrospectively. No first-party determinant or matrix cipher instruction.
+- Executed direct GP29 Hill original-input inverses on p33 marked black81 center7×7 (8 bounded variants), all 49/49 lossless and independently p57-plant passing; no prose; best IoC0.045068, two-sided indexed/prime cross inverses0.028061/0.034864. Source clue narrows matrix geometry, but simple 7×7 Hill decoder is negative. Exact reproducible new `sims/lp2_p32_p33_key49_center7_hill_sft.cjs` and original report consolidated.
+- Next: find an independent author-side opcode or an untouched body receiver; avoid searching different 7×7 crops/matrices or post-hoc matrix compositions.
+
+---
+
 # 2026-11-21T20:52Z — Source-fixed p32/p33 dual KEY49 and MAP211 checksum (draw2 independent)
 
 - New original-source fact on **unchanged** p32 inner9×9 vs p33 red13-delimited body81: GP0 sums 1134/1183, gap49=GP0(CEY)=KEY; GP-prime sums 4128/4339, gap211=GPprime(MAP). KEY appears in 2013 source instruction; MAP in signed 2016. No new cursor/offset/phase choice.
