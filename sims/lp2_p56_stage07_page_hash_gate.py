@@ -3,14 +3,13 @@
 
 The p56 page gives a 512-bit digest but no hash-family name or target URL.
 The 2014 Stage07 onion response is a bounded historical candidate: the
-source archive preserves a PGP clear-signed hex page, its decoded MP3, and
-the OpenPuff magic-square payload. The page signature is verified by the
-workflow before this script runs.
+source archive preserves a PGP clear-signed hex page and its decoded MP3.
+The page signature is verified by the workflow before this script runs.
 
 This is an exact-byte candidate test, not an open-ended hash/serialization
-search. It checks six established 512-bit families against four source-fixed
-representations: signed page bytes, signed cleartext hex body, decoded MP3,
-and the recovered 745-byte magic-square payload.
+search. It checks six established 512-bit families against three
+source-fixed representations: signed page bytes, signed cleartext hex body,
+and decoded MP3.
 """
 from __future__ import annotations
 
@@ -147,9 +146,6 @@ def main() -> int:
         if "sha256" in spec:
             actual = hashlib.sha256(data).hexdigest()
             assert actual == spec["sha256"], (name, actual)
-        if "crc32" in spec:
-            actual = f"{zlib.crc32(data) & 0xffffffff:08x}"
-            assert actual == spec["crc32"], (name, actual)
         objects[name] = data
 
     # The second participant archive is an exact duplicate of the signed page
@@ -200,7 +196,7 @@ def main() -> int:
             "mp3_git_blob_sha1": EXPECTED["decoded_mp3"]["git_blob_sha1"],
             "mp3_bytes": EXPECTED["decoded_mp3"]["bytes"],
             "mp3_sha256": EXPECTED["decoded_mp3"]["sha256"],
-                "pgp_signing_key_fingerprint": FINGERPRINT,
+            "pgp_signing_key_fingerprint": FINGERPRINT,
             "pgp_valid_signature": True,
             "archive_copies_identical": True,
             "cleartext_hex_decodes_to_mp3": True,
@@ -215,8 +211,8 @@ def main() -> int:
         "decision": "MATCH_FOUND" if matches else "NO_MATCH_IN_EXACT_STAGE07_OBJECTS_UNDER_SIX_512_BIT_FAMILIES",
         "scope": (
             "Exact signed Stage07 response bytes, exact GPG cleartext hex body, "
-            decoded MP3 only. 
-            "No alternate line-ending, HTML, URL, or unknown HTTP-response variants."
+            "and decoded MP3 only. No alternate line-ending, HTML, URL, or "
+            "unknown HTTP-response variants."
         ),
     }
     report_path = Path(args.report)
