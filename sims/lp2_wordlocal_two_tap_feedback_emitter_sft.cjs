@@ -47,7 +47,7 @@ const carriedWords = words.filter(word => word.pageSet.length > 1).length;
 assert.equal(words.length, 2896);
 assert.equal(runeCount, 12956);
 assert.equal(carriedWords, 32);
-assert.deepEqual(delimiterCounts, {"-":2727, ".":175, "&":17, "$":8});
+assert.deepEqual(delimiterCounts, {"-":2729, ".":173, "&":17, "$":8});
 const excludedStopEventIndices = new Set([57, 58, 59, 60, 91, 125, 127]);
 const confirmedStops = punctuation.events.filter(event => event.symbol === "⁘" && !excludedStopEventIndices.has(event.index));
 const stopOffsets = confirmedStops.map(event => event.rune_offset).sort((a, b) => a - b);
