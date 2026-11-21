@@ -1,0 +1,30 @@
+name: Agent 23 p0 forced-anti-repeat historical key library
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  p0-forced-redraw:
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Checkout pinned 1439-stream historical source library
+        uses: actions/checkout@v4
+        with:
+          repository: pnotisdev/cicada3301
+          ref: 15200c67abee106913ba01ff504c5b6e88d16cc7
+          path: external-cicada3301
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pinned library build requirements
+        run: python -m pip install numpy mpmath
+      - name: Build independent external KSB1 library
+        run: python external-cicada3301/work/kscreen/export.py
+      - name: Test exact original title key with at most two forced redraws
+        run: node sims/lp2_p0_title_forbidden_skip_ksb_sft.cjs external-cicada3301
