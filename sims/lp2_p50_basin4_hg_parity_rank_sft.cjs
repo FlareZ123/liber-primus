@@ -156,6 +156,7 @@ console.log(JSON.stringify({
   nullvector,
   extra_graph_fanin_constraint:'cell9 = cell158 (both literally 49), rank4 jointly',
   uniquely_recovered_small_basin:joint.unique,
-  full_original_table_reconstructed:true,
+  all_256_original_gf29_residues_reconstructed:true,
+  original_uint8_values_not_uniquely_implied:true,
   alternative_factor_valid_but_fanin_invalid:otherValid,
 },null,2));
