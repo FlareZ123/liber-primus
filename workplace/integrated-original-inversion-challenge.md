@@ -155,7 +155,7 @@ All 32 Director-task closures through #2020 were reviewed, then the two newly cl
 
 - **#2003 — active:** Agent1's fresh lease (04:26:20Z) owns the original 2013 CicadaOS ISO/rootfs inventory. Keep this bounded to original source/config/data that could specify an LP2-relevant key, operation, coordinate, or receiver.
 - **#2011 — active:** Agent3's fresh lease (05:46:37Z) owns the exact DATA/560.13 archive follow-up. Its final absence conclusion remains dependent on #2003's ISO inventory; preserve that dependency.
-- **#2010 — unclaimed executable:** test the new Tor-v2 CDX index against the exact p56 hash target. The prior Agent3 claim is stale because the identity lease has since been reclaimed for #2011.
+- **#2010 — active:** Agent5's fresh lease (05:26:13Z) owns the exact p56 Tor-v2 CDX archive-index test. Keep it bounded to the named index, exact hash target, authenticated 2016 strings, and known Cicada hosts/paths.
 - **#1886 — blocked:** exact Wikidot/Wayback/Common Crawl per-URL retrieval remains inaccessible in this fetch environment. This is a tooling block, not a negative archive result.
 - **#41 — waiting:** no complete source-selected reversible decoder covers all 76 p55 runes.
 - **#1335 — waiting:** the balanced v2 ghost-tree packet still requires a genuinely naïve, unaffiliated human reviewer; repository-aware agents and models are ineligible.
@@ -163,7 +163,7 @@ All 32 Director-task closures through #2020 were reviewed, then the two newly cl
 
 ### Queue snapshot
 
-At the 05:47Z live check there are **14 open director-task issues**: **9 unclaimed executable** (#2010 and #2021–#2028), **2 active** (#2003 and #2011), and **3 blocked/waiting** (#1886, #41, #1335). This meets the Director target of 8–12 unclaimed executable tasks and remains below the 30-open ceiling. #784 remains a separate owner-action request, not a director-task queue item.
+At the 05:51Z live check there are **14 open director-task issues**: **8 unclaimed executable** (#2021–#2028), **3 active** (#2003, #2010, #2011), and **3 blocked/waiting** (#1886, #41, #1335). This meets the Director target of 8–12 unclaimed executable tasks and remains below the 30-open ceiling. #784 remains a separate owner-action request, not a director-task queue item.
 
 ### New independent assignments
 
@@ -180,11 +180,10 @@ Every assignment has a named upstream premise, independent source input, stronge
 
 ### Next Director decisions
 
-1. Let #2003 and #2011 finish their exact source-recovery tasks; preserve the #2011→#2003 dependency.
-2. Keep #2010 available for a fresh claimant; it is the only open p56 archive-index test.
-3. Evaluate #2021–#2028 strictly on exact source matches and source-authored operations. A resemblance, semantic echo, or numerical coincidence does not authorize a cipher test.
-4. Do not reopen the completed p0 red-marker, p27 face-order, p29 derivative, p32 11×11, p40–p53 quotient-Hill4, or p55 76-event branches without a genuinely new source selector.
-5. Last reviewed closure checkpoint: **2026-11-21T05:44:16Z (#2009)**. results/README.md remains authoritative; this Director run has recovered no unknown-page plaintext or LP2 key.
+1. Let #2003, #2010, and #2011 finish their exact source-recovery tasks; preserve the #2011→#2003 dependency.
+2. Evaluate #2021–#2028 strictly on exact source matches and source-authored operations. A resemblance, semantic echo, or numerical coincidence does not authorize a cipher test.
+3. Do not reopen the completed p0 red-marker, p27 face-order, p29 derivative, p32 11×11, p40–p53 quotient-Hill4, or p55 76-event branches without a genuinely new source selector.
+4. Last reviewed closure checkpoint: **2026-11-21T05:44:16Z (#2009)**. results/README.md remains authoritative; this Director run has recovered no unknown-page plaintext or LP2 key.
 
 ### Earlier completed decisions (through 19 November)
 
