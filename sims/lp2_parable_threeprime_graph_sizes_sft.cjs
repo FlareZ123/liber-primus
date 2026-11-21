@@ -140,6 +140,54 @@ assert.deepEqual(closure173.sort((a,b)=>a-b), [26,41,84,93,147,173,215,239]);
 assert.deepEqual([...new Set(closure173.map(i => value60[i]))].sort((a,b)=>a-b),
   [84,117,173]);
 
+// The full eight-member incoming closure, in printed row-major address order,
+// consists entirely of high sexagesimal digits 1 and 2. Subtract the low
+// available symbol (1) to obtain one bit per member, reading left to right.
+const firstDigits173 = closure173.map(i => tokens[i][0]).join("");
+assert.equal(firstDigits173, "21212112");
+const bitString173 = [...firstDigits173].map(d => String(Number(d)-1)).join("");
+assert.equal(bitString173, "10101001");
+const decodedByte = Number.parseInt(bitString173, 2);
+assert.equal(decodedByte, 169);
+// The three independently prime-selected addresses are three rectangle
+// corners, and 169 is exactly their missing fourth corner.
+assert.equal(decodedByte, selected[1]+selected[2]-selected[0]);
+assert.deepEqual(selected.map(i => [Math.floor(i/8),i%8]),
+  [[25,5],[21,5],[25,1]]);
+assert.deepEqual([Math.floor(decodedByte/8),decodedByte%8],[21,1]);
+
+// Is binary decoding a generic consequence of having eight ancestors?
+// Scan *every* original graph node of exact reverse-closure size eight.
+const allEightRoots = [];
+const naturalBinaryRoots = [];
+for (let i = 0; i < 256; i++) {
+  const xs = ancestors(value60,i);
+  if (xs.length !== 8) continue;
+  allEightRoots.push(i);
+  if (xs.every(index => /^[12]$/u.test(tokens[index][0]))) {
+    naturalBinaryRoots.push(i);
+  }
+}
+assert.deepEqual(allEightRoots, [28,81,112,113,148,173]);
+assert.deepEqual(naturalBinaryRoots, [173]);
+assert.equal(tokens[decodedByte], "3m");
+assert.equal(value60[decodedByte], 227);
+assert.equal(value59[decodedByte], 224);
+
+// The known p56 plaintext contains PAGE exactly twice; its GP-prime sum is
+// 224, the base59 reading of the source-derived new corner. This is a
+// postselected cross-radix correspondence, not an authored instruction.
+const solved = JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"));
+const p56Source = solved.sections.find(section => section.name === "p56_an_end").source_text;
+const gpPage = "ᛈᚪᚷᛖ";
+assert.equal(p56Source.split(gpPage).length-1, 2);
+const pagePrimeSum = [...gpPage].reduce((acc,rune) => {
+  const n = corpus.runes.indexOf(rune);
+  assert(n >= 0);
+  return acc + corpus.prime[n];
+}, 0);
+assert.equal(pagePrimeSum, 224);
+
 // One frozen conditional null: shuffle the actual 256 source values among the
 // 256 printed positions. Equal-value multiplicity is preserved exactly.
 let seed = 0x33012014;
@@ -188,7 +236,12 @@ console.log(JSON.stringify({
     innerClosureSize: closure201.size,
     allPageClosureSize: closure205.size,
     solvedPageCandidates: [74,205],
-    columnSizeClosureNode173: closure173
+    columnSizeClosureNode173: closure173,
+    closure173Binary: {highDigits:firstDigits173, bits:bitString173,
+      decoded:decodedByte, soleEligibleEightRoot:naturalBinaryRoots},
+    complementaryCorner: {address:decodedByte,token:tokens[decodedByte],
+      value60:value60[decodedByte],value59:value59[decodedByte],
+      solvedP56Word:"PAGE",solvedWordPrimeSum:pagePrimeSum}
   },
   null: {
     seedHex: "0x33012014",
