@@ -1,0 +1,9 @@
+# Source-original F channel hard count for the anti-repeat cipher model
+
+Original LP2 p0–55: **458 literal ciphertext F/12,956 runes = 3.5350417%**, uniform GP29 expectation3.448%. Every one of the other 28 rune classes lies between 399–492 occurrences. In the solved LP1 and p56 cipher, plaintext F bypasses the key and **is ciphertext F**; a non-F plaintext can additionally encrypt to ciphertext F.
+
+This has a simple *new model gate*, potentially useful as an inexpensive lower bound for your #2083 source-motivated cipher hypotheses: for plaintext F prevalence q and a **key-independent uniform 29-ary additive emitter on non-F plaintext**, source-visible C_F expectation is `q + (1-q)/29`. Original native Shakespeare control q=4423/229448=1.92767% => expected C_F=5.30947% (~688/12956); native Gibran q=1614/66521=2.4263% =>5.79091% (~750/12956). Actual 458 is lower by230–292 F runes. The naive independent-binomial one-sided probabilities are 7.4×10^-22 and 2.5×10^-32, **NOT valid claim of a true cipher test**, because real keys, latent plaintext, page effects, word dependence, and anti-repeat source constraints invalidate iid-null assumptions.
+
+Necessary-condition language: *an unknown LP2 cipher with the **literal-F bypass** and ordinary English F prevalence could still exist*, but its non-F→ciphertext-F collision rate must fall to ~1.64% for q=1.9277% and ~1.14% for q=2.4263%, far below uniform 3.45%. Thus a faithful complete model should intentionally suppress F collisions along with adjacent repeats. This does not reveal the key or operation; do not use an iid p-value as a decryption result.
+
+Source native rune counts from `resources/liber-primus/lp2-corpus.json`; English controls from the already pinned repo texts. If your anti-repeat SFT already accounts for this bound, no new test is needed. I am pursuing independent source-selected plaintext routes rather than duplicating the #2083 work.
