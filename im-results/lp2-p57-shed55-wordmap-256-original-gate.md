@@ -27,7 +27,9 @@ The most direct reversible consumer of matched length is to combine the 256 sele
 | Selected rune + table byte residue (mod29) | **0.037163** |
 | Native solved p57 plaintext repeated to 256 runes, control | **>0.060** |
 
-Exactly **8 of 256** table byte residues equal the corresponding source rune. This is near the ordinary uniform baseline **256/29=8.83**. Native GP29 source plaintext planted using the same direct table key decodes **256/256 exactly**, validating the inverse's mechanics.
+Exactly **8 of 256** table byte residues equal the corresponding source rune. This is near the ordinary uniform baseline **256/29=8.83**.
+
+**Whole-family transposition exclusion:** The selected 256 source runes contain **1,123** unordered pairs of positions holding equal symbols. The 256 table bytes reduced modulo29 contain **1,213** such pairs. Any arbitrary permutation of all positions, even followed by an unknown *fixed bijection* of all 29 rune labels, preserves the pair count exactly. Thus **no position-only transposition under any stationary alphabet substitution can turn the 256 selected runes into the 256 original table residues**. The count inequality is a key-independent obstruction, without guessing an order, an orientation or a substitution key. Native GP29 source plaintext planted using the same direct table key decodes **256/256 exactly**, validating the inverse's mechanics.
 
 A bounded *second* source-shaped consumer recognizes that each original table byte has the unique decomposition `b=29q+r`, where **q∈0..8**, the count of the nine original LP2 illustrated chapters. Select one red heading from each chapter (the actual eleven-rune *main/lower* title for p15), derive chapter keys by GP0 sum, GP-prime sum, first rune, or last rune, and apply ±chapter-key with/without the original table remainder. Across all **16** fixed, whole-stream native GP29 variants, the highest IoC is **0.03670**. No variant resembles readable GP29 English. No key, language model parameter or source word was fitted to produce this figure.
 
