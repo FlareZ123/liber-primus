@@ -163,7 +163,9 @@ Controls on the fixed pair vocabulary:
 - After deduplicating repeated source spellings, authored shift 0 remains the unique cyclic maximum: 6 distinct word types.
 - Across all 32,768 invertible affine address permutations, the authored mapping has 12 hits; 12 permutations reach at least 12, and the maximum is 14 (five permutations). Thus the canonical map is strongly placed in the upper tail but is **not** the unique affine maximum.
 
-This is a useful secondary cross-source check of the canonical p50 register: the authenticated 2016 message uses several of the same typed DH pairs on semantically relevant words. It is not a blind historical prediction—the field labels were recognized after p57 inspection. It is also not an independent source-level replication of the other 2016/p50 analyses: it uses the same signed message and p50 object as Agent28's distinct low-digit/index/GP-length bridge. The transform tested here is different (GP0 word sum as table address, then divmod29), but the shared input must be kept explicit. Agent20's p55 recursive-shedding route remains the stronger held-out reconstruction of the full DH state and has a separate p36 GOOD consumer. This inventory does not specify how a pair is consumed to decrypt an unknown page.
+**Conditional address-reuse correction (21 November).** Eleven of the 12 occurrences query three addresses already selected by the p57 packet: THE at 20 (six occurrences); MAP, AND and SEEK at 56 (four); and NUMBERS at 83 (one). Only LUCK at 31 tests a new address; it carries the same value 133 as WITHIN at p57 address 38. Thus the inventory has one additional address hit. Fix all five p57 addresses and their values, then uniformly permute the remaining 251 original table tokens over their remaining positions. Three of these tokens belong to the five-value target vocabulary; the signed message queries 24 other distinct addresses. The exact probability of at least one hit is `1 - C(248,24)/C(251,24) = 0.26123938`. This conditional diagnostic does not model the author's design or account for all prior searches. The cyclic and affine rankings remain correct unconditional controls, but do not condition on the trained p57 addresses. [Reproducer](../sims/lp2_p57_signed2016_conditional_address_sft.cjs).
+
+The 2016 reuse is a source-overlap observation rather than independent evidence for the canonical p50 register: the authenticated 2016 message uses several of the same typed DH pairs on semantically relevant words. It is not a blind historical prediction—the field labels were recognized after p57 inspection. It is also not an independent source-level replication of the other 2016/p50 analyses: it uses the same signed message and p50 object as Agent28's distinct low-digit/index/GP-length bridge. The transform tested here is different (GP0 word sum as table address, then divmod29), but the shared input must be kept explicit. Agent20's p55 recursive-shedding route remains the stronger held-out reconstruction of the full DH state and has a separate p36 GOOD consumer. This inventory does not specify how a pair is consumed to decrypt an unknown page.
 
 Two direct page-key interpretations were also tested on the 12 pages selected by these hits: repeat [quotient,remainder] as a period-two additive GP29 key, and use it as the affine map C=qP+r (mod 29). Neither yields a readable page or a score approaching the clear p57 control. The register is supported as a word-to-state mapping; it is not thereby established as a simple repeating or affine page key.
 
@@ -171,7 +173,7 @@ Reproducer: sims/lp2_p57_divmod29_register_audit_sft.cjs. Node 22 SFT passed on 
 
 ## Interpretation
 
-This audit sharply reduces the post-discovery-relabeling objection at the **serialization** level. The held-out 2016 inventory adds a second-source check of the same fixed typed-pair vocabulary, although it is not a blind historical prediction. The held-out 2016 inventory adds a second-source check of the same fixed typed-pair vocabulary, although it is not a blind historical prediction.
+This audit sharply reduces the post-discovery-relabeling objection at the **serialization** level. The 2016 inventory mostly reuses addresses from the p57 packet and has only one new-address hit; the conditional control above limits its evidential weight.
 
 The canonical choices are uniquely selected across:
 
@@ -202,7 +204,7 @@ No source-authenticated consumer of the frozen pairs was found. The direct perio
 
 ## Decision
 
-Retain GP0(word) → p50 native-base60 → divmod29 as a reproducible **conditional word-to-state serialization** and retain the 2016 inventory as a semantically suggestive cross-source check. Do **not** promote it to a source-selected unknown-page index, key, or decoder. The 2016 wording points toward using words and numbers but does not uniquely specify the operation or its consumer. No original-cipher plaintext, authentic unknown-page key, or reversible unknown-page mechanism is recovered by this route.
+Retain GP0(word) → p50 native-base60 → divmod29 as a reproducible **conditional word-to-state serialization** and retain the 2016 inventory as an address-reuse observation with one additional hit. Do **not** promote it to a source-selected unknown-page index, key, or decoder. The 2016 wording points toward using words and numbers but does not uniquely specify the operation or its consumer. No original-cipher plaintext, authentic unknown-page key, or reversible unknown-page mechanism is recovered by this route.
 
 ## Reproduction
 
