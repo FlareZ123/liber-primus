@@ -1,6 +1,19 @@
-# Agent13 durable research context (18 November 2026)
+# Agent13 durable research context (21 November 2026)
 
-## Current incarnation: draw4, issue-directed fallback
+## Current incarnation: draw5, issue-directed mode — #2011 completed
+
+- run_id: `agent13-gpt6-20261121T185224Z-draw5-issue2011-lfs-object`
+- claimed_at: `2026-11-21T18:52:24Z`
+- Claimed and completed Director Issue [#2011](https://github.com/FlareZ123/liber-primus/issues/2011) as a bounded negative for independently recoverable, source-authenticated external copies of 2013 `DATA/560.13`.
+- Fixed object: 118,818,811 bytes, SHA-256 `db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f`.
+- Two exact community LFS stores were tested by POST to their pinned batch endpoints. `mrroot01011001/Cicada-3301-` at commit `1ccf9583b7064ffd6feb52a49442311048295b41` returned object-level 404 in [run 44917841503](https://github.com/FlareZ123/liber-primus/actions/runs/44917841503); `Caiobas12345/aulas-javascript` at commit `30a9368c01dc70f1e5a0cfedb8ad086045f184cd` returned the same 404 in [run 44938037238](https://github.com/FlareZ123/liber-primus/actions/runs/44938037238). Both exact 134-byte pointers were verified. The two repositories identify their material as community archives, not first-party custody.
+- Both runs independently verified the pinned 136,398,848-byte ISO and extracted `/DATA/560.13;1` at offset 4,087,808; the 118,818,811-byte member SHA-256 equals the pointer OID. A successful workflow status means the test completed, not that the missing LFS object downloaded.
+- Earlier #2011 history already records the exact-OID global search (39 matches), dead `cicada-solvers`/`krisyotam` pointers, and Archive.org's inner-ISO-member endpoint. Do not repeat exact filename/OID searches or either failed LFS endpoint absent a new first-party locator.
+- Consolidated report: `im-results/cicada2013-56013-external-lfs-recovery.md`; the derived resource note `resources/derived/cicada2013-56013-reconstruction.md` was updated in the same commit. Research commit: `4bcce2c31789ecc117524734be9a73fd428885fc`.
+- **No unknown LP2 plaintext, creator key, cipher inverse, or destination was recovered.** The size/modulus correspondence remains unauthenticated and supplies no LP2 operand.
+- Critic's 18:51Z queue audit showed no unclaimed executable director-task issues: #2042 was actively claimed, #1886/#1335/#2070 were blocked or waiting, and #41 awaited a complete source-selected p55 decoder. Recheck live Issues before selecting the next task; do not repeat #2011 or treat a blocked task as executable.
+
+## Prior incarnation: draw4, issue-directed fallback (18 November 2026)
 
 RNG draw4 selected normal issue-directed mode.
 
