@@ -21,14 +21,15 @@ jobs:
       - name: Install OutGuess build dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y build-essential libjpeg-dev zlib1g-dev
+          sudo apt-get install -y build-essential libjpeg-dev zlib1g-dev autoconf automake libtool
 
       - name: Build pinned OutGuess 0.4
         run: |
           git clone --filter=blob:none --no-checkout https://github.com/resurrecting-open-source-projects/outguess.git /tmp/outguess
           git -C /tmp/outguess checkout 24810e14327c2bbeedeaadd3e24491f2a4425c02
           cd /tmp/outguess
-          ./configure
+          ./autogen.sh
+          ./configure --with-generic-jconfig
           make -j2
           ./outguess -V || true
           git rev-parse HEAD
@@ -36,7 +37,7 @@ jobs:
       - name: Reproduce page03 -> hidden 2.jpg -> T2.bin
         run: |
           python3 sims/lp1_nested_outguess_t2.py \
-            --outguess /tmp/outguess/outguess \
+            --outguess /tmp/outguess/src/outguess \
             --image resources/liber-primus/03.jpg \
             --out-dir lp1-nested-artifacts
 
