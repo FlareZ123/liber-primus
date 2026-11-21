@@ -158,6 +158,30 @@ const chapterEven = chapter.slice(0,1728);
 const chapterPlain = hill2(chapterEven,inverse);
 assert.deepEqual(hill2(chapterPlain,matrix),chapterEven);
 
+// One additional fixed composite receiver from already source-visible
+// p7 five-dot order [2,4,0,3,1] and the original p10 inline Arabic 7.
+// Existing p7 five-dot report establishes p8..p14 = 1729 rune values,
+// + original numeral 7 at span offset692 = 1730 = 5 columns of 346.
+// Interleave in the literal dot order, then apply the NEW p7 Hill-2 key.
+const p7DotOrder = [2,4,0,3,1];
+const withNumeral = chapter.slice();
+withNumeral.splice(692,0,7);
+assert.equal(withNumeral.length,1730);
+const dotColumns = Array.from({length:5},(_,column) =>
+  withNumeral.slice(column*346,(column+1)*346));
+const dotInterleaved = [];
+for(let row=0;row<346;row++) {
+  for(const column of p7DotOrder) dotInterleaved.push(dotColumns[column][row]);
+}
+assert.equal(dotInterleaved.length,1730);
+assert.equal(dotInterleaved[0],7);
+const dotHill2Plain = hill2(dotInterleaved,inverse);
+assert.deepEqual(hill2(dotHill2Plain,matrix),dotInterleaved);
+const dotHill2Prefix = dotHill2Plain.slice(0,55)
+  .map(value=>corpus.translit[value]).join("");
+assert.ok(Math.abs(29*ioc(dotHill2Plain)-1.0002153003674148)<1e-12);
+assert.ok(Math.abs(29*ioc(dotInterleaved)-0.9992651704851279)<1e-12);
+
 const result = {
   classification:"New exact p7 GP29 2x2 matrix+inverse-determinant certificate; direct receiver negative",
   fiveOriginalRedWordProducts:products, matrix, determinant:det,
@@ -171,6 +195,14 @@ const result = {
     exactReencrypt:true},
   p8to14FixedReceiver:{runes:1728,unchangedOddTail:1,
     decodedNormalizedIoC:29*ioc(chapterPlain),exactReencrypt:true},
+  dotSelected1730Hill2Receiver:{
+    pages:"p8..p14",inlineNumeralOffset:692,
+    sourceDotOrder:p7DotOrder,uniqueFirstSymbol:dotInterleaved[0],
+    originalRunes:1729,withInline7:1730,pairedRunes:1730,
+    ciphertextNormalizedIoC:29*ioc(dotInterleaved),
+    decodedNormalizedIoC:29*ioc(dotHill2Plain),
+    decodedPrefix55:dotHill2Prefix,exactReencrypt:true
+  },
   recoveredUnknownPlaintext:false
 };
 console.log(JSON.stringify(result,null,2));
