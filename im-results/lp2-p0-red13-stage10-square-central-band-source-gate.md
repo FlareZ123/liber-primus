@@ -1,6 +1,6 @@
 # The p0 13-dot marker as a 2014 square central-diagonal mask: an exact original-cipher obstruction
 
-**Agent 29, 21 November 2026. Classification:** source-visible geometric hypothesis; key-independent original-language exclusions for stationary and affine/quadratic position-clock additive key classes, with no unknown-page plaintext recovered. This complements the already documented red13 DH-state serializer and the independently investigated 2014 5–7–5 square / terminal 99-unit geometry. It is specifically a **p0 title receiver** test, not another p55 square-count proposal.
+**Agent 29, 21 November 2026. Classification:** source-visible geometric hypothesis; key-independent original-language exclusions for stationary and affine/quadratic position clocks, and an exact two-survivor finite result for per-column-offset codebooks, with no unknown-page plaintext recovered. This complements the already documented red13 DH-state serializer and the independently investigated 2014 5–7–5 square / terminal 99-unit geometry. It is specifically a **p0 title receiver** test, not another p55 square-count proposal.
 
 ## Why a solver would consider this
 
@@ -112,6 +112,35 @@ The all-runes-consumed tests also have **zero** matches (4,325 native and 4,472 
 
 This excludes a materially wider source-derived family: any secret stationary cell-value mapping **plus any arbitrary quadratic dot-position counter**, including every affine counter, for the exact pinned 8|5 English word corpus. Its limit remains important: different cell-to-rune ordering, cubic/higher clock, a plaintext language outside the controls, or a genuine stateful rule can evade the mirror relation. No Cicada-supplied clue selects any such rescue, and the quadratic class produces no recovered plaintext. [Standalone Windows Node22/CommonJS SFT](../sims/lp2_p0_dot13_affine_quadratic_clock_sft.cjs).
 
+### Physically distinct three-column offset: two algebraic English candidates, no selected key
+
+A clock adds a function of *position*. The original p0 ornament also has three visibly distinguished **columns**, exactly \`C,L,R,C,L,R,C,L,R,C,L,R,C\` in its top-down raster. That motivates a different original-image hypothesis, \`K[i]=f(source_square_cell[i])+h(physical_column[i]) mod29\`: one arbitrary unknown codebook for the **seven distinct 2014 square-cell values** in the 13-cell band, plus three fixed per-column offsets. The source square is 180°-symmetric, but the opposing noncenter columns interchange under this half-turn. The key therefore need not be palindromic.
+
+For each original mirror pair the center-column atoms must still agree, \`K0=K12\` and \`K3=K9\`. Every left/right pair differs by the **same** offset \`delta=hL-hR\`. In the natural physical scan order, first-word GP rune positions5 (right) and7 (left) fix \`delta=(C7-A7)-(C5-A5) mod29\` if they are both encrypted. Once an eight-rune first word \`A\` is specified, the five-rune second word \`B\` is fixed **without knowing any numeric source-square values or codebook**:
+
+\[
+\begin{aligned}
+B_0&=A_4+C_8-C_4+\delta,&
+B_1&=A_3+C_9-C_3,\\
+B_2&=A_2+C_{10}-C_2-\delta,&
+B_3&=A_1+C_{11}-C_1+\delta,\\
+B_4&=A_0+C_{12}-C_0 \pmod{29}.
+\end{aligned}
+\]
+
+Because each of the two source five-by-five square bands has **seven distinct entries**, each occurring only once or in an exact opposite-dot pair, these same conditions are also **sufficient** for some arbitrary source-value codebook and three static column shifts. No further hidden equality is silently ignored.
+
+| Original 8+5 title lexical register | Unique first words | Unique second words | Original exact combinations |
+| --- | ---: | ---: | --- |
+| Source-native GP29 | 4,325 | 3,613 | **2:** \`REGULATE TAMED\`, \`REVULSION TAXED\` |
+| Literal-letter GP29 | 4,472 | 2,940 | **1:** \`REGULATE TAMED\` |
+
+Every surviving pair has \`delta=16\`. The second is specific to native \`IO\` ligature compression; both pairs have weak stand-alone title semantics and neither is known original plaintext. The source-motivated static literal-F passthrough at the printed F (position7) does not create additional wholeword survivors. Eight original-square positive plants per spelling, including four fixed-position F-bypass plants, are recovered exactly.
+
+The independently proposed signed-source \`EPIPHANY SEEKS\` candidate **fails** even the free-codebook column model: its required key has **K0=26, K12=19** and **K3=19, K9=8**, violating the unchanged center-dot equalities. The two formal English survivors also fail **all eight** direct historical numeric recipes (two source five-by-five squares × source-number residue or Euler totient residue × two native candidate word pairs) even when every visible column is granted a free shift; the literal-letter survivor duplicates one native pair. Thus every original English survivor would still need a specifically fitted, unprovided codebook. There is no source instruction telling a human solver to derive that codebook.
+
+This is a **different geometric cipher class** from the stationary/affine/quadratic clock. It establishes that the prior zero-pair result cannot be generalized to all plausible ways to use the p0 13-dot source square. It leaves two purely algebraic phrase candidates, neither authenticated and neither actionable as a decryption. [Original-cipher source-only SFT](../sims/lp2_p0_dot13_columnshift_square_sft.cjs) · [Windows Node22 CI PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44944182181).
+
 **Independent Latin source-language control:** The separately pinned Latin Vulgate New Testament native GP29 **whole-word** corpus has **1,130 distinct eight-rune words** and **793 distinct five-rune words**. This broader language alternative admits exactly **one** formally compatible synthetic cross-word pair, native GP code `5I41A5IF JO42O`, decoding to normalized `CERUICES MARTHA` (Latin **CERVICES MARTHA**, “necks Martha”). The individual words are attested in separate contexts, but the two-word sequence occurs **zero times** in the actual pinned Vulgate text, and is not a coherent stand-alone title. Both plain all-consumed and transparent-literal-F variants produce this same single formal pairing. Its conditional additive residual on the original p0 title is the exactly symmetric `[10,19,14,2,25,14,9,14,25,2,14,19,10]`, while none of the thirteen source-square numbers reduced modulo29 matches that required shift at its physical dot cell. Thus the exception requires an additional unsourced arbitrary numeric-value-to-shift codebook. It demonstrates the finite English exclusion is **language-dependent**; the proposed operation has no authenticated Latin plaintext or key. Positive controls remain in the same test. The [extended English-plus-Latin SFT](../sims/lp2_p0_dot13_allsecret_english_wordpair_gate_sft.cjs) freezes this exact exception.
 
 **Interpretation:** The entire source-derived stationary additive palindrome-key architecture has no exact two-English-word solution in this explicit finite lexicon, without choosing either historical title candidate. This is a stronger exclusion than the two conditional crib mismatches. An out-of-dictionary/foreign plaintext, nonstandard author spelling, position-dependent state update, or a different source geometry remains possible. The original p0 title cannot be declared solved from this experiment.
@@ -122,7 +151,7 @@ This excludes a materially wider source-derived family: any secret stationary ce
 
 The geometric match alone does not select a title decipherment. The complete pinned English corpus also provides no word-pair solution for its symmetric stationary additive key. A source-defined **position-dependent state update, an outside-in H transform, a different readout order or different text receiver** might break the palindrome; the 2014 original squares supply no instruction selecting one such operation. The previous conditional red13 DH-state serializer in [this report](lp2-p0-square-state-rise-key-serializer.md) uses distinct side-column packets and a retrospective rise grammar, so its case is **not** eliminated by this narrower argument.
 
-**Result:** the 5×5 diagonal-band shape is exact on the physical original source geometry. Both conditional title cribs and the full fixed 8|5 English word-pair census exclude any stationary additive key and any arbitrary affine/quadratic position clock combined with a secret square-value codebook, for the specified spelling and F conventions. Do not open arbitrary coordinate or permutation menus to rescue the model.
+**Result:** the 5×5 diagonal-band shape is exact on the physical original source geometry. Both conditional title cribs and the full fixed 8|5 English word-pair census exclude stationary, affine and quadratic clock source-square keys in the pinned English registers. A distinct three-column-offset source-square codebook has precisely two native English algebraic survivors, both semantically weak and requiring source-unselected numeric codebooks. Neither class identifies an authored key or original title plaintext. Do not open arbitrary coordinate or permutation menus to rescue the model.
 
 [Windows Node22 original SFT PASS, CI run 44937394995](https://github.com/FlareZ123/liber-primus/actions/runs/44937394995); the updated second-crib assertion is validated in the successor execution. A new first-party clue must independently select a nonstationary transformation before this geometric branch deserves further work.
 
