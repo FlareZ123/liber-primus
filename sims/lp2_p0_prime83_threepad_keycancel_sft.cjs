@@ -167,4 +167,43 @@ const summary={
 assert.ok(Number.isFinite(actual.llr));
 assert.ok(planted.every((v,i)=>Math.abs(v-native[i])<1e-11));
 console.log(JSON.stringify(summary,null,2));
+// Alternate source-visible nonlinear consumer: in the *conditional*
+// Shamir-style reading, all three aligned 83-symbol lanes are evaluations
+// of an unknown quadratic over GF29 at x=1,2,3. The constant f(0) is
+// Lagrange interpolation 3*C(x=1)-3*C(x=2)+C(x=3). This is a
+// deterministic 83-rune prospective secret, with zero tuned parameters.
+// Its originality depends on the unproven link from the p7 five-dot
+// Shamir interpretation to this p0 3-by-83 layout.
+const gpSpell = (values)=>values.map(n=>corpus.translit[n]).join('');
+const gpIoC = (values)=>{
+  const histogram=Array(29).fill(0);
+  values.forEach(n=>{histogram[n]++;});
+  return histogram.reduce((sum,n)=>sum+n*(n-1),0)/
+    (values.length*(values.length-1));
+};
+const f0=(values)=>{
+  assert.equal(values.length,249);
+  return Array.from({length:83},(_,i)=>mod29(
+    3*values[i]-3*values[i+83]+values[i+166]
+  ));
+};
+const secret=f0(black);
+assert.equal(secret.length,83);
+const nativeSecret=corpus.pages[57].indices.slice(0,83);
+assert.equal(nativeSecret.length,83);
+const A=Array.from({length:83},()=>random()%29);
+const B=Array.from({length:83},()=>random()%29);
+const shares=[];
+for(let x=1;x<=3;x++)for(let i=0;i<83;i++){
+  shares.push(mod29(nativeSecret[i]+x*A[i]+x*x*B[i]));
+}
+assert.deepEqual(f0(shares),nativeSecret);
+assert.ok(gpIoC(nativeSecret)>gpIoC(secret));
+console.log('GF29 Shamir 3x83 constant',JSON.stringify({
+  zeroTuning:true,interpolation:'3*C1 - 3*C2 + C3 mod 29',
+  p0SourceSecretIoC:+gpIoC(secret).toFixed(7),
+  sourceSecretGpTranslit:gpSpell(secret),
+  known83PlantedIoC:+gpIoC(nativeSecret).toFixed(7),
+  exactPlantedReconstruction:true
+}));
 console.log('PASS: key cancellation and true-shared-pad plants; original p0 body has no recovered plaintext');
