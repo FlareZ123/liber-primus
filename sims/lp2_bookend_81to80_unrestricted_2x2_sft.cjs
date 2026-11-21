@@ -31,7 +31,9 @@ const five=gp.pages.find(p=>p.page===56).indices.slice(0,5);
 assert.deepEqual(five,[25,11,22,15,4],
   "actual independently solved p56 ciphertext heading");
 const terminal=[...tail,...five];
+const terminalAnyFive=[...tail,null,null,null,null,null];
 assert.equal(terminal.length,6400);
+assert.equal(terminalAnyFive.length,6400);
 const holeSlots=new Set([2244,2384,2476,2575,2672]);
 assert.equal(holeSlots.size,5);
 const ORDINAL=Array.from({length:6400},(_,i)=>
@@ -126,19 +128,23 @@ const pholes=fit(phole,5);
 assert.equal(pholes.forcedEdits,0);
 assert.deepEqual([pfull.observed,pholes.observed],[6400,6395]);
 const direct=Array.from({length:8},(_,mode)=>fit(terminal,mode));
+const terminalFree=Array.from({length:8},(_,mode)=>fit(terminalAnyFive,mode));
 const ordinal=Array.from({length:8},(_,mode)=>fit(ORDINAL,mode));
 assert.deepEqual(direct.map(x=>x.forcedEdits),
   [35,39,40,39,38,39,40,40]);
 assert.deepEqual(ordinal.map(x=>x.forcedEdits),
   [39,39,39,35,39,36,38,39]);
-for(const x of [...direct,...ordinal])
+assert.deepEqual(terminalFree.map(x=>x.forcedEdits),
+  [35,39,40,38,38,39,40,39]);
+for(const x of [...direct,...terminalFree,...ordinal])
   assert(x.forcedEdits>=35);
 console.log(JSON.stringify({
   input:{source81x81:first.length,secondUnknown:tail.length,
     p56KnownFive:five,ordinalFiveSlots:[...holeSlots]},
   exactArbitraryLookupFamily:"ANY deterministic GP29^4 -> GP29 table, per view",
-  terminalFive:direct,
+  terminalFiveKnownP56:direct,
+  terminalFiveCompletelyFree:terminalFree,
   ordinalFiveHoles:ordinal,
   plantedPositive:{terminal:pfull,ordinal:pholes},
-  verdict:"Neither authored five-slot completion can be emitted by a stationary unrestricted two-by-two source neighborhood function, under any of eight orientations. No plaintext recovered."
+  verdict:"Neither original five-slot completion, including absolutely free appended symbols, can be emitted by a stationary unrestricted two-by-two source neighborhood function, under any of eight orientations. No plaintext recovered."
 },null,2));
