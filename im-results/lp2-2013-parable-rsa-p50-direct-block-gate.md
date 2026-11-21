@@ -19,6 +19,8 @@ e*d mod phi(n) = 1
 
 The 2014 LP2 p50 numerical table prints exactly **256 working base60 bytes** in **32 original rows of eight**. Eight-byte rows allow two contiguous four-byte RSA ciphertext blocks per row, hence **64** blocks from the complete table, with no padding guess. An RSA ciphertext representative of `n` must satisfy **0 <= c < n**. This key-independent necessary condition can decisively test the literal direct receiver before any plaintext scoring.
 
+**Prior art:** The earlier [2013 Parable RSA original-GP cyclewalk report](lp2-2013-parable-rsa-cyclewalk-original-gate.md) had already tested this three-prime modulus, e=761 and alternative historical exponents on the 12,956 original runes with six-rune block cyclewalking. It also excluded canonical seven-rune p54–55 packet transport. This experiment is distinct only in its **256-byte p50 four-byte block transport**, with a necessary exact range obstruction before decryption. Neither the operand values nor the RSA hypothesis are new.
+
 The manuscript and the original MP3 **do not tell a solver to apply RSA**. This operation is an investigator hypothesis motivated by the unusual pre-published factorization and prime title, not yet a human solve instruction. We test only the four source-natural byte readings, without rescuing a failing codeword by hidden remapping, modulo reduction or skipping bytes.
 
 ## Exact original-input obstruction
