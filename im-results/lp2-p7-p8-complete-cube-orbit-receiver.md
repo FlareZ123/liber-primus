@@ -35,6 +35,12 @@ p8 is **255 runes**, comprising **12 red + 243 black**, with `243 = 3^5`. The fi
 
 The original 243-rune black body has IoC **0.03404414516**. The eight outputs range **0.032854–0.035915**, and none reads as GP English. Every original 243-rune candidate maps back to the exact source body; all eight independently recover a 243-rune native-GP plant (original p57 repeated and truncated). Earlier work already excluded numeric-step finite differences and other GF29 polynomial samples on this same 3^5 layout; the **cube-orbit evaluation points** are the incremental source-based test here.
 
+## Bounded candidate C: combine the already published p7 quartic receiver with p8 cubing
+
+The prior original-input quartic/Shamir gate derives the exact coefficient vector **Q=[2,15,8,26,11]** by reversing the five original p7 red-word products, and proves that Q is a unit in `GF(29)[X]/(X^243-1)`. Its standalone convolution inverses were nonlinguistic. Since p8's next red word has source product **3**, and the unique Roman **XIX** selects the reciprocal cubing exponent **19**, a two-layer rather than single-layer decoder is a bounded, source-motivated remaining alternative.
+
+Test the four exact layer orders on the unchanged **243-rune p8 black body**: inverse Q convolution then cube-root19, cube-root19 then inverse Q convolution, direct Q convolution then cube-root19, and cube-root19 then direct Q convolution. Each combination has a specified algebraic encryption inverse. All four exact 243-rune reencryptions and independently planted native-GP plaintext recoveries succeed. Their decoded IoCs are respectively **0.03526851, 0.03309186, 0.03577866, 0.03407816**. None recovers readable plaintext. Thus these four specific operations are excluded, without implying every possible layered cipher is impossible.
+
 ## Research consequence
 
 The orbit completion is a concrete original-cipher feature worthy of preservation because it unites printed adjacent red marks, the prime field, a reversible cubing map, and p8's 3^5 body length. Neither a periodic key use nor a separable tensor interpolation recovers native plaintext. Therefore do **not** schedule more arbitrary phase shifts, tensor permutations or exponent families on the strength of this fit alone. A successor requires an independently visible clue that selects **where the orbit is read**, **which cipher equation receives it**, or a convincing GP29 plaintext holdout.
