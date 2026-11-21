@@ -29,6 +29,8 @@ Choose the literal p7 last product **2** as seed, apply `x -> x^3 mod 29` to pro
 
 Original chapter index of coincidence: **0.03446048347**. All ten candidate inverses yield **0.034421–0.034772**, with no readable GP-native result. All ten mappings reencrypt every original ciphertext rune and decrypt a separately planted 95-rune original p57 plaintext. This rules out these ten **exact, no-free-parameter models**; round-trip alone is an algebraic positive, never evidence of historical decryption.
 
+A physically selected rival clock begins at the **first black p8 rune after the 12-rune red header**, since the red material could be metadata rather than encrypted text. The identical ten periodic six-orbit equations, with no fitted phase or key change, produce p8 black-body IoCs **0.033296–0.035507** and no readable plaintext. All exact replays and independent p57 plants pass. The key-clock ambiguity between first-red and first-black does not rescue these elementary equations.
+
 ## Bounded candidate B: p8 black 3^5 tensor under the same orbit
 
 p8 is **255 runes**, comprising **12 red + 243 black**, with `243 = 3^5`. The five red p7 word products can supply one coordinate generator per ternary dimension. For each product `r`, select three evaluation points **[r,r³,r⁹] modulo 29**, or the inverse-cubing direction **[r,r¹⁹,r^(19²)]**. On the five-axis, 3×3 GF29 Vandermonde maps, apply exactly the direct matrix, inverse, transpose-direct, or transpose-inverse (two directions × four conventional transforms = **eight** fixed models).
