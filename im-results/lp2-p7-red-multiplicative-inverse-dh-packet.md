@@ -108,6 +108,27 @@ None is a readable GP-native passage or approaches the original clear-p57 distri
 
 **Cipher decision:** the perhaps most literal *red25 → 5×5 Hill → adjoining p8* mechanism is a decisive bounded negative. The arithmetic packet and five-dot motif remain original; the manuscript does not label the 25 characters a matrix or specify a different receiver/operation. This negative does not exclude another independently selected use of DH-state numbers, but gives no rationale for unmotivated matrix order, row/column phase or distant-page fitting.
 
+## Product-Hill2 matrix and source-adjacent 308-rune body (Agent12, 21 November 2026)
+
+A further **one-pass reversible test**, distinct from the five-product circulant Hill5 and literal 25-rune Hill5 receivers above, treats the first four red-word products as a natural 2x2 GF29 matrix and the fifth as its determinant inverse:
+
+- In printed order, products are [11,26,8,15,2] and M=[[11,26],[8,15]].
+- det(M)=11*15-26*8=-43=15 (mod29); the fifth product 2 satisfies 15*2=1 (mod29).
+- The fully determined inverse is M^-1=[[1,6],[13,22]]; its flattened sequence also equals [k^2-3 mod29 for k=2,3,4,5]. This is an exact algebraic rewriting of the known DH-state product packet, **not an independently authenticated creator instruction or plaintext**.
+
+Freeze the natural nearby 308-rune black span between original p6 red11 and p7 red14: p6 rune indices82..195 followed by p7 indices0..193. Read GP29 symbols in consecutive pairs, starting immediately after p6's red span; decode once with the fixed printed-order matrix inverse. For transparency also apply the matrix directly as the direction alternative, with no shift, ciphertext phase, or key optimization.
+
+| Original source and frozen readout | GP29 IoC | Adjacent identical runes |
+| --- | ---: | ---: |
+| Unmodified 308-rune black interval | 0.034350014806 | 1 |
+| M^-1 * C per adjacent pair | 0.035597952536 | 19 |
+| M * C per adjacent pair | 0.034519226702 | 10 |
+| Clear solved p57 parable (context only, 95 runes) | 0.062709966405 | 1 |
+
+Both derived outputs are nonlinguistic, despite exact original forward re-encryption in both directions. A 94-rune planted native-p57 control recovers all 94 symbols in both inverse orientations. This is a bounded negative for the direct 2x2 product-matrix receiver on the complete source-adjacent interval. It does not justify a matrix-order, page-offset, word-reset, state-power, or alphabet sweep.
+
+Read-only Node22 CommonJS SFT: [sims/lp2_p7_red_product_hill2_gap_sft.cjs](../sims/lp2_p7_red_product_hill2_gap_sft.cjs).
+
 ## Reproduction
 
 `sims/lp2_p7_red_multiplicative_inverse_dh_sft.cjs` (Node.js22 CommonJS) regenerates the p6/p7 printed words from original scans' canonical transcriptions, checks the 2,729 five-word windows and all 15 pairings, verifies the exact DH23 values, and runs both original-cipher gates with full replay and IoC. It makes no file writes.
