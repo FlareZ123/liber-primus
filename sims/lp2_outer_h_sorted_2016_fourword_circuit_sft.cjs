@@ -17,7 +17,7 @@ const read = p => fs.readFileSync(path.join(ROOT, p), "utf8");
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const source = read("resources/lp2-transcription.txt");
 const signedSource = read("resources/historical/cicada2016-4gq25-outguess.asc");
-const signed = signedSource.split("\n\n").slice(1).join("\n\n")
+const signed = signedSource.replace(/\r\n/g, "\n").split("\n\n").slice(1).join("\n\n")
   .split("-----BEGIN PGP SIGNATURE-----")[0]
   .replace(/7A35090F/g, "")
   .match(/[A-Za-z]+/g).map(token => token.toUpperCase());
