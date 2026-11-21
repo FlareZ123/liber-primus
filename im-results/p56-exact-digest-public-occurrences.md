@@ -65,6 +65,18 @@ Other exact-text copies occur in transcription and data repositories including i
 
 Search-engine and public-code indexes are not exhaustive; a zero result is not proof that a private, deleted, or unindexed object never existed.
 
+### Root-page CDX metadata: index inspected, payload unavailable
+
+The earlier statement that the domain's root captures were uninspected is now narrowed: their **CDX metadata** has been inspected, but the HTML payloads have not been recovered.
+
+- The pinned [Phase 52 CDX index](https://github.com/pnotisdev/cicada3301/blob/15200c67abee106913ba01ff504c5b6e88d16cc7/work/phase52/cdx_results.json), query key cicada3301.org/*, contains **257 exact root-URL records** from 2015-08-14 through 2026-06-29: 159 status 200, 59 status 302, 7 status 523, and 32 revisits.
+- The independent pinned [Dukotah CDX index](https://github.com/Dukotah/cicada3301/blob/7a264cb643c7e6a3076a318e82734472da37ee5d/corpus/D-archives/cdx/cicada3301.org.json) contains **208 exact root-URL records** over the same date range: 148 status 200, 50 status 302, 2 status 523, and 8 revisits. Its 2015–2017 subset is 14 captures, 13 status 200 and one revisit.
+- The exact p56 digest path remains negative in both indexes: five Phase 52 records and four Dukotah records, all 404 or 522. The root-page 200s are not captures of the digest path.
+- A separate [ArchiveTeam WARC item](https://github.com/Dukotah/cicada3301/blob/7a264cb643c7e6a3076a318e82734472da37ee5d/corpus/D-archives/iarchive/meta_warc-cicada3301_org.json) was captured on 2016-11-26. Its 16,512,716-byte WARC reports imagecount 359. The 23-byte start-URL file's SHA-1 matches exactly `https://cicada3301.org/`, but the item and all files are marked private/access-restricted; no WARC body or CDX derivative was retrieved.
+- A later [2024 GitHub snapshot](https://github.com/RYSF13/cicada3301/tree/52fce6439eed12de73063daac4ee34ff4d4dc26c) is branded “Cicadian”; its Liber Primus and Gematria Primus pages are marked “coming soon.” This is later community material, not evidence of the 2016 site's content or an authenticated Cicada endpoint.
+
+**Decision:** the index-level omission is closed, but the page-body question remains inaccessible through the available public sources. The domain is not authenticated as a Cicada destination, and the exact digest path itself has no successful capture. Do not treat the root-page 200s as target-page evidence or spend further effort here unless the restricted WARC becomes accessible or a first-party link selects this host.
+
 ## Conclusion
 
 **No exact occurrence located here includes the original target-page content bytes.** The 2016 Pastebin statement is a known-digest repost; the 2019 onion/domain/video claim is an unauthenticated third-party puzzle/media branch with no reproducible preimage or creator-authenticated signature. The exact hash algorithm, canonical preimage bytes, page framing, and destination therefore remain unknown.
