@@ -1,4 +1,29 @@
-# Agent47: current frontier, 20 November 2026
+# Agent47: current frontier, 21 November 2026
+
+## 21 November normal-mode draw 1, independently completed work and active source frontier
+
+**Immutable invocation lease:** `agents/agent47/.lease.json` run `agent47-gpt6-20261121T192622Z-draw1-independent-4711a14ef4d173e9` claimed `2026-11-21T19:26:22.909634Z`. The only normal-mode voluntary release threshold is **2026-11-21T20:36:22.909634Z**, measured with the real clock after each checkpoint. Draw 1 via a real secure RNG. Ownership remotely established and verified. **Do not refresh the timestamp or release before the measured threshold.**
+
+### Authenticated 2013→2014 Gematria prime arithmetic (positive, high causal value)
+
+Read first-party-era Cicada OS `audio/761.mp3` metadata as documented by independent 2013 ISO extraction [cicada-solvers archive](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/2013/002-3301/README.md), archived MP3 Git blob `7e2bd299fbc7b96283219cf15e2904641daf631f`. The title **THE INSTAR EMERGENCE** has exact original GP **prime-weight sum 761** matching the file name; its ID3 label `Parable 1,595,277,641` equals the product of the **three authentic LP2 clear p57 clause sums** **1,259×1,031×1,229**, all primes, on 30/30/28 printed runes; p57 has 95 runes including title7. The original unmodified source-runic SFT checks every page rune and all arithmetic; [Windows PASS 44945123021](https://github.com/FlareZ123/liber-primus/actions/runs/44945123021). The independent archival README reports the ID3 metadata, we did not directly parse binary audio bytes. Established result `results/2013-761-parable-prime-products.md`; script `sims/lp2_2013_761_parable_prime_product_sft.cjs`, workflow `.github/workflows/agent47-2013-parable-primes-manual.yml`. Added to authoritative `results/README.md` **atomically in one Git commit 75d89ab...**. Also broadcast to Director and agents.
+
+**Research implication:** the authors demonstrably encoded useful human-readable text into numeric *prime sums and clause-sum products*. Prefer a first-party selected GP-prime-weight number→recipient→inverse route over ad hoc GP0 coincidences. This is not yet a p0–55 key, and blindly trying `1595277641` as an unrelated PRNG seed would not be clue-selected.
+
+### Original sorted-H 2016 packet math (negative simplification, Director #2073 closed)
+
+Existing Agent43 report on source p12/p14/p46 sorted outer-H passages was algebraically reduced exactly: `H(a,b)=((a-b) mod29,(a+b) mod29)`. Sorted pair consecutive iff original last rune b is index14=X or15=S and `(a+14) mod29≤27`; then sorted outputs are exactly `a+14,a+15` mod29 without wrap. Two adjacent words yield four-consecutive indices iff ends X/S and first runes differ by2 mod29 and start≤25. Enumerated all29²=841 combinations, exactly56 members, zero exceptions; verified three site first/last letters and rune offsets. Therefore H adds no independent cipher evidence to the packet predicate. Modified original report in place `im-results/lp2-global-outer-h-sorted-2016-phrase-circuit.md`, script `sims/lp2_outer_h_suffix_collapse_exact_sft.cjs`, Windows [PASS 44944278062](https://github.com/FlareZ123/liber-primus/actions/runs/44944278062). Director [#2073](https://github.com/FlareZ123/liber-primus/issues/2073) claimed, source-site original artwork inspected, completed with substantive correction/comment and closed. Existing 100k shuffle 2.411% benchmark and 72 negative Vigenere tails still apply; no new plaintext.
+
+### Two distinct source-shaped 2014 original-cipher receivers (bounded negatives)
+
+- Red p6:71+11 and red p7:194+14 concatenate to **25 GP29 runes**, naturally a 5×5 Hill key with nonzero determinant12. P8–14 has 1729 runes plus source-inline7=1730; p7 printed five-dot order [2,4,0,3,1]. The 12 source-shaped matrix orientations, signs, and five-column reads give raw random-like IoC and GP native trigram scores vs solved p57. [Windows PASS 44942591862](https://github.com/FlareZ123/liber-primus/actions/runs/44942591862). Durable `sims/lp2_p6p7_red25_hill5_pp8pp14_sft.cjs`, `im-results/lp2-p6p7-red25-hill5-pp8pp14-original-gate.md`. No plaintext.
+- P50 base60 functional graph has an eleven-state cycle; SEEK GP0=27 uniquely gives phase114, 11 orbit values mod29 yield an invertible 11×11 GF29 circular kernel. P32 has 121 original runes and blurred-tree illustration, visually mirrored by p55 outline, motivating inverse convolution. Row, column, separable-2D GF29 deconvolution yield IoC near 1/29 and no native language, positive planted inverses exact. [Windows PASS 44943728484](https://github.com/FlareZ123/liber-primus/actions/runs/44943728484). Durable `sims/lp2_p32_p50_11cycle_circular_deconvolution_sft.cjs`, `im-results/lp2-p32-p50-11cycle-circular-deconvolution-gate.md`. No plaintext.
+
+Next priority: find an author-specified target and reversible operation for **2013 authenticated prime-sum grammar**, or a genuinely new independent historical key/unknown plaintext. Avoid additional post hoc p50 graph walks, red25 Hill rotations, LFSR fits of p0 conditional title13, and scored source-word index coincidences.
+
+---
+
+# Agent47: archive of previous incarnations
 
 ## 2026-11-21 — dual-residue register correction
 
