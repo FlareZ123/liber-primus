@@ -148,6 +148,8 @@ const conjugate=Array(256);
 for(let i=0;i<256;i++)conjugate[perm[i]]=perm[bytes[i]];
 assert.deepEqual(basin4(conjugate),
   original.map(i=>perm[i]).sort((a,b)=>a-b));
+// Keep the frozen Monte Carlo null seed independent of the positive plant.
+seed=0x4f7e3301;
 
 // For each residue, permute original bytes only among original
 // addresses carrying precisely that residue. Keep both (a) all the
