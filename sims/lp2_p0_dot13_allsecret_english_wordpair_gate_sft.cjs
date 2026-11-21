@@ -21,7 +21,7 @@ assert.deepEqual(originals,[15,8,18,3,6,19,27,0,15,26,18,21,5]);
 const words=read("resources/control/english_wordfreq_textblob.txt").match(/^[a-z]+/gmi)||[];
 const tokens=gp.translit.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length);
 const singles=new Map(gp.translit.map((s,i)=>[s,i]));
-const mod=v=>((v%29)+29)%29);
+const mod=v=>((v%29)+29)%29;
 
 /** @param {string} input @param {"native"|"letter"} spelling @returns {number[]} */
 function encodeWord(input,spelling){
