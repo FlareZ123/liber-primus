@@ -74,10 +74,26 @@ function gp0(source) {
 assert.equal(gp0('SEEKS'), 71);
 assert.equal(gp0('EMPTY'), 92);
 assert.equal(gp0('EPIPHANY'), 121);
+assert.equal(gp0('THE'), 20);
 
 // Literal original row-major, conventional base60 byte-as-next-address graph.
 const f = table.pages.flatMap(p => p.bytes);
 assert.equal(f.length, 256);
+let tableState = 50;
+const path50 = [tableState];
+for (let step = 1; step <= 71; step++) {
+  tableState = f[tableState];
+  path50.push(tableState);
+}
+assert.equal(path50[5], 115, 'first visit to tree root115');
+assert.equal(path50[71], 115, 'signed SEEKS71 steps from table-page50');
+const alpha59 = table.alphabet.replace('f', '');
+const f59 = table.pages.flatMap(p=>p.tokens).map(s =>
+  alpha59.indexOf(s[0]) * 59 + alpha59.indexOf(s[1]));
+let reducedState=50;
+for(let j=0;j<71;j++)reducedState=f59[reducedState];
+assert.equal(reducedState,189,'radix59 does not reach the 2016-selected p32 tree root');
+
 const cycle = [0, 203, 68, 199, 47, 76, 114, 197, 115, 247, 192];
 for (let j=0;j<cycle.length;j++) assert.equal(f[cycle[j]], cycle[(j+1)%cycle.length]);
 const cycleNodes = new Set(cycle);
@@ -130,14 +146,39 @@ for (const sign of [-1,+1]) {
   });
 }
 assert.ok(tests.every(t=>t.body92_ioc<0.04));
+
+// Original first 13 printed words = 71 rune source-selected route.
+// Four literal GP29 additive consumers use visited address or emitted byte.
+const pointerTests=[];
+for(const emission of ['visited-address','emitted-byte']) {
+  for(const sign of [-1,+1]) {
+    const key=Array.from({length:71},(_,i)=>
+      path50[emission==='visited-address'?i:i+1]%29);
+    const plain=C.slice(0,71).map((v,i)=>mod(v+sign*key[i]));
+    for(let i=0;i<71;i++)assert.equal(mod(plain[i]-sign*key[i]),C[i]);
+    const planted=p57.slice(0,71);
+    const cipherPlant=planted.map((v,i)=>mod(v-sign*key[i]));
+    assert.deepEqual(cipherPlant.map((v,i)=>mod(v+sign*key[i])),planted);
+    assert.ok(io(plain)<0.04,'original source-selected first-half ciphertext stays nonprose');
+    pointerTests.push({
+      emission, sign, first71_ioc:Number(io(plain).toFixed(9)),
+      first26:plain.slice(0,26).map(x=>gp.translit[x]).join(' '),
+    });
+  }
+}
+assert.equal(pointerTests.length,4);
+
 console.log(JSON.stringify({
   source: 'p32 121 runes / 26 physical word groups / terminal red13-dot',
-  signed_gp0: {SEEKS:71, EMPTY:92, EPIPHANY:121},
+  signed_gp0: {SEEKS:71, EMPTY:92, EPIPHANY:121, THE:20},
   word_half13: [sum(lengths.slice(0,13)),sum(lengths.slice(13))],
   uniqueness: 'only p32 in all 57 rune-bearing physical pages has exactly26 words and first13 total71 runes',
   base60_root115_tree_depth13_nonroot:sum(layers.slice(0,13)),
   base60_root115_outer14to20:sum(layers.slice(13)),
   terminal29_unique_symbols:new Set(tail29).size,
+  table50_walk71_base60_endpoint:path50.at(-1),
+  table50_walk71_base59_endpoint:reducedState,
+  first13_words_pointer_key_gates:pointerTests,
   tests,
   recovered_unknown_plaintext:false,
 }, null, 2));
