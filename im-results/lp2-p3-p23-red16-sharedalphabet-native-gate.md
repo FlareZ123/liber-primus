@@ -21,9 +21,9 @@ The 11-rune p3 middle glyphs have pattern
 
 `0,1,2,3,4,5,6,7,5,8,1`.
 
-Only **one** dictionary word shares it: `descriptive`, among 1,708 native eleven-rune words. This **is not a decrypt**, because any arbitrary substitution can map the displayed cipher shape to that coincidental spelling, and the actual plain word may be outside the lexicon.
+Only **one** dictionary word shares it: `descriptive`, among 1,610 native eleven-rune words. This **is not a decrypt**, because any arbitrary substitution can map the displayed cipher shape to that coincidental spelling, and the actual plain word may be outside the lexicon.
 
-The second p23 title word has six glyphs and pattern `0,1,2,3,4,2`; **137** native six-rune words satisfy its own pattern. Yet **none** can share the same injective source-to-plaintext rune map required by `descriptive` on p3's eleven-rune middle. The complete fixed pair requires **zero compatible `11↔6` dictionary-word choices**, before considering either title's other five words. The contradiction is exact even when the secret GP29 substitution is completely unrestricted, rather than fitting a short finite key.
+The second p23 title word has six glyphs and pattern `0,1,2,3,4,2`; **143** native six-rune words satisfy its own pattern. Yet **none** can share the same injective source-to-plaintext rune map required by `descriptive` on p3's eleven-rune middle. The complete fixed pair requires **zero compatible `11↔6` dictionary-word choices**, before considering either title's other five words. The contradiction is exact even when the secret GP29 substitution is completely unrestricted, rather than fitting a short finite key.
 
 A planted native pair `DESCRIPTIVE` and `FORMER`, enciphered under the *same* invertible 29-way map `C=(7P+3) mod29`, passes the exact shared-codebook word-pair gate; using an independently shifted map for `FORMER` fails it. This controls the equality-constraint implementation without claiming this fixed affine map belongs to Cicada.
 

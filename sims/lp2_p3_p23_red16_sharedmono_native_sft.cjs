@@ -46,7 +46,7 @@ const alphabet = c.translit.map((s, i) => ({s, i}))
 function gp(input) {
   const norm = input.toUpperCase().replace(/QU/g, 'CW')
     .replace(/V/g, 'U').replace(/[KQ]/g, 'C')
-    .replace(/Z/g, 'S').replace(/ING/g, 'NG');
+    .replace(/Z/g, 'S').replace(/ING/g, 'NG').replace(/IO/g, 'IA');
   const result = [];
   for (let i = 0; i < norm.length;) {
     const token = alphabet.find(x => norm.startsWith(x.s, i));
@@ -121,7 +121,7 @@ const candidates6 = words.filter(w => w.indices.length === second6.length &&
   samePattern(second6, w.indices));
 assert.equal(candidates11.length, 1);
 assert.equal(candidates11[0].word, 'descriptive');
-assert.equal(candidates6.length, 137);
+assert.equal(candidates6.length, 143);
 const pairs = candidates11.flatMap(a =>
   candidates6.filter(b => codebookCompatible(
     middle11, a.indices, second6, b.indices))

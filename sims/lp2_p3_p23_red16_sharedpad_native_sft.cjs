@@ -46,7 +46,7 @@ const vocab = c.translit.map((s, i) => ({s, i}))
 function encode(input) {
   const norm = input.toUpperCase().replace(/QU/g, 'CW')
     .replace(/V/g, 'U').replace(/[KQ]/g, 'C')
-    .replace(/Z/g, 'S').replace(/ING/g, 'NG');
+    .replace(/Z/g, 'S').replace(/ING/g, 'NG').replace(/IO/g, 'IA');
   const result = [];
   for (let i = 0; i < norm.length;) {
     const token = vocab.find(t => norm.startsWith(t.s, i));
@@ -105,7 +105,8 @@ function screen(delta) {
 }
 const original = screen(difference(C3, C23));
 assert.equal(words.length, 32190);
-assert.equal(original.firstWordPairs, 50);
+assert.equal(byLen.get(11).length, 1610);
+assert.equal(original.firstWordPairs, 51);
 assert.deepEqual(original.middleWordPairs, []);
 
 // Source-native positive: a real dictionary phrase under a shared secret pad
