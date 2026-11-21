@@ -108,9 +108,48 @@ for(let offset=0;offset<=40000;offset+=4000){
   nativeGlobal.push(nativeControl(unknown.length,offset));
   nativeFloral.push(nativeControl(floral.length,offset));
 }
-assert.ok(nativeGlobal.every(c=>c.matches>=640),
-  'authentic English controls should carry native-symbol lag coincidences');
-assert.ok(nativeFloral.every(c=>c.matches>=50));
+assert.ok(nativeGlobal.every(c=>c.matches>originalGlobal.matches),
+  'all Gibran native controls must exceed original same-lag coincidences');
+assert.ok(nativeFloral.every(c=>c.matches>originalFloral.matches),
+  'all Gibran floral native controls must exceed original');
+/**
+ * The equality invariant is stronger than additive-pad cancellation:
+ * ANY per-state permutation sigma_K shared at t and t+1876 preserves
+ * cipher_i==cipher_(i+1876) iff plain_i==plain_(i+1876).
+ * Plant an arbitrary nonadditive, GP29-bijective affine register for this.
+ */
+const firstNative=native.slice(0,unknown.length);
+const bijectionAt=(p,k)=>mod((1+(k*7)%28)*p + k*11);
+const affineEncoded=firstNative.map((p,i)=>bijectionAt(p,keystream[i]));
+const affineDecoded=affineEncoded.map((v,i)=>{
+  const k=keystream[i], a=1+(k*7)%28;
+  return mod(pow29(a,27)*mod(v-k*11));
+});
+assert.deepEqual(affineDecoded,firstNative);
+assert.deepEqual(lagEqual(affineEncoded,1876),lagEqual(firstNative,1876),
+  'all-secret state-conditioned GP29 permutation preserves 1876-lag equality');
+/** Disjoint native historical sources; exact data-derived gates, no threshold tuning. */
+const additionalSources=[
+  ['Shakespeare','resources/control/shakespeare_first300k.txt'],
+  ['Emerson','resources/control/emerson_essays_2944.txt'],
+  ['Latin Vulgate','resources/control/latin-vulgate-latin26-wholewords.txt']
+];
+const additionalControls=additionalSources.map(([name,filename])=>{
+  const text=encodeSourceNativeGP(read(filename));
+  const sampleOffsets=Array.from({length:9},(_,i)=>
+    Math.floor(i*(text.length-unknown.length)/8));
+  const global=sampleOffsets.map(offset=>lagEqual(
+    text.slice(offset,offset+unknown.length),1876));
+  const floral=sampleOffsets.map(offset=>lagEqual(
+    text.slice(offset,offset+3008),1876));
+  assert.ok(global.every(x=>x.matches>originalGlobal.matches));
+  assert.ok(floral.every(x=>x.matches>originalFloral.matches));
+  return {name,calibratedRunes:text.length,
+    sourceWindows:sampleOffsets.length,
+    globalLag1876Same:global.map(x=>x.matches),
+    floralLag1876Same:floral.map(x=>x.matches)};
+});
+
 assert.ok(nativeGlobal.every(c=>c.matches>originalGlobal.matches));
 assert.ok(nativeFloral.every(c=>c.matches>originalFloral.matches));
 const lag938=lagEqual(unknown,938);
@@ -129,6 +168,13 @@ console.log(JSON.stringify({
     floralP40toP53:originalFloral,
     globalHalfPeriod:lag938
   },
+  stateKeyedPermutationPlant:{
+    family:'arbitrary state-keyed GF29-affine symbol bijection; independent multiplier and offset',
+    plantedOriginalLength:affineDecoded.length,
+    plaintextExactlyRecovered:true,
+    sameLag1876:lagEqual(affineEncoded,1876)
+  },
+  additionalIndependentNativeSources:additionalControls,
   sourceNativeControls:{
     author:'Kahlil Gibran',
     calibratedRunes:native.length,
@@ -136,6 +182,6 @@ console.log(JSON.stringify({
     global:nativeGlobal,
     floral:nativeFloral
   },
-  result:'No 1876-period, always-advancing additive GF29 pad generated from these five original coefficients yields source-native English plaintext on the entire original or p40-p53 original chapter. This conclusion is independent of all 29^5 possible seed states.',
-  limitation:'Other output functions, differently advancing clocks, non-English registers and separate per-page seeds are not covered; the 19th-prime correspondence does not itself establish author intent.'
+  result:'No shared 1876-period, always-advancing arbitrary per-state GP29 bijection can explain native-language plaintext over the whole original or the p40-p53 chapter. Lag1876 equality is invariant under ALL 29^5 seed choices and all state-dependent secret bijections; this includes but is stronger than the additive pad case.',
+  limitation:'Recurrent plaintext/ciphertext feedback, clock skips, page-local resets with different unknown states, non-GP source alphabets or additional encryption remain possible. The 19th-prime correspondence does not prove creator intent.'
 },null,2));

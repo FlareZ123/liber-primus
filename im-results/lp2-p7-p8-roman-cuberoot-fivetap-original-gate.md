@@ -51,3 +51,33 @@ All **32** independent native-source positive controls first encrypt the exact *
 **Do not pursue these four direct five-tap cube architectures on the unchanged p8–p14 chapter without an independently visible missing operation.** The original-source 5-product/3/19 relationship remains a potentially intentional clue, while none of these 32 natural, source-fixed ciphertext-feedback consumers recovers unknown plaintext. This does not exclude a keyed nonlinear cipher with a different source-selected receiver, a non-English alphabet, an additional cryptographic layer or short native-text islands. No conclusion is made about all possible 5-tap algorithms.
 
 The next productive challenge is to obtain a **source-selected state update or preserved ciphertext/plaintext relation** capable of predicting an untouched passage, rather than enlarging the model menu with arbitrary phases, output substitutions or higher polynomial degrees. Existing direct p8 scalar, ternary and circulant negatives are in the linked p7/p8 source study. The present exact five-ciphertext-tap update is a different, explicitly reversible hypothesis, with the same negative original result.
+
+## Independent five-product LFSR architecture: exact period 1,876
+
+The same five source-derived word products also specify a far more discriminating **fifth-order linear-feedback recurrence** with zero guessed coefficients:
+
+\[
+K_t =11K_{t-1}+26K_{t-2}+8K_{t-3}+15K_{t-4}+2K_{t-5}\pmod{29}.
+\]
+
+Treating the five original words as GF29 lag1–5 coefficients yields the exact characteristic polynomial
+
+\[
+x^5-11x^4-26x^3-8x^2-15x-2\equiv
+(x+9)(x+14)(x^3-5x^2-8x-6)\pmod{29}.
+\]
+
+The order of its five-dimensional **companion matrix** is **1,876 = 28 × 67**. A direct basis-vector computation proves every state returns after1,876 steps, while none of the three prime-divisor subperiods938,268,28 returns the identity. The first two visible linear roots20 and15 have multiplicative orders7 and28. **67 is the 19th Gematria Primus prime**, and the immediately following original p8 title starts with Roman **XIX**. This gives a specific human-visible original-source numerical relationship, with the author's use of LFSRs **unproven**. A transition may have lower period for particular seeds, but all possible seeds share period dividing1,876.
+
+The recurrence's exact period provides a **key-independent original-cipher decision across all 29⁵ possible initial states**. Consider a full-chapter or continuous-book cipher that advances the recurrence once per original rune and emits ciphertext with **any unknown bijective GP29 substitution keyed only by the current recurrent state**. At lag1,876 the internal key state repeats, therefore equality of two original ciphertext runes is **equivalent to equality of their plaintext GP29 runes**, regardless of the five-rune seed and regardless of the secret per-state alphabet. This is stronger than additive keystream cancellation and requires no plaintext guess. A nonlinear, state-dependent affine-GP29 positive plant verifies the entire equality identity, as does an independent additive-pad encrypt/decrypt control.
+
+| Fixed untouched original register | Lag1,876 pairs | Equal ciphertext runes | Rate |
+| --- | ---: | ---: | ---: |
+| All rune-bearing p0–p55 | 11,080 | 375 | 0.03384477 |
+| Floral p40–p53, unbroken | 1,132 | 34 | 0.03003534 |
+
+Identically sized **source-native GP** windows from genuinely unrelated historical texts carry many more lag1,876 symbol-equality events, with the exact original comparison schedule. The source-calibrated Gibran register's eleven full-book control windows give 612–702 matches (vs375), and eleven floral controls give50–79 (vs34). Nine-window Shakespeare and Emerson controls also exceed both original counts; Latin Vulgate nine-window controls do as well. These controls are independent of every hidden seed and cipher alphabet, but their relevance still assumes a normal source-native GP spelling register.
+
+**Result:** exclude the complete full-book or floral-chapter always-advancing GP29-bijective fifth-order LFSR architecture specified by the p7 complete five-word product coefficients. The exclusion covers **all keys and all unknown periodic state substitution alphabets**, a much wider family than testing particular seeds. It **does not** exclude feedback-dependent key state, punctuation/transparent-F clock skips, different reset states, non-GP plaintext, or extra cryptographic layers.
+
+The [reproducible single-file Windows Node22 all-secret gate](../sims/lp2_p7_fiveproduct_lfsr1876_original_sft.cjs) checks the original red packet, polynomial factorization, entire state-matrix period, the untouched p0–p55 and p40–p53 originals, exact known-native encrypted plants, and source-native holdouts. Both original-cipher models in this consolidated note are now independently archived; neither recovers unknown-page plaintext. Future work should find an author-given **state update involving the ciphertext or a different output register**, if any, before investing in another p7-product-derived generator.
