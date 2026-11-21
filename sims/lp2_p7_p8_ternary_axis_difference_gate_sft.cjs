@@ -239,3 +239,111 @@ console.log(JSON.stringify({
   results
 }, null, 2));
 console.log('Original p8 3^5 five-axis difference gate: bounded negative; all 12 positive controls pass.');
+
+
+// Independent original-source-motivated alternative: the 2013 Cicada puzzle
+// used polynomial secret sharing. A 3^5 rune body can be regarded as five
+// axes of three polynomial evaluations. Invert an explicit GF29 Vandermonde
+// map along each axis rather than arbitrarily fitting a nonlinear function.
+// The original SSSS instance was GF(2^n), so this is a hypothesis, not
+// the historically documented algorithm.
+
+/** @param {number[][]} matrix @returns {number[][]} */
+function inverse3(matrix) {
+  const rows = matrix.map((line, i) =>
+    line.map(mod).concat(Array.from({ length: 3 }, (_, j) => Number(i === j))));
+  for (let col = 0; col < 3; col++) {
+    const pivot = rows.findIndex((line, i) => i >= col && line[col] !== 0);
+    assert.ok(pivot >= 0, 'Vandermonde must have distinct sample positions');
+    [rows[col], rows[pivot]] = [rows[pivot], rows[col]];
+    let inversePivot = 1;
+    for (let i = 0; i < 27; i++) inversePivot = mod(inversePivot * rows[col][col]);
+    for (let j = 0; j < 6; j++) rows[col][j] = mod(rows[col][j] * inversePivot);
+    for (let row = 0; row < 3; row++) {
+      if (row === col) continue;
+      const factor = rows[row][col];
+      for (let j = 0; j < 6; j++) {
+        rows[row][j] = mod(rows[row][j] - factor * rows[col][j]);
+      }
+    }
+  }
+  return rows.map((line) => line.slice(3));
+}
+
+/** @param {number[][]} m @returns {number[][]} */
+const transpose3 = (m) => m.map((row, i) => row.map((_, j) => m[j][i]));
+
+/** @param {number[]} xs @returns {number[][]} */
+const vandermonde3 = (xs) => xs.map((v) => [1, mod(v), mod(v * v)]);
+
+/**
+ * Apply three-point coefficient/evaluation matrices on the 5 base-3 axes.
+ * @param {number[]} input
+ * @param {number[][][]} matrices
+ * @param {number[]} order
+ * @returns {number[]}
+ */
+function applyAxisMatrices(input, matrices, order) {
+  let values = input.slice();
+  for (const axis of order) {
+    const step = 3 ** axis;
+    const previous = values.slice();
+    for (let i = 0; i < 243; i++) {
+      if (Math.floor(i / step) % 3 !== 0) continue;
+      const indexes = [i, i + step, i + 2 * step];
+      const triple = indexes.map((index) => previous[index]);
+      for (let row = 0; row < 3; row++) {
+        values[indexes[row]] = mod(matrices[axis][row].reduce(
+          (total, coefficient, col) => total + coefficient * triple[col], 0));
+      }
+    }
+  }
+  return values;
+}
+
+const polynomialFamilies = [
+  ['x012', Array.from({ length: 5 }, () => [0, 1, 2])],
+  ['x123', Array.from({ length: 5 }, () => [1, 2, 3])],
+  ['products-start', products.map((p) => [p, mod(p + 1), mod(p + 2)])],
+  ['products-center', products.map((p) => [mod(p - 1), p, mod(p + 1)])],
+  ['products-scale', products.map((p) => [p, mod(2 * p), mod(3 * p)])],
+  ['inverse-scale', inverseRow.map((p) => [p, mod(2 * p), mod(3 * p)])]
+];
+const polynomialResults = [];
+for (const [family, samplePoints] of polynomialFamilies) {
+  const matrices = samplePoints.map(vandermonde3);
+  for (const mode of ['inverse', 'direct', 'transpose-inverse']) {
+    const decoder = matrices.map((m) => mode === 'inverse'
+      ? inverse3(m) : mode === 'direct' ? m : transpose3(inverse3(m)));
+    const encoder = decoder.map(inverse3);
+    const order = [0, 1, 2, 3, 4];
+    const inverseOrder = [4, 3, 2, 1, 0];
+    const positive = applyAxisMatrices(controls, encoder, inverseOrder);
+    assert.deepEqual(applyAxisMatrices(positive, decoder, order), controls);
+    const output = applyAxisMatrices(body, decoder, order);
+    assert.deepEqual(applyAxisMatrices(output, encoder, inverseOrder), body);
+    polynomialResults.push({
+      family, mode,
+      ioc: coincidence(output),
+      trigram: trigramScore(output),
+      leading: output.slice(0, 20)
+        .map((v) => source.translit[v]).join('')
+    });
+  }
+}
+polynomialResults.sort((a, b) => b.trigram - a.trigram);
+assert.equal(polynomialResults.length, 18);
+assert.equal(polynomialResults[0].family, 'x012');
+assert.equal(polynomialResults[0].mode, 'transpose-inverse');
+assert.ok(Math.abs(polynomialResults[0].trigram + 10.641132501295413) < 1e-9);
+assert.ok(polynomialResults.every((r) => r.trigram < nativeMinimum));
+assert.ok(polynomialResults.every((r) => r.ioc < 0.037));
+console.log(JSON.stringify({
+  source: 'original p7 five red words and p8 black 3^5',
+  historicalComparison: '2013 Cicada used SSSS; this GF29 tensor hypothesis is not documented',
+  variantCount: polynomialResults.length,
+  best: polynomialResults[0],
+  native76WindowMinimum: nativeMinimum,
+  results: polynomialResults
+}, null, 2));
+console.log('Original p8 five-axis three-point polynomial gate: bounded negative; all 18 positive controls pass.');
