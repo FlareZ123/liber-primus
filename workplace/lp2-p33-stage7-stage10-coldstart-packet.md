@@ -13,7 +13,7 @@ Do not run generic cipher searches. The question is about the human-visible rout
 ### Liber Primus images
 
 - LP2 physical p33: resources/liber-primus/50.jpg. The archive has LP1 at 00–16 and LP2 p0–p57 at 17–74; therefore LP2 p33 is image 50, not image 33.
-- LP1 pages 14, 15 and 16: resources/liber-primus/14.jpg, 15.jpg, 16.jpg.
+- LP1 pages 5, 14, 15 and 16: resources/liber-primus/05.jpg, 14.jpg, 15.jpg, 16.jpg.
 - Original image archive page map: resources/liber-primus/README.md.
 
 ### 2014 Stage7 material
