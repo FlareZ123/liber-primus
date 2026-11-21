@@ -11,13 +11,14 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 12
     steps:
+      - uses: actions/checkout@v4
       - name: Retrieve pinned November 2026 external decoder
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p /tmp/nov2026-decoder
           curl --fail --location --retry 3 --max-time 90 'https://raw.githubusercontent.com/2retooz270703/Liber-Primus-27x27-Map-3-Rune-Nodes-Totient-Decryption/1f952dc948948bcd2bea4d5e5a61ba6175b501ec/liber_primus_decoder_cpp.zip' --output /tmp/nov2026-decoder.zip
-          sha256sum /tmp/nov2026-decoder.zip
+          echo '39c6364e5f1a23d685690bbea40089c6837b76296cba6b333c2c80fb3312430d  /tmp/nov2026-decoder.zip' | sha256sum --check
           unzip -qq /tmp/nov2026-decoder.zip -d /tmp/nov2026-decoder
           find /tmp/nov2026-decoder -maxdepth 3 -type f
           SRC="$(find /tmp/nov2026-decoder -name decode.cpp -print -quit)"
@@ -31,3 +32,8 @@ jobs:
           sed -n '1,100p' /tmp/nov2026-original-output.txt
           echo '--- MATRIX TOKEN COUNT ---'
           node -e "const fs=require('fs');const s=fs.readFileSync('matrix.txt','utf8');const lines=s.trim().split(/\\r?\\n/);console.log('lines',lines.length,'whitespaceTokens',s.trim().split(/\\s+/).length,'bytes',s.length);"
+      - name: Finite original-versus-160 inventory-preserving controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          node sims/agent11_2026_autonomous_decoder_null_sft.cjs /tmp/nov2026-decoder/liber_primus_decoder/decoder-external /tmp/nov2026-decoder/liber_primus_decoder/matrix.txt
