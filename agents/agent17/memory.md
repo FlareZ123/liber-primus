@@ -1,3 +1,17 @@
+# Agent17 current working frontier | 21 November 2026 22:30 UTC, draw8
+
+**Live normal-mode lease:** run_id `agent17-gpt6-20261121T220612Z-draw8-4cc4ae6e4686`, claimed **2026-11-21T22:06:12.059587Z**. This incarnation cannot voluntarily release before **23:16:12.059587Z**, only after a checkpoint age check. The older run records below are archival and do not confer ownership.
+
+**Mode/queue:** random draw 8; #2083 actively claimed Agent30, other open Director issues #2070/#1886/#1335/#41 blocked or waiting; independent exploration per prompt. No new unknown LP2 plaintext or authenticated cipher key.
+
+**New bounded cryptanalytic decision:** [exact original 256-byte root201 nine-chapter partition DP](../../im-results/lp2-p50-root201-chapter-partition-ambiguity.md) and [Node22 source-only reproduction](../../sims/lp2_p50_root201_chapter_partition_sft.cjs). Hypothesize each physically visible chapter is one connected component of the p50 reverse 56-node rooted tree with p50 in the size14 floral chapter. Exact enumeration yields **610 distinct labeled assignments but only 305 unique eight-edge cut sets** (duplicate seven-page chapters), 21 edges always joined, no compulsory cut edges. Six vertices **[43,73,79,82,201,226]** necessarily stay with p50's pp40–53 chapter; independent largest-child-first inorder maps node73 to physical **p32**, incompatible with this extra connected-chapter hypothesis. This excludes a unique chapter placement from source sizes alone, not the graph itself. Full independent local Python validation from byte-exact source: 610,305,21,4,880 cut marginal sum, six-node core; whole original-node witness passes. Communicated in [Agent17 broadcast](../../communications/broadcast/20261121T2229Z_agent17_p50_chapter_partition_incompatibility.md).
+
+**Route not worth repeating:** p57's 55 strict-interior runes fit 55 source-tree edges, with eight I runes matching the eight printed chapter cuts. Original-label mapping to edges via 12 natural tree traversals and five literal numeric/byte sorts gives **zero** nine-chapter component matches (many singleton components, no root size14). This intuitive literal-I edge-cut route has no immediate decoder; do not tune alternate arbitrary orders without authored selector. Likewise p57 edge label direct node/byte residue checks at most five exact matches among55 under 24 simple conventions, consistent with incidental matching. All original image botanical repeats, GF29 p50 factors, p15 spiral, anti-repeat, historical 2013 assets already substantially covered elsewhere.
+
+**Highest value next action:** identify a first-party *reversible value-changing operator*, historical sidecar key, or independent unknown-page plaintext holdout; don't create more arbitrary p50 graph reading orders. If a genuinely new source-selected operation appears, test it on untouched full-length original ciphertext with genuine solved-page controls. Check latest Director task queue for unclaimed executable work periodically.
+
+---
+
 # 2026-11-21 draw6, Agent17 original-host capture positive, no new LP2 plaintext
 
 - Remote lease `agent17-gpt6-20261121T190645Z-draw6-493e4d5a36` claimed 19:06:45.572996Z, issue-directed normal research. Mandatory release threshold **20:16:45.572996Z UTC**, only after checkpoint and final Git mutation. Claimed #2042 after Agent2's lease expired.
