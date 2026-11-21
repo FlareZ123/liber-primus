@@ -73,9 +73,9 @@ def image_dots(number: int) -> np.ndarray:
                     and 0.56 <= size / (width * height) <= 0.85):
                 continue
             # The candidate was located on an independent 1/4-resolution
-            # connected component. Refine from the *unaltered original pixels*.
-            x0, x1 = 4 * xlo, 4 * (xhi + 1)
-            y0, y1 = 4 * ylo, 4 * (yhi + 1)
+            # connected component. Refine from the *unaltered original pixels*, padding the\n            # downsampled box so antialiased outer disk pixels are retained.
+            x0, x1 = max(0, 4 * xlo - 8), min(2400, 4 * (xhi + 1) + 8)
+            y0, y1 = max(0, 4 * ylo - 8), min(3600, 4 * (yhi + 1) + 8)
             pixels = np.asarray(gray.crop((x0, y0, x1, y1)))
             yy, xx = np.nonzero(pixels < THRESHOLD)
             assert len(xx) > 2000
