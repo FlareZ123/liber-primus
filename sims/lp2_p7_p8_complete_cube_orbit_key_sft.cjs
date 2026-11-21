@@ -68,3 +68,85 @@ console.log(JSON.stringify({source:"p7 five red words, p8 red M19, original p8-p
  solvedP57IOC:ioc(native),allExactReplays:true,
  allNativeP57Positives:true,
  recoveredPlaintext:false,results:result},null,2));
+
+
+/**
+ * A different source-selected consumer: p8's 243 black runes are precisely
+ * 3^5. Each of the five p7 red word-products selects one ternary axis.
+ * Sample three points along that axis by successive cubing (or root19),
+ * then perform the GF29 Vandermonde inverse. Earlier numeric-step and
+ * linear-point tensor tests did not test these particular cube orbits.
+ * This is a secret-sharing interpretation, not an authenticated instruction.
+ */
+/** @param {number[][]} matrix @returns {number[][]} */
+function inverse3(matrix) {
+  const rows=matrix.map((row,i)=>row.map(mod).concat(
+    Array.from({length:3},(_,j)=>Number(i===j))));
+  for(let col=0;col<3;col++) {
+    let pivot=col;
+    while(pivot<3 && rows[pivot][col]===0)pivot++;
+    assert(pivot<3,"distinct cubing orbit samples");
+    [rows[col],rows[pivot]]=[rows[pivot],rows[col]];
+    const reciprocal=pow(rows[col][col],27);
+    for(let k=col;k<6;k++)rows[col][k]=mod(rows[col][k]*reciprocal);
+    for(let r=0;r<3;r++)if(r!==col) {
+      const factor=rows[r][col];
+      for(let k=col;k<6;k++)rows[r][k]=mod(rows[r][k]-factor*rows[col][k]);
+    }
+  }
+  return rows.map(row=>row.slice(3));
+}
+/** @param {number[][]} matrix @returns {number[][]} */
+const transpose=matrix=>matrix.map((row,i)=>row.map((_,j)=>matrix[j][i]));
+/**
+ * @param {number[]} runes exactly 3^5 symbols
+ * @param {number[][][]} matrices one 3x3 matrix per source-product axis
+ * @returns {number[]}
+ */
+function fiveAxisTransform(runes,matrices) {
+  assert.equal(runes.length,243);
+  let output=runes.slice();
+  for(let axis=0;axis<5;axis++) {
+    const prior=output.slice(),step=3**axis;
+    for(let pos=0;pos<243;pos++) {
+      if(Math.floor(pos/step)%3!==0)continue;
+      const input=[prior[pos],prior[pos+step],prior[pos+2*step]];
+      for(let row=0;row<3;row++)output[pos+row*step]=mod(
+        matrices[axis][row].reduce((sum,c,i)=>sum+c*input[i],0));
+    }
+  }
+  return output;
+}
+const redLength=12,black=gp.pages[8].indices.slice(redLength);
+assert.equal(black.length,3**5);
+const tensorResults=[];
+for(const exponent of [3,19]) {
+  const samplePoints=products.map(x=>[
+    x,pow(x,exponent),pow(pow(x,exponent),exponent)]);
+  const matrices=samplePoints.map(samples=>samples.map(
+    x=>[1,x,mod(x*x)]));
+  for(const mode of ["inverse","direct","transpose-inverse","transpose-direct"]) {
+    const operation=matrices.map(m=>{
+      const base=mode.includes("inverse")?inverse3(m):m;
+      return mode.startsWith("transpose")?transpose(base):base;
+    });
+    const reverse=operation.map(inverse3);
+    // Axis maps commute, so applying the inverse in forward order is exact.
+    const candidate=fiveAxisTransform(black,operation);
+    assert.deepEqual(fiveAxisTransform(candidate,reverse),black);
+    const positive=[...native,...native,...native.slice(0,53)];
+    assert.equal(positive.length,243);
+    assert.deepEqual(fiveAxisTransform(fiveAxisTransform(positive,reverse),
+      operation),positive);
+    const measured={exponent,mode,samplePoints,ioc:ioc(candidate),
+      first100:spell(candidate.slice(0,100))};
+    assert(measured.ioc<.037);
+    tensorResults.push(measured);
+  }
+}
+assert.equal(tensorResults.length,8);
+console.log(JSON.stringify({test:"p7 cubing-orbit GF29 three-point five-axis p8 black",
+ originalP8Body:243,cubeOrbit:orbit,sourceProducts:products,
+ originalBodyIOC:ioc(black),solvedP57IOC:ioc(native),
+ exactOriginalRoundTrips:8,syntheticNativeRecoveries:8,
+ recoveredUnknownPlaintext:false,tensorResults},null,2));
