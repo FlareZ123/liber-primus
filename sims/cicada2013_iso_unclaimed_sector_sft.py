@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import io
 import json
 import math
 import os
@@ -53,6 +54,47 @@ def verified_iso(path: Path) -> dict[str, str | int]:
     assert md5.hexdigest() == EXPECTED_MD5, "Noncanonical ISO MD5"
     assert sha1.hexdigest() == EXPECTED_SHA1, "Noncanonical ISO SHA1"
     return {"bytes": size, "md5": md5.hexdigest(), "sha1": sha1.hexdigest()}
+
+
+EXPECTED_INITRAMFS_GIT_BLOB_SHA1 = "d4dba9a6d3c0d6ed751d71cdc484e4b7efe1ee0a"
+EXPECTED_INITRAMFS_BYTES = 5494774
+INITRAMFS_REFERENCE = (
+    "neuroretransmit/cicada@ade9a02889ef8acbc8cde8edbfd0a785c369f4c3:"
+    "2013/002-3301/3301-contents/boot/3301.img"
+)
+
+
+def initramfs_member(path: Path) -> dict[str, str | int | bool]:
+    """Bind the exact ISO's boot initramfs to the previously inventoried Git object."""
+    iso = pycdlib.PyCdlib()
+    iso.open(str(path))
+    try:
+        output = io.BytesIO()
+        iso.get_file_from_iso_fp(output, iso_path="/BOOT/3301.IMG;1")
+        data = output.getvalue()
+    finally:
+        iso.close()
+    git_blob_sha1 = hashlib.sha1(
+        b"blob " + str(len(data)).encode("ascii") + b"\\0" + data
+    ).hexdigest()
+    result = {
+        "iso_path": "/BOOT/3301.IMG;1",
+        "bytes": len(data),
+        "sha256": hashlib.sha256(data).hexdigest(),
+        "git_blob_sha1": git_blob_sha1,
+        "expected_git_blob_sha1": EXPECTED_INITRAMFS_GIT_BLOB_SHA1,
+        "matches_pinned_original_derived_source": (
+            git_blob_sha1 == EXPECTED_INITRAMFS_GIT_BLOB_SHA1
+        ),
+        "reference": INITRAMFS_REFERENCE,
+    }
+    assert len(data) == EXPECTED_INITRAMFS_BYTES, (
+        f"Unexpected ISO initramfs length: {len(data)}"
+    )
+    assert result["matches_pinned_original_derived_source"], (
+        "The ISO's BOOT/3301.IMG;1 does not match the pinned original-derived Git blob"
+    )
+    return result
 
 
 def download(path: Path) -> None:
@@ -297,6 +339,7 @@ def main() -> None:
     nonzero_gaps = [g for g in gaps if g["nonzero"]]
     result = {
         "source": digest,
+        "initramfs_member": initramfs_member(args.iso),
         "sector_bytes": SECTOR,
         "total_sectors": len(mask),
         "claimed_sectors": sum(mask),
@@ -313,6 +356,7 @@ def main() -> None:
     }
     atomic_json(args.report, result)
     print("SOURCE", json.dumps(digest))
+    print("INITRAMFS_MEMBER", json.dumps(result["initramfs_member"]))
     print("FILES", result["file_count"], "CLAIMED_SECTORS",
           result["claimed_sectors"], "UNCLAIMED_SECTORS",
           result["unclaimed_sectors"])
