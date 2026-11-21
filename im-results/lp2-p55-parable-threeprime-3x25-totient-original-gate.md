@@ -1,6 +1,6 @@
 # Original PARABLE clause-prime receivers on p55: three totient clocks and a p50-selected Hill-5 matrix
 
-**Agent14 (17 November) and Agent8 (21 November 2026) | Outcome:** The three genuinely source-authored 2013 PARABLE clause-prime sums support two different, fully specified candidate readers of the original p55 75-rune body. The historically solved p56 prime/totient/F-transparent inverse fails algebraically under all six assignments of the three clause seeds. A distinct 5×5 GP29 Hill-key candidate, selected by their three prime ranks as original p50 table coordinates, produces no coherent plaintext under either contemporary 59- or 60-symbol radix. All four Hill5 original outputs replay exactly and pass independent cleartext controls. **Neither operation is prescribed by the historical artifact; no unknown LP2 plaintext, creator key or destination has been recovered.**
+**Agent14 (17 November) and Agent8 (21 November 2026) | Outcome:** The three genuinely source-authored 2013 PARABLE clause-prime sums support two different, fully specified candidate readers of the original p55 75-rune body. The historically solved p56 prime/totient/F-transparent inverse fails algebraically under all six assignments of the three clause seeds. A distinct 5×5 GP29 Hill-key candidate, selected by their three prime ranks as original p50 table coordinates, produces no coherent plaintext under either contemporary 59- or 60-symbol radix. All four raw Hill5 original outputs replay exactly and pass independent cleartext controls. The selected 5×5 tile's base59 inner sum is exactly φ(1033), while its full sum is 3301 less the historical 2014 square-center 91; eight additional source-derived φ key consumers also fail to produce plaintext. **Neither operation is prescribed by the historical artifact; no unknown LP2 plaintext, creator key or destination has been recovered.**
 
 ## Player-visible hypothesis frozen before inspecting ciphertext
 
@@ -63,6 +63,32 @@ The unchanged p55 75-rune ciphertext has normalized GP29 IoC **1.1181981982**, a
 
 [Original-source CommonJS SFT](../sims/lp2_p57_parable_p50_tile_p55_hill5_original_sft.cjs) · [Windows Node22 PASS 44947460940](https://github.com/FlareZ123/liber-primus/actions/runs/44947460940). The reproducer asserts the complete original p57 three-clause sums/product, prime ranks, all four source p50 corners, exact tile, p55 printed word boundaries and full positive source plants.
 
+## Nested 2014 magic-square/totient checksum and direct φ-key consumers (Agent8, 21 November)
+
+The p57 PARABLE prime ordinals **205/173/201** specify three corners of one smallest 5×5 original p50 table window before numerical interpretation. Under the historically considered **base59** numeral convention, its 25 unchanged printed tokens give the following two nested totals:
+
+```text
+SUM(whole 5×5)                          = 3210 = 3301 − 91
+SUM(center 3×3 after shedding outer ring)= 1032 = φ(1033)
+```
+
+The authentic 2014 Cicada 5×5/7×7/5×5 number squares have exact row totals **3301, 1033, 1033**; the last square's center is **91**. The solved LP1 text already names **primes and the totient function** as significant. Under base60, the same tile instead has whole sum **3258** and inner sum **1047**. The arithmetic difference 3301−3258=43 echoes both the later authenticated 2016 signed message's word count and the p55 source's 43 interior runes, though this secondary 43 interpretation was recognized retrospectively.
+
+The physical 32×8 table contains **112** contiguous 5×5 windows; the source-prime-selected window at zero-based row21,col1 is the **only** one whose base59 full sum is3210 and center3×3 sum is1032 (each equality is also individually unique). This is an exact finite source census, **not a calibrated chance probability or proof of author intention**: the arithmetic targets and radix were noticed after examining the selected window.
+
+The exact φ identity motivates one more bounded direct consumer, different from the raw-tile Hill5 inverse above. Apply Euler φ to each of the selected tile's 25 values, reduce mod29, then use those values on p55's original **75 full-word runes** either as a repeating additive tape (both signs) or as a Hill5 matrix (both conventional vector orientations). Test both source-discussed numeral radices without adjusting block phase, plaintext, alignment, coefficient or key order.
+
+| φ-derived original p55 inverse | Base59 normalized GP29 IoC | Base60 normalized IoC | Fixed long-word English hits |
+| --- | ---: | ---: | ---: |
+| 25-glyph pad, subtract | 0.9718918919 | 1.0345945946 | 0/9 in both |
+| 25-glyph pad, add | 1.0450450450 | 1.0554954955 | 0/9 in both |
+| Hill5, column-vector | 0.9405405405 | 0.8987387387 | 0/9 in both |
+| Hill5, row-vector | 1.0868468468 | 1.1181981982 | 0/9 in both |
+
+All **eight** original-body decoders exactly reencrypt 75/75 original runes; all **eight** independent native-clear p57 75-rune controls also recover 75/75. Both φ-key matrices are invertible. Every output is nonlinguistic and lacks an intact GP29 English word among the nine actual original printed long words, versus source p55 normalized IoC 1.1181981982 and genuine p57 clear 1.7243243243. The identities survive as a provisional source-original mathematical clue, but these immediate GP29 key uses are **negative**.
+
+**Reproducer:** [expanded original CJS SFT](../sims/lp2_p57_parable_p50_tile_p55_hill5_original_sft.cjs) asserts the original p57 three-clause sums, entire table tile, 2014 square row sums and center91, 112-window census, all twelve raw/φ reverses and the independent positive plants. [Windows Node22 CI PASS 44947919845](https://github.com/FlareZ123/liber-primus/actions/runs/44947919845).
+
 ## Research decision
 
-The exact prime-sum/product original metadata supplies historically authentic arithmetic operands. Its most direct transfer to p55 through the solved prime/totient rule and all possible seed orders is algebraically impossible. Its alternate original p50 5×5 matrix is fully reversible, but neither natural Hill5 orientation nor the two documented base encodings recover p55 language. A further attempt must bring a new **source-authored receiver, operation or key schedule** before searching additional permutations or matrix placements. Preserve the genuine prime-number and four-corner observations separately from the rejected decoders; they are not proof of a shared LP2 encryption architecture.
+The exact prime-sum/product original metadata supplies historically authentic arithmetic operands. Its most direct transfer to p55 through the solved prime/totient rule and all possible seed orders is algebraically impossible. Its alternate original p50 5×5 matrix is fully reversible, but neither natural Hill5 orientation nor the two documented base encodings recover p55 language. The newly found 2014-square/totient nested sums remain source-exact but underinterpreted, and eight immediate φ-pad/Hill5 decoders are also negative. A further attempt must bring a new **source-authored receiver, operation or key schedule** before searching additional permutations or matrix placements. Preserve the genuine prime-number and four-corner observations separately from the rejected decoders; they are not proof of a shared LP2 encryption architecture.
