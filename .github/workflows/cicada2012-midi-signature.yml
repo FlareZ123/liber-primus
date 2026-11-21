@@ -57,3 +57,15 @@ jobs:
           test "$(git hash-object "$RUNNER_TEMP/Cicada.mid")" = '11924e0e195208c2eea757655035e149fb8a190f'
           echo "Verified signed literal MIDI; embedded PGP block is compressed, not encrypted."
           cat "$RUNNER_TEMP/inner-packets.log"
+      - name: Export raw MIDI note/time coordinates against the LP2 table
+        run: |
+          set -euo pipefail
+          python3 sims/cicada2012_midi_event_extract.py "$RUNNER_TEMP/Cicada.mid" "$RUNNER_TEMP/cicada2012-midi-events.json"
+      - name: Preserve exact MIDI and event coordinates
+        uses: actions/upload-artifact@v4
+        with:
+          name: cicada2012-midi-events
+          path: |
+            ${{RUNNER_TEMP}}/Cicada.mid
+            ${{RUNNER_TEMP}}/cicada2012-midi-events.json
+          if-no-files-found: error
