@@ -186,4 +186,78 @@ for (const feedback of ['plain', 'cipher']) {
   }
 }
 
+// All-secret, source-only 27x27 exclusion: a period-27 additive GP29 pad,
+// or ANY arbitrary fixed bijection of the 29-symbol alphabet at every one
+// of its 27 positions, must preserve equality between symbols observed
+// in the same column of the 27x27 grid. No secret key is required.
+function columnEqual27(glyphs) {
+  assert.equal(glyphs.length,729);
+  let hits=0,pairs=0;
+  for(let phase=0;phase<27;phase++){
+    const counts=Array(29).fill(0);
+    for(let i=phase;i<729;i+=27)counts[glyphs[i]]++;
+    hits+=counts.reduce((s,n)=>s+n*(n-1)/2,0);
+    pairs+=27*26/2;
+  }
+  return {hits,pairs,rate:hits/pairs};
+}
+const wholeCipher=complete;
+const originalCol=columnEqual27(wholeCipher);
+assert.deepEqual([originalCol.hits,originalCol.pairs],[326,9477]);
+const lp1Reference=fs.readFileSync(path.resolve(__dirname,'..',
+  'resources/liber-primus/lp1-plaintext-reference.txt'),'utf8')
+  .replace(/^#.*$/gm,' ').replace(/\\[[^\\]]*\\]/g,' ')
+  .toUpperCase();
+const gpAlphabet=corpus.translit.map((sp,i)=>({sp,i}))
+  .sort((a,b)=>b.sp.length-a.sp.length);
+const nativeRunes=[];
+for(let word of (lp1Reference.match(/[A-Z]+/g)||[])){
+  word=word.replace(/QU/g,'CW').replace(/K/g,'C')
+    .replace(/V/g,'U').replace(/Z/g,'S');
+  for(let i=0;i<word.length;){
+    const token=gpAlphabet.find((item)=>word.startsWith(item.sp,i));
+    assert.ok(token,'unencodable LP1 native word');
+    nativeRunes.push(token.i);
+    i+=token.sp.length;
+  }
+}
+assert.ok(nativeRunes.length>3000);
+const nativeEqual=[];
+for(let start=0;start+729<=nativeRunes.length;start++){
+  nativeEqual.push(columnEqual27(nativeRunes.slice(start,start+729)).rate);
+}
+const sortedRates=[...nativeEqual].sort((a,b)=>a-b);
+const firstPlant=nativeRunes.slice(0,729);
+const allSecretMappings=[];
+let secretSeed=0x33270129;
+const rnd=()=>{secretSeed^=secretSeed<<13;secretSeed^=secretSeed>>>17;
+  secretSeed^=secretSeed<<5;return secretSeed>>>0;};
+for(let phase=0;phase<27;phase++){
+  const perm=Array.from({length:29},(_,i)=>i);
+  for(let i=28;i>0;i--){
+    const j=rnd()%(i+1);
+    [perm[i],perm[j]]=[perm[j],perm[i]];
+  }
+  allSecretMappings.push(perm);
+}
+const plantedBijection=firstPlant.map((c,i)=>
+  allSecretMappings[i%27][c]);
+const inversePerm=allSecretMappings.map(perm=>{
+  const inv=Array(29);perm.forEach((v,i)=>{inv[v]=i;});return inv;
+});
+assert.deepEqual(plantedBijection.map((c,i)=>inversePerm[i%27][c]),firstPlant);
+assert.deepEqual(columnEqual27(plantedBijection),columnEqual27(firstPlant));
+const rankAtOriginal=nativeEqual.filter(v=>v<=originalCol.rate).length;
+const colQuantiles=[0.05,0.5,0.95].map(q=>
+  +sortedRates[Math.floor(q*(sortedRates.length-1))].toFixed(7));
+console.log('27x27 all-secret phase-bijection invariant',JSON.stringify({
+  original:originalCol,
+  uniformExpected:1/29,
+  solvedLP1NativeWindows:nativeEqual.length,
+  solvedNativeMin:+sortedRates[0].toFixed(7),
+  solvedNativeQuantiles5_50_95:colQuantiles,
+  nativeControlsAtOrBelowOriginal:rankAtOriginal,
+  secretBijectionPlantExactReconstruction:true,
+  conclusion:'period27 phase-fixed GP29 bijections do not explain original opening chapter'
+}));
 console.log('PASS: frozen complementary-27 Trifid tests; no plaintext claim');
