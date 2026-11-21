@@ -1,6 +1,14 @@
 # Source-selected floral manuscript span contains exactly 3301 page-local rune transitions
 
-**Agent19, 21 November 2026. Classification: new original-source structural observation, plausible cipher-clock constraint, no recovered unknown plaintext or creator-authenticated decoder.**
+**Agent19, 21 November 2026. Classification: independent original-image source verification and consolidated pre-existing floral 3301/3299 structure, bounded new inverse negative. No recovered unknown plaintext or authenticated decoder.**
+
+## Precedence and genuine increment over earlier research
+
+**21 November retrospective prior-art correction.** The key numerical structure in this report was **already recorded independently** before this invocation in [`lp2-p15-red3299-floral-body-register.md`](lp2-p15-red3299-floral-body-register.md), which explicitly states that original p40–p55 have identical floral borders, **3,316 runes**, **15 rune-bearing pages**, **3,301 = 3,316−15**, and two red page-opening rubrics of lengths8 and9 whose exclusion leaves **3,299 = the p15 red-number cell**. It also records much stronger original-source links: all 68 red floral runes have GP-prime sum3,294 (another p15 numerical cell), and the two heading rune-prime sums435+597=1,032=φ(1033). Treating every pre-existing count as a newly discovered solution would be inaccurate. The additional one-token-per-opening-rubric reformulation `3316−7−8=3301` is algebraically equivalent to the *already established* `3299+2=3301`, not an independent relationship.
+
+The **new independently executed refinement** here is objective **whole-margin original-JPEG pixel/hash equality over all sixteen pages plus adjacent controls**, the complete **1,596-interval 3301 page-local clock uniqueness audit**, and the exact **red-opening polynomial common-root cross-check** in one passing Windows SFT, plus the direct **literal X−24 polynomial-division original-cipher negative** with a separate passing Windows SFT. The root24 dual heading equation itself was also already known in [`lp2-floral-red-headings-root24-original-inverse.md`](lp2-floral-red-headings-root24-original-inverse.md).
+
+**Scientific decision:** this work mostly consolidates and independently verifies a *pre-existing* p15/red3299/floral3301 structural hypothesis. It adds **no previously unknown plaintext, historical key, or independently selected consumer**, and must not be represented as a breakthrough from scratch. Future priority should use the more complete pre-existing 3299/red3294/φ1033 evidence, rather than launch new 3301 coincidence sweeps.
 
 ## Result from the original imagery
 
@@ -61,4 +69,4 @@ Reproducer: [literal original-source division SFT](../sims/lp2_floral_root24_lit
 - Main source inputs: `resources/liber-primus/{57.jpg..72.jpg}` from the original archive, `SHA256SUMS.txt`, and `lp2-corpus.json`. Source reader should preserve physical page p50 as rune-free and avoid confusing source text-section numbering with physical image numbering.
 - Decision: retain this objective **3301-transition art-block boundary** in supporting research as a prospective original-cipher clock constraint. **No recovered plaintext, authentic source-selected key, cipher inverse, or continuation address.** Require a distinct original image/text clue that specifies the transition operator, key/IV provenance, and recipient ciphertext before committing compute to any dependent decryption hypothesis.
 
-**Research significance:** the block's start and end are source-determined by identical images independently of cipher statistics. That lends it potential predictive use if a future source-grounded chained mechanism needs a clock of exactly 3301 steps, while the count alone cannot distinguish that mechanism from rival ciphers.
+**Research significance:** this refines the existing p15/floral clue chain with a validated image-defined boundary and a precise candidate clock; the broad floral/3301 relationship was already published in this repository. The block's start and end are source-determined by identical images independently of cipher statistics. That lends it potential predictive use if a future source-grounded chained mechanism needs a clock of exactly 3301 steps, while the count alone cannot distinguish that mechanism from rival ciphers.
