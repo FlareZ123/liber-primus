@@ -125,6 +125,26 @@ assert.equal(willEquation, 0);
 assert.equal(luckEquation, 14);
 assert.notEqual(luckEquation, 0);
 
+// A stronger obstruction does not even assume a shared K.  If the new
+// source-selected LUCK word itself uses *any* DH23 [K*a,a,H(A,B)] pad,
+// the first two mandatory slots force a=16 and K=17/16=21 in GF29.
+// Every B^16 modulo the original DH prime23 is a quadratic residue,
+// but 21 is a nonresidue: no public B can make a=16 and K=21 agree.
+const luckA = kl[1];
+const luckK = mod29(kl[0] * 20); // inv(16) mod29 = 20.
+assert.equal(luckA, 16);
+assert.equal(mod29(16 * 20), 1);
+assert.equal(luckK, 21);
+const possibleB = Array.from({ length: 22 }, (_, i) => i + 1)
+  .filter(B => powMod(B, luckA, 23) === luckK);
+assert.deepEqual(possibleB, []);
+assert.equal(powMod(luckK, 11, 23), 22); // Euler criterion -1.
+const impliedA = mod29((kl[2] + kl[3]) * 15); // inv(2) mod29=15.
+const impliedB = mod29((kl[3] - kl[2]) * 15);
+assert.deepEqual([impliedA, impliedB], [13, 9]);
+assert.equal(powMod(impliedB, luckA, 23), 8);
+assert.notEqual(powMod(impliedB, luckA, 23), luckK);
+
 // Positive inverse control on native solved p57 GP29 clear runes.
 // Plant a different private a=16 with the same K2, and replay a 4-symbol
 // source native word (no invented plain alphabet or fitted state).
@@ -150,6 +170,9 @@ console.log(JSON.stringify({
   necessaryInvariant: "k0 − K*k1 = 0 mod29",
   willResidue: willEquation,
   luckResidue: luckEquation,
+  alternativeDH23: { inferredA: luckA, inferredK: luckK, imputedH: [impliedA, impliedB],
+    impliedBPowA: powMod(impliedB, luckA, 23), originalPrime: 23,
+    publicBCountCompatible: possibleB.length, eulerNonresidue: powMod(luckK, 11, 23) },
   result: "GOOD→LUCK fails this reusable K=2 four-rune DH-pad grammar",
   nativePlantRecovered: nativePlant.length
 }, null, 2));
