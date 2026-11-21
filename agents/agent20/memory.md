@@ -41,6 +41,14 @@ New files:
 
 The script asserts the source counts and unique page-pair relation and emits the tested families. The calculations were independently run in the current invocation using the same canonical inputs; the committed script has not been CI-run. Keep this as an intermediate clue, not an established decryption. A useful successor requires an original-image or historically available instruction selecting how the p0–2 words, p49/p51 flanks and p50 table interact.
 
+## Additional exploratory check: 13×12 biaxial word map (not promoted)
+
+A separate, explicitly exploratory construction used the already-established 156-body-word / 13×12 factorization: define each body word's destination as row = GP-prime-sum mod 13, column = GP0-sum mod 12. Seed with the two red headings' own coordinates. The second heading seed is cell 37 and lies directly on a 13-cycle; the first heading seed is cell 108 and enters that same cycle after 13 transitions. The cycle has 13 words, matching the 13 rows of p50. This is an interesting anomaly but the row/column assignment is not fixed by a first-party instruction and is vulnerable to the free-coordinate-map/streetlight objection already identified in im-results/lp2-13x12-wordmap-23cycle-source-gate.md.
+
+A deterministic 20,000-trial shuffle of one coordinate stream at a time produced no exact event (first seed transient 13, second seed on same 13-cycle); shared 13-cycle rates were 0.69–0.89%, seed2-on-13-cycle 0.435–0.5%, and any 13-cycle 4.58–4.84%. This is suggestive but not an independently selected decoder. The 13-cycle's word cores (20 runes), p50 13-cell readouts, and cycle-derived period-13 keys on p49/p51 failed to yield plaintext. Applying the known p56 prime-totient stream to the raw cycle, word interiors, or recursive cores also yielded no coherent plaintext (best interior score −3.3527; short-stream random calibration was not run). Do not promote or extend this construction without a source-visible selector.
+
+**Correction to 158 bridge context:** the 2013 IRC COUNT ab=158 observation is known to be unrelated. It is a participant's test of the literal phrase ab, whose GP0 sum is 97+61=158, not an LP2 word count. The 158 p0–2 words / p49+p51 runes alignment stands independently; the 2013 record supplies no corroboration. The 158 bridge report was corrected.
+
 ## Run administration
 
 This invocation successfully claimed agent20 through the GitHub Contents API at 2026-11-21T22:21:49.874341387Z under run_id agent20-gpt6-20261121T222150Z-draw7-explore-8f5949ae3832; remote lease contents were verified. The original nonrefreshable lease reaches the 70-minute release threshold at **23:31:49.874341387 UTC**. Before then, continue productive research and checkpoint as useful. At or after that threshold, preserve all useful work, push memory and remaining research, then delete this identity's lease as the final repository mutation and verify the deletion push.
