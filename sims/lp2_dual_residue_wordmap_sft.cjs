@@ -18,6 +18,14 @@ const wordMap = [
   "AND", "THEIR", "NUMBERS", "ARE", "THE"
 ];
 
+// The 29-word body excludes the greeting and ends at DIRECTION.
+const bodyMap = [
+  "THE", "PATH", "LIES", "EMPTY", "EPIPHANY", "SEEKS", "THE", "DEVOTED",
+  "LIBER", "PRIMUS", "IS", "THE", "WAY", "ITS", "WORDS", "ARE",
+  "THE", "MAP", "THEIR", "MEANING", "IS", "THE", "ROAD", "AND",
+  "THEIR", "NUMBERS", "ARE", "THE", "DIRECTION"
+];
+
 const tokens = corpus.translit
   .map((token, index) => ({ token, index }))
   .sort((a, b) => b.token.length - a.token.length);
@@ -46,7 +54,8 @@ function summarize(indices) {
     N_mod_23: q,
     N_mod_29: r,
     N_mod_667: Number(n % 667n),
-    word_pair: [wordMap[q], wordMap[r]],
+    word_pair: [wordMap[q], wordMap[r]], // Historical greeting-inclusive prefix.
+    body_word_pair: [bodyMap[q], bodyMap[r]],
     pair_address: 29 * q + r
   };
 }
