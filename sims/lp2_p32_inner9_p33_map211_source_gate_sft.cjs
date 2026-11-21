@@ -89,7 +89,9 @@ function run(){
   const gp0=word=>Array.from(word).reduce((sum,char)=>
     sum+corpus.translit.indexOf(char),0);
   assert.equal(gp0('ROAD'),54);
-  assert.equal(gp0('PATHS'),54); // Competing signed label, no unique semantic claim.
+  assert.deepEqual([13,24,2,15].map(i=>corpus.translit[i]),
+    ["P","A","TH","S"]);
+  assert.equal(13+24+2+15,54); // PATHS also GP0=54: ambiguity is explicit.
   assert.equal(original.equal,7);
   assert.equal(original.minSubstitutions,17);
   assert.equal(original.decodedIoC,0.04197530864197531);
