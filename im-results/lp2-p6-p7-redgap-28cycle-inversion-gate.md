@@ -102,6 +102,19 @@ All three original holdouts and all three *optimistic exact global-key oracles* 
 
 [Windows Node22 PASS run 44932532562](https://github.com/FlareZ123/liber-primus/actions/runs/44932532562). The source-derived DH2 state is a plausible cipher ingredient, and the actual p6/p7 numeric packet is a reproducible artifact; neither selects the chaining opcode or a plaintext-producing decoder. Do not rescue it by optimizing unsigned phase changes, alternate predecessor symbols, other generators or post-processing layers after reading the result.
 
+## Signed BASE29/DH23 as a short instruction-channel operation (21 November 2026)
+
+A separate finite, **non-invertible** readout asks whether the typed historical commands themselves provide an *instruction* instead of 308-rune prose: the actual 2013 signed TCP challenge prints `BASE29 3301 → 3QO` and a `DH` exchange over modulus23. Treat each of the 28 successive source black **11-rune groups** as a conventional big-endian base29 integer, reduce that number modulo authenticated historic 23, and apply only source-attested DH exponents **3, 6, 15**, as well as identity exponent1. The [original-packet BASE29/DH23 SFT](../sims/lp2_p6_p7_308_base29_dh23_row_channel_sft.cjs) asserts the original key/gap lengths, big-endian base29 round trips, and the signed 3301→3QO positive control before reading the original 308 ciphertext runes. Its complete 28-symbol GP transliterations (variable rune-token lengths) are:
+
+| Exponent on each 11-rune row modulo23 | Complete 28-GP-symbol output |
+| --- | --- |
+| 1 | `NTHHNGRHBJEPLOEOHJPNTEFTHEOSPNGGLL` |
+| 3 | `THGSEGXLPEOMROGLEOTTHPFHOBEOSNMM` |
+| 6 | `OEPETHPEONHGTTNPNGORHFENPGEEOTT` |
+| 15 | `GTTHWOTHSIREJEOPTHIEGNRFTPNGEWHJJ` |
+
+None is an intelligible original-language instruction, and none defines a reversible mapping of the **308 original runes** to a plaintext 150-rune holdout. [Windows Node22 PASS 44933304878](https://github.com/FlareZ123/liber-primus/actions/runs/44933304878). The historical commands fix base29 notation and modulus23, but the original manuscript does **not** state that p6/p7 should be grouped as big-endian integers, transformed by a DH exponent, or translated with those numerical residues as GP rune indices. Thus even a lucky 28-symbol phrase would require prospective source validation; no phrase or decryption is recovered here. Do not sweep alternate digit orders, modulus offsets, exponent combinations or new output alphabets.
+
 ## Remaining missing input and next decision
 
 The exact red→black→red length/sum relationship deserves preservation as an **original-source packet hypothesis**. The tested direct key, monotone block counter, totient row clock and standard key-sorted transpositions do not solve the 308-symbol receiver. A new source clue would need to specify which of the red heading's 11 runes acts as a **key schedule versus width marker**, how the 28 intervening rows transform it, and how the p7 red checksum should be validated *prospectively*. Without that clue, changing start phases, GP reductions, routes, 11×28 orientations, key permutations or word clocks would simply fit an unbounded family.
