@@ -65,6 +65,46 @@ Neither p8 inverse gives an ordinary native-GP letter distribution or readable i
 
 This gate excludes the **whole-p8, page-reset, five-rune standard/transposed Hill consumer** with this exact matrix. It does not test arbitrary page offsets, mixed word clocks, nonstandard invertible matrices, or a different operation on the original **308-rune** marker-bracketed p6→p7 interval. The original artwork does not currently select such adaptations. Do not fit one merely to rescue the numerical identity.
 
+
+## Original-manuscript-only donor: p7 state reconstructs the previously known p0 title
+
+The circulant inverse has a stronger and more actionable consequence than matching the 2013 worked example. **All nine numerical state variables needed by the already published p0 marker-RISE/H local decoder are recoverable from the p7 red inscription itself**, with no historical square data or known plaintext values supplied as key inputs:
+
+| State variable | Extraction from original p7 | Value |
+| --- | --- | ---: |
+| `p` | First p7 red word, first GP29 index `[23,3][0]` | **23** |
+| `e` | First p7 red word, second GP29 index `[23,3][1]` | **3** |
+| `g` | Third slot of the inverted circulant's first row | **5** |
+| `K` | Second/fourth slots of the inverted circulant's first row | **2** |
+| `B` | Fifth slot of the inverted circulant's first row | **19** |
+| `A` | Product of third red word `[5,7,11]`, modulo29 | **8** |
+| `q` | Sum of the five products `11+26+8+15+2 = 62 mod29` | **4** |
+| `a` | Unique nonzero discrete logarithm `5^a=8 mod23` in `1..22` | **6** |
+| `b` | Unique nonzero discrete logarithm `5^b=19 mod23` in `1..22` | **15** |
+
+The original p7 source therefore yields `(p,e,g,A,B,K,q,a,b)=(23,3,5,8,19,2,4,6,15)` entirely from its own runes. Independent signed-source facts *verify the labels* but do not enter the arithmetic. One additional cross-page relation is `q=4` and `g=5`, equal to the visible `4|5|4` source marker geometry immediately beside the **p0 red title**, and `A+g=13`, the number of dots in that marker.
+
+Feed these **p7-derived values**, and the original p0 `4|5|4` /13-dot geometry, into the **previously published, unchanged** three-column RISE rules ([existing p0 state-only key construction](lp2-p0-square-state-rise-key-serializer.md)):
+
+```text
+u = q-e = 1,    t = g+K = 7,    w = A+g = 13
+
+left  = cumulative(-q, [q-u, w-u, w+u])       = [25,28,11,25]
+center= cumulative( q, [q, q+t, q+2t, q+3t]) = [4,8,19,8,4]
+right = cumulative( t, [t-u, t, t+u])         = [7,13,20,28]
+
+H(left || center || right)
+       = [26,24,8,19,27,24,18,3,0,8,0,16,19]
+```
+
+Subtracting this **source-only regenerated key** from all **13 original p0 red-title runes** reproduces the earlier independently recovered GP spelling **`EPIPHANYSEECS`**, human **“EPIPHANY SEEKS”**. All 13 original ciphertext runes reencrypt exactly; unlike the nonprose p8 Hill output, this output is a meaningful 13-rune original ciphertext recovery. The result does **not** add new previously unsolved plaintext, because `EPIPHANY SEEKS` was recovered by several earlier routes before this p7 calculation.
+
+**Novel consequence:** a single *later page of the original encrypted book itself* can supply the complete proposed numeric p0 decoder state, whereas the older route used external 2013/2014 worked-example and square metadata to populate the same values. This offers an internally closed source-key loop and a new human-solve-path hypothesis for cross-page navigation.
+
+**Critical limitation:** this is a reconstruction using the earlier RISE/H grammar, which was originally found after the 13-rune p0 residual was visible. The source provides five words and five dots, but still does not tell a blind solver to form a circulant or to assign its row entries exactly to `[p,K,g,K,B]`. The `q` row sum and `[23,3]` interpretation are arithmetic observations recognized after the DH state was known. Therefore this is a reproducible **source-only key donor for an already-known local reading**, not a prospective solution of the unknown LP2 bodies or evidence that the exact proposed path was intended in 2014.
+
+The expanded [single-file original-source SFT](../sims/lp2_p7_red_circulant_dh_inverse_sft.cjs) now derives all state variables from p7 bytes **before** opening p0's printed title, runs the existing serializer, verifies the full 13-rune forward replay and separately preserves the negative 255-rune p8 body test. [Windows Node22 original-p7-only key recovery PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44932016786).
+
 ## Decoding decision
 
 The inverse could serve as a **register recovery clue** to the historical DH source rather than a ready-made ciphertext key. A genuine next step would require an independent first-party instruction tying one specified body interval to that 5×5 map (or another uniquely specified use), an exact reset/direction and an untouched plaintext prediction. Until then, retain the algebraic observation without promoting it to a recovered cipher. The preceding [p7 reciprocal-product report](lp2-p7-red-multiplicative-inverse-dh-packet.md) covers the original red structure and earlier failed direct consumers.
