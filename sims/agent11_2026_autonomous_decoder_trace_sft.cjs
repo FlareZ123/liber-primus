@@ -95,7 +95,7 @@ function run() {
       cells:tuples(t[4]),key:csv(t[5]),runes:csv(t[6])});
   }
   assert.deepEqual([Number(m[2]),Number(m[3]),blocks.length],[39,118,39]);
-  const allCipher=[],allNodes=[],keyTypes={phiForward:0,plainForward:0,reversedOnly:0};
+  const allCipher=[],allNodes=[],verifiedPlaintextRunes=[],keyTypes={phiForward:0,plainForward:0,reversedOnly:0};
   const reversedOnly=[];
   for(const [i,b] of blocks.entries()) {
     assert.equal(b.number,i+1);
@@ -113,6 +113,7 @@ function run() {
       const expected=(original[address]-b.key[j%3]+29)%29;
       assert.equal(expected,b.runes[j],"Original GP29 plaintext mismatch block "+b.number);
     }
+    verifiedPlaintextRunes.push(...b.runes);
     allCipher.push(...b.cells);allNodes.push(...b.node);
   }
   assert.deepEqual(keyTypes,{phiForward:28,plainForward:10,reversedOnly:1});
@@ -121,6 +122,32 @@ function run() {
   const cipherSet=new Set(allCipher),nodeSet=new Set(allNodes);
   const same=[...cipherSet].filter(v=>nodeSet.has(v)).length;
   assert.deepEqual([cipherSet.size,nodeSet.size,same],[106,97,21]);
+  // The proposed plaintext is a source-derived candidate key, not verified
+  // language. Test only the two historically motivated GP29 repeat consumers:
+  // all 118 recovered GP runes, or the explicit 25-rune THE KEY ... MAP phrase.
+  const twentyFive=blocks.slice(17,27).flatMap(b=>b.runes)
+    .concat(blocks[27].runes.slice(0,3));
+  assert.equal(twentyFive.length,25);
+  assert.equal(twentyFive.map(i=>corpus.translit[i]).join(""),
+    "THECEYISTOGOTOTHEEASTOFTHEMAP");
+  const keyCandidates=[["candidate118",verifiedPlaintextRunes],
+    ["direction25",twentyFive]];
+  const nextPage=corpus.pages[3].indices;
+  /** @param {number[]} seq */
+  function ioc29(seq) {
+    const freq=Array(29).fill(0);
+    for(const v of seq)freq[v]++;
+    return freq.reduce((sum,n)=>sum+n*(n-1),0)/(seq.length*(seq.length-1));
+  }
+  const p3Receiver=[];
+  for(const [name,key] of keyCandidates)for(const sign of [-1,1]) {
+    const decoded=nextPage.map((v,i)=>(v+sign*key[i%key.length]+29)%29);
+    assert.deepEqual(decoded.map((v,i)=>(v-sign*key[i%key.length]+29)%29),
+      nextPage);
+    p3Receiver.push({key:name,keyLength:key.length,sign,
+      ioc:ioc29(decoded),
+      first60:decoded.slice(0,60).map(i=>corpus.translit[i]).join("")});
+  }
   const sha=a=>crypto.createHash("sha256").update(JSON.stringify(a)).digest("hex");
   const summary={
     externalCommit:SHA,originalMatrixSha256:crypto.createHash("sha256").update(text).digest("hex"),
@@ -133,6 +160,7 @@ function run() {
     keyDerivation:keyTypes,reversalRequiredBlocks:reversedOnly,
     ciphertextCoordinateSha256:sha(allCipher),
     sourceNodeCoordinateSha256:sha(allNodes),
+    proposedRouteAsP3CyclicVigenereKey:p3Receiver,
     interpretedEnglish:lines[1],
     claim:"Reversible arithmetic path; no independently selected 39-transition route"
   };
