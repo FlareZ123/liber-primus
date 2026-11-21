@@ -126,23 +126,33 @@ Here GP0(**THE**)=20, GP0(**DEVOTED**)=102 and `p50[20]=102`, `p50[102]=32`; bot
 
 **Independent spelling-fork control:** Under the prior IO→IA convention, DIRECTION112→p50[112]=`1D`=73 (original p56 scan `73.jpg`), then follows **73→79→82→201→74** to p57 scan `74.jpg` in four steps. Under literal GP spelling, DIRECTION98→p50[98]=`1C`=72, then reaches p56 scan73 in seven steps and p57 scan74 in eleven. Both source-coherent conventions converge at scan73→p57 and PARABLE ordinal201; only the literal branch has the entire 72→73→74 route and the `1C/1E/1G` consecutive-radix ribbon. The choice of English→GP ligature is investigator-defined and must not be portrayed as an authenticated original instruction.
 
-## New source-authored terminal punctuation as a candidate graph clock (Agent4, 21 November 2026)
+## Page-end 13/23 dots and the p55 table-graph self-closure (Agent4, 21 November 2026)
 
-The exact original-source signed DIRECTION/p50/p57 pointer path above has another independently printed operand: **large page-end punctuation consists of literal dot counts**. The original physical p55 `72.jpg` ends in one **red thirteen-dot mark immediately after local rune76**. Original solved p56 `73.jpg` also ends in a **red thirteen-dot mark after rune85**. Clear p57 `74.jpg` ends in the distinct **red twenty-three-dot mark after rune95**. These counts and rune offsets are taken from the unchanged scan-verified `resources/liber-primus/lp2-ink-annotations.json`, independent of the candidate table walk.
+The original signed 2016 **DIRECTION**, literally transliterated as separate I+O runes, has GP0=**98**. The original p50 base60 table at index98 is `1C` = **72**, selecting physical original scan **`72.jpg`**, unsolved p55. Independent page image data show a **red 13-dot mark immediately after its 76th and final rune**. If the actual dot count instructs a human to advance one p50 successor pointer per dot, the natural start is the just-selected **scan number72**. This yields one entire source-printed candidate handoff with a self-check:
 
-Interpreting one such dot count as a successor-graph **hop count** yields two exact original-data terminal closures without selecting phases, keys, or target words after the calculation:
+```text
+Signed word DIRECTION -> GP0 98 -> p50[98]=72 -> original 72.jpg (p55)
+p55 final 13-dot mark -> f^13(72):
+72 ->164 ->105 ->63 ->51 ->59 ->69 ->73 ->79 ->82 ->201 ->74 ->205 ->76
+                                                                    ^     ^
+                                           independent PARABLE ordinal205   exact p55 length 76
+```
 
-| Original input and visible stop | Exact source table route | Independent readout |
-| --- | --- | --- |
-| 2016 signed literal **DIRECTION**, GP0=98; p50 cell98=`1C`=72, selecting original p55 scan; **p55 final red13** | `98→72→164→105→63→51→59→69→73→79→82→201→74→205`, **exactly 13 steps** | terminal cell **205** is the already established first-clause PARABLE prime ordinal of 1,259 |
-| Solved **PARABLE** first-clause ordinal **205**; original **p57 final red23** | `205→76` enters the 11-node cycle at76, then completes two exact 11-step laps: `f^23(205)=76` | terminal **76** equals the actual complete rune count of original p55 and the p50 32×8 perimeter-cell count |
-| Signed-word **DIRECTION** under the *alternative*, unauthenticated IO→IA transliteration, GP0=112; p50 cell112=`1D`=73, selecting original p56; **p56 final red13** | `112→73→79→82→201→74→205→76→114→197→115→247→192→0`, **exactly 13 steps** | terminal table **cell0** rather than p57 ordinal205, a checkable competing outcome |
+The **13th** step from physical scan node72 reaches **76**, exactly the unchanged p55 rune count. That path also visits original p56/p57 scan numbers73/74 and p57 independently source-linked PARABLE prime ordinals201/205. The p50 grid's 32×8 outer circumference has exactly **76** cells, giving a second physical recipient already supported by the solved text's "shed our own circumferences." Those are exact original-object equalities, though the operative rule has **not** been authenticated.
 
-The **literal-spelling branch** therefore forms a closed, finite link across **signed-word→terminal scan→page-end punctuation→p57 sourced ordinal→page-end punctuation→p55 length**. Both 13-dot and 23-dot clocks use *unmodified* first-party symbols, and the 23-step result depends specifically on the distinct 23-dot mark plus the table's independently established 11-cycle. The alternative spelling reaches a different table register, so the signed wording alone does not authenticate which GP rendering the author preferred.
+**Critical solved-terminal controls:** p56 also has a page-end **red13** mark and its actual text has 85 runes, but starting at its physical scan73 gives `f^13(73)=203`, **not85**. P57 ends in a distinct **red23** mark after95 runes, but starting at its physical scan74 gives `f^23(74)=47`, **not95**. Thus the literal **scan number + terminal dots → own page length** model succeeds on p55 alone and fails on both solved terminal pages. This is an explicit rival to an authored universal punctuation clock.
 
-**Critical limitation:** the original dots are also conventional **punctuation** repeated at page ends, and neither the 2016 signed instruction nor p57 explicitly says to follow one table pointer per dot. The numeric addresses, the conditional base60 table reading, and the 11-cycle were recognized during previous research; this stop-rule pairing was discovered subsequently. The closure is an **exact navigation hypothesis**, not recovered ciphertext plaintext, a p55 decipherment, or a proof the authors intended the graph. The remaining causal decision is to identify a source-selected operator that consumes *all 76 original p55 runes* after this navigation, with an independent solved-text prediction. Avoid tuning any new rune keys to the two closures.
+Using **different start objects** produces two additional exact, appealing results, but their use would itself require a missing source-level switch:
 
-[Exact source-native CommonJS SFT](../sims/lp2_signed_terminal_dotclock_graph_sft.cjs) · [Windows Node22 PASS 44961375731](https://github.com/FlareZ123/liber-primus/actions/runs/44961375731).
+| Proposed start convention | Original stop size | Pointer route / outcome |
+| --- | ---: | --- |
+| Initial signed-word table address **98**, rather than its returned scan72 | p55 red **13** | `98→72→164→105→63→51→59→69→73→79→82→201→74→205`, reaching p57 first-clause prime ordinal **205** |
+| First PARABLE clause prime ordinal **205**, rather than p57's scan74 | p57 red **23** | `205→76` enters the 11-node successor cycle; `23=1+2×11`, so after two more laps the route reaches **76**, p55's rune count |
+| **DIRECTION** under investigator's IO→IA ligature (GP0=**112**), selecting physical p56 scan73 | p56 red **13** | From initial signed-word node112: `112→73→79→82→201→74→205→76→114→197→115→247→192→0`, ending at table index0 |
+
+The marks are also conventional manuscript punctuation. The 2016 signed message selects the book's words and numbers as a map and direction, but **does not explicitly instruct counting dots as table hops** or choosing scan-node versus word-address versus clause-ordinal starts. These connections were found during modern analysis, after the 58/8/56 graph had already been identified. The exact output coincidences therefore select an **interesting p55-specific human-navigation hypothesis**, not a proven author-intended decoder or new unknown plaintext.
+
+**Next cryptanalytic decision:** find a separately printed reversible operation consuming all **76** original p55 runes under the source-selected scan72/length76 pair. The most direct 76-byte circumference additive GP29 pads have already failed on original data ([source-native SFT](../sims/p55_table_perimeter_key_sft.cjs)); do not rescue that key family with tuned starts or orientation absent a source instruction. Prioritize a mode/clock that passes a solved source holdout before selecting any unknown-ciphertext words. [Updated exact original-source SFT](../sims/lp2_signed_terminal_dotclock_graph_sft.cjs) · [first version Windows PASS 44961375731](https://github.com/FlareZ123/liber-primus/actions/runs/44961375731).
 
 ## Controlled structural rarity, with its discovery limitation
 
