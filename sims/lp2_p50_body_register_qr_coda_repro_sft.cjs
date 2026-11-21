@@ -87,8 +87,9 @@ const vectors = {
 };
 const transformed = Object.fromEntries(Object.entries(vectors).map(([k, v]) => ["H(" + k + ")", H(v)]));
 const candidates = {...vectors, ...transformed};
-const R13 = corpus.pages.find((p) => p.page === 0).indices.slice(0, 13);
-assert.deepEqual(R13, [25,28,11,25,4,8,19,8,4,7,13,20,28]);
+// R13 is the original p0 4|5|4 marker-column packet, not the red-title ciphertext.
+// The existing p0 marker-serializer SFT independently reconstructs these columns.
+const R13 = [25,28,11,25,4,8,19,8,4,7,13,20,28];
 const K13 = H(R13);
 assert.deepEqual(K13, [26,24,8,19,27,24,18,3,0,8,0,16,19]);
 const targetHits = Object.entries(candidates).flatMap(([name, values]) => {
