@@ -219,6 +219,41 @@ function tableConvergentControl(cf) {
   };
 }
 
+/**
+ * The solved first-release text says that primes and the totient function are
+ * sacred. Source-local factorization of phi(1033*3301), after measuring four
+ * independent manuscript structures, is an additional *postselected* map.
+ */
+function sourceTotientFactorization() {
+  const ink = JSON.parse(fs.readFileSync(path.join(root,'resources',
+    'liber-primus','lp2-ink-annotations.json'),'utf8'));
+  const grid = JSON.parse(fs.readFileSync(path.join(root,'resources',
+    'liber-primus','lp2-grid-256.json'),'utf8'));
+  const signed = fs.readFileSync(path.join(root,'resources','historical',
+    'cicada2016-4gq25-outguess.asc'),'utf8');
+  const message=signed.split('-----BEGIN PGP SIGNATURE-----')[0]
+    .split(/\r?\n\r?\n/).slice(1).join('\n\n')
+    .replace(/\b[0-9A-F]{8}\b/gi,'');
+  const signedWords = message.match(/[A-Za-z]+/g)||[];
+  const redCount=ink.pages.reduce((n,p)=>n+(p.red_spans||[])
+    .reduce((k,span)=>k+span.length,0),0);
+  const gridRows=grid.pages.reduce((n,p)=>n+p.rows,0);
+  const squareWidth=Math.sqrt(corpus.pages[32].indices.length);
+  assert.equal(squareWidth,11);
+  assert.equal(gridRows,32);
+  assert.equal(redCount,225);
+  assert.equal(signedWords.length,43);
+  assert.equal(signedWords[29].toUpperCase(),'DIRECTION');
+  const phi=(1033-1)*(3301-1);
+  assert.equal(phi,3405600);
+  assert.equal(phi,redCount*gridRows*squareWidth*signedWords.length);
+  return {phi,sourceCounts:{originalRedRunes:redCount,
+    printedP50Rows:gridRows,
+    p32RuneSquareRoot:squareWidth,
+    signed2016Words:signedWords.length},
+    exactProduct:phi===redCount*gridRows*squareWidth*signedWords.length};
+}
+
 function main() {
   const rows1 = square(5), rows2 = square(16);
   const sum1 = rows1[0].reduce((a,b) => a+b,0);
@@ -250,6 +285,7 @@ function main() {
     [3,572,179],[1,719,225],[1,1291,404],[2,3301,1033]
   ]);
   const crossTable=tableConvergentControl(cf);
+  const totientCoordinates=sourceTotientFactorization();
 
   // Original LP2 p28 contains a literal 'DH' fragment [23,8], followed by
   // the known source geometry of a 22-rune / 6-fragment line.
@@ -296,6 +332,7 @@ function main() {
     euclid:state.steps,
     convergents:cf,
     originalSourceTableCrossing:crossTable,
+    totientCrossArtifactCounts:totientCoordinates,
     constructedState:{p:state.p,g:state.g,a:state.a,b:state.b,
       A:state.A,B:state.B,K:state.K,e:state.e,checks:state.conditions},
     originalP28:{line6DH:line6[0],line7RuneCount:22,
@@ -311,4 +348,4 @@ function main() {
   },null,2));
 }
 if(require.main===module)main();
-module.exports={square,euclid,inverse,power,candidate,fragments,convergents,valuation,tableConvergentControl};
+module.exports={square,euclid,inverse,power,candidate,fragments,convergents,valuation,tableConvergentControl,sourceTotientFactorization};
