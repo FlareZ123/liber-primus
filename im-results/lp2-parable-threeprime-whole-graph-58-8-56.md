@@ -69,7 +69,7 @@ A **single fixed-root** 100,000-trial seeded table-multiset shuffle (`0x33012014
 
 ## Signed 2016 DIRECTION locates the three original terminal scans, and corner169 rejoins THE DEVOTED
 
-A second independently signed *post-publication* Cicada clue reads **“words are the map ... their numbers are the direction.”** The native GP0 alphabet converts its actual word **DIRECTION** to **98**. Under conventional base60 the original p50 table has **cell98 = `1C` = 72**, the exact original archive file number of p55, `72.jpg` (the 76-rune encrypted page). Iterating the *unchanged* published 256-byte functional graph from this source-selected byte produces:
+A second independently signed *post-publication* Cicada clue reads **“words are the map ... their numbers are the direction.”** The **literal** GP29 transliteration of Latin DIRECTION (I+O as separate runes) gives **GP0=98**. The independent earlier signed-2016 hex analysis instead coalesces IO→IA and obtains **GP0=112**; the signed Latin wording does not specify a unique convention. Under conventional base60 the original p50 table has **cell98 = `1C` = 72**, the exact original archive file number of p55, `72.jpg` (the 76-rune encrypted page). Iterating the *unchanged* published 256-byte functional graph from this source-selected byte produces:
 
 ```text
 DIRECTION GP0=98 -> p50[98]=72
@@ -81,7 +81,7 @@ DIRECTION GP0=98 -> p50[98]=72
 
 Thus the **original final three scan filenames 72,73,74 appear in strictly increasing order**, at graph steps0,7,11; the walk then reaches the third original PARABLE prime ordinal **201**, travels to the first ordinal **205** and exits at **76**, which is also the exact original p55 rune count. The original second-release scans are numbered from `17.jpg` at p0 to `74.jpg` at p57, so these are authentic archival filenames, not renumbered page indices. The p55+p56+p57 source rune counts **76+85+95=256** exactly match the original table size; the earlier distinct [direct known-suffix 256-cell table attacks](lp2-p50-terminal180-known-lfsr-original-gate.md) and [terminal GF29 factor/codelength gate](lp2-terminal256-p50-dualfactor-original-codeword-gate.md) already tested direct consumers and found none. Do not rerun those original-table matching models.
 
-The **three source-selected addresses** [signed 2016 GP0(DIRECTION)=98, p57 third-clause prime ordinal201, p57 first-clause prime ordinal205] expose a **consecutive numeric ribbon in both source-discussed radices**:
+The **three addresses selected under literal GP spelling** [signed 2016 GP0(DIRECTION)=98, p57 third-clause prime ordinal201, p57 first-clause prime ordinal205] expose a **consecutive numeric ribbon in both source-discussed radices**:
 
 | Source address | Exact original token | base59 reading | base60 reading | Source-object coincidence |
 | ---: | --- | ---: | ---: | --- |
@@ -102,6 +102,8 @@ The separately derived binary pointer **169**, the exact fourth source tile corn
 Here GP0(**THE**)=20, GP0(**DEVOTED**)=102 and `p50[20]=102`, `p50[102]=32`; both words occur in the authenticated 2016 message **“EPIPHANY SEEKS THE DEVOTED”**, and p32 carries the blurred tree whose original prime-weight 11×11 axes match the signed 2016 563×569 tree image. Across all 256 possible start nodes, only **[168,169,252]** reach THE20 at exactly four table steps. This links the p57 prime-ordinal-to-binary route to the preexisting signed-phrase-to-p32 route. P32 source-selected 3×3 matrix cipher inverses were negative, and no true p32 plaintext follows merely from graph convergence.
 
 **Original-source positive reproducibility:** [single-file CJS route SFT](../sims/lp2_signed_direction_parable_terminal_p50_routes_sft.cjs), [Windows Node22 PASS 44952493246](https://github.com/FlareZ123/liber-primus/actions/runs/44952493246). The test reads the authentic 2016 clear-signed wording, 2013 prime clause sums, original 2014 p50 table, and actual scan filenames, then asserts both source-driven walks and the native GP0 words. It reconstructs **zero unknown text**; direct 256-alignment and kernel consumers remain negative.
+
+**Independent spelling-fork control:** Under the prior IO→IA convention, DIRECTION112→p50[112]=`1D`=73 (original p56 scan `73.jpg`), then follows **73→79→82→201→74** to p57 scan `74.jpg` in four steps. Under literal GP spelling, DIRECTION98→p50[98]=`1C`=72, then reaches p56 scan73 in seven steps and p57 scan74 in eleven. Both source-coherent conventions converge at scan73→p57 and PARABLE ordinal201; only the literal branch has the entire 72→73→74 route and the `1C/1E/1G` consecutive-radix ribbon. The choice of English→GP ligature is investigator-defined and must not be portrayed as an authenticated original instruction.
 
 ## Controlled structural rarity, with its discovery limitation
 
@@ -124,7 +126,7 @@ The add-one ordered-tail bound is `1/100001 ≈ 9.9999e-6`. A separate graph-lab
 
 The solved p57 imperative to shed circumferences selects this same tile's original **inner3×3** unambiguously. A new bounded test used its base59/base60 literal coefficient matrices as exact GP29 spatial blur filters of original p32 11×11 and p55 three 5×5 registers, and separately as direct Hill3 on p55's 25 three-rune blocks. All **12** frozen radix×orientation inverses roundtrip their authentic original sources and recover solved-source planted controls; **none** yields native English or even one complete source printed long word. See the [source-tile original inverse decision](lp2-parable-inner3x3-p32-p55-inverse-decision.md) and [three reproducer programs](../sims/lp2_parable_inner3x3_p55_hill3_sft.cjs). A graphical “blur” interpretation is still a hypothesis, and its failure does not invalidate the arithmetic triad.
 
-**Additional terminal-page direction:** Signed 2016 DIRECTION→p50[98]=72 is the original scan identifier `72.jpg` containing p55; the third p57 PARABLE prime ordinal201→p50[201]=74 is the original clear p57 scan `74.jpg`. The first ordinal205→p50[205]=76 in base60 matches p55's full rune count76, while its base59 value75 matches the 75 intact p55 body runes. These exact source relations offer a candidate terminal-page route, with no authenticated instruction binding file numbers, different radices and per-page keys.
+**Additional conditional terminal-page direction:** Literal GP DIRECTION→p50[98]=72 is the original scan identifier `72.jpg` containing p55; the third p57 PARABLE prime ordinal201→p50[201]=74 is the original clear p57 scan `74.jpg`. The first ordinal205→p50[205]=76 in base60 matches p55's full rune count76, while its base59 value75 matches the 75 intact p55 body runes. These exact source relations offer a candidate terminal-page route, with no authenticated instruction binding file numbers, different radices and per-page keys.
 
 ## Direct consumer status and next decryption decision
 

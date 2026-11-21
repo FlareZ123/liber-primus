@@ -55,7 +55,7 @@ The original input IoC is 0.038558559 and known native GP English is far more st
 
 The precise root-to-value relations add a potentially useful human navigation sequence:
 
-- The independently authenticated 2016 signed word **DIRECTION**, GP0=98, selects **p50[98]=`1C`=72** under conventional base60. The source original p55 happens to be **`72.jpg`**, 76 runes.
+- The independently authenticated 2016 signed word **DIRECTION** under the literal I+O GP spelling (an alternative prior project convention merges IO→IA and gives GP0=112), GP0=98 selects **p50[98]=`1C`=72** under conventional base60. The source original p55 happens to be **`72.jpg`**, 76 runes.
 - The third PARABLE clause ordinal **201** selects **p50[201]=`1E`=74**, exactly the archive filename **`74.jpg`** holding the clear source PARABLE itself at p57; its next graph node74 points to the first clause ordinal **205**.
 - The first PARABLE clause ordinal **205** selects **p50[205]=`1G`**, which is **76** under base60, the exact p55 all-rune length, or **75** under the source-debated base59, the exact p55 intact-body length.
 - The middle PARABLE ordinal **173** supplies the eight-bit source-ancestor readout **169**, the fourth rectangle corner. Under base59 this fourth cell reads 224, equal to the GP prime-weight sum of the solved p56 word **PAGE**.
