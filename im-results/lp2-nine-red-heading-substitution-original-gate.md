@@ -19,17 +19,17 @@ The question is narrow: can the nine unknown red titles be plain English encrypt
 
 | Necessary equality invariant | Exact source statistic | English control mean | Lowest / 30,000 | English controls at or below original |
 | --- | ---: | ---: | ---: | ---: |
-| Pooled repeated-symbol pairs across all 112 runes, preserved by one **global title substitution** | **217 / 6,216** pairs | 383.911 | 282 | **0** |
-| Sum of repeated-symbol pairs *inside each of nine headings*, preserved by **independently rekeyed title monoalphabetic substitutions** | **27 / 700** pairs | 38.724 | 19 | **730** |
-| Same ciphertext rune at the same local title offset, across all 36 pairs of headings; preserved by **one shared title-offset GP29 permutation** | **11 / 366** positions | 25.042 | 8 | **53** |
+| Pooled repeated-symbol pairs across all 112 runes, preserved by one **global title substitution** | **217 / 6,216** pairs | 375.2556 | 274 | **0** |
+| Sum of repeated-symbol pairs *inside each of nine headings*, preserved by **independently rekeyed title monoalphabetic substitutions** | **27 / 700** pairs | 37.9149 | 17 | **1051** |
+| Same ciphertext rune at the same local title offset, across all 36 pairs of headings; preserved by **one shared title-offset GP29 permutation** | **11 / 366** positions | 24.5719 | 7 | **81** |
 
-Each statistic uses the complete original nine-title sequence. The comparison distribution contains **30,000 independently sampled sets** of native-GP English words, with exactly the original 22 printed title-word lengths and nine title groupings. Source samples are drawn from the two existing pinned Shakespeare and Gibran corpora, using the canonical GP29 contractions/transliteration, one frozen `0x33012026` xorshift seed and a reproducible fixed enumeration. The empirical lower-tail add-one rates are, respectively, **1/30001 ≈ 0.00003333**, **731/30001 ≈ 0.02437**, and **54/30001 ≈ 0.00180**. The paired comparisons and same-heading dependencies are retained *per simulated complete title set*, so no binomial assumption treats correlated symbol pairs as independent.
+Each statistic uses the complete original nine-title sequence. The comparison distribution contains **30,000 independently sampled sets** of native-GP English words, with exactly the original 22 printed title-word lengths and nine title groupings. Source samples are drawn from the two existing pinned Shakespeare and Gibran corpora, using the canonical GP29 contractions/transliteration (including ING→NG and IO→IA), one frozen `0x33012026` xorshift seed and a reproducible fixed enumeration. The empirical lower-tail add-one rates are, respectively, **1/30001 ≈ 0.00003333**, **1052/30001 ≈ 0.03507**, and **82/30001 ≈ 0.00273**. The paired comparisons and same-heading dependencies are retained *per simulated complete title set*, so no binomial assumption treats correlated symbol pairs as independent.
 
 The script also implements three bijective positive plants: a global affine GP29 symbol permutation preserves all three invariants; independent title Caesar shifts preserve each title's symbol-collision count; and a common per-position variable Caesar shift preserves title-position equality. All passed, confirming the necessary conditions are not artifacts of a particular guessed key.
 
 ## Decision and scope
 
-A **global fixed GP29 substitution on these red titles** is strongly inconsistent with their proposed intact native-English plaintext register under the stated controls. A **single title-position key/transform reused at every red heading** is likewise disfavored, independent of its unknown substitution tables. Independent per-title fixed substitutions are disfavored more weakly under this model (about 2.4% lower-tail), and **should not** be treated as mathematically excluded for every kind of plaintext.
+A **global fixed GP29 substitution on these red titles** is strongly inconsistent with their proposed intact native-English plaintext register under the stated controls. A **single title-position key/transform reused at every red heading** is likewise disfavored, independent of its unknown substitution tables. Independent per-title fixed substitutions are disfavored more weakly under this model (about 3.5% lower-tail), and **should not** be treated as mathematically excluded for every kind of plaintext.
 
 These original-input results do **not** reveal how to decrypt the titles or their chapter bodies. Alternative languages, deliberately unusual heading syntax, separate title-specific varying keys, an authenticated external key schedule, altered punctuation, and non-invertible or context-dependent coding remain outside this test. More important, **the historical release gives no title-to-operator mapping, direction or key/clock grammar**. The earlier nine-chapter and twelve-rubric **body-wide shared-pad gates** already reject a different, much longer chapter-reset family. This new test addresses only a *hypothetical heading-only* key channel and should not prompt further arbitrary shifts.
 
@@ -38,6 +38,6 @@ These original-input results do **not** reveal how to decrypt the titles or thei
 ## Reproduction
 
 - Exact independent SFT: [`sims/lp2_nine_red_heading_substitution_invariants_sft.cjs`](../sims/lp2_nine_red_heading_substitution_invariants_sft.cjs)
-- Verified Node22 / Windows manual run: [GitHub Actions 44950459273](https://github.com/FlareZ123/liber-primus/actions/runs/44950459273) (success)
+- Verified Node22 / Windows manual run: [GitHub Actions 44950459273](https://github.com/FlareZ123/liber-primus/actions/runs/44950459273) (earlier pre-orthography-correction run); corrected GP-native contraction run to be recorded separately
 - Existing source-visible chapter map: [original visual chapter study](lp2-global-original-visual-section-map.md)
 - Prompt-constrained decision: [Director #2090](https://github.com/FlareZ123/liber-primus/issues/2090)
