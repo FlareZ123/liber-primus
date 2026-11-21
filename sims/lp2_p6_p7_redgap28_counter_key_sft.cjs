@@ -134,6 +134,54 @@ const totientOutputs = [-1, +1].map(sign => {
     first100: translit(decoded.slice(0, 100))
   };
 });
+
+// Standard lexicographically keyed 11-column transposition: a simple
+// historically available operation selected by red11 width and the 28 full
+// blocks. Stable ranking uses the original GP29 symbol order, with source
+// order breaking equal-symbol ties.
+/** @param {boolean} descending */
+function columnOrder(descending) {
+  return key.map((value, index) => ({value, index}))
+    .sort((a, b) => (descending ? b.value - a.value : a.value - b.value) || a.index - b.index)
+    .map(x => x.index);
+}
+/**
+ * @param {number[]} order
+ * @param {"column-chunks"|"rowwise-swap"} layout
+ */
+function inverseColumnar(order, layout) {
+  const rows = Array.from({length: 28}, () => Array(11).fill(0));
+  if (layout === "column-chunks") {
+    for (let j = 0; j < 11; j++) for (let r = 0; r < 28; r++)
+      rows[r][order[j]] = gap[j * 28 + r];
+  } else {
+    for (let r = 0; r < 28; r++) for (let j = 0; j < 11; j++)
+      rows[r][order[j]] = gap[r * 11 + j];
+  }
+  const decoded = rows.flat();
+  const replay = [];
+  if (layout === "column-chunks") {
+    for (let j = 0; j < 11; j++) for (let r = 0; r < 28; r++)
+      replay.push(rows[r][order[j]]);
+  } else {
+    for (let r = 0; r < 28; r++) for (let j = 0; j < 11; j++)
+      replay.push(rows[r][order[j]]);
+  }
+  assert.deepEqual(replay, gap);
+  return {
+    layout, columnOrder: order, first100: translit(decoded.slice(0, 100)),
+    adjacentEquals: decoded.slice(1).filter((v, i) => v === decoded[i]).length
+  };
+}
+const transpositionOutputs = [false, true].flatMap(descending => {
+  const order = columnOrder(descending);
+  return [
+    { ranking: descending ? "descending" : "ascending",
+      ...inverseColumnar(order, "column-chunks") },
+    { ranking: descending ? "descending" : "ascending",
+      ...inverseColumnar(order, "rowwise-swap") }
+  ];
+});
 const transparent = {
   subtract: transparentReachability(-1),
   add: transparentReachability(+1)
@@ -156,5 +204,6 @@ console.log(JSON.stringify({
   output: outputs,
   consecutiveTotientRowShifts: totientRows,
   consecutiveTotientReadouts: totientOutputs,
+  keyedColumnarReadouts: transpositionOutputs,
   authenticFTransparentFixedPeriod: transparent
 }, null, 2));
