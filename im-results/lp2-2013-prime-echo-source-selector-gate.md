@@ -22,6 +22,14 @@ The 2013 community information file and IRC archive record that solvers noticed 
 
 **Timing decision:** the two pauses emphasize the two named prime values. They do not provide a distinct key stream. Do not pursue a timing-derived LP2 key unless a primary recording reveals a reproducible deviation from this exact 464-event source sequence.
 
+## P6 red ink as a proposed prime_echo selector (21 November 2026, #2050)
+
+Physical LP2 p6 has an original red 11-rune span at zero-based rune offsets [71,82), with complete printed word lengths 4|1|4|2. The four GP0 word sums are 71, 19, 65 and 26; the 11-rune sum is 181. Physical p0's red heading also sums to 181. These figures come from the exact original-rune red annotations and are independently replayed by [the p6 red-span source-gate SFT](../sims/lp2_redspan_181_p50_path_p32_source_gate.cjs).
+
+**The proposed historical key source does not select an inverse.** The original 2013 `prime_echo` is a complete list of *every* prime from 2 to 3301. Therefore the appearance of 71 (prime ordinal 20) and 181 (ordinal 42) in its output follows automatically from their primality and upper bound; it cannot independently identify the list, a stream start or a key. The source's only two distinct pause markers occur at prime ordinals 174 and 464, immediately after 1033 and 3301. Neither marker singles out 71 or 181. The p6 shape 4|1|4|2 and its product 32 do not specify a choice between prime value and ordinal, stream interval, reduction to GP29, cipher operation, receiver or reset. The period-original 2013 BASE29/DH protocol is separately a one-shot handshake, without a per-rune LP2 key instruction.
+
+The remaining 2016-signed SEEKS=71 and p50 successor-graph route to p32 is a separately testable navigation hypothesis; introducing the 2013 prime stream supplies no missing reversible consumer. **Bounded decision:** retire the p6 71/181→`prime_echo` key-transfer claim under this available source record, without trying arbitrary offsets or rescoring more ciphers. A new source-authenticated receiver or key-clock instruction is required to reopen it. This does not alter the earlier negative results for the frozen 464/174/290 prime schedules below.
+
 ## The actual missing key-selection step
 
 - The archived [2014 stage 1–11 walkthrough and preserved stage artifacts](https://github.com/neuroretransmit/cicada/tree/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014) were checked for a link selecting the 2013 boot executable as LP2's source. Stage 7 uses 33011033 as an actual *OpenPuff* password for an MP3, and the [signed 2 May 2014 handoff](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/010-hidden-service-reply/message.txt.asc) supplies the seventh onion URL. Neither selects \`prime_echo\` to decrypt unknown pages. This is a bounded search through those inspected archive contents, not an exhaustive proof against missing historical material.
