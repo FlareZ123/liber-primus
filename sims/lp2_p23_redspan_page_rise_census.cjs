@@ -1,11 +1,12 @@
 'use strict';
 
 /**
- * Census the source-visible page+red-span-length "rise" relation.
- * This is a descriptive structural test, not proof that addition is an
- * authored operation. It reports every red span whose page index plus
- * span length lands on another page with a red span, then distinguishes
- * the p23->p39 centered pair from the p3->p6 control.
+ * Census the descriptive page-index + red-span-length relation.
+ * This is NOT the established p23 "THE ONE RISE" operation: that operator
+ * is the fixed +2 displacement and selects p25. This script only reports
+ * every red span whose page index plus span length lands on another page
+ * with a red span, distinguishing the p23->p39 centered alignment from
+ * the p3->p6 control.
  *
  * Node.js 22+, deterministic and offline.
  */
@@ -61,6 +62,6 @@ const summary = {
     target_page: 6, target_red_start: 71, target_red_length: 11,
     target_rune_count: 196, target_red11_centered: p6Centered
   },
-  interpretation_boundary: 'p23+16=39 is a candidate rise selector; the arithmetic operation is not independently authenticated by this census'
+  interpretation_boundary: 'p23+16=39 is a descriptive alignment only; the established THE ONE RISE operation is +2 and selects p25, so this census does not select p39'
 };
-console.log('LP2-P23-REDSPAN-PAGE-RISE-CENSUS', JSON.stringify(summary));
+console.log('LP2-P23-REDSPAN-PAGE-PLUS-LENGTH-CENSUS', JSON.stringify(summary));
