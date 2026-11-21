@@ -119,6 +119,24 @@ Freeze the two direct source serializations of the p23 red16 key: GP indices `[1
 
 No output is ordinary ASCII instructions or 240 byte-valued GP29 plaintext symbols. The original-source test includes the published all-zero AES-128 known-answer vector. The complete six-case Windows Node22 test passed [Actions 44946667987](https://github.com/FlareZ123/liber-primus/actions/runs/44946667987). Retire this exact AES consumer instead of inventing new AES modes or arbitrary password/KDF layers. All source-specific H/G conclusions above remain conditional; no authentic LP2 cipher architecture or original unknown plaintext has been recovered.
 
+## Full-book original-cipher inverse of the factor product itself
+
+The preceding LFSR test assumed H/G selected a moving **key**. A genuinely different simple human-era interpretation is that they select a **reversible polynomial filter applied directly to plaintext**. This uses the already-demonstrated table polynomial multiplication operation and does not require a key: for either GP reading direction define the cipher as `C(X)=A(X)P(X) mod X^N`, where `A` is an original source factor H, G, or their product R×G. Since every chosen factor has a nonzero GF29 constant coefficient, the lower-triangular finite-stream transformation is bijective at every length. A solver can recover all `N` original plaintext symbols by the recurrence
+
+```text
+P[i] = (C[i] − Σ_{j=1..degree(A)} A[j]·P[i−j]) / A[0]  (mod29)
+```
+
+with zero values before the source stream starts. A whole-book original order and its full reversal cover both natural coefficient orientations; all **12,956 unmodified unknown-page GP29 symbols** are consumed. This is a bounded original-cipher family, not a fitted secret keystream. The original table is divisible by these factors, so the invertible operation has a concrete source-mathematical motivation, though the book never commands applying it to rune ciphertext.
+
+| Source polynomial factor | Whole-book source-order IoC | Whole-book reverse-order IoC |
+|---|---:|---:|
+| H, from authenticated 2013 3QO | 0.0344950323 | 0.0344671017 |
+| G, from original p39 red3 | 0.0344659102 | 0.0345067455 |
+| H×G, equivalently the new p23 R×p39 G | 0.0344696755 | 0.0344677809 |
+
+All six original plaintext candidates remain indistinguishable from near-uniform GP29 output at the whole-book frequency level; the prefixes are nonlinguistic. Each inverse exactly **re-multiplies** to the corresponding 12,956 original ciphertext symbols. Positive controls encrypt and recover a 729-rune source-native GP-English plant formed from the original clear p57. These rule out all six simple unkeyed polynomial deconvolutions without relying on key search. They do not rule out an externally instructed variable polynomial, independent shift/clock or second layer.
+
 ## Decision and next useful gate
 
 Preserve the **p23 source-only H projector** as a provisional, unusually centered in-manuscript echo of the independently signed 2013 H factor. The strongest objection is decisive: the original heading visibly fixes a boundary, but it does **not tell a solver to take two runes on the left and one on the right**. A future claim must obtain that 2|1 rule independently from the original 2014 visual artwork, authenticated historical clue, or a blind original-cipher prediction, and must identify a reversible *ciphertext consumer* of the p50 quotient or factor. More fitted polynomial factors, source-shuffled duplicate counts or arbitrary Q key phases cannot solve that missing operation.
