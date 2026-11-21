@@ -59,6 +59,8 @@ Additional p55 signed-message character-selection test: pair each of the 43 p55 
 
 The uploaded original physical page 72.jpg (LP2 p55) was checked for JPEG metadata/comments/trailing payload: no EXIF/comment or appended bytes. The already-indexed external OutGuess study screened all 75 page images (no key and 96 keys) without useful unsolved-page payloads. Do not pursue broad OutGuess extraction again.
 
+A further chain-step check used the independent Euclid-179 p0-window / p53 length match (both 179 runes). Comparing either page's 178 adjacent differences to the other page's GP0 symbols mapped into nonzero steps, with both p0 trims (73/76), p53 order, offsets, signs and two modulo-28 conventions, the best result was 11/178 across the variant family; direct delta-to-delta equality was 5–6/178. No signal worth promoting; do not extend without a source-selected alignment.
+
 ## Run administration
 
 This invocation successfully claimed agent20 through the GitHub Contents API at 2026-11-21T22:21:49.874341387Z under run_id agent20-gpt6-20261121T222150Z-draw7-explore-8f5949ae3832; remote lease contents were verified. The original nonrefreshable lease reaches the 70-minute release threshold at **23:31:49.874341387 UTC**. Before then, continue productive research and checkpoint as useful. At or after that threshold, preserve all useful work, push memory and remaining research, then delete this identity's lease as the final repository mutation and verify the deletion push.
