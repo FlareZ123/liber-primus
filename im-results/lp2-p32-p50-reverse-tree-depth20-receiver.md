@@ -155,7 +155,7 @@ lines 5–6: 22+ 7 = 29 runes  = number of Gematria Primus symbols
 entire p32: 121 runes  = GP0(EPIPHANY)
 ```
 
-**Important original word-boundary correction:** p32 has **22 complete printed words**, with lengths `[1,3,5,11,5,5,3,11,6,9,5,8,4,9,4,8,2,3,2,8,5,4]`, as independently established in the earlier [complete-word coordinate receiver](lp2-p32-22word-length-coordinate-directkey-gate.md). Its physical-line fragments count **[5,4,4,5,6,2]** and sum to 26 only because **four complete rune-words continue across an original line break without an intervening word divider**. The visually split three-line halves each have **13 line fragments**; these are **not 13 complete words**, and the printed lines ending at rune **71** and **92** cut through complete words. The red13-dot punctuation is common to ten original page endings, and attributing its number to the half-page fragment count is speculative. The source-informed **71/50 and 92/29 line geometry remains exact**, while any 13-word interpretation is withdrawn.
+**Important original boundary correction:** p32 has **22 page-local word fragments, of which the first is an incoming carry from p31, and 21 complete new word starts**,  with lengths `[1,3,5,11,5,5,3,11,6,9,5,8,4,9,4,8,2,3,2,8,5,4]`, as independently established in the earlier [complete-word coordinate receiver](lp2-p32-22word-length-coordinate-directkey-gate.md). Its physical-line fragments count **[5,4,4,5,6,2]** and sum to 26 only because **four complete rune-words continue across an original line break without an intervening word divider**. The visually split three-line halves each have **13 line fragments**; these are **not 13 complete words**, and the printed lines ending at rune **71** and **92** cut through complete words. The red13-dot punctuation is common to ten original page endings, and attributing its number to the half-page fragment count is speculative. The source-informed **71/50 and 92/29 line geometry remains exact**, while any 13-word interpretation is withdrawn.
 
 Only p22 and p32 among all 57 rune-bearing original physical pages contain exactly six lines. The other six-line page p22 has 16/16 line fragments and 69/62 rune sums across its three-line halves. This is a finite corpus comparison and does not give a selection-adjusted probability of intentional encoding.
 
@@ -185,7 +185,7 @@ No first-party source selects the node-to-rune order, the GF29 operation or an e
 
 All six exact original-cipher results fully reencrypt their unchanged original register; each also recovers every genuine solved-p57 plaintext rune in separate 92- or 71-rune native-GP29 plants. **No unknown p32 plaintext, authentic key, cipher, or destination was recovered.** This is evidence against these *direct consumers only*, and the inferred original source route remains a provisional clue architecture.
 
-[Standalone read-only Node22 SFT using the actual 22-word/26-fragment distinction, six original lines, tree and complete original cipher registers](../sims/lp2_p32_thirteen_word_empty92_tail29_source_sft.cjs). [Updated Windows CI run](https://github.com/FlareZ123/liber-primus/actions/runs/44952132724) predates the complete-word correction; the current-script run is recorded when successful. The next justified decision is to identify an independently clue-specified map from tree node to p32 cipher-symbol and a value-changing operator, with a held-out plaintext receiver rather than adjusting arbitrary additive pad phases.
+[Standalone read-only Node22 SFT using the actual 22-word/26-fragment distinction, six original lines, tree and complete original cipher registers](../sims/lp2_p32_thirteen_word_empty92_tail29_source_sft.cjs). [Corrected-source Windows Node22 PASS run44952634040](https://github.com/FlareZ123/liber-primus/actions/runs/44952634040), which separately checks the 26/22 line-fragment/local-word distinction and the lack of real word boundaries at 71 and92. The next justified decision is to identify an independently clue-specified map from tree node to p32 cipher-symbol and a value-changing operator, with a held-out plaintext receiver rather than adjusting arbitrary additive pad phases.
 
 ## Complete tree cardinality independently returns page 32
 
@@ -218,20 +218,20 @@ At the authenticated `THE=20` cut, the p32 branch contributes 84 cells. Excludin
 
 Reproducer: [`sims/lp2_p57_p50_tree_word_grammar_sft.cjs`](../sims/lp2_p57_p50_tree_word_grammar_sft.cjs), Windows Node22 run **44452339078** passed.
 
-## Authenticated 2016 words select p32 word boundaries
+## Authenticated 2016 values hit p32's mixed word and physical-line boundaries
 
-P32 has 26 original printed words with cumulative rune boundaries
+**Source-boundary correction (Agent49, 21 November):** an earlier version of this report incorrectly treated **26 line-fragments** on p32 as 26 complete words. The original text has four unhyphenated physical line wraps *inside* words. P32 instead has **22 page-local word fragments**, including an initial one-rune carry from p31, and **21 new complete word starts**, as already established in the separately updated [signed-2016 p32 research synthesis](lp2-tree121-signed2016-source-gate.md). Removing the line wraps gives the accurate page-local word-runeboundary indices:
+
+`[1,4,9,20,25,30,33,44,50,59,64,72,76,85,89,97,99,102,104,112,117,121]`.
+
+The earlier **26 line-fragment** boundaries, which additionally include physical line wraps after rune positions **48,71,92,114**, are still exact source geometry:
 
 `[1,4,9,20,25,30,33,44,48,50,59,64,71,72,76,85,89,92,97,99,102,104,112,114,117,121]`.
 
-The authenticated 2016 values `THE=20`, `SEEKS=71`, `EMPTY=92`, `DEVOTED=102`, and `EPIPHANY=121` are all members of that set. Across physical unknown pages p0–p55, p32 is the sole page with all five boundaries, and p32 is also the sole page with exactly 121 runes.
-
-The p50 pointer table acts directly on those boundary numbers. If the pointer is followed until the next p32 boundary appears, the source values form this exact chain:
+The five signed GP0 values `THE=20`, `SEEKS=71`, `EMPTY=92`, `DEVOTED=102`, and `EPIPHANY=121` are all among those **mixed boundaries**. However **71 and92 are physical line breaks within complete words**, while20,102 and121 are actual page-local word endings. Consequently, the earlier claim that these five are all complete word boundaries, or that p32 has 26 complete words, is **retracted**. The mixed structure remains observable on the source image, and the original base60 pointer graph still has an exact route between those four initial values:
 
 `SEEKS 71 → EMPTY 92 → THE 20 → DEVOTED 102`.
 
-The full roads are `71→108→14→183→81→58→146→92`, then `92→236→238→129→179→175→18→15→212→70→169→228→144→125→20`, then `20→102`. No intermediate p32 boundary occurs on those segments.
+The full unchanged table roads are `71→108→14→183→81→58→146→92`, then `92→236→238→129→179→175→18→15→212→70→169→228→144→125→20`, then `20→102`. None of the intermediate source states is among the full 26 **line-fragment boundaries**, so none is among the 22 local whole-word boundaries either. The path therefore remains an exact *mixed punctuation/line-layout numerical fact* under the original table-pointer interpretation; it is weaker as evidence for the signed sentence **“words are the map”** than the old, incorrect word-boundary description. No author instruction chooses this route or specifies a decoding operation.
 
-This gives a source-selected p32 receiver in the page's own printed word geometry. Two small consumers were tested before any language selection: a boundary-seeded per-rune pointer clock and one fixed p50 scalar per printed word. Their best GP-native trigram scores remain well below held clear controls, so the boundary chain currently constrains navigation rather than yielding plaintext.
-
-Reproducer: [`sims/lp2_p32_signed_word_boundary_receiver_sft.cjs`, Windows Node22 run **44450837758** passed](../sims/lp2_p32_signed_word_boundary_receiver_sft.cjs).
+The prior bounded negative tests of a line-fragment-seeded per-rune clock and fixed scalar per fragment remain numerically valid on the unchanged ciphertext, but are **not** tests over 26 actual words. [Legacy numerical SFT with line-fragment parsing](../sims/lp2_p32_signed_word_boundary_receiver_sft.cjs), [Windows Node22 prior PASS 44450837758](https://github.com/FlareZ123/liber-primus/actions/runs/44450837758). For corrected 22-local-fragment source tests see the [current six-line visual-gate SFT](../sims/lp2_p32_thirteen_word_empty92_tail29_source_sft.cjs), [Windows PASS44952634040](https://github.com/FlareZ123/liber-primus/actions/runs/44952634040). Neither recoverable unknown plaintext nor an independent key results.
