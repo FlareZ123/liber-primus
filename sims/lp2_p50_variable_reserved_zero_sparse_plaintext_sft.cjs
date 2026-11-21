@@ -111,6 +111,44 @@ for(const n of native){
  });
  console.log(JSON.stringify({native:n.name,rows},null,2));
 }
+
+/** @param {number} a A nonzero GF(29) multiplier. */
+function inverse29(a) {
+ for (let i=1;i<29;i++) if ((a*i)%29===1) return i;
+ throw new Error('zero multiplier cannot be inverted');
+}
+/** @param {number[]} symbols */
+function ioc(symbols) {
+ const counts=new Int32Array(29);
+ for(const n of symbols) counts[n]++;
+ return counts.reduce((s,v)=>s+v*(v-1),0)/(symbols.length*(symbols.length-1));
+}
+// Freeze the fully specified, nonfitted multiplier a=1+(byte mod28).
+// The first runic value of each page is the source-transmitted IV.
+// Both receiver and exact forward regeneration use the original previous C.
+for(const {radix,clock} of configs){
+ const table=byteRead(radix);
+ const decoded=[];
+ let global=0;
+ for(const p of pages){
+  for(let j=1;j<p.indices.length;j++){
+   const index=(clock==='global'?global+j:j)%256;
+   const b=table[index],a=1+(b%28),ref=b%29;
+   const diff=(p.indices[j]-p.indices[j-1]+29)%29;
+   const pt=(ref+inverse29(a)*diff)%29;
+   assert.equal((p.indices[j-1]+a*(pt-ref)+29*29)%29,p.indices[j]);
+   decoded.push(pt);
+  }
+  global+=p.indices.length;
+ }
+ assert.equal(decoded.length,12901);
+ console.log(JSON.stringify({fullInverse:true,radix,clock,
+  originalEligibleRunes:decoded.length,
+  fullInverseIoC:ioc(decoded),
+  first48PlainTranslit:decoded.slice(0,48).map(x=>c.translit[x]).join(' '),
+  exactForwardReencryption:true}));
+}
+
 const b=byteRead(60);
 const planted=encodeSourceNativeGP(read('resources/control/gibran_prophet_58585.txt')).slice(0,700);
 const out=[17];
