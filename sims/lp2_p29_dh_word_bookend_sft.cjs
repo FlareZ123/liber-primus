@@ -44,7 +44,7 @@ assert.deepEqual(p29.indices.slice(-3), endExpected);
 
 const p29Print = originalText.split('%')[29].trim();
 assert.match(p29Print, /^ᚦᛞᚷ-/u, 'First three runes must be a complete printed word');
-assert.match(p29Print, /-ᚷᚻᛗ\/\s*$/u, 'Last three runes must be a complete printed word');
+assert.match(p29Print, /-ᚷᚻᛗ\/\s*$/u, 'Page-terminal three-rune fragment must match original print');
 
 const G = [mod29(-signedDh.K), signedDh.g, signedDh.b];
 assert.deepEqual(G, [27, 5, 15]);
@@ -83,7 +83,7 @@ assert.equal(ranking.filter((page) => page.hits === 6).length, 1);
 console.log('Input: 55 original rune-bearing LP2 p0..55 pages, 12,956 rune symbols.');
 console.log('Source: 2013 signed DH23 worked example, state:', signedDh);
 console.log('p29 complete first word GP indices:', startExpected, '(K,p,a)');
-console.log('p29 complete last word GP indices:', endExpected, '(a,A,B)');
+console.log('p29 final on-page three-rune fragment GP indices:', endExpected, '(a,A,B)');
 console.log('p39 red G = (-K,g,b) =', G, '= 15(X-24)^2 mod 29');
 console.log('p29 P(24) and formal derivative P\'(24):',
   evalPoly(p29.indices, root), evalPoly(derivative, root));
@@ -167,6 +167,19 @@ console.log('Original 237/237 re-encryption and solved p57 93/93 plant pass.');
  */
 const { parseLP2Words } = require('./lp2_word_pages.cjs');
 const parsed = parseLP2Words(originalText);
+const joinP29P30 = parsed.words.filter(
+  (word) => word.startPage === 29 && word.endPage === 30);
+assert.deepEqual(joinP29P30.map((word) => word.runes),
+  ['ᚷᚻᛗᛞᚪᛈᛖ']);
+const primeWeight = (indices) =>
+  indices.reduce((sum, index) => sum + corpus.prime[index], 0);
+assert.equal(primeWeight(p29.indices.slice(0, 3)), 111);
+assert.equal(primeWeight(p29.indices.slice(-3)), 111);
+assert.deepEqual(pages.filter((page) =>
+  primeWeight(page.indices.slice(0, 3)) ===
+  primeWeight(page.indices.slice(-3))).map((page) => page.page), [29]);
+console.log('P29 unique physical first/last three-rune GP prime sums:',
+  111, 'even though its final printed word continues onto p30.');
 assert.equal(parsed.runeCount, 12956);
 assert.equal(parsed.words.length, 2896);
 assert.equal(parsed.crossPageWords, 32);
