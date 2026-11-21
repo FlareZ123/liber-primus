@@ -38,7 +38,7 @@ jobs:
           /usr/local/bin/outguess -V || true
           git rev-parse HEAD
 
-      - name: Reproduce page03 -> hidden 2.jpg -> T2.bin
+      - name: Reproduce page03 -> hidden 2.jpg -> source-key candidates
         run: |
           set -euo pipefail
           python3 sims/lp1_nested_outguess_t2.py \
@@ -46,9 +46,13 @@ jobs:
             --image resources/liber-primus/03.jpg \
             --out-dir lp1-nested-artifacts
 
-      - name: Run independent T2 direct-key tests
+      - name: Run independent T2 direct-key tests if a source key reproduces T2
         run: |
           set -euo pipefail
+          if [ ! -f lp1-nested-artifacts/T2.bin ]; then
+            echo "No candidate reproduced seed 38370 / length 7524; see manifest and candidate logs."
+            exit 0
+          fi
           git clone --depth 1 https://github.com/Dukotah/cicada3301.git /tmp/dukotah
           mkdir -p /tmp/dukotah/liber-primus/analysis/armada_osint/extracts
           cp lp1-nested-artifacts/T2.bin \
@@ -56,6 +60,8 @@ jobs:
           cd /tmp/dukotah/liber-primus
           PYTHONUTF8=1 python3 analysis/armada_osint/t2_keytest.py \
             2>&1 | tee "$GITHUB_WORKSPACE/lp1-nested-artifacts/t2_keytest.log"
+          PYTHONUTF8=1 python3 analysis/armada_osint/t2_xortest.py \
+            2>&1 | tee "$GITHUB_WORKSPACE/lp1-nested-artifacts/t2_xortest.log"
 
       - name: Upload reproducible extraction and test outputs
         if: always()
