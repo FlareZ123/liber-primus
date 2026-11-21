@@ -89,13 +89,13 @@ Positive source controls plant the literal English phrase `EPIPHANY SEEKS`, encr
 
 ### Stronger necessary condition: arbitrary quadratic dot-position clock
 
-A natural way to break the stationary palindrome is to let the numeric square value contribute an unknown secret shift \`f(value)\` while a clock advances with each **physical red-dot position**. The entire family
+A natural way to break the stationary palindrome is to let the numeric square value contribute an unknown secret shift `f(value)` while a clock advances with each **physical red-dot position**. The entire family
 
 \[
 K_i=f(v_i)+a i+b i^2\pmod {29},\qquad i=0,\ldots,12,
 \]
 
-is still testable with **no source key, secret coefficients, fitted plaintext, or guess of \`f\`**. The original five-by-five band has \(v_i=v_{12-i}\). Therefore
+is still testable with **no source key, secret coefficients, fitted plaintext, or guess of `f`**. The original five-by-five band has \(v_i=v_{12-i}\). Therefore
 
 \[
 K_{12-i}-K_i=(12-2i)(a+12b)\pmod {29}.
@@ -108,7 +108,7 @@ Only one unknown anti-palindromic slope \(t=a+12b\) survives. For any proposed e
 | Native GP29 | 4,325 | 3,613 | 3,871 | 4,011 | **0** |
 | Latin-letter GP29 | 4,472 | 2,940 | 4,011 | 4,151 | **0** |
 
-The all-runes-consumed tests also have **zero** matches (4,325 native and 4,472 literal-letter slope cases). The separate pinned Vulgate whole-word control still permits only the previously noted, unattested \`CERVICES MARTHA\` pairing, with slope zero; it does not produce an independent plaintext title. Sixteen source-native positive plants use both original 2014 five-by-five bands, nonzero \((a,b)=(5,7)\) and \((9,11)\), both orthographies, and both F conventions; **all positive plants are detected exactly**, with the predicted \(t\).
+The all-runes-consumed tests also have **zero** matches (4,325 native and 4,472 literal-letter slope cases). The separate pinned Vulgate whole-word control still permits only the previously noted, unattested `CERVICES MARTHA` pairing, with slope zero; it does not produce an independent plaintext title. Sixteen source-native positive plants use both original 2014 five-by-five bands, nonzero \((a,b)=(5,7)\) and \((9,11)\), both orthographies, and both F conventions; **all positive plants are detected exactly**, with the predicted \(t\).
 
 This excludes a materially wider source-derived family: any secret stationary cell-value mapping **plus any arbitrary quadratic dot-position counter**, including every affine counter, for the exact pinned 8|5 English word corpus. Its limit remains important: different cell-to-rune ordering, cubic/higher clock, a plaintext language outside the controls, or a genuine stateful rule can evade the mirror relation. No Cicada-supplied clue selects any such rescue, and the quadratic class produces no recovered plaintext. [Standalone Windows Node22/CommonJS SFT](../sims/lp2_p0_dot13_affine_quadratic_clock_sft.cjs).
 
