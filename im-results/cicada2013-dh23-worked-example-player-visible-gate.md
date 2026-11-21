@@ -1,12 +1,12 @@
 # Signed 2013 DH23 worked example: player-visible clue gate
 
-**Agent1 / Agent4, 18 November 2026. Director #1635 and follow-up #1637. Classification: authenticated historical semantics with pre-Cicada pedagogical provenance; no LP2 receiver or plaintext.**
+**Agent1 / Agent4, 18 November 2026. Director #1635 and follow-up #1637. Classification: authenticated historical semantics with plausible but unverified alternate teaching-source provenance; no LP2 receiver or plaintext.**
 
 ## Decision
 
-The tuple `(p,g,serverPublic,clientPublic,shared)=(23,5,8,19,2)` is genuinely **player-visible and source-fixed** in the Cicada-signed 2013 TCP-server specification. A stronger provenance check now shows that the complete toy exchange predates that specification: a surviving Cibertec cryptography course deck self-dated **17 April 2012** prints `p=23`, `g=5`, private exponents `a=6` and `b=15`, public values `8` and `19`, and shared value `2` (https://aulavirtualsi.cibertec.edu.pe/aula_virtual/DocumentosC/21247520120516163518.pdf).
+The tuple `(p,g,serverPublic,clientPublic,shared)=(23,5,8,19,2)` is genuinely **player-visible and source-fixed** in the Cicada-signed 2013 TCP-server specification. A public Cibertec course-deck copy carries a self-reported **17 April 2012** date and prints the same full exchange, including private exponents `a=6` and `b=15`. No independent timestamped archive or authenticated publication record was located for that date, so this is a plausible alternate teaching-source analogue, not proof that the tuple predates the Cicada signature.
 
-The signed Cicada text therefore reused an already circulating pedagogical Diffie-Hellman example. The five public transcript values remain authentic historical control data because Cicada deliberately included them in material sent to participants. Their existence does not supply independent Cicada-specific evidence for a 2013-to-LP2 handoff. A later LP2-native p28 selector now supplies the handoff from the manuscript side.
+The signed Cicada text includes a worked Diffie-Hellman example that also appears in a public teaching-deck copy whose claimed date is earlier. Because that date is not independently authenticated, it cannot establish prior circulation. The tuple is still a worked example rather than a fixed organizer key: the signed protocol assigns base and secret selection to the participant server. The five public transcript values remain authentic historical control data, but they do not by themselves supply a 2013-to-LP2 handoff. A later LP2-native p28 selector supplies the manuscript-side selection.
 
 No recovered external first-party 2013–2016 source tells a solver to carry the worked example into Liber Primus. That external-source negative remains true, but it is no longer the decisive handoff question: physical p28 now contains an LP2-native DH23 selector. The p27/p50 circuit should still be classified as structural rather than as plaintext because no post-DH receiver or KDF is selected.
 
@@ -14,7 +14,7 @@ No recovered external first-party 2013–2016 source tells a solver to carry the
 
 Subsequent p57/p28 work changes one conclusion of this historical gate without changing the provenance result. The conditional `FIND→28` route selects physical p28 word28. That word ends original line6, the only one of all604 physical p0..p55 rune lines whose first visible fragment is exactly `DH`. The line is23 runes; the selected word is5 runes, begins at one-based line position19, and lies on line6. Those source-visible quantities directly instantiate `p=23, g=5, a=6, B=19`; standard DH uniquely gives `b=15, A=8, K=2`.
 
-LP2 therefore now has a manuscript-native selector for the same tuple. The 2012 deck still proves that the tuple itself is generic pedagogical DH rather than Cicada-specific historical evidence. The corrected distinction is: **the operation/tuple is now source-selected inside LP2, while its existence in the 2013 specification is only semantic control and still supplies no KDF or payload receiver.**
+LP2 therefore now has a manuscript-native selector for the same tuple. The Cibertec copy remains a plausible alternate teaching source, but its self-reported date is not independently verified; do not use it as proof of pre-Cicada circulation. The tuple is a worked example rather than a fixed key because the signed protocol assigns base and secret selection to the participant server. The corrected distinction is: **the operation/tuple is now source-selected inside LP2, while its existence in the 2013 specification is semantic control and still supplies no KDF or payload receiver.**
 
 See `lp2-p57-find28-p28-centerword-dh87-loop.md` and `../sims/lp2_p28_centerline_dh23_sft.cjs`.
 
@@ -34,9 +34,9 @@ Inside procedure `g. DH [p]`, the signed text explicitly prints the complete exc
 
 Thus **23, 5, 8, 19 and 2 are literal source values in the signed specification**. The private exponents **6** and **15** are absent from that text. They are the unique discrete logarithms modulo 22 because 5 generates the nonzero residues modulo23: `5^6 mod23=8` and `5^15 mod23=19`.
 
-## Pre-Cicada pedagogical provenance
+## Alternative teaching-source provenance (date not independently verified)
 
-The Cibertec deck is self-dated **17/04/2012**, 284 days before the embedded Cicada signature. Its Diffie-Hellman slide gives the same full example:
+The Cibertec deck carries a self-reported date of **17/04/2012**. No independent timestamped archive or authenticated publication record for that date was located. Its Diffie-Hellman slide gives the same full example; treat it as a plausible alternate teaching-source analogue, not a verified pre-Cicada witness:
 
 - public parameters `p=23, g=5`;
 - private values `a=6, b=15`;
@@ -45,7 +45,7 @@ The Cibertec deck is self-dated **17/04/2012**, 284 days before the embedded Cic
 
 Source: https://aulavirtualsi.cibertec.edu.pe/aula_virtual/DocumentosC/21247520120516163518.pdf
 
-This materially changes the historical interpretation. Matching the tuple can identify a standard small-number Diffie-Hellman construction without selecting the Cicada TCP-server artifact specifically. A solver who knew the 2013 challenge could still recognize the same numbers, but that recognition is no longer independent evidence that Cicada planted those values for later reuse.
+This limits the historical inference. The Cibertec copy is a plausible alternate source, but it does not independently date the tuple. The signed 2013 challenge is the authenticated evidence that Cicada showed these values; the participant-selected base/secret role split and the worked-example framing mean a tuple match alone does not establish a cross-year LP2 handoff.
 
 ## Why it is a worked example rather than a live key
 
