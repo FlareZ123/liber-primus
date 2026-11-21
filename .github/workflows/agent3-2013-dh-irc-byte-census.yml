@@ -1,0 +1,26 @@
+name: Agent3 2013 IRC DH byte census
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: research
+      - uses: actions/checkout@v4
+        with:
+          repository: cicada-solvers/neuroretransmit-cicada
+          ref: ade9a02889ef8acbc8cde8edbfd0a785c369f4c3
+          path: external-cicada
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Scan legacy-encoded IRC logs without lossy UTF-8 decoding
+        run: node research/sims/lp2_2013_dh_irc_byte_census_sft.cjs external-cicada
