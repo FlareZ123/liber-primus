@@ -53,6 +53,16 @@ assert.equal(C.length,262);
 const title=[18,13,10,13,8,24,9,26,15,18,18,5,15];
 const key=title.map((p,i)=>mod(C[i]-p));
 assert.deepEqual(key,[26,24,8,19,27,24,18,3,0,8,0,16,19]);
+// Independent frozen p15 characteristic-polynomial LFSR gate on same exact key.
+const sourceCharacteristic=[1,14,27,10,7];
+const recurrenceResidual=Array.from({length:9},(_,i)=>mod(
+  key[i+4]+sourceCharacteristic[1]*key[i+3]
+  +sourceCharacteristic[2]*key[i+2]
+  +sourceCharacteristic[3]*key[i+1]
+  +sourceCharacteristic[4]*key[i]
+));
+assert.deepEqual(recurrenceResidual,[3,3,24,1,0,2,7,21,4]);
+assert.ok(recurrenceResidual.some(x=>x!==0));
 const direct=C.map((v,i)=>mod(v-key[i%13]));
 assert.deepEqual(direct.slice(0,title.length),title);
 assert.deepEqual(direct.map((p,i)=>mod(p+key[i%13])),C);
@@ -77,6 +87,7 @@ assert.ok(recovered.states.some(s=>s.plain.every((x,i)=>x===native[i])));
 console.log(JSON.stringify({
   verdict:"NEGATIVE: original p0 repeating GP29 red13 key fails exact full-body decoder",
   originalRunes:C.length,title:text(title),key,
+  p15CharacteristicLfsrGate:{sourceCharacteristic,recurrenceResidual,passes:false},
   directIoc:ioc(direct),directBlackFirst120:text(direct.slice(13,133)),
   transparentF:{firstImpossibleOffset:originalTransparent.firstImpossible,
     priorFSkip:originalTransparent.prior[0].literal,
