@@ -8,6 +8,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const assert = require('node:assert/strict');
 const { parseLP2Words } = require('./lp2_word_pages.cjs');
+const { buildSourceNativeTrigramModel } = require('./lp1_source_native_trigram_model.cjs');
 
 const root = path.resolve(__dirname, '..');
 const read = p => fs.readFileSync(path.join(root, p), 'utf8');
@@ -24,6 +25,10 @@ const flank = [...p49, ...p51];
 const flankGP0 = flank;
 const flankPrime = flank.map(i => corpus.prime[i]);
 const alphabet = corpus.translit;
+const languageModel = buildSourceNativeTrigramModel({
+  corpus,
+  referenceText: read('resources/liber-primus/lp1-plaintext-reference.txt')
+});
 
 assert.equal(words.length, 158);
 assert.equal(words.reduce((s, w) => s + [...w.runes].length, 0), 729);
@@ -148,6 +153,38 @@ for (const [keyMode, keyNumbers] of [['GP0', flankGP0], ['prime', flankPrime]]) 
   });
 }
 
+
+const tableCoordinates = [];
+for (const [wordMode, wordNumbers] of [['GP0', wordGP0], ['prime', wordPrime]]) {
+  for (const [keyMode, keyNumbers] of [['GP0', flankGP0], ['prime', flankPrime]]) {
+    for (const orientation of ['word-row', 'word-col']) {
+      const bytes = wordNumbers.map((w, i) => {
+        const row = orientation === 'word-row' ? mod(w, 32) : mod(keyNumbers[i], 32);
+        const col = orientation === 'word-row' ? mod(keyNumbers[i], 8) : mod(w, 8);
+        return grid.bytes[row * 8 + col];
+      });
+      const indices = bytes.map(x => mod(x, 29));
+      const printable = bytes.filter(x => x >= 32 && x <= 126).length;
+      tableCoordinates.push({
+        wordMode, keyMode, orientation,
+        printable, printableRatio: printable / bytes.length,
+        trigramScore: languageModel.scoreStream(indices).mean,
+        runeText: languageModel.spell(indices)
+      });
+    }
+  }
+}
+let randomState = 0x33013301;
+function randomGP29() {
+  randomState ^= randomState << 13;
+  randomState ^= randomState >>> 17;
+  randomState ^= randomState << 5;
+  return (randomState >>> 0) % 29;
+}
+const randomScores = Array.from({ length: 2000 }, () =>
+  languageModel.scoreStream(Array.from({ length: 158 }, randomGP29)).mean
+).sort((a, b) => a - b);
+
 const report = {
   counts: {
     p0p2Words: words.length,
@@ -168,7 +205,18 @@ const report = {
     secondHeading: { transient: x.secondHeading.transient, cycle: x.secondHeading.cycle }
   })),
   p50TableBytePads: tableBytes,
-  tablePointers
+  tablePointers,
+  sourceNativeLanguageControl: {
+    trainingScore: languageModel.trainingScore,
+    p57Score: languageModel.p57Score,
+    random: {
+      n: randomScores.length,
+      mean: randomScores.reduce((s, x) => s + x, 0) / randomScores.length,
+      p95: randomScores[Math.floor(0.95 * (randomScores.length - 1))],
+      max: randomScores[randomScores.length - 1]
+    }
+  },
+  tableCoordinates
 };
 
 console.log(JSON.stringify(report, null, 2));
