@@ -33,4 +33,4 @@ The two original red headings cannot both have the p3 middle word and p23 second
 
 This is *not* an exclusion of different page alphabets, positional changing keys, F-transparent nonlinear updates, unusual foreign/proper names outside the lexicon, altered word divisions or a more complex cipher. It supplies no cipher key or decrypted runes. Reopen only on an independent source instruction connecting two headings' alphabets.
 
-**Reproduction:** [one-file Windows22 CommonJS SFT](../sims/lp2_p3_p23_red16_sharedmono_native_sft.cjs); [successful CI run 44946315241](https://github.com/FlareZ123/liber-primus/actions/runs/44946315241), including exact original hashes via full original GP indices and complete synthetic positive/negative controls.
+**Reproduction:** [one-file Windows22 CommonJS SFT](../sims/lp2_p3_p23_red16_sharedmono_native_sft.cjs); [successful CI run 44948141062](https://github.com/FlareZ123/liber-primus/actions/runs/44948141062), including exact original hashes via full original GP indices and complete synthetic positive/negative controls.
