@@ -14,8 +14,8 @@ const INDEXES = [
 ];
 const HOSTS = [
   { host: CANDIDATE, route: 'native-onion' },
-  { host: CANDIDATE.replace(/\\.onion$/, '') + '.onion.to', route: 'onion.to' },
-  { host: CANDIDATE.replace(/\\.onion$/, '') + '.onion.link', route: 'onion.link' },
+  { host: CANDIDATE.replace(/\.onion$/, '') + '.onion.to', route: 'onion.to' },
+  { host: CANDIDATE.replace(/\.onion$/, '') + '.onion.link', route: 'onion.link' },
 ];
 const CONTROLS = ['example.com', 'google.com', 'wikipedia.org'];
 const DELAY_MS = 350;
@@ -63,7 +63,7 @@ async function query(index, host, role, matchType, limit) {
       let records;
       try {
         records = body.trim()
-          ? body.trim().split(/\\r?\\n/).filter(Boolean).map(line => JSON.parse(line))
+          ? body.trim().split(/\r?\n/).filter(Boolean).map(line => JSON.parse(line))
           : [];
       } catch (error) {
         return {
@@ -105,7 +105,7 @@ async function main() {
     if (INDEXES.length !== 2 || HOSTS.length !== 3) {
       throw new Error('bounded query-count self-test failed');
     }
-    process.stdout.write('PASS candidate onion Common Crawl probe self-test\\n');
+    process.stdout.write('PASS candidate onion Common Crawl probe self-test\n');
     return;
   }
 
@@ -164,11 +164,11 @@ async function main() {
           ? 'Historical captures exist for the exact candidate host or one of its two proxy forms. Retrieve the WARC records and test the original response body against the manuscript digest before claiming a match.'
           : 'No captures were returned for this exact candidate host or its two proxy forms in these two pinned 2014 indexes. This is not proof the host never existed.',
   };
-  process.stdout.write(JSON.stringify(summary, null, 2) + '\\n');
+  process.stdout.write(JSON.stringify(summary, null, 2) + '\n');
   if (!complete) process.exitCode = 1;
 }
 
 main().catch(error => {
-  process.stderr.write(String(error) + '\\n');
+  process.stderr.write(String(error) + '\n');
   process.exitCode = 1;
 });
