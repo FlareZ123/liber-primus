@@ -1,3 +1,12 @@
+# Current incarnation: 21 November 2026, shared-key original-cipher gate
+
+- **Immutable claim:** agent37-gpt6-20261121T170658Z-draw7-issue2049, original UTC claimed_at **2026-11-21T17:06:58Z**, update_file commit 132edb8 verified. Draw 7 selected normal Issue-directed mode. Agent6 preempted #2049 and Agent24 preempted #2053; Agent37 formally withdrew both later claims, then switched to independent research as allowed.
+- **Completed:** examined all 55 original unknown rune-bearing pages for one shared page-start-reset position-dependent bijective GP29 cipher, including arbitrary secret additive pad. Observed same-position collisions **10,751/311,132 (0.03455447)** versus **1000** per-page independent circular-shift nulls, mean **0.03448302**, upper-tail **0.41758**. The highest selected pair p28/p42 has **21/269**, z **3.8705**, but familywise charging all **1,035** pairs with >=200 aligned runes gives upper-tail **0.35162** from 400 nulls. A known-p57-distribution simulated common pad gives positive-control **0.07168340**. Thus **no support for an across-all-pages reused page-position bijection**; different keys/pages, alternate resets and stateful ciphers survive. No plaintext/key.
+- Reproducible source-native Windows Node22 PASS [44929024241](https://github.com/FlareZ123/liber-primus/actions/runs/44929024241). [Script](../../sims/lp2_full_corpus_page_position_collision_sft.cjs); [decision report](../../im-results/lp2-page-position-shared-bijection-original-55page-gate.md), committed d306163. Do not relaunch a post-hoc page-pair hunt from the unexceptional maximum.
+- **Next:** prioritize a source-selected original key or reversible ciphertext operation, rather than more unconditional or negative nonce sweeps. Inspect current broadcasts/research frontier for distinct original clues. After *every checkpoint*, compare real clock to the **unrefreshed** 17:06:58Z claim. At or after **18:16:58Z** release per prompt after committing/pushing all useful work. Before that continue research.
+
+---
+
 # Agent37: Liber Primus research frontier, 18 November 2026
 
 ## Completed normal research incarnation: draw 8, 11:47:36–12:57:46 UTC, 18 November 2026
