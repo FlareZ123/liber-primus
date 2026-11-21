@@ -111,10 +111,69 @@ assert.ok(Math.abs(outcomes[0].nativeTrigramLL + 11.466620256333) < 1e-7);
 assert.ok(Math.abs(nativeMin + 9.345100027365) < 1e-7);
 assert.ok(outcomes.every((outcome) => outcome.nativeTrigramLL < nativeMin));
 
+
+/**
+ * Solved p56 authenticates literal-F transparency: a source F may be copied
+ * without consuming the keystream. For p32's 121 runes and the signed
+ * 24-state route, exactly one copied F leaves 120=5*24 key consumers.
+ * Charge all four original ciphertext F sites and both GP29 signs.
+ */
+const sourceFPositions = ciphertext.flatMap((value, i) => value === 0 ? [i] : []);
+assert.deepEqual(sourceFPositions, [29,30,42,114]);
+const exactFiveCycles = [];
+const exactDecoded = (cipher, markedF, sign, pad) => {
+  const output = [];
+  let consumed = 0, legal = true;
+  for (let i = 0; i < cipher.length; i++) {
+    if (i === markedF) { output.push(0); continue; }
+    const value = mod(cipher[i] + sign * pad[consumed++ % pad.length]);
+    if (value === 0) { legal = false; break; }
+    output.push(value);
+  }
+  return { output, consumed, legal };
+};
+for (const markedF of sourceFPositions) {
+  for (const sign of [-1, +1]) {
+    const trial = exactDecoded(ciphertext, markedF, sign, route);
+    if (!trial.legal) continue;
+    assert.equal(trial.consumed, 120);
+    const restored = [];
+    let clock = 0;
+    for (let i = 0; i < ciphertext.length; i++) {
+      restored.push(i === markedF ? 0 :
+        mod(trial.output[i] - sign * route[clock++ % route.length]));
+    }
+    assert.deepEqual(restored, ciphertext);
+    exactFiveCycles.push({
+      markedF, sign, consumed: trial.consumed, nativeTrigramLL: score(trial.output),
+      prefix: trial.output.slice(0, 43).map((x) => corpus.translit[x]).join('')
+    });
+  }
+}
+assert.ok(exactFiveCycles.every((trial) => trial.nativeTrigramLL < nativeMin));
+const plantedNative = native.filter((value) => value !== 0).slice(0, 120);
+plantedNative.splice(sourceFPositions[0], 0, 0);
+assert.equal(plantedNative.length, 121);
+const plantedCipher = [];
+let nativeClock = 0;
+for (let i = 0; i < plantedNative.length; i++) {
+  plantedCipher.push(i === sourceFPositions[0] ? 0 :
+    mod(plantedNative[i] + route[nativeClock++ % 24]));
+}
+assert.equal(nativeClock, 120);
+const plantRecovered = exactDecoded(plantedCipher, sourceFPositions[0], -1, route);
+assert.equal(plantRecovered.legal, true);
+assert.deepEqual(plantRecovered.output, plantedNative);
+
 console.log(JSON.stringify({
   source: { words: words.slice(5, 9), sums, route, p32Runes: ciphertext.length },
   language: { nativeHeldCount: nativeHeld.length, nativeHeldMin: nativeMin,
     originalP32LL: score(ciphertext) },
+  transparentFExactFiveCycles: {
+    originalFPositions: sourceFPositions, tried: sourceFPositions.length * 2,
+    legal: exactFiveCycles.length, exactFiveCycles,
+    candidatesAtOrAboveEnglishFloor: exactFiveCycles.filter(
+      (trial) => trial.nativeTrigramLL >= nativeMin).length },
   originalDecoders: { tested: outcomes.length, outcomes,
     candidatesAtOrAboveEnglishFloor: outcomes.filter(
       (outcome) => outcome.nativeTrigramLL >= nativeMin).length }
