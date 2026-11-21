@@ -130,6 +130,36 @@ function pathTo(start,target){
 const exactRoute=pathTo(fullSum,205);
 assert.deepEqual(exactRoute,
   [178,166,250,172,148,246,198,105,63,51,59,69,73,79,82,201,74,205]);
+// The one omitted member of GP's first twelve prime labels is W=19.
+// Restoring it produces197. The solved PARABLE has exactly20 printed
+// words. Starting at178 and following *exactly twenty* original table
+// arrows lands on197, the entry to an 11-cycle. The signed handoff itself
+// has eleven positive prime padding groups.
+const first12=corpus.prime.slice(0,12);
+assert.deepEqual(first12,[2,3,5,7,11,13,17,19,23,29,31,37]);
+assert.equal(corpus.translit[corpus.prime.indexOf(19)],'W');
+const fullFirst12=first12.reduce((sum,p)=>sum+p,0);
+assert.equal(fullFirst12,197);
+assert.equal(fullFirst12-fullSum,19);
+const parableWords=(p57.match(/[\u16A0-\u16FF]+/gu)||[]);
+assert.equal(parableWords.length,20);
+let pos=fullSum;
+const twentyHops=[pos];
+for(let i=0;i<parableWords.length;i++){
+  pos=next[pos];twentyHops.push(pos);
+}
+assert.equal(pos,fullFirst12);
+assert.deepEqual(twentyHops.slice(0,exactRoute.length),exactRoute);
+assert.deepEqual(twentyHops.slice(exactRoute.length),[76,114,197]);
+const cycle=[pos];
+let cyc=next[pos];
+while(cyc!==pos){
+  assert.ok(cycle.length<=11);
+  cycle.push(cyc);cyc=next[cyc];
+}
+assert.equal(cycle.length,tailCounts.length+1);
+assert.deepEqual(cycle,[197,115,247,192,0,203,68,199,47,76,114]);
+
 const mapped=inorder(205);
 assert.equal(mapped.length,58);
 assert.equal(new Set(mapped).size,58);
@@ -164,7 +194,13 @@ console.log(JSON.stringify({
       p0:mapped[0],p32:mapped[32],p50:mapped[50],
       p56:mapped[56],p57:mapped[57]
     },
-    root205OutgoingNextAddress:next[205]
+    root205OutgoingNextAddress:next[205],
+    gpFirst12PrimeSum:fullFirst12,
+    omittedGPPrime:{prime19Rune:'W',value:19},
+    solvedP57WordCount:parableWords.length,
+    completeTwentyHopWalk:twentyHops,
+    finalCycle:cycle,
+    finalCycleLength:cycle.length
   },
   decision:'Archival 2014 whitespace provides distinct original parameters 173 and178, both landing on structurally distinctive original p50 addresses under conditional base60 pointer reading. No author-authenticated sum instruction, page traversal or encrypted plaintext has been obtained.'
 },null,2));
