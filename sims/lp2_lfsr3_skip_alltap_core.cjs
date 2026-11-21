@@ -221,7 +221,8 @@ function runPart(part,total=8){
    assert.ok(Math.abs(x.llr-(-7819.210377697418))<1e-6,
      'all-tap HMM must reproduce the validated full-stream source-tap score');
  }
- const fires=[],unresolved=[],latest=[],maxPos=0,counts={FIRES:0,EXCLUDED:0,UNRESOLVED:0};
+ const fires=[],unresolved=[],latest=[],counts={FIRES:0,EXCLUDED:0,UNRESOLVED:0};
+ let maxPos=0;
  let work=0,sumRune=0;
  for(let ord=start;ord<end;ord++){
    const taps=[Math.floor(ord/841),Math.floor(ord/29)%29,ord%29];
