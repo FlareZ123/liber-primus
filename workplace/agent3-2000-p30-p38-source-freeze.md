@@ -1,6 +1,6 @@
-# p30–p38 cold-start source freeze
+# p30–p38 cold-start source freeze and adjudication
 
-**Agent3, 21 November 2026.** This is the pre-report observation lock for Director Issue #2000. The original supplied LP2 JPEGs map physical p30–p38 to archive images 47–55. The observations below come from those original scans before opening derived p30–p38 reports.
+**Agent3, 21 November 2026.** This is the source-first record for Director Issue #2000. The original supplied LP2 JPEGs map physical p30–p38 to archive images 47–55. The two initial observations were frozen before derived p30–p38 reports were opened.
 
 ## Two direct observations
 
@@ -8,14 +8,17 @@
 
 2. **p36–p38 carry a five-part numbered passage.** Red paragraph numbers 1–5 are distributed across these three pages, while the same small cuneiform-like emblem recurs at the top of the pages in this local sequence. The numbering gives an unambiguous order for the five text sections; it does not itself specify a cipher, key, or transformation. The p33 and p36–p38 motifs are recorded as distinct observations, not merged into a new cipher family.
 
-## Candidate status
+## Post-freeze comparison with existing work
 
-No reversible operation is frozen from these observations. The obvious human action is to read the five numbered paragraphs in their printed order, but that is already the printed order and supplies no key, operand, or transformation. Treating the cuneiform emblem as a language/lookup key, the two red initials as an operator, or the three dots as a reset would require an additional source instruction not visible in the original pages.
+- `im-results/lp2-p33-prologue-original-reading-selector-gate.md` identifies the p33 first unit as 91 runes over five physical lines, terminated by a red 13-dot marker and the separated three-dot break; the next red rubric is eight runes. It tests the exact source-era 2014 Stage05 seven-place order `[0,6,2,5,1,4,3]` on the original 91-rune unit and obtains no instruction. The report explicitly finds no independent source telling a solver to apply that operation to p33.
+- `im-results/lp2-p33-p39-original-three-dot-ellipsis-gate.md` establishes that p33's three black dots are a repeated section-divider motif also present on p39, not a page-specific numerical key or reset selector. The p33 cuneiform-like drawing is part of the existing p33–39 visual chapter, not a newly authenticated external text.
+- `im-results/lp2-pp36-38-numbered-aphorism-crib-gate.md` freezes the five original paragraph rune/word boundaries and screens eight pre-2014 numbered didactic source editions. The longest length-only match is eight words; no qualifying source crib or original-cipher consequence exists.
+- `im-results/lp2-p36-38-five-numbered-index-share-original-gate.md` tests literal first/last rune, nth-rune and word-index readings from labels 1–5, then a five-share GF(29) interpolation on the common 91-rune prefix. None yields an identifiable instruction or plaintext; the unequal paragraph lengths provide no source-authenticated share alignment.
+- `im-results/2012-midi-chorus-p36-238-gate.md` tests the most plausible cross-round source clue: the 2012 signed “Chorus” and its 238-letter Blake text align in length with p36's 238 runes. Direct running-key mappings, both additive directions, and the historically fixed 2012 seven-column and 2014 fourteen-column orders all fail; the 49-word count match is not a shared key because the 2012 list is participant-specific. This is not a new operation to rerun.
+- Existing cuneiform/numbered-passage reports already cover the obvious 1033/3301, prime, Base29, Hill, RSA, and wisdom/folly transfers. Their existence does not make the repeated emblem a source-selected key; no new family was opened.
 
-## Explicit limits
+## Decision
 
-- Do not use p32's tree or numeric square, p33's prior first-block/state candidates, or any DH/H packet as a selector.
-- Do not turn the five paragraph numbers into an arbitrary five-rail/columnar width or word-selection rule.
-- Do not infer that the cuneiform-like drawing is a specific external text without an independently authenticated source.
-- A positive would require a source-selected reversible operation on original GP29 ciphertext, at least 50 contiguous coherent runes, exact forward replay, and an untouched page/section holdout.
-- If prior work already covers these observations and no exact selector exists, close with the smallest missing instruction rather than widening the search.
+**Bounded negative; no new original-cipher test was justified.** The p33 red headings and three-dot break are real source structure, but the break is a repeated section divider and the known source-era seven-place reading is nonlinguistic. The p36–p38 numbered paragraphs have exact boundaries, but literal index readings, five-share interpolation, and historically motivated aphorism cribs do not produce a decoder. The 2012 Chorus length match is a plausible historical prompt, but its exact direct and source-fixed columnar consumers already fail.
+
+The exact missing selector is a first-party instruction that maps the p33 red headings/three-dot or the cuneiform/numbered-passage structure to one reversible operation and fixes its operand, key, state clock, and unknown-text receiver. No such instruction is visible in the original scans or the checked first-party sources. No route meets the requirement of at least 50 contiguous coherent original GP29 plaintext runes, exact forward replay, and an untouched holdout. Retire this p30–p38 cold-start pass; do not reopen p32/p33 state packets, the p32 tree/square, or the excluded DH/H families.
