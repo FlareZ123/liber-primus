@@ -30,6 +30,20 @@ The untouched four-page output is **B IA EO M**, missing every predeclared initi
 
 Reproducer: [Node 22 read-only SFT](../sims/lp2_p29_to_p33_derivative_initials_gate_sft.cjs), sourcing only `resources/liber-primus/lp2-corpus.json`. Its success status indicates reproduction of the *negative* result.
 
+## Additional frozen direct 263-rune plaintext inverse: p29/G quotient key
+
+The p29→p30 printed word carry and the authenticated source's `DIRECTION29 SEEK30` pair motivate a distinct, full-size cryptanalytic attack. The original p39 red triad fixes `G=[15,5,27]` high-first, and polynomial division of all 277 p29 rune indices by G has exact zero remainder with a 275-symbol quotient Q. The source order selects the *first 263* coefficients as a one-shot pad applied to *all 263 original p30 runes*, using the actual solved-p56 arithmetic direction `plain[i]=(p30[i]-Q[i]) mod29`; no phase, reset, reversal or sign search was admitted.
+
+[Precommitted exact rule](../workplace/agent5-p29-quotient-to-p30-direct-pad-precommit.md), commit `2c12cdc90b7952d94d4323f0e1e30e602ca5154e`. The original direct inverse has **IoC 0.03578788494** versus raw p30 **0.03410443212**, with first130 GP transliteration:
+
+```text
+METLHCINGYEOJYRFAEFGAECXEODMONGYTHTHPNUEOCLWFENGSORANGGCOEFJNGTHEAUCMXIEOGREAJREAMHEANDXPAEEOUDUCAEHICGEOEOTHMEWIOEIONXHNBHSLEOIALRFNTHNGDISDIXHFIAABEOLOEYGMESUMOE
+```
+
+The stream remains nonlinguistic and lacks a coherent message with original word boundaries. Exact ciphertext forward reencryption holds for **263/263** runes, and the same 263-symbol one-shot key correctly recovers a separately encrypted authentic-solved-p57 native GP stream. Hence implementation invertibility is demonstrated, with no evidence for a creator-supplied plaintext key. [SFT](../sims/lp2_p29_quotient_to_p30_direct_pad_sft.cjs), commit `737d7fad06032c348cfe7e261f0503ba8320097c`.
+
+This rejects only the **direct unshifted p29/G quotient→p30 C−K** construction. A different source-selected instruction could define a different use of the quotient, but the known signed navigation words alone do not do so.
+
 ## Scope and successor criterion
 
 The prospective extension rejects this **one** source-motivated derivative-to-initials interpretation. It does not disprove every use of the p29 root or every historical Cicada operation. The smallest missing input is a first-party instruction specifying a **lossless** target interval, how the DH23 state and DIRECTION/WAY determine a complete receiver, and how output is serialized as GP29/plaintext. The existing signs and navigation words do not specify that information.
