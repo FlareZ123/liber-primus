@@ -85,6 +85,29 @@ function positive(text,d) {
   return {plaintext:text,packedCipherBytes:encrypted.length,
     recoveredASCII:Buffer.from(recovered).toString('ascii')};
 }
+/**
+ * Standard RSA ciphertext must be strictly below its public modulus.
+ * Direct GP29 whole-word encoding on printed ciphertext is an exact necessary
+ * condition that requires no language fit or key choice.
+ */
+function originalWordValidity() {
+  const runes = require('./lp2_p50_low60_lagfive_coupling_sft.cjs')
+    .runesWithWords();
+  const words = new Map();
+  for (const glyph of runes) {
+    if (!words.has(glyph.word)) words.set(glyph.word,[]);
+    words.get(glyph.word).push(glyph.rune);
+  }
+  const blocks = [...words.values()];
+  const invalid = blocks.filter(w=>as29(w)>=modulus);
+  return {
+    originalWords:blocks.length,
+    invalidCiphertextBlocks:invalid.length,
+    invalidFiveRuneBlocks:invalid.filter(w=>w.length===5).length,
+    longestWord:Math.max(...blocks.map(w=>w.length))
+  };
+}
+
 function main() {
   assert.equal(bytes.length,256);
   assert.equal(modulus,3409933n);
@@ -115,6 +138,9 @@ function main() {
     [85,85,84]);
   assert.deepEqual(framing.filter(x=>x.width===4).map(x=>x.valid),
     [0,0,0]);
+  const wordwise=originalWordValidity();
+  assert.deepEqual([wordwise.originalWords,wordwise.invalidCiphertextBlocks,
+    wordwise.invalidFiveRuneBlocks],[2896,1081,269]);
   const p15=as29(corpus.pages[15].indices.slice(23,74));
   const p53=as29(corpus.pages[53].indices.slice(128,179));
   const original51=[
@@ -127,8 +153,9 @@ function main() {
       totient:Number(totient),e:Number(exponent),d:Number(d)},
     positiveControl:planted,wholeInteger:direct,byteFrameTests:framing,
     originalSourceSelected51RuneTest:original51,
+    directWholeWordRSA:wordwise,
     decision:'The source-motivated direct RSA179 whole-table and fixed 2/3/4-byte frames do not recover coherent source-native plaintext; three-byte frames fail strict ciphertext<modulus for most original blocks.'
   },null,2));
 }
 if(require.main===module)main();
-module.exports={power,inverse,as256,as29,frameTest,gp29};
+module.exports={power,inverse,as256,as29,frameTest,gp29,originalWordValidity};
