@@ -1,0 +1,11 @@
+# Frozen p0 original red13 EPIPHANY SEEKS residual as repeating Vigenère key for full original page
+
+**Agent5, 21 November 2026; fixed before examining any original p0 black-rune output.**
+
+The original red p0 title has a source-derived but not independently authenticated `EPIPHANY SEEKS` reading under a 13-atom GP29 additive key. The first 13 p0 original cipher runes and the frozen GP29 title `EPIPHANY SEECS=[18,13,10,13,8,24,9,26,15,18,18,5,15]` give an exact key `K13[i]=C0[i]−P0_title[i] mod29` of length13. The original image then prints a **red 13-dot** marker after the title; therefore a human puzzle solver might try the **already historically used repeating-key Vigenère** instead of an invented nonlinear recurrence.
+
+Lock one full-original-p0 consumer: apply K13 on **all 262 p0 rune positions** starting at first ink rune: `P[i]=(C[i]−K13[i mod13]) mod29`, preserve exact original printed word breaks and punctuation, no key phase reset at marker, no red-spot skipping, no new key. The first13 must reproduce the candidate crib exactly by construction; success requires the subsequent **249 untouched black runes** independently form continuous sensible GP29-native English at source word boundaries, with substantial IoC increase (>0.050) and recognisable multiword sentences.
+
+Since the authentic solved-p56 cipher uses a **plaintext-F transparent key clock**, permit only one further source-authenticated variant of this *same* K13: for every original ciphertext F, branch into literal F/no key advance or encrypted non-F/key advance; for every non-F cipher, plaintext F is prohibited and one key item is consumed. Use K13 cyclically by **number of consumed key symbols**, starting at K13[0] on first red rune. Keep exact red-title crib at first13 (including its encrypted non-F at the original first-title ciphertext F), then follow all complete histories without language-driven pruning; p0's ~dozen cipher Fs may create a bounded tree. A native solved-p57 GP29 plant encrypted with K13 under each clock must recover exactly.
+
+Failure on whole-page native prose and/or a forced impossible non-F under authentic clock retires both **exact** cyclic K13 consumers. Do not change key phase, period, sign, alphabet, resume at marker, or assert that a few title words confirm the black body.
