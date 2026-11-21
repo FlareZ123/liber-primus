@@ -391,6 +391,52 @@ assert.equal(p55.cores.length, state.g);
 assert.equal(p55.middle, state.K);
 assert.equal(p55.gp0, WITHIN_GP0);
 
+const p55Body = p55Words.flat();
+assert.equal(p55Body.length, 75);
+const centerKeyVariants = [
+  { label: "center GP29 indices", key: p55.cores },
+  {
+    label: "center GP prime weights mod29",
+    key: p55.cores.map((value) => corpus.prime[value] % 29),
+  },
+  {
+    label: "center GP totients mod29",
+    key: p55.cores.map((value) => (corpus.prime[value] - 1) % 29),
+  },
+];
+function indexOfCoincidence(values) {
+  const counts = new Map();
+  for (const value of values) counts.set(value, (counts.get(value) ?? 0) + 1);
+  return [...counts.values()].reduce((sum, count) => sum + count * (count - 1), 0)
+    / (values.length * (values.length - 1));
+}
+const directCenterKeyRows = centerKeyVariants.flatMap(({ label, key }) =>
+  [-1, 1].map((sign) => {
+    const decoded = p55Body.map((value, index) =>
+      mod29(value + sign * key[index % key.length])
+    );
+    return {
+      label,
+      key,
+      operation: sign < 0 ? "subtract" : "add",
+      decoded,
+      decodedText: decoded.map((value) => corpus.translit[value]).join(" "),
+      ioc: indexOfCoincidence(decoded),
+    };
+  })
+);
+assert.deepEqual(
+  directCenterKeyRows.map((row) => [row.label, row.operation, Number(row.ioc.toFixed(8))]),
+  [
+    ["center GP29 indices", "subtract", 0.02738739],
+    ["center GP29 indices", "add", 0.03855856],
+    ["center GP prime weights mod29", "subtract", 0.03567568],
+    ["center GP prime weights mod29", "add", 0.03099099],
+    ["center GP totients mod29", "subtract", 0.03567568],
+    ["center GP totients mod29", "add", 0.03099099],
+  ]
+);
+
 const p55Emergence = emergenceTimeline(p55Words);
 assert.deepEqual(p55Emergence.batches, [
   { round: 1, values: [11, 18], sum: 29 },
@@ -801,6 +847,7 @@ console.log(JSON.stringify({
       q: state.e + 1,
       tailDrops: [16, state.K, state.K, state.e],
     },
+    directCenterKey: directCenterKeyRows,
     postShedP50: {
       address: WITHIN_GP0,
       token: tape[WITHIN_GP0],
