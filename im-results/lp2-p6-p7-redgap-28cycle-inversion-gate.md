@@ -101,6 +101,27 @@ For row-major `2^row`, the original first word's 30 registered possibilities col
 
 [Windows Node22 PASS 44940995442](https://github.com/FlareZ123/liber-primus/actions/runs/44940995442). **Decision:** the natural two directions and two physical serializations of a stationary source-root2 additive 11-column key cannot represent the original word-preserving text from the registered English, Latin or Old English lexica. This sharply narrows the already negative `2^r` cipher branch. A rare unattested word, another plaintext register, changed word boundaries, an extra encryption layer or an author-directed alternative operation remains possible; this test recovers no authentic original plaintext. The exact source-position approach is reusable if a new original clue specifies a different reversible column operation.
 
+### Source-root2 discrete-log receiver with all 29 reserved-rune assignments
+
+The authenticated historical DH operation is **modular exponentiation**. Its natural inverse in `GF(29)` is the discrete logarithm base2, which operates on the 28 nonzero residues. Unlike a fixed alphabet shift, a true exponent/log transform is nonlinear on the GP29 values. To account for the 29th original symbol without losing reversibility, reserve *one* plaintext rune `E` for ciphertext zero, and map the remaining28 GP rune ranks bijectively to the powers `2^0..2^27 mod29`. The proposed full 29-symbol cipher is
+
+`C[r,j]=0` if `P[r,j]=E`, otherwise `C[r,j]=2^(rank_E(P[r,j]) + s·r + K[j]) mod29`,
+
+where `rank_E` is the GP0 rank with reserved `E` removed, `s∈{−1,+1}`, and each of the 11 secret `K[j]` is any `0..27`. This architecture is invertible for *every* original rune, with a source-selected generator (2), cycle length (28), and a completely arbitrary 29th-symbol assignment (29 possibilities). The p6/p7 ciphertext contains exactly three literal field zeros at black-packet offsets **42,74,138**, so this zero escape must appear in plaintext at those three sites. Neither of the two independent original 12-rune words contains a zero ciphertext site, and each can therefore constrain the full row-major secret without assuming any plaintext marker.
+
+The expanded [exact original two-word SFT](../sims/lp2_p6p7_28cycle_secret11_two12word_sft.cjs) evaluates **every one of 29 possible reserved GP symbols**, both row orientations, both reversible field directions, and the same 1,327 native English/Latin/Old English GP12 dictionary candidates. It returns the counts below, summing possible individual original word fits over all29 escapes:
+
+| Receiver packing | Exponent sign | First 12-rune word candidates | Second 12-rune word candidates | Shared key + reserved-rune assignments |
+| --- | --- | ---: | ---: | ---: |
+| 28×11 row-major | `−r` | 1,462 | 797 | **0** |
+| 28×11 row-major | `+r` | 489 | 922 | **0** |
+| 11 contiguous 28-rune columns | `−r` | **0** | **0** | **0** |
+| 11 contiguous 28-rune columns | `+r` | **0** | **0** | **0** |
+
+Each of the original 12-rune words algebraically constrains the column secret where it appears, and both words' shared secret must agree. For every original source-registered word pair, **none** of the full column-secret vectors agrees under the same reserved rune. A synthetic original-size 308-rune language plant exactly encrypts/decrypts under **all29 reserved rune choices × four direction/packing variants** and recovers the implanted secret from both 12-rune words wherever neither word contains the reserved rune.
+
+[Windows Node22 PASS 44942001845](https://github.com/FlareZ123/liber-primus/actions/runs/44942001845). **Decision:** retire this exact field-log/exponential, fixed-column-secret, word-preserving GP29 architecture *conditional on the registered English/Latin/Old English vocabularies*. This is a distinct algebraic inverse motivated by the p7 GF29 DH product2; it adds no source authentication for the underlying cipher, and does not recover unknown plaintext. The absence of the actual opcode, unrelated rare vocabulary, different word boundaries, and multi-layer transformations remain open. Do not add secret row resets or column permutations without an independent manuscript clue.
+
 ## A second architecture: ciphertext-predecessor chain with unrestricted 11-rune key
 
 The uniform-like original GP29 ciphertext and its strongly suppressed adjacent equalities motivate a **ciphertext-chain**, distinct from all earlier direct one-stage DH2 tests. On the original 308-rune p6→p7 interval, the first ciphertext predecessor is no unknown IV: the **last original p6 red rune**, GP index **12**. Let \`D[i] = C[i]−C[i−1] mod29\`; \`C[−1]=12\`. The source has **exactly one zero delta** in the 308 runes, mirroring the book's wider anti-doublet effect. Using only the already source-motivated \`2^floor(i/11)\` state and a completely arbitrary **11-rune secret key** provides three distinct reversible chain models:
