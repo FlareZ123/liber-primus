@@ -141,7 +141,7 @@ assert.equal(corpus.translit[corpus.prime.indexOf(19)],'W');
 const fullFirst12=first12.reduce((sum,p)=>sum+p,0);
 assert.equal(fullFirst12,197);
 assert.equal(fullFirst12-fullSum,19);
-const parableWords=(p57.match(/[\u16A0-\u16FF]+/gu)||[]);
+const parableWords=(p57.replace(/\/\r?\n/g,'').match(/[\u16A0-\u16FF]+/gu)||[]);
 assert.equal(parableWords.length,20);
 let pos=fullSum;
 const twentyHops=[pos];
