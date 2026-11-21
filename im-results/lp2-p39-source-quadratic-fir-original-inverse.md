@@ -26,17 +26,23 @@ To detect actual prose, a fixed smoothed GP29 trigram model is trained on native
 | p0 black body after original 13 red runes | 249 | −4.380713 |
 | p1 | 266 | −4.415221 |
 | p29 | 277 | −4.371758 |
+| p34 | 261 | −4.418248 |
+| p35 | 271 | −4.366577 |
+| p36 | 238 | −4.276461 |
+| p37 | 228 | −4.345690 |
+| p38 | 228 | −4.333455 |
 | p39, containing the red polynomial | 240 | −4.353146 |
+| p34–39, whole original cuneiform chapter, one continuous clock | 1,466 | −4.572684 |
 | p55 terminal cipher | 76 | −4.126046 |
 
-The five original winners are nonlinguistic. All 20 independently charged inverse families' best scores remain below the fixed −3.8 native-prose gate; complete printed GP29-language control scores much higher. Every original candidate passes its own exact forward replay because the operation is formally reversible, so replay alone cannot turn a non-prose output into a solution.
+The eleven original winners are nonlinguistic. All 44 independently charged inverse families' best scores remain below the fixed −3.8 native-prose gate; complete printed GP29-language control scores much higher. Every original candidate passes its own exact forward replay because the operation is formally reversible, so replay alone cannot turn a non-prose output into a solution.
 
 A **13-rune-only** p0 red-title window can produce an English-looking partial syllable with all 841 starts available. This undersized window is deliberately excluded from the evidence claim; it has no convincing continuation through the 249-rune body.
 
 ## Decision
 
-The exact, simple quadratic FIR inverse **does not recover native GP29 English on the original p0, p1, p29, p39 or p55 intervals**, despite recovering a fully independent planted Gibran passage and the correct secret starting state. Retire this finite direct interpretation for those receivers, preserving the original red polynomial as a possible navigation or other operator clue.
+The exact, simple quadratic FIR inverse **does not recover native GP29 English on the original p0, p1, p29, p34–p39, complete cuneiform chapter or p55 intervals**, despite recovering a fully independent planted Gibran passage and the correct secret starting state. Retire this finite direct interpretation for those receivers, preserving the original red polynomial as a possible navigation or other operator clue.
 
 This does not exclude a different coefficient clock, a convolution over a transformed alphabet, ciphertext-driven feedback, nonlinear equations, nonlocal rune order, or plaintext outside the tested native-orthography register. Such added mechanisms need a new source clue before more parameter searches.
 
-**Reproduction:** [`sims/lp2_p39_red_polynomial_fir_inverse_sft.cjs`](../sims/lp2_p39_red_polynomial_fir_inverse_sft.cjs), runs with local repository resources on Windows Node22. Exact original input, both coefficient interpretations, initial states, forward replay, reference-language training split and positive control are specified in the script. **Actual execution:** [Windows-portable Node22 SFT, GitHub Actions 44942169635](https://github.com/FlareZ123/liber-primus/actions/runs/44942169635), status **success** against the original repository inputs.
+**Reproduction:** [`sims/lp2_p39_red_polynomial_fir_inverse_sft.cjs`](../sims/lp2_p39_red_polynomial_fir_inverse_sft.cjs), runs with local repository resources on Windows Node22. Exact original input, both coefficient interpretations, initial states, forward replay, reference-language training split and positive control are specified in the script. **Actual execution:** [Windows-portable Node22 SFT, GitHub Actions 44942169635](https://github.com/FlareZ123/liber-primus/actions/runs/44942169635), status **success** against the original repository inputs. The expanded original p34–39 local and whole-chapter receivers are included in the [subsequent complete Node22 run](https://github.com/FlareZ123/liber-primus/actions/runs/44942807814) and its next rerun; source-defined original boundaries, including p39 and the preceding visually connected pages, remain explicit.
