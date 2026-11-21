@@ -88,6 +88,15 @@ assert.deepEqual([page55Length, page56Length, page57Length], [76, 85, 95]);
 
 const selectedP55Scan = bytes[rawDirection];
 const p55ScanClock = walk(selectedP55Scan, 13);
+const p32ScanClock = walk(49, 13);
+const p32Length = assertEndDots(32, 13);
+assert.equal(p32Length, 121);
+assert.deepEqual(p32ScanClock,
+  [49,16,121,237,32,115,247,192,0,203,68,199,47,76]);
+assert.equal(p32ScanClock.at(-1), 76);
+assert.deepEqual(p32ScanClock.filter(v => p55ScanClock.includes(v)), [76],
+  'The two source-scan thirteen-dot tree paths meet only at the endpoint');
+
 const p56ScanClock = walk(bytes[variantDirection], 13);
 const p57ScanClock = walk(bytes[201], 23);
 assert.deepEqual(p55ScanClock, [
@@ -99,6 +108,9 @@ assert.equal(p55ScanClock.at(-1), page55Length,
 assert.equal(p56ScanClock.at(-1), 203);
 assert.notEqual(p56ScanClock.at(-1), page56Length);
 assert.equal(p57ScanClock.at(-1), 47);
+assert.equal(bytes[47], 76,
+  'The solved p57 physical-scan 23-hop route meets the penultimate p32 pointer');
+
 assert.notEqual(p57ScanClock.at(-1), page57Length);
 
 const route55 = walk(98, 13);
@@ -154,6 +166,17 @@ console.log(JSON.stringify({
     cycleSize: 11,
     reached: route57.at(-1),
     p55SourceRuneCount: page55Length
+  },
+  matchingTreeHoldout: {
+    page32Scan: 49,
+    page32Runes: p32Length,
+    page32EndDots: 13,
+    p32Route: p32ScanClock,
+    page55Scan: selectedP55Scan,
+    page55Runes: page55Length,
+    page55EndDots: 13,
+    bothRoutesMeetOnlyAtNode76: true,
+    p57Scan74After23DotsReachesP32PenultimateNode47: true
   },
   physicalScanRootSolvedControls: {
     p56: {terminalDots: 13, result: p56ScanClock.at(-1), actualRunes: page56Length},
