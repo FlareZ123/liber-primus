@@ -53,6 +53,15 @@ The preregistration and exact observed values are in workplace/lp2-p50-2013-titl
 
 As a secondary, less robust check, VERIFY has GP-prime sum216 if V is transliterated as F. Under base60, address216 enters the 11-cycle after 11 steps. This V→F mapping is not needed for the OPENPGP result and is not treated as independent proof.
 
+## Direct 2-cycle key consumer on the 158-rune p49/p51 bridge: negative
+
+The two cycle addresses reduce to GP29 values [249 mod29, 158 mod29] = [17,13]. Because p49+p51 contains 66+92 = 158 runes, a narrow receiver hypothesis is that this 2-cycle is a period-2 key for that bridge. I tested the natural cycle order [17,13] and its phase-shift [13,17]:
+
+- Additive/Beaufort forms, both signs: IoC 0.03443–0.03459.
+- Multiplicative and inverse-multiplicative forms: IoC 0.03249–0.03507.
+
+All eight outputs are near the 29-symbol uniform baseline (1/29 ≈ 0.03448) and have no readable text. The 2-cycle therefore does not act as a direct period-2 GP29 key for the 158-rune bridge under these elementary reversible consumers. This does not exclude a different graph use or a source-selected nonperiodic receiver.
+
 ## Whole-message check and limits
 
 Using the 43 alphabetic words of the signed 2016 message, parsed with source-native longest-match GP transliteration (TH, EO, NG, AE, IO as single runes; K→C and V→F where needed), OPENPGP is the **only** word whose prime-sum address falls in base60's 4-node small basin; it is also the only word whose address is on the 2-cycle. The other 42 word addresses fall in the large 252-node basin. Because that basin covers 252/256 states, the latter fact is weak and should not be presented as a significant statistical result. The discriminating observation is the source-selected final word OPENPGP landing exactly on cycle node249.
@@ -119,4 +128,4 @@ console.log(JSON.stringify({
 }, null, 2));
 ```
 
-**Decision:** retain only as an isolated cross-source address coincidence: 2013 title total mod256 = 2016 OPENPGP prime sum =249, and base60 T[249] is in a 2-cycle. The preregistered word-by-word successor prediction failed, so this does not establish the input type or successor grammar and should not reopen #2075 by itself. The 11+2 coda/cycle-length match remains suggestive but not discriminating. A new route needs a separate source-authored prediction and an actual reversible GP29 receiver.
+**Decision:** retain only as an isolated cross-source address coincidence: 2013 title total mod256 = 2016 OPENPGP prime sum =249, and base60 T[249] is in a 2-cycle. The preregistered word-by-word successor prediction failed, so this does not establish the input type or successor grammar and should not reopen #2075 by itself. The 11+2 coda/cycle-length match remains suggestive but not discriminating. The direct period-2 key consumer on the 158-rune bridge also fails. A new route needs a separate source-authored prediction and an actual reversible GP29 receiver.
