@@ -223,5 +223,74 @@ console.log('Frozen p53 51-red-rune Hill3 consumer:',
     .map((v) => corpus.translit[v]).join(' '));
 console.log('Exact p53 red51 forward re-encryption passes; no recognizable text.');
 
+
+/**
+ * Conditional p29-length modulus hypothesis: the exact p29 rune count is
+ * 277, a prime with phi(277)=276 selected by the first-word GP0 product.
+ * Re-run the historical DH generator and derived exponents in this new group.
+ * This changes a source protocol parameter; it is NOT author authenticated.
+ */
+const pNew = p29.indices.length;
+const isPrime = (n) => {
+  for (let k = 2; k * k <= n; k++) if (n % k === 0) return false;
+  return n >= 2;
+};
+assert(isPrime(pNew));
+const ANew = powMod(signedDh.g, signedDh.a, pNew);
+const BNew = powMod(signedDh.g, signedDh.b, pNew);
+const KNew = powMod(ANew, signedDh.b, pNew);
+assert.deepEqual([ANew, BNew, KNew], [113, 51, 193]);
+assert.equal(powMod(BNew, signedDh.a, pNew), KNew);
+assert.equal(BNew, red53.length);
+const first30Primes = [];
+for (let v = 2; first30Primes.length < 30; v++)
+  if (isPrime(v)) first30Primes.push(v);
+assert.equal(first30Primes[29], ANew);
+
+const signed2016 = fs.readFileSync(
+  path.join(repoRoot, 'resources', 'historical',
+    'cicada2016-4gq25-outguess.asc'), 'utf8');
+const signedClear = signed2016.split('-----BEGIN PGP SIGNATURE-----')[0]
+  .split(/\n\n/u).slice(1).join('\n');
+const source2016Words = signedClear
+  .split(/[^A-Za-z0-9]+/u)
+  .filter((token) => /^[A-Za-z]+$/u.test(token))
+  .map((token) => token.toUpperCase());
+assert.equal(source2016Words.length, 43);
+assert.equal(source2016Words[29], 'DIRECTION');
+
+const grid = JSON.parse(fs.readFileSync(
+  path.join(repoRoot, 'resources', 'liber-primus', 'lp2-grid-256.json'),
+  'utf8'));
+assert.equal(grid.bytes.length, 256);
+assert.equal(grid.bytes[127], KNew);
+assert.equal(grid.bytes[256 - signedDh.A], ANew);
+assert.deepEqual(grid.bytes.flatMap((value, index) =>
+  value === KNew ? [index] : []), [83, 127]);
+console.log('Conditional new modulus DH277 outputs:',
+  { p: pNew, A: ANew, B: BNew, K: KNew });
+console.log('Original independent anchors:',
+  '30th prime DIRECTION=113, p53 red length51,',
+  'numeric table[127]=193, table[248]=113.');
+
+const originalPad = grid.bytes.slice(128, 179);
+assert.equal(originalPad.length, 51);
+const decodedTable = red53.map((value, i) =>
+  mod29(value - originalPad[i]));
+assert(Math.abs(coincidence(decodedTable) - 0.03215686274509804) < 1e-12);
+assert.deepEqual(decodedTable.map((v,i) =>
+  mod29(v + originalPad[i])), red53);
+const dhPowerPad = Array.from({ length: red53.length }, (_, i) =>
+  powMod(KNew, i + 1, pNew));
+const decodedDhPower = red53.map((value, i) =>
+  mod29(value - dhPowerPad[i]));
+assert(Math.abs(coincidence(decodedDhPower) - 0.043137254901960784) < 1e-12);
+assert.deepEqual(decodedDhPower.map((v,i) =>
+  mod29(v + dhPowerPad[i])), red53);
+console.log('Source-fixed p53-red51 original cipher checks:',
+  'table-aligned IoC', coincidence(decodedTable),
+  'DH-shared-power IoC', coincidence(decodedDhPower));
+console.log('Both 51-rune sources reencrypt exactly and neither yields text.');
+
 console.log('PASS. Exact source-index linkage. No deciphered LP2 text or');
 console.log('independently sourced instruction selecting this DH bookend grammar.');
