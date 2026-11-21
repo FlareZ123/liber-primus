@@ -132,15 +132,10 @@ for(const seed of [[23,2,5,2,19],[0,0,0,0,0]])
     positives++;
   }
 assert.equal(positives,30);
-const dict=new Map([[13,[]],[14,[]]]);
-for(const line of read("resources/control/english_wordfreq_textblob.txt").split(/\r?\n/)) {
-  const m=/^([a-z]+)\s+(\d+)$/.exec(line.trim());
-  if(!m)continue;
-  const P=encodeSourceNativeGP(m[1]);
-  if(dict.has(P.length))dict.get(P.length).push({word:m[1],P});
-}
-assert.equal(dict.get(13).length,382);
-assert.equal(dict.get(14).length,155);
+const {sourceNativeLongwords}=require("./lp2_source_native_longword_lexicon.cjs");
+const dict=sourceNativeLongwords();
+assert.equal(dict.get(13).length,426);
+assert.equal(dict.get(14).length,175);
 const outcomes=[];
 for(const sourceWord of source.words) {
   if(sourceWord.length<13)continue;
@@ -157,7 +152,7 @@ for(const sourceWord of source.words) {
 }
 assert.deepEqual(outcomes.map(x=>[x.physicalPage,x.runeLength,x.matches.length]),[
   [11,13,20],[13,14,0],[16,13,16],[25,14,0],
-  [43,14,0],[52,13,11],[55,13,18]
+  [43,14,0],[52,13,12],[55,13,18]
 ]);
 console.log(JSON.stringify({
   result:"NO source-native GP29 14-rune words compatible in original three 14-rune cases under any secret linear five-plaintext-tap family",
