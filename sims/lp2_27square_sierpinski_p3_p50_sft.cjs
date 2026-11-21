@@ -31,6 +31,32 @@ function frequencyL1(a, b) {
   return fa.reduce((sum, n, i) => sum + Math.abs(n - fb[i]), 0);
 }
 
+
+/**
+ * Identify two equal inputs yielding unequal outputs. A single such pair
+ * disproves every deterministic memoryless mapping of this input type.
+ * @template T
+ * @param {T[]} inputs
+ * @param {number[]} outputs
+ * @returns {{earlier:number,later:number,input:T,outputs:number[]}|null}
+ */
+function firstFunctionalConflict(inputs, outputs) {
+  const seen = new Map();
+  for (let i=0; i<inputs.length; i++) {
+    const label = JSON.stringify(inputs[i]);
+    if (seen.has(label)) {
+      const j = seen.get(label);
+      if (outputs[i] !== outputs[j]) {
+        return {earlier:j, later:i, input:inputs[i],
+          outputs:[outputs[j],outputs[i]]};
+      }
+    } else {
+      seen.set(label,i);
+    }
+  }
+  return null;
+}
+
 /** Deterministic original-input gate for a proposed 27x27 ternary-carpet bridge. */
 function main() {
   const corpus = JSON.parse(fs.readFileSync(path.join(ROOT,
@@ -73,6 +99,15 @@ function main() {
 
   const pairs = Array.from({length:256}, (_, i) =>
     [kept[2*i], kept[2*i+1]]);
+  const reflectedPairs = [];
+  for (let i=0;i<729;i++) {
+    if (i>=728-i || isCarpetHole(Math.floor(i/27),i%27)) continue;
+    reflectedPairs.push([opening[i],opening[728-i]]);
+  }
+  assert.equal(reflectedPairs.length,256);
+  const fixedSubstitutionConflict = firstFunctionalConflict(holes, p3);
+  const consecutivePairConflict = firstFunctionalConflict(pairs,table);
+  const reflectionPairConflict = firstFunctionalConflict(reflectedPairs,table);
   const bigEndian = pairs.map(([a,b]) => (29*a+b) % 256);
   const littleEndian = pairs.map(([a,b]) => (a+29*b) % 256);
   const primeSum = pairs.map(([a,b]) => corpus.prime[a]+corpus.prime[b]);
@@ -88,18 +123,24 @@ function main() {
     nextPageRunes:p3.length,
     tableBytes:table.length,
     p3VersusRemoved: {
+      stationarySubstitutionContradiction:fixedSubstitutionConflict,
       equalAtSameOffset:identical(p3, holes),
       frequencyL1:frequencyL1(p3, holes),
       addFixed23Equal:identical(p3, holes.map(v=>(v+23)%29)),
       subtractSample90:printable
     },
     retainedPairsVersusP50: {
+      consecutivePairEncoderContradiction:consecutivePairConflict,
+      reflectedPairEncoderContradiction:reflectionPairConflict,
       base29BigModulo256Equal:identical(bigEndian, table),
       base29LittleModulo256Equal:identical(littleEndian, table),
       gpPrimePairSumEqual:identical(primeSum, table)
     },
     interpretation:"Count matches; no full-cipher inverse or plaintext is established."
   };
+  assert.deepEqual(fixedSubstitutionConflict,{earlier:1,later:3,input:10,outputs:[11,8]});
+  assert.deepEqual(consecutivePairConflict,{earlier:3,later:24,input:[27,0],outputs:[186,109]});
+  assert.deepEqual(reflectionPairConflict,{earlier:19,later:28,input:[22,11],outputs:[33,150]});
   assert.equal(result.p3VersusRemoved.equalAtSameOffset, 10);
   assert.equal(result.p3VersusRemoved.frequencyL1, 82);
   assert.equal(result.p3VersusRemoved.addFixed23Equal, 8);
@@ -109,4 +150,4 @@ function main() {
   process.stdout.write(JSON.stringify(result,null,2)+"\n");
 }
 if (require.main===module) main();
-module.exports={isCarpetHole, identical, frequencyL1};
+module.exports={isCarpetHole, identical, frequencyL1, firstFunctionalConflict};

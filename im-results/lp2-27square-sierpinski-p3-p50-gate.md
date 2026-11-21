@@ -14,6 +14,11 @@ The one-to-one physical-p3 versus carpet-hole test gives **10/217** identical GP
 
 For the 256 retained rune pairs versus the physical table bytes, direct two-rune base29 packing, reduced modulo256, matches **1/256** table bytes in either big-endian or little-endian order. The sum of the two GP-prime values matches **2/256**. These are chance-scale matches. Such modulo256 packing is lossy for a generic pair of base29 symbols, so it is not itself a legitimate reversible codec.
 
+
+**Complete type-level exclusions.** The p3 tape cannot be a stationary relettering of the holes under the fixed row-major alignment: the hole rune at offsets **1 and 3** is the same GP rune **I (10)**, while p3 has distinct **J (11)** and **H (8)** at those offsets. This single collision refutes every deterministic memoryless 29-symbol substitution, including arbitrary monoalphabetic permutations, not merely Caesar or affine choices.
+
+Likewise the retained pairs cannot feed p50 through *any single fixed pair-to-byte encoder* under the two natural pair orders. Consecutive-pair positions **3 and 24** both contain input **(27,0)** yet p50 outputs bytes **186 and 109**; half-turn-reflected-pair positions **19 and 28** both contain **(22,11)** yet output bytes **33 and 150**. These are exact functional contradictions independent of the choice of radix or byte mapping. Position-dependent keys, a different source-selected ordering, or an entirely different use of the 256 entries remain possible.
+
 ## Research decision
 
 The exact **729→217+512** split and adjacent p3 length may justify *one* independent source-clue investigation. The literal one-to-one transport and elementary arithmetic consumers tested here **fail to establish a key or plaintext**. No continuation should be built on the numeral coincidence alone.
