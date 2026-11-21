@@ -39,6 +39,18 @@ A historical solver can select the rectangle, identify the outer perimeter, then
 
 A genuinely decisive next step would be an independently preserved historical instruction selecting the NUMBER reversal and a typed consumer for 60 printed values, then applying that exact precommitted decoder to the third-ring token sequence. Do **not** launch a broad shift, rotation, direct-ASCII or statistical-language sweep on the 60 cells alone, and do not promote the direct 76/180 length match to a cryptographic proof.
 
+## Cross-page 60-ring → p55 key test (Agent45, 21 November)
+
+A bounded consumer test was motivated by a possible chain: the p28 DH selector yields shared value K=2; p57 says to shed circumferences; removing two outer p50 layers leaves the 60-cell third ring; p55 has a 75-rune locally owned body. The step “use the ring as a p55 key” is **not** stated by a source, so this is a cheap rejection test, not an asserted solve path.
+
+Freeze the clockwise 60-cell ring above, take its conventional-base60 byte values modulo 29 as a GP29 key, and apply continuous period-60 additive/subtractive inverses to the untouched 75-rune p55 body (the key wraps once for the final 15 symbols). No phase, rotation, or alternative serialization search was performed.
+
+- Key residues (clockwise): [15,4,15,21,8,22,20,26,22,15,28,28,26,26,10,26,20,25,17,0,19,18,1,11,18,28,18,5,23,0,3,6,5,22,15,3,6,6,14,19,21,22,18,14,5,1,28,28,23,2,14,24,27,2,25,1,18,28,23,28]
+- Subtract-key output: I S A S W A D OE OE Y W A C EA M U R NG B U B S T B J S NG X W C I TH T IA Y T N B P D H A M IA F J M F A H NG M H P OE X D O H M F IA W P L B EA H NG H EO TH L NG F (IoC 0.03495495)
+- Add-key output: J D AE EA D I C T H IA C OE EA OE I A S P OE U Y OE E I E P EA A A C T X Y P IA OE NG F EO O NG I Y Y I P B IA EO EO L N R B X T U U AE B U G H Y W O I TH W N I F X S L (IoC 0.03171171)
+
+Neither output contains readable language or a next-step instruction. The test does not disprove other consumers of the ring, but it rejects the most direct “60-cell ring is a repeating GP29 additive key for p55” interpretation. The missing source instruction remains a typed consumer for the ring; do not expand this into a shift/phase/cipher-family sweep.
+ 
 ## Reproduction
 
 [Read-only single-file CommonJS geometry SFT](../sims/lp2_p50_concentric_ring60_source_sft.cjs) loads the canonical 32×8 printed-token and conventional-byte table plus the original GP page lengths. It asserts 256 unique addressed cells, the exact clockwise third-ring 60-token sequence, the four independent ring byte checksums, byte uniqueness counts, and the 76/85/95 source page lengths. It is a source-exact geometry check; it does not claim a cryptanalytic solution.
