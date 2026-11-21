@@ -185,6 +185,35 @@ for(let ch=0;ch<9;ch++)for(const mode of
 }
 assert.equal(hill.length,27);
 assert(hill.every(x=>x.ioc<.045));
+
+/** @param {number[]} digits GP29 digit sequence high-first */
+function base29Bytes(digits) {
+  const n=digits.reduce((v,d)=>29n*v+BigInt(d),0n);
+  const raw=n.toString(16);
+  return Buffer.from(raw.length%2===0?raw:'0'+raw,'hex');
+}
+const serialized=[
+  ['forward',base29Bytes(q)],
+  ['reversed',base29Bytes(q.slice().reverse())]
+];
+assert.deepEqual(serialized.map(([orientation,bytes])=>
+  [orientation,bytes.length,bytes.toString('hex').slice(0,16)]),[
+  ['forward',147,'a317cde6ad3e4487'],
+  ['reversed',148,'04784d98400af3a0']
+]);
+const binaryReadouts=serialized.map(([orientation,bytes])=>{
+  const printable=[...bytes].filter(b=>b>=32&&b<=126).length;
+  const knownMagic=['1f8b08','425a68','89504e47','504b0304',
+    '25504446','7f454c46','504b0506'].some(sig=>
+      bytes.toString('hex').startsWith(sig));
+  const oldOpenPgpCompressed=bytes[0]===0xa3
+    &&[0,1,2,3].includes(bytes[1]);
+  assert(!knownMagic&&!oldOpenPgpCompressed);
+  return {orientation,byteLength:bytes.length,
+    first16Hex:bytes.subarray(0,16).toString('hex'),
+    printable,knownFileMagic:false,oldOpenPgpCompressed:false};
+});
+
 const bitLengths=rows.map(row=>
   row.reduce((x,k)=>29n*x+BigInt(k),0n).toString(2).length);
 assert.deepEqual(bitLengths,[127,130,131,131,128,130,130,131,131]);
@@ -200,7 +229,8 @@ const result={
     degree13Divisor:divisor,zeroRemainder:remainder.every(x=>x===0),
     quotient:q.length,chapterRows:rows.length,
     rowDistinct:rows.map(v=>new Set(v).size),
-    quotientIoC:ioc(q),rowBase29Bits:bitLengths},
+    quotientIoC:ioc(q),rowBase29Bits:bitLengths,
+    directBASE29Binary:binaryReadouts},
   chapterAdditive:{tested:additive.length,IoCRange:range(additive)},
   firstChapterShares:{original:729,quotient:243,models:shares.length,
     IoCRange:range(shares),
