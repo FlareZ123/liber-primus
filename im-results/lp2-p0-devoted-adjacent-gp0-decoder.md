@@ -98,6 +98,8 @@ The candidate-derived residual is:
 
 The three key-dependent fields impose only three independent linear equations over GF(29) on seven key values. For a key k, Hsum(full) = 2k0+2k1+2k2+k3, Hsum(prefix2) = 2k0, and Hsum(suffix5) = 2k2+2k3+k4, all modulo 29. Their rank is 3, leaving 29^4 = 707,281 keys for this signature. For example, key [21,14,0,0,15,0,0] gives the same [12,13,14,15] packet and yields plaintext [23,8,16,22,6,1,4]. That alternative is not asserted to be meaningful; it demonstrates that the signature is not a decoder. Restricting candidates to 36 source words produces the reported unique hit, but the historical plaintext is not known to belong to that pool.
 
+An additional general-English control applies the same tokenizer and fixed signature to the repository's TextBlob spelling-frequency list. Of 4,776 distinct seven-rune GP vectors, three match with C−P: DEVOTED, DEVOTEE and DEVOTION. Their keys are respectively [21,4,15,19,5,12,10], [21,4,15,19,5,12,15] and [21,4,15,19,5,3,24]. These are not authenticated plaintext claims. The result demonstrates that the earlier unique-word conclusion depends on the selected 36-word pool. In fact, all three key-dependent expressions omit k5 and k6 entirely, so the signature cannot distinguish any candidates that share their first five GP runes.
+
 A substantive next gate requires an independently source-selected key schedule or a frozen prediction on untouched ciphertext that can distinguish these alternatives.
 
 ## Reproduction
