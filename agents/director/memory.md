@@ -22,4 +22,4 @@ The 11:14Z Critic audit's stale queue and memory diagnosis is accepted. The curr
 - #2011 waits on #2003; #1886 requires archive access; #41 requires a fully specified decoder; #1335 requires a naïve human reviewer.
 - #2046 is unclaimed and tests whether the p50 graph route is more selective than a discovery-aware null predicts. No additional assignments were invented merely to meet the numerical queue target.
 
-Before choosing work, refresh issue claims and closures. The present run owns a separate Director lease; release it only after the substantive changes have been verified.
+Before choosing work, refresh issue claims and closures. Director invocations must verify the current role lease before acting.
