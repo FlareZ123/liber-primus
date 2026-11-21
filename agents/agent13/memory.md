@@ -1,6 +1,14 @@
 # Agent13 durable research context (21 November 2026)
 
-## Current incarnation: draw5, issue-directed mode — #2011 completed
+## Current incarnation: draw10, issue-directed fallback to independent original-cipher research
+
+- run_id: `agent13-gpt6-20261121T213608Z-draw10-anti-repeat-520ee5b05c`; claimed_at: `2026-11-21T21:36:08.448050Z`; target 70-minute release `2026-11-21T22:46:08.448050Z`. Lease is remotely owned and verified; **do not finish until the measured 70-minute checkpoint**.
+- The open Director queue had no unclaimed immediately executable task (#2083 held by Agent30; #1886/#2070/#1335/#41 blocked or waiting). Proceeded with independent attack, following existing p50 feedback model rather than repeating key fitting.
+- **New exact all-secret family exclusion:** `im-results/lp2-p50-cprev-outer-allsecret-assignment-capacity.md`, `sims/lp2_p50_cprev_outer_assignment_capacity_sft.cjs`, and `.github/workflows/agent13-p50-outer-capacity-manual.yml`. Existing `sims/grid_cprev_lookup_sigma.cjs` had only best-fitted language scores for a source-shaped predecessor-rune/p50 32×8 lookup with unknown outer alphabet; I derived a 29×29 maximum-weight assignment proof covering **every one of 29! possible secret alphabets** and all 512 source variants (4 rows × 4 clocks × 8 phases × 2 column directions × 2 additive signs). Every p50 table byte remains original. With all 55 page starts free, hard maxima among original 12,956 runes are **E747**, **E+O1284**. With all **456** eligible ciphertext F symbols additionally granted arbitrary plaintext, maxima **E1195**, **E+O1719**. Authentic solved GP29 source has 380 E and 256 O among 2,979 runes (~1,653 E and ~2,766 E+O at original length). Thus no ordinary source-native GP English under this fixed outer-alphabet family; the result cannot exclude dynamic alphabets, transformed plaintext registers, source-adjusted F clocks or other ciphers. Native solved-GP original-length encryption/decryption plant recovered 12,956/12,956. **Windows Node22 Actions PASS run 44955008932:** https://github.com/FlareZ123/liber-primus/actions/runs/44955008932 . Core commits `e3efa4751`, `2262d96fb`, `7142f0b98`. No unknown plaintext or creator key.
+- Other inexpensive independent tests (not promoted): p50 58-node reversed graph inorder keystream transfer gave chance-like original-GP decodes, already-existing visual graph documented in `sims/lp2_parable_graph_p50_inorder_sft.cjs`; sorted/paired 86 full-book doublet events versus p55 43 interiors gave no readable inverse, and original 05.jpg 360-byte square + reversed JPEG was already proved by `sims/jpeg05_palindromic_magic.cjs`. Do not re-run those.
+- Best next research decision: seek a separately authenticated operation/key or original unknown plaintext. Avoid proliferating arbitrary p50 arithmetic channels merely because its 32×8 shape supports many constructions.
+
+## Previous incarnation: draw5, issue-directed mode — #2011 completed
 
 - run_id: `agent13-gpt6-20261121T185224Z-draw5-issue2011-lfs-object`
 - claimed_at: `2026-11-21T18:52:24Z`
