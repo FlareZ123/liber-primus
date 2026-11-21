@@ -52,8 +52,18 @@ function compare(sourceKey,ciphertext){
     f1[sourceKey[i]]++;f2[ciphertext[i]]++;
   }
   const minSubstitutions=f1.reduce((n,x,i)=>n+Math.abs(x-f2[i]),0)/2;
+  const squareGap=(size)=>{
+    const margin=(9-size)/2;let delta=0;
+    for(let row=margin;row<9-margin;row++)
+      for(let col=margin;col<9-margin;col++){
+        const i=row*9+col;
+        delta+=P[ciphertext[i]]-P[sourceKey[i]];
+      }
+    return delta;
+  };
   return {delta:primeSum(ciphertext)-primeSum(sourceKey),
     centerPrimeDelta:P[ciphertext[40]]-P[sourceKey[40]],
+    inner7PrimeDelta:squareGap(7),
     equal,decodedIoC:ioc(p),minSubstitutions};
 }
 /** @param {number[]} p32 */
@@ -86,9 +96,11 @@ function run(){
   assert.equal(original.delta,211);
   assert.deepEqual([key[40],body[40],P[key[40]],P[body[40]]],[7,20,19,73]);
   assert.equal(original.centerPrimeDelta,54);
+  assert.equal(original.inner7PrimeDelta,105);
   const gp0=word=>Array.from(word).reduce((sum,char)=>
     sum+corpus.translit.indexOf(char),0);
   assert.equal(gp0('ROAD'),54);
+  assert.equal(gp0('DIUINITY'),105); // Solved physical p57's DIVINITY.
   assert.deepEqual([13,24,2,15].map(i=>corpus.translit[i]),
     ["P","A","TH","S"]);
   assert.equal(13+24+2+15,54); // PATHS also GP0=54: ambiguity is explicit.
@@ -109,7 +121,8 @@ function run(){
   const seed=0x56356981,rand=rng32(seed),N=200000;
   const hits={difference211:0,equalAtLeast7:0,
     iocAtLeastOriginal:0,equalAndIoc:0,allThree:0,editAtMost17:0,
-    centerDelta54:0,mapAndCenter:0,allThreeAndCenter:0};
+    centerDelta54:0,mapAndCenter:0,allThreeAndCenter:0,
+    inner7Delta105:0,mapAndDivinity:0,mapDivinityRoad:0};
   for(let t=0;t<N;t++){
     const b=move.slice();
     for(let i=b.length-1;i>0;i--){
@@ -121,7 +134,8 @@ function run(){
     const a=q.delta===211,
       e=q.equal>=original.equal,
       v=q.decodedIoC>=original.decodedIoC,
-      center=q.centerPrimeDelta===54;
+      center=q.centerPrimeDelta===54,
+      divinity=q.inner7PrimeDelta===105;
     hits.difference211+=a;
     hits.equalAtLeast7+=e;
     hits.iocAtLeastOriginal+=v;
@@ -131,6 +145,9 @@ function run(){
     hits.centerDelta54+=center;
     hits.mapAndCenter+=a&&center;
     hits.allThreeAndCenter+=a&&e&&v&&center;
+    hits.inner7Delta105+=divinity;
+    hits.mapAndDivinity+=a&&divinity;
+    hits.mapDivinityRoad+=a&&divinity&&center;
   }
   assert.deepEqual({
     difference211:hits.difference211,equalAtLeast7:hits.equalAtLeast7,
@@ -142,17 +159,21 @@ function run(){
   });
   assert.deepEqual([hits.centerDelta54,hits.mapAndCenter,
     hits.allThreeAndCenter],[16152,38,0]);
+  assert.deepEqual([hits.inner7Delta105,hits.mapAndDivinity,
+    hits.mapDivinityRoad],[324,0,0]);
   const entire=all.slice(0,12956),M=entire.length-80;
   let windows={difference211:0,equalAtLeast7:0,
     iocAtLeastOriginal:0,allThree:0,allFour:0,
-    centerDelta54:0,mapAndCenter:0};
+    centerDelta54:0,mapAndCenter:0,
+    inner7Delta105:0,mapAndDivinity:0,mapDivinityRoad:0};
   const allFourOffsets=[];
   for(let i=0;i<M;i++){
     const q=compare(key,entire.slice(i,i+81));
     const a=q.delta===211,e=q.equal>=original.equal,
       v=q.decodedIoC>=original.decodedIoC,
       d=q.minSubstitutions<=17,
-      center=q.centerPrimeDelta===54;
+      center=q.centerPrimeDelta===54,
+      divinity=q.inner7PrimeDelta===105;
     windows.difference211+=a;
     windows.equalAtLeast7+=e;
     windows.iocAtLeastOriginal+=v;
@@ -160,6 +181,9 @@ function run(){
     windows.allFour+=a&&e&&v&&d;
     windows.centerDelta54+=center;
     windows.mapAndCenter+=a&&center;
+    windows.inner7Delta105+=divinity;
+    windows.mapAndDivinity+=a&&divinity;
+    windows.mapDivinityRoad+=a&&divinity&&center;
     if(a&&e&&v&&d)allFourOffsets.push(i);
   }
   assert.deepEqual([M,windows.difference211,windows.equalAtLeast7,
@@ -167,6 +191,8 @@ function run(){
     [12876,11,286,305,1,1]);
   assert.deepEqual(allFourOffsets,[7970]);
   assert.deepEqual([windows.centerDelta54,windows.mapAndCenter],[460,1]);
+  assert.deepEqual([windows.inner7Delta105,windows.mapAndDivinity,
+    windows.mapDivinityRoad],[11,1,1]);
   const report={
     sourceGitBlob:blob(source),originalImageSelectedP32:{
       GP11x11:true,topPrimeSum:563,leftPrimeSum:569,
@@ -178,6 +204,8 @@ function run(){
     centeredSignedWordCheck:{originalP32Prime:P[key[40]],
       originalP33Prime:P[body[40]],delta54:original.centerPrimeDelta,
       signedCandidateWords:["ROAD","PATHS"],nativeGP0Value:54,
+      center7GpPrimeDelta:original.inner7PrimeDelta,
+      center7P57SolvedWord:"DIUINITY",center7NativeGp0:105,
       interpretation:"Retrospective semantic label, not a plaintext rune"},
     exactCrossPageObservations:original,
     frozenLocalSourceOffsets:controls,
@@ -185,7 +213,8 @@ function run(){
     originalImageChecksumPreservingShuffle:{
       trials:N,seed,firstRowAndColumnFrozen:true,other100CellsPermuted:true,
       hits,plusOneJointTail:(hits.allThree+1)/(N+1),
-      plusOneMapCenterTail:(hits.mapAndCenter+1)/(N+1)},
+      plusOneMapCenterTail:(hits.mapAndCenter+1)/(N+1),
+      plusOneMapDivinityTail:(hits.mapAndDivinity+1)/(N+1)},
     originalUnknownCiphertextWindowControl:{
       totalWindows:M,hits:windows,allFourOffsets},
     interpretation:"Causal source-link hypothesis; no recovered plaintext or decoder; null rates conditional on postselected signals"
