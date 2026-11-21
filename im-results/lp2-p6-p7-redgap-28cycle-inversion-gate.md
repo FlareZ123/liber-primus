@@ -82,6 +82,26 @@ All original scores are *lower* (worse) than **every** independently sourced nat
 
 The [successful Windows Node22 run 44931627509](https://github.com/FlareZ123/liber-primus/actions/runs/44931627509) prints every source-key optimum, both untouched halves and all independent-corpus controls. The primary result is a narrow but strong decision: **retire the single-stage 2^r 11-column DH packet, even with all key symbols hidden**. Further tuning the red seed or repeating 28-state cycles cannot repair the observed native-GP mismatch within those frozen architectures.
 
+## A second architecture: ciphertext-predecessor chain with unrestricted 11-rune key
+
+The uniform-like original GP29 ciphertext and its strongly suppressed adjacent equalities motivate a **ciphertext-chain**, distinct from all earlier direct one-stage DH2 tests. On the original 308-rune p6→p7 interval, the first ciphertext predecessor is no unknown IV: the **last original p6 red rune**, GP index **12**. Let \`D[i] = C[i]−C[i−1] mod29\`; \`C[−1]=12\`. The source has **exactly one zero delta** in the 308 runes, mirroring the book's wider anti-doublet effect. Using only the already source-motivated \`2^floor(i/11)\` state and a completely arbitrary **11-rune secret key** provides three distinct reversible chain models:
+
+1. \`D[r,j] = 2^r·P[r,j] + K[j] mod29\`.
+2. \`D[r,j] = P[r,j] + 2^r·K[j] mod29\`.
+3. \`D[r,j] = 2^r·K[j]·P[r,j] mod29\`, with nonzero unknown \`K[j]\`.
+
+The [chained-source all-secret SFT](../sims/lp2_p6_p7_dh2_chained_allsecret_native_gp_gate.cjs) tests all three. Each key is globally optimized over **all 29^11 or 28^11 possibilities** by exact per-column enumeration under native-GP unigram likelihood, training on original first14 rows and evaluating the untouched final14 rows (154 runes each). It also independently permits a key oracle to score all308 runes, and compares identically trained original-output statistics with **72 separate source-native encrypted English controls**, 24 each from Gibran, Shakespeare and Emerson; the latter two are independent of Gibran's estimated rune frequencies.
+
+| Chained DH2 form | Original untouched holdout, natural-log/rune | Lowest of 72 native controls | Original full308 oracle | Lowest native full308 oracle |
+| --- | ---: | ---: | ---: | ---: |
+| Affine chained state | **−3.97153** | **−3.31655** | **−3.45689** | **−3.03705** |
+| Additive chained state | **−4.26933** | **−3.33962** | **−3.59549** | **−3.03705** |
+| Multiplicative chained state | **−4.00405** | **−3.37075** | **−3.49950** | **−3.03705** |
+
+All three original holdouts and all three *optimistic exact global-key oracles* are worse than every one of the 72 source-native controls. All three models, with the actual p6 red11 seed, also exactly encode/decode their respective solved-language GP29 plants and reencode the **entire unmodified 308-rune original ciphertext** after decryption. This provides a **key-independent native-language model rejection conditional on the frozen 2^r chained architecture**, despite its ability to explain why a multiplicative increment could avoid zero steps. The multiplicative chained model fixes plaintext F sites to exactly the one ciphertext-doublet site by algebra, for **every** permissible secret key; it cannot freely increase F frequency to native English. This does not exclude a more complicated nonstationary chain or a different source instruction.
+
+[Windows Node22 PASS run 44932532562](https://github.com/FlareZ123/liber-primus/actions/runs/44932532562). The source-derived DH2 state is a plausible cipher ingredient, and the actual p6/p7 numeric packet is a reproducible artifact; neither selects the chaining opcode or a plaintext-producing decoder. Do not rescue it by optimizing unsigned phase changes, alternate predecessor symbols, other generators or post-processing layers after reading the result.
+
 ## Remaining missing input and next decision
 
 The exact red→black→red length/sum relationship deserves preservation as an **original-source packet hypothesis**. The tested direct key, monotone block counter, totient row clock and standard key-sorted transpositions do not solve the 308-symbol receiver. A new source clue would need to specify which of the red heading's 11 runes acts as a **key schedule versus width marker**, how the 28 intervening rows transform it, and how the p7 red checksum should be validated *prospectively*. Without that clue, changing start phases, GP reductions, routes, 11×28 orientations, key permutations or word clocks would simply fit an unbounded family.
