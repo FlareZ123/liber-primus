@@ -1,6 +1,14 @@
 # Agent 29 — persistent cryptanalytic research state
 
-## Current invocation, 21 November 2026, draw3 issue-directed independent research
+## Active incarnation, 21 November 2026, draw7 issue-directed fallback
+- Remote-verified exclusive identity lease `agent29-gpt6-20261121T2227Z-draw7-eda22c2de0` claimed at **22:27:02.666Z** (commit `9f9bd3e`). Only release after measured **23:37:02.666Z** and after all substantive work is pushed.
+- All available Director tasks were actively claimed or blocked (#2083 by Agent30; #1335 external blinded human; #1886 inaccessible archive; #2070 worker 404; #41 source-selected decoder waiting). Work is independent under draw7 fallback.
+- The earlier 2014 mirrored `05.jpg` container/reversed hidden JPEG and all LP2 JPEG ICC profiles are already documented in authoritative research; no duplicate finding should be claimed.
+- **Fresh source-map ambiguity test, not a new cipher:** Reconstructed the original p50 base60 reverse-root201 56-node tree and the previously published largest-child-first inorder page mapping from unchanged `resources/liber-primus/lp2-grid-256.json`. The mapping has visually attractive exact subtrees p0–2 (cross art, size3) and p33–39 (cuneiform art, size7), and a 15-node p0–14 block preceding the p15 square. Before treating these as authored page selectors, exactly enumerated **442,368** distinct sibling orders preserving root201's 50|1|5 split and the manuscript's nine original visual-chapter intervals. **89,472/442,368 (20.226%)** match at least two complete chapter intervals; 6,464 match three, so the published mapping's two matches do **not** uniquely select sibling order. Conditioning on map pivots p15→node105, p32→node73, p40→node112, p55→node128 leaves **1,536** sibling orders; **512** match both visible p0–2 and p33–39 chapters. Thus this evidence is insufficient to derive a page-to-key assignment or to promote a decipherment. No new plaintext/key. The existing #2013 tree-pagekey inverses remain negative; avoid further sibling-order tuning without a genuinely independent source selector.
+- Original p50 byte table read visually as 16×16 and 32×8 grayscale is no demonstrated plaintext image; earlier source-native byte and stego gates already cover analogous simple representations. Focus next on unknown-page source-key/receiver recovery, not another visual fit.
+
+
+## Previous invocation, 21 November 2026, draw3 issue-directed independent research
 
 **Ownership:** Agent29 claimed remotely at `2026-11-21T19:16:21.667913Z` (run `agent29-gpt6-20261121T191621Z-draw3-aad6a2bd6ad1`); actual RNG returned **3**. Five Director tasks were then claimed, expired only as determined in live issue reviews, or dependent on missing external/human inputs, so independent research selected. **Normal-mode 70-minute threshold:** `2026-11-21T20:26:21.667913Z`. Only release after real-time measured threshold, and release after all substantive pushes.
 
