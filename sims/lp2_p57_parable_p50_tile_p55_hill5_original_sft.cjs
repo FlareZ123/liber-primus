@@ -425,6 +425,78 @@ assert(Math.abs(Math.max(...direct32Results.map(r => r.normalizedIC)) -
   1.242857142857143) < 1e-12);
 
 
+/* Source-selected SHED CIRCUMFERENCES: remove the original 5x5 perimeter.
+ * The central 3x3 has base59 total phi(1033)=1032, and each selected
+ * page's complete-word rune body divides by three: p32 120, p55 75.
+ * Freeze each natural raw/phi, base59/60, row/col Hill3, then use the
+ * same original 3x3 tile as 11x11 p32 zero-edge image convolution.
+ */
+const inner3 = tile.slice(1, 4).map(row => row.slice(1, 4));
+assert.deepEqual(inner3, [
+  ["2k", "2t", "2O"], ["0J", "1L", "0c"], ["2d", "1T", "2u"],
+]);
+assert.equal(total(numeralMatrix(59, inner3)), phi(1033));
+/** @param {number[][]} matrix @param {number[]} source @param {"col"|"row"} orientation */
+function hill3(matrix, source, orientation) {
+  assert.equal(source.length % 3, 0);
+  const out = [];
+  for (let k = 0; k < source.length; k += 3) for (let row = 0; row < 3; row++) {
+    let value = 0;
+    for (let i = 0; i < 3; i++) {
+      value += (orientation === "col" ? matrix[row][i] : matrix[i][row]) * source[k + i];
+    }
+    out.push(mod(value));
+  }
+  return out;
+}
+/** @param {number[][]} kernel */
+function blur3Matrix(kernel) {
+  const out = Array.from({length: 121}, () => Array(121).fill(0));
+  for (let r = 0; r < 11; r++) for (let c = 0; c < 11; c++) {
+    for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++) {
+      const y = r + i - 1, x = c + j - 1;
+      if (y >= 0 && y < 11 && x >= 0 && x < 11) {
+        out[r * 11 + c][y * 11 + x] = kernel[i][j];
+      }
+    }
+  }
+  return out;
+}
+const shed3Results = [], shed3BlurResults = [];
+for (const radix of [59, 60]) {
+  const values = numeralMatrix(radix, inner3);
+  for (const representation of ["raw", "phi"]) {
+    const matrix = values.map(row => row.map(x =>
+      mod(representation === "phi" ? phi(x) : x)));
+    const inverse = invert(matrix);
+    for (const original of [
+      {page: 55, cipher: body, planted: plant, longWords},
+      {page: 32, cipher: body32, planted: plant32, longWords: long32},
+    ]) {
+      for (const orientation of ["col", "row"]) {
+        const plaintext = hill3(inverse, original.cipher, orientation);
+        assert.deepEqual(hill3(matrix, plaintext, orientation), original.cipher);
+        assert.deepEqual(
+          hill3(inverse, hill3(matrix, original.planted, orientation), orientation),
+          original.planted);
+        const hits = original.longWords.filter(w =>
+          dictionary.has(w.map(i => plaintext[i]).join(","))).length;
+        assert.equal(hits, 0);
+        shed3Results.push({radix, representation, page: original.page,
+          orientation, normalizedIC: normalizedIC(plaintext), dictionaryHits: hits});
+      }
+    }
+    const blur = blur3Matrix(matrix), invBlur = invert(blur);
+    const p32 = matVec(invBlur, page32Cipher);
+    assert.deepEqual(matVec(blur, p32), page32Cipher);
+    assert.deepEqual(matVec(invBlur, matVec(blur, page32ClearPlant)), page32ClearPlant);
+    shed3BlurResults.push({radix, representation, normalizedIC: normalizedIC(p32)});
+  }
+}
+assert.equal(shed3Results.length, 16);
+assert.equal(shed3BlurResults.length, 4);
+assert.equal(Math.max(...shed3Results.map(r => r.dictionaryHits)), 0);
+
 /* Independent new whole-book hypothesis from the same three frozen 2013
  * prime ordinals: under base60 their original p50 pointer nodes have
  * subtree sizes 58,8,56. Particularly 201 -> 74 -> 205 is the unique
@@ -492,6 +564,9 @@ console.log(JSON.stringify({
   page32BlurVariants: blurResults,
   page32SourceBody: {carriedOpeningRune:20,completeRunes:body32.length,fullWords:page32Words.length,longWords:long32.length,normalizedIC:normalizedIC(body32)},
   page32DirectVariants: direct32Results,
+  shedInner3: inner3,
+  shedInner3HillVariants: shed3Results,
+  shedInner3BlurVariants: shed3BlurResults,
   base60ManuscriptLadder: fullManuscriptLadder,
   sourcePrimeOrdinalSubtrees: ranks.map(i => ({address:i, token:allTokens[i], subtree:graphSizes60[i]})),
   signedTheDevotedSubtreeCounts: [20,102].map(i => graphSizes60[i]),
