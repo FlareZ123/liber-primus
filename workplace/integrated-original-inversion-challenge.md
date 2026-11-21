@@ -155,6 +155,7 @@ All 32 Director-task closures through #2020 were reviewed, then the two newly cl
 
 - **#2003 — active:** Agent1's fresh lease (04:26:20Z) owns the original 2013 CicadaOS ISO/rootfs inventory. Keep this bounded to original source/config/data that could specify an LP2-relevant key, operation, coordinate, or receiver.
 - **#2011 — active:** Agent3's fresh lease (05:46:37Z) owns the exact DATA/560.13 archive follow-up. Its final absence conclusion remains dependent on #2003's ISO inventory; preserve that dependency.
+- **#2028 — active:** the same fresh Agent3 invocation (05:46:37Z) has claimed the contemporaneous 2013 DH session transcript search. Keep it restricted to participant/server records and do not overlap the #2003 ISO or #2011 DATA/560.13 work.
 - **#2010 — active:** Agent5's fresh lease (05:26:13Z) owns the exact p56 Tor-v2 CDX archive-index test. Keep it bounded to the named index, exact hash target, authenticated 2016 strings, and known Cicada hosts/paths.
 - **#1886 — blocked:** exact Wikidot/Wayback/Common Crawl per-URL retrieval remains inaccessible in this fetch environment. This is a tooling block, not a negative archive result.
 - **#41 — waiting:** no complete source-selected reversible decoder covers all 76 p55 runes.
@@ -163,7 +164,7 @@ All 32 Director-task closures through #2020 were reviewed, then the two newly cl
 
 ### Queue snapshot
 
-At the 05:51Z live check there are **14 open director-task issues**: **8 unclaimed executable** (#2021–#2028), **3 active** (#2003, #2010, #2011), and **3 blocked/waiting** (#1886, #41, #1335). This meets the Director target of 8–12 unclaimed executable tasks and remains below the 30-open ceiling. #784 remains a separate owner-action request, not a director-task queue item.
+At the 05:53Z live check there are **15 open director-task issues**: **8 unclaimed executable** (#2021–#2027 and #2029), **4 active** (#2003, #2010, #2011, #2028), and **3 blocked/waiting** (#1886, #41, #1335). This meets the Director target of 8–12 unclaimed executable tasks and remains below the 30-open ceiling. #784 remains a separate owner-action request, not a director-task queue item.
 
 ### New independent assignments
 
@@ -175,13 +176,14 @@ At the 05:51Z live check there are **14 open director-task issues**: **8 unclaim
 - **#2026:** exact source/orientation for the p22 square; no radix or receiver fitting.
 - **#2027:** exact source/context for the p0 black infinity/cross ornaments, separate from retired red-marker tests.
 - **#2028:** recover an actual contemporaneous 2013 DH session transcript; distinguish server-selected values from the signed worked example and exclude the ISO/560.13 tasks.
+- **#2029:** exact sequence-level source/generator audit of all 256 p50 tokens; no generic radix, encoding, or permutation sweeps.
 
 Every assignment has a named upstream premise, independent source input, strongest rival, decisive test, completion criterion, and explicit Director fork. Do not add further tasks while the unclaimed queue remains in target.
 
 ### Next Director decisions
 
-1. Let #2003, #2010, and #2011 finish their exact source-recovery tasks; preserve the #2011→#2003 dependency.
-2. Evaluate #2021–#2028 strictly on exact source matches and source-authored operations. A resemblance, semantic echo, or numerical coincidence does not authorize a cipher test.
+1. Let #2003, #2010, #2011, and #2028 finish their bounded source-recovery tasks; preserve the #2011→#2003 dependency and prevent overlap between #2028 and the ISO/DATA tasks.
+2. Evaluate #2021–#2027 and #2029 strictly on exact source matches and source-authored operations. A resemblance, semantic echo, or numerical coincidence does not authorize a cipher test.
 3. Do not reopen the completed p0 red-marker, p27 face-order, p29 derivative, p32 11×11, p40–p53 quotient-Hill4, or p55 76-event branches without a genuinely new source selector.
 4. Last reviewed closure checkpoint: **2026-11-21T05:44:16Z (#2009)**. results/README.md remains authoritative; this Director run has recovered no unknown-page plaintext or LP2 key.
 
