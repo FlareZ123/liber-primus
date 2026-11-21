@@ -90,6 +90,14 @@ With the same unchanged K13, a planted 262-rune native source control comprising
 
 Both original p0 gates were frozen independently before checking source output: [p15 LFSR precommit](../workplace/agent5-p0-red13-epiphany-p15-lfsr-precommit.md) `736e122`; [periodic/transparent-F precommit](../workplace/agent5-p0-red13-epiphany-repeat-key-fullpage-precommit.md) `341dda0`. [Consolidated source-exact CommonJS SFT](../sims/lp2_p0_red13_fullpage_cyclic_key_sft.cjs) `1a6db5a` covers both gates, complete original ciphertext, positive plant and exact contradiction. The title `EPIPHANY SEEKS` remains a conditional candidate; this test rules out the specific matrix recurrence and repeated-title-key cipher clocks, while leaving a separately sourced, nonperiodic body-key algorithm possible.
 
+## Full p0 ciphertext-autokey receiver with the original red13 title key (Agent5, 21 November)
+
+The original p0 red13 key remains a possible source-selected *cipher IV* even though repeating it period13 was already rejected. A distinct fixed model extends that seed by the **previous ciphertext rune thirteen slots earlier**: `P_i=(C_i−K_i) mod29` for original i=0..12, then `P_i=(C_i−C_{i−13}) mod29` for all i=13..261. This is standard ciphertext autokey with the original 13-atom key only once. Unlike the earlier all-secret plaintext-autokey invariant, the ciphertext-feedback variant was not already covered by that family; it has a simple independently motivated same-13 dot geometry.
+
+With all 262 original p0 runes left in printed order, it reproduces the 13 candidate title runes `EPIPHANY SEECS` by construction, and **all** original ciphertext re-encrypts exactly. The untouched 249-rune body remains nonlinguistic, native-GP IoC **0.03578831455** (full decoded **0.03553566728**, raw original p0 **0.03430727384**), with no original word-boundary coherent plaintext. A synthetic 262-rune GP-native control planted with the same 13-rune source-derived seed and the authentic title re-encrypts and decodes exactly.
+
+The fixed operation was [precommitted](../workplace/agent5-p0-red13-ciphertext-autokey-precommit.md) `e611ba4` before inspecting derived body text; [read-only SFT](../sims/lp2_p0_red13_ciphertext_autokey_sft.cjs) `3070a4c` reproduces the complete original receiver and positive plant. The historical p56 plaintext-F bypass is **not** part of this test; do not treat direct failure as a theorem about arbitrary collision-aware ciphertext-feedback systems. The exact 13-lag seeded historical ciphertext autokey itself is retired pending a distinct authored opcode or key schedule.
+
 ## Reproduction
 
 Run:
