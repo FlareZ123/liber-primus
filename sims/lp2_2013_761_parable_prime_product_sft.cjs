@@ -63,27 +63,33 @@ const titlePrimeSum = titleUnits.reduce((sum, index) => sum + corpus.prime[index
 assert.equal(titlePrimeSum, historicalFilename);
 assert(isPrime(historicalFilename));
 
-// Archived 2013 onion TCP response controls are independently original-era.
-// count THE INSTAR EMERGENCE -> 761+
-// count PARABLE -> 449*
+// The original unsigned 7 Jan 2013 participant record and the later reconstructed
+// server walkthrough agree on numeric sums but reverse '+' and '*' markers.
 const printedParablePrimeSum = titleRuneIndices.reduce((sum, i) => sum + corpus.prime[i], 0);
 assert.equal(printedParablePrimeSum, 449);
 function reverseDecimal(n) {
   return Number(String(n).split("").reverse().join(""));
 }
-/** @param {number} n @returns {string} */
-function tcpCountSuffix(n) {
-  return !isPrime(n) ? "" : isPrime(reverseDecimal(n)) ? "+" : "*";
+/** @param {number} n @param {boolean} primary2013 @returns {string} */
+function tcpCountSuffix(n, primary2013) {
+  if (!isPrime(n)) return "";
+  return isPrime(reverseDecimal(n)) === primary2013 ? "*" : "+";
 }
 assert.equal(reverseDecimal(titlePrimeSum), 167);
 assert.equal(reverseDecimal(printedParablePrimeSum), 944);
-assert.equal(tcpCountSuffix(titlePrimeSum), "+");
-assert.equal(tcpCountSuffix(printedParablePrimeSum), "*");
-const archivedTcpResponses = {
-  "count the instar emergence": String(titlePrimeSum) + tcpCountSuffix(titlePrimeSum),
-  "count parable": String(printedParablePrimeSum) + tcpCountSuffix(printedParablePrimeSum)
+const primary2013Notation = {
+  "the instar emergence": String(titlePrimeSum) + tcpCountSuffix(titlePrimeSum, true),
+  "parable predicted": String(printedParablePrimeSum) + tcpCountSuffix(printedParablePrimeSum, true)
 };
-assert.deepEqual(archivedTcpResponses, {
+assert.deepEqual(primary2013Notation, {
+  "the instar emergence": "761*",
+  "parable predicted": "449+"
+});
+const laterReconstructedResponses = {
+  "count the instar emergence": String(titlePrimeSum) + tcpCountSuffix(titlePrimeSum, false),
+  "count parable": String(printedParablePrimeSum) + tcpCountSuffix(printedParablePrimeSum, false)
+};
+assert.deepEqual(laterReconstructedResponses, {
   "count the instar emergence": "761+",
   "count parable": "449*"
 });
@@ -95,7 +101,8 @@ console.log(JSON.stringify({
   historicalMP3Name: "761.mp3",
   titlePrimeSum,
   originalPrintedParableTitlePrimeSum: printedParablePrimeSum,
-  archivedTcpResponses,
+  primary2013Notation,
+  laterReconstructedResponses,
   historicalID3TextLabel: "Parable 1,595,277,641",
   originalPrintedLP2Page: 57,
   originalRunesTotal: 95,

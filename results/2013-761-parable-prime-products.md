@@ -1,52 +1,29 @@
-# A first-party numerical operation: 2013 audio metadata and the later clear LP2 Parable
+# Cicada 2013 prime-Gematria arithmetic: independent reproduction and source correction
 
-**Agent47, 21 November 2026. Established cross-artifact historical arithmetic; no unknown ciphertext recovered.** The archived Cicada OS 2013 audio artifact contains **two independent, exact Gematria Primus prime-weight calculations** that reappear in the clear 2014 book. These are stronger source evidence for a creator-designed numerical operation than postselected coincidences in unknown ciphertext. This is a reproducible author-era numerical clue, not a key or a decipherment for p0–55.
+**Agent47, 21 November 2026.** These author-era Gematria prime-sum and Parable-product relationships were **already documented in this repository** before this invocation. Here they are reproduced against all 95 original clear LP2 p57 rune indices and reconciled against **conflicting historical COUNT-marker sources**. No new p0–55 plaintext or creator key follows.
 
-## Independent 2013 historical witness
+## Historic input: 2013 CICADA OS MP3
 
-The preserved 2013 Cicada OS ISO has an audio file **`audio/761.mp3`** (4,010,732 bytes in the surviving archived extraction). Its archived ID3 metadata reads:
+[Original Cicada 2013 OS extraction](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/2013/002-3301/README.md) records `audio/761.mp3`, archived Git blob `7e2bd299fbc7b96283219cf15e2904641daf631f`, whose ID3 title is **The Instar Emergence** and whose ID3 user text labels the three-line Parable **1,595,277,641**. These metadata descriptions come from that independent extraction, not a fresh parse of the raw MP3 in this invocation.
 
-- `Title: The Instar Emergence`
-- `Artist: 3301`
-- `User Defined Text: (Parable 1,595,277,641) Like the instar, tunneling to the surface / We must shed our own circumferences; / Find the divinity within and emerge.`
+Original GP-prime transliteration (TH and ING each one rune) of the title **THE INSTAR EMERGENCE** sums to **761**, matching its 2013 filename. The 2014 clear printed LP2 p57 comprises a seven-rune PARABLE heading followed by original body clauses of 30, 30, and 28 runes. Their prime-weight sums are **1259**, **1031**, **1229**, each prime, with product **1259×1031×1229 = 1,595,277,641**. The original p57 heading sums to **449**. The complete underlying 95-rune stream is checked against the canonical original corpus in the test.
 
-The text is quoted here only as short metadata-bearing identification; the original is preserved in the [independent Cicada-solvers ISO extraction README](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/2013/002-3301/README.md). The original audio is preserved at [`2013/002-3301/3301-contents/audio/761.mp3`](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/2013/002-3301/3301-contents/audio/761.mp3), pinned by Git blob `7e2bd299fbc7b96283219cf15e2904641daf631f`; archived ExifTool output reports ID3 tag size206. The primary audio bytes were not independently downloaded in this invocation, so the metadata fields are grounded in that independent extraction, rather than a claim of our own raw ID3 parse. The independent [2026 external replication](https://github.com/pnotisdev/cicada3301/blob/main/work/log/phase46_todo_and_leads.md) independently identified the same source arithmetic.
+These values were already summarized in `results/README.md` under historical 2013 sources and elsewhere in previous November research. The contribution here is a second self-contained SFT and an explicit provenance correction for the markers, plus the separate bounded original-p50 RSA feasibility test.
 
-## Calculations from the untouched original 2014 runic page
+## Original 2013 participant convention versus later reconstruction
 
-Use the exact 29-rune GP transliteration and **prime weights**, with TH and ING as their own runes. The original clear LP2 physical **p57** is 95 rune symbols: seven for its title `PARABLE` and three complete subsequent punctuation-delimited clauses of **30, 30, 28** runes. Their source-exact sums are:
+The repository's [original 7 January 2013 participant COUNT paste](../im-results/cicada2013-count-AfndPJa0-original-response.md) says **THE INSTAR EMERGENCE → 761***. Under its convention `*` marks reversible primes (both n and its decimal reversal are prime), and `+` marks ordinary primes only. A second archived contemporary [IRC participant record and prior source audit](../im-results/lp2-count2013-primary-marker-direction-gate.md) independently supports that interpretation.
 
-| Source clause beginning | Original GP rune count | Sum of original GP prime values | Prime? |
-| --- | ---: | ---: | --- |
-| LIKE THE INSTAR… | 30 | **1,259** | Yes |
-| WE MUST SHED… | 30 | **1,031** | Yes |
-| FIND THE DIVINITY… | 28 | **1,229** | Yes |
+A **later 2022-era retrospective** [first-onion server walkthrough](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/2013/004-first-onion/README.md#commands) instead claims `count the instar emergence → 761+` and `count parable → 449*`, with **reversed markers**. The PARABLE command is absent from the primary January 2013 paste. No cryptographically authenticated original server response settles the marking scheme. The earlier participants may also have supplied their own suffixes, so even the original paste must not be treated as a direct creator-authenticated machine transcript.
 
-**1,259 × 1,031 × 1,229 = 1,595,277,641**, precisely the numerically labeled 2013 ID3 Parable. This is the exact original pre-LP2 artifact-to-LP2 operation, with all 88 body runes consumed and no key/word fit.
+The calculations are unaffected: 761 and reversal167 are prime; p57 PARABLE has prime sum449 and reversal944 is composite. Thus the **original participant convention** gives observed 761* and **predicted** 449+; the **later walkthrough** gives reported 761+ and 449*. Our SFT asserts both source-specific presentations independently rather than merging them into a false single first-party contract.
 
-The same source-author numerical language supplies an independent second calculation. Parse the 2013 track's Latin-letter title **THE INSTAR EMERGENCE** with the exact published GP digraphs (TH as one rune). Its Gematria prime sum is **761**, identical to the independently named `761.mp3` file; 761 is prime. The two independent matches share the same author-used rune/prime mapping: the title is a **sum**, and the Parable index is a **product of three clause sums**. There is no conflicting delimiter, index origin, or arbitrary parameter.
+The later reconstruction also reports a `number` service factoring composites. It is mathematically plausible that a 2013 human could use that to factor the Parable ID3 label into its three 2014 verse sums, but no contemporary invocation `number 1595277641` was found; **this route remains reconstructed**, with no instruction mapping it to ciphertext.
 
-## The author-era TCP server explicitly implements the operation
+## Cryptanalytic decision
 
-The independently preserved [2013 Cicada first-onion server command transcript](https://github.com/cicada-solvers/neuroretransmit-cicada/blob/main/2013/004-first-onion/README.md#commands) provides a **direct historical executable instruction and output**, stronger than a retrospective fit to the audio filename. Its interface lists `count [phrase]` and `number [number]`. The `count` command sums prime-weight Gematria values, then prints `+` when the sum and its decimal reversal are both prime, or `*` when the sum is prime but its reversal is composite. The archived literal original interaction reads:
+The author-era numeric grammar of prime-weight summation and multiplication is historically grounded, but this is **previously established** contextual information and does not specify an original-cipher inverse. The marker confusion must not be converted into a keyed ± direction system, especially since the exact source-primary carried-direction model has already been tested on **174,700,160 original LP2 decodes** without a plaintext survivor ([earlier decision](../im-results/lp2-count2013-primary-marker-direction-gate.md)).
 
-```text
-count the instar emergence
-761+
-count parable
-449*
-```
+A genuinely new route must identify a first-party instruction selecting target page, boundary, key state and reversible operation. Source sums and their products are usable as independent *plaintext verification properties* after a fixed decoder exists.
 
-Both first-party transcripts are independently reproduced by the original runic arithmetic, including the exact signs: **761 and its decimal reversal 167 are prime**, while the GP-prime sum of the seven-rune printed LP2 p57 title **PARABLE** is **449**, a prime whose reversal **944 is composite**. The value `761+` is a **recorded positive command result**, so the operation no longer depends on inferring intent from filename matching alone. The printed command's `number` branch factors composites; it supplies a historically plausible, executable 2013 route from the audio's labeled number **1,595,277,641** to its three prime factors **1,259, 1,031, 1,229**, and the written Parable clauses independently confirm those exact factors. No direct historical interaction invoking `number 1595277641` has been located, so this last step is a reconstruction of the documented interface, not a claimed preserved server response.
-
-The server transcript was collected in a solver archive, not retrieved from a live 2013 server or cryptographically authenticated in this invocation. It is an **independent recorded author-era behavior** and an exact repeatable known-operation control, subject to that provenance distinction. The 2014 clear text may deliberately re-use the 2013 already-published text; the repeated match alone does not add a new independent plaintext source.
-
-## Cryptanalytic implications and limit
-
-- **Confirmed creator habit:** GP prime sums of meaningful text, including prose clauses and titles, and products of those sums, were deliberate numeric objects in the earlier Cicada path. This informs which operations are historically worth attempting when the original manuscript supplies a sentence/word selector.
-- **Credible output oracle, with calibration needed:** A proposed unknown-page decryption that reproduces authentic clause boundaries and multiple prime-sum clauses gains independent corroboration if the decoder and source key were fixed first. This property is **not itself a cipher** and cannot choose among arbitrary outputs.
-- **No automatic key handoff:** The printed 2013 number `1595277641`, the three primes, and 761 were available before the 2014 book. They are concrete source-selected values, but neither the 2013 metadata nor p57 specifies a target LP2 ciphertext page, per-rune cipher, transformation, or phase. They must not be silently promoted to a PRNG seed or p0 key.
-
-The surviving issue is specific: discover a first-party clue connecting this **now authenticated numeric grammar** to one original unsolved ciphertext recipient and a reversible operation. Pure numerical matching alone remains insufficient.
-
-**Reproduce without external packages:** [Node 22 CJS test of all original p57 runes, both metadata numbers, and two period-authored TCP server count outputs](../sims/lp2_2013_761_parable_prime_product_sft.cjs); source data `resources/liber-primus/lp2-corpus.json` and `resources/liber-primus/lp2-transcription.txt`. [Manual-only Windows workflow](../.github/workflows/agent47-2013-parable-primes-manual.yml). The test checks 95/95 original page indices, all three original clause boundaries, sums, primality, exact product, and the title 761 computation, the original p57 PARABLE title449, and the server's 761+/449* prime-and-reverse-prime suffix rules. ID3 transcription is a frozen external source input; test does not parse MP3 binary.
+**Reproduction:** [Node22 CommonJS SFT](../sims/lp2_2013_761_parable_prime_product_sft.cjs) and [Windows manual workflow](../.github/workflows/agent47-2013-parable-primes-manual.yml); input `resources/liber-primus/lp2-corpus.json` and `resources/liber-primus/lp2-transcription.txt`; historical number/marker inputs explicitly frozen from separate archives. This does not parse MP3 bytes.
