@@ -41,7 +41,7 @@ This offers a constrained *candidate* human source route: the two historical 5×
 
 ## Unique internal prime convergent: a source-only p50 row/factor selector
 
-A stronger selection criterion is available before using any encrypted LP2 rune or numeric table. The original solved LP1 text says **THE PRIMES ARE SACRED**, and the first-release OpenPuff password fixes the exact ratio order as `3301/1033`. Within its eight regular continued-fraction convergents, there is **exactly one strictly internal convergent with both numerator and denominator prime**: the third, **131/41**. The two endpoints 3301/1033 are also primes, but excluded by the prespecified *internal* criterion.
+A stronger selection criterion is available before using any encrypted LP2 rune or numeric table. The original solved LP1 text says **THE PRIMES ARE SACRED**, and the first-release OpenPuff password fixes the exact ratio order as `3301/1033`. Within its eight regular continued-fraction convergents, there is **exactly one strictly internal convergent with both numerator and denominator prime**: the third, **131/41**. The two endpoints 3301/1033 are also primes, but excluded by the retrospectively formulated *internal* criterion.
 
 The ordinary one-based prime-enumeration operations on this unique prime/prime pair produce two independent original LP2 table features without using them as selection inputs:
 
@@ -52,7 +52,7 @@ prime_ordinal(131)  = 32    ->  original p50's 32 physically printed rows
 prime_at_ordinal(41)= 179   ->  original p50 integer factor: v179(N)=2
 ```
 
-The number **131** is also written twice in the original first-release p5 source square. The computed **179** reappears two positions later as a regular continued-fraction denominator, then **225** immediately after it matches the source-annotated red-rune count, and physical p53 alone contains exactly179 cipher runes. This is the strongest **standalone source-selected numeric candidate** in this report: a single prime/prime convergent naturally yields **both the layout and the special factor of the unmodified p50 table**.
+The number **131** is also written twice in the original first-release p5 source square. The computed **179** reappears two positions later as a regular continued-fraction denominator, then **225** immediately after it matches the source-annotated red-rune count, and physical p53 alone contains exactly179 cipher runes. This is the strongest **standalone source-based numeric candidate** in this report: a single prime/prime convergent naturally yields **both the layout and the special factor of the unmodified p50 table**.
 
 The prime/prime criterion and prime-ordinal projections were identified **retrospectively** while 32, 179 and 225 were already visible in repository research. The matching values are exact and independently reproduced, but this is not a valid blinded creator-intent test; it does not identify an original instruction to apply continued fractions, nor does it specify the reversible GP29 plaintext cipher. The one-off selection should be treated as a hypothesis for *which artifact to inspect next*, never as a solved page.
 
