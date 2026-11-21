@@ -61,8 +61,13 @@ This score is a diagnostic rather than a proof that no other mechanism exists. I
 
 ## Decision and missing selector
 
-The strongest rival is that the red span is simply a heading, while the 13-dot mark closes a section. That account requires no unobserved cipher machinery and is consistent with the historical solve-path pattern: earlier stages supplied a clue that selected the operation and its native operands.
+Two bounded red-heading consumers have now been tested independently:
 
-The missing selector is exact: no player-visible source says to use Vigenère, to treat the encrypted p8 heading as its key, to subtract rather than apply another operation, to run one continuous 12-rune clock, or to decrypt the p8–p14 body as the receiver. The 2016 “words/map/meaning/numbers/direction” instruction does not supply those choices.
+1. The original repeating GP29 Vigenère candidate, using the 12-rune p8 red span as its key, is negative (the preceding sections document the frozen operation and language-model controls).
+2. A separate standard 12-column transposition candidate uses the same 12-rune heading as a stable-rank key. The 1,717-rune p8–p14 body has 144 rows with one extra cell in column 0. Both ascending/descending rank and forward/reverse key-source order were tested, together with the standard transform and its inverse. All exact round-trips pass, but no output is plaintext; see lp2-p8-p14-red-heading-columnar-gate.md and sims/lp2_p8_p14_red_heading_columnar_gate.cjs.
 
-**Retire this candidate and close Issue #1990 under its negative completion criterion.** Do not reopen red-heading Vigenère with alternate phases, resets, or signs, and do not launch generic substitution/transposition/steganography menus. Reopen the region only if an independent source supplies the missing operation and receiver. No unknown plaintext, authentic key, original-cipher inverse, or destination was recovered.
+The columnar test is a single, source-aligned operation motivated by the 12-symbol heading and 12-column body fit, not a generic transposition sweep. Its best bigram score remains far below the clear p57 control. Do not expand into arbitrary column permutations, route transpositions, alternate resets, or additional cipher menus.
+
+The strongest rival remains that the red span is simply a heading and the 13-dot mark closes the section. Earlier solve paths generally supplied a clue that selected both the operation and its native operands. Here the red heading and body length suggest a finite candidate, but neither candidate recovers plaintext or establishes an authentic key.
+
+No unknown plaintext, authentic key, original-cipher inverse, or destination was recovered. Reopen the region only if an independent source supplies a new operation or receiver.

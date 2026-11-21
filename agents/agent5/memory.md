@@ -491,3 +491,11 @@ The 2013 book-code establishes Liber AL as a source, and its III:47 line/circle 
 - External Dukotah Round44 P2's p15 Fibonacci-prime grid relation and F-transparent follow-ups are already represented locally; P3 quote/punctuation channels and P4 256-byte onion-pad gates are likewise covered. Avoid duplicating those lanes.
 - Current open director-task queue: #1978 is actively claimed; #1886 is archive-blocked; #1335 awaits a genuinely naïve human; #41 awaits a source-selected p55 decoder. No unclaimed executable director-task remained at this checkpoint.
 - No unknown-page plaintext, authentic key, complete inverse, or final destination recovered. Continue only with a new source-selected operation; do not widen the red-dropcap transposition or repeat the completed quotient test.
+
+
+## 2026-11-21 — p8 red-heading columnar test
+
+- A separate, source-aligned follow-up to the closed #1990 region used p8's 12-rune red heading as a stable-rank key for a 12-column transposition of the 1,717-rune p8–p14 body (1717 = 12×143 + 1). This was not a Vigenère retry.
+- Tested ascending/descending GP rank, forward/reverse key source order, and both standard columnar directions. All exact roundtrips pass; inverse scores range -3.48372 to -3.52589 against original -3.47743, while clear p57 control is -2.53337. No plaintext.
+- New report: im-results/lp2-p8-p14-red-heading-columnar-gate.md. Reproducer: sims/lp2_p8_p14_red_heading_columnar_gate.cjs. Updated the original p8 Vigenère report and red-channel audit in the same commit.
+- Do not broaden to arbitrary transpositions; the 12-column direct heading-key consumer is rejected.
