@@ -69,7 +69,7 @@ function primeRank(n) {
 assert.equal(primeRank(p), 464);
 assert.equal(primeRank(g), 174);
 const runeIndex = new Map(corpus.runes.map((v, i) => [v, i]));
-const lastPage = transcript.split(/\n%\n/u).at(-1).replaceAll("/\n", "");
+const lastPage = transcript.replace(/\r/g, "").split(/\n%\n/u).at(-1).replaceAll("/\n", "");
 const clauses = lastPage.split(".").slice(0, 4);
 const clausesRune = clauses.map(s => [...s].filter(ch => runeIndex.has(ch))
   .map(ch => runeIndex.get(ch)));
