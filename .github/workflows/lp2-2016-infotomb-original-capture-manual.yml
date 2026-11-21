@@ -1,0 +1,32 @@
+name: LP2 2016 InfoTomb original-host capture audit
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-source-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out research repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate the offline parser and source contract
+        run: |
+          node --check sims/lp2_2016_infotomb_original_capture_sft.cjs
+          node sims/lp2_2016_infotomb_original_capture_sft.cjs --selftest
+      - name: Query the cited Wayback capture and exact 2016 Common Crawl indexes
+        run: node sims/lp2_2016_infotomb_original_capture_sft.cjs
+      - name: Preserve exact index metadata and any recovered original bytes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: infotomb-2016-original-host-capture
+          path: infotomb-2016-original-recovery/
+          if-no-files-found: warn
