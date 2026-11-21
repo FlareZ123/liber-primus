@@ -39,7 +39,7 @@ Invert by respectively raising original ciphertext symbols to19 and3 before usin
 
 Body means the 243 original black p8 rune positions after twelve red heading runes. All six values remain near the uniform-GP29 IoC of1/29≈0.034483; the original clear-p57 control has IoC≈0.062710. None yields a readable continuous plaintext in its original source order. Example of the cube inverse's first decoded 37 indices for the leading-p7 alignment, rendered as GP transliterations: `X X E O N G E T A N Y IA OE D P L AE G S H T IA A R P C F C TH B J U T U G U NG`. These are encoded outputs, not decoded English words.
 
-The exact original source inputs, all cycle checks, both input alignments, three fixed operators, full forward re-encryption and solved-p57 synthetic plants are implemented in [the read-only Windows Node22 SFT](../sims/lp2_p8_p50_pointer_sum_cube_inverse_sft.cjs). No claimed decoding of the entire LP2 manuscript is made.
+The exact original source inputs, all cycle checks, both input alignments, three fixed operators, full forward re-encryption and solved-p57 synthetic plants are implemented in [the read-only Windows Node22 SFT](../sims/lp2_p8_p50_pointer_sum_cube_inverse_sft.cjs), executed successfully against the committed original corpus in [Windows Actions run 44949543398](https://github.com/FlareZ123/liber-primus/actions/runs/44949543398). No claimed decoding of the entire LP2 manuscript is made.
 
 ## Research decision
 
