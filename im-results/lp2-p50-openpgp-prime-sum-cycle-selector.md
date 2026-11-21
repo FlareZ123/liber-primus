@@ -50,7 +50,7 @@ The 11+2 coda split and the “Beware false paths” wording may describe the 11
 
 Run from the repository root with Node.js; no dependencies:
 
-\`\`\`js
+```js
 const fs = require("node:fs");
 const grid = JSON.parse(fs.readFileSync("resources/liber-primus/lp2-grid-256.json","utf8"));
 const corpus = JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json","utf8"));
@@ -93,6 +93,6 @@ console.log(JSON.stringify({
   base59At249: {token:tokens[249], value:T59[249]},
   records
 }, null, 2));
-\`\`\`
+```
 
 **Decision:** treat this as a source-constrained base60/functional-graph selector candidate. The next useful test is not another unconstrained radix search; it is an independent, blind check that the original p50 tree/dot illustration or the 2016 coda layout selects the same 2-cycle/11-cycle interpretation. Even if confirmed, a separate reversible operation is still required to recover LP2 plaintext.
