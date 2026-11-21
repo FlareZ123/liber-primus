@@ -76,6 +76,66 @@ function parseInvitationTrace(lines, i) {
   throw new Error("invitation client share missing");
 }
 
+function modPow(base, exponent, modulus) {
+  let result = 1n;
+  let b = BigInt(base) % BigInt(modulus);
+  let e = BigInt(exponent);
+  const m = BigInt(modulus);
+  while (e > 0n) {
+    if (e & 1n) result = (result * b) % m;
+    b = (b * b) % m;
+    e >>= 1n;
+  }
+  return result;
+}
+
+function modInverse(value, modulus) {
+  let oldR = BigInt(value);
+  let r = BigInt(modulus);
+  let oldS = 1n;
+  let s = 0n;
+  while (r !== 0n) {
+    const q = oldR / r;
+    [oldR, r] = [r, oldR - q * r];
+    [oldS, s] = [s, oldS - q * s];
+  }
+  assert.equal(oldR, 1n, "modular inverse requires coprime values");
+  return ((oldS % BigInt(modulus)) + BigInt(modulus)) % BigInt(modulus);
+}
+
+function discreteLogBsgs(base, target, modulus, order) {
+  const g = BigInt(base);
+  const h = BigInt(target);
+  const p = BigInt(modulus);
+  const n = BigInt(order);
+  const m = BigInt(Math.ceil(Math.sqrt(Number(n))));
+  const baby = new Map();
+  let value = 1n;
+  for (let j = 0n; j < m; j += 1n) {
+    baby.set(value.toString(), j);
+    value = (value * g) % p;
+  }
+  const giantFactor = modPow(modInverse(g, p), m, p);
+  let gamma = h;
+  for (let i = 0n; i <= m; i += 1n) {
+    const j = baby.get(gamma.toString());
+    if (j !== undefined) {
+      const candidate = i * m + j;
+      if (candidate < n && modPow(g, candidate, p) === h) return Number(candidate);
+    }
+    gamma = (gamma * giantFactor) % p;
+  }
+  throw new Error("discrete logarithm not found within asserted group order");
+}
+
+function isPrime(n) {
+  if (!Number.isSafeInteger(n) || n < 2) return false;
+  for (let d = 2; d * d <= n; d += 1) {
+    if (n % d === 0) return false;
+  }
+  return true;
+}
+
 const files = walk(root).filter(full => {
   const rel = path.relative(root, full).replaceAll("\\", "/");
   return rel.startsWith("2013/") || /^irc-logs\/clientlog-.*\.txt$/u.test(rel);
@@ -158,6 +218,47 @@ assert.deepEqual(
 );
 assert.deepEqual(partial.map(hit => hit.clientPublic), [3034, 3034]);
 
+const fileSizeExchange = complete.find(hit => hit.modulus === 118818811);
+assert.ok(fileSizeExchange, "January 118818811 DH exchange missing");
+assert.deepEqual(
+  [
+    fileSizeExchange.base,
+    fileSizeExchange.serverSecret,
+    fileSizeExchange.serverPublic,
+    fileSizeExchange.clientPublic,
+    fileSizeExchange.shared
+  ],
+  [65551251, 65974449, 76477436, 123, 8686271]
+);
+
+const pFile = 118818811;
+const gFile = 65551251;
+const bFile = 65974449;
+const clientPublicFile = 123;
+const sharedFile = 8686271;
+assert.ok(isPrime(pFile), "file-size modulus must be prime");
+const pMinusOneFactors = [2, 3, 5, 11, 257, 467];
+const factorProduct = 2n * 3n ** 2n * 5n * 11n * 257n * 467n;
+assert.equal(factorProduct, BigInt(pFile - 1), "p-1 factorization");
+for (const q of pMinusOneFactors) {
+  assert.notEqual(
+    modPow(gFile, BigInt((pFile - 1) / q), pFile),
+    1n,
+    "base must have full multiplicative order"
+  );
+}
+const fileBaseOrder = pFile - 1;
+const clientExponentFile = discreteLogBsgs(
+  gFile,
+  clientPublicFile,
+  pFile,
+  fileBaseOrder
+);
+assert.equal(clientExponentFile, 44073865);
+assert.equal(modPow(gFile, clientExponentFile, pFile), BigInt(clientPublicFile));
+assert.equal(modPow(gFile, bFile, pFile), BigInt(fileSizeExchange.serverPublic));
+assert.equal(modPow(clientPublicFile, bFile, pFile), BigInt(sharedFile));
+
 const explicitClientShares = [...complete, ...partial].map(hit => hit.clientPublic);
 assert.equal(explicitClientShares.filter(value => value === 2800).length, 1);
 
@@ -177,5 +278,18 @@ console.log(JSON.stringify({
   partial,
   status,
   protocolExamples: examples,
-  conclusion: "2800 is unique among preserved explicit client-share records in this pinned 2013 corpus"
+  fileSizeDhDerivation: {
+    modulus: pFile,
+    modulusIsPrime: true,
+    pMinusOneFactorization: "2 × 3^2 × 5 × 11 × 257 × 467",
+    base: gFile,
+    baseOrder: fileBaseOrder,
+    clientPublic: clientPublicFile,
+    uniqueClientExponent: clientExponentFile,
+    serverSecret: bFile,
+    serverPublic: fileSizeExchange.serverPublic,
+    sharedValue: sharedFile,
+    verified: true
+  },
+  conclusion: "2800 is unique among preserved explicit client-share records; the January 118818811 session also yields a unique client exponent because its participant-selected base is a primitive root modulo the file-size prime"
 }, null, 2));
