@@ -89,6 +89,7 @@ function matchRange(arr,start,end,n){
 }
 function flags(arr){
  return {
+  first3:matchRange(arr,0,2,250),
   first8:matchRange(arr,0,7,148),
   first15:matchRange(arr,0,14,198),
   cuneiform7:matchRange(arr,33,39,155),
@@ -127,6 +128,8 @@ counts.tripleWithTree=0;
 counts.signedPair=0;
 counts.redAndSigned=0;
 counts.redSignedAndVisual=0;
+counts.quadruple=0;
+counts.quadrupleWithRedAndSigned=0;
 let completed=0;
 function enumerate(depth){
  if(depth===choiceNodes.length){
@@ -134,6 +137,9 @@ function enumerate(depth){
   completed++;
   for(const key of Object.keys(fixed))counts[key]+=Number(q[key]);
   const triple=q.first8&&q.first15&&q.cuneiform7;
+  const quadruple=triple&&q.first3;
+  counts.quadruple+=Number(quadruple);
+  counts.quadrupleWithRedAndSigned+=Number(quadruple&&q.redP15Cell&&q.directionHeading40&&q.tree32);
   counts.triple+=Number(triple);
   counts.tripleWithSignedDirection+=Number(triple&&q.directionHeading40);
   counts.tripleWithTree+=Number(triple&&q.tree32);
