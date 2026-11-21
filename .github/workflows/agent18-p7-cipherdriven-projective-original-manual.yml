@@ -19,3 +19,6 @@ jobs:
 
       - name: Test five-ciphertap GF29 full-hidden-key original long words
         run: node sims/lp2_p7_five_cipher_taps_allsecret_longword_sft.cjs
+
+      - name: Test five-plaintext-tap autokey exact original long words
+        run: node sims/lp2_p7_five_plain_taps_allsecret_longword_sft.cjs
