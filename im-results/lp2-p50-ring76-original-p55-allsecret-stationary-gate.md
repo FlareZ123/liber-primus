@@ -1,6 +1,6 @@
 # Original p50 perimeter → p55: stationary-map and value-rank inversion gates
 
-**Status (19 November 2026):** exact all-secret exclusion of stationary symbol mappings and full-ring value-rank transpositions remains intact. A fixed carry-aligned nested-shed extension reproduces 76→75→43→23 but its direct arithmetic, 43-word book-map and GP0-key consumers fail; no recovered unknown LP2 plaintext, historical key or complete decoder. [Stationary-map SFT](../sims/lp2_p50_ring76_stationary_map_allsecret_sft.cjs) · [Value-rank SFT](../sims/lp2_p50_ring76_rank_transposition_sft.cjs) · [Earlier original 76/180 partition and direct-key tests](lp2-p50-76-perimeter-180-interior-source-partition.md).
+**Status (19 November 2026):** exact all-secret exclusion of stationary symbol mappings and full-ring value-rank transpositions remains intact; a newly fixed anti-repeat collision-keyskip test also fails to recover plaintext despite exact source-native planted recovery. A fixed carry-aligned nested-shed extension reproduces 76→75→43→23 but its direct arithmetic, 43-word book-map and GP0-key consumers fail; no recovered unknown LP2 plaintext, historical key or complete decoder. [Stationary-map SFT](../sims/lp2_p50_ring76_stationary_map_allsecret_sft.cjs) · [Value-rank SFT](../sims/lp2_p50_ring76_rank_transposition_sft.cjs) · [Earlier original 76/180 partition and direct-key tests](lp2-p50-76-perimeter-180-interior-source-partition.md).
 
 ## Source-selected input and proposed use
 
@@ -50,6 +50,24 @@ The existing p50-ring SFT now reproduces this construction and tests base59/base
 The newer canonical source-number route interprets the signed43-word message as page/word coordinates, not as this direct per-letter book map; see lp2-direction-seek-you-numbered-route.md. That separate route does not rehabilitate the failed p50-ring/p55-letter-index mapping.
 
 **Decision:** preserve the 76→75→43→23 equality as structural geometry only. It does not identify a key or reversible consumer. Do not widen this into arbitrary ring starts, word offsets or further ciphers without an independent author-selected selector. The p55 23-register receiver remains missing.
+
+## Source-frozen collision-keyskip perimeter inverse (Agent12, 21 November 2026)
+
+The earlier 76-cell outer-perimeter GP29 additive tests and stationary/rank experiments did **not** permit key consumption to advance on a would-be repeated ciphertext rune. That matters because the original unknown LP2 ciphertext has a pronounced adjacent-repeat deficit, while conventional one-to-one additive decryption can score genuine planted keys poorly if the collision-handling rule is omitted. This test makes a distinct, source-constrained decision on the same natural 76-cell perimeter/p55 pairing without repeating the earlier direct-pad calculations.
+
+**Fixed source-to-receiver path:** use original printed p49–51 32x8 tokens; retain the already proposed drop-f base59 reading associated with p57 SHED; walk the outer 76 cells clockwise starting at the top left; take each base59 decoded integer modulo29 as a cyclic key; address the complete original 76-rune p55 in physical order from phase0. The only arithmetic alternatives are the two GP29 additive signs. The reusable collision-aware Viterbi inverse may reject **at most one key draw per rune**, and only if it would have produced the immediately preceding ciphertext rune; extra draw penalty 3.5, total latent skip cap 34. No key start, ring direction, matrix, offset or plaintext crib is fitted. The hypothesis here does not implement the separate solved-p56 plaintext-F bypass, so its exclusion is restricted to the specified model.
+
+| Original p55 decoder | Best GP trigram log score per rune | Viterbi key skips |
+| --- | ---: | ---: |
+| C = P + K (sign +1) | -5.825535 | 2 |
+| C = P - K (sign -1) | -6.090226 | 2 |
+| Authentic solved p57 clear 76-rune reference | -2.622892 | N/A |
+
+The +1 result renders as GP transliteration starting **AUFUIAXNHPTYUGIRIREJCRFBDD** and is nonlinguistic. A source-native p57 76-rune plant encrypted under the exact ring and one actual collision rejection is recovered **76/76**, and the Viterbi traceback identifies that one skip. On the unchanged original p55, **151 of 256 deterministic shuffled-ring nulls outperform the better of the two original signs** (null median -5.752403; best -5.007332; observed -5.825535). The observed best has no evidence of key specificity or authentic language recovery.
+
+**Decision:** the particular source-selected p50 base59 outer ring is rejected as a repeating GP29 additive p55 key with this one-collision optional key rejection. The rejection-aware positive control eliminates rigid-stream misalignment as the explanation for the poor original score under this rule. A different author-selected cipher operation, nonadditive transport, glyph-F convention or receiver remains untested, without license for arbitrary key-phase or ring sweeps.
+
+Read-only [source-locked CJS SFT](../sims/lp2_p50_ring76_p55_collision_skip_sft.cjs), [Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44940082121) on commit 0ce160ece34c264bb44965e2c3b981b4187f36b1.
 
 ## Interpretation and decision
 

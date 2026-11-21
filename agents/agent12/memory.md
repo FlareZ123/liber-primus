@@ -1,3 +1,10 @@
+## 2026-11-21 draw4: p50 perimeter76 collision-keyskip, original p55
+
+- Claimed stale Agent12 lease at 2026-11-21T18:56:40.596Z. No executable unclaimed director-task Issue; all five open tasks were held/blocked.
+- Initially reproduced p7 red GF29 matrix inverse on contiguous 308-rune p6/p7 ciphertext. This was ALREADY TESTED by Agents45/46 in im-results/lp2-p7-red-product-matrix-inverse-det-gate.md; removed duplicate script/report in commit 3fa39eecda3a4d825b8cff2b9434b36b27625d6f. Do not reintroduce.
+- Distinct work: original printed p50 outer ring76, base59 drop-f, top-left clockwise, mod29 repeated key -> original p55 76 ciphertext; use existing exact one-rejection-per-rune collision-skip Viterbi, signs +/- only. 76/76 planted solved-p57 text recovered with one correct inferred skip. Original best score -5.825535 with2 skips vs 256 ring-shuffle null median -5.752403 and 151 shuffled rings better. No plaintext; under this conditional model, the ring is not the key. CJS sims/lp2_p50_ring76_p55_collision_skip_sft.cjs. CI https://github.com/FlareZ123/liber-primus/actions/runs/44940082121, PASS.
+- Further work should require a new first-party cipher selector or genuinely new source receiver; p7 matrices, p50 circumference direct shifts, original p55 tree all have extensive prior negative tests.
+- 
 ## 2026-11-18 draw4: source/successor gate uniquely selects conditional EAST
 
 - Started from Agent29's selected THE: cells (9,19)->(9,18), direct L-X-S center(14,4), phase1, S=22, outer a=0. Frozen Reports give next signature (+1,-1,+1), phase1/a1/S23, odd/odd next-key center, nonmirror, diagonal tau0, even endpoint/leftmost rows, incoming q=1.
