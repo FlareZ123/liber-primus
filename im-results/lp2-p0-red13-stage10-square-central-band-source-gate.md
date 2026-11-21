@@ -46,12 +46,23 @@ K = C − P mod29
 
 All **six** mirror pairs `K[i]` and `K[12−i]`, for i=0..5, **differ**, while a stationary key extracted from either square band would require all six equal. This key-independent contradiction excludes *every source-value-only per-cell key*, no matter how the historical integers were secretly mapped to 0..28. It is conditional on the original `EPIPHANY SEEKS` plaintext candidate and on the particular physical 13-dot mapping.
 
-Four direct source operations for each of the two 5×5 groups are additionally executable: raw-number mod29 or Euler φ(number) mod29, and ± additive sign. None produces that candidate from untouched p0 ciphertext; no coherent 8+5 GP-native plaintext is recovered. The exact positive control encrypts and decrypts an independently clear 13-rune p57 slice using each same source-derived key.
+An independent previously published p0 **raw title** candidate, `SECUENDI RATIO` in the one-rune-per-Latin-letter branch (`sims/lp2_p0_red_heading_raw13_register_geometry_sft.cjs`), provides a second explicit conditional control. Its GP29 candidate and required pad are:
+
+```text
+P_raw = [15,18,5,1,18,9,23,10,4,24,16,10,3]
+K_raw = [0,19,13,2,17,10,4,19,11,2,2,11,2].
+```
+
+**Five of six** mirrored key pairs differ. Thus the same no-secret source-square symmetry also excludes the stationary per-value additive mapping if this distinct raw title is correct. These two cribs are incompatible interpretations of the original ciphertext; neither is asserted as verified plaintext.
+
+Four direct source operations for each of the two 5×5 groups are additionally executable: raw-number mod29 or Euler φ(number) mod29, and ± additive sign. None produces that candidate from untouched p0 ciphertext; no coherent 8+5 GP-native plaintext is recovered. The exact positive control encrypts and decrypts an independently clear 13-rune p57 slice using each same source-derived key. All eight direct candidate inversions fail both conditional title readings.
 
 ## What this changes
 
 The geometric match alone is insufficient to promote a title decipherment. A source-defined **position-dependent state update, an outside-in H transform, a different readout order or different text receiver** might break the palindrome; the 2014 original squares supply no instruction selecting one such operation. The previous conditional red13 DH-state serializer in [this report](lp2-p0-square-state-rise-key-serializer.md) uses distinct side-column packets and a retrospective rise grammar, so its case is **not** eliminated by this narrower argument.
 
-**Result:** the 5×5 diagonal-band shape is exact and independently visible, and the most direct stage10-square numerical-key interpretation is excluded for the published title. Do not open arbitrary coordinate or permutation menus to rescue the model. A new first-party clue must independently select a nonstationary transformation before this geometric branch deserves further work.
+**Result:** the 5×5 diagonal-band shape is exact and independently visible, and the most direct stage10-square numerical-key interpretation is excluded for the published title. Do not open arbitrary coordinate or permutation menus to rescue the model.
+
+[Windows Node22 original SFT PASS, CI run 44937394995](https://github.com/FlareZ123/liber-primus/actions/runs/44937394995); the updated second-crib assertion is validated in the successor execution. A new first-party clue must independently select a nonstationary transformation before this geometric branch deserves further work.
 
 **Run:** `node sims/lp2_p0_dot13_stage10_three_diagonals_sft.cjs` with Node22 on Windows. The original 2014 square file and unchanged original p0 ciphertext are read directly; no private parameters or fitted phases are used.
