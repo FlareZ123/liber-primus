@@ -60,6 +60,8 @@ The procedure text says the participant server chooses its own base and secret f
 
 The 26 January DH 118818811 record is irc-logs/clientlog-1359224026-2.txt: 1,759 bytes, Git blob SHA-1 8c0a93d7d620c35805d9be71206d593df8e15dca, raw SHA-256 6d70a085df5909fd72a64490066c3453f345a87ff23adc2d36efe2208cdb41cd. It first entered the community archive in unsigned commit f403afb9e6db2a2fb3825c7b4801c2af0ddd7228 (24 April 2024), retained in pinned commit ade9a02889ef8acbc8cde8edbfd0a785c369f4c3 (3 May 2024). The embedded 2013 timestamp is therefore not independently authenticated by archive custody. Its unique client exponent 44073865 is derived by discrete log; it is not printed. The full ten-file census and raw hashes are in the live-test vector index. The January exchange has no NEXT; the client supplies p and its public share, while the participant server selects the base and secret. This is a participant-side session, not an LP2 key handoff.
 
+The separate March 2013 record's modulus 3301 is consistent with the independently source-selected numeral/page-pair route, but this does not source-select its client share 2800 or returned shared value 1067 as an LP2 key. The p57-to-p50 bridge to 2800 remains conditional on zero-based row-major and inner-to-outer reading; #1565 leaves the order symmetry unresolved, and #1576 found no independent pre-May-2014 exact-field witness. The participant log is the only exact 2800/1067 record, and it is not signed as a whole.
+
 The example also sits in the specification beside analogous examples for WELCOME, RAND, QUINE, BASE29, CODE, KOAN, NEXT and GOODBYE. No source emphasis such as “remember these numbers” was found.
 
 ## Cross-year bridge audit

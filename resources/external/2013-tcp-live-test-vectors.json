@@ -75,7 +75,7 @@
           179
         ]
       },
-      "provenanceNote": "The protocol requires the participant server to select the DH base and server secret. Those values, its public share, and the resulting shared key therefore depend on participant-side randomness. The request arguments 1033 and 3301 are the stable organizer-side test values. The exact seven RAND response bytes are transcribed in observed.randResponses/randByteSequence; they are participant-session outputs, not organizer-selected key material.",
+      "provenanceNote": "The protocol requires the participant server to select the DH base and server secret. Those values, its public share, and the resulting shared key therefore depend on participant-side randomness. The request arguments 1033 and 3301 are the stable organizer-side test values. The exact seven RAND response bytes are transcribed in observed.randResponses/randByteSequence; they are participant-session outputs, not organizer-selected key material. The client public share 2800 is observed only in this participant-preserved log; the signed protocol says the client supplies it but does not identify/authenticate that client, and no independent pre-May-2014 exact-field witness has been recovered.",
       "archiveRecord": {
         "path": "irc-logs/clientlog-1362290293-9.txt",
         "rawUrl": "https://raw.githubusercontent.com/neuroretransmit/cicada/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/irc-logs/clientlog-1362290293-9.txt",
@@ -273,7 +273,7 @@
       "serverBaseOrderVerified": true,
       "clientExponentDerivation": "Baby-step/giant-step reproduces the unique exponent 44073865 because the logged server base has order p-1."
     },
-    "lp2SelectorStatus": "No LP2 selector for the January modulus 118818811, client share 123, participant-selected base 65551251, participant-selected secret 65974449, client exponent 44073865, or shared value 8686271 is established. The LP2-native route selects the separate DH 3301 / client share 2800 context; it does not select this January session state.",
+    "lp2SelectorStatus": "No LP2 selector for the January modulus 118818811, client share 123, participant-selected base 65551251, participant-selected secret 65974449, client exponent 44073865, or shared value 8686271 is established. Separately, LP2 work source-selects the numeral 3301 and the p55/p56 terminal page-pair receiver, but not the March client share 2800 or returned shared value 1067 as key material. The p57-to-p50 route to 2800 is conditional on zero-based row-major and inner-to-outer reading; #1565 leaves the order symmetry unresolved and #1576 found no independent pre-May-2014 exact-field witness. The only exact 2800/1067 tuple is in the participant-preserved March log. No KDF, GP29 serialization, or reversible receiver is specified.",
     "receiverStatus": "No source-defined KDF, rune/byte serialization, or LP2 ciphertext receiver for the January session's shared value is established."
   },
   "archiveCensus": {
