@@ -59,6 +59,10 @@ The two four-rune red words (sums 71 and 65) point into the same p50 row, but di
 
 The 4|1|4|2 p6 red-word sums minus the identically partitioned p32 fragment7 GP0 block sums are exactly **[23,5,0,3]**. This recovers the 2013 DH teaching modulus/base numerically, without specifying a cipher or plaintext. The separately scoped [28-fragment original-input control](./lp2-p6-p32-dh23-word-block-difference.md) is preserved as a provisional candidate for the active #2047 investigation.
 
+## New source-internal GF29 multiplicative inverse packet
+
+The five printed p7 red words have original-index products modulo29 **[11,26,8,15,2]**. Words1×3 and4×5 each equal1 modulo29, while word2 product26 is the inverse of the p6 single red rune19. These values admit a retrospective DH23 readout **[A^-1,B^-1,A,K^-1,K]** for A8, B19 and K2. The original-corpus 2,729-window census charges all 15 disjoint two-pair layouts and still leaves only the p7 red window with both inverse pairs and p6 B-inverse singleton. Two source-frozen direct p8 and p6→p7 original-cipher consumers both fail to produce prose. See [inverse-packet report](./lp2-p7-red-multiplicative-inverse-dh-packet.md) and its reproduction script. This is a source arithmetic register, not an authenticated cipher or recovered plaintext.
+
 ## Reproduction
 
 The read-only Node 22/CommonJS SFT `sims/lp2_p6_p7_red_boundary_gate_sft.cjs` regenerates every word, the four adjacent-page controls, the conditional probabilities and direct p50 lookups from the canonical repository inputs. It asserts the exact values reported here and logs the complete diagnostic object.

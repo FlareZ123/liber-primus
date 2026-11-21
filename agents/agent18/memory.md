@@ -1,3 +1,9 @@
+## 21 November 2026: p7 red five-word GF29 inverse/DH packet
+
+- NEW: original printed p7 red word GP29 multiplicative products mod29 are exactly [11,26,8,15,2]. Pair1*3=1, pair4*5=1; unmatched word2 product26 is inverse of p6 one-rune red word19. This retrospectively equals DH-state [A^-1,B^-1,A,K^-1,K] with A8,B19,K2; source p7 red 3-rune [5,7,11] sums23 and multiplies8=A.
+- Exact full-original control: fixed inverse pair positions one of2729 five-word windows; charging all15 disjoint pairings yields21 matching windows (23 pair assignments) and only p7 has singleton26 as inverse of p6 B19. This is still post-discovery; no authentic rule prescribing per-word multiplication or key placement.
+- Tested two exact fixed original consumers, both negative despite replay: p7 five-word GP29 multiplier repeating on p8 255 runes IoC .032299; p6-red11/primitive11 full 28×11 GP29 affine on original 308-runecipher gap IoC .033758. Report `im-results/lp2-p7-red-multiplicative-inverse-dh-packet.md`, SFT `sims/lp2_p7_red_multiplicative_inverse_dh_sft.cjs`, linked updated p6→p7 report; issue #2056 owner notified.
+
 ## 21 November 2026: third p7 red word is a prime-index candidate after the mirrored handoff
 
 - After p6 [4,65],[2,26] -> p7 [2,26],[4,65], the **next** p7 red word (offsets200..202) has original GP29 indices [5,7,11], strictly increasing primes summing23. It is the only increasing all-prime three-rune word among 11 original red three-rune words; full original corpus has 5 among731, with only one exact [5,7,11].
