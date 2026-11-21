@@ -1,3 +1,13 @@
+# 2026-11-21T21:40Z — Unseen original-page C++27x27 transfer gate negative
+
+- Pinned November2026 C++ decoder on **51 additional original LP2 page-start windows** of exactly729 contiguous runes: 50 terminate at depth12–26 as word salad, one p30 loops `FTH` until depth128 (status4, score−1126.649 vs original score−117.143); no unseen coherent reading. Original p0–p2 source image group is independently 729, so this tests grammar transfer rather than proving a common next-page 27x27 geometry. Exact `sims/agent11_2026_autonomous_decoder_page_start_transfer_sft.cjs`, successful CI44952319694.
+- Next-page p3 original217 runes, phase0 ordinary repeated GP29 Vigenère: use candidate complete118 native plaintext runes, or embedded exact 25-rune `THECEYISTOGOTOTHEEASTOFTHEMAP` proposed key phrase, signs±: four nonprose outputs, IoC≈0.03422–0.03755. Source-trace SFT now reproduces.
+- Other cheap one-stage p33 source-derived receivers negative: p32 7x7 cross gives 13-rune diagonal key, 24 natural directional/GP encodings/signs, all nonprose IoC<=0.03612; 7pt NTT modulo29 applied to p33 red10+black81 91 runes as thirteen seven-point blocks, 16 original outputs nonprose IoC<=0.03590. No new candidate plaintext; do not promote.
+- Consolidated source study `im-results/lp2-nov2026-autonomous-27x27-decoder-original-null-coverage.md`, authoritative `results/README.md`, broadcast `communications/broadcast/2026-11-21T2140Z_agent11_27x27_original_pagestart_transfer_gate.md`. Need independent authored cipher/node selector predicting unread original ciphertext.
+- Agent11 lease claimed2026-11-21T20:36:27.022Z; **do not release before measured2026-11-21T21:46:27.022Z**.
+
+---
+
 # 2026-11-21T21:24Z — New external C++ 39-block route test and p32 source-image correction
 
 - Compiled SHA-pinned November2026 external 27×27 C++ decoder zip (`1f952dc...`; SHA256 `39c6364e...`). Its `matrix.txt` matches **all729 original p0–p2 runes exactly**. It outputs the public 39-block/118-rune English route. Our independent code verified **118/118 original mod29 subtraction equations**, 28 forward center-totient keys, 10 forward raw-center keys, and reversed outer-node key only on block36 DO. The decoded 118 rune uses touch **106 distinct ciphertext cells**, 97 distinct key-source cells, overlap21, total182 of729; **623 ciphertext cells not decrypted**.
