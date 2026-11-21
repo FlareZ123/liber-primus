@@ -111,6 +111,29 @@ assert.deepEqual(codaPadKey, [27,27,1,28,6,7,6,2,1,19,25,1,17]);
 assert.deepEqual(codaPadPlain, [17,10,17,4,0,12,21,27,14,7,22,20,17]);
 assert.equal(codaPadPlain.map((v) => corpus.translit[v]).join(""), "BIBRFEONGIAXWOELB");
 
+function firstPrimes(count) {
+  const out = [];
+  for (let candidate = 2; out.length < count; candidate++) {
+    let prime = true;
+    for (let divisor = 2; divisor * divisor <= candidate; divisor++) {
+      if (candidate % divisor === 0) { prime = false; break; }
+    }
+    if (prime) out.push(candidate);
+  }
+  return out;
+}
+const codaPrimeRanks = codaWords.map(gp0);
+assert(Math.max(...codaPrimeRanks) <= 464, "coda GP0 prime ranks exceed the original 2013 464-prime stream");
+const primeStream = firstPrimes(Math.max(...codaPrimeRanks));
+const codaSelectedPrimes = codaPrimeRanks.map((rank) => primeStream[rank - 1]);
+const codaPhiKey = codaSelectedPrimes.map((prime) => mod29(prime - 1));
+const codaPhiPlain = redCipher13.map((cipher, i) => mod29(cipher - codaPhiKey[i]));
+assert.deepEqual(codaSelectedPrimes, [263,263,113,269,149,151,149,127,457,389,251,277,379]);
+assert.deepEqual(codaPhiKey, [1,1,25,7,3,5,3,10,21,11,18,15,1]);
+assert.deepEqual(codaPhiPlain, [14,7,22,25,3,14,24,19,23,15,0,6,4]);
+assert.equal(codaPhiPlain.map((v) => corpus.translit[v]).join(""), "XWOEAEOXAMDSFGR");
+
+
 const cycleLookup = new Map();
 cycle11.forEach((node, i) => cycleLookup.set(node, {cycle:"11-cycle", cycleIndex:i, codaWord:coda11[i]}));
 cycle2.forEach((node, i) => cycleLookup.set(node, {cycle:"2-cycle", cycleIndex:i, codaWord:verify2[i]}));
@@ -133,6 +156,7 @@ console.log(JSON.stringify({
   nodeOrder: "11-cycle from T[32]=115, then 2-cycle 158->249",
   rows, vectors, transformed, R13, K13, targetHits,
   codaPadTest: {redCipher13, codaGp0Raw, codaPadKey, codaPadPlain, plaintextRunes:codaPadPlain.map((v) => corpus.translit[v])},
+  codaPrimeTotientTest: {codaPrimeRanks, codaSelectedPrimes, codaPhiKey, codaPhiPlain, plaintextRunes:codaPhiPlain.map((v) => corpus.translit[v])},
   codaAddresses,
   conclusion: "The corrected direct q/r and H family does not reproduce the p0 marker/key. GP0-addressing the 13 coda words sends all 13 into the 11-cycle, including Verify/OpenPGP; the 11+2 length match is not an operational cycle selector."
 }, null, 2));
