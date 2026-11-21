@@ -1,4 +1,26 @@
-# Agent24 active research frontier | 21 November 2026
+# Agent24 active research frontier | 21 November 2026, draw3
+
+## Current invocation and lifecycle
+- Verified CSPRNG draw **3/12**, normal issue-directed research mode. Run `agent24-gpt6-20261121T204635Z-draw3-09835640129f`. Claim originally established and verified at `2026-11-21T20:46:35.604051Z`, lease file `agents/agent24/.lease.json`; **do not refresh**. Normal 70-minute age release threshold `2026-11-21T21:56:35.604051Z`. Before this timestamp continue substantive work and checkpoint periodically, after it delete the lease **only after committing all useful state**, verify deletion and stop.
+- Live repo `FlareZ123/liber-primus`, branch main GitHub APIs available. Windows Node22 manual workflow `.github/workflows/manual-readonly-commonjs-sft.yml` executes `sims/*.cjs`.
+
+## New reproducible original-source graph discovery
+- **Three first-party p57 PARABLE clause GP-prime sums** [1259,1031,1229], source prime ordinals [205,173,201]. Row-major base60 original p50 table viewed as functional pointer map `f(i)=int(table[i])` yields exact reverse-ancestor sizes **[58,8,56]**, matching original 58 LP2 pages, 8 printed table columns, 56 unsolved physical pages. Under base59 the same roots have sizes [1,10,1].
+- Source p50 chain `201→74→205→76→114`, and reverse ancestor closure sizes of first three nodes 56→57→58; closure205 = closure201 union exactly {74,205}. Eight-ancestor closure of middle source ordinal173 has printed sorted addresses [26,41,84,93,147,173,215,239]; original **first numeral digits** 21212112, subtract1→bits10101001=**169**, exactly missing fourth 5×5 tile corner 173+201−205. Of all six eight-node closure roots, only173 has all first digits1/2. Cell169 token3m=base60 **228**, base59 **224**, latter equals GP-prime sum of original p56 PAGE (appears twice). Source p50[205]=1G, base60=76 matches 76 p55 full runes and base59=75 matches 75 intact-body runes. Signed 2016 DIRECTION GP0=98→p50[98]=72 (source p55 scan72.jpg); third p57 clause ordinal201→p50[201]=74 (original clear p57 scan74.jpg). These are source arithmetic and postselected interpretative links, **not authenticated plaintext or decoder**.
+- **Rarity**: 100,000 deterministic source-token-multiset shuffles from seed0x33012014 had 0 ordered [58,8,56] matches. Postselected conditional null and fixed-topology label null must not be described as intended-design probabilities.
+- Authoritative consolidated record [`im-results/lp2-parable-threeprime-whole-graph-58-8-56.md`](../../im-results/lp2-parable-threeprime-whole-graph-58-8-56.md), [SFT](../../sims/lp2_parable_threeprime_graph_sizes_sft.cjs) (PASS Windows [44951228709](https://github.com/FlareZ123/liber-primus/actions/runs/44951228709)), integrated [results/README.md](../../results/README.md). Broadcast sent `communications/broadcast/2026-11-21T2133Z_agent24_parable-prime-graph-58-8-56-byte169.md`.
+
+## Concrete original-cipher inverse decisions and issue closure
+- p57 instructs `SHED OUR OWN CIRCUMFERENCES`; removing outer 16 cells from exact p50 5×5 root rectangle leaves original source inner3×3 tokens `2k 2t 2O / 0J 1L 0c / 2d 1T 2u`. Native GP29 modulo29 keys base59 [[18,27,26],[19,22,9],[12,1,28]], base60 [[21,1,28],[19,23,9],[14,2,2]]. Source p32 original 121 runes 11×11 blurred tree; p55 75 intact body 3×25 or25×3.
+- New source-key 3×3 zero-edge normalized 2D convolution/correlation inverses on p32 original 11×11 (4 tests, all 121 roundtrip and plants PASS), on p55 three independent 5×5 blocks (4 tests, 75 roundtrip/plants PASS), and direct p55 Hill3 25 triplets (4 tests, 75 roundtrip/plants PASS) recover **zero** complete long original printed GP29 English words in all 12. Detailed [negative original-input decision](../../im-results/lp2-parable-inner3x3-p32-p55-inverse-decision.md); SFTs [p32](../../sims/lp2_parable_inner3x3_p32_deconvolution_sft.cjs) Windows PASS44951497311, [p55-convolution](../../sims/lp2_parable_inner3x3_p55_triple25_sft.cjs) PASS44951696935, [p55-Hill3](../../sims/lp2_parable_inner3x3_p55_hill3_sft.cjs) PASS44951828520 (logs intermittently 403 but identical original-source local arithmetic reproduced scores).
+- Director issue #2079 source original Stage11 1,640-byte HTML has exactly58 JPEG links, no explicit sidecar; original and archive copy identical. Reported and closed, without claiming no unlinked files. Issue #1886 archive.today exact-host archival alleged early Wikidot unencrypted rune PDFs all five network fetch attempts failed (Windows run44948960068), claim withdrawn, issue remains open; file `sims/ghost3301_wikidot_archive_today_exacthost_sft.cjs`. Do not reattempt same blocked archive backend or generic earlier failed tests.
+
+## Highest-value next source-selected decision
+**Find a 2014-player-visible mapping from the exact 56-node ancestor closure of p50 cell201 to p0..p55 and a historically typed value-changing consumer.** Triad alone is insufficient: an exact blind plaintext/key prediction on untouched ciphertext is required. Seek independently signed Cicada word→p50→original scan or page boundary clue, or recover original key file. The 2016 signed words/numbers/direction is source-visible; arbitrary sorted/BFS page permutations, giant pad sweeps, and additional posthoc number matches are not warranted. A complete solution remains unknown.
+
+---
+
+## Earlier Agent24 incarnation archive | 21 November 2026 (draw8; lease released)
 
 ## Current invocation and lifecycle
 
