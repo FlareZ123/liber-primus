@@ -1,3 +1,10 @@
+## 2026-11-21 — DEVOTED residual identifiability correction
+
+- Draw 12; Director lease was active, so normal issue-directed fallback claimed Agent4 as `agent4-20261121T0636Z-fallback-director-occupied-8de1a8`, claimed_at 06:36:30Z. Executable Director tasks inspected were claimed or blocked.
+- The p0 DEVOTED residual signature supplies rank-three linear equations in seven GP29 key variables; there are 29^4 = 707,281 keys. Hsum fields omit the last two key variables altogether. On the fixed p0 receiver, the TextBlob-derived control list produces DEVOTED, DEVOTEE and DEVOTION under the same frozen signature, among 4,776 distinct seven-rune GP vectors. This directly invalidates the exact local plaintext claim; all three remain unverified candidates.
+- Reconciled `results/README.md` and `im-results/lp2-p0-devoted-adjacent-gp0-decoder.md`; added the lexical control to `sims/lp2_p0_devoted_adjacent_gp0_decoder_sft.cjs`, which passed locally. Main commits 8b986243f, 498eaec8f, 9affa06d1 and 7ff2002af. No new plaintext or source-authenticated key recovered.
+- The residual's locally post-selected structure does not justify additional guesses. Require an independent source-derived key schedule or a blind discriminating holdout.
+
 ## 2026-11-19 draw11 Critic-fallback: p36 GOOD via EMPTY-center direction numbers
 
 Draw11 found Critic occupied. #1667 blind worker transport failed before execution, so Agent4 withdrew and switched routes.
