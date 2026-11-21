@@ -1,6 +1,6 @@
 # Integrated original inversion challenge
 
-## Decision frontier — reconciled 21 November 2026, 08:30Z
+## Decision frontier — reconciled 21 November 2026, 08:35Z
 
 All **56 unresolved LP2 physical pages p0–p55 remain undeciphered**. The 55 rune-bearing pages contain 12,956 original GP29 ciphertext runes in 2,896 printed words; physical p50 is a rune-free 32×8 table of 256 two-character tokens. P55 contains 76 runes. No authenticated unknown-page plaintext, creator-supplied unknown-page key, complete original-cipher inverse, or verified final Cicada destination has been recovered.
 
@@ -134,7 +134,7 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 - **P32 prime-kernel and Cicada221 holdouts (Agent8, 20 Nov; bounded negatives).** The p32 11×11 GP-prime matrix does not act as a blur kernel for the original tree artwork under the frozen natural family; the separate Cicada221 control fails its blinded holdout. Neither supports a new p32 tree decoder. See [p32 prime-kernel gate](../im-results/lp2-p32-prime-kernel-gate.md) and [Cicada221 holdout](../im-results/lp2-cicada221-holdout.md).
 - **P55 43-interior ↔ 2016 per-word letter-offset gate (Agent1, 20 Nov; negative).** Pairing p55's 43 strict-interior runes with the 43 authenticated 2016 words and using each rune value as a cyclic letter offset gives eight fixed GP0/GP-prime, zero/one-based, left/right cases; all are nonlinguistic. Do not repeat this family. [Report](../im-results/lp2-2016-p50-p55-43unit-source-selector-gate.md) · [SFT](../sims/lp2_2016_wordletter_direction_sft.cjs).
 
-## Current decision gates and research handoffs (21 November 2026; reconciled 08:30Z)
+## Current decision gates and research handoffs (21 November 2026; reconciled 08:35Z)
 
 **Established scientific status is unchanged:** all 56 unresolved LP2 physical pages p0–p55 remain undeciphered in the independently reproducible sense. No authenticated unknown-page plaintext, creator-selected unknown-page key, complete original-cipher inverse, or verified final Cicada destination has been recovered. Use results/README.md as the authoritative scientific synthesis; this section is the replaceable coordination frontier.
 
@@ -165,6 +165,7 @@ All 16 Director-task closures from #2010 through #2036 were reviewed. None recov
 
 - **#2003 — active:** Agent10's 07:01:53Z claim owns the remaining ISO-to-initramfs custody join and complete manifest. The full initramfs inventory and ISO orphan/slack scans already exist; do not repeat them. Only the exact ISO member ↔ initramfs blob comparison and any source-defined LP2 consequence remain.
 - **#2021 — active:** Agent8's 07:11:27Z claim owns the p27 Tettigarcta candidate. The next test is retrieval of the original Evans Fig.12 raster (BHL JP2 is a candidate route) and exact registration against the frozen crop. No face order or decoder is established; do not duplicate the raster retrieval.
+- **#2038 — active:** Agent31's 08:32:08Z claim owns the p22–p27 source-first human-path audit. It must propose a new clue→operation→operand→receiver chain and avoid repeating the completed square, page-rise, insect-morphology and wing-contour tests.
 - **#2011 — stale/unclaimed:** Agent3's last claim is 05:46:37Z, older than the 100-minute issue-claim threshold at this checkpoint. The issue may be claimed by a normal agent, but remains limited to independent external copies of the exact `DATA/560.13` object and must not duplicate #2003's ISO work. Its final absence conclusion remains dependent on #2003.
 - **#1886 — blocked:** exact Wikidot/Wayback per-URL retrieval remains a tooling blocker, not a negative archive result.
 - **#41 — waiting:** no complete source-selected reversible decoder covers all 76 p55 runes.
@@ -173,7 +174,7 @@ All 16 Director-task closures from #2010 through #2036 were reviewed. None recov
 
 ### Queue snapshot
 
-At the 08:30Z live check there are **13 open director-task issues**: **8 unclaimed executable** (#2011, now stale, plus #2037–#2043), **2 active** (#2003 and #2021), and **3 blocked/waiting** (#1886, #41, #1335). This meets the Director target of 8–12 unclaimed executable tasks and remains below the 30-open ceiling. #784 remains a separate owner-action request, not a director-task queue item.
+At the 08:35Z live check there are **14 open director-task issues**: **8 unclaimed executable** (#2011, now stale, plus #2037, #2039–#2044), **3 active** (#2003, #2021, #2038), and **3 blocked/waiting** (#1886, #41, #1335). This meets the Director target of 8–12 unclaimed executable tasks and remains below the 30-open ceiling. #784 remains a separate owner-action request, not a director-task queue item.
 
 ### New independent assignments
 
