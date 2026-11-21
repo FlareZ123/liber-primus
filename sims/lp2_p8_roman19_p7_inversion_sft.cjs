@@ -367,6 +367,80 @@ const exactCubeOrbitClassInvariant = {
   conclusion: 'Every per-rune cube/root map preserves its original orbit class and cannot alter these original class counts toward solved-native GP English'
 };
 
+// The next illustrated tree chapter has exactly seven pages p8..14.
+// A six-step source cube orbit beginning with the first highlighted p8 M=19
+// predicts page states 19,15,11,26,2,8,19 (a complete period plus closure).
+const treePages = source.pages.slice(8, 15).map((page, index) =>
+  page.indices.slice(index === 0 ? 12 : 0)
+);
+assert.deepStrictEqual(treePages.map(page => page.length),
+  [243, 268, 263, 273, 261, 272, 137]);
+const treePageKeys = [romanNumber];
+for (let index = 1; index < treePages.length; index++) {
+  treePageKeys.push(modPow(treePageKeys.at(-1), 3, 29));
+}
+assert.deepStrictEqual(treePageKeys, [19, 15, 11, 26, 2, 8, 19]);
+/**
+ * Four complete source-frozen page-key cubic inverse families.
+ * @param {number} value
+ * @param {number} key
+ * @param {string} model
+ * @returns {number}
+ */
+function decodePageKey(value, key, model) {
+  switch (model) {
+    case 'subtract-then-root': return modPow((value - key + 29) % 29, 19, 29);
+    case 'add-then-root': return modPow((value + key) % 29, 19, 29);
+    case 'root-then-subtract': return (modPow(value, 19, 29) - key + 29) % 29;
+    case 'root-then-add': return (modPow(value, 19, 29) + key) % 29;
+    default: throw new Error('Unknown frozen source model');
+  }
+}
+/** @param {number} value @param {number} key @param {string} model @returns {number} */
+function encodePageKey(value, key, model) {
+  switch (model) {
+    case 'subtract-then-root': return (modPow(value, 3, 29) + key) % 29;
+    case 'add-then-root': return (modPow(value, 3, 29) - key + 29) % 29;
+    case 'root-then-subtract': return modPow((value + key) % 29, 3, 29);
+    case 'root-then-add': return modPow((value - key + 29) % 29, 3, 29);
+    default: throw new Error('Unknown frozen source model');
+  }
+}
+
+const sevenPageCycleConsumers = [];
+for (const model of [
+  'subtract-then-root', 'add-then-root',
+  'root-then-subtract', 'root-then-add'
+]) {
+  const originalCandidate = [];
+  for (let page = 0; page < 7; page++) {
+    const key = treePageKeys[page];
+    const ciphertext = treePages[page];
+    const candidate = ciphertext.map(value => decodePageKey(value, key, model));
+    assert.deepStrictEqual(
+      candidate.map(value => encodePageKey(value, key, model)), ciphertext
+    );
+    const nativePlant = ciphertext.map((_, localIndex) =>
+      knownP57[(localIndex + 95 * page) % knownP57.length]
+    );
+    assert.deepStrictEqual(
+      nativePlant.map(value => encodePageKey(value, key, model))
+        .map(value => decodePageKey(value, key, model)), nativePlant
+    );
+    originalCandidate.push(...candidate);
+  }
+  assert.equal(originalCandidate.length, 1717);
+  sevenPageCycleConsumers.push({
+    model,
+    sourceKeyCycle: treePageKeys,
+    sourceRuneCount: originalCandidate.length,
+    originalCandidateIoC: Number(coincidence(originalCandidate).toFixed(9)),
+    first44Transliterated: originalCandidate.slice(0, 44)
+      .map(index => source.translit[index]).join('')
+  });
+}
+assert.ok(sevenPageCycleConsumers.every(x => x.originalCandidateIoC < 0.038));
+
 console.log(JSON.stringify({
   source: 'Original LP2 p8 opening red XIXM and p7 second red product',
   p8RomanNumber: romanNumber,
@@ -382,6 +456,7 @@ console.log(JSON.stringify({
   unchangedOriginalP8Black243TwoReversibleReceivers: cubeRootReceivers,
   unchangedOriginalP8Black243FiveLevelRootTreeReceivers: ternaryTreeReceivers,
   exactCubeOrbitClassInvariant,
+  sevenPageTreeChapterSourceCycleConsumers: sevenPageCycleConsumers,
   originalUnknownRunes: source.pages
     .filter(page => page.page < 56)
     .reduce((sum, page) => sum + page.indices.length, 0),
