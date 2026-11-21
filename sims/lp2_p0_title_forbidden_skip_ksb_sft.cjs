@@ -8,8 +8,8 @@
  * 15200c67abee106913ba01ff504c5b6e88d16cc7.
  *
  * A candidate key redraw is legal ONLY if that GP29 key value would
- * recreate the preceding observed ciphertext rune. At most two such
- * redraws are allowed; no arbitrary gap or plaintext mismatch is fitted.
+ * recreate the preceding observed ciphertext rune. Every forced redraw
+ * is consumed, with no fixed skip budget or arbitrary gap fitting.
  */
 const fs = require('node:fs');
 const path = require('node:path');
@@ -19,7 +19,6 @@ const ROOT = path.join(__dirname, '..');
 const C = [15, 8, 18, 3, 6, 19, 27, 0, 15, 26, 18, 21, 5];
 const P = [18, 13, 10, 13, 8, 24, 9, 26, 15, 18, 18, 5, 15];
 const MOD = 29;
-const SKIP_BUDGET = 2;
 
 /**
  * @param {Buffer} data
@@ -61,38 +60,35 @@ function requiredKey(ciphertext, plaintext, sign) {
 }
 
 /**
- * Find exact matches, allowing only skipped values that would make a
- * forbidden repeat of the preceding original ciphertext rune.
+ * Find exact matches with a deterministic key clock: before original rune i,
+ * reject every value that would produce the preceding ciphertext rune. The
+ * first different value MUST equal the observed accepted key. Because
+ * key[i] != forbidden[i], no backtracking or arbitrary skip limit is needed.
  *
  * @param {Buffer} stream
  * @param {number[]} key
  * @param {number[]} forbidden
- * @param {number} budget
  * @returns {{start:number, end:number, skips:{at:number,before:number}[]}[]}
  */
-function scan(stream, key, forbidden, budget) {
+function scan(stream, key, forbidden) {
   const hits = [];
   for (let start = stream.indexOf(key[0]); start >= 0;
     start = stream.indexOf(key[0], start + 1)) {
-    const todo = [{pos: start + 1, i: 1, skips: []}];
-    while (todo.length) {
-      const state = todo.pop();
-      if (state.i === key.length) {
-        hits.push({start, end: state.pos, skips: state.skips});
-        continue;
+    let pos = start + 1;
+    const skips = [];
+    let matches = true;
+    for (let i = 1; i < key.length; i++) {
+      while (pos < stream.length && stream[pos] === forbidden[i]) {
+        skips.push({at: pos, before: i});
+        pos++;
       }
-      if (state.pos >= stream.length) continue;
-      const value = stream[state.pos];
-      if (value === key[state.i]) {
-        todo.push({pos: state.pos + 1, i: state.i + 1, skips: state.skips});
+      if (pos >= stream.length || stream[pos] !== key[i]) {
+        matches = false;
+        break;
       }
-      if (state.skips.length < budget && value === forbidden[state.i]) {
-        todo.push({
-          pos: state.pos + 1, i: state.i,
-          skips: [...state.skips, {at: state.pos, before: state.i}],
-        });
-      }
+      pos++;
     }
+    if (matches) hits.push({start, end: pos, skips});
   }
   return hits;
 }
@@ -107,14 +103,20 @@ function selfTest() {
     ...plus.key.flatMap((value, i) =>
       positions.includes(i) ? [plus.forbidden[i], value] : [value]),
     6, 9]);
-  const hit = scan(planted([3, 8]), plus.key, plus.forbidden, 2);
+  const hit = scan(planted([3, 8]), plus.key, plus.forbidden);
   assert.equal(hit.length, 1);
   assert.equal(hit[0].start, 3);
   assert.deepEqual(hit[0].skips.map(x => x.before), [3, 8]);
-  assert.equal(scan(planted([3, 8]), plus.key, plus.forbidden, 1).length, 0);
-  assert.equal(scan(planted([3, 8, 9]), plus.key, plus.forbidden, 2).length, 0);
-  assert.equal(scan(Buffer.from([0, ...plus.key]), plus.key, plus.forbidden, 0).length, 1);
-  assert.equal(scan(Buffer.from([0, ...minus.key]), minus.key, minus.forbidden, 0).length, 1);
+  const triple = scan(planted([3, 8, 9]), plus.key, plus.forbidden);
+  assert.equal(triple.length, 1);
+  assert.deepEqual(triple[0].skips.map(x => x.before), [3, 8, 9]);
+  const longPlant = Buffer.from([4, 1, 7, ...plus.key.flatMap((value, i) =>
+    i === 4 ? [...Array(29).fill(plus.forbidden[i]), value] : [value]), 6, 9]);
+  const longHits = scan(longPlant, plus.key, plus.forbidden);
+  assert.equal(longHits.length, 1);
+  assert.equal(longHits[0].skips.length, 29);
+  assert.equal(scan(Buffer.from([0, ...plus.key]), plus.key, plus.forbidden).length, 1);
+  assert.equal(scan(Buffer.from([0, ...minus.key]), minus.key, minus.forbidden).length, 1);
 }
 
 function main() {
@@ -139,7 +141,7 @@ function main() {
       const values = orientation === 'forward' ?
         source.values : Buffer.from(source.values).reverse();
       for (const key of keys) {
-        for (const hit of scan(values, key.key, key.forbidden, SKIP_BUDGET)) {
+        for (const hit of scan(values, key.key, key.forbidden)) {
           matches.push({
             source: source.name,
             orientation,
@@ -161,7 +163,7 @@ function main() {
     source_symbols: sourceSymbols,
     charged_signs: 2,
     charged_orientations: 2,
-    maximum_source_forced_skips: SKIP_BUDGET,
+    source_forced_skips: 'unbounded',
     required_plus_key: keys[0].key,
     forbidden_plus_skips_after_first: keys[0].forbidden.slice(1),
     matches,
