@@ -215,6 +215,58 @@ for (const [bits, ivType, n, ascii, gp, expectedStart] of frozenAesReadouts) {
   assert.equal([...plain].filter((v) => v <= 28).length, gp);
 }
 
+// Roman-numeral IV=4 could select a full 16-character original row as
+// AES-128/CBC IV. For both natural row4 conventions, use the exact p23
+// red16 raw indices or raw GP primes as the key; decrypt all original
+// 256 table bytes. Four literal source combinations, no tuned key/phase.
+const candidatePrintedIVs = [
+  ['fourth printed row', tokens.slice(24, 32).join('')],
+  ['zero-indexed fourth row', tokens.slice(32, 40).join('')],
+];
+assert.deepEqual(candidatePrintedIVs.map(([, iv]) => iv),
+  ['1n3I2r0P2U162L2D', '1t1s3H0d0s1K2D05']);
+const aesCBCReadouts = [];
+const expectedRows = [
+  [
+    [75, 25, 'fadc839863364e6a7cc98047fdb5ba2c'],
+    [85, 35, '29aab4439409f8a41e7d230d7ced9146'],
+  ],
+  [
+    [74, 26, 'fac681a2620c4e5e7eef803afdbdb85d'],
+    [87, 34, '29b0b6799533f8901c5b23707ce59337'],
+  ],
+];
+for (let row = 0; row < candidatePrintedIVs.length; row++) {
+  const [rowName, asciiIV] = candidatePrintedIVs[row];
+  for (let keyVariant = 0; keyVariant < sourceIVs.length; keyVariant++) {
+    const [keyName, rawKey] = sourceIVs[keyVariant];
+    const aes = crypto.createDecipheriv('aes-128-cbc',
+      Buffer.from(rawKey), Buffer.from(asciiIV, 'ascii'));
+    aes.setAutoPadding(false);
+    const plain = Buffer.concat([aes.update(Buffer.from(data)), aes.final()]);
+    const [printable, gp, firstHex] = expectedRows[row][keyVariant];
+    assert.equal(plain.length, 256);
+    assert.equal(plain.subarray(0, 16).toString('hex'), firstHex);
+    assert.equal([...plain].filter((n) => n >= 32 && n <= 126).length,
+      printable);
+    assert.equal([...plain].filter((n) => n < 29).length, gp);
+    aesCBCReadouts.push({rowName, keyName, printable, gp});
+  }
+}
+// All AES-CBC original bytes after the first16 are independent of the IV.
+// Thus no OTHER candidate 16-byte IV can repair the nonlinguistic suffix
+// under either fixed 16-byte p23 key without replacing the key or ciphertext.
+for (let keyVariant = 0; keyVariant < sourceIVs.length; keyVariant++) {
+  const decrypt = (iv) => {
+    const aes = crypto.createDecipheriv('aes-128-cbc',
+      Buffer.from(sourceIVs[keyVariant][1]), Buffer.from(iv, 'ascii'));
+    aes.setAutoPadding(false);
+    return Buffer.concat([aes.update(Buffer.from(data)), aes.final()]);
+  };
+  assert.deepEqual(decrypt(candidatePrintedIVs[0][1]).subarray(16),
+    decrypt(candidatePrintedIVs[1][1]).subarray(16));
+}
+
 const changed = data.slice();
 changed[0] += 29; // Still a valid byte; unchanged full mod29 factorization
 assert.ok(changed[0] <= 255);
@@ -292,7 +344,9 @@ console.log(JSON.stringify({
   secondCarry29: [4, 13, 9, 18],
   inSampleTailReconstruction: inferredTail,
   originalXYZeroBased: { indices: xy0, bytes: [73, 86], ASCII: 'IV' },
-  aesCBCOriginalBytes: 'p23-red16 IV; first16/32 table key; remaining240/224 payload nonlinguistic',
+  aesCBCOriginalBytes: 'p23-red16 IV/table key and rowIV/table body negative',
+  printedRowIVs: candidatePrintedIVs,
+  printedRowAesReadouts: aesCBCReadouts,
   null: { trials, seed: '0x3301bc23', counts },
   interpretation: 'Retrospective source-typed IV read; no source-selected LP2 inverse',
 }, null, 2));
