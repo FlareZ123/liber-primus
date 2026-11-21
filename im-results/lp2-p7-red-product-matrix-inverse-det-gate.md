@@ -36,6 +36,21 @@ The 308-rune inverse yields no readable source-native text. Reversing physical r
 
 The signed 2016 phrase about the book's **word numbers** suggests one alternative *typed* receiver: apply the same matrix to consecutive source word GP0 sums or GP-prime sums, modulo29, at phase0 or phase1. The 71 original marked-body words produce 70-runic readouts with IoC **0.03147–0.03851**, again well below the original solved-runic native control (about **0.06139**). This is an explicit bounded negative for the direct word-number consumer, with no language-fitted offset.
 
+## Source-packet matrix as a true recurrence key (exact F-transparent obstruction)
+
+A distinct, highly constrained reversible candidate uses `M` or `M^-1` as a **two-element GF29 state-transition matrix**, initialized with the independently recovered DH public pair `[A,B]=[8,19]`. The state is visible in the same red products: `A=p7[3]=8`, `B=(p7[2])^-1=26^-1=19` in one-based natural language (zero-based indices 2 and1). Flatten each successive two-element state into an additive GP29 pad. The matrix has characteristic roots `16` and `10` in GF29 of multiplicative orders7 and28, respectively; its **exact order is28**, so the two-coordinate stream is periodic with length **56 runes**. This rules out an unmodified long nonperiodic stream; no hidden seeds are fitted.
+
+Apply this exact source-selected state to the same **308 original ciphertext runes**, both original GP29 additive signs, with the solved-p56 *literal plaintext F is emitted as F and consumes no key slot* convention. The inverse is an exhaustive 56-phase reachability calculation; when ciphertext F is encountered it deliberately preserves **both** the bypass and any legal consuming non-F branch. If no phases survive, the model is impossible even without English scoring.
+
+| State transition | Sign in `P=C±K` | First original rune offset within the 308-rune receiver with no legal inverse |
+| --- | ---: | ---: |
+| `M` | − | **50** |
+| `M` | + | **17** |
+| `M^-1` | − | **4** |
+| `M^-1` | + | **9** |
+
+All contradictions occur **inside the 114-rune p6 section**, so they do not depend on how p7 restarts the key. A **308-rune solved-p57 planted plaintext** was encrypted with each source matrix orbit and the exact plaintext-F non-consuming rule; the identical exhaustive inverse retains a legal path through every planted rune for all four variants. This is a structural rejection, stronger than the flat-IoC direct Hill negative, of the **two specific source-derived initial states and matrix transitions under the demonstrated F bypass**. It cannot reject a different, independently instructed seed, nonadditive input mixing, reset, or transition function.
+
 ## What the result changes
 
 The p7 red DH packet can now be stated as a **five-value matrix plus checked inverse determinant**, a potentially useful finite source-selected key format. The most direct p6/p7 308-rune Hill decoder is rejected as an ordinary GP-native prose recovery. A model that supplies a new ciphertext receiver or a different word/numeric encoding still needs independent instruction; the five-value checksum alone cannot select one. Do not expand this candidate into unspecified block lengths, arbitrary transpositions, guessed p50 clocks, or freely tuned field encodings.
