@@ -155,6 +155,31 @@ addForcedCore(201);
 rootCore.sort((a, b) => a - b);
 assert.deepEqual(rootCore, [43, 73, 79, 82, 201, 226]);
 
+// One explicit original-cell certificate of existence. Each row is a complete
+// connected chapter component, indexed in the original printed chapter order.
+// This is just one of 305 possible unlabelled edge cut sets, NOT a page decoder.
+const witness = [
+  [222, 11, 96],
+  [163, 126, 6, 210, 145],
+  [198, 25, 27, 66, 29, 90, 246],
+  [148, 172, 250, 166, 178, 218, 107, 45],
+  [184, 109, 24, 119],
+  [193, 83, 100, 127, 206, 103],
+  [51, 63, 105, 164, 72, 98, 134],
+  [201, 82, 79, 73, 43, 69, 59, 22, 244, 219, 217, 161, 226, 128],
+  [112, 155]
+];
+assert.deepEqual(witness.map(group => group.length), chapterSizes);
+const allWitnessNodes = witness.flat();
+assert.equal(new Set(allWitnessNodes).size, 56);
+assert.deepEqual(allWitnessNodes.slice().sort((a, b) => a - b),
+  closure.slice().sort((a, b) => a - b));
+for (const group of witness) {
+  const vertices = new Set(group);
+  const internalEdges = group.filter(node => vertices.has(bytes[node])).length;
+  assert.equal(internalEdges, group.length - 1);
+}
+
 // Separately published largest-child-first inorder ranks node73 as physical
 // p32. That page assignment conflicts with the optional "chapter connected"
 // hypothesis, because node73 is necessarily in p50's chapter under that model.
