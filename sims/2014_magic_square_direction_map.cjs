@@ -8,6 +8,7 @@
 
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
+const crypto = require("node:crypto");
 const {parseSharedCorpus} = require("./lp2_word_pages.cjs");
 
 const corpus = JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json", "utf8"));
@@ -654,4 +655,125 @@ const lagSixGraphGate = {
   decision:'The source-fixed 2014 direction graph and its six-cycle do not enrich or select the original sparse T6 event positions.'
 };
 
-console.log(JSON.stringify({wisdomTo2014, magicSquare:magicResult, lp2GridTransfer, fragmentBridge, lagSixGraphGate}, null, 2));
+/*
+ * p0 13-word interval / 2014-square order gate (#1984).
+ * The interval is selected without consulting the frozen p0 key: THE/WAY
+ * are the signed-message endpoints already identified by the independent
+ * p0 shell readout. Test the natural printed word order and its reverse
+ * against the existing 2014 number-as-bearing convention, then test the
+ * only direct word-number correspondence to the 13 word cells in the
+ * original 2013 0_wisdom / 2014 5x5 1033 square.
+ */
+const p0Jpeg = fs.readFileSync("resources/liber-primus/17.jpg");
+const p0JpegSha256 = crypto.createHash("sha256").update(p0Jpeg).digest("hex");
+assert.equal(p0JpegSha256, "197e1e153958b9a2736b09c10eea7d8bb00e0632fd22a8d9606840becc79942e");
+
+const signed2016 = fs.readFileSync("resources/historical/cicada2016-4gq25-outguess.asc", "utf8")
+  .split("-----BEGIN PGP SIGNATURE-----")[0];
+const signedWords = signed2016.toUpperCase().match(/[A-Z]+/g);
+const intervalStart = signedWords.findIndex((word, i) => word === "THE" && signedWords[i + 1] === "PATH");
+const intervalEnd = signedWords.findIndex((word, i) => i > intervalStart && word === "WAY");
+assert(intervalStart >= 0 && intervalEnd > intervalStart);
+const interval = signedWords.slice(intervalStart, intervalEnd + 1);
+assert.deepEqual(interval, [
+  "THE","PATH","LIES","EMPTY","EPIPHANY","SEEKS","THE","DEVOTED",
+  "LIBER","PRIMUS","IS","THE","WAY"
+]);
+assert.deepEqual(interval.slice(0, 8), [
+  "THE","PATH","LIES","EMPTY","EPIPHANY","SEEKS","THE","DEVOTED"
+]);
+assert.deepEqual(interval.slice(8), ["LIBER","PRIMUS","IS","THE","WAY"]);
+
+const gpTokensForInterval = corpus.translit
+  .map((token, index) => ({token, index}))
+  .sort((a, b) => b.token.length - a.token.length);
+function gpIndicesForIntervalWord(word) {
+  const normalized = word.replace(/QU/g, "CW").replace(/V/g, "U")
+    .replace(/[KQ]/g, "C").replace(/Z/g, "S");
+  const out = [];
+  for (let offset = 0; offset < normalized.length;) {
+    const match = gpTokensForInterval.find(x => normalized.startsWith(x.token, offset));
+    assert(match, `no GP29 token at ${word}:${offset}`);
+    out.push(match.index);
+    offset += match.token.length;
+  }
+  return out;
+}
+const intervalWords = interval.map((word, index) => {
+  const indices = gpIndicesForIntervalWord(word);
+  return {
+    position:index + 1, word, gpLength:indices.length,
+    primeSum:indices.reduce((sum, runeIndex) => sum + corpus.prime[runeIndex], 0),
+    gpIndices:indices,
+  };
+});
+const intervalGpLength = intervalWords.reduce((sum, word) => sum + word.gpLength, 0);
+const intervalPrimeSums = intervalWords.map(word => word.primeSum);
+assert.equal(intervalGpLength, 54, "GP29 digraphs reduce the 13 English words to 54 runes");
+
+const wisdomWordCellSums = wisdomWordCells.map(cell => cell.primeSum);
+assert.equal(wisdomWordCellSums.length, 13);
+const exactSquareWordMatches = intervalPrimeSums.filter(value => wisdomWordCellSums.includes(value));
+assert.equal(exactSquareWordMatches.length, 0,
+  "no 2016 interval word GP-prime sum equals any 2013/2014 5x5 word-cell sum");
+
+/* Reuse the 2014 map's explicit number-as-bearing convention:
+ * 0 degrees east, counter-clockwise, nearest 45 degrees, no wrap. */
+function intervalBearingPath(words) {
+  let row = 1, column = 0; // one-based square cell 6, independently selected by the 2014/2016 source gate
+  const steps = [];
+  for (const word of words) {
+    const angle = ((word.primeSum % 360) + 360) % 360;
+    const directionIndex = Math.floor((angle + 22.5) / 45) % 8;
+    const direction = dirs[directionIndex];
+    const nextRow = row + direction.dr;
+    const nextColumn = column + direction.dc;
+    const inside = nextRow >= 0 && nextRow < 5 && nextColumn >= 0 && nextColumn < 5;
+    steps.push({
+      wordPosition:word.position, word:word.word, primeSum:word.primeSum,
+      angle, direction:direction.name,
+      fromCell:row * 5 + column + 1,
+      toCell:inside ? nextRow * 5 + nextColumn + 1 : null,
+      landedNumber:inside ? magic[nextRow][nextColumn] : null,
+    });
+    if (!inside) break;
+    row = nextRow;
+    column = nextColumn;
+  }
+  return steps;
+}
+assert.equal(mod(phi(761)), 6, "the existing source selector fixes start cell 6");
+const forwardIntervalPath = intervalBearingPath(intervalWords);
+const reverseIntervalPath = intervalBearingPath(intervalWords.slice().reverse());
+assert.equal(forwardIntervalPath.length, 2);
+assert.equal(forwardIntervalPath[0].toCell, 1);
+assert.equal(forwardIntervalPath[1].toCell, null);
+assert.equal(reverseIntervalPath.length, 1);
+assert.equal(reverseIntervalPath[0].toCell, null);
+
+const p0WordIntervalOrderGate = {
+  source:{
+    p0Jpeg:"resources/liber-primus/17.jpg",
+    p0JpegSha256,
+    signedMessage:"resources/historical/cicada2016-4gq25-outguess.asc",
+    interval,
+    sentenceSplit:[8,5],
+  },
+  intervalWords,
+  totals:{englishWords:interval.length,gp29Runes:intervalGpLength,primeSum:intervalWords.reduce((sum,x) => sum+x.primeSum,0)},
+  "2014Square":{
+    source:"2013 0_wisdom 13 word cells, reconstructed by GP-prime sums in the 2014 stage04 5x5/1033 square",
+    rowMajorWordCellPrimeSums:wisdomWordCellSums,
+    intervalWordPrimeSums:intervalPrimeSums,
+    exactValueIntersections:exactSquareWordMatches,
+  },
+  bearingTransfer:{
+    convention:"same 2014 map convention: number mod 360, nearest 45 degrees, 0 east, counter-clockwise, eight-neighbour, no wrap",
+    startCell:6,
+    forward:forwardIntervalPath,
+    reverse:reverseIntervalPath,
+  },
+  decision:"The 8+5 sentence split is a real source-visible grouping matching p0's 8+5 title/marker structure, but it does not order the 13 state atoms. The 2016 word numbers neither match the 13 2014 square word-cell values nor yield a 13-step route under the existing 2014 bearing convention. The 2014 form metadata supplies no alternate start/movement grammar. No key values were used to select the interval or the readout."
+};
+
+console.log(JSON.stringify({wisdomTo2014, magicSquare:magicResult, lp2GridTransfer, fragmentBridge, lagSixGraphGate, p0WordIntervalOrderGate}, null, 2));
