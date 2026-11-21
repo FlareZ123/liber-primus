@@ -1,6 +1,6 @@
 # P6→p7 reversed red-word boundary and p50 address gate
 
-**Classification (21 November 2026): verified original-source structural observation; prospective p50 decoder not established.** All 56 unresolved LP2 pages remain encrypted. This gate addresses Director issue [#2051](https://github.com/FlareZ123/liber-primus/issues/2051). It preserves a previously unrecorded **p6→p7 red-word numeric handoff candidate** without promoting it to a key, plaintext or an authentic instruction.
+**Classification (21 November 2026): original-source structural observation; direct balanced-key body consumer rejected.** All 56 unresolved LP2 pages remain encrypted. Director [#2051](https://github.com/FlareZ123/liber-primus/issues/2051) established the reversed red-word source pattern; [#2056](https://github.com/FlareZ123/liber-primus/issues/2056) tested the specific marker-bracketed difference-key receiver. The correspondence remains a navigation hypothesis without an authenticated original-cipher key, recovered plaintext, or a reusable decipherment rule.
 
 ## Exact source readout
 
@@ -28,6 +28,16 @@ This yields a **hypothesis**, not a fixed cipher operand: the carried p6/p7 word
 All 16 p0–p55 annotated red spans were parsed using original word separators. Four pairs of red spans lie on consecutive physical pages: p6/p7, p7/p8, p39/p40 and p53/p54. Only p6/p7 has its last two word lengths equal to the reversal of the next span's first two, and it is also the **only** reversed-length-and-sum boundary among those four pairs. The corpus contains 48 fully contained printed red words in the 14 red spans with at least two such words. In the length-conditioned red-word population, ten have length two (only GP0 sum 26 repeats) and ten have length four (only sums 65 and 57 repeat).
 
 Under the deliberately narrow diagnostic null that separately permutes the observed GP0 sums among the ten red words of each length while keeping the physical p6/p7 boundary slots fixed, the probability of *any* equal sum in the specified two-rune pair is `2/(10×9)`; for the specified four-rune pair it is `4/(10×9)`. Their product is **8/8100 = 0.0009876543209876543**. This is a conditional combinatorial diagnostic, **not** an historical design probability: this GP0 reversal was noticed after exploring p6 and p7, alternative encodings and boundary choices are uncharged, and words/locations are not necessarily exchangeable.
+
+## Director #2056: reversible original-body difference-key consumer
+
+The p6 last two colored words (GIASB | XEO, GP29 vectors [6,27,15,17] | [14,12]) and p7 first two in reversed size order (OETTHAE | DO, [22,16,2,25] | [23,3]) have identical separate GP0 sums 65 and 26. Their aligned p6-minus-p7 vector is the six-rune difference key **[13,11,13,21,20,9]**, with sum **0 modulo 29**. This is a source-calculated reversible candidate; the original pages do not instruct subtracting a six-period key.
+
+The inner red thirteen-dot marks select a physical body: after p6's red ending marker, p6 offsets [82,196) contain **114** runes; before p7's red opening marker, p7 offsets [0,194) contain **194** more. The joined **308-rune** interval crosses the p6→p7 page break and preserves its genuine page-spanning word. The p6 portion is exactly **19 periods** of the candidate key. Continuous and page-reset clocks agree on this receiver. The source selects the endpoints, while leaving subtraction direction and whether the clock restarts at printed words undecided.
+
+Apply the direct additive GP29 inverse with this single key, both signs and continuous/printed-word-reset clocks. Keep original printed word boundaries. Among **40** original body words of at least four GP runes, the ciphertext and **all four** candidate inverses give **zero** English-register lexical hits even at source frequency one in the fixed 29,164-entry TextBlob lexicon converted through solved-LP1 native GP orthography. The independently clear p57 PARABLE positive control has **8/12** long words in this lexicon at frequency at least five. Its full **95-rune** stream round-trips under the same key, as do all 308 original ciphertext runes under each proposed inverse. None yields 150 contiguous readable source-language runes.
+
+The [source-native CommonJS SFT](../sims/lp2_p6_p7_balanced_marker_receiver_sft.cjs) asserts the four original red words, source marker bounds, exact key, literal original ciphertext, both signs, both clocks, 308-rune forward re-encryption and p57 control. **Decision:** retire this exact original-source p6/p7 difference-key body inverse. Retain the reversal as structural evidence. Other maps or receivers need a newly identified author-visible operation before more decryption search. A matching GP0 word sum constrains one scalar per word and leaves the rune letters underdetermined.
 
 ## Director #2051 p50 fork
 
