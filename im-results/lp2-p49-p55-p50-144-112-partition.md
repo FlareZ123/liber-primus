@@ -1,6 +1,6 @@
 # P49/P55 four-field packets partition p50 144/112, but no source selects the aggregation or consumer
 
-**Consolidated decision (19 November 2026): retain as intermediate geometry; retire the 144/112 consumer branch.** The p49 and p55 five-core signatures produce exact four-field totals matching the two-shell/inner-core cell counts of p50. The correspondence is real and reproducible, but the four-field aggregation duplicates the middle core, no preserved source instructs a solver to construct or sum those fields, and the only tested direct 4×4 Hill consumer is nonlinguistic. No unknown plaintext or cipher key is recovered.
+**Consolidated decision (21 November 2026): retain the 144/112 correspondence as intermediate geometry; retire the four-field packet consumer and the separately tested simple inner-core additive-key consumers.** The p49 and p55 five-core signatures produce exact four-field totals matching the two-shell/inner-core cell counts of p50, but the four-field aggregation duplicates the middle core and no preserved source selects it. A separate source-motivated use of the 28×4 inner core as 28 four-symbol spread keys or 56 two-symbol page keys was also tested under both base60 and drop-f base59 readings; every fixed additive variant remains near the uniform GP29 IoC. No unknown plaintext or cipher key is recovered.
 
 ## Observed packet correspondence
 
@@ -73,6 +73,43 @@ A bounded Hill4 proposal used the existing p29 H4 packet `[22,15,8,0]` as row in
 
 Both selected matrices are invertible and all four inverses round-trip exactly, but none of the four outputs is readable p55 plaintext. The full original outputs and reproducer remain in [the original bounded report history](../sims/lp2_p49_p55_p50_144_112_partition_sft.cjs). Do not repeat direct Hill4, row permutations, radix sweeps or arbitrary table-to-GP29 mappings.
 
+
+## Independent inner-core key-schedule gate: 28 spreads / 56 pages
+
+The p57 instruction to “SHED OUR OWN CIRCUMFERENCES / FIND THE DIVINITY WITHIN AND EMERGE” makes the 28×4 inner rectangle a reasonable human-solver target after removing the two outer circumferences. That leaves **112 cells**. LP2 physical pages p0–p55 comprise **56 page positions**, naturally divisible into **28 adjacent two-page spreads**. This motivates one bounded consumer: read each inner row as a four-symbol GP29 additive key for its corresponding spread (p0/p1, p2/p3, …, p54/p55). A second natural grouping treats the same 112 cells as 56 adjacent two-symbol keys, one per page.
+
+This is a motivated hypothesis, **not an authenticated instruction**. No preserved source explicitly says to reduce the table to GP29, use additive Vigenère, map rows to physical spreads, or assign two cells per page.
+
+### Frozen original-input tests
+
+The SFT reads the canonical 32×8 p50 grid and p0–p55 corpus directly. It extracts rows 2–29 and columns 2–5 in printed row-major order. Two table interpretations are kept distinct:
+
+- **Base60:** the canonical two-character token value 60·digit(first)+digit(second).
+- **Base59-drop-f:** the same printed tokens with the lowercase f digit omitted before radix-59 conversion. This is an investigator-defined rival, not a source-authenticated radix.
+
+For the **28-spread / four-symbol** interpretation, each inner row supplies four key symbols modulo29 to the corresponding adjacent page pair. The fixed finite variants test both additive signs, literal-F bypass/nonconsumption versus ordinary consumption, and phase reset at the page boundary versus phase carry across the two pages: 16 variants total across both radix readings.
+
+For the **56-page / two-symbol** interpretation, adjacent inner cells supply one period-two key per physical page, in p0–p55 order. Both signs and both F policies are tested under each radix: 8 variants total. The table page p50 is an empty text receiver but retains its physical page slot.
+
+Every output is forward-replayed against its exact original ciphertext; synthetic p57 positive plants verify the fixed transform and F-clock implementations. These replay checks validate the implementation only; they do not authenticate the cipher.
+
+### Results
+
+| Fixed receiver | Base60 global IoC range | Base59-drop-f global IoC range |
+|---|---:|---:|
+| 28 four-symbol keys, one per adjacent spread | 0.03445918–0.03585028 | 0.03447071–0.03584661 |
+| 56 two-symbol keys, one per page | 0.03446290–0.03565160 | 0.03447567–0.03584661 |
+
+The original p0–p55 unknown ciphertext baseline is **0.03447840**; the uniform 29-symbol baseline is **1/29 = 0.03448276**. The independently clear p57 text has IoC **0.06270997**. None of the fixed additive outputs approaches the clear-text control; the best shifts remain close to the original near-uniform ciphertext distribution. The test does not claim that IoC alone proves every possible language model impossible; it rejects these specific source-shaped additive schedules as a route to plaintext.
+
+A classic **2×2 Hill matrix per spread** is also not a complete alternative under the same row grouping: one of 28 base60 matrices is singular (row20, assigned p40/p41), and one of 28 base59 matrices is singular (row21, assigned p42/p43). In addition, **eight** adjacent page spreads have odd combined rune counts, requiring an unprovided terminal-symbol/padding rule for a 2×2 block cipher. These are structural failures of this exact Hill2 interpretation, not evidence against all possible inner-core consumers.
+
+### Decision
+
+Retire the fixed 28-row period-four additive spread key, the 56 period-two additive page keys, and the direct 2×2 Hill-per-spread interpretation. Do not tune phases, page permutations, alternate pairings, padding, or state updates to rescue these candidates without a new first-party selector. The 28×4 geometry and its 112-cell count remain an intermediate observation; other uses are logically open only if a source supplies the missing operation and receiver.
+
+Reproduction: node sims/lp2_p50_inner112_pagepair_key_gate.cjs.
+
 ## Separate page-level SHED route
 
 The p49/p55 page-level SHED results remain independently useful and must not be conflated with this packet hypothesis:
@@ -103,6 +140,7 @@ Reopen only if a first-party clue or contemporaneous player-visible convention i
 
 ```sh
 node sims/lp2_p49_p55_p50_144_112_partition_sft.cjs
+node sims/lp2_p50_inner112_pagepair_key_gate.cjs
 ```
 
 The SFT reproduces the page-level five-core census, the four-field totals, the p50 32×8 geometry, the p29 row selector, both radix-specific matrices, exact inverses, and exact forward re-encryption of all 19 p55 blocks.
