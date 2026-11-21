@@ -42,6 +42,7 @@ Define the simplest source legible index operation on the original 256 tokens: g
 - Only nontrivial directed two-cycle: **54 → 36 → 54**.
 - Source tokens: **cell54 = 2a** (low digit a=36), **cell36 = 0s** (low digit s=54).
 - The only self-loops are **6** and **9**.
+- Starting at the **first printed 00 cell192**, repeated use of the *same* low-digit operation, without any altered mapping, takes exactly **2 steps to cell23** (the independently identified DH modulus **p=23**), and exactly **12 steps to cell30**, whose original token is **2L**, giving the already selected recipient value141. The two hop counts are the independently recovered **K=2** and the p38 packet's unmodified **K·a=12**. This is a secondary source-parameter consistency circuit; the hop counts became interesting only after recognizing the packet, so it does not by itself authenticate the event grammar.
 - Both members of the unique two-cycle lie on the printed matrix main diagonal: cell **36=(row4,col4)** and cell **54=(row6,col6)** (zero-based rows and columns).
 
 Therefore the **sum54 of the entire YOUA four-rune source readout** directly selects one end of the sole nontrivial reciprocal two-cycle, and its first hop is **36**. The readout contains no fitted numeric coefficient, bit order, skipped symbol, or hand-chosen table shift.
