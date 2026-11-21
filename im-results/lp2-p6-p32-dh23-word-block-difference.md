@@ -44,6 +44,8 @@ It establishes the example values `p=23`, `g=5`, public shares 8 and 19, and sha
 
 There is a separate LP2-native p28 route that selects a DH23 state, including `p=23`, `g=5`, and derived `e=3`; it does **not** select p32's internal cuts or the p6−p32 subtraction. That independent result cannot be retrofitted as the missing operand selector for this vector. It also does not assign the vector's zero a DH role. See [the p28 center-line DH selector](lp2-p57-find28-p28-centerword-dh87-loop.md).
 
+A further p6→p7 observation supplies a source-positioned **p/g hint**, but not the missing p6/p32 selector: after the mirrored two-word boundary, the next p7 red word is the unique increasing prime-index triple `[5,7,11]` among the 11 red three-rune words; its GP0 sum is 23 and its leading index is 5. This independently reinforces the *possible* reading of 23/5 as `(p,g)`. It still does not select p32 fragment7, the internal 4|1|4|2 cuts, subtraction direction, or any role for 0 and 3. Treat it as cross-observation supporting only the first two values, not a typed DH state or reversible receiver. See [the p6/p7 red-boundary report](lp2-p6-p7-reversed-red-boundary-gate.md).
+
 **Decision:** `[23,5,0,3]` remains a real arithmetic relation under the chosen partition, but it is **not a source-selected DH state**. The leading 23/5 pair is a match to already-known parameters; 0 is only the third block's equal-sum difference, and 3 is an untyped residual (its separate appearance as p28's derived exponent does not connect it to this p6/p32 subtraction). Close this route as structural-only. Do not search arbitrary DH tuple encodings, exponent roles, signs, cuts, or operand orders.
 
 ## Operational consequence and limit
