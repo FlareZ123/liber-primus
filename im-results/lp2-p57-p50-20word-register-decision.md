@@ -55,7 +55,7 @@ The graph's last state **115** also happens to equal GP-prime sum(`WITHIN`), the
 
 ## Controls, scope and next decision
 
-The exact test enumerates **all 256 possible table start states** without choosing a new start by English scoring. Thirty alternative starts attain at least two word-number step matches when either sign is allowed; 26 starts reach115 at step20. The authentic fixed start81 attains two matches, so the two local coincidences are not strong evidence for an authored twenty-step word-number rule.
+The exact test enumerates **all 256 possible table start states** without choosing a new start by English scoring. Thirty starts, including the original 81, attain at least two word-number step matches when either sign is allowed; 26 starts reach115 at step20. The authentic fixed start81 attains two matches, so the two local coincidences are not strong evidence for an authored twenty-step word-number rule.
 
 An independent planted 256-cell successor map is constructed to obey the original twenty GP0 word steps exactly. Every intermediate state is distinct, and its whole twenty-step run is recovered by the same decoder, demonstrating the test accepts an actual source-number-driven map when one exists. Source parsing checks all **95/95** original solved p57 GP indices, the exact original page51 `WWP` and all printed word lengths. The 256-byte original table is consumed unchanged.
 
