@@ -282,6 +282,91 @@ for (const [name, weights] of [
 }
 assert.ok(ternaryTreeReceivers.every(record => record.coincidence < 0.04));
 
+/**
+ * A pure GP29 cube/root permutation keeps each multiplicative orbit invariant,
+ * regardless of per-rune exponent selection or clock. Calibrate the necessary
+ * condition on actual solved GP-native text, not synthetic English spellings.
+ */
+const reference = fs.readFileSync(path.join(
+  __dirname, '..', 'resources', 'liber-primus', 'lp1-plaintext-reference.txt'
+), 'utf8');
+const alphabet = new Map(source.translit.map((token, index) => [token, index]));
+for (const [token, index] of [['K', 5], ['V', 1], ['Q', 5], ['Z', 15], ['ING', 21]]) {
+  alphabet.set(token, index);
+}
+const sortedTokens = [...alphabet.keys()].sort((a, b) => b.length - a.length);
+
+/** @param {string} latin @returns {number[]} */
+function transliterateReference(latin) {
+  const letters = latin.replace(/[^A-Z]/g, '');
+  const result = [];
+  for (let index = 0; index < letters.length;) {
+    const token = sortedTokens.find(item => letters.startsWith(item, index));
+    assert.ok(token, 'Unrecognized GP reference token');
+    result.push(alphabet.get(token));
+    index += token.length;
+  }
+  return result;
+}
+
+const parts = reference.split(/^### (\d+)\s*$/m);
+const native = [];
+for (let index = 1; index < parts.length; index += 2) {
+  const pageNumber = Number(parts[index]);
+  if (pageNumber === 16 || pageNumber === 56) continue;
+  const text = parts[index + 1].split('\n')
+    .filter(line => !line.trim().startsWith('[') && !line.trim().startsWith('#'))
+    .join('\n');
+  const encoded = transliterateReference(text);
+  if (pageNumber === 57) assert.deepStrictEqual(encoded, knownP57);
+  native.push(...encoded);
+}
+assert.equal(native.length, 3061);
+const allUnknown = source.pages.filter(page => page.page < 56)
+  .flatMap(page => page.indices);
+assert.equal(allUnknown.length, 12956);
+const cubeClasses = [
+  [0], [1], [2, 8, 19, 15, 11, 26],
+  [3, 27, 21, 10, 14, 18], [4, 6, 13, 22, 5, 9],
+  [7, 24, 20, 25, 23, 16], [12, 17], [28]
+];
+const cubeClassOf = new Map();
+cubeClasses.forEach((orbit, orbitIndex) => {
+  orbit.forEach(symbol => {
+    assert.ok(!cubeClassOf.has(symbol));
+    cubeClassOf.set(symbol, orbitIndex);
+  });
+});
+assert.equal(cubeClassOf.size, 29);
+for (let symbol = 0; symbol < 29; symbol++) {
+  assert.equal(cubeClassOf.get(modPow(symbol, 3, 29)), cubeClassOf.get(symbol));
+  assert.equal(cubeClassOf.get(modPow(symbol, 19, 29)), cubeClassOf.get(symbol));
+}
+/** @param {number[]} values @returns {number[]} */
+function orbitCounts(values) {
+  const result = Array(cubeClasses.length).fill(0);
+  values.forEach(value => { result[cubeClassOf.get(value)]++; });
+  return result;
+}
+const nativeCubeOrbitCounts = orbitCounts(native);
+const originalUnknownCubeOrbitCounts = orbitCounts(allUnknown);
+const originalP8CubeOrbitCounts = orbitCounts(body);
+assert.deepStrictEqual(nativeCubeOrbitCounts, [51, 161, 576, 881, 562, 752, 44, 34]);
+assert.deepStrictEqual(originalUnknownCubeOrbitCounts,
+  [458, 450, 2637, 2750, 2688, 2669, 844, 460]);
+assert.deepStrictEqual(originalP8CubeOrbitCounts, [8, 10, 48, 50, 59, 45, 14, 9]);
+const exactCubeOrbitClassInvariant = {
+  cubeClasses,
+  solvedNativeGpLength: native.length,
+  originalUnknownGpLength: allUnknown.length,
+  originalP8BlackLength: body.length,
+  nativeCubeOrbitCounts,
+  originalUnknownCubeOrbitCounts,
+  originalP8CubeOrbitCounts,
+  actualSolvedP57ControlMatchedAtEveryIndex: true,
+  conclusion: 'Every per-rune cube/root map preserves its original orbit class and cannot alter these original class counts toward solved-native GP English'
+};
+
 console.log(JSON.stringify({
   source: 'Original LP2 p8 opening red XIXM and p7 second red product',
   p8RomanNumber: romanNumber,
@@ -296,6 +381,7 @@ console.log(JSON.stringify({
   red5ProductsAndMissingRoman19CubeOrbit: cubeOrbit,
   unchangedOriginalP8Black243TwoReversibleReceivers: cubeRootReceivers,
   unchangedOriginalP8Black243FiveLevelRootTreeReceivers: ternaryTreeReceivers,
+  exactCubeOrbitClassInvariant,
   originalUnknownRunes: source.pages
     .filter(page => page.page < 56)
     .reduce((sum, page) => sum + page.indices.length, 0),
