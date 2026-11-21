@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Bounded screen of the 2012 Valete P.S. integer against LP2.
+"""Bounded screen of the 2012 Valete P.S. RSA key against LP2.
 
-Uses only the repository's canonical LP2 transcription and source-published
-P.S. factorization. This is a negative candidate screen, not a decryption claim.
+Uses the canonical LP2 transcription and the 2012 archive's recreated
+Crypt::RSA key material. This is a negative candidate screen, not a decryption claim.
 """
 from __future__ import annotations
 
@@ -22,6 +22,7 @@ P = int(
 Q = int(
     "104593961812606247801193807142122161186583731774511103180935025763"
 )
+# Explicit in the archive's recreated numbers.public; the signed message itself prints only N.
 E = 65537
 
 # The 2014 Stage 2 signed payload's own modulus, concatenated across its
