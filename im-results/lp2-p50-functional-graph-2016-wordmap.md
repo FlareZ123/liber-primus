@@ -4,7 +4,7 @@
 
 ## Hypothesis
 
-The authenticated 2016 message's "numbers are the direction" clue, together with the source-native **EPIPHANY SEEKS THE DEVOTED → p32** route, selects the forward base-60 byte-as-next-address operation on the original 32×8 p49–p51 table. The independent route charges all 40 consecutive four-word windows, seven DH-state depths and both live radices (560 cases); exactly one hits: EPIPHANY SEEKS THE DEVOTED, depth p=23, base60, terminal p32, whose 121 runes equal GP0(EPIPHANY). Its held-out EMPTY word occurs at step 7=g+K. The route does not use the 2+11 cycle decomposition or the q/r cycle-word pairs. Thus the successor-map semantics are no longer merely an arbitrary functional graph induced by one conventional radix.
+The authenticated 2016 message's "numbers are the direction" clue, together with the source-native **EPIPHANY SEEKS THE DEVOTED → p32** route, selects the forward base-60 byte-as-next-address operation on the original 32×8 p49–p51 table. The original 560-case family (40 consecutive four-word windows × seven DH-state depths × two live radices) has one hit. A stronger audit expands to seven natural GP word-number encodings (GP0, GP0 mod 256, GP1, GP1 mod 256, GP-prime sum, GP-prime sum mod 256, and rune count), zero- and one-based table addressing, and all eight obvious row/column traversals. Across 62,720 configurations there are two raw hits, but they are the same route under GP0 and GP0 mod 256 because the selected four word values are already below 256. There is exactly one distinct route: EPIPHANY SEEKS THE DEVOTED, depth p=23, base60, row-major forward, zero-based, terminal p32, whose 121 runes equal GP0(EPIPHANY). Its held-out EMPTY word occurs at step 7=g+K. The route does not use the 2+11 cycle decomposition or q/r cycle-word pairs. Thus the successor-map semantics are selected by an independent source phrase and receiver, not merely by choosing a conventional radix after noticing a functional graph.
 
 The 2+11 cycle structure is a deterministic property of that source-selected map. The additional n=29q+r decomposition of cycle nodes into the first 29 signed-message words is a second-layer readout. Its quotient-first, zero-based form aligns with the independently reconstructed signed-message DH word-position register, but the 13 word-pairs are not recovered LP plaintext and have no demonstrated body-cipher inverse. The p0 title candidate EPIPHANY SEEKS is a post-discovery cross-check, not a blind prediction.
 
@@ -90,19 +90,40 @@ Under the source-supported quotient-first, zero-based register interpretation, t
 
 The 11-cycle's base-29 nodes also contain several 2013 DH values: 247 = 8×29+15 (A=8, b=15), 197 = 6×29+23 (a=6, p=23), 115 = 3×29+28 (e=3), and 68 = 2×29+10 (K=2). The 2-cycle basin size 4 matches q=4, and 249 mod 23 = 19 matches B=19. This is an intriguing numerical convergence; it does not yet provide a single extraction rule for the entire DH tuple or the p0 additive key.
 
-## Source-selector family audit (Agent4, 21 November)
+## Source-selector family audit (Agent5, 21 November)
 
-The small human-plausible family was frozen around the source-available choices: forward versus inverse pointer direction; the two possible 2-cycle starts; the 11-cycle phase; quotient/remainder order; and zero- versus one-based word indexing.
+The initial family was frozen around the source-available choices: forward versus inverse pointer direction; the two possible 2-cycle starts; the 11-cycle phase; quotient/remainder order; and zero- versus one-based word indexing. The route itself is now tested against a broader, explicit family.
 
-**Pointer direction.** The source-native 560-case p32 route selects the forward base60 successor operation. The inverse relation is not a function: 95 nodes have no predecessor, 92 have one, 49 have two, 14 have three, and 6 have four. Forward is the only total deterministic traversal. The route's terminal p32 also fixes the 11-cycle phase because T[32]=115.
+**Pointer and address semantics.** The source-native route selects the forward successor operation. The inverse relation is not a function: 95 nodes have no predecessor, 92 have one, 49 have two, 14 have three, and 6 have four. The forward map is the only total deterministic traversal. The expanded audit charges both zero-based state x→T[x] and one-based state x→T[x−1]+1.
 
-**Cycle orientation and phase.** The 2-cycle is 158→249→158. Starting at 158 is selected by q=5=g; its successor 249 has q=8=A. Starting at 249 reverses the source DH order. The 11-cycle phase 115 is independently selected by the p32 route's final pointer T[32]=115; the separate THE path 20→102→32→115 corroborates it.
+**Full route family.** The reproducer enumerates:
+- all 40 consecutive four-word windows in the authenticated 43-word signed message;
+- all seven DH-state values as candidate depths: p,g,a,b,A,B,K;
+- base59 and base60;
+- seven natural word-number encodings: GP0 sum, GP0 mod256, GP1 sum, GP1 mod256, GP-prime sum, GP-prime sum mod256, and rune count;
+- zero- and one-based pointer addressing;
+- all eight obvious row/column traversals of the original 32×8 table, with independent major/minor reversal.
 
-**q/r word-map family.** For n=29q+r, quotient-first and zero-based indexing are the ordinary base-29 decomposition. This is the only tested reading whose q-channel matches the independently reconstructed DH roles: the 2-cycle q values are [5,8]=[g,A], the 11-cycle entry has q=3=e, and the 11-cycle q-mode is 6=a. The r-channel gives 13/17 on the 2-cycle and r-mode18=MAP. Reversing q/r moves the DH matches out of the q-channel; one-based cyclic indexing shifts the 2-cycle q values to [4,7] and the entry q to2, losing g/A/e alignment. The independent 69,120-case signed-word-position DH audit selects zero-based word numbering; DIRECTION is word index29, immediately after the first 29-word register. Excluding the signed greeting would move DIRECTION to28 and break the independently observed DIRECTION-29 page selector.
+This is 62,720 deterministic configurations. Two raw hits occur: GP0 and GP0 mod256 both find the same window and route because EPIPHANY, SEEKS, THE and DEVOTED have GP0 values [121,71,20,102], all already below 256. After deduplicating this exact equivalence there is **one distinct route**:
 
-**Independent prediction and scope.** The separate EPIPHANY SEEKS THE DEVOTED route selects base60 and p=23 in exactly one of 560 source-family cases, predicts physical p32 with 121 runes=GP0(EPIPHANY), and has the held-out EMPTY@7=g+K path hit. It does not use the 2+11 topology or q/r pairs, so it independently validates the pointer map and the 11-cycle phase rather than merely rephrasing the cycle readout. The 2+11 graph has 13 cycle vertices, length product22 and small basin4, matching the independent p0 marker count and DH p−1/q values. The conditional 100,000-shuffle null gives zero joint hits for the fixed graph/2-cycle/q-r-mode signature; this remains conditional, not a discovery-adjusted global p-value.
+- source window: EPIPHANY / SEEKS / THE / DEVOTED (word indices 5–8);
+- start: GP0(SEEKS)=71;
+- depth: p=23;
+- radix/layout/addressing: base60, row-major forward, zero-based;
+- final two preterminal states: 20=GP0(THE), 102=GP0(DEVOTED);
+- terminal state/page: 32;
+- independent receiver feature: p32 contains 121 runes = GP0(EPIPHANY);
+- held-out check: the preceding EMPTY word has GP0=92 at step 7=g+K.
 
-The p0 title candidate EPIPHANY SEEKS is not counted as the independent prediction because it was already known. The 13 q/r pairs remain a structural cross-source readout, not a sentence, plaintext, or key. The direct p0 13-atom consumer gate below remains negative.
+The route is selected without consulting the p0 title candidate, the 2+11 cycle decomposition, or the q/r readout. It is therefore a genuine source-side navigation result, not a plaintext recovery.
+
+**Cycle orientation and phase.** The 2-cycle is 158→249→158. Starting at 158 is selected by q=5=g; its successor 249 has q=8=A. Starting at 249 reverses the independently sourced DH order. The p32 route ends at 32 and T[32]=115, fixing the 11-cycle entry phase at 115. The separate THE path 20→102→32→115 corroborates the same phase.
+
+**q/r word-map family.** For n=29q+r, quotient-first and zero-based indexing are the ordinary base-29 decomposition. The first 29 signed words form the natural register because DIRECTION is word index29, immediately after that register. On the 2-cycle, nodes [158,249] decompose to (5,13),(8,17), reading **EPIPHANY/WAY** and **DEVOTED/THE**; the q-channel [5,8] matches the independent DH order [g,A]. On the 11-cycle beginning at the independently selected phase115, the q-mode is 6=SEEKS and the r-mode is 18=MAP. Swapping q/r moves the g/A matches out of the q-channel and reverses SEEKS/MAP. The one-based cyclic alternative (q−1,r−1 mod29) shifts the 2-cycle q values to [4,7] and the entry q to2, losing g/A/e alignment. Reversing the 2-cycle start likewise gives A→g. The 13 ordered word-pairs remain an intermediate cross-source readout, not a sentence, recovered plaintext, or key.
+
+**Independent DH-label caveat.** Do not assign DH fields to cycle count, common cycle length, cycle-node total, maximum tail depth, or basin sizes. The separate conservative topology-label audit found 18 equally simple provenance aliases for the exact tuple and 161 DH-valid numeric tuples / 1,736 source-expression assignments across its broader global-simple family. The authenticated signed-word-position source independently reconstructs the DH tuple; it does not resolve those topology-label aliases. See lp2-signed2016-graph-dh-label-family-gate.md and lp2-signed2016-word-position-dh.md.
+
+**Original-image anchor and scope.** The 2+11 decomposition depends on cell199 being base60 token 0l=47. The original scan shows lowercase l; the earlier 2014 decimal witness's value21 would instead create a 2+21 cycle. This authenticates the critical image transcription. The p32 route independently selects the same forward base60 table without using its cycle decomposition. The conditional 100,000-shuffle graph-signature null remains conditional, not a discovery-adjusted global p-value.
 
 ## Direct p0 13-atom consumer gate (Agent10, 20 November)
 
@@ -170,4 +191,11 @@ node sims/lp2_p50_functional_graph_2016_wordmap_sft.cjs --null=100000
 
 ## Best next decision
 
-The forward base60 map is now source-selected as a navigation mechanism, and its 2+11 decomposition is a reproducible structural feature with independently anchored orientation/phase. The q/r word-pair layer remains a cross-source readout, not plaintext. The direct p0 consumer family is closed: none of its frozen residue, difference, sum, or H transforms reproduces the p0 marker input or generated key. Do not continue with unconstrained permutations, alternative radices, or fitted pair functions. The next productive target is a source-selected reversible operation on the p32/p33 receiver, not another p0 key consumer.
+The forward base60 row-major successor map is source-selected as a **navigation mechanism**: one distinct EPIPHANY / SEEKS / THE / DEVOTED → p32 route survives 62,720 source-plausible configurations, and the original scan independently confirms the critical 0l cell. The 2+11 graph is a reproducible structural feature of that selected map, with orientation/phase anchored by the route and signed-source DH order.
+
+Keep the evidential layers separate:
+- **Established:** original table transcription at the critical cells; deterministic base60 successor map; 2+11 cycles and basin sizes; the unique source-window-to-p32 navigation route under the stated family.
+- **Intermediate interpretation:** the 13 q/r word-pairs. They form a source-aligned word-map readout but are not plaintext, a key, or a reversible cipher.
+- **Not established:** using graph/basin/depth statistics as DH field provenance. The independent topology-label audit leaves 18 aliases for the exact tuple and 161 DH-valid tuples / 1,736 assignments. Use the authenticated signed-word-position reconstruction as the DH source, not post-hoc graph labels.
+
+No unknown LP2 plaintext, authentic encryption key, or final destination is recovered. The next productive question is a source-selected reversible operation on the p32/p33 receiver. Do not repeat p0 cycle-key consumers, broaden arbitrary permutations, or reopen the already rejected direct q/r-to-p0 key family.

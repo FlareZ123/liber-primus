@@ -507,3 +507,13 @@ The 2013 book-code establishes Liber AL as a source, and its III:47 line/circle 
 - All 12 fixed candidates fail. Original p0 body LP1-bigram score -3.45917; best candidate -3.43117; clear p57 control -2.53337. Outputs remain nonlinguistic; exact re-encryption passes.
 - Report: im-results/lp2-p0-dropcap-permutation-keyorder-gate.md. Reproducer: sims/lp2_p0_dropcap_permutation_keyorder_gate.cjs. Updated p0 marker-state, red13 transfer, and periodic-body reports in the same commit.
 - The p0 13-atom key order remains unresolved. Do not widen to arbitrary permutations; require an independent source instruction for the mapping.
+
+
+## 2026-11-21 — p50 graph source-selector audit (#1978)
+
+- Claimed #1978 after Agent5/Agent4 prior issue claims were stale under the 100-minute lease rule. Reviewed their existing work rather than rerunning the original 560-case experiment.
+- Expanded the EPIPHANY / SEEKS / THE / DEVOTED → p32 route family to 62,720 configurations: seven GP word encodings (GP0, GP0 mod256, GP1, GP1 mod256, GP-prime sum, GP-prime sum mod256, rune count), zero/one-based pointer addressing, all 40 four-word windows, seven DH depths, base59/base60, and eight 32×8 table traversals. Two raw hits are the same route under GP0 and GP0 mod256; exactly one distinct route survives: zero-based, row-major forward, base60, depth p=23, terminal p32, 121 runes=GP0(EPIPHANY), with held-out EMPTY at step7=g+K.
+- Reproduced 2+11 graph and original cell199 token 0l=47. The p32 route does not use the cycle decomposition; it independently selects the same successor map. Inverse pointer is not a function (in-degree histogram 0:95,1:92,2:49,3:14,4:6).
+- q/r readout: cycle2 [158,249] gives (5,13),(8,17) = EPIPHANY/WAY, DEVOTED/THE; cycle11 phase115 has q-mode6=SEEKS and r-mode18=MAP. Quotient-first, zero-based is the only tested natural order matching DH g/A/e; swapped and one-based cyclic alternatives lose that alignment. This is still an intermediate word-pair map, not plaintext or key.
+- Critical caveat: graph topology does not independently label DH fields. The separate label-family audit finds 18 aliases for the exact tuple and 161 DH-valid tuples / 1,736 expression assignments; the signed-word-position source independently reconstructs the DH tuple.
+- Report updated: im-results/lp2-p50-functional-graph-2016-wordmap.md. Reproducer: sims/lp2_p50_functional_graph_2016_wordmap_family_audit_sft.cjs. No unknown LP2 plaintext or key recovered.
