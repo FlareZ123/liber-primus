@@ -84,6 +84,23 @@ All original scores are *lower* (worse) than **every** independently sourced nat
 
 The [successful Windows Node22 run 44931627509](https://github.com/FlareZ123/liber-primus/actions/runs/44931627509) prints every source-key optimum, both untouched halves and all independent-corpus controls. The primary result is a narrow but strong decision: **retire the single-stage 2^r 11-column DH packet, even with all key symbols hidden**. Further tuning the red seed or repeating 28-state cycles cannot repair the observed native-GP mismatch within those frozen architectures.
 
+## Exact original two-long-word cryptanalytic gate (Agent35, 21 November 2026)
+
+The two longest original printed black words inside the uninterrupted 308-rune p6/p7 packet each contain **12 GP runes**, starting at original packet offsets **165** and **293**. The authentic punctuation leaves **70 complete printed words** between the red headings, including the p6→p7 seam carried as one word. These two 12-rune words are a stringent test of the previously rejected `2^r` eleven-column additive architecture, even when **all eleven key residues are secret**. Each row-major 12-rune plaintext candidate covers every one of the eleven key columns and revisits its first column one row later. Requiring both occurrences to imply the same secret residue is an exact algebraic filter. An independent second source word must imply the identical full eleven-symbol secret.
+
+The [source-native original-input two-word SFT](../sims/lp2_p6p7_28cycle_secret11_two12word_sft.cjs) uses **1,327 independently registered GP12 words**: 872 source-native English words from TextBlob, Gibran, Shakespeare and Emerson; 453 Vulgate Latin tokens; and two Old English tokens from the corrected Beowulf corpus. Under each of the four literal source-compatible `2^{±row}` interpretations, the complete-secret constraint yields:
+
+| Literal 308-rune packing | Field state | First 12-rune word individually feasible | Second 12-rune word individually feasible | Joint source-registered complete keys |
+| --- | --- | ---: | ---: | ---: |
+| 28 rows × 11 symbols, row-major | `2^row` | 30 | 98 | **0** |
+| 28 rows × 11 symbols, row-major | `2^{-row}` | 34 | 50 | **0** |
+| 11 contiguous columns × 28 symbols | `2^row` | **0** | **0** | **0** |
+| 11 contiguous columns × 28 symbols | `2^{-row}` | **0** | **0** | **0** |
+
+For row-major `2^row`, the original first word's 30 registered possibilities collapse to **23 distinct complete eleven-rune key vectors**, and the second word's 98 possibilities yield **72 key vectors**; the intersection is empty. The opposite field-cycle direction is likewise empty. Under both column-chunk variants, neither original 12-rune word has even a *single* registered GP plaintext candidate satisfying repeated-column equations. These are exact constraints for each finite source dictionary and the stated cipher, without recovering a guessed or tuned key from frequency. The SFT separately creates an original-size GP-native positive ciphertext with independent 12-rune words `COMPANIONSHIP` and `ACQUAINTANCE`, recovers the same implanted secret from both, and verifies the complete forward/inverse for all four layouts.
+
+[Windows Node22 PASS 44940995442](https://github.com/FlareZ123/liber-primus/actions/runs/44940995442). **Decision:** the natural two directions and two physical serializations of a stationary source-root2 additive 11-column key cannot represent the original word-preserving text from the registered English, Latin or Old English lexica. This sharply narrows the already negative `2^r` cipher branch. A rare unattested word, another plaintext register, changed word boundaries, an extra encryption layer or an author-directed alternative operation remains possible; this test recovers no authentic original plaintext. The exact source-position approach is reusable if a new original clue specifies a different reversible column operation.
+
 ## A second architecture: ciphertext-predecessor chain with unrestricted 11-rune key
 
 The uniform-like original GP29 ciphertext and its strongly suppressed adjacent equalities motivate a **ciphertext-chain**, distinct from all earlier direct one-stage DH2 tests. On the original 308-rune p6→p7 interval, the first ciphertext predecessor is no unknown IV: the **last original p6 red rune**, GP index **12**. Let \`D[i] = C[i]−C[i−1] mod29\`; \`C[−1]=12\`. The source has **exactly one zero delta** in the 308 runes, mirroring the book's wider anti-doublet effect. Using only the already source-motivated \`2^floor(i/11)\` state and a completely arbitrary **11-rune secret key** provides three distinct reversible chain models:
