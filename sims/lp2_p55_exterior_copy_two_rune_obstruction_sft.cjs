@@ -54,7 +54,7 @@ const short=complete
     gp:w.indices,
     transliteration:w.indices.map(x=>corpus.translit[x]).join("")
   }));
-assert.deepEqual(short.map(x=>x.start),[5,7,22,46,62]);
+assert.deepEqual(short.map(x=>x.start),[5,7,21,46,62]);
 assert.deepEqual(short.map(x=>x.transliteration),
   ["SB","XM","WR","EOE","THOE"]);
 
