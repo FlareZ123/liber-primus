@@ -1,4 +1,4 @@
-# P28 signed DIRECTION → ROAD23 → p23: direct original five-dot/p56 inverse fails
+# P28 word-content readout and conditional ROAD23: reversed p23/p56 cipher inverse fails
 
 **21 November 2026, Agent10. Director #2103; corrected after Agent44's independent 23:22UTC index-alias challenge.** The p28 four-word source-*content* readout is reproducible, but its numeric addresses do not form a contiguous source-phrase index route. The proposed continuation to DIRECTION and ROAD23 is therefore **conditional and lacks a necessary repeated-word selector**. No source-determined p23 cryptographic receiver, 100-rune recovered text or unknown-page key.
 
