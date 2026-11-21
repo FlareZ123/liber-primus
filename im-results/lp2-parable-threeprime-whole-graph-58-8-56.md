@@ -21,9 +21,34 @@ An independently discovered *nested* relation is now part of one complete triple
 
 `201 -> 74 -> 205` with reverse-closure sizes `56 -> 57 -> 58`. The **entire 58-node** closure of 205 is the 56-node closure of 201 plus exactly `[74,205]`. Those two additional nodes are candidates to represent solved p56 and p57, given the known 56+2 manuscript partition, but the book supplies no authored mapping of those two node IDs to the two actual page numbers.
 
-The **eight-node** closure of address173 is `[26,41,84,93,147,173,215,239]`. Its underlying table bytes have just three distinct values `[84,117,173]`; it does **not** enumerate columns0–7 or spell a plaintext message. The eight-column correspondence is a *size match*.
+The **eight-node** closure of address173 is `[26,41,84,93,147,173,215,239]`. Its underlying table bytes have just three distinct values `[84,117,173]`; the **first printed digits** nevertheless form a source-ordered binary pointer to the missing tile corner (detailed below). The eight-column correspondence itself is still a *size match*.
 
 The source selected addresses are distinctive within this exact original graph: **only one** of 256 nodes has closure size58 (205); **two** have size56 (20,201); **six** have size8 (28,81,112,113,148,173). This says that all three original PARABLE ordinals hit unusually specific graph roles, but does not itself specify the graph as a cipher.
+
+## Source-selected eight-node digit readout: byte169, the missing corner
+
+The **eight** reverse-reachable nodes at source prime address173, in their **printed row-major cell order**, are:
+
+| Cell address | Raw original p50 token | First digit | After subtracting 1 |
+| ---: | --- | ---: | ---: |
+| 26 | `2r` | 2 | 1 |
+| 41 | `1O` | 1 | 0 |
+| 84 | `2r` | 2 | 1 |
+| 93 | `1O` | 1 | 0 |
+| 147 | `2r` | 2 | 1 |
+| 173 | `1v` | 1 | 0 |
+| 215 | `1O` | 1 | 0 |
+| 239 | `2r` | 2 | 1 |
+
+Every first digit is already 1 or 2, so the most elementary zero-origin bit serialization, subtract 1 then read the eight bits left-to-right, yields `10101001₂ = 169₁₀`. **This equals exactly the fourth p50 cell corner** of the rectangle defined before any digit readout by the three independent source PARABLE addresses:
+
+`205 = (row25,col5)`, `173 = (row21,col5)`, `201 = (row25,col1)`, and the missing `(row21,col1)` is `173+201−205=169`.
+
+There are **six** roots with eight-node reverse closures across the **entire** original base60 graph (`28,81,112,113,148,173`). **Only source-selected 173** has every original ancestor-cell first digit in the strict binary-ready alphabet `{1,2}`. The same eight nodes do not have distinct column coordinates, so this is a source-ordered bit readout and a rectangle cross-check, rather than a literal one-node-per-column scheme.
+
+The recovered candidate cell169 holds **`3m`**: base60 value **228**, alternate drop-f base59 value **224**. Independently solved p56 `AN END` contains **PAGE** twice; exact GP prime weights P43+A97+G17+E67 = **224**, giving a second source-word match if a radix change is allowed. This is an attractive **possible instruction to locate the p56 hash-page**, and a candidate dual-radix progression, but **no authenticated text orders switching radices**. The PAGE correspondence and the binary-to-corner relation were recognized retrospectively. They do **not** recover a page, hash preimage, unknown plaintext or working decryption key.
+
+The binary relation upgrades the middle PARABLE address from a matching branch size to a **source-corner-reproducing candidate 8-bit pointer**. It remains a structural route rather than proof of design. An independent consumer would need to use this exact byte, or the entire 56-node subtree, to make a new original-cipher prediction without adjusting its bit alphabet, order, radix or page alignment.
 
 ## Controlled structural rarity, with its discovery limitation
 
@@ -47,8 +72,8 @@ The add-one ordered-tail bound is `1/100001 ≈ 9.9999e-6`. A separate graph-lab
 The graph independently singles out a **56-node reverse closure rooted at cell201** that could supply one address per unresolved physical page, while the outer two nodes `74,205` could describe p56/p57. This is the first bounded practical route suggested by the complete ordered triad. To produce actual plaintext, a player needs **one rule specifying which of the 56 addresses corresponds to each p0–p55 page** and **one reversible operation consuming the chosen address or its outgoing byte**. Neither follows from descendant cardinality.
 
 Simple candidate readouts already checked locally:
-- Eight-column-sized address173 closure has only three distinct byte values and supplies no eight-character GP29 plaintext by the unkeyed native mod29 readout.
+- Address173's eight-member ancestor sequence **does** encode the separate candidate byte169 via its first digits; its direct unkeyed native GP29 byte-mod29 reading remains nonlinguistic.
 - Under a direct `GP0(first printed word) -> cell address` guess, only 16 of 55 original rune-bearing page-openers fall in the 56-node closure, versus ~12 expected from 56/256 exposure; the 45 authenticated 2016 signed-message alphabetic words similarly give 9 hits versus ~10 expected. These descriptive probes give no reliable complete page mapping.
 - Do **not** infer a page permutation merely because the selected subtree has 56 nodes, or fit a new affine/cipher layer using its 56 node IDs. A page-identity rule must be selected by an independent original first-rune, page-mark, image or historically authored navigation cue and then make a blind long plaintext/key prediction.
 
-**Reproduction:** [read-only CommonJS original-source SFT](../sims/lp2_parable_threeprime_graph_sizes_sft.cjs) computes prime sums from original clear p57 runes, prime ordinals from scratch, both full graph readings, all exact ancestor sets, inner-route difference, and 100,000 fixed-multiset shuffled tables. Validated in [Windows Node22 run 44950551147](https://github.com/FlareZ123/liber-primus/actions/runs/44950551147). The original input data are [`lp2-corpus.json`](../resources/liber-primus/lp2-corpus.json) and [`lp2-grid-256.json`](../resources/liber-primus/lp2-grid-256.json).
+**Reproduction:** [read-only CommonJS original-source SFT](../sims/lp2_parable_threeprime_graph_sizes_sft.cjs) computes prime sums from original clear p57 runes, prime ordinals from scratch, both full graph readings, all exact ancestor sets, inner-route difference, and 100,000 fixed-multiset shuffled tables. Validated in [Windows Node22 final pass 44951228709](https://github.com/FlareZ123/liber-primus/actions/runs/44951228709). The original input data are [`lp2-corpus.json`](../resources/liber-primus/lp2-corpus.json) and [`lp2-grid-256.json`](../resources/liber-primus/lp2-grid-256.json).
