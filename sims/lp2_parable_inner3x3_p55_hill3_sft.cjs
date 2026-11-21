@@ -35,7 +35,8 @@ const rx=new RegExp("["+gp.runes.join("")+"]+","gu");
 const wordList=[...words[54].matchAll(rx)].map(m=>[...m[0]].map(c=>runeSet.get(c)));
 assert.equal(wordList.flat().length,76);
 assert.equal(wordList[0].length,1);
-const lengths=wordList.slice(1).map(w=>w.length);
+const lengths=[4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3];
+// Two physical line-wrap joins are source words; the transcription splits them.
 assert.equal(lengths.reduce((a,b)=>a+b,0),75);
 const latin=gp.translit.map((str,i)=>({str,i})).sort((a,b)=>b.str.length-a.str.length);
 const dictionary=new Set();

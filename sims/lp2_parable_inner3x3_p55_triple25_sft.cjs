@@ -171,7 +171,8 @@ for(const hit of read("resources/control/english_wordfreq_textblob.txt").matchAl
   if(letters.length)lexicon.add(letters.map(x=>String.fromCharCode(65+x)).join(""));
 }
 assert(lexicon.size>20000);
-const lengths=physicalWords.slice(1).map(w=>w.length);
+const lengths=[4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3];
+// Two physical line-wrap joins are source words; the transcription splits them.
 assert.equal(lengths.reduce((a,b)=>a+b,0),75);
 function matchCount(P) {
   let hits=0,long=0,pos=0;
