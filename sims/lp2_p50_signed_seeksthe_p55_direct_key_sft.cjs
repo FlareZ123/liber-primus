@@ -349,6 +349,82 @@ rowMajorTrials.sort((a, b) => b.score - a.score);
 assert.equal(rowMajorTrials.length, 32);
 assert.ok(Math.abs(rowMajorTrials[0].score + 11.15231681556) < 1e-7);
 
+
+/**
+ * Historical p56 transparent literal-F bypass: each ciphertext F may either
+ * be copied plaintext F without consuming key, or be encrypted non-F and
+ * consume key. All nonliteral consumptions MUST decrypt to a non-F GP rune.
+ * All 2^3 and 2^4 exact original F masks are charged, no tuned mask.
+ */
+const transparentFTrials = [];
+const transparentFCounts = [];
+for (const { page, root, ciphertext: tape, baseOrders, nativeMin } of [
+  { page: 55, root: selected, ciphertext: original, baseOrders: orders, nativeMin: heldMin },
+  { page: 32, root: innerTreeRoot, ciphertext: p32, baseOrders: bigOrders,
+    nativeMin: held121Min }
+]) {
+  const physicalOrder = [...baseOrders[0].nodes].sort((a, b) => a - b);
+  const readingOrders = [...baseOrders, { name: 'rowmajor-asc', nodes: physicalOrder },
+    { name: 'rowmajor-desc', nodes: [...physicalOrder].reverse() }];
+  const originalFPositions = tape.flatMap((value, i) => value === 0 ? [i] : []);
+  assert.deepEqual(originalFPositions,
+    page === 55 ? [15,25,41] : [29,30,42,114]);
+  let valid = 0;
+  for (const order of readingOrders) {
+    for (const sourceKey of ['node', 'parent', 'edge-delta', 'depth']) {
+      const pad = order.nodes.map((node) => {
+        if (sourceKey === 'node') return node;
+        if (sourceKey === 'parent') return parent[node];
+        if (sourceKey === 'edge-delta') return node - parent[node];
+        let steps = 0;
+        for (let current = node; current !== root; current = parent[current]) steps++;
+        return steps;
+      });
+      for (const sign of [-1, +1]) {
+        for (let fmask = 0; fmask < 2 ** originalFPositions.length; fmask++) {
+          const skipped = new Set(originalFPositions.filter(
+            (_, i) => (fmask & (1 << i)) !== 0));
+          const plain = [];
+          let clock = 0, allowed = true;
+          for (let index = 0; index < tape.length; index++) {
+            if (skipped.has(index)) {
+              plain.push(0);
+              continue;
+            }
+            const value = mod29(tape[index] + sign * pad[clock++]);
+            if (value === 0) { allowed = false; break; }
+            plain.push(value);
+          }
+          if (!allowed) continue;
+          const reencryption = [];
+          clock = 0;
+          for (let index = 0; index < plain.length; index++) {
+            if (skipped.has(index)) reencryption.push(0);
+            else reencryption.push(mod29(plain[index] - sign * pad[clock++]));
+          }
+          assert.deepEqual(reencryption, tape);
+          valid++;
+          const result = {
+            page, order: order.name, sourceKey, sign, fmask, score: score(plain)
+          };
+          assert.ok(result.score < nativeMin);
+          transparentFTrials.push(result);
+        }
+      }
+    }
+  }
+  const proposed = readingOrders.length * 4 * 2 * 2 ** originalFPositions.length;
+  assert.equal(proposed, page === 55 ? 512 : 1024);
+  assert.equal(valid, page === 55 ? 34 : 10);
+  transparentFCounts.push({
+    page, originalFPositions, proposed, valid, nativeMin,
+    candidatesAtOrAboveNativeFloor: 0
+  });
+}
+transparentFTrials.sort((a, b) => b.score - a.score);
+assert.equal(transparentFTrials.length, 44);
+assert.ok(Math.abs(transparentFTrials[0].score + 11.32524186516) < 1e-7);
+
 console.log(JSON.stringify({
   selected: { source: 'SEEKS GP0=71; THE GP0=20', address: selected,
     subtreeSize: orders[0].nodes.length },
@@ -358,6 +434,8 @@ console.log(JSON.stringify({
   },
   numericKeys: { tested: keyTrials.length, best: keyTrials.slice(0, 3),
     candidatesReachingNativeMin: keyTrials.filter((entry) => entry.score >= heldMin).length },
+  literalFBypass: { counts: transparentFCounts,
+    best: transparentFTrials.slice(0, 4) },
   rowMajorNumeric: { tested: rowMajorTrials.length, best: rowMajorTrials.slice(0, 4),
     candidatesReachingNativeMin: 0 },
   signedWord43LeafFold: { words: signedWords43.length, treeLeaves: leaves.length,
