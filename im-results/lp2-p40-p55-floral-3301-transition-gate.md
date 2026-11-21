@@ -63,6 +63,21 @@ The source-original p40–53 body (**3,000** GP29 runes after red8) divides to *
 
 Reproducer: [literal original-source division SFT](../sims/lp2_floral_root24_literal_division_original_sft.cjs), **[Windows Node22 CI PASS 44938222490](https://github.com/FlareZ123/liber-primus/actions/runs/44938222490)**.
 
+## Source-locked higher-order regime check: the floral pages share the book-wide fifth-back signature
+
+An independent **source-driven cipher-regime discriminator** asks whether the visually selected 15 floral rune pages exhibit a different alphabetic mechanism from p0–p39. The earlier first-order 29-rune/step histogram contrasts were null-compatible (page-label permutation two-sided not extreme), but original LP2's previously documented **within-printed-word lag-five same-rune echo** is a more diagnostic cipher fingerprint. It was selected for this comparison because of its earlier source-wide independent finding, not optimized to the floral group.
+
+The canonical 2,896-word, 12,956-rune cross-page source parser is checked symbol-for-symbol against the original 58-page physical GP-index corpus. Each original lag5 site is assigned to its physical page, retaining true printed-word membership even for line/page carried words. Count identical characters at separation five within the same intact original printed word, contrasting the **15 image-defined rune pages** p40..55 versus the **40 other rune pages** p0..39. Across-word lag5 sites provide a secondary control. Randomly reassign **15 of the 55 complete original page labels** in each of **100,000** fixed-seed Fisher–Yates null permutations; retain all original rune strings, word positions, within-page and across-page conditions, and page-level sample sizes. The statistic is the **two-sided absolute difference of conditional event rates**, with no chosen per-page alignments or key.
+
+| Prespecified feature | Floral p40–55 | Other p0–39 | Absolute difference | 100,000 whole-page permutation two-sided right-tail |
+|---|---:|---:|---:|---:|
+| Within-word lag-five echo | **26/542 = 4.79705%** | **78/1,563 = 4.99040%** | **0.19336 percentage points** | **86,700/100,000**, plus-one p≈0.86700 |
+| Across-word lag-five echo | **98/2,774 = 3.53280%** | **277/8,072 = 3.43162%** | **0.10119 percentage points** | **79,923/100,000**, plus-one p≈0.79923 |
+
+These original-source data provide **no evidence for a distinct lag5/word-local encryption mechanism within the specially framed floral block**. The visually conspicuous 3301 count cannot be used as a cipher-family selector on these observables. It could still specify an operator's length, frame, key position, or independent payload. The test directly answers the causal decision "does original art select a different cipher regime?" under a more selective known cipher fingerprint, but cannot reject every conceivable higher-order cipher or prove uniformity.
+
+**Reproducer:** [source-checked p40–55 lag-five regime SFT](../sims/lp2_floral_lag5_regime_original_sft.cjs), **[Windows Node22 CI PASS 44939526339](https://github.com/FlareZ123/liber-primus/actions/runs/44939526339)**; source parser assertions and all 100,000 original-index page-label controls passed.
+
 ## Reproduction and decision
 
 - Source-image and corpus read-only SFT: `sims/lp2_p40_p55_floral_3301_source_sft.py`, Pillow11.3/NumPy2.2, with original JPEG hash assertions, the complete 16-page margin match, all 1,596 interval controls, and zero-step count. **Windows Python3.12 PASS:** [run 44937498231](https://github.com/FlareZ123/liber-primus/actions/runs/44937498231) (expanded original-art + red-rubric + shared-root SFT; successful Windows Python3.12/Pillow11.3), with the initial source-image gate independently passing [run 44936746394](https://github.com/FlareZ123/liber-primus/actions/runs/44936746394).
