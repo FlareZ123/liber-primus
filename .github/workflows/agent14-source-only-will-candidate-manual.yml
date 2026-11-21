@@ -1,0 +1,16 @@
+name: Agent14 source-only first00 p0 WILL candidate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  deterministic-source-decapsulation:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check sims/lp2_source_only_00_to_p0_will_decapsulation_sft.cjs
+      - run: node sims/lp2_source_only_00_to_p0_will_decapsulation_sft.cjs
