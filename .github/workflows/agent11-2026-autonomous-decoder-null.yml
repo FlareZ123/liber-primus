@@ -47,4 +47,10 @@ jobs:
           sed -n '1,180p' /tmp/nov2026-trace.txt
           echo '--- SOURCE TRACE REFERENCES ---'
           grep -R -n -E 'Depth limit 128|--max-depth|plaintext|candidate_count' decode.cpp cpp | head -n 35 || true
+      - name: Independent canonical 39-block source verification
+        shell: bash
+        run: |
+          set -euo pipefail
+          node sims/agent11_2026_autonomous_decoder_trace_sft.cjs /tmp/nov2026-decoder/liber_primus_decoder/decoder-external /tmp/nov2026-decoder/liber_primus_decoder/matrix.txt
+
 
