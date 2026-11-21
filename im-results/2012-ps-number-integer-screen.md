@@ -4,7 +4,7 @@
 
 The authentic 2012 P.S. integer is a 131-digit, 432-bit number with a published factorization into two 216-bit primes. A later research status labels the P.S. object a 435-bit modulus; exact parsing of the original signed message gives 432 bits. The same 2012 archive also contains a matching recreated Crypt::RSA public/private key pair, so the RSA reconstruction is not merely inferred from the factorization. Appending an accidental trailing `1` would create a different 132-digit, 436-bit integer, not the source value.
 
-The P.S. integer is **not** the 2014 Stage 2 RSA modulus. Its direct base-29 representations and the obvious RSA-derived values do not decrypt LP2 under an additive/subtractive running-key model. Treat it as a historical RSA-like object, not an established LP2 key. Do not expand this into unconstrained exponent or key-family searches without a specific ciphertext or source instruction.
+The P.S. integer has a matching community-recreated RSA public/private key pair in the 2012 archive, but it is **not** the 2014 Stage 2 RSA modulus. Its direct base-29 representations and the obvious RSA-derived values do not decrypt LP2 under an additive/subtractive running-key model. Treat it as a solved historical RSA side-object with no established LP2 role. Do not expand this into unconstrained exponent or key-family searches without a specific ciphertext or source instruction.
 
 ## Exact source value and factorization
 
@@ -27,7 +27,7 @@ Checks:
 - Both factors have 216 bits and are prime (the published factorization is reproduced in the cited reference).
 - Appending one extra `1` changes the integer to 132 digits and 436 bits.
 
-The source note describes the RSA interpretation as a hypothesis, not an official instruction for later rounds. Exponent (e=65537) is used below only as the conventional Cicada/RSA candidate; it is not stated alongside the P.S. integer in the *Valēte!* message.
+The signed *Valēte!* message itself prints only N. The same 2012 archive also contains `numbers.public`, `numbers.private`, and `numbers.factors`: the public key lists the exact modulus and e=65537; the private key lists matching p, q, phi, and d in a Crypt::RSA 1.99 object (`Checked=1`). The stored d matches `pow(65537, -1, phi)`. This establishes a reproducible community RSA key reconstruction for N, but not the intended use of that key in LP2 or later rounds.
 
 ## Discriminating cross-round checks
 
@@ -43,7 +43,7 @@ It is also 432 bits, but has 130 decimal digits and is a different integer; (gcd
 
 ### 2013 cookie values as RSA ciphertexts
 
-Using the published 2013 cookie values labelled `167` and `761` as integers and deriving the RSA inverse exponent for the *assumed* `e=65537`, decryption gives two fixed-width 54-byte blocks beginning `0cff` and `4b10`, respectively. Neither has the required `00 02` PKCS#1 v1.5 type-2 prefix or recognizable plaintext. The earlier reproducer mistakenly tested the literal ASCII backslash-escape sequence and converted the result to a variable-width byte string, making its padding predicate invalid. An independent fixed-width recalculation and the corrected reproducer agree on the negative result. This excludes only direct PKCS#1 v1.5 type-2 decryption of these two candidates under the assumed exponent; their original role remains unknown.
+Using the published 2013 cookie values labelled `167` and `761` as integers and the reconstructed private exponent from `numbers.private`, decryption gives two fixed-width 54-byte blocks beginning `0cff` and `4b10`, respectively. Neither has the required `00 02` PKCS#1 v1.5 type-2 prefix or recognizable plaintext. This excludes only direct PKCS#1 v1.5 type-2 decryption of these two candidates under the reconstructed key; their original role remains unknown.
 
 ### Direct GP29 key screen
 
