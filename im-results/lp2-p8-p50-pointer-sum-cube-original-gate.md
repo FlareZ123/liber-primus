@@ -41,8 +41,33 @@ Body means the 243 original black p8 rune positions after twelve red heading run
 
 The exact original source inputs, all cycle checks, both input alignments, three fixed operators, full forward re-encryption and solved-p57 synthetic plants are implemented in [the read-only Windows Node22 SFT](../sims/lp2_p8_p50_pointer_sum_cube_inverse_sft.cjs), executed successfully against the committed original corpus in [Windows Actions run 44949543398](https://github.com/FlareZ123/liber-primus/actions/runs/44949543398). No claimed decoding of the entire LP2 manuscript is made.
 
+## Authenticated DH2-weighted companion: base60 is also reversible, but yields no plaintext
+
+A distinct historical clue supplies the **shared Diffie–Hellman result 2** in the authenticated 2013/p28 DH23 source. Since p23 and p39 original red values already participate in the independent p50-table factor bridge, using that **source value as one fixed edge weight** is a bounded alternative to the unweighted guess above. The source does **not** instruct the table to apply this GP29 graph operation.
+
+Let `f` be the same unchanged source numeral-as-next-address map, but encrypt each 256-rune source register as
+
+`C[i]=(P[i]+2 P[f(i)])^e mod29`, with **e∈{1,3,19}**.
+
+For a directed graph cycle of length L, the linear part is invertible precisely when `1-(-2)^L ≠ 0 mod29`. Unlike the unweighted model, **both table codecs satisfy this**: base60 has cycles of lengths2 and11, base59 a fixedpoint. Solve each cycle by
+
+`P[first]=[Σ_(j=0..L-1) (-2)^j D[cycle[j]]] × (1-(-2)^L)^(-1) mod29`,
+
+where `D=C^eInverse` and `eInverse=1,19,3` for e=1,3,19; recover the remaining nodes recursively via `P[i]=D[i]-2P[f(i)]`. The same two natural p8 padding alignments were frozen, without a ciphertext-selected phase or alphabet.
+
+| Original input alignment | Radix | Linear body IoC | Cubed body IoC | Cube-rooted body IoC |
+|---|---:|---:|---:|---:|
+| p7 M19 + p8 | 60 | 0.032581709 | 0.032955821 | 0.034520287 |
+| p8 + p9 first | 60 | 0.036458865 | 0.032955821 | 0.034724348 |
+| p7 M19 + p8 | 59 | 0.032683740 | 0.037241098 | 0.034656328 |
+| p8 + p9 first | 59 | 0.034520287 | 0.036050743 | 0.034214196 |
+
+All twelve complete original 256-rune inverses forward-reencrypt exactly. Independent authentic clear-p57 GP29 plants (cycled only to give the required 256 native runes) decode at **256/256** under the same twelve settings. **No original output is native-GP English, with 243 black-rune body IoCs 0.03258–0.03724.** In particular, permitting source-given weight2 rescues base60's *algebraic viability* without rescuing original p8 plaintext.
+
+[Read-only original-source Windows Node22 companion SFT](../sims/lp2_p8_p50_dh2_weighted_graph_inverse_sft.cjs) passed [Actions run 44950700146](https://github.com/FlareZ123/liber-primus/actions/runs/44950700146). This is a separate finite family from raw source-table XOR, direct p8 graph-neighbour addition and p32 reverse-tree traversals. The base60 and base59 **radix preferences cannot be decided by invertibility alone** once a clue-grounded alternate edge weight is admitted.
+
 ## Research decision
 
-The link between p8's 255 runes, the original 256-cell table and the neighbouring M19 rune is a compact human-visible input hypothesis, and the odd-cycle inversion theorem gives a useful explanation of why **base59** permits one very simple reversible pointer operation where base60 does not. However, none of the six required untouched original-cipher readouts produces plaintext. **Retire this exact neighbour-addition/cubic family.** Future work should demand an authored pointer operation or a first-party clue to the value-to-address reading before introducing additional table phases, page fillers, graph powers or tuned symbol maps.
+The link between p8's 255 runes, the original 256-cell table and the neighbouring M19 rune is a compact human-visible input hypothesis, and the odd-cycle inversion theorem gives a useful explanation of why **base59** permits one very simple reversible pointer operation where base60 does not. However, none of the six required untouched original-cipher readouts produces plaintext. **Retire the unweighted and DH2-weighted neighbour-addition/cubic families under the two original p8 alignments and source-radix readings.** Future work should demand an authored pointer operation or a first-party clue to the value-to-address reading before introducing additional table phases, page fillers, graph powers or tuned symbol maps.
 
 Related negatives: [p8 raw table-XOR gate](lp2-p8-p50-table-byte-xor-gate.md), [p7/p8 cubic five-tap inverse](lp2-p7-p8-roman-cuberoot-fivetap-original-gate.md) and [p7/p8 source red-field reconstruction](lp2-p6-p8-red-shamir-dh-fullstate-coverage.md).
