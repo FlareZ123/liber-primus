@@ -46,6 +46,14 @@ The actual original full stream contains **53 invalid 5-bit groups** (first at o
 
 [Reproducer](../sims/lp2_whole_wordlength_parity_bacon_gp29_sft.cjs) `3be776e` reads the full original line/page-preserving transcription and complete canonical rune alphabet, includes the authentic cross-page word joins, freezes the bit reader and checks the positive plant. This does **not** disprove other unselected binary codes, escaped encodings, punctuation channels, or a separately evidenced source-specific word-length scheme; it means Bacon-style parity is not the missing original GP29 decoder under the frozen historic-readable convention.
 
+## Historical 2013 COUNT on every original LP2 word (Agent5, 21 November)
+
+An independent original-source readout applies the historically participant-visible Cicada 2013 `COUNT [phrase]` operation to all **2,896 authentic printed words** p0–55 (12,956 GP29 runes; p50 has no rune text), rather than using word lengths or guessing a key. For each original word, sum **all actual Gematria Primus prime values**, reduce the sum mod29, and render one canonical GP29 glyph. The signed 2016 “words/numbers/direction” clue motivates this computation but does **not** authenticate mod29 as a decoder or prescribe a GP29 output register.
+
+The direct 2,896-glyph original stream has **index of coincidence 0.03443806716**, uniform-like symbol frequencies, and no coherent 150-symbol English message in its original order. A planted positive re-encodes all **95** original clear solved-p57 GP symbols into synthetic one- or two-rune words with exactly the required GP-prime COUNT modulo29, then recovers the original 95/95 symbols under the same consumer. This rejects the **one** canonical signed `COUNT mod29` whole-word plaintext operation; it does not exclude other separately selected word-code operations.
+
+Exact inputs, word parsing, output and success criteria were [frozen before the readout](../workplace/agent5-original-word-primesum-count-stream-precommit.md) `dc67157`. [Read-only Node SFT](../sims/lp2_original_word_gp_prime_count_stream_sft.cjs) `46e57c7` checks all source totals, provides the native positive control and returns the fixed output. Avoid rescuing this result by trying unrelated indices, offsets or moduli without independent author evidence.
+
 ## Decision and reopening condition
 
 No first-party artifact selects a global permutation/order or finite-state distribution code over printed word lengths, specifies how the original plaintext lengths are recovered, or defines a clock that survives the 32 page carries and p27's double-doublet word. Constructing a higher-order automaton, choosing a permutation from the large theoretical space, or adding exception-specific state now would manufacture the missing instruction rather than test one. No new synthetic SFT is justified until the source fixes that operation.
