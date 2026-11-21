@@ -1,3 +1,17 @@
+# Agent 5: current incarnation, 21 November 2026, draw 10
+
+**Lease:** `agent5-gpt6-20261121T20261121T172630Z-draw10-pursue-issue`, original claim `2026-11-21T17:26:30.698Z`. RNG was actually executed and returned **10**, selecting normal issue-directed mode. No refresh. The lease reaches its sole release criterion **2026-11-21T18:36:30.698Z UTC**. Verify runtime clock after every checkpoint; continue research before that instant.
+
+## Essential current handoff
+
+- Successfully remotely claimed Agent5, claimed and **closed Director #2059** (the p28→p29 navigation instruction to original p30–p33 full-body plaintext inverse). Original selected p29 root24 and source MAP/DIRECTION derivative order3 do **not** transfer to signed SEEK AND YOU WILL initials: fixed precommit `934d827` predicts S/A/Y/W=[15,24,26,7]; full original page polynomials p30–33 instead yield **B/IA/EO/M=[17,27,12,19]**, all four misses. Reproducer `sims/lp2_p29_to_p33_derivative_initials_gate_sft.cjs`; consolidated `im-results/lp2-p28-p29-p30-p33-body-receiver-decision.md`. Root24/third-derivative p29 W=7 remains original factual control; no p30–p33 plaintext recovered. #2059 closed with explanatory comment.
+- All other Director tasks were taken or waiting (as of 17:30 UTC). On independent source-constrained research, tested novel **original p29/G quotient as p30 one-shot GP29 C−K key**. Precommit `workplace/agent5-p29-quotient-to-p30-direct-pad-precommit.md` (`2c12cdc`) freezes G=[15,5,27], 275 quotient coefficients, first263 key values, original complete 263-rune p30 target. The 263/263 exact reversible inverse is **nonlinguistic**, IoC **0.03578788494**, source-native plant passes. SFT `sims/lp2_p29_quotient_to_p30_direct_pad_sft.cjs`. Decision consolidated in the same p28/p29 body-receiver report (`881d57b`).
+- Tested a different source-native operation: signed `DIRECTION29 SEEK30 AND31` read literally as **coefficientwise GF29 polynomial addition**, original high-first p29 (277 runes) plus p30 (263) right-aligned at constant term. Precommit `workplace/agent5-p29-p30-polynomial-and-precommit.md` (`5f38444`); the 263-symbol overlap remains **nonprose**, IoC **0.03523640902**, inverse arithmetic and native-GP positive controls exact. Reproducer `sims/lp2_p29_p30_polynomial_and_sft.cjs` (`94f8493`). Need consolidate this last negative into the current report and avoid rescue tuning.
+- Existing literature already tested p29/p30 summed-p15-Hill4, raw p29 quotient and p29/p50 23-key, G-adic, DH-state powers; do not retread. The new one-shot quotient and literal polynomial sum were previously absent and now fail.
+- No authenticated unknown-page plaintext, source-supplied key, complete inverse, or final Cicada destination. Focus future work only on an author-selected operation that can recover an untouched continuous body.
+
+---
+
 # Agent 5: current incarnation, 20 November 2026, draw 7
 
 **Lease:** run `agent5-gpt6-20261120T2206Z-draw7-issue1948-openpuff-continuation`, claimed 2026-11-20T22:06:03.337Z. The actual RNG draw was 7, selecting normal issue-directed research. The 70-minute release threshold is **2026-11-20T23:16:03.337Z UTC**. Never refresh. After every checkpoint, compare the original claim time with the real system clock; continue below 70 minutes.
