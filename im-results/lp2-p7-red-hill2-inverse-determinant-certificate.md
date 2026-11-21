@@ -1,6 +1,6 @@
 # P7's five red words form a complete GP29 Hill-2 matrix and inverse-determinant certificate
 
-**Agent46, 21 November 2026. Intermediate original-source key-like structure; direct p8 receiver negative.** This is one new finite algebraic interpretation of the p7 red-word product packet. Its last value exactly certifies the determinant inverse of the 2×2 matrix formed by the first four words, enabling an entirely reversible cipher **key** without fitting any secret. A literal adjacent-page consumer fails. **No previously unknown plaintext, authentic cipher instruction, or destination has been recovered.**
+**Agent46 and Agent8, 21 November 2026. Intermediate original-source key-like structure; p8 and 32 source-bracketed dual-red body decoders negative.** This is one new finite algebraic interpretation of the p7 red-word product packet. Its last value exactly certifies the determinant inverse of the 2×2 matrix formed by the first four words, enabling an entirely reversible cipher **key** without fitting any secret. A literal adjacent-page consumer fails. **No previously unknown plaintext, authentic cipher instruction, or destination has been recovered.**
 
 ## Independent original inputs
 
@@ -142,9 +142,26 @@ JOEXHTSAEEAUTHLGEASIAPFGNUINSPFGNWNEELOMFAATBDBNSDBDFAEHUAECITYWXIAEOHLIANWJHDYO
 
 This fully reproducible, source-shaped **nonstationary matrix-pad candidate is also negative** as a direct GP29 English decoder. No alternate affine offset, second seed coordinate, multiplication sign, row direction, carrier, or additional key phase was tuned. Matrix period and interval arithmetic alone are insufficient to identify a decipherment.
 
+## Both red colophons as adjacent-page Hill-2 keys: 32 original-body inverses (Agent8, 21 November)
+
+The p6 and p7 original red inscriptions precede and follow the **308-rune** black interval (p6 local82–195, 114 runes; p7 local0–193, 194 runes). Their already-established word-sum and word-product determinants give four explicit nonsingular 2×2 GP29 keys, in printed row-major order:
+
+```text
+p6 whole-word sums mod29  [[13,19],[ 7,26]]   det2
+p6 whole-word products   [[13,19],[14,23]]   det4
+p7 whole-word sums mod29  [[26, 7],[23,13]]   det3
+p7 whole-word products   [[11,26],[ 8,15]]   det15, inverse=2
+```
+
+The source pair brackets the entire receiver and each side has an even rune count, giving a fixed local Hill-2 pair phase without padding. Test two explicitly bounded interpretations: (a) p6's own key on its 114 runes and p7's own key on its 194 runes (both sum/product keys and forward/inverse readings, 16 cases); (b) combine the two full keys as a two-round GP29 matrix in both orders, then apply it or its inverse continuously to all 308 runes (another 16 cases). The natural original printed words, including the single word continuing across the page break, are retained in every output. No key, origin, direction, page receiver or lexical score is used to fit a parameter.
+
+**Result:** all **32 distinct declared test configurations** exactly reencrypt all input runes. Every one has **0 of 40 intact original words of GP-length at least four** matching the fixed 29,060-entry TextBlob word-frequency lexicon converted to solved-Cicada native GP spelling. Normalized GP29 coincidence indices for all outputs lie in **[0.9710013114, 1.0709843902]**, versus untouched **0.9961504294**; none yields a coherent text passage. A separate 94-rune authentic clear-p57 source plant round-trips through each matrix. This is a negative for precisely the declared immediate Hill-2 and two-round consumers; it does not refute a historically instructed new placement, nonlinear cipher or previously unknown key schedule.
+
+**Reproducer:** [source-only Node22 CJS](../sims/lp2_p6_p7_red_dual_hill2_original_sft.cjs), [original-source Windows Actions PASS 44946788948](https://github.com/FlareZ123/liber-primus/actions/runs/44946788948). It asserts the original red word vectors, source body positions, determinant certificates, whole-word punctuation, all original reverse operations and the solved-source control.
+
 ## Research decision
 
-Preserve the source-exact p7 five-word Hill-2 inverse-determinant **candidate key packet** as a distinct interpretation of the DH inverse-state register. **Reject** its three natural complete source-bound consumers: the literal next-illustrated-page phase-zero Hill-2 receiver, and the manuscript's independently discovered p7 five-dot interleaver + p10 numeral7 + Hill-2 inverse across the entire 1,730-symbol p8–14 section. The 28×11 red-bracketed vertical Hill-2 consumer, the source-seeded 28-step matrix pad, and a continuous p8–14 raw paired-section inverse also fail. The packet, together with the new p6/p7 DH-determinant triad, is source-exact candidate key/state material. Neither is a verified Liber Primus encryption key. Do not rescue this negative with extra pair offsets, changed read direction, nonlinear key adaptations, other original pages chosen by IoC, or a free Hill-family search.
+Preserve the source-exact p7 five-word Hill-2 inverse-determinant **candidate key packet** as a distinct interpretation of the DH inverse-state register. **Reject** its three natural complete source-bound consumers: the literal next-illustrated-page phase-zero Hill-2 receiver, and the manuscript's independently discovered p7 five-dot interleaver + p10 numeral7 + Hill-2 inverse across the entire 1,730-symbol p8–14 section. The 28×11 red-bracketed vertical Hill-2 consumer, the source-seeded 28-step matrix pad, a continuous p8–14 raw paired-section inverse, and all 32 separately pinned dual-red p6/p7 black-body direct and two-round Hill-2 decoders also fail. The packet, together with the new p6/p7 DH-determinant triad, is source-exact candidate key/state material. Neither is a verified Liber Primus encryption key. Do not rescue this negative with extra pair offsets, changed read direction, nonlinear key adaptations, other original pages chosen by IoC, or a free Hill-family search.
 
 To make this a genuine plaintext route, an independent original Cicada clue must specify which ciphertext is consumed, the block origin and the handling of odd input lengths. An unseen 150-rune prediction and exact native-language recovery would then distinguish a valid cipher from the algebraic coincidence.
 
