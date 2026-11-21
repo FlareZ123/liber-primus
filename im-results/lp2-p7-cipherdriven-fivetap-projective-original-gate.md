@@ -81,19 +81,19 @@ Let `R(C)_i=C_i−Σw_j C_(i-j)` and `R(P)_i=P_i−Σw_j P_(i-j)`. For each word
 
 A hypothesized GP-native plaintext word of length n≥13 therefore supplies **n−6 linear equations** in only five unknown q coefficients for each of the **28 nonzero values** of a. Exact GF29 Gaussian elimination decisively tests *all* coefficients, including nonunique/rank-deficient solutions, without ever guessing q or a hidden state. A true source-language word under this single-layer cipher must be among the compatible dictionary entries, even when all secrets reset on every original word.
 
-The four original 13-rune words and three original 14-rune words were opened as this independent long-word gate, retaining the source-correct physical page map (the transcript omits the grid-only physical p50). The fixed TextBlob lexicon contains **382 native-GP words of length13 and 155 of length14**. Exact original-input results:
+The four original 13-rune words and three original 14-rune words were opened as this independent long-word gate, retaining the source-correct physical page map (the transcript omits the grid-only physical p50). **Lexicon correction, 21 November:** the original pinned TextBlob lexicon **omits `CIRCUMFERENCES`**, an actual 14-GP-rune word of Cicada's solved p57. Thus a negative solely against that dictionary cannot honestly exclude ordinary English. The revised suite now adds all unique source-native words from the separately pinned Shakespeare, Emerson, Gibran, solved LP1 and Blake controls, plus the **exact source-matched solved-p57 `CIRCUMFERENCES`**. The resulting frozen independent dictionary has **426 distinct 13-GP-rune and 175 distinct 14-GP-rune candidates**. The SFT explicitly verifies the solved-p57 word in the original corpus. The widened source inputs preserve the result and transparently improve the lexicon-conditioned scope; neither dictionary claims to be exhaustive English. Exact revised original-input results:
 
 | Original physical page | Original complete word length | All-secret native-dictionary compatible words |
 | ---: | ---: | ---: |
 | 11 | 13 | 11 |
 | **13** | **14** | **0** |
-| 16 | 13 | 10 |
+| 16 | 13 | 11 |
 | 25 | 14 | 1 |
 | **43** | **14** | **0** |
-| 52 | 13 | 20 |
+| 52 | 13 | 23 |
 | 55 | 13 | 10 |
 
-The **sole length14 compatible word** on physical p25 is the low-frequency dictionary demonym `wurttembergers`, with one exact but completely postselected coefficient vector `q=[14,5,10,5,11]` and `a=22`. It does not constitute recovered text. There is **no native-dictionary solution** for either the original p13 or p43 14-rune word under **any** of the 20.5m q vectors, any five-rune initial key state, any source-independent affine shift or multiplier, or any constant recurrence drive.
+The **sole length14 compatible expanded-source word** on physical p25 is the low-frequency dictionary demonym `wurttembergers`, with one exact but completely postselected coefficient vector `q=[14,5,10,5,11]` and `a=22`. It does not constitute recovered text. There is **no native-dictionary solution** for either the original p13 or p43 14-rune word under **any** of the 20.5m q vectors, any five-rune initial key state, any source-independent affine shift or multiplier, or any constant recurrence drive.
 
 An independently constructed **30-case positive suite** encrypts the 14-GP-rune native word `CIRCUMFERENCES` under independently varying q vectors, secret output multipliers, b/r, and two initial key states; the exact elimination solver finds a compatible solution in every planted case. This checks the long-word elimination even when the plaintext itself had no access to the chosen secret q or initial key state.
 
@@ -129,7 +129,7 @@ This time the five coefficient columns come from the **candidate plaintext**, no
 | 16 | 13 | 16 |
 | **25** | **14** | **0** |
 | **43** | **14** | **0** |
-| 52 | 13 | 11 |
+| 52 | 13 | 12 |
 | 55 | 13 | 18 |
 
 **All THREE original 14-rune words are incompatible** with every fixed-dictionary GP-native plaintext candidate under every hidden parameter choice in this direct linear plaintext-autokey family. A separate 30-case planted control genuinely encrypts the original-source native GP word `CIRCUMFERENCES` under 15 independent plaintext-feedback q vectors, changing output affine parameters, r and two distinct five-rune IVs; the all-secret oracle accepts every one. The original 13-rune scattered matches remain unauthenticated coincidences and do not recover unknown text.
@@ -142,6 +142,8 @@ This excludes a **second material family** that the preceding ciphertext-feedbac
 
 Retire the direct word-interior family `K[i]=Σ w*Kprev + q*C[i-1] + r, C[i]=a*P[i]+b+K[i]` as a decoder of ordinary source-native dictionary English, even with fresh per-word keys, page/chapter resets and unrestricted secret affine output scalars. This is a **substantive strengthening** of the earlier autonomous-period original-input exclusion: it excludes an entire ciphertext-dependent feedback update that that earlier work explicitly left unresolved. It applies equally to a single fixed hidden `q` and per-word changing `q`.
 
-The lexicon is finite; a genuinely encrypted original written in an unexpected language, codewords or 57 specially coined long words would evade its dictionary test. A nonlinear key-state transition, a second encryption stage, plaintext-driven state, an altered original word segmentation, a different five-tap coefficient list, or variable-length transport is outside the theorem. There is no source-authenticated proof that the five products are key coefficients. Additional guessing over the same five initial states, linear ciphertext coefficient or affine output keys cannot rescue this direct model.
+**Lexicon limitation is material, not hypothetical:** the original TextBlob lexicon demonstrably omitted `CIRCUMFERENCES`, an authenticated solved-page word. Adding that word and five independent source corpora still leaves the exact selected 14-rune original words without matching candidates, but an actual LP2 author may naturally use English words absent from even the 175-word enlarged 14-rune control. Further, the fraction of matching long dictionary words under highly flexible all-per-word keys is intrinsically small even for pseudorandom ciphertext. These exclusions are exact **for the specified independent-source candidate set**, not probabilistic evidence that the creator could not use the mechanism or that unknown plaintext is nonsensical. A nonlinear key-state transition, a second encryption stage, plaintext-driven state, an altered original word segmentation, a different five-tap coefficient list, or variable-length transport is outside the theorem. There is no source-authenticated proof that the five products are key coefficients. Additional guessing over the same five initial states, linear ciphertext coefficient or affine output keys cannot rescue this direct model.
+
+**Expanded-source reproduced Windows PASS:** [run44954231430](https://github.com/FlareZ123/liber-primus/actions/runs/44954231430) includes both broadened five-input models, the authentic solved-p57 lexicon assertion, and the original one-tap TextBlob comparison. [Pinned source-native expanded lexicon](../sims/lp2_source_native_longword_lexicon.cjs).
 
 **Reproduce on untouched original sources:** [read-only Windows Node22/CommonJS SFT](../sims/lp2_p7_cipherdriven_projective_word_sft.cjs), using `lp2-corpus.json`, `lp2-transcription.txt`, `english_wordfreq_textblob.txt`, the source-native GP encoder and original word parser. [GitHub Actions manual original-input run](https://github.com/FlareZ123/liber-primus/actions/runs/44952793215). This note belongs to intermediate evidence; the established solution state in [results/README.md](../results/README.md) remains unsolved.
