@@ -333,3 +333,29 @@ console.log(JSON.stringify({
   },
   orderingControl: { permutations: orders.length, nonzeroOrders },
 }, null, 2));
+
+/* Independent general-English vocabulary control: same GP tokenization and
+ * fixed signature, with no claim that this lexicon is the manuscript source. */
+const generalWords = new Map();
+for (const line of read("resources/control/english_wordfreq_textblob.txt").split("\n")) {
+  const match = /^([a-zA-Z]+)\s+(\d+)$/u.exec(line);
+  if (!match) continue;
+  const values = gpWord(match[1]);
+  if (values.length !== 7) continue;
+  const id = values.join(",");
+  if (!generalWords.has(id)) generalWords.set(id, { values, words: [] });
+  generalWords.get(id).words.push(match[1]);
+}
+const generalHits = [];
+for (const { values, words } of generalWords.values()) {
+  for (const sign of [1, -1]) {
+    const key = cipher.map((value, index) => mod29(sign * (value - values[index])));
+    const signature = [hsum(key), hsum(key.slice(0, 2)), gp0(cipher), hsum(key.slice(2))];
+    if (signature.join(",") === "12,13,14,15") {
+      generalHits.push({ words, plaintext: values, sign, key, signature });
+    }
+  }
+}
+assert.equal(generalWords.size, 4776);
+assert.deepEqual(generalHits.map((hit) => hit.words), [["devoted"], ["devotee"], ["devotion"]]);
+console.log(JSON.stringify({ generalEnglishVectors: generalWords.size, generalHits }, null, 2));
