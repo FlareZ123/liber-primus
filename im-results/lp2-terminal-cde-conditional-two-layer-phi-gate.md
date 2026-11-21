@@ -20,7 +20,7 @@ The candidate applies this identical encoder **twice** with two separate prime c
 - **Two-layer native positive:** encrypting the first 76 clear original p57 GP runes twice yields a 76-rune plant whose exact inverse survives to the end, with 33 possible final clock-count states.
 - **Original p55 target:** all possible inverse states are eliminated at **zero-based rune offset 39 (the 40th rune)**. The preceding 39-rune prefix has exactly one surviving clock-count state. Consequently, **no legal 76-rune p55 plaintext exists under this complete two-layer mode**.
 
-The source table-cell assertions, original p56 positive, native GP double plant and original p55 failure are all implemented in [the read-only CommonJS SFT](../sims/lp2_terminal_cde_double_phi_sft.cjs). A first native Windows Node22 run of the cipher gate passed ([44958550193](https://github.com/FlareZ123/liber-primus/actions/runs/44958550193)); the source-cell assertions were added immediately afterward and are separately checkable.
+The source table-cell assertions, original p56 positive, native GP double plant and original p55 failure are all implemented in [the read-only CommonJS SFT](../sims/lp2_terminal_cde_double_phi_sft.cjs). The complete source-cell assertions and exact cipher gate passed on Windows Node22, [manual run 44958687382](https://github.com/FlareZ123/liber-primus/actions/runs/44958687382). This confirms the original p55 impossibility with the authentic p56 and synthetic double-phi positives.
 
 ## Cryptanalytic decision
 
