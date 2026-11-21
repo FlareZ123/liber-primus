@@ -369,6 +369,9 @@ const conditionalP56Receivers = [
     expectedIoC: 0.034509803921568626 },
   { name: 'p44 full273', ciphertext: p44.indices,
     expectedIoC: 0.035256410256410256 },
+  { name: 'p55 final76 holdout',
+    ciphertext: pages.find((page) => page.page === 55).indices,
+    expectedIoC: 0.034736842105263156 },
 ];
 for (const target of conditionalP56Receivers) {
   const output = shiftedByP56(target.ciphertext);
