@@ -138,6 +138,8 @@ p55 final 13-dot mark -> f^13(72):
                                            independent PARABLE ordinal205   exact p55 length 76
 ```
 
+**Two different words of the same signed 2016 message point toward the paired trees under the already documented graph conventions.** The independently recorded `THE→DEVOTED→p32` chain uses literal native GP0(**THE**)=20 and GP0(**DEVOTED**)=102, with exact original table cells `f(20)=102` and `f(102)=32`. That last number is a **physical LP2 page index32**, whose original scanned filename is `49.jpg`. The separately signed **DIRECTION** GP0=98 yields `f(98)=72`, the actual physical p55 scan `72.jpg`. Together, those pre-existing signed-word chains nominate the **blurred p32 tree and sharp p55 tree**, which the identical 13-dot table walk then brings to a common endpoint76. **Crucial ambiguity:** the first route reads an output as *page index32* while the second reads it as *scan filename72*. Neither the 2016 message nor the manuscript supplies that type-switch instruction, so this is a coherent candidate map rather than independently proven navigation.
+
 **Independent original-tree-page convergence:** physical p32, original scan `49.jpg`, contains an **11×11=121-rune** page and ends in a **red thirteen-dot mark after rune121**, just like p55 ends with red13 after rune76. The original p32 drawing is a blurred version of a bare central tree, while p55 displays its distinct sharper tree counterpart ([independent original-image correspondence](lp2-p32-p55-blurred-tree-correspondence.md)). Using the **same scan-number and dot-count pointer convention**, with zero adjusted parameters, yields the following second complete path:
 
 ```text
