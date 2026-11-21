@@ -61,6 +61,33 @@ print({
 })
 print("PASS: p0's two large black illustrations are near-pixel-identical 180-degree counterparts centered on the physical page.")
 
+# Independent binary-image challenge: can native differences of the two
+# author-drawn rotated copies carry a substantial hidden symbol? This
+# excludes >3px enclosed holes/strokes only, not subpixel DCT steganography.
+xor=np.bitwise_xor(ma,mb)
+xor_count=int(xor.sum())
+count_xor,_,comp_xor,_=cv2.connectedComponentsWithStats(xor,8)
+xor_areas=sorted((int(c) for c in comp_xor[1:,4]),reverse=True)
+assert (xor_count,count_xor-1,xor_areas[0])==(2074,684,49)
+def deep_holes(left,right,radius):
+    eroded=cv2.erode(left,np.ones((2*radius+1,2*radius+1),np.uint8))
+    return int(np.count_nonzero((eroded>0)&(right==0)))
+deep=[(r,deep_holes(ma,mb,r),deep_holes(mb,ma,r)) for r in (1,2,3)]
+assert deep==[(1,11,5),(2,1,0),(3,0,0)]
+test_mask=cv2.erode(ma&mb,np.ones((21,21),np.uint8))
+ys,xs=np.nonzero(test_mask)
+assert xs.size
+yy,xx=int(ys[0]),int(xs[0])
+planted=mb.copy()
+planted[yy-4:yy+5,xx-4:xx+5]=0
+assert deep_holes(ma,planted,3)>0
+print({"xor_pixels":xor_count,"xor_component_count":count_xor-1,
+       "max_xor_component":xor_areas[0],"deep_holes_radius1_2_3":deep,
+       "planted_9px_hole_detected":deep_holes(ma,planted,3)})
+print("PASS: original rotated art contains no >3px enclosed patch discrepancy.")
+
+
+
 # The source transcription records the large red glyph as the oversized
 # first S of the 8-rune word. Validate that identification directly against
 # the second red word's ordinary-sized initial S, without using OCR.
