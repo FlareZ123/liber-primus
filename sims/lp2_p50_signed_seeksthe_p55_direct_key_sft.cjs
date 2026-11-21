@@ -32,7 +32,7 @@ assert.equal(selected, 244);
  * @param {boolean} desc
  * @returns {number[]}
  */
-function traversal(kind, desc) {
+function traversal(kind, desc, start = selected) {
   const next = (i) => desc ? [...children[i]].reverse() : children[i];
   const out = [];
   const visit = (node) => {
@@ -41,15 +41,15 @@ function traversal(kind, desc) {
     if (kind === 'post') out.push(node);
   };
   if (kind === 'bfs') {
-    const queue = [selected];
+    const queue = [start];
     for (let i = 0; i < queue.length; i++) {
       out.push(queue[i]);
       queue.push(...next(queue[i]));
     }
   } else {
-    visit(selected);
+    visit(start);
   }
-  assert.equal(out.length, 76);
+  assert.equal(out.length, start === selected ? 76 : 121);
   assert.equal(new Set(out).size, 76);
   return out;
 }
@@ -151,6 +151,62 @@ assert.ok(Math.abs(heldMin + 9.553197265269) < 1e-7);
 assert.ok(keyTrials.every((entry) => entry.score < heldMin));
 assert.ok(permutations.every((entry) => entry.score < heldMin));
 
+
+/** Second signed/DH step: two parent pointers from p55 node244 to p32 node58. */
+const innerTreeRoot = parent[parent[selected]];
+assert.equal(innerTreeRoot, 58);
+const p32 = corpus.pages.find((page) => page.page === 32).indices;
+assert.equal(p32.length, 121);
+let p32Distance = 0;
+for (let node = 32; node !== selected; node = parent[node]) {
+  p32Distance++;
+  assert.ok(p32Distance < 256);
+}
+assert.equal(p32Distance, 15);
+const source43Positions = [2,3,10,11,12,13,16,17,18,19,24,25,26,27,28,29,30,31,32,
+  33,34,37,38,39,40,43,44,49,50,51,52,53,56,57,58,59,60,65,66,67,68,71,74];
+const originalInteriors = source43Positions.map((position) => original[position]);
+assert.equal(originalInteriors.length, 43);
+const bigOrders = ['bfs', 'pre', 'post'].flatMap((kind) =>
+  [false, true].map((desc) => ({
+    name: kind + (desc ? '-desc' : '-asc'),
+    nodes: traversal(kind, desc, innerTreeRoot)
+  })));
+const leaves = bigOrders[0].nodes.filter((node) => children[node].length === 0);
+assert.equal(leaves.length, 43);
+assert.equal(bigOrders[0].nodes.length - leaves.length, 78);
+const held121Scores = [];
+for (let i = 0; i + 121 <= held.length; i += 50) {
+  held121Scores.push(score(held.slice(i, i + 121)));
+}
+const held121Min = Math.min(...held121Scores);
+const folded = [];
+for (const assignment of bigOrders) {
+  const leafOrder = assignment.nodes.filter((node) => children[node].length === 0);
+  const labels = new Map(leafOrder.map((node, i) => [node, originalInteriors[i]]));
+  const fold = (node) => {
+    if (labels.has(node)) return labels.get(node);
+    const value = children[node].reduce((sum, child) => sum + fold(child), 0) % 29;
+    labels.set(node, value);
+    return value;
+  };
+  fold(innerTreeRoot);
+  for (const reading of bigOrders) {
+    const key = reading.nodes.map((node) => labels.get(node));
+    for (const sign of [-1, 1]) {
+      const output = p32.map((value, i) => mod29(value + sign * key[i]));
+      assert.deepEqual(output.map((value, i) => mod29(value - sign * key[i])), p32);
+      folded.push({ assignment: assignment.name, reading: reading.name, sign,
+        score: score(output) });
+    }
+  }
+}
+folded.sort((a, b) => b.score - a.score);
+assert.equal(folded.length, 72);
+assert.ok(Math.abs(folded[0].score + 11.292399894818) < 1e-7);
+assert.ok(Math.abs(held121Min + 9.345100027365) < 1e-7);
+assert.ok(folded.every((candidate) => candidate.score < held121Min));
+
 console.log(JSON.stringify({
   selected: { source: 'SEEKS GP0=71; THE GP0=20', address: selected,
     subtreeSize: orders[0].nodes.length },
@@ -160,6 +216,11 @@ console.log(JSON.stringify({
   },
   numericKeys: { tested: keyTrials.length, best: keyTrials.slice(0, 3),
     candidatesReachingNativeMin: keyTrials.filter((entry) => entry.score >= heldMin).length },
+  p32LeafFold: { fromP55StrictInteriors: originalInteriors.length,
+    p32Nodes: p32.length, leaves: leaves.length, internal: p32.length - leaves.length,
+    p32AddressToP55NodeSteps: p32Distance, tested: folded.length,
+    nativeHeldMin: held121Min, best: folded.slice(0, 3),
+    candidatesReachingNativeMin: folded.filter((entry) => entry.score >= held121Min).length },
   graphTranspositions: { tested: permutations.length, best: permutations.slice(0, 3),
     candidatesReachingNativeMin: permutations.filter((entry) => entry.score >= heldMin).length }
 }, null, 2));
