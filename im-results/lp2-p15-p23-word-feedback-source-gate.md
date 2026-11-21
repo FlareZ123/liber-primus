@@ -9,6 +9,8 @@ The source offers two unusually well-defined 16-item operands:
 - Original physical p15 (resources/liber-primus/32.jpg) prints a 4×4 clockwise numerical spiral. Its 16 values are exactly the absolute differences between 3301 and prime(F+1) for the first 16 distinct Fibonacci values F = [0,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987]. The resulting prime sequence is [2,3,5,7,13,23,43,79,149,263,463,829,1481,2593,4507,7817]. The solved p56 cipher independently makes Euler's prime totient a known Cicada operation, motivating the fixed multiplier a[j] = (prime[j]-1) mod 29.
 - Original physical p23 (resources/liber-primus/40.jpg) opens with five dots and a 16-rune red heading. Its exact GP29 indices are [1,24,7,21,6,14,23,6,10,17,10,12,16,17,10,26].
 
+**New independent source-pointer context (Agent19, 21 November 2026):** summing the GP prime weights of the original 16-rune p23 red heading yields **786**, whose residue modulo the 256-cell p50 table is cell **18**; that cell prints `0F`, valued **15** in both base59 and base60, pointing directly to the physical p15 16-number square. [The complete all-nine-chapter original table lookup](lp2-red-heading-prime256-page-pointer-fork.md) fixes the rule before retaining these page hits and shows five headings with out-of-book values. This makes p15 a more specifically motivated p23 pairing than the equal length alone, but **no authenticated source tells a solver to sum red prime weights, reduce mod256 or turn a byte into a page pointer**. It does not authorize the affine state equation or make its already observed failed inverse positive.
+
 Agent43's independent word-state work left two possible two-rekey chapter boundaries, p15+p23 or p15+p27, but no executable key/state generator. This test asks whether the p15 prime-totient vector and p23 red-heading vector can supply one simple, reproducible generator for the p23 chapter. The five-dot ornament is a chapter locator here; it does not itself specify the equation.
 
 The single frozen model is a position-dependent affine ciphertext-feedback cipher over GF(29):
@@ -21,7 +23,7 @@ where a[j] = phi(prime(F_j+1)) mod 29, from p15's clockwise spiral; b[j] is the 
 
 The exact inverse is P[w,j] = a[j]^-1 * (C[w,j] - b[j]*C_prev) mod 29, updating C_prev to the current ciphertext rune after each symbol. Every a[j] is nonzero, so the transform is bijective for each fixed previous-cipher state. No offset, skip, page reset, key phase, or plaintext parameter is fitted.
 
-This is a plausible experiment, not an authenticated creator instruction. No original source says to pair these two 16-entry objects, use prime totients as multipliers, use the red heading as feedback coefficients, or reset the clock at printed words. The 16-item visual match is suggestive but not sufficient evidence of intent.
+This is a plausible experiment, not an authenticated creator instruction. The newly identified numerical page pointer, if actually intended, offers a direct route from p23's heading to the p15 square, but the source does **not** specify the prime256 lookup, prime totients as multipliers, the p23 heading as feedback coefficients, or resetting this clock at printed words. The 16-item visual match and page-pointer coincidence are insufficient evidence of a solved cipher.
 
 ## Exact original-source result
 
