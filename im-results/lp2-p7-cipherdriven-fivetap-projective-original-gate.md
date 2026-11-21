@@ -101,6 +101,43 @@ An independently constructed **30-case positive suite** encrypts the 14-GP-rune 
 
 [Complete five-tap original-input Gaussian SFT](../sims/lp2_p7_five_cipher_taps_allsecret_longword_sft.cjs) · [Windows PASS44953128524](https://github.com/FlareZ123/liber-primus/actions/runs/44953128524). This is a stronger result than the one-ciphertext-tap projective oracle above; both retain explicit separate controls because they eliminate different dimensions of hidden-key freedom.
 
+## Autokey alternative: all five preceding PLAINTEXT taps, fully unknown
+
+A different historically motivated explanation is a **plaintext-autokey** feedback stream. Unlike the preceding ciphertext-driven update, its hidden state can depend on already decoded symbols, so the two families are mathematically distinct. No original LP2 clue directly chooses autokey, but classical autokey is a realistic creator operation and the five source products fix the same visible recurrence:
+
+```text
+K[i] = Σ(j=1..5) w[j]*K[i-j] + Σ(j=1..5) q[j]*P[i-j] + r
+C[i] = a*P[i] + b + K[i] (mod29), a != 0.
+```
+
+**Every** `q[j]` is freely unknown; there are again 29^5 possible plaintext-feedback vectors and 29^5 independent initial K states, and each original printed word may reset **all** of them and the affine a,b,r. This remains a complete, reversible one-layer field cipher if its parameters are supplied.
+
+For an assumed plaintext candidate, take the same source-frozen fifth-order innovation from original C and proposed P. After subtracting position5:
+
+```text
+[R(C)_i−R(C)_5] =
+  a*[R(P)_i−R(P)_5]
+  + Σ(j=1..5) q[j]*[P_(i-j)−P_(5-j)]  (mod29).
+```
+
+This time the five coefficient columns come from the **candidate plaintext**, not from the ciphertext. Enumerate only the 28 nonzero candidate output multipliers a and solve the five unknown q exactly by GF29 Gaussian elimination. The test grants any rank-deficient solution, any wordwise key, and the full native-English dictionary. Original results over the same seven unchanged long words:
+
+| Original physical page | Original GP word length | Compatible native dictionary words under ANY plaintext-autokey five-tap key |
+| ---: | ---: | ---: |
+| 11 | 13 | 20 |
+| **13** | **14** | **0** |
+| 16 | 13 | 16 |
+| **25** | **14** | **0** |
+| **43** | **14** | **0** |
+| 52 | 13 | 11 |
+| 55 | 13 | 18 |
+
+**All THREE original 14-rune words are incompatible** with every fixed-dictionary GP-native plaintext candidate under every hidden parameter choice in this direct linear plaintext-autokey family. A separate 30-case planted control genuinely encrypts the original-source native GP word `CIRCUMFERENCES` under 15 independent plaintext-feedback q vectors, changing output affine parameters, r and two distinct five-rune IVs; the all-secret oracle accepts every one. The original 13-rune scattered matches remain unauthenticated coincidences and do not recover unknown text.
+
+This excludes a **second material family** that the preceding ciphertext-feedback rejection could not address. It still assumes one layer, source products as recurrence coefficients, preserved printed word boundaries and native dictionary text. Nonlinear/stateful nonlinear autokey, non-English codewords, altered transport and external keys remain open.
+
+[Separate source-native plaintext-autokey Gaussian SFT](../sims/lp2_p7_five_plain_taps_allsecret_longword_sft.cjs) · [Windows PASS44953418085](https://github.com/FlareZ123/liber-primus/actions/runs/44953418085).
+
 ## Cryptanalytic decision and boundaries
 
 Retire the direct word-interior family `K[i]=Σ w*Kprev + q*C[i-1] + r, C[i]=a*P[i]+b+K[i]` as a decoder of ordinary source-native dictionary English, even with fresh per-word keys, page/chapter resets and unrestricted secret affine output scalars. This is a **substantive strengthening** of the earlier autonomous-period original-input exclusion: it excludes an entire ciphertext-dependent feedback update that that earlier work explicitly left unresolved. It applies equally to a single fixed hidden `q` and per-word changing `q`.
