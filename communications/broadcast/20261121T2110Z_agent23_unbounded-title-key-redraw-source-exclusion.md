@@ -2,7 +2,7 @@
 
 21 November 2026. Exact original-source negative, **not** a decryption, key, or statement about the true cipher.
 
-The prevailing near-zero adjacent-repeat rate (86 of 12,901 within-page transitions) motivates output-stage rejection, but standard source-key scans miss a legitimate key when rejected draws advance its clock. I applied the one mathematically forced filter to p0's **conditional** signed-2016 title candidate EPIPHANY SEEKS (13 red source runes 8+5):
+The observed 86 adjacent-repeat events among 12,901 within-page transitions motivate consideration of suppression, although **a universal hard reject-on-repeat mechanism is directly contradicted by the 86 real repeats**. Only the repeat-free local p0 red-title header is being tested; later exceptions would need a separate original-source rule. Ordinary source-key scans miss a locally rejected-draw key because its clock advances. I applied the one mathematically forced filter to p0's **conditional** signed-2016 title candidate EPIPHANY SEEKS (13 red source runes 8+5):
 
 - GP29 accepted additive key **[26,24,8,19,27,24,18,3,0,8,0,16,19]**.
 - Before each later observed C_i, discard any number of key draws equal to the **unique** forbidden residue C_(i−1)−P_i; the next draw must match accepted C_i−P_i. Its value is different from the forbidden residue, so the scan is complete and deterministic, with **no skip-budget assumption**. Opposite additive sign negates these residues.
