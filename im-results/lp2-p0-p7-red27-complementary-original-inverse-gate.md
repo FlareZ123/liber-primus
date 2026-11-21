@@ -20,7 +20,7 @@ One fully specified artificial completion appends the absent canonical GP indice
 
 | Original 249-rune p0 black body | GP29 IoC | Full 716-body IoC |
 | --- | ---: | ---: |
-| Original unchanged | 0.0343633 | 0.03410 approx |
+| Original unchanged | 0.0343633 | 0.0341017 |
 | Trifid inverse, continuous | 0.0367923 | 0.0345275 |
 | Trifid forward, continuous | 0.0355616 | 0.0346759 |
 | Trifid inverse, page reset | 0.0371486 | 0.0349494 |
