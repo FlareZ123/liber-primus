@@ -1,6 +1,6 @@
 # The p0 13-dot marker as a 2014 square central-diagonal mask: an exact original-cipher obstruction
 
-**Agent 29, 21 November 2026. Classification:** newly bounded source-visible geometric possibility; decisive negative for its most direct key-transfer class, with no unknown-page plaintext recovered. This complements the already documented red13 DH-state serializer and the independently investigated 2014 5–7–5 square / terminal 99-unit geometry. It is specifically a **p0 title receiver** test, not another p55 square-count proposal.
+**Agent 29, 21 November 2026. Classification:** source-visible geometric hypothesis; key-independent original-language exclusion for an entire stationary additive key class, with no unknown-page plaintext recovered. This complements the already documented red13 DH-state serializer and the independently investigated 2014 5–7–5 square / terminal 99-unit geometry. It is specifically a **p0 title receiver** test, not another p55 square-count proposal.
 
 ## Why a solver would consider this
 
@@ -57,11 +57,45 @@ K_raw = [0,19,13,2,17,10,4,19,11,2,2,11,2].
 
 Four direct source operations for each of the two 5×5 groups are additionally executable: raw-number mod29 or Euler φ(number) mod29, and ± additive sign. None produces that candidate from untouched p0 ciphertext; no coherent 8+5 GP-native plaintext is recovered. The exact positive control encrypts and decrypts an independently clear 13-rune p57 slice using each same source-derived key. All eight direct candidate inversions fail both conditional title readings.
 
+## Stronger plaintext-crib-free English word-pair exclusion
+
+The previous two conditional title readings are not needed to test this source key mechanism. The red title has an original, explicit **8|5 GP29 word division**, and any symmetric 13-key stream satisfies
+
+```text
+K_i = K_(12-i),  i=0..5
+K_i = (C_i - P_i) mod29 for non-F plaintext.
+```
+
+Let `A` be the eight-rune unknown first word and `B` the five-rune unknown second word. The source-symmetric key forces **one wholly within-word necessary constraint** `A[5]-A[7]=C[5]-C[7] mod29` and determines the entire second word directly from the *first five* GP values of the first:
+
+```text
+B[4-i] = A[i] - C[i] + C[12-i] (mod29), i=0..4.
+```
+
+This prediction uses neither the plaintext labels `EPIPHANY SEEKS` / `SECUENDI RATIO` nor the numerical values of a secret square-cell key. Any stationary arbitrary function of the original square values has to obey it.
+
+We evaluated every **distinct eight-rune** and **distinct five-rune** spelling in the repository's pinned `resources/control/english_wordfreq_textblob.txt`, under the two already published encoding conventions: (a) source-native longest matching GP29 transliteration with original `ING→NG` and `IO→IA`, and (b) one rune per normalized Latin letter. The historical normalizations are `QU→CW`, `V→U`, `K/Q→C`, `Z→S`.
+
+| Source spelling | Distinct 8-rune words | Distinct 5-rune words | First-word internal survivors | Complete 8|5 pairs |
+| --- | ---: | ---: | ---: | ---: |
+| GP-native, all runes consume shift | 4,325 | 3,613 | 153 | **0** |
+| GP-letter, all runes consume shift | 4,472 | 2,940 | 169 | **0** |
+| GP-native, plaintext literal-F bypass | 4,325 | 3,613 | 137 | **0** |
+| GP-letter, plaintext literal-F bypass | 4,472 | 2,940 | 152 | **0** |
+
+For the p56-style literal-F rule, a plaintext `F` emits ciphertext `F` without consuming a key. The unchanged title ciphertext contains only one `F` at zero-based position7. Grant a bypass when a candidate first word has `F` there, in which case the internal mirror constraint on 5/7 is waived. Exactly **five** eight-rune candidate spellings per encoding use that exception among the surviving options. Every other F outside the original ciphertext F position is excluded. The mirrored cross-word constraints still yield **zero** complete dictionary phrases in either mode.
+
+Positive source controls plant the literal English phrase `EPIPHANY SEEKS`, encrypted by the **actual original 2014 first 5×5 square's central-diagonal values modulo29** (palindromic), and the same no-key reader recovers it in both spelling registers with and without the literal-F switch. Thus the zero original result does not reflect a faulty index orientation, zero dictionary coverage, or an impossible recognizer.
+
+**Interpretation:** The entire source-derived stationary additive palindrome-key architecture has no exact two-English-word solution in this explicit finite lexicon, without choosing either historical title candidate. This is a stronger exclusion than the two conditional crib mismatches. An out-of-dictionary/foreign plaintext, nonstandard author spelling, position-dependent state update, or a different source geometry remains possible. The original p0 title cannot be declared solved from this experiment.
+
+[Complete original-text lexical key-free SFT](../sims/lp2_p0_dot13_allsecret_english_wordpair_gate_sft.cjs) · [Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44938621805).
+
 ## What this changes
 
-The geometric match alone is insufficient to promote a title decipherment. A source-defined **position-dependent state update, an outside-in H transform, a different readout order or different text receiver** might break the palindrome; the 2014 original squares supply no instruction selecting one such operation. The previous conditional red13 DH-state serializer in [this report](lp2-p0-square-state-rise-key-serializer.md) uses distinct side-column packets and a retrospective rise grammar, so its case is **not** eliminated by this narrower argument.
+The geometric match alone does not select a title decipherment. The complete pinned English corpus also provides no word-pair solution for its symmetric stationary additive key. A source-defined **position-dependent state update, an outside-in H transform, a different readout order or different text receiver** might break the palindrome; the 2014 original squares supply no instruction selecting one such operation. The previous conditional red13 DH-state serializer in [this report](lp2-p0-square-state-rise-key-serializer.md) uses distinct side-column packets and a retrospective rise grammar, so its case is **not** eliminated by this narrower argument.
 
-**Result:** the 5×5 diagonal-band shape is exact and independently visible, and the most direct stage10-square numerical-key interpretation is excluded for the published title. Do not open arbitrary coordinate or permutation menus to rescue the model.
+**Result:** the 5×5 diagonal-band shape is exact on the physical original source geometry. Both conditional title cribs and the full fixed 8|5 English word-pair census exclude its stationary additive key for the specified spelling and F conventions. Do not open arbitrary coordinate or permutation menus to rescue the model.
 
 [Windows Node22 original SFT PASS, CI run 44937394995](https://github.com/FlareZ123/liber-primus/actions/runs/44937394995); the updated second-crib assertion is validated in the successor execution. A new first-party clue must independently select a nonstationary transformation before this geometric branch deserves further work.
 
