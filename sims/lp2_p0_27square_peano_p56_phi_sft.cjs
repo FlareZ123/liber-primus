@@ -170,5 +170,3 @@ process.stdout.write(JSON.stringify({
   bestTransliteration80:excerpt,
   recoveredUnknownPagePlaintext:false
 },null,2)+"\n");
-}
-
