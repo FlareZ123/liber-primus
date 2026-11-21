@@ -55,7 +55,7 @@ As a secondary, less robust check, VERIFY has GP-prime sum216 if V is transliter
 
 ## Whole-message check and limits
 
-Using the 43 alphabetic words of the signed 2016 message, with K→C and V→F only where needed, OPENPGP is the **only** word whose prime-sum address falls in base60's 4-node small basin; it is also the only word whose address is on the 2-cycle. The other 42 word addresses fall in the large 252-node basin. Because that basin covers 252/256 states, the latter fact is weak and should not be presented as a significant statistical result. The discriminating observation is the source-selected final word OPENPGP landing exactly on cycle node249.
+Using the 43 alphabetic words of the signed 2016 message, parsed with source-native longest-match GP transliteration (TH, EO, NG, AE, IO as single runes; K→C and V→F where needed), OPENPGP is the **only** word whose prime-sum address falls in base60's 4-node small basin; it is also the only word whose address is on the 2-cycle. The other 42 word addresses fall in the large 252-node basin. Because that basin covers 252/256 states, the latter fact is weak and should not be presented as a significant statistical result. The discriminating observation is the source-selected final word OPENPGP landing exactly on cycle node249.
 
 The 11+2 coda split and the “Beware false paths” wording may describe the 11-cycle/2-cycle structure, with OPENPGP marking the small verification loop. That interpretation remains a hypothesis: the cycle graph does not yet supply a cipher inverse or unknown-page plaintext. Do not claim the 2-cycle is certainly a false path, or that this proves base60 beyond reasonable doubt. It is, however, a concrete first-party selector worth testing against the original p50 illustration and the 2016 signed-message layout.
 
@@ -74,9 +74,20 @@ const decode = (token, alphabet) =>
   alphabet.indexOf(token[0]) * alphabet.length + alphabet.indexOf(token[1]);
 const T60 = tokens.map(t => decode(t, A60));
 const T59 = tokens.map(t => decode(t, A59));
-const primeByTranslit = new Map(corpus.translit.map((s,i) => [s, corpus.prime[i]]));
-const gpLetter = ch => ch === "K" ? "C" : ch === "V" ? "F" : ch;
-const sum = word => [...word].reduce((n,ch) => n + primeByTranslit.get(gpLetter(ch)), 0);
+const units = corpus.translit.map((name,index) => ({name,index}))
+  .sort((a,b) => b.name.length - a.name.length);
+function gpUnits(word) {
+  const s = word.toUpperCase().replace(/\\s/g,"").replace(/K/g,"C").replace(/V/g,"F");
+  const out = [];
+  for (let i = 0; i < s.length;) {
+    const token = units.find(x => s.startsWith(x.name,i));
+    if (!token) throw new Error("unmapped GP text at " + s.slice(i));
+    out.push(token.index);
+    i += token.name.length;
+  }
+  return out;
+}
+const sum = word => gpUnits(word).reduce((n,index) => n + corpus.prime[index], 0);
 
 const words = [
   "HELLO","THE","PATH","LIES","EMPTY","EPIPHANY","SEEKS","THE","DEVOTED",
