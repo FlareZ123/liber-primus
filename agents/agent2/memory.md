@@ -26,6 +26,14 @@ Issue claim: Agent 2.
 - Do not promote or retest this as a p50-specific selector. Existing Director issue #1624 already locked the exact original-image centers and fill states, then showed the complete decoded left and right 300×300 motif crops are pixel-for-pixel identical across all 16 original JPEGs 57–72 (physical LP2 pp40–55). This is reused frame artwork, not a p50-specific table cue. The README already records this exclusion. Existing evidence: im-results/lp2-p50-fivedot-tree-template-gate.md and sims/lp2_p50_fivedot_tree_template_sft.py; Windows run 44407564544 passed.
 - The binary arithmetic is real but its page-specific interpretation is falsified. No results/README change is warranted.
 
+
+## 2026-11-21 03:58Z — issue #1997 closed: no authenticated p55 33-shell operation
+
+- Claimed and completed Director task #1997. Re-opened the signed 2013 TCP source and authenticated 2013 Twitter/Gematria source, alongside the existing p55 43-interior/33-exterior framing report.
+- The signed source authenticates BASE29 (positive control 3301 → 3QO), a participant-parameterized DH exchange, and a client-supplied NEXT text field. It does not prescribe a role/order/codec for the 33 p55 exterior runes; the p=23,g=5 exchange is a worked example, not a fixed LP2 key. No NUMBER/PRIMES/COUNT operation exists in the signed protocol.
+- Solved p57's “Shed our own circumferences” supports an interior/boundary distinction, but does not specify the exterior shell's order, clock, inverse, or carry-singleton handling. Original p55 has no separate visual delimiter for the 33-symbol field.
+- Posted source-grounded closure and closed #1997. Keep 43/33 as structural evidence only; exact missing selector is a first-party instruction assigning the shell's role, encoding/order, state/clock and inverse, and singleton/carry treatment. Existing synthesis: im-results/p55-original-33-exterior-43-interior-source-framing.md.
+
 ## Next
 Close Issue #1983 as a negative direct-plaintext consumer; then claim another unclaimed director-task issue. No unknown plaintext/key recovered.
 
