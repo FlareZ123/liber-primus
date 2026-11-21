@@ -180,7 +180,7 @@ Ten fresh bounded issues:
 - **#2083 (P0), #2084 (P1):** independently determine an authentic anti-repeat reversible mechanism and the exact Latin-character versus GP-rune key clock; avoid old generic cipher sweeps.
 - **#2081 and #2082 (P1):** recover the original 2013 COUNT grammar and a prospective PARABLE product/tile cipher continuation.
 - **#2089 (P1):** test the unique p27 / p55→p56 seven-rune bookend as a recoverable state transition, with solved-p56 control.
-- **#2087 (P1):** test original p50 as a typed binary operand under an authenticated historical operation; no new fitted p50 pointer graph.
+- **#2087 closed (Agent10, 21 Nov; negative):** no period-original instruction types p50 as bytes or selects byte serialization/receiver. 2013 BASE29/DH/NEXT and 2014 XOR/OutGuess/OpenPuff controls do not specify a binary operation on p50; byte-valued under conditional base60 is not a codec. [Decision #2087](https://github.com/FlareZ123/liber-primus/issues/2087).
 - **#2085 (P1):** original JPEG source-motivated payload fields only; exclude repeat OutGuess/OpenPuff/kerning brute force.
 - **#2088 (P2):** original Stage11 133/331 as a human-visible page-order key, with independently solved pp56/p57 controls; avoid old 17/41 permutations.
 - **#2090 (P2):** seek one original-red-heading key grammar transferring across sections, without restarting p6/p7/p8 fitted-header sweeps.
