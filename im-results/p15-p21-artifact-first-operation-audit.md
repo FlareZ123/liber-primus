@@ -9,7 +9,7 @@ The archive mapping is physical LP2 page = JPEG index − 17: p15–21 are origi
 | Page | Original image | Directly observable structure | Candidate instruction |
 |---|---|---|---|
 | 15 | [scan 32](../resources/liber-primus/32.jpg) | Two spatially separated red headings (9 and 11 runes), a 4×4 decimal grid with **3299** highlighted red, a hand-drawn infinity/lemniscate mark, and a large red initial at the start of the runic body | The grid's exact generator is already established: (N_n=|3301-p_{F_n+1}|) for the first 16 distinct Fibonacci values, placed in the visible outward square spiral from red 3299. This explains the **numbers**, not the following rune text. The infinity mark could invite continuation, but does not state an operand, serialization, clock, reset or cipher transform. |
-| 16–20 | [scan 33](../resources/liber-primus/33.jpg), [34](../resources/liber-primus/34.jpg), [35](../resources/liber-primus/35.jpg), [36](../resources/liber-primus/36.jpg), [37](../resources/liber-primus/37.jpg) | Each is a monochrome, text-only block of 12 runic lines. No red ink, illustration, marginal note, page number, diagram or visibly distinguished line start/end appears. | No page-specific visual operand or reading instruction is present. |
+| 16–20 | [scan 33](../resources/liber-primus/33.jpg), [34](../resources/liber-primus/34.jpg), [35](../resources/liber-primus/35.jpg), [36](../resources/liber-primus/36.jpg), [37](../resources/liber-primus/37.jpg) | Each is a monochrome, text-only block of 12 runic lines. No red ink, illustration, marginal note, page number or diagram appears. Ordinary printed word-separator punctuation is visible at p18's first line and p20's final line; these are source-real but do not distinguish a cipher register. | No page-specific visual operand or reading instruction is present. |
 | 21 | [scan 38](../resources/liber-primus/38.jpg) | Same 12-line monochrome text block; one larger vertical gap separates lines 2 and 3. | This is consistent with a paragraph separator, not a unique cipher instruction or state reset. |
 
 ## Measured layout facts
@@ -20,6 +20,33 @@ The archive mapping is physical LP2 page = JPEG index − 17: p15–21 are origi
 - A simple red-ink pixel test returns zero red pixels on scans 33–38. The red ink is confined to the p15 source markings in this local sequence.
 
 For exact reproduction, convert each original JPEG to grayscale, restrict to x=580:1850 and y=450:3250, mark a row when it contains more than 30 pixels below intensity 100, and merge contiguous marked rows. For color, classify a pixel as red when R>100, R>G+25 and R>B+25 (cast channel values to a signed/integer type before adding 25). This recovers the 12 line bands and the p21 224 px gap described above.
+
+## Text-only punctuation and cross-page operation gate (21 November 2026, #2058)
+
+A cold reading of original scans **33.jpg–38.jpg** reveals the ordinary black text and 12-line page layout described above. The directly visible source variable distinct from the prior p15 matrix is **punctuation placement**: p18 starts with a word delimiter and p20 finishes with one. In the canonical transcription, the five internal page joins p16→17, p17→18, p18→19, p19→20 and p20→21 have printed word carries at **four of five** boundaries; p17→18 is word-separated. P20→21 is also separated, since p20 ends in a word delimiter. Consequently the **three** internal carried-word seams are p16→17, p18→19 and p19→20. These counts match the original visible word dots/hyphens; no cipher reset, word key, or stepping direction follows.
+
+A minimal human-readable alternative is to treat each physical line's presence/absence of a period as a bit, in ordinary page and top-to-bottom line order. The six source pages have **72 lines**, enough for **nine complete bytes** without padding. Freeze `1` for a period somewhere on the line, `0` otherwise, and take each eight consecutive bits as one MSB-first byte. The per-page period-line indices (one-based) are:
+
+- p16: 4, 6, 12
+- p17: 3, 5, 6, 8, 10
+- p18: 4, 9
+- p19: 3, 7, 10
+- p20: 6
+- p21: 11
+
+The complete 72-bit output is `000101000001001011010100000100001000001000100100000001000000000000000010`, yielding bytes **14 12 D4 10 82 24 04 00 02** (hex). Only one byte is printable ASCII (`0x24`, dollar sign), so this original line-mark reading is **not an unencrypted ASCII instruction**. This tests exactly one source-order, period-based readout; it does not justify trying free bit ordering, arbitrary punctuation classes, Caesar phases or new p15 matrix consumers.
+
+The original p16–21 ciphertext has **1,613 runes** (page counts **267, 273, 260, 271, 269, 273**), a substantial potential receiver. However punctuation and ordinary printed word carries provide **no key, direction, algorithm or clock**. Neither this direct byte readout nor the documented p15 artwork yields a source-selected 150-rune reversible inverse. The next genuinely independent clue would need to supply such an operation before decrypting that long receiver. This preserves the previously reached no-operator conclusion without reopening the p15 matrix search.
+
+Reproduction of the one-shot line register from the original canonical transcription:
+
+```js
+const fs = require("node:fs");
+const pages = fs.readFileSync("resources/lp2-transcription.txt", "utf8").split("%");
+const bits = pages.slice(16, 22).flatMap(p => p.split("\n").filter(Boolean).map(line => line.includes(".") ? "1" : "0")).join("");
+const hex = bits.match(/.{8}/g).map(s => parseInt(s, 2).toString(16).padStart(2, "0")).join(" ");
+console.log(bits, hex);
+```
 
 ## Human solve path and the missing instruction
 
