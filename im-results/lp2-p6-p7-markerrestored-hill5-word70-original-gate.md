@@ -39,6 +39,33 @@ The independently solved clear p57 control has GP29 IoC approximately **0.062709
 
 The 70-word observation is stronger as input geometry than a generic arithmetic count: it is based on actual printed word delimiters in the precisely marker-bounded original interval. The outcome rules out the **four fixed word-level Hill consumers** and **two fixed marker-restored rune-level Hill consumers** as ordinary GP29 prose readouts. It does not exclude a separate word-code grammar, arbitrary missing state, an altered segmentation, other orientations/transformations, or a non-English output register. Neither the two inserted delimiter values nor the circulant algebra is established as author-selected.
 
+## Alternative 25-rune matrix on this new receiver (21 November)
+
+The same two colored spans supply a materially different *complete* source key: p6 has eleven consecutive red runes at offsets71–81 and p7 has fourteen at offsets194–207, making **25 = 5×5 original red symbols**. An [independent p8/pp8–14 study](lp2-p6p7-red25-hill5-pp8pp14-original-gate.md) had already rejected this direct Hill matrix as a decoder of the next seven-page chapter. Its application to the **separately discovered p6/p7 marker-bounded 310-symbol receiver and the 70 printed-word scalar receivers** was not part of that study.
+
+Keep all twenty-five original GP29 rune values in page reading order, without a new numeral/word offset. Form the row-major GF29 matrix:
+
+```text
+K = [[24,16,14,17,19],
+     [ 6,27,15,17,14],
+     [12,23, 3,22,16],
+     [ 2,25, 5, 7,11],
+     [14,28, 6,28,19]]
+det(K) = 12 (mod 29)
+```
+
+Its determinant is invertible and the exact source-key inverse is fixed. On each of the three already selected 5-aligned registers above, freeze precisely four natural Hill5 directions: `K^{-1}`, `K`, `(K^{-1})^T`, `K^T`. All twelve operations are reversible and reencrypt their *original source registers* exactly, without secret phases, cipher fitting, additional padding or alphabet changes.
+
+| Original p6/p7 register | Four GP29 output IoCs, in the order above | Direct GP29 prose recovered? |
+| --- | --- | --- |
+| 310 including hypothetical two 13-dot values | 0.035244, 0.034555, 0.034116, 0.033970 | **No; each 0/40 long printed-word lexicon hits** |
+| 70 whole-word GP0 sums | 0.036025, 0.040580, 0.035611, 0.037681 | No |
+| 70 whole-word GP0 products | 0.032712, 0.034369, 0.044306, 0.029400 | No |
+
+The largest value 0.044306 is on **70 symbols**, selected from twelve alternatives; its rune string is incoherent as continuous native-GP text, so it is not a decryption. The strongest 310-rune result is only 0.035244, still close to the source ciphertext's 0.034471 and distant from solved p57's 0.062710. This source-red25 matrix therefore supplies no missing inverse on the new body/word receivers; the older pp8–14 recipient is independently negative. A source-authored further operation is needed before trying nonlinear/polyalphabetic extensions.
+
+The expanded [single-file SFT](../sims/lp2_p6_p7_markerrestored_hill5_original_sft.cjs) now asserts the original red25 values, the exact inverse, all twelve reversals and source-first output summaries. **Windows Node.js 22 PASS:** [run 44942920631](https://github.com/FlareZ123/liber-primus/actions/runs/44942920631).
+
 ## Decision
 
 Retire the six specified direct p6/p7 Hill5 receivers. The five-dot/five-word original matrix and the 70 printed-word interval remain source observations, but neither yields unknown plaintext or a typed cipher handoff. A next attempt should locate a first-party rule explaining why the word-number register or padding values should be used and specifying a reversible consumer, rather than fitting phases or other matrix variants.
