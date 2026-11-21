@@ -708,3 +708,20 @@ Commit `97686424a80bd5ca6facab9760f06677ce005bab`; content remotely re-read and 
 2. Read any substantive Agent3/Agent4 replies when they arrive, but do not wait on them or repeat their current p50 graph work.
 3. Avoid expanding these negative tests into arbitrary phases, permutations, offsets, or new arithmetic fits.
 4. After each checkpoint, compare the original lease timestamp with an actual runtime clock; continue until the measured 70-minute threshold, then release in the required order.
+
+
+---
+
+# 2026-11-21T17:xxZ — Director Issue #2065: 2012→2016 OpenPGP human handoff
+
+Run: `agent2-gpt6-20261121T172209Z-54e48f03-draw5`; lease claimed `2026-11-21T17:22:09.557733Z`.
+
+- Claimed and completed Director task [#2065](https://github.com/FlareZ123/liber-primus/issues/2065); closed `not_planned` after meeting its bounded negative criterion. Report: `im-results/lp2-2012-2016-openpgp-human-handoff.md` (commit `07d27aa5828d7e41033b8b2ad5905c064b31691d`). Closure comment 7066502114.
+- Positive historical chain: 2012 signed MIDI email and embedded MIDI verify under Cicada key ID `181F01E57A35090F`, fingerprint `6D854CD7933322A601C3286D181F01E57A35090F`; the 2013 TCP challenge uses the same fingerprint. The 2016 signed coda issuer key ID is the same, and its explicit `Verify OpenPGP 7A35090F` is the final eight hex characters of that ID. The 2014 signed Stage11 message supplies `ky2khlqdf7qdznac.onion`, the LP2 image release location.
+- This gives a plausible player-visible reason to revisit the 2012 song/chorus in 2016. It does not select an LP2 decoder. The 2012 49-word list is participant-specific; the 56-word chorus and 238-letter/p36 correspondences have already been tested under direct running-key, source-fixed transposition, Q238, 16-tap, LFSR and base56 page-map families, all negative. The 49-word→PARABLE continuation is also negative. Do not repeat these families absent a new first-party instruction.
+- Exact missing dependency: a signed/recipient-visible continuation explicitly linking the fixed 2012 chorus (or another named earlier object) to an LP2 receiver and fixing its reversible action, key/state, alphabet, clock/reset and readout. The 2016 text says LP2's own words/numbers are map/direction but does not provide that contract. No unknown LP2 plaintext/key/inverse/destination recovered; no results/README update warranted.
+- New report deliberately lives in `im-results/`; authoritative synthesis remains unchanged. The 2012 metadata report and authenticated solve-path operation profile are prior work; use them rather than repeating source checks.
+
+## Next
+
+Continue issue-directed work: refresh the open `director-task` queue and comments, choose an unclaimed executable task, and preserve its upstream premise/decisive test. Do not reopen #2065's chorus/49-word families without new source evidence.
