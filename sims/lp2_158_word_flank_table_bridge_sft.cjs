@@ -185,6 +185,82 @@ const randomScores = Array.from({ length: 2000 }, () =>
   languageModel.scoreStream(Array.from({ length: 158 }, randomGP29)).mean
 ).sort((a, b) => a - b);
 
+
+const chainSpecs = [];
+for (const mode of ['gp', 'prime']) {
+  for (const rule of ['mod28+1', 'onebased28']) {
+    for (const offset of [0, 1]) {
+      for (const sign of [1, -1]) chainSpecs.push({ mode, rule, offset, sign });
+    }
+  }
+}
+const wordRecords = words.map((w, i) => ({ gp: wordGP0[i], prime: wordPrime[i] }));
+const flankDeltas = [
+  p49.slice(1).map((x, i) => mod(x - p49[i], 29)),
+  p51.slice(1).map((x, i) => mod(x - p51[i], 29))
+];
+function stepValue(x, rule, sign) {
+  const v = rule === 'mod28+1' ? mod(x, 28) + 1 : mod(x - 1, 28) + 1;
+  return mod(sign * v, 29);
+}
+function chainStepCounts(records) {
+  return chainSpecs.map(spec => {
+    let total = 0;
+    const byPage = [];
+    for (let page = 0; page < 2; page++) {
+      const start = (page === 0 ? 0 : 66) + spec.offset;
+      const d = flankDeltas[page];
+      let matches = 0;
+      for (let i = 0; i < d.length; i++) {
+        if (d[i] === stepValue(records[start + i][spec.mode], spec.rule, spec.sign)) matches++;
+      }
+      total += matches;
+      byPage.push(matches);
+    }
+    return { ...spec, sign: spec.sign > 0 ? '+' : '-', matches: total, p49Matches: byPage[0], p51Matches: byPage[1] };
+  });
+}
+const observedChainCounts = chainStepCounts(wordRecords);
+const fixedChainIndex = chainSpecs.findIndex(s =>
+  s.mode === 'gp' && s.rule === 'onebased28' && s.offset === 0 && s.sign === 1
+);
+let permutationState = 0x3301c1ca;
+function permutationRandom() {
+  permutationState ^= permutationState << 13;
+  permutationState ^= permutationState >>> 17;
+  permutationState ^= permutationState << 5;
+  return permutationState >>> 0;
+}
+function shuffleRange(records, start, end) {
+  const out = records.slice();
+  for (let i = end - 1; i > start; i--) {
+    const j = start + permutationRandom() % (i - start + 1);
+    [out[i], out[j]] = [out[j], out[i]];
+  }
+  return out;
+}
+const chainNull = { n: 20000, fixedGE: 0, maxGE: 0, fixedSum: 0, maxSum: 0, maxima: [] };
+for (let trial = 0; trial < chainNull.n; trial++) {
+  let permuted = shuffleRange(wordRecords, 2, 66);
+  permuted = shuffleRange(permuted, 66, 158);
+  const counts = chainStepCounts(permuted).map(x => x.matches);
+  const fixed = counts[fixedChainIndex];
+  const maximum = Math.max(...counts);
+  if (fixed >= observedChainCounts[fixedChainIndex].matches) chainNull.fixedGE++;
+  if (maximum >= Math.max(...observedChainCounts.map(x => x.matches))) chainNull.maxGE++;
+  chainNull.fixedSum += fixed;
+  chainNull.maxSum += maximum;
+  chainNull.maxima.push(maximum);
+}
+chainNull.maxima.sort((a, b) => a - b);
+chainNull.fixedMean = chainNull.fixedSum / chainNull.n;
+chainNull.maxMean = chainNull.maxSum / chainNull.n;
+chainNull.fixedP = (chainNull.fixedGE + 1) / (chainNull.n + 1);
+chainNull.familywiseP = (chainNull.maxGE + 1) / (chainNull.n + 1);
+chainNull.maxP95 = chainNull.maxima[Math.floor(0.95 * (chainNull.n - 1))];
+chainNull.maxP99 = chainNull.maxima[Math.floor(0.99 * (chainNull.n - 1))];
+delete chainNull.maxima;
+
 const report = {
   counts: {
     p0p2Words: words.length,
@@ -216,7 +292,13 @@ const report = {
       max: randomScores[randomScores.length - 1]
     }
   },
-  tableCoordinates
+  tableCoordinates,
+  chainStepAlignment: {
+    definition: 'page-local flank difference = skip-zero GP0/prime word number, tested modulo-28 conventions',
+    variants: observedChainCounts,
+    fixedVariant: observedChainCounts[fixedChainIndex],
+    pageLocalPermutationNull: chainNull
+  }
 };
 
 console.log(JSON.stringify(report, null, 2));
