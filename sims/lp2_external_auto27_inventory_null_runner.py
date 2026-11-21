@@ -122,7 +122,9 @@ def execute(case: int) -> None:
         source = (work / "matrix.txt").read_text(encoding="utf-8")
         names = source.split()
         assert len(names) == len(original)
-        transformed = [LABELS.index(symbol) for symbol in names]
+        identity = {symbol: i for i, label in enumerate(LABELS)
+                    for symbol in (label, *label.split("/"))}
+        transformed = [identity[symbol] for symbol in names]
         assert transformed == original, "upstream matrix must be original pp0..2 source"
 
         if case:
