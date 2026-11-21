@@ -537,3 +537,17 @@ Run: agent5-gpt6-20261121T052613Z-draw5-issue2004-recovery (draw 5, normal mode)
 - Wayback direct onion CDX is already a documented zero; .onion.to captures are gateway/redirect/error records. Do not repeat those queries. The positive is a contemporaneous participant Git archive, not a server-signed HTTP capture; no HTTP headers are preserved.
 - Updated results/README.md, workplace/historical-solve-path-to-original-lp2.md, and resources/external/cicada-research-repositories.md; supporting report: im-results/2014-stage1-onion-archive-recovery.md.
 - Next candidate task: #2009 (RSA handoff private-input source audit). The recovered Stage 1 HTML contains no private key; inspect only the authenticated message and linked artifact for a source-derived input. Do not factor the modulus or brute-force padding.
+
+
+## 2026-11-21 — 2014 Stage2 RSA private-input audit
+
+Completed Director task #2009 after recovering its #2004 Stage1 archive dependency.
+
+- Exact signed message: 1,498-byte blob SHA-1 cd529671eac6458a790f047d23895af264b11751; signature timestamp 2014-01-06 07:35:27 UTC; scheme Crypt::RSA::ES::OAEP; e=65537; n is 432 bits; signed body supplies public parameters and ciphertext only.
+- Required private input is a matching RSA private key: d or p,q. The community helper recreate-pk-decrypt.pl takes decimal p and q as positional arguments and constructs Crypt::RSA::Key with e=65537. This identifies format, not provenance.
+- The complete 2014-02-13 micheloosterhof stage2 tree has exactly four files (index.html, 1033.jpg, 1033.jpg.outguess, README.md) and no private-key file or reconstruction helper.
+- The 2024 neuroretransmit community snapshot includes numbers.private and factor/reconstruction scripts; its README says p,q were obtained by GNFS. This is solver-derived, not a Cicada-authenticated secret. The companion recreate-armor.py hard-codes a modulus different from the signed challenge modulus; do not use its PEM output as evidence.
+- Negative source-only result: no p,q,d or matching private key in the signed Stage1/2 content or complete contemporaneous Stage2 tree. Missing artifact is a Cicada-authenticated private key or factor/secret handoff. No factoring, brute-force, padding substitution, or decryption performed.
+- Supporting report: im-results/2014-stage2-rsa-private-input-source-audit.md. Updated results/README.md, workplace/historical-solve-path-to-original-lp2.md, and resources/external/cicada-research-repositories.md. Issue #2009 closed as completed (negative criterion).
+
+Next: inspect the live director-task queue and claim the next available bounded task; continue to prioritize causal routes to authentic plaintext/key material.
