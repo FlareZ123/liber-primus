@@ -35,8 +35,8 @@ def image_and_margin(page: int) -> tuple[str, str]:
     with Image.open(JPEG_ROOT / filename) as im:
         pixels = np.asarray(im.convert("RGB"))
     assert pixels.shape == (3600, 2400, 3)
-    outer = np.concatenate((pixels[:, :500], pixels[:, -500:]), axis=1)
-    return full_digest, sha256(outer.tobytes()).hexdigest()
+    margin_bytes = pixels[:, :500].tobytes() + pixels[:, -500:].tobytes()
+    return full_digest, sha256(margin_bytes).hexdigest()
 
 
 for p in [39, *range(40, 56), 56]:
