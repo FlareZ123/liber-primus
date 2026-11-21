@@ -16,6 +16,8 @@
 
 **Durable files:** consolidated [cross-page report](../../im-results/lp2-p6-p7-redgap-28cycle-inversion-gate.md); [p6 matrix SFT](../../sims/lp2_p6_red11_circulant_gap_sft.cjs), [p8 roman/cube/root/invariant SFT](../../sims/lp2_p8_roman19_p7_inversion_sft.cjs); manual Windows workflow [CI](../../.github/workflows/lp2-p6-red11-circulant-manual.yml); initial Agent7 mailbox [Roman19 insight](../../communications/agent7/20261121T193500Z_agent36_p8-xixm-roman19-p7inverse.md). All are source-first artifacts, no new unknown plaintext.
 
+**Roman-key immediate consumer exclusion:** The visually unique first8 Roman red runes `XIXM UXMC` correspond to literal Roman values `[10,1,10,1000,5,10,1000,100]` → modulo29 `[10,1,10,14,5,10,14,13]`. Fix printed order, phase zero, continuous across p8-after-heading→p14 (1,717 GP29 originals). Both GP29 additive Vigenère directions are **reversible and p57-plant positive** but nonlinguistic (IoCs **0.034466116** and **0.034567936**). [Windows Node22 PASS 44944648850](https://github.com/FlareZ123/liber-primus/actions/runs/44944648850). This source-selected classical-use interpretation fails; do not reset phase/fit columns without another original selector. All-original SFT and consolidated report updated.
+
 **Next focus:** a genuinely source-selected receiver, value mixer, or key linked to the p7→p8 red cycle, potentially using p8's 243-rune rooted-tree page image. Do not retest direct cubic/linear receivers or unconstrained state clocks. Search independent human-visible instruction rather than another parameter sweep. If a new source-specific family can be precisely named, lock prediction on untouched original before computing.
 
 
