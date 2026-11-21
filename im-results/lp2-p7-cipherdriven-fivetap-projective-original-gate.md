@@ -59,6 +59,48 @@ The many 9/10-rune matches are expected from their short residual signatures, in
 
 The independent source-native word `CIRCUMFERENCES` is encrypted under **30 distinct key choices**, comprising six feedback coefficients and five nonzero output multipliers; all have independently changing additive and recurrence constants and the source five-rune initial state. The exact ciphertext recurrence is genuinely executed, with no forced plaintext in its outputs. The original projective signature test recovers the underlying true word signature for every encrypted example, although it is given **none of their hidden key values except the q value being exhaustively considered**. Thus a genuine member of the tested cipher family passes this exact inverse; the negative original result is distinguishable from an implementation incapable of recognizing an encoded long English word.
 
+## Stronger result: ALL five preceding-ciphertext taps, with freely changing coefficients
+
+The first model could be dismissed as overfitting *one* ciphertext-feedback tap while the original p7 packet explicitly shows **five** marked red words. A stronger and genuinely independent direct model therefore grants a **completely unknown five-dimensional ciphertext driver** with no fitted vector:
+
+```text
+K[i] = Σ(j=1..5) w[j]*K[i-j] + Σ(j=1..5) q[j]*C[i-j] + r
+C[i] = a*P[i] + b + K[i] (mod29),
+w=[11,26,8,15,2], each q[j] any GF29 value, a any GF29 nonzero.
+```
+
+All 29^5 = 20,511,149 feedback coefficient vectors, all 29^5 hidden initial states, all output multipliers and offsets, and all forcing constants are admitted **independently for every original printed word**. No brute-force enumeration over the 20 million coefficient vectors is necessary.
+
+Let `R(C)_i=C_i−Σw_j C_(i-j)` and `R(P)_i=P_i−Σw_j P_(i-j)`. For each word and interior rune `i>=6`, subtract the corresponding residual at rune5 to remove both b and r:
+
+```text
+[R(C)_i−R(C)_5]
+  = Σ(j=1..5) q[j] * [C_(i-j)−C_(5-j)]
+  + a * [R(P)_i−R(P)_5]  (mod29).
+```
+
+A hypothesized GP-native plaintext word of length n≥13 therefore supplies **n−6 linear equations** in only five unknown q coefficients for each of the **28 nonzero values** of a. Exact GF29 Gaussian elimination decisively tests *all* coefficients, including nonunique/rank-deficient solutions, without ever guessing q or a hidden state. A true source-language word under this single-layer cipher must be among the compatible dictionary entries, even when all secrets reset on every original word.
+
+The four original 13-rune words and three original 14-rune words were opened as this independent long-word gate, retaining the source-correct physical page map (the transcript omits the grid-only physical p50). The fixed TextBlob lexicon contains **382 native-GP words of length13 and 155 of length14**. Exact original-input results:
+
+| Original physical page | Original complete word length | All-secret native-dictionary compatible words |
+| ---: | ---: | ---: |
+| 11 | 13 | 11 |
+| **13** | **14** | **0** |
+| 16 | 13 | 10 |
+| 25 | 14 | 1 |
+| **43** | **14** | **0** |
+| 52 | 13 | 20 |
+| 55 | 13 | 10 |
+
+The **sole length14 compatible word** on physical p25 is the low-frequency dictionary demonym `wurttembergers`, with one exact but completely postselected coefficient vector `q=[14,5,10,5,11]` and `a=22`. It does not constitute recovered text. There is **no native-dictionary solution** for either the original p13 or p43 14-rune word under **any** of the 20.5m q vectors, any five-rune initial key state, any source-independent affine shift or multiplier, or any constant recurrence drive.
+
+An independently constructed **30-case positive suite** encrypts the 14-GP-rune native word `CIRCUMFERENCES` under independently varying q vectors, secret output multipliers, b/r, and two initial key states; the exact elimination solver finds a compatible solution in every planted case. This checks the long-word elimination even when the plaintext itself had no access to the chosen secret q or initial key state.
+
+**Decision extension:** the entire one-layer p7-fiveproduct homogeneous-recurrence + unrestricted **linear five-ciphertext-tap driving** + direct affine GP29 output family is incompatible with native-dictionary GP English across the full unchanged original manuscript, even with **arbitrary independent cipher keys on every printed word**. There is no need to enlarge this cipher-driver family or run blind 29^5 searches. This is conditional on the original long words being drawn from the pinned native dictionary and the source five-product recurrence actually being the cipher law; unrelated codewords, extra encrypted layers, nonlinear key-state transitions and plaintext-driven feedback are outside this finding.
+
+[Complete five-tap original-input Gaussian SFT](../sims/lp2_p7_five_cipher_taps_allsecret_longword_sft.cjs) · [Windows PASS44953128524](https://github.com/FlareZ123/liber-primus/actions/runs/44953128524). This is a stronger result than the one-ciphertext-tap projective oracle above; both retain explicit separate controls because they eliminate different dimensions of hidden-key freedom.
+
 ## Cryptanalytic decision and boundaries
 
 Retire the direct word-interior family `K[i]=Σ w*Kprev + q*C[i-1] + r, C[i]=a*P[i]+b+K[i]` as a decoder of ordinary source-native dictionary English, even with fresh per-word keys, page/chapter resets and unrestricted secret affine output scalars. This is a **substantive strengthening** of the earlier autonomous-period original-input exclusion: it excludes an entire ciphertext-dependent feedback update that that earlier work explicitly left unresolved. It applies equally to a single fixed hidden `q` and per-word changing `q`.
