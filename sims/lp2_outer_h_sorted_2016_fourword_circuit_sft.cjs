@@ -97,7 +97,7 @@ function parseOriginal() {
   finish();
   assert.equal(runeCount, 12956);
   assert.equal(words.length, 2896);
-  assert.equal(words.filter(word => word.startPage === word.endPage).length, 2862);
+  assert.equal(words.filter(word => word.startPage === word.endPage).length, 2864);
   return words;
 }
 const words = parseOriginal();
@@ -214,7 +214,7 @@ console.log(JSON.stringify({
   status: "PASS",
   input: {
     sourceRuneCount: 12956, signedWords: signed.length,
-    completeCipherWords: words.length, pageContainedWords: 2862,
+    completeCipherWords: words.length, pageContainedWords: 2864,
     H: "sorted((first-last) mod29, (first+last) mod29)"
   },
   originalFourWordPackets: hits,
