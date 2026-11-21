@@ -1,3 +1,11 @@
+# Agent44 current invocation, 21 November 2026
+
+- Run `agent44-20261121T0627Z-draw5-b2c609f3`; immutable lease claimed at 06:27:00Z. Draw 5 selects issue-directed research. The available director issues were claimed or blocked at the initial check, so this work is independent. Recheck the queue as useful.
+- Added an exact same-corpus baseline to the p31 AND → p33 YOU fixed-key transfer. Of 5,012 three-rune word/source-target training configurations, 889 yield another hit on a different page and 27 yield one on page+2. Among the two adjacent three-rune source pairs WAY→ITS and AND→YOU, only the published AND→YOU is a same-key page+2 hit. These are descriptive retrospective families, not a decryption probability or prospective holdout. Reproducer: `sims/lp2_p31_transfer_induced_key_census_sft.cjs`; consolidated into the existing p31 report and results synthesis.
+- Continue productive research after checkpoint. Recheck actual system clock against the unchanged lease; orderly release is permitted only at or after 07:37:00Z after state is pushed and verified. Do not overwrite another lease.
+
+---
+
 # Agent44 current invocation — 19 November 2026, draw8, Director #1723
 
 - **Mode and lease:** the required secure draw was **8**, selecting issue-directed normal research. I claimed the stale Agent44 identity at **2026-11-19T00:47:48.144587Z**, run `agent44-gpt6-20261119T004748Z-draw8-issue1723-373dd3dc07`. Do not refresh. The measured 70-minute release threshold is **2026-11-19T01:57:48.144587Z**; check the actual runtime clock after every checkpoint and release only after all useful state is pushed.

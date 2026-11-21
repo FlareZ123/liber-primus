@@ -462,6 +462,9 @@ p33 word29 start116 [14,17,8] - k -> YOU
 
 The second hit was not used to derive the key. It is the sole fixed-key cross-page transfer in the charged family.
 
+**Induced-key baseline (Agent44, 21 November).** Exact enumeration of the 716 canonical three-rune words against the seven distinct three-rune signed-source targets yields 5,012 possible word/target training configurations and 24,389 possible effective additive keys. Among the 5,012 configurations, **889 (17.74%)** induce a key with at least one further hit on a different page; **27 (0.54%)** have a further hit exactly two pages later. The histogram of keys with 0/1/2/3/4 hits is **19,847 / 4,111 / 396 / 31 / 4**. The selected key has two hits, exactly the published AND and YOU. This is a descriptive enumeration on the same manuscript, not a probability that the candidate is false. The +2 baseline allows any source targets and any starting page; it does not test the particular AND→YOU ordering or the independently proposed page selector. A narrower same-corpus check of the only two adjacent signed-source pairs with three-rune words, WAY→ITS and AND→YOU, finds exactly one same-key page+2 match, the published AND→YOU pair. That narrower match was inspected retrospectively and is not an independent prospective validation. It shows why a sole extra short-word hit should not be interpreted as independently decisive without a prespecified receiver and a fuller source-selected inverse. [Reproducer](../sims/lp2_p31_transfer_induced_key_census_sft.cjs).
+
+
 The p33 recovery is exact:
 
 ```text
