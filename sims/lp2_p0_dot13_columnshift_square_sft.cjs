@@ -174,8 +174,41 @@ function hasFrozenNumericMap(residual,band,valueMap){
   return h.size===3;
 }
 
+/**
+ * A deliberately simple, predeclared matched null: preserve original
+ * first-word and second-word ciphertext histograms SEPARATELY, preserve
+ * the sole original ciphertext F at first-word position7, shuffle
+ * positions0..6 and 8..12 with deterministic xorshift32.
+ * This charges the entire 8|5 dictionary and positional word shape.
+ * @param {Map<string,string>} eights
+ * @param {Map<string,string>} fives
+ * @param {()=>number} random
+ */
+function matchedShuffleControl(eights,fives,random){
+  const histogram=Array(15).fill(0);
+  const groups=[[0,1,2,3,4,5,6],[8,9,10,11,12]];
+  for(let trial=0;trial<2000;trial++){
+    const x=cipher.slice();
+    for(const indices of groups)
+      for(let j=indices.length-1;j>0;j--){
+        const other=random()%(j+1);
+        [x[indices[j]],x[indices[other]]]=[x[indices[other]],x[indices[j]]];
+      }
+    assert.equal(x[7],0);
+    const hits=screen(x,eights,fives,false).exactWordPairs.length;
+    assert(hits<histogram.length);
+    histogram[hits]++;
+  }
+  return histogram;
+}
+
 function main(){
   const bands=squareBands(),out={};
+  let seed=0x3301;
+  const random=()=>{
+    seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;
+    return seed>>>0;
+  };
   for(const spelling of ['native','letter']){
     const [eights,fives]=dictionaries(spelling);
     const exact=screen(cipher,eights,fives,false);
@@ -230,14 +263,26 @@ function main(){
       positive++;
     }
     assert.equal(positive,8);
-    out[spelling]={uninterrupted:exact,fixedPositionLiteralF:bypass,positive,sourceMapMatches};
+    const shuffled=matchedShuffleControl(eights,fives,random);
+    const expectedHistogram=spelling==='native'
+      ?[965,667,256,79,27,3,3]
+      :[1069,617,237,60,16,1];
+    assert.deepEqual(shuffled.slice(0,expectedHistogram.length),expectedHistogram);
+    assert.equal(shuffled.slice(expectedHistogram.length).reduce((a,b)=>a+b,0),0);
+    const originalCount=exact.exactWordPairs.length;
+    const atLeastOriginal=shuffled.slice(originalCount).reduce((a,b)=>a+b,0);
+    out[spelling]={uninterrupted:exact,fixedPositionLiteralF:bypass,
+      positive,sourceMapMatches,
+      matchedShuffle:{trials:2000,histogram:shuffled,
+        casesAtLeastOriginal:atLeastOriginal,
+        plusOneUpperTail:(atLeastOriginal+1)/2001}};
   }
   console.log(JSON.stringify({
     status:'PASS',
     input:'original p0 13-title runes; 2014 two 5x5 squares; original physical 13-dot raster C,L,R',
     class:'K[i]=secret_function(square_cell[i])+static_offset(dot_column[i]) over GP29',
     result:out,
-    conclusion:'Exact 2 native and 1 letter-normalized wholeword algebraic survivors have unnatural title semantics and need secret fitted source-value codebooks; EPIPHANY SEEKS is impossible even under unknown column shifts. No authenticated plaintext/key.'
+    conclusion:'Exact 2 native and 1 letter-normalized wholeword algebraic survivors have unnatural title semantics and need secret fitted source-value codebooks; matched-shuffle tail is 18.4% native; EPIPHANY SEEKS is impossible even under unknown column shifts. No authenticated plaintext/key.'
   },null,2));
 }
 if(require.main===module)main();
