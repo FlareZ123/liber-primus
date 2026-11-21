@@ -37,7 +37,7 @@ where \`H_(L,s),(j)\` is the row's \`j\`-th largest ciphertext-symbol count. The
 | **9** | **7,908** |
 | 14 | **10,314** |
 
-The top-nine ceiling is **7,908/12,956 = 61.033%**, independent of every unknown secret table.
+The top-nine ceiling is **7,908/12,956 = 61.037%**, independent of every unknown secret table.
 
 ## Source-native language test, with intact original word-length inventory
 
