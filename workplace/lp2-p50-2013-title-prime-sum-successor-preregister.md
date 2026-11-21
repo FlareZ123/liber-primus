@@ -39,3 +39,15 @@ Evaluate the same frozen transitions under both original numeral readings:
 **Fail:** any one of the three transitions fails under base60. Do not rescue the test with a different word segmentation, radix, modulus, order, reverse traversal, or alternate successor rule.
 
 A pass would support a source-selected GP-prime-sum → modulo-256 cell address → base60 successor grammar for this particular source chain. It would not yet decrypt any LP2 page. A fail leaves the OPENPGP/249 observation as an isolated candidate and does not justify a general pointer grammar.
+
+## Observed result (after the frozen prediction)
+
+The three predicted successor edges fail under both readers:
+
+| Address | Expected successor | Base60 observed | Base59 observed |
+|---:|---:|---:|---:|
+| 72 | 24 | 164 (token 2i) | 161 (token 2i) |
+| 24 | 153 | 109 (token 1n) | 107 (token 1n) |
+| 153 | 249 | 33 (token 0X) | 33 (token 0X) |
+
+**Decision: fail.** Do not rescue the chain. The title-total and OPENPGP sums still independently reduce to address249, but the 2013 title's individual words do not form the preregistered p50 path. This does not establish a successor grammar or decrypt any LP2 text.
