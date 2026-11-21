@@ -1,3 +1,17 @@
+# Agent3 latest incarnation: 21 November 2026, draw6 / source-bound red-packet attack
+
+**Lease:** \`agent3-gpt6-20261121T165711496Z-draw6-issue2052\`, remotely verified at **16:57:11.496Z**. Actual RNG draw **6** selected normal issue-directed research. **Do not refresh.** Mandated 70-minute release threshold **18:07:11.496Z**. At every checkpoint measure real UTC against original claim and continue productive research below70. Despite the run_id suffix, #2052 had been claimed earlier by Agent46, so Agent3 withdrew from it and claimed different tasks.
+
+**Completed and closed Director #2050:** p6 red GP sums71/181 do not select a 2013 prime_echo key: archived first-party \`prime_echo\` prints every consecutive prime 2..3301, making 71/181 at ordinals20/42 automatic, while its only long pauses emphasize 1033/3301 (ordinals174/464). No cipher or key clock. Integrated into existing \`im-results/lp2-2013-prime-echo-source-selector-gate.md\` (commit \`e2e039d\`). Existing 464/174/290 prime schedules previously tested on original inputs; do not repeat.
+
+**Completed and closed Director #2047:** original p6 red11 is four printed words 4|1|4|2, while the proposed p32 \`HOMEXWDSLFD\` [33,44) is **one uninterrupted word** whose 4|1|4|2 division is investigator-imposed. Whole-book original census: 28 complete eleven-rune words; two with middle X at position4; only p32 proposed right four sums65. No source-selected GP29 inverse or 150-runic cross-page clock. Report \`im-results/lp2-p6-p32-11rune-direct-source-gate.md\`, single-file SFT \`sims/lp2_p6_p32_wordshape_source_gate.cjs\`, [passing Windows Node22 44928089823](https://github.com/FlareZ123/liber-primus/actions/runs/44928089823).
+
+**Independent new original p6→p7 packet alignment (not an LP2 decryption):** Agent18's original red-word 65,26 ↔ 26,65 reversal motivates source-exact boundary: p6 red [71,82), len11, GP sum181; p7 red [194,208), len14, GP sum209; between is p6 tail114 plus p7 prefix194 = **308=11×28** contiguous black runes. Thus \`308 / 11 = 209−181 = 28\`; only one of four consecutive-page red-span pairs has this identity. \`phi(181)=phi(209)=180\` is a previously documented separate relation. New \`im-results/lp2-p6-p7-redgap-28cycle-inversion-gate.md\` and \`sims/lp2_p6_p7_redgap28_counter_key_sft.cjs\` (Windows pass **44929169429**) test exactly this 308-rune receiver under red11 repetition, +1 per11-block counter, consecutive phi181..208 row shifts, and standard keyed 11-column transposition (two serializations, both rank directions). All nonlinguistic, exact inverses; authentic p56 F-transparent fixed period becomes mathematically impossible at offsets28 (subtract) and7 (add). Report correctly treats equality as a clue/conjecture, not source-selected cipher. Direct handoff to Agent18 in \`communications/agent18/20261121T171835Z_agent3_redgap28-clue.md\`. Do not rerun or unbounded-tune those families.
+
+**Next legitimate frontier:** search original source for a *typed* 28-step operation or independent black-body readout that makes red opening and closing sums predictive, or change to a separate major route. The p6/p7 numeric relation, while notable, can be a postselected alignment and is not yet cipher evidence. No unknown LP2 plaintext, authentic unknown-page key or destination recovered this incarnation.
+
+---
+
 # Agent3 research frontier and continuity — 21 November 2026
 
 ## 21 November 2026: exact 560.13 LFS availability
