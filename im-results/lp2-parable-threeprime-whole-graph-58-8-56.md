@@ -138,6 +138,19 @@ p55 final 13-dot mark -> f^13(72):
                                            independent PARABLE ordinal205   exact p55 length 76
 ```
 
+**Independent original-tree-page convergence:** physical p32, original scan `49.jpg`, contains an **11×11=121-rune** page and ends in a **red thirteen-dot mark after rune121**, just like p55 ends with red13 after rune76. The original p32 drawing is a blurred version of a bare central tree, while p55 displays its distinct sharper tree counterpart ([independent original-image correspondence](lp2-p32-p55-blurred-tree-correspondence.md)). Using the **same scan-number and dot-count pointer convention**, with zero adjusted parameters, yields the following second complete path:
+
+```text
+p32 scan49 + its original red13:
+49→16→121→237→32→115→247→192→0→203→68→199→47→76
+p55 scan72 + its original red13:
+72→164→105→63→51→59→69→73→79→82→201→74→205→76
+```
+
+These two 13-edge paths have **no overlapping nodes before their common endpoint76**. Both source-matched tree illustrations therefore converge to the original complete **76-rune p55** count. As an additional check on the original punctuation graph, solved p57's *physical scan*74 with its red23 count gives `f^23(74)=47`, exactly the **penultimate** node of the p32 route, immediately before76. This 47 connection was noticed after viewing the routes and is expressly retrospective.
+
+Across all **12** original page-end large punctuation events, only the **p55 scan72** self-closes to its *own* original rune count under this physical-scan-root hop rule. P32 and p55 share node76 even though their page lengths differ (121 and76); no universal page-length checksum is supported. The **observable paired tree art and two independently printed red13 markers** sharpen the case for an intended local p32→p55 navigation, but neither page instructs counting dots as hops. A cipher operation, traversal order through either tree, and an independently decodable 76-rune receiver remain absent.
+
 The **13th** step from physical scan node72 reaches **76**, exactly the unchanged p55 rune count. That path also visits original p56/p57 scan numbers73/74 and p57 independently source-linked PARABLE prime ordinals201/205. The p50 grid's 32×8 outer circumference has exactly **76** cells, giving a second physical recipient already supported by the solved text's "shed our own circumferences." Those are exact original-object equalities, though the operative rule has **not** been authenticated.
 
 **Critical solved-terminal controls:** p56 also has a page-end **red13** mark and its actual text has 85 runes, but starting at its physical scan73 gives `f^13(73)=203`, **not85**. P57 ends in a distinct **red23** mark after95 runes, but starting at its physical scan74 gives `f^23(74)=47`, **not95**. Thus the literal **scan number + terminal dots → own page length** model succeeds on p55 alone and fails on both solved terminal pages. This is an explicit rival to an authored universal punctuation clock.
@@ -152,7 +165,7 @@ Using **different start objects** produces two additional exact, appealing resul
 
 The marks are also conventional manuscript punctuation. The 2016 signed message selects the book's words and numbers as a map and direction, but **does not explicitly instruct counting dots as table hops** or choosing scan-node versus word-address versus clause-ordinal starts. These connections were found during modern analysis, after the 58/8/56 graph had already been identified. The exact output coincidences therefore select an **interesting p55-specific human-navigation hypothesis**, not a proven author-intended decoder or new unknown plaintext.
 
-**Next cryptanalytic decision:** find a separately printed reversible operation consuming all **76** original p55 runes under the source-selected scan72/length76 pair. The most direct 76-byte circumference additive GP29 pads have already failed on original data ([source-native SFT](../sims/p55_table_perimeter_key_sft.cjs)); do not rescue that key family with tuned starts or orientation absent a source instruction. Prioritize a mode/clock that passes a solved source holdout before selecting any unknown-ciphertext words. [Updated exact original-source SFT](../sims/lp2_signed_terminal_dotclock_graph_sft.cjs) · [first version Windows PASS 44961375731](https://github.com/FlareZ123/liber-primus/actions/runs/44961375731).
+**Next cryptanalytic decision:** find a separately printed reversible operation consuming all **76** original p55 runes under the source-selected scan72/length76 pair. The most direct 76-byte circumference additive GP29 pads have already failed on original data ([source-native SFT](../sims/p55_table_perimeter_key_sft.cjs)); do not rescue that key family with tuned starts or orientation absent a source instruction. Prioritize a mode/clock that passes a solved source holdout before selecting any unknown-ciphertext words. [Updated exact original-source SFT including p32/p55 dual-tree holdout](../sims/lp2_signed_terminal_dotclock_graph_sft.cjs) · [first version Windows PASS 44961375731](https://github.com/FlareZ123/liber-primus/actions/runs/44961375731).
 
 ## Controlled structural rarity, with its discovery limitation
 
