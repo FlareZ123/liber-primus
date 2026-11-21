@@ -97,8 +97,10 @@ assert.deepEqual(route56Alternate,
 assert.equal(route57[0], 205);
 assert.equal(route57[23], 76);
 assert.equal(bytes[205], 76);
-// The terminal 23-dot loop is period 11; 23=2*11+1.
-assert.equal(walk(205, 11).at(-1), 205);
+// 205 first enters the 11-cycle at 76, then 22 additional steps
+// make two complete laps. 23 = 1 + 2*11, rather than 205 being cyclic.
+assert.equal(walk(76, 11).at(-1), 76);
+assert.equal(walk(205, 1).at(-1), 76);
 assert.equal(route57.at(-1), bytes[205]);
 
 // Negative controls: the alternate DIRECTION spelling does NOT reach
