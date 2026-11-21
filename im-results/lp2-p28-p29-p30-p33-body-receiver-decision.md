@@ -58,6 +58,16 @@ CYIXIANPNXCOENGTHLXLNNGAOAECAEFDAUEAPIMEIAIHTHYLFNANGIAAPOTWWGEODEONGAERDTEAYAEC
 
 The combined source remains nonprose and carries no verified original plaintext. Exact modular subtraction restores the 263 p29 overlap coefficients, while an independently encrypted native GP29 plant recovers exactly. This closes the literal unshifted coefficientwise sum as a decoder, without revisiting the previous matrix/Hill4 failure.
 
+## Full 121-rune p32 decoder: signed DIRECTION / SEEK / AND / YOU (negative)
+
+The next source sentence gives `DIRECTION29 → p29/G`, `SEEK30 → p30/J`, `AND31 → add`, and `YOU32 → p32`. A prospective test combined source-fixed GF29 polynomial quotients Q29 (275 coefficients) and Q30 (261 coefficients) in their ordinary constant-aligned 261-coefficient domain and used the first 121 sum values as a one-shot **C−K** key on all 121 original p32 runes. The untouched output is:
+
+```text
+EPMEOIRDOEMPPWNGFBUFCCOPPJEONGHEALHANIAAOENGONGXWJRCXHDSOEAAEUHJCXBEONEOIYUPPOEEOIAUEOEARWGJIAYLODNMTHSHGLUBNSEOWUPJTHHEAUAIAWUXEODOEHTHUJXCNGEEOPCEAEJP
+```
+
+This output is ciphertext-like (decoded IoC **0.03705234160**, original IoC **0.03415977961**), recovering no original plaintext. Re-encryption reconstructs all **121/121** original runes, and the same key exactly recovers a native-GP plant derived from solved p57. The source operands, alignment, C−K rule and target were locked before evaluation in [precommit](../workplace/agent5-direction-seek-and-you-quotient-key-precommit.md) `fbacdfb`; [SFT](../sims/lp2_direction_seek_and_you_quotient_key_sft.cjs) `6638865`. The direct quotient-sum pad is retired. A higher-complexity rescue requires an independent authored instruction.
+
 ## Scope and successor criterion
 
 The prospective extension rejects this **one** source-motivated derivative-to-initials interpretation. It does not disprove every use of the p29 root or every historical Cicada operation. The smallest missing input is a first-party instruction specifying a **lossless** target interval, how the DH23 state and DIRECTION/WAY determine a complete receiver, and how output is serialized as GP29/plaintext. The existing signs and navigation words do not specify that information.
