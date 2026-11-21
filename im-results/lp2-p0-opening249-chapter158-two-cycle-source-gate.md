@@ -49,10 +49,24 @@ Of the four chapter-pairs with both addresses in range, only **(249,158)** and *
 
 **Interpretation boundary:** these are original-multiset **fixed-hypothesis** frequencies, not discovery-adjusted evidence for deliberate encoding. The chapter choice, first-page black versus all-chapter words, omission of the 13 red heading symbols, alphabet radix, and address semantics were explored in a repository with thousands of hypotheses. A source-selected, prospective operation on a different page remains absent. Uniformly shuffled table values are also a deliberately limited null, rather than an authenticated model of Cicada's table construction.
 
-## Cryptanalytic next decision
+## Original-cipher consumer gate and next decision
 
-The candidate route has a concrete human-readable entry point, but there is presently no published Cicada instruction that says “count opening chapter words, address the p50 table with the first black span” or describes what the reciprocal result does to actual unknown-page ciphertext.
+The p50 cycle provides a very specific **158-rune original-source key candidate**: the printed pp49+p51 table flanks have 66+92=158 GP29 runes. The corresponding **249-rune original target** is the entire black body of p0. Rather than infer arbitrary key phases, word resets or cipher layers, freeze the simplest lossless operator before reading output:
 
-A useful new lead would explain why the original opening **p0 red13/black249** division selects the first of the two coordinates, why the source-visible **p0–p2** word count supplies the other, and specify a reversible page/word-state consumer *without* tuning cipher candidates to the p0 body. A viable consumer must predict coherent unknown-page plaintext on withheld original source and replay the forward transform exactly. Do not expand into arbitrary page pairs, secondary arithmetical echoes, or clock sweeps on these same two numbers.
+- source key: all 158 flank rune indices in physical scan order, p49 followed by p51, repeating modulo158;
+- target: p0 ciphertext indices13..261, preserving its **57 printed black words**;
+- output: `P[i]=(C[i]±flank[i mod158]) mod29`, both signs, zero initial key phase, with exact inverse re-encryption;
+- judge the whole 249-rune unmodified original output using the existing, source-calibrated native-GP LP1 trigram model and p57 clear control.
 
-Reproducer: [`sims/lp2_p0_opening249_chapter158_tablecycle_sft.cjs`](../sims/lp2_p0_opening249_chapter158_tablecycle_sft.cjs), Node22/CommonJS. Sources: `resources/liber-primus/lp2-corpus.json`, `lp2-ink-annotations.json`, `lp2-grid-256.json`, `lp2-transcription.txt`; parser `sims/lp2_word_pages.cjs`. Related prior source-only decisions: [chapter boundaries](../sims/lp2_visual_chapter_boundary_sft.cjs), [158-flank bridge](lp2-158-word-flank-table-bridge.md), [source p50 graph and 2016 correspondence](lp2-p50-functional-graph-2016-wordmap.md).
+**Windows Node22 [PASS44963058019](https://github.com/FlareZ123/liber-primus/actions/runs/44963058019).** Exact original data and planted solved-page GP29 control pass [the independent consumer SFT](../sims/lp2_p0_black249_flank158_repeating_gp29_sft.cjs). The untuned original-cipher scores are:
+
+| Stream | Original GP29 IoC | LP1-native log-trigram mean |
+|---|---:|---:|
+| Original p0 black249 ciphertext | 0.0343633 | −3.3929420 |
+| `P=C−flank` | 0.0337155 | −3.4000687 |
+| `P=C+flank` | 0.0346224 | −3.4126837 |
+| Authentic clear p57 control | 0.0627100 | −2.4681447 |
+
+Neither direct inverse yields recognizable original word-boundary prose; both preserve essentially ciphertext-like frequencies and trigram scores. Re-encryption succeeds by construction and cannot distinguish correct additive keys. The solved p57 native GP plaintext correctly recovers **95/95** symbols from a planted ciphertext under the same source key. Therefore **retire this direct cyclic-key GP29 addition/subtraction consumer**, including any plaintext-autokey or ciphertext-autokey extension that shares its same first158 decoded characters. Do not rescue it by fitting a phase, alphabet substitution, modified length, or trial-specific word resegmentation.
+
+The structural 249↔158 two-cycle remains a coherent conditional navigation match. The original source still supplies no explicit instruction to address the numeric table with these counts, select the cyclic flank key as a cipher, or decrypt a different original page. A prospective solution needs a *separately evidenced* reversible operation that produces recognizable, withheld original plaintext and exact forward replay. The chapter-to-cell match alone does not supply that missing equation.
