@@ -362,11 +362,6 @@ const shiftedByP56 = (source) => {
   return source.map((value) =>
     value === 0 ? value : mod29(value - (primeStream[cursor++] - 1)));
 };
-const p56Reencode = (decoded) => {
-  let cursor = 43;
-  return decoded.map((value) =>
-    value === 0 ? value : mod29(value + (primeStream[cursor++] - 1)));
-};
 const conditionalP56Receivers = [
   { name: 'p23 black197', ciphertext: p23.indices.slice(16),
     expectedIoC: 0.036827929141199624 },
