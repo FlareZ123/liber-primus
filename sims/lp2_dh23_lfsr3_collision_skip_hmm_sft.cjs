@@ -196,7 +196,7 @@ function random(seed) {
  * @param {number} length
  * @param {1|-1} sign
  */
-function plant(length,sign) {
+function plant(length,sign,nativePlain=null) {
   const rng=random(0x4115ef27);
   let a=7,b=11,c=19;
   const nextKey=()=>{
@@ -211,7 +211,7 @@ function plant(length,sign) {
   let skips=0;
   for(let i=0;i<length;i++) {
     const r=rng();
-    const p=cdf.findIndex(x=>r<x);
+    const p=nativePlain ? nativePlain[i] : cdf.findIndex(x=>r<x);
     assert.ok(p>=0);
     let v,key;
     do {
@@ -228,13 +228,29 @@ function plant(length,sign) {
     signature:cipher.slice(0,16)};
 }
 
-// Independent plant must be a decisive positive under the frozen model.
+// Two independent plants check both a matched synthetic model and a
+// fixed GP-normalized sample of historically solved Liber Primus prose.
+const sourceText=fs.readFileSync(path.join(
+  ROOT, 'resources/liber-primus/lp1-plaintext-reference.txt'),'utf8');
+const nativePlain=[];
+for (const line of sourceText.split(/\r?\n/)) {
+  const trimmed=line.trim();
+  if(!trimmed || trimmed.startsWith('#') ||
+      trimmed.startsWith('[') || /^\d/.test(trimmed))continue;
+  for(const word of trimmed.match(/[A-Za-z]+/g)||[])
+    nativePlain.push(...encode(word));
+}
+assert.ok(nativePlain.length>=2048);
 const positive=plant(2048,1);
 assert.ok(positive.skips>10,'positive should exercise real clock drift');
 const posScore=forward(positive.cipher,1);
 assert.ok(posScore.llr>100,'same-model planted cipher must be recognized');
+const nativePlant=plant(2048,1,nativePlain);
+const nativeScore=forward(nativePlant.cipher,1);
 const realForward=forward(C,1);
 const realReverse=forward(C,-1);
+assert.ok(Math.abs(realForward.logLik-realReverse.logLik)<1e-7,
+  'with all unknown states, seed-negation makes signs equivalent');
 const report={
   hypothesis:'source DH [p,g,a] -> GF29 third-order key, '
     +'original word/punctuation positions unchanged; exact collision-skip HMM',
@@ -247,9 +263,13 @@ const report={
     synthetic:{length:positive.cipher.length,skips:positive.skips,
       score:posScore,firstCipher:positive.signature,
       trueSeed:positive.initialSeed},
+    nativeKnownPlain:{length:nativePlant.cipher.length,
+      skips:nativePlant.skips,score:nativeScore,
+      source:'LP1 solved transliteration, source-normalized GP29'},
     originalPlus:realForward,
     originalMinus:realReverse
   },
+  signSymmetry:'With 29^3 unrestricted initial states, +/- are exactly equivalent by K -> -K.',
   caveat:'An excluded model is not an exclusion of nonlinear, keyed, '
     +'non-GP29, re-ordered, or differently reset mechanisms; this test '
     +'does not authenticate the DH tap assignment'
