@@ -1,63 +1,73 @@
-# p33 and the 2014 Stage10 order-7 / 1033 square: direct-key gate
+# p33 and the 2014 Stage7/Stage10 square reference
 
-**Decision: bounded negative.** The most direct use of the archived 7×7 / 1033 square as a GP29 key does not recover p33 plaintext. The target has an unusually clean structural fit, so the result is worth preserving; it does not establish that the square was intended as a p33 cipher key.
+**Decision (21 November 2026): historical navigation/context is supported; no further LP2 cipher operation is selected.** The original LP2 p33 artwork plausibly points a solver back to the 2014 Stage7/Stage10 magic-square sequence. The surviving source material takes that solver to three historical squares and then to LP1 pages 14–16. It does not specify how to transform p33's 196 non-rubric runes, and no unknown LP2 plaintext or key is recovered.
 
-## Why this was a reasonable human-solver hypothesis
+## Original p33 evidence and why the historical connection is plausible
 
-1. Original LP2 physical p33 carries the repeated cuneiform values conventionally read as **1033** and **3301**. Its transcription has 214 runes and two red spans at offsets 0–9 and 91–98.
-2. The archived 2014 sixth-onion / Stage10 HTML labels one input **“Order 7 Square, 1033”**. The corresponding archived OpenPuff resource contains a 7×7 matrix whose rows, columns, and both principal diagonals sum to 1033. The HTML labels are outside the embedded PGP signature, and the extracted square is a participant/archive reconstruction, not a newly authenticated Cicada instruction. See [the form archive](../resources/external/cicada2014-onion6-magic-form-and-response.json), [the square resource](../resources/cicada2014-openpuff-magic-squares.txt), and [the source-boundary audit](3301-1033-source-operation-audit.md).
-3. Removing only the two original red spans leaves p33's two text bodies of **81** and **115** runes: **196 = 4×49 = 28×7**. In the annotated unknown-page corpus, p33 is the only nonempty page whose non-rubric rune count is divisible by 49 (the runeless physical p50 is excluded).
+The canonical LP2 page number is not the archive filename: LP1 occupies archive images 00–16, and LP2 p0–p57 occupies images 17–74. Thus **LP2 p33 is archive image 50.jpg**, not 33.jpg. The original p33 artwork carries the two cuneiform values conventionally read as **1033** and **3301**.
 
-A contemporary solver could therefore notice “1033” on p33, retrieve the 2014 order-7/1033 square, and try it against the only exact four-by-49-rune body in LP2. The missing premise is the operation: neither the original LP2 image nor the 2014 form specifies Hill encryption, modular addition, block orientation, or a key clock.
+The canonical transcription has 214 runes. Removing the two marked red spans (offset 0, length 10; offset 91, length 8) leaves two black-text bodies of **81** and **115** runes, for **196 = 4 × 49 = 28 × 7**. P33 is the only nonempty page whose non-rubric rune count is divisible by 49. This is a distinctive order-7 size correspondence and makes the historical square a reasonable lead, but it does not itself specify a cipher.
 
-## Frozen input and key
+## Source-constrained historical route
 
-The input is the original GP29 body only:
+### 1. Stage7: signed carrier to three squares
 
-- upper body: p33 indices 10–90, 81 runes;
-- lower body: p33 indices 99–213, 115 runes;
-- combined body: 196 runes, treated as one continuous stream because only the combined length aligns to 7 and 49.
+The pinned 2014 Stage7 page verifies under Cicada fingerprint 6D854CD7933322A601C3286D181F01E57A35090F. Its 13,303,746 hexadecimal characters decode to the exact 6,651,873-byte MP3 (Git blob SHA-1 09fe068192b76a3697c47ec1d604b527703db798). The same MP3 was supplied to original OpenPuff v4.00. The reproduced successful settings use password A 33011033, B/C disabled, MP3 mode and Maximum (1/2), yielding the exact 745-byte three-square file, SHA-256 9e5c3004eec652c89027e99aa6f31c53a84c1f8c327c04ca9aa6acf7884b6c7f.
 
-The key is the **second** matrix in `resources/cicada2014-openpuff-magic-squares.txt`, the archived order-7/1033 square. Reduce its entries modulo 29. Its determinant is **2 mod 29**, so it is invertible; the test is not defeated by a singular key.
+The extracted matrices are, in order:
 
-## Results
+- Order 5, magic sum 3301.
+- Order 7, magic sum 1033.
+- Order 5, magic sum 1033.
 
-The LP1 source-native GP29 trigram model scores each original body separately, without creating trigrams across the visual section boundary. Higher (less negative) is more language-like.
+The password and OpenPuff settings are part of the reproducible historical solve path, not a literal cipher instruction in the signed Stage7 text. The original signed page authenticates its carrier; the extraction is a reproducible result from that carrier.
 
-| Candidate | Mean log score |
-| --- | ---: |
-| Original p33 body | **−3.443976525** |
-| Best one-dimensional Hill-7 variant | −3.401925323 |
-| Best two-dimensional 7×7 matrix variant | −3.408949152 |
-| Best repeated 49-cell additive-key variant | −3.403461826 |
-| Solved LP2 p57 positive control | **−2.468144714** |
+### 2. Stage10: explicit submission, but not an LP2 cipher instruction
 
-The tested families were deliberately small and source-shaped:
+The earliest surviving participant capture is the micheloosterhof/cicada-2014 repository, commit 3b15257c5a9efada85b8ccfdb876e2ec934d5b90, dated 13 February 2014. Its Stage10 form embeds a Cicada-signed message asking the player to paste the magic squares and provide a Tor hidden-service URL. The surrounding HTML and field labels are not covered by that signature.
 
-- **One-dimensional Hill-7:** (K), (K^{-1}), row-vector and column-vector conventions (four candidates).
-- **Two-dimensional 7×7 action:** (KXK^T), (K^TXK), (K^{-1}XK^{-T}), and (K^{-T}XK^{-1}), applied to four consecutive 7×7 blocks (four candidates).
-- **Repeated 49-cell additive key:** row-major or column-major serialization; values (v\bmod29) or ((v-1)\bmod29); addition or subtraction; continuous phase or reset at the upper/lower body boundary (16 candidates).
+The form is plain HTML with no script or custom client transform. Its POST fields, in document order, are:
 
-No output is coherent GP29 prose. The best score is only about 0.042 nats above the raw body and remains far below the solved-p57 reference. The best one-dimensional Hill-7 candidate is K with row-vector convention. The best 2D preview begins `RNGENGXIIBYOANGNIAWSDHYRSTFPCDBTHTHNDUECNGEOAETTTHLFNRXOEBHR`; it is not readable plaintext.
+1. 53301 — Order 5 Square, 3301.
+2. 71033 — Order 7 Square, 1033.
+3. 51033 — Order 5 Square, 1033.
+4. onion — the participant's hidden-service address.
 
-**Positive controls:** the exact matrix/inverse pairs recover planted 196-rune native-GP streams in both 1D orientations and both 2D orientations. All 16 additive-key/phase conventions also pass exact encrypt/decrypt round trips. The negative result is therefore not an implementation or invertibility failure.
+The archived static confirmation body says “Thank you for you submission” and links to 107.jpg, 167.jpg and 229.jpg. Those files are byte-identical, in that order, to original LP1 pages 14, 15 and 16. The third image, LP1 p16, visibly contains the exact first extracted 5×5 / 3301 square. The image identities are exact source-object matches, not visual analogies.
 
-## Decision and scope
+This establishes a plausible human route from the p33 values to the 2014 square material and back to LP1 pp14–16. The archived response is a static 152-byte body, not a preserved HTTP transaction; the original Cicada-side /cgi-bin/squares handler, exact POST body and acceptance predicate are unavailable. Do not infer a square-to-image mapping or server validation rule from the static response alone.
 
-Retire these direct uses of this particular 2014 order-7/1033 square on original p33:
+## What the route does—and does not—select
 
-- mod-29 Hill-7 with the square or its inverse;
-- the natural two-dimensional 7×7 matrix action on four 49-rune blocks;
-- a repeated 49-cell additive GP29 key under the tested row/column, residue-origin, sign, and section-phase conventions.
+The only explicit next action in the historical Stage10 material is to submit the three already-obtained squares and the participant's onion address to the Stage10 form. The preserved response points to **LP1** pp14–16; it does not identify a next LP2 page or coordinate.
 
-Do not rescue them with fitted rotations, arbitrary offsets, padding, extra key derivation, or additional cipher layers without a new original source selector. This does **not** exclude a different historical square, a different use of the 2014 artifacts, or another independently selected cipher architecture. It recovers **no unknown LP2 plaintext, key, or destination**.
+The 196-rune length makes four 49-rune blocks conceivable, but no four-block layout is marked on p33. Its two visible text bodies have lengths 81 and 115. If the 196 runes are simply concatenated and cut into four consecutive 49-rune blocks, the second block crosses the visible boundary between those two bodies (32 runes from the first body and 17 from the second). No original instruction selects that concatenation, those block boundaries, a row/column traversal, a mapping from square entries to GP29 symbols, a modulus, a sign, a key clock, or a reset rule.
 
-## Reproduction
+The first underdetermined step is therefore exact: **after recognizing the 1033/3301 historical square reference, what operation—if any—should be applied to p33's 196 runes?** Neither the signed Stage7 carrier nor the Stage10 form specifies one. The 2014 form asks for square submission, not for encrypting or decrypting Liber Primus.
 
-Run from repository root:
+## Existing direct-consumer gate (not repeated)
 
-```sh
-node sims/lp2_p33_stage10_order7_1033_square_key_gate_sft.cjs
-```
+The existing original-input test already covers the natural direct uses of the 7×7 / 1033 matrix. Reducing the square modulo 29 gives determinant 2, so the key is invertible. The tested families are:
 
-The script reads the original corpus, ink annotations, archived square resource, and pinned LP1 native-language model; it asserts the page boundaries, unique 196-rune alignment, matrix determinant, exact round trips, and the reported language scores.
+- One-dimensional Hill-7: K and K inverse, row- and column-vector conventions (4 cases).
+- Two-dimensional 7×7 actions: the four natural K/K-transpose and inverse orientations on four consecutive blocks.
+- Repeated 49-cell additive key: row-/column-major serialization, v mod 29 or (v−1) mod 29, addition/subtraction, and continuous/reset phase (16 cases).
+
+None produces coherent GP29 plaintext. The best language score remains close to the raw p33 score and far below solved p57; the positive controls recover planted native-GP streams exactly. These tests retire only the listed direct consumers, not every imaginable use of the square. Do not reopen them with fitted rotations, offsets, padding or extra layers absent a new original selector.
+
+## Cold-start status and decision
+
+A source-only cold-start packet is prepared at workplace/lp2-p33-stage7-stage10-coldstart-packet.md. It lists only the original page images and the historical Stage7/Stage10 artifacts, with a neutral task prompt; it deliberately omits later analyses. **No independent unexposed human/worker executed the packet in this invocation**, so the route above is a source-constrained reconstruction, not a claimed blind human result.
+
+**Decision:** retain p33 → 2014 Stage7/Stage10 → LP1 pp14–16 as a plausible historical navigation/reference route. Stop at the missing p33-to-square operation. No LP2 cipher, unknown plaintext, key, next LP2 coordinate or final destination follows.
+
+Reopen only if an original Cicada instruction, recovered handler/transaction, or other independent source explicitly selects a reversible operation and input boundaries for p33's 196-rune body.
+
+## Reproduction and source pointers
+
+- Original p33 transcription and ink boundaries: resources/liber-primus/lp2-corpus.json, resources/liber-primus/lp2-ink-annotations.json; original image resources/liber-primus/50.jpg.
+- Page-number mapping and original-image archive: resources/liber-primus/README.md.
+- Stage7 signed-page / exact OpenPuff reproduction: im-results/cicada2014-stage7-chain-reproduction.md; extracted matrices: resources/cicada2014-openpuff-magic-squares.txt.
+- Stage10 participant form/response: resources/external/cicada2014-onion6-magic-form-and-response.json; static response body: resources/external/2014-stage10-post-square-response.html.
+- Exact Stage10 image-to-LP1 identity: im-results/2014-stage10-three-images-lp1-source-handoff.md.
+- Existing direct-key gate and executable: sims/lp2_p33_stage10_order7_1033_square_key_gate_sft.cjs.
