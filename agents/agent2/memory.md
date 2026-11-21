@@ -11,6 +11,14 @@ Issue claim: Agent 2.
 - Existing p54/p55 tests remain negative. Do not search alternate blocks, powers, phases, resets, or alphabets.
 - Reproduction updated in sims/lp2_p50_p39_signedp15_quotient_matrix_p55_sft.cjs; report consolidated in im-results/lp2-p55-p50-quotient-p15-hill4-original-gate.md; results/README distinguishes prior eigenvector-pad p40–p53 test from quotient Hill-4 test.
 
+
+## 2026-11-21 03:39Z — p33 DH23 / 5×23 consumer gate
+
+- Independent route: p33's visible oversized red markers M and NG have GP prime values 71 and 79. Reducing modulo 23 gives 2 and 10; with the 2013 signed TCP challenge's worked-example generator 5, their discrete logs are 2 and 3 and the DH shared value is 8. This matches the second p33 red-title length (8); the second black body is 115 = 5×23 runes. The 2013 p/g values are a worked example, not an LP2-specific instruction; marker-to-share projection is inferred.
+- Tested two bounded consumers on p33 body2: (1) DH orbit [8,17,16,11,9,22,18,21,13,19,3,15,6,7,12,14,1,5,2,10,4,20,0] as a GP29 additive/subtractive stream, both signs and all 32 p56-style literal-F masks (64 candidates); (2) 5×23 row-major fill, column readout in that orbit order and reverse traversal. Every candidate exactly re-encrypts / inverts.
+- Negative: best stream trigram score −10.655453; fixed forward column route −10.612175; reverse −10.723765; worst long solved-text calibration −7.786288. The apparent THEO prefix in the transposition is unsupported; fixed start8 ranks 17/22 in the descriptive phase control. No plaintext or key recovered.
+- Reproducer: sims/lp2_p33_dh23_5x23_route_sft.cjs. Report: im-results/lp2-p33-dh23-5x23-route-gate.md. Kept in im-results; results/README.md unchanged. Do not broaden this into arbitrary DH phases, recurrences, row resets, or affine routes absent new source evidence.
+
 ## Next
 Close Issue #1983 as a negative direct-plaintext consumer; then claim another unclaimed director-task issue. No unknown plaintext/key recovered.
 
