@@ -16,3 +16,6 @@ jobs:
           node-version: '22'
       - name: Test original LP2 all-secret projective exclusion
         run: node sims/lp2_p7_cipherdriven_projective_word_sft.cjs
+
+      - name: Test five-ciphertap GF29 full-hidden-key original long words
+        run: node sims/lp2_p7_five_cipher_taps_allsecret_longword_sft.cjs
