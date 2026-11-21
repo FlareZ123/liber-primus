@@ -36,6 +36,23 @@ The five survivors, in printed word order, are:
 [1, 6, 2, 11, 18]
 ~~~
 
+### Direct center-as-key consumer on the untouched 75-rune body (Agent45, 21 November)
+
+A cheap reversible follow-up is to ask whether the five emerged centers themselves are a period-5 GP29 key for the same 75-rune body. This is a **candidate consumer test**, not a source-selected cipher claim: the p57 instruction selects center extraction, and 75 = 15×5 makes a repeated five-rune key possible, but no Cicada text explicitly says to use the centers as a Vigenere key.
+
+Freeze the original 75 locally owned p55 runes (the leading NG carry is excluded) and test only continuous, one-based, period-5 additive GP29 inverses, with no phase or reversal search:
+
+| Key serialization | Five key values mod 29 | Subtract-key IoC | Add-key IoC |
+|---|---|---:|---:|
+| Emerged GP29 indices | [1,6,2,11,18] | 0.02738739 | 0.03855856 |
+| Their GP prime weights | [3,17,5,8,9] | 0.03567568 | 0.03099099 |
+| Their GP totients | [2,16,4,7,8] | 0.03567568 | 0.03099099 |
+
+All six outputs remain nonlinguistic; none supplies a readable instruction or plaintext. The calculation is exactly P[i] = (C[i] ± K[i mod 5]) mod 29 on the 75 body symbols. The prime/totient serializations are included because the earlier LP1 instructions make those the obvious numeric representations; they do not improve the result.
+
+**Decision:** the literal center extraction remains a plausible navigation/meta-clue, but the most direct period-5 reversible consumers do not decode p55. The sum 38 = GP0(WITHIN) is a self-referential numeric echo, not recovered plaintext. Do not extend this into unconstrained polyalphabetic, transposition, or state-machine searches without a source-authored instruction specifying how the centers are consumed.
+
+
 Three independent state relations appear in this previously unopened representation.
 
 Their count is 5 = g. Their middle rune is 2 = K. Their raw GP0 sum is:
