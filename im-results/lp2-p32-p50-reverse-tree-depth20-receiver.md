@@ -115,32 +115,18 @@ The new result moves the p32 problem from an unselected `121=11²` receiver towa
 
 This is a coherent human-scale sequence using the authenticated wording, the already selected byte-pointer operation, and the page's visible tree motif. The remaining missing instruction is how the 121 ciphertext runes are assigned to or read from those 121 nodes, and what value operation accompanies that traversal.
 
-The next discriminating experiment should therefore test a **small source-defined traversal/transposition family on this exact fixed tree**, preferably with an untouched consequence or solved control. It should not enlarge the additive key menu or tune arbitrary graph features to English.
+The source-defined traversal/transposition, edge-calculus, and subtree-zeta families have now been tested on this exact tree and remain nonlinguistic. A discriminating successor would require a new independently selected node-value operation or graph-to-source assignment, with an untouched holdout. Enlarging affine/pad menus is not warranted.
 
 
-## Canonical tree-order transpositions: negative
+## Direct inverse gates on the selected 121-node tree
 
-A separate source-fixed test assigns the 121 source-order p32 runes to the fixed reverse tree under one canonical traversal, then reads the same node labels under another. The six declared orders are BFS, DFS preorder, and DFS postorder, each with children ordered by ascending or descending original p50 cell address. This gives **36** complete permutations and no symbol-value fitting.
+The fixed root115, noncycle reverse-depth20, 121-rune receiver is a meaningful source-selected *geometry*, but a node value transform must still be specified. Three distinct, reversible classes of direct operators have now been applied without fitting individual rune keys, editing ciphertext, or selecting a tree root by language scores. All tests preserve six canonical assignment/read traversals: breadth-first, DFS preorder and DFS postorder, each in increasing or decreasing original cell-address order.
 
-The [tree-transposition SFT](../sims/lp2_p32_reverse_tree_transposition_sft.cjs) passed on Windows Node 22 in [run 44447890471](https://github.com/FlareZ123/liber-primus/actions/runs/44447890471). It scores every full 121-rune result against a frozen GP-native trigram model trained on the repository's independent Gibran control corpus.
+1. **Plain traversal transposition (36 cases):** pair any assignment with any read traversal, without changing rune values. The best original p32 GP-native trigram score is **−11.4672006**, below the independently held native-English 121-rune minimum **−9.4370118**. [Transposition SFT](../sims/lp2_p32_reverse_tree_transposition_sft.cjs); [Windows 22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44447890471).
+2. **Parent-child edge differences and integrations (216 cases):** the same six assignments and six reads, three fixed tree-root GF29 seeds (0, 115 mod29=28, 247 mod29=15), and two inverse directions. Best original score **−11.2315618**, also nonlinguistic. [Edge-transform SFT](../sims/lp2_p32_reverse_tree_edge_transform_sft.cjs); [Windows 22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44448056080).
+3. **Subtree-zeta inverse (36 cases, Agent11, 21 November):** a different canonical operation motivated directly by branching trees, computing an exact subtree sum instead of local edge differences. The fully specified encoder is `C(v) = P(v) + sum(C(child)) mod29` with all selected descendants contributing recursively and the unselected root115 and depth>20 nodes excluded. Its inverse on each selected node is `P(v) = C(v) − sum(C(child)) mod29`; it is bijective over all 121 GP29 symbols for any given traversal. Assign source p32 ciphertext to nodes in one of six canonical orders and read recovered P in one of six orders. The best of all **36** source outputs is DFS-preorder descending assignment/read at **−11.26549172556508**, IoC **0.03484848484848485**, compared with untouched p32 **−11.6742072**/IoC **0.0341597796**, authentic clear p57 **−8.1230342**, and the worst **−9.4370118** among >50 held native Gibran windows. The independent authentic clear-p57-derived 121-rune plant encodes and exactly decodes **121/121** runes using the identical encoder/inverse; all original outputs stay below the weakest held native control. [New standalone Node22 SFT](../sims/lp2_p32_reverse_tree_subtree_zeta_sft.cjs).
 
-- Original p32 source order: **−11.6742072**
-- Best tree transposition, BFS-ascending assignment → descending postorder read: **−11.4672006**
-- Clear p57: **−8.1230342**
-- Held native-English 121-rune median: **−8.3413634**
-- Held native-English 121-rune minimum: **−9.4370118**
-
-The best permutation remains substantially below even the worst held clear-English window and its preview is nonlinguistic. Therefore the fixed reverse-tree scaffold does **not** decode p32 by a plain BFS/DFS transposition alone. A useful next operation must consume the parent-child relation or another independently selected graph value rather than simply changing read order.
-
-
-## Parent-child graph difference/integration: negative
-
-The fixed tree also supports a more structural operation than a pad: interpret rune labels as a potential on tree nodes and take child-minus-parent differences, or interpret rune labels as edge differences and integrate from the root. The [edge-transform SFT](../sims/lp2_p32_reverse_tree_edge_transform_sft.cjs) charges six assignment traversals, six read traversals, three source-native root seeds (zero, root address 115 mod29 = 28, root successor 247 mod29 = 15), and both inverse operations, for **216** complete models.
-
-Windows Node 22 [run 44448056080](https://github.com/FlareZ123/liber-primus/actions/runs/44448056080) passed. The best result is BFS-ascending assignment/read, root-address seed, graph integration, at **−11.2315618** GP-native trigram score. Clear p57 remains **−8.1230342** and the held 121-rune native minimum is **−9.4370118**. The best preview is visibly nonlinguistic despite incidental short English fragments.
-
-This closes the simplest graph-difference and graph-integration interpretation of the selected tree. The next useful work should seek a structural instruction that changes the node selection or assigns an independent value to each selected node.
-
+These failures do not invalidate the graph's 121-node coincidence or rule out a keyed tree transducer; they reject direct order-only, edge-calculus and subtree-zeta interpretations. **None recovers unknown plaintext or authentic key material.** A successor needs a source-visible instruction fixing a different value operation, tree-to-glyph assignment, or external operand, rather than tuning more GP29 affine offsets against the same 121 symbols.
 
 ## Complete tree cardinality independently returns page 32
 
