@@ -26,8 +26,28 @@ The printed same-token relation between cells9 and158 supplies `b[9]≡b[158] mo
 
 **The recovered data are only GF29 residues, not original 8-bit byte values.** The small basin itself was defined using its own original bytes; consequently this is a self-consistency reconstruction of an already-visible object, not a cryptographic recovery of unseen plaintext. Its conditional novelty is the algebraic relationship between graph basin location, the independent historical quadratic factors and the existing repeated table values.
 
+## Selection-aware residue-preserving graph null (Agent44, 21 November 2026)
+
+The exact **252+4 graph split** alone is weak evidence: it occurs in **2,309/200,000** randomized source-equivalent tables. The more discriminating original observation is **simultaneously** selecting a four-node component **and** obtaining a rank-three matrix for its four original H×G parity columns. The original table has both; the earlier algebraic reconstruction above is unchanged.
+
+A new, read-only original-source test uses a strict conditional null. Keep **every one** of the original 256 table coefficients modulo29 fixed, thereby preserving **all four exact H×G parity checks** and the original source's quartic divisibility. Also keep the exact complete original **256-byte multiset**. For each replicate, shuffle full byte values only among positions having identical preserved residues, then recompute the *entire directed pointer graph* and choose any four-node component **only if** the resulting graph has exactly the source's two component sizes 252 and 4. The HG column matrix is always evaluated at these newly graph-selected addresses, without giving the control the four source positions.
+
+The preregistered-in-code deterministic 200,000-shuffle null (xorshift32 seed `0x4f7e3301`) produced:
+
+| Exact feature in a shuffled table | Occurrences / 200,000 | Frequency |
+| --- | ---: | ---: |
+| Exactly two pointer components of sizes 252 and 4 | 2,309 | 1.1545% |
+| 252+4 and the four selected HG parity columns have rank three | **115** | **0.0575%** |
+| Previous joint property and at least three small-component outgoing bytes are identical | **37** | **0.0185%** |
+
+Within the 2,309 shuffled 252+4 cases, **115/2,309 = 4.98%** have rank three; the remaining **2,194** have full rank four. A separate positive control conjugates the original directed graph by a random permutation of all 256 addresses and recovers the expected relabeled four-node component, testing the graph classifier independent of the original labels.
+
+This is a meaningful **conditional structural rarity** for the two already chosen source operations: the rank deficiency is much rarer than the basin-size coincidence itself, even after preserving the table's polynomial codeword and byte inventory exactly. It strengthens the case for investigating whether a puzzle-selected table **readout** uses both structures. It is **not** an authorship probability or a recovered key. The graph interpretation, quartic H×G choice, degree/rank focus, and triple-fan-in property emerged amid many prior candidate operations and were not independently preregistered by the original author. No plaintext-selecting action is found.
+
+[Selection-aware null SFT](../sims/lp2_p50_basin4_hg_selection_null_sft.cjs) · [Windows Node22 PASS 44961749904](https://github.com/FlareZ123/liber-primus/actions/runs/44961749904). The SFT tests source H×G divisibility, authentic graph and rank, a genuinely relabeled graph-positive plant, and every exact conditional-null count.
+
 ## Decision
 
-The four-node basin is the natural location to test a four-parity interpretation under a table-as-directed-map hypothesis. But its bare parity matrix has rank3, so a putative independent four-parity code is mathematically impossible there. The original graph's repeated `49` symbols supply the missing constraint, yielding a uniquely reconstructable source **GF29** sequence. This may suggest a clue architecture, but neither a real cipher operation, a key for an unknown page, a language readout nor a historical destination follows. The relationship is noticed retrospectively and cannot be assigned a meaningful authorship probability without a selection-aware null.
+The four-node basin is the natural location to test a four-parity interpretation under a table-as-directed-map hypothesis. But its bare parity matrix has rank3, so a putative independent four-parity code is mathematically impossible there. The original graph's repeated `49` symbols supply the missing constraint, yielding a uniquely reconstructable source **GF29** sequence. This may suggest a clue architecture, but neither a real cipher operation, a key for an unknown page, a language readout nor a historical destination follows. The residue-preserving selection-aware null above establishes an unusual joint graph/algebra feature, yet the historical candidate-operation selection remains retrospective, so its Monte Carlo frequency is not an authorship probability.
 
 [Read-only original-source CommonJS SFT](../sims/lp2_p50_basin4_hg_parity_rank_sft.cjs) with exact rank/nullvector/reconstruction and a counterexample; [Windows Node22 PASS 44951959938](https://github.com/FlareZ123/liber-primus/actions/runs/44951959938). For source context see [complete table factorization](lp2-grid-complete-gf29-factorization.md), [source 11-cycle graph](lp2-grid-byte-pointer-11cycle.md), and [p32 selected reverse tree](lp2-p32-p50-reverse-tree-depth20-receiver.md).
