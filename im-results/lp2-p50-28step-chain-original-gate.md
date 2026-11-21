@@ -2,6 +2,10 @@
 
 **Agent19, 21 November 2026. Decision: the tested direct 256-token table key is rejected as a promising original-language decoder. No unknown plaintext, authentic key, complete historical mechanism, or destination recovered.**
 
+## Prior stronger obstruction: this model was already linguistically excluded
+
+A retrospective overlap check found the independent **15 November** keyless invariant in [`lp2-ea-zero-terminal-word-invariant.md`](lp2-ea-zero-terminal-word-invariant.md). Its exact source-word audit proves that **any** decoder with `D[i]=0 ⇒ plaintext EA` forces **19** original printed words to end with GP index28, **18** of length ≥3, against **0** such words among 9,981 source-era length≥3 English controls. That result already covers the entire EA-zero subclass, regardless of whether the key comes from p50, under fixed original English words. Thus this additional direct 256-table score/null is **implementation-specific negative corroboration and cannot be presented as a genuinely new cipher-family exclusion or solution advance**. The historical obstruction takes precedence over the score. The valuable new independent result of this invocation is the separate original-art `p40–p55=3301 transitions` observation, not this already-generalized zero-step path.
+
 ## Source-motivated proposal
 
 The 55 rune-bearing unknown LP2 physical pages contain **12,956 GP29 runes**. The approximately **0.66%** equal-adjacent-rune rate is far below the independent-uniform rate **1/29**. Separately, the original LP2 p49–p51 numerical table has exactly **256 printed two-character cells** in 32 rows of eight; each token admits the documented base60 numeric reading and the independently proposed drop-lowercase-`f` base59 reading. This motivates one *specific*, falsifiable architecture:
@@ -39,7 +43,7 @@ The original-table score is **worse than the control median**. On this matched t
 
 ## Decision and scope
 
-**Retire this specific GP28-EA-zero / 28-step / source-table modulo28 repeating direct-key family**, including the 32 frozen reading/clock/sign choices. An arbitrary new offset, keyed permutation, or unrelated clock would be a new unsupported hypothesis rather than a rescue. This result does **not** rule out genuine chained encryption, hidden source-derived state, encrypted table bytes, alternative serialization, or other GP29 alphabet operations. It does not modify the established absence of authentic unknown-page plaintext in `results/README.md`.
+**Keep retired the specific GP28-EA-zero / 28-step / source-table modulo28 repeating direct-key family**, including the 32 frozen reading/clock/sign choices. An arbitrary new offset, keyed permutation, or unrelated clock would be a new unsupported hypothesis rather than a rescue. This result does **not** rule out genuine chained encryption, hidden source-derived state, encrypted table bytes, alternative serialization, or other GP29 alphabet operations. It does not modify the established absence of authentic unknown-page plaintext in `results/README.md`.
 
 **Reproducer:** `sims/lp2_p50_28step_chain_original_sft.cjs`, read-only Node22 CommonJS, no libraries and no file writes; run through the existing manual Windows workflow `.github/workflows/manual-readonly-commonjs-sft.yml` with input `sims/lp2_p50_28step_chain_original_sft.cjs`. All exact values above are asserted in the script. **Independent Windows Node22 PASS:** [manual run 44936113661](https://github.com/FlareZ123/liber-primus/actions/runs/44936113661), Node 22.23.5, 21 November 2026; the run log confirms all 55 source pages, 300-rune native positive control, full original replay, 32 model registrations, and 118/128 matched-null exceedances. Minor trailing decimals differ at ~10^-13 between V8 runtimes, with all assertions passing.
 
