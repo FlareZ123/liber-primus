@@ -1,3 +1,8 @@
+## 21 November 2026: third p7 red word is a prime-index candidate after the mirrored handoff
+
+- After p6 [4,65],[2,26] -> p7 [2,26],[4,65], the **next** p7 red word (offsets200..202) has original GP29 indices [5,7,11], strictly increasing primes summing23. It is the only increasing all-prime three-rune word among 11 original red three-rune words; full original corpus has 5 among731, with only one exact [5,7,11].
+- Possible typed DH23/p=23,g=5 connection (reinforced by p6→p32 [23,5,0,3]); the interpretation is post-discovery and no source cipher rule/key schedule is authenticated. Reconciled `im-results/lp2-p6-p7-reversed-red-boundary-gate.md` and its SFT in one commit.
+
 ## 21 November 2026: independent p6→p32 DH23 block-sum difference
 
 - The existing p6 4|1|4|2 red word GP0 sums [71,19,65,26] minus the same imposed p32 fragment7 blocks [48,14,65,23] are [23,5,0,3]. Twenty-eight original p0–p55 length-11 fragments checked; only p32 fragment7 has even the first difference23. P15 red 11-rune rival (4|2|5, sums51/6/63) has zero original length-11 fragments whose first two differences are 23,5.

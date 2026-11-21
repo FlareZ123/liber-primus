@@ -90,6 +90,30 @@ assert.deepEqual(adjacent.map(x => x.pages), [[6, 7], [7, 8], [39, 40], [53, 54]
 assert.deepEqual(adjacent.filter(x => x.reversedLength).map(x => x.pages), [[6, 7]]);
 assert.deepEqual(adjacent.filter(x => x.reversedLengthAndSum).map(x => x.pages), [[6, 7]]);
 
+const trio = p7.words[2];
+assert.equal(trio.start, 200);
+assert.deepEqual(trio.values, [5, 7, 11]);
+assert.equal(trio.sum, 23);
+/** @param {number} n */
+function isPrime(n) {
+  if (n < 2) return false;
+  for (let d = 2; d * d <= n; d++) if (n % d === 0) return false;
+  return true;
+}
+const allRedThree = spans.flatMap(s => s.words).filter(w => w.length === 3);
+const allCorpusThree = Array.from({ length: 56 }, (_, page) => wordsOnPage(page))
+  .flat().filter(w => w.length === 3);
+const increasingPrime = w => w.values.every(isPrime) &&
+  w.values[0] < w.values[1] && w.values[1] < w.values[2];
+const primeSum23 = w => w.values.every(isPrime) && w.sum === 23;
+assert.equal(allRedThree.length, 11);
+assert.equal(allCorpusThree.length, 731);
+assert.equal(allRedThree.filter(increasingPrime).length, 1);
+assert.equal(allCorpusThree.filter(increasingPrime).length, 5);
+assert.equal(allRedThree.filter(primeSum23).length, 1);
+assert.equal(allCorpusThree.filter(primeSum23).length, 2);
+assert.equal(allCorpusThree.filter(w => w.values.join(",") === "5,7,11").length, 1);
+
 const redWords = spans.filter(s => s.words.length >= 2).flatMap(s => s.words);
 assert.equal(redWords.length, 48);
 /** @param {number} length */
@@ -131,6 +155,11 @@ console.log(JSON.stringify({
   p6: { page: p6.page, start: p6.start, lengths: p6.words.map(w => w.length), sums: p6.words.map(w => w.sum) },
   p7: { page: p7.page, start: p7.start, lengths: p7.words.map(w => w.length), sums: p7.words.map(w => w.sum) },
   controls: { redSpanCount: spans.length, redWordCount: redWords.length, adjacent, lengthTwo, lengthFour, conditionalProbability: probability },
+  p7PrimeWord: { start: trio.start, indices: trio.values, sum: trio.sum,
+    redThreeCount: allRedThree.length, allCorpusThreeCount: allCorpusThree.length,
+    redIncreasingPrimeCount: allRedThree.filter(increasingPrime).length,
+    corpusIncreasingPrimeCount: allCorpusThree.filter(increasingPrime).length,
+    corpusAllPrimeSum23Count: allCorpusThree.filter(primeSum23).length },
   p50DirectAddressGate: p50Reads,
   receiver: "No uniquely source-selected address, cipher operation, or plaintext"
 }, null, 2));
