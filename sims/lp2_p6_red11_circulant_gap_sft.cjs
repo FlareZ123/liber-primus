@@ -138,6 +138,56 @@ const transposeInverted = inverseMatrix(transposed);
 assert.equal(inverted.determinant, 4);
 assert.equal(transposeInverted.determinant, 4);
 
+// The next original red heading (p8) supplies two independent GP29 products.
+const p8FirstRedWord = source.pages[8].indices.slice(0, 4);
+const p8SecondRedWord = source.pages[8].indices.slice(4, 12);
+assert.deepStrictEqual(p8FirstRedWord, [14, 10, 14, 19]);
+assert.deepStrictEqual(p8SecondRedWord, [1, 14, 19, 5, 2, 13, 3, 17]);
+/** @param {number[]} values @returns {number} */
+function gpProduct(values) {
+  return values.reduce((product, value) => mod(product * value), 1);
+}
+const sourceTrace = mod(matrix.reduce((sum, row, index) => sum + row[index], 0));
+assert.deepStrictEqual(
+  [gpProduct(p8FirstRedWord), gpProduct(p8SecondRedWord)],
+  [inverted.determinant, sourceTrace]
+);
+assert.deepStrictEqual([inverted.determinant, sourceTrace], [4, 3]);
+const leftCirculant = Array.from({ length: WIDTH }, (_, row) =>
+  Array.from({ length: WIDTH }, (_, col) => seed[(col + row) % WIDTH])
+);
+assert.equal(inverseMatrix(leftCirculant).determinant, 25);
+
+/** @param {number[][]} left @param {number[][]} right @returns {number[][]} */
+function matrixProduct(left, right) {
+  return left.map(row => right[0].map((_, col) => mod(
+    row.reduce((sum, value, index) => sum + value * right[index][col], 0)
+  )));
+}
+
+/**
+ * One power of the source matrix per successive original 11-rune row.
+ * The 28 rows are selected by the red-sum difference 209-181=28.
+ * @param {number[]} symbols
+ * @param {number[][]} generator
+ * @param {number} firstPower
+ * @returns {number[]}
+ */
+function evolvingTransform(symbols, generator, firstPower) {
+  let power = Array.from({ length: WIDTH }, (_, row) =>
+    Array.from({ length: WIDTH }, (_, col) => Number(row === col))
+  );
+  for (let index = 0; index < firstPower; index++) {
+    power = matrixProduct(power, generator);
+  }
+  const output = [];
+  for (let index = 0; index < symbols.length; index += WIDTH) {
+    output.push(...multiply(power, symbols.slice(index, index + WIDTH)));
+    power = matrixProduct(power, generator);
+  }
+  return output;
+}
+
 const operators = [
   ['inverse', inverted.inverse],
   ['transpose-inverse', transposeInverted.inverse],
@@ -165,6 +215,33 @@ for (const [name, operator] of operators) {
     });
   }
 }
+const evolvingResults = [];
+for (const [name, generator, inverseGenerator] of [
+  ['successive-M', matrix, inverted.inverse],
+  ['successive-inverse-M', inverted.inverse, matrix]
+]) {
+  for (const firstPower of [0, 1]) {
+    const originalOutput = evolvingTransform(cipher, generator, firstPower);
+    assert.deepStrictEqual(
+      evolvingTransform(originalOutput, inverseGenerator, firstPower), cipher
+    );
+    const plantedCipher = evolvingTransform(plantedClear, inverseGenerator, firstPower);
+    assert.deepStrictEqual(
+      evolvingTransform(plantedCipher, generator, firstPower), plantedClear
+    );
+    evolvingResults.push({
+      operator: name,
+      firstPower,
+      coincidence: Number(coincidence(originalOutput).toFixed(9)),
+      first44Transliterated: originalOutput.slice(0, 44)
+        .map(index => source.translit[index]).join('')
+    });
+  }
+}
+assert.ok(evolvingResults.every(result =>
+  result.coincidence > 0.032 && result.coincidence < 0.038
+));
+
 assert.ok(results.every(result =>
   result.coincidence > 0.032 && result.coincidence < 0.038
 ));
@@ -173,10 +250,14 @@ console.log(JSON.stringify({
   sourceRuneCounts: [114, 194],
   seed,
   sourceDeterminant: 4,
+  sourceTrace,
+  nextRedWordProducts: [gpProduct(p8FirstRedWord), gpProduct(p8SecondRedWord)],
+  leftCirculantDeterminant: inverseMatrix(leftCirculant).determinant,
   originalCipherCoincidence: coincidence(cipher),
   solvedP57Coincidence: coincidence(known),
   originalCandidateResults: results,
-  cipherRoundTrips: 8,
-  plantedKnownSourceRoundTrips: 8,
-  conclusion: 'All eight fixed circulant Hill-11 outputs remain nonlinguistic; no plaintext or key recovered'
+  evolvingCandidateResults: evolvingResults,
+  cipherRoundTrips: 12,
+  plantedKnownSourceRoundTrips: 12,
+  conclusion: 'P8 red words match p6 matrix det/trace, but neither fixed nor evolving powers decrypt prose'
 }, null, 2));
