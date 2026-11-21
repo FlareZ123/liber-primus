@@ -361,6 +361,72 @@ assert.deepEqual(blurResults.map(r => Math.round(r.normalizedIC * 1e12)), [
   1010606060606, 1022589531680, 1074517906336, 1026584022039,
 ]);
 
+
+/* The same p32 page has one genuine carried opening rune from p31.
+ * Dropping that printed carry leaves exactly 120 intact glyphs = 24x5,
+ * so the source-selected 5x5 tile is a direct Hill5/pad key on this p32
+ * receiver too. Keep the original word breaks to check native language.
+ */
+assert.equal(page32Cipher[0], 20); // printed single carried L rune
+const body32 = page32Cipher.slice(1);
+assert.equal(body32.length, 120);
+assert.deepEqual([...transcription[32]].filter(ch => runeIndex.has(ch))
+  .map(ch => runeIndex.get(ch)), page32Cipher);
+const page32Words = [];
+let page32Offset = 0, page32Word = [];
+for (const ch of transcription[32]) {
+  const rune = runeIndex.get(ch);
+  if (rune !== undefined) {
+    if (page32Offset > 0) page32Word.push(page32Offset - 1);
+    page32Offset++;
+  } else if ("-.assert.deepEqual(blurResults.map(r => Math.round(r.normalizedIC * 1e12)), [
+  1010606060606, 1022589531680, 1074517906336, 1026584022039,
+]);
+§".includes(ch)) {
+    if (page32Word.length) page32Words.push(page32Word);
+    page32Word = [];
+  }
+}
+if (page32Word.length) page32Words.push(page32Word);
+assert.equal(page32Offset, 121);
+assert.deepEqual(page32Words.map(x => x.length),
+  [3,5,11,5,5,3,11,6,9,5,8,4,9,4,8,2,3,2,8,5,4].map(Number));
+const long32 = page32Words.filter(w => w.length >= 4);
+assert.equal(long32.length, 16);
+const plant32 = Array.from({length: 120}, (_, i) => p57[i % p57.length]);
+const direct32Results = [];
+for (const radix of [59, 60]) {
+  const literal = numeralMatrix(radix, tile);
+  for (const representation of ["raw", "phi"]) {
+    const matrix = literal.map(row => row.map(x => mod(representation === "phi" ? phi(x) : x)));
+    const inverse = invert(matrix);
+    for (const convention of ["col", "row"]) {
+      const candidate = apply(inverse, body32, convention);
+      assert.deepEqual(apply(matrix, candidate, convention), body32);
+      assert.deepEqual(apply(inverse, apply(matrix, plant32, convention), convention), plant32);
+      const hits = long32.filter(w => dictionary.has(w.map(i => candidate[i]).join(","))).length;
+      assert.equal(hits, 0);
+      direct32Results.push({radix, representation, mode: "Hill5", convention,
+        normalizedIC: normalizedIC(candidate), dictionaryHits: hits});
+    }
+    const tape = matrix.flat();
+    for (const sign of [-1, 1]) {
+      const candidate = body32.map((x, i) => mod(x + sign * tape[i % 25]));
+      assert.deepEqual(candidate.map((x, i) => mod(x - sign * tape[i % 25])), body32);
+      const encryptedPlant = plant32.map((x, i) => mod(x - sign * tape[i % 25]));
+      assert.deepEqual(encryptedPlant.map((x, i) => mod(x + sign * tape[i % 25])), plant32);
+      const hits = long32.filter(w => dictionary.has(w.map(i => candidate[i]).join(","))).length;
+      assert.equal(hits, 0);
+      direct32Results.push({radix, representation, mode: "period25", sign,
+        normalizedIC: normalizedIC(candidate), dictionaryHits: hits});
+    }
+  }
+}
+assert.equal(direct32Results.length, 16);
+assert.equal(Math.max(...direct32Results.map(r => r.dictionaryHits)), 0);
+assert(Math.abs(Math.max(...direct32Results.map(r => r.normalizedIC)) -
+  1.242857142857143) < 1e-12);
+
 console.log(JSON.stringify({
   sourcePrimeSums: clauseSums,
   originalP50PrimeRanks: ranks,
@@ -373,5 +439,7 @@ console.log(JSON.stringify({
   phiVariants: phiResults,
   centerNavigation: {sourceToken:tileCenter, base59:80, phi59:32, base60:81, phi60:54},
   page32BlurVariants: blurResults,
-  control: "4/4 raw and 8/8 phi p55 source replays/plants (75/75), 4/4 p32 blur replays/plants (121/121)",
+  page32SourceBody: {carriedOpeningRune:20,completeRunes:body32.length,fullWords:page32Words.length,longWords:long32.length,normalizedIC:normalizedIC(body32)},
+  page32DirectVariants: direct32Results,
+  control: "4/4 raw and 8/8 phi p55 replays/plants 75/75; 4/4 p32 blur 121/121 and 16/16 p32 direct 120/120",
 }, null, 2));
