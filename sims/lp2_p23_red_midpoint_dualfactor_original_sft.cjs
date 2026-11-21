@@ -319,6 +319,43 @@ for (const sign of [-1, 1]) {
   assert.equal(firstImpossible(encoded57, sign), null);
 }
 
+// Distinct original-shaped AES receiver: p23 red16 as one literal AES-128
+// key; the 256-byte table as a 16-byte IV plus 240 ciphertext bytes,
+// matching the exact p39 page length. No KDF, key search or fitted IV.
+// Also test direct ECB and zero-IV CBC as the two simplest alternatives.
+{
+  const ciphertext = Buffer.from(bytes);
+  const keyForms = [
+    ['p23 GP indices', Buffer.from(red16), [[68,25],[75,25],[99,24]]],
+    ['p23 GP primes', Buffer.from(red16.map((r) => corpus.prime[r])),
+      [[79,33],[84,37],[105,29]]],
+  ];
+  const modes = [
+    ['aes-128-cbc', ciphertext.subarray(16), ciphertext.subarray(0, 16)],
+    ['aes-128-cbc', ciphertext, Buffer.alloc(16)],
+    ['aes-128-ecb', ciphertext, null],
+  ];
+  for (const [keyName, keyBytes, metrics] of keyForms) {
+    assert.equal(keyBytes.length, 16);
+    for (let i = 0; i < modes.length; i++) {
+      const [algorithm, input, iv] = modes[i];
+      const decipher = crypto.createDecipheriv(algorithm, keyBytes, iv);
+      decipher.setAutoPadding(false);
+      const plain = Buffer.concat([decipher.update(input), decipher.final()]);
+      const countASCII = [...plain].filter((b) => b >= 32 && b <= 126).length;
+      const countGP = [...plain].filter((b) => b <= 28).length;
+      assert.deepEqual([countASCII, countGP], metrics[i], keyName + ' / ' + algorithm);
+      console.log('AES p23 16-byte ' + keyName + ' ' + algorithm
+        + ' printable=' + countASCII + '/' + plain.length
+        + ' GPbyte=' + countGP + '/' + plain.length);
+    }
+  }
+  const known = crypto.createDecipheriv('aes-128-ecb', Buffer.alloc(16), null);
+  known.setAutoPadding(false);
+  assert.deepEqual(Buffer.concat([known.update(Buffer.from(
+    '66e94bd4ef8a2c3b884cfa59ca342b2e', 'hex')), known.final()]), Buffer.alloc(16));
+}
+
 function ioc(values) {
   const counts = Array(29).fill(0);
   for (const value of values) counts[value]++;
@@ -343,4 +380,5 @@ console.log('PASS: five original 201-rune p23–26 lanes not direct red H/G code
 console.log('PASS: p23 red16 + p39 whole240 composites are not source H/G codewords');
 console.log('PASS: both source p23 monic degree16 factors fail, 240-rune positive plant succeeds');
 console.log('PASS: source-DH-seeded quartic recurrence fails p56-style F-transparent necessary path');
+console.log('PASS: p23 original red16 source bytes are not an AES128 plaintext receiver for the table');
 console.log('NO PLAINTEXT: reversible quotient key reads remain ciphertext-like');
