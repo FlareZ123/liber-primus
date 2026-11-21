@@ -292,5 +292,60 @@ console.log('Source-fixed p53-red51 original cipher checks:',
   'DH-shared-power IoC', coincidence(decodedDhPower));
 console.log('Both 51-rune sources reencrypt exactly and neither yields text.');
 
+
+/**
+ * Conditional prime-rank waypoint: shared value193 is the 44th prime.
+ * Its page p44 has the exact original terminal DH client packet
+ * [B,p,b]=[19,23,15]. Its GP prime sum213 is the exact rune length of
+ * p23, selected by its middle index23. The complete 55-page source
+ * family has one terminal-middle/prime-sum matching page, p44.
+ */
+const first44Primes = [];
+for (let n = 2; first44Primes.length < 44; n++)
+  if (isPrime(n)) first44Primes.push(n);
+assert.equal(first44Primes[43], KNew);
+const p44 = pages.find((page) => page.page === 44);
+const p23 = pages.find((page) => page.page === 23);
+assert(p44 && p23);
+const packet44 = p44.indices.slice(-3);
+assert.deepEqual(packet44, [signedDh.B, signedDh.p, signedDh.b]);
+assert.equal(primeWeight(packet44), 213);
+assert.equal(p23.indices.length, 213);
+assert.equal(packet44[1], p23.page);
+const middleLengthHits = pages.filter((page) => {
+  const tail = page.indices.slice(-3);
+  const targetPage = pages.find((entry) => entry.page === tail[1]);
+  return targetPage && primeWeight(tail) === targetPage.indices.length;
+}).map((page) => page.page);
+assert.deepEqual(middleLengthHits, [44]);
+console.log('Candidate K=193 -> 44th prime -> p44 terminal',
+  packet44, '= [B,p,b]; GP prime sum213 -> p23 213 runes.');
+console.log('Original 55-page terminal-middle/prime-sum target hits:',
+  middleLengthHits);
+
+// Freeze the already-established p28 H-difference readout on an
+// untouched source-marked p23 red16 stanza. It does NOT yield a contiguous
+// phrase in the authenticated 2016 source; no alternate clock is fitted.
+const ink = JSON.parse(fs.readFileSync(
+  path.join(repoRoot, 'resources', 'liber-primus',
+    'lp2-ink-annotations.json'), 'utf8'));
+const p23Ink = ink.pages.find((page) => page.page === 23);
+assert(p23Ink);
+assert.deepEqual(p23Ink.red_spans.map((part) =>
+  [part.start, part.length]), [[0, 16]]);
+const red23 = p23.indices.slice(0, 16);
+const d4 = [];
+for (let i = 0; i < red23.length; i += 4) {
+  d4.push(mod29(red23[i] - red23[i + 3]));
+  d4.push(mod29(red23[i + 1] - red23[i + 2]));
+}
+assert.deepEqual(d4, [9, 17, 0, 20, 27, 7, 19, 7]);
+const words23 = d4.map((value) => source2016Words[value]);
+assert.deepEqual(words23,
+  ['LIBER', 'THE', 'HELLO', 'MEANING', 'ARE', 'THE', 'THEIR', 'THE']);
+assert.equal(source2016Words.join(' ').includes(words23.join(' ')), false);
+console.log('Locked p23 marked-red16 H-D4 original consumer:',
+  words23.join(' '), '(non-phrase, rejected).');
+
 console.log('PASS. Exact source-index linkage. No deciphered LP2 text or');
 console.log('independently sourced instruction selecting this DH bookend grammar.');
