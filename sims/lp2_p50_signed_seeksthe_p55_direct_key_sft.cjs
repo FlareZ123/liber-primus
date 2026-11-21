@@ -49,7 +49,7 @@ function traversal(kind, desc, start = selected) {
   } else {
     visit(start);
   }
-  assert.equal(out.length, start === selected ? 76 : 121);
+  assert.equal(out.length, start === selected ? 76 : start === 58 ? 121 : 33);
   assert.equal(new Set(out).size, out.length);
   return out;
 }
@@ -607,6 +607,65 @@ assert.equal(sourceOrders32.length, 12);
 assert.equal(mixedRouteTrials.length, 40);
 assert.ok(Math.abs(mixedRouteTrials[0].score + 11.459476347069) < 1e-7);
 
+
+/**
+ * A stronger original-only checksum gate: 43 exact p55 interior runes can
+ * occupy 43 leaves of the p32 node58 tree; its separate node146 subtree has
+ * exactly 33 nodes, like p55's 33 remaining exterior runes. If both streams
+ * expose the same subtree-sum encoding, the 33 exterior symbols must equal
+ * the 33 reconstructed node values in some source-natural order.
+ */
+const interiorSet = new Set(source43Positions);
+const outer33 = original.filter((_, index) => !interiorSet.has(index));
+assert.equal(outer33.length, 33);
+const largeRow = [...bigOrders[0].nodes].sort((a, b) => a - b);
+const largeAssign = [
+  ...bigOrders,
+  { name: 'rowmajor-asc', nodes: largeRow },
+  { name: 'rowmajor-desc', nodes: [...largeRow].reverse() }
+];
+const smallTraverse = ['bfs', 'pre', 'post'].flatMap((kind) =>
+  [false, true].map((desc) => ({
+    name: kind + (desc ? '-desc' : '-asc'),
+    nodes: traversal(kind, desc, 146)
+  })));
+const smallRow = [...smallTraverse[0].nodes].sort((a, b) => a - b);
+const smallRead = [
+  ...smallTraverse,
+  { name: 'rowmajor-asc', nodes: smallRow },
+  { name: 'rowmajor-desc', nodes: [...smallRow].reverse() }
+];
+const checksumTrials = [];
+for (const assign of largeAssign) {
+  const leafList = assign.nodes.filter((node) => children[node].length === 0);
+  assert.equal(leafList.length, 43);
+  const values = new Map(leafList.map((node, index) => [node, originalInteriors[index]]));
+  const fold = (node) => {
+    if (values.has(node)) return values.get(node);
+    const sum = children[node].reduce((total, child) => total + fold(child), 0) % 29;
+    values.set(node, sum);
+    return sum;
+  };
+  fold(58);
+  for (const reading of smallRead) {
+    assert.equal(reading.nodes.length, 33);
+    const predicted = reading.nodes.map((node) => values.get(node));
+    const histogram = Array(29).fill(0);
+    for (let i = 0; i < outer33.length; i++) {
+      histogram[mod29(predicted[i] - outer33[i])]++;
+    }
+    checksumTrials.push({
+      assign: assign.name, reading: reading.name,
+      equal: histogram[0], maxShiftedEqual: Math.max(...histogram)
+    });
+  }
+}
+assert.equal(checksumTrials.length, 64);
+const maxEqual = Math.max(...checksumTrials.map((row) => row.equal));
+const maxShiftedEqual = Math.max(...checksumTrials.map((row) => row.maxShiftedEqual));
+assert.equal(maxEqual, 4);
+assert.equal(maxShiftedEqual, 5);
+
 console.log(JSON.stringify({
   selected: { source: 'SEEKS GP0=71; THE GP0=20', address: selected,
     subtreeSize: orders[0].nodes.length },
@@ -616,6 +675,11 @@ console.log(JSON.stringify({
   },
   numericKeys: { tested: keyTrials.length, best: keyTrials.slice(0, 3),
     candidatesReachingNativeMin: keyTrials.filter((entry) => entry.score >= heldMin).length },
+  p55InteriorLeafToExteriorSubtreeChecksum: {
+    interior: originalInteriors.length, exterior: outer33.length,
+    subtree: 146, subnodes: smallRow.length, tested: checksumTrials.length,
+    bestExactMatches: maxEqual, bestMatchesWithArbitraryGlobalShift: maxShiftedEqual,
+    fullConsistentMappings: checksumTrials.filter((row) => row.equal === 33).length },
   mixedRadixSignedRouteToShells: { route: seekRoute60,
     shells: shell32.length, attempted: 1536, legal: mixedRouteTrials.length,
     nativeHeldMin: held121Min, best: mixedRouteTrials.slice(0, 3),
