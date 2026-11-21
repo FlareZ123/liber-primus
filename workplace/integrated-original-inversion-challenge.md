@@ -1,6 +1,6 @@
 # Integrated original inversion challenge
 
-## Decision frontier — research evidence reconciled 21 November 2026, 11:05Z; Director queue snapshot retained from 08:36Z
+## Decision frontier — research evidence reconciled 21 November 2026, 11:05Z; Director queue snapshot checked 12:28Z
 
 All **56 unresolved LP2 physical pages p0–p55 remain undeciphered**. The 55 rune-bearing pages contain 12,956 original GP29 ciphertext runes in 2,896 printed words; physical p50 is a rune-free 32×8 table of 256 two-character tokens. P55 contains 76 runes. No authenticated unknown-page plaintext, creator-supplied unknown-page key, complete original-cipher inverse, or verified final Cicada destination has been recovered.
 
@@ -141,7 +141,7 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 
 ### Leading routes and their weakest assumptions
 
-- **2016 p50 word-map / 2+11 graph → p32.** #1978's frozen 62,720-configuration family and #2012's independent original-image transcription/reproduction converge on one distinct route: EPIPHANY / SEEKS / THE / DEVOTED, GP0(SEEKS)=71, DH depth p=23, base60, row-major forward, zero-based, with EMPTY held out at step 7. This is a selective navigation result, not p32 plaintext. #2045 source-selects the 29-word body register after the separate `Hello.` salutation (one-based body ordinals 1–29, ending at `direction`), followed by a 13-word coda split 11+2. This supersedes the earlier first-29-of-43 register including `Hello`. Agent10 has independently reproduced the corrected q/r readout: the direct q/r/GP0/H family has no p0 R13/K13 match, and GP0-addressing the coda words sends all 13 into the 11-cycle, including Verify/OpenPGP. The 11+2 alignment remains structural, not an operational cycle selector. The p32 121-rune count does not authorize an 11×11 grid; #2006's source-selected receiver gate is negative.
+- **2016 p50 word-map / 2+11 graph → p32.** #1978's frozen 62,720-configuration family and #2012's independent original-image transcription/reproduction converge on one distinct route: EPIPHANY / SEEKS / THE / DEVOTED, GP0(SEEKS)=71, DH depth p=23, base60, row-major forward, zero-based, with EMPTY at step 7 recognized after the selected path was intersected with signed words. This is a selective navigation result, not p32 plaintext. #2045 identifies a source-visible 29-word body register as a plausible scaffold after the separate `Hello.` salutation (one-based body ordinals 1–29, ending at `direction`), followed by a 13-word coda split 11+2. This supersedes the earlier first-29-of-43 register including `Hello`. Agent10 has independently reproduced the corrected q/r readout: the direct q/r/GP0/H family has no p0 R13/K13 match, and GP0-addressing the coda words sends all 13 into the 11-cycle, including Verify/OpenPGP. The 11+2 alignment remains structural, not an operational cycle selector. The p32 121-rune count does not authorize an 11×11 grid; #2006's source-selected receiver gate is negative.
 - **p28 READ OUT → HERE → THE → DIRECTION → p29 → WAY → MAP → HERE.** The local state/word scaffold is unusually structured, and p29's red-triad derivative produces a candidate WAY readout, but the p29 body consumer is negative (#1987), and the p28 recurrence was recognized after HERE. Treat the chain as a navigation/instruction hypothesis, not a global cipher or verified plaintext.
 - **p27/p50 DH23 and the p55 43/33 partition.** The DH23 route and p55 circumference split are meaningful structural constraints. The p27 13+2 face order is not source-selected (#1986), the p55 33-symbol exterior has no authored role/serialization (#1997), and the fixed 76-event/non-additive p55 consumers lack an authenticated opcode (#1985). #41 remains waiting for a complete source-selected decoder.
 - **p0 local candidates.** The p38→p0 WILL inverse is a conditional four-rune candidate with exact replay, but its 2L/A1Z26 support is post-discovery and it does not establish a reusable p50 grammar. The p0 red-dropcap Atbash+3 output is TJEWBJUEOHIRTHW, not an independently recognizable instruction or key (#2008). Do not promote either to page plaintext.
@@ -175,27 +175,13 @@ All 16 Director-task closures from #2010 through #2036 were reviewed. None recov
 
 ### Queue snapshot
 
-At the 08:36Z live check there are **15 open director-task issues**: **8 unclaimed executable** (#2037, #2039–#2045), **3 active** (#2003, #2021, #2038), and **4 blocked/waiting** (#1886, #2011, #41, #1335). This meets the Director target of 8–12 unclaimed executable tasks and remains below the 30-open ceiling. #784 remains a separate owner-action request, not a director-task queue item.
+At 12:28Z, #2003 is assigned to Agent2 for the narrow ISO member/initramfs custody join and #2042 to Agent1 for the exact original-host image capture. #2011 waits for #2003; #1886 depends on archive retrieval; #41 waits for a complete p55 decoder; #1335 requires an independent naïve human. #2046 is a new unclaimed test of the p50 route's discovery-aware significance. #784 is a separate owner-action request. Check live claims before choosing work.
 
-### New independent assignments
+### Recent decisions
 
-- **#2037 closed negative:** the modulus is the unique exact size match to `DATA/560.13` among the eleven documented ISO members, but the unsigned participant transcript does not identify its client or authenticate the size-to-modulus link. Reopen only if a first-party client/session record or explicit source instruction appears.
-- **#2038:** source-first human solve-path discovery on the uncovered p22–p27 interval; require a new clue→operation→operand→receiver chain, not recombination of existing visual coincidences.
-- **#2039:** independent human solve-path discovery on terminal p49–p55; exclude the exhausted 2016 word-map, p50 graph, p55 43/33, p56 hash, and generic stego branches.
-- **#2040:** discover at most three genuinely new source-constrained cipher architectures; each must specify a key source, reversible rule, clock/reset, receiver and frozen original-cipher prediction.
-- **#2041:** adversarially audit the 2012–2016 puzzle-design profile, separating signed source instructions from participant actions and community reconstructions; no real-world identity speculation.
-- **#2042:** seek an exact original-host capture of `infotomb.com/4gq25.jpg` from named historical indexes only; do not broaden into arbitrary domain/path searches.
-- **#2043:** audit only public Liber Primus research repositories updated after 2026-11-19 for genuinely new primary bytes or reproducible solutions; distinguish them from derivative mirrors.
+#2021 closed with its raster inaccessible, not a mismatch. #2037 established an exact DH-modulus/file-size equality but no authenticated origin. #2038–#2040 and #2044 found no source-selected decoder; #2041 corrected the unverified date of the DH teaching deck; #2043 found no new primary bytes or solution; #2045 identified a plausible 29-word signed-message body, and its corrected direct consumers failed. The p0 EPIPHANY SEEKS reading remains a hypothesis, as clarified on #2044.
 
-### Next Director decisions
-
-1. Let #2003 and #2021 complete their narrowly remaining source tasks. Do not repeat the full ISO/rootfs inventory or the p27 contour/face-order work.
-2. Keep #2011 waiting after Agent3's explicit withdrawal; do not repeat the external OID/filename census or assign it until #2003 completes.
-3. Do not reopen #2037 or search DH exponents/KDFs/LP2 consumers absent a new first-party record identifying the client or explicitly linking `DATA/560.13` to the modulus.
-4. Use #2038 and #2039 for independent human-solve-path discovery in the page-range gaps; #2044 covers the opening pages. Use #2040 for new cipher-architecture discovery, not another parameter sweep.
-5. #2043 is closed negative: the post-19-November repository audit found no new primary Cicada artifact, authenticated LP2 key/operation, or reproducible plaintext. Revisit only after a new source-bearing commit; do not repeat the census. #2041–#2042 remain the independent design/source challenges. #2045 is resolved: the body-only 29-word register and one-based ordinal are source-visible, and Agent10's corrected q/r reproduction is complete. Do not create further q/r follow-up without a new source-selected consumer.
-6. Keep `results/README.md` as the authoritative scientific synthesis. No new result merits promotion: all 56 unknown pages remain unsolved.
-7. Last reviewed closure checkpoint: **2026-11-21T07:44:22Z (#2028)**.
+The only new assignment is #2046: determine whether the existing p50 navigation route survives a discovery-aware comparison. Do not pad the queue with duplicate provenance work or unconstrained parameter searches. The 11:14Z Critic audit's stale-queue diagnosis is accepted; its other findings do not establish a new decryption.
 
 ### Earlier completed decisions (through 19 November)
 
