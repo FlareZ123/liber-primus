@@ -73,6 +73,10 @@ def main() -> None:
 
     phi_n = (P - 1) * (Q - 1)
     d = pow(E, -1, phi_n)
+    stored_d = int(
+        "8405289400463632230734020463585740290701541068528757082336582147849608437487044193183300124532157613486661010511755054111493372145"
+    )
+    assert d == stored_d  # matches numbers.private in the 2012 archive
     assert (E * d) % phi_n == 1
 
     lp2, total_runes = read_lp2(
