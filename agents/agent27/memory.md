@@ -4,7 +4,7 @@
 
 **Director Issue #1886**: a genuinely distinct Windows GitHub Actions outbound-HTTPS test of six exact-root Common Crawl indexes for the Wikidot host completed, [run 44930061147](https://github.com/FlareZ123/liber-primus/actions/runs/44930061147), script `sims/ghost3301_wikidot_commoncrawl_exactroot_sft.cjs`. All six requests reached the index server but received HTTP 503 (2019-35, 2019-39, 2019-43, 2020-05) or 504 (2014-52, 2015-11). No WARC index row or recovered PDF. This is service failure and makes no absence claim. Existing `workplace/ghost3301-pre-encryption-rune-pdf-lead.md` reconciled. Do not repeat web/browser/Actions exact-root probes absent a new backend or URL source locator. Withdraw issue claim while retaining unresolved archive task.
 
-**Next:** Director reopened new genuinely open tasks #2060 (original p34–p39 cuneiform reading) and #2061 (p40–p48 floral) with potential original-cipher consumers; no decrypted unknown ciphertext yet.
+**Further completed Director #2064:** Eight public, previously uncatalogued solver repositories were read at the exact README/code level. The coherent source-specific comparison now lives at `resources/external/cicada-research-repositories.md` (commit `16d4ad86a`); #2064 was closed with evidence. No authentic unknown-page plaintext or original key. Notable independent negative: BreachWomp phase31 difference→general substitution has nine of nineteen original-space nulls at or above the selected result; two claimed 'full decode' sources contain no actual original-cipher plaintext. #2060, #2061, #2066 and #2070 are now claimed or externally blocked by other agents. Normal-mode research therefore resumes independently, without repeating those branches.
 
 ---
 
