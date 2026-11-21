@@ -318,4 +318,95 @@ for(const entry of splitRivals){
     controlsAtOrBelowOriginal:nativeAtOrBelow,plantedSecretRoundtrip:true
   }));
 }
+// The solved p56 F-transparent rule suggests one further clock rival:
+// literal GP F=0 is emitted unchanged and consumes NO key position. For
+// all other 28 symbols, each phase has an arbitrary 28-symbol bijection.
+// This is still fully secret-key independent because phase and literal
+// positions are visible in ciphertext under the stipulated F rule.
+function fSkipColumnEqual(groups,reset){
+  const hist=Array.from({length:27},()=>Array(29).fill(0));
+  let phase=0;
+  for(const group of groups){
+    if(reset)phase=0;
+    for(const rune of group){
+      if(rune===0)continue;
+      hist[phase%27][rune]++;
+      phase++;
+    }
+  }
+  let hits=0,pairs=0;
+  for(const counts of hist){
+    const size=counts.reduce((s,v)=>s+v,0);
+    pairs+=size*(size-1)/2;
+    hits+=counts.reduce((s,v)=>s+v*(v-1)/2,0);
+  }
+  return {hits,pairs,rate:hits/pairs};
+}
+// Derive the same fixed secret-key positive for all 4 original clocks.
+// Each phase's 28-character alphabet is a permutation of non-F symbols;
+// F is exactly fixed. This is the same first-party behavior established
+// locally for p56, hypothetically transferred to the opening chapter.
+const fSkipBijections=allSecretMappings.map(permutation=>{
+  const out=[0,...Array.from({length:28},(_,i)=>i+1)];
+  let source=permutation.filter(v=>v!==0).map(v=>v+1);
+  // Mapping v->v+1 can contain 29 (when old28); instead use stable rank.
+  const perm=Array.from({length:28},(_,i)=>i+1);
+  for(let i=27;i>0;i--){const j=rnd()%(i+1);[perm[i],perm[j]]=[perm[j],perm[i]];}
+  return [0,...perm];
+});
+for(const mode of [
+  {name:'full-chapter-nonF',parts:[complete],reset:false,expect:[292,8600]},
+  {name:'page-reset-nonF',parts:[p0,p1,p2],reset:true,expect:[277,8615]},
+  {name:'after-red-continuous-nonF',parts:[p0.slice(13),p1,p2],reset:false,expect:[287,8300]},
+  {name:'after-red-page-reset-nonF',parts:[p0.slice(13),p1,p2],reset:true,expect:[272,8312]}
+]){
+  const original=fSkipColumnEqual(mode.parts,mode.reset);
+  assert.deepEqual([original.hits,original.pairs],mode.expect);
+  let nativeMin=Infinity,nativeCount=0,nativeAtOrBelow=0;
+  const total=mode.parts.reduce((s,p)=>s+p.length,0);
+  for(let start=0;start+total<=nativeRunes.length;start++){
+    let at=start;
+    const groups=mode.parts.map(part=>{
+      const seq=nativeRunes.slice(at,at+part.length);
+      at+=part.length;return seq;
+    });
+    const rate=fSkipColumnEqual(groups,mode.reset).rate;
+    nativeMin=Math.min(rate,nativeMin);
+    nativeAtOrBelow+=Number(rate<=original.rate);
+    nativeCount++;
+  }
+  assert.ok(nativeMin>0.05);
+  assert.equal(nativeAtOrBelow,0);
+  let globalPhase=0;
+  const plain=mode.parts.map((group,i)=>{
+    return nativeRunes.slice(
+      mode.parts.slice(0,i).reduce((s,p)=>s+p.length,0),
+      mode.parts.slice(0,i+1).reduce((s,p)=>s+p.length,0));
+  });
+  const cipher=plain.map(group=>{
+    if(mode.reset)globalPhase=0;
+    return group.map(rune=>{
+      if(rune===0)return 0;
+      const value=fSkipBijections[globalPhase%27][rune];
+      globalPhase++;return value;
+    });
+  });
+  assert.deepEqual(fSkipColumnEqual(cipher,mode.reset),fSkipColumnEqual(plain,mode.reset));
+  let phase=0;
+  const recovered=cipher.map(group=>{
+    if(mode.reset)phase=0;
+    return group.map(rune=>{
+      if(rune===0)return 0;
+      const at=phase%27;phase++;
+      return fSkipBijections[at].indexOf(rune);
+    });
+  });
+  assert.deepEqual(recovered,plain);
+  console.log('27-phase all-secret literal-F skip invariant',JSON.stringify({
+    sourceClock:mode.name,original,controls:nativeCount,
+    nativeMinimum:+nativeMin.toFixed(7),
+    controlsAtOrBelowOriginal:nativeAtOrBelow,
+    planted28BijectionRoundtrip:true
+  }));
+}
 console.log('PASS: frozen complementary-27 Trifid tests; no plaintext claim');
