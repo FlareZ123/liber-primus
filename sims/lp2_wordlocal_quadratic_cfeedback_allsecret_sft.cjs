@@ -185,7 +185,7 @@ for (const {wordIndex, c} of originals) {
     const coefficients = solve(c, item.p);
     if (!coefficients) continue;
     matches++;
-    if (examples.length < 20)
+    if (examples.length < 20 || c.length >= 9)
       examples.push({wordIndex, length: c.length, native: item.word, coefficients});
   }
   summary.totalCandidateMatches += matches;
@@ -200,7 +200,8 @@ const compatibleTen = Object.entries(byLength)
   .reduce((n, [, s]) => n+s.compatibleOriginalWords, 0);
 assert.equal(totalLong, 187);
 assert.equal(untouched, 109);
-assert.ok(compatibleTen < untouched, "Original long words unexpectedly all match");
+assert.equal(compatibleLong, 1);
+assert.equal(compatibleTen, 0);
 console.log(JSON.stringify({
   hypothesis: "Cj=d*Pj+a*Cprev^2+b*Cprev+z mod29; independent secret per word",
   original: {runes: original.length, words: words.length, candidates8plus: originals.length,
