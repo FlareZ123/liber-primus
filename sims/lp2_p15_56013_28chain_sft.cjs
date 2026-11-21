@@ -3,17 +3,18 @@
 /*
  * Source-fixed 28-symbol chain-cipher test using CicadaOS DATA/560.13.
  *
- * External hypothesis: each ciphertext transition d_i=(c_i-c_{i-1}) mod 29
- * is zero for a special EA plaintext symbol; otherwise a 1..28 step is
- * transformed to a 0..27 symbol, combined with a 28-ary key byte, and
- * integrated around Z/29Z. The 2013 DATA/560.13 key starts at the exact
- * p15-title BASE29 quotient 8,952,964 (remainder 560 after division by 3301).
+ * External hypothesis: within each unsolved section, d_i=(c_i-c_{i-1}) mod 29
+ * is zero for a special EA/full-turn symbol; otherwise the 1..28 step is
+ * mapped to Z/28Z, combined with a 28-ary key byte, and integrated around
+ * Z/29Z. The nine section boundaries match the independent LP2 dataset:
+ * p0-2, p3-7, p8-14, p15-22, p23-26, p27-32, p33-39, p40-53, p54-55.
  *
- * No offset search is performed. Only the source-fixed offset and deterministic
- * random-offset null controls are tested. Both page-state conventions, both
- * zero-step key-clock conventions, two byte->28 projections, both signs, and
- * the 14 step maps (two linear orientations plus all 12 primitive-root logs)
- * are enumerated as a predeclared finite family.
+ * The candidate key is the authentic DATA/560.13 byte stream at the exact
+ * p15-title BASE29/3301 quotient 8,952,964 (remainder 560). No offset search
+ * is performed. A deterministic random-offset null corrects for the finite
+ * model family. Both section-state conventions, both key-clock conventions,
+ * both natural byte->28 projections, both signs, and all 14 step maps
+ * (linear orientations plus the 12 primitive-root discrete logs) are tested.
  *
  * Usage:
  *   node sims/lp2_p15_56013_28chain_sft.cjs <full DATA/560.13 path>
@@ -42,14 +43,30 @@ const wordIndices = parsed.words.map((word) => [...word.runes].map((rune) => {
   assert.notEqual(index, undefined, "Unknown rune in canonical LP2 transcription");
   return index;
 }));
-const pages = corpus.pages.filter((page) => page.page <= 55 && page.indices.length > 0);
-assert.equal(pages.length, 55);
-const ciphertext = pages.flatMap((page) => page.indices);
+
+const runePages = corpus.pages.filter((page) => page.page <= 55 && page.indices.length > 0);
+assert.equal(runePages.length, 55);
+const sectionRanges = [
+  [0, 2], [3, 7], [8, 14], [15, 22], [23, 26],
+  [27, 32], [33, 39], [40, 53], [54, 55]
+];
+const sections = sectionRanges.map(([firstPage, lastPage], index) => {
+  const sectionPages = runePages.filter(
+    (page) => page.page >= firstPage && page.page <= lastPage
+  );
+  return {
+    name: "p" + firstPage + "-" + lastPage,
+    pageNumbers: sectionPages.map((page) => page.page),
+    indices: sectionPages.flatMap((page) => page.indices)
+  };
+});
+const sectionLengths = sections.map((section) => section.indices.length);
+assert.deepEqual(sectionLengths, [729, 1145, 1729, 1903, 1021, 1433, 1680, 3008, 308]);
+assert.equal(sections.length, 9);
+const ciphertext = sections.flatMap((section) => section.indices);
 assert.equal(ciphertext.length, 12956);
 assert.deepEqual(wordIndices.flat(), ciphertext,
   "Word parser must preserve the canonical original rune stream");
-const pageLengths = pages.map((page) => page.indices.length);
-const totalRunes = ciphertext.length;
 
 const p15 = corpus.pages.find((page) => page.page === 15);
 const heading = p15.indices.slice(0, 9);
@@ -59,7 +76,7 @@ assert.equal(titleInteger, 29553734724n);
 assert.equal(titleInteger / 3301n, 8952964n);
 assert.equal(titleInteger % 3301n, 560n);
 const padOffset = Number(titleInteger / 3301n);
-const requiredKeyBytes = totalRunes - 1;
+const requiredKeyBytes = ciphertext.length - 1;
 
 const isFixture = process.argv[2] === "--fixture";
 let pad;
@@ -84,8 +101,6 @@ if (isFixture) {
     padSha256,
     "db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f"
   );
-
-  // Reproduce the original 2013 phone-stage XOR control before using the file.
   const historicalCipher = Buffer.from(
     "28c07e1b102d4d5c4c1a376e064477e1416fcc94928765", "hex"
   );
@@ -155,32 +170,36 @@ function keyFrom(offset, projection) {
   return key;
 }
 
-function decodePages(inputPages, key, config, stepMap) {
-  const output = new Uint8Array(totalRunes);
-  output.fill(255); // 255 marks the transmitted initial state (not plaintext).
+function decodeSections(inputSections, key, config, stepMap) {
+  const output = new Uint8Array(ciphertext.length);
+  output.fill(255); // 255 marks a transmitted initial state, not plaintext.
   let keyIndex = 0;
   let previous = null;
   let cursor = 0;
   let zeroSteps = 0;
   let transitions = 0;
+  const zeroStepsBySection = [];
 
-  for (let pageIndex = 0; pageIndex < inputPages.length; pageIndex++) {
-    const input = inputPages[pageIndex].indices;
+  for (let sectionIndex = 0; sectionIndex < inputSections.length; sectionIndex++) {
+    const input = inputSections[sectionIndex].indices;
+    if (config.resetKeyAtSection) keyIndex = 0;
     let start;
-    if (config.resetPerPage || pageIndex === 0) {
+    if (config.resetStateAtSection || sectionIndex === 0) {
       previous = input[0];
+      output[cursor] = 255;
       start = 1;
     } else {
-      start = 0; // The first rune of this page continues the prior page's chain.
+      start = 0; // State continues across this section boundary.
     }
-
+    let sectionZeros = 0;
     for (let i = start; i < input.length; i++) {
       const current = input[i];
       const step = mod(current - previous, 29);
       transitions++;
       if (step === 0) {
-        output[cursor + i] = 28; // EA is the proposed full-turn / zero-step rune.
+        output[cursor + i] = 28; // Proposed EA/full-turn marker.
         zeroSteps++;
+        sectionZeros++;
         if (config.consumeAtZero) keyIndex++;
       } else {
         assert.ok(keyIndex < key.length, "Key clock exceeded source slice");
@@ -191,21 +210,23 @@ function decodePages(inputPages, key, config, stepMap) {
       }
       previous = current;
     }
+    zeroStepsBySection.push(sectionZeros);
     cursor += input.length;
   }
-  assert.equal(cursor, totalRunes);
-  return { output, keyConsumed: keyIndex, zeroSteps, transitions };
+  assert.equal(cursor, ciphertext.length);
+  return { output, keyConsumed: keyIndex, zeroSteps, zeroStepsBySection, transitions };
 }
 
-function encodePages(plainPages, key, config, stepMap, iv) {
-  const outputPages = [];
+function encodeSections(plainSections, key, config, stepMap, iv) {
+  const outputSections = [];
   let keyIndex = 0;
   let previous = null;
-  for (let pageIndex = 0; pageIndex < plainPages.length; pageIndex++) {
-    const input = plainPages[pageIndex];
+  for (let sectionIndex = 0; sectionIndex < plainSections.length; sectionIndex++) {
+    const input = plainSections[sectionIndex];
+    if (config.resetKeyAtSection) keyIndex = 0;
     const output = [];
     let start;
-    if (config.resetPerPage || pageIndex === 0) {
+    if (config.resetStateAtSection || sectionIndex === 0) {
       previous = iv;
       output.push(iv);
       start = 1;
@@ -227,9 +248,9 @@ function encodePages(plainPages, key, config, stepMap, iv) {
       previous = mod(previous + step, 29);
       output.push(previous);
     }
-    outputPages.push(output);
+    outputSections.push(output);
   }
-  return outputPages;
+  return outputSections;
 }
 
 function scoreOutput(output) {
@@ -324,52 +345,55 @@ function renderWords(output, maximumWords) {
 
 function positiveControl(config, stepMap, key) {
   const native = nativeWords.flat();
-  assert.ok(native.length >= totalRunes);
-  const source = native.slice(0, totalRunes);
-  const plainPages = [];
+  assert.ok(native.length >= ciphertext.length);
+  const source = native.slice(0, ciphertext.length);
+  const plainSections = [];
   let cursor = 0;
-  for (const length of pageLengths) {
-    plainPages.push(source.slice(cursor, cursor + length));
+  for (const length of sectionLengths) {
+    plainSections.push(source.slice(cursor, cursor + length));
     cursor += length;
   }
-  const encryptedPages = encodePages(plainPages, key, config, stepMap, 17);
-  const decoded = decodePages(
-    encryptedPages.map((indices) => ({ indices })), key, config, stepMap
+  const encrypted = encodeSections(plainSections, key, config, stepMap, 17);
+  const decoded = decodeSections(
+    encrypted.map((indices) => ({ indices })), key, config, stepMap
   );
   let plainCursor = 0;
   let checked = 0;
-  for (let pageIndex = 0; pageIndex < plainPages.length; pageIndex++) {
-    for (let i = 0; i < plainPages[pageIndex].length; i++) {
+  for (let sectionIndex = 0; sectionIndex < plainSections.length; sectionIndex++) {
+    for (let i = 0; i < plainSections[sectionIndex].length; i++) {
       const originalIndex = plainCursor + i;
-      const isIv = config.resetPerPage ? i === 0 : (pageIndex === 0 && i === 0);
+      const isIv = (config.resetStateAtSection || sectionIndex === 0) && i === 0;
       if (!isIv) {
-        assert.equal(decoded.output[originalIndex], plainPages[pageIndex][i],
+        assert.equal(decoded.output[originalIndex], plainSections[sectionIndex][i],
           "Synthetic positive control must recover every encrypted rune");
         checked++;
       } else {
         assert.equal(decoded.output[originalIndex], 255);
       }
     }
-    plainCursor += plainPages[pageIndex].length;
+    plainCursor += plainSections[sectionIndex].length;
   }
   return { exact: true, checkedRunes: checked, keyConsumed: decoded.keyConsumed };
 }
 
 const configurations = [];
 for (const projection of ["byte-mod28", "byte-scaled28"]) {
-  for (const resetPerPage of [false, true]) {
-    for (const consumeAtZero of [false, true]) {
-      for (const stepMap of stepMaps) {
-        for (const sign of [-1, 1]) {
-          configurations.push({
-            projection, resetPerPage, consumeAtZero, stepMap, sign
-          });
+  for (const resetStateAtSection of [false, true]) {
+    for (const resetKeyAtSection of [false, true]) {
+      for (const consumeAtZero of [false, true]) {
+        for (const stepMap of stepMaps) {
+          for (const sign of [-1, 1]) {
+            configurations.push({
+              projection, resetStateAtSection, resetKeyAtSection,
+              consumeAtZero, stepMap, sign
+            });
+          }
         }
       }
     }
   }
 }
-assert.equal(configurations.length, 224);
+assert.equal(configurations.length, 448);
 
 function evaluateOffset(offset, includePreview) {
   const models = [];
@@ -380,12 +404,13 @@ function evaluateOffset(offset, includePreview) {
       key = keyFrom(offset, config.projection);
       keyCache.set(config.projection, key);
     }
-    const decoded = decodePages(pages, key, config, config.stepMap);
+    const decoded = decodeSections(sections, key, config, config.stepMap);
     const stats = scoreOutput(decoded.output);
     const ngram4 = scoreNgrams(decoded.output);
     models.push({
       projection: config.projection,
-      resetPerPage: config.resetPerPage,
+      resetStateAtSection: config.resetStateAtSection,
+      resetKeyAtSection: config.resetKeyAtSection,
       consumeAtZero: config.consumeAtZero,
       stepMap: config.stepMap.name,
       sign: config.sign,
@@ -393,6 +418,7 @@ function evaluateOffset(offset, includePreview) {
       ioc29: stats.ioc29,
       ngram4,
       zeroSteps: decoded.zeroSteps,
+      zeroStepsBySection: decoded.zeroStepsBySection,
       transitions: decoded.transitions,
       keyConsumed: decoded.keyConsumed,
       ...(includePreview ? { preview: renderWords(decoded.output, 70) } : {})
@@ -402,7 +428,7 @@ function evaluateOffset(offset, includePreview) {
   return models;
 }
 
-// Positive controls prove the encoder/decoder and every model convention.
+// Exact encoder/decoder positive controls for every model convention.
 const positiveControlResults = [];
 const sourceKeys = {
   "byte-mod28": keyFrom(padOffset, "byte-mod28"),
@@ -415,8 +441,8 @@ for (const config of configurations) {
 }
 assert.ok(positiveControlResults.every((result) => result.exact));
 
-// The p15 quotient is the only candidate offset. Random offsets are null controls,
-// not a search: a deterministic seed makes the comparison reproducible.
+// The p15 quotient is the only candidate offset; random offsets are null controls,
+// not a search. The seed is derived from the verified source hash.
 const sourceModels = evaluateOffset(padOffset, true);
 let seed = parseInt(crypto.createHash("sha256").update(padSha256).digest("hex").slice(0, 8), 16) >>> 0;
 function nextRandom() {
@@ -440,7 +466,8 @@ for (const offset of nullOffsets) {
     maxNgram4: Math.max(...models.map((model) => model.ngram4)),
     bestModel: {
       projection: models[0].projection,
-      resetPerPage: models[0].resetPerPage,
+      resetStateAtSection: models[0].resetStateAtSection,
+      resetKeyAtSection: models[0].resetKeyAtSection,
       consumeAtZero: models[0].consumeAtZero,
       stepMap: models[0].stepMap,
       sign: models[0].sign
@@ -458,9 +485,13 @@ const candidateModel = sourceModels.find((model) =>
 );
 const candidate = Boolean(candidateModel);
 
+const withinSectionZeroSteps = sections.reduce((sum, section) =>
+  sum + section.indices.slice(1).filter((value, index) => value === section.indices[index]).length, 0);
+const flattenedZeroSteps = ciphertext.slice(1).filter((value, index) => value === ciphertext[index]).length;
+
 const output = {
-  experiment: "p15-selected DATA/560.13 key under the external 28-symbol chain-cipher model",
-  status: candidate ? "candidate-signal-requires-independent-reproduction" : "no-source-key-signal",
+  experiment: "p15-selected DATA/560.13 key under the nine-section 28-symbol chain-cipher model",
+  status: isFixture ? "fixture-only" : (candidate ? "candidate-signal-requires-independent-reproduction" : "no-source-key-signal"),
   source: {
     name: "CicadaOS DATA/560.13",
     size: pad.length,
@@ -472,25 +503,32 @@ const output = {
       quotient: padOffset,
       remainder: 560
     },
-    keyLength: requiredKeyBytes,
+    keySliceLength: requiredKeyBytes,
     fixture: isFixture
   },
   corpus: {
     runeCount: totalRunes,
-    pages: pages.length,
-    pageLengths,
+    physicalRunePages: runePages.length,
+    sectionNames: sections.map((section) => section.name),
+    sectionPageNumbers: sections.map((section) => section.pageNumbers),
+    sectionLengths,
     words: parsed.words.length,
-    adjacentEqualities: ciphertext.slice(1).filter((value, index) => value === ciphertext[index]).length
+    flattenedAdjacentEqualities: flattenedZeroSteps,
+    withinSectionZeroSteps,
+    zeroStepsBySection: sections.map((section) =>
+      section.indices.slice(1).filter((value, index) => value === section.indices[index]).length
+    )
   },
   model: {
     formula: "d=(c[i]-c[i-1]) mod 29; d=0 -> EA; otherwise p=(B(d)-sign*k[i]) mod 28",
     projections: ["byte mod 28", "floor(28*byte/256)"],
     stepMaps: stepMaps.map((map) => map.name),
     signs: [-1, 1],
-    resetPerPage: [false, true],
+    resetStateAtSection: [false, true],
+    resetKeyAtSection: [false, true],
     consumeKeyAtZeroStep: [false, true],
     configurations: configurations.length,
-    firstRuneConvention: "transmitted IV; page starts are IVs only in resetPerPage models"
+    firstRuneConvention: "first rune is an IV only at the start of each state-reset section; otherwise only the first global rune is an IV"
   },
   controls: {
     positiveControlConfigurations: positiveControlResults.length,
@@ -507,8 +545,10 @@ const output = {
     topByIoC: sourceModels.slice(0, 12),
     topByNgram: sourceModels.slice().sort((a, b) => b.ngram4 - a.ngram4).slice(0, 12)
   },
-  interpretation: candidate
-    ? "The fixed 560.13 source offset is an outlier under the tested chain family; inspect the rendered output and reproduce independently before promoting."
-    : "The p15-selected 560.13 byte stream does not recover English-like plaintext under this bounded chain family. This rejects this exact key-source/offset/model conjunction, not every chain cipher or every possible 560.13 use."
+  interpretation: isFixture
+    ? "Fixture run validates code paths and positive controls only; it says nothing about LP2."
+    : (candidate
+      ? "The fixed 560.13 source offset is an outlier under the tested chain family; inspect the rendered output and reproduce independently before promoting."
+      : "The p15-selected 560.13 byte stream does not recover English-like plaintext under this bounded nine-section chain family. This rejects this exact key-source/offset/model conjunction, not every chain cipher or every possible 560.13 use.")
 };
 console.log(JSON.stringify(output, null, 2));
