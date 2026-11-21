@@ -141,6 +141,8 @@ Controls: p7 sum209 is composite but also has φ180 and a 13-step path; p15 and 
 
 The obvious p6 red 11-rune additive key on p32 was negative (both signs, ordinary repeating mode and ciphertext-F bypass). A separate cycle-residue period-11 key and rank transposition were also nonlinguistic. Do not repeat. Existing p32-inner9/p33-body81 direct additive and Hill consumers remain negative. p32/p55 branch-count and junction mining is closed for lack of a stable graph isomorphism; the blocked p55 ghost-tree human-oracle issue is not a reason to repeat visual thresholding.
 
+The four p6 word-sum paths are now asserted in the SFT: 71→p32 at step23 (SEEKS entry); 65→p32 at step12 (right-side zero-success control); 19 and26 enter the common 11-cycle without reaching p32. The unique red-span 4-1-4-2 signature and unique p32 fragment7 4|1|4|2 partition are also asserted. CI run 44924922183 passed before this bounded extension; the next push triggers the updated workflow.
+
 Next: reconstruct the intended human sequence p6 red ink → SEEKS=71 → p32 fragment7 → audited left-side/terminal-collision readout, and identify whether any first-party source fixes the missing continuous-plaintext operation. No unknown plaintext, authentic key, or final destination was recovered.
 
 

@@ -167,6 +167,11 @@ assert.deepEqual(p6.wordLengths, [4, 1, 4, 2]);
 assert.deepEqual(p6.wordSums, [71, 19, 65, 26]);
 assert.deepEqual([p0.wordLengthProduct, p6.wordLengthProduct], [40, 32]);
 
+const signature4142 = allSpans
+  .filter(s => s.wordLengths.join("-") === "4-1-4-2")
+  .map(s => ({ page: s.page, start: s.start }));
+assert.deepEqual(signature4142, [{ page: 6, start: 71 }]);
+
 const redWords = allSpans.flatMap(s => s.wordSums.map((sum, wordIndex) => ({
   page: s.page, spanStart: s.start, wordIndex, sum, length: s.wordLengths[wordIndex]
 })));
@@ -232,6 +237,14 @@ assert.equal(start71.path[7], 92);
 assert.equal(start71.path[23], 32);
 assert.equal(start71.transient.length, 24);
 assert.deepEqual(start71.cycle, start181.cycle);
+const p6WordPaths = p6.wordSums.map(sum => walk(grid.bytes, sum));
+assert.equal(p6WordPaths[0].path[23], 32);
+assert.equal(p6WordPaths[2].path[12], 32);
+assert.equal(p6WordPaths[0].transient.length, 24);
+assert.equal(p6WordPaths[2].transient.length, 13);
+assert.equal(p6WordPaths[1].cycleStart, 2);
+assert.equal(p6WordPaths[3].cycleStart, 9);
+for (const p of p6WordPaths) assert.deepEqual(p.cycle, start181.cycle);
 const twoCycle = walk(grid.bytes, 249);
 assert.equal(twoCycle.cycle.length, 2);
 assert.deepEqual([...twoCycle.cycle].sort((a, b) => a - b), [158, 249]);
@@ -239,6 +252,8 @@ assert.deepEqual([...twoCycle.cycle].sort((a, b) => a - b), [158, 249]);
 const fragments = parseFragments(transcriptPages[32]);
 assert.equal(fragments.length, 22);
 const fragment7 = fragments[7];
+assert.equal(fragment7.start, 33);
+assert.equal(fragment7.end, 43);
 assert.equal(fragment7.values.length, 11);
 assert.equal(fragment7.values[4], 14);
 const left4 = fragment7.values.slice(0, 4);
@@ -275,7 +290,7 @@ console.log(JSON.stringify({
   classification: "source-constrained navigation/structure hypothesis; no plaintext or key recovered",
   redSpanPopulation: {
     count: allSpans.length, redWordCount: redWords.length, repeatedPrimeSums,
-    uniqueRedWordSum71: redWord71, phi180Spans, uniqueCellProductMatch: productMatches
+    uniqueSignature4142: signature4142, uniqueRedWordSum71: redWord71, phi180Spans, uniqueCellProductMatch: productMatches
   },
   selectedRedSpans: { p0, p6 },
   controls: { p7CompositePhi180: p7, p15Sum120: p15, p57ParableSum120: p57 },
@@ -284,6 +299,7 @@ console.log(JSON.stringify({
     cell181: { token: tokens[181], value: grid.bytes[181] },
     pathFrom181: start181.path, transient181: start181.transient.length,
     pathFrom71: start71.path, empty92Step: 7, p32Step: 23,
+    p6WordPaths: p6WordPaths.map(p => ({ path: p.path, transientLength: p.transient.length })),
     sharedElevenCycle: start181.cycle, twoCycle: twoCycle.cycle
   },
   p32Fragment7: {
