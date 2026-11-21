@@ -7,7 +7,7 @@
  * native-length match can nominate an independently checkable quotation crib.
  *
  * This goes beyond the eleven previously scanned local source corpora.
- * Network input is restricted to Project Gutenberg public-domain plain texts.
+ * Network input is restricted to GITenberg's mirrored Project Gutenberg public-domain plain texts.
  * No bytes are written. Original source URL and fetched SHA-256 are logged.
  *
  * Windows Node.js 22: node sims/lp2_gutenberg_native_wordlength_source_hunt_sft.cjs
@@ -123,36 +123,21 @@ const plantedTest=compare(planted,lengths(p57Words),p57Words,9);
 assert(plantedTest.top.some(x=>x.length>=20 && x.targetWord<=317 && x.targetWord+x.length>=337));
 
 const BOOKS = [
-  [10,'KJV Bible'],
-  [1998,'Thus Spake Zarathustra'],
-  [1322,'Leaves of Grass'],
-  [2680,'Meditations of Marcus Aurelius'],
-  [131,'The Pilgrims Progress'],
-  [2701,'Moby Dick'],
-  [26,'Paradise Lost'],
-  [1497,'Platos Republic'],
-  [216,'Tao Te Ching'],
-  [2388,'Bhagavad Gita'],
-  [2017,'The Dhammapada'],
-  [205,'Walden'],
-  [71,'Civil Disobedience'],
-  [14209,'The Kybalion'],
-  [4363,'Beyond Good and Evil'],
-  [2500,'Siddhartha'],
-  [1727,'Odyssey'],
-  [1934,'Blake Songs of Innocence'],
-  [98,'Tale of Two Cities'],
-  [174,'The Picture of Dorian Gray'],
-  [84,'Frankenstein'],
-  [5200,'The Metamorphosis'],
-  [1080,'A Modest Proposal'],
-  [100,'Complete Shakespeare'],
-  [829,'Gullivers Travels'],
-  [1661,'Sherlock Holmes'],
-  [55,'Wizard of Oz'],
-  [3600,'Essays of Montaigne'],
-  [120,'Treasure Island'],
-  [1184,'Count of Monte Cristo']
+  [2680,"Meditations","https://raw.githubusercontent.com/GITenberg/Meditations_2680/master/2680.txt"],
+  [1322,"Leaves of Grass","https://raw.githubusercontent.com/GITenberg/Leaves-of-Grass_1322/master/1322.txt"],
+  [14209,"The Kybalion","https://raw.githubusercontent.com/GITenberg/The-KybalionA-Study-of-The-Hermetic-Philosophy-of-Ancient-Egypt-and-Greece_14209/master/14209.txt"],
+  [2500,"Siddhartha","https://raw.githubusercontent.com/GITenberg/Siddhartha_2500/master/2500.txt"],
+  [1998,"Thus Spake Zarathustra","https://raw.githubusercontent.com/GITenberg/Thus-Spake-Zarathustra--A-Book-for-All-and-None_1998/master/1998-0.txt"],
+  [2388,"Bhagavad Gita","https://raw.githubusercontent.com/GITenberg/The-Song-Celestial--Or-Bhagavad-G-t---from-the-Mah-bh-rata---13-Being-a-discourse-between-Arju__2388/master/2388.txt"],
+  [2017,"Dhammapada","https://raw.githubusercontent.com/GITenberg/Dhammapada-a-Collection-of-Verses--Being-One-of-the-Canonical-Books-of-the-Buddhists_2017/master/2017.txt"],
+  [216,"Tao Te Ching","https://raw.githubusercontent.com/GITenberg/The-Tao-Teh-King-or-the-Tao-and-its-Characteristics_216/master/216.txt"],
+  [1497,"The Republic","https://raw.githubusercontent.com/GITenberg/The-Republic_1497/master/1497.txt"],
+  [26,"Paradise Lost","https://raw.githubusercontent.com/GITenberg/Paradise-Lost_26/master/26.txt"],
+  [2701,"Moby Dick","https://raw.githubusercontent.com/GITenberg/Moby-Dick--Or-The-Whale_2701/master/2701.txt"],
+  [205,"Walden","https://raw.githubusercontent.com/GITenberg/Walden-and-On-The-Duty-Of-Civil-Disobedience_205/master/205.txt"],
+  [1727,"The Odyssey","https://raw.githubusercontent.com/GITenberg/The-Odyssey--13-Rendered-into-English-prose-for-the-use-of-those-who-cannot-read-the-original_1727/master/1727.txt"],
+  [30,"King James Bible complete","https://raw.githubusercontent.com/GITenberg/The-Bible-King-James-Version-Complete_30/master/30.txt"],
+  [4363,"Beyond Good and Evil","https://raw.githubusercontent.com/GITenberg/Beyond-Good-and-Evil_4363/master/4363.txt"],
 ];
 
 function mainBody(source) {
@@ -164,8 +149,7 @@ function mainBody(source) {
 }
 
 /** @param {number} id @param {string} name */
-async function fetchBook(id,name) {
-  const url='https://www.gutenberg.org/cache/epub/'+id+'/pg'+id+'.txt';
+async function fetchBook(id,name,url) {
   const response=await fetch(url,{signal:AbortSignal.timeout(35000)});
   if (!response.ok) throw new Error('HTTP '+response.status);
   const raw=await response.text();
@@ -187,9 +171,9 @@ async function main() {
   const pending=BOOKS.slice();
   const runners=Array.from({length:4},async()=>{
     while(pending.length){
-      const [id,name]=pending.shift();
+      const [id,name,url]=pending.shift();
       try {
-        const hit=await fetchBook(id,name);
+        const hit=await fetchBook(id,name,url);
         completed.push(hit);
         console.log('SOURCE '+JSON.stringify(hit));
       } catch(error) {
