@@ -6,7 +6,7 @@
 
 LP2 p0–2 contain 158 complete printed words when parsed with the repository's canonical parseLP2Words routine, including the two red headings (156 body words). The rune-bearing flanks around the numeric table contain 66 runes on p49 and 92 on p51, also 158. A scan of every pair of nonempty LP2 pages finds **p49+p51 is the only pair** whose rune counts sum to 158. The intervening p50 page is the 32×8, 256-byte numeric table.
 
-This makes a one-to-one relation among the p0–2 word register, the p49/p51 flank-rune stream, and the p50 table a plausible human-solver hypothesis. The 2016 signed message's words/map/numbers/direction language gives a possible conceptual prompt. A contemporaneous 2013 participant COUNT record also reports ab=158, but that record is not an authenticated creator instruction.
+This makes a one-to-one relation among the p0–2 word register, the p49/p51 flank-rune stream, and the p50 table a plausible human-solver hypothesis. The 2016 signed message's words/map/numbers/direction language gives a possible conceptual prompt. The apparent 2013 COUNT ab=158 echo is known to be unrelated: it is a participant's test of the literal phrase ab, whose GP0 value is 97+61=158, not a count of LP2 words. It supplies no independent evidence for this alignment and is not a Cicada-signed instruction.
 
 The weakest premise is the pairing itself: no first-party clue currently says to align these streams, identifies a direction/sign, or specifies how the p50 table participates. The experiment therefore freezes only the most direct source-order interpretations rather than searching arbitrary offsets or fitted transforms.
 
@@ -19,7 +19,7 @@ The weakest premise is the pairing itself: no first-party clue currently says to
 - p49 then p51, in physical order, gives a 158-rune stream. P50 contributes no rune positions.
 - The 158-pair uniqueness check uses all nonempty page entries in lp2-corpus.json.
 
-The p50 byte interpretation remains conditional: the grid resource itself distinguishes the current base60 reading from the unresolved base59 alternative. The 158 cardinality equality does not depend on that radix choice.
+The p50 byte interpretation remains conditional: the grid resource itself distinguishes the current base60 reading from the unresolved base59 alternative. The 158 cardinality equality does not depend on that radix choice, nor is it supported by the unrelated 2013 ab=158 participant test.
 
 ## Bounded tests
 
