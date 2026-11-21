@@ -218,6 +218,28 @@ for (const source of redSeeds) {
       nativeGpLanguageScore: d.score, prefix70: runeText });
   }
 }
+
+const originalP0 = corpus.pages.filter(p => p.page >= 0 && p.page <= 2)
+  .flatMap(p => p.indices);
+const sourceWindows = [];
+for (const start of [80, 166]) for (const sign of [-1, 1]) {
+  const originalWindow = originalP0.slice(start, start + 23);
+  assert.equal(originalWindow.length, 23);
+  const d = decode(originalWindow, q23, sign);
+  const syntheticWindow = plant(solvedP57.slice(0, 23), q23, sign,
+    0x33010000 + start);
+  const control = decode(syntheticWindow.cipher, q23, sign);
+  const controlHits = control.plain.filter((p, i) =>
+    p === solvedP57[i]).length;
+  sourceWindows.push({
+    start, end: start + 22, sign,
+    originalScore: d.score,
+    originalPlain23: d.plain.map(x => corpus.translit[x]).join(""),
+    solvedControlHits: controlHits,
+    solvedControlScore: control.score
+  });
+}
+
 assert.equal(positive.length, 8);
 assert.equal(originals.length, 4);
 console.log(JSON.stringify({ status: "PASS",
@@ -226,6 +248,6 @@ console.log(JSON.stringify({ status: "PASS",
   beamWidth: 128, training: "Shakespeare source-native GP29",
   testLanguage: "solved p57 and independent Gibran GP29",
   originalSourcePages: "p0-2 and p32; no original rune positions excluded",
-  positive, originals,
+  positive, originals, sourceWindows,
   conclusion: "No readable unknown LP2 plaintext for the exact Q23-periodic hidden-repeat-skip model; no authored instruction selects the model."
 }, null, 2));
