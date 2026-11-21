@@ -80,6 +80,20 @@ function gp0(word){
   }
   return n;
 }
+const signedBody=signed.slice(signed.indexOf("Hello."),signed.indexOf("-----BEGIN PGP SIGNATURE-----"));
+const words=(signedBody.match(/[A-Za-z]+/g)||[]).map(w=>w.toUpperCase()).filter(w=>w!=="SHA");
+assert.equal(words.length,43);
+const atFourChildren=words.map((word,index)=>({word,index,gp0:gp0(word)}))
+  .filter(x=>children.get(73).includes(x.gp0));
+assert.deepEqual(atFourChildren,[
+  {word:"HELLO",index:0,gp0:69},
+  {word:"LIBER",index:9,gp0:69}
+]);
+assert.equal(gp0("VERIFY"),59);
+assert.equal(T[59],69);
+assert.equal(T[69],73);
+assert.equal(sizes.get(69),32);
+assert.equal(order.indexOf(69),31);
 assert.deepEqual([gp0("THE"),gp0("DEVOTED")],[20,102]);
 assert.deepEqual([T[20],T[102]],[102,32]);
 assert(!coreSet.has(32));
@@ -152,6 +166,8 @@ console.log(JSON.stringify({
   uniqueDegreeFourNode:73,
   degreeFourChildSizes:branchSizes,
   independentSigned2016GraphPath:[20,102,32],
+  signedFirstAndLiberGP0:{HELLO:69,LIBER:69,VERIFY:59,sourceWordMatchesAtNode73:atFourChildren},
+  signedVerifyToLiberToBranch:[59,69,73],
   originalP50AtNode73:{token:originalTokens[73],base60Value:T[73]},
   sourceP32PhysicalRunes:121,
   sourceP32CompleteCoreRunes:120,
