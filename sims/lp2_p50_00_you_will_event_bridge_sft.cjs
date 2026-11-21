@@ -153,6 +153,43 @@ for (let trial = 0; trial < n; trial += 1) {
 assert.equal(globalHits, 31);
 assert.equal(chapterHits, 56);
 
+// Exact finite chapter-preserving assignment space for four original cell192
+// event runes: chapter 2, two ordered distinct events of chapter 4,
+// and chapter 6. Their fixed original sites are never reselected.
+const sourceFirst = byChapter[2].map((index) => original[index]);
+const sourceMiddle = byChapter[4].map((index) => original[index]);
+const sourceLast = byChapter[6].map((index) => original[index]);
+let assignments = 0, cycleMatches = 0, lexicalMatches = 0, jointMatches = 0;
+for (const first of sourceFirst) {
+  for (let i = 0; i < sourceMiddle.length; i += 1) {
+    for (let j = 0; j < sourceMiddle.length; j += 1) {
+      if (i === j) continue;
+      for (const last of sourceLast) {
+        const sequence = [first, sourceMiddle[i], sourceMiddle[j], last];
+        const sum = sequence.reduce((total, rune) => total + rune, 0);
+        const isCycle = sum === 36 || sum === 54;
+        const hasSignedWord = sourceWords.some(({ runes }) => {
+          for (let start = 0; start + runes.length <= 4; start += 1) {
+            if (runes.every((rune, k) => sequence[start + k] === rune)) return true;
+          }
+          return false;
+        });
+        assignments += 1;
+        if (isCycle) cycleMatches += 1;
+        if (hasSignedWord) lexicalMatches += 1;
+        if (isCycle && hasSignedWord) {
+          jointMatches += 1;
+          require("node:assert/strict").deepEqual(sequence, [26, 3, 1, 24]);
+        }
+      }
+    }
+  }
+}
+assert.equal(assignments, 11880);
+assert.equal(cycleMatches, 440);
+assert.equal(lexicalMatches, 12);
+assert.equal(jointMatches, 1);
+
 // Previously frozen source route: signed YOU -> p50[GP0(YOU)] -> p0 WILL,
 // with independently published p38 reciprocal packet and p28 DH23 state.
 // The new event channel proposes only another route to YOU; it does not
@@ -167,11 +204,41 @@ function number60(token) {
   return alphabet.indexOf(token[0]) * 60 + alphabet.indexOf(token[1]);
 }
 assert.equal(number60(tokens[30]), 141);
+
+// The COMPLETE four-rune original readout YOUA is a numerical selector:
+// GP0(YOUA)=54, the row6/col6 member of the only nontrivial
+// reciprocal low-base60 index pair across all 256 printed table cells.
+const readout = phase[192].map((index) => events[index].rune);
+const readoutGp0 = readout.reduce((sum, rune) => sum + rune, 0);
+assert.equal(readoutGp0, 54);
+assert.equal(tokens[54], "2a");
+assert.equal(tokens[36], "0s");
+/** @param {number} index @returns {number} */
+function low60(index) {
+  return alphabet.indexOf(tokens[index][1]);
+}
+const cycles = [];
+const fixed = [];
+for (let cell = 0; cell < 256; cell += 1) {
+  const next = low60(cell);
+  if (next === cell) fixed.push(cell);
+  else if (next < 256 && low60(next) === cell && cell < next) cycles.push([cell, next]);
+}
+assert.deepEqual(cycles, [[36, 54]]);
+assert.deepEqual(fixed, [6, 9]);
+assert.deepEqual([low60(54), low60(36)], [36, 54]);
+assert.ok([36, 54].every((cell) => Math.floor(cell / 8) === cell % 8));
+assert.deepEqual(phase.flatMap((indices, cell) => {
+  if (!indices.length) return [];
+  const sum = indices.reduce((total, index) => total + events[index].rune, 0);
+  return sum === 54 ? [cell] : [];
+}), [192]);
 const p0 = pages.find((page) => page.page === 0);
 const p38 = pages.find((page) => page.page === 38);
 assert.ok(p0 && p38);
 assert.deepEqual(p38.indices.slice(54, 57), [5, 12, 19]);
 const packet = p38.indices.slice(54, 57);
+assert.equal(packet.reduce((sum, rune) => sum + rune, 0), low60(readoutGp0));
 const K = 2, a = packet[1] / K, A = modPow(packet[0], a, 23);
 assert.equal(a, 6);
 assert.equal(A, 8);
@@ -192,6 +259,9 @@ console.log("original source: 12956 runes, 86 same-page equalities, 256 source c
 console.log("first source token 00: cell192 -> Y O U A (pages9,24,25,34); other 00: cell229 -> X");
 console.log("43 signed words, 31 unique >=3-rune words, five eligible phase groups");
 console.log("exact signed-word literal matches: YOU, cell192, first three events");
+console.log("full YOUA GP0=54 -> unique diagonal p50 low-digit cycle 54 -> 36 -> 54 -> p38[54..56] GP0=36");
+console.log("exact original-chapter identity assignments: " + assignments + " possibilities; "
+  + cycleMatches + " cycle, " + lexicalMatches + " signed-word, " + jointMatches + " joint");
 console.log("retrospective 50000-shuffle signed-vocabulary null: global " + globalHits
   + "/50000; chapter-preserving " + chapterHits + "/50000");
 console.log("conditional known path: YOU -> 2L -> p0[141..144] WILL -> two hops -> p0[117..121] FOUND");
