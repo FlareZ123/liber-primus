@@ -150,6 +150,83 @@ for (const weight of ["ordinal", "prime"]) {
   }
 }
 assert.ok(wordReadouts.every(x => x.ioc < 0.04));
+// A second, strictly source-driven consumer treats the five-value red
+// matrix as a 2D GF29 linear state, initialized from its printed A,B values.
+// Any state orbit has 28 pairs / 56 scalar key slots because M^28 = identity.
+/** @param {number[][]} matrixArg @returns {number[]} */
+function orbit(matrixArg) {
+  let state = [p7[2], inverse(p7[1])]; // [A,B] = [8,19]
+  const key = [];
+  for (let i = 0; i < 28; i++) {
+    key.push(...state);
+    state = [
+      mod(matrixArg[0][0] * state[0] + matrixArg[0][1] * state[1]),
+      mod(matrixArg[1][0] * state[0] + matrixArg[1][1] * state[1])
+    ];
+  }
+  assert.deepEqual(state, [p7[2], inverse(p7[1])]);
+  return key;
+}
+/**
+ * Conservative literal-F transparency inverse: any original ciphertext F
+ * may be plaintext F without consuming a key symbol; non-F plaintext
+ * always consumes one symbol. Branch where ciphertext F could be produced
+ * by a consuming non-F plaintext is also retained.
+ * @param {number[]} cipher
+ * @param {number[]} key
+ * @param {number} sign
+ * @returns {{dead:number|null, states:number}}
+ */
+function transparentFReachability(cipher, key, sign) {
+  let phases = new Set([0]);
+  for (let i = 0; i < cipher.length; i++) {
+    const next = new Set();
+    for (const phase of phases) {
+      const plain = mod(cipher[i] + sign * key[phase]);
+      if (plain !== 0) next.add((phase + 1) % key.length);
+      if (cipher[i] === 0) next.add(phase);
+    }
+    if (!next.size) return { dead: i, states: 0 };
+    phases = next;
+  }
+  return { dead: null, states: phases.size };
+}
+/**
+ * Encrypt authentic GP native plaintext under source-motivated transparent F.
+ * @param {number[]} plain @param {number[]} key @param {number} sign
+ * @returns {number[]}
+ */
+function plantTransparent(plain, key, sign) {
+  const out = [];
+  let phase = 0;
+  for (const v of plain) {
+    if (v === 0) { out.push(0); continue; }
+    out.push(mod(v - sign * key[phase]));
+    phase = (phase + 1) % key.length;
+  }
+  return out;
+}
+const matrixPadTests = [];
+for (const [name, stateMatrix] of [["matrix", matrix], ["inverse", decoder]]) {
+  const key = orbit(stateMatrix);
+  assert.equal(key.length, 56);
+  for (const sign of [-1, 1]) {
+    const positive = plantTransparent(nativePlant, key, sign);
+    assert.equal(transparentFReachability(positive, key, sign).dead, null);
+    const necessary = transparentFReachability(body, key, sign);
+    assert.ok(necessary.dead !== null && necessary.dead < p6Body.length);
+    matrixPadTests.push({
+      state: name, decryptSign: sign, firstImpossibleRune: necessary.dead
+    });
+  }
+}
+assert.deepEqual(matrixPadTests, [
+  { state: "matrix", decryptSign: -1, firstImpossibleRune: 50 },
+  { state: "matrix", decryptSign: 1, firstImpossibleRune: 17 },
+  { state: "inverse", decryptSign: -1, firstImpossibleRune: 4 },
+  { state: "inverse", decryptSign: 1, firstImpossibleRune: 9 }
+]);
+
 const report = {
   classification: "STRUCTURAL RED CHECKSUM ONLY; NO VERIFIED LP2 DECRYPTION",
   p7SourceRedProducts: p7,
@@ -163,6 +240,7 @@ const report = {
   sourceBodyIoC: Number(ioc(body).toFixed(9)),
   decodedDirect: observed,
   decodedWordSum: wordReadouts,
-  plantedNativeRunesInvertedExactly: nativePlant.length
+  plantedNativeRunesInvertedExactly: nativePlant.length,
+  matrixStatePadTransparentFTests: matrixPadTests
 };
 console.log(JSON.stringify(report, null, 2));
