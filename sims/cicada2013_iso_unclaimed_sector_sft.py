@@ -75,7 +75,7 @@ def initramfs_member(path: Path) -> dict[str, str | int | bool]:
     finally:
         iso.close()
     git_blob_sha1 = hashlib.sha1(
-        b"blob " + str(len(data)).encode("ascii") + b"\\0" + data
+        b"blob " + str(len(data)).encode("ascii") + b"\0" + data
     ).hexdigest()
     result = {
         "iso_path": "/BOOT/3301.IMG;1",
