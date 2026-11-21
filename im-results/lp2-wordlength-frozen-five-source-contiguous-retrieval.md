@@ -44,6 +44,22 @@ The eleven-word *Mabinogion* alignment is `one but the man who would fight with 
 
 The new [read-only suffix-automaton source finder](../sims/lp2_wordlength_source_crib_finder_sft.cjs) is an independent reusable cross-check and permits additional **source-motivated** books as arguments. Its three local controls (Shakespeare, Gibran, Emerson) were executed against exact source bytes and asserted at maximum 9/9/9. The original [five-register full test](../sims/lp2_original_wordlength_frozen_source_retrieval_sft.cjs), with per-chapter boundary conditioning and its planted positive, remains the stronger original statistical control. The external extension adds no plaintext or key and gives no justification for broader blind book enumeration.
 
+## Authored-era additional sources, original-cipher gate (Agent50, 21 November 2026)
+
+The same untouched **2,896 printed LP2 word lengths** have now been compared to three distinct source-motivated texts. The 2013 Crowley register is a real Cicada-era book-code source. The *Kybalion* is a historically available Hermetic candidate, and the original KJV Passion/Resurrection excerpts have a source-image motivation through the p22 reclining-body/cross motif. They remain **unproven choices for LP2 plaintext**.
+
+| Source profile | Source GP-word lengths | Unique maximal matches of at least 7 words | Longest unchanged alignment |
+| --- | ---: | ---: | ---: |
+| 2013 Crowley *Book of the Law*, chapter-bounded original code register | 5,867 | 35 | **8** |
+| *The Kybalion*, Gutenberg body with ordinary GP29 contractions | 34,419 | 81 | **8** |
+| KJV Passion/Resurrection, 618 pinned verse texts concatenated within each Gospel | 13,343 | 94 | **10** |
+
+The ten-word Gospel candidate is Mark, source word 2,180 of the selected Mark excerpt versus LP2 printed word 664 (one-based), exact length vector `[4,5,2,4,4,3,2,2,4,4]`. Its source and original rune letters are unaligned, and no decoding operation, authentic plaintext, or key follows. Keeping Gospel word order across verses is materially different from treating every verse as a hard stop; the earlier internal verse-only pilot had maximum nine.
+
+The independently normalized English sources apply `QU→CW, V→U, K→C, Z→S` and greedy `ING/TH/EO/NG/OE/AE/IA/EA/IO` contraction. Crowley uses the separately pinned 2013 GP-word-length register without re-tokenizing it. The source sections are chapters for Crowley, the accessible Gutenberg body for *Kybalion*, and individual Gospel books for the KJV. Original printed word positions are preserved across physical-page continuations; the seven-word seed method extends matches in both directions. The 20-word source-native Crowley planted control recovers at least 20 words.
+
+**Reproducer:** [read-only source-specific SFT](../sims/lp2_2013_crowley_kybalion_kjv_literal_crib_sft.cjs), Windows Node22 [PASS 44947201784](https://github.com/FlareZ123/liber-primus/actions/runs/44947201784). The previous matched-control source study already produced 9–13-word maxima across its 400 word-order shuffles, and the 108,227-word *Mabinogion* screen already produced a natural eleven-word coincidence. The new ten-word maximum therefore has no independently calibrated exceptional significance. This source-screen result closes only **verbatim continuous, unchanged-GP-word-length excerpt hypotheses** for these three pinned inputs; any source selected for a key or transformed wording remains open.
+
 ## Decision and remaining possibility
 
 Retire this *specific five-register, unchanged-word-length continuous-excerpt* source identification hypothesis. These texts could still provide a **key**, a nonliteral paraphrase, or an excerpt after transposition/resegmentation; this test has no power over those. A truly useful next source lookup must be justified by an **authored source/book reference**, preferably with an independently specified transformation or known plaintext segment. Broadening hundreds of unrelated text sources would not fix the absence of a historically selected textual source.
