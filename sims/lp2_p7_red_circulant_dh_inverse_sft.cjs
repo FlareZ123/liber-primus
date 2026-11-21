@@ -31,7 +31,7 @@ function power(x, e, modulus) {
 
 /**
  * @param {number[][]} matrix
- * @returns {{inverse:number[][],determinant:number}}
+ * @returns {{inverse:number[][]|null,determinant:number}}
  */
 function inverseGF29(matrix) {
   const n = matrix.length;
@@ -40,7 +40,7 @@ function inverseGF29(matrix) {
   let determinant = 1;
   for (let col = 0; col < n; col++) {
     const pivot = rows.findIndex((row, r) => r >= col && row[col] !== 0);
-    assert.notEqual(pivot, -1, 'source-derived circulant must be nonsingular');
+    if (pivot === -1) return { inverse: null, determinant: 0 };
     if (pivot !== col) {
       [rows[pivot], rows[col]] = [rows[col], rows[pivot]];
       determinant = mod29(-determinant);
@@ -125,6 +125,7 @@ function main() {
     Array.from({ length: 5 }, (_, k) => products[(k - i + 5) % 5]));
   const { inverse, determinant } = inverseGF29(circulant);
   assert.equal(determinant, 19);
+  assert.ok(inverse, 'actual source matrix must be nonsingular');
   assert.deepEqual(inverse[0], [23, 2, 5, 2, 19]);
   for (let i = 0; i < 5; i++) {
     for (let k = 0; k < 5; k++) {
@@ -140,6 +141,36 @@ function main() {
   assert.equal(power(dh.g, dh.b, dh.p), dh.B);
   assert.equal(power(dh.B, dh.a, dh.p), dh.K);
   assert.deepEqual(inverse[0], [dh.p, dh.K, dh.g, dh.K, dh.B]);
+
+  // Conditional specificity, NOT a historical-probability calculation.
+  // Hold the signed DH teaching field p=23 and base g=5 fixed, enumerate
+  // all 22*22 nonzero private-exponent pairs, and construct the same five
+  // reciprocal DH-state operands without seeing manuscript ciphertext.
+  let invertibleDhTuples = 0;
+  /** @type {number[][]} */
+  const inverseIdentityMatches = [];
+  for (let a = 1; a <= 22; a++) {
+    for (let b = 1; b <= 22; b++) {
+      const A = power(dh.g, a, dh.p);
+      const B = power(dh.g, b, dh.p);
+      const K = power(B, a, dh.p);
+      const state = [
+        power(A, 27, 29), power(B, 27, 29), A,
+        power(K, 27, 29), K
+      ];
+      const key = Array.from({ length: 5 }, (_, i) =>
+        Array.from({ length: 5 }, (_, k) => state[(k - i + 5) % 5]));
+      const trial = inverseGF29(key);
+      if (!trial.inverse) continue;
+      invertibleDhTuples++;
+      if (trial.inverse[0].every((value, i) =>
+        value === [dh.p, K, dh.g, K, B][i])) {
+        inverseIdentityMatches.push([a, b]);
+      }
+    }
+  }
+  assert.equal(invertibleDhTuples, 456);
+  assert.deepEqual(inverseIdentityMatches, [[6, 15]]);
 
   // The immediately following p8 is exactly 255 = 51*5 source runes.
   // Test the unmodified complete original page with no fitting.
@@ -167,6 +198,8 @@ function main() {
   console.log('Inverted first row: ' + inverse[0].join(','));
   console.log('Authenticated DH23 pattern: [p,K,g,K,B] = ' +
     [dh.p, dh.K, dh.g, dh.K, dh.B].join(','));
+  console.log('DH23 exponent-pair conditional census: ' +
+    invertibleDhTuples + '/484 nonsingular; inverse identity only at a=6,b=15.');
   console.log('p8 original 255-runic IoC: ' + indexOfCoincidence(original).toFixed(8));
   console.log('p8 standard-circulant inverse IoC: ' +
     indexOfCoincidence(decoded).toFixed(8));
