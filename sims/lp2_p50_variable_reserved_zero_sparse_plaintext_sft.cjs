@@ -52,7 +52,7 @@ const byteRead=radix=>{
 const wordSources=[
  ['Shakespeare','resources/control/shakespeare_first300k.txt'],
  ['Gibran','resources/control/gibran_prophet_58585.txt'],
- ['Emerson','resources/control/emerson_essays_394k.txt']
+ ['Emerson','resources/control/emerson_essays_2944.txt']
 ];
 const native=[];
 for(const [name,fn] of wordSources){
