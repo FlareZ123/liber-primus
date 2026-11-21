@@ -37,6 +37,8 @@ p8 is **255 runes**, comprising **12 red + 243 black**, with `243 = 3^5`. The fi
 
 The original 243-rune black body has IoC **0.03404414516**. The eight outputs range **0.032854–0.035915**, and none reads as GP English. Every original 243-rune candidate maps back to the exact source body; all eight independently recover a 243-rune native-GP plant (original p57 repeated and truncated). Earlier work already excluded numeric-step finite differences and other GF29 polynomial samples on this same 3^5 layout; the **cube-orbit evaluation points** are the incremental source-based test here.
 
+An independently source-selected axis order is **2,8,15,11,26**: start at the last printed p7 product **2**, follow cubing around the six-cycle, and omit the separately displayed p8 **M=19**. Replacing the earlier *printed* p7 word order with this deterministic cubing order yields eight further cubic-orbit Vandermonde inverses on the exact 243 black runes. Their IoCs fall **0.032616–0.035813**, none produces readable plaintext, and all forward replays and planted native texts invert exactly. No arbitrary five-axis permutation search was used.
+
 ## Bounded candidate C: combine the already published p7 quartic receiver with p8 cubing
 
 The prior original-input quartic/Shamir gate derives the exact coefficient vector **Q=[2,15,8,26,11]** by reversing the five original p7 red-word products, and proves that Q is a unit in `GF(29)[X]/(X^243-1)`. Its standalone convolution inverses were nonlinguistic. Since p8's next red word has source product **3**, and the unique Roman **XIX** selects the reciprocal cubing exponent **19**, a two-layer rather than single-layer decoder is a bounded, source-motivated remaining alternative.
