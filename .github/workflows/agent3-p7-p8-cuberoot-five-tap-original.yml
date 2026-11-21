@@ -16,3 +16,6 @@ jobs:
 
       - name: Source-derived LFSR 1876-period all-seed original gate
         run: node sims/lp2_p7_fiveproduct_lfsr1876_original_sft.cjs
+
+      - name: Historical literal-F all-secret source SFT
+        run: node sims/lp2_p7_lfsr1876_literal_f_allsecret_sft.cjs
