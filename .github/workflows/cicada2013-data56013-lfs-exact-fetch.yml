@@ -26,7 +26,7 @@ jobs:
           git -C "$work" fetch --depth=1 origin "$commit"
           git -C "$work" checkout --detach FETCH_HEAD
           git -C "$work" lfs install --local
-          git -C "$work" lfs ls-files --long "$path" | tee "${RUNNER_TEMP}/56013-lfs-pointer.txt"
+          git -C "$work" lfs ls-files --long | grep -F "$path" | tee "${RUNNER_TEMP}/56013-lfs-pointer.txt"
           git -C "$work" show "HEAD:$path" | tee "${RUNNER_TEMP}/56013-lfs-pointer-content.txt"
           grep -F "oid sha256:db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f" "${RUNNER_TEMP}/56013-lfs-pointer-content.txt"
           grep -F "size 118818811" "${RUNNER_TEMP}/56013-lfs-pointer-content.txt"
