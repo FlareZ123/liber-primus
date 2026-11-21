@@ -74,6 +74,68 @@ assert.equal(p55.length, 75);
 assert.equal(gp.pages.find(p => p.page === 57).indices.length, 95);
 const control = gp.pages.find(p => p.page === 57).indices.slice(0, 75);
 
+
+const transcript = read("resources/liber-primus/lp2-transcription.txt").split("%");
+const runeIndex = new Map(gp.runes.map((glyph, index) => [glyph, index]));
+function sourceWords(s) {
+  return s.replace(/[\/\r\n&]/g, "").split(/[-.\s§0-9$]+/g)
+    .filter(word => [...word].some(glyph => runeIndex.has(glyph)));
+}
+const printed55 = sourceWords(transcript[54]);
+assert.deepEqual(printed55.map(w => w.length),
+  [1, 4, 2, 2, 6, 6, 2, 13, 6, 4, 2, 7, 7, 2, 6, 3, 3]);
+const wordLengths = printed55.slice(1).map(w => w.length);
+assert.deepEqual(
+  [...printed55.join("")].map(glyph => runeIndex.get(glyph)),
+  physical,
+  "original published word breaks preserve every p55 source glyph"
+);
+const tokens = gp.translit.map((s, i) => ({s, i}))
+  .sort((a, b) => b.s.length - a.s.length);
+function nativeGp(original) {
+  const text = original.toUpperCase().replace(/QU/g, "CW")
+    .replace(/V/g, "U").replace(/[KQ]/g, "C").replace(/Z/g, "S");
+  const result = [];
+  for (let i = 0; i < text.length;) {
+    if (text.startsWith("ING", i)) {
+      result.push(21);
+      i += 3;
+    } else if (text.startsWith("IO", i)) {
+      result.push(27);
+      i += 2;
+    } else {
+      const token = tokens.find(t => text.startsWith(t.s, i));
+      if (!token) return [];
+      result.push(token.i);
+      i += token.s.length;
+    }
+  }
+  return result;
+}
+const english = new Set();
+for (const line of read("resources/control/english_wordfreq_textblob.txt").split(/\r?\n/)) {
+  const match = /^([a-z]+)\s+\d+$/.exec(line);
+  if (match) {
+    const indices = nativeGp(match[1]);
+    if (indices.length) english.add(indices.join(","));
+  }
+}
+assert.equal(english.size, 29060);
+const p57Words = sourceWords(transcript[56]);
+assert.equal(p57Words.length, 20);
+assert.deepEqual(
+  [...p57Words.join("")].map(glyph => runeIndex.get(glyph)),
+  gp.pages.find(p => p.page === 57).indices
+);
+const solvedPositiveCount = p57Words.filter(w =>
+  english.has([...w].map(glyph => runeIndex.get(glyph)).join(","))
+).length;
+const solvedLongPositiveCount = p57Words.filter(w =>
+  w.length >= 6 && english.has([...w].map(glyph => runeIndex.get(glyph)).join(","))
+).length;
+assert.equal(solvedPositiveCount, 16);
+assert.equal(solvedLongPositiveCount, 3);
+
 const tests = [];
 for (const order of ["rowMajor", "inwardSpiral", "reverseSpiral"]) {
   for (const keyTransform of ["raw", "totient"]) {
@@ -90,10 +152,19 @@ for (const order of ["rowMajor", "inwardSpiral", "reverseSpiral"]) {
       const plantedCipher = shift(control, mask, -sign);
       assert.deepEqual(shift(plantedCipher, mask, sign), control);
       const chunks = [out.slice(0, 25), out.slice(25, 50), out.slice(50)];
+      let cursor = 0;
+      const recoveredWords = wordLengths.map(length => {
+        const values = out.slice(cursor, cursor + length);
+        cursor += length;
+        return {length, indices: values, found: english.has(values.join(","))};
+      });
+      assert.equal(cursor, 75);
       tests.push({
         order, keyTransform, sign,
         ioc: Number(ioc(out).toFixed(9)),
         chunkIocs: chunks.map(x => Number(ioc(x).toFixed(9))),
+        lexiconMatches: recoveredWords.filter(w => w.found).length,
+        longLexiconMatches: recoveredWords.filter(w => w.found && w.length >= 6).length,
         renderedGp: out.map(x => gp.translit[x]).join(" ")
       });
     }
@@ -106,6 +177,7 @@ assert.equal(best.keyTransform, "raw");
 assert.equal(best.sign, -1);
 assert.ok(best.ioc < 0.04);
 assert.ok(tests.every(x => x.ioc < 0.04));
+assert.ok(tests.every(x => x.longLexiconMatches === 0));
 
 process.stdout.write(JSON.stringify({
   original: { p55PhysicalRunes: physical.length, p55LocalRunes: p55.length,
@@ -115,5 +187,9 @@ process.stdout.write(JSON.stringify({
     ({order, keyTransform, sign, ioc, chunkIocs})),
   best: best,
   sourceNativePositiveControls: 12,
+  sourceNativeLexiconControl: { gpTypes: english.size, solvedP57Words: 20,
+    recognizedP57Words: solvedPositiveCount,
+    recognizedP57LongWords: solvedLongPositiveCount,
+    recognizedOriginalCandidateLongWords: 0 },
   conclusion: "The exact three-25-cell alignment supplies no direct ordinary GP29 plaintext under canonical additive masks or totient masks. Every tested inverse reproduces ciphertext; this is not evidence for an intended operation."
 }, null, 2) + "\n");
