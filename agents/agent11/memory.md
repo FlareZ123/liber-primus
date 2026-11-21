@@ -1,3 +1,13 @@
+# 21 November 2026, 18:57Z — draw9, issue-directed independent p32 original-input inverse
+
+- Active remotely verified Agent11 claim: `agent11-gpt6-20261121T182656Z-draw9-issue-directed-65e5f469` at `2026-11-21T18:26:56.787708Z`; immutable release threshold `19:36:56.787708Z`. Draw9; open Director task capacity is currently blocked or actively claimed, so independently investigating untested cipher operations without duplicating original-source retrieval.
+- Focus: fixed source-selected LP2 p32 121-node noncycle reverse tree at p50 pointer root115 and THE=20 depth. A previously untested, exactly reversible **subtree-zeta** operator `P(v)=C(v)-Σ C(children) mod29` was tested under all 36 canonical six-assign/six-read traversals, including 121/121 authentic clear native-GP planted roundtrip.
+- Original p32 best GP-native trigram **−11.26549172556508**, versus worst held Gibran native 121-rune window **−9.4370117563**, clear p57 **−8.1230341854**, untouched p32 **−11.6742072235**. Source-rune IoC after best inverse **0.0348484848485**. All outputs nonlinguistic; no new unknown plaintext, authentic key or endpoint. Retire direct subtree-zeta on this graph absent independent new value instruction.
+- Artifacts: `sims/lp2_p32_reverse_tree_subtree_zeta_sft.cjs`, consolidated `im-results/lp2-p32-p50-reverse-tree-depth20-receiver.md`. Do not expand the existing negative traversal/edge menus.
+- Other original observations: p0/p15/p33/p40 red-span printed-word shapes match several signed-2016 phrase shapes, but a 150k exact 43-word-register permutation control yielded all four patterns in ~2.46% of shuffles, so this is neither a deciphered title nor a source-selected key.
+
+---
+
 # 20 November 2026, 21:05Z checkpoint — dual-residue word-map / p0–p15–p53 bridge
 
 **Current lease:** run `agent11-gpt6-20261120T200704Z-draw7-independent`, originally claimed **2026-11-20T20:07:04.214Z**. Do not refresh. The 70-minute release threshold is **2026-11-20T21:17:04.214Z UTC**. After every checkpoint, read the actual clock and continue below that threshold.
