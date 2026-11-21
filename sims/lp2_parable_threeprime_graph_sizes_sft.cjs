@@ -171,7 +171,7 @@ for (let i = 0; i < 256; i++) {
 assert.deepEqual(allEightRoots, [28,81,112,113,148,173]);
 assert.deepEqual(naturalBinaryRoots, [173]);
 assert.equal(tokens[decodedByte], "3m");
-assert.equal(value60[decodedByte], 227);
+assert.equal(value60[decodedByte], 228);
 assert.equal(value59[decodedByte], 224);
 
 // The known p56 plaintext contains PAGE exactly twice; its GP-prime sum is
