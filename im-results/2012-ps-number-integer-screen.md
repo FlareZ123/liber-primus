@@ -49,7 +49,7 @@ Using the published 2013 cookie values labelled `167` and `761` as integers and 
 
 The 2013 ISO archive lists `folly` and `wisdom` under `assets/2013/cicados/tmp/`. They are identical 3,368-byte blobs (Git blob id `62b1b949a1e4e4a346e75b1c34101000d3c53220`); the first bytes are `BF 53 C0 CC...`. The `0xBF` prefix has the shape of an old-format OpenPGP packet header (tag 15, indeterminate length), although no full packet parse is claimed.
 
-Using the reconstructed 2012 RSA private exponent, every 54-byte sliding window was tested in both byte orders (3,315 offsets × 2 = 6,630 candidates). No window decrypted to a PKCS#1 v1.5 type-2 block, and no decrypted block had a high printable-ASCII ratio. This rejects direct embedded 54-byte RSA/PKCS#1 ciphertext blocks under this key in these two files; it does not rule out a symmetric/custom packet format or another use of the files.
+Using the reconstructed 2012 RSA key, every 54-byte sliding window was tested in both byte orders (3,315 offsets × 2 = 6,630 candidates): private-exponent operations were checked for PKCS#1 v1.5 type-2 encryption blocks and high-printability plaintext; public-exponent operations were checked for PKCS#1 v1.5 type-1 signature blocks. No type-1 or type-2 block was found, and no decrypted block had a high printable-ASCII ratio. This rejects direct embedded 54-byte RSA/PKCS#1 ciphertext or signature blocks under this key in these two files; it does not rule out a symmetric/custom packet format or another use of the files. Reproduction: download either linked blob, scan all 54-byte windows in both byte orders, compute pow(c,d,N) and pow(c,e,N), and encode each result as exactly 54 big-endian bytes before checking the PKCS#1 prefixes.
 
 ### Direct GP29 key screen
 
