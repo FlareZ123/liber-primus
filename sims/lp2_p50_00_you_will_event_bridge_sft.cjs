@@ -275,6 +275,19 @@ for (let cell = 0; cell < 256; cell += 1) {
 assert.deepEqual(cycles59, [[26, 52]]);
 assert.deepEqual([low59(54), low59(36)], [36, 53]);
 assert.deepEqual([low60(54), low60(36)], [36, 54]);
+
+// One unchanged table-low-digit walk from the original first 00.
+// A two-step walk ends at source p=23; a twelve-step walk ends at
+// source GP0(YOU)=30 and printed 2L. Step counts K=2 and Ka=12 are
+// separately recovered from the p38 packet and original 06 cell.
+const follow = (initial, count) => {
+  let current = initial;
+  for (let step = 0; step < count; step += 1) current = low60(current);
+  return current;
+};
+assert.equal(follow(192, 2), 23);
+assert.equal(follow(192, 12), 30);
+assert.equal(tokens[follow(192, 12)], "2L");
 assert.ok([36, 54].every((cell) => Math.floor(cell / 8) === cell % 8));
 assert.deepEqual(phase.flatMap((indices, cell) => {
   if (!indices.length) return [];
@@ -309,6 +322,8 @@ const K = mod29(packet[1] * inverseA);
 const A = modPow(packet[0], a, 23);
 assert.equal(K, 2);
 assert.equal(tokens[6], String(K) + String(a));
+assert.equal(follow(192, K), 23);
+assert.equal(follow(192, packet[1]), 30);
 assert.equal(modPow(packet[2], a, 23), K);
 assert.equal(a, 6);
 assert.equal(A, 8);
@@ -349,6 +364,7 @@ console.log("first00 YOUA prime sum210 -> second event phase210 NG-X-O GP0=38, p
 console.log("complete original event coordinates: page38, rune offset54; literal p50[210]=06 gives DH private a=6");
 console.log("typed packet [5,12,19] derives K=2 both via GP29 12/6 and DH mod23 19^6");
 console.log("p50[210]=06 low->6; fixed point p50[6]=26 literally renders derived K2,a6");
+console.log("from root00 low-digit K=2 hops selects p23; Ka=12 hops selects p50 cell30=2L/141");
 console.log("GPprime(NGXO)=133 -> original p50[133]=2L; GP0(YOU)=30 -> original p50[30]=2L");
 console.log("first two p0[141..144] symbols: [C-Ka, C-a]=WI; literal 2L fixes remaining two L; no H KDF needed");
 console.log("base60 sole reciprocal pair [36,54] fits readout; radix59-missing-f pair [26,52] does not");
