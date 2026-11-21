@@ -40,6 +40,10 @@ The original p50 cell at address 249 is token 2c. Under base60, 2c decodes to 15
 
 This is exactly one of base60's two cycles. Under base59, the same token 2c at address249 decodes to156; the base59 graph has no 2-cycle and instead has a single fixed point at189. The exact OPENPGP address therefore discriminates the base60 reading from the base59 reading.
 
+## GP0 control on the 13-word coda: no cycle-node hit
+
+Using the same GP0 rune-index word sums as the existing 2016 core route (with source-native digraph parsing), all 13 coda word addresses enter the 11-cycle basin, but none is itself on either cycle. In particular, VERIFY and OPENPGP both enter the 11-cycle basin rather than selecting the 2-cycle. The special OPENPGP→249 observation therefore depends on GP-prime weights, not GP0 sums. Since the 11-cycle basin covers 252/256 states, the GP0 result is not surprising and does not strengthen the candidate.
+
 ## Preregistered successor-chain test: failed
 
 Before reading p50 cells 72, 24, and 153, I froze the prediction that the three source-native 2013 title word sums would chain through the table:
