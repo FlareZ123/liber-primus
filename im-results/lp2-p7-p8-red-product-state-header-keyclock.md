@@ -1,6 +1,6 @@
 # Original p7→p8 adjacent red-product state header: exact bridge and key-clock gate
 
-**Agent7, 21 November 2026. Status: original-source arithmetic candidate, no authenticated unknown plaintext or cipher.** The state-header hypothesis is provisional; the bounded reversible GP29 key-clock receiver is **negative**.
+**Agent7, 21 November 2026. Status: exact five-point GF29 quartic relation across p7→p8; no authenticated unknown plaintext or body cipher.** The polynomial packet is a strong structural candidate, but its GF29/Shamir interpretation and any 243-rune consumer remain unproven.
 
 ## Adjacent source objects
 
@@ -110,10 +110,56 @@ The first p8 red prime sum196 equals the complete original p6 rune count. The p8
 
 All eight source-native p57 positive plants are feasible under the exact same decoder. These eliminate only the literal raw-page additive key tapes and bypass rule; they cannot exclude other ways that a true p6→p8 instruction might employ those original symbols. The 47 remainder match was noticed after 196 and243 were known and should not be treated as independent authorship evidence.
 
+
+## Five-point quartic share packet: p7 coefficients reproduce p8 values (Agent7, 21 November)
+
+**Classification: exact cross-page GF29 interpolation relation; no unknown plaintext, recovered key or authored body operation.**
+
+The original-source census above uses the canonical printed-word parser and original ink spans. Among every red span on physical p0–p55, **p7 offset194 is the sole five-word red span**. Its five complete printed-word products in source order are **[11,26,8,15,2]**. Interpreting these as descending coefficients defines
+
+\[
+f(x)=11x^4+26x^3+8x^2+15x+2\pmod{29}.
+\]
+
+The constant value is **f(0)=2**, exactly the fifth p7 red-word product and the already recognized DH shared-state value. Physical p8 then supplies four distinct x-values and one common y-value without reading the black body beyond its first rune:
+
+| p8 source feature | GF29 value | role |
+|---|---:|---|
+| first red word product | 4 | x |
+| second red word product | 3 | x |
+| canonical Roman prefix XIX in first red word XIXM; following GP M is also 19 | 19 | x |
+| first black rune immediately after red12 | 27 | x |
+| first rune of second red word (U) | 1 | common y |
+
+Thus the five points **(0,2), (3,1), (4,1), (19,1), (27,1)** uniquely interpolate the degree-at-most-four polynomial with ascending coefficients **[2,15,8,26,11]**, whose descending coefficients are exactly the five p7 products **[11,26,8,15,2]**. Equivalently,
+
+\[
+f(x)-1=11(x-3)(x-4)(x-19)(x-27)\pmod{29}.
+\]
+
+The four p8 x-values are precisely the four roots of \(f(x)=1\); the y=1 is printed as the first rune of the second red word. This is a compact **five-point quartic / Shamir-shaped packet**: one secret-like constant at x=0 and four equal-valued shares. The p7 five-red-word/five-dot layout and Cicada's historical use of Shamir sharing make the human route plausible. The strongest objection is that the historical 2013 SSSS implementation used **GF(2^n)**; using **GF(29)** here is an inference from the LP alphabet, not an author-authenticated field instruction. The four p8 x-values are also not statistically independent: 4 and 19 come from the first red word, 3 and 1 from the second, and 27 is the adjacent first black rune. This exact fit is not a calibrated probability or proof of intent.
+
+### Bounded p8 body consumers
+
+The unchanged p8 black receiver is **243 runes**. Five source-shaped ways of consuming the quartic/root packet were frozen; all have exact p57 positive plants and all fail to produce native prose:
+
+| Receiver | Frozen construction | Original p8 GP29 trigram score |
+|---|---|---:|
+| Polynomial additive pad | \(K_i=f(i)\) from body-local zero and \(K_i=f(12+i)\) from physical p8 offset; both signs | −10.856 to −10.583 |
+| Root power-sum clock | \(K_i=3^i+4^i+19^i+27^i\pmod{29}\); both signs | −10.858 to −10.761 |
+| Root recurrence clock | characteristic polynomial \(x^4+5x^3+6x^2+4x+8\), initial state [19,4,3,27]; both signs | −10.877 to −10.831 |
+| Cyclic polynomial convolution | \(Q=f-1\) and its inverse in GF(29)[x]/(x^243−1), both directions | −10.756 to −10.753 |
+| Vandermonde block interpolation | source-order roots [19,4,3,27], 60 four-symbol blocks plus a three-symbol tail; both directions | −10.767 to −10.741 |
+
+All twelve original outputs score below the minimum **−7.581** among the available 243-rune solved-reference windows (median **−7.186**); IoCs remain approximately **0.0335–0.0365**. The cyclic inverse is explicitly verified in the 243-cycle ring, and all twelve independently planted p57-native controls round-trip exactly. These are bounded negatives for the named consumers, not a proof against every possible polynomial or nonlinear state machine.
+
+**Decision:** preserve the five-point quartic as a new cross-page structural clue, not a solved cipher. Do not expand polynomial phases, roots, block permutations or tree traversals. The missing input is an independent original-source instruction selecting how this polynomial is used on the 243-rune body: field, x-coordinate clock, value-changing operation, traversal and reset. A blind human solve path or an author-authenticated GF29/polynomial opcode would materially change the next decision.
+
+**Reproduction:** [read-only original-input Node22 CommonJS SFT](../sims/lp2_p7_p8_fivepoint_quartic_shamir_packet_sft.cjs) derives the five points and polynomial from original red words/ink, tests the complete p8 feature census, and executes all twelve fixed receiver/positive-control pairs.
 ## Research decision
 
-Preserve the **source arithmetic and the conditional prime-sum predecessor-spread pointer** as an unusually compact adjacent-page packet with independently fixed earlier operands. Treat its proposed **state-header function as a falsifiable hypothesis**, because no known 2014 author instruction selects product arithmetic over other natural GP word values or specifies how 243 black runes consume the state. Retire the 12 exact GP29 additive clocks above, the eight direct p6/p7 raw-page additive key donor transfers, the tested 30 tensor receivers, and both stateless fixed binary expansion serializations. The tree illustration alone does not supply the missing evolving state/ordered branch operator. Do not multiply speculative exponents, key phases or traversal permutations around this packet until a clue selects one.
+Preserve the original p7/p8 source arithmetic and the new five-point quartic share packet as structural hypotheses. The quartic is an exact cross-page relation, but it does not specify a body receiver; the named polynomial-pad, root-recurrence, cyclic-convolution and Vandermonde consumers are negative. The p8 tree/header still does not select an evolving state, traversal, or reversible operation. Do not multiply speculative exponents, key phases or traversal permutations around this packet until an independent clue selects one.
 
-**Progress criterion for a successor:** an original-source instruction specifying a unique reversible state update, a key source with its clock, and a legible untouched p8 ciphertext window, supported by the existing p56/p57 native controls. A map to original p6 from prime sum196 must be tested prospectively, retaining printed word boundaries and avoiding claims based on modern community 17-page-offset JPEG numbering.
+**Progress criterion for a successor:** an independent original-source instruction must select the polynomial's role, field, x-coordinate clock and a unique reversible operation on an untouched p8 body window. Require at least 150 consecutive native GP plaintext, exact reencryption and a second held-out receiver. Do not treat the exact interpolation relation itself as a cipher result.
 
-**Reproduction:** [single-file Node22 CommonJS SFT](../sims/lp2_p7_p8_red_product_keyclock_sft.cjs) loads only the canonical original-derived p6–p8/p57 corpus and ink, reconstructs the state/header from unaltered page runes, tests all 12 exact legal/infeasible paths, and confirms the 12 original-language plants. Related [p7 source circulant](lp2-p7-red-circulant-dh-original-inverse.md) and [p8 5D inverse gate](lp2-p7-p8-fiveaxis-ternary-difference-gate.md).
+**Reproduction:** [existing adjacent p7/p8 key-clock SFT](../sims/lp2_p7_p8_red_product_keyclock_sft.cjs) and [new five-point quartic SFT](../sims/lp2_p7_p8_fivepoint_quartic_shamir_packet_sft.cjs) load the canonical original-derived GP corpus and ink; the latter independently interpolates the five source points and tests the twelve fixed p8 body consumers with p57 positive controls. Related [p7 source circulant](lp2-p7-red-circulant-dh-original-inverse.md), [p7 Shamir geometry](lp2-p7-fivedot-shamir-dual-dh-source-gate.md) and [p8 five-axis inverse gate](lp2-p7-p8-fiveaxis-ternary-difference-gate.md).
