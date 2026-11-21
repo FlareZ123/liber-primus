@@ -1,6 +1,6 @@
 # p55 cicada-cycle clue and the p50 base59 tree: source hypothesis, not a decipherment
 
-**Agent 33 — 21 November 2026.** Classification: a new, human-solvable-path hypothesis that may select the competing base59 reading of p50; the three tested direct tree consumers below are negative. No unknown plaintext or cipher key is recovered.
+**Agent 33 — 21 November 2026.** Classification: a new, human-solvable-path hypothesis that may select the competing base59 reading of p50; the four tested direct tree/key consumers below are negative. No unknown plaintext or cipher key is recovered.
 
 ## The source-visible chain
 
@@ -14,7 +14,7 @@ The arithmetic consequence is unusually specific:
 - The 13th prime is **41**; Euler's totient is **φ(13)=12**.
 - Under base59, the p50 address graph has a single fixed point at address **189**, whose original token is **3C**. In the 59-symbol alphabet, 3C = 3×59+12 = 189; its low digit is exactly φ(13). Also 189 mod 29 = 15, GP29 symbol **S**.
 - Under the conventional base60 reading, the same directed map has cycles of lengths **11 and 2**, not a single root.
-- The base59 map has **95 leaves and 161 internal nodes**. These counts match p57's 95 runes and p55+p56's 76+85=161 runes.
+- The base59 map has **95 leaves and 161 internal nodes**. These counts match p57's 95 runes and p55+p56's 76+85=161 runes. The two partitions do **not** form a disjoint page-to-node assignment: 27 perimeter cells are leaves and 49 are internal; 68 interior cells are leaves and 112 are internal. The 76/180 geometric split and 95/161 tree split are independent count matches, not a solved mapping of each page to a node class.
 - The p50 grid is 32×8: its outer perimeter is **76** cells and its interior is **180**. These match p55's 76 runes and p56+p57's 85+95=180 runes.
 
 The base59 graph, root and null corrections are already documented in [the original p50 base59 map report](lp2-p50-base59-source-convergent-map.md). The separate GF29 parity analysis conditionally favors base60, so this biological selector is a genuine competing hypothesis, not a settled radix decision ([p50 parity report](lp2-p50-hg-single-residue-correction.md)).
@@ -28,14 +28,15 @@ I tested the following finite consumers against the **original** p55 ciphertext,
 1. **Nearest-interior-ancestor Vigenère key.** For each perimeter cell, follow parent pointers until the first interior cell and use that cell's known p56/p57 rune as the key. Test both additive signs, with and without literal-F passthrough.
 2. **Recursive parent autokey.** Starting from known interior runes, recursively decrypt each perimeter node using its parent's recovered plaintext. Test both signs, with and without literal-F passthrough.
 3. **Tree transposition.** On the same perimeter/interior assignment, read the 256 cells in root-first DFS, postorder DFS, breadth-first, and inverse-preorder order.
+4. **Direct table-value key.** For each p55 perimeter cell i, use its decoded parent address V[i] mod 29 as a one-symbol Vigenère key; test both signs, with and without literal-F passthrough.
 
 All 76 perimeter nodes reach an interior ancestor under base59; the nearest-interior path-depth histogram is {1:54, 2:16, 3:5, 4:1}. Nevertheless, none of the eight Vigenère/autokey outputs or four tree readouts yields a coherent GP29 passage. Representative original p55 word outputs from recursive subtraction are:
 
 M / NSIL / PP / GU / JNGOECAET / OEGJXUN / EA / DMEAIGEAFNOECNGJD / ...
 
-The root-first tree-transposition stream begins WAERCRMDMRXHACUEDNEIAEEACHXIEARCG...; inverse-preorder begins CUSEODUIYEAOETHEIJHNGEAITHJGSI.... These are ciphertext-like, not plaintext. The test therefore rejects these specific nearest-ancestor, parent-autokey and traversal consumers; it does not reject the source-level cicada/base59 clue or every possible tree mechanism.
+The root-first tree-transposition stream begins WAERCRMDMRXHACUEDNEIAEEACHXIEARCG...; inverse-preorder begins CUSEODUIYEAOETHEIJHNGEAITHJGSI.... These are ciphertext-like, not plaintext. A fourth direct test uses the table's direction value itself: K_i = V[i] mod 29. Both signs and both F conventions are also non-plaintext. The test therefore rejects these specific nearest-ancestor, parent-autokey, direct-parent-address and traversal consumers; it does not reject the source-level cicada/base59 clue or every possible tree mechanism.
 
-The read-only Node22 reproducer is sims/lp2_p55_cicada_base59_perimeter_tree_sft.cjs. It pins the original corpus/table inputs, asserts the 13/17 prime/totient arithmetic, root and leaf counts, perimeter/interior partition, exact key streams and all tested outputs. [Node22 run 44909393081 passed](https://github.com/FlareZ123/liber-primus/actions/runs/44909393081).
+The read-only Node22 reproducer is ../sims/lp2_p55_cicada_base59_perimeter_tree_sft.cjs. It pins the original corpus/table inputs, asserts the 13/17 prime/totient arithmetic, root and leaf counts, perimeter/interior partition, exact key streams and tree outputs. A second reproducer, ../sims/lp2_p55_base59_parent_address_key_sft.cjs, pins the crossing intersections and direct parent-address key test. [Original Node22 run 44909393081 passed](https://github.com/FlareZ123/liber-primus/actions/runs/44909393081); the second run is recorded in its CI link after execution.
 
 ## Strongest objections and decision
 
