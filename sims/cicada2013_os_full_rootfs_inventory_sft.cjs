@@ -1,9 +1,9 @@
 "use strict";
 /**
  * Read-only original 2013 Cicada OS initramfs inventory.
- * Input: directory extracted from pinned original boot/3301.img; no networking.
+ * Input: directory extracted from the byte-verified original ISO's BOOT/3301.IMG;1.
  * Usage: node sims/cicada2013_os_full_rootfs_inventory_sft.cjs DIRECTORY
- * The source archive is identified by the workflow's Git blob-SHA guard.
+ * The workflow verifies the embedded initramfs against its pinned Git blob.
  */
 const assert = require("node:assert/strict");
 const fs = require("node:fs");
@@ -24,30 +24,53 @@ function gitBlob(b) {
     .update(Buffer.from("blob " + b.length + "\0"))
     .update(b).digest("hex");
 }
+/** @param {Buffer} b @returns {string} */
+function sha256(b) {
+  return crypto.createHash("sha256").update(b).digest("hex");
+}
 /** @type {string[]} */
 const paths = [];
 /** @type {string[]} */
 const symlinks = [];
+/** @type {Array<object>} */
+const manifest = [];
 /** @param {string} rel */
 function walk(rel) {
   const full = path.join(root, rel);
-  for (const entry of fs.readdirSync(full, {withFileTypes: true}).sort((a,b)=>a.name.localeCompare(b.name))) {
+  for (const entry of fs.readdirSync(full, {withFileTypes: true})
+    .sort((a,b)=>a.name < b.name ? -1 : a.name > b.name ? 1 : 0)) {
     const next = path.posix.join(rel, entry.name);
-    if (entry.isDirectory()) walk(next);
-    else if (entry.isSymbolicLink()) symlinks.push(next);
-    else if (entry.isFile()) paths.push(next);
+    const absolute = path.join(root, next);
+    if (entry.isDirectory()) {
+      walk(next);
+    } else if (entry.isSymbolicLink()) {
+      const target = fs.readlinkSync(absolute);
+      const bytes = Buffer.from(target, "utf8");
+      symlinks.push(next);
+      manifest.push({path: next, type: "symlink", bytes: bytes.length,
+        target, sha256: sha256(bytes), git_blob_sha1: gitBlob(bytes)});
+    } else if (entry.isFile()) {
+      const bytes = fs.readFileSync(absolute);
+      paths.push(next);
+      manifest.push({path: next, type: "file", bytes: bytes.length,
+        sha256: sha256(bytes), git_blob_sha1: gitBlob(bytes)});
+    }
   }
 }
 walk("");
+manifest.sort((a,b)=>a.path < b.path ? -1 : a.path > b.path ? 1 : 0);
+assert.equal(paths.length, 737, "Unexpected regular-file count");
+assert.equal(symlinks.length, 291, "Unexpected symbolic-link count");
+
 const verified = [];
 for (const [rel, sha] of Object.entries(expected)) {
   assert.ok(paths.includes(rel), "Missing original file " + rel);
   const bytes = fs.readFileSync(path.join(root, rel));
   assert.equal(gitBlob(bytes), sha, "Original byte drift: " + rel);
   verified.push({path: rel, bytes: bytes.length, git_blob_sha1: sha,
-    sha256: crypto.createHash("sha256").update(bytes).digest("hex")});
+    sha256: sha256(bytes)});
 }
-const script = fs.readFileSync(path.join(root, "usr/local/bin/prime_echo"), "utf8");
+const script = fs.readFileSync(path.join(root,"usr/local/bin/prime_echo"),"utf8");
 const entries = [];
 for (const line of script.split(/\r?\n/)) {
   const m = line.match(/^echo(?:\s+-n)?\s+"(\d+)\s*";\s*sleep\s+([\d.]+)/);
@@ -86,15 +109,19 @@ for (const rel of paths) {
     .filter(x => /prime_echo|\/usr\/local\/bin\/cicada|@1231507051321|The key is all around you|(^|\W)1033(\W|$)|(^|\W)3301(\W|$)/.test(x.text));
   if (hits.length) sourceReferences.push({path:rel,hits:hits.slice(0,6),hit_count:hits.length});
 }
+const manifestJson = JSON.stringify(manifest);
 console.log(JSON.stringify({
-  source:"neuroretransmit/cicada@ade9a02889ef8acbc8cde8edbfd0a785c369f4c3",
+  source:"original 2013 ISO /BOOT/3301.IMG;1, byte-identical to neuroretransmit/cicada@ade9a02889ef8acbc8cde8edbfd0a785c369f4c3",
   original_initramfs_git_blob_sha1:"d4dba9a6d3c0d6ed751d71cdc484e4b7efe1ee0a",
   file_count:paths.length,
   symlink_count:symlinks.length,
+  manifest_entry_count:manifest.length,
+  manifest_sha256:sha256(Buffer.from(manifestJson,"utf8")),
+  manifest,
   custom_name_candidates:candidatePaths,
   relevant_source_references:sourceReferences,
   original_source_blobs:verified,
   prime_echo:{prime_count:entries.length,first:actual[0],last:actual[actual.length-1],
     special_delays:entries.filter(x=>x.wait!==0.05)},
-  interpretation:"Whole initramfs source inventory, fixed unmodified bytes. Filename and text matches are leads, not proof of a key or decoder."
+  interpretation:"Full sorted path/size/hash manifest from the ISO-derived rootfs. The source inventory finds no additional named puzzle decoder, key-generation program or readable LP2 instruction. No unknown LP2 plaintext or key was recovered."
 },null,2));
