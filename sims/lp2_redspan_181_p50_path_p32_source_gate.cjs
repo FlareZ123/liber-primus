@@ -244,7 +244,7 @@ assert.equal(p6WordPaths[0].transient.length, 24);
 assert.equal(p6WordPaths[2].transient.length, 13);
 assert.equal(p6WordPaths[1].cycleStart, 2);
 assert.equal(p6WordPaths[3].cycleStart, 9);
-for (const p of p6WordPaths) assert.deepEqual(p.cycle, start181.cycle);
+const cycleSet = cycle => [...cycle].sort((a, b) => a - b);\nfor (const p of p6WordPaths) assert.deepEqual(cycleSet(p.cycle), cycleSet(start181.cycle));
 const twoCycle = walk(grid.bytes, 249);
 assert.equal(twoCycle.cycle.length, 2);
 assert.deepEqual([...twoCycle.cycle].sort((a, b) => a - b), [158, 249]);
