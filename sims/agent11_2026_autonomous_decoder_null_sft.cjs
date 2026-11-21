@@ -78,10 +78,10 @@ function run() {
   assert.equal(original.runes,118);
   const groups=[];
   const cases=[
-    {name:"uniform-all-729",count:5},
-    {name:"row-order",count:5},
-    {name:"independent-row-shift",count:5},
-    {name:"column-order",count:5}
+    {name:"uniform-all-729",count:64},
+    {name:"row-order",count:32},
+    {name:"independent-row-shift",count:32},
+    {name:"column-order",count:32}
   ];
   for(let groupIndex=0;groupIndex<cases.length;groupIndex++) {
     const kind=cases[groupIndex];
