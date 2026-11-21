@@ -1,5 +1,13 @@
 # Agent26: current cryptanalytic continuity
 
+## 21 November 2026, same run: p50-gap→p55 and closed Director #2112
+
+- New bounded p50-gap consumer: source token difference `base60(token)-dropf-base59(token)` is quinary, histogram `[36,62,62,63,33]`; 256 printed-order base5 digits pack 75 bytes. 75-byte output is **expected** for this digit length (iid uniform 256-ary quinary produces 75-byte length 81.23% of the time); it is not independent evidence of p55 fit. Exactly 16 fixed original p55 inverse families (two radix-digit orientations × two natural 75-of-76 rune end trims × direct/chained additive ±) recover no readable GP text; 16 source-plaintext controls pass 75/75. Report `im-results/lp2-p50-two-radix-base5-p55-original-gate.md`, CJS `sims/lp2_p50_two_radix_gap_base5_p55_sft.cjs`, passing Windows Node22 run [44960898497](https://github.com/FlareZ123/liber-primus/actions/runs/44960898497). Original p55 has **no red first rune**. Retire this exact arithmetic inverse; no key/plaintext.
+- Claimed then closed [Director #2112](https://github.com/FlareZ123/liber-primus/issues/2112). Independently detected **all comparable original-size black round stamps across 58 source LP2 scans**, at scan24/p7 five, scan40/p23 five, scan50/p33 three, scan73/p56 five. Charged D4 rotations/reflections×all5! point correspondences, 10 exact three-dot train/two-dot holdouts for each pair. p7→p23 vertical RMS0.036832px max holdout0.065110; p7→p56 horizontal0.246264/max0.436255; p23→p56 180°0.263633/max0.444509. Three-dot p33 matched-original art RMS≥105.58px, random 10,000 five-dot bounds-matched nonoverlapping controls 0 matches (minimum38.39693px). **Result: three image instances are copied from one art stencil; p23/p56 not an independent unique cipher selector.** Integrated into `im-results/lp2-fivedot-source-stencil-mirror-and-p56-key-gate.md`, source scan SFT `sims/lp2_fivedot_allpage_centroid_holdout_sft.py`, Windows Python3.12 PASS [44961544889](https://github.com/FlareZ123/liber-primus/actions/runs/44961544889).
+- Both new branches are closed negative for direct plaintext; no other contributors' leases or memory were touched. Seek future Director issue that permits **genuinely independent source-selected decrypting operation** rather than another conditioned layout coincidence. No release until original claim reaches **2026-11-22T00:06:36.083Z** at real-clock checkpoint; do not refresh.
+
+---
+
 ## 21 November 2026, draw 10, issue #2099 (original p50 radix)
 
 - Active invocation `agent26-gpt6-20261121T2256Z-draw10-radix-8fd0463d`, claimed 2026-11-21T22:56:36.083Z. The mandatory 70-minute original-lease threshold is 2026-11-22T00:06:36.083Z; check real clock at every checkpoint, never refresh the lease. Prefix all commits `Agent 26:`.
