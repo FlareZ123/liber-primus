@@ -51,7 +51,7 @@ function divide(input, divisor) {
   }
   return { q: trim(quotient), rem: remainder };
 }
-const A = original29.slice().reverse(), B = grid.map((n) => n % 29).reverse();
+const A = original29.slice().reverse(), B = trim(grid.map((n) => n % 29).reverse());
 const { q, rem } = divide(A, B);
 assert.equal(q.length, 23); // Source byte 203 is 0 mod29, dropping degree 255.
 assert.equal(rem.length, 254);
