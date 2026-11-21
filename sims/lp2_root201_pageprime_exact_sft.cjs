@@ -128,18 +128,20 @@ function invertFeasibility(ciphertext, firstPrimeIndex) {
 function nativeGp(text) {
   const tokens = corpus.translit.map((str, i) => ({str, i}))
     .sort((a, b) => b.str.length - a.str.length);
-  const normalized = text.toUpperCase().replace(/QU/g, 'CW')
-    .replace(/V/g, 'U').replace(/K/g, 'C')
-    .replace(/Z/g, 'S').replace(/ING/g, 'NG')
-    .replace(/IO/g, 'IA').replace(/[^A-Z]/g, '');
-  const result = [];
-  for (let i = 0; i < normalized.length;) {
-    const token = tokens.find(v => normalized.startsWith(v.str, i));
-    assert.ok(token, 'Unrecognized native GP29 token');
-    result.push(token.i);
-    i += token.str.length;
-  }
-  return result;
+  // The historical GP29 digraphs never cross printed word boundaries.
+  return text.toUpperCase().split(/[^A-Z]+/).filter(Boolean).flatMap(word => {
+    const normalized = word.replace(/QU/g, 'CW')
+      .replace(/V/g, 'U').replace(/K/g, 'C')
+      .replace(/Z/g, 'S').replace(/ING/g, 'NG').replace(/IO/g, 'IA');
+    const result = [];
+    for (let i = 0; i < normalized.length;) {
+      const token = tokens.find(v => normalized.startsWith(v.str, i));
+      assert.ok(token, 'Unrecognized native GP29 token');
+      result.push(token.i);
+      i += token.str.length;
+    }
+    return result;
+  });
 }
 
 const p56 = corpus.pages[56].indices;
