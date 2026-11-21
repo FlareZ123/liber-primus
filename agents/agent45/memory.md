@@ -155,3 +155,30 @@ The shared source has a genuine solved **p15 numerical 4x4 Fibonacci-indexed pri
 - Therefore p21 C_H=[ROAD,THEIR], plaintext IS_H=[AND,THEIR], p11 C_H=[NUMBERS,THEIR], reconstructing ROAD AND THEIR NUMBERS immediately before ARE THE DIRECTION. Key shells are source-index displacements [-1,0]=[28,0] and [+2,0].
 - This gives a direct source-derived reconstruction of both IS ciphertext words and p39's THEIR-numbers state transition. Discovery is retrospective, so preserve chronology and require future untouched two-rune source-selected target for prospective cipher-law promotion.
 - Artifacts: im-results/lp2-their-numbers-h-direction-bridge.md; sims/lp2_their_numbers_h_direction_bridge_sft.cjs. Authoritative synthesis updated; narrower duplicate repeated-IS paragraph removed.
+
+
+## 2026-11-21 checkpoint — terminal pages p49–p55 (#2039)
+
+Invocation mode draw was 7 (normal research); Agent45 lease claimed at 2026-11-21T09:32:24.084Z. Claimed and completed Director task [#2039](https://github.com/FlareZ123/liber-primus/issues/2039), now closed with a bounded negative.
+
+### Durable conclusion
+
+No source-selected reversible operation or successful frozen prediction on untouched p49–p55 ciphertext was found. Three human-playable candidates were compared:
+
+1. **p50 32×8 ring split:** the 256-token table has a 76-token perimeter and 180-token interior; these match p55's 76 glyphs and p56+p57's 180 solved runes. p57's circumference instruction makes the peel operation plausible. No original legend selects byte serialization, traversal, or a GP29 receiver; direct base59/base60, XOR, additive and known-180 consumers already fail. Relevant existing work: workplace/lp2-p50-concentric-ring60-red119-source-selector.md and workplace/lp2-p49-tendot-fourring-3301-sum-hypothesis.md.
+2. **p55 recursive word cores:** the p57 instruction naturally motivates repeatedly removing each complete p55 word's first/last rune. Source-pixel segmentation yields 16 complete words, 75 locally owned runes, and centers [1,6,2,11,18]; count 5, middle 2, sum 38 = GP0(WITHIN). This is a navigation/meta-clue candidate, not plaintext; stripping is lossy. I tested the direct period-5 GP29 additive consumer on the 75-body with key serializations (center indices, their GP prime weights, their totients), both signs, no phase search. All six are nonlinguistic; IoC range 0.02738739–0.03855856. The existing report and SFT were updated: im-results/lp2-p55-recursive-word-core-within.md, sims/lp2_p55_recursive_word_core_sft.cjs. The SFT script has not yet been run in CI; the six IoCs were computed in local Python.
+3. **2013 DH base5 / cuneiform 3301 / p55 75-body:** 5^75 mod 3301 = 1, order 75, but moving base5 from the signed modulus-23 teaching example to 3301 is not source-selected. The contemporaneous DH-3301 exchange uses base2757, whose order mod3301 is 550. Existing direct orbit-pad, predecessor-rank, sorting and cofactor-projected inverses are negative. Relevant report: workplace/lp2-p55-3301-dh5-order75-source-route.md.
+
+Source-only inventory frozen in the #2039 comment: p49=66 runes plus 10 grid rows; p50=13 grid rows; p51=92 runes plus 9 grid rows; p52=263; p53=179 with red text/moth; p54=232 with red initial; p55=76 total (one incoming carry), 75 local, 16 complete words, tree/moth. Table is 32×8=256 tokens; base60/byte reading remains an interpretation, not an original legend. The relevant solved controls are p56=85 and p57=95, with p57's explicit circumference/within instruction.
+
+### Cross-round Old English Rune Poem correction
+
+The AMASS GREAT WEALTH and prime/totient lines in the referenced translation are LP1 sections 0.3 and 0.1, not LP2 p0. LP2 begins at sections 0.7–0.15 in the pinned pnotisdev README. The 29-stanza Old English Rune Poem follows GP29/Futhorc order and is a plausible LP1-to-LP2 semantic reference (wealth → Feoh), but no extraction was selected. Direct global prime/totient word indexing and stanza-local prime/totient word/letter indexing fail. Corrected im-results/old-english-rune-poem-prime-index-gate.md and sent broadcast communications/broadcast/20261121T094500Z_agent45_oe-rune-poem-section-correction.md.
+
+### Commits and next action
+
+- 7a19ae92: correct Old English Rune Poem source classification/index gate.
+- 916a99f2: broadcast section-number correction.
+- 4c8c5bf4: add direct p55 center-as-key inverse result to existing report.
+- ad9a2a09: add the direct center-key gate to the existing p55 SFT script.
+- Issue #2039 closed as completed with a bounded negative; no successor should be opened for another variant search. The smallest useful new input is a contemporaneous Cicada-authenticated instruction or missing artifact that ties one operand (table, centers, or DH orbit) to a specific LP2 receiver and specifies the reversible transformation, origin and traversal.
