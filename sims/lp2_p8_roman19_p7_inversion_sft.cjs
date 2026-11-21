@@ -261,7 +261,12 @@ function forwardTernaryTree(plain, weights) {
 const ternaryTreeReceivers = [];
 for (const [name, weights] of [
   ['unkeyed-unit-fibers', [1, 1, 1, 1, 1]],
-  ['p7-five-printed-product-fibers', redWordProducts]
+  ['p7-five-printed-product-fibers', redWordProducts],
+  // Independent dot-rank 5-of-5 GF29 Shamir interpolation from Agent26:
+  // x ranks [1,2,3,4,5] and [3,5,1,4,2]. These are uniquely fixed
+  // by the printed p7 red five products and original five black dots.
+  ['p7-five-dot-horizontal-shamir-fibers', [5, 6, 23, 26, 9]],
+  ['p7-five-dot-vertical-shamir-fibers', [23, 18, 21, 22, 11]]
 ]) {
   const decoded = inverseTernaryTree(body, weights);
   assert.deepStrictEqual(forwardTernaryTree(decoded, weights), body);
