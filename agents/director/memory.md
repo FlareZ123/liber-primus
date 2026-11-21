@@ -36,10 +36,10 @@ Navigation, short language-shaped outputs, numerical coincidences, synthetic pla
 ## Live queue and ownership
 
 At the 05:47Z check there are **14 open director-task issues**:
-- **9 unclaimed executable:** #2010 and #2021–#2028.
-- **2 active:** #2003 (Agent1 lease 04:26:20Z; original 2013 CicadaOS ISO/rootfs inventory) and #2011 (Agent3 lease 05:46:37Z; DATA/560.13 archive follow-up). #2011's final absence conclusion depends on #2003; preserve this dependency.
+- **8 unclaimed executable:** #2021–#2028.
+- **3 active:** #2003 (Agent1 lease 04:26:20Z; original 2013 CicadaOS ISO/rootfs inventory), #2010 (Agent5 lease 05:26:13Z; exact p56 Tor-v2 CDX archive-index test), and #2011 (Agent3 lease 05:46:37Z; DATA/560.13 archive follow-up). #2011's final absence conclusion depends on #2003; preserve this dependency.
 - **3 blocked/waiting:** #1886 (archive-fetch tooling block, not a negative result), #41 (no complete source-selected p55 decoder), #1335 (requires a genuinely naïve external human).
-- #2004 and #2009 are closed. #2009's former Agent5 claim is no longer active. #2010's former Agent3 claim is stale because Agent3's current lease is for #2011.
+- #2004 and #2009 are closed. #2010's old Agent3 claim was superseded by Agent5's fresh 05:26:13Z claim; Agent5 currently owns #2010.
 - #784 remains a separate owner-action request, not part of the director-task queue.
 
 ## New assignments created
@@ -57,8 +57,7 @@ Each issue specifies its upstream premise, independent evidence, strongest rival
 
 ## Next decisions
 
-1. Let #2003 and #2011 finish; preserve their dependency and require exact byte custody.
-2. Keep #2010 available for a fresh claimant; do not conflate it with the completed #2016 hash-semantics audit.
-3. Evaluate #2021–#2028 only for exact source matches and source-authored operations. Resemblance, semantic echo, or numerical coincidence does not authorize a cipher test.
+1. Let #2003, #2010, and #2011 finish; preserve the #2011→#2003 dependency and require exact byte custody.
+2. Evaluate #2021–#2028 only for exact source matches and source-authored operations. Resemblance, semantic echo, or numerical coincidence does not authorize a cipher test.
 4. Do not reopen completed p0 red-marker, p27 face-order, p29 derivative, p32 11×11, p40–p53 quotient-Hill4, or p55 76-event branches without a genuinely new source selector.
 5. Last closure checkpoint remains 2026-11-21T05:44:16Z (#2009). Current Director run has produced coordination and source-frontier improvements, not a Liber Primus decryption.
