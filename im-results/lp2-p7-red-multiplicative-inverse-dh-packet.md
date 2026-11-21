@@ -24,6 +24,12 @@ The independently established signed 2013 DH worked example is `p=23,g=5,a=6,b=1
 
 This is substantially more algebraically organized than the previously observed p6/p7 **equal sums across reversed word lengths**: the five p7 words admit two internal multiplicative inverse pairs and a third inverse linked to the p6 singleton.
 
+## Recovering the complete historical DH23 tuple from the red words
+
+The first runes of **odd red words 1, 3 and 5** give **p=23, g=5, a=6**. The five word products **[11,26,8,15,2]** give **b=15** (word4), **A=8** (word3), **B=26^-1=19** (word2) and **K=2** (word5). Therefore a fixed, retrospectively identified extraction from the original p7 red inscription reconstructs **(p,g,a,b,A,B,K)=(23,5,6,15,8,19,2)**, the known signed DH23 worked exchange. It satisfies **5^6 mod23=8**, **5^15 mod23=19**, and **19^6 mod23=2**, plus p7 product11=A^-1, product15=K^-1 and p6 singleton19=B. No candidate plaintext is used.
+
+The p7 full-red GP0 sum **209** also equals **11×19**, using its first red word product11 and p6's independently printed singleton19; `φ(181)=φ(209)=180` and `308=11×28` link to the original red totals and intervening rune count. Multiplicative order of11 mod29 is exactly28, and p7 word3 product8 is its inverse. These original-source numerical closures strengthen the operand hypothesis, but the **extraction rule itself was selected after viewing the data**, and direct original-cipher consumers fail. The source still does not specify a reversible receiver or key schedule.
+
 ## First-party DH-state family without choosing inverse pairing positions
 
 The independently authenticated `(A,B,K)=(8,19,2)` also fixes the six-member modular state/inverse set **S = {A,B,K,A^-1,B^-1,K^-1} = {8,19,2,11,26,15}** in GF29. This is a more conservative finite selector than choosing the exact observed p7 pair positions: count **every five-consecutive-word window** whose **all five printed-word GP29 products** lie anywhere in S, allowing repeats, any order and either member of each inverse pair. Among the **2,729** original complete-page windows, **exactly one** qualifies: the p7 red five-word run with products [11,26,8,15,2]. Its values are five different members of S (missing only B=19), and its inverse partners come from p7 itself and p6's independent singleton19.
