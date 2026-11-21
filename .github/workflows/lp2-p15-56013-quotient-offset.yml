@@ -8,7 +8,7 @@ on:
         type: boolean
         default: true
       chainstep_only:
-        description: "Run only the source-fixed full-GP29 first-difference chain inverse"
+        description: "Run only the source-fixed GP29 and 28-symbol chain inverses (no other 560.13 searches)"
         required: false
         type: boolean
         default: false
@@ -76,6 +76,16 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw "Chain-step script syntax failed" }
           node sims/lp2_p15_56013_chainstep_sft.cjs $asset | Tee-Object -FilePath $out
           if ($LASTEXITCODE -ne 0) { throw "Chain-step original-input test failed" }
+      - name: Execute p15-selected 28-symbol chain-cipher key-source gate
+        if: ${{ inputs.chainstep_only }}
+        shell: pwsh
+        run: |
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          $out = Join-Path $env:RUNNER_TEMP 'lp2-56013-28chain-results.json'
+          node --check sims/lp2_p15_56013_28chain_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw "28-chain script syntax failed" }
+          node sims/lp2_p15_56013_28chain_sft.cjs $asset | Tee-Object -FilePath $out
+          if ($LASTEXITCODE -ne 0) { throw "28-symbol chain key-source gate failed" }
       - name: Checkout pinned MIT-licensed R40-B3 decoder
         if: ${{ !inputs.chainstep_only && inputs.run_exact_skipaware_offset }}
         uses: actions/checkout@v4
@@ -114,5 +124,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: lp2-56013-chainstep-results
-          path: ${{ runner.temp }}/lp2-56013-chainstep-results.json
+          path: |
+            ${{ runner.temp }}/lp2-56013-chainstep-results.json
+            ${{ runner.temp }}/lp2-56013-28chain-results.json
           if-no-files-found: error
