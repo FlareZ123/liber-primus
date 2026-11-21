@@ -1,12 +1,14 @@
-# LP2 numeric-table glyph audit: eleven disputed readings and full-table consistency
+# LP2 numeric-table glyph audit: eleven disputed readings and 256-cell visual adjudication
 
-**Evidence class:** direct original-image character adjudication and font-wide consistency check. **No unknown LP2 plaintext, cipher key, or destination recovered.** Agent 19, 10 November 2026; independent extension by Agent 18, 11 November 2026.
+**Evidence class:** direct original-image character adjudication, font-wide consistency check, and independent full-table source read. **No unknown LP2 plaintext, cipher key, or destination recovered.** Agent 19, 10 November 2026; independent extension by Agent 18, 11 November 2026; full-table read by Agent 13, 21 November 2026.
 
 ## Decision
 
 The original 2400×3600 JPEGs `resources/liber-primus/66.jpg`, `67.jpg`, and `68.jpg` independently support **all eleven tokens already printed in** `resources/liber-primus/base60-grid.json`. The six other-value readings left open by the [Dukotah July 2026 three-witness table audit](https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/pp49_51/CAMPAIGN-VII-FINDINGS.md) are visually inconsistent with the original images. The five changed cells in the separate [pnotisdev transcription variant](https://github.com/pnotisdev/cicada3301/blob/main/work/ref/lp_master.txt), which had been called *image-audited corrections* in prior research, are also inconsistent with the same originals.
 
 The manuscript therefore supplies an adjudicated **printed token sequence** at these eleven positions. The image reading alone does not choose the numeric radix. A separately reconstructed GF(29) table polynomial favors radix 60 over radix 59 **conditional on the p39 red-triad factor being intentional**, as tested below. That algebraic relationship does not authenticate the author's numeral encoding or select a cipher receiver.
+
+A separate 21 November source-image read covered all **256 tokens / 32 rows**. Its first-pass visual transcription differed from the canonical sequence at six second-character `I/l` readings. Five are among the eleven positions already adjudicated above; the sixth, cell **90**, is `3I`, not `3l`: its original-pixel mask is exactly 7×67 pixels and identical to four independent uppercase-`I` controls. After resolving these six readings from the original glyph masks, the full sequence agrees with the existing canonical table at **256/256 cells**. **No transcription correction is required.** The 161-token inventory, 2+11 graph, and unresolved radix distinction are unchanged. Further cell-by-cell rereading should be retired absent new source evidence.
 
 ## Newly recovered 2014 participant readings (interpretation, not an author instruction)
 
@@ -62,12 +64,69 @@ The script verifies the existing source table literals at all eleven locations a
 
 The analysis addresses **only these eleven publicly disputed source tokens**. The later original-font check covers every table cell, while leaving one-off glyph labels unadjudicated. JPEG-era font rendering and the source's original rasterization are integral to the stated pixel dimensions, so applying the exact thresholds to resized or re-exported images would invalidate this measurement.
 
-## Full 256-token original-font consistency extension (11 November 2026)
+## Full 256-token original-font consistency extension (11 November 2026; independent source read 21 November 2026)
 
 The independent [font-wide original-image SFT](../sims/lp2_grid_fullfont_source_audit.py) checks the entire unchanged canonical table rather than the eleven disputed tokens alone. It extracts **512 glyphs** in **256 two-character tokens** across **32 source rows** of the original scans 66.jpg, 67.jpg, and 68.jpg. All 32 rows yield sixteen glyph masks. Scan 68.jpg row 0 requires splitting the printed 0J pair using its two distinct connected ink components because their horizontal projections overlap.
 
 Each font class is defined by its printed transcription label and first/second-character position. The test compares original-pixel shapes to independent occurrences of the same character, then to the nearest competing character at the same position, tolerating one-pixel registration. A glyph is flagged if a rival class has normalized mismatch smaller than the nearest same-character mismatch plus 0.03. Of **512** glyphs, **509** have another printed occurrence of the same character in the same position; **zero** are flagged. The only **three** singleton second-character labels without same-class controls are R (cell 23), i (cell 72), and h (cell 126). Those remain unadjudicated by this test. **Independent original-image visual inspection** of the exact three source rows supports each printed singleton: 66.jpg row 2 ends in 1R with R's diagonal leg visibly present; 66.jpg row 9 starts 2i with the lowercase i's separated dot; and 67.jpg row 5 contains 2h with a tall ascender and curved shoulder. This original-pixel reading is a separate manual judgment, not an additional score from the automatic nearest-class test.
 
+### Independent 256-cell read and six I/l crop adjudications (21 November 2026)
+
+The three local JPEGs used for this pass are byte-identical to the repository blobs: 66.jpg (651,504 bytes; Git blob `c5243ea1324cf3b72b79a41366f8d0e434ce3978`; SHA-256 `aa3f89156756edf8b796a470a14a3db96516ad2fedf1ed98ccabc1a1cddc0335`), 67.jpg (581,983 bytes; Git blob `f5abe00085811319f5183c2468ea1171d9dbfb82`; SHA-256 `bd6d4a3678fa37197bd43c58861273dc59604b5b68dfa20de1ec13f0704be776`), and 68.jpg (661,727 bytes; Git blob `701e47789abf4401d61420ff938c2b72aa03ad2c`; SHA-256 `2b9d60f62b2bc65d040f7ae1bc0960d5a44ca251d2730d049a618074a83e208b`). Each is 2400×3600 pixels. The table geometry is 10 rows on image 66 / physical p49, 13 rows on image 67 / p50, and 9 rows on image 68 / p51; every row has eight tokens.
+
+Tesseract 5.5.0 was run on the original scans with full-page `--psm 6` and 8-token row crops using `--psm 7` plus an alphanumeric whitelist. OCR was treated as a locator, not an authority: it confuses several visually similar `0/O`, `1/I`, and `I/l` glyphs. A separate visual read was frozen as 32 rows before fetching and comparing the complete canonical JSON. A short prefix of the JSON had been visible during initial repository inspection, so this is **not claimed as a preregistered blind test**; the full OCR/visual pass itself was generated from the original image pixels. The initial visual row read was:
+
+```text
+01  3N 3p 2l 36 1b 3v 26 33
+02  1W 49 2a 3g 47 04 33 3W
+03  21 3M 0F 0X 1g 2H 0x 1R
+04  1n 3l 2r 0P 2U 16 2L 2D
+05  1t 1s 3H 0d 0s 1K 2D 05
+06  1K 1O 0S 1D 3o 1l 3J 1G
+07  4D 0G 0l 0x 1Q 2p 2a 1K
+08  4E 1w 2Q 19 1k 3G 24 0p
+09  22 4F 0P 3C 3J 1D 2n 1m
+10  2i 1J 3P 2v 1s 2O 0k 1M
+11  2M 0w 3L 3D 2r 0S 1p 15
+12  3V 3e 3l 0n 3u 1O 0u 0Z
+13  3g 2U 1C 0Y 1N 3n 0W 3Q
+14  22 13 0V 3c 0E 34 0W 1t
+15  1D 2N 3H 47 0s 2p 0Z 34
+16  0g 3v 1Q 0s 0D 0K 2h 3D
+17  3L 2x 1Q 20 2n 2L 1C 2p
+18  0A 29 3r 0D 45 0k 2e 2W
+19  25 3U 1W 2r 46 2s 2X 39
+20  3p 0X 0E 1q 0q 4B 49 48
+21  3r 3b 3C 1M 1j 0l 4A 48
+22  40 3m 4E 0s 2S 1v 3T 0l
+23  3t 2B 2k 2t 2O 0e 2I 1L
+24  28 2a 0J 1L 0c 3C 2o 0X
+25  00 2Z 2d 1T 2u 1t 1j 0l
+26  1o 1E 3T 18 3E 1G 27 0L
+27  0v 2t 06 11 1A 2U 4B 1O
+28  2M 3d 2S 0x 0w 0q 0p 2V
+29  18 0q 1D 49 2O 00 1v 2t
+30  1k 3s 3G 21 3w 0W 29 2r
+31  2O 2L 0g 3Y 0M 0u 3l 3C
+32  1r 2c 2q 3o 30 0a 39 1K
+```
+
+Comparison with `resources/liber-primus/lp2-grid-256.json` gave **250/256 exact token matches** on this first visual read. All six differences are second-character `I/l` readings; there are no other token disagreements. The six crop/index results are:
+
+| Zero-based cell | Scan / physical page | One-based row, column | First visual read | Canonical / pixel result | Original-image glyph box (x, y, w, h) |
+| ---: | --- | ---: | :---: | :---: | --- |
+| 25 | 66 / p49 | 4, 2 | `3l` | `3I` | (899, 1788, 7, 67) |
+| 90 | 67 / p50 | 2, 3 | `3l` | `3I` | (1017, 810, 7, 67) |
+| 165 | 67 / p50 | 11, 6 | `0l` | `0I` | (1412, 2421, 7, 67) |
+| 175 | 67 / p50 | 12, 8 | `0l` | `0I` | (1681, 2600, 7, 67) |
+| 182 | 67 / p50 | 13, 7 | `2I` | `2l` | (1541, 2774, 7, 72) |
+| 246 | 68 / p51 | 8, 7 | `3l` | `3I` | (1566, 1884, 7, 67) |
+
+Coordinates are native original-image pixels for the second character, measured using the same source row geometry, grayscale threshold below 90, and consecutive-column segmentation as `sims/lp2_grid_fullfont_source_audit.py`. Four established uppercase-`I` controls (cells 25, 165, 175, 246) all have the exact same 7×67 mask and 469 ink pixels. The new cell **90** has that exact mask: its mismatch distance to each of the four `I` controls is **0**. The established lowercase-`l` controls (cells 2, 45, 50, 182, 199) are 7×72–73; they are not size-compatible with cell 90 under the existing audit's ±4-pixel shape gate. Cell 182 is the converse case: its 7×72 mask matches the lowercase-`l` class, not uppercase `I`.
+
+Thus the five previously adjudicated disagreements (25, 165, 175, 182, 246) are reproduced, and the only new disagreement (90) is resolved in favor of the existing `3I`. Applying these six source-grounded readings yields **256/256 agreement** with the canonical token sequence. No token, byte, JSON, or source image is changed. Since the table sequence is unchanged, its 161-token inventory, 2+11 graph, and open radix distinction are unchanged as well. No graph walk, cipher consumer, or radix search was run as part of this task.
+
+Reproduce the full-font pixel segmentation and glyph-class comparisons with `sims/lp2_grid_fullfont_source_audit.py`; its fixed row geometry, 16 glyph masks per row, and one-pixel alignment matcher are the common basis for the measurements above. The row/cell map in the table gives the exact native-image crops for every discrepancy.
 
 ### Independent p15 numeric-printing control and cross-position comparison
 
