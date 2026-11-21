@@ -139,3 +139,110 @@ const result = {
 };
 console.log(JSON.stringify(result, null, 2));
 console.log('PASS: native planted symmetric pads preserve exact original mirrored-pair invariant.');
+
+
+// Second and only other sign involution on the same source-visible 180-degree
+// pairing: antisymmetric K_i=-K_{N-1-i}, with zero centre for odd N.
+// It preserves the sum C_i+C_{N-1-i} (mod29) under an unknown additive key.
+// Compare the full 29-bin sum distribution with independently solved GP text.
+/** @param {number[]} values */
+function mirrorSumHistogram(values) {
+  const counts = Array(29).fill(0);
+  for (let i = 0; i < Math.floor(values.length / 2); i++) {
+    counts[(values[i] + values[values.length - 1 - i]) % 29]++;
+  }
+  return counts;
+}
+
+const runeCounts = Array(29).fill(0);
+for (const section of reference) {
+  for (const symbol of section.runes) runeCounts[symbol]++;
+}
+const sourceFreq = runeCounts.map(n => n / sourceLen);
+const gpNativeSumPrior = Array(29).fill(0);
+for (let a = 0; a < 29; a++) {
+  for (let b = 0; b < 29; b++) {
+    gpNativeSumPrior[(a + b) % 29] += sourceFreq[a] * sourceFreq[b];
+  }
+}
+assert.ok(gpNativeSumPrior.every(p => p > 0));
+
+/** @param {number[]} values */
+function antisymmetricEvidence(values) {
+  const counts = mirrorSumHistogram(values);
+  return counts.reduce((score, n, residue) =>
+    score + n * Math.log(29 * gpNativeSumPrior[residue]), 0);
+}
+
+/** @param {number[]} plain */
+function antisymmetricPositivePlant(plain) {
+  const cipher = plain.map((symbol, i) => {
+    const n = plain.length;
+    const fromEdge = Math.min(i, n - 1 - i);
+    const key = i === n - 1 - i ? 0 : (
+      i < n / 2 ? (7 + 11 * fromEdge) % 29
+        : (29 - (7 + 11 * fromEdge) % 29) % 29
+    );
+    return (symbol + key) % 29;
+  });
+  assert.deepEqual(mirrorSumHistogram(cipher), mirrorSumHistogram(plain));
+  return cipher;
+}
+
+const observedSumScores = pages.map(antisymmetricEvidence);
+const observedSumTotal = observedSumScores.reduce((a, b) => a + b, 0);
+const nativeSumScores = lengths.map(n => {
+  const scores = [];
+  for (const section of reference) {
+    for (let pos = 0; pos + n <= section.runes.length; pos++) {
+      scores.push(antisymmetricEvidence(section.runes.slice(pos, pos + n)));
+    }
+  }
+  return scores;
+});
+assert.deepEqual(nativeSumScores.map(x => x.length), totals);
+const sortedThird = nativeSumScores[2].slice().sort((a, b) => a - b);
+let lessOrEqual = 0;
+for (const first of nativeSumScores[0]) {
+  for (const second of nativeSumScores[1]) {
+    const threshold = observedSumTotal - first - second;
+    let lo = 0;
+    let hi = sortedThird.length;
+    while (lo < hi) {
+      const mid = (lo + hi) >>> 1;
+      if (sortedThird[mid] <= threshold) lo = mid + 1;
+      else hi = mid;
+    }
+    lessOrEqual += lo;
+  }
+}
+const sampleCombinations = totals.reduce((a, b) => a * b, 1);
+assert.equal(sampleCombinations, 2721312825);
+assert.equal(lessOrEqual, 90);
+for (const plain of plants) antisymmetricPositivePlant(plain);
+const whole729Sum = antisymmetricEvidence(pages.flat());
+const solved729SumScores = [];
+for (const section of reference) {
+  for (let pos = 0; pos + 729 <= section.runes.length; pos++) {
+    solved729SumScores.push(antisymmetricEvidence(
+      section.runes.slice(pos, pos + 729)));
+  }
+}
+assert.equal(solved729SumScores.length, 79);
+assert.ok(Math.min(...solved729SumScores) > whole729Sum);
+
+console.log(JSON.stringify({
+  secondModel: 'K[i] = -K[N-1-i], additive GP29; page-centre key is 0',
+  sourceVisiblePairing: 'original p0–p2 180-degree rotated crosses',
+  originalPageMirrorSumLogEvidence: observedSumScores,
+  originalPooledLogEvidence: observedSumTotal,
+  gpNativeReferenceSumLogEvidence: nativeSumScores.map(scores =>
+    scores.reduce((a, b) => a + b, 0) / scores.length),
+  empiricalNativeIndependentWindowLowTail: lessOrEqual / sampleCombinations,
+  controlCombinations: sampleCombinations,
+  whole729OriginalLogEvidence: whole729Sum,
+  minimumSolved729LogEvidence: Math.min(...solved729SumScores),
+  positivePlantExactMirrorSums: true,
+  conclusion: 'Negative native-GP29 evidence also for the antisymmetric reflected additive key, no recovered text.'
+}, null, 2));
+console.log('PASS: original and native-solved positive tests for both 180-degree key polarities.');
