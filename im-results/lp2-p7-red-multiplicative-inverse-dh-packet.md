@@ -79,6 +79,33 @@ The black **five dots immediately under the p7 red five-word inscription** might
 
 This strengthens the possible **DH register serialization** interpretation, and leaves the cipher-consumer question unresolved. Full exact matrices, source offsets, 484-exponent control and p8 results: [circulant source identity](lp2-p7-red-circulant-dh-original-inverse.md) · [read-only Node22 SFT](../sims/lp2_p7_red_circulant_dh_inverse_sft.cjs) · [passing updated Windows CI](https://github.com/FlareZ123/liber-primus/actions/runs/44930877683).
 
+## Original red25 Hill5 matrix and adjoining p8 (Agent24, 21 November)
+
+A direct alternative to using five derived red-word *products* as a circulant is to take the **literal** 11 red GP29 indices on p6 and 14 on p7, preserving their source order. They provide **exactly 25 symbols**, a full **5×5 matrix** in GF(29). The p7 red colophon is followed by a physical **five-dot black mark**, and the next p8 has **255 original GP29 runes**, exactly **51 blocks of five**. Thus a source-read Hill receiver can be frozen with no guessed page, key length, ciphertext offset or padding. This test was not covered by the five-product circulant test above.
+
+```text
+M = [ [24,16,14,17,19],
+      [ 6,27,15,17,14],
+      [12,23, 3,22,16],
+      [ 2,25, 5, 7,11],
+      [14,28, 6,28,19] ]
+det(M) = 12 mod29 (invertible)
+```
+
+Use all 255 original p8 rune indices in canonical order and preserve all 51 authentic printed word boundaries. No position-wise model fitting, phase, word reset, background text or second key. The four standard canonical input/output conventions correspond to direct and inverse matrix multiplication on column or row vectors.
+
+| Frozen 5-symbol inverse on original p8 | p8 GP29 IoC | Native-GP lexicon matches among 34 printed words of at least four GP runes |
+| --- | ---: | ---: |
+| Unchanged original | 0.03427513 | 0/34 |
+| `P=M*C` | 0.03501621 | **0/34** |
+| `P=M⁻¹*C` | 0.03436776 | **0/34** |
+| `P=C*M` | 0.03424425 | **0/34** |
+| `P=C*M⁻¹` | 0.03347229 | **0/34** |
+
+None is a readable GP-native passage or approaches the original clear-p57 distribution (IoC 0.06270997). The [source-locked CJS SFT](../sims/lp2_p6_p7_red25_hill5_p8_original_sft.cjs) asserts both original ink spans and unchanged transcript, matrix and determinant, all four original full-page inverses and exact forward re-encryption, and **95/95** independently clear p57 runes recovered from each of four matching synthetic encryptions. Its native GP English-control lexicon detects 8 of 12 clear p57 long words at frequency ≥5. [Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44931648470).
+
+**Cipher decision:** the perhaps most literal *red25 → 5×5 Hill → adjoining p8* mechanism is a decisive bounded negative. The arithmetic packet and five-dot motif remain original; the manuscript does not label the 25 characters a matrix or specify a different receiver/operation. This negative does not exclude another independently selected use of DH-state numbers, but gives no rationale for unmotivated matrix order, row/column phase or distant-page fitting.
+
 ## Reproduction
 
 `sims/lp2_p7_red_multiplicative_inverse_dh_sft.cjs` (Node.js22 CommonJS) regenerates the p6/p7 printed words from original scans' canonical transcriptions, checks the 2,729 five-word windows and all 15 pairings, verifies the exact DH23 values, and runs both original-cipher gates with full replay and IoC. It makes no file writes.
