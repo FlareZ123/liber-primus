@@ -66,6 +66,8 @@ assert.deepEqual(p6Red.map(word=>word.values), [
 ]);
 const p6Sums = p6Red.map(word=>word.values.reduce((a,b)=>a+b,0));
 const p7Sums = packet.map(word=>word.values.reduce((a,b)=>a+b,0));
+const p6Products = p6Red.map(word=>word.product);
+assert.deepEqual(p6Products,[13,19,14,23]);
 assert.deepEqual(p6Sums,[71,19,65,26]);
 assert.deepEqual(p7Sums,[26,65,23,42,53]);
 const products = packet.map((word) => word.product);
@@ -88,6 +90,7 @@ const matrix = products.slice(0,4);
 const certificate = products[4];
 const det = determinant(matrix);
 assert.equal(determinant(p6Sums.slice(0,4)),2);
+assert.equal(determinant(p6Products.slice(0,4)),4);
 assert.equal(determinant(p7Sums.slice(0,4)),3);
 // Authenticated prior DH state: b=15, K=2 in DH23; e=b^-1 mod22=3.
 assert.equal(mod(15*2),1);
@@ -126,7 +129,8 @@ for (let p = 0; p <= 55; p++) {
   }
 }
 // Whole-original-source charge for the cross-field DH determinant triad.
-let fourWordWindows=0, p6Det2Windows=0;
+let fourWordWindows=0, p6Det2Windows=0, p6ProductDet4Windows=0;
+let p6DoubleDetWindows=0, p6DoubleDetNonzero=0;
 let p7SumDet3Windows=0, p7ProductDet15Windows=0;
 let p7BothDetWindows=0, p7BothWithK2Windows=0;
 /** @type {{page:number,start:number,products:number[],sums:number[]}[]} */
@@ -137,7 +141,15 @@ for(let p=0;p<=55;p++) {
     fourWordWindows++;
     const s=words.slice(i,i+4).map(word =>
       word.values.reduce((sum,v)=>sum+v,0));
-    if(determinant(s)===2)p6Det2Windows++;
+    const q=words.slice(i,i+4).map(word=>word.product);
+    const s2=determinant(s)===2;
+    const q4=determinant(q)===4;
+    if(s2)p6Det2Windows++;
+    if(q4)p6ProductDet4Windows++;
+    if(s2&&q4) {
+      p6DoubleDetWindows++;
+      if(q.every(value=>value!==0))p6DoubleDetNonzero++;
+    }
   }
   for(let i=0;i+5<=words.length;i++) {
     const five=words.slice(i,i+5);
@@ -157,6 +169,9 @@ for(let p=0;p<=55;p++) {
 }
 assert.equal(fourWordWindows,2785);
 assert.equal(p6Det2Windows,106);
+assert.equal(p6ProductDet4Windows,89);
+assert.equal(p6DoubleDetWindows,3);
+assert.equal(p6DoubleDetNonzero,1);
 assert.equal(p7SumDet3Windows,95);
 assert.equal(p7ProductDet15Windows,90);
 assert.equal(p7BothDetWindows,5);
@@ -307,11 +322,12 @@ const result = {
   finalWordInverseDeterminant:certificate, inverse,
   census:{windows,certificates:certified,fixedInversePairWindows:reciprocal,joint},
   crossFieldDHDeterminants:{
-    p6FourWordSums:p6Sums,p7FiveWordSums:p7Sums,
-    p6SumDetK:2,p7SumDetExponent:3,
+    p6FourWordSums:p6Sums,p6FourWordProducts:p6Products,
+    p7FiveWordSums:p7Sums,p6SumDetK:2,p6ProductDetK2:4,p7SumDetExponent:3,
     p7ProductDetServerB:15,p7LastProductK:2,
     inverseInGF29:mod(15*2),inverseInDHGroup:(15*3)%22,
-    sourcePopulation:{fourWordWindows,p6Det2Windows,
+    sourcePopulation:{fourWordWindows,p6Det2Windows,p6ProductDet4Windows,
+      p6DoubleDetWindows,p6DoubleDetNonzero,
       fiveWordWindows:windows,p7SumDet3Windows,
       p7ProductDet15Windows,p7BothDetWindows,
       p7BothWithK2Windows,typedDeterminants}
