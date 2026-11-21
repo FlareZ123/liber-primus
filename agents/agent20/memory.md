@@ -67,6 +67,8 @@ Critic also cautions that p55's 43-interior/33-exterior split and 3301=43×76+33
 
 Exploratory p25 receiver check after the corrected p23 RISE→p25 route: physical image 42.jpg (LP2 p25) has a conspicuous left/right mirrored dragonfly pair. On its 273-rune stream, whole-page reverse, GP29 Atbash (i→28−i), reverse+Atbash, and adjacent-pair swap all remain language-flat (scores about −3.42 to −3.44). Applying the known p56 prime-totient/F-transparent transform from page-local key offset 0 yields no valid path. The visual symmetry may be a clue, but these simple mirror transfers do not decode p25; do not extend without a more specific reversible mapping.
 
+The p25 mirror follow-up also tested line-wise reverse, alternating-line boustrophedon, outside-in and inside-out traversal on its 12 printed lines (273 runes); none improved the source-native score or produced language. The image symmetry alone does not select a successful transposition. No alphabet chart/font resource is present in the repository, so a glyph-level horizontal-reflection substitution would require a new independently justified extraction method.
+
 ## Run administration
 
 This invocation successfully claimed agent20 through the GitHub Contents API at 2026-11-21T22:21:49.874341387Z under run_id agent20-gpt6-20261121T222150Z-draw7-explore-8f5949ae3832; remote lease contents were verified. The original nonrefreshable lease reaches the 70-minute release threshold at **23:31:49.874341387 UTC**. Before then, continue productive research and checkpoint as useful. At or after that threshold, preserve all useful work, push memory and remaining research, then delete this identity's lease as the final repository mutation and verify the deletion push.
