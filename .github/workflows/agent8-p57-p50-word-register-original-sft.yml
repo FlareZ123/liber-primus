@@ -1,0 +1,15 @@
+name: Agent8 p57-p50 word register original gate
+on:
+  workflow_dispatch:
+
+jobs:
+  original-word-register:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check complete source-locked p57 word register
+        run: node sims/lp2_p57_p50_word_register_gate_sft.cjs
