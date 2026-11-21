@@ -104,6 +104,12 @@ for(const mode of modes){
  assert.deepEqual(dec,planted);
  assert.deepEqual(encode(dec,201,mode),enc);
 }
+const positiveSearch=modes.map(mode=>{
+ const cipher=encode(planted,201,mode);
+ const best=topForMode(cipher,mode)[0];
+ assert.ok(best.score>=lm.p57Score-1e-10);
+ return {mode,claimedSeed:201,bestSeed:best.seed,score:best.score};
+});
 const rows=[];
 for(const page of pages){
  for(const mode of modes){
@@ -152,7 +158,7 @@ console.log(JSON.stringify({
  nativeBenchmarks:{lp1:lm.trainingScore,p57:lm.p57Score},
  bestOriginalCandidates:top,pagewiseBest:pageScores,
  finiteShuffleControls:randomControls,
- positiveInversePlants:8,
+ positiveInversePlants:8,positiveAllSeedLanguageSearch:positiveSearch,
  conclusion:"The tests are conditional on a proposed table-feedback state; a high language score is necessary for native GP English, and no source-selected state update has been established."
 },null,2));
 console.log("PASS: all 55 original pages, all 256 seeds x 8 state maps, complete positive GP29 inverses and matched shuffle controls.");
