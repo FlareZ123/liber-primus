@@ -299,6 +299,68 @@ for (const radix of [59, 60]) {
 }
 assert.equal(phiResults.length, 8);
 
+
+/* Applying the *same* source-selected 5x5 tile to p32 has a distinct
+ * source-image motivation: first-party p32 (49.jpg) is a visibly blurred
+ * version of p55's detailed central tree (72.jpg), and the printed PARABLE
+ * instructs shedding circumferences. The center of the key window is 1L.
+ * Under the debated base59 reading it is 80, and phi(80)=32 selects p32;
+ * base60 instead gives 81 and phi(81)=54, the separate tree-side-art p54.
+ * This is a conditional navigation clue, not author authentication.
+ */
+const tileCenter = tile[2][2];
+assert.equal(tileCenter, "1L");
+assert.equal(23 * 8 + 3, 187);
+assert.equal(allTokens[187], tileCenter);
+assert.equal(readToken(tileCenter, 59), 80);
+assert.equal(phi(readToken(tileCenter, 59)), 32);
+assert.equal(readToken(tileCenter, 60), 81);
+assert.equal(phi(readToken(tileCenter, 60)), 54);
+/** @param {number[][]} square @param {number[]} source */
+function matVec(square, source) {
+  assert.equal(square.length, source.length);
+  return square.map(row => mod(row.reduce((s, a, i) => s + a * source[i], 0)));
+}
+/**
+ * Correlation-form 5x5 zero-boundary 2D convolution on a row-major 11x11
+ * GP29 symbol field. The key is fixed by the source prime-ranked p50 window.
+ * @param {number[][]} kernel
+ */
+function blurMatrix(kernel) {
+  const result = Array.from({length: 121}, () => Array(121).fill(0));
+  for (let r = 0; r < 11; r++) for (let c = 0; c < 11; c++) {
+    for (let i = 0; i < 5; i++) for (let j = 0; j < 5; j++) {
+      const y = r + i - 2, x = c + j - 2;
+      if (y >= 0 && y < 11 && x >= 0 && x < 11) {
+        result[r * 11 + c][y * 11 + x] = kernel[i][j];
+      }
+    }
+  }
+  return result;
+}
+assert.equal(gp.pages[32].indices.length, 121);
+const page32Cipher = gp.pages[32].indices;
+const page32ClearPlant = Array.from({length: 121}, (_, i) => p57[i % p57.length]);
+const blurResults = [];
+for (const radix of [59, 60]) {
+  for (const values of ["raw", "phi"]) {
+    const kernel = numeralMatrix(radix, tile).map(row =>
+      row.map(x => mod(values === "phi" ? phi(x) : x)));
+    const matrix = blurMatrix(kernel);
+    const inv = invert(matrix);
+    const out = matVec(inv, page32Cipher);
+    assert.deepEqual(matVec(matrix, out), page32Cipher);
+    assert.deepEqual(matVec(inv, matVec(matrix, page32ClearPlant)), page32ClearPlant);
+    blurResults.push({
+      radix, values, normalizedIC: normalizedIC(out),
+      prefix: out.slice(0, 40).map(i => gp.translit[i]).join(""),
+    });
+  }
+}
+assert.deepEqual(blurResults.map(r => Math.round(r.normalizedIC * 1e12)), [
+  1010606060606, 1022589531680, 1074517906336, 1026584022039,
+]);
+
 console.log(JSON.stringify({
   sourcePrimeSums: clauseSums,
   originalP50PrimeRanks: ranks,
@@ -309,5 +371,7 @@ console.log(JSON.stringify({
   variants: results,
   historicalSquareChecksums: {tileSum59:3210,inner59:1032,magicTotal3301:3301,magicTotal1033:1033,center91:91,phi1033:1032,physicalWindows:allWindows.length},
   phiVariants: phiResults,
-  control: "4/4 raw and 8/8 phi original complete reencrypt and source-native 75/75 positive plants",
+  centerNavigation: {sourceToken:tileCenter, base59:80, phi59:32, base60:81, phi60:54},
+  page32BlurVariants: blurResults,
+  control: "4/4 raw and 8/8 phi p55 source replays/plants (75/75), 4/4 p32 blur replays/plants (121/121)",
 }, null, 2));
