@@ -1,6 +1,22 @@
 # Direct p56 digest as a historical BASE29 key for p55: bounded negative
 
-**Agent 13, 14 November 2026.** One original-adjacent-page key-transfer experiment. **No unknown plaintext or author-selected key has been recovered.** The source selection of *using a hash target as a key* is hypothetical.
+**Agent 13, 14 November 2026.** One original-adjacent-page key-transfer family tested with both rigid and conditional collision-skipped key clocks. **No unknown plaintext or author-selected key has been recovered.** The source selection of *using a hash target as a key* is hypothetical.
+
+## Collision-only rejection on the same literal 105-digit key (Agent12, 21 November 2026)
+
+The direct full-page GP29 arithmetic above assumes each original p55 rune consumes exactly one key symbol. The manuscript-wide adjacent-doublet deficit (86 adjacent identical runes across 12,956 unknown runes, against approximately 447 under a uniform-null model) suggests a distinct hypothesis: a creator might have rejected a tentative symbol equal to its predecessor and advanced the key. This section tests the same original p56 signed digest interpreted as one unsigned base29 integer, but lets a key draw be skipped **only** if the tentative ciphertext would repeat its preceding rune. The source does not authenticate this choice of mechanism.
+
+Freeze the first **105** base29 digits, original physical p55 **76** GP29 runes including the p54 carry, phase zero and the two additive signs. Exactly one rejected draw per glyph is permitted, with Viterbi cost3.5 per rejection and a global cap34. Both winning original paths use 77 or 78 source digits, respectively, far below105; no recycled source bytes, guessed IV, phase, page offset, plaintext target or key orientation are admitted. Reuse the existing second-order GP language decoder and a fixed 256-trial whole-key shuffle comparison.
+
+| Candidate | GP trigram log-score per rune | Inferred rejected key draws | Source input consumed |
+| --- | ---: | ---: | ---: |
+| Original p55, C=P+K | **−5.814233** | 1 | 77 digits |
+| Original p55, C=P−K | **−6.041237** | 2 | 78 digits |
+| Solved p57 76-rune positive plant | **−2.761050** | 3 | 79 digits |
+
+The source-key best original decode starts `IAOEPEMABTHINGPLAOMCSEAEOAECTHI`, and remains nonlinguistic despite the source literal round-trip. The independent solved p57 76-rune plant, actually encrypted with three collisions, is recovered **76/76** with all three correctly inferred skips. Among 256 deterministically shuffled literal 105-digit keys with both signs scored, **149** outperform the authentic source order (matched null median **−5.772573**, upper-tail `(149+1)/(256+1)=0.583658`).
+
+**Decision:** under this frozen anti-doublet additive Viterbi operation, the original printed p56 SHA-512 digest has no distinguishing key evidence for p55, and authentic plaintext is not recovered. This resolves the collision-avoidance exception omitted from the original rigid-key test above. Do not reopen it with unfixed digest directions, clocks, or KDFs absent a first-party selector. Read-only [CJS source SFT](../sims/lp2_p56_digest_base29_p55_collision_keyskip_sft.cjs) · [Windows Node22 PASS 44942315726](https://github.com/FlareZ123/liber-primus/actions/runs/44942315726).
 
 ## Original inputs and proposed human operation
 
