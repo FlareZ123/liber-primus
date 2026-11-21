@@ -44,6 +44,20 @@ The stream remains nonlinguistic and lacks a coherent message with original word
 
 This rejects only the **direct unshifted p29/G quotient→p30 C−K** construction. A different source-selected instruction could define a different use of the quotient, but the known signed navigation words alone do not do so.
 
+## Literal AND: original p29/p30 polynomial sum
+
+The signed `DIRECTION29 SEEK30 AND31` route independently selects the two neighboring original pages plus a human-facing sum operation. Instead of the previously failed derived (K=P_{29}(M)+P_{30}(M)) Hill4 operator, a simpler test adds original **high-first GF29 polynomials directly**, aligning their constant terms with 14 leading zeroes on the shorter p30 polynomial. The overlapping 263 original coefficient positions form an exact, reversible combined stream.
+
+[Precommit](../workplace/agent5-p29-p30-polynomial-and-precommit.md), commit `5f384441c88931c8f2c6a86bd6d52cf6a7651522`; [read-only SFT](../sims/lp2_p29_p30_polynomial_and_sft.cjs), commit `94f84930a8cea959c7439a2a6c31922c384f958b`.
+
+The overlap has **IoC 0.03523640902**, compared with raw p29 **0.03369434416** and p30 **0.03410443212**. The first130 GP transliteration is:
+
+```text
+CYIXIANPNXCOENGTHLXLNNGAOAECAEFDAUEAPIMEIAIHTHYLFNANGIAAPOTWWGEODEONGAERDTEAYAECNIBCRTLMSTPTHTHTTGDMHDTELYSTHDDCUEOPGFIANGTEHDLYLTWAMIOEAMEOTHNGYEAHNXCYEXLTHBL
+```
+
+The combined source remains nonprose and carries no verified original plaintext. Exact modular subtraction restores the 263 p29 overlap coefficients, while an independently encrypted native GP29 plant recovers exactly. This closes the literal unshifted coefficientwise sum as a decoder, without revisiting the previous matrix/Hill4 failure.
+
 ## Scope and successor criterion
 
 The prospective extension rejects this **one** source-motivated derivative-to-initials interpretation. It does not disprove every use of the p29 root or every historical Cicada operation. The smallest missing input is a first-party instruction specifying a **lossless** target interval, how the DH23 state and DIRECTION/WAY determine a complete receiver, and how output is serialized as GP29/plaintext. The existing signs and navigation words do not specify that information.
