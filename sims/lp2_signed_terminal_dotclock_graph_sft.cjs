@@ -94,6 +94,20 @@ assert.equal(p32Length, 121);
 assert.deepEqual(p32ScanClock,
   [49,16,121,237,32,115,247,192,0,203,68,199,47,76]);
 assert.equal(p32ScanClock.at(-1), 76);
+// Blind-to-plaintext source census: of every original page-end red13 mark,
+// only these two matching tree pages send their original scan to node76.
+const terminalRed13 = annotations.pages
+  .filter(p => p.large_punctuation?.some(([offset, dots, ink]) =>
+    offset === p.rune_count && dots === 13 && ink === 'red'))
+  .map(p => ({
+    page: p.page,
+    physicalScan: p.page + 17,
+    result: walk(p.page + 17, 13).at(-1)
+  }));
+assert.equal(terminalRed13.length, 10);
+assert.deepEqual(terminalRed13.filter(p => p.result === 76).map(p => p.page),
+  [32, 55]);
+
 assert.deepEqual(p32ScanClock.filter(v => p55ScanClock.includes(v)), [76],
   'The two source-scan thirteen-dot tree paths meet only at the endpoint');
 
@@ -166,6 +180,10 @@ console.log(JSON.stringify({
     cycleSize: 11,
     reached: route57.at(-1),
     p55SourceRuneCount: page55Length
+  },
+  thirteenDotTerminalCensus: {
+    tenOriginalRed13PageEnds: terminalRed13,
+    onlyLanding76: [32, 55]
   },
   matchingTreeHoldout: {
     page32Scan: 49,
