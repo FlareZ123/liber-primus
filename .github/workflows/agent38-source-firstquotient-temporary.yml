@@ -1,0 +1,16 @@
+name: Agent38 original p29 table first quotient gate
+on:
+  workflow_dispatch:
+jobs:
+  quotient:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact source-first quotient and original p0 READOUT receiver
+        run: |
+          node --check sims/lp2_p29_p50_euclid_first23_p0_readout_sft.cjs
+          node sims/lp2_p29_p50_euclid_first23_p0_readout_sft.cjs
