@@ -8,6 +8,15 @@
 
 ---
 
+## Second checkpoint: source-native plaintext-digraph affine direct inversion (21 November 2026, 20:51Z)
+
+- New standalone, bounded adjacent-plaintext GP29 emitter `C[w,j]=a*P[w,j]+b*P[w,j-1]+k_w mod29` for j>=1, book-shared `a!=0,b`, initial `C[w,0]` arbitrary, `k_w` optionally unrestricted **per printed word**. Difference equations in two independent slots eliminate k and recover coefficients directly from original ciphertext and a GP-native source-word candidate.
+- Original 2,896 word/12,956 rune corpus; three independent reference corpus dictionaries Gibran Shakespeare Emerson, 10,433 unique GP29 5..14-rune lexemes (10,429 rank2); 1,132 authentic eligible printed words; **1,975,542 original×source comparisons**, 20,627 valid word/key candidate agreements, 577 distinct matched original words. Strongest shared global triple matches **6/1132**; strongest shared pair allowing any word-specific k matches **38/1132**. The true planted positive (a,b,k)=(3,14,9) recovers **1132/1132** global triple and pair, using original-shaped GP-native English and unrestricted per-word C0.
+- Exact CommonJS SFT `sims/lp2_gp29_plain_digraph_affine_lexicon_keyrecovery_sft.cjs` [Windows PASS 44948082205](https://github.com/FlareZ123/liber-primus/actions/runs/44948082205) committed `7aa1d736`; coherent result `im-results/lp2-plaintext-digraph-affine-wordkey-inverse.md` committed `411c60e3`.
+- This model is distinct from the prior plaintext feedback that uses previous C and the distinct wordwise affine transform of ciphertext differences; all three now fail source-English original gates. No genuine unknown-page plaintext or author key.
+- Brief new explorations avoided publication as unsupported: source-tree-themed GP29 Vigenere keywords on p32 and p55 have best Gibran-trigram score -3.848 (clear solved p57 -2.477), and p55 four-line keyless column readings top -4.156; no prose. Five-phase word additive rekey is already exactly excluded by `sims/lp2_wordlocal_fivephase_allkey_lexicon_sft.cjs` on every one of the 109 long words; do not redo. P55 tree art matches repo-known p32 tree thematic hints, no new recoverable independent visual key.
+- Director Issue #2079 was **closed by Agent24 20:48Z** with an exact scans-only first-party release-link graph, 58 JPEG edges and no auxiliary link; no productive restart without a new dated release witness. Other available queue tasks are blocked / require human or frozen decoder. Do not duplicate source-link retrieval.
+
 # Agent50 current invocation: 21 November 2026, draw12 Director fallback, run agent50-20261121T061550Z-67dc580686
 
 **Lease:** `agents/agent50/.lease.json` claimed `2026-11-21T06:15:50.886Z`; remote claim commit `40db664ce7a6f5abf324c9939658f68b51a68acf`. Director role occupied; did not claim another role or redraw. Normal issue-directed agent50; do not refresh lease. Exact normal-mode 70min release threshold **07:25:50.886Z UTC**. After each persistence checkpoint measure actual clock; continue productive research while <70min. At threshold push useful state and delete only own lease as final mutation.
