@@ -1,6 +1,6 @@
 # The p0 13-dot marker as a 2014 square central-diagonal mask: an exact original-cipher obstruction
 
-**Agent 29, 21 November 2026. Classification:** source-visible geometric hypothesis; key-independent original-language exclusion for an entire stationary additive key class, with no unknown-page plaintext recovered. This complements the already documented red13 DH-state serializer and the independently investigated 2014 5–7–5 square / terminal 99-unit geometry. It is specifically a **p0 title receiver** test, not another p55 square-count proposal.
+**Agent 29, 21 November 2026. Classification:** source-visible geometric hypothesis; key-independent original-language exclusions for stationary and affine/quadratic position-clock additive key classes, with no unknown-page plaintext recovered. This complements the already documented red13 DH-state serializer and the independently investigated 2014 5–7–5 square / terminal 99-unit geometry. It is specifically a **p0 title receiver** test, not another p55 square-count proposal.
 
 ## Why a solver would consider this
 
@@ -87,6 +87,31 @@ For the p56-style literal-F rule, a plaintext `F` emits ciphertext `F` without c
 
 Positive source controls plant the literal English phrase `EPIPHANY SEEKS`, encrypted by the **actual original 2014 first 5×5 square's central-diagonal values modulo29** (palindromic), and the same no-key reader recovers it in both spelling registers with and without the literal-F switch. Thus the zero original result does not reflect a faulty index orientation, zero dictionary coverage, or an impossible recognizer.
 
+### Stronger necessary condition: arbitrary quadratic dot-position clock
+
+A natural way to break the stationary palindrome is to let the numeric square value contribute an unknown secret shift \`f(value)\` while a clock advances with each **physical red-dot position**. The entire family
+
+\[
+K_i=f(v_i)+a i+b i^2\pmod {29},\qquad i=0,\ldots,12,
+\]
+
+is still testable with **no source key, secret coefficients, fitted plaintext, or guess of \`f\`**. The original five-by-five band has \(v_i=v_{12-i}\). Therefore
+
+\[
+K_{12-i}-K_i=(12-2i)(a+12b)\pmod {29}.
+\]
+
+Only one unknown anti-palindromic slope \(t=a+12b\) survives. For any proposed eight-rune first word \(A\), non-bypassed positions 5 and 7 fix \(t=((C_7-A_7)-(C_5-A_5))/2\pmod{29}\); the known ciphertext and the first five runes of \(A\) then **predict all five runes** of the second word. The one-rune first F exception, when permitted, is exhaustively handled by allowing all 29 slopes. A source-value secret function can impose additional constraints, so this is a **superset** of genuine compatible plaintext.
+
+| Original p0 title test | Eight-rune first-word candidates | Five-rune second-word candidates | First words eligible with literal F | Slope cases checked with literal F | Exact 8|5 GP-English pairs |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Native GP29 | 4,325 | 3,613 | 3,871 | 4,011 | **0** |
+| Latin-letter GP29 | 4,472 | 2,940 | 4,011 | 4,151 | **0** |
+
+The all-runes-consumed tests also have **zero** matches (4,325 native and 4,472 literal-letter slope cases). The separate pinned Vulgate whole-word control still permits only the previously noted, unattested \`CERVICES MARTHA\` pairing, with slope zero; it does not produce an independent plaintext title. Eight source-native positive plants use both original 2014 five-by-five bands, nonzero \((a,b)=(5,7)\) and \((9,11)\), both orthographies, and both F conventions; **all positive plants are detected exactly**, with the predicted \(t\).
+
+This excludes a materially wider source-derived family: any secret stationary cell-value mapping **plus any arbitrary quadratic dot-position counter**, including every affine counter, for the exact pinned 8|5 English word corpus. Its limit remains important: different cell-to-rune ordering, cubic/higher clock, a plaintext language outside the controls, or a genuine stateful rule can evade the mirror relation. No Cicada-supplied clue selects any such rescue, and the quadratic class produces no recovered plaintext. [Standalone Windows Node22/CommonJS SFT](../sims/lp2_p0_dot13_affine_quadratic_clock_sft.cjs).
+
 **Independent Latin source-language control:** The separately pinned Latin Vulgate New Testament native GP29 **whole-word** corpus has **1,130 distinct eight-rune words** and **793 distinct five-rune words**. This broader language alternative admits exactly **one** formally compatible synthetic cross-word pair, native GP code `5I41A5IF JO42O`, decoding to normalized `CERUICES MARTHA` (Latin **CERVICES MARTHA**, “necks Martha”). The individual words are attested in separate contexts, but the two-word sequence occurs **zero times** in the actual pinned Vulgate text, and is not a coherent stand-alone title. Both plain all-consumed and transparent-literal-F variants produce this same single formal pairing. Its conditional additive residual on the original p0 title is the exactly symmetric `[10,19,14,2,25,14,9,14,25,2,14,19,10]`, while none of the thirteen source-square numbers reduced modulo29 matches that required shift at its physical dot cell. Thus the exception requires an additional unsourced arbitrary numeric-value-to-shift codebook. It demonstrates the finite English exclusion is **language-dependent**; the proposed operation has no authenticated Latin plaintext or key. Positive controls remain in the same test. The [extended English-plus-Latin SFT](../sims/lp2_p0_dot13_allsecret_english_wordpair_gate_sft.cjs) freezes this exact exception.
 
 **Interpretation:** The entire source-derived stationary additive palindrome-key architecture has no exact two-English-word solution in this explicit finite lexicon, without choosing either historical title candidate. This is a stronger exclusion than the two conditional crib mismatches. An out-of-dictionary/foreign plaintext, nonstandard author spelling, position-dependent state update, or a different source geometry remains possible. The original p0 title cannot be declared solved from this experiment.
@@ -97,7 +122,7 @@ Positive source controls plant the literal English phrase `EPIPHANY SEEKS`, encr
 
 The geometric match alone does not select a title decipherment. The complete pinned English corpus also provides no word-pair solution for its symmetric stationary additive key. A source-defined **position-dependent state update, an outside-in H transform, a different readout order or different text receiver** might break the palindrome; the 2014 original squares supply no instruction selecting one such operation. The previous conditional red13 DH-state serializer in [this report](lp2-p0-square-state-rise-key-serializer.md) uses distinct side-column packets and a retrospective rise grammar, so its case is **not** eliminated by this narrower argument.
 
-**Result:** the 5×5 diagonal-band shape is exact on the physical original source geometry. Both conditional title cribs and the full fixed 8|5 English word-pair census exclude its stationary additive key for the specified spelling and F conventions. Do not open arbitrary coordinate or permutation menus to rescue the model.
+**Result:** the 5×5 diagonal-band shape is exact on the physical original source geometry. Both conditional title cribs and the full fixed 8|5 English word-pair census exclude any stationary additive key and any arbitrary affine/quadratic position clock combined with a secret square-value codebook, for the specified spelling and F conventions. Do not open arbitrary coordinate or permutation menus to rescue the model.
 
 [Windows Node22 original SFT PASS, CI run 44937394995](https://github.com/FlareZ123/liber-primus/actions/runs/44937394995); the updated second-crib assertion is validated in the successor execution. A new first-party clue must independently select a nonstationary transformation before this geometric branch deserves further work.
 
