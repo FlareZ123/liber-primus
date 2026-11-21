@@ -33,16 +33,44 @@ This is a specific hypothesis, not an established author instruction. The coda/c
 
 ## Result
 
-All three outputs are non-linguistic GP streams. The script preserves the original p32 separators; compact outputs are:
+All three outputs are non-linguistic GP streams. The script preserves the original p32 separators.
 
-**Vigenère decryption**  
-`OE-HYNG-WUPBN-EOIPERYOEEFTH-RERXE / EOSTTHM-RXP.INLOAEWDCAJC-DDPEO / THA-WPPWAEEOLL-PWXBG-EEABISEOAE / A-UWEOI-EDWNYOIAEAU-MAPE-EAOEB / UBUPM-EAOE-UID-OL-NWAECTHGCO-THU / JJT-XIEAD`
+**Vigenère decryption**
+```
+OE-HYNG-WUPBN-EOIPERYOEEFTH-RERXE/
+-EOSTTHM-RXP.INLOAEWDCAJC-DDPEO/
+THA-WPPWAEEOLL-PWXBG-EEABISEOAE/
+A-UWEOI-EDWNYOIAEAU-MAPE-EAOEB/
+UBUPM-EAOE-UID-OL-NWAECTHGCO-THU/
+JJT-XIEAD.
+&
+$
+```
 
-**Vigenère forward**  
-`E-AEAOE-XUPHU-AEIGUTCROEELD-JAEFTHT / POETTHI-AENGL.GYEROWDAETEEO-MJJP / NA-WRCXOXLENG-LWXHIA-AEGPIAPPO / A-UIARB-AEMAWIAIIAEANG-JTHLX-TLE / HBURJ-GF-YIANG-RIA-NWTYNPUL-FTH / EJT-CTHGU`
+**Vigenère forward**
+```
+E-AEAOE-XUPHU-AEIGUTCROEELD-JAEFTHT/
+-POETTHI-AENGL.GYEROWDAETEEO-MJJP/
+NA-WRCXOXLENG-LWXHIA-AEGPIAPPO/
+A-UIARB-AEMAWIAIIAEANG-JTHLX-TLE/
+HBURJ-GF-YIANG-RIA-NWTYNPUL-FTH/
+EJT-CTHGU.
+&
+$
+```
 
-**Beaufort**  
-`W-NGOH-OEEATEOL-JYMTJAEOWJFIA-AEJAESJ / BXPIAI-AEST.MLNYROEGACEA-GGTB / IAC-OETTOERJYNN-TOESEOD-JUEOMXBR / C-EAOEBM-JGOELOYTHUEA-ICTJ-UWEO / EAEOEATI-UW-EAMG-YN-LOERAIADAY-IAEA / EEP-SMUG`
+**Beaufort**
+```
+W-NGOH-OEEATEOL-JYMTJAEOWJFIA-AEJAESJ/
+-BXPIAI-AEST.MLNYROEGACEA-GGTB/
+IAC-OETTOERJYNN-TOESEOD-JUEOMXBR/
+C-EAOEBM-JGOELOYTHUEA-ICTJ-UWEO/
+EAEOEATI-UW-EAMG-YN-LOERAIADAY-IAEA/
+EEP-SMUG.
+&
+$
+```
+
 
 **Decision:** reject this exact 11-cycle/mod-29/repeated-key interpretation. The calibrated p50 route remains a navigation hypothesis, but this simple reversible consumer does not decrypt its p32 receiver. Do not tune cycle phases, reverse the cycle, substitute quotient/remainder encodings, or launch another p32 key sweep without a new independent source instruction.
 
