@@ -210,6 +210,78 @@ for (const model of ['delta-root', 'root-delta']) {
 }
 assert.ok(cubeRootReceivers.every(record => record.originalIoC < 0.04));
 
+/**
+ * A bounded five-level 3-ary tree cube-root inverse, motivated by the
+ * original five p7 red words/dots, 243=3^5 black p8 runes, and visible roots.
+ * Each axis contains disjoint three-symbol fibers. No fitted parameters.
+ * @param {number[]} input
+ * @param {number} axis
+ * @param {number} weight
+ * @returns {number[]}
+ */
+function inverseTreeAxis(input, axis, weight) {
+  const step = 3 ** axis;
+  return input.map((symbol, index) => {
+    const siblingExists = Math.floor(index / step) % 3 > 0;
+    const previous = siblingExists ? input[index - step] : 0;
+    return modPow((symbol - weight * previous + 29 * 29) % 29, 19, 29);
+  });
+}
+
+/** @param {number[]} plain @param {number} axis @param {number} weight @returns {number[]} */
+function forwardTreeAxis(plain, axis, weight) {
+  const step = 3 ** axis;
+  const output = Array(plain.length);
+  for (let index = 0; index < plain.length; index++) {
+    const siblingExists = Math.floor(index / step) % 3 > 0;
+    const previous = siblingExists ? output[index - step] : 0;
+    output[index] = (modPow(plain[index], 3, 29) + weight * previous) % 29;
+  }
+  return output;
+}
+
+/** @param {number[]} cipher @param {number[]} weights @returns {number[]} */
+function inverseTernaryTree(cipher, weights) {
+  let result = cipher.slice();
+  for (let axis = 4; axis >= 0; axis--) {
+    result = inverseTreeAxis(result, axis, weights[axis]);
+  }
+  return result;
+}
+
+/** @param {number[]} plain @param {number[]} weights @returns {number[]} */
+function forwardTernaryTree(plain, weights) {
+  let result = plain.slice();
+  for (let axis = 0; axis <= 4; axis++) {
+    result = forwardTreeAxis(result, axis, weights[axis]);
+  }
+  return result;
+}
+
+const ternaryTreeReceivers = [];
+for (const [name, weights] of [
+  ['unkeyed-unit-fibers', [1, 1, 1, 1, 1]],
+  ['p7-five-printed-product-fibers', redWordProducts]
+]) {
+  const decoded = inverseTernaryTree(body, weights);
+  assert.deepStrictEqual(forwardTernaryTree(decoded, weights), body);
+  const known = Array.from({ length: 243 }, (_, index) =>
+    knownP57[index % knownP57.length]
+  );
+  assert.deepStrictEqual(
+    inverseTernaryTree(forwardTernaryTree(known, weights), weights),
+    known
+  );
+  ternaryTreeReceivers.push({
+    name,
+    weights,
+    coincidence: Number(coincidence(decoded).toFixed(9)),
+    first44Transliterated: decoded.slice(0, 44)
+      .map(index => source.translit[index]).join('')
+  });
+}
+assert.ok(ternaryTreeReceivers.every(record => record.coincidence < 0.04));
+
 console.log(JSON.stringify({
   source: 'Original LP2 p8 opening red XIXM and p7 second red product',
   p8RomanNumber: romanNumber,
@@ -223,6 +295,7 @@ console.log(JSON.stringify({
   gp29CubeInverseExponent: '19 * 3 mod 28 = 1',
   red5ProductsAndMissingRoman19CubeOrbit: cubeOrbit,
   unchangedOriginalP8Black243TwoReversibleReceivers: cubeRootReceivers,
+  unchangedOriginalP8Black243FiveLevelRootTreeReceivers: ternaryTreeReceivers,
   originalUnknownRunes: source.pages
     .filter(page => page.page < 56)
     .reduce((sum, page) => sum + page.indices.length, 0),
