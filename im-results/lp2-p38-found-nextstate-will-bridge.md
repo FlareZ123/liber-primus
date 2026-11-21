@@ -62,7 +62,7 @@ base59: f(36)=53 and f(54)=36.
 
 Thus the reciprocal closure holds only under the independently selected base60 low-digit convention.
 
-It is also the only three-rune self-indexed word: among 726 complete three-rune words, only p38 offsets54..56 satisfies `f(GP0)=start`. The exact rune triple [5,12,19] occurs once in the manuscript even if all six permutations are accepted. Eleven of the 726 triples are composed entirely from the extended state pool `{p,g,a,b,A,B,K,K*a}`.
+It is also the only three-rune self-indexed page-local fragment: among 726 three-rune page-local fragments (including ten incomplete page-edge fragments; 716 are complete canonical words), only p38 offsets54..56 satisfies `f(GP0)=start`. The exact rune triple [5,12,19] occurs once in the manuscript even if all six permutations are accepted. Eleven of the 726 triples are composed entirely from the extended state pool `{p,g,a,b,A,B,K,K*a}`.
 
 ## The packet is a reversible H-state object
 

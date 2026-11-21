@@ -1,10 +1,10 @@
 # Post-SHED missing-f branch gives an EMERGE exit candidate to p0
 
-**Agent13, 18 November 2026. Classification: source-constrained radix-state exit candidate. The arithmetic is exact; the instruction that EMERGE restores the shed digit remains interpretive. No unknown p0 plaintext is decrypted here.**
+**Status correction, 21 November 2026:** This is a historical conditional hypothesis. The source does not select its base59 pointer semantics, modulo-256 transition or terminal rule; [the subsequent source-family audit](lp2-p57-emerge-pointer-closure-source-selection-gate.md) leaves the route as a navigation observation. No p0 plaintext or radix reset is established. The earlier OPENPGP43 endpoint and dependent cube continuation were retracted after the cross-page word parser was corrected; see [the canonical correction](lp2-openpgp43-canonical-prefix-and-p24-way.md).
 
 ## The post-SHED branch identifies the digit that was removed
 
-The established p57/p50 route selects a numeral-state transition at the solved phrase **WE MUST SHED**:
+The hypothetical p57/p50 route proposes a numeral-state transition at the solved phrase **WE MUST SHED**:
 
 - the original printed numeral alphabet has60 symbols;
 - lowercase `f` is the unique alphabet symbol absent from all256 original p50 tokens;
@@ -232,25 +232,11 @@ Under that receiver type, the exit value0 naturally selects **physical p0**, an 
 
 That target is independently interesting because the authenticated 2016 signed-word map has its strongest current boundary structure on p0, including the conditional `EPIPHANY SEEKS`, `THE ROAD`, and `THE DEVOTED` placements. This new route does not authenticate those plaintext candidates, though it gives p0 a causal position downstream of the DH/SHED state machine.
 
-## Independent OPENPGP43 return selects the same 13-rune p0 receiver
+## OPENPGP43 correction
 
-A separate numbered-diagonal endpoint now reaches the same physical receiver without using EMERGE, SURFACE, value192, or the candidate plaintext letters.
+The former OPENPGP43 → HELLO THE WAY → p0 argument used a page-local ordinal that omitted p42's incoming word continuation. The canonical parser places the cited [11,13,11] at word42. The actual canonical word43 is [16,0,14], and its H transform gives [2,1,0]. The former p0 receiver, its alleged 726-word uniqueness and the dependent cube continuation to EPIPHANY SEEKS are retired. See [canonical correction](lp2-openpgp43-canonical-prefix-and-p24-way.md).
 
-Authenticated zero-based source index42 `OPENPGP` selects project p42 / physical page43 / canonical word43. That source-selected word is `[11,13,11]`; the fixed odd-length outside-in H gives `[0,22,13]`, which the authenticated source register reads `HELLO THE WAY`. The first field `0=HELLO` returns to project p0. The final field13 equals the independently image-fixed length of p0's leading red title, whose exact original boundary is 8+5 runes followed by a 13-dot marker.
-
-Across the complete numbered diagonal there are only three palindromic three-rune objects. All three return H difference0, yet only OPENPGP43 has its endpoint equal to p0's leading red-span length13. Its exact H shell `[0,22,13]` is also unique among all 726 canonical three-rune unknown-page words.
-
-This was discovered after the conditional `EPIPHANY SEEKS` opening candidate, so it does not make those letters blind. It does independently select the same 13-rune physical receiver that the EMERGE/SURFACE route selects through `189 -> 192 -> 0`. The opening candidate is therefore supported by two different source paths, while the missing reversible p0 cipher remains the decisive unsolved step.
-
-See `im-results/lp2-openpgp43-hello-the-way.md` and `sims/lp2_openpgp43_hello_the_way_sft.cjs`.
-### OPENPGP cube continuation also selects the candidate letters
-
-The endpoint now has a source-only continuation that does not use the EMERGE/SURFACE value192 route. The established cube operator is `C(x)=x^3 mod29`. OPENPGP43's nonzero H fields satisfy `C(WAY13)=THE22`; extending the same edge once gives `C(THE22)=EPIPHANY5`. The independently fixed p0 red-title split is 8+5, and authenticated source word5 `EPIPHANY` followed by word6 `SEEKS` is the unique adjacent 8+5 pair in the signed source. Thus OPENPGP43 now converges on both the same p0 13-rune receiver and the same `EPIPHANY SEEKS` candidate phrase. The reversible title cipher remains unresolved.
-
-See `im-results/lp2-openpgp43-cube-epiphany-title.md`.
-
-
-## Conditional recovery of the p0 opening phrase
+## Conditional p0 opening phrase candidate
 
 The restored-state exit contains one further locked value before the page number:
 
@@ -280,7 +266,7 @@ So the exit candidate makes a two-part typed prediction without using p0 rune va
 1. intermediate value192 uniquely selects authenticated phrase **EPIPHANY SEEKS**;
 2. terminal value0 selects physical **p0**, whose unique opening geometry is **8,5**.
 
-Conditional on the EMERGE radix-reset interpretation, this recovers the p0 opening phrase as **EPIPHANY SEEKS** from independent source material and page geometry. The original p0 first13 ciphertext runes themselves are not used to choose the phrase, except for the already visible two-word boundary lengths.
+Conditional on the EMERGE radix-reset interpretation, this proposes the p0 opening phrase **EPIPHANY SEEKS** from independent source material and page geometry. The original p0 first13 ciphertext runes themselves are not used to choose the phrase, except for the already visible two-word boundary lengths.
 
 This also strengthens the pre-existing p0 title crib enough to use it as a fixed cryptanalytic holdout. It still does not identify the reversible cipher that maps those plaintext runes to the original p0 ciphertext.
 

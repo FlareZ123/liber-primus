@@ -125,7 +125,7 @@ Subtracting from the adjacent three-rune receiver gives:
 = WAY.
 ```
 
-As a receiver-specificity control, applying this fixed key to all **726** complete unknown three-rune words and scoring against the distinct authenticated three-GP-rune words yields exactly one hit, at p0 word28, **WAY**.
+As a receiver-specificity control, applying this fixed key to all **726** page-local unknown three-rune fragments and scoring against the distinct authenticated three-GP-rune words yields exactly one hit, at p0 word28, **WAY**. The page-local count includes ten incomplete page-edge fragments; the canonical cross-page parser contains 716 complete three-rune words.
 
 This is meaningful corroboration, but the **order and assembly** `[B,p+e,K]` were recognized after WAY was already the source-predicted target. The current evidence therefore supports WAY as a strong candidate, while the missing promotion gate is an independent source rule selecting that key tuple.
 

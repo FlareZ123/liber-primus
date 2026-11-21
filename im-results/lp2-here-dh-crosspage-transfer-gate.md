@@ -146,10 +146,12 @@ This is an exact necessary-condition exclusion. It requires no English score, ta
 
 ## Fixed-key manuscript specificity
 
-Each local descriptor remains highly specific when frozen after discovery and scanned across all complete unknown-page words of its length against the authenticated 2016 vocabulary:
+Each local descriptor remains highly specific when frozen after discovery and scanned across page-local unknown-page fragments of its length against the authenticated 2016 vocabulary:
+
+The 726 page-local fragments include ten incomplete page-edge fragments; canonical cross-page parsing yields 716 complete three-rune words. The original page-local test result is unchanged.
 
 ```text
-AND   key: 726 three-rune words tested -> one authenticated hit, p0 start189 -> AND
+AND   key: 726 page-local three-rune fragments tested -> one authenticated hit, p0 start189 -> AND
 THEIR key: 514 four-rune words tested  -> one authenticated hit, p0 start192 -> THEIR
 GOOD  key: 514 four-rune words tested  -> one authenticated hit, p2 start36  -> GOOD
 FOUND key: 318 five-rune words tested  -> one authenticated hit, p38 start49 -> FOUND

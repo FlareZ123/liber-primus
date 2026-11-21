@@ -277,3 +277,40 @@ console.log(JSON.stringify({
   distinctSuccessfulOffsets: youOffsets.size,
   probabilityAtLeastOne: youOffsets.size / 29 ** 3,
 }, null, 2));
+
+// Earlier page-local scans flush at each page edge, creating ten incomplete
+// three-rune fragments. Compare exact physical page and rune offsets.
+const pageLocalTriples = [];
+for (let segment = 0; segment < unknownSegments.length; segment += 1) {
+  const page = segment >= 50 ? segment + 1 : segment;
+  let current = [];
+  let offset = 0;
+  let start = 0;
+  /** Flush the current legacy page-local fragment. */
+  const flush = () => {
+    if (current.length === 3) pageLocalTriples.push({page, start});
+    current = [];
+  };
+  for (const char of [...unknownSegments[segment]]) {
+    const value = runeIndex.get(char);
+    if (value !== undefined) {
+      if (!current.length) start = offset;
+      current.push(value);
+      offset += 1;
+    } else if (char === "-" || char === ".") {
+      flush();
+    }
+  }
+  flush();
+}
+const completePositions = new Set(words.map(word => word.page + ":" + word.start));
+const incomplete = pageLocalTriples.filter(word =>
+  !completePositions.has(word.page + ":" + word.start)
+);
+assert.equal(pageLocalTriples.length, 726);
+assert.deepEqual(incomplete.map(word => [word.page, word.start]), [
+  [1,263], [3,214], [24,0], [27,231], [29,274],
+  [31,266], [35,268], [41,0], [47,0], [51,89],
+]);
+console.log(JSON.stringify({pageLocalTriples: pageLocalTriples.length,
+  completeCanonicalTriples: words.length, pageEdgeFragments: incomplete}, null, 2));

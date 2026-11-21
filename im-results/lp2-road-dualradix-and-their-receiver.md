@@ -132,7 +132,7 @@ The complete three-slot family contains:
 
 Against every distinct authenticated three-rune 2016 target, the selected receiver has five distinct authenticated-target operations total. **AND has exactly one distinct numeric key**, the key above.
 
-Applied unchanged to all **726** complete three-rune words on unknown LP2 pages, that key has exactly one authenticated-target hit:
+Applied unchanged to all **726** page-local three-rune fragments on unknown LP2 pages, that key has exactly one authenticated-target hit. The page-local count includes ten incomplete page-edge fragments; the canonical cross-page parser contains 716 complete three-rune words:
 
 ```
 p0 word42 offsets189..191 -> AND

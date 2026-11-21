@@ -334,7 +334,7 @@ const allThreeRuneWords = canonicalPages.flatMap((page) =>
     .filter((word) => word.values.length === 3)
     .map((word) => ({page:page.page, ...word}))
 );
-assert.equal(allThreeRuneWords.length, 726);
+assert.equal(allThreeRuneWords.length, 716);
 
 const allCorpusHits = [];
 for (const word of allThreeRuneWords) {
@@ -406,7 +406,7 @@ for (let a = 0; a < 29; a += 1) {
     }
   }
 }
-assert.equal(keysWithAtLeastTwoHits, 445);
+assert.equal(keysWithAtLeastTwoHits, 431);
 assert.equal(keysWithAtLeastThreeHits, 35);
 assert.deepEqual(keysHittingBothSelectedPages, [
   {key:[17,14,7],p31:["AND"],p33:["YOU"]},

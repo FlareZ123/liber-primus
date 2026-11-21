@@ -356,7 +356,7 @@ Windows/Node22 reproduction: `sims/lp2_p23_al31_p31_and_p33_you_sft.cjs`, run **
 
 ## Whole-corpus fixed-key holdout (Agent35, 19 November 2026)
 
-The AL-derived key and subtraction sign were held fixed and applied to all **726 original three-rune words** across the 55 rune-bearing unknown pages, against the same seven three-rune words in the authenticated 2016 signed message: PATH, WAY, ITS, ARE, MAP, AND, YOU. The only matches are:
+The AL-derived key and subtraction sign were held fixed and applied to all **716 complete canonical three-rune words** across the 55 rune-bearing unknown pages, against the same seven three-rune words in the authenticated 2016 signed message: PATH, WAY, ITS, ARE, MAP, AND, YOU. The only matches are:
 
 - physical p31, word32: `[12,23,1] - [17,14,7] = [24,9,23] = AND`;
 - physical p33, word29: `[14,17,8] - [17,14,7] = [26,3,1] = YOU`.
@@ -370,11 +370,11 @@ The SFT also exhausts all **29³ = 24,389** three-symbol keys under the already 
 | `[17,14,7]` | AND | YOU |
 | `[20,24,22]` | YOU | ITS |
 
-Only `[17,14,7]` produces the ordered AND/YOU pair. However, **445** keys produce at least two target hits somewhere across the full 726-word corpus, and **35** produce at least three. Therefore total hit count alone is not distinctive; the constrained p31/p33 page pair and ordered target words are the relevant cross-check.
+Only `[17,14,7]` produces the ordered AND/YOU pair. However, **431** keys produce at least two target hits somewhere across the full 716-word corpus, and **35** produce at least three. Therefore total hit count alone is not distinctive; the constrained p31/p33 page pair and ordered target words are the relevant cross-check.
 
 **Classification:** post-discovery local cross-page corroboration, not a blind test, general cipher, or new page decryption. The AL31/p31/p33 route was assembled after its target outputs were known. The result strengthens the local readout interpretation but does not establish that `[17,14,7]` is a global LP2 key.
 
-The updated original-source reproducer is `sims/lp2_p23_al31_p31_and_p33_you_sft.cjs`; run it with Node.js 22 to reproduce both the all-page scan and exhaustive key-family control.
+The former counts 726 and 445 were stale: page-local scans include ten three-rune page-edge fragments, while this test's cross-page canonical parser excludes them. The current original transcription yields 716 and 431; the two fixed-key hits, two selected-page keys, and 35 keys with at least three hits are unchanged. The corrected parser and page-edge offsets are checked by `sims/lp2_p31_transfer_induced_key_census_sft.cjs`. The updated original-source reproducer is `sims/lp2_p23_al31_p31_and_p33_you_sft.cjs`; run it with Node.js 22 to reproduce both the all-page scan and exhaustive key-family control.
 
 ## Relationship to previous Liber AL work
 
