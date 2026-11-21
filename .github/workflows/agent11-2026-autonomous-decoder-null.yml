@@ -49,3 +49,9 @@ jobs:
         run: |
           set -euo pipefail
           node sims/agent11_2026_autonomous_decoder_trace_sft.cjs /tmp/nov2026-decoder/liber_primus_decoder/decoder-external /tmp/nov2026-decoder/liber_primus_decoder/matrix.txt
+      - name: Unseen original page-start 729-rune transfer gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          node sims/agent11_2026_autonomous_decoder_page_start_transfer_sft.cjs /tmp/nov2026-decoder/liber_primus_decoder/decoder-external /tmp/nov2026-decoder/liber_primus_decoder/matrix.txt
+
