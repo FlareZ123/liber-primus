@@ -149,16 +149,10 @@ for (const seed of seeds) {
 }
 assert.equal(positives, 30);
 
-const wordsByLength = new Map([[13, []], [14, []]]);
-for (const line of read("resources/control/english_wordfreq_textblob.txt").split(/\r?\n/)) {
-  const hit = /^([a-z]+)\s+(\d+)$/.exec(line.trim());
-  if (!hit) continue;
-  const indices = encodeSourceNativeGP(hit[1]);
-  if (wordsByLength.has(indices.length)) wordsByLength.get(indices.length)
-    .push({word: hit[1], indices, frequency: Number(hit[2])});
-}
-assert.equal(wordsByLength.get(13).length, 382);
-assert.equal(wordsByLength.get(14).length, 155);
+const {sourceNativeLongwords}=require("./lp2_source_native_longword_lexicon.cjs");
+const wordsByLength=sourceNativeLongwords();
+assert.equal(wordsByLength.get(13).length,426);
+assert.equal(wordsByLength.get(14).length,175);
 const outcomes = [];
 for (const sourceWord of originals.words) {
   if (sourceWord.length < 13) continue;
@@ -186,8 +180,8 @@ for (const sourceWord of originals.words) {
 assert.equal(outcomes.length, 7);
 assert.deepEqual(outcomes.map(x => [x.physicalPage,
   x.originalGPWordLength, x.compatibleNativeWords.length]), [
-  [11,13,11], [13,14,0], [16,13,10], [25,14,1],
-  [43,14,0], [52,13,20], [55,13,10]
+  [11,13,11], [13,14,0], [16,13,11], [25,14,1],
+  [43,14,0], [52,13,23], [55,13,10]
 ]);
 assert.deepEqual(outcomes.find(x => x.physicalPage === 25)
   .compatibleNativeWords.map(x => x.word), ["wurttembergers"]);
