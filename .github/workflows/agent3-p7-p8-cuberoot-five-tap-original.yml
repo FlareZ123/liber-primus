@@ -13,3 +13,6 @@ jobs:
           node-version: '22'
       - name: Original ciphertext and positive known-GP plant
         run: node sims/lp2_p7_p8_roman_cuberoot_fivetap_sft.cjs
+
+      - name: Source-derived LFSR 1876-period all-seed original gate
+        run: node sims/lp2_p7_fiveproduct_lfsr1876_original_sft.cjs
