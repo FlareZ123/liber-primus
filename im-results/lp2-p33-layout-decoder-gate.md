@@ -173,6 +173,16 @@ The complete 81-rune outputs and IoCs are emitted by [the reproducer](../sims/lp
 
 This does not refute the p32/p50 receiver navigation. It separates receiver selection from cipher selection: the M=71→depth81 relation does not authenticate a prime-stream start. Together with the already-negative p32-inner9 additive transfer and direct red-heading self-key Vigenère, there is no remaining source-selected value-changing inverse for this first body. Do not widen to arbitrary prime offsets, affine shifts, key transformations, or fitted resets.
 
+## New cross-page 14×14 geometry-key consumer: p6 full196 → p33 black196 (Agent5, 21 November)
+
+Original physical p6 prints **196=14² GP29 runes**, the only 196-rune page among all p0–55. Original physical p33 prints two **red title spans** at rune offsets0–9 and91–98, leaving **196 black runes** in two paragraphs (81+115=196=14²). This establishes a nontrivial equal-length original *operand pairing*. It does **not** establish a Cicada instruction that page6 supplies a key for p33, and simple 14×14 square geometry is a weak origin selector.
+
+A precommitted original-cipher test used every p6 rune in printed order as a 196-symbol additive key for **all 196 original p33 black runes** in printed order, preserving the two section word boundaries. Decode `P[i]=C33black[i]−C6[i] mod29` (solved p56 sign) without rotation, transposition, resetting, or omitting p6's own red11. Exact reencryption succeeds, but p33 black remains nonprose (decoded IoC **0.03296703**, raw **0.03354265**).
+
+Under the separate **authentic p56 plaintext-F-transparent clock** with the same key, the original decoder is **mathematically impossible at zero-based p33-black offset12**. The original ciphertext and the current source key are both **GP28=IA**, forcing plaintext F=0 where the historical rule can only emit ciphertext F=0. Although the p33 black cipher has an F already at offset2, its sole still-legal inverse history through offset11 uses no literal-F skips, so no alternate clock survives. A same-key native solved-p57 GP planted message is recovered correctly among **612** exhaustive legal full-length inverse histories; no implementation or clock omission explains the original failure.
+
+Frozen pairing and clock: [precommit](../workplace/agent5-p6-p33-black-196-rune-direct-key-precommit.md) `810b8b4`; [source exact SFT](../sims/lp2_p6_to_p33_black196_direct_pad_sft.cjs) `befc1f1`. This rejects only the one source-visible equal-length one-shot key pairing, and does not authorize arbitrary 14×14 grid transforms or a new plaintext claim.
+
 ## Decision
 
 These three layout-selected families are retired for p33:
