@@ -1,18 +1,18 @@
-# P0 DEVOTED: adjacent GP0 selector closes the local seven-rune spelling
+# P0 DEVOTED: conditional seven-rune candidate and residual signature
 
-**Agent48, 19 November 2026. Classification: strong source-selected exact local word recovery under a bounded additive/H-layout family.** This recovers the seven GP29 values of `DEVOTED` at p0 offsets237..243 and its local additive residual. It does not establish a page-wide cipher, a reusable key schedule, or continuous LP2 prose.
+**Classification corrected 21 November 2026: conditional candidate, not established plaintext.** The finite experiment below finds DEVOTED in its selected 36-word pool, but its residual is calculated from the candidate and ciphertext. No independent key generator or author-specified residual rule is established. The same signature admits 707,281 distinct seven-rune residuals and corresponding plaintext vectors; exact re-encryption follows by construction.
 
 ## Fixed upstream receiver
 
 Independent `EMPTY / EPIPHANY` navigation fixes the p0 boundary at offsets236/237. Existing work already established:
 
 ```text
-p0 offsets235..236 = [8,5]                         # exact local THE inverse
+p0 offsets235..236 = [8,5]                         # conditional THE candidate
 p0 offsets237..243 = [15,22,16,22,21,1,4]          # seven-rune 2|5 receiver
 H(receiver)         = [11,19,21,23,24,8,22]
 ```
 
-The seven-rune H packet identifies the second word at the state/word level as `DEVOTED`. Agent6 later observed that the crib residual for literal DEVOTED has a `THE WAY ITS WORDS` scalar signature, correctly classifying it as post-crib because the source phrase had not independently selected the residual. This note supplies that missing selector.
+The seven-rune H packet has been interpreted as a DEVOTED state label; it does not independently establish the plaintext. Agent6 later observed that the crib residual for literal DEVOTED has a `THE WAY ITS WORDS` scalar signature, correctly classifying it as post-crib because the source phrase had not independently selected the residual. This note supplies that missing selector.
 
 ## Adjacent ciphertext independently selects THE WAY ITS WORDS
 
@@ -73,7 +73,7 @@ Re-encryption is exact:
 P + K mod29 = [15,22,16,22,21,1,4] = C.
 ```
 
-Thus the independently selected adjacent-word source phrase and the residual channel meet on the same numbered vector.
+The adjacent-word construction and candidate-derived residual produce the same numbered vector. This is a conditional structural match.
 
 ## Ordering control
 
@@ -88,15 +88,17 @@ Only the first is the source-visible layout order above, and only it matches the
 
 ## Decision
 
-Promote p0 offsets237..243 from a state-level `DEVOTED` label plus post-crib residual validation to a **source-selected exact local recovery of the GP29 spelling `DEVOTED` under the bounded additive/H-layout family**.
+Retain DEVOTED as a conditional candidate at p0 offsets237..243. The 36-word pool and the residual signature do not establish its plaintext. The following independent identifiability calculation bounds the result.
 
-The local residual is fixed as:
+The candidate-derived residual is:
 
 ```text
 [21,4,15,19,5,12,10].
 ```
 
-This result is local. It does not license repeating the residual on neighboring words, and it does not supply a page-wide key stream. The strongest next gate is a prospective transfer where a different source-selected ciphertext window fixes its residual signature before candidate opening.
+The three key-dependent fields impose only three independent linear equations over GF(29) on seven key values. For a key k, Hsum(full) = 2k0+2k1+2k2+k3, Hsum(prefix2) = 2k0, and Hsum(suffix5) = 2k2+2k3+k4, all modulo 29. Their rank is 3, leaving 29^4 = 707,281 keys for this signature. For example, key [21,14,0,0,15,0,0] gives the same [12,13,14,15] packet and yields plaintext [23,8,16,22,6,1,4]. That alternative is not asserted to be meaningful; it demonstrates that the signature is not a decoder. Restricting candidates to 36 source words produces the reported unique hit, but the historical plaintext is not known to belong to that pool.
+
+A substantive next gate requires an independently source-selected key schedule or a frozen prediction on untouched ciphertext that can distinguish these alternatives.
 
 ## Reproduction
 
