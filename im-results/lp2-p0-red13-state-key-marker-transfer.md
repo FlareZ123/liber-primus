@@ -74,7 +74,7 @@ THE PATH LIES EMPTY EPIPHANY SEEKS THE DEVOTED LIBER PRIMUS IS THE WAY
 
 This is a natural length match to the 13-rune title/key and contains the selected plaintext words `EPIPHANY SEEKS`. It is preserved as a plausible clue to the missing key order. A small preregistered screen of direct one-number-per-word projections, source index, GP length, first rune, last rune, GP0 mod29, full H-shell sum, first H coordinate and last H coordinate, does **not** reproduce the fixed key schedule. No per-position selection or tuned combination was attempted.
 
-The interval should therefore be treated as a motivated next clue, not as a solved derivation. A useful successor must extract one fixed 13-value ordering from that authenticated interval or another p0-visible object before consulting the desired key.
+The 13 red dropcap components are another independent 13-element source object. Their stable-rank permutation was tested as an ordering of the marker atoms both before H (under column-major and physical-raster marker traversals) and after H; none of the 12 fixed variants yields plaintext. This does not authenticate the key order or rule out other source-derived selectors, but it rejects this direct dropcap-permutation candidate. The interval should therefore remain a motivated next clue, not a solved derivation. A useful successor must extract one fixed 13-value ordering from that authenticated interval or another p0-visible object before consulting the desired key. See `lp2-p0-dropcap-permutation-keyorder-gate.md`.
 
 ## Reproduction
 

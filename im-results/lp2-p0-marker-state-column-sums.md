@@ -202,7 +202,7 @@ Interpretive consequence:
 - The source-only audit finds an equally visible physical raster order in the nine staggered horizontal bands. No original feature uniquely selects one order.
 - The exact column-major state packets and 19-receiver uniqueness are conditional on the already selected p0 candidate plaintext/residual. They discriminate the candidate within that tested family; they do **not** authenticate the column-major convention or establish key provenance.
 
-Treat column-major as an unauthenticated, post-selected candidate convention, not an author-prescribed serialization. The full 13-coordinate key generator and a prospective unknown-plaintext consequence are still missing. Do not promote `EPIPHANY SEEKS` to authenticated plaintext.
+Treat column-major as an unauthenticated, post-selected candidate convention, not an author-prescribed serialization. A later bounded source-motivated test used the 13 book-wide red dropcap GP values as a stable-rank permutation of the 13 marker atoms: before H under both column-major and physical-raster marker orders, and after H on the resulting key. None of the 12 fixed variants yields language-like p0 body output; the best LP1-trained bigram score remains far below clear p57. This rejects that specific permutation consumer, not every possible source-derived mapping. See `lp2-p0-dropcap-permutation-keyorder-gate.md`. The full 13-coordinate key generator and a prospective unknown-plaintext consequence are still missing. Do not promote `EPIPHANY SEEKS` to authenticated plaintext.
 
 ## Reproduction
 

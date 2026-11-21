@@ -499,3 +499,11 @@ The 2013 book-code establishes Liber AL as a source, and its III:47 line/circle 
 - Tested ascending/descending GP rank, forward/reverse key source order, and both standard columnar directions. All exact roundtrips pass; inverse scores range -3.48372 to -3.52589 against original -3.47743, while clear p57 control is -2.53337. No plaintext.
 - New report: im-results/lp2-p8-p14-red-heading-columnar-gate.md. Reproducer: sims/lp2_p8_p14_red_heading_columnar_gate.cjs. Updated the original p8 Vigenère report and red-channel audit in the same commit.
 - Do not broaden to arbitrary transpositions; the 12-column direct heading-key consumer is rejected.
+
+
+## 2026-11-21 — p0 red-dropcap permutation gate
+
+- Tested whether the 13 original red dropcap GP values supply the missing order for the p0 13-atom marker-derived key. The 13 values are [15,20,13,24,14,20,1,19,23,21,27,0,24]; stable rank orders were applied before H to both column-major and physical-raster marker states, and after H to K13.
+- All 12 fixed candidates fail. Original p0 body LP1-bigram score -3.45917; best candidate -3.43117; clear p57 control -2.53337. Outputs remain nonlinguistic; exact re-encryption passes.
+- Report: im-results/lp2-p0-dropcap-permutation-keyorder-gate.md. Reproducer: sims/lp2_p0_dropcap_permutation_keyorder_gate.cjs. Updated p0 marker-state, red13 transfer, and periodic-body reports in the same commit.
+- The p0 13-atom key order remains unresolved. Do not widen to arbitrary permutations; require an independent source instruction for the mapping.

@@ -82,4 +82,4 @@ Reject the simplest period13 continuation of the generated title key into p0 bod
 
 This result does not weaken the exact local title recovery. It narrows the mechanism: another state update, instruction-selected receiver, or different body mechanism is required if the q/THE/WAY rise packet participates beyond the red title.
 
-Per the precommit, no alternate phase, sign, reset convention, or vocabulary expansion is opened after the miss.
+Per the precommit, no alternate phase, sign, reset convention, or vocabulary expansion is opened after the miss. A separate source-motivated test of the 13 red dropcaps as a permutation selector for the p0 marker-derived K13 also failed; see `lp2-p0-dropcap-permutation-keyorder-gate.md`.
