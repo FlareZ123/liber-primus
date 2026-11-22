@@ -107,6 +107,21 @@ function atMatrix(poly,M) {
   }
   return out;
 }
+// First source matrix's historically established 28th-power
+// mean reflection links the 3301 square to the source 1033-square
+// cross-dimensional mirror intertwiner.
+assert(tables[0].every(row=>row.reduce((a,b)=>a+b,0)===3301));
+const A=tables[0].map(r=>r.map(mod));
+function matrixPower(M,exponent) {
+  let out=eye(M.length),power=M,remaining=exponent;
+  while(remaining>0) {
+    if(remaining%2===1)out=mult(out,power);
+    power=mult(power,power);
+    remaining=Math.floor(remaining/2);
+  }
+  return out;
+}
+
 const M=tables[1].map(r=>r.map(mod));
 const B=tables[2].map(r=>r.map(mod));
 const factors=[
@@ -225,6 +240,20 @@ assert.deepEqual(mult(L,N),mult(B,L),
 // row-sum mode is preserved, yielding the exact source-only rank-one
 // anti-commutator (2/7)*U = 21*U modulo29.
 const reflectionAnticommutator=add(mult(reverse5,L),mult(L,reverse7));
+// Triple-original identity, involving all three historical Stage10
+// squares rather than merely the two 1033 squares: the first 3301 matrix
+// raised to Euler phi(29)=28 acts on physical 5-vectors as a mean-reflection;
+// the 7->5 quotient transports it to literal seven-coordinate reversal.
+const phi29=28;
+const firstSquarePower28=matrixPower(A,phi29);
+const meanReflect5=add(scale(Array.from({length:5},()=>
+  Array(5).fill(1)),12),scale(reverse5,-1));
+assert.deepEqual(firstSquarePower28,meanReflect5);
+assert.deepEqual(L[0].map((_,j)=>mod(L.reduce((sum,row)=>
+  sum+row[j],0))),Array(7).fill(9));
+assert.deepEqual(mult(firstSquarePower28,L),mult(L,reverse7),
+  '3301 square^28 transports original seven-square literal reversal');
+
 assert.deepEqual(reflectionAnticommutator,
   Array.from({length:5},()=>Array(7).fill(21)));
 assert.deepEqual(L.map(row=>mod(row.reduce((a,b)=>a+b,0))),
@@ -295,7 +324,9 @@ assert(decoded.sidecar.every(x=>x===0));
 assert(samples.filter(x=>x.label!=='p55+13dot')
   .every(x=>x.decodedIoc<0.04));
 console.log(JSON.stringify({
-  source:'original Stage10 seven and five 1033 magic squares',
+  source:'all three original 2014 Stage10 3301/1033 magic squares',
+  first3301SquarePower28:firstSquarePower28,
+  tripleSourceMeanMirrorIntertwiner:'A3301^28*L = L*J7',
   historicalFieldTracePolynom:T,
   originalSevenOrder:originalOrder,
   rawPowerMatchedFiveSquareEigenvalueHistogram:powerCoverage,
