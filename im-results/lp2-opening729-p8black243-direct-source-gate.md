@@ -14,6 +14,8 @@ The [direct original-cipher SFT](../sims/lp2_opening729_p8black243_direct_receiv
 
 **Three-source-share secret:** for each `i=0..242`, suppose contiguous values `C_i,C_(i+243),C_(i+486)` are shares of a quadratic `f_i(x)=P_i+a_i x+b_i x²` at points `x=1,2,3` over GF29. An arbitrary independently secret `a_i,b_i` cancels **exactly**, giving `P_i=3C_i−3C_(i+243)+C_(i+486) mod29`. Thus the entire 243-rune secret is fully determined, no key search. It has IoC **0.03435024** and **6/243 exact** position-aligned matches to p8 black source text, with no coherent GP-native passage. This is a direct 243-rune inverse, not an assertion that the Shamir grammar was authored.
 
+**Windows Node22 original-input PASS:** [complete 729/243 direct receiver and 243 Shamir GP source-control run45013457556](https://github.com/FlareZ123/liber-primus/actions/runs/45013457556).
+
 **Controls:** a genuine 755-rune *already-solved* LP1 plaintext transcript is used. Source-original 729-rune cleartext plant encrypted with exactly the p8 repeated tape recovers **729/729**. An independently constructed GP29 quadratic share plant with arbitrary coefficients recovers the first **243/243** real source-clear GP runes. The SFT logs all original input/output IoCs and exact inverse checks.
 
 ## Decision and missing input
