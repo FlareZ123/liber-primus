@@ -102,6 +102,72 @@ for (const constant of ["pi", "golden"]) {
   }
 }
 assert.equal(results.length, 16);
+
+/**
+ * Test the authentic p56 plaintext-F-transparent operation. Ciphertext F
+ * may represent a literal unenciphered F with no key advancement. Other
+ * ciphertext runes consume one key digit only if decoded plaintext is non-F.
+ * Every legal key count is retained, including ambiguous ciphertext zeros.
+ * @param {number[]} ciphertext
+ * @param {number[]} key
+ * @param {-1|1} sign
+ * @returns {{reached:number,states:number}}
+ */
+function fTransparentReach(ciphertext, key, sign) {
+  let states = new Set([0]);
+  for (let i = 0; i < ciphertext.length; i++) {
+    const next = new Set();
+    for (const used of states) {
+      if (ciphertext[i] === 0) next.add(used);
+      const plain = mod(ciphertext[i] + sign * key[used]);
+      if (plain !== 0) next.add(used + 1);
+    }
+    if (next.size === 0) return {reached:i, states:0};
+    states = next;
+  }
+  return {reached:ciphertext.length, states:states.size};
+}
+/**
+ * Positive source-native planted cipher with literal F skipped.
+ * @param {number[]} plaintext
+ * @param {number[]} key
+ * @param {-1|1} sign
+ * @returns {number[]}
+ */
+function fTransparentEncrypt(plaintext, key, sign) {
+  let used = 0;
+  return plaintext.map(x => x === 0 ? 0 : mod(x - sign * key[used++]));
+}
+const fTransparent = [];
+for (const constant of ["pi", "golden"]) {
+  for (const radix of [10, 29]) {
+    const fractional = digits(constant, radix, L);
+    for (const includeInteger of [false, true]) {
+      const stream = includeInteger ?
+        [constant === "pi" ? 3 : 1, ...fractional] : fractional;
+      for (const sign of [-1, 1]) {
+        const planted = fTransparentEncrypt(nativeP57, stream, sign);
+        assert.equal(fTransparentReach(planted, stream, sign).reached,
+          nativeP57.length);
+        const pageReach = originalPages.map(page => {
+          const ciphertext = corpus.pages.find(p => p.page === page).indices;
+          return {page, total:ciphertext.length,
+            ...fTransparentReach(ciphertext, stream, sign)};
+        });
+        fTransparent.push({constant, radix, includeInteger, sign,
+          pageReach});
+      }
+    }
+  }
+}
+assert.equal(fTransparent.length, 16);
+const allVariantsFailed = [27, 32, 33, 39];
+for (const page of allVariantsFailed) {
+  assert.equal(fTransparent.filter(test =>
+    test.pageReach.find(x => x.page === page).reached ===
+      corpus.pages.find(p => p.page === page).indices.length).length, 0);
+}
+
 assert.ok(results.every(x => x.maxIoc < 0.04));
 console.log(JSON.stringify({
   status: "PASS", originalPages, originalVariants: results.length,
@@ -110,6 +176,12 @@ console.log(JSON.stringify({
   decimals: {pi: "3.14159265358979323846",
     golden: "1.61803398874989484820"},
   evidence: results,
+  fTransparent: {
+    rule: "every legal genuine plaintext-F bypass and key-advance history",
+    variants: fTransparent.length,
+    noFullOriginalPage: allVariantsFailed,
+    pageReach: fTransparent
+  },
   conclusion: "Neither literal pi nor golden-ratio fractional digits, " +
     "in the two native radices with the immediate additive operation, " +
     "recover GP29-native prose on original examined pages. " +
