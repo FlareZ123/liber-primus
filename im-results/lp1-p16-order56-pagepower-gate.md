@@ -61,6 +61,30 @@ These equations provide a potentially actionable **source-derived reversal and m
 
 The [new source-read-only Windows Node22 SFT](../sims/lp2_2014_two_magic_squares_gp29_reflection_sft.cjs) computes **both full original integer powers using BigInt**, proves both unique positive modulus claims by gcd, confirms the exact minimal matrix orders and reversibility, verifies actual 6,395-rune B register preservation under a full source 5-vector Hill round-trip, and plants a full 6,395-rune native GP text that recovers exactly. The genuine source's direct one-round A/B inverse outputs have GP29 index-of-coincidence **0.0345136897 / 0.0344639460**, compared with a true native-GP plant **0.0598281765**, so **the direct one-round variants have no plaintext**. This is a new **algebraic source relation and reversible operator**, not a newly solved page.
 
+### A literal source-warning word is the complete 1033-square spectrum
+
+**New exact source-to-source clue, not unknown LP2 plaintext (Agent32, Windows PASS [45068491582](https://github.com/FlareZ123/liber-primus/actions/runs/45068491582)).** The solved, visually authentic LP1 first warning explicitly prints **“DO NOT EDIT OR CHANGE THIS BOOK”**, followed by **“EITHER THE WORDS OR THEIR NUMBERS”**. The literal English word **CHANGE** is a five-rune Gematria Primus word, with native GP index sequence:
+
+\[
+\operatorname{GP}(\mathrm{CHANGE})=[5,8,24,21,18]
+        =[\mathrm{C},\mathrm{H},\mathrm{A},\mathrm{NG},\mathrm{E}].
+\]
+
+A remarkably exact mathematical relation connects this **printed word** to a **separately printed authentic 2014 source artifact**: the entire characteristic polynomial of the final 1033-sum 5×5 magic square \(B\) over GF29 is
+
+\[
+\det(xI-B)=x^5+11x^4+27x^3+7x^2+5x+26
+          = (x-5)(x-8)(x-24)(x-21)(x-18)\pmod{29}.
+\]
+
+Thus the **unordered five eigenvalues of B are exactly the five GP rune identities of CHANGE**. The equality is independently checkable from the unchanged original 25 integer entries by Newton's identities for \(\operatorname{tr}(B^k)\) and by multiplying the five actual source-word factors. Its five roots are distinct, and the five-fold product annihilates B by Cayley–Hamilton; no ciphertext key, recovered page, plaintext scoring or fitted matrix value is used.
+
+A controlled source-local alternative check matters: enumerate **all** the solved first-warning words whose **source-native GP encoding has exactly five distinct rune symbols**, using the repository's original calibrated English→GP encoder (including the native **ING→NG** orthography). They are exactly **CHANGE**, **WARNING**, and **WORDS**. Among these three source-specified words, **only CHANGE** has this precise eigenvalue multiset. The other historical **3301** five-square fails the same characteristic polynomial. This is stronger than finding an arbitrary anagram in an unrestricted dictionary, but it is **still retrospective source association rather than a verified author instruction**.
+
+**What follows and what does not.** The word **CHANGE is already openly printed in a solved source**; the matrix supplies its letters as an unordered spectrum, not as recovered LP2 text. Since the characteristic polynomial is symmetric in its five roots, it **does not specify the order C-H-A-NG-E**, and a human could anagram the roots differently. Neither source explicitly says to factor the square nor tells which LP2 ciphertext receiver would consume this word as a key. In particular, a direct additive GP29 running-key recurrence with this exact square's characteristic polynomial has already been **excluded for all secret initial states** by independent original-source single-letter-word constraints; see [the earlier source-matrix state exclusion](lp2-2014-magic-squares-linear-state-singleton-exclusion.md). Do not resurrect that exhausted direct cipher simply because its polynomial factors into a word. A warranted successor needs a **separate original instruction that selects CHANGE or the matrix's five eigendirections to operate on an independent LP2 source register**, followed by demonstrable unknown plaintext.
+
+The existing [single CommonJS SFT](../sims/lp2_2014_two_magic_squares_gp29_reflection_sft.cjs) now includes this exact original warning-word comparison, computes the authentic matrix polynomial without symbolic-code or selected roots, and checks the five rune factors, the only matching first-warning word, the contrast with the first 3301 square, plus all earlier exact integer-gcd reflection and native GP positive controls. [Successful source-input Windows Node22 run](https://github.com/FlareZ123/liber-primus/actions/runs/45068491582).
+
 ## 5×5 matrix consumers
 
 For both 5×5 matrices, three natural consumers were tested:
