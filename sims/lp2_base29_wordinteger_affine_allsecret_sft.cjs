@@ -487,6 +487,86 @@ const nineChapterNativeControls=[
 assert.deepEqual(nineChapterNativeControls.map(x=>
   x.plaintextFourMostCommonEndings),[1547,1553]);
 
+/**
+ * Exact minimum number of contiguous ORIGINAL PAGE-RUN key regimes needed
+ * before the all-secret protected-digit source upper bound can even reach
+ * the GP-native source controls' observed top-four final letter count.
+ *
+ * For every interval [a,b] of the 55 rune-bearing physical-page slots,
+ * B[a][b] is the sum across word widths of the maximum over ALL source
+ * digit coordinates j of the four most frequent symbol counts.
+ * Dynamic programming computes the globally OPTIMAL partition of the
+ * original page sequence into exactly k consecutive groups:
+ *
+ *   DP[k][end] = max_{start<end} DP[k-1][start] + B[start][end-1].
+ *
+ * This greatly overgrants an attacker: unknown group boundaries may be
+ * optimized POST HOC from the original cipher and each group may use
+ * unrelated four winning plaintext categories. Therefore a deficient
+ * bound is a rigorous exclusion for any genuinely source-selected reset
+ * scheme with no more than k contiguous page-run regimes.
+ *
+ * This is a cipher-complexity NECESSARY condition only, no positive
+ * ciphertext decryption or evidence for those optimized boundaries.
+ */
+function pageRunResetComplexityBound() {
+  const n=55;
+  const byPage=Array.from({length:n},()=>[]);
+  for (let i=0;i<original.length;i++) {
+    const page=text.words[i].startPage;
+    assert(page>=0&&page<n);
+    byPage[page].push(original[i]);
+  }
+  const max4=hist=>hist.slice().sort((a,b)=>b-a)
+    .slice(0,4).reduce((s,v)=>s+v,0);
+  const interval=Array.from({length:n},()=>Array(n).fill(0));
+  for(let start=0;start<n;start++){
+    const groups=new Map();
+    for(let end=start;end<n;end++){
+      for(const word of byPage[end]){
+        const L=word.length;
+        const bins=groups.get(L)||
+          Array.from({length:L},()=>Array(29).fill(0));
+        for(let j=0;j<L;j++)bins[j][word[j]]++;
+        groups.set(L,bins);
+      }
+      interval[start][end]=[...groups.values()]
+        .reduce((s,cols)=>s+Math.max(...cols.map(max4)),0);
+    }
+  }
+  const dynamic=Array.from({length:n+1},()=>Array(n+1).fill(-Infinity));
+  dynamic[0][0]=0;
+  for(let k=1;k<=n;k++){
+    for(let end=k;end<=n;end++){
+      for(let start=k-1;start<end;start++)
+        dynamic[k][end]=Math.max(dynamic[k][end],
+          dynamic[k-1][start]+interval[start][end-1]);
+    }
+  }
+  assert.equal(dynamic[1][n],642);
+  assert.equal(dynamic[9][n],1193);
+  assert.equal(dynamic[20][n],1561);
+  assert.equal(dynamic[55][n],2147);
+  assert(dynamic[19][n]<1547);
+  const minToReachGibran=Array.from({length:n},(_,i)=>i+1)
+    .find(k=>dynamic[k][n]>=1547);
+  const minToReachShakespeare=Array.from({length:n},(_,i)=>i+1)
+    .find(k=>dynamic[k][n]>=1553);
+  assert.equal(minToReachGibran,20);
+  assert.equal(minToReachShakespeare,20);
+  return {
+    runeBearingPageSlots:n, firstSourceWindow:0, lastSourceWindow:54,
+    maxWithOneKeyRegime:dynamic[1][n],
+    maxWithNineBestPageRunRegimes:dynamic[9][n],
+    maxWithNineteenBestPageRunRegimes:dynamic[19][n],
+    maxWithTwentyBestPageRunRegimes:dynamic[20][n],
+    maxWithOneRegimePerPage:dynamic[55][n],
+    minimumRegimesToReachEitherNativeControl:20,
+    lowerBoundOnPageInternalKeyStateChanges:19
+  };
+}
+const optimalPageResetBound=pageRunResetComplexityBound();
+
 console.log(JSON.stringify({
   original: {
     completeWords: original.length, sourceRunes: text.runeCount,
@@ -505,6 +585,7 @@ console.log(JSON.stringify({
     groups:nineChapterPositionBound.groups,
     perGroup:nineChapterPositionBound.perGroup},
   nineChapterNativeControls,
+  optimalPageResetBound,
   affineAlphabetBijectionControls: "812/812 (a 1..28, b 0..28)",
-  conclusion: "Genuine novel extension over prior fixed word-edge result: ANY independent secret digit coordinate and ANY invertible compatible integer cipher per illustrated chapter x word length obeys top-four native GP-English word-final bound 1145, versus 1547/1553 native controls. Synthetic 2896-word chapter-varying affine/coordinate plants pass. No unknown LP2 plaintext/key recovered."
+  conclusion: "The original nine illustrated chapter keys and arbitrary hidden word digit positions give source upper bound 1145 vs native controls 1547/1553. Even ANY OPTIMALLY SELECTED 19 contiguous page-run key regimes cannot reach these native endings: at least 20 separate page-run regimes are necessary within this compatible numeral model. No unknown LP2 plaintext/key recovered."
 }, null, 2));
