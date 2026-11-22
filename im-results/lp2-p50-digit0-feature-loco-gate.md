@@ -1,6 +1,6 @@
 # p50 leading-zero feature localization: held-out chapter gate
 
-**Decision (Agent3, 18 November 2026):** the phase-zero p50 leading-zero class transfers across the nine original LP2 chapters better than the predeclared coarse row/column alternatives, but the test cannot distinguish a literal visual leading digit from a low-numeric-magnitude predicate. Under both documented positional radices, the 60 lowest-value cells are **exactly the same 60 cells** whose printed token begins with `0`. The class therefore remains a real predictive partition of the original ciphertext events, while its intended semantic reading remains underdetermined.
+**Consolidated through 22 November 2026 (Agents3/25):** the phase-zero p50 leading-zero class transfers across nine original LP2 chapters better than predeclared coarse row/column alternatives, but literal leading digit and low numeric value remain indistinguishable because both select the same **60 of 256** cells. A new *fixed-parameter, reversible, full-source* five-level GP29 output-feedback decoder using these printed leading digits was executed and fails to recover plaintext. The class remains a genuine predictive partition of ciphertext repeated-rune events, without authenticating any particular cipher mechanism.
 
 No unknown plaintext, key, opcode, or complete cipher mechanism is recovered here.
 
@@ -65,12 +65,31 @@ The positive-direction counts do not overcome the negative held-out likelihoods.
 
 ## Consequence
 
-The source-level association survives the requested feature-localization gate. It should continue to constrain a bounded reversible decoder, with two explicit limitations:
+The source-level association survives the requested feature-localization gate. The new direct five-digit reversible consumer below also fails on the entire original tape. Any future decoder must therefore identify a different first-party operation, with two explicit limitations:
 
 1. the current evidence selects an equivalence class shared by literal-leading-zero and low raw numeric magnitude, rather than uniquely authenticating the visual digit as the operative bit;
 2. any mechanism that treats the class as an exclusive collision/escape channel is incomplete, because 53 repeats remain outside it and prior exact collision-rejection work already found zero registered long-word English preimages.
 
 The separate literal-bitmap test in Director #1513 closes the idea that this 60-cell mask itself visibly spells a stable instruction. A source-constrained cipher consumer may still use the class as a clocked selector, but failure should not be rescued by phase shifts, new magnitude thresholds, or ad hoc row/column state.
+
+## One complete five-digit output-feedback inverse (Agent25, 22 November 2026)
+
+The stage above established an **original-source event clock**: a ciphertext pair's first-rune global index selects p50 cell `(i−1) mod256`, where `i` is the second rune's zero-based book-global offset. The *entire* printed base60 first-digit channel is readily readable, with five states `q=floor(B/60)∈{0,1,2,3,4}`; the exact 256-cell multiplicities are **[60,58,65,56,17]**. Because GP29 modular output feedback is a familiar reversible human-computable operation, one natural concrete model is:
+
+```text
+C[-1] = 0
+q[i] = floor(p50_byte[max(0,i-1) mod 256] / 60)
+C[i] = C[i-1] + P[i] + q[i] (mod 29)
+P[i] = C[i] - C[i-1] - q[i] (mod 29)
+```
+
+This tests the **first-digit state itself**, rather than a fitted binary label or a guessed secret 29-letter keystream. It mechanically connects the observed binary correlation to the language model: a repeated ciphertext rune `C[i]=C[i-1]` occurs precisely when the original plaintext rune equals `-q[i] mod29`. Thus a leading-zero cell's repeat corresponds to plaintext **F** (GP0); the four other first-digit values correspond to **EA, IA, Y, AE**. These are relatively uncommon GP runes in known ordinary cleartext and are a *possible* source-shaped explanation for the leading-zero enrichment. This hypothesis adds no private starting state, free phase, fitted coefficient, page reset, skip or extra cipher layer. **The historical creator did not explicitly instruct this equation or equate its five digit levels with GP29 feedback**, so it is an exploratory mechanism gate, not source-authenticated cipher grammar.
+
+[Read-only original-source CommonJS SFT](../sims/lp2_p50_literal_highdigit_ciphertext_feedback_original_sft.cjs), run on the full unchanged **12,956** original p0–55 rune tape: the exact 86 same-page doublets split by source digit **[33,12,17,19,5]**, asserting that the digit-zero subgroup is **33** on the same pair clock as the earlier held-out result. Every original decoded rune re-encrypts **12,956/12,956**. An independently genuine **95-rune solved p57** plaintext plant encrypts and decrypts **95/95**; deliberately shifting the source digit phase by one restores only **18/95** of the planted runes. Therefore correct implementation is supported by an independent linguistic control, even though the original cipher does not validate the hypothesis.
+
+**Original decoding fails:** GP29 IoC is **0.0346688474** versus source ciphertext **0.0344783979** and independently clear p57 **0.0627099664**. The fixed original readout begins `EOMWEOFEOCFEOIBUIOENNGTTHHJICLWHBWCLCEAENHWPIRLRNLBSOETHAEMEYCBTHRBRCUEOLOEEOAEOJNBBTHDLEOYIGJRAI...`, with no coherent native GP prose. The positive-control and complete original-reencryption assertions passed [Windows Node22 CI #44968299568](https://github.com/FlareZ123/liber-primus/actions/runs/44968299568).
+
+**Decision:** retire precisely the no-secret, five-level, first-digit GP29 `P=C−Cprev−q` decoder under the original whole-book event clock. It satisfies the required complete reversible feedback property and gives an explicit rare-rune explanation for all five mask classes, yet fails to recover plaintext. This does **not** overturn the independent original leading-zero association or license coefficient/phase tuning; finding a genuinely authored operation and operand remains the important missing step.
 
 ## Reproduction
 
