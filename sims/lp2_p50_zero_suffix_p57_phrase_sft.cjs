@@ -38,6 +38,32 @@ assert.deepEqual(p51.slice(0, 3), [7, 7, 13]);
 assert.equal(phraseSum(p51.slice(0, 3)), 27);
 
 const p57 = corpus.pages.find((page) => page.page === 57).indices;
+const nativeSolved = JSON.parse(fs.readFileSync(path.join(root, "resources", "external", "relikd-solved-gp29-native-v1.json"), "utf8"));
+const p57SourceText = nativeSolved.sections.find((section) => section.name === "p57_parable").source_text;
+const runeIndex = new Map(corpus.runes.map((rune, i) => [rune, i]));
+const p57Words = p57SourceText.split(/[^\u16A0-\u16FF]+/u).filter(Boolean).map((word) => Array.from(word).map((rune) => runeIndex.get(rune)));
+assert.equal(p57Words.length, 20);
+assert.deepEqual(p57Words.flat(), p57);
+const triples = [];
+for (let i = 0; i + 2 < p57Words.length; i++) {
+  const first = phraseSum(p57Words[i]);
+  const second = phraseSum(p57Words[i + 1]) + phraseSum(p57Words[i + 2]);
+  if (first > second && first <= 256 && second >= 1) {
+    triples.push({ wordOffset: i, first, second, suffixZeroCells: [256 - first, 256 - second] });
+  }
+}
+assert.equal(triples.length, 5);
+assert.deepEqual(triples.filter((item) => item.suffixZeroCells[0] === 192 && item.suffixZeroCells[1] === 229),
+  [{ wordOffset: 10, first: 64, second: 27, suffixZeroCells: [192, 229] }]);
+const gpPrimeOurOwn = [3, 1, 4, 3, 7, 9].reduce((sum, index) => sum + corpus.prime[index], 0);
+assert.equal(gpPrimeOurOwn, 76);
+assert.equal(corpus.pages.find((page) => page.page === 55).indices.length, 76);
+assert.equal(tokens[242], "0g");
+assert.equal(bytes60[242], 42);
+assert.equal(bytes60[42], 28);
+assert.equal(bytes60[245], 56);
+assert.equal(bytes60[198], 105);
+
 const hasSequence = (haystack, needle) => haystack.some((_, start) =>
   needle.every((item, offset) => haystack[start + offset] === item));
 const shed = [15, 8, 18, 23];
@@ -83,7 +109,14 @@ const report = {
   zeroCells,
   zeroCellRows: zeroCells.map((i) => [Math.floor(i / 8), i % 8]),
   suffixLengths: zeroCells.map((i) => 256 - i),
-  solvedGpSums: { SHED: phraseSum(shed), OUR_OWN: phraseSum(ourOwn) },
+  solvedGpSums: { SHED: phraseSum(shed), OUR_OWN: phraseSum(ourOwn), OUR_OWN_prime: gpPrimeOurOwn },
+  eligibleP57OnePlusTwoTriples: triples,
+  centerOfTrailing27: {
+    zeroBasedCubicalCenterOffset: 13,
+    absoluteCell: 229 + 13, token: tokens[242], base60Byte: bytes60[242],
+    GP0_FIND: 42, tablePointer42: bytes60[42], originalP55Runes: 76,
+    faceNeighborAtOffset16: { token: tokens[245], value: bytes60[245], GP0_AND: 56 }
+  },
   p51FirstWord: { GP: render(p51.slice(0, 3)), indices: p51.slice(0, 3), sum: 27 },
   strictInterior: {
     betweenZeros: { length: between.length, distinctBytes: new Set(between).size,
