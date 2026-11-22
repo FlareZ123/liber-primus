@@ -58,14 +58,14 @@ function observedAllowedRanks(ciphertext) {
  * single-valued unknown 28-way permutation at each of 256 phases.
  * @param {number[]} ranks Symbols -1 (exception) or 0..27.
  */
-function phaseCollision(ranks) {
+function phaseCollision(ranks, globalStart = 0) {
   const freq = Array.from({length: 256}, () => Array(28).fill(0));
   const size = Array(256).fill(0);
   for (let i = 0; i < ranks.length; i++) {
     const symbol = ranks[i];
     if (symbol === -1) continue;
     assert(Number.isInteger(symbol) && symbol >= 0 && symbol < 28);
-    const k = (i + 255) & 255;
+    const k = (globalStart + i + 255) & 255;
     freq[k][symbol]++;
     size[k]++;
   }
@@ -146,9 +146,11 @@ function main() {
   assert(Math.abs(observed.Q-0.03573238722757222) < 1e-14);
 
   const results = [];
+  const nativeControls = [];
   for (let j = 0; j < 16; j++) {
     const sample = Array.from({length: original.length}, (_,i) =>
       auth[(j*177+i)%auth.length]);
+    nativeControls.push(sample);
     results.push({group:'authenticated solved GP',id:j,
       ...phaseCollision(nativeRanks(sample))});
   }
@@ -160,6 +162,7 @@ function main() {
     assert(native.length >= windows*12956);
     for (let j = 0; j < windows; j++) {
       const sample = native.slice(j*12956, (j+1)*12956);
+      nativeControls.push(sample);
       results.push({group:name,id:j,...phaseCollision(nativeRanks(sample))});
     }
   }
@@ -175,6 +178,27 @@ function main() {
       'range',Math.min(...subset.map(row => row.Q)),
       Math.max(...subset.map(row => row.Q)));
   }
+
+  // This single illustrated chapter physically contains the p50 table.
+  // The global phase is retained, so its 3008 original runes constitute a
+  // genuinely independent bounded check of whole-book averaging.
+  const tableauChapterStart = 9640;
+  const tableauChapterEnd = 12648;
+  const tableauRanks = observedAllowedRanks(original).slice(
+    tableauChapterStart, tableauChapterEnd);
+  const tableauObservation = phaseCollision(tableauRanks, tableauChapterStart);
+  const nativeTableauQ = nativeControls.map((native) =>
+    phaseCollision(nativeRanks(native.slice(tableauChapterStart, tableauChapterEnd)),
+      tableauChapterStart).Q);
+  const tableauNativeMin = Math.min(...nativeTableauQ);
+  assert.equal(tableauObservation.positions <= 3008, true);
+  assert.equal(tableauObservation.eligiblePairs, 31850);
+  assert(Math.abs(tableauObservation.Q - 0.03466248037676609) < 1e-14);
+  assert(tableauNativeMin > 0.045);
+  console.log('ORIGINAL TABLE-CONTAINING ILLUSTRATED CHAPTER p40–p53:',
+    JSON.stringify(tableauObservation));
+  console.log('Same chapter register over all 26 controls, min native Q:',
+    tableauNativeMin);
 
   const nativePlant = encodeSourceNativeGP(fs.readFileSync(
     path.join(ROOT, 'resources/control/shakespeare_first300k.txt'), 'utf8')
