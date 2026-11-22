@@ -1,47 +1,41 @@
-# Original 16-, 181-, and 256-word periodic secret alphabets cannot expose native GP29 prose
+# LP2 original-word key periods 16, 181, 256 and 362: exact all-secret exclusions
 
-**Agent 3, 22 November 2026. Classification: exact source-cipher key-independent exclusion of three originally nominated periodic word-key models, conditional on authentic GP29 plaintext concentration. No unknown LP2 plaintext, authentic key, or terminal destination is recovered.**
+**Agent 3, 22 November 2026. Classification: bounded original-source cryptanalytic exclusion of four hidden-key families, with native-source positive encrypt/decrypt controls. No unknown-page plaintext, actual author key or endpoint recovered.**
 
-## Why these three clocks merit a joint original-cipher test
+## Motivated clocks and independent rival
 
-The source LP2 has **2,896 complete printed words and 12,956 runes**, with 32 original words crossing page breaks. The already decoded p15 Fibonacci square is a physical **4×4 = 16-cell** object. The full original word count factors without padding as **2,896 = 16 × 181**. Separately, the physical pp49–51 numerical table contains exactly **256 source-visible cells**, each a byte under the conventional base60 reading. These real numbers suggest, as a falsifiable candidate, an unknown secret **word-indexed** substitution key repeated every 16, 181, or 256 complete words. The 16- and 181-clocks represent the two axes of one unpadded 16×181 grid; the 256-clock corresponds to the complete printed p50 table.
+The manuscript has **2,896 complete printed words**, totaling **12,956 GP29 runes** with **32 words carried across physical page breaks**. The solved source includes a **16-cell (4×4) p15 square**, while the original pp49–51 numeric object is **256 cells in 32×8 geometry**. The word count factors exactly into **16×181** and **8×362**. These source dimensions nominate four physically legible periods for a *hypothetical repeating word-key alphabet*: 16 and 181 from the 16×181 word rectangle, 256 from p50's full cell count, and 362 from the eight column-sized word lanes. This is a candidate human operation, not an instruction independently signed or printed by Cicada. An external one-time key or a varying stream emitter remains a distinct rival explanation.
 
-Neither p15 nor p50 authorizes a particular alphabet mapping or a reset across printed words, nor does the 16×181 coincidence establish that all manuscript word separators are original plaintext delimiters. Those are candidate ciphers tested here rather than creator instructions. Unlike the older p15 sixteen-column whole-word **transposition** and p50 eight-column readout studies, this test allows **every symbol substitution in every phase to remain completely secret**. It therefore avoids merely trying a few fitted Caesar offsets or a guess at a table key.
+A secret substitution `σ_s` for each complete-word phase `s = wordIndex mod p`, with `p∈{16,181,256,362}`, maps **each current plaintext GP29 symbol** to an encrypted GP29 symbol. We allow **every one of the 29! bijections independently at every secret phase**. Fixed per-word-phase Caesar, Vigenère, affine, any p15/square-valued keyed alphabet and any complete 29-symbol substitution are all contained. A secret initial phase offset only relabels the allowable alphabets. A complete-word pre-encryption rearrangement cannot evade the resulting whole-manuscript rune-multiset inequality. A post-encryption reordering or changing keys with time is outside the model.
 
-## Exact all-secret bound for each complete original clock
+## Exact original-cipher all-secret capacity
 
-For a candidate period `p ∈ {16,181,256}`, let `w` be the complete printed source-word number, zero-based. Allow any secret permutation `σ_(w mod p)` of the entire 29-symbol GP rune alphabet, used for every rune of that word. Each period phase can have a completely independent unknown 29! alphabet. Any fixed word-phase Caesar, affine cipher, alphabet substitution, or full 29-letter secret codebook is inside this family. The model allows the initial key to be unknown and any single fixed phase rotation because that merely relabels the p phases.
+For each original ciphertext word, count each of its rune values in the row `M[s,c]` corresponding to the word number modulo `p`. For **any** set of `k` candidate plaintext symbols and **any** independent hidden permutations `σ_s`, the total number of plaintext positions occupied by these `k` symbols cannot exceed
 
-For all original ciphertext glyphs, count `M[s,c]`: how often cipher rune `c` appears at phase `s=(w mod p)`. Under **every** choice of these independent secret alphabets, the number of positions decrypting to the plaintext's four most common GP rune types cannot exceed the sharp attainable bound
+`U_k = Σ_s top_k(M[s,*])`.
 
-`U_4 = Σ_{s=0}^{p−1} (sum of the four greatest values of M[s,*]).`
+This is exact: in each phase, the greatest possible `k` plaintext frequencies are simply the `k` greatest original ciphertext rune frequencies, regardless of the unknown alphabet permutation. This grants the attacker all hidden keys without enumerating them. We computed each `U1` and `U4` on the entire canonical unmodified 12,956-symbol LP2 ciphertext after reconstructing all **2,896** printed words and checking them symbol-for-symbol against the canonical page-index corpus.
 
-This holds regardless of whether plaintext words were secretly reordered **before** applying the phase-dependent cipher: any permutation of complete English words retains its four-symbol unigram concentration. It does not survive adding an unknown **post-encryption** reordering or another value-changing layer, for which separate rules would be necessary.
+| Word-phase clock | Secret GP29 alphabets | Exact U1 | Exact U4 | Decisive capacity ceiling | Within-phase IoC |
+| --- | ---: | ---: | ---: | --- | ---: |
+| Period16: physical p15 4×4 size | 16 | 635 | 2,338 | U4 **18.0457%** | 0.0345093 |
+| Period181: 2,896÷16 | 181 | 1,063 | 3,624 | U4 **27.9716%** | 0.0338905 |
+| Period256: p50 table cell count | 256 | 1,226 | 4,021 | U4 **31.0358%** | 0.0340394 |
+| Period362: 2,896÷8 p50 columns | 362 | 1,377 | 4,471 | U1 **10.6283%** | 0.0338007 |
 
-The resulting exact original-cipher values are:
+For calibration independent of the ciphertext and unknown decoder, the SFT encodes pinned English corpus passages into **authentic GP29 source orthography** (including source-verified `ING→ᛝ` and `IO→ᛡ`), and measures **505 complete 12,956-rune windows** at stride503:
 
-| Hypothetical key reset by word index | Independent secret 29-way alphabets | Maximum top-four original output | Share of all 12,956 runes | Within-phase collision rate |
-| --- | ---: | ---: | ---: | ---: |
-| Period 16 (p15 4×4 square size) | 16 | **2,338** | **18.0457%** | 0.0345093 |
-| Period 181 (2896÷16) | 181 | **3,624** | **27.9716%** | 0.0338905 |
-| Period 256 (p50 table cells) | 256 | **4,021** | **31.0358%** | 0.0340394 |
+- **Gibran**, 99 windows: minimum observed top-one **1,423** (**10.9833%**), top-four **4,373** (**33.7527%**).
+- **Shakespeare**, 406 windows: minimum observed top-one **1,409** (**10.8753%**), top-four **4,266** (**32.9268%**).
 
-All available original word boundaries are retained, and the same 12,956 source rune indices are asserted directly against the canonical continuous source transcription. No original ciphertext symbol is redacted or replaced. The all-secret bound is exact over **all permutations**, not a statistical search over passwords.
+All three period16/181/256 **U4** ceilings are below every native control's top-four population. Period362, although its **U4=4,471** is permissive, fails every native control's **top-one** population: the maximum possible native single-rune count is **1,377**, while the independent source-native minimum is **1,409**. Thus none of the four proposed key clocks can decode the original full book directly into source-normal English under any assignment of its arbitrary secret phase-wise alphabet.
 
-## Source-native GP29 plausibility and exact planted decryptions
+These are finite whole-corpus comparisons, not universal impossibility theorems for every conceivable English writing style. The 505 source windows overlap, so they are calibration cases, not independent Monte Carlo p-values. A cryptogram with unusually flat, non-native GP29 plaintext, an evolving phase-specific key, a page-specific key, or an additional source-selected operation can evade the stated model.
 
-Authentic solved LP1 spelling rules are used to encode two pinned unrelated English controls into GP29 runes, including `ING→ᛝ` and `IO→ᛡ`. Every full **12,956-rune** heldout window at fixed stride503 is compared with the upper bounds, with no search for favorable ciphertext phase:
+## Genuine plaintext positives and decision
 
-- Gibran, **99** windows from 62,492 GP29 runes: minimum **4,373** of 12,956 in the four most frequent native runes (**33.7527%**).
-- Shakespeare, **406** windows from 217,106 GP29 runes: minimum **4,266** (**32.9268%**).
-- All three original-source exact maxima, including the most permissive period256's **4,021**, fall below **all 505** finite native windows.
+For **each** period, the read-only test takes a genuine **12,956-rune Gibran source passage**, partitions its GP rune stream into the exact original 2,896 word-length slots, and encrypts it with a deterministic sample of **p independent arbitrary 29-way secret alphabet bijections** selected by complete-word ordinal modulo p. It decrypts the full stream with the true inverses and asserts exact **12,956/12,956** plaintext recovery. Its planted ciphertext's all-secret concentration ceiling is necessarily at least the source plaintext's true top-four GP rune mass, preventing a mistaken rejection arising from the test code.
 
-As a real-positive implementation check, the SFT takes **12,956 authentic Gibran GP29 runes**, partitions them by the original 2,896 word-length slots, generates **16/181/256 completely arbitrary independent 29-way secret substitution alphabets** respectively, encrypts all glyphs with the nominated repeating word-phase key, and recovers the entire plaintext **12,956/12,956** exactly using the true inverse. The original ciphertext-derived upper bound for the planted cipher includes the real known plaintext's four-rune mass in all three cases. This confirms that an implementation bug cannot exclude actual native plaintext under this modeled encryption.
+**Reject a repeating fixed 16-, 181-, 256- or 362-word GP29 substitution key as a direct source-native LP2 decoder.** The p15 square and p50 table still may have roles as a distinct *changing* state source, a mixed-radix sidecar, or navigation clues. Their sizes alone supply no authenticated key schedule. Do not rescue these four exhausted stationary families by introducing arbitrary per-page exceptions or resegmentation without a new original clue.
 
-## Decision and the missing operation
-
-**Retire the source-natural repeating 16-, 181-, and 256-word static substitution codebooks as standalone unknown-LP2→native-English decoders**, regardless of all hidden alphabets. The failure is invariant to the particular p15 square values and p50 table byte values; no tuning of those values can rescue this class. The 16×181 factorization and p50 table can still motivate other operations, but they do not supply an authenticated hidden plaintext key.
-
-A value-changing **per-word** key, a secretly varying page/chapter key, a second position clock, a mixed-radix transport, or any nonpermutation/nonlocal emitter can violate these specific bounds. Those alternatives require an independently motivated source selector and a real original-cipher prediction before another key search. This result does **not** exclude a non-English source whose top-four GP rune concentration is as low as the observed original upper bounds.
-
-Original-cipher reproducer: [`sims/lp2_wordphase_16_181_256_allsecret_sft.cjs`](../sims/lp2_wordphase_16_181_256_allsecret_sft.cjs). It uses [canonical source runes](../resources/liber-primus/lp2-corpus.json), [continuous original printed words](../resources/lp2-transcription.txt), and two source-pinned native GP29 controls; it writes no files. The experiment complements [word-length resegmentation all-secret gate](lp2-wordlength-resegment-allsecret-original-gate.md), whose hidden alphabets are indexed by **word length/position**, whereas this gate indexes them by **complete word ordinal modulo the source-nominated periods**.
+Reproducer: [`sims/lp2_wordphase_16_181_256_allsecret_sft.cjs`](../sims/lp2_wordphase_16_181_256_allsecret_sft.cjs), Node.js22/CommonJS on Windows, with one true original-source input and two independent native English GP29 controls. This is distinct from the [original word-length/within-word-position all-secret test](lp2-wordlength-resegment-allsecret-original-gate.md), whose hidden key states are based on **word length and within-word rune position**, rather than the current clock's **absolute printed whole-word number**.
