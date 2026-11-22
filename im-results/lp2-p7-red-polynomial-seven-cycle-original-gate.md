@@ -152,7 +152,7 @@ Independently, **p39's wholly red triad contains actual GP indices [27,5,15]**. 
 
 A direct original-cipher two-chapter **shared additive pad cancellation** was checked: inverse seven-point GF29 Fourier on all 1,729 original p8–14 runes using root20 in seven lanes of 247; inverse Fourier on the independent 1,589 original p33(offset91)–39 runes with root24 in seven lanes of227. Subtraction after aligning either the first or last227 columns per botanical lane returns near-uniform GP29 differences: IoC **0.0346343644** for the first alignment and **0.0344615770** for the last. A synthetic shared-pad positive planted in genuine p57 native runes recovers the entire 1,589-rune difference exactly. These are **bounded original shared-pad negatives**, not a rejection of all nonlinear or independently keyed consumers. No unknown plaintext recovered.
 
-Reproduction: [original p7-p8-p39 cross-root SFT](../sims/lp2_p7_p39_root24_crosschapter_original_sft.cjs), read-only Windows11 Node22. The separate p39-only Fourier model was already tested in [prior p39 original-source SFT](../sims/lp2_red_root7_fourier_original_inverse.cjs), and is not counted as a new inverse.
+Reproduction: [original p7-p8-p39 cross-root SFT](../sims/lp2_p7_p39_root24_crosschapter_original_sft.cjs), read-only Windows11 Node22; [Windows CI PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45079887123). The separate p39-only Fourier model was already tested in [prior p39 original-source SFT](../sims/lp2_red_root7_fourier_original_inverse.cjs), and is not counted as a new inverse.
 
 ## Decision
 

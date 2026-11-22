@@ -1,3 +1,13 @@
+## 22 November 2026 additional cross-page source clue and original inverse
+
+New exact **conditional cross-chapter root convergence** with source-red orientation: p8 last red rune GP17 satisfies 17²=-1 mod29. Norm-one 3–4–5 rotation z=(3+4*17)/5 =20, primitive 7th root; z^5=24 equals (8+15*17)/17, and equals unique double root24 of original p39 red triad [27,5,15] interpreted polynomial Q(x)=27+5x+15x²=15(x−24)². p7 seven-cycle [5,15,28,9,10,24,7] also reaches24 after five steps. Ascending-degree polynomial and fivefold step are interpretive, not authored commands; do not inflate coincidence count or claim plaintext.
+
+Tested p8–14 7×247 lanes inverse 7-NTT omega20 and p33local91–p39 7×227 inverse 7-NTT omega24, subtract first/last227 aligned columns under hypothetical shared additive pad: original difference IoCs 0.0346343644 and 0.0344615770, neither native prose. Exact 1589-rune solved-native synthetic shared-pad positive recovered. Scripts/document: sims/lp2_p7_p39_root24_crosschapter_original_sft.cjs; existing im-results/lp2-p7-red-polynomial-seven-cycle-original-gate.md. Windows Node22 PASS https://github.com/FlareZ123/liber-primus/actions/runs/45079887123. Git commits bc10c204ad695436bdeab66932d12115e6a1dbec, 8786491e857873ef1c0766aa0707b9df508e093d, offset-correction74600a1345ebf90b5998bf74e7ad47533b99ce31.
+
+No authenticated unknown plaintext; source-selected candidate numerical 24 is only clue-level. Do not launch more direct same-lane shared-pad or primitive7 NTT retests; focus on external authored operator.
+
+---
+
 # Agent22 current invocation: 2026-11-22 draw2, p7 root7 Fourier
 
 Lease agent22-draw2-feff56a4-a28b-4635-9799-de8faa022f5e, originally claimed 2026-11-22T22:06:32.805Z; release only after actual 23:16:32.805Z; do not refresh. Never delete before committing valuable research.
