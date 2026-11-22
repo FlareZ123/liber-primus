@@ -340,4 +340,64 @@ for (const schedule of [q26, q27]) {
   console.log("PASS original cipher exact residual re-encoding and full",
     original.length, "rune source-shaped planted forward/inverse");
 }
+
+/**
+ * Independent, much simpler human-visible reset schedule: use ONLY large
+ * red chapter marks ⁜ as arithmetic-code terminators. There are 31 physical
+ * ⁜ events but only 29 distinct word-ending sites (two co-located pairs).
+ * Each of these 29 naturally marked groups independently accommodates an
+ * unrestricted GP26 or GP27 input of precisely its original GP29 rune count.
+ * Hence no data-derived skipped full stops are needed in this alternative.
+ */
+const largeRedRuneEnds = [...new Set(physical
+  .filter(e => e.symbol === "⁜")
+  .map(e => e.rune_offset))].sort((a, b) => a - b);
+assert.equal(physical.filter(e => e.symbol === "⁜").length, 31);
+assert.equal(largeRedRuneEnds.length, 29);
+assert.equal(largeRedRuneEnds[largeRedRuneEnds.length - 1], 12956);
+const majorRedFrames = [];
+let firstMajorWord = 0;
+for (const runeEnd of largeRedRuneEnds) {
+  const lastMajorWord = posToWord.get(runeEnd) + 1;
+  assert.ok(lastMajorWord > firstMajorWord);
+  let M = 1n, R = 0n, n = 0;
+  for (let i = firstMajorWord; i < lastMajorWord; i++) {
+    const word = wordCodes[i];
+    R = R * word.radix + word.rank;
+    M *= word.radix;
+    n += word.n;
+  }
+  majorRedFrames.push({
+    n, M, R, firstWord: firstMajorWord, endWord: lastMajorWord
+  });
+  firstMajorWord = lastMajorWord;
+}
+assert.deepEqual(majorRedFrames.map(x => x.n), [
+  13, 716, 16, 103, 3, 690, 11, 308, 14, 1729,
+  9, 11, 1883, 16, 1005, 19, 1414, 10, 81,
+  8, 746, 553, 161, 3, 118, 2474, 534, 9, 299
+]);
+for (const q of [26, 27]) {
+  let decoded = [];
+  let canonical = 0;
+  for (const frame of majorRedFrames) {
+    assert.ok(frame.M >= BigInt(q) ** BigInt(frame.n));
+    const d = decodeGroup(frame, q);
+    decoded.push(...d.digits);
+    canonical += Number(d.canonical);
+    const replay = encodeGroup(frame, q, d.digits, d.extra);
+    assert.equal(replay.R, frame.R);
+  }
+  assert.equal(decoded.length, 12956);
+  const actualIoC = ioc(decoded, q);
+  assert.ok(Math.abs(actualIoC - 1 / q) < 0.001);
+  const expected = q === 26 ? 0.038486644044999144 :
+    0.03702156597117173;
+  assert.ok(Math.abs(actualIoC - expected) < 1e-12);
+  console.log("NATURAL MAJOR-RED ONLY", q, "29 original rubric blocks",
+    "each capacity sufficient without missing bits; original IoC",
+    actualIoC.toFixed(9), "uniform baseline", (1 / q).toFixed(9),
+    "canonical E=0 rubric blocks", canonical);
+}
+
 console.log("PASS: original-source, auto-merged punctuation grammar SFT");
