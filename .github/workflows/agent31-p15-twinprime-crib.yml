@@ -1,0 +1,21 @@
+name: LP2 p15 original twin-prime candidate crib gate (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-crib:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run original p15 twin-prime source-locked key test
+        shell: pwsh
+        run: |
+          node --check sims/lp2_p15_twinprime_source_crib_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw "Node syntax check failed" }
+          node sims/lp2_p15_twinprime_source_crib_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw "Original-crib SFT failed" }
