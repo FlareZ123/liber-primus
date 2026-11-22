@@ -65,6 +65,19 @@ A second all-secret calculation lets the nine authentic illustrated chapters cho
 
 The updated [full-source CommonJS SFT](../sims/lp2_p50_period255256_allsecret_symbolrank_original_sft.cjs) reconstructs all 12956 original differences from the exact written source, checks 86 original continuous zeros, enumerates all 256 two-bank choices for both periods and asserts all reported counts. It also encrypts the full 12956-rune solved-p57-native positive by the corresponding cumulative cipher with a nontrivial phase-affine secret, then exactly recovers **12956/12956** plaintext runes. [Original Windows Node22 PASS run 45049597218](https://github.com/FlareZ123/liber-primus/actions/runs/45049597218). No key fitting or language-score optimization is involved.
 
+## Authenticated source F-transparent key clock
+
+Solved p56 demonstrates a **literal F transparent** rule: GP29 index0 F passes through unencrypted and does not advance the key clock. This defines a motivated exception to the all-rune-clock models above. The original pp0–55 ciphertext has **458 literal Fs**, leaving 12,498 non-F runes. Grant either of two arbitrary hidden 28-symbol substitution banks to each of nine original illustrated chapters, use periods 255 or256, restart at each chapter, and exhaust all **256 inequivalent bank assignments**. The secret phase maps are completely unconstrained permutations.
+
+For any five plaintext symbols, either F is excluded and the upper bound is the sum of each keyed phase's **five largest non-F** counts, or F is included and the upper bound is the **458 F sites plus four largest non-F** counts. Take the larger. For the cumulative first-order model, run the modular difference on **successive non-F ciphertext runes only**, resetting the prior register to zero at each chapter. The exact maximum original capacities under all the secret phase maps and all 256 chapter bank partitions are:
+
+| Original output family and transparent-F clock | Period255 | Period256 |
+| --- | ---: | ---: |
+| Direct 28-symbol phase substitution | **6,026/12,956 = 46.5113%** | **6,056/12,956 = 46.7428%** |
+| First-order cumulative phase substitution | **6,029/12,956 = 46.5344%** | **6,020/12,956 = 46.4650%** |
+
+All four are below independently solved p57's **46/95 = 48.4211%** five-symbol occupancy. Thus even the *historically motivated skip-F clock* does not rescue a one- or two-bank 255/256-slot periodic decoder for p57-like native-GP prose. This is a conditional frequency-profile exclusion, not an impossibility for arbitrary alphabet streams or a source-selected evolving cipher. The updated [full-source SFT](../sims/lp2_p50_period255256_allsecret_symbolrank_original_sft.cjs) asserts all original outcomes and source-F count; [Windows Node22 PASS 45049975605](https://github.com/FlareZ123/liber-primus/actions/runs/45049975605).
+
 ## Original controls and downstream choice
 
 The [read-only, original-corpus Windows Node22 CommonJS SFT](../sims/lp2_p50_period255256_allsecret_symbolrank_original_sft.cjs) reconstructs and exactly reconciles **12,956** input runes across the raw transcription, confirms **2,896** printed source words, and reproduces all ten above upper bounds with strict numerical assertions. It additionally repeats the authentic solved p57 plaintext to **12,956** runes and encrypts it under a chosen nontrivial phase-varying invertible affine GP29 map of period256. The real decoder exactly recovers all **12,956/12,956** native-GP runes. Its plaintext top five count is **6,271**, and the encrypted stream's keyless top-five upper bound is **6,929**, correctly leaving the genuine positive possible. [Actual read-only Windows Node22 PASS run 45048405846](https://github.com/FlareZ123/liber-primus/actions/runs/45048405846).
