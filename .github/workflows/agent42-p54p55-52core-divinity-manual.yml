@@ -1,0 +1,14 @@
+name: Agent42 p54p55 52-core DIVINITY
+on:
+  workflow_dispatch:
+jobs:
+  exact-original-inverse:
+    runs-on: windows-2022
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Invert the crossed original source's 52 core runes
+        run: node sims/lp2_p54p55_52core_divinity_strictf_original_sft.cjs
