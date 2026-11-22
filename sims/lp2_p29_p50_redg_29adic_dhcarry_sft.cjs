@@ -14,8 +14,9 @@ const G=[15,5,27], H=[24,26,3], p=23,e=3;
 const mod=(x,m)=>((x%m)+m)%m;
 /** @param {number[]} source @param {number[]} factor @param {29|841} m */
 function divide(source,factor,m) {
- const a=source.slice(), inv=m===29?2:785,q=[];
- assert.equal(mod(factor[0]*inv,m),1);
+ const a=source.slice(), q=[];
+ const inv=Array.from({length:m},(_,i)=>i).find(v=>mod(factor[0]*v,m)===1);
+ assert.notEqual(inv,undefined);
  for(let i=0;i<=source.length-factor.length;i++) {
    const c=mod(a[i]*inv,m);q.push(c);
    for(let j=0;j<factor.length;j++)a[i+j]=mod(a[i+j]-c*factor[j],m);
