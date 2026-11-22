@@ -100,6 +100,49 @@ for (const [basis, enc, dec] of [['rowMajor',K,L],['columnMajor',transpose(K),tr
 assert.equal(rows.length, 14);
 assert(rows.every((r) => r.ioc < 0.04));
 
+// Self-referential characteristic invariants of the source-defined matrix:
+const trace = mod(K[0][0] + K[1][1] + K[2][2]);
+const principal2 = mod(
+  K[0][0]*K[1][1]-K[0][1]*K[1][0]
+  + K[0][0]*K[2][2]-K[0][2]*K[2][0]
+  + K[1][1]*K[2][2]-K[1][2]*K[2][1]);
+const shiftBy2 = K.map((row,i) => row.map((value,j) => value + (i===j ? 2 : 0)));
+assert.deepEqual([trace,principal2,mod(det3(K)),mod(det3(shiftBy2))], [12,6,19,0]);
+// chi_K(x) = (x+2)(x²-14x+5) modulo29.
+// The root -2 is the negative of the preceding p7 fifth red product2.
+
+/**
+ * Full 3^5 body recipient under five independent 3x3 tensor axes.
+ * @param {number[]} tape Exactly 243 GP29 rune indices.
+ * @param {number[][]} matrix Invertible source GF29 key.
+ * @returns {number[]} Output exactly 243 indices.
+ */
+function tensor243(tape, matrix) {
+  assert.equal(tape.length, 243);
+  const output = tape.slice();
+  for (const stride of [1,3,9,27,81]) {
+    for (let base = 0; base < 243; base += 3*stride) {
+      for (let j = 0; j < stride; j += 1) {
+        const p = base + j;
+        const tri = [output[p], output[p+stride], output[p+2*stride]];
+        const encoded = mul(matrix, tri);
+        for (let row=0;row<3;row+=1)output[p+row*stride]=encoded[row];
+      }
+    }
+  }
+  return output;
+}
+const tensorModels=[];
+for(const [basis,dec,enc] of [['row',L,K],['column',transpose(L),transpose(K)]]) {
+  for(const [direction,matrix,undo] of [['inverse',dec,enc],['forward',enc,dec]]) {
+    const recovered=tensor243(body,matrix);
+    assert.deepEqual(tensor243(recovered,undo),body);
+    tensorModels.push({basis,direction,ioc:ioc(recovered),first25:excerpt(recovered)});
+  }
+}
+assert.equal(tensorModels.length,4);
+assert(tensorModels.every(v=>v.ioc<0.04));
+
 const GP1Det = mod(det3(K.map(row => row.map(x => x + 1))));
 const primeDet = mod(det3(K.map(row => row.map(x => corpus.prime[x]))));
 assert.deepEqual([GP1Det,primeDet], [6,15]);
@@ -114,7 +157,9 @@ console.log(JSON.stringify({
   originalTitle:red, roman19Prefix:iv, redMatrix:K,
   determinantInteger:det3(K), determinantGP0:19, determinantGP1:GP1Det,
   determinantPrimeValues:primeDet, inverse:L,
+  characteristic:{trace,principal2,determinant:19,rootNegative2:true},
+  tensorFiveLevels:tensorModels,
   originalBlackRunes:body.length, blackOriginalIOC:ioc(body),
   modeResults:rows, classification:'source-shape key candidate; no original plaintext'
 },null,2));
-console.log('PASS GP29 3x3 source-key determinant and 14 full original 243-rune inverses');
+console.log('PASS GP29 3x3 source-key determinant and 14 block modes plus 4 full 243-rune 5-tensor inverses');
