@@ -1,4 +1,4 @@
-name: Agent44 original p0 36 Hill6 and seven-share source test
+name: Agent44 original-source finite inverse challenges
 on:
   workflow_dispatch:
 jobs:
@@ -10,5 +10,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Reconstruct source-fixed original inverses
+      - name: Test fixed 36-rune p0 Hill and seven-share inverses
         run: node sims/lp2_p0_36_hill6_shamir7_sft.cjs
+      - name: Test source-derived AES128 p50 inverse
+        run: node sims/lp2_2014_html_f3_aes128_grid_source_sft.cjs
