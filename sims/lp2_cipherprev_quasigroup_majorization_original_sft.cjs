@@ -390,13 +390,69 @@ function oldEnglishSourceControl() {
   }
   assert(minTop1 > originalCaps.global.capacities[2],
     "Old English also violates arbitrary hidden two-mode state capacity");
+  // Page-secret Q with a deterministic word initializer induces an injective
+  // word substitution whenever a complete word stays inside one page.
+  // This independently tests the per-page reset exception left open by the
+  // rank-capacity gate, with exact original carry exclusion.
+  const pageComplete = [];
+  let originalOffset = 0;
+  let carried = 0;
+  let long = 0;
+  for (const w of words) {
+    const finalOffset = originalOffset + w.length - 1;
+    const startsOn = pageAt[originalOffset];
+    const crossesPage = startsOn !== pageAt[finalOffset];
+    if (crossesPage) carried++;
+    else if (w.length === 14) long++;
+    else pageComplete.push({page:startsOn, word:w});
+    originalOffset += w.length;
+  }
+  assert.equal(originalOffset, 12956);
+  assert.equal(carried, 32);
+  assert.equal(long, 3);
+  assert.equal(pageComplete.length, 2861);
+  const pageCollisions = records => {
+    let pairs = 0;
+    const seen = new Map();
+    for (const [page, glyphs] of records) {
+      const key = page + ":" + glyphs.join(",");
+      const prior = seen.get(key) || 0;
+      pairs += prior;
+      seen.set(key, prior + 1);
+    }
+    return pairs;
+  };
+  const originalPagePairs = pageCollisions(pageComplete.map(x => [x.page, x.word]));
+  assert.equal(originalPagePairs, 4);
+  const pageRandom = rng(0x55bef12);
+  const pageSamples = [];
+  for (let trial = 0; trial < 300; trial++) {
+    const sampled = pageComplete.map(x => {
+      const options = bins.get(x.word.length);
+      const word = options[Math.floor(pageRandom() * options.length)];
+      return [x.page, word];
+    });
+    pageSamples.push(pageCollisions(sampled));
+  }
+  pageSamples.sort((a, b) => a - b);
+  assert.equal(pageSamples[0], 290);
+  assert.equal(pageSamples[150], 360);
+  assert.equal(pageSamples[299], 435);
+  assert(pageSamples.every(x => x > originalPagePairs));
+  const pageCollisionGate = {fullyPageContainedMatchedWords:pageComplete.length,
+    sourceCarriedWordsOmitted:carried, unsupportedLength14WordsOmitted:long,
+    originalRepeatedPairCount:originalPagePairs, sourceTrials:pageSamples.length,
+    sourcePairMin:pageSamples[0], sourcePairMedian:pageSamples[150],
+    sourcePairMax:pageSamples[299], sourceAtOrBelowOriginal:0,
+    cipherImplication:"per-page stationary Q plus a single deterministic word reset is source-language-incompatible"};
   return {corpus:"resources/control/beowulf_oe_gp_profile_corrected.json",
     sourceWords:source.allSourceGpWordLengths.length, sourceRunes:raw.length,
     originalMatchedWords:eligible.length, missingLongSourceWords:3,
     eligibleSites:10021, trials:180,
     top1Range:[minTop1,maxTop1], top5Range:[minTop5,maxTop5],
     fullOriginalTop1Cap:originalCaps.positionColor.capacities[1],
-    fullOriginalTop5Cap:originalCaps.positionColor.capacities[5]};
+    fullOriginalTop5Cap:originalCaps.positionColor.capacities[5],
+    pageCollisionGate};
 }
 const oldEnglish = oldEnglishSourceControl();
 const lp1 = read("resources/transcriptions/lp1_wulfic_canonical.txt");
