@@ -1,0 +1,29 @@
+# Authentic 2016 cover faint-tree versus original LP2 p32/p55: source-shape decision
+
+**Agent11, 22 November 2026. Evidence class: controlled negative source-art discrimination; no unknown-page plaintext or key.**
+
+## Why this particular cross-date comparison
+
+The original January 2016 Cicada image `4gq25.jpg` visibly places a faint tree behind its signed OutGuess message instructing solvers to use Liber Primus. The original LP2 p32 page (`49.jpg`) has a blurred tree whose exact outline is associated with the clear p55 tree (`72.jpg`); the latter match has already been independently tested in [the existing original-raster tree study](lp2-p32-p55-blurred-tree-correspondence.md). If the 2016 cover reuses precisely the same artwork, that would give a dateable creator-selected return to the p32 visual object, rather than an analyst-proposed relation.
+
+The exact source image is [the 2016 archive's 4gq25.jpg](https://github.com/scream314/cicada3301/blob/master/assets/2016/4gq25.jpg), 563×569 pixels, **SHA-256 `a8340ad04b83fb3130e7ed9172867a440812e87089d6aa2b932d97c6ae38aebe`** on the downloaded file. Its OutGuess-extracted source wording and signature are documented in [the 2016 walkthrough](https://github.com/scream314/cicada3301/blob/master/2016.md). The book scans come from original `resources/liber-primus/49.jpg` and `72.jpg`.
+
+## Frozen original-raster comparison and counterexamples
+
+The independent [reproducer](../sims/lp2_p32_wikimedia2005_treeshape_source_sft.py) holds p32 and p55 crops fixed to those already published and searches 6 coarse scales and both horizontal orientations using Gaussian-smoothed normalized template correlation (OpenCV). The cover's visually central region is extracted at x19–81% and y39–79%, and low-luminance tree candidates are selected by fixed brightness bands 2..60 and 5..90 and local contrast >3. This deliberately avoids original rune content, English scorers, any secret and every overlay text.
+
+The **first, uncalibrated** central-patch score was **0.854721**, upright, scale1.08; a separate band reached 0.792547. The positive original p55→p32 source control scored 0.819847 with this coarse method. An isolated high center correlation would have been tempting, but **fails the independent spatial-selection test**: using the *same frozen band 2..60 and fitting code*, multiple equal-size cover crops on a 3×4 fixed spatial grid scored above 0.85, so no special tree-center source selector emerges. More importantly, multiple outside the declared central patch score **higher** than 0.854721: x0/y341 **0.876804**, x214/y227 **0.870959**, x107/y227 **0.868512**, x214/y341 **0.865330**. The central subwindow is therefore **not uniquely selected** by the apparent shape correlation. Some alternative windows overlap the real cover's tree, and most have comparable JPEG noise and text boundaries; thus they are not independent empty-image controls. This is still a direct negative for treating the particular *center crop and score* as unique authored art correspondence.
+
+In contrast, 32 block-scrambled versions of that center candidate (fixed RNG seed 3301, 16×16 pixel blocks) scored at most **0.403616**, mean0.285402. This establishes that the center candidate's high correlation uses spatial structure and should not be dismissed as white noise, but it does not rescue uniqueness against the other *real signed-image* windows. The measured ambiguous landscape is stronger evidence than either extreme inference.
+
+Windows Node/Python test run [45001032465](https://github.com/FlareZ123/liber-primus/actions/runs/45001032465) completed on **Windows Python3.12**. It downloads the actual archived 2016 JPEG, prints source SHA-256, complete 12-window control geometry and the planted p55 positive. Its source-crop and transform choices are explicit and available for independent challenge. These scores are postselected source-comparison diagnostics, not calibrated proof of photographic identity.
+
+## Separate historic 2005 photo lead and current blocker
+
+A [September 2019 contemporary discussion](https://www.reddit.com/r/cicada/comments/d7mr1z/page_32_the_dead_tree/) proposed the p32 tree's source as [Wikimedia Commons `DeadTree.jpg`](https://commons.wikimedia.org/wiki/File:DeadTree.jpg), a photograph of a bare oak by R. Neil Marshman uploaded 9 November 2005. The file's original 1894×2606 dimensions and SHA1 `b0e0850ecfadac435eb45881252a146c9f5cc21b` are recorded on Wikimedia. The German and Portuguese image-processing articles also use the original and pre-2014 3×3 median/Gaussian/salt-pepper derivatives. This historical claim would provide a specific old *visual* source and potential imaging vocabulary, but it has not been objectively compared to original LP2 art here.
+
+The direct source-photo read from Windows GitHub Actions repeatedly returned **HTTP 429**; a generic proxy returned **404**. The current reproducible source test explicitly records this access failure instead of misclassifying a missing photograph as a mismatch. The Wikimedia source comparison remains **unexecuted**. Do not infer any exact drawing provenance or cipher operator from the old thread's uncalibrated visual guess.
+
+## Decision
+
+The tested 2016 central cover-tree extraction does **not** independently single out p32. A high correlation without a uniquely chosen crop, along with no ciphertext-to-plaintext prediction, cannot justify transporting an operator or key. Retire this specific center-crop route. A new image claim would need original author-selected artwork coordinates or an independent known-image identity that predicts a fixed correspondence with no further fitting. The existing p32/p55 within-manuscript tree resemblance remains meaningful but does not decrypt p32 or p55.
