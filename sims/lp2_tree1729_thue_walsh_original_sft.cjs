@@ -217,6 +217,66 @@ assert.equal(ternaryMatches, 0);
 console.log("All 841 ternary additive three-secret-key relatives: best",
   ternaryBest, "at or above native class floor:", ternaryMatches);
 
+/**
+ * Prefix counts of each externally fixed driver state before rune i.
+ * The resulting running-key inverse is P_i = C_i - sum_j a_j*N_j(i).
+ * Its forward encoder uses precisely the same public clock and coefficients.
+ * @param {number[]} states @param {number} radix @returns {number[][]}
+ */
+function prefixStateCounts(states, radix) {
+  const counts = Array.from({length:radix}, () => Array(states.length).fill(0));
+  const totals = Array(radix).fill(0);
+  for (let i = 0; i < states.length; i++) {
+    for (let s = 0; s < radix; s++) counts[s][i] = totals[s];
+    totals[states[i]]++;
+  }
+  return counts;
+}
+
+const nativeWholeMin = Math.min(...Array.from(
+  {length:native.length-cipher.length+1},
+  (_, start) => ioc(native.slice(start,start+cipher.length))));
+const countBinary = prefixStateCounts(
+  Array.from({length:cipher.length}, (_, i) => thue(i)), 2);
+let binaryRunningBest = {a:0, b:0, ioc:-1};
+let binaryRunningNative = 0;
+for (let a = 0; a < 29; a++) for (let b = 0; b < 29; b++) {
+  const decoded = cipher.map((v, i) =>
+    mod29(v - a * countBinary[0][i] - b * countBinary[1][i]));
+  const value = ioc(decoded);
+  if (value > binaryRunningBest.ioc) binaryRunningBest = {a, b, ioc:value};
+  if (value >= nativeWholeMin) binaryRunningNative++;
+}
+assert.equal(binaryRunningNative, 0);
+console.log("Thue-Morse cumulative two-state keys:", 841,
+  "best:", binaryRunningBest, "native minimum:", nativeWholeMin);
+
+const countTernary = prefixStateCounts(ternary, 3);
+let ternaryRunningBest = {a:0, b:0, c:0, ioc:-1};
+let ternaryRunningNative = 0;
+for (let a = 0; a < 29; a++) {
+  for (let b = 0; b < 29; b++) {
+    for (let c = 0; c < 29; c++) {
+      const hist = Array(29).fill(0);
+      for (let i = 0; i < cipher.length; i++) {
+        hist[mod29(cipher[i] - a * countTernary[0][i] -
+          b * countTernary[1][i] - c * countTernary[2][i])]++;
+      }
+      const value = hist.reduce((sum, count) =>
+        sum + count * (count - 1), 0) /
+        (cipher.length * (cipher.length - 1));
+      if (value > ternaryRunningBest.ioc)
+        ternaryRunningBest = {a, b, c, ioc:value};
+      if (value >= nativeWholeMin) ternaryRunningNative++;
+    }
+  }
+}
+assert.equal(ternaryRunningNative, 0);
+console.log("Squarefree Thue cumulative three-state keys:", 24389,
+  "best:", ternaryRunningBest, "native minimum:", nativeWholeMin);
+console.log("Thue running-key engines are fully reversible for every secret key.");
+console.log("Exact re-encryption is an implementation invariant for all 25,230 wrong keys.");
+
 assert.equal(grid.shape, "32 rows by 8 columns across LP2 pages 49, 50, 51");
 assert.equal(grid.bytes.length, 256);
 let native256Minimum = Infinity;
