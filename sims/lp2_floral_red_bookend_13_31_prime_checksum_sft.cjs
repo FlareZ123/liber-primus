@@ -49,6 +49,24 @@ const heading=sums(p40,0,8);
 const closing=sums(p53,128,51);
 assert.deepEqual(heading,{start:0,indexSum:116,primeSum:435});
 assert.deepEqual(closing,{start:128,indexSum:634,primeSum:2262});
+// An *out-of-chapter* test of the same original GP-prime divisor rule.
+// The p15 separate original nine-rune red title is not part of the floral
+// hypothesis or its original fitting set; its independently measured value
+// is 638=22*29. Physical p22 is the documented reused LP1 art recipient.
+const allRed=ink.pages.flatMap(p=>(p.red_spans||[]).map(s=>{
+  const source=corpus.pages[p.page].indices;
+  const x=sums(source,s.start,s.length);
+  return {page:p.page,length:s.length,start:s.start,
+    indexSum:x.indexSum,primeSum:x.primeSum};
+}));
+assert.equal(allRed.length,18);
+const primeDivisible=allRed.filter(x=>x.primeSum%GP===0);
+assert.deepEqual(primeDivisible.map(x=>[x.page,x.start,x.length,x.primeSum/GP]),
+  [[15,0,9,22],[40,0,8,15],[53,128,51,78]]);
+assert.deepEqual(allRed.filter(x=>x.primeSum%GP===0&&x.indexSum%GP===0)
+  .map(x=>[x.page,x.start,x.length]),[[40,0,8]]);
+assert.equal(corpus.pages[22].indices.length,131);
+
 const LEFT=13,RIGHT=31,GP=29,RED_COUNT=59;
 /** @param {{indexSum:number,primeSum:number}} h @param {{primeSum:number}} t */
 function seals(h,t){
@@ -180,6 +198,7 @@ const mutant={...closing,primeSum:closing.primeSum-
 assert(seals(heading,mutant).some(v=>!v));
 console.log(JSON.stringify({
   source:"Physical LP2 p40 red8 and p53 closing red51, p40–53 only red spans; floral left13/right31; authentic GP29 prime weights",
+  outOfChapterRedGPPrimeDivisorCensus:{originalRedSpans:allRed.length,divisible:primeDivisible,onlyDualSpanPage40:true,recipientP22Runes:corpus.pages[22].indices.length},
   physical:{p40Runes:p40.length,p53Runes:p53.length,
     heading,closing,redCount:RED_COUNT,primeSumBoth:heading.primeSum+closing.primeSum},
   exactDivisions:{openingGPIndexOver29:4,openingPrimeOver29:15,
