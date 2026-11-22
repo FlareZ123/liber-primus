@@ -193,6 +193,27 @@ for(let trial=0;trial<iterations;trial++){
   if(sig.every((v,i)=>v===observed[i]))exactSignature++;
 }
 assert.deepEqual([family,exactSignature,threeFamily],[78,3,2542]);
+// The constraints refer exclusively to original p8 BLACK rune positions
+// (all paired indices 47...240); repeat the familywise null using only
+// the 243 physically black original p8 runes, not its 12 red title runes.
+assert.deepEqual(ink.pages.find(p=>p.page===8).red_spans
+  .map(s=>[s.start,s.length]),[[0,12]]);
+randomState=0x3301a14c;
+const blackSource=original.slice(12);
+assert.equal(blackSource.length,243);
+let physicallyConditionedFamily=0;
+for(let trial=0;trial<iterations;trial++){
+  const used=new Set(),drawn=[];
+  while(drawn.length<8){
+    const i=random()%243;
+    if(used.has(i))continue;
+    used.add(i);
+    drawn.push(blackSource[i]);
+  }
+  const sig=[0,2,4,6].map(j=>mod(drawn[j]-drawn[j+1]));
+  if(familySignatures.has(sig.join(',')))physicallyConditionedFamily++;
+}
+assert.equal(physicallyConditionedFamily,85);
 console.log(JSON.stringify({originalSourceScrollWords:words.length,
   sourceParikhClasses:parikhGroups.size,allOriginalParikhCollisions:pairs,
   nonidenticalAnagram:[88,179],originalInk88:'black',originalInk179:'red',
@@ -201,5 +222,7 @@ console.log(JSON.stringify({originalSourceScrollWords:words.length,
   matchDistribution,fourMatchConfigurations:winners,
   shuffleRepetitions:iterations,familywiseFourMatch:family,
   familywiseThreeMatch:threeFamily,
-  exactFourSignature:exactSignature,plantedOriginalSourceMatches:255},null,2));
+  exactFourSignature:exactSignature,
+  physicallyConditionedBlackOnlyFourFamily:physicallyConditionedFamily,
+  plantedOriginalSourceMatches:255},null,2));
 console.log('PASS: unseen original black/red anagram is fourth exact GF4/radix59 checksum equality; familywise shuffle result fixed.');
