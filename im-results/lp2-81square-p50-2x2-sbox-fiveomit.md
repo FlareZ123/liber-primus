@@ -19,6 +19,20 @@ An exact dynamic program permits **any five deleted predicted positions** and ma
 | Gaussian, index | 249 | 281 |
 | Gaussian, GP prime | 220 | 294 |
 
-**Decisive readout:** all eight fail exact original-target reproduction by at least **6,101 runes** even with an arbitrary five deletions. The same forward formula operating on a source-native p57-repeated 81×81 synthetic input, followed by five fixed deletions, yields **6,395/6,395** exact recovery using the identical DP, so the finite gate can detect a genuine match.
+**Independently motivated finite-difference expansion.** Removing a final row and column from an 81×81 cell grid produces an 80×80 grid of adjacent 2×2 source neighborhoods. The natural mixed difference \(a-b-c+d\) is a particularly inexpensive causal interpretation. It could give a reversible cumulative-sum inverse if boundary conditions were supplied. For completeness, compare seven frozen field operations: index- and GP-prime versions of mixed difference, horizontal and vertical gradients, and the factorized four-corner product \((a-c)(b-d)\). For each, emit either the direct GF29 residue or the actual p50 table's indexed byte modulo29. Charge **all eight dihedral rotations/reflections** of the output and allow the same arbitrary five omissions. The best agreements with the original untouched last 6,395 runes are:
 
-**Decision:** retire only these eight **direct** neighborhood-to-p50-lookup readings of the 81²/80²−5 arithmetic. A secret nonlinear pretransform, unknown transposition, alternate output formatting or independently keyed cipher is not covered; those require a new original clue that selects an operation. The large square split remains a numerical observation, not an independently attested intended encoding.
+| Source four-corner operation | Best direct GF29, any D4 | Best table-indexed, any D4 |
+| --- | ---: | ---: |
+| \(a-b-c+d\) | 296 | 290 |
+| GP-prime counterpart | 292 | 296 |
+| \(a+b-c-d\) | 297 | 275 |
+| \(a+c-b-d\) | 285 | 295 |
+| GP-prime horizontal | 295 | 283 |
+| GP-prime vertical | 271 | 298 |
+| \((a-c)(b-d)\) | 287 | 287 |
+
+The strongest of all **112 rotated/reflected four-corner difference readers** is just **298/6,395**; any exact decoder would require 6,395. The finite-difference interpretation is therefore rejected even with the broadest output orientation and unconstrained five deletions. This tests a concrete reversible-cumulative-sum prospect without inventing boundary conditions or a secret key.
+
+**Decisive readout:** all eight direct source-table hashes fail exact original-target reproduction by at least **6,101 runes** even with an arbitrary five deletions. The same forward formula operating on a source-native p57-repeated 81×81 synthetic input, followed by five fixed deletions, yields **6,395/6,395** exact recovery using the identical DP, so the finite gate can detect a genuine match.
+
+**Decision:** retire only the eight **direct** neighborhood-to-p50-lookup readings and seven two-register difference/gradient rules (all D4 orientations) of the 81²/80²−5 arithmetic. A secret nonlinear pretransform, unknown transposition, alternate output formatting or independently keyed cipher is not covered; those require a new original clue that selects an operation. The large square split remains a numerical observation, not an independently attested intended encoding.

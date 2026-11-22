@@ -61,6 +61,66 @@ const planted=predict(Array.from({length:6561},(_,i)=>p57[i%p57.length]),hashes.
 const omit=new Set([0,127,3200,5599,6399]);
 const plantedTarget=planted.filter((_,i)=>!omit.has(i));
 assert.equal(bestFiveDeletions(planted,plantedTarget),6395);
+
+/**
+ * Check the more directly clue-motivated difference and gradient rules:
+ * shedding a row and column is exactly a finite-difference 81x81->80x80
+ * operation. All eight rotations/reflections and both output registers
+ * are granted; no fitted key or extra symbol changes.
+ * @param {number[]} predicted
+ * @param {number} rotation
+ * @param {number} mirror
+ * @returns {number[]}
+ */
+function orient80(predicted, rotation, mirror) {
+  const out = new Array(6400);
+  for (let r = 0; r < 80; r++) for (let c = 0; c < 80; c++) {
+    let x = r, y = mirror ? 79 - c : c;
+    for (let k = 0; k < rotation; k++) [x, y] = [y, 79 - x];
+    out[r * 80 + c] = predicted[x * 80 + y];
+  }
+  return out;
+}
+const stencil = {
+  mixedDifference: ([a, b, c, d]) => a - b - c + d,
+  primeMixedDifference: ([a, b, c, d]) =>
+    prime[a] - prime[b] - prime[c] + prime[d],
+  horizontalGradient: ([a, b, c, d]) => a + b - c - d,
+  verticalGradient: ([a, b, c, d]) => a + c - b - d,
+  primeHorizontalGradient: ([a, b, c, d]) =>
+    prime[a] + prime[b] - prime[c] - prime[d],
+  primeVerticalGradient: ([a, b, c, d]) =>
+    prime[a] + prime[c] - prime[b] - prime[d],
+  rectangleProduct: ([a, b, c, d]) => (a - c) * (b - d)
+};
+const differenceResults = [];
+for (const [name, hash] of Object.entries(stencil)) {
+  const field = [];
+  const tableMapped = [];
+  for (let r = 0; r < 80; r++) for (let c = 0; c < 80; c++) {
+    const z = r * 81 + c;
+    const q = [A[z], A[z + 1], A[z + 81], A[z + 82]];
+    const n = hash(q);
+    field.push(mod(n, 29));
+    tableMapped.push(table[mod(n, 256)] % 29);
+  }
+  for (const [register, proposed] of [['GF29', field], ['p50Table', tableMapped]]) {
+    let optimal = {matching: -1, rotation: -1, mirror: -1};
+    for (let rotation = 0; rotation < 4; rotation++) {
+      for (let mirror = 0; mirror < 2; mirror++) {
+        const matching = bestFiveDeletions(orient80(proposed, rotation, mirror), B);
+        if (matching > optimal.matching) {
+          optimal = {matching, rotation, mirror};
+        }
+      }
+    }
+    differenceResults.push({name, register, ...optimal});
+  }
+}
+assert.deepEqual(differenceResults.map(x => x.matching),
+  [296, 290, 292, 296, 297, 275, 285, 295, 295, 283, 271, 298, 287, 287]);
+assert(differenceResults.every(x => x.matching < 6400 - 5));
+
 console.log(JSON.stringify({source:'original 12956 GP runes; original p50 256 source bytes',
-  test:'2x2 81²->80² table hash, five arbitrary omissions, fixed eight functions',
-  results,exactPlantMatches:6395,unknownPlaintextRecovered:false},null,2));
+  test:'2x2 81²->80² with five arbitrary omissions, eight table hashes and seven difference rules in GF29 and source table with eight D4 rotations',
+  results, differenceResults, exactPlantMatches:6395,unknownPlaintextRecovered:false},null,2));
