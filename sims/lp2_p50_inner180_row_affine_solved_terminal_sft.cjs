@@ -104,6 +104,51 @@ for (const field of [29, 257]) {
   }
 }
 
+/**
+ * The historical 2013 Cicada puzzle used bytewise XOR directly, making a
+ * row-specific XOR key an independently motivated non-affine transfer.
+ * An 8-bit XOR result may be a native 0..28 rune, or an 8-bit byte reduced
+ * modulo29. Both are exhaustively and exactly checkable at 256 keys per row.
+ *
+ * @param {number[]} xs
+ * @param {number[]} ys
+ * @param {boolean} reduce
+ */
+function bestXor(xs, ys, reduce) {
+  let best = {matches: -1, key: -1};
+  for (let key = 0; key < 256; key++) {
+    const n = xs.reduce((s, x, i) => s +
+      Number((reduce ? ((x ^ key) % 29) : (x ^ key)) === ys[i]), 0);
+    if (n > best.matches) best = {matches: n, key};
+  }
+  return best;
+}
+for (let row = 0; row < 30; row++) {
+  const key = (row * 31 + 7) % 256;
+  const y = known.slice(row * 6, row * 6 + 6);
+  const planted = y.map(value => value ^ key);
+  assert.equal(bestXor(planted, y, false).matches, 6);
+  assert.equal(bestXor(planted, y, true).matches, 6);
+}
+const xorResults = [false, true].map(reduce => {
+  const fits = [];
+  for (let row = 0; row < 30; row++) {
+    fits.push(bestXor(
+      inner.slice(row * 6, row * 6 + 6),
+      known.slice(row * 6, row * 6 + 6), reduce
+    ).matches);
+  }
+  assert(fits.every(n => n < 6));
+  return {
+    model: reduce ? 'rowwise 8-bit XOR then modulo29' : 'direct rowwise 8-bit XOR',
+    complete_rows: 0,
+    total_rows: 30,
+    maximum_matching_points_per_row: Math.max(...fits),
+    source_row_scores: fits
+  };
+});
+assert.deepEqual(xorResults.map(x => x.maximum_matching_points_per_row), [1, 3]);
+
 const results = [];
 for (const field of [29, 257]) {
   const rowScores = [];
@@ -129,6 +174,7 @@ console.log(JSON.stringify({
   rowwise_model: 'independent unknown affine key for EACH row',
   controls: 'PASS 30/30 synthetic rows in both prime fields',
   original_results: results,
-  outcome: 'rowwise direct affine table decoding rejected without key search',
+  original_xor_results: xorResults,
+  outcome: 'rowwise affine and exact per-row bytewise XOR decoding rejected',
   plaintext_recovered: false
 }, null, 2));
