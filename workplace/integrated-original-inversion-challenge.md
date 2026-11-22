@@ -1,8 +1,24 @@
 # Integrated original inversion challenge
 
-## Decision frontier — evidence reconciled through 22 November 2026; current issue claims and availability require live GitHub checks
+## Decision frontier — current snapshot 2026-11-22T23:38Z; older route notes and the 00:49Z issue snapshot are retained below as history
 
 All **56 unresolved LP2 physical pages p0–p55 remain undeciphered**. The 55 rune-bearing pages contain 12,956 original GP29 ciphertext runes in 2,896 printed words; rune-free physical p50 contains the middle 13 rows of a 32×8, 256-token numerical table spanning p49 (ten rows), p50 (13 rows), and p51 (nine rows); p49 and p51 also contain runic prose. P55 contains 76 runes. No authenticated unknown-page plaintext, creator-supplied unknown-page key, complete original-cipher inverse, or verified final Cicada destination has been recovered.
+
+### Current frontier — 2026-11-22T23:38Z
+
+All 56 unknown LP2 physical pages p0–p55 remain undeciphered. The latest completed decisions add no authenticated unknown-page plaintext, key, complete inverse or final destination:
+
+- **#2323:** the p7 projector's centre13 is forced by its output symmetry; the prime-sum/diagonal rival fails two intact original receivers and lacks an authored operator.
+- **#2324:** the 1033-square CHANGE relation is exact but unordered; the per-page all-secret eigenmode substitution family fails its original-input invariant, and no first-party order or receiver exists.
+- **#2325:** twin-prime/emirp arithmetic does not select lower-twin choice, decimal reversal, book-position convention or a reversible recipient.
+- **#2326:** static 3-rune bijective blocks with independent page keys/phases are rejected against 288 matched native-English controls; common-phase 4-rune maps are disfavored, while page-private 4-rune phases and 5-/7-rune maps are not excluded.
+- **#2327:** the 13+25+13=51 square-orbit/p53-red-span correspondence has no authenticated fold/read instruction or second receiver; the direct decoders fail.
+- **#2260 follow-up:** the specified third-order GF29 affine, five-phase feedback family is rejected even with arbitrary output alphabets; unrestricted nonlinear state updates remain outside that result.
+
+### Live Director queue — checked 2026-11-22T23:38Z
+
+Seven director-task Issues are open: **#2243, #2273, #2278, #2117, #2070, #1335 and #41**. The first three have active claims; the latter four are waiting or blocked (independent-worker transport unavailable for #2117/#2070, external human judgment required for #1335, and a complete source-selected p55 decoder required for #41). There are **zero unclaimed executable tasks**. The older 00:49Z frontier and ~01:16Z issue list below are historical snapshots, not current queue state. Replenish the queue with genuinely independent source-to-plaintext investigations; do not reopen the closed families above or mistake queue depletion for cipher exhaustion.
+
 
 ### New historical-source result — January 2013 DH session
 
@@ -163,7 +179,7 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 - **Solved p57 punctuation pair → local p50 base59 bridge and p28 DH modulus (21 Nov; source-visible selector, not plaintext).** p57 has a red 13-dot mark after PARABLE and the unique terminal red 23-dot mark. The fixed family over large-mark counts {10,13,23} gives exactly one base59 edge, 13→23, and none under base60: 13th prime41→p50[41]=1O→base59 83; 23rd prime83; GP0(EMERGE)=83 for the solved word immediately before the terminal23 mark. The 23-dot mark independently reselects p=23 for the FIND-selected p28 DH line. The 13-dot count is common (31/36), so the base59 result is a local ordered-pair discriminator, not a global radix. See [source report](../im-results/lp2-p57-terminal23-p28-dh-modulus-selector.md) and [SFT](../sims/lp2_p57_terminal23_p28_dh_modulus_sft.cjs).
 - **p57 23-dot → p0–p2 23-cycle (negative).** The original terminal object has 23 dots in five staggered columns [4,5,5,5,4] and no marked start/direction. The body-only p0–p2 construction gives a 23-cycle only after excluding the two red title words; the equally literal inclusive construction gives a 5-cycle. The mark instead has the source-supported p28 DH modulus and local p50 base59 roles; it does not authenticate the p0 pointer graph.
 
-## Current decision gates and research handoffs (22 November 2026; reconciled 2026-11-22T00:49:48Z)
+## Historical decision gates and research handoffs (snapshot 2026-11-22T00:49:48Z; retained for context, not live issue state)
 
 **Established scientific status:** all 56 unresolved LP2 physical pages p0–p55 remain undeciphered in the independently reproducible sense. No authenticated unknown-page plaintext, complete original-cipher inverse, or verified final Cicada destination has been recovered. `results/README.md` remains the authoritative scientific synthesis; this is the replaceable coordination frontier.
 
@@ -182,7 +198,7 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 - **p50 radix:** no original global digit legend; #2099 remains closed with equal support across all 256 cells. The p57 SHED/DH-shell base59 branch and the p29/p50 shared-root24 base60 discriminator are conditional and incompatible; neither selects a global radix. Do not combine them into a dual-radix mechanism. [Base59 branch](../im-results/lp2-p50-radix-shed-circumference-divinity.md) · [base60 root24 decision](../im-results/lp2-p29-p50-shared-root24-quotient-common-codeword-decision.md).
 - **p55 43/33 exterior/interior split:** the partition is source-shaped, but the exterior-key role and a reversible map for all76 glyphs remain unproven (#2110, #2135).
 
-### Recent closures reviewed through #2135 at 00:49:48Z
+### Historical closures reviewed through #2135 at 00:49:48Z
 
 Eight post-checkpoint decisions are now closed. None recovers unknown-page plaintext, an authenticated unknown-page key, a complete inverse, or the final destination.
 
@@ -195,7 +211,7 @@ Eight post-checkpoint decisions are now closed. None recovers unknown-page plain
 - **#2134:** duplicate of existing cross-page exact-repeat census and conditioned word-pair nulls; no new ≥6-rune holdout.
 - **#2135:** terminal-only source audit finds no p55 inverse; the hash requires missing external page bytes, and no independent blind worker result exists.
 
-### Open Director-task issue state (22 November 2026, ~01:16Z snapshot; refresh claims before assignment)
+### Historical open Director-task issue state (~01:16Z snapshot; superseded by the live queue check above)
 
 Six open Director-task Issues remain: **#2083, #2117, #1886, #2070, #41 and #1335**. The former #2133 source-native heldout morphology assignment **closed at 00:52Z**, with no original shared-q key; it must not be listed as active.
 
