@@ -107,7 +107,21 @@ A control enumerates **all 256×255 = 65,280 distinct ordered table-cell pairs**
 - **15** table pairs also span exactly 36 ciphertext runes.
 - Those 15 pairs cover just five distinct value pairs: `13→49`, `20→56`, `141→177`, `192→228`, and `201→237`.
 
-The historical title/id pair selects **141→177**; this is distinctive *within the defined exact table/address family*. This conditional count is **not an authorship p-value**: the 133/331→table→p0 operation, the eight/36 targets, and the bracket tie were identified retrospectively, against a large preexisting field of explored numbers and routes.
+The historical title/id pair selects **141→177**; this is distinctive *within the defined exact table/address family*.
+
+### New source-shaped comparison: 133/331 is the only surviving three-digit reversal pair
+
+The source HTML title and div identifier are **each three-digit numbers**, and the second is exactly the **digit reversal of the first**. A stronger conditional rival starts with *every* possible three-digit `A` whose units digit is nonzero (there are **810**), takes `B=decimal-reverse(A)` and applies the **same unchanged original table→p0 word-start decoder**. This keeps both historical-shaped numbers three digits, fixes their direction A then reverse(A), and allows no extra adjustment:
+
+- 810 potential three-digit reversed source pairs.
+- **77** land on two p0 word starts.
+- **Two** have the second start exactly eight printed words after the first.
+- **One** spans exactly 36 original p0 runes.
+- **One** satisfies both; uniquely the actual `133/331 -> 141/177`.
+
+This is more informative than a random table pair because it tests the **historically observed numeric syntax** rather than unrelated cell indices. It remains a retrospective conditional coincidence test: the notion of table lookup, modulo256, p0 target and meaningful eight/36 separation were developed after exploring the source. Under any rival that lets those choices vary, the apparent selectivity will diminish. Neither a small 810-case count nor multiple overlapping rare numerical identities constitutes plaintext recovery.
+
+This conditional count is **not an authorship p-value**: the 133/331→table→p0 operation, the eight/36 targets, and the bracket tie were identified retrospectively, against a large preexisting field of explored numbers and routes.
 
 ## Fixed literal key consumers and negative inverse
 
@@ -123,4 +137,4 @@ It is not coherent English. Exact inverse replay restores all 36 original cipher
 
 **Preserve the historical HTML→table→p0 eight-word corridor, paired GP0→zero-bracket endpoints, candidate outside-in RIGHT token, and HTML-palindrome→GPprime-factor-sum→tree-root201 route as one candidate source-navigation frontier.** The first supplies an exact original ciphertext receiver and 36-byte register; the second supplies the already-studied 50+1+5 page-tree grouping from a different source-anchored start. Neither gives the original operation mapping table values to GP plaintext. Do **not** promote these retrospective correspondences into an authenticated route without a source-selected lookup convention, reproducible ordering and a complete original-cipher decryptor. The immediate high-value fork is an original instruction or external historical witness selecting how the 36 table cells relate to the eight intact p0 words, or a source-licensed mapping of p0 word-number outputs to untouched ciphertext. A second straightforward key sweep would add little evidence.
 
-**Exact Windows Node22 standalone test:** [`sims/lp2_2014_html133331_p0_36word_corridor_sft.cjs`](../sims/lp2_2014_html133331_p0_36word_corridor_sft.cjs). It asserts the release HTML identifiers, the original p0/word parsing, table bytes, both nested bracket addresses, every one of 65,280 table-pair controls, the two independently original-source selected 50+5+1 reverse table-tree branches, all 900 six-digit palindrome controls, the two convergent but unauthenticated RIGHT letter readouts, and a reversible known-clear positive. Source paths and all 15 exact matches are pinned. The source-derived numerical assertions were independently run on the fetched GitHub original inputs. **Native Windows Node22 CI PASS:** [manual reusable SFT run 44972882586](https://github.com/FlareZ123/liber-primus/actions/runs/44972882586); all original corpus assertions and synthetic inverse controls passed.
+**Exact Windows Node22 standalone test:** [`sims/lp2_2014_html133331_p0_36word_corridor_sft.cjs`](../sims/lp2_2014_html133331_p0_36word_corridor_sft.cjs). It asserts the release HTML identifiers, the original p0/word parsing, table bytes, both nested bracket addresses, every one of 65,280 table-pair controls, all 810 source-shaped three-digit reversal pair controls, the two independently original-source selected 50+5+1 reverse table-tree branches, all 900 six-digit palindrome controls, the two convergent but unauthenticated RIGHT letter readouts, and a reversible known-clear positive. Source paths and all 15 exact matches are pinned. The source-derived numerical assertions were independently run on the fetched GitHub original inputs. **Native Windows Node22 CI PASS:** [manual reusable SFT run 44972882586](https://github.com/FlareZ123/liber-primus/actions/runs/44972882586); all original corpus assertions and synthetic inverse controls passed.
