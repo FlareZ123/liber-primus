@@ -2,7 +2,7 @@
 
 /**
  * Original-cipher, completely key-free inverse for any fourth-order
- * GF29 additive keystream with the source-selected p50 H*G polynomial.
+ * GF29 additive keystream with the source-selected p50 R*G polynomial.
  *
  * A native-GP candidate word P and an original word C, both of length n,
  * can be related by C=P+K with arbitrary four initial key elements and
@@ -65,10 +65,14 @@ function multiply(a, b) {
       p[i + j] = MOD(p[i + j] + a[i] * b[j]);
   return p;
 }
-const H = [3,26,24], G = [27,5,15];
-const forward = multiply(H, G);
+const H = [3,26,24], R = [23,6,10], G = [27,5,15];
+const forward = multiply(R, G);
+const signed = multiply(H, G);
 const reverse = forward.slice().reverse();
 assert.deepEqual(forward, [12,16,7,24,5]);
+assert.deepEqual(signed, [23,21,11,17,12]);
+assert(forward.every((v, i) => v === MOD(27 * signed[i])),
+  "p23 R is 27× signed H; scalar factors share the annihilator");
 assert.deepEqual(reverse, [5,24,7,16,12]);
 // Show the source shape is the exact original 256-cell GF29 factor.
 // The byte order is the printed p50 row-major order.
@@ -287,7 +291,7 @@ function adjacentSourceWordTest(filter, match) {
 
 const results = [];
 for (const [name, filter] of [
-  ["p50-H2013-times-p39-G", forward],
+  ["p23-R-times-p39-G", forward],
   ["reversed-coefficient-orientation", reverse]
 ]) {
   const matches = originalMatches(filter);
@@ -296,7 +300,7 @@ for (const [name, filter] of [
   assert.equal(longMatches.length, 1,
     "complete key-free original long-word survivors " + name);
   assert.equal(longMatches[0].originalLength, 8);
-  const isForward = name === "p50-H2013-times-p39-G";
+  const isForward = name === "p23-R-times-p39-G";
   assert.equal(longMatches[0].wordIndex, isForward ? 2048 : 865);
   const expected = isForward ? "JOURNEYING" : "AFFERENT";
   assert(longMatches[0].candidateWords.some(x =>
@@ -316,7 +320,7 @@ for (const [name, filter] of [
 }
 
 console.log(JSON.stringify({
-  source:"exact GF29 p50 factor H2013 × centered-red-p39-G",
+  source:"exact GF29 p50 factor p23 R × centered-red-p39 G, scalar equivalent to signed H × G",
   filter:forward,
   p50QuotientLength:quotient.length,
   originalRunes:sourceTape.length,
