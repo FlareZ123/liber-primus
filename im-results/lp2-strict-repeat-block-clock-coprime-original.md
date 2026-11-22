@@ -13,24 +13,24 @@ The strong rival is a changing-state or probabilistic exception encoder: duplica
 - Every **non-F ciphertext glyph** consumes exactly one clock step. Ciphertext F (GP index0) may *arbitrarily* consume one step **or** be a literal plaintext F that consumes none, without needing to guess which it was.
 - A same-glyph adjacent pair may appear only if the *current* output is the first consumed symbol of a fresh fixed-length B block. Every block has the same integer length B at least 2.
 - Each physical page may start at any phase. Every recorded punctuation event, including the editorial punctuation in the derivative inventory, may restart at an entirely arbitrary phase. The proof below permits a reset at all these locations simultaneously.
-- There is no additional invisible clock skip or unprinted reset inside an uninterrupted stretch of non-F runes and punctuation-free original text. The mechanism is a strict repeat-only-at-block-boundary rule; it is a necessary output constraint independent of the input alphabet and secret substitution.
+- There is no additional invisible clock skip or reset at an ordinary **word separator or typeset line wrap**. This is a restriction on the proposed clock; both witnesses do pass over printed word separators. The mechanism is a strict repeat-only-at-block-boundary rule; it is a necessary output constraint independent of the input alphabet and secret substitution.
 
 ## Two untouched original-page witnesses
 
-All offsets below are **zero-based positions within an original physical page**, using the source GP29 alphabet. The two images are [36.jpg](../resources/liber-primus/36.jpg) for p19 and [41.jpg](../resources/liber-primus/41.jpg) for p24. Both pairs fall inside original intervals containing **no intervening ciphertext F and no recorded punctuation event of any type**; the source punctuation inventory is [here](../resources/liber-primus/lp2-punctuation-identity.json).
+All offsets below are **zero-based positions within an original physical page**, using the source GP29 alphabet. The two images are [36.jpg](../resources/liber-primus/36.jpg) for p19 and [41.jpg](../resources/liber-primus/41.jpg) for p24. Both pairs fall inside original intervals containing **no intervening ciphertext F and no catalogued sentence/chapter-level mark** (period, comma or large dot stamp); ordinary word separators do occur and are deliberately not resets in the stated model. the source punctuation inventory is [here](../resources/liber-primus/lp2-punctuation-identity.json).
 
 | Original physical page | Adjacent-equal event A | Adjacent-equal event B | Uninterrupted distance |
 | --- | --- | --- | ---: |
 | **p19** (original 36.jpg) | rune 17→18: `O O` (index3) | rune 44→45: `M M` (index19) | **27** |
 | **p24** (original 41.jpg) | rune 51→52: `G G` (index6) | rune 58→59: `IA IA` (index27) | **7** |
 
-For either event the current ciphertext rune is non-F, so it must consume a block-clock step. A strict block-repeat emitter therefore requires the clock phase to be zero at both event positions. Between each pair of events all ciphertext runes must consume exactly one step, since none is F and there is no punctuation to reset the clock. Thus **B divides 27** from p19 and **B divides 7** from p24. Their greatest common divisor is 1, so **no fixed B≥2 is possible**, for *any key, any block alphabet, any starting phase and any permitted literal-F choices elsewhere in the book*. This is an exact obstruction, with no probability model or GP-English assumption.
+For either event the current ciphertext rune is non-F, so it must consume a block-clock step. A strict block-repeat emitter therefore requires the clock phase to be zero at both event positions. Between each pair of events all ciphertext runes must consume exactly one step, since none is F and there is no catalogued sentence/chapter mark to reset the clock; a hypothetical word-boundary reset is a separate model. Thus **B divides 27** from p19 and **B divides 7** from p24. Their greatest common divisor is 1, so **no fixed B≥2 is possible**, for *any key, any block alphabet, any starting phase and any permitted literal-F choices elsewhere in the book*. This is an exact obstruction, with no probability model or GP-English assumption.
 
 A separate original **word-reset clock** also has a minimal witness when each printed word starts a new block at phase zero. Complete printed word #1476 (zero-based) begins at p27:79 and has the exact GP-index sequence
 
 `[12, 4, 9, 15, 3, 3, 5, 24, 18, 26, 18, 18]`.
 
-It has no F, with adjacent doublets at **within-word positions 5 and 11**. The strict word-reset version would require B to divide both 5 and 11, again forcing B=1. Granting every *word* a freely chosen nonzero starting phase would be a **different model**, not excluded by this second witness. Granting additional resets at every word or line similarly falls outside the p19/p24 continuous-span proof.
+It has no F, with adjacent doublets at **within-word positions 5 and 11**. The strict word-reset version would require B to divide both 5 and 11, again forcing B=1. Granting every *word* a freely chosen nonzero starting phase would be a **different model**, not excluded by this second witness. Granting additional resets at every word or typeset line falls outside the p19/p24 continuous-span proof; the p27 witness excludes only the independently natural word-start phase-zero clock.
 
 ## Reproducibility and positive model control
 
