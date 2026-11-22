@@ -25,7 +25,7 @@ import json
 from pathlib import Path
 from time import monotonic
 
-from z3 import Solver, sat, unsat
+from z3 import Int, Solver, sat, unsat
 
 ROOT = Path(__file__).resolve().parents[1]
 gp = json.loads((ROOT / "resources/liber-primus/lp2-corpus.json").read_text(
@@ -164,8 +164,7 @@ def check(
     if result == sat:
         model = solver.model()
         # Original uses all 29 symbols, planted positive uses only three.
-        mapping = [model.eval(solver.sexpr() and
-                   __import__("z3").Int(f"x{i}"), model_completion=True).as_long()
+        mapping = [model.eval(Int(f"x{i}"), model_completion=True).as_long()
                    for i in range(29)]
         mapped = [mapping[i] for i in source]
         assert Counter(mapped) == Counter({0: 81, 1: 81, 2: 81})
