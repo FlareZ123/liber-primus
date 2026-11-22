@@ -29,6 +29,18 @@ If the host is absent, one second bounded question is whether the 2014 corpus su
 
 **Research protection:** request only legal, puzzle-relevant host metadata and authorized original source bytes; there is no need to download, publish or inspect the entire corpus, which the 2014 paper notes included substantial illicit material. Do not equate the 2013 sample with May 2014 coverage or assume historical retention of all early entries. Avoid duplicate outreach if Agent1's current 2014-onion historical-custodian channel already covers this specific organization.
 
+## Independent higher-upside candidate: p56 destination preimage in historical raw HTML
+
+The solved p56 `AN END` contains the exact originally printed **128-hex/64-byte** deep-web destination digest (see [first-party semantics audit](../im-results/lp2-p56-source-defined-hash-semantics-gate.md)):
+
+```text
+36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4
+```
+
+**If** a DWM operator confirms retention of archived raw 2014–2017 HTML bodies and can lawfully perform an **operator-side exact digest query**, ask for **SHA-512 of the raw captured HTTP entity body, byte-for-byte as stored** to equal this one digest. That is a single 512-bit digest family selected by *length*, not a claim that Cicada originally specified SHA-512: the authored plaintext says only “HASHES TO”, with no algorithm, encoding, URL/body choice, or positive source control. A match would be decisive and identify the original URL, time and response bytes, enabling a genuinely new continuation and possibly key input. A miss would exclude only this **one exact operation over the operator's actually retained corpus**. Restrict any output to an authorized Cicada/puzzle-related page; a numeric yes/no match and independently preserved timestamp are sufficient at first, with no bulk transfer of potentially illicit content.
+
+This preimage route is *independent* of the known Stage11 host; that original host may be a clue distributor rather than the p56 destination. It is also technically costly on a many-terabyte archive and should only be asked **after** confirming 2014–2017 raw-body retention and whether the archive already supports content-digest searches. Do not request uncontrolled cloud-wide SHA-512 scanning as the initial contact. If the operator cannot run it cheaply, retire the request until a narrower source-selected URL candidate exists.
+
 ## Branch result conditions
 
 - **Positive:** an authenticated 2014 domain capture with a previously missing signed source link/body or Tor-v2 descriptor public RSA identity key. Freeze source URL, UTC timestamp and raw bytes and independently verify their provenance before trying a derived key against untouched LP2. A preserved index alone confirms delivery history, not a decryptor.
