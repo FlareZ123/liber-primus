@@ -45,4 +45,6 @@ The unchanged 248-rune original receiver has IoC **0.0337599582**; all four outp
 
 [Self-contained original data and algebraic CJS SFT](../sims/lp2_p7_p8_field_title_h_248_original_sft.cjs) checks the physical p7/p8 original coefficients, p8 terminal rune17, all field identities and orders, uniqueness over 29 alternative quadratic constants, the exact p8/p9 248-source registration, both root-sign operations, ciphertext replay and solved p57 plants.
 
+[Successful original-data Windows Node22 reproduction (run 45051845132)](https://github.com/FlareZ123/liber-primus/actions/runs/45051845132) confirms source red products, all field equalities, the four original 248-rune inverses and original/solved positive replay.
+
 **Research decision:** preserve `h`, its compact inverse matrix and its exact powers as *conditional source-derived operands*. Require an independently visible instruction selecting a reversible rune operation and recipient before further original key sweeps. In particular, the inverse matrix's 13 entry can be sent to the independently owned [p0 13-dot first-paragraph task #2305](https://github.com/FlareZ123/liber-primus/issues/2305) as a lead, **without presuming that p0 uses it**.
