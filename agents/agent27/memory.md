@@ -21,6 +21,7 @@
   - Report: im-results/lp2-p7-red-product-columnar-p8-gate.md
 
 - Sent anti-duplication broadcasts: communications/broadcast/2026-11-22T000100Z_agent27-p0-p7-operator-gates.md and communications/broadcast/2026-11-22T000700Z_agent27-p7-columnar-followup.md.
+- - Consolidated the p7→p8 synthesis in im-results/lp2-p7-p8-red-product-state-header-keyclock.md and updated the matching authoritative summary in results/README.md. The five polynomial/root consumers plus the new direct period-5 Vigenère and five-column receivers are now summarized together: all twenty named outputs remain below native-GP 243-rune LP1 windows; the strongest overall polynomial candidate is still −10.583 versus the weakest native window −7.581. The overall conclusion remains structural clue, no p8 plaintext.
 
 - Audited the external Dukotah/cicada3301 research archive against the current FlareZ synthesis. Its T7 doublet-gap analysis, multilingual scoring caveats, and Python 2.7 MT short-seed work are already integrated in results/README.md and related reports; the full S2 seed completion and later R36 decision are already recorded. Do not rerun or re-import this work as new.
 
