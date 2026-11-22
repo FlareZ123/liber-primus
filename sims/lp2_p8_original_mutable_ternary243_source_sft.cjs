@@ -98,16 +98,29 @@ function ioc(xs) {
  * @param {"cube"|"overwriteC"|"overwriteP"} update Writable table transition.
  * @param {1|-1} sign Encryption sign: C = P + sign*T[address] modulo29.
  * @param {boolean} encrypt
+ * @param {"add"|"cube"} output
  * @returns {number[]}
  */
-function transform(xs, table, update, sign, encrypt) {
+function pow29(x, exponent) {
+  let result = 1;
+  for (let e = exponent; e > 0; e = Math.floor(e / 2)) {
+    if (e % 2 === 1) result = result * x % 29;
+    x = x * x % 29;
+  }
+  return result;
+}
+function transform(xs, table, update, sign, encrypt, output) {
   const mutable = table.slice();
   const history = p8.slice(-5);
   const out = [];
   for (const x of xs) {
     const address = history.slice(-5).reduce((v, rune) => 3 * v + rune % 3, 0);
     const key = mutable[address];
-    const y = (x + (encrypt ? sign : -sign) * key + 29) % 29;
+    const y = output === "add"
+      ? (x + (encrypt ? sign : -sign) * key + 29) % 29
+      : encrypt
+        ? pow29((x + sign * key + 29) % 29, 3)
+        : (pow29(x, 19) - sign * key + 29) % 29;
     out.push(y);
     const cipher = encrypt ? y : x;
     const plain = encrypt ? x : y;
@@ -124,27 +137,29 @@ for (const splice of [208, 87]) {
   const table = sourceAddressedTable(splice);
   for (const update of ["cube", "overwriteC", "overwriteP"]) {
     for (const sign of [1, -1]) {
-      const recovered = transform(target, table, update, sign, false);
-      const reconstructed = transform(recovered, table, update, sign, true);
-      assert.deepEqual(reconstructed, target);
-      const planted = transform(positive, table, update, sign, true);
-      assert.deepEqual(transform(planted, table, update, sign, false), positive);
-      const whole = ioc(recovered);
-      const first300 = ioc(recovered.slice(0, 300));
-      const heldP13 = ioc(recovered.slice(p13Start, p13Start + 200));
-      result.push({
-        splice, update, sign,
-        wholeIoC: Number(whole.toFixed(8)),
-        first300IoC: Number(first300.toFixed(8)),
-        untouchedP13First200IoC: Number(heldP13.toFixed(8)),
-        first30GP: recovered.slice(0, 30).map(x => source.translit[x]).join("."),
-        originalForwardReplay: reconstructed.length,
-        nativeSolvedP57Plant: positive.length
-      });
+      for (const output of ["add", "cube"]) {
+        const recovered = transform(target, table, update, sign, false, output);
+        const reconstructed = transform(recovered, table, update, sign, true, output);
+        assert.deepEqual(reconstructed, target);
+        const planted = transform(positive, table, update, sign, true, output);
+        assert.deepEqual(transform(planted, table, update, sign, false, output), positive);
+        const whole = ioc(recovered);
+        const first300 = ioc(recovered.slice(0, 300));
+        const heldP13 = ioc(recovered.slice(p13Start, p13Start + 200));
+        result.push({
+          splice, update, sign, output,
+          wholeIoC: Number(whole.toFixed(8)),
+          first300IoC: Number(first300.toFixed(8)),
+          untouchedP13First200IoC: Number(heldP13.toFixed(8)),
+          first30GP: recovered.slice(0, 30).map(x => source.translit[x]).join("."),
+          originalForwardReplay: reconstructed.length,
+          nativeSolvedP57Plant: positive.length
+        });
+      }
     }
   }
 }
-assert.equal(result.length, 12);
+assert.equal(result.length, 24);
 assert(result.every(x => x.wholeIoC >= 0.033 && x.wholeIoC <= 0.036));
 console.log(JSON.stringify({
   source: "2014 p7 red14 + p8 red12/black243; p8 last one-rune fragment continues with first 5 p9 runes",
@@ -160,5 +175,5 @@ console.log(JSON.stringify({
     separateP13First200IoC: ioc(source.pages[13].indices.slice(0, 200))
   },
   result,
-  decision: "No original native-GP plaintext recovered under these twelve fixed, exactly reversible mutable-source-table variants"
+  decision: "No original native-GP plaintext recovered under these twenty-four fixed, exactly reversible mutable-source-table variants"
 }, null, 2));
