@@ -136,3 +136,56 @@ console.log(JSON.stringify({
   meaning:'Exact source alignment; direct square-pad pair inverses fail to produce native GP plaintext. No author-selected cipher or plaintext is claimed.'
 },null,2));
 console.log('PASS: original 198/99 source-pair gate and all controls.');
+
+/**
+ * Historically stronger operation than guessed pair arithmetic:
+ * original solved LP1 SOME WISDOM expands each whole runic word to
+ * its exact GP-prime sum in the 5×5/1033 square. Test transfer to
+ * p33's 49 complete original word lengths and historical 7×7/1033,
+ * under ALL eight source-natural square orientations, granting
+ * arbitrary secret new GP rune choices at every original position.
+ * A target sum is feasible only if it lies in the exact set of sums
+ * of that many original GP prime weights.
+ */
+const completeWords = blackWords.slice();
+completeWords[48] += [...physical[34]].slice(0, 2).join('');
+const lengths = completeWords.map(word => [...word].length);
+assert.equal(completeWords.flatMap(gp).length, 198);
+assert.equal(lengths.reduce((sum, n) => sum + n, 0), 198);
+assert.equal(corpus.prime.length, 29);
+assert.equal(Math.min(...corpus.prime), 2);
+assert.equal(Math.max(...corpus.prime), 109);
+const reachableSums = [new Set([0])];
+for (let n = 1; n <= Math.max(...lengths); n++) {
+  reachableSums.push(new Set(
+    [...reachableSums[n-1]].flatMap(sum => corpus.prime.map(p => sum + p))
+  ));
+}
+const originalMagic7 = squares[1];
+const wordPrimeSumObstructions = [];
+for (let reflected = 0; reflected <= 1; reflected++) {
+  for (let rotation = 0; rotation < 4; rotation++) {
+    const sourceTargets = [];
+    for (let row = 0; row < 7; row++) {
+      for (let col = 0; col < 7; col++) {
+        let r = row, c = col;
+        if (reflected) r = 6-r;
+        for (let turn = 0; turn < rotation; turn++) [r,c] = [c,6-r];
+        sourceTargets.push(originalMagic7[r][c]);
+      }
+    }
+    const impossible = sourceTargets.flatMap((sum,i) =>
+      reachableSums[lengths[i]].has(sum) ? [] :
+        [{word:i+1, GP29Runes:lengths[i], targetPrimeSum:sum}]);
+    wordPrimeSumObstructions.push({
+      reflected:Boolean(reflected), rotation90:rotation,
+      impossibleWords:impossible.length, examples:impossible.slice(0,5)
+    });
+  }
+}
+assert.deepEqual(wordPrimeSumObstructions.map(x => x.impossibleWords),
+  [14,17,14,17,17,18,17,18]);
+assert.ok(wordPrimeSumObstructions.every(x => x.impossibleWords >= 14));
+console.log('Original complete-word GP prime-sum -> historical 7x7 source orientations');
+console.log(JSON.stringify(wordPrimeSumObstructions,null,2));
+console.log('PASS: all 8 authentic square orientations have >=14 exact unreachable word-prime sums, even with fully secret GP plaintext symbols.');
