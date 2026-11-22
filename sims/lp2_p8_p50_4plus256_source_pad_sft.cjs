@@ -118,6 +118,42 @@ console.log('NO_ALL_SECRET_STATIONARY_BYTE_TO_RUNE_MAP',
   'REPEAT_EVENTS', repeatOccurrences,
   'CONFLICTING_CLASSES', conflictingClasses.length,
   'CONFLICTED_ORIGINAL_SLOTS', affectedOccurrences);
+// Independent, fully source-frozen p8-only candidate: the first complete
+// 4-rune red heading as a row-major 2x2 invertible Hill matrix over GP29,
+// acting on the following complete 256-rune frame in adjacent pairs.
+const [a, b, c, d] = p8.indices.slice(0, 4);
+const determinant = gp29(a * d - b * c);
+const determinantInverse = Array.from({ length: 28 }, (_, index) => index + 1)
+  .find((value) => gp29(value * determinant) === 1);
+assert.equal(determinant, 10);
+assert.equal(determinantInverse, 3);
+const hillInverse = [
+  [gp29(d * determinantInverse), gp29(-b * determinantInverse)],
+  [gp29(-c * determinantInverse), gp29(a * determinantInverse)]
+];
+assert.deepEqual(hillInverse, [[28, 28], [16, 13]]);
+const hillOutput = [];
+for (let i = 0; i < frame.length; i += 2) {
+  const left = frame[i];
+  const right = frame[i + 1];
+  const p0 = gp29(hillInverse[0][0] * left +
+    hillInverse[0][1] * right);
+  const p1 = gp29(hillInverse[1][0] * left +
+    hillInverse[1][1] * right);
+  hillOutput.push(p0, p1);
+  assert.equal(gp29(a * p0 + b * p1), left);
+  assert.equal(gp29(c * p0 + d * p1), right);
+}
+assert.equal(hillOutput.length, 256);
+const hillIoc = coincidence(hillOutput.slice(8));
+assert.ok(Math.abs(hillIoc - 0.03604544860911584) < 1e-12);
+console.log('FOUR_RED_GP_RUNES_2X2_HILL_INVERSE',
+  'DET', determinant, 'INV_MATRIX', JSON.stringify(hillInverse),
+  'ORIGINAL_UNKNOWN_248_IOC', hillIoc.toFixed(11),
+  'HEADING_RED8', hillOutput.slice(0, 8).map((n) =>
+    corpus.translit[n]).join(''),
+  'BODY120', hillOutput.slice(8, 128).map((n) =>
+    corpus.translit[n]).join(''));
 console.log('P8_WHOLE_PRINTED_4PLUS256_SOURCE_FRAME', frame.length);
 console.log('P50_TABLE_SHAPE', grid.shape);
 console.log('PASS: exact original frame and negative fixed row-major byte-mod29 pad gate');
