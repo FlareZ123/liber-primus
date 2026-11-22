@@ -56,6 +56,23 @@ Evaluate, without fitting any rune cipher, a fixed **five-category Latin word-le
 
 Eight-column forward improves the development score but worsens held out. All four source-numbered reflows remain **negative** on the held-out material and none yields deciphered rune values, an authentic plaintext word stream, or a first-party instruction to move words between actual period scopes. This rejects the exact 5/8 column-order language-restoration story under this tested diagnostic. These word-order routes are narrower than the author's unknown full cipher.
 
+## Distinct full-sentence numeral-to-SPACE inverse, with a complete all-secret bound
+
+The signed 2013 BASE29 operation suggests a different full-paragraph model, distinct from the earlier **whole-word BASE29→GP30** test under #2278: concatenate *all* GP ciphertext runes between two genuine printed periods as one big-endian 29-ary integer, serialize that same integer as exactly `m` big-endian radix-30 digits (where `m` is the original scope's total rune count), and treat output digit29 as a plaintext SPACE. The input's 2014-visible punctuation, original `-` word cuts, page-carry positions and `m` are immutable side information. Reinterpret the reversed whole-scope GP rune order as the independent direction rival. Re-encoding the m-digit output into m base29 digits is exact for all 175 original scopes in both directions. The reverse is formally defined on the image of the conversion (30-ary values below 29^m). A planted GP30 string containing actual digit29 SPACEs re-encodes and decodes correctly; the authentic 95-rune solved p57 source also round-trips as a source control. All those checks prove the implementation, not the historical key.
+
+This source-typed, space-moving full-sentence receiver has a decisive original-input distribution:
+
+| Source direction | Output SPACEs / 12,956 | Exact maximum SPACEs under 175 independent secret GP30 permutations | Percentage ceiling |
+|---|---:|---:|---:|
+| Original printed order | **388** (2.995%) | **1,019** | **7.865%** |
+| Entire scope reversed | **441** (3.404%) | **1,025** | **7.911%** |
+
+The permutation maximum is **exact**, obtained by summing the largest digit-class occupancy separately within each of the manuscript's 175 punctuation-delimited scopes. It allows *any* unprovided, completely independent bijective 30-symbol alphabet on each scope, rather than fitting a single Caesar key; no such secretly selected stationary scope alphabet can yield more SPACEs. For comparison, the authenticated 95-rune solved p57 text has 19 word-separator SPACEs among 114 total text tokens (**16.667%**). A direct output cannot attain the known genuine source-native space rate, even with the immense hypothetical 175-secret-alphabet family. This does not prove that an unknown LP2 plaintext must have exactly the same rate, and it does not exclude a larger positional secret state, an explicit variable-length code, or a separately recoverable space sidecar.
+
+The same radix change often creates leading GP30 zeros at a punctuation boundary because 29^m is smaller than 30^m; output digit zero would spell a repeated F under the literal GP chart, another undesirable native-prose artifact unless an independent key explains the formatting. No hidden source instruction selects continuous numeral serialization, the output alphabet, or a per-scope substitution. **Retire this particular complete full-sentence BASE29→GP30 inverse as a plaintext receiver.**
+
+[Reproduction SFT](../sims/lp2_sentencewise_base29_gp30_space_original_sft.cjs), original input `resources/liber-primus/lp2-transcription.txt`, solved control `resources/external/relikd-solved-gp29-native-v1.json`. Original-word source geometry and the exact period scopes are kept fixed.
+
 ## Next decipherment decision
 
 Seek an **independently visible full-paragraph operator that recovers spaces and changes rune values together**, particularly one with a worked source-native solved example and a frozen receiver on unknown ciphertext. The original source's boundary tape can serve as an input or a side channel, but a new plaintext segmentation must be deduced from that tape or an authenticated key. A proposal should account for all 32 page carries and native one/two-rune words and produce a contiguous held-out natural-language readout, then predict additional original rune positions.
