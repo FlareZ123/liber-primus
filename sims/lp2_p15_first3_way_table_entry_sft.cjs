@@ -86,6 +86,78 @@ const west=8*Math.floor(wayAt/8)+wayAt%8-Number(literalMove[1]);
 assert.equal(west,mapAt);
 assert.equal(String.fromCharCode(parseInt(cells[mapAt],16)),"N");
 assert.equal(mapAt-8,hereAt);
+// Full original p15 rectangle: one red origin plus five non-red triples.
+const groups=[];
+for(let k=1;k<16;k+=3){
+  const source=spiral.slice(k,k+3);
+  const runes=source.map(x=>resolve(x).index);
+  const address=runes.reduce((a,b)=>a+b,0);
+  groups.push({source,word:runes.map(x=>corpus.translit[x]),address,token:cells[address]});
+}
+assert.deepEqual(groups.map(g=>g.address),[57,40,29,47,37]);
+assert.deepEqual(groups.map(g=>g.token),["1w","1K","16","1G","1K"]);
+const base59=table.alphabet.replace("f","");
+assert.equal(base59.length,59);
+function tokenAscii(token,alphabet){
+  assert.equal(token.length,2);
+  const a=alphabet.indexOf(token[0]),b=alphabet.indexOf(token[1]);
+  assert.ok(a>=0&&b>=0);
+  const value=a*alphabet.length+b;
+  assert.ok(value>=0&&value<=255);
+  return String.fromCharCode(value);
+}
+const read60=groups.map(g=>tokenAscii(g.token,table.alphabet)).join("");
+const read59=groups.map(g=>tokenAscii(g.token,base59)).join("");
+assert.equal(read60,"vPBLP");
+assert.equal(read59,"tOAKO");
+assert.equal(groups[3].address,47);
+assert.deepEqual([47,55,63].map(i=>cells[i]),["1G","1K","0p"]);
+assert.equal([47,55,63].map(i=>tokenAscii(cells[i],base59)).join(""),"KO2");
+assert.equal([47,55,63].map(i=>tokenAscii(cells[i],table.alphabet)).join(""),"LP3");
+const continuationValues=[10176,19866,36490,64632,112536,193398];
+const continued=[0,1].map(i=>{
+  const numbers=continuationValues.slice(3*i,3*i+3);
+  const offsets=numbers.map(n=>n%stream.length);
+  const addr=offsets.reduce((s,n)=>s+resolve(n).index,0);
+  return {numbers,offsets,addr,token:cells[addr],char:tokenAscii(cells[addr],base59)};
+});
+assert.deepEqual(continued.map(c=>[c.addr,c.token,c.char]),[[52,"1Q","U"],[43,"1D","H"]]);
+assert.equal(read59+continued.map(x=>x.char).join(""),"tOAKOUH");
+// Independent authentic LP1 second Koan direct source-key control on p15.
+const known=JSON.parse(fs.readFileSync(path.join(root,"resources","external",
+  "relikd-solved-gp29-native-v1.json"),"utf8"));
+assert.deepEqual(known.runes,corpus.runes);
+const koan=known.sections.find(s=>s.name==="jpg107-167");
+assert.ok(koan);
+const fullKey=[...koan.source_text].filter(c=>corpus.runes.includes(c))
+  .map(c=>corpus.runes.indexOf(c));
+assert.equal(fullKey.length,319);
+assert.deepEqual(fullKey.slice(0,5).map(i=>corpus.translit[i]),["A","C","O","A","N"]);
+const sourceKeys=[fullKey,fullKey.slice(5)];
+function ioc(arr){
+  const freq=Array(29).fill(0);
+  for(const i of arr)freq[i]++;
+  return freq.reduce((s,v)=>s+v*(v-1),0)/(arr.length*(arr.length-1));
+}
+const p15=corpus.pages[15].indices;
+const inverse=[];
+for(const [keyVariant,key] of sourceKeys.entries()){
+  for(const sign of [-1,1]){
+    const out=p15.map((v,i)=>(v+29+sign*key[i])%29);
+    assert.deepEqual(out.map((v,i)=>(v-sign*key[i]+29)%29),p15);
+    inverse.push({includeTitle:keyVariant===0,sign,ioc:ioc(out)});
+  }
+}
+assert.deepEqual(inverse.map(x=>Number(x.ioc.toFixed(12))),
+  [0.03359605127,0.036064007643,0.034153331741,0.034153331741]);
+assert.ok(inverse.every(x=>x.ioc<0.046));
+const p57=corpus.pages[57].indices;
+const planted=p57.map((v,i)=>(v+fullKey[i])%29);
+assert.deepEqual(planted.map((v,i)=>(v-fullKey[i]+29)%29),p57);
+console.log(JSON.stringify({fiveTripleSourceGroups:groups,read60,read59,
+  infinityWrapContinuation:continued,koanDirectVigenereInverse:inverse,
+  originalUnknownPlaintextRecovered:false},null,2));
+
 console.log(JSON.stringify({
   claim:"Original-source candidate navigation, NOT authenticated unknown LP2 plaintext",
   red_origin:spiral[0],
