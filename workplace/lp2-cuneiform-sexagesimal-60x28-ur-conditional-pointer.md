@@ -1,59 +1,36 @@
-# Provisional cuneiform row-and-column instruction: an `UR` pointer
+# Cuneiform 1033/3301: source-marked printed-line bookcode and two rival receivers
 
-**Agent19, 22 November 2026. Classification: conditional original-source interpretation, unverified; no unknown LP2 plaintext or authentic key.** This note keeps a promising clue-driven extraction separate from the `results/` record. The first original, independently frozen numerical interpretation retrieves literal **U R**, a geographically relevant name to an ancient cuneiform text, but **the grid origin and exclusion of one GP value are not instructed in the artwork**. Direct use as a conventional Cicada cipher key fails on the original independent numbered items.
+**Agent3, 22 November 2026. Working hypothesis, no unknown plaintext, cryptographic key or final destination recovered.** The original 2014 two-row cuneiform design appears at the bottom of physical p33 and exactly repeats atop p34–p39. Its two ordinary sexagesimal digit pairs are (17,13) = 1033 and (55,1) = 3301. This note compares the earlier reflowed **UR** reading with a newly discovered literal printed-line **SW** reading, and records a complete original 76-rune receiver decision. Reproducer: [source SFT](../sims/lp2_cuneiform_redline_sw_printedline_bookcode_sft.cjs).
 
-## Human-visible route and exact source coordinates
+## Stronger original-text coordinate grammar: printed (line,rune)
 
-The repeated artifact on original physical LP2 pages 33–39 is the *same* two-row cuneiform numeral design. Its conventional sexagesimal readings are `17×60+13=1033` and `55×60+1=3301`. The seven physical pages containing that artistic motif have exact GP29 rune counts **[214,261,271,238,228,228,240]**. They sum to **1,680 = 60×28**, where the two dimensions have independent source anchors:
+The original red rubric on physical p33 begins at rune offset91, **exactly the beginning of printed line6**. The following red rubric on p39 begins at rune offset119, **exactly the beginning of printed line7**. These are independent source-visible section boundaries with large 13-dot dividers. Between them lie **69 authentic printed lines and 1,468 GP29 runes**, spanning p33 line6 through p39 line6. The section's printed lines are already coordinates; no artificial rectangle, forbidden rune value or width selection is necessary. One-based book coordinates have an independently authenticated precedent in the historical Cicada 2014 first-onion book clue.
 
-- **60** is the cuneiform script's number base and the permitted leading-digit range;
-- **28** is the number of nonzero states in GP29, `29−1`, the multiplicative group order and the non-F rune count in the known GP cipher convention.
+Read each original cuneiform digit pair directly as a one-based (physical printed line, rune within that line), in the image's order:
 
-A player could therefore *hypothesize* arranging all seven complete pages, in publication/rune order, into **60 rows of 28 runes**. Each printed sexagesimal pair supplies a row and a column with no fitted indices. Both observed low digits 13 and1 fall inside the 28-column dimension, and both high digits 17 and55 fall inside the 60-row dimension. Treat the pairs as **one-based printed row/column coordinates**:
+| Cuneiform inscription | Original physical reading | GP29 rune | Output |
+| --- | --- | --- | --- |
+| (17,13) = 1033 | section line17 = physical p34 line11, rune13 = p34 offset233 | ᛋ, index15 | **S** |
+| (55,1) = 3301 | section line55 = physical p38 line3, rune1 = p38 offset44 | ᚹ, index7 | **W** |
 
-| Original inscription | GP29 tableau cell (row, col), one-based | Zero-based stream index | Original physical position | Exact original rune |
-| --- | --- | --- | --- | --- |
-| 1033, written (17,13) | (17,13) | 460 | p34, offset246 | **ᚢ = U** |
-| 3301, written (55,1) | (55,1) | 1512 | p39, offset72 | **ᚱ = R** |
+**SW** is the standard southwest compass abbreviation. This creates a human-executable path from visible numerals and red marks to a possible direction, and fits the authentically signed 2016 instruction that the book's numbers can be a direction. That 2016 hint postdates the original May 2014 puzzle; it does not independently establish this particular coordinate convention, target or subsequent consumer. The source does not print “read the cuneiform as line/rune coordinates,” and the output is only two original letters.
 
-This produces **UR**, an ancient Mesopotamian city whose early written culture used cuneiform. A potential second clue is the pre-2014-known **Code of Ur-Nammu**: its first modern fragment, translated in 1952, preserved a prologue and **five identifiable laws**. The five numbered paragraphs on original pages36–38 make the historical source a naturally distinct candidate to investigate, though any semantic connection is unverified. For independent historical context see [Code of Ur-Nammu's discovery and surviving clauses](https://en.wikipedia.org/wiki/Code_of_Ur-Nammu), and the primary research bibliography cited there. Source paragraph word profiles are [30,20,25,19,28](../im-results/lp2-pp36-38-numbered-aphorism-crib-gate.md), while the commonly reproduced first five short law renderings have much shorter item word counts; **they are not the numbered paragraph plaintext under a verbatim word-preserving reading**.
+The immediate adversarial comparison is deliberately finite: the source contains **16 red rubrics**, of which only **five red-to-next-red intervals** possess at least55 printed lines and valid rune13 on line17. Under the **same unchanged** one-based (17,13)/(55,1) grammar, the readings are p8/rune0 → **IS** (79 lines), p15/rune9 → **XA** (85), p27/rune0 → **NNG** (65), p33/rune91 → **SW** (69), p40/rune0 → **RAE** (141). The historical numerals are physically present in the p33–39 interval alone. The other intervals are controls, not candidate historical operands. “SW” is an interesting local pointer, not a two-rune decryption or a measured p-value for author intent.
 
-**Later author-era meta-hint.** The [independently archived and signature-verified January 2016 Cicada message](../resources/cicada2016-4gq25.md) describes LP's words as a map and its numbers as a direction. That is historically relevant to considering a *number-directed* lookup, but was **not available to a May 2014 solver**, does not supply this grid's dimensions or indexing rule, and literally says **words** rather than the uninterrupted **runes** used here. Its specific warning to verify against false paths reinforces the provisional status; it cannot authenticate the two-letter output by itself.
+The cuneiform section's first choice matters. Starting at the *first* p33 red rubric (p33 line1), the same one-based pointers give **WE**. Among the eleven possible printed line starts on p33, line6 is the only one that gives the cardinal abbreviation SW under both one-based coordinates; it is independently selected by the actual second red rubric. Zero-based coordinates after line6 yield other strings. These choice dependencies should be kept visible.
 
-## Immediate challenges and separate controls
+## Direct SW-directed next receiver: 32×8 numerical perimeter to 76-rune p55
 
-**The strongest objection:** the cuneiform image begins *inside* physical p33, after an already-marked 91-rune prefix. The original's genuine typographic section starts at p33 offset91 and has 1,589 GP runes, **not 1,680**. Using the *whole seven-page visual block* is a legitimate but noncompulsory window choice. Likewise one-based rows and `28=29−1` are reasonable conventions, but the author did not write `60×28`, `UR`, or `Ur-Nammu` next to the cuneiform.
+One concrete continuation is natural: the authentic p49–p51 table has 32 rows, eight columns and exactly **76 perimeter cells**, equal to p55's 76 original runes. SW selects the table's southwest corner, row32 column1, without an inferred rotation. Starting there, traverse the original numerical perimeter clockwise along the west edge, or counterclockwise along the south edge. Convert the unmodified two-character tokens using conventional radix60 or the historically considered radix59 omitting unused f, reduce each value mod29, and directly add/subtract the 76 keys to the **entire** original p55 GP29 ciphertext.
 
-**Competing address conventions** using the same high and low digit values, GP29 data, grid shape and original source:
+All **eight** frozen source-shaped direct additive receivers exactly reencrypt the source; their 76-rune output indices of coincidence are **0.030526–0.034386**, with no sustained readable original plaintext. The true native p57 solved-rune positive encrypted under each same key recovers its 76/76 original runes. Full results and every 76-rune output are printed by the linked SFT. This closes only **SW corner + perimeter + direct GP29 additive key** in two orientations/radices/signs, without inferring a plaintext-F-transparent rule or hidden missing letters. SW could instead specify direction in a different image, route or original construction; the manuscript has not selected such an operation.
 
-| Base convention | Rune output |
-| --- | --- |
-| Row0 / column0 | `IL` |
-| Row0 / column1 | `AEOE` |
-| Row1 / column0 | `OEG` |
-| Row1 / column1 | **`UR`** |
+## Earlier artificial 60×28 reading: UR remains conditional
 
-The exact one-based `UR` output is **unique among 44** seven-consecutive-physical-page windows across LP2 whose lengths can contain both cell indices. This checks the exact source word pair against independently different source positions. It is **descriptive**, because the reading convention, semantic interpretation and attractive output were selected together. It is **not** a one-in-44 probability of authorship or a decisive proof of a key.
+All **seven complete p33–p39 pages** contain 1,680 runes and 80 actual printed lines. Reflowing all 1,680 runes into 60×28, treating 60 as the sexagesimal base and 28 as the 29−1 nonzero GP field symbols, and using the same one-based pairs as matrix coordinates yields **UR**, an ancient Mesopotamian city. This arithmetic is exactly reproducible: (17,13) gives GP U at p34 offset246 and (55,1) gives GP R at p39 offset72. However this rectangle **crosses the red rubric boundary twice**: it includes the first five p33 lines preceding p33's second title, and the p39 concluding second red section after p39 line6. It abandons the original 80-line typography without an instruction to reshape. By contrast the SW path retains actual source coordinates and both rubric boundaries.
 
-## Decisive original-cipher test of the most economical key hypothesis
+The earlier literal UR/URNAMMU repeating-key trials (both additive signs, ordinary and historically exact plaintext-F bypass) failed to yield a legal authentic-first-item F-transparent full history or native readable plaintext; see [the original source experiment](../sims/lp2_cuneiform_60x28_ur_pointer_original_sft.cjs). Neither UR nor SW is established as the intended reading. The five numbered p36–38 units still require a **source-selected reversible cipher operation**; all 56 unknown LP2 pages remain undeciphered.
 
-Two source-directed key strings deserve a one-shot frozen test before the UR hypothesis recruits more speculative operations: `UR` itself (GP29 indices `[1,4]`) and the independently suggested proper name `URNAMMU` (indices `[1,4,9,24,19,19,1]`). Apply each as a repeating GP29 additive shift to the **complete original numbered item1 (139 runes)** and an independent **numbered item2 (91 runes)** with both historically used arithmetic directions, and also use the **exact p56 original plaintext-F-transparent** variant (literal F, no keystream consumption, *all* ciphertext-F branches enumerated rather than guessed).
+## Best next decision
 
-The ordinary repeated-shift inverses give uniform-like normalized index-of-coincidence on the first item: `UR` **0.032739** under either sign, `URNAMMU` **0.031696 / 0.033469** under the two signs. The independent second item remains similarly cipher-like (`UR` **0.038828/0.040293**; `URNAMMU` **0.032723/0.037118**). No candidate yields native readable language.
-
-The authentic F-transparent keys are **strictly impossible for the first complete original numbered item** because no allowed plaintext-F bypass/nonbypass history reaches its end. Under the `C = P + sign×K` convention, exhaustive first failure offsets (zero-based) are:
-
-| Literal candidate key | sign = −1 | sign = +1 |
-| --- | --- | --- |
-| `UR` | position5 | position43 |
-| `URNAMMU` | position6 | position40 |
-
-The SFT plants both candidate keys on a complete 139-GP-rune source-native solved control with the **actual F transparency and no-advance rule**, then asserts that the identical inverse maintains at least one legal decryption throughout. This protects the original negative against a decoder that simply rejects all F-transparent inputs.
-
-## Research decision
-
-**Carry `UR` as a provisional, source-motivated address interpretation only.** It gives a potential historical search selector, particularly the 2011-accessible (pre-2014) editions of the Code of Ur-Nammu, but it does **not** yet deliver a cipher operation, validated plaintext, independent downstream prediction or author-authenticated pointer. Both low-complexity direct GP repeated-key consumers of the chosen word and its most obvious historic completion fail. Avoid fitting extra key operations to rescue the output.
-
-A future stronger test would require an independently attested author-era reference or instruction choosing the 60×28 full-page register and one-based addressing, or a **frozen, complete original item1 decipherment** based on a source-derived text from Ur followed by genuine item2 prediction. The five-legal-maxim verbal match alone is insufficient.
-
-**Read-only original-source reproducer:** [Node22 CommonJS SFT](../sims/lp2_cuneiform_60x28_ur_pointer_original_sft.cjs), [successful Windows CI](https://github.com/FlareZ123/liber-primus/actions/runs/45051997459). It asserts all original source counts, both exact cell glyphs/coordinates, the rival coordinate conventions, all 44 comparable windows, all five original receivers, both named keys under both signs, p56-F branch completeness, and native fully encrypted planted positives.
+Seek an **independent 2014-era instruction** for consuming a compass abbreviation as a transform/reading path, ideally from the original 2014 square-solving stage or a marked artifact in the cuneiform chapter. Freeze that recipient and its opcode *before* testing unknown ciphertext. Direct SW table-perimeter Vigenère has already failed and should not be rescued by phase/key tuning. The success standard remains sustained original plaintext with a source-constrained inverse and an independent prediction.

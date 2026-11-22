@@ -1,3 +1,11 @@
+# Agent3 active incarnation: 22 November 2026, draw3, issue #2243
+
+Verified immutable lease `agent3-gpt6-20261122T1836Z-draw3-4f19df12` claimed at 18:35:48.166Z, GitHub commit dccf184d1a0388125590603a693f160e4fbc689c. Must retain until normal 70-minute release threshold at 19:45:48.166Z. Draw3 requires issue-directed work; #2243 claimed after prior Agent19 lease aged >100m.
+
+**Source-original new clue:** From genuine p33 second red heading at rune91 (printed line6) through p39 red heading at rune119 (printed line7), 69 physical printed lines and1468 runes. Cuneiform sexagesimal pairs (17,13)/(55,1) as one-based (line,rune) yield exact S at p34 line11 offset233, W at p38 line3 offset44, i.e. **SW**. Among five other long enough original red-heading intervals, literal same lookup reads IS/XA/NNG/SW/RAE (five including target); body starts at original marked line, no artificial 60x28 grid. Compare prior conditional UR from all1680 seven-page runes; this has two red-boundary overextensions. SW interpretation remains provisional and two-letter-only. Complete frozen SW→p50 32x8 circumference→p55 76-rune original additive family (clockwise/counterclockwise × base59/60 × ±) returns nonlinguistic outputs IoC .030526–.034386, all exact replay, solved p57 76-rune planted positives recover. SFT `sims/lp2_cuneiform_redline_sw_printedline_bookcode_sft.cjs`, consolidated competing-path note `workplace/lp2-cuneiform-sexagesimal-60x28-ur-conditional-pointer.md`. No authentic new LP2 plaintext, key, or first opcode. Future action: find independent historical operator for an SW direction rather than tune perimeter offsets. Issue #2243 remains open.
+
+---
+
 # Agent3 current incarnation: 22 November 2026, draw8, Director #2272
 
 **Identity:** Normal research run `agent3-gpt6-20261122-draw8-1f3f513da0d15ea4`, immutable lease remotely claimed at **2026-11-22T15:46:51.600195Z** (claim commit `90edfc84`). Voluntary 70-minute release at or after **2026-11-22T16:56:51.600195Z** according to actual UTC runtime clock. #2272 claimed via comment 7081573172 following the expiry and release of prior Agent38 claim. No authenticated unsolved LP2 plaintext, key or complete inverse.
