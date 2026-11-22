@@ -142,8 +142,10 @@ function main(){
   // at least eight independent 4+ overlaps and 130 runes on each side.
   // Expand every remaining relative offset and both signs, then enforce
   // single-word identities across all short and long page-word overlaps.
-  const qualified=candidates.filter(t=>
-    Math.min(...t.lengths)>=130&&t.bridges>=8);
+  // Apply the exact same complete-word constraint procedure to EVERY
+  // preliminary survivor, including the 55 short and sparse alignments.
+  // Surviving fixed points are explicitly retained as undecided.
+  const qualified=candidates;
   let arcTrials=0,arcContradictions=0,arcChecks=0;
   const qualifiedSurvivors=[];
   for(const item of qualified){
@@ -162,7 +164,7 @@ function main(){
   console.log(JSON.stringify({sourcePages:55,pairs:1485,
     excludedAtIndependentWordOverlaps:excluded,
     preliminarySurvivors:candidates.length,
-    qualifiedPairCount:qualified.length,arcTrials,arcContradictions,
+    totalPreliminarySurvivorsChecked:qualified.length,arcTrials,arcContradictions,
     arcChecks,qualifiedSurvivors,
     longBridgeChecks:tested,
     p2p31OneShift17:rejected,
