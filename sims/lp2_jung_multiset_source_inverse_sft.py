@@ -147,6 +147,92 @@ def evaluate(label: str, source: list[int], pages: list[dict],
     }
 
 
+
+def read_row_by_columns(sequence: Sequence[int], width: int) -> list[int]:
+    """Write left-to-right in rows of width and read downward by column."""
+    return [sequence[i] for col in range(width)
+            for i in range(col,len(sequence),width)]
+
+
+def inverse_column_read(sequence: Sequence[int], width: int) -> list[int]:
+    """Restore row-major order after row-write, column-read."""
+    offsets = [i for col in range(width)
+               for i in range(col,len(sequence),width)]
+    result = [0]*len(sequence)
+    for value,original_index in zip(sequence,offsets):
+        result[original_index] = value
+    return result
+
+
+def rail3(sequence: Sequence[int]) -> list[int]:
+    rails = ([],[],[])
+    for i,value in enumerate(sequence):
+        rail=(0,1,2,1)[i%4]
+        rails[rail].append(value)
+    return [x for rail in rails for x in rail]
+
+
+def inverse_rail3(sequence: Sequence[int]) -> list[int]:
+    path=[(0,1,2,1)[i%4] for i in range(len(sequence))]
+    counts=[path.count(rail) for rail in range(3)]
+    pieces=[]
+    cursor=0
+    for n in counts:
+        pieces.append(list(sequence[cursor:cursor+n]))
+        cursor+=n
+    pos=[0]*3
+    result=[]
+    for rail in path:
+        result.append(pieces[rail][pos[rail]])
+        pos[rail]+=1
+    return result
+
+
+def original_title_tiebreak(source: list[int], original: list[int]) -> dict:
+    """Order-sensitive test of a source-selected minimum histogram match.
+
+    The visual original p0–2 section displays THREE cross-bearing pages, and
+    p0 has an original red 13-rune line. The resulting fixed candidate
+    rearrangements are 3-row and 13-column reads, their inverses, a 3-rail
+    path, and whole-section reversal. No permutations are fitted.
+    """
+    match = min_multiset_distance(source,original)
+    assert len(original)==158
+    candidate=source[match.source_word_offset:
+                     match.source_word_offset+len(original)]
+    assert len(candidate)==len(original)
+    transform=[
+        ("printed-order", list(candidate)),
+        ("whole-reversal", list(reversed(candidate))),
+        ("three-columns",read_row_by_columns(candidate,3)),
+        ("inverse-three-columns",inverse_column_read(candidate,3)),
+        ("thirteen-columns",read_row_by_columns(candidate,13)),
+        ("inverse-thirteen-columns",inverse_column_read(candidate,13)),
+        ("three-rail",rail3(candidate)),
+        ("inverse-three-rail",inverse_rail3(candidate)),
+    ]
+    counts=[{"operation":name,
+             "exact_positions":sum(a==b for a,b in zip(original,variant)),
+             "equal_length_out_of":len(original)}
+            for name,variant in transform]
+    counts.sort(key=lambda x:-x["exact_positions"])
+    # Exact source-known recoverability, including 4 predeclared errors.
+    planted=read_row_by_columns(candidate,3)
+    recovered=inverse_column_read(planted,3)
+    assert recovered==candidate
+    errors=list(planted)
+    for i in (9,31,73,111):
+        errors[i]=1+(errors[i]%17)
+    recovered_errors=inverse_column_read(errors,3)
+    assert sum(a==b for a,b in zip(recovered_errors,candidate))==154
+    return {
+        "source_offset_selected_before_any_order_test":match.source_word_offset,
+        "minimum_wordlength_replacements":match.replacement_count,
+        "top_fixed_order_readouts":counts,
+        "plant": "three-column 158-source-word plant restored exactly; four mutations leave 154/158"
+    }
+
+
 def main() -> None:
     pages,chapters = target_segments()
     raw,words,details = jung.source_subbook()
@@ -191,6 +277,8 @@ def main() -> None:
                                for row in results)
     }
     print("SUMMARY",json.dumps(observed,sort_keys=True))
+    order_tiebreak=original_title_tiebreak(variants[1][1],chapters[0]["lengths"])
+    print("FIRST_CHAPTER_FIXED_ORDER",json.dumps(order_tiebreak,sort_keys=True))
 
 
 if __name__ == "__main__":
