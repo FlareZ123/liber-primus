@@ -91,6 +91,45 @@ assert.equal(redLegA * redLegA + redLegB * redLegB, blackHypotenuse * blackHypot
 assert.equal(redLegA + redLegB + blackHypotenuse, red.length);
 assert.equal((redLegA * redLegB) / 2, p8Cross.values.length);
 
+
+// A simpler recoverable historic DH23 parameter route that does NOT require
+// fitting the p7 five-dot Shamir/quartic interpolation (already documented).
+// p6's one-rune red word is the literal second word M=19; p7's opening
+// red two-rune word itself contains the field modulus23 and e=3.
+// The newly identified 3-4-5 seam supplies BOTH g=5 and area a=6.
+const p6 = corpus.pages[6].indices;
+const p6Red = p6.slice(71, 82);
+assert.deepEqual(p6Red, [24, 16, 14, 17, 19, 6, 27, 15, 17, 14, 12]);
+const redIsolatedB = p6Red[4];
+assert.equal(redIsolatedB, 19);
+const originalDHWithoutInterpolation = {
+  p: p7.slice(-14)[0],
+  g: blackHypotenuse,
+  a: (redLegA * redLegB) / 2,
+  b: product29([14, 28]),
+  A: product29([5, 7, 11]),
+  B: redIsolatedB,
+  K: product29([6, 28, 19]),
+  e: product29(red.slice(4)),
+  q: product29(red.slice(0, 4)),
+};
+assert.deepEqual(originalDHWithoutInterpolation,
+  { p: 23, g: 5, a: 6, b: 15, A: 8, B: 19, K: 2, e: 3, q: 4 });
+assert.equal(p7.slice(-14)[1], originalDHWithoutInterpolation.e);
+assert.equal(p7.slice(-14)[6], originalDHWithoutInterpolation.g);
+const dh = originalDHWithoutInterpolation;
+/** @param {number} base @param {number} power @param {number} modulus @returns {number} */
+function powMod(base, power, modulus) {
+  let value = 1;
+  for (let i = 0; i < power; i++) value = value * base % modulus;
+  return value;
+}
+assert.equal(powMod(dh.g, dh.a, dh.p), dh.A);
+assert.equal(powMod(dh.g, dh.b, dh.p), dh.B);
+assert.equal(powMod(dh.A, dh.b, dh.p), dh.K);
+assert.equal(powMod(dh.B, dh.a, dh.p), dh.K);
+assert.equal(powMod(dh.K, 2, dh.p), dh.q);
+
 const startHeadingControls = [];
 for (const p of ink.pages) {
   if (p.page > 55) continue;
@@ -324,6 +363,7 @@ console.log(JSON.stringify({
   },
   headingControls: startHeadingControls,
   p7RedProducts29: product,
+  directHistoricalDH23WithoutFiveDotInterpolation: originalDHWithoutInterpolation,
   p7PrimitiveTaps3: taps,
   splicePositions,
   registers,
