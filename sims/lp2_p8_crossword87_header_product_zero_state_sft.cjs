@@ -199,6 +199,68 @@ function ringTranslate(values, sign) {
   return values.map((v, i) => ((v + sign * (tableBytes[inner60[(i + phase) % 60]] % 29)) % 29 + 29) % 29);
 }
 const terminalKnown = corpus.pages[57].indices;
+
+// The primitive 3-4-5 triangle determines a unit-determinant GF29
+// orthogonal 2x2 operator: (1/5) * [a,-b;b,a] with 1/5=6 mod29.
+// Test both physical leg orders and rotation directions, with the exact
+// carried p8 rune as the first original ciphertext pair member. Printed
+// whole-word resets are an independently source-visible clock alternative.
+const carriedCiphertext = [p8.at(-1), ...originalCiphertext];
+assert.equal(carriedCiphertext.length, 1475);
+const p8SuffixText = pages[8].slice(pages[8].lastIndexOf("ᛇ"));
+const printedText = p8SuffixText + pages.slice(9, 15).join("");
+const physicalWords = [];
+let currentWord = [];
+for (const ch of printedText) {
+  if (runeIds.has(ch)) currentWord.push(runeIds.get(ch));
+  else if (ch === "-" || ch === "." || ch === "&" || ch === "$") {
+    if (currentWord.length) physicalWords.push(currentWord);
+    currentWord = [];
+  }
+}
+if (currentWord.length) physicalWords.push(currentWord);
+assert.equal(physicalWords.length, 333);
+assert.deepEqual(physicalWords[0], p8Cross.values);
+assert.deepEqual(physicalWords.flat(), carriedCiphertext);
+
+/** @param {number[]} values @param {number} a @param {number} b @param {number} direction @returns {number[]} */
+function rotateGP29(values, a, b, direction) {
+  const out = values.slice();
+  const aa = (6 * a) % 29;
+  const bb = (6 * direction * b + 29) % 29;
+  for (let i = 0; i + 1 < values.length; i += 2) {
+    out[i] = ((aa * values[i] - bb * values[i + 1]) % 29 + 29) % 29;
+    out[i + 1] = ((bb * values[i] + aa * values[i + 1]) % 29 + 29) % 29;
+  }
+  return out;
+}
+const pairRotations = [];
+const p13FromCarried = 1 + p13Start;
+for (const [a, b] of [[3, 4], [4, 3]]) {
+  assert.equal(a * a + b * b, 25);
+  for (const dir of [-1, 1]) {
+    for (const reset of ["continuous", "printed-words"]) {
+      const frames = reset === "continuous" ? [carriedCiphertext] : physicalWords;
+      const outputFrames = frames.map(w => rotateGP29(w, a, b, dir));
+      const decrypted = outputFrames.flat();
+      const recovered = outputFrames.map(w => rotateGP29(w, a, b, -dir)).flat();
+      assert.deepEqual(recovered, carriedCiphertext);
+      const solvedFrame = terminalKnown;
+      assert.deepEqual(rotateGP29(rotateGP29(solvedFrame, a, b, dir), a, b, -dir), solvedFrame);
+      pairRotations.push({
+        a, b, direction: dir, reset,
+        fullIoC: indexOfCoincidence(decrypted),
+        untouchedP13IoC: indexOfCoincidence(decrypted.slice(p13FromCarried, p13FromCarried + 200)),
+        firstWordGP: decrypted.slice(0, 6).map(v => corpus.translit[v]).join(" "),
+        replayedOriginalRunes: recovered.length,
+        plantedSolvedRunes: solvedFrame.length,
+      });
+    }
+  }
+}
+assert.equal(pairRotations.length, 8);
+assert(pairRotations.every(x => x.fullIoC < 0.036));
+
 const ringReceivers = [];
 for (const sign of [-1, 1]) {
   const candidate = ringTranslate(originalCiphertext, sign);
@@ -244,5 +306,6 @@ console.log(JSON.stringify({
   originalBlackPunctuation: punctuation.stopOffsets.concat([]),
   wordBoundary87: punctuation.wordBoundaryOffsets.includes(87),
   candidateRadix60Perimeter: { length: inner60.length, phase, rawIoC: indexOfCoincidence(originalCiphertext), receiverTests: ringReceivers },
+  pythagoreanOriginalGP29PairRotations: pairRotations,
   interpretation: "The carry-word GP0 sum selects splice87, whereas the earlier sentence-offset criterion selects208. The physical carried rune cannot itself be the all-zero five-trit state in either valid de Bruijn register. No first-party cipher output law is specified.",
 }, null, 2));
