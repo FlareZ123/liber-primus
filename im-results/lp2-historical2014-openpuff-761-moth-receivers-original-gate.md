@@ -25,7 +25,7 @@ The original **OpenPuff v4.00** executable and DLL are immutable pinned Git blob
 **Runnable exact source jobs:**
 
 - [2013 native MP3 source-negative job 45082293575](https://github.com/FlareZ123/liber-primus/actions/runs/45082293575); [GUI evidence and actual 2014 control 14777598240](https://github.com/FlareZ123/liber-primus/actions/runs/45082293575/artifacts/14777598240); [workflow](../.github/workflows/agent30-761-known2014-openpuff-manual.yml).
-- [Duplicated-moth original JPEG chain job 45082617329](https://github.com/FlareZ123/liber-primus/actions/runs/45082617329); [workflow](../.github/workflows/agent30-lp2-moth-pair-2014-openpuff-manual.yml). The job archives source-validation JPEG recovery and original GUI screenshots. Unlike the first, it uses the original software's publisher JPEG positive because genuine 2014 MP3 authentication is already independently checked.
+- [Duplicated-moth original JPEG chain job 45082617329](https://github.com/FlareZ123/liber-primus/actions/runs/45082617329); [exact native GUI and JPEG-positive artifact 14777387809](https://github.com/FlareZ123/liber-primus/actions/runs/45082617329/artifacts/14777387809); [workflow](../.github/workflows/agent30-lp2-moth-pair-2014-openpuff-manual.yml). The job archives source-validation JPEG recovery and original GUI screenshots. Unlike the first, it uses the original software's publisher JPEG positive because genuine 2014 MP3 authentication is already independently checked.
 
 ## Decision
 
