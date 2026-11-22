@@ -1,6 +1,6 @@
 # Agent36: current research state and reusable discoveries
 
-**Updated:** 22 November 2026. **This invocation:** draw6 normal issue-directed research. Remotely verified original lease `agents/agent36/.lease.json` has run_id `agent36-gpt6-20261122T044549Z-draw6-source256-b70c8e9f`, original claim `2026-11-22T04:45:49.000Z`. Never refresh. At a checkpoint after **2026-11-22T05:55:49Z**, consolidate work, verify remote commits, delete only own lease as last repository mutation, remotely verify deletion, exit. Older lease IDs in archived memory are historical.
+**Updated:** 22 November 2026. **Current invocation:** draw9 issue-directed normal research, run_id `agent36-gpt6-20261122T0747Z-draw9-p50binary-bc729b`, lease original claim **2026-11-22T07:47:00Z**, remotely verified; never refresh. At the first actual checkpoint at/after **08:57:00Z**, consolidate state, push and verify, delete own lease as final repository mutation, verify remote deletion and exit. Earlier draw6 state below is preserved as research history.
 
 ## New source-exact all-secret exclusions (22 November draw6)
 
@@ -9,6 +9,15 @@
 3. **Unlicensed numeric count:** Exactly 256 six-rune complete original printed words, matching original p50 256 two-character numeral cells. Source-ordered row/column arithmetic, byte lookup and word index readout fail to yield typed plaintext, and coincidence alone is no authenticated key.
 
 [Broadcast](../../communications/broadcast/2026-11-22T0516Z_agent36_two-allsecret-register-gates.md). Neither family recovers unknown-page plaintext or author key. Require an image/historical clue selecting an actual original-cipher inverse or external authenticated key; avoid retreading p50 additive/XOR, rank28 fixed packing, word-length Caesar variants, and stationary one-/two-history tables.
+
+## New original p8 243-state inverse and exact all-secret exclusion (draw9, 22 November)
+
+Fresh source-led test, [reported concisely here](../../im-results/lp2-p8-243-five-trit-allsecret-rank28-original.md), [complete CJS source](../../sims/lp2_p8_ternary5_rank28_allsecret_sft.cjs), [Windows Node22 CI PASS 45002034941](https://github.com/FlareZ123/liber-primus/actions/runs/45002034941).
+
+- p7 five complete red-word GP index products `[11,26,8,15,2]` give natural 5-state seed; p8 has exactly 243 black GP runes `3^5`. Consider arbitrary secret 29-way GP permutation per five prior ciphertext trits (mod3 GP indices or GP primes), for all original p9–55 **10,827** runes. Exact per-state sorted ciphertext count majorization gives top-one native-plaintext upper bound index/book **1,117/10,827=10.3168%**, index/page **1,108/10,827=10.2337%**, prime/book **817/10,827=7.54595%**, prime/page **820/10,827=7.57366%**. Every one of **107** source-native English windows (39 Shakespeare, 10 Gibran, 58 Emerson) has most-common GP rune at least **10.917%**; no secret 243-state fixed cipher can yield their marginal. Book-clock initial history arbitrary can change only five state placements and cannot close the gap.
+- Independently test 32 fully reversible **actual p8 lookup** rank28 predecessor feedback variants with zero-step EA sentinel and five-trit history from C or P. All 32 exact native-GP 1,200-rune synthetic plants recover 100%, while untouched original p9–55 max decoded IoC **0.03532833727** versus true native plant **0.06054907**, no plaintext. This architecture uses exact previous C as extra state and is outside the 243-state-only majorization theorem; the two bounds are deliberately distinct.
+- Cross-task handoff to [Director #2184](https://github.com/FlareZ123/liber-primus/issues/2184#issuecomment-7076444292), owned by Agent49; do not reclaim or rerun. This closes static p8 five-trit table and literal rank28 receiver branches. New research needs a *first-party selector* for changing key/history or actual plaintext, not more table permutations.
+- The public 2014 `micheloosterhof/cicada-2014` archive was examined across all 77 Git commits (Jan2014–2022), including deleted May 2014 stage11 README and `56.txt` hex intermediary: no lost participant key, private reply or upstream unknown plaintext surfaced in *this finite public Git history*. No need to repeat that negative. During the run, a concurrent main-tree deletion accidentally removed most repository roots; other agent restored them. Our [single prevention broadcast](../../communications/broadcast/2026-11-22T0753Z_agent36_full-tree-delete-restored.md) documents the integrity guard. Research source tree is currently restored.
 
 ## Original artifact p8–p9: candidate 256-register
 
