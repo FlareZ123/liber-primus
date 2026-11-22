@@ -266,6 +266,99 @@ for (const item of polynomialControls)
 // all-secret upper bound covers every degree, secret coefficient and
 // key of EVERY invertible word-length-stationary polynomial f_L.
 
+/**
+ * Stronger source-independent allowance: before an invertible arithmetic
+ * numeral transformation, each word width may secretly choose ANY single
+ * original rune position to serve as its output units digit, even after
+ * an arbitrary fixed width-L permutation (L! possibilities).
+ *
+ * For each L and digit position j, that digit's 29-bin histogram is
+ * inescapable under any later compatible/permutation-polynomial inverse.
+ * Taking the max top-four concentration across ALL j, independently for
+ * every L, covers every single secret per-length coordinate permutation
+ * and per-length compatible integer bijection.
+ *
+ * @param {number[][]} runicWords
+ */
+function allSecretPositionReorderBound(runicWords) {
+  const groups = new Map();
+  for (const word of runicWords) {
+    const group = groups.get(word.length) || [];
+    group.push(word);
+    groups.set(word.length, group);
+  }
+  let upper = 0;
+  const perLength = [];
+  for (const [length, group] of [...groups].sort((a, b) => a[0] - b[0])) {
+    const candidates = Array.from({length}, (_, pos) => {
+      const hist = Array(29).fill(0);
+      for (const word of group) hist[word[pos]]++;
+      const top4 = hist.sort((a, b) => b - a)
+        .slice(0, 4).reduce((s, n) => s + n, 0);
+      return {position: pos, top4};
+    });
+    candidates.sort((a, b) => b.top4 - a.top4 ||
+      a.position - b.position);
+    upper += candidates[0].top4;
+    perLength.push({length, words: group.length,
+      maximallyFavoredOriginalPosition: candidates[0].position,
+      largestFourAtThatPosition: candidates[0].top4,
+      evaluatedSourcePositions: length});
+  }
+  return {upper, perLength};
+}
+
+const allReorderedPositions = allSecretPositionReorderBound(original);
+assert.equal(allReorderedPositions.upper, 642);
+assert.deepEqual(allReorderedPositions.perLength.map(x =>
+  x.largestFourAtThatPosition),
+  [20, 88, 138, 104, 71, 56, 50, 42, 25, 18, 14, 9, 4, 3]);
+
+/**
+ * Positive: full-integer affine GP29 cipher followed by a literal reversal
+ * of each output word. This is one valid nontrivial member of the all-
+ * hidden per-length position permutation + compatible cipher family.
+ *
+ * @param {number[][]} native
+ * @param {string} name
+ */
+function verifyReversedAffinePlant(native, name) {
+  const encrypted = native.map(word => {
+    const L = word.length;
+    const modulus = 29n ** BigInt(L);
+    const b = (3301n + 1033n * BigInt(L)) % modulus;
+    return wordDigits(2n * wordNumber(word) + b, L).reverse();
+  });
+  const decoded = encrypted.map(word => {
+    const L = word.length;
+    const modulus = 29n ** BigInt(L);
+    const b = (3301n + 1033n * BigInt(L)) % modulus;
+    const inv2 = (modulus + 1n) / 2n;
+    return wordDigits(inv2 * (wordNumber(word.slice().reverse()) - b), L);
+  });
+  assert.deepEqual(decoded, native);
+  const maxReordered = allSecretPositionReorderBound(encrypted);
+  const nativeFinal = observedTop4Last(native);
+  assert(maxReordered.upper >= nativeFinal,
+    "all-secret coordinate bound must admit true reversed-affine source");
+  assert(allReorderedPositions.upper < nativeFinal,
+    "original all-secret bound must exclude native reference");
+  return {
+    source: name, nativeFinalFour: nativeFinal,
+    encryptedAllPositionUpper: maxReordered.upper,
+    originalAllPositionUpper: allReorderedPositions.upper,
+    originalWidthsRecovered: "2896/2896"
+  };
+}
+const reorderedNativeControls = [
+  verifyReversedAffinePlant(matchedNativeWords(
+    read("resources/control/gibran_prophet_58585.txt")), "Gibran"),
+  verifyReversedAffinePlant(matchedNativeWords(
+    read("resources/control/shakespeare_first300k.txt")), "Shakespeare")
+];
+assert.deepEqual(reorderedNativeControls.map(x => x.nativeFinalFour),
+  [1547, 1553]);
+
 console.log(JSON.stringify({
   original: {
     completeWords: original.length, sourceRunes: text.runeCount,
@@ -277,6 +370,8 @@ console.log(JSON.stringify({
   },
   nativeControls,
   polynomialControls,
+  allReorderedPositions,
+  reorderedNativeControls,
   affineAlphabetBijectionControls: "812/812 (a 1..28, b 0..28)",
-  conclusion: "ANY invertible 29-adically compatible whole-word BASE29 map, including arbitrary secret polynomial permutations, preserves the final-rune histogram by word length. Original bound 609, native Gibran/Shakespeare 1547/1553. Verified 2896-word nonlinear polynomial plants. No unknown LP2 plaintext/key recovered."
+  conclusion: "ANY invertible 29-adically compatible word-integer map following ANY per-length fixed digit-coordinate permutation has exact original last-rune top-four upper bound 642, versus 1547/1553 native GP-English controls. Stronger fixed-order bound is 609. Verified nonlinear polynomial and reversed-affine full-length plants. No unknown LP2 plaintext/key recovered."
 }, null, 2));
