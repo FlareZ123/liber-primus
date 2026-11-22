@@ -159,6 +159,64 @@ console.log("Adjacent-equal contingency [different,equal]:", repeat);
 console.log("Unadjusted Thue same-bit enrichment hypergeometric p:", diagnosticP);
 console.log("NOTE: 9 repeats and post-discovery tests cannot validate a historical Thue clock.");
 
+/**
+ * Thue's ternary squarefree fixed point: 0 -> 012, 1 -> 02, 2 -> 1.
+ * Source: the classical, pre-2014 Thue morphism. No fitted seed or phase.
+ * @param {number} n @returns {number[]}
+ */
+function ternaryThue(n) {
+  let sequence = [0];
+  while (sequence.length < n) {
+    sequence = sequence.flatMap(v =>
+      v === 0 ? [0, 1, 2] : v === 1 ? [0, 2] : [1]);
+  }
+  return sequence.slice(0, n);
+}
+
+const ternary = ternaryThue(cipher.length);
+assert.equal(ternary.slice(0, 30).join(""), "012021012102012021020121012021");
+
+/** @param {number[]} values @returns {number[]} */
+function ternaryIoc(values) {
+  const classes = [[], [], []];
+  for (let i = 0; i < values.length; i++) {
+    classes[ternary[i]].push(values[i]);
+  }
+  return classes.map(ioc);
+}
+const ternaryOriginal = ternaryIoc(cipher);
+const ternaryNativeMin = [Infinity, Infinity, Infinity];
+const ternaryNativeMax = [0, 0, 0];
+for (let first = 0; first + cipher.length <= native.length; first++) {
+  const scores = ternaryIoc(native.slice(first, first + cipher.length));
+  for (let classNo = 0; classNo < 3; classNo++) {
+    ternaryNativeMin[classNo] = Math.min(ternaryNativeMin[classNo], scores[classNo]);
+    ternaryNativeMax[classNo] = Math.max(ternaryNativeMax[classNo], scores[classNo]);
+  }
+}
+for (let k = 0; k < 3; k++) {
+  assert(ternaryOriginal[k] < ternaryNativeMin[k]);
+}
+console.log("Ternary squarefree class IoCs:", ternaryOriginal);
+console.log("Ternary solved-native class minima:", ternaryNativeMin);
+console.log("Ternary solved-native class maxima:", ternaryNativeMax);
+console.log("DECISION: any fixed secret permutation per Thue squarefree state fails native class IoC.");
+
+let ternaryBest = {a:0, b:0, ioc:-1};
+let ternaryMatches = 0;
+for (let a = 0; a < 29; a++) {
+  for (let b = 0; b < 29; b++) {
+    const decoded = cipher.map((v, i) =>
+      mod29(v - (ternary[i] === 0 ? 0 : ternary[i] === 1 ? a : b)));
+    const score = ioc(decoded);
+    if (score > ternaryBest.ioc) ternaryBest = {a, b, ioc:score};
+    if (score >= Math.min(...ternaryNativeMin)) ternaryMatches++;
+  }
+}
+assert.equal(ternaryMatches, 0);
+console.log("All 841 ternary additive three-secret-key relatives: best",
+  ternaryBest, "at or above native class floor:", ternaryMatches);
+
 assert.equal(grid.shape, "32 rows by 8 columns across LP2 pages 49, 50, 51");
 assert.equal(grid.bytes.length, 256);
 let native256Minimum = Infinity;
