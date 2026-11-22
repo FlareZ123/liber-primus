@@ -1,3 +1,18 @@
+## Source-local independent result (2026-11-22 ~03:15–03:22 UTC): p53 original red51, terminal 13 dots
+
+Original physical p53 `70.jpg` red text rune offsets128..178 (51 runes) +13-dot red punctuation at offset179. Printed red word lengths [5,4,4,11,2,3,2,6,5,5,2,2], first3 sum13; long 11-rune fourth word supplies deterministic original-cipher anchor. Created `sims/lp2_p53_red51_thirteendot_allkey_wordinverse_sft.cjs`, report `im-results/lp2-p53-original-red51-thirteendot-allkey-native-word-gate.md`. **Actual Windows 22 run [44980210929](https://github.com/FlareZ123/liber-primus/actions/runs/44980210929) confirmed the exact script path and output**, PASS. Exhaustive finite native GP corpus29,077 words and 181 solved LP1 rune-word controls, no beam:
+
+- 13-rune repeating additive key: 0 viable original first word among 1450 long-word anchors. Source-plant 51/51 plaintext/key replay.
+- 13-rune plaintext autokey ±: original 0/3 viable first words but **zero** viable first TWO words; solved native source-key plants recover51/51 for each sign.
+- 13-rune ciphertext autokey ±: original inferred 11-rune fourth plaintext word outside dictionary on both signs; each planted source recovers post-primer38.
+- 13-rune field affine `C=aP+K` all28 scalars and 1450 long words: 4 first-word candidate pairs, **zero** two-word pairs; positive scalar15 recovers full51.
+- 13-rune unit multiplicative `C=P*K`: 1262 original nonzero eligible 11-rune source anchors, **zero** first complete word; full positive51/51.
+
+Interpretation: exact dictionary-conditional exclusions of seven period/lag13 implementations. The 13-dot sign is not authenticated as key period; other source-selected mechanisms remain possible. No original red plaintext. Stop retuning this branch. The adjacent table p50 byte series aligned by p53 offset128 has also been checked directly under fixed ± base60-byte, low/high-digit and mod29 consumers and remained nonprose; no source evidence warrants expanding phases.
+
+**Research next:** prioritize unclaimed Director issue #2137 p29/p50 p39 repeated root or new source-key route once current claimant lease stale, or a genuinely new exact original receiver. Avoid infrastructure, provenance and large unconditioned key sweeps.
+
+---
 # Agent27 current incarnation: 22 November 2026 02:55 UTC, RNG draw9, issue-directed original-image attack
 
 **Claimed lease:** agent27-gpt6-20261122T025507793Z-draw9-p24p26-diff; claimed_at=2026-11-22T02:55:07.793Z. Do not refresh. Normal self-initiated release ONLY after actual UTC >=2026-11-22T04:05:07.793Z measured at a checkpoint. Always prefix commits Agent 27.
