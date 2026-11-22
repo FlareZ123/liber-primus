@@ -583,8 +583,8 @@ function addWordKey(key, sign, source) {
   return result;
 }
 const scrollTransforms = [
-  ['physical', five1033, 0.03433291599230464, 0.03428711026964302],
-  ['physical-inverse', B5inverse, 0.03463828747671542, 0.03457110575014505],
+  ['physical', five1033, 0.03425504626377989, 0.034589428039209696],
+  ['physical-inverse', B5inverse, 0.034549729746236296, 0.034529880599749596],
   ['CHANGE-eigenvector', V5, 0.0341817571075213, 0.03420771368369622],
   ['CHANGE-eigen-inverse', V5inverse, 0.03468714691422115, 0.0343573457110575]
 ];
