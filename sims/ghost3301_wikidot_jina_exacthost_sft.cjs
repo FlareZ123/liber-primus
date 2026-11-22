@@ -11,10 +11,11 @@ const crypto = require('node:crypto');
 
 const sourceHost = 'howwillyoutelltheworld.wikidot.com';
 const sources = [
-  'https://r.jina.ai/http://howwillyoutelltheworld.wikidot.com/',
-  'https://r.jina.ai/https://howwillyoutelltheworld.wikidot.com/',
-  'https://r.jina.ai/http://howwillyoutelltheworld.wikidot.com/system:list-all-pages',
-  'https://r.jina.ai/http://web.archive.org/web/20141207162339/http://howwillyoutelltheworld.wikidot.com/'
+  'https://r.jina.ai/https://howwillyoutelltheworld.wikidot.com/system:list-all-pages',
+  'https://r.jina.ai/https://howwillyoutelltheworld.wikidot.com/system:list-all-pages/p/2',
+  'https://r.jina.ai/https://howwillyoutelltheworld.wikidot.com/system:list-all-pages/p/3',
+  'https://r.jina.ai/https://howwillyoutelltheworld.wikidot.com/start',
+  'https://r.jina.ai/https://howwillyoutelltheworld.wikidot.com/talk:start'
 ];
 
 const hints = /\b(?:runes?|liber\s+primus|manuscript|pdfs?|cipher|encryp|attachment|file)\b/i;
@@ -34,7 +35,7 @@ async function main() {
       const text = body.toString('utf8');
       console.log('HTTP', response.status, 'TYPE', response.headers.get('content-type'));
       console.log('BYTES', body.length, 'SHA256', crypto.createHash('sha256').update(body).digest('hex'));
-      console.log('HEADER', text.slice(0, 450).replace(/\r?\n/g, ' '));
+      console.log('PAGE_BODY', text.slice(0, 12000));
 
       /** @type {string[]} */
       const extracted = [...new Set(text.match(links) || [])];
