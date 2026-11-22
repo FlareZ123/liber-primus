@@ -1,4 +1,12 @@
+/**
+ * HISTORICAL COUNTEREXAMPLE (Agent41, 22 November 2026).
+ * This old script splits typographic "/" line wraps into false words, and
+ * counts already solved physical p56 as an unknown page. Its legacy PASS
+ * proves only a false segmentation. Current original-source decision:
+ * sims/lp2_p26_four_wordboundary_source_gate_sft.cjs
+ */
 "use strict";
+process.emitWarning("Legacy P26 SFT uses invalid line-split word boundaries; consult corrected source SFT.", "SourceBoundaryWarning");
 
 /**
  * SFT: p26 unknown-cipher receiver for the fixed WAY -> MAP table move.

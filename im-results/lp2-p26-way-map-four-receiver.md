@@ -1,321 +1,50 @@
-# p26 as the first unknown-cipher receiver of the WAY -> MAP table move
+# P26 WAY-to-MAP source receiver: original line-wrap falsifies FOUR/FOURTH/DH
 
-**Agent10, 19 November 2026. Classification: strong bounded unknown-cipher DH/meta-instruction packet. No continuous manuscript plaintext is claimed.**
+**Authoritative correction, Agent41, 22 November 2026.** The adjacent original ciphertext word-value transition **57 to 56 survives**. The proposed four-word p26 **FOUR / FOURTH / DH packet does not exist in the original printed words**. The earlier successful reproducer treated typography as word punctuation and also counted a solved page as unsolved. No plaintext, original decryption key, or cipher operation follows from this local result.
 
-## Upstream operation was fixed independently
+## Exact page evidence
 
-Earlier in this invocation, the signed-2016 scaffold and p29 derivative route fixed `WAY`, and the p50 table supplied the table-wide unique composite:
-
-~~~text
-57 = GP0(WAY)
-p50[57] = 1w
-one west -> 56 = GP0(MAP)
-
-p50[56] = 4E
-0x4E = N
-one north -> 48 = GP0(HERE)
-~~~
-
-The exact `57 -> 56 -> 48` two-stage operation is the only digit+cardinal then hex-cardinal composite anywhere in the 256-cell table. It also transfers to the solved WELCOME adjacency `WAY HERE`.
-
-The solved phrase `FIND THEIR WAY HERE` independently authenticated the high-digit readout:
+The actual original archive scan is **43.jpg** (LP2 physical p26). The line 9 to line 10 boundary reads:
 
 ~~~text
-GP0-address words into p50
-take each printed high digit
-interpret those digits as GP indices
-
-FIND THEIR WAY HERE
- -> [0S,3H,1w,4D]
- -> [0,3,1,4]
- -> FOUR
+line 9   ... ᚪᛖᛏ-ᛖ/
+line 10       ᛋᚪᛟ-ᚳᚻᛁᛋᚠᛁᚾ-ᛈᛟᛝ-...
 ~~~
 
-The unknown-page test below opens no new operation.
+The slash marks only a line wrap. There is **no printed hyphen or dot between rune E at the end of line 9 and rune S at the beginning of line 10**. Under the standard source parser they form one word, **ESAOE** = runes ᛖᛋᚪᛟ, with GP0 **79**. The historical parser invented two words: E =18 and SAOE =61.
 
-## Unknown-cipher transition census
+| Original-source operation | Historical artificial split | Actual printed whole words |
+|---|---|---|
+| Four-word sequence | E, SAOE, CHISFIN, POENG | AET, ESAOE, CHISFIN, POENG |
+| GP0 addresses | 18,61,57,56 | **58,79,57,56** |
+| Printed p50 tokens | 0F,3G,1w,4E | **2Q,1M,1w,4E** |
+| Token-leading digits | 0,3,1,4 (= FOUR) | **2,1,1,4** (no FOUR) |
+| Full base60 decoded bytes | 15,196,118,254 | **146,82,118,254** |
+| Byte residues modulo29 | 15,22,2,22 | **1,24,2,22** |
 
-Parse the original LP2 transcription into source-visible rune words on pages 0–55. For each within-page adjacent word pair:
+The old apparent four-word packet equaled the chosen DH23 tuple [b,p-1,K,p-1] only because its first two entries came from fabricated words. Without FOUR there is no original instruction to append TH via GCD, no FOURTH, and no p26-selected fourth-D/H or DH decoder. Retrospective arithmetic using the earlier p28 DH23 state can still be computed, but it does not rescue the invalidated source boundary.
 
-1. compute each word's canonical GP0;
-2. open the current word's p50 token;
-3. only if that token matches literal `[1-9][NSEW]`, move on the fixed 32×8 table;
-4. test whether the destination equals the next ciphertext word's GP0.
+**Surviving narrow event:** the original intact words CHISFIN and POENG remain adjacent, with GP0 57 and 56, respectively. Table token p50[57]=1w can be interpreted as one cell west from state57 to state56 under a proposed literal 32x8 grid parser. This is the single 57-to-56 original adjacent word-pair in the corrected census. The next original word has GP0 **95**, so there is no three-word 57→56→48 continuation. Neither the independent p28 H transform nor the short K=2 probe produces sustained unknown-page English.
 
-There are:
+## Corpus and historical parser correction
 
-~~~text
-3,288 within-page adjacent word pairs
-292 movement-eligible source words
-2 exact next-state hits
-~~~
+The transcription omits table-only p50, so the **55 rune-bearing unknown source segments** represent physical pages p0-49 and p51-55. They contain **12,956 source runes and 2,896 intact printed words**, including 32 words spanning physical page boundaries. Book-wide intact four-word windows: **2,893**. The old SFT iterated 56 transcript segments and inadvertently included the **85 already-solved runes of physical p56** as if it were unsolved p55; that added 25 four-fragment windows.
 
-The two hits are:
+| Parser and scope | Four-slot windows | Literal high-digit FOUR hits |
+|---|---:|---|
+| Old false line-split; 56 segments including solved p56 | **3,176** | physical p5,p23,p26,p31 |
+| Same false line-split; correct 55 unknown segments | **3,151** | p5,p23,p26,p31 (still artificial) |
+| Correct line joining; page-local windows over 55 unknown segments | **2,763** | physical p5,p23,p48,p51 |
+| Canonical book-continuous 2,896 true words | **2,893** | global word indices271,1238,2677,2725; no p26 |
 
-~~~text
-p7  line5 words5-6:
-24 --1n--> 16
+The correct parser returns **zero p26 FOUR windows**. The original word-boundary error alone abolishes the claimed four-word receiver; the solved-page count is a separate denominator error.
 
-p26 line10 words2-3:
-57 --1w--> 56
-~~~
+## Independence of the solved WELCOME readout
 
-The p7 hit is a useful negative control: it is not the independently fixed WAY/MAP state pair and it does not continue through the unique two-stage table composite.
+The solved phrase FIND THEIR WAY HERE maps by the selected GP0-to-p50-first-digit rule to FOUR. That exact arithmetic survives, though it is weak as independent evidence. The printed first digits occupy only 0–4, and among the **64 distinct solved four-rune lexical types**, **FOUR is the sole type even representable by four such digits**. The prior WAY→MAP→HERE table route fixes p50 cells57,56,48, therefore the last digits 1 and4 are preselected. Holding those three already-used original cells fixed and permuting all remaining token instances, the probability of the 0,3 prefix at cells42 and34 is exactly **(60/253)×(56/252)=0.05270092226613965**, before charging word/reader selection. This cannot independently validate the p26 packet or prove a p28 DH intended route.
 
-## The fixed 57 -> 56 edge occurs exactly once in unknown ciphertext
+## Research decision
 
-Across all unknown-page adjacent words, the source-selected state pair `57,56` occurs exactly once:
+**Retire the original p26 FOUR→FOURTH→DH unknown-cipher receiver.** Preserve the single correctly parsed 57-to-56 adjacent ciphertext-word address relation as a structural observation. Require a new independently source-authenticated reversible operation and a held-out plaintext or key before reviving that path. The older [legacy SFT](../sims/lp2_p26_way_map_four_receiver_sft.cjs) remains a reproducible **counterexample showing what erroneous segmentation can manufacture**; its earlier PASS results do not imply genuine plaintext.
 
-~~~text
-p26 line10 word2  CHISFIN  GP0=57  p50=1w
-p26 line10 word3  POENG    GP0=56  p50=4E
-~~~
-
-So the literal token at the first word predicts the GP0 address of the next unknown ciphertext word:
-
-~~~text
-57 --1w / one west--> 56
-~~~
-
-This is a genuine transition on unknown ciphertext addresses. It does not rely on interpreting CHISFIN or POENG as English.
-
-## The same p26 boundary window independently reads FOUR
-
-A second, already authenticated readout hits the same location.
-
-Across all pages 0–55 there are **3,176** contiguous four-word windows. The fixed p50-high-digit rule yields `FOUR = [0,3,1,4]` in four windows total, on pages 5, 23, 26, and 31.
-
-The p26 hit is:
-
-~~~text
-p26 line9 word5      E         GP0 18 -> p50 0F -> high 0 = F
-p26 line10 word1     SAOE      GP0 61 -> p50 3G -> high 3 = O
-p26 line10 word2     CHISFIN   GP0 57 -> p50 1w -> high 1 = U
-p26 line10 word3     POENG     GP0 56 -> p50 4E -> high 4 = R
-                                                        ----
-                                                        FOUR
-~~~
-
-Thus the only unknown occurrence of the exact `57,56` WAY/MAP address transition is embedded inside a four-word window that independently emits the same source-derived word `FOUR`.
-
-The other three unknown FOUR windows do not contain the fixed 57->56 transition.
-
-## The same window is a unique DH packet and extends FOUR to FOURTH
-
-Open the full conventional base60 byte values of the four p50 tokens already selected by the p26 FOUR window:
-
-~~~text
-addresses   18   61   57   56
-tokens      0F   3G   1w   4E
-base60      15  196  118  254
-mod29       15   22    2   22
-~~~
-
-The residues are exactly:
-
-~~~text
-[15,22,2,22]
-= [b, p-1, K, p-1]
-~~~
-
-for the independently reconstructed p28 DH state `b=15`, `p=23`, `K=2`.
-
-This exact four-residue packet occurs **once across all 3,176 unknown four-word windows**, at the same p26 location. The result is therefore independent of choosing the word FOUR after seeing the residues.
-
-The already frozen p28 HERE route supplies the opcode **GCD**. Apply it only to the final WAY/MAP pair, whose full-byte residues are now source-typed as `[K,p-1]=[2,22]`:
-
-~~~text
-gcd(K,p-1)
-= gcd(2,22)
-= 2
-= GP rune TH
-~~~
-
-The high-digit readout of the same four cells is FOUR, so the packet extends itself:
-
-~~~text
-FOUR + TH
-= FOURTH
-~~~
-
-The other three unknown FOUR windows give last-pair GCD suffixes `NG`, `O`, and `U`; only p26 yields **TH** and therefore the ordinary word **FOURTH**.
-
-There is also an internal redundancy in the p26 packet:
-
-~~~text
-gcd(b,p-1)
-= gcd(15,22)
-= 1
-= GP rune U
-~~~
-
-and that value equals the third high digit of FOUR. This is exactly the same `gcd(b,p-1)=1` relation used by the prior p28 GCD branch to justify the inverse exponent.
-
-Thus p26 is no longer merely a state-transition coincidence. The independently selected four-word receiver simultaneously carries:
-
-1. high digits `FOUR`;
-2. the unique unknown residue packet `[b,p-1,K,p-1]`;
-3. the fixed WAY/MAP `57->56` edge;
-4. a GCD-derived suffix `TH`, giving the executable instruction word **FOURTH**.
-
-This still does not identify what object FOURTH selects. The obvious pre-existing consumers are the p28 `4D -> fourth D` self-index and the fourth signed THE-follower `MAP`; treat those as candidate receivers until one predicts untouched data.
-
-## FOURTH + reconstructed DH gives an exact p28 instruction
-
-The same residue packet can reconstruct the DH label without importing the already known `A=8` as an input.
-
-From the packet:
-
-~~~text
-b = 15
-p-1 = 22
-K = 2
-~~~
-
-the established p28 inverse step is forced:
-
-~~~text
-b^{-1} mod (p-1)
-= 15^{-1} mod22
-= 3
-~~~
-
-and then:
-
-~~~text
-K^3 mod p
-= 2^3 mod23
-= 8
-= A
-~~~
-
-So the packet reconstructs:
-
-~~~text
-[p,A]
-= [23,8]
-= GP runes D,H
-= DH
-~~~
-
-Together with the independently derived word **FOURTH**, this yields a compact instruction reading:
-
-~~~text
-FOURTH D ; H
-~~~
-
-
-The parse is forced by the untouched p28 rune sequence. P28 contains 13 D runes at zero-based offsets:
-
-~~~text
-7,20,25,48,71,75,93,113,117,197,210,221,241
-~~~
-
-so offset48 is exactly the **fourth D**. P28 contains only **one** adjacent literal `DH` bigram, at offset117. A “fourth DH” does not exist on the page. Thus the packet's executable literal reading is **FOURTH D**, followed by operation **H**.
-
-Apply that literally to the original p28 source under the already frozen consumer:
-
-~~~text
-p28 rune offset48 = D
-D-count through offset48 = 4
-
-centered runes 47..49 = [20,23,14] = L D X
-
-H(L,X) || D
-= [20-14, 20+14, 23] mod29
-= [6,5,23]
-= G C D
-= GCD
-~~~
-
-Thus the p26 unknown-cipher block independently reconstructs the exact operation used by the earlier p28 HERE route: **select the fourth D, then apply H around it, yielding GCD**.
-
-This is a cross-page solve-path closure rather than unknown prose recovery. It is substantially stronger than recognizing FOUR alone because every step after the p26 packet is a pre-existing, source-tested p28 operation.
-
-## Deterministic state48 continuation stops on p26
-
-The fixed table continuation from the selected state56 receiver is still:
-
-~~~text
-56 --4E / hex N--> 48
-~~~
-
-If this is interpreted as a state lookup on the same unknown page, p26 contains exactly one rune-word whose GP0 is 48:
-
-~~~text
-p26 line4 word1
-ciphertext transliteration EAMU
-rune vector [28,19,1]
-GP0 = 48
-~~~
-
-This is a clean nonlocal receiver selection, but the next frozen HERE consumer does **not** transfer. The established current-page `4D` rule requires rune offset48 to be the fourth D on the page. On p26:
-
-~~~text
-rune offset48 = L
-D-count through offset48 = 1
-~~~
-
-so the literal self-index fails. Stop the p26 navigation branch there rather than changing the 4D semantics.
-
-## Shared-secret word probe is insufficient
-
-The FOUR -> DH bridge reconstructs shared secret `K=2`. Applying only the two sign choices of a constant GP29 K-shift to the uniquely selected state56 ciphertext word gives:
-
-~~~text
-POENG = [13,22,21]
-
-+K: [15,24,23] = SAD
--K: [11,20,19] = JLM
-~~~
-
-`SAD` is readable English, but a complete manuscript control makes it insufficient for plaintext promotion. Across **795** unknown three-rune words and both signs of K, the stable TextBlob English lexicon accepts **41/1590** outputs. The selected SAD result is unique as SAD, but readable three-rune accidents occur at a non-negligible background rate.
-
-A whole-p26 +K pass also does not produce sustained English. Preserve `POENG + 2 = SAD` only as a bounded candidate word probe, not recovered plaintext.
-
-## Boundary of the claim
-
-The table's second stage remains:
-
-~~~text
-56 --4E / hex N--> 48
-~~~
-
-but p26's next ciphertext word after the state56 word has GP0 `95`, not `48`:
-
-~~~text
-p26 line10 first four word addresses:
-61, 57, 56, 95
-~~~
-
-Therefore p26 does **not** supply a three-word ciphertext chain `57 -> 56 -> 48`. The first edge transfers directly to adjacent unknown words; the `56 -> 48` step remains a table-state continuation.
-
-Do not call `FOUR` recovered continuous plaintext on p26 yet. The all-high readout has four unknown-page FOUR hits across 3,176 windows, so the lexical output alone is insufficient. What distinguishes p26 is the conjunction with the independently fixed and globally unique 57->56 table edge.
-
-## Decision
-
-Preserve the p26 line9/10 four-word block as a strong bounded unknown-cipher receiver: it contains the fixed WAY -> MAP state transition, emits FOUR, uniquely carries `[b,p-1,K,p-1]`, and extends through the pre-existing GCD opcode to FOURTH. In particular preserve:
-
-~~~text
-unknown p26 word GP0 57
- -> original token 1w
- -> literal west
- -> next unknown p26 word GP0 56
-~~~
-
-and preserve the enclosing `18,61,57,56 -> FOUR` boundary window as supporting evidence.
-
-The p28 object consumed by FOURTH/DH is now source-selected and reproduces the frozen fourth-D/H -> GCD operation. The next decisive step is to use the resulting GCD/inverse3 state to predict an untouched receiver or plaintext downstream, rather than adding another interpretation layer. Avoid treating the p7 movement hit or the four generic FOUR windows as equivalent.
-
-## Reproduction
-
-Windows Node 22 PASS for the complete receiver and negative-continuation gate: [run 44448501937](https://github.com/FlareZ123/liber-primus/actions/runs/44448501937). Final PASS including the unique DH packet, FOURTH, reconstructed DH label and `FOURTH D; H -> GCD` closure: [run 44449349264](https://github.com/FlareZ123/liber-primus/actions/runs/44449349264).
-
-
-Run:
-
-~~~text
-node sims/lp2_p26_way_map_four_receiver_sft.cjs
-~~~
-
-The SFT performs the complete unknown-word movement census, proves uniqueness of the 57->56 adjacent pair, enumerates all unknown FOUR windows, proves the `[b,p-1,K,p-1]` residue packet unique across 3,176 windows, derives GCD suffix TH and FOURTH, reconstructs `[p,A]=DH`, verifies the literal `FOURTH D; H` instruction against original p28 as `LDX -> GCD`, verifies the p26 line/word coordinates, tests the failed immediate 56->48 continuation, follows state48 to its sole p26 word and rejects the frozen 4D self-index there, and charges the K=2 SAD/JLM word probe against the full three-rune signed-K English background.
+The corrected [read-only Node22 CJS SFT](../sims/lp2_p26_four_wordboundary_source_gate_sft.cjs) checks the original p26 line joining, the two word parsers, both counts, all original FOUR windows, genuine 57→56 pair, solved lexicon capacity and exact conditional table-token null. It **passed on Windows with original repo inputs**: [run 44976248467](https://github.com/FlareZ123/liber-primus/actions/runs/44976248467).

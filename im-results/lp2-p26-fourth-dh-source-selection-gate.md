@@ -1,48 +1,23 @@
-# P26 FOURTH-D/H packet: source-selected navigation, not an LP2 cipher
+# P26 FOURTH-D/H source-selection: authentic word-boundary correction
 
-**Issue:** [#1949](https://github.com/FlareZ123/liber-primus/issues/1949)  
-**Source-first freeze:** [Agent2 freeze](../workplace/agent2-1949-source-first-freeze.md)  
-**Deterministic test:** [p26 receiver SFT](../sims/lp2_p26_way_map_four_receiver_sft.cjs) · [Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44675841329)  
-**Existing receiver analysis:** [p28 fourth-D/H holdout report](lp2-p28-here-4d-gcd-holdout.md)
+**Issue [#1949](https://github.com/FlareZ123/liber-primus/issues/1949), audited by Agent8, corrected by Agent41 on 22 November 2026.**
 
 ## Decision
 
-**Negative for a cipher opcode; retain only a bounded navigation/meta-instruction candidate.** The p26 packet is a selective structural correspondence, but it does not independently select a non-circular `FOURTH D; H` inverse. Its `FOUR` and `57→56` features depend on an inferred table-token parser; the base60 radix is not author-authenticated; the `TH` suffix needs an extra GCD choice beyond standard DH; and the H operation is borrowed from the already-exposed p28 DH/H interpretation. The frozen p29 holdout is not plaintext. No unknown-page cipher inverse or continuous plaintext is recovered.
+The prior audit had correctly rejected a non-circular fourth-D/H cipher despite preserving p26 FOURTH as a possible navigation mnemonic. Original-image inspection now **falsifies the mnemonic as a purported four-original-word ciphertext readout**: p26 line9 ends E and line10 starts SAOE with no printed punctuation. Its intact rune-word is ESAOE (GP0 **79**). Counting E and SAOE separately invents GP0 addresses18 and61, which manufacture the first two digits of FOUR.
 
-## Source-to-p26 chain and its status
+The exact original p26 four-word sequence is **AET / ESAOE / CHISFIN / POENG**, addresses **[58,79,57,56]**, p50 tokens **[2Q,1M,1w,4E]**, first digits **[2,1,1,4]**, and base60-byte residues modulo29 **[1,24,2,22]**. The old SFT's [E,SAOE,CHISFIN,POENG] gave fictitious first digits [0,3,1,4] (FOUR) and fictitious residues [15,22,2,22]=[b,p−1,K,p−1]. The original page supplies neither FOUR nor the advertised DH tuple. A proposed GCD suffix TH cannot create FOURTH without the missing prefix. The old p28 fourth-D H/GCD output was already exposed before this receiver was opened, so that retrospective loop also provides no independent decryption.
 
-1. **Source text.** `FIND THEIR WAY HERE` occurs in the community-derived solved-LP1 WELCOME transcription. It is not a Cicada-signed plaintext source. The authenticated 2016 signed message supplies the broad “words are the map / numbers are the direction” instruction, but does not define the parser, digit choice, radix, origin, or movement rule.
-2. **Four-word readout.** WELCOME has 124 words and 121 four-word windows. Exactly one emits `FOUR` under zero-based GP0 word sums, p50 token lookup, and first-character GP29 digits: `FIND / THEIR / WAY / HERE`, addresses `[42,34,57,48]`, tokens `[0S,3H,1w,4D]`, high digits `[0,3,1,4]`. The charged one-based, GP0−1, GP-prime and low-digit alternatives do not reproduce this source hit.
-3. **Unknown-page family.** The 56 unknown pages contain 3,176 four-word windows; four emit high-digit `FOUR` under GP0 (p5, p23, p26, p31). Only p26 also contains the unique unknown-page adjacent GP0 edge `57→56`. The p26 window is `E / SAOE / CHISFIN / POENG`, GP0 `[18,61,57,56]`, table tokens `[0F,3G,1w,4E]`, original rune offsets 197–210.
-4. **Movement family.** Across the solved-source census, 731 adjacent pairs contain 81 eligible one-step moves and 11 eligible composite moves; there are zero literal `57→56` hits and one composite hit, WELCOME `WAY→HERE` via `57→56→48`. This does not make the first leg a source-adjacent pair. In the signed 2016 message, `WAY` (word14) and `MAP` (word19) are separated by “Its words are the”. WELCOME's literal adjacency is `WAY HERE` (`57→48`), not `WAY MAP` (`57→56`). The p50 table does encode `57 --1w (west)--> 56 --4E (hex N)--> 48`, but the next p26 ciphertext word has GP0 95, not 48.
-5. **Radix.** Base60 gives bytes `[15,196,118,254]` and residues `[15,22,2,22]`, the unique p26 DH23 packet hit. Drop-`f` base59 gives `[15,193,116,250]` and residues `[15,19,0,18]`, with no packet hit. The original p50 table has no radix legend; the base60 alphabet has external MIRACL precedent, not an author-supplied Cicada instruction. The tested unknown-window readout counts also change under charged alternatives: GP0/high 4, GP0/low 0, GP0+1/high 4, GP0−1/high 2, GP-prime/high 0, GP-prime mod256/high 0, GP-prime+1 mod256/high 6.
-6. **GCD/DH.** For base60 residues, adjacent pairing gives GCDs `[1,2]` (`U,TH`), crossed pairing gives `[1,22]` (`U,OE`), and outer pairing again gives `[1,2]` (`U,TH`). The first `gcd(b,p−1)=1` is the standard DH invertibility condition. Applying GCD to the final `(K,p−1)` pair to obtain `2=TH` is an additional choice, and two pairings give the same result. The DH23 tuple is a pre-Cicada textbook example; it does not independently authenticate this final-pair operation. The `TH` needed for `FOURTH` is therefore not selected by the source chain.
+The authentic unknown-ciphertext transition **CHISFIN→POENG, GP0 57→56**, remains. The first table token, 1w, admits one literal west movement on a 32x8 grid. The next source word after POENG has GP0 **95**, not 48, preventing a three-word literal table-state continuation. This does not establish that Cicada authored the grid-movement grammar.
 
-## Frozen receiver and holdout
+## Scope of the original numerical census
 
-The source-first freeze records that p28's fourth-D output had already been exposed before this audit; the p28 target is explicitly **not blind**. The p29 coordinates were frozen before reading p29 values.
+The original transcript has **55 unsolved rune-bearing segments, 12,956 runes, 2,896 intact words**; physical p50 is a table with no runes. The old p26 runner parsed wraps as breaks and mistakenly included transcript segment55, which is already-solved physical p56 with 85 runes. Its **3,176** artificial four-fragment windows include 25 solved-page windows. Correct 55-segment line-split control has **3,151** artificial windows; correct page-local word parsing has **2,763**; actual continuous printed manuscript words give **2,893** four-word windows. Four real first-digit FOUR motifs occur on physical **p5,p23,p48,p51**, **none on p26**.
 
-The claimed local map is
+For the solved WELCOME phrase, p50 first digits are restricted to 0..4, while **FOUR alone among 64 solved four-rune lexical types** uses only these five rune indices. Its last two high digits already follow from earlier selected WAY/MAP/HERE cells57,56,48; an exact conditional remaining-token permutation yields **0.05270092226613965** for the first two digits, uncorrected for parser and phrase choices. The solved FOUR output can be preserved as arithmetic, but cannot authenticate the p26 packet.
 
-\[H(x,y,z)=(x-z,\;x+z,\;y)\pmod{29},\]
+## Earlier negative holdouts still stand
 
-with inverse \(H^{-1}(d,s,y)=(15(d+s),\;y,\;15(s-d))\pmod{29}\). The fixed receiver and controls produce:
+The prior H transform gave original p28 fourth-D **GCD** (already disclosed to its proponents); a frozen p29 holdout gave **AEHD**, the solved p57 fourth-D control gave **LIAD**, and the p28 fifth-D gave **AYD**. Exact algebraic H inverses re-create their respective input runes without recovering unknown English. This independent weakness survives the stronger source-level falsification.
 
-| Receiver | Original rune offsets | Input GP indices | H output | GP transliteration |
-|---|---:|---:|---:|---|
-| p28 fourth D (already exposed) | 47–49 | `[20,23,14]` | `[6,5,23]` | `GCD` |
-| p29 predeclared holdout | 0–2 | `[2,23,6]` | `[25,8,23]` | `AEHD` |
-| p57 fourth-D solved-page control | 87–89 | `[9,23,18]` | `[20,27,23]` | `LIAD` |
-| p28 fifth-D negative control | 70–72 | `[25,23,1]` | `[24,26,23]` | `AYD` |
-
-The inverse reconstructs each three-rune input exactly. That is the expected algebraic round trip of a reversible three-symbol map, not evidence of a page cipher. `GCD` is an operation label, not recovered prose; the predeclared p29 holdout is `AEHD`, not `WAY`; the p57 control is `LIAD`; the p28 fifth-D control is `AYD`. p56 has only three D runes and therefore no fourth-D receiver. No tested span approaches 150 contiguous runes.
-
-The SFT also finds that the p50 route reaches address48, whose offset48 rune is `L` and whose D count through that page is only one; the proposed current-page self-index does not close. The immediate p26 ciphertext continuation is address95. Shared-secret word probes yield `SAD` or `JLM`; only 41 of 795 three-rune words are signed-K English hits, not a unique source-selected readout.
-
-## Interpretation and scope
-
-The chain's strongest supported content is navigation/meta-structure: a WELCOME-derived `FOUR` correspondence, a p26 `57→56` edge, and a base60-dependent DH-shaped packet. It does not prove that Cicada authored the token-first-digit parser, chose base60, intended the final-pair GCD, or selected the p28 H transform. The p28 `GCD` result cannot validate its own upstream selector because that output was already known when the p26 source-first freeze was made. The untouched p29 holdout fails to provide independent plaintext.
-
-**Close #1949 at navigation/meta-instruction only. Retire the p26 packet as an LP2 cipher opcode.** Do not assemble further p29 derivatives or extend H over arbitrary page spans without a new first-party selector. The p28 local READ OUT/HERE and DH investigations remain separately scoped; this result does not invalidate them.
-
-**Reproduction:** `node sims/lp2_p26_way_map_four_receiver_sft.cjs`. The existing manual Node22 runner passed on original inputs in [Actions run 44675841329](https://github.com/FlareZ123/liber-primus/actions/runs/44675841329).
+**Final instruction to agents:** discontinue all p26 FOUR/FOURTH/DH-derived key and plaintext programs unless new first-party evidence specifies a different, complete source word-boundary or decoding operation. Consult the [corrected detailed p26 report](lp2-p26-way-map-four-receiver.md), [new exact SFT](../sims/lp2_p26_four_wordboundary_source_gate_sft.cjs), and its [Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44976248467). Historical artifacts remain available: [legacy SFT](../sims/lp2_p26_way_map_four_receiver_sft.cjs), [original audit](../workplace/agent2-1949-source-first-freeze.md), [old CI result](https://github.com/FlareZ123/liber-primus/actions/runs/44675841329). No unknown LP2 plaintext, source-authenticated decryption method, or final destination is established.

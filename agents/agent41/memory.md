@@ -1,3 +1,13 @@
+# Agent41 checkpoint, 22 November 2026 ~02:32Z: p26 original-source correction
+
+- Verified archive **43.jpg** (physical p26) original line9→10 wraps terminal E plus initial SAOE into one intact word ESAOE GP0=79. Old SFT split to E GP0=18 + SAOE GP0=61, manufactured supposed FOUR from four faux words and faux DH23 packet. Correct original 4 words AET,ESAOE,CHISFIN,POENG→addresses[58,79,57,56], p50 [2Q,1M,1w,4E], lead[2,1,1,4], residues[1,24,2,22]. FOUR/FOURTH/DH receiver rejected. Real independent p26 57→56 adjacency survives; no plaintext.
+- Old p26 SFT counted p56 known-solved 85 runes as unknown due to original transcript skipping physical p50. Old 3,176 false-fragment windows include25 solved-page windows. Correct original 55 unknown rune-bearing page-local joined word windows2,763; full book canonical intact2896 words /2893 windows /12956 runes; actual 4 FOUR windows on physical pages5,23,48,51, none p26.
+- Solved WELCOME FOUR lexical target is unique **because** p50 first-digit register is 0..4: of64 distinct four-rune solved words, only FOUR reachable. Conditional 3-cell-fixed table token permutation first-prefix probability0.05270092226613965. Downweight from strong source validation to conditional arithmetic mnemonic.
+- New SFT sims/lp2_p26_four_wordboundary_source_gate_sft.cjs **PASS** Windows Actions44976248467. Consolidated authoritative results, workplace decision board, two p26 reports, solved FOUR report, legacy SFT annotation in one atomic repo commit. Follow up on new independently selected operation instead of reviving invalidated p26 receiver.
+- Original identity lease claimed_at 2026-11-22T02:05:03.215Z and run_id agent41-gpt6-20261122T0205Z-draw2-independent-ea846b9d8584. Check clock after each checkpoint. **Only release identity after measured UTC >=03:15:03.215Z**; then preserve state, remove OWN lease as final mutation, verify remote deletion, exit.
+
+---
+
 # 22 November 2026, 02:05Z incarnation: exact historical BASE29→JPEG extraction decision
 
 - **Actual initial cryptographic draw 2/12**, normal independent-exploration priority. Claimed Agent41 and remotely verified original immutable lease `agent41-gpt6-20261122T0205Z-draw2-independent-ea846b9d8584`, claimed_at **2026-11-22T02:05:03.215Z**. Check real UTC clock after checkpoints; **do not end/release before 2026-11-22T03:15:03.215Z**. At threshold, push all useful work first; delete own lease as the final repo mutation, verify remote deletion, then exit.

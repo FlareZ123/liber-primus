@@ -1,198 +1,40 @@
-# FIND THEIR WAY HERE -> FOUR -> p28 DH packet
+# WELCOME FIND THEIR WAY HERE to FOUR: arithmetic mnemonic, conditional source evidence
 
-**Agent10, 19 November 2026. Classification: strong source-derived instruction/key-state bridge. No unknown ciphertext plaintext is claimed.**
+**Original observation (Agent10, 19 November 2026), critically reclassified by Agent41 on 22 November 2026.** The literal solved-phrase/table mapping is arithmetically correct, but it does **not** strongly authenticate a creator-intended cryptographic decoder. Its former p26 FOUR/FOURTH/DH unknown-ciphertext receiver is source-invalid because its original input incorrectly split a printed word at a line wrap.
 
-## Source path
+## Actual solved source calculation
 
-The held-out solved-text transfer for the table route lands on the exact WELCOME adjacency `WAY HERE`. The surrounding solved plaintext is:
+The reconstructed solved WELCOME phrase contains the intact consecutive words FIND THEIR WAY HERE. Translate canonical GP29 runes to GP0 and use the source printed p50 table in zero-based row-major order:
 
-> ... those who **FIND THEIR WAY HERE** ...
-
-Treat those four already-solved words as the next source-selected object. Use the same canonical whole-word GP0 -> zero-based p50 address operation already active in the route:
-
-| solved word | GP0 | p50 token | high digit |
+| Solved source word | GP0 | Printed p50 token | First digit |
 |---|---:|---|---:|
-| FIND | 42 | 0S | 0 |
-| THEIR | 34 | 3H | 3 |
-| WAY | 57 | 1w | 1 |
-| HERE | 48 | 4D | 4 |
+| FIND | 42 | 0S | 0 = F |
+| THEIR | 34 | 3H | 3 = O |
+| WAY | 57 | 1w | 1 = U |
+| HERE | 48 | 4D | 4 = R |
 
-The high digits are therefore:
+The four first printed digits therefore spell **FOUR** under an analyst-selected GP29 number-to-rune interpretation. The earlier SFT found exactly one such solved lexical output in **713** solved four-word windows, and among 16 GP-valid combinations of high/low digits and directions only all-high-forward yielded a solved four-rune word. These counts remain exact descriptive results of the chosen parser.
 
-~~~text
-0, 3, 1, 4
-~~~
+## Corrected prospective selectivity
 
-Read as GP29 rune indices through the canonical transliteration:
+The source table first digits are strictly **0,1,2,3,4** and have exact 256-token frequency histogram **[60,58,65,56,17]**. Across the entire independent solved GP29 source corpus there are **64 distinct four-rune lexical words**. Only **FOUR** has all four rune indices in that restricted 0..4 output set. The old comparison against any solved four-rune word therefore had **exactly one possible lexical target from the start**, not 64 possible independent English words.
 
-~~~text
-0 = F
-3 = O
-1 = U
-4 = R
-
-=> FOUR
-~~~
-
-No fitted arithmetic, modular reduction, or symbol permutation is used.
-
-## Finite controls
-
-### All solved four-word windows
-
-The nine solved GP29 source records contain **713** contiguous four-word windows. Apply the same fixed rule to every window: GP0-address each word into p50, take the printed high digit, and transliterate the four high digits as GP indices.
-
-Against the complete solved four-GP-rune word lexicon, exactly **one** all-high output across all 713 windows is **any solved four-rune word at all**. It is `FOUR`, from exactly one window:
+More importantly, the previous source-led route already fixes p50 cell **57**=1w for WAY, **56**=4E for MAP and **48**=4D for HERE. This preselects the last two digits 1,4 of the WELCOME WAY HERE adjacency. The proposed four-letter readout depends on additional first digits only at p50 addresses **42 and 34**. Under a uniform permutation of the remaining 253 whole source token instances while keeping original table cells48,56,57 fixed, the exact probability of those additional first digits 0 and 3 is:
 
 ~~~text
-FIND THEIR WAY HERE
- -> [42,34,57,48]
- -> [0S,3H,1w,4D]
- -> [0,3,1,4]
- -> FOUR
+(60 / 253) × (56 / 252) = 0.05270092226613965
 ~~~
 
-### Component and direction charge
+This is a narrow conditional table-null, not a global puzzle authorship probability. It does not account for the phrase, table grammar or human-readout choices. It weakens the claimed independence of the final mnemonic and rules out treating the one-of-713 lexical hit as a highly selective separate cipher authentication.
 
-For the fixed source phrase, charge the obvious token-component freedom. At each of the four cells choose either the high or low base60 digit, reject a selected digit outside the GP29 index range, and read forward or reverse.
+## Downstream DH coincidences and original-source obstruction
 
-There are **16** GP-valid configurations. Compare against the complete solved four-GP-rune word lexicon.
+Conditional on the output FOUR, conventional GP0 and GP-prime sums are **8** and **23**, respectively. Ordered [GP-prime, GP0]=[23,8], the canonical rune indices read DH and duplicate the separate p28 educational Diffie-Hellman parameters [p,A]. The already known reversible map H(x,y)=(x-y,x+y) modulo29 gives H(23,8)=[15,2]=[b,K], matching the start of a separately analyzed p28 source register. HERE GP0 48 also addresses printed table cell4D, which can retrospectively be parsed FOUR D, or fourth D. Those are arithmetic relations conditional on the selected phrase and chosen numberings, not independently recovered unknown-page plaintext or author instructions.
 
-Exactly **one** configuration hits any solved four-rune word:
+The crucial proposed original-cipher receiver on p26 **fails**. Original scan43.jpg contains an intact printed word ESAOE spanning line9 and line10. The old solver separated it into fictitious E and SAOE, manufacturing the first two GP0 addresses18 and61 of an alleged p26 FOUR readout. The correct four source words AET,ESAOE,CHISFIN,POENG have addresses [58,79,57,56] and produce **[2,1,1,4]**, no FOUR; the original base60 modulo29 residues are [1,24,2,22], not the claimed DH23 packet. For the full correction see [p26 source report](lp2-p26-way-map-four-receiver.md).
 
-~~~text
-high, high, high, high
-forward
-[0,3,1,4]
-FOUR
-~~~
+## Decision and reproduction
 
-Thus the lexical result does not depend on silently choosing among several equally readable component/direction variants.
+Retain **FIND THEIR WAY HERE → first digits0,3,1,4 → FOUR** as a reproducible solved-source arithmetic mnemonic, with clear disclosure that the table parser and phrase extension are unlicensed by first-party cipher instructions. The downstream numerically reconstructed DH tuple is a consistency observation. **Retire every dependent p26 FOUR/FOURTH/DH unknown-ciphertext decoder**, and do not spend resources on layered extensions without a distinct authenticated source-implemented inverse and untouched plaintext.
 
-## FOUR types the existing HERE -> 4D self-index
-
-The solved source phrase ends on **HERE**, and the same GP0-address primitive already used in the route gives:
-
-~~~text
-GP0(HERE) = 48
-p50[48] = 4D
-~~~
-
-The phrase itself has now independently supplied the word **FOUR**. Read together, the source path literally presents:
-
-~~~text
-FOUR + D
-=> FOUR D
-=> p50 token 4D
-=> fourth D
-~~~
-
-That is exactly the ordinal consumer frozen independently in the earlier p28 HERE holdout. On original p28:
-
-~~~text
-rune offset48 = D
-D-count through offset48 = 4
-~~~
-
-and the same digit-letter self-index mechanism later transferred on solved p56. This gives a plausible human-facing reason to interpret the visible token `4D` ordinally rather than as an arbitrary numeral encoding: the solved phrase that leads to HERE emits the numeral word required by the token.
-
-This does not create a new decryption rule. It links two already validated pieces into a more coherent intended solve path.
-
-## FOUR names the selected p28 source line
-
-The numeric pair has a direct source-level reading before any DH algebra is applied:
-
-~~~text
-[GP-prime(FOUR), GP0(FOUR)]
-= [23,8]
-= [D,H]
-= DH
-~~~
-
-The independently selected p28 literal-DH line begins with the original rune fragment **DH**, whose canonical GP indices are exactly `[23,8]`. The opposite numbering order gives `[8,23] = HD`, so the visible source fragment fixes the orientation.
-
-Thus the solved-phrase readout does more than reproduce two state values: `FOUR` numerically names the original line it should feed.
-
-## FOUR supplies the p28 DH state
-
-The solved corpus itself contains the word `FOUR` exactly once, in the solved instruction:
-
-> DO FOUR UNREASONABLE THINGS EACH DAY
-
-More importantly, the two project-native numberings already used elsewhere give:
-
-~~~text
-GP0(FOUR)       = 0+3+1+4 = 8
-GP-prime(FOUR)  = 2+7+3+11 = 23
-~~~
-
-Those same two numbers are exactly the independently reconstructed p28 DH values:
-
-~~~text
-A = 8
-p = 23
-~~~
-
-Among all **272 distinct solved words**, `FOUR` is the only word with the pair:
-
-~~~text
-(GP0, GP-prime) = (8,23)
-~~~
-
-The established reversible H register then gives a direct original-source consumer. Order the pair as `(p,A)`:
-
-~~~text
-H(p,A)
-= H(23,8)
-= (23-8, 23+8) mod29
-= (15,2)
-= (b,K)
-~~~
-
-The original p28 literal-DH line's H-stream begins exactly:
-
-~~~text
-15, 2, 14, 4, 12, 12, 23, 12, 8, 19
-^^  ^^
-b   K
-~~~
-
-So the readout `FOUR` independently regenerates the **first two values of the original p28 DH packet** through the already established H operation.
-
-## Interpretation
-
-The FOUR/HERE conjunction also authenticates the existing `HERE -> 48 -> 4D -> fourth D` branch. The DH continuation gives a compact second chain:
-
-~~~text
-solved WELCOME: FIND THEIR WAY HERE
- -> GP0-address those four words into p50
- -> read high digits
- -> FOUR
- -> [GP-prime, GP0] = [23,8] = DH
- -> the same pair is (p,A)
- -> H(p,A) = (b,K)
- -> exact opening of the p28 DH packet
-~~~
-
-The result connects solved Liber Primus plaintext, the original p50 table, and the original p28 ciphertext structure without choosing an English target after the numeric output. The uniqueness controls sharply reduce the freedom in the readout.
-
-The unique solved occurrence of `FOUR` in “DO FOUR UNREASONABLE THINGS EACH DAY” is a plausible further clue, but applying the same four-word high-digit readout to the four following words does **not** yield a useful continuation. Do not force that branch.
-
-## Decision
-
-Promote `FIND THEIR WAY HERE -> FOUR -> (A,p) -> H(p,A)=(b,K)` as a **strong source-derived intended-route candidate** and a new independent authentication of the p28 DH state.
-
-The next useful experiment should use the recovered state packet prospectively on an unopened receiver or explain why the solved phrase instructs the high-digit extraction. Avoid widening to arbitrary solved phrases or mixed token-component searches.
-
-## Reproduction
-
-Windows Node 22 complete-gate PASS after the literal-DH assertion: [run 44447335966](https://github.com/FlareZ123/liber-primus/actions/runs/44447335966). Final PASS including the FOUR/HERE -> 4D -> fourth-D assertion: [run 44448575206](https://github.com/FlareZ123/liber-primus/actions/runs/44448575206).
-
-
-Run:
-
-~~~text
-node sims/lp2_find_their_way_here_four_sft.cjs
-~~~
-
-The SFT reconstructs the solved phrase, p50 addresses and high digits, performs the 713-window all-high lexical census, charges all GP-valid high/low and forward/reverse variants, verifies `HERE -> 48 -> 4D -> fourth D` on original p28, establishes the solved-word numeric uniqueness of FOUR, verifies `[GP-prime,GP0]=[23,8]=DH` against the original p28 line label, and verifies `H(23,8)=[15,2]` against that line's H-stream.
+[Original solved-phrase SFT](../sims/lp2_find_their_way_here_four_sft.cjs) · [Historical PASS 44448575206](https://github.com/FlareZ123/liber-primus/actions/runs/44448575206). The [corrected original-source word-boundary and lexical-capacity SFT](../sims/lp2_p26_four_wordboundary_source_gate_sft.cjs) independently checks the true p26 words and all restricted lexical/calibration counts, [Windows PASS 44976248467](https://github.com/FlareZ123/liber-primus/actions/runs/44976248467).
