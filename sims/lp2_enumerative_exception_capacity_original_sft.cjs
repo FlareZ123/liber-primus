@@ -104,6 +104,86 @@ assert.ok(sourceSize > wordSize * ternaryIdentities);
 assert.ok(sourceSize > wordSize * multisetIdentities);
 assert.ok(sourceSize <= wordSize * possiblePositions);
 
+/*
+ * Source26 into predecessor-excluding GP28: could the 28 rank labels hold
+ * ordinary 26-letter content plus one/two genuinely rare escape symbols?
+ * For ANY unknown stationary ordering of q runes, each fixed output rank
+ * sees one adjacent pair a,b. Every other predecessor may be placed above
+ * or below that pair, so the attainable MINIMUM population of any rank is
+ * the pair's mutual transitions plus min of its two incoming counts at
+ * each other predecessor. This dual of the known all-secret MAX theorem is
+ * exact, and independently checked against every permutation of five runes.
+ */
+function transitionMatrix(sourcePages, q = 29) {
+  const m = Array.from({length:q}, () => Array(q).fill(0));
+  for (const page of sourcePages) {
+    for (let j = 1; j < page.indices.length; j++) {
+      const a = page.indices[j-1], b = page.indices[j];
+      if (a !== b) m[a][b]++;
+    }
+  }
+  return m;
+}
+function rankMinimum(t) {
+  const q = t.length;
+  let minimum = Infinity, bestPair = null;
+  for (let a = 0; a < q; a++) for (let b = a+1; b < q; b++) {
+    let count = t[a][b] + t[b][a];
+    for (let prev = 0; prev < q; prev++) if (prev !== a && prev !== b) {
+      count += Math.min(t[prev][a], t[prev][b]);
+    }
+    if (count < minimum) {
+      minimum = count;
+      bestPair = [a,b];
+    }
+  }
+  const [a,b] = bestPair;
+  const before = [], after = [];
+  for (let prev = 0; prev < q; prev++) if (prev !== a && prev !== b) {
+    if (t[prev][b] <= t[prev][a]) before.push(prev);
+    else after.push(prev);
+  }
+  const order = [...before,a,b,...after];
+  const pos = Array(q);
+  order.forEach((v,i) => { pos[v] = i; });
+  const rank = before.length;
+  const witness = t.reduce((sum,row,prev) =>
+    sum + row.reduce((z,n,cur) =>
+      z + (prev !== cur && pos[cur] - Number(pos[prev] < pos[cur]) === rank ? n : 0), 0),0);
+  assert.equal(witness,minimum);
+  return {minimum, pair:bestPair, order, witnessRank:rank};
+}
+const toyT = Array.from({length:5},(_,s) =>
+  Array.from({length:5},(_,c) => s===c?0:(7*s+11*c+3*s*c+1)%17));
+function permutations(a) {
+  if(a.length === 1) return [a];
+  return a.flatMap((v,i) => permutations(a.filter((_,j)=>j!==i))
+    .map(p => [v,...p]));
+}
+let toyExhaustiveMin = Infinity;
+for (const order of permutations([0,1,2,3,4])) {
+  const pos = Array(5);
+  order.forEach((v,i)=>{pos[v]=i;});
+  const bins = Array(4).fill(0);
+  for (let prev=0;prev<5;prev++) for (let cur=0;cur<5;cur++) {
+    if (prev===cur) continue;
+    bins[pos[cur]-Number(pos[prev]<pos[cur])] += toyT[prev][cur];
+  }
+  toyExhaustiveMin = Math.min(toyExhaustiveMin,...bins);
+}
+assert.equal(toyExhaustiveMin,rankMinimum(toyT).minimum);
+const globalRankMin = rankMinimum(transitionMatrix(pages));
+assert.equal(globalRankMin.minimum,348);
+assert.deepEqual(globalRankMin.pair,[4,12]);
+const visualChapters = [[0,2],[3,7],[8,14],[15,22],[23,26],
+  [27,32],[33,39],[40,53],[54,55]];
+const perChapterRankMin = visualChapters.map(([lo,hi]) =>
+  rankMinimum(transitionMatrix(pages.filter(p=>p.page>=lo && p.page<=hi))).minimum);
+assert.deepEqual(perChapterRankMin,[5,12,23,31,11,20,23,54,0]);
+const chapterMinTotal = perChapterRankMin.reduce((sum,n)=>sum+n,0);
+assert.equal(chapterMinTotal,179);
+assert.ok(chapterMinTotal > 86); // one reserved rank already exceeds all original 86 doublets
+
 /* Page-local punctuation-placement capacity fails for seven physical pages. */
 let pageStart = 0;
 const localDeficits = [];
@@ -295,6 +375,10 @@ console.log(JSON.stringify({
   original: { runes: total, words: words.length, pages: pages.length,
     withinPageRepeats: 86, withinWordRepeats: 63 },
   exactMissingBits: required,
+  predecessorRankMinimum: { global:globalRankMin.minimum,
+    attainingSourcePair:globalRankMin.pair.map(i=>corpus.translit[i]),
+    perVisualChapter:perChapterRankMin, chapterTotal:chapterMinTotal,
+    exhaustiveQ5Control:toyExhaustiveMin },
   punctuation: { events: events.length, distinctWordEndSites: distinctSites.size,
     identityOnlyMaxBits: events.length * Math.log2(3),
     fixedMultisetBits: Math.log2(Number(multisetIdentities)),
