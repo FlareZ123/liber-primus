@@ -149,7 +149,7 @@ function lengthMatchedTail(weighting, threshold) {
   let mean = 0;
   for (const width of sizes) {
     const lex = lexiconEnd.get(width);
-    assert(lex && lex[weighting] > 0);
+    assert(lex && (weighting === 'weight' ? lex.all : lex.types) > 0);
     const p = weighting === 'weight' ? lex.ea / lex.all : lex.eaTypes / lex.types;
     mean += p;
     tail += dp[threshold - 1] * p;
