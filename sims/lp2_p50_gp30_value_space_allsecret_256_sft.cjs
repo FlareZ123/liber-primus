@@ -73,7 +73,7 @@ assert.equal(SOURCE.filter(x => x === 29).length, 2896);
  * @param {'global-token'|'global-rune'|'page-token'|'page-rune'} clock
  * @returns {number[]}
  */
-function sourceIndices(clock) {
+function sourceIndices(clock, period=256) {
   const indices = [];
   let globalToken = 0, globalRune = 0;
   for (const page of pages) {
@@ -82,7 +82,7 @@ function sourceIndices(clock) {
       const n = clock.startsWith('global')
         ? (clock.endsWith('token') ? globalToken : globalRune)
         : (clock.endsWith('token') ? localToken : localRune);
-      indices.push(n % 256);
+      indices.push(n % period);
       globalToken++;
       localToken++;
       if (sym < 29) {
@@ -108,7 +108,7 @@ function sourceIndices(clock) {
  */
 function capacity(tape, indices, mergeEqualTableValues) {
   assert.equal(tape.length, indices.length);
-  const histogram = Array.from({length: 256}, () => new Uint32Array(30));
+  const histogram = Array.from({length: mergeEqualTableValues ? 256 : Math.max(...indices)+1}, () => new Uint32Array(30));
   for (let i = 0; i < tape.length; i++) {
     const state = mergeEqualTableValues ? TABLE[indices[i]] : indices[i];
     histogram[state][tape[i]]++;
@@ -248,6 +248,54 @@ for(const clock of ['global-token','global-rune','page-token','page-rune']){
     });
   }
 }
+
+// A further independent model decision: replace the 256 p50 clock with
+// ANY secret stationary GP30 alphabet at each position of a periodic
+// source tape. The table is a motivated special case, but an unknown
+// period does not rescue all finite periods. This checks every period
+// through the first native-possible continuous-clock period. Page-local
+// resets saturate above the maximum physical page length, proving an
+// all-positive-period conditional gate for a SHARED key per page offset.
+const nativeTarget=Math.min((181+320)/(755+181),
+  p57.combinedShare, nativeMinimum);
+const nativeTargetCount=nativeTarget*SOURCE.length;
+const periodFrontier=[];
+const periodTests=[
+  {clock:'global-token',maxExcluded:404,firstPossiblyFeasible:405},
+  {clock:'global-rune',maxExcluded:413,firstPossiblyFeasible:414},
+  {clock:'page-token',maxExcluded:347,saturatedAt:347},
+  {clock:'page-rune',maxExcluded:278,saturatedAt:278}
+];
+for(const spec of periodTests) {
+  let maxM6=0,highestAt=0;
+  for(let period=1;period<=spec.maxExcluded;period++) {
+    const M6=capacity(SOURCE,sourceIndices(spec.clock,period),false).M6;
+    if(M6>maxM6){maxM6=M6;highestAt=period;}
+    assert.ok(M6<nativeTargetCount,
+      'unexpected native-possible M6 at '+spec.clock+' period '+period);
+  }
+  const next=spec.firstPossiblyFeasible
+    ? capacity(SOURCE,sourceIndices(spec.clock,spec.firstPossiblyFeasible),false).M6
+    : null;
+  if(next!==null) assert.ok(next>=nativeTargetCount,
+    'first native-possible period must cross control threshold');
+  let saturation=null;
+  if(spec.saturatedAt) {
+    const at=capacity(SOURCE,sourceIndices(spec.clock,spec.saturatedAt),false).M6;
+    const far=capacity(SOURCE,sourceIndices(spec.clock,800),false).M6;
+    assert.equal(at,far,'page-offset clock did not saturate');
+    saturation={period:spec.saturatedAt,M6:at,
+      share:at/SOURCE.length,
+      reason:'all larger periods have identical source page-offset states'};
+  }
+  periodFrontier.push({
+    clock:spec.clock,allExcludedThrough:spec.maxExcluded,
+    largestObservedM6:maxM6,atPeriod:highestAt,
+    firstPossiblyFeasible:spec.firstPossiblyFeasible||null,
+    firstPossiblyFeasibleM6:next,saturation
+  });
+}
+
 // Independently check a full-length native-GP ciphertext plant under 161
 // arbitrary source-value keyed substitutions and its exact GP30 inverse.
 const index=sourceIndices('global-token');
@@ -287,7 +335,7 @@ console.log(JSON.stringify({
     minCombinedShare:nativeMinimum,
     maxCombinedShare:Math.max(...controls.map(x=>x.combinedShare)),
     firstWindow:controls[0]},
-  capacities,positivePlant:{nativeCombinedSix:planted.combined6,
+  capacities,periodFrontier,positivePlant:{nativeCombinedSix:planted.combined6,
     cipherAllSecretCeiling:plantedBound.M6,exactRoundTrip:true},
   direct
 },null,2));
