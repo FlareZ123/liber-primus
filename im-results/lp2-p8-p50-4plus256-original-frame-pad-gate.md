@@ -24,9 +24,15 @@ Both complete 256-rune test inverses forward-reconstruct all **256 original ciph
 
 These fixed results exclude only the specifically stated zero-phase row-major byte-mod29 additive consumers, for both signs. A different typed nonlinear/stateful table use is logically possible, but remains unauthorized by any first-party instruction. Do not rescue this negative with free table traversals, offsets or page reset parameters.
 
+## A second, differently typed 256-cell consumer: direct source addressing
+
+The printed p49–51 numeric values all lie in the fixed 0..255 byte range under the proposed radix60 interpretation. A human reader could therefore use each numeric cell as a **literal index into the newly recognized p8 256-rune frame**, rather than reducing the byte modulo29 as an additive pad. This produces a fully determined row-major 256-rune source readout with no key choices.
+
+The original 256 grid values contain only **161 distinct address values**, with **95 duplicate address events**, so the resulting GP29 readout has deterministic repeated source-rune identities and cannot be an invertible 256-position permutation. Its original-source GP29 IoC is **0.03946078431** and its initial transliteration is “THBTHIGOETHAHNBOEEATHAOEIEYLNOEPROTPNGNGAMPRXHAEOER...”, which offers no continuous linguistic plaintext or authored instruction. This rules out the literal byte-as-index row-major message on the fixed p8 frame, rather than proving the whole numeric object irrelevant. The SFT asserts the exact 161/256 address occupancy, full lookup and IoC.
+
 ## Reproduction and next actionable decision
 
-[Standalone read-only Windows11/Node22 CommonJS SFT](../sims/lp2_p8_p50_4plus256_source_pad_sft.cjs) loads the original p8/p9 GP29 corpus, ink spans, exact page-break printing, and numeric table. It asserts physical 4|8|243|5, preserves all six carried-word symbols, checks 32×8/10|13|9, inverts both signs and reenrypts 256/256. The same original source values and numerical output were independently computed by inline deterministic JavaScript; no GitHub Actions run was claimed or available.
+[Standalone read-only Windows11/Node22 CommonJS SFT](../sims/lp2_p8_p50_4plus256_source_pad_sft.cjs) loads the original p8/p9 GP29 corpus, ink spans, exact page-break printing, and numeric table. It asserts physical 4|8|243|5, preserves all six carried-word symbols, checks 32×8/10|13|9, inverts both signs and reencrypts 256/256. The same original source values and numerical output were independently computed by inline deterministic JavaScript; no GitHub Actions run was claimed or available.
 
 The other p8 source clues, reciprocal17, and four all-secret Berggren direct-leaf exclusions remain consolidated in [p8 source decision](lp2-p8-berggren-original-source-selector-gate.md). The existing numeric grid source rules and unrelated p50 key-family failures remain in their original research documents.
 
