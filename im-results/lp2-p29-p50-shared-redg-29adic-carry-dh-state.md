@@ -114,15 +114,15 @@ A **complete 12,956-rune source-keyed rotating-Hill2 original inverse** was froz
 
 ## All-degree joint factorization: p39 G is the entire original p29/p50 gcd
 
-An independent source-frozen all-degree Euclidean gcd test was also run on the entire original p29 rune polynomial (277 high-first coefficients) and the entire p50 byte polynomial (256 high-first byte coefficients reduced modulo29). The monic result is exactly:
+For completeness, an independent implementation replays the **already-established all-degree p29/p50 gcd** from the earlier [1,540-source-pair census](lp2-p29-grid-sole-repeated-root-and-quotient-key-gate.md), using the entire original p29 rune polynomial (277 high-first coefficients) and p50 printed byte polynomial (256 coefficients reduced modulo29). This is **reproduction of prior work, not a newly discovered cross-source factor or exclusion**. Its monic output is:
 
 ```
 gcd_GF29(P29(X),P50(X)) = (X−24)^2 = X²+10X+25
 ```
 
-The gcd has **degree2** after 248 Euclidean remainder steps. Division of both original polynomials by this monic G leaves zero remainder, and their two quotients have **no further common polynomial factor of any degree** (gcd=1). Thus the p39 isolated red quadratic accounts for the *whole* common factor. Prior scalar-root scans alone could not exclude shared irreducible quadratics or higher-degree factors; this stronger exact result now does.
+The gcd has **degree2** after 248 Euclidean remainder steps. Division of both original polynomials by this monic G leaves zero remainder, and their two quotients have **no further common polynomial factor of any degree** (gcd=1). Thus the p39 isolated red quadratic accounts for the *whole* common factor. The earlier full 1,540-pair census had already excluded shared irreducible quadratics and other higher-degree common factors. The present standalone check verifies that same conclusion on the selected pair.
 
-The synthetic positive appends one independent shared linear factor `X+1` to both original polynomials and recovers the correct resulting degree3 gcd, demonstrating that the algorithm detects higher shared factors. [Frozen precommit](../workplace/agent27-p29-p50-entire-common-gf29-factor-precommit.md) · [read-only SFT](../sims/lp2_p29_p50_full_gf29_gcd_source_sft.cjs). This is a bounded code-architecture exclusion; the original p29/p50 quotient arrays can still be encrypted by different external keys or represent checksums rather than native-GP plaintext.
+Its synthetic positive appends one independent shared linear factor `X+1` to both original polynomials and recovers the correct resulting degree3 gcd, demonstrating that the algorithm detects higher shared factors. [Frozen precommit](../workplace/agent27-p29-p50-entire-common-gf29-factor-precommit.md) · [read-only SFT](../sims/lp2_p29_p50_full_gf29_gcd_source_sft.cjs). This is a bounded code-architecture exclusion; the original p29/p50 quotient arrays can still be encrypted by different external keys or represent checksums rather than native-GP plaintext.
 
 ## Surplus23 after the two genuinely independent source factors: original plaintext receiver fails
 
