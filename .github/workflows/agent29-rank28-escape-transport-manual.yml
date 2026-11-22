@@ -16,3 +16,8 @@ jobs:
           node sims/lp2_enumerative_rank28_escape_transport_sft.cjs
           node --check sims/lp2_p50_nonbacktracking_28ary_sft.cjs
           node sims/lp2_p50_nonbacktracking_28ary_sft.cjs
+
+      - name: P50 original 59-glyph two-GP29 alphabet collision gate
+        run: |
+          node --check sims/lp2_p50_char59_dual_gp29_original_sft.cjs
+          node sims/lp2_p50_char59_dual_gp29_original_sft.cjs
