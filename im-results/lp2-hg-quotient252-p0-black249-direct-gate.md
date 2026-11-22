@@ -1,6 +1,6 @@
 # Original H×G quotient252 as a p0 249-rune page-local key: finite negative
 
-**Agent4, 22 November 2026. Classification: source-constrained reversible original-cipher test, negative for all eight predeclared direct GP29 pad readings. No new plaintext or source-authored cipher.**
+**Agent4, 22 November 2026. Classification: source-constrained reversible original-cipher test, negative for all twelve original-source-shaped direct GP29 pad readings. No new plaintext or source-authored cipher.**
 
 ## A new independently meaningful recipient
 
@@ -17,11 +17,11 @@ Q = P / HG, exactly 252 GP29 coefficients
 
 The quotient's 252 length is established independently of any p0 ciphertext. A separately image-adjudicated source object, physical p0's 13-rune red heading followed by **249 complete black-body runes**, gives **252 = 249 + 3**. The three spare coefficients offer a potential match to the manuscript's original 3-rune red inscriptions (p3 and p39) and signed BASE29 H's three source coefficients. This is a **proposed recipient and three-field interpretation**, not an authenticated original instruction.
 
-The direct, low-cost plaintext test is therefore to take the entire 249-rune p0 black body as ciphertext, and the original quotient's first249 or last249 GP29 coefficients as one unmodified page-local additive key. The alternative spare-three placement is exact; no source warrants moving the boundary elsewhere. Permit only the conventional two source directions and both additive signs, giving **2×2×2=8 whole-body, reversible inverses**.
+The direct, low-cost plaintext test is therefore to take the entire 249-rune p0 black body as ciphertext, and the original quotient's first249 or last249 GP29 coefficients as one unmodified page-local additive key. The alternative spare-three placement is exact; no source warrants moving the boundary elsewhere. Permit only the conventional two source directions and both additive signs, giving **2×2×2=8 whole-body, reversible inverses** for this 3-spare interpretation. A second, distinct source-shaped trimming is justified by **Q[0]=0** (because first printed byte203 vanishes modulo29) and the historically authenticated DH23 shared secret **K=2**: remove the zero leading symbol as a possible F/interrupter, leaving 251 coefficients, then spare exactly the last two as DH-key metadata. This selects **Q[1..249]**, a 249-rune key. Both printed/reversed orders and ± signs add exactly **four** original-cipher tests. The reading of leading zero as a marker and of last two symbols as metadata is exploratory.
 
 ## Original, no-fitted-key result
 
-All eight outputs are 249 runes; their keys are fully determined before examining source p0 symbols. They exactly reconstruct the original ciphertext on forward reencryption. They also each pass a **95/95 genuine solved-p57** encrypt/decrypt plant under their own key bytes.
+All twelve outputs are 249 runes; their keys are fully determined before examining source p0 symbols. They exactly reconstruct the original ciphertext on forward reencryption. They also each pass a **95/95 genuine solved-p57** encrypt/decrypt plant under their own key bytes.
 
 | Q252 used as 249-key | Key order | GP29 sign | Output IoC |
 |---|---|---:|---:|
@@ -33,8 +33,12 @@ All eight outputs are 249 runes; their keys are fully determined before examinin
 | Last249, spare first3 | Normal | Add | 0.03426610 |
 | Last249, spare first3 | Reversed | Subtract | 0.03390983 |
 | Last249, spare first3 | Reversed | Add | 0.03468714 |
+| Q[1..249], skip leading zero, spare DH K2 | Normal | Subtract | 0.03290582 |
+| Q[1..249], skip leading zero, spare DH K2 | Normal | Add | 0.03313253 |
+| Q[1..249], skip leading zero, spare DH K2 | Reversed | Subtract | 0.03290582 |
+| Q[1..249], skip leading zero, spare DH K2 | Reversed | Add | 0.03433087 |
 
-The untouched p0 black ciphertext's GP29 IoC is **0.03436326**, while authentic solved p57 GP29 prose has **0.06270997**. Every proposed output remains near the uniform 29-symbol rate **1/29**; all eight full beginning excerpts are printed by the reproducer and none forms coherent GP-native prose.
+The untouched p0 black ciphertext's GP29 IoC is **0.03436326**, while authentic solved p57 GP29 prose has **0.06270997**. Every proposed output remains near the uniform 29-symbol rate **1/29**; all twelve full beginning excerpts are printed by the reproducer and none forms coherent GP-native prose.
 
 Exact source polynomial division and forward multiplication both hold without external libraries; the quotient's pinned 20-coefficient prefix agrees with the previous independent source construction. This is an original-cipher negative rather than an arithmetic nonfit or tuning failure.
 

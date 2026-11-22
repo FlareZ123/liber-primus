@@ -2,8 +2,8 @@
 
 /**
  * Original-source H*G quotient252 as a 249-rune GP29 key for the physical
- * p0 black body, with the remaining three quotient symbols reserved as
- * a candidate red-triad checksum. This is a pre-fixed negative consumer:
+ * p0 black body, with three spare coefficients, or with the leading-zero F and
+ * two DH23 K=2 spare coefficients as source-shaped alternatives. This is a pre-fixed negative consumer:
  * no plaintext is searched or fitted.
  *
  * Run (Windows 11 / Node.js 22):
@@ -92,8 +92,13 @@ assert.equal(solved.length, 95);
 assert.ok(ioc(solved) > 0.06);
 
 const results = [];
-for (const trim of ["tail3", "head3"]) {
-  const forwardKey = trim === "tail3" ? quotient.slice(0, 249) : quotient.slice(3);
+assert.equal(quotient[0], 0); // original P[0]=203 is divisible by 29
+let K = 1;
+for (let i = 0; i < 6; i++) K = K * 19 % 23;
+assert.equal(K, 2); // 2013 authenticated DH23 toy shared secret
+for (const trim of ["tail3", "head3", "skipZeroThenSpareDH2"]) {
+  const forwardKey = trim === "tail3" ? quotient.slice(0, 249) :
+    trim === "head3" ? quotient.slice(3) : quotient.slice(1, 250);
   assert.equal(forwardKey.length, 249);
   for (const reverse of [false, true]) {
     const key = reverse ? forwardKey.slice().reverse() : forwardKey;
@@ -110,12 +115,12 @@ for (const trim of ["tail3", "head3"]) {
     }
   }
 }
-assert.equal(results.length, 8);
+assert.equal(results.length, 12);
 assert(results.every((r) => r.ioc < 0.04));
 console.log(JSON.stringify({
   input: {table: table.length, q252: quotient.length, p0Black: black.length,
     spareCoefficients: 3, HG, knownP57Ioc: ioc(solved)},
   baselineP0BlackIoc: ioc(black),
   candidates: results,
-  conclusion: "No native-GP prose in 8 source-layout-fixed direct quotient249 pad inverses. No plaintext recovered."
+  conclusion: "No native-GP prose in 12 source-layout-fixed direct quotient249 pad inverses. No plaintext recovered."
 }, null, 2));
