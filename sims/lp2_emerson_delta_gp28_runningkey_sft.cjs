@@ -20,14 +20,19 @@ const N = 28;
 
 /** @param {string} input @returns {number[]} */
 function gpIndex(input) {
-  const words = input.toUpperCase().match(/[A-Z]+/g) || [];
+  // The solved original p57 confirms K->C and V->U for GP-native
+  // spellings (LIKE and DIVINITY); Z->S and Q->CW are provisionally
+  // normalized in the same phonetic spelling family.
+  const words = (input.toUpperCase().match(/[A-Z]+/g) || []).map((word) =>
+    word.replaceAll("K", "C").replaceAll("V", "U").replaceAll("Z", "S").replaceAll("Q", "CW"));
   const result = [];
   for (const word of words) {
     for (let i = 0; i < word.length;) {
       const candidate = LIGATURES.find((ligature) => word.startsWith(ligature, i));
       const rune = candidate === "ING" ? "NG" : candidate || word[i];
       const index = GP_TO_INDEX.get(rune);
-      if (index !== undefined) result.push(index);
+      assert.notEqual(index, undefined, "Unmapped GP source symbol " + rune);
+      result.push(index);
       i += candidate ? candidate.length : 1;
     }
   }
@@ -157,6 +162,9 @@ function percentile(value, list) {
 
 async function main() {
   const corpus = JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json", "utf8"));
+  const exactP57 = "PARABLE LIKE THE INSTAR TUNNELING TO THE SURFACE WE MUST SHED OUR OWN CIRCUMFERENCES FIND THE DIVINITY WITHIN AND EMERGE";
+  assert.deepEqual(gpIndex(exactP57), corpus.pages[57].indices, "Native GP spelling must recover all 95 original p57 runes");
+  console.log("PASS native GP spelling: source English p57 recovers 95/95 authentic runes including LIKE / DIVINITY");
   const [text, gibranText] = await Promise.all([
     fetchOriginal(REPO_EMERSON, SHA_EMERSON, "work/ref/emerson_essays1.txt"),
     fetchOriginal("GITenberg/The-Prophet_58585", SHA_GIBRAN, "58585-0.txt"),
