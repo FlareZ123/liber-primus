@@ -321,52 +321,81 @@ function random(seed) {
   };
 }
 const randomOne=random(21501991);
-/** @param {number[][]} plaintext @param {boolean} shared */
-function encryptedControl(plaintext,shared) {
+/**
+ * Native solved source text with its own authentic lexical boundaries. No
+ * solved-section strings or word-edge flags are used to fit original input.
+ */
+const knownSections=known.sections.filter(item=>
+  [...item.source_text].filter(ch=>gpm.has(ch)).length>=W).slice(0,5);
+assert.equal(knownSections.length,5);
+const referenceUnits=knownSections.map(section=>
+  parseRuneWords([...section.source_text].map(ch=>
+    gpm.has(ch)?ch:'-').join('')));
+const offsets=[
+  [50,100,20,180,240],
+  [0,0,0,0,0],
+  [90,220,50,400,600]
+];
+const plantedSets=offsets.map(group=>referenceUnits.map((source,lane)=>{
+  const begin=group[lane];
+  const end=begin+W;
+  assert(source.tape.length>=end);
+  return {
+    tape:source.tape.slice(begin,end),
+    begins:source.begins.slice(begin,end),
+    ends:source.ends.slice(begin,end)
+  };
+}));
+/** @param {{tape:number[],begins:number[],ends:number[]}[]} units
+ * @param {boolean} shared
+ */
+function encryptedControl(units,shared) {
   const sharedPad=Array.from({length:W},()=>Math.floor(randomOne()*N));
-  return plaintext.map((tape,lane)=>{
+  return units.map(unit=>{
     const pad=shared?sharedPad:
       Array.from({length:W},()=>Math.floor(randomOne()*N));
-    const coded=tape.map((x,i)=>mod(x+pad[i]));
-    return {tape:coded,begins:Array(W).fill(0),
-      ends:Array(W).fill(0)};
+    const coded=unit.tape.map((x,i)=>mod(x+pad[i]));
+    return {tape:coded,begins:unit.begins.slice(),
+      ends:unit.ends.slice()};
   });
 }
-const knownSections=known.sections.filter(item=>
-  [...item.source_text].filter(ch=>gpm.has(ch)).length>=W);
-assert(knownSections.length>=5);
-const reference=knownSections.slice(0,5).map((item,lane)=>{
-  const t=[...item.source_text].filter(ch=>gpm.has(ch)).map(ch=>gpm.get(ch));
-  return t.slice([50,100,20,180,240][lane],
-    [50,100,20,180,240][lane]+W);
-});
-assert(reference.every(t=>t.length===W));
 const model=trainModel();
-const plant=recover(encryptedControl(reference,true),model);
-const independent=recover(encryptedControl(reference,false),model);
+const planted=plantedSets.map(unit=>({
+  unit,
+  decoded:recover(encryptedControl(unit,true),model)
+}));
+const negatives=Array.from({length:9},(_,j)=>recover(
+  encryptedControl(plantedSets[j%plantedSets.length],false),model));
 const found=recover(message,model);
-const knownHit=plant.plaintext.map((t,j)=>t.filter((x,i)=>x===reference[j][i]).length);
-const knownTailHit=plant.plaintext.map((t,j)=>t.slice(41).filter((x,i)=>
-  x===reference[j][i+41]).length);
+const positives=planted.map(({unit,decoded},i)=>({
+  case:i, scorePerRune:decoded.scorePerRune,
+  exactOriginalRuneHits:decoded.plaintext.map((t,j)=>t.filter(
+    (x,k)=>x===unit[j].tape[k]).length),
+  exactTail50RuneHits:decoded.plaintext.map((t,j)=>t.slice(41).filter(
+    (x,k)=>x===unit[j].tape[k+41]).length),
+  decodedNativePrefix:i===0?
+    decoded.plaintext.map(t=>translit(t.slice(0,38))):undefined
+}));
+const negativeScores=negatives.map(x=>x.scorePerRune);
 console.log(JSON.stringify({
   status:'COMPLETE frozen five-unit source-original shared-pad plaintext attack',
   original:{runes:553,originalUnitLengths:original.map(x=>x.tape.length),
     originalUnitWords:original.map(x=>x.begins.filter(Boolean).length),
     reset:'first rune after printed red number 1..5',
-    commonRuminated:W,freeCipherPadDimensions:W,
+    commonRuneCount:W,freeCipherPadDimensions:W,
     originalPunctuation:'unaltered literal dash/period and physical page-carry',
     heldoutRegion:'first91 common-rune interval, positions41..90 of each lane'},
   model:{trainingRunes:model.total,trainingWords:model.trainedWords,
     beamStates:BEAM,nGram:4,wordEdgePriorWeight:0.4},
-  sourceNativeSharedPadPositive:{
-    nativeSourceNames:knownSections.slice(0,5).map(x=>x.name),
-    scorePerRune:plant.scorePerRune,
-    exactOriginalRuneHits:knownHit,
-    exactTail50RuneHits:knownTailHit,
-    decodedNativePrefix:plant.plaintext.map(t=>translit(t.slice(0,38)))},
-  independentPadsControl:{
-    scorePerRune:independent.scorePerRune,
-    decodedPrefixes:independent.plaintext.map(t=>translit(t.slice(0,38)))},
+  sourceNativeSharedPadPositives:{
+    nativeSourceNames:knownSections.map(x=>x.name),
+    tests:positives,
+    minimumHeldoutAccuracy:Math.min(...positives.flatMap(x=>x.exactTail50RuneHits))/50},
+  independentPadsControls:{
+    tests:negativeScores,
+    bestScore:Math.max(...negativeScores),
+    worstScore:Math.min(...negativeScores),
+    differenceFromOriginal:negativeScores.map(x=>found.scorePerRune-x)},
   originalFiveUnit:{
     scorePerRune:found.scorePerRune,
     complete91GP29RuneCandidates:found.plaintext.map(translit),
