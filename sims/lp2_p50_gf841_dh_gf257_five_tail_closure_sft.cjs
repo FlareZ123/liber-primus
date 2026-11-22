@@ -127,6 +127,52 @@ assert.equal(winners.length, 1);
 assert.deepEqual(winners[0].tail, table.slice(START));
 assert.deepEqual(grid.rows.flat().slice(START), ['3o', '30', '0a', '39', '1K']);
 
+
+// A genuine source-selected *terminal* parity location would be special.
+// Probe seven different, frozen five-cell erasures with the SAME
+// post-observed targets; they all reconstruct the original cells.
+// This limits the result to a global constraint system, not a terminal opcode.
+/** @param {number} firstIndex */
+function reconstructWindow(firstIndex) {
+  const masked = table.map((value, i) =>
+    i >= firstIndex && i < firstIndex + 5 ? 0 : value);
+  const initial = allRemainders(masked);
+  const selectors = Array.from({length:5}, (_, k) => {
+    const v = Array(256).fill(0);
+    v[firstIndex + k] = 1;
+    return allRemainders(v);
+  });
+  const coefficients = Array.from({length:4}, (_, i) =>
+    Array.from({length:5}, (_, k) => selectors[k][i]));
+  const submatrix = coefficients.map(row => row.slice(1));
+  let accepted841 = 0;
+  const winners = [];
+  for (let x = 0; x <= 255; x += 1) {
+    const rhs = target.map((t, i) =>
+      mod(t - initial[i] - coefficients[i][0] * x));
+    const trailing = solveFour(submatrix, rhs);
+    if (!trailing.every(value => value <= 255)) continue;
+    accepted841 += 1;
+    const recovered = [x, ...trailing];
+    const candidateTable = [...table];
+    for (let k = 0; k < 5; k += 1)
+      candidateTable[firstIndex + k] = recovered[k];
+    if (evaluate(candidateTable, 213) === 0) winners.push(recovered);
+  }
+  return {
+    start:firstIndex,
+    modulo841ByteRangeCandidates:accepted841,
+    jointRoot213Winners:winners.length,
+    exactOriginalRecovery:winners.some(w =>
+      w.every((v,k)=>v===table[firstIndex+k]))
+  };
+}
+const otherWindowControls = [0, 25, 73, 100, 195, 210, 251]
+  .map(reconstructWindow);
+assert.ok(otherWindowControls.every(w =>
+  w.jointRoot213Winners === 1 && w.exactOriginalRecovery),
+  'The five-byte inverse is NOT unique to the tail location');
+
 // Exact GF29 factor positivity, independent of what root213 says.
 assert.deepEqual(allRemainders(table).map(v => v % 29), [0, 0, 0, 0]);
 // Exactly one original p50 GF257 root and the selected p23 count.
@@ -139,6 +185,7 @@ console.log(JSON.stringify({
   candidateTailsBeforeRoot:candidates,
   uniqueRoot213Tail:winners[0].tail,
   unchangedPrintedTokens:grid.rows.flat().slice(START),
+  otherWindowControls,
   controls:{
     historicalSourceTargetsPostObserved:true,
     fiveOriginalByteMatches:5,
