@@ -45,11 +45,25 @@ It is also 432 bits, but has 130 decimal digits and is a different integer; (gcd
 
 Using the published 2013 cookie values labelled `167` and `761` as integers and the reconstructed private exponent from `numbers.private`, decryption gives two fixed-width 54-byte blocks beginning `0cff` and `4b10`, respectively. Neither has the required `00 02` PKCS#1 v1.5 type-2 prefix or recognizable plaintext. This excludes only direct PKCS#1 v1.5 type-2 decryption of these two candidates under the reconstructed key; their original role remains unknown.
 
+### Crypt::RSA default encryption scheme
+
+The archived private key is a `Crypt::RSA 1.99` object. Its module documentation says the default encryption scheme is OAEP; PKCS#1 v1.5 is an explicit opt-in. Under the PKCS#1 OAEP defaults, the relevant decoder is SHA-1 with MGF1-SHA1 and an empty label. This matters because a v1.5-only negative would not test the historically natural encryption mode.
+
 ### 2013 ISO /tmp files as RSA targets
 
 The 2013 ISO archive lists `folly` and `wisdom` under `assets/2013/cicados/tmp/`. They are identical 3,368-byte blobs (Git blob id `62b1b949a1e4e4a346e75b1c34101000d3c53220`); the first bytes are `BF 53 C0 CC...`. The `0xBF` prefix has the shape of an old-format OpenPGP packet header (tag 15, indeterminate length), although no full packet parse is claimed.
 
-Using the reconstructed 2012 RSA key, every 54-byte sliding window was tested in both byte orders (3,315 offsets × 2 = 6,630 candidates): private-exponent operations were checked for PKCS#1 v1.5 type-2 encryption blocks and high-printability plaintext; public-exponent operations were checked for PKCS#1 v1.5 type-1 signature blocks. No type-1 or type-2 block was found, and no decrypted block had a high printable-ASCII ratio. This rejects direct embedded 54-byte RSA/PKCS#1 ciphertext or signature blocks under this key in these two files; it does not rule out a symmetric/custom packet format or another use of the files. Reproduction: download either linked blob, scan all 54-byte windows in both byte orders, compute pow(c,d,N) and pow(c,e,N), and encode each result as exactly 54 big-endian bytes before checking the PKCS#1 prefixes.
+Using the reconstructed 2012 RSA key, every 54-byte sliding window was tested in both byte orders (3,315 offsets × 2 = 6,630 candidates): private-exponent operations were checked for PKCS#1 v1.5 type-2 encryption blocks and high-printability plaintext; public-exponent operations were checked for PKCS#1 v1.5 type-1 signature blocks. No type-1 or type-2 block was found, and no decrypted block had a high printable-ASCII ratio.
+
+The source-default OAEP-SHA1 path was then tested on every 54-byte big-endian window. Of 3,315 windows, 3,100 represented integers below N and were decrypted; **zero** passed OAEP decoding (empty-label SHA-1 hash check, MGF1-SHA1 unmasking, zero padding, and delimiter). This rejects direct OAEP blocks as well as the previously tested v1.5 blocks in these two files. It does not rule out a symmetric/custom packet format or another use of the files.
+
+### 2014 Stage11 default-key OutGuess artifacts as RSA targets
+
+The existing `outguess-lp2-default-key.zip` Actions artifact (workflow run `42755426574`, artifact `13735332261`) contains extracted outputs `17.payload`, `21.payload`, and `43.payload`, each 58,152 bytes. These are the same untrusted/default-key extraction family discussed in [the OutGuess source assessment](outguess-lp2-original.md), not independently authenticated ciphertext.
+
+Using the 2012 modulus (54-byte RSA blocks), every big-endian 54-byte window in each file was checked. Candidate windows with c < N numbered 54,572 (page 17), 54,557 (page 21), and 54,528 (page 43). Across those windows there were **zero** OAEP-SHA1 decodes, zero PKCS#1 v1.5 type-2 encryption blocks under d, and zero PKCS#1 v1.5 type-1 signature blocks under e. A separate framing check tested all 54 possible block offsets in both byte orders; no alignment made every full 54-byte block smaller than N, so these files are not a complete raw 54-byte RSA block stream under this modulus.
+
+This is only a negative for these three extracted artifacts and standard 2012-key RSA encodings. It does not promote the OutGuess outputs to source-authenticated ciphertext or rule out non-RSA uses of the P.S. object.
 
 ### Direct GP29 key screen
 
@@ -66,6 +80,8 @@ Run from the repository root:
 
 ```bash
 python sims/ps_number_lp2_screen.py
+python sims/ps_rsa_oaep_crossround_gate.py
+python sims/ps_rsa_oaep_crossround_gate.py --outguess-zip /path/to/outguess-lp2-default-key.zip
 ```
 
 The script checks the factor product, modulus sizes, Stage 2 modulus inequality, cookie RSA decryptions, and the direct base-29 key screen against the canonical `resources/liber-primus/lp2-transcription.txt`.
@@ -80,7 +96,10 @@ The script checks the factor product, modulus sizes, Stage 2 modulus inequality,
 - 2014 Stage 2 signed payload and its separate modulus: https://github.com/micheloosterhof/cicada-2014/blob/master/stage02/1033.jpg.outguess
 - Later research status (describes the P.S. object as 435-bit and leaves the integer interpretation open): https://github.com/pnotisdev/cicada3301/blob/main/work/log/phase60_clue_review.md
 - 2013 ISO /tmp files (identical `folly` and `wisdom` blobs): https://github.com/scream314/cicada3301/tree/master/assets/2013/cicados/tmp
+- Crypt::RSA 1.99 module documentation (OAEP default; PKCS#1 v1.5 opt-in): https://metacpan.org/release/VIPUL/Crypt-RSA-1.99/view/lib/Crypt/RSA.pm
+- PKCS#1 OAEP defaults (SHA-1, MGF1-SHA1, empty label): https://www.rfc-editor.org/rfc/rfc3447.html
+- LP2 default-key OutGuess extraction artifact: https://github.com/FlareZ123/liber-primus/actions/runs/42755426574
 
 ## Remaining uncertainty
 
-The RSA key reconstruction is established in the 2012 archive, but no source-authenticated ciphertext has been linked to it or to LP2. The 2013 cookie values and the 2013 ISO /tmp files do not yield direct RSA plaintext under this key, and the 2014 Stage 2 modulus is different. Revisit only if a concrete ciphertext or a first-party cross-round instruction is recovered.
+The RSA key reconstruction is established in the 2012 archive, but no source-authenticated ciphertext has been linked to it or to LP2. The 2013 cookie values, the 2013 ISO /tmp files, and the three tested 2014 OutGuess extraction artifacts yield no direct plaintext under the library-default OAEP or tested PKCS#1 v1.5 encodings; the 2014 Stage 2 modulus is different. This does not rule out a non-RSA use of the P.S. object or a different source-authenticated ciphertext. Revisit only if a concrete ciphertext or a first-party cross-round instruction is recovered.
