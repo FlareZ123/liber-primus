@@ -136,6 +136,61 @@ def candidate_paths(
     return score, hits, best_bypasses, words
 
 
+
+def max_consecutive_native_words(
+    cipher: list[int],
+    ends: list[int],
+    key: list[int],
+    dictionary: Counter[tuple[int, ...]],
+    multiplier: int,
+    additive: int,
+    phase: int,
+) -> tuple[int, int, str]:
+    """Exact maximum consecutive dictionary-word run over every legal F mask.
+
+    At each original word boundary, skipped-key count and current consecutive
+    hit-run length are sufficient future state. Retain a witness for each pair,
+    which yields a true maximum over all branches, including ones discarded by
+    the full-book Viterbi objective.
+    """
+    states = {(0, 0): (0, ())}
+    best = (0, 0, "")
+    begin = 0
+    for word_index, end in enumerate(ends):
+        next_states = {}
+        for (skipped, run), (run_start, prior_words) in states.items():
+            paths = [(skipped, ())]
+            for i in range(begin, end):
+                next_paths = []
+                for bypasses, decoded_word in paths:
+                    key_value = (additive + multiplier * key[phase + i - bypasses]) % 29
+                    plain = (cipher[i] - key_value) % 29
+                    if plain != 0:
+                        next_paths.append((bypasses, decoded_word + (plain,)))
+                    if cipher[i] == 0:
+                        next_paths.append((bypasses + 1, decoded_word + (0,)))
+                paths = next_paths
+            for bypasses, decoded_word in paths:
+                if decoded_word in dictionary:
+                    new_run = run + 1
+                    new_start = run_start if run else word_index
+                    new_words = prior_words + (decoded_word,)
+                else:
+                    new_run = 0
+                    new_start = word_index + 1
+                    new_words = ()
+                next_states.setdefault((bypasses, new_run), (new_start, new_words))
+                if new_run > best[0]:
+                    witness = " ".join(
+                        "".join(GP["translit"][i] for i in w) for w in new_words
+                    )
+                    best = (new_run, new_start, witness)
+        states = next_states
+        begin = end
+    assert states
+    return best
+
+
 def main(log_path: Path) -> None:
     original = CIPHER
     boundaries = source_boundaries()
@@ -167,13 +222,24 @@ def main(log_path: Path) -> None:
     )]
     assert len(candidates) == 325
     results = []
+    longest = (0, None)
     for multiplier, additive, phase in candidates:
         score, hits, bypasses, words = candidate_paths(
             original, boundaries, key, dictionary, multiplier, additive, phase
         )
         results.append((score, hits, multiplier, additive, phase, bypasses, words))
+        word_run = max_consecutive_native_words(
+            original, boundaries, key, dictionary, multiplier, additive, phase
+        )
+        if word_run[0] > longest[0]:
+            longest = (word_run[0], {
+                "multiplier": multiplier, "additive": additive,
+                "primeStartOrdinal": phase, "firstOriginalWord": word_run[1],
+                "witness": word_run[2]
+            })
     results.sort(key=lambda row: (row[1], row[0]), reverse=True)
     assert max(row[1] for row in results) == 23
+    assert longest[0] == 4
     assert results[0][2:5] == (5, 5, 2464)
     print(json.dumps({
         "source": "resources/liber-primus/lp2-corpus.json",
@@ -181,6 +247,7 @@ def main(log_path: Path) -> None:
         "fullMathematicallyLegalInverses": len(results),
         "nativeSolvedP56DictionaryHits": "24/25",
         "bestOriginalDictionaryHits": f"{results[0][1]}/202",
+        "longestConsecutiveDictionaryWordsAnyFMask": longest,
         "best10": [{
             "multiplier": row[2], "additive": row[3], "primeStartOrdinal": row[4],
             "score": round(row[0], 3), "nativeDictionaryHits": row[1],
