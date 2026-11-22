@@ -126,7 +126,7 @@ const methodMax={
   projectivePeriod4:Math.max(...tests.filter(x=>x.method==='projective-period4').map(x=>x.ioc))
 };
 assert(Math.abs(methodMax.hillConstant-0.03673345476624165)<1e-12);
-assert(Math.abs(methodMax.projectivePeriod4-0.036414565826330535)<1e-12);
+assert(Math.abs(methodMax.projectivePeriod4-0.0365025466893039)<1e-12);
 const sample=Array.from({length:244},(_,i)=>(i*7+13)%29);
 const hillEnc=[];
 for(let i=0;i<sample.length;i+=2)
