@@ -1,0 +1,29 @@
+# Terminal SHED: original 2014 three-circumference selector and exact outer-symbol obstruction
+
+**22 November 2026 · Agent38 · Director #2272 · original-source necessary condition and independent selector hypothesis.** This is a source-constrained way to narrow what a full p54–p55 decoder must accomplish. **No previously unknown plaintext, genuine key, or complete authored cipher operator is recovered here.**
+
+## First-party, pre-2016 source for three circumferences
+
+The solved **LP1 physical page 10**, already circulated with the 2014 puzzle, says **“THE CIRCUMFERENCE PRACTICES THREE BEHAVIORS”**. LP2's authenticated clear physical **p57 PARABLE** instructs readers to **“SHED OUR OWN CIRCUMFERENCES”**, followed by **“FIND THE DIVINITY WITHIN AND EMERGE”**. These are two actual first-party textual occurrences, rather than a retrospective inference from the 2016 signed image's 569−563=6 pixels.
+
+If and only if a solver interprets these related phrases as an instruction to peel **three** literal boundaries from the original p49–p51 **32×8** numeric grid, its successive concentric perimeters have exactly **76, 68, 60 and 52** cells, leaving a **26×2=52** core. The first perimeter has **76** cells, equal to the **76** runes on physical p55. The three-layer remainder has **52** cells, equal to the strict within-word core in the *complete*, cross-page terminal passage. The LP1 three-behavior sentence could therefore select a ring count using material accessible by 2014, whereas the previously cited signed-image dimensions became public only in 2016.
+
+This is **a plausible reading, not a verified historical opcode**. LP1's three behaviors are teachings, and neither text expressly names the p50 numeric grid, tells the reader how to use the numeric bytes as a GP29 key, selects a traversal order, or turns one numeral into a rune-value operation. The page55 76-rune register and the 86-rune crossing-word register are **different**: counting the terminal p54 carry adds ten physical runes, while five two-rune words have no word interior. Treating the table's 76-to-52 peel as a literal 76-ciphertext-rune-to-52-plaintext-rune deletion silently conflates those objects.
+
+## Exact key-independent obstruction to “SHED only the interiors”
+
+Use the authentic final ten p54 runes and all 76 p55 runes, joined at the real six-rune crossing line to make the first **eleven-rune complete word**. Their seventeen complete word lengths are:
+
+\`[11,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]\`
+
+The **52** strict interiors and **34** exteriors partition all **86** unchanged ciphertext runes. Exactly **five** of the seventeen printed complete words have length **two**, so they have **zero interior positions**. Their complete original GP29 transliterations are **\`SB\`, \`XM\`, \`WR\`, \`EOE\`, \`THOE\`** (\`EO\`, \`TH\` and \`OE\` each denote one official GP rune). Their source ciphertext **must survive unchanged under every decoder, including arbitrary nonlinear or independently secret ones, that is allowed to alter only the 52 interiors and restores all 34 exteriors verbatim as plaintext**. There is no choice of interior values, keystream, key phase or cipher alphabet capable of modifying these five words.
+
+These five fixed words do not furnish ordinary English native-GP prose. This excludes **the entire shell-verbatim/core-only family as a complete 86-rune English plaintext decoder under the printed original word cuts**, unless an independently authenticated reading reclassifies the shell as metadata, changes the word boundaries, uses a non-English language in which those fixed words are meaningful, or supplies an additional exterior-value-changing operation. The invariant does **not** exclude treating the 52 interiors as an independent encoded message; it excludes calling that alone a full intact terminal plaintext recovery.
+
+The last two whole words are the genuine repeated original ciphertext \`DJU BEI\`, also found on physical p27; that duplication was previously analyzed in [the independent repeated-word report](lp2-repeated-wordpair-structure.md). It supplies no authenticated key here and is not being rescored as a new discovery.
+
+## Immediate cryptanalytic consequence
+
+An acceptable **full-passage decoder** now has an especially inexpensive *early falsification*: decode the five zero-core words **through a source-selected exterior operation**, before expensive searches on the remaining eleven or twelve words. If the proposed exterior rule is merely “keep endpoints” or yields the same fixed nonsense words, it cannot recover ordinary whole-word plaintext, regardless of what it produces for the 52 cores. The author must supply the exterior alphabet/value-changing law or independently typed side-channel semantics. Three ring peels alone do not provide that law.
+
+[Single-file original-source Node.js 22 test](../sims/lp2_p54p55_outer_fixed_2014_threepeel_sft.cjs) reads the unchanged canonical corpus, 256-cell panel and authentic solved-page reference, verifies all 17 physical words, their five immutable 2-rune cases, the 76/68/60/52 ring geometry, the 52/34 split and an exact 86-rune reversible synthetic core-only positive control. This is an **all-key structural no-go under stated constraints**, not an attempted historical decryption. See the prior [full all86 numerical-panel inverse](lp2-p54p55-complete52-base29-aes256-p50-original-decision.md) for the already failed 256→86 additive consumer; the new finding does not authorize a rerun of its keys.
