@@ -66,7 +66,7 @@ for (const leftStep of [-2, 2]) {
     const decoded = aes128Ecb(dataBlocks, key, false);
     assert.deepEqual(aes128Ecb(decoded, key, true), dataBlocks);
 
-    // Authentic language plant, not fitted original ciphertext.
+    // Synthetic coherent ASCII plant, independent of unknown original ciphertext.
     const plant = Buffer.from(
       'AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO A'+
       ' SECRET VALUE READ THE WORDS FOLLOW THE THREAD OF THE BOOK', 'ascii');
