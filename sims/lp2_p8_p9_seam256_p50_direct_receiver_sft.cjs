@@ -124,6 +124,42 @@ const G=remainder(register,10,25);
 assert.deepEqual(H,[17,5]);
 assert.deepEqual(G,[11,11]);
 assert.equal(register.filter((symbol,i)=>symbol===originalBytes[i]%29).length,9);
+
+// The separate red word XIXM suggests a fully constrained Roman XIX
+// table-graph seed (19). Treat each printed byte B[s] as the next
+// table pointer. This is a direct original-packet key recovery attempt.
+assert.equal(p8.slice(0,3).map(i => corpus.translit[i]).join(''),'XIX');
+const pointerStates=[19];
+for(let i=1;i<256;i++)pointerStates.push(originalBytes[pointerStates[i-1]]);
+assert.deepEqual(pointerStates.slice(0,13),
+  [19,33,114,197,115,247,192,0,203,68,199,47,76]);
+const uniqueStates=new Map();
+let pointer=19,uniquePath=[];
+while(!uniqueStates.has(pointer)){
+  uniqueStates.set(pointer,uniquePath.length);
+  uniquePath.push(pointer);
+  pointer=originalBytes[pointer];
+}
+assert.equal(uniquePath.length,13);
+assert.equal(uniqueStates.get(pointer),2);
+const labelReadout=uniquePath.map(state=>register[state]);
+const romangraph=[];
+for(const [point,stream] of [
+  ['before-successor',pointerStates],
+  ['after-successor',pointerStates.map(state=>originalBytes[state])]
+]){
+  for(const sign of [-1,1]){
+    const decoded=register.map((v,i)=>mod(v+sign*(stream[i]%29),29));
+    const native=Array.from({length:256},(_,i)=>corpus.pages[57].indices[i%95]);
+    const cipher=native.map((v,i)=>mod(v-sign*(stream[i]%29),29));
+    assert.deepEqual(cipher.map((v,i)=>mod(v+sign*(stream[i]%29),29)),native);
+    const ioc=indexOfCoincidence(decoded);
+    assert.ok(ioc<0.045);
+    romangraph.push({point,sign,ioc,preview:decoded.slice(0,30)
+      .map(i=>corpus.translit[i]).join(' '),plantedGP:'256/256'});
+  }
+}
+
 console.log(JSON.stringify({
   premise:'Second p8 red word (8 runes) + black p8 body (243) + physically continued first p9 word tail (5) = 256 = 32x8',
   p8Header:'XIXM',
@@ -137,6 +173,9 @@ console.log(JSON.stringify({
   originalSharedH2013QuadraticRemainder:H,
   originalSharedP39QuadraticRemainder:G,
   exactDirectByteIndexMatches:9,
+  romanXIXGraph:{seed:19,uniqueNodes:uniquePath.length,cycleStart:2,
+    cycleLength:11,readout:labelReadout.map(i=>corpus.translit[i]).join(' ')},
+  romanXIXGraphGP29Inverse:romangraph,
   recoveredPlaintext:false,
   interpretation:'Original source makes a precise 256-slot candidate, but no authored opcode matches it to p50. These fixed simple receivers yield no verifiable language.'
 },null,2));
