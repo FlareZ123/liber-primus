@@ -141,6 +141,19 @@ Every untouched-original output remains near uniform: **0.0345702665** GP IoC fo
 
 Reproduce with the read-only Windows 11 Node.js22 SFT [p7 root-seven Fourier, full original 1,729-rune receiver](../sims/lp2_p7_root7_fourier_botanical_sft.cjs). The 7-point NTT on the distinct p33–39 chapter has [a separately established root24](../sims/lp2_red_root7_fourier_original_inverse.cjs) and is not reused as evidence for this p7-derived root16/20 test.
 
+## Source-derived p39 root24 cross-chapter prediction
+
+The **physically last red p8 title rune is GP index17**, and 17²=-1 modulo29. This provides a printed choice of imaginary unit for the p7/p8 norm-one 3–4–5 rotation:
+
+    i=17; z=(3+4i)/5=20; z^5=24; z^7=1  (mod29).
+    (8+15i)/17=24=z^5  (mod29).
+
+Independently, **p39's wholly red triad contains actual GP indices [27,5,15]**. Interpreting it with ascending-degree polynomial coefficients (the previously established p7 convention) produces **Q(x)=27+5x+15x²=15(x−24)² mod29**, with the unique double root **24**. Therefore the p7/p8 source-selected positive imaginary unit and fivefold power predict the printed *distant* p39 polynomial root without selecting a different root to fit p39. The p7 quartic's earlier seven-cycle [5,15,28,9,10,24,7] also reaches24 five steps after state5. These relations are algebraically and source-dependently related; **do not multiply their apparent chances**. The booklet never explicitly directs solvers to construct these polynomials or perform the fivefold power, so the relation remains a **provisional cross-chapter key clue**, not authenticated cipher semantics.
+
+A direct original-cipher two-chapter **shared additive pad cancellation** was checked: inverse seven-point GF29 Fourier on all 1,729 original p8–14 runes using root20 in seven lanes of 247; inverse Fourier on the independent 1,589 original p33(offset91)–39 runes with root24 in seven lanes of227. Subtraction after aligning either the first or last227 columns per botanical lane returns near-uniform GP29 differences: IoC **0.0346343644** for the first alignment and **0.0344615770** for the last. A synthetic shared-pad positive planted in genuine p57 native runes recovers the entire 1,589-rune difference exactly. These are **bounded original shared-pad negatives**, not a rejection of all nonlinear or independently keyed consumers. No unknown plaintext recovered.
+
+Reproduction: [original p7-p8-p39 cross-root SFT](../sims/lp2_p7_p39_root24_crosschapter_original_sft.cjs), read-only Windows11 Node22. The separate p39-only Fourier model was already tested in [prior p39 original-source SFT](../sims/lp2_red_root7_fourier_original_inverse.cjs), and is not counted as a new inverse.
+
 ## Decision
 
 Retain the **seven-state source-derived cycle** as a serious *provisional operation/key-selection clue*, distinct from the older p7 GF3 242-cycle and the fitted p7 GF4/radix59 255-state pad. A plausible 2014 human path starts with five visibly marked red coefficient words, recognizes p8's red fixed-point outputs, iterates the resulting polynomial, and notices the subsequent seven-page tree section. The strongest weakness is the absence of a printed **iteration, seed, seven-state emission, or butterfly receiver instruction**. The 2|2|1 red sequence and the original printed7 phase yield concrete, discriminating secondary clues, with documented alternatives and direct inverse negatives. Do not promote the seven-cycle to actual encryption or run more unconstrained key phases until the original artwork or archived first-party text selects an operation. The real next decision is whether the manuscript supplies one previously unnoticed seven-element consumer capable of predicting untouched original data.
