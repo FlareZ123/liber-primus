@@ -56,6 +56,32 @@ assert.equal(poly(deriv,4),17);
 assert.equal(p8.slice(0,12).reduce((p,x)=>mod(p*x),1),12);
 assert.equal(p8[11],17);
 
+/**
+ * Enumerate all 5! original red whole-word product orderings without fitting
+ * keys. The two independent typed p8 operands are XIX=19 and word-length4;
+ * expected outputs 12/17 occur both in original red title and archived HTML.
+ * @param {number[]} vals @returns {number[][]}
+ */
+function permutations(vals){
+ if(!vals.length)return [[]];
+ return vals.flatMap((v,i)=>permutations(vals.filter((_,j)=>j!==i))
+   .map(rest=>[v,...rest]));
+}
+const orders=permutations(coeff);
+assert.equal(orders.length,120);
+const predicate=(candidate)=>({
+ at19:poly(candidate,19)===mod(idNum),
+ slopeAt4:poly(candidate.slice(1).map((v,i)=>mod(v*(i+1))),4)===mod(title)
+});
+// idNum is 331 (residue12); title is 133 (residue17).
+const hits=orders.map(candidate=>({candidate,...predicate(candidate)}));
+const at19=hits.filter(h=>h.at19), slope=hits.filter(h=>h.slopeAt4),
+  both=hits.filter(h=>h.at19&&h.slopeAt4);
+assert.equal(at19.length,4);
+assert.equal(slope.length,7);
+assert.equal(both.length,1);
+assert.deepEqual(both[0].candidate,coeff);
+
 /** @param {number[]} values @param {12|17} omega
  * @param {boolean} inverse @returns {number[]} */
 function dft4(values,omega,inverse){
@@ -135,6 +161,7 @@ assert(cases.every(c=>c.p8p14First1716IoC<0.04));
 console.log(JSON.stringify({
  status:'PASS: source-aligned GF29 fourth root / DFT4 CBC variants yield no native GP29 original plaintext',
  historicalHTML:{title,container,GP29Residues:[17,12],inverseProduct:1},
+ originalCoefficientPermutationGate:{all:120,at19:at19.length,derivativeAt4:slope.length,joint:both.length,winner:both[0].candidate},
  p7p8:{coeff,p7PolyAtRoman19:12,derivativeAt4:17,
     p8Red4IV:iv,p8Red8Key:key,p8RedWholeProduct:12},
  original:{p8BlackPlusFirstFullP9Word:248,
