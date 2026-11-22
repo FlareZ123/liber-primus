@@ -80,6 +80,22 @@ An even narrower 85-rune transfer uses the **exact first-85 p56 additive shifts*
 
 CommonJS reproducer (with exact known p56 plaintext and forward controls): [\`sims/lp2_dot_triad_p56_prime_transfer_sft.cjs\`](../sims/lp2_dot_triad_p56_prime_transfer_sft.cjs). No unknown LP2 plaintext, source-selected key, cipher architecture or final destination results.
 
+
+### Period-85 reuse of the observed p56 difference stream: first-90-rune holdout (Agent48, 22 November 2026)
+
+This is distinct from applying p56's prime-totient rule to target pages and from the earlier one-time 85-position pad check. Derive the actual observed stream directly as K_i = C56_i - P56_i mod29 on the 84 encrypted p56 positions. Keep p56's literal-F bypass at offset56 **undefined**, not as a zero-valued key. The five-dot reset hypothesis makes one fixed prediction: reuse this 85-slot stream with period85 and phase0 on both pages after the original-image D4 transforms, and test the first90 runes. The last five target positions therefore wrap to key offsets0..4. No alternate phase, offset, direction, or language-selected alignment was tested.
+
+The source-fixed target orders are p7 horizontal reflection (reverse symbols within each printed line, preserve line order) and p23 180-degree rotation (reverse line order and symbols within each line). The first90 transformed runes in each page form the holdout. The same key phase0 is used for both; the undefined p56 key slot leaves target offset56 unknown. Each window therefore has **89 predicted symbols out of90**, and all known positions remask exactly.
+
+| Target | First-90 predicted text (? = unsupported p56 F slot) | IoC on 89 known symbols | Five-symbol wraparound (key offsets0–4) |
+|---|---|---:|---|
+| p7 | IAEOHOXTHATIAEATHIAMNGIADTHEPAERDHRUXPXIAFFYEAAESETHNSSTHYBTHBGEPGAENGXIEI?EOGUHTHEJPCHXNGXAEUFNAENRSHMYHLRGFIIAGF | **0.03651685** | FIIAGF |
+| p23 | UYREMGYIAXWOUEONPIUFYJTSPHWJXHIPUMLNNGIAGHIIAEHIJCHENGRDEOWPUEOB?EOTEOLFEOREINGTTHHNEJAOEIAENGBAEIAUMFEAAXTRT | **0.03472932** | AXTRT |
+
+Neither window contains sustained readable plaintext. The wraparound symbols do not form a coherent continuation, and the same source-selected alignment fails independently on both pages. A planted 90-symbol target recovers **89/90** with the same single undefined slot and validates the period85 wrap; the authentic p56 control recovers **84/84** encrypted positions and re-encrypts exactly.
+
+Reproducer: [lp2_fivedot_p56_observed_pad_90rune_holdout_sft.cjs](../sims/lp2_fivedot_p56_observed_pad_90rune_holdout_sft.cjs). This rejects the simplest five-dot reset/reuse of the observed p56 additive stream at period85; it does not reject the geometric triad itself or other source-specified operations.
+
 ### Conditional solved-p56 plaintext-key transfer (12 November 2026)
 
 One historically demonstrated *distinct* operation remained from the 2014 Stage04 source: a previous **solved GP29 plaintext** served as the repeating Vigenère key for a source-selected subsequent image. The exact p7/p23/p56 five-dot triad independently identifies p56 and each source page's orientation, supplying a narrow test without inventing a ciphertext-derived key. Derive the complete **85-rune solved p56 GP plaintext** by its independently authenticated prime-totient cipher (including the known literal-F exception), then use that GP-index string as an unchanged **period-85 additive key**, starting at zero on both physically oriented p7 and p23. The artwork fixes horizontal line reflection for p7 and 180-degree page rotation for p23. **The key itself contains normal F runes; no F-skip, fitted phase, excerpt or per-page reset is introduced.**
@@ -133,6 +149,6 @@ Reproducer: [`sims/lp2_fivedot_music_symmetry_totient_gate_sft.cjs`](../sims/lp2
 
 **Established:** these three five-dot source drawings are linked by precise, mutually consistent axial reflections. Earlier work recognized the first mirror; solved p56 supplies a genuinely new third anchor. A contemporary viewer could discover the complete motif by comparing original pages, and this is a reusable visual cross-reference.
 
-**Unsupported:** that their reflection dictates any rune-reading order, key exchange, or reuse of p56's prime-totient schedule. The two earlier literal source-oriented transfers fail linguistically, and the music-symmetry-specific reversed prime schedules now fail the authentic literal-F invariant under every possible skip count. The near-identical motif geometry remains compatible with a reused illustration.
+**Unsupported:** that their reflection dictates any rune-reading order, key exchange, or reuse of p56's prime-totient schedule. The two earlier literal source-oriented transfers fail linguistically; the music-symmetry-specific reversed prime schedules fail the authentic literal-F invariant under every possible skip count; and the exact observed p56 difference stream, repeated at its 85-symbol period with the source-registered phase, fails both first-90-rune target windows. The near-identical motif geometry remains compatible with a reused illustration.
 
 Do not reuse the p7/p23-centred 16-page Fibonacci, p56 prime-start search or the many unconstrained additive/key-skip tests. The useful reopening gate is an **independently source-visible instruction identifying why the p56 version of the figure is a control rather than decoration**, together with a reversible operation and a prediction on a previously unseen original page or text interval. A new clue about the drawing's identity, or a source-specified reflection operating on a different carrier, would justify one bounded inverse. Until then retain the triad as intermediate original-artifact evidence.
