@@ -75,7 +75,7 @@ function encode(word) {
 const lp1NativeWord = [...'ᚠᚩᛚᛚᚩᚹᛝ'].map(ch => alphabet.get(ch));
 assert.deepEqual(encode('FOLLOWING'), lp1NativeWord);
 const p57Reference = read('resources/liber-primus/lp1-plaintext-reference.txt')
-  .split('### 57\n')[1].trim();
+  .split(/^### 57\r?$/m)[1].trim();
 const p57Transcribed = (p57Reference.match(/[A-Z]+/g) || [])
   .flatMap(encode);
 assert.deepEqual(p57Transcribed, corpus.pages[57].indices);
