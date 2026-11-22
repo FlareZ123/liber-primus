@@ -121,6 +121,81 @@ function exhaustiveDirectKeys(key) {
   return {best, originalStarts, genuineLongWindowHits, firstPassageHits};
 }
 
+
+/**
+ * Exact reachable historical plaintext-F transparent GP29 decryption.
+ * q = number of unconsumed key slots caused by plaintext F so far.
+ * Every ciphertext F can mean either transparent plaintext F (no advance)
+ * or an enciphered non-F (advance). The only permitted other path is
+ * an enciphered non-F at a nonzero ciphertext glyph. A plaintext F cannot
+ * be enciphered normally under this historical protocol.
+ *
+ * For the authentic original numbered unit concatenation there are exactly
+ * 12 ciphertext Fs; all 13 possible q states fit in an integer bitmask.
+ *
+ * @param {number[]} cipher
+ * @param {number[]} key
+ * @param {number} sourceOffset
+ * @param {number} sign 1 for historical encryption addition, -1 for subtraction
+ * @returns {number} exact number of original input runes with a legal path
+ */
+function transparentFLegalPrefix(cipher, key, sourceOffset, sign) {
+  let states = 1;
+  let previousCipherF = 0;
+  for (let i = 0; i < cipher.length; i++) {
+    let next = 0;
+    for (let skipped = 0; skipped <= previousCipherF; skipped++) {
+      if ((states & (1 << skipped)) === 0) continue;
+      const sourceCursor = sourceOffset + i - skipped;
+      const operand = key[sourceCursor];
+      assert(Number.isInteger(operand), 'source-key cursor overflow');
+      const plain = (cipher[i] - sign * operand + 29) % 29;
+      if (cipher[i] === 0) {
+        next |= 1 << (skipped + 1); // transparent plaintext F
+        if (plain !== 0) next |= 1 << skipped; // encrypted non-F
+      } else if (plain !== 0) {
+        next |= 1 << skipped;
+      }
+    }
+    if (cipher[i] === 0) previousCipherF++;
+    assert(previousCipherF <= 30, 'more than 30 F events need a larger state register');
+    if (next === 0) return i;
+    states = next;
+  }
+  return cipher.length;
+}
+
+/**
+ * Historical F-transparent writer. An F plaintext symbol is emitted
+ * unchanged and consumes no key; all others consume exactly one.
+ * @param {number[]} clear
+ * @param {number[]} key
+ * @param {number} start
+ * @param {number} sign
+ */
+function transparentFEncrypt(clear, key, start, sign) {
+  let consumed = 0;
+  return clear.map(p => p === 0 ? 0
+    : (p + sign * key[start + consumed++ % key.length] + 29) % 29);
+}
+
+/** @param {number[]} key */
+function exhaustiveTransparentF(key) {
+  const validFull = {minus: 0, plus: 0};
+  const validFirst139 = {minus: 0, plus: 0};
+  const maximumLegalPrefix = {minus: 0, plus: 0};
+  for (const sign of [-1, 1]) {
+    const label = sign === -1 ? 'minus' : 'plus';
+    for (let origin = 0; origin + original.length <= key.length; origin++) {
+      const prefix = transparentFLegalPrefix(original, key, origin, sign);
+      if (prefix === original.length) validFull[label]++;
+      if (prefix >= 139) validFirst139[label]++;
+      maximumLegalPrefix[label] = Math.max(maximumLegalPrefix[label], prefix);
+    }
+  }
+  return {validFull, validFirst139, maximumLegalPrefix};
+}
+
 async function main() {
   const response = await fetch(sourceUrl);
   assert(response.ok, 'pinned source fetch failed HTTP ' + response.status);
@@ -165,6 +240,13 @@ async function main() {
     (n - key[plantKeyStart + i + 1] + 29) % 29);
   assert.notDeepEqual(wrongKey, native553, 'wrong source-key start accepted');
 
+  const transparentFPlant = transparentFEncrypt(native553, key, plantKeyStart, 1);
+  assert.equal(transparentFLegalPrefix(transparentFPlant, key,
+    plantKeyStart, 1), 553, 'historically transparent-F positive plant');
+  const transparency = exhaustiveTransparentF(key);
+  assert.deepEqual(transparency.validFull, {minus: 0, plus: 0});
+
+
   const result = exhaustiveDirectKeys(key);
   assert.equal(result.originalStarts, 81258);
   assert.equal(result.genuineLongWindowHits, 0);
@@ -190,13 +272,18 @@ async function main() {
     genuineSolvedLP1Windows: genuineWindows,
     plantedForwardInverse: 'PASS',
     plantedWrongStart: 'DIFFERENT',
+    historicalTransparentFOriginalResult: transparency,
+    genuineNative553TransparentFPlant: '553/553 legal',
     interpretation: 'The 2014 named essay supplies a real historically selected source '
       + 'but no author-selected LP2 key clock. Every contiguous essay key start '
       + 'under direct GP29 addition/subtraction fails native-GP IoC.',
     scope: 'No transparent-F branch, source-word resets, transposition, '
       + 'different essay edition, or source-selected external coordinate',
   }, null, 2));
-  console.log('PASS: 81,258 exact all-start direct additive source-key inverses '
+  console.log('PASS: 81,258 direct and 81,258 exact historical ' +
+    'transparent-F full-path source-key inverses fail originals; ' +
+    '553 native transparent-F planted positive, plus direct additive ' +
+    'source-key inverses '
     + 'fail the original 139+91+98+96+129 GP29 receiver; solved-LP1 '
     + 'keyed positive and wrong-start control pass.');
 }
@@ -205,4 +292,5 @@ if (require.main === module) main().catch(error => {
   console.error(error);
   process.exitCode = 1;
 });
-module.exports = {gpWord, ioc, exhaustiveDirectKeys};
+module.exports = {gpWord, ioc, exhaustiveDirectKeys,
+  transparentFLegalPrefix, transparentFEncrypt, exhaustiveTransparentF};
