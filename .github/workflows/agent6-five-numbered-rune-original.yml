@@ -17,4 +17,6 @@ jobs:
           node-version: '22'
       - name: Test exact 553-rune original 1-to-5 interleave
         shell: pwsh
-        run: node sims/lp2_five_numbered_rune_roundrobin_source_sft.cjs
+        run: |
+          node sims/lp2_five_numbered_rune_roundrobin_source_sft.cjs
+          node sims/lp2_five_numbered_passages_single_rune_roundrobin_original_sft.cjs
