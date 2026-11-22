@@ -42,6 +42,24 @@ assert.deepEqual(rem841,[377,551]);
 const raw=rem841.map(v=>v/29);
 assert.deepEqual(raw,[13,19]);
 const dh=[mod(raw[0]-raw[1],29),mod(raw[0]+raw[1],29)];
+// Independent original-ink page selector from the same p29 source carry.
+// The [13,19] pair matches a red count13 punctuation marker and the
+// immediately preceding red rune-span length19, exactly on physical p27.
+// The marker count13 is ubiquitous (16/18 red spans), so the length19
+// supplies nearly all the discriminating information. This was observed
+// retrospectively, after the p27 source layout was already documented.
+const ink=json("resources/liber-primus/lp2-ink-annotations.json");
+const markedSpans=ink.pages.flatMap(page=>(page.red_spans||[]).flatMap(span=>{
+ const marked=(page.large_punctuation||[]).some(mark=>
+    mark[0]===span.start+span.length && mark[1]===raw[0] && mark[2]==="red");
+ return marked?[{page:page.page,start:span.start,length:span.length}]:[];
+}));
+assert.equal(ink.pages.flatMap(page=>page.red_spans||[]).length,18);
+assert.equal(markedSpans.length,16);
+const matchingSourcePage=markedSpans.filter(row=>row.length===raw[1]);
+assert.deepEqual(matchingSourcePage,[{page:27,start:0,length:19}]);
+assert.deepEqual(dh,[23,3]);
+
 assert.deepEqual(dh,[23,3]);
 const start=cell(dh[0],dh[1]);
 assert.equal(start,187);
@@ -97,6 +115,7 @@ console.log(JSON.stringify({
  status:"PASS",
  classification:"Original-source candidate navigation: exact 1L->0J link and prospective 3C->2U hit; fixed 2U continuation stops at 1t; no plaintext.",
  p29:{sourceRunes:277,G,rem841,rawCarry:raw,H2:dh},
+ originalInk:{redSpanCount:18,mark13Count:16,matchRawCarryToRedSpan:matchingSourcePage},
  table:{sourceRows:32,cols:8,firstCell:187,firstToken:tokens[187],oneLeft:186,leftToken:tokens[186],
   p27Base59,p27Base60,ringRoot189:tokens[189],
   clockwise3:213,token213:tokens[213],twoUp:197,token197:tokens[197],grammarPass197:false},

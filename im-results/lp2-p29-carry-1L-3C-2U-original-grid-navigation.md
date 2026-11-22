@@ -17,6 +17,24 @@ Thus the unique predicted original input is **cell187 = 1L** (native base60 byte
 
 **Upstream caveat:** the signed text does not explicitly tell us that the p29 H2 output is a row/column coordinate, that L means left, or that an original base60 numeral should be reinterpreted as an instruction. This remains a retrospective coordinate-language hypothesis; the already known p27 address186 is useful as a held-out route destination but is not an authenticated message.
 
+## Same raw p29 carry selects the unique p27 original red-marker object
+
+The **raw** p29 mod841 carry `[13,19]`, before applying the H2 map or inventing a table coordinate, is also exactly interpretable as **[red punctuation marker 13, immediately preceding red-rune heading length 19]**. This matches the already documented original p27 scan **44.jpg**: a red 19-rune opening heading followed immediately by a red 13-dot mark. Across the complete canonical original ink-annotation source, there are **18** red rune spans, **16** followed immediately by the same type of 13-marker, and **exactly one** span of length19, at **physical p27, rune offset0**. The other 15 marker-adjacent spans have different lengths.
+
+This supports a second **conditional** human source route from the new p29 carry:
+
+```text
+p29 original red G 29²-carry [13,19]
+  → [marker count13, preceding heading length19]
+  → unique original annotated red-heading p27
+  → pre-existing p27 red-heading prime ordinal186
+  → p50 cell186 0J
+```
+
+The separate route above consumes the **same** two p29 numbers through H2 to get [23,3], then reads p50 cell187 `1L` and steps left to **cell186**. Thus two distinct readable operations meet at the **same independently known p27-derived table address186**. Their common starting pair [13,19] means they are **correlated alternate interpretations, not two independent cryptographic confirmations**.
+
+This retrospective source match is much narrower than a full break: almost every original red punctuation mark uses the same number13, so **the sole discriminatory ingredient here is the red heading length19**, which was published well before this invocation. The source still does not instruct one to compute a 29² polynomial remainder, to serialize carry [13,19] into a [punctuation,span] pair, or to take a source heading's prime ordinal as a decryption key. Its relevance is establishing one compact, original-image-constrained candidate navigation bridge and a precise target **186**, not recovering unknown plaintext.
+
 ## Frozen circumference continuation and its stop
 
 The prior p27 base59 pointer route from source address186 ends at cell189, physically **(23,5)**, which prints **3C**. The solved p57 instruction SHED OUR OWN CIRCUMFERENCES had previously defined a twice-shed **60-cell ring** of the 32×8 grid, bounded by rows2..29, cols2..5, containing cell186 and cell189. The old p27 work treats 3C as the numeral **189 in base59**, a fixed point.
