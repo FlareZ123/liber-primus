@@ -20,7 +20,7 @@ assert.deepEqual(p8.slice(0,4),[14,10,14,19]);
 const body=p8.slice(12);
 assert.equal(body.length,243);
 const primes=[];
-for(let number=2;primes.length<750;number++){
+for(let number=2;primes.length<5400;number++){
   let good=true;
   for(let d=2;d*d<=number;d++)if(number%d===0){good=false;break}
   if(good)primes.push(number);
@@ -94,12 +94,90 @@ assert.deepEqual(rows,[
   {reversed:true,sign:1,originalRunes:243,firstImpossibleOffset:43,impossibleCipherRune:'U'},
   {reversed:true,sign:-1,originalRunes:243,firstImpossibleOffset:50,impossibleCipherRune:'L'}
 ]);
+// The *literal Roman integer* 1019 is a separate, equally source-typed
+// p56 prime CURSOR, rather than the zero-based cursor170 of prime VALUE1019.
+// Prime[1019]=8111, and phi(8111) mod29=19, independently echoing XIX.
+// This is a genuine full-original cipher arithmetic survivor, but the
+// resulting runes remain near-uniform gibberish. Preserve both observations.
+const directCursor=1019;
+assert.equal(primes[directCursor],8111);
+assert.equal((primes[directCursor]-1)%29,19);
+const sourceCursorModes=[];
+for(const reversed of [false,true]) {
+  const tape=reversed?body.slice().reverse():body;
+  for(const sign of [1,-1]) {
+    const result=reach(tape,directCursor,sign);
+    sourceCursorModes.push({reversed,sign,reached:result.matched,
+      glyph:result.blocker===undefined?null:c.translit[result.blocker],
+      terminals:result.terminal});
+  }
+}
+assert.deepEqual(sourceCursorModes,[
+  {reversed:false,sign:1,reached:243,glyph:null,terminals:[240,239,235]},
+  {reversed:false,sign:-1,reached:153,glyph:'NG',terminals:[]},
+  {reversed:true,sign:1,reached:18,glyph:'O',terminals:[]},
+  {reversed:true,sign:-1,reached:131,glyph:'J',terminals:[]}
+]);
+// Resolve ALL 8 authentic ciphertext-F events directly (all 256 masks);
+// there is no fitting to plaintext frequency or to a desired passage.
+const fSites=body.map((x,i)=>x===0?i:-1).filter(x=>x>=0);
+assert.deepEqual(fSites,[22,149,171,177,180,184,191,233]);
+const candidates=[];
+for(let mask=0;mask<2**fSites.length;mask++){
+  let used=0,bit=0,legal=true;
+  const plaintext=[];
+  for(const cipher of body){
+    let plain;
+    if(cipher===0&&(mask&(1<<bit)))plain=0;
+    else{
+      plain=mod(cipher-(primes[directCursor+used]-1));
+      used++;
+      if(plain===0){legal=false;break}
+    }
+    if(cipher===0)bit++;
+    plaintext.push(plain);
+  }
+  if(!legal)continue;
+  assert.equal(plaintext.length,body.length);
+  // Exactly re-encrypt all 243 original ciphertext runes with the native
+  // F-bypass and the same prime cursor, no hidden missing symbols.
+  let checkUsed=0;
+  const replay=plaintext.map(p=>p===0?0:mod(p+primes[directCursor+checkUsed++]-1));
+  assert.deepEqual(replay,body);
+  assert.equal(checkUsed,used);
+  const freq=new Array(29).fill(0);
+  for(const value of plaintext)freq[value]++;
+  const ioc=freq.reduce((sum,n)=>sum+n*(n-1),0)/(body.length*(body.length-1));
+  candidates.push({mask,used,ioc,first3:plaintext.slice(0,3).map(v=>c.translit[v]).join(' ')});
+}
+assert.deepEqual(candidates.map(z=>[z.mask,z.used]),[[7,240],[135,239],[255,235]]);
+assert(candidates.every(z=>z.ioc<0.04 && z.first3==='H P X'));
+// Against a frozen, complete 5000-start finite reference, only 24 cursors
+// survive this exact original black243 receiver; only 3 of those have the
+// printed source XIX=19 as their first totient residue.
+const sourceStarts=[];
+let matchingFirstKey=0;
+for(let start=0;start<5000;start++){
+  const firstKey=(primes[start]-1)%29;
+  if(firstKey===19)matchingFirstKey++;
+  const result=reach(body,start,1);
+  if(result.matched===243)sourceStarts.push({start,firstKey,terminal:result.terminal});
+}
+assert.equal(sourceStarts.length,24);
+assert.equal(matchingFirstKey,181);
+assert.deepEqual(sourceStarts.filter(x=>x.firstKey===19).map(x=>x.start),[156,605,1019]);
+
 console.log(JSON.stringify({
   firstRedWholeWord:'XIXM',reverseRoman:'MXIX',decodedPrime:1019,
   GP0FirstWordProduct:4,originalSecondWholeWordProduct:3,
   originalPrimeOffset:start,originalPrimeAtOffset:primes[start],
   solvedP56:{runes:85,nonFConsumed:84,inverseTerminalStates:positive.terminal},
   failedSourceSelectedP8BlackDirectConsumers:rows,
-  classification:'exact original-cipher illegal F, no plaintext and no rescued key'
+  literalPrimeCursor1019:{actualPrime:primes[1019],firstKeyResidue19:true,
+    fourDirections:sourceCursorModes,legalOriginalMasks:candidates,
+    starts0to4999:5000,arithmeticallyLegalStarts:sourceStarts.length,
+    startsWithFirstKeyResidue19:matchingFirstKey,
+    jointSurvivorStarts:sourceStarts.filter(x=>x.firstKey===19).map(x=>x.start)},
+  classification:'prime-value cursor170 excluded; prime-index cursor1019 algebraically survives on p8 black243 but all 3 outputs nonprose'
 },null,2));
-console.log('PASS p56 authentic calibration and four complete p8 prime1019 exclusion gates');
+console.log('PASS p56 known source and prime1019 170/1019-cursor 243-rune full-mask gates');
