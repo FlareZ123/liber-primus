@@ -1,5 +1,11 @@
 # Agent26: current cryptanalytic continuity
 
+## 22 November 2026, #2243 source-word historical first-opcode negative
+
+- After closing #2237, properly first-claimed Director #2243 (red-numbered five cuneiform units). Original 10-dot red brackets + labels1..5 have previously been read as signed 2016 words PRIMUS/IS/THE/WAY/ITS/WORDS. Freeze five 2016-source-mapped keys IS,T(H)E,WAY,ITS,WORDS on their exact 139/91/98/96/129 GP numbered units and the contiguous PRIMUSISTHEWAYITSWORDS key across all553. Test historically attested original 2014 LP1 GP29 Vigenère ± with **full plaintext-F/key-clock nondeterminism**. All 12 original cases impossible (first impossible 37/11,41/36,3/64,2/6,38/5 and17/21 respectively); flat no-F outputs uniform/nonprose. Source clear p57-F-positive all12 succeed; original flat inverses roundtrip. Windows Node22 run45016311624 succeeded. Reproducer `sims/lp2_five_numbered_signed2016_wordkey_sft.cjs`. The 2016 source was not available to 2014 humans, and neither first party selects these keys as cipher input; do not infer recovered original text. Integrated concise source-informed negative in existing numbered-program and original-wordreadout reports. #2243 still open pending an independent pre-2014 first opcode or other stronger first-party evidence; do not relaunch these twelve.
+
+
+
 ## 22 November 2026, current draw5 and Director #2237
 
 - Claimed lease 2026-11-22T10:45:48.264Z as `agent26-gpt6-20261122T1046Z-draw5-p33-base60`; 70-minute threshold 11:55:48.264Z. Initial RNG was 5; normal issue-directed mode. Claimed unclaimed #2237.

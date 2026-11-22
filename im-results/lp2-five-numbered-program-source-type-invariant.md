@@ -24,6 +24,27 @@ The positive reference is 2,797 independently solved source-native GP29 runes fr
 
 **C. Five procedural *instructions* selecting operations for another message.** This remains possible in principle, but every item has 91–139 undeciphered GP runes. In a true human-executable program, a solver would first need a specified first-item decoder or an independently readable instruction. The original printed red numbers encode stage order; they do not identify names like Atbash, DH, BASE29, XOR, OutGuess or a historical cryptographic tool. Genuine old stages used typed inputs and output checks: original OutGuess takes a JPEG; OpenPuff takes an MP3 and passwords; signed BASE29 takes a numeral; Stage04 Vigenère took a specifically clued prior plaintext key. Bare red 1..5 cannot substitute for such parameters or change an image/byte operation into a GP29 operation. The repeated cuneiform [17,13]/[55,1] supplies numeric 1033/3301 but no instruction choosing one of these consumers. Prior #985 and #1044 already closed the untyped numeral-to-cipher transfer and five historical static-key attempts; these are *inherited*, not re-executed.
 
+## Signed-source five-word Vigenère transfer: an original 553-rune negative (Agent26, 22 November 2026)
+
+A distinct, **retrospective** first-opcode candidate uses the pre-existing original-image packet and the separately preserved 2016 signed message. The two ten-dot red brackets flank the original 1–5 labelled units. The previously derived zero-based signed-source lookup reads source indices 10..15 as `PRIMUS IS THE WAY ITS WORDS`; the five numbered starts separately select `IS / THE / WAY / ITS / WORDS`. This **supplies genuine printed source words with no ciphertext-tuned keyword**. Its strongest objection is historical: the signed source was released in **2016**, two years after LP2, and neither source explicitly says to apply these words as Vigenère keys to the five paragraphs.
+
+Test the historically attested **2014 LP1 keyed GP29 Vigenère operation**, with both arithmetic directions, each selected source word as a separate cyclic key on its corresponding *complete* GP29 numbered paragraph (139/91/98/96/129 runes, no artificial page breaks), plus the 21-GP-rune contiguous `PRIMUSISTHEWAYITSWORDS` key on all 553 runes. Each key has the historically demonstrated plaintext-`F` transparency: a plaintext F emits ciphertext F and **does not consume** a key; the exact decoder enumerates **all** legal ambiguous ciphertext-F key-clock phases, rather than assuming a fixed skip pattern. The 12 frozen source-key inverses are all mathematically impossible on their full original input under this historical F rule, with first impossible original positions as follows:
+
+| Source-selected key | Original runes | F-transparent first impossible rune (zero based) with P=C−K | P=C+K |
+| --- | ---: | ---: | ---: |
+| `IS` (item1) | 139 | 37 | 11 |
+| `THE` (item2, canonical GP `TH-E`) | 91 | 41 | 36 |
+| `WAY` (item3) | 98 | 3 | 64 |
+| `ITS` (item4, includes p37→p38 carry) | 96 | 2 | 6 |
+| `WORDS` (item5) | 129 | 38 | 5 |
+| `PRIMUSISTHEWAYITSWORDS` (all five) | 553 | 17 | 21 |
+
+The *unskipped* alternate Vigenère outputs for each of 12 tested cases are also nonprose, with all five individual-rune IoCs in **0.03158–0.03956**, and the whole-553 source-key IoCs **0.03482** and **0.03473**. All unskipped transforms exactly reencrypt every original input rune; authentic solved-p57 GP plants are additionally encrypted using the true F bypass for each exact original unit/key and retain at least one full legal inverse after entire decryption. The original impossible result cannot be dismissed as a mishandled ciphertext F. Earlier published material also excludes generic five-stage state lengths and static substitution; this test specifically excludes the **five red-label/2016 signed-word** historical Vigenère first opcode.
+
+**Decision:** retain the previously printed bracket→signed-word *navigation candidate* as a retrospective reading clue only. Its five recovered vocabulary words do **not** decrypt the five local paragraphs as Vigenère keys under the authentic historical F rule, so they are neither source-authenticated first cipher instructions nor recovered local plaintext. An actual p36-first opcode still requires a pre-2014 author-visible instruction selecting a key grammar, or a later independently authenticated typed decoding process. Do not rescue these 12 failed models with fitted phases or new hidden keys.
+
+[One-file Windows Node22 SFT](../sims/lp2_five_numbered_signed2016_wordkey_sft.cjs) · [successful original-source run](https://github.com/FlareZ123/liber-primus/actions/runs/45016311624).
+
 ## Reproducibility and Director decision
 
 [Single-file source-driven CJS SFT](../sims/lp2_numbered_fivestage_program_invariants_sft.cjs) reads the exact existing original transcription, reconstructs all 553 runes and 122 words, checks the five labels and counts, proves full-key alphabet substitution conserves IoC, and compares **every** equal-length original solved-source GP window. It has no parameter sweep, no hidden plaintext fitting, and no modifications to original sources.
