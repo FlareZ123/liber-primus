@@ -154,6 +154,29 @@ assert.deepEqual([
  sourceResult.field['first digit x second-digit parity (10 states)'].sourceMaxForTopOneRune,
  sourceResult.crop['first digit x second-digit parity (10 states)'].sourceMaxForTopOneRune
 ],[677,698,718,754,899,928]);
+// Exhaust all 2^5 non-fitted first-digit parity-split subsets.
+// This is a closed finite ORIGINAL SOURCE grammar comparison, not an
+// attempt to infer an author-selected split from English.
+const candidateSubsetSurvivors=[];
+for(let mask=0;mask<32;mask++){
+ const states=phase.map(v=>{
+  const digit=Math.floor(v/60);
+  let state=0;
+  for(let d=0;d<digit;d++)state+=1+((mask>>d)&1);
+  return state+(((mask>>digit)&1)?v%2:0);
+ });
+ const control=nativeControl.Gibran.slice(0,C.length);
+ const result=Object.fromEntries(Object.entries(keys).map(([name,key])=>
+  [name,screen(envelope(key,states),control).maximumOver]));
+ if(result.field===0&&result.crop===0)
+  candidateSubsetSurvivors.push({
+   mask,states:new Set(states).size,
+   splitFirstDigits:Array.from({length:5},(_,i)=>i).filter(i=>(mask>>i)&1)
+  });
+}
+assert.deepEqual(candidateSubsetSurvivors.map(x=>x.mask),[7,15,23,31]);
+assert.deepEqual(candidateSubsetSurvivors.map(x=>x.states),[8,9,9,10]);
+
 // A concrete ORIGINAL, zero-tuning cipher attempt suggested by the
 // same source: 5 radix60 first digits = iterate the literal p7 red-word
 // quartic 0..4 times, second digit parity = inverse direction sign.
@@ -221,6 +244,7 @@ console.log(JSON.stringify({
  source:'LP2 original pair A81x81 B80x80 and conventional 256-byte p50 first-digit/second-parity table with source predecessor-rune clock',
  theorem:'For each source state and every 841! GP29 pair bijection, any k decoded GP-rune classes have total frequency <= sum of the top 29*k original 841 input-pair frequencies in that state; sum over all source states.',
  original:sourceResult,
+ candidateSubsetSurvivors,
  fixedSourceOpcodeTests,
  decision:'Five-state p50 first digit and six-state low0-parity extension reject pinned native-GP Gibran first6395, even where 6-state entropy alone does not. The natural ten-state first-digit x second-digit parity avoids THIS necessary contradiction. It is a bounded candidate class, not proof of a key, and no original plaintext is recovered.'
 },null,2));
