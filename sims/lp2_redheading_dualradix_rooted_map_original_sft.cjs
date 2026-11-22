@@ -304,6 +304,32 @@ assert.deepEqual(directTableConsumer.map(row=>row.matchedKnownPlaintext),
   [3,1,6,3,2,4,3,3]);
 assert(directTableConsumer.every(row=>row.matchedKnownPlaintext<7));
 
+
+/* Agent20's independently sourced original-red H-word register selects the
+ * verbatim 2016 signed phrase THE MAP THEIR MEANING IS THE ROAD.
+ * This direct, source-typed candidate GP29 running key has 22 runes,
+ * because GP 'TH', 'EA' and 'NG' each occupy one alphabet position.
+ * Test it as the known LP1 Vigenere operation on full indicated chapters,
+ * never tune phases/keys from original candidate plaintext. */
+const signedRoadGP=[2,18,19,24,13,2,18,10,4,19,28,9,10,21,10,15,2,18,4,3,24,23];
+assert.equal(signedRoadGP.map(i=>gp.translit[i]).join(''),
+  'THEMAPTHEIRMEANINGISTHEROAD');
+const signedRoadDirect=[];
+for(const [lo,hi] of [[3,7],[23,26]]){
+  const source=gp.pages.slice(lo,hi+1).flatMap(p=>p.indices);
+  for(const sign of [-1,1])for(const bypassF of [false,true]){
+    let clock=0;
+    const out=source.map(value=>{
+      if(bypassF&&value===0)return 0;
+      return mod29(value+sign*signedRoadGP[(clock++)%signedRoadGP.length]);
+    });
+    signedRoadDirect.push({chapter:[lo,hi],sign,bypassF,
+      decodedIoC:coincidence(out),
+      first16:out.slice(0,16).map(v=>gp.translit[v]).join('-')});
+  }
+}
+assert(signedRoadDirect.every(row=>row.decodedIoC<0.036));
+
 console.log(JSON.stringify({
   status:'Candidate numeric navigation and global base59 root; NO unknown plaintext',
   headings,redSpanSolvedPointers:{sourceSpans:sourceReds.length,base59:redSolved59,base60:redSolved60},
@@ -318,5 +344,6 @@ console.log(JSON.stringify({
   p3LinkedP56AuthenticPrimeTotientMechanism:primeSourceInverse,
   p3Table56AsPrimeClock: p3Clock56,
   knownP56DirectTableConsumer:directTableConsumer,
+  signed2016HSourceSelected22RuneRunningKey:signedRoadDirect,
   nextDecision:'Require an author-selected original-cipher operation to promote navigation'
 },null,2));
