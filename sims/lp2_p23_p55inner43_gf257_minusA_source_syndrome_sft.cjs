@@ -98,6 +98,44 @@ assert.equal(native,25);
 const quotientReduced=quotient.map(x=>x%29);
 assert.ok(Math.abs(ioc(quotientReduced)-0.033441408059286706)<1e-12);
 
+
+// Shared irreducible-factor test beyond the forced X−213 root.
+// Comparing the ACTUAL full 256-byte table polynomial to T+A avoids
+// confusing an arranged single checksum with a shared secret polynomial.
+/** @param {number} a @param {number} n */
+function pow257(a,n){
+  let out=1;
+  for(;n>0;n=Math.floor(n/2),a=mod(a*a))
+    if(n%2)out=mod(out*a);
+  return out;
+}
+/** @param {number[]} a */
+function trim(a){
+  while(a.length>0 && a[a.length-1]===0)a.pop();
+  return a;
+}
+/** @param {number[]} source @param {number[]} divisor */
+function polyRemainder(source,divisor){
+  const a=trim([...source]),b=trim([...divisor]);
+  const inverse=pow257(b[b.length-1],P-2);
+  while(a.length>=b.length){
+    const shift=a.length-b.length,scale=mod(a.at(-1)*inverse);
+    for(let j=0;j<b.length;j++)
+      a[shift+j]=mod(a[shift+j]-scale*b[j]);
+    trim(a);
+  }
+  return a;
+}
+/** @param {number[]} left @param {number[]} right */
+function polynomialGcd(left,right){
+  let a=trim([...left]),b=trim([...right]);
+  while(b.length>0)[a,b]=[b,polyRemainder(a,b)];
+  const inverse=pow257(a.at(-1),P-2);
+  return a.map(x=>mod(x*inverse));
+}
+const sourceGcd=polynomialGcd([...table].reverse(),[...adjusted].reverse());
+assert.deepEqual(sourceGcd,[44,1]); // exact X−213, no other factor
+
 console.log(JSON.stringify({
   source:'Original p23 GP length213 plus p55 strict 43-interior rune channel',
   original:{p23Runes:p23.length,p55Runes:p55.length,
@@ -115,6 +153,6 @@ console.log(JSON.stringify({
   positiveControl:{source:'repeat authentic p57 clear runes',plantedLastRune:ending,
     plantedGF257Syndrome:at(planted),oneChangedOriginalRunefails:true},
   quotient:{GF257Symbols:quotient.length,coeffsInNativeGP29Domain:native,
-    modulo29IoC:ioc(quotientReduced)},
+    modulo29IoC:ioc(quotientReduced),sourceTableGcdLowFirst:sourceGcd},
   result:'Exact source-shaped GF257 minus-A syndrome, discovered in-sample; no author-selected receiver, readable plaintext or key'
 },null,2));
