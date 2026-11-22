@@ -26,6 +26,26 @@ The determinant coincidence is specific to the previously adopted *zero-based GP
 
 Immediately below, p8 contains exactly **243 black rune characters**, i.e. **3⁵**, a complete integral 81 blocks of size3. The p7 preceding five marked red words may make the exponent5 interesting, but no explicit period-2014 source instruction says to apply these nine red runes as a Hill key to the 243 black symbols. The local p7 red butterfly and its 29-state polynomial also reuse the zero-based GP convention, so their numerical agreements are not independent sources of author authentication.
 
+## Numeric self-description and exact conditioned alternative family
+
+The literal red prefix serves naturally as a 3-rune vector `v=[14,10,14]`. The fixed 3×3 matrix has the additional exact relation **`K⁻¹v=[6,2,1]`**, or equivalently **`K[6,2,1]^T=v^T`**. The first two coordinates resemble values `a=6` and shared `K=2` in the separately reconstructed *candidate* LP2 DH23 state from p28/p57; the final1 is the field unit. This association was made **after** observing the inverse result. No signed Cicada instruction says to treat the red prefix as a Hill plaintext/ciphertext vector or to interpret the output as that DH triple.
+
+The whole 3×3 matrix also has an internally readable third check. Its three off-diagonal paired products satisfy `1·19 +14·13+2·3=207≡4 mod29`, exactly the original **first red word product4**. Given the observed trace12 and determinant19, this equality is algebraically equivalent to the characteristic-root `χ_K(−2)=0` already stated above; they must **not** be counted as two independent matches.
+
+A complete deterministic finite comparison is more informative than treating these facts as separate guessed p-values. Freeze the original first red `XIX` prefix and first whole-word product4 (which force the following GP index19), the second red whole-word product3, its terminal index17, and the title-length/trace12 condition. Enumerate **all 28⁵ = 17,210,368** admissible nonzero GP29 replacements of the six remaining unconstrained matrix entries, preserving these facts exactly. The results are:
+
+| Additional exact source test | Matching alternative matrices |
+| --- | ---: |
+| Determinant equals the red Roman19 | **594,272** |
+| Off-diagonal pair sum equals first red-word product4 | **592,704** |
+| Both determinant19 and off-diagonal sum4 (hence root−2) | **27,440** |
+| Matrix inverse sends the red prefix to **[6,2,1]** | **730** |
+| All three relationships simultaneously | **2** |
+
+The **two** surviving candidate six-entry tuples `(a,b,c,d,e,f)` for `[[19,a,b],[c,5,d],[e,f,17]]` are **[1,14,19,2,13,3]** (the actual p8 red symbols) and **[21,3,23,7,22,5]**. These finite counts are *conditional on the discovered representation and its chosen numeric targets*. They are **not a global accidental-match probability**, since other layouts and candidate targets were examined retrospectively. The second surviving tuple also proves the constraints fail to select a unique key without the actual printed symbols.
+
+[Read-only complete-family Node22 SFT](../sims/lp2_p8_xix_matrix_conditional_fullspace_sft.cjs) re-enumerates the entire source-conditioned 17,210,368 family, with exact integer counts, no Monte Carlo, generated input, fitted English or hypothetical lost bytes. This changes the ranking of the structural lead, not the still-negative ciphertext verdict.
+
 ## Complete reversible original-cipher test
 
 Freeze **K**, **K⁻¹**, the exact three-rune **XIX vector [14,10,14]**, the original 243 black runes, and original word order. Evaluate the natural fixed-key Hill equations and six familiar block feedback/IV consumptions on the entire physical p8 black body. Each variant is tested in both literal row-major and column-major/transposed source layout (14 fully specified models):
