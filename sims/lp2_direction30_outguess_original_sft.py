@@ -13,7 +13,7 @@ import json
 from pathlib import Path
 import re
 
-from outguess_extract import build_bitmap, extract
+from outguess_extract import build_bitmap, extract, header_is_source_forced
 
 ROOT = Path(__file__).resolve().parents[1]
 RES = ROOT / "resources"
@@ -48,7 +48,10 @@ for n in range(17, 75):
     file = PAGE / f"{n:02d}.jpg"
     assert file.is_file() and file.stat().st_size > 10000, file
     bitmap, nbits = build_bitmap(file)
-    info = {"scan": file.name, "eligible_bits": nbits}
+    info = {
+        "scan": file.name, "eligible_bits": nbits,
+        "source_forces_header": header_is_source_forced(bitmap, nbits),
+    }
     try:
         payload, metadata = extract(bitmap, nbits, password)
     except ValueError as error:
@@ -57,6 +60,8 @@ for n in range(17, 75):
     else:
         info.update({
             "result": "header_accepted",
+            "encrypted_header_hex": metadata["encrypted_header_hex"],
+            "decoded_header_hex": metadata["header_hex"],
             "length": len(payload),
             "sha256": hashlib.sha256(payload).hexdigest(),
             "prefix": payload[:32].hex(),
@@ -78,6 +83,8 @@ recognizable = [
 # The source contains a known wrong-key-like 32-byte header candidate. The
 # extractor's acceptance alone cannot establish an embedded original payload.
 assert len(survivors) == 57, survivors
+assert all(entry["source_forces_header"] for entry in results)
+assert {entry["encrypted_header_hex"] for entry in survivors} == {"ffffffff"}
 assert len(rejects) == 1 and rejects[0]["scan"] == "74.jpg", rejects
 assert not recognizable, recognizable
 assert {entry["length"] for entry in survivors} == {32904}
@@ -96,5 +103,8 @@ print("SUMMARY", json.dumps({
     "distinct_survivor_sha256": len({entry["sha256"] for entry in survivors}),
     "common_survivor_prefix_hex": survivors[0]["prefix"],
     "common_survivor_length": survivors[0]["length"],
+    "every_original_header_source_forced": True,
+    "encrypted_header_hex": "ffffffff",
+    "decoded_header_hex": survivors[0]["decoded_header_hex"],
     "conclusion": "no recognizable PGP/file/printable payload"
 }, sort_keys=True))
