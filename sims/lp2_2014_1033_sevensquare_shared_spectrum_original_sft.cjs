@@ -477,4 +477,68 @@ console.log('THREE_SHARED_MODES original full-packet equal positions=' +
   sharedResults.map((v) => v.join('/')).join(',') +
   ' vs 687/229 planted positives; no reused source-aligned state');
 
-console.log('SELFTEST_PASS original squares, charpolys, canonical basis, 3409 original runes, solved-native positives, 84-prime authenticated-key transfer, canonical shared three-mode original receiver');
+
+/**
+ * Noninvertible but source-canonical five-symbol *field-trace* reduction.
+ * Each 7-symbol packet decomposes as H, A, E and two GF(29²) extensions.
+ * Trace on the quadratic extension q1=x²−5x−13 sends (u,v)->2u+5v;
+ * trace on q2=x²+8x+8 sends (u,v)->2u+21v. This gives the complete
+ * printed CHANGE multiset in exactly five positions without fitting a
+ * ciphertext. Test the trace output alone and through the genuine
+ * 5-square physical/eigenvector basis in both directions.
+ *
+ * For a genuine positive plant the 7-input can be lifted exactly from
+ * any 5-symbol source, choosing the quadratic trace's v-component zero
+ * and u=input/2. The kernel is two-dimensional per packet.
+ */
+function traceToFive(sevenSource) {
+  assert.equal(sevenSource.length % 7, 0);
+  const output = [];
+  for (let i = 0; i < sevenSource.length; i += 7) {
+    const z = apply(Sinverse, sevenSource.slice(i, i + 7));
+    output.push(m29(2 * z[3] + 5 * z[4]), z[0], z[1],
+      m29(2 * z[5] + 21 * z[6]), z[2]);
+  }
+  return output;
+}
+function transformFive(text, basis) {
+  assert.equal(text.length % 5, 0);
+  const output = [];
+  for (let i = 0; i < text.length; i += 5) {
+    output.push(...apply(basis, text.slice(i, i + 5)));
+  }
+  return output;
+}
+/** @param {number[]} fiveSource @returns {number[]} */
+function liftFiveSource(fiveSource) {
+  assert.equal(fiveSource.length % 5, 0);
+  const output = [];
+  for (let i = 0; i < fiveSource.length; i += 5) {
+    const [c, h, a, ng, e] = fiveSource.slice(i, i + 5);
+    output.push(...apply(S, [
+      h, a, e, m29(15 * c), 0, m29(15 * ng), 0
+    ]));
+  }
+  return output;
+}
+for (const [originalSeven, n, own, physical, inversePhysical] of [
+  [sevenChapter, 1235, 0.03431649813975157,
+    0.034320435173459146, 0.03450416341314576],
+  [sevenCuneiform, 1200, 0.034334167361690295,
+    0.034452321378926884, 0.03462885738115096]
+]) {
+  const originalTrace = traceToFive(originalSeven);
+  assert.equal(originalTrace.length, n);
+  close(ioc(originalTrace), own);
+  close(ioc(transformFive(originalTrace, V5)), physical);
+  close(ioc(transformFive(originalTrace, V5inverse)), inversePhysical);
+  const fiveNative = Array.from({ length: n }, (_, i) => solved[i % 95]);
+  assert.deepEqual(traceToFive(liftFiveSource(fiveNative)), fiveNative);
+  assert.ok(ioc(fiveNative) > 0.05);
+  console.log('FIVE_TRACE_OUTPUT original_7=' + originalSeven.length +
+    ' to_5=' + n + ' IoC coordinate/physical/inverse=' +
+    [own, physical, inversePhysical].map((x) => x.toFixed(9)).join('/') +
+    ' authentic-native plant=' + n + '/' + n);
+}
+
+console.log('SELFTEST_PASS original squares, charpolys, canonical basis, 3409 original runes, solved-native positives, 84-prime authenticated-key transfer, canonical shared three-mode original receiver, full factor-trace five-symbol original reductions');
