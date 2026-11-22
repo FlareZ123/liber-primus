@@ -181,6 +181,45 @@ for (const [label, order] of [
     'PREVIEW120', recovered.slice(0, 120).map((n) =>
       corpus.translit[n]).join(''));
 }
+// The p50 byte at state s can also be a 0..255 successor pointer
+// and the aligned p8 GP29 symbol the output at that state, forming a
+// complete 256-state Moore machine. Source the seed from first red4
+// as a BASE29 integer reduced modulo256, with no seed optimization.
+const originalFour = p8.indices.slice(0, 4);
+const seed = originalFour.reduce((n, digit) => (n * 29 + digit) % 256, 0);
+assert.equal(seed, 73);
+/** @param {number} first @returns {{states:number[],cycleStart:number}} */
+function walk(first) {
+  const seen = new Map();
+  const states = [];
+  let pointer = first;
+  while (!seen.has(pointer)) {
+    seen.set(pointer, states.length);
+    states.push(pointer);
+    pointer = grid.bytes[pointer];
+  }
+  return { states, cycleStart: seen.get(pointer) };
+}
+const visit = walk(seed);
+assert.equal(visit.states.length, 17);
+assert.equal(visit.cycleStart, 6);
+const firstReadout = visit.states.map((state) =>
+  corpus.translit[frame[state]]).join('');
+assert.equal(firstReadout, 'RLWAEYLXXHREAFUTHOEFTH');
+const allWalks = Array.from({ length: 256 }, (_, start) => walk(start));
+assert.equal(Math.max(...allWalks.map((w) => w.states.length)), 35);
+assert.deepEqual(
+  Array.from(new Set(allWalks.map((w) =>
+    w.states.length - w.cycleStart))).sort((x, y) => x - y),
+  [2, 11]
+);
+console.log('P50_SUCCESSOR_P8_OUTPUT_PROGRAM',
+  'SEED_GP4_BASE29_MOD256', seed,
+  'UNIQUE_STATES', visit.states.length,
+  'CYCLE_LENGTH', visit.states.length - visit.cycleStart,
+  'READOUT', firstReadout,
+  'MAX_UNIQUE_STATES_ANY_SEED', 35,
+  'ALL_CYCLE_LENGTHS', '2,11');
 console.log('P8_WHOLE_PRINTED_4PLUS256_SOURCE_FRAME', frame.length);
 console.log('P50_TABLE_SHAPE', grid.shape);
 console.log('PASS: exact original frame and negative fixed row-major byte-mod29 pad gate');
