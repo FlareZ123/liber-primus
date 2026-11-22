@@ -18,7 +18,7 @@ const glyph = new Map(corpus.runes.map((r, i) => [r, i]));
 const sourcePages = transcript.split('%');
 assert.equal(sourcePages.length, 57);
 
-/** @typedef {{runes:number[],page:number,section:number,crossPage:boolean}} Word */
+/** @typedef {{runes:number[],runePages:number[],page:number,section:number,crossPage:boolean}} Word */
 /**
  * Treat slash, actual page separators and line endings as non-word-breaking.
  * The source's only complete-word terminators are '-', '.', '&', '$'.
@@ -29,6 +29,7 @@ function parseWords(source) {
   /** @type {Word[]} */
   const words = [];
   let current = [];
+  let runePages = [];
   let pages = new Set();
   let physical = 0;
   let section = 0;
@@ -36,17 +37,21 @@ function parseWords(source) {
     if (!current.length) return;
     words.push({
       runes: current,
+      runePages,
       page: Math.min(...pages),
       section,
       crossPage: pages.size > 1
     });
     current = [];
+    runePages = [];
     pages = new Set();
   };
   for (const ch of source) {
     if (glyph.has(ch)) {
       current.push(glyph.get(ch));
-      pages.add(physical >= 50 ? physical + 1 : physical);
+      const actualPage = physical >= 50 ? physical + 1 : physical;
+      runePages.push(actualPage);
+      pages.add(actualPage);
     } else if (ch === '-' || ch === '.' || ch === '&' || ch === '$') {
       flush();
       if (ch === '$') section++;
@@ -194,15 +199,34 @@ for (const word of unknown) {
     diff = second.map((x, i) => x - first[i]);
   }
   for (const type of ['global', 'section', 'page']) {
-    const key = type === 'global' ? 0 : word[type];
-    let state = stateGroups[type].get(key);
-    if (!state) {
-      state = newState();
-      stateGroups[type].set(key, state);
+    const keys = type === 'global' ? [0] :
+      type === 'section' ? [word.section] : [...new Set(word.runePages)];
+    for (const key of keys) {
+      let state = stateGroups[type].get(key);
+      if (!state) {
+        state = newState();
+        stateGroups[type].set(key, state);
+      }
+      // A carried word changes physical-page output alphabet mid-word.
+      // Split candidates by actual rune page. Allow a separate, even more
+      // generous quotient choice for each fragment of a carried word.
+      let firstPart = first;
+      let diffPart = diff;
+      let partSize = word.runes.length;
+      if (type === 'page') {
+        const indices = word.runePages.map((p, i) => p === key ? i : -1)
+          .filter(i => i >= 0);
+        partSize = indices.length;
+        firstPart = histogram(indices.map(i => candidates[0][i]));
+        if (diff) {
+          const secondPart = histogram(indices.map(i => candidates[1][i]));
+          diffPart = secondPart.map((x, i) => x - firstPart[i]);
+        }
+      }
+      state.nonrepeatRunes += partSize;
+      for (let i = 0; i < 29; i++) state.base[i] += firstPart[i];
+      if (diffPart) state.diffs.push(diffPart);
     }
-    state.nonrepeatRunes += word.runes.length;
-    for (let i = 0; i < 29; i++) state.base[i] += first[i];
-    if (diff) state.diffs.push(diff);
   }
 }
 assert.equal(q1Available, 388);
@@ -214,6 +238,8 @@ assert.equal([...stateGroups.page.values()].reduce((n, s) =>
  * For each original word and chosen label set, the unknown Q can then choose
  * the better of its q0/q1 outputs. This is an EXACT maximization over all
  * 29! state alphabets and all legal independent word quotients.
+ * For page-private tables, even cross-page word fragments can separately
+ * choose Q, a strict superset of the actual single-Q word code.
  *
  * @param {State} state
  * @param {number[]} chosen
@@ -267,10 +293,10 @@ for (const [type, states] of Object.entries(stateGroups)) {
 }
 assert.equal(allSecret.global[5].upperNonrepeat, 2489);
 assert.equal(allSecret.section[5].upperNonrepeat, 2759);
-assert.equal(allSecret.page[5].upperNonrepeat, 3471);
+assert.equal(allSecret.page[5].upperNonrepeat, 3462);
 assert.equal(allSecret.global[5].upperWithEntireRepeatedWordsGrantedFree, 2860);
 assert.equal(allSecret.section[5].upperWithEntireRepeatedWordsGrantedFree, 3130);
-assert.equal(allSecret.page[5].upperWithEntireRepeatedWordsGrantedFree, 3842);
+assert.equal(allSecret.page[5].upperWithEntireRepeatedWordsGrantedFree, 3833);
 
 /**
  * A very generous period-native GP spell normalizer for control prose;
