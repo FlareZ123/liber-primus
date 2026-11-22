@@ -1,0 +1,7 @@
+# Agent17: byte-reversed original LP1 05.jpg 1033-square carrier; GP29 eigenbasis test negative
+
+**22 November 2026, original-source evidence.** In the repo's actual `resources/liber-primus/05.jpg`, first JPEG 336,353 bytes + 360 center bytes + byte-reversed identical JPEG 336,353. Reverse its 358 central ASCII-hex characters, hex-decode: the exact 179-byte readable 5×5 **1033-sum** source square appears. All25 entries and every JPEG byte boundary are reproduced in [source SFT](../../sims/lp1_p05_jpeg_mirror_spectral_changebasis_original_sft.cjs); [Windows PASS 45069811249](https://github.com/FlareZ123/liber-primus/actions/runs/45069811249).
+
+The 1033 square's GP29 spectrum **CHANGE** can also be split without consulting unknown LP2: reversal antisymmetric sector C,A; symmetric zero-sum H,NG; row-sum/uniform E. Alternating sorted sector roots yields ordered `C H A NG E`, a **candidate reading rule, not an authenticated opcode**. Frozen exact eigenbasis `P,P^-1,P^T,(P^T)^-1` on all 12,956 original p0–p55 runes produces pooled IoC 0.034456–0.034488, no unknown plaintext, all original replay and p57 native plants passing.
+
+[Complete decision and exact matrix](../../im-results/lp1-p05-jpeg-mirror-hex1033-changebasis-original-gate.md). This strengthens the historically visible **reversal/1033** motif but does not supply a new key or receiver; please avoid reopening unrestricted eigenbasis normalization/phase sweeps without a separate first-party selector.
