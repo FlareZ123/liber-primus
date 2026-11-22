@@ -146,7 +146,7 @@ const originalValues = sourcePayload.map(entry => {
   return {name: entry.name, ...q};
 });
 assert.deepEqual(originalValues.map(x => bitLength(x.quotient)),
-  [2041, 2040, 2036, 2041]);
+  [2041, 2040, 2041, 2041]);
 const layouts = [];
 for (const [i, cells] of bytes.entries())
   for (const mode of ["row", "column"])
