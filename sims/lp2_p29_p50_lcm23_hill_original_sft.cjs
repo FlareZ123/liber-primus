@@ -217,6 +217,52 @@ for (const transpose of [false, true]) {
     solvedP57PlantExactInversion: '95/95'
   });
 }
+// Two equally valid but less canonical square representations reveal why
+// 23^2 alone is a clue candidate, not an authenticated key construction.
+const H = [24, 26, 3]; // Independently sourced signed-2013 quadratic.
+const tableOverGH = divide(table, multiply(G, H));
+assert.deepEqual(tableOverGH.remainder, [0, 0, 0, 0]);
+assert.equal(tableOverGH.quotient.length, 252);
+assert.equal(277 + 252, 529);
+assert.equal(275 + 254, 529);
+const secondarySquares = [
+  {name: 'concatenate the two exact G quotients',
+    coefficients: quotientP.quotient.concat(quotientT.quotient),
+    expectedDet: 7, expectedCenter: 28},
+  {name: 'concatenate p29 and the p50/(G*H) fixed-width quotient',
+    coefficients: p29.concat(tableOverGH.quotient),
+    expectedDet: 4, expectedCenter: 7}
+];
+const secondaryResults = [];
+for (const item of secondarySquares) {
+  assert.equal(item.coefficients.length, 529);
+  const A = Array.from({length: 23}, (_, row) =>
+    item.coefficients.slice(23 * row, 23 * (row + 1)));
+  const result = inverse(A);
+  assert.equal(result.rank, 23);
+  assert.equal(result.determinant, item.expectedDet);
+  assert.equal(item.coefficients[264], item.expectedCenter);
+  assert.deepEqual(product(A, result.inverse), unit);
+  for (const transpose of [false, true]) {
+    const decoded = transform(unknown, result.inverse, transpose);
+    assert.deepEqual(transform(decoded, A, transpose), unknown);
+    assert.deepEqual(transform(transform(planted, A, transpose),
+      result.inverse, transpose), planted);
+    secondaryResults.push({
+      construction: item.name, matrixDeterminantMod29: result.determinant,
+      centerGP29: item.expectedCenter,
+      orientation: transpose ? 'transposed' : 'printed-rows',
+      wholeOriginalIoC: coincidence(decoded),
+      p0IoC: coincidence(decoded.slice(offsets.get(0), offsets.get(1))),
+      p55IoC: coincidence(decoded.slice(offsets.get(55))),
+      first23: text(decoded.slice(0, 23)),
+      originalReplay: '12956/12956',
+      positiveRecovery: '12956/12956',
+      authenticUnknownPlaintextRecovered: false
+    });
+  }
+}
+
 console.log(JSON.stringify({
   test: 'Original p29/table shared-root polynomial LCM gives 23x23 finite-field Hill matrix',
   source: {p29RuneLength: 277, p50ByteLength: 256, p50Base60ByteSha256: tableHash,
@@ -228,6 +274,6 @@ console.log(JSON.stringify({
     matrixRank: matrixData.rank, matrixDeterminantMod29: matrixData.determinant,
     squareCenterGP29: lcm[264]},
   originalRunes: unknown.length, unusedTerminalPartialBlock: unknown.length % 23,
-  originalResults,
+  originalResults, secondaryResults,
   conclusion: 'Source-derived algebra yields a reversible GF29 matrix but no readable original LP2 plaintext by either frozen Hill23 orientation. The square/Hill interpretation is not author-authenticated.'
 }, null, 2));
