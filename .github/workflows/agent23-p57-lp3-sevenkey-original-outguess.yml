@@ -1,0 +1,38 @@
+name: Agent23 p57 13dot PARABLE7 p50 rim LP3 seven-byte key original p3 OutGuess
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-keyed-outguess:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build original OutGuess 0.4 with pinned source
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq autoconf automake libtool build-essential libjpeg-dev
+          git clone --depth 1 https://github.com/resurrecting-open-source-projects/outguess.git /tmp/outguess
+          git -C /tmp/outguess fetch --depth 1 origin 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          git -C /tmp/outguess checkout --detach 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          cd /tmp/outguess
+          ./autogen.sh
+          CFLAGS='-O2 -std=gnu11' ./configure --with-generic-jconfig
+          make -j2 CC='gcc -std=gnu11' CFLAGS='-O2 -std=gnu11'
+          sudo make install
+      - name: Source-reconstruct single key and read exactly one original JPEG with controls
+        run: |
+          node --check sims/lp2_p57_13dot_p50_lp3len7_p3_outguess_original_sft.cjs
+          node sims/lp2_p57_13dot_p50_lp3len7_p3_outguess_original_sft.cjs
+      - name: Preserve exact decoded candidates and negative controls
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent23-p57-lp3-sevenkey-source-original-p3-outguess
+          path: outguess-results-keyed/
+          if-no-files-found: warn
+          retention-days: 30
