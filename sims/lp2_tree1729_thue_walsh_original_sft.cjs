@@ -397,6 +397,37 @@ console.log("Ghost-tree p55 76-rune THUE-coded 3 receivers × 2 signs:",
   p55NativeMin,"original unmodified p55 IoC",ioc(p55));
 console.log("All six simple source-derived p55 key consumers are non-native.");
 
+// First-party red p8 title consists of one 4-rune and one 8-rune word,
+// yielding exactly three 4-rune groups as a source-key possibility.
+// Start decoder at the first rune *after* that red title.
+const redSeed=cipher.slice(0,12);
+assert.deepEqual(redSeed,[14,10,14,19,1,14,19,5,2,13,3,17]);
+const treeBody=cipher.slice(12);
+assert.equal(treeBody.length,1717);
+const sourceTernary=ternaryThue(treeBody.length);
+const bodyNativeMin=Math.min(...Array.from(
+  {length:native.length-treeBody.length+1},
+  (_,start)=>ioc(native.slice(start,start+treeBody.length))));
+const redDrivers=[
+  {id:"repeat-red12",key:(j)=>redSeed[j%12]},
+  {id:"state-4block-rune",key:(j)=>redSeed[4*sourceTernary[j]+j%4]},
+  {id:"state-4block-token",key:(j)=>
+    redSeed[4*sourceTernary[Math.floor(j/4)]+j%4]},
+  {id:"state-column-rune",key:(j)=>redSeed[3*(j%4)+sourceTernary[j]]},
+  {id:"state-column-token",key:(j)=>
+    redSeed[3*(j%4)+sourceTernary[Math.floor(j/4)]}
+];
+let redBest={id:"",sign:0,ioc:-1};
+for(const driver of redDrivers)for(const sign of [-1,1]){
+  const plain=treeBody.map((v,i)=>mod29(v+sign*driver.key(i)));
+  const score=ioc(plain);
+  if(score>redBest.ioc)redBest={id:driver.id,sign,ioc:score};
+  assert(score<bodyNativeMin);
+}
+console.log("Original red12 title as Thue squarefree 3×4 key, 5 receivers × 2 signs:",
+  "best",redBest,"authentic native chapter minimum",bodyNativeMin);
+console.log("No red-title-derived plaintext on original tree-chapter body.");
+
 assert.equal(grid.shape, "32 rows by 8 columns across LP2 pages 49, 50, 51");
 assert.equal(grid.bytes.length, 256);
 let native256Minimum = Infinity;
