@@ -38,6 +38,18 @@ Both use the exact source products, including an invertible leading coefficient 
 
 Every candidate decrypts and reencrypts the original 1,145 runes exactly; none produces ordinary GP-native text. The strongest of the 24 has IoC **0.0347726509**. Across **all 32** Hill/filter candidates, no decoded original register exceeds this.
 
+## Independently authenticated 2014 five-by-five magic-square transfer to the whole scroll
+
+An independent first-party source supplies actual original numbers: Cicada's 2014 Stage10 [OpenPuff plaintext](../resources/cicada2014-openpuff-magic-squares.txt) contains two genuine five-by-five magic squares, of row sums **3301** and **1033**, plus a seven-by-seven sum1033 matrix. Their full 25-cell values existed before LP2 was released. An original human could possess them while seeing the five-page scroll's exact **1,145 = 5×229** GP29 runes. The missing premise is whether the creator intended those earlier matrices as LP2 keys.
+
+Reducing both complete authentic 5×5 matrices modulo29 gives nonzero determinants **10** and **3**, so each has a unique GF29 inverse. For each, run the *entire original p3–p7 ciphertext*, without truncation, through the 2 direct/inverse orientations ×2 printed/transpose row orientations ×2 source-visible adjacent-five/five-229-column layouts. This defines **16** complete source-fixed original decoders. Every decoded candidate exactly forward-reencrypts all 1,145 original GP glyphs. Under each corresponding inverse, authentic clear-p57-GP symbols repeated to 1,145 symbols form **16 separately encrypted planted positive messages**, each recovered **1,145/1,145**.
+
+The 16 original-cipher outputs all have ciphertext-like GP29 index of coincidence: **minimum 0.0342245091**, **maximum 0.0348734235**, attained by direct original sum1033 matrix, original orientation, adjacent five-symbol vectors. Compare the 701 independent pinned native-GP English/Latin 1,145-rune reference windows below, with minimum **0.0558829816**. No candidate contains native-GP prose; an additional fixed unknown GP29 substitution cannot change any IoC.
+
+**Research decision:** these two genuine historical square matrices, used as complete five-symbol block Hill keys, cannot be direct single-layer p3–p7 native-GP decoders under the 16 original/source-fixed reading conventions. Combined with the eight source-p7 circulant and 24 causal-product decoders, this establishes **48 reversible complete-scroll original-input negatives**, with successful inverse controls for all 48. The author never instructed reuse of a specific 2014 square as a Liber Primus encryption key, and a different source-selected consumer remains open. This is a negative source transfer, not recovered plaintext.
+
+The unified [original source SFT](../sims/lp2_p3_p7_five_scroll_product_inverse_sft.cjs) reads the genuine 2014 square text, computes the full modular inverses, checks original/source-planted re-encryption, and compares native GP controls. [Windows Node22 PASS run 45014244460](https://github.com/FlareZ123/liber-primus/actions/runs/45014244460).
+
 ## Language controls and constructive plants
 
 The [existing source-calibrated English GP29 encoder](../sims/lp2_native_gp_source_orthography_sft.cjs) is fixed from genuine solved LP1 and p57 spelling, including the special handling of IO and ING; the independent Latin GP29 corpus is already encoded. Compare *every complete disjoint 1,145-rune window* of the four pinned unrelated prose corpora:
