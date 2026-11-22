@@ -56,6 +56,12 @@ Crucially, allowing **any** of the sixteen plausible readings to land on at leas
 
 For the previously noted base60 pattern (at least a three-heading successor path and a direct solved-page link), the corrected 150,000 unbiased xorshift32/Fisher–Yates controls yield115 matches (0.0767%) for the fixed convention or548 (0.3653%) over its eight arithmetic variants. This supersedes a preliminary 100,000-sample 0.129% estimate that used an inferior low-order-bit random shuffle.
 
+### Independent source-language reconstruction: possible reason to select p56
+
+Agent20's [original H-word register test](../sims/lp2_redword_h_signed2016_contiguous_source_sft.cjs) recovers a different original-source link to Cicada's authenticated January 2016 message. The **first two words of p7's terminal red clause**, **both words of the adjacent p8 opening red heading**, and **p56's red AN END title plus its immediately following black word** recover the seven consecutive signed words **THE MAP THEIR MEANING IS THE ROAD**. This is a *source-text lexical selection* with its own conditional shuffle controls, not unknown LP2 plaintext, and remains Agent20's distinct result.
+
+Our numeric p3→p56 pointer could supply a **human-recognizable reason to bring the distant p56 into that neighboring p7/p8 H-word chain**: physical p3's red heading opens the chapter that ends at p7, and its GP0 sum208 selects p50 cell208, literal `0v` = 56 in base59. This cross-modal coincidence is a testable possible intended route, but does not overcome the untyped page/cell ambiguity, source-radix choice, or postselection. It supplies no GP29 cipher inverse or secret key.
+
 ## Original-cipher receiver test and next decision
 
 The **p3→p56 pointer** also selects the historically authentic prime-totient operation, not merely p56's cleartext as a possible pad. Applied to the **complete original p3–p7 chapter (1,145 GP runes)** with the prime sequence starting at its first prime, the two natural ciphertext-F-skip readings yield output IoCs **0.0342825** (no skip) and **0.0349253** (ciphertext-F bypass) and the same unreadable first title `M·N·H·TH·J·OE·S·IA·O·EO·S·W·Y·O·P·EA`. Interpreting the linked value56 as the *initial prime index* instead gives IoC **0.0346230** (no skip), **0.0347788** (ciphertext-F bypass), also unreadable. All four are direct source-readable inverses with frozen sign; none recovers a word. The [dual-radix SFT](../sims/lp2_redheading_dualradix_rooted_map_original_sft.cjs) reproduces the original chapter checks without guessing a key.
