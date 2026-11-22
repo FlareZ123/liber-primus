@@ -127,3 +127,61 @@ for (const field of [
   }
 }
 console.log("PASS: both original 256-point field transforms and both genuine native positive plants invert exactly; no direct solved-final-page Walsh linkage.");
+
+
+/**
+ * 256-point Fermat-prime number-theoretic transform.
+ * GF257* has 256 elements, and 3 has multiplicative order exactly 256.
+ * This is a single, independently fixed 256-butterfly/FFT-style recipient.
+ * @param {number[]} input 256 field elements
+ * @param {boolean} inverse Inverse NTT when true
+ * @returns {number[]} GF257 field vector
+ */
+function fermatTransform(input, inverse) {
+  assert.equal(input.length, 256);
+  const powers = Array(256).fill(1);
+  for (let k = 1; k < 256; k += 1) powers[k] = powers[k - 1] * 3 % 257;
+  assert.equal(powers[128], 256);
+  assert.equal(powers[0], 1);
+  const output = Array(256).fill(0);
+  for (let row = 0; row < 256; row += 1) {
+    let sum = 0;
+    for (let col = 0; col < 256; col += 1) {
+      const exp = row * col % 256;
+      const factor = powers[inverse ? (256 - exp) % 256 : exp];
+      sum = (sum + input[col] * factor) % 257;
+    }
+    output[row] = inverse ? sum * 256 % 257 : sum;
+  }
+  return output;
+}
+
+const nttForward = fermatTransform(byte, false);
+const nttInverse = fermatTransform(byte, true);
+assert.deepEqual(fermatTransform(nttForward, true), byte);
+assert.deepEqual(fermatTransform(nttInverse, false), byte);
+const nttNativePlant = Array.from({ length: 256 }, (_, i) => clear[i % clear.length]);
+assert.deepEqual(fermatTransform(fermatTransform(nttNativePlant, false), true), nttNativePlant);
+for (const [direction, candidate] of [["forward", nttForward], ["inverse", nttInverse]]) {
+  const exact = clear.reduce((sum, x, i) => sum + Number(candidate[161 + i] === x), 0);
+  const reduced = clear.reduce((sum, x, i) => sum + Number(candidate[161 + i] % 29 === x), 0);
+  const printable = candidate.filter((x) => x >= 32 && x <= 126).length;
+  const invalidBytes = candidate.filter((x) => x === 256).length;
+  assert.equal(exact, 1);
+  assert.equal(reduced, direction === "forward" ? 3 : 4);
+  assert.equal(printable, direction === "forward" ? 96 : 94);
+  assert.equal(invalidBytes, direction === "forward" ? 2 : 0);
+  console.log(JSON.stringify({
+    field: "Fermat257 NTT root3",
+    direction,
+    originalSource: "p49-p51 exact 256 base60 bytes, row-major",
+    exactP57Matches: exact,
+    mod29P57Matches: reduced,
+    asciiPrintable: printable,
+    illegalByte256: invalidBytes,
+    asciiPreview: candidate.slice(0, 100).map((v) => v >= 32 && v <= 126 ? String.fromCharCode(v) : ".").join(""),
+    originalSourceRoundTrip: "256/256",
+    plantedSolvedP57RoundTrip: "256/256",
+  }));
+}
+console.log("PASS: original GF257 NTT256 root3 and known-native-control inverses; no 95-rune terminal plaintext.");
