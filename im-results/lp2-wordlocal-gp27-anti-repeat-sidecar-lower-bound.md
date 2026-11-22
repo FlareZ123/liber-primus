@@ -72,6 +72,44 @@ This is deliberately only a **necessary alphabet-size gate**: actual dot matrice
 
 **Direct decoder check:** a fully specified *keyless* source-order mixed-radix lexicographic ranking of each independent punctuation frame, scaled to a base26 digit string, produces original-book index of coincidence **0.03844125693**, indistinguishable from the equiprobable 26-letter baseline \(1/26=0.03846154\), and an incoherent opening NSVLCVRSZGWUE. Thus the source's geometric/radix feasibility does **not** produce plaintext under the simplest invertible-order convention; a real decoder would still require an independently indicated rank ordering, state law or key. This single frozen unkeyed null is not a sweep over secret alphabets.
 
+## Minimal physical-punctuation reset repair: a source-exact reversible full-book transducer
+
+A stronger no-sidecar construction regards each of the **172 physically distinct punctuation endings** as an *optional* constrained-code reset. When an independently framed block cannot hold all q-letter messages of its observed rune count while preserving the exact original length and adjacent-repeat count of each printed word, **merge it with a neighboring punctuation block**. This decision depends on the original visible word shapes and mark locations alone. No language scorer chooses its exceptions.
+
+The new [complete GP26/GP27 original-input CommonJS source SFT](../sims/lp2_punctuation_merge_enumerative_original_sft.cjs) computes the optimal partition using dynamic programming that **maximizes the number of source-visible punctuation resets** subject to each retained group having exact codebook capacity \(M_{\rm group}\ge q^{N_{\rm group}}\). Its candidate comparisons are checked with exact BigInt for each final block. The optimal ignored source-physical punctuation locations are:
+
+| Candidate plaintext units | Independent reset blocks retained | Minimum ordinary printed punctuation endings ignored |
+| --- | ---: | --- |
+| 25 symbols | 171 | event **99** |
+| **Latin 26 letters** | **170** | **99 (p29), 174 (p52)** |
+| **GP27 native subset** | **167** | **63 (p16), 98 and 99 (p29), 151 (p43), 174 (p52)** |
+| GP28 | **no complete-book solution** | Entire original fixed-word codebook lacks 23 necessary bits |
+
+The consecutive original p29 shortfalls cannot be fixed by suppressing only the mark between them, since their *combined* exact-word codebook still lacks GP27 capacity. Both p29 punctuation marks must be merged into a larger neighboring block in q27. These are cardinality-optimal reset subsets, proven by the all-172-frame dynamic program and exact original integer checks. All marks suppressed in the optimal witness are ordinary physical four-dot marks, showing no special typography identifies them as author-designated control characters. Their selection by the algorithm is an *inference from the ciphertext pattern*, not an authenticated historical instruction.
+
+### All-rune lossless forward and reverse mapping
+
+For each word of original fixed length n with e original repeated adjacent pairs, assign its source-visible GP29 rune sequence its lexicographic ordinal in its \(M(n,e)\)-word class. Mixed-radix packing yields one original group ordinal \(0\le R<M\). Let \(Q=q^N\) for group rune length N. Decode
+
+\[
+P=\lfloor RQ/M\rfloor,\qquad
+L(P)=\lceil PM/Q\rceil,\qquad
+E=R-L(P).
+\]
+
+The putative N-symbol source text is the base-q expansion of P. The *additional reversible residual* E is already encoded inside the original ciphertext and is determined exactly from R. Its permitted range is \(0\le E<\lceil(P+1)M/Q\rceil-L(P)\). Exact original ciphertext reconstruction is \(R=L(P)+E\), mixed-radix unpacking, and exact original word-class unranking. New plaintext can be encoded by choosing E=0; this codebook has \(M\ge Q\) by construction. Keeping original residual E produces **complete original-plaintext-independent 12,956/12,956 glyph replay**.
+
+The source SFT verifies every original 2,896 word rank/unrank, reconstructs every original rune from (P,E), verifies every reset frame and ignored mark index, then performs a fully independent 12,956-rune **positive**: encode complete source-language alphabet material drawn from the authentically Cicada-used 2013 *Book of the Law*, with the **original original-word length and repeated-pair shape at every slot**, then decode all 12,956 source letters exactly. No bit is recovered from outside the original manuscript and no putative unknown English phrase is used to select any result. The completed execution on exact GH source files passed all **179,278 strict assertions**.
+
+| Unknown-original decoder | Actual recovered P IoC | Uniform baseline | Planted authentic-source IoC | Beginning of original inverse |
+| --- | ---: | ---: | ---: | --- |
+| q26 Latin | **0.038442294** | 0.038461538 | **0.069031031** | NSVLCVRSZGWUECDDXFGSJMIRTGNX… |
+| q27, original-GP order excluding EO/OE | **0.037011414** | 0.037037037 | **0.069031031** | SGDBCUTHMSEARMPTHCPDGICTHEATF… |
+
+Thus the *keyless, source-order canonical decoder recovers no original plaintext*: both outputs stay at their uniform alphabet baselines, with incoherent opening strings. The native-language positive has the expected high coincidence and always decodes correctly. The original 170 q26 blocks have canonical E=0 in only **19** instances; original q27 has E=0 in **34 of167**. Therefore the unmodified unknown ciphertext was **not** produced by this exact canonical E=0 sender, assuming its fixed word shape and optimum reset schedule. An arbitrary different codeword ordering or nonzero authored E could change this result, but would need a real clue and held-out coherent text.
+
+**Decision from this implementation:** We have **an explicit fully reversible, complete-book GP26 and GP27 constrained-code candidate requiring zero external missing-repeat bits**, with the original physical grammar and minimum necessary omitted punctuation resets. It is not a solved Cicada decipherment. It removes *mathematical lack of capacity* as the principal obstacle once arithmetic state is permitted across physical punctuation; the unresolved human-puzzle operand is a **source-selected ranking/key/carry or alternative plaintext segmentation** that produces sustained unknown-language text. The previous five-mark p29 obstruction applies only when one insists on resetting at *every* physical punctuation ending.
+
 ## Decisive next research choice
 
 If a clue really selects *independent per-word GP27→29 constrained encoding*, the implementer must point to the five extra bits for p35 word1939 and the correction fields for the **59 unmarked repeat-bearing words**. This architecture cannot be rescued by choosing a smarter 29-rune secret permutation. A genuinely **cross-word** GP27 arithmetic or finite-state coder remains cardinality-feasible, but the manuscript must select its carry law, secret or unkeyed symbol ordering, and reset rules. Demand full original-input inversion and untouched prose before treating such a code as Cicada's mechanism.
