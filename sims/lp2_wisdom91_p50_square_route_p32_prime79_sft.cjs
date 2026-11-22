@@ -235,6 +235,42 @@ function indexOfCoincidence(seq) {
 // previously used by the literal base60/ASCII-hex compass handoff.
 const exteriors = p55.length - strictWordInteriors.length;
 assert.equal(exteriors, 33);
+// Two independently established p55 physical counts (33 exteriors,
+// 76 whole page) have the SAME original numeric table token, and the shared
+// value indexes an F rune of the independently p50-selected p32 receiver.
+assert.deepEqual([cells[33], cells[76]], ['1s', '1s']);
+assert.equal(values[33], 114);
+assert.equal(values[76], 114);
+assert.deepEqual(values.flatMap((n, i) => n === 114 ? [i] : []), [33, 76]);
+assert.equal(corpus.translit[p32[114]], 'F');
+assert.deepEqual(p32.flatMap((x, i) => x === 0 ? [i] : []), [29, 30, 42, 114]);
+assert.equal(p32.length - 114, 7); // original source root7
+
+// Count all equivalently parser-defined original physical p0..55 pages
+// with both counts directly valid as byte addresses; only p55 collides.
+// A cross-page word carry is counted as local source-fragment exteriors,
+// exactly as the page55 33/43 count is defined.
+const sourcePages = transcript.split('%');
+const eligibleCountPairs = [];
+for (const page of corpus.pages) {
+  if (page.page > 55 || page.indices.length === 0) continue;
+  const originalPage = sourcePages[page.page >= 51 ? page.page - 1 : page.page];
+  const runicFragments = originalPage.replace(/\/\s*/g, '').match(/[\u16A0-\u16FF]+/gu) || [];
+  const inside = runicFragments.reduce((sum, word) =>
+    sum + Math.max(0, Array.from(word).length - 2), 0);
+  const outer = page.indices.length - inside;
+  if (outer >= 0 && outer < 256 && page.indices.length < 256)
+    eligibleCountPairs.push({ page: page.page, outer, total: page.indices.length, inside });
+}
+assert.equal(eligibleCountPairs.length, 22);
+assert.deepEqual(eligibleCountPairs.find((p) => p.page === 55), {
+  page: 55, outer: 33, total: 76, inside: 43,
+});
+assert.deepEqual(eligibleCountPairs.filter((p) => values[p.outer] === values[p.total])
+  .map((p) => p.page), [55]);
+console.log('UNIQUE COUNT ALIAS: only eligible p55 gives p50[exterior33]=p50[total76]=114');
+console.log('Original p32[114]=F (last7 start), genuine solved-p56 transparent-F symbol');
+
 const squarePairs = [];
 for (let a = 1; a * a <= 255; a++) {
   for (let b = 1; b * b <= 255; b++) {
