@@ -304,6 +304,30 @@ def main() -> None:
     print("SUMMARY",json.dumps(observed,sort_keys=True))
     order_tiebreak=original_title_tiebreak(variants[1][1],chapters[0]["lengths"])
     print("FIRST_CHAPTER_FIXED_ORDER",json.dumps(order_tiebreak,sort_keys=True))
+    # Lock the chapter-0 source position and winning inverse-3-column order
+    # before consulting any later chapter: no chapter-specific offset fitting.
+    first_at=order_tiebreak["source_offset_selected_before_any_order_test"]
+    next_at=first_at+len(chapters[0]["lengths"])
+    continuation=[]
+    for chapter in chapters[1:3]:
+        target=chapter["lengths"]
+        donor=variants[1][1][next_at:next_at+len(target)]
+        assert len(donor)==len(target)
+        hist=min_multiset_distance(donor,target)
+        predicted=inverse_column_read(donor,3)
+        exact=sum(a==b for a,b in zip(predicted,target))
+        continuation.append({
+            "chapter":chapter["chapter"],
+            "physical":chapter["physical"],
+            "source_word_offset_frozen":next_at,
+            "word_count":len(target),
+            "source_multiset_wordlength_replacements":hist.replacement_count,
+            "inverse_threecolumn_exact_positions":exact,
+            "inverse_threecolumn_exact_fraction":round(exact/len(target),6),
+            "source_continuation_matches_within_10_wordlength_changes":hist.replacement_count <= 10
+        })
+        next_at+=len(target)
+    print("LOCKED_JUNG_CONTINUATION",json.dumps(continuation,sort_keys=True))
 
 
 if __name__ == "__main__":
