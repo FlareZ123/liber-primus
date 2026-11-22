@@ -65,7 +65,7 @@ for(const f of plaintextSources){
 }
 const mod=x=>(x%29+29)%29;
 const inv=Array.from({length:29},(_,a)=>{
- if(a===0)return0;
+ if(a===0)return 0;
  for(let j=1;j<29;j++)if(a*j%29===1)return j;
  throw Error("noninvertible GF29 nonzero slope");
 });
