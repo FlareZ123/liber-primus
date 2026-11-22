@@ -104,12 +104,12 @@ const physical=p0Words.map((w,i)=>{
   return entry;
 });
 const boundary=physical.findIndex((w,i)=>w.end===236 && physical[i+1]?.start===237);
-assert.equal(boundary,51); // 52nd printed word, followed by 53rd
+assert.equal(boundary,52); // zero-based source word52 = 53rd printed word
 assert.deepEqual(physical.slice(boundary,boundary+2).map(x=>({
   ordinal:x.ordinal,start:x.start,length:x.length,end:x.end
 })),[
-  {ordinal:52,start:235,length:2,end:236},
-  {ordinal:53,start:237,length:7,end:243}
+  {ordinal:53,start:235,length:2,end:236},
+  {ordinal:54,start:237,length:7,end:243}
 ]);
 assert.deepEqual(p0.slice(235,244),[8,5,15,22,16,22,21,1,4]);
 const oldCandidate="THE DEVOTED";

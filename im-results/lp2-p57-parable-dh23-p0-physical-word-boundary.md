@@ -6,7 +6,7 @@
 
 The authentic final LP2 p57 PARABLE, after its seven-rune title, has three original verse spans of **30, 30 and 28 runes**, with exact original GP-prime sums **1259, 1031, 1229**. Those numbers occur in 2013 participant records; their product **1,595,277,641** appears in the pre-2014 Cicada audio file's original ID3 PARABLE label. Historical provenance and exact original GP29 arithmetic already established in [2013 source synthesis](../results/2013-761-parable-prime-products.md). None of these numbers were fitted to p0 ciphertext.
 
-The **signed 26 January 2013 Cicada TCP example** specifies an actual Diffie–Hellman worked exchange: prime `p=23`, base `g=5`, private exponents `a=6`, `b=15`, public `A=8`, `B=19`, shared `K=2`. Those are historical worked-example values, rather than confirmed author-selected LP2 key material. In the pre-existing p28 original clue, the p28 line containing literal `DH` and word `NEXT` gives several matching counts; this historical precedent makes the operation worth testing, while still leaving its LP2 transfer unlicensed.
+The **signed 26 January 2013 Cicada TCP example** specifies an actual Diffie–Hellman worked exchange: prime `p=23`, base `g=5`, private exponents `a=6`, `b=15`, public `A=8`, `B=19`, shared `K=2`. Those are historical worked-example values, rather than confirmed author-selected LP2 key material. In a separate candidate interpretation, the p28 line containing literal `DH` gives several matching geometric counts; this historical precedent makes the operation worth testing, while still leaving its LP2 transfer unlicensed.
 
 The physical LP2 p49–51 numerical table contains exactly **256 two-character tokens**. Treat each original printed token as one conventional base60 byte and a zero-based **pointer to another of the 256 cells**, as already modeled in the repository. Taking every p57 clear-clause sum `mod256` therefore gives **three source-derived, fixed initial addresses** `[235,7,205]`; no original ciphertext is examined to select those addresses.
 
@@ -31,12 +31,12 @@ p57 PARABLE verse1 -> ... -> 121 (2016 EPIPHANY) -> 237
 p57 PARABLE verse2 -> ... ->  92 (2016 EMPTY)    -> 236
 ```
 
-Original p0 physical words **52 and 53** (not plaintext cribs) are:
+Original p0 words at **zero-based indices 52 and 53** (the 53rd and 54th actually printed words, including both red title words) are:
 
 | Original physical page0 printed unit | Zero-based rune span | Rune length | Original ciphertext GP0 |
 |---|---:|---:|---|
-| Word52 | 235–236 | 2 | `[8,5]` |
-| Word53 | 237–243 | 7 | `[15,22,16,22,21,1,4]` |
+| Zero-based word52 (printed 53rd) | 235–236 | 2 | `[8,5]` |
+| Zero-based word53 (printed 54th) | 237–243 | 7 | `[15,22,16,22,21,1,4]` |
 
 Their complete original ciphertext is `[8,5,15,22,16,22,21,1,4]`. The signed 2016 phrase `EPIPHANY SEEKS THE DEVOTED` previously suggested **THE|DEVOTED** as a *conditional crib* for these words. Its seven-rune GP29 residual admits a local DH-state description, but **the frozen same-type holdout failed**; see [previous original-cipher evidence](lp2-p0-devoted-key-the-way-its-words.md). This investigation does **not** assert that either word has been deciphered. It strengthens the recipient selection, leaving the key and its cipher operation unresolved.
 
