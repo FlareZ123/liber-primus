@@ -101,6 +101,21 @@ That separate three-mode *state-reuse* proposal was tested directly on the only 
 
 The uncorrelated uniform expectation is about **23.69** symbol matches out of 687. A separate authentic p57 3-symbol source-native plant embedded through the **real 5-square and 7-square eigenvector bases** reproduces **687/687 symbols and all 229 complete triplets**. Thus neither actual packet alignment reveals a reused original three-mode source state, and the natural seven-to-five trace loses rather than reveals language structure. These tests limit only these specific receiver assumptions, without excluding a missing source-selected nonlinear operation.
 
+## Direct cross-chapter p8 rune clock on all 255 preceding scroll words
+
+An independently recognizable smaller receiver exists adjacent to the numbered 7×7 chapter. Physical **p3–p7 have exactly 255 complete printed words** (all 1,145 rune indices preserved, with actual word carry across line/page wraps), and the immediately following **p8 prints exactly 255 rune symbols**, precisely **51 complete five-symbol packets** for the 2014 5×5 1033 magic square. This source geometry motivates using p8 as a **one-symbol-per-word key stream** after the original source's five-square operation. Its original-language CHANGE-spectrum hint makes the eigenvector-coordinate alternatives especially specific.
+
+Freeze four whole-p8 source operators: multiply each consecutive five-rune packet by the authentic integer-square **B modulo29**, its exact inverse, or the fixed printed-CHANGE-order five-square eigenvector basis **V** and its inverse **V^-1**. Assign resulting 255 key residues to the 255 printed p3–p7 words in order and perform plaintextRune = (originalRune ± key[printedWord]) mod29 on **all 1,145 untouched source runes**. No phase shift, edited word boundary, key guessing, blank omission or half-packet adjustment is allowed. Both signs and the fixed forward reading give precisely eight source-defined candidate decoders, separate from the earlier direct p8-word pad and p7 red-product matrix tests.
+
+| Whole original 255-rune p8 key operator | All-scroll +key IoC | All-scroll −key IoC |
+| --- | ---: | ---: |
+| Authentic 2014 1033 square B | 0.034255046 | 0.034589428 |
+| B inverse | 0.034549730 | 0.034529881 |
+| CHANGE eigenvector basis V | 0.034181757 | 0.034207713 |
+| CHANGE eigenvector inverse V^-1 | **0.034687147** | 0.034357346 |
+
+All eight fully source-compatible 255-word receiver outputs remain GP29-frequency-flat, with no recoverable native-GP prose. Source-exact reencoding and an authentic solved-p57 native GP 1,145-rune plant recover **1,145/1,145** each; matrix inverses restore all original p8 key runes. The newly included SFT was independently executed on Windows Node22 and **[passed run 45073906506](https://github.com/FlareZ123/liber-primus/actions/runs/45073906506)**. The attractive 255↔255 word/rune equality does **not** select the five-square operator or prove Cicada intended the resulting word-key operation. These eight literal complete-decipherment candidates are rejected; another unhinted constant, clock or mode is not a justified rescue.
+
 ## A genuine known-key receiver: original 252-symbol quotient versus solved p56
 
 A source-level conjecture could make the seven-square transfer meaningful beyond a ciphertext-only visual transform. The original 256-cell numeric table's native GP29 polynomial divides exactly by the source factors `H=[3,26,24]` and `G=[27,5,15]`, leaving **252 quotient coefficients**. The separately authenticated solved p56 prime/totient cipher consumes exactly **84 known consecutive key residues**: `K[i]=(prime[i]−1) mod29`, with one F-transparent rune at ciphertext position56. Thus the quotient can be read as **three 84-rune lanes**, and the seven-square key transfer can act on each complete `84=12×7` lane. This is an independently checkable authentic-key target, unlike ranking prospective English fragments.
