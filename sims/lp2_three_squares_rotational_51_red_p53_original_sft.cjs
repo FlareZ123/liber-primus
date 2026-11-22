@@ -51,6 +51,10 @@ for (let i = 0; i + 51 <= native.length; i++) {
 }
 assert.equal(Math.min(...nativePairs), 140);
 assert.equal(Math.max(...nativePairs), 174);
+// Every source-keyed 51-position rearrangement, regardless of the 51! key,
+// preserves this invariant. It cannot become p57-like GP-native prose alone.
+assert.equal(pairCount(red51), 76);
+assert.ok(pairCount(red51) < Math.min(...nativePairs));
 
 // Scan only source-visible row / column order and entire-orbit reversal,
 // both additive directions. No crib, key tuning or original rune edits.
