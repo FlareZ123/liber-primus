@@ -207,6 +207,14 @@ function evaluate(name,a,b,truthA=null,truthB=null,freeA=0,freeB=0){
     r.plainA=show(answer.candidate,a.ends);
     const other=code(Array.from(d,(v,i)=>reduce(answer.candidate.charCodeAt(i)-65-v)));
     r.plainB=show(other,b.ends);
+    const derivedPad=Array.from(a.values,(c,i)=>reduce(c-(answer.candidate.charCodeAt(i)-65)));
+    let replayA=0,replayB=0;
+    for(let i=0;i<WIDTH;i++){
+      replayA+=Number(reduce(answer.candidate.charCodeAt(i)-65+derivedPad[i])===a.values[i]);
+      replayB+=Number(reduce(other.charCodeAt(i)-65+derivedPad[i])===b.values[i]);
+    }
+    r.forwardReplay=[replayA,replayB];
+    assert.deepEqual(r.forwardReplay,[WIDTH,WIDTH]);
     if(truthA&&truthB){
       let matchA=0,matchB=0;
       for(let i=0;i<WIDTH;i++){
@@ -280,5 +288,11 @@ evaluate("original-p24-p26",targets[24],targets[26]);
 evaluate("original-p24-p26-page-start",pageTop[24],pageTop[26],null,null,3,1);
 evaluate("near-art-negative-p24-p25",targets[24],targets[25]);
 evaluate("near-art-negative-p25-p26",targets[25],targets[26]);
-console.log("summary",JSON.stringify(results.map(({name,alive,deadAt,score,states,clipped,correct})=>
-  ({name,alive,deadAt,score,states,clipped,correct}))));
+assert.deepEqual(results.find(x=>x.name==="planted-shared-pad").correct,[WIDTH,WIDTH]);
+assert(results.find(x=>x.name==="matched-layout-shared-pad").correct.every(n=>n>=240));
+for(const n of ["original-p24-p26","original-p24-p26-page-start"]){
+  const result=results.find(x=>x.name===n);
+  assert(!result.alive && result.deadAt<CAL && result.clipped===0);
+}
+console.log("summary",JSON.stringify(results.map(({name,alive,deadAt,score,states,clipped,correct,forwardReplay})=>
+  ({name,alive,deadAt,score,states,clipped,correct,forwardReplay}))));
