@@ -83,14 +83,16 @@ function secretRowCapacity(base,reset){
  * this model is outside the exact five-trit-only permutation exclusion.
  * @param {number[]} input Plaintext when encrypting, ciphertext otherwise.
  * @param {{base:"index"|"prime",state:"C"|"P",sign:number,
- *   reset:"page"|"book",direction:"firstlast"|"lastfirst"}} cfg
+ *   reset:"page"|"book",direction:"firstlast"|"lastfirst",
+ *   tableRule:"rune"|"totientPrime"}} cfg
  * @param {"encrypt"|"decrypt"} mode
  */
 function transform(input,cfg,mode){
   let history=seed.slice(),prev=seed[4];
   const output=[];
   for(const x of input){
-    const shift=table[stateIndex(history,cfg.base,cfg.direction)]%28;
+    const t=table[stateIndex(history,cfg.base,cfg.direction)];
+    const shift=(cfg.tableRule==="rune"?t:gp.prime[t]-1)%28;
     let c,p;
     if(mode==="encrypt"){
       p=x;
@@ -116,7 +118,8 @@ function transformPages(cfg){
     // Transform the current page as one piece, retaining the last 5 state
     // symbols and immediately preceding ciphertext across book-mode pages.
     for(const c of page.indices){
-      const shift=table[stateIndex(history,cfg.base,cfg.direction)]%28;
+      const t=table[stateIndex(history,cfg.base,cfg.direction)];
+      const shift=(cfg.tableRule==="rune"?t:gp.prime[t]-1)%28;
       const d=mod(c-prev,29),p=d===0?28:mod(d-1+cfg.sign*shift,28);
       out.push(p);
       history.push(cfg.state==="C"?c:p);
@@ -215,16 +218,17 @@ for(const base of ["index","prime"]){
   const sample=secretRowCapacity; // original-bound function covered separately
   assert.equal(typeof sample,"function");
 }
-// Synthetic native-word recovery for all 32 explicit reversible rank28 variants.
+// Synthetic native-word recovery for all 64 explicit reversible rank28 variants.
 const clear=encodeSourceNativeGP(read(refs[1][1])).slice(0,1200);
 let successfulPlants=0;
 const direct=[];
 for(const base of ["index","prime"])
+  for(const tableRule of ["rune","totientPrime"])
   for(const state of ["C","P"])
     for(const sign of [-1,1])
       for(const reset of ["page","book"])
         for(const direction of ["firstlast","lastfirst"]){
-          const cfg={base,state,sign,reset,direction};
+          const cfg={base,tableRule,state,sign,reset,direction};
           const planted=transform(clear,cfg,"encrypt").output;
           const recovered=transform(planted,cfg,"decrypt").output;
           assert.deepEqual(recovered,clear);
@@ -232,7 +236,7 @@ for(const base of ["index","prime"])
           const actual=transformPages(cfg);
           direct.push({...cfg,ioc:ioc(actual),sentinelEA:actual.filter(x=>x===28).length});
         }
-assert.equal(successfulPlants,32);
+assert.equal(successfulPlants,64);
 direct.sort((a,b)=>b.ioc-a.ioc);
 assert(Math.abs(ioc(original)-0.03449302109588397)<1e-12);
 assert(Math.abs(direct[0].ioc-0.035328337270691804)<1e-12);
@@ -246,5 +250,5 @@ console.log(JSON.stringify({
   allNativeRank28PositivePlants:successfulPlants,
   topExplicitRank28Model:direct[0],baselineOriginalIoC:ioc(original),
   nativeClearIoC:ioc(clear),
-  decision:"Any fixed unknown five-trit-state GP29 permutation cannot recover native-English source distribution. The 32 literal p8 rank28 predecessor-feedback models also fail, despite fully reversible native plants. Further mechanisms require a new original-source selector."
+  decision:"Any fixed unknown five-trit-state GP29 permutation cannot recover native-English source distribution. The 64 literal p8 rank28 predecessor-feedback models also fail, despite fully reversible native plants. Further mechanisms require a new original-source selector."
 },null,2));
