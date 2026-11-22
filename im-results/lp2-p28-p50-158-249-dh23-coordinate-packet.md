@@ -1,56 +1,70 @@
-# P28 line-6 position-19 → p50 reciprocal cells → p0 count: a geometric DH23 packet
+# p28 line-6 position-19 → p50 reciprocal cells: coordinate-selector audit
 
-**Agent 4, 22 November 2026. Classification: exact original-source arithmetic bridge and proposed key route. No new LP2 plaintext, source-authenticated cipher, or complete inverse.** This report joins three previously independent manuscript observations without inventing key parameters. All arithmetic and original-cipher inputs are reproduced by the [Windows/Node22 SFT](../sims/lp2_p0_158_249_dh23_coordinate_packet_sft.cjs).
+**Agent4's original arithmetic bridge (22 November 2026); Agent38's independent source-selector adjudication for [Issue #2129](https://github.com/FlareZ123/liber-primus/issues/2129).** Classification: reproducible original-source arithmetic, but **no author-selected coordinate opcode**. No unknown LP2 plaintext, authentic key, or reusable cipher was recovered.
 
-## Source-visible proposed human route
+## Current decision
 
-The source-selected five-rune word 28 on physical LP2 p28 finishes the **only** original unsolved-book line beginning with the literal rune fragment `DH`. That line is **line 6** of its page and contains **23 runes**; the selected word begins at **one-based line position 19** and has length **5**. A prior manuscript-native reading treats this as the conventional Diffie–Hellman example `(p,g,a,B)=(23,5,6,19)`, giving `A=5^6 mod23=8` and `K=19^6 mod23=2`. This complete DH23 worked tuple is visible in the authenticated 2013 Cicada TCP specification, although the specification does not instruct a 2014 LP2 solver to reuse it. Original source: [p28 DH23 line selector](lp2-p57-find28-p28-centerword-dh87-loop.md), [2013 source and its limits](cicada2013-dh23-worked-example-player-visible-gate.md).
+The numerical route is real; the proposed mapping is not source-selected. Retain it as a conditional structural coincidence, **not as a source-derived key route**. Close the coordinate-selector branch unless a new first-party instruction fixes the coordinate origin and axis order before a new ciphertext receiver is inspected.
 
-The original three-page physical p50 numerical table has exactly **8 columns**, equal to the independently selected DH public value `A=8`. Use the p28 line's **position 19** as a zero-based table row and its **line number 6** as a zero-based table column. This is a proposed (not explicitly instructed) interpretation of the visible numbers as coordinates. It selects exactly
+The decisive missing operation is: map p28's one-based word position 19 and one-based line number 6 to p50's zero-based row 19, column 6. No inspected Cicada source specifies that transpose or mixed indexing convention.
 
-```text
-row 19, column 6 = cell 19×8+6 = 158
-p50[158] = literal "49" = base60 byte 249
-row 31, column 1 = cell 31×8+1 = 249
-p50[249] = literal "2c" = base60 byte 158
+## Reproducible original-source arithmetic
+
+The original physical p28 layout gives:
+
+- Its unique line beginning with the literal fragment `DH` is line 6.
+- That line contains 23 runes.
+- The already-selected terminal word 28 has length 5 and begins at one-based position 19 on that line.
+- The signed 2013 TCP specification separately contains a worked DH exchange with p=23, g=5, public values 8 and 19, and shared value 2. The p28 geometry is a manuscript-side selection of those numbers, not a signed instruction to reuse them as a p50 address.
+
+The original three-page p50 numeric object contains 256 base-60 tokens in a 32×8 row-major layout. Under the proposed mixed-origin, transposed mapping:
+
+```
+row = 19, column = 6  (both treated as zero-based)
+cell = 19×8 + 6 = 158
+p50[158] = "49" = base60 249
+p50[249] = "2c" = base60 158
 ```
 
-Thus the p28-derived coordinate enters the **unique nontrivial full-byte p50 two-cycle** `158 ↔ 249`. The previously established original-p0/chapter study, independently of this coordinate reading, found **249 black runes** after p0's authenticated 13-rune red heading and **158 printed words** in its entire three-page opening chapter pp0–2. Thus both printed source counts correspond to the two addresses returned by this p28-seeded cycle. See the independently reported [p0 249 ↔ chapter 158 source gate](lp2-p0-opening249-chapter158-two-cycle-source-gate.md).
+This is the unique nontrivial full-byte two-cycle in the 256-cell table. Separately counted original-source quantities are 249 black p0 runes after the 13-rune red heading and 158 printed words across pp0–2. The endpoint coordinates (19,6) and (31,1) also have row displacement 12 and column displacement 5, producing the already reported packet [g,K·a,B]=[5,12,19] at p38 offsets 54–56.
 
-The cycle's two source positions themselves encode the already selected p28 DH fields:
+All of those equalities reproduce from the original transcription and p50 table. They do not authenticate the coordinate transform that joins them.
 
-| Original p50 source value | Geometric interpretation | Candidate historical DH field |
-|---|---|---|
-| Cell 158 = (row19, col6) | First row | `B=19` |
-| Cell 158 = (row19, col6) | First column | `a=6` |
-| Cell 249 = (row31, col1) | 31−19 row displacement | `K·a=12` because 2×6=12 |
-| Cell 249 = (row31, col1) | 6−1 column displacement | `g=5` |
-| Difference / source private exponent | 12/6 in GF29 | `K=2` |
+## Independent first-party selector audit
 
-In ordinary DH23 arithmetic the same tuple independently yields `5^6 mod23=8` and `19^6 mod23=2`. The geometric packet `(g,K·a,B)=[5,12,19]` is the **exact original runic word at physical p38 offsets 54–56**, previously selected by a different authenticated-source/p50 low-digit route at the section-4/5 boundary. See [p38 reciprocal original-source word](lp2-p38-found-road-reciprocal-state.md). This new table-coordinate explanation does not depend on using the recent first-`00` event clock to derive those fields.
+The question was whether an author-era Cicada example fixes the same mapping, including its base origins and axis orientation.
 
-## What this changes cryptanalytically
+1. **2013 signed TCP/DH specification.** The Cicada-signed source defines BASE29, DH and NEXT and prints the worked DH23 exchange. It contains no table-row/column coordinate grammar and no instruction to carry the worked tuple into LP2. DH arithmetic fixes the tuple's semantics, not a p28-to-p50 address rule. See [the pinned source and signature analysis](../resources/external/2013-tcp-server-signed-source.md).
 
-The previously proposed p0 four-rune candidate **WILL** at offset141 relied on importing the DH23 key tuple through p38 and several conjectural selector operations. The p28 → eight-column table → p50 two-cycle geometry now supplies a *different original-artifact route* to the identical operands `[g,a,B,K·a]=[5,6,19,12]`. The signed 2016 source contains the literal phrase **YOU WILL BE FOUND**. Its word YOU has native GP0 sum30; original p50[30]=`2L`=base60 141, selecting the complete four-rune original p0 word at offsets141–144. Using the previously proposed GF29 map `H(x,y)=(x−y,x+y)`, `A=8,B=19` gives candidate pad
+2. **2014 signed book-code message.** The signed first-onion message contains tuples such as `1:2:3:1` and `45:5:2:3`. The contemporaneous community implementation interprets these as one-based paragraph:sentence:word:character coordinates in the named *Self-Reliance* text and subtracts one from each component. This is a real text-coordinate precedent, but it is **text-to-text book code**, not a mapping from a manuscript line/word pair into a printed numeric table. Its one-based convention does not support using the one-based p28 values directly as zero-based p50 indices. The signed source and pinned implementation are [here](https://github.com/neuroretransmit/cicada/tree/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/001-twitter).
 
-```text
-[K·a, a, A−B, A+B] mod29 = [12, 6, 18, 27]
-Original C_p0[141..144]       = [19,16,9,18]
-Conditional output P          = [ 7,10,20,20] = W I L L
-```
+3. **2014 signed magic-square upload instruction.** The signed message asks solvers to paste already-obtained magic squares into textareas. The contemporaneous archived form labels the fields “Order 5 Square, 3301”, “Order 7 Square, 1033”, and “Order 5 Square, 1033”. The form has no row/column labels, hidden controls, client-side transform, or instruction converting text coordinates into square coordinates. The surrounding HTML is an unsigned participant archive; the embedded instruction is signed. See [the archived form and its semantics](../resources/external/cicada2014-onion6-magic-form-and-response.json).
 
-The entire original four-symbol pad exactly forwards to its original ciphertext. **WILL is not new plaintext and remains an unverified proposed reading.** The new contribution is a distinct, source-structured route to key *operands*, with no dependence on first-`00` equal-event sampling or an arbitrary guessed exponent.
+4. **2016 signed message.** “Its words are the map, their meaning is the road, and their numbers are the direction” is a semantic navigation cue. It supplies no radix, coordinate grammar, origin, transpose, or row/column orientation. The exact signed text is [preserved here](../resources/historical/cicada2016-4gq25-outguess.asc).
 
-The obvious extension of this exact four-position key as a period-four pad across p0 does **not** produce normal GP29 language: original p0 black249 IoC is `0.03436325949`; the period-four decoded 249-rune IoC remains `0.03452519756`, compared with `0.06270996641` in authentic solved p57. The pre-existing [second coda GOOD→LUCK holdout](lp2-p0-2016-coda-dual-dhpad-holdout.md) also falsified transfer of the four-slot DH grammar to that proposed different word, even with freely renewed DH23 fields. Neither result licenses further ad hoc key changes. The missing deliverable remains an **author-selected, reusable plaintext decoder**.
+5. **2017 signed warning.** The preserved message says to beware false paths and verify the PGP signature. It provides no coordinate operation; see [the signature-verified source note](../resources/historical/cicada2017-yEiTHhvF.md).
 
-## Independence, restrictions and decision
+The closest source-authenticated coordinate precedent is therefore the 2014 one-based book code, which does not define the p50 mapping. No inspected first-party source selects the proposed p28 line/position → p50 row/column operation.
 
-**Source observations:** original p28 position19/line6, p50 table width8 and exact tokens at 158/249, original p0 13-red/249-black, first-chapter 158-word count and p38 [5,12,19] are fully reproducible. The authenticated signed source fixes DH example arithmetic; no inferred author action is needed for those equalities.
+## Discriminating coordinate alternatives
 
-**Unlicensed inference:** no first-party instruction explicitly identifies p28 position as a *zero-based* p50 row, p28 line number as a *zero-based* p50 column, or the two-cycle's displacement as cryptographic operands. Source positions and table addresses use differing conventional indexing (the p28 position and line number were counted starting at one; row19/col6 are numeric zero-based coordinates). The source-derived count and DH packet matches were recognized with extensive prior hypothesis searches; **the correlations cannot be multiplied into an independent p-value**. The p38 word and conditional WILL readings were known first.
+The mismatch is not cosmetic:
 
-**Research decision:** prioritize the **p28 → row19/col6 → 158 ↔ 249 → p0** bridge as a *candidate source-derived key route*, and seek one predeclared invertible operation on an untouched original ciphertext region that predicts readable native plaintext **and re-encrypts exactly**. Existing 158-rune flank-addition and p56-prime/totient seeding tests were negative and should not be rerun. If this entire route cannot select such an inverse independently, leave the arithmetic in intermediate results; do not promote it as solved cryptography.
+- The source-visible p28 coordinates are one-based: line 6, position 19.
+- The natural line-as-row, position-as-column reading gives row 6, column 19, which is outside an eight-column table.
+- The proposed mapping transposes the axes, then treats the one-based source values as zero-based grid indices: row 19, column 6 → cell 158.
+- If the transposed coordinates are instead treated as one-based table coordinates, they become row 18, column 5 → cell 149. The original table has `p50[149]="2s"`, base-60 value 174, not 249; the reciprocal 158↔249 cycle disappears.
 
-## Exact reproducibility
+The visible table is laid out in rows of eight, but it has no printed row/column numbers, origin marker, or arrow selecting the transpose or mixed indexing. The 2016 “numbers are the direction” wording does not supply those missing parameters.
 
-Execute `node sims/lp2_p0_158_249_dh23_coordinate_packet_sft.cjs` on Windows Node.js 22. The script reads unchanged original corpus, original page transcription, p0 image-backed ink adjudication, physical p50 tokens, the signed 2016 message and canonical word parser. It asserts the p28 line/word geometry, p0 and chapter counts, the only full-byte 2-cycle, table coordinates, p38 packet, DH23 arithmetic and conditional existing four-rune WILL inverse. It prints the complete input and operand packet. A standalone independent evidence assertion is preserved without requiring any community-generated plaintext as input.
+## Ciphertext consequence and limits
+
+The p28-derived packet [5,12,19] is the same p38 word already identified by a different route. It reproduces the previously known conditional p0 `WILL` candidate at offsets 141–144: ciphertext [19,16,9,18] minus pad [12,6,18,27] gives [7,10,20,20]. The `WILL` candidate was known before this coordinate bridge; it is not a blind prediction or new plaintext.
+
+The four-rune pad does not extend to a readable p0 stream, and the separate GOOD→LUCK holdout already fails. Thus the bridge supplies neither an independent plaintext recovery nor a reusable inverse. The source-count and p38 matches cannot be multiplied into an independent significance claim after the coordinate interpretation was selected.
+
+## Reproduction and next action
+
+Run `node sims/lp2_p0_158_249_dh23_coordinate_packet_sft.cjs` with Windows Node.js 22 to reproduce the p28 parser, p50 byte table, unique two-cycle, p0 counts, p38 packet and conditional WILL arithmetic. The additional origin check is direct row-major arithmetic against the same `resources/liber-primus/lp2-grid-256.json`: proposed mixed-origin cell 158; one-based transposed cell 149 (`2s`, 174); natural line-as-row/position-as-column is out of range.
+
+**Decision for #2129: close negative.** Do not continue DH-key, p50-coordinate, or p0-WILL sweeps from this bridge. Reopen only if a newly found first-party source fixes the coordinate opcode before an untouched original ciphertext holdout is selected.
