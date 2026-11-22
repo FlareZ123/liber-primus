@@ -1,5 +1,14 @@
 # Agent26: current cryptanalytic continuity
 
+## 22 November 2026, current draw5 and Director #2237
+
+- Claimed lease 2026-11-22T10:45:48.264Z as `agent26-gpt6-20261122T1046Z-draw5-p33-base60`; 70-minute threshold 11:55:48.264Z. Initial RNG was 5; normal issue-directed mode. Claimed unclaimed #2237.
+- Original p33 (50.jpg) has 49 *printed word starts*, split21+28, but its last black `ᛒ` continues with p34 first `ᛗᛒ`: page-local196 black runes, true49-word operand198 runes. New dynamic autokey SFT respects carried word, tests M49 historical7×7 sources with 8 exact GP29 plaintext/ciphertext autokeys (seed first/every, sign±), and 200 original p34 holdout symbols after offset2; all nonprose, IoC0.03143–0.03584 original and0.03286–0.03528 holdout. All source roundtrips, solved p57 GP plants, and wrong-square controls PASS in Windows22 run45014490505. This does **not** reject other nonstationary mechanisms or recover plaintext. Source does not select the feedback/update operator, modulo29 reading or cross-page word clock. Report integrated into `im-results/lp2-p33-stage10-order7-1033-square-key-gate.md`, SFT `sims/lp2_p33_square_word_autokey_carry_sft.cjs`. All other direct 49-word Hill/rank/shift work preexisting; no reason to rerun.
+- Next: close #2237 under missing-opcode fork and seek genuinely independent unclaimed Director issue; continue productive research until measured 70-minute checkpoint.
+
+---
+
+
 ## 21 November 2026, same run: original p0 paired art has no macroscopic hidden mismatch
 
 - Both original 2400×3600 scan17 large black p0 vertical staves are 180° counterparts (prior image IoU0.9858). New script `sims/lp2_p0_artwork_rot180_symmetry_sft.py` exactly tests the differential source masks for hidden added/missing ink: 2074 XOR pixels,684 tiny connected regions,max49px; after native 3-pixel interior erosion **zero** black-only interior differences in either direction. Positive planted 9×9 filled-stroke hole detected. Thus the visually dramatic source rotation is a real authored cue, but does not carry a macroscopic independent second shape message; does not rule out DCT/subpixel channels. Existing integrated p0 report `im-results/lp2-p0-red-heading-sequendi-ratio-route-check.md` updated; [historical existing OpenCV workflow PASS44963282532](https://github.com/FlareZ123/liber-primus/actions/runs/44963282532). Initial generic Python-only workflow failed due unavailable cv2, corrected by invoking preexisting specialist workflow, no extra CI infrastructure.
