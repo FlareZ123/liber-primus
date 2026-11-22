@@ -188,6 +188,56 @@ clocks.sort((a, b) => b.IoC - a.IoC);
 assert.equal(clocks[0].phase, 49);
 assert(Math.abs(clocks[0].IoC - 0.03448768023923027) < 1e-12);
 assert(Math.abs(originalIoC - 0.03447839786450569) < 1e-12);
+/**
+ * New source-dependent consumer: the alpha key changes on every rune pair.
+ * Exhaust all root-56 starting phases, both directions, both page-local
+ * pairing alignments and three independently motivated generator scopes.
+ */
+const changingKeyClocks = [];
+const unknownPages = corpus.pages.slice(0, 56);
+for (const clock of ['page', 'chapter', 'continuous']) {
+  for (const dir of [-1, 1]) {
+    for (const pairPhase of [0, 1]) {
+      for (let phase = 0; phase < 56; phase++) {
+        const decoded = [];
+        let absoluteStart = 0;
+        for (const page of unknownPages) {
+          const encrypted = page.indices;
+          const out = encrypted.slice();
+          let pairIndex = 0;
+          for (let i = pairPhase; i + 1 < encrypted.length; i += 2) {
+            const time = clock === 'page' ? pairIndex :
+              clock === 'chapter' ? page.page + pairIndex :
+                Math.floor((absoluteStart + i) / 2);
+            const pow = ((phase + dir * time) % 56 + 56) % 56;
+            const [a, b] = powers[pow];
+            const [plaintextLeft, plaintextRight] =
+              divide(a, b, encrypted[i], encrypted[i + 1]);
+            out[i] = plaintextLeft;
+            out[i + 1] = plaintextRight;
+            pairIndex++;
+          }
+          decoded.push(...out);
+          absoluteStart += encrypted.length;
+        }
+        changingKeyClocks.push({
+          clock, dir, pairPhase, phase, IoC: ioc(decoded)
+        });
+      }
+    }
+  }
+}
+assert.equal(changingKeyClocks.length, 672);
+changingKeyClocks.sort((a, b) => b.IoC - a.IoC);
+assert.deepEqual([
+  changingKeyClocks[0].clock,
+  changingKeyClocks[0].dir,
+  changingKeyClocks[0].pairPhase,
+  changingKeyClocks[0].phase
+], ['continuous', 1, 0, 3]);
+assert(Math.abs(changingKeyClocks[0].IoC -
+  0.03455377694346295) < 1e-12);
+
 const genuine = controls[3].slice(0, 262);
 const nativeCipher = transform(genuine, 17, 13, 0, false, true);
 const nativeDecode = transform(nativeCipher, 17, 13, 0);
@@ -199,6 +249,8 @@ console.log(JSON.stringify({sourceRedProducts: coefficients,
   originalCases: findings, all56PageRawIoC: originalIoC,
   sourcePageClockBest: clocks[0],
   sourcePageClockWorst: clocks[clocks.length - 1],
+  withinPageChangingKeyModels: changingKeyClocks.length,
+  sourceChangingKeyBest: changingKeyClocks[0],
   nativePositiveRunes: genuine.length, genuinePlantExactRoundtrip: true,
   caveat: 'The transparent-F variant is exploratory and is not a universal lossless decoder.'}, null, 2));
 console.log('PASS: source-polynomial field identities and every direct original page inversion tested.');

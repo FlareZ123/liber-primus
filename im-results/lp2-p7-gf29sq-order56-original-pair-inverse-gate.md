@@ -37,6 +37,12 @@ The SFT checks exact original forward reencryption for every original-page winni
 
 A more source-constrained candidate advances the multiplier by α at every physical page, including rune-free p50, and resets adjacent pairs at each page. All **56** possible initial phases were evaluated on every one of the **12,956** original encrypted runes. The original IoC is **.0344783978645**; the **best** α-clock phase (49) gives **.0344876802392**, essentially unchanged. Algebra explains the lack of mixing: even powers α^(2k)=8^k rescale each coordinate; odd powers α^(2k+1)=8^k α swap/rescale the two coordinates. They do not generate general within-page diffusion.
 
+## Independently varying α-key within each page
+
+A direct 56-page key could fail because the intended clock advances *within* the text rather than once per page. The same exact field root therefore supports a small source-constrained nonlinear-register-free extension. On all 12,956 original runes, use the pairwise multiplier α^(phase + direction*time), with 56 possible phases and both directions. Three original data-clock interpretations are tested: (1) reset the pair index independently at every physical page, (2) offset it by the physical page number, including the rune-free p50, or (3) use the absolute rune index of the pair in the full book, while respecting authentic page-local pair boundaries. Both page-local pairing alignments are included, for **56×2×3×2 = 672** fully reversible source-derived direct decoders.
+
+The mathematically *largest* full-book native GP IoC among **all 672** is **0.03455377694346**, using continuous-rune-index key time, direction +1, pair phase0, generator start3. It is still effectively ciphertext-flat; unmodified full-book IoC is **0.03447839786451**. The best page-reset, physical-page-offset and absolute-rune models separately peak at **0.03449214864812**, **0.03452714522651** and **0.03455377694346**. This extension tests an authentic source-supported *changing* key, not merely a constant unit. It still does **not** test arbitrary nonlinear output laws or a source-unknown PRNG.
+
 ## Cryptanalytic decision
 
 A fixed-page GF29² paired-field multiplication or division, even granting all 840 secret keys separately per page, cannot be the sole direct inversion to ordinary native-GP English of p0, p9, p16, p23 and p40 under the tested source-aligned pairing and all solved-native controls. The specific globally advancing α^page source clock likewise yields no meaningful original plaintext.
