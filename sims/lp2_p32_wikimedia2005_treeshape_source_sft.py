@@ -65,6 +65,35 @@ def fit(template: np.ndarray, target: np.ndarray) -> dict:
     return best
 
 
+
+def sift_consistency(first: np.ndarray, second: np.ndarray) -> dict:
+    """Original-geometry SIFT inliers, separate from broad blur-correlation fits."""
+    sift = cv2.SIFT_create(nfeatures=1800, contrastThreshold=0.006,
+                           edgeThreshold=20)
+    clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8))
+    a = clahe.apply(cv2.resize(first, (640, 640), interpolation=cv2.INTER_AREA))
+    b = clahe.apply(cv2.resize(second, (640, 640), interpolation=cv2.INTER_AREA))
+    key_a, des_a = sift.detectAndCompute(a, None)
+    key_b, des_b = sift.detectAndCompute(b, None)
+    result = {"keypoints": [len(key_a), len(key_b)], "ratioPairs": 0,
+              "inliers": 0, "inlierFraction": 0.0}
+    if des_a is None or des_b is None or len(des_b) < 2:
+        return result
+    pairs = cv2.BFMatcher(cv2.NORM_L2).knnMatch(des_a, des_b, k=2)
+    good = [left for left, right in pairs if left.distance < right.distance * 0.73]
+    result["ratioPairs"] = len(good)
+    if len(good) < 4:
+        return result
+    points_a = np.float32([key_a[m.queryIdx].pt for m in good])
+    points_b = np.float32([key_b[m.trainIdx].pt for m in good])
+    homography, mask = cv2.findHomography(points_a, points_b,
+        cv2.RANSAC, ransacReprojThreshold=4)
+    if mask is not None and homography is not None:
+        result["inliers"] = int(np.sum(mask))
+        result["inlierFraction"] = round(result["inliers"] / len(good), 5)
+    return result
+
+
 def main() -> None:
     image49 = read_original(49)
     image72 = read_original(72)
@@ -129,6 +158,16 @@ def main() -> None:
         "localcontrast3": to_canvas(((ghost - background) > 3).astype(np.uint8) * 255)
     }
     cover_results = {name: fit(a, target) for name, a in faint.items()}
+    feature_geometry = {
+        "p55ToP32": sift_consistency((255 - p55).astype(np.uint8),
+                                     (255 - p32).astype(np.uint8)),
+        "coverToP32": sift_consistency(
+            (faint["band2to60"] * 255 / max(1, np.max(faint["band2to60"]))).astype(np.uint8),
+            (255 - p32).astype(np.uint8)),
+        "coverToP55": sift_consistency(
+            (faint["band2to60"] * 255 / max(1, np.max(faint["band2to60"]))).astype(np.uint8),
+            (255 - p55).astype(np.uint8))
+    }
 
     # Scan all 12 predeclared same-size positions across the signed 2016 image.
     # Some noncentral windows overlap the tree: retain their scores rather than
@@ -162,6 +201,7 @@ def main() -> None:
             "sha256": hashlib.sha256(signed_data).hexdigest(),
             "dimensions": [width, height],
             "centralTreeToP32": cover_results,
+            "featureGeometry": feature_geometry,
             "sourceCropPositions": control_crops,
             "blockShuffleNull": {
                 "seeds": 32,
