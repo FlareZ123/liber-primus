@@ -16,7 +16,7 @@ A duplicate's allowed phase can be checked either immediately **before** emittin
 
 ## Five unchanged original doublet-gap witnesses
 
-Original physical rune offsets are **zero-based destinations of the second rune in a repeat pair**. For each row below, there are two different actual repeated-rune pairs at those offsets in the same original physical page, and **no F rune and no documented printed comma/full-stop/large mark strictly between the pair destinations**. The clock therefore cannot skip an F or reset between the two; both repeated pairs must occupy the same allowed phase. The intervening step sum is exactly zero modulo m.
+Original physical rune offsets are **zero-based destinations of the second rune in a repeat pair**. For each row below, there are two different actual repeated-rune pairs at those offsets in the same original physical page, and **no F rune and no documented printed comma/full-stop/large mark or red-ink rubric between the pair destinations**. The clock therefore cannot skip an F or reset between the two; both repeated pairs must occupy the same allowed phase. The intervening step sum is exactly zero modulo m.
 
 | Physical page / original JPEG | Original repeated-rune destinations | Repeated pair symbols | Gap | `[length, sum(r), sum(P(r))]` for pre-event timing | Same for post-event |
 | --- | --- | --- | ---: | --- | --- |
@@ -51,7 +51,7 @@ This gives a strict answer to the exact candidate architecture, not a probabilit
 
 ## Original-input proof, direct exhaustive checks and positive clock
 
-The [read-only Node22 Windows SFT](../sims/lp2_antirepeat_affine_gpweight_allmod_smith_sft.cjs) reads the unchanged canonical `resources/liber-primus/lp2-corpus.json` and `lp2-punctuation-identity.json`, reconstructs the **55 rune-bearing physical pages and 12,956 source GP runes**, checks all five actual doublets and **absence of F/punctuation between them**, re-computes all five source-derived original gap vectors, the exact 30+10 minors for both timing conventions, and independently tests every secret coefficient triple for **all 28 integer moduli m=2..29**. Each of these 28 finite keyspaces has exactly the stated zero/unique F-only two-element kernel.
+The [read-only Node22 Windows SFT](../sims/lp2_antirepeat_affine_gpweight_allmod_smith_sft.cjs) reads the unchanged canonical `resources/liber-primus/lp2-corpus.json` and `lp2-punctuation-identity.json`, reconstructs the **55 rune-bearing physical pages and 12,956 source GP runes**, checks all five actual doublets and **absence of F/punctuation and red rubric between them**, re-computes all five source-derived original gap vectors, the exact 30+10 minors for both timing conventions, and independently tests every secret coefficient triple for **all 28 integer moduli m=2..29**. Each of these 28 finite keyspaces has exactly the stated zero/unique F-only two-element kernel.
 
 The earlier independent [five-phase source SFT](../sims/lp2_antirepeat_gpprime_ordinal5_rank3_sft.cjs) additionally generates a true nonstationary prime/ordinal-dependent **125-rune positive clock** with **24 legal duplicate events**, confirming that the declared mechanism can actually produce repeated output at a phase gate in laboratory data; the original source fails while a positive genuinely generated sequence passes.
 
@@ -59,7 +59,7 @@ The earlier independent [five-phase source SFT](../sims/lp2_antirepeat_gpprime_o
 
 ## Cryptanalytic decision and limitations
 
-**Retire every affine-combination source-GP ordinal/prime modular output-clock rule whose duplicate ciphertext rune pairs may occur only at a single counter phase, and whose only clock resets are printed punctuation or page starts, for all m≥2.** The sole formal even-modulus survivor is an F-only toggle that is frozen on all 28 non-F runes. It cannot be presented as evidence that Cicada designed a useful progressing clock or as a recovered cipher.
+**Retire every affine-combination source-GP ordinal/prime modular output-clock rule whose duplicate ciphertext rune pairs may occur only at a single counter phase, and whose only clock resets are printed punctuation, source red-rubric spans or page starts, for all m≥2.** The sole formal even-modulus survivor is an F-only toggle that is frozen on all 28 non-F runes. It cannot be presented as evidence that Cicada designed a useful progressing clock or as a recovered cipher.
 
 The proof **does not** cover a clock that intentionally resets on every printed word/line, nonlinear weights in prime/ordinal, dependence on two previous runes, contextual exception gates, additional plaintext-side invisible skips, arbitrary time-varying forbidden phases, or a fully arbitrary polygraphic cipher. These larger families need a new original clue selecting their state and reversible update, not an ad hoc exemption of the five witnessed original gaps.
 
