@@ -41,3 +41,5 @@ This result **does not** exclude a genuinely changing-state or position-conditio
 The standalone [original-input Node22 CommonJS SFT](../sims/lp2_bookend_global_permutation_count_gate_sft.cjs) reads the canonical [LP2 index tape](../resources/liber-primus/lp2-corpus.json); confirms both original six-rune bookends and the exact square dimensions; computes original 29-bin frequency counts; exhausts all 812 affine maps; proves the 29!-wide sorted matching bound; and checks a genuine source-shaped synthetic positive plus an impossible synthetic negative.
 
 A productive successor to the source-register hypothesis must choose **one independently printed reversible value-changing operator** before inspecting output, and show a contiguous original plaintext span and a withheld chapter under the same rule. More arbitrary spatial paths are now immaterial for the pure global-palette model, since all such paths fail the exact multiset condition.
+
+The original SFT passes on Windows Node.js 22: [run45064905583](https://github.com/FlareZ123/liber-primus/actions/runs/45064905583).
