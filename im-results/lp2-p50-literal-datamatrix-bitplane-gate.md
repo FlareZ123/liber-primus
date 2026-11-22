@@ -1,30 +1,30 @@
-# Original p49–51 256-cell bitmap as an ECC200 Data Matrix
+# Source-typed p49–p51 ECC200 literal-bitplane gate
 
-**Decision, 22 November 2026:** The 32×8 256-cell numerical carrier on LP2 physical p49–p51 **does not contain a literal bitplane Data Matrix ECC200 finder** under either printed base60 or source-studied base59-without-f reading, the native 8×32 rectangular geometry, or three natural folds to 16×16. This is a **finite source-typed negative**, with no new ciphertext decryption, keys, or plaintext.
+**Corrected decision, 22 November 2026.** The original LP2 physical p49–p51 table prints exactly 256 two-character numeric cells in **32 rows of eight**, split 10+13+9 by printed page. Native 8×32 rectangular Data Matrix ECC200 has two 8×16 data regions and **88 mandatory marker cells**. An earlier full source test, [`sims/lp2_grid_8x32_datamatrix_finder_sft.cjs`](../sims/lp2_grid_8x32_datamatrix_finder_sft.cjs), **already rejects the canonical base60 literal-bitplane representation**, along with much stronger unconstrained static byte-symbol assignments. Our original 76-cell outer-border check was incomplete, and is superseded. The corrected test preserves the prior result while adding a second sourced byte reading and three direct folds into the **16×16 single-region ECC200** alternative. None exhibits the required exact finder. This is an incremental bounded negative, **with no recovered LP2 plaintext or key**.
 
-## Why this operation is historically plausible and bounded
+## Source evidence and test grammar
 
-The source visibly prints **32 rows of eight two-character numerical cells** across three consecutive physical pages, with original row counts 10+13+9. Interpreting the codes as bytes produces a 256-cell array. A rotated **8×32** rectangle and a folded **16×16** square are both standard ECC200 Data Matrix symbol sizes. A puzzle player can recognize such a barcode because ECC200's marker is structurally specified: one solid dark L edge and alternating edges on the other sides. The marker is an unusually strong exact source-driven test. Requiring an *exact border* removes any need for image recognizer confidence thresholds, arbitrary cipher passwords, or encoded-content guesses.
+The original table's rendered size naturally matches an 8×32 rectangular ECC200 carrier once rotated. It also contains 256 cells, exactly the number of modules in a 16×16 square ECC200 carrier. The latter has one data region, with **60** required solid left/lower and alternating upper/right border positions. The rectangular format has **two adjacent 8×16 regions**, each with solid L and alternating boundaries, hence **88** constrained positions. This structural distinction is essential, and corrects the earlier version of this report. Standard reference: ISO/IEC 16022, section on ECC200 finder patterns and rectangular symbol regions, also the original [8×32 gate](../sims/lp2_grid_8x32_datamatrix_finder_sft.cjs).
 
-The two numeric readings use an unchanged original 32×8 token table in `resources/liber-primus/base60-grid.json`: base60 alphabet `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx`, and the already studied base59 alternative deleting `f`. The table's derived bytes are explicitly distinguished from the source's printed glyphs. The test examines each of eight **literal byte bitplanes** without synthesizing any new bit combinations. The three square folds are adjacent 8-cell row pairing, adjacent 32-cell column pairing, and side-by-side first/last 16 rows. Each arrangement is tested through its eight rotations/reflections and black/white polarity, exactly **1,024 bounded variants** across both byte interpretations.
+Input: `resources/liber-primus/base60-grid.json`, original 32×8 printed tokens. Read each pair as a byte under either the documented canonical **base60** alphabet `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx` or the previously considered **base59-without-f** variant. No byte-offset, token substitution, bit-linear composition, PRNG, inferred key, guessed image mask, password or unknown-page rune string is fitted.
 
-Source: ECC200 finder scheme in ISO/IEC 16022 and the GS1 DataMatrix technical overview; practical source dimensional cue: the 32×8 printed LP2 table itself. Reproducible single-file program: [`sims/lp2_p50_literal_bitplane_datamatrix_source_sft.cjs`](../sims/lp2_p50_literal_bitplane_datamatrix_source_sft.cjs).
+Inspect one of the eight original byte bitplanes, under the eight rigid rotations/reflections and black/white inversion. For the rectangle retain its canonical native 8×32 two-region finder. For the 16×16 square test three direct spatial folds: pair successive printed 8-cell rows, pair successive printed columns, and put printed rows 0–15 beside 16–31. These are 128 rectangle +384 square candidates per byte reading, **1,024 placements** in total, with no arbitrary column permutation. Each candidate is accepted only on a **perfect** correct finder, with no statistical threshold.
 
-## Measured original-source results
+## Actual source results
 
-| Original numeric reading | Geometry and candidate count | Maximum correct exact border cells | Exact source finder matches |
-| --- | --- | --- | --- |
-| base60 | 8×32 rectangular, 128 | 48 / 76 | **0** |
-| base60 | 16×16, three fixed folds, 384 | 39 / 60 | **0** |
-| base59 without `f` | 8×32 rectangular, 128 | 48 / 76 | **0** |
-| base59 without `f` | 16×16, three fixed folds, 384 | 39 / 60 | **0** |
+| Original numeric reading | Native ECC200 format | Tests | Best matched required cells | Exact finder count |
+| --- | --- | ---: | ---: | ---: |
+| base60 | two-region 8×32 rectangle | 128 | 55 / 88 | 0 |
+| base60 | one-region 16×16 square (three folds) | 384 | 39 / 60 | 0 |
+| base59 without f | two-region 8×32 rectangle | 128 | 56 / 88 | 0 |
+| base59 without f | one-region 16×16 square (three folds) | 384 | 40 / 60 | 0 |
 
-A successful ECC200 finder must match **every** fixed border cell. Both synthetic source-native planted positives were found perfectly: a 32×8 code embedding the 8×32 symbol's required border yields 76/76, and a folded 16×16 embed yields 60/60, while retaining the same 256-cell size. Original cells fail well before considering Reed–Solomon or decoding payload words.
+For each native shape, synthetic printed-size positive controls embedding its **complete standard finder** pass: 88/88 and 60/60, respectively. Original 1,024-candidate output retains the chosen best transformation and exactly forward-detects its planted pattern. No source bitplane gives a complete required finder.
 
-**Reproduction:** [GitHub Actions Windows/Node.js 22 run 45003724224](https://github.com/FlareZ123/liber-primus/actions/runs/45003724224) passed with the full 1,024-candidate result, two authentic base readings, planted positives and exact recognition assertions.
+**Reproduction:** [`sims/lp2_p50_literal_bitplane_datamatrix_source_sft.cjs`](../sims/lp2_p50_literal_bitplane_datamatrix_source_sft.cjs), passing [Windows/Node.js 22 run 45004834139](https://github.com/FlareZ123/liber-primus/actions/runs/45004834139). The prior full base60 8×32 negative remains the authoritative stronger gate for that portion. This add-on's incremental information is the base59 alternative and the 16×16 natural-fold square geometry.
 
-## What this changes
+## Constrained conclusion and next fork
 
-A literal bitmap readout was a discriminable original-source alternative to more exhausted hypothesis classes such as p50 AES-key material, raw RSA modulus, OpenPGP packet, RC4 state or hash schedule. The exact ECC200 finder is absent in the natural original-carrier bitplane forms. Do not commission follow-on arbitrary offsets, bit-linear combinations, guessed masks, or all-case reserializations simply to force a barcode. The conclusion is confined to literal ECC200 bitplanes, their two stated token readings, and the three specified square folds. It does not exclude arbitrary image steganography, other barcodes, or a cipher key hidden by a clue-selected different representation.
+The source table does not supply a literal standard ECC200 finder under the specified byte readings, orthogonal bitplanes and natural rectangular/square layouts. Do **not** rescue this by tuning arbitrary bit recodings or an external secret mapping that the book has not provided. This result says nothing about other byte-oriented encrypted objects, a keyed steganographic projection, or an independently evidenced different data format. It does not advance a decoder to plaintext without new original instructions.
 
-**Evidence class:** original-source bounded negative with two positive planted controls. **Recovered unknown LP2 plaintext:** none.
+**Evidence:** original-source negative with two synthetic positives, prior-work correction. **Authenticated unknown-page text:** none.
