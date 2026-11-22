@@ -195,7 +195,7 @@ function recoverFittedKeys(c, p, anchor) {
 // Genuine independently solved cleartext from the separate LP2 p57
 // (a synthetic cipher-positive, never a claim it used this new cipher).
 const refP57 = read("resources/liber-primus/lp1-plaintext-reference.txt")
-  .split("### 57\n")[1].trim();
+  .replace(/\r\n/g, "\n").split("### 57\n")[1].trim();
 const p57Words = (refP57.match(/[A-Z]+/g) || []).map(w => encodeSourceNativeGP(w));
 assert.equal(p57Words.length, 20);
 assert.deepEqual(p57Words.flat(), gp.pages[57].indices);
