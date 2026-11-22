@@ -147,6 +147,38 @@ for (let i = 0; i < bytes.length; i++) {
 assert.equal(eligiblePairs, 4556);
 assert.equal(eightWordPairs, 75);
 assert.equal(exactCorridorPairs, 15);
+
+// Source-shaped rival controls: all valid three-digit title/ID reversal
+// pairs (A, reverse(A)), both original printable three-digit integers.
+// This is a much smaller, source-defined family than arbitrary table pairs.
+const reversalControls = {
+  pairs: 0,
+  bothP0WordStarts: 0,
+  eightWordsApart: 0,
+  span36Runes: 0,
+  eightWordsAnd36Runes: [],
+};
+for (let a = 100; a <= 999; a++) {
+  if (a % 10 === 0) continue;
+  const reverseA = Number(String(a).split('').reverse().join(''));
+  reversalControls.pairs++;
+  const first = bytes[a % 256];
+  const second = bytes[reverseA % 256];
+  const wi = byWordStart.get(first);
+  const wj = byWordStart.get(second);
+  if (wi === undefined || wj === undefined) continue;
+  reversalControls.bothP0WordStarts++;
+  if (wj - wi === 8) reversalControls.eightWordsApart++;
+  if (second - first === 36) reversalControls.span36Runes++;
+  if (wj - wi === 8 && second - first === 36) {
+    reversalControls.eightWordsAnd36Runes.push([a, reverseA]);
+  }
+}
+assert.equal(reversalControls.pairs, 810);
+assert.equal(reversalControls.bothP0WordStarts, 77);
+assert.equal(reversalControls.eightWordsApart, 2);
+assert.equal(reversalControls.span36Runes, 1);
+assert.deepEqual(reversalControls.eightWordsAnd36Runes, [[133, 331]]);
 assert.deepEqual([...exactPairs].sort(), [
   '13,49', '141,177', '192,228', '20,56', '201,237',
 ].sort());
@@ -305,6 +337,7 @@ console.log('Full ordered distinct table-cell controls: 65280');
 console.log('Both word starts:', eligiblePairs);
 console.log('Eight-word separations:', eightWordPairs);
 console.log('Eight-word and 36-rune separations:', exactCorridorPairs);
+console.log('Complete three-digit reversal controls:', reversalControls);
 console.log('Direct literal byte-minus-GP29 readout:', renderWords(candidate));
 console.log('Known GP positive and original inverse round trip: PASS');
 console.log('Status: candidate navigation, no readable original plaintext');
