@@ -220,6 +220,31 @@ for(const depth of [2,3]){
       sourceNativePositive:native
     });
   }
+  // Latin has different typical word lengths. Test an independently
+  // published Latin Vulgate whole-word source with the same fixed metric.
+  // The model uses its first half, with the second half entirely withheld.
+  const latinText=read('resources/control/latin-vulgate-latin26-wholewords.txt')
+    .replace(/\r\n/g,'\n').split('\n').filter(line=>
+      !line.trimStart().startsWith('#')).join(' ');
+  const latinLengths=toLengths(latinText);
+  assert.equal(latinLengths.length,39835);
+  const middle=Math.floor(latinLengths.length/2);
+  const latinModel=model([latinLengths.slice(0,middle)],depth);
+  const latinOriginal=evaluate(book,latinModel,depth,trials);
+  const latinNative=evaluate(
+    pageShapedNative(latinLengths.slice(middle)),latinModel,depth,trials);
+  assert.ok(Math.abs(latinOriginal.z)<2.5,
+    'LP2 original should not suddenly imply ordinary Latin grammar');
+  assert.ok(latinNative.z>5,
+    'genuine held-out Vulgate Latin must retain word-length syntax');
+  results.push({
+    depth,heldout:'resources/control/latin-vulgate-latin26-wholewords.txt',
+    sourceLanguage:'Latin',originalPageConditioned:latinOriginal,
+    sourceNativePositive:latinNative,
+    trainingLatinWords:middle,
+    withheldLatinWords:latinLengths.length-middle
+  });
+
   results.push({
     depth,
     knownSolvedCicadaWordCount:known.reduce((n,p)=>n+p.values.length,0),
@@ -227,7 +252,7 @@ for(const depth of [2,3]){
   });
 }
 console.log(JSON.stringify({
-  outcome:'Both original LP2 printed word-length bigrams and trigrams match within-page shuffled controls, while 713 words of solved Cicada text and all three native English controls retain order structure. No unknown plaintext recovered.',
+  outcome:'Both original LP2 printed word-length bigrams and trigrams match within-page shuffled controls, while 713 words of solved Cicada text, three English controls and Latin heldout text retain order structure. No unknown plaintext recovered.',
   originalPages:pageChunks.length,
   originalWords:physicalWords.length,
   originalRunes:runecount,
