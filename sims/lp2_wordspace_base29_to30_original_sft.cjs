@@ -198,7 +198,20 @@ assert.ok(Math.abs(heldout.gpIoC - 0.034547089820630573) < 1e-14);
  * The exact equality witness is a per-state permutation sending the best
  * source symbol to SPACE and every other symbol to a distinct native label.
  *
- * @param {Array<'page'|'chapter'|'length'|'position'>} fields
+// Source punctuation's explicit full stops and chapter/section breaks may
+// reset a decoder. They do not delete/insert a GP rune and are treated as
+// independent secret-alphabet scopes for this all-key capacity gate.
+const punctuationAtRune = [];
+let punctuationScope = 0;
+for (const ch of source) {
+  if (ch === '.' || ch === '&') punctuationScope++;
+  else if (alphabet.has(ch)) punctuationAtRune.push(punctuationScope);
+}
+assert.equal(punctuationAtRune.length, 12956);
+assert.equal((source.match(/\./g) || []).length, 175);
+assert.equal((source.match(/&/g) || []).length, 17);
+
+ * @param {Array<'page'|'chapter'|'length'|'position'|'punctuation'>} fields
  * @returns {{classes:number,maximum:number,achieved:number,fraction:number}}
  */
 function alphabetSpaceCapacity(fields) {
@@ -209,7 +222,8 @@ function alphabetSpaceCapacity(fields) {
   const features = words.flatMap((w, wi) =>
     converted[wi].map((digit, position) => ({
       digit, page: pageAtIndex[w.start + position], length: w.runes.length,
-      position, chapter: chapter(pageAtIndex[w.start + position])
+      position, chapter: chapter(pageAtIndex[w.start + position]),
+      punctuation: punctuationAtRune[w.start + position]
     }))
   );
   assert.equal(features.length, runes.length);
@@ -240,6 +254,9 @@ const secretCapacities = {
   perPage: alphabetSpaceCapacity(['page']),
   perLength: alphabetSpaceCapacity(['length']),
   perChapterLength: alphabetSpaceCapacity(['chapter', 'length']),
+  perOriginalPunctuationScope: alphabetSpaceCapacity(['punctuation']),
+  perOriginalPunctuationScopeLength: alphabetSpaceCapacity(['punctuation', 'length']),
+  perOriginalPunctuationScopePosition: alphabetSpaceCapacity(['punctuation', 'position']),
   perPageLength: alphabetSpaceCapacity(['page', 'length']),
   perChapterLengthPosition: alphabetSpaceCapacity(['chapter', 'length', 'position']),
   perPageLengthPosition: alphabetSpaceCapacity(['page', 'length', 'position'])
@@ -250,14 +267,20 @@ assert.deepEqual(
     secretCapacities.perPage.maximum,
     secretCapacities.perLength.maximum,
     secretCapacities.perChapterLength.maximum,
+    secretCapacities.perOriginalPunctuationScope.maximum,
+    secretCapacities.perOriginalPunctuationScopeLength.maximum,
+    secretCapacities.perOriginalPunctuationScopePosition.maximum,
     secretCapacities.perPageLength.maximum,
     secretCapacities.perChapterLengthPosition.maximum,
     secretCapacities.perPageLengthPosition.maximum
   ],
-  [480, 767, 600, 890, 1595, 1729, 3893]
+  [480, 767, 600, 890, 1028, 2142, 2505, 1595, 1729, 3893]
 );
 assert.equal(secretCapacities.global.classes, 1);
 assert.equal(secretCapacities.perPage.classes, 55);
+assert.equal(secretCapacities.perOriginalPunctuationScope.classes, 175);
+assert.equal(secretCapacities.perOriginalPunctuationScopeLength.classes, 1055);
+assert.equal(secretCapacities.perOriginalPunctuationScopePosition.classes, 1503);
 assert.equal(secretCapacities.perPageLength.classes, 529);
 assert.equal(secretCapacities.perChapterLengthPosition.classes, 740);
 assert.equal(secretCapacities.perPageLengthPosition.classes, 3023);
