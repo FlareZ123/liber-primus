@@ -146,7 +146,7 @@ function compatible(ca,cb,overlap,sign){
         // Same K:  C_a*P_b=C_b*P_a.
         // Reciprocal: C_a*C_b=P_a*P_b.
         const z=sign==='mulSame' ? cb[pos]*plainA : cb[pos]*ca[pos];
-        needed[i]=mod(z*inverse29(plainA));
+        needed[i]=mod(z*inverse29(sign==='mulSame'?ca[pos]:plainA));
       } else {
         const delta=mod(ca[pos]+(sign==='same'?-cb[pos]:cb[pos]));
         needed[i]=sign==='same'
