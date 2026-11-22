@@ -253,7 +253,7 @@ function allTwoBankTransparentF(period,mode) {
       const banks=[new Uint32Array(29),new Uint32Array(29)];
       for(let chapter=0;chapter<9;chapter++){
         const bucket=chapter===0||((mask>>>(chapter-1))&1)?banks[0]:banks[1];
-        for(let c=1;c<29;c++)bucket[c]+=hist[chapter][phaseIndex][c];
+        for(let c=(mode==='direct'?1:0);c<29;c++)bucket[c]+=hist[chapter][phaseIndex][c];
       }
       for(const bank of banks){
         const sorted=Array.from(bank).slice(mode==='direct'?1:0).sort((a,b)=>b-a);
