@@ -15,9 +15,12 @@ const parts=text.split(/### \d+\s*\n/u);
 const tokens=data.translit.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length);
 /** @param {string} raw @returns {number[]} */
 function encode(raw){
- const words=raw.toUpperCase().replaceAll("V","U").replaceAll("K","C").replaceAll("Q","C").replaceAll("Z","S").match(/[A-Z]+/gu)||[];
+ const words=raw.toUpperCase().replace(/QU/g,"CW").replace(/V/g,"U")
+  .replace(/[KQ]/g,"C").replace(/Z/g,"S").match(/[A-Z]+/gu)||[];
  const out=[];
  for(const word of words)for(let i=0;i<word.length;){
+  if(word.startsWith("ING",i)){out.push(21);i+=3;continue;}
+  if(word.startsWith("IO",i)){out.push(27);i+=2;continue;}
   const t=tokens.find(x=>word.startsWith(x.s,i));
   assert.ok(t,"unmappable native word");
   out.push(t.i);i+=t.s.length;
@@ -53,13 +56,13 @@ for(let i=0;i<729;i++){
 }
 assert.deepEqual([Math.min(...phases),Math.max(...phases)],[1944,2196]);
 const koan=encode(parts[5]);
-assert.equal(koan.length,745);
+assert.equal(koan.length,740);
 const pure=Array.from({length:koan.length-728},(_,i)=>score(koan,lengths,i).total);
-assert.equal(Math.min(...pure),3762);
+assert.equal(Math.min(...pure),3752);
 const native=encode([2,3,5,6,10,11,12,13,14].map(i=>parts[i]).join(" "));
-assert.equal(native.length,2519);
+assert.equal(native.length,2485);
 const controls=Array.from({length:native.length-728},(_,i)=>score(native,lengths,i).total).sort((a,b)=>a-b);
-assert.deepEqual([controls.length,controls[0],controls[Math.floor(controls.length/2)],controls.at(-1)],[1791,3428,3658,3920]);
+assert.deepEqual([controls.length,controls[0],controls[Math.floor(controls.length/2)],controls.at(-1)],[1757,3338,3584,3848]);
 assert.ok(Math.max(...phases)<Math.min(...pure,controls[0]));
 // 85/85 authentic solved-p56 positive proves digraphs never cross a word.
 const p56Text=encode("AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT IS THE DUTY OF EVERY PILGRIM TO SEEK OUT THIS PAGE");
@@ -76,6 +79,9 @@ const recoveredP56=p56Original.map((c,i)=>{
  return (x+29)%29;
 });
 assert.deepEqual(recoveredP56,p56Text);
+const p57Native=encode(parts[17]);
+assert.deepEqual(p57Native,data.pages.find(p=>p.page===57).indices,
+  "real solved p57 native IO/ING register must reencode exactly");
 // Positive with 13 different secret permutation tables and true inverse.
 let state=0x330113;
 const next=()=>{state=(Math.imul(state,1664525)+1013904223)>>>0;return state;};
