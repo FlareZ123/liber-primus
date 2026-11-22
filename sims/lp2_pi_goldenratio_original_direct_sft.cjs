@@ -18,7 +18,7 @@ const path = require("node:path");
 
 const corpus = JSON.parse(fs.readFileSync(path.resolve(
   __dirname, "..", "resources", "liber-primus", "lp2-corpus.json"), "utf8"));
-const L = 420;
+const L = 1900;
 const mod = n => (n % 29 + 29) % 29;
 /** @param {number[]} values @returns {number} */
 function ioc(values) {
@@ -73,6 +73,7 @@ assert.equal(digits("pi", 10, L).slice(0, 20).join(""),
 assert.equal(digits("golden", 10, L).slice(0, 20).join(""),
   "61803398874989484820");
 const originalPages = [0, 8, 15, 27, 32, 33, 39, 55];
+const originalChapters = [[0, 1, 2], [8, 9, 10, 11, 12, 13, 14]];
 const nativeP57 = corpus.pages.find(p => p.page === 57).indices;
 assert.equal(nativeP57.length, 95);
 const nativeIoc = ioc(nativeP57);
@@ -154,13 +155,24 @@ for (const constant of ["pi", "golden"]) {
           return {page, total:ciphertext.length,
             ...fTransparentReach(ciphertext, stream, sign)};
         });
+        const chapterReach = originalChapters.map(pages => {
+          const ciphertext = pages.flatMap(page =>
+            corpus.pages.find(p => p.page === page).indices);
+          return {pages:pages.join(","), total:ciphertext.length,
+            ...fTransparentReach(ciphertext, stream, sign)};
+        });
         fTransparent.push({constant, radix, includeInteger, sign,
-          pageReach});
+          pageReach, chapterReach});
       }
     }
   }
 }
 assert.equal(fTransparent.length, 16);
+for (const pages of originalChapters) {
+  assert.ok(fTransparent.every(test =>
+    test.chapterReach.find(x => x.pages === pages.join(",")).reached <
+      test.chapterReach.find(x => x.pages === pages.join(",")).total));
+}
 const allVariantsFailed = [27, 32, 33, 39];
 for (const page of allVariantsFailed) {
   assert.equal(fTransparent.filter(test =>
@@ -180,6 +192,7 @@ console.log(JSON.stringify({
     rule: "every legal genuine plaintext-F bypass and key-advance history",
     variants: fTransparent.length,
     noFullOriginalPage: allVariantsFailed,
+    chaptersNoFullInverse: originalChapters.map(x => x.join(",")),
     pageReach: fTransparent
   },
   conclusion: "Neither literal pi nor golden-ratio fractional digits, " +
