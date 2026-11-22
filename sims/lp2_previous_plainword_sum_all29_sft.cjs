@@ -50,8 +50,8 @@ function wordKey(word, mode) {
  * @param {"gp0"|"prime"} mode
  * @returns {number[][]}
  */
-function decode(ciphertextWords, seed, mode) {
-  let key = seed, precedingCipher = 0;
+function decode(ciphertextWords, seed, mode, initialCipher = 0) {
+  let key = seed, precedingCipher = initialCipher;
   return ciphertextWords.map(word => {
     const plain = word.map(c => {
       const p = mod(c - precedingCipher + key);
@@ -96,10 +96,10 @@ function score(plaintextWords, dictionary) {
   return {wordHits, runeHits, longestRun};
 }
 /** @param {number[][]} ciphertextWords @param {"gp0"|"prime"} mode @param {Set<string>} dictionary */
-function bestOriginal(ciphertextWords, mode, dictionary) {
+function bestOriginal(ciphertextWords, mode, dictionary, initialCipher = 0) {
   const results = Array.from({length: 29}, (_, seed) => ({
     seed,
-    ...score(decode(ciphertextWords, seed, mode), dictionary)
+    ...score(decode(ciphertextWords, seed, mode, initialCipher), dictionary)
   }));
   results.sort((a,b) => b.runeHits - a.runeHits ||
     b.wordHits - a.wordHits || a.seed - b.seed);
@@ -124,6 +124,17 @@ for (const mode of ["gp0", "prime"]) {
   assert.deepEqual(encode(decode(plant, 17, mode), 17, mode), plant,
     "forward reencryption must reproduce every cipher rune");
 }
+/** Find the original immediate ciphertext predecessor of a page-local complete-word window. */
+function originalPredecessor(page, ciphertextWords) {
+  const printed = gp.pages[page].indices;
+  const prefix = ciphertextWords.slice(0, Math.min(4, ciphertextWords.length)).flat();
+  for (let i = 0; i + prefix.length <= printed.length; i++) {
+    if (prefix.every((c, j) => c === printed[i + j])) {
+      return {runeOffset:i, cipher:i > 0 ? printed[i - 1] : 0};
+    }
+  }
+  throw new Error("original page-local word prefix not found: p" + page);
+}
 const scopes = [
   {name:"p0-black-complete-words", page:0, skip:2},
   {name:"p8-black-complete-words", page:8, skip:2},
@@ -135,11 +146,17 @@ const scopeResults = scopes.map(scope => {
     w.endPage === (scope.page >= 50 ? scope.page - 1 : scope.page))
     .slice(scope.skip).map(w => numeric(w.runes));
   assert(words.length > 10);
+  const predecessor = originalPredecessor(scope.page, words);
   const output = {
     scope:scope.name, words:words.length,
     runes:words.flat().length,
-    gp0:bestOriginal(words,"gp0",dictionary),
-    prime:bestOriginal(words,"prime",dictionary)
+    firstRuneOffset:predecessor.runeOffset,
+    gp0:bestOriginal(words,"gp0",dictionary,predecessor.cipher),
+    prime:bestOriginal(words,"prime",dictionary,predecessor.cipher),
+    pageReset: {
+      gp0:bestOriginal(words,"gp0",dictionary,0),
+      prime:bestOriginal(words,"prime",dictionary,0)
+    }
   };
   assert(output.gp0.runeHits < 15 && output.prime.runeHits < 15,
     "new source lexical evidence requires investigation");
@@ -152,10 +169,11 @@ for (let p = 0; p <= 55; p++) {
   const words = original.words.filter(w => w.startPage === offset &&
     w.endPage === offset).map(w => numeric(w.runes));
   if (!words.length) continue;
+  const predecessor = originalPredecessor(p, words);
   pageResults.push({
     page:p, words:words.length, runes:words.flat().length,
-    gp0:bestOriginal(words, "gp0", dictionary),
-    prime:bestOriginal(words, "prime", dictionary)
+    gp0:bestOriginal(words, "gp0", dictionary, predecessor.cipher),
+    prime:bestOriginal(words, "prime", dictionary, predecessor.cipher)
   });
 }
 assert.equal(pageResults.length, 55);
