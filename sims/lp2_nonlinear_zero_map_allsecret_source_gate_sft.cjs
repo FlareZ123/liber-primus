@@ -1,8 +1,8 @@
 'use strict';
 
 /**
- * Original-LP2 key-independent gate for five source-constrained nonlinear
- * predecessor predictors in a fully position-keyed, reversible GF29 cipher.
+ * Original-LP2 key-independent gate for all 28 power-map predecessors,
+ * prime/totient/DH maps and word-local six-back power feedback in GF29.
  *
  * Model: C[i] = C[i-1] + k[i] * (P[i] - m(P[i-1])) (mod 29),
  * with arbitrary nonzero secret k[i] at EVERY position and page-local resets.
@@ -257,6 +257,176 @@ function fullPowerFamily(words, controls, layout) {
     mostPermissive, unionLog10UpperBound, powers};
 }
 
+
+/**
+ * Literal word-local lag-six generalization:
+ *   C[j] = C[j-1] + k[j] * (P[j] - P[j-6]^e) (mod29), j>=6.
+ *
+ * Earlier word positions (and incomplete page-spanning six-back contexts)
+ * use a freely initialized direct bijection; thus the test screens only the
+ * original 1267 eligible printed-word positions and no unknown IV/key.
+ *
+ * @param {Array<Array<{value:number,page:number}>>} words
+ * @param {Map<number,number[][]>} byLength
+ * @param {number[]} predictor
+ * @returns {{runes:number,wordResets:number,exactRoundTrip:boolean,delayedEvents:number}}
+ */
+function lagSixPlant(words, byLength, predictor) {
+  let global = 0;
+  let delayedEvents = 0;
+  for (let wi = 0; wi < words.length; wi++) {
+    const original = words[wi];
+    const pool = byLength.get(original.length);
+    const plain = pool[(wi * 1337 + 11) % pool.length];
+    const cipher = [];
+    const decoded = [];
+    for (let j = 0; j < original.length; j++) {
+      const page = original[j].page;
+      const delayed = j >= 6 &&
+        page === original[j - 1].page &&
+        page === original[j - 6].page;
+      if (delayed) {
+        const k = 1 + (global * 17 + 9) % 28;
+        cipher[j] = mod29(cipher[j - 1] +
+          k * mod29(plain[j] - predictor[plain[j - 6]]));
+        decoded[j] = mod29(predictor[decoded[j - 6]] +
+          inv29(k) * mod29(cipher[j] - cipher[j - 1]));
+        assert.equal(cipher[j] === cipher[j - 1],
+          plain[j] === predictor[plain[j - 6]]);
+        if (cipher[j] === cipher[j - 1]) delayedEvents++;
+      } else {
+        // Unconstrained but completely reversible word-prefix initializer.
+        const offset = mod29(7 + 11 * page + 5 * j);
+        cipher[j] = mod29(plain[j] + offset);
+        decoded[j] = mod29(cipher[j] - offset);
+      }
+      assert.equal(decoded[j], plain[j]);
+      global++;
+    }
+    assert.deepEqual(decoded, plain);
+  }
+  assert.equal(global, 12956);
+  return {runes: global, wordResets: words.length,
+    exactRoundTrip: true, delayedEvents};
+}
+
+/**
+ * Competing six-back source-lag zero map. Evaluate all 28 exponents without
+ * post-selecting by original ciphertext, with a separate exact lexical gate
+ * at the one original p27 length-12 doublet word. A total 84-way union bound
+ * allows both exponent and reference source to be selected afterwards.
+ *
+ * @param {Array<Array<{value:number,page:number}>>} words
+ * @param {Array<{name:string,byLength:Map<number,number[][]>}>} controls
+ * @param {Array<{original:string,a:number[]}>} dictionary12
+ */
+function lagSixPowerFamily(words, controls, dictionary12) {
+  const lag = 6;
+  const groups = new Map();
+  let eligiblePairs = 0;
+  let actualEqualPairs = 0;
+  for (const word of words) {
+    if (word.length <= lag) continue;
+    const eligible = word.slice(lag).map((x, index) => {
+      const j = index + lag;
+      return x.page === word[j - 1].page &&
+        x.page === word[j - lag].page;
+    });
+    for (let i = lag; i < word.length; i++) {
+      if (!eligible[i - lag]) continue;
+      eligiblePairs++;
+      if (word[i].value === word[i - 1].value) actualEqualPairs++;
+    }
+    const key = word.length + '|' +
+      eligible.map(value => value ? '1' : '0').join('');
+    if (groups.has(key)) groups.get(key).n++;
+    else groups.set(key, {length: word.length, eligible, n: 1});
+  }
+  assert.equal(eligiblePairs, 1267);
+  assert.equal(actualEqualPairs, 9);
+  const p27Sequence = [12, 4, 9, 15, 3, 3, 5, 24, 18, 26, 18, 18];
+  const special = words.filter(word => word[0].page === 27 &&
+    word.length === p27Sequence.length &&
+    word.every((r, index) => r.value === p27Sequence[index]));
+  assert.equal(special.length, 1);
+  const p27 = special[0].map(r => r.value);
+
+  const exponents = [];
+  let mostPermissiveLexCompatible = {
+    exponent: 0, source: '', log10UpperBound: -Infinity
+  };
+  for (let exponent = 1; exponent <= 28; exponent++) {
+    const predictor = Array.from({length: 29},
+      (_, index) => modPow(index, exponent));
+    const p27MatchingTypes = dictionary12.filter(entry => {
+      for (let j = lag; j < p27.length; j++) {
+        if ((entry.a[j] === predictor[entry.a[j - lag]]) !==
+            (p27[j] === p27[j - 1])) return false;
+      }
+      return true;
+    }).length;
+    const controlsBySource = [];
+    if (p27MatchingTypes) {
+      for (const control of controls) {
+        let mean = 0;
+        let variance = 0;
+        const strata = [];
+        for (const shape of groups.values()) {
+          const pool = control.byLength.get(shape.length);
+          assert(pool && pool.length);
+          let sum = 0;
+          let sumSquares = 0;
+          const hist = new Map();
+          for (const word of pool) {
+            let count = 0;
+            for (let i = lag; i < word.length; i++) {
+              if (shape.eligible[i - lag] &&
+                  word[i] === predictor[word[i - lag]]) count++;
+            }
+            sum += count;
+            sumSquares += count * count;
+            hist.set(count, (hist.get(count) || 0) + 1);
+          }
+          const average = sum / pool.length;
+          mean += shape.n * average;
+          variance += shape.n * (sumSquares / pool.length -
+            average * average);
+          strata.push({n: shape.n, hist: [...hist], size: pool.length});
+        }
+        const bound = chernoff(strata, actualEqualPairs);
+        const item = {source: control.name, mean,
+          sd: Math.sqrt(variance), ...bound};
+        controlsBySource.push(item);
+        if (bound.log10UpperBound >
+            mostPermissiveLexCompatible.log10UpperBound) {
+          mostPermissiveLexCompatible = {exponent, ...item};
+        }
+      }
+    }
+    const positive = lagSixPlant(words, controls[0].byLength, predictor);
+    assert(positive.exactRoundTrip);
+    exponents.push({exponent, p27MatchingTypes,
+      controls: controlsBySource, positive});
+  }
+  assert.deepEqual(exponents.filter(x => x.p27MatchingTypes === 0)
+    .map(x => x.exponent), [7, 14, 21, 28]);
+  assert.equal(mostPermissiveLexCompatible.exponent, 10);
+  assert(mostPermissiveLexCompatible.source.includes('emerson_essays_2944'));
+  assert(Math.abs(mostPermissiveLexCompatible.mean -
+    28.091264818275437) < 0.000001);
+  assert(Math.abs(mostPermissiveLexCompatible.log10UpperBound -
+    (-3.99684788046604)) < 0.000001);
+  // Every exponent and every reference book could have been chosen.
+  const upperBound84 = 84 *
+    10 ** mostPermissiveLexCompatible.log10UpperBound;
+  assert(upperBound84 < 0.008462);
+  return {lag, eligiblePairs, actualEqualPairs,
+    dictionary12Types: dictionary12.length,
+    lexicallyExcludedExponents: [7, 14, 21, 28],
+    mostPermissiveLexCompatible, upperBound84, exponents,
+    recoveredUnknownPlaintext: false};
+}
+
 /** @returns {object} */
 function run() {
   const words = originalWords();
@@ -379,9 +549,11 @@ function run() {
     family: 'All 28 nonzero GF29 multipliers allowed independently at every position',
     models: modelResults,
     allPowerMapFamily: fullPowerFamily(words, controls, layout),
+    lagSixPowerFamily: lagSixPowerFamily(words, controls, long12),
     recoveredUnknownPlaintext: false
   };
 }
 
 if (require.main === module) console.log(JSON.stringify(run(), null, 2));
-module.exports = {run, chernoff, predictorCount, plant, fullPowerFamily};
+module.exports = {run, chernoff, predictorCount, plant, fullPowerFamily,
+  lagSixPlant, lagSixPowerFamily};
