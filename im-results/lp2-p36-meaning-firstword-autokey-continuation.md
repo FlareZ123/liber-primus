@@ -29,9 +29,9 @@ Source: `resources/liber-primus/lp2-transcription.txt` and `lp2-corpus.json`. Ex
 
 The **first nine complete words** under the two historically plausible subtraction continuations read (GP29 transliteration is hyphenated to preserve composite runes):
 
-- **Item1, plaintext-autokey:** `M-EA-N-NG / C-Y-M / IA-N-J-S-T-S-C-T / N-EA / IA-EA-AE-EA / IA-J-X / R-EO / EO-G-R-H-W-R-EA / TH-Y-J`
-- **Item1, ciphertext-autokey:** `M-EA-N-NG / R-D-T / Y-M-EO-G-A-I-H-Y / J-M / T-P-N-N-P / J-TH-S / G-M-W / IA-B-G-Y-O-E-F-I / E-A-R-C`
-- **Item2, plaintext-autokey:** `W-D-S-EO / TH-W-EA-IA / M-N-X-N-AE-B / TH-M-B-Y / OE-L-D-E-J-R-OE-Y-IA / EO-N-A-AE / G-P-N-EA-NG-A-AE / OE-AE-D-H-G-EA / Y-X-EO-NG-IA`
+- **Item1, plaintext-autokey:** `M-EA-N-NG / C-Y-M / IA-N-J-S-T-S-C-T / N-EA / IA-EA-AE-A-E / IA-J-X / R-E-O / OE-G-R-H-W-R-EA / TH-Y-J`
+- **Item1, ciphertext-autokey:** `M-EA-N-NG / R-D-T / Y-M-EO-G-A-I-H-Y / J-M / T-P-N-N-P / J-TH-S / G-M-W / IA-B-G-Y-OE-F-I / EA-R-C`
+- **Item2, plaintext-autokey:** `W-D-S-EO / TH-W-EA-IA / M-N-X-N-AE-B / TH-M-B-Y / OE-L-D-E-J-R-OE-Y-I-EO / EO-N-A-AE / G-P-N-EA-NG-A-AE / OE-AE-D-H-G-EA / Y-X-EO-NG-IA`
 
 These immediate post-crib readouts are incoherent, and the full outputs have GP29 IoCs near the uniform 1/29 baseline (**0.034483**), unlike native solved LP1/LP2 English GP controls. No complete unknown passage or plausible cipher instruction appears. The mere four-rune `MEANING` prefix is retained by construction; it does not validate its own historical interpretation.
 
