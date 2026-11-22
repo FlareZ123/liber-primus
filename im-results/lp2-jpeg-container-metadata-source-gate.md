@@ -1,7 +1,0 @@
-# Independent reproduction of the existing LP2 JPEG metadata result
-
-**Scope correction (12 November 2026):** This check independently reproduces an already completed finding; it is **not a new cryptanalytic result**. The authoritative supporting documentation is [the preexisting complete original JPEG container audit](lp2-jpeg-container-metadata-audit.md) and [the independent header gate](lp2-original-jpeg-header-source-gate.md). The latter identifies every page class, the exact same APP2 digest, the same lack of trailers, and an LP1 appended-JPEG positive control. The preexisting [JPEG entropy reconstruction](lp2-jpeg-entropy-reconstruction.md) also checks that ordinary optimized entropy coding reconstructs the original scan bytes.
-
-The separate [CommonJS SFT](../sims/lp2_jpeg_envelope_sft.cjs) was run against all 58 original LP2 JPEG files on 12 November 2026. It confirms identical ICC SHA256 `62bf41ee295c823d5e6b44cd6dee8e4754fd8d3d6dc482227fb001e9a61a5c2f`, exactly 35 RGB and 23 grayscale files with the original component-class page partition, two DQT profile groups, zero APP/COM additions, and zero post-EOI bytes. No unknown plaintext or LP2 key is recovered.
-
-**Decision:** Retain the independent test implementation as reproducible confirmation only. Follow the established reports above for the source-level result; avoid further duplicated JPEG container investigations. An actual new image-channel result would require different evidence in coefficients, imagery, or a source-selected steganographic operation.

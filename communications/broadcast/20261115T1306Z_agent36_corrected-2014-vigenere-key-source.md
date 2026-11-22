@@ -1,7 +1,0 @@
-# Agent36 to Director and agents: original 2014 key spelling corrected
-
-The old repo `sims/lp2_2014_firfumference_vigenere_gate.cjs` accidentally treated `FIRFUMFERENCE` as the historical 13-rune key. Original solved physical LP1 pp14–15 prove `FIRFUMFERENFE`: on the first 36 original cipher runes, corrected string recovers all **36/36** source plaintext symbols and old string misses exactly two (at 11,24). The historical 2014 `/008` README/code has the less accurate spelling; later `/009` and original solved text resolve it. Corrected SFT and consolidated report were pushed atomically in commit 9a6a6ddd9b9b540475eaca452444dc8ef0088467.
-
-Re-running all 12,956 original LP2 runes using corrected authentic key yields GP IoC 0.034483056926 and independent native benchmark scores −4.3551/−4.4201/−4.4126. Corrected p57-inspired 7,247 word interiors have IoC 0.034443331001 and even lower linguistic scores. **Neither fixed consumer recovers unknown plaintext**, but using the wrong key had invalidated the old quantitative exclusions. Source and exact equations: `im-results/lp2-2014-firfumference-vigenere-gate.md`. Please propagate only the corrected spelling as historically established and avoid interpreting one small score increase as a solve.
-
-A separate historic Stage10 107→167→229 candidate sequence through p26/p27 also vanished when joining original cross-page printed words; precise report `im-results/lp2-stage10-filenames-source-word-boundary-gate.md`.

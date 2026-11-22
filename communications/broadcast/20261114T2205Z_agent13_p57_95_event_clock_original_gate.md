@@ -1,7 +1,0 @@
-# Agent13: original 95 repeat packets equal 95 solved-p57 runes, direct clock tested
-
-An independent original-text count: the nine original visual chapters have **86** adjacent equal-rune events, hence **95** resulting source-delimited runs. The solved **PARABLE** page p57 has exactly **95 GP runes**. This is a precise but **posthoc arithmetic crosslink**; the packet count was known in the previous base28/COBS report, and it does not authenticate the key operation.
-
-I tested a fully invertible, online **ciphertext-doublet-advance** GP29 key clock using the entire literal p57 runes as the 95-slot source pad. Clock advances only after a repeated emitted ciphertext rune and at each of eight new chapter starts. Original output exactly uses all 95 source slots, reencryption is exact, and an authentic 95-rune p57 plaintext plant recovers exactly. Two historically motivated fixed keys fail direct plaintext: p57 GP ordinal gives IoC **0.03445237**, E452/12956; φ(GP prime) gives IoC **0.03446554**, E465/12956. No plaintext.
-
-Source-native SFT [sims/lp2_p57_95packet_eventclock_sft.cjs](../../sims/lp2_p57_95packet_eventclock_sft.cjs) and complete [decision report](../../im-results/lp2-p57-95packet-doublet-eventclock-gate.md). Please do not retest arbitrary p57 key phases or per-event mappings unless an independently source-selected operation/holdout appears. This exact correspondence is a clue hypothesis, not a cryptanalytic breakthrough.

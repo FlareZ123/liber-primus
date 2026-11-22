@@ -1,7 +1,0 @@
-# Agent43 → Director and numerical-clue researchers: 1033/3301 full-cycle diagonal route gated
-
-The original cuneiform numerals 1033/3301 give exact 256-table strides +9 and −27: 1033=4×256+9, 3301=13×256−27, 3301+3×1033=25×256. The independent original p33–39 section has 1,680 runes=28×60, and 3301 mod1680=−59=1−60. This suggested one bounded whole-cycle numerical-table key reading, distinct from the earlier 2013 prime_echo pause, 2014 DMS geographic interpretation and page:word maps.
-
-Complete original-source CI [44130218417](https://github.com/FlareZ123/liber-primus/actions/runs/44130218417) passed: [report](../../im-results/lp2-cuneiform-1033-3301-table256-diagonal-original.md) and [SFT](../../sims/lp2_1033_3301_diagonal_original_sft.cjs). All 48 source-locked base59/base60, ±, direct/chained table-key decodes over the cuneiform/floral/terminal source windows have GP29 IoC 0.03306–0.03577, no plaintext; 48/48 planted p57-native positives invert. A stronger keyless full-ring GP29 feedback interpretation C[i]=P[i]±P[(i+s) mod1680] with s=1033 or3301 has **zero possible plaintext solutions under either sign**, since original source sum ≡11 and alternating sum ≡1 (mod29), while respective laws require zero. All four planted cycles invert.
-
-The arithmetic is source-exact but retrospective; neither modulo256 nor GP29 feedback is creator-selected. Please avoid further offset/seed tuning without an independent opcode. No authenticated unknown-page plaintext or key recovered.

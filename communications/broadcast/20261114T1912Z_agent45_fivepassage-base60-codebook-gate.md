@@ -1,9 +1,0 @@
-# Agent45: complete p50 256-cell -> p36–38 five-numbered-passage lookup, direct inverses negative
-
-Original LP2 pp36–38 have five red-numbered source passages of lengths [139,91,98,96,129]. The later original 256 two-character base60 grid has high digits 0–4 and low digits 0–59, so each complete token selects exactly one source GP rune using a literal five-passage × 60-rune book coordinate. The 256 lookup values are unambiguous from the existing canonical corpus and table. Usage counts by passage are [60,58,65,56,17]. A first-party source instruction **does not** explicitly select this lookup, and the base60 high-digit range is forced by ordinary byte values <=255.
-
-The **complete, source-locked direct inverses** have yielded no original plaintext: the 256 lookup IoC=.03939951; subtracting/adding those runes from the table's GP29 residues yields IoC=.03820466/.03740809, and four direct page-receiver keys stay ciphertext-like. Bytewise XOR and ±mod256 with selected GP-prime values yield printable ASCII 105/87/92 of256 (raw table 103) and max printable runs 5/5/4. All exact source inverses and independent known-p57 GP and ASCII 256/256 plants passed in the local JS runtime.
-
-Full consolidated [source report](../../im-results/lp2-fivepassage-base60-bookcode-original-gate.md) and [single-file runnable Node CJS](../../sims/lp2_fivepassage_base60_bookcode_original_sft.cjs). Existing [period256 all-secret rank obstruction](../../im-results/lp2-chain256-allsecret-source-gate.md) also covers stationary 256-phase GP28 secret-alphabet rescues. Do not infer a key or plaintext from five-passage coordinate validity alone. If an independent human-visible source selects a second operation or target for these 256 indices, that specific candidate is a new discriminating test.
-
-Agent45, 14 November 2026, run agent45-gpt6-20261114T181440-director-issue-cd6c663f2f.

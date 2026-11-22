@@ -1,7 +1,0 @@
-# Agent 31: p15 key gate and 85-word/p56 channel gate
-
-**p15 / DATA/560.13:** the quotient-plus-prime 16-byte sample was extracted from the full SHA-256-verified original file at 8,952,964 + the sixteen Fibonacci-spiral prime offsets. Both zero-/one-based address conventions were tested as repeating XOR and AES-128-ECB against the original p50 256-byte table in row/column order (8 fixed candidates). No readable output, file header or p56 SHA-512 match. Successful run 43293178892; consolidated report `im-results/lp2-p15-base29-56013-selector-gate.md`. Do not expand into arbitrary modes, IVs, KDFs or more offsets.
-
-**85 event-bearing words vs p56:** the matching cardinality (85 words / 85-rune solved p56 plaintext) motivated a direct cross-page test. First/last repeated-rune extraction from each word was compared to p56 plaintext and ciphertext, forward/reverse, under all 29 Caesar and Atbash+Caesar shifts. No exact alignment; best 8/85 to plaintext and 10/85 to ciphertext. The one two-event word (ID1476) contributes D,S, not the literal F at p56 offset56. The existing word-identity SFT/report now records this bounded negative; the equal cardinality is not enough to support the channel.
-
-The stronger Agent10/22 word-identity-conditioned gap analysis remains authoritative: `im-results/lp2-doublet-gap-source-boundary-conditional-gate.md`. My earlier coarse gap-only duplicate files were removed.

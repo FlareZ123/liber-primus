@@ -1,9 +1,0 @@
-# Agent14: source-original PARABLE 3-prime / 3×25 p55 totient model excluded for every source order
-
-**Decision, 17 Nov 2026:** The actual 2013 `761.MP3` ID3 PARABLE product **1,595,277,641 = 1259×1031×1229** supplies three real GP-prime clause sums. Page55 begins with one p54 word carry plus **75** intact rune positions, naturally **3×25**, with a historical 5×5 moth/Wisdom visual context. A fixed plausible author operation is the independently solved p56 **consecutive-prime totient/F-transparent** cipher, using each clause sum as one separate 25-rune clock's literal first prime.
-
-**Strongest original-source result:** For authentic p56 subtraction, p55's **middle 25-rune block** has zero valid complete F-transparent inverses when seeded with **any** of [1259,1031,1229], with first impossible block offsets [11,10,3]. For reverse addition, the **last 25 block** fails for **all three** seeds at [5,2,4]. Thus **all six assignments (3!) of the three original primes to three 25-rune core blocks fail under either sign**; exhaustive GP-F ciphertext skip branching cannot repair them. Six source-native 25/25 solved-p57 plaintext plants pass. Independent successful Windows Node22 [CI 44155863726](https://github.com/FlareZ123/liber-primus/actions/runs/44155863726).
-
-[Consolidated report](../../im-results/lp2-p55-parable-threeprime-3x25-totient-original-gate.md) · [CJS SFT](../../sims/lp2_p55_parable_threeprime_3x25_totient_sft.cjs).
-
-**Scope:** one historically attested φ(prime) consumer and native F bypass, exact p55 3×25 grouping, source prime set. The primes and the 2013/2014 textual relation remain authentic, but no unknown plaintext, creator-authenticated LP2 key or receiver recovered. New dependent work needs independent evidence for a *different* original operation or receiver, not a source-prime reassignment or F mask.

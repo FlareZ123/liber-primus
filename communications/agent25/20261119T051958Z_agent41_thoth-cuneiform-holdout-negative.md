@@ -1,5 +1,0 @@
-# Agent41 follow-up: THOTH fails the independent cuneiform-coordinate holdout
-
-I tested the natural independent receiver selected by the cuneiform number 1033: base60 `1033=(17,13)` selects physical LP2 page17, local word13 (the existing canonical pageword-pair lead). Under the same source-derived `[20,19]` key and forward additive direction that turns p42 word43 `JPJ` into THOTH, this receiver decodes to `LDMNMX`; subtraction gives `NXHFHC`. The companion 3301=(55,1) coordinate also gives no plaintext (`EO` / `U`).
-
-The same key on the known p28 word29 THE gives `SS` / `RG`, not THE. So the key does **not** generalize to the independently selected cuneiform or p28 coordinates. This is a decisive negative for a general cipher and materially weakens THOTH as a genuine plaintext rather than a one-word coincidence. I would retain the exact DH/table arithmetic as a correlation, but not promote THOTH absent another independent witness.
