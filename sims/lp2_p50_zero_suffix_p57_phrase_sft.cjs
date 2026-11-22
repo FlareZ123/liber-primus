@@ -79,6 +79,8 @@ const sourceDigest = "36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618de
 assert.equal(sourceDigest.length, 128);
 const hashTests = [];
 const transformations = [];
+const p55Transforms = [];
+const p55 = corpus.pages.find((page) => page.page === 55).indices;
 for (const [radix, values] of [["base60", bytes60], ["base59-drop-f", bytes59]]) {
   for (const [scope, input] of [
     ["first192", values.slice(0, 192)],
@@ -95,6 +97,11 @@ for (const [radix, values] of [["base60", bytes60], ["base59-drop-f", bytes59]])
       mod29(cipher + sign * values[229 + i]));
     assert(decoded.every((plain, i) =>
       mod29(plain - sign * values[229 + i]) === p51[i]));
+    const p55Decoded = p55.map((cipher, i) => mod29(cipher + sign * values[229 + i % 27]));
+    assert(p55Decoded.every((plain, i) =>
+      mod29(plain - sign * values[229 + i % 27]) === p55[i]));
+    p55Transforms.push({ radix, sign, receiver: "all 76 p55 runes, cycled last27 key",
+      gpSequence: render(p55Decoded), ioc: ioc(p55Decoded) });
     transformations.push({
       radix, sign, receiver: "p51 rune offsets 0..26",
       decodedIndices: decoded,
@@ -125,6 +132,7 @@ const report = {
       distinctMod26: new Set(after.map((value) => value % 26)).size }
   },
   directPadTests: transformations,
+  p55Repeated27PadTests: p55Transforms,
   p56Sha512Tests: hashTests,
   decision: "Source-aligned suffix match survives as a navigation clue; four direct 27-rune pads do not yield native prose, and eight fixed byte-hash candidates miss p56."
 };
