@@ -46,10 +46,19 @@ const CAP_LINES = 3; // 497-498px tall originals overlap three 188px lines.
  * @returns {'forced'|'early'|'overflow'}
  */
 function classifyWithOriginalDropcap(b, model, gap = GAP, heightLines = CAP_LINES) {
+  return classify({ ...b, base: b.base + redCapMargin(b, gap, heightLines) }, model);
+}
+
+/**
+ * @param {{page:number,line:number,firstWidth:number}} b
+ * @param {number} [gap]
+ * @param {number} [heightLines]
+ * @returns {number}
+ */
+function redCapMargin(b, gap = GAP, heightLines = CAP_LINES) {
   const red = RED_CAPS.find(c => c.page === b.page &&
     b.line >= c.firstLine && b.line < c.firstLine + heightLines);
-  const margin = red ? red.width + gap - (b.line === red.firstLine ? b.firstWidth : 0) : 0;
-  return classify({ ...b, base: b.base + margin }, model);
+  return red ? red.width + gap - (b.line === red.firstLine ? b.firstWidth : 0) : 0;
 }
 
 /**
@@ -112,6 +121,24 @@ function main() {
   assert.deepEqual(r.imageRedCapLines,
     {forced: 25, early: 7, overflow: 5, total: 37, earlyParagraphs: 2});
 
+  // Exact shortfall of the residual 39 original nonparagraph early joins.
+  // This is a geometric diagnostic, not a key extraction channel.
+  const residualSlack = source.breaks
+    .filter(b => b.ending !== '.' && classifyWithOriginalDropcap(b, model) === 'early')
+    .map(b => model.W - b.base - redCapMargin(b) - b.dashes * model.dash -
+      b.stops * model.stop - b.nextWidth).sort((a, b) => a - b);
+  assert.equal(residualSlack.length, 39);
+  const residualCounts = { within10: 14, within20: 19, within30: 22,
+    within50: 27, within75: 33, within100: 34, over150: 4 };
+  for (const [name, limit] of Object.entries({
+    within10: 10, within20: 20, within30: 30, within50: 50,
+    within75: 75, within100: 100
+  })) {
+    assert.equal(residualSlack.filter(n => n <= limit).length, residualCounts[name], name);
+  }
+  assert.equal(residualSlack.filter(n => n > 150).length, residualCounts.over150);
+  assert.ok(Math.abs(residualSlack[19] - 21.334) < 0.001);
+
   const sensitivity = [0, 8, 12, 16, 24].map(gap => {
     const result = compare(source.breaks, model, gap, CAP_LINES);
     return { gap, all: result.imageAll, withheld: result.imageHoldoutWithinWord };
@@ -121,9 +148,9 @@ function main() {
     originalJPEG: 'liber-primus-jpegs/<page + 17>.jpg',
     redConnectedComponents: RED_CAPS,
     model, gap: GAP, heightLines: CAP_LINES, observations: r,
-    sensitivity, conclusion: 'Physical drop-cap footprint predicts 23 more original wraps; ciphertext remains undeciphered.'
+    sensitivity, residualShortfall: { median: residualSlack[19], ...residualCounts }, conclusion: 'Physical drop-cap footprint predicts 23 more original wraps; ciphertext remains undeciphered.'
   }, null, 2));
 }
 
 if (require.main === module) main();
-module.exports = { RED_CAPS, classifyWithOriginalDropcap, compare };
+module.exports = { RED_CAPS, redCapMargin, classifyWithOriginalDropcap, compare };
