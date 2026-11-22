@@ -1,37 +1,73 @@
-# P54→p55 cross-page ten-rune seam balances the terminal circumference tapes
+# P54→p55 cross-page word carry produces two 43-rune tapes; original all-secret matrix attack
 
-**Agent11, 22 November 2026, Director #2229.** A previously unused physically contiguous source register closes p55's missing 10-unit exterior deficit: **the exact last 10 ciphertext runes of p54 plus p55's 33 word exteriors form 43 runes, matching p55's 43 strict interiors**. The resulting 86 source symbols occupy *one real cross-page word tail plus all of physical p55*, with no synthesized symbols. This makes a new complete, source-addressed two-tape cipher interface feasible. **It does not identify the creator's chosen mixing operation, recover a secret key, or yield plaintext.**
+**Agent11, 22 November 2026, Director #2229. Source-grounded new register plus exact negative for a constrained full-state decoder. No authentic unknown plaintext, creator key or final destination.**
 
-## The original art and exact physical source
+A genuinely contiguous source register closes physical p55's missing 10-unit outer count: **the last ten runes of p54 + p55's 33 word exteriors =43**, exactly equal to the 43 strict interiors of p55. The two 43-symbol tapes use **all 86 original runes**, including the complete word crossing the page break. This specifies a new real input geometry for possible reversible two-stream decoders. It still requires an independent operation selected by the creator; the artist did not label the 43/43 scheme.
 
-The original image `71.jpg` (physical p54) prints its final **10-symbol word fragment** at the bottom of the page, without a terminal word separator: original GP transliteration `G-O-T-TH-X-E-EA-R-G-Y`. The first `NG` on the next original image `72.jpg` (physical p55) ends that word; the page itself has 76 runes. Treat the `/` transcription mark as an *image line break*, not a word separator. The p55 page-local segment widths are:
+## 1. The original cross-page source
+
+Archive image `71.jpg`, physical p54, ends with an **unterminated ten-rune** fragment:
+
+`G · O · T · TH · X · E · EA · R · G · Y` (canonical GP rune transliteration).
+
+Archive image `72.jpg`, physical p55, begins with the single `NG` before an original hyphen, ending that 11-rune word. The p55 page has **76** runes divided into its original **17 page-local word fragments** of lengths
 
 `[1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]`.
 
-One exterior rune for the incoming singleton and two per complete word give **33 exterior GP29 symbols**, while the 43 true strict interiors remain source-defined. Adding the preceding 10 original runes produces the full two-tape physical state:
+Keep the first and last rune of each complete fragment, and keep the lone incoming `NG` as an outer rune: **33 original exterior** and **43 strict-interior** p55 runes. The source-aligned 86-rune register is:
 
-`A[0..42] = p55 strict interiors (43)`
+| Tape | Source of exactly 43 GP29 symbols | Original-order position treatment |
+|---|---|---|
+| **A** | All 43 strict word interiors on p55 | source order within and across complete p55 words |
+| **B** | Final ten p54 runes, then 33 p55 exteriors | source chronological order; the first p55 `NG` remains attached to its p54 predecessor |
 
-`B[0..42] = p54 final 10-rune fragment || p55 exteriors (10+33=43)`
+The complete state is `p54 last10 || p55 all76`, with no inserted pad, invented word break, omitted rune or guessed GP value. The 10-rune p54 tail has a *real word-continuation relationship* to that p55 singleton, making it a more specific candidate for the ten missing counterstream cells than an unrelated adjacent key.
 
-`physical register = p54 final10 || p55 all76 = 86`.
+An original-only census uses the identical first/last extraction rule for **53 physical neighboring rune-bearing unknown-page pairs**, omitting the runeless p50 transition. Only the p54→p55 pair satisfies **`current strict-interior count − current outer count = previous terminal printed fragment length`**: here **`43−33=10`**, with the preceding fragment length10. This describes a preselected exact-source match after noticing p55; because manuscript pages have varying widths and the wordwise boundary interpretation remains a hypothesis, it is **not an independent probability of intentional design**.
 
-Thus p55's ten-symbol count deficit has a literal preceding page span that is **already part of its incomplete printed word**. The source-inferred operation of stripping each word's first/last runes still lacks an authenticated author instruction; the prior p55 43/33 observation and the p54 physical word carry are separately established. The p54 last fragment is unusually well positioned as a *candidate* counterstream, without proving this was intended.
+The [source-authenticated register and original86 reconstruction SFT](../sims/lp2_p54_p55_carry10_balanced_hadamard_sft.cjs) passed [Windows Node22 CI 45014156169](https://github.com/FlareZ123/liber-primus/actions/runs/45014156169).
 
-The [original-only SFT](../sims/lp2_p54_p55_carry10_balanced_hadamard_sft.cjs) passed [Windows Node22 CI run 45014156169](https://github.com/FlareZ123/liber-primus/actions/runs/45014156169). compares all **53 physically adjacent rune-bearing unknown-page pairs** under the *same* page-local first/last extraction convention, skipping the runeless p50. Exactly one has `interior_count−exterior_count == preceding page final-fragment length`: **p55, 43−33=10**, previous p54 fragment10. This is a bounded empirical uniqueness result on a specifically constructed rule observed after finding p55; it is **not a calibrated probability of designer intent**, and most other pages have substantially longer text.
+## 2. First complete two-tape inverse: source-order Hadamard
 
-## One complete reversible two-stream consumer
+The historically familiar GP29 arithmetic and two mirrored moth wings suggest the simple, mathematically invertible symmetry
 
-A mirrored wing/tree suggests paired registers; the separate p28 research has investigated the **GF29 Hadamard map** `H(A,B)=(A+B,A−B)`, which is algebraically reversible because 29 is odd and `2^(−1)=15 mod29`. Use the two entire 43-tuples in their *unchanged source order*, without searching phases, orientations, coefficients, rune permutations or inserted keys. Apply both forward H and its unique inverse `H⁻¹(A,B)=(15(A+B),15(A−B)) mod29`. Restore transformed symbols to all **86 original physical positions**, including the first 10 on p54, the complete p55 33-position exterior stream and every interior. The original physical page break, complete printed word widths and all rune positions are exactly preserved. Each model forward-replays all 86 original ciphertext runes. An independently known solved-p57 GP29 passage is planted through H, and the inverse recovers **86/86** source-native control runes.
+`H(A,B)=(A+B,A−B) mod29`, with `H⁻¹(A,B)=15×(A+B,A−B) mod29`.
 
-The original-H outputs are nonprose in every complete p55 word, without a single coherent sentence. The complete 86-rune decoded GP29 IoC for both H directions is **0.038303693570451436**, versus raw 86-rune IoC **0.036114911080711354**. The forward model's 16 complete p55 output words are:
+There is **no first-party 2014 sentence instructing this Hadamard operation**. Freeze tape pair index `i=0..42`, align A and B as printed, and apply both H and its inverse **to both tapes**, replacing **all 86 physical positions** in their source order. Every original GP rune is forward-replayable. Both complete 86-rune candidate readouts have **IoC 0.038303693570451436** against the untouched original86 **0.036114911080711354**; neither forms an original wordwise English passage. The 16 complete p55 words under H are:
 
 `RAEPW | ATH | TS | IAEAHHLEO | NGYEADTHM | HM | ILAENGAEWSAEARNGNGU | EOEIASAEEO | UIAEOC | DAE | WGSEOCF | DUUBRJT | FAE | DRAPGAE | AEEAR | DEAH`.
 
-The inverse direction also produces no coherent original English phrase; the full all-86 output including carry and each original printed word is emitted by the SFT. Reencryption is a correctness property of an invertible transform and **does not validate this cipher as authorial**.
+Both operations preserve physical page/word positions. The standalone SFT emits full original and inverse outputs and independently recovers **86/86 genuine source-native solved-p57 runes** in an encrypted plant. This validates code correctness, not the historical plaintext.
 
-## Consequence and missing input
+## 3. All-secret key-recovery attack: every fixed invertible 2×2 GF29 matrix
 
-Unlike a p55 interior-only decoder or a relabeled 33-symbol outer pad, this source-native construction provides a **single valid reversible interface for both streams and a real 10-symbol cross-page dependency**. It specifies exactly how a candidate p54/p55 decoder would consume all original symbols and makes it possible to reject proposed operators by output on 86 source symbols. The obvious source-near GF29 Hadamard consumer fails to recover plaintext, so it is retired in this exact orientation. A verified full decoder still requires an independent creator-selected operation, a source-defined 43-pair ordering and a substantive untouched p54 span or solved-page holdout.
+A substantially stronger and **cryptanalytically decisive** decoder model lets the creator choose **any** fixed 2×2 matrix
 
-**Do not extend this into ad hoc rotations or arbitrary two-stream matrices** merely to optimize language. The contribution is the newly identified p54 last-word **completion of p55's two-tape input**, preserving the original page-seam grammar, and one finite failed executable mapping. It complements the older [9+256+43 p50 overlay](p54-p55-256-inner52-source-gate.md) without changing its conclusion. No original LP2 unknown plaintext, recovered key or final location is claimed.
+`M=[[a,b],[c,d]] mod29` with `ad−bc≠0`,
+
+thereby changing all interior and exterior values, with **no known secret coefficients**. There are exactly `(29²−1)(29²−29)=682,080` possible matrices. The two natural source input pairings are **B in printed order** and **B reversed** (the literal moth-wing mirror). Each model returns the transformed 86 runes to their original positions and has a unique exact inverse. The only further assumption is that original printed p55 word breaks survive and the 13-rune seventh complete word represents an ordinary native-GP English word.
+
+The original p55 complete word beginning at zero-based offset23 contains **13** GP runes:
+
+`B-EA-F-X-I-M-U-C-P-H-NG-L-EO`.
+
+It occupies **11 A-tape positions and exactly two B-tape endpoints**. For either fixed B orientation, two linearly independent original input pairs among the A outputs determine the first row `(a,b)` uniquely, and two independent B inputs determine `(c,d)`. Thus **only four of 13 positions** are needed to infer the complete secret matrix for any proposed 13-rune plaintext word; the other nine positions must predict correctly. No sampling of keys, scoring threshold, or parameter optimization is required.
+
+The pinned source-native lexicon is the exact union of the Shakespeare, Gibran, Emerson and TextBlob English controls, normalized under historical GP29 spelling including `ING` and `IO` ligatures. It yields **422 distinct GP29 words of length13**. For each word, the [all-secret crib-recovery SFT](../sims/lp2_p54_p55_carry10_allsecret_gl2_word13_sft.cjs) solves the unknown matrix algebraically and checks every remaining rune. The observed result is:
+
+| Full 86-rune pairing | Potential source-native GP13 words | Invertible secret matrices allowed | Entire original 13-rune word matches |
+|---|---:|---:|---:|
+| B in literal physical order | 422 | 682,080 | **0** |
+| B in literal reversed order | 422 | 682,080 | **0** |
+
+This rejects **every secret fixed GL2(29) paired decoder** of the 86 original symbols in these two author-visible pairings *if* the source's 13-rune word preserves its boundaries and belongs to the pinned GP13 native-English vocabulary. It is materially stronger than testing H alone or fitting coefficients from language scores. It cannot exclude differently segmented text, non-English plaintext, an independently sourced key evolving per pair, or an explicit separate encoding layer.
+
+The SFT plants a real independently solved **86-rune p57** passage with the authentic English GP13 word `CIRCUMSTANCES` placed at the exact original 13-position physical slot. A hidden invertible secret matrix `[[5,8],[13,21]]` encrypts all 86 symbols. Under each of the two pairing orientations, the same cryptanalytic recovery program finds the **complete hidden matrix solely from the authentic 13-rune word**, decrypts the entire native passage **86/86**, and rejects a deliberately wrong matrix. This prevents a false negative caused by a cipher implementation that cannot actually recover valid synthetic source-shaped input. All original and positive assertions passed [Windows Node22 CI 45014741716](https://github.com/FlareZ123/liber-primus/actions/runs/45014741716).
+
+## 4. Cryptanalytic choice and open source field
+
+The **cross-page 10+33=43 counterstream** is now a concrete, source-verifiable register that permits simultaneous alteration of p55 interior and exterior runes while respecting the actual p54→p55 unfinished word. Its simplest reversible GF29 consumer fails, and even the **entire unknown stationary invertible 2×2 matrix family** cannot decode the original 13-rune word into any of 422 independent GP-native English references in either source-natural orientation.
+
+The missing *creator-authored field* is the **actual two-tape symbol-changing opcode**: a rule choosing pair order, arithmetic, state transition, or an external key beyond the bare observed 43/43 lengths. This limitation prevents an original 76/76 p55 decoder and prevents the requested p54 150+ rune holdout. A known-matrix plant is a proof of test reachability, not an original decipherment.
+
+Do **not** extend this falsified family with fitted offsets, additional free matrix phases, arbitrary secret S-boxes or speculative word changes merely to rescue it. Any renewed decoder attempt should originate from a period-source instruction that fixes a new reversible operation and then predict an untouched original passage. The earlier competing p54→p55 **9+256+43** and **256+52** source-count partitions remain distinct, as documented in [the p50 overlay report](p54-p55-256-inner52-source-gate.md). No original plaintext, real key or final destination is recovered in this experiment.
