@@ -45,6 +45,25 @@ The following p8 has **255 source GP29 runes**: a twelve-rune red heading and an
 
 **No registered output approaches clear GP-native prose or recovers an unknown 150-rune passage.** The test rejects only these sixteen direct tensor-consumer rules. It leaves the Shamir/DH structural coincidence intact and supplies no key for the other pages.
 
+## Entire following p8 as 51 five-share records (Agent5, 22 November 2026)
+
+A second original p8 recipient, distinct from the **243-rune black 3⁵ tensor** analyzed above, is implied by a source-simple integer equality: **the complete adjacent physical page p8 has 255 GP29 runes = 51 × 5**. The five p7 red words and five source-visible black dots permit exactly five x-positions for ordinary degree-four GF29 Shamir interpolation. A prior p7 red-product report already supplied source values **[11,26,8,15,2]**. Freeze those, the horizontal dot ranks **[1,2,3,4,5]**, and image-derived vertical dot ranks **[3,5,1,4,2]** as the only three coordinate systems. Freeze two elementary readings of **all 255 original p8 runes**: 51 consecutive five-rune records, or five contiguous lanes each of51 runes. No black-body skip, secret x-position fitting, replacement symbols or page offset is admitted.
+
+The exact GF29 Lagrange interpolation weights for the three coordinate lists are respectively **[5,19,10,24,1]**, **[10,1,5,24,19]**, **[6,14,20,3,16]**. Each set sums to 1 mod29 and annihilates monomials of degrees1 through4, so the recovered constant is explicitly reproducible on original ciphertext.
+
+| Original p7 x-register | Full p8 tape reading | Recovered original GP29 symbols | Original output GP29 IoC |
+| --- | --- | ---: | ---: |
+| Horizontal ranks | 51 adjacent groups of five | **51** | 0.036862745 |
+| Horizontal ranks | Five 51-rune lanes | **51** | 0.031372549 |
+| Vertical ranks | 51 adjacent groups of five | **51** | 0.028235294 |
+| Vertical ranks | Five 51-rune lanes | **51** | 0.036078431 |
+| Original p7 red-word products | 51 adjacent groups of five | **51** | 0.035294118 |
+| Original p7 red-word products | Five 51-rune lanes | **51** | 0.031372549 |
+
+**No recovered 51-rune register resembles native GP29 English, a meaningful instruction or a known destination.** The best IoC remains below **0.037**, whereas the first 51 verified plaintext runes of original solved p57 have IoC **0.054901961**. The complete [Windows Node.js 22 original-data SFT](../sims/lp2_p7_fivedots_p8_255_shamir51_original_sft.cjs) also generates fresh degree-four GF29 polynomials whose constant terms are the real 51 first clear-GP symbols of p57, evaluates every one at the source coordinates in both layouts, and recovers **51/51** genuine native-GP source symbols in **all six** positive controls. It preserves p7's full original red-word packet and every original p8 rune. [Passing Windows run 45029070536](https://github.com/FlareZ123/liber-primus/actions/runs/45029070536).
+
+**Important source-design objection:** p8 visibly contains **12 red heading runes followed by243 black body runes**. Grouping all 255 into five-rune sharing records crosses that original ink boundary, so even the arithmetically exact 255=51×5 may be accidental. The historical 2013 Shamir system also used a **different GF(2^176) field and packet serialization**. The exact test rejects these six direct GP29 share-to-plaintext outputs; it does not exclude other authentic keyed mechanisms or the unresolved 243-rune black tensor.
+
 ## P0 original-body transfer after vertical dot sort (Agent2, later 21 November)
 
 The independently established vertical ranks [3,5,1,4,2] can also be treated as a **permutation of the five printed red words**, by pairing dots and words in horizontal order and then reading words from highest to lowest dot. This gives the GP29 first-index sequence [5,6,23,14,22] and mod29 product sequence **[8,2,11,15,26]**. Their first two source-word heads/products reproduce `g=5,a=6,A=8,K=2`; the third head gives `p=23`. The historical DH state and height ranks were already known, so this is a secondary *interpretation*, not a new independently recovered key or previously unobserved image ordering. The identical five-dot ornament also occurs at p23 and solved p56 under reflections.
