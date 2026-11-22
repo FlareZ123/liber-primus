@@ -112,6 +112,18 @@ The **two genuinely independent** table factor carries H=[8,5] and G=[15,2] form
 
 A **complete 12,956-rune source-keyed rotating-Hill2 original inverse** was frozen before reading output: consecutive global GP29 pairs receive `M^(−i)` with zero-based pair index `i`. The entire output remains uniform-like (native source-GP trigram −3.41644 vs solved p57 −2.46814; IoC 0.03446465 vs 0.06270997), despite 12,956/12,956 exact forward replay and a complete source-native plaintext plant. Retire this specific dynamic clock. [Detailed original-input report](lp2-p50-carry-order60-rotating-hill2-original-gate.md) · [reproducer](../sims/lp2_p50_carry_order60_rotating_hill2_wholebook_sft.cjs).
 
+## All-degree joint factorization: p39 G is the entire original p29/p50 gcd
+
+An independent source-frozen all-degree Euclidean gcd test was also run on the entire original p29 rune polynomial (277 high-first coefficients) and the entire p50 byte polynomial (256 high-first byte coefficients reduced modulo29). The monic result is exactly:
+
+```
+gcd_GF29(P29(X),P50(X)) = (X−24)^2 = X²+10X+25
+```
+
+The gcd has **degree2** after 248 Euclidean remainder steps. Division of both original polynomials by this monic G leaves zero remainder, and their two quotients have **no further common polynomial factor of any degree** (gcd=1). Thus the p39 isolated red quadratic accounts for the *whole* common factor. Prior scalar-root scans alone could not exclude shared irreducible quadratics or higher-degree factors; this stronger exact result now does.
+
+The synthetic positive appends one independent shared linear factor `X+1` to both original polynomials and recovers the correct resulting degree3 gcd, demonstrating that the algorithm detects higher shared factors. [Frozen precommit](../workplace/agent27-p29-p50-entire-common-gf29-factor-precommit.md) · [read-only SFT](../sims/lp2_p29_p50_full_gf29_gcd_source_sft.cjs). This is a bounded code-architecture exclusion; the original p29/p50 quotient arrays can still be encrypted by different external keys or represent checksums rather than native-GP plaintext.
+
 ## Causal plaintext decision
 
 The new carries are **exact, key-like short numeric packets** aligned with the p39 G factor and the distinct p23 *integer representative* of signed H linking p29, p50 and p28, but it does not identify a complete key stream, reversible original-rune transform, clock/reset, or plaintext receiver. The p29 quotient itself has near-ciphertext GP29 IoC **0.03405441**. Any single fixed GP29 permutation applied uniformly to this quotient preserves that IoC, so the revealed `e=3` GP29 cube operation alone cannot turn the full quotient into native-GP English prose. The separately frozen full 275-rune quotient→outer-H shell inverse and the above p50 factor-carry Hill2 inverse both failed native-GP language [under its exact source rule](lp2-p28-p29-gquotient-outerh-prospective-inverse-decision.md).
