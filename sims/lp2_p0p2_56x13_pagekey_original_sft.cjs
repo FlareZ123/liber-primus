@@ -5,7 +5,7 @@
  * The first 13 runes of p0 are the original red heading, followed by
  * a 13-dot punctuation mark. Physical p0-p55 comprise 56 unknown pages.
  * This tests the most direct period-13 and 13-seed autokey receivers,
- * with both possible positions for the leftover rune.
+ * with both possible positions for the leftover rune, both 56-page\n * and 55-rune-bearing-page source groupings.
  *
  * Run with Node.js 22; reads only the canonical repository dataset.
  */
@@ -88,21 +88,41 @@ assert.equal(solvedP57.length, 95);
 const controlIoC = ioc(solvedP57);
 assert(controlIoC >= 0.05);
 
+
+/*
+ * The two red 13-dot section delimiters bound a 716-rune black span:
+ * one follows p0 rune13 and the other follows p2 rune201.
+ * In addition to the full 729=56*13+1 arrangement, the enclosed
+ * 716=55*13+1 admits one row per actual rune-bearing unsolved page,
+ * skipping physical rune-free p50.
+ */
+const alignments = [
+  {name: "full-729-final-residual", offset: 0, rows: 56,
+    keyPage: (page) => page},
+  {name: "full-729-initial-residual", offset: 1, rows: 56,
+    keyPage: (page) => page},
+  {name: "black-716-final-residual", offset: 13, rows: 55,
+    keyPage: (page) => page >= 51 ? page - 1 : page},
+  {name: "black-716-initial-residual", offset: 14, rows: 55,
+    keyPage: (page) => page >= 51 ? page - 1 : page}
+];
 const experiments = [];
-for (const residualLocation of ["last", "first"]) {
-  const offset = residualLocation === "last" ? 0 : 1;
-  const keys = Array.from({length: 56}, (_, p) =>
+for (const alignment of alignments) {
+  const {name, offset, rows, keyPage} = alignment;
+  const keys = Array.from({length: rows}, (_, p) =>
     opening.slice(offset + p * 13, offset + p * 13 + 13));
   assert(keys.every((k) => k.length === 13));
-  if (residualLocation === "last") assert.deepEqual(keys[0], firstTitle);
+  if (offset === 0) assert.deepEqual(keys[0], firstTitle);
 
   for (const reverseKey of [false, true]) {
     for (const sign of [-1, 1]) {
       for (const mode of ["repeat", "cipher-auto", "plain-auto"]) {
-        const getKey = (page) => reverseKey ? [...keys[page]].reverse() : keys[page];
+        const getKey = (page) => {
+          const k = keys[keyPage(page)];
+          return reverseKey ? [...k].reverse() : k;
+        };
         const decoded = originalPages.map((p) => ({
-          page: p.page,
-          inputLength: p.indices.length,
+          page: p.page, inputLength: p.indices.length,
           plaintext: decode(p.indices, getKey(p.page), sign, mode)
         }));
         const all = decoded.flatMap((p) => p.plaintext);
@@ -113,7 +133,7 @@ for (const residualLocation of ["last", "first"]) {
         const key = getKey(3);
         assert.deepEqual(decode(encode(solvedP57, key, sign, mode), key, sign, mode), solvedP57);
         experiments.push({
-          residualLocation, reverseKey, sign, mode,
+          alignment: name, reverseKey, sign, mode,
           originalRunes: all.length,
           wholeBookIoC: ioc(all),
           meanLongPageIoC: pageScores.reduce((n, p) => n + p.ioc, 0) / pageScores.length,
@@ -125,14 +145,14 @@ for (const residualLocation of ["last", "first"]) {
     }
   }
 }
-assert.equal(experiments.length, 24);
+assert.equal(experiments.length, 48);
 assert(experiments.every((p) => p.longPagesAbove0_05 === 0));
 assert(experiments.every((p) => p.maxLongPage.ioc < 0.04));
 
 console.log(JSON.stringify({
-  hypothesis: "opening p0-p2 = 56 13-rune physical-page keys plus one leftover rune",
+  hypothesis: "p0-p2 full source 56x13+1, or red13-delimited body 55x13+1",
   source: {physicalPages: "p0-p2", runes: 729, redHeadingRunes: 13,
-    predictedKeyGroups: 56, groupSize: 13},
+    fullSourceKeyGroups: 56, blackBodyRunes: 716, blackBodyKeyGroups: 55, groupSize: 13},
   authenticUnknown: {pages: 52, runes: 12227, longPages: 49},
   authenticNativeSolvedControl: {page: 57, runes: 95, ioc: controlIoC},
   experiments
