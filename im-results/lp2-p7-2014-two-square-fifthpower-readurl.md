@@ -57,12 +57,14 @@ The older, authentically solved LP1 WISDOM operation uses **sums of GP prime wei
 
 | Whole-word aggregation, each mod29 | Genuine p7 five-symbol input | Five-square central 3+3 GP transliteration |
 | --- | --- | --- |
-| **GP index product** (chosen for earlier p7/p8 polynomial handoff) | [11,26,8,15,2] | **READURL** |
-| GP index sum | [26,7,23,13,24] | GFDEOGOE |
+| **GP index product (0-based)** (chosen for earlier p7/p8 polynomial handoff) | [11,26,8,15,2] | **READURL** |
+| GP ordinal product (1-based) | [9,19,25,0,0] | HAPFAT |
+| GP index sum (0-based) | [26,7,23,13,24] | GFDEOGOE |
+| GP ordinal sum (1-based) | [28,11,26,15,27] | YJHAEENG |
 | **GP prime sum** (historically established LP1 WISDOM grammar) | [9,16,11,11,23] | AETBYPEO |
 | GP prime product | [14,10,4,19,19] | PUOEPBI |
 
-This is a consequential **operator-selection objection** to the author-intent reading: the most plainly documented earlier Cicada word→number operation fails. The success depends on the less explicitly source-selected zero-based index **product**. The product had already been independently motivated by the p7→p8 fixed-point arithmetic before this report, preventing it from being invented solely for READURL, but that earlier result was itself retrospectively discovered. The [source-exact SFT](../sims/lp2_p7_two2014_squares_readurl_sft.cjs) asserts the four genuine original word feature vectors and all four complete readouts. A first-party cue for **multiplication** over prime **addition** is therefore a necessary component of any genuine author solve path.
+This is a consequential **operator-selection objection** to the author-intent reading: the most plainly documented earlier Cicada word→number operation fails. The success depends on the less explicitly source-selected zero-based index **product**. The product had already been independently motivated by the p7→p8 fixed-point arithmetic before this report, preventing it from being invented solely for READURL, but that earlier result was itself retrospectively discovered. The [source-exact SFT](../sims/lp2_p7_two2014_squares_readurl_sft.cjs) asserts the six genuine original word feature vectors and all six complete readouts. A first-party cue for **multiplication** over prime **addition** is therefore a necessary component of any genuine author solve path.
 
 ## Strong mathematical uniqueness, but no valid post-discovery significance estimate
 
