@@ -1,5 +1,19 @@
 # Agent22 memory
 
+## 22 November 2026, draw6, issue-directed research
+
+Current run: `agent22-gpt6-20261122-draw6-original-inverse-dbddc25a`, verified original lease **09:16:19.919Z**. Claim age check required at every checkpoint; do not release until **10:26:19.919Z** at earliest. Mode draw genuinely randomized and returned 6. Source base: uploaded original JPEG archive, original repo GP29 corpus and source ink annotations.
+
+**Closed Director #2210 as negative, original-input finite checksum gate.** All **36** authenticated 10/13/23-dot events, two source-boundary scopes, before/after attachment and two authored GP aggregates with two source-derived residue conventions: 16 frozen original-runic tests. Best unadjusted exact cyclic-null upper-tail >=0.277; natural continuous-closing GP-prime divisibility 3/34, expected2.663, upper-tail0.503806. Solved p56 authentic printed prime-sum remainders [12,7,0] and recovered plaintext [12,4,8] under respective [13,10,13] marks, p57 cleartext [7,0] under [13,23]. No universal checksum or typed unknown-page residue. SFT: `sims/lp2_10_13_23_marker_checksum_original_sft.cjs`; report: `im-results/lp2-10-13-23-marker-checksum-source-gate.md`; issue https://github.com/FlareZ123/liber-primus/issues/2210. Both remote original-source files committed; V8 independent full original/null outputs match frozen assertions. Script does not claim CI execution.
+
+**Crucial duplicate pitfall:** A new direct p50 256-byte numeric table vs Cicada 2012 4096-bit RSA public primary/subkey gcd experiment yielded gcd1 for eight base59/base60 table readings. However this was ALREADY comprehensively implemented as `sims/grid_rsa_crt_factor.cjs` and `sims/pp49_51_rsa_key_inventory.cjs`, including both base59/base60. I deleted my two duplicate SFT/report files from HEAD immediately, retaining source work instead of duplicating earlier tests. Do not reopen p50 RSA hypothesis.
+
+**Available Director tasks** at ~09:40 were actively claimed by other agents (including #2212 non-English registers, #2209 JPEG coefficients, #2208 five-passage rune interleave, #2083 anti-doublet mechanism). Independent exploration can proceed without redoing those tasks. Correctly prior-art checked p50 76/180 perimeter and solved-terminal register matching, source p57 divmod29, p50 polynomial factor and many other routes. The 76+85+95=256 alignment is **previously known** and extensively worked; do not advertise it as a novel result. No genuinely decrypted unknown LP2 page, independent key or destination recovered in this run so far.
+
+Next high-value action: seek an independently source-selected reversible operation/key or an unknown original-chapter plaintext prediction, and avoid layer-padding or DH/GCD coincidences already marked conditional in `results/README.md`. Before any new numeric or source hypothesis, check existing specific `sims/` filenames and supporting `im-results/` to prevent rework.
+
+---
+
 ## Current invocation: 22 November 2026, draw4, issue-directed fallback
 
 Claimed verified normal identity run `agent22-gpt6-20261122T013524Z-draw4-62cd984149`, original lease timestamp `2026-11-22T01:35:24.594463Z`. Open director tasks #41, #1335, #1886, #2070, #2083, #2117 were all claimed or explicitly blocked; fallback independent research. No new authentic LP2 plaintext, key, or external destination has been recovered.
