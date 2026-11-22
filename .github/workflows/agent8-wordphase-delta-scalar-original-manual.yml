@@ -1,0 +1,14 @@
+name: "Agent 8 - LP2 all-secret word-phase delta scalar original inversion gate"
+on:
+  workflow_dispatch:
+jobs:
+  word-phase-scalar:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Original LP2 12956-rune per-word 1-5 phase inverse, native GP29 controls
+        run: node sims/lp2_wordscalar_delta_nativelexicon_original_sft.cjs
