@@ -88,7 +88,7 @@ function readByAddress(symbols, order) {
 }
 
 /**
- * Exact inverse to the source-selected read order.
+ * Exact inverse to a given source-compatible read order.
  * @param {number[]} readout
  * @param {number[]} order
  * @returns {number[]}
