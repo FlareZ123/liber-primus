@@ -279,4 +279,107 @@ for (const [first, last, length, rawExpected, sExpected, inverseExpected] of [
   console.log('SOURCE_FIRST_28_S ' + fromPhysical.slice(0, 28).join(','));
   console.log('SOURCE_FIRST_28_SINV ' + fromEigen.slice(0, 28).join(','));
 }
-console.log('SELFTEST_PASS original squares, charpolys, canonical basis, 3409 original runes, solved-native positives');
+
+/**
+ * Authenticated key-transfer receiver: source 256-cell grid / (H*G)
+ * yields exactly 252 GP29 coefficients = three 84-rune lanes.
+ * The authentic solved p56 uses 84 consumed prime-totient GP29 keys.
+ * Allow both original three-lane serializations and either 7×7 basis.
+ * Equality-pattern disagreements are key-independent for *all* 29!
+ * possible secret fixed GP29 output alphabet permutations.
+ */
+const grid = JSON.parse(fs.readFileSync(path.join(
+  ROOT, 'resources', 'liber-primus', 'base60-grid.json'), 'utf8'));
+assert.equal(grid.rows.length, 32);
+assert.ok(grid.rows.every((row) => row.length === 8));
+const bytes = grid.rows.flat().map((token) => {
+  assert.equal(token.length, 2);
+  const high = grid.alphabet.indexOf(token[0]);
+  const low = grid.alphabet.indexOf(token[1]);
+  assert.ok(high >= 0 && low >= 0);
+  const value = 60 * high + low;
+  assert.ok(value >= 0 && value <= 255);
+  return value;
+});
+const divisor = polynomialMultiply(
+  [24, 26, 3], [15, 5, 27]);
+assert.deepEqual(divisor, [12, 17, 11, 21, 23]);
+const remainder = bytes.map(m29);
+const quotient = [];
+for (let i = 0; i < 252; i += 1) {
+  const coefficient = m29(remainder[i] * inverse(divisor[0]));
+  quotient.push(coefficient);
+  for (let j = 0; j < divisor.length; j += 1) {
+    remainder[i + j] = m29(remainder[i + j] - coefficient * divisor[j]);
+  }
+}
+assert.deepEqual(remainder.slice(252), [0, 0, 0, 0]);
+assert.deepEqual(quotient.slice(0, 10), [0, 12, 9, 28, 2, 25, 23, 21, 18, 28]);
+
+/** @param {number} n @returns {boolean} */
+const isPrime = (n) => {
+  if (n < 2) return false;
+  for (let divisor = 2; divisor * divisor <= n; divisor += 1) {
+    if (n % divisor === 0) return false;
+  }
+  return true;
+};
+const primes = [];
+for (let n = 2; primes.length < 84; n += 1) {
+  if (isPrime(n)) primes.push(n);
+}
+const trueP56Key = primes.map((prime) => m29(prime - 1));
+assert.deepEqual(trueP56Key.slice(0, 10), [1, 2, 4, 6, 10, 12, 16, 18, 22, 28]);
+assert.equal(byPage.get(56).length, 85);
+assert.equal(byPage.get(56)[56], 0, 'actual one literal skipped F rune');
+
+function equalityDisagreements(source, target) {
+  assert.equal(source.length, target.length);
+  let disagreement = 0;
+  for (let i = 0; i < source.length; i += 1) {
+    for (let j = i + 1; j < source.length; j += 1) {
+      disagreement += +( (source[i] === source[j]) !==
+                          (target[i] === target[j]) );
+    }
+  }
+  return disagreement;
+}
+assert.equal(equalityDisagreements(
+  trueP56Key.map((v) => m29(7 * v + 3)), trueP56Key), 0);
+assert.deepEqual(transform(transform(trueP56Key, S), Sinverse), trueP56Key);
+assert.equal(equalityDisagreements(
+  transform(transform(trueP56Key, S), Sinverse), trueP56Key), 0);
+
+const sourceTransfer = [];
+for (const layout of ['contiguous', 'interleaved']) {
+  for (let lane = 0; lane < 3; lane += 1) {
+    const raw = layout === 'contiguous'
+      ? quotient.slice(lane * 84, (lane + 1) * 84)
+      : quotient.filter((_, i) => i % 3 === lane);
+    for (const [operator, matrix] of [
+      ['identity', null], ['S', S], ['Sinverse', Sinverse]
+    ]) {
+      const attempt = matrix ? transform(raw, matrix) : raw;
+      sourceTransfer.push({
+        layout, lane, operator,
+        disagreements: equalityDisagreements(attempt, trueP56Key),
+        equalSymbols: attempt.reduce((sum, v, j) =>
+          sum + +(v === trueP56Key[j]), 0)
+      });
+    }
+  }
+}
+assert.equal(sourceTransfer.length, 18);
+const minimum = Math.min(...sourceTransfer.map((x) => x.disagreements));
+const maxDirect = Math.max(...sourceTransfer.map((x) => x.equalSymbols));
+assert.equal(minimum, 191);
+assert.equal(maxDirect, 8);
+const winner = sourceTransfer.find((r) => r.disagreements === minimum);
+assert.deepEqual(
+  [winner.layout, winner.lane, winner.operator],
+  ['contiguous', 1, 'S']);
+console.log('ORIGINAL_KEY_TRANSFER 18 layouts, key-independent equality mismatches minimum=' +
+  minimum + ', max exact symbols=' + maxDirect +
+  ', best contiguous middle84 after S');
+
+console.log('SELFTEST_PASS original squares, charpolys, canonical basis, 3409 original runes, solved-native positives, 84-prime authenticated-key transfer');
