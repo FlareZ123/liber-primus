@@ -16,9 +16,9 @@ Thue's classic binary sequence `t(n)=popcount(n) mod 2`, and the independently d
 
 A second, independent-looking way to *construct* the number 1729 from visible features was found after the original chapter count had already prompted the THUE reading. The **first four red p8 runes** are precisely **X I X M**: the first three spell Roman **XIX=19**, and the fourth is GP29 ordinal **M=19**, a self-labeled 19 independently established in the [p7→p8 source circuit](lp2-p7-p8-original-red-polynomial-fixedpoint.md). The tree section contains **seven physical pages**. The final p14 rune is immediately followed by a visibly **red 13-dot chapter mark** (verified against original `31.jpg`). These three source-visible operands yield exactly
 
-[
+\[
 7 \times 13 \times 19 = 1729 = (2,1,18)_{29} = \mathrm{TH\;U\;E}.
-]
+\]
 
 Thus the **same chapter's length agrees exactly** with seven-page count × physical section-terminator dot count × redundantly labeled opening number19. With number 19 selected by the **first red source word** rather than fitted to the ciphertext length, this arithmetic is more constrained than an arbitrary factorization of a chosen total.
 
