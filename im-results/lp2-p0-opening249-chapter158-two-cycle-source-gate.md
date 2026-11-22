@@ -81,6 +81,26 @@ This ties a source-selected word *position* to the previously selected two-cycle
 
 To expose selection effects within the same fixed D4 count-pair gate, the 25,000 source-count-preserving nulls above also test the joint event: **some D4 orientation** matches both two-cycle residue points and the final nine runes sum to104. There are **4/25,000** hits in both nulls, add-one frequency **0.0002000**. This joint frequency is conditional on the post-selected register combination and word-sum test, and is **not a discovery-adjusted claim of intentional construction**. Its value should never be multiplied by the separate earlier count↔table frequency. This is exactly the sort of multistage coincidence that requires a source-fixed held-out decoding operation before promotion.
 
+### Typed word-pointer continuation: reaches cycles without plaintext
+
+The source-visible count-to-graph route can at least be **executed**, without inventing a key: start at **table cell249**, read its value as a **one-based printed-word number** in the canonical original LP2 rune transcript, compute that word's simple GP0 rune-index sum, and use the sum as the next p50 table-cell address. Repeat until a cell repeats. This is a candidate operation suggested by the signed 2016 line about words, mapping and numbers, although it gives no printed instruction to combine this specific word-count seed, p50 table, and GP0 register.
+
+Its untouched original first steps are:
+
+```text
+p0 black rune count249
+  T[249]=158 → chapter word158 GP0=104
+  T[104]=122 → printed word122 "U" GP0=1
+  T[1]=231 → printed word231 GP0=109
+  T[109]=184 → printed word184 GP0=39
+  T[39]=5 → printed word5 GP0=14
+  ...
+```
+
+This **one-based** fixed route has **11 transient steps** followed by a **14-address cycle** beginning at cell63, with exactly 25 distinct visited table addresses. A zero-based word-index convention using precisely the same start and GP0 operation instead reaches a **four-address cycle** after five transient steps, with 9 visited addresses. Neither route yields a readable source-word initial/terminal stream or an authenticated plaintext/key. The different cycles also show why the missing *index convention and readout rule* are material, rather than disposable details. The original table itself has distinct eleven- and two-node cycles; these 14- and four-node cycles describe the **new composed table→word→sum function** and must not be confused with its original graph.
+
+Reproducible [CJS typed traversal](../sims/lp2_p0_count249_p50_word_gp0_chase_sft.cjs), Windows Node22 [PASS44965023003](https://github.com/FlareZ123/liber-primus/actions/runs/44965023003). Without a separate Cicada instruction selecting the readout or genuine plaintext, this is a bounded original-input route with no solution and no warrant to optimize extra transforms.
+
 A stricter, key-independent exclusion applies to the **full 256-rune direct map** `C[728−i]=f(T[i] mod29)`: even if `f` is a completely unknown 29-input lookup with outputs fitted *after observing the entire original source*, all **29 distinct table residues** occur with multiple incompatible original ciphertext outputs. The best deterministic per-input lookup achieves **51/256** matches and must miss **205/256** original sites. Therefore any single global GP29 substitution interpreting the entire half-turned table stream as original first-chapter ciphertext is **algebraically impossible**. This does not constrain a keyed position-dependent polyalphabetic cipher, contextual state machine, or hidden-position selector.
 
 The original-operand arithmetic and all eight D4 controls are preserved in [single-source Windows/Node22 reproducer](../sims/lp2_p0_27square_rot180_p50_249_158_residue_sft.cjs), [successful CI44964289794](https://github.com/FlareZ123/liber-primus/actions/runs/44964289794). This upgrades the **structural route from page-count correspondence to two exact original-cipher residue matches**, while retaining the unresolved critical question: what source-given operation uses these matching runes to decode new original ciphertext? The two equalities alone remain compatible with coincidence.
