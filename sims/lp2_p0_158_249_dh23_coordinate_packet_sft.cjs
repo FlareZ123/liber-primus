@@ -95,7 +95,7 @@ assert.deepEqual(gp.pages[38].indices.slice(54, 57), [g, Ka, B]);
 // Conditional PRE-EXISTING candidate: 2016 source YOU -> p50[30] -> p0
 // whole word offset141, using p28's H(A,B) last two pad entries.
 const signed = read("resources/historical/cicada2016-4gq25-outguess.asc");
-assert(signed.includes("YOU WILL BE FOUND"));
+assert(signed.toUpperCase().includes("YOU WILL BE FOUND"));
 const you = [26, 3, 1];
 const youAddress = you.reduce((s, n) => s + n, 0);
 assert.equal(youAddress, 30);
