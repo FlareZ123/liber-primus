@@ -132,6 +132,42 @@ assert.deepEqual(projector,[
   [9,23,23,23,9],
 ]);
 
+// Source-only five-red-word projection, tested before consuming p8 ciphertext.
+const projectedCoeffs=vecMul(projector,coeff);
+assert.deepEqual(projectedCoeffs,[26,11,13,11,26]);
+assert(ink.pages.find((p)=>p.page===7).large_punctuation.some(
+  (mark)=>mark[0]===208 && mark[1]===13 && mark[2]==='red'
+));
+const sourceKey=fixedRoots.map((root)=>projectedCoeffs[root]);
+assert.deepEqual(sourceKey,[26,11]);
+
+// Charge the exact post-observation palindromic/midpoint pattern against
+// all complete five-word windows, not only the visually highlighted red one.
+const continuous=pages.slice(0,55).join('%');
+const textWords=[]; let current='';
+const complete=()=>{if(current){textWords.push(current);current='';}};
+for(const character of continuous){
+  if(glyphToIndex.has(character)) current+=character;
+  else if(character==='%'||character==='/'||/\s/u.test(character)){}
+  else complete();
+}
+complete();
+assert.equal(textWords.length,2896);
+assert.equal(textWords.reduce((sum,w)=>sum+[...w].length,0),12956);
+const products=textWords.map((word)=>wordProduct([...word]));
+const twoMatch=[],threeMatch=[],center13=[];
+for(let i=0;i+5<=products.length;i++){
+  const v=products.slice(i,i+5),result=vecMul(projector,v);
+  const reverseFirstTwo=result[4]===v[1]&&result[3]===v[0];
+  if(reverseFirstTwo)twoMatch.push(i);
+  if(result[2]===13)center13.push(i);
+  if(reverseFirstTwo&&result[2]===13)threeMatch.push(i);
+}
+assert.deepEqual(twoMatch,[408,2309]);
+assert.deepEqual(threeMatch,[408]);
+assert.equal(center13.length,87);
+assert.deepEqual(products.slice(408,413),coeff);
+
 // p8 has 12 actual red + 243 black runes, exactly 255=51*5.
 const p8=corpus.pages.find((p)=>p.page===8).indices;
 assert.equal(p8.length,255);
@@ -156,6 +192,28 @@ const ioc=(data)=>{
 assert(Math.abs(ioc(output)-0.0364977674238012)<1e-13);
 assert(Math.abs(ioc(p8)-0.03427512737378416)<1e-13);
 
+// The newly identified author-source-only two-value key also admits a direct
+// exact historical GP29-Vigenere candidate on the adjacent entire/red-free p8.
+const vigenereSourceResults=[];
+for(const [label,original] of [
+  ['p8-complete255',p8],
+  ['p8-black243',p8.slice(12)]
+]){
+  for(const sign of [-1,1]){
+    const recovered=original.map((rune,i)=>mod(rune+sign*sourceKey[i%2]));
+    assert.deepEqual(recovered.map((rune,i)=>mod(rune-sign*sourceKey[i%2])),original);
+    const native=Array.from({length:original.length},(_,i)=>
+      corpus.pages.find((p)=>p.page===57).indices[i%95]
+    );
+    const plantedCipher=native.map((rune,i)=>mod(rune-sign*sourceKey[i%2]));
+    assert.deepEqual(plantedCipher.map((rune,i)=>mod(rune+sign*sourceKey[i%2])),native);
+    vigenereSourceResults.push({label,sign,ioc:ioc(recovered),opening:recovered.slice(0,100).map(x=>corpus.translit[x]).join('')});
+  }
+}
+assert.deepEqual(vigenereSourceResults.map((r)=>Number(r.ioc.toFixed(12))),[
+  0.034892697236,0.033441408059,0.035098459341,0.033465972860
+]);
+
 // Exact authentic-source plaintext plant: the 2x5 map has a fixed right inverse.
 const solved=corpus.pages.find((p)=>p.page===57).indices;
 assert.equal(solved.length,95);
@@ -179,6 +237,10 @@ console.log('PASS exact_2014_square_charpoly='+char+' factored_(x+5)(x+3)(x-3)(x
 console.log('PASS p7_fixedpoint_factor=2(x-3)(x-4)(x2-8), 8=3/4 mod29');
 console.log('PASS scaled_historic_square_quadratic_fixedspace_rank=2 projector_is_idempotent');
 console.log('PASS original_p8=255 native_runic_symbols extracted_register=102, positive_plant=102/102');
+console.log('PASS projected_p7_word_coefficients='+projectedCoeffs+' observed_trailing_marker13 source_key='+sourceKey);
+console.log('PASS fiveword_windows=2892 two_reversal_hits='+twoMatch+' full_reversal_center13_hits='+threeMatch);
+console.log('PASS original_p8_two-value_Vigenere_four_roundtrips_and_four_solved_native_plants');
+for(const output of vigenereSourceResults)console.log('native_GP_attempt scope='+output.label+' sign='+output.sign+' IoC='+output.ioc.toFixed(12)+' opening='+output.opening);
 console.log('SOURCE: GP29 original p8 IoC='+ioc(p8).toFixed(12));
 console.log('EXTRACTED: GP29 rank2 image IoC='+ioc(output).toFixed(12));
 console.log('EXTRACTED full GP spelling='+output.map((rune)=>corpus.translit[rune]).join(''));
