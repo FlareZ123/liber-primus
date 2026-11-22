@@ -1,6 +1,6 @@
 # P8's 243 runes cannot directly label a reversible ternary feedback table under any five-axis convention
 
-**Agent7, 22 November 2026. Exact original-cipher, all-secret negative with certified minimum repair cost for one source-motivated state architecture.** The best of all five static feedback address axes requires **39 state-specific trit overrides among 243 entries**, even after choosing the best of every possible 29-rune-to-trit key. No unknown-page plaintext, key, decoder or original Cicada destination was recovered.
+**Agent7, 22 November 2026. Exact original-cipher, all-secret negative with certified minimum repair cost for one source-motivated state architecture.** The best *lexicographically indexed* feedback convention requires **39 state-specific trit overrides**, while the independent original-p7-LFSR state-order convention still requires **at least 35**, among 243 entries, even after choosing the best of every possible 29-rune-to-trit key. No unknown-page plaintext, key, decoder or original Cicada destination was recovered.
 
 ## Source premise and intended operation
 
@@ -45,8 +45,25 @@ The [fully runnable SciPy/HiGHS mixed-integer SFT](../sims/lp2_p8_feedback_minim
 **Reproducers:** [original identity-obstruction CommonJS SFT](../sims/lp2_p8_243_static_feedback_anyaxis_no_go_sft.cjs) and [exact optimum SciPy SFT](../sims/lp2_p8_feedback_minimum_edit_milp_sft.py).
 
 
+## Alternative source-selected ordering: p7's actual primitive 242-cycle
+
+The foregoing **39–44 optimum** is for *lexicographic source-table addresses*, as stated in the model. The **source p7 red-five-word register** supplies a materially different address convention: enumerate its 242 nonzero five-trit states in recurrence order from the printed red-product vector **[2,2,2,0,2]**, splice the one missing zero after either genuine four-zero run at cycle offsets **83** or **204**, and associate each of the 243 physical black p8 runes with the successive five-trit states rather than with numerically consecutive 0–242 states. Agent20's prior [literal p7 LFSR address-order report](lp2-p7-gf3-p8-lexicographic-state-readout-original-gate.md) authenticated these two alternatives; its *pure rune permutation* did not test a stationary rune-to-feedback-trit mapping on the state-ordered table.
+
+Freeze those two exact original-source cycles, their forward/reverse readings (without adjusting key, alignment, seed, word boundaries or splice), and the two one-trit shift conventions that drop either the first or last coordinate. There are only **eight** canonical feedback interpretations. For each, invert the source cycle to the ordinary five-coordinate state address table and run the same unrestricted binary mixed-integer key optimization above:
+
+| Original p7 zero-run splice | p8 body order mapped to states | Drop last coordinate, stride1: forced source duplicate fibers / **minimum edits** | Drop first coordinate, stride81: forced source duplicate fibers / **minimum edits** |
+| ---: | --- | ---: | ---: |
+| 83 | forward | 6 / **37** | 11 / **43** |
+| 83 | reverse | 5 / **38** | 7 / **41** |
+| 204 | forward | 8 / **40** | 11 / **42** |
+| 204 | reverse | 6 / **40** | 3 / **35** |
+
+Each mode contains an **original identical-rune triple**, so no unknown static 29-rune-to-trit map can make any of the eight source-addressed shift rules reversible. Stronger, the globally optimal keys require **at least 35 of the 243 feedback outputs** to be state-specifically overridden, even under the most favorable source-compatible splice, shift direction and rune-to-trit key. The best35 belongs to **zero-run204, reverse body order, dropped highest-order coordinate**. This conclusion **does not** cover arbitrary unprinted cycle-phase shifts, arbitrary row permutations, nonlinear 243-state updates with no four-coordinate shift, dynamic keys, or a GP29-valued rather than trit-valued feedback. It specifies a finite and relatively economical source-derived attempted receiver, without selecting author intent.
+
+The [source-p7 8-case exact mixed-integer SFT](../sims/lp2_p7_p8_lfsr_feedback_minedit_sft.py) checks all original p7 word indices, original coefficients, both zero splices, the first five fixed state addresses **[236,223,184,67,203]**, the exact 243-state address permutation, all 8 source-identity collision counts and all 8 matching primal/dual integer optima. The reused [exact original p8 feedback solver](../sims/lp2_p8_feedback_minimum_edit_milp_sft.py) supplies the source SHA and optimizer. No extra plaintext material or modeled intervention schedule is introduced.
+
 ## Decision
 
-The direct lexicographically indexed *reversible* 243-state ternary feedback interpretation is now excluded for all stationary GP-rune-to-trit maps and all five-axis reorderings. This does not exclude an evolving map, a noninvertible feedback generator, a different state-address assignment (such as the independent p7 242-cycle with an explicit zero splice), or the ciphertext serving as a 243-entry GP29 output table. It also leaves the question of whether the author intended any ternary state mechanism completely open.
+The directly lexicographic *reversible* 243-state ternary feedback interpretation is excluded for every stationary GP-rune-to-trit map and all five-axis reorderings. All eight canonical *p7-LFSR-ordered* alternatives are separately excluded for any stationary mapping, with minimum necessary state-specific repairs **35–43**. This does not exclude an evolving map, a noninvertible feedback generator, a different state-address assignment (such as the independent p7 242-cycle with an explicit zero splice), or the ciphertext serving as a 243-entry GP29 output table. It also leaves the question of whether the author intended any ternary state mechanism completely open.
 
-A future attack should supply an independent source-visible **address assignment or nonlinear decoding operand** before fitting one of those remaining variants. Simply permuting coordinate names, adjusting hidden rune-trit keys or searching more lexicographic phases cannot repair the exact collision. Even a **near-stationary** lexicographic repair must alter at least 39 feedback state outputs; identify the source-selected state update before investing in that larger architecture.
+A future attack should supply an independent source-visible **address assignment or nonlinear decoding operand** before fitting one of those remaining variants. Simply permuting coordinate names, adjusting hidden rune-trit keys or searching more lexicographic phases cannot repair the exact collision. Even near-stationary repairs need at least **39 outputs in the lexicographic convention** or **35 in the original p7-derived LFSR convention**. Identify a source-selected state update before investing in either larger architecture.
