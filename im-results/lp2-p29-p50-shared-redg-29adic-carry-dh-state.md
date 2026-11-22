@@ -36,6 +36,21 @@ The original p23 R lift adds the ordered [3,27] pair, which also reproduces the 
 
 ## Distinct p23 red-factor continuation and the exact p28 six-rune readout
 
+### Essential factor-independence correction: p23 R is signed H in disguise
+
+The third apparent quadratic `R` contributes **no third independent GF29 factor**. The exact original high-first coefficients satisfy
+
+```text
+signed2013 H = [24,26,3]
+p23 red   R = [10, 6,23]
+R = -2 H (mod29)
+R = -2 H + 29[2,2,1] (as ordinary integer coefficient vectors)
+```
+
+Thus `p50 % R == 0 (mod29)` is **automatically implied** by `p50 % H == 0`; it is not another independently surprising zero-remainder event. The p23 source is still an independently printed **different integer representation** of the same 29-field factor. This representation changes the 841-remainder second digit and yields `[3,27]` when divided as the literal p23 source integer polynomial. The two carry vectors `[8,5]` and `[3,27]` are related through the original table's H quotient and the canonical mod29 coefficient lift. They must not be counted as independent key evidence.
+
+A sealed follow-up hypothesized that the **product of three quadratics** would divide p50 and expose a 250-rune direct plaintext quotient ([precommit](../workplace/agent27-p50-three-source-polynomial-full-quotient250-precommit.md)). The divisibility premise fails *before reading any 250-rune candidate*: `H·R·G ≡ -2H²G (mod29)`, and direct division of all 256 original p50 digits leaves the **six-rune nonzero remainder `[14,17,6,7,11,28]`**. Only the legitimate `H·G` least-common-multiple (degree4) divides, yielding the already-known 252-rune register. Therefore **no exact original source Q250 quotient exists under the frozen rule**, and no plaintext claim can be made from it. This failure materially narrows the source-factor architecture and prevents three-factor evidence from being double-counted.
+
 The p29 carry's ordered raw pair `[13,19]` is source-fixed. Applying the already defined p28 H map gives `[23,3]`. One **post-observation** interpretation takes the first result `23` as a physical page number, and the second `3` as exponent `e`.
 
 Original **physical p23** contains a separately identified **centered red three-rune group `[23,6,10]`** in low-first order, hence its own quadratic `R(X)=10X²+6X+23`. The original p50 byte polynomial also divides exactly by R over GF29, a published result independent of this p29 carry.
@@ -93,7 +108,7 @@ The full output remains nonlinguistic; its first source-native GP runes read `MT
 
 ## Causal plaintext decision
 
-The new carries are **exact, key-like short numeric packets** aligned with the p39/p23 factors linking p29, p50 and p28, but it does not identify a complete key stream, reversible original-rune transform, clock/reset, or plaintext receiver. The p29 quotient itself has near-ciphertext GP29 IoC **0.03405441**. Any single fixed GP29 permutation applied uniformly to this quotient preserves that IoC, so the revealed `e=3` GP29 cube operation alone cannot turn the full quotient into native-GP English prose. The separately frozen full 275-rune quotient→outer-H shell inverse and the above p50 factor-carry Hill2 inverse both failed native-GP language [under its exact source rule](lp2-p28-p29-gquotient-outerh-prospective-inverse-decision.md).
+The new carries are **exact, key-like short numeric packets** aligned with the p39 G factor and the distinct p23 *integer representative* of signed H linking p29, p50 and p28, but it does not identify a complete key stream, reversible original-rune transform, clock/reset, or plaintext receiver. The p29 quotient itself has near-ciphertext GP29 IoC **0.03405441**. Any single fixed GP29 permutation applied uniformly to this quotient preserves that IoC, so the revealed `e=3` GP29 cube operation alone cannot turn the full quotient into native-GP English prose. The separately frozen full 275-rune quotient→outer-H shell inverse and the above p50 factor-carry Hill2 inverse both failed native-GP language [under its exact source rule](lp2-p28-p29-gquotient-outerh-prospective-inverse-decision.md).
 
 **Next discriminating requirement:** find an independently legible original instruction specifying what the two red-factor carries actually key and how its state advances through >=150 original encrypted runes. Until then this is intermediate arithmetic evidence, useful for interpreting the table's unusual algebraic structure but insufficient to promote the p28/p29/p50 network to an authenticated decipherment.
 

@@ -47,8 +47,28 @@ assert.deepEqual(lift(bGR),[15,2]);
 assert.deepEqual(lift(bHR),[8,5]);
 
 // The original p23 centered red triad R=[23,6,10] (low first)
-// supplies the third independent source factor of p50.
+// supplies an alternate INTEGER LIFT of signed H, not a third GF29 factor.
 const R=[10,6,23];
+
+// R is precisely the same projective factor as the signed H over GF29.
+// Its mod29 divisibility is ENTIRELY ENTAILED by the existing H check.
+// The two different ORIGINAL INTEGER coefficient lifts produce different
+// mod841 carry digits but not two independent GF29 parity constraints.
+assert.deepEqual(R,H.map(value=>mod(-2*value,29)));
+assert.deepEqual(R.map((value,i)=>value+2*H[i]),[58,58,29]);
+/** @param {number[]} a @param {number[]} b */
+function multiplyGF29(a,b) {
+ const out=new Array(a.length+b.length-1).fill(0);
+ for(let i=0;i<a.length;i++)for(let j=0;j<b.length;j++)out[i+j]=mod(out[i+j]+a[i]*b[j],29);
+ return out;
+}
+const HG=multiplyGF29(H,G);
+assert.deepEqual(divide(B,HG,29).rem,[0,0,0,0]);
+const HRG=multiplyGF29(HG,R);
+assert.deepEqual(divide(B,HRG,29).rem,[14,17,6,7,11,28]);
+// The prior sealed H*R*G quotient250 plaintext hypothesis fails at the
+// *necessary divisibility gate* and must not be read as a plaintext stream.
+
 assert.deepEqual(divide(B,R,29).rem,[0,0]);
 const bRR=divide(B,R,841).rem;
 assert.deepEqual(bRR,[87,783]);
@@ -79,6 +99,7 @@ assert.equal(distinct.size,841);
 console.log(JSON.stringify({status:"PASS",classification:"Postselected key-like arithmetic only; no original plaintext.",
 p29G:{rem841:cR,carry:[x,y],H:[p,e]},
 p50:{Gcarry:lift(bGR),Hcarry:lift(bHR),Rcarry:lift(bRR)},
-p23RtoP28:{factor:R,mod841:bRR,exponents:lift(bRR),source:span,decoded:decodedP28,translit:"READOUT"},
+p23RtoP28:{factor:R,mod841:bRR,exponents:lift(bRR),source:span,decoded:decodedP28,translit:"READOUT",independence:"R = -2H modulo29: alternate integer lift, no third independent factor."},
+productGate:{HG,HRG,HRGrem29:[14,17,6,7,11,28],quotient250Exists:false},
 conditionalNull:{seed:"0x3301f29",M,matching,distinctPairs:distinct.size,plusOne:(matching+1)/(M+1)},
 caution:"The exact p29 DH pair was seen before the target was nominated, so the null's 0.0015 is descriptive and not an independent authorship p-value."},null,2));
