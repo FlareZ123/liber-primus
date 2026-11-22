@@ -166,6 +166,82 @@ function wordNull(mode) {
     independentLengthConditionedWords:122,
     lexiconEntries:listed,rows};
 }
+
+/**
+ * Conditional on the *actual original* rune multiset of each word, uniformly
+ * shuffle the positions of that word. Exactly compute the probability of
+ * zero or one adjacent identical rune by dynamic programming. This null
+ * retains each original cipher word's length, entire letter histogram,
+ * repeated-symbol counts, and independent source-defined word boundaries.
+ * Only within-word positions change. No English lexical assumptions.
+ * @param {number[]} word
+ * @returns {[number,number,number]}
+ */
+function shuffledWordNull(word) {
+  const counts=new Map();
+  for(const c of word) counts.set(c,(counts.get(c)||0)+1);
+  const repeated=[...counts.values()].filter(n=>n>1);
+  const singles=[...counts.values()].filter(n=>n===1).length;
+  const memo=new Map();
+  /**
+   * @param {number[]} left
+   * @param {number} remainingSingles
+   * @param {number} previous index into repeated, else -1 for a unique singleton
+   * @returns {[number,number]} Probabilities of 0 and 1 *future* equal edges
+   */
+  function rec(left,remainingSingles,previous) {
+    const total=remainingSingles+left.reduce((a,b)=>a+b,0);
+    if(total===0) return [1,0];
+    const id=left.join(',')+'|'+remainingSingles+'|'+previous;
+    const old=memo.get(id);
+    if(old) return old;
+    const result=[0,0];
+    for(let i=0;i<left.length;i++) {
+      if(left[i]===0) continue;
+      const next=left.slice();next[i]--;
+      const [p0,p1]=rec(next,remainingSingles,i),p=left[i]/total;
+      if(i===previous) result[1]+=p*p0;
+      else {result[0]+=p*p0;result[1]+=p*p1}
+    }
+    if(remainingSingles) {
+      const [p0,p1]=rec(left,remainingSingles-1,-1);
+      const p=remainingSingles/total;
+      result[0]+=p*p0;result[1]+=p*p1;
+    }
+    memo.set(id,result);
+    return result;
+  }
+  const [pZero,pOne]=rec(repeated,singles,-1);
+  const expected=[...counts.values()].reduce((sum,n)=>sum+n*(n-1),0)/word.length;
+  assert(pZero>0);
+  assert(pZero+pOne<=1+1e-12);
+  return [pZero,pOne,expected];
+}
+let fixedOriginalLogPzero=0,fixedOriginalOneOverZero=0,fixedOriginalExpected=0;
+let originalWithAnyNonadjacentRepeat=0;
+for(const word of words) {
+  const [pZero,pOne,expected]=shuffledWordNull(word);
+  fixedOriginalLogPzero+=Math.log(pZero);
+  fixedOriginalOneOverZero+=pOne/pZero;
+  fixedOriginalExpected+=expected;
+  if(expected>0) originalWithAnyNonadjacentRepeat++;
+}
+const fixedOriginalPzero=Math.exp(fixedOriginalLogPzero);
+const fixedOriginalPatMostOne=fixedOriginalPzero*(1+fixedOriginalOneOverZero);
+assert.equal(originalWithAnyNonadjacentRepeat,27);
+assert(Math.abs(fixedOriginalExpected-11.066810966810968)<1e-9);
+assert(Math.abs(fixedOriginalPzero-8.537453600698436e-7)<1e-15);
+assert(Math.abs(fixedOriginalPatMostOne-0.000016901325506174345)<1e-13);
+
+// A stronger exact invariant covers all word-local *bijections* pi_w,
+// not only Caesar shifts. Every invertible GP29 affine mapping is tested
+// explicitly; arbitrary 29! fixed symbol permutations obey the same
+// injectivity argument since pi(x)==pi(y) iff x==y.
+for(let u=0;u<29;u++)for(let v=0;v<29;v++)
+  for(let multiplier=1;multiplier<29;multiplier++)
+    for(let offset=0;offset<29;offset++)
+      assert.equal(mod(multiplier*u+offset)===mod(multiplier*v+offset),u===v);
+
 const weighted=wordNull('weighted'),uniform=wordNull('uniform');
 assert(Math.abs(weighted.expectedDoublets-13.978312576019627)<1e-9);
 assert(Math.abs(weighted.PatMostOne-0.000005438610228669934)<1e-13);
@@ -180,9 +256,19 @@ console.log(JSON.stringify({
   originalAdjacentEqualities:events.reduce((s,x)=>s+x,0),
   originalAdjacentEqualitiesBySection:bySection,
   sourceSquareShiftConsumersPassed:sourceConsumers,
+  keyIndependentAnyWordwiseBijection:true,
+  testedAffineBijectionSymbolComparisons:29*29*28*29,
+  conditionalUniformWordPermutation:{
+    originalWordsWithRepeatedRune:originalWithAnyNonadjacentRepeat,
+    originalRepeatedRunePairCount:38,
+    expectedAdjacentPairs:fixedOriginalExpected,
+    exactPzero:fixedOriginalPzero,
+    exactPatMostOne:fixedOriginalPatMostOne,
+    conditioning:'Original unchanged 122 printed word rune multisets; uniform random within-word ordering, independently per word; no native-English language assumption',
+  },
   arithmeticInvarianceCheckedTriples:29**3,
   nativeWordNulls:[weighted,uniform],
-  caution:'P-values assume independent source-native English words sampled conditional on original word lengths, not a universal exclusion of unrecognized plaintext languages, phrasing or stream-cipher transforms.',
+  caution:'Lexicon null assumes independent native-English words given observed original lengths. Within-word permutation null fixes all original ciphertext symbol multisets and independently permutes the positions of each whole word. Neither null excludes every possible plaintext register or context-dependent cipher.',
 },null,2));
-console.log('PASS exact 122-word/553-rune all-secret word-constant-shift doublet invariant, '+
-  'both 2014 five-square source keys ±, and native-GP lexicon length-conditioned exact count nulls.');
+console.log('PASS exact 122-word/553-rune all-secret wordwise symbol-bijection doublet invariant, '+
+  'both 2014 five-square source keys ±, original-multiset conditioned exact permutation null, and native-GP lexicon length-conditioned count nulls.');
