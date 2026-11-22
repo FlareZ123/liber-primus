@@ -61,7 +61,7 @@ assert.deepEqual([...parikhGroups.values()].filter(g=>g.length>1),
 const scrollRed=new Set();
 let off=0;
 for(let page=3;page<=7;page++){
-  for(const p of ink.pages.find(x=>x.page===page).red_spans){
+  for(const p of ink.pages.find(x=>x.page===page)?.red_spans || []){
     for(let j=0;j<p.length;j++)scrollRed.add(off+p.start+j);
   }
   off+=gp.pages[page].indices.length;
