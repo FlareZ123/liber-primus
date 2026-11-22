@@ -193,9 +193,9 @@ let onlyRootModels = 0;
 const orbitPairParameterMatches = [];
 for (let b = 0; b < 29; b++) for (let c = 0; c < 29; c++) {
   const candidate = x => {
-    const z = mod29(x - 4);
-    return mod29(x + (x - 3) * (x - 4) *
-      mod29(16 + b * z + c * z * z));
+    const z = mod(x - 4);
+    return mod(x + (x - 3) * (x - 4) *
+      mod(16 + b * z + c * z * z));
   };
   conditionalModels++;
   const roots = Array.from({length:29},(_,i)=>i)
@@ -226,7 +226,7 @@ const fullChapterBlack = gp.pages[8].indices.slice(12).concat(
 assert.deepEqual(chapterBlackWords.flat().map(c => c.value), fullChapterBlack);
 /** @param {number} x @returns {number} */
 function inverse29(x) {
-  for (let j = 1; j < 29; j++) if (mod29(x * j) === 1) return j;
+  for (let j = 1; j < 29; j++) if (mod(x * j) === 1) return j;
   throw new Error('Source cycle unexpectedly contains zero');
 }
 const chapterIoC = tape => {
@@ -250,8 +250,8 @@ for (const seed of [titleGlyphI, titleGlyphC]) {
       const key=sourceCycle[index++ % 7];
       for (const cell of word) {
         const digit=op==='add'
-          ? mod29(cell.value + sign*key)
-          : mod29(cell.value * (sign===1?key:inverse29(key)));
+          ? mod(cell.value + sign*key)
+          : mod(cell.value * (sign===1?key:inverse29(key)));
         decoded.push(digit);
       }
     }
@@ -283,7 +283,7 @@ assert(continuation.target.some(x =>
 assert(continuation.target.some(x =>
   evalPoly(continuation.last5, x) !== x));
 
-// New source-derived irreducible extension: alpha^2=8 mod29.
+// New source-derived irreducible extension: alpha^2=8 mod.
 // Multiplication in GF(29^2)=GF29[alpha], alpha=(0,1).
 /** @param {number[]} a @param {number[]} b @returns {number[]} */
 const mul2 = (a, b) =>
