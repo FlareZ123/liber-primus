@@ -19,6 +19,32 @@ One plausible human route is that solved SHED tells a reader to shed 64 table ce
 
 This observation is distinct from the prior [conditional base59 shell and circumference route](lp2-p50-radix-shed-circumference-divinity.md), which treats SHED as dropping digit f. Neither original-source proposal authorizes the other's radix or downstream cipher.
 
+## Stronger literal p51 geometry: source-shaped Hill8/Hill7/Hill6 inverses
+
+On the actual original p51 scan (68.jpg), the table occupies nine printed eight-token lines. The first line closes the preceding 24×8 table block; the final **eight** printed lines, whose first token is 00, form a literal **8×8 matrix**, cells192–255. This is a stronger *source-authored shape* than the hypothetical 4³ or 3³ cube because eight-column rows are physically printed. GP0(SHED)=64 points numerically at this literal 8×8 square, while the 8×8 circumference is **28** cells and its one-cell-peeled core **6×6 = 36** cells.
+
+**Crucial geometric distinction:** the two printed zero cells occupy positions **(0,0)** and **(4,5)** in the physical square, with zero-based local row and column. The **36 source cells between them in row-major order are different from the actual 36 geometrical interior cells**. The two subsets overlap at only **22 of36** positions; 14 of the zero-bracket cells lie on the physical outer rim. No rotation or reflection can fix this identity because the second zero is interior. The zero-bracket 36-byte packet investigated in closed #1426 therefore cannot automatically be identified with a source-natural 6×6 interior. A cipher reading must distinguish those operands.
+
+The physical shape gives three small, reproducible, bounded keys over GF(29). The manuscript uses 29 authentic rune values, and previous Cicada stages include matrix and permutation tasks. Take the source cells in their printed row-major order and reduce each numeric value modulo29. Evaluate two numeral registers (conventional base60, and conditional original-digit-absent-f base59), and both standard Hill orientations (column-vector and row-vector), with no fitted page offset or replacement keyword:
+
+| Frozen source geometry | Key cells | Conventional base60, rank/determinant mod29 | Conditional base59, rank/determinant mod29 |
+| --- | ---: | --- | --- |
+| The complete literal printed square | 8×8 = 64 | **8 / 12**, invertible | **8 / 7**, invertible |
+| Remove top row and left column at the original corner-00 | 7×7 = 49 | **7 / 4**, invertible | **7 / 17**, invertible |
+| Peel the entire one-cell perimeter, retaining the physical interior | 6×6 = 36 | **5 / 0**, **singular** | **6 / 24**, invertible |
+
+The 7×7 is a separately bounded historic-practice candidate, because authenticated 2014 Cicada material used a seventh-order square, although **none of that material commands this specific extraction**. The 6×6 base60 singularity is invariant under merely rotating or reflecting that physical key. Base59 makes it invertible, which is a finite **necessary** radix discriminator for this exact Hill6 hypothesis, not independent evidence that base59 is correct.
+
+For **all five invertible keys**, explicitly invert the matrix in GF(29). Apply it to untouched p49 (66 runes), p51 (92 runes), and p55 (76 runes), preserving every available complete block and reporting any trailing remainder. Both normal matrix orientation conventions are frozen. The GP29 output in all **30 original input cases** is pseudorandom-looking, with no recognizable sustained English or native Cicada plaintext; e.g. the conventional base60 Hill8 inverse begins on p51:
+
+    NG IA G X NG D AE A W NG W X H R N G D EA L J ...
+
+The conditional base59 Hill6 inverse begins on p51:
+
+    B W P C D B H O A O H D E NG O M AE O I S ...
+
+These are actual original-cipher inverses, not synthetic fitting. The complete first-party source bytes, matrices, decoded runes and output scores are in [the read-only nested-square original Hill SFT](../sims/lp2_p50_final8_square_hill6_original_sft.cjs). The SFT demonstrates full exact GF29 forward/backward reconstruction for every retained ciphertext block and gives an 80/84-rune independently solved p56 native-text roundtrip as a positive implementation control. The test rejects **these exact source-addressed Hill6/Hill7/Hill8 operations**, including both numeral interpretations and standard matrix orientations; it does not exclude every nonlinear or stateful operation on the same original square.
+
 ## Source-frozen immediate consumer
 
 Take exactly the last **27** table values, cells229–255, as a key for the first **27** unmodified p51 runes from offset0, motivated solely by the adjacent placement and matching 27. Test direct additive GP29 transfer with signs ±1 and two register alphabets: conventional base60 and conditional base59 with lowercase f deleted. No phase, receiver, alphabet, or keyword is adjusted after seeing the outputs.
@@ -77,6 +103,6 @@ This finite negative does not rule out a separately encoded file, alternate seri
 
 ## Research decision
 
-Retain the exact zero-cell/suffix/solved-phrase alignment as an intermediate **source-navigation hypothesis**, not a decryption. Revisit it only if an original image, historical clue, or complete source-fixed decoder can select a byte extraction and p51 receiver without post-fitting. The next advance must yield actual bytes or a long original ciphertext plaintext with an independent holdout. Do not proliferate same-table arbitrary 27-cell pad variants.
+Retain the exact zero-cell/suffix/solved-phrase alignment as an intermediate **source-navigation hypothesis**, not a decryption. Revisit it only if an original image, historical clue, or complete source-fixed decoder can select a byte extraction and p51 receiver without post-fitting. The next advance must yield actual bytes or a long original ciphertext plaintext with an independent holdout. In particular, the complete original-source 8×8, 7×7 and 6×6 Hill family has now failed its first direct decoding gate; any successor must specify a different original-selected operator. Do not proliferate same-table arbitrary 27-cell pad variants.
 
 The self-contained [read-only Node22/CommonJS SFT](../sims/lp2_p50_zero_suffix_p57_phrase_sft.cjs) asserts both source zero positions, both solved GP sums, the original p51 prefix, the direct four reversible consumers, alphabet uniqueness counts, the independently positive-controlled p56 prime-to-GP27 output-type obstruction, and all ten SHA-512 negatives. Its inputs are the immutable [canonical corpus](../resources/liber-primus/lp2-corpus.json) and [original-table transcription](../resources/liber-primus/lp2-grid-256.json); original p51 is scan 68.jpg, and solved p57 is scan 74.jpg in the [image atlas](../resources/liber-primus/). Run as Node.js 22 from repository root or any current working directory. [The source-frozen Windows Node22 CI execution passed](https://github.com/FlareZ123/liber-primus/actions/runs/45004597599). This report belongs in supporting evidence; no unknown text was deciphered.
