@@ -23,3 +23,5 @@ jobs:
         run: node sims/lp2_p50_radix29to26_256byte_sidecar_sft.cjs
       - name: All-secret period16 181 256 original word-phase substitution capacity
         run: node sims/lp2_wordphase_16_181_256_allsecret_sft.cjs
+      - name: Exact 180 known symbol secret byte-homophone terminal table gate
+        run: node sims/lp2_terminal180_allsecret_homophone_sft.cjs
