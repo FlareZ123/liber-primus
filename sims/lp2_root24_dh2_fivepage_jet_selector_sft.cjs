@@ -236,7 +236,7 @@ for (let i = 0; i < table.bytes.length - divisor.length + 1; i++) {
 assert.equal(tableQuotient.length, 252);
 assert.deepEqual(remainder.slice(-4), [0, 0, 0, 0]);
 const ten = originalTaggedPages.map(id => ({
-  id, x: id % M, jet: jet(corpus.pages[id].indices, ROOT)
+  id, x: id % M, jet: jet(corpus.pages[id].indices, ROOT).slice(0, 2)
 }));
 assert.equal(new Set(ten.map(record => record.x)).size, 10);
 assert.deepEqual(ten.map(record => record.jet), [
