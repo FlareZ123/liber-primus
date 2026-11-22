@@ -104,15 +104,47 @@ function same(a, b) {
   assert.deepEqual(a, b);
 }
 
-/** Source-native words resampled to exactly the 2,896 original word lengths. */
-function nativeLengthMatchedWords() {
+/** Source-native GP words resampled to precisely all 2,896 original word lengths. */
+function lengthMatchedWords(sourceWords) {
   const groups = Array.from({length: 15}, () => []);
   const counters = Array(15).fill(0);
-  for (const word of solvedWords) if (word.length < 15) groups[word.length].push(word);
+  for (const word of sourceWords) if (word.length < 15) groups[word.length].push(word);
   return originalWords.map(word => {
     const pool = groups[word.length];
-    assert.ok(pool.length > 0, `missing source-native word length ${word.length}`);
+    assert.ok(pool.length > 0, `missing native word of length ${word.length}`);
     return pool[counters[word.length]++ % pool.length];
+  });
+}
+
+function nativeLengthMatchedWords() {
+  return lengthMatchedWords(solvedWords);
+}
+
+/**
+ * English-to-GP rune tokenizer. Validate its COMPLETE 95-rune output against
+ * the actual cleartext p57 source BEFORE consulting the independent donors.
+ * 2014 conventional aliases K/Q->C, V->U, Z->S; ING is one NG rune.
+ * @param {string} source
+ * @returns {number[][]}
+ */
+function latinGpWords(source) {
+  const pairs = ["ING", "TH", "NG", "EO", "OE", "AE", "IA", "EA"];
+  const lookup = new Map(corpus.translit.map((name, index) => [name, index]));
+  return (source.toUpperCase().match(/[A-Z]+/g) || []).map(word => {
+    const result = [];
+    for (let i = 0; i < word.length;) {
+      const pair = pairs.find(p => word.startsWith(p, i));
+      let g = pair || word[i];
+      i += pair ? pair.length : 1;
+      if (g === "ING") g = "NG";
+      if (g === "K" || g === "Q") g = "C";
+      if (g === "V") g = "U";
+      if (g === "Z") g = "S";
+      const index = lookup.get(g);
+      assert.notEqual(index, undefined, `unmapped Latin-to-GP rune ${g}`);
+      result.push(index);
+    }
+    return result;
   });
 }
 
@@ -190,6 +222,49 @@ function run() {
   assert.ok(globals[0].chi > 300);
   assert.ok(sourceNumerics.every(row => row.chi > 300));
 
+  // Complete exact source-native positive on the genuinely clear final page:
+  // the English converter must reproduce all 95 printed GP29 runes.
+  const p57 = latinGpWords(read("resources/liber-primus/lp1-plaintext-reference.txt")
+    .split("### 57")[1]).flat();
+  same(p57, corpus.pages.find(p => p.page === 57).indices);
+
+  // Three independent historical English registers control for LP1-specific
+  // diction; each is sampled into the EXACT original 2,896 word lengths.
+  const independentEnglish = [
+    ["Gibran", "resources/control/gibran_prophet_58585.txt"],
+    ["Emerson", "resources/control/emerson_essays_2944.txt"],
+    ["Shakespeare", "resources/control/shakespeare_first300k.txt"]
+  ].map(([name, sourcePath]) => {
+    const sourceWords = latinGpWords(read(sourcePath));
+    const lengthMatched = lengthMatchedWords(sourceWords);
+    assert.equal(countRunes(lengthMatched), 12956);
+    const normal = differenceHistogram(lengthMatched);
+    const ranked = [];
+    for (let g = 0; g < 29; g++) {
+      ranked.push({model: {kind: "global", slope: g},
+        chi: homogeneity(differenceHistogram(originalWords,
+          {mode: "global", constant: g}), normal)});
+    }
+    for (const {kind, mode, sign} of sourceNumerics) {
+      ranked.push({model: {kind, mode, sign},
+        chi: homogeneity(differenceHistogram(originalWords,
+          {kind, mode, sign}), normal)});
+    }
+    ranked.sort((a, b) => a.chi - b.chi);
+    assert.ok(ranked[0].chi > 700);
+    return {name, sourceWords: sourceWords.length,
+      originalMatchedWords: lengthMatched.length,
+      bestOriginalHypotheses: ranked.slice(0, 3)};
+  });
+  assert.deepEqual(independentEnglish.map(x => x.name),
+    ["Gibran", "Emerson", "Shakespeare"]);
+  assert.ok(Math.abs(independentEnglish[0].bestOriginalHypotheses[0].chi
+    - 722.74) < 0.02);
+  assert.ok(Math.abs(independentEnglish[1].bestOriginalHypotheses[0].chi
+    - 741.06) < 0.02);
+  assert.ok(Math.abs(independentEnglish[2].bestOriginalHypotheses[0].chi
+    - 895.64) < 0.02);
+
   const output = {
     receiver: "All 2,896 authentic unknown LP2 printed words (12,956 runes)",
     nativeReference: "740 independently published solved GP29 words, 2,979 runes",
@@ -200,7 +275,9 @@ function run() {
     sourceDerivedCurrentPreviousSlopes: sourceNumerics,
     exactLengthMatchedNativePositiveChi: plantedChi,
     nativePositiveForwardInverseControls: controls,
-    conclusion: "No constant slope or signed-current/preceding-word prime/index/length ramp yields native GP29 prose statistics. This is a necessary-condition exclusion of the specified length-preserving additive-ramp models, even with fully secret per-word offsets; it is not a rejection of all stateful/nonlinear or non-English ciphers."
+    p57LatinToGpExactPositive: "95/95 original runes",
+    originalLengthMatchedIndependentEnglishControls: independentEnglish,
+    conclusion: "No constant slope or signed-current/preceding-word length/prime/index/totient sum/product ramp yields native GP29 prose statistics across four original-source/literary controls. This is a necessary-condition exclusion of the specified length-preserving additive-ramp models, even with fully secret per-word offsets; it is not a rejection of all stateful/nonlinear or non-English ciphers."
   };
   console.log(JSON.stringify(output, null, 2));
   return output;
