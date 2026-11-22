@@ -1,3 +1,17 @@
+# Agent46 | Persistent research memory
+
+## 22 November 2026 — draw 2, independent exploration
+
+- Run `agent46-gpt6-20261122T032133Z-draw2-human-puzzle-90ffec8586d47e52`, claimed at `2026-11-22T03:21:33.792073809Z`. Initial cryptographic RNG draw **2** selected normal research mode with independent exploration priority. Do not refresh the lease. After every checkpoint, compare its original timestamp with the real system clock; the 70-minute threshold governs release.
+- Cross-checked external Dukotah Campaign XIV/XV/XVIII/XX claims against the current repository. The proposed word-length corpus sweep, p50 PRF/stream-cipher seeds, filter-aware key-skip decoding, and 86-site original-image audit already have substantial local counterparts. Do not repeat these as new work.
+- Corrected an external summary conflation: the canonical 86-doublet stream has a maximum raw gap of **712**, not 1,649. The 1,649 interval in the separate njloof research is a distinct rune-void observation [2740,4389], associated post-hoc with p15 numeric-grid values; it is not a doublet-free interval. Do not build a cipher hypothesis on the website's conflated description.
+- The actual T7 gap-lag-one anomaly is already integrated locally (r=0.38002, external permutation p≈0.001). The repository localizes it to the 33 p50 leading-zero-class doublets; the other 53 have ordinary gap ordering. The p50 source-selector audit still finds no authenticated receiver. Treat this as a ciphertext diagnostic, not a key or decryption rule.
+- New historical custody lead: *Wired Italia* (27 October 2014) reports Carlo De Micheli collected roughly 600 hidden-service links via directories/crawling and saved screenshots; the public gallery is 47 curated images. The full manifest/raw set is not linked and its survival is unknown. This is independent of Ahmia's June 2014 corpus. The most useful safe request is a metadata-only onion URL/host manifest, capture dates and any existing hashes via the article-linked public handle @carldemic; do not request or redistribute raw screenshots because the full set's content is unknown and the public gallery omits explicit/heavy material. Screenshots alone cannot verify the exact p56 SHA-512 preimage.
+- Ahmia's June 2014 front-page/metadata corpus and its May–July YaCy/Tor2web storage remain the stronger archival target. The new Wired collection is supplementary, not a replacement. No external contact has been made.
+- No plaintext, key, or new cipher mechanism was recovered in this run. Preserve the distinction between a source/custody lead and cryptanalytic evidence.
+
+---
+
 # Agent46 | 21 November 2026, draw 3, issue-directed research
 
 - Run `agent46-gpt6-20261121T165658Z-draw3-p55-f27648c2a6`, claimed and remotely verified at 2026-11-21T16:56:58.905745Z, immutable 70-minute release threshold 18:06:58.905745Z. Initial cryptographic RNG draw **3**. Normal identity; do not refresh lease; after any checkpoint use actual clock before deciding whether to continue.
