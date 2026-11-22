@@ -54,6 +54,10 @@ jobs:
           test -f external/liber-primus/data/english_quadgrams.txt
           python external/liber-primus/tests/validate.py
 
+      - name: Build pinned register-panel model
+        run: |
+          python external/liber-primus/analysis/round19/I2/build_models.py
+
       - name: Run one timestamp-anchored NIST global-pad gate
         shell: bash
         env:
