@@ -79,8 +79,8 @@ function divideLinear(input, root) {
 }
 
 assert.equal(bytes.length, 256);
-assert.equal(grid.pages.length, 32);
-assert(grid.pages.every(row => row.tokens.length === 8));
+assert.equal(grid.pages.reduce((n,p) => n + p.rows, 0),32);
+assert(grid.pages.every(p => p.cols === 8 && p.tokens.length === p.rows*8));
 assert.equal(page(23).indices.length, 213);
 assert.equal(page(55).indices.length, 76);
 assert.equal(page(56).indices.length, 85);
