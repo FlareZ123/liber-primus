@@ -178,8 +178,8 @@ function run() {
     .split("### 57")[1]).flat();
   assert.deepEqual(p57, corpus.pages.find(p => p.page === 57).indices);
 
+  const positive = plantNative(nativeMatched, makeRandom());
   const rng = makeRandom();
-  const positive = plantNative(nativeMatched, rng);
 
   // 2,000 source-native original-word-length matched *random* placements
   // against the independent actual solved GP29 reference. Comparisons
