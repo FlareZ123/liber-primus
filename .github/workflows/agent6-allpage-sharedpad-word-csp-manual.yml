@@ -1,0 +1,20 @@
+name: Agent6 all-page shared-pad original word CSP
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-fullbook-word-csp:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: All 1485 page pair native-GP word overlaps and consistent original words
+        shell: pwsh
+        run: node sims/lp2_allpage_sharedpad_word_csp_sft.cjs
