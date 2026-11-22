@@ -53,10 +53,28 @@ All **701 native GP29 prose windows** are more concentrated than every complete 
 
 For implementation controls the program plants the **95 genuine solved p57 GP29 rune indices**, repeated to fill an entire scroll-length 1,145-rune known register. It encrypts under all **8 Hill** and **24 causal source-reset** models, then decrypts and reencrypts each one exactly. **All 32/32 full-length planted roundtrips succeed.** Original negative results therefore cannot be attributed to broken finite-field arithmetic or a noninvertible chosen operator.
 
+## An independent Cicada-historical five-of-five Shamir readout
+
+Cicada's documented 2013 challenge used actual **Shamir five-of-ten sharing**, making five-share interpolation independently more plausible than an arbitrary Hill transform. The original p7 five-dot centers already have two independently pinned orders: left-to-right ranks **[1,2,3,4,5]** and top-to-bottom ranks paired left-to-right **[3,5,1,4,2]** ([the source-dot geometry study](lp2-p7-fivedot-shamir-dual-dh-source-gate.md)). The five original p7 red-word GP29 products **[11,26,8,15,2]** are a third finite coordinate possibility.
+
+For each x-coordinate sequence, compute the exactly determined five Lagrange weights at x=0 over GF29, with **no fitted share values**. They are respectively **[5,19,10,24,1]**, **[10,1,5,24,19]** and **[6,14,20,3,16]**. Treat the full original 1,145-rune scroll as either 229 adjacent groups of five shares or five 229-rune contiguous share bands, exactly as above. Reconstruct **229 original-derived GP runes** as f(0), for a total of **six** source-fixed candidate messages.
+
+| Original five-share coordinates | 229 adjacent five-rune groups: decoded IoC | Five contiguous 229-rune bands: decoded IoC |
+| --- | ---: | ---: |
+| Horizontal dot ranks | **0.03286601** | **0.03435992** |
+| Vertical dot ranks | **0.03374703** | **0.03374703** |
+| P7 complete red-word products | **0.03443653** | **0.03501111** |
+
+The **highest** original 229-rune candidate IoC is **0.03501111**. As a separate native-language baseline at this shorter length, all complete disjoint 229-rune windows from the same pinned independent GP29 sources are included: Gibran **272**, Shakespeare **948**, Emerson **1,403**, and Latin **894**, totalling **3,517 genuine reference windows**. Their respective minimum IoCs are **0.05309124**, **0.04952884**, **0.04979698**, and **0.05994790**. Every one is much more language-like than all six original Shamir f(0) candidates.
+
+Six genuine **degree-four GF29 Shamir plants** independently create all **1,145 share runes** from a 229-rune message made from actual solved p57 GP symbols, with nonzero top degree and independent seeded lower coefficients. Each source coordinate/layout combination recovers the **complete 229/229** genuine planted message exactly. The interpolation procedure is functional.
+
+The 229-rune **Shamir secret alone is a lossy extraction of five full share bands**. A complete invertible 1,145-rune scheme would need to retain the other four reconstructed polynomial-coefficient registers, and the original source gives no rule for interpreting those auxiliary values. This test therefore rejects a **direct natural GP text at f(0)** under the exact six source-motivated alignment/coordinate choices; it does not mathematically exclude arbitrary 5-channel encodings. The 2013 historical five-of-ten mechanism and p7 dots are independently real, while their proposed use on p3–p7 original ciphertext remains unverified.
+
 ## Research decision
 
-The five-page scroll's exact divisibility by five is a plausible physical motivation for using the five source p7 numbers. Its complete untrimmed ciphertext decisively rejects the two simplest executable reversible transfers: standard GF29 circulant block mixing and causal five-product polynomial filtering, even under the two natural five-column serializations and actual printed red boundaries. This adds a specific original **p3–p7** gate to earlier **p8** tests; it recovers no unknown plaintext.
+The five-page scroll's exact divisibility by five is a plausible physical motivation for the five source p7 numbers. Its complete untrimmed ciphertext excludes the two simplest full-register native-GP reversible transfers: standard GF29 circulant mixing and causal five-product filtering. A separate historically motivated five-of-five Shamir extraction, using both actual five-dot rankings and source-red indices, also fails to recover a natural-GP **229-rune message** from this same scroll under all six source-fixed layouts. This adds a specific original **p3–p7** gate to earlier **p8** tests; it recovers no unknown plaintext.
 
 **The missing input is an independent authored operation and receiver-selection instruction.** No original marking specifies whether the numbers describe a matrix, key state, positions, independent page keys or something else. Further clock offsets or new nonlinear key families would be postselected without such a clue. The only path to a positive decision is a source-chosen operation generating at least 150 contiguous native GP runes and reproducing the untouched ciphertext on another scroll page without retuning. This report does not call a numerical fit an intended solve.
 
-**Reproducer:** [Node 22 CommonJS full source SFT](../sims/lp2_p3_p7_five_scroll_product_inverse_sft.cjs), reading authentic p7 red ink, the complete canonical p3–p7 original and pinned genuine GP language controls. [PASS, Windows run 45011822518](https://github.com/FlareZ123/liber-primus/actions/runs/45011822518).
+**Reproducer:** [Node 22 CommonJS full source SFT](../sims/lp2_p3_p7_five_scroll_product_inverse_sft.cjs), reading authentic p7 red ink, the complete canonical p3–p7 original and pinned genuine GP language controls. [PASS, expanded 32 inverses plus six five-of-five Shamir extractions, Windows run 45012292645](https://github.com/FlareZ123/liber-primus/actions/runs/45012292645).
