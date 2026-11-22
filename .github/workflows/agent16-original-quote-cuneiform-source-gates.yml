@@ -40,3 +40,7 @@ jobs:
         run: node --check sims/lp2_p33_stage7_99cell_pair_carry_source_sft.cjs
       - name: Run p33 carry-correct Stage7 99-square pair decoder
         run: node sims/lp2_p33_stage7_99cell_pair_carry_source_sft.cjs
+      - name: Check known-plaintext p33 Stage7 key-reuse SFT
+        run: node --check sims/lp2_p33_99square_knownplain_p34_38_reuse_sft.cjs
+      - name: Run known-plaintext p33 Stage7 key-reuse attack on p34–p38
+        run: node sims/lp2_p33_99square_knownplain_p34_38_reuse_sft.cjs
