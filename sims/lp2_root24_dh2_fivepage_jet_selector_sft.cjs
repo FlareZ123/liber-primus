@@ -270,6 +270,48 @@ const quotientIoc = interpolatedJetRegisters.map(ioc);
 assert(Math.abs(quotientIoc[0] - 0.269461835198887) < 1e-12);
 assert(Math.abs(quotientIoc[1] - 0.2732561816227155) < 1e-12);
 assert.equal(tableQuotient[selectedRank], 4);
+
+const selectedJetSecret = interpolatedJetRegisters[0][selectedRank];
+const selectedDerivativeSecret = interpolatedJetRegisters[1][selectedRank];
+assert.equal(selectedJetSecret, 28); // GP last rune EA
+assert.equal(selectedDerivativeSecret, 2); // independently specified DH K
+const selectedTuple = corpus.translit[selectedJetSecret] +
+  corpus.translit[tableQuotient[selectedRank]];
+assert.equal(selectedTuple, 'EAR'); // historical Anglo-Saxon rune name
+const allEAR = fiveSubsets.flatMap((subset, i) =>
+  interpolatedJetRegisters[0][i] === 28 && tableQuotient[i] === 4 ?
+    [{lexIndex:i, pages:subset.map(j => originalTaggedPages[j])}] : []);
+assert.deepEqual(allEAR, [{
+  lexIndex:171, pages:[16, 28, 33, 34, 38]
+}]);
+assert.deepEqual(corpus.pages[22].indices.slice(99, 103),
+  [22, 28, 28, 24]); // physical p22 corpse, sole EA EA doublet
+assert.equal(corpus.pages[22].indices.slice(99, 103)
+  .reduce((sum, x) => sum + x, 0), 102);
+assert.equal(table.bytes[102], 32);
+assert.equal(selectedJetSecret + tableQuotient[selectedRank], 32);
+
+const earKey = [selectedJetSecret, tableQuotient[selectedRank]];
+/** @param {number[]} ciphertext @param {number} sign */
+const applyEar = (ciphertext, sign) => ciphertext.map((c, i) =>
+  mod(c + sign * earKey[i % 2]));
+const earDirectReceivers = [22, 32, 55].map(page => {
+  const source = corpus.pages[page].indices;
+  const pMinus = applyEar(source, -1);
+  const pPlus = applyEar(source, 1);
+  assert.deepEqual(applyEar(pMinus, +1), source);
+  assert.deepEqual(applyEar(pPlus, -1), source);
+  return {page, sourceIoc:ioc(source), subtractIoc:ioc(pMinus),
+    addIoc:ioc(pPlus)};
+});
+assert.deepEqual(earDirectReceivers.map(r =>
+  [r.page, Number(r.subtractIoc.toFixed(10)),
+    Number(r.addIoc.toFixed(10))]), [
+      [22, 0.0346447446, 0.0362889019],
+      [32, 0.0342975207, 0.0366391185],
+      [55, 0.0347368421, 0.0371929825]
+    ]);
+
 assert.equal(ioc(tableQuotient) > 0.0, true);
 
 // Uniform iid GF29 pair null: a fixed derivative value occurs Binomial(55,1/29).
@@ -299,6 +341,13 @@ console.log(JSON.stringify({
     selectedSubsetRankLexZeroBased: selectedRank,
     quotientTableLength: tableQuotient.length,
     quotientSymbolAtSelectedRank: tableQuotient[selectedRank],
+    selectedSecretIndex: selectedJetSecret,
+    selectedSecretDerivativeIndex: selectedDerivativeSecret,
+    selectedTwoRuneReadout: selectedTuple,
+    uniqueAll252Readout: allEAR,
+    originalCorpsePageEAEAWordGP0Sum: 102,
+    originalP50ByteAtSum102: table.bytes[102],
+    directEARReceivers: earDirectReceivers,
     allOriginalPageJetValueMatches: quotientMatches[0],
     allOriginalPageJetDerivativeMatches: quotientMatches[1],
     allPredictedValueIoC: quotientIoc[0],
