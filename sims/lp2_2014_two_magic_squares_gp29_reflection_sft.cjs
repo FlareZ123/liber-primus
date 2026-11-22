@@ -140,14 +140,30 @@ function main() {
   assert.equal(tape.length, 12956);
   const bookend = tape.slice(6561);
   assert.equal(bookend.length, 5 * 1279);
+  const numericTable = JSON.parse(fs.readFileSync(
+    path.join(root, 'resources', 'liber-primus', 'lp2-grid-256.json'), 'utf8'));
+  const source256Bytes = numericTable.pages.flatMap(page => page.bytes);
+  assert.equal(source256Bytes.length, 256);
+  const firstPowers = Array.from({ length: 56 }, (_, exponent) =>
+    number29(power(first, exponent)));
+  const lastPowers = Array.from({ length: 28 }, (_, exponent) =>
+    number29(power(last, exponent)));
   const invertLast = number29(lastInverse), forwardLast = number29(last);
   const invertFirst = number29(firstInverse);
   const native = encodeSourceNativeGP(fs.readFileSync(
     path.join(root, 'resources', 'control', 'gibran_prophet_58585.txt'), 'utf8'));
   assert(native.length >= bookend.length);
   const direct = [], alternate = [], back = [], planted = [];
+  const byteClockFirst = [], byteClockLast = [];
   for (let i = 0; i < bookend.length; i += 5) {
     const originalFive = bookend.slice(i, i + 5);
+    // Freeze the conventional base60 source p49-51 table byte stream as
+    // one exponent per five-rune block, repeated in printed byte order.
+    const sourceByte = source256Bytes[(i / 5) % 256];
+    const firstRound = firstPowers[(56 - sourceByte % 56) % 56];
+    const lastRound = lastPowers[(28 - sourceByte % 28) % 28];
+    byteClockFirst.push(...vector29(firstRound, originalFive));
+    byteClockLast.push(...vector29(lastRound, originalFive));
     const actualOne = vector29(invertLast, originalFive);
     direct.push(...actualOne);
     alternate.push(...vector29(invertFirst, originalFive));
@@ -164,6 +180,8 @@ function main() {
   assert(score(direct).ioc < 0.04);
   assert(score(alternate).ioc < 0.04);
   assert(score(planted).ioc > 0.045);
+  assert.equal(score(byteClockFirst).ioc, 0.03441972940327413);
+  assert.equal(score(byteClockLast).ioc, 0.03448282608573372);
 
   console.log(JSON.stringify({
     source: 'resources/cicada2014-openpuff-magic-squares.txt',
@@ -183,6 +201,8 @@ function main() {
       inverse_third1033: number29(lastInverse)
     },
     original_B_6395_1279_vector_inverses: {
+      first3301_p50_source_bytes_as_block_exponents: score(byteClockFirst),
+      third1033_p50_source_bytes_as_block_exponents: score(byteClockLast),
       first3301_one_round: score(alternate),
       last1033_one_round: score(direct),
       actual_native_english_6395_plant: score(planted)
