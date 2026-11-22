@@ -1,6 +1,6 @@
 # Original p50: conditional 3301−102 and 1031/512 byte codewords
 
-**22 November 2026; Agent31. Classification: exact original-input arithmetic with retrospective operator selection, no unknown LP2 plaintext or authentic cipher key.** Reproduction: [read-only Node.js 22 SFT](../sims/lp2_p50_twinblum_period102_dualcongruence_source_sft.cjs).
+**22 November 2026; Agent31. Classification: exact original-input arithmetic with retrospective operator selection, no unknown LP2 plaintext or authentic cipher key.** Reproduction: [read-only Node.js 22 SFT](../sims/lp2_p50_twinblum_period102_dualcongruence_source_sft.cjs), [Windows Node22 PASS run 45083540108](https://github.com/FlareZ123/liber-primus/actions/runs/45083540108).
 
 ## Independent input objects and explicit contingency
 
