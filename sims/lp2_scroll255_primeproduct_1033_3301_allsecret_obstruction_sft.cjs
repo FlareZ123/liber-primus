@@ -321,6 +321,52 @@ const positivePositionEqRank = fieldRank(
   withinLabelDifferenceRows(completeFeatures, positivePositionOutput), 348);
 assert(positivePositionEqRank < completeAllRank);
 
+
+/* Historical p56's actual plaintext F (GP rune index0) is transparent and
+ * does not consume its prime key clock. A source-selected bridge could
+ * similarly skip F when indexing a secret per-position word checksum.
+ * The 2014 256-cell table's low-digit base60 alphabet also happens to omit
+ * 'f' in this particular sample. Test the surviving F-skip law without
+ * presuming it succeeds (the missing low digit is not a verified command).
+ */
+assert.equal(gp.translit[0], 'F');
+const completeTransparentFeatures = words.map(word => {
+  const row = Array(348).fill(0);
+  word.filter(x => x !== 0).forEach((symbol, position) => {
+    row[position * 29 + symbol]++;
+  });
+  return row;
+});
+assert.equal(words.flat().filter(x => x === 0).length, 26);
+assert.equal(words.filter(word => word.includes(0)).length, 26);
+const transparentE = withinLabelDifferenceRows(
+  completeTransparentFeatures, corrected);
+const transparentD = completeTransparentFeatures.slice(1).map(row =>
+  row.map((x, j) => mod29(x - completeTransparentFeatures[0][j])));
+const transparentEqRank = fieldRank(transparentE, 348);
+const transparentAllRank = fieldRank(transparentD, 348);
+assert.equal(transparentEqRank, 190);
+assert.equal(transparentAllRank, 190);
+const countF = word => word.reduce((n, symbol) =>
+  n + Number(symbol === 0), 0);
+const transparentPlusFcount = completeTransparentFeatures.map((row, i) =>
+  row.concat([countF(words[i])]));
+const transparentPlusE = withinLabelDifferenceRows(
+  transparentPlusFcount, corrected);
+const transparentPlusD = transparentPlusFcount.slice(1).map(row =>
+  row.map((x, j) => mod29(x - transparentPlusFcount[0][j])));
+const transparentPlusEqRank = fieldRank(transparentPlusE, 349);
+const transparentPlusAllRank = fieldRank(transparentPlusD, 349);
+assert.equal(transparentPlusEqRank, 191);
+assert.equal(transparentPlusAllRank, 191);
+const plantedFtransparentOutput = words.map(word => secretLabelPermutation(
+  word.filter(x => x !== 0).reduce((sum, symbol, position) =>
+    sum + positivePositionWeights[position][symbol], 0) % 29));
+assert(new Set(plantedFtransparentOutput).size > 1);
+const plantedFtransparentEqRank = fieldRank(withinLabelDifferenceRows(
+  completeTransparentFeatures, plantedFtransparentOutput), 348);
+assert(plantedFtransparentEqRank < transparentAllRank);
+
 /* A full residue has 251 classes, allowing an arbitrary 251-entry fit.
  * That perfect map is tautological, not a recovered cipher/hidden key. */
 console.log('SCROLL255_PRIME_PRODUCT_RESIDUE_ALLSECRET ' + JSON.stringify({
@@ -343,6 +389,14 @@ console.log('SCROLL255_PRIME_PRODUCT_RESIDUE_ALLSECRET ' + JSON.stringify({
     rankAllOriginalWordDifferences: completeAllRank,
     forcedAllSecretHashesConstant: completeEqRank === completeAllRank,
     secretPositionHashPositiveRank: positivePositionEqRank
+  },
+  FtransparentOriginalAllSecretPositionHash: {
+    nativeFRunes: 26, nativeWordsContainingF: 26,
+    equalQrank: transparentEqRank,
+    allOriginalDifferencesRank: transparentAllRank,
+    withSecretFcountTermEqualQRank: transparentPlusEqRank,
+    withSecretFcountTermAllWordDifferencesRank: transparentPlusAllRank,
+    plantedTransparentPositiveRank: plantedFtransparentEqRank
   },
   status: 'No plaintext, author-selected key, or original cipher demonstrated'
 }, null, 2));
