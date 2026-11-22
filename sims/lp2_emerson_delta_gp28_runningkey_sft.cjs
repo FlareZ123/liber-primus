@@ -158,6 +158,10 @@ async function main() {
   const reversedKey = originalKey.slice().reverse();
   const gibran = gpIndex(gibranText);
   const model = languageModel(gibran);
+  const lp1Text = fs.readFileSync("resources/liber-primus/lp1-plaintext-reference.txt", "utf8")
+    .split("### 56")[0].split(/\r?\n/).filter((line) =>
+      !line.trimStart().startsWith("#") && !line.trimStart().startsWith("[")).join(" ");
+  const independentLP1 = gpIndex(lp1Text);
   console.log("CORPUS keyGP=" + keyGP.length + " gibranGP=" + gibran.length +
     " firstPageRunes=" + corpus.pages[0].indices.length);
 
@@ -189,6 +193,8 @@ async function main() {
     assert.equal(original.length, test.keyN);
     const { code, repeats } = deltaCode(original);
     const nativeDistribution = nativeScores(gibran, model, original.length);
+    const independentDistribution = nativeScores(independentLP1, model, original.length);
+    assert.ok(independentDistribution.length > 0);
     const outcomes = [];
     for (const keySource of [
       { direction:"forward", values:originalKey },
@@ -207,7 +213,11 @@ async function main() {
       nativeMin:nativeDistribution[0],
       nativeP05:nativeDistribution[Math.floor(0.05*nativeDistribution.length)],
       nativeMedian:nativeDistribution[Math.floor(0.5*nativeDistribution.length)],
+      independentLP1Windows:independentDistribution.length,
+      independentLP1Min:independentDistribution[0],
+      independentLP1Median:independentDistribution[Math.floor(0.5*independentDistribution.length)],
       leader, leaderRankAmongNative:percentile(leader.value,nativeDistribution),
+      leaderRankAmongIndependentLP1:percentile(leader.value,independentDistribution),
       allFamilies:outcomes
     };
     console.log("ORIGINAL_RESULT " + JSON.stringify(rec));
