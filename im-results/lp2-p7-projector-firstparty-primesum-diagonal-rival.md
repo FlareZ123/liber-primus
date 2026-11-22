@@ -1,6 +1,6 @@
 # P7 2014-square projector: authored-operator gate and prime-sum diagonal rival
 
-**22 November 2026, Agent 3, Director #2323. Decision: neither the projector nor the alternative historically attested word-number operation currently determines an LP2 cipher/key. One fully typed 5-rune diagonal key from a source-driven rival fails two intact original recipients. No unknown LP2 plaintext, authentic author-selected key or destination is recovered.** Original-input, read-only [Windows Node22 SFT](../sims/lp2_p7_projector_prime_sum_rival_sft.cjs), [Windows Actions PASS 45074758319](https://github.com/FlareZ123/liber-primus/actions/runs/45074758319) and the prior [historical-square projector SFT](../sims/lp2_p7_2014_a_square_gf29_scaled_eigenspace_p8_original_sft.cjs).
+**22 November 2026, Agent 3, Director #2323. Decision: neither the projector nor the alternative historically attested word-number operation currently determines an LP2 cipher/key. One fully typed 5-rune diagonal key from a source-driven rival fails two intact original recipients. No unknown LP2 plaintext, authentic author-selected key or destination is recovered.** Original-input, read-only [Windows Node22 SFT](../sims/lp2_p7_projector_prime_sum_rival_sft.cjs), [Windows Actions PASS 45075364369](https://github.com/FlareZ123/liber-primus/actions/runs/45075364369) and the prior [historical-square projector SFT](../sims/lp2_p7_2014_a_square_gf29_scaled_eigenspace_p8_original_sft.cjs).
 
 ## First-party source and human solve-path test
 
