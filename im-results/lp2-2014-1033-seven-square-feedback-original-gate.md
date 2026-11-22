@@ -1,6 +1,6 @@
-# Historical 1033 seven-square: direct full-chapter feedback decryptions
+# Historical Stage10 seven- and five-square feedback: complete original-source inversion and all-secret IV exclusion
 
-**Agent11, 22 November 2026. Original-source reversible negative.** None of the tested four block-feedback models recovers unknown LP2 plaintext, an authenticated new key, or a continuation. This is a bounded test of complete decoder candidates with a specific genuine source matrix, rather than a key or phase sweep.
+**Agent11, 22 November 2026. Original-source reversible negative, extended by a mathematically complete unknown-IV decision.** Four explicit feedback modes with the historical 1033 seven-square were tested on three complete original GP29 sections. Independently, the plaintext-feedback mode was tested against **every possible secret initial-state vector** for both historical five-squares and the seven-square, with no fitted key or plaintext crib. No original unknown LP2 plaintext or authenticated new key was recovered.
 
 ## Typed clue and possible cipher path
 
@@ -35,8 +35,31 @@ The **maximum over all 12 full-source decryptions is 0.03489995**. At that candi
 
 The [single-file Windows Node22 CommonJS reproducer](../sims/lp2_2014_sevensquare_feedback_original_sft.cjs) reads the original source square and corpus, asserts the original 7-block alignment and each exact numerical outcome, computes the matrix inverse, and restores all **1,729 / 1,680 / 308** original runes under every wrong candidate by exact forward replay. More importantly, it *genuinely encrypts* 91 native, source-authentic GP29 p57 runes with each of the four operations and recovers all **91/91** from each planted ciphertext. Re-encoding by itself would not establish the historical operation.
 
+## Stronger all-secret initial-state decision: every IV, without key search
+
+The first twelve direct tests assumed a zero initialization vector. A reasonable counter-hypothesis is that Cicada supplied a secret, nonzero initial vector that changes *all* blocks via plaintext feedback. The exact **linear response to an arbitrary initial vector** allows a much stronger decision. For plaintext feedback `P_j = M⁻¹(C_j − P_{j−1})`, write each source rune `P_t(IV) = P_t(0) + a_t·IV (mod 29)`. For any intact one-rune English word, the decoded symbol must be one of authentic GP29 **A=24, I=10, O=3**. The original word separators and genuine physical chapter boundaries fix the coordinates `t`; none are selected from a candidate plaintext.
+
+Choose `n` linearly independent original singleton response rows `a_t`, where the historical matrix dimension is `n=5` or `7`. Every eligible secret IV is uniquely determined by an assignment of these `n` singleton words to A/I/O. **Enumerating all 3ⁿ assignments therefore covers every one of the 29ⁿ possible secret IVs**, regardless of key entropy. The remaining original singleton words supply untouched equality constraints. Crucially, this is an exhaustive algebraic decision for the fixed cipher and word-preserving native-English register, not a Vigenère key guess or probabilistic language-score optimization.
+
+| Authentic source matrix | Whole original LP2 section | Printed one-rune words | Independent singleton equations | Complete 3ⁿ assignments | IVs passing all singleton constraints |
+| --- | --- | ---: | ---: | ---: | ---: |
+| 3301 5×5 | p3–7, 1,145 runes | 8 | 5 | 243 | **0** |
+| 3301 5×5 | p33–39, 1,680 runes | 9 | 5 | 243 | **0** |
+| 1033 5×5 | p3–7, 1,145 runes | 8 | 5 | 243 | **0** |
+| 1033 5×5 | p33–39, 1,680 runes | 9 | 5 | 243 | **0** |
+| 1033 7×7 | p8–14, 1,729 runes | 11 | 7 | 2,187 | **0** |
+| 1033 7×7 | p33–39, 1,680 runes | 9 | 7 | 2,187 | **16** |
+
+On p33–39, all **16** surviving seven-dimensional initial vectors produce complete outputs with GP29 unigram IoC **0.0341749624–0.0351009671**; native clear p57 first91 has **0.0603174603**. These 16 mathematically possible initial vectors still recover no readable original instructions. We refrain from selecting one via arbitrary rescoring. The original p54–55 has only two printed one-rune words, rank2, so the seven-dimensional secret IV is underdetermined by this necessary-condition argument; no full-IV exclusion is claimed there.
+
+For the other three feedback forms, **every nonzero secret IV affects only their initial block**: the recurrence thereafter consumes already-printed ciphertext rather than prior plaintext. Multiple originally printed singleton words farther into each full chapter decode outside A/I/O. For example, with the authentic 1033 seven-square and complete p33–39, all secret IVs produce **TH** at singleton offset138 under inner CBC, **L** at offset367 under outer CBC, and **OE** at offset138 under ciphertext feedback. None can be a one-rune native-English word. This exact source-witness contradiction also applies to each complete p3–7 five-square and p8–14 seven-square test; it is independent of the IV, its length or method of generating it.
+
+**Native positive control:** For each complete tested chapter, the SFT constructs a native GP29 plaintext of that exact original source length, puts A/I/O at every original one-rune site, encrypts it with a **nonzero, unknown-to-the-solver initial vector** derived from the genuine source matrix, then algebraically recovers that very initial vector among the enumerated candidates and recovers every planted plaintext rune. This demonstrates that the exclusion would not reject a correctly constructed message in the proposed family. The [full original-source CommonJS SFT](../sims/lp2_2014_squares_plainfeedback_alliv_sft.cjs) and [passing Windows Node22 run 45074120020](https://github.com/FlareZ123/liber-primus/actions/runs/45074120020) reproduce every source singleton, matrix, full-rank certificate, candidate count and IV-independent witness. The original direct twelve-model SFT also [passed on Windows in run 45074115790](https://github.com/FlareZ123/liber-primus/actions/runs/45074115790).
+
+**Scope:** Both exclusions assume the original printed separators really mark one-symbol plaintext words in English spelled in the source-native GP29 register. They do **not** exclude changed word segmentation, non-English text, a binary intermediary, pre/post Hill transformations, a secret matrix rather than the genuinely historical matrix, or any ciphertext mode requiring external side information. They do eliminate *any arbitrary initial-vector rescue* for these fixed full-source intact-word native-English block-chaining models. No plaintext recovered.
+
 ## Cryptanalytic decision
 
-The matrix is independently supplied by Cicada and these are executable, lossless transformations that would recover actual original plaintext if the corresponding model were right. Their **complete original outputs remain indistinguishable from near-uniform GP29 at the unigram level**, so none establishes a solution or a key. Retire only the **four literal seven-square feedback laws with source order and zero IV on the three original whole chapters**. The source does not select any alternate mode, IV or cipher order; introducing one merely because the outputs are random-like would be an unconstrained rescue.
+The matrices are independently supplied by Cicada and these are executable, lossless transformations that would recover original plaintext if the corresponding model were right. Their **complete original outputs remain indistinguishable from near-uniform GP29 at the unigram level**, so none establishes a solution or a key. Retire **all IVs** of the four literal seven-square feedback laws with unchanged source order on whole original p8–14 and, under intact-word native-English hypothesis, p33–39; for the two five-squares likewise retire these feedback laws on whole p3–7 and p33–39. For p54–55, retire only the tested zero-IV decoders because too few singleton constraints exist. The source does not select any alternate mode, IV or cipher order; introducing one merely because the outputs are random-like would be an unconstrained rescue.
 
 This fills a narrowly distinct blind spot in the existing direct 2014-matrix work. The remaining challenge is to find an independent creator-visible instruction that selects a value-changing operation, side information or external key and that succeeds on untouched original prose.
