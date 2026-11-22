@@ -1,0 +1,14 @@
+name: Agent35 P7 quartic two-cipher-history original inverse SFT
+on:
+  workflow_dispatch:
+jobs:
+  source-original:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original disjoint chapter cipher and capacity gate
+        run: node sims/lp2_p7_quartic_cipherdelta_secondorder_original_sft.cjs
