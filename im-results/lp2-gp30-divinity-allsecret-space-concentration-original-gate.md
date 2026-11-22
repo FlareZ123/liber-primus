@@ -1,80 +1,103 @@
-# GP30 SPACE-changing inverse: DIVINITY and an all-secret concentration exclusion
+# GP30 SPACE-changing original inverse: source-named DIVINITY, F bypass and all-secret family bounds
 
-**Agent 10, 22 November 2026. Status: original-input negative plus exact conditional theorem; no unknown plaintext or recovered key.** This tests a distinct 30-symbol boundary-moving cipher family, separate from the previous whole-word BASE29→BASE30 integer conversion and secret short-history rune-only alphabets. The source-authentic clue motivates a particular candidate; the stronger second result holds for every independently secret GP30 alphabet in the stated clock classes.
+**Agent 10, 22 November 2026 | Verified original-cipher negatives, native-GP controls, no recovered unknown plaintext.** This record consolidates the complete source-typed inverses and genuinely key-independent exclusions for 30-symbol SPACE-moving ciphers. It covers a *different register* from earlier BASE29→BASE30 whole-word numeral conversion, stationary GP29 lookup, and fixed within-word GP29 alphabets. No first-party Cicada instruction selecting a 30th ciphertext symbol is known; each conclusion is conditional on this declared model.
 
-## Original source, frozen operation, and plaintext gate
+## 1. Source-authentic tokenization and what the human solver would see
 
-The genuine solved LP1 Vigenère section uses **DIVINITY** as its key. The original clear GP p57 PARABLE says **FIND THE DIVINITY WITHIN**, and the original GP chart shows 29 runes plus a blank slot. These inputs make a GP29-plus-SPACE test human-conceivable; **they do not constitute a Cicada-authored GP30 encryption instruction**.
+The source material has **12,956 ciphertext GP runes, 2,896 true printed complete words and 32 genuine cross-page word carries** in unknown LP2 physical p0–55. The original transcript also has six dashes immediately following standalone **Arabic list numbers 7,1,2,3,4,5** (on original physical p10, p36–38). These six structural list-head dashes have no preceding GP word. They are preserved *unchanged* as noncipher typography, alongside original line, paragraph, section, page and numeral marks. Periods and hyphens that actually terminate a GP word, on the other hand, are hypothesized to be ciphertext digit29 **SPACE**. Thus the primary, source-typed cipher channel contains exactly **12,956 GP runes + 2,896 genuine GP word/period marks = 15,852 full30-symbol tokens**. Original page owners are read from canonical per-page rune indices, so rune-free p50 never shifts the physical numbering.
 
-Use the unchanged LP2 original-source 12,956 numeric GP29 runes and each of the 2,902 visually printed hyphen/period events as digit 29 (SPACE), preserving the original exact punctuation mark and all line/page/section layout as a sidecar. That yields **15,858** full-channel tokens. In particular, all 32 true cross-page carried words remain intact in the original source and the rune values agree exactly with the canonical source page arrays. For the single frozen historic-key proposal,
+This corrects an earlier *all-hyphens* variant that included the six non-GP list dashes as cipher symbols: that earlier version had 15,858 tokens. Both variants were computed and give the same negative decisions, but the source-typed channel is the coherent primary model. Corrected scripts preserve every excluded mark, all 32 carried original words and the entire source transcript byte-for-byte after reencryption. The six source dashes are **not** cryptographic evidence for or against using a GP30 alphabet.
+
+The source-visible motivation is narrow. Genuine solved LP1 p03–04 uses the 8-GP-token repeating key **DIVINITY**. The clear LP2 p57 **PARABLE** says **FIND THE DIVINITY WITHIN**, and the historic GP chart has 29 runes plus a blank cell. These make a speculative GP29+SPACE extension human-conceivable. Neither the chart nor the words supplies a GP30 opcode, secret key schedule for LP2 or independent state selection.
+
+Two independent original *solved source* controls determine realistic plaintext conditions. The 755-rune unenciphered LP1 **THE LOSS OF DIVINITY / INSTRUCTION** text, with its two Arabic enumerator dashes preserved as markup, has **181 legitimate GP word/period marks in 936 full30 tokens**, SPACE rate **19.338%**, and 320/755 = **42.384%** of its runes occupy its five most frequent GP values. Clear LP2 p57 has **95 GP runes + 20 legitimate word/period events**, SPACE rate **17.391%**, and top-five GP fraction 46/95 = **48.421%**. These are empirical native-language controls, not universal minimum statistics for every possible English/Latin ciphertext plaintext.
+
+## 2. Frozen DIVINITY full30 inverse: original and held-out failure
+
+With each actual source rune as GP index0–28 and each of 2,896 true source GP separators as symbol29, the explicit proposed inverse is
 
 \[
-P_i=(C_i-K_{i\bmod8})\bmod 30,\qquad
+P_i=(C_i-K_{i\bmod8})\bmod30,\qquad
 K=\operatorname{GP}(\mathrm{DIVINITY})=(23,10,1,10,9,10,16,26).
 \]
 
-The clock advances through all 15,858 tokens from first LP2 output, with no page reset or fitted offset. The full inverse is exactly \(C_i=(P_i+K_{i\bmod8})\bmod30\); source punctuation typography remains bit-for-bit reconstructible. A plaintext-dependent F transparent cipher rule is outside this fixed bijection. The historically attested F-bypass clock is investigated independently below, with every unknown bypass decision allowed.
+Clock zero starts at the first unknown LP2 GP30 token, advances through all genuine GP word marks and continues across real physical page seams. No key fitting, rescored phase, page reset or posthoc plaintext spacing is permitted. The exact forward inverse is \(C_i=(P_i+K_{i\bmod8})\bmod30\). Source-punctuation spelling and page/line/section layout reside in an immutable sidecar.
 
-| Original / solved span | Source tokens | Decoded SPACE tokens | SPACE fraction | GP rune IoC |
+| Exact source span | GP30 source tokens | Plain decoded SPACE tokens | Fraction | Decoded nonspace GP IoC |
 | --- | ---: | ---: | ---: | ---: |
-| Original unknown p0–55 | 15,858 | 444 | 2.800% | 0.039362 |
-| Original development p16–21 | 1,985 (1,613 runes) | 59 | 2.972% | 0.039585 |
-| Independent p40–53 holdout | 3,677 (3,008 runes) | 106 | 2.883% | 0.038305 |
-| Genuine **clear GP** p57 source benchmark | 115 (95 runes) | 20 | 17.391% | 0.062710 |
+| Entire original p0–55 | **15,852** | **475** | **2.996%** | **0.0387668** |
+| Development physical p16–21, global clock carried | **1,985** (1,613 GP source runes) | **61** | **3.073%** | **0.0387302** |
+| Independent physical p40–53, global clock carried | **3,677** (3,008 GP source runes) | **116** | **3.155%** | **0.0383990** |
+| Authentic clear GP p57 benchmark (no decryption attempted) | **115** (95 runes) | **20** | **17.391%** | **0.0627100** |
 
-The p57 benchmark includes its terminal period as a separator event, exactly matching the tested tokenization; ordinary word-only spacing is 19/114. The frozen DIVINITY GP30 result has no coherent source-native prose, and moves too few boundaries for the observed native style. The entire original text and the authentic 95-rune p57 planted ciphertext reencrypt/decrypt exactly. [Frozen-key CommonJS source](../sims/lp2_divinity_gp30_space_vigenere_original_sft.cjs) and [Windows Node 22 passing run 45058315869](https://github.com/FlareZ123/liber-primus/actions/runs/45058315869).
+No contiguous authentic unknown plaintext was recovered. Every source rune and all typography reencrypt exactly. The 95-rune p57 positive can be genuinely GP30-enciphered and decoded without losing source-native words. This rejects **this fixed source-named full30 DIVINITY inversion** for comparably word-spaced native GP prose. [Exact original full-channel SFT](../sims/lp2_divinity_gp30_space_vigenere_original_sft.cjs).
 
+## 3. Historical literal-F bypass: ALL possible hidden skip masks
 
-## Historical literal-F bypass: exact all-mask space upper bound
+The actual solved-LP1 DIVINITY method has an important historical exception: ciphertext **F=0** sometimes represents literal plaintext F and **does not advance the key**. In original solved LP1 515-rune p03–04 regression, **eleven** true literal Fs bypass; a normally keyed letter can also encrypt to ciphertext F. This makes F transparent *ambiguous to a ciphertext-only reader* ([historical solved positive](../sims/authentic_lp1_p03_p04_vigenere_recovery.cjs)). Extending the real GP29 exception to a GP30 symbol stream is again a declared speculative hypothesis.
 
-The known solved LP1 DIVINITY Vigenère cipher has an important exception that the simple direct GP30 candidate above does not implement: a **literal ciphertext F=0 can represent a plaintext F=0 without advancing the key**, even though an ordinary encrypted rune can also result in ciphertext F=0 and consume the key. This ambiguity is established by the authentic 515-rune solved-LP1 p03–04 regression; eleven true literal Fs are enumerated by [the historical p03–04 positive control](../sims/authentic_lp1_p03_p04_vigenere_recovery.cjs). The actual 2014 encoder is GP29. Extending that special rule to a GP30 token alphabet remains an *investigator hypothesis*.
+Give every one of the **458 original LP2 ciphertext F tokens** a completely free private bit: choose either literal plaintext F and keep the DIVINITY phase unchanged, or ordinary modulo30 decoding and advance. An exact 8-state max-plus dynamic program solves the maximum output SPACE count **over all \(2^{458}\) F masks**, retains an explicit optimum mask, and verifies exact full source reencryption. Every mask is allowed; no decoder can beat these bounds for the supplied eight-key GP30 hypothesis.
 
-The new test grants **every one of the 458 actual ciphertext F tokens** a completely independent secret binary choice: either output literal F and **skip** the eight-rune DIVINITY phase, or decode by ordinary modulo-30 subtraction and **advance** the key phase. All 15,858 original source tokens, period marks and original physical page owners are unchanged. An exact max-plus DP with eight phase states enumerates the best possible decoded SPACE count over **all \(2^{458}\) bypass masks implicitly**, recovers one witness mask via backpointers, and checks full original replay under the corresponding mask. The bypass mask is *not uniquely ciphertext-recoverable*: treating it as a free unknown makes this an optimistic capacity exclusion rather than a legitimate unaided plaintext decoder.
+| Allowed source clock and independent F-bypass freedom | Exact maximum decoded SPACEs |
+| --- | ---: |
+| Entire original, continuous initial phase0 | **759 / 15,852 = 4.788%** |
+| Entire original, one freely selected initial phase | **762 / 15,852 = 4.807%** |
+| Eight original sections, freely selected independent initial phases | **770 / 15,852 = 4.857%** |
+| All 55 rune-bearing physical pages, freely selected independent initial phases | **827 / 15,852 = 5.217%** |
+| Original p16–21, independently optimized phase and all F decisions | **96 / 1,985 = 4.836%** |
+| Untouched p40–53, independently optimized phase and all F decisions | **192 / 3,677 = 5.222%** |
 
-| True original source recipient and allowed clock | Maximum decoded SPACE events | Fraction of decoded 30-token register |
-| --- | ---: | ---: |
-| All original, initial key phase zero and one uninterrupted clock | **756 / 15,858** | **4.767%** |
-| All original, any one of eight initial phases | **759 / 15,858** | **4.786%** |
-| Eight source sections, each with a separate freely chosen initial phase | **767 / 15,858** | **4.837%** |
-| Fifty-five physical rune pages, each with a separate freely chosen initial phase | **825 / 15,858** | **5.202%** |
-| p16–21, arbitrary initial phase, independently optimized bypass mask | **96 / 1,985** | **4.836%** |
-| Held-out p40–53, arbitrary initial phase, independently optimized bypass mask | **192 / 3,677** | **5.222%** |
+The authentic p57 PARABLE and the exact 755-rune solved LP1 source (181 true spaces and periods) both successfully encrypt/decrypt with correct literal F skips, including ordinary encryption that happens to yield ciphertext F. The max-space bound admits both source-native positives. On the original unknown pages even arbitrary F decisions plus independently chosen page phases cannot reproduce their word-space density. The binary bypass mask itself is not supplied by the unknown ciphertext, making this an **optimistic capacity obstruction**; it is not a standalone source-recoverable inverse. [Exact all-F-mask dynamic programming SFT](../sims/lp2_divinity_gp30_all_fskip_space_capacity_sft.cjs).
 
-The independently authentic **755 GP-rune** solved-LP1 THE LOSS OF DIVINITY passage has **183 printed gap/period events in 938 source tokens (19.510%)**, and actual clear p57 has **20/115 (17.391%)**. Both were *independently planted* in GP30 with the true historical-style literal-F skip decision for every plaintext F; they decrypt and reencrypt exactly, including cases where a normally encrypted non-F emits ciphertext F. Each positive passes the dynamic-programming necessary SPACE bound. On original LP2, even the markedly more generous *page-private free initial phase plus fully secret F decisions* falls far short of these real solved-space benchmarks. This **excludes the named source-fixed DIVINITY GP30 cipher with every possible F transparency mask** as a decoder for comparably spaced native GP prose; it does not exclude a different key, unencoded input separators, a hidden cipher state or unusually low-space plaintext.
+## 4. Stronger theorem: ANY independent secret 30-symbol alphabet, periodic or word-geometry keyed
 
-Exact original-source [F-transparent all-mask CJS SFT](../sims/lp2_divinity_gp30_all_fskip_space_capacity_sft.cjs) passes the unchanged full corpus, physically owned page spans, complete source replay and two original solved-GP positive plants on [Windows Node22 run 45060066665](https://github.com/FlareZ123/liber-primus/actions/runs/45060066665).
+The fixed historical key could fail while some other secret GP30 key worked. A genuinely key-independent exclusion can instead allow a **completely arbitrary 30! bijection in EACH state**, assigning each possible ciphertext symbol to exactly one plaintext GP rune or SPACE. Each key state has exactly one ciphertext class mapped to SPACE. All thirty choices are optimized away.
 
-## Stronger result: every secret state alphabet, without guessing a key
-
-For a period-\(m\) state family, **allow any of 30! independent, bijective GP30 alphabet mappings in each state**. This strictly includes any periodically repeated full-30-symbol Vigenère rotation and does not know or fit a key. Three exact source clocks are tested: one global continuous period, a separately secret period within each of the transcription's **eight real section blocks**, and even a separately secret period on each of the **55 rune-bearing physical pages**. The page-secret model generously permits state changes inside carried original words.
-
-Let \(h_g(c)\) be the original count of symbol \(c\) in key-state \(g\). A bijection maps exactly one input class \(c\) to plaintext SPACE. Let \(L_5(h_g\setminus c)\) be the sum of the five largest other class counts. Write \(T_5\) for the decoded five-most-frequent GP *rune* total, \(S\) for decoded SPACE count, and \(N=15,858\). For any desired native GP concentration \(T_5/(N-S)\ge q\), the following necessary condition is **exact and key-independent**:
+Let \(h_g(c)\) be the observed count of original ciphertext class \(c\) in a state \(g\). Let \(L_5(h_g\setminus c)\) denote the sum of the five largest source-class counts among the other 29 input classes. For any decoded plaintext with \(N\) full30 symbols, \(S\) spaces and \(T_5\) occurrences of its five most common **nonspace** runes, a required native language threshold \(T_5/(N-S)\ge q\) implies the necessary lower inequality \(T_5+qS\ge qN\). Every independent collection of secret bijections also satisfies the *optimistic* upper inequality
 
 \[
-\begin{aligned}
-T_5+qS&\ge qN,\\
-T_5+qS&\le U_m(q):=
-\sum_g\max_{0\le c<30}
+T_5+qS\ \leq\
+U(q):=\sum_g\max_{0\leq c<30}
 \left[L_5(h_g\setminus c)+q\,h_g(c)\right].
-\end{aligned}
 \]
 
-Thus **\(U_m(q)<qN\) excludes every secret key** in the declared model. This is a safe optimistic bound: it even lets the five preferred plaintext runes differ from key state to key state. The SFT performs comparisons as exact integers after multiplying by the denominator of \(q\), without rounding, random scoring, dictionary fitting, or configurable secret alphabets.
+Thus **\(U(q)<qN\) is an exact proof of impossibility for every secret key in the declared state family**. The upper bound is deliberately generous because it even permits the identity of the five preferred plaintext rune labels to vary *independently in every state*. Reproducers multiply out the exact rational numerator/denominator, so there is no floating point threshold issue.
 
-The **755 original unenciphered GP runes** of solved LP1 THE LOSS OF DIVINITY / INSTRUCTION (physical p10–13) exhibit 320 occurrences of their five most frequent symbols, giving a long real native control \(q=320/755\). The shorter authentic clear p57 has \(q=46/95\). A deliberately weaker comparison requires only \(q=2/5\).
+### 4a. Full30 period-keyed secret alphabets
 
-| Native GP concentration threshold | Every global period excluded through | Every eight-section-private period excluded through | Every 55-page-private period excluded through |
+A state is GP30 token position modulo an unknown period. Allow one fully secret periodic alphabet over the entire 15,852-token original, or entirely independent period alphabets within each of the eight actual source sections, or even private periods on each of the 55 actual rune-bearing pages. The latter permits unprinted key resets in 32 originally carried words, making the exclusion broader than the plausible author's model.
+
+| Real native GP concentration required | All global periods excluded | All 8-section-private periods excluded | All 55-page-private periods excluded |
 | --- | ---: | ---: | ---: |
-| **Long actual solved LP1: 320/755 = 42.384%** | **147** | **19** | **2** |
-| Clear actual LP2 p57: 46/95 = 48.421% | **314** | **40** | **5** |
-| Looser hypothetical 2/5 = 40% | **97** | **13** | **1** |
+| **Long solved LP1, 320/755 = 42.384%** | **1–152** | **1–19** | **1–2** |
+| **Clear solved LP2 p57, 46/95 = 48.421%** | **1–317** | **1–40** | **1–5** |
+| **More permissive illustrative threshold, 2/5 = 40%** | **1–101** | **1–13** | **1** |
 
-Each threshold includes **every integer period from 1 through that value**. The next period is only the first where this necessary bound becomes *inconclusive*. It is neither a demonstrated decipherment nor proof that larger periods work. Period dependence is nonmonotone: using p57, period 315 becomes inconclusive while 316 and 333 still fail the certificate.
+Each range is a complete original-input mathematical exclusion across **all hidden keys**. The next period is merely the first mathematically inconclusive one, not a discovered valid key. Period behavior is nonmonotone: at q=46/95, continuous period318 is inconclusive, but320 is excluded. Both original solved LP1 and p57 encode/decode correctly under true period8 full30 DIVINITY plants and are rightly **not excluded** by the capacity theorem. [All-secret periodic CJS source](../sims/lp2_gp30_allsecret_periodic_space_fiveconcentration_sft.cjs).
 
-As separate source-native positive witnesses, the exact real p57 PARABLE and the 755-rune *original solved LP1* prose were each GP30-enciphered under the authentic eight-symbol DIVINITY schedule. Both positives pass their own period-8 certificate and invert rune-for-rune with authentic spaces. The untouched LP2 original fails for periods given above. [Exact all-secret CJS reproducer](../sims/lp2_gp30_allsecret_periodic_space_fiveconcentration_sft.cjs), [Windows original-source and controls passing run 45059289140](https://github.com/FlareZ123/liber-primus/actions/runs/45059289140), and [manual workflow](../.github/workflows/agent10-divinity-gp30-space-original-manual.yml).
+### 4b. All-secret printed-WORD geometry, a distinct authored-clue candidate
 
-## Decision
+The signed 2016 instruction says **its words are the map**. A natural finite interpretation is to use the actual **ciphertext** printed word length \(L\) and its rune offset \(j\) as a secret alphabet-state selector. All 32 cross-page words are joined in their original order; each source gap/period is input SPACE29 at terminal position \(j=L\). The original complete words have \(1\leq L\leq14\). With all six structural list dashes excluded, the full original has **2,896 words and exactly 119 distinct (L,j) states**. Give EACH state any of its own 30! secret bijections; its output may replace, move or delete source word boundaries.
 
-A full, length-preserving **30-token bijective substitution** whose secret alphabet repeats with one common period below 148 cannot produce a plaintext with the same top-five-rune concentration as the long, genuinely solved LP1 prose, even under arbitrary phase alphabets and fully mobile spaces. Separately hidden keys for the actual source sections and pages have their own tighter low-period exclusions. The source-keyed DIVINITY variant fails on long original paragraphs and an independent heldout chapter, **even under every possible historically attested F-bypass clock**.
+| Independently secret source-visible alphabet selection | Number of 30! tables | Upper-bound ratio to required native LP1 320/755 | Native LP1 GP possible? |
+| --- | ---: | ---: | --- |
+| Original word length L | 14 | **0.79723** | Excluded |
+| Original within-word offset j | 15 | **0.80326** | Excluded |
+| (L, j modulo2) | 28 | **0.87140** | Excluded |
+| (L, j modulo3) | 41 | **0.90867** | Excluded |
+| (L, j modulo5) | 64 | **0.94682** | Excluded |
+| Full exact pair **(L, j)** | **119** | **0.99055** | **Excluded** |
 
-This is a **conditional native-GP prose constraint**. It cannot reject deliberately low-concentration prose, encoded/compressed output, different treatment of punctuation, variable-length or nonbijective encoding, word-history-dependent states, genuinely nonperiodic secret pads, or unrelated cipher families. It does not recover original unknown plaintext, actual Cicada keying, or the hidden deep-web destination. Work seeking authentic key material or an author-readable **nonbijective** space-changing operation remains justified; repeating the excluded short GP30 alphabet families does not.
+Every row also fails the higher 46/95 concentration of the actual clear LP2 p57, and the first four rows fail even the weaker 40% example. The full 119-table result is only a **0.945% relative margin** against the long solved-LP1 benchmark, so it is a precise conditional family exclusion, not a language-independent theorem. Any additional secret input-word-history state, source-section rekey, nonbijective code, other alphabet/register or output retaining non-GP data escapes its scope.
+
+For *true* source-native positives, genuine original LP1 p10–13 and LP2 p57 are each used in two exact reversible encodings: the identity GP30 alphabet and a real **Caesar+1 modulo30** encoder that moves their true plain SPACE positions to other ciphertext positions. The secret alphabet can trivially be the same Caesar map in every (L,j) table, while the reader's (L,j) groups are taken from the **resulting ciphertext word boundaries**, satisfying the model fully. The bound rightly accepts both source-native controls in ALL six source-geometry state families. [Exact original all-secret word-geometry SFT](../sims/lp2_gp30_wordgeometry_allsecret_source_criterion_sft.cjs).
+
+## 5. Robustness, decision and what would enable real plaintext
+
+An earlier all-mark grammar consumed the six dashes attached to Arabic numerals as if they were ordinary GP word marks, giving **15,858** source tokens. This less faithful, explicitly alternative encoding also fails: a fixed-key DIVINITY inverse produces only **444** decoded spaces; unrestricted historical F bypass plus page-private phases yields at most **825**; and the arbitrary-secret global GP30 bijection theorem excludes periods **1–147** at native 320/755 and **1–314** at native46/95. Preserving them as noncipher numbering strengthens rather than reverses the substantive conclusions.
+
+**Verified execution:** All four standalone CommonJS source-data tests pass on Windows Node22 in [Actions run 45061014119](https://github.com/FlareZ123/liber-primus/actions/runs/45061014119), with the exact manual [test workflow](../.github/workflows/agent10-divinity-gp30-space-original-manual.yml). Tested artifacts are the actual immutable original-rune and transcription resources; no plaintext fitting, guessed secret table or randomized p-value contributes to any bound.
+
+**Decision:** Original-source, printed SPACE as a true 30th ciphertext symbol + source-visible DIVINITY and even every literal-F skip cannot give a word-spaced native-GP paragraph. Far more permissive, completely unknown short-period GP30 alphabets and 119 independently secret word-length/position GP30 alphabets cannot produce the actual solved-GP top-five concentration over full LP2. This excludes the **specific, mathematically defined full30 one-to-one register models**; it does not decode any of the 56 unknown LP2 pages, determine Cicada's actual key or recover the p56 hidden-service target.
+
+A breakthrough must provide an *author-authenticated* word-boundary code or nonce/transducer with additional internal state, a plaintext under a different register, or original external key/container bytes. Work without an independently readable opcode should not compound free source parameters or declare a dense short fit a decryption. The next useful experiment is a complete, source-typed **nonbijective or length-changing** inverse with an independently predicted original holdout.
