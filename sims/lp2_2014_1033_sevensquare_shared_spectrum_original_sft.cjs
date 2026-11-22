@@ -382,4 +382,99 @@ console.log('ORIGINAL_KEY_TRANSFER 18 layouts, key-independent equality mismatch
   minimum + ', max exact symbols=' + maxDirect +
   ', best contiguous middle84 after S');
 
-console.log('SELFTEST_PASS original squares, charpolys, canonical basis, 3409 original runes, solved-native positives, 84-prime authenticated-key transfer');
+
+/**
+ * Complete spectral relation. The sum of roots of every irreducible
+ * 7-square factor (the single root for a linear factor, field trace
+ * for a conjugate quadratic pair) is exactly the unordered spectrum
+ * of the independently printed 5-square. This is an invariant
+ * **of the factors**, not a license for arbitrary ordering as CHANGE.
+ *
+ * A commuting linear B5<-C7 intertwiner has rank at most three:
+ * C7's irreducible quadratic four-space cannot map nontrivially
+ * into the split-linear B5 representation. Test the three surviving
+ * native eigencoordinates on two natural full-source registrations.
+ */
+const factorTraces = factors7.map((factor) => m29(-factor[1]));
+assert.deepEqual([...factorTraces].sort((a, b) => a - b),
+  [...roots5].sort((a, b) => a - b));
+console.log('TRACE_COLLAPSE seven irreducible-factor traces=' +
+  factorTraces.join(',') + ' five-square eigenroots=' + roots5.join(','));
+const V5 = [
+  [1, 1, 1, 1, 1],
+  [0, 24, 11, 18, 1],
+  [0, 8, 0, 20, 1],
+  [0, 24, 18, 18, 1],
+  [28, 1, 28, 1, 1]
+];
+const V5inverse = matrixInverse(V5);
+assert.deepEqual(multiply(V5, V5inverse), identity(5));
+assert.deepEqual(
+  multiply(multiply(V5inverse, five1033), V5),
+  roots5.map((value, i) =>
+    roots5.map((_, j) => i === j ? value : 0)));
+/**
+ * @param {number[]} runes
+ * @param {number} packetLength
+ * @param {number[][]} inverseBasis
+ * @param {number[]} coordinateIndices
+ * @returns {number[][]}
+ */
+function project(runes, packetLength, inverseBasis, coordinateIndices) {
+  assert.equal(runes.length % packetLength, 0);
+  const output = [];
+  for (let i = 0; i < runes.length; i += packetLength) {
+    const z = apply(inverseBasis, runes.slice(i, i + packetLength));
+    output.push(coordinateIndices.map((j) => z[j]));
+  }
+  return output;
+}
+const fiveChapter = concatenate(3, 7);
+const sevenChapter = concatenate(8, 14);
+const sevenCuneiform = concatenate(33, 39);
+assert.equal(fiveChapter.length, 1145);
+assert.equal(sevenChapter.length, 1729);
+assert.equal(sevenCuneiform.length, 1680);
+const pFive = project(fiveChapter, 5, V5inverse, [1, 2, 4]);
+const pSeven = project(sevenChapter, 7, Sinverse, [0, 1, 2]);
+const pCuneiform = project(sevenCuneiform, 7, Sinverse, [0, 1, 2]);
+assert.deepEqual([pFive.length, pSeven.length, pCuneiform.length],
+  [229, 247, 240]);
+/** @param {number[][]} a @param {number[][]} b @param {number} offset */
+function sharedModeMatches(a, b, offset) {
+  let matches = 0;
+  let wholeTriples = 0;
+  for (let i = 0; i < a.length; i += 1) {
+    const eq = a[i].map((v, j) => +(v === b[i + offset][j]));
+    matches += eq.reduce((sum, v) => sum + v, 0);
+    wholeTriples += +(eq.every(Boolean));
+  }
+  return [matches, wholeTriples];
+}
+const sharedResults = [
+  sharedModeMatches(pFive, pSeven, 0),
+  sharedModeMatches(pFive, pSeven, 18),
+  sharedModeMatches(pFive, pCuneiform, 0),
+  sharedModeMatches(pFive, pCuneiform, 11)
+];
+assert.deepEqual(sharedResults, [[22, 0], [23, 0], [19, 0], [19, 0]]);
+
+// Positively plant three source-symbol modes in both authentic dimensions,
+// with four 7-square and two 5-square secondary modes zero.
+const original3 = Array.from({ length: 229 }, (_, i) =>
+  [solved[(3 * i) % 95], solved[(3 * i + 1) % 95],
+    solved[(3 * i + 2) % 95]]);
+const fivePlant = original3.flatMap(([h, a, e]) =>
+  apply(V5, [0, h, a, 0, e]));
+const sevenPlant = original3.flatMap(([h, a, e]) =>
+  apply(S, [h, a, e, 0, 0, 0, 0]));
+const pFivePlant = project(fivePlant, 5, V5inverse, [1, 2, 4]);
+const pSevenPlant = project(sevenPlant, 7, Sinverse, [0, 1, 2]);
+assert.deepEqual(pFivePlant, original3);
+assert.deepEqual(pSevenPlant, original3);
+assert.deepEqual(sharedModeMatches(pFivePlant, pSevenPlant, 0), [687, 229]);
+console.log('THREE_SHARED_MODES original full-packet equal positions=' +
+  sharedResults.map((v) => v.join('/')).join(',') +
+  ' vs 687/229 planted positives; no reused source-aligned state');
+
+console.log('SELFTEST_PASS original squares, charpolys, canonical basis, 3409 original runes, solved-native positives, 84-prime authenticated-key transfer, canonical shared three-mode original receiver');
