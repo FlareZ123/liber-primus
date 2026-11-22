@@ -207,3 +207,38 @@ for (const [name, key] of [['FIND-tail28', findTail], ['FIND-cycle95', findCycle
   }
 }
 console.log('PASS: K352 modulo p57 length95 points exactly at FIND/last stanza; both frozen literal Vigenere key consumers fail to recover original prose.');
+
+
+// A second fixed source-key use of the actual historical DH opcode is a
+// multiplicative group orbit: x0=shared352, x[n+1]=1031*x[n] modulo1259;
+// GP29 key output = x[n] modulo29. The original author does not instruct
+// this extension, so the result is a bounded independent rival.
+function dhOrbitGP(count) {
+  const result = [];
+  let x = sharedServer;
+  for (let i = 0; i < count; i++) {
+    result.push(x % 29);
+    x = x * g % p;
+  }
+  return result;
+}
+assert.deepEqual(dhOrbitGP(15), [4,1,4,15,9,15,11,23,18,8,24,24,19,28,0]);
+const orbitP55 = dhOrbitGP(p55.indices.length);
+const orbitUnknown = dhOrbitGP(originalUnknown.length);
+const orbitMetrics = [];
+for (const [scope, ciphertext, key] of [
+  ['p55', p55.indices, orbitP55],
+  ['whole', originalUnknown, orbitUnknown]
+]) {
+  for (const sign of [-1, 1]) {
+    const result = ciphertext.map((cipher, i) => (cipher + sign * key[i] + 29) % 29);
+    orbitMetrics.push(Number(ioc(result).toFixed(6)));
+    console.log('DH SOURCE orbit GP29 scope=' + scope + ' sign=' + sign +
+      ' exactIoC=' + ioc(result).toFixed(6));
+  }
+}
+assert.deepEqual(orbitMetrics, [0.030877,0.036491,0.034473,0.034470]);
+const orbitPlant = p57.indices.map((value, i) => (value + dhOrbitGP(95)[i]) % 29);
+assert.deepEqual(orbitPlant.map((value, i) =>
+  (value - dhOrbitGP(95)[i] + 29) % 29), p57.indices);
+console.log('PASS: source-derived DH group orbit is invertible but does not recover native GP unknown-page prose.');
