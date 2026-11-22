@@ -53,6 +53,24 @@ The residual quadratic `X²-8` names an entirely source-derived extension **GF(2
 
 The polynomial's next concrete research fork is a source-authored invertible **consumer**, such as an explicitly specified field multiplication or a keyed state transition, followed by a frozen **complete original page** test. A plain scalar multiplication by 17 or12 only renames GP29 symbols, preserving equality patterns and index of coincidence; it does not by itself solve the ciphertext. An unrestricted polynomial Feistel or multi-round search would add choices absent from original evidence. The strongest existing alternatives remain an unrelated p7/p8 source coincidence and the previously conditional GF4/p50 key-fit route, which requires several other unsourced conventions.
 
+## Source-derived reversible projective and paired-rune consumers
+
+The two physically adjacent heading products `[u,v]=[4,3]`, and independently matching terminal derivative `λ=P′(4)=17`, uniquely determine the **Möbius map** with these two fixed points and derivative λ at4, provided a solver had first chosen projective GF29 dynamics:
+
+```text
+(T(x)-4)/(T(x)-3) = 17(x-4)/(x-3)
+T(x) = (11x+18)/(13x+7) mod29
+M = [11 18; 13 7], det(M)=17, trace(M)=18, M⁴=I
+```
+
+The scalar matrix normalization above is fixed by the printed inputs; every other matrix representing the same projective map differs by a common nonzero multiplier. The **projective transformation has order4**, fixes precisely3 and4, sends the original symbol index24 to the distinct extra state infinity, and sends infinity to index12, coincidentally the complete p8 heading product. The matrix is a genuine reversible **GF29²→GF29² pair-linear function**, with exact order4. Projective action is reversible only after admitting an additional alphabet symbol infinity, not present among the 29 GP runes.
+
+These are two strictly declared source-derived candidate cipher mechanisms, rather than an authentic cipher instruction. In particular the original manuscript does not tell players to build a fractional-linear map from the heading, use adjacent ciphertext pairs, select the starting phase, or add infinity as a letter.
+
+An original-input bounded direct decoder gate now tests the **entire page8**, retaining printed rune order and the genuine first p9 carry rune, in two exact receiver registrations: **243 p8 black + 1 p9 =244** rune symbols, and **all 255 p8 + 1 p9 =256**. Across these two receivers the predeclared **38** direct reversible models comprise matrix powers M/M²/M³ (3 per receiver), four cyclic matrix powers with two phase directions × four phases (8), and analogous projective cyclic T (8). No target word is fitted. The largest GP29 IoC for any original output is **0.036733455** (GF29 pair matrix) or **0.036502547** (projective excluding artificial infinity); **0/38** outputs reach IoC0.05, and all were inspected for prose. Positive original-shaped source-data round-trip checks verify exactly reversible matrix/projective encoders. A source-to-source transfer into **all 242 printed black complete scroll-word GP0 products → all 242 p8 complete black runes** also fails: under each of the source four-phase pair matrix schedules it matches at most **14/242**, versus approximately8.34 random-match expectation. The source black checksum tape has26 zeros while p8 black target has8, so this candidate is not a literal transfer.
+
+This retires direct Möbius cyclic or two-rune Hill consumers on these untouched original receivers. The unique reversible map remains a source-motivated **candidate** for a different keyed state or composed layer if a genuine first-party instruction names that receiver and operator. [Read-only Windows Node22 SFT](../sims/lp2_p7_p8_fixedpoint_projective_hill_original_sft.cjs) · [verified CI PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45048205869).
+
 ## Reproduction and decision
 
 - [Windows Node22 read-only original-source SFT](../sims/lp2_p7_p8_original_red_polynomial_fixedpoint_sft.cjs), **[CI PASS, 22 Nov 2026](https://github.com/FlareZ123/liber-primus/actions/runs/45047067228)**. Frozen output verifies all polynomial identities, p8 red runes, source-word inventory, feature and direction controls, the first/last p53 continuation, GF29² root order and all 255 p8 ciphertext runes.
