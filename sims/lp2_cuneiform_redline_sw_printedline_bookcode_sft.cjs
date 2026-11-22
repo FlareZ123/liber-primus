@@ -203,3 +203,30 @@ assert.equal(wisdomOutcomes.length,4);
 console.log("SW -> literal LP1 SOME WISDOM Vigenere receivers on original five numbered units:");
 for(const result of wisdomOutcomes)console.log(JSON.stringify(result));
 console.log("PASS: Four source-linked title/body Vigenere transfers recover no native numbered plaintext.");
+
+
+// The literal two recovered GP runes S=15, W=7 also form a complete,
+// zero-phase two-symbol Vigenere key. Test it directly on its original source
+// red-to-red section and on the full five numbered statements, without
+// inferring a second recipient or retuning any clock.
+const sourceChapter=corpus.pages[33].indices.slice(91)
+  .concat(...[34,35,36,37,38].map(p=>corpus.pages[p].indices),
+    corpus.pages[39].indices.slice(0,119));
+const sourceFive=numbered.flat();
+assert.equal(sourceChapter.length,1468);
+assert.equal(sourceFive.length,553);
+const literalSW=[a.code,b.code];
+assert.deepEqual(literalSW,[15,7]);
+for(const [name,ciphertext] of [["p33 to p39 red to red",sourceChapter],["five numbered items",sourceFive]]){
+  for(const sign of [-1,1]){
+    const output=ciphertext.map((v,i)=>(v+sign*literalSW[i%2]+29)%29);
+    assert.deepEqual(output.map((v,i)=>(v-sign*literalSW[i%2]+29)%29),ciphertext);
+    const nativePlant=nativeControl.map((v,i)=>(v-sign*literalSW[i%2]+29)%29);
+    assert.deepEqual(nativePlant.map((v,i)=>(v+sign*literalSW[i%2]+29)%29),nativeControl);
+    const score=ioc(output);
+    assert(score>0.030&&score<0.039);
+    console.log(JSON.stringify({receiver:name,derived_GP29_key:"SW",sign,n:output.length,
+      decoded_ioc:score,first80:output.slice(0,80).map(x=>corpus.translit[x]).join("")}));
+  }
+}
+console.log("PASS: direct literal SW key on its original source chapter and five numbered passages produces no native prose.");
