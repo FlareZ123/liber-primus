@@ -179,7 +179,7 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 - **external artwork:** #2116 verifies internal LP1→LP2 image reuse, not an external source-selected key. The mayfly and Evans Fig.12 attributions remain unverified as exact original-image parents.
 - **p57 orthography:** #2132 confirms that ᛝ represents NG/ING in the original GP chart and solved controls; TUNNELNG is not an omitted-I signal.
 - **repeated ciphertext:** #2134 was correctly closed as duplicate; the existing whole-corpus cross-page SFT already contains the only six-rune DJU-BEI pair and no seven-rune repeat. No independent holdout supports a shared-state continuation.
-- **p50 radix:** no original global digit legend; #2099 remains closed with equal support across all 256 cells.
+- **p50 radix:** no original global digit legend; #2099 remains closed with equal support across all 256 cells. The p57 SHED/DH-shell base59 branch and the p29/p50 shared-root24 base60 discriminator are conditional and incompatible; neither selects a global radix. Do not combine them into a dual-radix mechanism. [Base59 branch](../im-results/lp2-p50-radix-shed-circumference-divinity.md) · [base60 root24 decision](../im-results/lp2-p29-p50-shared-root24-quotient-common-codeword-decision.md).
 - **p55 43/33 exterior/interior split:** the partition is source-shaped, but the exterior-key role and a reversible map for all76 glyphs remain unproven (#2110, #2135).
 
 ### Recent closures reviewed through #2135 at 00:49:48Z

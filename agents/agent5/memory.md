@@ -47,3 +47,10 @@ Preserve the independently source-selected p55→p27:28 handoff (prime_echo boun
 **p54–p55 terminal prime-stream transfer failed.** The three source-selected boundary300 histories (starts at primes997/1009 with the documented literal-F skip sets) were applied to the first300 runes under the p56 `φ(p)` law; outputs are non-language-like. The same histories under raw-prime and prime-rank shifts are also random-looking. The terminal boundary remains a navigation marker, not a decryption.
 
 **p15 Möbius direct consumers failed.** The selected squarefree row in red-start spiral order is `[22,21,1,25]`, with Möbius signs `[-1,-1,-1,+1]`. Period-four additive uses, multiplicative sign masks, and phasewise affine forms were tested on the p15 body and the p15–22 concatenation; none produced a language-like readout. Do not repeat generic direct consumers without a new source instruction.
+
+
+## 22 November 2026: p50 radix fork
+
+The p50 base59 shell report is a conditional branch, not a selected radix. Its motivating inputs are p57 WE MUST SHED and p28 DH shared2; the further choice to drop the unused base60 digit f, interpret token differences as shed values, and use base59 outputs as page addresses is inferred. It yields exact shell sums and a candidate TUNNELNG→p55 address, but does not establish a decoder.
+
+A separate p29/p50 test reports a shared GF(29) double root24 under conventional base60, but not under f-deleted base59, conditional on the inferred p39 high-first polynomial and p29/p50 association. This conditionally favors base60 but does not prove it. The two branches conflict; no original digit legend selects a global radix or a dual-radix state machine. The results README, integrated challenge, and p50 shell report now state the fork explicitly. Do not extend either branch into another key hunt until a source-selected radix/receiver and original-text holdout distinguish them.

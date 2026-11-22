@@ -4,11 +4,13 @@
 
 **Later adjudication (22 November 2026):** The p50 shell arithmetic and candidate `TUNNELNG→p55` address remain intermediate evidence; the historical `prime_echo` boundary and repeated `DJU/BEI` handoff to p27:28 remain independently selected. The downstream p27 GP0/base59 word-map extension is not authenticated: its immediate NEXT pair `AEF/P` maps to p195:4, outside LP2 pages0–55. Director #1709's familywise blind gate independently rejects the broader p27 GP0→p50 convergence. Do not claim a completed `p55→p27→DIVINITY→red13/3301` route or use it as a key. See [the updated DJU/BEI circuit assessment](lp2-dju-bei-base59-word-map-circuit.md) and [the familywise blind gate](lp2-p27-djubei-familywise-blind-gate.md).
 
-## Decision
+**Unresolved radix fork (22 November 2026):** This report tests a conditional drop-`f` base59 reading. A separate p29/p50 test reports a shared GF(29) double root24 under conventional base60 but not under f-deleted base59, conditional on the inferred p39 high-first polynomial and p29/p50 association. That is competing evidence for base60, not proof of a global radix. Neither branch is selected by an original digit legend or explicit radix instruction. Keep this base59 shell interpretation conditional; do not combine it with base60 into an invented dual-radix decoder. See [the p29/p50 root24 decision](lp2-p29-p50-shared-root24-quotient-common-codeword-decision.md).
 
-The newly source-ordered p50 numeral transition gives a literal, parameter-free meaning to **SHED** that can be applied to the table's already selected concentric geometry.
+## Conditional base59 branch (not a selected global radix)
 
-After the clear route `WE MUST SHED` changes the p50 numeral alphabet from the conventional 60 symbols to the uniquely valid drop-`f` 59 symbols, define the amount shed at each original cell as:
+This report evaluates one candidate reading of the p50 table. The clear p57 phrase `WE MUST SHED` and the p28 DH shared value2 motivate testing a drop-`f` base59 conversion and two shell peels; they do not specify which digit to remove, a global radix transition, or the table's value/receiver semantics. The exact shell sums and `TUNNELNG→p55` pointer below are reproducible consequences of this chosen branch, not proof that the creator intended it.
+
+Under this branch, interpret `SHED` as removing the only unused base60 digit `f`, producing a 59-symbol alphabet, and define the candidate amount shed at each original cell as:
 
 `D(i) = value60(i) - value59(i)`.
 
@@ -181,7 +183,7 @@ The p55 historical selector and repeated-pair result are independent of the pres
 
 ## 8. Research consequence
 
-The p50 arithmetic remains a candidate structural interpretation, not an established cipher mechanism:
+The p50 arithmetic remains a candidate structural interpretation, not an established cipher mechanism. There is an unresolved radix fork: the SHED/DH-shell branch below uses conditional base59, while the p29/p50 root24 test conditionally favors conventional base60 if the inferred p39 high-first polynomial and p29/p50 relation are intended. No original source fixes a global digit legend, so neither branch is established and they must not be merged into a dual-radix state machine:
 
 - **WE MUST SHED** is the source-motivated candidate for the 60→59 numeral-state change;
 - the independently derived DH shared value2 selects peeling two physical table circumferences;
@@ -191,7 +193,7 @@ The p50 arithmetic remains a candidate structural interpretation, not an establi
 
 The chain stops at p27:28. The proposed GP0/base59 word-map continuation from DJU/BEI to p39/p50 fails on the immediate forward-order holdout AEF/P: p50 cells25/13 decode to p195:4, outside LP2 pages0–55. Director #1709 separately retires the broader p27 GP0→p50 convergence after its familywise blind gate. Therefore the full p55→p27→DIVINITY→red13/3301 route is not established.
 
-Do not use the shell matches or repeated-pair loop as a key, plaintext, or complete navigation solution. The next useful work must supply an independently sourced reversible consumer for the p50 data or recover the missing historical page/key; further generic pointer variants would repeat a failed branch.
+Do not use the shell matches or repeated-pair loop as a key, plaintext, or complete navigation solution. The next useful work must resolve the radix/receiver fork with a source-selected operation and an original-text holdout, or recover the missing historical page/key. Further generic pointer variants would repeat failed branches.
 
 ## Reproduction
 
