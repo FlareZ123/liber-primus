@@ -257,6 +257,145 @@ assert.deepEqual(Object.fromEntries(Object.entries(receiver243)
 
 
 /**
+ * Independent second five-trit source: original 2014 p7 five black dots
+ * have vertically ordered horizontal pairs [3,5,1,4,2]. This original
+ * geometry was checked against the original JPEG in the previously pinned
+ * source-dot SFT, not inferred from a ciphertext language score.
+ * Interpolate the same five source red products at these five x sites
+ * over GP29 and read five ordinary polynomial coefficients mod3.
+ */
+const dotHeightX = [3, 5, 1, 4, 2];
+function mod29(value) { return (value % 29 + 29) % 29; }
+function inverse29(value) {
+  for (let v = 1; v < 29; v++)
+    if ((mod29(value) * v) % 29 === 1) return v;
+  throw Error("noninvertible original GP29 geometry value");
+}
+function polynomialCoefficients(xs, ys) {
+  const rows = xs.map((x, i) => {
+    let power = 1;
+    const line = [];
+    for (let degree = 0; degree < 5; degree++) {
+      line.push(power);
+      power = mod29(power * x);
+    }
+    return [...line, ys[i]];
+  });
+  for (let col = 0; col < 5; col++) {
+    let pivot = col;
+    while (pivot < 5 && rows[pivot][col] === 0) pivot++;
+    assert(pivot < 5);
+    [rows[col], rows[pivot]] = [rows[pivot], rows[col]];
+    const reciprocal = inverse29(rows[col][col]);
+    for (let j = col; j <= 5; j++)
+      rows[col][j] = mod29(rows[col][j] * reciprocal);
+    for (let i = 0; i < 5; i++) if (i !== col) {
+      const scale = rows[i][col];
+      for (let j = col; j <= 5; j++)
+        rows[i][j] = mod29(rows[i][j] - scale * rows[col][j]);
+    }
+  }
+  const result = rows.map(row => row[5]);
+  for (let i = 0; i < xs.length; i++) {
+    let computed = 0;
+    for (let j = result.length - 1; j >= 0; j--)
+      computed = mod29(computed * xs[i] + result[j]);
+    assert.equal(computed, ys[i]);
+  }
+  return result;
+}
+const dotHeightPolynomial = polynomialCoefficients(dotHeightX, products);
+assert.deepEqual(dotHeightPolynomial, [23, 18, 21, 22, 11]);
+const heightTaps = dotHeightPolynomial.map(v => v % 3);
+assert.deepEqual(heightTaps, [2, 0, 0, 1, 2]);
+const heightStates = [];
+let heightState = heightTaps.slice();
+for (let i = 0; i < 242; i++) {
+  heightStates.push(heightState.slice());
+  heightState = [...heightState.slice(1),
+    heightState.reduce((sum, x, j) => sum + heightTaps[j] * x, 0) % 3];
+}
+assert.deepEqual(heightState, heightTaps);
+assert.equal(new Set(heightStates.map(v => v.join(","))).size, 242);
+const heightTrits = heightStates.map(v => v[0]);
+const heightSignatures = new Set();
+for (let phase = 0; phase < 242; phase++)
+  heightSignatures.add(heightTrits.map((_, i) =>
+    heightTrits[(i + phase) % 242]).join(""));
+assert.equal(heightSignatures.size, 242);
+for (let coefficientNumber = 1; coefficientNumber < 243;
+  coefficientNumber++) {
+  let n = coefficientNumber;
+  const coefficients = Array.from({length: 5}, () => {
+    const digit = n % 3;
+    n = Math.floor(n / 3);
+    return digit;
+  });
+  const signature = heightStates.map(q =>
+    q.reduce((sum, digit, j) => sum + digit * coefficients[j], 0) % 3)
+    .join("");
+  assert(heightSignatures.has(signature));
+}
+const heightZeroRuns = [];
+for (let i = 0; i < 242; i++)
+  if ([0,1,2,3].every(j => heightTrits[(i+j)%242] === 0))
+    heightZeroRuns.push(i);
+assert.deepEqual(heightZeroRuns, [113, 234]);
+const heightComplete = heightZeroRuns.map(start =>
+  heightTrits.slice(0, start + 4).concat(
+    [0], heightTrits.slice(start + 4)));
+for (const cycle of heightComplete) {
+  const windows = new Set();
+  for (let i = 0; i < cycle.length; i++) {
+    let wordNumber = 0;
+    for (let j = 0; j < 5; j++)
+      wordNumber = 3 * wordNumber + cycle[(i + j) % 243];
+    windows.add(wordNumber);
+  }
+  assert.equal(windows.size, 243);
+  assert.deepEqual([0,1,2].map(v =>
+    cycle.filter(t => t === v).length), [81,81,81]);
+}
+assert.deepEqual(heightComplete[1], heightComplete[0].map((_, i) =>
+  2 * heightComplete[0][(i+122)%243] % 3));
+
+const heightOriginal = {};
+const heightReceiver = {};
+for (const [name, cycle] of [
+  ["primitive242", heightTrits],
+  ["zeroSpliced243", heightComplete[0]]
+]) {
+  heightOriginal[name] = {};
+  heightReceiver[name] = {};
+  for (const clock of ["book", "page", "section", "word"])
+    heightOriginal[name][clock] = phaseEnvelope(sites, clock, cycle);
+  for (const clock of ["book", "page", "word"])
+    heightReceiver[name][clock] = phaseEnvelope(afterP8, clock, cycle);
+}
+assert.deepEqual(Object.fromEntries(
+  Object.entries(heightOriginal.primitive242).map(([k,v]) =>
+    [k, [v.minimum, v.maximum]])), {
+  book: [732,774], page: [719,782],
+  section: [721,778], word: [664,761]
+});
+assert.deepEqual(Object.fromEntries(
+  Object.entries(heightOriginal.zeroSpliced243).map(([k,v]) =>
+    [k, [v.minimum, v.maximum]])), {
+  book: [722,782], page: [718,778],
+  section: [718,774], word: [664,761]
+});
+assert.deepEqual(Object.fromEntries(
+  Object.entries(heightReceiver.primitive242).map(([k,v]) =>
+    [k, [v.minimum, v.maximum]])), {
+  book: [639,687], page: [631,688], word: [580,677]
+});
+assert.deepEqual(Object.fromEntries(
+  Object.entries(heightReceiver.zeroSpliced243).map(([k,v]) =>
+    [k, [v.minimum, v.maximum]])), {
+  book: [641,690], page: [635,689], word: [580,677]
+});
+
+/**
  * Real GP word-length-matched source controls. Encoding uses the repo's
  * solved-LP1/p57 calibrated NG/ING and IA/IO orthography. For Latin,
  * the GP words were independently encoded and pinned in resources/control.
@@ -347,6 +486,12 @@ for (const control of Object.values(controls)) {
     control.minimumP9);
   assert(Math.max(...Object.values(receiver243).map(x => x.maximum)) <
     control.minimumP9);
+  for (const clockEnvelope of Object.values(heightOriginal))
+    for (const envelope of Object.values(clockEnvelope))
+      assert(envelope.maximum < control.minimumFull);
+  for (const clockEnvelope of Object.values(heightReceiver))
+    for (const envelope of Object.values(clockEnvelope))
+      assert(envelope.maximum < control.minimumP9);
 }
 
 /** Positive: encrypt, invert, and reencrypt real solved p57 GP runes. */
@@ -455,6 +600,43 @@ const planted243Bound = bound(planted243Sites, "book",
   fixedPhase, completeDeBruijn[0]);
 assert(planted243Bound >= syntheticTop1);
 
+/** Both dot-height source primitive and complete zero-splice plants. */
+const heightPositive = {};
+for (const [name, cycle] of [
+  ["242", heightTrits], ["243", heightComplete[0]]
+]) {
+  let next = 0;
+  const cipher = synthetic.map(w => {
+    const value = cryptWord(w, next, false, cycle);
+    next += w.length;
+    return value;
+  });
+  next = 0;
+  const dec = cipher.map(w => {
+    const value = cryptWord(w, next, true, cycle);
+    next += w.length;
+    return value;
+  });
+  assert.deepEqual(dec, synthetic);
+  next = 0;
+  assert.deepEqual(dec.map(w => {
+    const value = cryptWord(w, next, false, cycle);
+    next += w.length;
+    return value;
+  }), cipher);
+  const entries = [];
+  let offset = 0;
+  for (const w of cipher) {
+    for (let j = 1; j < w.length; j++)
+      entries.push({book: offset + j, predecessor: w[j-1], observed: w[j]});
+    offset += w.length;
+  }
+  const capacity = bound(entries, "book", fixedPhase, cycle);
+  assert(capacity >= syntheticTop1);
+  heightPositive[name] = {exactPlaintextRunes: offset,
+    originalSyntheticTopRune: syntheticTop1, capacity};
+}
+
 
 if (require.main === module)
   console.log(JSON.stringify({
@@ -471,6 +653,12 @@ if (require.main === module)
     zeroSplicedFourZeroRunPositions: fourZeroRuns,
     zeroSplicedDeBruijnAllSecret: whole243,
     zeroSplicedDeBruijnP9To55AllSecret: receiver243,
+    heightDotRanks: dotHeightX,
+    heightDotPolynomial: dotHeightPolynomial,
+    heightSourceTaps: heightTaps,
+    heightZeroSplicePositions: heightZeroRuns,
+    heightSourceAllSecret: heightOriginal,
+    heightSourceP9To55AllSecret: heightReceiver,
     nativeGPWordLengthMatchedControls: controls,
     syntheticSolvedP57GP: {
       sourceRunesReused: known.length,
@@ -478,7 +666,8 @@ if (require.main === module)
       plantedTopRuneFrequency: syntheticTop1,
       plantedAllSecretEnvelope: plantedBound,
       zeroSplicedExactlyRecovered: recovered243.flat().length,
-      plantedZeroSplicedAllSecretEnvelope: planted243Bound
+      plantedZeroSplicedAllSecretEnvelope: planted243Bound,
+      heightPrimitiveAndZeroSpliced: heightPositive
     },
     unexcluded: ["unknown source plaintext register",
       "nonlinear 243-state data/output consumers beyond fixed trit mode",
