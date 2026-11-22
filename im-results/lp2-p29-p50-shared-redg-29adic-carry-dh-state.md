@@ -137,6 +137,16 @@ A [prospectively frozen 4-way original receiver](../workplace/agent27-p29-q275-p
 
 Both source quotients score near −3.408, and solved p57 is −2.46814. All four source inputs replay exactly; four source-native GP-positive 252-rune control plants likewise recover fully. The reported scores and keys were fixed before original plaintext inspection. Thus the **full original p29/G versus p50/(H·G) 23-surplus shared-additive-pad interpretation** yields no unknown native-GP plaintext under its source boundary choices. Retire it pending a new first-party operation selector. [Read-only original-input SFT](../sims/lp2_p29_g275_p50_hg252_surplus23_source_sft.cjs). 
 
+## Complete two-component ciphertext-feedback stream: all source state values, still no original plaintext
+
+The physical-source arithmetic now supplies a complete, finite **seed** (`S₀=[13,19]` from original p29/G mod841) and a complete invertible **state matrix** (`M=[[8,5],[15,2]]` from p50 H/G mod841). A more plausible stream architecture than a period60 direct pad would update its state from observed ciphertext. Before decoding any unknown page, the [frozen original cipher hypothesis](../workplace/agent27-p29carry-p50matrix-ciphertext-feedback-original-precommit.md) selected one explicit two-rune feedback recurrence:
+
+`Pᵢ=Cᵢ−Sᵢ mod29; Sᵢ₊₁=M Sᵢ+Cᵢ mod29`.
+
+Apply it continuously to the **entire 12,956 untouched unknown GP29 runes** (6,478 contiguous pairs), with no per-page resets, skips or fitted key symbols. The resulting full source-native trigram score is **−3.4163972141** (original ciphertext −3.4174416532; solved p57 −2.4681447142), and GP IoC **0.0345070433** (solved p57 0.0627099664). All 12,956 original runes reproduce exactly when re-encoded, and a planted 12,956 native-GP plaintext recovers exactly under the same recurrence. The 55 per-page decrypted streams remain nonlinguistic; the best short page p49 has mean score −3.3353, still far outside ordinary native-GP prose. The source rule yields a mechanical stream cipher but no authentic original unknown text.
+
+The source prints **no explicit ciphertext-feedback instruction**. Therefore the negative rejects exactly this single fully source-keyed conventional GP29 stream recurrence; it leaves other state transitions open without authorizing unlimited variants. [Single-file original SFT](../sims/lp2_p29carry_p50matrix_ciphertext_feedback_fullbook_sft.cjs).
+
 ## Causal plaintext decision
 
 The new carries are **exact, key-like short numeric packets** aligned with the p39 G factor and the distinct p23 *integer representative* of signed H linking p29, p50 and p28, but it does not identify a complete key stream, reversible original-rune transform, clock/reset, or plaintext receiver. The p29 quotient itself has near-ciphertext GP29 IoC **0.03405441**. Any single fixed GP29 permutation applied uniformly to this quotient preserves that IoC, so the revealed `e=3` GP29 cube operation alone cannot turn the full quotient into native-GP English prose. The separately frozen full 275-rune quotient→outer-H shell inverse and the above p50 factor-carry Hill2 inverse both failed native-GP language [under its exact source rule](lp2-p28-p29-gquotient-outerh-prospective-inverse-decision.md).
