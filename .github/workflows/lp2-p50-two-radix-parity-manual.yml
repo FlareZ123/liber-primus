@@ -1,0 +1,14 @@
+name: LP2 p50 two-radix parity original holdout
+on:
+  workflow_dispatch:
+jobs:
+  original-holdout:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test unchanged physical page transitions and chapter holdout
+        shell: pwsh
+        run: node sims/lp2_p50_two_radix_parity_visualchapter_holdout_sft.cjs
