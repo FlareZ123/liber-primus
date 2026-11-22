@@ -67,6 +67,22 @@ To quantify how often *some* of the eight D4 mappings would hit both exact sourc
 The obvious complete reversible consumer would invert the 256-rune 180-degree-rotated prefix against the original p50 table:
 `P[i]=(C[728−i]−T[i]) mod29` for `0≤i<256`, with positive sign as a rival. Under subtraction, both selected cycle cells have GP29 arithmetic output **zero** while their original rotated ciphertext runes are **nonzero** (P=13 and B=17). Consequently **these two algebraic zeros cannot be literal plaintext-F skips under the authenticated p56 F-transparent cipher**, which requires ciphertext F whenever plaintext F. The candidate output has **11 zeros overall**, an **IoC 0.0340993** and LP1-native log-trigram mean **−3.4205941**, far below solved clear p57's **−2.4681447**. The opposite sign has IoC **0.0358150**, trigram mean **−3.4012635**, likewise no readable prose. Exact forward reconstruction of either trial is automatic. **This direct rotated-table additive decoder fails to recover plaintext.**
 
+### Further source-directed terminal-word sum, plus exact substitution obstruction
+
+There is one more **explicitly retrospective cross-register equality** that follows the p50 two-cycle as a natural word address: T[249] points to **word number158** in the 158-word opening chapter, the terminal printed word of physical p2. Under the canonical first-chapter parser this nine-rune word is `HDNIAUPSUW` (GP spell), at the final nine rune positions `C[720..728]`. It has **GP0 index sum104** (the only one of the chapter's 158 printed words with this sum) and GP-prime sum369. The **two separately half-turn-selected original rune symbols** have GP indices P=13 and B=17, whose **GP-prime weights are 43+61=104**. Thus
+
+```text
+T[249] = 158 = one-based last word number
+GP0(word158) = 104
+prime(C[728-249]) + prime(C[728-158]) = prime(13)+prime(17) = 43+61 = 104
+```
+
+This ties a source-selected word *position* to the previously selected two-cycle *rune values* through two natural but **different** GP numerical registers. It is a conditional source relation, with neither an authored instruction to mix prime weights with GP0 indices nor an authenticated reason to treat the terminal word as a key. The textual spelling remains encrypted; the equality alone is not plaintext.
+
+To expose selection effects within the same fixed D4 count-pair gate, the 25,000 source-count-preserving nulls above also test the joint event: **some D4 orientation** matches both two-cycle residue points and the final nine runes sum to104. There are **4/25,000** hits in both nulls, add-one frequency **0.0002000**. This joint frequency is conditional on the post-selected register combination and word-sum test, and is **not a discovery-adjusted claim of intentional construction**. Its value should never be multiplied by the separate earlier count↔table frequency. This is exactly the sort of multistage coincidence that requires a source-fixed held-out decoding operation before promotion.
+
+A stricter, key-independent exclusion applies to the **full 256-rune direct map** `C[728−i]=f(T[i] mod29)`: even if `f` is a completely unknown 29-input lookup with outputs fitted *after observing the entire original source*, all **29 distinct table residues** occur with multiple incompatible original ciphertext outputs. The best deterministic per-input lookup achieves **51/256** matches and must miss **205/256** original sites. Therefore any single global GP29 substitution interpreting the entire half-turned table stream as original first-chapter ciphertext is **algebraically impossible**. This does not constrain a keyed position-dependent polyalphabetic cipher, contextual state machine, or hidden-position selector.
+
 The original-operand arithmetic and all eight D4 controls are preserved in [single-source Windows/Node22 reproducer](../sims/lp2_p0_27square_rot180_p50_249_158_residue_sft.cjs), [successful CI44964289794](https://github.com/FlareZ123/liber-primus/actions/runs/44964289794). This upgrades the **structural route from page-count correspondence to two exact original-cipher residue matches**, while retaining the unresolved critical question: what source-given operation uses these matching runes to decode new original ciphertext? The two equalities alone remain compatible with coincidence.
 
 ## Original-cipher consumer gate and next decision
