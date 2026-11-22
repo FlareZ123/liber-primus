@@ -46,6 +46,29 @@ The single three-page candidate is initial prime ordinal **11,840** (not a sourc
 
 The 2,738 → 210 → 1 → 0 progression also illustrates why preserving *some* legal F path through one page would be insufficient evidence of a solution. An independently authored starting-prime selector and a complete intelligible original plaintext would still be needed.
 
+## Search beyond the historical constant-offset prime key: 40.6 million exact inverses
+
+A final bounded candidate broadens the source-reproducing p56 key to the explicit affine family `C_i = P_i + b + m·φ(p_{s+j}) (mod 29)` for non-F plaintext, with **exactly the historical plaintext-F bypass** (`P_i=F` emits `C_i=F` and consumes no prime). The added scalar `m` and offset `b` are **not evidenced as author instructions**. They are granted as nuisance parameters in order to stress-test whether a recognizable, directly decipherable English route is being overlooked.
+
+An exact C++20 source-snapshot test scans **all 28 nonzero multipliers**, **all 29 additive offsets**, and the first **50,000 prime starting ordinals**, a total of **40,600,000** fixed public-key configurations. The first **946** actual original GP29 runes from pages p0–p3, including their original print order and 202 word slots, are the only unknown input. For each candidate it tracks **all possible** literal plaintext-F skips via an exact 64-bit state set, without assigning any plaintext or selecting only favorable masks. The source-positive control reproduces p56's full **85/85**, including 84 key consumptions and one literal F at index56.
+
+| Original contiguous prefix | Legally invertible key configurations | Fraction of 40.6m |
+| --- | ---: | ---: |
+| p0, 262 runes | 2,666,813 | 6.5685% |
+| p0–p1, 528 runes | 191,182 | 0.4709% |
+| p0–p2, 729 runes | 11,259 | 0.0277% |
+| p0–p3, 946 runes | **325** | 0.0008005% |
+
+The exact authenticated-key subfamily `m=1,b=0` has **zero** 946-rune configurations in the first 50,000 phases, as reported above. The first arbitrary-affine full-length legal model is `m=2,b=4,s=8,945`; its existence alone has no linguistic significance.
+
+To test the actual objective, **every one of the 325 full-length source candidates** is then re-decoded with a word-level Viterbi procedure. It retains all legal F-skip paths and optimizes the *complete* 202-word plaintext against the same fixed TextBlob English spelling list of **29,062 distinct normalized GP29 words**. This allows each model to use its best possible F choices for language; a nonlinguistic result cannot be blamed on a prematurely fixed F mask.
+
+The **best** of the 325 models has only **23 dictionary-recognized words out of 202**; the top three are the neighboring `m=5,b=5,s=2,464–2,466` models. Their sample output starts `YIAAEMNGAUU AEGYIAU CRYS EAIAH IADX EWMYTHLBTRAOE ...`. Under the identical GP29 orthographic normalizations, the **known-authentic** solved p56 text matches **24/25** dictionary words. The unknown-page candidates have no coherent original plaintext, and their key parameters have no author instruction selecting them.
+
+This is a **finite original-data result**, rather than a proof against all prime-related ciphers. Offsets beyond49,999, a different clock, an additional intervening cipher, another plaintext language, and independently sourced keys remain open. In particular, choosing a sole legal F-path through a long original prefix is shown to be a weak discriminator even over tens of millions of parameter combinations.
+
+The portable C++20 **exact full-family scan** is [here](../sims/lp2_p56_phi_affine50k_ftransparent_firstfour_sft.cpp); its 325 `CANDIDATE` lines feed the [Python/TextBlob word-level ranker](../sims/lp2_p56_phi_affine50k_source_wordrank.py), which checks the original 946-rune corpus and punctuation boundaries anew. The CPP embeds source-derived GP index bytes, and the Python ranker independently reads the checked-in canonical corpus. Neither writes to source artifacts.
+
 ## Reproduction and implication
 
 [Windows Node.js single-file original-input test](../sims/lp2_prime_iterated_totient_ftransparent_original_sft.cjs) reads the checked-in corpus, asserts the source counts, exactly reencrypts solved p56, tests all original pages with the finite-state mask enumerator, records the first impossible position, asserts survivor counts, and reencrypts every surviving witness. Only Node.js built-ins are required.
