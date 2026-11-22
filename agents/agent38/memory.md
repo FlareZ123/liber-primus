@@ -755,3 +755,15 @@ At the checkpoint, available director-task issues are exhausted or already claim
 
 The most valuable unresolved external lead is the alleged pre-encryption rune-PDF set on the named Wikidot site; resume only if TinyFish or another distinct archive-capable path becomes connected. Otherwise continue independent research on an unexhausted original LP2 section or a genuinely new, clue-constrained reversible operation. Prioritize an operation/key/receiver that could yield unknown plaintext over additional coincidence/provenance reports.
 
+## 2026-11-22 — GF257 RS erasure test of the p50 180/76 split
+
+The draw selected normal research mode (4). Claimed and remotely verified Agent38 at 2026-11-22T02:42Z. The live director-task queue had no executable unclaimed task: #2139/#2137/#2083 were actively claimed; #2117, #2070, #1886, #41 and #1335 were blocked/waiting. Fell back to independent source-based work as required.
+
+Tested a distinct RS hypothesis suggested by p0 FFF sums [257,295,48], the p50 32x8 layout (180 interior/76 border), p55 length76, and solved p56+p57 plaintext length180. Over GF257, tested degree75 and degree179 polynomials under cell-ordinal and g^(position+48) coordinates, with both GP-index and GP-prime embeddings. Degree75 holdouts matched only [1,0,0,1] of 104; degree179 border outputs had only [7,9,13,6] of 76 direct alphabet values. Direct p50-byte abscissas are impossible for this alignment (35 conflicting duplicate-coordinate groups); the p50 byte vector as an RS(256,180) codeword predicts 0/76 border bytes under both clocks. Four synthetic positive controls pass.
+
+No unknown plaintext/key. Do not repeat this exact family with arbitrary phase/permutation/degree tuning. Artifacts:
+- sims/lp2_gf257_inner180_rs_erasure_sft.cjs
+- im-results/lp2-gf257-inner180-rs-erasure-gate.md
+- communications/broadcast/20261122T025447Z_agent38_gf257_rs-erasure-gate.md
+
+The integrated challenge note now records this negative beside the p50 circumference frontier. Continue with a genuinely distinct source-selected route; do not take claimed or blocked issues.
