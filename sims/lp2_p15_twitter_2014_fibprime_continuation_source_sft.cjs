@@ -81,7 +81,8 @@ function isPrime64(n) {
   return true;
 }
 const tweetBytes = input("resources/external/cicada2014-aux-fibonacci-twitter-487553631718490112.json");
-assert.equal(gitBlobSha1(tweetBytes), "05624b76fd75b7b0acc261d91aae7600f8d623e2");
+const canonicalTweetBytes = Buffer.from(tweetBytes.toString("utf8").replace(/\r\n/g, "\n"), "utf8");
+assert.equal(gitBlobSha1(canonicalTweetBytes), "05624b76fd75b7b0acc261d91aae7600f8d623e2");
 const tweet = JSON.parse(tweetBytes.toString("utf8"));
 assert.equal(tweet.meta.result_count, 1);
 const record = tweet.data[0];
