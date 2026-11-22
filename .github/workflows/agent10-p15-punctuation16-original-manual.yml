@@ -1,0 +1,14 @@
+name: "Agent 10 - p15 square sixteen punctuation fragments exact all-secret gate"
+on:
+  workflow_dispatch:
+jobs:
+  p15-punctuation16:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Original p15 square to punctuation-fragment GP29 test
+        run: node sims/lp2_p15_16punctuation_units_allsecret_sft.cjs
