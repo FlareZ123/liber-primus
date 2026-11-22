@@ -211,9 +211,8 @@ console.log(JSON.stringify({
   exactMissingBits: required,
   punctuation: { events: events.length, distinctWordEndSites: distinctSites.size,
     identityOnlyMaxBits: events.length * Math.log2(3),
-    fixedMultisetBits: Math.log2(Number(multisetIdentities.toString(2).length)) === -1 ? 0 :
-      multisetIdentities.toString(2).length - 1,
-    placementBitsApprox: possiblePositions.toString(2).length - 1 },
+    fixedMultisetBits: Math.log2(Number(multisetIdentities)),
+    placementBits: Math.log2(Number(possiblePositions)) },
   insufficientLocalPages: localDeficits,
   solvedIoc: controls, directOriginalInverses: variants,
   plantedPositive: "PASS"
