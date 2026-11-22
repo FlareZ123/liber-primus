@@ -43,15 +43,22 @@ for(const a of real)for(let i=3;i<a.length;i++)phaseN[i%phases]++;
 assert.deepEqual(phaseN,[2561,2547,2538,2577,2568]);
 
 const freq=Array.from({length:5},()=>new Uint16Array(29));
+const pageFreq=Array.from({length:55},()=>Array.from({length:5},()=>new Uint16Array(29)));
+const maxPrivateOne=Array(phases).fill(0),maxPrivateFive=Array(phases).fill(0);
+const privateOneWitness=Array(phases).fill(null),privateFiveWitness=Array(phases).fill(null);
 const maxOne=Array(phases).fill(0),maxFive=Array(phases).fill(0);
 const witnessOne=Array(phases).fill(null),witnessFive=Array(phases).fill(null);
 for(let a=0;a<29;a++)for(let b=0;b<29;b++)for(let c=0;c<29;c++){
  for(const f of freq)f.fill(0);
- for(const original of real){
+ for(const pg of pageFreq)for(const f of pg)f.fill(0);
+ for(let page=0;page<real.length;page++){
+   const original=real[page];
    for(let i=3;i<original.length;i++){
+     const phase=i%5;
      const rank=(original[i]-a*original[i-1]-b*original[i-2]-
        c*original[i-3]+2436)%29;
-     freq[i%5][rank]++;
+     freq[phase][rank]++;
+     pageFreq[page][phase][rank]++;
    }
  }
  for(let phase=0;phase<phases;phase++){
@@ -66,6 +73,37 @@ for(let a=0;a<29;a++)for(let b=0;b<29;b++)for(let c=0;c<29;c++){
      witnessFive[phase]=[a,b,c];
    }
  }
+ // Stronger independent allowance: every physical page/phase may choose an
+ // entirely unrelated secret 29! output alphabet, but the three feedback
+ // coefficients remain global for that phase. The exact per-page top-k
+ // occupancy majorants remain key independent.
+ const privateOne=Array(phases).fill(0),privateFive=Array(phases).fill(0);
+ for(let page=0;page<pageFreq.length;page++){
+   for(let phase=0;phase<phases;phase++){
+     const five=[0,0,0,0,0];
+     for(const count of pageFreq[page][phase]){
+       if(count>five[4]){
+         let j=4;
+         while(j>0 && count>five[j-1]){
+           five[j]=five[j-1];j--;
+         }
+         five[j]=count;
+       }
+     }
+     privateOne[phase]+=five[0];
+     privateFive[phase]+=five[0]+five[1]+five[2]+five[3]+five[4];
+   }
+ }
+ for(let phase=0;phase<phases;phase++){
+   if(privateOne[phase]>maxPrivateOne[phase]){
+     maxPrivateOne[phase]=privateOne[phase];
+     privateOneWitness[phase]=[a,b,c];
+   }
+   if(privateFive[phase]>maxPrivateFive[phase]){
+     maxPrivateFive[phase]=privateFive[phase];
+     privateFiveWitness[phase]=[a,b,c];
+   }
+ }
 }
 
 assert.deepEqual(maxOne,[133,134,132,137,135]);
@@ -77,6 +115,12 @@ const free=pages.length*3;
 assert.equal(free,165);
 assert.equal(sum(maxOne)+free,836);
 assert.equal(sum(maxFive)+free,2984);
+assert.deepEqual(maxPrivateOne,[282,279,279,281,284]);
+assert.deepEqual(maxPrivateFive,[1037,1032,1021,1039,1034]);
+assert.equal(sum(maxPrivateOne),1405);
+assert.equal(sum(maxPrivateFive),5163);
+assert.equal(sum(maxPrivateOne)+free,1570);
+assert.equal(sum(maxPrivateFive)+free,5328);
 
 const native=corpus.pages[57].indices;
 assert.equal(native.length,95);
@@ -121,4 +165,9 @@ console.log('Even freeing all '+free+' starts, upper bounds on full12956: top1 '
 console.log('Genuine 95-rune solved-LP2 GP control repeated on original inner source clocks: top1 '+sortedNative[0]+', top5 '+sum(sortedNative.slice(0,5)));
 console.log('Max-single witnesses: '+JSON.stringify(witnessOne));
 console.log('Max-five witnesses: '+JSON.stringify(witnessFive));
-console.log('PASS: all secrets 5phase 3previous-cipher GF29 affine decoder cannot produce native-GP-English-like monogram concentration. Original source loops exhaustive and solved-GP plant recovers 12956/12956. No unknown plaintext.');
+console.log('Even with 55*5 entirely page-private arbitrary 29! output alphabets, shared GF29 feedback triple per phase:');
+console.log('Per-phase all-secret top1 page-private maximum '+maxPrivateOne.join('+')+'='+sum(maxPrivateOne)+'; full-book including165 free = '+(sum(maxPrivateOne)+free));
+console.log('Per-phase all-secret top5 page-private maximum '+maxPrivateFive.join('+')+'='+sum(maxPrivateFive)+'; full-book including165 free = '+(sum(maxPrivateFive)+free));
+console.log('Page-private top1 witnesses '+JSON.stringify(privateOneWitness));
+console.log('Page-private top5 witnesses '+JSON.stringify(privateFiveWitness));
+console.log('PASS: all 29^3 fivephase GF29 feedback laws, even with each of 55*5 secret output alphabets, fail solved native-GP benchmark. 12956/12956 native original-shaped plant; no unknown plaintext.');
