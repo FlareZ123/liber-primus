@@ -1,46 +1,56 @@
-# Original 2014 Stage11 HTML sum 464 cannot be a direct repeated GP29 alphabet on ordinary runes
+# Original 2014 Stage11 HTML 464: static and predecessor-difference GP29 alphabets both fail native-English originals
 
-**Agent 10, 22 November 2026. Classification:** source-conditioned, key-independent native-English exclusion of a 464-rune-period substitution on unchanged original LP2 pages. **No unknown plaintext or author-selected key has been recovered.**
+**Agent 10, 22 November 2026. Classification:** historical-source-conditioned, key-independent native-English exclusions of two entire **464-period** secret-GP29 cipher families against all original LP2 ciphertext pages. The source does not select either cipher; neither test finds unknown plaintext or an authentic key.
 
-## Human-accessible premise
+## Human-accessible starting evidence
 
-The authentic archived HTML accompanying the original May 2014 LP2 release visibly contains the literal title **133** and enclosing div ID **331**. These were actual participant-accessible strings, rather than values inferred from 2026 ciphertext statistics. They sum to **464**, and independently **3301 is the 464th prime**. The book's Gematria Primus alphabet has **29** runes and the p15 original Fibonacci-prime number square has **16** cells, so **464 = 16 × 29** provides a source-constrained hypothetical long alphabet clock. This is a possibility a 2014 participant could have attempted; no authorial instruction connects the HTML pair to a repeating key.
+The archived HTML accompanying the original May 2014 LP2 release literally contains title **133** and div id **331**. These are period-visible numbers, rather than values selected from ciphertext scores. Their sum is **464**, which is independently the prime index of **3301**. GP has 29 runes and the p15 Fibonacci-prime square has 16 cells: **464 = 16 × 29**. This motivates testing 464 as a repeating state clock; it is not an author-authenticated instruction to use a periodic cipher. The strongest rival is a longer nonperiodic key, a changing key clock, an alternate representation, or a source-selected external secret.
 
-An appealing rival is a strong nonperiodic pad, a hidden word-dependent clock, a non-GP plaintext representation, or an external one-time key. The proposed fixed 464-rune period makes a **key-independent** prediction that can be tested on the untouched manuscript before trying a single password.
+Two independent reversible models are now tested at that **one, frozen, source-derived period**, keeping every original printed word boundary (2,896 words), every original ciphertext rune (12,956), and all 32 genuine cross-page carried words:
 
-## An exact invariant of every 464-state secret alphabet
+1. **Direct alphabet:** every rune is encoded by an arbitrary and independently secret permutation of GP29, chosen by its position modulo464: \(C_i=\sigma_{i\bmod464}(P_i)\).
+2. **Cumulative predecessor-difference alphabet:** within a segment, the first rune is an unconstrained transmitted IV; afterward \(C_i=C_{i-1}+\sigma_{i\bmod464}(P_i)\pmod{29}\). This specifically allows the actual original low adjacent-equality rate to arise from the *differences* rather than from the raw ciphertext. The first rune at each original reset is excluded from testing, giving the candidate extra freedom.
 
-Suppose the author's native GP29 plaintext P was encrypted by
+Both models grant an independent secret map in **each one** of 464 states; every map can be any of the 29! GP29 permutations, with no fixed password, affine restriction, Caesar assumption or known key. Each model is evaluated under three clocks: one continuous manuscript, resets at the nine original illustrated chapters, or resets at all 55 rune-bearing physical pages. No word/page contents are rearranged, padded or deleted.
 
-\[
-C_i = \sigma_{\,i\bmod 464}(P_i)
-\]
+## Exact, all-key repeated-symbol invariant
 
-where each of the **464 hidden maps** \(\sigma_j\) may be **any** of the **29! invertible GP29 substitutions**. The maps may be independent; there is no Caesar/affine, historical password, or rune key restriction beyond invertibility. The test also grants independent resets at each of the nine actual red-heading chapters or every one of the 55 rune-bearing physical pages. It keeps **all 12,956 original rune values and 2,896 original complete printed word boundaries**, including the 32 words carried across physical pages, with no inserted symbols.
-
-For any two rune positions with the **same 464 clock phase**, equality of their ciphertext symbols is equivalent to equality of their plaintext symbols. In particular, the count
+For either register, consider only equal-position-key phases. A secret **bijective** rune map preserves equality of any two rune values encrypted under the same phase. Thus the count of equal rune pairs among positions of the same clock phase is invariant under *all* permutations for every secret key, even when the 464 maps are independent. For the direct model count equal raw \(C_i\); for the predecessor model count equal \((C_i-C_{i-1})\bmod29\) while omitting initial segment runes. The statistic is
 
 \[
-S=\sum_{\text{clock phases }j=0}^{463}
- \sum_{\text{GP symbol }x=0}^{28}\binom{n_{j,x}}2
+S=\sum_{\text{phase }j=0}^{463}\sum_{x=0}^{28}\binom{n_{j,x}}{2}.
 \]
 
-is **unchanged by every choice of the 464 secret permutations**, regardless of how nonlinearly those permutations map the letters. A long English source naturally has more same-phase identical letters than independent uniform GP29 samples, irrespective of a secret substitution. This makes a finite, all-secret *necessary condition* for one precise cipher model.
+A long native GP29 English text has far more same-phase identical letters than a uniformly shuffled 29-symbol source, regardless of the unknown secret alphabet. The source controls below are **independent English word occurrences of each EXACT original GP29 word length**, from Gibran, Shakespeare and authentic solved Cicada plaintext; 64 seeded original-word-shape plants are drawn for each source and clock. They preserve the original preponderance of one- and three-rune printed words, and use the same first-rune omissions for the cumulative case.
 
-| Clock on the original pages | Original same-phase equal pairs | All possible same-phase pairs | Gibran English control minimum of 64 | Shakespeare control minimum of 64 | Authentic solved-Cicada GP control minimum of 64 |
+### Model A: all-secret direct 464-rune periodic alphabet
+
+| Original clock | LP2 equal pairs | Possible same-phase pairs | Gibran min/64 | Shakespeare min/64 | Solved Cicada min/64 |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Entire 12,956-rune manuscript | **5,998** | 174,420 | 10,132 | 10,176 | 10,316 |
-| Reset independently at nine illustrated chapters | **6,069** | 176,619 | 10,251 | 10,214 | 10,409 |
-| Reset independently at 55 physical rune pages | **10,751** | 311,132 | 18,075 | 18,086 | 18,402 |
+| Continuous full manuscript | **5,998** | 174,420 | 10,132 | 10,176 | 10,316 |
+| Nine chapter resets | **6,069** | 176,619 | 10,251 | 10,214 | 10,409 |
+| 55 physical-page resets | **10,751** | 311,132 | 18,075 | 18,086 | 18,402 |
 
-Every control uses **exactly the original 2,896 printed rune-word lengths**, sampling independently from real GP-encoded Gibran and Shakespeare word occurrences or independently solved, Cicada-authored GP rune words of matching lengths. The sampling seed is fixed by the SFT. Across **64 controls for each of three sources and three clocks**, all **576 original-shape comparisons** have strictly **more** within-phase equality than the original ciphertext. The controls preserve the unusually high counts of one- and three-rune LP2 words. This is a lexical control experiment, **not a claim that the actual author must have drawn words independently** or that 576 controls exhaust all possible English.
+Every one of **576** source-native combinations exceeds the actual ciphertext's necessary-phase statistic. An independent full-secret permutation positive, covering all 464 maps on a complete 2,896-word source plant, preserves the statistic and recovers **12,956/12,956** original-shaped GP runes exactly. [Reproducer](../sims/lp2_html133331_period464_allsecret_wordshape_sft.cjs), [Windows Node22 PASS 45019487888](https://github.com/FlareZ123/liber-primus/actions/runs/45019487888).
 
-A positive ciphertext was built under an independently generated arbitrary **non-Caesar, fully secret GP29 permutation in every one of the 464 clock phases**, applied to a complete native plaintext with all 2,896 original word lengths. Its phase-equality statistic was exactly preserved. Its inverse recovered **12,956/12,956** planted GP runes, showing the source test detects its own full-strength cipher family.
+### Model B: all-secret cumulative predecessor-difference periodic alphabet
 
-## Result and decision
+The predecessor-difference model explicitly allows **the first rune at every reset to be arbitrary and transmitted unchanged**. Only the remaining 12,955 / 12,947 / 12,901 runes contribute same-phase comparisons under manuscript/chapter/page clocks respectively. This is a potentially much more relevant way to use a repeated key while reproducing source runes' unusually rare adjacent equalities.
 
-The source's printed HTML numbers supply an **unfitted, historical choice of 464**, but the unchanged LP2 ciphertext lacks the within-phase equality structure of native GP29 English under **any** 464-period collection of independent secret invertible alphabets, globally or under either natural page/chapter rekey. Its observed equal-pair count is approximately 57–58% of the source-native English control means. This is a model-specific structural contradiction, more informative than searching 464 unknown shifts for a language score.
+| Original clock | Original equal first differences | Possible same-phase pairs after IV removal | Gibran min/64 | Shakespeare min/64 | Solved Cicada min/64 |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Continuous full manuscript | **6,050** | 174,393 | 10,132 | 10,176 | 10,316 |
+| Nine chapter resets | **6,121** | 176,367 | 10,237 | 10,193 | 10,396 |
+| 55 physical-page resets | **11,006** | 309,647 | 17,978 | 17,996 | 18,322 |
 
-**Retire 464 as a direct, one-rune-per-step, reset-at-book/chapter/page, periodic GP29 alphabet cipher for native prose** without independent evidence of another value-changing layer. The exact test **does not** exclude a key clock that skips literal F, a hidden/variable position-dependent phase, changes inside words, output-dependent nulls, an alternative source language/register, a noninvertible substitution or genuine longer nonperiodic encryption. The HTML relation by itself authenticates **no such secondary mechanism**.
+Again **all 576 native-source comparisons exceed original LP2**, even though all 464 secret phase alphabets, book/chapter/page resets and every free initial rune are allowed. An independently generated planted **predecessor-fed, fully nonlinear full-permutation cipher**, with 464 unrelated secret GP29 maps, is exactly inverted under all three source-reset clocks; it recovers the full **12,956/12,956** genuine GP source runes in each plant. This positive shows the exclusion is a consequence of the original first-difference stream, rather than a broken cipher simulator.
 
-**Reproducer:** [source-locked Windows Node 22 standalone CommonJS test](../sims/lp2_html133331_period464_allsecret_wordshape_sft.cjs), [successful live original-source Actions run 45019487888](https://github.com/FlareZ123/liber-primus/actions/runs/45019487888). The program reads the archived original HTML and indexed LP2 corpus, asserts exactly 12,956 ciphertext runes and 2,896 native printed words, evaluates all-secret same-phase invariants, and independently plants and inverts 464 unrelated hidden substitutions. It writes no source files.
+[Reproducer](../sims/lp2_html133331_period464_predecessor_diff_allsecret_sft.cjs), [successful Windows Node22 full-source execution 45020669954](https://github.com/FlareZ123/liber-primus/actions/runs/45020669954).
+
+## Decision and competing explanations
+
+**Neither of these two period464 models can produce ordinary source-native GP29 prose from the printed LP2 text under any choice of their secret fixed-phase alphabet permutations.** The exact equality invariant avoids searching for keys among \((29!)^{464}\) possible schemes, and the predecessor-difference test applies to the lower-adjacency architecture that the earlier direct-alphabet test could not cover.
+
+These are **language-conditional** observations calibrated against real word-length-matched English and solved-Cicada rune words. The source controls resample individual words, so they are not continuous natural paragraphs or a proof against every possible English text. The two finite exclusions do not cover an output alphabet which depends on a changing hidden state, word-specific or input-dependent key skipping, extra masking/transposition, variable-length tokens, noninvertible symbol maps, a different plaintext language/register, F interruption, or a genuinely aperiodic key. The historical **133+331** relation authenticates an operand candidate, **not** an unknown cipher key, decoder, plaintext or historical intent.
+
+**Next research action:** pursue a first-party **state transition, key source or external recipient** that demonstrably changes the cipher map within the phase rather than adding more guessed fixed 464-phase permutations. Neither report belongs in authoritative solved-plaintext synthesis.
