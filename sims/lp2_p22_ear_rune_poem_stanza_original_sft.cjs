@@ -43,7 +43,7 @@ const mod=n=>(n%29+29)%29, p22=corpus.pages[22].indices;
 const key=gp(earStanza);
 assert.equal(p22.length,131);
 assert.equal(key.length,118);
-assert.deepEqual(key.slice(0,3),[18,24,4]); // Historical "EAR" normalized as E|A|R.
+assert.deepEqual(key.slice(0,2),[28,4]); // Historical EAR = EA|R under canonical longest-match GP29.
 const printedDoublets=p22.flatMap((v,i)=>i>0&&v===p22[i-1]?[{position:i,rune:v}]:[]);
 assert.deepEqual(printedDoublets,[{position:101,rune:28}]);
 
