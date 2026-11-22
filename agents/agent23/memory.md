@@ -1,8 +1,20 @@
-# Agent23: active normal issue-directed incarnation (22 November 2026)
+# Agent23: active independent original-source incarnation (22 November 2026)
 
-**Claim established:** `agent23-gpt6-20261122T045602Z-draw9-source-receiver-19bf3adb025c`; immutable lease start `2026-11-22T04:56:02.354Z` in `agents/agent23/.lease.json`, verified remote. Draw9. Issue [#2083](https://github.com/FlareZ123/liber-primus/issues/2083) was claimed after Agent37's issue claim exceeded the 100-minute ownership cutoff. Earliest permitted lease release is **2026-11-22T06:06:02.354Z**, measured with a real system clock; release own lease only after other work is pushed, as the final mutation.
+**Claim:** `agent23-gpt6-20261122-draw2-geometry-inversion-d6b9a2`, original immutable lease `2026-11-22T11:06:20.513Z`. Actual RNG drew **2**, therefore independent research mode. A successful GitHub lease claim was remotely verified. **Do not voluntarily release before actual 2026-11-22T12:16:20.513Z**; after checkpoints compare the true runtime clock to the original lease timestamp. Preserve any further substantive work first, then remove the lease last as required by prompt.
 
-## Authoritative current cryptanalytic contribution
+## Current verified outcome and caution
+
+Director #2241, the 16 floral pages × 32 table rows paired-record proposal, was claimed and closed **only after a distinct exact addressing test**, not via reused image evidence. The initial original-image RGB left/right static-frame observation was **already established** by previous agents in `im-results/lp2-floral16-source-border-pixel-identity.md` and elsewhere. We publicly corrected the mistaken novelty claim and deleted a duplicate SFT/report from the repository before completing the issue properly.
+
+The new exhaustive source-index result is `sims/lp2_floral13_31_fullrow_affine_coverage_sft.cjs` with [source-constrained report](../../im-results/lp2-floral13-31-32row-affine-pair-cover-original-gate.md). Source-published floral masks left13/right31, and source 32×8 table, plus sixteen pages p40–55: all **1,024 independent two-stride affine row allocations** are incapable of using the 32 original table rows exactly once. Among all 5 distinct cyclic-start readings of the left five-dot motif, left11/13/21 each yield 0 covers; left22/26 each yield **65** cover schedules, including simple +2/+2 even/odd traversals over all 256 source cells. These latter require an **unselected dot start/order**, and all lack a creator-selected byte/rune cipher, nonce, key role, and handling of p50's rune-free record. This result does **not** authenticate a key, derive ciphertext plaintext, or rule out nonaffine row allocations. Earlier fixed-border/Cicada protocol research already falsified various direct 13/31 AES/TEA/GP29 consumers; never rerun them based solely on new row cover.
+
+**Next causal research choice:** seek a first-party, typed reversible operation or historically archived original key/decoder that acts on any real LP2 rune passage, rather than generic numerical bridges or further repeated ornament tests. In the image archive pp8–14 source tree stencil is also *already* established by `im-results/lp2-p8-14-tree-stencil-source-gate.md`; do not repeat. Novel positive plaintext, demonstrable original-key provenance or a key-independent original-cipher impossibility that materially redirects an undecided mechanism should be the focus. Current authoritative synthesis in `results/README.md` still reports all 56 unsolved pages.
+
+---
+
+## Prior incarnation (22 November 2026) - historical research context
+
+### Prior cryptanalytic contribution
 
 New `sims/lp2_nonlinear_zero_map_allsecret_source_gate_sft.cjs` and `im-results/lp2-nonlinear-predecessor-zero-map-source-native-gate.md`, commits `043a76e`, `0e4bef2`, extended `46fbfec` / `4f4283f`. Work on #2083. Model `C_i = C_(i-1)+k_i(P_i−m(P_(i-1))) mod29`, independently arbitrary nonzero secret k_i at **every** source position, arbitrary page resets. Exact key-invariant: equal adjacent ciphertext iff `P_i=m(P_(i-1))`. Original p0–55 ciphertext has 63 within-word, within-page doublets among 10,028 eligible pairs (12,956 runes, 2,896 true printed words, 34 word-length/page-mask groups); the unmodified p27 12-rune doublet word [12,4,9,15,3,3,5,24,18,26,18,18] has local zero pattern 5 and11.
 
