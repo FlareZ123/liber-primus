@@ -160,6 +160,62 @@ for(const [point,stream] of [
   }
 }
 
+
+/**
+ * A secret invertible 8x8 Hill/affine map applied identically to each
+ * printed row cannot change the 8-dimensional row span over GP29.
+ * Reject EVERY possible 8x8 matrix and affine 8-vector at once by
+ * exact augmented ranks, without guessing any matrix parameters.
+ * @param {number[][]} cells
+ */
+function matrixRank29(cells) {
+  const matrix=cells.map(row=>row.map(x=>mod(x,29)));
+  let pivotRow=0;
+  for(let col=0;col<matrix[0].length&&pivotRow<matrix.length;col++){
+    let candidate=pivotRow;
+    while(candidate<matrix.length&&matrix[candidate][col]===0)candidate++;
+    if(candidate===matrix.length)continue;
+    [matrix[pivotRow],matrix[candidate]]=[matrix[candidate],matrix[pivotRow]];
+    let inverse=0;
+    for(let k=1;k<29;k++){
+      if(mod(k*matrix[pivotRow][col],29)===1){inverse=k;break;}
+    }
+    assert.ok(inverse>0);
+    for(let j=col;j<matrix[0].length;j++){
+      matrix[pivotRow][j]=mod(matrix[pivotRow][j]*inverse,29);
+    }
+    for(let i=pivotRow+1;i<matrix.length;i++){
+      const coeff=matrix[i][col];
+      for(let j=col;j<matrix[0].length;j++){
+        matrix[i][j]=mod(matrix[i][j]-coeff*matrix[pivotRow][j],29);
+      }
+    }
+    pivotRow++;
+  }
+  return pivotRow;
+}
+const sourceRows=Array.from({length:32},(_,i)=>register.slice(i*8,(i+1)*8));
+assert.equal(matrixRank29(sourceRows),8);
+const rowlinear=[];
+for(const [name,key] of [['source-row-major',rowKey],['source-column-major',columnKey]]){
+  const byteRows=Array.from({length:32},(_,i)=>
+    key.slice(i*8,(i+1)*8).map(v=>v%29));
+  const joined=sourceRows.map((row,i)=>row.concat(byteRows[i]));
+  const affineJoined=sourceRows.map((row,i)=>[1,...row,...byteRows[i]]);
+  assert.equal(matrixRank29(byteRows),8);
+  assert.equal(matrixRank29(joined),16);
+  assert.equal(matrixRank29(affineJoined),17);
+  rowlinear.push({name,sourceRank:8,byteRank:8,jointRank:16,
+    affineJointRank:17});
+}
+const fixedMatrix=Array.from({length:8},(_,i)=>Array.from({length:8},(_,j)=>
+  i===j?3:i<j?(i+j+1):0));
+const linearPlant=sourceRows.map(row=>fixedMatrix.map(coeffs=>
+  mod(coeffs.reduce((t,a,j)=>t+a*row[j],0),29)));
+const affinePlant=linearPlant.map(row=>row.map((v,j)=>mod(v+17+j,29)));
+assert.equal(matrixRank29(sourceRows.map((row,i)=>row.concat(linearPlant[i]))),8);
+assert.equal(matrixRank29(sourceRows.map((row,i)=>[1,...row,...affinePlant[i]])),9);
+
 console.log(JSON.stringify({
   premise:'Second p8 red word (8 runes) + black p8 body (243) + physically continued first p9 word tail (5) = 256 = 32x8',
   p8Header:'XIXM',
@@ -173,6 +229,7 @@ console.log(JSON.stringify({
   originalSharedH2013QuadraticRemainder:H,
   originalSharedP39QuadraticRemainder:G,
   exactDirectByteIndexMatches:9,
+  rowlinearAllSecretRank:rowlinear,
   romanXIXGraph:{seed:19,uniqueNodes:uniquePath.length,cycleStart:2,
     cycleLength:11,readout:labelReadout.map(i=>corpus.translit[i]).join(' ')},
   romanXIXGraphGP29Inverse:romangraph,
