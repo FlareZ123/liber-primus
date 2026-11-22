@@ -344,6 +344,75 @@ assert.equal(plantedWheelScreen.top[0].offset, trueOffset);
 assert(Math.abs(plantedWheelScreen.top[0].train - 154.463) < 0.002);
 assert(plantedWheelScreen.top[0].train - plantedWheelScreen.top[1].train > 300);
 
+
+/*
+ * Independent p0 title crib gate: "EPIPHANY SEEKS" is a strictly provisional
+ * source-derived local plaintext candidate, not authenticated LP2 plaintext.
+ * Search all byte tapes and offsets for its exact 13-rune additive pad. This
+ * permits direct and first-difference feeds, both word-reset choices, two
+ * signs and two tape orientations, without modifying actual red ciphertext.
+ */
+const titlePlain = nativeGP("EPIPHANY SEEKS");
+const titleCipher = pages[0].indices.slice(0, 13);
+assert.deepEqual(titlePlain, [18, 13, 10, 13, 8, 24, 9, 26,
+  15, 18, 18, 5, 15]);
+assert.deepEqual(titleCipher, [15, 8, 18, 3, 6, 19, 27, 0,
+  15, 26, 18, 21, 5]);
+
+/**
+ * @param {ArrayLike<number>} titleC
+ * @returns {{models:number,alignments:number,exact:number,best:number}}
+ */
+function searchTitleCrib(titleC) {
+  let models = 0;
+  let alignments = 0;
+  let exact = 0;
+  let best = 0;
+  for (const reset of [false, true]) {
+    for (const mode of ["direct", "difference"]) {
+      for (const original of Object.values(keys)) {
+        for (const orientation of ["forward", "reverse"]) {
+          const tape = orientation === "forward" ? original : [...original].reverse();
+          for (const sign of [-1, 1]) {
+            models++;
+            const target = titlePlain.map((p, j) => {
+              const predecessor = (j === 0 || (reset && j === 8)) ?
+                0 : titleC[j - 1];
+              const x = mode === "direct" ? titleC[j] :
+                (titleC[j] + 29 - predecessor) % 29;
+              return sign === -1 ? (x - p + 29) % 29 :
+                (p - x + 29) % 29;
+            });
+            for (let offset = 0; offset <= tape.length - 13; offset++) {
+              let equal = 0;
+              for (let j = 0; j < 13; j++) {
+                if (tape[offset + j] === target[j]) equal++;
+              }
+              best = Math.max(best, equal);
+              if (equal === 13) exact++;
+              alignments++;
+            }
+          }
+        }
+      }
+    }
+  }
+  return { models, alignments, exact, best };
+}
+const originalTitleGate = searchTitleCrib(titleCipher);
+assert.deepEqual(originalTitleGate, {
+  models: 48, alignments: 2982704, exact: 0, best: 6
+});
+
+const plantedTitle = [];
+for (let j = 0; j < 13; j++) {
+  const before = j ? plantedTitle[j - 1] : 0;
+  plantedTitle.push((before + titlePlain[j] + keys.mod29[761 + j]) % 29);
+}
+const plantedTitleGate = searchTitleCrib(plantedTitle);
+assert(plantedTitleGate.exact >= 1,
+  "the planted original-length 13-rune crib must be found by blind sweep");
+
 console.log(JSON.stringify({
   status: "original-source direct backchain running-key negative",
   source2013: { records: chunks.length, byteLength: bytes.length,
@@ -352,6 +421,8 @@ console.log(JSON.stringify({
   train: { offset: 0, length: TRAIN },
   holdout: { offset: HOLD_START, length: TRAIN },
   scanned: result,
+  sourceSelectedTitleCrib: { candidate: "EPIPHANY SEEKS",
+    actual: originalTitleGate, syntheticExact: plantedTitleGate.exact },
   twentyEightWheel: { originalZeroDifferences, scanned: source28Result,
     plantedWinner: plantedWheelScreen.top[0],
     plantedSecond: plantedWheelScreen.top[1],
