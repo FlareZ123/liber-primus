@@ -71,6 +71,37 @@ The marker **146** with a unique33-node subtree is not actually on the seed110�
 
 **Solved-word cross-anchor from the closing red passage:** The same authentic p53 51-red-rune GP-prime sum gives 2262/29 = **78**. In the already-solved p57 *PARABLE*, the sole one of **20 original printed words** with ordinary zero-based GP rune-index sum **78** is **INSTAR**, spelled by the six original GP indices [10,9,15,16,24,4]. The clear instruction begins “LIKE THE INSTAR TUNNELING TO THE SURFACE,” and instar is an insect developmental stage, visually congruent with the original insect imagery. The independent p50 121-node p32 subtree was already known to have **43 leaf nodes plus 78 nonleaves**, a second conditional 78 receiver. These relations connect a numeric red-page value to an **actual authenticated solved-page word**, though the same 78 can be factored 13×6 and the interpretation was recognized retrospectively. The p40 heading prime quotient **15** is also the graph's 32→244 edge distance, as shown above; this means **both** source-red normalized prime sums 15 and78 have manuscript receivers beyond table column arithmetic. Neither produces a ciphertext inverse by itself.
 
+## Second original-red-selected branch: the missing exterior33 subtree
+
+The first entry route **110→32→…→244→58** never visits the unique 33-node subtree at **146**; that node is in another branch of the larger p32 121-node source tree. A distinct test using the **two original opening-red sums themselves** supplies a source-calculated way to reach exactly this missing branch, without tuning ciphertext:
+
+Let **T(n)** be one parent-pointer step under the fixed original base59 table, and **Tᵏ(n)** denote k steps. The *only* two natural p40 red-header normalized checksums are its original index sum/29 = **4** and prime sum/29 = **15**. The original colored p40/p53 joint prime quotient by right ornament31×29 is **3**. The closing prime quotient by left ornament13×29 is **6**. The next physical floral page, p54, begins with **nine original red runes**. The following exact identities hold on the immutable source table:
+
+\[
+T^3(4)=T^3(15)=146,\qquad
+T^6(146)=58,\qquad
+T^{9}(4)=T^{9}(15)=58.
+\]
+
+The paths are distinct in their initial three steps and **first merge at original node146**:
+
+- Opening index quotient **4**: **4 → 96 → 218 → 146**
+- Opening prime quotient **15**: **15 → 209 → 172 → 146**
+- Shared six subsequent steps: **146 → 91 → 48 → 249 → 156 → 51 → 58**
+
+Node **146** has the **sole 33-node descendant-inclusive subtree** in the source graph, equal to the original p55 **33 exterior runes** after literal p57 circumference shedding. Node **58** has the **sole 121-node subtree**, equal to original p32's **121 runes**. The originally selected **3 + 6 = 9** hop counts also equal the **nine red GP runes starting p54**, immediately after the red-terminated p53 chapter. This gives the previously missing 33-exterior branch a concrete original-source **two-start convergence rule**. It does **not** yet provide a way to map its node values to genuine GP29 plaintext.
+
+Two further exact checksum-to-pointer checks use the *unfactored* closing and combined red-prime sums divided by 29:
+
+\[
+T(78)=45=T^4(110),\qquad
+T(93)=83=T^{13}(110).
+\]
+
+Here **78=2262/29** is the independently solved p57 word-index sum INSTAR, **93=2697/29**, **4=116/29** is the original heading-index quotient, and **13** is the left floral ornament. Thus both original sum-derived source addresses **78** and **93** point in a *single step* directly to the predetermined main 110-root route at previously source-selected positions **4** and **13**. Those addresses and positions were frozen by colored GP sums and the ornament before inspecting these table entries.
+
+This graph constellation involves more relations than the first page-pair correspondence, but it also creates an increased danger of **retrospective numerical fitting**. There is no authenticated direction to use index/prime sums as addresses, no proof the exact powers 3/6/4/13 were author-selected, and graph paths eventually coalesce because the base59 graph is a rooted tree. The correct scientific status is **an unusually tight conditional, source-cross-anchored navigation hypothesis**. Recovering original plaintext or a source-prescribed reversible key operation remains the decisive unmet test.
+
 ## Receiver and next reversible operation
 
 The original p55 has **76** runes in 17 physical printed-word fragments, one being a continuing rune from p54. Literal first/last-rune shedding on each fragment gives **43 interiors and33 exteriors**; **3301=43×76+33** independently singles out that page under the already investigated DH3301 terminal receiver ([prior p55 source report](lp2-dh3301-base59-terminal-p55-p56.md)). The left source-selected pointer chain contains **exactly33 nonroot nodes**, supplying one typed path element per p55 exterior position. The first **29** nodes before the graph merge are all *distinct byte addresses*, a candidate for a 29-symbol keyed ordering, although their residues modulo29 are *not* a permutation.
