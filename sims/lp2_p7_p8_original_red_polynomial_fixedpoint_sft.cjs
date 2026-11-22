@@ -162,6 +162,17 @@ function iterate(f, seed, n) {
   for (let i = 0; i < n; i++) seed = f(seed);
   return seed;
 }
+// First p8 red word is literal XIXM: Roman XIX=19, followed by
+// GP index M=19. Evaluating the printed p7 polynomial at that exact
+// input predicts 12, simultaneously the full red heading product,
+// its 12-rune printed length and the last p8 seam rune GP12.
+const originalRoman = p8[0].slice(0,3).map(c=>gp.translit[c.value]).join('');
+assert.equal(originalRoman,'XIX');
+assert.equal(p8[0][3].value,19);
+assert.equal(evalPoly(coeff,19),12);
+assert.equal(mod(target[0]*target[1]),12);
+assert.equal(p8.flat().length,12);
+assert.equal(gp.pages[8].indices.at(-1),12);
 const titleGlyphI = p8[0][1].value;
 const titleGlyphC = p8[1][3].value;
 assert.deepEqual([titleGlyphI, titleGlyphC], [10, 5]);
@@ -190,6 +201,8 @@ assert.deepEqual(originalTreeChapter.map(p => p.indices.length),
 let conditionalModels = 0;
 let orbitPairMatches = 0;
 let onlyRootModels = 0;
+let romanOutput12Models = 0;
+let romanAndOnlyRootModels = 0;
 const orbitPairParameterMatches = [];
 for (let b = 0; b < 29; b++) for (let c = 0; c < 29; c++) {
   const candidate = x => {
@@ -201,6 +214,10 @@ for (let b = 0; b < 29; b++) for (let c = 0; c < 29; c++) {
   const roots = Array.from({length:29},(_,i)=>i)
     .filter(x => candidate(x) === x);
   if (roots.join(',') === '3,4') onlyRootModels++;
+  if (candidate(19) === 12) {
+    romanOutput12Models++;
+    if (roots.join(',') === '3,4') romanAndOnlyRootModels++;
+  }
   if (iterate(candidate, titleGlyphI, target[1]) === titleGlyphC &&
       iterate(candidate, titleGlyphC, target[0]) === titleGlyphI) {
     orbitPairMatches++;
@@ -209,6 +226,8 @@ for (let b = 0; b < 29; b++) for (let c = 0; c < 29; c++) {
 }
 assert.equal(conditionalModels, 841);
 assert.equal(onlyRootModels, 409);
+assert.equal(romanOutput12Models, 29);
+assert.equal(romanAndOnlyRootModels, 15);
 assert.equal(orbitPairMatches, 1);
 assert.deepEqual(orbitPairParameterMatches, [[16,2]]);
 
@@ -349,6 +368,68 @@ function ioc(tape) {
   return count.reduce((s, x) => s + x * (x - 1), 0) /
     (tape.length * (tape.length - 1));
 }
+// Source-selected low-first quartic P direct feedback candidate (the
+// existing older p7 quartic feedback study used HIGH-first coefficients).
+// Two physical receivers: true black p8 243 with terminal red IV17,
+// and 256 exact p8 red8+black/p9 five-rune continued-word packet
+// with Roman IV19 or the predicted P(19)=12. Only P or P-X,
+// ciphertext/cleartext feedback and two arithmetic signs.
+const quarticFeedbackModels=[];
+/** @param {number[]} C @param {number} iv @param {'P'|'PminusX'} keyKind
+ * @param {'cipher'|'plain'} update @param {number} sign
+ * @returns {number[]} */
+function quarticFeedbackDecode(C,iv,keyKind,update,sign) {
+  let prev=iv;
+  const result=[];
+  for (const cipher of C) {
+    const func=evalPoly(coeff,prev);
+    const key=keyKind==='P'?func:mod(func-prev);
+    const plain=mod(cipher+sign*key);
+    result.push(plain);
+    prev=update==='cipher'?cipher:plain;
+  }
+  return result;
+}
+/** @param {number[]} P @param {number} iv @param {'P'|'PminusX'} keyKind
+ * @param {'cipher'|'plain'} update @param {number} sign
+ * @returns {number[]} */
+function quarticFeedbackEncode(P,iv,keyKind,update,sign) {
+  let prev=iv;
+  const result=[];
+  for (const plain of P) {
+    const func=evalPoly(coeff,prev);
+    const key=keyKind==='P'?func:mod(func-prev);
+    const cipher=mod(plain-sign*key);
+    result.push(cipher);
+    prev=update==='cipher'?cipher:plain;
+  }
+  return result;
+}
+const feedbackRegisters={
+  p8Black243:{tape:gp.pages[8].indices.slice(12),ivs:[17]},
+  p8Seam256:{tape:gp.pages[8].indices.slice(4)
+    .concat(gp.pages[9].indices.slice(0,5)),ivs:[19,12]}
+};
+assert.equal(feedbackRegisters.p8Black243.tape.length,243);
+assert.equal(feedbackRegisters.p8Seam256.tape.length,256);
+const genuineClear=gp.pages[57].indices;
+for (const [receiver,{tape,ivs}] of Object.entries(feedbackRegisters))
+for (const iv of ivs)
+for (const keyKind of ['P','PminusX'])
+for (const update of ['cipher','plain'])
+for (const sign of [-1,1]) {
+  const decoded=quarticFeedbackDecode(tape,iv,keyKind,update,sign);
+  assert.deepEqual(quarticFeedbackEncode(decoded,iv,keyKind,update,sign),tape);
+  assert.deepEqual(quarticFeedbackDecode(
+    quarticFeedbackEncode(genuineClear,iv,keyKind,update,sign),
+    iv,keyKind,update,sign),genuineClear);
+  quarticFeedbackModels.push({receiver,iv,keyKind,update,sign,ioc:ioc(decoded)});
+}
+assert.equal(quarticFeedbackModels.length,24);
+const feedbackMaxIoC=Math.max(...quarticFeedbackModels.map(x=>x.ioc));
+assert(Math.abs(feedbackMaxIoC-0.036220793796551375)<1e-12);
+assert.equal(quarticFeedbackModels.filter(x=>x.ioc>=0.05).length,0);
+
 const p9first = gp.pages[9].indices[0];
 const pairRegisters = {
   black243AndFirstP9Rune: p8cipher.slice(12).concat(p9first),
@@ -408,6 +489,14 @@ console.log('LP2_P7_P8_POLYNOMIAL_FIXEDPOINT ' + JSON.stringify({
   p8HeadingTerminalIndex: p8[1].at(-1).value,
   p8HeadingProduct: mod(target[0] * target[1]),
   sourceOrderMatchesOutOf120: suitable.length,
+  roman19DirectPolynomialOutput:12,
+  roman19OriginalTitle:originalRoman,
+  printedRedTitleRunesAndProduct:12,
+  p8TrueSeamRuneIndex:12,
+  conditionalRomanOutput12Models:romanOutput12Models,
+  conditionalRomanAndOnlyRootsModels:romanAndOnlyRootModels,
+  directSourceQuarticFeedbackModels:quarticFeedbackModels.length,
+  directSourceQuarticFeedbackMaxIoC:feedbackMaxIoC,
   headerUniqueSevenCycleGlyphs: titleGlyphsInCycle.map(c=>[c.offset,c.value]),
   originalPolynomialSevenCycleFromI: cycleStartingAtI,
   titleCrossWordDirectedCycleLinks: [
