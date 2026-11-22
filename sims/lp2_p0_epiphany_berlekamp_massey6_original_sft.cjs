@@ -121,9 +121,58 @@ assert.deepEqual(nativeCipher.slice(0,13),p0.slice(0,13));
 const positive = strictTransparentPaths(nativeCipher,key);
 assert.equal(positive.eliminated,-1);
 assert.ok(positive.surviving>0);
+
+// Source-independent signed 2016 title-shape controls: these 2016 words
+// were located in the canonical original red-heading inventory *before*
+// this BM6 attempt (see lp2_p0_2016_epiphany_heading_crib_sft.cjs).
+// These are conditional would-be plaintext phrases, not known true words.
+const alphabet = corpus.translit.map((token,i)=>({token,i}))
+  .sort((a,b)=>b.token.length-a.token.length);
+/** @param {string} input */
+function encodeNative(input) {
+  let spelling=input.toUpperCase().replaceAll('K','C').replaceAll('V','U')
+    .replaceAll(' ','');
+  const output=[];
+  while(spelling) {
+    const symbol=alphabet.find((r)=>spelling.startsWith(r.token));
+    assert.ok(symbol);
+    output.push(symbol.i);
+    spelling=spelling.slice(symbol.token.length);
+  }
+  return output;
+}
+const signedTitleCandidates=[
+  {page:0, start:0, words:'EPIPHANY SEEKS'},
+  {page:15, start:9, words:'WILL BE FOUND'},
+  {page:33, start:91, words:'ITS WORDS'},
+  {page:40, start:0, words:'ITS WORDS'}
+];
+const signedCaptionHoldout = signedTitleCandidates.map((item) => {
+  const clear=encodeNative(item.words);
+  const observed=corpus.pages[item.page].indices.slice(item.start,item.start+clear.length);
+  assert.equal(observed.length,clear.length);
+  const globalOffset=pages.slice(0,item.page)
+    .reduce((count,page)=>count+page.indices.length,0)+item.start;
+  const expectedKey=observed.map((v,i)=>mod(v-clear[i]));
+  const predictedKey=key.slice(globalOffset,globalOffset+clear.length);
+  const matches=expectedKey.flatMap((v,i)=>v===predictedKey[i]?[i]:[]);
+  return {page:item.page,sourceRuneOffset:globalOffset,
+    conditionalCaption:item.words,keyCount:clear.length,
+    predictedMatches:matches};
+});
+assert.deepEqual(signedCaptionHoldout.map((r)=>r.keyCount),[13,11,8,8]);
+assert.deepEqual(signedCaptionHoldout.map((r)=>r.predictedMatches),
+  [Array.from({length:13},(_,i)=>i),[],[],[5]]);
+const independentCaptionMatches=signedCaptionHoldout.slice(1)
+  .reduce((n,r)=>n+r.predictedMatches.length,0);
+assert.equal(independentCaptionMatches,1);
+
 const details={
   recovered,
   sourceSeed:seed,
+  signedCaptionHoldout,
+  independentlyPredictedCandidateCaptionMatches:independentCaptionMatches,
+  independentlyPredictedCandidateCaptionPositions:27,
   next20SourceDerivedKeyDigits:key.slice(13,33),
   originalBodyIoC:bodyIoC,
   nativeSolvedP57IoC:controlIoC,
