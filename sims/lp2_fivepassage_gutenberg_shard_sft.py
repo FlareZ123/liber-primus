@@ -15,6 +15,38 @@ UNITS = {
   "4": (7,9,7,2,3,2,5,4,6,6,2,4,10,3,4,3,11,5,3),
   "5": (6,4,7,1,6,3,5,3,9,2,3,3,2,5,4,9,4,3,7,12,8,3,3,2,5,3,5,2)
 }
+# Reconstruct each word-length signature from the untouched original glyphs,
+# including the original cross-page carry of numbered passage 4.
+import json
+from pathlib import Path
+ROOT=Path(__file__).resolve().parent.parent
+corpus=json.loads((ROOT/"resources/liber-primus/lp2-corpus.json").read_text(encoding="utf-8"))
+physical=(ROOT/"resources/liber-primus/lp2-transcription.txt").read_text(encoding="utf-8").split("%")
+runes=set(corpus["runes"])
+cuts=(
+  ((36,99,238),),((37,0,91),),((37,91,189),),
+  ((37,189,228),(38,0,57)),((38,57,186),)
+)
+def source_text(page:int,lo:int,hi:int)->str:
+  text=physical[page if page<50 else page-1]
+  positions=[i for i,glyph in enumerate(text) if glyph in runes]
+  assert len(positions)==corpus["pages"][page]["runic_count"]
+  assert 0<=lo<hi<=len(positions)
+  return text[positions[lo]:positions[hi] if hi<len(positions) else len(text)]
+def source_word_lengths(text:str)->tuple[int,...]:
+  out=[]
+  n=0
+  for glyph in text:
+    if glyph in runes: n+=1
+    elif glyph in "-.assert [sum(x) for x in UNITS.values()]==[139,91,98,96,129]§" and n:
+      out.append(n)
+      n=0
+  if n: out.append(n)
+  return tuple(out)
+for source_unit,segments in zip(UNITS.values(),cuts):
+  text="".join(source_text(*part) for part in segments)
+  assert source_word_lengths(text)==source_unit
+
 assert [sum(x) for x in UNITS.values()]==[139,91,98,96,129]
 assert [len(x) for x in UNITS.values()]==[30,20,25,19,28]
 assert sum(map(sum,UNITS.values()))==553
