@@ -153,6 +153,87 @@ const planted = primeProducts.map(v => Number((v % 3301n * 17n + 9n) % 29n));
 const positive = obstruction(primeProducts, planted, 3301n);
 assert.equal(positive.unavoidableErrors, 0);
 
+
+/**
+ * A different all-secret obstruction: even the 29 output rune labels may be
+ * arbitrarily permuted. If H(word)=perm(sum_i weight[phase,i] mod29), then
+ * every pair with equal H has equal unpermuted sums. If the equality-difference
+ * matrix has FULL column rank, all secret weights must be zero, forcing ALL
+ * outputs identical. This test uses only equal-label comparisons.
+ *
+ * @param {number[][]} features
+ * @param {number[]} output
+ * @returns {{rank:number, equations:number, variables:number, labels:number}}
+ */
+function equalityRank(features, output) {
+  const first = new Map();
+  const equations = [];
+  for (let i = 0; i < output.length; i++) {
+    const y = output[i];
+    if (!first.has(y)) first.set(y, i);
+    else {
+      const anchor = features[first.get(y)];
+      equations.push(features[i].map((x, j) => mod29(x - anchor[j])));
+    }
+  }
+  const variables = features[0].length;
+  let rank = 0;
+  for (let j = 0; j < variables; j++) {
+    let pivot = rank;
+    while (pivot < equations.length && equations[pivot][j] === 0) pivot++;
+    if (pivot === equations.length) continue;
+    [equations[rank], equations[pivot]] =
+      [equations[pivot], equations[rank]];
+    let inverse = 0;
+    for (let x = 1; x < 29; x++) {
+      if (mod29(x * equations[rank][j]) === 1) {
+        inverse = x;
+        break;
+      }
+    }
+    assert(inverse !== 0);
+    for (let k = j; k < variables; k++) {
+      equations[rank][k] = mod29(equations[rank][k] * inverse);
+    }
+    for (let i = rank + 1; i < equations.length; i++) {
+      const multiple = equations[i][j];
+      if (multiple === 0) continue;
+      for (let k = j; k < variables; k++) {
+        equations[i][k] = mod29(
+          equations[i][k] - multiple * equations[rank][k]);
+      }
+    }
+    rank++;
+    if (rank === variables) break;
+  }
+  return { rank, equations: output.length - first.size,
+    variables, labels: first.size };
+}
+/** @param {number} period @returns {number[][]} */
+const phaseFeatures = period => words.map(word => {
+  const row = Array(29 * period).fill(0);
+  word.forEach((symbol, position) => {
+    row[(position % period) * 29 + symbol]++;
+  });
+  return row;
+});
+const allSecretPhaseBounds = [1, 2, 3, 4, 5].map(period => {
+  const proof = equalityRank(phaseFeatures(period), corrected);
+  assert.equal(proof.rank, proof.variables);
+  assert.equal(proof.labels, 29);
+  assert.equal(proof.equations, 226);
+  return { period, ...proof, forcedSecretWeights: 'all zero',
+    actualDifferentOutputs: proof.labels };
+});
+const nativeGPSecretWeights = gp.runes.map((_, i) => mod29(7 * i + 3));
+const secretLabelPermutation = x => mod29(9 * x + 4);
+const encodedNativePositive = words.map(word => secretLabelPermutation(
+  mod29(word.reduce((sum, symbol) =>
+    sum + nativeGPSecretWeights[symbol], 0))));
+const positiveRank = equalityRank(phaseFeatures(1), encodedNativePositive);
+assert(positiveRank.rank < positiveRank.variables);
+assert(positiveRank.labels > 1);
+
 /* A full residue has 251 classes, allowing an arbitrary 251-entry fit.
  * That perfect map is tautological, not a recovered cipher/hidden key. */
 console.log('SCROLL255_PRIME_PRODUCT_RESIDUE_ALLSECRET ' + JSON.stringify({
@@ -166,5 +247,7 @@ console.log('SCROLL255_PRIME_PRODUCT_RESIDUE_ALLSECRET ' + JSON.stringify({
   })),
   original3301Contradictions: c3301.conflictingGroups,
   nativePlantedPositiveErrors: positive.unavoidableErrors,
+  originalUnknownOutputPermutationPhaseRanks: allSecretPhaseBounds,
+  nativeGPSecretOutputPermutationPositiveRank: positiveRank,
   status: 'No plaintext, author-selected key, or original cipher demonstrated'
 }, null, 2));
