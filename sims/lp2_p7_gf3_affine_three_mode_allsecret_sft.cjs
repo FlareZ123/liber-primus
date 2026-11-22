@@ -198,6 +198,96 @@ assert(whole.page.maximum < 1135,
   "all full-book source-native GP29 Latin/English controls exceed this");
 assert(receiver.book.maximum / receiver.book.sites < 0.083);
 
+/**
+ * Real GP word-length-matched source controls. Encoding uses the repo's
+ * solved-LP1/p57 calibrated NG/ING and IA/IO orthography. For Latin,
+ * the GP words were independently encoded and pinned in resources/control.
+ * We sample complete words matching all 2,896 original printed lengths;
+ * the same sampled word fills each original position, including p9+.
+ */
+const {encodeSourceNativeGP} = require("./lp2_native_gp_source_orthography_sft.cjs");
+const latinDigits = "0123456789ABCDEFGHIJKLMNOPQRS";
+const latinWords = read("resources/control/latin-vulgate-gp-wholewords.txt")
+  .split("\n").map(s => s.trim()).filter(s => s && !s.startsWith("#"))
+  .map(s => [...s].map(ch => latinDigits.indexOf(ch)));
+assert(latinWords.every(w => w.length && w.every(x => x >= 0)));
+function englishWords(file) {
+  return (read(file).match(/[A-Za-z]+/g) || [])
+    .map(encodeSourceNativeGP).filter(w => w.length);
+}
+const languageSources = [
+  ["Gibran", englishWords("resources/control/gibran_prophet_58585.txt")],
+  ["Shakespeare", englishWords("resources/control/shakespeare_first300k.txt")],
+  ["Latin", latinWords]
+];
+const originalWordOffsets = [];
+let wordOffset = 0;
+for (const w of words) {
+  originalWordOffsets.push(wordOffset);
+  wordOffset += w.length;
+}
+assert.equal(wordOffset, 12956);
+function matchedLanguageControl(sourceWords) {
+  const byLength = Array.from({length: 29}, () => []);
+  for (const word of sourceWords) if (word.length < 29)
+    byLength[word.length].push(word);
+  for (const originalWord of words)
+    assert(byLength[originalWord.length].length > 0,
+      "control needs each authentic printed word length");
+  let minimumFull = Infinity;
+  let maximumFull = 0;
+  let minimumP9 = Infinity;
+  let maximumP9 = 0;
+  for (let draw = 0; draw < 60; draw++) {
+    let seed = (0x4c500201 + draw * 2166136261) >>> 0;
+    const randomSource = () => {
+      seed ^= seed << 13;
+      seed ^= seed >>> 17;
+      seed ^= seed << 5;
+      return seed >>> 0;
+    };
+    const full = new Uint32Array(29);
+    const p9 = new Uint32Array(29);
+    let fullCount = 0;
+    let p9Count = 0;
+    for (let i = 0; i < words.length; i++) {
+      const pool = byLength[words[i].length];
+      const native = pool[randomSource() % pool.length];
+      for (let j = 1; j < native.length; j++) {
+        full[native[j]]++;
+        fullCount++;
+        if (pageAt[originalWordOffsets[i] + j] >= 9) {
+          p9[native[j]]++;
+          p9Count++;
+        }
+      }
+    }
+    assert.equal(fullCount, 10060);
+    assert.equal(p9Count, 8395);
+    const topFull = Math.max(...full);
+    const topP9 = Math.max(...p9);
+    minimumFull = Math.min(minimumFull, topFull);
+    maximumFull = Math.max(maximumFull, topFull);
+    minimumP9 = Math.min(minimumP9, topP9);
+    maximumP9 = Math.max(maximumP9, topP9);
+  }
+  return {sourceWords: sourceWords.length, draws: 60, minimumFull,
+    maximumFull, minimumP9, maximumP9};
+}
+const controls = Object.fromEntries(languageSources.map(([name, language]) =>
+  [name, matchedLanguageControl(language)]));
+assert.deepEqual(Object.fromEntries(Object.entries(controls).map(
+  ([name, c]) => [name, [c.sourceWords, c.minimumFull, c.minimumP9]])), {
+  Gibran: [15733, 1419, 1186],
+  Shakespeare: [55407, 1434, 1193],
+  Latin: [39835, 1181, 974]
+});
+for (const control of Object.values(controls)) {
+  assert(whole.page.maximum < control.minimumFull);
+  assert(Math.max(...Object.values(receiver).map(x => x.maximum)) <
+    control.minimumP9);
+}
+
 /** Positive: encrypt, invert, and reencrypt real solved p57 GP runes. */
 let seed = 0x33012307;
 const random = () => {
@@ -284,6 +374,7 @@ if (require.main === module)
     sourceRegisterModes: 3,
     originalBookAllSecret: whole,
     originalP9To55AllSecret: receiver,
+    nativeGPWordLengthMatchedControls: controls,
     syntheticSolvedP57GP: {
       sourceRunesReused: known.length,
       exactlyRecovered: pointer,
