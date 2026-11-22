@@ -4,17 +4,16 @@
 
 ## Explicit causal premise and independent rival
 
-The last five wholly red words on physical LP2 p7 have GP29 index-products **[11,26,8,15,2]**. The previously documented, ascending-degree polynomial (F(x)=11+26x+8x²+15x³+2x⁴ pmod{29}) has (F(3)=3), (F(4)=4) and (F'(4)=17). Adjacent p8 has two original red whole-word products **[4,3]** and a final red rune of GP index **17**. This is an authentic mathematical cross-page cue, yet the ascending polynomial convention and any ciphertext operation remain hypotheses. The independently stronger rival is that this polynomial is an addressing/state clue rather than an encipherment rule.
+The last five wholly red words on physical LP2 p7 have GP29 index-products **[11,26,8,15,2]**. The previously documented, ascending-degree polynomial `F(x) = (11 + 26x + 8x² + 15x³ + 2x⁴) mod 29` has `F(3)=3`, `F(4)=4` and `F'(4)=17`. Adjacent p8 has two original red whole-word products **[4,3]** and a final red rune of GP index **17**. This is an authentic mathematical cross-page cue, yet the ascending polynomial convention and any ciphertext operation remain hypotheses. The independently stronger rival is that this polynomial is an addressing/state clue rather than an encipherment rule.
 
-The earlier [direct nonlinear feedback test](lp2-p7-redquartic-p8-nonlinear-feedback-original-gate.md) tried (P_i=C_i±F(P_{i-1})) and its ciphertext-feedback counterpart. **This test instead incorporates the observable ciphertext predecessor difference** in a complete reversible integrated feedback cipher:
+The earlier [direct nonlinear feedback test](lp2-p7-redquartic-p8-nonlinear-feedback-original-gate.md) tried `P_i = C_i ± F(P_(i-1))` and its ciphertext-feedback counterpart. **This test instead incorporates the observable ciphertext predecessor difference** in a complete reversible integrated feedback cipher:
 
-[
-D_i=(C_i-C_{i-1})mod29,qquad
-P_i=(D_i+sF(P_{i-1}))mod29,
-]
-[
-C_i=(C_{i-1}+P_i-sF(P_{i-1}))mod29,qquad sin{-1,+1}.
-]
+```text
+D_i = (C_i - C_(i-1)) mod 29
+P_i = (D_i + s*F(P_(i-1))) mod 29
+C_i = (C_(i-1) + P_i - s*F(P_(i-1))) mod 29
+s = -1 or +1
+```
 
 This is a distinct forward and inverse mechanism. A human could in principle identify an immediately preceding rune and apply the source polynomial at each step. No first-party instruction explicitly selects subtraction of the ciphertext predecessor or feeding back the preceding plaintext; they are the weakest assumptions. **Before** reading original outputs, grant both additive signs and the three source-visible previous-plaintext seeds **3,4,17**. Use the genuine last red p8 rune **17** as the previous-ciphertext value. The receiver is every one of the untouched **1,717 black GP29 rune positions of physical pp8–14**, immediately after the 12 red p8 header runes. This direct chapter-sized test respects the original p8→p9 word carry and does not fit a fresh key/phase after seeing the plaintext.
 
@@ -37,13 +36,13 @@ All six results remain near **1/29=0.034482759**, with incoherent GP rune sequen
 
 The proposed forward emitter has a particularly discriminating **key-independent event consequence**:
 
-[
-C_i=C_{i-1}quadLongleftrightarrowquad P_i=sF(P_{i-1})pmod{29}.
-]
+```text
+C_i == C_(i-1) if and only if P_i == s*F(P_(i-1)) (mod 29)
+```
 
 No starting cipher rune, page IV or choice of 29-symbol alphabet rotation can repair that iff relationship. The original 55 rune-bearing pages p0–55 contain **86 adjacent equal-rune pairs over 12,901 page-internal comparisons**. To assess whether the source-polynomial feedback could naturally explain so few doublets if ordinary GP-English were plaintext, GP-transliterate three stored literary controls (original GP transliteration table, TH/EO/NG/OE/AE/IA/EA contractions and the established QU/K/Q/V/Z replacements). For each source, take the **first, centered and last 12,956-rune windows** and reset comparisons at the *actual 55 physical LP2 page lengths*. Each of the nine genuine native GP windows yields the following predicted equal-ciphertext counts, with unchanged original receiver value86 as comparison.
 
-| Source control | (s=+1), first/center/last | (s=-1), first/center/last |
+| Source control | s=+1, first/center/last | s=-1, first/center/last |
 |---|---:|---:|
 | Gibran, *The Prophet* | 524 / 536 / 558 | 194 / 202 / 189 |
 | Shakespeare control | 443 / 485 / 448 | 242 / 226 / 249 |
