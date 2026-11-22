@@ -24,6 +24,12 @@ Both complete 256-rune test inverses forward-reconstruct all **256 original ciph
 
 These fixed results exclude only the specifically stated zero-phase row-major byte-mod29 additive consumers, for both signs. A different typed nonlinear/stateful table use is logically possible, but remains unauthorized by any first-party instruction. Do not rescue this negative with free table traversals, offsets or page reset parameters.
 
+## All-position and all-fixed-alphabet exclusion for literal GP29 table values
+
+A separate **exact, original-input no-go condition** applies if the 248 numeric cells after p50's first row, each simply reduced modulo29, are proposed as **direct ciphertext values** for the corresponding 248 real black/carried GP29 runes. Even granting an **arbitrary permutation of all 248 positions** and **any secret fixed permutation of all 29 GP29 labels**, the two sorted 29-bin symbol-frequency signatures would have to be identical.
+
+They are unequal on the original source. The p8/p9 248-rune black receiver sorted GP29 bin frequencies begin **[15,14,12,12,11,11,10,10,10,10,...]**; the 248 original numeric values modulo29 begin **[19,15,14,13,13,12,11,10,10,10,...]**. The SFT asserts this exact 29-bin inequality. This conclusively excludes all direct **reordering plus fixed byte-mod29 label** readings, including every 8-column permutation and an unlimited secret 29-symbol alphabet, when no additional value-changing operation is present. It does not reject using the numeric byte stream as a key for an independently selected cipher.
+
 ## A second, differently typed 256-cell consumer: direct source addressing
 
 The printed p49–51 numeric values all lie in the fixed 0..255 byte range under the proposed radix60 interpretation. A human reader could therefore use each numeric cell as a **literal index into the newly recognized p8 256-rune frame**, rather than reducing the byte modulo29 as an additive pad. This produces a fully determined row-major 256-rune source readout with no key choices.
