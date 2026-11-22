@@ -178,5 +178,98 @@ const findings=original.map((cipher,section)=>{
 });
 assert.equal(sumK,86);
 assert(findings.every(s=>s.decodedIoC<0.04&&s.nativeSourceIoC>0.05));
+/**
+ * Exhaustive, exact first-section full-domain quotient experiment.
+ * Original first three LP2 pages (729 rune section0) have only 6,585,649
+ * legal high quotient Q values. No key guess, table guess, or source text fit
+ * is required. Retain genuine solved-GP29 original-length windows as controls.
+ */
+function exhaustFirstSectionQuotients(){
+  const originalP0=original[0];
+  const model=pack(originalP0);
+  assert.equal(model.n,729);
+  assert.equal(model.k,4);
+  const maxLegalQ=(29n**BigInt(model.n)-1n-model.r)/model.m;
+  const count=Number(maxLegalQ);
+  assert(Number.isSafeInteger(count));
+  assert.equal(count,6585649,'original-section exact quotient count changed');
+  const digitsM=decodeDigits(model.m,29n,model.n).reverse();
+  const candidate=Uint8Array.from(decodeDigits(model.r,29n,model.n).reverse());
+  const counts=new Int32Array(29);
+  for(const v of candidate)counts[v]++;
+  const denominator=model.n*(model.n-1);
+  const numerator=()=>counts.reduce((sum,n)=>sum+n*(n-1),0);
+  let currentNum=numerator(), maxNum=-1,bestQ=-1;
+  let minNum=denominator+1,minQ=-1,aboveNative=0,observed=0;
+  const nativeNumerator=seq=>{
+    const counts=new Int32Array(29);
+    for(const v of seq)counts[v]++;
+    return counts.reduce((sum,n)=>sum+n*(n-1),0);
+  };
+  const controlNumerators=[];
+  for(let i=0;i+model.n<=nativeSource.length;i++){
+    controlNumerators.push(nativeNumerator(nativeSource.slice(i,i+model.n)));
+  }
+  const controlMin=Math.min(...controlNumerators);
+  const controlMax=Math.max(...controlNumerators);
+  assert(controlNumerators.length===nativeSource.length-model.n+1);
+  const controls=new Set([0,1,2,29,300,100000,6500000,count]);
+  for(let q=0;q<=count;q++){
+    if(currentNum>maxNum){maxNum=currentNum;bestQ=q;}
+    if(currentNum<minNum){minNum=currentNum;minQ=q;}
+    if(currentNum>=controlMin)aboveNative++;
+    if(controls.has(q)){
+      const exact=decodeDigits(model.r+BigInt(q)*model.m,29n,model.n).reverse();
+      assert.deepEqual([...candidate],exact,'base29 streaming recurrence has drift');
+      assert.equal(currentNum,nativeNumerator(exact));
+      observed++;
+    }
+    if(q===count)break;
+    let carry=0;
+    for(let j=0;j<model.n;j++){
+      const old=candidate[j];
+      let next=old+digitsM[j]+carry;
+      if(next>=29){next-=29;carry=1;}
+      else carry=0;
+      if(next!==old){
+        const oldBefore=counts[old];
+        currentNum-=2*(oldBefore-1);
+        counts[old]=oldBefore-1;
+        const nextBefore=counts[next];
+        currentNum+=2*nextBefore;
+        counts[next]=nextBefore+1;
+        candidate[j]=next;
+      }
+    }
+    assert.equal(carry,0,'enumerator quotient wrapped beyond base29 plaintext range');
+  }
+  assert.equal(observed,controls.size);
+  assert.equal(currentNum,numerator());
+  const best=decodeDigits(model.r+BigInt(bestQ)*model.m,29n,model.n);
+  const lower=decodeDigits(model.r+BigInt(minQ)*model.m,29n,model.n);
+  assert.equal(nativeNumerator(best),maxNum);
+  assert.equal(nativeNumerator(lower),minNum);
+  const originalSourceColumn=(()=>{
+    let col=0n;for(let row=0;row<32;row++)col=col*256n+BigInt(grid.bytes[8*row]);
+    return col%(maxLegalQ+1n);
+  })();
+  return {
+    qCount:count+1,absoluteMaxLegalQ:count,allLegalQuotientsTested:true,
+    originalSourceSectionLength:model.n,originalSourceRepeatCount:model.k,
+    originalLiteralTableColumnReducedQ:String(originalSourceColumn),
+    solvedNative729RuneWindowCount:controlNumerators.length,
+    nativeWindowNumerators:{min:controlMin,max:controlMax},
+    originalAllQNumerators:{min:minNum,max:maxNum},
+    originalAllQIoC:{min:minNum/denominator,max:maxNum/denominator},
+    nativeWindowIoC:{min:controlMin/denominator,max:controlMax/denominator},
+    candidatesMeetingNativeMin:aboveNative,
+    maximumIoCOriginalQ:bestQ,
+    minimumIoCOriginalQ:minQ,
+    maxCandidateFirst60:best.slice(0,60).map(v=>corpus.translit[v]).join(' '),
+    maxCandidateLast30:best.slice(-30).map(v=>corpus.translit[v]).join(' ')
+  };
+}
+const exhaustiveFirstSection=exhaustFirstSectionQuotients();
+console.log(JSON.stringify({exhaustiveFirstSection},null,2));
 console.log(JSON.stringify({method:'8 source sections continuous one-seed no-repeat-rank + exact combinadic doublets',allOriginalRunes:fullSource.length,allOriginalDoublets:sumK,authenticColumnReading:'row-major: 8 columns x 32 bytes',quotientMap:'one 32-byte column modulo (maxQForSourceR+1)',originalReranking:true,originalNativeGPPlaintext:false,findings},null,2));
-console.log('PASS: all 8 original source-continuous full inverses, literal source-column modulo quotients, exact 86 repeats, all-key final glyph invariants, source-native 8 positive plants.');
+console.log('PASS: original continuous eight-section exact inverse and all 6,585,650 first-chapter Q source candidates exhaustively checked against solved-native GP with integer frequency replay.');
