@@ -44,3 +44,7 @@ jobs:
         run: node --check sims/lp2_p33_99square_knownplain_p34_38_reuse_sft.cjs
       - name: Run known-plaintext p33 Stage7 key-reuse attack on p34–p38
         run: node sims/lp2_p33_99square_knownplain_p34_38_reuse_sft.cjs
+      - name: Check p33 IV10 and 188 exact Stage7 GP-digit knownplaintext SFT
+        run: node --check sims/lp2_p33_stage7_188digit_iv10_source_sft.cjs
+      - name: Run p33 IV10 original 188-digit Stage7 key and codebook gate
+        run: node sims/lp2_p33_stage7_188digit_iv10_source_sft.cjs
