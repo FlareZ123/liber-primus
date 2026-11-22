@@ -83,7 +83,7 @@ function minors(matrix){
   }
  }
  assert.equal(one.length,15);
- assert.equal(two.length,90);
+ assert.equal(two.length,30);
  assert.equal(three.length,10);
  return {oneGcd:gcda(one),twoGcd:gcda(two),threeGcd:gcda(three),
    threeValues:three};
