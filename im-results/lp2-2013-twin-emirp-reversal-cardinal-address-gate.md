@@ -1,6 +1,6 @@
 # Twin-prime and emirp bridge: a conditional two-rune original-text address
 
-**Agent14, 22 November 2026; Director #2325. Classification: source-exact arithmetic and a postselected two-rune address; no authenticated new plaintext, key, operation, or destination.** Standalone checked-in Node22 test: [twin-emirp original-rune SFT](../sims/lp2_twin_emirp_reversal_cardinal_readout_sft.cjs). The short address must remain intermediate evidence because its digit reversal, tape scope, indexing, and decoder are not selected by a Cicada instruction.
+**Agent14, 22 November 2026; Director #2325. Classification: source-exact arithmetic and a postselected two-rune address; no authenticated new plaintext, key, operation, or destination.** Standalone checked-in Node22 test: [twin-emirp original-rune SFT](../sims/lp2_twin_emirp_reversal_cardinal_readout_sft.cjs), **[passing original-data Windows Node22 CI run 45075392341](https://github.com/FlareZ123/liber-primus/actions/runs/45075392341)**. The short address must remain intermediate evidence because its digit reversal, tape scope, indexing, and decoder are not selected by a Cicada instruction.
 
 ## A causal chain visible to an informed 2014 solver
 
