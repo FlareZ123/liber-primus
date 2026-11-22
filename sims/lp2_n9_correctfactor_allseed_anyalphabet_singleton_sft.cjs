@@ -174,7 +174,7 @@ function main(){
     .map(x=>({position:x.position-chapterStart,value:x.value}));
   assert.equal(chapter.length,18);
   for(const reverse of [false,true]){
-    const coeff=reverse?[...N9].reverse():[...N9];
+    const coeff=reverse?[...N9,1].reverse().slice(0,9).map(x=>mod(8*x)):[...N9];
     const global=solve(rowsFor(coeff,singleton),singleton);
     const local=solve(rowsFor(coeff,chapter),chapter);
     output.global.push({reverse,...global});
