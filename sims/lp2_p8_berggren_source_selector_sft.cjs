@@ -49,6 +49,52 @@ assert.ok(
 assert.equal(gpProduct(p9PageFragment), 5, 'Only five-rune page fragment yields 5');
 assert.equal(gpProduct(wholeWord), 2, 'Full six-rune printed word yields 2');
 assert.equal(gpProduct([4, 3]), 12, 'Red product 4*3 equals carry ordinal');
+
+// A separate, non-tree source relation: in the authentic red 4|8 word
+// layout, the first four and the next seven digits both sum to 57.
+// The last red glyph has index17, the reciprocal of the full red product12.
+// This was noticed retrospectively, and by itself does not type a cipher.
+const heading = page8.indices.slice(0, 12);
+const total = (values) => values.reduce((sum, value) => sum + value, 0);
+assert.equal(total(heading.slice(0, 4)), 57);
+assert.equal(total(heading.slice(4, 11)), 57);
+assert.equal(heading[11], 17);
+assert.equal(gpProduct(heading), 12);
+assert.equal(gpProduct(heading) * heading[11] % 29, 1);
+assert.equal(gpProduct(wholeWord), 2);
+assert.equal(gpProduct(p9PageFragment),
+  gpProduct(wholeWord) * heading[11] % 29);
+
+// Exact restricted conditional null: randomly redistribute the SAME
+// 12 source glyph occurrences across 4 first-word, 7 second-word prefix
+// and 1 final rune, preserving the 4|8 lengths and full red product.
+// Count labelled choices rather than claiming source-authentication.
+let labelledArrangements = 0;
+let dualSumReciprocalArrangements = 0;
+for (let last = 0; last < heading.length; last += 1) {
+  const remaining = heading.filter((_, index) => index !== last);
+  for (let a = 0; a < 11; a += 1) {
+    for (let b = a + 1; b < 11; b += 1) {
+      for (let c = b + 1; c < 11; c += 1) {
+        for (let d = c + 1; d < 11; d += 1) {
+          labelledArrangements += 1;
+          const firstSum = remaining[a] + remaining[b] +
+            remaining[c] + remaining[d];
+          const otherSum = total(remaining) - firstSum;
+          if (heading[last] === 17 &&
+              (firstSum - otherSum + 29 * 10) % 29 === 0) {
+            dualSumReciprocalArrangements += 1;
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(labelledArrangements, 3960);
+assert.equal(dualSumReciprocalArrangements, 15);
+console.log('P8_DUAL57_END17_EXACT_RED_SHUFFLE_NULL',
+  dualSumReciprocalArrangements, '/', labelledArrangements);
+
 assert.equal((2 * 17) % 29, 5, 'Suppressing GP12 multiplies by inverse(12)=17');
 
 /**
