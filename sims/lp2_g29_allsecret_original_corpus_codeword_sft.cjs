@@ -228,6 +228,19 @@ function main() {
 
   const originalPages = equationsRank(sourcePages.map(p => p.indices));
   const originalChapters = equationsRank(sourceChapters);
+  const firstSevenPages = equationsRank(sourcePages.slice(0, 7).map(p => p.indices));
+  const firstEightPages = equationsRank(sourcePages.slice(0, 8).map(p => p.indices));
+  const firstSevenChapters = equationsRank(sourceChapters.slice(0, 7));
+  const firstEightChapters = equationsRank(sourceChapters.slice(0, 8));
+  const firstSevenPageKernel = oneDimensionalKernel(firstSevenPages);
+  const firstSevenChapterKernel = oneDimensionalKernel(firstSevenChapters);
+  assert.equal(new Set(firstSevenPageKernel).size, 17,
+    "First seven original pages already exclude any bijective unknown alphabet");
+  assert.equal(new Set(firstSevenChapterKernel).size, 20,
+    "First seven original chapters already exclude any bijective unknown alphabet");
+  assert.equal(firstSevenChapterKernel.filter(v => v === 0).length, 2);
+  assert.equal(firstEightPages.rank, 29);
+  assert.equal(firstEightChapters.rank, 29);
   const oneWholeBook = equationsRank([sourceChapters.flat()]);
   const twoSolvedPages = equationsRank(
     [corpus.pages[56].indices, corpus.pages[57].indices]);
@@ -259,6 +272,27 @@ function main() {
     originalPolynomial:"x^4+28x^3+13x^2+9x+14 over GF29",
     independentTableRemainder:remainder(originalGrid),
     originalRuneCount:12956,
+    minimumSourceCertificates:{
+      firstSevenOriginalPages:{
+        throughPage:6, rank:firstSevenPages.rank, distinctKernelValues:
+          new Set(firstSevenPageKernel).size,
+        bijectiveAssignmentPossible:false,
+      },
+      firstEightOriginalPages:{
+        throughPage:7, rank:firstEightPages.rank,
+        anyNonzeroAssignmentPossible:false,
+      },
+      firstSevenOriginalChapters:{
+        throughPage:39, rank:firstSevenChapters.rank, distinctKernelValues:
+          new Set(firstSevenChapterKernel).size,
+        zeroKernelValues:firstSevenChapterKernel.filter(v => v === 0).length,
+        bijectiveAssignmentPossible:false,
+      },
+      firstEightOriginalChapters:{
+        throughPage:53, rank:firstEightChapters.rank,
+        anyNonzeroAssignmentPossible:false,
+      },
+    },
     sourcePageModel:{
       independentBlocks:sourcePages.length,
       equations:sourcePages.length * 4,
