@@ -55,8 +55,10 @@ int main(int argc, char **argv) {
     offset_y[ci] = (JDIMENSION)(y * vf / (DCTSIZE * src.max_v_samp_factor));
     blocks_w[ci] = (JDIMENSION)(width * hf / (DCTSIZE * src.max_h_samp_factor));
     blocks_h[ci] = (JDIMENSION)(height * vf / (DCTSIZE * src.max_v_samp_factor));
+    /* Output iMCU strip sizes vary across libjpeg builds. Reserve >=16 rows and
+     * preinitialize the array to permit safe platform-specific padding. */
     cropped[ci] = (*dst.mem->request_virt_barray)(
-      (j_common_ptr)&dst, JPOOL_IMAGE, FALSE, blocks_w[ci], blocks_h[ci], 2);
+      (j_common_ptr)&dst, JPOOL_IMAGE, TRUE, blocks_w[ci], blocks_h[ci], 16);
   }
   fprintf(stderr, "ROI initial: source %u x %u target %d x %d, Y %u x %u, C %u x %u, source sampling %d x %d\n",
       src.image_width, src.image_height, width, height, blocks_w[0], blocks_h[0],
