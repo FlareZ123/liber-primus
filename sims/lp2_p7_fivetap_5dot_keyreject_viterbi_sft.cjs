@@ -215,6 +215,7 @@ assert.ok(viable.length>0);
 const positive=[];
 for(const [seedName,seed] of seeds){
   for(const mode of ["additive","cube-key","cube-plaintext"]){
+    for(const register of ["direct","integrated"]){
     const base=generate(seed);
     const key=mode==="cube-key"?base.map(x=>cube[x]):base;
   for(const [name,plain] of nativeControls){
