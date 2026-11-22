@@ -44,7 +44,7 @@ const sourceNative = lengths.map(n => {
  * @param {boolean} restart
  * @returns {{ioc:number, equal:number, pairs:number}}
  */
-function invariant(parts, period, restart) {
+function invariant(parts, period, restart, ignoreF = false) {
   const groups = new Map();
   let position = 0;
   for (const part of parts) {
@@ -52,7 +52,7 @@ function invariant(parts, period, restart) {
       // Restarted groups incorporate a distinct page base address.
       const label = restart ? (position - i) + ":" + (i % period) : String(position % period);
       const counts = groups.get(label) || Array(29).fill(0);
-      counts[part[i]]++;
+      if (!(ignoreF && part[i] === 0)) counts[part[i]]++;
       groups.set(label, counts);
       position++;
     }
@@ -68,6 +68,8 @@ function invariant(parts, period, restart) {
 
 const continuous = invariant(sourceOriginal, 19, false);
 const pageReset = invariant(sourceOriginal, 19, true);
+const noFOriginal = [invariant(sourceOriginal, 19, false, true),
+  invariant(sourceOriginal, 19, true, true)];
 const nativeContinuous = invariant(sourceNative, 19, false);
 const nativePageReset = invariant(sourceNative, 19, true);
 /**
@@ -80,6 +82,10 @@ function allNativeWindows() {
   const targets = [continuous.ioc, pageReset.ioc];
   const minimum = [Infinity, Infinity], maximum = [-Infinity, -Infinity];
   const atOrBelow = [0, 0];
+  const noFTargets = noFOriginal.map(x => x.ioc);
+  const noFMinimum = [Infinity, Infinity];
+  const noFMaximum = [-Infinity, -Infinity];
+  const noFAtOrBelow = [0, 0];
   let count = 0;
   for (let start = 0; start + 1580 <= native.length; start++) {
     let i = start;
@@ -90,18 +96,26 @@ function allNativeWindows() {
     });
     const measured = [invariant(candidate, 19, false).ioc,
       invariant(candidate, 19, true).ioc];
+    const noFMeasured = [invariant(candidate, 19, false, true).ioc,
+      invariant(candidate, 19, true, true).ioc];
     for (let k = 0; k < 2; k++) {
       minimum[k] = Math.min(minimum[k], measured[k]);
       maximum[k] = Math.max(maximum[k], measured[k]);
       atOrBelow[k] += Number(measured[k] <= targets[k]);
+      noFMinimum[k] = Math.min(noFMinimum[k], noFMeasured[k]);
+      noFMaximum[k] = Math.max(noFMaximum[k], noFMeasured[k]);
+      noFAtOrBelow[k] += Number(noFMeasured[k] <= noFTargets[k]);
     }
     count++;
   }
-  return {count, min:minimum, max:maximum, atOrBelow};
+  return {count, min:minimum, max:maximum, atOrBelow,
+    ignoreTransparentF: {original:noFTargets, min:noFMinimum,
+      max:noFMaximum, atOrBelow:noFAtOrBelow}};
 }
 const nativeWindows = allNativeWindows();
 assert.equal(nativeWindows.count, 1400);
 assert.deepEqual(nativeWindows.atOrBelow, [0, 0]);
+assert.deepEqual(nativeWindows.ignoreTransparentF.atOrBelow, [0, 0]);
 
 function nearly(x, y) { assert(Math.abs(x - y) < 1e-15, x + " vs " + y); }
 nearly(continuous.ioc, 0.03358703355621977);
