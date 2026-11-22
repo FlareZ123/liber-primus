@@ -38,14 +38,14 @@ const ink = JSON.parse(read("resources/liber-primus/lp2-p0-physical-ink-override
 const words = parseSharedCorpus();
 
 const originalText = read("resources/liber-primus/lp2-transcription.txt");
-const p28 = originalText.split(/^\\s*%\\s*$/m)[28];
+const p28 = originalText.split(/^\s*%\s*$/m)[28];
 const sourceLines = p28.trim().split("/").filter((line) => line.trim().length);
-const runePattern = /[\\u16A0-\\u16FF]/gu;
+const runePattern = /[\u16A0-\u16FF]/gu;
 /** @param {string} source @returns {string[]} */
 const runesIn = (source) => source.match(runePattern) || [];
 const line6 = sourceLines[5];
 const line6Runes = runesIn(line6);
-const sourceWords = (p28.replace(/\\/\\s*/gu, "").match(/[\\u16A0-\\u16FF]+/gu) || []);
+const sourceWords = (p28.replace(/\/\s*/gu, "").match(/[\u16A0-\u16FF]+/gu) || []);
 const word28 = sourceWords[27];
 const localWordOffset = sourceWords.slice(0, 27).reduce((sum, w) => sum + runesIn(w).length, 0);
 const localLineOffset = sourceLines.slice(0, 5).reduce((sum, line) => sum + runesIn(line).length, 0);
@@ -57,7 +57,7 @@ assert.equal(localWordOffset, 135);
 assert.equal(localLineOffset, 117);
 const p28Position = localWordOffset - localLineOffset + 1;
 assert.equal(p28Position, 19);
-const leading = line6.match(/[\\u16A0-\\u16FF]+/u);
+const leading = line6.match(/[\u16A0-\u16FF]+/u);
 assert(leading);
 assert.equal([...leading[0]].map((r) => gp.translit[gp.runes.indexOf(r)]).join(""), "DH");
 
