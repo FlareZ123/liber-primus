@@ -107,5 +107,7 @@ assert.deepEqual(asWords(toBytesBE(fullPlant), false), fullPlant);
 assert.deepEqual(expand(asWords(toBytesBE(fullPlant), false).slice(0, 16)),
   fullPlant);
 assert.equal(fullPlant[0], 0x61626380);
+assert.equal(fullPlant[16], 0x61626380, 'Known SHA-256 abc W16 value');
+assert.equal(fullPlant[17], 0x000f0000, 'Known SHA-256 abc W17 value');
 console.log('PASS: SHA-256 abc source-block schedule 48/48 positive; ' +
   'original big-endian and little-endian schedule 0/48 each.');
