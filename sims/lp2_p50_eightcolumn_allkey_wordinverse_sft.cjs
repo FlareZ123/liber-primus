@@ -204,8 +204,8 @@ const originalWeights = weights(original);
 const sourceScores = sourceOrders.map(([name, order]) =>
   ({name, order, score: evaluate(order, originalWeights)}));
 const optimized = maxKeyed(original);
-assert.equal(nativeScore(decode(original, optimized.order)),
-  optimized.best);
+assert.ok(Math.abs(nativeScore(decode(original, optimized.order))
+  - optimized.best) < 1e-11, "precomputed pair sums match direct score");
 const nativeComparators = [];
 for (const [name, lengths, start] of [
   ["Gibran", gibran, 10000],
@@ -256,7 +256,7 @@ const nullMean = nullMax.reduce((a, b) => a + b, 0) / trials;
 const sortedNull = nullMax.slice().sort((a, b) => a - b);
 console.log(JSON.stringify({
   hypothesis:"p50 eight-column any-secret-key inverse, word lengths only",
-  originalRUMES:12956,
+  originalRunes:12956,
   originalPrintedWords:N,
   sourceShape:[H,W],
   firstRow,
