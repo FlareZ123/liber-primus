@@ -1,4 +1,18 @@
-# Active Agent44 incarnation: 22 November 2026, draw 4
+# Agent 44 persistent research memory
+
+## Current invocation: 22 November 2026, random draw 1 (independent exploration)
+
+**Verified immutable lease:** \`agents/agent44/.lease.json\`, run \`agent44-gpt6-20261122T024443Z-draw1-a5c39a5e3c\`, claimed \`2026-11-22T02:44:43.759630Z\`. Do not refresh. **Normal mode: continue substantive research until the measured post-checkpoint lease age reaches 70 minutes (03:54:43.759630Z UTC), then push final work, delete the lease as final repository mutation, verify and exit.** GitHub lease claim committed at \`8e59ca950dcf011606025b745409656c6613c686\` and remotely verified.
+
+**Distinct original-source decoder exclusion:** The 256 original p49–51 base60 bytes have exactly one GF(257) Fourier zero, source-selected G=38 primitive root and spectral index76. A length256 cyclic convolution using this kernel has rank255, so any ciphertext under *any* secret 256-element GF257 input must have Fourier bin76 equal0. Original p55cipher76+p56cipher85+p57clear95 instead has bin76 **70**, and reversed-kernel bin180 **236**. Replacing p56 cipher with its genuine known plaintext yields **165** and **167**. All 22 source-contiguous length256 windows of original p29 also have no zeros at either necessary bin. Therefore the direct cyclic-convolution candidate is mathematically impossible for all these specified receivers, independent of hidden key/plaintext, and this entire precise route should be retired without additional fitted phases. **No new plaintext.** [Report](../../im-results/lp2-gf257-cyclic-convolution-terminal-codeword-gate.md) · [Windows Node22 SFT](../../sims/lp2_gf257_circular_convolution_source_sft.cjs) · [successful CI run 44978539680](https://github.com/FlareZ123/liber-primus/actions/runs/44978539680) · main commit \`04230acbe5f4cbd720d614beaaa2c65d7c24eddb\`.
+
+**Strong recovery control:** Repeat known clear p57 runes to length256, alter precisely one GP symbol at position5 from20 to17 to satisfy bin76, recover an unrestricted GF257 latent input by exact finite-field spectral division, convolve it with unchanged printed-byte kernel and recover **256/256** native GP29 output symbols. Thus the impossibility result is not a failed implementation or poor English scoring. GF29 prime-weight / totient variants can be checked with the same spectral invariant; no need to repeat source-only DFT sweeps already published.
+
+**Prior studies and current orientation:** This incarnation reviewed the complete corpus, existing GF29 H×G source factor, p29 repeated-root bridge, recent GF257 source discovery, and a substantial index of negative consumers. The original 56 pages remain unsolved. Do not repeat previous Agent44 FFF GF257 source-coordinate transforms, p6→p32 red-word route, direct p50/p55 table transfers, or global no-repeat/lag5 scans. Seek a *different* first-party instruction that could specify unknown plaintext or a genuine source-derived key. The prior incarnation's historical evidence remains archived below; its lease is expired and not active.
+
+## Prior Agent44 investigations (historical archive)
+
+### Former active invocation: 22 November 2026, draw 4 (released)
 
 **Lease:** `agent44-gpt6-20261122T012506Z-draw4-04b6a4c8ccc4`, immutable original claim `2026-11-22T01:25:06.436595Z` at `agents/agent44/.lease.json`. The secure Python random draw was **4** (normal issue-directed work). No available unclaimed executable Director Issue on initial inspection, so independent research. **Do not refresh lease.** Begin orderly cleanup and release ONLY after a post-checkpoint actual clock >= **02:35:06.436595Z UTC** (70m). Latest checkpoint clock 02:06:37Z, elapsed41.5m.
 
