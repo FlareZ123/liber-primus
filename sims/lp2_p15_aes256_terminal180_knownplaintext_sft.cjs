@@ -51,6 +51,27 @@ assert.equal(interior.length, 180);
 assert.equal(perimeter.length, 76);
 assert.equal(new Set(interior.concat(perimeter)).size, 256);
 
+/**
+ * Original p57 asks the reader to shed circumferences. The original p15
+ * square itself has a clockwise four-neighbour spiral. An alternative to
+ * row-major interior is the three 68+60+52 inner rings of p50 in
+ * top-left clockwise, outer-to-inner order. This one orientation is fixed
+ * by the same original page layout and earlier established spiral, not
+ * selected by language scoring.
+ */
+const spiralInterior=[];
+for(let shell=0; shell<3; shell++){
+  const top=1+shell,bottom=30-shell,left=1+shell,right=6-shell;
+  for(let c=left;c<=right;c++)spiralInterior.push(top*8+c);
+  for(let r=top+1;r<=bottom;r++)spiralInterior.push(r*8+right);
+  for(let c=right-1;c>=left;c--)spiralInterior.push(bottom*8+c);
+  for(let r=bottom-1;r>top;r--)spiralInterior.push(r*8+left);
+}
+assert.equal(spiralInterior.length,180);
+assert.equal(new Set(spiralInterior).size,180);
+assert.deepEqual([...spiralInterior].sort((a,b)=>a-b),[...interior].sort((a,b)=>a-b));
+
+
 const rawTokens = grid.pages.flatMap((p) => p.tokens);
 assert.equal(rawTokens.length, 256);
 const a60 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx';
@@ -115,11 +136,11 @@ function aes(input, secret, mode, encrypt) {
 }
 
 /** @param {Buffer} raw @param {number[]} target @param {'mod29'|'literal'|'GPprime'} transport */
-function matches(raw, target, transport) {
+function matches(raw, target, transport, coords=interior) {
   let count=0;
   const gpPrime=source.prime;
   for (let i=0;i<180;i++) {
-    const value=raw[interior[i]];
+    const value=raw[coords[i]];
     const want=target[i];
     if (transport === 'mod29' && value%29 === want) count++;
     if (transport === 'literal' && value === want) count++;
@@ -141,14 +162,15 @@ for (const [radix, raw] of [['60',g60],['59',g59]])
           assert(aes(decoded,secret,mode,true).equals(data));
           const view=tableOrder==='row'?decoded:fromColumn(decoded);
           const record={radix,keyOrder,endian,tableOrder,mode};
-          for (const [targetName,target] of [['plaintext',known180],['printed',printed180]])
-            for (const transport of ['mod29','literal','GPprime'])
-              scored.push({...record,target:targetName,transport,
-                matches:matches(view,target,transport)});
+          for (const [layout,coords] of [['row',interior],['inward_spiral',spiralInterior]])
+            for (const [targetName,target] of [['plaintext',known180],['printed',printed180]])
+              for (const transport of ['mod29','literal','GPprime'])
+                scored.push({...record,layout,target:targetName,transport,
+                  matches:matches(view,target,transport,coords)});
           models++;
         }
 assert.equal(models,48);
-assert.equal(scored.length,288);
+assert.equal(scored.length,576);
 scored.sort((a,b) => b.matches-a.matches);
 const primary=scored.filter(x=>x.target==='plaintext'&&x.transport==='mod29');
 const report={
@@ -159,7 +181,7 @@ const report={
     p55OuterCells:perimeter.length
   },
   original:{
-    AESModels:models,transportAndRegisterComparisons:scored.length,
+    originalInteriorLayouts:['row','inward_spiral'], AESModels:models,transportAndRegisterComparisons:scored.length,
     best10:scored.slice(0,10),
     bestSolvedPlainMod29:primary[0],
     perfectKnownReceivers:scored.filter(x=>x.matches===180).length
@@ -188,4 +210,15 @@ report.syntheticPositive={
   known180Recovered:180,blindHeldout76Recovered:76,
   cipherMode:'AES256CTR with p15 spiral BE key and zero IV, original-sized synthetic 32x8 table'
 };
+// Distinct source-shaped spiral known180 plant: only the site order changes.
+const syntheticSpiral=new Array(256).fill(-1);
+for(let i=0;i<180;i++)syntheticSpiral[spiralInterior[i]]=known180[i];
+for(let i=0;i<76;i++)syntheticSpiral[perimeter[i]]=withheld[i];
+assert(syntheticSpiral.every(x=>x>=0&&x<29));
+const recoveredSpiral=aes(aes(Buffer.from(syntheticSpiral),trueKey,'ctr',true),trueKey,'ctr',false);
+assert.deepEqual(spiralInterior.map(i=>recoveredSpiral[i]),known180);
+assert.deepEqual(perimeter.map(i=>recoveredSpiral[i]),withheld);
+assert.equal(matches(recoveredSpiral,known180,'mod29',spiralInterior),180);
+report.syntheticPositive.inwardSpiralKnown180Recovered=180;
+report.syntheticPositive.inwardSpiralBlindHeldout76Recovered=76;
 console.log(JSON.stringify(report,null,2));
