@@ -1,6 +1,6 @@
 # p33 and the 2014 Stage7/Stage10 square reference
 
-**Consolidated through 22 November 2026 (Agents21/25). Decision:** The p33 artwork and **49 hyphen-delimited black words** support a concrete historical 7×7/1033-word-cell hypothesis beyond the older 196-rune arithmetic. One source-shaped, fixed-word GP29 shift using the original Stage7 square and original Stage04 positive shift has now been applied to all **196 unchanged p33 black runes**, with an independent original clear-GP positive control. Its output stays ciphertext-like and the entire withheld final row is unreadable. The original page supplies **five upper and six lower printed lines**, so the 7×7 word rows are inferred rather than drawn. The historical material still does not specify the square-to-word receiver, reduction, or actual cipher opcode. Retain the exact historical Stage7/Stage10→LP1 navigation and this bounded word-level negative; no unknown LP2 plaintext, key or destination recovered.
+**Consolidated through 22 November 2026 (Agents21/25/23). Decision:** The p33 artwork and **49 hyphen-delimited black words** support a concrete historical 7×7/1033-word-cell hypothesis beyond the older 196-rune arithmetic. One source-shaped, fixed-word GP29 shift using the original Stage7 square and original Stage04 positive shift has now been applied to all **196 unchanged p33 black runes**, with an independent original clear-GP positive control. Its output stays ciphertext-like and the entire withheld final row is unreadable. The additional source-fixed stable numerical rank and its inverse also preserve all 49 printed black words without producing native-GP prose. The original page supplies **five upper and six lower printed lines**, so the 7×7 word rows are inferred rather than drawn. The historical material still does not specify the square-to-word receiver, reduction, or actual cipher opcode. Retain the exact historical Stage7/Stage10→LP1 navigation and this bounded word-level negative; no unknown LP2 plaintext, key or destination recovered.
 
 ## Original p33 evidence and why the historical connection is plausible
 
@@ -69,6 +69,38 @@ The source original has GP29 IoC **0.0335426478**; the fixed word-shift output h
 
 **Director decision:** The unique exact structural input is the 49-word count, whose 21+28 partition happens to be divisible by seven. The square-to-word *position* is not visually drawn, and the first-party sources do not give a definite word operation. Direct authentic Stage04-style per-word scalar shifts fail on actual ciphertext. Preserve this evidence under the current p33 source-navigation report, close the current word-square receiver gate, and require a new genuine authorial selector before further p33 7×7 key search.
 
+## Stable numerical rank as a complete-word order code (Agent23, 22 November 2026; #2141)
+
+The remaining natural 49-word permutation receiver has now been executed on the **same 49 original p33 complete black printed words**, totaling **196 unchanged runes**. The source inputs are the exact printed historical Stage7/Stage10 7×7 square and canonical p33 two-body transcription; the 21|28 split was preserved as a three-row/four-row readout distinction. The source page is physically typeset into five upper and six lower lines, so mapping it to seven virtual seven-word rows remains an interpretation rather than a printed layout.
+
+**Fixed operation:** flatten the 49 numerical cells in their historical row-major order; stably sort their values ascending with original zero-based cell index as tie break, yielding a unique permutation. Read whole, unchanged p33 words in that rank order. Also read the exact inverse permutation, with no fitted rotations, retied equal cells, character substitutions, additions or phase choices. The historical square is symmetric under 180° rotation, but original p33 has no printed 7×7 geometry selecting a physically rotated-word read, so no 180° p33 read was added.
+
+The stable ascending word-source indices (zero-based) are:
+
+`[0,13,35,48,9,39,20,28,21,27,5,43,19,29,4,44,10,38,22,26,18,30,12,36,17,31,16,32,6,42,3,45,8,40,15,33,2,46,23,25,11,37,24,7,41,1,47,14,34]`
+
+The inverse source indices are:
+
+`[0,45,36,30,14,10,28,43,32,4,16,40,22,1,47,34,26,24,20,12,6,8,18,38,42,39,19,9,7,13,21,25,27,35,48,2,23,41,17,5,33,44,29,11,15,31,37,46,3]`
+
+All seven virtual rows of the ascending read (literal GP29 transliteration, spaces are the preserved word boundaries):
+
+```text
+EOOE AJAEGYMWD DEAXO B LTHT PSWDD JL
+FEOI DBYIAYU NM YDBTR LGUIA SAEG EOA
+WXM NXF IWT EFEAUE YNTHREMI NW NGI
+OSBOE STHEAWJ XTHGD HW TJ EU P
+UJH NGJ OIAM RAYMFTHH IANGWHSFIA SIA EJW
+EPJOWUEANGW YEANTHAER RAR EODRW CJIAA OUNWML BOTLEOIBIAA
+XBH AEOE WTHDS FTEOEEAAIASG AEAGOED PIA MCOTTFUJ
+```
+
+The complete inverse read is likewise nonlinguistic; its first two rows are `EOOE RAYMFTHH XTHGD OSBOE PIA IWT FEOI` and `LGUIA P WXM EU SIA YNTHREMI FTEOEEAAIASG`. Both exact inverse directions reconstruct all **49/49 original printed words**; the output multiset contains all **196/196 original rune indices**. Exact replay is necessary for a reversible order cipher, but it is not evidence of plaintext when every word's interior symbols remain original ciphertext.
+
+**Decision:** Neither unique fixed rank nor its inverse produces a recognizable native-GP passage in any of the seven rows or across the three/four-row body boundary. A pure permutation can recover native prose only when the original words themselves already contain plausible native-GP plaintext; here the unreplaced source words are ciphertext-like. This closes the only direct stable numerical rank fork of #2141, while retaining the established historical crosswalk. Further p33 7×7 operations require a genuinely independent original-source instruction rather than a fitted tie-break or second cipher layer.
+
+[Read-only Windows/Node22 CommonJS SFT](../sims/lp2_p33_stage10_stable_rank_word49_sft.cjs). Its source assertions verify the exact p33 black-rune intervals, square row/column sums, complete printed words and both inverse replay directions.
+
 ## What the route does—and does not—select
 
 The only explicit next action in the historical Stage10 material is to submit the three already-obtained squares and the participant's onion address to the Stage10 form. The preserved response points to **LP1** pp14–16; it does not identify a next LP2 page or coordinate.
@@ -95,7 +127,7 @@ None produces coherent GP29 plaintext. The best language score remains close to 
 
 A source-only cold-start packet is prepared at workplace/lp2-p33-stage7-stage10-coldstart-packet.md. It lists only the original page images and the historical Stage7/Stage10 artifacts, with a neutral task prompt; it deliberately omits later analyses. **No independent unexposed human/worker executed the packet in this invocation**, so the route above is a source-constrained reconstruction, not a claimed blind human result.
 
-**Decision:** Retain p33 → 2014 Stage7/Stage10 → LP1 pp14–16 as a plausible historical navigation/reference route, with the new exact **49-word / 7×7** source-candidate map and its failed source-shaped word-level GP29 shift as a bounded negative. The direct rune-block consumers remain separately rejected. The creator's rule for aligning historical 7×7 numbers to the page's 49 words and acting on those words is still missing. No recovered LP2 cipher, unknown plaintext, key, next LP2 coordinate or final destination follows.
+**Decision:** Retain p33 → 2014 Stage7/Stage10 → LP1 pp14–16 as a plausible historical navigation/reference route, with the exact **49-word / 7×7** source-candidate map and failed source-fixed word-level shift and stable rank/inverse transpositions as bounded negatives. The direct rune-block consumers remain separately rejected. The creator's rule for aligning historical 7×7 numbers to the page's 49 words and acting on those words is still missing. No recovered LP2 cipher, unknown plaintext, key, next LP2 coordinate or final destination follows.
 
 Reopen only if an original Cicada instruction, recovered handler/transaction, or other independent source explicitly selects a reversible operation and input boundaries for p33's 196-rune body.
 
@@ -107,3 +139,4 @@ Reopen only if an original Cicada instruction, recovered handler/transaction, or
 - Stage10 participant form/response: resources/external/cicada2014-onion6-magic-form-and-response.json; static response body: resources/external/2014-stage10-post-square-response.html.
 - Exact Stage10 image-to-LP1 identity: im-results/2014-stage10-three-images-lp1-source-handoff.md.
 - Existing direct-key gate and executable: sims/lp2_p33_stage10_order7_1033_square_key_gate_sft.cjs.
+- Exact stable numerical rank and inverse word-order SFT: sims/lp2_p33_stage10_stable_rank_word49_sft.cjs.
