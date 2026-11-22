@@ -23,6 +23,22 @@ Original quotient lengths are `QP=275` and `QT=254`; left-pad the high-first tab
 
 The source-derived D polynomial always has a repeated root by construction, so **exact division and re-encoding alone cannot authenticate plaintext**. Its output is uniformly distributed and incoherent. The original source blocks were never modified, and the 21-degree padding follows directly from high-first polynomial exponent alignment. The first mismatch and the independently withheld block failure exclude a literal common quotient codeword under the only source-selected scalar/constant. The next Taylor coefficient disagreement makes that failure particularly decisive.
 
+## Independent direct Taylor-coordinate plaintext gate (Agent10, 22 November 2026)
+
+The shared original root24 suggests a second, **mathematically distinct direct decoder** that does not use a quotient/key comparison or convolution with p50: treat the complete original 277-rune p29 and 256-byte p50 as **descending** GF29 polynomials `P(X)` and `T(X)`, substitute `X+24`, and read ascending Taylor coefficients after the first two forced zero jets. This yields p29 **275** and p50 **254** fully specified symbols, the source-backed coefficient-counts with no phase, free scalar or secret key. This is an especially discriminating original question because both source polynomials really do contain the same factor `(X−24)^2`, and formal Taylor change of basis has an exact inverse `X−24`.
+
+The original direct outputs, after the forced zeros, have:
+
+| Exact direct readout | Symbol length | Native GP29 IoC | Frozen solved-Cicada LP1 native trigram mean |
+| --- | ---: | ---: | ---: |
+| Original p29 `P(X+24)` | **275** | **0.034293297943** | **−3.387830855** |
+| Original p50 `T(X+24)` | **254** | **0.033363418505** | **−3.439470110** |
+| Untouched actual solved p57 | **95** | **0.062709966405** | **−2.468144714** |
+
+Both original texts remain random-like and incoherent: p29 begins `IOGAEEOEAEDAEOIOCINGONTHTM...`; p50 begins `YGWWETHSEOLTHGLCEXIOSTHJ...` under historical source-native ING/IO spelling. Original p29 round-trips **277/277** coefficients; original p50 round-trips **256/256**. Applying the inverse coordinate shift to genuinely known solved-p57 GP29 material under the same fixed 275- and 254-symbol lengths re-decodes every planted rune exactly (**275/275**, **254/254**), including the two artificial zero Taylor slots. Source-native model training uses the existing independently pinned 3,510-rune solved LP1 corpus, with no fitted original output.
+
+**Decision:** the intuitive single-variable Taylor-coordinate decoding of the two common-root original polynomials is not a direct hidden GP-English plaintext readout. This excludes precisely that plain original-GP29 interpretation; the algebraic root24 and its unusual joint occurrence remain intact and could have a different source-selected key/metadata role. Do not tune another root, reverse the original printed order after failure, choose only high-scoring windows, or add a second unexplained cipher to this negative readout. [Exact read-only CommonJS SFT](../sims/lp2_p29_p50_root24_taylor_plaintext_sft.cjs) passed [Windows Node22 run 44990727521](https://github.com/FlareZ123/liber-primus/actions/runs/44990727521).
+
 ## Cryptanalytic decision
 
 **Retire the fixed high-first shared p29/p50 normalized quotient identity and the direct original 273-rune second-order residual as source-native English plaintext.** The independently motivated original double-root24 and prior signed-word index bridge are real arithmetic observations, but these do not supply a shared full codeword, recovered encryption stream, or unknown plaintext. Any further quotient skew, ad hoc trim, alphabet reinterpretation or hidden layer needs a separate first-party instruction; do not treat the uninformative 273-symbol residual as a key merely because its polynomial recomposes perfectly.
