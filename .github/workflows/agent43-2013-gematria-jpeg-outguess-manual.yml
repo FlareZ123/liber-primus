@@ -1,0 +1,23 @@
+name: Agent43 original 2013 Gematria JPEG OutGuess source extraction
+on:
+  workflow_dispatch:
+jobs:
+  outguess-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build historical OutGuess 0.4 from pinned revision
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y autoconf automake libtool build-essential libjpeg-dev
+          git clone --depth 1 https://github.com/resurrecting-open-source-projects/outguess.git /tmp/outguess
+          git -C /tmp/outguess fetch --depth 1 origin 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          git -C /tmp/outguess checkout --detach 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          cd /tmp/outguess
+          ./autogen.sh
+          CFLAGS='-O2 -std=gnu11' ./configure --with-generic-jconfig
+          make -j2 CC='gcc -std=gnu11' CFLAGS='-O2 -std=gnu11'
+          sudo make install
+      - name: Reproduce canonical 2016 signed extraction then probe exact 2013 source image
+        run: node sims/lp2_2013_gematria_jpeg_outguess_original_sft.cjs
