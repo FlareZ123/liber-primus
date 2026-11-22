@@ -30,6 +30,19 @@ The maximum across all ten complete source-visible models is **4,861/12,956 = 37
 
 The one-rune bounds are also preserved in the [SFT](../sims/lp2_p50_period255256_allsecret_symbolrank_original_sft.cjs): `B1=1,233/1,244` for global 255/256, while direct native p57 has **15/95 = 15.7895%** for its most common rune.
 
+## Extension: every two-secret-bank assignment across nine source chapters
+
+The default same-alphabet-per-phase condition may be overly restrictive if one of the original illustrated sections changes the key mode. A second exact source-only exhaustive test therefore grants **two wholly different 255/256-position permutation banks**, each still reusable within every chapter assigned to it. Every one of the nine authentic chapter intervals may independently choose **either bank**, with a zero-phase key reset at every chapter start. In the presence of the global A/B exchange symmetry there are only **2^8=256 distinct assignments**. We enumerated **all 256**, allowing all **29!** secret per-phase mappings in each bank, and maximized the necessary five-rune occupancy bound over them. The bank assignments are allowed to be post-selected adversarially to maximize the possible native-GP output frequency, so the result is a rigorous upper bound for this entire two-bank chapter-coded family.
+
+| Period | All assignments | Maximum top-five capacity | Upper-bound fraction | Best mask (first chapter bank A; bit per later chapter) |
+| --- | ---: | ---: | ---: | ---: |
+| 255 | 256 | **6,084 / 12,956** | **46.9574%** | 60 |
+| 256 | 256 | **6,114 / 12,956** | **47.1911%** | 185 |
+
+Even the most favorable **two-bank** source-chapter assignment cannot reproduce solved p57's **48.4211%** five-rune concentration if p57 were representative of the unknown full-text plaintext. This is a conditional *language-profile* obstruction, rather than a mathematical impossibility of meaningful atypical text. It is stronger than the one-bank theorem and rules out a large class of arbitrary chapter-to-chapter key changes without specifying any secret table values. The same exact source reader and all 256 bank partitions were executed with all numeric assertions passing in [Windows Node22 run 45048674108](https://github.com/FlareZ123/liber-primus/actions/runs/45048674108).
+
+The minimal richer alternative is **at least three distinct independently keyed chapter modes** under this native-profile assumption, a page-specific key, a changing-state source, or a genuinely different cipher. A three-bank cycling-by-chapter example has a necessary capacity above 52% (so this gate alone does not exclude it), but neither a three-mode key grammar nor an actual source-selected chapter key has been recovered. The true original could have a different plaintext frequency profile; no language threshold is assumed in the exact algebraic capacity theorem.
+
 ## Original controls and downstream choice
 
 The [read-only, original-corpus Windows Node22 CommonJS SFT](../sims/lp2_p50_period255256_allsecret_symbolrank_original_sft.cjs) reconstructs and exactly reconciles **12,956** input runes across the raw transcription, confirms **2,896** printed source words, and reproduces all ten above upper bounds with strict numerical assertions. It additionally repeats the authentic solved p57 plaintext to **12,956** runes and encrypts it under a chosen nontrivial phase-varying invertible affine GP29 map of period256. The real decoder exactly recovers all **12,956/12,956** native-GP runes. Its plaintext top five count is **6,271**, and the encrypted stream's keyless top-five upper bound is **6,929**, correctly leaving the genuine positive possible. [Actual read-only Windows Node22 PASS run 45048405846](https://github.com/FlareZ123/liber-primus/actions/runs/45048405846).
