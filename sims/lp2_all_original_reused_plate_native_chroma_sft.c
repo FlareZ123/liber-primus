@@ -33,7 +33,6 @@ static int member(int bx,int by,int sx,int sy,const Group *g){
   const int *r=g->rect[i];
   if(x>=r[0]&&y>=r[1]&&x+8*sx<=r[2]&&y+8*sy<=r[3])return 1;
  }
- p1_achromatic_rgb_original(argv[1]);
  return 0;
 }
 static void p1_achromatic_rgb_original(const char *folder){
@@ -104,5 +103,6 @@ int main(int argc,char**argv){
   }
   destroy(&a);
  }
+ p1_achromatic_rgb_original(argv[1]);
  return 0;
 }
