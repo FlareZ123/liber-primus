@@ -15,14 +15,14 @@ const parts=text.split(/### \d+\s*\n/u);
 const tokens=data.translit.map((s,i)=>({s,i})).sort((a,b)=>b.s.length-a.s.length);
 /** @param {string} raw @returns {number[]} */
 function encode(raw){
- const str=raw.toUpperCase().replace(/[^A-Z]/gu,"").replaceAll("V","U").replaceAll("K","C").replaceAll("Q","C").replaceAll("Z","S");
- const result=[];
- for(let i=0;i<str.length;){
-  const t=tokens.find(x=>str.startsWith(x.s,i));
-  assert.ok(t,"unmappable native text");
-  result.push(t.i);i+=t.s.length;
+ const words=raw.toUpperCase().replaceAll("V","U").replaceAll("K","C").replaceAll("Q","C").replaceAll("Z","S").match(/[A-Z]+/gu)||[];
+ const out=[];
+ for(const word of words)for(let i=0;i<word.length;){
+  const t=tokens.find(x=>word.startsWith(x.s,i));
+  assert.ok(t,"unmappable native word");
+  out.push(t.i);i+=t.s.length;
  }
- return result;
+ return out;
 }
 /** Pair collisions invariant to any independent per-block GP29 permutation.
  * @param {number[]} data @param {number[]} plan
@@ -53,14 +53,29 @@ for(let i=0;i<729;i++){
 }
 assert.deepEqual([Math.min(...phases),Math.max(...phases)],[1944,2196]);
 const koan=encode(parts[5]);
-assert.equal(koan.length,736);
-const pure=Array.from({length:8},(_,i)=>score(koan,lengths,i).total);
-assert.equal(Math.min(...pure),3586);
+assert.equal(koan.length,745);
+const pure=Array.from({length:koan.length-728},(_,i)=>score(koan,lengths,i).total);
+assert.equal(Math.min(...pure),3762);
 const native=encode([2,3,5,6,10,11,12,13,14].map(i=>parts[i]).join(" "));
-assert.equal(native.length,2493);
-const controls=Array.from({length:1765},(_,i)=>score(native,lengths,i).total).sort((a,b)=>a-b);
-assert.deepEqual([controls[0],controls[882],controls.at(-1)],[3294,3544,3804]);
+assert.equal(native.length,2519);
+const controls=Array.from({length:native.length-728},(_,i)=>score(native,lengths,i).total).sort((a,b)=>a-b);
+assert.deepEqual([controls.length,controls[0],controls[Math.floor(controls.length/2)],controls.at(-1)],[1791,3428,3658,3920]);
 assert.ok(Math.max(...phases)<Math.min(...pure,controls[0]));
+// 85/85 authentic solved-p56 positive proves digraphs never cross a word.
+const p56Text=encode("AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO IT IS THE DUTY OF EVERY PILGRIM TO SEEK OUT THIS PAGE");
+assert.equal(p56Text.length,85);
+const prime=[];
+for(let n=2;prime.length<85;n++){
+ let ok=true;for(let d=2;d*d<=n;d++)if(n%d===0){ok=false;break;}
+ if(ok)prime.push(n);
+}
+const p56Original=data.pages.find(p=>p.page===56).indices;
+const recoveredP56=p56Original.map((c,i)=>{
+ if(i===56)return 0;
+ const x=(c-prime[i-(i>56?1:0)]+1)%29;
+ return (x+29)%29;
+});
+assert.deepEqual(recoveredP56,p56Text);
 // Positive with 13 different secret permutation tables and true inverse.
 let state=0x330113;
 const next=()=>{state=(Math.imul(state,1664525)+1013904223)>>>0;return state;};
@@ -75,4 +90,4 @@ for(let b=0,offset=0;b<13;b++){
 assert.equal(new Set(maps).size,13);
 assert.deepEqual(decrypt,clear);
 assert.equal(score(encrypt,lengths).total,score(clear,lengths).total);
-console.log(JSON.stringify({sourcePrimeLength: lengths,originalPairs:real.byBlock,originalTotal:real.total,phaseMin:Math.min(...phases),phaseMax:Math.max(...phases),koanWindows:pure,otherNativeWindowCount:controls.length,otherNativeMin:controls[0],otherNativeMedian:controls[882],otherNativeMax:controls.at(-1),secretTables:maps.length,positiveInverse:decrypt.length,status:"PASS: conditional all-secret block substitution exclusion"},null,2));
+console.log(JSON.stringify({sourcePrimeLength: lengths,originalPairs:real.byBlock,originalTotal:real.total,phaseMin:Math.min(...phases),phaseMax:Math.max(...phases),koanWindows:pure,otherNativeWindowCount:controls.length,otherNativeMin:controls[0],otherNativeMedian:controls[Math.floor(controls.length/2)],otherNativeMax:controls.at(-1),secretTables:maps.length,positiveInverse:decrypt.length,status:"PASS: conditional all-secret block substitution exclusion"},null,2));
