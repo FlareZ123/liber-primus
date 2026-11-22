@@ -1,0 +1,19 @@
+name: Agent22 P7-P39 source root24 original crosschapter
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run source-root crosschapter original SFT
+        shell: cmd
+        run: node sims\lp2_p7_p39_root24_crosschapter_original_sft.cjs
