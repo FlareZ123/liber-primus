@@ -151,6 +151,25 @@ for (const page of [49, 51, 55]) {
     });
   }
 }
+const base60LeftNull6 = [4, 21, 18, 17, 26, 1];
+assert.deepEqual(Array.from({ length: 6 }, (_, col) =>
+  mod(base60LeftNull6.reduce((sum, coefficient, row) =>
+    sum + coefficient * K60[row][col], 0))), Array(6).fill(0));
+const base60ParityCodeCheck = [49, 51, 55].map((page) => {
+  const original = corpus.pages.find((entry) => entry.page === page).indices;
+  const syndromes = [];
+  for (let i = 0; i + 6 <= original.length; i += 6) {
+    syndromes.push(mod(base60LeftNull6.reduce((sum, coefficient, position) =>
+      sum + coefficient * original[i + position], 0)));
+  }
+  return { page, blocks: syndromes.length,
+    satisfyingBlocks: syndromes.filter((s) => s === 0).length,
+    firstSixSyndromes: syndromes.slice(0, 6),
+    allBlocksRespectParity: syndromes.every((s) => s === 0) };
+});
+assert.deepEqual(base60ParityCodeCheck.map((x) => [x.blocks, x.satisfyingBlocks]),
+  [[11, 2], [15, 1], [12, 0]]);
+assert(base60ParityCodeCheck.every((x) => !x.allBlocksRespectParity));
 const outerSquareTests = [];
 for (const [shape, dimension, inset] of [
   ["whole8x8", 8, 0],
@@ -194,10 +213,11 @@ console.log(JSON.stringify({
   mode: "source-original final 8x8 -> natural nested 7x7 and 6x6 -> frozen HillN mod29",
   rowMajorSquareStart: 192, literalZeroLocations: [192, 229],
   overlapBetweenSourceZeroBracketAndTrueInterior: 22,
-  base60: { rank: K60State.rank, det29: 0, recoverable: false },
+  base60: { rank: K60State.rank, det29: 0, recoverable: false,
+    fullBlockParityLeftNull6: base60LeftNull6, parityCodeNecessaryCheck: base60ParityCodeCheck },
   base59: { rank: K59State.rank, det29: K59State.det, recoverable: true },
   inverseGp29Tests: candidates,
   originalNestedSquareHill8AndHill7: outerSquareTests,
   positive: "84 authentic p56 plaintext runes roundtrip under both Hill6 orientations",
-  verdict: "All source-geometry Hill8 and Hill7 original-cipher inverses are valid but yield no coherent prose. Source-interior Hill6 is invertible only in base59 and also nonprose."
+  verdict: "All original Hill8/Hill7 inverses are nonprose; base59 Hill6 also nonprose. Base60 Hill6 rank5 also fails its necessary full-block parity-code constraint."
 }, null, 2));
