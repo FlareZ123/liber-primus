@@ -182,8 +182,6 @@ for (const sign of [-1, 1]) {
 
 // Secondary, source-defined 7+4=11 p32 torus stripe and solved-p57
 // circumference selection. No fitted key phase, word order or language score.
-const p32 = corpus.pages.find((page) => page.page === 32).indices;
-assert.equal(p32.length, 121);
 const torusKey = Array.from({ length: 11 }, (_, i) => {
   const k = i + 1;
   return p32[((7 * k) % 11) * 11 + ((4 * k) % 11)];
