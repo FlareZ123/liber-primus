@@ -54,7 +54,7 @@ const pages = [23, 24, 25, 26].map(page => {
   const original = corpus.pages[page].indices;
   assert.equal(start, original.length);
   assert.deepEqual(original.map(v => corpus.runes[v]).join(''),
-    segments[page].replace(/[^ᚠ-ᛟ]/g, ''));
+    [...segments[page]].filter(rune => corpus.runes.includes(rune)).join(''));
   return {page, words, original};
 });
 assert.deepEqual(pages.map(x => x.original.length), [213,270,273,265]);
