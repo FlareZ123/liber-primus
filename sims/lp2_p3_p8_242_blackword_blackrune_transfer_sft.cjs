@@ -131,6 +131,61 @@ const originalP9 = gp.pages.slice(9, 15).flatMap((p) => p.indices);
 const untouchedP13 = gp.pages.slice(13, 15).flatMap((p) => p.indices);
 const native = gp.pages[57].indices;
 assert.equal(native.length, 95);
+// The printed p7 five-red-word products define the existing exact primitive
+// GF(3)^5 LFSR. Original 242 intra-page black runes let us use only the
+// nonzero 242-state orbit: the p8->p9 carry stays outside this register.
+const p7red = gp.pages[7].indices.slice(-14);
+const p7RedWords = [p7red.slice(0, 2), p7red.slice(2, 6),
+  p7red.slice(6, 9), p7red.slice(9, 11), p7red.slice(11, 14)];
+const gf3 = p7RedWords.map((w) => mod(w.reduce((v, x) => v * x, 1)) % 3);
+assert.deepEqual(gf3, [2, 2, 2, 0, 2]);
+let state = gf3.slice();
+const nonzeroStateAddress = [];
+for (let i = 0; i < 242; i++) {
+  const address = state.reduce((v, x) => 3 * v + x, 0);
+  assert(address > 0 && address < 243);
+  nonzeroStateAddress.push(address - 1);
+  state = [...state.slice(1), gf3.reduce((v, x, j) => v + x * state[j], 0) % 3];
+}
+assert.deepEqual(state, gf3);
+assert.equal(new Set(nonzeroStateAddress).size, 242);
+assert.deepEqual(nonzeroStateAddress.slice(0, 5), [235, 222, 183, 66, 202]);
+// Two native interpretations of which 242 source-ordered register is
+// serialized in GF(3) state order. Use original GP native checksum and heldout.
+const gf3Results = [];
+for (const [kind, summary] of [
+  ['index', wordSums],
+  ['prime', source.map((w) => mod(w.reduce((v, x) => v + gp.prime[x], 0)))],
+]) {
+  for (const direction of ['readTableState', 'readWordsState']) {
+    const left = direction === 'readWordsState'
+      ? nonzeroStateAddress.map((j) => summary[j]) : summary;
+    const right = direction === 'readTableState'
+      ? nonzeroStateAddress.map((j) => recipient[j]) : recipient;
+    const matches = left.reduce((v, x, j) => v + Number(x === right[j]), 0);
+    const key = right.map((v, j) => mod(v - left[j]));
+    const originalP9Decoded = originalP9.slice(5, 305)
+      .map((v, j) => mod(v - key[j % 242]));
+    const originalP13Decoded = untouchedP13.slice(0, 200)
+      .map((v, j) => mod(v - key[j % 242]));
+    assert.deepEqual(originalP9Decoded.map((v, j) => mod(v + key[j % 242])),
+      originalP9.slice(5, 305));
+    assert.deepEqual(originalP13Decoded.map((v, j) => mod(v + key[j % 242])),
+      untouchedP13.slice(0, 200));
+    const solved = Array.from({ length: 300 }, (_, i) => native[i % native.length]);
+    const planted = solved.map((v, j) => mod(v + key[j % 242]));
+    assert.deepEqual(planted.map((v, j) => mod(v - key[j % 242])), solved);
+    const row = { kind, direction, matches, p9: ioc(originalP9Decoded),
+      p13: ioc(originalP13Decoded) };
+    gf3Results.push(row);
+    console.log('GF3 nonzero 242 register: ' + JSON.stringify(row));
+  }
+}
+assert.deepEqual(gf3Results.map((x) => x.matches), [9, 9, 6, 12]);
+assert.deepEqual(gf3Results.map((x) => +x.p9.toFixed(12)),
+  [0.033065774805, 0.035875139353, 0.033400222965, 0.03723522854]);
+assert.deepEqual(gf3Results.map((x) => +x.p13.toFixed(12)),
+  [0.036381909548, 0.034824120603, 0.034271356784, 0.03351758794]);
 const outputs = [];
 for (const [kind, summary] of [
   ['GP-index word sum', wordSums],
@@ -159,3 +214,4 @@ console.log('PASS: 3 repeated whole-word pairs each contradict fixed word-code, 
 console.log('PASS: secret five-phase chosen-glyph maps 49/122 inconsistent; page-private five-phase maps 18/205 inconsistent');
 console.log('PASS: source-red-aware checksum match 6/242; 242-state BASE29 word labels have 150/149 distinct values');
 console.log('PASS: source-motivated checksum-pad reuse decrypts zero sustained original plaintext but both genuine-GP plants and original forward replay recover exactly');
+console.log('PASS: original p7 GF3 nonzero-state address permutation predicts zero sustained p9 or p13 plaintext under either rigid register order');

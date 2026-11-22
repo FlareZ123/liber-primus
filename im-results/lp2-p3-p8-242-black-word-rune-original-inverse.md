@@ -38,6 +38,23 @@ There is an unusual route in which the apparently random original 242-rune diffe
 
 All four original outputs are ciphertext-like, around the GP29 uniform baseline 1/29, and contain no coherent sustained GP29 prose. This rejects only the **explicit repeated 242-state additive pad with either source-word checksum**, not an evolving cipher or the larger original 242-state clue. Merely reencrypting random-looking plaintext under the recovered candidate pad proves nothing about author intent.
 
+## Source-selected 242-state GF(3) address order, without arbitrary zero insertion
+
+The original p7 red five-word GP29-index products provide the previously established source-fixed GF(3) coefficients `[2,2,2,0,2]`, a primitive degree-five LFSR that visits every **242 nonzero five-trit state once**. The earlier direct p8 black243 table reading required an **unselected choice among two legitimate zero-trit splice positions** to create a 243-state de Bruijn cycle. The new page-contained ink correspondence admits a more economical original-source *rival*: read exactly **242** nonzero states using the fixed p7 red-product vector itself as seed, with **no extra zero splice**. Retain the last p8 black rune in the p8→p9 crossing word rather than silently treating it as a dictionary cell. This constructs the exact 242-address permutation (state base3 index minus one) beginning
+
+`[235,222,183,66,202,122,125,136,168,20,63,193,...]`,
+
+with all integer addresses 0–241 visited exactly once. The original material still does **not** say whether source words or target runes are serialized lexicographically by this state; we tested both natural orientations as independent source-layout rivals. For each, derive a complete 242-position GP29 additive key from one original source-word checksum exactly as before, then read 300 untouched p9 runes after the real crossing-word suffix and 200 disjoint p13 runes, with forward reencryption and solved-p57 plants:
+
+| GP29 whole-word summary | State address applied to | Exact checksums equal /242 | Original p9 IoC (300) | Original p13 IoC (200) |
+| --- | --- | ---: | ---: | ---: |
+| Index sum | p8 black rune table | 9 | 0.0330657748 | 0.0363819095 |
+| Index sum | p3–p7 black word table | 9 | 0.0358751394 | 0.0348241206 |
+| GP-prime Gematria sum | p8 black rune table | 6 | 0.0334002230 | 0.0342713568 |
+| GP-prime Gematria sum | p3–p7 black word table | 12 | 0.0372352285 | 0.0335175879 |
+
+All four source-frozen recipients remain ciphertext-like. The state cycle and its complete 242-address permutation are exact, and the carried-rune segmentation removes the need for a *chosen* de Bruijn zero insertion **in this particular model**. Neither register orientation has a first-party endorsement, and none reveals authentic plaintext. Retire these four **fixed GF3-address additive-pad** consumers; the source geometry may still inform an evolving, nonadditive mechanism.
+
 ## Practical research decision
 
 Keep the original **red13/black242 scroll words → red12/black242+carried1 p8 runes** as a physically independent, source-typed possible state-transmission interface. The next productive step would be a **first-party instruction or visibly determinative original illustration** fixing (1) how 242 complete source words encode 242 distinct states or values, (2) the 13→12 red register treatment and final carried GP rune, and (3) a *nonstationary and reversible downstream recipient*. Do not resurrect the old 20/255 sum spike as evidence of a plaintext checksum; source-color separation makes that match less compelling. Avoid inventing a secret 242-entry dictionary, cycling arbitrary permutations, or refitting a pad to p9 language.
