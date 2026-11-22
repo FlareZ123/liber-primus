@@ -55,17 +55,22 @@ for n in selected_pages:
         selected_words.extend(re.findall(r"[A-Z]+", line.upper()))
 assert len(selected_words) >= 400, "source control must be substantial"
 spoken = []
+raw_spoken = []
 missing = collections.Counter()
 for spelling in selected_words:
     variants = pronunciations.get(spelling.lower())
     if variants is None:
         missing[spelling] += 1
         continue
-    spoken.append(tuple(
-        MERGE.get(re.sub(r"[012]", "", p), re.sub(r"[012]", "", p))
-        for p in variants[0]
-    ))
+    base_phones = tuple(re.sub(r"[012]", "", p) for p in variants[0])
+    raw_spoken.append(base_phones)
+    spoken.append(tuple(MERGE.get(phone, phone) for phone in base_phones))
 assert len(spoken) >= 380
+assert len(spoken) == len(raw_spoken)
+raw_within = sum(a == b for w in raw_spoken for a, b in zip(w, w[1:]))
+raw_within_edges = sum(len(w) - 1 for w in raw_spoken)
+raw_across = sum(a[-1] == b[0] for a, b in zip(raw_spoken, raw_spoken[1:]))
+raw_equal_rate = (raw_within + raw_across) / (raw_within_edges + len(raw_spoken) - 1)
 
 flat = [token for w in spoken for token in w]
 recovered = [from_gp[to_gp[p]] for p in flat]
@@ -154,6 +159,10 @@ report = {
         "between_word_same_class": across,
         "between_word_pairs": len(spoken) - 1,
         "all_same_class_rate": (within + across) / (within_edges + len(spoken) - 1),
+        "raw_39phone_equal_within_words": raw_within,
+        "raw_39phone_equal_between_words": raw_across,
+        "raw_39phone_pairs": raw_within_edges + len(raw_spoken) - 1,
+        "raw_39phone_equal_rate": raw_equal_rate,
         "unigram_ioc": sample_ioc,
         "largest_one_symbol_count": top5[0],
         "top_five_symbols": top5,
