@@ -15,3 +15,5 @@ jobs:
         run: |
           node --check sims/lp2_p54_red9_p50_n9_reverse_chapter_sft.cjs
           node sims/lp2_p54_red9_p50_n9_reverse_chapter_sft.cjs
+          node --check sims/lp2_p54_red9_reverse_n9_allsecret_holdout_sft.cjs
+          node sims/lp2_p54_red9_reverse_n9_allsecret_holdout_sft.cjs
