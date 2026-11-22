@@ -243,3 +243,33 @@ const orbitPlant = p57.indices.map((value, i) => (value + orbitClearKey[i]) % 29
 assert.deepEqual(orbitPlant.map((value, i) =>
   (value - orbitClearKey[i] + 29) % 29), p57.indices);
 console.log('PASS: source-derived DH group orbit is invertible but does not recover native GP unknown-page prose.');
+
+
+// Independent historical 2014 Stage11 HTML selects the two literal values
+// title133 and div-id331, which are already the last two body GP-prime sums
+// reduced by PARABLE title's original 449. This supplies a second, more
+// artifact-typed DH grammar: p=449, g=HTML title133, B=HTML id331,
+// A=the remaining p57 body residue361. Confirm every GP/source operand.
+const archivedStage11HTML = fs.readFileSync(path.resolve(__dirname, '..',
+  'resources', 'external', 'cicada2014-stage11-onion7-original-index.html'), 'utf8');
+assert.ok(archivedStage11HTML.includes('<title>133</title>'));
+assert.ok(archivedStage11HTML.includes('<div id="331">'));
+const residuePacket = sums.slice(1).map((n) => n % B);
+assert.deepEqual(residuePacket, [361,133,331]);
+const p2 = B, g2 = residuePacket[1], a2 = residuePacket[0], b2 = residuePacket[2];
+const logA2 = discreteLog(p2, g2, a2);
+const logB2 = discreteLog(p2, g2, b2);
+assert.deepEqual(logA2, {log:330,order:448});
+assert.deepEqual(logB2, {log:208,order:448});
+const shared2a = powMod(b2, logA2.log, p2);
+const shared2b = powMod(a2, logB2.log, p2);
+assert.equal(shared2a, 273);
+assert.equal(shared2b, 273);
+assert.equal(page(7).indices.length, 208);
+assert.deepEqual(corpus.pages.filter((entry) => entry.runic_count === 208)
+  .map((entry) => entry.page), [7]);
+console.log('SECOND SOURCE DH: original2014 HTML title/base=' + g2 +
+  ', id/public=' + b2 + ', p57 original heading modulus=' + p2 +
+  ', other share=' + a2 + ', logs=' + logA2.log + '/' + logB2.log +
+  ', shared=' + shared2a + ', unique physical p7 rune length=' + page(7).indices.length +
+  '. Candidate navigation, NO recovered unknown plaintext.');
