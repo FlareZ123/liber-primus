@@ -85,6 +85,28 @@ Three independently pre-existing **whole original rune chapters** happen to have
 
 The complete GP trace outputs remain random-like and do not resemble a real original manuscript paragraph; the complete two-symbol sidecars are also random-like. This is an important direct rejection of the simple interpretation `original seven rune coefficients → five plaintext trace runes`. No cryptanalysis is rescued by discarding the sidecar. The test also encodes the native solved p57 **95-rune** passage into precisely **133 source-format runes** with 38 sidecar slots set to zero and decodes it **95/95**, proving the exact proposed operator can really transport native prose when constructed for that purpose. Passing a planted transport is not evidence that Cicada used it.
 
+## A source-equivariant physical 7-to-5 intertwiner, with a rank obstruction for direct use
+
+The preceding five-factor identity can be lifted from the *polynomial coefficient carrier* to the physical coordinates of the printed squares. This yields a new bounded test that actually uses **both** source matrices rather than evaluating an arbitrary seven-symbol input polynomial.
+
+First, the original seven-square `M` has GF29 linear eigenvalues only `8,24,18`; its other two factors are irreducible quadratics with traces `5,21`. The original five-square `B` has **distinct** linear eigenvalues `5,8,24,21,18`. Therefore any ordinary five-by-seven GF29 linear intertwiner `X M = B X` has **rank at most three**: two of B's eigenvalues, `5` and `21`, are absent from M's actual spectrum. **A raw one-step 7×7-to-5×5 matrix-equivariant compression is mathematically impossible at full rank.** This is a specific limitation independent of ciphertext.
+
+But the exact source-derived `N=T(M)` from the preceding section **does** have all five eigenvalues, with multiplicities `2,1,1,2,1`. Construct M's canonical seven-dimensional GF29 change of basis using its first RREF free-column vector for each irreducible factor, plus its image under M for each quadratic factor. Construct B's five normalized eigenvectors in the independently already printed solved-LP1 CHANGE word order. Taking genuine quadratic extension-field traces on the two 2D factor spaces while leaving all three linear coordinates intact, and then mapping through B's eigenvector basis, gives this fully source-derived **physical five-by-seven** bridge
+
+```text
+L =   22 18 28 21 20 18 19
+      10  7  1  2 23  9  7
+      19 27 10 25 11 23  2
+      14 12 27 19 20 14 11
+       2  3  1  0 22  3 28
+```
+
+with exact `L T(M) = B L` and `rank(L)=5`. Its missing two extension-field coordinates form a two-rune sidecar; a single 7×7 invertible matrix `D` emits both the five eigenbasis coordinates and those two sidecar runes. The source-derived **5-rune physical candidate** is `L·C_7`, and the full invertible original carrier is reconstructed with `D^{-1}`, including both sidecars. This is a genuine exact original-object relationship; it does not require a plaintext guess. Its deterministic canonical basis convention remains **researcher-selected**, because the original square provides no RREF instruction.
+
+The receiver was frozen before reading outputs. It was applied without discarded source runes to the same three complete **original LP2 seven-rune-aligned** chapters. Their five-channel output IoCs are respectively **0.0343204352** for p8–14 (1,235 output runes), **0.0344523214** for p33–39 (1,200 runes), and **0.0329182233** for p54–55 (220 runes): no GP prose. A different, striking but *not author-selected*, exact source-visible possibility is physical p55 with its **76 rune glyphs plus its terminal red 13-dot mark interpreted as one GF29 symbol 13**, giving 77 inputs = eleven seven-symbol blocks → precisely **55 outputs**, equal to p55's physical page number. The direct output is still nonprose, with IoC **0.0343434343**. This one-mark-as-one-rune serialization is conjectural and must not be promoted solely because its lengths align. All three untouched original chapter receivers are losslessly round-tripped including sidecars. A genuine solved-p57 95-rune native source planted into 133 seven-channel source symbols yields **exact 95/95** output with zero sidecar.
+
+**Decision:** the exact `L T(M)=BL` intertwiner is an independently specified, full-rank **physical-source realization** of the Frobenius trace bridge and a stronger mechanistic reason to consider 7→5 packets than raw dimension arithmetic. Nevertheless, neither native GP plaintext nor an actual source instruction selecting it has appeared. Direct original seven-square reduction is rank-obstructed; the trace-polynomial quotient is technically valid but failed its complete original receivers. [Read-only full source SFT](../sims/lp2_2014_sevenfive_physical_intertwiner_original_sft.cjs) · [Windows 11 / Node22 full PASS 45073106675](https://github.com/FlareZ123/liber-primus/actions/runs/45073106675).
+
 ## Decision and next discriminating evidence
 
 The 2014 historical **two different 1033-sum magic squares** share the five-letter CHANGE value set in a mathematically specific way that does not depend on LP2 unknown ciphertext. This gives a genuine new exact source relation and a completely reproducible possible reversible operation. Yet the obvious direct original LP2 consumers fail, and source documents do not command factoring the seven-square, taking finite-field traces, reading CHANGE, preserving residual channels, or choosing a particular receiver.
