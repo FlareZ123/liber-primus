@@ -189,6 +189,64 @@ for (const iteration of [1, 2, 3]) {
     }))
   });
 }
+/*
+ * More permissive direct phi(prime) model: a single *unknown* starting prime
+ * ordinal 0..49,999, with the original p0..p3 pages continuously keyed.
+ * All F masks are exact, independently of natural-language scores. This is a
+ * bounded original-prefix test, not an author-selected start/key discovery.
+ */
+const prefix = corpus.pages.slice(0, 4).flatMap(page => page.indices);
+assert.equal(prefix.length, 946);
+const PHASE_LIMIT = 50000;
+const primeResidues = firstPrimes(PHASE_LIMIT + prefix.length)
+  .map(p => (p - 1) % 29);
+const phaseSurvivors = {p0: 0, p0p1: 0, p0p1p2: 0, p0p1p2p3: 0};
+let maximum = 0, bestPhase = -1;
+for (let phase = 0; phase < PHASE_LIMIT; phase++) {
+  // skipped = number of literal F bypasses so far. At symbol i, the
+  // consumed-key pointer is phase + i - skipped.
+  let offsets = [0], legal = 0;
+  for (let i = 0; i < prefix.length; i++) {
+    const current = prefix[i], next = [];
+    const seen = new Uint8Array(i + 2);
+    for (const skipped of offsets) {
+      const keyAt = phase + i - skipped;
+      const p = mod(current - primeResidues[keyAt]);
+      if (p !== 0 && !seen[skipped]) {
+        seen[skipped] = 1;
+        next.push(skipped);
+      }
+      if (current === 0 && !seen[skipped + 1]) {
+        seen[skipped + 1] = 1;
+        next.push(skipped + 1);
+      }
+    }
+    if (!next.length) break;
+    offsets = next;
+    legal = i + 1;
+  }
+  if (legal >= 262) phaseSurvivors.p0++;
+  if (legal >= 528) phaseSurvivors.p0p1++;
+  if (legal >= 729) phaseSurvivors.p0p1p2++;
+  if (legal >= 946) phaseSurvivors.p0p1p2p3++;
+  if (legal > maximum) { maximum = legal; bestPhase = phase; }
+}
+assert.deepEqual(phaseSurvivors, {
+  p0: 2738, p0p1: 210, p0p1p2: 1, p0p1p2p3: 0
+});
+assert.equal(maximum, 865);
+assert.equal(bestPhase, 11840);
+const unknownStartingPrime = {
+  originalContiguousPrefixPages: [0, 1, 2, 3],
+  runeCounts: [262, 266, 201, 217],
+  phaseRange: [0, PHASE_LIMIT - 1],
+  allCipherFChoicesRetained: true,
+  completePrefixSurvivors: phaseSurvivors,
+  maximumMathematicallyLegalPrefix: maximum,
+  winningPhase: bestPhase,
+  conclusion: 'No phase among 50,000 consecutive prime starts can decipher all first four original pages under the unmodified authentic p56 operator.'
+};
+
 console.log(JSON.stringify({
   claim: 'Page-start p=2 direct GP29 transparent-F prime-totient iterates do NOT decipher all original LP2 pages.',
   source: 'resources/liber-primus/lp2-corpus.json',
@@ -197,5 +255,6 @@ console.log(JSON.stringify({
   solvedP56LiteralFOffset: 56,
   solvedP56PrimeKeysConsumed: 84,
   iterationExperiments: outcomes,
+  unknownStartingPrime,
   boundary: 'No result rules out other prime clocks, preprocessing, key sources or ciphertext-to-plaintext mechanisms.'
 }, null, 2));
