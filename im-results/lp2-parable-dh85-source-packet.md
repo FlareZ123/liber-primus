@@ -53,6 +53,24 @@ The authentic DH group also fixes a natural *optional* moving-state candidate wi
 
 On untouched original p55 76-rune ciphertext, subtract/add signs yield GP29 coincidence indices **0.030877 / 0.036491**, without coherent native-GP prose. Across all 12,956 original unknown runes with one source-key clock, the corresponding indices are **0.034473 / 0.034470**, essentially the original ciphertext0.034478. A source-native 95/95 GP29 PARABLE encrypt-then-invert positive establishes that the operation genuinely reverses its own ciphertext. Hence the simple group-orbit direct-key route fails, without narrowing richer DH-based cryptosystems or the source navigation reading of FIND.
 
+## Independent 2014 seventh-onion HTML selects a second complete DH packet: modulus449 and private208
+
+The preserved **original 2014 Stage11 seventh-onion HTML** (not a modern retelling) literally begins `<title>133</title>` and `<div id="331">` ([archival first-party HTML](../resources/external/cicada2014-stage11-onion7-original-index.html)). This matters because p57 PARABLE's first title section has native GP-prime sum **449**, and the following *three body clauses in their original printed order* reduce exactly modulo449:
+
+`[1259 mod449, 1031 mod449, 1229 mod449] = [361, 133, 331].`
+
+The **last two body residues 133 and331 are exactly the two historically printed HTML operands**, supplying an independent external reason to designate **g=133** and published **B=331**, rather than selecting them by a language fit. The remaining first body residue is **A=361**, and the original heading sum **p=449** is a genuine prime. This gives an alternate complete, conventional DH tuple `(p,g,A,B)=(449,133,361,331)` to the earlier source-typed `(1259,1031,1229,449)` construction.
+
+A full exact discrete logarithm, over 133's **complete order448** modulo449, gives
+
+`133^330 mod449=361; 133^208 mod449=331; 331^330 mod449=361^208 mod449=273.`
+
+The corresponding private exponents are **330** and **208**, and shared secret is **273**. Independently of all unknown-page cipher content, **physical unsolved p7 has exactly 208 original GP29 runes and is the *only* physical page with 208 runes in the entire 58-page corpus**. That page bears one of the repeated five-dot art motifs also appearing on p23 and solved p56. A human solve-path candidate is therefore: read the clear PARABLE→compute source prime sums→use its title449 as modulus→notice the 2014 source HTML's 133/331→solve the original DH logarithm→receive the unique physical p7 page length208 as an address or corroboration. The p7 page lookup is *not* a decoder; the use of DH from this cross-source numeric pattern remains a retrospective conjecture, with no author-written instructions to combine the two documents.
+
+This second candidate's historical HTML operand match is more independently source-typed than many free DH pairings, but there are **two distinct DH reconstructions** and neither is established as intended. In particular, the earlier private85→p56 and K352→FIND are still true source mathematical correspondences; they are not superseded. No unknown plaintext may be inferred by treating either key as authentic without an independent receiver.
+
+For one affordable direct original-cipher receiver, the shared second packet's K273 seeds the actual multiplicative group map `x0=273, x[n+1]=133×x[n] mod449`; emit `k[n]=x[n] mod29` and test `P=C±k mod29` on native full **p7 208** runes and all **12,956** original unknown runes, without word fitting or added phases. The original p7 outputs are GP29 IoC **0.033956/0.034281**, while entire-book outputs are **0.034504/0.034485** versus unchanged **0.034478**. Both signs are nonprose. A **95/95 original clear p57** GP29 encrypt-and-invert positive passes this exact group orbit. Thus this single direct field-orbit key use fails; finding a genuine cryptographic consumer still requires an authored output rule.
+
 ## First original p55 decryption consumer: DH352 as prime-start selector
 
 A minimal known-cipher consumer would use DH shared **352** to select the first key prime in the authenticated p56 `prime−1 mod29` transparent-F cipher on the preceding original 76-rune **p55**. Three explicit source-literal numeral readings are testable: zero-based 352nd-index ordinary prime (start index352), one-based 352nd prime (index351), or the smallest prime at least352 (353 at index70). The first p55 source rune completes a previous-page word, so test both physical local0 and its first complete-word local1; the historical subtraction is primary, with the opposite sign as a fixed control. Exhaustively enumerate all eight genuine source-ciphertext F bypass masks at offsets **15,25,41** (or 14,24,40 with the carry removed); reject any inverse producing a forbidden plaintext F from a consuming step.
