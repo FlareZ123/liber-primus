@@ -125,6 +125,24 @@ def main() -> None:
     for page in (0, 7, 27, 54):
         assert {r["class"] for r in results if r["page"] == page} == {15, 31}
 
+    # The other previously unmapped original-image class0 is merely a
+    # duplicate of the canonical GP I (ᛁ) class11 at source raster scale.
+    # Original p0/p7/p17/p54 9x114 text glyphs are entirely pixel-identical.
+    i_sites = [
+        (0, 0, (1320, 1426, 9, 114)),
+        (7, 0, (1189, 897, 9, 114)),
+        (7, 11, (1108, 1274, 9, 114)),
+        (17, 11, (687, 861, 9, 114)),
+        (54, 0, (1118, 917, 9, 114)),
+    ]
+    i_masks = []
+    for page, image_class, (x, y, w, h) in i_sites:
+        exact = (images[page][y:y+h, x:x+w] < 128).astype(np.uint8)
+        assert exact.shape == (114, 9)
+        assert int(exact.sum()) == 1026, (page, image_class)
+        i_masks.append(exact)
+    assert all(np.array_equal(i_masks[0], m) for m in i_masks)
+
     # An actual added isolated key-bit stem has a readily measurable
     # signature; this artificial control is not source data.
     planted = form15.copy()
@@ -136,6 +154,7 @@ def main() -> None:
     print(json.dumps({
         "training_page": 17, "training_form_IoU": prototype_iou,
         "both_training_forms_same_strokes_to_one_pixel": True,
+        "canonical_I_and_extra_class0_identical_source_pixels": True,
         "solved_R_form_counts": {
             str(p): {str(c): sum(r["page"] == p and r["class"] == c
                                 for r in results) for c in (15, 31)}
