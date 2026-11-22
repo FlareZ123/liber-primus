@@ -1,0 +1,18 @@
+name: Agent45 cubic ciphertext feedback original SFT
+on:
+  push:
+    paths:
+      - 'sims/lp2_cube_feedback_wordshift_allsecret_sft.cjs'
+      - '.github/workflows/agent45-cube-wordshift-original.yml'
+  workflow_dispatch:
+jobs:
+  original-and-native-control:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source and positive SFT
+        run: node sims/lp2_cube_feedback_wordshift_allsecret_sft.cjs
