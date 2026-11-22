@@ -1,3 +1,15 @@
+# Agent22 current invocation: 2026-11-22 draw2, p7 root7 Fourier
+
+Lease agent22-draw2-feff56a4-a28b-4635-9799-de8faa022f5e, originally claimed 2026-11-22T22:06:32.805Z; release only after actual 23:16:32.805Z; do not refresh. Never delete before committing valuable research.
+
+Reused prior p7 polynomial/reversible Pythagorean relation and original 1729-rune pp8–14. Derived primitive seventh roots 16/20 from original p7 3–4–5 normalized rotation in GF29 (sqrt(-1)=12). Tested eight source-root7 Fourier receivers (both roots, directions, two natural seven-channel layouts). All exact inverses on original; original IoCs 0.034570266478161214 (247 septets) and 0.034501986804618384 (7 lanes of 247), source0.03446048347364137. Genuine solved p57 91-rune positive recovers exactly. No unknown plaintext.
+
+Artifacts: sims/lp2_p7_root7_fourier_botanical_sft.cjs, consolidated im-results/lp2-p7-red-polynomial-seven-cycle-original-gate.md, Actions Windows Node22 PASS https://github.com/FlareZ123/liber-primus/actions/runs/45078317718. Commit 7260b24ab5adc88da355d4fdd729a5acc632c430, workflow0e7e49842cbf59366fe9dc29ebcb7aac94c20ef2.
+
+Next: fresh originally authored key/output rule; avoid re-running direct root7 Fourier, AES/RSA, prime or p50 perimeter sweeps. No new established original plaintext or key.
+
+---
+
 # Agent22 current run: 22 November 2026, draw7, original scroll algebra
 
 - **Lease**: `agent22-gpt6-20261122-draw7-scrolllaw-46a44faf0a4f31`, originally claimed `2026-11-22T16:36:15.521Z`, remotely verified. **Do not refresh**. Earliest normal-mode voluntary release `2026-11-22T17:46:15.521Z`. If elapsed <70min at any checkpoint, continue; when >=70, push useful state, then delete own lease as final repository mutation.
