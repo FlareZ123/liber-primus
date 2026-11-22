@@ -20,6 +20,7 @@ SOURCES = {
     24: ("41.jpg", "62148ef272d17bcedf5df30f6cc9e52df127113c18c1cf57ea92c75feedfce80"),
     25: ("42.jpg", "a7d6e597debff4f7c5b3516e1b02ca2e4fa5b37d972f567264ed2ec845013cff"),
     26: ("43.jpg", "ed88f5fcdca3d1f846538caa8be979aa28cde969eb99c9464d60daa26c1f9af7"),
+    27: ("44.jpg", "c92c972f41dd038e136d8589aa7b113e268c36f2860c279cce712cd037cb3a8e"),
 }
 # Four independently visible wings/bodies, no letter ink. Coordinates x0,x1,y0,y1.
 REGIONS = {
@@ -53,6 +54,7 @@ def components_above_100(original: np.ndarray, candidate: np.ndarray) -> tuple[i
 def main() -> None:
     images = source_images()
     output = {}
+    wrong_art = {}
     for name, (x0, x1, y0, y1) in REGIONS.items():
         # The original p25 printing is shifted by exactly one native pixel
         # in both axes. Align physical pixels without interpolation.
@@ -64,6 +66,15 @@ def main() -> None:
         changed, largest = components_above_100(outer24, center25)
         assert delta.mean() < 1.2, (name, float(delta.mean()))
         assert largest <= 22, (name, largest)
+        changed_wrong, largest_wrong = components_above_100(
+            images[24][y0:y1, x0:x1], images[27][y0:y1, x0:x1]
+        )
+        assert changed_wrong >= 8000 and largest_wrong >= 7000
+        wrong_art[name] = {
+            "wrong_page": 27,
+            "changed_highcontrast_pixels": changed_wrong,
+            "largest_component": largest_wrong,
+        }
         output[name] = {
             "p24_p26_identical": True,
             "p24_p25_registered_mean_abs": round(float(delta.mean()), 6),
@@ -84,6 +95,7 @@ def main() -> None:
     print(json.dumps({
         "original_images": list(SOURCES.values()),
         "art_regions": output,
+        "wrong_art_control_p27": wrong_art,
         "positive_control": {
             "patch": "20x20 solid high-contrast graphic edit",
             "changed_pixels": planted_changed,
