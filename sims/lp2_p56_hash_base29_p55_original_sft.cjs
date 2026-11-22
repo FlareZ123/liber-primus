@@ -28,11 +28,54 @@ const page = (number) => {
 const p54 = page(54);
 const p55 = page(55);
 const p56 = page(56);
-const native = page(57).slice(0, 76);
+const clearP57 = page(57).slice(0, 76);
+
+// Solve-native p56 plaintext uses the original printed GP-specific spelling.
+// Independent authenticity check: the real prime-totient/F law reproduces
+// the entire original p56 ciphertext from these 85 plaintext GP indices.
+const gpWord = (word) => {
+  const tokens = corpus.translit.map((s, i) => ({ s, i }))
+    .sort((a, b) => b.s.length - a.s.length);
+  const normalized = word.toUpperCase().replace(/QU/g, 'CW')
+    .replace(/V/g, 'U').replace(/K/g, 'C').replace(/Z/g, 'S')
+    .replace(/ING/g, 'NG').replace(/IO/g, 'IA');
+  const out = [];
+  for (let i = 0; i < normalized.length;) {
+    const part = tokens.find((t) => normalized.startsWith(t.s, i));
+    assert.ok(part, 'Unencodable solved-p56 plaintext token');
+    out.push(part.i);
+    i += part.s.length;
+  }
+  return out;
+};
+const p56Known = ('AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE ' +
+  'THAT HASHES TO IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE')
+  .split(' ').flatMap(gpWord);
+const native = p56Known.slice(0, 76);
+assert.equal(p56Known.length, 85);
+
+const primeTotients = (n) => {
+  const result = [];
+  for (let x = 2; result.length < n; x++) {
+    let prime = true;
+    for (let k = 2; k * k <= x; k++) {
+      if (x % k === 0) { prime = false; break; }
+    }
+    if (prime) result.push((x - 1) % 29);
+  }
+  return result;
+};
+const knownPrimeKey = primeTotients(85);
+let genuineClock = 0;
+const genuineP56 = p56Known.map((plain) => plain === 0
+  ? 0 : (plain + knownPrimeKey[genuineClock++]) % 29);
+assert.deepEqual(genuineP56, p56, 'Authentic p56 prime-totient known-plaintext positive');
+
 assert.equal(p54.length, 232);
 assert.equal(p55.length, 76);
 assert.equal(p56.length, 85);
 assert.equal(native.length, 76);
+assert.equal(clearP57.length, 76);
 
 const p56Block = /^### 56\s*$([\s\S]*?)(?=^### 57\s*$)/m.exec(solved);
 assert.ok(p56Block, 'Missing solved-p56 source block');
@@ -117,7 +160,7 @@ const romanizeWords = (values) => {
   }).join(' ');
 };
 
-// Genuine source-native GP29 positive and exact replay, with transparent-F events.
+// Genuine authenticated p56 GP plaintext positive and exact replay, with transparent-F events.
 const synthetic = encrypt(native, true);
 const nativeInverse = invert(synthetic.ciphertext, true);
 assert.equal(nativeInverse.firstImpossible, null, 'Synthetic inverse unexpectedly impossible');
@@ -165,6 +208,8 @@ console.log(JSON.stringify({
   mostSignificantFirstBase29KeyDigits: key.length,
   first15KeyDigits: key.slice(0, 15),
   nativePositive: {
+    source: '85-source-rune authentic p56 decrypted sentence, first 76 as prospective p55-shaped plant',
+    originalP56PrimeTotientReproduced: true,
     symbols: native.length,
     transparentFSyntheticClock: synthetic.clock,
     inversePaths: nativeInverse.paths.length,
