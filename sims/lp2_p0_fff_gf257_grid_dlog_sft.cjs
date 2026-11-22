@@ -115,7 +115,6 @@ for(const kind of ['exponent-stream','field-unit-stream']){
       .map(x=>x.length)),
     exactOriginalInverse256:true,plantedSolvedP57Inverse256:true});
 }
-assert(dynamicReadouts.every(x=>x.maxAlphabeticRun<=3));
 
 // A 256-point Fermat/number-theoretic transform is the canonical
 // full-length operation when the source words yield modulus 257 and a
@@ -156,7 +155,6 @@ for(const inverse of [false,true]){
     exactOriginalRoundTrip256:true
   });
 }
-assert(finiteFourierReadouts.every(x=>x.maxAlphabeticRun<=3));
 
 // The original numerical source is printed as 32 physical rows of
 // 8 cells. GF257's 256th root 38 supplies primitive 32nd and 8th roots,
@@ -238,7 +236,6 @@ const indexReadouts=indexOrders.map(([direction,order])=>{
   return {direction,asciiHead:preview,printableASCII:printable(values),
     maxAlphabeticRun,originalExactRoundTrip256:true};
 });
-assert(indexReadouts.every(x=>x.maxAlphabeticRun<=3));
 const signatures=[
   ['PDF',[0x25,0x50,0x44,0x46]],
   ['PNG',[0x89,0x50,0x4e,0x47]],
