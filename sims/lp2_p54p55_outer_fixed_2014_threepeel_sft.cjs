@@ -122,6 +122,76 @@ const candidateIoC = (() => {
   return counts.reduce((sum, n) => sum + n * (n - 1), 0) / (86 * 85);
 })();
 
+
+// A second exact, all-secret original-word obstruction: the 13th whole
+// terminal word is the seven-GP-rune pattern A B C D D A B. Any arbitrary
+// per-word GP29 monoalphabetic bijection preserves this equality pattern.
+// Test the existing pinned native-English TextBlob lexicon, allowing all
+// legal GP multi-rune segmentations and both historical letter folds.
+const anomalousWord = cipher.slice(65, 72);
+assert.deepEqual(anomalousWord, [18, 15, 12, 2, 2, 18, 15]);
+assert.equal(gp(anomalousWord), 'ESEOTHTHES');
+/** @param {number[]} values @returns {number[]} */
+function ranks(values) {
+  const seen = new Map();
+  return values.map((value) => {
+    if (!seen.has(value)) seen.set(value, seen.size);
+    return seen.get(value);
+  });
+}
+const originalEqualityPattern = ranks(anomalousWord);
+assert.deepEqual(originalEqualityPattern, [0, 1, 2, 3, 3, 0, 1]);
+const compounds = ['ING', 'TH', 'NG', 'AE', 'OE', 'EA', 'EO', 'IA', 'IO'];
+/** @param {string} spelling @param {number[]} wanted @param {boolean} folded @returns {boolean} */
+function canMatchWord(spelling, wanted, folded) {
+  const text = folded ? spelling.replace(/QU/g, 'CW').replace(/V/g, 'U')
+    .replace(/K/g, 'C').replace(/Z/g, 'S') : spelling;
+  const cache = new Map();
+  /**
+   * @param {number} position
+   * @param {number} count
+   * @param {string[]} types
+   * @returns {boolean}
+   */
+  function visit(position, count, types) {
+    if (count > wanted.length || count + text.length - position < wanted.length) return false;
+    if (count === wanted.length) return position === text.length;
+    if (position === text.length) return false;
+    const cacheKey = position + ':' + count + ':' + types.join(',');
+    if (cache.has(cacheKey)) return cache.get(cacheKey);
+    const options = [text[position], ...compounds.filter((v) => text.startsWith(v, position))];
+    for (const token of options) {
+      const oldRank = types.indexOf(token);
+      const rank = oldRank < 0 ? types.length : oldRank;
+      if (rank !== wanted[count]) continue;
+      const newTypes = oldRank < 0 ? [...types, token] : types;
+      if (visit(position + token.length, count + 1, newTypes)) {
+        cache.set(cacheKey, true);
+        return true;
+      }
+    }
+    cache.set(cacheKey, false);
+    return false;
+  }
+  return visit(0, 0, []);
+}
+const textblob = fs.readFileSync(
+  path.join(__dirname, '../resources/control/english_wordfreq_textblob.txt'), 'utf8');
+const lexicon = [...new Set(textblob.split(/\r?\n/).filter((line) =>
+  line && !line.startsWith(';')).map((line) => line.split(/\s+/)[0].toUpperCase())
+  .filter((word) => /^[A-Z]+$/.test(word)))];
+assert.equal(lexicon.length, 29157);
+const plausible = lexicon.filter((word) => word.length >= 7 && word.length <= 28);
+const allSecretsHits = plausible.filter((word) =>
+  canMatchWord(word, originalEqualityPattern, false) ||
+  canMatchWord(word, originalEqualityPattern, true));
+assert.equal(allSecretsHits.length, 0);
+// The solver is capable of accepting a real English word pattern: CRITTER
+// contains seven single-GP symbols with two consecutive T glyphs.
+const critterPattern = [0, 1, 2, 3, 3, 4, 1];
+assert.ok(canMatchWord('CRITTER', critterPattern, false));
+assert.ok(lexicon.includes('CRITTER'));
+
 console.log(JSON.stringify({
   source: 'LP1 p10 THREE BEHAVIORS; LP2 p57 SHED; original p49-p51 32x8 table; p54-last10+p55',
   originalRunes: cipher.length,
@@ -137,6 +207,11 @@ console.log(JSON.stringify({
   boundaryMismatch: 'p55 76-page tape is not the cross-page 86-complete-word tape',
   coreOnlyImmutableWords: unchangedTwoRuneWords.length,
   originalForwardReplay: '86/86',
+  allSecretWord13Pattern: {sourceWord: 'ESEOTHTHES', sourceOffsets: [65, 71],
+    equalityPattern: originalEqualityPattern,
+    textblobEnglishWords: lexicon.length,
+    possibleEnglishMatchesUnderAnyPerWordGP29Bijection: allSecretsHits.length,
+    authenticEnglishPositive: 'CRITTER'},
   threeBehaviorsCandidate: {shellKeyRunes: shellKey.length, coreKeyPeriod: coreKey.length,
     provisionalDirectAdditive: true, plainWords: fullCandidateWords,
     decodedIoC: candidateIoC, originalForwardReplay: '86/86',
