@@ -229,6 +229,12 @@ function inverse29(x) {
   for (let j = 1; j < 29; j++) if (mod29(x * j) === 1) return j;
   throw new Error('Source cycle unexpectedly contains zero');
 }
+const chapterIoC = tape => {
+  const frequency = Array(29).fill(0);
+  tape.forEach(x => frequency[x]++);
+  return frequency.reduce((sum, n) => sum + n * (n - 1), 0) /
+    (tape.length * (tape.length - 1));
+};
 const chapterWordModels = [];
 for (const seed of [titleGlyphI, titleGlyphC]) {
   const sourceCycle = Array.from({length:7},(_,i)=>iterate(f29,seed,i));
@@ -249,7 +255,7 @@ for (const seed of [titleGlyphI, titleGlyphC]) {
         decoded.push(digit);
       }
     }
-    chapterWordModels.push({seed,op,sign,wordClock,ioc:freq(decoded)});
+    chapterWordModels.push({seed,op,sign,wordClock,ioc:chapterIoC(decoded)});
   }
 }
 assert.equal(chapterWordModels.length,16);
