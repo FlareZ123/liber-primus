@@ -114,6 +114,28 @@ All four original outputs remain ciphertext-like; the first 30 canonical inverse
 
 **Decision:** the known warning-word spectral coincidence now has a direct, complete and mathematically natural *basis-change* decryptor test on its numerically associated LP2 section. The source-selected operator and five-block alignment are unverified, and the canonical eigenbasis output is not readable plaintext. Do not restart generic eigenvector normalization/order/phase sweeps absent independent authored instruction or authentic plaintext. This original-register test does not exclude a different multi-stage use of the matrix or a missing independent key.
 
+### Direct CHANGE eigenbasis on original LP2 receivers (Agent15, 22 November)
+
+The exact source spectrum \`CHANGE=[5,8,24,21,18]\` also fixes a natural **change-of-basis** experiment distinct from every direct \(B^k\) power test: compute each \(B\) eigenvector in printed CHANGE order, normalize its first nonzero coordinate to one, arrange those eigenvectors as columns \(V\), then treat consecutive GP29 ciphertext quintets as either physical vectors or eigen-coordinates. The complete source-derived basis and its inverse are
+
+\[
+V=\begin{bmatrix}
+1&1&1&1&1\\0&24&11&18&1\\0&8&0&20&1\\0&24&18&18&1\\28&1&28&1&1
+\end{bmatrix},\qquad
+V^{-1}=\begin{bmatrix}
+15&25&0&4&14\\1&5&17&5&1\\0&4&0&25&0\\8&18&6&18&8\\6&6&6&6&6
+\end{bmatrix}\pmod{29}.
+\]
+
+Both original source-complete recipients have divisible-by-five rune counts, requiring no padding, new glyphs, learned secret alphabet or guessed page transition. The canonical \(B\) eigenvalue equation is checked directly from the unchanged integer square. Whole-register original results:
+
+| Original original input | Runes | Input IoC | \(V^{-1}\) IoC | \(V\) IoC |
+| --- | ---: | ---: | ---: | ---: |
+| Physical p33–p39 complete cuneiform chapter | 1,680 | 0.03436002 | **0.03423027** | **0.03463300** |
+| Global post-6,561 LP2 bookend | 6,395 | 0.03445157 | **0.03443700** | **0.03446404** |
+
+These exact output values remain ciphertext-like and have no sustained native GP prose. All 8,075 original decoded symbols re-encrypt exactly in both directions; an authentic solved p57 95-rune GP plant reconstructs exactly. This **retires the immediate CHANGE-ordered eigenbasis decoder under these two complete registrations**. It does not disprove the source spectrum itself, or other operations requiring an author-selected state, receiver or key. The first-nonzero eigenvector normalization is a mathematical convention, not an original Cicada instruction. [Reproducer](../sims/lp2_2014_change_eigenbasis_original_sft.cjs). No unknown plaintext or LP2 key was recovered.
+
 ## 5×5 matrix consumers
 
 For both 5×5 matrices, three natural consumers were tested:
