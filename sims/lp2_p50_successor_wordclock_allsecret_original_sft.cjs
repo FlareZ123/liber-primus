@@ -96,7 +96,7 @@ function cycles(f) {
   };
 }
 
-/** @returns {{spans:object[],pages:number[],pageLocals:number[],sections:number[],sectionLocals:number[]}} */
+/** @returns {{spans:object[],pages:number[],pageLocals:number[],sections:number[],sectionLocals:number[],sectionRuneStarts:number[]}} */
 function sourceWords() {
   // Slash, '%' physical page, and whitespace do NOT break carried words.
   const source = transcription.split('%').slice(0,55).join('%');
@@ -151,7 +151,15 @@ function sourceWords() {
     }
   });
   assert.equal(sectionIds.length,spans.length);
-  return {spans,pages,pageLocals,sections:sectionIds,sectionLocals};
+  let nwords=0;
+  const sectionRuneStarts=sections.map(n=>{
+    const start=spans[nwords].start;
+    nwords+=n;
+    return start;
+  });
+  assert.deepEqual(sectionRuneStarts,[0,729,1874,3612,5506,6527,7960,9640]);
+  return {spans,pages,pageLocals,sections:sectionIds,
+    sectionLocals,sectionRuneStarts};
 }
 
 /** @param {string} sourceWord @returns {number[]|null} */
@@ -188,7 +196,7 @@ function nativeGP(sourceWord) {
  *
  * @param {string[]} plaintextWords
  * @param {object} source
- * @param {'global'|'section'|'page'} mode
+ * @param {'global'|'section'|'page'|'rune-global'|'rune-section'} mode
  * @param {string[]=} ciphertextWords
  * @param {number=} phasePeriod  The root189 base59 fixed point uses period1.
  * @returns {{conflicts:number,first:null|object}}
@@ -199,10 +207,13 @@ function witness(plaintextWords,source,mode,ciphertextWords,phasePeriod=PHASE_PE
   let conflicts=0,first=null;
   for(let i=0;i<source.spans.length;i++) {
     if(source.spans[i].len<4)continue;
-    const id=mode==='global'?0:
-      mode==='section'?source.sections[i]:source.pages[i];
+    const id=mode==='global' || mode==='rune-global'?0:
+      mode==='section' || mode==='rune-section' ? source.sections[i]:source.pages[i];
     const local=mode==='global'?i:
-      mode==='section'?source.sectionLocals[i]:source.pageLocals[i];
+      mode==='section'?source.sectionLocals[i]:
+      mode==='rune-global'?source.spans[i].start:
+      mode==='rune-section'?source.spans[i].start-source.sectionRuneStarts[source.sections[i]]:
+      source.pageLocals[i];
     if(local<TERMINAL_AFTER) continue;
     const key=id+'|'+(local%phasePeriod)+'|'+plaintextWords[i];
     const prior=seen.get(key);
@@ -242,13 +253,20 @@ function donorControls(donor,seed,source) {
     const global=witness(plain,source,'global');
     const section=witness(plain,source,'section');
     const page=witness(plain,source,'page');
+    const runeGlobal=witness(plain,source,'rune-global');
+    const runeChapter=witness(plain,source,'rune-section');
+    const rune59Global=witness(plain,source,'rune-global',undefined,1);
+    const rune59Chapter=witness(plain,source,'rune-section',undefined,1);
     const base59Global=witness(plain,source,'global',undefined,1);
     const base59Section=witness(plain,source,'section',undefined,1);
     samples.push({global:global.conflicts,section:section.conflicts,
       page:page.conflicts,base59Global:base59Global.conflicts,
-      base59Section:base59Section.conflicts});
+      base59Section:base59Section.conflicts,
+      runeGlobal:runeGlobal.conflicts,runeChapter:runeChapter.conflicts,
+      rune59Global:rune59Global.conflicts,rune59Chapter:rune59Chapter.conflicts});
     if(sample===0) firstSampleWitness={global:global.first,
-      chapterReset:section.first,base59Global:base59Global.first};
+      chapterReset:section.first,base59Global:base59Global.first,
+      runeGlobal:runeGlobal.first,runeChapter:runeChapter.first};
     if(sample===0) {
       // A real full-corpus GP-native positive: deterministic source-keyed
       // Caesar map with a fixed hidden additive per-state key.
@@ -271,6 +289,28 @@ function donorControls(donor,seed,source) {
         String((Number(x)+1)%29));
       assert(witness(plain,source,'global',broken).conflicts>0,
         'single rune tamper must create a same-state conflict');
+      // A second authentic full-source plant advances one pointer per rune.
+      let runePointer=0x33;
+      const plantedRune=[],inverseRune=[];
+      for(const word of plain) {
+        const encrypted=[],decrypted=[];
+        for(const val of word.split('.').map(Number)) {
+          const key=runePointer%29;
+          const output=(val+key)%29;
+          encrypted.push(output);
+          decrypted.push((output-key+29)%29);
+          runePointer=f[runePointer];
+        }
+        plantedRune.push(encrypted.join('.'));
+        inverseRune.push(decrypted.join('.'));
+      }
+      assert.deepEqual(inverseRune,plain);
+      assert.equal(witness(plain,source,'rune-global',plantedRune).conflicts,0);
+      const corruptedRune=plantedRune.slice();
+      assert(runeGlobal.first);
+      corruptedRune[runeGlobal.first.wordIndex]=corruptedRune[runeGlobal.first.wordIndex]
+        .replace(/^\d+/,x=>String((Number(x)+1)%29));
+      assert(witness(plain,source,'rune-global',corruptedRune).conflicts>0);
       plantCheck=true;
     }
   }
@@ -284,6 +324,10 @@ function donorControls(donor,seed,source) {
     chapterReset:stats('section'),physicalPageReset:stats('page'),
     base59FixedPointGlobal:stats('base59Global'),
     base59FixedPointChapterReset:stats('base59Section'),
+    runeClockGlobal:stats('runeGlobal'),
+    runeClockChapterReset:stats('runeChapter'),
+    base59RuneClockGlobal:stats('rune59Global'),
+    base59RuneClockChapterReset:stats('rune59Chapter'),
     firstSampleWitness,
     nativeGPPlantedRealTableMap:'PASS',
     oneRuneTamper:'PASS'};
@@ -313,6 +357,10 @@ function main() {
     assert.equal(r.chapterReset.numberContradicted,64);
     assert.equal(r.base59FixedPointGlobal.numberContradicted,64);
     assert.equal(r.base59FixedPointChapterReset.numberContradicted,64);
+    assert.equal(r.runeClockGlobal.numberContradicted,64);
+    assert.equal(r.runeClockChapterReset.numberContradicted,64);
+    assert.equal(r.base59RuneClockGlobal.numberContradicted,64);
+    assert.equal(r.base59RuneClockChapterReset.numberContradicted,64);
     // Source page resets are a distinct mechanism and intentionally may survive.
   }
   console.log(JSON.stringify({
@@ -325,7 +373,7 @@ function main() {
     theorem:'same native GP plaintext word at same recurrent state gives identical source ciphertext word for every secret deterministic word cipher',
     sourceMatchedNativeControls:sources,
     nativePlantedForwardInverse:'PASS',
-    scope:'word-independent transition T[state] once per complete word, no rune-dependent updates; one global or independent chapter initializers',
+    scope:'transition s_next=T[s] once per word or rune, independent of input; global or independently reset chapter streams',
     warning:'not an exclusion of unknown manuscript plaintext, non-English plaintext, page-private resets, keyed state update per letter, or external key'
   },null,2));
   console.log('PASS: original 256 tokens, all 256 seeds per radix, 128 length-matched native-GP samples, real pointer-plant and tamper');
