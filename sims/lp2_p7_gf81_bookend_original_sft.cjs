@@ -140,6 +140,38 @@ function powerField(value, power, polynomial) {
   return out;
 }
 
+// Exact algebraic selector from ORIGINAL P8 alone: with the printed products
+// 4=x+1 and 3=x, fifth-power target 17=2+2x+x²:
+// (x+1)^5 - (x²+2x+2) = (x-1) * (x⁴+x²+x+1) over GF(3).
+const binomial5 = [1, 2, 1, 1, 2, 1];
+const target17 = [2, 2, 1, 0, 0, 0];
+const polynomialDifference = binomial5.map((value, i) => mod3(value - target17[i]));
+const productPolynomial = Array(6).fill(0);
+for (let i = 0; i < f.length; i++) {
+  productPolynomial[i] = mod3(productPolynomial[i] + 2 * f[i]);
+  productPolynomial[i + 1] = mod3(productPolynomial[i + 1] + f[i]);
+}
+assert.deepEqual(polynomialDifference, [2, 0, 0, 1, 2, 1]);
+assert.deepEqual(productPolynomial, polynomialDifference);
+let monicQuartics = 0;
+let irreducibleQuartics = 0;
+const fifthPowerPolynomials = [];
+for (let q0 = 0; q0 < 3; q0++) {
+  for (let q1 = 0; q1 < 3; q1++) {
+    for (let q2 = 0; q2 < 3; q2++) {
+      for (let q3 = 0; q3 < 3; q3++) {
+        const candidate = [q0, q1, q2, q3, 1];
+        monicQuartics++;
+        if (isIrreducible(candidate)) irreducibleQuartics++;
+        if (powerField(4, 5, candidate) === 17) fifthPowerPolynomials.push(candidate);
+      }
+    }
+  }
+}
+assert.equal(monicQuartics, 81);
+assert.equal(irreducibleQuartics, 18);
+assert.deepEqual(fifthPowerPolynomials, [f]); // Unique monic quartic, even among reducible ones.
+
 let alternativeCount = 0;
 let irreducibleCount = 0;
 let primitiveCount = 0;
@@ -250,6 +282,7 @@ console.log('GF81 nonzero generator x+1 has period:', units.length);
 console.log('Original P8 red products, final rune, and black length:',
   p8WordProducts, p8SourceRed.at(-1), p8.runic_count - 12);
 console.log('GF81 (x+1)^5 = P8 final red index:', units[5]);
+console.log('Unique monic quartic among 81 satisfying P8 primitive fifth-power relation:', fifthPowerPolynomials);
 console.log('Conditional 841 P8-fixed quartics: irreducible, primitive, fifth-hits:',
   irreducibleCount, primitiveCount, fifthPowerMatches.length);
 console.log('All six fifth-hit GP29 coefficient vectors:', fifthPowerMatches);
