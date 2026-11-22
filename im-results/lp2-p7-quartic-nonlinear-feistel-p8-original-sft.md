@@ -32,8 +32,25 @@ Every model produces nonlinguistic GP29 under the original printed runes, includ
 
 The genuine p7 quartic is not a GP29 permutation, and the simple direct-substitution receiver is excluded independently of a key. A nonlinear Feistel does fix that *mathematical* defect, but these 24 concrete natural p8 recipients fail to yield genuine plaintext. This decision **does not** exclude an author-selected alternative receiver, changing round keys, bit/field embeddings, a keyed two-register state, or a higher-layer encoding.
 
+## Independent 29-step polynomial-evaluation key consumer
+
+A source-different standard reading of the same p7 coefficient list treats each GP29 field value as a **clock argument**, yielding the unique explicit 29-rune candidate stream `K_t=F(t mod29)`. A 29-step field-cycle clock is source-typed by the actual Gematria Primus ring, unlike a freely generated key. It is still a *hypothetical* use of the p7 source polynomial: the author did not say to evaluate it by position, apply additive GP Vigenère, or restart at the p8 red heading.
+
+A separate [source-exact 29-evaluation clock SFT](../sims/lp2_p7_quartic_29step_Ftransparent_original_sft.cjs) freezes two standard numeric origins `t=0,1` and both GP29 additive directions, over both original p8 (255+1 carry) and p8 black-body (243+1 carry) registers. Every **eight direct additive inverses** exactly reencrypts its original 244/256 runes and its genuine solved-p57 GP29 plant. Original decoded IoC spans **0.032922–0.037037**, never reaching the fixed native-language 0.05 gate.
+
+The existing historically **authentic transparent-plaintext-F** exception is a sharper, fully enumerated constraint. If ciphertext F appears, admit both a literal F/nonconsuming clock and an encrypted non-F/consuming clock; if any encrypted symbol decodes to plaintext F, that branch is forbidden. With every legal F mask included, **all eight original combinations are impossible**, for these first zero-based impossible offsets:
+
+| Receiver and source origin | Subtract `F(t)` | Add `F(t)` |
+| --- | ---: | ---: |
+| Full p8+carry, origin 0 | 7 | 2 |
+| Full p8+carry, origin 1 | 49 | 13 |
+| Black p8+carry, origin 0 | 12 | 86 |
+| Black p8+carry, origin 1 | 15 | 4 |
+
+This is an algebraic test of a fixed first-party **polynomial operand** within a conjectured 29-rune Vigenère-like receiver. It is independent of the preceding Feistel, and *does not exclude the original fixed-point relationship as an instruction for some other cipher*. No shift phases, punctuation clocks, arbitrary skips, or fallback keys were optimized.
+
 ## Reproduction and priority decision
 
-The source-only read-only Node22 SFT is [sims/lp2_p7_quartic_nonlinear_feistel_p8_original_sft.cjs](../sims/lp2_p7_quartic_nonlinear_feistel_p8_original_sft.cjs). It reconstructs `F` from the authenticated prior red-word product values, asserts all roots/images and original original positions, and tests both uninterrupted p8→p9 registers against the canonical source `resources/liber-primus/lp2-corpus.json`.
+The first source-only read-only Node22 SFT is [sims/lp2_p7_quartic_nonlinear_feistel_p8_original_sft.cjs](../sims/lp2_p7_quartic_nonlinear_feistel_p8_original_sft.cjs). It reconstructs `F` from the authenticated prior red-word product values, asserts all roots/images and original original positions, and tests both uninterrupted p8→p9 registers against the canonical source `resources/liber-primus/lp2-corpus.json`.
 
-**Decision:** A reader who derives `F` from p7's red five-word packet cannot immediately decrypt the next complete p8 rune stream by feeding single runes through `F`; it is impossible from the original alphabet support. The minimal unkeyed two-rune nonlinear reversible repair also gives nonprose. Stop direct S-box/vanilla Feistel p8 experiments until a creator-authored extra-state or round-key instruction selects a different operation. Preserve the exact fixedpoint/derivative source correspondence independently; it is not a decrypted message.
+**Decision:** A reader who derives `F` from p7's red five-word packet cannot immediately decrypt the next complete p8 rune stream by feeding single runes through `F`; it is impossible from the original alphabet support. The minimal unkeyed two-rune nonlinear reversible repair also gives nonprose. Independent literal 29-step polynomial evaluation fails both direct native GP and original p56-style strict transparent-F tests. Stop direct S-box/vanilla Feistel p8 experiments until a creator-authored extra-state or round-key instruction selects a different operation. Preserve the exact fixedpoint/derivative source correspondence independently; it is not a decrypted message.
