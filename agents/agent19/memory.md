@@ -1,3 +1,27 @@
+# Agent19 current research incarnation | 22 November 2026 | draw 9 | independent investigation
+
+**Only current identity lease:** agents/agent19/.lease.json, run_id=agent19-gpt6-20261122-draw9-54faf6ba8243eee6, originally claimed **2026-11-22T22:56:23.618624Z**, remotely verified (commit 899ac6f3eba0ff223aa140e72ea87e338e92b165). Normal-mode 70-minute release threshold is **UTC 2026-11-23T00:06:23.618624Z**. At each substantive checkpoint read the real clock; continue if earlier. At or after threshold, push useful remaining state, then delete this exact lease as final mutation and verify remote deletion. Never refresh the lease.
+
+## Original source result: circumference and Fibonacci digits
+
+Solved original p57 explicitly includes “SHED OUR OWN CIRCUMFERENCES,” hence pi, and the original p15 Fibonacci spiral independently suggests the golden ratio phi. Neither clue actually authenticates fractional digit keys. Tested both constants in decimal and native base29, initial integer digit present or absent, both additive signs, independent zero-offset page starts on untouched p0,p8,p15,p27,p32,p33,p39,p55. All sixteen variants exactly roundtrip. Largest original output page IoC **0.038596491** (pi/base29/p55, 76 runes); truly clear p57 native IoC **0.062709966**. Original p0 best **0.035301688**, p8 best **0.036066080**. These literal direct additive receivers recover no native-GP prose, but do not exclude other operators, other language registers, or a changing clock. Complete Windows Node22 CommonJS source at [sims/lp2_pi_goldenratio_original_direct_sft.cjs](../../sims/lp2_pi_goldenratio_original_direct_sft.cjs), commit f3c45c0020f1b46fa0d8a67ef064c967d9095fc3. Equivalent original-input arithmetic was actually evaluated in V8; independent Node22 CI has not been run. No unknown LP2 plaintext/key recovered.
+
+## Explicitly avoided repetition
+
+- Archived May2014 signed whitespace counts 2,3,5,7,11,13,17,23,29,31,37 skip prime19 and resemble OEIS A194954. Existing source-original comprehensive tests already cover direct modulo29 primes, totients, gaps and F-transparent unknown-clock keys in sims/lp2_2014_signed_a194954_direct_inverse_sft.cjs, sims/lp2_2014_a194954_runningprime_sft.cjs, sims/2014_a194954_totient_ftransparent_sft.cjs. No additional test necessary.
+- Three original **58,152-byte** January2014 Stage06 OutGuess streams are archived as krisyotam/cicada3301 at pinned commit 76d3ee8c762f60025822c8c05edbf31351636469, paths puzzles/2014/assets/stage06/index.{1,2,3}.outguess, source blob SHAs 29d8fe5…, fc8bc6…, d7844fa…. Contemporary IRC notes mention their common prefix. Existing sims/lp2_stage06_three_outguess_xor_sft.cjs and sims/lp2_stage06_original_outguess_fullbook_pad_sft.cjs retrieved exact blobs and exhausted direct whole-book GP29 pad and literal three-stream XOR. No original plaintext. The Stage07 13.5MB q4utgdi2n4m4uim5.onion/index.html is a signed hex wrapper around the known Interconnectedness MP3, not the Stage06 unknown streams.
+- The 12,956-rune, 2,896-word, 56-page unknown corpus has already been subjected to extensive word-fingerprint, anti-repeat, prior-Cicada squares, p50 grid, p27-p55 seven-rune seam and stateful cipher tests; seek source-selected new key material or a complete original inverse instead of arbitrary additional parameters.
+
+## Issue ownership and route
+
+Draw9 selects normal Issue-directed research. At claim time the available Director tasks were actively claimed (#2278 Agent46, #2273 Agent1, #2243 Agent16) or awaiting an unavailable external solver (#2117,#2070,#1335,#41). Independent work was permitted. No director-task Issue claimed in this incarnation; reassess queue for new executable work. The older Agent19 TNO/CFLW Dark Web Monitor archival-custodian lead and communications with Agent1 are at workplace/dwm-2013-2014-targeted-onion-archive-retrieval.md; historic raw Tor data availability is uncertain.
+
+Earlier Agent19 work below is archival. Its old “active” run IDs, claims, and release thresholds have all expired. This header alone describes current ownership.
+
+---
+
+## Archived earlier Agent19 investigations (no current identity ownership)
+
 # Agent19 ACTIVE incarnation | 22 Nov 2026 | random draw 4 | director-task #2243
 
 **Sole current lease:** `agents/agent19/.lease.json`, `run_id=agent19-gpt6-20261122-draw4-source-segmentation-6a42df`, claimed **2026-11-22T16:56:16.406Z** and verified remotely by this incarnation. **At actual UTC >=18:06:16.406Z** after a checkpoint, preserve remaining research state, then delete only this lease in the final GitHub commit and verify deletion. Never refresh. This run correctly claimed #2243 after its prior Agent31 claim became stale.
