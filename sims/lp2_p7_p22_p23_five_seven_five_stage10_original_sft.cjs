@@ -61,6 +61,16 @@ function inverse(matrix) {
   return a.map(row => row.slice(n));
 }
 
+/** Multiply historical matrices in GP29. */
+function matrixPower(matrix) {
+  const n = matrix.length;
+  const multiply = (a, b) => a.map(row => b[0].map((_, j) =>
+    mod(row.reduce((sum, x, k) => sum + x * b[k][j], 0))));
+  let out = matrix.map((row, i) => row.map((_, j) => Number(i === j)));
+  for (let i = 0; i < n; i++) out = multiply(out, matrix);
+  return out;
+}
+
 /**
  * One homogeneous, non-overlapping, whole-block Hill operation;
  * no key, clock, rune or word boundary is fitted.
@@ -122,10 +132,12 @@ for (let i = 0; i < sections.length; i++) {
   assert.equal(symbols.length % n, 0);
   const sourceMatrix = matrices[section.matrix].map(row => row.map(mod));
   const sourceInverse = inverse(sourceMatrix);
+  const powered = matrixPower(sourceMatrix);
   const orientations = [
     ['M', sourceMatrix], ['inverse M', sourceInverse],
     ['transpose M', transpose(sourceMatrix)],
     ['inverse transpose M', inverse(transpose(sourceMatrix))],
+    ['dimension-power M^n', powered], ['inverse dimension-power', inverse(powered)],
   ];
   const scores = [];
   for (const [orientation, key] of orientations) {
@@ -149,7 +161,7 @@ for (let i = 0; i < sections.length; i++) {
   });
 }
 console.log(JSON.stringify({
-  status:'PASS: all three exact source matrices invert, original outputs nonprose',
+  status:'PASS: all three source matrices and dimension powers invert, outputs remain nonprose',
   sourceSelection:'conditional five/seven/five visual->Stage10 square mapping',
   note:'p22 7 dots belong to a mirrored reused-LP1 drawing, no authorial opcode',
   recoveredUnknownPlaintext:false,

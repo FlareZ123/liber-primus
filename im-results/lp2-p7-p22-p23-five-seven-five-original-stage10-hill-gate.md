@@ -27,7 +27,7 @@ This alignment is a **conditional clue interpretation**, not an original instruc
 
 ## Frozen direct original-cipher inverse
 
-Reduce each original historical integer matrix cell modulo29. For each of the three fixed original ciphertext sections, consume source runes in uninterrupted five- or seven-rune blocks, using the corresponding first, second or third Stage10 matrix with four no-key conventions: matrix M, its inverse, its transpose, and its inverse transpose. Each operation is algebraically reversible with **exact full-source reencryption**. No cipher start phase, matrix element, rune alphabet, row/column order or language parameter is fitted.
+Reduce each original historical integer matrix cell modulo29. For each of the three fixed original ciphertext sections, consume source runes in uninterrupted five- or seven-rune blocks, using the corresponding first, second or third Stage10 matrix with six no-key conventions: matrix M, its inverse, its transpose, its inverse transpose, dimension-th power and inverse dimension-th power. Each operation is algebraically reversible with **exact full-source reencryption**. No cipher start phase, matrix element, rune alphabet, row/column order or language parameter is fitted.
 
 | Original section | Source IoC | Decoded IoC across all four authentic-matrix orientations |
 | --- | ---: | --- |
@@ -35,7 +35,19 @@ Reduce each original historical integer matrix cell modulo29. For each of the th
 | pp8–22 except p15 red20 / 7×7 second | 0.034506352 | **0.034400–0.034561** |
 | pp23–26 except p23 red16 / 5×5 third | 0.034304573 | **0.034184–0.034862** |
 
-All **12** complete decodings remain nearly uniform in rune frequencies and nonprose in their independently readable beginnings. Original score values differ from established solved-p57 clear GP, whose IoC is **0.0627099664**. There is **no recovered authentic unknown phrase**. The script proves matrix arithmetic by **95/95** exact solved-p57-shaped plants for each 5×5 and **91/91** for the 7×7, plus exact original reread of every rune.
+All **18** complete decodings remain nearly uniform in rune frequencies and nonprose in their independently readable beginnings. Original score values differ from established solved-p57 clear GP, whose IoC is **0.0627099664**. There is **no recovered authentic unknown phrase**. The script proves matrix arithmetic by **95/95** exact solved-p57-shaped plants for each 5×5 and **91/91** for the 7×7, plus exact original reread of every rune.
+
+### Additional dimensional-power inverse (Agent7, 22 November)
+
+The separate p7 red-five-word/magic-square **READ URL** candidate uses the **fifth power** of the same authenticated 2014 5×5 squares. This supplies a source-local reason to test **matrix dimension powers (5,7,5)** against the complete corresponding 5/7/5 text sections, even though no first-party instruction selects that transfer. The expanded SFT keeps the source red exclusions and physical matrix directions exactly as in the original experiment and tests the dimension-th power and exact inverse as two additional no-key operators per section.
+
+| Original physical receiver | Direct dimension-power GP29 IoC | Inverse dimension-power GP29 IoC |
+| --- | ---: | ---: |
+| pp3–7, original 1145 runes, first 5×5 A^5 | **0.034743641** | **0.034494763** |
+| pp8–22 except p15 red20, original 3612 runes, 7×7 M^7 | **0.034536253** | **0.034471390** |
+| pp23–26 except p23 red16, original 1005 runes, last 5×5 B^5 | **0.034211413** | **0.034205467** |
+
+All six full original outputs remain uniform-looking ciphertext, with no sustained GP-native passage; the matrices and exact inverses replay all original runes. The original p7 red-word central READ URL readout remains retrospective and supplies no direct decoding key. The newly checked power transfer is therefore a **bounded negative on the complete physical manuscript sections**, with no unknown LP2 plaintext or author-selected cipher. Retire arbitrary exponents and section-phase tuning without a new original clue.
 
 A separate sourced finite candidate treats the **3–4–5 right-triangle relationship** between p22's two groups and p23's five-dot marker as the GF29 rotation `R = 5⁻¹[[3,-4],[4,3]]`, with **order7**, already mathematically studied on p7/p8. Frozen first-runic and p23-red-heading-excluded transfers of `R`, `R⁵` and `R⁶` across the original pp23–26 1,021-rune stream also yield no plaintext; source and receiver IoC stay around 0.034. This related visual hypothesis is tested independently of the Stage10 key and shares no claim of author selection.
 
