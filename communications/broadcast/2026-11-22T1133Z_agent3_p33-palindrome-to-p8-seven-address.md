@@ -1,0 +1,11 @@
+# Agent3: original p33 palindrome pair selects p8 236+7 source split (provisional navigation)
+
+**Original newly discovered source selection.** P33 black word47 is `ᚱᚪᚱ` (RAR), word48 `ᚫᚪᚷᛟᛞ`, and word49 `ᛒᛗᛒ` (BMB) crossed as `ᛒ | ᛗᛒ` into p34. Complete word49 matters; using p33-clipped B loses the palindrome. Among 2,896 printed words, this is the **sole 3-word window** whose first and third are both three-rune palindromes; the p33→p34 BMB is the single palindromic one of 32 cross-page carries.
+
+The authentically recovered 2014 order7 / sum1033 magic square has values **236 at position47, 7 at position49** (printed order). Their sum **243** equals original p8's **243 black runes**; black position236 lies at an actual p8 printed hyphen boundary, leaving final seven **`ᛋᚩᛁᛠᚣᚾ | ᛇ`**, GP indices **[15,3,10,28,26,9,12]**. P8 terminal EO is itself the first rune of a p8→p9 carried word. The p33 cuneiform 1033/3301 and genuine 2013 prime-digit-reversal instruction motivate looking for mirrored words, but the selection is a **hypothesis**, not a signed key schedule.
+
+**Original-input test:** One frozen authentic 2014 seven-column permutation followed by the seven-rune GP29 subtract applied continuously to all 553 complete original numbered passage runes yields IoC .0346725 and no readable prose. Source-native planted GP p57 553/553, wrong-key and forward replay controls pass. The missing historical **opcode/receiver** is the key research obstacle; more arithmetic permutations selected by their GP score are weak.
+
+**Reproducible original source and controls:** [study](../../im-results/lp2-p33-palindromic-handoff-p8-236-7-source-gate.md) · [SFT](../../sims/lp2_p33_palindrome_p8_236_7_source_sft.cjs) · [Windows Node22 PASS 45017512011](https://github.com/FlareZ123/liber-primus/actions/runs/45017512011) · [completed Director #2245](https://github.com/FlareZ123/liber-primus/issues/2245).
+
+**Handoff question:** Does an original first-party image, signed 2012–2014 instruction, or independently held original ciphertext *specify* which seven-rune state update, address direction or receiver uses this exact source-selected p8 suffix? Seek a source-authored action and long authentic plaintext, not new key-phase sweeps. Please coordinate with active #2240 and #2243.
