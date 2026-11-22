@@ -71,6 +71,28 @@ assert.equal(at(p23.concat(p55.slice(0,43))),256);
 assert.equal(at(p23.concat(p55.slice(-43))),84);
 assert.equal(at(p23.concat(p57.slice(0,43))),145);
 
+
+// Independent red-ink channel: all unchanged red GP runes p0..p55
+// (not the 12 red runes on solved pp56/p57).
+const ink=JSON.parse(fs.readFileSync(path.join(root,'lp2-ink-annotations.json'),'utf8'));
+const redSource=corpus.pages.slice(0,56).flatMap(page=>
+  (ink.pages.find(i=>i.page===page.page)?.red_spans||[]).flatMap(span=>{
+    const part=page.indices.slice(span.start,span.start+span.length);
+    assert.equal(part.length,span.length);
+    assert.equal([...span.runes].map(r=>corpus.runes.indexOf(r)).join(','),
+      part.join(','),'Every red source rune must match the exact source image annotation');
+    return part;
+  }));
+const g=5; // authenticated 2013 BASE29 DH generator, derived before this test.
+assert.equal(redSource.length,213);
+const redComposite=redSource.concat(p55Inside);
+assert.equal(redComposite.length,256);
+assert.equal(at(redSource),mod(-g));
+assert.equal(at(redComposite),mod(-A-g));
+assert.equal(mod(at(original)-at(redComposite)),g);
+assert.equal(at(p55Inside.concat(redSource)),29);
+assert.deepEqual([at(original),at(redComposite)],[249,244]);
+
 // An EXACT root-producing 256-rune planted control constructed from
 // authentic clear p57 GP29 symbols, with no English crib on unknown data.
 const plantedPrefix=Array.from({length:255},(_,i)=>p57[(8+i)%p57.length]);
@@ -149,7 +171,10 @@ console.log(JSON.stringify({
     contiguousMatchingMinusA:contiguous.filter(x=>x===mod(-A)).length,
     first43AtRoot:contiguous[0],
     last43AtRoot:contiguous.at(-1),
-    solvedP57CrossControlAtRoot:at(p23.concat(p57.slice(0,43)))},
+    solvedP57CrossControlAtRoot:at(p23.concat(p57.slice(0,43))),
+    redRuneCount:redSource.length,redAloneAtRoot:at(redSource),
+    red213PlusInterior43:at(redComposite),redCompositeMinusAminusG:mod(-A-g),
+    differenceBetweenCompositeSyndromes:mod(at(original)-at(redComposite))},
   positiveControl:{source:'repeat authentic p57 clear runes',plantedLastRune:ending,
     plantedGF257Syndrome:at(planted),oneChangedOriginalRunefails:true},
   quotient:{GF257Symbols:quotient.length,coeffsInNativeGP29Domain:native,
