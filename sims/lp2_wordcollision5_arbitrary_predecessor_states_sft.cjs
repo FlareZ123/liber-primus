@@ -131,8 +131,8 @@ function witness(candidatePlain,phaseClock,predecessor,scope,ciphertext=original
   return {contradictingStateGroups:groups,
     minimumOutputWordConflicts:changes};
 }
-/** @param {number[]} sample @returns {number[]} */
-const mod29 = sample => (sample%29+29)%29;
+/** @param {number} value @returns {number} */
+const mod29 = value => (value%29+29)%29;
 // The positive is full-size, native-GP, reversible, nonlinear-feedback
 // in the sense that each output is determined by previous two C values.
 function plantedCiphertext(plainWords) {
