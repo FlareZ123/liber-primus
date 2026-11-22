@@ -1,8 +1,8 @@
-# Complete-word p54–p55 SHED core as literal AES-256 key for the original numerical panel
+# P54–55 complete-word SHED core52: two original numeric-panel receivers
 
-**22 November 2026 · Agent16 · Director #2272 · Bounded original-input negative.** Source-visible **52 strict interior runes / 34 whole-word endpoints** across the complete 86-rune p54→p55 terminal window encode one 250-bit integer under the historically authenticated GP29 number convention. Zero-left-padding that literal integer to 256 bits creates a source-derived 32-byte key. A fixed original-input **AES-256-ECB** inverse on all 256 original p49–p51 numeric bytes yields high-entropy nonprose. No unknown p55/plaintext, key selection by the author or continuation is recovered.
+**22 November 2026 · Agent16 · Director #2272 · Bounded original-input negatives.** The physically correct whole-word SHED instruction leaves **52 true interior GP29 runes and 34 exterior runes** across the complete 86-rune p54→p55 terminal window. Two distinct receivers with independent source-motivated inputs were executed: one treats the 52 interior runes as a literal 250-bit BASE29 AES-256 key against the original 256-byte numeral panel, and one uses the panel's independently exact **52-cell innermost geometric ring** as a GP29 additive pad on the same 52 interior runes, tested against p57's independently known **52-rune SHED-to-EMERGE refrain**. Neither recovers authentic plaintext. All 86 runes are preserved, but neither conjecture supplies a complete p55 cipher.
 
-## Source and operation
+## Original source and candidate operand
 
 The original p54 page ends with a ten-rune fragment, and p55 begins with one completing `NG`; this forms **one eleven-rune complete word**. Correctly counting all seventeen terminal whole words gives lengths `[11,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]`. Discard the first and last symbol of each complete word, as p57's authentic **SHED OUR OWN CIRCUMFERENCES** text suggests. Keep the 34 removed symbols for exact original reconstruction, retaining the 52 inner GP digits in their printed order. The split exactly regenerates all **86/86** source runes; no original word carries are treated as two words.
 
@@ -12,7 +12,7 @@ One natural **integer** consumer is already historically motivated: Cicada expli
 
 Test **one** literal modern-2014-available inverse: AES-256-ECB, no IV and no padding, on the complete **256 unchanged printed numerical-panel bytes** in source row-major base60 order. This is an explicitly provisional cross-page key interpretation; the author did not label p55 as AES key material, specify byte padding, authenticate AES as LP2's cipher, or say that `SHED` acts on this terminal 86-rune window instead of all words.
 
-## Original output
+## Original 256-byte AES-256-ECB output
 
 [Original-source complete-key CommonJS SFT](../sims/lp2_p54p55_52core_base29_aes256_p50_sft.cjs) passed [Windows Node22, run45031338656](https://github.com/FlareZ123/liber-primus/actions/runs/45031338656). The source-bound result is:
 
@@ -30,4 +30,16 @@ Test **one** literal modern-2014-available inverse: AES-256-ECB, no IV and no pa
 
 No source word, embedded file header, authentic plaintext or keying instruction appears. The 256-byte AES output looks like ordinary wrong-key material. The exact cipher replay demonstrates a correct implementation of a *hypothesized* bijection; it does not validate a decrypting key. The key/IV choice is not author-authenticated and this test does not purport to decrypt p54/p55 as runic ciphertext.
 
-**Decision:** retire this *one* terminal-52 BASE29 → literal 256-bit key → original-table AES-256-ECB path. Keep the **52/34** physical word partition and source-authored SHED command as separate facts. To solve #2272's actual terminal **86-rune** inverse, a first-party instruction still must specify a rune-value-changing reversible operation and a use for both 34 outer and 52 inner runes, with an untouched ≥100-rune downstream holdout. Do not expand the negative into a guessed padding/IV/KDF/mode grid.
+## Original panel-inner-ring52 → exact core52 GP29 inverse
+
+The **same printed p49–p51 32×8 numeric table** contains an independent, source-visible **26×2 rectangle =52 cells** after **three literal circumference layers** are shed. Starting at the inner rectangle's upper-left cell (row3,col3, zero based), traverse the remaining 52 positions clockwise. Their exact 52 original byte values modulo29, without fitting, serve as one consecutive key `K[i]` for the GP29 additive inverse **`P[i]=(core52[i]−K[i]) mod29`**, in the authentic p56 direction. This is a more immediate interpretation of p57's SHED command than AES, because it uses **three exact 52-sized objects**: the p55 true whole-word core, the p50 unambiguously oriented inner ring, and the independently solved p57 last52 from `SHED` to `EMERGE`.
+
+The one frozen original 52-rune output is:
+
+`WJGTMNHHIASXIAIIWXIDTAEUCHEAECXLLBCNGREOEOBOEJOEIIFYYJEAAENGHRAEH`
+
+Its GP29 IoC is **0.032428356**, compared to **0.066365008** for the authentic original solved p57 52-rune refrain; only **3/52 positions** match p57, with no continuous native plaintext. The separate direct original **p56 φ(consecutive primes) with literal F-bypass** operation on that same exact known p57 52-rune phrase predicts just **1/52** of the true p55 inner52 ciphertext runes. The authenticated φ rule consumes **50 prime keys** for the 52-character refrain because two printed F runes pass transparently. Thus neither of these *specific* historically executable original-source laws turns the terminal core into the known solved instruction.
+
+[One-operation inner-ring52 CJS SFT](../sims/lp2_p54p55_core52_p50_inner52_p57_refrain_source_sft.cjs) and [successful Windows Node22 run45031777609](https://github.com/FlareZ123/liber-primus/actions/runs/45031777609) assert exact original 52-source-key positions, complete source 86-rune partition, **52/52** original output replay and **52/52** solved native-GP plant. The [AES-source SFT](../sims/lp2_p54p55_52core_base29_aes256_p50_sft.cjs) also records the p56 φ phrase comparison and [Windows PASS45031651253](https://github.com/FlareZ123/liber-primus/actions/runs/45031651253). None of these exact reversible controls authenticates the intended decoding rule.
+
+**Decision:** retire these two source-fixed terminal52 consumers: literal BASE29→AES256→p50 and the p50 26×2 original ring→GP29 additive inverse of the core52. Keep the **52/34** physical word partition and source-authored SHED command as separate facts. To solve #2272's actual terminal **86-rune** inverse, a first-party instruction still must specify a rune-value-changing reversible operation and a use for both 34 outer and 52 inner runes, with an untouched ≥100-rune downstream holdout. Do not expand the negative into a guessed padding/IV/KDF/mode grid.
