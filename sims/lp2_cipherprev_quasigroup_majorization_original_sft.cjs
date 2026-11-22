@@ -146,6 +146,39 @@ function languageRank(wordsNative) {
   return {sites, E: n[18], top1: sorted[0], top5: sorted.slice(0, 5)
     .reduce((a, b) => a + b, 0)};
 }
+/**
+ * Fixed unknown row bijections give each repeated plaintext word at most
+ * 29 distinct ciphertext realizations, even when every word may start
+ * with any of the 29 ciphertext runes as a freely chosen unknown seed.
+ * This is a separate source-language-conditional word-collision bound.
+ */
+function minimumCipherWordPairsFrom29Starts(plaintextWords) {
+  const counts = new Map();
+  for (const w of plaintextWords) {
+    const key = w.join(",");
+    counts.set(key, (counts.get(key) || 0) + 1);
+  }
+  let lowerBound = 0;
+  for (const n of counts.values()) {
+    const q = Math.floor(n / 29);
+    const r = n % 29;
+    lowerBound += r * q * (q + 1) / 2
+      + (29 - r) * q * (q - 1) / 2;
+  }
+  return lowerBound;
+}
+function actualCipherWordPairs(cipherWords) {
+  const counts = new Map();
+  let pairs = 0;
+  for (const w of cipherWords) {
+    const key = w.join(",");
+    const prior = counts.get(key) || 0;
+    pairs += prior;
+    counts.set(key, prior + 1);
+  }
+  return pairs;
+}
+assert.equal(actualCipherWordPairs(words), 230);
 function rng(seed) {
   return () => {
     seed ^= seed << 13;
@@ -299,10 +332,16 @@ for (const [sourceIndex, sourcePath] of corpusPaths.entries()) {
     minTop5 = Infinity, maxTop5 = -Infinity, minE = Infinity;
   let plantControls = null;
   let switchedModeControls = null;
+  let minForcedVariantPairs = Infinity, maxForcedVariantPairs = 0,
+    sourceVariantViolations = 0;
   for (let trial = 0; trial < 60; trial++) {
     const nativeWords = drawNative(pools, random);
     const st = languageRank(nativeWords);
     assert.equal(st.sites, 10060);
+    const forcedWordPairs = minimumCipherWordPairsFrom29Starts(nativeWords);
+    minForcedVariantPairs = Math.min(minForcedVariantPairs, forcedWordPairs);
+    maxForcedVariantPairs = Math.max(maxForcedVariantPairs, forcedWordPairs);
+    if (forcedWordPairs > 230) sourceVariantViolations++;
     minTop1 = Math.min(minTop1, st.top1);
     maxTop1 = Math.max(maxTop1, st.top1);
     minTop5 = Math.min(minTop5, st.top5);
@@ -324,6 +363,9 @@ for (const [sourceIndex, sourcePath] of corpusPaths.entries()) {
   assert(minTop5 > originalCaps.sectionColor.capacities[5]);
   assert(minTop5 > originalCaps.positionColor.capacities[5]);
   assert(minTop1 > originalCaps.position.capacities[1]);
+  if (sourceIndex !== 1)
+    assert(minForcedVariantPairs > 230,
+      "Gibran and Latin cannot fit original 230 source word collisions even with free first C");
   // English controls fail even with separate even/odd tables per section.
   // Latin is addressed by the tighter per-word-position and section gates.
   if (sourceIndex < 2)
@@ -332,6 +374,10 @@ for (const [sourceIndex, sourcePath] of corpusPaths.entries()) {
   controls.push({sourcePath, trials:60,
     top1Range:[minTop1, maxTop1], top5Range:[minTop5, maxTop5],
     EMinimum:minE, positivePlant:plantControls,
+    freeWordStartVariantBound:{maximumCipherCodewordsPerPlainWord:29,
+      originalCipherWordPairCount:230,
+      sourceForcedPairRange:[minForcedVariantPairs,maxForcedVariantPairs],
+      sourcePlacementsExceedingOriginal:sourceVariantViolations},
     positiveArbitrarilySwitchedModes:switchedModeControls});
 }
 /**
@@ -368,6 +414,8 @@ function oldEnglishSourceControl() {
   assert.equal(eligible.length, 2893);
   const rngSource = rng(0x44551019);
   let minTop1 = Infinity, maxTop1 = 0, minTop5 = Infinity, maxTop5 = 0;
+  let minForcedVariantPairs = Infinity, maxForcedVariantPairs = 0,
+    sourceVariantViolations = 0;
   for (let trial = 0; trial < 180; trial++) {
     const sampled = eligible.map(w => {
       const options = bins.get(w.length);
@@ -376,6 +424,10 @@ function oldEnglishSourceControl() {
     });
     const ranks = languageRank(sampled);
     assert.equal(ranks.sites, 10021);
+    const forcedWordPairs = minimumCipherWordPairsFrom29Starts(sampled);
+    minForcedVariantPairs = Math.min(minForcedVariantPairs, forcedWordPairs);
+    maxForcedVariantPairs = Math.max(maxForcedVariantPairs, forcedWordPairs);
+    if (forcedWordPairs > 230) sourceVariantViolations++;
     minTop1 = Math.min(minTop1, ranks.top1);
     maxTop1 = Math.max(maxTop1, ranks.top1);
     minTop5 = Math.min(minTop5, ranks.top5);
@@ -450,6 +502,11 @@ function oldEnglishSourceControl() {
     originalMatchedWords:eligible.length, missingLongSourceWords:3,
     eligibleSites:10021, trials:180,
     top1Range:[minTop1,maxTop1], top5Range:[minTop5,maxTop5],
+    globallyStationaryFree29WordStartBound:{
+      originalCipherWordPairs:230,
+      minSourceForcedPairs:minForcedVariantPairs,
+      maxSourceForcedPairs:maxForcedVariantPairs,
+      sourceDrawsExceedingOriginal:sourceVariantViolations},
     fullOriginalTop1Cap:originalCaps.positionColor.capacities[1],
     fullOriginalTop5Cap:originalCaps.positionColor.capacities[5],
     pageCollisionGate};
