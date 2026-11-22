@@ -208,5 +208,86 @@ report.transpositionAndMonoalphabetInvariant = {
   solvedP57MinimumAcross24Windows: solvedP57WindowMin,
   conclusion: 'pure 9x8 transposition and arbitrary bijective GP29 renaming preserve too-flat original frequency profiles; this is a control-based rather than a universal English proof'
 };
+
+// A more credible lossless same-page alternative: do not delete the
+// 20 shed rune edges. Retain each as a transmitted word-local IV, then
+// decrypt the other 72 symbols with the corresponding printed numeric
+// cells, and evolve the state from the prior cipher or plaintext rune.
+// This is an exact invertible 92-rune transport, with all 20 word breaks.
+/** @param {number[][]} sourceWords @param {'first'|'last'} edge
+ * @param {'cipher'|'plain'} feedback @param {-1|1} sign
+ * @returns {number[][]}
+ */
+function decodeWordIV(sourceWords, edge, feedback, sign) {
+  let pos = 0;
+  return sourceWords.map(word => {
+    let state = edge === 'first' ? word[0] : word.at(-1);
+    const body = edge === 'first' ? word.slice(1) : word.slice(0, -1);
+    return body.map(cipher => {
+      const plain = mod(cipher + sign * (panel[pos++] % 29) - state);
+      state = feedback === 'cipher' ? cipher : plain;
+      return plain;
+    });
+  });
+}
+/** @param {number[][]} cipherWords @param {number[][]} sourcePlain
+ * @param {'first'|'last'} edge @param {'cipher'|'plain'} feedback
+ * @param {-1|1} sign
+ * @returns {number[][]}
+ */
+function replayWordIV(cipherWords, sourcePlain, edge, feedback, sign) {
+  let pos = 0;
+  return sourcePlain.map((plain, j) => {
+    const w = cipherWords[j], seed = edge === 'first' ? w[0] : w.at(-1);
+    let state = seed;
+    const reconstructed = plain.map(value => {
+      const cipher = mod(value - sign * (panel[pos++] % 29) + state);
+      state = feedback === 'cipher' ? cipher : value;
+      return cipher;
+    });
+    return edge === 'first'
+      ? [seed, ...reconstructed] : [...reconstructed, seed];
+  });
+}
+const wordIV = [];
+for (const edge of ['first', 'last']) {
+  for (const feedback of ['cipher', 'plain']) {
+    for (const sign of [-1, 1]) {
+      const plain = decodeWordIV(words, edge, feedback, sign);
+      assert.deepEqual(replayWordIV(words, plain, edge, feedback, sign), words);
+      const seededControl = [];
+      let pos = 0;
+      for (const word of words) {
+        const n = word.length - 1;
+        seededControl.push(native.slice(pos, pos + n));
+        pos += n;
+      }
+      assert.equal(pos, 72);
+      const planted = replayWordIV(words, seededControl, edge, feedback, sign);
+      assert.deepEqual(decodeWordIV(planted, edge, feedback, sign),
+        seededControl);
+      const output = plain.flat();
+      wordIV.push({
+        edge, feedback, sign, runes: output.length,
+        originalExactReplay: true, plantedSolvedExactReplay: true,
+        ioc: ioc(output),
+        controlWindowsAtOrBelow: Array.from(
+          {length: lp1Control.length - 71}, (_, i) =>
+            ioc(lp1Control.slice(i, i + 72)) <= ioc(output))
+          .filter(Boolean).length,
+        transliteration: plain.map(w => w.map(x => corpus.translit[x]).join(''))
+          .join(' ')
+      });
+    }
+  }
+}
+assert.equal(wordIV.length, 8);
+assert(wordIV.every(x => x.ioc < controlMin));
+assert(wordIV.every(x => x.controlWindowsAtOrBelow === 0));
+report.losslessWordEdgeIVReceivers = {
+  model: '20 transmitted first/last GP edge IVs; 72 table bytes; per-word plaintext/ciphertext feedback; exact original 92-symbol inverse',
+  candidates: wordIV,
+  decision: 'None has native-solved frequency shape or readable whole-word text; no plaintext or source-selected feedback rule'
+};
 console.log(JSON.stringify(report, null, 2));
 console.log('PASS: 72-cell same-page source gate, complete plant inverses; no unknown plaintext recovered.');
