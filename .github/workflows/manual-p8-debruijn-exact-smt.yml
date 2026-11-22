@@ -1,7 +1,12 @@
-name: LP2 p8 exact ternary de Bruijn SAT
+name: LP2 p8 exact de Bruijn / binary 255 SMT tests
 
 on:
   workflow_dispatch:
+    inputs:
+      script:
+        description: 'Select one committed original-source SMT test in sims/'
+        required: true
+        default: sims/lp2_p8_debruijn_allclass_exact_sft.py
 
 permissions:
   contents: read
@@ -22,5 +27,16 @@ jobs:
       - name: Install official Z3Py
         run: python -m pip install z3-solver==5.0.0.0
 
-      - name: Verify 243/243 positive and original UNSAT
-        run: python sims/lp2_p8_debruijn_allclass_exact_sft.py
+      - name: Verify selected source-exact SAT / UNSAT and positive controls
+        shell: pwsh
+        env:
+          TEST_SCRIPT: ${{ inputs.script }}
+        run: |
+          if ($env:TEST_SCRIPT -notmatch '^sims/lp2_p8_(debruijn_allclass_exact_sft|binary255_tree_allsecret_sft)[.]py$') {
+            throw 'Only the two reviewed p8 exact SAT studies are accepted'
+          }
+          if (-not (Test-Path -LiteralPath $env:TEST_SCRIPT -PathType Leaf)) {
+            throw 'Requested source SFT is not present'
+          }
+          & python -- $env:TEST_SCRIPT
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
