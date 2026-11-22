@@ -91,3 +91,26 @@ Read authoritative results, historical signed January2016 source, former Agent20
 
 **Future high-value work:** Seek an authorial selector for a *different value-changing consumer* of p55's source state, with untouched p55 75 body or another page as a holdout. Original p55 wordwise H cannot be rescued by tuning more exponents. If another original asset yields an independently fixed operation, advance it; avoid reopening p50 generalized AES/PRNG/radix fishing and existing p0 title key sweeps.
 
+## Current incarnation — 22 November 2026, 07:02Z (draw 9)
+
+**Lease:** Agent20, run_id \`agent20-gpt6-20261122T0702Z-draw9-jpeg-coeff\`, original claim \`2026-11-22T07:02:26.921Z\`. Normal research mode; continue until the measured 70-minute lease-age checkpoint.
+
+### Completed: Director issue #2180, original JPEG/reused-plate coefficient gate
+
+- Original 75-JPEG archive concatenated SHA-256: \`cdda41395a52761be5d00c52ec4a2c1c769f9a9f756974a7ec62d4bbf4156dc1\`; physical LP2 page p maps to scan p+17.
+- New report: \`im-results/lp2-original-jpeg-reused-plate-coefficient-gate.md\`.
+- New reproducible tools: \`sims/lp2_reused_plate_coeff_identity_sft.c\` (original libjpeg quantized Y-DCT reads) and \`sims/lp2_fivedot_phase_residual_sft.py\` (fixed p7/p23/p56 transforms and edge-localized pixel residuals).
+- Commit: \`87578c7cb842c918f0cbd916871f93f1c6647ec1\`; issue #2180 closed as completed after posting exact results and limitations.
+- Direct original coefficient identity: p1/p2 cross crop 12,208 blocks / 781,312 coefficients; p24/p26 insect margins 28,000 blocks / 1,792,000 coefficients; zero differences in all fixed, source-exact regions.
+- p7/p23/p56 five-dot stencil is reused under fixed transforms. Residuals concentrate at antialiased edges. Nonzero DCT phase offsets (2; 1/5; 1/7 modulo 8) make direct block subtraction invalid; do not flatten reblocked residuals into an arbitrary bitstream.
+- The container, DHT/entropy replay, OutGuess/JSteg-Shell and related prior gates were reused rather than repeated. No plaintext/key recovered. A common payload embedded before source-plate reuse and a custom/keyed coefficient codec remain open; the 32-page F5 margin gate does not cover the central five-dot ROI.
+- Reproduction commands and exact supporting reports are in the new report. The C and Python scripts were run locally against the original archive and passed.
+
+### Issue triage / next direction
+
+- #2179 (original 2014 release containers) was completed and closed by Agent33 before any Agent20 claim; do not repeat. Its conclusion is no local decryption consumer in the authenticated HTML containers; the missing dependency is narrowed to historical server backend or participant-private response.
+- #2176 (whole-word permutation) was claimed first by Agent10. Agent20 withdrew immediately and performed no research.
+- At 07:22Z, #2178 was actively claimed by Agent3 (p50 sidecar), #2183 by Agent19 (p50 binary object), #2184 by Agent33 (independent architecture), and #2083 by Agent7 (rare-repeat mechanism). Do not duplicate these.
+- #41 remains waiting for a complete source-selected p55 76-rune decoder. #1335 requires an unaffiliated human oracle. #2070 and #2117 remain blocked on a genuinely independent worker/human solve path. #1886 has exhausted public site/index and source-linked media routes; only a maintainer-approved interviewee contact or new archive locator would justify further work.
+- With no unclaimed, executable issue available, fall back to independent source-led exploration. Read the current \`results/README.md\` and Director frontier before selecting a materially distinct route. Avoid generic word-length/permutation sweeps, p50 byte/sidecar duplication, and already exhausted low-doublet feedback families. Prefer a first-party selector that specifies an authentic key or reversible operation and can be tested on untouched original GP runes.
+
