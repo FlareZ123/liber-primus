@@ -112,7 +112,41 @@ function sameColumnPairs(input) {
 function sameWordOffsetPairs(allWords) {
   const commonWords = Math.min(...allWords.map(words => words.length));
   let matches = 0, slots = 0;
-  const byPair = [];
+  /**
+ * Historical p56 authentic keyed cipher permits plaintext F to emit F and
+ * consume no key. A ciphertext F may instead be an ordinary encrypted
+ * non-F. Enumerate BOTH choices for each original C=F, across all five
+ * lanes and all first 19 words. We maximize the original same-key equality
+ * score, deliberately granting the hypothesis the most favorable mask.
+ */
+const firstCommonWords = Math.min(...originals.map(words => words.length));
+assert.equal(firstCommonWords, 19);
+const originalFEvents = [];
+for (let lane = 0; lane < 5; lane++)
+  for (let word = 0; word < firstCommonWords; word++)
+    for (let pos = 0; pos < originals[lane][word].length; pos++)
+      if (originals[lane][word][pos] === 0)
+        originalFEvents.push({lane, word, pos});
+assert.deepEqual(originalFEvents,
+  [{lane:0,word:7,pos:4},{lane:1,word:14,pos:0},
+    {lane:2,word:4,pos:1},{lane:2,word:4,pos:4},
+    {lane:3,word:9,pos:5},{lane:4,word:2,pos:3}]);
+assert.equal(originalFEvents.length, 6);
+let bestFWord = {matches: -1}, minFWordMatches = Infinity;
+for (let mask = 0; mask < (1 << originalFEvents.length); mask++) {
+  const selected = originalFEvents.filter((_, i) => (mask & (1 << i)) !== 0);
+  const skipped = originals.map((words, lane) => words.map((runes, word) =>
+    runes.filter((_, pos) => !selected.some(e =>
+      e.lane === lane && e.word === word && e.pos === pos))));
+  const outcome = sameWordOffsetPairs(skipped);
+  minFWordMatches = Math.min(minFWordMatches, outcome.matches);
+  if (outcome.matches > bestFWord.matches)
+    bestFWord = {...outcome, mask, selected};
+}
+assert.equal(minFWordMatches, 15);
+assert.equal(bestFWord.matches, 16);
+assert.equal(bestFWord.slots, 633);
+const byPair = [];
   for (let left = 0; left < 5; left++)
     for (let right = left + 1; right < 5; right++) {
       let count = 0;
@@ -215,6 +249,8 @@ function calibrate(pool, seed, draws) {
   const next = xorshift32(seed);
   let min = Infinity, max = 0, sum = 0, atOrBelow = 0;
   let wordMin = Infinity, wordMax = 0, wordSum = 0, wordAtOrBelow = 0;
+  let fWordMin = Infinity, fWordMax = 0, fWordSum = 0;
+  let fWordAtOrBelow = 0;
   let sample = [], sampleWords = [];
   for (let t = 0; t < draws; t++) {
     const generatedWords = lengths.map(shape => shape.map(n => {
@@ -224,6 +260,8 @@ function calibrate(pool, seed, draws) {
     const parallel = generatedWords.map(words => words.flat().slice(0, W));
     const observed = sameColumnPairs(parallel);
     const observedWord = sameWordOffsetPairs(generatedWords).matches;
+    const observedFWord = sameWordOffsetPairs(generatedWords.map(words =>
+      words.map(word => word.filter(symbol => symbol !== 0)))).matches;
     if (t === 0) {
       sample = parallel;
       sampleWords = generatedWords;
@@ -236,12 +274,18 @@ function calibrate(pool, seed, draws) {
     wordMax = Math.max(wordMax, observedWord);
     wordSum += observedWord;
     if (observedWord <= originalWordClock.matches) wordAtOrBelow++;
+    fWordMin = Math.min(fWordMin, observedFWord);
+    fWordMax = Math.max(fWordMax, observedFWord);
+    fWordSum += observedFWord;
+    if (observedFWord <= bestFWord.matches) fWordAtOrBelow++;
   }
   return {
     draws, mean: sum / draws, min, max, atOrBelow,
     pUpper: (atOrBelow + 1) / (draws + 1), sample, sampleWords,
     wordMean: wordSum / draws, wordMin, wordMax, wordAtOrBelow,
-    wordPUpper: (wordAtOrBelow + 1) / (draws + 1)
+    wordPUpper: (wordAtOrBelow + 1) / (draws + 1),
+    fWordMean: fWordSum / draws, fWordMin, fWordMax, fWordAtOrBelow,
+    fWordPUpper: (fWordAtOrBelow + 1) / (draws + 1)
   };
 }
 
@@ -251,8 +295,10 @@ const solvedPool = poolOf(solved.sections.flatMap(section =>
 const solvedControl = calibrate(solvedPool, 0x3301a19e, 30000);
 assert.equal(solvedControl.atOrBelow, 0);
 assert.equal(solvedControl.wordAtOrBelow, 0);
+assert(solvedControl.fWordAtOrBelow <= 3);
 assert(solvedControl.mean > 50 && solvedControl.mean < 60);
 assert(solvedControl.wordMean > 45 && solvedControl.wordMean < 55);
+assert(solvedControl.fWordMean > 45 && solvedControl.fWordMean < 55);
 
 // Positive control: an arbitrary, secretly chosen 29-symbol permutation at
 // EACH position, reused on ALL five lanes, must conserve every equality.
@@ -291,6 +337,27 @@ const plantedWordClock = solvedControl.sampleWords.map(words =>
 );
 assert.deepEqual(sameWordOffsetPairs(plantedWordClock),
   sameWordOffsetPairs(solvedControl.sampleWords));
+
+// Source-authenticated F bypass, with a different secret permutation for
+// each (word ordinal, key-consuming rune offset). F is emitted literally;
+// non-F can independently encrypt to a ciphertext F. The known bypass mask
+// recovers the exact original GP-native equality structure.
+const plantedFTransparent = solvedControl.sampleWords.map(words =>
+  words.map((word, ordinal) => {
+    let keyOrdinal = 0;
+    return word.map(symbol => {
+      if (ordinal >= maxWords || symbol === 0) return symbol;
+      return wordPermutations[ordinal][keyOrdinal++][symbol];
+    });
+  })
+);
+const trueFBypassInverse = plantedFTransparent.map((words, lane) =>
+  words.map((word, ordinal) => word.filter((_, pos) =>
+    ordinal >= maxWords || solvedControl.sampleWords[lane][ordinal][pos] !== 0)));
+const nativeFTransparent = solvedControl.sampleWords.map(words =>
+  words.map(word => word.filter(symbol => symbol !== 0)));
+assert.deepEqual(sameWordOffsetPairs(trueFBypassInverse),
+  sameWordOffsetPairs(nativeFTransparent));
 for (let lane = 0; lane < 5; lane++)
   for (let w = 0; w < maxWords; w++)
     for (let pos = 0; pos < solvedControl.sampleWords[lane][w].length; pos++)
@@ -311,15 +378,22 @@ const donorResults = donors.map(([name, filename, seed]) => {
   const control = calibrate(poolOf(donorWords), seed, 16000);
   assert.equal(control.atOrBelow, 0);
   assert.equal(control.wordAtOrBelow, 0);
+  assert(control.fWordAtOrBelow <= 3);
   assert(control.mean > 50 && control.mean < 60);
   assert(control.wordMean > 45 && control.wordMean < 55);
+  assert(control.fWordMean > 45 && control.fWordMean < 55);
   return {
     donor: name, trainingWords: donorWords.length, draws: control.draws,
     mean: control.mean, minimum: control.min, maximum: control.max,
     atOrBelow: control.atOrBelow, pUpper: control.pUpper,
     wordMean: control.wordMean, wordMinimum: control.wordMin,
     wordMaximum: control.wordMax, wordAtOrBelow: control.wordAtOrBelow,
-    wordPUpper: control.wordPUpper
+    wordPUpper: control.wordPUpper,
+    fWordMean: control.fWordMean,
+    fWordMinimum: control.fWordMin,
+    fWordMaximum: control.fWordMax,
+    fWordAtOrBelow: control.fWordAtOrBelow,
+    fWordPUpper: control.fWordPUpper
   };
 });
 
@@ -334,7 +408,13 @@ console.log(JSON.stringify({
     symbolComparisons: 10 * W,
     byPair,
     equalSymbolComparisons: originalMatches,
-    wordReset: originalWordClock
+    wordReset: originalWordClock,
+    exhaustiveAuthenticFBypass: {
+      originalCiphertextFEvents: originalFEvents,
+      candidateMasks: 1 << originalFEvents.length,
+      minimumCount: minFWordMatches,
+      maximum: bestFWord
+    }
   },
   solvedNativeControl: {
     draws: solvedControl.draws,
@@ -347,15 +427,23 @@ console.log(JSON.stringify({
     wordMinimum: solvedControl.wordMin,
     wordMaximum: solvedControl.wordMax,
     wordAtOrBelow: solvedControl.wordAtOrBelow,
-    wordPUpper: solvedControl.wordPUpper
+    wordPUpper: solvedControl.wordPUpper,
+    fWordMean: solvedControl.fWordMean,
+    fWordMinimum: solvedControl.fWordMin,
+    fWordMaximum: solvedControl.fWordMax,
+    fWordAtOrBelow: solvedControl.fWordAtOrBelow,
+    fWordPUpper: solvedControl.fWordPUpper
   },
   independentEnglishDonors: donorResults,
   plantedSecretBijectionInvariant: true,
   plantedSecretWordResetBijectionInvariant: true,
+  plantedHistoricalFBypassMaskedEqualityInvariant: true,
   scope: 'Excludes both common continuous rune-position secret BIJECTIONS'
     + ' and common printed-word-ordinal × within-word-offset secret bijections'
     + ' into native-English-like plaintext. Per-message keys,'
-    + ' plaintext-F skip, nonbijective coding, resegmentation, and'
-    + ' unknown languages remain possible.'
+    + ' nonbijective coding, resegmentation, and unknown languages'
+    + ' remain possible. The published plaintext-F nonconsuming bypass'
+    + ' was also exhausted over every original word-clock ciphertext-F'
+    + ' mask under one shared secret alphabet.'
 }, null, 2));
 console.log('PASS original shared-alphabet equality invariant and controls');
