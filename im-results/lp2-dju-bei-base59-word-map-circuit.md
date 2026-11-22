@@ -8,7 +8,7 @@ The input pair is not chosen by this experiment.
 
 Historical `prime_echo` exhaustion at p55 exposes `DJU / BEI` as the first two intact complete words after its finite boundary. The same adjacent pair occurs only once elsewhere, on p27. Independently, the p57/2016 GP0-table grammar gives `FIND=42 → T[42]=28`, selecting p27 rune offset28, exactly the start of `DJU`.
 
-The navigation grammar is already source-motivated by the authenticated 2016 statement that Liber Primus's words are the map, their meaning is the road, and their numbers are the direction. The p57 route independently uses canonical whole-word GP0 sums as p50 addresses. Base59 is already an active source branch through `SHED` and `WITHIN`; it is not introduced for this pair.
+The authenticated 2016 statement supplies a high-level motivation for word-number navigation, but it does not specify GP0 sums, the base59 conversion, or this page/offset grammar. The p57 route independently supplies a candidate GP0-to-p50 address operation, and SHED/WITHIN motivate the base59 branch; the combined circuit tested here remains a hypothesis.
 
 ## Fixed circuit
 
@@ -48,7 +48,7 @@ The conventional base60 branch fails the exact word-map typing at both intermedi
 - cell46 `3J` → base60 **199**, which is inside `WLYNU`, rather than at its start196;
 - cell63 `0p` → base60 **51**, rather than returning to p50.
 
-Thus the already existing base59 branch is selected by two consecutive original word-boundary hits plus the p50 return.
+The observed DJU/BEI pair completes this realized base59 loop. The immediate AEF/P holdout below shows that the same rule does not generalize.
 
 ## Exhaustive original-word census
 
@@ -86,8 +86,6 @@ The 2/2,809 census remains a reproducible description of the realized corpus, bu
 
 Retain the exact DJU/BEI→p39:105→p39:196→p50 arithmetic as an intermediate observation. **Do not promote it as a high-priority or authenticated navigation result.** The independently selected p55→p27:28 handoff survives, but this GP0/base59 loop is not an authenticated extension and must not be used to validate a downstream DIVINITY/red13/3301 route.
 
-The circuit still does not state what `HGREOT` or `WLYNU` mean and does not invert unknown ciphertext. Its only current value is preserving the exact, reproducible loop and its failed immediate continuation. It joins the historical p55 terminal handoff, the p27 offset selected by `FIND`, the authenticated 2016 word/map grammar, the p57 base59 branch, and the p50 table into one reproducible circuit.
+The loop does not state what `HGREOT` or `WLYNU` mean and does not invert unknown ciphertext. Preserve it as an intermediate arithmetic observation only.
 
-The circuit still does not state what `HGREOT` or `WLYNU` mean and does not invert the unknown ciphertext. Its value is architectural: it provides another blind, exact receiver for the same word-number navigation mechanism and demonstrates that the p27/p55 repeated pair is not merely a duplicate-text curiosity.
-
-Reproducer: `sims/lp2_dju_bei_base59_word_map_circuit_sft.cjs`.
+Reproducer: `sims/lp2_dju_bei_base59_word_map_circuit_sft.cjs`; prospective context: [Director #1709 familywise blind gate](lp2-p27-djubei-familywise-blind-gate.md).

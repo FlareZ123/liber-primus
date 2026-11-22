@@ -112,7 +112,7 @@ The only circumference strictly within it is depth3:
 
 No other physical shell has either sum.
 
-This is more specific than merely noticing that a table total equals a solved word. The shell depth was fixed by DH shared2 before the shed-value sums were inspected, and the two matching p57 words describe the geometry itself: the inner object is TUNNELNG inside the exposed DIVINITY surface.
+This is more specific than merely noticing that a table total equals a solved word. The shell depth was fixed by DH shared2 before the shed-value sums were inspected, and the two matching p57 words are consistent with the geometry: the inner object is TUNNELNG inside the exposed DIVINITY surface.
 
 A deterministic matched calibration permutes the exact 256 shed values over the fixed 32×8 positions while preserving their entire multiset. In 100,000 seeded shuffles, depth2 has sum105 about 1.2% of the time, while the ordered conjunction depth2=105 and depth3=94 occurs about 0.02% of the time. These frequencies are post-discovery scale diagnostics only. They are not historical authorship probabilities and do not correct the broader search process.
 
@@ -132,11 +132,11 @@ Address189 is physically on the exposed depth2 circumference. It carries the sam
 
 `p50[189]=3C=189`.
 
-So the complete source action is:
+The candidate one-edge transition is:
 
 `SURFACE67, inner ring → 189, exposed ring → fixed`.
 
-This is an exact one-edge movement from the TUNNELNG-labelled inner circumference to the DIVINITY-labelled exposed surface. It also lands on the already established DH coordinate `189=23×8+5=(p,g)`.
+Under the candidate base59 pointer map, this is an exact one-edge movement from the TUNNELNG-labelled inner circumference to the DIVINITY-labelled exposed surface. It also lands on the already established DH coordinate `189=23×8+5=(p,g)`.
 
 The longer functional graph from arbitrary word starts wanders among shell depths, so this result does **not** promote shell depth as a universal semantic decoder. The one-edge SURFACE transition is the useful typed consequence.
 
@@ -151,7 +151,7 @@ Original cell94 is `0u`.
 - conventional base60: `0u=56`;
 - selected drop-`f` base59: `0u=55`.
 
-The post-SHED state therefore selects physical **p55**, while the pre-transition control selects solved p56.
+The candidate post-SHED state therefore maps to physical **p55**, while the pre-transition control maps to solved p56.
 
 Across all20 p57 words, six post-switch base59 values lie in the 0–57 physical-page range. Only one lies in terminal pages54–57:
 
@@ -173,7 +173,7 @@ After that boundary, discard the partial carried word and take the first two int
 
 That pair has exactly one other adjacent occurrence in the complete manuscript, on p27. Independent `FIND→28` navigation then selects its exact p27 offset.
 
-The new shell route therefore supplies the previously missing source-internal entry into this terminal handoff:
+The candidate shell route therefore reaches this independently selected terminal handoff:
 
 `TUNNELNG94 → base59 55 → p55 → EMERGE300 → DJU/BEI → p27`.
 
