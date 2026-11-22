@@ -6,7 +6,7 @@
  *
  * Model, word j >= 1: C[w,j] = C[w,j-1] + P[w,j] - h(P[w,j-1]) (mod 29).
  * Word j=0: C[w,0] = P[w,0] + secretWordSeed[w] (mod 29).
- * Every f[x] is free in GP29; the word-initial seeds are entirely free.
+ * Every h[x] is free in GP29; the word-initial seeds are entirely free.
  * Candidate GP-English words imply h(P[j-1]) = P[j] - (C[j] - C[j-1]).
  * A single shared h must satisfy all real plaintext words simultaneously.
  *
