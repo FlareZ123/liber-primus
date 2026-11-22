@@ -28,6 +28,42 @@ assert.equal(pages.length, 55);
 assert.equal(pages.reduce((n, p) => n + p.indices.length, 0), window);
 assert.equal(original.translit.length, 29);
 
+const annotations = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
+const inkByPage = new Map(annotations.pages.map(page => [page.page, page]));
+
+/**
+ * Concede an entirely new, secret four-phase codebook after every original
+ * red-ink start/end and every large physical 10/13/23-dot punctuation.
+ * Marks coinciding with page edges or each other are deduplicated. Every
+ * newly formed segment's first GP rune is granted an unrestricted plaintext.
+ * @returns {number[][]}
+ */
+function sourceMarkedSegments() {
+  const out = [];
+  for (const page of pages) {
+    const raw = page.indices;
+    const cuts = new Set([0, raw.length]);
+    const ink = inkByPage.get(page.page);
+    if (ink) {
+      for (const span of ink.red_spans || []) {
+        cuts.add(span.start);
+        cuts.add(span.start + span.length);
+      }
+      for (const mark of ink.large_punctuation || [])
+        cuts.add(mark[0]);
+    }
+    const boundaries = [...cuts].sort((a, b) => a - b);
+    assert(boundaries.every(n => n >= 0 && n <= raw.length));
+    for (let i = 1; i < boundaries.length; i++) {
+      const segment = raw.slice(boundaries[i - 1], boundaries[i]);
+      if (segment.length) out.push(segment);
+    }
+  }
+  assert.equal(out.reduce((n, segment) => n + segment.length, 0), window);
+  assert.equal(out.length, 77);
+  return out;
+}
+
 const reference = [
   ["Gibran", "resources/control/gibran_prophet_58585.txt"],
   ["Emerson", "resources/control/emerson_essays_2944.txt"],
@@ -172,18 +208,19 @@ function permutation(seed) {
  * A native long-source stream encrypted under arbitrary per-page/four-phase
  * GP difference permutations. Check the inverse on all 12,956 symbols.
  * @param {number[]} plain
+ * @param {number[][]} shapes Physical-page or source-marked shapes
  * @returns {number[][]}
  */
-function positivePlant(plain) {
+function positivePlant(plain, shapes) {
   assert.equal(plain.length, window);
   let index = 0;
   const out = [];
-  for (const page of pages) {
-    const n = page.indices.length;
+  for (let section = 0; section < shapes.length; section++) {
+    const n = shapes[section].length;
     const piece = plain.slice(index, index + n);
     index += n;
     const maps = Array.from({length: 4}, (_, phase) =>
-      permutation(0x3301 + page.page * 131 + phase * 65537));
+      permutation(0x3301 + section * 131 + phase * 65537));
     const inverses = maps.map(map => {
       const inverse = Array(29).fill(-1);
       for (let j = 0; j < 29; j++) inverse[map[j]] = j;
@@ -211,6 +248,10 @@ function main() {
   assert.deepEqual(core4, [1243, 2250, 3146, 3975,
     4740, 5453, 6115, 6732]);
   // Even any one of 55 independently rekeyed page/phase decoders fails.
+  const segments = sourceMarkedSegments();
+  const marked4 = topKCapacity(segments, 4, 8);
+  assert.deepEqual(marked4, [1361, 2428, 3359, 4196,
+    4966, 5681, 6347, 6964]);
   const periodBounds = [1, 2, 3, 4, 5].map(period =>
     topKCapacity(streams, period, 1)[0]);
   assert.deepEqual(periodBounds, [856, 1018, 1150, 1243, 1380]);
@@ -230,7 +271,7 @@ function main() {
     const actual = nativeMinima(encoded, 8);
     assert.equal(actual.minE, expected[i].minE);
     assert.deepEqual(actual.minTopK, expected[i].minTopK);
-    assert(actual.minTopK.every((value, k) => value > core4[k]));
+    assert(actual.minTopK.every((value, k) => value > marked4[k]));
     assert(actual.minE > periodBounds[4]);
     console.log(JSON.stringify({reference: name,
       nativeRunes: encoded.length, windows: actual.windows,
@@ -265,7 +306,7 @@ function main() {
     const actual = nativeMinima(runes, 8);
     assert.equal(actual.minE, minE);
     assert.deepEqual(actual.minTopK, minTopK);
-    assert(actual.minTopK.every((count, k) => count > core4[k]));
+    assert(actual.minTopK.every((count, k) => count > marked4[k]));
     assert(actual.minTopK[0] > periodBounds[4]);
     console.log(JSON.stringify({reference: name, nativeRunes: runes.length,
       windows: actual.windows, minimumE: actual.minE,
@@ -273,21 +314,26 @@ function main() {
   }
 
   assert(plantSource);
-  const synthetic = positivePlant(plantSource);
+  const synthetic = positivePlant(plantSource, streams);
   const plantBound = topKCapacity(synthetic, 4, 8);
   const counts = Array(29).fill(0);
   for (const rune of plantSource) counts[rune]++;
   const nativeTopK = topKFromCounts(counts, 8);
   assert(nativeTopK.every((value, i) => value <= plantBound[i]));
+  const syntheticMarked = positivePlant(plantSource, segments);
+  const markedPlantBound = topKCapacity(syntheticMarked, 4, 8);
+  assert(nativeTopK.every((value, i) => value <= markedPlantBound[i]));
   console.log(JSON.stringify({originalPages: pages.length,
     originalRunes: window, unknownPerPagePerPhaseBijections: 55 * 4,
     originalFourPhaseTopKMax: core4,
+    originalMarkedSegments: segments.length,
+    originalMarkedFourPhaseTopKMax: marked4,
     originalPeriods1to5TopSymbolMax: periodBounds,
     syntheticNativeTopK: nativeTopK,
     syntheticCipherTopKCapacity: plantBound,
-    positive: "PASS genuine GP29 native passage, every rune inverse, 55x4 secret maps"}));
+    positive: "PASS native GP29 positive on 55 and 77 independent four-phase cipher segments"}));
   console.log("PASS: original predecessor-difference data excludes all"
     + " page-specific stationary <=5-phase GP29 bijections for these"
-    + " 12,956-rune native-English controls; no unknown plaintext recovered");
+    + " 12,956-rune five-language native-GP controls; no unknown plaintext recovered");
 }
 main();
