@@ -18,6 +18,12 @@ The three adjacent perimeter bytes therefore read **`LP3`**. These cells lie on 
 
 A human might read `LP3` as “Liber Primus page 3” and inspect a previously encountered manuscript page. This interpretation is **speculative**. The source does not define the string `LP3`, choose a particular LP1-versus-LP2 page numbering scheme, explicitly say to read the *discarded* shell as ASCII, or specify how to derive a decryption key from a destination page.
 
+## Historical page-three receiver candidate
+
+A distinct, genuinely existing **2014 source** makes the tentative `LP3` label actionable as a question: first-release scan **03.jpg** is an already solved Vigenère page whose key is **DIVINITY**. Its [preserved, first-party PGP-signed OutGuess output](https://github.com/iBotPeaches/cicada_3301/blob/master/messages/2014/let-the-text-guide-you.asc) says “Let the text guide you” and embeds another JPEG containing a runic address. [Contemporaneous-stage reconstruction](https://connortumbleson.com/2024/02/05/the-cicada-3301-mystery-puzzle-3-solve-part-2/) shows a subsequent text-derived Vigenère reading that led to the historic fourth onion; the older route was solved in 2014. This is a **concrete historical operand/operator to inspect** *if* the 2026 proposed p50 `LP3` pointer refers to scan03. It has not been independently shown that the `LP3` bytes were authored as a pointer, that the unknown LP2 cipher reuses this earlier operation, or which of its signed image/text inputs is intended. A known earlier onion address is not a new LP2 decryption.
+
+The explicit **DIVINITY** in the solved p57 parable is consonant with that known first-release key, but both words were visible before the current locator observation. Source order therefore permits an intended-route hypothesis, with substantial selection ambiguity and no original unknown receiver solved.
+
 ## Immediate discriminating tests
 
 The outer perimeter reads as mostly high-entropy bytes, with ASCII shorthand:
@@ -47,5 +53,7 @@ The 13-dot match is original-source structure; choosing p50 as its recipient and
 ## Reproduction and next decision
 
 The read-only [single-file CommonJS reproducer](../sims/lp2_p57_red13_p50_outerring_lp3_sft.cjs) reads the canonical original-derived numeral tokens, GP rune indices and original ink annotations. It asserts the complete 32×8 base60 table, the genuine p57 red13 and red23 marks, the exact 76-cell ring, all three physical token/byte placements, the 1,584 candidate-path census, both original p3 running-key tests and an authentic solved-page positive plant.
+
+[Windows Node22 GitHub Actions PASS, original-source assertions](https://github.com/FlareZ123/liber-primus/actions/runs/45027296492).
 
 The next **useful decision** is whether an independent, first-party 2014 instruction actually selects a *page 3* key or receiver. Without that instruction, further arbitrary page3 transformations or substring searches would only fit the already observed label. The observation was sent as a nonclaiming handoff to the active table-locator investigator under [Director Issue #2242](https://github.com/FlareZ123/liber-primus/issues/2242); no new Issue was claimed or displaced.
