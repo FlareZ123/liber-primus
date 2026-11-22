@@ -14,3 +14,5 @@ jobs:
         run: node sims/lp2_p0_36_hill6_shamir7_sft.cjs
       - name: Test source-derived AES128 p50 inverse
         run: node sims/lp2_2014_html_f3_aes128_grid_source_sft.cjs
+      - name: Test authentic prime-totient FFF lexical crib across 200000 offsets
+        run: node sims/lp2_p0_fff_primeoffset_lexical_sft.cjs
