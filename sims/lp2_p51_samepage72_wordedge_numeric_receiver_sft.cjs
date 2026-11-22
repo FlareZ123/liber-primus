@@ -124,5 +124,89 @@ for (const cut of ['first', 'last']) {
 }
 assert(report.tested.every(x =>
   x.candidates.every(y => y.ioc < report.originalSource.clearP57IoC)));
+
+// Any 9x8 -> 8x9 columnar transposition preserves the same GP histogram.
+// So does every arbitrary one-to-one relabeling of the GP29 alphabet.
+// The language comparison below is a control-based exclusion of those
+// complete families, including arbitrary row/column readout orders.
+const firstBody = words.flatMap(word => word.slice(1));
+const lastBody = words.flatMap(word => word.slice(0, -1));
+assert.equal(firstBody.length, 72);
+assert.equal(lastBody.length, 72);
+/** @param {number[]} values */
+function columnRead(values) {
+  assert.equal(values.length, 72);
+  const result = [];
+  for (let column = 0; column < 8; column++)
+    for (let row = 0; row < 9; row++)
+      result.push(values[row * 8 + column]);
+  return result;
+}
+/** @param {number[]} values */
+function undoColumnRead(values) {
+  assert.equal(values.length, 72);
+  const result = Array(72);
+  let cursor = 0;
+  for (let column = 0; column < 8; column++)
+    for (let row = 0; row < 9; row++)
+      result[row * 8 + column] = values[cursor++];
+  return result;
+}
+const solvedPlant = native.slice(0, 72);
+assert.deepEqual(undoColumnRead(columnRead(solvedPlant)), solvedPlant);
+assert.deepEqual(undoColumnRead(columnRead(firstBody)), firstBody);
+assert.equal(ioc(columnRead(firstBody)), ioc(firstBody));
+assert.equal(ioc(columnRead(lastBody)), ioc(lastBody));
+
+const lp1Lines = read('resources/liber-primus/lp1-plaintext-reference.txt')
+  .split(/\r?\n/).filter(line =>
+    line && !/^\s*(#|\[|\d)/.test(line));
+const sourceNativeTokens = corpus.translit.map((token, i) =>
+  ({token, i})).sort((a, b) => b.token.length - a.token.length);
+/** @param {string} text @returns {number[]} */
+function encodeEditorialGP(text) {
+  const normalized = text.toUpperCase().replace(/QU/g, 'CW')
+    .replace(/[VKZQ]/g, char =>
+      ({V: 'U', K: 'C', Z: 'S', Q: 'C'})[char]);
+  const result = [];
+  for (let offset = 0; offset < normalized.length;) {
+    const hit = sourceNativeTokens.find(({token}) =>
+      normalized.startsWith(token, offset));
+    if (hit) { result.push(hit.i); offset += hit.token.length; }
+    else offset++;
+  }
+  return result;
+}
+const lp1Control = encodeEditorialGP(lp1Lines.join(' '));
+assert.equal(lp1Control.length, 3107);
+const windowLength = 72;
+let controls = 0, controlMin = 1, controlAtOrBelowFirst = 0,
+  controlAtOrBelowLast = 0;
+const firstIoC = ioc(firstBody), lastIoC = ioc(lastBody);
+for (let start = 0; start + windowLength <= lp1Control.length; start++) {
+  const value = ioc(lp1Control.slice(start, start + windowLength));
+  controlMin = Math.min(controlMin, value);
+  controls++;
+  controlAtOrBelowFirst += Number(value <= firstIoC);
+  controlAtOrBelowLast += Number(value <= lastIoC);
+}
+assert.equal(controls, 3036);
+assert.equal(controlAtOrBelowFirst, 0);
+assert.equal(controlAtOrBelowLast, 0);
+assert.ok(Math.abs(controlMin - 0.045774647887323945) < 1e-14);
+const solvedP57WindowMin = Math.min(...Array.from({length: 24}, (_, i) =>
+  ioc(native.slice(i, i + 72))));
+assert.ok(solvedP57WindowMin > firstIoC);
+report.transpositionAndMonoalphabetInvariant = {
+  retainedFirst72: {ioc: firstIoC, equalPairNumerator: firstIoC * 72 * 71},
+  retainedLast72: {ioc: lastIoC, equalPairNumerator: lastIoC * 72 * 71},
+  editorialGPSourceTokens: lp1Control.length,
+  solvedControlWindows72: controls,
+  solvedMinimumIoC: controlMin,
+  solvedWindowAtOrBelowFirst: controlAtOrBelowFirst,
+  solvedWindowAtOrBelowLast: controlAtOrBelowLast,
+  solvedP57MinimumAcross24Windows: solvedP57WindowMin,
+  conclusion: 'pure 9x8 transposition and arbitrary bijective GP29 renaming preserve too-flat original frequency profiles; this is a control-based rather than a universal English proof'
+};
 console.log(JSON.stringify(report, null, 2));
 console.log('PASS: 72-cell same-page source gate, complete plant inverses; no unknown plaintext recovered.');
