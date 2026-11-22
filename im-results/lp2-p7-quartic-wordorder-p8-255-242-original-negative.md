@@ -30,14 +30,14 @@ Before observing any original output, [Issue comment 7082976088](https://github.
 | Recipient | Models | Original recipient GP IoC | Decoded GP IoC range | Highest decoded GP IoC |
 | --- | ---: | ---: | ---: | ---: |
 | Full p8, 255 runes | 40 | 0.0342751274 | 0.0322989038–0.0371159487 | 0.0371159487, `P(s-r)`, seed4, plus |
-| P8 first 242 black runes | 40 | source ciphertext retained | 0.0327492198–0.0371386441 | 0.0371386441, `P(s+r)`, seed3, minus |
+| P8 first 242 black runes | 40 | 0.0341209149 | 0.0327492198–0.0371386441 | 0.0371386441, `P(s+r)`, seed3, minus |
 
 All **80** source-native outputs stay below **0.038 GP index of coincidence**, and their rune prefixes are nonprose. For context, the corpus's actual solved p57 95-rune cleartext has IoC **0.0627099664**; the existing manuscript-wide genuine native-GP 229-rune control study places the **minimum** of 3,517 original plaintext windows above **0.049529** (different sample lengths; compare conservatively). This contrast rejects these *direct* consumers as an explanation of ordinary source-language plaintext.
 
-Every attempted original-cipher decoder exactly reencrypts its output to the original cipher tape, as required by the reversible additive arithmetic, and a genuine solved-p57 runic positive control is repeatedly planted, encrypted and exactly recovered under each key model. These positives establish implementation correctness, **not historical key identification**. Running the literal direct-output identity `key_i=C_i` also yields only chance-level symbol coincidences, and the `P(s±r)` terminal register is mathematically unable to reproduce the full p8 alphabet directly because `P` has only **19** possible GF29 output values whereas p8 uses **all29**.
+Every attempted original-cipher decoder exactly reencrypts its output to the original cipher tape, as required by the reversible additive arithmetic, and a genuine solved-p57 runic positive control is repeatedly planted, encrypted and exactly recovered under each key model. These positives establish implementation correctness, **not historical key identification**. The largest direct terminal-state exact match is just **16/255** (full) or **13/242** (black) among the frozen seeds/rules, and the `P(s±r)` terminal register is mathematically unable to reproduce the full p8 alphabet directly because `P` has only **19** possible GF29 output values whereas p8 uses **all29**.
 
 ## Decision
 
 **Retire only these 80 fixed native order-sensitive quartic terminal-state word-key decoders for full/black p8.** Moving to arbitrary readouts, offsets, per-page fitted states or secretly labeled output alphabets would discard the source-selected gate. An alternative route requires original artwork/text to select the missing operation, a receiver distinct from these two word→rune tapes, or independent actual plaintext. The source polynomial's fixed points, seven-cycle and possible GF(29²) clock remain separate upstream hypotheses, **not a claimed decipherment**.
 
-**Reproduction:** `node sims/lp2_p7_poly_wordorder_p8_original_sft.cjs`; read-only `workflow_dispatch` can run it through `.github/workflows/manual-readonly-commonjs-sft.yml`.
+**Reproduction:** `node sims/lp2_p7_poly_wordorder_p8_original_sft.cjs`; [successful Windows Node22 run 45050695384](https://github.com/FlareZ123/liber-primus/actions/runs/45050695384) executed it using the existing read-only `.github/workflows/manual-readonly-commonjs-sft.yml` dispatcher.
