@@ -29,6 +29,8 @@ const textblob = fs.readFileSync(
   path.join(root, 'resources', 'control', 'english_wordfreq_textblob.txt'), 'utf8');
 const gibran = fs.readFileSync(
   path.join(root, 'resources', 'control', 'gibran_prophet_58585.txt'), 'utf8');
+const latinReference = fs.readFileSync(
+  path.join(root, 'resources', 'control', 'latin-vulgate-gp-wholewords.txt'), 'utf8');
 const runeValue = new Map(corpus.runes.map((glyph, i) => [glyph, i]));
 const latinValue = new Map(corpus.translit.map((label, i) => [label, i]));
 const compounds = ['ING', 'TH', 'NG', 'EO', 'OE', 'AE', 'IA', 'EA'];
@@ -132,13 +134,29 @@ for (const line of textblob.split(/\r?\n/)) {
   dictionaryItems++;
 }
 assert.equal(dictionaryItems, 23940);
+const latinAlphabet = '0123456789ABCDEFGHIJKLMNOPQRS';
+const latinSource = latinReference.split(/\r?\n/)
+  .filter((word) => word.length > 0 && !word.startsWith('#') && !word.startsWith(' '))
+  .map((word) => [...word].map((ch) => latinAlphabet.indexOf(ch)))
+  .filter((word) => word.every((value) => value >= 0 && value < 29));
+assert.equal(latinSource.length, 39835);
+const latinByPeriod = Array.from({length: 5}, () => new Map());
+for (const encoded of latinSource) {
+  for (let period = 1; period <= 5; period++) {
+    const index = latinByPeriod[period - 1];
+    if (!index.has(encoded.length)) index.set(encoded.length, new Set());
+    index.get(encoded.length).add(ordinalSignature(encoded, period));
+  }
+}
+const distinctLatinWords = new Set(latinSource.map((x) => x.join(','))).size;
+assert.equal(distinctLatinWords, 7305);
 
 /**
  * @param {number[][]} words
  * @param {boolean|null} mode true = word-reset ciphertext differences;
  * false = continuous ciphertext differences; null = native plaintext.
  */
-function audit(words, mode, period) {
+function audit(words, mode, period, lexicon = byLengthByPeriod) {
   let previous = 0;
   /** @type {Map<number,{n:number,match:number}>} */
   const counts = new Map();
@@ -147,7 +165,7 @@ function audit(words, mode, period) {
     const sig = mode === null
       ? ordinalSignature(word, period)
       : deltaSignature(word, previous, mode, period);
-    const hit = byLengthByPeriod[period - 1].get(n)?.has(sig) ?? false;
+    const hit = lexicon[period - 1].get(n)?.has(sig) ?? false;
     const record = counts.get(n) || {n: 0, match: 0};
     record.n++;
     if (hit) record.match++;
@@ -176,6 +194,14 @@ for (let period = 1; period <= 5; period++) {
   const continuous = audit(originalWords, false, period);
   const reset = audit(originalWords, true, period);
   const natural = audit(gibranWords, null, period);
+  const latinContinuous = audit(originalWords, false, period, latinByPeriod);
+  const latinReset = audit(originalWords, true, period, latinByPeriod);
+  assert.deepEqual(latinContinuous.longTen, {n: 109, match: 0});
+  assert.deepEqual(latinReset.longTen, {n: 109, match: 0});
+  if (period === 1) {
+    assert.deepEqual(latinContinuous.long, {n: 1132, match: 0});
+    assert.deepEqual(latinReset.long, {n: 1132, match: 0});
+  }
   assert.deepEqual(continuous.longTen, {n: 109, match: 0});
   assert.deepEqual(reset.longTen, {n: 109, match: 0});
   assert.deepEqual(natural.longTen, {n: 324, match: 289});
@@ -191,6 +217,10 @@ for (let period = 1; period <= 5; period++) {
     reset5: reset.long,
     reset8: reset.longEight,
     reset10: reset.longTen,
+    LatinOriginal5Carry: latinContinuous.long,
+    LatinOriginal10Carry: latinContinuous.longTen,
+    LatinOriginal5Reset: latinReset.long,
+    LatinOriginal10Reset: latinReset.longTen,
     GibranNative5: natural.long,
     GibranNative10: natural.longTen,
   });
@@ -248,8 +278,10 @@ console.log(JSON.stringify({
   originalRunes: original.length,
   originalWords: originalWords.length,
   admissibleEnglishWords: dictionaryItems,
+  latinOriginalTokens: latinSource.length,
+  distinctLatinNativeWords: distinctLatinWords,
   periods: summaries,
   realNativeWordLengthPeriod5Plant: positive.long,
   plantedRoundTrip: 'PASS',
 }, null, 2));
-console.log('PASS: all period-1..5 secret word keys excluded on every original 10+-rune word under the native English lexicon');
+console.log('PASS: all period-1..5 secret word keys excluded on every original 10+-rune word under independent native English and Latin lexical inventories');
