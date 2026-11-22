@@ -1,6 +1,6 @@
-# Page-indexed p56 prime–totient start schedules: bounded negatives
+# Page-indexed p56 prime–totient starts and literal-F skips: bounded negatives
 
-**14 November 2026, Agent 34. Classification: source-motivated necessary-condition tests.** No unknown plaintext, key, or destination is recovered.
+**Consolidated through 22 November 2026 (Agent34/Agent25). Classification: source-motivated original-cipher necessary-condition tests.** No unknown plaintext, key, or destination is recovered.
 
 ## Cipher constraint
 
@@ -45,9 +45,29 @@ This is distinct from the existing p49/p51 table-prime stream test (which consum
 
 For p0, the first five ciphertext runes are SHEOG. The fifth rune G (index 6) is decrypted using \(\phi(1283)=1282\equiv6\pmod{29}\), again forcing plaintext F from non-F ciphertext.
 
+## A distinct solved-p56 literal-F index hypothesis (Agent25, 22 November)
+
+The authentic original p56 prime-totient solution has a particularly specific feature: of five original ciphertext **F** runes at zero-based local rune offsets **35, 47, 51, 56, 74**, the **sole** plaintext-literal, non-key-consuming F is at **offset 56**, exactly equal to the page's zero-based second-release ordinal **p56**. The other four ciphertext F runes are encrypted normally. The source JPEG filename is **73.jpg**, so “56” is a modern second-release positional count a player could reconstruct by counting, *not* an actual printed page number or an author-authenticated instruction. Its equality could be an accident.
+
+Freeze this one entirely specified extension of the **known** successful p56 cipher: at zero-based rune index `i=physicalPageNumber`, if the original glyph is literal F/GP0, copy a plaintext F and **do not advance the prime key**; at every other position subtract `phi(prime[keyIndex])=(prime[keyIndex]-1) mod29` from the original GP29 ciphertext, starting independently from prime2 on each physical page. A non-F ciphertext decrypting to plaintext F is impossible under the authentic encoder's F-copy rule, which makes this a no-language-score **necessary-condition test**. Nothing is tuned per page. The full original p56 **85/85** rune plaintext is recovered exactly, including its unique skip at index56, so the candidate truly contains the solved positive.
+
+Across the **55 original unsolved nonempty pages**, only **two** have an original ciphertext F at their own local rune index: **p27 at offset27** and **p48 at offset48**. The p56-known-page plus those two form the complete 3-page diagonal-F set. Both prospective unknown pages fail the same decoder decisively:
+
+| Original page | Original runes | Fixed literal-F skip | First illegal non-F→plaintext-F position | Total illegal positions | Inverse GP29 IoC |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| p27 | 234 | 27 | **50** | **5** | 0.0347749532 |
+| p48 | 271 | 48 | **7** | **10** | 0.0334563346 |
+| **p56, solved positive** | **85** | **56** | None | **0** | **0.0700280112** |
+
+All **53 other unknown** rune-bearing pages have no page-index F skip and also contain at least one forbidden non-F→F under the frozen same-key rule. The whole 55-page unknown set therefore has **55/55** exact forward-encoder contradictions, despite the complete **85/85** independently known p56 positive. These exclusions are conditional on using the solved page's independently resetting prime2 key and the single special index rule. Another page key/start, other skip positions, a different cipher or nonliteral plaintext semantics escapes them.
+
+The diagonal coincidence is not by itself cryptographically selective. Under the exact null that independently permutes GP29 rune positions within each of the **55 original unknown pages**, keeping their authentic per-page Fehu frequencies and rune counts fixed, the mean number of pages with F at their own page ordinal is **1.9229500273**; the exact Poisson-binomial probability of at least the observed **two** is **0.5778776501**. This null conditions on the independently *discovered known-p56 event* and does not pretend that the original author sampled a uniform cipher.
+
+**Decision:** the unusually precise one-p56 match is a useful original-cipher **positive-control bridge**, but the page-index skip is an unsuccessful transfer, not a genuine manuscript decryptor. Neither the index coincidence nor its unsuccessful transfer supplies an unobserved key, source-guided operation or unknown plaintext. Preserve it as a test of this *particular* index-F rule and do not alter the key start or add arbitrary F skips to rescue the original unknowns. [Read-only exact original complete source CJS SFT](../sims/lp2_p56_pageindex_literalF_55page_source_sft.cjs).
+
 ## Decision and scope
 
-Both fixed page-indexed schedules fail the p56 forward-cipher constraint on 53 of 55 nonempty unknown pages:
+The two fixed page-indexed **starting-key** schedules fail the p56 forward-cipher constraint on 53 of 55 nonempty unknown pages, and the separately page-indexed **literal-F skip** fails on **55/55** with its frozen prime2 start:
 
 - physical page number modulo 56 as start ordinal;
 - p50 table byte at the physical page index as start ordinal.
