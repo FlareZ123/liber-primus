@@ -112,6 +112,53 @@ const independentUniformWordIV = {
 };
 assert(independentUniformWordIV.lowerTailProbability > 0 &&
   independentUniformWordIV.lowerTailProbability < 1e-18);
+
+// Source-only modular-hop diagnostic, partitioned by genuine printed words.
+// Every possible GP29 step is counted, with no proposed plaintext or key.
+// Conditional on a nonzero step, a uniform 28-ary output carrier predicts
+// a uniform distribution on residues 1..28 on either side of delimiters.
+const internalHops = new Uint32Array(29);
+const boundaryHops = new Uint32Array(29);
+original.forEach((w, wi) => {
+  for (let j = 1; j < w.length; j++)
+    internalHops[mod(w[j] - w[j - 1])]++;
+  if (wi)
+    boundaryHops[mod(w[0] - original[wi - 1].at(-1))]++;
+});
+assert.equal(internalHops.reduce((a, b) => a + b, 0), 10060);
+assert.equal(boundaryHops.reduce((a, b) => a + b, 0), 2895);
+assert.equal(internalHops[0], 63);
+assert.equal(boundaryHops[0], 23);
+/** @param {Uint32Array} row */
+function chiSquareNonzeroUniform(row) {
+  const positive = row.slice(1);
+  const n = positive.reduce((a, b) => a + b, 0);
+  const expected = n / 28;
+  return positive.reduce((sum, count) =>
+    sum + (count - expected) ** 2 / expected, 0);
+}
+/** Homogeneity statistic for two 28-bin observed count vectors. */
+function chiSquareHopHomogeneity(a, b) {
+  const nA = a.slice(1).reduce((x, y) => x + y, 0);
+  const nB = b.slice(1).reduce((x, y) => x + y, 0);
+  let chi = 0;
+  for (let j = 1; j < 29; j++) {
+    const total = a[j] + b[j];
+    const expectedA = total * nA / (nA + nB);
+    const expectedB = total * nB / (nA + nB);
+    chi += (a[j] - expectedA) ** 2 / expectedA
+      + (b[j] - expectedB) ** 2 / expectedB;
+  }
+  return chi;
+}
+const hopDiagnostic = {
+  internal: Array.from(internalHops),
+  boundary: Array.from(boundaryHops),
+  nonzeroInternalUniformChiSq27df: chiSquareNonzeroUniform(internalHops),
+  nonzeroBoundaryUniformChiSq27df: chiSquareNonzeroUniform(boundaryHops),
+  internalVsBoundaryNonzeroChiSq27df:
+    chiSquareHopHomogeneity(internalHops, boundaryHops)
+};
 const lengths = new Map();
 for (const w of original)
   lengths.set(w.length, (lengths.get(w.length) || 0) + 1);
@@ -369,6 +416,7 @@ console.log(JSON.stringify({
   dictionaryWords: dictionary.tokenCount,
   focus: anchors,
   independentUniformWordIV,
+  hopDiagnostic,
   stationaryContinuousNoReset: continuous,
   closestOriginalCountModels: strongestByShakespeare,
   dictionaryMaskImpossibleByAnchor: ranked.map(x => ({
