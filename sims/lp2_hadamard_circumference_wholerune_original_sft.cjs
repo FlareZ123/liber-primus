@@ -25,7 +25,7 @@ const idx=new Map(corpus.runes.map((r,i)=>[r,i]));
 const words=[];let current=[];
 for(const ch of transcript){
   if(idx.has(ch))current.push(idx.get(ch));
-  else if(ch==='/'||/\s/u.test(ch)){}
+  else if(ch==='/'||ch==='%'||/\s/u.test(ch)){} // page wraps never split canonical words
   else if(current.length){words.push(current);current=[];}
 }
 if(current.length)words.push(current);
