@@ -256,7 +256,7 @@ assert.equal(plantDet2 % 29n, 0n);
 
 console.log(JSON.stringify({
   sourceWords: words.length, sourceRunes: words.flat().length,
-  outputRunes: corrected.length, outputDistinctSymbols: present.size,
+  outputRunes: corrected.length, outputDistinctSymbols: new Set(corrected).size,
   originalSourceAnagrams: fourPairs,
   nonAssociativeEvidence: witnesses,
   additivePositiveControl: 'PASS: zero extension contradictions',
