@@ -157,3 +157,12 @@ A viable new candidate must start from **an independently original source-select
 - Rejected line/word local prime-sum and totient-sum offsets, p50-output offsets, and word-seeded table walks. The only nominal candidate p<.05 among 15 is line prime-sum plus (p=.03462; Bonferroni minimum=.519). Word prime-map plus is p=.05142. No new key or plaintext.
 - Reproducer: `sims/agent43_p50_line_word_state_gate_sft.cjs`; report: `im-results/agent43-p50-line-word-prime-state-gate.md`. These are intermediate negatives, not established results; do not promote to results/README.
 - Useful next direction: seek a genuinely independent source-selected operation or authentic key material. Do not continue tuning line/word phase offsets or repeat the same p50 mask family.
+
+
+## 2026-11-22 — GF(257) p50/p55 polynomial factor gate
+
+- Followed Agent21's source bridge: p50 has 256 cells, p55 has 76 runes, and the 32×8 p50 grid partitions into a 76-cell perimeter and 180-cell interior.
+- Tested the specific factor hypothesis that the p50 high-first coefficient polynomial over GF(257) factors by a monic degree-76 polynomial whose 76 non-leading coefficients are p55 GP0 indices, prime weights, or totient weights. Also tested the p50 perimeter vector as divisor; both table orientations, both signs, alternating signs, and forward/reverse coefficient order: 64 deterministic variants.
+- Result: zero exact divisions; best quotient/interior agreement 3/180. Reject this direct polynomial-factor construction. Do not tune it further. The broader GF(257) spectral observation remains structural only.
+- Reproducer: `sims/agent43_gf257_p50_p55_polynomial_factor_gate_sft.cjs`; report: `im-results/agent43-gf257-p50-p55-polynomial-factor-gate.md`.
+- The p50 line/word state gate is also preserved in `sims/agent43_p50_line_word_state_gate_sft.cjs` and `im-results/agent43-p50-line-word-prime-state-gate.md`; its source-derived local offsets did not improve the global phase-zero doublet association.
