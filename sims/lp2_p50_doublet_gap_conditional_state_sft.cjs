@@ -32,7 +32,8 @@ const chapters = [
  * A line/punctuation-conditioned event-count null is deliberately more
  * permissive than a predictive decoder and cannot prove a real reset.
  */
-const sourceText = read("resources/liber-primus/lp2-transcription.txt")
+// The image-adjudicated copy fixes two legacy period/word-divider errors.
+const sourceText = read("resources/transcriptions/lp2-image-corrected.txt")
   .split("%").slice(0,55).join("%");
 const runeCode = new Map(GP.runes.map((r,i) => [r,i]));
 const layout = [], exactRuneTape = [];
@@ -50,6 +51,7 @@ for (const char of sourceText) {
   }
 }
 assert.equal(line,594);
+assert.equal(punctuation,190);
 assert.equal(exactRuneTape.length,12956);
 assert.deepEqual(exactRuneTape,GP.pages.filter(p => p.page < 56 &&
   p.indices.length).flatMap(p => p.indices));
