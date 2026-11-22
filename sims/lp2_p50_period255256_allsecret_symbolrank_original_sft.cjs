@@ -219,6 +219,64 @@ assert.deepEqual(twoBankDifferentialBounds.map(x =>
 assert(twoBankDifferentialBounds.every(x =>
   x.maximumTopFive/original.length < 46/95));
 
+/**
+ * Transparent literal-F clock is a historically authenticated solved-p56
+ * variant: visible F rune 0 passes as itself and consumes no key phase.
+ * The encrypted non-F symbols then use a secret GP28 permutation at each
+ * 255/256 phase. For top-five recovered rune occupancy, either the chosen
+ * five exclude F (sum five largest non-F phase bins) or they include it
+ * (original F count + sum four largest non-F phase bins).
+ *
+ * Grant two arbitrary secret chapter-mode banks again, and maximize over
+ * every one of the 2^8 inequivalent nine-chapter assignments.
+ */
+const originalFCount = original.filter(x=>x===0).length;
+assert.equal(originalFCount,458);
+const skipFTapes = chapterTapes.map(tape => {
+  const nonF=tape.filter(x=>x!==0);
+  return {
+    direct:nonF,
+    integrator:nonF.map((x,i)=>mod29(x-(i===0?0:nonF[i-1])))
+  };
+});
+/** @param {number} period fixed bank cycle @param {"direct"|"integrator"} mode */
+function allTwoBankTransparentF(period,mode) {
+  const hist=skipFTapes.map(t=>{
+    const rows=Array.from({length:period},()=>new Uint32Array(29));
+    t[mode].forEach((x,i)=>rows[i%period][x]++);
+    return rows;
+  });
+  let best=-1,bestMask=-1,least=Infinity;
+  for(let mask=0;mask<256;mask++){
+    let topFourNonF=0,topFiveNonF=0;
+    for(let phaseIndex=0;phaseIndex<period;phaseIndex++){
+      const banks=[new Uint32Array(29),new Uint32Array(29)];
+      for(let chapter=0;chapter<9;chapter++){
+        const bucket=chapter===0||((mask>>>(chapter-1))&1)?banks[0]:banks[1];
+        for(let c=1;c<29;c++)bucket[c]+=hist[chapter][phaseIndex][c];
+      }
+      for(const bank of banks){
+        const sorted=Array.from(bank).slice(1).sort((a,b)=>b-a);
+        topFourNonF+=sorted.slice(0,4).reduce((a,b)=>a+b,0);
+        topFiveNonF+=sorted.slice(0,5).reduce((a,b)=>a+b,0);
+      }
+    }
+    const capacity=Math.max(topFiveNonF,originalFCount+topFourNonF);
+    if(capacity>best){best=capacity;bestMask=mask;}
+    least=Math.min(least,capacity);
+  }
+  return {period,mode,assignments:256,B5:best,mask:bestMask,
+    smallestB5:least,fraction:Number((best/original.length).toFixed(8))};
+}
+const transparentFBounds=[];
+for(const mode of ['direct','integrator'])
+  for(const period of [255,256])
+    transparentFBounds.push(allTwoBankTransparentF(period,mode));
+assert.deepEqual(transparentFBounds.map(x=>[x.mode,x.period,x.B5,x.mask]),
+  [['direct',255,6026,27],['direct',256,6056,88],
+   ['integrator',255,6029,38],['integrator',256,6020,58]]);
+assert(transparentFBounds.every(x=>x.B5/original.length<46/95));
+
 /** Exact histogram for any recovered candidate plaintext. */
 function globalTopK(stream, k) {
   const counts = new Uint32Array(29);
@@ -272,6 +330,7 @@ console.log(JSON.stringify({
   exactBounds: observations,
   firstOrderAdditiveIntegratorAllSecretBounds: differentialBounds,
   twoBankFirstOrderIntegratorChapterBounds: twoBankDifferentialBounds,
+  allTwoBankTransparentFChapterBounds: transparentFBounds,
   exhaustiveTwoSecretChapterBankBounds: twoBankChapterBounds,
   syntheticNativeControl: {
     nativeRunes: positivePlain.length,
