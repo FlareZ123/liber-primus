@@ -95,7 +95,7 @@ function findBitPattern(data,bits,byteOrder){
 /**
  * @param {Buffer} data
  * @param {number[]} values
- * @param {0|5} shift
+ * @param {0|3} shift
  * @returns {number[]} all byte starts with exact13 5-bit values
  */
 function findBytePattern(data,values,shift){
@@ -135,7 +135,7 @@ function positiveControls(){
    out.push({wordOrder,byteOrder,
      passedBitPhases:8,knownOriginalRunesReencoded:13});
  }
- for(const shift of [0,5]){
+ for(const shift of [0,3]){
    const data=pseudoRandomBuffer(),start=125;
    for(let i=0;i<sourceKey.length;i++){
      const mask=31<<shift;
@@ -170,7 +170,7 @@ function main(){
      console.log(JSON.stringify({direction,wordOrder,byteOrder,
        exactTitleHits:hits.length}));
    }
-   for(const shift of [0,5]){
+   for(const shift of [0,3]){
      const hits=findBytePattern(data,sourceKey,shift);
      results.push({direction,byteProjection:shift===0?"low5":"high5",
        sourceByteStartsMatched:hits.length,sourceByteStarts:hits.slice(0,20)});
