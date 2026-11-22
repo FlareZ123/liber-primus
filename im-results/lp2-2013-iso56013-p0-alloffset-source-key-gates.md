@@ -60,9 +60,25 @@ If a source title hit existed, the SFT would demand the two other original cribs
 
 Eight planted GP-native source controls construct correct original-shaped ciphertext under both rank grammars, both byte projections and both directions. They introduce plaintext-F bypasses between the three separately positioned spans, yet recover all **27 expected non-F transitions**, the true ISO-like source offset, the unknown additive bias and compatible source clocks through all three spans. All eight positives and the full original scan passed [Windows Node.js 22 run 45084371239](https://github.com/FlareZ123/liber-primus/actions/runs/45084371239).
 
+## C. Complete historical 5-bit XOR transfer: all file bit offsets and both directions
+
+The historical **2013 phone-stage opcode** is an XOR of a source-specified `DATA/560.13` byte window with an independently supplied data field. This third experiment transfers the *same exact XOR operation* to the 29-value Gematria Primus register. GP symbols 0–28 fit in five binary bits. The first 13 proposed p0 title plaintext GP symbols therefore demand a **65-bit source key** `K[i]=C[i] XOR P[i]`, with no slope, word scoring, language parameter or secret alphabet. The 2013 source does not instruct applying XOR to GP29 runes, so this is an explicitly *hypothetical transfer*, even though the original byte XOR operation is historically real.
+
+The [source SFT](../sims/lp2_2013_iso56013_p0_originalXOR5_allbit_source_sft.cjs) searches the hash-pinned full 118,818,811-byte original file for the exact 65-bit required key, admitting **every source bit phase**, both internal bit orderings of each GP5 symbol, both internal bit orderings of source bytes, and source reading in forward/reversed byte order. Each possible 8-aligned interior candidate is matched as a full-byte needle, then verified across all 65 requested bits including boundary fragments. In addition, it exhausts all byte starts interpreting each source byte's low five bits or high five bits as one GP key symbol, in both directions. There is no ciphertext-dependent start offset, match tolerance or phase tuning.
+
+| Source reading | Completely searched variants | Exact 13-rune title matches |
+| --- | ---: | ---: |
+| Raw consecutive 65-bit fields, both byte orders, both GP5 orders, both file directions | 8 | **0** |
+| Source byte low5/high5, both directions | 4 | **0** |
+| **Total** | **12** | **0** |
+
+**Positive power check:** all **8 bit phases** of each of the 4 bit-order variants, and both low5/high5 source-byte projections, exactly recovered synthetic authentic-shape 13-rune XOR keys. The corrected complete source-byte and 5-bit test **passed** [Windows Node22 run 45085059809](https://github.com/FlareZ123/liber-primus/actions/runs/45085059809). An initial separate run 45084771016 failed the positive test because the high-five-bit source byte projection used a shift of five instead of the correct shift of **three**; this was repaired before any original-data verdict was accepted. The final pass verified the historical file hash and found zero original13-rune matches.
+
+**Decision:** the original 2013 byte XOR opcode does **not** expose the proposed p0 title through any direct packed GP5 bit-window or consecutive high5/low5 byte window in the complete historic dataset, even with every source bit offset and the two obvious bit directions. This does not exclude a different plaintext title, an indirect encoding of GP29 characters, a source-printed key offset rather than a free start, or a layered cryptosystem.
+
 ## Decision for source-led cryptanalysis
 
-Both source-byte mechanisms are **excluded on the exact original p0 title under the independently predicted title plaintext**, across every possible contiguous source offset in the complete hash-pinned 2013 CicadaOS file. This covers an unconstrained key offset and fully secret constant affine parameters/bias without relaxing ciphertext integrity. The original byte source and earlier 2013 offset-XOR opcode are historically real, but a human LP2 solver is still missing an original instruction to select this file and its start.
+The two direct source-byte substitution mechanisms and the original-byte-XOR-to-GP5 transfer are **excluded on the exact original p0 title under the independently predicted title plaintext**, across every possible contiguous source offset in the complete hash-pinned 2013 CicadaOS file. The GP5 transfer additionally covers every raw bit-alignment in the source file. This covers an unconstrained key offset and fully secret constant affine parameters/bias without relaxing ciphertext integrity. The original byte source and earlier 2013 offset-XOR opcode are historically real, but a human LP2 solver is still missing an original instruction to select this file and its start.
 
 The more promising next use of the historical source would require a **different author-selected typed operation**, such as the documented 2013 byte XOR applied to explicitly represented GP data, or a recoverable offset supplied in original 2014 media. Longest fitted prefixes of 6–9 runes among approximately a billion source tests are ordinary look-elsewhere coincidences, not partial plaintext.
 
