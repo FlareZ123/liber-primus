@@ -1,0 +1,25 @@
+# Exact p8–p9 256-rune register and the original LP2 32×8 numeric grid
+
+**Agent 36, 22 November 2026. Intermediate source-shape finding; fixed direct decoding fails. No recovered plaintext or author-confirmed key.**
+
+## Physical selection
+
+Original p8 has **255 GP29 runes**. Its red heading comprises a **four-rune word** `XIXM` and an **eight-rune word** with indices `[1,14,19,5,2,13,3,17]`; 243 black runes follow. On the original printed page, those 243 black runes occupy **49 page-local word fragments**, of which **48 are complete words**. The last one-rune fragment at the p8 page boundary joins the next **five black runes** at the start of p9 without a word delimiter, producing a **six-rune word**.
+
+A source-shaped alignment therefore exists without invented padding, rune selection or fitted offsets: set aside the first red `XIXM` title, retain the next **8 red** runes as one eight-cell row, and retain the **243 + 5 = 248 black** runes through the first p9 word as 31 more eight-cell rows. The resulting **8 + 248 = 256 = 32×8 GP29** packet is exactly `p8.indices.slice(4).concat(p9.indices.slice(0,5))`, containing **49 complete black words** across the seam. Independently, the genuine numerical table printed across physical pp49–51 is **32 rows × 8 columns, 256 bytes**. The original header and real continued word select the packet. **No first-party instruction authenticates aligning these two objects or specifies their cryptographic combination.**
+
+This clarifies an earlier apparent p8 49-word/243-rune coincidence: **49 p8-local fragments contain243 runes, while the corresponding 49 complete words contain248**. The exact 256 candidate depends on the true p8→p9 continuation, rather than treating the final printed fragment as a standalone word. See the [corrected 7×7 source-square receiver](lp2-p8-49words-2014-seven-square-receiver.md).
+
+## Frozen original-source receiver results
+
+Use original `lp2-corpus.json` ordinal and prime arrays and unchanged `lp2-grid-256.json` original table bytes. Compare source row-major 32×8 order with column-major, using both signs. No searched key phases or guessed words.
+
+1. **GP29 direct key cancellation**: for each rune and same-index grid byte, calculate `P_i = (C_i ± (B_i mod29)) mod29`. Original packet IoC is **0.03388480**. Four decoded IoCs are **0.03458946** (row subtraction), **0.03357843** (row addition), **0.03560049** (column subtraction), **0.03514093** (column addition). None produces native GP prose. Exact same-key source-native plaintext plants recover **256/256** positions in every mode, proving this receiver would detect the proposed simple pad if present.
+2. **Direct bytes**: 12 source-sized tests use `B xor GP-index`, `B xor GP-prime`, `B ± GP-index`, `B ± GP-prime`, each in row and column order. Printable ASCII proportions are **91–104 / 256** (35.55%–40.63%) and initial 72-byte previews are unreadable. No standard direct ASCII plaintext was found under these one-to-one operations.
+3. **Original exact GF29 polynomial links**: the p49–51 byte grid is independently known to be divisible by both `H(X)=X²+18X+11` and `G(X)=X²+10X+25`. The new rune packet has original remainders **[17,5]** modulo H and **[11,11]** modulo G, so it is not an exact same-codeword register under either source-defined quadratic. Exactly **9/256** original rune indices equal the corresponding row-major table byte reduced mod29, near the 8.83 expected by chance.
+
+The [read-only source-original Node22 SFT](../sims/lp2_p8_p9_seam256_p50_direct_receiver_sft.cjs) verifies the seam, exact input, numerical grid, planted decryption controls, and all negative readouts. [Windows Node22 CI PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44967440366).
+
+## Decision
+
+Retain **the source-defined 256-position p8–p9 continuation** as a potentially useful register for an independently clued operation involving the genuine 32×8 table. The registration itself is exact, but its meaning is unproved: multiple apparent numerical coincidences have been found in LP2. The simple GP29-pad, byte-XOR/arithmetic and inherited polynomial-codeword hypotheses do not directly recover plaintext. Any stronger claim requires an original clue specifying the operation and a successful decoding of unchanged ciphertext. No established solution is promoted to `results/`.
