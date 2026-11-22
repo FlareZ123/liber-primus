@@ -54,6 +54,9 @@ function generate(initial) {
   for(let i=5;i<5000;i++)
     out.push(mod(coeff.reduce((s,v,k)=>s+v*out[i-k-1],0)));
   for(let i=1876;i<5000;i++)assert.equal(out[i],out[i-1876]);
+  for(let i=0;i+4<out.length;i++)
+    assert.ok(!out.slice(i,i+5).every(v=>v===out[i]),
+      "every ciphertext skip run must contain at most four equal key draws");
   return out;
 }
 const shakespeare=encodeSourceNativeGP(read("resources/control/shakespeare_first300k.txt"));
@@ -119,9 +122,9 @@ function inverse(cipher,key,start,phase){
     const next=new Map();
     for(const state of states){
       const j=state.j;
-      // In this finite source schedule, >3 consecutive identical key draws
-      // do not arise along a viable chapter path; prove this separately.
-      for(let skip=0;skip<=3;skip++){
+          // Both exact source LFSRs have at most four equal consecutive keys.
+      // Four rejected values therefore exhaust all possible skip runs.
+      for(let skip=0;skip<=4;skip++){
         const p=mod(cipher[i]-key[j+skip]);
         let admissible=true;
         for(let t=0;t<skip;t++){
