@@ -114,6 +114,27 @@ function parityEquations(grid, axis, weights) {
   return output;
 }
 
+/**
+ * Full-field RS(81,80) one-parity equations. In characteristic three,
+ * the sum of an 81-point degree<=79 evaluation is zero. Its only
+ * coefficients are 0, 1, 2 in the GF3 subfield of GF81.
+ * @param {number[]} first
+ * @param {'row'|'column'} axis
+ * @returns {number[][]}
+ */
+function fullFieldEquations(first, axis) {
+  const out = [];
+  for (let i = 0; i < 81; i++) {
+    const coefficient = Array(29).fill(0);
+    for (let j = 0; j < 81; j++) {
+      const symbol = first[axis === 'row' ? i * 81 + j : j * 81 + i];
+      coefficient[symbol] = ADD[coefficient[symbol]][1];
+    }
+    out.push(coefficient);
+  }
+  return out;
+}
+
 /** @param {number[]} coefficients @returns {number} */
 function originalIntegerEmbeddingSyndrome(coefficients) {
   return coefficients.reduce((sum, coeff, index) => ADD[sum][MUL[coeff][index]], 0);
@@ -165,6 +186,21 @@ function main() {
   assert.equal(tape.length, 12956);
   assert.deepEqual(tape.slice(6555, 6561), [23, 11, 1, 17, 18, 10]);
   assert.deepEqual(tape.slice(12950), [23, 11, 1, 17, 18, 10]);
+  const first = tape.slice(0, 6561);
+  assert.equal(first.length, 6561);
+  const fullFirstCases = [];
+  for (const axis of ['row', 'column']) {
+    const equations = fullFieldEquations(first, axis);
+    assert.equal(equations.length, 81);
+    for (const equation of equations) assert.equal(sumGF(equation), 0);
+    assert.equal(rank(equations), 28);
+    fullFirstCases.push({
+      axis, rows: equations.length, rank: rank(equations),
+      nonzeroNativeSyndromes: equations.filter(eq =>
+        originalIntegerEmbeddingSyndrome(eq) !== 0).length
+    });
+  }
+  assert.deepEqual(fullFirstCases.map(x => x.nonzeroNativeSyndromes), [56, 52]);
   const visible = tape.slice(6561);
   assert.equal(visible.length, 6395);
   const holeOffsets = [2244, 2384, 2476, 2575, 2672];
@@ -231,6 +267,7 @@ function main() {
     source_field: 'GF3[x] / (x^4 + x^2 + x + 1)',
     primitive_original_source_element: 4,
     original_square_81x81: 6561,
+    original_81point_RS_single_parity: fullFirstCases,
     original_square_80x80_visible: visible.length,
     hole_positions: holeOffsets,
     independent_complete_rows_and_columns: 75,
