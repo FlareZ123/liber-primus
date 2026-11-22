@@ -562,7 +562,7 @@ function pageRunResetComplexityBound() {
     maxWithTwentyBestPageRunRegimes:dynamic[20][n],
     maxWithOneRegimePerPage:dynamic[55][n],
     minimumRegimesToReachEitherNativeControl:20,
-    lowerBoundOnPageInternalKeyStateChanges:19
+    minimumBetweenPageKeyRegimeChanges:19
   };
 }
 const optimalPageResetBound=pageRunResetComplexityBound();
