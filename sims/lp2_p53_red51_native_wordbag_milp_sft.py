@@ -311,6 +311,12 @@ for line in latin_path.read_text(encoding="utf-8").splitlines():
     word = tuple(latin_symbols.index(c) for c in line)
     if len(word) in set(SIZES):
         LATIN_SOURCE.setdefault(word, ("latin-original-native", 1))
+# This direct-source alphabet-support invariant rules out the original
+# red51 being ANY pure permutation into this printed Latin Vulgate corpus,
+# even when plaintext word-break lengths are unconstrained.
+assert int(SOURCE_HIST[7]) == 2  # original red has two GP W
+assert int(SOURCE_HIST[11]) == 3 # original red has three GP J
+assert not any(7 in encoded or 11 in encoded for encoded in LATIN_SOURCE)
 latin_eligible = [
     (name, encoded, wt)
     for encoded, (name, wt) in LATIN_SOURCE.items()
