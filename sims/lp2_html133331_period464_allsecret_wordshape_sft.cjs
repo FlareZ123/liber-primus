@@ -1,7 +1,7 @@
 "use strict";
 /**
  * Cicada source HTML title133 + div331 = 464 and prime(464) = 3301.
- * printed WORD LENGTHS, not just its source event positions. The original page/word architecture is held exactly. A secret 464-state
+ * The original 2,896 word lengths and 12,956 runes remain fixed. A secret 464-state
  * alphabet gives each fixed rune ordinal modulo 464 its own arbitrary GP29
  * substitution. No key is assumed or guessed.
  * This is a lexical frequency reference (synthetic, not coherent prose),
