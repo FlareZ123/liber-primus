@@ -199,6 +199,76 @@ const invalidPointwiseCipher = p8cipher.filter(x => !image.has(x));
 assert.equal(invalidPointwiseCipher.length, 86);
 assert.equal(new Set(invalidPointwiseCipher).size, 10);
 
+// Bounded actual intact-original decoder attempt: a reversible
+// two-lane Feistel use of this source-selected NONPERMUTATION polynomial.
+// The p8 black 243 runes plus the FIRST genuine p9 carry rune give
+// 244 = 122 complete pairs; the entire p8 + that same p9 rune give
+// 256 = 128 pairs. Both are source-typed and unpadded.
+// Feistel itself and any round count remain unprinted hypotheses.
+/** @param {number[]} pair @param {number} sign @param {boolean} inverse
+ * @returns {number[]} */
+function feistel(pair, sign, inverse) {
+  const [a, b] = pair;
+  return inverse
+    ? [mod(b - sign * evalPoly(coeff, a)), a]
+    : [b, mod(a + sign * evalPoly(coeff, b))];
+}
+/** @param {number[]} tape @param {number} rounds
+ * @param {number} sign @param {boolean} inverse
+ * @param {boolean} swap @returns {number[]} */
+function feistelTape(tape, rounds, sign, inverse, swap) {
+  assert.equal(tape.length % 2, 0);
+  const out = [];
+  for (let i = 0; i < tape.length; i += 2) {
+    let pair = [tape[i], tape[i + 1]];
+    if (swap) pair.reverse();
+    for (let j = 0; j < rounds; j++)
+      pair = feistel(pair, sign, inverse);
+    if (swap) pair.reverse();
+    out.push(...pair);
+  }
+  return out;
+}
+/** @param {number[]} tape @returns {number} */
+function ioc(tape) {
+  const count = Array(29).fill(0);
+  tape.forEach(v => count[v]++);
+  return count.reduce((s, x) => s + x * (x - 1), 0) /
+    (tape.length * (tape.length - 1));
+}
+const p9first = gp.pages[9].indices[0];
+const pairRegisters = {
+  black243AndFirstP9Rune: p8cipher.slice(12).concat(p9first),
+  all255P8AndFirstP9Rune: p8cipher.concat(p9first)
+};
+assert.equal(pairRegisters.black243AndFirstP9Rune.length, 244);
+assert.equal(pairRegisters.all255P8AndFirstP9Rune.length, 256);
+const feistelTrials = [];
+for (const [receiver, tape] of Object.entries(pairRegisters))
+for (let rounds = 1; rounds <= 4; rounds++)
+for (const sign of [-1, 1])
+for (const inverse of [false, true])
+for (const swap of [false, true]) {
+  const result = feistelTape(tape, rounds, sign, inverse, swap);
+  feistelTrials.push({ receiver, rounds, sign, inverse, swap,
+    ioc: ioc(result) });
+}
+assert.equal(feistelTrials.length, 64);
+assert.equal(feistelTrials.filter(t => t.ioc >= 0.05).length, 0);
+const maxFeistelIoC = Math.max(...feistelTrials.map(t => t.ioc));
+assert(Math.abs(maxFeistelIoC - 0.03673345476624165) < 1e-13);
+// Exact positive: every forward round has a direct inverse. We do
+// not inject a synthetic ciphertext/borrow a source-trained plaintext.
+const plant = Array.from({ length: 244 }, (_, i) => (i * 17 + 3) % 29);
+for (let rounds = 1; rounds <= 4; rounds++)
+for (const sign of [-1, 1]) {
+  const encrypted = feistelTape(plant, rounds, sign, false, false);
+  const recovered = feistelTape(encrypted, rounds, sign, true, true);
+  // A Feistel inverse under unchanged pair presentation must apply
+  // the reverse round ordering; repeated identical rounds make this exact.
+  assert.deepEqual(recovered, plant);
+}
+
 // Exact fixed-3,4 under uniform independently selected GF29 coefficients:
 // two linearly independent constraints, probability 1/29^2.
 // Complete root-set exactly {3,4}: count 29^3 quadratic residuals
@@ -232,6 +302,9 @@ console.log('LP2_P7_P8_POLYNOMIAL_FIXEDPOINT ' + JSON.stringify({
   extensionSqrt8Order: order,
   polynomialRuneImageSize: image.size,
   p8PointwiseIncompatibleRunes: invalidPointwiseCipher.length,
+  frozenFeistelSourceRegistrations: feistelTrials.length,
+  frozenFeistelMaxIoC: maxFeistelIoC,
+  frozenFeistelNativeIoCOver05: 0,
   uniformFiveCoefficientExactTargetProbability: 1 / (29 * 29),
   uniformFiveCoefficientOnlyTheseRootsProbability:
     rootOnlyResiduals / 29 ** 5,
