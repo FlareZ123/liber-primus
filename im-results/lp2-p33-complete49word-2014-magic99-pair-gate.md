@@ -48,6 +48,10 @@ Therefore the 49 printed word positions **cannot directly map by GP-prime word-s
 
 [The same original-source SFT](../sims/lp2_p33_complete49word_2014_magic99_pair_sft.cjs) now derives all 49 complete word lengths and exhaustively computes these feasible-sum sets under every rotation/reflection. Windows Node22 **PASS**, [run 45066731208](https://github.com/FlareZ123/liber-primus/actions/runs/45066731208), head commit `70c045bd007256ed50ea74f5f2b75d4127b8938e`.
 
+## Source-internal size-match control
+
+The complete 49-word / 198-rune match is an arithmetic feature, not an inherently unique synchronization. Across the original **2,896 complete unknown-LP2 printed words** (12,956 canonical GP29 runes), all **2,848 overlapping runs of 49 consecutive words** were examined without editing text, breaking original words, or counting non-GP numeric labels. Exactly **26 of 2,848** spans have 198 runes (about 0.91%). Those rolling spans overlap, and this 198/99 comparison was recognized after inspecting p33; it is a **descriptive within-book base rate, not a probability of Cicada intent**. The historically authenticated 2014 squares still provide no original selection of adjacent rune pairs or a 99-cell operation. [Same original-source SFT](../sims/lp2_p33_complete49word_2014_magic99_pair_sft.cjs), Windows Node22 **PASS** [run45067510134](https://github.com/FlareZ123/liber-primus/actions/runs/45067510134).
+
 ## Decision and reproducibility
 
 The complete 49-word/99-pair alignment is genuine physical arithmetic with two historically authentic original operands. All four minimal additive pair decoders fail to produce recognizable native-GP prose; the direct multiplicative source law is algebraically impossible on original ciphertext. The historical material does **not select** the pair serialization or a cipher operation. No additional guessed alphabet or rescue layer is licensed by this observation.
