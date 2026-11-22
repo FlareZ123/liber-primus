@@ -171,8 +171,8 @@ const candidates=[
   {kind:"source-whole-word-roundrobin-1to5",stream:parallel.words},
   {kind:"source-physical-line-roundrobin-1to5",stream:parallel.lines},
   {kind:"solved-LP1-553-plant",stream:plant},
-  {kind:"solved-LP2-p56",stream:gp.pages[56].indices},
-  {kind:"solved-LP2-p57",stream:gp.pages[57].indices},
+  {kind:"p56-original-encrypted-ciphertext",stream:gp.pages[56].indices},
+  {kind:"p57-authentic-solved-cleartext",stream:gp.pages[57].indices},
 ];
 console.log("SOURCE",JSON.stringify({
   originalPages:[36,37,38],originalRuneCounts:units.map(u=>u.runes.length),
