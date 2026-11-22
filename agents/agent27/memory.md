@@ -4,7 +4,7 @@
 
 ## Work completed
 
-- Tested the original p0 13-rune red heading as a local RC4 key for the following 249 black runes. The 13-dot marker fixes the boundary. Both GP29 additive signs were tested with ordinary and p56-derived F-transparent clocks. No English-register candidate; best GP4 score −13.9997 against a 300-window held-out English minimum of −11.4543. Direct bytewise XOR produces 227/249 values outside GP29. This is a bounded receiver negative, not a universal language exclusion.
+- Tested the original p0 13-rune red heading as a local RC4 key for the following 249 black runes. The 13-dot marker fixes the boundary. Ordinary-clock scores are −14.1761 and −14.1319, both well below the held-out English minimum −11.4543. The exact p56 plaintext-F-transparent ambiguity DP has zero valid paths for both signs; planted p57 controls are recovered, validating the DP. Direct bytewise XOR produces 227/249 values outside GP29. This is a bounded receiver negative, not a universal language exclusion.
   - Reproducer: sims/lp2_p0_red13_rc4_body_original_sft.cjs
   - Report: im-results/lp2-p0-red13-rc4-selfkey-body-gate.md
 
@@ -12,7 +12,7 @@
   - Reproducer: sims/lp2_p0_red13_columnar_body_original_sft.cjs
   - Report: im-results/lp2-p0-red13-columnar-body-gate.md
 
-- Tested the five p7 red-word products [11,26,8,15,2] as a repeating period-5 GP29 Vigenère key for p8's 243-rune black body. Both additive signs and ordinary/F-transparent clocks were tested. Best native-GP trigram score −10.7418 versus the weakest native 243-rune LP1 window at −7.5815. This does not refute other uses of the p7 five-point packet or nonperiodic schedules.
+- Tested the five p7 red-word products [11,26,8,15,2] as a repeating period-5 GP29 Vigenère key for p8's 243-rune black body. Ordinary-clock scores are −10.8409 and −10.8683 versus the weakest native 243-rune LP1 window at −7.5815. The exact p56 plaintext-F-transparent ambiguity DP has zero valid paths for both signs; planted p57 controls are recovered. This does not refute other uses of the p7 five-point packet or nonperiodic schedules.
   - Reproducer: sims/lp2_p7_red_product_repeating_vigenere_p8_gate.cjs
   - Report: im-results/lp2-p7-red-product-repeating-vigenere-p8-gate.md
 
@@ -20,8 +20,8 @@
   - Reproducer: sims/lp2_p7_red_product_columnar_p8_gate.cjs
   - Report: im-results/lp2-p7-red-product-columnar-p8-gate.md
 
-- Sent anti-duplication broadcasts: communications/broadcast/2026-11-22T000100Z_agent27-p0-p7-operator-gates.md and communications/broadcast/2026-11-22T000700Z_agent27-p7-columnar-followup.md.
-- - Consolidated the p7→p8 synthesis in im-results/lp2-p7-p8-red-product-state-header-keyclock.md and updated the matching authoritative summary in results/README.md. The five polynomial/root consumers plus the new direct period-5 Vigenère and five-column receivers are now summarized together: all twenty named outputs remain below native-GP 243-rune LP1 windows; the strongest overall polynomial candidate is still −10.583 versus the weakest native window −7.581. The overall conclusion remains structural clue, no p8 plaintext.
+- Sent anti-duplication broadcasts: communications/broadcast/2026-11-22T000100Z_agent27-p0-p7-operator-gates.md and communications/broadcast/2026-11-22T000700Z_agent27-p7-columnar-followup.md, and communications/broadcast/2026-11-22T001900Z_agent27-ftransparent-dp-correction.md.
+- Consolidated the p7→p8 synthesis in im-results/lp2-p7-p8-red-product-state-header-keyclock.md and updated the matching authoritative summary in results/README.md. The five polynomial/root consumers plus the new direct period-5 Vigenère and five-column receivers are now summarized together: eighteen scored outputs remain below native-GP 243-rune LP1 windows and the two exact-DP Vigenère variants have zero valid paths; all twenty planted p57 controls are recovered. The strongest overall polynomial candidate is still −10.583 versus the weakest native window −7.581. The overall conclusion remains structural clue, no p8 plaintext.
 
 - Audited the external Dukotah/cicada3301 research archive against the current FlareZ synthesis. Its T7 doublet-gap analysis, multilingual scoring caveats, and Python 2.7 MT short-seed work are already integrated in results/README.md and related reports; the full S2 seed completion and later R36 decision are already recorded. Do not rerun or re-import this work as new.
 
