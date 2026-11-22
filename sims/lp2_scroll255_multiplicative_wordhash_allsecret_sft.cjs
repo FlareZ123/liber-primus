@@ -110,6 +110,34 @@ const outputHistogram = Array(29).fill(0);
 for (const h of H) outputHistogram[h]++;
 assert(outputHistogram.every(n => n > 0));
 
+// Stronger, source-colored same-family gate: permit completely independent
+// output codebooks for RED and BLACK source words. The 242 original BLACK
+// source words alone force the identical 29-vs-28 contradiction.
+const redRunePositions = new Set();
+let sourceOffset = 0;
+for (let page = 3; page <= 7; page++) {
+  const sourceInk = ink.pages.find(p => p.page === page);
+  for (const span of sourceInk?.red_spans || []) {
+    for (let j = 0; j < span.length; j++)
+      redRunePositions.add(sourceOffset + span.start + j);
+  }
+  sourceOffset += gp.pages[page].indices.length;
+}
+const redWordIds = [], blackWordIds = [];
+let cursor = 0;
+words.forEach((w, i) => {
+  const fullyRed = w.every((_, j) => redRunePositions.has(cursor + j));
+  const fullyBlack = w.every((_, j) => !redRunePositions.has(cursor + j));
+  assert(fullyRed || fullyBlack, "source red and black words unmixed");
+  (fullyRed ? redWordIds : blackWordIds).push(i);
+  cursor += w.length;
+});
+assert.deepEqual([redWordIds.length, blackWordIds.length], [13, 242]);
+assert.equal(new Set(blackWordIds.map(i => H[i])).size, 29);
+const distinctBlackPerRune = Array.from({ length: 29 }, (_, r) =>
+  new Set(blackWordIds.filter(i => words[i].includes(r)).map(i => H[i])).size);
+assert.equal(Math.min(...distinctBlackPerRune), 16);
+
 const distinctPerRune = [];
 const witnesses = [];
 for (let r = 0; r < 29; r++) {
@@ -178,6 +206,10 @@ console.log(JSON.stringify({
   allOutputResidueCounts: outputHistogram,
   distinctOutputsPerSourceRune: distinctPerRune,
   minimumDistinctOutputsForAnySourceRune: Math.min(...distinctPerRune),
+  sourceRedWords: redWordIds.length,
+  sourceBlackWords: blackWordIds.length,
+  blackOnlyDistinctOutputs: new Set(blackWordIds.map(i => H[i])).size,
+  blackOnlyMinDistinctOutputPerRune: Math.min(...distinctBlackPerRune),
   zeroWeightContradictionWitnesses: witnesses,
   exhaustiveAffineOffsetProof: exclusions,
   arbitrarySecretWeightCount: weights.length,
