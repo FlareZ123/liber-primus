@@ -59,11 +59,11 @@ assert.equal(grid.rows.length, 32);
 assert.ok(grid.rows.every(row => row.length === 8));
 assert.equal(grid.byte_rows.length, 32);
 assert.ok(grid.byte_rows.every(row => row.length === 8));
-const sourceP22Runes = corpus.pages[22].indices;
+const sourceP22Runes = data.pages[22].indices;
 const page22Doublets = sourceP22Runes.flatMap((v,i) =>
   i>0 && v===sourceP22Runes[i-1] ? [{index:i, gp29:v}] : []);
 assert.deepEqual(page22Doublets,[{index:101,gp29:28}]);
-const completeEarDoublets = corpus.pages.slice(0,56).flatMap(page =>
+const completeEarDoublets = data.pages.slice(0,56).flatMap(page =>
   page.indices.flatMap((v,i) =>
     i>0 && v===page.indices[i-1] && v===28 ? [{page:page.page,index:i}] : []));
 assert.deepEqual(completeEarDoublets, [
