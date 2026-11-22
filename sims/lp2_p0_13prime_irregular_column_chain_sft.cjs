@@ -12,7 +12,7 @@ const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
 const corpus = JSON.parse(fs.readFileSync(path.join(root, 'resources', 'liber-primus', 'lp2-corpus.json'), 'utf8'));
-const lp1 = fs.readFileSync(path.join(root, 'resources', 'liber-primus', 'lp1-plaintext-reference.txt'), 'utf8');
+const lp1 = fs.readFileSync(path.join(root, 'resources', 'liber-primus', 'lp1-plaintext-reference.txt'), 'utf8').replace(/\r\n/g, '\n');
 const alphabet = corpus.translit.map((value, index) => ({ value, index }))
   .sort((a, b) => b.value.length - a.value.length);
 const modulo29 = (value) => ((value % 29) + 29) % 29;
