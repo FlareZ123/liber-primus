@@ -1,6 +1,6 @@
-# The p7 red polynomial has a seven-cycle matching the following seven-page tree chapter
+# P7's five-red-word algebra: seven-state polynomial cycle and reversible pair transform
 
-**Agent22, 22 November 2026. Classification: exact source-derived nonlinear state relation and bounded original-cipher negative.** Extends the prior [p7 polynomial fixed-point and derivative discovery](lp2-p7-p8-original-red-polynomial-fixedpoint.md). No unknown LP2 plaintext, historical cipher key, or verified intended continuation was recovered.
+**Agent22, 22 November 2026. Classification: exact original-source nonlinear state and reversible arithmetic clues with bounded original-cipher negatives.** Extends the prior [p7 polynomial fixed-point and derivative discovery](lp2-p7-p8-original-red-polynomial-fixedpoint.md). No unknown LP2 plaintext, historical cipher key, or verified intended continuation was recovered.
 
 ## Original source and newly discovered graph structure
 
@@ -41,6 +41,43 @@ The unique polynomial in the last row is **[11,26,8,15,2]**, exactly the five or
 
 These counts are exact conditional mathematical facts, **not a 1/409 probability of author intent**. The five-step and seven-page correspondence was noticed retrospectively after the original polynomial and fixed points had been identified. There are many other investigated manuscript numbers and transformations. Nonetheless, the original candidate uniquely connects several authentic source features without a fitted private key, and gives a specific seven-state orbit for an actionable future decipherment test.
 
+## Another reversible reading of the same five printed red operands
+
+The five authentic source red word products [11,26,8,15,2] have a compact *independent cipher-operation interpretation*, separate from calling them quartic polynomial coefficients. Read them sequentially as two GF29 inputs, two outputs and a final determinant:
+
+    a=11, b=26, u=8, v=15, d=2
+    u = a+b = 8 (mod29)
+    v = b-a = 15 (mod29)
+    [u,v] = [[1,1],[-1,1]]*[a,b] (mod29)
+    determinant([[1,1],[-1,1]]) = 2 = d (mod29)
+    [a,b] = [(u-v)/2,(u+v)/2] (mod29)
+
+This is a **completely reversible original-source two-rune butterfly example**, without any private parameters or extra fields. The last printed red word product2 provides precisely the normalization needed for its inverse (1/2=15 modulo29). Unlike the source quartic, this algebra supplies a *direct invertible two-rune operation* that a historically plausible human could try on genuine ciphertext, albeit without a printed red-word 2|2|1 partition or instruction to apply it to adjacent runes. All **841** degree-at-most-four GF29 coefficient vectors satisfying the previously established p8 title constraints P(3)=3, P(4)=4 and P'(4)=17 were independently enumerated; **only the original printed vector** also obeys all three butterfly relations. This is a restrictive **postselected conditional constraint**, not evidence that the creator explicitly intended both structures.
+
+An even more physical cross-page link appears in the butterfly's two outputs and the next red title:
+
+    8² + 15² = 17² = 289 (ordinary integers).
+
+The p8 terminal *original red rune* has index **17**. Thus the printed red middle products8,15 and next-page final red17 form the exact **primitive Pythagorean triple (8,15,17)**. The other two p8 red *whole-word* products [4,3] provide the legs of root **(3,4,5)**. A single Euclidean rule m→(m²−1,2m,m²+1) yields root (3,4,5) for **m=2**, the fifth p7 red product, and child **(15,8,17)** for m=4. This child is specifically one of the **three standard Berggren-tree branches** from root (3,4,5), already enumerated in the [prior p8 tree study](lp2-p8-berggren-original-source-selector-gate.md). The new P-iteration yields the missing hypotenuse **5** as P⁵(0), sourced from the preceding five complete red words rather than from an unprinted page9-only fragment. That may strengthen a candidate tree path. It still does not select a branch order among the complete 243 candidates or justify equating the botanical illustration with a mathematical Berggren tree.
+
+These equalities are **algebraically interdependent**. The earlier independent [p7 red 2×2 Hill/checksum study](../sims/lp2_p7_red_fiveword_hill_checksum_sft.cjs) noted that matrix [[11,26],[8,15]] has determinant15 and fifth word2 is its inverse, because 15×2≡1. Given the butterfly and the integer 8²+15²=17²≡−1 modulo29, that checksum follows algebraically: det([[a,b],[a+b,b−a]])=−(a²+b²)=15 modulo29. They are mutually reinforcing **descriptions of the same authentic five values**, not three independent probabilistic surprises. Neither the older Hill receiver nor the new simpler butterfly decrypts ordinary original GP29 runes.
+
+## An independent literal numeral-7 phase check
+
+The *sole* non-rune Arabic numeral in the complete original p8–p14 tree chapter is a printed **7** in physical p10. There are exactly **692 authentic GP rune symbols preceding it**, counting from the beginning of physical p8, and the entire chapter has 1,729 GP runes. Independently, this is the number previously used by the [five-dot and seven-column original alignment](lp2-p7-five-dot-numeral7-nested-column-alignment.md).
+
+The new polynomial orbit seeded from native GF29 zero and warmed up for the five p7 red words is [5,15,28,9,10,24,7]. Under a **whole-chapter clock starting at p8's first original red heading rune**, the numeral arrives at source rune offset **692=7×98+6**, exactly the phase whose derived value is **7**. This uses a real untouched numeral and a frozen cycle, with no moving its position or selecting a new key phase after inspecting the marker. Under the competing, equally natural **clock starting at the first p8 black rune**, the offset is **680 mod7=1**, which expects **15**, so the check fails. Both possible source clocks are displayed to prevent silently protecting the coincidence. The 1-in-7 phase alignment is modest, post-discovery and cannot authenticate a cipher without an independent original instruction indicating whether the red heading consumes the state.
+
+## Original-cipher inverse decision for the butterfly
+
+An exact source-derived cipher candidate applies the determinant-2 butterfly above directly to neighboring authentic GP29 ciphertext runes; the inverse uses the actual source-provided factor2. The lossless inverse/forward are tested on both faithful p8→p9 carry registrations (244 black-plus-first-p9 runes; 256 full-p8-plus-first-p9 runes), complete p9–p14 (1,474 runes), and independent p16–p21 and p40–p53 original holdouts. **All ten** direct forward or inverse outputs on these five receivers have GP29 index-of-coincidence below **0.037** and no sustained native-GP words. Genuine p57 native-GP test input, including its odd last rune, is exactly restored.
+
+Because the operands were originally **whole-word products**, a different direct receiver aggregates the **383 complete printed source words** in p8–p14 to their individual GP29 products first, retaining the real p8→p9 word carry. Applying the same pair butterfly to these products gives GP29 IoC **0.03511818** (forward) and **0.03457138** (inverse), with no original prose. Eight five-word windows within the only other twelve-word all-red passage, physical p53, do not reproduce the butterfly example. These are direct consumer negatives, while the upstream source arithmetic is exact.
+
+**Research decision:** The butterfly is a more concrete invertible author-operation candidate than inventing a nonlinear key lookup, and the p7 2|2|1 values together with the neighboring red 3,4,17 and a literal7 offer a plausible human clue sequence. Yet neither the 2|2|1 cut, polynomial iteration, source-page/black phase boundary, Pythagorean branch order nor the destination of any transformed words is printed as an instruction. Promote only on a new actual original plaintext or an independently selected full reversible receiver.
+
+**Reproduction:** [separate original-source butterfly/triangle/numeral7 Windows Node22 SFT](../sims/lp2_p7_red_butterfly_pythagorean_receiver_sft.cjs), with 2,896 original words/ink, all 841 coefficient controls, 29×29 round-trip, five complete source receivers and the 383-word original chapter.
+
 ## Source-fixed first direct inverse, independent native positive
 
 The lowest-assumption hypothetical consumer treats the seven-cycle as a GP29 repeating additive key. The printed red12 title is left intact, and the first key5 starts at the **first black p8 rune**. The clock advances once per subsequent original rune across the seven physical source pages p8–p14 without page reset. Both additive signs are tested; the source does not specify one.
@@ -59,6 +96,6 @@ Taking one constant cycle key per physical page, instead of one per rune, is als
 
 ## Decision
 
-Retain the **seven-state source-derived cycle** as a serious *provisional operation/key-selection clue*, distinct from the older p7 GF3 242-cycle and the fitted p7 GF4/radix59 255-state pad. A plausible 2014 human path starts with five visibly marked red coefficient words, recognizes p8's red fixed-point outputs, iterates the resulting polynomial, and notices the subsequent seven-page tree section. The strongest weakness is the absence of a printed **iteration, seed, or seven-state emission instruction**. Do not promote the seven-cycle to actual encryption or run more unconstrained key phases until the original artwork or archived first-party text selects an operation. The real next decision is whether the manuscript supplies one previously unnoticed seven-element consumer capable of predicting untouched original data.
+Retain the **seven-state source-derived cycle** as a serious *provisional operation/key-selection clue*, distinct from the older p7 GF3 242-cycle and the fitted p7 GF4/radix59 255-state pad. A plausible 2014 human path starts with five visibly marked red coefficient words, recognizes p8's red fixed-point outputs, iterates the resulting polynomial, and notices the subsequent seven-page tree section. The strongest weakness is the absence of a printed **iteration, seed, seven-state emission, or butterfly receiver instruction**. The 2|2|1 red sequence and the original printed7 phase yield concrete, discriminating secondary clues, with documented alternatives and direct inverse negatives. Do not promote the seven-cycle to actual encryption or run more unconstrained key phases until the original artwork or archived first-party text selects an operation. The real next decision is whether the manuscript supplies one previously unnoticed seven-element consumer capable of predicting untouched original data.
 
-**Reproduction:** [standalone source-exact Windows 11 Node.js22 CommonJS SFT](../sims/lp2_p7_red_polynomial_seven_cycle_original_sft.cjs), including 2,896 original words and ink, all 841 conditional polynomials, exhaustive functional graphs, real 1,717-rune inverse and solved p57 positive. [Successful Windows Actions run 45048275398](https://github.com/FlareZ123/liber-primus/actions/runs/45048275398).
+**Polynomial-cycle reproduction:** [standalone source-exact Windows 11 Node.js22 CommonJS SFT](../sims/lp2_p7_red_polynomial_seven_cycle_original_sft.cjs), including 2,896 original words and ink, all 841 conditional polynomials, exhaustive functional graphs, real 1,717-rune inverse and solved p57 positive. [Successful Windows Actions run 45048275398](https://github.com/FlareZ123/liber-primus/actions/runs/45048275398).
