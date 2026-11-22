@@ -35,8 +35,8 @@ const corpus=JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const lines=read("resources/liber-primus/lp2-transcription.txt");
 const c36=corpus.pages.find(x=>x.page===36).indices;
 const original=c36.slice(99);
-const script=lines.split(/\n%\n/)[36];
-const numbered=script.slice(script.indexOf("\n1-")+3).replace(/[\/\n]/g,"");
+const script=lines.split(/\r?\n%\r?\n/)[36];
+const numbered=script.slice(script.indexOf("\n1-")+3).replace(/[\/\r\n]/g,"");
 const originalWords=numbered.split(/[-.]/).filter(Boolean);
 const mapping=new Map(corpus.runes.map((r,i)=>[r,i]));
 /** @param {string} s @returns {number[]} */
