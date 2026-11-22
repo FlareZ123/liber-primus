@@ -96,7 +96,7 @@ function ioc(data) {
     / (data.length * (data.length - 1));
 }
 // Solved LP1 p10–p13: 755 genuine original unencrypted GP runes.
-const native = read('resources/transcriptions/lp1_wulfic_canonical.txt');
+const native = read('resources/transcriptions/lp1_wulfic_canonical.txt').replace(/\r\n/g, '\n');
 const nativeStart = native.indexOf('ᚦᛖ-ᛚᚩᛋᛋ');
 const nativeEnd = native.indexOf('\n$\n%\n', nativeStart);
 assert(nativeStart >= 0 && nativeEnd > nativeStart);
