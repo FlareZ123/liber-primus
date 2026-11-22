@@ -29,6 +29,8 @@ The center entry, row11 column11 (zero-based), is **3**, which also matches the 
 
 The competing base59 table interpretation (removing lowercase f from the token alphabet) has first GP residue26 and does **not** divide by this G. Consequently that register does not generate the same 529-coefficient source-derived square. This is downstream of the earlier base60/shared-root finding and should not be double-counted as independent evidence.
 
+**Structural underdetermination, independently checked on original source:** the 23² length is also produced by two other economical source constructions, each forming a distinct invertible 23×23 matrix. Concatenate the complete p29/G quotient (**275** physical coefficients) and complete table/G quotient (**254**, retaining its one physical leading field-zero) to obtain 529; this matrix has determinant **7**, center GP ordinal **28**. Alternatively concatenate the unmodified p29 **277** original coefficients with the p50/(G·H) **252** fixed-width quotient, where H is the independently source-known signed-2013 quadratic [24,26,3]; that matrix has determinant **4**, center **7**. The source therefore supplies **three** exact 23×23 objects under natural combination rules. The polynomial LCM remains the algebraically canonical *joint* object; the arithmetic square size alone cannot uniquely select a key.
+
 ## A fully specified original-input decoder
 
 Test the simplest possible reversible use of the resulting printed-order 23×23 matrix, a GF29 Hill cipher. Invert the exact 23×23 matrix by field Gauss–Jordan elimination. Apply to every consecutive 23-rune block of the original **12,956 unknown LP2 runes** from p0 to p55, in continuous original physical order. All original punctuation and word boundaries remain undisturbed. Exactly **seven** final runes do not fill one block; carry these transparently with no invented padding or key offset. Test one receiver with the printed matrix and one with the matrix transposed. No score fitting, sign choices, phase shifts, secret alphabets or supplemental keys.
@@ -38,18 +40,27 @@ Test the simplest possible reversible use of the resulting printed-order 23×23 
 | Printed-rows matrix | **0.0344816866** | 0.0344827586 | 0.0329824561 |
 | Transposed matrix | **0.0344950680** | 0.0347752332 | 0.0329824561 |
 
+The two equally source-derived concatenation matrices above were also tested as separate *frozen* Hill23 inverses in both row conventions, with identical complete-cipher and planted-native controls:
+
+| Secondary exact 23-square | Determinant | Continuous whole-original IoC: rows / transpose |
+| --- | ---: | --- |
+| P29/G concatenated with T/G | **7** | **0.0345073889 / 0.0344886573** |
+| Unmodified P29 concatenated with T/(G·H) | **4** | **0.0344634078 / 0.0344540659** |
+
+All four originals are likewise nonlinguistic; the same source-authenticated native GP29 positive **12,956/12,956** recovers under each corresponding key. This compares exactly three pre-existing natural 529-coefficient source constructions; it is no invitation to generate arbitrary further square permutations.
+
 The genuine solved-p57 native-GP cleartext IoC is about 0.06271, a considerably stronger frequency signal. Both complete original inverses are approximately uniform. The first 69 runes of the frozen row-oriented output are:
 
     P W H AE OE N F OE EA OE S EA P G N S P Y O N TH OE L J A EO M W OE C EO I X F G Y A N X B P W M P IA Y R S IA NG A H N U TH NG Y T G H A M S IA X TH U IA IA
 
 The transposed output is likewise nonlinguistic. Terminal p55's last seven output tokens are unchanged original ciphertext due to the incomplete last block; they are not claimed to have been decrypted.
 
-**Positive controls:** Both matrix-orientation decoders re-encrypt original untouched ciphertext exactly (**12,956/12,956**). More decisively, the same original-source matrix is used to encrypt **12,956 authentic-GP p57-derived planted runes**, then the exact inverse recovers **12,956/12,956** of that genuine GP language. The original 95-rune solved p57 page separately recovers **95/95** from an independently planted ciphertext, including its three-rune incomplete tail. All source/matrix assertions and plant recoveries passed on Windows Node22 GitHub Actions [run 45007179222](https://github.com/FlareZ123/liber-primus/actions/runs/45007179222).
+**Positive controls:** Both matrix-orientation decoders re-encrypt original untouched ciphertext exactly (**12,956/12,956**). More decisively, the same original-source matrix is used to encrypt **12,956 authentic-GP p57-derived planted runes**, then the exact inverse recovers **12,956/12,956** of that genuine GP language. The original 95-rune solved p57 page separately recovers **95/95** from an independently planted ciphertext, including its three-rune incomplete tail. All source/matrix assertions and planted recoveries passed on Windows Node22 GitHub Actions [run 45007602846](https://github.com/FlareZ123/liber-primus/actions/runs/45007602846), covering all three exact 23-square derivations and all six original-input inverses.
 
 ## Research decision
 
 **New exact structural clue:** the previously established source p29/p50/p39 repeated-root relationship has a natural polynomial-LCM square representation with dimension 23, matching the independently relevant source DH prime, and the square happens to be invertible with determinant1. This is a coherent, inexpensive algebraic construction, **not an authenticated original key or solved message**.
 
-**Reject the direct unshifted continuous Hill23 receiver**, both source row conventions, as native-GP original plaintext. The large remaining cipher space and absent source opcode prevent an inference that all square-based ciphers are excluded. Before pursuing a different receiver, demand a visible instruction selecting how the square should be used, or a genuine independently held-out original plaintext sample. Do not optimize orientations, keys or phases merely to rescue the numeric square.
+**Reject the direct unshifted continuous Hill23 receiver** for the LCM and the two equally natural concatenation-derived 23×23 original-source matrices, both source row conventions, as native-GP original plaintext. The large remaining cipher space and absent source opcode prevent an inference that all square-based ciphers are excluded. Before pursuing a different receiver, demand a visible instruction selecting how the square should be used, or a genuine independently held-out original plaintext sample. Do not optimize orientations, keys or phases merely to rescue the numeric square.
 
-Reproducer: [sims/lp2_p29_p50_lcm23_hill_original_sft.cjs](../sims/lp2_p29_p50_lcm23_hill_original_sft.cjs) under Node22; it pins the original base60 source SHA-256 3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290. The follow-up amended script also asserts that base59 does not share the same original factor.
+Reproducer: [sims/lp2_p29_p50_lcm23_hill_original_sft.cjs](../sims/lp2_p29_p50_lcm23_hill_original_sft.cjs) under Node22; it pins the original base60 source SHA-256 3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290. The amended script additionally asserts that base59 does not share the same original factor and that the two alternative source matrices have determinants 7 and 4.
