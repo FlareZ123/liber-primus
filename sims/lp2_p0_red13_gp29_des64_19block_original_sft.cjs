@@ -43,8 +43,8 @@ function unpack(buf,nDigits) {
 function apply(block,key,mode,decrypt) {
   const k=Buffer.concat([key,key,key]);
   const iv=mode==='ecb'?null:Buffer.alloc(8);
-  const state=decrypt?crypto.createDecipheriv('des-ede3-'+(mode==='ecb'?'':'cbc'),k,iv):
-    crypto.createCipheriv('des-ede3-'+(mode==='ecb'?'':'cbc'),k,iv);
+  const state=decrypt?crypto.createDecipheriv((mode==='ecb'?'des-ede3':'des-ede3-cbc'),k,iv):
+    crypto.createCipheriv((mode==='ecb'?'des-ede3':'des-ede3-cbc'),k,iv);
   state.setAutoPadding(false);
   return Buffer.concat([state.update(block),state.final()]);
 }
