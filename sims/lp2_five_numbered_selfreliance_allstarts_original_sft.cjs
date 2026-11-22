@@ -176,7 +176,7 @@ function transparentFLegalPrefix(cipher, key, sourceOffset, sign) {
 function transparentFEncrypt(clear, key, start, sign) {
   let consumed = 0;
   return clear.map(p => p === 0 ? 0
-    : (p + sign * key[start + consumed++ % key.length] + 29) % 29);
+    : (p + sign * key[start + consumed++] + 29) % 29);
 }
 
 /** @param {number[]} key */
@@ -245,7 +245,8 @@ async function main() {
     plantKeyStart, 1), 553, 'historically transparent-F positive plant');
   const transparency = exhaustiveTransparentF(key);
   assert.deepEqual(transparency.validFull, {minus: 0, plus: 0});
-
+  assert.deepEqual(transparency.validFirst139, {minus: 2187, plus: 1510});
+  assert.deepEqual(transparency.maximumLegalPrefix, {minus: 481, plus: 427});
 
   const result = exhaustiveDirectKeys(key);
   assert.equal(result.originalStarts, 81258);
@@ -277,15 +278,13 @@ async function main() {
     interpretation: 'The 2014 named essay supplies a real historically selected source '
       + 'but no author-selected LP2 key clock. Every contiguous essay key start '
       + 'under direct GP29 addition/subtraction fails native-GP IoC.',
-    scope: 'No transparent-F branch, source-word resets, transposition, '
-      + 'different essay edition, or source-selected external coordinate',
+    scope: 'Direct and historically transparent-F GP29 running key; '
+      + 'no source-word resets, transposition, different edition, '
+      + 'or independently selected external coordinate',
   }, null, 2));
-  console.log('PASS: 81,258 direct and 81,258 exact historical ' +
-    'transparent-F full-path source-key inverses fail originals; ' +
-    '553 native transparent-F planted positive, plus direct additive ' +
-    'source-key inverses '
-    + 'fail the original 139+91+98+96+129 GP29 receiver; solved-LP1 '
-    + 'keyed positive and wrong-start control pass.');
+  console.log('PASS: 81,258 direct and 81,258 historical transparent-F '
+    + 'source-key inverses fail full 553 original runes; solved-LP1 '
+    + '553-rune direct and transparent-F positives pass.');
 }
 
 if (require.main === module) main().catch(error => {
