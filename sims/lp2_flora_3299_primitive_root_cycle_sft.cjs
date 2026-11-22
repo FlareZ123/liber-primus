@@ -126,6 +126,20 @@ assert.equal(p57.length, 95);
 const plant = Array.from({ length: N }, (_, i) => p57[i % p57.length]);
 assert.deepStrictEqual(decode(encode(plant), orbit), plant, 'solved-GP original-length plant');
 
+// Independent key-free original-orbit prediction: local anti-repeat should also
+// appear along the printed generator if the actual cipher forbids C[i]=C[2i].
+let orbitCollisions = 0;
+let localCollisions = 0;
+for (let i = 1; i < N; i += 1) {
+  if (cipher[i] === cipher[(2 * i) % N]) orbitCollisions += 1;
+  if (cipher[i] === cipher[i - 1]) localCollisions += 1;
+}
+assert.equal(orbitCollisions, 124);
+assert.equal(localCollisions, 21);
+const frequencies = Array(MOD).fill(0);
+for (const rune of cipher) frequencies[rune] += 1;
+const expectedOrbitCollisions = frequencies.reduce((s, n) => s + n * (n - 1), 0) / N;
+
 const sourceIoC = ioc(cipher);
 const resultIoC = ioc(plain);
 assert.ok(Math.abs(sourceIoC - 0.034464934244182635) < 1e-12);
@@ -138,6 +152,8 @@ console.log('ORBIT:', orbit.length, 'distinct nonzero positions, one complete cy
 console.log('FROZEN RULE: C[i] = P[i] + 2*P[(2*i)%3299] modulo29');
 console.log('SOLVED-GP CONTROL: source-native p57 repeated to 3299 runes; exact reencryption PASS');
 console.log('ORIGINAL REENCRYPTION:', cipher.length, 'of', cipher.length, 'exact');
+console.log('GENERATOR-2 EDGE EQUALITIES:', orbitCollisions, 'of', L, 'vs fixed-frequency random-permutation expectation', expectedOrbitCollisions.toFixed(6));
+console.log('PRINTED-ORDER EQUALITIES:', localCollisions, 'of', L);
 console.log('CIPHERTEXT IoC:', sourceIoC.toFixed(12));
 console.log('DECODED IoC:', resultIoC.toFixed(12));
 console.log('POSITIVE IoC:', ioc(plant).toFixed(12));
