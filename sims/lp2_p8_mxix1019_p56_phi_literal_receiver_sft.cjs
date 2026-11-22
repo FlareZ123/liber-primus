@@ -123,6 +123,7 @@ assert.deepEqual(sourceCursorModes,[
 const fSites=body.map((x,i)=>x===0?i:-1).filter(x=>x>=0);
 assert.deepEqual(fSites,[22,149,171,177,180,184,191,233]);
 const candidates=[];
+const fullSourcePlaintexts=[];
 for(let mask=0;mask<2**fSites.length;mask++){
   let used=0,bit=0,legal=true;
   const plaintext=[];
@@ -149,6 +150,7 @@ for(let mask=0;mask<2**fSites.length;mask++){
   for(const value of plaintext)freq[value]++;
   const ioc=freq.reduce((sum,n)=>sum+n*(n-1),0)/(body.length*(body.length-1));
   candidates.push({mask,used,ioc,first3:plaintext.slice(0,3).map(v=>c.translit[v]).join(' ')});
+  fullSourcePlaintexts.push({mask,plaintext});
 }
 assert.deepEqual(candidates.map(z=>[z.mask,z.used]),[[7,240],[135,239],[255,235]]);
 assert(candidates.every(z=>z.ioc<0.04 && z.first3==='H P X'));
@@ -167,6 +169,65 @@ assert.equal(sourceStarts.length,24);
 assert.equal(matchingFirstKey,181);
 assert.deepEqual(sourceStarts.filter(x=>x.firstKey===19).map(x=>x.start),[156,605,1019]);
 
+// Natural source-selected TWO-LAYER candidate: the same 12-rune red heading
+// divides into whole first word XIXM -> prime-index1019, and the remaining
+// 9 runes (after three-rune XIX prefix) -> the exact invertible GF29 Hill key.
+// The p8 black body is exactly 243 symbols: all 81 whole three-rune blocks.
+// Test both operation orders and both matrix-basis orientations, with the
+// p56 F-transparent rule preserved exactly and no new secret.
+const h=p8.slice(0,12);
+const K=[h.slice(3,6),h.slice(6,9),h.slice(9,12)];
+const J=[[24,12,1],[21,12,12],[24,16,4]];
+assert.deepEqual(K,[[19,1,14],[19,5,2],[13,3,17]]);
+const transpose=(M)=>M[0].map((_,j)=>M.map(row=>row[j]));
+const mat=(A,B)=>A.map(row=>B[0].map((_,j)=>mod(row.reduce((sum,x,k)=>sum+x*B[k][j],0))));
+const id=[[1,0,0],[0,1,0],[0,0,1]];
+assert.deepEqual(mat(K,J),id);
+assert.deepEqual(mat(J,K),id);
+/** @param {number[][]} M @param {number[]} xs @returns {number[]} */
+function hill(M,xs){
+  assert.equal(xs.length%3,0);
+  const out=[];
+  for(let i=0;i<xs.length;i+=3){
+    const x=xs.slice(i,i+3);
+    out.push(...M.map(row=>mod(row.reduce((sum,k,j)=>sum+k*x[j],0))));
+  }
+  return out;
+}
+const matrices=[
+  {basis:'K',M:K,undo:J},
+  {basis:'Kinv',M:J,undo:K},
+  {basis:'Kt',M:transpose(K),undo:transpose(J)},
+  {basis:'KinvT',M:transpose(J),undo:transpose(K)}
+];
+const primeThenHill=[];
+for(const m of matrices){
+  for(const {mask,plaintext} of fullSourcePlaintexts){
+    const result=hill(m.M,plaintext);
+    assert.deepEqual(hill(m.undo,result),plaintext);
+    const count=new Array(29).fill(0);
+    for(const x of result)count[x]++;
+    const ioc=count.reduce((sum,n)=>sum+n*(n-1),0)/(result.length*(result.length-1));
+    primeThenHill.push({mask,basis:m.basis,ioc,first3:result.slice(0,3).map(x=>c.translit[x]).join(' ')});
+  }
+}
+assert.equal(primeThenHill.length,12);
+assert(primeThenHill.every(x=>x.ioc<0.04));
+assert.deepEqual([...new Set(primeThenHill.map(x=>x.first3))].sort(),
+  ['E EO B','P P R','U EA EA','X EA NG'].sort());
+const hillThenPrime=matrices.map(m=>{
+  const intermediate=hill(m.M,body);
+  assert.deepEqual(hill(m.undo,intermediate),body);
+  const result=reach(intermediate,directCursor,1);
+  return {basis:m.basis,firstIllegal:result.matched};
+});
+assert.deepEqual(hillThenPrime,[
+  {basis:'K',firstIllegal:27},
+  {basis:'Kinv',firstIllegal:55},
+  {basis:'Kt',firstIllegal:85},
+  {basis:'KinvT',firstIllegal:108}
+]);
+
 console.log(JSON.stringify({
   firstRedWholeWord:'XIXM',reverseRoman:'MXIX',decodedPrime:1019,
   GP0FirstWordProduct:4,originalSecondWholeWordProduct:3,
@@ -178,6 +239,7 @@ console.log(JSON.stringify({
     starts0to4999:5000,arithmeticallyLegalStarts:sourceStarts.length,
     startsWithFirstKeyResidue19:matchingFirstKey,
     jointSurvivorStarts:sourceStarts.filter(x=>x.firstKey===19).map(x=>x.start)},
+  fullOriginalTwoLayer:{primeThenHill,hillThenPrime},
   classification:'prime-value cursor170 excluded; prime-index cursor1019 algebraically survives on p8 black243 but all 3 outputs nonprose'
 },null,2));
 console.log('PASS p56 known source and prime1019 170/1019-cursor 243-rune full-mask gates');
