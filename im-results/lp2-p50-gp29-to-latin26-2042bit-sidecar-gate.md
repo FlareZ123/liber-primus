@@ -37,7 +37,7 @@ This has **2,042 bits**, and begins **`02 26 92 28 b1 c4 5f ce`** as a fixed 256
 
 This is an exact **all-source** rejection under the chosen full-register, unsigned-quotient byte contract. No source GP29 plaintext string could make the table a legal quotient in these 16 fixed orders, even with a separately hidden base29 message.
 
-As a second original-input check, the canonical GP29 ciphertext, its reverse, the continuous first-difference stream (first digit preserved), and that stream's reverse give actual true quotient bit lengths **2041, 2040, 2036 and 2041**, respectively. None equals the original p50 bytes in either radix and any of the 16 natural layouts. Their base26 remainders are inspected independently for complete Latin text; no author-selected coherent decoded message is obtained. This does not license post-hoc reordering or secret byte masks.
+As a second original-input check, the canonical GP29 ciphertext, its reverse, the continuous first-difference stream (first digit preserved), and that stream's reverse give actual true quotient bit lengths **2041, 2040, 2041 and 2041**, respectively. None equals the original p50 bytes in either radix and any of the 16 natural layouts. Their base26 remainders are inspected independently for complete Latin text; no author-selected coherent decoded message is obtained. This does not license post-hoc reordering or secret byte masks.
 
 ## Decision and next admissible lead
 
