@@ -52,8 +52,20 @@ for (let p = 0; p < print.length; p++) {
 }
 assert.equal(current.length, 0);
 assert.equal(words.length, 2896);
-const firstWords = words.filter(w => w.pages.includes(0));
+// The final p0 word continues into p1; p0's own physical offsets must
+// be counted from its own printed page rather than from the full word.
+const firstWords = [];
+let p0Word = [];
+for (const glyph of Array.from(print[0] + '.')) {
+  const index = runeIndex.get(glyph);
+  if (index !== undefined) p0Word.push(index);
+  else if ('-.,'.includes(glyph) && p0Word.length) {
+    firstWords.push({indices: p0Word});
+    p0Word = [];
+  }
+}
 assert.equal(firstWords.length, 59);
+assert.deepEqual(firstWords.flatMap(w => w.indices), source.pages[0].indices);
 let total = 0;
 const starts = firstWords.map(w => {
   const at = total;
