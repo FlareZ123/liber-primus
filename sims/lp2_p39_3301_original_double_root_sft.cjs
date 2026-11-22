@@ -46,6 +46,39 @@ function nativeRuneIndices(str) {
   });
 }
 
+
+/**
+ * Reversible complete high-first GF29 polynomial variable change:
+ * coefficients of P(X+offset). When offset=24 this is the Taylor expansion
+ * at the literal cuneiform-header residue3301 mod29, without any fitted
+ * cipher parameter or source-selected byte pivot.
+ * @param {number[]} original
+ * @param {number} offset
+ * @returns {number[]}
+ */
+function translateVariable(original, offset) {
+  let poly = [mod(original[0])];
+  for (let i = 1; i < original.length; i++) {
+    const out = new Array(poly.length + 1).fill(0);
+    for (let j = 0; j < poly.length; j++) {
+      out[j] = mod(out[j] + poly[j]);
+      out[j + 1] = mod(out[j + 1] + offset * poly[j]);
+    }
+    out[out.length - 1] = mod(out[out.length - 1] + original[i]);
+    poly = out;
+  }
+  return poly;
+}
+
+/** @param {number[]} original */
+function indexOfCoincidence(original) {
+  const counts = new Uint32Array(29);
+  for (const symbol of original) counts[symbol]++;
+  const repeatedPairs = Array.from(counts)
+    .reduce((sum, n) => sum + n * (n - 1), 0);
+  return repeatedPairs / (original.length * (original.length - 1));
+}
+
 function main() {
   assert.equal(corpus.pages[29].indices.length, 277);
   assert.equal(grid.bytes.length, 256);
@@ -76,6 +109,22 @@ function main() {
     {value: 18, derivative: 23});
   const p29 = corpus.pages[29].indices;
   const p50 = grid.bytes.map(mod);
+  // One source-typed plaintext-producing candidate: the entire original
+  // p29/p50 stream might be in a polynomial variable shifted by the
+  // printed root24. Undo the change of basis with P(X+24). Its exact inverse
+  // P(X-24) returns every original symbol; language structure does not
+  // emerge, excluding this particular direct complete polynomial codec.
+  const p29Taylor = translateVariable(p29, printed3301 % 29);
+  const p50Taylor = translateVariable(p50, printed3301 % 29);
+  assert.deepEqual(translateVariable(p29Taylor, -24), p29);
+  assert.deepEqual(translateVariable(p50Taylor, -24), p50);
+  assert.deepEqual(p29Taylor.slice(-2), [0, 0]);
+  assert.deepEqual(p50Taylor.slice(-2), [0, 0]);
+  assert(Math.abs(indexOfCoincidence(p29Taylor) -
+    0.03419138806048239) < 1e-12);
+  assert(Math.abs(indexOfCoincidence(p50Taylor) -
+    0.033486519607843136) < 1e-12);
+
   assert.deepEqual(valueDerivative(p29, printed3301),
     {value: 0, derivative: 0});
   assert.deepEqual(valueDerivative(p50, printed3301),
@@ -154,6 +203,13 @@ function main() {
     p39GAt3301: valueDerivative(G, 3301),
     p29Original277At3301: valueDerivative(p29, 3301),
     p50Original256At3301: valueDerivative(p50, 3301),
+    originalTaylorVariableShiftPlus24: {
+      p29: {length: p29Taylor.length, ioc: indexOfCoincidence(p29Taylor)},
+      p50: {length: p50Taylor.length, ioc: indexOfCoincidence(p50Taylor)},
+      completeInverse: 'PASS original 277/277 and 256/256',
+      plaintextRecovered: false,
+    },
+
     independentNegative1033: {
       p39: valueDerivative(G, 1033),
       p29: valueDerivative(p29, 1033),
@@ -176,4 +232,5 @@ function main() {
 }
 
 if (require.main === module) main();
-module.exports = {valueDerivative, nativeRuneIndices};
+module.exports = {valueDerivative, nativeRuneIndices,
+  translateVariable, indexOfCoincidence};
