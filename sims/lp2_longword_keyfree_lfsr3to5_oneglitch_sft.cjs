@@ -439,6 +439,92 @@ function recoverRankDeficientFour(observed, error, kind) {
   return {rank: order - free.length, solutions};
 }
 
+
+/**
+ * Lower-register completeness control. These m1/m2 families are scanned
+ * against every original 13/14-rune word as well, including all 29
+ * coefficient choices when a consistent rank-deficient system occurs.
+ * The original search has zero such deficient systems for m1/m2.
+ */
+const lowerOrder = {};
+for (const order of [1, 2]) {
+  const counts = {clean: 0, redraw: 0, skip: 0, shock: 0};
+  let nonuniqueConsistent = 0;
+  for (const {cipher} of originals) {
+    for (const {plain} of byLength.get(cipher.length)) {
+      const observed = cipher.map((value, i) => mod(value - plain[i]));
+      const clean = recoverCoefficients(observed, order, null);
+      if (clean !== null && exactReplay(observed, clean, null)) counts.clean++;
+      for (const kind of ["redraw", "skip", "shock"]) {
+        for (let error = order; error < observed.length; error++) {
+          if (kind === "shock" && error === observed.length - 1) continue;
+          const recovered = kind === "redraw"
+            ? recoverCoefficients(observed, order, error)
+            : recoverIrregular(observed, order, error, kind);
+          if (recovered !== null &&
+              (kind === "redraw"
+                ? exactReplay(observed, recovered, error)
+                : replayIrregular(observed, recovered, error, kind)))
+            counts[kind]++;
+          // The original low-order systems in this corpus are full-rank
+          // whenever consistent, asserted by a second elimination.
+          const check = recoverGeneralRank(observed, order, error, kind);
+          if (check !== null && check.rank < order)
+            nonuniqueConsistent++;
+        }
+      }
+    }
+  }
+  assert.deepEqual(counts, {clean: 0, redraw: 0, skip: 0, shock: 0});
+  assert.equal(nonuniqueConsistent, 0);
+  lowerOrder[order] = {counts, nonuniqueConsistent};
+}
+
+/**
+ * General consistency/rank cross-check, including the low-order cases
+ * otherwise rejected as unidentified by a full-rank-only solver.
+ * @param {number[]} observed
+ * @param {number} order
+ * @param {number} error
+ * @param {"redraw"|"skip"|"shock"} kind
+ * @returns {{rank:number}|null}
+ */
+function recoverGeneralRank(observed, order, error, kind) {
+  /** @type {(number[]|null)[]} */
+  const basis = Array(order).fill(null);
+  let rank = 0;
+  for (let i = order; i < observed.length; i++) {
+    const omit = kind === "redraw"
+      ? i >= error && i <= error + order
+      : kind === "skip"
+        ? i >= error && i < error + order
+        : i === error;
+    if (omit) continue;
+    const row = [
+      ...Array.from({length: order}, (_, j) => observed[i - j - 1]),
+      observed[i]
+    ];
+    let installed = false;
+    for (let col = 0; col < order; col++) {
+      if (!row[col]) continue;
+      if (basis[col] === null) {
+        const scale = inv[row[col]];
+        for (let j = col; j <= order; j++)
+          row[j] = mod(row[j] * scale);
+        basis[col] = row;
+        rank++;
+        installed = true;
+        break;
+      }
+      const factor = row[col];
+      for (let j = col; j <= order; j++)
+        row[j] = mod(row[j] - factor * basis[col][j]);
+    }
+    if (!installed && row[order] !== 0) return null;
+  }
+  return {rank};
+}
+
 const nonuniqueAudit = {};
 for (const kind of ["redraw", "skip"]) {
   let consistentNonunique = 0;
@@ -544,6 +630,7 @@ console.log(JSON.stringify({
   results: output,
   stateIrregularResults: irregularResults,
   exactNonuniqueFourTapAudit: nonuniqueAudit,
+  exactLowerOrderAudit: lowerOrder,
   stateShockP52HoldoutIoC: ioc(shockHoldout),
   p52CandidateHoldout: {
     word: "OVERSENSITIZE",
