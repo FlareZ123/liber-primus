@@ -21,14 +21,14 @@ const RED_CAPS = Object.freeze([
   {page: 0, firstLine: 0, width: 150},
   {page: 3, firstLine: 0, width: 150},
   {page: 3, firstLine: 6, width: 229},
-  {page: 6, firstLine: 3, width: 149},
+  {page: 6, firstLine: 4, width: 149},
   {page: 8, firstLine: 0, width: 284},
-  {page: 15, firstLine: 6, width: 150},
+  {page: 15, firstLine: 1, width: 150},
   {page: 23, firstLine: 0, width: 230},
   {page: 27, firstLine: 0, width: 230},
   {page: 33, firstLine: 0, width: 230},
-  {page: 33, firstLine: 6, width: 219},
-  {page: 39, firstLine: 5, width: 231},
+  {page: 33, firstLine: 5, width: 219},
+  {page: 39, firstLine: 6, width: 231},
   {page: 40, firstLine: 0, width: 150},
   {page: 54, firstLine: 0, width: 149}
 ]);
@@ -105,21 +105,21 @@ function main() {
   assert.equal(RED_CAPS.length, 13);
   assert.equal(RED_CAPS.reduce((n, c) =>
     n + source.breaks.filter(b => b.page === c.page &&
-      b.line >= c.firstLine && b.line < c.firstLine + CAP_LINES).length, 0), 37);
+      b.line >= c.firstLine && b.line < c.firstLine + CAP_LINES).length, 0), 39);
 
   const r = compare(source.breaks, model);
   assert.deepEqual(r.originalAll,
     {forced: 450, early: 78, overflow: 11, total: 539, earlyParagraphs: 11});
   assert.deepEqual(r.imageAll,
-    {forced: 473, early: 50, overflow: 16, total: 539, earlyParagraphs: 11});
+    {forced: 481, early: 45, overflow: 13, total: 539, earlyParagraphs: 11});
   assert.deepEqual(r.originalHoldoutWithinWord,
     {forced: 174, early: 29, overflow: 5, total: 208, earlyParagraphs: 0});
   assert.deepEqual(r.imageHoldoutWithinWord,
-    {forced: 180, early: 20, overflow: 8, total: 208, earlyParagraphs: 0});
+    {forced: 183, early: 19, overflow: 6, total: 208, earlyParagraphs: 0});
   assert.deepEqual(r.originalRedCapLines,
-    {forced: 2, early: 35, overflow: 0, total: 37, earlyParagraphs: 2});
+    {forced: 0, early: 39, overflow: 0, total: 39, earlyParagraphs: 0});
   assert.deepEqual(r.imageRedCapLines,
-    {forced: 25, early: 7, overflow: 5, total: 37, earlyParagraphs: 2});
+    {forced: 31, early: 6, overflow: 2, total: 39, earlyParagraphs: 0});
 
   // Exact shortfall of the residual 39 original nonparagraph early joins.
   // This is a geometric diagnostic, not a key extraction channel.
@@ -127,9 +127,9 @@ function main() {
     .filter(b => b.ending !== '.' && classifyWithOriginalDropcap(b, model) === 'early')
     .map(b => model.W - b.base - redCapMargin(b) - b.dashes * model.dash -
       b.stops * model.stop - b.nextWidth).sort((a, b) => a - b);
-  assert.equal(residualSlack.length, 39);
-  const residualCounts = { within10: 14, within20: 19, within30: 22,
-    within50: 27, within75: 33, within100: 34, over150: 4 };
+  assert.equal(residualSlack.length, 34);
+  const residualCounts = { within10: 16, within20: 21, within30: 24,
+    within50: 29, within75: 34, within100: 34, over150: 0 };
   for (const [name, limit] of Object.entries({
     within10: 10, within20: 20, within30: 30, within50: 50,
     within75: 75, within100: 100
@@ -137,7 +137,7 @@ function main() {
     assert.equal(residualSlack.filter(n => n <= limit).length, residualCounts[name], name);
   }
   assert.equal(residualSlack.filter(n => n > 150).length, residualCounts.over150);
-  assert.ok(Math.abs(residualSlack[19] - 21.334) < 0.001);
+  assert.ok(Math.abs(residualSlack[17] - 12.133) < 0.001);
 
   const sensitivity = [0, 8, 12, 16, 24].map(gap => {
     const result = compare(source.breaks, model, gap, CAP_LINES);
@@ -148,7 +148,7 @@ function main() {
     originalJPEG: 'liber-primus-jpegs/<page + 17>.jpg',
     redConnectedComponents: RED_CAPS,
     model, gap: GAP, heightLines: CAP_LINES, observations: r,
-    sensitivity, residualShortfall: { median: residualSlack[19], ...residualCounts }, conclusion: 'Physical drop-cap footprint predicts 23 more original wraps; ciphertext remains undeciphered.'
+    sensitivity, residualShortfall: { median: residualSlack[17], ...residualCounts }, conclusion: 'Source-correct red initials predict 31 more original wraps; ciphertext remains undeciphered.'
   }, null, 2));
 }
 
