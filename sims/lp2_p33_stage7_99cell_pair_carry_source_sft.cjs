@@ -55,6 +55,23 @@ const distinct = xs => new Set(xs).size;
 assert.equal(distinct(magic),50);
 assert.equal(distinct(pairValues),94);
 
+// A direct stationary codebook of 99 historical integer values into 99
+// observed two-rune ciphertext pairs is falsified without any key fit:
+// identical source cell values must have the same ciphertext GP pair.
+const classes = new Map();
+for(let i=0;i<99;i++){
+  if(!classes.has(magic[i]))classes.set(magic[i],[]);
+  classes.get(magic[i]).push(pairValues[i]);
+}
+const codebookMismatches=[...classes.values()].reduce((sum,values)=>{
+  const f=new Map();
+  for(const val of values)f.set(val,(f.get(val)??0)+1);
+  return sum+values.length-Math.max(...f.values());
+},0);
+const conflictingClasses=[...classes.values()].filter(vals=>distinct(vals)>1).length;
+assert.equal(codebookMismatches,49);
+assert.equal(conflictingClasses,47);
+
 /** @param {number} n @param {number} radix */
 const mod = (n,radix) => ((n%radix)+radix)%radix;
 
@@ -96,6 +113,7 @@ assert.ok(ioc(plant)>0.05);
 console.log('p33 49 complete black words: 198 GP runes, 2 carried p34; 2014 three squares: 99 cells 25+49+25');
 console.log('199? no: exactly 2*99, one source-number operand per GP pair.');
 console.log('Historic square entries distinct: 50/99; 99 input GP pairs distinct: 94/99');
+console.log('All-secret stationary number-to-pair lookup impossible: 47 conflicting source-value classes, minimum 49/99 incorrect ciphertext pairs.');
 console.log('Source original ciphertext IoC='+ioc(original).toFixed(9)+', native solved-p57 GP-positive IoC='+ioc(plant).toFixed(9));
 
 for(const sign of [-1,1]){
@@ -113,4 +131,4 @@ for(const sign of [-1,1]){
     console.log(`original ${model.kind},${model.first},${model.sign}: IoC=${ioc(plaintext).toFixed(9)}, first26=${gp(plaintext.slice(0,26))}`);
   }
 }
-console.log('PASS: 6/6 exact full-original encodes, 6/6 198-rune solved-GP planted positives; 0/6 original genuine plaintext.');
+console.log('PASS: exact 99-cell static-codebook contradiction; 6/6 exact full-original encodes, 6/6 198-rune solved-GP planted positives; 0/6 original genuine plaintext.');
