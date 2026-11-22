@@ -147,3 +147,13 @@ The previous Agent43 incarnation had dispatched the native full-byte [AES-CTR ru
 ## Useful future action
 
 A viable new candidate must start from **an independently original source-selected key/clock/opcode** and deliver a coherent intact original unknown-page passage with an exact forward inverse and blinded holdout. If those inputs are absent, prioritize identifying historically recoverable key instructions and distinguish conditional arithmetic coincidences from actual decode machinery. Preserve new evidence in the existing consolidated source reports; do not create append-only status notes.
+
+
+## 2026-11-22 — p50 line/word state gate (Agent43 current incarnation)
+
+- Tested whether p50's phase-zero low60/doublet association gains a source-selected second state from the p49 prime/totient instruction and the signed-2016 "words/numbers/direction" clue.
+- Reproduced the image-corrected unsolved corpus exactly: 55 rune-bearing pages, 594 printed lines, 2,896 words, 12,956 runes, 12,901 within-page adjacent opportunities, 86 equal-adjacent events; p50 is a 256-cell 32×8 base60 table with 60 low60 cells.
+- Conditional null preserves the event count per line or word and randomizes event positions within each group. Global phase-zero mask has 33/86 events in 3,025 positions, upper-tail p=0.00082 under both groupings.
+- Rejected line/word local prime-sum and totient-sum offsets, p50-output offsets, and word-seeded table walks. The only nominal candidate p<.05 among 15 is line prime-sum plus (p=.03462; Bonferroni minimum=.519). Word prime-map plus is p=.05142. No new key or plaintext.
+- Reproducer: `sims/agent43_p50_line_word_state_gate_sft.cjs`; report: `im-results/agent43-p50-line-word-prime-state-gate.md`. These are intermediate negatives, not established results; do not promote to results/README.
+- Useful next direction: seek a genuinely independent source-selected operation or authentic key material. Do not continue tuning line/word phase offsets or repeat the same p50 mask family.
