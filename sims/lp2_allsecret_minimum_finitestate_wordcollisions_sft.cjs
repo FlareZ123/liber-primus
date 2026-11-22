@@ -198,6 +198,26 @@ assert.deepEqual(
 assert.deepEqual(
   [gibran.minimumIndependentPerLength.min,
     gibran.minimumIndependentPerLength.max], [100,161]);
+// A null check to prevent misreading "zero duplicate words after length3"
+// as surprising BY ITSELF. Under independent uniform random GP29 ciphertext
+// runes, duplicate same-length word pair indicators are pairwise uncorrelated.
+// Mean = sum choose(N_L,2) / 29^L, variance=sum M_L*p_L*(1-p_L).
+const originalLengthCounts=originalLengths.reduce((map,L)=>{
+  map[L]=(map[L]||0)+1; return map;
+},Array(15).fill(0));
+const randomIID=originalLengthCounts.slice(1).map((N,i)=>{
+  const L=i+1;
+  const possible=29**L;
+  const pairs=N*(N-1)/2;
+  const collisionChance=1/possible;
+  return {length:L,wordCount:N,expectedPairs:pairs*collisionChance,
+    pairCountVariance:pairs*collisionChance*(1-collisionChance),
+    observedPairs:observedPairs[L]};
+});
+const randomIIDTotalExpected=randomIID.reduce((s,x)=>s+x.expectedPairs,0);
+const randomIIDTotalVariance=randomIID.reduce((s,x)=>s+x.pairCountVariance,0);
+assert(Math.abs(randomIIDTotalExpected-247.20425104548045)<1e-10);
+assert(Math.abs(randomIIDTotalVariance**0.5-15.588966443211175)<1e-10);
 console.log(JSON.stringify({
   observed:{printedWords:2896,runes:12956,
     repeatPairsByRuneWordLength:observedPairs.slice(1),
@@ -206,6 +226,12 @@ console.log(JSON.stringify({
   model:'deterministic S-start-state one-rune-in/one-rune-out word-preserving transducer',
   theorem:'Each same plaintext word occurs in at most S ciphertext spellings; balancing collisions gives necessary minima',
   syntheticExactPositive:'THE x9, 4 state keys, 4 cipher outputs, 6 duplicate pairs',
+  uniformIIDRandomCiphertextReference:{
+    expectedDuplicatePairs:randomIIDTotalExpected,
+    standardDeviation:Math.sqrt(randomIIDTotalVariance),
+    observedZ:(230-randomIIDTotalExpected)/Math.sqrt(randomIIDTotalVariance),
+    byWordLength:randomIID,
+    caution:'iid-rune comparison only, not the suppressed-adjacency observed process'},
   sources:[shakespeare,gibran]
 },null,2));
 console.log('PASS: all 2,896 untouched LP2 words, 2 native English donors, 512 seeded placements and all-secret state theorem');
