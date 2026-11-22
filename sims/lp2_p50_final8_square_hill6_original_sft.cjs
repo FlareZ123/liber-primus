@@ -209,6 +209,32 @@ for (const [shape, dimension, inset] of [
     }
   }
 }
+// Exact p56-proven GP29 prime-minus-one outer transfer, with plaintext F
+// transparent and not consuming a prime. Ciphertext F may also come from
+// shifted non-F, so the necessary-language-state gate must keep both paths.
+const primeSchedule = [];
+for (let number = 2; primeSchedule.length < 350; number++) {
+  let prime = true;
+  for (let candidate = 2; candidate * candidate <= number; candidate++) {
+    if (number % candidate === 0) { prime = false; break; }
+  }
+  if (prime) primeSchedule.push(number);
+}
+const p56PrimeOutputGate = (cipher) => {
+  let states = new Set([0]);
+  for (let offset = 0; offset < cipher.length; offset++) {
+    const next = new Set();
+    for (const keyIndex of states) {
+      const plain = mod(cipher[offset] - (primeSchedule[keyIndex] - 1));
+      if (plain !== 0) next.add(keyIndex + 1);
+      if (cipher[offset] === 0) next.add(keyIndex);
+    }
+    states = next;
+    if (!states.size) return { firstImpossible: offset, complete: false };
+  }
+  return { firstImpossible: null, complete: true };
+};
+assert(p56PrimeOutputGate(corpus.pages.find((page) => page.page === 56).indices).complete);
 const intactFlanks = {
   pretable138: [
     ...corpus.pages.find((page) => page.page === 48).indices.slice(-72),
@@ -242,12 +268,16 @@ for (const [radix, values] of [["base60", base60], ["base59-drop-f", base59]]) {
       intactFlankTwoRuneHeaderHill8.push({
         flank, radix, direction, sourceHeaderGp29: render(original.slice(0, 2)),
         cipherRunes: original.length, decipheredRunes: decoded.length,
-        inverseIoC: ioc(decoded), decodedFirst72Gp29: render(decoded.slice(0, 72)),
+        inverseIoC: ioc(decoded), primeOuterNecessary: p56PrimeOutputGate(decoded),
+        decodedFirst72Gp29: render(decoded.slice(0, 72)),
         decodedLast16Gp29: render(decoded.slice(-16))
       });
     }
   }
 }
+assert.deepEqual(intactFlankTwoRuneHeaderHill8.map((x) => x.primeOuterNecessary.firstImpossible),
+  [14, 59, 109, 88, 47, 114, 89, 116]);
+assert(intactFlankTwoRuneHeaderHill8.every((x) => !x.primeOuterNecessary.complete));
 console.log(JSON.stringify({
   mode: "source-original final 8x8 -> natural nested 7x7 and 6x6 -> frozen HillN mod29",
   rowMajorSquareStart: 192, literalZeroLocations: [192, 229],
@@ -259,5 +289,5 @@ console.log(JSON.stringify({
   originalNestedSquareHill8AndHill7: outerSquareTests,
   intactFlankTwoRuneHeaderHill8,
   positive: "84 authentic p56 plaintext runes roundtrip under both Hill6 orientations",
-  verdict: "All source-geometry Hill8/Hill7 inverses are nonprose on three untouched pages, and complete original 138/170 rune flanks remain nonprose after source two-rune header exclusion. Base59 Hill6 nonprose; base60 Hill6 rank5 fails exact full-block parity necessary condition."
+  verdict: "All direct Hill8/Hill7 original inverse outputs nonprose. Even adding exact authenticated p56 F-transparent prime outer decoding to both complete flanks is impossible under all eight fixed source cases. Hill6 base59 also nonprose; singular base60 Hill6 fails full-block parity."
 }, null, 2));
