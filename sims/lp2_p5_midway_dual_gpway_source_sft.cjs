@@ -103,6 +103,12 @@ assert.equal(gp.pages[8].runic_count,255);
 assert.equal((gp.pages[8].runic_count-1)/2,127);
 assert.deepEqual(gp.pages[8].indices.slice(63,67),[13,21,1,13]);
 assert.equal(parseInt(table[168],16),64);
+// Literal signed WAY -> MAP -> ROAD, unlike solved WAY -> MAP -> HERE.
+const road=[4,3,24,23];
+assert.deepEqual([road.reduce((s,i)=>s+i,0),road.reduce((s,i)=>s+gp.prime[i],0)],[54,204]);
+assert.deepEqual(words.filter(w=>w.ordinal===54&&w.primes===204).map(w=>w.page),[53]);
+assert.ok(!words.some(w=>w.page===8&&w.ordinal===54&&w.primes===204));
+
 console.log(JSON.stringify({sourceBounded29PageRoute:[
  {word:"WAY",page:5,localStart:130,dual:[57,219]},
  {word:"MAP",page:34,localStart:130,dual:[56,211]},
