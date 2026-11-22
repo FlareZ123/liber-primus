@@ -1,0 +1,34 @@
+name: Manual full CicadaOS 560.13 three-crib key search
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-key-source-scan:
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out project
+        uses: actions/checkout@v4
+      - name: Select Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Stream and pin original 2013 DATA/560.13, then scan
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $sourceUrl = 'https://archive.org/download/3301.iso/3301.iso/DATA%2F560.13'
+          $localFile = Join-Path $env:RUNNER_TEMP 'cicada56013.bin'
+          & curl.exe --fail --location --retry 3 --retry-delay 4 --connect-timeout 45 --max-time 1200 --output $localFile $sourceUrl
+          if ($LASTEXITCODE -ne 0) { throw 'Historical CicadaOS original download failed' }
+          $actualSize = (Get-Item -LiteralPath $localFile).Length
+          if ($actualSize -ne 118818811) { throw "Historical file size mismatch: $actualSize" }
+          $actualHash = (Get-FileHash -LiteralPath $localFile -Algorithm SHA256).Hash.ToLowerInvariant()
+          if ($actualHash -ne 'db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f') { throw "Historical file SHA256 mismatch: $actualHash" }
+          $env:CICADA_ISO_56013_PATH = $localFile
+          & node sims/lp2_2013_iso56013_threecrib_alloffset_secret_affine_sft.cjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
