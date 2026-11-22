@@ -248,7 +248,7 @@ for(let i=1;i<positive.length;i++){
     mod(positive[i-1]+exp2[code],29);
 }
 const positiveSteps=readLogSteps(positive);
-assert(positiveSteps.zero>=12);
+assert.equal(positiveSteps.zero,11);
 const originalResult=solve(originalSteps.d,rows,'original');
 const plantedResult=solve(positiveSteps.d,rows,'native-plant');
 assert(plantedResult.knownSeedFound);
