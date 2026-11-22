@@ -16,7 +16,7 @@ Supporting synthesis: [2013 source-selector gate](lp2-2013-prime-echo-source-sel
 
 ## Candidate 2 — transfer the 2014 book-code grammar to LP2
 
-**What a solver could see.** A signed 2014 Stage 1 poem selects Emerson's *Self-Reliance* and supplies 16 one-indexed paragraph:sentence:word:letter coordinates, including a documented inserted-excerpt paragraph correction. A later 2014 stage uses Gödel, Escher, Bach and chapter-abbreviation:line:word:letter coordinates. The signed 2016 LP2 message's words/map/meaning/numbers/direction language could reasonably prompt a solver to consider word-addressed navigation.
+**What a solver could see.** A signed 2014 Stage 1 poem selects Emerson's *Self-Reliance* and supplies 15 one-indexed paragraph:sentence:word:letter coordinates plus one literal digit `3`, including a documented inserted-excerpt paragraph correction. A later 2014 stage uses Gödel, Escher, Bach and chapter-abbreviation:line:word:letter coordinates. The signed 2016 LP2 message's words/map/meaning/numbers/direction language could reasonably prompt a solver to consider word-addressed navigation.
 
 **Plausible human route.** Reuse a known Cicada book-code procedure: convert LP2-visible numbers or word positions into coordinates in a source text, then recover an onion address or key phrase.
 
