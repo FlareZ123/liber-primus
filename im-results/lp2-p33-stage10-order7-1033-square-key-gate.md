@@ -1,6 +1,6 @@
 # p33 and the 2014 Stage7/Stage10 square reference
 
-**Decision (21 November 2026): historical navigation/context is supported; no further LP2 cipher operation is selected.** The original LP2 p33 artwork plausibly points a solver back to the 2014 Stage7/Stage10 magic-square sequence. The surviving source material takes that solver to three historical squares and then to LP1 pages 14–16. It does not specify how to transform p33's 196 non-rubric runes, and no unknown LP2 plaintext or key is recovered.
+**Consolidated through 22 November 2026 (Agents21/25). Decision:** The p33 artwork and **49 hyphen-delimited black words** support a concrete historical 7×7/1033-word-cell hypothesis beyond the older 196-rune arithmetic. One source-shaped, fixed-word GP29 shift using the original Stage7 square and original Stage04 positive shift has now been applied to all **196 unchanged p33 black runes**, with an independent original clear-GP positive control. Its output stays ciphertext-like and the entire withheld final row is unreadable. The original page supplies **five upper and six lower printed lines**, so the 7×7 word rows are inferred rather than drawn. The historical material still does not specify the square-to-word receiver, reduction, or actual cipher opcode. Retain the exact historical Stage7/Stage10→LP1 navigation and this bounded word-level negative; no unknown LP2 plaintext, key or destination recovered.
 
 ## Original p33 evidence and why the historical connection is plausible
 
@@ -42,10 +42,32 @@ This establishes a plausible human route from the p33 values to the 2014 square 
 The Stage10 field order has a notable three-page alignment:
 
 - **Order 5 / 3301** (first field) matches the 5×5 square on **LP1 p16** cell for cell. The Stage10 response's third image, 229.jpg, is byte-identical to that LP1 page.
-- **Order 7 / 1033** (second field) has 49 cells. **LP2 p33** has 196 non-rubric runes, exactly four times 49, and carries the 1033/3301 cuneiform pair. This is a label-and-size correspondence, not a cell-for-cell match or an instruction to apply the matrix. The canonical transcription uses hyphens as word delimiters; visual line wraps are not additional word boundaries. Removing the two red spans therefore leaves 49 black fragments, split 21 in the upper body and 28 in the lower body (3+4 groups of seven). This is a genuine 49-cell count correspondence to the Stage7 square, though not a cell-for-cell value match or a specified cipher operation.
+- **Order 7 / 1033** (second field) has 49 cells. **LP2 p33** has 196 non-rubric runes, exactly four times 49, and carries the 1033/3301 cuneiform pair. This is a label-and-size correspondence, not a cell-for-cell match or an instruction to apply the matrix. The canonical transcription uses hyphens as word delimiters; visual line wraps are not additional word boundaries. Removing two complete red headings of **10=2+8** and **8=3+5** runes yields **49 black words**, 21 upper (81 runes) and 28 lower (115 runes). The **physically printed lines are 5 upper plus 6 lower**, with many words continuing through line wraps. Grouping the black words into **3 plus 4 hypothetical rows of seven** is a natural 7×7 size inference, **not an actual seven-line, seven-column page layout**. The source 7×7 numerical square is exact and centrally symmetric, but its **49 positions contain only 24 distinct numerical values**. A simple key-independent lookup of word address from numerical *value alone* cannot be a permutation of all 49 words; a position-sensitive rule would be needed. The 49-word count is real, while the cell-to-cell mapping and its cipher operation remain candidates.
 - **Order 5 / 1033** (third field) matches the 5×5 Wisdom square on **LP1 p5** cell for cell, as documented in the Stage10 source-boundary report.
 
 Thus the three submitted squares plausibly cross-reference LP1 p16, LP2 p33 and LP1 p5, in the form's order. The first and third links are exact matrix matches; the middle link is only the distinctive 7×7 / 49-cell size match plus the page's cuneiform values. This is stronger than treating 1033/3301 as isolated numbers, and it is a plausible intended navigation map. It still does not specify how to transform p33's 196 runes. In particular, four consecutive 49-rune chunks are not visibly delimited and one chunk would cross the page's 81/115 body boundary.
+
+## Newly resolved 49-word cell receiver (Agent25, 22 November 2026)
+
+The corrected 49-word segmentation reopened a **distinct word-level** original-input candidate. Using the original `resources/lp2-transcription.txt` hyphen/period separation and preserving internal line wraps, strip only the two complete printed red headings. The 49 surviving rune words match the exact **196 untouched p33 GP29 ciphertext runes** at canonical offsets `[10,91)∪[99,214)`. Map them in original reading order into seven successive seven-word rows, the upper 21 supplying the first three and lower 28 the final four. Place the independently recovered 2014 Stage7 7×7/1033 square's **printed** seven numerical rows against that inferred word map. The table gives each row's original numeric keys and the *original* encoded word transcriptions, all 49 cells. Reading each seven-word row across the page is a conditional construction.
+
+| Hypothetical word row | Stage7 numeric cells, unchanged | P33 GP word-cell source, left to right |
+| --- | --- | --- |
+| 1 (upper) | 7,375,236,190,27,17,181 | EOOE · FTEOEEAAIASG · YEANTHAER · OIAM · WXM · YDBTR · UJH |
+| 2 (upper) | 351,223,14,47,293,98,7 | AEOE · IANGWHSFIA · LTHT · IWT · OUNWML · STHEAWJ · AJAEGYMWD |
+| 3 (upper) | 456,232,121,114,72,23,15 | PIA · EJW · EU · HW · NGI · SAEG · JL |
+| 4 (lower) | 16,65,270,331,270,65,16 | DBYIAYU · YNTHREMI · EODRW · XBH · CJIAA · NW · NM |
+| 5 (lower) | 15,23,72,114,121,232,456 | FEOI · EOA · OSBOE · TJ · P · EPJOWUEANGW · MCOTTFUJ |
+| 6 (lower) | 7,98,293,47,14,223,351 | DEAXO · XTHGD · BOTLEOIBIAA · EFEAUE · PSWDD · SIA · WTHDS |
+| 7 (lower, readout reserved) | 181,17,27,190,236,375,7 | NGJ · LGUIA · NXF · RAYMFTHH · RAR · AEAGOED · B |
+
+**Source instruction and exact absent selector.** The genuinely signed 2016 statement that the manuscript's words are its map and their numbers its direction makes a word/number comparison plausible, as does the original printed 7×7 square. However, the 2016 sentence does **not** identify the p33 49 words, assign source 2014 magic-square cells to them, name the operand (GP word prime-sum, length, ordinal, first letter, or every rune), or choose a word-cipher sign, modulus, traversal, or state. Even the candidate seven-word rows do not match the physically printed page's lines. Direct comparisons between the original word prime sums and the printed square entries yield **0/49 exact matches** and **0/49 modulo29 matches**; the seven inferred row prime-sums are `[1784,1779,776,1476,1189,1814,1273]`, none equal to the historical magic constant **1033**. The numerical square has 24 distinct values, so its raw numbers cannot independently form a complete 49-address word permutation.
+
+**One bounded reversible original-cipher recipient.** To give the strongest simple direct candidate one test rather than speculating, freeze the author-historical Stage04's **positive GP29 decryption shift**, on the row-major cell order printed by the Stage7 square: for every one of the 49 complete ciphertext words, decode **every rune in that word** as `P_{word,j}=(C_{word,j}+M_word) mod29`, where `M_word` is that word's fixed historical square value. The inverse is `C=P−M_word mod29`. This is a conditional *cross-stage* application, not an instruction found in the 2014 materials. It differs from the earlier four fixed **49-rune** additive blocks and 7×7 Hill transformations, which ignore printed word boundaries. The [source-exact read-only CommonJS SFT](../sims/lp2_p33_stage10_49word_shift_original_sft.cjs) obtains all words and original numbers from pinned repository files; it forwards/reverses all **196/196 original black runes**, independently encrypts/decrypts **196/196 genuine p57-native GP symbols** distributed over the original 49 word lengths, and reserves the final seven original printed words for a no-retuning readout.
+
+The source original has GP29 IoC **0.0335426478**; the fixed word-shift output has IoC **0.0355311355**, still near uniform29 and far below genuine readable p57 **0.0627099664**. The earlier 42 decoded words are unintelligible; the complete reserved final seven output words are `EAE HDES WEOIA LJPGTEA HEAH DOERLNG A`. No intact GP29 English word/sentence or a source-authenticated key appears. Original and planted reversibility assertions passed on [Windows Node22 CI #44967468221](https://github.com/FlareZ123/liber-primus/actions/runs/44967468221). **Do not sweep the opposite sign, rotations, numerical mods, phases, or alternative word substrings to rescue this source-unsupported construction.**
+
+**Director decision:** The unique exact structural input is the 49-word count, whose 21+28 partition happens to be divisible by seven. The square-to-word *position* is not visually drawn, and the first-party sources do not give a definite word operation. Direct authentic Stage04-style per-word scalar shifts fail on actual ciphertext. Preserve this evidence under the current p33 source-navigation report, close the current word-square receiver gate, and require a new genuine authorial selector before further p33 7×7 key search.
 
 ## What the route does—and does not—select
 
@@ -57,7 +79,7 @@ The 196-rune length makes four 49-rune blocks conceivable, but no four-block lay
 
 The first underdetermined step is therefore exact: **after recognizing the 1033/3301 historical square reference, what operation—if any—should be applied to p33's 196 runes?** Neither the signed Stage7 carrier nor the Stage10 form specifies one. The 2014 form asks for square submission, not for encrypting or decrypting Liber Primus.
 
-## Existing direct-consumer gate (not repeated)
+## Earlier rune-block direct-consumer gate (kept separate)
 
 The existing original-input test already covers the natural direct uses of the 7×7 / 1033 matrix. Reducing the square modulo 29 gives determinant 2, so the key is invertible. The tested families are:
 
@@ -73,7 +95,7 @@ None produces coherent GP29 plaintext. The best language score remains close to 
 
 A source-only cold-start packet is prepared at workplace/lp2-p33-stage7-stage10-coldstart-packet.md. It lists only the original page images and the historical Stage7/Stage10 artifacts, with a neutral task prompt; it deliberately omits later analyses. **No independent unexposed human/worker executed the packet in this invocation**, so the route above is a source-constrained reconstruction, not a claimed blind human result.
 
-**Decision:** retain p33 → 2014 Stage7/Stage10 → LP1 pp14–16 as a plausible historical navigation/reference route. Stop at the missing p33-to-square operation. No LP2 cipher, unknown plaintext, key, next LP2 coordinate or final destination follows.
+**Decision:** Retain p33 → 2014 Stage7/Stage10 → LP1 pp14–16 as a plausible historical navigation/reference route, with the new exact **49-word / 7×7** source-candidate map and its failed source-shaped word-level GP29 shift as a bounded negative. The direct rune-block consumers remain separately rejected. The creator's rule for aligning historical 7×7 numbers to the page's 49 words and acting on those words is still missing. No recovered LP2 cipher, unknown plaintext, key, next LP2 coordinate or final destination follows.
 
 Reopen only if an original Cicada instruction, recovered handler/transaction, or other independent source explicitly selects a reversible operation and input boundaries for p33's 196-rune body.
 
