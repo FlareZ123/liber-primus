@@ -1,6 +1,6 @@
 # Historical Stage10 seven- and five-square feedback: complete original-source inversion and all-secret IV exclusion
 
-**Agent11, 22 November 2026. Original-source reversible negative, extended by a mathematically complete unknown-IV decision.** Four explicit feedback modes with the historical 1033 seven-square were tested on three complete original GP29 sections. Independently, the plaintext-feedback mode was tested against **every possible secret initial-state vector** for both historical five-squares and the seven-square, with no fitted key or plaintext crib. No original unknown LP2 plaintext or authenticated new key was recovered.
+**Agent11, 22 November 2026. Original-source reversible negative, strengthened by an exact secret-IV-independent language test that does not use word boundaries.** Four explicit feedback modes with the historical 1033 seven-square were tested on three complete original GP29 sections. Independently, the plaintext-feedback mode was tested against **every possible secret initial-state vector** for both historical five-squares and the seven-square, with no fitted key or plaintext crib. No original unknown LP2 plaintext or authenticated new key was recovered.
 
 ## Typed clue and possible cipher path
 
@@ -34,6 +34,29 @@ GP29 symbol index of coincidence after the complete cipher inverse:
 The **maximum over all 12 full-source decryptions is 0.03489995**. At that candidate p54–55 output the first 14 proposed GP29 symbols are P G R S R C S L AE O S TH EO EO; no coherent native-GP English span emerges. For comparison the authentic *unenciphered* solved p57 PARABLE has **GP29 IoC 0.06031746** on its first 91 runes.
 
 The [single-file Windows Node22 CommonJS reproducer](../sims/lp2_2014_sevensquare_feedback_original_sft.cjs) reads the original source square and corpus, asserts the original 7-block alignment and each exact numerical outcome, computes the matrix inverse, and restores all **1,729 / 1,680 / 308** original runes under every wrong candidate by exact forward replay. More importantly, it *genuinely encrypts* 91 native, source-authentic GP29 p57 runes with each of the four operations and recovers all **91/91** from each planted ciphertext. Re-encoding by itself would not establish the historical operation.
+
+## Strongest all-IV finding: exact periodic equality without plaintext word boundaries
+
+**This more general five-square argument requires no one-letter words or retained plaintext spaces.** Define M as either original **2014 Stage10 five-by-five magic square** reduced mod29, set A=M⁻¹ and R=−A. The exact input matrices have **R of order56 for the original 3301-sum square** and **order28 for the original 1033-sum square**, checked by an explicit modular inverse and the least positive identity power.
+
+With continuous plaintext-feedback P_b=A C_b + R P_(b−1) and arbitrary, entirely secret, initial five-rune vector v, induction gives the exact identity
+
+    P_b(v) = P_b(0) + R^(b+1) v.
+
+Since R^T=I, whenever b and b+T are both printed five-rune blocks, the **unknown initial-key contribution is identical**. Thus the equality or difference between output runes at matching positions separated by T×5 is **fully independent of all 29⁵ possible IVs**. Extend to any multiple k×T×5: each unordered pair of plaintext positions with the same residue modulo the period supplies an immutable equality bit. This tests the genuine source order and complete original section, with no plaintext guessed and *no use of word separators*.
+
+| Historical original matrix | Complete original ciphertext section | Verified GP-rune period | Immutable equal GP-pairs / compared pairs | Lowest native-English control coincidences / same pairs |
+| --- | --- | ---: | ---: | ---: |
+| 3301 five-square | p3–7 (1,145 runes) | 280 | **58 / 1,780** | **75 / 1,780** |
+| 3301 five-square | p33–39 (1,680 runes) | 280 | **137 / 4,200** | **207 / 4,200** |
+| 1033 five-square | p3–7 (1,145 runes) | 140 | **147 / 4,120** | **200 / 4,120** |
+| 1033 five-square | p33–39 (1,680 runes) | 140 | **328 / 9,240** | **474 / 9,240** |
+
+The native controls comprise **128 fixed, evenly spaced complete GP29 windows** from each of three archived real-English sources (Shakespeare, Gibran, Emerson) and **10 additional fixed source-calibrated solved-LP1 GP29 plaintext windows**, for **394 control windows per model**. Windows are same length as the actual original source passage; the native encoder uses the authentic solved-page ING and IO single-rune spellings. Control samples overlap and should not be interpreted as 394 independent probabilistic trials. Crucially, **every one** has more equality collisions at the source-fixed lag than the original ciphertext feedback inverse has under *any* secret initial state. For instance, p33–39 under the 1033 matrix is fixed at 328/9,240, whereas its 394 genuine English windows span 474–651/9,240. Its keyless expectation is close to 9,240/29 ≈318.6.
+
+The [standalone original-input mathematical invariant and source-control SFT](../sims/lp2_2014_fivesquare_feedback_periodic_alliv_sft.cjs) proves source operator orders, decrypts each full original passage under two unrelated IVs and asserts *identical exact full-interval collision counts*. An especially discriminating **positive** encrypts authentic long source-English GP29 with a nonzero secret IV, then deliberately decrypts with a **wrong** IV and shows that its genuine native coincidence signal survives unchanged. No language scorer fitted or source parameter changed. This passed on **Windows Node22 in [GitHub Actions run 45075078466](https://github.com/FlareZ123/liber-primus/actions/runs/45075078466)**.
+
+**Decision:** Continuous, unchanged-order, historical 3301 and 1033 five-square *plaintext-feedback* over either full original chapter cannot produce the established native-English long-lag coincidence fingerprint under **any** IV, even if source printed word boundaries have been completely changed. The conclusion is empirical relative to the cited native-English controls and is conditional on this specific feedback model, intact source receiver and GP29 representation. It does not prove that any imaginable English text must have this fingerprint, nor exclude a different state reset, another cipher layer, nonnative GP language register or external key source. It is a real source-fixed key-independent discrimination that directly settles a broad arbitrary-IV counterargument.
 
 ## Stronger all-secret initial-state decision: every IV, without key search
 
@@ -77,4 +100,4 @@ For the other three feedback forms, **every nonzero secret IV affects only their
 
 The matrices are independently supplied by Cicada and these are executable, lossless transformations that would recover original plaintext if the corresponding model were right. Their **complete original outputs remain indistinguishable from near-uniform GP29 at the unigram level**, so none establishes a solution or a key. Retire **all IVs** of the four literal seven-square feedback laws with unchanged source order on whole original p8–14 and, under intact-word native-English hypothesis, p33–39; for the two five-squares likewise retire these feedback laws on whole p3–7 and p33–39. For p54–55, retire only the tested zero-IV decoders because too few singleton constraints exist. The source does not select any alternate mode, IV or cipher order; introducing one merely because the outputs are random-like would be an unconstrained rescue.
 
-This fills a narrowly distinct blind spot in the existing direct 2014-matrix work. The remaining challenge is to find an independent creator-visible instruction that selects a value-changing operation, side information or external key and that succeeds on untouched original prose.
+This fills a narrowly distinct blind spot in the existing direct 2014-matrix work. The independently supplied five-square plaintext-feedback cases additionally fail an *all-secret-IV, word-boundary-independent* full-source native-GP collision test, so further starting-key searches within these cases are wasted. The remaining challenge is to find an independent creator-visible instruction that selects a different value-changing operation, side information or external key and that succeeds on untouched original prose.
