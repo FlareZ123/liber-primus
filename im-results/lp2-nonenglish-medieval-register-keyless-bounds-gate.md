@@ -35,6 +35,33 @@ For each named source: independently draw **1,024** exact-length word placements
 
 The two last rows are crucial: **Middle Welsh is significantly flatter** than previous matched English controls. A keyless capacity bound that excludes English cannot be generalized to Welsh. The Welsh register remains numerically compatible with a two-mode predecessor **frequency** requirement in 989 of 1,024 draws and with the section×parity requirement in all draws. Such compatibility does not establish that any appropriate permutation rows exist; the B1/B5 inequalities are **necessary, not sufficient**. It also does not repair the separate E deficit under a *word-local deterministic* substitution, since the evolving predecessor architecture does not preserve E.
 
+## Original-cipher reversible zero-step receiver: every anchor fails the pinned source-word mask
+
+A directly reversible variable-state hypothesis tests the reason for the rare original equal-adjacent pairs, without requiring a key search:
+
+```text
+C_i = C_(i-1) + k_i · (P_i - x)  (mod 29)
+k_i ∈ {1,...,28}, arbitrary independently secret
+P_i = x + k_i^(-1) · (C_i - C_(i-1))  (mod 29)
+```
+
+For *every* legal secret `k_i`, **`C_i = C_(i-1)` iff `P_i=x`**. This is an exact marker at all 63 original within-word equal-adjacent sites. If the manuscript's printed word lengths correspond to actual plaintext word lengths, then each printed ciphertext word requires a real source word of the same GP29 length with plaintext rune `x` **precisely** at the visible repeated-cipher positions, and nowhere else after that word's first glyph. The first cipher word glyph remains unconstrained by this *word-interior* clock, and page boundaries are allowed to carry; this is a more permissive test than demanding the full 86-event continuous clock. A source-derived `x=F` is worth testing because the authentic solved LP2 p56 exhibits literal-F transparency, although that fact alone does not select this differential operator.
+
+The [all-29-anchor SFT](../sims/lp2_nonenglish_zero_step_marker_masks_sft.cjs) tested this invariant on **all 2,896 original complete printed words** and both pinned source lexicons, with a genuine 95/95 recovered solved-p57 GP29 plant under independently variable nonzero multipliers. No proposed anchor fits every original source-word mask on the supported **2,893 slots**:
+
+| Source-native candidate anchor | Pinned-source word masks absent at required original positions | Additional unsupported length-14 original words |
+| --- | ---: | ---: |
+| Middle Welsh **F** (prior solved-page special rune) | **34** | 3 |
+| Middle Welsh **AE** (its word-interior frequency closest to the 63 original doublets: expected 63.99) | **35** | 3 |
+| Middle Welsh **W** (best post-selected mask coverage among all 29) | **3** | 3 |
+| Old Norse **F** | **17** | 3 |
+| Old Norse **TH** (best post-selected among all 29) | **5** | 3 |
+| Old Norse **AE** | **29** | 3 |
+
+For context, source-native Welsh `AE` is a **near-perfect aggregate count match** yet fails at 35 exact original word positions. Thus an aggregate success of 63 expected runes is inadequate evidence; the original message imposes a far stronger, exact positional requirement. A conservative five-fold held-out corpus check freezes an 80%-source Welsh mask dictionary then samples independently length-matched held-out Welsh words for the same original slots. For the `AE` anchor, the **original misses range 35–39** per fold, whereas held-out Welsh Monte Carlo controls range **0–11** missed words in 32 draws per fold. This calibration confirms that absent positional masks are not explained by the usual held-out lexicon novelty in this particular source. (For `F`, one fold's held-out null reaches 44 misses, so the same calibration is weaker; do not generalize the result to every original Welsh text.) Exact word-mask lookup rejection concerns **this pinned source's finite vocabulary** and this explicitly frozen cipher family. Other Welsh prose could contain unattested word forms; homophonic or changing-symbol sentinels, altered word segmentation, reset exceptions, or a different key-selected plaintext register remain possible.
+
+**Stop:** the equality-marker hypothesis has no complete original-cipher native-source vocabulary assignment in either tested text, even with all 29 unknown anchors and all per-symbol nonzero keys secret. A different externally selected register or documented exception must precede any attempt to tune `k_i`; no recovered unknown plaintext is claimed.
+
 ## Cryptanalytic consequence and stop decision
 
 The strongest direct new result is **linguistic sensitivity**: the all-secret anti-frequency proof is powerful for native English and Latin, yet **cannot alone reject a historically plausible Welsh orthographic register with a richer source-visible switching state**. The distinct, more general word-local equality invariant still rejects both tested non-English sources under an intact-word, fixed-map architecture, even with every word holding its own arbitrary key and position shuffle. The original manuscript's only 63 within-word adjacent-equal ciphertext events versus 400+ in source placements similarly motivates a variable per-rune operation, although an anagram can change this adjacency statistic.
