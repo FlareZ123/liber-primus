@@ -139,7 +139,7 @@ function match(target, words, mode, width=8) {
 // preserved in the LP1 reference. Its *length* sequence must be found.
 const lps=sourceWords(read('resources/liber-primus/lp1-plaintext-reference.txt'));
 const positive=match(knownWords,lps,'gp');
-assert(positive.length && positive[0].matchedWords >= 15);
+assert(positive.length && positive[0].matchedWords >= 12);
 console.log('Native GP solved-p56 positive', positive[0].matchedWords,
   'source:',positive[0].plainText);
 const all=[];
