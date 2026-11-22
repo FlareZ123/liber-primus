@@ -79,4 +79,24 @@ for (const [mode, offset, sign, expectedIoc] of expected) {
   console.log(`${mode} skip=${offset} sign=${sign}: original IoC ${measured.toFixed(9)}, planted ${known.length}/${known.length}; ${deciphered}`);
   assert(measured < 0.035);
 }
-console.log('PASS: source 255-word scroll, complete 256-token table, eight 1145/1145 direct inverse and GP-native plants');
+// Stronger physical adjacency control: the next LP2 page p8 prints precisely
+// 255 runes, giving one original adjacent-source GP symbol per scroll word.
+const nextPage = corpus.pages.find((p) => p.page === 8).indices;
+assert.equal(nextPage.length, 255);
+const neighbors = [
+  [false, 1, 0.03443521543958225],
+  [false, -1, 0.03450850459584084],
+  [true, 1, 0.034261153693468105],
+  [true, -1, 0.03436956057043393],
+];
+for (const [reverse, sign, expectedIoc] of neighbors) {
+  const key = reverse ? nextPage.slice().reverse() : nextPage;
+  const decoded = applyWords(tape, key, 0, sign);
+  const measured = ioc(decoded);
+  assert(Math.abs(measured - expectedIoc) < 1e-14);
+  assert.deepEqual(applyWords(decoded, key, 0, -sign), tape);
+  assert.deepEqual(applyWords(applyWords(known, key, 0, -sign), key, 0, sign), known);
+  assert(measured < 0.035);
+  console.log(`adjacent p8 key reverse=${reverse} sign=${sign}: original IoC ${measured.toFixed(9)}, planted ${known.length}/${known.length}`);
+}
+console.log('PASS: source 255-word scroll, grid256 8 inverses, adjacent p8 255-rune 4 inverses, 12 full GP-native plaintext plants');
