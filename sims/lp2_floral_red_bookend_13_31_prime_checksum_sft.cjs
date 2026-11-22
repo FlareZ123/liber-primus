@@ -60,10 +60,10 @@ const allRed=ink.pages.flatMap(p=>(p.red_spans||[]).map(s=>{
     indexSum:x.indexSum,primeSum:x.primeSum};
 }));
 assert.equal(allRed.length,18);
-const primeDivisible=allRed.filter(x=>x.primeSum%GP===0);
-assert.deepEqual(primeDivisible.map(x=>[x.page,x.start,x.length,x.primeSum/GP]),
+const primeDivisible=allRed.filter(x=>x.primeSum%corpus.runes.length===0);
+assert.deepEqual(primeDivisible.map(x=>[x.page,x.start,x.length,x.primeSum/corpus.runes.length]),
   [[15,0,9,22],[40,0,8,15],[53,128,51,78]]);
-assert.deepEqual(allRed.filter(x=>x.primeSum%GP===0&&x.indexSum%GP===0)
+assert.deepEqual(allRed.filter(x=>x.primeSum%corpus.runes.length===0&&x.indexSum%corpus.runes.length===0)
   .map(x=>[x.page,x.start,x.length]),[[40,0,8]]);
 assert.equal(corpus.pages[22].indices.length,131);
 
