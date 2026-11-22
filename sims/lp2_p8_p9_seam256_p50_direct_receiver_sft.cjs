@@ -20,6 +20,7 @@ const annotations = json('resources/liber-primus/lp2-ink-annotations.json');
 const p8 = corpus.pages[8].indices;
 const p9 = corpus.pages[9].indices;
 const originalBytes = grid.bytes;
+const originalTokens = grid.pages.flatMap(page=>page.tokens);
 const red = annotations.pages.find(p => p.page===8).red_spans[0];
 assert.equal(p8.length,255);
 assert.deepEqual([red.start,red.length],[0,12]);
@@ -27,8 +28,8 @@ assert.equal(p8.slice(0,4).map(i=>corpus.translit[i]).join(''),'XIXM');
 assert.deepEqual(p8.slice(4,12).map(i=>corpus.translit[i]),
   ['U','X','M','C','TH','P','O','B']);
 assert.equal(originalBytes.length,256);
-assert.equal(grid.tokens.length,256);
-assert.equal(grid.tokens[0], '3N');
+assert.equal(originalTokens.length,256);
+assert.equal(originalTokens[0], '3N');
 
 const transcription = fs.readFileSync(path.join(root,
   'resources/lp2-transcription.txt'),'utf8').split('%');
