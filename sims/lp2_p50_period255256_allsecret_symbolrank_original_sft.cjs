@@ -132,8 +132,8 @@ const chapterTapes = authoredChapters.map(([a, b]) =>
 assert.equal(chapterTapes.flat().length, original.length);
 
 /** @param {number} period Repeating positions per secret bank. */
-function allTwoBankChapterAssignments(period) {
-  const hist = chapterTapes.map(tape => {
+function allTwoBankChapterAssignments(period, tapes = chapterTapes) {
+  const hist = tapes.map(tape => {
     const rows = Array.from({ length: period }, () => new Uint32Array(29));
     tape.forEach((c, i) => rows[i % period][c]++);
     return rows;
@@ -174,6 +174,50 @@ assert.deepEqual(twoBankChapterBounds.map(x =>
 [[256, 6084, 60, 4833], [256, 6114, 185, 4856]]);
 assert(twoBankChapterBounds.every(x => x.maximumTopFive / original.length < 46 / 95));
 
+/**
+ * Reversible first-order additive-integrator cipher is a distinct mechanism
+ * motivated by the very rare adjacent ciphertext doublets. If:
+ *    C[i] = C[i-1] + E_{phase}(P[i]) (mod29)
+ * then source D[i]=(C[i]-C[i-1]) mod29 is precisely the output of the
+ * same unknown fixed per-phase secret permutation E. Apply the identical
+ * no-key rank theorem to D, including source-visible accumulator resets.
+ */
+const differential = {};
+const differentialBounds = [];
+for (const [clockName, clock] of Object.entries(phase)) {
+  const values = original.map((c, i) =>
+    mod29(c - (i === 0 || clock[i] === 0 ? 0 : original[i-1])));
+  differential[clockName] = values;
+  for (const period of [255, 256]) {
+    const B1 = rankUpperBound(values, clock, period, 1);
+    const B5 = rankUpperBound(values, clock, period, 5);
+    differentialBounds.push({
+      clock:clockName,period,B1,B5,
+      B5Fraction:Number((B5/original.length).toFixed(8))
+    });
+  }
+}
+const expectedDifferential = {
+  continuous:{255:4894,256:4940},
+  physical_page:{255:4901,256:4912},
+  illustrated_chapter:{255:4858,256:4920},
+  complete_word:{255:2760,256:2760},
+  printed_line:{255:3048,256:3048}
+};
+for (const row of differentialBounds)
+  assert.equal(row.B5, expectedDifferential[row.clock][row.period]);
+assert.equal(differential.continuous.filter(x => x === 0).length, 86);
+
+const chapterDifferentialTapes = chapterTapes.map(tape =>
+  tape.map((c, i) => mod29(c - (i===0 ? 0 : tape[i-1]))));
+const twoBankDifferentialBounds = [255,256].map(period =>
+  allTwoBankChapterAssignments(period, chapterDifferentialTapes));
+assert.deepEqual(twoBankDifferentialBounds.map(x =>
+  [x.scanned,x.maximumTopFive,x.bestMask,x.minimumTopFive]),
+  [[256,6106,180,4858],[256,6180,15,4920]]);
+assert(twoBankDifferentialBounds.every(x =>
+  x.maximumTopFive/original.length < 46/95));
+
 /** Exact histogram for any recovered candidate plaintext. */
 function globalTopK(stream, k) {
   const counts = new Uint32Array(29);
@@ -203,6 +247,21 @@ assert(positiveCapacity >= positiveTopFive);
 assert(positiveTopFive / positivePlain.length > 0.48);
 assert(rankUpperBound(original, phase.continuous, 256, 5) / original.length < 0.38);
 
+/** Positive native-GP test for the additive cumulative-cipher variant. */
+const positiveIntegratorCipher = [];
+for (let i=0;i<positivePlain.length;i++) {
+  const increment=mod29(7*positivePlain[i]+13*(i%256)+17);
+  positiveIntegratorCipher.push(mod29(increment+
+    (i===0?0:positiveIntegratorCipher[i-1])));
+}
+const positiveDelta = positiveIntegratorCipher.map((c,i)=>
+  mod29(c-(i===0?0:positiveIntegratorCipher[i-1])));
+const recoveredNative = positiveDelta.map((d,i)=>
+  mod29(25*(d-13*(i%256)-17)));
+assert.deepEqual(recoveredNative,positivePlain);
+assert(rankUpperBound(positiveDelta,phase.continuous,256,5)>=positiveTopFive);
+assert(rankUpperBound(differential.continuous,phase.continuous,256,5)/original.length<.39);
+
 console.log(JSON.stringify({
   theorem: 'Any unchanged phase-reused GP29 substitution (even 29! secret maps per phase) cannot exceed this source histogram bound for its five most frequent output glyphs',
   originalRunes: original.length,
@@ -210,12 +269,15 @@ console.log(JSON.stringify({
   periods: [255, 256],
   sourceNativeP57TopFive: [globalTopK(solved, 5), solved.length],
   exactBounds: observations,
+  firstOrderAdditiveIntegratorAllSecretBounds: differentialBounds,
+  twoBankFirstOrderIntegratorChapterBounds: twoBankDifferentialBounds,
   exhaustiveTwoSecretChapterBankBounds: twoBankChapterBounds,
   syntheticNativeControl: {
     nativeRunes: positivePlain.length,
     trueTopFive: positiveTopFive,
     ciphertextUpperBoundTopFive: positiveCapacity,
-    trueGP29ForwardReplay: positivePlain.length
+    trueGP29ForwardReplay: positivePlain.length,
+    trueFirstOrderIntegratorReplay: recoveredNative.length
   },
   caveat: 'No original key or plaintext. Bounds require globally reused per-phase invertible maps; nonnative plaintext or evolving key escapes.'
 }, null, 2));
