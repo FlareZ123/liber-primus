@@ -36,3 +36,7 @@ jobs:
         run: node --check sims/lp2_p33_49word_allsecret_square_check_sft.cjs
       - name: Run p33 all-secret 2014 square word-checksum theorem
         run: node sims/lp2_p33_49word_allsecret_square_check_sft.cjs
+      - name: Check p33 carry-correct Stage7 99-square pair decoder
+        run: node --check sims/lp2_p33_stage7_99cell_pair_carry_source_sft.cjs
+      - name: Run p33 carry-correct Stage7 99-square pair decoder
+        run: node sims/lp2_p33_stage7_99cell_pair_carry_source_sft.cjs
