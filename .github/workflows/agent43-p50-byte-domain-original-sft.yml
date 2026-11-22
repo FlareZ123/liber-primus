@@ -1,0 +1,16 @@
+name: Agent43 original LP2 p50 byte-domain vs five-unit address SFT
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-original 256-table domain with positive encoder
+        run: node sims/lp2_p50_base60_8bit_domain_all256_sft.cjs
