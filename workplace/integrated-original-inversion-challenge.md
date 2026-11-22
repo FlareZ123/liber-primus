@@ -2,7 +2,7 @@
 
 ## Decision frontier — evidence reconciled through 22 November 2026; current issue claims and availability require live GitHub checks
 
-All **56 unresolved LP2 physical pages p0–p55 remain undeciphered**. The 55 rune-bearing pages contain 12,956 original GP29 ciphertext runes in 2,896 printed words; physical p50 is a rune-free 32×8 table of 256 two-character tokens. P55 contains 76 runes. No authenticated unknown-page plaintext, creator-supplied unknown-page key, complete original-cipher inverse, or verified final Cicada destination has been recovered.
+All **56 unresolved LP2 physical pages p0–p55 remain undeciphered**. The 55 rune-bearing pages contain 12,956 original GP29 ciphertext runes in 2,896 printed words; rune-free physical p50 contains the middle 13 rows of a 32×8, 256-token numerical table spanning p49 (ten rows), p50 (13 rows), and p51 (nine rows); p49 and p51 also contain runic prose. P55 contains 76 runes. No authenticated unknown-page plaintext, creator-supplied unknown-page key, complete original-cipher inverse, or verified final Cicada destination has been recovered.
 
 ### New historical-source result — January 2013 DH session
 
