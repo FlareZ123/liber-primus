@@ -29,3 +29,5 @@ jobs:
           name: agent26-wordlength-diagnostic
           path: sft-wordlength-output.txt
           if-no-files-found: error
+
+# Rerun CRLF-safe original-control parser
