@@ -1,0 +1,45 @@
+# All-secret p7 red-polynomial keystreams fail eleven original single-rune word anchors
+
+**Agent1, 22 November 2026. A full-secret-state original-cipher exclusion, not a decipherment.** This is a small exact attack that uses the manuscript's existing printed word boundaries to solve *every* initial key state under two newly explicit source-polynomial linear-stream models. It avoids the huge seed search. All 56 unknown pages remain unsolved.
+
+## The source-constrained candidate key operations
+
+Original p7's five final red whole-word GP29 ordinal products are **[11,26,8,15,2]**. Its earlier independent source analysis defines `P(X)=11+26X+8X²+15X³+2X⁴ mod29`, whose complete fixed-point equation is `Q(X)=P(X)-X=2(X−3)(X−4)(X²−8)`. These offer two compact, algebraically motivated (but *not creator-authenticated*) additive GP29 key generators:
+
+1. The **4-state Q characteristic clock** `11K_t+25K_(t+1)+8K_(t+2)+15K_(t+3)+2K_(t+4)=0 mod29`. Every one of its four basis streams repeats after exactly 56 positions, matching the manuscript's 56 unknown physical pages, because the roots have orders dividing56. Its five literal coefficients are from p7 alone.
+2. The **5-state P tap clock** `K_(t+5)=11K_t+26K_(t+1)+8K_(t+2)+15K_(t+3)+2K_(t+4) mod29`; an earlier fixed-seed candidate was studied, but a *fully unrestricted secret initial state* is a different and stronger challenge. Test also the plain reversed source coefficient order for each recurrence; no fitted coefficients.
+
+For each, posit a simple alphabet-preserving continuous additive cipher `C_i=P_i+K_i mod29` over the unaltered original physical p8–14 chapter, including its authentic red p8 opening and page-crossing words, with an arbitrary secret 4- or 5-symbol GF29 initial state. A minus encryption sign is exactly an arbitrary seed sign reversal for a linear homogeneous clock, so adding it would duplicate the same plaintext candidate set.
+
+## Eleven single-word source anchors and exact all-secret elimination
+
+After joining real physical `/` line wraps and `%` page breaks, the original p8–14 section contains **1,729 runes and 383 printed complete words**. Exactly eleven words contain a **single rune**, at chapter-global zero-based positions
+
+`[274,501,554,602,692,785,1128,1221,1348,1401,1473]`
+
+with original unchanged ciphertext GP indices
+
+`[10,3,10,9,6,10,14,26,1,7,11]`.
+
+If word boundaries survive encryption and the underlying language is ordinary English GP, each one-letter whole word must read **A** (GP24) or **I** (GP10); a more generous spelling allowance also admits archaic vocative **O** (GP3). This exact conditional language constraint is independent of ciphertext training. It is *not* a general theorem about non-English/phonemic registers or space-changing ciphers.
+
+Because the stream is linear in its 4/5 unknown initial states, the first 4 or 5 **linearly independent one-letter anchor rows** uniquely determine the state for any assumed A/I(/O) assignment. These are source indices `[274,501,602,692]` (Q, matrix rank4) and `[274,501,554,602,692]` (P, rank5). Enumerating only **2^4=16**, **3^4=81**, **2^5=32**, or **3^5=243** anchor assignments therefore proves results for *all* **29^4 = 707,281** or **29^5 = 20,511,149** possible secret initial states respectively. The remaining unfit original words are an exact holdout.
+
+| Source model | Permitted single words | Initial-key assignments evaluated | Best original one-word constraints satisfied | All eleven satisfied |
+| --- | --- | ---: | ---: | ---: |
+| Q, ascending printed order | A/I | 16 | 6/11 | 0 |
+| Q, ascending printed order | A/I/O | 81 | 8/11 | 0 |
+| Q, mirrored order | A/I | 16 | 6/11 | 0 |
+| Q, mirrored order | A/I/O | 81 | 8/11 | 0 |
+| P, ascending printed taps | A/I | 32 | 7/11 | 0 |
+| P, ascending printed taps | A/I/O | 243 | **10/11** | 0 |
+| P, mirrored taps | A/I | 32 | 7/11 | 0 |
+| P, mirrored taps | A/I/O | 243 | 8/11 | 0 |
+
+The **10/11 near-hit** in the generous P/A/I/O model has all-secret seed `[22,15,22,3,0]`, but decodes the remaining singleton at offset1348 to **EO** (GP index12), outside all three permitted words. Its *entire* original 1,729-rune output has IoC only **0.0343393205**, with nonlinguistic prefix `NGANGTUTHBDAEARAELUCLDTHIA...`. It is not recovered prose, even if a source allowed that one exception. This is a particularly useful warning against trusting a near-perfect small-crib hit without complete plaintext.
+
+## Decision and reproduction
+
+**Reject these four exact source-rooted linear key generators with arbitrary 4/5-symbol secret seeds as the sole direct, word-preserving additive GP29 decoder of p8–14 native-English plaintext.** The contradiction arises from the original printed single-word sites, before applying an English n-gram score. Both plaintext/ciphertext signs are covered by seed negation. Different nonlinear feedback clocks, F-transparent skip semantics, a language with additional one-rune words, or ciphertext-space resegmentation remain unresolved and are not excluded.
+
+The [one-file Windows11/Node22/CommonJS SFT](../sims/lp2_p7_singleword_allseed_sft.cjs) reads the original canonical corpus and transcription, asserts all eleven locations and values, reconstructs the source Q/P recurrences and their mirrored forms, certifies independent GF29 anchor ranks, exhausts **744** initial-state assignments for the four models and two allowed alphabets, and checks exact reencryption and seed recovery on independent 1,729-rune solved-p57-derived positive plants for every case. Original image inputs: `resources/liber-primus/24.jpg` (p7) and `25.jpg` (p8). Prior source arithmetic report: `im-results/lp2-p7-p8-original-red-polynomial-fixedpoint.md`. Earlier p7 five-tap seed-restricted keyskip: `im-results/lp2-p7-p8-five-dot-lfsr-skip-cube-original-gate.md`.
