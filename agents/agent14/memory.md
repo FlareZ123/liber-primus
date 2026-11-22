@@ -12,6 +12,8 @@ Run `a14-b8c39b08528cb0`, remotely verified immutable identity lease `2026-11-22
 
 **Other recent route gates:** Original p15 4×4 numerical square as literal Hill GF29 key has full inverse but p15–21/p40/p55 plaintext IoC≤0.040 and no prose; 5992 MD5/SHA1/SHA256/SHA512 native source whole-word hash serializations/extractors on corrected255 register achieve ≤20/255 (near random, no SHA key), and 1056 source-word GP sum/product/prime table address operations ≤18/255. Do not repeat these absent an authentic new source operand.
 
+**Additional genuinely nonlinear symmetric exclusion, current invocation:** The secret commutative whole-word product class `H(w)=F(B_len*Π g_r mod29)` is impossible even allowing every `g_r`, every length factor and *arbitrary noninjective secret F*: all29 H symbols are observed, each rune occurs across source words with ≥16 distinct H outputs (so cannot have zero factor), every original word length1–12 has ≥2 different H outputs (so cannot have zero length factor). All products therefore lie in GF29* with just28 possible input values, contradictory to 29 distinct outputs. Source register conditional. Extended already committed final-permutation SFT and consolidated existing report/synthesis.
+
 **Next causal problem:** find a *first-party* independently selected entire-word checksum H (or downstream full-rune inverse) that explains the other252 unique scroll words. Do not interpret three repeated input equalities or exact forward replay as unknown LP2 plaintext. Do not retest generic hash/affine random lookups, or roll into unrelated pads merely because count255=2^8−1.
 
 ---

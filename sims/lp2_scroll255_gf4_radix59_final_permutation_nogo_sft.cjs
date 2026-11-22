@@ -157,4 +157,32 @@ for(const [phase,numCoefficients,wantRank,wantEqualRank] of expected){
     positiveDistinctOutputs:new Set(synthetic).size
   }));
 }
-console.log('PASS GF29 all-secret final-permutation no-go + original-shaped planted positives');
+// Source-independent nonlinear branch: any order-insensitive word prime
+// product in GF29, with arbitrary unknown nonzero rune/length factors and any
+// arbitrary final output map, has only 28 possible nonzero residues. A zero
+// factor at a rune or word length would make all source words containing it
+// share the same observed H. Every rune and every length has multiple H labels.
+// Therefore every secret factor is nonzero and all 29 observed H classes are
+// impossible to reach through a 28-element nonzero group.
+const perRune=[];
+for(let rune=0;rune<29;rune++){
+  const matching=words.flatMap((w,i)=>w.includes(rune)?[H[i]]:[]);
+  const classes=new Set(matching).size;
+  assert(classes>=2);
+  perRune.push(classes);
+}
+const perLength=[];
+for(let length=1;length<=12;length++){
+  const matching=words.flatMap((w,i)=>w.length===length?[H[i]]:[]);
+  const classes=new Set(matching).size;
+  assert(classes>=2);
+  perLength.push(classes);
+}
+assert.equal(new Set(H).size,29);
+console.log('ALL_SECRET_COMMUTATIVE_PRODUCT_GF29_NO_GO '+JSON.stringify({
+  observedHClasses:29,maximumGF29NonzeroProducts:28,
+  minDistinctHClassesForAnySourceRune:Math.min(...perRune),
+  distinctHClassesForEachOriginalWordLength:perLength,
+  arbitraryFinalOutputFunctionAllowed:true
+}));
+console.log('PASS GF29 all-secret final-permutation and multiplicative-output no-go + original-shaped planted positives');
