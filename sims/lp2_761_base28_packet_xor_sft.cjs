@@ -1,6 +1,6 @@
 'use strict';
 /**
- * Single source-led LP2 GP28-packet -> original 2013 761.MP3 XOR experiment.
+ * Source-led LP2 GP28 packets -> original 2013 MP3 / own-book p50 256-byte XOR test.
  * The packet hypothesis is conjectural; only raw MP3 byte-zero XOR is historical.
  * Node 22, run from repository root with pinned 761.MP3 filename as argv[2].
  */
@@ -95,6 +95,20 @@ for(const p of pages){
 assert.equal(repeats,86);
 assert.equal(packetCount,141);
 const raw=Buffer.concat(serialized);
+const grid=JSON.parse(fs.readFileSync('resources/liber-primus/lp2-grid-256.json','utf8'));
+const table=Buffer.from(grid.bytes);
+assert.equal(table.length,256);
+const tableXor=bytes=>Buffer.from(bytes.map((b,i)=>b^table[i%table.length]));
+const p50Global=tableXor(raw);
+const pageBuffers=[];
+let nextOffset=0;
+for(const span of spans) {
+  const slice=raw.subarray(nextOffset,nextOffset+span.bytes);
+  pageBuffers.push(tableXor(slice));
+  nextOffset+=span.bytes;
+}
+assert.equal(nextOffset,raw.length);
+const p50PageReset=Buffer.concat(pageBuffers);
 const candidate=xor(raw,mp3);
 const solved=corpus.pages[57].indices.map(i=>corpus.translit[i]).join('');
 const p57=Buffer.from(solved,'ascii');
@@ -106,9 +120,18 @@ const artificial=encode({seed:0,packets:[digits]});
 const restored=toBytes(decode(artificial).packets[0]);
 assert.deepEqual(restored,encrypted);
 assert.deepEqual(xor(restored,mp3),p57);
+const p50Plant=tableXor(p57);
+const p50Digits=toDigits(p50Plant,Math.ceil(p50Plant.length*8/Math.log2(28))+1);
+while(p50Digits[0]===0)p50Digits.shift();
+const p50Artificial=encode({seed:0,packets:[p50Digits]});
+assert.deepEqual(tableXor(toBytes(decode(p50Artificial).packets[0])),p57);
 console.log(JSON.stringify({
   status:'PASS',source:{runeBearingPages:55,runes:12956,repeats,packetCount,leadingZeroPacketDigits:leading0,discardedPageSeedRunes:55,page0:spans[0],page55:spans.at(-1)},
   operation:'cyclic GP29 differences 1..28 mapped to digits 0..27; equality splits packet; per-physical-page rune0 seeds; packet big-endian integer -> minimal bytes; concatenated bytes XOR MP3 byte offset0',
   originalTransport:describe(raw),candidate:describe(candidate),
+  p50OriginalTable:{source:'unchanged printed LP2 32x8 base60 numeric table',bytes:256,sha256:sha(table),
+    consumer:'same base28 packets XOR repeated original 256 table bytes from row-major offset0; global and physical-page-reset clocks only',
+    global:describe(p50Global),perPageReset:describe(p50PageReset),
+    p57NativePositiveRecovered:true},
   plantedControl:{genuineP57RuneCount:95,plaintextByteCount:p57.length,artificialRuneCount:artificial.length,exactOriginalTextRecovered:true}
 },null,2));
