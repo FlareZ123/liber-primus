@@ -41,6 +41,31 @@ As a strong source-positive control, the same F-interrupter encrypt/decrypt path
 
 **Updated decision:** Source-specified p56-style F skipping does **not** rescue the previously documented 75-square additive inverse; all four surviving paths remain nonprose. This closes a motivated but formerly untested F-clock exception while retaining the existing boundary and source-order caveats.
 
+## Distinct complete-76 plaintext-feedback receiver (Agent24, 22 November)
+
+A new source-locked consumer interprets the original **one carried p54→p55 rune as a 29-state IV** \(P_{-1}=21\), then uses the same 75 fixed historical square-key integers to decode all 75 following original p55 ciphertext runes through **plaintext feedback**:
+\(P_i=(C_i+\mathrm{sign}\cdot K_{\mathrm{clock}}-P_{i-1})\bmod29\).
+Conversely \(C_i=(P_i+P_{i-1}-\mathrm{sign}\cdot K_{\mathrm{clock}})\bmod29\). The carry is preserved verbatim as ciphertext and initial state, so rebuilding includes **all 76/76 physical p55 source symbols**. This differs mathematically from the earlier **ciphertext-feedback** inverse \(P_i=C_i-C_{i-1}+\mathrm{sign}\cdot K_i\), and from the original additive key.
+
+The candidate operation is a conjecture: no surviving Cicada statement actually says to use plaintext autokey, or that the encrypted p54 carry should be understood as a plaintext IV. The exact source-fixed eight cases use raw printed square numbers or their Euler totients modulo29, complete chronological or reversed key order, and both signs. For each case enumerate every bypass mask on actual p55 body ciphertext-F offsets **[14,24,40]**. In the authentic p56-style transparent-F rule, a bypass emits literal plaintext F, consumes no numeric key, and updates the plaintext feedback state to F. Any key-consuming inverse that would produce F is rejected. This gives **64** original-case histories without fitting a single key bit or choosing an IV from English scores.
+
+There are **six mathematically admissible** source histories, distributed as follows:
+
+| Key reading / direction / sign | F-mask | GP13 candidate | IoC (75) |
+| --- | ---: | --- | ---: |
+| raw / forward / − | 7 | IAHFHOAELAEXEONGH | 0.036396 |
+| raw / forward / + | 2 | GEAFPBTOCMEHIT | 0.036757 |
+| raw / reverse / + | 3 | XWFWXAEMREOWXJEA | 0.031351 |
+| raw / reverse / + | 7 | XWFWXAEMREOWXJEA | 0.032072 |
+| totient / forward / + | 4 | OESLPOREAMMEOTEAG | 0.030270 |
+| totient / reverse / − | 0 | RNHTBXXWIRISR | 0.034955 |
+
+The remaining **58** histories violate the source-authenticated plaintext-F transparent-rule. None of the six admissible outputs' original 13-rune long word belongs to **426** source-native English GP13 forms in pinned literature and solved LP1. Their complete-word readings are nonlinguistic. This is a finite source-English wordlist rejection of a specified consumer, not proof that the p55 key or actual text is impossible.
+
+The **eight positive plants** use a genuine independently decrypted **75-rune p56 plaintext prefix**, including its source-authenticated F bypass at local56, and the *same literal GP21 IV*. Encrypt it under all eight candidate numeric-register/sign combinations, reconstruct every source ciphertext-F bypass pattern, and recover the exact **75/75 original plaintext runes**, with complete forward replay. [Read-only original source SFT](../sims/lp2_p55_2014_squares75_plaintext_autokey_IV_sft.cjs) · [Windows Node22 PASS 44982739974](https://github.com/FlareZ123/liber-primus/actions/runs/44982739974).
+
+**Consequence:** Preserving the carried first rune as the IV in a proper plaintext feedback cipher does not rescue the historical 75-square numeric key. The source-specified answer still requires a different original operation, authentic plaintext target, or outside input. Do not run additional fitted IVs or per-page key transformations on this branch.
+
 ## Research decision
 
 The **triple-square-to-75 local-rune alignment** is a source-based way of proposing a p55 operand, but it does not select any of the tested reversible operations. Both the direct GP29 masks and the full-original-input differential-feedback inverse yield no recoverable plaintext. Retire these **twenty-four fixed direct and feedback additive/totient mask readings** rather than searching arbitrary square symmetries, extra shifts, alphabet assignments or optimized periods.
