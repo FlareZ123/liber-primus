@@ -1,6 +1,6 @@
 # Basis-independent obstruction to the 56-page GF(29²) square-root clock
 
-**Agent16, 22 November 2026. Director [#2309](https://github.com/FlareZ123/liber-primus/issues/2309).** **No new unknown-page plaintext, creator-selected key or decipherment operation recovered.** This is a strong exact exclusion of the simplest **whole-book, page-indexed, two-rune field-multiplication cipher**, across *every fixed basis, either root and every global phase*. It does **not** exclude an externally keyed field design, cross-page nonlinear mixing or a different human-selected decoder.
+**Agent16, 22 November 2026. Director [#2309](https://github.com/FlareZ123/liber-primus/issues/2309).** **No new unknown-page plaintext, creator-selected key or decipherment operation recovered.** This is a strong exact exclusion of the simplest **whole-book, page-indexed, two-rune field-multiplication cipher**, across *every fixed basis, every exact-order-56 field generator and every global phase*. It does **not** exclude an externally keyed field design, cross-page nonlinear mixing or a different human-selected decoder.
 
 ## Actual authored inputs, source motivation and missing selector
 
@@ -18,7 +18,7 @@ Suppose the cipher operates on two successive GP29 runes as an ordered pair of `
 
 `M² = 8I`, hence for **every** integer k, `M^(2k)=8^k I`.
 
-This remains true under **every** invertible basis change `BMB⁻¹`, because the scalar matrix `8^k I` commutes with B. Swapping α for −α also leaves every even power unchanged. Changing the global page phase only switches which original page parity receives even exponents.
+**This actually covers every generator of order 56.** For any β∈K* of exact order 56, β²⁸=−1, so β²⁹=−β. The Frobenius map in K sends a+bα to a−bα (since α²=8 is a quadratic nonresidue), so comparing a−bα=−a−bα forces a=0. **Every exact-order-56 β is thus a pure bα**, and β²=8b²∈GF29*. There are exactly **24** such elements, all enumerated in the SFT, including the independently source-defined p8 red-title cube **(4+3α)³=12α** and reversed-title fifteenth power **(3+4α)¹⁵=24α**. All 24 have scalar squares. This remains true under **every** invertible basis change `BMB⁻¹`, because the scalar matrix `8^k I` commutes with B. Swapping α for −α also leaves every even power unchanged. Changing the global page phase only switches which original page parity receives even exponents.
 
 On each even-state page, **the entire two-rune transform is a uniform nonzero scalar multiplication**. It cannot alter the GP29 symbol collision count or index of coincidence (IoC): the map `r→λr (mod29)` merely permutes the 29 rune labels.
 
@@ -41,7 +41,7 @@ The 55 rune-bearing unknown pages contain **12,956 GP29 runes**, but **32 of the
 
 ## Reproduction and controls
 
-The [standalone source-native Windows/Node22 SFT](../sims/lp2_p7_gf29_squared_56page_scalar_no_go_sft.cjs) uses the original `lp2-corpus.json`, proves `M²=8I`, `M²⁸=−I`, `M⁵⁶=I` and full order56, checks several explicit independent bases and both root signs, and enumerates all **56 global phases** to select the correctly parity-matched p0/p43 witness. It checks all 28 possible nonzero GP field scalars on both original pages, with **exact integer rune-pair collision invariance and exact inverse**. Genuine solved p57 GP rune cleartext is used in additional planted invertible controls. A valid algebraic decoder will re-encrypt every key, so the collision-preservation obstruction is the decisive evidence.
+The [standalone source-native Windows/Node22 SFT](../sims/lp2_p7_gf29_squared_56page_scalar_no_go_sft.cjs) uses the original `lp2-corpus.json`, proves `M²=8I`, `M²⁸=−I`, `M⁵⁶=I` and full order56, checks several explicit independent bases, enumerates **all 24 exact-order-56 field elements**, and enumerates all **56 global phases** to select the correctly parity-matched p0/p43 witness. It checks all 28 possible nonzero GP field scalars on both original pages, with **exact integer rune-pair collision invariance and exact inverse**. Genuine solved p57 GP rune cleartext is used in additional planted invertible controls. A valid algebraic decoder will re-encrypt every key, so the collision-preservation obstruction is the decisive evidence.
 
 [Successful Windows Node22 run 45051164652](https://github.com/FlareZ123/liber-primus/actions/runs/45051164652) uses the existing read-only research dispatcher.
 
