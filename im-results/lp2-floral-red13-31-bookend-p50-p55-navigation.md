@@ -44,6 +44,25 @@ Exact topology, with **no selected key or phase**:
 
 Among **65,536** possible ordered seed pairs on the **unchanged** base59 graph, only **18** satisfy this exact depth-and-first-merge topology. Among the **64** possible table-column choices on the two **original ornament-selected rows13 and31**, precisely **one** pair satisfies it: the arithmetic-derived columns **(6,3)**. These are exact conditional counts and make no uncorrected claim about authorial likelihood or alternative numeral grammars.
 
+## Independent tree-illustration receivers on the same selected path
+
+The newly selected p50 address **110** immediately yields table byte **32**. That is physical **LP2 p32**, a manuscript page with a central **tree illustration**, and the first transition 110→32 is **radix-independent** because its original printed token is 0W (same value32 under base59 and base60). Only *subsequent* transitions need the disputed base59 interpretation.
+
+A prior independent [source-tree study](lp2-p50-base59-p32-p55-nested-subtree-source-gate.md) had already discovered that the base59 graph contains **unique descendant-inclusive subtrees** of cardinalities **121** at original node58, **76** at node244, and **33** at node146. Those sizes respectively match original **p32's 121 GP runes**, **p55's 76 GP runes**, and **p55's 33 word-exterior runes**. Its previously tested 16-word p55 direct-key and 43-leaf tree consumers failed to recover unknown prose; those failed methods must not be reintroduced.
+
+The new red-ornament-derived left route crosses these **already documented** source objects in a particularly restrictive sequence:
+
+| Step from source-derived seed110 | Table node | Independent printed receiver |
+|---|---:|---|
+| **1** | **32** | Page p32, containing the tree illustration |
+| **16** | **244** | Unique original base59 subtree containing **76 nodes**, equal p55's full 76 runes |
+| **18** | **58** | Unique original base59 subtree containing **121 nodes**, equal p32's full 121 runes |
+| **33** | **189** | Unique global fixed root, previously matched p55's **33** word exteriors |
+
+Between source node **32** (step1) and unique p55-subtree node **244** (step16) lie **15 edges and 16 vertices**. The source p55 contains **16 complete printed words** after its incoming one-rune p54 continuation. The 16-node alignment and 121/76 subtree discoveries existed before the new 13/31 red prime-sum addressing, so their occurrence is a useful **cross-investigation receiver**, although the graph/radix hypothesis is shared and their numerical matches cannot be treated as independent evidence for a historical cryptographic algorithm.
+
+The marker **146** with a unique33-node subtree is not actually on the seed110→root path; it is a different branch of the 121-node subtree at58. This distinction matters: a natural reader may need a deliberate **branch instruction** to reach that 33-node receiver, which the original source still does not provide. A direct additive use of previous tree-node keys already failed in the prior report. The new link principally supplies an unambiguous source-colored route to **p32 and p55**, not the missing value transform.
+
 ## Receiver and next reversible operation
 
 The original p55 has **76** runes in 17 physical printed-word fragments, one being a continuing rune from p54. Literal first/last-rune shedding on each fragment gives **43 interiors and33 exteriors**; **3301=43×76+33** independently singles out that page under the already investigated DH3301 terminal receiver ([prior p55 source report](lp2-dh3301-base59-terminal-p55-p56.md)). The left source-selected pointer chain contains **exactly33 nonroot nodes**, supplying one typed path element per p55 exterior position. The first **29** nodes before the graph merge are all *distinct byte addresses*, a candidate for a 29-symbol keyed ordering, although their residues modulo29 are *not* a permutation.
