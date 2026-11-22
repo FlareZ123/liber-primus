@@ -75,6 +75,20 @@ for (const sign of [-1, 1]) {
     'IOC', ioc.toFixed(11),
     'PREVIEW120', initial);
 }
+// Second, materially different typed consumer: interpret each authentic
+// byte as a literal address 0..255 into the exactly corresponding p8
+// original 256-rune frame. This is a readout and need not be invertible.
+const indexReadout = grid.bytes.map((index) => frame[index]);
+const distinctPositions = new Set(grid.bytes).size;
+assert.equal(distinctPositions, 161);
+assert.equal(indexReadout.length, 256);
+const lookupIoc = coincidence(indexReadout);
+assert.ok(Math.abs(lookupIoc - 0.03946078431372549) < 1e-12);
+console.log('DIRECT_ADDRESS_READOUT',
+  'SOURCE_POSITIONS', distinctPositions,
+  'REPEATED_ADDRESS_EVENTS', 256 - distinctPositions,
+  'IOC', lookupIoc.toFixed(11),
+  'PREVIEW120', indexReadout.slice(0, 120).map((n) => corpus.translit[n]).join(''));
 console.log('P8_WHOLE_PRINTED_4PLUS256_SOURCE_FRAME', frame.length);
 console.log('P50_TABLE_SHAPE', grid.shape);
 console.log('PASS: exact original frame and negative fixed row-major byte-mod29 pad gate');
