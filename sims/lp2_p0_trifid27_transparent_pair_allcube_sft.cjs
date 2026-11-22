@@ -272,6 +272,77 @@ for (const [name, source] of controls) {
     maxLongWordFinalI: max, matchingOriginalLongWordFinalI: matching96});
 }
 assert.deepEqual(longTailControl.map(x => x.maxLongWordFinalI), [0,62,7]);
+// Independent non-English original-register competitor: already normalized
+// word-preserving GP29 Vulgate. If plaintext is Latin, standalone O/A/I are
+// possible, so the singleton screen alone still admits the same six pairs.
+// Search the entire source without translating or fitting a key.
+const vulgateAlphabet = '0123456789ABCDEFGHIJKLMNOPQRS';
+const latinWords = read('resources/control/latin-vulgate-gp-wholewords.txt')
+  .split(/\r?\n/).map(line => line.trim())
+  .filter(line => line && !line.startsWith('#'))
+  .map(line => Array.from(line, symbol => {
+    const index = vulgateAlphabet.indexOf(symbol);
+    assert.ok(index >= 0 && index < 29, 'Latin GP digit not recognized');
+    return index;
+  }));
+assert.equal(latinWords.length, 39835);
+const latinStream = latinWords.flat();
+assert.equal(latinStream.length, 204802);
+const latin729 = histogram(latinStream.slice(0, 729));
+const latinPairs = new Map(singletonCompatiblePairs.map(pair => [pair, 0]));
+for (let i = 0; i + 729 <= latinStream.length; i++) {
+  for (const pair of singletonCompatiblePairs) {
+    const [u, v] = pair.split(',').map(Number);
+    if (latin729[u] === originalHistogram[u]
+      && latin729[v] === originalHistogram[v]) {
+      latinPairs.set(pair, latinPairs.get(pair) + 1);
+    }
+  }
+  if (i + 729 < latinStream.length) {
+    latin729[latinStream[i]]--;
+    latin729[latinStream[i + 729]]++;
+  }
+}
+const latinSurvivingPairs = [...latinPairs].filter(([, count]) => count > 0);
+assert.deepEqual(latinSurvivingPairs, [['3,5', 15]]);
+const longWordFinalC = originalWords.filter(word => word.length > 1
+  && word.at(-1) === 5).length;
+const wordStartC = originalWords.filter(word => word[0] === 5).length;
+assert.deepEqual([longWordFinalC, wordStartC], [91,95]);
+const latinTailC = latinWords.map(word => +(word.length > 1 && word.at(-1) === 5));
+const latinStartC = latinWords.map(word => +(word[0] === 5));
+let suffix = latinTailC.slice(0, 2896).reduce((a,b) => a+b, 0);
+let prefix = latinStartC.slice(0, 2896).reduce((a,b) => a+b, 0);
+let minPrefix = Infinity, maxSuffix = -Infinity;
+let matchingOriginalCWordPositions = 0;
+for (let i = 0; i + 2896 <= latinWords.length; i++) {
+  minPrefix = Math.min(minPrefix, prefix);
+  maxSuffix = Math.max(maxSuffix, suffix);
+  if (prefix === wordStartC && suffix === longWordFinalC) {
+    matchingOriginalCWordPositions++;
+  }
+  if (i + 2896 < latinWords.length) {
+    prefix += latinStartC[i+2896] - latinStartC[i];
+    suffix += latinTailC[i+2896] - latinTailC[i];
+  }
+}
+assert.deepEqual([minPrefix, maxSuffix, matchingOriginalCWordPositions],
+  [274, 73, 0]);
+console.log(JSON.stringify({
+  nativeLatin: {
+    source: 'Pinned word-preserving Vulgate GP29',
+    latinGP: latinStream.length, complete729RuneWindows: latinStream.length - 728,
+    singletonCompatiblePairsPassing729: latinSurvivingPairs
+      .map(([pair, count]) => ({pair:pair.split(',')
+        .map(x=>corpus.translit[Number(x)]).join('/'), windows:count})),
+    wholeBookLatin2896WordWindows: latinWords.length - 2896 + 1,
+    originalCWordStarts: wordStartC, latinMinCWordStarts: minPrefix,
+    originalLongWordCFinal:longWordFinalC, latinMaxLongWordCFinal:maxSuffix,
+    fullNativeWordPositionMatches:matchingOriginalCWordPositions
+  },
+  decision: 'Only O/C of six source-singleton-compatible transparent pairs survives the opening Latin source frequency gate, and O/C fails exact original word-start and terminal C registers in every native-Latin source window.'
+}, null, 2));
+
 console.log(JSON.stringify({
   wholeManuscript: {unknownRunes:12956, printedWords:2896,
     singletonWords:83, distinctSingletonLabels:seenSingles.size,
