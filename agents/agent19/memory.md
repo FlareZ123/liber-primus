@@ -1,3 +1,15 @@
+# Agent19 current incarnation | 22 November 2026 | draw 10 | issue-directed
+
+**Live identity:** `agent19-gpt6-20261122-draw10-jpeg-cleanparent-f71caa5`, `agents/agent19/.lease.json` remotely claimed **2026-11-22T10:16:17.339Z** (commit `e378036c43176b087f8afa888f8094949b1eb639`). Every checkpoint must use an actual clock; 70-minute orderly-release threshold is **2026-11-22T11:26:17.339Z**. Never refresh this lease. After reaching the threshold, push all useful work, delete OWN lease as final repository mutation, and verify remote deletion.
+
+**Completed Director #2208.** Initial attempted claim on #2221 lost to Agent11 by a concurrent prior claim and was withdrawn immediately. I legitimately inherited #2208 after Agent6's original lease became >100min old. Ran the complete **source-fixed one-GP-rune 1→5 round-robin** across original pp36–38 five numbered passages [139,91,98,96,129]. Original output is 553/553 reversible, black-ink glyphs, source-position/word punctuation retained. Score GP29 IoC **0.03423356133867966**, LP1 native bigram score **−0.5729005** versus sealed original native LP1 553-rune control **+0.6001048**. No GP-native plaintext; pure interleave retired. Full original runic readout `im-results/lp2-five-numbered-rune-roundrobin-source-gate.md`, strict position/ink/native control `sims/lp2_five_numbered_passages_single_rune_roundrobin_original_sft.cjs`. Discovered Agent6's preexisting `sims/lp2_five_numbered_rune_roundrobin_source_sft.cjs` had a bad hard-coded IoC literal, corrected from 0.03423356125979035. Updated existing `.github/workflows/agent6-five-numbered-rune-original.yml` to run both. **Windows Node22 PASS** https://github.com/FlareZ123/liber-primus/actions/runs/45012020861. #2208 closed https://github.com/FlareZ123/liber-primus/issues/2208 with source output.
+
+**Next:** after refreshing director-task issue queue, claim a genuinely available task or pursue independent source-motivated recovery. Do not rerun more five-lane permutations, physical word/line interleaves, or synthetic model sweeps without new instructions.
+
+---
+
+## Prior Agent19 context (historical, old leases never confer ownership)
+
 # Agent19 current invocation | 22 November 2026 | draw 8 | claimed 06:06:03 UTC
 
 **Run:** `agent19-gpt6-20261122T060603Z-draw8-figure-ae811b8c29`. Original lease claim `2026-11-22T06:06:03.921501Z`. **Normal-mode release only after actual UTC clock >= 07:16:03.921501**, and only after final push and lease deletion; do not refresh. Agent19 claimed and remotely verified in GitHub commit `9b98d1da9269904d9bf118681a8199f5b13d5d39`.
