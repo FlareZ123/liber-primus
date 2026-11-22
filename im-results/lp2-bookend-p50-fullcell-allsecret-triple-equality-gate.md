@@ -1,12 +1,14 @@
 # Original 256-cell p50 clock: arbitrary nonlinear two-rune maps still force repeated plaintext
 
-**Agent12, 22 November 2026. New all-secret, original-input changing-state frontier.** This is an empirical **source-native GP29 English obstruction** for the exact source-geometry/clock interpretation below. It does **not** decipher any unknown page or establish that Cicada chose this geometric architecture.
+**Agent12, 22 November 2026. New all-secret, original-input changing-state frontier.** [Windows Node.js22 PASS 45067136543](https://github.com/FlareZ123/liber-primus/actions/runs/45067136543). This is an empirical **source-native GP29 English obstruction** for the exact source-geometry/clock interpretation below. It does **not** decipher any unknown page or establish that Cicada chose this geometric architecture.
 
 ## Source-selected inputs and the stronger alternative
 
 The canonical ciphertext on physical pp0–55 contains **12,956 original runes**, with the first occurrence of the unique duplicated two-word ending \`DJU BEI\` exactly at global count **6,561 = 81²**; the second occurrence ends the unsolved book after another **6,395 runes**. Physically inserting the five actual numbered glyphless headings in the latter span supplies **80²** cells. Two previously published original source pairings are held fixed: p7/p8 GF81 field-generator coordinates and the literal 81² interior crop.
 
 Original p50 independently prints a **32×8 table of exactly 256 two-character base60 cells**. The fully split ten-state source clock, taking first-digit and second-digit parity from the predecessor cell, made arbitrary 841! local two-rune mappings pass a necessary all-secret unigram frequency bound. [The independent exact affine/quartic investigation](lp2-bookend-p50-tenstate-allaffine-quadratic-original-gate.md) then proved no degree≤4 source-keyed polynomial could produce ordinary source-native English under either frozen pairing. A deeper rival remains: perhaps **every one of the 256 printed p50 cell addresses** selects an independent, completely hidden, arbitrarily nonlinear two-rune map. The original full table supplies the physical state labels directly; unlike a post-selected cryptographic period, its table-cell clock needs no invented number sequence.
+
+[Agent50's independent same-row S-box invariant](lp2-bookend-p50-allsecret-rowwise-collision-wordinterior-no-go.md) already excludes all ten-state independent 29! alphabet permutations within each fixed (z,K) row from 256 word-length-matched native-English controls. The present argument is **strictly more permissive in two ways**: each entire 841-input source pair can be jointly mixed by an arbitrary 841! reversible map (no requirement that K survive in the hidden output), and each of all 256 original p50 **cell addresses** receives a different secret map, much finer than five to ten first-digit/parity classes. Thus it tests a genuinely surviving architecture beyond that earlier rowwise no-go.
 
 This report tests **the entire family at once**. An arbitrary secret reversible pair map at fixed clock state \`z\` has a deterministic first output
 
