@@ -10,9 +10,9 @@
  * words are completely unconstrained. Mode m is a fixed affine-linear
  * readout of the p7 source GF(3) state, with arbitrary global phase.
  *
- * The tested 242-state orbit excludes the extra zero splice used by
- * some 243-state p8 de Bruijn hypotheses. No unknown LP2 plaintext
- * or author-specified cipher operation is inferred.
+ * Both the primitive 242-state orbit and its two valid complete
+ * 243-state de Bruijn zero splices are tested exhaustively over phases.
+ * No unknown plaintext or author-specified cipher is inferred.
  *
  * SFT: node sims/lp2_p7_gf3_affine_three_mode_allsecret_sft.cjs
  * Windows 11 / Node.js 22 / CommonJS / read-only / no dependencies.
@@ -65,6 +65,42 @@ assert.deepEqual(state, taps, "primitive 242-state orbit");
 assert.equal(visited.size, 242);
 assert(!visited.has("0,0,0,0,0"));
 const trits = states.map(s => s[0]);
+
+/**
+ * Complete B(3,5) symbols from the primitive m-sequence. The only two
+ * four-zero runs choose the two source-valid zero insertions. Both yield
+ * 243 different cyclic five-trit windows and an 81/81/81 trit inventory.
+ *
+ * The two cycles differ by a phase shift plus the permutation m -> 2m:
+ * that relabels the fully secret Q tables, so one exhaustive phase census
+ * covers both under this exact three-mode architecture.
+ */
+const fourZeroRuns = [];
+for (let i = 0; i < 242; i++)
+  if ([0, 1, 2, 3].every(k => trits[(i + k) % 242] === 0))
+    fourZeroRuns.push(i);
+assert.deepEqual(fourZeroRuns, [83, 204]);
+const completeDeBruijn = fourZeroRuns.map(start => {
+  const insertion = start + 4;
+  const sequence = trits.slice(0, insertion).concat(
+    [0], trits.slice(insertion));
+  assert.equal(sequence.length, 243);
+  assert.deepEqual([0, 1, 2].map(v =>
+    sequence.filter(x => x === v).length), [81, 81, 81]);
+  const windows = new Set();
+  for (let i = 0; i < sequence.length; i++) {
+    let stateNumber = 0;
+    for (let j = 0; j < 5; j++)
+      stateNumber = stateNumber * 3 + sequence[(i + j) % 243];
+    windows.add(stateNumber);
+  }
+  assert.equal(windows.size, 243);
+  return sequence;
+});
+assert.deepEqual(completeDeBruijn[1],
+  completeDeBruijn[0].map((_, i) =>
+    (2 * completeDeBruijn[0][(i + 122) % 243]) % 3));
+
 
 /**
  * All 242 nonzero GF3-linear state-output functionals give the
@@ -141,10 +177,10 @@ assert.equal(offset, 12956);
 assert.equal(sites.length, 10060);
 
 /** Exact maximum recovered one-rune occupancy over ALL secret row bijections. */
-function bound(sitesToCount, clock, phase) {
+function bound(sitesToCount, clock, phase, cycle = trits) {
   const rows = new Uint16Array(3 * 29 * 29);
   for (const site of sitesToCount) {
-    const mode = trits[(site[clock] + phase) % 242];
+    const mode = cycle[(site[clock] + phase) % cycle.length];
     rows[(mode * 29 + site.predecessor) * 29 + site.observed]++;
   }
   let topOne = 0;
@@ -156,12 +192,12 @@ function bound(sitesToCount, clock, phase) {
   }
   return topOne;
 }
-function phaseEnvelope(sitesToCount, clock) {
+function phaseEnvelope(sitesToCount, clock, cycle = trits) {
   let minimum = Infinity;
   let maximum = -Infinity;
   let maximizingPhase = -1;
-  for (let phase = 0; phase < 242; phase++) {
-    const n = bound(sitesToCount, clock, phase);
+  for (let phase = 0; phase < cycle.length; phase++) {
+    const n = bound(sitesToCount, clock, phase, cycle);
     minimum = Math.min(minimum, n);
     if (n > maximum) {
       maximum = n;
@@ -197,6 +233,28 @@ assert.equal(afterP8.length, 8395);
 assert(whole.page.maximum < 1135,
   "all full-book source-native GP29 Latin/English controls exceed this");
 assert(receiver.book.maximum / receiver.book.sites < 0.083);
+
+/** Source-complete 243-clock capacity, both zero splices by exact equivalence. */
+const whole243 = {};
+const receiver243 = {};
+for (const clock of ["book", "page", "section", "word"])
+  whole243[clock] = phaseEnvelope(sites, clock, completeDeBruijn[0]);
+for (const clock of ["book", "page", "word"])
+  receiver243[clock] = phaseEnvelope(afterP8, clock, completeDeBruijn[0]);
+assert.deepEqual(Object.fromEntries(Object.entries(whole243)
+  .map(([k, v]) => [k, [v.minimum, v.maximum]])), {
+  book: [720, 781],
+  page: [722, 782],
+  section: [728, 772],
+  word: [660, 756]
+});
+assert.deepEqual(Object.fromEntries(Object.entries(receiver243)
+  .map(([k, v]) => [k, [v.minimum, v.maximum]])), {
+  book: [635, 691],
+  page: [638, 689],
+  word: [577, 676]
+});
+
 
 /**
  * Real GP word-length-matched source controls. Encoding uses the repo's
@@ -284,7 +342,10 @@ assert.deepEqual(Object.fromEntries(Object.entries(controls).map(
 });
 for (const control of Object.values(controls)) {
   assert(whole.page.maximum < control.minimumFull);
+  assert(whole243.page.maximum < control.minimumFull);
   assert(Math.max(...Object.values(receiver).map(x => x.maximum)) <
+    control.minimumP9);
+  assert(Math.max(...Object.values(receiver243).map(x => x.maximum)) <
     control.minimumP9);
 }
 
@@ -318,10 +379,10 @@ let pointer = 0;
 const synthetic = words.map(w => w.map(() => known[pointer++ % 95]));
 assert.equal(pointer, 12956);
 const fixedPhase = 137;
-function cryptWord(w, offset, decoding) {
+function cryptWord(w, offset, decoding, cycle = trits) {
   const result = [w[0]];
   for (let j = 1; j < w.length; j++) {
-    const mode = trits[(offset + j + fixedPhase) % 242];
+    const mode = cycle[(offset + j + fixedPhase) % cycle.length];
     const predecessorCipher = decoding ? w[j - 1] : result[j - 1];
     const value = decoding ? inverse[mode][predecessorCipher][w[j]]
       : secret[mode][predecessorCipher][w[j]];
@@ -362,6 +423,39 @@ for (const w of encrypted) {
 const plantedBound = bound(plantedSites, "book", fixedPhase);
 assert(plantedBound >= syntheticTop1, "positive plaintext fits all-secret bound");
 
+/** Independent zero-spliced full-manuscript, GP-native positive. */
+globalOffset = 0;
+const encrypted243 = synthetic.map(w => {
+  const result = cryptWord(w, globalOffset, false, completeDeBruijn[0]);
+  globalOffset += w.length;
+  return result;
+});
+globalOffset = 0;
+const recovered243 = encrypted243.map(w => {
+  const result = cryptWord(w, globalOffset, true, completeDeBruijn[0]);
+  globalOffset += w.length;
+  return result;
+});
+assert.deepEqual(recovered243, synthetic);
+globalOffset = 0;
+assert.deepEqual(recovered243.map(w => {
+  const result = cryptWord(w, globalOffset, false, completeDeBruijn[0]);
+  globalOffset += w.length;
+  return result;
+}), encrypted243);
+const planted243Sites = [];
+globalOffset = 0;
+for (const w of encrypted243) {
+  for (let j = 1; j < w.length; j++)
+    planted243Sites.push({book: globalOffset + j,
+      predecessor: w[j - 1], observed: w[j]});
+  globalOffset += w.length;
+}
+const planted243Bound = bound(planted243Sites, "book",
+  fixedPhase, completeDeBruijn[0]);
+assert(planted243Bound >= syntheticTop1);
+
+
 if (require.main === module)
   console.log(JSON.stringify({
     classification: "exact source-conditional exclusion; no recovered LP2 plaintext",
@@ -374,15 +468,20 @@ if (require.main === module)
     sourceRegisterModes: 3,
     originalBookAllSecret: whole,
     originalP9To55AllSecret: receiver,
+    zeroSplicedFourZeroRunPositions: fourZeroRuns,
+    zeroSplicedDeBruijnAllSecret: whole243,
+    zeroSplicedDeBruijnP9To55AllSecret: receiver243,
     nativeGPWordLengthMatchedControls: controls,
     syntheticSolvedP57GP: {
       sourceRunesReused: known.length,
       exactlyRecovered: pointer,
       plantedTopRuneFrequency: syntheticTop1,
-      plantedAllSecretEnvelope: plantedBound
+      plantedAllSecretEnvelope: plantedBound,
+      zeroSplicedExactlyRecovered: recovered243.flat().length,
+      plantedZeroSplicedAllSecretEnvelope: planted243Bound
     },
     unexcluded: ["unknown source plaintext register",
-      "243-state nonlinear zero-splice clocks",
+      "nonlinear 243-state data/output consumers beyond fixed trit mode",
       "state-derived ciphers with dynamic key material",
       "additional position/word/page-dependent secret row tables"]
   }, null, 2));
