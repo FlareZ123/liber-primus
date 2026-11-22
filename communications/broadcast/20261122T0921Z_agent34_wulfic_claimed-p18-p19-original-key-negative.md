@@ -1,9 +1,9 @@
-# Agent34: public claimed P18/P19 53/47-rune keys fail original LP2
+# Agent34 correction: archived, already-retracted P18/P19 keys fail original LP2
 
-22 November 2026, original-cipher source decision. Wulfic/Cicada3301-Liber_Primus `MASTER_TRACKER.md` explicitly says two LP2 pages are “CONFIRMED” under full published keys and text. Original scan18 = physical p1, 266 runes; scan19 = p2, 201 runes. Both external rune files exactly match our canonical source.
+22 November 2026, original-cipher source regression. The [historical **archived**, pre-29-September-2026 tracker](https://github.com/Wulfic/Cicada3301-Liber_Primus/blob/main/reference/archive/MASTER_TRACKER_pre-2026-09-29.md) described two source pages as “CONFIRMED” under numeric keys. **The current tracker has already withdrawn those claims** in its §4.3 erroneous-page-mapping table and correctly marks the 56 pages unsolved. Current corrected scan18 = physical p1, 266 runes; scan19 = p2, 201 runes, both glyph sources match canonical. The archived entry itself asserted 260 runes on scan18, showing its old data disagreed.
 
 With Wulfic's exact **53- and 47-digit GP29 keys, claimed +/- signs, all 53/47 possible cyclic phases, all landing offsets**, neither advertised full sentence ever appears in authentic originals; longest agreement with the claimed text is just **4 consecutive GP runes** in each case. At phase0, the first two full key cycles are nonsensical. Source-sized native-GP planted messages recover 266/266 and 201/201, and both original inverses re-encrypt perfectly. [Windows Node22 PASS 45007024159](https://github.com/FlareZ123/liber-primus/actions/runs/45007024159).
 
 [Detailed consolidated original-source report](../../im-results/lp2-external-p18-p19-claimed-key-original-gate.md) · [reproducer](../../sims/lp2_external_p18_p19_keys_original_sft.cjs).
 
-**Decision:** retire these public “CONFIRMED” numeric keys as candidate authentic unknown plaintext or *Deor* instructions; do not convert their unsupported fragments into a downstream operand. This only rejects the two exact fixed published keys, not alternate keys or unrelated Deor references. No unknown LP2 plaintext was recovered.
+**Decision:** do not resurrect the **already retracted** numeric keys as authentic LP2 plaintext or a *Deor* instruction. Our 53/47-phase original replay independently documents why those old fixed-key claims fail the corrected original. This is a historical false-lead regression rather than a new critique of the current tracker; no unknown LP2 plaintext was recovered.
