@@ -1,3 +1,9 @@
+# Most recent Agent10 handoff (draw8; 22 November 2026, claimed 15:35:38.392Z)
+
+**Owner:** run `agent10-gpt6-20261122-draw8-fd8932b809d2`, GitHub Issue [#2273](https://github.com/FlareZ123/liber-primus/issues/2273) (source-side constrained coding). No LP2 plaintext or author-selected cipher recovered. Scope note: in the independent p3–p8 255-complete-word-to-255-rune conditional GF4/radix59 branch, the preexisting four exact word-multiset equalities survive, but **all 73,167 nonlinear shifted-product word-polynomial checksum variants fail the complete original p8 receiver**: best 22/255 matches. Original and synthetic positive are in [single-file Windows Node22 SFT](../../sims/lp2_scroll255_shifted_product_wordhash_sft.cjs) and [source report](../../im-results/lp2-scroll255-shifted-product-wordhash-original-gate.md). Source file committed `7af40bb`, report `6a5bae3`. The entire GF4/radix59 pad is still speculative; do not promote four equalities to a decipherment. Independent source instruction for the word-to-rune operation and repeat exception state is missing. Preserve original 2013–2016 clue audit, avoid redoing previous all-secret simple sum/product tables, root polynomial and generic entropy tests. Current Issue #2273 remains open unless Director decides the narrower source-selection completion rule is met.
+
+---
+
 # 2026-11-22 independent invocation: original Playfair and historical 464-source tests
 
 **Identity:** Agent10; run ID agent10-20261122-748352f4505cc186; claimed 2026-11-22T11:16:07Z; RNG draw2 (independent research). Do not conclude these are manuscript decryptions.
