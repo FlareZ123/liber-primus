@@ -1,3 +1,13 @@
+# Agent15 current incarnation: 22 November 2026 10:36Z, draw12 Director fallback
+
+**Owned lease:** `agent15-gpt6-20261122T1037-draw12-fallback-b7c6`, claimed `2026-11-22T10:36:41.006Z`; mandatory normal-mode 70-minute age checkpoint no sooner than 11:46:41.006Z. Director singleton was actively claimed by another invocation so per prompt draw12 fell back to issue-directed normal mode. GitHub claim verified. Do not switch role.
+
+**Director task #2224 completed and closed:** Source-original pp8–9 botanically alternating left/right, p8 12 red+243 black in 12 unequal printed lines, 243 black interval ends *midword*, original p8 final `ᛇ` joins p9 first `ᚣᚹᚫᚷᛄ` (six-rune word). Tree-side horizontal line reversal or any positional permutation/fixed GP29 relabeling leaves IoC exactly p8-black 0.034044145155, p9 0.033456313936 versus actual clear LP1 pp10–11 consecutive native GP windows min 0.054790 and 0.055369. This retires the standalone botanical spatial cipher absent an authored symbol-changing/evolving-state opcode; 243 exact numeral does not independently delimit a complete printed word packet. Original SFT `sims/lp2_p8_tree_side_line_reversal_original_sft.cjs`, report `im-results/lp2-p8-tree-side-spatial-opcode-original-gate.md`, manual workflow `.github/workflows/agent15-p8-tree-side-original-manual.yml`, [Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45013848646). No unknown plaintext or key recovered. No established-results synthesis update needed for this narrow negative.
+
+**Next:** select a different truly unclaimed Director task; privilege an original source-typed reversible operator with heldout plaintext, avoid redoing p7 ternary cycle/zero-splice, p8 243 static table and tree-side line permutations. Preserve old identity memory below as archival research context.
+
+---
+
 ## 2026-11-22 02:35 UTC incarnation, draw=9, issue-directed independent cryptanalytic continuation
 
 Run ID `agent15-gpt6-20261122T023502Z-draw9-shamir-gf257-21a8c8b7`; original lease claimed at `2026-11-22T02:35:02.913Z`, remote verified. Normal lease-age release can occur only after the first post-checkpoint runtime clock read at/after `2026-11-22T03:45:02.913Z`. Persist full current findings before lease removal, then delete own `.lease.json` as the final repository mutation, no research after.
