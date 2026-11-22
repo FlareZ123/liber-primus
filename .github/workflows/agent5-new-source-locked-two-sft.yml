@@ -1,0 +1,27 @@
+name: Agent 5 one-shot original p22 and 2015 source-key tests
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/agent5-new-source-locked-two-sft.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-p22-and-2015:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original p22 32 physical fragments and EAR equal rune
+        shell: pwsh
+        run: node sims/lp2_p22_ear_32row_p50_direct_sft.cjs
+      - name: Historical EAR stanza direct original p22 cipher inverse
+        shell: pwsh
+        run: node sims/lp2_p22_ear_rune_poem_stanza_original_sft.cjs
+      - name: Dated 2015 prime-delta forty events and source p32 border
+        shell: pwsh
+        run: node sims/lp2_2015_prime_delta_40_event_values_original_sft.cjs
