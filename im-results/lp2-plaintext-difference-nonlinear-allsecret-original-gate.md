@@ -63,9 +63,39 @@ The prefixes shown are GP transliterations and include multi-letter token names;
 
 This exact source-parameter trial is a small explanatory subset of the all-permutation obstruction, not a separate reason to search other exponents.
 
+## Nine independent visual-chapter secret permutations: stronger source-reset gate
+
+An author might plausibly change the unknown nonlinear difference-alphabet `h` when the *original printed book starts a fresh visual chapter*. Grant **nine unrelated arbitrary secret permutations `h₁,…,h₉`**, one for each authentic chapter p0–2, p3–7, p8–14, p15–22, p23–26, p27–32, p33–39, p40–53 and p54–55, with the same freely chosen first rune in each printed word. This contains the global-key hypothesis but allows `(29!)^9` possible independent bijection choices. The physical page index is mapped explicitly after omitted runeless p50; neither the transcript's ordinal 50 nor a cross-page wrapped word is incorrectly treated as a different cipher stage.
+
+For each actual chapter, compute the original within-word ciphertext-difference histogram. For a candidate ordinary GP-native English control of **exactly the source's 2,896 printed word lengths and physical chapter assignments**, find that chapter's minimum possible total-variation histogram distance over all 29! hidden substitutions by sorting its two 29-bin histograms. Weight the nine independently optimal distances by their authentic source transition counts; this is the **best conceivable aggregate histogram match** for the nine-secret-key family, with no key search:
+
+| Physical visual chapter | Original complete words | Within-word transitions | Largest original difference bin |
+| --- | ---: | ---: | ---: |
+| p0–2 | 158 | 571 | 30 |
+| p3–7 | 255 | 890 | 43 |
+| p8–14 | 383 | 1,346 | 63 |
+| p15–22 | 437 | 1,466 | 66 |
+| p23–26 | 224 | 797 | 41 |
+| p27–32 | 326 | 1,107 | 49 |
+| p33–39 | 378 | 1,302 | 65 |
+| p40–53 | 669 | 2,339 | 101 |
+| p54–55 | 66 | 242 | 16 |
+| **Total** | **2,896** | **10,060** | per-chapter only |
+
+Under the same three pinned 149,072-word literary controls, the same independent fixed xorshift seed and 1,000 freshly sampled source-length-matched GP English books, the nine-chapter **all-secret lower bound** has:
+
+- **Minimum attainable total-variation mismatch: 0.0893638170974155**
+- **Mean: 0.10342604373757462**
+- **Maximum: 0.11669980119284294**
+- **Trials with TV ≤0.03: 0/1,000**
+
+This tighter model grants **fresh arbitrary nonaffine substitution on every observed visual-chapter boundary**, unlike the first global-secret comparison. A separate true-English book is encrypted with nine distinct nonlinear GP29 bijections `h_s(d)=(s d⁵+s+2) mod29` for chapter number `s=1…9`. The corresponding exact exponent/power-field inverses recover **all 12,956 native GP source runes** and the sorted within-chapter histograms agree exactly before and after encryption. This establishes that the broadened gate accepts its own legitimate source-language family.
+
+The original remains incompatible with **every one of these 1,000 independently drawn ordinary English books**, even after the most favorable unrelated key choice in all nine chapters. The lower bound is sample-conditional, and a specially constructed unknown English message, non-English intermediate source, or truly word-varying hidden key is not mathematically excluded. An image-selected change of keys alone does not repair this source-native mismatch.
+
 ## Cryptanalytic decision
 
-The original ciphertext's within-word delta spectrum is far flatter than every matched native-English sample, after granting an entirely secret stationary nonlinear 29-symbol map. Therefore **retire an unchanged `h(Delta P)` map across the printed word stream** as an explanation for ordinary GP-native English on the original unmodified LP2 pages. The original source does not provide a map or key to use downstream.
+The original ciphertext's within-word delta spectrum is far flatter than every matched native-English sample, after granting an entirely secret stationary nonlinear 29-symbol map. Therefore **retire a globally stationary or nine-visual-chapter-rekeyed `h(Delta P)` map across the printed word stream** as an explanation for ordinary GP-native English on the original unmodified LP2 pages. The original source does not provide a map or key to use downstream.
 
 This exclusion does **not** cover different secret maps per word or short clock phase, changed word boundaries, a more complex multi-step codec, intermediate randomized plaintext, alternate linguistic registers, an external one-time pad, or actual 2014 crypto infrastructure. Such alternatives need independent source clues before another unconstrained parameter search.
 

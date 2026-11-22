@@ -240,6 +240,115 @@ const powers = [[3301, 25, 9], [3299, 23, 11]].map(([origin, exp, inverse]) => {
   };
 });
 
+
+// Give each of the NINE physically printed original visual chapters its OWN
+// completely arbitrary secret 29-symbol permutation. This grants key changes
+// at the source chapter boundaries and still excludes ordinary native GP
+// length-matched controls by an exact rank-histogram necessary condition.
+// IMPORTANT: p50 is rune-free, so transcript page index is NOT the physical
+// page number after p49. Map through the canonical rune-bearing page list.
+const physicalRunePages = gp.pages.filter(p => p.page < 56 && p.indices.length);
+const chapterEndPages = [2, 7, 14, 22, 26, 32, 39, 53, 55];
+/** @param {number} physicalPage */
+const visualChapter = physicalPage => chapterEndPages.findIndex(x => physicalPage <= x);
+const wordChapters = original.map(w =>
+  visualChapter(physicalRunePages[w.page].page));
+assert.equal(wordChapters.length, original.length);
+assert(wordChapters.every(g => g >= 0 && g < 9));
+
+/** @param {number[][]} plainWords */
+function chapterDeltaHistograms(plainWords) {
+  const histograms = Array.from({length: 9}, () => Array(29).fill(0));
+  plainWords.forEach((a, wi) => {
+    const target = histograms[wordChapters[wi]];
+    for (let j = 1; j < a.length; j++) target[mod(a[j] - a[j - 1])]++;
+  });
+  return histograms;
+}
+
+const originalChapterHistogram = chapterDeltaHistograms(original.map(w => w.a));
+const chapterWeights = originalChapterHistogram.map(h =>
+  h.reduce((s, x) => s + x, 0));
+assert.deepEqual(chapterWeights,
+  [571, 890, 1346, 1466, 797, 1107, 1302, 2339, 242]);
+assert.equal(chapterWeights.reduce((s, x) => s + x, 0), 10060);
+const chapterWordCounts = Array(9).fill(0);
+wordChapters.forEach(g => chapterWordCounts[g]++);
+assert.deepEqual(chapterWordCounts,
+  [158, 255, 383, 437, 224, 326, 378, 669, 66]);
+
+/**
+ * Exact best case over (29!)^9 independently hidden chapter alphabets:
+ * optimize the relabeling of each chapter's histogram separately, then
+ * weight each chapter by its actual number of within-word transitions.
+ * @param {number[][]} histograms
+ */
+function chapterOptimalTV(histograms) {
+  return histograms.reduce((sum, histogram, g) =>
+    sum + chapterWeights[g] *
+      minimumTV(originalChapterHistogram[g], histogram), 0) / 10060;
+}
+
+// Separate seed replicates the full-book trial mechanism on the identical
+// control corpus, while preserving a separately auditable sample family.
+let chapterState = 0x33012026;
+function chapterRandom() {
+  chapterState ^= chapterState << 13;
+  chapterState ^= chapterState >>> 17;
+  chapterState ^= chapterState << 5;
+  return (chapterState >>> 0) / 4294967296;
+}
+let minNineChapterTV = Infinity;
+let maxNineChapterTV = -Infinity;
+let sumNineChapterTV = 0;
+let nineChapterCloseTrials = 0;
+let nineChapterFirstPlant = null;
+for (let trial = 0; trial < trials; trial++) {
+  const draw = original.map(w => {
+    const pool = byLength[w.a.length];
+    return pool[Math.floor(chapterRandom() * pool.length)];
+  });
+  if (trial === 0) nineChapterFirstPlant = draw;
+  const lowerBound = chapterOptimalTV(chapterDeltaHistograms(draw));
+  minNineChapterTV = Math.min(minNineChapterTV, lowerBound);
+  maxNineChapterTV = Math.max(maxNineChapterTV, lowerBound);
+  sumNineChapterTV += lowerBound;
+  if (lowerBound <= 0.03) nineChapterCloseTrials++;
+}
+assert.equal(nineChapterCloseTrials, 0);
+assert.ok(Math.abs(minNineChapterTV - 0.0893638170974155) < 1e-12);
+assert.ok(Math.abs(maxNineChapterTV - 0.11669980119284294) < 1e-12);
+assert.ok(Math.abs(sumNineChapterTV / trials - 0.10342604373757462) < 1e-12);
+
+// Positive: 9 independently keyed genuinely nonlinear GP29 alphabets, one
+// per visual chapter, with independent free ciphertext IVs for each word.
+// Both inverse and forward map remain exact on every planted source symbol.
+assert(nineChapterFirstPlant);
+const plantedChapterCiphers = nineChapterFirstPlant.map((plain, wi) => {
+  const g = wordChapters[wi], factor = g + 1;
+  return encipher(plain, original[wi].a[0],
+    difference => mod(factor * pow29(difference, 5) + g + 3));
+});
+plantedChapterCiphers.forEach((cipher, wi) => {
+  const g = wordChapters[wi], invFactor = pow29(g + 1, 27);
+  const deciphered = decipher(cipher, nineChapterFirstPlant[wi][0],
+    delta => pow29(mod(invFactor * mod(delta - g - 3)), 17));
+  assert.deepEqual(deciphered, nineChapterFirstPlant[wi]);
+});
+assert.equal(plantedChapterCiphers.reduce((sum, w) => sum + w.length, 0),
+  12956);
+assert.ok(chapterOptimalTV(
+  chapterDeltaHistograms(plantedChapterCiphers)) > 0.03,
+  'true cipher planted ciphertext is independent of original ciphertext');
+// The planted plain and cipher chapter histogram counts are exactly equal
+// up to a chapter-specific 29-symbol relabeling.
+const nineChapterPlainHist = chapterDeltaHistograms(nineChapterFirstPlant);
+const nineChapterCipherHist = chapterDeltaHistograms(plantedChapterCiphers);
+for (let g = 0; g < 9; g++) {
+  assert.ok(minimumTV(nineChapterPlainHist[g],
+    nineChapterCipherHist[g]) < 1e-12);
+}
+
 const out = {
   status: 'bounded negative: no authentic unknown plaintext or key',
   originalWords: original.length, originalRunes: 12956,
@@ -255,6 +364,15 @@ const out = {
   minMatchedEnglishMostCommonDelta: minNativePeak,
   minMatchedEnglishEqualDelta: minNativeZero,
   sampledNativePositiveRuneRecovery: 12956,
+  visualChapterWordCounts: chapterWordCounts,
+  visualChapterWithinWordDifferences: chapterWeights,
+  exactIndependentNineChapterSecretAlphabets: '(29!)^9',
+  nineChapterMatchedControls: trials,
+  nineChapterMinOptimalTV: minNineChapterTV,
+  nineChapterMeanOptimalTV: sumNineChapterTV / trials,
+  nineChapterMaxOptimalTV: maxNineChapterTV,
+  nineChapterControlsWithinTV03: nineChapterCloseTrials,
+  nineChapterNonlinearNativePositiveRecovered: 12956,
   fieldPowerDirectOriginalInversions: powers,
   interpretation: 'stationary h(plaintext-difference), source-native GP English and printed word boundaries only'
 };
