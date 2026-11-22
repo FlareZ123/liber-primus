@@ -174,6 +174,63 @@ const planted=Array.from({length:256},(_,i)=>book.pages[57].indices[i%95]);
 assert.equal(book.pages[57].indices.length,95);
 assert.deepEqual(decode(encode(planted)),planted);
 const output=decode(grid.bytes);
+const output=decode(grid.bytes);
+
+// The original p50 table could be a *key register* rather than encrypted
+// data. This is the first reversible p0 original-cipher receiver downstream
+// of the source field: extract exact 256 additive GP29 key residues from
+// discrete logs of each printed p50 byte, then use period 256 against the
+// full original 262-rune p0. Charge both natural original physical anchors
+// 0 (page start) and 177 (start of unique FFF words), both signs and two
+// source orders (raw logs / subtract the fixed third-word phase48).
+const originalP0=book.pages[0].indices;
+assert.equal(originalP0.length,262);
+const fieldLogKey=grid.bytes.map(byte=>exponentFor.get(byte+1));
+assert.equal(fieldLogKey.length,256);
+const mod29=x=>((x%29)+29)%29);
+/**
+ * @param {number[]} plaintext
+ * @param {number} anchor
+ * @param {number} sign
+ * @param {boolean} subtractPhase
+ */
+function sourceGP29(plaintext,anchor,sign,subtractPhase){
+  return plaintext.map((value,i)=>{
+    const log=fieldLogKey[(anchor+phase+i)%256];
+    const k=subtractPhase?(log-phase+256)%256:log;
+    return mod29(value+sign*k);
+  });
+}
+/** @param {number[]} indices */
+function iocGP(indices){
+  const count=Array(29).fill(0);
+  indices.forEach(index=>count[index]++);
+  return count.reduce((sum,n)=>sum+n*(n-1),0)/
+    (indices.length*(indices.length-1));
+}
+const originalP0KeyReadouts=[];
+for(const anchor of [0,177])
+  for(const sign of [-1,1])
+    for(const subtractPhase of [false,true]){
+      const plain=sourceGP29(originalP0,anchor,sign,subtractPhase);
+      assert.deepEqual(sourceGP29(plain,anchor,-sign,subtractPhase),
+        originalP0);
+      const solvedPlant=book.pages[57].indices;
+      const plantedCipher=sourceGP29(solvedPlant,anchor,-sign,
+        subtractPhase);
+      assert.deepEqual(sourceGP29(plantedCipher,anchor,sign,subtractPhase),
+        solvedPlant);
+      const nativeHead=plain.slice(0,90)
+        .map(index=>book.translit[index]).join('');
+      originalP0KeyReadouts.push({
+        anchor,sign,phaseRemovedFromLog:subtractPhase,
+        originalCipherRunes:plain.length,
+        originalIoC:Number(iocGP(plain).toFixed(8)),
+        originalHead90NativeGp:nativeHead,
+        originalExactRoundTrip262:true,
+        solvedP57PlantRoundTrip95:true
+      });
+    }
 /** @param {number[]} values */
 const printable=values=>values.filter(x=>x>=32&&x<=126).length;
 /** @param {number[]} values */
@@ -354,10 +411,11 @@ console.log(JSON.stringify({
   originalGP29ByteCount:output.filter(x=>x<29).length,
   fileHeaders:signatures,
   sourceFieldIndexTraversal:indexReadouts,
+  sourceFieldKeyAppliedOriginalP0:originalP0KeyReadouts,
   sourceFieldStreamDecoders:dynamicReadouts,
   sourceFermatTransform:finiteFourierReadouts,
   source32x8TensorFermatTransform:tensorFourierReadouts,
   originalExactReverse256:true,
   plantedSolvedP57ExactReverse256:true,
-  conclusion:'Original discrete-log, full-period field streams, two index traversals, both 256-point transforms and the four physical 32x8 field transforms return nontext and untyped data. The source algebra is a structural lead, not an authenticated cipher or plaintext.'
+  conclusion:'Original discrete-log, full-period field streams, two index traversals, 256-point transforms, physical 32x8 field transforms and the direct p50 field-log GP29 key receiver on the full 262-rune original p0 produce no intelligible original plaintext. The source algebra is a structural lead, not an authenticated cipher or plaintext.'
 },null,2));
