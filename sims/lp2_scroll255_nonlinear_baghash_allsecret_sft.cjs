@@ -214,4 +214,73 @@ console.log('HIDDEN_GROUP_PLANTED_POSITIVE '+JSON.stringify({
   symbols:plant.length,alphabetBijections:'PASS',exactEquations:checked.matrix.length,
   nonconstantOutputLabelSolution:true,rank:checked.rank,nullity:checked.nullity
 }));
-console.log('PASS: 10 source bag hashes and all-secret hidden-group constraints');
+// Historical 2013 Cicada byte-XOR variant. Every bit of an arbitrary
+// secret byte-valued per-rune input codebook and output codebook must be a
+// solution to this SAME 255-row parity system. If every possible output bit
+// label is constant, no byte-valued injection of 29 GP output runes exists.
+/** @param {number[]} observed @returns {{matrix:number[][],rank:number,nullity:number,allOutputBitsConstant:boolean,basis:number[][]}} */
+function xorWordGroup(observed){
+  const n=29+29+12+5+1;
+  const matrix=words.map((w,i)=>{
+    const row=Array(n).fill(0);
+    for(const r of w)row[r]^=1;
+    row[29+observed[i]]^=1;
+    row[58+lengths.indexOf(w.length)]^=1;
+    row[70+startPage[i]]^=1;
+    if(isRed[i])row[75]^=1;
+    return row;
+  });
+  const a=matrix.map(r=>r.slice());
+  let rank=0;const pivots=[];
+  for(let col=0;col<n;col++){
+    let p=rank;while(p<a.length&&!a[p][col])p++;
+    if(p===a.length)continue;
+    [a[p],a[rank]]=[a[rank],a[p]];
+    for(let i=0;i<a.length;i++)if(i!==rank&&a[i][col]){
+      for(let j=col;j<n;j++)a[i][j]^=a[rank][j];
+    }
+    pivots.push(col);rank++;
+  }
+  const s=new Set(pivots),basis=[];
+  for(let j=0;j<n;j++)if(!s.has(j)){
+    const v=Array(n).fill(0);v[j]=1;
+    for(let i=0;i<rank;i++)v[pivots[i]]=a[i][j];
+    basis.push(v);
+  }
+  return {matrix,rank,nullity:basis.length,
+    allOutputBitsConstant:basis.every(v=>new Set(v.slice(29,58)).size===1),
+    basis};
+}
+const xorOriginal=xorWordGroup(output);
+assert(xorOriginal.allOutputBitsConstant);
+console.log('ALL_SECRET_BYTE_XOR_SOURCE '+JSON.stringify({
+  originalWords:255,secretBitVariables:76,
+  rank:xorOriginal.rank,nullity:xorOriginal.nullity,
+  anyOutputBitDifferencePossible:false
+}));
+// A native positive plant using a 4-bit XOR group; the original 29 input
+// runes may share secret input states (permitted by the all-secret test).
+const xorA=Array.from({length:29},(_,i)=>(3*i+7)&15);
+const xorD=lengths.map((len)=>(5*len+9)&15);
+const xorE=Array.from({length:5},(_,i)=>(7*i+3)&15);
+const xorPlant=words.map((w,i)=>w.reduce((s,r)=>s^xorA[r],0)
+  ^xorD[lengths.indexOf(w.length)]^xorE[startPage[i]]
+  ^(isRed[i]?8:0));
+assert(xorPlant.every(v=>v>=0&&v<16));
+const xorControl=xorWordGroup(xorPlant);
+for(let bit=0;bit<4;bit++){
+  const witness=[
+    ...xorA.map(v=>(v>>bit)&1),
+    ...Array.from({length:29},(_,y)=>(y>>bit)&1),
+    ...xorD.map(v=>(v>>bit)&1),
+    ...xorE.map(v=>(v>>bit)&1),
+    (8>>bit)&1
+  ];
+  for(const row of xorControl.matrix)
+    assert.equal(row.reduce((s,v,i)=>s^(v&witness[i]),0),0);
+}
+assert(!xorControl.allOutputBitsConstant);
+console.log('BYTE_XOR_POSITIVE_CONTROL '+JSON.stringify({
+  originalSourceWordShapes:255,bitPlanes:4,
+  nonconstantHiddenOutputLabelAvailable:true}));
+console.log('PASS: 10 source bag hashes, GF29 hidden group and byte-XOR hidden group');
