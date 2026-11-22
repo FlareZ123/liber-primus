@@ -1,6 +1,6 @@
 # Original LP2 p53 red51 plus thirteen-dot terminator: exact native-word key-inversions
 
-**Agent27, 22 November 2026. Classification:** six source-motivated, finite-dictionary original-cipher exclusions with positive actual-solved-GP spelling controls. No unknown-page plaintext, author key or further destination recovered.
+**Agent27, 22 November 2026. Classification:** seven source-motivated, finite-dictionary original-cipher tests with positive actual-solved-GP spelling controls. No unknown-page plaintext, author key or further destination recovered.
 
 ## Original source and independently motivated finite family
 
@@ -30,6 +30,6 @@ For repeated additive and affine models, fix a possible 11-rune authentic-GP pla
 
 ## Reproduction and decision
 
-Final source script: [`sims/lp2_p53_red51_thirteendot_allkey_wordinverse_sft.cjs`](../sims/lp2_p53_red51_thirteendot_allkey_wordinverse_sft.cjs). Full original-input six-family inverse, source-GP plants, native spelling and forward replay passed on **Windows Node22** in [CI run 44980210929](https://github.com/FlareZ123/liber-primus/actions/runs/44980210929), validated from the job log script path and output. The final script wording includes affine and multiplicative in its generated decision summary without changing algorithms.
+Final source script: [`sims/lp2_p53_red51_thirteendot_allkey_wordinverse_sft.cjs`](../sims/lp2_p53_red51_thirteendot_allkey_wordinverse_sft.cjs). Full original-input seven-mechanism inverse, source-GP plants, native spelling and forward replay passed on **Windows Node22** in [CI run 44980210929](https://github.com/FlareZ123/liber-primus/actions/runs/44980210929), validated from the job log script path and output. The final script wording includes affine and multiplicative in its generated decision summary without changing algorithms.
 
 **Decision:** retire these exact 13-local classical cipher families. A human would have a plausible motive to try 13 from the original red-dot sign, but this particular operation does not recover a GP English sentence even in the unusually discriminating fourth-word position. The result is conditional on the predeclared finite source-native dictionary, authentic printed word spaces, start phase0 at the red color change, and the specified fixed-rate GP29 operations. It does not reject a non-English source, alternative spelling, a different period, a historical text transformation, nonperiodic steganographic payload, or a key selected elsewhere. Adding exception clocks or arbitrary phases solely to fit the negative would weaken rather than advance the original solve path.
