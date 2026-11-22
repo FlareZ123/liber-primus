@@ -210,6 +210,14 @@ sourceInputs.push({
   encoded:solvedWords.map(word=>[...word].length)
 });
 
+const beowulf = JSON.parse(read('resources/control/beowulf_oe_gp_profile_corrected.json'));
+assert.equal(beowulf.allSourceGpWordLengths.length,10885);
+sourceInputs.push({
+  source:'resources/control/beowulf_oe_gp_profile_corrected.json',
+  scheme:'Old-English-native-GP',
+  encoded:beowulf.allSourceGpWordLengths.map(x=>Math.min(x,17))
+});
+
 let totalExactMultisource = 0;
 let totalExactChapter = 0;
 for (const {source,scheme,encoded} of sourceInputs) {
@@ -253,7 +261,7 @@ for (const {source,scheme,encoded} of sourceInputs) {
 console.log('SUMMARY ' + JSON.stringify({
   originalRunes:runes, originalWords:originalWords.length, physicalPages:55,
   printedPageWindows:windows.length, printedChapterWindows:chapterWindows.length,
-  sourceFiles:sources.length, solvedSourceInputs:3,
+  sourceFiles:sources.length, solvedSourceInputs:3, oldEnglishInputs:1,
   sourceEncodingConventions:2,
   noMultiPageExact:totalExactMultisource===0,
   noChapterExact:totalExactChapter===0,
