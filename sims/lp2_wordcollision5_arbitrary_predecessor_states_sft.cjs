@@ -66,6 +66,13 @@ const wordSections = [];
 sections.forEach((count,section)=>{
   for(let j=0;j<count;j++)wordSections.push(section);
 });
+const sectionRuneStarts=[];
+let wordIndex=0;
+for (const count of sections) {
+  sectionRuneStarts.push(spans[wordIndex].start);
+  wordIndex+=count;
+}
+assert.deepEqual(sectionRuneStarts,[0,729,1874,3612,5506,6527,7960,9640]);
 const pageStarts = [];
 let pos=0;
 gp.pages.slice(0,56).forEach(p=>{
@@ -76,6 +83,12 @@ gp.pages.slice(0,56).forEach(p=>{
 });
 assert.equal(pos,12956);
 assert.equal(pageStarts.length,55);
+const pageRuneStartsByWord=spans.map(s=>{
+  let n=0;
+  while(n<pageStarts.length-1 && pageStarts[n+1].start<=s.start)n++;
+  return pageStarts[n].start;
+});
+
 /** @param {number} runeOffset @returns {number} */
 function pageAt(runeOffset) {
   let p=0;
@@ -89,7 +102,7 @@ function pageAt(runeOffset) {
  * for the SAME plaintext word and machine starting state.
  *
  * @param {number[][]} candidatePlain
- * @param {'none'|'rune'|'word'} phaseClock
+ * @param {'none'|'rune'|'word'|'section-rune'|'page-rune'} phaseClock
  * @param {1|2|3|'both'|'plain'} predecessor
  * @param {'global'|'section'|'page'} scope
  * @param {number[]=} ciphertext
@@ -102,7 +115,11 @@ function witness(candidatePlain,phaseClock,predecessor,scope,ciphertext=original
   for(let i=0;i<spans.length;i++) {
     const s=spans[i];
     const phase=phaseClock==='rune' ? s.start%5
-      : phaseClock==='word' ? i%5 : 0;
+      : phaseClock==='word' ? i%5
+      : phaseClock==='section-rune' ?
+        (s.start-sectionRuneStarts[wordSections[i]])%5
+      : phaseClock==='page-rune' ?
+        (s.start-pageRuneStartsByWord[i])%5 : 0;
     const prevCipher = Array.from({length:predecessor==='both' ||
       predecessor==='plain' ? 1 : predecessor}, (_,j)=>
       s.start-1-j<0 ? 0 : ciphertext[s.start-1-j]).join('.');
@@ -191,6 +208,12 @@ function measure(name,text,initialSeed,expectedWords) {
         phase,prev,scope:'global'});
     }
   }
+  for(const phase of ['section-rune','page-rune']) {
+    for(const prev of [1,2,3,'both']) {
+      specs.push({name:phase+'_global_cipher'+prev,
+        phase,prev,scope:'global'});
+    }
+  }
   for(const scope of ['section','page']) {
     for(const prev of ['plain',1,'both']) {
       specs.push({name:'rune_'+prev+'_'+scope,
@@ -217,6 +240,12 @@ function measure(name,text,initialSeed,expectedWords) {
   assert.equal(scores.rune_cipherLag3.exactFit,
     name==='Shakespeare'?246:234);
   assert.equal(scores.rune_both_global.exactFit,0);
+  for(const mode of ['section-rune','page-rune']) {
+    assert.equal(scores[mode+'_global_cipher1'].exactFit,0);
+    assert.equal(scores[mode+'_global_cipher2'].exactFit,
+      name==='Shakespeare' ? (mode==='section-rune'?2:3) : 0);
+    assert.equal(scores[mode+'_global_cipherboth'].exactFit,0);
+  }
   return {name,sourceWords:sourceWords.length,samples:256,scores};
 }
 const sources=[
