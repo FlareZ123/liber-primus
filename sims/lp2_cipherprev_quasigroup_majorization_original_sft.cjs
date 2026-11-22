@@ -186,6 +186,51 @@ function plant(nativeWords, scope, random) {
     ciphertextEqual: bound.equal, rankCaps: [bound.capacities[1], bound.capacities[5]],
     actualNativeRank: [plain.top1, plain.top5]};
 }
+/**
+ * A stronger all-secret hidden-mode theorem: if, for each previous cipher
+ * rune s, the same plaintext glyph can have only m possible output glyphs,
+ * then each n[s,*] ciphertext row can cover at most its m most frequent
+ * successors for that one plaintext glyph. The mode choice may vary on
+ * EVERY rune, depend on the plaintext, or come from an unknown keystream.
+ * The original B2=1086 is therefore an upper bound on any plaintext's
+ * MOST COMMON glyph for ANY two-mode stationary predecessor-state family.
+ *
+ * Reversible positive with arbitrary secret tables and per-token hidden
+ * modes, proving that full original-size source-native text can be
+ * exactly encoded and recovered by a valid two- or three-mode instance.
+ *
+ * @param {number[][]} nativeWords
+ * @param {number} modeCount
+ * @param {() => number} random
+ */
+function plantUnknownModes(nativeWords, modeCount, random) {
+  assert([2, 3].includes(modeCount));
+  const tables = Array.from({length: modeCount}, () =>
+    Array.from({length: 29}, () =>
+      shuffle(Array.from({length: 29}, (_, i) => i), random)));
+  const cipher = [];
+  const recovered = [];
+  let sites = 0;
+  for (const w of nativeWords) {
+    const c = [(w[0] + 7) % 29], p = [w[0]];
+    for (let j = 1; j < w.length; j++) {
+      const mode = Math.floor(random() * modeCount);
+      const row = tables[mode][c[j-1]];
+      c.push(row[w[j]]);
+      p.push(row.indexOf(c[j]));
+      sites++;
+    }
+    cipher.push(c);
+    recovered.push(p);
+  }
+  assert.deepEqual(recovered, nativeWords);
+  const bound = envelope(cipher, "global");
+  const rank = languageRank(recovered);
+  assert(rank.top1 <= bound.capacities[modeCount],
+    "hidden-mode m-alphabet per-rune rank impossibility");
+  return {modeCount, plaintextRecovered:recovered.flat().length,
+    sites, sourceTop1:rank.top1, sourceB_m:bound.capacities[modeCount]};
+}
 const originalCaps = Object.fromEntries(scopes.map(scope =>
   [scope, envelope(words, scope)]));
 assert.deepEqual(originalCaps.global.capacities,
@@ -212,6 +257,7 @@ for (const [sourceIndex, sourcePath] of corpusPaths.entries()) {
   let minTop1 = Infinity, maxTop1 = -Infinity,
     minTop5 = Infinity, maxTop5 = -Infinity, minE = Infinity;
   let plantControls = null;
+  let switchedModeControls = null;
   for (let trial = 0; trial < 60; trial++) {
     const nativeWords = drawNative(pools, random);
     const st = languageRank(nativeWords);
@@ -221,10 +267,15 @@ for (const [sourceIndex, sourcePath] of corpusPaths.entries()) {
     minTop5 = Math.min(minTop5, st.top5);
     maxTop5 = Math.max(maxTop5, st.top5);
     minE = Math.min(minE, st.E);
-    if (trial === 0)
+    if (trial === 0) {
       plantControls = Object.fromEntries(scopes.map(scope =>
         [scope, plant(nativeWords, scope, random)]));
+      switchedModeControls = [2, 3].map(m =>
+        plantUnknownModes(nativeWords, m, random));
+    }
   }
+  assert(minTop1 > originalCaps.global.capacities[2],
+    "even freely switching between any TWO secret nonlinear tables is insufficient");
   assert(minTop1 > originalCaps.section.capacities[1]);
   assert(minTop5 > originalCaps.section.capacities[5]);
   assert(minTop1 > originalCaps.position.capacities[1]);
@@ -235,7 +286,8 @@ for (const [sourceIndex, sourcePath] of corpusPaths.entries()) {
   assert(minTop5 > originalCaps.position.capacities[5]);
   controls.push({sourcePath, trials:60,
     top1Range:[minTop1, maxTop1], top5Range:[minTop5, maxTop5],
-    EMinimum:minE, positivePlant:plantControls});
+    EMinimum:minE, positivePlant:plantControls,
+    positiveArbitrarilySwitchedModes:switchedModeControls});
 }
 const lp1 = read("resources/transcriptions/lp1_wulfic_canonical.txt");
 const start = lp1.indexOf("ᚦᛖ-ᛚᚩᛋᛋ");
