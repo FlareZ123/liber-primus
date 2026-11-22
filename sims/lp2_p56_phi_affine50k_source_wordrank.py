@@ -3,6 +3,7 @@
 Reads the log from lp2_p56_phi_affine50k_ftransparent_firstfour_sft.cpp.
 Uses exactly the repository original p0..p3 indices and printed word boundaries.
 Each survivor's *every* plaintext-F bypass is optimized by exact Viterbi DP.
+The criterion maximizes dictionary word hits, then spelling-log-frequency score.
 TextBlob provides a fixed native-English spelling reference (~29k GP words).
 No guesses about unknown plaintext, no injected text or model-generated prose.
 
@@ -119,14 +120,16 @@ def candidate_paths(
                 wordscore = math.log1p(n) if n else -8.0
                 row = (score + wordscore, hits + (1 if n else 0),
                        prior + (decoded_word,))
-                if bypasses not in next_states or row[0] > next_states[bypasses][0]:
+                if bypasses not in next_states or (row[1], row[0]) > (
+                    next_states[bypasses][1], next_states[bypasses][0]
+                ):
                     next_states[bypasses] = row
         assert next_states, ("C++ legal positive unexpectedly impossible", multiplier,
                              additive, phase, begin)
         states = next_states
         begin = end
     best_bypasses, (score, hits, words) = max(
-        states.items(), key=lambda item: item[1][0]
+        states.items(), key=lambda item: (item[1][1], item[1][0])
     )
     assert len(words) == len(ends) == 202
     assert sum(map(len, words)) == len(cipher) == 946
@@ -169,7 +172,7 @@ def main(log_path: Path) -> None:
             original, boundaries, key, dictionary, multiplier, additive, phase
         )
         results.append((score, hits, multiplier, additive, phase, bypasses, words))
-    results.sort(key=lambda row: row[0], reverse=True)
+    results.sort(key=lambda row: (row[1], row[0]), reverse=True)
     assert max(row[1] for row in results) == 23
     assert results[0][2:5] == (5, 5, 2464)
     print(json.dumps({
