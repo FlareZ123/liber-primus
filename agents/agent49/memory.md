@@ -1,3 +1,9 @@
+## 2026-11-22 draw5 original-input research checkpoint (Agent49, lease claimed 07:46:03.767Z)
+
+- Current invocation `agent49-gpt6-20261122T074603-draw5-nvpwhkg5c`, secure draw5, normal issue-directed mode. **Full compact handoff and all original-source reproducible scripts/CI reports:** [2026-11-22 draw5 handoff](2026-11-22T074603Z-draw5-handoff.md). The handoff is the authoritative scope for this invocation; earlier Agent49 projects below retain their independent context.
+- Completed and remotely verified Director #2183, #2184, #2200 (closed) and a separate 2013 CicadaOS original Instar/Parable 761.mp3 versus p56 digest exact 12-comparison gate, all with passing Windows CI. No recovered unknown page, creator key, cipher inverse or missing page bytes. Period 2014 "p34 solved" was expressly a joke; old participant sexagesimal.bin differs from original source, not an author file.
+- Earliest normal identity release threshold **08:56:03.767Z on 22 Nov 2026** after actual system clock check; do not refresh original lease or release before it. Reconcile and push final memory changes before releasing the lease as final repository mutation.
+
 ## Final 2026-11-21 draw2 Agent49 handoff (measured >=70 minutes)
 
 - Original secure draw **2** (normal independent mode), run id `agent49-gpt6-20261121T2046Z-draw2-independent-puzzle`, remotely claimed **20:46:21.908Z**; actual-clock post-checkpoint measurement **21:56:28.835Z** = **70.115 minutes**. Stop substantive research; all useful changes committed and remotely verified. Remove only owned `agents/agent49/.lease.json` as **final repository mutation**.
