@@ -220,6 +220,54 @@ assert(clockCases.every(x=>x.normalizedIoC<1.002));
 const pageClockBest=Math.max(...clockCases.map(x=>x.normalizedIoC));
 assert(Math.abs(pageClockBest-1.000907790)<1e-8);
 
+
+/**
+ * Second independent, weakly source-typed graph interpretation:
+ * P's unique nontrivial seven-cycle has precisely 19 NON-cycle
+ * predecessor vertices, the actual Roman XIX in the next heading.
+ * A single frozen traversal is BFS from I=10 around the source
+ * seven-cycle, with sibling labels in native GP29 order.
+ * Traversal and direct repeating Vigenere are NOT authenticated.
+ */
+const fromI=[10,24,7,5,15,28,9];
+for(let i=0;i<7;i++)assert.equal(evaluate(polynomial,fromI[i]),
+  fromI[(i+1)%7]);
+const visited=new Set(fromI),queue=fromI.slice(),forest19=[];
+while(queue.length){
+  const parent=queue.shift();
+  for(let child=0;child<29;child++)
+    if(evaluate(polynomial,child)===parent&&!visited.has(child)){
+      visited.add(child);queue.push(child);forest19.push(child);
+    }
+}
+assert.deepEqual(forest19,[18,2,8,21,17,20,12,23,14,16,
+  19,6,11,22,26,27,0,13,25]);
+assert.equal(forest19.length,19);
+assert.deepEqual(Array.from({length:29},(_,i)=>i)
+  .filter(i=>!visited.has(i)),[1,3,4]);
+const forestReceiver=p8.slice(12).concat(p9[0]);
+assert.equal(forestReceiver.length,244);
+const forest19Cases=[];
+for(const atbash of [false,true])
+for(const sign of [-1,1]){
+  const decoded=forestReceiver.map((value,i)=>mod(
+    (atbash?28-value:value)+sign*forest19[i%19]));
+  const reciphered=decoded.map((value,i)=>atbash
+    ?mod(28-value+sign*forest19[i%19])
+    :mod(value-sign*forest19[i%19]));
+  assert.deepEqual(reciphered,forestReceiver);
+  const planted=p57.map((value,i)=>mod(
+    (atbash?28-value:value)-sign*forest19[i%19]));
+  const recovered=planted.map((value,i)=>mod(
+    (atbash?28-value:value)+sign*forest19[i%19]));
+  assert.deepEqual(recovered,p57);
+  forest19Cases.push({atbash,sign,
+    normalizedIoC:Number(ioc(decoded).toFixed(9)),
+    first40:spell(decoded.slice(0,40))});
+}
+assert.equal(forest19Cases.length,4);
+assert(forest19Cases.every(x=>x.normalizedIoC<1.024));
+
 console.log(JSON.stringify({
   source: {
     p7LastFiveWholeRedWordProducts:earlier,
@@ -236,8 +284,9 @@ console.log(JSON.stringify({
   rawPeriod56Exclusion:matches56,
   completeBookPageClock:clockCases,
   originalRoman19Key:roman19Cases,
+  forest19SourceGraph:{cycle:fromI,transientBFSKey:forest19,cases:forest19Cases},
   solvedP57Control:{nativeIoC:Number(ioc(p57).toFixed(9)),
     authenticRunesReconstructed96:96},
   interpretation:'Exact conditional p8->p7 arithmetic and reversible order56 operator. Direct four-rune, Roman-XIX power and full 56-page clock gates nonlinguistic; no unknown plaintext or authenticated decoder.'
 },null,2));
-console.log('PASS: p8 reconstructs p7; companion order56; 8 direct, 8 Roman-XIX power and 8 whole-book page-clock gates; native planted control');
+console.log('PASS: p8 reconstructs p7; companion order56; 8 direct, 8 Roman-XIX power, 8 whole-book page-clock and 4 nineteen-tree repeating-key gates; native planted control');
