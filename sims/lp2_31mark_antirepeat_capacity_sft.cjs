@@ -83,20 +83,20 @@ for (let r = 0; r <= 2; r++) {
   const formula = 29 * 2 ** logConstrained(2, r);
   assert.ok(Math.abs(formula - brute) < 1e-8, 'Exact toy count');
 }
-const minSidecarSlots = words.length + 2 * 56;
+const sidecarSlots = words.length + 2 * 56;
 // Overgrant one site per existing complete word, plus both ends of
 // all 56 original unknown physical pages (including rune-free p50).
-// Overgrant 4 completely independent distinct punctuation identities
-// at every one of the 31 marks, even though the physical artifact
+// Grant arbitrary repeated marks at a single slot (p7 exhibits this),
+// and 4 independent punctuation identities per mark, although the artifact
 // has 28 13-dot, three 10-dot, and only one black mark.
 const disallowedBits = transitions * Math.log2(29) -
   logConstrained(transitions, repeats);
-const maximumMarksBits = logChoose(minSidecarSlots, marks.length) +
+const maximumMarksBits = logChoose(sidecarSlots + marks.length - 1, marks.length) +
   2 * marks.length;
-const actualTypePatternBits = logChoose(minSidecarSlots, marks.length) +
+const actualTypePatternBits = logChoose(sidecarSlots + marks.length - 1, marks.length) +
   logChoose(marks.length, 3) + Math.log2(marks.length);
-assert.ok(disallowedBits - maximumMarksBits > 18);
-assert.ok(disallowedBits - actualTypePatternBits > 63);
+assert.ok(disallowedBits - maximumMarksBits > 17);
+assert.ok(disallowedBits - actualTypePatternBits > 62);
 
 console.log(JSON.stringify({
   source: 'Original LP2 pp0..55 runes, words and large punctuation',
@@ -106,11 +106,11 @@ console.log(JSON.stringify({
   originalLargePunctuation: marks.length, original13dot: 28,
   original10dot: 3, originalBlack: 1,
   mode: 'universal fixed-layout injective GP29->GP29 code; at most 86 output repeats',
-  generousPossibleSidecarSlots: minSidecarSlots,
+  generousPossibleSidecarSlots: sidecarSlots,
   lostFullAlphabetBits: disallowedBits,
   overGrantedPunctuationBits: maximumMarksBits,
   remainingInformationDeficitBits: disallowedBits - maximumMarksBits,
   originalTypeInventoryCapacityBits: actualTypePatternBits,
   sourceTypeRestrictedDeficitBits: disallowedBits - actualTypePatternBits,
-  result: 'No universal length-preserving reversible full-GP29 encoder can force <=86 repeats with only the 31 marked word/page boundary positions and at most four mark identities. English-restricted plaintext or external state remains possible.'
+  result: 'No universal length-preserving reversible full-GP29 encoder can force <=86 repeats with only 31 word/page-boundary-position marks and at most four mark identities. English-restricted plaintext or external state remains possible.'
 }, null, 2));
