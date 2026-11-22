@@ -447,3 +447,8 @@ Carrier closure discovered prospectively after the p0->218/28 selection: p28 wor
 - Updated sims/lp2_2012_ps_rsa_reuse_sft.cjs with a synthetic PSS sign/verify positive control and original-input scan. Actions run 44969837833 completed successfully: zero PSS structures among 377 valid p49-p51 54-byte representatives and four p55 public-exponent outputs; the positive control passed.
 - Updated sims/ps_rsa_oaep_crossround_gate.py and its workflow to scan default PSS structure alongside OAEP/v1.5. Manual Python scans found zero PSS structures in the 2013 wisdom/folly blob and 2014 p17/p21/p43 OutGuess artifacts. The named inputs also have no default OAEP blocks. Full details in im-results/2012-ps-rsa-original-lp2-direct-reuse-gate.md and im-results/2012-ps-number-integer-screen.md.
 - Posted the PSS update to closed issue #927 (comment 7072019539). This closes the obvious Crypt::RSA 1.99 default encryption/signature paths for the named inputs, not every possible use of the 2012 key. Do not continue padding/key-family sweeps without a source-selected target.
+
+### One fixed affine p22 selector test
+
+- The 131:131 P.S.-digits/p22-runes length match was given one additional source-motivated test: use reconstructed RSA public exponent e=65537, A=e mod29=26, inverse19, and decrypt P_i=19(C_i-k_i) mod29 with k_i the clockwise-rotated P.S. digits. No plaintext; 29×IoC=1.0967. This is a hypothesis, not an authored instruction.
+- p22's six source lines contain 22/24/23/23/19/20 runes; adjacent pairs are 46/46/39, so a three-row 3×46 alignment requires an unsupported seven-cell pad. Report and issue #927 comment 7072084390 updated. No more affine/key-clock variants without a new selector.
