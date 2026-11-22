@@ -29,6 +29,7 @@ assert.equal(sourceA,27);
 assert.equal(sourceB,24);
 const sourceRule=(x)=>((sourceA*x+sourceB)%29);
 const chapterRows=spans.map(([lo,hi],i)=>({chapter:i,lo,hi,opportunities:0,hits:0}));
+const withinWordDoublets={beforeSix:{pairs:0,hits:0},fromSix:{pairs:0,hits:0}};
 const observed=Array.from({length:29},()=>new Uint32Array(29));
 const lengths=[];
 for(const w of rows){
@@ -36,6 +37,11 @@ for(const w of rows){
   assert(ci>=0);
   const arr=w.symbols;
   lengths.push(arr.length);
+  for(let j=1;j<arr.length;j++) {
+    const target=j<6?withinWordDoublets.beforeSix:withinWordDoublets.fromSix;
+    target.pairs++;
+    target.hits+=Number(arr[j]===arr[j-1]);
+  }
   for(let j=6;j<arr.length;j++) {
     const a=arr[j-6],b=arr[j];
     observed[a][b]++;
@@ -49,6 +55,7 @@ const total=chapterRows.reduce((s,v)=>s+v.opportunities,0);
 const hits=chapterRows.reduce((s,v)=>s+v.hits,0);
 assert.equal(total,1290);
 assert.equal(hits,80);
+assert.deepEqual(withinWordDoublets,{beforeSix:{pairs:8770,hits:54},fromSix:{pairs:1290,hits:9}});
 const correct=((x,m)=>((x%m)+m)%m);
 const competitors=[];
 for(let a=1;a<29;a++) for(let b=0;b<29;b++) {
@@ -94,7 +101,11 @@ for(let round=0;round<rounds;round++){
 console.log(JSON.stringify({
   provenance:'External pnotisdev/cicada3301 phase57 reports 80/1290 original lag6 affine hits in 2026. Independent original-source re-evaluation; this SFT does not claim discovery of the numerical event.',
   physicalClues:{red_p15_fibonacci_grid_entry:3299,cicada_puzzle_number:3301,modulus:29,selected_a:sourceA,selected_b:sourceB,unselected_lag:6},
-  original:{completeWords:parsed.words.length,carriedWords:parsed.crossPageWords,events:total,hits,uniformExpected:total/29,otherBest:competitors[1],rankAmongAll812Affine:1,chapterRows,firstFourChapters:chapterRows.slice(0,4).reduce((s,r)=>({n:s.n+r.opportunities,h:s.h+r.hits}),{n:0,h:0}),remainingFiveChapters:chapterRows.slice(4).reduce((s,r)=>({n:s.n+r.opportunities,h:s.h+r.hits}),{n:0,h:0})},
+  original:{completeWords:parsed.words.length,carriedWords:parsed.crossPageWords,
+    withinWordDoubletsBySixPosition:withinWordDoublets,
+    expectedFirstSixDoubletsWithoutAnyRepair:8770/29,
+    sixBackOnlyCollisionRepairFailsEarlyWords:true,
+    events:total,hits,uniformExpected:total/29,otherBest:competitors[1],rankAmongAll812Affine:1,chapterRows,firstFourChapters:chapterRows.slice(0,4).reduce((s,r)=>({n:s.n+r.opportunities,h:s.h+r.hits}),{n:0,h:0}),remainingFiveChapters:chapterRows.slice(4).reduce((s,r)=>({n:s.n+r.opportunities,h:s.h+r.hits}),{n:0,h:0})},
   permutationNull:{seed:'0x33013299',rounds,perWordSymbolCountFixed:true,sourceRuleAtLeastObserved:targetAtLeast,anyOf812AffineAtLeastObserved:anyAffineAtLeast,maxNullObserved:maxHighest,meanSourceHits:allShuffleTarget/rounds,maxFirst12:maxSample,upperPSource:(targetAtLeast+1)/(rounds+1),upperPFamily:(anyAffineAtLeast+1)/(rounds+1)},
   decision:'Source number pair suggests the exact observed affine coefficients, but the six-rune delay and actual emitter/repair flag are NOT selected by the original. This statistical channel cannot alone restore unknown plaintext or a key.'
 },null,2));
