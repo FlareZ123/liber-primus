@@ -53,6 +53,8 @@ assert.equal(signedKey180.length,180);
 const clearP57 = "PARABLE LIKE THE INSTAR TUNNELING TO THE SURFACE WE MUST SHED OUR OWN CIRCUMFERENCES FIND THE DIVINITY WITHIN AND EMERGE";
 assert.deepEqual(toGP(clearP57), original.pages[57].indices, "Exact p57 95-rune source-native positive");
 const control = toGP(clearP57+" "+clearP57).slice(0,180);
+const adjacentKnownOriginal = [...original.pages[56].indices, ...original.pages[57].indices];
+assert.equal(adjacentKnownOriginal.length,180);
 assert.equal(control.length,180);
 
 assert.equal(table.pages.flatMap((p)=>p.bytes).length,256);
@@ -116,7 +118,13 @@ for (const [order, bytes] of [["original-row-major",inside],["original-column-ma
     const planted=control.map((p,i)=>(p-sign*signedKey180[i]+29)%29);
     const decoded=planted.map((c,i)=>(c+sign*signedKey180[i]+29)%29);
     assert.deepEqual(decoded,control,"Exact 180/180 authentic GP29 plant "+order+" "+sign);
+    let adjacentExactMatches = 0;
+    let firstAdjacentMismatch = -1;
+    for(let i=0;i<180;i++)if(candidate[i]===adjacentKnownOriginal[i]) adjacentExactMatches++;
+    else if(firstAdjacentMismatch===-1) firstAdjacentMismatch=i;
+    assert.ok(firstAdjacentMismatch>=0);
     const rec={order,sign,ioc:ioc(candidate),trigram:score(candidate,model),
+      adjacentPrintedP56P57ExactPositions:adjacentExactMatches,firstAdjacentMismatch,
       percentileAmongGibran:controls.filter(x=>x<=score(candidate,model)).length/controls.length,
       first32: candidate.slice(0,32).map(v=>original.translit[v]).join(".")};
     results.push(rec);
@@ -128,6 +136,8 @@ console.log("SUMMARY "+JSON.stringify({
   sourceSelectedHypothesis:"signed GP176 plus numeric3301 as a one-to-one 180-symbol additive key",
   receiver:"p50 rectangle strict interior 30x6=180, original base60 bytes modulo29",
   models:4,positive:"all four 180/180 original solved p57 native GP plants",
-  nativeControls:controls.length,bestModel:results.slice().sort((a,b)=>b.trigram-a.trigram)[0],
+  nativeControls:controls.length,
+  exactKnownAdjacentP56P57Matches:results.map(x=>x.adjacentPrintedP56P57ExactPositions),
+  bestModel:results.slice().sort((a,b)=>b.trigram-a.trigram)[0],
   unknownPlaintextRecovered:false,
 }));
