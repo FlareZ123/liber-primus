@@ -64,6 +64,25 @@ const predictedRed39 = [mod(amplitude * w * w),
   mod(-2 * amplitude * w), amplitude];
 assert.deepEqual(predictedRed39, [27,5,15]);
 assert.deepEqual(q, predictedRed39);
+// The only other wholly red GP three-rune span is p3 offset119.
+const p3red = ink.pages.find(p => p.page === 3)
+  .red_spans.filter(s => s.length === 3);
+assert.equal(p3red.length, 1);
+assert.equal(p3red[0].start, 119);
+assert.equal(red39[0].start, 119);
+const sourceP3 = corpus.pages[3].indices.slice(
+  p3red[0].start, p3red[0].start + 3);
+const pagePhase = page => pow(z, ((product(p7[4]) - page) % 7 + 7) % 7);
+assert.equal(pagePhase(3), 16);
+assert.equal(pagePhase(39), 24);
+const amplitude3 = product(p7[4]); // Original p7 fifth word product2.
+const vertex3 = pow(z, amplitude3); // z^2=23.
+const predictedRed3 = [
+  mod(amplitude3 * pagePhase(3) ** 2 + vertex3),
+  mod(-2 * amplitude3 * pagePhase(3)), amplitude3
+];
+assert.deepEqual(predictedRed3, [13,23,2]);
+assert.deepEqual(sourceP3, predictedRed3);
 const Q = x => mod(q[0] + q[1]*x + q[2]*x*x);
 const dQ = x => mod(q[1] + 2*q[2]*x);
 const roots = Array.from({length:29}, (_,x) => x)
@@ -135,6 +154,10 @@ console.log(JSON.stringify({
   sourceP7WordProducts:coeff, sourceP8WordProducts:p8.map(product),
   originalPrintedImaginaryIndex:i, rootP8:z, powerFiveRootP39:pow(z,5),
   sourcePredictedFullP39RedTriad:predictedRed39,
+  sourceRed119PagePair:[3,39],
+  matchedOriginalRed119Positions:[p3red[0].start,red39[0].start],
+  pagePhases:[pagePhase(3),pagePhase(39)],
+  predictedP3RedTriad:predictedRed3, originalP3RedTriad:sourceP3,
   originalP39RedRuneCoefficients:q, uniqueDoubleRoot:roots,
   sevenCycle:cycle, originalRuneLengths:[botanical.length,cuneiform.length],
   crossChapterSharedPadTests:differences,
