@@ -101,6 +101,9 @@ def lexicon() -> dict[tuple[int, ...], tuple[str, int]]:
     for source_path in [
         "resources/control/shakespeare_first300k.txt",
         "resources/control/gibran_prophet_58585.txt",
+        "resources/control/emerson_essays_2944.txt",
+        "resources/control/blake_song_of_liberty_train.txt",
+        "resources/control/hapgood1906_service_excerpts.txt",
     ]:
         text = (ROOT / source_path).read_text(encoding="utf-8")
         for match in re.finditer(r"[a-zA-Z]+", text):
@@ -152,6 +155,9 @@ def native_plain_controls() -> dict[str, dict[str, int]]:
     for path in [
         "resources/control/shakespeare_first300k.txt",
         "resources/control/gibran_prophet_58585.txt",
+        "resources/control/emerson_essays_2944.txt",
+        "resources/control/blake_song_of_liberty_train.txt",
+        "resources/control/hapgood1906_service_excerpts.txt",
     ]:
         text = (ROOT / path).read_text(encoding="utf-8")
         arr = [n for w in re.findall(r"[a-zA-Z]+", text)
