@@ -277,6 +277,43 @@ assert.deepEqual(fullReceiverResults.map((v)=>Number(v.completeIoC.toFixed(12)))
 assert(Math.abs(fullReceiverResults[0].first2IoC-0.0364977674238012)<1e-12);
 assert(Math.abs(fullReceiverResults[0].other3IoC-0.032593739250086)<1e-12);
 
+// The first original 2014 A square also defines a period-56 source orbit.
+// The five original red-word products and their proven source projection are
+// two independent, entirely source-visible five-rune initial states. No seed fit.
+const invHistorical=matrixInverse(A);
+eq(mul(A,invHistorical),I5);
+let powerHistorical=I5;
+for(let step=0;step<56;step++)powerHistorical=mul(powerHistorical,A);
+eq(powerHistorical,I5);
+const orbitResults=[];
+for(const [seedName,seed] of [
+  ['five-original-red-word-products',coeff],
+  ['five-projected-source-products',projectedCoeffs]
+]){
+  for(const [direction,operator] of [['forward',A],['inverse',invHistorical]]){
+    let state=seed.slice(),keystream=[];
+    for(let packet=0;packet<51;packet++){
+      keystream.push(...state);
+      state=vecMul(operator,state);
+    }
+    assert.equal(keystream.length,255);
+    for(const sign of [-1,1]){
+      const result=p8.map((rune,i)=>mod(rune+sign*keystream[i]));
+      assert.deepEqual(result.map((rune,i)=>mod(rune-sign*keystream[i])),p8);
+      const native=Array.from({length:255},(_,i)=>
+        corpus.pages.find((p)=>p.page===57).indices[i%95]
+      );
+      const plant=native.map((rune,i)=>mod(rune-sign*keystream[i]));
+      assert.deepEqual(plant.map((rune,i)=>mod(rune+sign*keystream[i])),native);
+      orbitResults.push({seedName,direction,sign,ioc:ioc(result),opening:result.slice(0,80).map(r=>corpus.translit[r]).join('')});
+    }
+  }
+}
+assert.deepEqual(orbitResults.map((r)=>Number(r.ioc.toFixed(12))),[
+  0.034614790798,0.035541145592,0.034645669291,0.034985332716,
+  0.033750192991,0.033287015594,0.035016211209,0.034676547784
+]);
+
 // Exact authentic-source plaintext plant: the 2x5 map has a fixed right inverse.
 const solved=corpus.pages.find((p)=>p.page===57).indices;
 assert.equal(solved.length,95);
@@ -306,6 +343,8 @@ console.log('PASS original_p8_two_and_five_value_Vigenere_eight_roundtrips_and_e
 for(const output of vigenereSourceResults)console.log('native_GP_attempt source_key='+output.keyName+' scope='+output.label+' sign='+output.sign+' IoC='+output.ioc.toFixed(12)+' opening='+output.opening);
 console.log('PASS canonical_same-source full_5x5_basis source_selected_rows=[4,3]/[0,1,2] exact_3_full_original_roundtrips_and_3_native_GP_plants');
 for(const res of fullReceiverResults)console.log('full-receiver='+res.label+' runes='+res.original+' IoC='+res.completeIoC.toFixed(12)+' two_component_IoC='+res.first2IoC.toFixed(12)+' three_component_IoC='+res.other3IoC.toFixed(12)+' start='+res.start);
+console.log('PASS first_2014_A_square_order56 historical_5seed_orbit eight_original_p8_decoders_eight_native_positive_plants');
+for(const r of orbitResults)console.log('source-A-orbit seed='+r.seedName+' direction='+r.direction+' sign='+r.sign+' IoC='+r.ioc.toFixed(12)+' original-opening='+r.opening);
 console.log('SOURCE: GP29 original p8 IoC='+ioc(p8).toFixed(12));
 console.log('EXTRACTED: GP29 rank2 image IoC='+ioc(output).toFixed(12));
 console.log('EXTRACTED full GP spelling='+output.map((rune)=>corpus.translit[rune]).join(''));
