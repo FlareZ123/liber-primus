@@ -97,6 +97,16 @@ assert.deepEqual(hits,[{
 assert.equal(table[1][3], 3301 - pi(3299));
 assert.equal(table[1][1] - 3301, -2);
 assert.deepEqual([1,3],[1,1 + (3301 - 3299)]);
+// Two-level nested twin-prime ladder, sourced by the F=89 grid term.
+assert.equal(nthPrime(89),461);
+assert.equal(nthPrime(90),463);
+assert.equal(nthPrime(90)-nthPrime(89),2);
+assert.equal(table[1][1]-table[1][3],461);
+assert.equal(pi(461),89);
+assert.equal(pi(463),90);
+assert.equal(pi(464),90);
+assert.equal(pi(pi(3299)),90);
+assert.equal(pi(pi(3301)),90);
 assert.equal(nthPrime(90), pi(3299));
 assert.equal(nthPrime(nthPrime(90)),3299);
 assert.equal(nthPrime(nthPrime(90) + 1),3301);
@@ -128,6 +138,12 @@ console.log(JSON.stringify({
     {ordinal:463,prime:nthPrime(463)},
     {ordinal:464,prime:nthPrime(464)}
   ],
+  nested_twin_prime_ladder:{
+    first:{lower:nthPrime(89),upper:nthPrime(90),prime_ranks:[89,90]},
+    second:{lower:nthPrime(463),upper:nthPrime(464),prime_ranks:[463,464]},
+    original_printed_difference:[table[1][1]-table[1][3],3301-table[1][3]],
+    second_prime_index_of_both_twin_members:[pi(pi(3299)),pi(pi(3301))]
+  },
   interior_grid_echo:hits,
   source_qualified_cell_pairs:chains,
   interpretation:"A new source-visible prime-rank/Fibonacci self-reference. The right-two-column route is a possible retrospectively noticed solve-path cue, not an instruction authenticated by Cicada or a rune decryption.",
