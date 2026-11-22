@@ -28,6 +28,19 @@ None of the four fixed outputs starts with readable text or a recognizable PNG, 
 
 The independent source-native positive takes **140 real clear-GP rune indices from solved p57**, extends them cyclically, and uses deterministic, per-position quartic GF256 polynomials to create five 140-byte shares. The same interpolant recovers the genuine **140/140** GP-native symbols. Every original BASE29 lane also round-trips its exact 229 rune indices through 140-byte serialization, and the 5-of-5 inverse recovers the original fifth byte share from the secret and other four byte shares. These checks establish executable inversion and source fidelity, not historical authenticity.
 
+## Literal 2013 field-width requirement: full-source obstruction
+
+The genuine archived 2013 Cicada SSSS program used **GF(2^176)**, with irreducible polynomial `x^176+x^11+x^3+x^2+1`, a *monic degree-five polynomial*, and five shares to determine the five unknown lower coefficients. That finite-field contract offers a stronger, **key-independent** question than the GF256 byte-domain screen above: can these source BASE29 lanes even be serialized as complete historical 22-byte field elements?
+
+Exactly **37 GP29 digits** suffice to represent any 176-bit share (36 are too few), and each 229-rune lane has six consecutive 37-digit blocks and seven trailing digits. Freeze this literal **six-records-per-lane** reading, preserving each source digit. The necessary condition is that **every** 37-digit BASE29 integer be below 2^176; reduction modulo 2^176 would be a lossy, unlicensed substitution for the historical share serialization.
+
+| Original frozen five-lane layout | Number of valid 176-bit blocks among 30 | Valid blocks in the five source lanes |
+| --- | ---: | --- |
+| Contiguous 229-rune lanes | **4/30** | **[1,2,0,1,0]** |
+| Interleaved five-rail lanes | **2/30** | **[1,1,0,0,0]** |
+
+All other original 37-digit packet integers **overflow the authentic 176-bit field**. This is decisive for the two frozen, literal BASE29 packet layouts: the original five-scroll text cannot be six valid historically formatted five-share GF(2^176) records, independent of what degree-five coefficients or actual secret values might be. A historically faithful SSSS interpolation is therefore **undefined for almost all the original packets** under this original-source-preserving encoding. A future claim requiring bit truncation, arbitrary per-block shifts or an unseen extra compression step needs independent evidence; the raw scan does not license those repairs. The same source-faithful SFT asserts every count. This is a precise obstruction to this historical packet **format**, not a proof against every conceivable threshold-sharing interpretation.
+
 ## Cryptanalytic decision
 
 The genuine first-party **five-of-ten secret-sharing precedent** makes a source-five-scroll test more motivated than an arbitrary source-key catalog. This direct receiver, however, produces four opaque byte arrays and has no identified plaintext consumer. **Retire these exact two lane assignments and two byte encodings as direct plaintext/file recovery.** Resist widening to unselected share positions, field polynomials, hidden key derivations, and post-hoc decryption layers. A successor should be attempted only if a source-visible instruction supplies a *specific*, historically defensible selection of unequal original pages as shares, a serialization compatible with actual 2013 GF(2^176) packets, or an original ciphertext interval with a predicted whole-word output.
