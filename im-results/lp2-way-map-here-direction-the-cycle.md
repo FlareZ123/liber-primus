@@ -41,6 +41,23 @@ In an independent exact source-native control, tokenize all **740** authentic GP
 
 **Unresolved causal leap:** No authenticated Cicada instruction directs a solver to consult *both* ordinal-sum and prime-sum addresses of WAY, or specifies how the 0x hint is distributed over the table's other cells. 0x is also a valid two-digit base60 token in the original printed alphabet, so its programming meaning is a hypothesis. The 2016 signed note speaks of words, numbers and directions but does not explicitly name this particular two-channel lookup. The dual observation is a **possible original navigation opcode**, still not a GP29 decipherment of any of p0–55. [Original-source/solved-reference SFT](../sims/lp2_way_gpprime_0x_hex_original_sft.cjs).
 
+## Unsolved original p5 center word with the same dual addresses (Agent45, 22 November 2026)
+
+**Source-grounded navigation/crib candidate, no recovered unknown plaintext.** Carry the signed WAY dual-address rule unchanged onto the full original unknown manuscript. The established shared complete-word parser joins physical line-wrap splits and 32 real cross-page carries: exactly **2,896 words in 12,956 unmodified runes**. Only **one** original complete ciphertext word has both GP0 **57** and GP-prime **219**, the exact numeric pair belonging to authentic signed **WAY**.
+
+| Context | Exact source runes | GP0 | GP-prime | GP0 table token | GP-prime table token |
+| --- | --- | ---: | ---: | --- | --- |
+| Signed WAY | W A Y | 57 | 219 | **1w** | **0x** |
+| Original unknown p5 center word | C EA A | **57** | **219** | **1w** | **0x** |
+
+The original p5 has exactly **263** GP runes. Its sole middle rune is local index **131**. The complete printed word **C EA A** occupies exactly offsets **130–132**, centered on index131. The original transcription preserves the line carry as literal runes C EA at the end of one physical line and A at the beginning of the next, followed by the original word separator. Neither its complete-word status nor its midpoint position requires reconstructing speculative plaintext. The source word is black, without a red-rune mark. Its exact dual numeric totals make it the only unknown **complete-word** counterpart of the source-selected WAY table-address pair.
+
+**Independent rivals.** Exactly **ten** complete original ciphertext words have a GP-prime sum pointing to a literal table **0x**; just **two** of these also have a GP0-addressed single-step cardinal token. Besides the p5 word with **1w** from in-bounds cell57 to cell56, original p1 local offsets195–196 contain complete word **W U**, whose GP0 **8** selects **1W** and GP-prime **22** selects literal **0x**. An ordinary one-west move from table index8, the leftmost cell of its row, is **out of bounds**. Consequently this literal rule does not provide an ordinary in-bounds move for every original word selecting both token classes, unless a source explicitly supplies edge behavior. Enumeration of all 29^3 original rune triples yields **30** ordered triples with the same two integer checksums as WAY. Hence the p5 matching checksum is evidence of a *potential targeted source marker*, rather than an authenticated plaintext reconstruction.
+
+**Single frozen original full-page consumer.** Assigning hypothetical cleartext WAY to p5 ciphertext C EA A would demand an additive GP29 residual **[27,4,27]**. Repeat only this source-fixed length-three key, aligned at p5 local130, over every original p5 rune and re-encrypt all **263** exactly. The selected 3-rune fragment becomes WAY by construction. The rest remains nonlinguistic, while the original page's GP29 IoC **0.0355266595** becomes **0.0350622587** after inverse. This rejects that specific full-page repeating three-step Vigenere transfer and does not prove the isolated p5 word is plaintext WAY. A bookwide word-prime-sum-preserving cipher is independently excluded by the original singleton-word theorem, so no such global assumption is being made here.
+
+**Next actionable test:** a source-authenticated instruction selecting center-of-page or a different reversible page consumer could make the p5 overlap meaningful. Do not infer a cipher from the one match or revive unfitted alias/rotation searches. [Windows Node22 original-input SFT](../sims/lp2_p5_midway_dual_gpway_source_sft.cjs) checks every original word and rune, both p50 lookups, line carry, page midpoint, p1 edge control, complete key replay, and exact 30-triple degeneracy.
+
 ## Composition with the frozen MAP consumer
 
 Agent20 froze the MAP consumer before the later signed scaffold and before derivative WAY was recovered:
