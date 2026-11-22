@@ -182,6 +182,14 @@ assert.equal(sourceTitle + sourceId, 58 * 8);
 assert.equal(sourceTitle + sourceId, 29 * 16);
 const factorRunes = factors.map((prime) => corpus.translit[corpus.prime.indexOf(prime)]);
 assert.deepEqual(factorRunes, ['R', 'G', 'H', 'I']);
+assert.deepEqual(factors.map((pr) => corpus.prime.indexOf(pr)), [4, 6, 8, 10]);
+const outsideIn = [factors[0], factors[3], factors[1], factors[2]]
+  .map((prime) => corpus.translit[corpus.prime.indexOf(prime)]).join('');
+const alphabetQuotient = (sourceTitle + sourceId) / corpus.prime.length;
+assert.equal(alphabetQuotient, 16);
+assert.equal(outsideIn, 'RIGH');
+const directionWord = outsideIn + corpus.translit[alphabetQuotient];
+assert.equal(directionWord, 'RIGHT');
 
 const inbound = bytes.map(() => []);
 bytes.forEach((value, index) => inbound[value].push(index));
@@ -210,6 +218,7 @@ assert.equal(subtreeSize(201), 56);
 let smoothPalindromes = 0;
 let fourDistinctGpPrimes = 0;
 const root201FourDistinct = [];
+const halfSumDivisible29FourDistinct = [];
 for (let a = 1; a <= 9; a++) {
   for (let b = 0; b <= 9; b++) {
     for (let c = 0; c <= 9; c++) {
@@ -225,15 +234,24 @@ for (let a = 1; a <= 9; a++) {
       fourDistinctGpPrimes++;
       const sum = factorization.reduce((n, value) => n + value, 0);
       if (bytes[sum] === 201) root201FourDistinct.push(palindrome);
+      const leftHalf = Math.floor(palindrome / 1000);
+      const rightHalf = palindrome % 1000;
+      if ((leftHalf + rightHalf) % 29 === 0) {
+        halfSumDivisible29FourDistinct.push(palindrome);
+      }
     }
   }
 }
 assert.equal(smoothPalindromes, 175);
 assert.equal(fourDistinctGpPrimes, 9);
 assert.deepEqual(root201FourDistinct, [133331]);
+assert.deepEqual(halfSumDivisible29FourDistinct, [133331]);
 
 console.log('HTML 133331 palindrome GP prime factors:', factors.join(' x '));
 console.log('GP rune names of those factors:', factorRunes.join(''));
+console.log('Outside-in factor GP letters + half-sum/29 GP letter:', directionWord);
+console.log('Unique 900-palindrome four-prime half-sum divisible29:',
+  halfSumDivisible29FourDistinct);
 console.log('GP-prime factor sum and table pointer:', factorSum, bytes[factorSum]);
 console.log('Reverse table-pointer subtree: 201 <- 82 [50] and 128 [5], total 56');
 console.log('Six-digit palindrome controls:', 900,
