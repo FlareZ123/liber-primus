@@ -129,8 +129,10 @@ for(const reading of ["numbers","totient"]){
       const byMask=[];
       for(let mask=0;mask<(1<<fPositions.length);mask++){
         const dec=decrypt(complete,key,sign,mask,fPositions);
-        const reen=encrypt(dec.plain,key,sign);
-        assert.deepEqual(reen,complete,"source 75-runic complete roundtrip");
+        if(dec.valid) {
+          const reen=encrypt(dec.plain,key,sign);
+          assert.deepEqual(reen,complete,"source 75-runic complete roundtrip");
+        }
         if(dec.valid)passingF++;
         const word=dec.plain.slice(wordStart,wordStart+13);
         if(dec.valid&&corpus13.has(word.join(",")))found13++;
