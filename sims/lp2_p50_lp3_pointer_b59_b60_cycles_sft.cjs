@@ -154,8 +154,28 @@ assert.equal(origin.period, 11);
 assert.deepEqual(origin.points, [
   47, 76, 114, 197, 115, 247, 192, 0, 203, 68, 199
 ]);
-assert.equal(orbit(bytes59, markerIndex).period, 1);
-assert.equal(orbit(bytes59, markerIndex).points.at(-1), 189);
+const sourceP57 = corpus.pages.find(page => page.page === 57).indices;
+const surfaceWord = [..."SURFACE"].map(char => corpus.translit.indexOf(char));
+assert.ok(surfaceWord.every(index => index >= 0));
+const surfacePositions = [];
+for (let i = 0; i <= sourceP57.length - surfaceWord.length; i++) {
+  if (surfaceWord.every((symbol, k) => sourceP57[i + k] === symbol)) {
+    surfacePositions.push(i);
+  }
+}
+assert.equal(surfacePositions.length, 1);
+const sourceSurfaceGP0 = surfaceWord.reduce((total, value) => total + value, 0);
+assert.equal(sourceSurfaceGP0, 67);
+
+const base59Red13Orbit = orbit(bytes59, markerIndex);
+assert.equal(base59Red13Orbit.period, 1);
+assert.equal(base59Red13Orbit.tail, 12);
+assert.deepEqual(base59Red13Orbit.points, [
+  47, 75, 174, 206, 125, 20, 100, 82, 198, 103, 203, 67, 189
+]);
+assert.equal(base59Red13Orbit.points.at(-2), sourceSurfaceGP0);
+assert.equal(base59Red13Orbit.points.length, firstRed[1]);
+assert.equal(bytes59[189], 189);
 
 /**
  * Conditional matched null. Fixed original source cells preserve the exact
@@ -192,7 +212,10 @@ function matchedNull() {
     b60_11and2: 0,
     b59Unique189: 0,
     b60LOn11_b59Unique189: 0,
-    fullBothCycleFamilies: 0
+    fullBothCycleFamilies: 0,
+    b59Marker13PathTo189: 0,
+    b59MarkerPathViaSurface67: 0,
+    b59Marker13ViaSurface67: 0
   };
   const trials = 120000;
   for (let trial = 0; trial < trials; trial++) {
@@ -219,6 +242,14 @@ function matchedNull() {
     if (sink) counts.b59Unique189++;
     if (l11 && sink) counts.b60LOn11_b59Unique189++;
     if (profile && l11 && sink) counts.fullBothCycleFamilies++;
+    const route = orbit(state59, markerIndex).points;
+    const reachesFixedRoot = route.at(-1) === 189;
+    const length13 = route.length === 13;
+    const viaSourceSurface = reachesFixedRoot &&
+      route.length >= 2 && route.at(-2) === sourceSurfaceGP0;
+    if (reachesFixedRoot && length13) counts.b59Marker13PathTo189++;
+    if (viaSourceSurface) counts.b59MarkerPathViaSurface67++;
+    if (viaSourceSurface && length13) counts.b59Marker13ViaSurface67++;
   }
   return {trials, counts};
 }
@@ -228,7 +259,10 @@ assert.deepEqual(nullResult.counts, {
   b60_11and2: 216,
   b59Unique189: 1404,
   b60LOn11_b59Unique189: 9,
-  fullBothCycleFamilies: 0
+  fullBothCycleFamilies: 0,
+  b59Marker13PathTo189: 1120,
+  b59MarkerPathViaSurface67: 182,
+  b59Marker13ViaSurface67: 14
 });
 
 console.log(JSON.stringify({
@@ -242,6 +276,12 @@ console.log(JSON.stringify({
   base59Basin: 256,
   base59Cell67: bytes59[67],
   base59Cell189: bytes59[189],
+  sourceSolvedP57Surface: {
+    transliteration: "SURFACE",
+    gpOrdinalSum: sourceSurfaceGP0,
+    originalSourceRuneOffset: surfacePositions[0]
+  },
+  base59Red13PointerRoute: base59Red13Orbit,
   matchedTokenPermutation: {
     ...nullResult,
     rates: Object.fromEntries(Object.entries(nullResult.counts).map(
