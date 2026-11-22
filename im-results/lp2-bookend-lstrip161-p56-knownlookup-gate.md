@@ -33,6 +33,15 @@ The planted model uses the fixed nonlinear secret key function \`f(x)=(7x²+3x+1
 
 The original source has **zero** consistent complete terminal lookup readers. This is stronger for the specified family than selecting the best of a menu of affine shifts and judging whether it looks English: even a completely unspecified secret GP29 output table fails *before* any p55 plaintext guess.
 
+### Genuine plaintext-F transparency also fails, without assuming p55's key consumption
+
+The original p55 has exactly **three ciphertext F** rune occurrences. If the unknown page used the already established p56 F-interrupter rule, each F might be a nonconsuming plaintext F or an ordinary consuming non-F rune, so the p56 strip-key start could occur after **73, 74, 75 or 76** consumed p55 runes. The independently solved p56 has exactly one plaintext F, which uses no key symbol, leaving **84 actual consuming rune positions**.
+
+The reproducible SFT therefore additionally enumerates all **16 × 4 = 64** source-geometric choices and authentic p55 F clock occupancies. For each case, allow the same completely unconstrained secret single-valued GP29 strip-symbol→key mapping, requiring the 84 authentic original p56 consuming positions to be consistent. **Every one of the 64 fails, with 51–57 contradictory key demands**. The best (still impossible) model is dihedral variant4, reversed strip, 73 consuming p55 symbols, and 51 contradictions. This removes a potential loophole in the simpler 85-slot check: the real p56 cipher consumes prime-key steps only at non-F plaintext symbols, and the unknown p55 F interpretations have been fully charged.
+
+No general claim is made about an arbitrary unbounded p55 key reset, a per-position changing lookup, or a different terminal symbol alignment. The 64-position result excludes precisely the 161-strip terminal register with the historically demonstrated F clock and arbitrary stationary lookup. It does so before using any unknown plaintext. The original printed pages provide no instruction to select a different register or state update.
+
+
 ## Interpretation
 
 The numerical matching, bookend marker and p57 circumference language could have motivated a real participant to try this compact square-strip method. But a terminal *stationary*, one-rune-to-one-key/one-plaintext mapping is inconsistent with the actual solved p56 register in every unedited orientation. A per-position stream, a stateful fold, a different terminal assignment, or an entirely separate p56 cipher would evade this necessary condition; absent an original instruction, such additions would be new premises, not repairs to a compatible key.
