@@ -16,7 +16,7 @@
   - Reproducer: sims/lp2_p7_red_product_repeating_vigenere_p8_gate.cjs
   - Report: im-results/lp2-p7-red-product-repeating-vigenere-p8-gate.md
 
-- Tested the p7 DH-derived stream k[i]=2×5^i mod23 on p8's 243-rune black body. The p7 packet gives (p,g,K)=(23,5,2); the first red-word product is 11; 5 has order22 mod23; and 243=11×22+1, so the body is eleven full DH periods plus one symbol. Ordinary-clock scores are −10.7562 and −10.7194 versus native LP1 minimum −7.5815; exact p56 plaintext-F-transparent DP has zero valid paths for both signs, with planted p57 controls recovered.
+- Tested the p7 DH-derived stream k[i]=2×5^i mod23 on p8's 243-rune black body. The p7 packet gives (p,g,K)=(23,5,2); the first red-word product is 11; 5 has order22 mod23; and 243=11×22+1, so the body is eleven full DH periods plus one symbol. Ordinary-clock scores are −10.7562 and −10.7194 versus native LP1 minimum −7.5815; exact p56 plaintext-F-transparent DP has zero valid paths for both signs, with planted p57 controls recovered. This is a bounded negative as a plaintext receiver; the 243-rune body may instead be nonlinguistic key/state material or a lookup table for a later page.
   - Reproducer: sims/lp2_p7_dh23_exponential_stream_p8_gate.cjs
   - Report: im-results/lp2-p7-dh23-exponential-stream-p8-gate.md
 
