@@ -242,6 +242,22 @@ for(let u=0;u<29;u++)for(let v=0;v<29;v++)
     for(let offset=0;offset<29;offset++)
       assert.equal(mod(multiplier*u+offset)===mod(multiplier*v+offset),u===v);
 
+
+// Independent source-native *solved* GP29 control: nine published solved
+// Liber Primus passage records, including 2014 LP1 original prose. They are
+// externally published transcriptions, not byte-identical unencrypted JPEGs.
+// Raw rates are secondary descriptive evidence because native word-length
+// distribution differs and rare long-word strata are sparsely observed.
+const nativeControl=JSON.parse(read('resources/external/relikd-solved-gp29-native-v1.json'));
+assert.equal(nativeControl.sections.length,9);
+const nativeWords=nativeControl.sections.flatMap(section=>
+  section.source_text.split(/[^\u16a0-\u16ff]+/u).filter(Boolean).map(w=>[...w]));
+const nativeSlots=nativeWords.reduce((sum,w)=>sum+w.length-1,0);
+const nativeDoubles=nativeWords.reduce((sum,w)=>sum+doublets(w),0);
+assert.deepEqual([nativeWords.length,nativeSlots,nativeDoubles],[740,2239,53]);
+const observedRate=1/431,nativeRate=nativeDoubles/nativeSlots;
+const nativeToCipherRateRatio=nativeRate/observedRate;
+
 const weighted=wordNull('weighted'),uniform=wordNull('uniform');
 assert(Math.abs(weighted.expectedDoublets-13.978312576019627)<1e-9);
 assert(Math.abs(weighted.PatMostOne-0.000005438610228669934)<1e-13);
@@ -268,7 +284,17 @@ console.log(JSON.stringify({
   },
   arithmeticInvarianceCheckedTriples:29**3,
   nativeWordNulls:[weighted,uniform],
+  authenticSolvedGP29Benchmark:{
+    source:'resources/external/relikd-solved-gp29-native-v1.json, nine published independently solved source records',
+    sourceWordCount:nativeWords.length,
+    adjacentWithinWordSlots:nativeSlots,
+    observedAdjacentEqualities:nativeDoubles,
+    solvedTextWithinWordEqualityRate:nativeRate,
+    numberedCipherWithinWordEqualityRate:observedRate,
+    solvedToNumberedRateRatio:nativeToCipherRateRatio,
+    caveat:'Raw-rate benchmark: word-length mix, source sections, and historical transcriber choices differ; exact model-conditional probabilities are in the two independent nulls above',
+  },
   caution:'Lexicon null assumes independent native-English words given observed original lengths. Within-word permutation null fixes all original ciphertext symbol multisets and independently permutes the positions of each whole word. Neither null excludes every possible plaintext register or context-dependent cipher.',
 },null,2));
 console.log('PASS exact 122-word/553-rune all-secret wordwise symbol-bijection doublet invariant, '+
-  'both 2014 five-square source keys ±, original-multiset conditioned exact permutation null, and native-GP lexicon length-conditioned count nulls.');
+  'both 2014 five-square source keys ±, original-multiset conditioned exact permutation null, solved-source GP29 benchmark, and native-GP lexicon length-conditioned count nulls.');
