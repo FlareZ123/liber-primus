@@ -1,0 +1,86 @@
+name: LP2 CROWLEY book-key original stage1 (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      scope:
+        type: choice
+        description: smoke checks one shard; full scans all source offsets over four disjoint shards
+        required: true
+        default: smoke
+        options:
+          - smoke
+          - full
+
+permissions:
+  contents: read
+
+jobs:
+  source-pinned-crowley-stage1:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJSON(inputs.scope != 'smoke' && '[0,1,2,3]' || '[0]') }}
+    steps:
+      - name: Checkout original LP2 corpus and source-fixed gate
+        uses: actions/checkout@v4
+      - name: Python for pinned native decoder
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install numerical requirements
+        run: python -m pip install numpy==1.26.4 numba==0.60.0 llvmlite==0.43.0 scipy==1.14.0 filelock==3.16.1
+      - name: Fetch original public decoder at a fixed source commit
+        shell: bash
+        run: |
+          git clone --quiet --filter=blob:none https://github.com/pnotisdev/cicada3301.git "$RUNNER_TEMP/cicada3301"
+          git -C "$RUNNER_TEMP/cicada3301" checkout --quiet 15200c67abee106913ba01ff504c5b6e88d16cc7
+          test "$(git -C "$RUNNER_TEMP/cicada3301" rev-parse HEAD)" = "15200c67abee106913ba01ff504c5b6e88d16cc7"
+      - name: Historical CROWLEY OCR full-book gate
+        env:
+          NUMBA_NUM_THREADS: "1"
+          OPENBLAS_NUM_THREADS: "1"
+          OMP_NUM_THREADS: "1"
+          SHARD: ${{ matrix.shard }}
+          SCOPE: ${{ inputs.scope }}
+        shell: bash
+        run: |
+          python sims/lp2_crowley_tablefree_bookkey_stage1.py \
+            --upstream "$RUNNER_TEMP/cicada3301" \
+            --shard "$SHARD" --shards 4 --scope "$SCOPE" \
+            --output "crowley-stage1/part-$SHARD.json"
+      - name: Preserve book-text-free numerical result
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: crowley-stage1-${{ inputs.scope }}-${{ matrix.shard }}
+          path: crowley-stage1/*.json
+          if-no-files-found: warn
+          retention-days: 90
+
+  summarize:
+    needs: source-pinned-crowley-stage1
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Collect all source-hash-verified screen outputs
+        uses: actions/download-artifact@v4
+        with:
+          pattern: crowley-stage1-${{ inputs.scope }}-*
+          path: partial-results
+          merge-multiple: true
+      - name: Verify complete shard coverage and report maxima
+        shell: bash
+        run: |
+          python sims/lp2_crowley_tablefree_bookkey_aggregate.py \
+            --folder partial-results \
+            --output crowley-stage1-summary.json --scope "${{ inputs.scope }}"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: crowley-stage1-global-${{ inputs.scope }}
+          path: crowley-stage1-summary.json
+          retention-days: 90
+

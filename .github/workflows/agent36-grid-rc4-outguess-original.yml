@@ -1,0 +1,26 @@
+name: Agent36 LP2 p50 grid RC4 on historical OutGuess blobs
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-outguess:
+    runs-on: windows-latest
+    timeout-minutes: 9
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check source code and cryptographic plant
+        shell: pwsh
+        run: |
+          node --check sims/lp2_grid256_rc4_outguess_original_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Source syntax' }
+          node sims/lp2_grid256_rc4_outguess_original_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'RC4 selftest' }
+      - name: Original source blob assertions and RC4 inversion
+        shell: pwsh
+        run: |
+          node sims/lp2_grid256_rc4_outguess_original_sft.cjs --network
+          if ($LASTEXITCODE -ne 0) { throw 'Original channel result' }

@@ -1,0 +1,16 @@
+name: LP2 original signed WORDS MAP WAY 33-cycle source gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-route:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify source-native signed word routes and original consumers
+        run: node sims/lp2_2016_dimensions_base58_orbit_sft.cjs

@@ -1,0 +1,50 @@
+name: F5 Q92 exact-coefficient shrinkage/parity blind gate
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: lp2-f5-q92-parity-blind
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  calibrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26.0"
+          cache: false
+      - name: Install F5 and libjpeg coefficient tools
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libjpeg-dev
+          python3 -m pip install --quiet pillow numpy scipy scikit-learn filelock
+          go install github.com/0verkilll/f5/cmd/f5@v1.0.0
+          echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
+          gcc -O2 -Wall -Wextra -o /tmp/f5_mag_hist sims/f5_detector_calibration/f5_mag_hist.c -ljpeg
+          cd sims/f5_detector_calibration
+          go mod tidy
+          go build -o /tmp/native-f5 native_f5_embed.go
+      - name: Run blind source-sized 256-byte genuine F5 gate
+        run: |
+          python3 sims/f5_detector_calibration/shrinkage_parity_gate.py \
+            --hist /tmp/f5_mag_hist \
+            --f5 "$(go env GOPATH)/bin/f5" \
+            --embedder /tmp/native-f5 \
+            --workdir /tmp/f5-parity-controls \
+            --report im-results/f5-q92-parity-blind/summary.json \
+            --screen \
+            --originals resources/liber-primus
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: f5-q92-parity-blind
+          path: im-results/f5-q92-parity-blind/
+          if-no-files-found: warn
+          retention-days: 30

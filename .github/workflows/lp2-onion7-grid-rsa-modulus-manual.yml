@@ -1,0 +1,16 @@
+name: LP2 signed Tor onion RSA modulus exact grid gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-rsa-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test source-pinned Tor-v2 RSA-1024 PKCS1 fingerprint
+        run: node sims/lp2_onion7_grid256_rsa_modulus_sft.cjs

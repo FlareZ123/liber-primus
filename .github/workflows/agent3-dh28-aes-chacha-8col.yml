@@ -1,0 +1,21 @@
+name: Agent 3 DH28 256bit column AES ChaCha original inversion
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/agent3-dh28-aes-chacha-8col.yml
+      - sims/lp2_dh28_p50_eightcolumn_aes_chacha_source_sft.cjs
+
+jobs:
+  eight-column-DH28:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original 288 tests across 9 chapters and all source native positives
+        run: node sims/lp2_dh28_p50_eightcolumn_aes_chacha_source_sft.cjs

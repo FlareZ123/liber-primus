@@ -1,0 +1,105 @@
+name: Manual Cryptanalysis - Word Lengths
+on:
+  workflow_dispatch:
+    inputs:
+      scan_mode:
+        description: 'Select independent source-sorting inverse or existing word-length controls'
+        required: false
+        default: 'standard'
+        type: choice
+        options:
+          - standard
+          - grid-sort
+          - block-inverse
+          - source-inversion
+          - word-number-byte
+          - base29-unit
+          - prior-word-prime
+          - corrected-oe-phase
+          - corrected-oe-marker
+          - p55-inner43
+          - irc-shortcrib
+          - shortcrib-null
+          - stage04-square-original
+          - stage04-99x76-p55
+          - red119-twotime
+          - red76-internal
+          - p40-word-red35
+          - signed2016-wordmap
+          - singleton-support
+permissions:
+  contents: read
+jobs:
+  word-length-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test the source-locked grid256 word-sort inverse
+        if: ${{ inputs.scan_mode == 'grid-sort' }}
+        run: node sims/grid256_word_sort_inverse.cjs
+      - name: Exact global eight-column word-order inverse
+        if: ${{ inputs.scan_mode == 'block-inverse' }}
+        run: node sims/word_block_hamiltonian_inverse.cjs
+      - name: Two original-input word-register inverse gates
+        if: ${{ inputs.scan_mode == 'source-inversion' }}
+        run: |
+          node sims/lp2_plaintext_wordsum_progressive_sft.cjs
+          node sims/lp2_word_prime_difference_affine_gate.cjs
+      - name: Frozen original source-word numbers as bytes and p50 addresses
+        if: ${{ inputs.scan_mode == 'word-number-byte' }}
+        run: node sims/lp2_wordwise_base29_p50_byte_gate_sft.cjs
+      - name: Wordwise BASE29 unit multiplication original-input invariant
+        if: ${{ inputs.scan_mode == 'base29-unit' }}
+        run: node sims/lp2_word_base29_unit_invariant_sft.cjs
+      - name: Causal previous-ciphertext-word prime-sum GP29 inverse
+        if: ${{ inputs.scan_mode == 'prior-word-prime' }}
+        run: node sims/lp2_previous_cipher_wordprime_sft.cjs
+      - name: Recheck all-secret LP2 phase register against corrected Old English source
+        if: ${{ inputs.scan_mode == 'corrected-oe-phase' }}
+        run: node sims/lp2_lcg32_allsecret_phase_invariant_sft.cjs
+      - name: All 29 reserved-repeat symbols on corrected Old English
+        if: ${{ inputs.scan_mode == 'corrected-oe-marker' }}
+        run: node sims/lp2_corrected_oldenglish_reserved_marker_sft.cjs
+      - name: Original LP2 p55 inner43 predecessor transport and event-phase null
+        if: ${{ inputs.scan_mode == 'p55-inner43' }}
+        run: node sims/lp2_p55_inner43_predecessor_transport_sft.cjs
+      - name: Byte-verified 2014 IRC LESS and ITS context
+        if: ${{ inputs.scan_mode == 'irc-shortcrib' }}
+        run: python3 sims/irc_2014_shortword_crib_context_sft.py
+      - name: Familywise 2014 native-English short-word linked-seed null
+        if: ${{ inputs.scan_mode == 'shortcrib-null' }}
+        run: node sims/lp2_2014_shortword_lookelsewhere_sft.cjs
+      - name: Recover exact original 2014 Stage04 server-status numeric matrix
+        if: ${{ inputs.scan_mode == 'stage04-square-original' }}
+        run: python3 sims/stage04_original_server_status_square_sft.py
+      - name: Frozen Stage04 99x76 p55 row pad original-cipher gate
+        if: ${{ inputs.scan_mode == 'stage04-99x76-p55' }}
+        run: node sims/lp2_stage04_99x76_p55_rowpad_sft.cjs
+      - name: Test p40 red8 and split red3-red5 whole-word inverse gates
+        if: ${{ inputs.scan_mode == 'p40-word-red35' }}
+        run: |
+          node sims/lp2_p40_red8_word_columnar_sft.cjs
+          node sims/lp2_p40_red35_twopass_word_columnar_sft.cjs
+      - name: Original p3-p39 red119 shared-pad all-secret word grammar
+        if: ${{ inputs.scan_mode == 'red119-twotime' }}
+        run: node sims/lp2_p3_p39_119_shared_pad_wordgrammar_sft.cjs
+      - name: Original p55 word-map keyed by 2016 signed sixteen-word instruction
+        if: ${{ inputs.scan_mode == 'signed2016-wordmap' }}
+        run: node sims/signed2016_p55_words59_key_sft.cjs
+      - name: Original singleton-word all-secret alphabet-state support bound
+        if: ${{ inputs.scan_mode == 'singleton-support' }}
+        run: node sims/lp2_singleton_word_state_lower_bound_sft.cjs
+      - name: Three non-dropcap red passages as original p55 76-rune key
+        if: ${{ inputs.scan_mode == 'red76-internal' }}
+        run: node sims/lp2_red_internal76_sharedpad_sft.cjs
+      - name: Reproduce page-local word-length structural tests
+        if: ${{ inputs.scan_mode == 'standard' }}
+        run: |
+          node sims/test_lp2_word_pages.cjs
+          node sims/word_length_order_probe.cjs
+          node sims/wordlength_padding_dependence.cjs
+          node sims/wordlength_padding_equality.cjs

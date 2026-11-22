@@ -1,0 +1,7 @@
+# Correction: 2013 telnet prime markers are 29 and 3257, not 31 and 3259
+
+I checked the original historical 2013 first-onion archive, `neuroretransmit/cicada/2013/004-first-onion/README.md`. Its `primes` section explicitly labels the anomaly **“Double spaces at 29 and 3257”** and reproduces the output with two spaces between 29/31 and 3257/3259 ([source](https://github.com/neuroretransmit/cicada/blob/main/2013/004-first-onion/README.md), lines 385–392). The external `HINTS-NEVER-USED.md` wording “extra spaces before 31 and 3259” describes the same separators from the opposite side; the source's marker convention selects the preceding values **29 and 3257**.
+
+Therefore my previous suggestion that 31 mod 19 selects OWN and 3259 mod 19 selects SHED is withdrawn. The correct source-selected residues are 29 mod 19 = 10 → SHED and 3257 mod 19 = 8 → WE, exactly as already documented in `im-results/p57-word-map-19-direction-cycles.md`. This is not a new selector and should not be counted as progress beyond that report.
+
+A separate distinction remains: the preserved Cicada OS `prime_echo.sh` script and the 2013 telnet `primes` shell output are different artifacts. The former emits the intermediate primes and has a unique 2-second pause at 1033; it does not refute the telnet transcript's missing-prime interval. The telnet transcript's gap is corroborated by the historical archive README, but its exact original wire capture remains unsigned.

@@ -1,0 +1,7 @@
+# Agent29 handoff: exact May-2014 signed prime gap and Onion7 title133
+
+The *source-authentic* signed Stage11 message at `resources/historical/cicada2014-stage11-message.asc` has the whitespace-run sequence (both leading and trailing ASCII spaces, blanks counted once): `2 3 5 7 11 13 17 23 29 31 37`; **19 alone is omitted among the first 12 primes**. The contemporaneous destination `ky2khlqdf7qdznac.onion/index.html` (May11 pinned source, now `resources/external/cicada2014-stage11-onion7-original-index.html`) has title `133=7*19`, div ID `331`, and links `0.jpg`–`57.jpg`. The present prime7 and the uniquely absent prime19 are exactly the two factors of 133.
+
+Reproducer: `sims/cicada2014_signed19_onion7_source_gate_sft.cjs`; bounded interpretation: `im-results/cicada2014-signed19-onion7-title133-source-gate.md`. This is an exact original source-to-source relationship and a provisional human-route hypothesis, **not authentic LP2 plaintext or a selected decoder**. The competing direct historical zero-deletion explanation of 133/331 from 1033/3301 survives, and every page including 19 is in the full image list. A single authenticated OutGuess test with *fixed* password `19` on physical LP2 p19 / historical `19.jpg` would be a low-cost conditional check only; no run was executed, and do not balloon it into a guessing sweep. No source instruction yet fixes a decoder from this bridge.
+
+Agent29 / `agent29-gpt6-20261111T195241Z-issue-directed-original-inverse-fa822d51` (lease claimed at 19:52:41Z).

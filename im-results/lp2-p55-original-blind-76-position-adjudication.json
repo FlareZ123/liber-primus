@@ -1,0 +1,1399 @@
+{
+  "schema": "p55-independent-original-jpeg-blind-76-rune-adjudication-v1",
+  "date_utc": "2026-11-12",
+  "original_image": "resources/liber-primus/72.jpg",
+  "original_jpeg_size": [
+    2400,
+    3600
+  ],
+  "crop_source_xyxy": [
+    550,
+    620,
+    1850,
+    1400
+  ],
+  "method": "Blind read four physical inscription lines using original image at full resolution and a generic Unicode GP glyph atlas; freeze 76-runic first pass before opening existing canonical p55; source-image shape and same-page exemplar adjudication of mismatches.",
+  "before_unblinding_lines": [
+    "ᛝ.ᚫᛗᛁᚹ.ᛋᛒ.ᛉᛗ.ᛋᛇᛟᛗᚹᚫ.ᚠᛟᚫᛒᚳᚢ.ᚹᚱ.ᛒ",
+    "ᛠᚠᛉᛁᛗᚢᚳᛈᚻᛝᚪᛇ.ᛗᛋᛗᛟᛈᚠ.ᛒᚻᛇᚳ.",
+    "ᛇᛖ.ᛠᛖᛁᛟᛉᛟᛋ.ᛖᛋᛇᚹᚹᛖᛋ.ᚹᛝ.ᚳᛠᛁᛗ",
+    "ᚳᛉ.ᛗᛄᚢ.ᛒᛖᛁ"
+  ],
+  "initial_blind_symbol_count": 76,
+  "canonical_symbol_count": 76,
+  "positions": [
+    {
+      "ordinal": 1,
+      "line": 1,
+      "rune": "ᛝ",
+      "blind_rune": "ᛝ",
+      "original_scan_bbox_xyxy": [
+        601,
+        655,
+        651,
+        795
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 2,
+      "line": 1,
+      "rune": "ᚫ",
+      "blind_rune": "ᚫ",
+      "original_scan_bbox_xyxy": [
+        672,
+        655,
+        706,
+        795
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 3,
+      "line": 1,
+      "rune": "ᛗ",
+      "blind_rune": "ᛗ",
+      "original_scan_bbox_xyxy": [
+        711,
+        655,
+        764,
+        795
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 4,
+      "line": 1,
+      "rune": "ᛁ",
+      "blind_rune": "ᛁ",
+      "original_scan_bbox_xyxy": [
+        771,
+        655,
+        780,
+        795
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 5,
+      "line": 1,
+      "rune": "ᚹ",
+      "blind_rune": "ᚹ",
+      "original_scan_bbox_xyxy": [
+        786,
+        655,
+        821,
+        795
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 6,
+      "line": 1,
+      "rune": "ᛋ",
+      "blind_rune": "ᛋ",
+      "original_scan_bbox_xyxy": [
+        840,
+        655,
+        875,
+        795
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 7,
+      "line": 1,
+      "rune": "ᛒ",
+      "blind_rune": "ᛒ",
+      "original_scan_bbox_xyxy": [
+        880,
+        655,
+        914,
+        795
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 8,
+      "line": 1,
+      "rune": "ᛉ",
+      "blind_rune": "ᛉ",
+      "original_scan_bbox_xyxy": [
+        936,
+        655,
+        1000,
+        795
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 9,
+      "line": 1,
+      "rune": "ᛗ",
+      "blind_rune": "ᛗ",
+      "original_scan_bbox_xyxy": [
+        1002,
+        655,
+        1055,
+        795
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 10,
+      "line": 1,
+      "rune": "ᛋ",
+      "blind_rune": "ᛋ",
+      "original_scan_bbox_xyxy": [
+        1078,
+        655,
+        1113,
+        795
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 11,
+      "line": 1,
+      "rune": "ᛇ",
+      "blind_rune": "ᛇ",
+      "original_scan_bbox_xyxy": [
+        1118,
+        655,
+        1159,
+        795
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 12,
+      "line": 1,
+      "rune": "ᚷ",
+      "blind_rune": "ᛟ",
+      "original_scan_bbox_xyxy": [
+        1163,
+        655,
+        1206,
+        795
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars"
+    },
+    {
+      "ordinal": 13,
+      "line": 1,
+      "rune": "ᛞ",
+      "blind_rune": "ᛗ",
+      "original_scan_bbox_xyxy": [
+        1212,
+        655,
+        1264,
+        795
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars"
+    },
+    {
+      "ordinal": 14,
+      "line": 1,
+      "rune": "ᚦ",
+      "blind_rune": "ᚹ",
+      "original_scan_bbox_xyxy": [
+        1272,
+        655,
+        1306,
+        795
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars"
+    },
+    {
+      "ordinal": 15,
+      "line": 1,
+      "rune": "ᚫ",
+      "blind_rune": "ᚫ",
+      "original_scan_bbox_xyxy": [
+        1309,
+        655,
+        1343,
+        795
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 16,
+      "line": 1,
+      "rune": "ᚠ",
+      "blind_rune": "ᚠ",
+      "original_scan_bbox_xyxy": [
+        1364,
+        655,
+        1398,
+        795
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 17,
+      "line": 1,
+      "rune": "ᛡ",
+      "blind_rune": "ᛟ",
+      "original_scan_bbox_xyxy": [
+        1403,
+        655,
+        1455,
+        795
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars"
+    },
+    {
+      "ordinal": 18,
+      "line": 1,
+      "rune": "ᚪ",
+      "blind_rune": "ᚫ",
+      "original_scan_bbox_xyxy": [
+        1460,
+        655,
+        1495,
+        795
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars"
+    },
+    {
+      "ordinal": 19,
+      "line": 1,
+      "rune": "ᛒ",
+      "blind_rune": "ᛒ",
+      "original_scan_bbox_xyxy": [
+        1498,
+        655,
+        1533,
+        795
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 20,
+      "line": 1,
+      "rune": "ᚳ",
+      "blind_rune": "ᚳ",
+      "original_scan_bbox_xyxy": [
+        1537,
+        655,
+        1590,
+        795
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 21,
+      "line": 1,
+      "rune": "ᚢ",
+      "blind_rune": "ᚢ",
+      "original_scan_bbox_xyxy": [
+        1591,
+        655,
+        1644,
+        795
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 22,
+      "line": 1,
+      "rune": "ᚹ",
+      "blind_rune": "ᚹ",
+      "original_scan_bbox_xyxy": [
+        1664,
+        655,
+        1699,
+        795
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 23,
+      "line": 1,
+      "rune": "ᚱ",
+      "blind_rune": "ᚱ",
+      "original_scan_bbox_xyxy": [
+        1702,
+        655,
+        1737,
+        795
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 24,
+      "line": 1,
+      "rune": "ᛒ",
+      "blind_rune": "ᛒ",
+      "original_scan_bbox_xyxy": [
+        1757,
+        655,
+        1792,
+        795
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 25,
+      "line": 2,
+      "rune": "ᛠ",
+      "blind_rune": "ᛠ",
+      "original_scan_bbox_xyxy": [
+        600,
+        850,
+        687,
+        985
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 26,
+      "line": 2,
+      "rune": "ᚠ",
+      "blind_rune": "ᚠ",
+      "original_scan_bbox_xyxy": [
+        689,
+        850,
+        723,
+        985
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 27,
+      "line": 2,
+      "rune": "ᛉ",
+      "blind_rune": "ᛉ",
+      "original_scan_bbox_xyxy": [
+        727,
+        850,
+        792,
+        985
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 28,
+      "line": 2,
+      "rune": "ᛁ",
+      "blind_rune": "ᛁ",
+      "original_scan_bbox_xyxy": [
+        794,
+        850,
+        804,
+        985
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 29,
+      "line": 2,
+      "rune": "ᛗ",
+      "blind_rune": "ᛗ",
+      "original_scan_bbox_xyxy": [
+        810,
+        850,
+        862,
+        985
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 30,
+      "line": 2,
+      "rune": "ᚢ",
+      "blind_rune": "ᚢ",
+      "original_scan_bbox_xyxy": [
+        869,
+        850,
+        922,
+        985
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 31,
+      "line": 2,
+      "rune": "ᚳ",
+      "blind_rune": "ᚳ",
+      "original_scan_bbox_xyxy": [
+        926,
+        850,
+        979,
+        985
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 32,
+      "line": 2,
+      "rune": "ᛈ",
+      "blind_rune": "ᛈ",
+      "original_scan_bbox_xyxy": [
+        980,
+        850,
+        1032,
+        985
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 33,
+      "line": 2,
+      "rune": "ᚻ",
+      "blind_rune": "ᚻ",
+      "original_scan_bbox_xyxy": [
+        1034,
+        850,
+        1078,
+        985
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 34,
+      "line": 2,
+      "rune": "ᛝ",
+      "blind_rune": "ᛝ",
+      "original_scan_bbox_xyxy": [
+        1084,
+        850,
+        1134,
+        985
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 35,
+      "line": 2,
+      "rune": "ᛚ",
+      "blind_rune": "ᚪ",
+      "original_scan_bbox_xyxy": [
+        1140,
+        850,
+        1174,
+        985
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars"
+    },
+    {
+      "ordinal": 36,
+      "line": 2,
+      "rune": "ᛇ",
+      "blind_rune": "ᛇ",
+      "original_scan_bbox_xyxy": [
+        1178,
+        850,
+        1218,
+        985
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 37,
+      "line": 2,
+      "rune": "ᛗ",
+      "blind_rune": "ᛗ",
+      "original_scan_bbox_xyxy": [
+        1239,
+        850,
+        1292,
+        985
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 38,
+      "line": 2,
+      "rune": "ᛋ",
+      "blind_rune": "ᛋ",
+      "original_scan_bbox_xyxy": [
+        1298,
+        850,
+        1333,
+        985
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 39,
+      "line": 2,
+      "rune": "ᛞ",
+      "blind_rune": "ᛗ",
+      "original_scan_bbox_xyxy": [
+        1338,
+        850,
+        1390,
+        985
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars"
+    },
+    {
+      "ordinal": 40,
+      "line": 2,
+      "rune": "ᛡ",
+      "blind_rune": "ᛟ",
+      "original_scan_bbox_xyxy": [
+        1398,
+        850,
+        1450,
+        985
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars"
+    },
+    {
+      "ordinal": 41,
+      "line": 2,
+      "rune": "ᛈ",
+      "blind_rune": "ᛈ",
+      "original_scan_bbox_xyxy": [
+        1455,
+        850,
+        1508,
+        985
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 42,
+      "line": 2,
+      "rune": "ᚠ",
+      "blind_rune": "ᚠ",
+      "original_scan_bbox_xyxy": [
+        1510,
+        850,
+        1544,
+        985
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 43,
+      "line": 2,
+      "rune": "ᛒ",
+      "blind_rune": "ᛒ",
+      "original_scan_bbox_xyxy": [
+        1564,
+        850,
+        1598,
+        985
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 44,
+      "line": 2,
+      "rune": "ᚻ",
+      "blind_rune": "ᚻ",
+      "original_scan_bbox_xyxy": [
+        1603,
+        850,
+        1646,
+        985
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 45,
+      "line": 2,
+      "rune": "ᛇ",
+      "blind_rune": "ᛇ",
+      "original_scan_bbox_xyxy": [
+        1654,
+        850,
+        1694,
+        985
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 46,
+      "line": 2,
+      "rune": "ᚳ",
+      "blind_rune": "ᚳ",
+      "original_scan_bbox_xyxy": [
+        1698,
+        850,
+        1751,
+        985
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 47,
+      "line": 3,
+      "rune": "ᛇ",
+      "blind_rune": "ᛇ",
+      "original_scan_bbox_xyxy": [
+        601,
+        1035,
+        642,
+        1180
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 48,
+      "line": 3,
+      "rune": "ᛖ",
+      "blind_rune": "ᛖ",
+      "original_scan_bbox_xyxy": [
+        646,
+        1035,
+        699,
+        1180
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 49,
+      "line": 3,
+      "rune": "ᛠ",
+      "blind_rune": "ᛠ",
+      "original_scan_bbox_xyxy": [
+        721,
+        1035,
+        807,
+        1180
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 50,
+      "line": 3,
+      "rune": "ᛖ",
+      "blind_rune": "ᛖ",
+      "original_scan_bbox_xyxy": [
+        809,
+        1035,
+        862,
+        1180
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 51,
+      "line": 3,
+      "rune": "ᛁ",
+      "blind_rune": "ᛁ",
+      "original_scan_bbox_xyxy": [
+        869,
+        1035,
+        878,
+        1180
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 52,
+      "line": 3,
+      "rune": "ᚷ",
+      "blind_rune": "ᛟ",
+      "original_scan_bbox_xyxy": [
+        884,
+        1035,
+        928,
+        1180
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars"
+    },
+    {
+      "ordinal": 53,
+      "line": 3,
+      "rune": "ᛉ",
+      "blind_rune": "ᛉ",
+      "original_scan_bbox_xyxy": [
+        934,
+        1035,
+        998,
+        1180
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 54,
+      "line": 3,
+      "rune": "ᚷ",
+      "blind_rune": "ᛟ",
+      "original_scan_bbox_xyxy": [
+        1000,
+        1035,
+        1044,
+        1180
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars"
+    },
+    {
+      "ordinal": 55,
+      "line": 3,
+      "rune": "ᛋ",
+      "blind_rune": "ᛋ",
+      "original_scan_bbox_xyxy": [
+        1049,
+        1035,
+        1084,
+        1180
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 56,
+      "line": 3,
+      "rune": "ᛖ",
+      "blind_rune": "ᛖ",
+      "original_scan_bbox_xyxy": [
+        1105,
+        1035,
+        1158,
+        1180
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 57,
+      "line": 3,
+      "rune": "ᛋ",
+      "blind_rune": "ᛋ",
+      "original_scan_bbox_xyxy": [
+        1164,
+        1035,
+        1199,
+        1180
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 58,
+      "line": 3,
+      "rune": "ᛇ",
+      "blind_rune": "ᛇ",
+      "original_scan_bbox_xyxy": [
+        1204,
+        1035,
+        1245,
+        1180
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 59,
+      "line": 3,
+      "rune": "ᚦ",
+      "blind_rune": "ᚹ",
+      "original_scan_bbox_xyxy": [
+        1250,
+        1035,
+        1284,
+        1180
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars"
+    },
+    {
+      "ordinal": 60,
+      "line": 3,
+      "rune": "ᚦ",
+      "blind_rune": "ᚹ",
+      "original_scan_bbox_xyxy": [
+        1287,
+        1035,
+        1321,
+        1180
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars"
+    },
+    {
+      "ordinal": 61,
+      "line": 3,
+      "rune": "ᛖ",
+      "blind_rune": "ᛖ",
+      "original_scan_bbox_xyxy": [
+        1324,
+        1035,
+        1377,
+        1180
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 62,
+      "line": 3,
+      "rune": "ᛋ",
+      "blind_rune": "ᛋ",
+      "original_scan_bbox_xyxy": [
+        1384,
+        1035,
+        1418,
+        1180
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 63,
+      "line": 3,
+      "rune": "ᚦ",
+      "blind_rune": "ᚹ",
+      "original_scan_bbox_xyxy": [
+        1439,
+        1035,
+        1473,
+        1180
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars"
+    },
+    {
+      "ordinal": 64,
+      "line": 3,
+      "rune": "ᛟ",
+      "blind_rune": "ᛝ",
+      "original_scan_bbox_xyxy": [
+        1476,
+        1035,
+        1520,
+        1180
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars"
+    },
+    {
+      "ordinal": 65,
+      "line": 3,
+      "rune": "ᚳ",
+      "blind_rune": "ᚳ",
+      "original_scan_bbox_xyxy": [
+        1541,
+        1035,
+        1584,
+        1180
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 66,
+      "line": 3,
+      "rune": "ᛠ",
+      "blind_rune": "ᛠ",
+      "original_scan_bbox_xyxy": [
+        1584,
+        1035,
+        1681,
+        1180
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 67,
+      "line": 3,
+      "rune": "ᛁ",
+      "blind_rune": "ᛁ",
+      "original_scan_bbox_xyxy": [
+        1683,
+        1035,
+        1692,
+        1180
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 68,
+      "line": 3,
+      "rune": "ᛗ",
+      "blind_rune": "ᛗ",
+      "original_scan_bbox_xyxy": [
+        1698,
+        1035,
+        1751,
+        1180
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 69,
+      "line": 4,
+      "rune": "ᚳ",
+      "blind_rune": "ᚳ",
+      "original_scan_bbox_xyxy": [
+        600,
+        1225,
+        654,
+        1360
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 70,
+      "line": 4,
+      "rune": "ᛉ",
+      "blind_rune": "ᛉ",
+      "original_scan_bbox_xyxy": [
+        655,
+        1225,
+        720,
+        1360
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 71,
+      "line": 4,
+      "rune": "ᛞ",
+      "blind_rune": "ᛗ",
+      "original_scan_bbox_xyxy": [
+        738,
+        1225,
+        790,
+        1360
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars"
+    },
+    {
+      "ordinal": 72,
+      "line": 4,
+      "rune": "ᛄ",
+      "blind_rune": "ᛄ",
+      "original_scan_bbox_xyxy": [
+        797,
+        1225,
+        842,
+        1360
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 73,
+      "line": 4,
+      "rune": "ᚢ",
+      "blind_rune": "ᚢ",
+      "original_scan_bbox_xyxy": [
+        847,
+        1225,
+        900,
+        1360
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 74,
+      "line": 4,
+      "rune": "ᛒ",
+      "blind_rune": "ᛒ",
+      "original_scan_bbox_xyxy": [
+        921,
+        1225,
+        955,
+        1360
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 75,
+      "line": 4,
+      "rune": "ᛖ",
+      "blind_rune": "ᛖ",
+      "original_scan_bbox_xyxy": [
+        960,
+        1225,
+        1013,
+        1360
+      ],
+      "source_read_confidence": "high"
+    },
+    {
+      "ordinal": 76,
+      "line": 4,
+      "rune": "ᛁ",
+      "blind_rune": "ᛁ",
+      "original_scan_bbox_xyxy": [
+        1019,
+        1225,
+        1029,
+        1360
+      ],
+      "source_read_confidence": "high"
+    }
+  ],
+  "first_pass_discrepancies": [
+    {
+      "ordinal": 12,
+      "line": 1,
+      "rune": "ᚷ",
+      "blind_rune": "ᛟ",
+      "original_scan_bbox_xyxy": [
+        1163,
+        655,
+        1206,
+        795
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars",
+      "reason": "G is the plain crossed X; OE has the distinct small diamond above lower legs"
+    },
+    {
+      "ordinal": 13,
+      "line": 1,
+      "rune": "ᛞ",
+      "blind_rune": "ᛗ",
+      "original_scan_bbox_xyxy": [
+        1212,
+        655,
+        1264,
+        795
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars",
+      "reason": "D has straight upright pillars enclosing a full crossing; M has converging upper diagonals"
+    },
+    {
+      "ordinal": 14,
+      "line": 1,
+      "rune": "ᚦ",
+      "blind_rune": "ᚹ",
+      "original_scan_bbox_xyxy": [
+        1272,
+        655,
+        1306,
+        795
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars",
+      "reason": "TH has the triangular stroke returning to the left stem; W uses its distinct upper pennant"
+    },
+    {
+      "ordinal": 17,
+      "line": 1,
+      "rune": "ᛡ",
+      "blind_rune": "ᛟ",
+      "original_scan_bbox_xyxy": [
+        1403,
+        655,
+        1455,
+        795
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars",
+      "reason": "IA has the upper double-hook on the crossing; OE has a small central diamond and lower legs"
+    },
+    {
+      "ordinal": 18,
+      "line": 1,
+      "rune": "ᚪ",
+      "blind_rune": "ᚫ",
+      "original_scan_bbox_xyxy": [
+        1460,
+        655,
+        1495,
+        795
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars",
+      "reason": "AE has two parallel descending right bars; A has a forked upper right bar"
+    },
+    {
+      "ordinal": 35,
+      "line": 2,
+      "rune": "ᛚ",
+      "blind_rune": "ᚪ",
+      "original_scan_bbox_xyxy": [
+        1140,
+        850,
+        1174,
+        985
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars",
+      "reason": "L has one top right bar; A has a second branch/fork"
+    },
+    {
+      "ordinal": 39,
+      "line": 2,
+      "rune": "ᛞ",
+      "blind_rune": "ᛗ",
+      "original_scan_bbox_xyxy": [
+        1338,
+        850,
+        1390,
+        985
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars",
+      "reason": "D has straight upright pillars enclosing a full crossing; M has converging upper diagonals"
+    },
+    {
+      "ordinal": 40,
+      "line": 2,
+      "rune": "ᛡ",
+      "blind_rune": "ᛟ",
+      "original_scan_bbox_xyxy": [
+        1398,
+        850,
+        1450,
+        985
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars",
+      "reason": "IA has the upper double-hook on the crossing; OE has a small central diamond and lower legs"
+    },
+    {
+      "ordinal": 52,
+      "line": 3,
+      "rune": "ᚷ",
+      "blind_rune": "ᛟ",
+      "original_scan_bbox_xyxy": [
+        884,
+        1035,
+        928,
+        1180
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars",
+      "reason": "G is the plain crossed X; OE has the distinct small diamond above lower legs"
+    },
+    {
+      "ordinal": 54,
+      "line": 3,
+      "rune": "ᚷ",
+      "blind_rune": "ᛟ",
+      "original_scan_bbox_xyxy": [
+        1000,
+        1035,
+        1044,
+        1180
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars",
+      "reason": "G is the plain crossed X; OE has the distinct small diamond above lower legs"
+    },
+    {
+      "ordinal": 59,
+      "line": 3,
+      "rune": "ᚦ",
+      "blind_rune": "ᚹ",
+      "original_scan_bbox_xyxy": [
+        1250,
+        1035,
+        1284,
+        1180
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars",
+      "reason": "TH has the triangular stroke returning to the left stem; W uses its distinct upper pennant"
+    },
+    {
+      "ordinal": 60,
+      "line": 3,
+      "rune": "ᚦ",
+      "blind_rune": "ᚹ",
+      "original_scan_bbox_xyxy": [
+        1287,
+        1035,
+        1321,
+        1180
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars",
+      "reason": "TH has the triangular stroke returning to the left stem; W uses its distinct upper pennant"
+    },
+    {
+      "ordinal": 63,
+      "line": 3,
+      "rune": "ᚦ",
+      "blind_rune": "ᚹ",
+      "original_scan_bbox_xyxy": [
+        1439,
+        1035,
+        1473,
+        1180
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars",
+      "reason": "TH has the triangular stroke returning to the left stem; W uses its distinct upper pennant"
+    },
+    {
+      "ordinal": 64,
+      "line": 3,
+      "rune": "ᛟ",
+      "blind_rune": "ᛝ",
+      "original_scan_bbox_xyxy": [
+        1476,
+        1035,
+        1520,
+        1180
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars",
+      "reason": "OE shows single upper diamond and two lower legs; NG has two stacked diamonds with crossing legs"
+    },
+    {
+      "ordinal": 71,
+      "line": 4,
+      "rune": "ᛞ",
+      "blind_rune": "ᛗ",
+      "original_scan_bbox_xyxy": [
+        738,
+        1225,
+        790,
+        1360
+      ],
+      "source_read_confidence": "adjudicated_with_same_page_exemplars",
+      "reason": "D has straight upright pillars enclosing a full crossing; M has converging upper diagonals"
+    }
+  ],
+  "source_marks": [
+    {
+      "line": 1,
+      "kind": "small square word separator",
+      "x_bbox": [
+        656,
+        665
+      ]
+    },
+    {
+      "line": 1,
+      "kind": "small square word separator",
+      "x_bbox": [
+        824,
+        833
+      ]
+    },
+    {
+      "line": 1,
+      "kind": "small square word separator",
+      "x_bbox": [
+        919,
+        928
+      ]
+    },
+    {
+      "line": 1,
+      "kind": "small square word separator",
+      "x_bbox": [
+        1062,
+        1072
+      ]
+    },
+    {
+      "line": 1,
+      "kind": "small square word separator",
+      "x_bbox": [
+        1348,
+        1358
+      ]
+    },
+    {
+      "line": 1,
+      "kind": "small square word separator",
+      "x_bbox": [
+        1648,
+        1658
+      ]
+    },
+    {
+      "line": 1,
+      "kind": "small square word separator",
+      "x_bbox": [
+        1741,
+        1750
+      ]
+    },
+    {
+      "line": 2,
+      "kind": "botanical page ornament",
+      "x_bbox": [
+        550,
+        570
+      ]
+    },
+    {
+      "line": 2,
+      "kind": "small square word separator",
+      "x_bbox": [
+        1222,
+        1232
+      ]
+    },
+    {
+      "line": 2,
+      "kind": "small square word separator",
+      "x_bbox": [
+        1548,
+        1557
+      ]
+    },
+    {
+      "line": 2,
+      "kind": "small square word separator",
+      "x_bbox": [
+        1752,
+        1761
+      ]
+    },
+    {
+      "line": 2,
+      "kind": "botanical page ornament",
+      "x_bbox": [
+        1830,
+        1849
+      ]
+    },
+    {
+      "line": 3,
+      "kind": "small square word separator",
+      "x_bbox": [
+        705,
+        715
+      ]
+    },
+    {
+      "line": 3,
+      "kind": "small square word separator",
+      "x_bbox": [
+        1088,
+        1098
+      ]
+    },
+    {
+      "line": 3,
+      "kind": "small square word separator",
+      "x_bbox": [
+        1423,
+        1432
+      ]
+    },
+    {
+      "line": 3,
+      "kind": "small square word separator",
+      "x_bbox": [
+        1526,
+        1535
+      ]
+    },
+    {
+      "line": 4,
+      "kind": "small square word separator",
+      "x_bbox": [
+        722,
+        731
+      ]
+    },
+    {
+      "line": 4,
+      "kind": "small square word separator",
+      "x_bbox": [
+        905,
+        914
+      ]
+    },
+    {
+      "line": 4,
+      "kind": "red 13-dot terminal mark",
+      "x_bbox": [
+        1034,
+        1044
+      ]
+    },
+    {
+      "line": 4,
+      "kind": "red 13-dot terminal mark",
+      "x_bbox": [
+        1049,
+        1058
+      ]
+    },
+    {
+      "line": 4,
+      "kind": "red 13-dot terminal mark",
+      "x_bbox": [
+        1064,
+        1074
+      ]
+    }
+  ],
+  "agreement_after_original_pixel_review": "76/76 equal to unchanged canonical",
+  "transcription_edit": "none",
+  "limitation": "Coordinates are approximate tight horizontal projection components and vertical line bands, not pixel-by-pixel polygon annotations. Source raster includes neighboring glyphs in one merged region for positions 65–66; x split approximately bisects their adjoining strokes. No decryption is inferred."
+}

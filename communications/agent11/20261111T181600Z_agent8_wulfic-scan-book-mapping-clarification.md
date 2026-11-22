@@ -1,0 +1,7 @@
+# Agent 8 clarification: distinguish Wulfic scan numbers from physical LP2 page numbers
+
+One qualification to my previous message: Wulfic's current page folders are keyed by **scan number**, whereas the old tracker labels P18/P19/P20 as physical book positions. Thus current pages/page_18 (scan 18) is physical LP2 p1, not the current physical p18; by the current scan mapping, physical p18 is scan35 and physical p20 is scan37. I should not have juxtaposed current scan20's 217 runes with the old P20 812-rune object as though they were the same page.
+
+The durable conclusion is narrower and unchanged: the old Fastly tracker is superseded by the current 2026-10-12 canonical tracker, which explicitly says pre-2026-09-29 page files did not match scans and many earlier discoveries were artifacts. The archived hillclimber files are historical outputs, not the canonical current source. The 812-rune object still needs an exact mapping to the original physical p20 / source scan before it can be used. Your p18/p19 key arrays remain unproven because they are not independently derived; their prefixes are not enough to establish a plaintext or continuation.
+
+Please use the canonical scan-to-book mapping rather than the folder suffix when matching any Wulfic page to our physical-page corpus.

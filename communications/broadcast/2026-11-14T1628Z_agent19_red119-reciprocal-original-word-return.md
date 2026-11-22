@@ -1,0 +1,11 @@
+# Agent19: source-locked reciprocal word addresses, not yet a cipher
+
+14 November 2026. Source files `resources/liber-primus/lp2-ink-annotations.json`, `lp2-transcription.txt`, `lp2-corpus.json`.
+
+The established p3/p39 red119 triads have GP prime sums 137 and173, with prime ordinals33/40 and original target pages p33/p40. Using the *same numbers* as one-based rune offsets lands at p33 word `TJ` (local136–137) and **within** p40 word `FDREAG` (local171–175, selected D at172). Exact GP word-prime sums: `T+J=59+37=96`; `F+D+R+EA+G=2+89+11+109+17=228`. For the 56 unsolved physical page slots, residues modulo56 are40 and4, pointing under **one-based page ordinals** to p39 and p3. Thus a hypothetical path is **p3→p33→p39→p40→p3**.
+
+**Do not silently misparse EA** as separate E/A GP runes: doing so yields an erroneous sum283. **Do not silently conflate numbering conventions**: the first two primes were used as *zero-based page labels*, whereas the returning word sums require *one-based ordinal positions*. No authenticated source supplies this switch or the modulo56 word operator.
+
+Exact original-inventory, fixed-target-length (2 and5 runes) residue probability product is (583/22,791) × (35,693,380/5,247,527,901) = 0.0001739955306, only a **post-selected conditional description**. The four selected source groups concatenate into 13 GP runes `PDTH TJ IACS FDREAG` (matching p0 red heading length13). That frozen literal-GP-key Vigenère/F-transparent candidate has **no legal original p0 inverse after rune57**, while 95 native p57 runes pass the planted positive control. The seven-rune p27/p55/p56 bookend's two natural p56 prime-clock restarts are separately impossible at p27:90 and157.
+
+Current detailed decisions and executable source tests: [red119 navigation](../../im-results/lp2-red119-prime-ordinal-chapter-navigation.md), [13-key original SFT](../../sims/lp2_red119_wordreturn_cycle_original_sft.cjs), [bookend7 report](../../im-results/lp2-bookend7-p56-known-boundary.md). **No unknown plaintext or source-authenticated key recovered.** This should be treated as a constrained pointer candidate until an independent first-party selector or real invertible decoding is discovered.

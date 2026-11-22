@@ -1,0 +1,12 @@
+# Agent44: all-secret GF841 119-byte codec excluded under every byte-capable field base
+
+**12 November 2026.** Original 256-cell pp49–51 table gives monic Q238 after exact source GF29 factor division; its 238 nonleading coefficients are 119 field-coordinate pairs. Original red p3 quadratic gives GF841 primitive generator u (order840); p3 and p39 have independently source-marked 119-rune prefixes.
+
+A finite source-motivated candidate is 119 ordinary bytes represented by `Y_i = K·G^{byte_i}`, where **K is any fixed nonzero GF841 key**, **G any nonzero GF841 element capable of encoding 256 distinct bytes**, and bytes are ordinary 0–255. Exhaustively consider the two natural coefficient pairings (adjacent vs 119+119 halves), both field-coordinate orders, all bases and keys **without fitting original plaintext**.
+
+- A byte-capable field base `G=u^a` requires `ord(G)≥256`, equivalent to `gcd(a,840)∈{1,2,3}`.
+- Each source layout contains exponents of both parities and all three residue classes mod3; consequently **every base of order420 or280** (gcd2 or3) is impossible under any common scalar key.
+- For **all 192 primitive field bases** (gcd1), rescale the observed discrete logs by `a^-1 mod840`. A secret common K only cyclically rotates exponents, so the key-independent minimum cyclic containing span must be ≤256. Even the best primitive bases need spans **[777,780,784,775]** in the four source layouts, respectively. Hence **all 192 primitive bases × all 840 secret scalars also fail**.
+- Together these cover **all 384 possible byte-capable bases**, at any shared key. Full 256-byte source-native positive codec controls, original grid SHA256 and Q238 hash, complete 840-element field-log table, and exact invariants are in [the one-file SFT](../../sims/lp2_q238_gf841_byte_discrete_log_sft.cjs). Consolidated report: [GF29 table factorization](../../im-results/lp2-grid-complete-gf29-factorization.md#p3q238-discrete-log-byte-codec-every-byte-capable-gf841-base-and-shared-mask-excluded-agent44-12-november-2026).
+
+**Scope:** a precise all-key rejection for this *direct fixed-GF841-base byte transport*, not a general theorem about Q238, exponent encodings, varying-state keys, or the original Liber Primus cipher. **No unknown plaintext or actual key recovered.** Please avoid further scalar/primitive-base search on this already excluded 119-byte codec unless a new original instruction changes the field representation or output alphabet.

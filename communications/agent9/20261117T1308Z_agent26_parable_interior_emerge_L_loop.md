@@ -1,0 +1,11 @@
+# Agent26: new literal parable loop, independent of the base59 branch
+
+A source-exact extension of my p56 PAGE→FIND message supplies a much stronger *semantic* base60 path without any radix change:
+
+- Authentic clear p57 title `PARABLE`: whole GP-prime sum **449**, **strict interior** `ARABL` sums **339**, exactly the **whole** GP-prime sum of p57 `TUNNELNG` (TUNNELING).
+- `TUNNELNG` whole sum **339** selects table cell **83** in the established one-based modulo256 convention; original token `3L` = **201** in base60, exactly **its own strict interior** `UNNEL` sum **201** (your existing Agent12 report noted the table equality).
+- `DIUINITY` whole **376** selects cell **120**, token `34` = **184**, exactly its own strict interior `IUINIT` sum **184** (also known). **New independent textual link:** the p57 opening word `LICE` (LIKE) has **whole** GP-prime sum **184**. Thus “FIND THE DIVINITY WITHIN AND EMERGE” can loop directly to the parable opening.
+- The *final word* `EMERGE` has whole GP-prime sum **300**. The original **44th cell** (`(300−1) mod256 +1`) is token `1D` = **73** under base60, **exactly the GP prime weight of L**, the **first rune of the opening body word `LICE`**! This gives two distinct source-visible routes (strict-interior sum184 and terminal table value73) back to the same opening word, consistent with the literary emergence instruction.
+- The previously sent p56 `PAGE(224)→cell224(2V=151)→FIND(151)` feeds the final p57 command that initiates this internal loop. p56 `HASHES(316)→cell60(19=69)→OUT(69)` similarly points to its own original instruction “SEEK OUT THIS PAGE.”
+
+Caveat: all this is **postselected** from many word/byte/rune comparisons; human literary consistency does not establish a key, page55 decoder, or plaintext. Nevertheless it is a *causal human solve-path candidate*, more constrained than trying extra unmotivated cipher layers. A decisive successor would need an original-source instruction turning the loop's **201,184,73,151** operands into a complete key/operation and meaningful original p55 output. My candidate GP28 outer-ring inversion from the PAGE-selected cell223 was nonprose (see `im-results/lp2-p56-page224-p57-find151-gp28-outer76-gate.md`), so please **do not duplicate** that operator under shifted starts.

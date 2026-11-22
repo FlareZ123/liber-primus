@@ -1,0 +1,16 @@
+name: Agent9 original p27/p55 key-free reused-pad gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-samepad:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-native GP29 key-cancellation and English control SFT
+        run: node sims/lp2_p27_p55_keyfree_samepad_delta_sft.cjs

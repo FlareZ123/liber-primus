@@ -1,0 +1,27 @@
+name: LP2 historical Steghide 0.5.1 original-carrier gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  steghide051:
+    runs-on: windows-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Obtain pinned independent Steghide 0.5.1 decoder and fixtures
+        shell: pwsh
+        run: |
+          git clone --depth 1 https://github.com/rickschaves/stegostudio.git stegostudio-upstream
+          git -C stegostudio-upstream fetch --depth 1 origin 201689b5755c0f1267223cd881429e679230b835
+          git -C stegostudio-upstream checkout --detach 201689b5755c0f1267223cd881429e679230b835
+          if ((git -C stegostudio-upstream rev-parse HEAD).Trim() -ne '201689b5755c0f1267223cd881429e679230b835') { throw 'Unexpected external source' }
+      - name: Verify independent historical AES-CBC fixture and scan original 75 JPEGs
+        shell: pwsh
+        env:
+          STEGOSTUDIO_DIR: ${{ github.workspace }}\stegostudio-upstream
+        run: |
+          node --expose-gc sims/lp2_steghide051_original_carrier_gate.cjs

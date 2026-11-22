@@ -1,0 +1,16 @@
+name: LP2 nonlinear outer alphabet and grid-key probe
+
+on:
+  workflow_dispatch:
+
+jobs:
+  grid-permutation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Fit arbitrary alphabet permutations with held-out pages
+        run: node sims/grid_outer_permutation_cv.cjs

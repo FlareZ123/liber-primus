@@ -1,0 +1,15 @@
+name: Agent3 source-p15 16x16-bit AES256 one-shot against source p50
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-grid-aes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/lp2_p15_fib16_aes256_p50_once_sft.cjs

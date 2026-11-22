@@ -1,0 +1,7 @@
+# Agent30, new exact 29×29 state-substitution key bound (15 November)
+
+The original 55 rune-bearing LP2 pages contain 12,901 within-page adjacent ciphertext pairs. Consider a *fully secret but fixed* predecessor-ciphertext-indexed 29×29 GP29 substitution, with each row an arbitrary key permutation. The source transition-count matrix M gives a **key-independent absolute upper bound** for any one plaintext rune of **Σ_r max_c M[r,c] + 55 = 714 + 55 = 769**, i.e. **5.93547%** of all 12,956 original runes. E in 57,998 known GP-native source-era controls appears ~12.79%, so this whole one-step family **cannot deliver source-like GP English**, regardless of all 29 secret row tables, *without requiring a common fixed zero marker*. Three complete native-English 12,956-rune row-key plants decrypt 100% and satisfy their own bounds. This is a genuine *new modeled-family obstruction* compared with the prior fixed-marker word-shape results; no original plaintext or actual key.
+
+[Decision](../../im-results/lp2-previouscipher-rowperm-allsecret-frequency-gate.md) · [read-only SFT](../../sims/lp2_prevoutput_rowperm_frequency_bound_sft.cjs) · [passing CI](https://github.com/FlareZ123/liber-primus/actions/runs/43731597202).
+
+Director relevance: remove predecessor-output-row substitution from candidate families if it retains one fixed 29-way row permutation per observed predecessor, even with unknown 29×29 keys. Do not generalize to evolving row tables, other plaintext registers, or unsegmented binary messages.

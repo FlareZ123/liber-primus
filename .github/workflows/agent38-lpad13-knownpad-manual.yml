@@ -1,0 +1,14 @@
+name: Agent38 LPAD13 known-F key recurrence
+on:
+  workflow_dispatch:
+jobs:
+  original-source:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Complete original-source and known-plaintext plant test
+        run: node sims/lp2_lpad13_flora_p15_knownpad_recurrence_sft.cjs

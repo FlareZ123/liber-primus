@@ -1,0 +1,17 @@
+name: Agent3 LP2 two-history dictionary gate
+on:
+  workflow_dispatch:
+
+jobs:
+  dictionary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run original-source two-history dictionary consistency
+        run: node sims/lp2_secondhistory_dictionary_ac3_sft.cjs

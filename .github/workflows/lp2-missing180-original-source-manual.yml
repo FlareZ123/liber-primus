@@ -1,0 +1,16 @@
+name: Agent39 original 2013 missing-180 terminal key gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-selected missing-prime / terminal-180 gate
+        run: node sims/lp2_2013_omitted180_prime_terminal_gate_sft.cjs

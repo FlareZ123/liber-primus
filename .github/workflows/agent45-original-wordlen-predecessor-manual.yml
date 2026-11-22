@@ -1,0 +1,21 @@
+name: Agent45 original GP29 inverse SFTs (manual)
+on:
+  workflow_dispatch:
+jobs:
+  source-run:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce complete original-input search and heldout tests
+        shell: pwsh
+        run: |
+          node sims/lp2_wordlength_predecessor_pow2_sourcekey_sft.cjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node sims/lp2_p50_terminal180_known_linear_key_sft.cjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node sims/lp2_p50_parable_blum_inner180_inverse_sft.cjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

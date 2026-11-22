@@ -1,0 +1,20 @@
+name: Agent50 P11 IS Occurrence H Rectangle
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  p11-is:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run p11 IS occurrence-count H-rectangle regression
+        shell: pwsh
+        run: node sims/lp2_p11_is_occurrence_hrect_sft.cjs

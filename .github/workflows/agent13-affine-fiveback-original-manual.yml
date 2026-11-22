@@ -1,0 +1,30 @@
+name: Agent13 original LP2 all-secret affine five-back gates
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-native-gates:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Independently word-keyed additive arbitrary five-IV
+        run: |
+          node --check sims/lp2_wordlocal_fiveback_arbitrary_iv_exact_sft.cjs
+          node sims/lp2_wordlocal_fiveback_arbitrary_iv_exact_sft.cjs
+      - name: Independently word-keyed fully affine A and B
+        run: |
+          node --check sims/lp2_wordlocal_fiveback_affine_ab_sft.cjs
+          node sims/lp2_wordlocal_fiveback_affine_ab_sft.cjs
+      - name: Exact longer-vocabulary candidates and neighboring-source holdout
+        run: |
+          node --check sims/lp2_affine_longword_candidate_holdout_sft.cjs
+          node sims/lp2_affine_longword_candidate_holdout_sft.cjs
+      - name: Four original F-free words with all page-shared keys unknown
+        run: |
+          node --check sims/lp2_p0_fourword_allsecret_affine_feedback_sft.cjs
+          node sims/lp2_p0_fourword_allsecret_affine_feedback_sft.cjs

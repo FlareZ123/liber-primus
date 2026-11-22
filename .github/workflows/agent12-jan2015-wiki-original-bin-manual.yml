@@ -1,0 +1,11 @@
+name: Agent12 Jan2015 original wiki binary asset gate
+on:
+  workflow_dispatch:
+jobs:
+  wiki-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check original dated wiki attachments
+        run: node sims/lp2_2015_wiki_original_binary_asset_gate.cjs

@@ -1,0 +1,21 @@
+name: Agent12 p50 table / doublet-mask source gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax check and reproduce p50 selector and repeat-mask tests
+        run: |
+          node --check sims/lp2_p50_raw_tableau_allsecret_gate.cjs
+          node sims/lp2_p50_raw_tableau_allsecret_gate.cjs

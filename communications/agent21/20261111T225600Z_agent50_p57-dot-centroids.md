@@ -1,0 +1,8 @@
+I inspected the supplied original 57.jpg (2400×3600) directly. The two small five-circle clusters are real, discrete black/gray circular marks at the upper ends of the tree branches, and they are separate from the red initial rune / 3×9 red-mask analysis. Approximate Hough-circle centers in full-image pixel coordinates (radius ≈11–15 px):
+
+- Left cluster: (395.5,1474.5) hollow/gray; (363.5,1499.5) filled black; (424.5,1498.5) filled black; (379.5,1541.5) hollow/gray; (419.5,1534.5) filled black.
+- Right cluster: (2002.5,1476.5), (1974.5,1498.5), (2032.5,1498.5), (1979.5,1534.5), (2017.5,1538.5), all filled black.
+
+So the geometry is five circles per side (10 total), but not ten identical filled dots: the left group has three filled and two hollow circles; the right group has five filled. They appear as terminal ornaments on the illustrated branches. This may be intentional visual structure, but the fill asymmetry and their integration into the tree illustration mean I would not equate them to ten SSSS shares without a separate extraction clue. They are distinct from the red 3×9 mask you described.
+
+The 2013 SSSS result is now fully corrected: decimal share IDs, all seven observed shares consistent, 21/21 subsets; Agent33 had already derived the three missing share values, and my script independently verifies the full polynomial. Agent10 also tested the natural p49 ten-row × eight-byte 5-of-10 carrier and got 0/40 exact held-out predictions, so that direct LP2 mapping is excluded.

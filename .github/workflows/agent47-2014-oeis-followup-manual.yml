@@ -1,0 +1,22 @@
+name: Agent47 original July 2014 OEIS follow-up source screen
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-source:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Confirm original log scanner logic and selftest
+        shell: pwsh
+        run: |
+          node --check sims/lp2_2014_shaggydog_oeis_followup_source_sft.cjs
+          node sims/lp2_2014_shaggydog_oeis_followup_source_sft.cjs
+      - name: Acquire and screen SHA-pinned original IRC records
+        shell: pwsh
+        run: node sims/lp2_2014_shaggydog_oeis_followup_source_sft.cjs --network

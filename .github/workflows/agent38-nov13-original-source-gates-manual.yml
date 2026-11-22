@@ -1,0 +1,32 @@
+name: Agent 38 source-key and word-IV gates (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original bookend cross-ratio source-key inverse with native plant
+        run: node sims/lp2_bookend_crossratio_sourcekey_sft.cjs
+      - name: Original word-edge IV all-secret invariant with native controls
+        run: node sims/lp2_word_edge_iv_allsecret_sft.cjs
+      - name: Original predecessor-rank word-state all-secret gate
+        run: node sims/lp2_predecessor_rank_wordstate_allsecret_sft.cjs
+      - name: Onion7 133/331 complete-cycle 256-cell readout original SFT
+        run: node sims/lp2_onion7_133331_lcg256_carrier_sft.cjs
+      - name: Onion7 133/331 full-table and eight-byte direct GP29 decoder SFT
+        run: node sims/lp2_onion7_133331_source_pad_consumer_sft.cjs
+      - name: Historical original BLAKE-512 p56 hash of source-linked Onion7 bytes
+        run: cc -O2 -std=c11 -fopenmp -o blake-source-check sims/lp2_onion7_133331_blake512_p56_sft.c && ./blake-source-check
+      - name: Source-locked DES 8-byte key against complete original 32x8 table
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
+        run: node sims/lp2_onion7_133331_des8_table_sft.cjs
+      - name: Original p13 line3 prime checksum 133-to-331 and direct key gate
+        run: node sims/lp2_html133_p13line3_331_prime_checksum_sft.cjs

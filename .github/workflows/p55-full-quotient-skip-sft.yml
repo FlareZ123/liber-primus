@@ -1,0 +1,18 @@
+name: LP2 p55 full quotient skip-aware SFT
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  p55-quotient-skip:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run frozen original-input inverse and synthetic controls
+        run: node sims/p55_full_quotient_skip_sft.cjs
+      - name: Check original p55 exact 75/76-rune global and wordwise minimum changes
+        run: node sims/p55_fullbody_min_symbol_changes_sft.cjs

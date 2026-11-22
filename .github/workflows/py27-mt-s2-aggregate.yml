@@ -1,0 +1,36 @@
+name: Aggregate completed MT exact S2 78-shard screen
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run_id:
+        description: Source run containing the 78 seed-range artifacts
+        required: true
+        default: "42750834108"
+        type: string
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download all 78 source interval artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: mt-exact-remainder-*
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ inputs.source_run_id }}
+          path: downloaded
+      - name: Reconcile every cursor, candidate, screen hit and near-miss
+        run: python3 sims/aggregate_mt_exact.py downloaded mt-exact-complete.json
+      - name: Preserve manifest and full near-miss inventory
+        uses: actions/upload-artifact@v4
+        with:
+          name: mt-exact-coverage-aggregate
+          retention-days: 90
+          path: mt-exact-complete.json

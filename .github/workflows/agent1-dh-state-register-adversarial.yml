@@ -1,0 +1,15 @@
+name: DH23 state-register adversarial audit
+
+on:
+  workflow_dispatch:
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Reconstruct source state and audit competing tilings
+        run: node sims/lp2_dh_state_register_adversarial_sft.cjs

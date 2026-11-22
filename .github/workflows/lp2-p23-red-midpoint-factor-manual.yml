@@ -1,0 +1,20 @@
+name: LP2 p23 red midpoint p50 factor original-source SFT
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-red-factor:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - name: Check out original sources and exact test
+        uses: actions/checkout@v4
+      - name: Configure Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify full original source, factor and red-boundary null
+        run: node sims/lp2_p23_red_midpoint_dualfactor_original_sft.cjs

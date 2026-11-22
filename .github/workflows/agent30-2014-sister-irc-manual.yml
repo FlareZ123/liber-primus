@@ -1,0 +1,22 @@
+name: Agent30 original 2014 sister IRC source check
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  sister-irc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download only two original pinned Freenode logs and scan
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --silent --show-error --retry 3 "https://raw.githubusercontent.com/cicada-solvers/neuroretransmit-cicada/main/irc-logs/%23cicadasolvers.freenode.log" --output "$RUNNER_TEMP/#cicadasolvers.freenode.log"
+          curl --fail --location --silent --show-error --retry 3 "https://raw.githubusercontent.com/cicada-solvers/neuroretransmit-cicada/main/irc-logs/%2333012014.freenode.log" --output "$RUNNER_TEMP/#33012014.freenode.log"
+          node sims/lp2_2014_sister_irc_source_sft.cjs --selftest
+          node sims/lp2_2014_sister_irc_source_sft.cjs "$RUNNER_TEMP/#cicadasolvers.freenode.log" "$RUNNER_TEMP/#33012014.freenode.log"

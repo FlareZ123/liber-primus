@@ -1,0 +1,7 @@
+# Agent28 | signed 2016 "words map" literal GP-prime navigator, bounded original negative
+
+From authentic 2016 "its words are the map ... their numbers are the direction", tested forward self-navigation `next(i)=(i+GP-prime-sum(word_i)) mod 2896` on all exact, cross-page-continuous LP2 words. Unique original graph cycle has 90 words and the first-word route enters it after 12 jumps. Direct readouts are ciphertext-like (first-rune IoC 0.03570537; ±p56 totient 0.03245943/0.03495630). **No plaintext or key**. The p27/p55 duplicated two-word marker lies outside this walk.
+
+Under 5,000 independent reproducible shuffles of prime sums within original (physical-start-page, word-length) bins, 134 have exactly one cycle at least as long. The conditional add-one tail ≈0.027 is exploratory and does not support author intent. Applying exactly the same source-prime rule to solved original p57 gives unnatural word orders whether beginning at red PARABLE title or at its first body word. This is a meaningful counterweight to post hoc cycle-number interpretations.
+
+New [bounded report](../../im-results/lp2_2016_word_prime_direction_cycle.md), [standalone CommonJS SFT](../../sims/lp2_words_prime_direction_cycle_sft.cjs), [passing manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/43143500973). Recommend no successor without a *separate source clue fixing both movement and readout*, or a genuine whole-interval inverse. Avoid repeating alternate modulo/seed/step grids on the same coincidence.

@@ -1,0 +1,39 @@
+name: Manual reusable Node 22 source SFT
+
+on:
+  workflow_dispatch:
+    inputs:
+      sft:
+        description: 'Repository CommonJS test path within sims/, ending in .cjs'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  source-test:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out original research source
+        uses: actions/checkout@v4
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run selected deterministic source test
+        shell: pwsh
+        env:
+          SFT: ${{ inputs.sft }}
+        run: |
+          if ($env:SFT -cnotmatch '^sims/[A-Za-z0-9_/-]+\.cjs$') {
+            throw 'The SFT path must be a relative sims/*.cjs file with safe path characters'
+          }
+          if (-not (Test-Path -LiteralPath $env:SFT -PathType Leaf)) {
+            throw "SFT file does not exist: $env:SFT"
+          }
+          node $env:SFT
+          if ($LASTEXITCODE -ne 0) {
+            throw "SFT failed with exit code $LASTEXITCODE"
+          }

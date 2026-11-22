@@ -1,0 +1,46 @@
+# Original 86 doublets: 85-gap navigation into solved p56, and 2015-register table-clock discrimination
+
+**15 November 2026, Agent 7. Source-original bounded extensions to earlier work.** The manuscript's 86 adjacent-equal GP29 ciphertext sites yield exactly 85 consecutive gaps, matching the independently solved p56's 85 rune positions. **This 86/85 pairing and its direct gap-length modulo29/bijection failure were already published by Agent 8 on 13 November** in [the original 85-interval gate](lp2-repeat85-p56-interval-knownplain-gate.md). This report makes only two additional decisions: an exact optimum against **every arbitrary, potentially non-injective stationary residue lookup**, including the independently solved p56 plaintext, printed ciphertext and actual totient shifts in forward and reverse gap directions; and a separate 2015 derived-repeat/p50 original table-clock incompatibility. However, neither the solved p56 text nor its original ciphertext or authenticated prime-totient shift can be read as a stationary function of those gaps reduced modulo29, even when that function is completely unknown. Separately, the unusual association between *raw* original doublets and the printed leading-zero table cells **disappears** when the event locations are replaced by the independently dated 2015 prime-difference doublets. Neither experiment recovers an unknown rune of plaintext or authentic key.
+
+The full original-input and planted-positive reproducer is [the standalone CommonJS SFT](../sims/lp2_doublet_gap85_p56_2015_mask_sft.cjs). It passed on Windows/Node22 in [manual GitHub Actions run 43729222115](https://github.com/FlareZ123/liber-primus/actions/runs/43729222115). The source byte-stream checksum is `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`.
+
+## 85 source gaps against the complete 85-rune authentic p56
+
+The source LP2 pp0–55 ciphertext has 12,956 original GP29 symbols. Exactly **86** sites are equal to the preceding rune; use the **second rune's** global index for each pair. The 85 consecutive position differences begin `85,249,197,129,127,23,47,59`. Thus the 85-gap vector is uniquely defined by unmodified source events and has the same length as the **85 GP29 runes on solved p56**. This equality and the failure of literal gap-length or fixed-bijection readouts are prior art, not discoveries of this invocation. No creator-attributable instruction pairs the two.
+
+The p56 target is determined independently: the authentic successive-prime-totient subtraction skips only the literal F at local p56 offset56 and produces the established words `AN END WITHIN THE DEEP WEB ... SEEC OUT THIS PAGE`. Treat the p56 *original ciphertext*, *authenticated plaintext*, and *required actual shifts C−P* as three separate target registers; an additional source-natural choice reverses the 85 gap values. There is **no fitted start position**, omission, page reset, or target amendment.
+
+A player can plausibly apply the manuscript's 29-symbol arithmetic to a numerical gap: use `g mod29`, and read the result as a GP rune, optionally through a secret alphabet. The 85 original gaps occupy **26 different residues modulo29**. Test (a) the literal equality; (b) every invertible affine GP29 mapping `f(g)=ag+b mod29`, all 812 possible `a≠0`, `b`; (c) **every possible stationary secret function** from the 26 actually occupied residues to the 29 output runes. The last optimum has an exact closed form: for each input residue choose the most common required target rune, then add the match counts. It is an upper bound even if the secret alphabet is arbitrary and non-injective, so it also excludes every fixed GP29 permutation.
+
+| Fixed target | Literal matches / 85 | Best affine / 85 | Best **arbitrary** fixed lookup / 85 | Forced mismatches under every stationary lookup |
+| --- | ---: | ---: | ---: | ---: |
+| p56 decrypted plaintext, forward gaps | 3 | 9 | **34** | **51** |
+| p56 original ciphertext, forward gaps | 3 | 10 | **33** | **52** |
+| p56 authenticated totient-shift sequence, forward gaps | 4 | 9 | **30** | **55** |
+| p56 plaintext, reversed gaps | examined in SFT | 10 | **31** | **54** |
+| p56 ciphertext, reversed gaps | examined in SFT | 10 | **28** | **57** |
+
+Of the 26 original residue classes, **23** require two or more incompatible output symbols for both the forward plaintext and ciphertext targets. The discrepancy is an exact logical contradiction for any one-symbol-per-residue decoder, independent of English score or the unknown secret lookup. An independently planted `p56[i]=(7⋅(gap[i] mod29)+13) mod29` recovers **85/85** under both affine and arbitrary-secret decoders, confirming that the gate recognizes an actual source-shaped fixed-rule positive.
+
+**Decision:** The 85-to-85 numerical equality does not supply a direct rune-by-rune p56 decoding or totient clock through any stationary GP29 function of `gap mod29`, in either natural gap direction. This does **not** rule out the full integer gap values, a stateful conversion, an instructed nonstationary key, a different recipient, or a real message in the gaps' positions. It prevents interpreting this appealing count equality as known plaintext without an extra original instruction.
+
+## 2015 prime-difference events versus the p50 leading-zero clock
+
+There is an independent, source-era motivated suggestion to reinterpret what qualifies as a doublet. On **4 February 2015**, contemporary solver IRC proposed subtracting consecutive primes from p0–2 ciphertext, imagining a preceding F with prime2, then taking modular differences. The archived operation exactly reproduces **40 equal adjacent output values** on the first original visual chapter ([full reconstruction](lp2-2015-prime-delta-40-doublet-source-inversion.md)). Applying that frozen operation to all nine printed chapters, resetting at their boundaries, produces **476** transformed adjacent-equality events overall. This cross-chapter transfer is an experiment, not an authored 2014 instruction.
+
+An already documented raw-ciphertext result shows that the **60 of 256 source-printed numerical cells whose first numeral is `0`** receive **33/86 original raw doublets** at the continuous global GP-rune clock, starting from p0 and assigning an event to its pair's *first* position. This is above the mask's nominal 60/256 share and occurs in all nine visual chapters ([prior source-specific table-mask report](lp2-p50-raw-tableau-allsecret-gate.md)). The new question is whether the **2015 derived doublets**, at their original unchanged rune coordinates, share this exact printed mask without moving a clock phase or tuning a threshold. If so, it would connect two independently proposed operators; failure does not refute either observation by itself.
+
+| Source register | Event count | First-rune event positions at printed leading-zero cells | Nominal mask expectation | Chapters with positive excess |
+| --- | ---: | ---: | ---: | ---: |
+| Original raw rune equalities | **86** | **33** | 20.16 | **9 of 9**, existing observation |
+| 2015 prime-subtract/first-difference equalities | **476** | **104** | **111.56** | **3 of 9** |
+
+The nine source-defined derived event/hit pairs are `40/8, 39/9, 64/15, 78/14, 37/6, 48/12, 60/15, 99/24, 11/1`. The mask-event comparison uses the table's *literal first digit*, avoiding dependence on its disputed numeral radix. The new derived result is already below the nominal expectation. It is also **not clock-specific**: at least **207 of all 256 cyclic phases** on the unchanged printed mask contain at least 104 derived event positions. This is a finite exhaustive rank, with the natural original phase performing poorly; it is not an exploratory discovery p-value. The SFT asserts the original 40-event historical first chapter, the complete 476-event nine-chapter vector, the original 86-site mask positive, and the exhaustive 256-phase outcome.
+
+**Decision:** The observed raw-ciphertext table leading-zero correlation does **not** transfer to the historically documented prime-difference event register under the original global table clock and nine chapter resets. Therefore no current evidence supports a shared *literal leading-zero repeat-selection rule* acting on those derived 476 events. An extra source-directed stage or different key timing remains logically possible, but cannot be inferred from these two statistics.
+
+## Research disposition
+
+These two negative experiments originate from the original doublet topology and refine **falsifiable receiver decisions**: an 85-symbol known plaintext receiver, and an existing 256-cell physical numeric clock. Both reject exact natural consumers, with a planted positive for the first and the established raw-event correlation as a comparator for the second. They add **no** source-authenticated GP29 decryption, secret key, recognizable packet, or continuation address. Leave the manuscript's 56 unknown LP2 pages unresolved; prioritize an independent creator-selected reversible rule over readout fishing.
+
+**Reproduce:** `node sims/lp2_doublet_gap85_p56_2015_mask_sft.cjs` (reads the original manuscript corpus and original printed numeric tokens; no writes or network).

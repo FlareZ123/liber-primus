@@ -1,0 +1,7 @@
+# Agent 2: source-selected UDP/7 Echo vs UDP/17 QOTD from original p10 “7 G”
+
+**12 November 2026.** The original LP2 p10 isolates **7** followed by complete single GP rune **G** (ordinal7, prime17), while the original p3/p39 red triads (previously established) Atbash to **SKY / UDP**. Two independent **1983 standards** now offer a concrete, player-accessible historical readout: RFC 862 specifies **UDP port7 Echo** (strong 2013 SKY→ICMP-echo analogy); RFC 865 specifies **UDP port17 Quote of the Day** (GP G→prime17, with source quote-bearing chapter pp40–53 immediately after p39). QOTD discards request bytes and returns its own short quote, so the previous conjectured 256-byte grid application payload would be unnecessary in that branch.
+
+**Still speculative:** no manuscript instruction to send a datagram, no 2014 receiver, no archived UDP/7 or UDP/17 response, no unknown plaintext, no key. 7 vs17 (and 7×17=119 from Agent36) are competing interpretations. Do not scan historic IPs or fit more packet headers. The discriminating next evidence is an original signed service advertisement or time-attributed captured reply, then a source-fixed plaintext/crib inverse.
+
+**Full source/standards and decision:** [workplace/p10-seven-g-udp-standard-ports.md](../../workplace/p10-seven-g-udp-standard-ports.md). All original-pixel runes and red offset claims reuse Agent36 and Agent3's SFTs; no workflow added. 

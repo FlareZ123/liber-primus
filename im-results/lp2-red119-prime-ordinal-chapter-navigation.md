@@ -1,0 +1,118 @@
+# Two red 119-offset triads independently point to two red-heading chapters
+
+**Agent47, 14 November 2026; Agent4 upstream selector, 19 November. Classification: exact source-derived navigation arithmetic with a new source-constrained p3 selector; downstream cipher consumers remain unauthenticated. No new whole-page plaintext or symmetric key is claimed.**
+
+## The source cue
+
+Original LP2 physical **p3** and **p39** contain the manuscript's only **two isolated red three-rune spans**, each beginning after exactly **119 original runes** on its page and bracketed by conspicuous red 13-dot marks. This is an independent *visual selector*: it chooses exactly two triads without searching over all strings, colors, primes, offsets, or pages. Their canonical GP29 indices are respectively **[13,23,2]** and **[27,5,15]**.
+
+Using the original Gematria Primus **prime weights** (an operation authentically encountered in solved Cicada material), sum the weights of each visibly selected triad, then ask for its **prime ordinal**. Neither output is tuned:
+
+| Source red span | Source GP transliteration and original weights | Exact sum | Prime ordinal | Directed target |
+| --- | --- | ---: | ---: | --- |
+| p3, local rune offsets119–121 | P=43, D=89, TH=5 | **137** | **33** (prime(33)=137) | **LP2 p33** starts with a ten-rune red heading and has another red eight-rune span at local91 |
+| p39, local rune offsets119–121 | IA=107, C=13, S=53 | **173** | **40** (prime(40)=173) | **LP2 p40** starts with an eight-rune red heading |
+
+These are the **only two original red spans whose source prime-weight sums are primes with ordinals within the 58-page LP2 book**. The complete ink inventory has **18** red spans, including two red heading spans on solved p56/p57; six spans have prime-valued sums. The other four prime sums have ordinals121 (p6),186 (p27),75 (p33) and87 (p57), outside the physical page range0–57. The two within-range prime-ordinal addresses belong **precisely** to the two standalone red119 triads. Both select pages visibly beginning with red headings.
+
+Prime-indexing the sum remains an inferred operation. The p39→p40 member is still primarily a source-derived pair observation, while the p3→p33 member now has an independent upstream page/length selector from the p32→p0 shared-secret route. The authentic 2016 wording about words/numbers/directions motivates an address *interpretation* without specifying this arithmetic. Earlier LP2 investigations already noticed the matching p3/p39 positions and the p39 GF29 polynomial double root; the **new observation here** is the separate GP-prime-weight-sum → prime-ordinal → physically red-heading page relation. It is a navigation hypothesis, not a confirmed decryption.
+
+## New upstream selector for the p3 triad (Agent4, 19 November)
+
+The p3 half of this navigation pair now has an independent causal predecessor.
+
+The repaired YOU33 route on p32 yields boundary state `[K,A]=[2,8]`. Zero-based row-major coordinate `(2,8)` returns `F=0` beside the manuscript-unique row-start `HOME`, selecting p0. P0's red title independently has DH logs `[2,8]` and shared secret **3**.
+
+Consume that typed integer in the same page-address register:
+
+```text
+p0 shared secret3 -> physical p3.
+```
+
+P3 then contains exactly one red span whose length equals the selector3: the isolated red119 triad already analyzed here. It is bracketed by red 13-dot markers at offsets119 and122. Reusing the same GP-prime-sum operation as the p0 red title gives137 = prime(33), so the pre-existing p3→p33 address is no longer reached by choosing p3 retrospectively.
+
+The route composes:
+
+```text
+p32 [2,8]
+ -> p0 DH logs [2,8]
+ -> shared3
+ -> p3 red length3
+ -> prime ordinal33
+ -> p33.
+```
+
+P33 immediately re-emits the same `[2,8]` as its upper red-title word lengths, which independently decode to THEIR; its lower `[3,5]` title decodes to RISE. This cross-page state loop strengthens the navigation interpretation of the p3 red119 arithmetic. It does not authenticate the later modulo56/modulo29 word-return maps or any of the direct cipher transfers rejected below.
+
+See `im-results/lp2-p32-p0-p3-p33-ka-state-loop.md` and `sims/lp2_p32_p0_p3_p33_state_loop_sft.cjs`.
+
+## Additional independent 2014 delivery-page anchor (Agent5, 14 November)
+
+A separate original-source cross-check found that the archived [2014 LP2 image-delivery HTML](../resources/cicada2014-onion7-index.html) has the literal document **title 133** and container **ID 331**. The latter is the center of the preceding 2014 OpenPuff 7×7 magic square; its decimal digits reverse to **133**. The two red119 triad GP-prime sums **137** and **173** both yield this independently available **133** after subtracting their *one-based* original physical page numbers **4** and **40**. No other red span among the 18 shares that page-adjusted value. This strengthens the historical-source plausibility of the earlier post hoc arithmetic, while the one-based subtraction and reversal remain unproven authorial instructions; original filenames themselves are zero-based. The literal p33/p40 original-source test of the solved-p56 prime-totient cipher with rank starts **67, 133 and 331**, both signs, fails **all 12** configurations under all authentic plaintext-F bypass histories. Therefore the new source number is an **unresolved navigation/key selector candidate**, without an identified cipher transfer or unknown plaintext. [Full cross-source account and source-exact SFT](lp2-2014-html133-red119-crosslink.md).
+
+## Target-page cross-check: a candidate p15 selector
+
+The two addressed pages contain **three** annotated red spans: p33 has a ten-rune span at local0 and an eight-rune span at local91; p40 has an eight-rune span at local0. Their original GP-prime-weight sums are:
+
+| Target page | Red-span start | Length | Prime-weight sum | Sum mod 28 |
+| --- | ---: | ---: | ---: | ---: |
+| p33 | 0 | 10 | 379 | **15** |
+| p33 | 91 | 8 | 295 | **15** |
+| p40 | 0 | 8 | 435 | **15** |
+
+A full census of the 18 annotated red spans finds **exactly these three** with residue 15 modulo 28. Since 28 = φ(29), the order of the nonzero elements of the GP29 field, this is a plausible way to recognize **p15** as a further source. It is not an authenticated operation: the choice of modulus 28 and the interpretation of residue 15 as a physical page number are retrospective. The three sums are an observation, not a recovered key.
+
+There is a second coordinate check. The triad sums 137 and 173 are also the **one-based rune offsets** on their respective target pages. In the canonical original transcription, p33's **137th rune** (zero-based local136) starts the printed word **ᛏᛄ** (GP **TJ**). However, p40's **173rd rune** (zero-based local172) is the **second rune** of printed word **ᚠᛞᚱᛠᚷ** (GP **FDREAG**), after the preceding **ᚠ** at local171. The earlier assertion that both target offsets start a printed word was incorrect. The two pointed runes still share the separate prime-sum/offset numerical relation, but their printed word positions differ; the p40 leading F must not be silently dropped. These original symbols remain ciphertext.
+
+## Conditional reciprocal return using the two addressed printed words (14 November 2026)
+
+The already-selected one-based rune offsets lead to a further **source-exact two-word correspondence**, using the historical GP prime weights and the **56 unsolved physical page slots p0–p55**. Count each *whole printed word*, including the preceding F on p40 (the GP rune EA is one indivisible prime-valued symbol):
+
+| Red source and prime-ordinal addressed page | Rune position (one-based) and exact whole GP word | GP prime-weight sum | Sum modulo 56 | Proposed return address |
+| --- | --- | ---: | ---: | --- |
+| p3 red `P D TH` (sum137, 33rd prime) → p33 | 137th rune, word `T J` at p33:136–137 | T59 + J37 = **96** | **40** | 40th original unsolved page, **p39**, location of the other isolated red119 triad |
+| p39 red `IA C S` (sum173, 40th prime) → p40 | 173rd rune, within full word `F D R EA G` at p40:171–175 | F2 + D89 + R11 + EA109 + G17 = **228** | **4** | Fourth original unsolved page, **p3**, location of the first isolated red119 triad |
+
+This produces the conditional directed cycle **p3 → p33 → p39 → p40 → p3**. The **indexing asymmetry is decisive**: prime ordinals 33/40 must be interpreted as zero-based source *page labels* to select p33/p40, whereas word-sum residues 40/4 must be interpreted as *one-based ordinal page counts* to return to p39/p3. The original sources do not tell players to alternate these conventions, nor do they specify word-prime-sum modulo56 as a direction operator. Because the chain was noticed after original source inspection, its finite probability is descriptive rather than an authenticated intent calculation.
+
+An **exact no-replacement page-inventory permutation control** freezes the addressed original printed word slots and their GP-rune lengths (two on p33; five on p40), then allows every possible subset of the original page's rune identities to fill those slots. The p33 target residue40 occurs for **583/22,791** two-position subsets; the p40 target residue4 occurs for **35,693,380/5,247,527,901** five-position subsets. The pages are disjoint, so their conditional joint proportion is **0.0001739955306**. This number does **not** adjust for retrospective choices of modulus, source pages, an indexing shift, red-ink marks, alternative word operations, or other patterns inspected throughout the project. It cannot itself authenticate an intended navigation loop.
+
+The four visibly/integer-selected source groups `P D TH` + `T J` + `IA C S` + `F D R EA G` form exactly **13 GP runes**, equal to the independently visible opening p0 red heading length13. A direct, zero-phase, GP-index Vigenère key consumed with the historical plaintext-F bypass is a complete natural first inverse of that proposed tape, with a solved-p57 95-rune native encryption/recovery plant. **On unmodified original p0, all legal F bypass histories become impossible at local rune 57**. Thus this simple 13-key transfer is excluded before prose scoring, although the conditional four-page navigation relationship survives without an authenticated operation. The complete source assertions, exact combinatorial null, 13-rune key and strict-F test are in [the reproducible original-input SFT](../sims/lp2_red119_wordreturn_cycle_original_sft.cjs). No unknown plaintext or author key has been recovered.
+
+### Rival return using GP29 index sums: a possible route to the known p27/p55 bookend
+
+The same **already source-selected** whole words permit a second finite, simpler arithmetic reading using canonical GP29 **rune indices**, rather than their prime weights. `TJ` at p33:136–137 has GP indices **16+11=27**. `F D R EA G` at p40:171–175 has indices **0+23+4+28+6=61≡3 (mod29)**. Taking the target page label as the word's sum of GP29 indices modulo29 maps **p33→p27** and **p40→p3** without switching between one-based and zero-based page labels. The resulting conditional page route is **p39→p40→p3→p33→p27**. The addressed original **p27:28–34** has the independently documented unique seven-rune match to **p55:70–75/p56:0**, so the proposed route also has a human-observable extension to p55/p56. This reaches an existing clue; it does **not** reveal the p27 offset from the word sum, select a cryptographic inverse, or recover plaintext.
+
+The [same original-source SFT](../sims/lp2_red119_wordreturn_cycle_original_sft.cjs) now asserts both word-index sums, all seven runes at the known p27/terminal seam, and the distinct index-return counts under an exact page-rune-inventory, word-length-frozen null: **782/22,791** p33 two-position subsets return27 and **180,946,082/5,247,527,901** p40 five-position subsets return3. Their independent conditional product is **0.001183144528**. This is a retrospective source-shape diagnostic, **not evidence of an authenticated 29-index direction operator**. Modulo29 only addresses physical pages0–28; the fact that the p27 repeated ciphertext physically crosses to p55/56 makes an attractive graph, but those repeated seven runes were already known. No fresh original plaintext position is predicted, and the alternate route does not increase the evidence standard of a complete solution.
+
+**Research choice:** treat the modulo56 one-based-return loop and the modulo29 zero-based-return route as competing interpretations of the same two selected words. Do not combine their different arithmetic operations as independent confirmations, and do not infer hidden plaintext from reaching the existing seven-rune seam. Require a first-party instruction identifying which map to use, or a route-specific fresh key/inverse that works on unmodified unknown text.
+
+## Bounded source-selected consumer tests
+
+### Red-source prime 137/173 as the actual p56 clock starts
+
+The simplest direct consumer of the two first-party GP prime sums themselves, **137** at red p3 and **173** at red p39, is to reuse the independently solved p56 prime-totient cipher starting at those exact primes, with target page labels33/40 read from their ordinal positions. No page phase, p15-derived seed, keyword, matrix, or extraneous digit extraction is required: the two natural full-page inverses are **p33 at consecutive-prime ordinal33** and **p40 at consecutive-prime ordinal40**. An exact original-cipher dynamic program retains every legal plaintext-F bypass or encrypted-nonF reading at each ciphertext F, as well as the original start prime and known p56 sign.
+
+On the untouched **214-rune p33**, all legal key clocks become impossible already at **local rune3**. On untouched **231-rune p40**, they become impossible at **local rune106**. The authentic p56 original 85-rune prime-totient cipher remains feasible from its true first prime2, providing an independent reference. These are **complete no-phase exclusions** of the most literal prime-rank-to-target-page transfer, prior to any language scoring. They do not exclude a separately sourced operation, missing original key, or other use of the page-address identities. The same [source-exact CJS SFT](../sims/lp2_red119_wordreturn_cycle_original_sft.cjs) records these two new strict-F results alongside the word-return control.
+
+### p15 Fibonacci-prime ranks as starts in the solved p56 prime-totient stream
+
+The p15 grid's distinct-Fibonacci prime ordinals supply the fixed start set **[1, 2, 3, 4, 6, 9, 14, 22, 35, 56, 90, 145, 234, 378, 611, 988]**. A human solver who has reached p15 from the common target-heading residue might try those ranks as the starting prime ordinal of the authentic solved-p56 stream, with a page-local reset. This is a bounded composition of two source-derived inputs, not an open-ended key search.
+
+For p33's untouched **214 runes** (including nine ciphertext F symbols), all **16 starts × 2 signs** were tested with the complete historical plaintext-F ambiguity: a literal plaintext F consumes no key, while a normal symbol must decode to a non-F. **0/32** configurations have any inverse path; the earliest contradiction ranges from rune0 through rune137. The exact DP passes the original p56 feasibility control and all **32** independently encrypted source-native GP positive plants. The same p15-start family has already been tested on p40 with **0/32** feasible configurations in the [all-source-start floral gate](lp2-p15-ftransparent-allphase-feasibility.md). This rejects only the direct p15-rank → p56-prime-totient transfer on these two destinations.
+
+### p3 red polynomial evaluated on the signed p15 matrix
+
+The p3 triad coefficients [13,23,2] define R(x)=13+23x+2x² over GF29. Evaluating this polynomial on the independently reconstructed signed p15 matrix M gives the invertible four-symbol operator R(M); the p15 sign restoration remains inferred rather than printed. The red119 prime-ordinal hypothesis selects p33 as the destination, and the original visual chapter p33–39 has exactly **1,680 runes = 420 four-rune blocks**, so the direct Hill4 test needs no padding or fitted phase.
+
+Both R(M) and R(M)⁻¹ were applied in the source-frozen column-vector convention to the complete untouched chapter. The original IoC is **0.034360021555**; the two decoded IoCs are **0.034474885845** and **0.034396182535**. Both exact matrix round trips pass, and an independent source-native GP plant round-trips with IoC **0.071817124706**. Neither original output shows native GP letter concentration. The same R(M)/inverse family was already negative on the original p40–53 black body (IoCs **0.034440146716 / 0.034346559964**) and pp16–22 in the [p15/p39 matrix study](lp2-p15-p39-signed-matrix-eigen-crosslink.md). Thus the simplest direct polynomial-matrix consumer has now been tested on the p33–39 and p40–53 target chapters and does not recover plaintext.
+
+### Red119 triads as literal three-rune keys on their addressed red spans
+
+A shorter, source-visible consumer needs no p15 matrix: take the two isolated red119 GP index triplets themselves as **period-three additive keys**, reset at the beginning of each of the three red spans on the pages they address. Original p3 key `P D TH` = [13,23,2] applied to p33 red starts0 and91; original p39 key `IA C S` = [27,5,15] applied to p40 red start0. These starts are ink-selected, with no fitted source offset or letter mapping. Using `P_i=(C_i−K_(i mod 3)) mod29` gives respectively `I E EO NG G H J P G OE` (p33 red10), `H H I Y G O N E` (p33 red8), and `TH R R EA U H IA O` (p40 red8), none a complete coherent red-heading phrase. Testing the opposite additive sign and reversal of the complete source key on each red span also gives nonlinguistic GP29 sequences; the four fixed readings per target remain conditional on an unauthenticated key-transfer assumption. This rejects a simple **triad-as-key-to-addressed-heading** consumer without undermining the source count/prime-ordinal navigation observation or claiming a new ciphertext inverse.
+
+## Current interpretation and next useful decision
+
+The source-derived target pages share **three red headings with prime-weight residue 15 modulo 28**. The two addressed *whole* ciphertext words give two competing possible navigation maps: a modulo56 one-based-return loop to the opposite isolated-red-triad pages, and a modulo29 GP-index return from p33 to p27 (the known terminal seven-rune seam) and p40 to p3. Neither map is author-selected. Its requisite mixed page-index conventions and post-selected modulo operation are unconfirmed. The direct 13-rune route-key reading fails the strict original plaintext-F inverse on p0 at rune57, and the two literal source-prime-start clock transfers to p33/p40 fail at original rune3/106. The coincident prime-value target offsets have **different word-position roles**: p33's 137th rune starts TJ, while p40's 173rd rune is the D after F inside FDREAG. The prior claimed two-word-start coincidence is withdrawn. This is a coherent navigation clue worth preserving, but the residue operation is still analyst-selected and none of the bounded direct p15 consumers yields plaintext. Do not broaden into arbitrary page-local key, matrix, or clock menus. The next useful work is an independent historical or visual clue that specifies what to do with the p33/p40 red headings or the addressed words, or an independently recovered plaintext-bearing source. If no such operation appears, retain the red119 chain as a navigation hypothesis rather than a cipher.
+
+**Reproduction:** [Source-gate SFT](../sims/lp2_red119_p33_p15_source_gate_sft.cjs) reads the original canonical corpus, ink annotations, transcription and native-GP control. It asserts the complete 18-span residue census, both page/rune address coordinates and their distinct word-position roles, all 32 p33 F-transparent prime-totient configurations and source-native plants, the p56 feasibility control, the source-derived R(M) matrix and inverse, and the complete p33–39 Hill4 original/positive-control round trips.

@@ -1,0 +1,7 @@
+# Agent50: p15 nine-red-rune FIBONACCI-crib continuation fails (13 Nov 2026)
+
+The original p15 4×4 square is indeed Fibonacci-indexed primes; the **nine-runic top red heading** also begins with literal F, so `FIBONACCI` is a plausible *conjectural* nine-rune crib. Its exact original GP29 ciphertext indices are `[0,1,20,19,24,28,26,22,24]`. The crib would require full Vigenère key `[0,20,3,16,15,4,21,17,14]`; taking the initial F as historical plaintext-F bypass gives eight-key `L O T S R NG B X`.
+
+An exact F-bypass inverse reaches an impossible non-F ciphertext at **the very next p15 source rune, local offset9**, because the first key digit20 equals the observed ciphertext rune20 and would decode an F that should have been transmitted as literal F. All seven following pages p16–22 also fail even when each gets any of eight key phases and a free first-rune IV; their first impossible local rune offsets are `66,96,161,92,156,192,108`. Plaintext-autokey and ciphertext-autokey under the full nine-crib initial key decode all 1,903 original runes, but leave non-crib IoCs `0.0345033`/`0.0344692` with no language.
+
+This **does not disprove the literal word FIBONACCI as possible title** under an unknown unrelated cipher, and supplies no key/unknown plaintext; it only closes the two complete source-crib cipher routes. Avoid repeating these fixed attempts or treating the guess as authenticated original plaintext. Original-input reproducer `sims/lp2_p15_fibonacci_title_crib_sft.cjs`; bounded report `im-results/lp2-p15-fibonacci-title-crib-closed-loop-gate.md`.

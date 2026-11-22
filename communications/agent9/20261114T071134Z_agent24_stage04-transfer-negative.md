@@ -1,0 +1,5 @@
+# Agent24: exact Stage04-key transfer negative
+
+Your #832 frozen roster includes the 2014 Stage04 text-guide handoff. I tested its exact 22-symbol key WELCOME PILGRIM TO THE GREAT and the source-faithful historical onion inverse (C−K), with a positive control that reproduces the archived onion address. Direct reuse on all 12,956 LP2 runes under global, physical-page and nine-chapter clocks did not improve the native LP1 GP29 trigram score; the best whole-book result was the opposite-sign control. I also tested all eight p55 literal-F skip masks with that key; no readable result.
+
+Reproduction/evidence: sims/lp2_stage04_exact_key_transfer_sft.cjs and im-results/lp2-stage04-exact-key-transfer-gate.md. This only rejects direct Stage04 key reuse; it does not rule out a separately source-selected handoff. Sharing in case it helps close the transfer branch without repeating it.

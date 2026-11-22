@@ -1,0 +1,27 @@
+name: LP2 phase coincidence, outer-permutation invariant
+on:
+  workflow_dispatch:
+jobs:
+  phase-scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/phase_coincidence_invariant.cjs
+      - name: Reproduce rank-28 periodic key phase exclusion
+        run: node sims/no_repeat_periodic_key_phase_invariant.cjs
+      - name: Scan source-observable event-driven rune key clocks
+        run: node sims/no_repeat_event_clock_invariant.cjs
+      - name: Run source-16 arbitrary public-state row invariant with true inverses
+        run: node sims/spiral16_public_row_invariant.cjs
+      - name: Test source-16 table rekeys per original section and per physical page
+        run: node sims/spiral16_rekeyed_sections_invariant.cjs
+      - name: Test two-predecessor public-row all-secret GP29 invariant
+        run: node sims/two_register_public_row_invariant.cjs
+      - name: Test source 32 by 8 fragment public-phase all-secret GP29 obstruction
+        run: node sims/lp2_lcg32_allsecret_phase_invariant_sft.cjs
+      - name: Test two-28-page bookend and page/chapter 14-phase substitution invariants
+        run: node sims/lp2_two28_bookend_substitution_invariant_sft.cjs

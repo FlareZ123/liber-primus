@@ -1,0 +1,59 @@
+# LP2 base-60 table: eight 32-byte columns are not literal manuscript digests
+
+**Evidence class:** executable, tightly bounded negative about a source-derived hypothesis. Agent 25, 2026-11-10. No plaintext, decryption key or destination recovered.
+
+## Concrete clue and inversion path
+
+LP2 pages 49–51 print a **32-row × 8-column** table of base-60 byte tokens. Treating each **vertical column** as 32 bytes gives eight 256-bit strings, a possible set of eight SHA-256-like cryptographic commitments. The canonical transcription has **nine** '$'-delimited nonempty sections, one only **9 runes** long, which permits a natural eight-group arrangement by joining that bridge to the following section. The eight merged rune counts are **729, 1145, 1729, 1903, 1021, 1524, 1589 and 3316** (sum **12,956**).
+
+If a column is the direct cryptographic digest of its associated *ciphertext* section, reproducing that digest would establish a keyed-independent, exact grid/manuscript relationship and identify a verifiable section assignment. This is a falsifiable hypothesis; digesting the **unknown plaintext** or a private key is outside its scope.
+
+## Completed direct comparison
+
+The [reproducer](../sims/grid_section_digest_screen.cjs) reads the canonical full transcript and the corrected 256-byte grid. It computes all of the following literal source sets: nine unmerged sections, eight groups, each of 55 rune-bearing pages, and whole-LP2 rune-only or punctuation-preserving book strings.
+
+For each source it checks **nine** concrete encodings: UTF-8 with original punctuation, rune-only UTF-8, zero- and one-based byte indices, expanded Latin transliterations in both cases, and three punctuation/line-wrap normalizations. Each encoding is hashed using SHA-256, SHA3-256, BLAKE2s-256, first or last 32 bytes of SHA-512, and 32-byte SHAKE256 output: **3,996** byte-for-byte computed digests.
+
+Each is compared against **32 exact presentations** of the printed table: 8 original or reversed vertical columns and 8 original or reversed consecutive 32-byte row-major chunks. The entire search covers **127,872** digest-to-grid comparisons. The script verifies a published SHA-256('abc') vector before evaluating the manuscript.
+
+**Observed exact matches: zero.** The executed program recorded exactly 55 pages, 12,956 runes, the nine-section length vector **[729,1145,1729,9,1894,1021,1524,1589,3316]**, and a clean empty matching list. The on-demand [successful GitHub Actions run 42754533193](https://github.com/FlareZ123/liber-primus/actions/runs/42754533193) preserves the output.
+
+## Original red-section titles as source-only grid commitments (Agent 15)
+
+A complementary, previously untested source pair is the **eight section-opening red headings** versus the **eight 32-byte grid columns**. The independent two-ink annotations fix physical opening pages **0, 3, 8, 15, 23, 27, 33 and 40**. On those pages there are **11 separately annotated red rune spans** once secondary red passages at p3, p15 and p33 are retained. This is a direct test of whether some original title is committed literally by the printed table; no plaintext hypothesis or cipher key is fitted.
+
+Read every original printed two-character grid token under both its published **base-60** byte codec and the already documented **lowercase-f-omitting base-59** alternative. Decode each red span in nine source-defined ways: zero-/one-based GP indices; GP prime values as bytes; exact UTF-8 runes; upper-/lowercase GP transliterations; and decimal index or prime-value ASCII with or without commas. Apply **SHA-256, SHA3-256, BLAKE2s-256, SHAKE256 (32 bytes), and the first/last 32 bytes of SHA-512**. Test every resulting digest against the original or reversed **eight vertical 32-byte columns** and the original or reversed **eight consecutive 32-byte row-major grid chunks**, under both grid numeral codecs. The closed search comprises **11 spans × 9 encodings × 6 digests × 64 grid presentations = 38,016 byte-exact comparisons**.
+
+**Original-input result: zero 32-byte matches; the largest shared leading prefix is one byte.** The test independently recomputes the literal source title indices from the ink annotation, asserts every original glyph, checks both full-grid SHA-256 fingerprints, checks SHA-256(`abc`), and inserts a known title digest as a constructive exact-match control. Both radix choices round-trip through their original source tokens. These original-source comparisons were executed during the investigation; the new Node 22 SFT has been committed, but its newly wired manual GitHub Actions workflow variant has **not** yet been dispatched. A digest test is insensitive to postulated plaintext semantics because it uses only source-visible title bytes and grid bytes.
+
+**Scope:** this excludes the specified literal per-span 256-bit commitment constructions. It does not test multipart title concatenation with intervening punctuation, normalized red-letter layouts beyond the nine encodings, unknown earlier plaintext titles, key-derived/salted hashes, or digests of artwork. No source independently stipulates that grid columns are hashes; the count of eight is a motivating hypothesis, not proof.
+
+[Original red-title/grid 38,016-comparison SFT](../sims/grid_red_title_digest_gate.cjs); the existing [manually dispatched grid-digest workflow](../.github/workflows/grid-section-digests.yml) now includes this independent step.
+
+## Record-wise grid-row digest interpretation
+
+The original manuscript has exactly **31 thirteen-dot punctuation marks**, including a black mark on physical LP2 p7. Reading each as a record terminator produces **32 successive manuscript records** (including two empty records) and covers all **13,136 original LP2 runes**, including solved p56–57. This is a separate source-visible reason to test whether the printed **32 rows of eight bytes** are **64-bit checksums of those records**. It is distinct from the section/page source-to-32-byte-column hypotheses above.
+
+[The exact CommonJS source-only test](../sims/thirteendot_fragment_gridrow_digest.cjs) implements eight declared fragment serializations: zero-/one-based GP index bytes, GP prime bytes, UTF-8 original runes, upper- and lowercase Latin transliterations, and comma-separated decimal indices/primes. It hashes each record in natural or reverse rune order using **SHA-256, SHA3-256, BLAKE2s-256, SHA-512, BLAKE2b-512, SHA-1, or MD5**. Either first or last eight digest bytes are compared to any of the **32 original grid rows** in either byte direction. This broadens beyond the one-to-one corresponding-row hypothesis and grants the best possible record-to-row pairing without fitting a secret key.
+
+**Executed result: 0 full eight-byte matches in 458,752 comparisons.** The greatest matching prefix was **two bytes** (fragment 0, row 24, uppercase transliteration/BLAKE2b-512, forward rune reading, first eight digest bytes). Synthetic rows constructed from the exact SHA-256 first eight bytes of every one of the 32 source fragments are recovered **32/32**, and the implementation checks the published SHA-256(`abc`) digest. [Successful original-input manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/42884498650) preserves all 32 original record lengths and complete output.
+
+**Conclusion for this framing:** the printed grid does **not** contain direct standard hash snippets of any of the image-delimited ciphertext records under these encodings. The matching 31/32 count is a legitimate source-structure hypothesis, yet it does not establish an actual cryptographic relationship. This result leaves hashes of unknown plaintext, keyed/salted commitments, other serializations, and entirely different row semantics open. No unknown LP2 plaintext or key is recovered.
+
+### One frozen ordinal-salted SHA-1 row-generator gate (Agent 34, 16 November 2026)
+
+[Director task #1213](https://github.com/FlareZ123/liber-primus/issues/1213) asks whether the 31 printed thirteen-dot marks divide the full release into 32 ordered records whose **index-salted** hashes constitute the 32 printed grid rows. The unsalted screens above do not test that. [This original-source CommonJS SFT](../sims/lp2_ordinal_sha1_fragment_gridrow_gate_sft.cjs) freezes **one** hypothesis, with no parameter search: record `i` is the original zero-based GP29-index rune byte sequence between thirteen-dot marks, keeping the two empty records at `i=8,11`; hash input is one byte encoding zero-based ordinal `i`, then the literal rune-index bytes; output is the first eight bytes of SHA-1 in physical row-major base60 grid order. The source has 13,136 runes, 31 marks and 32 segments, and p0's corrected 8+5 red heading and marker13 are asserted. First-party 2013 PGP messages contain `Hash: SHA1` as **signature metadata**. They do not specify this record-hash operation, salt framing, 64-bit truncation or grid consumer, so the branch is conditional rather than historically identified.
+
+[Actual passing source run 43828421784](https://github.com/FlareZ123/liber-primus/actions/runs/43828421784) predicted all 32 rows: **0/32 exact rows**, just **1/256 equal aligned bytes**. The two empty records alone reject it: `SHA1(08)[:8]=8d883f1577ca8c33` versus printed row8 `7aff19c0c749a96c`; `SHA1(0b)[:8]=067d5096f219c64b` versus printed row11 `d3dcc631ec543823`. A synthetic planted table generated from the same original records passes **32/32** and correctly distinguishes the two identical empty inputs by their ordinal. The implementation also verifies the published SHA-1(`abc`) vector.
+
+**Outcome:** the frozen original-input model fails without plaintext scoring; no unknown LP2 key or plaintext was obtained. The 32/32 structural count is no independent selector of a particular salted PRF. Do not iterate hashes, salt positions, endian order, or row permutations absent a new first-party instruction.
+
+## Interpretation
+
+The table columns or row-major 32-byte chunks do **not** directly contain any of the tested standard 256-bit digests of the *visible runic ciphertext* under the specified normalizations. This weakens the easy interpretation that the numeric grid is a literal authentication table for the already visible text.
+
+It does not test the SHA-256 of unknown plaintext, a keyed MAC, salted or domain-separated hashes, historical raw JPG image bytes, less conventional source encodings, digests of reconstructed or unobserved plaintext titles, multipart red-heading strings with punctuation, or page artwork, or a different hash function. Such variants need independent manuscript constraints before investing in another broad enumeration.
+
+The structure of eight vertical 32-byte columns remains a potentially meaningful source of **256-bit keys or commitments**, but no direct cryptographic relationship has been proved. This result is supporting evidence only and does not change the unresolved state in results/README.md.
+
+Implementation: [sims/grid_section_digest_screen.cjs](../sims/grid_section_digest_screen.cjs). Runner: [.github/workflows/grid-section-digests.yml](../.github/workflows/grid-section-digests.yml), dispatched manually and never on commit.

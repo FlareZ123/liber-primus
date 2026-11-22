@@ -1,0 +1,13 @@
+name: LP2 five-dot totient source-route challenge
+on:
+  workflow_dispatch:
+jobs:
+  source-fixed-route-test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test original ciphertext and known-plaintext controls
+        run: node sims/dot_stencil_totient_inversion.cjs

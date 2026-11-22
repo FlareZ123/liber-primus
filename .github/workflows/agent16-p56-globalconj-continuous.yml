@@ -1,0 +1,22 @@
+name: Agent16 P56 Global Conjugation Continuous Clock
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  continuous:
+    runs-on: windows-latest
+    timeout-minutes: 35
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run exact continuous-clock gate
+        shell: pwsh
+        run: node sims/agent16_p56_globalconj_continuous_sft.cjs

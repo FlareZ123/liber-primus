@@ -1,0 +1,262 @@
+{
+  "schema": 1,
+  "source": {
+    "description": "Seven quote spans remain derived annotations. Four single raised apostrophe strokes are source ink in the correct 2400×3600 LP2 image scans 21,38,52,58.jpg. The old negative report examined misnumbered scan basenames then counted only ordinary square dots; the source image has four distinct 12×40 pixel high strokes at the listed positions. The independent October 2026 pnotisdev image-gap audit also recorded those four source single ticks. Their plaintext meaning and whether they indicate an additional word boundary remain unknown.",
+    "url": "https://github.com/Dukotah/cicada3301/blob/master/liber-primus/analysis/round43/F2-inventory/token-channels.md",
+    "apostrophe_audit_url": "https://github.com/pnotisdev/cicada3301/blob/main/work/ref/tick_marks.tsv",
+    "image_pixel_sft": "sims/lp2_apostrophe_original_pixel_geometry_sft.py",
+    "solved_lp1_apostrophe_control": "The original first-release LP1 p14 Koan (14.jpg) visibly prints a 12x40 tall ink apostrophe at x1051,y2122 inside ciphertext RWN'B, paired with independently known plaintext DON'T. Its same-line square word dot x1114,y2151 is 10x9. SFT sims/lp2_apostrophe_original_pixel_geometry_sft.py confirms this source positive control and four LP2 marks.",
+    "known_plaintext_positive_control": {
+      "original_scan": "14.jpg",
+      "source": "LP1 p14 solved Koan",
+      "cipher_word": "RWN'B",
+      "cipher_runes": "ᚱᚹᚾᛒ",
+      "known_plaintext": "DON'T",
+      "ink_bbox": [
+        1051,
+        2122,
+        12,
+        40
+      ],
+      "same_line_dot_bbox": [
+        1114,
+        2151,
+        10,
+        9
+      ],
+      "gp29_cipher_indices": [
+        4,
+        7,
+        9,
+        17
+      ],
+      "gp29_plain_indices": [
+        23,
+        3,
+        9,
+        16
+      ],
+      "authenticated_key_name": "FIRFUMFERENFE",
+      "source_cipher_prefix": "I-RWNB",
+      "gp29_5rune_keystream": [
+        0,
+        10,
+        4,
+        0,
+        1
+      ],
+      "original_rune_prefix_local_index": 145,
+      "transparent_plaintext_F_skips_before_prefix": 2,
+      "key_phase_index": 0,
+      "cipher_test": "Exact 5-rune GP29 differences spell FIRFU, the first five consecutive symbols of the authentic LP1 Koan's 13-rune key, so the punctuation mark does not advance the runic key clock."
+    }
+  },
+  "coordinate_rule": "Zero-based global rune offsets over the 12,956 unsolved LP2 runes, [start,end) interval. page_slices refer to original physical LP2 page numbers; numeric-only page 50 has no runes and remains a physical page. Quotation glyphs are absent from resources/lp2-transcription.txt. The four legacy apostrophe offsets are retained only to reproduce historical experiments and are not source-visible separators. The four raised single apostrophe marks occur immediately before the recorded rune inside a complete printed word; they consume no rune and do not count as additional word separators.",
+  "quote_rune_total": 405,
+  "quotes": [
+    {
+      "start": 1659,
+      "end": 1677,
+      "page_slices": [
+        {
+          "page": 6,
+          "start": 189,
+          "end": 196
+        },
+        {
+          "page": 7,
+          "start": 0,
+          "end": 11
+        }
+      ],
+      "length": 18
+    },
+    {
+      "start": 5459,
+      "end": 5478,
+      "page_slices": [
+        {
+          "page": 22,
+          "start": 84,
+          "end": 103
+        }
+      ],
+      "length": 19
+    },
+    {
+      "start": 9715,
+      "end": 9727,
+      "page_slices": [
+        {
+          "page": 40,
+          "start": 75,
+          "end": 87
+        }
+      ],
+      "length": 12
+    },
+    {
+      "start": 9811,
+      "end": 9869,
+      "page_slices": [
+        {
+          "page": 40,
+          "start": 171,
+          "end": 229
+        }
+      ],
+      "length": 58
+    },
+    {
+      "start": 10211,
+      "end": 10279,
+      "page_slices": [
+        {
+          "page": 42,
+          "start": 67,
+          "end": 135
+        }
+      ],
+      "length": 68
+    },
+    {
+      "start": 10279,
+      "end": 10439,
+      "page_slices": [
+        {
+          "page": 42,
+          "start": 135,
+          "end": 272
+        },
+        {
+          "page": 43,
+          "start": 0,
+          "end": 23
+        }
+      ],
+      "length": 160
+    },
+    {
+      "start": 12522,
+      "end": 12592,
+      "page_slices": [
+        {
+          "page": 53,
+          "start": 53,
+          "end": 123
+        }
+      ],
+      "length": 70
+    }
+  ],
+  "apostrophes_before_rune": [
+    1110,
+    5138,
+    8515,
+    10089
+  ],
+  "source_visible_internal_separators_before_rune": [
+    1110,
+    5138,
+    8515,
+    10089
+  ],
+  "legacy_apostrophe_hypothesis": {
+    "status": "The historical image-negative claim is superseded by a correct LP2-page-to-JPEG scan mapping and confirmed source-visible single ticks. The proposed splitting into extra whole words remains disallowed; apostrophes mark internal morphology only.",
+    "before_rune": [
+      1110,
+      5138,
+      8515,
+      10089
+    ],
+    "selected_visual_token_count": 2896,
+    "synthetic_split_token_count": 2900
+  },
+  "apostrophes_before_rune_status": "Four confirmed original-image single-tick apostrophes. They are punctuation within existing printed words, while plaintext letters and decryption remain unknown.",
+  "source_visible_apostrophes": [
+    {
+      "page": 4,
+      "scan": "21.jpg",
+      "local_before_rune": 164,
+      "global_before_rune": 1110,
+      "stem_runes": 3,
+      "tail_runes": 1,
+      "cipher_word": "MXI'W",
+      "original_jpeg_ink_bbox": [
+        1400,
+        2014,
+        12,
+        40
+      ],
+      "same_line_word_dot_bbox": [
+        755,
+        2043,
+        9,
+        9
+      ]
+    },
+    {
+      "page": 21,
+      "scan": "38.jpg",
+      "local_before_rune": 36,
+      "global_before_rune": 5138,
+      "stem_runes": 2,
+      "tail_runes": 1,
+      "cipher_word": "AEO'Y",
+      "original_jpeg_ink_bbox": [
+        1258,
+        884,
+        12,
+        40
+      ],
+      "same_line_word_dot_bbox": [
+        1154,
+        913,
+        9,
+        10
+      ]
+    },
+    {
+      "page": 35,
+      "scan": "52.jpg",
+      "local_before_rune": 80,
+      "global_before_rune": 8515,
+      "stem_runes": 2,
+      "tail_runes": 1,
+      "cipher_word": "PE'T",
+      "original_jpeg_ink_bbox": [
+        1195,
+        1261,
+        12,
+        40
+      ],
+      "same_line_word_dot_bbox": [
+        1274,
+        1290,
+        9,
+        10
+      ]
+    },
+    {
+      "page": 41,
+      "scan": "58.jpg",
+      "local_before_rune": 218,
+      "global_before_rune": 10089,
+      "stem_runes": 3,
+      "tail_runes": 1,
+      "cipher_word": "XLJ'C",
+      "original_jpeg_ink_bbox": [
+        1304,
+        2390,
+        12,
+        40
+      ],
+      "same_line_word_dot_bbox": [
+        1381,
+        2420,
+        9,
+        9
+      ]
+    }
+  ]
+}

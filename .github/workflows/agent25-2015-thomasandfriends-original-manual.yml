@@ -1,0 +1,19 @@
+name: Agent25 original 2015 candidate replay
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-fixed-candidate:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce pinned 2015 p25 XOR-totient result
+        shell: pwsh
+        run: |
+          node --check sims/lp2_2015_thomasandfriends_p25_source_sft.cjs
+          node sims/lp2_2015_thomasandfriends_p25_source_sft.cjs

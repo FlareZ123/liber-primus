@@ -1,0 +1,100 @@
+name: OpenPuff LP2 six repeated cuneiform headers original
+on:
+  workflow_dispatch:
+    inputs:
+      password:
+        type: choice
+        required: true
+        default: "33011033"
+        options:
+          - "33011033"
+          - "10333301"
+permissions:
+  contents: read
+jobs:
+  six-cuneiform:
+    runs-on: windows-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: x86
+      - name: Install native GUI prereqs
+        shell: pwsh
+        run: |
+          python -c "import struct; assert struct.calcsize('P') == 4"
+          python -m pip install --disable-pip-version-check filelock pywinauto Pillow
+          python sims/openpuff_output_capture_sft.py
+      - name: Pinned OpenPuff v4.00
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $root = Join-Path $env:RUNNER_TEMP 'OpenPuff-v400-cuneiform-six'
+          New-Item -ItemType Directory -Force -Path $root | Out-Null
+          $base = 'https://raw.githubusercontent.com/codejanus/ToolSuite/1eaf6d006d31ba842f6cc6b16e9d82dbf904aaf5/OpenPuff'
+          $expected = @{
+            'OpenPuff.exe' = '466e03c792075313ce533a5dc7a789e8a41209f9'
+            'libObfuscate.dll' = 'f3b1c3315f8286346416fefd6141410f422f2454'
+          }
+          foreach ($name in $expected.Keys) {
+            $file = Join-Path $root $name
+            Invoke-WebRequest -Uri "$base/$name" -OutFile $file
+            $blob = (& git hash-object -- $file).Trim().ToLowerInvariant()
+            if ($LASTEXITCODE -ne 0 -or $blob -ne $expected[$name]) {
+              throw "Pinned OpenPuff executable mismatch: $name"
+            }
+          }
+          "OPENPUFF_EXE=$(Join-Path $root 'OpenPuff.exe')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Same-run original software JPEG positive
+        shell: pwsh
+        run: |
+          python sims/openpuff_public_jpeg_positive_source.py --out probe-output/public-source
+          if ($LASTEXITCODE -ne 0) { throw 'Source JPEG positive preparation failed' }
+          python sims/openpuff_v400_extract.py --exe "$env:OPENPUFF_EXE" --carrier probe-output/public-source/openpuff.jpg --password 12345678 --bit-format "Jpeg (Image)" --bit-level "1/2 (50%) - Maximum" --out probe-output/public-recovery --wait-seconds 45
+          if ($LASTEXITCODE -ne 0) { throw 'Native JPEG positive extraction failed' }
+          python -c "from pathlib import Path; p=Path('probe-output/public-recovery/extracted/hidden.txt'); assert p.is_file() and p.read_bytes()==b'Dies ist eine versteckte Nachricht!'; print('JPEG_POSITIVE_PASS')"
+          if ($LASTEXITCODE -ne 0) { throw 'Native JPEG positive bytes mismatch' }
+      - name: Original six LP2 cuneiform repeated-header JPEGs
+        shell: pwsh
+        env:
+          LP2_PASSWORD: ${{ inputs.password }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $expected = @(
+            'e6249fa4cf3a1163d2ef3b38dbed59a886a4d94c',
+            'aec165a24c007299422e52e3480c70dbca63b9dc',
+            'f8ddd9776975cd5d34de96eb8cb35e2de48c6a56',
+            'ff7e60c2a574512200bea0f49d76808ecfb3e21f',
+            '10ab76d6c31ea348bbc0f906adf6caac61398dc2',
+            '819261c833837cbaa2bd200d210ca299d79031f3'
+          )
+          $out = 'probe-output/original-six-cuneiform'
+          $arguments = @('--exe', "$env:OPENPUFF_EXE", '--password', "$env:LP2_PASSWORD",
+            '--bit-format', 'Jpeg (Image)', '--bit-level', '1/5 (20%) - Medium',
+            '--out', "$out", '--wait-seconds', '180')
+          for ($i=0; $i -lt 6; $i++) {
+            $idx = $i + 51
+            $carrier = Join-Path $env:GITHUB_WORKSPACE ('resources/liber-primus/{0:D2}.jpg' -f $idx)
+            if (-not (Test-Path -LiteralPath $carrier)) { throw "Original carrier missing: $idx" }
+            $blob = (& git hash-object -- $carrier).Trim().ToLowerInvariant()
+            if ($LASTEXITCODE -ne 0 -or $blob -ne $expected[$i]) { throw "Original JPEG mismatch: $idx" }
+            $arguments += @('--carrier', "$carrier")
+          }
+          python sims/openpuff_v400_extract.py @arguments
+          if ($LASTEXITCODE -ne 0) { throw 'Original six-cover native extraction failed' }
+          $r = Get-Content -LiteralPath "$out/result.json" -Raw | ConvertFrom-Json
+          if ($r.carrier_count -ne 6 -or -not $r.carrier_chain_verified -or -not $r.bit_selection_verified -or -not $r.attempted) {
+            throw 'Original six-cover native settings failed verification'
+          }
+          if ($r.native_probe_outcome -eq 'inconclusive-timeout') { throw 'Original six-cover outcome inconclusive' }
+          Write-Host "ORIGINAL_SIX_SOURCE_RESULT $($r | Select-Object carrier_count, native_probe_outcome, output_present, outputs, selected_capacity_bytes_after_level, completion_dialogs, error_dialogs | ConvertTo-Json -Depth 12 -Compress)"
+          if ($r.output_present) { Write-Host 'POTENTIAL_ORIGINAL_LP2_PAYLOAD' }
+      - name: Save original-tool GUI evidence and any hidden files
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: openpuff-v400-six-cuneiform-original-evidence
+          path: probe-output/
+          if-no-files-found: warn

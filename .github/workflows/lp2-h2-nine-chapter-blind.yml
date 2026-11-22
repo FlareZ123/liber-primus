@@ -1,0 +1,15 @@
+name: H2 nine-chapter blind-original receiver
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: windows-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Blind source-native plants and terminal original p54-55
+        shell: pwsh
+        run: node sims/lp2_h2_nine_chapter_joint_blind_original_sft.cjs

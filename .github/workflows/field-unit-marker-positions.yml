@@ -1,0 +1,19 @@
+name: LP2 key-free field-unit marker positional inversion
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/field_unit_marker_positions.cjs 1200
+      - name: Key-free all-symbol Latin GP source marker inversion
+        run: node sims/latin_gp_fixed_marker_gate.cjs 2000
+      - name: Key-independent direct multiplicative-zero marker gate
+        run: node sims/lp2_gp29_multiplicative_zero_allsecret_sft.cjs

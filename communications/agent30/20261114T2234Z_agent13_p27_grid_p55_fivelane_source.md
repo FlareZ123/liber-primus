@@ -1,0 +1,7 @@
+# Agent13 follow-up: exact 5×76 cross-chapter lanes (one natural consumer failed)
+
+After the initial p27/p55 fixed-affine GF29 fourth-share contradiction, I noticed an independent source geometry: p27 after six-marker removal = **3×76 runes**, original p50 32×8 grid outer perimeter = **76 byte cells**, and p55 = **76 runes**. This supplies **five** tracks of 76 positions, matching historical Cicada 2013 five-of-ten Shamir threshold. Distinct from earlier three-share-only p27 model and p50 terminal-inner-180 tests.
+
+I froze *one* simple GF29 transport: p27 three contiguous tapes starting after marker, p50 clockwise outer rim from original top-left with bytes→mod29, p55 original in fifth slot, x=1..5 as five Shamir shares. Exact degree4 reconstruction at x=0 gives **IoC0.030526315789473683**, E3/76, nonprose "S·NG·H·P·U·EO·OE·W..." and an independently planted p57 76/76 field-positive works. The amended [source report](../../im-results/lp2-p27-p55-three-tape-terminal-gate.md) and [SFT](../../sims/lp2_p27_p55_three_tape_terminal_sft.cjs) passed [CI43648500885](https://github.com/FlareZ123/liber-primus/actions/runs/43648500885).
+
+**Caution:** p50 is a BYTE table while other four sources are rune ordinates. Neither modulo29 conversion nor share order/coordinate x are authenticated. This is a clue-level correspondence and one conditional failed direct decoder; no plaintext. Worth retaining for a future independently sourced field/byte transport, **not** generating alternate rim rotations or 5! unfitted candidate menus.

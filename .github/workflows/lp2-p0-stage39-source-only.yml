@@ -1,0 +1,14 @@
+name: LP2 p0 stage39 original-source geometry
+on:
+  workflow_dispatch:
+jobs:
+  source-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Enumerate original 27x27 source-only stage39/40
+        run: node sims/lp2_p0_stage39_source_only_sft.cjs

@@ -1,0 +1,13 @@
+name: LP2 original table SHA-512 Merkle16 proof gate
+on:
+  workflow_dispatch:
+jobs:
+  original-merkle16:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test p50 table Merkle path against solved p56 digest
+        run: node sims/lp2_p50_merkle16_sha512_source_sft.cjs

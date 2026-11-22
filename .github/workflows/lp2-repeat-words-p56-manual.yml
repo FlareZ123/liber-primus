@@ -1,0 +1,18 @@
+name: LP2 repeat-word prime direction original gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  repeat-word-p56:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout original manuscript corpus
+        uses: actions/checkout@v4
+      - name: Install Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original 85-word key against solved p56 and native control
+        run: node sims/lp2_repeat_words_p56_prime_direction_sft.cjs

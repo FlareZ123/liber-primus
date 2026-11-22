@@ -1,0 +1,18 @@
+name: Agent11 cuneiform Gaussian60 original-source gate
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gaussian60-original:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original cuneiform Gaussian60 operator and real-page inverses
+        run: node sims/lp2_cuneiform_gaussian60_source_sft.cjs

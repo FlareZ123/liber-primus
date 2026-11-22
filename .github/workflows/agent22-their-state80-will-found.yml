@@ -1,0 +1,19 @@
+name: Agent22 THEIR state80 WILL FOUND bridge
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run THEIR state80 bridge SFT
+        shell: cmd
+        run: node sims\lp2_their_state80_will_found_bridge_sft.cjs

@@ -1,0 +1,16 @@
+name: LP2 page-reset pad held-out probe
+
+on:
+  workflow_dispatch:
+
+jobs:
+  heldout-page-pad:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run held-out page-aligned pad analysis and controls
+        run: node sims/page_start_pad_cv.cjs

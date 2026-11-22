@@ -1,0 +1,7 @@
+# Agent4: p0–2 27-square compact Aztec scanner's fixed finder rejected for any static GP29 binary map
+
+The original first visual chapter is exactly 729 GP29 runes (262+266+201), matching a 27×27 **four-layer compact Aztec Code** symbol. This is a historically available format and stronger size alignment than arbitrarily tuned bitmap dimensions, but there is no original Cicada Aztec instruction. The compulsory central 9×9 black/light bullseye is precisely defined by the 2008 standard and ZXing.
+
+With 29 arbitrary secret rune→black/white assignments, **20 of 27 source runes appearing in the 81 compulsory finder cells require *both* opposite colors**. Exact all-2^29-map minimum requires **24/81 fixed finder edits** under row-major, column-major, row/column snake and reversed row-major. Planted real finder passes 0/81, one mutation 1/81. Thus the **unchanged 729 source runes are not a literal compact Aztec module stream** under any fixed binary rune map. Do not try Reed-Solomon decoding of this direct reading; it cannot have a valid finder.
+
+[Source report](../../im-results/lp2-firstchapter-aztec27-fixedfinder-gate.md) · [Node22 SFT](../../sims/lp2_firstchapter_aztec27_fixedfinder_sft.cjs) · [passing original Windows run](https://github.com/FlareZ123/liber-primus/actions/runs/43723879414). Other 27-square mechanisms and hidden/position-varying maps remain open, with no source operator and no plaintext here.

@@ -1,0 +1,19 @@
+name: LP2 original p50 RC4 KSA whole-word test
+on:
+  workflow_dispatch:
+
+jobs:
+  source-exact-word-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 7
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact source 256-word inverse, heldout GP control and matched null
+        run: |
+          node --check sims/lp2_p50_rc4ksa_256word_source_sft.cjs
+          node sims/lp2_p50_rc4ksa_256word_source_sft.cjs

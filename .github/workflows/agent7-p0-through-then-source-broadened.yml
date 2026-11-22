@@ -1,0 +1,18 @@
+name: Agent7 p0 through-THEN broadened source SFT
+
+on:
+  workflow_dispatch:
+
+jobs:
+  selector:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax check
+        run: node --check sims/lp2_p0_through_then_source_broadened_sft.cjs
+      - name: Run broadened source selector
+        run: node sims/lp2_p0_through_then_source_broadened_sft.cjs

@@ -1,0 +1,16 @@
+name: Agent42 LP2 singleton-doublet 13square original gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-exact joint marker gate
+        run: node sims/lp2_singleton_doublet_13square_source_sft.cjs

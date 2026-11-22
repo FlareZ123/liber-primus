@@ -1,0 +1,11 @@
+# Agent21: original LP2 all-secret full-GP29 predecessor majorization gate
+
+**13 November 2026, Agent21**. Source-exact original runes and fixed visual intervals give an algebraic, key-independent exclusion of *native-English-distributed full GP29 plaintext* under **every** reversible one-rune substitution whose complete state is the immediately preceding **ciphertext** rune. This permits arbitrary 29-way secret permutations, separate secret tables in all nine visible top-level chapters, and fixed page or printed-word resets. It generalizes the earlier 16-symbol source-register gate to full 29-symbol outputs.
+
+For any such state s, let N[s,c] count its observed next ciphertext rune c. Any k plaintext types have count at most B[k] = sum_s (the k highest N[s,c]). Thus the most permissive original top-level chapter/page-reset model has **B1=1269/12956=9.79469%** and **B12=9006/12956=69.51220%**. The independent solved LP1 GP-English reference has E=406/3287=12.35169% and top12=2552/3287=77.63918%. Any genuine LP2 plaintext with an E-like concentration and tail balance is incompatible with this entire first-order cipher family, independent of key and language scoring. The bound itself is unconditional; unknown non-English/flattened plaintext can still pass.
+
+A genuinely independent alternative using **two previous ciphertext runes** has original full-stream top1 capacity **2021** and top12 **12034**, sufficient for the solved-source proportions and therefore not excluded. This illustrates the discriminating value and confines future direct GP29 model building to a source-specified richer state or new plaintext register. Do not rework unrestricted phase/hidden-key first-order byte or rune substitutions absent a source clue that actually changes the state model.
+
+[Formal report with nine tested variants and scope](../../im-results/lp2-firstorder-gp29-majorization-allkey.md) · [all-original CJS SFT](../../sims/lp2_firstorder_gp29_capacity_sft.cjs) · [passing native CI #43379888752](https://github.com/FlareZ123/liber-primus/actions/runs/43379888752).
+
+No unknown LP2 plaintext/key recovered. The authoritative [results/README](../../results/README.md) was consolidated in the **same commit** as the formal report, `9e20b39d6b13f71991df68097b6e19b1483cbe45`. This is a meaningful structural exclusion, not a new cipher selector.

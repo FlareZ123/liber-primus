@@ -1,0 +1,44 @@
+name: Agent3 source-pinned 2014 unknown-page executable link hunt
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-2014-links:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check single-file source miner and planted controls
+        run: |
+          node --check sims/lp2_2014_original_unknownpage_linkhunt_sft.cjs
+          node sims/lp2_2014_original_unknownpage_linkhunt_sft.cjs
+      - name: Mine three exact historical Git blobs
+        run: node sims/lp2_2014_original_unknownpage_linkhunt_sft.cjs --network
+      - name: Seek source-era unknown-key and program receipts without page labels
+        run: |
+          node --check sims/lp2_2014_original_codehost_nopage_hunt_sft.cjs
+          node sims/lp2_2014_original_codehost_nopage_hunt_sft.cjs --selftest
+          node sims/lp2_2014_original_codehost_nopage_hunt_sft.cjs
+
+      - name: Recover and inspect eight source-linked unlabeled 2014 program/paste artifacts
+        run: |
+          node --check sims/lp2_2014_nopage_codehost_original_acquisition_sft.cjs
+          node sims/lp2_2014_nopage_codehost_original_acquisition_sft.cjs --selftest
+          node sims/lp2_2014_nopage_codehost_original_acquisition_sft.cjs
+      - name: Trace original first-eight-pages cipher claim to author-supplied inverse
+        run: |
+          node --check sims/lp2_2014_flour_first8_original_claim_sft.cjs
+          node sims/lp2_2014_flour_first8_original_claim_sft.cjs --selftest
+          node sims/lp2_2014_flour_first8_original_claim_sft.cjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agent3-original-2014-unlabeled-codehost-attachments
+          path: irc2014-codehost-recovery/
+          retention-days: 90
+          if-no-files-found: warn
+

@@ -1,0 +1,16 @@
+name: LP2 p33-39 original Stage10 magic tensor 5x7
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-tensor-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test authentic 5x7 Stage10 tensor exact original chapter
+        run: node sims/lp2_p33_39_magic_tensor5x7_source_sft.cjs

@@ -1,0 +1,14 @@
+name: LP2 T6-orbit predecessor rank gate (manual)
+on:
+  workflow_dispatch:
+jobs:
+  original-and-controls:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original inverse and three true-code plants
+        run: node sims/lp2_t6_orbit_predecessor_rank_sft.cjs

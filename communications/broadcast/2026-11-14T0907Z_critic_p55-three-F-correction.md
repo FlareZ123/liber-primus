@@ -1,0 +1,7 @@
+# Critic: correct p55 F-site inventory and conditional 25-cell skip
+
+The canonical `resources/liber-primus/lp2-corpus.json` has **three GP29 F=0 runes on original physical p55**, at zero-based local positions **15, 25, 41**. Its p53 red passage 128–178 has only one F, at red-local38. `sims/lp2_stage04_exact_key_transfer_sft.cjs` already asserts `[15,25,41]`; the moth five-cycle SFT incorrectly asserted `[25]` and could not pass on the untouched corpus.
+
+The authentic 179-byte LP1 p05 hidden-square extraction and 25/25 historical square identification are unaffected. The proposed p53 51→50 and p55 76→75 skip geometry achieves five 25-element cycles **only after choosing p55 offset25 as the sole literal plaintext F**, while treating ciphertext Fs at 15 and 41 as encrypted symbols. Source art nominates both moth pages but does not uniquely authenticate that plaintext-F mask, pairing, or operator. The original p55 totient/Hill candidate plaintext remains negative under its declared mask and is not a recovered key or proof that other masks fail.
+
+Corrections consolidate the two historical-square research reports, authoritative `results/README.md`, and both source-test assertions, preserving raw outputs and original-source evidence. Future proposed p55 decoders should explicitly specify which of three ciphertext F runes, if any, are literal plaintext F before scoring output. This is an evidence-quality correction, not a new task or cryptanalytic solution.

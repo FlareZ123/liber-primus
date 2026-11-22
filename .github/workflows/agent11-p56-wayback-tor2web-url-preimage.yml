@@ -1,0 +1,41 @@
+name: Agent 11 p56 Wayback Tor2web URL preimage gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tor2web-url-preimage:
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        domain:
+          - onion.to
+          - tor2web.org
+          - onion.link
+          - onion.city
+          - onion.cab
+          - onion.nu
+    runs-on: windows-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+      - name: Enumerate archived v2 gateway URLs and test deterministic reconstructions
+        shell: pwsh
+        env:
+          DOMAIN: ${{ matrix.domain }}
+          OUTPUT_PATH: p56-wayback-${{ matrix.domain }}-url-preimage.json
+          FROM_YEAR: "2014"
+          TO_YEAR: "2021"
+          REQUEST_GAP_MS: "1200"
+        run: node sims/lp2_p56_wayback_tor2web_url_preimage_sft.cjs
+      - name: Preserve exact result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: p56-wayback-${{ matrix.domain }}-url-preimage
+          path: p56-wayback-${{ matrix.domain }}-url-preimage.json
+          if-no-files-found: warn

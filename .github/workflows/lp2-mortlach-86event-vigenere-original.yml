@@ -1,0 +1,19 @@
+name: LP2 original 86-event Vigenere 5-6 exact source test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-test:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original 86-event 5-6 test and solved-page plants
+        run: node sims/lp2_mortlach_86event_vigenere5_6_sft.cjs

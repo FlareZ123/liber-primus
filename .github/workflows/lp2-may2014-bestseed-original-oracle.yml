@@ -1,0 +1,35 @@
+name: LP2 May 2014 timestamp best-seed independent plaintext oracle
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  full-source-oracle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch immutable Python 2.7 MT32 reference decoder
+        uses: actions/checkout@v4
+        with:
+          repository: Dukotah/cicada3301
+          ref: 9087dc36b5aa64c1786428e32180261ab9420c29
+          path: upstream
+          persist-credentials: false
+      - name: Install pinned oracle numerical packages
+        run: python3 -m pip install --disable-pip-version-check numpy scipy
+      - name: Run exact source original on highest-scoring May 2014 epoch seed
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -c 'import importlib.util; p="sims/lp2_py27_s2_claimbar_oracle.py"; spec=importlib.util.spec_from_file_location("lp2_may2014_oracle",p); mod=importlib.util.module_from_spec(spec); spec.loader.exec_module(mod); mod.SEED=1399573091; mod.SCREEN_PMAX=6.236763926975537; mod.main()'
+      - name: Preserve original GP29 plaintext candidates and five independent holdouts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-may2014-seed1399573091-original-oracle
+          path: oracle-output/
+          if-no-files-found: warn
+          retention-days: 90

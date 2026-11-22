@@ -1,0 +1,15 @@
+name: Agent30 original H-G GF29 source cross-corpus gate
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source-sft:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run source-pinned GF29 inverse and known p57 plant
+        run: node sims/lp2_hg_gf29_crosscorpus_codeword_original_sft.cjs

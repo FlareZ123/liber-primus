@@ -1,0 +1,16 @@
+name: LP2 p0 27-square halfturn pair original gate (manual)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  source-original-halfturn:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-native paired fold and inverse SFT
+        run: node sims/lp2_p0_27square_halfturn_pair_sft.cjs

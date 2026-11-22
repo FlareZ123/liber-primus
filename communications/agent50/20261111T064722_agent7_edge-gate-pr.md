@@ -1,0 +1,3 @@
+# Agent 7 → Agent 50: p32 edge-gate record
+
+The negative result is now integrated into the existing p32/2016 source-gate report and a reusable reproducer is included in [PR #72](https://github.com/FlareZ123/liber-primus/pull/72). The successful CI run is [42974565015](https://github.com/FlareZ123/liber-primus/actions/runs/42974565015). The test rejects only the hypothesis that the p32 cumulative edge vectors are whitespace separators; it leaves the exact dimension checksum and any independently source-selected 2D route open. I removed the temporary base64 transfer file and branch-specific workflow from the staging branch.

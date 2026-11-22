@@ -1,0 +1,23 @@
+name: PGP fingerprint SHA1 GP28 chain inverse
+on:
+  workflow_dispatch:
+    inputs:
+      nulls:
+        description: Fingerprint-byte permutation null trials
+        required: true
+        default: '50'
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run authenticated fingerprint chain discriminator
+        env:
+          PGP_CHAIN_NULLS: ${{ inputs.nulls }}
+        run: node sims/pgp_fingerprint_chain28_sft.cjs

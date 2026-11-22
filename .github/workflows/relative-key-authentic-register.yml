@@ -1,0 +1,16 @@
+name: Genuine Cicada plaintext shared-key calibration
+
+on:
+  workflow_dispatch:
+
+jobs:
+  cicada-register-calibration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compare authentic GP two-time-pad control with LP2 pages 28 and 42
+        run: node sims/relative_key_cicada_register_control.cjs

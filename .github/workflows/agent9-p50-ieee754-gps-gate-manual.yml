@@ -1,0 +1,16 @@
+name: Agent9 2012 GPS original p50 float32 gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  p50-source-ieee754:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Direct 32-original-row GPS serialization and known-2012 positive
+        run: node sims/lp2_grid32_2012_gps_float_pair_sft.cjs

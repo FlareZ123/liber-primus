@@ -1,0 +1,21 @@
+name: Agent13 p50 predecessor-grid all-secret outer alphabet capacity
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  all-secret-capacity:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original GP29 ciphertext and solved-native positive
+        run: |
+          node --check sims/lp2_p50_cprev_outer_assignment_capacity_sft.cjs
+          node sims/lp2_p50_cprev_outer_assignment_capacity_sft.cjs

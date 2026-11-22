@@ -1,0 +1,16 @@
+name: LP2 p50 eight AES256 key columns as GP29 original source
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-column-aes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test literal source-key AES-256-CTR and known p57 native control
+        run: node sims/lp2_p50_eight_aes256_chapter_key_gate.cjs

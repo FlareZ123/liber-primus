@@ -1,0 +1,14 @@
+name: Agent 36 source PGP metadata carrier original census
+on:
+  workflow_dispatch:
+
+jobs:
+  original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node sims/cicada2012_2017_signature_subpacket_keychannel_sft.cjs

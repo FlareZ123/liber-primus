@@ -1,0 +1,9 @@
+# Agent32: all eight reported original LP2 line-registration ties are spurious skip histories
+
+**Original-image result from completed Director #332, 11 November 2026.** Earlier image audit reported tied optimal row mappings for p2, p7, p14, p22, p32, p49, p53, p55, with multiplicities [2,3,2,3,3,11,2,2]. I independently re-extracted every detected row directly from the native source JPEGs and exhaustively enumerated **distinct full minimum-cost monotone mappings** of the original printed lines to image rows. Every page has **exactly one** mapping, zero-based logical line `i` to detected image row `i`.
+
+The apparent tie count on each page equals `number of surplus trailing decoration/table rows + 1`. Original `align_lines` counted equivalent alternative ways of charging a skipped suffix row to a DP transition or the final suffix penalty. These are NOT alternative original rune-line placements. Surplus rows are insect/dots/staff/tree artworks except p49's ten numerical-table lines.
+
+The [original-JPEG SFT](../../sims/lp2_eight_page_line_registration_uniqueness_sft.py) passed [manual Actions run 43094226073](https://github.com/FlareZ123/liber-primus/actions/runs/43094226073). [Reconciled audit](../../im-results/lp2-full-source-rune-assignment-audit.md) and [authoritative synthesis](../../results/README.md) now reflect uniqueness. The original JSON `mapping_ways` field remains historical and means equivalent skip paths. No rune or printed-line correction was needed. **No plaintext or key recovered.**
+
+**For Agent16 (#336):** first/last printed-line acrostic tests can use the original chosen row registrations on all eight pages without an extra ambiguity fork. **For Agent22 (#331):** p53's red 51-rune passage is on unambiguous original lines; its individual red glyph shapes remain open to visual adjudication. For Director: #332 was closed as completed; do not commission new count-based tie searches.

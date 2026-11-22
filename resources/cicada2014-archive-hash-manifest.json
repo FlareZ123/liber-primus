@@ -1,0 +1,105 @@
+{
+  "targetHex": "36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4",
+  "sourceRepo": "krisyotam/cicada3301",
+  "sourceCommit": "76d3ee8c762f60025822c8c05edbf31351636469",
+  "sourceNote": "Repository copies of 2014 puzzle-stage artifacts; archived copies, not independently proven original HTTP byte sequences.",
+  "files": [
+    {
+      "path": "puzzles/2014/assets/stage02/auqgnxjtvdbll3pv.onion/index.html",
+      "size": 104
+    },
+    {
+      "path": "puzzles/2014/assets/stage03/cu343l33nqaekrnw.onion/index.html",
+      "size": 541
+    },
+    {
+      "path": "puzzles/2014/assets/stage03/cu343l33nqaekrnw.onion/index.html.2",
+      "size": 3641310
+    },
+    {
+      "path": "puzzles/2014/assets/stage04/fv7lyucmeozzd5j4.onion/index.html",
+      "size": 524
+    },
+    {
+      "path": "puzzles/2014/assets/stage04/fv7lyucmeozzd5j4.onion/index.html.1",
+      "size": 4302741
+    },
+    {
+      "path": "puzzles/2014/assets/stage04/fv7lyucmeozzd5j4.onion/server-status",
+      "size": 1370852
+    },
+    {
+      "path": "puzzles/2014/assets/stage05/avowyfgl5lkzfj3n.onion/index.html",
+      "size": 615
+    },
+    {
+      "path": "puzzles/2014/assets/stage06/avowyfgl5lkzfj3n.onion/index.html",
+      "size": 5149029
+    },
+    {
+      "path": "puzzles/2014/assets/stage07/q4utgdi2n4m4uim5.onion/index.html",
+      "size": 13526359
+    },
+    {
+      "path": "puzzles/2014/assets/stage08/index",
+      "size": 25543
+    },
+    {
+      "path": "puzzles/2014/assets/stage09/ut3qtzbrvs7dtvzp.onion/index.html",
+      "size": 8623291
+    },
+    {
+      "path": "puzzles/2014/assets/stage09/index.bin",
+      "size": 4240957
+    },
+    {
+      "path": "puzzles/2014/assets/stage10/ut3qtzbrvs7dtvzp.onion/index.html",
+      "size": 1943
+    },
+    {
+      "path": "puzzles/2014/assets/stage11/ky2khlqdf7qdznac.onion/index.html",
+      "size": 1640
+    },
+    {
+      "path": "puzzles/2014/assets/stage11/56.decoded",
+      "size": 262
+    },
+    {
+      "path": "puzzles/2014/assets/stage11/57.decoded",
+      "size": 128
+    },
+    {
+      "path": "pgp/messages/2014-01-final-message.asc",
+      "size": 1213
+    },
+    {
+      "path": "pgp/messages/2014-01-liber-primus-hash-block.asc",
+      "size": 2899
+    },
+    {
+      "path": "pgp/messages/2014-01-onion-welcome.asc",
+      "size": 1183
+    },
+    {
+      "path": "pgp/messages/2014-01-onion5-liber-primus.asc",
+      "size": 25994
+    },
+    {
+      "path": "pgp/messages/2014-01-opening-book-code.asc",
+      "size": 1150
+    },
+    {
+      "path": "pgp/messages/2014-05-liber-primus-release.asc",
+      "size": 1010
+    }
+  ],
+  "onionHosts": [
+    "auqgnxjtvdbll3pv.onion",
+    "cu343l33nqaekrnw.onion",
+    "fv7lyucmeozzd5j4.onion",
+    "avowyfgl5lkzfj3n.onion",
+    "q4utgdi2n4m4uim5.onion",
+    "ut3qtzbrvs7dtvzp.onion",
+    "ky2khlqdf7qdznac.onion"
+  ]
+}

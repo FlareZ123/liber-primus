@@ -1,0 +1,27 @@
+# Source-blinded p55 ghost-tree v2: balanced original-art evidence packet
+
+**Agent28, 17 November 2026. Evidence class: original-image blinded-review stimulus and exact independent CI regeneration.** There is **no human positive judgment, recovered unknown GP29 plaintext, authored key or final destination**.
+
+## The reparable bias and the fixed question
+
+The first p55 ghost-tree screening artifact showed the same original p55 tree twice, in native and 4× ink-density versions. A reviewer identified both and could infer the distinguished stimulus without finding any secondary symbol. Its results cannot be promoted to an independent visual clue. The fixed new question is whether an illustration contains a **second, deliberately drawn object** with marked source-original pixels, distinguishable from its dominant object and ordinary source geometry. The alternative is natural tree branches, compression artefacts, and repeated printed floral ornament.
+
+The independent visual reviewer must see **only** the public packet, with no repository/builder/source context. The private mapping is deliberately excluded. No blind judgment has yet been collected or evaluated.
+
+## The frozen original-JPEG construction
+
+[Reproduction source](../sims/lp2_p55_ghosttree_balanced_v2_packet.py) reads **eleven distinct first-party original JPEGs** (SHA256 pinned individually), at native 2400×3600 dimensions. The exact fixed art-only bounding crops remove text/context; all eleven use the same grayscale conversion, 3× density map `max(0,255−3(255−gray))`, aspect-preserving fit to at most900px and white 1000×1000 central canvas. The **candidate occurs once**, accompanied by nine independent natural-image controls including the known original p32 blurred tree, thin branch, spiral, two separate floral sides, an independently solved-page botanical rendering, insect-wing figure, cross/wood shape and insect illustration. One control uses original p54's floral-frame side, the template known pixel-identical to p55's side border; this is a matched same-document negative. There is one **source-shaped synthetic positive** on a further original insect illustration: a fixed 2px-wide five-point symbol changing exactly **278 output pixels**. The positive is an apparatus sensitivity test, not a source discovery.
+
+Uniform processing is applied to **every** source. A deterministic source-hash-seeded shuffle produces anonymous public labels 01–11. The 13-entry public ZIP comprises exactly 11 label-only PNG panels, a contact sheet, and a manifest of image SHA256 values and a private reveal commitment. The `private-reveal.json` is separately emitted to a local/private path and **never packed or uploaded**. Reviewers must receive only the public material; the source code itself exposes the frozen source selection and is therefore excluded from their access.
+
+## Exact independent reproduction
+
+- **Local first run + independent second output directory:** ZIP SHA256 `df7b557c2fc58839a1c459bc86a7ddd27c0890e83ffa40bf8c858537379cbcd3`; contact SHA256 `8f95700cd5a89c72e8181a8e5b2d2233f1a262efbfc8969fc48d8f118a337411`; private SHA256 commitment `ef57630f9a399614c4507dee4d4f2d9d93676eb0a867138460d93ab3e5f5b890`; 11 original sources, 9 negatives, one unique candidate, one planted positive; 278 edited pixels; no duplicated source frames. The local rerun reproduced ZIP and contact byte-identically.
+- **Remote original-byte GitHub Actions CI [44020307069](https://github.com/FlareZ123/liber-primus/actions/runs/44020307069): PASS.** Ubuntu/Python3.12 with pinned Pillow12.3.0/filelock3.29.0 independently regenerated the **same** ZIP and contact SHA256 and reveal commitment, verified all eleven exact source hashes and that the public archive has 13 entries with no answer map. The prior CI without upload [44020121720](https://github.com/FlareZ123/liber-primus/actions/runs/44020121720) independently passed.
+- **Public-only artifact**: [ghost-tree-public-v2, Actions artifact 14301011229](https://github.com/FlareZ123/liber-primus/actions/runs/44020307069/artifacts/14301011229), 945138 bytes, published with 30-day retention. The Actions artifact adds an outer zip wrapper; the *inner* sealed review ZIP has the exact original hash above.
+
+## Human and cryptanalytic decision
+
+The procedural biases diagnosed in v1 are removed: no unmatched target-only contrast, no doubled target, no differing textual context or frame size. Remaining **intrinsic artwork differences** are unavoidable, especially crisp p55 vs its naturally blurred p32 counterpart and distinct insect/botanical silhouettes. A source-aware or repository-aware reviewer is therefore ineligible as a blind oracle; the packet must be reviewed naïvely before reveal and marks recorded verbatim. The planted positive supplies a detection control and nine natural negatives constrain false positives, but a single review cannot establish a cipher.
+
+**Next step for #1335:** have an independent person inspect the public artifact only, record panel choices, marked pixel coordinates and detection of any obviously secondary motif, then reveal the committed private mapping only **after** the answers are locked. If they cannot identify a secondary object in unmodified original p55 pixels, retire the ghost-object hypothesis. If they can, require a source-selected reversible GP29 operation and independent original plaintext before prioritizing decipherment. Repeating the v1 inspection or treating the planted star as a genuine source symbol would be invalid.

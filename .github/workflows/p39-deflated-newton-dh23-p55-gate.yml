@@ -1,0 +1,19 @@
+name: p39 deflated Newton DH23 p55 gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  p55-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run source-fixed p55 gate
+        run: node sims/p39_deflated_newton_dh23_p55_gate_sft.cjs

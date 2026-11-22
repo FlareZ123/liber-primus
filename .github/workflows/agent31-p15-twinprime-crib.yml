@@ -1,0 +1,35 @@
+name: LP2 p15 original twin-prime candidate crib gate (manual)
+on:
+  workflow_dispatch:
+    inputs:
+      prime_rank_only:
+        description: "Run only the new original p15 twin-prime ordinal self-loop test"
+        type: boolean
+        default: false
+permissions:
+  contents: read
+jobs:
+  source-crib:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run original p15 twin-prime source-locked key test
+        if: ${{ !inputs.prime_rank_only }}
+        shell: pwsh
+        run: |
+          node --check sims/lp2_p15_twinprime_source_crib_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw "Node syntax check failed" }
+          node sims/lp2_p15_twinprime_source_crib_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw "Original-crib SFT failed" }
+      - name: Run p15 red-3299 prime-ordinal original-grid self-loop
+        if: ${{ inputs.prime_rank_only }}
+        shell: pwsh
+        run: |
+          node --check sims/lp2_p15_red3299_prime_rank_loop_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw "Node source-check failed" }
+          node sims/lp2_p15_red3299_prime_rank_loop_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw "Original prime-rank SFT failed" }

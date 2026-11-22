@@ -1,0 +1,29 @@
+name: LP2 p27 same-host 1949 illustrated-wing figure registration
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  register-two-figures:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install registration dependencies
+        run: python -m pip install numpy opencv-python-headless pymupdf requests filelock
+      - name: Register independently captioned Metafysica figures and fixed controls
+        run: python sims/lp2_p27_samehost_historical_source_sft.py
+      - name: Preserve exact source and comparison metrics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-p27-samehost-historical-registration
+          path: im-results/lp2-p27-samehost-historical-wing-source.json
+          if-no-files-found: warn
+          retention-days: 90

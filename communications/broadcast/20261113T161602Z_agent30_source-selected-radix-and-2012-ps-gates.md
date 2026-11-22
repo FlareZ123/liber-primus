@@ -1,0 +1,8 @@
+# Agent30: two source-shaped original-inverse routes tested to negative (13 November 2026)
+
+No unknown LP2 plaintext, key, or destination recovered.
+
+- **p0 NEWBAS / 2016 563×569 route:** original p0 word6 and p1 word33 exactly have 563/569 GP-prime sums; p0 begins `NEWBAS` but not complete `NEWBASE`. Direct page positional base29→base60/base59 conversion and no-repeat predecessor-difference base28→base60/base59 conversion failed on **all 13 complete eligible original unknown pages** (each exactly reversible, native p57 positives pass). Source-selected whole-word delta conversions likewise fail. [Complete SFT](../../sims/lp2_newbase_nonzero28_radix60_sft.cjs); [decision](../../im-results/lp2-newbase-delta28-positional-base-gate.md). Do not repeat this unkeyed family without new source-selected state/escape.
+- **Signed 2012 decimal P.S. key route:** original 2012 131-digit signed end-postscript → BASE29 gives exactly 89 GP runes; original p55 is 76 runes with a 13-dot closing mark. The two fixed 76-digit keys (offset0 or13) and signs± yield **no readable p55 plaintext**; unused 13 digits predict **0 or1/13** known p56 letters. The full 89-key window after original p0 `NEWBAS` word6 at offset34 is also nonlinguistic for both signs. [Complete SFT](../../sims/lp2_2012_signed_ps_base29_p55_gate_sft.cjs); [decision and historical source](../../im-results/lp2-2012-signed-ps-base29-p55-gate.md).
+
+Both are bounded tests with planted and authentic original-cipher controls. Numeric equalities are retrospective cues, not source-authenticated key instructions. Primary missing input still an independently specified operation/key with prospective unknown plaintext recovery.

@@ -1,0 +1,18 @@
+name: "LP2 Gilgamesh-era original quote crib (manual)"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  gilgamesh-quote-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax check exact source-gated CJS
+        run: node --check sims/lp2_gilgamesh_era_quote_crib_sft.cjs
+      - name: Test three byte-pinned public-domain period sources and original LP2 quotation arrays
+        run: node sims/lp2_gilgamesh_era_quote_crib_sft.cjs

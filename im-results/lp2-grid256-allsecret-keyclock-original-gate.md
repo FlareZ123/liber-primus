@@ -1,0 +1,89 @@
+# All-secret original LP2 256-cell key reuse, including transparent F
+
+**Agent 4, 16 November 2026.** Exact original-source, key-independent native-GP exclusion. No unknown-page plaintext, original author key, hash preimage or continuation recovered. The result retires the tempting hypothesis that the 256 cells printed on pp49–51 supply a fixed cyclic GP29 alphabet key, even if the 256 unknown alphabets are completely arbitrary. A nonperiodic key schedule seeded by the same cells remains possible.
+
+## Source-selected model and decisive test
+
+The original numerical table has exactly **256** source cells. A human reader might read these as one period of a cipher key. Neither original LP2 nor the 2013 signed BASE29 material actually commands this, so the goal is to test the *entire* natural model before trying any new arbitrary table-byte rearrangements.
+
+The original 12,956 unknown GP29 runes are grouped either into one book-continuous clock or into the nine visually marked original chapters. A second source-supported clock treats each printed **F = GP index 0** as an unencrypted transparent marker, just as on solved p56: it never advances a key phase. On that interpretation, the remaining **28 non-F symbols** constitute the active alphabet. Two output laws are examined, allowing a completely arbitrary secret permutation independently at each of the 256 phases:
+
+1. **Absolute register:** each plaintext rune is mapped by the secret 29-way (or 28-way) permutation for that phase.
+2. **Ciphertext predecessor-step register:** the same arbitrary phase permutation produces an increment to be integrated with the previous ciphertext symbol modulo 29 (modulo 28 after F removal). F is carried visibly and consumes no chain state in the second model.
+
+For *any* fixed secret permutations, source positions whose active clocks differ by exactly **256** must preserve equality: identical cipher symbols (absolute register), or identical ciphertext steps (chain register), if and only if the corresponding plaintext rune identities are equal. Exclude the first comparison after a predecessor reset. This necessary condition eliminates all possible unknown secret table bytes in one experiment.
+
+## Original and source-native English comparison
+
+Original input: unchanged canonical physical LP2 pp0–55. Nine chapter rune lengths are **729, 1145, 1729, 1903, 1021, 1433, 1680, 3008, 308**, total **12,956**. With the 458 printed F symbols omitted they become **695, 1119, 1663, 1831, 984, 1381, 1640, 2883, 302**, total **12,498**.
+
+The separate established native-GP English control is 62,492 runes obtained from Gibran's *The Prophet* in the repository, using the source-calibrated spelling rules (ING → NG, IO → IA, QU → CW, V → U, K/Q → C, Z → S). Without F it contains 60,878 symbols. Exhaustively compare every **49,537** contiguous source-length GP-native prose window (or **48,381** non-F windows), respecting the exact original chapter template for resets. The table below gives the original equality counts against the lowest matching reference count, across all reference windows.
+
+| Key clock | Symbol channel | Original matches | Eligible original comparisons | Minimum native-GP reference matches |
+| --- | --- | ---: | ---: | ---: |
+| Whole book | 29-rune direct | **435** | 12,700 | **741** |
+| Whole book | 29-rune predecessor step | **449** | 12,699 | **741** |
+| Whole book | 28-rune direct, F skipped | **434** | 12,242 | **691** |
+| Whole book | 28-rune predecessor step, F skipped | **450** | 12,241 | **691** |
+| Nine chapter resets | 29-rune direct | **357** | 10,652 | **597** |
+| Nine chapter resets | 29-rune predecessor step | **374** | 10,643 | **597** |
+| Nine chapter resets | 28-rune direct, F skipped | **359** | 10,194 | **551** |
+| Nine chapter resets | 28-rune predecessor step, F skipped | **373** | 10,185 | **551** |
+
+In all eight fully specified models the unchanged original has **at least 178 fewer** same-phase equalities than *any* exact-length contiguous native-English comparator window. This is an all-secret-key necessary-condition result within the tested language and clock assumptions. It does not prove what language or intermediate code the original actually represents.
+
+## Separate 256-event red/13-dot tape as a direct p50 XOR pad
+
+The older red-event inventory contains **225 red runes plus 31 thirteen-dot marks = 256 events**, matching the 256 cells in the p50 32×8 table. This is a numerical alignment, not an authenticated cross-round instruction; both event classes were independently audited in all 58 original image rasters on 16 November 2026; the combined key tape has no authenticated author-prescribed ordering or cipher and the p50 base60-to-byte interpretation remains provisional.
+
+I froze one natural byte mapping and one operation:
+- page/offset order over the annotation file;
+- each red rune maps to its source Gematria **prime value**;
+- each 13-dot mark maps to **13** and is inserted after the preceding rune (at offset *i*, before rune *i*);
+- the p50 table is read in printed order across pp49–51;
+- output byte (O_i = T_i \oplus K_i).
+
+The annotation-derived input has 225 red-rune events, 30 red 13-dot entries, and one black 13-dot entry. This is the earlier derivative annotation; its rune/dot counts were independently reproduced in an all-page original-image census on 16 November 2026 ([physical source](lp2-original-dot-punctuation-physical-census.md)). The companion `lp2-punctuation-identity.json` is a narrower inventory of 31 chapter marks: 28×13 and 3×10. The annotation's 31 thirteen-dot entries comprise those 28 thirteen-dot chapter marks plus three additional thirteen-dot marks on solved pp56–57; the remaining three chapter marks are ten-dot, and two other solved-page large marks are ten and 23 dots. Thus 225+31 is a candidate all-page red-rune-plus-thirteen-dot selection, not a 31-chapter-mark stream; its **256-event physical count** is now verified, while the older SFT still tests only that derivative source order and an unselected numeric XOR consumer. The output is 256 bytes, begins `FE F0 E4 BD 70 AA 15 B5...`, has **37.109375%** printable ASCII, and has no PNG, JPEG, ZIP, PDF, gzip, ELF, GIF, or 7z signature. Its SHA-512 is `05d7f54a44bd09c97a5996f43c4279e9019ac9a94f74a6f6ff318522bf0ef65639feae675ce9f0f308d327f22dd0e906d6ca8955dad8a478be26da8b2aa1225a`, not the p56 target `36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4`.
+
+**Decision:** the direct 256-byte XOR does not yield a readable page, common file, or the p56 hash preimage. This rejects only this exact one-time-pad consumer; it does not establish the event tape or base60 byte rule, nor exclude a differently sourced downstream use. Do not expand into arbitrary encodings without an independent selector. [Reproducer](../sims/lp2_red225_plus31_p50_xor_sft.cjs).
+
+### Three source-sized 256-element registers: literal three-stream XOR gate (Agent23, 17 November 2026)
+
+The original p50 numeric grid contains exactly 256 base60 byte values, the image-verified 225 red GP runes plus 31 thirteen-dot marks provide one 256-element red-event stream, and the exact final physical p55/p56/p57 ciphertext/clear rune sequence contains **76+85+95=256 symbols**. The historically recorded 2014 Cicada round used a three-file XOR operation, motivating a bounded original-source three-input experiment. No source instructs applying that historical binary operation to these three different LP2 representations, and their coincident lengths do not resolve rune-to-byte conversion.
+
+Reuse the **same** canonical page/offset red-event serialization already fixed by `sims/lp2_red225_plus31_p50_xor_sft.cjs`: a red rune is its GP prime number and a large 13-dot glyph is integer13. XOR each event position with its p50 base60 byte and the GP29 numeric value of the corresponding terminal rune. The four frozen terminal conventions are GP **index0–28** versus GP **prime value**, with p56 held as original source ciphertext versus independently authenticated prime-totient plaintext (p55 remains untouched ciphertext and p57 remains originally clear).
+
+| Original source terminal convention | Printable ASCII fraction of resulting 256 bytes | First 20 bytes, hex |
+|---|---:|---|
+| Original p56 ciphertext, GP29 rune indices | 0.36718750 | `ebe9f7b777a504bb7a91d397ed0ba39d47fb096b` |
+| Original p56 ciphertext, GP prime values | 0.37109375 | `b195a3a2639f289a2eabf680a30cdf9f37822563` |
+| Authentically decoded p56 only, GP29 indices | 0.37109375 | Same p55-leading source bytes as above |
+| Authentically decoded p56 only, GP prime values | 0.35156250 | Same p55-leading source bytes as above |
+
+None of these four original-terminal direct XOR results has a recognized PNG/JPEG/ZIP/PDF/GZIP/GIF file signature, readable text, or the solved p56 page's 128-hex SHA-512 target. All four outputs are bytewise reversible to the unchanged p50 source under their stated input conventions, which establishes implementation integrity rather than authentic decryption. The full literal output SHA-512 values and source invariants are printed by [the read-only CommonJS SFT](../sims/lp2_three_source256_registers_xor_sft.cjs), successfully executed in [Windows Node22 CI 44168112629](https://github.com/FlareZ123/liber-primus/actions/runs/44168112629). **No original unknown LP2 plaintext, source-selected register map, or new key follows.** This finite exclusion does not imply that all mixed-register cryptographic compositions fail, nor justify widening arbitrary byte/rune mappings.
+
+### Separate direct GP29 interpretation of the same 256 event positions (Agent 44, 16 November 2026)
+
+The 256 count alignment also motivates a narrower *rune-level* consumer distinct from bytewise XOR: retain original physical 13-dot events as explicit word separators, interpret each intervening red rune in GP29, and subtract the matching printed p50 byte residue modulo 29, reading both source registers in original page/offset and row order. The operation is fixed, invertible, and independently source-controllable; no Cicada instruction establishes it as a historical receiver.
+
+The original event order yields **225 red runes and 31 separators**, producing 32 putative words. Critically, **15 of those 32 words are empty** and the longest has **59 runes**. The zero-length words arise from real runs of physical 13-dot marks with no intervening red rune; they are present *before* applying any key. Thus the simplest interpretation of all 31 dots as plaintext word boundaries is structurally incompatible with an ordinary 32-word message, regardless of the chosen rune substitution.
+
+The frozen GP29 inverse gives IoC **0.03785714285714286** over all 225 runes, compared with **0.03321428571428572** in the original red rune stream. Its first 60 runes romanize as `SNAELAEXBLINWTHMJGPOEBMISAEENGSEOJOEYSFNGWJNGLLLFANGAELAGJDNDRAENGNGLPOEAEAEXEA`; it is not grammatical text. Exact re-encoding recovers all 225 original red symbols; a separate 225-rune plant repeated from the authentic solved p57 gives **225/225** recovery and fails under an independently reversed wrong key. These round trips check the inverse but do not validate the proposed historical key or byte-to-GP residue choice.
+
+**Decision:** The fully specified *physical-13-dot-as-word-break + row-order byte-mod29 additive* consumer fails on original sources. Neither the direct XOR rejection above nor this GP29 failure excludes a legitimately supplied different operation or event serialization. The failed framing is the useful stronger fact, since no character-level key can turn the observed 15 zero-length word slots into natural words without an additional, independently selected segmentation grammar. [Read-only original-input CJS reproducer](../sims/lp2_red225_p50_gp29_frame_sft.cjs).
+
+### Three original 256-position objects as the historical three-XOR operation (Agent 5, 16 November 2026)
+
+A distinct source-sized possibility combines **three** original objects, rather than the previously tested two: (1) the 256-element red-rune/13-dot stream above, (2) the original printed 256-byte pp49–51 table, and (3) the **256 original GP29 runes on pp55–57**, partitioned **76 + 85 + 95**. An earlier Cicada 2014 stage genuinely XORed three OutGuess-derived byte shares. This makes triple XOR an inexpensive historically recognizable operation, although **no authentic source selects these three inputs as shares**, equates red marks with bytes, or says that the two solved pages share an encryption register with p55.
+
+Keeping all original source positions in their printed order, assign a 13-dot event the byte **13** and serialize each rune by either its actual **0–28 GP index** or its historical GP **prime value** (both values below 128). Apply the exact reversible operation `O[i] = table[i] XOR event[i] XOR terminal[i]` for each of the four source-standard rune-code pairings. The first 32 output bytes in the index/index case are `d1f6a6b360f174b940ec82cde50ba3c069de1631628c2f5f7ad6ad1b95429e85`. All four outputs lack immediately legible text or conventional file signatures, and **none has the exact p56 printed SHA-512 target as its SHA-512 digest**.
+
+The decisive observation is **independent of all four readings and any rune rearrangement**: because every red/dot and terminal rune code is less than 128, `(O[i] & 0x80) = (table[i] & 0x80)` for every position. The printed 256-byte table has **129 high-bit-set cells**. Consequently **every such direct triple-XOR output retains exactly 129 bytes outside 7-bit ASCII**, regardless of how GP runes are mapped to any 0–127 codepoints or which transparent-F-derived GP29 plaintext replaces the p56 ciphertext. Thus the source-shaped three-stream operation cannot directly produce an ordinary 7-bit ASCII instruction. This does not rule out binary payloads, compression, a fourth 8-bit operand, nonlinear postprocessing, or a key carried elsewhere. No unknown LP2 text, original key, or destination is recovered.
+
+[Original-source and positive-inverse SFT](../sims/lp2_three256_source_xor_ascii_obstruction_sft.cjs) · [Passing Windows Node22 run](https://github.com/FlareZ123/liber-primus/actions/runs/43963816085).
+
+## Exact reversible controls, reproduction, and decision
+
+The **single-file CJS/Node22 reproducer** at [sims/lp2_grid256_allsecret_keyclock_sft.cjs](../sims/lp2_grid256_allsecret_keyclock_sft.cjs) reads the canonical source and asserts every original count and chapter/F length. It also generates eight full-length (12,956-rune) native-GP encrypted plants under independent fully secret 256-phase permutations, decrypts **12,956/12,956** runes in each, and verifies perfect preservation of the correct same-phase equality invariant. The plants confirm power against the eight exact classes and do not establish original author keys. [Successful original-source manual GitHub Actions run 43784583230](https://github.com/FlareZ123/liber-primus/actions/runs/43784583230).
+
+**Research decision:** Exclude any unchanged-orthography GP29 plaintext encrypted by a static 256-position lookup or static 256-phase predecessor chain, with full-book or original chapter clocks, including the authentic p56-style transparent-F exception. Source-selected nonperiodic state evolution, per-word rekeying, non-GP compressed payloads, or an independent hidden key remain open. No arbitrary reordering or new key phases are justified by this negative. Future work on Director #1099 needs an independently sourced decoder that actually reconstructs its complete **138-rune pre-table** sentence and predicts the **170-rune post-table** sentence.

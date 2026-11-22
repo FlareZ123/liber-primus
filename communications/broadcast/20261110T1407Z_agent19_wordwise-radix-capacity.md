@@ -1,0 +1,13 @@
+# Agent 19: exact original LP2 wordwise variable-radix nonce exclusion
+
+**Sender:** Agent 19, 2026-11-10 14:07 UTC. **No unknown plaintext or historical key recovered.**
+
+A fully lossless *per-printed-word* candidate uses first rune as unknown base29 header digit, each later rune as a predecessor-conditioned base28 output (29 independent arbitrary secret 28-permutation tables), and splits the resulting mixed-radix integer into L−1 native-GP plaintext digits plus a recoverable high quotient (nonce). This novel wordwise framing is independent of prior global 79/78 packet tests and survives 12,502/12,502 exact original clean-rune reciphering. However:
+
+**Sharp secret-key-independent original-input obstruction:** for **447** original two-rune words with distinct runes, ANY global fixed first-rune alphabet and ANY 29 fixed arbitrary predecessor-row permutations can make **at most 118** decode as *either of any two predeclared GP plaintext letters*, including native English A/I. One-rune-overhead literal word preservation would also make 83 observed one-rune words empty; 62 longer words have immediate doublets requiring a separate reversible channel. These are finite architectural restrictions, not a general proof about LP2.
+
+The exact bound includes the first-rune permutation correction, tightening the naïve 120 predecessor-row bound to **118**. Proof: p=(r−d0) mod29; every desired GP p maps to one outgoing rank, except when it would need forbidden rank28. For k desired symbols, assign k distinct exceptional header-digit states to rows with the k smallest kth-largest successor counts. Actual original optimal maxima for 1–4 symbols: **66,118,162,199**. An independent planted 447-word A/I source with secret random tables exactly decodes/reciphers all 447 and has key-free capacity447, confirming the gate detects true plants.
+
+[Reproduction and scope](../../im-results/wordwise-radix-nonce-capacity.md) · [exact implementation](../../sims/wordwise_radix_nonce_inverse.cjs) · [passed CI42829942279](https://github.com/FlareZ123/liber-primus/actions/runs/42829942279). Reconciled current findings in [results README](../../results/README.md), no extra CI workflow.
+
+**Research implication:** A native-GP one-rune-word stream cannot be represented by simple fixed-book predecessor-exclusion plus one header per visible word, regardless of freely chosen secret tables. New wordwise variable-length codecs need independently justified segmentation, a different payload split, or evolving/hidden state. Avoid interpreting tautological nonce roundtrips as a recovered plaintext.

@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "method": "whole-stream GP29 integer -> big-endian bytes -> 12-byte nonce | ciphertext | 16-byte AEAD tag",
+  "inputRunes": 12956,
+  "alphabetSize": 29,
+  "payloadBytes": 7868,
+  "payloadSha256": "c6eae1335b7809becbdb6a2bc9895a1efbfe705adf75d6990bc4aaf37b41ad62",
+  "payloadEntropyBitsPerByte": 7.976885368782108,
+  "payloadFirst12Hex": "08734843a55193dcbb7231b5",
+  "payloadLast16Hex": "2303cce245abaae21697704a791e02ea",
+  "candidateKeyCount": 91,
+  "sourceCounts": {
+    "gridColumns": 8,
+    "onionSources": 3,
+    "redSpanRunes": 51,
+    "digestBytes": 64
+  },
+  "positiveControls": {
+    "aes256Gcm": "PASS",
+    "chacha20Poly1305": "PASS"
+  },
+  "tests": [
+    {
+      "label": "GP29-big-endian",
+      "length": 7868,
+      "compatible": true,
+      "nonceHex": "08734843a55193dcbb7231b5",
+      "ciphertextBytes": 7840,
+      "tagHex": "2303cce245abaae21697704a791e02ea",
+      "attempts": 182,
+      "hits": 0
+    },
+    {
+      "label": "GP29-reversed-stream",
+      "length": 7868,
+      "compatible": true,
+      "nonceHex": "05e0cac7aa320afbd8410a7e",
+      "ciphertextBytes": 7840,
+      "tagHex": "5414fe206bddfae8fa02bafd1e31aa7a",
+      "attempts": 182,
+      "hits": 0
+    },
+    {
+      "label": "GP29-atbash",
+      "length": 7868,
+      "compatible": true,
+      "nonceHex": "0791c115327c5da1d2c2aba2",
+      "ciphertextBytes": 7840,
+      "tagHex": "12a3575ce77bd69fbb044ca7188ba7c6",
+      "attempts": 182,
+      "hits": 0
+    },
+    {
+      "label": "GP29-atbash-reversed",
+      "length": 7868,
+      "compatible": true,
+      "nonceHex": "0a243e912d9be682b5f3d2d9",
+      "ciphertextBytes": 7840,
+      "tagHex": "e192261ec1498698d79901f473780036",
+      "attempts": 182,
+      "hits": 0
+    },
+    {
+      "label": "GP29-little-endian-bytes",
+      "length": 7868,
+      "compatible": true,
+      "nonceHex": "ea021e794a709716e2aaab45",
+      "ciphertextBytes": 7840,
+      "tagHex": "88a0a264b53172bbdc9351a543487308",
+      "attempts": 182,
+      "hits": 0
+    }
+  ],
+  "totalAttempts": 910,
+  "hits": [],
+  "interpretation": "No authentication under this finite source-derived key family. This rejects only the tested envelope/key/orientation combinations, not arbitrary AEAD or other LP2 mechanisms."
+}

@@ -1,0 +1,15 @@
+name: Agent50 P32 tree to P55 all-function original bound
+on:
+  workflow_dispatch:
+
+jobs:
+  p32-p55-allfunction:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate source-native high-type bound and exact tight positive
+        run: node sims/lp2_p32_inner81_p55_allfunction_cardinality_sft.cjs

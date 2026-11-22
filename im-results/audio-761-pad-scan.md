@@ -1,0 +1,306 @@
+# Original Cicada 2013 Parable and audio: seventh-onion metadata link and original-cipher tests
+
+**Classification: exact original cross-round source arithmetic and bounded negative cipher tests. No unknown LP2 plaintext or identified key. Source audio test originally Agent 45; source arithmetic and additional tests Agent 27, 10 November 2026.**
+
+## Source-directed hypothesis
+
+This is a different source family from Liber Primus image bytes, arbitrary pseudorandom seeds, or LP2 number-table keys. A real artifact published by Cicada in the **2013** puzzle, \`audio/761.MP3\`, contains an ID3 user-text field with **"Parable 1,595,277,641"** and the poem that appears in the later **LP2 PARABLE**. The surviving 2013 walkthrough records a successful use of the MP3 **bytes** as the XOR operand for the Twitter byte stream, producing a JPEG whose OutGuess payload reveals the Gematria Primus table. Thus the artifact has two documented roles: a byte-level key in the 2013 Twitter stage and a textual cross-round clue in ID3. Neither role selects a second operation on decoded samples, stereo differences, spectral bands, note streams, or resampling for LP2. Treat the waveform-as-LP2-key idea as a separate hypothesis requiring an independent clue, not as an implication of the MP3's presence. Its original exact byte content is pinned to [rtkd/iddqd commit f2267b0](https://github.com/rtkd/iddqd/blob/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3).
+
+The [original downloaded MP3](https://raw.githubusercontent.com/rtkd/iddqd/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3) was **4,010,732 bytes**, SHA-256 \`83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460\`. The 206-byte ID3 tag contains the named later Parable and is excluded from the 4,010,526-byte compressed-audio pad. The test reads the binary file directly, not an MP3 transcription, waveform resampling, or re-encoded audio.
+
+### Historical player path and signal-selection audit
+
+The archived 2013 ISO walkthrough lists `AUDIO/761.MP3` among the Cicada OS files and records the successful stage operation as Twitter bytes XOR `761.MP3` → JPEG → OutGuess → Gematria Primus table. It does not describe a second waveform payload. The archived solver discussion reports the D-flat minor key, custom guitar tuning, reversed-guitar texture, an initial breath, a tempo change, a 15.4–16.1 kHz hum, and low-frequency notches after 1:56. These are retrospective community observations, not an author-specified decoder. The same discussion says reverse-message checks found nothing and describes a single guitar recorded by two microphones; the sub-500 Hz notches at 1:56 are now reproduced as *relative* depressions near 135/269 Hz during a much stronger low-band passage (measured below). The historical account supplies no associated symbol mapping, clock, or cipher operation. No original source fixes a channel, direction, resampling rate, frequency window, or melody-to-text clock ([2013 ISO archive](https://github.com/neuroretransmit/cicada/blob/main/2013/002-3301/README.md); [archived solver discussion](https://uncovering-cicada.fandom.com/wiki/Instar_emergence_%28mp3_and_hidden_poem%29)).
+
+## Parable's heading is the modulus of the seventh-onion title and id
+
+The 2013 audio already publishes the exact later *Parable* and product `1,595,277,641`. The original LP2 solved physical p57 prints four punctuated clauses, beginning with its heading **PARABLE**. Using the actual, ordered 29 Gematria Primus prime weights, the rune lengths are **[7, 30, 30, 28]**, with sums **[449, 1259, 1031, 1229]**. The heading's prime sum **449** is a natural source-native modulus for the poem's three body clauses, whose divisions each have quotient two:
+
+```text
+1259 = 2 × 449 + 361
+1031 = 2 × 449 + 133
+1229 = 2 × 449 + 331
+```
+
+The body remainders are **[361, 133, 331]**. Their **last two elements in the printed order exactly equal the contemporary 2014 seventh-onion HTML's `<title>133</title>` and `<div id="331">`**. The original index explicitly lists 58 images in natural numerical order; neither the HTML nor the signed message from the prior onion instructs use of modulo449. All **24** ordered selections of a modulus from the four source clauses plus two distinct other clauses reproduce these two HTML values **only** with heading clause0, body clause2 and body clause3. This is a finite source-specificity check, **not** a discovery-wide coincidence probability or evidence of deliberate author intent.
+
+The unused first residue is **361 = 19²**, potentially key-related but without an independently named operation. Separately, the HTML pair sums to **464=8×58=16×29**, the known count of ordinary primes through 3301; their residues 17,41 modulo58 form inverse quarter-turn page-index permutations, a separate reversible geometric hypothesis that has **not** decoded LP2. [Source-only full reproducer](../sims/parable_449_onion7_header_modulo_sft.cjs) and [successful CI 42931492264](https://github.com/FlareZ123/liber-primus/actions/runs/42931492264) check the exact rune inputs, GP sums, source values, and uniqueness among the 24 same-page selections.
+
+## Third Parable residue has an original word-count witness (Agent47, 12 November 2026)
+
+**New original-text cross-check, exploratory interpretation.** The 2013 MP3 metadata already supplies the later p57 `PARABLE` verbatim. Its original LP2 rune transcription has one seven-rune heading word and three punctuated body passages with **7, 6 and 6 complete printed GP words**, or **19 body words in total**. The [same source-sum SFT](../sims/parable_449_onion7_header_modulo_sft.cjs) now asserts those counts directly from original separators and cross-checks all 95 runes against the canonical p57 indices. The prior modulus arithmetic remains unchanged: p57 heading prime sum **449**, body clause sums **1259, 1031, 1229**, common integer quotient **2**, and remainders **361, 133, 331**.
+
+The previously unexplained first remainder **361 is exactly 19²**, where 19 is the *source-defined count of body words*. In the same source count, **133=7×19**, where 7 is the heading's original GP-rune count. The historical HTML's other field is **331**, the decimal reverse of 133. Thus every element in the remainder triplet has a specific short arithmetic relation to independently visible page structure or to one of the two literal HTML fields. No extra unpublished 361 tag or separate 2014 source is asserted.
+
+**Competing explanation and cryptanalytic limit.** This pattern was noticed retrospectively after the 449-modulo/HTML coincidence was already known. Counting the manuscript at several other levels and choosing numerical relations after seeing the residues creates a substantial selection effect; no discovery-adjusted null or authorial instruction is available. The older source alternative, stripping zeros from 1033/3301 to obtain 133/331, also remains. Director #543's negative search for an independent 2014 *361 field* is unaffected: a p57 word count is not an additional contemporaneous 2014 publication field. The observation sharpens the **source-side internal coherence** of one prospective cross-round arithmetic route but still supplies no ordered key bytes, GP29 inverse, state clock, source-selected readout or unknown LP2 plaintext. Further investigation is justified only by a new, independently visible source instruction selecting how to consume this exact triplet. Do not tune a 361/133/331-derived cipher after scoring original text.
+
+## Source-number prime-origin test on the authentic p56 mechanism
+
+The independent historical labels **761** (2013 audio artifact and 2014 HTML “Patience” replacement) and **167** (reported audio duration, reversal of 761) also suggest a much narrower construction than an arbitrary compressed-audio pad: begin the **known solved LP2 p56 consecutive-prime totient schedule** with ordinary prime 761 (prime ordinal 135) or 167 (ordinal 39). Keep its GP29 subtraction, physical-page reset, and literal/nonconsuming visible-Fehu rule unchanged. These are externally selected starting values, whereas treating them as a new LP2 key rule is still an inference.
+
+The executable [original-source gate](../sims/instar761_prime_start_original_gate.cjs) evaluates *every* literal-Fehu mask on unsolved physical pp0, 1 and 5, using the unchanged Emerson-trained GP trigram model. [Manual CI run 42924926726](https://github.com/FlareZ123/liber-primus/actions/runs/42924926726) passed with the complete original ciphertext on all three pages:
+
+| Frozen first prime (one-based rank) | p0, 262 runes / 16,384 masks | p1, 266 runes / 8,192 masks | p5, 263 runes / 256 masks |
+| --- | ---: | ---: | ---: |
+| 761 (135) | −5.872788 | −6.037699 | −6.121999 |
+| 167 (39) | −5.835271 | −6.162004 | −6.034633 |
+
+Scores are the **maximum** mean GP trigram log likelihood over all masks, so the values are optimistically post-selected for each page. As a real-cipher positive control, the same implementation recovers all **85/85 solved p56 runes** at the authentic first prime 2, with the known literal-F mask 8 ranked first of 32 and score **−2.383854**. Neither historical-origin candidate produces readable GP plaintext on any original page. This is a bounded rejection of the literal *start-prime transfer* interpretation; the source has never authenticated such a transfer, and the negative says nothing about other uses of the 2013 audio.
+
+## Parable prime-ordinal interval as an AES-256 key for the printed grid
+
+A more structural use of the same historically published three *Parable* prime sums is their ordinary-prime ordinals: **1259 = p205, 1031 = p173, 1229 = p201**. Consequently the immediately following **p174..p205** comprise **exactly 32 primes**, from **1033** (also the authentic 2014 magic-square constant) through **1259**. Their 32-element length matches the number of rows in the original **32×8 numerical grid** across physical pp49–51. The arithmetic was already reported to Director Issue #3 as a **postnoticed candidate**; no archived instruction chooses the encoding or cipher.
+
+The [source-frozen AES test](../sims/parable_prime32_grid_aes_sft.cjs) uses the 32 prime low bytes or their totient low bytes in either ascending or descending order as **four exact 256-bit candidate keys**. It tests the original 256-byte grid in its as-printed and five-cell-audited editions, with AES-256 **ECB/CBC/CFB/OFB/CTR** and only zero, first-16-cell or last-16-cell IV conventions when required: **104 complete decryptions**. A full known-answer ASCII/PGP-style AES-256-CBC plant under the real 32-prime key re-decrypts **256/256 bytes** and its header is recognized.
+
+The original grid produces **no PGP, ZIP, gzip or PDF signature in any of the 104 decryptions**; its most printable candidate has only **108/256** printable bytes. The same 104 complete decryptions were also reduced to the original **GP29 rune register** by both byte-modulo-29 and scaled-byte-to-29 readouts: the highest output GP29 index of coincidence is only **0.03728554**, and the highest independent Emerson GP trigram mean is **−5.912882** per rune. A genuine **256-rune** solved-LP1 GP source plant under the identical prime32 AES key recovers **256/256** exactly with GP29 IoC **0.06427696** and GP trigram **−2.374520**. At most **36/256** decrypted original bytes are direct uncompressed GP ordinal values 0–28 in any case. [Successful opt-in CI run 42927725300](https://github.com/FlareZ123/liber-primus/actions/runs/42927725300) includes the original and both independent known-answer controls. This is a bounded negative for ordinary AES-256 direct **ASCII/file-header or GP29** plaintext under the stated 32-prime byte encodings and IVs; the ordinal interval might have a different role or no intended role at all. It supplies no new LP2 plaintext.
+
+## Audio-keyed 28-successor cipher with a repeat escape (Agent41, 15 November 2026)
+
+The original ciphertext's **86 adjacent repeats among 12,901 within-page transitions** are exceptionally sparse. One exact, reversible alternative to the prior mod29 byte-pad cipher is to represent the 28 normal GP runes as one of the **28 ciphertext successors other than the previous glyph**, and reserve an exact repeated glyph for GP index28 (EA). The 2013 `761.MP3` is a genuine high-entropy historical key source, with its **original byte-zero XOR role independently established**; transplanting it to this 28-way mapping remains a hypothesis. Unlike the earlier 16-million-offset search in this report, this gate never fits an audio offset, secret key or language model.
+
+Freeze the original audio **at byte 0**, reduce each key byte modulo28, and consume one key byte for every emitted nonrepeat successor (a repeated predecessor reserves GP index28 and consumes no key). On each physical page, transmit the first ciphertext rune as a public IV. For nonrepeat runes let the observed successor rank be either cyclic `((C[i]−C[i−1]) mod29)−1` or increasing-numeric rank among the 28 alternatives, then decode `P=(rank ± key) mod28`. The only clock alternatives are complete-book continuation and original physical-page resets. Thus the eight source-declared variants vary only rank convention, sign and reset scope. Every candidate has an explicit exact inverse.
+
+The original-input [single-file SFT](../sims/lp2_2013_audio_source_gp28_original_sft.cjs) and [successful Windows Node22 run 43683317131](https://github.com/FlareZ123/liber-primus/actions/runs/43683317131) verify the full 4,010,732-byte source at SHA256 `83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460`, preserve all 12,956 original source rune positions, and exactly reconstruct every ciphertext rune under each of the eight models. All eight authentic original readouts remain near random with **GP29 global IoC 0.0352425–0.0352974** versus actual original IoC **0.0344784**. Their beginnings and p55 excerpts are nonlinguistic. For comparison the independent solved-p57 GP-native plant under the same source, original page lengths and per-page IVs returns **12,901/12,901 planted content runes exactly** for each model, with full plant IoC **0.072436**. This is not a generalized cipher impossibility, but establishes that a correctly working decoder of this particular historical source/transparency form produces no candidate original English.
+
+**Decision:** retire the **byte-zero, byte-mod28, key-on-nonrepeat** 2013 audio transfer for both natural successor-rank conventions, either sign and book/page key clocks. This is structurally distinct from the previous direct additive GP29 audio offset search and source-factor period-7/28 tests. A creator-supplied different key byte selection, cipher-dependent clock, reserved symbol or non-English intermediate is not excluded, but no original source currently chooses it. No LP2 unknown-page plaintext or authentic key recovered.
+
+## Frozen cipher family
+
+Use each of the **4,010,526 original compressed audio bytes**, in their natural forward order, as a section-start additive mod-29 candidate key. Two declared byte-to-key symbol reductions, \`byte % 29\` and \`floor(byte*29/256)\`, are tested with both sign directions. Every safe byte start is tested without using an arbitrary shortlist of mystical offsets. The original LP2 page0 first **24 runes** are screened with exact hidden-skip Viterbi (up to **two collision-rejected key draws per emitted rune**, with fixed 3.5-unit skip penalty and a Shakespeare-trained GP trigram model). The best 400 head candidates are then decoded on **all first 220 runes**, with the same forward mechanism and key source.
+
+Every pad/reducer/sign combination has **4,009,867 safe offsets**, yielding exactly **16,039,468 candidates** tested, before the head shortlisting. The selected six strongest full220 decoders are also evaluated on the first220 runes from independent LP2 pages 1 and 5 at their same selected byte offsets (a *page-reset* held-out variant). This evaluates a finite source-specific cipher family, not every way an MP3 waveform could be turned into a keystream.
+
+## Executed results
+
+**Successful manual GitHub Actions [run 42755802150](https://github.com/FlareZ123/liber-primus/actions/runs/42755802150)**, Node 22, original source pinned to immutable commit.
+
+| Evidence | GP trigram score per rune, higher is better |
+|---|---:|
+| Source-true planted LP1 plaintext, 220/220 correctly recovered, 7/7 hidden key skips | **−2.50546** |
+| Real LP2 best of top400 short-window candidates, first220 runes | **−5.23131** |
+| Real six strongest candidates, page1 first220 held-out | **−5.68580 to −6.32006** |
+| Real six strongest candidates, page5 first220 held-out | **−5.77643 to −6.41931** |
+
+The strongest long-window LP2 candidate is \`mp3-payload-scaled29\`, **sign −**, audio payload **offset 2,237,650**, score **−5.231307** per rune and two inferred extra pad draws. Its decoded 40 GP indices are \`[23,10,15,18,20,23,4,18,12,10,14,3,23,19,28,18,6,15,3,20,26,16,5,18,5,15,17,6,7,18,2,9,1,18,9,21,6,10,2,19]\`, with no English words. Page1 heldout is −6.18969 and page5 −5.95409. The best 24-rune head by itself is at a **different** audio offset 2,357,308 and head score −2.89385; its dominance does not survive a longer window.
+
+**Positive control:** Encrypt independently known **LP1 solved text**, 220 real GP symbols, under the actual downloaded audio's \`byte%29\` pad at offset **3301**, positive encryption sign and 82%-chance repeat-triggered additional key consumption (seed \`0x7613301\`). A fixed-key exact Viterbi inversion recovers **220/220 original runes** and exactly **seven** additional pad draws, full score −2.50546. Its 24-rune head score is −2.55703. This validates the full decoder given the true key/offset. A **second exhaustive positive-control search** then scored that exact 24-rune planted ciphertext at all **4,009,867** safe start offsets in its correct modulo-29/sign+1 family. The **correct key ranked 1st of 4,009,867**, head score **−2.55703**; the best wrong offset (108,248) scored **−2.81667**. [Successful Actions run 42756732792](https://github.com/FlareZ123/liber-primus/actions/runs/42756732792), runnable source `sims/audio_761_plant_rank.cjs`. This confirms the top-400 filter can retain a genuine audio-pad key with seven key skips against all alternative offsets *within the true mode*. It does not demonstrate rank against the other three reducer/sign families or different skip distributions, and does not rule out audio-derived keys outside the tested family.
+
+### Interpretation and limitations
+
+The 400 strongest LP2 short-window candidates did **not** yield a meaningful 220-rune plaintext or survive straightforward page-reset generalization. The 16,039,468-count is an **exact candidate test count**, and no separate whole-search empirical null p-value is claimed. This test does not cover reverse-ordered audio bytes, alternative PCM transformations (with direct decoded PCM tested separately below), chained/keyed hashes of the file, alternative key byte encodings, unknown output rune permutations, page/section offsets other than literal byte positions, more than two skipped draws, or symbol-by-symbol variable key generation. The page1/page5 held-out tests reset the key at the same selected byte offset; an actual continuous cross-page pad could advance instead. Therefore **no evidence** that original compressed MP3 bytes form a usable additive LP2 key was recovered by this bounded screen.
+
+**Reproducer:** \`node sims/audio_761_pad_scan.cjs\` with \`LP761_MP3\` pointing to the original file. One-time workflow \`.github/workflows/audio-761-pad-scan.yml\` downloads the immutable source and invokes the code. All offsets, source SHA, planted skip count, full-score shortlist and heldout scores are emitted as parseable JSON in the successful run.
+
+## Decoded historical AUDIO/761.MP3 waveform as a key source (Agent 28)
+
+This tests the **decoded waveform samples**, a distinct and historically grounded source that the preceding compressed-audio-byte offset search did not cover. The original pre-LP2 2013 `761.MP3` was fetched from the immutable [archived commit](https://github.com/rtkd/iddqd/blob/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3) and decoded using FFmpeg to **mono signed16-bit little-endian PCM at the source sampling rate**, with no user-selected resampling. The resulting waveform contains **7,365,632 samples** and its decoded PCM SHA-256 is `7859a94f648eb0d3ca1ee94d8aeeb8606c4a2d2cb68c8a8ae95171b4d81ebb9b`. FFmpeg's precise decoder output bytes, SHA and source URL are retained in the successful CI job.
+
+Two concrete rune-pad projections of those actual PCM samples were frozen before scanning original LP2: normalized signed16 sample modulo29, and the low eight bits of each sample modulo29. Both ± arithmetic signs were screened with exactly the same collision-only rejected-key Viterbi used for prior JPEG/MP3 byte-source tests. Every **7,364,973** safe sample offset was evaluated for **each of the four source/sign settings**, producing **29,459,892 original page0 first24-rune head evaluations**. The top400 head candidates across all four configurations were extended to 220 actual page0 runes, then compared on two different original pages with the same source offsets.
+
+| Source-controlled original result | Trigram log likelihood per GP rune, higher better |
+| --- | ---: |
+| Best of 400 shortlisted, p0 first220, signed16 modulo29, negative sign, offset **4,964,408** | **−5.121655634** |
+| That same source key on separate original p1 first220 | **−5.936426765** |
+| That same source key on separate original p5 first220 | **−5.649533410** |
+| Second-best full p0 model, low byte modulo29, negative sign, offset **5,465,669** | **−5.156150205** |
+| Blind source-true English GP control, 220 runes, original PCM modulo29 | **220/220 exact recovered** |
+
+The winning full-original candidate decoded p0 to `ALUSTUEOPFBISOREBARDECEDNFULPBRWSWOLBSFIATRRCFB` over its first45 GP letters, with **five** inferred hidden key skips. The best short24 head score alone, **−2.82446** at a different sample offset **5,263,049**, deteriorated when decoded over 220 runes. None of the actual p0, p1, or p5 candidate outputs constitutes credible prose or a source-authentic decryption.
+
+**Blind source-native original-waveform positive:** independently known solved-Cicada text was encrypted as **220 genuine GP runes** using the actual signed16-mod29 PCM source at hidden sample offset **3301**, positive sign, and 15 collision-triggered secret pad rejections. With neither offset nor skips supplied to the search, the correct offset ranked **first among all 7,364,973 possible offsets in that same true source/sign family** on a 24-rune head, versus nearest incorrect head −2.86427. The full 220-rune decoder recovered **all 220/220 GP plaintext runes and all 15 skipped pad draws** exactly. The true model is guaranteed to remain in the top400 within that source/sign family; no claim is made that this constitutes a full cross-source/sign ranking.
+
+[Exact executable](../sims/audio_761_pcm_keyskip_scan.cjs), [opt-in workflow](../.github/workflows/audio-761-pad-scan.yml) with input `probe=decoded-pcm`, successful [GitHub Actions run 42840114636](https://github.com/FlareZ123/liber-primus/actions/runs/42840114636). This is a bounded source-true negative for the two fixed sample-to-pad conventions, both signs, literal sample indices and the specified collision-keyskip model. Stereo-specific pad extraction and resampling remain technically untested, but no original source selects them: the historical two-microphone observation describes recording setup, not an instruction to subtract channels or choose a resampling rate. The separate high-band test below includes left/right/mid/side and finds a nearly fixed differential phase rather than a bitstream. Keep stereo/resampling, lyric synchronization, and other projections inactive unless a primary source supplies a concrete selector.
+
+
+### Original low-frequency change at 1:56 (fixed historical acoustic gate, Agent 15)
+
+The historical solver discussion specifically reports **“empty notches under 500Hz starting from 1:56”** (116 seconds). This had not been tested as a source-frozen time/frequency boundary in the earlier high-band and musical-key probes. A new original-audio probe, [`sims/audio_761_low_notch_sft.cjs`](../sims/audio_761_low_notch_sft.cjs), uses the same 44.1 kHz stereo float PCM and established 8,192-point Hann FFT / 4,096-sample hop, with no frequency search or retiming. All 1–500 Hz bins are reported in four **predeclared physical epochs**: 96–116, 116–136, 136–156, and 156–167 seconds. The method takes each FFT bin's median fraction of 1–500 Hz power in each epoch to assess a *relative* notch, and separately retains absolute median power. The original MP3's checksum is checked before decoding; a three-tone synthetic removal control at 242 Hz produces **−92.43 dB** in the fixed-bin FFT.
+
+The following bins are the **only ones** at least 10 dB below their 96–116 s fractional-power baselines in *all three* subsequent epochs **in left, right, and midpoint channels**. Values shown are midpoint normalized-spectrum decreases:
+
+| Fourier bin / center | 116–136 s vs pre | 136–156 s vs pre | 156–167 s vs pre |
+| --- | ---: | ---: | ---: |
+| 25, **134.5825 Hz** | −12.66 dB | −14.43 dB | −14.99 dB |
+| 50, **269.1650 Hz** | −11.68 dB | −13.91 dB | −20.70 dB |
+
+The two center frequencies are exactly harmonic in these bins (50 = 2×25). Their widths and adjacent-bin behavior make them a small set of **relative depressions**, rather than a binary modulation across many independently controllable channels. More decisively, **their absolute midpoint median powers actually increased from 96–116 to 116–136 s**: bin25 **18.99→20.71 dB**, bin50 **13.22→15.92 dB**. In the same interval the prominent **59.2 Hz** band rose **17.2→37.6 dB**, and neighboring low bins rose substantially. The apparent “empty notches” are therefore relative to a much stronger broadband/bass passage, not demonstrably emptied absolute frequency bands. The witness already described a new effect-driven bass drum and reversed guitar near the end; this source explanation fits without inventing an LP2 code.
+
+The experiment confirms a genuine broad low-band **mix/energy transition near the historical 1:56 marker** and a harmonic-pair relative suppression. It does **not** yield stable timed symbols, a specified alphabet, or an original LP2 ciphertext prediction; no Morse/bitclock/key fit was attempted. This updates the old draft-spectrogram description without altering the known 2013 bytewise XOR role or the absence of authenticated waveform-to-LP2 instructions. [Successful manual original-audio run 43076544451](https://github.com/FlareZ123/liber-primus/actions/runs/43076544451), [artifact 13881212923](https://github.com/FlareZ123/liber-primus/actions/runs/43076544451/artifacts/13881212923), [manual-only workflow](../.github/workflows/audio-761-low-notch-gate.yml). A failed initial workflow without FFmpeg was corrected before this successful source-verified run.
+
+### 15.4–16.1 kHz high-band carrier and phase test (Agent 47)
+
+The earlier PCM report noted a persistent component in the 15.4–16.1 kHz band but did not test its modulation. A dedicated original-audio workflow now decodes the pinned 761.MP3 to 44.1 kHz stereo float PCM and computes an 8,192-point Hann-windowed FFT every 4,096 samples (1,797 frames over 167.021 seconds). It records the left, right, mid and side channels, the high-band envelope, musical chroma, and the complex phase at the dominant carrier bin.
+
+- **Frequency:** bin 2,906, **15,643.872 Hz**, is the dominant peak in 1,774/1,797 left frames, 1,739/1,797 right frames, 1,774/1,797 mid frames and 1,723/1,797 side frames. The peak does not hop between distinct frequencies; simple FSK is unsupported.
+- **Absolute phase:** weighted phase coherence at orders 1–4 is below **0.02 in every individual channel**. The BPSK projection changes state in 763–768 of 1,797 frames, with median runs of two frames; the linear phase fits have 3.9–8.0 rad residual RMS. There is no stable BPSK/QPSK phase constellation or coherent absolute carrier.
+- **Stereo differential phase:** the left-minus-right phase is highly coherent (order-1 coherence **0.9946**, order-2 **0.9795**) with **0.116 rad** linear-fit residual and only 11 projected state transitions. This is a nearly fixed inter-channel phase relationship, not a differential phase bitstream.
+- **Amplitude:** median-threshold runs have a two-frame median and no stable symbol clock. The high-band energy fraction is below 0.1% in each derived channel. The measured envelope therefore supplies no evidence for a simple ASK channel either.
+
+**Interpretation:** the reported high-frequency feature is a persistent narrowband spectral peak, but it lacks the frequency hopping, coherent phase states, or stable amplitude symbol timing expected of a straightforward FSK/PSK/ASK payload. Do not treat this line as a recovered key stream. This rejects only simple modulation of this measured carrier; it does not exclude other spectral transforms, stereo-specific pad extraction, resampling, or synchronization to the melody/lyrics.
+
+Reproducer: [spectral/phase probe](../sims/audio_761_spectral_modulation_probe.cjs), [path-filtered workflow](../.github/workflows/audio-761-spectral-modulation-probe.yml), successful original-audio [phase run 42896300684](https://github.com/FlareZ123/liber-primus/actions/runs/42896300684) (the preceding amplitude/frequency run is [42895698884](https://github.com/FlareZ123/liber-primus/actions/runs/42895698884)). The JSON artifact contains the per-frame phase and envelope series.
+
+
+### Direct musical note, interval and rhythm sequences as GP29 keys (Agent 47)
+
+The high-band carrier test does not settle whether the audible music itself supplies a key. A bounded follow-up used the extracted left/right dominant-note sequences as direct 29-symbol additive key streams under the existing collision-aware decoder.
+
+The test generated **88,512** candidates from frame-level and event-level MIDI notes, signed note intervals, and note-event durations measured in 4,096-sample hops. It tested forward/reversed audio order, both arithmetic signs, every start offset leaving 660 key symbols (the maximum three draws per each of 220 plaintext runes), and the six documented D-flat guitar open-string MIDI offsets **[37,44,49,54,56,61]**. Each of the eight LP2 sections received the same 24-rune head ranking and top-24 220-rune Viterbi evaluation.
+
+| LP2 section | Best 220-rune score |
+| ---: | ---: |
+| 0 | −5.208 |
+| 1 | −5.475 |
+| 2 | −5.441 |
+| 3 | −5.457 |
+| 4 | −5.563 |
+| 5 | −5.346 |
+| 6 | −5.535 |
+| 7 | −5.566 |
+
+The best short-head matches do not survive the full window: decoded strings remain incoherent, with no authentic plaintext. The best full-window score (section 0, −5.208) is far below the independently planted control (approximately −2.49/rune) and is not a decryption. This is a negative for direct MIDI/mod29, signed-interval/mod29, and duration-hop/mod29 key mappings, including the source-derived open-string offsets. The historical account describes an instrumental guitar/drum track and supplies no lyric text, tablature, or fretboard readout; note-to-fretboard transposition and lyric synchronization therefore have no source-selected anchor. Do not reopen these as LP2 key routes without a new primary clue.
+
+Reproducer: `sims/audio_761_note_key_probe.cjs`; workflow: `../.github/workflows/audio-761-spectral-modulation-probe.yml`; successful original-audio [note-key run 42897650301](https://github.com/FlareZ123/liber-primus/actions/runs/42897650301).
+
+
+## Historical Parable-number seed inversion (Agent 22)
+
+The original 2013 Cicada AUDIO/761.MP3 ID3 tag announces the later solved PARABLE and 1,595,277,641 = 1,259 × 1,031 × 1,229, its three GP clause primes. It is a genuine prior source, so a direct reproducible seed derivation is worth testing separately from the original audio-byte pad above.
+
+A finite original-input program (sims/audio761_numeric_prng_seed_probe.cjs) tests eight historical integers (the tag number, its three factors, 761, 167, 3301, 1033) through six deterministic 32-bit generators, page-reset and book-continuous clocks, five mod29/rank28 reversible input families and both signs: **960 exact original-cipher candidates** covering all 12,956 runes. The top source-trained GP unigram log score is **−4.22930919 nats/rune** (761, Numerical Recipes LCG, page-reset, cyclic rank28, plus), compared with the known solved-source self-score **−2.93461644**. Its decoded GP E count is 477 against native length-matched expected 1,574.5. A planted source-true F29 generator seeded by the actual ID3 integer tests exact inverse recovery on all 12,901 noninitial runes; page heads are freely assigned. Complete source and [successful historical-number CI run 42807235723](https://github.com/FlareZ123/liber-primus/actions/runs/42807235723) reproduce these bounds.
+
+No plaintext or key was found. The finite negative does not cover SHA-derived streams, soundwave processing, unknown offsets, changed alphabets or hidden nonlinear state.
+
+### Candidate three-prime textbook-RSA interpretation (bounded negative)
+
+The 2013 AUDIO/761 TXXX field gives \(N=1,595,277,641\), exactly \(1259\times1031\times1229\), the product of the three p57 body-clause GP-prime sums. A plausible but **inferred** cross-round reading is to treat this as a three-prime RSA modulus. The documented 2014 Cicada RSA stage supplies a historically grounded public exponent \(e=65,537\). This is not an author statement that the Parable product is an LP2 modulus. Since \(N\) is only 31 bits, OAEP cannot fit; the only direct test here is textbook RSA. The resulting values are \(\phi(N)=1,591,168,720\) and \(d=401,379,393\).
+
+**p50 base60 table as ciphertext.** The original 32×8 p50 base60 byte reading has 256 bytes. Its natural 4-byte framing gives 64 blocks (two per row), but only **19/64** big-endian and **32/64** little-endian blocks are below \(N\); the other blocks are not valid RSA residues. The alternative row-major 3-byte framing gives 85 valid blocks and one trailing byte (0x50). With the historically documented 2014 exponent \(e=65,537\), decrypting those 85 blocks and rendering each result as a fixed seven-digit base29 numeral yields 595 runes, IoC **0.040065**, and current Emerson-GP language score **−6.2661**. The previously reported **−5.9354** score is not reproduced by the current checked-in scorer/control. The one-rune-per-block projection \(m\bmod29\) matches the independently solved 85-rune p56 plaintext in **0/85** positions; the best of the seven fixed base29 digit columns matches **6/85**.\n\n**Source-derived exponent extension.** The same original 2013 ID3 supplies two additional *candidate* public exponents, neither explicitly designated as RSA exponents: \(e=761\), the MP3 basename and GP-prime sum of the TIT2 title, and \(e=3,301\), the TPE1 performer field. Under the unchanged \(N\), \(\phi(N)=1,591,168,720\), 85-block framing, and seven-digit base29 output, their private exponents are respectively **190,271,161** and **23,137,261** (base29 digits **[9,8,0,14,27,15]** and **[1,3,20,19,17,17]**). The outputs each contain 595 runes: \(e=761\) gives IoC **0.042554** and Emerson-GP score **−6.4733**; \(e=3,301\) gives IoC **0.042945** and score **−6.3120**. Their \(m\bmod29\) projections match p56 in **2/85** and **5/85** positions; their best fixed digit columns match **9/85** and **5/85**. All 85 blocks re-encrypt exactly under each candidate exponent, confirming the arithmetic; neither output is language-like. The final byte 0x50 remains unused. No plaintext is recovered.
+
+**LP2 itself as fixed-width RSA ciphertext.** Since \(29^6 < N < 29^7\), a base29 representation of any ciphertext residue \(c<N\) requires seven digits, whose leading digit must be 0, 1, or 2. At every one of the seven possible fixed block phases in the 12,956-rune unsolved stream, the leading-position sample contains **all 29 rune symbols**. Therefore no fixed-width seven-rune framing can represent ciphertext residues below \(N\), even allowing any static permutation between rune symbols and base29 digits.
+
+**Decision:** reject the tested direct textbook-RSA framings of the p50 base60 table and LP2 rune stream under \(e=65,537\), \(761\), and \(3,301\). The p50 base60 reading, use of the Parable product as an RSA modulus, and the two ID3-derived exponent readings are hypotheses; arithmetic round-trips pass, but none produces plaintext. This does not rule out other uses of the Parable number, variable-length encodings, or unrelated ciphers. Reproducer: [parable_three_prime_rsa_grid_sft.cjs](../sims/parable_three_prime_rsa_grid_sft.cjs).
+
+### Cryptographically motivated extension: clause-prime modular squaring
+
+The audio's independently authenticated three-prime product suggests a second, structurally different cryptographic interpretation. The factors **1259** and **1031** are both prime and congruent to **3 mod 4**, making **1,298,029 = 1259 × 1031** a conventional Blum integer; the full advertised **1,595,277,641 = 1259 × 1031 × 1229** also permits a modular-squaring recurrence, although its third factor **1229 ≡ 1 mod 4**, so the full product is *not* a Blum integer. This mathematical relationship is an interpretation of the published Parable arithmetic, **not evidence Cicada used BBS**.
+
+For either of those two moduli, start an explicit `x=(seed² mod modulus)` state from one of six source-motivated seeds **761, 1033, 3301, 3299, 2013, 2014**; iterate `x←x² mod modulus`. Extract a key symbol as the low 8 or 5 bits of each state, as five parity bits packed LSB-first/MSB-first, or as eight parity bits MSB-first. Compare per-page reset versus continuous state, both arithmetic signs, direct mod29 GP addition and transparent-EA reversible 28-step field emission. This yields **480 frozen settings** over the **12,956 original unsolved runes**, trained on physical p0–27 (6,761 runes), selected keys frozen on p28–55 (6,195 runes).
+
+| Modulus | Best source setting selected on training pages | Train rune IoC | Frozen holdout IoC |
+| --- | --- | ---: | ---: |
+| **1,298,029**, two Blum primes | Seed2013, eight MSB-packed parity bits, book-continuous, positive GP28 exponent-step | **0.035384326572** | **0.035282080631** |
+| **1,595,277,641**, all three Parable primes | Seed3301, five MSB-packed parity bits, book-continuous, positive GP28 exponent-step | **0.035363978404** | **0.035359741769** |
+| Uniform independent 29-rune reference | | **0.034482758621** | **0.034482758621** |
+
+Both chosen outputs remain effectively flat and provide no independently credible GP-English text. The exact source-native hidden-key positive generates Shakespeare GP plaintext with the **full three-prime modulus**, seed3301, five MSB-packed parity bits and page-reset GP28 output. The blind **480-setting** search retrieves this exact model as its top candidate, scores **0.061998767732** train / **0.060381743586** heldout and decodes **12,956/12,956** planted runes exactly. Source-chosen alternatives are detectable, so the original negative is substantive for the declared family.
+
+### Original skip-sensitive source test
+
+A distinct original-source test allows the hypothesized encoder to consume an additional modular-square-derived key draw **only if the rejected output would have repeated the previous ciphertext rune**. The hidden key pointer is reconstructed by exact GP-English trigram Viterbi; no skip positions are supplied. The source set contains both moduli, all six fixed seeds and five state/bit extraction modes, and both signs: **120 original models**. Each starts from the same frozen initial state at the beginning of each of six different LP2 pages [0,3,8,23,27,40], with the first130 runes per page used for selection and the next80 for continuation.
+
+| Original source/key selected on the 780 train runes | Train log GP-trigram/rune | Frozen 480 continuation runes |
+| --- | ---: | ---: |
+| Three-factor modulus, seed1033, 5 parity bits LSB-first, sign+ | **−5.655481292** | **−5.953263842** |
+| Best two-Blum-factor model, seed761, low eight bits, sign− | **−5.662982189** | **−5.704540394** |
+
+The original decoded continuation strings are nonlexical, while the identically structured **blind planted positive** found the correct three-factor source/modulus, seed3301, 5 parity bits MSB-first, sign+, at **rank1 of120**. It inferred the exact **24 planted hidden key skips** and recovered **all 1,260/1,260** genuine control GP runes (training−2.388463406, continuation−2.446622596). Thus a simple collision-consumed key is not enough to make the fixed historic source seeds decrypt original LP2.
+
+Reproduction: [`sims/parable_bbs_keyskip_inverse.cjs`](../sims/parable_bbs_keyskip_inverse.cjs); [successful original/plant CI run 42837250162](https://github.com/FlareZ123/liber-primus/actions/runs/42837250162).
+
+### Complete unknown-state search for the two-factor Blum modulus
+
+The choice of six public seeds may be arbitrarily restrictive. For the genuine two-Blum-prime modulus **M=1259×1031=1,298,029**, there are **M** possible initial values `x0 mod M`, but only **325,080 distinct values of the next state `x1=x0² mod M`**. CRT gives this exactly as `((1259+1)/2) × ((1031+1)/2) = 630×516`; the exhaustive runner also enumerates all **1,298,029** possible seeds to assert this count and retain every reachable `x1`. After this reduction, *every* possible initial BBS seed is represented with no hand-selected secret starting value.
+
+Using original physical page0, screen every one of the **325,080** reachable states through **four** prespecified key-bit extraction methods, GP29 additive or transparent-EA GP28 field-step emission, and two signs: **5,201,280 original-source inverse candidates**. Compare the first **90** runes by an independently trained GP-English trigram likelihood, retain the **120 best**, and evaluate their next **110** original runes without any re-fitting.
+
+| Frozen full-state candidate | Train trigram log/rune | Next110 log/rune | Next110 IoC |
+| --- | ---: | ---: | ---: |
+| Highest scoring of 5,201,280 original starts: x1=586,717, state-low8, GP28-step, sign− | **−4.325063366** | **−6.194636297** | **0.032193495** |
+| Best continuation, *post-selected from 120*: x1=833,459, whole-state%29, GP28-step, sign− | −4.757769708 | **−5.495490430** | **0.034528774** |
+| Blind source-native English-GP positive, x1=819,027, 5-parity MSB, GP28-step, sign+ | **−2.455331066** | **−2.477239025** | **0.060884070** |
+
+The planted test encrypts **200 source GP runes** from the withheld Shakespeare passage, conceals its seed and mechanism, then repeats the entire 5,201,280-model search. The **exact true state and cipher rank first**, and both the first90 and last110 runes invert **200/200 exactly**. The strongest original source fit collapses on continuation, and none of the 120 original finalists presents authentic natural-language plaintext.
+
+This genuinely exhausts *every seed* for the specific **two-factor** modular-squaring source under the stated four key projections and two invertible cipher families, without cipher-state skips, changes of outer alphabet, or additional transformations. It does not exhaust the much larger three-factor-state space or modular-square-with-hidden-skip family. Both would require a different, independently motivated state recovery rule.
+
+Reproduction: [`sims/parable_blum_exhaustive_state_inverse.cjs`](../sims/parable_blum_exhaustive_state_inverse.cjs), successful [Actions run 42838419477](https://github.com/FlareZ123/liber-primus/actions/runs/42838419477) via the existing [manual prime-source suite](../.github/workflows/fibonacci-prime-spiral.yml). No novel unknown LP2 plaintext or authentic key identified.
+
+### Seed-independent 1,224-step cycle from *all three* historic Parable primes
+
+There is a stronger *mathematical restriction* on the modular-squaring state map than either the fixed-seed shortlists or the full 5.2-million-state screen. For **M₂=1259×1031=1,298,029**, the two quadratic-residue groups have orders **629** and **515**; squaring on those odd groups has orders **ord₆₂₉(2)=72** and **ord₅₁₅(2)=204**. Thus all initial states of M₂, including those divisible by either prime, have eventual period dividing **lcm(72,204)=1,224** after the first square.
+
+**This result also holds for the full historical source number, M₃=1,595,277,641=1259×1031×1229, with no seed restriction.** The third factor satisfies **1229−1=4×307**. After *two* squarings its nonzero component belongs to an odd group of order **307**, where the squaring map has order **ord₃₀₇(2)=102**. Since **lcm(72,204,102)=1,224**, the CRT-combined source state satisfies **x(t+1224)=x(t)** for every starting seed after at most two squarings. States divisible by any prime factor have the corresponding zero component and obey the same bound. BigInt recurrence witnesses for ten disparate seeds pass under **both** moduli; the all-seed claim follows from the group-order proof.
+
+Any source cipher whose keystream is *directly* produced from this state repeats its key after a divisor of **1,224 output symbols**. Five consecutive parity bits packed per rune retain this period. Eight parity bits packed per rune instead yield period dividing **153**, since gcd(8,1224)=8. For the full three-prime model, conservatively exclude the first **two** rune positions as potentially transient.
+
+A globally continuous, unslipped additive GP29 pad must preserve ciphertext-rune equality at separations 153 or 1224 exactly, regardless of secret initial state. For a reversible GP28 exponent-step pad, the corresponding invariant is equality of the **nonzero-difference discrete-log ranks**, omitting unchanged-output and physical page-initial positions. These are source-specific instances of the more general [phase coincidence invariant](phase-coincidence-invariant.md) already established elsewhere in the repository; the full historic number selects the same two exact candidate periods independently.
+
+| Output channel and source-forced lag | Original LP2 equality, first two runes excluded | Independent GP-English sample |
+| --- | ---: | ---: |
+| GP29 additive, 153 | **416/12,801 = 0.0324975** | Approximately **0.0604** |
+| GP29 additive, 1,224 | **421/11,730 = 0.0358909** | Approximately **0.0583** |
+| Nonzero GP28 field steps, 153 | **494/12,528 = 0.0394317** | Approximately **0.0614** |
+| Nonzero GP28 field steps, 1,224 | **390/11,477 = 0.0339810** | Approximately **0.0590** |
+
+Source-native positive controls with arbitrary 153/1,224-period GP29 and GP28 pads preserve the corresponding valid plaintext equality counts **exactly**, independently of the unknown key values. The original manuscript lacks the GP-English collision excess predicted by the direct synchronized source model under either modulus. The argument excludes an entire two- and three-prime starting-state domain for these synchronous channels, **without exhaustively scanning 1.595 billion full-modulus seeds**.
+
+Reproducer: [`sims/parable_blum_keyless_period_gate.cjs`](../sims/parable_blum_keyless_period_gate.cjs), from the manually dispatched [prime-source CI suite](../.github/workflows/fibonacci-prime-spiral.yml). The exclusion still allows variable hidden key consumption, independent per-page secret state, a nonnative intermediate alphabet, nonperiodic extra key layers, and undiscovered segmentation.
+
+### Exhaustive unknown-state search with collision-only hidden key consumption
+
+The complete two-factor square-state domain can be searched even when the original cipher is allowed to **discard a proposed pad element only when that element would have repeated the previous ciphertext rune**, rather than simply using a direct unslipped BBS stream. A source-independent GP-English trigram Viterbi handles the hidden consumption pattern. This is a stronger attack than the 120 preselected seeds above.
+
+For each of all **325,080 possible first-post-square states**, the runner tries four actual state/bit reductions and both GP29 arithmetic signs, **2,600,640 original ciphertext head candidates**. Each exact first-28-rune hidden-keyskip dynamic program may discard **up to four** additional source digits, with an explicit collision proof required for every discard. Retain the **800** best first28 candidates; fit their first **130** physical page0 runes with full collision-only Viterbi and freeze the inferred consumed key clock into the following **80** genuinely unfit original runes.
+
+| Original source model | First28 log score | First130 log score | Following80 log score |
+| --- | ---: | ---: | ---: |
+| Highest first-28 fit, x1=546,646, five parity bits MSB, sign− | **−3.374314480** | −4.922075167 | **−5.638057234** |
+| Highest first-130 fit, x1=1,011,455, low8 state, sign− | −3.967926963 | **−4.836599383** | **−6.373770724** |
+| Highest following80 score *post-selected from 800*, x1=1,101,804, low8 state, sign+ | −3.992541638 | −5.580133348 | **−4.914078043** |
+| Source-native blind positive, x1=819,027, five MSB parity bits, sign+ | **−2.721774930** | **−2.477103158** | **−2.359453230** |
+
+The planted positive takes **210 genuine independently sourced GP-English runes**, encrypts them with a secret original-domain BBS start and six actual collision-rejected key draws (**one** inside the first28), and hides the key, sign, starting state and skip pattern from the search. The exact source model **ranks #1 of all 2,600,640 candidates**; the 210-rune inverse recovers **210/210 original GP symbols and all six rejected pad draws exactly**. Thus a single hidden source-key rejection does not prevent this model family from being detected. Original first130 candidates and frozen 80-rune continuations remain nonlexical and far from the planted-language scores.
+
+Reproducer: [`sims/parable_blum_allstate_keyskip.cjs`](../sims/parable_blum_allstate_keyskip.cjs); successful [manual CI run 42841349115](https://github.com/FlareZ123/liber-primus/actions/runs/42841349115). The exhaustive claim concerns every source **state**, all four explicitly chosen 29-key readouts and two signs, **up to four proven skips in the first28 runes**, an additional full 130/80-rune Viterbi among the 800 source-ranked contenders. It does not globally enumerate arbitrary secret key-skip histories, nor prove that p0 should contain English GP plaintext. No historical plaintext or authentic key was recovered.
+
+### Full-file XOR reuse on the LP2 p50 byte table (source-fixed negative)
+
+The historical 2013 operation supplies a concrete, reversible candidate: the 64,167-byte Twitter stream XORed with the exact `761.MP3` file recovers a JPEG. The positive control was reconstructed from the 988 offset records in `resources/cicada2013-twitter-hex-stream.txt`, sorted by their original offsets. The pinned MP3 is 4,010,732 bytes (SHA-256 `83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460`) with a 206-byte ID3 tag. Only **whole-file offset 0**, including that tag, recovers a JPEG (header `FFD8FFE0...`; SHA-256 `d4736b09cfac03097efcb5c2f48ffc71f46700835fc09f7549283956580eb35d`). Starting at the compressed-audio payload offset 206 fails the positive control. This raw-file alignment is distinct from the waveform analyses above, which correctly exclude the ID3 tag when isolating compressed audio.
+
+With that historically selected offset frozen, the exact 256-byte row-major p50 table in `resources/liber-primus/lp2-grid-256.json` was XORed with `761.MP3[0:256]`. The output is 256 bytes, SHA-256 `7e43bc10e03f44ae24b7da637ff3006ff1993ffefb3f7f1aedfdca42c4867c63`, first 16 bytes `82a394b961ed7eb75dbdc886af5cb7d4`, 39.45% printable, 7.2829 bits/byte, 172 distinct byte values, and no recognized file signature. The one-byte-shift control is 40.23% printable / 7.1559 bits per byte / 159 distinct bytes; the wrong-source Twitter-byte control is 42.19% / 7.1832 / 163. The candidate is not distinguishable as plaintext or a structured payload. Treating it as an intermediate key would require an additional, independently selected operation, which is absent; no offsets, permutations, or follow-on layers were searched.
+
+Reproducer: [`sims/761_mp3_xor_p50_gate.cjs`](../sims/761_mp3_xor_p50_gate.cjs), [workflow](../.github/workflows/761-mp3-p50-xor-gate.yml), [successful run 43049496469](https://github.com/FlareZ123/liber-primus/actions/runs/43049496469). This rejects direct reuse of the historical 761.MP3 XOR pad on the p50 byte table; it does not reject other independently selected uses of the Parable or audio asset.
+
+### Source-selected raw-file offset809 from the new p22 center
+
+The later p22 square result now supplies a narrow raw-byte alignment that the older audio screens could not preselect. Literal circumference shedding of the source-linked p22 5x5 square leaves center **809**. Independently, the older p7 five-dot result links the historical file number761 to 809 by exactly five ordinary-prime successors:
+
+```text
+761 -> 769 -> 773 -> 787 -> 797 -> 809
+```
+
+Keep the historically demonstrated raw-file XOR primitive and the byte-native p50 table receiver unchanged. Change only the raw `761.MP3` start to the newly source-selected byte offset809:
+
+```text
+candidate[i] = p50[i] XOR 761.MP3[809+i]
+```
+
+The complete 256-byte output is:
+
+```text
+SHA256    a49fc900f5b4bb8e3b5c5381a3bcb70e6e04a10e8a17af1b363faea4920a08cc
+first16   cbe7a7ba61ed7eb75cf99cdef704b7d4
+printable 0.3828
+entropy   7.2966 bits/byte
+magic     none
+```
+
+The same workflow first reproduces the authentic 2013 raw-file offset0 Twitter/JPEG positive control, so the byte primitive and source bytes are validated before this LP2 test. Windows-independent Linux Node22 workflow run **44472593829** passes.
+
+**Decision:** retire the exact source-selected `MP3[809:]` direct XOR consumer on p50. The p22/p7 convergence still supports 809 as a source object; it does not support reopening arbitrary audio offsets or adding another fitted binary layer.
+
+### Interpretation
+
+The published audio tag provides a genuine historical prior clue and a mathematical route to exact key-state enumeration. A separate candidate three-prime textbook-RSA use of the same product, with e=65,537, was also tested: the p50 four-byte encodings contain invalid residues, the 3-byte decrypt is non-linguistic, and fixed-width seven-rune LP2 blocks violate the leading-digit bound. This rejects only those direct RSA framings; see the section above and its reproducer. The original ciphertext has failed the 960 historic integer/PRNG tests, 480 fixed-seed modular-square inverses, 120 collision-keyskip source tests, and full **5,201,280** two-prime seed-independent modular-squaring inverses. These finite negatives have independently positive-tested recovery power within their declared output models. They **do not establish** how Cicada intended the three Parable primes to be used, if at all, in the unsolved manuscript. A separate, source-motivated cross-round check now reduces the three audio prime factors modulo 29 to [12,16,11], with product 24; the file ID 761 reduces to 7, matching the order of 16 and 24. The resulting 28-/7-period keys, factor-root recurrence, seed-24 feedback and canonical 3×3 Hill candidates also fail to recover plaintext; see [the consolidated mod-29 test](2013-audio-mod29-crossround-key.md). A further collision-only hidden-consumption Viterbi test used the source-fixed period-7 and period-28 keys. Its planted 1,200-symbol English control recovered exactly, but the source key orders ranked only at the 20th/30th percentiles against 20 random cyclic-order controls, with no LP2 plaintext ([report](2013-audio-mod29-collision-viterbi.md); [reproducer](../sims/parable_mod29_periodic_collision_viterbi.cjs)). This is distinct from the byte/waveform and direct-key tests above; it does not change the earlier exact-state exclusions. Further arbitrary source-seed and bit-order variants without a new source instruction remain unlikely to advance a genuine decipherment. The source-selection audit in Issue #176 finds no player-visible instruction for a second waveform operation; the ID3 Parable is the only source-selected LP2 link established here. The direct raw-file XOR reuse on p50 is also negative: the historical full-file offset is fixed by the Twitter/JPEG positive control, but the p50 output is random-like and the shifted/wrong-source controls are similar. Do not treat 761.MP3 as an LP2 key without a new source selector.

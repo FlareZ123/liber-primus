@@ -1,0 +1,18 @@
+name: Original LP2 ordered red-title phrase source gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  nine-title-phrase:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check finite historical-phrase SFT
+        run: |
+          node --check sims/lp2_red_title_ordered_phrase_source_sft.cjs
+          node sims/lp2_red_title_ordered_phrase_source_sft.cjs

@@ -1,0 +1,17 @@
+name: Agent 13 five-dot GP29 5x6 inverse original
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-inversion:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node sims/lp2_fivedot_5x6_cyclewalk_bifid_original_sft.cjs
+      - run: node sims/lp2_fivedot_space30_wordshift_original_sft.cjs
+      - run: node sims/lp2_2013_gp_visual_fiveby6_source_sft.cjs

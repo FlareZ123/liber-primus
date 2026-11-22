@@ -1,0 +1,15 @@
+name: LP2 grid red-verse exact crib
+on:
+  workflow_dispatch:
+
+jobs:
+  exact-grid-crib:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: AES/ChaCha red-verse anchored dictionary inversion
+        run: node sims/grid_red_crib_exact.cjs

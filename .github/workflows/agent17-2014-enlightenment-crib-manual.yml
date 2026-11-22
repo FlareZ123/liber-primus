@@ -1,0 +1,16 @@
+name: LP2 signed Stage11 ENLIGHTENMENT opening crib gate
+on:
+  workflow_dispatch:
+jobs:
+  original-p0-and-planted-control:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-locked p0 signed opening crib, full continuation and control
+        run: |
+          node --check sims/lp2_stage11_enlightenment_p0_red13_crib_sft.cjs
+          node sims/lp2_stage11_enlightenment_p0_red13_crib_sft.cjs

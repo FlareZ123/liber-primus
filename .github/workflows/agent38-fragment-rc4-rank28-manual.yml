@@ -1,0 +1,16 @@
+name: Agent 38 fragment RC4 GP28 original-cipher test (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run original 64-mode inverse and blind English-source plant
+        run: node sims/fragment_gridrow_rc4_rank28_sft.cjs

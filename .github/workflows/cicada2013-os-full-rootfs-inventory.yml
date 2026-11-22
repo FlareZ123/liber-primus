@@ -1,0 +1,54 @@
+name: 2013 CicadaOS original ISO to rootfs custody join
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install pinned source readers and safe archive extractor
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check pycdlib==1.22.0 requests==2.32.5
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq cpio fakeroot
+      - name: Verify original ISO and join its embedded initramfs to the pinned Git blob
+        shell: bash
+        run: |
+          set -euo pipefail
+          python sims/cicada2013_iso_rootfs_join_sft.py \
+            --iso "$RUNNER_TEMP/3301.iso" \
+            --initramfs-out "$RUNNER_TEMP/3301.img" \
+            --report cicada2013-iso-rootfs-join.json
+      - name: Extract the exact ISO-derived cpio rootfs without executing startup code
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/cicada2013-root"
+          cd "$RUNNER_TEMP/cicada2013-root"
+          gzip -dc "$RUNNER_TEMP/3301.img" | fakeroot cpio -idm --quiet --no-absolute-filenames
+      - name: Audit all extracted files and preserve the sorted path-size-hash manifest
+        shell: bash
+        run: |
+          set -euo pipefail
+          node sims/cicada2013_os_full_rootfs_inventory_sft.cjs "$RUNNER_TEMP/cicada2013-root" > cicada2013-inventory.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cicada2013-original-iso-rootfs-join-and-manifest
+          path: |
+            cicada2013-inventory.json
+            cicada2013-iso-rootfs-join.json
+          if-no-files-found: ignore

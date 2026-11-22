@@ -1,0 +1,25 @@
+name: Agent7 p0 post-THEN global-source selector SFT
+
+on:
+  workflow_dispatch:
+
+jobs:
+  selector:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
+    env:
+      SHARD_COUNT: 16
+      SHARD_INDEX: ${{ matrix.shard }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax check
+        run: node --check sims/lp2_p0_post_then_global_source_selector_sft.cjs
+      - name: Run global-source prospective selector
+        run: node sims/lp2_p0_post_then_global_source_selector_sft.cjs

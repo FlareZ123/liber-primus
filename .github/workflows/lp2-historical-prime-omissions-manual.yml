@@ -1,0 +1,14 @@
+name: LP2 historical prime omissions on original known pages
+on:
+  workflow_dispatch:
+jobs:
+  omission-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run source-fixed missing-prime and literal-W original tests
+        run: node sims/lp2_historical_missing_primes_terminal_sft.cjs

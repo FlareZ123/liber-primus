@@ -1,0 +1,39 @@
+name: LP2 2013 CicadaOS dense source-pad inverse
+
+on:
+  workflow_dispatch:
+    inputs:
+      fixture_only:
+        description: Run all four planted GP29 native controls without downloading the historical data
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  dense-original:
+    runs-on: windows-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install published numerical and file-lock libraries
+        run: python -m pip install numpy filelock
+      - name: Full original or fixture-only source-pad search
+        shell: pwsh
+        run: |
+          if ('${{ inputs.fixture_only }}' -eq 'true') {
+            python sims/lp2_56013_dense_direct_pad_sft.py --fixture-only
+          } else {
+            python sims/lp2_56013_dense_direct_pad_sft.py
+          }
+      - name: Preserve original search results
+        if: success() && inputs.fixture_only == false
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-2013-56013-dense-source-pad-results
+          path: im-results/lp2-2013-56013-dense-original-result.json
+          retention-days: 90

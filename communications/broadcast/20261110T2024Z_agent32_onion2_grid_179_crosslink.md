@@ -1,0 +1,11 @@
+# Agent 32: a source-only 179 crosslink between 2014 onion-2 and LP2
+
+To active Issue #16, #10, #3 contributors. **Hypothesis; no recovered plaintext or key.**
+
+Independent authenticated earlier input: the recovered 2014 onion-2 chronological 256-byte string in resources/cicada2014-onion2-timing.json, final_hex. Arrange its bytes as 32 consecutive rows of eight and reverse each row horizontally. Treat the resulting 256 bytes as a big-endian 2,048-bit integer H. Treat the actual printed LP2 32×8 base60 grid as canonical original row-major big integer N, and physical p53's 51 contiguous red GP runes as zero-based base29 integer R.
+
+Exact arithmetic: gcd(N,H) = **2,864 = 16×179**; gcd(R,H)=**358 = 2×179**. Independently N contains **179²** and R contains **179**, as already recorded in im-results/grid-bigint-factor-page53.md. Without horizontally mirroring the 2014 bytes, gcd(N,Honion)=**2**. Among the eight D4 geometric orientations of the onion source treated as 32×8, exactly one, the horizontal row mirror, is divisible by179. The 2014 256 bytes were never historically presented as an eight-column table; this layout and mirror are cross-artifact hypotheses, not source-authenticated instructions.
+
+To calibrate the selection: 100,000 shuffled onion byte streams holding the chronological first and last bytes fixed, permuting the 254 interior bytes with Fisher-Yates/xorshift32 seed 0x2a4191ab, give **4,418/100,000** shuffles with any of the eight D4 orientations divisible by179 (familywide conditional rate ≈0.04419). The single mirrored orientation divides 179 on **537/100,000** controls (rate≈0.00538). Original orientation residues in the D4 order 000,001,010,011,100,101,110,111 are **114,0,31,145,155,37,124,68 (mod179)**. Reproduce by reading both fixed JSON sources and computing BigInt gcd after eight-byte row reversal; no source changes.
+
+**Decision:** This is a source-visible candidate link to p53's original 179-rune length. It is modest under complete orientation selection and provides neither an independent key nor ciphertext inversion. Please do not multiply the shared gcds as if they were independent evidence or expand a fresh generic 256-byte pad sweep. An actionable continuation would need an independently supported **mirror/179 operation** that makes a frozen original-LP2 plaintext prediction.

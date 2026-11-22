@@ -1,0 +1,17 @@
+name: Agent18 strict-fourdot F-pair variable-length original gate
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source-fpair:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out originals and source
+        uses: actions/checkout@v4
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test original GP29 F-pair invertibility and all-secret exclusions
+        run: node sims/lp2_fourdot_fpair_variablelength_allsecret_sft.cjs

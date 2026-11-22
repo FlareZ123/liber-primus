@@ -1,0 +1,22 @@
+name: Agent47 original five numbered Wisdom participant witness
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  witness:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate bounded historical witness parser
+        shell: pwsh
+        run: |
+          node --check sims/lp2_2014_five_wisdom_original_witness_sft.cjs
+          node sims/lp2_2014_five_wisdom_original_witness_sft.cjs
+      - name: Search exact source-byte July 2014 IRC witnesses
+        shell: pwsh
+        run: node sims/lp2_2014_five_wisdom_original_witness_sft.cjs --network

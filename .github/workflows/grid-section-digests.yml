@@ -1,0 +1,45 @@
+name: LP2 grid column digest matching (manual)
+on:
+  workflow_dispatch:
+jobs:
+  digest-screen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact one-byte ordinal-salted SHA1 32-segment to 32x8 original row gate
+        run: node sims/lp2_ordinal_sha1_fragment_gridrow_gate_sft.cjs
+      - name: Hash-commitment screen
+        run: node sims/grid_section_digest_screen.cjs
+      - name: Exact original red-title SHA-style digests against eight grid columns
+        run: node sims/grid_red_title_digest_gate.cjs
+      - name: Reversible GP-prime-accumulator grid inverse and native positive control
+        run: node sims/grid_running_prime_state_inverse.cjs
+      - name: Key-free 256-state arbitrary GP permutation invariant and planted roundtrip
+        run: node sims/grid_prime_state_permutation_invariant.cjs
+      - name: Original 256-event color-stencil candidate inverse and solved-native positive controls
+        run: node sims/red_256_event_key_inverse.cjs
+      - name: Fixed digest correspondence between 256 ink events and grid columns
+        run: node sims/red_256_event_grid_hash.cjs
+      - name: Direct AES-256 inversion of the original grid with all source event bitkeys
+        run: node sims/red_256_event_grid_aes_inverse.cjs
+      - name: Source-run32 AES-CTR key original GP29/GP28 reversible inverse
+        run: node sims/red_32run_aes_gp_inverse.cjs
+      - name: Exact red-stencil 31-marker capacity and base60 null
+        run: node sims/red_256_marker_capacity.cjs
+      - name: Exact historical PATIENCE column permutation vs 256 original ink events
+        run: node sims/red256_grid_patience_column_gate.cjs
+
+      - name: Frozen red-run AES-256 key combined with grid-head IV original-source inverse
+        run: node sims/red32_grid_iv_joint_inverse.cjs
+      - name: Invert all unsolved LP2 with historical PATIENCE ink-event GP pads
+        run: node sims/red256_patience_original_gp_pad.cjs
+      - name: Source 13-dot-fragment all-secret GP five-bit ASCII capacity proof
+        run: node sims/gp29_fixed5bit_ascii_capacity.cjs
+      - name: Source 31 thirteen-dot records versus 32 eight-byte grid-row hashes
+        run: node sims/thirteendot_fragment_gridrow_digest.cjs
+      - name: Source 1729 taxicab cubes and solved-page totient cipher inverse
+        run: node sims/taxicab1729_prime_cube_inverse.cjs

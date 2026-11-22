@@ -1,0 +1,46 @@
+name: CicadaOS full source-pad 28-rank inversion
+on:
+  workflow_dispatch:
+    inputs:
+      map:
+        description: Source byte mapping and travel direction
+        required: true
+        default: mod
+        type: choice
+        options:
+          - mod
+          - reject
+          - mod-rev
+          - reject-rev
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    name: Full source rank28 ${{ inputs.map }}
+    runs-on: windows-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Retrieve historical ISO source asset
+        shell: pwsh
+        run: |
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          curl.exe --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 'https://archive.org/download/3301.iso/3301.iso/DATA%2F560.13' --output $asset
+          if ($LASTEXITCODE -ne 0) { throw 'Asset retrieval failed' }
+      - name: Exhaustive 28-rank pad inversion
+        shell: pwsh
+        run: |
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          $result = Join-Path $env:RUNNER_TEMP 'rank28_${{ inputs.map }}.json'
+          node sims/iso56013_rank28_full_offset.cjs $asset '${{ inputs.map }}' $result
+          if ($LASTEXITCODE -ne 0) { throw 'Rank inversion failed' }
+      - uses: actions/upload-artifact@v4
+        with:
+          name: rank28-${{ inputs.map }}
+          path: ${{ runner.temp }}/rank28_${{ inputs.map }}.json
+          retention-days: 15

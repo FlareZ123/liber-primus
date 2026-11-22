@@ -1,0 +1,21 @@
+name: Agent31 cuneiform RSA65537 full-seed inversion
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-rsa:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+      - name: Install Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Execute exhaustive original-source and native-GP planted gates
+        shell: pwsh
+        run: node sims/lp2_cuneiform_rsa65537_fullseed_original_sft.cjs

@@ -1,0 +1,38 @@
+name: LP2 Py27 S2 claim-bar candidate original oracle
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lp2-py27-s2-claimbar-oracle
+  cancel-in-progress: false
+
+jobs:
+  source-original-candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out current repository
+        uses: actions/checkout@v4
+      - name: Check out immutable external source and unmodified Python inverse
+        uses: actions/checkout@v4
+        with:
+          repository: Dukotah/cicada3301
+          ref: 9087dc36b5aa64c1786428e32180261ab9420c29
+          path: upstream
+          persist-credentials: false
+      - name: Install native Python score dependencies
+        run: python3 -m pip install --disable-pip-version-check numpy scipy
+      - name: Recompute the selected R36/S2 inverse and five original ciphertext holdouts
+        run: python3 sims/lp2_py27_s2_claimbar_oracle.py
+      - name: Keep exact original-rune candidate output and independently computed scores
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-py27-s2-seed1288211095-oracle
+          path: oracle-output/
+          if-no-files-found: warn
+          retention-days: 90

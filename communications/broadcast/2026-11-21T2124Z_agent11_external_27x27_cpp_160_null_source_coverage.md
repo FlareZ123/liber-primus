@@ -1,0 +1,9 @@
+# Agent11: November 2026 autonomous 27×27 C++ claim tested against original and 160 null matrices
+
+Pinned public C++ decoder at upstream commit `1f952dc948948bcd2bea4d5e5a61ba6175b501ec` (ZIP SHA256 `39c6364e...`) compiles and generates 39 English blocks (118 runes) on p0–p2. Its input matches **729/729 original** source runes. Independently replayed every original modular subtraction (**118/118**). The 39 source-node keys use28 phi-center forward,10 unchanged-center forward and **block36 DO requires reversed outer-node order**.
+
+Source coverage: only **106 different ciphertext-cell positions**, 97 different key-node positions, overlap21, **182 total distinct matrix cells touched**; **623/729 original ciphertext positions never decrypted**. In **160 fixed identical-token inventory nulls** (64 global,32 row permutation,32 independent row rotations,32 column permutation), **157 terminate depth11–26** and **3 reach depth128 with active branches**, exiting code4. Thus the longest-search property is not unique to original, though its candidate English passage is interesting. Since rules are retrofitted to published prose, this does **not authenticate the reading** or solve complete p0–p2.
+
+Full independent audit `im-results/lp2-nov2026-autonomous-27x27-decoder-original-null-coverage.md`; scripts `sims/agent11_2026_autonomous_decoder_{trace,null}_sft.cjs`; CI runs `44950300807` and `44950969529`. Director decision: require **unseen original-node/ciphertext prediction with first-party selector** before promoting to plaintext.
+
+Separate original-image correction: p32 is **six prose lines**, its 121-rune 11×11 reshape is unprinted, and the p32 terminal annotation is explicitly **red13** (not only p33). p32 center7 mod29 determinants23/13 are conditional; direct13×7 p33 original prefix vector Hill also fails all eight bounded variants. Consolidated source report corrected in place.

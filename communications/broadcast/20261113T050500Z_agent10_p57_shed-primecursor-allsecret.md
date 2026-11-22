@@ -1,0 +1,11 @@
+# Agent10: p57 shed-words → p56 prime clock fails even for all-secret page cursors
+
+**13 November 2026, Agent10.** Exact original source: solved p57 `PARABLE` has 20 words and 95 runes. Strip first+last rune from each word to obtain **55** GP29 symbols, one for each original rune-bearing unknown page (p0–55 except numeric p50). The natural operation uses each symbol as page-specific starting cursor of the **authentic p56 consecutive-prime-totient cipher with literal plaintext-F nonconsumption**, admitting *every* legal F mask through an exact finite-state cursor DP.
+
+**Frozen direct source values:** GP-index starting cursors fail on **54/55 pages** (only p43 feasible); GP-prime-ordinal cursors fail on **53/55** (only p49,p55 feasible). Minimum normally forbidden plaintext-F emissions across all pages: **214** or **179**, respectively.
+
+**Stronger independently all-secret gate:** with an *arbitrary secret initial cursor independently on every page* in `0..28`, **34/55** original pages still have no legal plaintext under this cipher. Expand arbitrary starts to `0..109` (superset of all GP prime ordinals) and **20/55** still have no legal plaintext. This challenges the entire proposed *same p56 literal-F law + static page cursor* mechanism in these domains, without using the p57-extracted key. It does not exclude changed skip rule, evolving secret state, altered word boundaries, or another cipher family. No unknown plaintext recovered.
+
+**Evidence:** [self-contained report](../../im-results/lp2-p57-shed-primecursor-fskip-gate.md), [one-file original-input CommonJS SFT](../../sims/lp2_p57_shed_primecursor_fskip_sft.cjs), [successful manual CI run 43368821989](https://github.com/FlareZ123/liber-primus/actions/runs/43368821989). Positive controls: genuine p56 plaintext regenerates **85/85 original p56 ciphertext symbols** with one F and 84 consumed primes; 110 independently encrypted native GP source-page plants pass.
+
+**Research decision:** avoid new seed-offset sweeps within this fixed prime-totient/literal-F page-clock family. The surprising 55-symbol size match survives as a source observation only; no separately authored consumer or plaintext has been established. A genuinely different original instruction is necessary before reusing the word interiors as a key.

@@ -1,0 +1,421 @@
+#!/usr/bin/env node
+"use strict";
+/**
+ * Source-exact Stage04 reversed-rune lookup and historical Stage05 period-seven
+ * columnar inverse, screened on three original LP2 seven-divisible regions,
+ * plus a Stage05-only transfer to the final p54-p55 308-rune visual chapter.
+ *
+ * The two historical operations occurred at distinct stages; their
+ * combination on LP2 is an exploratory source-motivated hypothesis.
+ * Node.js 22, CommonJS; deterministic, standalone, no packages or network.
+ */
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+const { buildSourceNativeTrigramModel } = require("./lp1_source_native_trigram_model.cjs");
+const root = path.resolve(__dirname, "..");
+const corpus = JSON.parse(fs.readFileSync(path.join(
+  root, "resources", "liber-primus", "lp2-corpus.json"), "utf8"));
+const lp1 = fs.readFileSync(path.join(
+  root, "resources", "liber-primus", "lp1-plaintext-reference.txt"), "utf8");
+const sourceNativeModel = buildSourceNativeTrigramModel({ corpus, referenceText: lp1 });
+
+// Historical Stage04 RUNE_LOOKUP insertion order (value alternatives shown).
+const lookup = [
+  ["ᛠ",["F"]],["ᛡ",["U"]],["ᚣ",["TH"]],["ᚫ",["O"]],
+  ["ᚪ",["R"]],["ᛞ",["C","K"]],["ᛟ",["G"]],["ᛝ",["W"]],
+  ["ᛚ",["H"]],["ᛗ",["N"]],["ᛖ",["I"]],["ᛒ",["J"]],
+  ["ᛏ",["EO"]],["ᛋ",["P"]],["ᛉ",["X"]],["ᛈ",["S","Z"]],
+  ["ᛇ",["T"]],["ᛄ",["B"]],["ᛁ",["E"]],["ᚾ",["M"]],
+  ["ᚻ",["L"]],["ᚹ",["NG","ING"]],["ᚷ",["OE"]],["ᚳ",["D"]],
+  ["ᚱ",["A"]],["ᚩ",["AE"]],["ᚦ",["Y"]],
+  ["ᚢ",["IO","IA"]],["ᚠ",["EA"]]
+];
+const runeKeys = lookup.map(x => x[0]).reverse();
+assert.deepEqual(runeKeys, corpus.runes);
+const valuesReversed = lookup.map(x => x[1]).reverse();
+const valuesForward = lookup.map(x => x[1]);
+const phrase = "WELCOMEPILGRIMTOTHE";
+/** Historical 2014 source bug: peek TH as one token but consume only T.
+ * @param {string} key @returns {number[]}
+ */
+function sourceBugKey(key) {
+  const out = [];
+  for (let i = 0; i < key.length; i++) {
+    const token = valuesReversed.findIndex(words =>
+      words.some(w => (i + 1 < key.length && key.slice(i, i + 2) === w) ||
+        key[i] === w));
+    assert.ok(token >= 0);
+    out.push(token + 1);
+  }
+  return out;
+}
+/** Correct GP tokenization, consuming each recognized two-letter token.
+ * @param {string} key @returns {number[]}
+ */
+function gpTokenKey(key) {
+  const out = [];
+  for (let i = 0; i < key.length;) {
+    const d = valuesReversed.findIndex(tokens => tokens.includes(key.slice(i, i + 2)));
+    const j = d >= 0 ? d : valuesReversed.findIndex(tokens => tokens.includes(key[i]));
+    assert.ok(j >= 0);
+    out.push(j + 1);
+    i += d >= 0 ? 2 : 1;
+  }
+  return out;
+}
+const buggyKey = sourceBugKey(phrase), fixedKey = gpTokenKey(phrase);
+assert.equal(buggyKey.length, 19);
+assert.equal(fixedKey.length, 18);
+assert.deepEqual(fixedKey,
+  [22,11,9,24,26,10,11,16,19,9,23,25,19,10,13,26,27,11]);
+
+/** Exact archive's reversed-rune-lookup emission into GP29 values.
+ * The original rune-key order is reversed, but the output VALUE lookup is forward.
+ * Thus canonical GP plaintext index is (C + keyShift) mod29.
+ * @param {number[]} src @param {number[]} shifts @returns {number[]}
+ */
+function historicalInverse(src, shifts) {
+  return src.map((v, i) => (v + shifts[i % shifts.length]) % 29);
+}
+/** Inverse of that historical transformation, for reencryption.
+ * @param {number[]} src @param {number[]} shifts @returns {number[]}
+ */
+function historicalForward(src, shifts) {
+  return src.map((v, i) => (v - shifts[i % shifts.length] + 29) % 29);
+}
+
+/** Reproduce the 18-rune Stage04 onion-address positive.
+ * @param {number[]} shifts @returns {string}
+ */
+function originalOnion(shifts) {
+  let clock = 0;
+  return [..."ᚦᛗᛞᛇᚠᛗᚪᚱ5ᚢᚫᛝᚱᛝ3ᛠᛗᛇᚠᛡ"].map(symbol => {
+    const i = corpus.runes.indexOf(symbol);
+    if (i < 0) return symbol;
+    const output = (i + shifts[clock++ % shifts.length]) % 29;
+    return valuesForward[output][0];
+  }).join("");
+}
+assert.equal(originalOnion(buggyKey), "AUOWYFGL5LCSFJ3NONPM");
+assert.equal(originalOnion(fixedKey), "AUOWYFGL5LCSFJ3NONION");
+// The original source permits C/K, S/Z and the Onion-service V spelling;
+// the corrected fixed-key readout yields AVOWYFGL5LKZFJ3N.ONION.
+
+const permuteSource = [0, 6, 2, 5, 1, 4, 3];
+const permuteInverse = [0, 4, 2, 6, 5, 3, 1];
+/** @template T @param {T[]} src @param {number[]} order @returns {T[]} */
+function permuteSeven(src, order) {
+  assert.equal(src.length % 7, 0);
+  const out = [];
+  for (let i = 0; i < src.length; i += 7)
+    for (const k of order) out.push(src[i + k]);
+  return out;
+}
+const stage05Input = ("TL BE IE OV UT HT RE ID TS EO ST PO SO YR " +
+  "SL BT II IY T4 DG UQ IM NU 44 2I 15 33 9M").replace(/\s+/gu, "");
+const stage05Expected = "TOBELIEVETRUTHISTODESTROYPOSSIBILITYQ4UTGDI2N4M4UIM59133";
+assert.equal(permuteSeven([...stage05Input],permuteSource).join(""),
+  stage05Expected);
+assert.equal(permuteSeven([...stage05Expected],permuteInverse).join(""),
+  stage05Input);
+
+/** Canonical GP29 control text.
+ * @param {string} text @returns {number[]}
+ */
+function normalize(text) {
+  const tokens = corpus.translit.map((t, i) => ({ t, i }))
+    .sort((a, b) => b.t.length - a.t.length);
+  const out = [];
+  for (const word of text.toUpperCase().replace(/V/g, "U").replace(/K/g, "C")
+    .replace(/[^A-Z ]/g, " ").split(/\s+/u)) {
+    for (let i = 0; i < word.length;) {
+      const token = tokens.find(x => word.startsWith(x.t, i));
+      if (token) { out.push(token.i); i += token.t.length; }
+      else i++;
+    }
+  }
+  return out;
+}
+const training = normalize(lp1.replace(/^#.*$/gm, ""));
+const two = new Map(), three = new Map();
+for (let i = 2; i < training.length; i++) {
+  const b = 29*training[i-2] + training[i-1];
+  two.set(b, (two.get(b) || 0) + 1);
+  const t = 29*b + training[i];
+  three.set(t, (three.get(t) || 0) + 1);
+}
+/** @param {number[]} text @returns {number} */
+function score(text) {
+  let total = 0;
+  for (let i = 2; i < text.length; i++) {
+    const b = 29*text[i-2] + text[i-1];
+    total += Math.log(((three.get(29*b+text[i])||0)+1) /
+      ((two.get(b)||0)+29));
+  }
+  return total/(text.length-2);
+}
+assert.ok(score(training) > -2.4);
+
+const spans = [
+  { label:"p8-14", text:corpus.pages.filter(p => p.page>=8&&p.page<=14)
+    .flatMap(p => p.indices), expectedLength:1729 },
+  { label:"p33-red8-to-p39", text:corpus.pages.find(p => p.page===33)
+    .indices.slice(91).concat(corpus.pages.filter(p => p.page>=34&&p.page<=39)
+    .flatMap(p => p.indices)), expectedLength:1589 },
+  { label:"p54-55", text:corpus.pages.filter(p => p.page>=54&&p.page<=55)
+    .flatMap(p => p.indices), expectedLength:308 }
+];
+const output = [];
+for (const span of spans) {
+  assert.equal(span.text.length, span.expectedLength);
+  for (const [variant,key] of [["historical-bug19",buggyKey],
+    ["corrected-GP18",fixedKey]]) {
+    // Both orders are reversible, with the original Stage05 inverse.
+    const transposeThenKey = historicalInverse(
+      permuteSeven(span.text,permuteSource), key);
+    const keyThenTranspose = permuteSeven(
+      historicalInverse(span.text,key),permuteSource);
+    assert.deepEqual(permuteSeven(
+      historicalForward(transposeThenKey,key),permuteInverse),span.text);
+    assert.deepEqual(historicalForward(
+      permuteSeven(keyThenTranspose,permuteInverse),key),span.text);
+
+    // Native-language plants must survive both composite forward inverses.
+    const plant = training.slice(0,span.text.length);
+    const c1 = permuteSeven(historicalForward(plant,key),permuteInverse);
+    const c2 = historicalForward(permuteSeven(plant,permuteInverse),key);
+    assert.deepEqual(historicalInverse(
+      permuteSeven(c1,permuteSource),key),plant);
+    assert.deepEqual(permuteSeven(
+      historicalInverse(c2,key),permuteSource),plant);
+    output.push({
+      originalSpan:span.label, historicalKey:variant,
+      cipherScore:score(span.text), nativePlantScore:score(plant),
+      transposeThenKeyScore:score(transposeThenKey),
+      keyThenTransposeScore:score(keyThenTranspose),
+      transposeThenKeySourceNativeScore:sourceNativeModel.scoreStream(transposeThenKey).mean,
+      keyThenTransposeSourceNativeScore:sourceNativeModel.scoreStream(keyThenTranspose).mean,
+      preview:transposeThenKey.slice(0,48).map(x => corpus.translit[x]).join("")
+    });
+  }
+}
+assert.equal(output.length, 6);
+assert.ok(output.every(row => row.transposeThenKeyScore < -3.35
+  && row.keyThenTransposeScore < -3.35));
+const finalCompositeRows = output.filter(row => row.originalSpan === "p54-55");
+assert.equal(finalCompositeRows.length, 2);
+const expectedFinalComposite = {
+  "historical-bug19": [-3.421835892853488, -3.4316705014210656],
+  "corrected-GP18": [-3.4438875586518893, -3.4290444972684133]
+};
+for (const row of finalCompositeRows) {
+  const expected = expectedFinalComposite[row.historicalKey];
+  assert(expected);
+  assert(Math.abs(row.transposeThenKeyScore - expected[0]) < 1e-10);
+  assert(Math.abs(row.keyThenTransposeScore - expected[1]) < 1e-10);
+}
+
+// Separate Stage05-only transfer to the final original-image visual chapter.
+// p54=232 and p55=76; together 308=44*7. The Stage11 HTML's 133/331
+// values read as octal give 91=13*7 and 217=31*7, but no source-visible
+// boundary exists there and the split is transform-equivalent to whole.
+const p54 = corpus.pages.find(p => p.page === 54).indices;
+const p55 = corpus.pages.find(p => p.page === 55).indices;
+const finalChapter = p54.concat(p55);
+assert.equal(p54.length, 232);
+assert.equal(p55.length, 76);
+assert.equal(finalChapter.length, 308);
+assert.equal(finalChapter.length % 7, 0);
+const octal133 = parseInt("133", 8), octal331 = parseInt("331", 8);
+assert.deepEqual([octal133, octal331], [91, 217]);
+assert.equal(octal133 + octal331, finalChapter.length);
+assert.equal(octal133 % 7, 0);
+assert.equal(octal331 % 7, 0);
+const splitStage05 = permuteSeven(finalChapter.slice(0, octal133), permuteSource)
+  .concat(permuteSeven(finalChapter.slice(octal133), permuteSource));
+const finalSourceInverse = permuteSeven(finalChapter, permuteSource);
+const finalOpposite = permuteSeven(finalChapter, permuteInverse);
+assert.deepEqual(splitStage05, finalSourceInverse);
+assert.deepEqual(permuteSeven(finalSourceInverse, permuteInverse), finalChapter);
+assert.deepEqual(permuteSeven(finalOpposite, permuteSource), finalChapter);
+
+// Exact 7! null distribution: compare the externally fixed 2014 orders to
+// every possible single seven-position permutation, without selecting one.
+const permutationScores = [];
+function enumerateSeven(prefix, remaining) {
+  if (remaining.length === 0) {
+    const candidate = permuteSeven(finalChapter, prefix);
+    permutationScores.push({ order: prefix.slice(), score: score(candidate), sourceNativeScore: sourceNativeModel.scoreStream(candidate).mean });
+    return;
+  }
+  for (let i = 0; i < remaining.length; i++) {
+    const next = remaining[i];
+    enumerateSeven(prefix.concat(next), remaining.slice(0, i).concat(remaining.slice(i + 1)));
+  }
+}
+enumerateSeven([], [0, 1, 2, 3, 4, 5, 6]);
+assert.equal(permutationScores.length, 5040);
+permutationScores.sort((a, b) => b.score - a.score);
+const permutationRank = order =>
+  permutationScores.findIndex(row => row.order.join(",") === order.join(",")) + 1;
+const sourceRank = permutationRank(permuteSource);
+const oppositeRank = permutationRank(permuteInverse);
+const identityRank = permutationRank([0, 1, 2, 3, 4, 5, 6]);
+const nativePermutationScores = permutationScores.slice()
+  .sort((a, b) => b.sourceNativeScore - a.sourceNativeScore);
+const nativePermutationRank = order =>
+  nativePermutationScores.findIndex(row => row.order.join(",") === order.join(",")) + 1;
+const nativeSourceRank = nativePermutationRank(permuteSource);
+const nativeOppositeRank = nativePermutationRank(permuteInverse);
+const nativeIdentityRank = nativePermutationRank([0, 1, 2, 3, 4, 5, 6]);
+assert.deepEqual([nativeSourceRank, nativeOppositeRank, nativeIdentityRank], [1348, 1097, 3505]);
+assert.equal(sourceRank, 961);
+assert.equal(oppositeRank, 1175);
+assert.equal(identityRank, 2763);
+const finalChapterGate = {
+  pageLengths: [p54.length, p55.length],
+  totalRunes: finalChapter.length,
+  blocksOfSeven: finalChapter.length / 7,
+  base8Candidate: {
+    title133: octal133,
+    id331: octal331,
+    blockRows: [octal133 / 7, octal331 / 7],
+    splitIsTransformEquivalent: true
+  },
+  rawScore: score(finalChapter),
+  sourceInverseScore: score(finalSourceInverse),
+  oppositePermutationScore: score(finalOpposite),
+  sourceNativeRawScore: sourceNativeModel.scoreStream(finalChapter).mean,
+  sourceNativeSourceInverseScore: sourceNativeModel.scoreStream(finalSourceInverse).mean,
+  sourceNativeOppositePermutationScore: sourceNativeModel.scoreStream(finalOpposite).mean,
+  sourceInversePreview: finalSourceInverse.slice(0, 120).map(i => corpus.translit[i]).join(""),
+  oppositePreview: finalOpposite.slice(0, 120).map(i => corpus.translit[i]).join(""),
+  permutationNull: {
+    total: permutationScores.length,
+    sourceRank,
+    sourcePercentile: (1 - sourceRank / permutationScores.length) * 100,
+    oppositeRank,
+    oppositePercentile: (1 - oppositeRank / permutationScores.length) * 100,
+    identityRank,
+    identityPercentile: (1 - identityRank / permutationScores.length) * 100,
+    bestScore: permutationScores[0].score,
+    topOnePercentCutoff: permutationScores[Math.floor(permutationScores.length * 0.01)].score
+  },
+  sourceNativePermutationNull: {
+    total: nativePermutationScores.length,
+    sourceRank: nativeSourceRank,
+    sourcePercentile: (1 - nativeSourceRank / nativePermutationScores.length) * 100,
+    oppositeRank: nativeOppositeRank,
+    oppositePercentile: (1 - nativeOppositeRank / nativePermutationScores.length) * 100,
+    identityRank: nativeIdentityRank,
+    identityPercentile: (1 - nativeIdentityRank / nativePermutationScores.length) * 100,
+    bestScore: nativePermutationScores[0].sourceNativeScore
+  }
+};
+assert(Math.abs(finalChapterGate.rawScore - (-3.413674261058247)) < 1e-10);
+assert(Math.abs(finalChapterGate.sourceInverseScore - (-3.3995136385008187)) < 1e-10);
+assert(Math.abs(finalChapterGate.oppositePermutationScore - (-3.401735169183637)) < 1e-10);
+assert(Math.abs(finalChapterGate.sourceNativeRawScore - (-3.4174846129324874)) < 1e-10);
+assert(Math.abs(finalChapterGate.sourceNativeSourceInverseScore - (-3.4020583831873124)) < 1e-10);
+assert(Math.abs(finalChapterGate.sourceNativeOppositePermutationScore - (-3.39972814344855)) < 1e-10);
+const expectedNativeComposite = {
+  "p8-14|historical-bug19": [-3.43045452460455, -3.4238155678190743],
+  "p8-14|corrected-GP18": [-3.4047473596996873, -3.4122069225828344],
+  "p33-red8-to-p39|historical-bug19": [-3.417348275990435, -3.423796884010128],
+  "p33-red8-to-p39|corrected-GP18": [-3.418001539062974, -3.419333021508689],
+  "p54-55|historical-bug19": [-3.4167298076400625, -3.432494469773692],
+  "p54-55|corrected-GP18": [-3.440241902974488, -3.4325523223228673]
+};
+for (const row of output) {
+  const expected = expectedNativeComposite[row.originalSpan + "|" + row.historicalKey];
+  assert(expected);
+  assert(Math.abs(row.transposeThenKeySourceNativeScore - expected[0]) < 1e-10);
+  assert(Math.abs(row.keyThenTransposeSourceNativeScore - expected[1]) < 1e-10);
+}
+
+// Weak page-3 selector gate: the literal "3" occurs in the recovered Stage04
+// onion address, but is not an authenticated instruction to select LP2 page 3.
+// Page 3 has 217=31*7 runes, so test the exact historical Stage05 permutation
+// and the corrected Stage04 GP18 key without tuning phase or operation.
+const p3 = corpus.pages.find(p => p.page === 3).indices;
+assert.equal(p3.length, 217);
+assert.equal(p3.length / 7, 31);
+assert.equal(fixedKey.length, 18);
+const p3Stage05Exact = permuteSeven(p3, permuteSource);
+const p3Stage05Opposite = permuteSeven(p3, permuteInverse);
+const p3Stage04 = historicalInverse(p3, fixedKey);
+const p3Stage05ThenStage04 = historicalInverse(p3Stage05Exact, fixedKey);
+const p3Stage04ThenStage05 = permuteSeven(p3Stage04, permuteSource);
+const p3Stage05OppositeThenStage04 = historicalInverse(p3Stage05Opposite, fixedKey);
+const p3Stage04ThenStage05Opposite = permuteSeven(p3Stage04, permuteInverse);
+assert.deepEqual(permuteSeven(p3Stage05Exact, permuteInverse), p3);
+assert.deepEqual(permuteSeven(p3Stage05Opposite, permuteSource), p3);
+assert.deepEqual(historicalForward(p3Stage04, fixedKey), p3);
+assert.deepEqual(permuteSeven(
+  historicalForward(p3Stage05ThenStage04, fixedKey), permuteInverse), p3);
+assert.deepEqual(historicalForward(
+  permuteSeven(p3Stage04ThenStage05, permuteInverse), fixedKey), p3);
+assert.deepEqual(permuteSeven(
+  historicalForward(p3Stage05OppositeThenStage04, fixedKey), permuteSource), p3);
+assert.deepEqual(historicalForward(
+  permuteSeven(p3Stage04ThenStage05Opposite, permuteSource), fixedKey), p3);
+const p3VariantInputs = [
+  ["raw", p3],
+  ["Stage05 exact inverse", p3Stage05Exact],
+  ["Stage05 opposite", p3Stage05Opposite],
+  ["Stage04 corrected GP18 only", p3Stage04],
+  ["Stage05 exact then Stage04 GP18", p3Stage05ThenStage04],
+  ["Stage04 GP18 then Stage05 exact", p3Stage04ThenStage05],
+  ["Stage05 opposite then Stage04 GP18", p3Stage05OppositeThenStage04],
+  ["Stage04 GP18 then Stage05 opposite", p3Stage04ThenStage05Opposite]
+];
+const p3Gate = {
+  page: 3,
+  runeCount: p3.length,
+  blocksOfSeven: p3.length / 7,
+  correctedStage04KeySymbols: fixedKey.length,
+  stage05ExactInverse: permuteSource,
+  stage05Opposite: permuteInverse,
+  pageSelectorStatus: "weak inference from literal 3 inside Stage04 onion address; not source-authenticated",
+  variants: p3VariantInputs.map(([name, text]) => ({
+    name,
+    canonicalScore: score(text),
+    sourceNativeScore: sourceNativeModel.scoreStream(text).mean,
+    canonicalPrefix: text.slice(0, 48).map(i => corpus.translit[i]).join(""),
+    sourceNativePrefix: sourceNativeModel.spell(text.slice(0, 48))
+  }))
+};
+const expectedP3 = {
+  "raw": [-3.4103949988193447, -3.4073238945315034],
+  "Stage05 exact inverse": [-3.4366627512171917, -3.430279595579736],
+  "Stage05 opposite": [-3.4246518173733014, -3.427520500599825],
+  "Stage04 corrected GP18 only": [-3.427451996351751, -3.4345956619260205],
+  "Stage05 exact then Stage04 GP18": [-3.4435380639299757, -3.4340714900365055],
+  "Stage04 GP18 then Stage05 exact": [-3.405862118910687, -3.3995323087493747],
+  "Stage05 opposite then Stage04 GP18": [-3.44749564705272, -3.4447885326518435],
+  "Stage04 GP18 then Stage05 opposite": [-3.462249731577561, -3.460885136800885]
+};
+for (const row of p3Gate.variants) {
+  const expected = expectedP3[row.name];
+  assert(expected);
+  assert(Math.abs(row.canonicalScore - expected[0]) < 1e-10);
+  assert(Math.abs(row.sourceNativeScore - expected[1]) < 1e-10);
+}
+assert.equal(p3Gate.variants.length, 8);
+assert.ok(p3Gate.variants.every(row =>
+  row.canonicalScore < -3.4 && row.sourceNativeScore < -3.39));
+assert(Math.abs(p3Gate.variants.find(row =>
+  row.name === "Stage04 GP18 then Stage05 exact").sourceNativeScore
+  - (-3.3995323087493747)) < 1e-10);
+
+console.log(JSON.stringify({
+  status:"PASS",
+  sourceNativeModel:{trainingLength:sourceNativeModel.trainingLength,trainingScore:sourceNativeModel.trainingScore,p57Score:sourceNativeModel.p57Score},
+  originalRunglyphControl:originalOnion(fixedKey),
+  stage05PermutationControl:stage05Expected,
+  historicalSourceBug:buggyKey.length,
+  correctedGpKeySymbols:fixedKey.length,
+  testedOriginalSpanDecryptions:12,
+  recoveredUnknownPlaintext:false, output, p3Gate, finalChapterGate
+},null,2));

@@ -1,0 +1,14 @@
+name: Agent10 doublet rare-plaintext source passage crib
+on:
+  workflow_dispatch:
+jobs:
+  source-quotation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact rare-marker quotation scan with original GP29
+        run: node sims/lp2_doublet_mask_sourcepassage_crib_sft.cjs

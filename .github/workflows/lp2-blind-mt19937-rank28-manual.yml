@@ -1,0 +1,13 @@
+name: LP2 blind full-state MT19937 rank28 original-input gate
+on:
+  workflow_dispatch:
+jobs:
+  blind-mt:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build portable C++17 GF2-state reproducer
+        run: g++ -std=c++17 -O3 -march=native -Wall -Wextra sims/lp2_blind_mt19937_rank28_low2_sft.cpp -o /tmp/lp2_blind_mt19937_rank28
+      - name: Test complete original LP2 and original-doublet-matched MT positive
+        run: /tmp/lp2_blind_mt19937_rank28

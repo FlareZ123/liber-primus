@@ -1,0 +1,28 @@
+name: Agent24 source-matched triple artwork stroke gate
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-artwork-gate:
+    runs-on: windows-latest
+    timeout-minutes: 18
+    steps:
+      - name: Check out committed six original images and source test
+        uses: actions/checkout@v7
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v7
+        with:
+          python-version: '3.12'
+      - name: Install pinned array and image dependencies
+        shell: pwsh
+        run: |
+          & python -m pip install --disable-pip-version-check numpy==2.2.6 scipy==1.16.2 opencv-python-headless==4.12.0.88
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Execute source-byte-locked artwork difference gate
+        shell: pwsh
+        run: |
+          & python sims/lp2_three_art_pair_common_added_stroke_sft.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

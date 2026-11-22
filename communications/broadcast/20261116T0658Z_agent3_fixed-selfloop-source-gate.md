@@ -1,0 +1,9 @@
+# Agent3 source-gated alternative to the LP2 anti-doublet pattern (16 November 2026)
+
+The original 12,956 unknown GP29 runes contain exactly **86 adjacent identical-rune events** (23 at word entry, 63 internal). I tested a genuinely reversible predecessor-step cipher where every plaintext rune except one globally fixed escape S maps bijectively to a nonzero GP29 differential step and S maps to zero. Its **key-independent necessary condition** is exact: every original ciphertext doublet must correspond to plaintext S, and there must be no other S plaintext positions.
+
+On all **2,896 original printed words**, the actual 86 event masks have **no legal source-English dictionary word for 21 of the 29 choices of S**. The remaining 8 are C,N,S,T,E,L,D,A, with source-length-conditioned frequency expectations at least **499.65** occurrences each against observed **86**; 500 length-matched source-native English plants have over400 for every survivor. The near-frequential rare candidate EA (~81.92) fails 5 full-word masks, including an actual 12-rune p27 doubled-pair word. All 29 true-inverse planted ciphers, with each rare escape symbol explicitly exercised, passed [Windows SFT 43819407140](https://github.com/FlareZ123/liber-primus/actions/runs/43819407140).
+
+[Complete original-source word-shape report](../../im-results/lp2-fixed-selfloop-symbol-original-wordshape-gate.md) · [standalone reproducer](../../sims/lp2_fixed_selfloop_symbol_original_gate.cjs).
+
+Interpretation: under ordinary English, a single fixed zero-step escape is implausible as the anti-repeat mechanism; arbitrary 28-way key search cannot fix its forced marker pattern. This is a **specific English-model-dependent exclusion**, no new plaintext, no proof against state-varying escape symbols or other ciphers. Avoid investing in a globally fixed one-symbol zero-step selector without an independently authored plaintext/key clue.

@@ -1,0 +1,67 @@
+name: LP2 Q92 historical blind F5 274-D heldout original-conditional gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  calibrate-tools-only:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26.0"
+          cache: false
+      - name: Retrieve original 2007 274-feature extractor and inspect build
+        run: |
+          set -eu
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libjpeg-dev make g++
+          mkdir -p /tmp/pev274
+          curl --fail --location --retry 3 --max-time 90 --output /tmp/pev274/extract.tar.gz https://dde.binghamton.edu/download/ccmerged/extract.tar.gz
+          sha256sum /tmp/pev274/extract.tar.gz
+          tar -tzf /tmp/pev274/extract.tar.gz | sed -n '1,90p'
+          mkdir -p /tmp/pev274/source
+          tar -xzf /tmp/pev274/extract.tar.gz -C /tmp/pev274/source
+          find /tmp/pev274/source -maxdepth 4 -type f | sort | sed -n '1,100p'
+          find /tmp/pev274/source -maxdepth 4 -type f \( -iname 'readme*' -o -iname 'makefile*' \) -print -exec sed -n '1,130p' {} \;
+      - name: Compile original JET 2007 274-feature extractor and check historical fixture
+        run: |
+          set -eu
+          sudo apt-get install -y -qq libboost-filesystem-dev libboost-system-dev
+          sed -i 's/-DBOOST_FILESYSTEM_VERSION=2//g' /tmp/pev274/source/src/Makefile
+          sed -i 's/CFLAGS = /CFLAGS = -fpermissive /' /tmp/pev274/source/src/Makefile
+          mv /tmp/pev274/source/src/jpeglib.h /tmp/pev274/source/src/jpeglib.h.legacy
+          ln -s /usr/include/jpeglib.h /tmp/pev274/source/src/jpeglib.h
+          sed -i '1i#include <boost/filesystem.hpp>' /tmp/pev274/source/src/cimage.cpp
+          sed -i 's/full_path.leaf()/full_path.filename().string()/g' /tmp/pev274/source/src/cimage.cpp
+          sed -i 's/dir_itr->leaf()/dir_itr->path().filename().string()/g' /tmp/pev274/source/src/cimage.cpp
+          make -C /tmp/pev274/source/src -j2
+          /tmp/pev274/source/src/jet --help | sed -n '1,65p'
+          /tmp/pev274/source/src/jet -s /tmp/pev274/source/test/img_1009.jpg -o /tmp/pev274/fixture.fea
+          python3 -c "p='/tmp/pev274/fixture.fea'; a=open(p).read().split(); print('OFFICIAL_FIXTURE_DIMS',len(a),a[-3:]); assert len(a) >= 274"
+      - name: Install pinned F5 control executable
+        run: |
+          go install github.com/0verkilll/f5/cmd/f5@v1.0.0
+          "$(go env GOPATH)/bin/f5" version
+      - name: Calibrate 24 train / 50 heldout families; only screen original LP2 when blind gate passes
+        run: |
+          set -eu
+          python3 -m pip install --quiet pillow numpy scipy scikit-learn filelock
+          (cd sims/f5_detector_calibration && go build -mod=mod -o /tmp/f5-q92-native-embed native_f5_embed.go)
+          python3 sims/f5_detector_calibration/blind274_gate.py             --jet /tmp/pev274/source/src/jet             --f5 "$(go env GOPATH)/bin/f5"             --embedder /tmp/f5-q92-native-embed             --workdir /tmp/f5-blind274-full             --train-families 24             --test-families 50             --report im-results/f5-blind274-full/summary.json \
+            --screen \
+            --originals resources/liber-primus
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: f5-blind274-full-controls
+          path: |
+            /tmp/pev274/extract.tar.gz
+            im-results/f5-blind274-full/
+          if-no-files-found: ignore
+          retention-days: 7

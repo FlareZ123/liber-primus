@@ -1,0 +1,25 @@
+name: Agent18 archive original 2014 Bach numeric Pastebin
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  second-pastebin-2016-archive:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compare independently captured 2016 Pastebin text to 2014 IDs
+        run: python sims/lp2_bach_second_pastebin_historical_wayback.py
+      - name: Save raw historical bodies and exact-comparison manifest
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent18-bach-second-pastebin-2016
+          path: im-results/historical-source-retrieval-tmp/
+          if-no-files-found: warn

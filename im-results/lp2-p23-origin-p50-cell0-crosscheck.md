@@ -1,0 +1,134 @@
+# P23 `THE ORIGIN` candidate meets the canonical p50 origin cell
+
+**Agent42, 19 November 2026. Classification: source-constrained cross-object support for the p23 hidden-layout instruction candidate. This does not decrypt unknown LP2 ciphertext or establish a general p50 state machine.**
+
+## Upstream candidate
+
+The p23 five-dot mirror route selects physical p23 line1 without reading unknown rune values. Its five printed word lengths are
+
+```text
+[2,6,3,5,4]
+```
+
+and the solved-p56 positive-cardinal serializer
+
+```text
+T(n) = phi(p_n) mod29 = (p_n - 1) mod29
+```
+
+maps them to the unique manuscript-wide prefix
+
+```text
+THEORIG
+```
+
+Appending the visible dot count 5 and the local five-word product 25 gives the previously reported candidate completion
+
+```text
+THE ORIGIN
+```
+
+The `IN` completion was recognized after `THEORIG`, so it previously lacked an independent consumer.
+
+## Frozen cross-object read
+
+Use the conditionally preferred p50 serialization from the p57 solved-source control before this test:
+
+1. zero-based row-major p50 address;
+2. printed token in source order;
+3. native base60 value;
+4. Euclidean `divmod 29`, quotient first;
+5. authenticated signed-2016 word positions counted from zero when a quotient is interpreted as a source-word number.
+
+The literal origin of that one-dimensional table is address 0. Its untouched printed token is
+
+```text
+p50[0] = 3N
+3N_base60 = 203
+203 = 7 * 29 + 0
+divmod29(203) = [7,0]
+```
+
+In the authenticated 43-word 2016 message, zero-based word 7 is exactly
+
+```text
+THE
+```
+
+Thus the frozen canonical read of the literal table origin is
+
+```text
+[THE, 0]
+ = THE ORIGIN
+```
+
+The low coordinate is literally zero; no synonym, language score, Caesar shift, key search or unknown-page rune value is used.
+
+## Exact tape control
+
+Charge all six authenticated occurrences of `THE` in the signed 2016 text. Their zero-based positions are
+
+```text
+[1,7,12,17,22,28].
+```
+
+Under the canonical native-base60, forward-token, quotient-first register, scan every one of the 256 original p50 tokens for the predicate
+
+```text
+quotient is a zero-based position of THE
+and
+remainder is 0.
+```
+
+There is exactly one hit:
+
+```text
+address 0 : 3N = 203 -> [7,0] -> [THE, origin]
+```
+
+Because a cyclic shift puts every original token at address0 exactly once, the exact token-multiset cyclic control is
+
+```text
+1 / 256 = 0.00390625.
+```
+
+This is a conditional selectivity measure for the frozen relation, not a probability of Cicada authorship.
+
+## Conservative convention sensitivity
+
+Although the p57 control conditionally preferred this canonical p50 register before this test, charge a wider 16-way sensitivity family anyway:
+
+- radix 60 or 59;
+- forward or reversed two-character token;
+- quotient/remainder or swapped pair;
+- zero-based or one-based signed-word positions.
+
+At the actual origin token `3N`, exactly one of the 16 configurations satisfies `[THE-position, 0]`: the canonical base60 / forward / quotient-first / zero-based convention.
+
+Across all 256 cyclic origin shifts, **14/256 = 0.0546875** shifts admit at least one hit somewhere in that 16-way family. This wider number is the appropriate guard against pretending the relation survives arbitrary reinterpretation.
+
+## Subsequent page-rise extension candidate: `THE ORIGINAL`
+
+Agent5's later source-state audit supersedes the old need for the local `5×5=25` construction. The selected p23 line itself ends in canonical GP0=25, so `[word lengths] + [five-dot count] + [terminal GP0]` gives `THE ORIGIN` directly. The p23/p56 half-turn page rise independently supplies 33, and p33's `THEIR RISE` provides a source referent. If page labels23 and33 are treated as positive T-cardinals, the stream conditionally extends to **`THE ORIGINAL`**. The separate DH-derived `B=19→p50[19]=0X→base60 33` pointer is a conditional convergence, not the source of p33.
+
+This report's p50-cell0 relation is a conditional cross-object consistency check for the **THE ORIGIN prefix** under the p57-derived base60/divmod29 register; it is not independent creator authentication of the p50 encoding. See `im-results/lp2-p23-fivedot-totient-origin.md` and `sims/lp2_p23_origin_state_p33_handoff_sft.cjs`.
+
+## Evidence boundary
+
+This result supplies a conditional cross-object consistency check for the semantic completion `THE ORIGIN` under the p57-derived p50 register:
+
+- p23 supplies the source-selected `THEORIG` prefix and local `IN` completion;
+- the p57 solved-source control had conditionally preferred the canonical p50 register;
+- the literal p50 origin then returns `[7,0]`, and signed word7 is `THE`.
+
+The p50 cell0 token and its value were public before this cross-check was formulated, so this is **not** a blind prediction. It should be treated as a strong, compact consistency relation under a conditional register, not as independent creator authentication of base60 or a discovery p-value.
+
+The result does not license new p50 pointer walks, alternate radices, or unknown-page decoding. Its useful consequence is narrower: p50 cell0 conditionally corroborates the **THE ORIGIN** prefix; the separate p23/p56 page-rise relation is the candidate source of page33 for the later `AL` suffix.
+
+The later p23/p56 page-rise route conditionally extends the local packet to **THE ORIGINAL** if physical page labels are accepted as positive T-cardinals. Its natural English composition with the independently recovered p28 candidate is therefore the candidate `READ OUT THE ORIGINAL`. No source order currently binds those two phrases into one instruction, so do not use that English composition to select a receiver without a separate ordering clue. The shorter `READ OUT THE ORIGIN` remains a prefix-level reading only.
+
+## Reproduction
+
+- SFT: `sims/lp2_p23_origin_p50_cell0_crosscheck_sft.cjs`
+- Upstream p23 report: `im-results/lp2-p23-fivedot-totient-origin.md`
+- Canonical p50 register control: `im-results/lp2-p57-divmod29-register-audit.md`

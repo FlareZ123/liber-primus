@@ -1,0 +1,30 @@
+name: LP2 original glyph morphology and spacing SFT
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lp2-original-glyph-morphology-sft
+  cancel-in-progress: false
+
+jobs:
+  morphology:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install source-image analysis dependencies
+        shell: pwsh
+        run: python -m pip install --disable-pip-version-check numpy Pillow opencv-python
+
+      - name: Check all 58 original LP2 scans with planted spacing control
+        shell: pwsh
+        run: python sims/lp2_original_glyph_morphology_spacing_sft.py

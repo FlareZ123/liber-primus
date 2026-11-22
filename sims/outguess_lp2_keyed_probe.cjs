@@ -1,0 +1,206 @@
+"use strict";
+/**
+ * Test source-derived keys against original LP1/LP2 JPEGs under pinned OutGuess.
+ * A known-key embedded image and authentic Cicada controls must pass first.
+ */
+const assert=require("node:assert/strict");
+const fs=require("node:fs");
+const path=require("node:path");
+const crypto=require("node:crypto");
+const {spawnSync}=require("node:child_process");
+const ROOT=path.resolve(__dirname,"..");
+const SOURCE=path.join(ROOT,"resources/liber-primus");
+const OUTPUT=path.join(ROOT,"outguess-results-keyed");
+const DEFAULT_KEYS=[
+  "15","22","53","78","79","435","638","2262","3299","3301",
+  "fibonacci","FIBONACCI","totient","TOTIENT","divinity","DIVINITY",
+  "firfumferenfe","FIRFUMFERENFE","cicada3301","CICADA3301",
+  "liberprimus","LIBERPRIMUS",
+  // Conditional 2016 signed-message PRNG-marker candidate; not authenticated as a password.
+  "LCBPNGPARRTHBPC"
+];
+// Allow a single preselected historical password without rerunning the 22-key gate.
+const KEYS=process.env.LP2_OUTGUESS_PASSWORD
+  ? [process.env.LP2_OUTGUESS_PASSWORD] : DEFAULT_KEYS;
+// A single source-justified original JPEG may be probed without scanning 58 pages.
+const TARGET_IMAGE=process.env.LP2_OUTGUESS_SOURCE_IMAGE;
+const PAGES=TARGET_IMAGE==="2016"
+  ? ["2016"]
+  : TARGET_IMAGE
+  ? [Number(TARGET_IMAGE)]
+  : Array.from({length:58},(_,i)=>17+i);
+if(TARGET_IMAGE && TARGET_IMAGE!=="2016"){
+  assert.ok(/^\d+$/.test(TARGET_IMAGE) && PAGES[0]>=0 && PAGES[0]<=74,
+    "Single target must be an original LP1/LP2 JPEG index from 0 through 74, or 2016");
+}
+const SHA=b=>crypto.createHash("sha256").update(b).digest("hex");
+/** @param {number | "2016"} n @returns {string} */
+const image=n=>n==="2016"
+  ? path.join(ROOT,"resources/historical/cicada2016-4gq25.jpg")
+  : path.join(SOURCE,String(n).padStart(2,"0")+".jpg");
+const outguess=(args,timeout=20000)=>spawnSync("outguess",args,{
+  encoding:"utf8",timeout,maxBuffer:256*1024
+});
+
+/** @param {Buffer} bytes @returns {string[]} */
+function recognisable(bytes){
+  const first=bytes.subarray(0,100).toString("latin1");
+  const flags=[];
+  if(first.startsWith("-----BEGIN PGP SIGNED MESSAGE-----") ||
+     first.startsWith("-----BEGIN PGP MESSAGE-----") ||
+     first.startsWith("-----BEGIN PGP PUBLIC KEY BLOCK-----"))flags.push("pgp");
+  if(bytes.subarray(0,4).equals(Buffer.from("504b0304","hex")))flags.push("zip");
+  if(bytes.subarray(0,2).equals(Buffer.from("1f8b","hex")))flags.push("gzip");
+  if(bytes.subarray(0,4).equals(Buffer.from("89504e47","hex")))flags.push("png");
+  const ascii=bytes.reduce((n,x)=>n+Number(x===9||x===10||x===13||x>=32&&x<=126),0);
+  if(bytes.length>=32&&ascii/bytes.length>.97)flags.push("printable");
+  return flags;
+}
+
+function main(){
+  assert.equal(new Set(KEYS).size,KEYS.length);
+  fs.mkdirSync(OUTPUT,{recursive:true});
+  const lock=path.join(OUTPUT,".keyscan.lock"),fd=fs.openSync(lock,"wx");
+  const temp=path.join(OUTPUT,"extract.incomplete");
+  const report={keys:KEYS,pages:PAGES,attempts:0,headerMatches:0,
+    plausible:[],rawCandidates:[],unknownBinaryCounts:{},errors:[],rejectedSignals:{},rejectedExitCodes:{},controls:{}};
+  try{
+    const message=Buffer.from("AGENT40 OUTGUESS KEYED RED TRIANGLE CONTROL 79\n");
+    const msg=path.join(OUTPUT,"message.incomplete");
+    const stego=path.join(OUTPUT,"carrier.incomplete.jpg");
+    const recovered=path.join(OUTPUT,"recover.incomplete");
+    fs.writeFileSync(msg,message);
+    const embedded=outguess(["-k","79","-d",msg,image(17),stego],120000);
+    assert.equal(embedded.status,0,"OutGuess embed failed: "+embedded.stderr);
+    const decoded=outguess(["-k","79","-r",stego,recovered],120000);
+    assert.equal(decoded.status,0,"OutGuess keyed retrieve failed: "+decoded.stderr);
+    assert.ok(fs.readFileSync(recovered).equals(message),"Planted OutGuess key failed");
+    report.controls.knownKey={password:"79",source:"17.jpg",bytes:message.length,
+      messageSHA256:SHA(message),exactRecovery:true};
+    for(const p of [msg,stego,recovered])fs.rmSync(p,{force:true});
+
+    for(const page of [0,8]){
+      const process=outguess(["-r",image(page),temp]);
+      assert.equal(process.status,0,"Authentic default control failed "+page);
+      const content=fs.readFileSync(temp);
+      if(page===0)assert.ok(content.toString("utf8",0,40)
+        .startsWith("-----BEGIN PGP SIGNED MESSAGE-----"));
+      if(page===8)assert.ok(content.toString().includes("For those who have fallen behind"));
+      fs.rmSync(temp,{force:true});
+    }
+    report.controls.authenticDefaultImages=[0,8];
+
+    if(process.env.LP2_OUTGUESS_PASSWORD){
+      // Same literal key on a known payload-free, deterministic libjpeg image.
+      // A matching seed/length header here establishes that a header alone
+      // cannot authenticate the page extractions.
+      const generator=path.join(OUTPUT,"synthetic-generator.incomplete");
+      const synthetic=path.join(OUTPUT,"synthetic-no-payload.jpg");
+      const build=spawnSync("cc",["-O2",
+        path.join(ROOT,"sims/jpeg_synthetic_control.c"),"-ljpeg",
+        "-o",generator],{encoding:"utf8",timeout:60000});
+      assert.equal(build.status,0,"Synthetic JPEG generator build failed "+build.stderr);
+      const generate=spawnSync(generator,[synthetic],{
+        encoding:"utf8",timeout:60000});
+      assert.equal(generate.status,0,"Synthetic JPEG generation failed "+generate.stderr);
+      fs.rmSync(temp,{force:true});
+      const probe=outguess(["-k",KEYS[0],"-r",synthetic,temp],120000);
+      const metadata=/Steg retrieve:\s*seed:\s*(\d+),\s*len:\s*(\d+)/i.exec(
+        (probe.stdout||"")+"\n"+(probe.stderr||""));
+      const payload=fs.existsSync(temp)?fs.readFileSync(temp):Buffer.alloc(0);
+      report.controls.syntheticNoPayload={
+        jpegSHA256:SHA(fs.readFileSync(synthetic)),
+        key:KEYS[0],status:probe.status,
+        seed:metadata?Number(metadata[1]):null,
+        headerLength:metadata?Number(metadata[2]):null,
+        bytes:payload.length,
+        headerConsistent:probe.status===0&&Boolean(metadata)&&
+          payload.length===Number(metadata[2]),
+        extractedSHA256:SHA(payload),
+        recognisable:recognisable(payload)
+      };
+      fs.rmSync(generator,{force:true});
+      fs.rmSync(synthetic,{force:true});
+      fs.rmSync(temp,{force:true});
+    }
+
+    for(const key of KEYS){
+      let matched=0, recognised=0;
+      const unknown=[];
+      for(const page of PAGES){
+        fs.rmSync(temp,{force:true});
+        const proc=outguess(["-k",key,"-r",image(page),temp]);
+        report.attempts++;
+        const output=(proc.stdout||"")+"\n"+(proc.stderr||"");
+        const header=/Steg retrieve:\s*seed:\s*(\d+),\s*len:\s*(\d+)/i.exec(output);
+        const n=fs.existsSync(temp)?fs.statSync(temp).size:0;
+        const bytes=n>0?fs.readFileSync(temp):Buffer.alloc(0);
+        const headerConsistent=proc.status===0&&Boolean(header)&&n>0&&n===Number(header[2]);
+        const rawName="candidate_"+KEYS.indexOf(key)+"_"+page+".bin";
+        if(process.env.LP2_OUTGUESS_PASSWORD&&n>0){
+          // For one exact externally derived key, preserve every nonempty
+          // output, even when the old extractor's header is absent or false.
+          fs.writeFileSync(path.join(OUTPUT,rawName),bytes);
+          report.rawCandidates.push({
+            key,page,status:proc.status,signal:proc.signal||null,
+            seed:header?Number(header[1]):null,
+            headerLength:header?Number(header[2]):null,
+            bytes:n,headerConsistent,sha256:SHA(bytes),rawFile:rawName,
+            first32Hex:bytes.subarray(0,32).toString("hex"),
+            last32Hex:bytes.subarray(Math.max(0,n-32)).toString("hex"),
+            printableFraction:Number((bytes.reduce((sum,b)=>sum+Number(b===9||b===10||b===13||(b>=32&&b<=126)),0)/n).toFixed(6)),
+            shannonBitsPerByte:(()=>{const counts=new Uint32Array(256);for(const b of bytes)counts[b]++;let h=0;for(const count of counts){if(count){const p=count/n;h-=p*Math.log2(p);}}return Number(h.toFixed(6));})()
+          });
+        }
+        if(headerConsistent){
+          matched++;
+          const flags=recognisable(bytes);
+          const item={page,seed:Number(header[1]),bytes:n,sha256:SHA(bytes)};
+          if(process.env.LP2_OUTGUESS_PASSWORD)item.rawFile=rawName;
+          if(flags.length){
+            recognised++;
+            const found={key,...item,flags,
+              opening:bytes.subarray(0,100).toString("latin1").replace(/[^\x20-\x7e]/g,".")};
+            report.plausible.push(found);
+            if(!process.env.LP2_OUTGUESS_PASSWORD)
+              fs.writeFileSync(path.join(OUTPUT,rawName),bytes);
+          }else unknown.push(item);
+        }else if(proc.error){
+          report.errors.push({key,page,message:String(proc.error)});
+        }else if(proc.signal){
+          report.rejectedSignals[proc.signal]=(report.rejectedSignals[proc.signal]||0)+1;
+        }else{
+          const status=String(proc.status);
+          report.rejectedExitCodes[status]=(report.rejectedExitCodes[status]||0)+1;
+        }
+        fs.rmSync(temp,{force:true});
+      }
+      report.headerMatches+=matched;
+      report.unknownBinaryCounts[key]={matched,unvalidated:unknown};
+      console.log("OUTGUESS_KEYED_KEY "+JSON.stringify({
+        key,attempts:PAGES.length,headerConsistent:matched,recognisable:recognised
+      }));
+    }
+    const target=path.join(OUTPUT,"summary.json");
+    const staging=target+".incomplete";
+    fs.writeFileSync(staging,JSON.stringify(report,null,2)+"\n");
+    fs.renameSync(staging,target);
+    if(process.env.LP2_OUTGUESS_PASSWORD)
+      for(const candidate of report.rawCandidates)
+        console.log("OUTGUESS_KEYED_RAW "+JSON.stringify(candidate));
+    console.log("OUTGUESS_KEYED_COMPLETE "+JSON.stringify({
+      attempts:report.attempts,matchedHeaders:report.headerMatches,
+      recognisable:report.plausible.length,rawCandidates:report.rawCandidates.length,
+      errors:report.errors.length,
+      rejectedSignals:report.rejectedSignals,rejectedExitCodes:report.rejectedExitCodes,
+      controls:report.controls
+    }));
+    assert.equal(report.errors.length,0,"Unexpected OutGuess process errors");
+  }finally{
+    fs.rmSync(temp,{force:true});
+    fs.closeSync(fd);
+    fs.rmSync(lock,{force:true});
+  }
+}
+if(require.main===module)main();
+module.exports={main,KEYS,PAGES,recognisable};

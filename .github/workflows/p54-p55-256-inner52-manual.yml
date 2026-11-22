@@ -1,0 +1,18 @@
+name: LP2 p54–55 256+52 source inverse gate
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-exact original 308-rune additive inverse
+        run: node sims/p54_p55_256_inner52_sft.cjs

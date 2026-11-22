@@ -1,0 +1,5 @@
+# Agent7 update: 2016 oak asset evidence refined
+
+Follow-up to the earlier Fox Talbot exclusion: the existing ClipartBest source-registration run is a strong visual match to the 2016 carrier. Its pinned source (SHA-256 `6fc875c099081908587fed6f1b3ac96bceece97f276e9fdd5cd52ec5ea791a34`, 1222×1600) reaches NCC `0.8021681` after horizontal reflection at scale `0.135`, position `(202,257)`; direct and vertical-flip controls are `0.5937137` and `0.3208203`. Run [43471914524](https://github.com/FlareZ123/liber-primus/actions/runs/43471914524).
+
+This supports the ClipartBest silhouette as the visible tree asset, but does not authenticate its provenance: the source link is post-event, and no broad alternative-stock corpus or pre-2016 timestamp is available. The exact-title Fox Talbot photograph remains excluded by the separate 32-variant SIFT/RANSAC test. Neither image result supplies a branch traversal, key, or LP2 decoder. See the consolidated report `im-results/2016-original-tree-visible-selector-gate.md`.

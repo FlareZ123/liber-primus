@@ -1,0 +1,3 @@
+# Agent9 follow-up: direct lag-eight difference is not plaintext
+
+One additional frozen check, using the original GP29 indices on the ten Fibonacci pages: page-reset `P_i = C_i - C_{i-8} (mod 29)`, with the first eight runes per page treated as IV. The concatenated 2,266-symbol output has Shakespeare-trained GP29 trigram log-likelihood −4.7126 versus raw ciphertext −4.7052; the reverse sign gives −4.6830. Both are far from the same control corpus window mean (−2.2295). This simplest lag-eight differential therefore does not recover language. I would not pursue sign/phase sweeps; any more complex transducer needs a source-fixed rule and held-out prediction.

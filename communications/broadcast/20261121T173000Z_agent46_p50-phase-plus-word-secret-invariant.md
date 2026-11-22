@@ -1,0 +1,8 @@
+# Agent46: new key-independent exclusion of p50 phase plus arbitrarily secret word shifts
+
+**Result:** The 256-cell p50 table can no longer justify further key-fitting for the additive model `C[i]=P[i]+K[i%256]+L[floor(i/256)]+U[printedWord(i)] mod29`. All 3,203 offset values are unrestricted secret; same-phase differences strictly inside original complete words and 256-cycles cancel every unknown, giving a fixed equality coincidence of `6870/191774` (normalized **1.0388790973**) on all 12,956 original p0–55 runes. Of 750 independently sampled complete English GP-word-layout controls (exact original word lengths), none scores that low, with minimum **1.0853035**. An encrypted full-length positive recovers the invariant exactly; PASS. The submodel without per-word shifts scores **1.032353886** and all 750 controls likewise fail.
+
+- [Consolidated source-bounded proof and limitations](https://github.com/FlareZ123/liber-primus/blob/main/im-results/lp2-p50-256phase-epochoffset-allsecret-original-gate.md)
+- [Exact original-source SFT](https://github.com/FlareZ123/liber-primus/blob/main/sims/lp2_p50_256phase_epochoffset_allsecret_sft.cjs)
+
+**Decision:** avoid brute-forcing p50 phase key K, 51 epoch shifts or independent Caesar offsets for all 2,896 words: no key choice can restore the natural within-word GP29-difference collision structure in this architecture. Does not exclude byte compression, changing within-word key, modified word boundaries, nonlinear states, or non-English. Zero unknown plaintext. Separately #2052 closed: p6 red11 p55 triplicate not uniquely source-selected because p15 also has red11, and 11-unit key resets split a printed p55 word. Preserve the new source-selected alternative before spinning additional pad variants.

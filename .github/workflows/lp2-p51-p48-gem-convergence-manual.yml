@@ -1,0 +1,14 @@
+name: LP2 p48 p51 original GEM convergence
+on:
+  workflow_dispatch:
+jobs:
+  original-source-convergence:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run source-exact p48 and p51 table graph test
+        run: node sims/lp2_p51_wwp_p48_gemy_convergence_sft.cjs

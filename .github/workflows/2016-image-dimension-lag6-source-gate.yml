@@ -1,0 +1,126 @@
+name: 2016 image-dimension lag-six source gate
+
+on:
+  workflow_dispatch:
+    inputs:
+      probe:
+        description: "Run the original source gates or the p32 word-to-pixel candidate"
+        required: false
+        type: choice
+        options:
+          - original
+          - tree-pixel
+          - bookword43
+          - tree-diagonal
+          - firstwords
+          - plainfeedback
+        default: original
+jobs:
+  source-gate:
+    if: ${{ inputs.probe == 'original' || inputs.probe == '' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reconstruct source-derived lag-six rule and test bounded key candidates
+        run: node sims/2016_image_dimension_lag6_source_gate.cjs
+      - name: Upload source-gate diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: t6-source-gate-diagnostics
+          path: |
+            t6-source-gate-result.json
+            t6-source-gate-candidates.json
+          if-no-files-found: warn
+
+  t6-register-gate:
+    if: ${{ inputs.probe == 'original' || inputs.probe == '' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test T6-derived exponent clock, Haegl marker transport, and 13-dot interval states
+        run: node sims/t6_source_register_gate.cjs
+
+  prime-dimensions-gate:
+    if: ${{ inputs.probe == 'original' || inputs.probe == '' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test 2016 consecutive-prime starts and all-state squaring periodicity
+        run: node sims/cicada2016_dimensions_prime_state_gate.cjs
+
+  tree-wordpixel-gate:
+    if: ${{ inputs.probe == 'tree-pixel' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Pillow for historical JPEG source inspection
+        run: python -m pip install --disable-pip-version-check Pillow==11.3.0
+      - name: Source-fixed p32 word-pair pixel coordinate test
+        run: python sims/tree121_wordpixel_path_sft.py
+
+  signed-bookword43-gate:
+    if: ${{ inputs.probe == 'bookword43' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test signed source word-address map and 43-byte printed-grid direct inverses
+        run: node sims/lp2_2016_43byte_bookword_inverse_sft.cjs
+
+  signed-tree-six-diagonal:
+    if: ${{ inputs.probe == 'tree-diagonal' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install Pillow
+        run: python -m pip install --disable-pip-version-check Pillow==11.3.0
+      - name: Inspect frozen six-tile southeast route and all 36 matched diagonals
+        run: python sims/p32_2016_fixed_diagonal_tiles_sft.py
+
+  dimension-selected-first-words:
+    if: ${{ inputs.probe == 'firstwords' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify unique dimension-selected rune words and direct NEWBAS key gates
+        run: node sims/lp2_2016_dimensions_firstwords_sft.cjs
+
+  wordprime-plainfeedback:
+    if: ${{ inputs.probe == 'plainfeedback' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Decode all original words under GP-prime previous-plaintext feedback
+        run: node sims/lp2_wordprime_plainfeedback_sft.cjs

@@ -1,0 +1,12 @@
+# Original LP2 p50 table: what is now ruled out and what remains causal
+
+**Agent4, 16 November 2026.** For any proposed decoding of the p49 66-rune table caption, distinguish the data `256 source table bytes` from the unsupported assertion `256-position repeated key`.
+
+A newly executed key-independent test grants an arbitrary unknown 29-symbol substitution at each of 256 phases (or 28 non-F symbols with the original p56 plaintext-F bypass). Applied to the *entire* original 12,956 unknown runes, both the book-continuous and nine-original-chapter clock, with absolute output or ciphertext-predecessor-step output, fail their necessary same-phase equality invariant against every matched-length GP-native English reference window. **All eight independent secret-key plants reconstruct 12,956 source runes.** Full numbers and assumptions: [report](../../im-results/lp2-grid256-allsecret-keyclock-original-gate.md), [CI success](https://github.com/FlareZ123/liber-primus/actions/runs/43784583230). This is stronger than testing 256 individual table-value shifts, but it does **not** exclude a stateful, evolving, nonperiodic key seeded by the table.
+
+The independently exact H2013×Gp39 quotient **Q252** also fails as a literal cyclic GP29 pad on **138 original pre-table** and **170 independent post-table** runes under both signs and both source clocks ([original inverse report](../../im-results/lp2-hg-q252-rc4-original-inverse-gate.md), [CI](https://github.com/FlareZ123/liber-primus/actions/runs/43781491464)). No recovered plaintext or source-authenticated operand mapping.
+
+**Do not cite statistical near-uniformity of LP2 as evidence for a normal independently uniform one-time pad**: the already established original adjacent doublet count **86/12,901**, with exact independent uniform-mask binomial p≈1.07×10^−98, contradicts that mechanism ([primary source-local gate](../../im-results/lp2-uniform-gp29-pad-adjacency-gate.md)). An external *structured*, state-dependent key remains possible, but its update and plaintext dependence must be specified by a first-party clue, not fitted after the fact.
+
+**Next causal criterion:** choose a first-party operation/key that actually recovers the entire original 66-rune p49 caption, re-encrypts all original symbols and predicts unseen p51 (92) / full posttable sentence (170). Without this, source correlations, factor identities and synthetic round trips should remain intermediate evidence.
+

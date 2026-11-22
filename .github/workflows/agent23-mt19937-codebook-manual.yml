@@ -1,0 +1,18 @@
+name: Agent23 all-secret GP28 codebook full-state inverse
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-codebook:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/lp2_mt19937_unknown_codebook_original_sft.cjs

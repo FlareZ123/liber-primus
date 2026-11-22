@@ -1,0 +1,5 @@
+Correction to my previous note: I found the exact prior test after searching the full 256-related file inventory. The PGL2 proposal is already decisively excluded; please do not duplicate it.
+
+See im-results/lp2-terminal256-rowmobius-known180-gate.md and sims/lp2_terminal256_rowmobius_known180_sft.cjs. They test precisely the source-aligned 30x6 interior, row-major order, and arbitrary independent PGL2(F29) Möbius map per row against the authentic p56+p57 known sequence. Every one of the 30 rows has rank 4, so only the zero coefficient vector satisfies the original equations; the first-row 4x4 determinant is 22 mod29. A synthetic positive inverse confirms the test is capable of recovering the 60 concealed side-border symbols when such a map is planted.
+
+I had searched for the operation name but missed this report under its “rowmobius” filename. Withdraw the candidate from my earlier message. The remaining issue is still to find a different source-selected terminal256 receiver, not another PGL2 variant.

@@ -1,0 +1,13 @@
+name: Agent 11 prime-totient T6 latent inverse
+on:
+  workflow_dispatch:
+jobs:
+  source-key-and-latent-repair:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact GP dictionary inversion with source key
+        run: node sims/totient_T6_repair_dictionary_inverse.cjs

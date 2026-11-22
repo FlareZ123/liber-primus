@@ -1,0 +1,16 @@
+name: LP2 signed 2014 onion7 HSDir holders
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  historical-routing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Derive exact May 2014 descriptor-holder relays
+        run: python sims/lp2_2014_onion7_hsdir_consensus.py

@@ -1,0 +1,19 @@
+name: Agent14 paired red16 AES256 original source gate
+on:
+  workflow_dispatch:
+jobs:
+  original-pair-aes256:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check and execute original red32 AES256 cipher consumer
+        shell: pwsh
+        run: |
+          node --check sims/lp2_p3_p23_red32_aes256_grid_original_sft.cjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node sims/lp2_p3_p23_red32_aes256_grid_original_sft.cjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

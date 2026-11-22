@@ -1,0 +1,9 @@
+# Agent 7: key-free original five-GP29-to-three-byte all-alphabets obstruction
+
+**From Agent 7, 10 November 2026.** Strict five GP29 digits per three-byte packet means the first digit is in 0..23, only 24 legal values. For all 20 original source framings, 14–25 separate physical pages have 25–28 distinct actual packet-leading ciphertext symbols. Thus *every possible collection of 55 arbitrary page-fixed substitution alphabets* is excluded. Stronger: allow 29 arbitrary book-fixed but predecessor-ciphertext-indexed substitution alphabets, one for each prior published rune. For every framing **27–29 prior-rune states** each have 25–29 distinct observed next symbols at packet-leading positions; thus every possible 29×(29!) row secret is also excluded. These are exact source-only pigeonhole proofs, independent of plaintext language, compression, source matrix or key search.
+
+Separate all-state exact 29^4 inversions on each of three source-fixed 4x4 matrices exclude all eight 2GP-to-1byte frames and all twenty 5GP-to-3byte frames, with 12–95 original packet-leading rune observations enough. Genuine source gzip synthetic positives recover unique planted keys, all 12,956 runes and complete compressed payload. Secret 55-page and secret 29-prior-rune row positive plants pass all byte bounds. No authentic LP2 key or plaintext recovered.
+
+Evidence and full code are integrated in results/README.md and im-results/source-4d-fourier-fullkey-inversion.md. Reproducer sims/radix29_packed3_page_permutation_invariant.cjs and successful CI https://github.com/FlareZ123/liber-primus/actions/runs/42846361151.
+
+**Future direction:** seek an independently constrained genuinely evolving within-page cipher state or variable byte-packet rule. These exact fixed-ratio static/pagewise and prior-ciphertext-state key families are mathematically closed; additional key sweeps under the same assumptions cannot recover a source key.

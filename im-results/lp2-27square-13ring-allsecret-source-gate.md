@@ -1,0 +1,27 @@
+# The LP2 opening: 13 concentric rings as an all-secret source-selected cipher gate
+
+**Agent21, 18 November 2026. Decision:** The unchanged original LP2 pp0–2 contain **729 GP29 runes**, making an exact **27×27 square** in reading order. Its **13 concentric complete circumferences** and one central rune give a natural match to the original **13 red opening-rubric runes** and the already solved p57's instruction to *shed our own circumferences*. Nevertheless, every *ring-local* transposition plus independent secret substitution alphabet would leave the original ciphertext too uniform within each circumference to be typical of contiguous GP29 English plaintext. The exact all-key obstruction is observed **859 same-symbol ring pairs / 25,844 comparable pairs**, scaled index of coincidence **0.9638987772790589**. No original unknown plaintext, author-selected key or continuation was recovered.
+
+## The physical starting rule
+
+Use the exact original [LP2 GP29 data](../resources/liber-primus/lp2-corpus.json), physical p0 (262 runes), p1 (266), p2 (201), totaling exactly 729, and the original red [ink annotations](../resources/liber-primus/lp2-ink-annotations.json), which fix 13 red runes at p0 indices 0–12. Lay the complete three-page original rune sequence in row-major order in a 27×27 square. The fixed geometric ring index of position `i` is `min(floor(i/27), i%27, 26-floor(i/27), 26-i%27)`. The **13** complete ring sizes are **104, 96, 88, 80, 72, 64, 56, 48, 40, 32, 24, 16, 8**, plus one central rune. A human solver might read each “shed circumference” perimeter in an indicated direction, applying one red-heading rune as its Caesar shift or selecting another secret per-ring mapping. This is a plausible interpretation of original clues, not a known source instruction.
+
+For each ring `g` and ciphertext GP29 symbol `a`, count occurrences `n[g,a]`. Define the all-key invariant `Q = sum_g sum_a n[g,a](n[g,a]−1)/2`. For each ring, **any entirely unknown permutation of 29 rune labels** merely permutes its frequencies. Any cyclic start, reversal, clockwise/anticlockwise path or arbitrary rearrangement of cells within the same ring also leaves them unchanged. So all `29!` symbol permutations on each of the 13 rings, **and** all intra-ring read orders, preserve `Q` identically, with no keys to search. Original `Q=859`; the number of eligible within-ring pairs is 25,844; scaled `29Q/25844=0.9638987773`. The individual first six ring scaled scores are 0.9205, 0.9794, 1.0606, 0.9177, 1.0552, 0.9206.
+
+## Independent native-language tests and positive plant
+
+Use [Gibran *The Prophet*](../resources/control/gibran_prophet_58585.txt), a source independent of LP2 ciphertext, to create GP29 natural-English windows under two preregistered normalizations: K/Q→C, V→U, Z→S, with (A) all seven GP digraphs TH, NG, EO, OE, AE, IA, EA or (B) just TH, NG. For **every** contiguous 729-rune window, apply the exact same 27×27 geometric mask, evaluating the invariant without choosing a heading key. The many windows from a single book overlap heavily and provide a descriptive *reference distribution*, not independent binomial trials.
+
+| Source register | GP runes | Independent-source 729 windows | Min scaled ring IoC | Mean | Windows at or below original |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Gibran, seven GP digraphs | 63,114 | 62,386 | 1.508126 | 1.758676 | **0** |
+| Gibran, TH/NG only | 63,796 | 63,068 | 1.602384 | 1.837204 | **0** |
+| Original unknown LP2 opening | 729 | 1 | **0.963899** | 0.963899 | reference |
+
+For a positive *cryptographic* control, take the first 729 source-native English runes and independently shuffle their positions **within every ring**, also mapping the 29 symbols through an independently shuffled full symbol permutation per ring, with deterministic seed `0x4ef13a29`. The same-ring statistic is **exactly invariant** between the source English and encrypted plant, and both native-source control variants score above 1.4 after arbitrary ringwise substitution and reading. The SFT tests the original 729 exact GP29 indices, all 13 original geometric rings, the exact original physical 13-red heading, two complete natural-English control registers and both planted invariants.
+
+[Original-input reproducible Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44327660764) · [Standalone CJS SFT](../sims/lp2_27square_13rings_allsecret_original_sft.cjs).
+
+## Scope and next step
+
+Under the stated assumption that **each peeled ring reads as a contiguous ordinary GP29-English segment**, the proposed all-13-ring secret alphabet and read-order family is incompatible with the observed source. A red-heading-derived constant Caesar per ring and a spiral transposition alone are strict special cases, so tuning those is unnecessary. This does **not** exclude between-ring mixing, changing alphabets inside rings, output-aware repeat filtering, homophonic text, an altered representation, or atypically flat plaintext. The 729/27-square/red13/p57-circumference clue does not, by itself, authenticate a cipher procedure. A productive successor requires an independent first-party instruction to *move between rings* or supply a changing state. The geometric observation is a plausible human solve-path lead; its literal per-ring substitution consumer is now precisely bounded.

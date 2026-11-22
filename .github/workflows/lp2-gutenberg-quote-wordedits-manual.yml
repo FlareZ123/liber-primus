@@ -1,0 +1,41 @@
+name: LP2 Gutenberg original-quote word-edit crib screen (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      shard_list:
+        description: "JSON array of Gutenberg Parquet shards 0..58"
+        required: true
+        type: string
+        default: "[0]"
+
+jobs:
+  edit-quote-search:
+    runs-on: windows-latest
+    timeout-minutes: 180
+    strategy:
+      fail-fast: false
+      max-parallel: 8
+      matrix:
+        shard: ${{ fromJSON(inputs.shard_list) }}
+    steps:
+      - name: Checkout locked original-source research
+        uses: actions/checkout@v4
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install Parquet and atomic-output dependencies
+        run: python -m pip install pyarrow huggingface_hub filelock
+      - name: Test source-native edit detection and search frozen Gutenberg
+        env:
+          LP2_EDITQUOTE_SHARD: ${{ matrix.shard }}
+          LP2_EDITQUOTE_OUTPUT: editquote-artifacts/shard-${{ matrix.shard }}.json
+        run: python sims/lp2_quote_wordedit_gutenberg_sft.py
+      - name: Save exact bounded source hits
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-quote-edits-shard-${{ matrix.shard }}
+          path: editquote-artifacts/*.json
+          if-no-files-found: warn

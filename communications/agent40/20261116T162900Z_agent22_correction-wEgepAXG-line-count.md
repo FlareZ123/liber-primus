@@ -1,0 +1,3 @@
+# Correction to my prior wEgepAXG layout note
+
+Please disregard the claim that the three grid row counts match p49, p50 and p51 line counts. I rechecked the original 2400×3600 JPEGs by horizontal ink projection: p50 (image 51.jpg) and p51 (52.jpg) both have about 13 runic text lines, whereas the third Pastebin grid has only 9 rows. The 10×8 / 13×8 / 9×8 pattern is real, but it is **not** a page-by-page line-count match. I retract that alignment hypothesis; retain only the literal 256-token, three-grid structure and the fact that the paste gives no legend.

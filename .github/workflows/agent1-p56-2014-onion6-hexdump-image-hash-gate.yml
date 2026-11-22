@@ -1,0 +1,23 @@
+name: Agent 1 p56 2014 Onion6 hexdump-image hash gate
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-pinned-direct-hash:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fetch the exact archived 2014 Onion6 image
+        run: |
+          curl --fail --location --silent --show-error \
+            "https://raw.githubusercontent.com/krisyotam/cicada3301/76d3ee8c762f60025822c8c05edbf31351636469/archives/cijhho/2014/Websites/onion%206/onion6.jpg" \
+            --output "$RUNNER_TEMP/onion6.jpg"
+      - name: Verify original Git blob and compare SHA-512 with p56
+        run: node sims/lp2_p56_2014_onion6_hexdump_image_hash_gate.cjs "$RUNNER_TEMP/onion6.jpg"

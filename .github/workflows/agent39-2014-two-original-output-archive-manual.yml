@@ -1,0 +1,95 @@
+name: Agent39 2014 two original solver-output archive acquisitions
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Original 2014 archive or 2015 participant source locator
+        required: false
+        type: choice
+        default: archive-2014
+        options:
+          - archive-2014
+          - wiki-2015
+          - source-tool-2015
+          - gist-revisions-2015
+permissions:
+  contents: read
+jobs:
+  recover:
+    if: ${{ inputs.mode == 'archive-2014' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source IDs and local syntax
+        run: |
+          node --check sims/lp2_2014_two_original-output_archive_probe_sft.cjs
+          node sims/lp2_2014_two_original-output_archive_probe_sft.cjs --selftest
+      - name: Exact original Git-blob source and archival output acquisition
+        run: node sims/lp2_2014_two_original-output_archive_probe_sft.cjs --network
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agent39-source-dateable-2014-original-output-candidates
+          path: irc2014-archived-outputs/
+          if-no-files-found: ignore
+          retention-days: 30
+  original-2015-decryptionist-source:
+    if: ${{ inputs.mode == 'wiki-2015' }}
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact 2015 Fandom source and output-code references
+        shell: pwsh
+        run: |
+          node --check sims/lp2_2015_decryptionist_original_revision_extractor_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Syntax check failed' }
+          node sims/lp2_2015_decryptionist_original_revision_extractor_sft.cjs --network
+          if ($LASTEXITCODE -ne 0) { throw 'Source lookup failed' }
+  recover-2015-published-rune-scripts:
+    if: ${{ inputs.mode == 'source-tool-2015' }}
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Dateable public 2015 rune program originals, no execution
+        shell: pwsh
+        run: |
+          node --check sims/lp2_2015_original_runescript_source_acquisition_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Syntax check failed' }
+          node sims/lp2_2015_original_runescript_source_acquisition_sft.cjs --network
+          if ($LASTEXITCODE -ne 0) { throw '2015 source acquisition failed' }
+          node --check sims/lp2_2015_runescript_original_default_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Original-input runner syntax failed' }
+          node sims/lp2_2015_runescript_original_default_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Original-input known positive failed' }
+          node --check sims/lp2_2015_huw_runes_source_keys_original_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Gist source code syntax failed' }
+          node sims/lp2_2015_huw_runes_source_keys_original_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Source-locked Gist original-input gate failed' }
+  exact-gist-history:
+    if: ${{ inputs.mode == 'gist-revisions-2015' }}
+    runs-on: windows-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Read original dated Gist revision code keys without execution
+        shell: pwsh
+        run: |
+          node --check sims/lp2_2015_huw_gist_original_revision_history_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Original revision tool syntax failed' }
+          node sims/lp2_2015_huw_gist_original_revision_history_sft.cjs --network
+          if ($LASTEXITCODE -ne 0) { throw 'Original revision code lookup failed' }

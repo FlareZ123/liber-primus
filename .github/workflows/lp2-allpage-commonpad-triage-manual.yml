@@ -1,0 +1,18 @@
+name: LP2 all-page common-pad source inverse (manual)
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-page-pair-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test 1326 original page-pair comparisons and exact five-pair dictionary inverses
+        run: node sims/lp2_allpage_commonpad_triage_sft.cjs

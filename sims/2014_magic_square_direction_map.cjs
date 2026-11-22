@@ -1,0 +1,779 @@
+#!/usr/bin/env node
+"use strict";
+
+// Reproduce the 2014 stage04 Rad <-> Ac direction map, its LP2 table transfer,
+// and a source-fixed test of the full direction graph against sparse lag-six events.
+// Run from the repository root:
+//   node sims/2014_magic_square_direction_map.cjs
+
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const crypto = require("node:crypto");
+const {parseSharedCorpus} = require("./lp2_word_pages.cjs");
+
+const corpus = JSON.parse(fs.readFileSync("resources/liber-primus/lp2-corpus.json", "utf8"));
+const ink = JSON.parse(fs.readFileSync("resources/liber-primus/lp2-ink-annotations.json", "utf8"));
+const grid = JSON.parse(fs.readFileSync("resources/liber-primus/base60-grid.json", "utf8"));
+const tcpLive = JSON.parse(fs.readFileSync("resources/external/2013-tcp-live-test-vectors.json", "utf8"));
+const magic = [
+  [272,138,341,131,151],
+  [366,199,130,320,18],
+  [226,245,91,245,226],
+  [18,320,130,199,366],
+  [151,131,341,138,272],
+];
+const mod = n => ((n % 29) + 29) % 29;
+
+/*
+ * The pinned 2013 0_wisdom page gives a mixed 5x5 table. Its prose says that
+ * primes and the totient function are sacred. Replacing each runic word by
+ * the sum of its GP prime weights reconstructs the archived 2014 stage04
+ * magic square exactly; numeric cells are preserved unchanged.
+ */
+const wisdomText = fs.readFileSync("resources/external/2013-0-wisdom.txt", "utf8");
+const wisdomLines = wisdomText.split(/\r?\n/);
+const wisdomHeading = wisdomLines.findIndex(line => line.includes("ᚳᚾᚩᚹ•ᚦᛁᛋ"));
+assert.notEqual(wisdomHeading, -1, "2013 0_wisdom table heading must be present");
+const wisdomTableLines = wisdomLines.slice(wisdomHeading + 1).filter(line => line.trim()).slice(0, 5);
+assert.equal(wisdomTableLines.length, 5, "2013 0_wisdom table must have five rows");
+const wisdomRows = wisdomTableLines.map(line =>
+  line.trim().split(/\s{2,}/).map(cell => cell.replace(/[⁘⁜]/gu, "").trim()).filter(Boolean)
+);
+assert(wisdomRows.every(row => row.length === 5), "2013 0_wisdom table must be 5x5");
+const wisdomWordCells = [];
+const wisdomSquare = wisdomRows.map((row, r) => row.map((cell, c) => {
+  if (/^\d+$/.test(cell)) return Number(cell);
+  const runeIndices = Array.from(cell, rune => corpus.runes.indexOf(rune));
+  assert(runeIndices.length > 0 && runeIndices.every(i => i >= 0),
+    "2013 0_wisdom word must contain only canonical GP runes");
+  const primeWeights = runeIndices.map(i => corpus.prime[i]);
+  const primeSum = primeWeights.reduce((a, b) => a + b, 0);
+  wisdomWordCells.push({
+    row:r + 1, column:c + 1, runes:cell,
+    translit:runeIndices.map(i => corpus.translit[i]).join(""),
+    primeWeights, primeSum,
+  });
+  return primeSum;
+}));
+assert.equal(wisdomWordCells.length, 13, "2013 table must contain 13 word cells");
+assert.deepEqual(wisdomSquare, magic,
+  "GP prime-summing the 2013 0_wisdom word cells must reproduce 2014 stage04 cell-for-cell");
+const wisdomRowSums = wisdomSquare.map(row => row.reduce((a, b) => a + b, 0));
+const wisdomColumnSums = Array.from({length:5}, (_, c) =>
+  wisdomSquare.reduce((sum, row) => sum + row[c], 0)
+);
+const wisdomDiagonalSums = [
+  wisdomSquare.reduce((sum, row, i) => sum + row[i], 0),
+  wisdomSquare.reduce((sum, row, i) => sum + row[4 - i], 0),
+];
+assert(wisdomRowSums.every(x => x === 1033));
+assert(wisdomColumnSums.every(x => x === 1033));
+assert(wisdomDiagonalSums.every(x => x === 1033));
+
+/** @param {number} n */
+function encodeBase29(n) {
+  const alphabet = "0123456789ABCDEFGHIJKLMNOPQRS";
+  if (n === 0) return "0";
+  let out = "";
+  for (let x = n; x > 0; x = Math.floor(x / 29)) out = alphabet[x % 29] + out;
+  return out;
+}
+/** @param {number} n */
+function oneBasedPrimeRank(n) {
+  assert(isPrime(n), "prime rank requires a prime input");
+  let rank = 0;
+  for (let x = 2; x <= n; x++) if (isPrime(x)) rank++;
+  return rank;
+}
+const liveVector = tcpLive.stableOrganizerTestVector;
+assert.equal(liveVector.base29Request, 1033);
+assert.equal(liveVector.base29Response, "16I");
+assert.equal(encodeBase29(liveVector.base29Request), liveVector.base29Response);
+assert.equal(liveVector.dhModulus, 3301);
+assert.equal(Number(String(liveVector.base29Request).split("").reverse().join("")), liveVector.dhModulus);
+assert(wisdomRowSums.every(x => x === liveVector.base29Request));
+const livePrimeRanks = {
+  base29Request:oneBasedPrimeRank(liveVector.base29Request),
+  dhModulus:oneBasedPrimeRank(liveVector.dhModulus),
+};
+assert.deepEqual(livePrimeRanks, {base29Request:174, dhModulus:464});
+assert.equal(livePrimeRanks.base29Request / 29, 6);
+assert.equal(livePrimeRanks.dhModulus / 29, 16);
+const historicalLiveTest = {
+  sourceFile:"resources/external/2013-tcp-live-test-vectors.json",
+  base29Request:liveVector.base29Request,
+  base29Response:liveVector.base29Response,
+  dhModulus:liveVector.dhModulus,
+  decimalReversePair:true,
+  primeRanks:livePrimeRanks,
+  rankQuotientsBy29:[livePrimeRanks.base29Request / 29, livePrimeRanks.dhModulus / 29],
+  matchesReconstructedMagicConstant:liveVector.base29Request === wisdomRowSums[0],
+};
+const wisdomTo2014 = {
+  sourceFile:"resources/external/2013-0-wisdom.txt",
+  sourceImageBlobSha:"2829e13812015601ff1014cb4427587b4a8aa3a6",
+  sourceTranscriptionBlobSha:"320257b0db6ee6326ef3fc216c5379c9c91694f3",
+  originalNumericCells:12, primeSummedWordCells:13, totalCells:25,
+  cellwiseMatch:true, wordPrimeSums:wisdomWordCells,
+  reconstructedSquare:wisdomSquare,
+  rowSums:wisdomRowSums, columnSums:wisdomColumnSums, diagonalSums:wisdomDiagonalSums,
+  historicalLiveTest,
+};
+
+function phi(n) {
+  assert(Number.isInteger(n) && n > 0, "Euler phi is defined here only for positive integers");
+  let x = n, out = n;
+  for (let p = 2; p * p <= x; p++) if (x % p === 0) {
+    while (x % p === 0) x /= p;
+    out -= out / p;
+  }
+  if (x > 1) out -= out / x;
+  return Math.round(out);
+}
+
+const dirs = [
+  {name:"E",dr:0,dc:1},{name:"NE",dr:-1,dc:1},
+  {name:"N",dr:-1,dc:0},{name:"NW",dr:-1,dc:-1},
+  {name:"W",dr:0,dc:-1},{name:"SW",dr:1,dc:-1},
+  {name:"S",dr:1,dc:0},{name:"SE",dr:1,dc:1},
+];
+
+const cells = [];
+for (let r = 0; r < 5; r++) for (let c = 0; c < 5; c++) {
+  const n = magic[r][c], angle = ((n % 360) + 360) % 360;
+  const dir = dirs[Math.floor((angle + 22.5) / 45) % 8];
+  const tr = r + dir.dr, tc = c + dir.dc;
+  const inside = tr >= 0 && tr < 5 && tc >= 0 && tc < 5;
+  const runeIndex = mod(phi(n));
+  cells.push({
+    cell:r * 5 + c + 1, number:n, angle, direction:dir.name, phi:phi(n),
+    runeIndex, translit:corpus.translit[runeIndex],
+    target:inside ? tr * 5 + tc + 1 : null,
+  });
+}
+const byCell = new Map(cells.map(x => [x.cell, x]));
+const cycleKeys = new Set(), cycles = [];
+for (let start = 1; start <= 25; start++) {
+  const path = [], pos = new Map();
+  let cur = start;
+  while (cur !== null && !pos.has(cur)) {
+    pos.set(cur, path.length);
+    path.push(cur);
+    cur = byCell.get(cur).target;
+  }
+  if (cur !== null && pos.has(cur)) {
+    const cycle = path.slice(pos.get(cur));
+    const min = Math.min(...cycle), i = cycle.indexOf(min);
+    const canonical = cycle.slice(i).concat(cycle.slice(0, i));
+    const key = canonical.join(",");
+    if (!cycleKeys.has(key)) {
+      cycleKeys.add(key);
+      cycles.push(canonical);
+    }
+  }
+}
+cycles.sort((a,b) => a.length - b.length || a[0] - b[0]);
+const mutualPairs = cells
+  .filter(x => x.target !== null && byCell.get(x.target).target === x.cell)
+  .map(x => [x.cell, x.target]).filter(([a,b]) => a < b);
+const rowSums = magic.map(r => r.reduce((a,b) => a+b, 0));
+const colSums = Array.from({length:5}, (_,c) => magic.reduce((s,r) => s+r[c], 0));
+const diagonalSums = [
+  magic.reduce((s,r,i) => s+r[i], 0),
+  magic.reduce((s,r,i) => s+r[4-i], 0),
+];
+const magicResult = {
+  magicConstant:1033, rowSums, columnSums:colSums, diagonalSums,
+  selector:{patienceValue:761,phi761:phi(761),phi761mod29:mod(phi(761)),epiphanyDay:6},
+  cell6:byCell.get(6), cell7:byCell.get(7),
+  inBoundsEdges:cells.filter(x => x.target !== null).length,
+  exits:cells.filter(x => x.target === null).map(x => x.cell),
+  mutualPairs,
+  cycles:cycles.map(ids => ({
+    cells:ids, runes:ids.map(id => byCell.get(id).translit),
+    directions:ids.map(id => byCell.get(id).direction),
+  })),
+};
+if (!rowSums.every(x => x === 1033) || !colSums.every(x => x === 1033) ||
+    !diagonalSums.every(x => x === 1033)) throw Error("magic-square check failed");
+if (mod(phi(761)) !== 6 || byCell.get(6).translit !== "R" ||
+    byCell.get(7).translit !== "A" || byCell.get(6).target !== 7 ||
+    byCell.get(7).target !== 6 || !mutualPairs.some(x => x[0] === 6 && x[1] === 7)) {
+  throw Error("cell 6 Rad <-> cell 7 Ac did not reproduce");
+}
+
+// Transfer hypothesis: each positive LP2 grid byte b labels a GP rune by
+// phi(b) mod 29 and supplies a bearing b degrees. Use the same 0° east,
+// counter-clockwise, nearest-45° convention as the 2014 square, with bounded
+// eight-neighbour moves and no wrap. phi(0) is undefined, so zero cells have
+// no rune label (their 0° direction remains usable).
+function gridGraph(sourceRows, columnIndices, name) {
+  const height = sourceRows.length, width = columnIndices.length;
+  const nodes = [];
+  for (let y = 0; y < height; y++) for (let x = 0; x < width; x++) {
+    const byte = sourceRows[y][columnIndices[x]];
+    const runeIndex = byte === 0 ? null : mod(phi(byte));
+    const angle = ((byte % 360) + 360) % 360;
+    const dirIndex = Math.floor((angle + 22.5) / 45) % 8;
+    const dir = dirs[dirIndex];
+    const ny = y + dir.dr, nx = x + dir.dc;
+    const inside = ny >= 0 && ny < height && nx >= 0 && nx < width;
+    nodes.push({
+      id:y * width + x, sourceRow:y, sourceCol:columnIndices[x],
+      byte, runeIndex, translit:runeIndex === null ? null : corpus.translit[runeIndex],
+      angle, direction:dir.name, next:inside ? ny * width + nx : null,
+    });
+  }
+
+  const seen = new Set(), foundCycles = [];
+  for (const node of nodes) {
+    if (seen.has(node.id)) continue;
+    const path = [], positions = new Map();
+    let cur = node.id;
+    while (cur !== null && !seen.has(cur) && !positions.has(cur)) {
+      positions.set(cur, path.length);
+      path.push(cur);
+      cur = nodes[cur].next;
+    }
+    if (cur !== null && positions.has(cur)) {
+      foundCycles.push(path.slice(positions.get(cur)).map(id => nodes[id]));
+    }
+    for (const id of path) seen.add(id);
+  }
+
+  const acToRadPaths = [];
+  for (const start of nodes.filter(x => x.translit === "A")) {
+    const path = [], localSeen = new Set();
+    let cur = start;
+    while (cur !== null && !localSeen.has(cur.id)) {
+      localSeen.add(cur.id);
+      path.push(cur);
+      if (cur.translit === "R") {
+        acToRadPaths.push(path.map(x => ({
+          row:x.sourceRow + 1, column:x.sourceCol + 1,
+          rune:x.translit, byte:x.byte, direction:x.direction,
+        })));
+        break;
+      }
+      cur = cur.next === null ? null : nodes[cur.next];
+    }
+  }
+
+  const runeCounts = {};
+  for (const node of nodes) if (node.translit !== null) {
+    runeCounts[node.translit] = (runeCounts[node.translit] || 0) + 1;
+  }
+  const cycleDetails = foundCycles.map(cycle => cycle.map(x => ({
+    row:x.sourceRow + 1, column:x.sourceCol + 1,
+    rune:x.translit === null ? "UNLABELLED" : x.translit,
+    byte:x.byte, direction:x.direction,
+  })));
+  const radAcMutualCycles = foundCycles.filter(cycle =>
+    cycle.length === 2 &&
+    cycle.some(x => x.translit === "R") &&
+    cycle.some(x => x.translit === "A")
+  );
+  return {
+    name, printedColumns:columnIndices.map(x => x + 1),
+    cells:nodes.length, zeroBytes:nodes.filter(x => x.byte === 0).length,
+    acCount:runeCounts.A || 0, radCount:runeCounts.R || 0,
+    runeCounts, outOfBoundsEdges:nodes.filter(x => x.next === null).length,
+    cycleCount:foundCycles.length,
+    cycleLengths:foundCycles.map(x => x.length),
+    radAcMutualCycleCount:radAcMutualCycles.length,
+    acToRadPathCount:acToRadPaths.length,
+    acToRadPaths, cycles:cycleDetails,
+  };
+}
+
+assert.equal(grid.byte_rows.length, 32);
+assert(grid.byte_rows.every(row => row.length === 8));
+const allColumns = Array.from({length:8}, (_,i) => i);
+const mod8Columns = [byCell.get(6).number % 8, byCell.get(7).number % 8];
+const literalCellColumns = [byCell.get(6).cell - 1, byCell.get(7).cell - 1];
+assert.deepEqual(mod8Columns, [6,7]);
+assert.deepEqual(literalCellColumns, [5,6]);
+
+const fullGrid = gridGraph(grid.byte_rows, allColumns, "full 32x8 table");
+const mod8Strip = gridGraph(grid.byte_rows, mod8Columns, "2014 numbers mod 8 as zero-based columns");
+const literalStrip = gridGraph(grid.byte_rows, literalCellColumns, "2014 cell numbers as one-based columns");
+
+// A minimal source-shaped positive: phi(5) mod 29 = Rad and 5° is east;
+// phi(199) mod 29 = Ac and 199° is west, so the two cells must cycle.
+const positiveControl = gridGraph([[5,199]], [0,1], "planted Rad <-> Ac positive control");
+assert.equal(positiveControl.radAcMutualCycleCount, 1);
+assert.deepEqual(positiveControl.cycles.map(c => c.map(x => x.rune)), [["R","A"]]);
+
+// Frozen original-source decisions.
+assert.equal(fullGrid.zeroBytes, 2);
+assert.equal(fullGrid.acCount, 18);
+assert.equal(fullGrid.radCount, 14);
+assert.equal(fullGrid.radAcMutualCycleCount, 0);
+assert.equal(fullGrid.acToRadPathCount, 3);
+assert.equal(mod8Strip.zeroBytes, 0);
+assert.equal(mod8Strip.acCount, 6);
+assert.equal(mod8Strip.radCount, 6);
+assert.equal(mod8Strip.radAcMutualCycleCount, 0);
+assert.equal(mod8Strip.acToRadPathCount, 0);
+assert.equal(literalStrip.zeroBytes, 1);
+assert.equal(literalStrip.acCount, 7);
+assert.equal(literalStrip.radCount, 1);
+assert.equal(literalStrip.radAcMutualCycleCount, 0);
+assert.equal(literalStrip.acToRadPathCount, 0);
+
+const lp2GridTransfer = {
+  sourceSelection:{
+    cell6Number:byCell.get(6).number, cell7Number:byCell.get(7).number,
+    mod8ZeroBasedColumns:mod8Columns,
+    mod8PrintedColumns:mod8Columns.map(x => x + 1),
+    literalCellNumberPrintedColumns:literalCellColumns.map(x => x + 1),
+  },
+  fullGrid, mod8Strip, literalStrip, positiveControl,
+};
+
+function isPrime(n) {
+  if (n < 2) return false;
+  for (let p = 2; p * p <= n; p++) if (n % p === 0) return false;
+  return true;
+}
+const fragmentEvents = [];
+for (const page of ink.pages) {
+  const sourcePage = corpus.pages[page.page];
+  for (const span of page.red_spans || []) {
+    for (let i = 0; i < span.length; i++) {
+      fragmentEvents.push({
+        page:page.page, offset:span.start + i, kind:1,
+        rune:sourcePage.indices[span.start + i],
+      });
+    }
+  }
+  for (const mark of page.large_punctuation || []) {
+    if (mark[1] === 13) fragmentEvents.push({page:page.page, offset:mark[0], kind:0});
+  }
+}
+// A 13-dot mark is a boundary before the red rune at the same normalized offset.
+fragmentEvents.sort((a,b) => a.page - b.page || a.offset - b.offset || a.kind - b.kind);
+const fragments = [];
+let fragment = [];
+for (const event of fragmentEvents) {
+  if (event.kind === 0) { fragments.push(fragment); fragment = []; }
+  else fragment.push(event);
+}
+fragments.push(fragment);
+const fragmentLengths = fragments.map(x => x.length);
+const expectedFragmentLengths = [
+  13,0,16,0,3,0,11,0,0,14,12,0,9,11,0,16,
+  0,19,0,10,0,8,0,3,0,59,9,0,5,0,7,0,
+];
+assert.equal(fragments.length, 32);
+assert.deepEqual(fragmentLengths, expectedFragmentLengths);
+const wrap32 = n => (((n % 32) + 32) % 32) || 32;
+function fragmentInfo(index, label) {
+  const f = fragments[index - 1];
+  const positions = label === undefined ? [] : f
+    .map((x,i) => corpus.translit[x.rune] === label ? i + 1 : null)
+    .filter(x => x !== null);
+  return {
+    index, length:f.length,
+    translit:f.map(x => corpus.translit[x.rune]).join(" "),
+    labelPositions:positions,
+    first:f.length ? corpus.translit[f[0].rune] : null,
+    last:f.length ? corpus.translit[f[f.length - 1].rune] : null,
+    firstLocation:f.length ? {page:f[0].page,offset:f[0].offset} : null,
+    lastLocation:f.length ? {page:f[f.length - 1].page,offset:f[f.length - 1].offset} : null,
+  };
+}
+const uniqueNumbers = [...new Set(magic.flat())];
+const uniqueBridge = uniqueNumbers.map(number => {
+  const totient = phi(number), label = corpus.translit[mod(totient)];
+  const nFragment = wrap32(number), phiFragment = wrap32(totient);
+  const nf = fragments[nFragment - 1], pf = fragments[phiFragment - 1];
+  const contains = f => f.length > 0 && f.some(x => corpus.translit[x.rune] === label);
+  const nContains = contains(nf), phiContains = contains(pf);
+  return {
+    number, totient, label, nMod32Fragment:nFragment, phiMod32Fragment:phiFragment,
+    nFragment:fragmentInfo(nFragment,label),
+    phiFragment:fragmentInfo(phiFragment,label),
+    oneEmptyOneLabel:(nf.length === 0 && phiContains) || (pf.length === 0 && nContains),
+  };
+});
+const primeBridge = uniqueBridge.filter(x => isPrime(x.number));
+assert.deepEqual(primeBridge.map(x => x.number), [131,151,199]);
+assert(primeBridge.every(x => x.oneEmptyOneLabel));
+const selected199 = primeBridge.find(x => x.number === 199);
+assert.equal(selected199.totient, 198);
+assert.equal(selected199.label, "A");
+assert.equal(selected199.nMod32Fragment, 7);
+assert.equal(selected199.phiMod32Fragment, 6);
+assert.equal(fragments[5].length, 0);
+assert.equal(fragments[6].length, 11);
+assert.equal(corpus.translit[fragments[6][0].rune], "A");
+const markers = fragmentEvents.filter(x => x.kind === 0);
+const selected199Bridge = {
+  ...selected199,
+  emptyFragment:fragmentInfo(6,"A"),
+  acFragment:fragmentInfo(7,"A"),
+  boundaries:{
+    beforeEmpty:markers[4],
+    betweenEmptyAndAc:markers[5],
+    afterAc:markers[6],
+  },
+};
+
+const primePairSlots = primeBridge.map(x => ({
+  phiFragment:x.phiMod32Fragment,
+  nFragment:x.nMod32Fragment,
+  label:x.label,
+}));
+function countPrimePairAssignments(orientation) {
+  const slots = [];
+  for (let k = 0; k < primePairSlots.length; k++) {
+    const p = primePairSlots[k], reverse = (orientation >> k) & 1;
+    slots.push({role:reverse ? "label" : "empty", label:p.label});
+    slots.push({role:reverse ? "empty" : "label", label:p.label});
+  }
+  const compatible = fragments.map(f => slots.map(s =>
+    s.role === "empty" ? f.length === 0 :
+      f.length > 0 && f.some(x => corpus.translit[x.rune] === s.label)
+  ));
+  let dp = Array(1 << 6).fill(0n);
+  dp[0] = 1n;
+  for (let f = 0; f < fragments.length; f++) {
+    const next = dp.slice();
+    for (let mask = 0; mask < (1 << 6); mask++) if (dp[mask]) {
+      for (let j = 0; j < 6; j++) if (!(mask & (1 << j)) && compatible[f][j]) {
+        next[mask | (1 << j)] += dp[mask];
+      }
+    }
+    dp = next;
+  }
+  return dp[(1 << 6) - 1];
+}
+const orientationCounts = Array.from({length:8}, (_,mask) => countPrimePairAssignments(mask));
+const favorablePrimeAssignments = orientationCounts.reduce((a,b) => a + b, 0n);
+let totalPrimeAssignments = 1n;
+for (let i = 0; i < 6; i++) totalPrimeAssignments *= BigInt(32 - i);
+const conditionalPrimePairProbability =
+  Number(favorablePrimeAssignments) / Number(totalPrimeAssignments);
+
+function pairHit(permutation, item) {
+  const a = permutation[item.nMod32Fragment - 1];
+  const b = permutation[item.phiMod32Fragment - 1];
+  const has = f => f.length > 0 && f.some(x => corpus.translit[x.rune] === item.label);
+  return (a.length === 0 && has(b)) || (b.length === 0 && has(a));
+}
+const observedAllValueMatches = uniqueBridge.filter(x => x.oneEmptyOneLabel).length;
+let rngState = 0x3301;
+function seededRandom() {
+  rngState ^= rngState << 13;
+  rngState ^= rngState >>> 17;
+  rngState ^= rngState << 5;
+  return (rngState >>> 0) / 4294967296;
+}
+const permutationSamples = 500000;
+let tailMatches = 0, totalMatches = 0;
+for (let sample = 0; sample < permutationSamples; sample++) {
+  const permutation = fragments.slice();
+  for (let i = permutation.length - 1; i > 0; i--) {
+    const j = Math.floor(seededRandom() * (i + 1));
+    [permutation[i], permutation[j]] = [permutation[j], permutation[i]];
+  }
+  let matches = 0;
+  for (const item of uniqueBridge) if (pairHit(permutation,item)) matches++;
+  totalMatches += matches;
+  if (matches >= observedAllValueMatches) tailMatches++;
+}
+const allValuePermutationNull = {
+  seed:"0x3301", samples:permutationSamples,
+  observedMatches:observedAllValueMatches,
+  meanMatches:totalMatches / permutationSamples,
+  tailAtLeastObserved:tailMatches / permutationSamples,
+};
+const cycleFragmentAlignment = cycles.map(ids => ({
+  cells:ids.map(cellId => {
+    const cell = byCell.get(cellId), f = fragments[cellId - 1];
+    const info = fragmentInfo(cellId,cell.translit);
+    return {
+      cell:cellId, rune:cell.translit, ...info,
+      emptyOrContainsLabel:f.length === 0 || info.labelPositions.length > 0,
+    };
+  }),
+}));
+assert(cycleFragmentAlignment.every(c => c.cells.every(x => x.emptyOrContainsLabel)));
+const fragmentBridge = {
+  fragmentCount:fragments.length, fragmentLengths,
+  primeBridge, selected199Bridge,
+  cycleFragmentAlignment,
+  all13UniqueValues:uniqueBridge,
+  conditionalPrimePairNull:{
+    favorableAssignments:favorablePrimeAssignments.toString(),
+    totalAssignments:totalPrimeAssignments.toString(),
+    probability:conditionalPrimePairProbability,
+    interpretation:"conditional on the three prime entries and the fixed n/phi(n) mod-32 pairs; not a global p-value",
+  },
+  allValuePermutationNull,
+};
+
+/*
+ * Test the full 2014 direction graph as a source-fixed lag-six event selector.
+ * The six-cycle length and the independently observed lag are both six, but
+ * this test grants no fitted phase, rotation, edge or source-state selection.
+ */
+const parsedLP2 = parseSharedCorpus();
+const lagWords = parsedLP2.words.map(word => [...word.runes].map(r => {
+  const i = corpus.runes.indexOf(r);
+  assert.notEqual(i, -1, 'canonical word contains a rune outside the GP corpus');
+  return i;
+}));
+const lagRuneCount = lagWords.reduce((n, word) => n + word.length, 0);
+const sixCycleCells = cycles.find(ids => ids.length === 6);
+assert.deepEqual(sixCycleCells, [12,16,17,23,24,18]);
+const sixCycleLabels = sixCycleCells.map(id => byCell.get(id).runeIndex);
+const cycleEdges = sixCycleLabels.map((x, i) => [x, sixCycleLabels[(i + 1) % sixCycleLabels.length]]);
+const graphEdges = cells.filter(cell => cell.target !== null)
+  .map(cell => [cell.runeIndex, byCell.get(cell.target).runeIndex]);
+const edgeKey = (a, b) => a + ',' + b;
+const cycleEdgeSet = new Set(cycleEdges.map(([a,b]) => edgeKey(a,b)));
+const graphEdgeSet = new Set(graphEdges.map(([a,b]) => edgeKey(a,b)));
+const cycleSourceSet = new Set(sixCycleLabels);
+const graphSourceSet = new Set(graphEdges.map(([a]) => a));
+const t6 = x => mod(24 - 2 * x);
+function countLagSix(wordArrays) {
+  const out = {total:0,t6Hits:0,cyclePrev:0,cycleMaskT6Hits:0,cycleEdgeHits:0,
+    graphPrev:0,graphMaskT6Hits:0,graphEdgeHits:0,graphAndT6Hits:0};
+  for (const word of wordArrays) for (let j = 6; j < word.length; j++) {
+    out.total++;
+    const previous = word[j - 6], current = word[j], isT6 = current === t6(previous);
+    const key = edgeKey(previous, current);
+    if (isT6) out.t6Hits++;
+    if (cycleSourceSet.has(previous)) {
+      out.cyclePrev++;
+      if (isT6) out.cycleMaskT6Hits++;
+    }
+    if (cycleEdgeSet.has(key)) out.cycleEdgeHits++;
+    if (graphSourceSet.has(previous)) {
+      out.graphPrev++;
+      if (isT6) out.graphMaskT6Hits++;
+    }
+    if (graphEdgeSet.has(key)) {
+      out.graphEdgeHits++;
+      if (isT6) out.graphAndT6Hits++;
+    }
+  }
+  return out;
+}
+const observedLagSix = countLagSix(lagWords);
+assert.equal(lagWords.length, 2896);
+assert.equal(lagRuneCount, 12956);
+assert.equal(observedLagSix.total, 1290);
+assert.equal(graphEdges.length, 17);
+assert.equal(graphEdgeSet.size, 17);
+assert.equal(observedLagSix.t6Hits, 80);
+assert.equal(observedLagSix.cyclePrev, 227);
+assert.equal(observedLagSix.cycleMaskT6Hits, 12);
+assert.equal(observedLagSix.cycleEdgeHits, 5);
+assert.equal(observedLagSix.graphPrev, 414);
+assert.equal(observedLagSix.graphMaskT6Hits, 22);
+assert.equal(observedLagSix.graphEdgeHits, 26);
+assert.equal(observedLagSix.graphAndT6Hits, 4);
+const cycleT6Edges = cycleEdges.filter(([a,b]) => t6(a) === b);
+const graphT6Edges = graphEdges.filter(([a,b]) => t6(a) === b);
+assert.equal(cycleT6Edges.length, 1);
+assert.equal(graphT6Edges.length, 2);
+assert.equal(corpus.translit[t6(byCell.get(6).runeIndex)], 'T');
+assert.equal(corpus.translit[t6(byCell.get(7).runeIndex)], 'C');
+
+/* Conditional null: shuffle word interiors while preserving exact word length,
+ * rune multiset, first/last rune, and adjacent-equal-pair count. */
+let lagRngState = 0x18a6c333 >>> 0;
+function lagRandom() {
+  lagRngState ^= lagRngState << 13;
+  lagRngState ^= lagRngState >>> 17;
+  lagRngState ^= lagRngState << 5;
+  return (lagRngState >>> 0) / 4294967296;
+}
+function adjacentEqualPairs(word) {
+  let count = 0;
+  for (let i = 1; i < word.length; i++) if (word[i] === word[i - 1]) count++;
+  return count;
+}
+let failedWordShuffles = 0;
+function shuffleWordInterior(word) {
+  if (word.length < 3) return word.slice();
+  const targetDoublets = adjacentEqualPairs(word);
+  for (let attempt = 0; attempt < 200; attempt++) {
+    const interior = word.slice(1, -1);
+    for (let i = interior.length - 1; i > 0; i--) {
+      const j = Math.floor(lagRandom() * (i + 1));
+      [interior[i], interior[j]] = [interior[j], interior[i]];
+    }
+    const candidate = [word[0], ...interior, word[word.length - 1]];
+    if (adjacentEqualPairs(candidate) === targetDoublets) return candidate;
+  }
+  failedWordShuffles++;
+  return word.slice();
+}
+const lagNullSamples = 2000;
+const lagNull = [];
+for (let sample = 0; sample < lagNullSamples; sample++) {
+  lagNull.push(countLagSix(lagWords.map(shuffleWordInterior)));
+}
+assert.equal(failedWordShuffles, 0, 'every conditional word shuffle must be accepted');
+function lagNullSummary(key) {
+  const sorted = lagNull.map(x => x[key]).sort((a,b) => a-b);
+  return {
+    mean: sorted.reduce((sum, x) => sum + x, 0) / lagNullSamples,
+    median: sorted[Math.floor(lagNullSamples / 2)],
+    p95: sorted[Math.floor(0.95 * (lagNullSamples - 1))],
+    max: sorted[lagNullSamples - 1],
+    atLeastObserved: sorted.filter(x => x >= observedLagSix[key]).length,
+  };
+}
+const cyclePositive = countLagSix(cycleEdges.map(([a,b]) => [a,0,0,0,0,0,b]));
+const graphPositive = countLagSix(graphEdges.map(([a,b]) => [a,0,0,0,0,0,b]));
+assert.equal(cyclePositive.cycleEdgeHits, 6);
+assert.equal(graphPositive.graphEdgeHits, 17);
+const lagSixGraphGate = {
+  source:{words:lagWords.length,runes:lagRuneCount,eligiblePositions:observedLagSix.total},
+  sourceGraph:{inBoundsEdges:graphEdges.length,uniqueEdges:graphEdgeSet.size,
+    sixCycleCells:sixCycleCells,sixCycleRunes:sixCycleLabels.map(i => corpus.translit[i]),
+    sixCycleT6Edges:cycleT6Edges.map(([a,b]) => [corpus.translit[a],corpus.translit[b]]),
+    allGraphT6Edges:graphT6Edges.map(([a,b]) => [corpus.translit[a],corpus.translit[b]]),
+    T6ofRad:corpus.translit[t6(byCell.get(6).runeIndex)],
+    T6ofAc:corpus.translit[t6(byCell.get(7).runeIndex)]},
+  observed:observedLagSix,
+  null:{samples:lagNullSamples,seed:'0x18a6c333',failedWordShuffles,
+    conditioning:'per word: fixed length, rune multiset, first/last rune, and adjacent-equal-pair count',
+    cycleEdgeHits:lagNullSummary('cycleEdgeHits'),
+    cycleMaskT6Hits:lagNullSummary('cycleMaskT6Hits'),
+    graphEdgeHits:lagNullSummary('graphEdgeHits'),
+    graphMaskT6Hits:lagNullSummary('graphMaskT6Hits'),
+    graphAndT6Hits:lagNullSummary('graphAndT6Hits'),
+    t6Hits:lagNullSummary('t6Hits')},
+  positiveControls:{cycleExpected:6,cycleDetected:cyclePositive.cycleEdgeHits,
+    graphExpected:17,graphDetected:graphPositive.graphEdgeHits},
+  decision:'The source-fixed 2014 direction graph and its six-cycle do not enrich or select the original sparse T6 event positions.'
+};
+
+/*
+ * p0 13-word interval / 2014-square order gate (#1984).
+ * The interval is selected without consulting the frozen p0 key: THE/WAY
+ * are the signed-message endpoints already identified by the independent
+ * p0 shell readout. Test the natural printed word order and its reverse
+ * against the existing 2014 number-as-bearing convention, then test the
+ * only direct word-number correspondence to the 13 word cells in the
+ * original 2013 0_wisdom / 2014 5x5 1033 square.
+ */
+const p0Jpeg = fs.readFileSync("resources/liber-primus/17.jpg");
+const p0JpegSha256 = crypto.createHash("sha256").update(p0Jpeg).digest("hex");
+assert.equal(p0JpegSha256, "197e1e153958b9a2736b09c10eea7d8bb00e0632fd22a8d9606840becc79942e");
+
+const signed2016 = fs.readFileSync("resources/historical/cicada2016-4gq25-outguess.asc", "utf8")
+  .split("-----BEGIN PGP SIGNATURE-----")[0];
+const signedWords = signed2016.toUpperCase().match(/[A-Z]+/g);
+const intervalStart = signedWords.findIndex((word, i) => word === "THE" && signedWords[i + 1] === "PATH");
+const intervalEnd = signedWords.findIndex((word, i) => i > intervalStart && word === "WAY");
+assert(intervalStart >= 0 && intervalEnd > intervalStart);
+const interval = signedWords.slice(intervalStart, intervalEnd + 1);
+assert.deepEqual(interval, [
+  "THE","PATH","LIES","EMPTY","EPIPHANY","SEEKS","THE","DEVOTED",
+  "LIBER","PRIMUS","IS","THE","WAY"
+]);
+assert.deepEqual(interval.slice(0, 8), [
+  "THE","PATH","LIES","EMPTY","EPIPHANY","SEEKS","THE","DEVOTED"
+]);
+assert.deepEqual(interval.slice(8), ["LIBER","PRIMUS","IS","THE","WAY"]);
+
+const gpTokensForInterval = corpus.translit
+  .map((token, index) => ({token, index}))
+  .sort((a, b) => b.token.length - a.token.length);
+function gpIndicesForIntervalWord(word) {
+  const normalized = word.replace(/QU/g, "CW").replace(/V/g, "U")
+    .replace(/[KQ]/g, "C").replace(/Z/g, "S");
+  const out = [];
+  for (let offset = 0; offset < normalized.length;) {
+    const match = gpTokensForInterval.find(x => normalized.startsWith(x.token, offset));
+    assert(match, `no GP29 token at ${word}:${offset}`);
+    out.push(match.index);
+    offset += match.token.length;
+  }
+  return out;
+}
+const intervalWords = interval.map((word, index) => {
+  const indices = gpIndicesForIntervalWord(word);
+  return {
+    position:index + 1, word, gpLength:indices.length,
+    primeSum:indices.reduce((sum, runeIndex) => sum + corpus.prime[runeIndex], 0),
+    gpIndices:indices,
+  };
+});
+const intervalGpLength = intervalWords.reduce((sum, word) => sum + word.gpLength, 0);
+const intervalPrimeSums = intervalWords.map(word => word.primeSum);
+assert.equal(intervalGpLength, 54, "GP29 digraphs reduce the 13 English words to 54 runes");
+
+const wisdomWordCellSums = wisdomWordCells.map(cell => cell.primeSum);
+assert.equal(wisdomWordCellSums.length, 13);
+const exactSquareWordMatches = intervalPrimeSums.filter(value => wisdomWordCellSums.includes(value));
+assert.equal(exactSquareWordMatches.length, 0,
+  "no 2016 interval word GP-prime sum equals any 2013/2014 5x5 word-cell sum");
+
+/* Reuse the 2014 map's explicit number-as-bearing convention:
+ * 0 degrees east, counter-clockwise, nearest 45 degrees, no wrap. */
+function intervalBearingPath(words) {
+  let row = 1, column = 0; // one-based square cell 6, independently selected by the 2014/2016 source gate
+  const steps = [];
+  for (const word of words) {
+    const angle = ((word.primeSum % 360) + 360) % 360;
+    const directionIndex = Math.floor((angle + 22.5) / 45) % 8;
+    const direction = dirs[directionIndex];
+    const nextRow = row + direction.dr;
+    const nextColumn = column + direction.dc;
+    const inside = nextRow >= 0 && nextRow < 5 && nextColumn >= 0 && nextColumn < 5;
+    steps.push({
+      wordPosition:word.position, word:word.word, primeSum:word.primeSum,
+      angle, direction:direction.name,
+      fromCell:row * 5 + column + 1,
+      toCell:inside ? nextRow * 5 + nextColumn + 1 : null,
+      landedNumber:inside ? magic[nextRow][nextColumn] : null,
+    });
+    if (!inside) break;
+    row = nextRow;
+    column = nextColumn;
+  }
+  return steps;
+}
+assert.equal(mod(phi(761)), 6, "the existing source selector fixes start cell 6");
+const forwardIntervalPath = intervalBearingPath(intervalWords);
+const reverseIntervalPath = intervalBearingPath(intervalWords.slice().reverse());
+assert.equal(forwardIntervalPath.length, 2);
+assert.equal(forwardIntervalPath[0].toCell, 1);
+assert.equal(forwardIntervalPath[1].toCell, null);
+assert.equal(reverseIntervalPath.length, 1);
+assert.equal(reverseIntervalPath[0].toCell, null);
+
+const p0WordIntervalOrderGate = {
+  source:{
+    p0Jpeg:"resources/liber-primus/17.jpg",
+    p0JpegSha256,
+    signedMessage:"resources/historical/cicada2016-4gq25-outguess.asc",
+    interval,
+    sentenceSplit:[8,5],
+  },
+  intervalWords,
+  totals:{englishWords:interval.length,gp29Runes:intervalGpLength,primeSum:intervalWords.reduce((sum,x) => sum+x.primeSum,0)},
+  "2014Square":{
+    source:"2013 0_wisdom 13 word cells, reconstructed by GP-prime sums in the 2014 stage04 5x5/1033 square",
+    rowMajorWordCellPrimeSums:wisdomWordCellSums,
+    intervalWordPrimeSums:intervalPrimeSums,
+    exactValueIntersections:exactSquareWordMatches,
+  },
+  bearingTransfer:{
+    convention:"same 2014 map convention: number mod 360, nearest 45 degrees, 0 east, counter-clockwise, eight-neighbour, no wrap",
+    startCell:6,
+    forward:forwardIntervalPath,
+    reverse:reverseIntervalPath,
+  },
+  decision:"The 8+5 sentence split is a real source-visible grouping matching p0's 8+5 title/marker structure, but it does not order the 13 state atoms. The 2016 word numbers neither match the 13 2014 square word-cell values nor yield a 13-step route under the existing 2014 bearing convention. The 2014 form metadata supplies no alternate start/movement grammar. No key values were used to select the interval or the readout."
+};
+
+console.log(JSON.stringify({wisdomTo2014, magicSquare:magicResult, lp2GridTransfer, fragmentBridge, lagSixGraphGate, p0WordIntervalOrderGate}, null, 2));

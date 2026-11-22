@@ -1,0 +1,19 @@
+name: Agent27 signed-2016 word-position DH SFT
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reconstruct DH from authenticated word positions
+        shell: pwsh
+        run: node sims/lp2_signed2016_word_position_dh_sft.cjs

@@ -1,0 +1,13 @@
+name: Base60 full grid stream keys
+on:
+  workflow_dispatch:
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test full grid RC4 and hash-derived AES and ChaCha
+        run: node sims/base60_fullkey_stream.cjs
+      - name: Test full grid streams against original author-native prime clauses
+        run: node sims/base60_source_prime_clause.cjs

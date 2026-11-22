@@ -1,0 +1,15 @@
+name: Agent30 historical 14-column + p56 original-input gate
+on:
+  workflow_dispatch:
+
+jobs:
+  source-exact:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify LP2 original 14-column and prime-F candidate
+        run: node sims/lp2_2014_col14_p56_space_original_sft.cjs

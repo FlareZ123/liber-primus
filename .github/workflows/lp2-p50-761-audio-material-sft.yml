@@ -1,0 +1,51 @@
+name: LP2 p50 original 2013 source-exact key gate
+on:
+  workflow_dispatch:
+    inputs:
+      original_source:
+        description: Source whose original bytes might supply the printed 256-byte table
+        type: choice
+        required: true
+        default: "761"
+        options:
+          - "761"
+          - "56013"
+          - "interconnected"
+permissions:
+  contents: read
+jobs:
+  original-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Retrieve exact original 2013 binary source
+        env:
+          INPUT_SOURCE: ${{ inputs.original_source }}
+        run: |
+          if [ "$INPUT_SOURCE" = "interconnected" ]; then
+            curl --fail --location --retry 3 --retry-delay 2 \
+              --output /tmp/interconnected.mp3 \
+              https://raw.githubusercontent.com/iBotPeaches/cicada_3301/a0a616d85717af59f8b806875b43d51e06e1e874/tool/storage/interconnected.mp3
+            test "$(stat -c %s /tmp/interconnected.mp3)" = "6651873"
+            test "$(git hash-object /tmp/interconnected.mp3)" = "09fe068192b76a3697c47ec1d604b527703db798"
+            echo "SOURCE_FILE=/tmp/interconnected.mp3" >> "$GITHUB_ENV"
+          elif [ "$INPUT_SOURCE" = "56013" ]; then
+            curl --fail --location --retry 3 --retry-delay 2 \
+              --output /tmp/560.13 \
+              https://archive.org/download/3301.iso/3301.iso/DATA%2F560.13
+            test "$(stat -c %s /tmp/560.13)" = "118818811"
+            test "$(sha256sum /tmp/560.13 | cut -d' ' -f1)" = "db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f"
+            echo "SOURCE_FILE=/tmp/560.13" >> "$GITHUB_ENV"
+          else
+            curl --fail --location --retry 3 --retry-delay 2 \
+              --output /tmp/761.MP3 \
+              https://raw.githubusercontent.com/rtkd/iddqd/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3
+            test "$(git hash-object /tmp/761.MP3)" = "7e2bd299fbc7b96283219cf15e2904641daf631f"
+            echo "SOURCE_FILE=/tmp/761.MP3" >> "$GITHUB_ENV"
+          fi
+      - name: Test original binary source match and planted positive
+        run: node sims/lp2_p50_761_audio_exact_material_sft.cjs "$SOURCE_FILE"

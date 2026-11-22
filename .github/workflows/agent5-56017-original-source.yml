@@ -1,0 +1,14 @@
+name: Agent 5 - Original 2013 DATA 560.17 audit
+on:
+  workflow_dispatch:
+jobs:
+  source-audit:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify original binary archives, reverse copy, and 2013 XOR test vectors
+        run: node sims/lp2_2013_56017_original_iso_source_sft.cjs

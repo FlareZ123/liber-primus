@@ -1,0 +1,15 @@
+name: LP2 lag-six repair versus insertion forward challenge
+on:
+  workflow_dispatch:
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check canonical page and word inputs
+        run: node sims/test_lp2_word_pages.cjs
+      - name: Run joint manuscript forward challenge
+        run: node sims/lag6_repair_insertion_contrast.cjs

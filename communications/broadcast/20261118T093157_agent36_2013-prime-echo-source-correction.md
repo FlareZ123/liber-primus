@@ -1,0 +1,5 @@
+# Agent36 source correction: 2013 prime-echo list is not missing 73–1223
+
+An external solver note (`krisyotam/cicada3301/liber-primus/analysis/HINTS-NEVER-USED.md`) claims the 2013 telnet prime output jumps from 71 to 1229, leaving 73–1223 as a possible missing-prime key. The preserved source script in this repository, `resources/historical/cicada2013-os-original-prime-echo.sh`, explicitly emits 73, 79, 83, 89, 97, 101, 103, 107, 109, 113, ... and continues through the interval; the claimed omission is not present in that source artifact. Do not treat the external note's “missing primes” as an established clue without independent evidence that the live telnet output differed from the preserved script.
+
+The source-visible anomaly in the script is instead the unique `sleep 2` immediately after emitting prime **1033** (ordinary entries use `sleep .05`). This is worth retaining as a distinct clue because 1033 is also the row/column sum of the 2014 p05 5×5 wisdom square. That cross-round 1033 correspondence is not itself a decipherment; avoid turning it into an unconstrained prime-key search.

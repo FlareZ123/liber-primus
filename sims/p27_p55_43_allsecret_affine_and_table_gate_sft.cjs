@@ -1,0 +1,350 @@
+"use strict";
+/**
+ * Source-bounded p27/p55 43-column transfer gate.
+ * Tests every unknown fixed affine GF(29) combination of p27's five
+ * hypothetical rows against the exact p55 word-interior channel.
+ * Also evaluates the single p50-byte mod-5 row-selector interpretation,
+ * and a fixed 256-symbol concatenation against p50's H/G check factors.
+ *
+ * Read-only, self-contained test file. Run: node sims/p27_p55_43_allsecret_affine_and_table_gate_sft.cjs
+ */
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+
+const root = path.resolve(__dirname, "..");
+const load = file => JSON.parse(fs.readFileSync(path.join(root, "resources", "liber-primus", file), "utf8"));
+const corpus = load("lp2-corpus.json");
+const table = load("base60-grid.json");
+const MOD = 29;
+/** @param {number} n @returns {number} */
+const mod = n => ((n % MOD) + MOD) % MOD;
+/** @param {number} x @returns {number} */
+function inv(x) {
+  for (let k = 1; k < MOD; k++) if (mod(x * k) === 1) return k;
+  throw Error("no nonzero field inverse");
+}
+/**
+ * Row-reduced echelon form over GF(29).
+ * @param {number[][]} rows
+ * @param {number} width
+ */
+function rref(rows, width) {
+  const A = rows.map(row => row.map(mod));
+  const pivots = [];
+  let row = 0;
+  for (let col = 0; col < width; col++) {
+    let selected = -1;
+    for (let i = row; i < A.length; i++) if (A[i][col] !== 0) { selected = i; break; }
+    if (selected < 0) continue;
+    [A[row], A[selected]] = [A[selected], A[row]];
+    const multiplier = inv(A[row][col]);
+    A[row] = A[row].map(n => mod(n * multiplier));
+    for (let i = 0; i < A.length; i++) {
+      if (i === row) continue;
+      const factor = A[i][col];
+      if (factor !== 0) A[i] = A[i].map((n, j) => mod(n - factor * A[row][j]));
+    }
+    pivots.push(col);
+    row++;
+    if (row === A.length) break;
+  }
+  return {rank: row, pivots, matrix: A};
+}
+/** @param {number[]} values @param {number[]} divisor */
+function polynomialRemainder(values, divisor) {
+  const a = values.map(mod);
+  const leadingInverse = inv(divisor[divisor.length - 1]);
+  for (let i = a.length - 1; i >= divisor.length - 1; i--) {
+    const factor = mod(a[i] * leadingInverse);
+    for (let j = 0; j < divisor.length; j++) {
+      a[i - divisor.length + 1 + j] =
+        mod(a[i - divisor.length + 1 + j] - factor * divisor[j]);
+    }
+  }
+  return a.slice(0, divisor.length - 1);
+}
+/**
+ * Full quadratic feature space over an arbitrary number of GP29 inputs.
+ * @param {number[]} values
+ * @returns {number[]}
+ */
+function quadraticFeatures(values) {
+  const result = [1, ...values];
+  for (let i = 0; i < values.length; i++) {
+    for (let j = i; j < values.length; j++) result.push(mod(values[i] * values[j]));
+  }
+  assert.equal(result.length, (values.length + 1) * (values.length + 2) / 2);
+  return result;
+}
+/** Full fixed-node Lagrange coefficients for secret f(0) in GF29. */
+function lagrangeAtZero(nodes) {
+  return nodes.map((xi, i) => nodes.reduce((value, xj, j) => i === j
+    ? value : mod(value * mod(-xj) * inv(mod(xi - xj))), 1));
+}
+/** Canonical GP encoding of a word from the authentic signed 2016 clue. */
+function gpEncode(word) {
+  const alphabet = corpus.translit.map((token, index) =>
+    ({token: token.toLowerCase(), index}))
+    .sort((a, b) => b.token.length - a.token.length);
+  let text = word.toLowerCase().replace(/qu/g, "cw").replace(/k/g, "c")
+    .replace(/v/g, "u").replace(/z/g, "s").replace(/q/g, "c");
+  const out = [];
+  while (text.length > 0) {
+    const match = alphabet.find(v => text.startsWith(v.token));
+    assert.ok(match, "unmappable signed 2016 word: " + word);
+    out.push(match.index);
+    text = text.slice(match.token.length);
+  }
+  return out;
+}
+const translit = indices => indices.map(i => corpus.translit[i]).join("");
+const p27 = corpus.pages[27].indices;
+const p55 = corpus.pages[55].indices;
+const body = p27.slice(19);
+const segments = [1, 4, 2, 2, 6, 6, 2, 13, 6, 4, 2, 7, 7, 2, 6, 3, 3];
+const offsets = [];
+let offset = 0;
+for (const length of segments) {
+  for (let j = 1; j < length - 1; j++) offsets.push(offset + j);
+  offset += length;
+}
+const target = offsets.map(i => p55[i]);
+assert.equal(corpus.pages.filter(p => p.page < 56).reduce((s, p) => s + p.indices.length, 0), 12956);
+assert.equal(p27.length, 234);
+assert.equal(body.length, 215);
+assert.equal(p55.length, 76);
+assert.equal(offset, 76);
+assert.equal(target.length, 43);
+assert.equal(table.byte_rows.flat().length, 256);
+const byte43 = table.byte_rows.flat().slice(84, 127);
+assert.equal(byte43.length, 43);
+const signed2016 = fs.readFileSync(path.join(root, "resources",
+  "historical", "cicada2016-4gq25-outguess.asc"), "utf8");
+const clearText = signed2016.slice(signed2016.indexOf("Hello."),
+  signed2016.indexOf("-----BEGIN PGP SIGNATURE-----"));
+const signedWords = clearText.match(/(?<![A-Za-z0-9])[A-Za-z]+(?![A-Za-z0-9])/g) || [];
+assert.equal(signedWords.length, 43);
+const signedPrimeSums = signedWords.map(word =>
+  mod(gpEncode(word).reduce((sum, i) => sum + corpus.prime[i], 0)));
+assert.deepEqual(signedPrimeSums, [11,14,0,21,24,1,21,14,4,11,9,26,14,
+  16,27,5,1,14,8,27,0,26,14,1,12,27,5,1,14,18,26,12,26,22,12,14,
+  4,15,3,2,24,14,17]);
+
+const tests = [];
+const quadratics = [];
+const quadraticsWithSources = [];
+const conventionalFiveShareAnalogy = [];
+const historicalMonic176Analogy = [];
+const selectors = [];
+for (const layout of ["rows-of-43", "five-tuples"]) {
+  for (const encoding of ["ordinal", "prime-residue"]) {
+    const cv = i => encoding === "ordinal" ? i : mod(corpus.prime[i]);
+    const sample = (col, row) => cv(body[
+      layout === "rows-of-43" ? row * 43 + col : col * 5 + row
+    ]);
+    const X = Array.from({length: 43}, (_, col) =>
+      Array.from({length: 5}, (_, row) => sample(col, row)));
+    const Y = target.map(cv);
+    for (const affine of [false, true]) {
+      const A = X.map(row => affine ? [...row, 1] : row);
+      const n = A[0].length;
+      const augmented = A.map((row, i) => [...row, Y[i]]);
+      const left = rref(A, n);
+      const both = rref(augmented, n + 1);
+      assert.equal(left.rank, n);
+      assert.equal(both.rank, n + 1);
+      const fit = rref(augmented.slice(0, n), n + 1);
+      assert.equal(fit.rank, n);
+      const coefficients = Array(n).fill(0);
+      fit.pivots.forEach((col, i) => { coefficients[col] = fit.matrix[i][n]; });
+      const predictions = A.map(row =>
+        mod(row.reduce((sum, val, j) => sum + val * coefficients[j], 0)));
+      const firstMismatch = predictions.findIndex((v, i) => v !== Y[i]);
+      assert.ok(firstMismatch >= n);
+      const matches = predictions.filter((v, i) => v === Y[i]).length;
+      // Independent positive control: known arbitrary hidden coefficients.
+      const plantedCoefficients = Array.from({length: n}, (_, j) => mod(7 * j + 3));
+      const planted = A.map(row => mod(row.reduce((s, val, j) =>
+        s + val * plantedCoefficients[j], 0)));
+      assert.equal(rref(A.map((row, i) => [...row, planted[i]]), n + 1).rank, n);
+      tests.push({layout, encoding, affine, dataRank: left.rank,
+        augmentedRank: both.rank, firstFitCoefficients: coefficients,
+        matchesOf43: matches,
+        firstMismatch: {columnOneBased: firstMismatch + 1,
+          predicted: predictions[firstMismatch], observed: Y[firstMismatch]}});
+    }
+    // Conventional degree-four five-share Shamir extrapolation over GF29
+    // with hypothetical x=1..5 (NOT the historical 2013 SSSS field or IDs).
+    // Original Cicada used a monic quintic over GF(2^176) at [2,3,5,7,8],
+    // tested separately below in a characteristic-29 analogy.
+    const weights5 = lagrangeAtZero([1, 2, 3, 4, 5]);
+    assert.deepEqual(weights5, [5, 19, 10, 24, 1]);
+    const secret5 = X.map(row => mod(row.reduce((sum, x, i) =>
+      sum + weights5[i] * x, 0)));
+    let positive5 = 0;
+    for (let column = 0; column < 43; column++) {
+      const coefficients = Array.from({length: 5}, (_, i) => mod(
+        column * (i + 3) + 7 * (i + 1)));
+      const evalAt = x => mod(coefficients.reduce((sum, coefficient, i) =>
+        sum + coefficient * x ** i, 0));
+      const shares = [1, 2, 3, 4, 5].map(evalAt);
+      if (mod(shares.reduce((sum, x, i) => sum + x * weights5[i], 0))
+          === evalAt(0)) positive5++;
+    }
+    assert.equal(positive5, 43);
+    const directCandidates5 = [-1, 1].map(sign => {
+      const candidate = target.map((symbol, i) => mod(symbol + sign * secret5[i]));
+      const counts = Array(29).fill(0);
+      candidate.forEach(n => { counts[n]++; });
+      return {sign, transliteration: translit(candidate),
+        indexOfCoincidence: counts.reduce((sum, n) =>
+          sum + n * (n - 1), 0) / (43 * 42)};
+    });
+    conventionalFiveShareAnalogy.push({layout, encoding,
+      originalShareTargetMatches: secret5.filter((n, i) => n === Y[i]).length,
+      reconstructedSecret: translit(secret5), plantedColumns: positive5,
+      originalDirectDecode: directCandidates5});
+    // Exact historical five SHARE IDS, actual monic quintic x^5 plus
+    // an interpolated degree-four residual, adapted to GF29 symbols.
+    // This is explicitly an analogy: Cicada's actual 2013 SSSS field was
+    // GF(2^176), not GF29, with binary polynomial x^176+x^11+x^3+x^2+1.
+    const historicalIds = [2, 3, 5, 7, 8];
+    const historicalWeights = lagrangeAtZero(historicalIds);
+    assert.deepEqual(historicalWeights, [19, 15, 19, 23, 12]);
+    for (let degree = 0; degree <= 4; degree++) {
+      assert.equal(mod(historicalIds.reduce((sum, x, i) =>
+        sum + historicalWeights[i] * x ** degree, 0)), degree === 0 ? 1 : 0);
+    }
+    assert.equal(mod(historicalWeights.reduce((sum, value) => sum + value, 0)), 1);
+    const monicCorrection = mod(historicalWeights.reduce((sum, weight, i) =>
+      sum + weight * historicalIds[i] ** 5, 0));
+    assert.equal(monicCorrection, 27);
+    const secretMonic = X.map(row => mod(row.reduce((sum, value, i) =>
+      sum + historicalWeights[i] * value, 0) - monicCorrection));
+    let plantedMonic = 0;
+    for (let column = 0; column < 43; column++) {
+      const coefficients = Array.from({length: 5}, (_, i) =>
+        mod(column * (i + 3) + 7 * (i + 1)));
+      const evalAt = x => mod(x ** 5 + coefficients.reduce((sum, value, i) =>
+        sum + value * x ** i, 0));
+      const sampled = historicalIds.map(evalAt);
+      const reconstructed = mod(sampled.reduce((sum, value, i) =>
+        sum + historicalWeights[i] * value, 0) - monicCorrection);
+      if (reconstructed === evalAt(0)) plantedMonic++;
+    }
+    assert.equal(plantedMonic, 43);
+    const monicCandidates = [-1, 1].map(sign => {
+      const candidate = target.map((symbol, i) => mod(symbol + sign * secretMonic[i]));
+      const counts = Array(29).fill(0);
+      candidate.forEach(value => { counts[value]++; });
+      return {sign, transliteration: translit(candidate),
+        indexOfCoincidence: counts.reduce((sum, n) =>
+          sum + n * (n - 1), 0) / (43 * 42)};
+    });
+    historicalMonic176Analogy.push({layout, encoding, shareIds: historicalIds,
+      shareWeightsGF29: historicalWeights, monicCorrectionGF29: monicCorrection,
+      exactTargetMatches: secretMonic.filter((v, i) => v === Y[i]).length,
+      reconstructedSecret: translit(secretMonic),
+      plantedMonicQuinticColumns: plantedMonic,
+      originalDirectDecode: monicCandidates});
+    // Every possible secret degree<=2 polynomial, including cross-products.
+    const Q = X.map(quadraticFeatures);
+    const nQuadratic = Q[0].length;
+    const plainRank = rref(Q, nQuadratic);
+    const complete = rref(Q.map((row, i) => [...row, Y[i]]), nQuadratic + 1);
+    assert.equal(plainRank.rank, 21);
+    assert.equal(complete.rank, 22);
+    // A full-rank initial 21-column fit must already fail at column 22.
+    const fitQ = rref(Q.slice(0, 21).map((row, i) => [...row, Y[i]]), 22);
+    assert.equal(fitQ.rank, 21);
+    const coefficientsQ = Array(21).fill(0);
+    fitQ.pivots.forEach((col, i) => { coefficientsQ[col] = fitQ.matrix[i][21]; });
+    const predictionsQ = Q.map(row => mod(row.reduce((sum, x, i) =>
+      sum + x * coefficientsQ[i], 0)));
+    const firstQuadraticMismatch = predictionsQ.findIndex((value, i) => value !== Y[i]);
+    assert.equal(firstQuadraticMismatch, 21);
+    const plantedCoefficientsQ = Array.from({length: 21}, (_, i) => mod(7 * i + 3));
+    const plantedQ = Q.map(row => mod(row.reduce((sum, x, i) =>
+      sum + x * plantedCoefficientsQ[i], 0)));
+    assert.equal(rref(Q.map((row, i) => [...row, plantedQ[i]]), 22).rank, 21);
+    quadratics.push({layout, encoding, numberOfSecretCoefficients: 21,
+      dataRank: plainRank.rank, augmentedRank: complete.rank,
+      firstMismatch: {columnOneBased: 22, predicted: predictionsQ[21],
+        observed: Y[21]},
+      matchesOf43: predictionsQ.filter((value, i) => value === Y[i]).length});
+    // Source-saturated, yet overdetermined, degree<=2 transfer: five p27
+    // row runes + one p50 bracket byte + one 2016 signed word prime sum.
+    // The 43x36 system grants EVERY arbitrary fixed quadratic coefficient.
+    const sourced = X.map((row, i) => quadraticFeatures([
+      ...row, mod(byte43[i]), signedPrimeSums[i]
+    ]));
+    assert.equal(sourced[0].length, 36);
+    const sourceRank = rref(sourced, 36);
+    const sourceAugmented = rref(sourced.map((row, i) => [...row, Y[i]]), 37);
+    assert.equal(sourceRank.rank, 36);
+    assert.equal(sourceAugmented.rank, 37);
+    const sourceFit = rref(sourced.slice(0, 36).map((row, i) =>
+      [...row, Y[i]]), 37);
+    assert.equal(sourceFit.rank, 36);
+    const coefficientsS = Array(36).fill(0);
+    sourceFit.pivots.forEach((col, i) => {
+      coefficientsS[col] = sourceFit.matrix[i][36];
+    });
+    const sourcePredictions = sourced.map(row => mod(row.reduce((sum, val, i) =>
+      sum + val * coefficientsS[i], 0)));
+    const sourceFirstMismatch = sourcePredictions.findIndex((v, i) => v !== Y[i]);
+    assert.ok(sourceFirstMismatch >= 36);
+    const plantedSourceCoefficients = Array.from({length: 36}, (_, i) =>
+      mod(11 * i + 7));
+    const plantedSource = sourced.map(row => mod(row.reduce((sum, val, i) =>
+      sum + val * plantedSourceCoefficients[i], 0)));
+    assert.equal(rref(sourced.map((row, i) => [...row, plantedSource[i]]), 37).rank, 36);
+    quadraticsWithSources.push({layout, encoding, secretCoefficients: 36,
+      rank: sourceRank.rank, augmentedRank: sourceAugmented.rank,
+      firstMismatch: {columnOneBased: sourceFirstMismatch + 1,
+        predicted: sourcePredictions[sourceFirstMismatch],
+        observed: Y[sourceFirstMismatch]},
+      matchesOf43: sourcePredictions.filter((val, i) => val === Y[i]).length});
+    const key = byte43.map((value, col) => sample(col, value % 5));
+    const candidates = [-1, 1].map(sign => {
+      const candidate = target.map((symbol, i) => mod(symbol + sign * key[i]));
+      const counts = Array(MOD).fill(0);
+      candidate.forEach(v => { counts[v]++; });
+      return {sign, transliteration: translit(candidate),
+        indexOfCoincidence: counts.reduce((s, n) => s + n * (n - 1), 0) / (43 * 42)};
+    });
+    selectors.push({layout, encoding, key: translit(key), candidates});
+  }
+}
+
+const joined = [...body, ...target.slice(1, -1)];
+assert.equal(joined.length, 256);
+const H = [11, 18, 1];
+const G = [mod(24 * 24), mod(-48), 1];
+const polynomialChecks = {
+  forwardH: polynomialRemainder(joined, H),
+  forwardG: polynomialRemainder(joined, G),
+  reversedH: polynomialRemainder([...joined].reverse(), H),
+  reversedG: polynomialRemainder([...joined].reverse(), G)
+};
+assert.deepEqual(polynomialChecks, {
+  forwardH: [21, 24], forwardG: [13, 1],
+  reversedH: [13, 0], reversedG: [0, 4]
+});
+assert.equal(tests.length, 8);
+assert.equal(quadratics.length, 4);
+assert.equal(quadraticsWithSources.length, 4);
+assert.equal(conventionalFiveShareAnalogy.length, 4);
+assert.equal(historicalMonic176Analogy.length, 4);
+assert.equal(selectors.length, 4);
+process.stdout.write(JSON.stringify({source: {
+  p27RedTitle: 19, p27BlackBody: 215, p55WordInteriors: 43,
+  p50TableBracket: [84, 126], p55DoubleShavedPlusP27Length: 256
+}, allSecretAffineRelation: tests, allSecretQuadraticRelation: quadratics,
+  sevenSourceQuadraticRelation: quadraticsWithSources,
+  conventionalDegreeFourFiveShare: conventionalFiveShareAnalogy,
+  historicalMonicGF176AdaptedTo29: historicalMonic176Analogy,
+  tableMod5Selector: selectors,
+  speculative256HGCheck: polynomialChecks,
+  conclusion: "No exact fixed degree<=2 GF29 polynomial transfer, even using all seven source-aligned inputs, no intelligible table-selected 43-rune candidate, and no H/G codeword under the frozen 256 concatenation; no LP2 plaintext recovered."}, null, 2) + "\n");

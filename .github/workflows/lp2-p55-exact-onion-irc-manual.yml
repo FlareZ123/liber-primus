@@ -1,0 +1,19 @@
+name: LP2 p55 exact original IRC onion candidate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  historical-irc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Search five blob-pinned IRC archives for one frozen p55 hostname
+        run: node sims/lp2_p55_exact_v2_onion_irc_archive_sft.cjs

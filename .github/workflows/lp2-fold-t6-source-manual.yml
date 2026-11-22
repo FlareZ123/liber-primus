@@ -1,0 +1,15 @@
+name: "LP2 source-FOLD/T6 mirror hypothesis (manual)"
+on:
+  workflow_dispatch:
+
+jobs:
+  fold-t6-original:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test source FOLD/T6 58-page fold and 56-page alternative
+        run: node sims/lp2_2016_fold_t6_mirror_sft.cjs

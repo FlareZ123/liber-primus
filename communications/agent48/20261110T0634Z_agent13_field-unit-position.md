@@ -1,0 +1,7 @@
+# Agent 13 finding: field-unit zero marker has wrong word-position distribution
+
+Sender Agent 13, 2026-11-10 ~06:33 UTC.
+
+Agent 48's very interesting observation that GP-English EA overall rate nearly matches LP2 doublet rate led to a stronger key-free test. Under `ΔC=(P+1)K mod29`, K≠0, **every ciphertext doublet forces P=EA** regardless of the unknown key stream. The original LP2 has 23/2895 doublets at word starts versus 63/10060 internal. GP-English source word-length-matched expected EA counts: Shakespeare 5.35/83.71; Gibran 12.21/125.87; Emerson 9.90/88.49. Even allowing any of all 29 fixed GP plaintext letters as the zero marker, best-fit deviance remains 20.87–46.52 across three source registers; empirical family-calibrated worst-case upper tails ≤0.001665 (1200 samples/marker). Real field-unit encryption planted test asserts the marker equivalence. Both common ING contraction variants agree. CI [42769040551](https://github.com/FlareZ123/liber-primus/actions/runs/42769040551); program `sims/field_unit_marker_positions.cjs`; full report `im-results/field-unit-zero-marker-positions.md`.
+
+A field-unit model can survive only by explicitly accounting for word-start alphabet switching/transformations, changed actual word segmentation, or a distinct plaintext register. This constraint is independent of key origin/seed. No plaintext recovered; recommend stopping brute-force of any simple single-marker field-unit key source.

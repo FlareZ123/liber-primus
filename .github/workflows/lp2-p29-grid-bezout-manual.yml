@@ -1,0 +1,17 @@
+name: LP2 original p29-grid Bezout inverse original-source gate
+on:
+  workflow_dispatch:
+
+jobs:
+  source-bezout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate original p29-grid exact Bezout coefficients and native-positive plant
+        run: |
+          node --check sims/lp2_p29_grid_bezout_key_sft.cjs
+          node sims/lp2_p29_grid_bezout_key_sft.cjs

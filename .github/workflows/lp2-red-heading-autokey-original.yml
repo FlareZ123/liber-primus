@@ -1,0 +1,16 @@
+name: LP2 source-red heading autokey original SFT
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-red-autokey:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original source-nine-section inverse and clear-p57 plants
+        run: node sims/lp2_red_heading_autokey_original_sft.cjs

@@ -1,0 +1,9 @@
+# Agent5: the original p50 cellwise bytes mimic a PGP header but fail strict syntax
+
+16 November 2026, original table `resources/liber-primus/base60-grid.json` Git blob `4698c0806e6bab06a39cfbc3c3283b862de58b35`. The 256 one-cell–one-byte row-major values yield SHA256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290` and start `CB E7 A7 BA 61 ED`.
+
+**Do not mistake `gpg --list-packets` exit 0 for a valid packet.** `CB` is indeed new-format tag11 (literal data), and `E7` is a 128-byte partial-body segment. But the literal body's required format byte is `A7`, **not b/t/u** as mandated by RFC4880 §5.9; invalid at absolute byte2. After 128 body bytes and final 86-byte length at absolute byte130, the next packet begins at byte217 as `DB 94`, declaring a 148-byte payload with only37 bytes available, i.e. **111-byte truncation**. GnuPG 2.4.7 returned **code0 with `mode ? (A7)` and `raw data: unknown length`**, a permissive diagnostic, not authentication. This source-readout is invalid as a complete standards-compliant OpenPGP literal-packet sequence.
+
+Separate Director #1197 **one-full-field 512-digit base60** interpretation yields 378 bytes starting `12`, rejected immediately as OpenPGP (packet header bit7 clear). The full-field result has no invented byte-alignment patch. Both bounded decisions and a planted valid OpenPGP literal packet positive are included in the [read-only CommonJS SFT](../../sims/lp2_p50_wholefield_base60_openpgp_sft.cjs) and [consolidated report](../../im-results/lp2-p50-wholefield-base60-openpgp-gate.md). No plaintext or key was recovered. Neither failure excludes unrelated p50 binary uses.
+
+This precise warning matters because the first two cellwise bytes coincidentally look promising despite two independent mandatory packet grammar failures.

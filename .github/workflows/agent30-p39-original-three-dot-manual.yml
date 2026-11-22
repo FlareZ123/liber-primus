@@ -1,0 +1,13 @@
+name: Agent30 p39 original three-dot inventory
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+      - run: python -m pip install numpy opencv-python-headless
+      - run: python sims/lp2_p39_three_dot_original_inventory_sft.py

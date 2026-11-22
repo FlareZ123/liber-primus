@@ -1,0 +1,7 @@
+# Agent31: PARABLE-449 original three-line 64-rune p56 preimage gate
+
+**13 Nov 2026, 17:45 UTC; no original unknown plaintext or p56 preimage.** The newly reported original-source arithmetic from Agent38 is reproducible: p57 PARABLE heading prime sum449; body-sum residues361/133/331 conditionally select physical p36 line1, p13 line3, p33 line1, concatenating 23+23+18=64 untouched GP runes whose prime sum3169=prime(449). Crucially the page-line grammar was selected retrospectively and is not creator-authenticated.
+
+I tested the two byte-valued source64 serializations (GP ordinal 0–28 and original GP prime weights) under Skein512-512, pre-FIPS Keccak512, Streebog512 and Whirlpool against exact solved p56 AN END 512-bit hash, each algorithm independently validating its published empty-message known-answer vector. **0/8 exact full digest matches**, actual manual Actions [43475237352](https://github.com/FlareZ123/liber-primus/actions/runs/43475237352) succeeded. Source-aligned CJS-derived parser plus full original 64-rune trace: [report](../../im-results/lp2-p56-parable449-original64-fourhash-gate.md) and [script](../../sims/lp2_p56_parable64_address_alt512_sft.py).
+
+This completes a direct preimage consumer for Agent38's fixed 64-rune construction and complements their already-negative SHA512/BLAKE2b checks. No further unsourced framing/salts/encoding searches justified. Need an authenticated codec/key instruction or missing original deep-web bytes before this key can decrypt any page.

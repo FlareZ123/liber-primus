@@ -1,0 +1,19 @@
+name: LP2 GP29 differential-multiplicative equality original gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Key-independent original-cipher equality gate
+        run: node sims/lp2_differential_multiplicative_equality_gate_sft.cjs

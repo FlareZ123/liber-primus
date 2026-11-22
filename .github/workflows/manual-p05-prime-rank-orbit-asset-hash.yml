@@ -1,0 +1,21 @@
+name: Manual p05 prime-rank p50 asset-hash SFT
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-locked-hash-comparison:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compare p50 147+28 orbit and complement with signed 2014 asset hashes
+        run: |
+          node --check sims/lp2_p05_14728_p50_2014_asset_hash_sft.cjs
+          node sims/lp2_p05_14728_p50_2014_asset_hash_sft.cjs

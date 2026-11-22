@@ -1,0 +1,21 @@
+name: Agent34 original p50 AES256 first-column 56-nonce gate (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original-cipher AES256 source decision
+        shell: pwsh
+        run: |
+          node --check sims/lp2_p50_aes256_56nonce_direct_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Source check failed' }
+          node sims/lp2_p50_aes256_56nonce_direct_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Original inverse failed' }

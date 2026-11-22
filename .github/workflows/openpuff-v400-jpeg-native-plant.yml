@@ -1,0 +1,51 @@
+name: OpenPuff v4.00 native JPEG Hide positive plant
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        required: true
+        type: choice
+        default: probe
+        options:
+          - probe
+permissions:
+  contents: read
+jobs:
+  original-hiding-plant:
+    runs-on: windows-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: 'x86'
+      - name: Verify 32-bit UI and install original Windows automation
+        shell: pwsh
+        run: |
+          python -c "import struct; assert struct.calcsize('P') == 4"
+          python -m pip install --disable-pip-version-check pywinauto Pillow filelock
+      - name: Retrieve SHA-pinned original OpenPuff v4.00
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = "Stop"
+          $source = "https://raw.githubusercontent.com/codejanus/ToolSuite/1eaf6d006d31ba842f6cc6b16e9d82dbf904aaf5/OpenPuff"
+          $folder = Join-Path $env:RUNNER_TEMP "OpenPuffv400"
+          New-Item -ItemType Directory -Force -Path $folder | Out-Null
+          foreach ($item in @(@("OpenPuff.exe","466e03c792075313ce533a5dc7a789e8a41209f9"),@("libObfuscate.dll","f3b1c3315f8286346416fefd6141410f422f2454"))) {
+            $p = Join-Path $folder $item[0]
+            Invoke-WebRequest -Uri "$source/$($item[0])" -OutFile $p
+            $hash = (& git hash-object -- $p).Trim().ToLowerInvariant()
+            if ($LASTEXITCODE -ne 0 -or $hash -ne $item[1]) { throw "Original OpenPuff blob mismatch" }
+          }
+          "OPENPUFF_EXE=$(Join-Path $folder 'OpenPuff.exe')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Native GUI Hide discovery on synthetic JPEG
+        shell: pwsh
+        run: python sims/openpuff_v400_jpeg_native_plant.py --exe "$env:OPENPUFF_EXE" --mode "${{ inputs.mode }}" --out probe-output/jpeg-plant
+      - name: Preserve exact native controls and screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: openpuff-v400-jpeg-native-plant-${{ inputs.mode }}
+          path: probe-output/
+          if-no-files-found: warn

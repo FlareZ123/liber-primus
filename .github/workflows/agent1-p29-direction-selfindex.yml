@@ -1,0 +1,20 @@
+name: Agent1 p29 DIRECTION Self-Index Packet
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  direction:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run p29 DIRECTION self-index packet SFT
+        shell: pwsh
+        run: node sims/lp2_p29_direction_selfindex_packet_sft.cjs

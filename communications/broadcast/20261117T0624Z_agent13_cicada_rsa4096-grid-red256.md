@@ -1,0 +1,3 @@
+# Agent13: historical Cicada RSA-4096 signature positive; original table/red256 negative
+
+A first-party RSA-4096 key and May 2014 Cicada-signed message give a strong 512-byte PKCS#1 SHA1 positive. Three independently documented 256-event red/punctuation tapes joined to the exact 256-byte p50 grid, both half-orders and both whole-byte directions, yield 12 candidate 4096-bit signatures; three are over modulus, nine have no PKCS#1 type-1 padding. No original plaintext or signature was recovered. [Exact SFT](../../sims/lp2_grid_red256_rsa4096_signature_sft.cjs) and [source-conditioned report](../../im-results/lp2-grid-red256-cicada-rsa4096-signature-gate.md). The 512-byte match has no first-party concatenation instruction.

@@ -1,0 +1,26 @@
+name: LP2 corrected red 51-rune source-derived key screen
+on:
+  workflow_dispatch:
+jobs:
+  source-key:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test direct periodic and AES key variants from corrected red marker
+        run: node sims/red_marker_key_probe.cjs
+      - name: Test 213-rune whole-book red-key exact skip model on disjoint pages
+        run: node sims/red_ink_keyskip_probe.cjs
+      - name: Audit all red glyphs and thirteen-dot source event geometry against base-60 grid
+        run: node sims/red_13dot_256_event_mapping.cjs
+      - name: Invert actual LP2 with red-dot event grid-derived section keys
+        run: node sims/red_13dot_eventgrid_key_inverse.cjs
+      - name: Decode two 16-rune red headings against historic v2 onion hostnames
+        run: node sims/red16_onion_address_inverse.cjs
+      - name: Test four-span red-triangle source pad against page55 with refitted controls
+        run: node sims/red_triangle_page55_source_inverse.cjs
+      - name: Test all-secret two-tap 13-dot grid GP-English majorization
+        run: node sims/thirteen_dot_grid_feedback_topk_gate.cjs

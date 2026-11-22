@@ -1,0 +1,679 @@
+{
+  "schema": 1,
+  "task": "director-task#827",
+  "asOfUTC": "2026-11-14",
+  "periodSource": {
+    "repo": "micheloosterhof/cicada-2014",
+    "commit": "6c3421a4d245596e403c88e037509d162a2afd17",
+    "firstPreservedCommitUTC": "2014-05-11T18:33:43Z",
+    "indexGitBlob": "303db130705f0ef9be2a738f4336d5cfcebde80c",
+    "indexBytes": 1640,
+    "jpegs": 58
+  },
+  "modernMirror": {
+    "repo": "neuroretransmit/cicada",
+    "creationYear": 2022,
+    "earliestMirrorImageCommit": "700b8e5a9503eb95d4f0086d12c4aaaf14fbb3b2",
+    "earliestPreservedCommitDateUTC": "2022-12-15T13:07:58Z",
+    "folder": "2014/011-seventh-onion",
+    "indexGitBlob": "edd9b062db1e064c360951b6fd53baa53573da03",
+    "indexBytes": 1639
+  },
+  "imageDifference": {
+    "total": 58,
+    "standardJfifApp0Only": 35,
+    "additionalUnexplainedModifications": 23,
+    "standardTransform": "Remove 18-byte JFIF APP0 segment at JPEG offsets 2..19 inclusive",
+    "allPages": [
+      {
+        "page": 0,
+        "originalGitBlob": "abab573f7a3786f46fe4fab17d5f2dcf2476136b",
+        "originalBytes": 695525,
+        "mirrorGitBlob": "58098a7069fb374664910e3eb55490fc1fe3b2e5",
+        "mirrorBytes": 695507,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 1,
+        "originalGitBlob": "7b7905574bcc712a9ea8b7ca60c690a1f99314c5",
+        "originalBytes": 667228,
+        "mirrorGitBlob": "d362301356182ccd5bfbfc20dde23425d258089d",
+        "mirrorBytes": 667210,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 2,
+        "originalGitBlob": "2936b21db3e1fc3ead8915185d58cab351dcb566",
+        "originalBytes": 595338,
+        "mirrorGitBlob": "7c44486bf7a2fef3a80e8783f5ccdff7c20efc18",
+        "mirrorBytes": 595320,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 3,
+        "originalGitBlob": "3a7badc18e859868ef28d5b8b81bfde38e0ebbde",
+        "originalBytes": 599916,
+        "mirrorGitBlob": "565ce552042cfcdf708109b721b511b0d6aa34f9",
+        "mirrorBytes": 599898,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 4,
+        "originalGitBlob": "9cc256b5356a9382713214324dbce89ba02b01b0",
+        "originalBytes": 676634,
+        "mirrorGitBlob": "afea8b582a4b89cca5f6bba2772581406ce98c00",
+        "mirrorBytes": 676616,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 5,
+        "originalGitBlob": "d80bf744990eb4263c2137fb3ba13dbe775c0fa5",
+        "originalBytes": 667716,
+        "mirrorGitBlob": "4cf4b2c3d55c73c1c8d2d27f6b233250d9ca93e2",
+        "mirrorBytes": 667698,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 6,
+        "originalGitBlob": "f442a9333c78e39bef3f53487ca24dac0c7942de",
+        "originalBytes": 556991,
+        "mirrorGitBlob": "9890a9d4b6bde8f9037641ab289fb28774b60804",
+        "mirrorBytes": 556973,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 7,
+        "originalGitBlob": "2b4e09dbad1a9c602a2919864b1a84f49d7ff501",
+        "originalBytes": 580968,
+        "mirrorGitBlob": "5d566a82f913094e1d6a32e3b3a2377116e69796",
+        "mirrorBytes": 580950,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 8,
+        "originalGitBlob": "504f0e193c393f67e16643cbe9b6288190b5a4e4",
+        "originalBytes": 612380,
+        "mirrorGitBlob": "4c12cfdfae2b3b3fa8a75c1feb0aaba5531e8284",
+        "mirrorBytes": 612362,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 9,
+        "originalGitBlob": "87a98edc542fec46bf087efd1446f6bbfa342bf2",
+        "originalBytes": 639920,
+        "mirrorGitBlob": "cc8de924cac40454434c81a4dbe8fe23298ca08c",
+        "mirrorBytes": 639902,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 10,
+        "originalGitBlob": "1c9fd75320b61e4bed7eb70d8c14d2fad4b87923",
+        "originalBytes": 618194,
+        "mirrorGitBlob": "f107a6f4ad8f57ac75fc3433a21ed00bd73a8b03",
+        "mirrorBytes": 618176,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 11,
+        "originalGitBlob": "df68046a383a4a216841552fdcd3979f25612a0f",
+        "originalBytes": 609111,
+        "mirrorGitBlob": "c93fb20fb9bcfb0046fb8056bfcfe24d26a4b66f",
+        "mirrorBytes": 609093,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 12,
+        "originalGitBlob": "594ca9b258b15ac1d32497b869d3fa4ef6805ddf",
+        "originalBytes": 609412,
+        "mirrorGitBlob": "f4f0e4ff43eef67a74b3452c4a003b1bb26e51af",
+        "mirrorBytes": 609394,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 13,
+        "originalGitBlob": "932313ad53dbc18b435b4c43f0e3c827547948c9",
+        "originalBytes": 619368,
+        "mirrorGitBlob": "dd8208d75fa38aa0e854e54254cbc1fd31bc8e49",
+        "mirrorBytes": 619350,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 14,
+        "originalGitBlob": "2368c574b645782e8ab8f1a5d0f58d0955cb3025",
+        "originalBytes": 436699,
+        "mirrorGitBlob": "676b17785fc6f7e05812c2491b8bd5e0788c569e",
+        "mirrorBytes": 436681,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 15,
+        "originalGitBlob": "f380a4771461ad74eddf5b4e3e366c28ebc827c5",
+        "originalBytes": 512272,
+        "mirrorGitBlob": "0fba66c3aa66950796b1c076e4d59cf175db417f",
+        "mirrorBytes": 512254,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 16,
+        "originalGitBlob": "a537b6c5f05cd40e4153a00e4397a053b631d325",
+        "originalBytes": 550563,
+        "mirrorGitBlob": "0cc269a4c6186ad820b5ce443885a92aeed5fe85",
+        "mirrorBytes": 531708,
+        "diffBytes": 18855,
+        "relation": "modified_beyond_jfif_app0"
+      },
+      {
+        "page": 17,
+        "originalGitBlob": "4d63ba27eb7f91594a665bfd8055d38707df644e",
+        "originalBytes": 541530,
+        "mirrorGitBlob": "34bd12e5794eaf73dea15686ad1b6f0191c80fb0",
+        "mirrorBytes": 522904,
+        "diffBytes": 18626,
+        "relation": "modified_beyond_jfif_app0"
+      },
+      {
+        "page": 18,
+        "originalGitBlob": "9c28762bc2763d6eb1dcdb02ba988877821df0ca",
+        "originalBytes": 541718,
+        "mirrorGitBlob": "6238df8b7af770b2021381b4d145288557fbfac0",
+        "mirrorBytes": 523340,
+        "diffBytes": 18378,
+        "relation": "modified_beyond_jfif_app0"
+      },
+      {
+        "page": 19,
+        "originalGitBlob": "06005119670c1cc371c60934636ec58d5d4cc114",
+        "originalBytes": 540260,
+        "mirrorGitBlob": "978501244bfb6289ff6f9cf38f321f19941ca754",
+        "mirrorBytes": 522316,
+        "diffBytes": 17944,
+        "relation": "modified_beyond_jfif_app0"
+      },
+      {
+        "page": 20,
+        "originalGitBlob": "a042e662cd74554d3f82049aecbe3f6085b4e399",
+        "originalBytes": 535883,
+        "mirrorGitBlob": "46e262e8a95378088ab9e1e0a84ab4eda7af671f",
+        "mirrorBytes": 517989,
+        "diffBytes": 17894,
+        "relation": "modified_beyond_jfif_app0"
+      },
+      {
+        "page": 21,
+        "originalGitBlob": "fe6a6f4fec9ae67f49699cfbf6a2824261c9100f",
+        "originalBytes": 550964,
+        "mirrorGitBlob": "b9057e0d30bd7588ad42d76f64374e7ddfbb9cf0",
+        "mirrorBytes": 532096,
+        "diffBytes": 18868,
+        "relation": "modified_beyond_jfif_app0"
+      },
+      {
+        "page": 22,
+        "originalGitBlob": "0270e099f35a00dc24a9dc673ce13d4a0a843802",
+        "originalBytes": 512143,
+        "mirrorGitBlob": "7d1ca9c43d956d6ae2b18d21bf65a5969c2256eb",
+        "mirrorBytes": 512125,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 23,
+        "originalGitBlob": "feee4eed2a4f6d66456ff5a977f43c7ef297f8eb",
+        "originalBytes": 484095,
+        "mirrorGitBlob": "789e803a014368bc62184cdd116840b7b0dc250c",
+        "mirrorBytes": 484077,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 24,
+        "originalGitBlob": "937f224786852ddfdc40704599ce5850e49049cb",
+        "originalBytes": 654761,
+        "mirrorGitBlob": "962764d61fd5da1bb3a674ff56c847b20228134b",
+        "mirrorBytes": 631199,
+        "diffBytes": 23562,
+        "relation": "modified_beyond_jfif_app0"
+      },
+      {
+        "page": 25,
+        "originalGitBlob": "f2ead3e5e12ffefbe19b0474eeb0a1a21815ac60",
+        "originalBytes": 643754,
+        "mirrorGitBlob": "4e9047c1e998f87084dec473f998fed060a2c2bf",
+        "mirrorBytes": 621441,
+        "diffBytes": 22313,
+        "relation": "modified_beyond_jfif_app0"
+      },
+      {
+        "page": 26,
+        "originalGitBlob": "a0be92ee2b6ccda6d2bd6bc39b37d6b061edf8bd",
+        "originalBytes": 677224,
+        "mirrorGitBlob": "28ca34b9ce9e93097ce615bd80193c9b2ec5a221",
+        "mirrorBytes": 677206,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 27,
+        "originalGitBlob": "b2fc14497a1def3bb20b0c4ab88d50ebd3a036ff",
+        "originalBytes": 580041,
+        "mirrorGitBlob": "fb939836e9937bc937441a1c319f021712e8d94f",
+        "mirrorBytes": 580023,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 28,
+        "originalGitBlob": "42a66257fb798d1a41fb23cddcd08a7f3678e233",
+        "originalBytes": 542267,
+        "mirrorGitBlob": "c5cdeb0f3e71ad518e57a25324ebc3fe9dee502c",
+        "mirrorBytes": 524013,
+        "diffBytes": 18254,
+        "relation": "modified_beyond_jfif_app0"
+      },
+      {
+        "page": 29,
+        "originalGitBlob": "80306794137aa5406bb4c1918d469b1a2a23fc02",
+        "originalBytes": 546105,
+        "mirrorGitBlob": "2dd71bf693533926d6cf29d829c34236ca676b5b",
+        "mirrorBytes": 527890,
+        "diffBytes": 18215,
+        "relation": "modified_beyond_jfif_app0"
+      },
+      {
+        "page": 30,
+        "originalGitBlob": "cf4fea86915b8e98bbdac0098878223e89a0595a",
+        "originalBytes": 539780,
+        "mirrorGitBlob": "f6c5b9536c26a3f2a639333806bb2b5fc6a95151",
+        "mirrorBytes": 521882,
+        "diffBytes": 17898,
+        "relation": "modified_beyond_jfif_app0"
+      },
+      {
+        "page": 31,
+        "originalGitBlob": "dc31a9e3057e9fef10e1a202b663b84f4f1c3a0e",
+        "originalBytes": 531046,
+        "mirrorGitBlob": "9beef0f8aaf90982d9bd419b9fed0f4827c3bcd7",
+        "mirrorBytes": 513681,
+        "diffBytes": 17365,
+        "relation": "modified_beyond_jfif_app0"
+      },
+      {
+        "page": 32,
+        "originalGitBlob": "1a8fa8978bad0efc088e5ae247ceba69b2f29c27",
+        "originalBytes": 362637,
+        "mirrorGitBlob": "52121b8369615cca81595136c41ce5ca3b28dac6",
+        "mirrorBytes": 362619,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 33,
+        "originalGitBlob": "68d3e28d8c4161fdfe91a542f5bac8e276bc441e",
+        "originalBytes": 525652,
+        "mirrorGitBlob": "af9aef8379fdffa22dbb0158da1153ef3ef3ba76",
+        "mirrorBytes": 525634,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 34,
+        "originalGitBlob": "e6249fa4cf3a1163d2ef3b38dbed59a886a4d94c",
+        "originalBytes": 555050,
+        "mirrorGitBlob": "f962faf0d71e9e090fbf7de320f711741eb37d83",
+        "mirrorBytes": 555032,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 35,
+        "originalGitBlob": "aec165a24c007299422e52e3480c70dbca63b9dc",
+        "originalBytes": 574580,
+        "mirrorGitBlob": "30eeeb1267ca01557db280ce0bce3aeec159f937",
+        "mirrorBytes": 574562,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 36,
+        "originalGitBlob": "f8ddd9776975cd5d34de96eb8cb35e2de48c6a56",
+        "originalBytes": 511099,
+        "mirrorGitBlob": "e96a547f3862e2c892440084d7de9b40c2ca6b53",
+        "mirrorBytes": 511081,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 37,
+        "originalGitBlob": "ff7e60c2a574512200bea0f49d76808ecfb3e21f",
+        "originalBytes": 503830,
+        "mirrorGitBlob": "7a43617dacc3112f4c31818ea38d6f30d58faa16",
+        "mirrorBytes": 503812,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 38,
+        "originalGitBlob": "10ab76d6c31ea348bbc0f906adf6caac61398dc2",
+        "originalBytes": 519224,
+        "mirrorGitBlob": "8c4d022354238e18ca656300335d306211fc6f22",
+        "mirrorBytes": 519206,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 39,
+        "originalGitBlob": "819261c833837cbaa2bd200d210ca299d79031f3",
+        "originalBytes": 541379,
+        "mirrorGitBlob": "c65ef93114a08245dd5c3e08906a7e1db2769c2b",
+        "mirrorBytes": 541361,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 40,
+        "originalGitBlob": "83f661b6107587c5d153d6dea3f6bf03090a70bc",
+        "originalBytes": 746355,
+        "mirrorGitBlob": "c8d99b63a423d97cc4610be98d46d15b6ce51447",
+        "mirrorBytes": 746337,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 41,
+        "originalGitBlob": "cef4a7baf17e31676ec219db99808287a63b6f33",
+        "originalBytes": 785555,
+        "mirrorGitBlob": "189e40b7c4bc620666207c52d28df477fdef11bb",
+        "mirrorBytes": 758035,
+        "diffBytes": 27520,
+        "relation": "modified_beyond_jfif_app0"
+      },
+      {
+        "page": 42,
+        "originalGitBlob": "781940e751b879a4fe1a62bdcf4ac518e1e5c6a9",
+        "originalBytes": 788795,
+        "mirrorGitBlob": "3f1a4cba5ab24235368149d0b1fdd5dc0c50ec12",
+        "mirrorBytes": 760821,
+        "diffBytes": 27974,
+        "relation": "modified_beyond_jfif_app0"
+      },
+      {
+        "page": 43,
+        "originalGitBlob": "165003151e37729d2b4fde70c92a432ad9c70d00",
+        "originalBytes": 792166,
+        "mirrorGitBlob": "be4f53c3f986cc8d7d1764e6b7e0d4c01fd75c36",
+        "mirrorBytes": 764265,
+        "diffBytes": 27901,
+        "relation": "modified_beyond_jfif_app0"
+      },
+      {
+        "page": 44,
+        "originalGitBlob": "6aaa4e0d3b89d652ef4eec43af4382d871e9e087",
+        "originalBytes": 796475,
+        "mirrorGitBlob": "bb0e36db6d0a6dab9d028bd504694f2afe0d03a8",
+        "mirrorBytes": 768070,
+        "diffBytes": 28405,
+        "relation": "modified_beyond_jfif_app0"
+      },
+      {
+        "page": 45,
+        "originalGitBlob": "5a29229e871ca21e28a2500b448c5df04b6d5545",
+        "originalBytes": 772704,
+        "mirrorGitBlob": "4b961cb8ddc08c9c903c8a946eb78d37d56222c3",
+        "mirrorBytes": 745646,
+        "diffBytes": 27058,
+        "relation": "modified_beyond_jfif_app0"
+      },
+      {
+        "page": 46,
+        "originalGitBlob": "b02c15229caaecec339a5614f07396850e3b068c",
+        "originalBytes": 782516,
+        "mirrorGitBlob": "2f25340e469e9d10f83c2889731b6f46220eb84b",
+        "mirrorBytes": 754886,
+        "diffBytes": 27630,
+        "relation": "modified_beyond_jfif_app0"
+      },
+      {
+        "page": 47,
+        "originalGitBlob": "9cc071ca1f93dd29750deccc11f3a7cc056c94db",
+        "originalBytes": 792027,
+        "mirrorGitBlob": "d29ef95d9882e03d67b836fbcc2b617a28c2c9ee",
+        "mirrorBytes": 763790,
+        "diffBytes": 28237,
+        "relation": "modified_beyond_jfif_app0"
+      },
+      {
+        "page": 48,
+        "originalGitBlob": "a2db4b4363f4a991dc7a2f17855d7b238df9d09e",
+        "originalBytes": 803285,
+        "mirrorGitBlob": "2233b11697b62a2140b21ab89593b21efc12c9d9",
+        "mirrorBytes": 774619,
+        "diffBytes": 28666,
+        "relation": "modified_beyond_jfif_app0"
+      },
+      {
+        "page": 49,
+        "originalGitBlob": "c5243ea1324cf3b72b79a41366f8d0e434ce3978",
+        "originalBytes": 651504,
+        "mirrorGitBlob": "81ae3df770adbf05dd0522a39ddbb9ed9ac7e26f",
+        "mirrorBytes": 651486,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 50,
+        "originalGitBlob": "f5abe00085811319f5183c2468ea1171d9dbfb82",
+        "originalBytes": 581983,
+        "mirrorGitBlob": "73d43628eaecc78a64ab258b740d7494811587f7",
+        "mirrorBytes": 563327,
+        "diffBytes": 18656,
+        "relation": "modified_beyond_jfif_app0"
+      },
+      {
+        "page": 51,
+        "originalGitBlob": "701e47789abf4401d61420ff938c2b72aa03ad2c",
+        "originalBytes": 661727,
+        "mirrorGitBlob": "bb6893f7283679d15d4f5d82292eedbbb8bb6847",
+        "mirrorBytes": 638998,
+        "diffBytes": 22729,
+        "relation": "modified_beyond_jfif_app0"
+      },
+      {
+        "page": 52,
+        "originalGitBlob": "2bb9807409b2536feb788ec0cdf7a0fefb8ea5e6",
+        "originalBytes": 792979,
+        "mirrorGitBlob": "aa2603ad470fa87f22d905d9ed315048ea9907aa",
+        "mirrorBytes": 764418,
+        "diffBytes": 28561,
+        "relation": "modified_beyond_jfif_app0"
+      },
+      {
+        "page": 53,
+        "originalGitBlob": "55791b97f20e57e9f0ffb4f28596712d5db2ed68",
+        "originalBytes": 753790,
+        "mirrorGitBlob": "44ed784c96f9c92da63fabaec5cdf34ee7cd289d",
+        "mirrorBytes": 753772,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 54,
+        "originalGitBlob": "5658a7f992c06ac7191f275cf32be2ce35b59754",
+        "originalBytes": 774295,
+        "mirrorGitBlob": "39372298f9ca716724b69117a060aa6c8618289e",
+        "mirrorBytes": 774277,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 55,
+        "originalGitBlob": "ee00cd34013fe3a5c6808650abb6d3206b6f1b13",
+        "originalBytes": 614928,
+        "mirrorGitBlob": "db5f6daf58d9d6cd7ef05ab5f89725dc18300d12",
+        "mirrorBytes": 614910,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 56,
+        "originalGitBlob": "afa3428764199ddf590baf0c055c8caedc079cb1",
+        "originalBytes": 389813,
+        "mirrorGitBlob": "6b17affe00c83b8bd2a7847646ad2ec25a5ef240",
+        "mirrorBytes": 389795,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      },
+      {
+        "page": 57,
+        "originalGitBlob": "4397143b4df5ad729b00cfd740a74994052f46d2",
+        "originalBytes": 318076,
+        "mirrorGitBlob": "ab3777dad7a8bbe92fbf222d896594b4d355350e",
+        "mirrorBytes": 318058,
+        "diffBytes": 18,
+        "relation": "expected_jfif_app0_18_only"
+      }
+    ]
+  },
+  "indexDifference": "One final LF removed in modern mirror: HTML content otherwise identical.",
+  "signedHandoff": {
+    "originalGitBlob": "e2b7382ac2cfb0adfe028cc063fc6048e0ad718e",
+    "modernMirrorGitBlob": "adc4a41fab31905ff9417646a14e507a5e1fdb45",
+    "independentSignedMirrorGitBlob": "e2b7382ac2cfb0adfe028cc063fc6048e0ad718e",
+    "verifiedSignedCleartextRelation": "Both mirrored OpenPGP cleartext messages have the same signed content after OpenPGP trailing-whitespace canonicalization; later mirror has changed unsigned whitespace.",
+    "issuerKeyId": "181F01E57A35090F",
+    "signaturePacketId": "FPjtqb5zyNAgftimJVfvuUF8wMU"
+  },
+  "sidecars": [
+    {
+      "name": "0-55.jpg.runes-possibilities.txt",
+      "bytes": 20973,
+      "gitBlob": "86b99dd7c008a824cd3f611de7211854aa4fcbc5",
+      "sourceClass": "derived_analyst_output"
+    },
+    {
+      "name": "0-55.jpg.runes.txt",
+      "bytes": 44003,
+      "gitBlob": "216dad2a656b9d4e6a92815ed62d62e31e2b3bfb",
+      "sourceClass": "derived_analyst_output"
+    },
+    {
+      "name": "43.jpg.check",
+      "bytes": 27036,
+      "gitBlob": "1df7d566ff789cff34ff2aaa5c7163bffdec4543",
+      "sourceClass": "derived_analyst_output"
+    },
+    {
+      "name": "44.jpg.check",
+      "bytes": 27643,
+      "gitBlob": "800d7a290f58b40bfc6c5a56905be24a03e23d37",
+      "sourceClass": "derived_analyst_output"
+    },
+    {
+      "name": "46.jpg.check",
+      "bytes": 27639,
+      "gitBlob": "0c86e38b8385826510c9e61358ded0ae8bad8987",
+      "sourceClass": "derived_analyst_output"
+    },
+    {
+      "name": "48.jpg.bin",
+      "bytes": 46559,
+      "gitBlob": "840f63b5bdb05259437c7497905d76474b24ca05",
+      "sourceClass": "derived_analyst_output"
+    },
+    {
+      "name": "48.jpg.check",
+      "bytes": 35352,
+      "gitBlob": "e976aad72312ff2956ce08d71c83cb590ff02fdf",
+      "sourceClass": "derived_analyst_output"
+    },
+    {
+      "name": "56.jpg.runes-possibilities.txt",
+      "bytes": 269,
+      "gitBlob": "baa922d56832de4cfd4cfd2aa4040023acafa65a",
+      "sourceClass": "derived_analyst_output"
+    },
+    {
+      "name": "56.jpg.runes.txt",
+      "bytes": 432,
+      "gitBlob": "1783ae98be5efae6ce7d896b9d58eb89f6225024",
+      "sourceClass": "derived_analyst_output"
+    },
+    {
+      "name": "57.jpg.runes-possibilities.txt",
+      "bytes": 130,
+      "gitBlob": "8f787490513baf2998898d3bf8137fce6430c049",
+      "sourceClass": "derived_analyst_output"
+    },
+    {
+      "name": "57.jpg.runes.txt",
+      "bytes": 314,
+      "gitBlob": "098e03a9fa7d5118d3eeca42a55a9263f81fd807",
+      "sourceClass": "derived_analyst_output"
+    },
+    {
+      "name": "8.jpg.bin",
+      "bytes": 31920,
+      "gitBlob": "d11bbb6298c8e9cb8c1951f127263f4c9a4e1676",
+      "sourceClass": "derived_analyst_output"
+    },
+    {
+      "name": "8.jpg.check",
+      "bytes": 11016,
+      "gitBlob": "0246e18e665153622355e9b401f874a9ae22268b",
+      "sourceClass": "derived_analyst_output"
+    },
+    {
+      "name": "README.md",
+      "bytes": 4548,
+      "gitBlob": "ac0d78c851bfd89b5066e838f46778f720dc8bfd",
+      "sourceClass": "modern_mirror_analysis"
+    },
+    {
+      "name": "gematriaprimus.py",
+      "bytes": 11380,
+      "gitBlob": "b4cfae7e4c36fbdd634e449497087b9b68dbca2e",
+      "sourceClass": "modern_mirror_analysis"
+    },
+    {
+      "name": "ky2khlqdf7qdznac.onion.html",
+      "bytes": 1639,
+      "gitBlob": "edd9b062db1e064c360951b6fd53baa53573da03",
+      "sourceClass": "2014_index_mirror"
+    },
+    {
+      "name": "outguess-wordlist.sh",
+      "bytes": 413,
+      "gitBlob": "480fc646380976a4a89df57b610affabecdcaa3c",
+      "sourceClass": "modern_mirror_analysis"
+    },
+    {
+      "name": "reverse.sh",
+      "bytes": 126,
+      "gitBlob": "6c04f30e61cc5627252a7640b696237ffe35cf43",
+      "sourceClass": "modern_mirror_analysis"
+    },
+    {
+      "name": "reversebytes.py",
+      "bytes": 186,
+      "gitBlob": "585580a6f99300c948c1ed539ac932705911d909",
+      "sourceClass": "modern_mirror_analysis"
+    }
+  ],
+  "verifiedNew2014InstructionCount": 0,
+  "provenanceWarning": "The 2022 mirror is not itself original-era evidence; derived OutGuess/check/rune files are not served artifacts. Larger differences remain unclassified until the changed JPEG bytes are obtained."
+}

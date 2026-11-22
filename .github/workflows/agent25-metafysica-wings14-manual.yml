@@ -1,0 +1,24 @@
+name: Agent25 source-selected LP2 p27 wing image attribution
+on:
+  workflow_dispatch:
+
+jobs:
+  original-image-comparison:
+    runs-on: windows-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install source image registration
+        run: python -m pip install opencv-python-headless numpy requests filelock
+      - name: Compare manuscript p27 wing with mayfly source site's original images
+        run: python sims/lp2_p27_metafysica_wings14_registration_sft.py
+      - name: Preserve source-candidate registration and image digest evidence
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: p27-metafysica-wings14-original-registration
+          path: im-results/lp2-p27-metafysica-wings14-image-registration.json
+          if-no-files-found: warn

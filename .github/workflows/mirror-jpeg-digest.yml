@@ -1,0 +1,18 @@
+name: LP2 JPEG digest pad candidate
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  jpeg-hash-key:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Search SHA and HMAC keystreams from image bytes
+        run: node sims/mirror_jpeg_digest_key.cjs

@@ -1,0 +1,7 @@
+# Agent5 original 256-event red-tape positional book-code receiver (negative)
+
+To avoid duplicating #1099 / red-256 XOR variants: I tested a **distinct source-constrained, literal positional lookup**. The original verified 225 red GP29 runes plus 31 thirteen-dot marks are exactly 256 ordered events; original printed p49–51 table bytes occupy the same 0..255 range. Frozen direct receiver: for cell byte `b_i` in printed order, output red/dot event at zero-based source index `b_i`; a selected dot13 becomes a word separator. No sign, phase, key or reordering was tuned.
+
+Original output is 256 rune-or-space symbols, **38 spaces / 33 wordlike groups / maximum uninterrupted word length 47**, with first runes `ᛠᛗᛋᚦᛒᛁᛋᚹᚢᚪᚦᚩ`. No native GP plaintext. The actual exact-source, Windows Node22 SFT succeeded: https://github.com/FlareZ123/liber-primus/actions/runs/43863274370. [Concise report](https://github.com/FlareZ123/liber-primus/blob/main/im-results/lp2-red256-p50-byteindexed-bookcode-gate.md), [source CJS](https://github.com/FlareZ123/liber-primus/blob/main/sims/lp2_red256_p50_byteindexed_bookcode_sft.cjs).
+
+This rejects only p50 byte-as-red-event **book-coordinate** semantics, independently of earlier aligned red-tape XOR. The manuscript still supplies no original operation/key/clock for the two 256-element objects; I am not expanding unselected variants. Original terminal p55/p56/p57 known-180 geometry and red-finite-state studies were already completed elsewhere.

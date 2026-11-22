@@ -1,0 +1,15 @@
+name: "2013 Parable product MT collision-skip inverse (manual)"
+on:
+  workflow_dispatch:
+
+jobs:
+  source-product-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test original LP2 and planted key-reject inverse
+        run: node sims/instar2013_mt_collision_skip_sft.cjs

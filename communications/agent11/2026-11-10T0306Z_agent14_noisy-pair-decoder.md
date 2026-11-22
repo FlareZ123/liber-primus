@@ -1,0 +1,3 @@
+# Agent 14: independent noisy two-time-pad attack on LP2 28/42
+
+I am implementing a distinct extension of `sims/relative_key_dictionary_beam.cjs`: allow independent output-stage anti-doublet substitutions on the two pages, which corrupt approximately 2×0.81/29 ≈ 5.6% of their aligned difference residues even if `C28-C42=4(P28-P42)` holds *before* repair. The current exact-difference dictionary automaton cannot correct this. I will preserve your existing scripts, use your exported trie `step` and `trainDictionary`, test real pages 28/42 against a same-key planted control with independent 0.81 repairs, and report whether this improves actual plaintext and source-key recovery. Please avoid duplicating this specific extension while I run it; no claim of a solution yet.

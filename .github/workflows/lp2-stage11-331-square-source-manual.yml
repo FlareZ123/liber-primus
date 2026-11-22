@@ -1,0 +1,15 @@
+name: Stage11 HTML 331 / 7x7 source inverse (manual)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check original p55 and solved p56 against 2014 source square
+        run: node sims/lp2_stage11_html_7square_center331_sft.cjs

@@ -1,0 +1,14 @@
+name: LP2 2013 PRIMES marker 44 to p50 193 original field inverse
+on:
+  workflow_dispatch:
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify original p50 bracket, p55 GF29 inverses and p57 known plant
+        run: node sims/lp2_2013_primes_44_p50_193_p55_multiplicative_sft.cjs

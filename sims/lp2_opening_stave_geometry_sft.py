@@ -1,0 +1,205 @@
+#!/usr/bin/env python3
+"""Source-first geometry test for the opening LP2 stave-like illustrations.
+
+Run from a repository checkout:
+    python sims/lp2_opening_stave_geometry_sft.py
+Or pass a directory containing 17.jpg, 18.jpg, 19.jpg and 39.jpg.
+
+Only original JPEG artwork is measured. No ciphertext, language score, key,
+phase, or cipher family is used to choose a geometry.
+Dependencies: Pillow, NumPy, OpenCV.
+"""
+from __future__ import annotations
+import sys
+from pathlib import Path
+import cv2
+import numpy as np
+from PIL import Image
+
+ROIS = {
+    "p0-left": ("17.jpg", (40, 1600, 560, 3000)),
+    "p0-right": ("17.jpg", (1830, 550, 2360, 1950)),
+    "p1-left": ("18.jpg", (40, 1600, 560, 3000)),
+    "p1-right": ("18.jpg", (1830, 550, 2360, 1950)),
+    "p2-left": ("19.jpg", (40, 1600, 560, 3000)),
+    "p2-right": ("19.jpg", (1830, 550, 2360, 1950)),
+    "p22-horizontal-control": ("39.jpg", (627, 2235, 1739, 2632)),
+}
+TARGET_SIZE = (200, 540)
+THRESHOLD = 150
+
+
+def read_rois(root: Path) -> dict[str, np.ndarray]:
+    out = {}
+    for name, (filename, box) in ROIS.items():
+        image = Image.open(root / filename).convert("L")
+        if image.size != (2400, 3600):
+            raise AssertionError(f"{filename}: expected 2400x3600, got {image.size}")
+        out[name] = np.asarray(image.crop(box), dtype=np.uint8)
+    return out
+
+
+def mask(image: np.ndarray) -> np.ndarray:
+    return (image < THRESHOLD).astype(np.uint8)
+
+
+def aligned_iou(reference: np.ndarray, candidate: np.ndarray, rotation: int = 0) -> tuple[float, float, np.ndarray]:
+    """Return ECC, threshold-mask IoU, and fitted affine transform.
+
+    Rotation is a fixed, source-visible quarter-turn applied before a small
+    affine registration. Registration compensates only for crop placement and
+    scan offsets; the fitted transformation is reported, not interpreted.
+    """
+    moving = np.rot90(candidate, rotation) if rotation else candidate
+    ref = cv2.resize(reference, TARGET_SIZE, interpolation=cv2.INTER_AREA)
+    mov = cv2.resize(moving, TARGET_SIZE, interpolation=cv2.INTER_AREA)
+    refm = mask(ref).astype(np.float32)
+    movm = mask(mov).astype(np.float32)
+    warp = np.eye(2, 3, dtype=np.float32)
+    criteria = (cv2.TERM_CRITERIA_EPS | cv2.TERM_CRITERIA_COUNT, 100, 1e-5)
+    ecc, warp = cv2.findTransformECC(refm, movm, warp, cv2.MOTION_AFFINE, criteria)
+    aligned = cv2.warpAffine(
+        movm, warp, (refm.shape[1], refm.shape[0]),
+        flags=cv2.INTER_NEAREST | cv2.WARP_INVERSE_MAP,
+    )
+    a, b = refm > 0, aligned > 0
+    union = np.logical_or(a, b).sum()
+    score = np.logical_and(a, b).sum() / union if union else 1.0
+    return float(ecc), float(score), warp
+
+
+def exact_crop_match(a: np.ndarray, b: np.ndarray) -> bool:
+    return a.shape == b.shape and np.array_equal(a, b)
+
+
+def major_projection_rows(image: np.ndarray, rotation: int = 0) -> list[int]:
+    """Return the three dominant cross-projection centers in a stave crop.
+
+    This is a descriptive row-span profile, not a rune classifier: for each
+    row it measures the horizontal extent of dark pixels, smooths the profile,
+    then keeps the three strongest local maxima separated by at least 80 px.
+    """
+    moving = np.rot90(image, rotation) if rotation else image
+    dark = moving < 100
+    spans = []
+    for row in dark:
+        xs = np.flatnonzero(row)
+        spans.append(int(xs[-1] - xs[0] + 1) if len(xs) else 0)
+    smoothed = cv2.GaussianBlur(
+        np.asarray(spans, dtype=np.float32).reshape(-1, 1),
+        (1, 91), 0, sigmaY=15,
+    ).ravel()
+    candidates = [
+        i for i in range(1, len(smoothed) - 1)
+        if smoothed[i] >= smoothed[i - 1]
+        and smoothed[i] > smoothed[i + 1]
+        and smoothed[i] > 80
+    ]
+    selected = []
+    for point in sorted(candidates, key=lambda i: smoothed[i], reverse=True):
+        if all(abs(point - prior) >= 80 for prior in selected):
+            selected.append(point)
+        if len(selected) == 3:
+            break
+    return sorted(selected)
+
+
+
+def branch_side_peaks(image: np.ndarray, side: str, min_peak: float = 80.0) -> list[tuple[int, float]]:
+    """Measure prominent lateral branch groups on one side of the main stave.
+
+    The stave centre is the column with the largest vertical dark-pixel count.
+    For each row, measure lateral extent beyond an 8 px shaft margin, smooth
+    with sigma=15 px, then report separated local maxima above min_peak.
+    This is a descriptive image measurement; the historical 3|3 mapping is
+    evaluated separately and is not used to choose the peaks.
+    """
+    if side not in ("left", "right"):
+        raise ValueError("side must be left or right")
+    dark = image < 100
+    center = int(np.argmax(dark.sum(axis=0)))
+    extents = []
+    for row in dark:
+        xs = np.flatnonzero(row)
+        if side == "left":
+            xs = xs[xs < center - 8]
+            extent = center - int(xs.min()) if len(xs) else 0
+        else:
+            xs = xs[xs > center + 8]
+            extent = int(xs.max()) - center if len(xs) else 0
+        extents.append(extent)
+    smoothed = cv2.GaussianBlur(
+        np.asarray(extents, dtype=np.float32).reshape(-1, 1),
+        (1, 91), 0, sigmaY=15,
+    ).ravel()
+    candidates = [
+        i for i in range(1, len(smoothed) - 1)
+        if smoothed[i] >= smoothed[i - 1]
+        and smoothed[i] > smoothed[i + 1]
+        and smoothed[i] > min_peak
+    ]
+    selected = []
+    for point in sorted(candidates, key=lambda i: smoothed[i], reverse=True):
+        if all(abs(point - prior) >= 80 for prior in selected):
+            selected.append(point)
+    return [(point, round(float(smoothed[point]), 1)) for point in sorted(selected)]
+
+
+def main() -> None:
+    root = Path(sys.argv[1]) if len(sys.argv) > 1 else Path("resources/liber-primus")
+    crops = read_rois(root)
+
+    print("Original-JPEG stave geometry; threshold < 150; resized masks 200x540")
+    print("same-side page reuse (p0→p1, p0→p2):")
+    for side in ("left", "right"):
+        ref = crops[f"p0-{side}"]
+        for page in ("p1", "p2"):
+            ecc, score, warp = aligned_iou(ref, crops[f"{page}-{side}"])
+            print(f"  {side} p0→{page}: ECC={ecc:.6f}, IoU={score:.6f}, affine={warp.round(4).tolist()}")
+
+    for side in ("left", "right"):
+        equal = exact_crop_match(crops[f"p1-{side}"], crops[f"p2-{side}"])
+        print(f"  p1/p2 {side} raw crop pixel-identical: {equal}")
+        assert equal
+
+    ecc, score, warp = aligned_iou(crops["p0-left"], crops["p0-right"], rotation=2)
+    print(f"left vs right after 180°: ECC={ecc:.6f}, IoU={score:.6f}, affine={warp.round(4).tolist()}")
+    assert score > 0.95
+
+    control_scores = []
+    for rotation in (1, 3):
+        ecc, score, warp = aligned_iou(crops["p0-left"], crops["p22-horizontal-control"], rotation=rotation)
+        control_scores.append((score, rotation, ecc, warp))
+    best = max(control_scores, key=lambda row: row[0])
+    print(
+        "p22 horizontal object after quarter-turn (best): "
+        f"rotation={best[1] * 90}°, ECC={best[2]:.6f}, IoU={best[0]:.6f}, affine={best[3].round(4).tolist()}"
+    )
+    assert best[0] < 0.70
+
+    profiles = {
+        "p0-left": major_projection_rows(crops["p0-left"]),
+        "p0-right": major_projection_rows(crops["p0-right"]),
+        "p22-after-90deg": major_projection_rows(crops["p22-horizontal-control"], rotation=1),
+    }
+    for name, points in profiles.items():
+        print(f"three dominant transverse projections {name}: {points}")
+        assert len(points) == 3
+
+    print("p0 stave side-branch profiles (threshold 80; shaft at max vertical projection):")
+    for name in ("p0-left", "p0-right"):
+        for side in ("left", "right"):
+            peaks = branch_side_peaks(crops[name], side, min_peak=80)
+            print(f"  {name} {side}: {peaks}")
+            assert len(peaks) == 3
+        for threshold in (85, 90):
+            for side in ("left", "right"):
+                peaks = branch_side_peaks(crops[name], side, min_peak=threshold)
+                assert len(peaks) == 3, (name, side, threshold, peaks)
+
+    print("PASS: pp0–2 reuse one left/right stave pair; the pair is the same template at 180°; both p0 staves have 3|3 side-branch counts at thresholds 80, 85 and 90.")
+    print("This makes a twig/cipher-rune reading testable; the script does not hard-code a rune mapping.")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,18 @@
+name: Agent9 p27 DH23 EMERGE pointer closure SFT
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source-gate:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax check
+        run: node --check sims/lp2_p27_dh23_emerge_pointer_closure_sft.cjs
+      - name: Run exact original-source closure
+        run: node sims/lp2_p27_dh23_emerge_pointer_closure_sft.cjs

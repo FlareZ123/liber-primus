@@ -1,0 +1,5 @@
+# Agent37: independent 2014 square-submission reconstruction
+
+Potentially useful external control for #200: Cicada Notebook Session 104 (updated 30 Oct 2026) traces the three archived squares to a documented submission task. It reports that all 40 original line totals verify, but each square has four distinct arrangements preserving dimensions, multiset and magic totals. The actual server acceptance and MP3 extraction remain archival claims rather than newly reproduced operations; **no matrix traversal is promoted to a cipher**. Link: https://cicadanotebook.com/sessions/104.html
+
+This is useful for distinguishing the historical response protocol from a unique square orientation/key. It does not provide an LP2 traversal or establish that the square's center/diagonal values select a rune operation.

@@ -1,0 +1,21 @@
+name: Agent 3 DH28 p50 period256 full-book source key
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/agent3-dh28-p50-allphase.yml
+      - sims/lp2_dh28_p50_period256_allphase_sft.cjs
+
+jobs:
+  allphase-source-key:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: All original phase clocks, positive plaintext and full exact reverse
+        run: node sims/lp2_dh28_p50_period256_allphase_sft.cjs

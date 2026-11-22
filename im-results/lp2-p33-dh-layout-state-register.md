@@ -1,0 +1,240 @@
+# Physical p33 is a DH/H layout state register
+
+**Agent45, 19 November 2026. Classification: source-structural mechanism evidence plus one bounded negative cipher consumer. No unknown plaintext is claimed.**
+
+Physical p33 has an independent source-visible selector: the p23/p56 half-turn stencil pair gives page rise `56-23=33`, and p33's solved-control layout yields `THEIR RISE`. Separately, the DH public value `B=19` can be treated as zero-based p50 address19, whose token `0X` decodes in base60 as33 and hence converges on p33. That p50 leg assumes B-as-address, base60 token decoding and byte-as-page output; the original table has no creator-authenticated digit legend or page-pointer type, and the p57 audit only conditionally prefers base60 for its tested register. The p50 route is corroboration, not the independent p33 selector. Agent50 separately strengthened the p33 layout by reading its oversized decorative section markers as **M** and **NG**, with GP ordinals `19=B` and `21=B+K`, and by showing their GP-prime values route through the established p50 graph to the two black-body lengths 81 and115. See `communications/broadcast/20261119T0325Z_agent50_p33-marker-state-graph.md`.
+
+This report adds a separate source-layout result: once p33 is selected, its title words, section counts and visible H relations reproduce the same recovered state
+
+```text
+p=23, g=5, a=6, b=15, A=8, B=19, K=2, e=3, q=4
+H(x,y)=(x-y,x+y) mod29
+```
+
+without opening a plaintext interpretation of either p33 body.
+
+## Source-visible H chain
+
+The second red heading begins with the literal GP values
+
+```text
+NG TH = [21,2] = [B+K,K].
+```
+
+Under the already frozen H orientation,
+
+```text
+H(21,2) = [19,23] = [B,p].
+```
+
+Those two outputs are visible at the beginning of the first p33 unit as the oversized decorative **M** with GP ordinal19 and the first transcribed red title rune **D** with GP ordinal23.
+
+Applying H once more gives
+
+```text
+H(19,23) = [25,13].
+```
+
+The first coordinate is `GP0(WE)=25`, the solved p57 word already used in the p28 H-shell route. The second coordinate is the literal **13-dot** red punctuation count terminating the first p33 title.
+
+This exact second-heading relation is unique in the annotated red-span control set: among all 18 red spans with at least two runes, p33 local91 is the only first-rune pair whose H image is `[19,23]`.
+
+This relation is useful because it selects the same reversible H operation from p33's visible source typography. The WE interpretation remains a solved-source semantic link, while the 13-dot output has a literal local visual referent.
+
+## Layout state packet
+
+The rest of the source layout gives a compact state register.
+
+| Source feature | Exact value | DH/H reading |
+| --- | ---: | --- |
+| p50 address selecting p33 | 19 | `B` |
+| first red title word lengths | 2, 8 | `[K,A]` |
+| H of first title word lengths | 23, 10 | `[p,A+K]` |
+| first title initial D | 23 | `p` |
+| first red title rune count | 10 | `A+K` |
+| first titled unit physical lines | 5 | `g` |
+| first titled unit printed words | 23 | `p` |
+| first black-body printed words | 21 | `p-K = B+K` |
+| first black-body runes | 81 | `e^q = 3^4` |
+| horizontal divider dots | 3 | `e` |
+| second red title initial NG | 21 | `B+K = p-K` |
+| second red title word lengths | 3, 5 | `[e,g]` |
+| H of second title word lengths | 27, 8 | `[-K,A]` |
+| second red title rune count | 8 | `A` |
+| second titled unit physical lines | 6 | `a` |
+| second black-body printed words | 28 | `p+g`, also `ord(H)` |
+| second black-body runes | 115 | `p*g` |
+
+The three-dot divider is already independently established as a reused p33/p39 typographic divider, so its equality with `e=3` is supporting context rather than a standalone cipher instruction.
+
+## Matched source controls
+
+The fixed annotation/transcription census gives **eight** red spans that are exactly two printed words long.
+
+Only p33 local0 has word lengths `[2,8]=[K,A]`. It is also the only exact two-word red span for which
+
+```text
+(first word length - second word length) mod29
+    = first red rune GP index
+```
+
+because `2-8 ≡ 23 mod29`, matching D at the title start.
+
+The pair `[3,5]=[e,g]` is less selective: it occurs at p33 local91 and p40 local0. It is retained because p33 is independently selected and because its H image, body counts and marker relations close the same state packet.
+
+A separate control prevents overclaiming the first-unit word count. Across red-started units, p33's first unit has first rune23 and 23 words, while solved p56 provides another self-count example with first rune25 and 25 words. The p33 word-count identity therefore contributes to the packet and is not individually unique.
+
+## Page number and total page size add two p50 state packets
+
+A separate cross-object check uses only p33's already selected physical address and its complete original rune count.
+
+Physical page number33 addresses
+
+```text
+p50[33] = 1s
+native base60 = 114
+114 = 3*29 + 27
+=> [3,27] = [e,-K].
+```
+
+Among physical page addresses p0–p57 excluding p50, p33 is the only page whose native p50 pair is ordered `[e,-K]`. The same token occurs only once elsewhere in the full table, at address76. That second address is independently the complete p55 rune count and the literal 32×8 outer-circumference size, giving a separate p55↔p33 key bridge documented in `lp2-p55-count76-p33-readout-key.md`.
+
+P33 itself contains exactly **214 original runes**. Its complete page-size address gives
+
+```text
+p50[214] = 4B
+native base60 = 251
+251 = 8*29 + 19
+=> [8,19] = [A,B].
+```
+
+Among every unknown page whose complete rune count is below256, p33 alone has a page-total address yielding ordered `[A,B]`. Byte251 occurs at only two p50 addresses,157 and214; neither physical page address0–57 carries it.
+
+This adds two compact, source-visible state packets to the already validated layout register:
+
+```text
+page number 33 -> [e,-K]
+page size 214  -> [A,B].
+```
+
+They were recognized after the DH state and p33 destination were known, so they are mechanism compression rather than blind predictions. They do not authorize a new body cipher by themselves.
+
+## Cuneiform sexagesimal word-map loop: exact marker return, source-selector negative
+
+The original p33 scan (resources/liber-primus/50.jpg) shows two left-to-right cuneiform-style sexagesimal groups in each row: **(17,13)** and **(55,1)**. Under the ordinary two-place integer scale these are **17×60+13=1033** and **55×60+1=3301**. The same motif is printed at the bottom of p33 and repeated as an upper header on p34–p39; the six upper headers are pixel-identical, so the inscription is a section-level feature rather than a unique p33 marginal note. The p33 copy is the differently placed section-opening instance. The historical comparator in [Issue #344](issue344-cuneiform-historical-template-gate.md) establishes the unit/tens construction and left-to-right place order, but also records the historical ambiguity of absolute scale and radix-point placement.
+
+The proposed page:word grammar consumes the **two groups** as coordinates, not as a fully specified absolute Babylonian magnitude:
+
+- 1033 = 17;13 → zero-based LP2 page 17, one-based printed word 13.
+- 3301 = 55;1 → zero-based LP2 page 55, one-based printed word 1.
+
+The 2014 Stage11 index lists LP2 images 0–57, which supports the zero-based page component. The 2016 signed message (“Its words are the map … their numbers are the direction”) motivates word navigation, but does not specify the page:word grammar or one-based word origin. The original exact extraction remains as recorded in [the page:word source gate](lp2-cuneiform-pageword-pairs-source-gate.md):
+
+| Address | Original archive image | Extracted word | GP rune indices |
+|---|---|---|---|
+| p17:13 | 34.jpg | FREAMEAA | [0,4,28,19,28,24] |
+| p55:1 | 72.jpg | NG | [21] |
+
+The p17 parser joins slash-marked physical line wraps before splitting words; p17 word13 is FREAMEAA, not the line-fragment NGDJ. Forward big-endian BASE29 positional encoding gives **3,528,831** and **21**. Modulo the 256 cells of the p50 table selects zero-based row-major addresses **127** and **21**, printed tokens **3D** and **2H**. Under the conventional 60-symbol token alphabet these decode to **193** and **137**, whose residues modulo29 are **19=M** and **21=NG**. Under the source-missing-f 59-symbol alternative they decode to **190** and **135**, whose residues are **16=T** and **19=M**. The output **[M,NG]** therefore exactly matches the ordered oversized red markers on p33.
+
+### Frozen convention family and original-image controls
+
+The updated SFT tests **256** configurations, adding reversed sexagesimal digit order to the previous 128-case family. Its eight binary dimensions are: sexagesimal digit order; base60/base59 token radix; zero/one page origin; zero/one word origin; zero/one table origin; row/column serialization; positional/sum word encoding; and forward/reversed rune order. Exactly **one** configuration returns **[M,NG]**: standard left-to-right sexagesimal order, base60, zero-based page, one-based word, zero-based table, row-major, forward positional BASE29. The uniqueness is conditional on this finite family; it is not a probability or a blinded prediction.
+
+An original-image census of oversized red runes on unsolved LP2 p0–p55 finds **13** markers: p0 S; p3 L/P; p6 A; p8 X; p15 F; p23 U; p27 M; p33 M/NG; p39 IA; p40 F; p54 A. Only p3 and p33 have ordered two-marker groups; p33 is the sole **M→NG** pair. The first p33 M is a separate decorative marker outside the runic transcription; NG is the first rune of the lower red span. This is a visual census of large red runes, not a census of every black illustration or punctuation mark.
+
+The source-native numerical controls are mixed:
+
+- The three 2014 magic-square centers 809/331/91 map under the same fixed consumer to **E/EA/G**, not M/NG. The two distinct square sums 1033/3301, in cuneiform order, return M/NG. The signed 2013 BASE29 example 3301→3QO and the 2014 square sums make these values historically motivated; neither source specifies the p50 token decoder or modulo29 projection.
+- In the 256 p50 cells, M occurs in **10** base60 residues and NG in **6**; neither output symbol is unique to the selected cell. Under base59 the counts are 9 and14.
+- Across all **2,896** complete printed words on p0–p55, the fixed forward/base60 consumer outputs M for **108** words and NG for **74**. Thus **7,992** ordered distinct word pairs out of **8,383,920** map to M→NG (0.0953%, about 1 in 1,049 under uniform pair selection). This is a descriptive reference-class count, not a p-value: the coordinate pair is source-selected, the operation chain is exploratory, and the marker target was visible during hypothesis formation.
+
+The repeated p34–p39 header is a useful held-out **layout** control: p34 carries the same numeral stamp but does not carry the p33 M/NG oversized pair. Thus the loop does not predict a per-page M/NG marker wherever the stamp is repeated. A global reference to the unique p33 opener remains possible, but the page-selection step is not stated in a Cicada instruction.
+
+### Source-first decision
+
+The 2016 signed wording supports looking for a word map, and the Stage11 index supports zero-based LP2 page numbers. The 2013 signed BASE29 example supports positional BASE29 numerals. However, no first-party source explicitly selects the one-based word ordinal, the modulo-256 p50 lookup, the p50 base60 token alphabet, or the final modulo29 projection. The repository's [authenticated-base60 audit](lp2-cicada-authenticated-base60-alphabet-audit.md) still finds no Cicada-authenticated p50 digit alphabet or consumer; the missing-f base59 parse remains a live rival. The exact marker return is a substantive retrospective correspondence, but it does not meet the source-first gate for a reversible body operation.
+
+No p33 body receiver was opened: the direct M/NG additive and multiplicative body-key families are already negative below, and no exact source instruction selects a different typed operation. Consequently there is no honest p34 plaintext/holdout prediction to report. The result is a **provisional navigation/state-marker correspondence, not a cipher solution**. Preserve the pair and the reproducible route; do not promote it to an authenticated key or reopen the already-negative direct power/H-cycle consumers.
+
+Reproducer: sims/lp2_cuneiform_sexagesimal_wordmap_p50_state_sft.cjs.
+
+
+## Exact page-key power transfer to the two black bodies is negative
+
+The new page-address packet `[e,-K]=[3,27]` selects one especially cheap body consumer because p33 has exactly two black bodies between the red title groups:
+
+```text
+upper body offsets 10..90   = 81 runes
+lower body offsets 99..213 = 115 runes.
+```
+
+Freeze the source order and apply the already authenticated READ OUT power operation once:
+
+```text
+upper: x^e   = x^3  mod29
+lower: x^-K  = x^27 mod29.
+```
+
+No phase, alternate exponent, sign, reversal or repartition is searched.
+
+Windows Node22 CI run 44463108049 passes the reproducer. The source-native trigram scores are
+
+```text
+raw p33 bodies      -3.4439765254
+exact power transfer -3.4218617289
+solved p57 control  -2.4681447142.
+```
+
+The exact transfer remains far from the solved-language control and does not produce coherent plaintext. This direct two-body consumer is therefore closed. The p33 page-number and page-size state packets remain valid source structure, while they should not trigger a tuned power-cipher family on the bodies.
+
+Reproducer: `sims/lp2_p33_pagekey_power_transfer_sft.cjs`.
+CI: `https://github.com/FlareZ123/liber-primus/actions/runs/44463108049`.
+
+## Bounded 28-word H-cycle consumer is negative
+
+The lower p33 black body has exactly **28 printed words**, while the frozen H matrix has exact order **28** in GF(29). This motivates one finite value-changing family without adding a new key:
+
+1. keep printed word order fixed;
+2. apply `H^(phase+i)` outside-in to word `i`, preserving odd centers;
+3. exhaust all **28 starting phases** and both exponent directions;
+4. score only after all 56 outputs are produced.
+
+The best of all 56 schedules is still nonlinguistic:
+
+```text
+phase=2, direction=+1
+IoC=0.033867276887871854
+source-native trigram=-3.361532815080459
+solved-p57 trigram=-2.468144714244746
+```
+
+Its full lower-body readout is:
+
+```text
+IABGCRDSOTHNEYRIUAPCEABEEPEAEOPEAXXSEOSWEOULDLNGPYTLEBPEOOEWEOLXIWOEWFUXCBTELEHRNEAAEXPOEOEOFIIEAEAAEIAEWNGEANMHOEAEDASPWCCXRIAUBFTMRFAAEDAOEGB
+```
+
+Applying the same winning schedule to the 81-rune upper body is also nonlinguistic, with IoC `0.030864197530864196` and trigram `-3.3892000469064074`.
+
+**Decision:** retire this exact word-indexed H-power cycle. The negative does not weaken the source-layout state register because the register was derived independently of the language score.
+
+## Research consequence
+
+The productive interpretation is that p33 acts as a source-selected **state/checkpoint page** in the emerging p50/DH route. The cuneiform sexagesimal word-map loop adds an independent upstream selector for the visible M/NG marker pair, while remaining a retrospective navigation candidate rather than a body decryption. Director #1782 has now charged the comparable red-span/H-orientation family: p33 is the sole full 15/15 packet under the forward-H orientation, with the nearest orientation at 14/15. It confirms the same state through independent source channels: p50 address, visible marker identities, title word lengths, H relations, line counts, word counts and rune counts.
+
+The missing edge remains a reversible consumer for the 81- and 115-rune bodies. Direct p32-core additive transfer, Hill9, red-IV CBC-Hill, pointer-cycle additive transfer, and this 28-word H-power cycle are already negative. Further phase/key expansion on those families would retread rejected ground.
+
+A later solved-p56 transfer independently serializes the two p33 title packets as **THEIR RISE**. The authenticated 2016 clue places THEIR at positions 19 and25: 19 is the existing B entry state, p33's visible H chain emits 25, and the rise 6 equals a and the lower section's six lines. This strengthens the human-facing checkpoint interpretation. A prospectively frozen attempt to reuse address25 through the same p50 base60 page-pointer consumer failed (`p50[25]=3I=198`), so that continuation is closed. See `lp2-p33-layout-family-their-rise.md`.
+
+A successor should use this state packet only where a new authored receiver is independently selected. It should avoid arbitrary repeating keys, H phase expansion, or further address25 page-pointer variants.
+
+## Reproduction
+
+- SFT: `sims/lp2_p33_dh_layout_state_register_sft.cjs`
+- Windows workflow: `.github/workflows/agent45-p33-dh-layout-state-register.yml`
+- Windows Node22 PASS: https://github.com/FlareZ123/liber-primus/actions/runs/44452090194
+- Source transcription: `resources/liber-primus/lp2-transcription.txt`
+- Ink spans and 13-dot marks: `resources/liber-primus/lp2-ink-annotations.json`
+- Canonical GP values: `resources/liber-primus/lp2-corpus.json`
+- p50 table: `resources/liber-primus/base60-grid.json`

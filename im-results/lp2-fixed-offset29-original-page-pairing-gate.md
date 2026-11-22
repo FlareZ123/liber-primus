@@ -1,0 +1,65 @@
+# Original LP2 58-image release: fixed offset-29 two-cycle gate
+
+**15 November 2026, Agent18, with Agent10's source-boundary-corrected midpoint check. Decision: no supported two-cycle cipher selector or plaintext.** A fixed pairing of second-release physical pages `p ↔ p+29` is a natural hypothesis because the 58 original images equal twice the 29-symbol Gematria Primus alphabet. This test does not search offsets or fit keys. The actually printed illustrations and ten preregistered page-level measures do not supply an independent transformation rule or reproducible LP2 decipherment.
+
+## Original-input contract and source geometry
+
+- The original second release comprises **58 physically ordered images** `17.jpg`–`74.jpg`, indexed here p0–p57. No original printed page number or first-party instruction prescribes pairing page p with p+29. The last two are already known: p56 `AN END` (85 runes) and p57 `PARABLE` (95 runes).
+- **Runes:** [LP2 corpus](../resources/liber-primus/lp2-corpus.json), exactly 58 pages with **12,956 encrypted GP29 runes on physical p0–55** and 180 solved controls. The original numeric p50 has zero runes.
+- **Words:** [source rune transcription](../resources/lp2-transcription.txt), 57 rune-bearing page records because numeric p50 is absent. A source-native parser counts a word only when terminated by `-.$&§` or at text end; line and page breaks do not terminate words. It confirms **2,896 unknown whole words**, plus 45 solved-page words. Per-page values below count words by the physical page of their *initial rune*, preserving page carries.
+- **Printed ink:** [source annotation register](../resources/liber-primus/lp2-ink-annotations.json) for red-rune spans and large punctuation; original JPEG contact-sheet inspection separately compares page artwork.
+- Reproducer: [fixed source-only CommonJS SFT](../sims/lp2_fixed_pageoffset29_pairing_sft.cjs), which checks those input totals and evaluates exactly the 29 pairings `p=0..28 ↔ p+29`, no other offset.
+
+The left pages p0–2 contain the repeated black triple-bar-cross motifs, while right p29–31 contain mostly plain text; p3–7's mirrored scrollwork is paired with p32's tree and p33–36's red-cuneiform chapter. Later insect/body/flower imagery does not preserve the offset-29 association, and the paired solved pages p56 and p57 have distinct layout and text lengths from p27 and p28. Original source illustrations therefore provide no common orientation, starting point, or readout.
+
+## Frozen tests and controls
+
+For every fixed pair the SFT evaluates runic/word-count association, exact count equalities, positionwise identity of the first and last twelve GP rune indices, and co-presence of red text, 10/13/23-dot punctuation, and cross-page word carries. Nulls arise from **10,000 deterministic shuffles of only the right 29-page half**, preserving the full original distribution of page lengths, solved pages, red and punctuation identities. The generator is xorshift32, initial state `0x6d2b79f5`. Each row's empirical tail count is descriptive, since this set of ten statistics was examined jointly; it is not a formal independent-trials p-value.
+
+| Frozen statistic | Fixed p↔p+29 | Shuffled mean | Shuffled SD | Shuffles ≥ fixed (of 10,000) |
+| --- | ---: | ---: | ---: | ---: |
+| Rune-count Pearson r | **−0.05218** | −0.00403 | 0.18784 | 5,712 |
+| Mean absolute rune-count difference | 67.586 | 66.222 | 6.460 | 4,393 |
+| Exact equal rune-count pairs | 2 | 0.734 | 0.818 | 1,608 |
+| Word-start count Pearson r | 0.11040 | −0.00362 | 0.18805 | 2,659 |
+| Mean absolute word-start difference | 15.138 | 16.314 | 1.542 | 7,863 |
+| Same first-12 rune positions, all pairs | 19 | 12.757 | 3.495 | **569** |
+| Same last-12 rune positions, all pairs | 11 | 12.724 | 3.441 | 7,329 |
+| Pairs both with red text | 1 | 1.930 | 1.056 | 9,251 |
+| Pairs both with large punctuation | 4 | 4.152 | 1.294 | 6,945 |
+| Pairs both ending in an unfinished word | 10 | 9.915 | 1.338 | 6,252 |
+
+Only two pairs happen to have equal source rune count: **p13/p42 = 272/272** and **p19/p48 = 271/271**, but their independently parsed word-start counts are **61/57** and **65/66**, and their actual word-length profiles are different. A superficial regex that treats punctuation and line wraps as interchangeable can misleadingly equate unrelated word fragments; source-native whole-word starts for p5/p34 are 58 versus 60, so that pair supplies no exact word-count control.
+
+The largest positive original-versus-shuffle difference is the first-twelve rune match total **19**, but at least **569** of 10,000 shuffled pairings equal or exceed it, and the opposite end goes in the other direction. Among ten fixed comparisons, that isolated, incomplete-position overlap does not select a cipher or predict plaintext.
+
+## Solved-page boundary check
+
+The only solved controls are fixed to the second half:
+
+| Source-fixed pair | Rune counts | First-12 equal | Last-12 equal |
+| --- | --- | ---: | ---: |
+| p27 ↔ p56 | 234 / 85 | 0 | 2 |
+| p28 ↔ p57 | 269 / 95 | 2 | 0 |
+
+These pairs share neither complete lengths nor a published operation allowing the known p56 or p57 cleartext to decode their respective unsolved partners. No held-out word, alphabet relation or reversible key conversion can be inferred from their source-visible features.
+
+## Corrected midpoint hypothesis: FOLD at p14 and page-edge carry fragments on p43
+
+**Source-boundary correction (Agent10, 15 November 2026).** The 2016 signed-message GP prime-sum address construction conditionally maps `THE=72=14+58×1` to original physical p14 word1, the literal **FOLD**. The formula itself is not an authenticated decoding instruction. Page14 is midpoint of the first 29-page half of the 58-image source, and p43 is midpoint of the second half. The physical rune counts **137** and **274=2×137** are exact: among 841 cross-half pairings, p14/p43 and p14/p47 are the only exact doubling pairs. Nothing on the original scan selects a two-lane use of p43, and p14's large mayfly/tree image plausibly reduces its text capacity.
+
+The first individual physical-page rune fragment on p14 reads **TJ**. The last physical-page fragment on p43 reads **JT**, reversed TJ. Across all 841 combinations of page-opening and page-ending *physical fragments*, this is the only exact reverse-string match. **Crucial correction:** the source transcription's page separators do not terminate words, and 32 original unknown words extend across boundaries. Original **p42 ends with an unterminated word; p43 begins with HJ as its continuation**. Original **p43 ends in JT without a word-ending mark; p44 begins with its continuation**. Therefore **JT is not a complete printed word**, and **HJ is not a complete printed word** either. An earlier preliminary reading that described those two fragments as whole words overstated the signal. Only physical-page-edge strings have been compared; no complete-source-word matched bookend is established.
+
+The p43 starting fragment HJ uses GP indices 8,11, yielding positional base29 value **243** (and prime sum60). This was retrospectively linked to the signed-2016 HELLO/LIBER prime sum243, but it is **not an entire printed GP word** and has no independently chosen BASE29/number opcode or receiver. It is not authentic extracted key material.
+
+A stronger **key-independent source-layout exclusion** tests every possible fixed GP29 alphabet for the proposed two halves. If p14's 137-rune tape were a source for either 137-rune half of p43 under any single unknown bijection of 29 symbols, the two tapes would have identical equality patterns at all **9,316 unordered position pairs**, regardless of the secret 29! alphabet. They do not: **604** equality/inequality pattern disagreements for p14 versus the first p43 half, **622** for p14 versus the backward-folded second half, and **634** between the two p43 halves. A planted invertible GP29 affine alphabet preserves all 9,316 patterns (zero disagreements). Consequently, no fixed secret per-lane monoalphabetic GP29 substitution links the three source-aligned tapes under this specific physical fold; an evolving cipher, changed index map, or altered plaintext register remains possible. This exclusion consumes no fitted key and recovers no plaintext.
+
+One direct Shamir-inspired three-lane test from the earlier provisional fold idea was fixed and rejected: use p14's137 source runes as A, p43's first137 as B, second137 in reverse as C, reconstruct `P=(3A−3B+C) mod29`. Exact original output GP IoC is **0.0342421640**, lower than clear solved p57's **0.0627099664**; it is nonlinguistic. An independent, 95-rune solved-p57 polynomial-share plant recovers **95/95**, establishing only that the tested inverse executes correctly. No additional orientations, key fits or decoder families were searched.
+
+**Decision:** the sole genuinely unusual exact measurement is the 137↔274 length ratio at one fixed midpoint pairing, with a much weaker two-rune *page-fragment* reversal. Neither provides a source-authored reversible operation or predicts plaintext. Retain a bounded original-layout observation; do not elevate it to an intended decipherment or open dependent cipher sweeps without a new author-selected receiver and operation. The [source-boundary-aware SFT](../sims/lp2_fixed_pageoffset29_pairing_sft.cjs) asserts the page carries, complete fragment matches, finite count comparisons, and previously rejected direct three-lane control.
+
+## Disposition
+
+The equality **58=2×29** supplies only a possible cycle length. The native source evidence does not select pairing direction, original rune/key alignment, an invertible map, or any positive solved-page transfer. Reject the fixed simple offset-29 structural pairing as a chosen decoding route; retain the full quantitative output for future comparisons. This is **not** a proof against all conceivable multi-page cryptosystems, but no further shifts or decryption searches follow without an independent author cue. The previously closed mod58 word-address hypothesis is untouched.
+
+**Reproduction:** run `sims/lp2_fixed_pageoffset29_pairing_sft.cjs` under Node.js 22 from a local repository root. It performs all assertions and prints original-vs-control statistics with no writes and no environment-dependent inputs.

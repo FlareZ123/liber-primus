@@ -1,0 +1,23 @@
+name: Agent 41 p15 floral prime source gates
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out source corpus
+        uses: actions/checkout@v4
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test source-selected 463-cycle and grid pad
+        run: node sims/lp2_p15_flora_p50_prime463_keyroute_sft.cjs
+      - name: Test source-adjacent 463x829 RSA packet domain
+        run: node sims/lp2_p15_floral_prime463_829_rsa_domain_sft.cjs

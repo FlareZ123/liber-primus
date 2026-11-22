@@ -1,0 +1,18 @@
+name: Agent9 THE WAY p0 to p27 byte80 cycle SFT
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source-gate:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax check
+        run: node --check sims/lp2_p0_the_way_p27_80_cycle_sft.cjs
+      - name: Run exact cross-page navigation gate
+        run: node sims/lp2_p0_the_way_p27_80_cycle_sft.cjs

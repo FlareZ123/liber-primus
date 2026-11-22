@@ -1,0 +1,16 @@
+name: Agent13 Atbash + strict p56 prime-F original gate
+on:
+  workflow_dispatch:
+jobs:
+  source-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out original source corpus
+        uses: actions/checkout@v4
+      - name: Install Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run all 9 original chapters and authentic solved controls
+        run: node sims/lp2_atbash_primephi_fskip_5000starts_sft.cjs

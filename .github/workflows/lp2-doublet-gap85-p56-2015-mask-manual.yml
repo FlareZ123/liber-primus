@@ -1,0 +1,15 @@
+name: LP2 doublet 85-gap and 2015 table-mask original source
+
+on:
+  workflow_dispatch:
+
+jobs:
+  source-regression:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original 85-gap and 2015 table-clock controls
+        run: node sims/lp2_doublet_gap85_p56_2015_mask_sft.cjs

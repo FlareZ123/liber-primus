@@ -1,0 +1,132 @@
+# Four original apostrophe marks and conditional 29-based quote accounting
+
+**Status (corrected 15 November 2026):** four **real, source-visible, word-internal raised 12×40-pixel strokes** occur at the four fixed rune offsets 1110, 5138, 8515 and 10089 in the original LP2 JPEGs. The earlier source-negative report confused the image filenames, then counted only baseline dots, missing the high strokes. These are genuine punctuation anchors; interpreting them as additional whole-word breaks remains a separate, unproven operation. No unknown plaintext recovered. The quote-span arithmetic remains independently reproducible.
+
+## Correct source ink, printed-word contract, and conditional four-gap split
+
+Using the 55 rune-bearing LP2 page segments, preserving words across line wraps (`/`) and page wraps (`%`), and treating the ordinary punctuation marks as lexical separators gives:
+
+- 12,956 runes
+- 2,896 canonical words
+- 32 words crossing printed page boundaries
+- 83 one-rune words, covering 28 of the 29 GP symbols
+- 86 adjacent equal-rune pairs in the flattened rune stream
+
+The derived Round-43 internal-mark coordinates are in fact **genuine original image punctuation**, confirmed directly at rune offsets **1110, 5138, 8515, 10089**. LP2 physical page N maps to archive scan N+17. The correct pp4, 21, 35 and 41 scans are **21, 38, 52 and 58.jpg**, each containing one distinctive **12×40-pixel raised vertical stroke** at the exact claimed internal gap; compare immediately neighboring conventional separator dots only **9×9 or 9×10 pixels**. The source pixel coordinates are respectively **(1400,2014), (1258,884), (1195,1261), (1304,2390)** in the original 2400×3600 JPEGs. The earlier audit checked the wrong image basenames, and the subsequent dot-only count found all expected square separators but missed these visibly different tall glyphs. The 2017 rune transcription omits the strokes because it indexes ordinary GP symbols and punctuation only. The [source ROI geometry SFT](../sims/lp2_apostrophe_original_pixel_geometry_sft.py) provides executable exact-pixel tests. A raised stroke is compatible with an apostrophe (and the contemporary independent gap audit calls it one), but alone does not prove a specific plaintext contraction, possessive or word-break function.
+
+**Positive original-source semantic control:** The exact same 12×40-pixel glyph appears in **solved first-release LP1 p14, original scan 14.jpg at (1051,2122)**, immediately before the last ciphertext rune B in \`I-RWN'B\`. In the independently known plaintext, this clause is **"I DON'T HAVE A VOICE IN MY HEAD"**. The source unmarked rune transcription has \`ᛁ-ᚱᚹᚾᛒ\`; the scan has the original apostrophe between N and B. Its same-line ordinary word dot at (1114,2151) is 10×9 pixels. Thus the author demonstrably printed an identical raised tall stroke for an English contraction **inside encrypted rune words in an already-solved release**. This supports reading the LP2 tall marks as original apostrophes, while leaving all four unknown LP2 plaintext words unknown. [Independent original-image SFT](../sims/lp2_apostrophe_original_pixel_geometry_sft.py).
+
+The **source-visible** raised marks fall inside these canonical printed words:
+
+| Physical page | Canonical word | Actual internal apostrophe placement (hypothetical word split) |
+|---:|---|---|
+| 4 | `ᛗᛉᛁᚹ` | `ᛗᛉᛁ` + `ᚹ` |
+| 21 | `ᚫᚩᚣ` | `ᚫᚩ` + `ᚣ` |
+| 35 | `ᛈᛖᛏ` | `ᛈᛖ` + `ᛏ` |
+| 41 | `ᛉᛚᛄᚳ` | `ᛉᛚᛄ` + `ᚳ` |
+
+The split remains computationally reversible and useful for reproducing prior experiments. It has no source-selected boundary semantics.
+
+## Retired synthetic 29-symbol accounting
+
+If every confirmed internal punctuation mark is *additionally* treated as a new full-word separator, the hypothetical expanded corpus contains:
+
+- **2,900 tokens = 100 × 29**
+- **87 singleton tokens = 3 × 29**
+- The 87 singleton tokens collectively contain **all 29 GP symbols**.
+
+Before the fourth split, the first three marks give 2,899 tokens and 86 singletons; both are one short of a multiple of 29. The fourth mark supplies the final increment in both counts. Its suffix, `ᚳ`, is also the only GP symbol absent from the original 83 singleton words. The first three suffixes (`ᚹ`, `ᚣ`, `ᛏ`) already occur among the original singleton symbols.
+
+These 29-multiple totals are post hoc consequences of four **real marked positions** under an **extra, optional segmentation rule**. The visible apostrophes do not tell a reader to treat an English contraction as two full words, so the counts alone cannot authenticate a word boundary, key clock or singleton alphabet. The fourth suffix's symbol occurs as the final rune of 43 of the 1,233 canonical 3- or 4-rune words (3.49%), further limiting the alphabet-completion observation.
+
+## Quote channel
+
+The seven annotated quote intervals have rune lengths:
+
+`18, 19, 12, 58, 68, 160, 70`
+
+Their word counts are:
+
+`4, 5, 2, 14, 13, 34, 14`
+
+Every quote boundary coincides with a complete canonical word. Together the spans contain **405 runes and 86 words**:
+
+- 86 words = 3 × 29 − 1
+- 405 runes = 14 × 29 − 1
+- 86 quoted words equals the 86 adjacent equal-rune pairs in the complete stream.
+- One adjacent equal-rune pair lies inside the quoted intervals; 85 lie outside.
+
+These equalities suggest that quotes may identify a distinct channel, but no one-to-one mapping between quoted words and doublets has been established. The equality of their counts alone is not a mapping.
+
+Two exact length identities invite key hypotheses:
+
+- 12,956 = 32 × 405 − 4 (32 is also the count of cross-page words; 4 is the now-confirmed apostrophe stroke count).
+- 12,956 = 149 × 87 − 7 (87 is the proposed singleton-key length; 7 is the quote-span count).
+
+## Quote GP-prime sums as 133-based page/word addresses (11 November 2026)
+
+The original seventh-onion HTML independently supplies the number **133** in its title. For the seven already annotated whole-word quote spans, compute the sum of Gematria Primus **prime weights**, then interpret the quotient upon division by 133 as a zero-based word ordinal and the remainder as a **one-based scan number** in the combined LP1+LP2 75-image archive.
+
+| Span | Runes | Words | Prime sum | Remainder / scan | Quotient / word |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 1 | 18 | 4 | 948 | 17 | 7 |
+| 2 | 19 | 5 | 1105 | 41 | 8 |
+| 3 | 12 | 2 | 738 | 73 | 5 |
+| 4 | 58 | 14 | 2684 | 24 | 20 |
+| 5 | 68 | 13 | 3335 | 10 | 25 |
+| 6 | 160 | 34 | 8042 | 62 | 60 |
+| 7 | 70 | 14 | 3388 | 63 | 25 |
+
+All seven coordinates point to existing words. Radix **133** is the **only** integer in the complete feasible domain 2–738 for which all seven pairs are valid combined-archive scan/word addresses. The first two remainders **17 and 41** independently occur as inverse multipliers modulo 58 in earlier source-number work. The third maps to solved *AN END* scan 73, zero-based word 5 (**WEB**); the fifth maps to first-release scan 10, word 25 (a rune spelling of **BELIEVE**). Their known content could constrain a future test. Literal repeating GP29 subtraction with those selected words does **not** recover readable quote plaintext.
+
+**A more constrained source-selected checksum:** The 2014 original LP2 release had **58 JPEG pages**. Exactly **one** of the seven printed quotation spans contains **58 ciphertext runes**, namely span 4 (14 words, prime sum 2,684). Excluding this independently size-selected span leaves six spans with **347 runes / 72 words** whose complete original GP-prime-weight sum is precisely
+
+`948 + 1105 + 738 + 3335 + 8042 + 3388 = 17,556 = 133 × 132 = 133(133−1).`
+
+The six-span complement is therefore divisible by the source-visible title 133, with quotient 132. Equivalently, the sum of all seven quote primes modulo 133 is **24**, exactly the 58-rune quote's own remainder.
+
+**Ordered three-and-three symmetry:** Because the selected 58-rune passage is quote 4 of 7, it leaves three quotes on each side. Their original GP-prime sums satisfy a still more specific relation using the smallest GP prime **2**:
+
+- **Before** the 58-rune quote: 948 + 1,105 + 738 = **2,791 = 21×133 − 2**.
+- **After** it: 3,335 + 8,042 + 3,388 = **14,765 = 111×133 + 2**.
+
+Thus the two triads' source-ordered sums have complementary ±2 deviations around integer multiples of the independently published title 133. The cancellation produces the six-span 133×132 total. The 58-rune span itself has 2,684 = 20×133+24, where **24** is the GP index of the distinct oversized Ac printed on physical p54 and the grid polynomial's known repeated root; any cryptographic connection is **unproven**. A natural route hypothesis is a source-selected central **58-symbol** page-key or state control, with the surrounding six passages functioning as checks, but no cipher has been identified.
+
+In an independently seeded **2,000,000-set** null preserving each of the six surrounding passages' exact original word and rune counts, **125** sets obey both ordered residues (left −2, right +2 mod133), and only **7** also hit the exact full sum 17,556. These conditional tail rates are **0.0000625** and **0.0000035**, respectively. The latter cannot be interpreted as an unconditional chance of author design: the modulus, marked-span choice, numerical operation and ±2 interpretation were investigated after seeing several original-source relations. An original-plaintext prediction or independently specified inverse is still required.
+
+A second algebraically related presentation uses original solved *PARABLE*'s **19** body words, the **56** encrypted LP2 physical pages (58 total less the two solved final pages), and the independently oversized **Ac**'s GP index **24**: all seven quote GP-prime sums total **20,240 = 56×19²+24 = 56×361+24**. The source title **133=7×19** and page count **56=8×7** make the same identity **20,240 =133×152+24**. This is a possible per-encrypted-page normalization by the solved-page residue 361, but it is **algebraically the same remainder-24 observation**, so it cannot be counted as independent corroboration or a cipher instruction. The executable SFT now loads the original 2014 HTML and the solved PARABLE transcription to derive the source counts.
+
+The arithmetic is potentially useful for discriminating the next original-source cipher hypothesis, but **no such role is confirmed**. The exact original source arithmetic is fixed without choosing an omission from the postcomputed sums.
+
+A **one-million-draw matched original-word/rune-span null** using the six remaining printed length/word-count shapes and seeded xorshift32 initial state 0x13358 yielded **535/1,000,000** draws with exactly 17,556 and **7,544/1,000,000** divisible by 133. The former is a narrow conditional match rate **0.000535**, under this specific preselected source relation. It does **not** account for all other available selections and numerical functions. The same original-input SFT reproduces the counts. Using the 58 original quote runes directly as a **58-period GP29 Vigenère key** for all 12,956 unsolved runes, both signs and whole-book/page clocks, produces no recognizable GP English (IoC 0.03445–0.03453 versus 0.06271 on clear solved p57; scores roughly −7.47 to −7.53 versus −4.42). The complementary one-symbol-per-page Caesar interpretation is likewise language-negative. These finite key tests reject direct use of the 58-rune passage as an ordinary mod29 pad, not its possible role in another explicitly specified architecture.
+
+**Historical and hypothesis-selection caveats:** the publisher's actual 2014 LP2 HTML links were numbered **0.jpg–57.jpg**. The 1–75 combined scan order is a later community archive convention, or one a reader would have to infer by concatenating both releases. The publisher's HTML alone does not specify this. The word index must also be read as zero-based. This is an exact conditional source-number correspondence with no authenticated instruction and no decryption.
+
+A controlled null reselects seven source spans with the **same printed word and rune counts** as the observed spans, independently and with replacement. There are **[232,204,192,128,51,64,80]** eligible spans in the respective matched pools. The exact product of fixed-133 address-valid proportions is **0.00648797**; with 100,000 seeded xorshift32 selections, **634** sets are valid under preselected 133. When permitting the radix to be fitted *after* seeing the seven sums, **24,149** of 100,000 sets are valid under *some* radix. Just one matched set reproduces the independently noticed first two ordered residues (17,41) and has valid addresses for all seven; this sparse tail is exploratory and does not adjust for alternate operations or other selected marks. Reproducer: [source-locked quote address SFT](../sims/lp2_quote133_pageword_source_gate.cjs). **No unknown LP2 plaintext, key, or cipher has been identified.**
+
+## Rejected simple key interpretations
+
+The reproduction script tests the obvious additive mod-29 interpretations:
+
+1. Concatenate the 405 quoted runes as a repeating key and skip one key symbol at each of the four genuine apostrophe locations (a speculative key-clock rule).
+2. Use the 87 singleton tokens as a repeating key and skip one key symbol at each quote-span start or end.
+3. Use one singleton or doublet rune as a Caesar shift for each of the 86 quoted words.
+4. Use first differences of the singleton sequence as the 86 per-word shifts.
+
+Both signs are tested. None produces recognizable English; the English quadgram score does not support plaintext recovery. These tests reject only these simple additive constructions, not every possible use of the marked material.
+
+Reproduce with:
+
+```sh
+node sims/apostrophe_quote_29_accounting.cjs
+```
+
+The script asserts the counts and prints the exact language-model scores and candidate previews. Its scoring uses `resources/control/duko_round27_english_quadgrams.txt` and the corpus's GP transliteration; treat that score as a heuristic, not a proof of non-plaintext.
+
+## Assessment and next decision
+
+The four original punctuation positions are genuine source-selected locations. The **extra word-boundary and key-skip interpretations remain unverified**; the 2,900-token, 87-singleton and 32×405-minus-four identities are reproducible only under the stated artificial split. Preserve the historical negative key tests. A future author-selected cipher should use the four marks as independent holdout constraints and avoid assuming that apostrophes mean separate full tokens.
+
+The quote-only observations in this report remain separate derived hypotheses. In particular, the seven quote spans still total 405 runes and the quote GP-prime arithmetic is unchanged by the tokenization correction. Those numerical relations have not supplied an authentic cipher operation or unknown plaintext.
+
+The canonical printed-word contract stays **2,896 words**, now with four genuine internal raised punctuation strokes. Future word-address proposals can use that canonical count and explicitly test the optional 2,900-token interpretation when an independent cipher clue supports it. Reproduce the ink geometry with [`lp2_apostrophe_original_pixel_geometry_sft.py`](../sims/lp2_apostrophe_original_pixel_geometry_sft.py), the printed-word contract with [`lp2_visual_token_contract_sft.py`](../sims/lp2_visual_token_contract_sft.py), and the conditional four-gap arithmetic with [`apostrophe_quote_29_accounting.cjs`](../sims/apostrophe_quote_29_accounting.cjs).

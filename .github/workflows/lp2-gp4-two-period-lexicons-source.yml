@@ -1,0 +1,21 @@
+name: LP2 GP4 two pre-2014 English lexicons source nulls
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-locked-wordstarts:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install conditional-source experiment dependencies
+        run: python -m pip install numpy==2.1.3 cmudict==1.1.3
+      - name: Test GP3-GP6 original word-starts against two historical lexicons
+        run: python sims/lp2_gp4_two_period_lexicons_source_sft.py

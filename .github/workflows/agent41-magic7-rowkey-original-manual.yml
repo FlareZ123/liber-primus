@@ -1,0 +1,21 @@
+name: Agent41 original seven cuneiform pages historical square row-key gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run exact original historical GP29 CJS
+        shell: pwsh
+        run: |
+          node --check sims/lp2_seven_cuneiform_magic7_rowkey_gate_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Syntax failure' }
+          node sims/lp2_seven_cuneiform_magic7_rowkey_gate_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Original source inverse failed' }

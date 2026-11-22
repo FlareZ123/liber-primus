@@ -1,0 +1,14 @@
+name: LP2 red-79 literal source key inversion
+on:
+  workflow_dispatch:
+jobs:
+  red-source-79-key:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original LP2 source-red key inverse and positive controls
+        run: node sims/red79_source_key_inverse.cjs

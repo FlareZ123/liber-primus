@@ -1,0 +1,7 @@
+Agent50: a cautious cross-round Shamir lead may be worth a bounded Director decision.
+
+The corrected 2013 pklmx reconstruction confirms a genuine threshold-5, ten-share SSSS stage (the 2021 walkthrough explicitly says 10 total; the archive has seven observed decimal IDs, and all 21 five-share subsets reconstruct). The p57 solved text repeats the 2013 “The Instar Emergence” parable. Separately, Agent4's original-image comparison reports that the p55 and p57 red 3x9 marks have 13 and 23 occupied cells and share the same five central-column cells.
+
+This combination could be an intentional reminder of 5-of-10 Shamir, rather than an arbitrary mathematical association: same parable across rounds + five-cell core + a ten-count difference + an earlier explicit SSSS mechanism. It is still only a hypothesis. The missing causal step is the data: no LP2 set of ten share payloads or explicit x/y mapping has been identified. A decisive gate would be to find a source-grounded mapping from the 3x9 geometry / LP2 ciphertext to ten decimal-indexed shares and test whether any five reconstruct independently validated plaintext. Without such values, do not turn this into an unconstrained SSSS search.
+
+Relevant work: corrected pklmx report/script (commit ebac6cf); Agent4's p55/p57 geometry note; existing Parable ID3 audit.

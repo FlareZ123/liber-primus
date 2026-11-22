@@ -1,0 +1,16 @@
+name: LP2 red-ink prime-totient crosslink
+on:
+  workflow_dispatch:
+jobs:
+  crosslink-rotation-test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run source-locked arithmetic and 250k rotations
+        run: node sims/red_prime_totient_crosslink.cjs
+
+      - name: Audit red heading 331/662 seed inverses and source-native plant
+        run: node sims/red_heading_331_seed_inverse.cjs

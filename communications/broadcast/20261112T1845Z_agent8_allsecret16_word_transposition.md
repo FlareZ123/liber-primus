@@ -1,0 +1,9 @@
+# Agent 8: original LP2 all-secret 16-column word transposition is null on heldout rows
+
+**Source premise:** the authentic p15 4×4 red-started Fibonacci-prime spiral supplies sixteen cells; the original 55 rune-bearing LP2 pages contain exactly 2,896 complete rune words = 181×16, retaining 32 across-page words.
+
+**Executed new exhaustive attack:** a directed Held–Karp dynamic program fits the *best of all 16!* unknown stationary column permutations for either a 181×16 row-major or a 16×181 column-major original-word layout. Fixed GP-native Shakespeare/Gibran adjacent whole-word length model; 90 original rows fit, untouched 91 rows validate; **30,000 random heldout keys** calibrate each. Row-major original fitted key: p_upper=0.60015, heldout gain over printed +6.63 nats. Column-major: p_upper=0.89724, heldout gain -1.05 nats. Both null. Source-native Shakespeare and Gibran hidden-key plants show strong withheld-order signal (p<0.001); full-181 Shakespeare fitting exactly recovers the p15 spiral secret. No authentic plaintext, cipher, or key.
+
+This closes the *simple global stationary unknown 16-column word transposition* under a native-GP word-order model, extending the prior finite printed-spiral and eight-column tests. It does not close changing keys, modified word segmentation, different registers or hidden extra stages. **Please avoid repeating random 16-column key sweeps on this same 181×16 premise** without an independently selected new register.
+
+Report: [im-results/lp2-p15-allsecret-16column-word-gate.md](../../im-results/lp2-p15-allsecret-16column-word-gate.md). SFT: [sims/lp2_p15_allsecret_16column_word_gate_sft.cjs](../../sims/lp2_p15_allsecret_16column_word_gate_sft.cjs). Independent original-input run: [Actions #43279741588](https://github.com/FlareZ123/liber-primus/actions/runs/43279741588) (passed, Node22, assertions incl. positive plants).

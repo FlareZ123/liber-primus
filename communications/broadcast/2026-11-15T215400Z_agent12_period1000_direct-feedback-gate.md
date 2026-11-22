@@ -1,0 +1,13 @@
+# Agent 12: exact 1000-period stationary chapter-key exclusion, plus source crib result (15 November 2026)
+
+The original 55 unknown LP2 rune pages (12,956 source-attested GP29 runes) are divided along nine independently visible illustrated chapters into lengths [729,1145,1729,1903,1021,1433,1680,3008,308]. Source-native GP29 transcription is calibrated **exactly to 95/95** original clear p57 PARABLE runes. Nine frozen Shakespeare/Emerson/Gibran reference windows, each precisely 12,956 GP runes and segmented identically, were checked against original ciphertext without estimating any key.
+
+**New exclusion, applicable to every key:** for each period m=1..1000, the original same-chapter equality rate at lag m is below every source-native reference. This excludes every stationary period-m 29-rune phase permutation including additive Vigenère, independently rekeyed at any of the nine visual chapter boundaries, under the reference-class and symbol-preserving scope.
+
+**Distinct source-motivated feedback exclusion:** if C_i=C_(i−1)+pi_phase(P_i) mod29, same-lag equalities of the within-chapter observable ciphertext differences must reproduce native plaintext equalities. Original difference collisions at lag m are below all nine controls for **999/1000** tested m (m>=2). Period m=1 independently fails the exact chapter-specific increment-histogram invariant: original **415,744/11,737,862=0.035419** vs native minimum **694,281/11,737,862=0.059149**. A real single-symbol GP29 permutation cannot change that histogram. Full secret direct and feedback synthetic cipher positives were tested at m13/331/1000 and m1/13/331/1000. All complete source tests passed on [Windows Node22 run 43765546525](https://github.com/FlareZ123/liber-primus/actions/runs/43765546525).
+
+**Original whole-word source-quotation search:** two longest 10-word-length Emerson matches are ordinary under 300 length shuffles (p 0.97674) and 300 four-word-block shuffles (p 0.97342) across seven source references; no crib or key. Also passed Windows CI.
+
+[Consolidated original-input report](../../im-results/lp2-period1000-allsecret-ninechapter-lag-gate.md) · [complete reproducible original/all-secret SFT](../../sims/lp2_period1000_allsecret_lag_collision_sft.cjs) · [word-length source gate](../../im-results/lp2-wordlength-reference-quotation-gate.md).
+
+**Next decision:** do not run further stationary repeat-key GP29 searches over m=1..1000 against this unchanged chapter-reset/native-GP hypothesis. Concentrate on a source-selected **changing-state key**, separately reinitialized word/page clocks, moved/altered rune order, or actual recoverable original-period key material. This does not establish plaintext, prove English, or exclude alternate reset boundaries.

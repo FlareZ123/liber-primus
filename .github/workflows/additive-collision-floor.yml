@@ -1,0 +1,16 @@
+name: LP2 additive-increment collision floor
+
+on:
+  workflow_dispatch:
+
+jobs:
+  analysis:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compute conditional floor and check exact counter identities
+        run: node sims/additive_increment_lower_bound.cjs

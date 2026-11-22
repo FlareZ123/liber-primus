@@ -1,0 +1,51 @@
+name: Agent14 original LP2 source-fixed binary and PRGA gates
+
+on:
+  workflow_dispatch:
+
+jobs:
+  source-input-controls:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify source-cube all-chapter-IV two-time-pad HMM
+        run: |
+          node --check sims/lp2_taxicab1729_cube729_hmm_sft.cjs
+          node sims/lp2_taxicab1729_cube729_hmm_sft.cjs
+      - name: Verify source-cube 729 position-bijection exclusion
+        run: |
+          node --check sims/lp2_taxicab1729_cube729_sharedstate_sft.cjs
+          node sims/lp2_taxicab1729_cube729_sharedstate_sft.cjs
+      - name: Verify the p50 direct-swap RC4 finite original-inverse gate
+        run: |
+          node --check sims/lp2_grid256_swap_schedule_rc4_sft.cjs
+          node sims/lp2_grid256_swap_schedule_rc4_sft.cjs
+      - name: Verify original p23-26 binary channel and native PNG plant
+        run: |
+          node --check sims/lp2_p23_26_bitpacked_file_channel_sft.cjs
+          node sims/lp2_p23_26_bitpacked_file_channel_sft.cjs
+      - name: Verify p40-53 native eight-column prime-pointer feedback
+        run: |
+          node --check sims/lp2_p40_red8_eight_column_prime_pointer_sft.cjs
+          node sims/lp2_p40_red8_eight_column_prime_pointer_sft.cjs
+      - name: Verify p15 circulant16 frozen original inverse and GP source plants
+        run: |
+          node --check sims/lp2_p15_circulant16_source_inverse_sft.cjs
+          node sims/lp2_p15_circulant16_source_inverse_sft.cjs
+      - name: Exhaustively search secret 16-tap inverse under GP one/two-rune words
+        run: |
+          node --check sims/lp2_p15_circulant16_allsecret_singleword_recovery_sft.cjs
+          node sims/lp2_p15_circulant16_allsecret_singleword_recovery_sft.cjs
+
+      - name: Exhaustively search every 16-tap causal FIR inverse on the original chapter
+        run: |
+          node --check sims/lp2_p15_causal_fir16_allsecret_singleword_recovery_sft.cjs
+          node sims/lp2_p15_causal_fir16_allsecret_singleword_recovery_sft.cjs
+      - name: Exhaustive 3^17 secret affine Hill and causal filter inversion
+        run: |
+          node --check sims/lp2_p15_affine17_allsecret_original_word_gate_sft.cjs
+          node sims/lp2_p15_affine17_allsecret_original_word_gate_sft.cjs

@@ -1,0 +1,469 @@
+# 2016 signed-message word-map hypotheses: base-58 addresses and base-29 line:character PRNG
+
+**Status: the base-58 map remains conjectural. Source-attested ING tokenization of MEANING points to the independently decrypted p56 word DEEP, alongside END, but matched controls do not authenticate the address rule. The full 43-word signed-message map yields 91 strict word-interior runes, matched in length to three original 91-symbol layers of the 273-symbol p29/table residual. No stationary affine projection, even with an arbitrary 29-entry secret output codebook, can reproduce the 91 original map symbols: the exact all-secret maximum is 40/91. Both the ordinary x=1,2,3 Shamir test and the source-fixed p39-triad x=[27,5,15] / p57-dot x=23 holdout are nonlinguistic/inconsistent. Separate p32 M7, period-13, signed compass, and base-29 coordinate routes remain negative or provisional. No unknown LP2 plaintext, authenticated key or continuation is recovered.**
+
+## Hypothesis
+
+The 2016 signed message says:
+
+> Its words are the map. Their meaning is the road, and their numbers are the direction.
+
+**OpenPGP source boundary:** the preserved signature is v4, canonical-text signature type 1, RSA/SHA-1, with a 4,094-bit MPI. Its only hashed subpacket is creation time (`2016-01-01T00:01:07Z`); its only unhashed subpacket is issuer key ID `181F01E57A35090F`. No notation, issuer fingerprint, policy URL, or other custom subpacket is present. The raw cleartext has a trailing space after `their`, but canonical-text signatures strip trailing spaces/tabs before hashing; that whitespace is **not authenticated** and must not be used as a key or delimiter. The signed prose is authenticated; the trailing-space pattern is not.
+
+The quoted pronoun “Its” refers to **Liber Primus** in the preceding sentence, “Liber Primus is the way.” The signed message does not explicitly declare its own words to be a pointer list; using the 16-word instruction sentence as a numeric coordinate stream is a testable reading motivated by “their numbers are the direction,” not a fact established by the signature. For each word:
+
+1. Transliterate it with the repository's canonical `corpus.translit` table.
+2. Sum the corresponding Gematria Primus prime weights.
+3. Split the sum in base 58:
+   - page = remainder (the original LP2 image archive is pages 0–57);
+   - word index = quotient (zero-based).
+
+The original 58-page count is source-defined by the 2014 LP2 image set; page 50 remains a page even though it is a table rather than a text page. In the canonical master transcription, those LP2 pages are scans 17–74 (1-based).
+
+This is a candidate interpretation of “words are the map” and “numbers are the direction.” The source does not explicitly state the quotient/remainder order or word-index origin, so those remain assumptions.
+
+## Reproduction
+
+Run from the repository root:
+
+```sh
+node sims/lp2_2016_message_base58_word_map.cjs
+```
+
+The script reads the canonical GP corpus, physical-word transcription, historical master (only for a regression comparison), authenticated signed 2016 payload and printed numeral table:
+
+- `resources/liber-primus/lp2-corpus.json`
+- `resources/lp2-transcription.txt`
+- `resources/transcriptions/liber_primus_master.txt`
+- `resources/historical/cicada2016-4gq25-outguess.asc`
+- `resources/liber-primus/lp2-grid-256.json`
+
+It asserts the 58-page LP2 slice, physical word segmentation, each frozen signed address, the FOLD and independently solved END anchors, a new two-step book-pointer connection, and the p32 source-image checksum.
+
+## Word-by-word addresses
+
+The canonical corpus transliteration gives these prime sums and zero-based page/word addresses:
+
+| 2016 message word | GP prime sum | LP2 page | Word index | Selected LP2 word |
+|---|---:|---:|---:|---|
+| Its | 143 | 27 | 2 | `ᛚᛋᚳᛈ` (LSCP) |
+| words | 179 | 5 | 3 | `ᛁᛝᚩ` (INGO) |
+| are | 175 | 1 | 3 | `ᚳᚱᚦᛡ` (CRTHIA) |
+| the | 72 | 14 | 1 | `ᚠᚩᛚᛞ` (FOLD) |
+| map | 211 | 37 | 3 | `ᛏᛠᛈᛉ` (TEAPX) |
+| their | 114 | 56 | 1 | `ᛟᛋᚱ` (OSR) |
+| meaning (NG-only) | 319 | 29 | 5 | `ᚫᚻᚪ` (AEHA) |
+| is | 84 | 26 | 1 | `ᚩᚾᛠᚩ` (ONEO) |
+| the | 72 | 14 | 1 | `ᚠᚩᛚᛞ` (FOLD) |
+| road | 204 | 30 | 3 | `ᛖᚣᛟᚣ` (EYOY) |
+| and | 215 | 41 | 3 | `ᚩᚾᛏᛚ` (ONTL) |
+| their | 114 | 56 | 1 | `ᛟᛋᚱ` (OSR) |
+| numbers | 295 | 5 | 5 | `ᚷᛞᚹᚪ` (GDWA) |
+| are | 175 | 1 | 3 | `ᚳᚱᚦ` (CRTH) |
+| the | 72 | 14 | 1 | `ᚠᚩᛚᛞ` (FOLD) |
+| direction | 337 | 47 | 5 | `ᛒᛋᛏᚫᚾᚱᛁ` (BSTAENRI) |
+
+All 16 addresses are in bounds. Repeated source words repeat the same destination: “the” maps three times to p14 word 1, and “their” maps twice to p56 word 1.
+
+## Source-motivated anchors and orthographic branching
+
+### “the” → FOLD
+
+`GPsum("the") = 72 = 58 × 1 + 14`, so the address is p14, word index 1. That complete rune word is `ᚠᚩᛚᛞ`, transliterating exactly to **FOLD**.
+
+It is the only occurrence of that complete four-rune word among the 56 unsolved LP2 pages (p0–p55). It is the second word on p14, whose illustration includes a tree and a dragonfly. This is a potentially actionable fold clue, but it is not yet proven plaintext; it could still be a ciphertext coincidence.
+
+### “their” → END
+
+`GPsum("their") = 114 = 58 × 1 + 56`, so the address is p56, word index 1. The selected ciphertext is `ᛟᛋᚱ`.
+
+This is independently checkable against the established p56 totient-prime decryption. The word begins at rune offset 2 (the first word, AN, occupies offsets 0–1). The next three prime values are 5, 7, 11; subtracting their totients 4, 6, 10 from ciphertext GP indices [22, 15, 4] modulo 29 gives [18, 9, 23] = **END**.
+
+Thus the repeated source word “their” maps twice to the verified plaintext word END on the solved p56 page. This is a real positive control, not a proposed decryption of an unsolved page.
+
+### “meaning” → DEEP under source-attested ᛝ = ING; calibrated source gate (#420)
+
+The GP rune ᛝ independently represents ING in solved LP1 THINGS and FOLLOWING and in solved LP2 p57 TUNNELING. Applying that historically attested spelling to authenticated 2016 MEANING gives the GP tokens M–EA–N–ING, prime sum **288 = 58×4+56**, hence page **p56 word4** under the existing *hypothetical* rule page = sum % 58, word = floor(sum/58), both zero-based. The original p56 ciphertext at rune offset12 is ᚳᚦᚷᚹ; its established prime-totient decryption reads **DEEP**. Old I+NG spelling sums **319**, selecting p29 word5. Original signed word THEIR has GP sum **114 = 58×1+56**, selecting solved p56 word1 **END**. Repeated source THEIR (two appearances) supplies **one distinct** target, so the ING-aware variant has two unique solved-word targets END/DEEP. The older variant has only END.
+
+**Source-preserving familywise comparison (Agent20, #420, 11 November 2026):** The entire source contains **43** signed words representing **34 distinct word types**. Preserve their exact spellings, GP tokenization, repetitions and length profile; retain the complete original 58-page printed-word inventory, and count *distinct* solved p56 target indices under both NG-only and ING-aware encodings. At the actual original prime assignment and page origin zero there are two distinct targets (END and DEEP). An exact test of **all 58 page-origin phases**, selecting the better of the two legitimate ING readings at each phase, finds **6/58 = 10.34%** with at least two p56 targets. The matching phases are **0,26,27,30,42,51**. Both single-reading phase histograms are exactly **30 phases with zero, 23 with one, five with two**.
+
+A second wrong-alphabet null independently permutes the **29 authentic GP prime weights** among the 29 rune letters, preserving their value multiset, all 43 signed words, repeated words, both ING choices, and the original p56 word inventory. Of **50,000 deterministic matched shuffles** (seed 0x20164358), **5,050** have at least two distinct solved-p56 destinations after the same NG/ING familywise choice. The add-one upper-tail is **5,051/50,001 ≈ 0.101018**. The source-original 85-rune p56 prime-totient decoder is an exact **85/85 positive control**.
+
+As a wrong-word-origin check, shifting the original selected word indices by minus one yields solved **AN/THE** instead of END/DEEP, and shifting by plus one yields solved **WITHIN/WEB**. Both wrong origins *still* hit two known plaintext words. The precise END/DEEP wording was recognized retrospectively in already-solved p56; an unconditional significance value for that exact selected pair would be misleading. A contemporary solver has no source-authenticated instruction selecting signed 2016 words as map input, modulus58, quotient/remainder order, or the zero-based word origin. The signed wording says that the words of **Liber Primus** are the map, and the independently source-selected 2016 tree dimensions lead to p32.
+
+**Decision:** the ING rune correction and its DEEP address are valid conditional arithmetic. The resulting **two solved-page matches** are common enough under source-matched controls that #304's no-coordinate-selector conclusion remains; #420 does not justify a new decoder. Seek an independently authenticated address instruction or a source-locked, withheld prediction on truly unknown LP2 ciphertext before extending the route. This test finds no unknown plaintext/key.
+
+Reproduce with the [self-contained NG/ING source and null SFT](../sims/lp2_2016_wordmap_ing_deep_anchored_null_sft.cjs), which also verifies the established p56 85-rune decryption, or the [existing full 43-word map](../sims/lp2_2016_message_base58_word_map.cjs).
+
+## Complete signed-message prediction: the word “lies” selects the rune-free table
+
+The base-58 rule above was first tested on the conspicuous 16-word sentence and its FOLD/END anchors. **Freeze the same modulus, quotient/remainder convention, GP tokenization, and zero-based indexing**, then apply it without fitting to every word in the *entire authenticated 2016 clear-signed message*, from `Hello.` through `Verify OpenPGP 7A35090F.`. A word-boundary regex finds **43 natural language words**; naively counting alphabetic subsequences finds 45 because the hexadecimal fingerprint contributes spurious `A` and `F` fragments. The corrected count is 43.
+
+**42 of 43 signed-message words address existing original rune words. Exactly one fails the rune-word contract: `lies`.** This in-bounds count is mechanically expected: every rune-bearing LP2 page has at least 17 words, whereas the mapped word indices are only 1–7. Under 19 of the 58 fixed page-phase shifts, exactly one address likewise targets a rune-free page (the matched-null check documented in [Issue #18](https://github.com/FlareZ123/liber-primus/issues/18)). The count is **not evidence** that the address rule was intended. Its canonical spelling `L-I-E-S` has GP prime weights `73+31+67+53=224`, and `224 = 58×3 + 50`: physical LP2 **page50, zero-based word index3**. This is the **only rune-free numerical page** among the 58 original LP2 page slots. The source sentence containing that word reads `The path lies empty; epiphany seeks the devoted.` This is an independently predicted and semantically suggestive page selection under the already-frozen rule, with an obvious alternative interpretation: the word's address could target a *table cell* in place of an absent rune word. Original p50 does have 104 two-digit cells; its fourth token is **`3D` = 193 only under the conventional base-60 grid codec**; under the source-compatible base-59 `f`-skip fork, the same printed token decodes to **190**. Reading a table cell at that position is a **new candidate semantic extension**, not part of the originally specified rune-word rule.
+
+Two further predictions arise without changing the addressing convention. The signed word `found` has prime sum `130 = 58×2+14`, pointing to **physical p14 word2**, immediately after the unique p14 word1 `FOLD` selected repeatedly by `the`. The word `Beware` sums to `322 = 58×5+32`, selecting **p32 page-local segment index5**, the same 11×11 tree page that independently matches the dimensions of the signed 2016 image. Neither of these selected unknown ciphertext words is established plaintext. Most of the other 42 selected rune words remain opaque. Their values must be read from the physical word boundaries, not from line-wrapped rune fragments.
+
+
+## PARABLE-stripped full-map interiors: a 91-symbol 7×13 plane and negative p29 gates
+
+**Status: new source-linked structure; no decoder recovered.** Freeze the complete 43-word base-58 map above. It yields 42 rune-bearing LP2 words; the remaining word, `lies`, selects p50 cell 3 (`3D` under the conventional base-60 codec). Apply p57's explicit “shed our own circumferences” instruction to each of the 42 selected rune words: remove its first and last rune, then concatenate the interiors in signed-message order. The result is exactly **91 GP symbols**, or (7×13):
+
+```text
+IARFEIOLOEEAEOBOLXIARFEIRUNEAOLSCNGRTHOLEAPSHNEAOLYOENTSDWRTHOLSTAENRDNGNTMIOTHETHEOGGFNIACTHRTTHHBEGIAPEAUAEMPSA
+```
+
+The stream's GP-index IoC is **0.037851**; it is not plaintext. The construction is reproducible from the existing [base-58 map SFT](../sims/lp2_2016_message_base58_word_map.cjs) and the physical word segmentation already used above.
+
+### Relation to the p29 G-adic residual
+
+The existing [p29 signed-2013 DH2/G-adic study](p29-signed2013-dh2-gadic-congruence.md) defines a 273-coefficient Euclidean quotient
+[
+R=\operatorname{quo}\left((P_{29}-S_{50}-2G)/G^2\right),
+]
+where (P_{29}) is the p29 GP-index polynomial, (S_{50}) is the 256-byte p50 table reduced modulo 29, and (G=[15,5,27]) is the p39 red-triad polynomial. The division has **zero remainder [0,0,0,0]**: the source relation `P29 = S50 + 2G + G²R` is an **exact GF(29) identity**, as established independently in [the 2013 DH2/G-adic report](p29-signed2013-dh2-gadic-congruence.md). This exact divisibility supplies no decryption by itself. Its quotient length is **273 = 3×91 = 3×7×13**. This makes the 91-symbol map interior a candidate 7×13 plane for three residual layers, but the dimensional match alone does not specify an operation.
+
+### Fixed, low-parameter tests
+
+The 273 coefficients were split in source order into three contiguous 91-symbol layers. Repeating the 91-symbol map interior as a mod-29 additive/Beaufort key gives no language-like output:
+
+| R layer | Source IoC | Subtract key | Add key | Beaufort |
+|---:|---:|---:|---:|---:|
+| 0 | 0.03077 | 0.03590 | 0.03516 | 0.03590 |
+| 1 | 0.04249 | 0.03370 | 0.03614 | 0.03370 |
+| 2 | 0.03028 | 0.03101 | 0.03565 | 0.03101 |
+
+A simple per-layer transposition is also excluded: the multiset intersections between the 91-symbol key and the three R layers are **63/91, 59/91, and 59/91**, respectively.
+
+One fixed use of the p39 triad as the three-layer contraction,
+[
+T_i=15R_{0,i}+5R_{1,i}+27R_{2,i}\pmod{29},
+]
+matches only **5/91** key positions. Applying the key by subtraction, addition, or Beaufort to (T) remains nonlinguistic (IoCs **0.03516, 0.03810, 0.03516**). These are bounded tests of the simplest source-linked plane/key operations, not an exhaustive 3D search.
+
+### All-secret affine/share consumer and decision
+
+The exact **273-symbol** original p29/table residual can be split, without padding, into three contiguous 91-symbol layers `A,B,C`. The candidate 2016 signed-message map independently supplies **91 strict word-interior GP29 runes**, in frozen source order. Earlier tests rejected particular affine coefficients, including the p39 red triad. A stronger original-source elimination now permits **every unknown field coefficient** and an entirely unknown stationary output codebook, rather than tuning a handful of candidate keys.
+
+For each of all **29³=24,389** linear projections `u_i=(aA_i+bB_i+cC_i) mod29`, compare all 91 positions with the unaltered signed-map interior `M`. The complete **29⁴=707,281** affine outputs `u_i+d` match at most **13/91** symbols, achieved by 11 distinct coefficient quadruples. Stronger still, grant an *arbitrary unknown function* `f:GF29→GF29`, with all 29 output values freely chosen, independently for every projected input symbol. Its mathematically optimal match is the sum, over the 29 possible `u`, of the most frequent original target `M` at that input. **Across all 24,389 projections, this unconstrained 29-entry lookup matches at most 40/91, achieved by 28 coefficient triples.** These 28 are scalar multiples of one vector, `(a,b,c)=(0,1,18)`, and therefore define **one identical source partition** after an unknown output lookup. There are only **871** inequivalent nonzero projective directions plus the all-zero projection in this exhaustive family. **Zero projections support all 91 source positions.** This also excludes every stationary *bijective* outer alphabet, as bijections are a subset of arbitrary functions. The result is a finite all-key obstruction on the exact three aligned channels, without plaintext scoring or a language assumption.
+
+The historically plausible **three-share degree-two Shamir** interpretation provides an independent source-specific control. If `A,B,C` were shares at coordinates 1,2,3, the hidden value at coordinate 0 would be `3A−3B+C`, whose 91 original outputs have GP29 IoC **0.0358974359** and no continuous readable plaintext. The same polynomial would predict a fourth share at coordinate 4 as `A−3B+3C`: this matches the entire independent 2016 map interior in only **4/91** original positions, zero-based **[4,16,21,72]**, rather than the 91/91 demanded by the model. A source-native positive uses the first 91 independently clear p57 GP runes as a secret, generates quadratic shares at coordinates1–4, and recovers **91/91** secret and **91/91** fourth-share predictions.
+
+A second source-frozen coordinate test uses p39's **printed red-triad order `[27,5,15]`** as the three Shamir abscissae (not the coefficient-order `[15,5,27]` used in `G(X)`) and p57's terminal **23-dot** mark as a held-out coordinate `x=23`. Lagrange weights at `x=0` are **[25,17,17]**; at `x=23` they are **[19,22,18]**. Applied to the unchanged residual layers `A,B,C`, reconstruction at zero matches the 2016 map interior at only **5/91** positions (zero-based **[3,24,27,60,82]**, IoC **0.0339438339**); the predicted `x=23` share matches at only **3/91** (zero-based **[5,7,48]**, IoC **0.0305250305**). A native-GP positive built from an independent quadratic over the first 91 clear p57 runes recovers the expected `x=23` share **91/91**. This rejects the source-ordered p39-triad / p57-23-dot Shamir consumer; the coordinates themselves remain a hypothesis, not authenticated share instructions.
+
+[Single-file CommonJS original-source inverse and all-secret reproducer](../sims/lp2_p29_gadic_three_share_2016_map_sft.cjs). It recomputes the p29/table G-adic identity exactly, reconstructs the map from all 43 signed words, asserts every count above, and executes the native plaintext plant. Its hypotheses are specifically the **base-58 signed-word addressing** and the **three aligned 91-rune shares**. Neither is selected as a cipher by the signed 2016 text; the established exact GF29 p29/table relation itself remains unchanged.
+
+The factorization `273=3×7×13` has plausible source counterparts in p39's red triad, p32's M7 map and the thirteen-dot symbol. The 2016 signed word `lies` addresses p50's `3D` token under the provisional base-58 map, but no original command selects a three-share layout, the corresponding static key or the row order. The 13-dot image stencil has no independently established start or orientation. The p32 M7 wordmap also fails to provide a complete original segment traversal.
+
+**Decision:** preserve the exact 91-symbol map and residual as intermediate source-linked candidates while retiring their fixed three-layer affine/Shamir-to-map consumer, **including every stationary outer lookup key**. The earlier repeated-key, transposition and G-contraction readouts also fail to decipher the original material. Reopen a three-layer combination only if an original clue specifies a different ordering, nonlinear state transition, independent ciphertext-to-map role or independently verifiable new plaintext; the tested source-ordered p39 Shamir coordinates with the p57 x=23 holdout do not supply that route. **No unknown LP2 text, creator-selected cipher key or continuation is recovered.**
+
+## New p32 continuation: a 13-rune W selector reaches the M7 pole
+
+**Status: provisional navigation hypothesis; not a decryption.** The existing signed-2016 base-58 hypothesis maps the authenticated word `Beware` (GP-prime sum **322 = 58×5+32**) to physical p32, zero-based page-local segment index **5**. Under the corrected 22-segment p32 parser (21 complete word starts; segment 0 is the incoming carry) this is `IARTTHF`, beginning at local rune offset **25**, the start of printed line 2. Its GP-prime sum is **184**, matching both solved-p57 body word `LIKE` (GP transliteration `LICE`) and the sum of the two M7 fixed-point prime weights (83+101=184). This equality is not unique across unknown plaintext: the canonical 55-page parser contains **ten** unknown words with prime sum184, including this p32 word, so it is a cross-check rather than a plaintext identification.
+
+The p32 source annotation records a red **13-dot** mark after rune 121. Taking the first 13 original runes from the `Beware`-selected word start (local offsets **25–37**) gives the exact GP-prime sum **413**, hence **413 mod 29 = 7 = W**. This is the only residue-7 window among the **19** eligible p32 printed-word starts; allowing arbitrary rune offsets produces four matches ([11,25,49,92]), so the word-start restriction is essential and remains part of the hypothesis. The 13-rune span splits as the selected 5-rune word `IARTTHF` (sum184) plus the 8-rune suffix `FOTHHOMEX` (sum229); this is the **only** one of the 19 eligible word starts whose 13-rune window has suffix-after-word sum229. The suffix is exactly **193+36**, where 193 is base60(`3D`) from p50 cell3 and 36=φ(108) from the p55 W route. Therefore the whole window satisfies **413=184+193+36**. This is an exact cross-round checksum, although the addition itself is not explicitly prescribed. The window's endpoint is independently meaningful: p32 indices33–37 spell **HOMEX**, so the final five runes of this 13-rune span are exactly that marker. The separate [2016 43-word compass SFT](../sims/lp2_2016_43word_compass_sft.cjs) independently ends at index37 (row3,col4), the marker's terminal X. This is a cross-route endpoint convergence, not a decryption.
+
+A further signed-message check selects the same numeric value without changing the p32 window: the adjacent source words **“Good luck”** map to p4:w2 **LGFNIACX** and p44:w1 **GTHY**, whose target-word GP-prime sums are **288** and **125**. Their sum is **413**. Among all **42 adjacent pairs** in the 43-word signed message, this is the **only** pair whose mapped destination-word sums equal 413. This is an additional navigation cross-check for the p32 window, not an authenticated key or proof of the base-58 address rule; no operation combining the two mapped words with the window is source-prescribed.
+
+A second within-word direction also returns p32: the signed-message word **“seeks”** maps to p21:w4 **MY**. Its two GP-prime weights are **71** and **103**, whose difference is **32**. Among the four two-rune destinations in the 43-word map (**UNG, MY, HO, NM**), **MY is the only one** with a prime-weight difference of 32. This is a second numerical route to p32 under the provisional map and the signed message's “numbers are direction” language; it is not plaintext recovery and does not independently authenticate the address rule. A finite phase control preserves all 43 source-word sums and tests shifts s=0…57 before quotient/remainder addressing. Each selector is phase-specific: **Beware** lands on p32:w5 only at s=0; **seeks** yields a two-rune target with prime-weight difference 32 only at s=0; and **Good luck** target sums total 413 only at s=0. Their conjunction is unique to s=0. This discriminates against arbitrary page-phase fitting, but it does not independently authenticate the underlying word-map formula.
+
+The result agrees with an independent 2013 `0_wisdom` direction route: p55's local words 9–11 have sums **[138,108,341]**, and φ(108)=36≡7=W; in the historical 5×5 square, W from 138 reaches 341 (`CABAL`). The p32 horizontal-corner M7 candidate has pole **7**, so **M7(7)=∞**. The authenticated 2016 sentence “The path lies empty” is a possible semantic selector for this projective endpoint.
+
+The valid p32 word-sum residues give a more specific path: the unique residue-10 word `IARTTHF` at offset25 follows **10→8→2→7→∞** under M7. Residues 8 and 2 are unoccupied in the 22-segment p32 map; residue7 identifies the unique word `WBSRXIAXA` at offset64. The two word starts are **39=3×13** runes apart, matching the three M7 transitions and the red-dot count. The inverse path is longer (**10→16→11→∞→7**) and reaches residue11, which has two p32 words. The forward orbit is a candidate pole/endpoint selector, **not a literal word walk**: residues8 and2 are empty. The HOME-X alignment supplies an independently selected endpoint for the 13-rune span, but it does not fill those missing intermediate M7 word states. The independent [p32 M7 wordmap gate](../sims/p32_m7_pole_wordmap_gate.cjs) confirms that neither the forward nor reverse orbit gives a total p32 segment-to-segment traversal.
+
+The endpoint word has prime sum **442 = 58×7+36**. Applying the same provisional base-58 address convention points to p36 word7, whose sum is **386**, the middle word of the independent p36 triple **[320,386,130]**. Here φ(386)=192≡18=E, and E from 320 reaches 130 (`UOID`/`VOID`) in the 2013 square. This is a conditional continuation, not plaintext.
+
+### The pole's candidate continuation to the rune-free p50 table
+
+The projective endpoint has a source-constrained page-level candidate. The original corpus has exactly one physical page with `runic_count=0`: **p50**, the numerical table. The signed 2016 word `lies` has GP-prime sum **224 = 58×3+50**, so the same provisional base-58 address convention selects **p50 cell3**, whose original token is **`3D`**. Thus the phrase “The path lies empty” aligns both with **M7(7)=∞** and with the unique rune-free page; `lies` then selects a specific numeric cell on that page.
+
+Under base60, `3D` is **193**. The existing [p50/p55 source-selector gate](lp2-2016-p50-p55-43unit-source-selector-gate.md) documents the 2013 `NUMBER(193)=391=17×23` link to the p55 D…D interior and p57's “find the divinity within” instruction. The 8-rune suffix sum229 is also the 50th prime, independently pointing numerically to p50 (prime-rank-as-instruction remains provisional). A second conditional cross-check is the p36 endpoint: its selected word sum **386 = 2×193**, and **φ(386)=φ(193)=192**, giving the p36 E direction. These connections make the empty-page reading a plausible continuation from p32 to p50 and onward to the p50/p55 branch.
+
+**Limit:** the base-58 word-address rule, the 13-dot→13-rune interpretation, and the identification of projective infinity with p50 remain hypotheses. The M7 gate still rules out a literal p32 segment-to-segment traversal because intermediate residues8 and2 are absent; this is a pole-to-page selector, not a recovered cipher or a reversible 43-byte/rune mapping.
+
+**Evidence boundary.** The base-58 quotient/remainder convention is not explicitly stated by the 2016 message; the interpretation of 13 dots as a 13-rune window is also not authenticated. The M7 corner convention and φ→compass operation remain source-constrained hypotheses. The original-image [red-mark geometry SFT](../sims/p32_red13_mark_geometry_sft.py) independently verifies 13 red components; interpreting that count as a 13-rune window remains a hypothesis. The 13-rune result is an exact, reproducible correspondence, but it does not specify a reversible cipher, key, or plaintext. The separate M7 wordmap gate blocks a literal traversal. The source-asserting reproducer is [`sims/p32_13runic_w_infinity_route_sft.cjs`](../sims/p32_13runic_w_infinity_route_sft.cjs); the underlying M7 and 2013 direction evidence is in [`tree-prime-canvas-partition.md`](tree-prime-canvas-partition.md) and [`2014-magic-square-direction-map.md`](2014-magic-square-direction-map.md).
+
+**Exploratory only:** treating the suffix's 50th-prime ordinal as an instruction to address p50 is not explicitly specified. The stronger checks are the exact 193+36 suffix checksum and the independent `lies`→p50 address.
+
+The `lies`→p50 address and FOLD/END correspondences are exact conditional outcomes of the proposed map, but their selection and interpretation do not establish that a contemporary solver was meant to use this map. The 42/43 in-bounds result is not discriminating under the documented phase-shift null. The special treatment of `lies` as a table-cell pointer was adopted after the absent rune word was observed. The signed message's grammatical subject is the book, and no historical clue has been found prescribing a 43-way correspondence. The new p32 13-rune W/infinity route is a candidate navigation constraint, but the next meaningful advance still requires an independently fixed reversible operation or key/state that makes a held-out original-ciphertext prediction. The full-source assertions and a summary are embedded in the original SFT, [`sims/lp2_2016_message_base58_word_map.cjs`](../sims/lp2_2016_message_base58_word_map.cjs).
+
+
+### 43 compass landing cells: direct readout (negative)
+
+The fixed 43-byte route above has a natural second readout: after each direction/distance step, read the GP rune in the p32 cell just reached. The origin `(3,0)` is a start anchor, not one of the 43 word-aligned landings. In signed-message order, the 43 landing cells yield:
+
+```text
+H Y D B O NG AE N TH L M IA M I S H TH M L B A B X T B X NG M T J M W NG D EO IA H H B F D X X
+```
+
+This is a 43-rune intermediate, not recognizable plaintext (21 distinct symbols; IoC 0.04651). Three fixed source-derived additive checks also fail: subtracting the 43 signed-word lengths, subtracting the first GP rune of each signed word, or subtracting the corresponding p50 table byte modulo 29 gives, respectively:
+
+```text
+word lengths: O D M P IA P L G A S P AE T W EO O EA T B EO B S J EO X N X T P TH S R E M I OE R R J A E H W
+word initials: F A I Y X O I W H F G B B O C U W B U S C W EO EO OE EO EO A X B R EO A T A IA TH B F F I P J
+table bytes:  N IA EA I A R U E IA D NG NG F C U O G OE B X E EO EO U O R E L U P AE NG AE Y G B A O E R I D AE
+```
+
+The exact landing sequence and these three one-step subtraction controls are asserted by the [standalone compass SFT](../sims/lp2_2016_43word_compass_sft.cjs). This closes the most literal map-cell readout; it does not rule out a further source-specified operation, but no plaintext or key follows from the direct read or these controls.
+
+## The p32 13-rune window as a period-13 additive key: negative
+
+The p32 window selected by the provisional signed-2016 \`Beware\` address is exactly 13 GP symbols (local offsets 25–37): \`IA,R,T,TH,F,F,O,TH,H,O,M,E,X\`, prime-weight sum **413≡7 (mod 29)**. The 13-dot mark and the 2016 pointer therefore provide a source-motivated key candidate, while the additive GP29 operation is a simple cipher-family interpretation (not an explicit instruction). The key is derived from p32 ciphertext, so p32 itself is excluded from scoring.
+
+\`sims/p32_13runic_window_period13_key_sft.cjs\` tests only the forward printed-order key, both signs, and two natural clocks: continuous from the start of the full LP2 stream (advancing through excluded p32), or reset at each page. No rotations, phase search, reversed key, or alternate window is admitted. All four planted-English controls recover exactly.
+
+The 12,835 runes on the other 54 rune-bearing pages have raw IoC **0.0344821**. The best decoded full-book IoC is **0.0345372** (continuous, addition); this is below the 95th percentile **0.0345402** of 100 random 13-symbol keys evaluated over the same four-model grid (92nd percentile). The best page-local IoC is **0.0370646** (p45), below the random-null median **0.0381339** and at the 3rd percentile. The Gibran GP29 control is **0.0584002**. On p33–39, the best tested subset IoC is **0.0345274**, still near-uniform.
+
+**Decision:** the exact p32 13-rune window is not a direct period-13 additive GP29 key for the other pages. This is a bounded negative on the four stated variants; the p32 word-address/pole selector remains a navigation hypothesis, not a decryption.
+
+### p32 → p50 direction walk as an additive key: negative
+
+A source-shaped consumer was tested: use the 13 GP-prime weights of the p32 window as forward step sizes on the 256-cell p50 table, read each visited table byte, reduce modulo29, and subtract the resulting repeating key (the p56-consistent direction). From cell0 the p55 output has IoC **0.04667** but quadgram score **1.6123**, rank **39/256**; p14 scores **1.1332**, rank **190/256**. The p32-marker-derived candidate start85 gives p55 score **1.9271**, rank **10/256**, and IoC **0.03193**; p14 scores **1.0908**, rank **203/256**. Even the better p55 rank is not plaintext: the output is not readable, its score remains far below the p57 clear-text control (**5.8098**), and the source start85 reduces rather than improves p55 IoC. The earlier supposed p49/p53 marker corroboration for85 was withdrawn after correcting the JPEG-to-logical-page offset; the only remaining visual basis is the p32 marker's binary interpretation. This rejects the direct p32-window → p50-walk → additive-key consumer, while leaving the two-route navigation structure in the fold-square report as a separate hypothesis. Reproduction: `sims/lp2_2016_p32_table_walk_key_gate.cjs`.
+
+## 2016 dimensions → p32 prime ranks → `EN`: exact boundary, not an executable route
+
+**Status: exact source correspondence; not plaintext or a route.** The preserved archived 2016 `4gq25.jpg` is 563×569. Physical p32 contains 121 runes; under the inferred row-major 11×11 reshape, its first-row and first-column GP-prime sums are 563 and 569. (The 11×11 layout is inferred, not printed.) Both image dimensions are prime, with one-based prime ranks 103 and 104.
+
+The original p32 text has 22 page-local fragments (121 runes total); its first fragment `L` is the carry from a word begun on p31, leaving 21 complete canonical words wholly on p32. One-based rune positions 103–104 select page-local fragment 19, a complete two-rune printed word transliterated `EN`, starting at rune 103. The next fragment starts at rune 105 and transliterates `NWGULAOY`. The zero-based-offset reading (offsets 103–104, i.e. human positions 104–105) instead yields `NN`, which crosses the delimiter between those fragments. The original p32 scan is `resources/liber-primus/49.jpg`.
+
+One-based indexing has a historical precedent, not a universal LP2 rule: the 2013 signed book code includes coordinates such as `I:1:6`; the archived [payload](https://github.com/neuroretransmit/cicada/blob/main/2013/001-232.jpg/README.md) and [solver](https://github.com/neuroretransmit/cicada/blob/main/2013/001-232.jpg/book-code.py) interpret verse and character as one-based values before converting them to zero-based array indices. The 2014 signed payload also contains four-field coordinates, but its original extraction README does not itself specify their coordinate hierarchy.
+
+The GP-prime sum of `EN` is 96 and φ(96)=32, returning the physical page number. The original 2013 `0_wisdom` source explicitly says that primes and the totient function are sacred, so this arithmetic is contextually motivated; it does not prescribe either `image dimension → prime rank → page rune position` or `φ(GPsum(word))` as a page-address operation. The authenticated 2016 message says that words are the map and numbers the direction, but gives no coordinate grammar, starting point, orientation, step length/count, or stopping condition. `EN` and `NW` are ciphertext transliterations on an unsolved page, not recovered English directions; `EN` is not a standard eight-point compass bearing, and `NW` is only the first two runes of the following ciphertext word. The repository contains only this one 2016 image artifact, so there is no independent same-rule 2016 dimension control.
+
+**Decision:** preserve the exact boundary-supported correspondence and the fixed zero-origin counterexample; retire it as an executable compass route, key, or plaintext claim. Do not scan other prime ranks, offsets, direction strings, or page origins to rescue it. No unknown plaintext or key was recovered.
+
+**Reproduction:** `node sims/p32_2016_prime_ordinal_en_gate.cjs`.
+
+## Independent base-29 line:character reading: PRNG
+
+A separate reading of the 16-word instruction sentence is more promising than the earlier base-58 page/word addresses. For each word, compute its canonical Gematria Primus prime-weight sum \(S\), write \(S=29q+r\), then read **line \(r+1\), character \(q+1\)** from LP2's physical rune text. Line numbering begins at LP2 page 0; blank paragraph separators are omitted; character positions count rune glyphs, not spaces or punctuation. This is a one-based line:character book-code operation, using the same remainder-as-outer-coordinate / quotient-as-inner-coordinate order as the base-58 experiment. The source does not explicitly specify this operation, so it remains a hypothesis. It is motivated by the signed wording about words, meaning and numbers, the 29-symbol GP alphabet, and earlier Cicada line:character book-code precedent (see [pnotisdev/cicada3301](https://github.com/pnotisdev/cicada3301/blob/main/STATUS.md)).
+
+The 16 output rune tokens are **LCBPPRNGNGPARRTHBPC**. The decisive three consecutive words are:
+
+| Signed word | GP-prime sum | Base-29 \((q,r)\) | 1-based line:character | Extracted rune |
+|---|---:|---:|---:|---|
+| map | 211 | (7, 8) | 9:8 | P |
+| their | 114 | (3, 27) | 28:4 | R |
+| meaning | 319 | (11, 0) | 1:12 | NG |
+
+Thus **“map their meaning” → P, R, NG → PRNG**. NG is one GP rune whose transliteration has two Latin letters. The full 43-word message under the same fixed rule yields **EPMCMAEOEPMEEANGPSLCBPPRNGNGPARRTHBPCIREANNAEPJYBEOOS**; the other output is not plaintext.
+
+This is independently reproduced by both resources/lp2-transcription.txt and the LP2 slice of resources/transcriptions/liber_primus_master.txt. The three selected glyphs agree with the original page images: LP2 p0 line 1 character 12 is NG, p0 line 9 character 8 is P, and p2 line 4 character 4 is R. A frozen null test over all 29 cyclic line phases produces the PRNG marker only at phase 0; no other phase produces PRNG anywhere in the 16-word phrase. This is a discriminating clue, not a statistical proof or a decryption.
+
+Removing the three marker runes leaves 13 tokens, **LCBPNGPARRTHBPC**, whose base-29 integer is **7144649572585460758** (63 bits). The complete 16-token sequence is the 78-bit base-29 integer **174250757000494390102040**. This is distinct from the p32 13-rune window in the preceding M7 section: the common count and the shared 13-dot annotation suggest a possible connection, but no mapping between the 13-token remainder, the p32 window and the red marks has been established.
+
+The immediate next question is what the PRNG marker selects and how it acts on the manuscript: generator, state, direction sequence, path or permutation. The 2012 P.S. RSA modulus and exponent 65537 are candidates, not established inputs. Direct RSA-PRNG byte-stream/XOR tests against the p50/51 256-byte table, using 16-, 13- and 43-token source-derived seeds, produced no readable output; RC4 and Python MT table-XOR tests were also negative. A simple RSA-PRNG additive stream did not produce English on LP2. The table's bitstream has linear complexity 1022–1025 under row/column and MSB/LSB readings, excluding a direct 13-bit LFSR-output interpretation. These failures reject only the tested direct stream/XOR models, not a PRNG-driven route, state or permutation. Avoid repeating broad small-seed PRNG sweeps; [the external PRNG audit](https://github.com/pnotisdev/cicada3301/blob/main/docs/prs/prngx.md) already covers common generators over extensive small-seed ranges.
+
+Reproduce the line:character result and 29-phase null with **node sims/lp2_2016_message_base29_line_char_prng.cjs**.
+
+## Independent cross-round signed-message control: earlier `hearing` selects `MY`
+
+**Completed, 11 November 2026 (Agent 1).** This is a finite external-message challenge of the already fixed 58-page GP-prime-sum word-address hypothesis, rather than a new parameter search. The 2016 clue supplies its 43 canonical signed word tokens. Earlier, independently signed Cicada sources are preserved byte-for-byte at `resources/historical/cicada2012-countdown-message.asc` and `resources/historical/cicada2014-stage11-message.asc`, copied from archival original mirrors. The tests use only natural-language words of the signed cleartext: 2012 countdown = **19** words and 2014 final-onion announcement = **14** words; its hostname, number 3301 and PGP-armour are excluded.
+
+The **2014** authenticated instruction includes “We look forward to **hearing** from you.” Under *exactly* the same earlier specified GP enciphering and 58-page quotient/remainder rule, `hearing` has prime sum **253**, hence p21 word index4, whose original unchanged two-rune ciphertext is **MY**. The **2016** held-out `seeks` also sums to **253** and therefore reaches that same MY. **This same-sum recurrence is conditional on the source-word rune spelling:** the solved original p57 writes the English word **tunneling** as **TUNNELNG**, treating the final `-ing` as a single `NG` rune. Applying the same orthography to signed English **hearing** gives **HEARNG**, prime sum **222** (rather than 253) and an entirely different book address; likewise **meaning** becomes **MEANNG**, sum **288** instead of 319. The historical English signed text does not select which rune spelling to adopt. Thus **hearing→MY is not a secure independent source anchor**, and even under the I+NG spelling, equal sums are tautologically sent to the same destination by the proposed function. The 2012 signed countdown contains no words mapping to the three already selected anchors (p14:w1 **FOLD**, p21:w4 **MY**, p56:w1 cipher for solved **END**).
+
+| Source signed text | Tokens | Hits to the three previously privileged original addresses under fixed mod58, origin0 |
+| --- | ---: | --- |
+| 2012 countdown, original January 2012 | 19 | 0 |
+| 2014 final-onion announcement | 14 | 1 *conditional* hit: `hearing`→MY only for I+NG spelling |
+| 2016 complete signed message | 43 | 9: six instances of `the`→FOLD, two of `their`→END, one `seeks`→MY |
+
+Frozen, non-tuned controls: changing only modulus to **57**, origin0 sends `you` to the previously privileged p56:w1 cipher for END in the 2012 and 2014 texts, illustrating that source-word-to-endpoint hits need not be unique to the hypothesized modulus. Modulus **59**, origin0 gives zero hits in each source. Keeping modulus58 but using zero-based index shifted by **−1** sends 2016 `found` to FOLD; shifting by **+1** produces no privileged hits. These comparisons are a diagnostic of parameter sensitivity, not significance tests; anchor selection was guided by the 2016 source, and repeated `the` tokens are non-independent.
+
+**More fundamental 75-page source-count control:** the contemporaneous assembled Liber Primus actually contains **17 first-release pages plus 58 second-release pages = 75 pages in one original sequential image set**. The 2016 signed phrase says “**Its** words are the map,” grammatically referring to “Liber Primus is the way,” so the whole-book **75** is an independent, physically visible divisor candidate, not an arbitrary tuned constant. Keeping precisely the same quotient/remainder/origin rule and original printed word boundaries, but addressing the entire 75-scan book, gives: `the`→total scan72 / word0 = NG (LP2 p55), `their`→scan39 / word1 = IG (LP2 p22), and `seeks`→scan28 / word3 = THNIEA (LP2 p11). Interestingly `lies`→scan74 / word2 = THE (solved LP2 p57), whereas the **58**-page rule sends the same word to the runeless p50 numerical table. These outcomes are a direct **competing source-visible architecture**. Neither whole-book75 nor LP2-only58 has an authenticated selection instruction; the semantically attractive 58 outcomes originally helped motivate its choice. This is a strong obstacle to treating the 58-rule as independently source-selected. The 75-page control is asserted by the expanded standalone source SFT and a second manual CI run.
+
+**New orthographically source-selected positive control (Agent1, 11 November):** Under the solved p57 original's independently visible **TUNNELNG** convention, the authenticated 2016 source word **meaning** encodes **MEANNG**, GP-prime sum **288** instead of greedy 319. The fixed 58-page quotient/remainder map gives **288 = 4×58+56**, selecting **physical p56, printed word index4**, whose original four-rune ciphertext **ᚳᚦᚷᚹ** decrypts under the independently established p56 consecutive-prime-totient operation to **DEEP** (word begins at original rune offset12). This introduces a further real solved-page plaintext address from a **visible rune spelling convention set by p57**. The older greedy reading maps `meaning` to p29:w5 with no verified plaintext. This is more independent than the HEARING/SEEKS identical-sum coincidence and materially improves the case for the combined map. It still does not independently select 58 vs75, quotient/remainder order or define an unsolved-page decryptor, so the address algorithm remains provisional.
+
+The [revised SFT](../sims/lp2_signed_2012_2014_2016_wordmap_holdout_sft.cjs) asserts both spellings, and the reported 2014 numeric matches refer strictly to the original source-word greedy transliteration. It does not silently normalize the independently visible p57 orthography.
+
+**Decision:** the original signed text authenticates a recommendation to use words/numbers, and A later-preserved first-onion transcript attributes a `count` operator to a Cicada service, but the contemporaneous 2013 BASE29/DH/NEXT witness does not authenticate that command; treat it as secondary evidence, not proof that GP-prime summation was a contemporaneously available 2013 instruction. No independent historical source selects **58** as the modulus, **page = remainder**, **word = quotient**, or **zero-based origin** as a combined 2016 instruction. Under this finite cross-round holdout, MY FOLD remains a striking *conditional* phrase, not a confirmed page-address or plaintext-recovery algorithm. Further work should seek an explicit original-source address contract or an independently prespecified decode, rather than multiplying numerical coincidences.
+
+**Reproduce:** [source-preserving standalone CommonJS test](../sims/lp2_signed_2012_2014_2016_wordmap_holdout_sft.cjs), with [passing manual GitHub Actions 42982615795](https://github.com/FlareZ123/liber-primus/actions/runs/42982615795). This holds out two earlier signed messages while leaving the original p0–57 GP data, printed token boundaries and the 2016 parameters unchanged.
+
+## Source-preserving recursive word route: FOLD → SB → END
+
+After a signed-source word selects a rune word, apply the **same fixed** prime-sum quotient/remainder operation to that selected printed rune word. This gives a reproducible two-hop route across the original book:
+
+| Source | Unmodified GP-prime sum | Address | Destination |
+|---|---:|---|---|
+| signed word **the** | `TH(5)+E(67)=72` | p14 word1 | `ᚠᚩᛚᛞ` = **FOLD** |
+| p14 word1 **FOLD** | `F(2)+O(7)+L(73)+D(89)=171` | p55 word2 | `ᛋᛒ` = SB |
+| p55 word2 **SB** | `S(53)+B(61)=114` | p56 word1 | `ᛟᛋᚱ` = **END** (verified plaintext under the separately solved p56 totient cipher) |
+
+The first intermediate destination is **p55, the final unsolved physical LP2 page**; the second is **p56, the first solved physical LP2 page**. The independently signed source word **their** has the same GP-prime sum **114** as SB and thus selects the same END word directly. These relationships survive correction of printed word boundaries. They offer a particularly precise candidate **book-navigation route** whose endpoints are source-visible and whose end word is independently decryptable.
+
+The **entire** physical word corpus contains **2,973 printed rune words**, versus **3,367 artificial rune runs** yielded by scanning the master transcript line-by-line. The earlier initial 16-word mapping, which used those line runs, splits a few real words at printed wraps. Among the 43 distinct-position signed source words, five addressed occurrences change their selected raw rune string under the correct printed parser: twice `are` at p1 word3, `empty` at p53 word5, `epiphany` at p30 word7, and `devoted` at p33 word6. All 43 computed **numeric addresses remain identical**, as do the 42 existent destinations and the unique p50 exception. This is an essential implementation correction for any human-readable route. It is source-grounded, with no plaintext recovery beyond the already known END.
+
+The pointer walk must *stop or change rule* when it encounters an absent word on the rune-free p50. Directly iterating it elsewhere creates ordinary convergent cycles and does not automatically yield an unknown-language plaintext. A successful solve must still supply a distinct source-prescribed stop, selection, folding or decryption instruction.
+
+## Original p49–51 numeral encoding: an independent base-60 clue and a base-59 ambiguity
+
+**Integration of prior source evidence (Agent 50, 11 November 2026).** The radix59/f-omission fork and the independent p33 sexagesimal clue were already documented in [the exact existing numeral-codec analysis](lp2-grid-numeric-codec-ambiguity.md), including a stronger conditional p39 GP29 polynomial-factor discriminator. This section freezes their practical consequences for the signed-message `lies` selector and the 43-cell interval. It does not report a new cipher discovery or a second independent 193-selection proof.
+
+The physical originals [66.jpg](../resources/liber-primus/66.jpg), [67.jpg](../resources/liber-primus/67.jpg) and [68.jpg](../resources/liber-primus/68.jpg) print **10, 13 and 9 complete rows of eight two-character numerals**, respectively: **32×8=256 tokens**, in an ordinary left-to-right, top-to-bottom page order. Each token is physically separated by whitespace. The earlier same-book [50.jpg, LP2 p33](../resources/liber-primus/50.jpg) displays a two-line cuneiform numeral. Its conventional two-place sexagesimal group readings **(17,13)** and **(55,1)** yield **17×60+13=1033** and **55×60+1=3301**, both already privileged Cicada numbers; the cuneiform recurs on other illustrated pages. This independent manuscript artwork motivates 60 *without consulting the table's decoded values* (compare [cuneiform visual reading](https://cicadanotebook.com/sessions/9.html)). It does **not** explicitly instruct that every later Latin two-character token uses the same radix.
+
+Under the **conventional positional alphanumeric order** `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx`, lowercase `x` has digit index 59. Physical p49 token at global index **22** is `0x`, forcing a radix of **at least 60** if the alphabet includes all intervening characters. Physical p49 index **65** prints `4F` (F=15): if every token is supposed to be one byte in 0..255, `4×radix+15≤255` forces radix **at most 60**. Therefore **radix60 is uniquely implied under the joint assumptions** of the standard unsuppressed alphanumeric digit order *and* one unsigned byte per token. In that interpretation the original table explicitly reaches both byte endpoints: `00`=0 and `4F`=255. The independent 256-cell count makes a byte-stream interpretation natural, but does not prove that data type.
+
+The historical alternative is nontrivial: **no lowercase `f` occurs in the printed 256 tokens** (other letters are not similarly omitted on that premise). Excluding `f` from the alphanumeric digit alphabet yields a consistent 59-symbol order `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdeghijklmnopqrstuvwx`. Both radix59 and radix60 keep all printed tokens in unsigned-byte range, including the `0x` and `4F` examples. The independent cuneiform favours sexagesimal, but the manuscript does not say to retain the unused lowercase `f` as a valid digit, or even that these numerals are bytes. The earlier book's GP treatment of F makes exclusion a genuine conceivable design choice. A later reconstruction describing the grid as base60 is not, by itself, a contemporary Cicada instruction (see the [community radix-alternative inventory](https://uncovering-cicada.fandom.com/wiki/Liber_Primus_pp49-51_data_interpreted_as_base_59%2C_60%2C_62_and_64.)).
+
+**Exact source map for the contentious 43-cell input**, with indices frozen before any unknown-language score: the table begins with 80 tokens on p49; p50-local cell3 is global **83**, `3D`; the other `3D` is p50-local cell47, global **127**. The interior is the **43 p50-local cells 4–46 inclusive**, in printed row-major order; the source bracket is `3L,3D,[43 tokens],3D,3L` at global offsets 82–128. Conventional radix60 gives the bracket values `201,193,[...],193,201`, while skip-`f` radix59 gives `198,190,[...],190,198`. The interior's complete frozen hex readouts, preserving the same original 43 tokens and positions, are:
+
+- **base60:** `ad1c6f41d3dcc631ec543823de96482253e520ce7a3f1fda0eb82073498fc5f736ab23b82aed56360d14a3`
+- **base59 (exclude f):** `aa1c6d40d0d9c330e8533723da94472252e120cb783e1fd70eb52071488dc2f335a823b529e955350d14a0`
+
+In particular, `3D` decodes to **193 versus 190**, and `4F` to **255 versus 251**. Every later claim involving prime(44)=193, 201/193 flanking, the 43-byte key/nonce window, or a source-selected 193 pointer **depends on resolving this radix/letter-skip fork**. The prime coincidences were noticed after adopting base60 and cannot serve as independent evidence that base60 was intended. Neither input has produced unknown LP2 plaintext under existing tested inverses. The remaining unprovided contemporary instruction would have to specify, or unambiguously require, **the conventional 60-character alphabet including unused `f`, byte interpretation, and row-major consumption order**. Without that selector, the source commits to the *physical* 43 cells but not an authenticated unique 43-byte numeric key.
+
+
+### Terminal pair selects the bracket's outer cell
+
+The independently source-selected terminal pair `DJU / BEI` from the finite 2013 `prime_echo` exhaustion now supplies a separate entry into the same p50 interval. Reusing this report's frozen GP-prime / 58-page rule on the p27 copy gives `DJU=129 -> p13:w2 NAEWG=166 -> p50 local2`. The adjacent `BEI=159` path takes 14 word-map steps to merge into that same p27 `DJU` node, then reaches p50 local2 as well. The signed word `lies` already selects adjacent p50 local3.
+
+Those two selected cells are printed `3L,3D`. Their only other copies occur in reverse at global indices128,127, so before choosing any numeral radix the original row-major table has the exact form **`3L 3D [43 tokens] 3D 3L`** at globals82..128. Exhausting all printed-token `A B ... B A` pairs finds this as the sole nested adjacent-token bracket. The 43-token interior has a unique midpoint at global105, whose printed token is **`13`**; `13` occurs nowhere else in the 256 cells.
+
+The first enclosed token is `2r`. Conventional base60 makes it173, which under the same address rule selects clear p57:w2 **THE** and then `THE=72 -> FOLD -> SB -> END`. The lowercase-f-omitting base59 reading makes `2r=170` and selects p54:w2 `IADPNGUWAM`, so the semantic continuation favors base60 conditional on the address hypothesis. A direct repeating `FIRFUMFERENFE` additive use on the 43 base60 values is nonlinguistic and is retired without phase or cipher-family expansion.
+
+This strengthens the source chain leading into the already documented 43-cell interval while preserving the central limitation: the 58-page word-address grammar itself remains provisional. Full result and exact reproducer: [terminal/p50 bracket handoff](lp2-terminal-p50-token-bracket-handoff.md) · [SFT](../sims/lp2_terminal_p50_bracket_wordmap_sft.cjs) · [Windows PASS 44403562261](https://github.com/FlareZ123/liber-primus/actions/runs/44403562261).
+
+## Prime 193, the missing-prime index, and the 43-byte signed-message interval
+
+**Exact original-source observation, 11 November 2026; intended route remains provisional.** The previously frozen signed-2016 base-58 book-address operation above uniquely maps the word “lies” (GP-prime sum 224) to original LP2 physical p50, table token index 3. The literal token 3D has radix-60 byte value **193**. The archived 2013 telnet prime list skips from 71 = prime(20) to 1229 = prime(201). Among those **180 omitted primes**, 193 is **prime(44)** and its omission-index is **24** (44 minus the 20 preceding visible primes). The number 24 is independently the p54 oversized Ac GP index and p39 quadratic double root, as already established in earlier source reports.
+
+There is a stronger **unique, key-free two-route meeting relation**. The 2016 word sum and first-cell address supply **224** and original row-major grid offset **83**, respectively, before using the numeric value of that cell. For any candidate byte b in 0..255 with 1 <= 224-b <= 224, define two possible destinations: **83 + π(b)**, with π the ordinary prime-counting function, and **prime(224-b)**, the 1-based prime at the arithmetic residual index. Require both to refer to the same original grid position (0..255). Exhausting **every b=0..223, including composite values**, gives **exactly one solution: b=193**, because **π(193)=44**, **224−193=31**, and **83+44=prime(31)=127**. Thus this proposed two-route condition determines the observed table value 193 **without using the cell as an input**; the second actual original cell at offset127 is again 193. The source-supplied 2013 DH modulus **23** also has prime(23)=83, the first cell's global index. The residual **31** matches both the prime ordinal selecting the second position and the independently established count of red thirteen-dot stencil marks, which separate the last sixteen pages into 32 fragments. The two-route *rule itself* was inferred retrospectively from these coincidences, so the uniqueness does not authenticate it as the creator's intended decoder. The 256-byte table contains byte 193 *exactly twice*, at original global row-major offsets **83 and 127** (p50-local offsets 3 and 47). The distance **44** equals the 1-based prime ordinal of 193. The enclosed offsets **84–126** provide exactly **43 source bytes**, matching the 43 alphabetic words of the preserved signed 2016 message under the already fixed tokenization excluding 3301 and the hexadecimal fingerprint. Original byte **201** occurs exactly twice at offsets **82 and 128**, flanking the two 193 occurrences in reverse order: **201, 193, [43 bytes], 193, 201**. The value 201 is the 1-based ordinal of the first prime displayed after the 2013 gap. This is the only reversed ordered adjacent-byte-pair match anywhere in the original table. Under the alternative radix-59 reading, token 3D would equal 190 and the prime-rank route fails.
+
+**One frozen original-data decoder was tested:** take the 43 interior bytes in forward row-major order and XOR each with its corresponding signed-word GP-prime sum modulo 256, as suggested by the historical 2013 bytewise XOR puzzles. This yields only **16/43 printable ASCII** bytes and no readable instruction. The same model roundtrips a separately supplied known 43-byte ASCII plant exactly, which is an implementation check only. This closes the literal direct XOR interpretation, without claiming an actual LP2 text decryption.
+
+The source matching, 43-byte alignment, prime-gap index and bracketing bytes were recognized retrospectively, so there is no discovery-adjusted significance claim or proven creator instruction. Under a fixed-source shuffle conditioned on 193 being present at selected offset 83, the other copy occupies the expected +44 offset with probability 1/255; this is a narrow conditional arrangement probability rather than evidence of a cryptographic key. The next decisive step is an independent historical instruction turning these 43 signed-word/byte pairs into a recoverable key or original plaintext, then testing a frozen inverse against unsolved LP2. The existing [book-map source SFT](../sims/lp2_2016_message_base58_word_map.cjs) asserts the full chain and bounded XOR result.
+
+
+### From the signed “lies” selector to the byte-pointer 11-cycle in 16 steps
+
+**Source-original numerical route; hypothesized use.** The previously frozen signed-word map picks LP2 p50 original numeric cell3, whose global row-major table index is **83** and whose value is **193**. Interpret each byte as the next zero-based address in the existing 256-cell table, with no free offset. The exact pointer route is:
+
+`83 → 193 → 155 → 112 → 73 → 79 → 82 → 201 → 74 → 205 → 76 → 114 → 197 → 115 → 247 → 192 → 0`
+
+This first reaches zero after **exactly 16 steps**, matching the word count of the signed 2016 central sentence “Its words are the map, their meaning is the road, and their numbers are the direction.” Starting at zero then traverses the **11-cycle** `0→203→68→199→47→76→114→197→115→247→192→0`, identified separately before the signed “lies” selector was noticed (see [the existing byte-pointer report](lp2-grid-byte-pointer-11cycle.md)). Starting at the *other* original 193 cell, index127, also reaches zero after 16 steps. Exhaustively, only **11 of the 256** table positions first reach zero in 16 steps: **[63,65,83,127,179,181,209,217,222,231,244]**. Of these, precisely the two 193 cells **83 and127** pass through all of positions **112,114,115** along the 16-step route.
+
+There is a further precise, still provisional source-navigation relationship: applying the **same previously frozen base-58 page/word interpretation** to the original route values **112,114,115** selects **p54 word1**, **p56 word1**, and **p57 word1** respectively. The second is the solved **END** (p56 ciphertext OESR under the independently verified prime-totient inverse); the third is the solved **LIKE** (p57 GP spelling LICE). The absent intervening value **113** selects **p55 word1**, which is still encrypted, and the signed 2016 message separately generates 113 from the source word **“you”**. Hence the route touches three of the four consecutive p54–57 page/word1 addresses but skips exactly the final unknown p55 one.
+
+All table bytes, addresses, word counts, and solved-text anchors are asserted by [the updated source SFT](../sims/lp2_2016_message_base58_word_map.cjs). They form an exact computational relationship and a candidate intended walk, not authenticated plaintext. The sixteen-step stopping condition was inferred after observing the source, and the source does not explicitly specify one pointer advance per signed word. The missing operational clue is how to read the route as plaintext or use it to decode the withheld **p55 word1**. Further ungrounded offset and key sweeps would dilute this constraint.
+
+### Source-selected 44-byte key/nonce: an actual authenticated-decryption test
+
+The source-selected 193 copies are **44 printed cells apart**, so the original contiguous span can supply a **32-byte AES/ChaCha key and 12-byte nonce**, precisely 44 bytes. The source-defined interval permits two 44-byte windows, one including the first 193 and one including the last. Testing both byte directions and the two consecutive key/nonce field orders gives **eight source-exact candidates**; there is no secret phrase or arbitrary key search.
+
+A [new standalone positive-controlled original-inverse test](../sims/gp29_193_signed_source_aead_sft.cjs) uses the existing whole-book 12,956-rune GP29 big-integer codec (7,868 bytes), in five previously specified orientations, and both natural payload framings (nonce externally supplied from the table, or initial 12 bytes of the cipher payload as nonce). Each candidate is tested with standard **AES-256-GCM** and **ChaCha20-Poly1305** with 16-byte final tag and empty associated data. Total: **160 attempts**.
+
+**Original result: 0 authenticated plaintexts out of 160**, with both 7,852-byte positive controls recovering every byte under the actual source-derived key and failing correctly on a tampered tag. The complete successful [CI run 42954840869](https://github.com/FlareZ123/liber-primus/actions/runs/42954840869) executes the new SFT immediately after the frozen signed-word map in the existing manual workflow. Crypto API semantics follow [Node.js official crypto documentation](https://nodejs.org/api/crypto.html#class-decipheriv).
+
+This rejects the precisely defined whole-book GP29/AEAD envelope under those key/nonce windows. It does **not** recover or rule out a p55-only key, another intermediate encoding, an unauthenticated cipher, or a different source-selected operation. The 44=32+12 interpretation was noticed after observing the cell spacing, so its motivation is provisional. Retire this direct key/nonce route unless an original clue determines a different framing.
+
+## Literal PARABLE instruction: 43 interior runes on the last unsolved page
+
+**New, source-visible 43-way alignment (Agent 29, 11 November 2026; provisional, with a completed original-input decision).** The independently solved p57 *PARABLE* says to “shed our own circumferences” and “find the divinity within.” An executable, human-readable reading of that instruction is to **delete the first and last GP rune of each original printed word**. Use [the physical-word transcription](../resources/lp2-transcription.txt), joining marked line wraps before counting words; a GP digraph is one printed rune.
+
+Original p55 (72.jpg), the final unsolved page, has **76 runes across 17 printed words** with exactly **one singleton**. Removing the two external runes from every longer word, and the singleton itself, leaves **76 − (16×2+1) = 43 original interior runes**, in exact printed order. They begin `MIEOGDTHIAABCE...` in canonical GP transliteration and have GP-prime sum 2,060. This is a third original-source **43-position sequence** beside the PGP-authenticated 2016 message's **43 natural-language words** and the **43 printed table bytes at positions 84–126**, already isolated by the `201,193 ... 193,201` reversed byte brackets from the signed `lies`→p50 selector. The signed message and table geometry were identified independently of the p55 trimming operation. Each 43 count is exact, but matching counts do not prove authorial design.
+
+The instruction has a second, different candidate destination: solved p57 carries a seven-rune `PARABLE` heading and **19 body words** containing **88 original GP runes**. Stripping the first and last rune from each body word leaves exactly **88 − 2×19 = 50** runes. **Physical p50 is the only rune-free numerical-table page**, so this gives a literal “inside” → page-number 50 coincidence. Its significance is unresolved; no original text says to treat the residual length as a page address.
+
+**Whole-book selector and second 33/88 tree bridge.** The same literal outer-rune deletion has **no other 43-rune result** among all 57 rune-bearing physical LP2 pages; p55 uniquely yields that length under the frozen physical-word grammar. On the 2016-signed-image-linked original tree page **p32 (49.jpg)**, the original two printed sentences divide its 121 ciphertext runes into exactly **33+88**: seven words of 33 runes and fifteen of 88. The source-linked sharp tree on **p55 (72.jpg)** divides into **33 exterior runes plus 43 interior runes** after the same first/last-word extraction. The solved *PARABLE* p57 divides into a **seven-rune heading and an 88-rune body**. Thus the independent visual/textual source links select **p32 first sentence 33 ↔ p55 shed word-exteriors 33** and **p32 second sentence 88 ↔ p57 solved body 88**. These are exact structural identities; none says that those aligned sequences have identical plaintext.
+
+The direct cross-source check is negative: p32's first 33 actual runes equal p55's 33 exteriors at only **1/33** positions; its second 88 actual runes equal the independently solved 88 *PARABLE* body runes at **2/88** positions. Even under an arbitrary *unknown stationary 29-way substitution* from solved p57 body to the source p32 second clause, at least **63 of 88** runes would have to change. **1,402/2,000** fixed-inventory p32-tail shuffles attain an equal or better fit (add-one **p=0.701149**). A native hidden-codebook control shows exact recoverability. This excludes the simplest direct cross-tree transcription under global substitution; a cryptographically meaningful transform has not been identified. **A stronger all-secret eight-column linear-cipher exclusion:** The same 88-rune known body and proposed p32 ciphertext tail form **11 successive eight-rune blocks**, with block width fixed by the original numerical table's eight columns. The eleven GF29 plaintext vectors have matrix rank **8**, but adjoining their eight output coordinates gives rank **11**; therefore **no possible secret 8×8 Hill matrix** maps these exact source blocks. Allowing an arbitrary constant eight-rune offset still fails: rank **9** for the augmented inputs (including a one column) versus **11** for augmented inputs plus outputs. A source-native planted nonsingular affine linear transform satisfies both equal-rank conditions. This algebraic obstruction is independent of English scores, guessed key entries or partial fitting. The eight-column grouping is a plausible source-selected model, and other groupings/nonlinear ciphers remain open. The **33/88**, **33/43** and **7/88** splits provide a newly aligned finite set of source-specific original inputs for a genuinely constrained next operator, without authorizing arbitrary new masks.
+
+**Finite original-cipher decision using the already frozen 43-table-byte compass route.** The published `sims/lp2_2016_43word_compass_sft.cjs` maps the table bytes at 84–126 to a 43-stop route on the source-selected p32 11×11 prime matrix, starting at `HOMEX`, using its eight columns for compass direction and 32 rows for distance. Comparing the **actual 43 visited GP runes** against p55's **43 inner GP runes** gives only **1/43** exact rune agreements. Even giving this relation an *arbitrary secret stationary GP29 codebook* (every codebook selected by source-class plurality), at least **20 of 43** p55 target runes must be edited. On **2,000** deterministic permutations of the original 43-rune inventory, the same all-secret fit is as good or better **866** times (add-one upper tail **0.433283**). A native hidden-codebook plant fits **43/43** and one changed rune forces exactly one mismatch. Independently, direct table-byte XOR/add/sub with these source rune indices or their prime/totient weights produces no recognizable ASCII.
+
+This excludes literal identity and a single stationary substitution from that **specific source-selected compass walk** into p55's inner stream. It does not exclude a more complex operator whose inputs include the 2016 word content, punctuation, previous state or other actual artwork. The three 43-element streams are worth a direct, independent human-solve-path question, **but no unknown LP2 plaintext, authentic key, or verified continuation has been recovered**. [Source-native exact CJS and seeded controls](../sims/lp2_p55_shed_circumference_43_source_gate.cjs) · [successful manual CI 42960789574](https://github.com/FlareZ123/liber-primus/actions/runs/42960789574). Preserve the physical-word count 17; the 19-word count belongs to p57's **body**, not p55.
+
+## Original-LP2 inverse: 43 table bytes as a key for the 43 addressed words
+
+**Bounded negative, 11 November 2026.** The previously frozen signed 2016 message contains 43 GP-encodable natural-language words. Its same 58-page GP-prime-sum address rule selects **42 actual LP2 rune-words and the single p50 table-cell exception**, a total of **175 source ciphertext runes**. The independently observed reversed numerical bracketing `201,193,[43 bytes],193,201` supplies exactly 43 original printed base-60 grid bytes at global offsets **84–126**. A literal source-to-cipher operation is therefore to pair the addressed rune-words with those bytes in the unchanged 2016 message order.
+
+The [standalone reproducible inverse](../sims/lp2_2016_43byte_bookword_inverse_sft.cjs) freezes this byte alignment and applies each original byte modulo 29 as one additive GP29 shift for every rune in its corresponding *selected* printed word. Both reversible signs are tested; the absent p50 word simply carries no runes. Each model deciphers and then exactly re-encrypts the **175 original rune positions**. To evaluate something independent of roundtrip identity, a smoothed GP word-internal bigram/trigram model is trained on the first 75% of the repository's Shakespeare corpus, and **2,000 permutations of the same 43 source bytes** are tested per sign without varying the original book addresses. The last 25% of the Shakespeare GP corpus supplies held-out plaintext word-length-matched to all selected original words; encrypting it under the *same* table bytes and then inverting restores every planted rune.
+
+| Original source-key decoder | Original mean log GP bigram+trigram | Key-order-null mean | Same-source shuffle upper tail |
+| --- | ---: | ---: | ---: |
+| Subtract table byte mod29, per selected rune-word | **−4.677788** | −4.699041 | **0.412794** |
+| Add table byte mod29, per selected rune-word | **−4.760124** | −4.713194 | **0.676162** |
+
+The held-out native plaintext plant scores **−2.127767** under the same trained model, with **175/175** symbols exactly recovered and reencryption passing. Neither original direction is informative against the preserved-source key-order null. This rejects the simple table-byte-per-addressed-word GP29 additive use; it does not exclude a different word traversal, nonlinear register, variable-rate intermediate or undiscovered key.
+
+A separate direct 43-byte readout uses the GP-prime sums of the *selected LP2 rune-words*, a different and now frozen source from the original signed-word prime-sum XOR reported above. For the rune-free `lies` address only, this finite experiment uses the **conditional base-60** table-token value **193** (base-59 would give 190). Direct XOR of the 43 interior bytes with selected-word prime sums leaves **16/43 printable ASCII**; the corresponding selected-word ordinal-sum XOR gives **15/43**. Direct modular subtraction/addition of selected-word prime sums yields **22/43** and **13/43** printable bytes, respectively. None is recognizable plaintext. The source-native wordwise GP29 plant and these finite negative byte readouts were executed successfully in [manual CI 42955097211](https://github.com/FlareZ123/liber-primus/actions/runs/42955097211). No unknown LP2 plaintext or authentic cipher key follows.
+
+The candidate 43-byte alignment itself remains retrospective; further inverse searches would require a specific source-prescribed operation rather than expanding unconstrained byte/key transformations.
+
+## Independent numerical bridge to the 2016 image
+
+The first four words, “Its words are the”, have GP prime sum:
+
+`143 + 179 + 175 + 72 = 569`.
+
+That equals both:
+
+- the 569-pixel dimension of the 2016 signed image; and
+- the first-column GP-prime sum of the 11×11 p32 square.
+
+The p32 top-row sum is 563, matching the other 2016 image dimension. This does not prove the book-map rule, but it independently links the 2016 message's word values to the p32/tree geometry.
+
+## Alternative: cumulative 58-page walk, 76 selected runes
+
+An explicitly different reading of the signed sentence “Its words are the map, their meaning is the road, and their numbers are the direction” treats each source word's GP-prime sum as a **running page displacement**, rather than the direct absolute page address above. Start at physical LP2 p0, advance by the sum **modulo the original 58 pages**, then select the zero-based word at index `floor(sum/58)` on the new page. The original message does not say which of these two possible address semantics applies. The alternatives are competing hypotheses, even though they share source arithmetic.
+
+For the fixed 16 signed words, the source prime sums are `[143,179,175,72,211,114,319,84,72,204,215,114,295,175,72,337]`. Their **16 distinct** cumulative destinations, word indices, and exact selected-rune counts are:
+
+```text
+Word:       Its words are the map their meaning is the road and their numbers are the direction
+Page:        27    32  33  47  26    24      53 21   35    7  48    46      51  52   8        55
+Word index:   2     3   3   1   3     1       5  1    1    3   3     1       5   3   1         5
+Rune count:   4    11   6   8   4     3       1  3    3    3   3     4       2   7   8         6
+```
+
+Specific original-source correspondences follow from the unmodified route: “words” reaches the blurred-tree **p32** linked to the signed 2016 image; “numbers” reaches the original numeric-table continuation **p51**; “direction” ends on **p55**, the last unsolved LP2 page. The first and last visited pages, **p27 and p55**, independently contain the same unusual six-rune span `ᛞᛄᚢᛒᛖᛁ`, at p27 local offset28 and p55's last six positions. The *selected address-words* at those endpoints are different from the repeated span; this is a page-level correspondence.
+
+The 16 selected words total **exactly 76 runes under the canonical full master transcription**, the same size as both original p55 and the **76-byte outer boundary** of the printed 32×8 numerical table. The simplified LP2 transcription differs at certain source word boundaries; use the canonical 75-scan master for this 76-element reading. The size equality supplies a possible next operation, without specifying one.
+
+A source-exact [standalone CommonJS inverse](../sims/lp2_signed2016_cumulative_page_walk_sft.cjs) passed [manual CI 42952172983](https://github.com/FlareZ123/liber-primus/actions/runs/42952172983). It tests the candidate 76-rune stream as a p55 additive key using three natural GP29 projections: rune ordinal, GP-prime residue and prime totient residue, with either key sign, with and without the 76 perimeter bytes in original row-major order. All **12** 76-rune outputs are unreadable, with IoC in **[0.02667, 0.03719]**. Four ordinary page-reset/global additive 76-key inversions across the complete unknown corpus also remain uniformly ciphertext-like (IoC **0.03445–0.03452**, original **0.034478**). These negative direct-key tests cannot reject the page walk or its cardinality match, only the declared simple key-use models.
+
+The next discriminating evidence would explicitly choose a *running* versus *absolute* page address, or provide a source-native operation combining the 76-element sequence with the table perimeter. The cumulative interpretation provides **no newly recovered plaintext, cipher mechanism, authenticated key or destination**.
+
+### Retired noncanonical base-59/TINY experiment (11 November 2026)
+
+An exploratory calculation split the signed 2016 body into three manually selected sections, used the noncanonical alias/tokenization conventions in the earlier prime-layer experiment (`IO→IA`, `K→C`, `V→U)), divided their sums by 59, and then reused 59 for the 2017 warning. The resulting rune-name initials were TINY, which prompted a bounded TEA test. This branch is **retired as a likely false path**, not an extension of the canonical word-map result.
+
+The premise is not source-authenticated: the canonical analysis above uses `IA`, not an `IO` alias, and the complete 16-word instruction sentence has **61** canonical GP runes and prime sum **2781**, not a 59-rune section count. The three-section split is not explicitly selected by the signature. The 2017 warning itself has 45 GP symbols; using its own length gives page 47 offset 16 (Is), not page 36 offset 7 (Yr). The TINY result additionally depends on taking rune-name initials rather than the direct transliteration T-IA-N-Y. The 2014 comparison is doubly noncanonical: it excludes the onion URL because Q is outside GP and collapses `ING` to `NG`. Under ordinary GP tokenization (`I` + `NG`, with K→C as needed), the URL-excluded signed body has 66 symbols and sum 2624, not 65 / 2593; the apparent p15-prime match disappears.
+
+Standard TEA/XTEA tests on the p50 table with direct message-sum, prime-index, p15, 2014, PGP and 2013-cookie-derived keys produced no recognizable plaintext. The attractive 32×8 / 16-cell structural fit does not supply an authenticated cipher instruction or key. See the [retired calculation and bounded negative tests](2016-2017-base59-tiny-tea-hypothesis.md) and [reproducer](../sims/2016_message_base59_tiny_tea_gate.cjs) for audit only. **Do not continue TEA/key searches from this result absent a new, independent source instruction.**
+
+## Controls and limits
+
+- The mapping is word-by-word. The NG-only 16-word source encoding has 61 GP runes and prime sum 2781; ING-aware MEANING instead makes 60 runes and prime sum 2750. In the unchanged NG-only variant, treating the total as one address gives p55 word 47, which is out of bounds because p55 has only 17 physical printed words.
+- The repository's canonical transliteration uses `IA`, not an `IO` alias. The word “direction” therefore contributes nine runes and prime sum 337. Published 59-rune / 2819 calculations for this sentence require a different, undocumented treatment of the initial capital I and/or IO; this experiment does not rely on that segmentation.
+- Zero-based page numbering is supported by the original 0–57 archive labels. Zero-based word indexing is not explicitly stated in the source, but it is the convention that produces the FOLD and END anchors. A one-based word interpretation selects the preceding words instead.
+- Neighboring moduli do not reproduce both anchors: with 57, “the” selects p15 word 1 and “their” p0 word 2; with 59, they select p13 word 1 and p55 word 1. The original 58-page count is therefore material to this candidate.
+- Most selected words remain opaque ciphertext. Do not call the 16-word output plaintext, and do not promote this to `results/` yet.
+
+## Cross-round 2012 MIDI 49-word map (conditional; no decryption)
+
+Applying the same provisional 2016 GP-prime-sum/base-58 word-address rule to the repository's 49-word 2012 MIDI transcription (`resources/historical/cicada2012-midi-49-words.txt`) gives 49 addresses: 44 resolve to printed rune-words and five land on p50, all in its first row. In source-word order:
+
+| MIDI word | GP-prime sum | p50-local cell | Printed token | Working base-60 value |
+|---|---:|---:|---|---:|
+| hammer | 340 | 5 | `0S` | 28 |
+| hook | 50 | 0 | `2M` | 142 |
+| knot | 108 | 1 | `0w` | 58 |
+| boat | 224 | 3 | `3D` | 193 |
+| umbrella | 456 | 7 | `15` | 65 |
+
+The signed-2016 word `lies` also has GP-prime sum **224**, so it selects the same p50-local cell 3 and token `3D` as the 2012 word `boat`. This is a cross-round collision under the proposed address rule, not independent proof that the rule is intended. The cell positions do not depend on the p50 radix interpretation; the byte values above assume the working base-60 codec (the base-59 alternative changes the values).
+
+The five table values in source order reduce modulo 29 to **[28, 26, 0, 19, 7]**. If the 44 rune-word targets contribute their interior runes (first/last removed) and each p50 target contributes its table byte modulo 29 at its original source-word position, the resulting stream is **116 symbols = 4×29**:
+
+```text
+ORNOEYOEEOLDHBANGHNOEYEAJNAYTPWSXFSEANGXPMICSNIIAPEAIAICSNGMDAEUEAUWOERUWSLITHJNFRIHNNGUEOSNGMDAEUEAUANGYOEANGTHENUIAEIUAEWNGATHBIWIACNGOOUXSXITHAES
+```
+
+This stream is not readable plaintext; its 4×29 length is only a structural observation, not evidence of a four-row cipher. No source selects it as a key or ciphertext. The complete 49-word address table and stream are asserted by the existing [2016 word-map reproducer](../sims/lp2_2016_message_base58_word_map.cjs), extended to include the 2012 transcription. The base-58 rule and base-60 byte values remain provisional; no LP2 plaintext or cipher key follows.
+
+
+## Current decision and reopening gate (11 November 2026)
+
+The base-58 word addresses and p32 M7 W/infinity route remain provisional. The 43 compass landing-cell readout is a nonlinguistic intermediate; the direct word-length, initial-rune and table-byte subtraction controls are negative. The full-map PARABLE-stripped 91-symbol plane is a new structural consequence, but its direct 3×91 key/field uses against the p29 residual are negative; 3×7×13 is not a decoder. FOLD/p50 3D and two solved p56 targets END/DEEP are conditional map coincidences: the source-matched ING-inclusive null yields 6/58 exact page origins and 5,050/50,000 shuffled prime assignments with two distinct solved targets, so the #304 no-selector conclusion remains. No source-fixed tensor orientation/state exists; do not repeat arbitrary fold, orientation, or axis sweeps.
+
+A separate exploratory base-29 line:character mapping yields an apparent PRNG marker and a 13-token remainder. The subsequent source-selector audit in [2016-linechar-13token-prng-seed64-gate](2016-linechar-13token-prng-seed64-gate.md) found that the apparent marker depends on an unsupplied quotient/remainder orientation, punctuation counting, Latin-to-GP tokenization, and selecting signed-message words rather than LP words. Therefore neither PRNG nor its 64-bit remainder is authenticated as a source instruction or seed; reproducing the same output in two transcriptions does not resolve those choices. The PRNG seed is not a basis for further generic generator/seed searches. The 2012 P.S. RSA modulus/exponent remains a candidate, not a fact; simple RSA/RC4/MT stream-XOR and additive-key interpretations have failed. Do not broaden generic seed sweeps or continue unmotivated base-58 codecs.

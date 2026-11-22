@@ -1,0 +1,14 @@
+name: Agent 5 original LP2 table SHA-512 Merkle root source gate
+on:
+  workflow_dispatch:
+jobs:
+  source-merkle-root:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-pinned SHA-512 Merkle root test
+        run: node sims/lp2_p50_sha512_merkle_tree_source_sft.cjs

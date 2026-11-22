@@ -1,0 +1,19 @@
+name: LP2 lossless base29 entropy-coder word inverse
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-word-codecs:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Execute source-fixed original and authentic-plaintext controls
+        run: node sims/lp2_word_entropy_base29_original_sft.cjs

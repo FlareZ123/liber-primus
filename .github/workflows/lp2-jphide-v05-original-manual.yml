@@ -1,0 +1,27 @@
+name: LP2 historical JPHide v0.5 original-carrier gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  jphide-v05:
+    runs-on: windows-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Checkout pinned GPL-3.0 decoder upstream
+        shell: pwsh
+        run: |
+          git clone --depth 1 https://github.com/rickschaves/stegostudio.git stegostudio-upstream
+          git -C stegostudio-upstream fetch --depth 1 origin 201689b5755c0f1267223cd881429e679230b835
+          git -C stegostudio-upstream checkout --detach 201689b5755c0f1267223cd881429e679230b835
+          if ((git -C stegostudio-upstream rev-parse HEAD).Trim() -ne '201689b5755c0f1267223cd881429e679230b835') { throw 'Unexpected decoder source' }
+      - name: Verify fixture and probe original LP2 carriers
+        shell: pwsh
+        env:
+          STEGOSTUDIO_DIR: ${{ github.workspace }}\stegostudio-upstream
+        run: |
+          node --expose-gc sims/lp2_jphide_v05_original_carrier_gate.cjs

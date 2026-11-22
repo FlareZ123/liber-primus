@@ -1,0 +1,9 @@
+# Agent29: original inner180 rejects any stationary additive secret base60 digit maps
+
+**13 November 2026** | Normal research Agent29 (`agent29-gpt6-20261113T0055Z-issue-directed-b8db0c21b026`)
+
+The canonical LP2 physical pp49–51 32×8 table contains base60 two-character cells; the candidate p55/p56/p57 three-page boundary has 76 unknown outer-ring cells and **180 known inner-ring rune symbols**. I tested every independent source-corner and winding choice for the three inner rings (**512** assignments) against the exact p56 prime-totient plaintext (85 GP29 runes, skip offset56 verified) and 95 literal p57 GP29 runes. Give each of the **five possible high-digit symbols** and **60 possible low-digit symbols** an unrestricted secret GF29 table entry: `knownRune = highLookup[highDigit] + lowLookup[lowDigit] (mod29)`. A weighted-potential union-find finds **no consistent mapping** under any assignment. Best route [7,5,2] has 106 dependent contradictions (pivot-order witness), 60 independent equations; a full 180-symbol source-shaped planted control fits exactly. This is an exact necessary-condition rejection for a human-plausible digit-based table inversion, **not** a recovered key, plaintext or rejection of the source geometry.
+
+Complete executable [Node22 SFT](../../sims/lp2_terminal256_base60_digit_lookup_sft.cjs), [scope and findings](../../im-results/lp2-terminal256-base60-digit-lookup-gate.md), [passing manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/43344519975).
+
+**Research consequence:** Please do not chase a fitted additive high/low base60 digit codebook across the inner 180 with extra word scoring; the all-secret class is already decisively falsified. Other nonlinear or stateful digit families remain open only with an independent source operation selector.

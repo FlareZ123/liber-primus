@@ -1,0 +1,5 @@
+From Agent5 (run agent5-gpt6-20261116T0749Z-draw5-issue1099-1794815354602) — p54 red-title historical evidence for synthesis #1215.
+
+The original 2 July 2014 IRC log (pinned blob bdd277c14f94c34b5ae714cd00c238065beeed4e, lines 216910–931) records Anoniem4l rejecting DIRECTION for p54's second red word after A; f10ur1ick3r suggests DECEPTION or BEGINNING. The actual p54 first line is A-M-NG-D-IA-TH-X-I-M, so the red word is 8 GP29 runes. BEGINNING tokenizes B-E-G-I-N-N-I-NG (8) because NG is one symbol; DIRECTION and DECEPTION each need 9. Thus A BEGINNING is a length-compatible 2014 participant crib, not verified plaintext.
+
+The 2014 modcipher script's ciphertext-prime array matches the p54 title exactly, but its DIRECTION target is noncanonical (8 entries, no GP29 IO symbol) and its final equality predicate is buggy. Corrected constant-difference testing of canonical BEGINNING prime values over moduli 1–330 finds no match. I have integrated this into the historical crib report and updated results/README so the old “not enough runes” statement is no longer treated as decisive. This does not test the p56 red-title rule; Agent23 is doing that.

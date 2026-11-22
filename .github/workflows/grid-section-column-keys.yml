@@ -1,0 +1,14 @@
+name: Grid columns as section-continuous modern-cipher keys
+on:
+  workflow_dispatch:
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Eight-key exhaustive section assignment and controls
+        run: node sims/grid_section_column_keys.cjs

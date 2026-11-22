@@ -1,0 +1,16 @@
+name: LP2 page-position all-secret GP29 capacity
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  pageposition-capacity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original-source GP29 majorization and native prose controls
+        run: node sims/lp2_pageposition_allkey_capacity_sft.cjs

@@ -1,0 +1,82 @@
+{
+  "upstream": "pnotisdev/cicada3301",
+  "upstream_commit": "15200c67abee106913ba01ff504c5b6e88d16cc7",
+  "original_corpus_sha256": "58588725a006432a50a1c8d852b881e5e844ba32073e729b42e0f78074b17338",
+  "targets": {
+    "opening": {
+      "window": "seg0.7",
+      "pages": [
+        0,
+        1,
+        2
+      ],
+      "runes": 729,
+      "prev": -1,
+      "sha256": "e627a971a8f3d1872436a9f4a1f9fe64665753c5b978683dbbfc7b81c4f1833a",
+      "complete": true
+    },
+    "p42": {
+      "window": "p42",
+      "page": 42,
+      "runes": 272,
+      "prev": 11,
+      "offset_in_seg0.15": 504,
+      "source_section": "seg0.15 = original pages 40-55",
+      "sha256": "b568efdcbae99d5bab75dbbc2f8cf6abdc1bc18384a7aa81e9e565bf91db85ca",
+      "selection": "full single-block page 42; held outside the earlier first-300-rune seg0.15 window"
+    }
+  },
+  "families": {
+    "core": {
+      "count": 115,
+      "lengths_sha256": "68959523183d044a8b5ff5c2a4bab77663a581fd97a55496ad7340e38bbeaf96",
+      "bytes_sha256": "51fa394e51e8b28c6bfc770e60f8e0a97b8f4111b1c1bde712c7baf6d19e313f"
+    },
+    "core20": {
+      "count": 20,
+      "lengths_sha256": "c97ba7dfc1f79df933f8508ab2fbdd835300f8640139f5f12afe2adc63b5a77b",
+      "bytes_sha256": "3d87b77b3117963d48c90f13c47ff6c0b3f53d5373d041ff3440c8b00e79087c"
+    },
+    "combined": {
+      "count": 1360,
+      "lengths_sha256": "da761efd788b34f321bf30288d84b87200af27f924aea76d705f98694d738da4",
+      "bytes_sha256": "29c75c9575380ca8170db2257f9ec3f3c4f573aa3cd8a94018f0a82ab3fcb9ae"
+    }
+  },
+  "matched_nulls": {
+    "core": {
+      "count": 115,
+      "seed": 3301001,
+      "source_lengths_sha256": "68959523183d044a8b5ff5c2a4bab77663a581fd97a55496ad7340e38bbeaf96",
+      "null_lengths_sha256": "68959523183d044a8b5ff5c2a4bab77663a581fd97a55496ad7340e38bbeaf96",
+      "sha256": "24a0606fd87adea415531fcecc9adb59ad84b0b43bfcc9502ffe4b8a3692a006"
+    },
+    "core20": {
+      "count": 20,
+      "seed": 3301002,
+      "source_lengths_sha256": "c97ba7dfc1f79df933f8508ab2fbdd835300f8640139f5f12afe2adc63b5a77b",
+      "null_lengths_sha256": "c97ba7dfc1f79df933f8508ab2fbdd835300f8640139f5f12afe2adc63b5a77b",
+      "sha256": "63a8383bf0090130144c801b1e7c61a5109e452bec0ec62585f954fea91817f4"
+    },
+    "combined": {
+      "count": 1360,
+      "seed": 3301003,
+      "source_lengths_sha256": "da761efd788b34f321bf30288d84b87200af27f924aea76d705f98694d738da4",
+      "null_lengths_sha256": "da761efd788b34f321bf30288d84b87200af27f924aea76d705f98694d738da4",
+      "sha256": "d099de4d4582c16acaf4077b9371d35c7f2cb545be83af1010b826862586e975"
+    }
+  },
+  "periodic_counter_patch": {
+    "change": "PSt ncol/cnt storage u8 -> u16; periodic screen length bound 500 -> 10000",
+    "verification_change": "periodic whole-window verification now uses the screen header's n",
+    "n300_parity": "byte-for-byte identical TSV after normalizing runtime seconds"
+  },
+  "screen_contract": {
+    "serial_solved": "core.ksb x 3 solved keywords; both inner signs, all phases, litf 0/1, Atbash, outer multipliers 1/28, models 0/1",
+    "serial_words": "core20.ksb x 30 fixed historical/Cicada keywords; same sign/phase/litf/Atbash/outer/model controls",
+    "combined_a1": "combined.ksb, 20 streams x 3 solved keys x signs/phases, one-pointer A1 order; litf=0",
+    "unknown_period": "core20.ksb, keyword periods 2-14; litf=0 always and litf=1 only after its independent positive control passes",
+    "null": "uniform random GP29 streams preserving every family count and individual stream length",
+    "verification": "unchanged upstream whole-window bigram verification: score >= +2.0/rune and >= 20-offset matched-null max + 5.0"
+  }
+}

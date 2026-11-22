@@ -1,0 +1,18 @@
+name: LP2 p32 word-prime signed2016 pixel-map source gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  word-prime-pixel-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install known image decoder
+        run: python -m pip install --disable-pip-version-check Pillow==11.3.0
+      - name: Run source-locked original image-coordinate test
+        run: python sims/p32_wordprime_signed2016_pixel_map_sft.py

@@ -1,0 +1,44 @@
+name: Keyed T-repair inverse candidate recovery
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check complete source-page word parser
+        run: node sims/test_lp2_word_pages.cjs
+      - name: Recover planted English plaintext under known additive key and latent repair
+        run: |
+          set -o pipefail
+          node sims/lag6_repair_keyed_inverse.cjs | tee lag6-keyed-inverse.json
+      - name: Recover planted text with heldout lexical and contextual Viterbi inference
+        run: |
+          set -o pipefail
+          node sims/lag6_repair_contextual_inverse.cjs | tee lag6-contextual-inverse.json
+      - name: Test original p50 256-byte table as a repeating GP29 key under contextual T6 inverse
+        run: |
+          set -o pipefail
+          node sims/lp2_p50_lag6_contextual_inverse_gate.cjs | tee lag6-p50-original-key.json
+      - name: Test original page28/42 scale-four relation with exact T6 rewrite
+        run: |
+          set -o pipefail
+          node sims/relative_key_T6_pair_marginal.cjs | tee relative-key-T6-marginal.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lag6-keyed-inverse-positive-control
+          retention-days: 90
+          path: |
+            lag6-keyed-inverse.json
+            lag6-contextual-inverse.json
+            relative-key-T6-marginal.json
+            lag6-p50-original-key.json

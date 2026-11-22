@@ -1,0 +1,246 @@
+# p50 second-column rank map and the p32 M7 fixed points
+
+**Status:** reproducible structural correspondence; not plaintext, a key, or a validated decipherment.
+
+## Construction
+
+The canonical corpus and ink annotations give 31 thirteen-dot events across LP2. Keeping coincident events as separate boundaries yields 32 chronological intervals. Intervals **#9** and **#12** are empty (the p7 co-located black/red marks and the p14/p15 page-boundary pair); the remaining **30** intervals are nonempty.
+
+The p50 numeric grid is 32 rows × 8 columns. Its per-column distinct-value counts are:
+
+`[30, 32, 30, 30, 30, 31, 31, 30]`
+
+Thus the **second column is the only all-distinct column**. I checked its 32 glyph tokens against the original JPEGs 66–68; in particular, table row 19 reads `3U` (=210) and row 22 reads `3m` (=228).
+
+Use the simplest alignment: chronological fragment (i) corresponds to numeric-table row (i). Omit the two empty intervals and sort the 30 remaining rows by their second-column byte in ascending order. This assigns each nonempty fragment one rank in (0,ldots,29), the 30 points of (P^1(\mathbb F_{29})=\mathbb F_{29}\cup\{\infty\}).
+
+## Exact M7 cross-link
+
+The source-supported p32 projectivity is
+
+[
+M_7=\begin{pmatrix}14&25\\25&28\end{pmatrix},
+\qquad x\longmapsto\frac{14x+25}{25x+28}\pmod{29}.
+]
+
+Its fixed points are ranks **22** and **25**. Its eigenvalues are 27 and 15, so the eigenvalue-ratio pair is **{25, 7}** (the two reciprocal ratios).
+
+Under the rank map above:
+
+| Projective rank | Fragment | Fragment location | p50 second-column byte | Base-29 quotient/remainder |
+|---:|---:|---|---:|---:|
+| 22 | 19 | p27–p32 | 210 | (7,7) |
+| 25 | 22 | p33 second red heading (8 runes) | 228 | (7,25) |
+
+Indeed, (210=7\cdot29+7) and (228=7\cdot29+25). The two remainders are exactly the M7 eigenvalue-ratio pair, and both quotients equal its order, 7. The selected fragments also anchor the p32/p33 transition: fragment 19 contains p32; fragment 22 is the eight-rune p33 heading.
+
+An additional **post-hoc checksum** is exact for this selected pair: fragment lengths sum to (1414+8=1422); the p50 bytes differ by (228-210=18); the first rune of fragment 22 has Gematria Primus prime value 79; and (18\cdot79=1422). Enumerating all 870 ordered pairs of nonempty fragments, only four have an integer quotient ((L_i+L_j)/(B_j-B_i)) that occurs among the 30 first-rune prime values, and only pair (19\rightarrow22) has that quotient equal to the later fragment's actual first-rune prime. This was noticed after selecting the M7 fixed points; the equation is not independently prescribed by a source clue, so treat it as a possible checksum rather than proof of intended design.\n\nThe resulting zero-based offset **1422** is a second post-hoc navigation hit: global offset 1422 (the 1,423rd rune) is p5 local 215, inside fragment **#6**, whose projective rank is **7**. The M7 denominator vanishes at 7, so (M_7(7)=\infty). The rune at that offset is **NG**, prime 79—the same rune and prime that begin fragment 22. This is suggestive but depends on zero-based indexing and was noticed after the checksum; it is not proof of an intended route.\n\nThe resulting rank-7 pole is the same (\infty) already associated in the current p32 synthesis with the signed-2016 phrase “path lies empty” ([current synthesis](../results/README.md)). The p50/fragment-length route reaches that pole by a separate chain of source values; it does not validate the word-map interpretation or supply a reversible operation.\n\nThis is a cross-artifact correspondence between the thirteen-dot segmentation, the p50 numeric table, and the p32 projectivity. It does **not** recover plaintext or specify how to transform ciphertext.
+
+## Sensitivity and boundaries
+
+- The source empty rows are #9 and #12 (zero-based table rows 8 and 11). As a sensitivity check, enumerate all \(\binom{32}{2}=496\) possible pairs of omitted table rows. **15** pairs leave the sorted values at ranks 22 and 25 equal to 210 and 228. The source pair is one of those 15. Therefore the byte pair alone is not a sharp statistical selector; the fragment identities depend on the natural chronological row alignment.
+- The p33–p39 whole-page block contains 1,680 runes, exactly (30\times7\times8). However, the p33 second red heading begins at local offset 91; the heading-and-body region from that point is 1,589 runes. Do not describe all 1,680 as the post-heading cuneiform body. The factorization is a dimensional clue, not a cipher operation.
+- The M7 structural derivation is documented in [tree-prime-canvas-partition](tree-prime-canvas-partition.md). This fragment-rank construction does not rely on the retired p32 26-word/page-local word walk; that word-address premise was independently rejected in [the corrected p32 boundary analysis](p32-m7-2016-word-fragment-alignment.md).
+- Sorting by the unique column is a plausible operation, not an explicit instruction found on p50. Natural chronological row alignment is the least elaborate correspondence, but still needs an independently motivated use.
+
+## M7 orbit partition and the 256-byte remainder
+
+The same rank assignment partitions the 30 fragments into four 7-cycles and two fixed points. The cycle containing the pole rank 7, followed from that pole, is:
+
+`rank 7 → 29 → 11 → 16 → 10 → 8 → 2 → 7`
+
+It visits fragments `#6, #2, #23, #24, #18, #5, #29`, with lengths `690, 716, 1460, 3, 19, 3, 5`, totaling **2,896 runes**. Fragments #23/#24 are in the p33–p39 cuneiform region; fragment #29 is the five-rune p56 red heading. The other three cycles and two fixed points total **10,240 runes**, exactly (40\times256).
+
+| M7 orbit | Ranks (M7 order) | Fragment IDs | Fragment lengths | Total |
+|---|---|---|---|---:|
+| C1 | 0, 4, 14, 18, 26, 9, 21 | 7, 14, 13, 27, 1, 8, 3 | 11, 11, 9, 9, 13, 308, 16 | 377 |
+| C2 | 1, 27, 12, 15, 28, 23, 5 | 20, 30, 31, 25, 16, 21, 26 | 10, 80, 7, 118, 16, 81, 3008 | 3320 |
+| C3 (pole) | 2, 7, 29, 11, 16, 10, 8 | 29, 6, 2, 23, 24, 18, 5 | 5, 690, 716, 1460, 3, 19, 3 | 2896 |
+| C4 | 3, 6, 20, 17, 13, 24, 19 | 11, 10, 4, 32, 15, 28, 17 | 1729, 14, 103, 88, 1883, 299, 1005 | 5121 |
+| Fixed | 22 | 19 | 1414 | 1414 |
+| Fixed | 25 | 22 | 8 | 8 |
+
+The C3 total happens to equal the manuscript's documented **2,896-word** count, but these are not the same units and C3 includes five solved p56 runes. Treat this as a notable partition, not an identity. C1 also totals (377=13\times29). The full fragment corpus is 13,136 runes; removing C3 leaves (10,240=40\times256), matching 40 repeats of the 256-byte p50 table. These exact dimensions motivated a bounded test, not an assumption that the table is a key.
+
+Under a conditional random-labeling null, the pole cycle occupies a fixed 7-subset of the 30 fragment lengths. Exactly **310** of the **2,035,800** possible 7-subsets sum to 2,896, giving a conditional probability of **1.52×10⁻⁴**. This is not a selection-corrected p-value: the match was noticed post hoc, the word/rune units differ, and the table-to-fragment assignment may not be random. It is a reason to retain the orbit partition as a hypothesis, not proof of intent.
+
+### Direct 256-byte additive-pad test — negative
+
+The 256-byte p50 table contains only **161 distinct byte values**, so it is not a byte permutation/S-box. The 10,240-rune remainder was assembled in two source-motivated orders: ascending projective rank, and the other M7 cycles in their canonical orbit order (with fixed points last). The full p50 256-byte table was used as a period-256 key, with byte-to-GP29 conversion (b\bmod29). Both original table row order and rows sorted by the unique second column were tested, with both additive signs. This is eight finite variants; all remain ciphertext-like and score worse than their corresponding raw target under the same Gibran trigram control.
+
+| Target order | Key row order | Sign | IoC | Mean trigram log-score |
+|---|---|---:|---:|---:|
+| Rank | Original | − | 0.034473 | −12.30854 |
+| Rank | Original | + | 0.034459 | −12.27473 |
+| Rank | Sorted | − | 0.034503 | −12.29129 |
+| Rank | Sorted | + | 0.034525 | −12.28138 |
+| Orbit | Original | − | 0.034536 | −12.31135 |
+| Orbit | Original | + | 0.034434 | −12.31411 |
+| Orbit | Sorted | − | 0.034540 | −12.32152 |
+| Orbit | Sorted | + | 0.034449 | −12.28706 |
+
+Raw rank-order and orbit-order trigram scores are −12.22752 and −12.22637 respectively. The best decoded rank-order score (−12.27473) and best decoded orbit-order score (−12.28706) are both worse. The simplest period-256 additive interpretation is therefore rejected; do not repeat it with arbitrary offsets or equivalent byte projections.
+
+The orbit partition and this finite test are reproducible with [`sims/p50_m7_orbit_partition_sft.cjs`](../sims/p50_m7_orbit_partition_sft.cjs).
+
+## Unique-column whole-fragment word-order inverse (Agent47, 13 November 2026)
+
+**Decision: bounded negative for a new consumer of the previously established p50-column-2 rank.** The original complete unknown text has 27 thirteen-dot events, hence 28 chronologically ordered rune intervals (26 nonempty, two empty). The 13-dot cuts do not split any of the **2,896 complete printed unknown rune words**; 32 words carried across physical page boundaries remain whole. All **32** entries in the printed table's *second column* are distinct. Preserve the source-exact fragment-to-row correspondence, remove no words, then concatenate the complete word intervals in ascending or descending order of the same second-column byte. These are two fixed, fully invertible whole-word traversals. The source does **not** explicitly say to sort that column or use the grid to reorder words; this is a motivated finite test, not a recovered instruction.
+
+The 9×9 adjacency-length Pearson chi-square uses GP word-length bins 1–8 and 9+, with expected cell counts equal to the product of the observed left/right marginals divided by the 2,895 adjacency count. The untouched source produces **68.27318638192133**, independently reproducing the existing original-length-order report. The *ascending-rank* complete-fragment reading produces **64.37863255271856**, and the *descending-rank* reading **65.83556429031574**. A separate, source-marginal-matched 63-window native-language reference scan already established a minimum above **95.3856** (see [word-length order grammar](lp2-wordlength-order-grammar.md)). Both rank-order inversions make the original length grammar **less**, not more, native-like, without changing the printed words or rune identities. They cannot restore the ordinary word-order syntax that a pure word permutation is supposed to expose.
+
+Exact ascending zero-based original-fragment order is `[6,19,10,13,25,9,5,4,7,17,22,14,12,24,23,26,16,3,2,18,20,27,11,21,0,15,1,8]`. The two empty fragments are retained as empty positions; their position does not affect word order. Only 26 nonempty fragment containers are moved, so any fragment-only permutation can modify at most 25 old plus 25 new inter-fragment adjacent-word pairs; 2,870 intra-fragment neighboring word pairs remain untouched. A phase or a new interleaving grammar is not licensed by the source rank and must not be fitted to rescue this failed consumer.
+
+**Exact all-secret 26-fragment permutation upper bound (extension to the above decision).** Every permutation of these 26 complete word-fragments leaves all **2,870 within-fragment adjacent word pairs** unchanged and introduces precisely **25 between-fragment pairs**. Fix any independently trained word-length transition log-odds matrix \(W_{ij}\), based on seven GP rune-word-length classes (1, 2, 3, 4, 5–6, 7–8, 9+). Let \(S_{\mathrm{internal}}\) be the sum of \(W\) over the 2,870 immutable within-fragment pairs, and \(M=\max_{i,j} W_{ij}\). Without making any assumptions about the unobserved permutation, its mean score is bounded above by
+
+\[
+ \frac{S_{\mathrm{internal}}+25M}{2895}.
+\]
+
+This *relaxed* bound even lets all 25 inter-fragment joins independently take the globally best transition (a freedom no real permutation possesses). Training the 7-class model on the **first 80%** of the repo-pinned Shakespeare or Gibran GP-native control, then scoring the unmodified original intervals gives:
+
+| Independent model | Untouched original score (bits/word pair) | All-secret upper bound, any 26-fragment order | Lowest 2,896-word contiguous window score in held-out last 20% |
+| --- | ---: | ---: | ---: |
+| Shakespeare, 55,407 source words | −0.02472425829 | **−0.02028746994** | **+0.01701856735** |
+| Gibran, 15,733 source words | −0.10146693101 | **−0.09175385343** | **−0.06713782573** |
+
+The no-key **upper bound is below every complete held-out native GP 2,896-word window** for *both* independently trained models. Thus even the best possible secret permutation of these 26 complete source-visible fragments cannot restore the corresponding native-like GP word-length adjacency score. This is an actual **all-permutation algebraic upper bound** for this one fragment architecture, stronger than the two rank-sort inversions. It says nothing about word-internal rune changes, changing word breaks, a more granular word permutation, another plaintext register, or artificially flat prose. Full control files are [Shakespeare](../resources/control/shakespeare_first300k.txt) and [Gibran](../resources/control/gibran_prophet_58585.txt); the original length parser and seven-class smoothed model are specified in [the existing independent native-control SFT](../sims/lp2_wordlength_order_native_control_sft.cjs). The bound follows by summing all immutable within-fragment edges and adding the maximum permitted edge weight 25 times; no combinatorial key search or speculative layout resets are involved.
+
+Source inputs: canonical [LP2 corpus](../resources/liber-primus/lp2-corpus.json), [rune transcript](../resources/lp2-transcription.txt), [ink annotations](../resources/liber-primus/lp2-ink-annotations.json) and [256 grid cells](../resources/liber-primus/lp2-grid-256.json). Original 28 fragment lengths/word counts and the source rank assignment are reproducible via the existing fragment-rank and word-length-order scripts. No unknown plaintext, word-order key, or source-authorized sort operation follows.
+
+## Independent word-seeded totient sidecar inverse (Agent 10, 11 November 2026)
+
+A distinct source-matched **reversible** model was tested after the period-256 pad negative above. The pole orbit's **2,896 runes** were treated as one key rune per each of the **2,896 original ciphertext words**; all key-bearing runes were preserved unchanged as an embedded sidecar, making encryption and decryption mutually invertible. The remaining **10,065 unsolved runes** received per-word prime-totient shifts under either an M7 orbit-order key or chronological-fragment key, and either prime-index seeding or adding the key rune to the p56-style totient. The four original-input trigram scores **−12.296048, −12.291435, −12.281303 and −12.301417** are all weaker than the untouched payload **−12.265436**. A synthetic full-book plant that preserves the original key channel exactly recovers 10,065/10,065 GP-native payload runes. No unknown plaintext/key follows. See the [full bounded test](p50-m7-pole-word-phi-sidecar.md) and [source-input reproducer](../sims/p50_m7_pole_word_seed_phi_sft.cjs). Do not extend this word-key branch merely because the two different units both count 2,896.
+
+## Reproduction
+
+Run the following from the repository root with Node.js. It asserts the counts and emits the fixed-point mapping and omitted-row sensitivity result.
+
+```js
+const fs = require("node:fs");
+const read = p => JSON.parse(fs.readFileSync(p, "utf8"));
+const grid = read("resources/liber-primus/lp2-grid-256.json");
+const corpus = read("resources/liber-primus/lp2-corpus.json");
+const ink = read("resources/liber-primus/lp2-ink-annotations.json");
+
+const pages = [];
+let offset = 0;
+for (const p of corpus.pages) {
+  pages.push({ page: p.page, start: offset, end: offset + p.indices.length, indices: p.indices });
+  offset += p.indices.length;
+}
+const marks = [];
+for (const p of ink.pages) {
+  const base = pages.find(x => x.page === p.page).start;
+  for (const e of (p.large_punctuation || [])) if (e[1] === 13) marks.push(base + e[0]);
+}
+marks.sort((a, b) => a - b);
+const bounds = [0, ...marks, offset];
+const all = pages.flatMap(p => p.indices);
+const fragments = bounds.slice(0, -1).map((start, i) => ({
+  id: i + 1, start, end: bounds[i + 1], length: bounds[i + 1] - start,
+  firstRunePrime: corpus.prime[all[start]]
+}));
+const empty = fragments.filter(f => f.length === 0).map(f => f.id);
+const ranked = fragments.filter(f => f.length > 0).map(f => ({
+  ...f, byte: grid.bytes[(f.id - 1) * 8 + 1]
+})).sort((a, b) => a.byte - b.byte);
+
+const mod = n => ((n % 29) + 29) % 29;
+const inv = n => {
+  for (let i = 1; i < 29; i++) if (mod(n * i) === 1) return i;
+  throw new Error("no inverse");
+};
+const m7 = x => {
+  if (x === 29) return mod(14 * inv(25)); // infinity
+  const d = mod(25 * x + 28);
+  return d === 0 ? 29 : mod((14 * x + 25) * inv(d));
+};
+const fixed = Array.from({ length: 30 }, (_, x) => x).filter(x => m7(x) === x);
+const selected = fixed.map(rank => {
+  const f = ranked[rank];
+  return {
+    rank, fragment: f.id, length: f.length, byte: f.byte,
+    quotient: Math.floor(f.byte / 29), remainder: mod(f.byte)
+  };
+});
+const fragment19 = fragments.find(f => f.id === 19);
+const fragment22 = fragments.find(f => f.id === 22);
+const checksum = (selected[1].byte - selected[0].byte) * fragment22.firstRunePrime;
+const fixedLengthSum = fragment19.length + fragment22.length;
+const pointerOffset = checksum;
+const pointerFragment = fragments.find(f => pointerOffset >= f.start && pointerOffset < f.end);
+const pointerRank = ranked.findIndex(f => f.id === pointerFragment.id);
+const pointerPage = pages.find(p => pointerOffset >= p.start && pointerOffset < p.end);
+const pointerRuneIndex = all[pointerOffset];
+const pointer = {
+  offset: pointerOffset, position1: pointerOffset + 1,
+  page: pointerPage.page, local: pointerOffset - pointerPage.start,
+  fragment: pointerFragment.id, rank: pointerRank,
+  rune: corpus.translit[pointerRuneIndex], prime: corpus.prime[pointerRuneIndex],
+  m7: m7(pointerRank)
+};
+const distinctByColumn = Array.from({ length: 8 }, (_, c) =>
+  new Set(Array.from({ length: 32 }, (_, r) => grid.bytes[r * 8 + c])).size
+);
+
+const firstPrimeSet = new Set(ranked.map(f => f.firstRunePrime));
+const arithmeticCandidates = [];
+for (const a of ranked) for (const b of ranked) if (a.id !== b.id) {
+  const d = b.byte - a.byte, n = a.length + b.length;
+  if (d !== 0 && n % d === 0 && firstPrimeSet.has(n / d)) {
+    arithmeticCandidates.push({ a: a.id, b: b.id, quotient: n / d,
+      laterFirstPrime: b.firstRunePrime, exact: n / d === b.firstRunePrime });
+  }
+}
+const arithmeticMatches = arithmeticCandidates.filter(x => x.exact);
+
+let omittedPairs = 0;
+for (let a = 0; a < 32; a++) for (let b = a + 1; b < 32; b++) {
+  const values = Array.from({ length: 32 }, (_, r) => grid.bytes[r * 8 + 1])
+    .filter((_, r) => r !== a && r !== b).sort((x, y) => x - y);
+  if (values[22] === 210 && values[25] === 228) omittedPairs++;
+}
+const p33 = pages.find(p => p.page === 33).indices;
+const p33to39 = pages.filter(p => p.page >= 33 && p.page <= 39)
+  .reduce((n, p) => n + p.indices.length, 0);
+const fromHeading = p33.slice(91).length +
+  pages.filter(p => p.page >= 34 && p.page <= 39)
+    .reduce((n, p) => n + p.indices.length, 0);
+
+if (marks.length !== 31 || fragments.length !== 32 ||
+    JSON.stringify(empty) !== JSON.stringify([9, 12]) ||
+    ranked.length !== 30 ||
+    JSON.stringify(distinctByColumn) !== JSON.stringify([30, 32, 30, 30, 30, 31, 31, 30]) ||
+    JSON.stringify(fixed) !== JSON.stringify([22, 25]) ||
+    selected[0].fragment !== 19 || selected[0].byte !== 210 ||
+    selected[1].fragment !== 22 || selected[1].byte !== 228 ||
+    fixedLengthSum !== 1422 || checksum !== 1422 || pointer.fragment !== 6 ||
+    pointer.rank !== 7 || pointer.rune !== "NG" || pointer.prime !== 79 || pointer.m7 !== 29 ||
+    p33to39 !== 1680 || fromHeading !== 1589 || omittedPairs !== 15) {
+  throw new Error("source correspondence changed; inspect inputs");
+}
+console.log(JSON.stringify({
+  marks: marks.length, fragments: fragments.length, empty,
+  distinctByColumn, fixed, selected, omittedPairs,
+  p33to39, fromHeading, arithmeticCandidateCount: arithmeticCandidates.length,
+  arithmeticMatches, checksum, fixedLengthSum, pointer
+}, null, 2));
+```
+
+## Rank-aligned seven-column key on the p33–39 block — bounded negative (Agent25, 11 November 2026)
+
+A concrete follow-up to the 30-fragment/P¹(F29) construction was tested without changing its source-derived rank map. Remove the unique all-distinct second p50 column; sort the 30 nonempty fragment-associated rows by that column; reduce the seven remaining byte columns of each row modulo 29 to form a seven-symbol key row. The original pp33–39 stream has **1,680 runes = 30×7×8**, so the frozen candidate arranges it as 30 consecutive 7×8 blocks and repeats each key-row symbol across the corresponding eight runes. Decrypt with either additive sign modulo 29. No phase, offset, column permutation, row permutation, or page crop was fitted.
+
+| Readout | GP29 IoC | Gibran GP29 trigram |
+|---|---:|---:|
+| Original pp33–39 ciphertext | 0.03436002 | −12.26549348 |
+| Subtract rank-aligned row key | 0.03467342 | **−12.25060864** |
+| Add rank-aligned row key | 0.03436640 | −12.31011679 |
+
+The subtraction variant is marginally better than raw, but its output remains nonlinguistic (THLOEPHEOSMBDRJIAFRIADYX...). A matched null permuted the 30 fixed key rows over the 30 fixed target blocks **10,000** times and took the best of both signs on each draw: **4,129/10,000** null assignments scored at least as well as the observed best, add-one empirical **p=0.41296** (null median −12.26015). The rank alignment is not exceptional under this conditional null. The SFT exactly re-encrypts the original input and exactly recovers a 1,680-rune synthetic native-GP plant; these are implementation controls, not evidence that the historical cipher used this schedule.
+
+This rejects only the rank-aligned 30×7×8 additive block model. It does not test a nonlinear/stateful use of p50 or the separate per-fragment key schedule. Reproduction: [bounded report](p50-ranked-seven-column-row-key-negative.md) · [SFT](../sims/p50_ranked_seven_column_row_key_sft.cjs).
+
+**Next useful decision:** no source-selected reversible readout has emerged from the current p50/P¹/M7 fragment partition. The direct period-256 pad, word-seeded totient sidecar, and this rank-aligned seven-column additive block schedule are bounded negatives. Do not repeat them or broaden into free table permutations; continue only if an independent original clue selects a different reversible operation or authentic key/state.
+

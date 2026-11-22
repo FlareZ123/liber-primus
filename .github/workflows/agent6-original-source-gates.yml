@@ -1,0 +1,120 @@
+name: Agent 6 original-source inverse gates
+on:
+  workflow_dispatch:
+    inputs:
+      route:
+        description: 'Select all, dimension orbit, delta-state gates, or root24 quotient inverse'
+        type: choice
+        required: true
+        default: 'all'
+        options:
+          - all
+          - orbit
+          - position
+          - shape
+          - predecessor
+          - chapter-delta
+          - q252-phase
+          - taylor
+          - residual
+          - reserved
+          - stage04-small
+          - q-rotor
+          - twoquad-feistel
+          - x29-savedrev
+          - f-fiveback
+          - sevenword
+          - eightword
+          - r3word
+permissions:
+  contents: read
+jobs:
+  original-input:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Exact table-flank 79-rune geometry
+        if: ${{ inputs.route == 'all' }}
+        run: node sims/lp2_tendot_79_flank_sft.cjs
+      - name: Original quote shape source-corpus test
+        if: ${{ inputs.route == 'all' }}
+        run: node sims/lp2_quote_fullshape_source_corpus_sft.cjs
+      - name: Missing-f prime-square reversible grid inverse
+        if: ${{ inputs.route == 'all' }}
+        run: node sims/lp2_prime_square_grid_clock_sft.cjs
+      - name: Original four-concentric-ring source alignment and all-secret lookup gate
+        if: ${{ inputs.route == 'all' }}
+        run: node sims/lp2_grid_p53_p55_four_ring_source_sft.cjs
+      - name: Original physical-chapter all-secret substitution reuse gate
+        if: ${{ inputs.route == 'all' }}
+        run: node sims/lp2_layout_secret_codebook_gate_sft.cjs
+      - name: Exact original p27-to-p56 seven-rune cross-page echo
+        if: ${{ inputs.route == 'all' }}
+        run: node sims/lp2_bookend7_p56_source_sft.cjs
+      - name: Exact bookend phrase conditional word-inventory gate
+        if: ${{ inputs.route == 'all' }}
+        run: node sims/lp2_bookend_wordpair_layout_null_sft.cjs
+      - name: Source-stratified original LP2 doublet block gate
+        if: ${{ inputs.route == 'all' }}
+        run: node sims/lp2_doublet_1000block_source_strata_sft.cjs
+      - name: 2016 image-dimension 33-cycle and p50 grid pointer
+        if: ${{ inputs.route == 'orbit' }}
+        run: node sims/lp2_2016_dimensions_base58_orbit_sft.cjs
+      - name: Source-native pagewise word-position delta all-secret gate
+        if: ${{ inputs.route == 'position' }}
+        run: node sims/lp2_wordposition_delta_allsecret_source_gate_sft.cjs
+      - name: All-secret word-length-conditioned differential entropy gate
+        if: ${{ inputs.route == 'shape' }}
+        run: node sims/lp2_wordshape_delta_allsecret_entropy_sft.cjs
+      - name: All-secret predecessor-and-word-position differential entropy gate
+        if: ${{ inputs.route == 'predecessor' }}
+        run: node sims/lp2_predecessor_wordposition_entropy_sft.cjs
+      - name: Exact nine-chapter all-secret difference alphabet ceiling
+        if: ${{ inputs.route == 'chapter-delta' }}
+        run: node sims/lp2_ninechapter_delta_allsecret_bound_sft.cjs
+      - name: Exact nine-chapter period28 all-secret output capacity
+        if: ${{ inputs.route == 'q252-phase' }}
+        run: node sims/lp2_q252_allsecret_9x28_phase_capacity_sft.cjs
+      - name: Original p39-root quotient Taylor reversible full-cipher gate
+        if: ${{ inputs.route == 'taylor' }}
+        run: node sims/lp2_p29_grid_root24_quotient_taylor_inverse_sft.cjs
+      - name: Original signed DH2 polynomial residual six-page convolution inverse
+        if: ${{ inputs.route == 'residual' }}
+        run: node sims/lp2_p29_dh2_residual_convolution_sft.cjs
+      - name: All-secret fixed plaintext marker doublet source gate
+        if: ${{ inputs.route == 'reserved' }}
+        run: node sims/lp2_fixed_reserved_rune_doublet_gate_sft.cjs
+      - name: Original p39 quadratic fiveback nonlinear GP29 rotor SFT
+        if: ${{ inputs.route == 'q-rotor' }}
+        run: node sims/lp2_p39_fiveback_nonlinear_rotor_original_sft.cjs
+      - name: Original p3/p39 two-polynomial lossless Feistel inverse
+        if: ${{ inputs.route == 'twoquad-feistel' }}
+        run: node sims/lp2_p3_p39_twoquad_feistel_original_sft.cjs
+      - name: Three original saved Etherpad revision archival paths
+        if: ${{ inputs.route == 'x29-savedrev' }}
+        run: node sims/lp2_2015_x29_saved_revision_exact_archive_sft.cjs
+      - name: Source-F as exclusive fiveback marker capacity on original LP2
+        if: ${{ inputs.route == 'f-fiveback' }}
+        run: node sims/lp2_f_interrupter_fiveback_original_capacity_sft.cjs
+      - name: Install JPEG coefficient inspection dependency
+        if: ${{ inputs.route == 'stage04-small' }}
+        run: sudo apt-get update -qq && sudo apt-get install -y libjpeg-dev
+      - name: 2014 signed nested rune-image OutGuess original-source check
+        if: ${{ inputs.route == 'stage04-small' }}
+        run: python3 sims/stage04_embedded_small_image_outguess_sft.py
+
+      - name: Historical Stage05 seven-word packet source-grammar inverse
+        if: ${{ inputs.route == 'sevenword' }}
+        run: node sims/lp2_2014_stage05_sevenword_grammar_sft.cjs
+
+      - name: Original p50 eight-column printed-word order restoration SFT
+        if: ${{ inputs.route == 'eightword' }}
+        run: node sims/lp2_p50_eightcolumn_wordorder_original_sft.cjs
+
+      - name: Original p27 strict R3 one-null word impossibility SFT
+        if: ${{ inputs.route == 'r3word' }}
+        run: node sims/lp2_r3_one_null_per_word_original_obstruction_sft.cjs

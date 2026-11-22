@@ -1,0 +1,14 @@
+name: Agent5 p38 FOUND nextstate WILL bridge
+on:
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify p38 state packet WILL bridge
+        run: node sims/lp2_p38_found_nextstate_will_bridge_sft.cjs

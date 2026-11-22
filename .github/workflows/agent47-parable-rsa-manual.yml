@@ -1,0 +1,13 @@
+name: Agent47 conditional RSA n parable p50 gate
+on:
+  workflow_dispatch:
+jobs:
+  test:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/lp2_2013_parable_rsa_p50_direct_sft.cjs

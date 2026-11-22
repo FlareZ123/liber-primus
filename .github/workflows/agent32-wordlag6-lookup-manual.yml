@@ -1,0 +1,42 @@
+name: LP2 Agent32 manual original-source tests
+
+on:
+  workflow_dispatch:
+    inputs:
+      check:
+        description: Select original-source inverse test
+        required: true
+        default: wordlag6
+        type: choice
+        options:
+          - wordlag6
+          - prime-collision
+
+permissions:
+  contents: read
+
+jobs:
+  source-inverse:
+    if: ${{ inputs.check == 'wordlag6' }}
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Test original cipher and independent true-key positive control
+        run: node sims/lp2_wordlag6_allsecret_lookup_sft.cjs
+
+  prime-collision:
+    if: ${{ inputs.check == 'prime-collision' }}
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify original prime-clock collision-retry reachability and F bypass
+        run: |
+          node --check sims/lp2_p56_prime_collision_skip_reachability_sft.cjs
+          node sims/lp2_p56_prime_collision_skip_reachability_sft.cjs

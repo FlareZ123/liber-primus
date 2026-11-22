@@ -1,0 +1,31 @@
+name: LP1-P40 source Cayley bridge (manual)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-cayley:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source matrix identity and exact original-cipher ranking
+        run: node sims/lp1_p40_cayley_t6_bridge_sft.cjs
+
+      - name: Cross-release Fibonacci-Mobius conjugacy and original projective inverse
+        run: node sims/lp1_lp2_fibonacci_mobius_bridge_sft.cjs
+
+      - name: LP1 p16 dual-artwork selector and linked chapter common-key gate
+        run: node sims/lp1_p16_double_art_chapter_sharedkey_sft.cjs
+
+      - name: Source-LP1 two-square corner pair-Hill inverses on linked LP2 pages
+        run: node sims/lp1_square_corner_hill2_artlink_sft.cjs
+
+      - name: LP2 p22 all-F 125-keyed-rune p16 square-clock source test
+        run: node sims/lp1_p16_p22_allF_5x5_key_sft.cjs

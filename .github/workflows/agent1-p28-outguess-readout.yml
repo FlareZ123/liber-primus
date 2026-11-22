@@ -1,0 +1,19 @@
+name: Agent1 p28 historical OutGuess readout
+on:
+  workflow_dispatch:
+jobs:
+  extract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install historical OutGuess 0.2
+        run: |
+          wget -q https://security.ubuntu.com/ubuntu/pool/universe/o/outguess/outguess_0.2-8_amd64.deb -O /tmp/outguess.deb
+          sudo dpkg -i /tmp/outguess.deb
+          outguess 2>&1 | head -30 || true
+      - name: Verify exact READ OUT key and matched-key null
+        run: node sims/lp2_p28_outguess_readout_key_null_sft.cjs

@@ -1,0 +1,19 @@
+name: Agent 6 original F-zero two-word invariant
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-native-test:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Verify original and solved source invariants
+        run: node sims/lp2_zero_step_F_two_rune_native_sft.cjs

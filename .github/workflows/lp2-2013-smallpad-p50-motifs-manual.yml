@@ -1,0 +1,40 @@
+name: LP2 2013 smaller authentic binary sources against p50 printed motifs (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  exact-source-motifs:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fetch immutable 2013 historic source objects
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $base = 'https://raw.githubusercontent.com/neuroretransmit/cicada/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2013/002-3301/3301-contents/data/'
+          $src = @(
+            @{url = ($base + '_560.00'); name = '_560.00'}
+            @{url = ($base + '560.17'); name = '560.17'}
+            @{url = 'https://raw.githubusercontent.com/rtkd/iddqd/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3'; name = '761.MP3'}
+          )
+          foreach ($item in $src) {
+            $dest = Join-Path $env:RUNNER_TEMP $item.name
+            curl.exe --fail --location --retry 3 --retry-all-errors --connect-timeout 30 --max-time 500 $item.url --output $dest
+            if ($LASTEXITCODE -ne 0) { throw "Historical source retrieval failed: $($item.name)" }
+          }
+      - name: Check exact 84 printed source motifs against all three sources
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          node --check sims/lp2_2013_smallpads_p50_literal_rows_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Syntax check failed' }
+          $a = Join-Path $env:RUNNER_TEMP '_560.00'
+          $b = Join-Path $env:RUNNER_TEMP '560.17'
+          $c = Join-Path $env:RUNNER_TEMP '761.MP3'
+          node sims/lp2_2013_smallpads_p50_literal_rows_sft.cjs $a $b $c
+          if ($LASTEXITCODE -ne 0) { throw 'Historical source comparison failed' }

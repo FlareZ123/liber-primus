@@ -1,0 +1,18 @@
+name: Agent14 p50 perimeter / p55 43-33 transducer SFT
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-constrained-transducer:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run exact perimeter/interior-boundary source gate
+        run: |
+          node --check sims/lp2_p50_49_27_a6_43_33_p55_transducer_sft.cjs
+          node sims/lp2_p50_49_27_a6_43_33_p55_transducer_sft.cjs

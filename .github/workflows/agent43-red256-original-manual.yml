@@ -1,0 +1,18 @@
+name: Agent43 red256 AES-CTR original-input gate
+on:
+  workflow_dispatch:
+jobs:
+  original-red256-ctr:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-native red256 AES-CTR SFT
+        shell: pwsh
+        run: node sims/lp2_red256_ink_aes_ctr_full_original_sft.cjs
+      - name: Original BASE29 byte packets under red256 AES-CTR
+        shell: pwsh
+        run: node sims/lp2_red256_base29_aes_ctr_binary_sft.cjs

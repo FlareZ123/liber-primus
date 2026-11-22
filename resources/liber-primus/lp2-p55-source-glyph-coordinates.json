@@ -1,0 +1,1167 @@
+{
+  "schema": "LP2 p55 original-image geometry v1",
+  "original_image": "resources/liber-primus/72.jpg",
+  "sha256": "a80191592add93a86ed3868f9e4e6ba3944ec20c9ffccc7d3e221b461344beba",
+  "image_size": [
+    2400,
+    3600
+  ],
+  "coordinates": "Zero-based original pixels; rect [x_min,y_min,x_max,y_max] inclusive; exact 4-row ink bounds",
+  "rune_alphabet": "GP29 order given in lp2-corpus.json",
+  "glyphs": [
+    {
+      "ordinal": 1,
+      "line": 1,
+      "rect": [
+        601,
+        673,
+        650,
+        786
+      ],
+      "gp29_index": 21
+    },
+    {
+      "ordinal": 2,
+      "line": 1,
+      "rect": [
+        672,
+        673,
+        705,
+        786
+      ],
+      "gp29_index": 25
+    },
+    {
+      "ordinal": 3,
+      "line": 1,
+      "rect": [
+        711,
+        673,
+        763,
+        786
+      ],
+      "gp29_index": 19
+    },
+    {
+      "ordinal": 4,
+      "line": 1,
+      "rect": [
+        771,
+        673,
+        779,
+        786
+      ],
+      "gp29_index": 10
+    },
+    {
+      "ordinal": 5,
+      "line": 1,
+      "rect": [
+        786,
+        673,
+        819,
+        786
+      ],
+      "gp29_index": 7
+    },
+    {
+      "ordinal": 6,
+      "line": 1,
+      "rect": [
+        840,
+        673,
+        874,
+        786
+      ],
+      "gp29_index": 15
+    },
+    {
+      "ordinal": 7,
+      "line": 1,
+      "rect": [
+        880,
+        674,
+        913,
+        785
+      ],
+      "gp29_index": 17
+    },
+    {
+      "ordinal": 8,
+      "line": 1,
+      "rect": [
+        936,
+        673,
+        999,
+        786
+      ],
+      "gp29_index": 14
+    },
+    {
+      "ordinal": 9,
+      "line": 1,
+      "rect": [
+        1002,
+        673,
+        1054,
+        786
+      ],
+      "gp29_index": 19
+    },
+    {
+      "ordinal": 10,
+      "line": 1,
+      "rect": [
+        1078,
+        673,
+        1112,
+        786
+      ],
+      "gp29_index": 15
+    },
+    {
+      "ordinal": 11,
+      "line": 1,
+      "rect": [
+        1118,
+        674,
+        1157,
+        786
+      ],
+      "gp29_index": 12
+    },
+    {
+      "ordinal": 12,
+      "line": 1,
+      "rect": [
+        1164,
+        673,
+        1205,
+        786
+      ],
+      "gp29_index": 6
+    },
+    {
+      "ordinal": 13,
+      "line": 1,
+      "rect": [
+        1212,
+        673,
+        1263,
+        786
+      ],
+      "gp29_index": 23
+    },
+    {
+      "ordinal": 14,
+      "line": 1,
+      "rect": [
+        1272,
+        673,
+        1305,
+        786
+      ],
+      "gp29_index": 2
+    },
+    {
+      "ordinal": 15,
+      "line": 1,
+      "rect": [
+        1309,
+        673,
+        1342,
+        786
+      ],
+      "gp29_index": 25
+    },
+    {
+      "ordinal": 16,
+      "line": 1,
+      "rect": [
+        1364,
+        673,
+        1397,
+        786
+      ],
+      "gp29_index": 0
+    },
+    {
+      "ordinal": 17,
+      "line": 1,
+      "rect": [
+        1403,
+        673,
+        1454,
+        786
+      ],
+      "gp29_index": 27
+    },
+    {
+      "ordinal": 18,
+      "line": 1,
+      "rect": [
+        1460,
+        673,
+        1493,
+        786
+      ],
+      "gp29_index": 24
+    },
+    {
+      "ordinal": 19,
+      "line": 1,
+      "rect": [
+        1498,
+        673,
+        1531,
+        786
+      ],
+      "gp29_index": 17
+    },
+    {
+      "ordinal": 20,
+      "line": 1,
+      "rect": [
+        1537,
+        673,
+        1589,
+        786
+      ],
+      "gp29_index": 5
+    },
+    {
+      "ordinal": 21,
+      "line": 1,
+      "rect": [
+        1591,
+        673,
+        1643,
+        786
+      ],
+      "gp29_index": 1
+    },
+    {
+      "ordinal": 22,
+      "line": 1,
+      "rect": [
+        1664,
+        673,
+        1697,
+        786
+      ],
+      "gp29_index": 7
+    },
+    {
+      "ordinal": 23,
+      "line": 1,
+      "rect": [
+        1702,
+        673,
+        1736,
+        786
+      ],
+      "gp29_index": 4
+    },
+    {
+      "ordinal": 24,
+      "line": 1,
+      "rect": [
+        1757,
+        673,
+        1790,
+        786
+      ],
+      "gp29_index": 17
+    },
+    {
+      "ordinal": 25,
+      "line": 2,
+      "rect": [
+        601,
+        861,
+        686,
+        974
+      ],
+      "gp29_index": 28
+    },
+    {
+      "ordinal": 26,
+      "line": 2,
+      "rect": [
+        689,
+        861,
+        722,
+        974
+      ],
+      "gp29_index": 0
+    },
+    {
+      "ordinal": 27,
+      "line": 2,
+      "rect": [
+        728,
+        861,
+        791,
+        974
+      ],
+      "gp29_index": 14
+    },
+    {
+      "ordinal": 28,
+      "line": 2,
+      "rect": [
+        794,
+        861,
+        803,
+        974
+      ],
+      "gp29_index": 10
+    },
+    {
+      "ordinal": 29,
+      "line": 2,
+      "rect": [
+        810,
+        862,
+        861,
+        974
+      ],
+      "gp29_index": 19
+    },
+    {
+      "ordinal": 30,
+      "line": 2,
+      "rect": [
+        869,
+        861,
+        921,
+        974
+      ],
+      "gp29_index": 1
+    },
+    {
+      "ordinal": 31,
+      "line": 2,
+      "rect": [
+        926,
+        861,
+        977,
+        974
+      ],
+      "gp29_index": 5
+    },
+    {
+      "ordinal": 32,
+      "line": 2,
+      "rect": [
+        980,
+        862,
+        1031,
+        973
+      ],
+      "gp29_index": 13
+    },
+    {
+      "ordinal": 33,
+      "line": 2,
+      "rect": [
+        1034,
+        861,
+        1077,
+        974
+      ],
+      "gp29_index": 8
+    },
+    {
+      "ordinal": 34,
+      "line": 2,
+      "rect": [
+        1084,
+        861,
+        1133,
+        974
+      ],
+      "gp29_index": 21
+    },
+    {
+      "ordinal": 35,
+      "line": 2,
+      "rect": [
+        1140,
+        861,
+        1173,
+        974
+      ],
+      "gp29_index": 20
+    },
+    {
+      "ordinal": 36,
+      "line": 2,
+      "rect": [
+        1178,
+        861,
+        1217,
+        973
+      ],
+      "gp29_index": 12
+    },
+    {
+      "ordinal": 37,
+      "line": 2,
+      "rect": [
+        1239,
+        861,
+        1291,
+        974
+      ],
+      "gp29_index": 19
+    },
+    {
+      "ordinal": 38,
+      "line": 2,
+      "rect": [
+        1298,
+        861,
+        1332,
+        974
+      ],
+      "gp29_index": 15
+    },
+    {
+      "ordinal": 39,
+      "line": 2,
+      "rect": [
+        1338,
+        861,
+        1389,
+        974
+      ],
+      "gp29_index": 23
+    },
+    {
+      "ordinal": 40,
+      "line": 2,
+      "rect": [
+        1398,
+        861,
+        1449,
+        974
+      ],
+      "gp29_index": 27
+    },
+    {
+      "ordinal": 41,
+      "line": 2,
+      "rect": [
+        1455,
+        861,
+        1507,
+        974
+      ],
+      "gp29_index": 13
+    },
+    {
+      "ordinal": 42,
+      "line": 2,
+      "rect": [
+        1510,
+        861,
+        1543,
+        974
+      ],
+      "gp29_index": 0
+    },
+    {
+      "ordinal": 43,
+      "line": 2,
+      "rect": [
+        1564,
+        862,
+        1597,
+        973
+      ],
+      "gp29_index": 17
+    },
+    {
+      "ordinal": 44,
+      "line": 2,
+      "rect": [
+        1603,
+        861,
+        1645,
+        974
+      ],
+      "gp29_index": 8
+    },
+    {
+      "ordinal": 45,
+      "line": 2,
+      "rect": [
+        1654,
+        861,
+        1693,
+        973
+      ],
+      "gp29_index": 12
+    },
+    {
+      "ordinal": 46,
+      "line": 2,
+      "rect": [
+        1698,
+        861,
+        1749,
+        974
+      ],
+      "gp29_index": 5
+    },
+    {
+      "ordinal": 47,
+      "line": 3,
+      "rect": [
+        601,
+        1051,
+        640,
+        1159
+      ],
+      "gp29_index": 12
+    },
+    {
+      "ordinal": 48,
+      "line": 3,
+      "rect": [
+        646,
+        1050,
+        698,
+        1159
+      ],
+      "gp29_index": 18
+    },
+    {
+      "ordinal": 49,
+      "line": 3,
+      "rect": [
+        721,
+        1050,
+        806,
+        1159
+      ],
+      "gp29_index": 28
+    },
+    {
+      "ordinal": 50,
+      "line": 3,
+      "rect": [
+        809,
+        1050,
+        861,
+        1159
+      ],
+      "gp29_index": 18
+    },
+    {
+      "ordinal": 51,
+      "line": 3,
+      "rect": [
+        869,
+        1050,
+        877,
+        1159
+      ],
+      "gp29_index": 10
+    },
+    {
+      "ordinal": 52,
+      "line": 3,
+      "rect": [
+        885,
+        1050,
+        927,
+        1159
+      ],
+      "gp29_index": 6
+    },
+    {
+      "ordinal": 53,
+      "line": 3,
+      "rect": [
+        934,
+        1050,
+        997,
+        1159
+      ],
+      "gp29_index": 14
+    },
+    {
+      "ordinal": 54,
+      "line": 3,
+      "rect": [
+        1001,
+        1050,
+        1043,
+        1159
+      ],
+      "gp29_index": 6
+    },
+    {
+      "ordinal": 55,
+      "line": 3,
+      "rect": [
+        1049,
+        1050,
+        1083,
+        1159
+      ],
+      "gp29_index": 15
+    },
+    {
+      "ordinal": 56,
+      "line": 3,
+      "rect": [
+        1105,
+        1050,
+        1157,
+        1159
+      ],
+      "gp29_index": 18
+    },
+    {
+      "ordinal": 57,
+      "line": 3,
+      "rect": [
+        1164,
+        1050,
+        1198,
+        1159
+      ],
+      "gp29_index": 15
+    },
+    {
+      "ordinal": 58,
+      "line": 3,
+      "rect": [
+        1204,
+        1051,
+        1243,
+        1159
+      ],
+      "gp29_index": 12
+    },
+    {
+      "ordinal": 59,
+      "line": 3,
+      "rect": [
+        1250,
+        1050,
+        1283,
+        1159
+      ],
+      "gp29_index": 2
+    },
+    {
+      "ordinal": 60,
+      "line": 3,
+      "rect": [
+        1287,
+        1050,
+        1320,
+        1159
+      ],
+      "gp29_index": 2
+    },
+    {
+      "ordinal": 61,
+      "line": 3,
+      "rect": [
+        1324,
+        1050,
+        1376,
+        1159
+      ],
+      "gp29_index": 18
+    },
+    {
+      "ordinal": 62,
+      "line": 3,
+      "rect": [
+        1384,
+        1050,
+        1417,
+        1159
+      ],
+      "gp29_index": 15
+    },
+    {
+      "ordinal": 63,
+      "line": 3,
+      "rect": [
+        1439,
+        1050,
+        1472,
+        1159
+      ],
+      "gp29_index": 2
+    },
+    {
+      "ordinal": 64,
+      "line": 3,
+      "rect": [
+        1476,
+        1050,
+        1519,
+        1159
+      ],
+      "gp29_index": 22
+    },
+    {
+      "ordinal": 65,
+      "line": 3,
+      "rect": [
+        1541,
+        1050,
+        1589,
+        1159
+      ],
+      "gp29_index": 5
+    },
+    {
+      "ordinal": 66,
+      "line": 3,
+      "rect": [
+        1595,
+        1050,
+        1680,
+        1159
+      ],
+      "gp29_index": 28
+    },
+    {
+      "ordinal": 67,
+      "line": 3,
+      "rect": [
+        1683,
+        1050,
+        1691,
+        1159
+      ],
+      "gp29_index": 10
+    },
+    {
+      "ordinal": 68,
+      "line": 3,
+      "rect": [
+        1698,
+        1050,
+        1750,
+        1159
+      ],
+      "gp29_index": 19
+    },
+    {
+      "ordinal": 69,
+      "line": 4,
+      "rect": [
+        600,
+        1238,
+        650,
+        1349
+      ],
+      "gp29_index": 5
+    },
+    {
+      "ordinal": 70,
+      "line": 4,
+      "rect": [
+        656,
+        1238,
+        718,
+        1349
+      ],
+      "gp29_index": 14
+    },
+    {
+      "ordinal": 71,
+      "line": 4,
+      "rect": [
+        738,
+        1238,
+        789,
+        1349
+      ],
+      "gp29_index": 23
+    },
+    {
+      "ordinal": 72,
+      "line": 4,
+      "rect": [
+        797,
+        1238,
+        841,
+        1349
+      ],
+      "gp29_index": 11
+    },
+    {
+      "ordinal": 73,
+      "line": 4,
+      "rect": [
+        847,
+        1238,
+        899,
+        1349
+      ],
+      "gp29_index": 1
+    },
+    {
+      "ordinal": 74,
+      "line": 4,
+      "rect": [
+        921,
+        1239,
+        954,
+        1349
+      ],
+      "gp29_index": 17
+    },
+    {
+      "ordinal": 75,
+      "line": 4,
+      "rect": [
+        960,
+        1238,
+        1012,
+        1349
+      ],
+      "gp29_index": 18
+    },
+    {
+      "ordinal": 76,
+      "line": 4,
+      "rect": [
+        1019,
+        1238,
+        1028,
+        1349
+      ],
+      "gp29_index": 10
+    }
+  ],
+  "interword_dots": [
+    {
+      "line": 1,
+      "rect": [
+        656,
+        725,
+        664,
+        734
+      ]
+    },
+    {
+      "line": 1,
+      "rect": [
+        824,
+        725,
+        832,
+        734
+      ]
+    },
+    {
+      "line": 1,
+      "rect": [
+        919,
+        725,
+        927,
+        734
+      ]
+    },
+    {
+      "line": 1,
+      "rect": [
+        1062,
+        725,
+        1071,
+        734
+      ]
+    },
+    {
+      "line": 1,
+      "rect": [
+        1348,
+        725,
+        1357,
+        734
+      ]
+    },
+    {
+      "line": 1,
+      "rect": [
+        1648,
+        725,
+        1657,
+        734
+      ]
+    },
+    {
+      "line": 1,
+      "rect": [
+        1741,
+        725,
+        1749,
+        734
+      ]
+    },
+    {
+      "line": 2,
+      "rect": [
+        1222,
+        913,
+        1231,
+        922
+      ]
+    },
+    {
+      "line": 2,
+      "rect": [
+        1548,
+        913,
+        1556,
+        922
+      ]
+    },
+    {
+      "line": 2,
+      "rect": [
+        1752,
+        913,
+        1760,
+        922
+      ]
+    },
+    {
+      "line": 3,
+      "rect": [
+        705,
+        1102,
+        714,
+        1111
+      ]
+    },
+    {
+      "line": 3,
+      "rect": [
+        1088,
+        1102,
+        1097,
+        1111
+      ]
+    },
+    {
+      "line": 3,
+      "rect": [
+        1423,
+        1102,
+        1431,
+        1111
+      ]
+    },
+    {
+      "line": 3,
+      "rect": [
+        1526,
+        1102,
+        1534,
+        1111
+      ]
+    },
+    {
+      "line": 4,
+      "rect": [
+        722,
+        1290,
+        730,
+        1299
+      ]
+    },
+    {
+      "line": 4,
+      "rect": [
+        905,
+        1290,
+        913,
+        1299
+      ]
+    }
+  ],
+  "terminal_red_squares": [
+    [
+      1034,
+      1264,
+      10,
+      10
+    ],
+    [
+      1034,
+      1282,
+      10,
+      8
+    ],
+    [
+      1034,
+      1299,
+      10,
+      9
+    ],
+    [
+      1034,
+      1316,
+      10,
+      9
+    ],
+    [
+      1049,
+      1252,
+      9,
+      10
+    ],
+    [
+      1049,
+      1290,
+      9,
+      10
+    ],
+    [
+      1049,
+      1328,
+      9,
+      10
+    ],
+    [
+      1050,
+      1272,
+      8,
+      9
+    ],
+    [
+      1050,
+      1310,
+      8,
+      9
+    ],
+    [
+      1064,
+      1264,
+      10,
+      10
+    ],
+    [
+      1064,
+      1282,
+      10,
+      9
+    ],
+    [
+      1064,
+      1299,
+      10,
+      9
+    ],
+    [
+      1064,
+      1316,
+      10,
+      9
+    ]
+  ],
+  "blind_initial_pass": {
+    "sha256_of_frozen_local_json": "f992c4b47c989d50d312f229be3eb2a17ac4bccef293362522f79442e15a356b",
+    "initial_75_labels": [
+      21,
+      24,
+      19,
+      10,
+      7,
+      15,
+      17,
+      14,
+      19,
+      15,
+      12,
+      6,
+      23,
+      2,
+      24,
+      0,
+      6,
+      24,
+      17,
+      5,
+      1,
+      7,
+      4,
+      17,
+      28,
+      0,
+      14,
+      10,
+      19,
+      1,
+      5,
+      13,
+      8,
+      21,
+      20,
+      12,
+      19,
+      15,
+      23,
+      6,
+      13,
+      0,
+      17,
+      8,
+      12,
+      5,
+      12,
+      18,
+      28,
+      18,
+      10,
+      6,
+      14,
+      6,
+      15,
+      18,
+      15,
+      12,
+      2,
+      2,
+      18,
+      15,
+      2,
+      22,
+      5,
+      28,
+      10,
+      23,
+      5,
+      14,
+      23,
+      11,
+      1,
+      17,
+      18
+    ],
+    "initial_count": 75,
+    "initial_count_cause": "Grayscale component filter erroneously excluded the black narrow I at x=1019..1028 along with the nearby red ornament",
+    "five_corrected_1based_positions": [
+      2,
+      15,
+      17,
+      40,
+      68
+    ],
+    "adjudication": "Two AE versus A; two IA versus G; one M versus D; all independently recognizable from stroke geometry and solved rune exemplars",
+    "final_count": 76
+  },
+  "interpretation": "Final ordinary black runes B,E,I occupy x=921..954,960..1012,1019..1028. The red 13-square terminal mark starts at x=1034, is not part of the rune stream."
+}

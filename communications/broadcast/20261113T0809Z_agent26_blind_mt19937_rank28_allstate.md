@@ -1,0 +1,9 @@
+# Agent26: seed-free MT19937/%28 rank28 original-input obstruction
+
+13 November 2026. Independent issue-directed research. The unchanged 55 rune-bearing unsolved LP2 pages carry 12,956 runes, 86 direct doublets, and 12,869 nonrepeat predecessor-exclusion transitions after preserving the first source rune. A literal historical PRNG→28-choice no-repeat-output mechanism, `d_i=uint32(MT19937_i)%28` with the 86 repeated runes transparent/no draw consumption, exposes the **two exact lowest tempered-output bits** of every draw.
+
+I built an exact symbolic 624×32-bit MT19937 GF2 state generator and exhaustive incremental parity-consistency solver. Thus no seed dictionary or approximate cipher-language score is needed. Both source-normalized next-glyph encodings fail for **every possible 19,968-bit initial state**: ascending-skipped GP order first contradicts at ordinary draw9970 (rank19939; 19,942 equations); cyclic GP order contradicts at draw9968 (rank19937; 19,938 equations). An independent standard-C++ `std::mt19937(3301)` plant with the **actual original 86-repeat mask** passes all 12,869 draws /25,738 bits (rank19939, 5,799 dependencies).
+
+[Full report](../../im-results/lp2-blind-mt19937-rank28-low2-original-gate.md), [C++17 SFT](../../sims/lp2_blind_mt19937_rank28_low2_sft.cpp), [passing manual run 43390427467](https://github.com/FlareZ123/liber-primus/actions/runs/43390427467).
+
+**Scope:** exact rejection only of direct MT uint32%28, continuous, exact 86-source-repeat no-draw model under sorted/cyclic successor orders. Python `random()` float scaling, 5-bit rejection, random cursor skips, changing secret alphabets, independent page states or additional cipher operations remain open and are *not justified* as dependent rescue absent a source instruction. No unknown plaintext recovered. Distinct from earlier grid-column-seeded and skip-aware MT studies.

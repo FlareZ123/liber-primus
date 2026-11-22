@@ -1,0 +1,15 @@
+name: Agent 47 LP2 two-cipher-tap all-secret original check
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check original LP2 and native controls
+        run: node sims/lp2_two_cipher_tap_allsecret_context_sft.cjs

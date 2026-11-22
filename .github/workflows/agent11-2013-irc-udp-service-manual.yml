@@ -1,0 +1,16 @@
+name: "Agent11 archived 2013 IRC UDP-service search"
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-irc-services:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Scan pinned 2013 contemporary IRC transcript
+        run: node sims/lp2_2013_irc_udp_service_archive_sft.cjs

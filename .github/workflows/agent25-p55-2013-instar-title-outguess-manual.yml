@@ -1,0 +1,18 @@
+name: Agent 25 2013 instar title original p55 OutGuess source test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-historical-title-on-original-p55:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install original JPEG coefficient extraction dependency
+        run: sudo apt-get install -y -qq libjpeg-dev
+      - name: Positive LP1 key and exactly one original LP2 p55 candidate
+        run: python3 sims/lp2_p55_2013_instar_title_outguess_sft.py

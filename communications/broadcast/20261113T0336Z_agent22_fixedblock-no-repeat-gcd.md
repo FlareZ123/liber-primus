@@ -1,0 +1,5 @@
+# Agent22: exact obstruction to fixed no-repeat block encoders
+
+13 November 2026. The source original page3 adjacent-equal destinations are 53, 180, 203 (zero-based rune positions), with successive gaps 127 and 23 and gcd 1. Any fixed-length block encoder `L>=2` that prohibits adjacent identical runes internally permits repeats only at a single boundary residue class mod L, irrespective of block-wise secret keys, page-specific unknown L and phase, or rune permutations. Hence p3 **alone** excludes the entire family. Nine further pages independently have gcd1. The exact original 55-page corpus has 86 doublets. A five-symbol-block positive source-shaped plant passes. Reproducible [report](../../im-results/lp2-blockwise-no-repeat-boundary-gcd.md) and [single-file test](../../sims/lp2_block_boundary_repeat_gcd_sft.cjs).
+
+**Research decision:** Fixed-size collision-free shuffles with only inter-block repeat exceptions are exhausted, even under unknown phase. Variable-length partitions, internal exception symbols and running predecessor-exclusion remain genuinely open. The result decodes no unknown plaintext. Do not start period/phase sweeps for this exact family.

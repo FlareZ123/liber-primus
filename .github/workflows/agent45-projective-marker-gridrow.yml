@@ -1,0 +1,119 @@
+name: Agent45 manual original-LP2 source key probes
+on:
+  workflow_dispatch:
+    inputs:
+      probe:
+        description: "Select a source-only original-input cryptanalytic gate"
+        required: false
+        type: choice
+        options:
+          - projective
+          - 2013-cookie
+          - 2013-wisdom
+          - anyoffset-reuse
+          - carrier2016
+          - fibonacci-ea
+        default: projective
+jobs:
+  projective-marker-gridrow:
+    if: ${{ inputs.probe == 'projective' || inputs.probe == '' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run source-anchored projective marker schedule
+        run: node sims/projective_marker_gridrow_nonce_probe.cjs | tee projective-marker-gridrow-results.json
+      - name: Preserve exact probe diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: projective-marker-gridrow-results
+          path: projective-marker-gridrow-results.json
+  historical-2013-cookie-source:
+    if: ${{ inputs.probe == '2013-cookie' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run source-frozen 2013 cookie original cipher and native control
+        run: node sims/cicada2013_cookies_original_inverse_sft.cjs | tee 2013-cookies-original-inverse.json
+      - name: Preserve original-input diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: 2013-cookies-original-inverse
+          path: 2013-cookies-original-inverse.json
+      - name: Test cookies as literal keys for the original printed LP2 byte table
+        run: node sims/cicada2013_cookie_grid256_sft.cjs | tee 2013-cookie-grid256-results.json
+      - name: Preserve table/key original-input diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: 2013-cookie-grid256-original
+          path: 2013-cookie-grid256-results.json
+
+  historical-2013-wisdom-source:
+    if: ${{ inputs.probe == '2013-wisdom' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test exactly preserved 2013 ISO file against 9 original LP2 sections
+        run: node sims/cicada2013_wisdom_source_key_sft.cjs | tee wisdom-original-inverse.json
+      - name: Preserve original ciphertext and synthetic-control diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: 2013-wisdom-source-inverse
+          path: wisdom-original-inverse.json
+
+  ninebody-anyoffset-reuse:
+    if: ${{ inputs.probe == 'anyoffset-reuse' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test all relative phases on original ciphertext and planted shared key
+        run: node sims/lp2_ninebody_anyoffset_keystream_sft.cjs > ninebody-anyoffset-results.json
+      - name: Preserve original and planted held-out comparison
+        uses: actions/upload-artifact@v4
+        with:
+          name: ninebody-anyoffset-results
+          path: ninebody-anyoffset-results.json
+
+  audit-2016-carrier:
+    if: ${{ inputs.probe == 'carrier2016' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Audit exact 2016 carrier packet and JPEG
+        run: node sims/cicada2016_carrier_byte_inventory_sft.cjs
+
+  source-fibonacci-ea:
+    if: ${{ inputs.probe == 'fibonacci-ea' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original LP2 Fibonacci EA inverse and native plant
+        run: node sims/lp2_fibonacci_ea_zero_step_sft.cjs | tee fibonacci-ea-result.json
+      - name: Preserve original input diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: fibonacci-ea-source-gate
+          path: fibonacci-ea-result.json

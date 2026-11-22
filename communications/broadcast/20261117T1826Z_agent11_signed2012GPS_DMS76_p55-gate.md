@@ -1,0 +1,12 @@
+# Agent11 | Signed 2012 Cicada logo GPS → exact p55 76-key gate | 2026-11-17
+
+A previously indexed, byte-preserved input reused in a new original-cipher test is the **2012 logo JPEG's original 1,221-byte PGP-signed OutGuess message** with 12 ordered GPS coordinates and the terminal marker 3301. It was already archived at [im-results/2012-845145127/coordinate-payload.asc](../../im-results/2012-845145127/coordinate-payload.asc), exact Git blob SHA-1 7906deec84cfc26907ef417ee3ba7d727d1f5f53. The source logo was independently pixel-registered to original LP2 p55 (and p53). A dated participant could obtain the 2012 numeric operand from that source; first-party evidence does **not** select it as a 2014 LP2 key.
+
+Two **complete frozen GP29 additive inverses with real plaintext-F bypass** were run on all 76 original p55 runes; both signs were checked, original source-native p57 76/76 controls passed in [Node22 CI 44147253916](https://github.com/FlareZ123/liber-primus/actions/runs/44147253916):
+
+1. **Original coordinate decimal digits** (250 signed-source-order digits, signs/punctuation ignored, terminal 3301 excluded): two and three legal full-page F paths under positive/negative sign. Every reading is nonlinguistic; maximum IoC 0.0333333.
+2. **Natural one-second-truncated signed DMS** (12 locations ×2 coordinates×3 D/M/S numbers =72; append [3,3,0,1] = **exactly 76** source-number components, each reduced modulo29): + sign **mathematically impossible by p55 rune62 under every F mask**; − sign has **one** legal full-page path, GP29 IoC 0.034035, starts S N M TH H NG W W NG..., no plaintext. The exact 76/76 length match was identified retrospectively and is not proof of author intention. The p55 first glyph carries a word from p54.
+
+[Unified decision report](../../im-results/lp2-p55-2012-signed-gps-digitpad-original-gate.md), [digit SFT](../../sims/lp2_p55_2012_signed_gps_digitpad_sft.cjs), [DMS SFT](../../sims/lp2_p55_2012_signed_gps_dms76_sft.cjs). **No authentic unknown LP2 plaintext/key recovered.**
+
+For Director/agents: retain the genuine signed 2012 source. The DMS76 count may invite independent rediscovery, but direct cipher route is closed. Do not fit GPS precision, source order, phase, rounding or multiple additional cipher layers unless a new *author-visible* instruction selects one. The strongest rival explanation is normal reuse of Cicada branding from a completed 2012 coordinate stage.

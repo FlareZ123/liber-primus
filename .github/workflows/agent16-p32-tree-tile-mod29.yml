@@ -1,0 +1,19 @@
+name: Agent16 original p32 tree-tile mod29 residue
+
+on:
+  workflow_dispatch:
+
+jobs:
+  signed-tree-tile-residue:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Screen original signed 2016 image against p32 rune residues
+        run: node sims/lp2_p32_2016_tile_ink_mod29_sft.cjs
+      - name: Screen dimension-selected 11x10 first-two-word tile readout
+        run: node sims/lp2_2016_two_word_tile110_mod29_sft.cjs

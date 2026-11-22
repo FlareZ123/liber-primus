@@ -1,0 +1,14 @@
+name: LP2 original-input public 27x27 claimant audit
+on:
+  workflow_dispatch:
+jobs:
+  exact-claim:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce the 38 published selections on 729 unchanged original ciphertext runes
+        run: node sims/lp2_2026_public_27x27_original_claim_sft.cjs

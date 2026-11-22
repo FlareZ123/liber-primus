@@ -1,0 +1,19 @@
+name: Agent27 low-digit GOOD LUCK blind gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test sealed GOOD to LUCK low-digit prediction
+        shell: pwsh
+        run: node sims/lp2_lowdigit_good_luck_blind_gate_sft.cjs

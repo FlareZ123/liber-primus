@@ -1,0 +1,51 @@
+name: LP2 May 2014 timestamp-seeded Py27 MT32 direct original attack
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  may2014-original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Fetch immutable source-calibrated original-cipher engine
+        uses: actions/checkout@v4
+        with:
+          repository: Dukotah/cicada3301
+          ref: 9087dc36b5aa64c1786428e32180261ab9420c29
+          path: upstream
+          persist-credentials: false
+      - name: Gate reference vectors and original positive control
+        working-directory: upstream/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 check_panel_gate.py
+          gcc -O2 -Wall -Wextra -std=gnu17 -fopenmp -ffp-contract=off -o grind27 grind27.c -lm
+          ./grind27 --data engine.dat --self-test
+          ./grind27 --data engine.dat --drill
+      - name: Exhaust every second in 2-12 May 2014 UTC, original LP2 direct decryption
+        working-directory: upstream/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 -c 'import json; json.dump([{"lane":"S2","reducer":"random29","relation":"exact","offset":0,"from":1398988800,"to":1399852800,"cand_bar":5.0,"claim_bar":7.6341931878728095}],open("may2014-plan.json","w"))'
+          mkdir -p may2014-run
+          GRIND27_S2_CONTROL_OK=1 ./grind27 --data engine.dat --plan may2014-plan.json --threads 4 --run-dir may2014-run
+          python3 -c 'import json; s=json.load(open("may2014-run/STATUS.json")); print("MAY2014_DIRECT_ORIGINAL",json.dumps({"coverage":s["aggregate"],"from":s["from"],"to":s["to"],"hits":s["flagged_survivors"],"workers":s["workers"]},separators=(",",":")))'
+      - name: Preserve original run, flags, score histogram, exact seed coverage
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-may2014-py27-mt32-exact-original
+          path: |
+            upstream/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy/may2014-plan.json
+            upstream/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy/may2014-run/STATUS.json
+            upstream/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy/may2014-run/HIT-CANDIDATE.json
+            upstream/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy/may2014-run/top_S2.json
+            upstream/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy/may2014-run/hist_S2.u64
+            upstream/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy/may2014-run/candidates.jsonl
+          if-no-files-found: warn
+          retention-days: 90

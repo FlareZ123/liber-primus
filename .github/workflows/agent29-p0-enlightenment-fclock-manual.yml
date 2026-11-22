@@ -1,0 +1,16 @@
+name: LP2 p0 ENLIGHTENMENT source-crib strict F-clock certificate
+on:
+  workflow_dispatch:
+jobs:
+  original-p0-allclock:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original p0, solved p56 and native p57 controls
+        run: |
+          node --check sims/lp2_p0_enlightenment_ftransparent_exact_certificate_sft.cjs
+          node sims/lp2_p0_enlightenment_ftransparent_exact_certificate_sft.cjs

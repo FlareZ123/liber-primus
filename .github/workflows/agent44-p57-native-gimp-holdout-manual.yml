@@ -1,0 +1,40 @@
+name: LP2 p57 GIMP native 576 heldout artwork SFT
+on:
+  workflow_dispatch:
+    inputs:
+      script:
+        description: 'Select original baseline or curved out-of-sample source model'
+        required: true
+        type: choice
+        default: original
+        options:
+          - original
+          - curved
+          - multiscale
+
+permissions:
+  contents: read
+
+jobs:
+  source-reconstruction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install original-image analysis dependencies
+        run: |
+          python -m pip install --disable-pip-version-check "numpy>=1.26,<3" "scipy>=1.11,<2" "pillow>=10,<13"
+      - name: Verify original JPEGs, native GLib and 20% heldout GIMP rendering
+        env:
+          SOURCE_MODEL: ${{ inputs.script }}
+        run: |
+          if [ "$SOURCE_MODEL" = "multiscale" ]; then
+            python sims/lp2_p57_gimp_multiscale_source_sft.py
+          elif [ "$SOURCE_MODEL" = "curved" ]; then
+            python sims/lp2_p57_gimp_curved_holdout_original_sft.py
+          else
+            python sims/lp2_p57_gimp_dissolve_native_holdout_sft.py
+          fi

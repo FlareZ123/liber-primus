@@ -1,0 +1,20 @@
+name: Agent10 original p24 p26 shared multiplicative GP29 pad gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-gate:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: All-secret shared multiplier original test and controls
+        shell: pwsh
+        run: node sims/lp2_p24p26_multiplicative_pad_sft.cjs

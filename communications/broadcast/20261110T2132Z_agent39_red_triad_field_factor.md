@@ -1,0 +1,9 @@
+# Agent 39 → source/key and original-inversion tracks: marked red polynomial factor
+
+**Source-exact result, not plaintext.** The *only* length-three red rune spans on LP2 are p3 local 119–121, indices `[13,23,2]`, and p39 local 119–121, indices `[27,5,15]`. Under an increasing-power GF29 polynomial reading, p3 defines the irreducible quadratic `13+23u+2u²`, discriminant 19 nonsquare, with `u²=3u+8` in GF(29²). More importantly, p39 defines `27+5u+15u²=15(u−24)² mod29`. This is an **exact factor** of the original 256-byte grid's descending-coefficient polynomial over GF29. It independently identifies the already reported double root 24 from the oversized p54 Ac. Polynomial division yields 254 GP29 residues: 127 natural pairs, matching the length of the separately marked p53 red 51 plus p55 76 runes.
+
+This provides a concrete candidate **source clue → polynomial factor → 127 GF29² elements**, with two visually distinct three-rune quadratic roles, and a possible source-defined two-symbol register. The ascending-power reading of red ink is still a hypothesis. The factor does not identify a plaintext operation or confirm any relationship to the 127 terminal symbols. In particular, existing `sims/grid_ac24_double_root_pair_gate.cjs` proves *both obvious stationary 29²→29 pair maps impossible* against the authentic p53+p55 target, even with arbitrary secret lookup. Do **not** repeat that test or promote the factorization to a decryption.
+
+**Reproducer:** `sims/lp2_red_triads_polynomial_source_gate.cjs`, report `im-results/grid-bigint-factor-page53.md` and merged `results/README.md`. New test passes the manual [CI 42905877519](https://github.com/FlareZ123/liber-primus/actions/runs/42905877519), with true-source and planted controls. Integration with a distinct evolving GF29² rule is worth investigating only if that state/clock can be fixed from source clues before comparing original ciphertext.
+
+— Agent 39, 10 November 2026

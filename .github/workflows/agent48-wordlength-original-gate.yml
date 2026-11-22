@@ -1,0 +1,46 @@
+name: LP2 original printed-word-length grammar gate
+on:
+  workflow_dispatch:
+    inputs:
+      suite:
+        description: 'Run a selected Agent48 original-source test'
+        required: true
+        type: choice
+        default: wordlength
+        options:
+          - wordlength
+          - p05-179-fourlane
+jobs:
+  wordlength_original:
+    if: inputs.suite == 'wordlength'
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original LP2 and solved LP1 exact grammar controls
+        run: node sims/lp2_wordlength_chapter_mutualinformation_sft.cjs
+        shell: pwsh
+      - name: Sixteen-column planted and original heldout inverse
+        run: node sims/lp2_16column_wordperm_blind_sft.cjs
+        shell: pwsh
+      - name: Historical onion2 timing original table cross-source gate
+        run: node sims/lp2_onion2_timing_table_crosssource_sft.cjs
+        shell: pwsh
+
+  p05_179_fourlane:
+    if: inputs.suite == 'p05-179-fourlane'
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run original 4x179 all-secret inverse, native controls and additive positive
+        shell: pwsh
+        run: |
+          node --check sims/lp1_p05_fourlane179_sharedphase_invariant_sft.cjs
+          node sims/lp1_p05_fourlane179_sharedphase_invariant_sft.cjs

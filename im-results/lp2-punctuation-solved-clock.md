@@ -1,0 +1,191 @@
+# Authentic LP2 cipher clock and the numeric-table ten-dot bridge
+
+**Evidence classification, 10 November 2026, Agent 22:** independently known historical plaintext and exact original-ciphertext forward/inverse test. This establishes a narrow, genuine operating rule for **solved LP2 physical page 56** (original JPEG `73.jpg`). **It does not decrypt any unknown pages or assert their cipher uses the same clock.**
+
+## The source-specified choice
+
+The complete original-page colour annotation records three large dot stencils on solved LP2 p56, counted at exact original rune offsets:
+
+| Offset, immediately after that many runes | Dots | Visible role |
+| ---: | ---: | --- |
+| **5** | **13** | After red five-rune heading `AN END` |
+| **45** | **10** | Before the page's non-runic SHA-512 hexadecimal digest |
+| **85** | **13** | After the final encoded prose rune |
+
+A [CicadaSolvers structural overview](https://www.cicadasolvers.com/wiki/liber-primus/liber-primus-structural-overview/) observes the numerical correspondence of large-dot stencil counts to ASCII controls `10 = LF`, `13 = CR`, and `23 = ETB`. This is an **interpretive analogy, not an established decoder rule**. The pinned Rain-3301 transcription maps `10 = ᛭`, `13 = ⁕`, and `23 = ᛭⁕`; that is a transcription convention, not evidence for ASCII semantics. The source-line test below contradicts the literal `13 = CR` line-control interpretation. The final 23-dot mark is on solved page 57 after the complete message; the marks' cryptographic effect remains unestablished.
+
+### Source-line test of the ASCII analogy
+
+The pinned third-party [Rain-3301 transcription](https://github.com/cicada-solvers/Rain-3301/blob/76d3ee8c762f60025822c8c05edbf31351636469/Liber%20Primus%2057.txt), preserved as `resources/external/Liber Primus 57.txt` (Git blob `4d346cd5c0c85dac71624cc2ad3c100f963404bc`), retains printed line breaks and gives the symbol key `10 = ᛭`, `13 = ⁕`, `23 = ᛭⁕`. Parsing its 58 page sections gives:
+
+| Dot count / token | Events | Followed by runes on the same printed line | At line end |
+| --- | ---: | ---: | ---: |
+| 13 / ⁕ | 31 | 15 | 16 |
+| 10 / ᛭ | 4 | 1 | 3 |
+| 23 / ᛭⁕ | 1 | 0 | 1 |
+
+The 13-dot mark is visibly inline in original scans: p0's archive image `17.jpg` places it between the red opening heading and black runes continuing on the same baseline; solved p56 `73.jpg` does the same after `AN END`; solved p57 `74.jpg` does the same after `PARABLE`. The transcription's corresponding examples are p0 line 19, p56 line 726, and p57 line 737. Thus the literal `13 = CR` carriage-return/line-reset reading is contradicted by the source layout. One of four 10-dot marks is likewise followed by text on the same transcription line (p38 line 503); the sole 23-dot mark is terminal on p57.
+
+This rejects the specific ASCII CR/LF/ETB **text-line-control** interpretation, not every possible use of the marks as record delimiters. A general record parser has not been specified by the source and should not be inferred from the numeric resemblance alone. This result does not change the solved p56 key-clock finding below: its authentic prime-totient stream passes through the internal 13- and 10-dot marks without consuming or resetting a prime. Reproducer: `node sims/lp2_ascii_control_linebreak_gate.cjs`.
+
+The solved p56 cipher is independently known: for GP29 ciphertext rune `C_i`, subtract `prime_j − 1` modulo 29, starting `j=0`, except the single literal unencrypted `F` at **rune offset 56**, which does **not** consume a prime. In historic GP spelling the plaintext begins **`AN END WITHIN THE DEEP WEB THERE EXISTS A PAGE THAT HASHES TO`** and finishes **`IT IS THE DUTY OF EUERY PILGRIM TO SEEC OUT THIS PAGE`**. It totals **85** original runes. The 128 hex digits of the displayed SHA-512 hash (64 bytes) are outside that GP-rune count. To distinguish *ignoring* the non-runic digest from consuming it as key material, the SFT also tests advancing the prime counter by exactly 64 steps for the bytes or 128 steps for the printed hex digits before continuing the next rune. Advancing 64 yields **48/85** true runes, including **3/40** after the digest; advancing 128 yields **49/85**, including **4/40** after the digest. The authentic zero-step treatment yields **85/85**, including all **40/40** subsequent runes.
+
+The two **internal** original dot events have a finite, source-fixed key-clock interpretation family:
+
+- `pass`: punctuation is not a prime-consuming rune and leaves key index unchanged;
+- `advance`: punctuation consumes one additional prime, as though it encodes one control symbol;
+- `reset`: the next rune restarts from `prime_0 = 2`.
+
+These are exactly **nine** distinct state rules for the page's two internal dot events. The terminal mark at rune index 85 cannot affect this page's plaintext.
+
+
+
+### Mobius selector for the p56 literal-F interrupter
+
+*Provisional source interpretation, Agent 11, 11 November 2026.*
+
+The 2013 0_wisdom artifact provides a plausible reason to consider the arithmetic Möbius function alongside the totient: its 5×5 square contains the literal word **MOBIUS**, while its prose says that the primes and totient function are sacred. The pinned transcription and source note are resources/external/2013-0-wisdom.txt and resources/external/2013-0-wisdom-source.md; the transcription is derived evidence, not a substitute for the original image.
+
+On solved p56, the five ciphertext-F positions and their Möbius values are:
+
+| Zero-based offset \(i\) | \(\mu(i)\) | \(\mu(i+1)\) |
+| ---: | ---: | ---: |
+| 35 | +1 | 0 |
+| 47 | −1 | 0 |
+| 51 | +1 | 0 |
+| **56** | **0** | −1 |
+| 74 | +1 | 0 |
+
+The candidate selector is deliberately narrow:
+
+\[
+\text{ciphertext F at offset }i\text{ is literal/pass-through iff }\mu(i)=0.
+\]
+
+It selects only offset **56**, exactly the known literal-F interrupter. With the already established consecutive-prime totient stream beginning at prime 2, modulo 29, this gives the known 85-rune plaintext exactly and consumes 84 key symbols. The one-based alternative selects four different F positions (35, 47, 51, 74), consumes 81 key symbols and mismatches 50/85 runes; omitting the skip mismatches 29/85. The zero-based mask is 8, the same mask as the previously established p56 interrupter.
+
+**What this adds:** a plausible source-based arithmetic selector for the one known p56 exception, without choosing the skip from the plaintext. It is consistent with the 2013 MOBIUS/totient clue.
+
+**What it does not add:** this is not a new plaintext or cipher recovery. The simpler rule “pass through the rune at the physical page number” already selects offset 56 and is tested by sims/p56_page_index_prime_skip_sft.cjs; the Möbius rule coincides with that rule on p56. The existing sims/prime_totient_F_interrupt_viterbi.py independently recovers the same skip by language scoring. The source does not explicitly say to evaluate \(\mu\) on zero-based rune offsets, and the choice of arithmetic \(\mu\) is interpretive rather than a literal instruction.
+
+The scope is also limited: on the two known LP1 Vigenère controls, the same zero-based rule selects only positions 48 and 84 versus the WELCOME literal-F positions 48, 74, and 84, and only position 49 versus the KOAN positions 49 and 58. It is therefore **not** a universal Cicada literal-F convention; it may be specific to the p56 totient mechanism or coincidental. The existing exhaustive direct transfer of the p56 key family to unsolved pages remains negative. Do not use this observation to restart that search.
+
+**Reproducer:** sims/p56_mobius_interrupter_selector_sft.cjs. It derives the mask from original p56 ciphertext-F positions and \(\mu(i)\); the known plaintext is used only as the positive control. Treat this as a provisional cross-check, not an established global cipher rule.
+
+
+## Complete original-input result
+
+The [single runnable source-input test](../sims/lp2_punctuation_solved_clock_sft.cjs) reads the original 85 ciphertext rune indices and all three physically annotated marks. It constructs the independent known GP-encoded plaintext, uses the historically established F interrupter, and scores *every original rune* under each candidate clock. A separate import of the existing [authentic solved-page regression](../sims/solved_cipher_regression.cjs) checks the true known inverse independently of the competing clock implementation.
+
+| After 13-dot at 5 | After 10-dot at 45 | Exact plaintext runes / 85 | In each interval [0,5), [5,45), [45,85) |
+| --- | --- | ---: | --- |
+| **pass** | **pass** | **85** | **5 / 40 / 40** |
+| pass | advance | 46 | 5 / 40 / 1 |
+| pass | reset | 48 | 5 / 40 / 3 |
+| advance | pass | 6 | 5 / 0 / 1 |
+| advance | advance | 6 | 5 / 0 / 1 |
+| advance | reset | 8 | 5 / 0 / 3 |
+| reset | pass | 6 | 5 / 0 / 1 |
+| reset | advance | 6 | 5 / 0 / 1 |
+| reset | reset | 8 | 5 / 0 / 3 |
+
+All nine variants exactly reproduce the original ciphertext when **their own** decoded symbols are forward-reenciphered: bijectivity alone is not evidence of a correct clock. Only the one true historical no-event key-state mode decodes **all 85** externally known runes. In particular, advancing one prime at the hash-introducing 10-dot mark misdecodes 39 of the subsequent 40 runes, while restarting the stream there misdecodes 37.
+
+**Result:** the authentic prime-totient cipher on solved LP2 p56 runs continuously **across both internal 13-dot and 10-dot marks**. Its key counter is based on **eligible GP runes**, with the known literal-F skip, and does not consume an extra step at either physical control stencil. The presence of a hexadecimal digest is not a key-state reset under this solved-page mechanism.
+
+## Source-selected transfer target: the 10-dot and 256-byte table bridge
+
+**New visual connection, classified as source-supported layout and a *provisional* clock-transfer hypothesis:** among all four original LP2 ten-dot stencil events, the two on physical **p49** and solved **p56** immediately introduce conspicuous non-runic binary-encoded material before printed rune text resumes. The other two 10-dot marks on pp36 and38 delimit the five Arabic-numbered heading paragraphs, so ten dots identify unusual typographic block boundaries more generally and cannot be asserted to mean "binary bytes" or "cipher restart."
+
+| Original page / mark position | Material after mark | Ciphertext-rune continuations |
+| --- | --- | --- |
+| **p49 after rune 66**, source `66.jpg` | **32×8=256-byte** base-60 table printed across pp49–51; **10,13,9 rows per page**, including rune-free p50 | **p49 has 66 runes before grid; p51 has 92 runes after grid** |
+| **solved p56 after rune 45**, source `73.jpg` | Non-runic **128-hex-digit SHA-512 digest (64 bytes)** | **45 runes before digest; 40 runes after digest**, within a single historically solved 85-rune φ(prime) stream |
+| p36 after rune 99 / p38 after rune 186 | Five nonrunic Arabic ordinal headings **1 through 5** over an intervening 553 runes | Original numeral boundaries are visible but have no known cipher-clock semantics |
+
+The p56 positive establishes a **concrete precedent** for ignoring both an intervening ten-dot marker and an entire non-GP encoded block when progressing an authentic keystream. Extending that *rune-only counter convention* to the p49-to-p51 table is an independently prompted **hypothesis**, because the p49/51 cipher and plaintext are still unknown and the p56 original key might be unrelated.
+
+For that hypothesis, the correct lossless original coordinate map is fixed *without* choosing a ciphertext-fitting key: read physical p49 local runes `0..65`, ignore **the original 256 numeric bytes for rune-clock purposes**, and resume from physical p51 local runes `0..91`. The continuous candidate stream is **158 runes**. Its original global unsolved-book offsets are exactly **12,048 through 12,205**; the first rune after the table is **12,114** and has compact candidate clock offset **66**, versus **0** under an independently reset p51 clock. The p49 runes end at a full stop, so this is **key-clock continuity**, not a claim that a word crosses the table.
+
+The [original-source binary bridge SFT](../sims/lp2_tendot_binary_bridge_sft.cjs) reconstructs all 158 rune coordinates, validates the exact p49 and p51 original GP indices, their inverse, all four physical ten-dot stencil offsets, all **256 source table bytes**, all original page-index conventions including runeless p50, and the established p56 internal 10-dot/fixed literal-F control. It is a reusable, exact encoding for other agents to test a **specific source-derived cipher** on the original flanking text. [Successful opt-in Node22 CI 42886648656](https://github.com/FlareZ123/liber-primus/actions/runs/42886648656).
+
+## Original 158-rune cipher transfer test: independent positive and conditional negatives
+
+**Agent 10, 11 November 2026, decision-grade original-input test.** The historic solved-p56 prime-totient mechanism supplies a frozen concrete candidate: a prime counter starting at index zero, key value `K_j=(prime_j−1) mod29`, GP29 subtraction and only literal GP-F exceptions (both ciphertext and plaintext F at index 0, with no clock advance). Preserve all original p49 66 runes and p51 92 runes and their original global book coordinates **12,048–12,205**. Transfer exactly that same output law with these *a priori* clock alternatives at the ten-dot/256-byte table: **0** (solved-p56 precedent, table non-consuming), **10** (printed mark size), and **256** (one advance per printed byte). This is a test of a borrowed mechanism, not evidence the unsolved pages actually use it.
+
+There are exactly **six** original GP-F ciphertext positions in the bridge, at compact indices `[3,33,69,123,126,157]`. Enumerating all 64 skip decisions gives a necessary *key-independent-of-language* feasibility gate: if an encrypted rune at a consuming step equals `K_j`, it would decode to GP-F even though a literal GP-F could only appear as ciphertext GP-F, contradicting the transferred original solved-page law.
+
+| Frozen clock jump | Fewest incompatible output events | Fully legal F-skip masks / 64 | Best decoded Emerson-trained GP-trigram log-score, nats/rune |
+| ---: | ---: | --- | ---: |
+| **0** | **1** | None | Not applicable |
+| **10** | **0** | 31, 63 | **−13.74019** |
+| **256** | **0** | 19, 51 | **−13.34684** |
+
+The zero-step candidate has a decisive exact contradiction at bridge index **102**, physical **p51 local offset36**, original GP ciphertext **E=18**. Its unique surviving prior counter is 99, with ordinary prime **541**, so `(541−1) mod29 = 18`: consuming it would output forbidden plaintext F while the actual ciphertext is E. This conclusion does not depend on an English scorer or on selecting an F skip mask.
+
+The ten-dot and table-byte jumps survive this *necessary* gate but recover no readable original plaintext. Independent Gibran-native GP controls of equal length score **at least −8.42446** under a model trained on separate Emerson GP prose (324,630 runes); the best original survivor is only −13.34684 and its IoC is **0.03290** (native GP prose has substantially higher linguistic structure). A source-native planted English control in each candidate clock inverts exactly. This confirms the implementation, not historical correctness.
+
+For calibration, granting **every possible 0–256 prime-index jump** while retaining the same original glyphs yields **51 of 257** jump sizes with at least one legal F-skip mask; thus the survivorship of 10 and 256 is not a unique key signature. This exhaustive comparison ranks alternative jumps **only as a specificity check**, without proposing their fitted values as clues or expanding the authentic source-based cipher family.
+
+**Current decision:** Direct transfer of p56's exact *zero-step* prime-totient/F-exception mechanism is excluded by the p51 contradiction. The two plausible source-sized clock-advance variations satisfy the skip syntax but fail native-language discrimination, so none recovers the sought key, original plaintext, or table semantics. Any viable successor must introduce an independently visible way in which the original table affects the key, plaintext register, or state. The arithmetic `158=2×79` remains retrospective.
+
+[Complete CommonJS original-source reproducer](../sims/lp2_tendot_prime_transfer_gate.cjs) · [successful manual Node 22 workflow run 42927687738](https://github.com/FlareZ123/liber-primus/actions/runs/42927687738) (dispatch `tendot-prime-transfer`).
+
+
+
+## Two 10-dot intervals and a complementary 24-hour arithmetic (provisional)
+
+The four standalone 10-dot marks occur in source order at physical p36:99, p38:186, p49:66 and p56:45. Their global post-rune offsets are **8,805, 9,358, 12,114 and 13,001**. Pairing them in source order gives two enclosed rune intervals:
+
+| Mark pair | Rune interval | Base-60 decomposition |
+| --- | ---: | ---: |
+| p36 → p38 | **553** | **9×60 + 13 = 09:13** |
+| p49 → p56 | **887** | **14×60 + 47 = 14:47** |
+
+The two lengths sum exactly to **1,440 = 24×60**. Their hour parts sum to 23 and their minute parts to 60, so the pair reads as **09:13 + 14:47 = 24:00**. This is an exact source-coordinate arithmetic relation; reading rune counts as minute durations is a **hypothesis**, not an established cipher rule. It is notable that the p49/p56 pair brackets the route from the 256-byte base-60 table's preceding marker to the solved p56 hash-introduction marker, while the p36/p38 pair brackets the five numbered paragraphs.
+
+The terminal p57 23-dot stencil is structurally composite in the normalized source templates: its 5×5 pattern `.###. / ##### / ##### / ##### / #####` contains the 13-dot pattern `.#. / ### / ### / ### / ###` as a subset, with **ten additional cells** (the two top-row flanks and the two outer columns in the lower four rows). The extra ten cells are not a copy of the separate 10-dot stencil. A full original-pixel scan of all 58 images gives uniform column occupancies: every 13-dot stencil is **4/5/4**, every 10-dot stencil **3/4/3**, and the unique 23-dot stencil **4/5/5/5/4**. The updated [original-image census SFT](../sims/lp2_original_color_dots_census_sft.py) checks all 36 positions, these class signatures and per-page totals.
+
+**Solved terminal-pair check.** The only marked pages whose large-dot totals are 36 are p56 and p57: p56 has **13+10+13=36** (after its red `AN END` heading at rune5, before the non-runic SHA-512 digest at rune45, and after its final cipher rune at rune85); p57 has **13+23=36** (after the red `PARABLE` heading at rune7 and after the final full stop following `EMERGE`). Thus p57's terminal **23** equals p56's internal **10** plus terminal **13**, while both pages share an initial 13-dot heading marker. This is an exact source-level terminal-pair checksum candidate, not an inferred cipher opcode.
+
+**Page-edge peel control.** P57's clear page contains 95 GP29 runes, while solved p56 contains 85 cipher runes; the ten-rune excess equals the ten additional cells in the composite 23-dot stencil. A literal page-level reading of “shed our own circumferences” could remove five runes from each end of p57, leaving an 85-rune inner sequence. The fixed 5+5 peel was tested against p56's independently established 85-rune plaintext, original ciphertext and derived additive key stream: it matches only **10/85**, **2/85** and **3/85** positions respectively, with no exact equality. Using the inner sequence as either sign of a direct additive GP29 pad produces IoC **0.0333333333**, essentially uniform. The length relation is therefore a useful structural checksum candidate, but this simplest page-edge transfer does not recover p56. Reproduce with [the page-edge known-pair SFT](../sims/lp2_p57_pageedge85_p56_knownpair_sft.cjs).
+
+The p57 prose says to “shed our own circumferences” and “find the divinity within.” A plausible geometric reading is to peel the outer ring of the 5×5 terminal stencil (14 dots), leaving its 3×3 nine-dot core. But the page supplies no target interval, ordering, or downstream register for those nine cells; the 23-dot mark is terminal after the cleartext, with no following ciphertext to receive an operation. The original 2014 PGP-signed handoff names the seventh onion and says “Your enlightenment awaits you”; the archived Stage11 index supplies `title=133`, `id=331`, and images 0–57. Neither supplies a 23/13/10 opcode or a receiver. The known p56 prime-totient stream also passes through its internal 13- and 10-dot marks without consuming or resetting a prime (see the solved-page control above and closed [#183](https://github.com/FlareZ123/liber-primus/issues/183)).
+
+The complete punctuation census can still be rewritten exactly as:
+
+`31×13 + 4×10 + 23 = 32×13 + 5×10 = 466`.
+
+This is consistent with the 31 internal 13-dot separators delimiting **32 fragments**, and the four internal 10-dot boundaries plus the terminal 10-cell extension closing **five macro-sections**. The resulting five source intervals are **[8,805, 553, 2,756, 887, 135]** runes. The 23-dot mark is at the end of p57 (global 13,136), so its 13-dot core is a terminal closure, not a new interior fragment. The dual-framing and terminal-pair checksum interpretations remain structural hypotheses; neither establishes that the five macro-sections are cipher reset points or supplies an executable decipherment.
+
+### One fixed affine table-pad consequence tested
+
+A minimal way to turn the two marked interval lengths into a direction over the 256-byte table is the affine traversal
+
+`K[i] = grid[(553 + 887·i) mod 256]`.
+
+Here `887 mod 256 = 119` and `gcd(119,256)=1`, so the rule visits every table byte exactly once before repeating. I tested this single source-fixed order as a period-256 additive GP29 pad under both natural byte mappings (`byte mod 29`, `floor(29·byte/256)`), both signs, and global-continuous or per-page key reset: **eight cases, no fitted key or parameter search**.
+
+| Candidate | Rune IoC | English quadgram score (nats/quadgram) |
+| --- | ---: | ---: |
+| Original ciphertext | **0.03447840** | **−17.13158** |
+| Highest-IoC affine case: scale29, page reset, subtract | **0.03452555** | **−17.26724** |
+| Best-quadgram affine case: scale29, global, subtract | **0.03446244** | **−17.20931** |
+
+The two candidate maxima are different configurations; neither is language-like, and both quadgram scores are worse than raw.
+
+Across all eight candidates, IoC stays in **0.03445396–0.03452555**, effectively the random 29-symbol baseline **1/29 = 0.03448276**; quadgram scores range **−17.29012 to −17.20931**, all worse than the unmodified ciphertext. The most IoC-favourable case is still nonlinguistic, and the best quadgram case is worse than raw. Thus the obvious affine use of the two interval lengths as a 256-byte offset/stride pad is **negative**.
+
+Two other direct clock-key readings were tested without further parameter fitting:
+
+- The time digits `09131447` as a period-8 GP29 Vigenère key, and the time fields `[9,13,14,47] mod 29 = [9,13,14,18]` as a period-4 key, each under both signs and global/page reset. The best quadgram score is **−17.20735**, still worse than raw.
+- Treat the times as clock hands on the 32 table rows: row order `(9+13i) mod 32` for 09:13 or `(14+15i) mod 32` for 14:47. Flatten each reordered 32×8 table and use it as a period-256 additive pad under both byte mappings, signs and reset modes. The best quadgram score is **−17.16957**, also worse than raw; IoC remains **0.03445336–0.03451845**.
+
+These reject the obvious periodic Vigenère and clock-row table-pad readings. They do **not** test a source-prescribed nonlinear clock state or a traversal of the 32 fragments, so the structural clock hypothesis remains open.
+
+**Reproducer:** [`sims/lp2_dual_10dot_24h_affine_pad_sft.cjs`](../sims/lp2_dual_10dot_24h_affine_pad_sft.cjs). The existing [base-60 stream study](./base60-seeded-stream.md) supplies independent planted-recovery controls for the underlying reversible byte-to-GP stream family.
+
+
+This is a useful restriction on any proposed **universal** punctuation-based reset/advance clock. An unknown LP2 cipher could explicitly use other state semantics; the remaining manuscript is still undeciphered. The ASCII-control analogy, on its own, cannot authorize overwriting or restarting a cipher register. Likewise, the 09:13/14:47 complement is not an authenticated time-key: no traversal or state rule derived from it has yet recovered plaintext. The affine-pad negative excludes only the one direct 256-byte use tested above.
+
+**Reproduction:** [`sims/lp2_punctuation_solved_clock_sft.cjs`](../sims/lp2_punctuation_solved_clock_sft.cjs) with Node.js 22; [successful manual-only GitHub Actions run 42885417113](https://github.com/FlareZ123/liber-primus/actions/runs/42885417113) via the existing [physical-line and page-turn workflow](../.github/workflows/physical-line-initial-crosspage-manual.yml), dispatch input `punctuation-clock`.

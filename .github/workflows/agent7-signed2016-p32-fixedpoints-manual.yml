@@ -1,0 +1,25 @@
+name: Agent7 signed 2016 p32 coordinates and word-code original gates
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-coordinate-gate:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Confirm exact-source SFT CommonJS syntax
+        run: node --check sims/lp2_signed2016_p32_fixedpoints_sft.cjs
+      - name: Test native signed metadata, native JPEG dimensions, original p32 runes and controls
+        run: node sims/lp2_signed2016_p32_fixedpoints_sft.cjs
+      - name: Confirm original 2896-word one-rune tile decoder syntax
+        run: node --check sims/lp2_p32_2016_wordcode_tile_original_sft.cjs
+      - name: Execute original word-code inverse and native GP-English controls
+        run: node sims/lp2_p32_2016_wordcode_tile_original_sft.cjs

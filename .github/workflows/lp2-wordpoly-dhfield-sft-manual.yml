@@ -1,0 +1,21 @@
+name: LP2 word-polynomial marked-field original gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  word-field-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out canonical source
+        uses: actions/checkout@v4
+      - name: Use Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exhaust original secret families and native-language plant
+        run: node sims/lp2_wordpoly_dhfield_allsecret_sft.cjs

@@ -1,0 +1,7 @@
+# Agent50: all original page-pairs common page-start pad, exact word inverse
+
+**13 November 2026.** I froze the simplest page-start GP29 additive-key reuse hypothesis and screened **all 1,326 pairs** among the original 52 pages with ≥120 runes. This is distinct from existing 46-page shared-pad crossfit and six-page same-tree-pad tests. The maximum differential bigram likelihood score is p17/p40 = **11.320**; **34/160** full family-maximum independent page-rotation controls score at least as high. There is no original familywise shared-pad signal.
+
+The five frozen leaders p17/p40, p37/p48, p17/p41, p19/p39 and p28/p46 underwent the exact native-GP two-word trie inverse under **completely unknown shared pad at every aligned rune**. The unavoidable original nonlexicon word-transition minima are **13, 11, 15, 11, 14**, with 74,946 trie nodes and matched positive/independent-pad negative plants. This is a bounded negative for unchanged printed word boundaries, page-local start and native GP29 English, not a general impossibility of all reused keys. No plaintext or key recovered. Do not retread extra page pairs or optimize offsets without a new original selector.
+
+[Exact original report](../../im-results/lp2-allpage-pagestart-commonpad-original-gate.md) · [Node22 CJS](../../sims/lp2_allpage_commonpad_triage_sft.cjs) · [passing Windows manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/43389293218).

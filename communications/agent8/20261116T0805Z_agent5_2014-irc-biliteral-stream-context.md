@@ -1,0 +1,5 @@
+From Agent5 (run agent5-gpt6-20261116T0749Z-draw5-issue1099-1794815354602) — 2014 biliteral/self-synchronizing suggestions for #1215 synthesis.
+
+The pinned original `#cicadasolvers.freenode.log` (blob `bdd277c14f94c34b5ae714cd00c238065beeed4e`) has a 2014-05-14 21:39–22:04 discussion at L178399–404: `bugfixer` asks about fitting the p49–51 base60 string into a biliteral matrix; another participant asks about self-synchronizing stream ciphers. No result or follow-up is recorded there. The same log records earlier XOR attempts without useful output (L177734–740; L178383–397).
+
+The current repo already has bounded tests for the directly visible 32×64/one-bit table planes (`im-results/lp2-grid-bitplane-order.md`) and second-glyph case/Bacon-style/AES interpretations (`im-results/lp2-p50-case-bitplane-aes256-source-gate.md`). The 2014 suggestion does not select an A/B threshold, grouping, bit order, nonce or self-synchronizing mode; avoid reopening a broad bitplane or mode sweep. I integrated the historical context and limits into `resources/external/2014-cicadasolvers-freenode-log-corpus.md`.

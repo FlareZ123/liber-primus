@@ -1,0 +1,93 @@
+name: OpenPuff original LP2 red-numbered three-scan extraction
+on:
+  workflow_dispatch:
+    inputs:
+      password:
+        description: Source-fixed passphrase, historical MP3 or top-to-bottom cuneiform
+        type: choice
+        required: true
+        default: "33011033"
+        options:
+          - "33011033"
+          - "10333301"
+permissions:
+  contents: read
+jobs:
+  original-numbered-three:
+    runs-on: windows-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: x86
+      - name: Prepare original native OpenPuff v4 and positive-control dependencies
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python -c "import struct; assert struct.calcsize('P') == 4"
+          python -m pip install --disable-pip-version-check pywinauto Pillow filelock
+          python sims/openpuff_output_capture_sft.py
+          $root = Join-Path $env:RUNNER_TEMP 'OpenPuff-v400-numbered'
+          New-Item -ItemType Directory -Force -Path $root | Out-Null
+          $base = 'https://raw.githubusercontent.com/codejanus/ToolSuite/1eaf6d006d31ba842f6cc6b16e9d82dbf904aaf5/OpenPuff'
+          $expected = @{
+            'OpenPuff.exe' = '466e03c792075313ce533a5dc7a789e8a41209f9'
+            'libObfuscate.dll' = 'f3b1c3315f8286346416fefd6141410f422f2454'
+          }
+          foreach ($name in $expected.Keys) {
+            $file = Join-Path $root $name
+            Invoke-WebRequest -Uri "$base/$name" -OutFile $file
+            $actual = (& git hash-object -- $file).Trim().ToLowerInvariant()
+            if ($LASTEXITCODE -ne 0 -or $actual -ne $expected[$name]) {
+              throw "Original program blob mismatch: $name"
+            }
+          }
+          "OPENPUFF_EXE=$(Join-Path $root 'OpenPuff.exe')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Verify native public JPEG positive on the same runner
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python sims/openpuff_public_jpeg_positive_source.py --out probe-output/public-source
+          if ($LASTEXITCODE -ne 0) { throw 'Unable to obtain independently known public JPEG carrier' }
+          python sims/openpuff_v400_extract.py --exe "$env:OPENPUFF_EXE" --carrier probe-output/public-source/openpuff.jpg --password 12345678 --bit-format 'Jpeg (Image)' --bit-level '1/2 (50%) - Maximum' --out probe-output/public-positive --wait-seconds 45
+          if ($LASTEXITCODE -ne 0) { throw 'OpenPuff public JPEG positive did not execute' }
+          python -c "from pathlib import Path; from hashlib import sha256; p=Path('probe-output/public-positive/extracted/hidden.txt'); b=p.read_bytes(); assert b==b'Dies ist eine versteckte Nachricht!'; print('ORIGINAL_NATIVE_JPEG_POSITIVE_PASS',len(b),sha256(b).hexdigest())"
+          if ($LASTEXITCODE -ne 0) { throw 'OpenPuff native positive did not recover exact original message' }
+      - name: Test original three-page red-numbered source group at JPEG Medium 1/5
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $password = '${{ inputs.password }}'
+          $params = @(
+            '--exe', "$env:OPENPUFF_EXE",
+            '--password', "$password",
+            '--bit-format', 'Jpeg (Image)',
+            '--bit-level', '1/5 (20%) - Medium',
+            '--out', 'probe-output/original-numbered-three',
+            '--wait-seconds', '600'
+          )
+          foreach ($idx in 53..55) {
+            $carrier = Join-Path $env:GITHUB_WORKSPACE ('resources/liber-primus/{0:D2}.jpg' -f $idx)
+            if (-not (Test-Path -LiteralPath $carrier)) { throw "Missing original source scan $idx" }
+            $sha = (Get-FileHash -LiteralPath $carrier -Algorithm SHA256).Hash.ToLowerInvariant()
+            Write-Host "ORIGINAL_CARRIER_SCAN=$idx PHYSICAL_LP2=$($idx - 17) SHA256=$sha"
+            $params += @('--carrier', "$carrier")
+          }
+          python sims/openpuff_v400_extract.py @params
+          if ($LASTEXITCODE -ne 0) { throw 'Original three-scan native Unhide invocation failed' }
+          $result = Get-Content 'probe-output/original-numbered-three/result.json' -Raw | ConvertFrom-Json
+          if ($result.carrier_count -ne 3 -or -not $result.carrier_chain_verified -or -not $result.bit_selection_verified -or -not $result.attempted) {
+            throw 'Native original three-scan chain or bit-setting not verified'
+          }
+          if ($result.native_probe_outcome -eq 'inconclusive-timeout') { throw 'Native operation ended without conclusive GUI result' }
+          Write-Host "SOURCE_NUMBERED_THREE_RESULT $($result | Select-Object carrier_count, native_probe_outcome, output_present, outputs, completion_dialogs, error_dialogs | ConvertTo-Json -Depth 15 -Compress)"
+          if ($result.output_present) { Write-Host 'POTENTIAL_AUTHENTIC_LP2_PAYLOAD_NEEDS_INDEPENDENT_VALIDATION' }
+      - name: Retain native GUI records and any original extracted bytes
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: openpuff-numbered-three-${{ inputs.password }}
+          path: probe-output/
+          if-no-files-found: warn

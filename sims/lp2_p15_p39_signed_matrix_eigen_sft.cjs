@@ -1,0 +1,399 @@
+"use strict";
+
+/**
+ * P15 signed Fibonacci-prime matrix and P39 red-triad common factor.
+ *
+ * Source: original p15 4x4 abs(3301-prime(F_n+1)) spiral; its two
+ * negative differences are restored BEFORE reduction to GF(29).
+ * Independently the original p39 red triad at rune offsets 119..121
+ * supplies the ascending quadratic 27+5x+15x^2.
+ *
+ * A recovered eigenspace is only prospective key material. The two
+ * source-anchored direct pad signs are tested on the untouched p40..p53
+ * body and checked with a solved p57 source-native positive plant.
+ *
+ * Node.js 22, CommonJS; read-only and self-contained within the repo.
+ */
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+const gp = JSON.parse(fs.readFileSync(
+  path.resolve(__dirname, "..", "resources/liber-primus/lp2-corpus.json"), "utf8"
+));
+const mod = x => (x % 29 + 29) % 29;
+const I = Array.from({length: 4}, (_, i) =>
+  Array.from({length: 4}, (_, j) => +(i === j)));
+const literal = [
+  [3258, 3222, 3152, 3038],
+  [3278, 3299, 3298, 2838],
+  [3288, 3294, 3296, 2472],
+  [4516, 1206, 708, 1820]
+];
+const originalM = literal.map(row => row.map(mod));
+const signed = literal.map(row => row.slice());
+signed[3][0] = -signed[3][0];
+signed[3][1] = -signed[3][1];
+const M = signed.map(row => row.map(mod));
+assert.deepEqual(M, [
+  [10, 3, 20, 22],
+  [1, 22, 21, 25],
+  [11, 17, 19, 7],
+  [8, 12, 12, 22]
+]);
+assert.deepEqual(gp.pages[3].indices.slice(119, 122), [13, 23, 2]);
+assert.deepEqual(gp.pages[39].indices.slice(119, 122), [27, 5, 15]);
+
+/** @param {number[][]} A @param {number[][]} B */
+const mmul = (A, B) => A.map(row =>
+  B[0].map((_,j) => mod(row.reduce((sum,a,k) => sum+a*B[k][j],0))));
+/** @param {number[][]} A @param {number[]} v */
+const mv = (A,v) => A.map(row =>
+  mod(row.reduce((sum,a,k) => sum+a*v[k],0)));
+/** @param {number[][]} A @param {number} n */
+function powMatrix(A,n) {
+  let result=I;
+  let base=A;
+  for(let p=n;p>0;p=Math.floor(p/2)) {
+    if(p%2) result=mmul(result,base);
+    base=mmul(base,base);
+  }
+  return result;
+}
+/** @param {number[][]} A */
+const trace = A => mod(A.reduce((s,row,i)=>s+row[i],0));
+/** Compute monic characteristic polynomial in descending order, GF29. */
+function charpoly(A) {
+  const T1=trace(A), A2=mmul(A,A), T2=trace(A2),
+    T3=trace(mmul(A2,A)), T4=trace(mmul(A2,A2));
+  const s1=T1;
+  const s2=mod(15*(s1*T1-T2));
+  const s3=mod(10*(s2*T1-s1*T2+T3));
+  const s4=mod(22*(s3*T1-s2*T2+s1*T3-T4));
+  return [1,mod(-s1),s2,mod(-s3),s4];
+}
+/** Multiply ascending-order polynomials over GF29. */
+function pmul(a,b) {
+  const out=Array(a.length+b.length-1).fill(0);
+  for(let i=0;i<a.length;i++)for(let j=0;j<b.length;j++)
+    out[i+j]=mod(out[i+j]+a[i]*b[j]);
+  return out;
+}
+/** @param {number[][]} matrix */
+function rank(matrix) {
+  const a=matrix.map(row=>row.map(mod));
+  let r=0;
+  for(let col=0;col<a[0].length;col++) {
+    let pivot=r;
+    while(pivot<a.length && !a[pivot][col]) pivot++;
+    if(pivot===a.length) continue;
+    [a[r],a[pivot]]=[a[pivot],a[r]];
+    const inv=Array.from({length:29},(_,v)=>v).find(x=>mod(x*a[r][col])===1);
+    a[r]=a[r].map(x=>mod(x*inv));
+    for(let q=0;q<a.length;q++)if(q!==r){
+      const f=a[q][col];
+      for(let j=0;j<a[0].length;j++) a[q][j]=mod(a[q][j]-f*a[r][j]);
+    }
+    r++;
+    if(r===a.length)break;
+  }
+  return r;
+}
+/** Extract the unique eigenline at lambda=24, normalizing last coordinate=1. */
+function eigenvector24(A) {
+  const B=A.map((row,i)=>row.map((x,j)=>mod(x-24*+(i===j))));
+  assert.equal(rank(B),3);
+  const aug=B.map(row=>row.slice());
+  for(let k=0;k<3;k++){
+    const pivot=aug.findIndex((row,i)=>i>=k&&row[k]!==0);
+    assert(pivot>=0);
+    [aug[k],aug[pivot]]=[aug[pivot],aug[k]];
+    const inv=Array.from({length:29},(_,v)=>v).find(x=>mod(x*aug[k][k])===1);
+    aug[k]=aug[k].map(x=>mod(x*inv));
+    for(let q=0;q<4;q++)if(q!==k) {
+      const f=aug[q][k];
+      aug[q]=aug[q].map((x,j)=>mod(x-f*aug[k][j]));
+    }
+  }
+  return [mod(-aug[0][3]),mod(-aug[1][3]),mod(-aug[2][3]),1];
+}
+const c1=charpoly(originalM),c2=charpoly(M);
+assert.deepEqual(c1,[1,14,22,5,17]);
+assert.deepEqual(c2,[1,14,27,10,7]);
+const factors=pmul(pmul(pmul([mod(-8),1],[mod(-17),1]),
+  [mod(-24),1]),[mod(-24),1]);
+assert.deepEqual(c2,factors.slice().reverse());
+
+/**
+ * Independent p39 target root24 has multiplicity >=2 if a candidate
+ * p15 matrix characteristic polynomial f satisfies f(24)=f'(24)=0
+ * over GF29. Keep the 16 printed magnitudes fixed. Exhaust all 120
+ * choices of exactly two negative cells, without fitting plaintext.
+ * The Fibonacci-prime construction selects cells 12/13 in advance.
+ */
+/** @param {number[]} c Descending quartic coefficients */
+function hasCharpolyDouble24(c) {
+  assert.equal(c.length,5);
+  const f=c.reduce((sum,coef)=>mod(sum*24+coef),0);
+  let derivative=0;
+  for(let i=0;i<4;i++)derivative=mod(derivative*24+(4-i)*c[i]);
+  return f===0 && derivative===0;
+}
+const absoluteCells=literal.flat();
+const signPairWinners=[];
+for(let first=0;first<16;first++)
+  for(let second=first+1;second<16;second++){
+    const candidate=absoluteCells.map((value,i)=>
+      mod(i===first||i===second?-value:value));
+    const matrix=Array.from({length:4},(_,i)=>
+      candidate.slice(i*4,i*4+4));
+    if(hasCharpolyDouble24(charpoly(matrix)))
+      signPairWinners.push([first,second]);
+  }
+assert.deepEqual(signPairWinners,[[12,13]]);
+assert(!hasCharpolyDouble24(charpoly(originalM)));
+for(let position=0;position<16;position++){
+  const candidate=absoluteCells.map((value,i)=>
+    mod(position===i?-value:value));
+  assert(!hasCharpolyDouble24(charpoly(Array.from({length:4},(_,i)=>
+    candidate.slice(i*4,i*4+4)))));
+}
+
+const p39=[27,5,15];
+assert.deepEqual(p39, pmul([mod(-24),1],[mod(-24),1])
+  .map(x=>mod(15*x)));
+const M2=mmul(M,M);
+const quadratic=(coefs)=>I.map((row,i)=>row.map((one,j)=>
+  mod(coefs[0]*one+coefs[1]*M[i][j]+coefs[2]*M2[i][j])));
+assert.equal(rank(quadratic(p39)),2);
+assert.equal(rank(quadratic([13,23,2])),4);
+assert.deepEqual(powMatrix(M,812),I);
+for(const prime of [2,7,29])
+  assert.notDeepEqual(powMatrix(M,812/prime),I);
+const seed=eigenvector24(M);
+assert.deepEqual(seed,[27,3,13,1]);
+assert.deepEqual(mv(M,seed),seed.map(x=>mod(24*x)));
+assert.equal(mod(24**7),1);
+
+// The black body after the eight-rune red p40 heading comprises 3000
+// original runes, an integral number of 750 matrix-state blocks.
+const body=gp.pages.slice(40,54).flatMap(p=>p.indices).slice(8);
+assert.equal(body.length,3000);
+const known=gp.pages[57].indices.slice(0,92);
+/** @param {number[]} symbols */
+function ioc(symbols) {
+  const counts=new Uint32Array(29);
+  for(const x of symbols)counts[x]++;
+  return counts.reduce((s,n)=>s+n*(n-1),0)/
+    (symbols.length*(symbols.length-1));
+}
+/**
+ * @param {number[]} input
+ * @param {-1|1} sign
+ * @param {boolean} encrypt
+ */
+function transform(input,sign,encrypt) {
+  assert.equal(input.length%4,0);
+  let state=seed.slice();
+  const out=[];
+  for(let i=0;i<input.length;i+=4){
+    state=mv(M,state);
+    for(let j=0;j<4;j++)
+      out.push(mod(input[i+j]+(encrypt?-sign:sign)*state[j]));
+  }
+  return out;
+}
+const scored=[];
+for(const sign of [-1,1]){
+  const decoded=transform(body,sign,false);
+  assert.deepEqual(transform(decoded,sign,true),body);
+  const plant=transform(known,sign,true);
+  assert.deepEqual(transform(plant,sign,false),known);
+  scored.push({sign,originalIoC:ioc(decoded),
+    first24Gp:decoded.slice(0,24).map(x=>gp.translit[x]).join("-")});
+}
+assert(Math.abs(scored[0].originalIoC-0.03448949649883294)<1e-12);
+assert(Math.abs(scored[1].originalIoC-0.0345026119817717)<1e-12);
+assert(ioc(known)>0.06);
+
+/**
+ * Exhaustive source-row-preserving null. The 16 signed entries are fixed
+ * exactly; independently permute the four cells within each original
+ * physical row (24^4 arrangements, counting equal-value swaps).
+ * A repeated x=24 characteristic root requires both det(24I-A)=0
+ * and the derivative, sum of the four principal 3x3 minors, to vanish.
+ */
+function permutations(elements) {
+  if(elements.length===0)return [[]];
+  return elements.flatMap((element,i)=>
+    permutations(elements.filter((_,j)=>j!==i)).map(t=>[element,...t]));
+}
+const order4=permutations([0,1,2,3]);
+const order3=permutations([0,1,2]);
+function permutationSign(perm) {
+  let inversions=0;
+  for(let i=0;i<perm.length;i++)
+    for(let j=i+1;j<perm.length;j++)
+      if(perm[i]>perm[j])inversions++;
+  return inversions%2?-1:1;
+}
+const signedTerms4=order4.map(p=>[p,permutationSign(p)]);
+const signedTerms3=order3.map(p=>[p,permutationSign(p)]);
+/** @param {number[][]} A */
+function det(A) {
+  let sum=0;
+  const terms=A.length===4?signedTerms4:signedTerms3;
+  for(const [perm,sgn] of terms) {
+    let term=sgn;
+    for(let j=0;j<perm.length;j++)term*=A[j][perm[j]];
+    sum+=term;
+  }
+  return mod(sum);
+}
+function hasDouble24(A) {
+  const B=A.map((row,i)=>row.map((x,j)=>
+    mod(24*+(i===j)-x)));
+  if(det(B)!==0)return false;
+  let derivative=0;
+  for(let k=0;k<4;k++) {
+    const minor=B.filter((_,i)=>i!==k)
+      .map(row=>row.filter((_,j)=>j!==k));
+    derivative+=det(minor);
+  }
+  return mod(derivative)===0;
+}
+assert(hasDouble24(M));
+assert(!hasDouble24(originalM));
+const rows=M.map(row=>order4.map(permutation=>
+  permutation.map(j=>row[j])));
+let rowNullCount=0;
+for(const r0 of rows[0]) for(const r1 of rows[1])
+  for(const r2 of rows[2]) for(const r3 of rows[3])
+    rowNullCount+=+hasDouble24([r0,r1,r2,r3]);
+assert.equal(rowNullCount,378);
+
+
+/** Invert a full-rank 4x4 matrix over GP29 by field Gaussian elimination. */
+function invert4(A) {
+  const augmented=A.map((row,i)=>row.map(mod).concat(I[i]));
+  let determinant=1;
+  for(let j=0;j<4;j++) {
+    let pivot=j;
+    while(pivot<4 && augmented[pivot][j]===0)pivot++;
+    assert(pivot<4,"Expected invertible red-p3 matrix");
+    if(pivot!==j){
+      [augmented[j],augmented[pivot]]=[augmented[pivot],augmented[j]];
+      determinant=mod(-determinant);
+    }
+    const scalar=augmented[j][j];
+    determinant=mod(determinant*scalar);
+    const inverse=Array.from({length:29},(_,v)=>v)
+      .find(v=>mod(v*scalar)===1);
+    augmented[j]=augmented[j].map(x=>mod(x*inverse));
+    for(let k=0;k<4;k++)if(k!==j){
+      const factor=augmented[k][j];
+      augmented[k]=augmented[k].map((x,l)=>
+        mod(x-factor*augmented[j][l]));
+    }
+  }
+  return {matrix:augmented.map(row=>row.slice(4)),determinant};
+}
+// This independent red word at p3 is irreducible as a GF29 quadratic,
+// and evaluates to an invertible degree-two polynomial in signed M.
+// The source does not supply an instruction to perform this direct Hill
+// operation; the test asks exactly whether it would decrypt the chapters.
+const p3Matrix=quadratic([13,23,2]);
+const p3Inv=invert4(p3Matrix);
+assert.equal(p3Inv.determinant,6);
+assert.deepEqual(mmul(p3Matrix,p3Inv.matrix),I);
+assert.deepEqual(mmul(p3Inv.matrix,p3Matrix),I);
+/** Apply an exact source-derived four-symbol Hill transform. */
+function hill4(input,A) {
+  assert.equal(input.length%4,0);
+  const result=[];
+  for(let i=0;i<input.length;i+=4)
+    result.push(...mv(A,input.slice(i,i+4)));
+  return result;
+}
+const p3Direct=[];
+for(const [targetName,input] of [
+  ["p16-22",gp.pages.slice(16,23).flatMap(p=>p.indices)],
+  ["p40-53-black",body]
+]) for(const [operation,A,inverseA] of [
+  ["p3-polynomial",p3Matrix,p3Inv.matrix],
+  ["p3-polynomial-inverse",p3Inv.matrix,p3Matrix]
+]){
+  const deciphered=hill4(input,A);
+  assert.deepEqual(hill4(deciphered,inverseA),input);
+  const encryptedControl=hill4(known,inverseA);
+  assert.deepEqual(hill4(encryptedControl,A),known);
+  p3Direct.push({targetName,operation,originalIoC:ioc(deciphered)});
+}
+assert.deepEqual(p3Direct.map(x=>x.originalIoC),[
+  0.034552364109123254,
+  0.034735271360672046,
+  0.03444014671557186,
+  0.03434655996443259
+]);
+
+
+// Independent prior source quotient p50 / p39 / p3 recovers g=19+13u,
+// a primitive element of the 841-element field GF29[u]. Reinterpret the
+// SAME coefficient vector on p39's dual-number coordinate epsilon=x-24.
+// The 29x29 coefficient algebra is a mathematical bridge only: no
+// manuscript instruction authenticates substitution u -> epsilon.
+const fieldQuotientCoefficients=[19,13];
+const dualM=I.map((row,i)=>row.map((one,j)=>
+  mod(fieldQuotientCoefficients[0]*one+
+      fieldQuotientCoefficients[1]*(M[i][j]-24*one))));
+assert.deepEqual(dualM,[
+  [11,10,28,25],
+  [13,22,12,6],
+  [27,18,12,4],
+  [17,11,11,22]
+]);
+assert.deepEqual(powMatrix(dualM,812),I);
+for(const q of [2,7,29])assert.notDeepEqual(powMatrix(dualM,812/q),I);
+const dualInverse=invert4(dualM);
+assert.deepEqual(mmul(dualM,dualInverse.matrix),I);
+assert.deepEqual(mmul(dualInverse.matrix,dualM),I);
+const dualDirect=[];
+for(const [targetName,input] of [
+  ["p16-22",gp.pages.slice(16,23).flatMap(p=>p.indices)],
+  ["p40-53-black",body]
+])for(const [mode,operation,reverse] of [
+  ["dual-primitive-forward",dualM,dualInverse.matrix],
+  ["dual-primitive-inverse",dualInverse.matrix,dualM]
+]){
+  const decoded=hill4(input,operation);
+  assert.deepEqual(hill4(decoded,reverse),input);
+  assert.deepEqual(hill4(hill4(known,reverse),operation),known);
+  dualDirect.push({targetName,mode,originalIoC:ioc(decoded)});
+}
+assert.deepEqual(dualDirect.map(x=>x.originalIoC),[
+  0.03422602599125203,
+  0.03434050750840847,
+  0.034434367011225965,
+  0.03452750916972324
+]);
+
+console.log(JSON.stringify({
+  p15PrintedCharpoly:c1,
+  p15SignedCharpoly:c2,
+  signedFactorRoots:[8,17,24,24],
+  exactTwoNegativeSignAssignment:{possible:120,solutions:signPairWinners},
+  p39Polynomial:p39,
+  p39MatrixRank:rank(quadratic(p39)),
+  p3MatrixRank:rank(quadratic([13,23,2])),
+  signedMatrixOrder:812,
+  sourceP3InvertibleMatrixDet:p3Inv.determinant,
+  sourceP50QuotientAsDualMatrix:dualM,
+  dualMatrixOrder:812,
+  dualMatrixOriginalDirectHill:dualDirect,
+  sourceP3PolynomialDirectHill:p3Direct,
+  rowPreservingExhaustiveNull:{successes:rowNullCount,total:24**4},
+  uniqueNormalizedEigenvector24:seed,
+  originalTargetRunes:body.length,
+  originalInputIoC:ioc(body),
+  solvedSourcePositivePlant:known.length,
+  directDecoded:scored
+},null,2));

@@ -1,0 +1,15 @@
+name: External 27x27 claimed plaintext specificity gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  source-specificity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compare original LP2 with external 27x27 reading flexibility
+        run: node sims/lp2_external_27x27_claim_specificity_sft.cjs

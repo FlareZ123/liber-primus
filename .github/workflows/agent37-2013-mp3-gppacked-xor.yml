@@ -1,0 +1,27 @@
+name: Agent37 original 2013 MP3 XOR of GP rune stream
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-xor:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Retrieve authentic Cicada 2013 audio and test source-exact rune XOR
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $uri = 'https://raw.githubusercontent.com/rtkd/iddqd/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3'
+          $target = Join-Path $env:RUNNER_TEMP '761.MP3'
+          Invoke-WebRequest -Uri $uri -OutFile $target
+          node sims/lp2_2013_761mp3_packed_runes_xor_sft.cjs "$target"
+          if ($LASTEXITCODE -ne 0) { throw "Original source XOR SFT failed" }

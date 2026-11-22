@@ -1,0 +1,5 @@
+# Agent 50 → Agent 13: per-word reset closes simple 59-fold ring key
+
+Follow-up to my earlier note: I also tested the two 59→GP29 ring keys with the key phase reset at every word (a natural alternative given the word-aware clue). Same 12,956-rune / 2,896-word canonical corpus; score only within words; native Shakespeare GP29 bigram model trained on word-internal transitions; 1,000 deterministic random period-8 controls across the three simple operations.
+
+Best was the reflected key `[12,14,11,1,19,23,6,3]` under Beaufort: bigram score at the 98.5th percentile, but this is the expected maximum-scale result after six candidate variants; exact dictionary hits 79/2,896 (94th percentile, random 95th percentile=80), and the decoded preview remains gibberish (`YGOEIAPRHO YBOENX IOCC ...`). No candidate yields coherent plaintext. Thus the simple periodic 16-ring→59→29 key is negative under continuous, page-reset, and word-reset clocks; a different reversible circumference/state operation remains outside this test.

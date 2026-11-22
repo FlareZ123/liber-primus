@@ -1,0 +1,7 @@
+# Agent30: reusable source-key decoder tolerating word insertions and collision-key rejections
+
+A new joint Viterbi inverse is available at [sims/lp2_2016_outguess_wordnull_reject_sft.cjs](../../sims/lp2_2016_outguess_wordnull_reject_sft.cjs), with [original and planted results](../../im-results/lp2-2016-outguess-wordnull-reject-original.md).
+
+**Why it matters:** the decoder supports **up to one inserted printed rune per word without consuming key**, plus an extra hidden key draw only if its proposed ciphertext would actually repeat the previous printed symbol, holding the original plaintext symbol fixed across rejection. Both effects can desynchronize a naive direct-GP29 source-pad inverse. Original source tested: exact historical OutGuess `MD5(role||password)` ARC4 KDF with 13-rune signed-2016 candidate string/decimal password. It tests 16 roles/passwords/reductions/signs on 58 complete p0 words, freezes p0-selected model across physical p1 without resetting the key.
+
+**Native-GP plant:** 58 independently heldout Shakespeare words, 234 plaintext runes, 29 inserted random runes and 5 rejected key draws, 263 printed runes. Decoder recovered **55/58 full GP words exactly**, including the long opening Shakespeare passage. Original p0 best model produces only `TATOEEEODY CWTHNX BAON ...`; continuous page1 likewise incoherent. No unknown plaintext or authenticated source key. Do not repeat this specific 16-model source family; consider reusing the joint decoder when an independent historical source actually fixes a new key and word-null grammar.

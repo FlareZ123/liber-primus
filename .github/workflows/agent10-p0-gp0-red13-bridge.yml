@@ -1,0 +1,23 @@
+name: Agent10 p0 GP0 red13 and period31 SFT
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run 2016 GP0 pointer circuit SFT
+        run: node sims/lp2_2016_gp0_table_word_pointer_circuit_sft.cjs
+      - name: Run THE WAY and p2 GOOD byte80 SFT
+        run: node sims/lp2_p0_the_way_p27_80_cycle_sft.cjs
+      - name: Run red13 bridge SFT
+        run: node sims/lp2_p0_gp0_red13_signed_phrase_bridge_sft.cjs
+      - name: Run exact period31 crib gate
+        run: node sims/lp2_p0_candidate_crib_period31_exact_sft.cjs
+      - name: Run exact period37 six-crib gate
+        run: node sims/lp2_p0_sixcrib_period37_exact_sft.cjs

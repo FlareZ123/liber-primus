@@ -1,0 +1,21 @@
+name: LP2 exact forward shared-key page-pair scan
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout research corpus
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Scan all page pairs with split-half marginalized likelihood
+        run: node sims/relative_key_forward_scan.cjs

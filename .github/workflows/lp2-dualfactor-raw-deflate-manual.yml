@@ -1,0 +1,16 @@
+name: LP2 source-dualfactor raw DEFLATE original-input gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  raw-deflate:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run source H G HG raw-deflate inversion and positive controls
+        run: node sims/lp2_dualfactor_raw_deflate_sft.cjs

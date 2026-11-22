@@ -1,0 +1,16 @@
+name: Original LP2 2016 word-prime navigation (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  word-prime-direction:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-original word graph, solved-page and page-conditioned controls
+        run: node sims/lp2_words_prime_direction_cycle_sft.cjs

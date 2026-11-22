@@ -1,0 +1,314 @@
+'use strict';
+
+/**
+ * LP2 original 256-rune p8->p9 seam register versus original p50 32x8.
+ * A source-conditioned direct decoding experiment; no plaintext recovered.
+ *
+ * Run on Windows with Node.js 22:
+ *   node sims/lp2_p8_p9_seam256_p50_direct_receiver_sft.cjs
+ */
+
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const root = path.resolve(__dirname,'..');
+/** @param {string} filename */
+const json = filename => JSON.parse(fs.readFileSync(path.join(root,filename),'utf8'));
+const corpus = json('resources/liber-primus/lp2-corpus.json');
+const grid = json('resources/liber-primus/lp2-grid-256.json');
+const annotations = json('resources/liber-primus/lp2-ink-annotations.json');
+const p8 = corpus.pages[8].indices;
+const p9 = corpus.pages[9].indices;
+const originalBytes = grid.bytes;
+const originalTokens = grid.pages.flatMap(page=>page.tokens);
+const red = annotations.pages.find(p => p.page===8).red_spans[0];
+assert.equal(p8.length,255);
+assert.deepEqual([red.start,red.length],[0,12]);
+assert.equal(p8.slice(0,4).map(i=>corpus.translit[i]).join(''),'XIXM');
+assert.deepEqual(p8.slice(4,12).map(i=>corpus.translit[i]),
+  ['U','X','M','C','TH','P','O','B']);
+assert.equal(originalBytes.length,256);
+assert.equal(originalTokens.length,256);
+assert.equal(originalTokens[0], '3N');
+
+const transcription = fs.readFileSync(path.join(root,
+  'resources/lp2-transcription.txt'),'utf8').split('%');
+const glyphs = new Map(corpus.runes.map((glyph,i)=>[glyph,i]));
+const fragments = page => page.split(/[-.&$§]/u)
+  .map(segment => [...segment].filter(r=>glyphs.has(r)).map(r=>glyphs.get(r)))
+  .filter(v=>v.length);
+const p8Printed = fragments(transcription[8]);
+const p9Printed = fragments(transcription[9]);
+assert.equal(p8Printed.length,51);
+assert.equal(p8Printed.at(-1).length,1);
+assert.equal(p9Printed[0].length,5);
+assert.deepEqual(p8Printed.at(-1),p8.slice(-1));
+assert.deepEqual(p9Printed[0],p9.slice(0,5));
+assert.equal(p8Printed.at(-1).concat(p9Printed[0]).length,6);
+assert.ok(transcription[8].trimEnd().endsWith('/'));
+const body = p8.slice(12).concat(p9.slice(0,5));
+assert.equal(body.length,248); // 31 rows of 8 original rune indices
+const firstRow = p8.slice(4,12);
+assert.equal(firstRow.length,8);
+const register = firstRow.concat(body);
+assert.equal(register.length,256); // 32 source-shaped rows of 8
+assert.deepEqual(register,p8.slice(4).concat(p9.slice(0,5)));
+
+/** @param {number} v @param {number} n */
+const mod=(v,n)=>((v%n)+n)%n;
+/** @param {number[]} xs */
+function indexOfCoincidence(xs){
+  const counts = Array(29).fill(0);
+  for(const v of xs){assert.ok(v>=0&&v<29);counts[v]++;}
+  return counts.reduce((s,n)=>s+n*(n-1),0)/(xs.length*(xs.length-1));
+}
+const rowKey=originalBytes.slice();
+const columnKey=originalBytes.map((_,i)=>originalBytes[(i%32)*8+Math.floor(i/32)]);
+assert.equal(columnKey.length,256);
+const originalIoC=indexOfCoincidence(register);
+
+const runeInverseResults=[];
+for(const [name,key] of [['source-row-major',rowKey],['source-column-major',columnKey]]){
+  for(const sign of [-1,1]){
+    const decoded=register.map((cipher,i)=>mod(cipher+sign*(key[i]%29),29));
+    const ioc=indexOfCoincidence(decoded);
+    assert.ok(ioc<0.045);
+    // Validate the exact inverses on a genuinely nonuniform source-native
+    // GP29 plant. This confirms the decoder can recover real language.
+    const sample=Array.from({length:256},(_,i)=>corpus.pages[57].indices[i%95]);
+    const encrypted=sample.map((symbol,i)=>mod(symbol-sign*(key[i]%29),29));
+    assert.deepEqual(encrypted.map((v,i)=>mod(v+sign*(key[i]%29),29)),sample);
+    runeInverseResults.push({
+      tableOrientation:name,sign,originalIoC:ioc,
+      originalPreview:decoded.slice(0,40).map(i=>corpus.translit[i]).join(' '),
+      nativeGPPlant:'256/256'
+    });
+  }
+}
+/** @param {number[]} xs */
+const byteSummary = xs => ({
+  printableCount:xs.filter(v=>v>=32&&v<=126).length,
+  asciiPreview:xs.slice(0,72).map(v=>v>=32&&v<=126?String.fromCharCode(v):'.').join('')
+});
+const bytes=[];
+for(const [name,key] of [['source-row-major',rowKey],['source-column-major',columnKey]]){
+  for(const [tag,values] of [
+    ['xor-gp-index',register.map((r,i)=>r^key[i])],
+    ['xor-gp-prime',register.map((r,i)=>corpus.prime[r]^key[i])],
+    ['add-gp-index',register.map((r,i)=>mod(key[i]+r,256))],
+    ['subtract-gp-index',register.map((r,i)=>mod(key[i]-r,256))],
+    ['add-gp-prime',register.map((r,i)=>mod(key[i]+corpus.prime[r],256))],
+    ['subtract-gp-prime',register.map((r,i)=>mod(key[i]-corpus.prime[r],256))]
+  ]) {
+    bytes.push({tableOrientation:name,receiver:tag,...byteSummary(values)});
+  }
+}
+/**
+ * Exact ascending coefficient GF29 remainder for a monic quadratic
+ * X^2 + linear*X + constant, under high-degree-first printed order.
+ * @param {number[]} values
+ * @param {number} linear
+ * @param {number} constant
+ */
+function remainder(values,linear,constant){
+  let r0=0,r1=0;
+  for(const symbol of values){
+    const n0=mod(symbol-constant*r1,29);
+    const n1=mod(r0-linear*r1,29);
+    r0=n0;r1=n1;
+  }
+  return [r0,r1];
+}
+const H=remainder(register,18,11);
+const G=remainder(register,10,25);
+assert.deepEqual(H,[17,5]);
+assert.deepEqual(G,[11,11]);
+assert.equal(register.filter((symbol,i)=>symbol===originalBytes[i]%29).length,9);
+
+// The separate red word XIXM suggests a fully constrained Roman XIX
+// table-graph seed (19). Treat each printed byte B[s] as the next
+// table pointer. This is a direct original-packet key recovery attempt.
+assert.equal(p8.slice(0,3).map(i => corpus.translit[i]).join(''),'XIX');
+const pointerStates=[19];
+for(let i=1;i<256;i++)pointerStates.push(originalBytes[pointerStates[i-1]]);
+assert.deepEqual(pointerStates.slice(0,13),
+  [19,33,114,197,115,247,192,0,203,68,199,47,76]);
+const uniqueStates=new Map();
+let pointer=19,uniquePath=[];
+while(!uniqueStates.has(pointer)){
+  uniqueStates.set(pointer,uniquePath.length);
+  uniquePath.push(pointer);
+  pointer=originalBytes[pointer];
+}
+assert.equal(uniquePath.length,13);
+assert.equal(uniqueStates.get(pointer),2);
+const labelReadout=uniquePath.map(state=>register[state]);
+const romangraph=[];
+for(const [point,stream] of [
+  ['before-successor',pointerStates],
+  ['after-successor',pointerStates.map(state=>originalBytes[state])]
+]){
+  for(const sign of [-1,1]){
+    const decoded=register.map((v,i)=>mod(v+sign*(stream[i]%29),29));
+    const native=Array.from({length:256},(_,i)=>corpus.pages[57].indices[i%95]);
+    const cipher=native.map((v,i)=>mod(v-sign*(stream[i]%29),29));
+    assert.deepEqual(cipher.map((v,i)=>mod(v+sign*(stream[i]%29),29)),native);
+    const ioc=indexOfCoincidence(decoded);
+    assert.ok(ioc<0.045);
+    romangraph.push({point,sign,ioc,preview:decoded.slice(0,30)
+      .map(i=>corpus.translit[i]).join(' '),plantedGP:'256/256'});
+  }
+}
+
+
+/**
+ * A secret invertible 8x8 Hill/affine map applied identically to each
+ * printed row cannot change the 8-dimensional row span over GP29.
+ * Reject EVERY possible 8x8 matrix and affine 8-vector at once by
+ * exact augmented ranks, without guessing any matrix parameters.
+ * @param {number[][]} cells
+ */
+function matrixRank29(cells) {
+  const matrix=cells.map(row=>row.map(x=>mod(x,29)));
+  let pivotRow=0;
+  for(let col=0;col<matrix[0].length&&pivotRow<matrix.length;col++){
+    let candidate=pivotRow;
+    while(candidate<matrix.length&&matrix[candidate][col]===0)candidate++;
+    if(candidate===matrix.length)continue;
+    [matrix[pivotRow],matrix[candidate]]=[matrix[candidate],matrix[pivotRow]];
+    let inverse=0;
+    for(let k=1;k<29;k++){
+      if(mod(k*matrix[pivotRow][col],29)===1){inverse=k;break;}
+    }
+    assert.ok(inverse>0);
+    for(let j=col;j<matrix[0].length;j++){
+      matrix[pivotRow][j]=mod(matrix[pivotRow][j]*inverse,29);
+    }
+    for(let i=pivotRow+1;i<matrix.length;i++){
+      const coeff=matrix[i][col];
+      for(let j=col;j<matrix[0].length;j++){
+        matrix[i][j]=mod(matrix[i][j]-coeff*matrix[pivotRow][j],29);
+      }
+    }
+    pivotRow++;
+  }
+  return pivotRow;
+}
+const sourceRows=Array.from({length:32},(_,i)=>register.slice(i*8,(i+1)*8));
+assert.equal(matrixRank29(sourceRows),8);
+const rowlinear=[];
+for(const [name,key] of [['source-row-major',rowKey],['source-column-major',columnKey]]){
+  const byteRows=Array.from({length:32},(_,i)=>
+    key.slice(i*8,(i+1)*8).map(v=>v%29));
+  const joined=sourceRows.map((row,i)=>row.concat(byteRows[i]));
+  const affineJoined=sourceRows.map((row,i)=>[1,...row,...byteRows[i]]);
+  assert.equal(matrixRank29(byteRows),8);
+  assert.equal(matrixRank29(joined),16);
+  assert.equal(matrixRank29(affineJoined),17);
+  rowlinear.push({name,sourceRank:8,byteRank:8,jointRank:16,
+    affineJointRank:17});
+}
+const fixedMatrix=Array.from({length:8},(_,i)=>Array.from({length:8},(_,j)=>
+  i===j?3:i<j?(i+j+1):0));
+const linearPlant=sourceRows.map(row=>fixedMatrix.map(coeffs=>
+  mod(coeffs.reduce((t,a,j)=>t+a*row[j],0),29)));
+const affinePlant=linearPlant.map(row=>row.map((v,j)=>mod(v+17+j,29)));
+assert.equal(matrixRank29(sourceRows.map((row,i)=>row.concat(linearPlant[i]))),8);
+assert.equal(matrixRank29(sourceRows.map((row,i)=>[1,...row,...affinePlant[i]])),9);
+
+
+/**
+ * For arbitrary (including nonlinear) unknown single-key substitutions on
+ * each of 8 columns, equal-symbol pairs in each column are invariant.
+ * This is a stronger all-key stationary 8-column cipher gate than any
+ * fixed Vigenere key or affine Hill map; no 29! key enumeration is needed.
+ * @param {number[]} values
+ */
+function periodEightColumnIoC(values) {
+  assert.equal(values.length,256);
+  return Array.from({length:8},(_,column)=>{
+    const freq=Array(29).fill(0);
+    for(let i=column;i<256;i+=8)freq[values[i]]++;
+    return freq.reduce((sum,n)=>sum+n*(n-1),0)/(32*31);
+  }).reduce((sum,n)=>sum+n,0)/8;
+}
+const originalColumnIoC=periodEightColumnIoC(register);
+assert.equal(originalColumnIoC,0.03377016129032258);
+const nativeTokens=corpus.translit.map((token,index)=>({token,index}))
+  .sort((a,b)=>b.token.length-a.token.length);
+/** @param {string} raw */
+function nativeGp(raw){
+  const word=raw.toUpperCase().replace(/QU/g,'CW')
+    .replace(/V/g,'U').replace(/[KQ]/g,'C').replace(/Z/g,'S');
+  const digits=[];
+  for(let i=0;i<word.length;){
+    if(word.startsWith('ING',i)){digits.push(21);i+=3;continue;}
+    if(word.startsWith('IO',i)){digits.push(27);i+=2;continue;}
+    const match=nativeTokens.find(v=>word.startsWith(v.token,i));
+    assert.ok(match,'Unknown GP symbol in source-native control '+raw);
+    digits.push(match.index);
+    i+=match.token.length;
+  }
+  return digits;
+}
+const gibranText=fs.readFileSync(path.join(root,
+  'resources/control/gibran_prophet_58585.txt'),'utf8');
+const gibranWords=gibranText.match(/[A-Za-z]+/g);
+assert.equal(gibranWords.length,15733);
+const clearGp=gibranWords.flatMap(nativeGp);
+assert.equal(clearGp.length,62492);
+const controlIoCs=[];
+for(let offset=0;offset+256<=clearGp.length;offset+=113){
+  controlIoCs.push(periodEightColumnIoC(clearGp.slice(offset,offset+256)));
+}
+assert.equal(controlIoCs.length,551);
+const controlsSorted=controlIoCs.slice().sort((a,b)=>a-b);
+assert.equal(controlsSorted[0],0.04914314516129033);
+assert.equal(controlsSorted[275],0.060735887096774195);
+assert.ok(controlsSorted.every(v=>v>originalColumnIoC));
+// A genuinely independently keyed period-eight monoalphabetic cipher,
+// with one arbitrary invertible GP29 map per column, preserves this
+// statistic exactly for ANY hidden permutations.
+let prng=0x33011989;
+function rand(){
+  prng ^= prng << 13;prng ^= prng>>>17;prng ^= prng<<5;
+  return prng>>>0;
+}
+const secretMaps=Array.from({length:8},()=>{
+  const a=Array.from({length:29},(_,i)=>i);
+  for(let j=28;j>0;j--){
+    const k=rand()%(j+1);[a[j],a[k]]=[a[k],a[j]];
+  }
+  assert.equal(new Set(a).size,29);
+  return a;
+});
+const plantedNative=clearGp.slice(0,256);
+const encryptedNative=plantedNative.map((v,i)=>secretMaps[i%8][v]);
+assert.equal(periodEightColumnIoC(plantedNative),
+  periodEightColumnIoC(encryptedNative));
+assert.ok(periodEightColumnIoC(encryptedNative)>originalColumnIoC);
+
+console.log(JSON.stringify({
+  premise:'Second p8 red word (8 runes) + black p8 body (243) + physically continued first p9 word tail (5) = 256 = 32x8',
+  p8Header:'XIXM',
+  sourceWordsOnPage8:48,
+  pageLocalBlackFragments:49,
+  p8ToP9ContinuedWordRunes:6,
+  originalRegister:{runes:256,redRow8:8,blackBody248:248,ioc:originalIoC},
+  firstPartyP50:{rows:32,columns:8,bytes:256},
+  GP29DirectInverse:runeInverseResults,
+  ASCIIByteCandidates:bytes,
+  originalSharedH2013QuadraticRemainder:H,
+  originalSharedP39QuadraticRemainder:G,
+  exactDirectByteIndexMatches:9,
+  rowlinearAllSecretRank:rowlinear,
+  allSecretPeriodEightMonoalphabetic:{originalColumnIoC,
+    independentGibranControls:controlIoCs.length,controlMin:controlsSorted[0],
+    controlMedian:controlsSorted[275],originalAtOrAboveNative:0,
+    independentNativeEightPermutationPlant:'256/256 exact collision invariant'},
+  romanXIXGraph:{seed:19,uniqueNodes:uniquePath.length,cycleStart:2,
+    cycleLength:11,readout:labelReadout.map(i=>corpus.translit[i]).join(' ')},
+  romanXIXGraphGP29Inverse:romangraph,
+  recoveredPlaintext:false,
+  interpretation:'Original source makes a precise 256-slot candidate, but no authored opcode matches it to p50. These fixed simple receivers yield no verifiable language.'
+},null,2));

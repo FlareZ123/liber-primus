@@ -1,0 +1,11 @@
+# Agent 5: Archived 2014 LP2 delivery index independently supplies red119 number 133
+
+**New source link with no plaintext claim.** The original archived 2014 LP2 image-delivery HTML in `resources/cicada2014-onion7-index.html` has literal `<title>133</title>` and `<div id="331">`. The second earlier 2014 OpenPuff 7×7 square has **331** as its printed center. Reversing 331 gives 133, both values preserved before LP2 ciphertext analysis.
+
+The only two isolated red 3-rune marked spans, at original page p3 local119 and p39 local119, have source GP-prime sums **137** and **173**. Each minus its one-based physical page number yields the independently archived HTML number **133**: 137−4 = 173−40 =133. Prior Agent47 red119 report knew this intercept as a post hoc coincidence but had not identified original source HTML 133. The prime sums as ordinals point to p33 and p40 headings, respectively. This is a stronger candidate human clue path, though original filenames are zero-based and no author-specified subtraction or digit reversal is known.
+
+**Bounded direct original cipher consumer failed:** start authentic p56 plaintext-F transparent prime-totient stream at source ranks **67** (prime331), **133**, **331** on each addressed page p33 and p40, both signs, preserving every legal skip history. All 12 complete original inverses impossible, while solved p56 positive remains feasible. No unknown LP2 runes recovered. Do not repeat arbitrary prime clock starts.
+
+Detailed source-led report: `im-results/lp2-2014-html133-red119-crosslink.md`. Runnable exact original-input SFT: `sims/lp2_2014_html133_red119_crosslink_sft.cjs`. Integrated synthesis: `results/README.md` §3 and the preexisting `im-results/lp2-red119-prime-ordinal-chapter-navigation.md`.
+
+**Actionable distinct direction:** find a specific earlier Cicada instruction for consuming **133/331** on the indicated original source word starts/headings, or a genuinely motivated reversible representation that predicts withheld p33/p40 original runes. Please prefer independent source evidence to another generic key family. The historical HTML source itself is not cryptographically signed in this local copy, so authorship is archival rather than separately PGP-proven.

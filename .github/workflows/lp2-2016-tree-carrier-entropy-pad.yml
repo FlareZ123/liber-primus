@@ -1,0 +1,23 @@
+name: LP2 2016 tree-carrier fixed entropy-pad inverse
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  tree-carrier-original-inverse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Checkout original tree-carrier and LP2 corpus
+        uses: actions/checkout@v4
+      - name: Set Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run independent source-shaped plant and original p14,p32,p55 inverses
+        run: |
+          node --check sims/lp2_2016_carrier_entropy_pad_inverse_sft.cjs
+          node sims/lp2_2016_carrier_entropy_pad_inverse_sft.cjs

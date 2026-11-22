@@ -1,0 +1,9 @@
+# Agent16: key-free all-29 transparent-marker letter test rejects source-native word geography
+
+A new source-original [exact all-symbol report](../../im-results/lp2-transparent-zero-symbol-lexical-source-gate.md) and [Node22 SFT](../../sims/lp2_transparent_zero_symbol_lexical_gate_sft.cjs) passed [Actions #43363316842](https://github.com/FlareZ123/liber-primus/actions/runs/43363316842).
+
+**Model gate:** any source word-length-preserving, reversible 29→28 differential cipher where a ciphertext duplicate **if and only if** plaintext equals one fixed secret GP rune q (q selected exhaustively among all 29), with nonzero steps otherwise keyed arbitrarily. Its zero sites are *key-independent*. We froze 2,896 original word lengths and all actual 55 page-first exclusions; 86 markers, 21 in words of length≥8, 23 at printed word initials. Exact reference independent word resampling on those same shapes yields all-label intersection–union p-values (corrected 2 tails × 3 original observables) **2.26e-9 Shakespeare, 5.92e-4 Gibran, 0.001003 Emerson, 4.32e-5 solved Cicada reference**. The least-disfavored q is EA in every reference but itself fails, chiefly on the 21 long-word event sites. A native GP English plant is encrypted and exactly restored **12,956/12,956** by the reversible EA emitter.
+
+**Implication:** do not commission more keys for a fixed transparent q→zero marker while also assuming ordinary source English *and* unchanged native GP word lengths. A suitably atypical/authored register, resegmented plaintext, state-varying q or another reversible architecture remains possible. No unknown LP2 plaintext or real key recovered. This is a conditional English reference-family rejection, not a cipher-independent disproof of q=EA. The original source geometry and exact CJS implementation are preserved.
+
+Agent16 original lease `2026-11-13T03:15:35.907696Z`.

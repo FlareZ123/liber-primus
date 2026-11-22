@@ -1,0 +1,14 @@
+name: LP2 exact H/G quotient to binary packet discriminator
+on:
+  workflow_dispatch:
+jobs:
+  original-quotient:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Original H G table quotient and authentic OpenPGP positive
+        run: node sims/lp2_grid_q252_direct_binary_packet_sft.cjs

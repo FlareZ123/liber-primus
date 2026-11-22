@@ -1,0 +1,47 @@
+name: LP2 floral original-image and common-pad gates
+on:
+  workflow_dispatch:
+jobs:
+  original-image-mirror:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Pillow dependency
+        run: python -m pip install Pillow
+      - name: Original 16-image template and four mirror controls
+        run: python sims/lp2_floral_border_mirror_source_sft.py
+  original-floral-keyreuse-invariant:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Fifteen source-framed pages and all-secret common pad test
+        run: node sims/lp2_floral_sharedpad_invariant_sft.cjs
+
+  source-rsa-cyclewalk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original source p15 3299 and red7 reversible GP29 pair codec
+        run: |
+          node --check sims/lp2_p15_red3299_rsa_cyclewalk_sft.cjs
+          node sims/lp2_p15_red3299_rsa_cyclewalk_sft.cjs
+          node --check sims/lp2_p15_twinprime_rsa4_cyclewalk_sft.cjs
+          node sims/lp2_p15_twinprime_rsa4_cyclewalk_sft.cjs
+          node --check sims/lp2_p15_red7_floral_gp28_feedback_sft.cjs
+          node sims/lp2_p15_red7_floral_gp28_feedback_sft.cjs
+          node --check sims/lp2_p15_1033_3301_rsa4_floral_sft.cjs
+          node sims/lp2_p15_1033_3301_rsa4_floral_sft.cjs
+          node --check sims/lp2_floral_rsa5_range_necessary_sft.cjs
+          node sims/lp2_floral_rsa5_range_necessary_sft.cjs

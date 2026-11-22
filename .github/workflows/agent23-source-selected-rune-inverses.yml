@@ -1,0 +1,62 @@
+name: Agent23 original-source rune inverses
+on:
+  workflow_dispatch:
+    inputs:
+      test:
+        description: 'Run only the new sentence-prefix SFT or the historical suite'
+        type: choice
+        options:
+          - all
+          - sentence-prefix
+          - release-whitespace
+          - rift-split
+          - wordlocal-fivephase
+          - prime58x8
+        default: all
+permissions:
+  contents: read
+jobs:
+  original-sources:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: p50 self-pointer 11-cycle versus exact original p32 11x11
+        if: inputs.test == 'all'
+        run: node sims/lp2_p32_p50_pointer11_wordfree_gate_sft.cjs
+      - name: Original p55 source-moth crib all-key affine recurrence
+        if: inputs.test == 'all'
+        run: node sims/lp2_p55_moth_8register_crib_sft.cjs
+      - name: Source-corrected LP1 p5 moth-prose key (81 original runes)
+        if: inputs.test == 'all'
+        run: node sims/lp2_lp1p5_moth_source81_corrected_sft.cjs
+      - name: Original prime-rubric RSA and source-derived quotient inverses
+        if: inputs.test == 'all'
+        run: node sims/lp2_p33_primepair_rsa_cyclewalk_p55_sft.cjs
+      - name: p32 prime intersection selector to p55 sixteen word direct key
+        if: inputs.test == 'all'
+        run: node sims/lp2_p32_p55_prime16_wordkey_sft.cjs
+      - name: Sentence-prefix GP29 source and page-rotation null (new)
+        if: inputs.test == 'sentence-prefix'
+        run: node sims/lp2_sentence_prefix_source_sft.cjs
+      - name: 2014 Stage11 source-prime whitespace and exact cipher key gate (new)
+        if: inputs.test == 'release-whitespace'
+        run: node sims/lp2_2014_release_whitespace_prime19_sft.cjs
+      - name: Stage11 missing-prime p19 RIFT boundary original-input split gate
+        if: inputs.test == 'rift-split'
+        run: node sims/lp2_stage11_p19_rift_split_sft.cjs
+
+      - name: Independent-key, word-local five-phase additive original inverse
+        if: inputs.test == 'wordlocal-fivephase'
+        run: |
+          node --check sims/lp2_wordlocal_fivephase_allkey_lexicon_sft.cjs
+          node sims/lp2_wordlocal_fivephase_allkey_lexicon_sft.cjs
+
+      - name: 2013 prime464 / 2014 HTML 133-331 / 58-page eight-column SFT
+        if: inputs.test == 'prime58x8'
+        run: |
+          node --check sims/lp2_2013_2014_prime464_58page8_sft.cjs
+          node sims/lp2_2013_2014_prime464_58page8_sft.cjs

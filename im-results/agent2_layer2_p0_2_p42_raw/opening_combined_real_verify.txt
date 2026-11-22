@@ -1,0 +1,22 @@
+# verify opening_combined_real.tsv (mode=bigram): top 20 hits re-decoded over the whole window, 20 matched-null offsets each; pass = score >= 2.0 and >= null max + 5.0
+noise      seg0.7 'phi(n) + 1*CIRCUMFERENCE@2' offset=2354 mult=1 model=0 kw=NONE isign=1 phase=0 litf=0 atb=0: screen -7.650; whole window -7.650/rune (IoC 1.048), matched null max -9.578; keyword [0] atb=0
+noise      seg0.7 'phi(n) + 1*CIRCUMFERENCE@2' offset=2354 mult=1 model=0 kw=NONE isign=28 phase=0 litf=0 atb=0: screen -7.650; whole window -7.650/rune (IoC 1.048), matched null max -9.578; keyword [0] atb=0
+noise      seg0.7 'phi(n) + 28*FIRFUMFERENFE@2' offset=5511 mult=28 model=0 kw=NONE isign=1 phase=0 litf=0 atb=1: screen -7.838; whole window -7.838/rune (IoC 1.057), matched null max -9.713; keyword [0] atb=1
+noise      seg0.7 'phi(n) + 28*FIRFUMFERENFE@2' offset=5511 mult=28 model=0 kw=NONE isign=28 phase=0 litf=0 atb=1: screen -7.838; whole window -7.838/rune (IoC 1.057), matched null max -9.713; keyword [0] atb=1
+noise      seg0.7 'e digits (base 29) + 28*CIRCUMFERENCE@10' offset=12844 mult=1 model=0 kw=NONE isign=1 phase=0 litf=0 atb=0: screen -8.012; whole window -8.012/rune (IoC 1.018), matched null max -10.097; keyword [0] atb=0
+noise      seg0.7 'e digits (base 29) + 28*CIRCUMFERENCE@10' offset=12844 mult=1 model=0 kw=NONE isign=28 phase=0 litf=0 atb=0: screen -8.012; whole window -8.012/rune (IoC 1.018), matched null max -10.097; keyword [0] atb=0
+noise      seg0.7 'primes+1 + 1*CIRCUMFERENCE@0' offset=11642 mult=1 model=0 kw=NONE isign=1 phase=0 litf=0 atb=1: screen -8.074; whole window -8.074/rune (IoC 1.037), matched null max -9.661; keyword [0] atb=1
+noise      seg0.7 'primes+1 + 1*CIRCUMFERENCE@0' offset=11642 mult=1 model=0 kw=NONE isign=28 phase=0 litf=0 atb=1: screen -8.074; whole window -8.074/rune (IoC 1.037), matched null max -9.661; keyword [0] atb=1
+noise      seg0.7 'primes-1 (totient) + 28*DIVINITY@1' offset=1524 mult=1 model=0 kw=NONE isign=1 phase=0 litf=0 atb=1: screen -8.092; whole window -8.092/rune (IoC 1.042), matched null max -9.900; keyword [0] atb=1
+noise      seg0.7 'primes-1 (totient) + 28*DIVINITY@1' offset=1524 mult=1 model=0 kw=NONE isign=28 phase=0 litf=0 atb=1: screen -8.092; whole window -8.092/rune (IoC 1.042), matched null max -9.900; keyword [0] atb=1
+noise      seg0.7 'primes+1 + 28*DIVINITY@3' offset=17684 mult=1 model=0 kw=NONE isign=1 phase=0 litf=0 atb=1: screen -8.170; whole window -8.170/rune (IoC 1.049), matched null max -9.804; keyword [0] atb=1
+noise      seg0.7 'primes+1 + 28*DIVINITY@3' offset=17684 mult=1 model=0 kw=NONE isign=28 phase=0 litf=0 atb=1: screen -8.170; whole window -8.170/rune (IoC 1.049), matched null max -9.804; keyword [0] atb=1
+noise      seg0.7 'phi(n) + 1*FIRFUMFERENFE@7' offset=17968 mult=1 model=0 kw=NONE isign=1 phase=0 litf=0 atb=0: screen -8.171; whole window -8.171/rune (IoC 1.032), matched null max -10.038; keyword [0] atb=0
+noise      seg0.7 'phi(n) + 1*FIRFUMFERENFE@7' offset=17968 mult=1 model=0 kw=NONE isign=28 phase=0 litf=0 atb=0: screen -8.171; whole window -8.171/rune (IoC 1.032), matched null max -10.038; keyword [0] atb=0
+noise      seg0.7 'primes+1 + 28*DIVINITY@3' offset=17686 mult=1 model=0 kw=NONE isign=28 phase=0 litf=0 atb=1: screen -8.206; whole window -8.206/rune (IoC 1.054), matched null max -9.449; keyword [0] atb=1
+noise      seg0.7 'primes+1 + 28*DIVINITY@3' offset=17686 mult=1 model=0 kw=NONE isign=1 phase=0 litf=0 atb=1: screen -8.206; whole window -8.206/rune (IoC 1.054), matched null max -9.449; keyword [0] atb=1
+noise      seg0.7 'primes-1 (totient) + 1*CIRCUMFERENCE@2' offset=4864 mult=28 model=0 kw=NONE isign=1 phase=0 litf=0 atb=0: screen -8.214; whole window -8.214/rune (IoC 1.047), matched null max -9.879; keyword [0] atb=0
+noise      seg0.7 'primes-1 (totient) + 1*CIRCUMFERENCE@2' offset=4864 mult=28 model=0 kw=NONE isign=28 phase=0 litf=0 atb=0: screen -8.214; whole window -8.214/rune (IoC 1.047), matched null max -9.879; keyword [0] atb=0
+noise      seg0.7 'pi digits (base 10) + 28*CIRCUMFERENCE@0' offset=9963 mult=1 model=0 kw=NONE isign=1 phase=0 litf=0 atb=1: screen -8.239; whole window -8.239/rune (IoC 1.066), matched null max -9.812; keyword [0] atb=1
+noise      seg0.7 'pi digits (base 10) + 28*CIRCUMFERENCE@0' offset=9963 mult=1 model=0 kw=NONE isign=28 phase=0 litf=0 atb=1: screen -8.239; whole window -8.239/rune (IoC 1.066), matched null max -9.812; keyword [0] atb=1
+0 of 20 re-decoded hits pass (none: noise)

@@ -1,0 +1,65 @@
+name: F5 FGH-2002 detector calibration
+
+on:
+  workflow_dispatch:
+    inputs:
+      test:
+        description: 'Original F5 calibration or exact shared-frame gate'
+        required: true
+        type: choice
+        options: [fgh, border]
+        default: fgh
+
+concurrency:
+  group: f5-fgh2002-${{ inputs.test }}
+  cancel-in-progress: false
+
+jobs:
+  border:
+    if: ${{ inputs.test == 'border' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install coefficient-reader dependency
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libjpeg-dev
+      - name: Verify identical original JPEG quantized-AC frames
+        run: |
+          gcc -O2 -Wall -Wextra -o /tmp/lp2-border-gate sims/lp2_f5_identical_jpeg_dct_gate.c -ljpeg
+          /tmp/lp2-border-gate resources/liber-primus
+  calibrate:
+    if: ${{ inputs.test == 'fgh' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.26.0'
+          cache: false
+      - name: Pin and install F5 CLI for extraction verification
+        run: |
+          go install github.com/0verkilll/f5/cmd/f5@v1.0.0
+          echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
+          f5 version || f5 --version || true
+      - name: Resolve pinned module graph
+        working-directory: sims/f5_detector_calibration
+        run: go mod tidy
+      - name: Run FGH-2002 calibration on original Cicada JPEGs
+        working-directory: sims/f5_detector_calibration
+        run: go run .
+      - name: Upload raw calibration, synthetic controls, and module lock
+        uses: actions/upload-artifact@v4
+        with:
+          name: f5-fgh2002-calibration-${{ github.sha }}
+          path: |
+            im-results/f5-fgh2002-calibration/
+            sims/f5_detector_calibration/go.sum
+          if-no-files-found: error
+          retention-days: 30

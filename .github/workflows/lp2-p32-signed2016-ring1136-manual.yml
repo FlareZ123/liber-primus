@@ -1,0 +1,21 @@
+name: LP2 p32 signed-2016 exact 1136-byte circumference match
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Reproduce original 2014 runes and authenticated 2016 payload match
+        run: |
+          node --check sims/lp2_p32_signed2016_ring1136_sft.cjs
+          node sims/lp2_p32_signed2016_ring1136_sft.cjs

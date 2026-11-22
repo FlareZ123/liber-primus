@@ -1,0 +1,13 @@
+name: Spectral partial-key reuse scan
+on:
+  workflow_dispatch:
+jobs:
+  partial-key:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/spectral_subgroup_scan.cjs

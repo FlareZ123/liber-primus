@@ -1,0 +1,962 @@
+{
+  "classification": "Historical source-anchored conditional minute predictions, not server generator code, key or decryption",
+  "source_interval_file": "resources/cicada2014-onion2-timing.json",
+  "source_archive": "https://github.com/Dukotah/cicada3301/blob/master/corpus/D-archives/manifest_normalised.jsonl",
+  "anchor_original_etag": "\"b46b-170-4ef6183538e40\"",
+  "anchor_original_last_modified_utc": "2014-01-07T13:40:01Z",
+  "interval_witnesses": 112,
+  "bridged_intervals_positions": [
+    190,
+    191
+  ],
+  "total_observed_intervals": 114,
+  "rows": 115,
+  "original_independent_2014_observer_checks": [
+    {
+      "position": 159,
+      "obs": "2014-01-07 12:39 GMT+1",
+      "inferred_minute": "2014-01-07 12:20 GMT+1",
+      "note": "Bot only joined to observe late; not a contradictory update"
+    },
+    {
+      "position": 170,
+      "obs": "2014-01-07 14:40 GMT+1",
+      "inferred_minute": "2014-01-07 14:40 GMT+1",
+      "note": "exact archived HTTP file mtime 14:40:01 GMT+1"
+    },
+    {
+      "position": 201,
+      "obs": "2014-01-07 20:30 GMT+1",
+      "inferred_minute": "2014-01-07 20:30 GMT+1"
+    },
+    {
+      "position": 256,
+      "obs": "2014-01-08 05:10 GMT+1",
+      "inferred_minute": "2014-01-08 05:10 GMT+1",
+      "note": "independent first source final-byte clock control"
+    }
+  ],
+  "limitations": "Only the file mtime of byte170 is independently attested at seconds resolution; intermediate derived minutes assume the archived five-minute interval witnesses and may lead delayed observer polls. The server/proxy origin of original HTTP headers is unverified.",
+  "predicted_states": [
+    {
+      "byte_position": 142,
+      "byte_hex": "ab",
+      "predicted_utc_minute": "2014-01-07T08:10Z",
+      "preceding_5min_units": null,
+      "witness_confidence": "preceding interval unavailable",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 143,
+      "byte_hex": "49",
+      "predicted_utc_minute": "2014-01-07T08:20Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness-unconfirmed",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 144,
+      "byte_hex": "bf",
+      "predicted_utc_minute": "2014-01-07T08:50Z",
+      "preceding_5min_units": 6,
+      "witness_confidence": "single-witness-unconfirmed",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 145,
+      "byte_hex": "28",
+      "predicted_utc_minute": "2014-01-07T09:00Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness-unconfirmed",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 146,
+      "byte_hex": "fa",
+      "predicted_utc_minute": "2014-01-07T09:15Z",
+      "preceding_5min_units": 3,
+      "witness_confidence": "single-witness-unconfirmed",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 147,
+      "byte_hex": "67",
+      "predicted_utc_minute": "2014-01-07T09:20Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness-unconfirmed",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 148,
+      "byte_hex": "4d",
+      "predicted_utc_minute": "2014-01-07T09:25Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness-unconfirmed",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 149,
+      "byte_hex": "2a",
+      "predicted_utc_minute": "2014-01-07T09:35Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness-unconfirmed",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 150,
+      "byte_hex": "d2",
+      "predicted_utc_minute": "2014-01-07T09:50Z",
+      "preceding_5min_units": 3,
+      "witness_confidence": "single-witness-unconfirmed",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 151,
+      "byte_hex": "f7",
+      "predicted_utc_minute": "2014-01-07T09:55Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness-unconfirmed",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 152,
+      "byte_hex": "26",
+      "predicted_utc_minute": "2014-01-07T10:00Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 153,
+      "byte_hex": "e1",
+      "predicted_utc_minute": "2014-01-07T10:20Z",
+      "preceding_5min_units": 4,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 154,
+      "byte_hex": "97",
+      "predicted_utc_minute": "2014-01-07T10:25Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 155,
+      "byte_hex": "83",
+      "predicted_utc_minute": "2014-01-07T10:35Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 156,
+      "byte_hex": "99",
+      "predicted_utc_minute": "2014-01-07T10:50Z",
+      "preceding_5min_units": 3,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 157,
+      "byte_hex": "56",
+      "predicted_utc_minute": "2014-01-07T11:05Z",
+      "preceding_5min_units": 3,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 158,
+      "byte_hex": "92",
+      "predicted_utc_minute": "2014-01-07T11:15Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 159,
+      "byte_hex": "1d",
+      "predicted_utc_minute": "2014-01-07T11:20Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 160,
+      "byte_hex": "ab",
+      "predicted_utc_minute": "2014-01-07T11:45Z",
+      "preceding_5min_units": 5,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 161,
+      "byte_hex": "29",
+      "predicted_utc_minute": "2014-01-07T12:00Z",
+      "preceding_5min_units": 3,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 162,
+      "byte_hex": "72",
+      "predicted_utc_minute": "2014-01-07T12:15Z",
+      "preceding_5min_units": 3,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 163,
+      "byte_hex": "4c",
+      "predicted_utc_minute": "2014-01-07T12:20Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 164,
+      "byte_hex": "d4",
+      "predicted_utc_minute": "2014-01-07T12:40Z",
+      "preceding_5min_units": 4,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 165,
+      "byte_hex": "8e",
+      "predicted_utc_minute": "2014-01-07T12:45Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 166,
+      "byte_hex": "1a",
+      "predicted_utc_minute": "2014-01-07T13:05Z",
+      "preceding_5min_units": 4,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 167,
+      "byte_hex": "81",
+      "predicted_utc_minute": "2014-01-07T13:10Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 168,
+      "byte_hex": "fc",
+      "predicted_utc_minute": "2014-01-07T13:15Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 169,
+      "byte_hex": "9b",
+      "predicted_utc_minute": "2014-01-07T13:30Z",
+      "preceding_5min_units": 3,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 170,
+      "byte_hex": "ab",
+      "predicted_utc_minute": "2014-01-07T13:40Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "multi-witness",
+      "basis": "independent original response Last-Modified and ETag"
+    },
+    {
+      "byte_position": 171,
+      "byte_hex": "35",
+      "predicted_utc_minute": "2014-01-07T14:15Z",
+      "preceding_5min_units": 7,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 172,
+      "byte_hex": "65",
+      "predicted_utc_minute": "2014-01-07T14:25Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 173,
+      "byte_hex": "f7",
+      "predicted_utc_minute": "2014-01-07T14:30Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 174,
+      "byte_hex": "51",
+      "predicted_utc_minute": "2014-01-07T14:40Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 175,
+      "byte_hex": "3e",
+      "predicted_utc_minute": "2014-01-07T14:55Z",
+      "preceding_5min_units": 3,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 176,
+      "byte_hex": "3e",
+      "predicted_utc_minute": "2014-01-07T15:00Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 177,
+      "byte_hex": "36",
+      "predicted_utc_minute": "2014-01-07T15:05Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 178,
+      "byte_hex": "8c",
+      "predicted_utc_minute": "2014-01-07T15:20Z",
+      "preceding_5min_units": 3,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 179,
+      "byte_hex": "d0",
+      "predicted_utc_minute": "2014-01-07T15:45Z",
+      "preceding_5min_units": 5,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 180,
+      "byte_hex": "32",
+      "predicted_utc_minute": "2014-01-07T16:00Z",
+      "preceding_5min_units": 3,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 181,
+      "byte_hex": "7b",
+      "predicted_utc_minute": "2014-01-07T16:15Z",
+      "preceding_5min_units": 3,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 182,
+      "byte_hex": "47",
+      "predicted_utc_minute": "2014-01-07T16:25Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "multi-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 183,
+      "byte_hex": "cf",
+      "predicted_utc_minute": "2014-01-07T16:40Z",
+      "preceding_5min_units": 3,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 184,
+      "byte_hex": "59",
+      "predicted_utc_minute": "2014-01-07T16:50Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 185,
+      "byte_hex": "5a",
+      "predicted_utc_minute": "2014-01-07T17:00Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 186,
+      "byte_hex": "fe",
+      "predicted_utc_minute": "2014-01-07T17:10Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 187,
+      "byte_hex": "bb",
+      "predicted_utc_minute": "2014-01-07T17:15Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 188,
+      "byte_hex": "78",
+      "predicted_utc_minute": "2014-01-07T17:20Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 189,
+      "byte_hex": "d6",
+      "predicted_utc_minute": "2014-01-07T17:30Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 190,
+      "byte_hex": "b5",
+      "predicted_utc_minute": "2014-01-07T17:40Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "independent two-bot witness inference",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 191,
+      "byte_hex": "bc",
+      "predicted_utc_minute": "2014-01-07T18:00Z",
+      "preceding_5min_units": 4,
+      "witness_confidence": "independent two-bot witness inference",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 192,
+      "byte_hex": "a9",
+      "predicted_utc_minute": "2014-01-07T18:10Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 193,
+      "byte_hex": "2b",
+      "predicted_utc_minute": "2014-01-07T18:15Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 194,
+      "byte_hex": "a0",
+      "predicted_utc_minute": "2014-01-07T18:20Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 195,
+      "byte_hex": "21",
+      "predicted_utc_minute": "2014-01-07T18:35Z",
+      "preceding_5min_units": 3,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 196,
+      "byte_hex": "cd",
+      "predicted_utc_minute": "2014-01-07T18:50Z",
+      "preceding_5min_units": 3,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 197,
+      "byte_hex": "67",
+      "predicted_utc_minute": "2014-01-07T18:55Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 198,
+      "byte_hex": "34",
+      "predicted_utc_minute": "2014-01-07T19:00Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 199,
+      "byte_hex": "f4",
+      "predicted_utc_minute": "2014-01-07T19:15Z",
+      "preceding_5min_units": 3,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 200,
+      "byte_hex": "36",
+      "predicted_utc_minute": "2014-01-07T19:25Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 201,
+      "byte_hex": "2a",
+      "predicted_utc_minute": "2014-01-07T19:30Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 202,
+      "byte_hex": "0b",
+      "predicted_utc_minute": "2014-01-07T19:40Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 203,
+      "byte_hex": "34",
+      "predicted_utc_minute": "2014-01-07T20:00Z",
+      "preceding_5min_units": 4,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 204,
+      "byte_hex": "1f",
+      "predicted_utc_minute": "2014-01-07T20:25Z",
+      "preceding_5min_units": 5,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 205,
+      "byte_hex": "35",
+      "predicted_utc_minute": "2014-01-07T20:35Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 206,
+      "byte_hex": "91",
+      "predicted_utc_minute": "2014-01-07T20:40Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 207,
+      "byte_hex": "57",
+      "predicted_utc_minute": "2014-01-07T20:50Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 208,
+      "byte_hex": "17",
+      "predicted_utc_minute": "2014-01-07T20:55Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 209,
+      "byte_hex": "3b",
+      "predicted_utc_minute": "2014-01-07T21:00Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 210,
+      "byte_hex": "53",
+      "predicted_utc_minute": "2014-01-07T21:20Z",
+      "preceding_5min_units": 4,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 211,
+      "byte_hex": "d4",
+      "predicted_utc_minute": "2014-01-07T21:25Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 212,
+      "byte_hex": "9e",
+      "predicted_utc_minute": "2014-01-07T21:30Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 213,
+      "byte_hex": "a5",
+      "predicted_utc_minute": "2014-01-07T21:45Z",
+      "preceding_5min_units": 3,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 214,
+      "byte_hex": "df",
+      "predicted_utc_minute": "2014-01-07T22:10Z",
+      "preceding_5min_units": 5,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 215,
+      "byte_hex": "f5",
+      "predicted_utc_minute": "2014-01-07T22:15Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 216,
+      "byte_hex": "88",
+      "predicted_utc_minute": "2014-01-07T22:20Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 217,
+      "byte_hex": "9d",
+      "predicted_utc_minute": "2014-01-07T22:30Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 218,
+      "byte_hex": "2c",
+      "predicted_utc_minute": "2014-01-07T22:35Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 219,
+      "byte_hex": "9d",
+      "predicted_utc_minute": "2014-01-07T22:45Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 220,
+      "byte_hex": "e6",
+      "predicted_utc_minute": "2014-01-07T22:50Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 221,
+      "byte_hex": "b0",
+      "predicted_utc_minute": "2014-01-07T23:05Z",
+      "preceding_5min_units": 3,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 222,
+      "byte_hex": "d7",
+      "predicted_utc_minute": "2014-01-07T23:15Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 223,
+      "byte_hex": "e8",
+      "predicted_utc_minute": "2014-01-07T23:25Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 224,
+      "byte_hex": "c6",
+      "predicted_utc_minute": "2014-01-07T23:35Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 225,
+      "byte_hex": "15",
+      "predicted_utc_minute": "2014-01-07T23:40Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 226,
+      "byte_hex": "28",
+      "predicted_utc_minute": "2014-01-07T23:50Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 227,
+      "byte_hex": "6c",
+      "predicted_utc_minute": "2014-01-07T23:55Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 228,
+      "byte_hex": "e5",
+      "predicted_utc_minute": "2014-01-08T00:25Z",
+      "preceding_5min_units": 6,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 229,
+      "byte_hex": "96",
+      "predicted_utc_minute": "2014-01-08T00:30Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 230,
+      "byte_hex": "bf",
+      "predicted_utc_minute": "2014-01-08T00:40Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 231,
+      "byte_hex": "a8",
+      "predicted_utc_minute": "2014-01-08T00:45Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 232,
+      "byte_hex": "3f",
+      "predicted_utc_minute": "2014-01-08T00:50Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 233,
+      "byte_hex": "50",
+      "predicted_utc_minute": "2014-01-08T00:55Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 234,
+      "byte_hex": "b6",
+      "predicted_utc_minute": "2014-01-08T01:05Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 235,
+      "byte_hex": "ee",
+      "predicted_utc_minute": "2014-01-08T01:15Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 236,
+      "byte_hex": "ab",
+      "predicted_utc_minute": "2014-01-08T01:20Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 237,
+      "byte_hex": "d1",
+      "predicted_utc_minute": "2014-01-08T01:35Z",
+      "preceding_5min_units": 3,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 238,
+      "byte_hex": "53",
+      "predicted_utc_minute": "2014-01-08T01:40Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 239,
+      "byte_hex": "aa",
+      "predicted_utc_minute": "2014-01-08T01:55Z",
+      "preceding_5min_units": 3,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 240,
+      "byte_hex": "f5",
+      "predicted_utc_minute": "2014-01-08T02:10Z",
+      "preceding_5min_units": 3,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 241,
+      "byte_hex": "0c",
+      "predicted_utc_minute": "2014-01-08T02:20Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 242,
+      "byte_hex": "d7",
+      "predicted_utc_minute": "2014-01-08T02:25Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 243,
+      "byte_hex": "5f",
+      "predicted_utc_minute": "2014-01-08T02:30Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 244,
+      "byte_hex": "39",
+      "predicted_utc_minute": "2014-01-08T02:40Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 245,
+      "byte_hex": "92",
+      "predicted_utc_minute": "2014-01-08T02:45Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 246,
+      "byte_hex": "9b",
+      "predicted_utc_minute": "2014-01-08T02:50Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 247,
+      "byte_hex": "a1",
+      "predicted_utc_minute": "2014-01-08T02:55Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 248,
+      "byte_hex": "1f",
+      "predicted_utc_minute": "2014-01-08T03:10Z",
+      "preceding_5min_units": 3,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 249,
+      "byte_hex": "b0",
+      "predicted_utc_minute": "2014-01-08T03:20Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 250,
+      "byte_hex": "f8",
+      "predicted_utc_minute": "2014-01-08T03:25Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 251,
+      "byte_hex": "e8",
+      "predicted_utc_minute": "2014-01-08T03:35Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 252,
+      "byte_hex": "d6",
+      "predicted_utc_minute": "2014-01-08T03:40Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 253,
+      "byte_hex": "11",
+      "predicted_utc_minute": "2014-01-08T03:50Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 254,
+      "byte_hex": "44",
+      "predicted_utc_minute": "2014-01-08T03:55Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 255,
+      "byte_hex": "28",
+      "predicted_utc_minute": "2014-01-08T04:00Z",
+      "preceding_5min_units": 1,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    },
+    {
+      "byte_position": 256,
+      "byte_hex": "46",
+      "predicted_utc_minute": "2014-01-08T04:10Z",
+      "preceding_5min_units": 2,
+      "witness_confidence": "single-witness",
+      "basis": "derived from original interval witness and anchored byte170"
+    }
+  ]
+}

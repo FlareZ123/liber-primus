@@ -1,0 +1,14 @@
+name: LP2 source 1033-byte chapter and p56 hash gate (manual)
+on:
+  workflow_dispatch:
+jobs:
+  original-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test all nine chapter hashes and original positive plant
+        run: node sims/lp2_base28_1033_hash_sft.cjs

@@ -1,0 +1,16 @@
+name: Original LP2 2014 seven-word permutation, exact historical control
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  word-septets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Exact 2014 historical inverse and LP2 word-order null
+        run: node sims/lp2_2014_word_septet_sft.cjs

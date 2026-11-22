@@ -1,0 +1,180 @@
+{
+  "classification": "two fixed source-derived passphrase readings, three original carriers; no password tuning",
+  "keyVariants": [
+    {
+      "key": "CABALUOIDFORM",
+      "representation": "exact GP transliteration"
+    },
+    {
+      "key": "CABALVOIDFORM",
+      "representation": "English semantic reading"
+    }
+  ],
+  "keyDerivation": {
+    "source": "2013 0_wisdom / p55-p36 central-column navigation",
+    "orderedWords": [
+      "CABAL",
+      "UOID",
+      "FORM"
+    ],
+    "note": "Test both exact GP transliteration and the English semantic reading VOID, motivated by the signed 2016 instruction that word meanings are the road"
+  },
+  "carriers": [
+    {
+      "file": "31.jpg",
+      "page": 14,
+      "reason": "original FOLD/tree page"
+    },
+    {
+      "file": "49.jpg",
+      "page": 32,
+      "reason": "original blurred-tree / 11x11 page"
+    },
+    {
+      "file": "72.jpg",
+      "page": 55,
+      "reason": "original final unsolved tree page"
+    }
+  ],
+  "attempts": [
+    {
+      "key": "CABALUOIDFORM",
+      "representation": "exact GP transliteration",
+      "page": 14,
+      "seed": 64701,
+      "headerLength": 34707,
+      "fileBytes": 34707,
+      "headerConsistent": true,
+      "flags": [],
+      "sha256": "083439cacfe2d70b5be93bc19324231dad47afe1c4eb35ec6b7afa52ebb43847",
+      "rawArtifact": "candidate_CABALUOIDFORM_p14.bin"
+    },
+    {
+      "key": "CABALUOIDFORM",
+      "representation": "exact GP transliteration",
+      "page": 32,
+      "seed": 64701,
+      "headerLength": 34707,
+      "fileBytes": 0,
+      "headerConsistent": false,
+      "signal": "SIGFPE"
+    },
+    {
+      "key": "CABALUOIDFORM",
+      "representation": "exact GP transliteration",
+      "page": 55,
+      "seed": 64701,
+      "headerLength": 34707,
+      "fileBytes": 34707,
+      "headerConsistent": true,
+      "flags": [],
+      "sha256": "c6c8dc4c8089181c347174c7e450f1354a077fe808abb7182481029cebc7ca06",
+      "rawArtifact": "candidate_CABALUOIDFORM_p55.bin"
+    },
+    {
+      "key": "CABALVOIDFORM",
+      "representation": "English semantic reading",
+      "page": 14,
+      "seed": 53331,
+      "headerLength": 41232,
+      "fileBytes": 0,
+      "headerConsistent": false,
+      "signal": "SIGFPE"
+    },
+    {
+      "key": "CABALVOIDFORM",
+      "representation": "English semantic reading",
+      "page": 32,
+      "seed": 53331,
+      "headerLength": 41232,
+      "fileBytes": 0,
+      "headerConsistent": false,
+      "signal": "SIGFPE"
+    },
+    {
+      "key": "CABALVOIDFORM",
+      "representation": "English semantic reading",
+      "page": 55,
+      "seed": 53331,
+      "headerLength": 41232,
+      "fileBytes": 41232,
+      "headerConsistent": true,
+      "flags": [],
+      "sha256": "90581241a62ec82380f3ea56ac9f1e573734aba125afbc4558d188f1920e7136",
+      "rawArtifact": "candidate_CABALVOIDFORM_p55.bin"
+    }
+  ],
+  "controls": {
+    "authentic2016": {
+      "exact": true,
+      "bytes": 1136,
+      "sha256": "fe89e77519dfaca998a257ed39c2861303029de2a49183db00eea0fda3a28010"
+    },
+    "planted": {
+      "exact": true,
+      "key": "epiphany",
+      "bytes": 54
+    }
+  },
+  "summary": {
+    "attempts": 6,
+    "consistentHeaders": 3,
+    "recognizablePayloads": 0,
+    "signals": [
+      {
+        "page": 32,
+        "signal": "SIGFPE"
+      },
+      {
+        "page": 14,
+        "signal": "SIGFPE"
+      },
+      {
+        "page": 32,
+        "signal": "SIGFPE"
+      }
+    ],
+    "exitFailures": []
+  },
+  "rawAnalysis": {
+    "candidate_CABALUOIDFORM_p14": {
+      "bytes": 34707,
+      "entropy_bits_per_byte": 7.99489,
+      "gzip_ratio": 1.000951,
+      "printable_fraction": 0.386925
+    },
+    "candidate_CABALUOIDFORM_p55": {
+      "bytes": 34707,
+      "entropy_bits_per_byte": 7.994779,
+      "gzip_ratio": 1.000951,
+      "printable_fraction": 0.38511
+    },
+    "candidate_CABALVOIDFORM_p55": {
+      "bytes": 41232,
+      "entropy_bits_per_byte": 7.995703,
+      "gzip_ratio": 1.0008,
+      "printable_fraction": 0.382106
+    }
+  },
+  "carrierSimilarity": {
+    "images": [
+      "resources/liber-primus/31.jpg",
+      "resources/liber-primus/72.jpg"
+    ],
+    "dimensions": [
+      2400,
+      3600
+    ],
+    "pixel_identical_fraction": 0.8103158565,
+    "same_position_8x8_block_identical_fraction": 0.7565037037,
+    "common_output_prefix_bytes": 1243
+  },
+  "artifact": {
+    "run_id": 42992046917,
+    "artifact_id": 13841714006,
+    "run_url": "https://github.com/FlareZ123/liber-primus/actions/runs/42992046917",
+    "artifact_url": "https://github.com/FlareZ123/liber-primus/actions/runs/42992046917/artifacts/13841714006",
+    "retention_days": 30
+  },
+  "decision": "No recognizable payload or plaintext. Preserve raw candidates; do not infer a shared message from the UOID prefix or launch unconstrained second-layer/KDF searches."
+}

@@ -1,0 +1,14 @@
+name: LP2 original red-title base29 nonce Viterbi (manual)
+on:
+  workflow_dispatch:
+jobs:
+  invert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Recover original LP2 runes against exact red-title base29 nonces
+        run: node sims/red_title_base29_grid_iv.cjs

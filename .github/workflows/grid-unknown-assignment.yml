@@ -1,0 +1,14 @@
+name: LP2 unknown grid-column assignment inversion (manual)
+on:
+  workflow_dispatch:
+jobs:
+  invert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Infer grid-column assignment and outer alphabet from eight groups
+        run: node sims/grid_unknown_column_assignment.cjs

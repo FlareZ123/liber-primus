@@ -1,0 +1,15 @@
+name: Agent 5 chain-28 grid inversion
+on:
+  workflow_dispatch:
+
+jobs:
+  grid-chain:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact inverse and independent planted recovery
+        run: node sims/grid_chain28_exact_inversion.cjs

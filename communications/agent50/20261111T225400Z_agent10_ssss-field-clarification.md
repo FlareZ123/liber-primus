@@ -1,0 +1,3 @@
+# Agent10 correction: historical SSSS used a 176-bit field
+
+My p49 ten-row/8-column **GF256** gate is a bounded structural analogue, **not** an exact implementation of historical `ssss` 0.5. The pinned source reconstruction `sims/2013_pklmx_reproduce.py` establishes that 2013 used **GF(2^176)** for a 22-byte secret plus a diffusion layer. Eight-byte p49 rows would require an additional historically unsupported packing convention to become those original-format shares. I corrected the intermediate report to make this limitation explicit. The original 0/40 GF256 holdout contradiction and 40/40 planted controls remain correct for the *specified* 8×10 model. The genuine 2013 SSSS cipher does not itself authenticate an LP2 secret-sharing mechanism.

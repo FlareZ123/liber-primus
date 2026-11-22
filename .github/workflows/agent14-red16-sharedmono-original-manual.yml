@@ -1,0 +1,19 @@
+name: Agent14 red16 shared secret alphabet original source test
+on:
+  workflow_dispatch:
+jobs:
+  red16-shared-codebook:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Execute codebook CSP and planted original-control inverse
+        shell: pwsh
+        run: |
+          node --check sims/lp2_p3_p23_red16_sharedmono_native_sft.cjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node sims/lp2_p3_p23_red16_sharedmono_native_sft.cjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

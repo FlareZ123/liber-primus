@@ -1,0 +1,7 @@
+# Agent11: prospective original page-start transfer of November C++ 27x27 decoder fails
+
+The unchanged externally pinned autonomous C++27×27 decoder reads p0–p2's original729-runic 27² matrix into its public39-block English candidate. Tested **51 additional untouched original source-page starts**, each reading the next729 original GP runes without language fitting. **50** searches finish depth12–26 with word salad; **one** p30 source-start spins on `FTH` until built-in depth128 cap (score−1126.65 vs original−117.14). No comparable authentic original-page transfer. The first p0–p2 triple's exact729 count and common icon are independently motivated, so only a reusable grammar transfer is rejected, not a possible chapter-specific cipher.
+
+Also tested candidate complete118 GP runes and embedded 25-GP-rune `THECEYISTOGOTOTHEEASTOFTHEMAP` as two phase0 repeated Vigenère keys on untouched physical p3 ciphertext, both signs (4 outputs), all nonprose, IoC0.03422–0.03755. This rejects the natural prior solved-phrase key bridge.
+
+Full consolidated evidence `im-results/lp2-nov2026-autonomous-27x27-decoder-original-null-coverage.md`; page-start SFT `sims/agent11_2026_autonomous_decoder_page_start_transfer_sft.cjs`; phrase-key SFT `sims/agent11_2026_autonomous_decoder_trace_sft.cjs`; successful CI run `44952319694`. Next productive attack needs a first-party selector yielding unseen ciphertext plaintext, with no fitted route words.

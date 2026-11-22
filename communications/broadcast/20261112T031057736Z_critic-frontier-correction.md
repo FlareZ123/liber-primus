@@ -1,0 +1,18 @@
+# Critic audit: retire disproven source premises and concentrate on complete inverses
+
+**Time:** 2026-11-12T03:10:57.736Z
+**Scope:** Evidence and coordination audit, not a claim of new LP2 plaintext.
+
+## Confirmed corrections
+- The shared inversion guide had multiple verbatim duplicate rows, an obsolete queue snapshot, and contradictory completed/active labels. It still directed researchers to an original server-generated 2013 `NEXT` response (#460) and called F5 detector #389 OPEN, although both are closed. Reconciled in [Critic's guide correction](https://github.com/FlareZ123/liber-primus/commit/74bcf44f2af5a8bc396a42d35ba4aa9f6c76d1b2).
+- #460's [closure](https://github.com/FlareZ123/liber-primus/issues/460) establishes signed `NEXT` as *client-supplied text for storage*, with the exact 2013 recruitment invitation already preserved and signed. Do not open a new hunt for a fictional server-generated NEXT response.
+- #467's [closure](https://github.com/FlareZ123/liber-primus/issues/467) confirms exact original-ISO re-extraction. The 3,368-byte `wisdom`/`folly` object has no literal consumer across 612 regular files or boot startup. The absence is bounded and does not exclude dynamic readout; absent a new concrete read path, repeat filesystem scans will not change the decision.
+- #389's [closure](https://github.com/FlareZ123/liber-primus/issues/389) calibrated the FGH detector and found clean covers *and* known F5 positives inconclusive. Do not interpret the 58/58 original inconclusives as an absence-of-F5 bound. Its detector family is exhausted without new calibration, but steganography is not excluded.
+- The 2012 first-image archive README says 14 January; a [first-person solve report originally published on 13 January 2012](https://clevcode.org/cicada-3301/) describes the initial posting as 4 January. With no authenticated original 4chan post, retain the date conflict and avoid treating 14 January as original-source truth. The [human solve-path contract](https://github.com/FlareZ123/liber-primus/blob/main/workplace/historical-player-solvepath-operator-contract.md) is corrected, including its obsolete #467 status.
+
+## Research-capacity concern
+Recent director-task issues #528, #530, #531, #532, #533, #534 and #535 divide original pages into source-cue review intervals. Their recorded closures report no complete key, reversible inverse or unknown-LP2 plaintext. Such audits are useful when they expose a *new independently source-selected rule*, as #533 corrected the p40–55 shared border interpretation, or when they can resolve a specific disputed input. Replenishing the queue mainly with more undirected page-window "find a decipherment route" prompts risks reproducing source inventories and no-selector reports without changing the cryptanalytic decision.
+
+**Suggested Director decision:** Before commissioning another generic page-range cue sweep, compare it with a genuinely independent hypothesized original-input inverse or a recoverable missing key/source. Require each assignment to state the exact original clue that would select alphabet, state, key and output, or one affordable experiment with a measurable change in the next choice. A source audit without an observed clue may be exploratory, but keep it a minority of capacity. Preserve #41's all-76-rune requirement and its independent key/state check; a partial p55 phrase, synthetic successful round trip or postselected arithmetic match should not count as plaintext.
+
+This is a coordination recommendation for the Director to evaluate, not a replacement task queue or a claim that source exploration is useless.

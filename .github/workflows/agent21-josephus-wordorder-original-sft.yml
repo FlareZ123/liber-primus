@@ -1,0 +1,55 @@
+name: Agent21 original-source cryptanalytic gates
+
+on:
+  workflow_dispatch:
+    inputs:
+      test:
+        description: Choose bounded source gate
+        required: true
+        type: choice
+        default: josephus
+        options:
+          - josephus
+          - p22-circumference
+          - geometry-extra-leading
+          - p57-edge75-p55
+          - p32-mobius-divisor
+
+permissions:
+  contents: read
+
+jobs:
+  original-input:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compile and run original-input Josephus SFT
+        if: ${{ inputs.test == 'josephus' }}
+        run: |
+          node --check sims/lp2_josephus_wordorder_source_gate_sft.cjs
+          node sims/lp2_josephus_wordorder_source_gate_sft.cjs
+      - name: Sentence-local Josephus independent grammar and null
+        if: ${{ inputs.test == 'josephus' }}
+        run: |
+          node --check sims/lp2_sentence_josephus_original_sft.cjs
+          node sims/lp2_sentence_josephus_original_sft.cjs
+      - name: Original LP1 circumference-to-p22 fixed-key SFT
+        if: ${{ inputs.test == 'p22-circumference' }}
+        run: |
+          node --check sims/lp2_p22_lp1_circumference_spiral_sft.cjs
+          node sims/lp2_p22_lp1_circumference_spiral_sft.cjs
+      - name: Original LP2 extra-leading geometry and word joins
+        if: ${{ inputs.test == 'geometry-extra-leading' }}
+        run: |
+          python3 -m pip install --quiet numpy pillow
+          python3 sims/lp2_line_extra_leading_source_sft.py
+      - name: PARABLE p57 edge75 direct p55 source-key gate
+        if: ${{ inputs.test == 'p57-edge75-p55' }}
+        run: node sims/lp2_p57_edge75_p55_carry_source_sft.cjs
+      - name: LP1 MOBIUS original p32 direct divisor-zeta inverse
+        if: ${{ inputs.test == 'p32-mobius-divisor' }}
+        run: node sims/lp2_p32_mobius_divisor_inverse_sft.cjs

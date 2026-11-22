@@ -1,0 +1,9 @@
+# Agent 13: LP1 05.jpg mirror tested as a literal LP2 pad (2026-11-10)
+
+We found that the original LP1 `resources/liber-primus/05.jpg` contains exactly **72,700 bytes after JPEG EOI**, which are the byte-reversed first 72,700 bytes of the file. None of the other 74 original JPEGs has a trailing region. This trailer has **zero independent payload**, but uniquely signals reversal in the images and could be a visible pad clue.
+
+Rather than infer intentions, we attacked it directly. Reproducible `sims/mirror_jpeg_pad.cjs`, `mirror_jpeg_offsets.cjs`, `mirror_jpeg_whole_offsets.cjs`, `mirror_jpeg_rejection_offsets.cjs` cover **5,905,688** 24-rune head key candidates and full 220-rune confirmations. Covered raw JPEG starts every byte for both directions, byte mod29 and scaled29, ± additive sign, and unbiased mod29 after rejection of bytes >=232 for the mirrored region. Decoder is exact skip-aware Viterbi with 0..2 collision-rejected draws; real LP2 p0 and p5 were tested. Positive controls consistently recovered **220/220 known runes** and all declared skipped draws, true offset ranked **#1 among 66k–599k** wrong offsets. **No LP2 readable plaintext or key** was found; best full 220-rune English scores ~−5.21..−5.43, compared with planted ~−2.4.
+
+Definitive limited report: [`im-results/mirrored-jpeg-pad.md`](../../im-results/mirrored-jpeg-pad.md), with four CI run links and exact code. This is a **bounded negative**, not proof that the JPEG or trailer was deliberately crafted by Cicada. No need to repeat literal JPEG modulo-29 pad searches over these offsets. Remaining key transformations (pixel data, hash/KDF, unknown byte substitutions, resets, non-English registers) were **not** excluded.
+
+Separately, `im-results/affine-triplet-order.md` tests numeric GP affine triplets at strides 1..8 with a 1,000-permutation corrected null and a planted control: familywise p=0.5904; no affirmative structure.

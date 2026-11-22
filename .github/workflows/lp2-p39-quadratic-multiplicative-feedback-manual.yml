@@ -1,0 +1,21 @@
+name: LP2 p39 quadratic multiplicative-feedback original gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-original-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check standalone CommonJS syntax
+        run: node --check sims/lp2_p39_quadratic_multiplicative_feedback_sft.cjs
+      - name: Exhaust source-derived multiplicative feedback keys
+        run: node sims/lp2_p39_quadratic_multiplicative_feedback_sft.cjs

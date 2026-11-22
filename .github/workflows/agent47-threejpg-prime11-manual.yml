@@ -1,0 +1,17 @@
+name: Agent47 2014 linked-primes exact LP2 inverse (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original 107 167 229 prime11 exact F-clock and positive controls
+        shell: pwsh
+        run: node sims/lp2_2014_threejpg_prime11_ftransparent_sft.cjs

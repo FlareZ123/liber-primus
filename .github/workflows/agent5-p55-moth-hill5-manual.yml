@@ -1,0 +1,14 @@
+name: Agent 5 p55 provisional crib Hill5 all-key holdout
+on:
+  workflow_dispatch:
+jobs:
+  source-hill5-holdout:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original-runic source and five heldout Hill5 predictions
+        run: node sims/lp2_p55_moth_any_hill5_holdout_sft.cjs

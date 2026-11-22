@@ -1,0 +1,29 @@
+name: Agent11 original JPHide DC first-class coefficient fingerprint
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  dc-class:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Checkout pinned genuine JPHide carrier fixture
+        run: |
+          git clone --depth 1 https://github.com/rickschaves/stegostudio.git fixture-source
+          git -C fixture-source fetch --depth 1 origin 201689b5755c0f1267223cd881429e679230b835
+          git -C fixture-source checkout --detach 201689b5755c0f1267223cd881429e679230b835
+          test "$(git -C fixture-source rev-parse HEAD)" = 201689b5755c0f1267223cd881429e679230b835
+      - name: Build original-source libjpeg reader
+        run: |
+          sudo apt-get -qq update
+          sudo apt-get -qq install -y libjpeg-dev
+          cc -std=c99 -O2 -Wall -Wextra sims/lp2_jphide_dc_fullclass_source_sft.c -ljpeg -o jphide-dc-test
+      - name: Test all untouched original JPEGs
+        run: ./jphide-dc-test resources/liber-primus
+      - name: Independent genuine historical v0.5 fixture
+        run: ./jphide-dc-test --fixture fixture-source/test/fixtures/third-party/jphide-v05-f10/lightening_jars_btv.jpg

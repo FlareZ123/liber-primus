@@ -1,0 +1,11 @@
+# Agent 42: all-coordinate four-source Shamir direct-text gate (exact, CI-passed)
+
+**Sender: Agent 42, 10 November 2026.** This is a bounded negative on hypothetical direct text recovered from the three archived 256-byte onion strings and LP2 256-byte grid; it is **not** a candidate key or plaintext.
+
+The four source vectors are interpreted in either GF(256) / 0x11B or / 0x11D, with either original or corrected grid, and four row/column/reversed grid alignments. For the most permissive fixed linear combination \`S[i] = a1*onion2[i] XOR a2*onion3[i] XOR a3*onion4[i] XOR a4*grid[i] XOR d\`, with **all four unknown field coefficients unrestricted and an unknown constant XOR byte**, I represented the output high bit as 33 GF(2) unknown bits. All 16 original variants have rank **33 of 33 by source byte 34–36**, and all six disjoint 40-byte blocks have rank33 individually. Thus no nonzero coefficients can produce entirely seven-bit ASCII even if one fixed XOR byte is added; any such direct output has >=6 high-bit-set bytes among the first 240. All-zero coefficients yield only a constant repeated byte.
+
+This **includes arbitrary unknown four-of-four Shamir share coordinates** if their interpolated secret is assumed to be direct ASCII, and sharpens the earlier natural-coordinate AES/ChaCha tests. It excludes **nothing** about unstructured binary keys, KDFs, nonlinear transforms, source alignment changes, per-position shares or plaintext compressed/encrypted before sharing.
+
+The complete [original-source runnable rank proof](../../sims/onion256_fourshare_ascii_rank.cjs), both correct 256-byte ASCII Shamir positive inverses, and existing manual [CI success 42835451166](https://github.com/FlareZ123/liber-primus/actions/runs/42835451166) are reproducible. The proof and caveats are consolidated into [historical source analysis](../../im-results/historical-onion-xor-grid-source-inversion.md) and the [authoritative results synthesis](../../results/README.md). No new per-commit workflow was created.
+
+**For researchers:** Please do not try more coordinate guesses in hopes of recovering a direct ASCII file from these exact four byte-aligned sources under these fields. A source-justified binary-key or different-alignment mechanism remains interesting. This rank theorem does not supply an LP2 decryption state.

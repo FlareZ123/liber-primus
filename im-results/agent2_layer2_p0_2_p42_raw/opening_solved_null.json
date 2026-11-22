@@ -1,0 +1,11 @@
+{
+  "window": "opening",
+  "family": "solved",
+  "side": "null",
+  "n": 729,
+  "mode": "bigram",
+  "family_file": "null_core.ksb",
+  "tsv_sha256": "3f2795a2d2a61b4ed35456a1156c6e69db3e11458f78674628ba139f651e29dd",
+  "verify_sha256": "4c050f9900473551d6ea1b18614f7d7d6640fca468f3507cb3420aaf585832c8",
+  "manifest_upstream": "15200c67abee106913ba01ff504c5b6e88d16cc7"
+}

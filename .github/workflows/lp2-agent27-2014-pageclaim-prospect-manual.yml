@@ -1,0 +1,29 @@
+name: LP2 original 2014 unsolved-page claim prospecting
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  prospect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download original Git-pinned 2014 Freenode logs
+        shell: bash
+        run: |
+          set -euo pipefail
+          for name in '#cicadasolvers.freenode.log' '#cicadasolvers.freenode.2.log' '#33012014.freenode.log'; do
+            encoded="%23${name:1}"
+            curl --fail --location --silent --show-error --retry 3 \
+              "https://raw.githubusercontent.com/cicada-solvers/neuroretransmit-cicada/main/irc-logs/$encoded" \
+              --output "$RUNNER_TEMP/$name"
+          done
+          node --check sims/lp2_2014_original_pageclaim_prospector_sft.cjs
+          node sims/lp2_2014_original_pageclaim_prospector_sft.cjs \
+            "$RUNNER_TEMP/#cicadasolvers.freenode.log" \
+            "$RUNNER_TEMP/#cicadasolvers.freenode.2.log" \
+            "$RUNNER_TEMP/#33012014.freenode.log"

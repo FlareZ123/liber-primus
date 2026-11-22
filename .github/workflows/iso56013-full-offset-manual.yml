@@ -1,0 +1,81 @@
+name: CicadaOS full 56013 pad offset scan
+on:
+  workflow_dispatch:
+    inputs:
+      map:
+        description: Byte-to-GP conversion
+        required: true
+        default: mod
+        type: choice
+        options:
+          - mod
+          - reject
+          - mod-rev
+          - reject-rev
+          - mod-atbash
+          - reject-atbash
+          - mod-rev-atbash
+          - reject-rev-atbash
+      mode:
+        description: Original offset scan or the fixed 2013 offset-12821 XOR gate
+        required: true
+        default: screen
+        type: choice
+        options:
+          - screen
+          - historic12821
+      test_offsets:
+        description: Optional offset count for bounded smoke tests; blank scans full source
+        required: false
+        default: ''
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    name: ISO 56013 ${{ inputs.mode }} ${{ inputs.map }}
+    runs-on: windows-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Retrieve original Cicada OS data
+        shell: pwsh
+        run: |
+          $output = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          curl.exe --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 'https://archive.org/download/3301.iso/3301.iso/DATA%2F560.13' --output $output
+          if ($LASTEXITCODE -ne 0) { throw "Original asset download failed" }
+      - name: Scan every byte offset and calibrate positives
+        if: ${{ inputs.mode == 'screen' }}
+        shell: pwsh
+        env:
+          NODE_OPTIONS: --max-old-space-size=6144
+          LP2_TEST_OFFSETS: ${{ inputs.test_offsets }}
+        run: |
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          $outfile = Join-Path $env:RUNNER_TEMP "iso56013_${{ inputs.map }}.json"
+          node sims/iso56013_full_offset_screen.cjs $asset '${{ inputs.map }}' $outfile
+          if ($LASTEXITCODE -ne 0) { throw "Pad screen failed" }
+      - name: Fixed historical 12821 XOR and BASE29 original-cipher gate
+        if: ${{ inputs.mode == 'historic12821' }}
+        shell: pwsh
+        run: |
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          $outfile = Join-Path $env:RUNNER_TEMP 'iso56013_historic12821.json'
+          node --check sims/lp2_2013_historic12821_base29_xor_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Historical offset test syntax failed' }
+          node sims/lp2_2013_historic12821_base29_xor_sft.cjs $asset | Out-File -LiteralPath $outfile -Encoding utf8
+          if ($LASTEXITCODE -ne 0) { throw 'Historical source-offset gate failed' }
+          Get-Content -LiteralPath $outfile
+      - uses: actions/upload-artifact@v4
+        with:
+          name: iso56013-${{ inputs.mode }}-${{ inputs.map }}
+          path: |
+            ${{ runner.temp }}/iso56013_${{ inputs.map }}.json
+            ${{ runner.temp }}/iso56013_historic12821.json
+          if-no-files-found: error
+          retention-days: 15

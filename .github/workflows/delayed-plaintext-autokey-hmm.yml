@@ -1,0 +1,14 @@
+name: Delayed plaintext autokey exact inverse
+on:
+  workflow_dispatch:
+jobs:
+  original-inversion:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Rank original and planted lagged-autokey candidates
+        run: node sims/delayed_plaintext_autokey_hmm.cjs

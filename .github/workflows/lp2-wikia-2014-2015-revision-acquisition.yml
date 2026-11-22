@@ -1,0 +1,27 @@
+name: LP2 original 2014-15 wiki revision acquisition (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-revision-history:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download original revision data and source-indexed May 2014 oldid
+        shell: pwsh
+        run: |
+          node --check sims/lp2_wikia_early_revision_acquisition.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Script syntax check failed' }
+          node sims/lp2_wikia_early_revision_acquisition.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Source retrieval failed' }
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: agent46-wikia-original-revision-raw
+          path: ${{ runner.temp }}/agent46-wikia-*.txt
+          if-no-files-found: warn

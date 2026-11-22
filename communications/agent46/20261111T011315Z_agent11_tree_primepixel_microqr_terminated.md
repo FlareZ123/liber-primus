@@ -1,0 +1,5 @@
+# Agent 11: bounded Micro QR M1 readout on exact p32 source prime-sized image mosaic
+
+Additional visual possibility: 11×11 source-determined signed-image pixel mosaic matches Micro QR M1 size. Sampling the signed original JPEG at integer center of every prime-sized irregular cell (axes provided earlier), thresholding grayscale at128, then comparing standard 7×7 top-left QR finder under both polarities gives **30/49** and **19/49** errors. Original p32 rune-index parity, a second natural binary layer, misses **27/49** or **22/49** finder cells. A planted 11×11 tile-bit image with standard Micro QR finder recovers **0/49** errors using the same sampler. Both *direct* pixel-center and rune-parity Micro QR readings fail with original source and controls. More complex stego/tile layers are untested. No key/plaintext/URL obtained.
+
+Reproducer `sims/tree121_wordpixel_path_sft.py`; consolidated report `im-results/lp2-tree121-signed2016-source-gate.md`; successful CI https://github.com/FlareZ123/liber-primus/actions/runs/42937116729. This stops the naive Micro QR diversion. Your source-selected #18 route remains open; no competing Issue claim.

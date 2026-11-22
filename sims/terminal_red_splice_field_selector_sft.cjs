@@ -1,0 +1,429 @@
+"use strict";
+
+/**
+ * Source-exact terminal red near-repeat and marked-triad field selector.
+ *
+ * The p53/p54 red inscription pair was recognized retrospectively. This SFT
+ * tests the concrete source observation, its entire-red comparator family,
+ * and the previously known GF(29^2) original-grid root. It does not decode
+ * original plaintext or identify an authentic LP2 encryption method.
+ *
+ * Run: node sims/terminal_red_splice_field_selector_sft.cjs
+ */
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+
+const ROOT = path.resolve(__dirname, "..");
+const read = (file) => JSON.parse(fs.readFileSync(path.join(ROOT, file), "utf8"));
+const corpus = read("resources/liber-primus/lp2-corpus.json");
+const ink = read("resources/liber-primus/lp2-ink-annotations.json");
+const grid = read("resources/liber-primus/lp2-grid-256.json");
+const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
+const unsolved = corpus.pages.filter(p => p.page < 56 && p.indices.length);
+const stream = unsolved.flatMap(p => p.indices);
+const spans = ink.pages.flatMap(page => (page.red_spans || []).map(span => ({
+  page: page.page, start: span.start,
+  symbols: [...span.runes].map(r => runeIndex.get(r))
+})));
+const marked = (page, start) =>
+  spans.find(s => s.page === page && s.start === start).symbols;
+const p3 = marked(3, 119);
+const p39 = marked(39, 119);
+const p53 = marked(53, 128);
+const p54 = marked(54, 0);
+
+assert.equal(stream.length, 12956);
+assert.equal(spans.length, 18);
+assert.equal(spans.reduce((n, s) => n + s.symbols.length, 0), 225);
+assert.deepEqual(p3, [13, 23, 2]);
+assert.deepEqual(p39, [27, 5, 15]);
+assert.equal(unsolved.find(p => p.page === 53).indices.length, 179);
+assert.equal(p53.length, 51);
+assert.equal(p54.length, 9);
+
+const splice = [p3[1], p39[0], p3[2]];
+assert.deepEqual(splice, [23, 27, 2]);
+assert.deepEqual(p53.slice(15, 20), [23, 27, 2, 24, 10]);
+assert.deepEqual(p54.slice(3, 8), [23, 27, 2, 14, 10]);
+assert.deepEqual(p53.slice(15, 18), splice);
+assert.deepEqual(p54.slice(3, 6), splice);
+const displacement = 179 + 3 - (128 + 15);
+assert.equal(displacement, 39);
+
+/** Count five-symbol windows differing at no more than one rune. */
+function redWindowPairs() {
+  const matches = [];
+  let comparisons = 0;
+  for (let a = 0; a < spans.length; a++) {
+    for (let b = a + 1; b < spans.length; b++) {
+      const x = spans[a], y = spans[b];
+      for (let i = 0; i + 5 <= x.symbols.length; i++) {
+        for (let j = 0; j + 5 <= y.symbols.length; j++) {
+          comparisons++;
+          let same = 0;
+          for (let k = 0; k < 5; k++)
+            same += Number(x.symbols[i + k] === y.symbols[j + k]);
+          if (same >= 4) matches.push({
+            pageA: x.page, offsetA: x.start + i,
+            pageB: y.page, offsetB: y.start + j, same
+          });
+        }
+      }
+    }
+  }
+  return {comparisons, matches};
+}
+const redPairs = redWindowPairs();
+assert.equal(redPairs.comparisons, 10416);
+assert.deepEqual(redPairs.matches, [{
+  pageA: 53, offsetA: 143, pageB: 54, offsetB: 3, same: 4
+}]);
+
+
+/**
+ * Source-selected GP29 edit identity: p53 fourth rune Ac24 and p54 fourth
+ * rune X14 differ by ten, the shared fifth rune I10. Positions 0,1,2,4
+ * are identical in both five-rune windows, position 3 differs.
+ *
+ * A finite postselection-aware diagnostic samples fresh disjoint original
+ * source fragments of the same 18 lengths. It is NOT a confirmatory p-value
+ * because the five-site grammar was recognized after reading the source.
+ */
+function checksumWindowScan(sources) {
+  let same0124Different3 = 0;
+  const arithmeticMatches = [];
+  for (let a = 0; a < sources.length; a++) {
+    for (let b = a + 1; b < sources.length; b++) {
+      const x = sources[a], y = sources[b];
+      for (let i = 0; i + 5 <= x.length; i++) {
+        for (let j = 0; j + 5 <= y.length; j++) {
+          if (x[i] !== y[j] || x[i + 1] !== y[j + 1] ||
+            x[i + 2] !== y[j + 2] || x[i + 4] !== y[j + 4] ||
+            x[i + 3] === y[j + 3]) continue;
+          same0124Different3++;
+          if ((x[i + 3] - y[j + 3] + 29) % 29 === x[i + 4])
+            arithmeticMatches.push({spanA: a, startA: i,
+              spanB: b, startB: j, delta: x[i + 4]});
+        }
+      }
+    }
+  }
+  return {same0124Different3, arithmeticMatches};
+}
+const sourceChecksum = checksumWindowScan(spans.map(s => s.symbols));
+assert.equal(sourceChecksum.same0124Different3, 1);
+assert.equal(sourceChecksum.arithmeticMatches.length, 1);
+assert.equal(sourceChecksum.arithmeticMatches[0].delta, 10);
+assert.equal((24 - 14 + 29) % 29, 10);
+
+function checksumFragmentNull() {
+  const samples = 2000;
+  let state = 0x53005412;
+  const random = () => {
+    state ^= state << 13;
+    state ^= state >>> 17;
+    state ^= state << 5;
+    return (state >>> 0) / 4294967296;
+  };
+  let checksumAtLeastObserved = 0, nearAtLeastObserved = 0;
+  let checksumTotal = 0, nearTotal = 0, maxChecksum = 0;
+  for (let run = 0; run < samples; run++) {
+    const selected = [];
+    const fragments = [];
+    for (const span of spans) {
+      const len = span.symbols.length;
+      let start;
+      do {
+        start = Math.floor(random() * (stream.length - len + 1));
+      } while (selected.some(([a, b]) =>
+        !(start + len <= a || b <= start)));
+      selected.push([start, start + len]);
+      fragments.push(stream.slice(start, start + len));
+    }
+    const outcome = checksumWindowScan(fragments);
+    const near = outcome.same0124Different3;
+    const arithmetic = outcome.arithmeticMatches.length;
+    nearTotal += near;
+    checksumTotal += arithmetic;
+    checksumAtLeastObserved += Number(arithmetic >= 1);
+    nearAtLeastObserved += Number(near >= 1);
+    maxChecksum = Math.max(maxChecksum, arithmetic);
+  }
+  const diagnostic = {
+    originalCipherContiguousNonoverlappingFragments: true,
+    seed: "0x53005412", samples,
+    sameSitePatternAtLeastObserved: nearAtLeastObserved,
+    checksumAtLeastObserved,
+    nearMean: nearTotal / samples,
+    checksumMean: checksumTotal / samples,
+    maxChecksum,
+    plusOneChecksumTail: (checksumAtLeastObserved + 1) / (samples + 1)
+  };
+  assert.deepEqual([diagnostic.sameSitePatternAtLeastObserved,
+    diagnostic.checksumAtLeastObserved, diagnostic.maxChecksum],
+  [33, 3, 1]);
+  return diagnostic;
+}
+const checksumNull = checksumFragmentNull();
+
+const tripleSites = [];
+for (const page of unsolved) {
+  for (let i = 0; i + 3 <= page.indices.length; i++)
+    if (splice.every((s, j) => page.indices[i + j] === s))
+      tripleSites.push({page: page.page, offset: i});
+}
+assert.deepEqual(tripleSites, [
+  {page: 53, offset: 143}, {page: 54, offset: 3}
+]);
+
+/**
+ * Source-matched empirical diagnostic: scan all original 60-rune windows
+ * with the p53-red 51 / p54-red 9 split. Overlapping windows are dependent.
+ */
+function empiricalNearRepeats() {
+  let windows = 0, hits = 0;
+  for (let start = 0; start + 60 <= stream.length; start++) {
+    windows++;
+    let found = false;
+    for (let i = 0; i <= 46 && !found; i++) {
+      for (let j = 0; j <= 4 && !found; j++) {
+        let same = 0;
+        for (let k = 0; k < 5; k++)
+          same += Number(stream[start + i + k] ===
+            stream[start + 51 + j + k]);
+        if (same >= 4) found = true;
+      }
+    }
+    hits += Number(found);
+  }
+  return {windows, hits, rate: hits / windows};
+}
+const empirical = empiricalNearRepeats();
+assert.deepEqual([empirical.windows, empirical.hits], [12897, 20]);
+
+/** Arithmetic in GF(29)[u] / (u^2-3u-8). */
+const mod = n => (n % 29 + 29) % 29;
+const add = (x, y) => [mod(x[0] + y[0]), mod(x[1] + y[1])];
+const mul = (x, y) => [
+  mod(x[0] * y[0] + 8 * x[1] * y[1]),
+  mod(x[0] * y[1] + x[1] * y[0] + 3 * x[1] * y[1])
+];
+/** @param {number[]} coeffs Descending powers, beginning with printed grid[0]. */
+function polyValue(coeffs, z) {
+  return coeffs.reduce((v, c) => add(mul(v, z), [mod(c), 0]), [0, 0]);
+}
+/** @param {number[]} coeffs Descending powers in GF29. */
+function valueAndDerivative(coeffs, x) {
+  let v = 0, d = 0;
+  for (const c of coeffs) {
+    d = mod(d * x + v);
+    v = mod(v * x + c);
+  }
+  return [v, d];
+}
+const gridBytes = grid.pages.flatMap(p => p.bytes);
+assert.equal(gridBytes.length, 256);
+const coefficients = gridBytes.map(mod);
+const u = [0, 1];
+const z = [splice[0], splice[1]];
+assert.deepEqual(mul(u, u), [8, 3]);
+assert.deepEqual(polyValue(coefficients, z), [0, 0]);
+assert.deepEqual(valueAndDerivative(coefficients, 24), [0, 0]);
+assert.deepEqual(polyValue([1, 18, 11], z), [0, 0]);
+assert.deepEqual(valueAndDerivative([27, 5, 15].reverse(), 24), [0, 0]);
+
+
+/**
+ * Independently source-demarcated red polynomial checks. Read each red span
+ * in the SAME forward descending orientation as the 256-byte original
+ * numeric table. The p39 three-rune instruction is shown in both directions
+ * to make the reciprocal 23/24 root distinction explicit.
+ */
+function divideAtRoot(coeffs, root) {
+  const q = [coeffs[0]];
+  for (let i = 1; i + 1 < coeffs.length; i++)
+    q.push(mod(coeffs[i] + root * q[q.length - 1]));
+  const remainder = mod(coeffs[coeffs.length - 1] +
+    root * q[q.length - 1]);
+  return {q, remainder};
+}
+function sourceRedPolynomialChecks() {
+  const p40 = marked(40, 0);
+  const p53PlusOne = p53.slice();
+  p53PlusOne[p53PlusOne.length - 1] =
+    mod(p53PlusOne[p53PlusOne.length - 1] + 1);
+  const cases = {
+    "p39-red-forward-at-23": valueAndDerivative(p39, 23),
+    "p39-red-reverse-at-24": valueAndDerivative(p39.slice().reverse(), 24),
+    "p40-red-heading-at-24": valueAndDerivative(p40, 24),
+    "p53-red-body-at-24": valueAndDerivative(p53, 24),
+    "p53-red-plus-one-at-24": valueAndDerivative(p53PlusOne, 24),
+    "p54-red-heading-at-24": valueAndDerivative(p54, 24),
+    "p54-red-heading-at-19": valueAndDerivative(p54, 19),
+    "p49-51-table-at-24": valueAndDerivative(coefficients, 24)
+  };
+  assert.deepEqual(cases, {
+    "p39-red-forward-at-23": [0, 0],
+    "p39-red-reverse-at-24": [0, 0],
+    "p40-red-heading-at-24": [0, 18],
+    "p53-red-body-at-24": [28, 0],
+    "p53-red-plus-one-at-24": [0, 0],
+    "p54-red-heading-at-24": [0, 4],
+    "p54-red-heading-at-19": [0, 0],
+    "p49-51-table-at-24": [0, 0]
+  });
+  assert.equal(mod(23 * 24), 1);
+  assert.equal(mod(27 * 23 * 23), 15);
+  assert.equal(mod(15 * 24 * 24), 27);
+
+  const divisionPrograms = [
+    {name: "p39-forward", input: p39, roots: [23, 23]},
+    {name: "p39-reverse", input: p39.slice().reverse(), roots: [24, 24]},
+    {name: "p40-heading", input: p40, roots: [24]},
+    {name: "p53-red-plus-one", input: p53PlusOne, roots: [24, 24]},
+    {name: "p54-heading", input: p54, roots: [24, 19, 19]},
+    {name: "original-grid", input: coefficients, roots: [24, 24]}
+  ];
+  const factored = divisionPrograms.map(program => {
+    let q = program.input;
+    for (const root of program.roots) {
+      const result = divideAtRoot(q, root);
+      assert.equal(result.remainder, 0);
+      q = result.q;
+    }
+    return {name: program.name, sourceCoefficients: program.input.length,
+      roots: program.roots, quotientLength: q.length,
+      quotientPreview: q.slice(0, 12)};
+  });
+  assert.deepEqual(factored.map(x => x.quotientLength),
+    [1, 1, 7, 49, 6, 254]);
+  const allRedAt24 = spans.map(s => ({
+    page: s.page, offset: s.start, length: s.symbols.length,
+    value: valueAndDerivative(s.symbols, 24)
+  }));
+  assert.deepEqual(allRedAt24.filter(s => s.value[0] === 0)
+    .map(s => [s.page, s.offset, s.length]),
+  [[40, 0, 8], [54, 0, 9]]);
+  return {cases, factored,
+    originalRedSpanCount: allRedAt24.length,
+    originalUnshiftedRoot24Spans: allRedAt24.filter(s =>
+      s.value[0] === 0).map(s => ({page: s.page, offset: s.offset})),
+    note: "All identities exact. Root and +1 operations remain clues, not an authenticated LP2 cipher or plaintext."};
+}
+const redPolynomialChecks = sourceRedPolynomialChecks();
+
+let power = [1, 0];
+let log = -1;
+for (let i = 0; i < 840; i++) {
+  if (power[0] === z[0] && power[1] === z[1]) log = i;
+  power = mul(power, u);
+}
+assert.deepEqual(power, [1, 0]);
+assert.equal(log, 433);
+
+// The whole three-rune terminal polynomial is NOT the selected table root.
+// This guards against silently conflating a source-given triple with a
+// cherry-picked two-coordinate interpretation.
+const fullTripleAtU = add(z, mul([splice[2], 0], mul(u, u)));
+assert.deepEqual(fullTripleAtU, [10, 4]);
+assert.deepEqual(polyValue(coefficients, fullTripleAtU), [13, 28]);
+
+
+/**
+ * The duplicated terminal red trigram selects the existing table root z.
+ * A canonical, fully frozen simple cipher interpretation is the trace
+ * keystream Tr(z^i) over the same field. Test it on the ACTUAL unknown LP2,
+ * with only two source-motivated initial states and two physical clocks.
+ * This direct-GP hypothesis does not prescribe the original repeat mask.
+ */
+function traceOriginalInverse() {
+  const {englishSource} = require("./no_repeat_periodic_key_phase_invariant.cjs");
+  const pages = unsolved.map(p => p.indices);
+  const original = pages.flat();
+  const native = englishSource(original.length);
+  const trace = x => mod(2 * x[0] + 3 * x[1]);
+  const ioc = values => {
+    const counts = Array(29).fill(0);
+    for (const x of values) counts[x]++;
+    return counts.reduce((n, v) => n + v * (v - 1), 0) /
+      (values.length * (values.length - 1));
+  };
+  const seeds = [{name: "unit", value: [1, 0]},
+    {name: "p54-Ac24", value: [24, 0]}];
+  const rootConjugate = [17, 2];
+  const rows = [];
+  let best = -Infinity;
+  for (const seed of seeds) {
+    for (const clock of ["book", "physical-page"]) {
+      for (const sign of [-1, 1]) {
+        let state = seed.value, at = 0;
+        const decoded = [];
+        const planted = [];
+        const roundtrip = [];
+        for (const page of pages) {
+          if (clock === "physical-page") state = seed.value;
+          for (const cipher of page) {
+            const pad = trace(state);
+            decoded.push(mod(cipher + sign * pad));
+            const nativeCipher = mod(native[at] - sign * pad);
+            planted.push(nativeCipher);
+            roundtrip.push(mod(nativeCipher + sign * pad));
+            at++;
+            state = mul(state, z);
+          }
+        }
+        assert.deepEqual(roundtrip, native);
+        assert.equal(decoded.length, original.length);
+        const nativeIoC = ioc(native);
+        const decodedIoC = ioc(decoded);
+        assert(nativeIoC > 0.05);
+        assert(decodedIoC < 0.036);
+        best = Math.max(best, decodedIoC);
+        rows.push({seed: seed.name, clock, sign,
+          originalDecodedIoC: decodedIoC,
+          nativeControlIoC: nativeIoC,
+          first12GP: decoded.slice(0, 12),
+          nativeControlRecovered: roundtrip.length});
+      }
+    }
+  }
+  // Since trace(a^29)=trace(a), the alternative extension root is
+  // analytically the same keystream: it is not a second independent key.
+  let s = [1, 0], t = [1, 0];
+  for (let i = 0; i < 840; i++) {
+    assert.equal(trace(s), trace(t));
+    s = mul(s, z);
+    t = mul(t, rootConjugate);
+  }
+  assert.deepEqual([s, t], [[1, 0], [1, 0]]);
+  return {sourceRoot: z, rootConjugate, traceOrbit: 840,
+    originalCipherIoC: ioc(original), tested: rows,
+    maxOriginalDecodedIoC: best,
+    decision: "Eight direct GP29 trace-pad decodings are nonlinguistic; no source-selected plaintext was recovered. Source-native controls all invert exactly."};
+}
+const directTraceInverse = traceOriginalInverse();
+
+console.log(JSON.stringify({
+  input: {sourceRedSpans: 18, redRunes: 225, originalRunes: 12956},
+  redUniqueNearRepeat: redPairs,
+  terminalGP29Checksum: sourceChecksum,
+  originalFragmentChecksumNull: checksumNull,
+  terminalSplice: {
+    markedP3: p3, markedP39: p39, repeated: splice,
+    p53Five: p53.slice(15, 20), p54Five: p54.slice(3, 8),
+    originalTripleSites: tripleSites, globalLag: displacement
+  },
+  sourcePolynomial: {
+    gridBytes: 256, fieldRelation: "u^2=3u+8",
+    root: z, minimalPolynomial: [1, 18, 11], discreteLogBaseU: log,
+    PofZ: polyValue(coefficients, z), Pof24AndDerivative: [0, 0],
+    quadraticReadingOfFullTriple: fullTripleAtU,
+    PofFullTripleQuadratic: polyValue(coefficients, fullTripleAtU)
+  },
+  empiricalMatchedLengthWindows: empirical,
+  directTraceInverse,
+  redPolynomialChecks,
+  uniformIIDFiveWindowProbability: 141 / 29 ** 5,
+  warning: "Exploratory source selector and postselected coincidence; no recovered key, original plaintext or authenticated cipher."
+}, null, 2));

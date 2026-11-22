@@ -1,0 +1,20 @@
+name: Agent47 p56 2016 archived-file candidate
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  archive-candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Query six source-fixed public URLs and check actual response bytes
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
+        run: node sims/lp2_p56_2016_urkngsa_archive_probe.cjs

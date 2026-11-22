@@ -1,0 +1,16 @@
+name: Agent16 p27 p56 seam known-key transfer SFT
+
+on:
+  workflow_dispatch:
+
+jobs:
+  source-exact-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify p27 seam against known p56 phi key
+        run: node sims/lp2_p27_p56_seam_phi_no_reuse_sft.cjs

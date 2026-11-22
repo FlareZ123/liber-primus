@@ -1,0 +1,16 @@
+name: Agent29 original terminal DJU-BEI phrase source gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  terminal-phrase-original:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce exact original terminal phrase and chapter-length-matched null
+        run: node sims/lp2_terminal_dju_bei_phrase_sft.cjs

@@ -1,0 +1,2005 @@
+# layer2 screen mode=bigram family=file:data/core.ksb windows=data/p42.txt kw=data/keywords_solved.txt n=272 beam=16 mults=1,28 models=0,1 litf=0,1 abort=30:-4 runs=1383655296 aborted=1365296160 secs=1130
+# best -3.7978
+# window p42 best -3.7978 item=e^pi digits (base 29) offset=4696 mult=1 model=0 kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=1
+# hist -31.60:1 -31.20:2 -30.60:2 -30.40:3 -30.20:8 -30.00:4 -29.80:27 -29.60:25 -29.40:41 -29.20:52 -29.00:83 -28.80:84 -28.60:103 -28.40:241 -28.20:215 -28.00:388 -27.80:1558 -27.60:521 -27.40:1112 -27.20:992 -27.00:1618 -26.80:2071 -26.60:2699 -26.40:4326 -26.20:4097 -26.00:6442 -25.80:9502 -25.60:10201 -25.40:16436 -25.20:13768 -25.00:21856 -24.80:28317 -24.60:33353 -24.40:50339 -24.20:46067 -24.00:65924 -23.80:77289 -23.60:96293 -23.40:138107 -23.20:119655 -23.00:172785 -22.80:200907 -22.60:243860 -22.40:342575 -22.20:292634 -22.00:407896 -21.80:486170 -21.60:570097 -21.40:774170 -21.20:645168 -21.00:892863 -20.80:1018811 -20.60:1177901 -20.40:1610290 -20.20:1309409 -20.00:1767706 -19.80:2018644 -19.60:2293221 -19.40:3040485 -19.20:2453473 -19.00:3257245 -18.80:3654291 -18.60:4065379 -18.40:5343835 -18.20:4225002 -18.00:5564654 -17.80:6092911 -17.60:6755085 -17.40:8667403 -17.20:6794303 -17.00:8788919 -16.80:9610020 -16.60:10406934 -16.40:13176454 -16.20:10151009 -16.00:13028635 -15.80:13956162 -15.60:14982249 -15.40:18685708 -15.20:14222097 -15.00:17968682 -14.80:19029514 -14.60:20161958 -14.40:21191169 -14.20:22160319 -14.00:23203408 -13.80:24210261 -13.60:25230397 -13.40:26155017 -13.20:27033503 -13.00:27914997 -12.80:28677126 -12.60:29415607 -12.40:29980064 -12.20:30558317 -12.00:30981301 -11.80:31491332 -11.60:31779605 -11.40:32021541 -11.20:32151966 -11.00:32155449 -10.80:32075741 -10.60:31988806 -10.40:31684376 -10.20:31232158 -10.00:30727757 -9.80:30087987 -9.60:29357948 -9.40:28653750 -9.20:27832361 -9.00:26978282 -8.80:26145263 -8.60:25257319 -8.40:24152674 -8.20:23084189 -8.00:21749331 -7.80:20378307 -7.60:21791914 -7.40:14587672 -7.20:16160061 -7.00:14838586 -6.80:13628738 -6.60:14365136 -6.40:9415677 -6.20:10326337 -6.00:9409812 -5.80:8481525 -5.60:8793294 -5.40:5621786 -5.20:6113202 -5.00:5400985 -4.80:4817117 -4.60:4875369 -4.40:3045046 -4.20:3224072 -4.00:2 -3.80:1
+score	item	offset	mult	model	window	n	inner
+-3.7978	e^pi digits (base 29)	4696	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=1
+-3.9228	cbrt2 digits (base 29)	4089	1	0	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=1
+-4.0000	sqrt5 digits (base 29)	3947	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=0
+-4.1360	prime gaps	5871	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=8 litf=1 atb=0
+-4.1765	cbrt2 digits (base 29)	4089	1	0	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=1
+-4.3456	ln10 digits (base 29)	16758	28	1	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=1
+-4.3456	ln10 digits (base 29)	16760	28	1	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=1
+-4.3787	(p-1)/2	2055	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=0
+-4.4191	primes+1	9775	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=7 litf=1 atb=0
+-4.4265	ln10 digits (base 29)	16756	28	1	p42	272	kw=DIVINITY isign=28 phase=4 litf=1 atb=1
+-4.4301	p_n - n	7836	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=1
+-4.4449	3301 - p_n	10508	28	1	p42	272	kw=DIVINITY isign=28 phase=0 litf=1 atb=1
+-4.4706	primes+1	9775	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=0
+-4.4779	p_n mod 3301	4643	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=11 litf=1 atb=1
+-4.4926	primes from 3301	13309	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=0
+-4.4926	primes	13772	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=0
+-4.4963	3301 - p_n	10508	28	1	p42	272	kw=DIVINITY isign=28 phase=1 litf=1 atb=1
+-4.5184	rad(n)	35	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-4.5294	pi digits (base 29)	2276	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=1
+-4.5368	ln10 digits (base 29)	16758	28	1	p42	272	kw=DIVINITY isign=28 phase=5 litf=1 atb=1
+-4.5368	ln10 digits (base 29)	16760	28	1	p42	272	kw=DIVINITY isign=28 phase=5 litf=1 atb=1
+-4.5478	sqrt5 digits (base 29)	16936	28	0	p42	272	kw=DIVINITY isign=28 phase=6 litf=1 atb=1
+-4.5515	sqrt5 digits (base 29)	16936	28	0	p42	272	kw=DIVINITY isign=28 phase=7 litf=1 atb=1
+-4.5515	p_n - n	7837	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=1
+-4.5515	p_n - n	7838	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=1
+-4.5551	ln10 digits (base 29)	16760	28	1	p42	272	kw=DIVINITY isign=28 phase=4 litf=1 atb=1
+-4.5551	ln10 digits (base 29)	16758	28	1	p42	272	kw=DIVINITY isign=28 phase=4 litf=1 atb=1
+-4.5588	rad(n)	35	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-4.5846	p_n + n	6398	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=1
+-4.5919	sqrt3301 digits (base 29)	17643	1	0	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=0
+-4.6066	primes^3	8277	28	1	p42	272	kw=DIVINITY isign=28 phase=7 litf=1 atb=1
+-4.6324	sqrt5 digits (base 29)	2803	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=9 litf=1 atb=0
+-4.6324	sqrt5 digits (base 29)	2805	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=9 litf=1 atb=0
+-4.6324	ln3 digits (base 29)	4258	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=1
+-4.6507	composites	11026	28	1	p42	272	kw=DIVINITY isign=1 phase=1 litf=1 atb=0
+-4.6618	pi^2 digits (base 29)	16676	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=2 litf=1 atb=0
+-4.6691	p_n - n	7837	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=1
+-4.6691	p_n - n	7838	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=1
+-4.6765	prime gaps	5871	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=0
+-4.6838	phi(n)	15100	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=1
+-4.6838	sqrt29 digits (base 29)	4249	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=1
+-4.6912	p_n mod 3301	14508	28	1	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=0
+-4.6985	n * p_n	15279	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=1
+-4.6985	pi^2 digits (base 29)	4632	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=10 litf=1 atb=1
+-4.7022	ln3 digits (base 29)	11368	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=1
+-4.7022	phi(n)	13180	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-4.7022	phi(n)	13182	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-4.7132	phi(n)	15099	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=1
+-4.7169	3301 * p_n	11644	1	0	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=0
+-4.7206	n * p_n	13536	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-4.7243	primes^3	4225	1	0	p42	272	kw=DIVINITY isign=28 phase=1 litf=1 atb=1
+-4.7500	prime gaps	5871	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=0
+-4.7574	p_(n+1) * p_n	15945	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=9 litf=1 atb=1
+-4.7574	ln3 digits (base 29)	11367	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=1
+-4.7941	p_n mod 3301	4643	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=0 litf=1 atb=1
+-4.8015	cumulative phi(n)	6430	1	1	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=1
+-4.8051	pi^2 digits (base 29)	305	28	1	p42	272	kw=DIVINITY isign=28 phase=6 litf=1 atb=1
+-4.8125	zeta(3) digits (base 29)	14299	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=0 litf=1 atb=0
+-4.8125	zeta(3) digits (base 29)	14299	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=0
+-4.8199	composites	17246	28	1	p42	272	kw=DIVINITY isign=1 phase=1 litf=1 atb=0
+-4.8272	Omega(n)	8842	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=0
+-4.8309	cbrt2 digits (base 29)	10218	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=0
+-4.8309	emirps	4277	28	1	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=1
+-4.8309	p_n + n	10691	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=1
+-4.8346	emirps	4277	28	1	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=1
+-4.8346	pi^2 digits (base 29)	305	28	1	p42	272	kw=DIVINITY isign=28 phase=5 litf=1 atb=1
+-4.8382	cumulative phi(n)	7377	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=10 litf=1 atb=1
+-4.8456	ln3301 digits (base 29)	11313	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=1
+-4.8493	p_n - n	13311	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=0
+-4.8640	zeta(3) digits (base 29)	14300	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=0
+-4.8787	pi digits (base 10)	17464	1	1	p42	272	kw=DIVINITY isign=28 phase=0 litf=1 atb=0
+-4.8824	phi(n)	13139	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-4.8824	euler gamma digits (base 29)	5983	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=0 litf=1 atb=1
+-4.8824	sigma(n)	12303	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=1
+-4.8934	phi(n)	13138	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-4.9007	phi digits (base 10)	13295	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=3 litf=1 atb=0
+-4.9044	p_n mod 3301	4100	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=7 litf=1 atb=0
+-4.9191	pi digits (base 29)	14924	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=1
+-4.9228	cbrt2 digits (base 29)	14350	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=1
+-4.9265	pi digits (base 29)	7989	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=7 litf=1 atb=1
+-4.9338	p_n + n	6398	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=1
+-4.9375	primes+1	3534	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=8 litf=1 atb=0
+-4.9375	primes reversed digits	16409	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=1
+-4.9412	primes+1	2407	1	1	p42	272	kw=DIVINITY isign=28 phase=7 litf=1 atb=0
+-4.9485	p_n^2 - 1	5615	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-4.9522	p_n + n	14397	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-4.9559	composites	2705	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=9 litf=1 atb=0
+-4.9596	sqrt2 digits (base 10)	13779	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=11 litf=1 atb=0
+-4.9596	pi^2 digits (base 29)	305	28	1	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=1
+-4.9632	pi digits (base 29)	7989	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=1
+-4.9632	primes^3	2900	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=0
+-4.9669	prime gaps	12218	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=1
+-4.9669	ln10 digits (base 29)	4278	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-4.9669	zeta(3) digits (base 29)	14300	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=0 litf=1 atb=0
+-4.9706	sqrt3 digits (base 10)	11133	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=4 litf=1 atb=1
+-4.9706	zeta(3) digits (base 29)	10302	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=1
+-4.9706	p_n + n	12679	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=3 litf=1 atb=1
+-4.9743	pi digits (base 29)	9486	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=2 litf=1 atb=1
+-4.9743	p_(n+1) * p_n	15945	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=10 litf=1 atb=1
+-4.9743	sqrt3 digits (base 10)	4890	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-4.9743	primes+1	3534	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=0
+-4.9743	carmichael lambda(n)	8074	1	1	p42	272	kw=DIVINITY isign=1 phase=1 litf=1 atb=0
+-4.9743	sigma(n)	7279	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-4.9743	sqrt3 digits (base 29)	3131	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=8 litf=1 atb=0
+-4.9779	sqrt5 digits (base 29)	10549	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=1
+-4.9779	(p+1)/2	18319	28	1	p42	272	kw=DIVINITY isign=28 phase=6 litf=1 atb=1
+-4.9853	cumulative phi(n)	15065	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=1
+-4.9853	ln10 digits (base 29)	4274	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-4.9853	ln2 digits (base 10)	3325	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=1
+-4.9853	3301 - p_n	1720	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-4.9853	sqrt5 digits (base 29)	3087	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=4 litf=1 atb=0
+-4.9963	phi(n)	11053	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=0
+-4.9963	pi digits (base 29)	7988	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=1
+-4.9963	sqrt5 digits (base 29)	8109	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=1
+-5.0000	sqrt3 digits (base 29)	16769	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=1
+-5.0000	sqrt5 digits (base 29)	1657	1	0	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=1
+-5.0000	emirps	16637	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.0037	p_n^2 - 1	964	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=1
+-5.0037	d(n)	18256	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.0037	zeta(3) digits (base 29)	13555	28	1	p42	272	kw=DIVINITY isign=1 phase=0 litf=1 atb=0
+-5.0037	sigma(n)	7279	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.0037	cbrt2 digits (base 29)	7958	1	0	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=1
+-5.0074	n * p_n	2348	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.0074	omega(n)	17729	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.0110	zeta(3) digits (base 29)	10302	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=1
+-5.0110	primes from 3301	12518	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=1
+-5.0110	primes	12981	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=1
+-5.0110	primes	12983	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=1
+-5.0110	pi digits (base 29)	14926	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=1
+-5.0110	pi^2 digits (base 29)	15132	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=0
+-5.0110	primes from 3301	12520	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=1
+-5.0110	pi digits (base 29)	9488	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=2 litf=1 atb=1
+-5.0184	n * p_n	2348	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.0221	pi digits (base 10)	19295	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=1
+-5.0221	primes+1	14821	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.0257	e digits (base 29)	12531	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.0257	p_n + n	12679	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=2 litf=1 atb=1
+-5.0294	primes popcount	5325	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-5.0294	emirps	4275	28	1	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=1
+-5.0294	pi^2 digits (base 29)	303	28	1	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=1
+-5.0331	ln10 digits (base 29)	7563	28	1	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=0
+-5.0404	sigma(n)	19446	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=2 litf=1 atb=1
+-5.0404	sigma(n)	16934	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=1
+-5.0441	p_n + n	1645	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=2 litf=1 atb=0
+-5.0441	p_n + n	11230	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.0441	primes from 3301	15305	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.0441	primes	15768	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.0478	sqrt3 digits (base 29)	3131	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=0
+-5.0515	sqrt3 digits (base 10)	4892	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.0515	euler gamma digits (base 29)	2255	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=1
+-5.0515	primes from 3301	12520	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=1
+-5.0515	primes from 3301	12518	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=1
+-5.0515	primes	12981	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=1
+-5.0515	primes	12983	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=1
+-5.0551	cumulative prime sum	8221	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.0551	sqrt5 digits (base 29)	12285	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.0588	e digits (base 29)	5975	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.0588	e digits (base 29)	5977	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.0588	phi digits (base 29)	10676	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=0 litf=1 atb=1
+-5.0625	primes^2	527	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=0
+-5.0625	p_(n+1) * p_n	5609	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.0625	d(n)	13909	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.0625	pi^2 digits (base 29)	305	28	1	p42	272	kw=DIVINITY isign=28 phase=7 litf=1 atb=1
+-5.0625	d(n)	13908	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.0625	p_n mod 3301	7486	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=4 litf=1 atb=1
+-5.0662	sqrt3 digits (base 29)	11022	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.0699	p_n mod 3301	14508	28	1	p42	272	kw=DIVINITY isign=1 phase=5 litf=0 atb=0
+-5.0699	p_n - n	19087	28	0	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.0699	sqrt2 digits (base 10)	2125	1	1	p42	272	kw=DIVINITY isign=28 phase=0 litf=1 atb=0
+-5.0735	primes+1	14821	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=0
+-5.0735	emirps	4279	28	1	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=1
+-5.0735	sigma(n)	16934	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=1
+-5.0772	pi digits (base 29)	14678	28	0	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=1
+-5.0772	e digits (base 29)	5824	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=0
+-5.0772	primes from 3301	15304	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.0772	primes	15767	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.0772	3301 - p_n	6456	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=1
+-5.0809	e digits (base 10)	1954	28	0	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=0
+-5.0809	phi digits (base 29)	11159	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=1
+-5.0846	ln2 digits (base 29)	3255	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=1
+-5.0846	phi digits (base 29)	16735	1	0	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=1
+-5.0846	ln3301 digits (base 29)	6466	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.0846	ln3301 digits (base 29)	10408	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.0846	zeta(3) digits (base 29)	14301	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=0
+-5.0882	primes reversed digits	12763	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=1
+-5.0882	partitions p(n)	9864	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=4 litf=1 atb=0
+-5.0882	primes-1 (totient)	15332	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=2 litf=1 atb=1
+-5.0919	pi^2 digits (base 29)	720	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=1
+-5.0919	ln2 digits (base 10)	13243	1	1	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=1
+-5.0919	p_n - n	13313	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.0919	ln2 digits (base 10)	3325	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=1
+-5.0919	pi digits (base 29)	7988	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=7 litf=1 atb=1
+-5.0956	catalan G digits (base 29)	4624	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=1
+-5.0956	pi^2 digits (base 29)	1168	28	0	p42	272	kw=DIVINITY isign=1 phase=0 litf=1 atb=1
+-5.0956	sigma(n)	2616	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=1
+-5.0993	composites	13540	28	1	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=0
+-5.0993	sqrt2 digits (base 10)	15724	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=1
+-5.0993	sqrt2 digits (base 10)	15298	1	1	p42	272	kw=DIVINITY isign=28 phase=1 litf=1 atb=0
+-5.1029	cumulative prime sum	16591	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=10 litf=1 atb=0
+-5.1029	p_n - n	19087	28	0	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=0
+-5.1029	cumulative prime sum	16659	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.1029	p_n^2 - 1	5277	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=1
+-5.1066	zeta(3) digits (base 29)	13553	28	1	p42	272	kw=DIVINITY isign=1 phase=0 litf=1 atb=0
+-5.1066	ln2 digits (base 29)	8650	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.1066	pi^2 digits (base 29)	720	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=1
+-5.1066	p_n mod 3301	11736	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=1
+-5.1066	sigma(n)	3111	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=1
+-5.1066	ln10 digits (base 29)	7561	28	1	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=0
+-5.1066	catalan G digits (base 29)	3840	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.1066	cbrt2 digits (base 29)	7959	1	0	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=1
+-5.1066	sqrt29 digits (base 29)	4251	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=1
+-5.1103	primes digit sum	6471	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=1
+-5.1103	phi digits (base 10)	768	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.1103	primes^2	526	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=0
+-5.1103	cumulative prime sum	17240	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=1
+-5.1140	p_n - n	19087	28	0	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=0
+-5.1140	catalan G digits (base 29)	15893	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=1
+-5.1140	sigma(n)	11041	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=8 litf=1 atb=0
+-5.1140	ln2 digits (base 29)	19284	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=0
+-5.1140	primes+1	14819	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.1140	primes+1	14820	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.1140	p_n mod 3301	7484	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=4 litf=1 atb=1
+-5.1140	phi(n)	7633	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=1
+-5.1176	sqrt3301 digits (base 29)	7390	28	0	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=0
+-5.1176	phi(n)	1698	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.1176	primes base-29 digit sum	12262	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=1
+-5.1176	e^pi digits (base 29)	4696	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=1
+-5.1213	ln3 digits (base 29)	7292	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=2 litf=1 atb=1
+-5.1213	primes digit sum	9049	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=0
+-5.1213	sqrt5 digits (base 29)	4330	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.1213	sqrt3301 digits (base 29)	9423	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=1
+-5.1213	pi^2 digits (base 29)	14773	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=3 litf=1 atb=1
+-5.1250	ln3 digits (base 29)	18537	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=1
+-5.1250	pi^2 digits (base 29)	305	28	1	p42	272	kw=DIVINITY isign=28 phase=0 litf=1 atb=1
+-5.1287	p_n + n	1645	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.1287	e digits (base 10)	19521	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.1287	zeta(3) digits (base 29)	6445	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=1
+-5.1287	primes digit sum	18984	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.1287	pi digits (base 10)	11576	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.1287	partitions p(n)	6982	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=0
+-5.1287	ln2 digits (base 10)	4151	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=1
+-5.1324	sigma(n)	12307	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=1
+-5.1324	primes from 3301	14484	1	0	p42	272	kw=DIVINITY isign=28 phase=1 litf=1 atb=1
+-5.1324	primes from 3301	14485	1	0	p42	272	kw=DIVINITY isign=28 phase=1 litf=1 atb=1
+-5.1324	sqrt3301 digits (base 29)	9470	28	0	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=1
+-5.1324	(p+1)/2	16052	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=0
+-5.1324	primes	14947	1	0	p42	272	kw=DIVINITY isign=28 phase=1 litf=1 atb=1
+-5.1324	primes	14948	1	0	p42	272	kw=DIVINITY isign=28 phase=1 litf=1 atb=1
+-5.1360	composites	13540	28	1	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=0
+-5.1360	sqrt5 digits (base 29)	3416	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=1
+-5.1360	primes^3	8250	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=1
+-5.1360	omega(n)	10610	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=0
+-5.1360	carmichael lambda(n)	6771	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=0
+-5.1360	pi^2 digits (base 29)	15691	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.1360	prime index of primes	7437	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=1
+-5.1360	cumulative prime sum	16659	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.1397	sqrt29 digits (base 29)	2891	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.1397	sqrt2 digits (base 10)	9195	1	0	p42	272	kw=DIVINITY isign=28 phase=0 litf=1 atb=0
+-5.1397	Omega(n)	2944	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=0
+-5.1397	prime gaps	10096	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.1397	phi(n)	13182	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.1397	phi(n)	13180	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.1397	ln3301 digits (base 29)	1519	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.1397	cumulative prime sum	8223	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.1397	primes^2	264	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=1
+-5.1397	p_n^2 - 1	5276	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=1
+-5.1434	p_n - n	12670	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.1434	primes-1 (totient)	9183	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.1471	ln3301 digits (base 29)	17209	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=4 litf=1 atb=0
+-5.1471	primes base-29 digit sum	12264	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=1
+-5.1471	pi digits (base 10)	1542	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-5.1471	sqrt3 digits (base 10)	4890	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=0
+-5.1507	ln3301 digits (base 29)	13259	28	0	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=1
+-5.1507	pi digits (base 10)	14473	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=0
+-5.1507	euler gamma digits (base 29)	16815	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=9 litf=1 atb=1
+-5.1507	n * p_n	15691	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.1507	Omega(n)	475	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.1507	ln3301 digits (base 29)	15345	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=1
+-5.1544	primes^2	1219	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=1
+-5.1544	emirps	12083	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=1
+-5.1544	3301 - p_n	16510	28	0	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=1
+-5.1544	primes	62	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=11 litf=1 atb=1
+-5.1544	p_n mod 3301	62	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=11 litf=1 atb=1
+-5.1544	cbrt2 digits (base 29)	18354	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=1
+-5.1544	sqrt29 digits (base 29)	14365	1	1	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=0
+-5.1544	phi(n)	7633	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=1
+-5.1544	3301 * p_n	15345	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=1
+-5.1544	phi digits (base 10)	1178	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=1
+-5.1581	carmichael lambda(n)	6523	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=1
+-5.1581	prime index of primes	9324	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.1618	omega(n)	9039	28	0	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.1618	sqrt5 digits (base 29)	14582	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=1
+-5.1618	sqrt2 digits (base 10)	3774	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.1618	primes digit sum	15891	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.1618	primes digit sum	15892	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.1654	sigma(n)	8121	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.1654	pi digits (base 10)	5088	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=1
+-5.1654	p_n - n	19086	28	0	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=0
+-5.1654	e^pi digits (base 29)	3425	28	1	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=1
+-5.1654	primes base-29 digit sum	12262	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=1
+-5.1691	primes^2	592	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.1691	sqrt2 digits (base 10)	16584	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=1
+-5.1691	primes-1 (totient)	9179	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.1691	ln3 digits (base 29)	18537	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=1
+-5.1691	primes-1 (totient)	9179	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.1691	p_n + n	12446	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.1728	(p+1)/2	3468	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.1728	primes+1	2405	1	1	p42	272	kw=DIVINITY isign=28 phase=7 litf=1 atb=0
+-5.1728	Omega(n)	8971	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=7 litf=1 atb=1
+-5.1728	euler gamma digits (base 29)	14361	28	0	p42	272	kw=DIVINITY isign=28 phase=6 litf=1 atb=1
+-5.1765	prime index of primes	18747	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.1765	omega(n)	17727	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.1765	sqrt29 digits (base 29)	14363	1	1	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=0
+-5.1765	pi digits (base 10)	14770	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=12 litf=1 atb=1
+-5.1765	p_n - n	12669	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.1765	d(n)	19027	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=1
+-5.1801	n * p_n	9066	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=1
+-5.1801	sqrt5 digits (base 29)	3414	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=1
+-5.1801	cumulative prime sum	16591	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=11 litf=1 atb=0
+-5.1801	cumulative phi(n)	10442	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=0
+-5.1801	ln3 digits (base 29)	18537	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=1
+-5.1838	ln2 digits (base 10)	3327	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=1
+-5.1838	p_n^2 - 1	5616	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.1838	primes+1	781	28	0	p42	272	kw=DIVINITY isign=1 phase=0 litf=1 atb=1
+-5.1838	prime index of primes	7437	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=1
+-5.1838	cumulative prime sum	16659	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.1875	phi digits (base 10)	768	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.1875	prime gaps	8200	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=0
+-5.1875	primes^2	12173	1	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.1875	primes reversed digits	10822	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=0
+-5.1875	e^pi digits (base 29)	12134	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=6 litf=1 atb=0
+-5.1875	omega(n)	10611	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.1875	primes reversed digits	17772	28	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.1875	3301 - p_n	5352	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=0
+-5.1875	1/3301 digits (base 29)	39	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=1
+-5.1875	1/3301 digits (base 29)	1689	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=1
+-5.1875	1/3301 digits (base 29)	589	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=1
+-5.1875	1/3301 digits (base 29)	1139	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=1
+-5.1912	pi digits (base 29)	14878	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=3 litf=1 atb=1
+-5.1912	primes^3	3782	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=1
+-5.1912	omega(n)	10610	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.1912	3301 - p_n	12143	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=1
+-5.1912	pi digits (base 10)	16507	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=0
+-5.1949	prime index of primes	9491	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=1
+-5.1949	sqrt2 digits (base 10)	13456	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=1
+-5.1949	sqrt3 digits (base 10)	1168	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=8 litf=1 atb=1
+-5.1949	n * p_n	17491	1	0	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=1
+-5.1985	primes popcount	4211	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=8 litf=1 atb=1
+-5.1985	sqrt3301 digits (base 29)	15037	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=0 litf=1 atb=0
+-5.1985	primes reversed digits	10822	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-5.2022	primes+1	781	28	0	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=1
+-5.2022	phi(n)	11820	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=1
+-5.2059	primes from 3301	8011	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=1
+-5.2059	primes	8474	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=1
+-5.2059	ln3 digits (base 29)	5610	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=1
+-5.2059	pi^2 digits (base 29)	12299	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=1
+-5.2059	(p+1)/2	14865	28	0	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=0
+-5.2096	(p+1)/2	16369	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=1
+-5.2096	sqrt29 digits (base 29)	2892	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.2096	sqrt2 digits (base 10)	6670	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.2096	euler gamma digits (base 29)	4008	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.2096	cumulative phi(n)	10442	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.2096	p_n mod 3301	377	28	1	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=1
+-5.2096	pi^2 digits (base 29)	12303	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=1
+-5.2132	phi digits (base 10)	770	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.2132	p_(n+1) * p_n	14651	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=0
+-5.2132	sqrt29 digits (base 29)	13401	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=1
+-5.2132	3301 - p_n	13700	28	1	p42	272	kw=DIVINITY isign=28 phase=0 litf=1 atb=0
+-5.2132	omega(n)	9629	28	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.2132	sqrt2 digits (base 10)	19094	1	1	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=1
+-5.2132	euler gamma digits (base 29)	4010	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.2132	sqrt2 digits (base 10)	1699	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.2132	(p+1)/2	3093	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-5.2132	sqrt29 digits (base 29)	6896	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=0
+-5.2169	d(n)	13910	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.2169	cumulative phi(n)	6430	1	1	p42	272	kw=DIVINITY isign=1 phase=0 litf=1 atb=1
+-5.2169	sqrt2 digits (base 10)	9822	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=1
+-5.2169	pi^2 digits (base 29)	3717	1	0	p42	272	kw=DIVINITY isign=1 phase=1 litf=1 atb=0
+-5.2169	primes popcount	4211	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=1
+-5.2169	pi^2 digits (base 29)	19316	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.2169	pi digits (base 29)	9486	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=1
+-5.2169	sigma(n)	3111	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=1
+-5.2169	zeta(3) digits (base 29)	14301	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=0
+-5.2206	phi digits (base 10)	12565	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=0
+-5.2206	partitions p(n)	16983	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=0
+-5.2206	p_n - n	8155	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=1
+-5.2206	p_n + n	3030	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=1
+-5.2206	p_n - n	19086	28	0	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=0
+-5.2243	3301 - p_n	16279	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=1
+-5.2243	3301 - p_n	10508	28	1	p42	272	kw=DIVINITY isign=28 phase=5 litf=1 atb=1
+-5.2243	(p+1)/2	1381	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=1
+-5.2243	3301 * p_n	18974	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=0
+-5.2243	3301 - p_n	16278	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=1
+-5.2243	3301 - p_n	16510	28	0	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=1
+-5.2243	prime index of primes	19273	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.2243	euler gamma digits (base 29)	2261	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=1
+-5.2243	composites	14639	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=12 litf=1 atb=0
+-5.2243	cumulative prime sum	16657	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.2243	cumulative prime sum	16658	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.2279	phi(n)	11322	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=1
+-5.2279	catalan G digits (base 29)	7692	1	0	p42	272	kw=DIVINITY isign=1 phase=1 litf=1 atb=1
+-5.2279	sqrt29 digits (base 29)	14367	1	1	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=0
+-5.2279	emirps	16637	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.2316	prime index of primes	17291	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=1
+-5.2316	3301 - p_n	16210	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=0
+-5.2316	(p-1)/2	16582	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.2316	primes popcount	5325	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=0
+-5.2316	primes from 3301	16509	1	1	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=1
+-5.2316	primes	16972	1	1	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=1
+-5.2316	sqrt2 digits (base 10)	8313	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=1
+-5.2316	primes-1 (totient)	1266	1	0	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=1
+-5.2316	sigma(n)	8249	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=1
+-5.2316	ln3301 digits (base 29)	8975	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=0
+-5.2353	prime index of primes	9326	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.2353	catalan G digits (base 29)	13494	1	1	p42	272	kw=DIVINITY isign=1 phase=0 litf=1 atb=1
+-5.2353	(p+1)/2	17777	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=11 litf=1 atb=1
+-5.2353	cumulative phi(n)	10440	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=0
+-5.2353	n * p_n	9064	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=1
+-5.2353	composites	3055	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=0
+-5.2353	rad(n)	8564	28	1	p42	272	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2353	e^pi digits (base 29)	12138	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=9 litf=1 atb=0
+-5.2390	p_n - n	13313	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=0
+-5.2390	e digits (base 29)	19123	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.2390	primes base-29 digit sum	2571	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=1
+-5.2390	e digits (base 29)	8021	1	0	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=1
+-5.2390	pi digits (base 10)	19295	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=1
+-5.2390	phi(n)	8581	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=1
+-5.2426	p_(n+1) * p_n	5591	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=0
+-5.2426	phi digits (base 10)	4860	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=0
+-5.2426	p_n + n	13096	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=1
+-5.2426	3301 - p_n	2360	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.2426	sqrt5 digits (base 29)	1234	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=1
+-5.2426	pi^2 digits (base 29)	5608	28	1	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=1
+-5.2426	ln3301 digits (base 29)	2023	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=1
+-5.2426	Omega(n)	2946	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=0
+-5.2426	composites	2783	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=1
+-5.2426	ln2 digits (base 10)	17100	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=1
+-5.2463	primes reversed digits	2682	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.2463	ln3 digits (base 29)	18536	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=1
+-5.2463	primes base-29 digit sum	13499	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=0
+-5.2463	phi digits (base 29)	17744	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=1
+-5.2463	pi digits (base 29)	8520	1	1	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=1
+-5.2463	phi(n)	11711	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=8 litf=1 atb=0
+-5.2500	p_(n+1) * p_n	5587	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.2500	p_(n+1) * p_n	5587	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=0
+-5.2500	composites	2772	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=8 litf=1 atb=0
+-5.2500	primes	8568	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.2500	sqrt2 digits (base 10)	9195	1	0	p42	272	kw=DIVINITY isign=28 phase=7 litf=1 atb=0
+-5.2500	ln2 digits (base 10)	12705	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=0
+-5.2500	primes from 3301	8105	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.2500	composites	7881	28	1	p42	272	kw=DIVINITY isign=1 phase=0 litf=1 atb=0
+-5.2500	pi^2 digits (base 29)	6383	28	0	p42	272	kw=DIVINITY isign=28 phase=1 litf=1 atb=1
+-5.2500	n * p_n	9066	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=1
+-5.2500	prime index of primes	6073	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=1
+-5.2537	p_n mod 3301	5705	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.2537	catalan G digits (base 29)	10068	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=1
+-5.2537	p_n mod 3301	18937	28	1	p42	272	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.2537	3301 - p_n	13198	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=8 litf=1 atb=1
+-5.2537	n * p_n	14898	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=0
+-5.2537	p_n mod 3301	377	28	1	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=1
+-5.2537	Omega(n)	16696	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=1
+-5.2574	emirps	17039	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=0
+-5.2574	pi^2 digits (base 29)	6383	28	0	p42	272	kw=DIVINITY isign=28 phase=0 litf=1 atb=1
+-5.2574	pi^2 digits (base 29)	13637	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=1
+-5.2574	pi digits (base 10)	14640	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.2610	sqrt3 digits (base 10)	11186	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=8 litf=1 atb=1
+-5.2610	e^pi digits (base 29)	12138	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=8 litf=1 atb=0
+-5.2610	sqrt3301 digits (base 29)	9424	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=1
+-5.2610	n * p_n	17490	1	0	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=1
+-5.2610	(p-1)/2	4602	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=1
+-5.2610	sqrt3 digits (base 29)	11022	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=0
+-5.2610	sigma(n)	17833	1	0	p42	272	kw=DIVINITY isign=1 phase=1 litf=1 atb=0
+-5.2610	pi digits (base 29)	3198	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.2610	prime gaps	8200	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-5.2610	p_(n+1) * p_n	5964	1	1	p42	272	kw=DIVINITY isign=28 phase=2 litf=1 atb=1
+-5.2610	cumulative phi(n)	6548	1	1	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=0
+-5.2647	primes reversed digits	17772	28	1	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=0
+-5.2647	primes^2	12173	1	1	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=0
+-5.2647	p_n mod 3301	18452	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.2647	composites	16018	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=1
+-5.2647	primes popcount	5325	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-5.2647	pi^2 digits (base 29)	5606	28	1	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=1
+-5.2647	phi digits (base 29)	4316	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-5.2647	d(n)	12189	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.2647	d(n)	12190	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.2647	emirps	7913	1	0	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=1
+-5.2684	emirps	18756	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=1
+-5.2684	catalan G digits (base 29)	15893	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=1
+-5.2684	p_n + n	6398	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=1
+-5.2684	(p-1)/2	15418	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.2684	(p+1)/2	3976	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=1
+-5.2684	ln3 digits (base 29)	5612	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=1
+-5.2684	sigma(n)	11041	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=0
+-5.2684	cumulative prime sum	16657	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.2684	sigma(n)	8250	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=1
+-5.2684	cumulative prime sum	16658	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.2684	pi digits (base 29)	9335	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=0
+-5.2721	cumulative prime sum	16657	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.2721	e^pi digits (base 29)	8664	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=1
+-5.2721	e^pi digits (base 29)	12135	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=6 litf=1 atb=0
+-5.2721	emirps	13818	1	0	p42	272	kw=DIVINITY isign=1 phase=0 litf=1 atb=1
+-5.2721	rad(n)	18399	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=1
+-5.2721	rad(n)	18400	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=1
+-5.2721	pi digits (base 29)	7014	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=1
+-5.2721	cumulative prime sum	16658	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.2757	e digits (base 29)	2365	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.2757	3301 - p_n	10508	28	1	p42	272	kw=DIVINITY isign=28 phase=4 litf=1 atb=1
+-5.2757	omega(n)	8969	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=5 litf=1 atb=0
+-5.2757	primes from 3301	17419	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=0
+-5.2757	ln3 digits (base 29)	18536	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=1
+-5.2757	primes	17882	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=0
+-5.2757	emirps	7915	1	0	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=1
+-5.2757	phi digits (base 29)	11188	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=0
+-5.2757	3301 - p_n	15615	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=2 litf=1 atb=1
+-5.2757	phi digits (base 29)	11189	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=0
+-5.2757	ln2 digits (base 10)	6005	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=7 litf=1 atb=1
+-5.2757	zeta(3) digits (base 29)	2500	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=7 litf=1 atb=0
+-5.2757	cumulative phi(n)	10442	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=0
+-5.2794	sigma(n)	19441	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=3 litf=1 atb=1
+-5.2794	prime gaps	3692	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=1
+-5.2794	p_(n+1) * p_n	14653	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=0
+-5.2794	primes digit sum	10584	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=1
+-5.2794	partitions p(n)	3471	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=1
+-5.2794	3301 * p_n	18972	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=0
+-5.2794	ln3301 digits (base 29)	4883	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.2794	ln2 digits (base 29)	18541	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.2831	3301 - p_n	9879	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.2831	sqrt3301 digits (base 29)	3974	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=1
+-5.2831	sqrt3301 digits (base 29)	7099	1	0	p42	272	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2831	ln3301 digits (base 29)	6397	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=7 litf=1 atb=0
+-5.2831	ln3301 digits (base 29)	6399	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=7 litf=1 atb=0
+-5.2831	phi(n)	13686	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=1
+-5.2831	pi^2 digits (base 29)	11430	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=0
+-5.2831	pi^2 digits (base 29)	305	28	1	p42	272	kw=DIVINITY isign=28 phase=1 litf=1 atb=1
+-5.2868	ln2 digits (base 29)	16613	1	0	p42	272	kw=DIVINITY isign=1 phase=1 litf=1 atb=1
+-5.2868	ln2 digits (base 29)	16612	1	0	p42	272	kw=DIVINITY isign=1 phase=1 litf=1 atb=1
+-5.2868	pi^2 digits (base 29)	3717	1	0	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=0
+-5.2868	phi digits (base 10)	16819	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=1
+-5.2868	sqrt29 digits (base 29)	19581	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=1
+-5.2868	zeta(3) digits (base 29)	13557	28	1	p42	272	kw=DIVINITY isign=1 phase=0 litf=1 atb=0
+-5.2868	sigma(n)	7352	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=7 litf=1 atb=1
+-5.2868	Omega(n)	9621	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.2868	e^pi digits (base 29)	15809	1	1	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=0
+-5.2904	3301 - p_n	2362	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-5.2904	p_n + n	13096	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=1
+-5.2904	3301 - p_n	2360	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-5.2904	p_n mod 3301	3671	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.2904	sqrt3 digits (base 10)	17540	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=1
+-5.2904	sqrt5 digits (base 29)	16506	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=2 litf=1 atb=1
+-5.2904	ln3301 digits (base 29)	17368	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=0 litf=1 atb=0
+-5.2904	zeta(3) digits (base 29)	14301	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=12 litf=1 atb=0
+-5.2941	cumulative prime sum	16591	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=0 litf=1 atb=0
+-5.2941	ln3301 digits (base 29)	15341	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=1
+-5.2941	sqrt3 digits (base 10)	8628	28	0	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=0
+-5.2941	catalan G digits (base 29)	3707	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=1
+-5.2941	partitions p(n)	16985	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=0
+-5.2941	d(n)	4528	1	1	p42	272	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.2941	(p+1)/2	19212	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=1
+-5.2978	phi digits (base 10)	770	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.2978	emirps	18019	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.2978	omega(n)	184	28	0	p42	272	kw=DIVINITY isign=28 phase=0 litf=1 atb=1
+-5.2978	(p-1)/2	15805	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=5 litf=1 atb=0
+-5.2978	3301 - p_n	2364	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.2978	partitions p(n)	9743	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.2978	sqrt5 digits (base 29)	10655	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=8 litf=1 atb=1
+-5.2978	(p-1)/2	6892	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.2978	e digits (base 29)	15985	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=0
+-5.3015	composites	3243	28	0	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=1
+-5.3015	omega(n)	12519	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.3015	d(n)	13654	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=1
+-5.3015	d(n)	13655	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=1
+-5.3015	d(n)	13653	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=1
+-5.3015	n * p_n	14898	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=4 litf=1 atb=0
+-5.3015	e^pi digits (base 29)	12138	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=10 litf=1 atb=0
+-5.3015	primes-1 (totient)	4280	1	1	p42	272	kw=DIVINITY isign=28 phase=4 litf=1 atb=0
+-5.3051	sqrt3 digits (base 29)	16769	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=1
+-5.3051	primes digit sum	8501	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=1
+-5.3051	p_n mod 3301	18453	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.3051	sqrt29 digits (base 29)	13402	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=0 litf=1 atb=1
+-5.3051	cumulative phi(n)	15016	1	0	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=0
+-5.3051	pi^2 digits (base 29)	18364	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=1
+-5.3051	3301 * p_n	13357	28	1	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=1
+-5.3051	sqrt3 digits (base 10)	1168	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=1
+-5.3051	3301 - p_n	18568	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=1
+-5.3051	e^pi digits (base 29)	8663	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=1
+-5.3051	sqrt2 digits (base 29)	18835	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-5.3088	n * p_n	16121	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-5.3088	e digits (base 29)	8762	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.3088	composites	5134	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=3 litf=1 atb=0
+-5.3088	primes^3	3231	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=10 litf=1 atb=1
+-5.3088	pi^2 digits (base 29)	712	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=1
+-5.3088	primes^3	4225	1	0	p42	272	kw=DIVINITY isign=28 phase=5 litf=1 atb=1
+-5.3088	primes digit sum	18984	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.3088	ln2 digits (base 10)	17008	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.3088	phi(n)	13591	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-5.3088	primes+1	16620	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=3 litf=1 atb=1
+-5.3088	n * p_n	4149	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=1
+-5.3125	3301 * p_n	9450	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=1
+-5.3125	p_(n+1) * p_n	12096	28	1	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=1
+-5.3125	ln3301 digits (base 29)	5637	1	1	p42	272	kw=DIVINITY isign=28 phase=1 litf=1 atb=1
+-5.3125	(p+1)/2	8285	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=0 litf=1 atb=0
+-5.3125	cumulative prime sum	16764	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=0
+-5.3125	pi digits (base 10)	18524	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=1
+-5.3125	composites	8557	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.3162	phi(n)	914	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=6 litf=1 atb=0
+-5.3162	primes^2	14739	1	0	p42	272	kw=DIVINITY isign=28 phase=0 litf=1 atb=0
+-5.3162	primes^3	9343	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.3162	3301 * p_n	9450	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.3162	p_n + n	12446	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.3162	primes-1 (totient)	9252	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=8 litf=1 atb=1
+-5.3162	sqrt3301 digits (base 29)	1388	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=1
+-5.3162	primes popcount	5326	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-5.3162	d(n)	3456	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=0
+-5.3162	primes^3	5503	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=9 litf=1 atb=1
+-5.3199	3301 - p_n	16208	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.3199	3301 - p_n	16278	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=1
+-5.3199	p_n + n	5294	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=1
+-5.3199	ln2 digits (base 29)	4308	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.3199	sigma(n)	7352	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=8 litf=1 atb=1
+-5.3199	omega(n)	5553	28	0	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=0
+-5.3199	ln3301 digits (base 29)	17529	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=1
+-5.3199	n * p_n	14972	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=1
+-5.3199	ln3301 digits (base 29)	14415	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.3199	3301 - p_n	16279	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=1
+-5.3199	sqrt5 digits (base 29)	10425	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=1
+-5.3199	e digits (base 10)	3299	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=0
+-5.3199	(p+1)/2	14201	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=0
+-5.3199	cbrt2 digits (base 29)	1713	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=1
+-5.3199	sqrt2 digits (base 10)	10827	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.3199	composites	2243	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=1
+-5.3199	primes digit sum	17808	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.3199	sqrt29 digits (base 29)	2891	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.3199	cumulative prime sum	7310	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=4 litf=1 atb=0
+-5.3199	pi^2 digits (base 29)	14773	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=1
+-5.3235	phi digits (base 10)	4893	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=8 litf=1 atb=1
+-5.3235	3301 - p_n	9882	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.3235	p_n + n	17203	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=11 litf=1 atb=0
+-5.3235	sqrt3 digits (base 10)	13730	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.3235	Omega(n)	18736	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=7 litf=1 atb=1
+-5.3235	d(n)	4522	1	1	p42	272	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.3235	phi digits (base 10)	13295	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=0
+-5.3235	pi digits (base 10)	16508	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=0
+-5.3235	primes-1 (totient)	11711	28	0	p42	272	kw=DIVINITY isign=1 phase=0 litf=1 atb=1
+-5.3235	e^pi digits (base 29)	8664	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=1
+-5.3235	n * p_n	1630	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.3235	ln3301 digits (base 29)	4881	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.3235	prime index of primes	9326	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.3235	primes-1 (totient)	9153	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=1
+-5.3235	sqrt29 digits (base 29)	11934	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=0
+-5.3235	sqrt3 digits (base 10)	16469	28	1	p42	272	kw=DIVINITY isign=28 phase=5 litf=1 atb=1
+-5.3235	e digits (base 10)	13283	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.3272	euler gamma digits (base 29)	5165	1	0	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=0
+-5.3272	(p-1)/2	5203	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=11 litf=1 atb=0
+-5.3272	cumulative prime sum	804	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=0
+-5.3272	pi digits (base 29)	8142	28	0	p42	272	kw=DIVINITY isign=28 phase=5 litf=1 atb=1
+-5.3272	primes reversed digits	17772	28	1	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=0
+-5.3272	omega(n)	9633	28	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.3272	cbrt2 digits (base 29)	1713	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=1
+-5.3272	phi digits (base 29)	12495	28	1	p42	272	kw=DIVINITY isign=28 phase=1 litf=1 atb=0
+-5.3272	primes	16025	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=0
+-5.3272	cumulative prime sum	6205	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=9 litf=1 atb=0
+-5.3272	pi digits (base 29)	11905	28	0	p42	272	kw=DIVINITY isign=28 phase=7 litf=1 atb=0
+-5.3272	phi(n)	13496	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=0
+-5.3272	rad(n)	35	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.3272	rad(n)	35	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.3272	ln2 digits (base 29)	19284	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=0
+-5.3272	n * p_n	13423	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=1
+-5.3272	primes from 3301	15562	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=0
+-5.3309	Omega(n)	8970	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=7 litf=1 atb=1
+-5.3309	omega(n)	9631	28	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.3309	(p-1)/2	5203	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=12 litf=1 atb=0
+-5.3309	p_n - n	9525	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=1
+-5.3309	e digits (base 10)	4766	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=1
+-5.3309	primes-1 (totient)	1267	1	0	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=1
+-5.3309	primes+1	17103	28	0	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=0
+-5.3309	p_n - n	13644	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=0
+-5.3309	primes digit sum	13859	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=0
+-5.3309	primes base-29 digit sum	17208	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.3346	e^pi digits (base 29)	2987	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=0
+-5.3346	phi digits (base 10)	12565	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=0
+-5.3346	p_n - n	5425	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=1
+-5.3346	zeta(3) digits (base 29)	15520	1	1	p42	272	kw=DIVINITY isign=28 phase=2 litf=1 atb=1
+-5.3346	composites	6264	28	1	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=0
+-5.3346	euler gamma digits (base 29)	16817	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=9 litf=1 atb=1
+-5.3346	primes+1	16002	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-5.3346	pi digits (base 10)	6853	1	0	p42	272	kw=DIVINITY isign=28 phase=2 litf=1 atb=0
+-5.3346	p_(n+1) * p_n	6775	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=0
+-5.3346	carmichael lambda(n)	7691	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=0 litf=1 atb=1
+-5.3346	carmichael lambda(n)	7692	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=0 litf=1 atb=1
+-5.3346	sqrt2 digits (base 10)	19171	1	1	p42	272	kw=DIVINITY isign=28 phase=0 litf=1 atb=0
+-5.3346	ln10 digits (base 29)	9141	28	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.3346	p_n + n	19635	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=0
+-5.3346	primes-1 (totient)	18936	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=4 litf=1 atb=0
+-5.3346	p_n - n	18718	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=0
+-5.3346	cumulative prime sum	16657	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.3346	cumulative prime sum	16658	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.3346	sqrt29 digits (base 29)	11935	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.3382	primes digit sum	14128	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.3382	3301 - p_n	1256	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.3382	cbrt2 digits (base 29)	12893	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.3382	sqrt2 digits (base 10)	10827	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.3382	primes popcount	5326	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-5.3382	e digits (base 29)	1238	28	1	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=0
+-5.3382	phi digits (base 29)	235	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=0
+-5.3382	3301 * p_n	18325	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=10 litf=1 atb=0
+-5.3382	sqrt5 digits (base 29)	9658	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=1
+-5.3382	p_n + n	3030	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=1
+-5.3382	ln3301 digits (base 29)	13260	28	0	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=1
+-5.3419	ln2 digits (base 10)	4415	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=1
+-5.3419	3301 - p_n	7577	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.3419	carmichael lambda(n)	15411	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=5 litf=1 atb=0
+-5.3419	zeta(3) digits (base 29)	14518	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=1
+-5.3419	zeta(3) digits (base 29)	14518	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=1
+-5.3419	ln2 digits (base 10)	19239	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.3419	ln2 digits (base 10)	4415	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=1
+-5.3419	primes base-29 digit sum	19645	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.3419	primes^2	14739	1	0	p42	272	kw=DIVINITY isign=28 phase=1 litf=1 atb=0
+-5.3419	sqrt3 digits (base 29)	16857	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=1
+-5.3419	mobius mu(n)	13095	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.3419	sqrt3 digits (base 10)	15094	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=7 litf=1 atb=1
+-5.3419	Omega(n)	9621	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.3419	sqrt2 digits (base 29)	9473	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=12 litf=1 atb=0
+-5.3419	3301 - p_n	15615	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=1
+-5.3419	(p+1)/2	3093	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-5.3419	sqrt5 digits (base 29)	3186	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.3419	3301 * p_n	5646	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=1
+-5.3456	mobius mu(n)	7289	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=1
+-5.3456	omega(n)	5553	28	0	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.3456	carmichael lambda(n)	1777	28	1	p42	272	kw=DIVINITY isign=28 phase=6 litf=1 atb=1
+-5.3456	(p-1)/2	2348	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=1
+-5.3456	emirps	15781	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=1
+-5.3456	ln3 digits (base 29)	3287	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=0
+-5.3456	ln3 digits (base 29)	3289	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=0
+-5.3456	sqrt5 digits (base 29)	3414	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=1
+-5.3456	Omega(n)	474	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.3456	sqrt5 digits (base 29)	2336	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=0
+-5.3456	ln3 digits (base 29)	16220	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=1
+-5.3456	(p+1)/2	1324	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=0
+-5.3456	ln2 digits (base 29)	14073	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.3493	primes+1	18358	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-5.3493	3301 * p_n	9450	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=1
+-5.3493	omega(n)	5437	28	0	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.3493	partitions p(n)	6167	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=1
+-5.3493	e digits (base 29)	8031	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=5 litf=1 atb=0
+-5.3493	cumulative phi(n)	14320	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=0
+-5.3493	composites	8690	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=0
+-5.3493	prime gaps	3692	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=1
+-5.3493	primes reversed digits	3960	28	0	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=0
+-5.3493	pi digits (base 29)	11906	28	0	p42	272	kw=DIVINITY isign=28 phase=7 litf=1 atb=0
+-5.3493	sqrt29 digits (base 29)	13402	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=1
+-5.3493	zeta(3) digits (base 29)	13559	28	1	p42	272	kw=DIVINITY isign=1 phase=1 litf=1 atb=0
+-5.3493	primes+1	15100	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=1
+-5.3493	n * p_n	1631	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.3493	primes base-29 digit sum	17208	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.3493	sigma(n)	7377	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=0
+-5.3529	ln2 digits (base 29)	14072	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.3529	p_n mod 3301	3671	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.3529	sigma(n)	2971	1	0	p42	272	kw=DIVINITY isign=28 phase=0 litf=1 atb=1
+-5.3529	sqrt5 digits (base 29)	19588	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=1
+-5.3529	carmichael lambda(n)	1777	28	1	p42	272	kw=DIVINITY isign=28 phase=4 litf=1 atb=1
+-5.3529	prime gaps	10096	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.3529	sqrt3 digits (base 10)	1170	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=1
+-5.3529	sqrt3301 digits (base 29)	4661	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=0
+-5.3529	cumulative phi(n)	4711	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=4 litf=1 atb=1
+-5.3529	d(n)	10448	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.3529	ln2 digits (base 10)	1327	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=1
+-5.3529	e^pi digits (base 29)	10399	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=1
+-5.3529	pi digits (base 10)	2027	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=1
+-5.3529	pi digits (base 10)	15420	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=1
+-5.3529	primes-1 (totient)	8659	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=1
+-5.3529	cumulative prime sum	16659	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.3529	ln2 digits (base 29)	5724	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=1
+-5.3529	cbrt2 digits (base 29)	3823	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=1
+-5.3529	d(n)	10449	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.3566	sqrt2 digits (base 10)	19094	1	1	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=1
+-5.3566	pi digits (base 29)	10467	1	0	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=1
+-5.3566	3301 - p_n	1720	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.3566	primes popcount	11054	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.3566	cbrt2 digits (base 29)	6171	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-5.3566	sqrt3301 digits (base 29)	205	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=0
+-5.3566	sqrt3 digits (base 10)	14843	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=1
+-5.3566	p_n^2 - 1	7692	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.3566	e^pi digits (base 29)	8663	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=1
+-5.3566	p_n^2 - 1	7694	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.3566	(p+1)/2	15985	1	0	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=1
+-5.3603	ln3301 digits (base 29)	10657	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=11 litf=1 atb=0
+-5.3603	composites	3591	28	1	p42	272	kw=DIVINITY isign=1 phase=1 litf=1 atb=0
+-5.3603	(p+1)/2	1324	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-5.3603	sqrt5 digits (base 29)	3416	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=1
+-5.3603	p_n^2 - 1	15471	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=0
+-5.3603	primes^3	3282	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.3603	n * p_n	4844	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=12 litf=1 atb=0
+-5.3603	primes+1	16002	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-5.3603	p_n - n	8929	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=1
+-5.3603	cbrt2 digits (base 29)	18988	1	1	p42	272	kw=DIVINITY isign=28 phase=4 litf=1 atb=0
+-5.3603	sqrt29 digits (base 29)	8997	1	0	p42	272	kw=DIVINITY isign=28 phase=4 litf=1 atb=0
+-5.3603	primes-1 (totient)	3454	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=1
+-5.3603	p_(n+1) * p_n	15945	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=1
+-5.3603	sigma(n)	14027	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=1
+-5.3603	composites	10089	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=1
+-5.3603	ln3301 digits (base 29)	10658	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=11 litf=1 atb=0
+-5.3640	n * p_n	5431	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=1
+-5.3640	ln2 digits (base 10)	3701	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=1
+-5.3640	(p-1)/2	3493	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.3640	primes^3	17066	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=0
+-5.3640	carmichael lambda(n)	10500	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.3640	catalan G digits (base 29)	7692	1	0	p42	272	kw=DIVINITY isign=1 phase=0 litf=1 atb=1
+-5.3640	phi(n)	4838	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.3640	pi digits (base 10)	5088	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=1
+-5.3640	ln3301 digits (base 29)	604	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=0
+-5.3640	zeta(3) digits (base 29)	1310	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=1
+-5.3640	(p+1)/2	14229	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=1
+-5.3640	e^pi digits (base 29)	4694	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.3640	primes digit sum	17190	28	0	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=1
+-5.3640	primes reversed digits	514	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=1
+-5.3640	n * p_n	19094	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=1
+-5.3640	p_n - n	8434	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=1
+-5.3640	prime index of primes	19272	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.3640	p_(n+1) * p_n	2323	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=0
+-5.3640	primes-1 (totient)	8683	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.3676	primes	1645	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=1
+-5.3676	primes	1647	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=1
+-5.3676	prime index of primes	5899	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=1
+-5.3676	primes+1	1948	28	0	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=0
+-5.3676	pi^2 digits (base 29)	18332	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.3676	pi^2 digits (base 29)	18333	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.3676	primes from 3301	1182	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=1
+-5.3676	primes from 3301	1184	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=1
+-5.3676	emirps	15405	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=1
+-5.3676	ln3 digits (base 29)	14041	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.3676	sqrt2 digits (base 10)	6263	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.3676	pi digits (base 29)	7045	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.3676	prime index of primes	9398	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.3676	p_n + n	11145	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=8 litf=1 atb=1
+-5.3676	n * p_n	1101	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.3676	pi digits (base 10)	16508	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=0
+-5.3676	prime index of primes	9322	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.3676	ln2 digits (base 10)	10406	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.3676	p_n + n	11144	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=8 litf=1 atb=1
+-5.3676	sqrt3 digits (base 29)	16859	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=1
+-5.3713	(p+1)/2	14232	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=6 litf=1 atb=1
+-5.3713	euler gamma digits (base 29)	7950	28	1	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=0
+-5.3713	primes	18049	1	0	p42	272	kw=DIVINITY isign=28 phase=2 litf=1 atb=1
+-5.3713	sqrt3 digits (base 29)	6377	28	1	p42	272	kw=DIVINITY isign=28 phase=2 litf=1 atb=1
+-5.3713	pi digits (base 10)	15422	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=1
+-5.3713	e^pi digits (base 29)	247	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.3713	3301 - p_n	11473	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=1
+-5.3713	sqrt3 digits (base 29)	15942	28	1	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=1
+-5.3713	e^pi digits (base 29)	10399	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=1
+-5.3713	primes from 3301	17586	1	0	p42	272	kw=DIVINITY isign=28 phase=2 litf=1 atb=1
+-5.3713	(p-1)/2	2463	1	1	p42	272	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.3713	zeta(3) digits (base 29)	6960	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=5 litf=1 atb=0
+-5.3713	p_n - n	5516	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=1
+-5.3713	sqrt2 digits (base 29)	7413	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=0
+-5.3713	primes^3	13308	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=1
+-5.3750	primes+1	19330	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=11 litf=1 atb=0
+-5.3750	catalan G digits (base 29)	4074	1	1	p42	272	kw=DIVINITY isign=1 phase=0 litf=1 atb=0
+-5.3750	phi digits (base 10)	13296	1	1	p42	272	kw=DIVINITY isign=28 phase=1 litf=1 atb=0
+-5.3750	primes^2	7238	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=1
+-5.3750	phi(n)	8797	1	1	p42	272	kw=DIVINITY isign=28 phase=2 litf=1 atb=1
+-5.3750	ln3 digits (base 29)	6640	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.3750	sqrt3 digits (base 10)	10577	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.3750	catalan G digits (base 29)	1465	28	1	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=0
+-5.3750	sqrt29 digits (base 29)	16538	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=0
+-5.3750	p_n^2 - 1	18114	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=1
+-5.3750	d(n)	13153	1	0	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=1
+-5.3750	Omega(n)	11667	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=1
+-5.3750	catalan G digits (base 29)	3706	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=1
+-5.3750	p_(n+1) * p_n	10918	1	1	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=0
+-5.3750	primes digit sum	15994	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.3750	e digits (base 10)	13111	1	0	p42	272	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.3787	carmichael lambda(n)	2595	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.3787	sqrt29 digits (base 29)	11935	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=0
+-5.3787	p_n mod 3301	5236	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=1
+-5.3787	e^pi digits (base 29)	17227	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=0
+-5.3787	p_(n+1) * p_n	6086	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=1
+-5.3787	sqrt3 digits (base 10)	14382	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=1
+-5.3787	p_(n+1) * p_n	6085	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=1
+-5.3787	(p-1)/2	17274	28	0	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=1
+-5.3787	(p-1)/2	17396	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=0
+-5.3787	cumulative prime sum	9564	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=0
+-5.3787	p_n + n	17203	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=12 litf=1 atb=0
+-5.3787	catalan G digits (base 29)	3706	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=1
+-5.3787	primes^3	9756	28	1	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=0
+-5.3787	primes from 3301	16509	1	1	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=1
+-5.3787	ln3 digits (base 29)	812	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=12 litf=1 atb=1
+-5.3787	ln3301 digits (base 29)	2784	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=0
+-5.3787	sqrt3301 digits (base 29)	1072	1	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.3787	ln3301 digits (base 29)	13699	1	1	p42	272	kw=DIVINITY isign=28 phase=5 litf=1 atb=1
+-5.3787	ln3 digits (base 29)	6514	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.3787	primes	16972	1	1	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=1
+-5.3824	sqrt5 digits (base 29)	16504	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=1
+-5.3824	sqrt3301 digits (base 29)	5643	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=1
+-5.3824	omega(n)	9039	28	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.3824	(p+1)/2	1913	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=1
+-5.3824	carmichael lambda(n)	17131	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=0
+-5.3824	3301 - p_n	4600	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.3824	n * p_n	14436	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.3824	p_n - n	9523	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=1
+-5.3824	cumulative prime sum	11693	1	0	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=0
+-5.3824	pi^2 digits (base 29)	716	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=1
+-5.3824	p_n mod 3301	17025	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.3824	carmichael lambda(n)	17593	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=1
+-5.3824	primes reversed digits	33	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.3824	sqrt2 digits (base 10)	15734	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=1
+-5.3824	primes digit sum	6439	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=0
+-5.3824	primes^3	12312	1	1	p42	272	kw=DIVINITY isign=28 phase=6 litf=1 atb=1
+-5.3824	sqrt2 digits (base 10)	4336	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.3824	n * p_n	2610	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=1
+-5.3824	ln2 digits (base 10)	10406	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.3824	primes-1 (totient)	16362	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.3824	p_n mod 3301	14308	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=0
+-5.3860	pi digits (base 10)	14890	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.3860	cumulative phi(n)	10336	28	0	p42	272	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.3860	sigma(n)	7377	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=0
+-5.3860	prime gaps	3692	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=1
+-5.3860	Omega(n)	17909	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.3860	phi digits (base 29)	11445	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=1
+-5.3860	pi^2 digits (base 29)	18364	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=1
+-5.3860	phi digits (base 29)	3076	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.3860	e digits (base 10)	1187	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=0
+-5.3860	d(n)	5464	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=0
+-5.3860	sqrt29 digits (base 29)	9634	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=0
+-5.3860	primes reversed digits	10827	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-5.3860	p_n + n	286	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=1
+-5.3860	phi(n)	914	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=5 litf=1 atb=0
+-5.3897	phi(n)	7026	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=9 litf=1 atb=1
+-5.3897	catalan G digits (base 29)	9733	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=1
+-5.3897	n * p_n	7058	28	0	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=0
+-5.3897	3301 - p_n	13044	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=5 litf=1 atb=1
+-5.3897	3301 - p_n	15617	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=1
+-5.3897	primes+1	2405	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.3897	primes+1	2407	1	1	p42	272	kw=DIVINITY isign=28 phase=0 litf=1 atb=0
+-5.3897	sqrt29 digits (base 29)	16361	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.3897	carmichael lambda(n)	11537	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=7 litf=1 atb=0
+-5.3897	p_n^2 - 1	964	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=0
+-5.3897	pi digits (base 29)	18786	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=0
+-5.3897	sqrt5 digits (base 29)	8783	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=2 litf=1 atb=1
+-5.3897	sqrt29 digits (base 29)	6897	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=0
+-5.3897	sqrt3 digits (base 10)	14528	28	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.3897	p_n mod 3301	840	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=1
+-5.3897	rad(n)	7256	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=1
+-5.3897	euler gamma digits (base 29)	14877	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=1
+-5.3897	primes^2	273	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=0
+-5.3897	ln3301 digits (base 29)	13699	1	1	p42	272	kw=DIVINITY isign=28 phase=4 litf=1 atb=1
+-5.3934	sqrt5 digits (base 29)	8781	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=3 litf=1 atb=1
+-5.3934	catalan G digits (base 29)	13418	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=1
+-5.3934	catalan G digits (base 29)	13419	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=1
+-5.3934	p_n - n	9861	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.3934	p_(n+1) * p_n	17966	28	0	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=1
+-5.3934	ln3301 digits (base 29)	978	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-5.3934	primes from 3301	16422	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=1
+-5.3934	primes^2	12827	1	0	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=1
+-5.3934	emirps	16955	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=1
+-5.3934	n * p_n	15691	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.3934	emirps	4386	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.3934	primes+1	782	28	0	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=1
+-5.3934	ln3 digits (base 29)	17672	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=11 litf=1 atb=1
+-5.3934	sqrt2 digits (base 10)	13779	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=9 litf=1 atb=0
+-5.3934	primes	16885	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=1
+-5.3934	p_n^2 - 1	7696	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.3971	pi digits (base 29)	6999	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=1
+-5.3971	e^pi digits (base 29)	16117	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.3971	sqrt2 digits (base 10)	6307	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.3971	catalan G digits (base 29)	16530	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.3971	sqrt3301 digits (base 29)	8911	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=1
+-5.3971	pi digits (base 29)	14683	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=2 litf=1 atb=0
+-5.3971	3301 - p_n	13198	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=1
+-5.3971	ln3 digits (base 29)	14041	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.3971	ln3301 digits (base 29)	11319	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=0
+-5.3971	phi(n)	18044	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=4 litf=1 atb=0
+-5.3971	sqrt3 digits (base 10)	3471	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.3971	pi digits (base 29)	7989	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=1
+-5.3971	e digits (base 29)	17449	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=0 litf=1 atb=0
+-5.3971	ln3301 digits (base 29)	15341	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=1
+-5.3971	prime index of primes	15877	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=0
+-5.3971	phi(n)	17563	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=0
+-5.3971	phi digits (base 29)	18876	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=7 litf=1 atb=1
+-5.3971	primes digit sum	9254	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.4007	e^pi digits (base 29)	13724	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4007	sqrt5 digits (base 29)	12282	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.4007	pi^2 digits (base 29)	7918	1	0	p42	272	kw=DIVINITY isign=28 phase=5 litf=1 atb=1
+-5.4007	sqrt29 digits (base 29)	8997	1	0	p42	272	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.4007	sqrt3 digits (base 10)	14843	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=1
+-5.4007	Omega(n)	18986	1	0	p42	272	kw=DIVINITY isign=28 phase=0 litf=1 atb=0
+-5.4007	n * p_n	13123	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.4007	sqrt3301 digits (base 29)	11684	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.4007	p_n^2 - 1	966	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=0
+-5.4007	e digits (base 10)	19398	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=1
+-5.4007	p_n - n	2297	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=1
+-5.4007	catalan G digits (base 29)	3707	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=1
+-5.4007	(p+1)/2	6816	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.4007	primes+1	9775	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4007	(p+1)/2	6816	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.4007	cbrt2 digits (base 29)	9874	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=0
+-5.4007	cumulative prime sum	9565	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=0
+-5.4007	sqrt3 digits (base 10)	634	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=3 litf=1 atb=0
+-5.4007	d(n)	891	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4007	composites	18804	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.4007	sigma(n)	7279	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-5.4044	primes reversed digits	10243	1	0	p42	272	kw=DIVINITY isign=28 phase=2 litf=1 atb=0
+-5.4044	(p+1)/2	5816	28	1	p42	272	kw=DIVINITY isign=28 phase=2 litf=1 atb=0
+-5.4044	pi digits (base 29)	4734	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=4 litf=1 atb=0
+-5.4044	catalan G digits (base 29)	1465	28	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.4044	ln3301 digits (base 29)	2023	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=2 litf=1 atb=1
+-5.4044	composites	2772	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=9 litf=1 atb=0
+-5.4044	(p-1)/2	16582	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.4044	sqrt2 digits (base 10)	9552	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.4044	emirps	18021	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.4044	sqrt3301 digits (base 29)	8913	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=1
+-5.4044	catalan G digits (base 29)	16530	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=0
+-5.4044	pi digits (base 29)	12044	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=1
+-5.4044	zeta(3) digits (base 29)	8357	1	0	p42	272	kw=DIVINITY isign=28 phase=4 litf=1 atb=1
+-5.4044	primes base-29 digit sum	9649	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.4044	ln2 digits (base 10)	17470	1	0	p42	272	kw=DIVINITY isign=28 phase=0 litf=1 atb=0
+-5.4081	(p+1)/2	19212	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=1
+-5.4081	phi digits (base 10)	1413	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=1
+-5.4081	ln10 digits (base 29)	19476	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=1
+-5.4081	(p+1)/2	19212	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=1
+-5.4081	primes base-29 digit sum	10854	28	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.4081	primes^2	12051	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=0
+-5.4081	(p-1)/2	18184	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=12 litf=1 atb=0
+-5.4081	primes from 3301	16509	1	1	p42	272	kw=DIVINITY isign=1 phase=1 litf=1 atb=1
+-5.4081	Omega(n)	17548	1	0	p42	272	kw=DIVINITY isign=28 phase=7 litf=1 atb=0
+-5.4081	sqrt3301 digits (base 29)	14071	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=0
+-5.4081	sqrt3301 digits (base 29)	14071	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=0
+-5.4081	sqrt29 digits (base 29)	7775	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=1
+-5.4081	primes	16972	1	1	p42	272	kw=DIVINITY isign=1 phase=1 litf=1 atb=1
+-5.4081	primes	7207	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=0
+-5.4081	pi digits (base 10)	17156	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.4081	sqrt2 digits (base 10)	15736	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=1
+-5.4081	ln2 digits (base 10)	18167	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=1
+-5.4081	primes from 3301	6744	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=0
+-5.4081	p_n mod 3301	7501	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=0
+-5.4081	p_n mod 3301	10505	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=0
+-5.4081	ln10 digits (base 29)	14456	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=6 litf=1 atb=0
+-5.4118	sqrt3 digits (base 10)	11891	28	0	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=0
+-5.4118	cumulative prime sum	16538	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=0
+-5.4118	p_n + n	17203	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=0 litf=1 atb=0
+-5.4118	catalan G digits (base 29)	7181	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.4118	catalan G digits (base 29)	7695	1	0	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=1
+-5.4118	p_(n+1) * p_n	2323	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=0
+-5.4118	sqrt29 digits (base 29)	13403	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=0 litf=1 atb=1
+-5.4118	zeta(3) digits (base 29)	13557	28	1	p42	272	kw=DIVINITY isign=1 phase=1 litf=1 atb=0
+-5.4118	omega(n)	5439	28	0	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.4118	(p+1)/2	19402	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.4118	primes-1 (totient)	14710	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.4118	emirps	15779	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=1
+-5.4118	pi digits (base 29)	4095	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=1
+-5.4118	phi digits (base 10)	4893	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=1
+-5.4118	euler gamma digits (base 29)	15666	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=0
+-5.4118	p_(n+1) * p_n	15945	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=6 litf=1 atb=1
+-5.4118	ln3301 digits (base 29)	976	1	1	p42	272	kw=DIVINITY isign=28 phase=4 litf=1 atb=1
+-5.4118	p_n + n	9333	1	0	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=1
+-5.4118	composites	7684	28	1	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=0
+-5.4118	catalan G digits (base 29)	15552	1	0	p42	272	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.4118	ln3 digits (base 29)	10093	1	1	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=0
+-5.4118	zeta(3) digits (base 29)	12260	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=7 litf=1 atb=1
+-5.4118	composites	2125	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=11 litf=1 atb=0
+-5.4118	pi^2 digits (base 29)	7616	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=1
+-5.4118	ln2 digits (base 10)	15093	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.4118	sqrt3 digits (base 10)	6226	1	0	p42	272	kw=DIVINITY isign=28 phase=1 litf=1 atb=0
+-5.4118	pi digits (base 10)	8879	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=0
+-5.4118	ln2 digits (base 10)	7073	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.4154	1033 square rows	475	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	200	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	cumulative phi(n)	14320	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=0
+-5.4154	1033 square rows	225	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	250	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	650	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	675	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1250	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	725	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	750	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1175	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1200	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	p_n + n	19635	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=0
+-5.4154	1033 square rows	1225	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	700	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1275	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	ln3 digits (base 29)	812	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=0 litf=1 atb=1
+-5.4154	phi digits (base 29)	15581	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=0
+-5.4154	1033 square rows	150	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1675	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1150	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1650	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	pi digits (base 29)	14363	28	1	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=1
+-5.4154	1033 square rows	525	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	550	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	575	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	0	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	600	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	625	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1025	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1050	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1075	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1100	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1125	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	25	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1575	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1600	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1625	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	50	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1550	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	75	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	100	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	125	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	sqrt3 digits (base 10)	8077	1	0	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=1
+-5.4154	1033 square rows	400	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	425	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	450	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	500	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	900	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	925	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	950	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	975	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1000	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1425	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1450	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1475	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1500	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1525	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	primes^3	9283	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=0
+-5.4154	1033 square rows	875	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1300	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	(p-1)/2	216	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=0
+-5.4154	1033 square rows	1325	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1350	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	pi digits (base 10)	18523	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=1
+-5.4154	1033 square rows	1375	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	1400	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	(p-1)/2	215	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=0
+-5.4154	cumulative prime sum	2186	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.4154	1033 square rows	275	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	300	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	325	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	euler gamma digits (base 29)	14877	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=5 litf=1 atb=1
+-5.4154	1033 square rows	350	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	375	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	775	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	800	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	825	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	1033 square rows	850	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4154	p_n + n	4461	28	0	p42	272	kw=DIVINITY isign=1 phase=1 litf=1 atb=1
+-5.4154	1033 square rows	175	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4191	p_n - n	15547	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.4191	sqrt3301 digits (base 29)	14071	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=0
+-5.4191	partitions p(n)	13970	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.4191	mobius mu(n)	4234	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=1
+-5.4191	sqrt3 digits (base 10)	12230	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=10 litf=1 atb=1
+-5.4191	(p-1)/2	18287	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=0
+-5.4191	emirps	12682	1	1	p42	272	kw=DIVINITY isign=28 phase=7 litf=1 atb=1
+-5.4191	d(n)	15354	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=7 litf=1 atb=1
+-5.4191	sqrt2 digits (base 29)	17548	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=1
+-5.4191	rad(n)	2847	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.4191	phi(n)	9604	28	0	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=1
+-5.4191	primes reversed digits	13522	28	1	p42	272	kw=DIVINITY isign=28 phase=2 litf=1 atb=0
+-5.4191	sqrt5 digits (base 29)	9658	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=1
+-5.4191	e^pi digits (base 29)	8663	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=1
+-5.4228	primes popcount	4857	28	0	p42	272	kw=DIVINITY isign=28 phase=0 litf=1 atb=0
+-5.4228	sqrt2 digits (base 29)	9504	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=1
+-5.4228	cbrt2 digits (base 29)	19097	28	0	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=1
+-5.4228	ln2 digits (base 10)	6539	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.4228	e^pi digits (base 29)	3427	28	1	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=1
+-5.4228	phi digits (base 10)	8850	1	1	p42	272	kw=DIVINITY isign=28 phase=4 litf=1 atb=0
+-5.4228	p_(n+1) * p_n	2323	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=8 litf=1 atb=0
+-5.4228	primes from 3301	6564	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.4228	primes from 3301	6564	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-5.4228	(p+1)/2	9496	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=2 litf=1 atb=0
+-5.4228	zeta(3) digits (base 29)	13559	28	1	p42	272	kw=DIVINITY isign=1 phase=0 litf=1 atb=0
+-5.4228	Omega(n)	14061	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.4228	e^pi digits (base 29)	4693	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.4228	Omega(n)	15539	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=1
+-5.4228	primes	12294	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.4228	sqrt2 digits (base 10)	6261	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.4228	primes from 3301	11831	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.4228	catalan G digits (base 29)	9024	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.4228	(p+1)/2	3977	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=1
+-5.4228	phi digits (base 10)	9011	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=0
+-5.4228	primes-1 (totient)	6211	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.4228	partitions p(n)	13019	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=1
+-5.4228	primes	7027	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.4228	primes	7027	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-5.4228	primes reversed digits	17304	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=0
+-5.4228	ln10 digits (base 29)	9250	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=1
+-5.4228	cumulative phi(n)	10444	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=0
+-5.4228	sqrt29 digits (base 29)	2891	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=0
+-5.4228	ln2 digits (base 10)	6009	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=0
+-5.4228	pi digits (base 29)	7989	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=6 litf=1 atb=1
+-5.4228	sqrt2 digits (base 29)	9502	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=1
+-5.4265	e digits (base 10)	13279	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.4265	sigma(n)	12673	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=1
+-5.4265	cumulative phi(n)	7893	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=1
+-5.4265	phi digits (base 29)	5455	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=1
+-5.4265	primes reversed digits	10823	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-5.4265	omega(n)	10611	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=0
+-5.4265	sqrt3 digits (base 10)	1483	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=9 litf=1 atb=1
+-5.4265	phi digits (base 29)	9262	1	1	p42	272	kw=DIVINITY isign=28 phase=0 litf=1 atb=0
+-5.4265	sqrt5 digits (base 29)	18633	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=1
+-5.4265	p_n + n	13176	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.4265	p_n^2 - 1	10628	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.4265	emirps	10881	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.4265	primes base-29 digit sum	16664	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=1
+-5.4265	ln2 digits (base 10)	5991	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.4265	(p-1)/2	18977	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=1
+-5.4265	sqrt29 digits (base 29)	3753	1	0	p42	272	kw=DIVINITY isign=28 phase=1 litf=1 atb=1
+-5.4265	phi digits (base 29)	11443	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=1
+-5.4301	primes^2	590	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.4301	primes^2	591	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.4301	partitions p(n)	9743	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.4301	prime index of primes	9400	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.4301	primes^2	8557	1	0	p42	272	kw=DIVINITY isign=1 phase=0 litf=1 atb=0
+-5.4301	n * p_n	13192	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=1
+-5.4301	primes popcount	11052	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.4301	primes^2	2329	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=1
+-5.4301	p_n + n	5560	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=1
+-5.4301	3301 * p_n	6723	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=12 litf=1 atb=1
+-5.4301	primes from 3301	15345	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.4301	primes+1	3736	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=1
+-5.4301	primes	15808	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.4301	p_(n+1) * p_n	614	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=1
+-5.4301	p_n - n	8156	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=1
+-5.4301	p_n - n	11192	28	1	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=1
+-5.4301	p_n - n	16982	1	1	p42	272	kw=DIVINITY isign=28 phase=4 litf=1 atb=0
+-5.4338	emirps	5201	28	0	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.4338	p_n + n	19632	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=0
+-5.4338	primes	8426	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.4338	(p-1)/2	2637	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.4338	primes-1 (totient)	610	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=1
+-5.4338	primes base-29 digit sum	2571	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=1
+-5.4338	primes from 3301	7963	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.4338	phi(n)	5888	1	0	p42	272	kw=DIVINITY isign=28 phase=2 litf=1 atb=1
+-5.4338	prime gaps	9189	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=1
+-5.4338	primes base-29 digit sum	9221	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=1
+-5.4338	primes base-29 digit sum	1588	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=1
+-5.4338	p_n + n	13392	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=4 litf=1 atb=0
+-5.4338	primes	11366	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=0
+-5.4338	primes from 3301	10903	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=0
+-5.4338	e digits (base 29)	11515	1	0	p42	272	kw=DIVINITY isign=28 phase=0 litf=1 atb=0
+-5.4338	sqrt2 digits (base 29)	3706	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=1
+-5.4338	primes^3	9283	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=0
+-5.4338	(p-1)/2	3491	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.4338	p_n^2 - 1	13630	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.4338	sqrt2 digits (base 29)	18275	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-5.4338	ln2 digits (base 29)	9738	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=1
+-5.4338	primes^2	273	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=0
+-5.4338	cumulative phi(n)	16135	28	0	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=1
+-5.4338	composites	3385	28	1	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=1
+-5.4338	(p-1)/2	13550	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=8 litf=1 atb=1
+-5.4338	primes base-29 digit sum	5965	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=1
+-5.4338	e^pi digits (base 29)	18351	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=9 litf=1 atb=1
+-5.4338	p_n - n	12060	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=0
+-5.4338	pi digits (base 10)	4082	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=1
+-5.4375	sigma(n)	2971	1	0	p42	272	kw=DIVINITY isign=28 phase=7 litf=1 atb=1
+-5.4375	carmichael lambda(n)	7063	28	1	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=1
+-5.4375	euler gamma digits (base 29)	15757	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.4375	n * p_n	7058	28	0	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=0
+-5.4375	p_(n+1) * p_n	2866	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=0
+-5.4375	sqrt2 digits (base 29)	3708	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=1
+-5.4375	sqrt2 digits (base 29)	7264	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=1
+-5.4375	sqrt2 digits (base 29)	18961	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=0
+-5.4375	primes+1	3123	28	0	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=1
+-5.4375	sqrt5 digits (base 29)	17939	1	1	p42	272	kw=DIVINITY isign=1 phase=0 litf=1 atb=0
+-5.4375	ln3301 digits (base 29)	980	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-5.4375	e digits (base 29)	1240	28	1	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=0
+-5.4375	prime gaps	4465	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=1
+-5.4375	sigma(n)	11041	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=0
+-5.4375	phi digits (base 10)	15923	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=0
+-5.4375	cbrt2 digits (base 29)	11203	1	1	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=1
+-5.4375	ln2 digits (base 10)	14110	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=1
+-5.4375	sqrt2 digits (base 29)	14650	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.4375	omega(n)	6219	1	0	p42	272	kw=DIVINITY isign=28 phase=7 litf=1 atb=0
+-5.4375	sqrt3 digits (base 10)	11358	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=9 litf=1 atb=1
+-5.4375	ln2 digits (base 10)	16606	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=1
+-5.4375	ln2 digits (base 10)	18167	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=1
+-5.4375	sqrt2 digits (base 29)	3740	1	1	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=0
+-5.4412	(p+1)/2	9647	28	1	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=0
+-5.4412	primes^3	17319	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-5.4412	e digits (base 29)	15338	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.4412	e digits (base 29)	15340	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.4412	ln3 digits (base 29)	4066	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=0
+-5.4412	(p+1)/2	16526	28	0	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=0
+-5.4412	3301 * p_n	14349	28	0	p42	272	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.4412	p_n mod 3301	11145	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=1
+-5.4412	pi digits (base 29)	14683	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4412	sqrt3 digits (base 10)	10578	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.4412	d(n)	4530	1	1	p42	272	kw=DIVINITY isign=28 phase=1 litf=1 atb=0
+-5.4412	phi digits (base 10)	8848	1	1	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=0
+-5.4412	(p-1)/2	3493	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.4412	ln3301 digits (base 29)	10249	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4412	(p-1)/2	3491	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.4412	3301 * p_n	1751	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.4412	sigma(n)	18739	28	0	p42	272	kw=DIVINITY isign=28 phase=6 litf=1 atb=1
+-5.4412	sqrt3 digits (base 10)	17868	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=0
+-5.4412	p_n - n	8434	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=1
+-5.4412	prime index of primes	6979	1	0	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=0
+-5.4412	phi digits (base 29)	11157	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=1
+-5.4412	phi(n)	13354	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=0
+-5.4449	primes digit sum	17152	28	0	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=0
+-5.4449	pi digits (base 10)	2028	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=1
+-5.4449	p_(n+1) * p_n	1197	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=0
+-5.4449	p_n - n	18444	28	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=1
+-5.4449	p_n - n	15699	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=0
+-5.4449	sqrt29 digits (base 29)	18520	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.4449	phi digits (base 29)	3075	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.4449	euler gamma digits (base 29)	7813	1	1	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=1
+-5.4449	primes reversed digits	8598	28	0	p42	272	kw=DIVINITY isign=28 phase=5 litf=1 atb=1
+-5.4449	d(n)	10448	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.4449	primes^2	592	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.4449	d(n)	10449	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.4449	(p+1)/2	8148	1	1	p42	272	kw=DIVINITY isign=1 phase=0 litf=1 atb=1
+-5.4449	sqrt3 digits (base 29)	7583	28	1	p42	272	kw=DIVINITY isign=28 phase=6 litf=1 atb=1
+-5.4449	3301 - p_n	10508	28	1	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=1
+-5.4449	primes reversed digits	17302	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=0
+-5.4449	p_n^2 - 1	14096	1	1	p42	272	kw=DIVINITY isign=28 phase=0 litf=1 atb=0
+-5.4449	prime index of primes	9324	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.4449	p_(n+1) * p_n	614	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=6 litf=1 atb=1
+-5.4449	e^pi digits (base 29)	18934	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.4449	cbrt2 digits (base 29)	16735	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=0
+-5.4449	omega(n)	15999	28	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.4485	pi digits (base 29)	6153	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=1
+-5.4485	primes digit sum	10935	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=1
+-5.4485	primes^2	5006	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=1
+-5.4485	primes base-29 digit sum	4344	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=1
+-5.4485	phi digits (base 10)	4860	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=0
+-5.4485	carmichael lambda(n)	572	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.4485	carmichael lambda(n)	9939	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=0
+-5.4485	ln2 digits (base 10)	6540	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.4485	sqrt29 digits (base 29)	2892	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=0
+-5.4485	(p+1)/2	12251	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=1
+-5.4485	composites	15761	28	1	p42	272	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.4485	p_n + n	6145	28	1	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=1
+-5.4485	3301 - p_n	500	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=8 litf=1 atb=0
+-5.4485	e digits (base 10)	17092	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=0
+-5.4485	p_n mod 3301	500	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=8 litf=1 atb=0
+-5.4485	(p+1)/2	10389	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=11 litf=1 atb=0
+-5.4485	pi digits (base 29)	18787	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=0
+-5.4485	e^pi digits (base 29)	19625	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=0
+-5.4485	phi digits (base 10)	13294	1	1	p42	272	kw=DIVINITY isign=28 phase=1 litf=1 atb=0
+-5.4485	euler gamma digits (base 29)	5165	1	0	p42	272	kw=DIVINITY isign=28 phase=4 litf=1 atb=0
+-5.4485	pi digits (base 10)	12331	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=0
+-5.4485	sqrt2 digits (base 10)	4890	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=0
+-5.4485	prime index of primes	3564	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=1
+-5.4522	p_n^2 - 1	14096	1	1	p42	272	kw=DIVINITY isign=28 phase=7 litf=1 atb=0
+-5.4522	p_n + n	6400	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=1
+-5.4522	sqrt3 digits (base 10)	10515	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=1
+-5.4522	phi digits (base 29)	236	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=2 litf=1 atb=0
+-5.4522	sqrt29 digits (base 29)	6917	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=1
+-5.4522	3301 * p_n	5331	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=0
+-5.4522	e^pi digits (base 29)	11106	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=1
+-5.4522	cumulative prime sum	8222	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.4522	n * p_n	13194	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=1
+-5.4522	d(n)	9582	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=0
+-5.4522	euler gamma digits (base 29)	3786	1	0	p42	272	kw=DIVINITY isign=28 phase=7 litf=1 atb=0
+-5.4522	primes base-29 digit sum	8936	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=3 litf=1 atb=1
+-5.4522	primes base-29 digit sum	8938	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=3 litf=1 atb=1
+-5.4522	primes+1	6587	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=1
+-5.4522	partitions p(n)	14554	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.4522	primes base-29 digit sum	10861	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=1
+-5.4522	p_n - n	12270	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.4522	primes base-29 digit sum	19207	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=0
+-5.4522	primes reversed digits	13522	28	1	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=0
+-5.4522	primes^2	7896	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=0
+-5.4522	sqrt2 digits (base 29)	3742	1	1	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=0
+-5.4522	e^pi digits (base 29)	11234	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=1
+-5.4522	zeta(3) digits (base 29)	3459	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=1
+-5.4522	cbrt2 digits (base 29)	18352	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=1
+-5.4559	primes reversed digits	11766	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.4559	e digits (base 29)	11676	28	1	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=0
+-5.4559	p_n mod 3301	18586	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.4559	sqrt29 digits (base 29)	6641	1	0	p42	272	kw=DIVINITY isign=28 phase=4 litf=1 atb=0
+-5.4559	sqrt3301 digits (base 29)	8119	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=1
+-5.4559	p_n + n	10484	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=0
+-5.4559	p_n + n	16237	1	0	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=1
+-5.4559	e digits (base 29)	11479	28	0	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=1
+-5.4559	primes base-29 digit sum	2785	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=0
+-5.4559	sqrt29 digits (base 29)	13402	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=1
+-5.4559	p_n + n	16237	1	0	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=1
+-5.4559	primes-1 (totient)	11467	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=1
+-5.4559	phi digits (base 29)	1880	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=0
+-5.4559	catalan G digits (base 29)	5440	1	1	p42	272	kw=DIVINITY isign=28 phase=7 litf=1 atb=1
+-5.4559	cumulative prime sum	14134	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-5.4559	pi digits (base 10)	12331	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.4559	p_n mod 3301	15352	28	0	p42	272	kw=DIVINITY isign=28 phase=6 litf=1 atb=1
+-5.4559	e digits (base 29)	580	1	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=1
+-5.4559	primes digit sum	13858	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=0
+-5.4559	sqrt2 digits (base 29)	9504	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=1
+-5.4559	pi digits (base 29)	7988	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=6 litf=1 atb=1
+-5.4559	prime index of primes	5628	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=1
+-5.4559	d(n)	890	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=1
+-5.4559	sqrt2 digits (base 29)	9502	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=1
+-5.4596	primes from 3301	11427	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=1
+-5.4596	p_n mod 3301	12924	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=0
+-5.4596	cbrt2 digits (base 29)	4555	1	0	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=1
+-5.4596	primes^3	17150	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=1
+-5.4596	primes reversed digits	17772	28	1	p42	272	kw=DIVINITY isign=1 phase=0 litf=1 atb=0
+-5.4596	primes	11890	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=1
+-5.4596	d(n)	3534	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.4596	p_n mod 3301	11145	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=1
+-5.4596	d(n)	3535	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.4596	p_(n+1) * p_n	7205	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=1
+-5.4596	p_(n+1) * p_n	7206	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=1
+-5.4596	primes base-29 digit sum	10821	28	1	p42	272	kw=DIVINITY isign=28 phase=4 litf=1 atb=0
+-5.4596	sqrt3 digits (base 10)	10978	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=1
+-5.4596	Omega(n)	476	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.4596	(p+1)/2	19212	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=1
+-5.4596	partitions p(n)	3054	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=0 litf=1 atb=1
+-5.4596	primes	11891	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=1
+-5.4596	ln2 digits (base 10)	6540	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.4596	sqrt3 digits (base 10)	7642	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=0
+-5.4596	e^pi digits (base 29)	12138	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=6 litf=1 atb=0
+-5.4596	zeta(3) digits (base 29)	12613	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=1
+-5.4596	primes from 3301	11428	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=1
+-5.4596	cumulative prime sum	9972	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=0
+-5.4596	(p-1)/2	6890	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.4596	primes+1	13735	28	1	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=0
+-5.4632	p_(n+1) * p_n	5587	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=0
+-5.4632	p_n^2 - 1	9809	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=0
+-5.4632	primes from 3301	17648	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.4632	ln10 digits (base 29)	14530	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=1
+-5.4632	catalan G digits (base 29)	6657	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=0
+-5.4632	sqrt5 digits (base 29)	10551	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=1
+-5.4632	primes digit sum	10935	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=1
+-5.4632	partitions p(n)	9751	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=1
+-5.4632	(p-1)/2	18287	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=0
+-5.4632	primes	18111	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.4632	(p+1)/2	5816	28	1	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=0
+-5.4632	d(n)	8560	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.4632	composites	2123	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=12 litf=1 atb=0
+-5.4632	p_(n+1) * p_n	16607	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=0
+-5.4632	partitions p(n)	18244	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.4632	Omega(n)	12683	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.4632	(p-1)/2	6052	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=10 litf=1 atb=0
+-5.4632	pi^2 digits (base 29)	473	1	0	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=0
+-5.4632	zeta(3) digits (base 29)	13555	28	1	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=0
+-5.4632	primes from 3301	12606	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.4632	primes	13069	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.4632	rad(n)	39	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.4632	cbrt2 digits (base 29)	4440	1	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.4669	phi(n)	18929	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=1
+-5.4669	catalan G digits (base 29)	16389	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.4669	ln2 digits (base 10)	6541	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=2 litf=1 atb=1
+-5.4669	primes	16976	1	1	p42	272	kw=DIVINITY isign=1 phase=0 litf=1 atb=1
+-5.4669	e digits (base 29)	18194	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=0
+-5.4669	sigma(n)	2972	1	0	p42	272	kw=DIVINITY isign=28 phase=7 litf=1 atb=1
+-5.4669	primes-1 (totient)	3922	1	1	p42	272	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.4669	prime index of primes	9398	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.4669	primes^2	13274	28	1	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=0
+-5.4669	pi digits (base 29)	5018	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=1
+-5.4669	prime index of primes	9400	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.4669	pi digits (base 29)	16066	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=1
+-5.4669	sqrt3 digits (base 29)	3500	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.4669	sqrt3 digits (base 10)	13525	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=1
+-5.4669	primes from 3301	16513	1	1	p42	272	kw=DIVINITY isign=1 phase=0 litf=1 atb=1
+-5.4669	ln3301 digits (base 29)	11759	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=8 litf=1 atb=0
+-5.4669	cumulative phi(n)	18223	28	0	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=1
+-5.4669	ln3301 digits (base 29)	13136	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=1
+-5.4669	primes-1 (totient)	18937	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=4 litf=1 atb=0
+-5.4669	primes base-29 digit sum	8978	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=11 litf=1 atb=0
+-5.4669	ln3 digits (base 29)	6514	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.4669	catalan G digits (base 29)	17304	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=1
+-5.4669	Omega(n)	12042	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=1
+-5.4706	catalan G digits (base 29)	516	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=11 litf=1 atb=1
+-5.4706	euler gamma digits (base 29)	7817	1	1	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=1
+-5.4706	n * p_n	15689	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.4706	primes-1 (totient)	4645	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=1
+-5.4706	3301 * p_n	10198	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=0
+-5.4706	sqrt2 digits (base 10)	4220	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.4706	sqrt2 digits (base 29)	8075	28	0	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=0
+-5.4706	sqrt2 digits (base 10)	7280	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=7 litf=1 atb=1
+-5.4706	pi^2 digits (base 29)	18364	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=1
+-5.4706	ln2 digits (base 10)	18365	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4706	phi(n)	7412	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=1
+-5.4706	(p+1)/2	14232	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=1
+-5.4706	p_n - n	12510	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=8 litf=1 atb=0
+-5.4706	pi^2 digits (base 29)	291	28	0	p42	272	kw=DIVINITY isign=28 phase=4 litf=1 atb=0
+-5.4706	p_(n+1) * p_n	10918	1	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.4706	zeta(3) digits (base 29)	1413	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=1
+-5.4743	phi digits (base 29)	236	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=3 litf=1 atb=0
+-5.4743	pi digits (base 29)	5186	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4743	primes reversed digits	10825	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=0
+-5.4743	p_(n+1) * p_n	12098	28	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=1
+-5.4743	p_(n+1) * p_n	18819	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-5.4743	pi digits (base 29)	7046	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.4743	phi digits (base 10)	8675	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.4743	p_(n+1) * p_n	18820	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-5.4743	mobius mu(n)	6135	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=1
+-5.4743	primes reversed digits	3962	28	0	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=0
+-5.4743	pi digits (base 10)	9203	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.4743	pi digits (base 29)	5355	1	1	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=0
+-5.4743	ln3301 digits (base 29)	10930	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=1
+-5.4743	e digits (base 29)	5410	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.4743	euler gamma digits (base 29)	7819	1	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=1
+-5.4743	euler gamma digits (base 29)	7821	1	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=1
+-5.4743	primes base-29 digit sum	3335	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=1
+-5.4743	ln3 digits (base 29)	9307	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=1
+-5.4743	partitions p(n)	10805	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=0
+-5.4743	(p+1)/2	3956	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=1
+-5.4743	p_n - n	767	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=1
+-5.4743	sqrt29 digits (base 29)	16063	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=1
+-5.4743	phi(n)	6102	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=11 litf=1 atb=0
+-5.4743	prime index of primes	1921	1	1	p42	272	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.4743	cumulative phi(n)	3061	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=1
+-5.4743	ln2 digits (base 10)	6501	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=2 litf=1 atb=0
+-5.4743	pi digits (base 10)	8881	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=0
+-5.4779	d(n)	10294	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=3 litf=1 atb=1
+-5.4779	e digits (base 10)	7220	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.4779	pi digits (base 10)	14154	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=0
+-5.4779	primes^3	10411	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=1
+-5.4779	n * p_n	1768	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=1
+-5.4779	Omega(n)	8968	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=7 litf=1 atb=1
+-5.4779	primes	4378	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.4779	ln10 digits (base 29)	11931	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=1
+-5.4779	(p+1)/2	187	28	0	p42	272	kw=DIVINITY isign=1 phase=1 litf=1 atb=1
+-5.4779	ln3301 digits (base 29)	10247	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4779	n * p_n	8595	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=1
+-5.4779	p_n mod 3301	12925	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.4779	phi digits (base 29)	1880	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=0
+-5.4779	carmichael lambda(n)	13062	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=0
+-5.4779	sqrt2 digits (base 10)	2997	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=1
+-5.4779	ln2 digits (base 29)	17895	28	0	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.4779	cumulative prime sum	8222	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.4779	sqrt3301 digits (base 29)	2638	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=6 litf=1 atb=0
+-5.4779	phi digits (base 10)	10857	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=0
+-5.4779	primes from 3301	3915	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.4779	3301 * p_n	8184	1	0	p42	272	kw=DIVINITY isign=1 phase=0 litf=1 atb=0
+-5.4816	3301 - p_n	10510	28	1	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=1
+-5.4816	partitions p(n)	5290	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=1
+-5.4816	primes base-29 digit sum	15296	28	1	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=0
+-5.4816	ln3301 digits (base 29)	15156	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=1
+-5.4816	prime gaps	10593	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=1
+-5.4816	sqrt3 digits (base 29)	8529	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.4816	(p+1)/2	16524	28	0	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=0
+-5.4816	ln3301 digits (base 29)	15863	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=1
+-5.4816	3301 - p_n	7313	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=0
+-5.4816	pi digits (base 10)	12942	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=0
+-5.4816	3301 - p_n	15617	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=2 litf=1 atb=1
+-5.4816	omega(n)	12797	28	0	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.4816	p_n + n	6400	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=1
+-5.4816	pi^2 digits (base 29)	11405	1	1	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=1
+-5.4816	(p-1)/2	18969	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=0
+-5.4816	sigma(n)	3806	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=0
+-5.4816	d(n)	10296	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=1
+-5.4816	ln3 digits (base 29)	4936	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.4816	ln3 digits (base 29)	6513	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.4853	sqrt3301 digits (base 29)	6140	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=1
+-5.4853	1033 square rows	1159	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	p_n + n	7011	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=1
+-5.4853	1033 square rows	1184	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	184	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	134	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	1259	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	sqrt3 digits (base 10)	14775	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=1
+-5.4853	sqrt3 digits (base 10)	14777	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=1
+-5.4853	1033 square rows	1409	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	1009	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	1434	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	1059	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	composites	220	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.4853	1033 square rows	9	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	34	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	59	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	84	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	109	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	534	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	559	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	584	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	609	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	634	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	1034	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	e digits (base 29)	11674	28	1	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=0
+-5.4853	p_n + n	4162	28	1	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=0
+-5.4853	1033 square rows	1109	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	1134	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	1584	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	1084	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	1609	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	1634	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	1659	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	cumulative prime sum	16608	28	0	p42	272	kw=DIVINITY isign=1 phase=1 litf=1 atb=1
+-5.4853	ln10 digits (base 29)	11933	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=1
+-5.4853	1033 square rows	959	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	n * p_n	1768	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=1
+-5.4853	1033 square rows	1559	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	prime gaps	16124	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=0
+-5.4853	1033 square rows	1209	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	659	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	1459	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	1484	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	pi digits (base 29)	6151	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=1
+-5.4853	1033 square rows	1234	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	rad(n)	13057	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=1
+-5.4853	primes	15387	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.4853	1033 square rows	209	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	sqrt3 digits (base 29)	8973	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=1
+-5.4853	catalan G digits (base 29)	17036	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.4853	1033 square rows	684	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	984	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	1509	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	1534	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	ln2 digits (base 29)	9493	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=0
+-5.4853	(p-1)/2	17394	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.4853	1033 square rows	409	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	primes base-29 digit sum	3234	28	0	p42	272	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.4853	1033 square rows	434	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	459	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	484	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	509	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	sqrt2 digits (base 10)	9552	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.4853	p_n^2 - 1	16222	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=1
+-5.4853	1033 square rows	909	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	934	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	primes from 3301	14924	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.4853	pi digits (base 29)	5018	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=1
+-5.4853	phi digits (base 29)	235	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=3 litf=1 atb=0
+-5.4853	1033 square rows	234	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	709	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	ln2 digits (base 29)	10494	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	primes reversed digits	1814	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	734	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	159	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	759	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	284	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	p_n - n	15489	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=0
+-5.4853	primes base-29 digit sum	1338	28	1	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=0
+-5.4853	1033 square rows	1359	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	primes	12658	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=1
+-5.4853	e digits (base 29)	18529	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=1
+-5.4853	1033 square rows	784	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	809	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	834	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	859	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	884	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	1284	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	1309	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	259	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	1334	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	primes from 3301	12195	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=1
+-5.4853	1033 square rows	1384	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	309	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	334	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	primes-1 (totient)	10666	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=0
+-5.4853	1033 square rows	359	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4853	1033 square rows	384	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.4890	primes reversed digits	2686	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=1
+-5.4890	ln2 digits (base 10)	5545	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.4890	cumulative prime sum	14426	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=9 litf=1 atb=0
+-5.4890	sqrt3 digits (base 29)	17828	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=8 litf=1 atb=1
+-5.4890	(p+1)/2	1181	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=1
+-5.4890	primes digit sum	6868	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.4890	primes+1	10856	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=0
+-5.4890	composites	17171	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=1
+-5.4890	3301 - p_n	499	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=1
+-5.4890	sqrt3 digits (base 10)	14915	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=0
+-5.4890	sqrt3 digits (base 10)	14915	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=0
+-5.4890	phi digits (base 10)	13235	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=1
+-5.4890	Omega(n)	8972	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=8 litf=1 atb=1
+-5.4890	p_n - n	17883	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=4 litf=1 atb=0
+-5.4890	sqrt5 digits (base 29)	3416	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=1
+-5.4890	p_n + n	3287	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=4 litf=1 atb=1
+-5.4890	3301 * p_n	10881	1	1	p42	272	kw=DIVINITY isign=28 phase=2 litf=1 atb=0
+-5.4890	p_n mod 3301	499	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=1
+-5.4890	3301 - p_n	10238	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=1
+-5.4890	p_n mod 3301	13656	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=4 litf=1 atb=0
+-5.4890	(p+1)/2	12896	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.4890	primes^2	6836	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=0
+-5.4890	ln2 digits (base 10)	18167	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=1
+-5.4890	pi digits (base 10)	17158	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.4926	zeta(3) digits (base 29)	15006	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=1
+-5.4926	sqrt3301 digits (base 29)	12746	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=1
+-5.4926	sqrt29 digits (base 29)	4990	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.4926	phi digits (base 10)	1006	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.4926	phi digits (base 29)	11505	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.4926	emirps	339	1	0	p42	272	kw=DIVINITY isign=28 phase=4 litf=1 atb=0
+-5.4926	primes digit sum	4801	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=9 litf=1 atb=0
+-5.4926	primes+1	17706	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=1
+-5.4926	primes digit sum	5779	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.4926	d(n)	3456	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.4926	ln2 digits (base 10)	7575	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=0
+-5.4926	3301 * p_n	2284	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.4926	prime index of primes	8526	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=2 litf=1 atb=1
+-5.4926	p_n^2 - 1	1416	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=0
+-5.4926	(p-1)/2	9503	28	0	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=0
+-5.4926	sqrt3301 digits (base 29)	11831	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=2 litf=1 atb=1
+-5.4926	sqrt2 digits (base 10)	15724	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=1
+-5.4926	sqrt3 digits (base 10)	13732	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=0
+-5.4926	sqrt3 digits (base 29)	1850	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=1
+-5.4926	pi digits (base 29)	4260	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=0
+-5.4926	ln2 digits (base 10)	12565	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=3 litf=1 atb=1
+-5.4926	(p-1)/2	2599	28	1	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=1
+-5.4926	3301 * p_n	5818	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=0
+-5.4926	sqrt29 digits (base 29)	11964	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=1
+-5.4926	ln3 digits (base 29)	12288	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=1
+-5.4926	p_n - n	8155	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=1
+-5.4926	emirps	13959	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=5 litf=1 atb=0
+-5.4926	composites	8024	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=12 litf=1 atb=0
+-5.4926	primes^3	8481	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=1
+-5.4926	emirps	13957	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=5 litf=1 atb=0
+-5.4963	phi(n)	5149	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.4963	e digits (base 29)	7533	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=1
+-5.4963	ln10 digits (base 29)	9636	28	0	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=1
+-5.4963	ln2 digits (base 29)	11338	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-5.4963	primes base-29 digit sum	1968	28	0	p42	272	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.4963	rad(n)	12615	28	1	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=0
+-5.4963	primes base-29 digit sum	1969	28	0	p42	272	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.4963	primes-1 (totient)	19239	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.4963	(p-1)/2	8187	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-5.4963	pi digits (base 29)	5511	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.4963	primes-1 (totient)	19239	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.4963	p_n^2 - 1	8399	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=1
+-5.4963	e digits (base 29)	15744	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=1
+-5.4963	sqrt2 digits (base 29)	17546	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=1
+-5.4963	e^pi digits (base 29)	11905	28	0	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.4963	3301 * p_n	19199	1	0	p42	272	kw=DIVINITY isign=1 phase=1 litf=1 atb=1
+-5.4963	sqrt5 digits (base 29)	14582	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=1
+-5.4963	primes reversed digits	4962	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=8 litf=1 atb=0
+-5.4963	(p-1)/2	17394	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.4963	carmichael lambda(n)	572	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=0
+-5.4963	cumulative phi(n)	10265	1	0	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=0
+-5.4963	sqrt2 digits (base 29)	2127	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=8 litf=1 atb=0
+-5.4963	emirps	932	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=1
+-5.4963	ln2 digits (base 10)	17340	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=1
+-5.4963	(p-1)/2	5930	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=0
+-5.4963	(p-1)/2	8034	28	0	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=1
+-5.4963	(p-1)/2	8034	28	0	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=1
+-5.4963	sqrt29 digits (base 29)	12295	28	0	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=1
+-5.4963	catalan G digits (base 29)	7083	28	0	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=0
+-5.4963	primes digit sum	18002	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=7 litf=1 atb=0
+-5.4963	rad(n)	14447	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.4963	rad(n)	14449	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.4963	n * p_n	11345	1	1	p42	272	kw=DIVINITY isign=28 phase=4 litf=1 atb=1
+-5.4963	(p-1)/2	158	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=1
+-5.4963	primes+1	15100	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=1
+-5.4963	sqrt2 digits (base 10)	12165	1	1	p42	272	kw=DIVINITY isign=28 phase=4 litf=1 atb=0
+-5.4963	p_n^2 - 1	10628	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-5.5000	sqrt29 digits (base 29)	11965	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=1
+-5.5000	composites	14875	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=1
+-5.5000	sqrt3301 digits (base 29)	14070	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=0
+-5.5000	d(n)	4528	1	1	p42	272	kw=DIVINITY isign=28 phase=1 litf=1 atb=0
+-5.5000	sqrt3 digits (base 29)	12158	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.5000	(p+1)/2	7323	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.5000	partitions p(n)	11828	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.5000	primes	17530	28	0	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=1
+-5.5000	sqrt3 digits (base 29)	6375	28	1	p42	272	kw=DIVINITY isign=28 phase=1 litf=1 atb=1
+-5.5000	3301 - p_n	19572	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=1
+-5.5000	sqrt2 digits (base 29)	10816	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=0
+-5.5000	zeta(3) digits (base 29)	13553	28	1	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=0
+-5.5000	primes digit sum	10546	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=0 litf=1 atb=1
+-5.5000	sqrt3 digits (base 10)	11186	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=1
+-5.5000	ln3301 digits (base 29)	10247	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=1
+-5.5000	p_n - n	4937	28	0	p42	272	kw=DIVINITY isign=28 phase=6 litf=1 atb=1
+-5.5000	(p+1)/2	2961	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=0
+-5.5000	sqrt5 digits (base 29)	3414	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=1
+-5.5000	primes from 3301	17067	28	0	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=1
+-5.5000	e digits (base 10)	1689	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=0
+-5.5000	p_n^2 - 1	15471	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=0
+-5.5000	composites	14667	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=8 litf=1 atb=0
+-5.5000	primes^3	17320	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-5.5000	phi(n)	6102	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=12 litf=1 atb=0
+-5.5000	sqrt3 digits (base 29)	3131	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=12 litf=1 atb=0
+-5.5000	phi(n)	13379	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=0
+-5.5000	p_n - n	5517	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=7 litf=1 atb=1
+-5.5000	ln2 digits (base 10)	6005	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=8 litf=1 atb=1
+-5.5037	sqrt2 digits (base 29)	18963	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=0
+-5.5037	sqrt3 digits (base 10)	3810	1	0	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=0
+-5.5037	primes^3	9281	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=0
+-5.5037	Omega(n)	12330	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-5.5037	(p+1)/2	16371	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=0 litf=1 atb=1
+-5.5037	ln3 digits (base 29)	4072	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=0
+-5.5037	primes base-29 digit sum	12909	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=1
+-5.5037	pi^2 digits (base 29)	7914	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.5037	(p+1)/2	2764	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=0
+-5.5037	sqrt3301 digits (base 29)	8121	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=1
+-5.5037	3301 - p_n	3051	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=1
+-5.5037	(p+1)/2	4833	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=0
+-5.5037	p_(n+1) * p_n	16864	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.5037	primes+1	9178	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-5.5037	e digits (base 29)	19121	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=0
+-5.5037	(p+1)/2	16369	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=0 litf=1 atb=1
+-5.5037	primes reversed digits	10821	1	1	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=1
+-5.5037	p_(n+1) * p_n	5587	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=0
+-5.5037	n * p_n	9183	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=0
+-5.5037	primes digit sum	19577	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=0
+-5.5037	d(n)	10799	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=1
+-5.5037	phi(n)	13354	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=6 litf=1 atb=0
+-5.5037	primes^2	6838	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=0
+-5.5037	e^pi digits (base 29)	12695	1	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.5037	(p-1)/2	18465	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=1
+-5.5037	cbrt2 digits (base 29)	4436	1	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.5037	cbrt2 digits (base 29)	4438	1	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.5037	ln10 digits (base 29)	1645	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.5037	sqrt3301 digits (base 29)	15732	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=12 litf=1 atb=0
+-5.5074	primes-1 (totient)	10664	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.5074	catalan G digits (base 29)	2828	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=11 litf=1 atb=1
+-5.5074	phi(n)	289	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=1
+-5.5074	ln2 digits (base 10)	19572	28	0	p42	272	kw=DIVINITY isign=1 phase=0 litf=1 atb=1
+-5.5074	d(n)	3535	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=0
+-5.5074	ln10 digits (base 29)	13741	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=1
+-5.5074	p_n mod 3301	501	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=1
+-5.5074	mobius mu(n)	19010	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=1
+-5.5074	Omega(n)	202	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.5074	partitions p(n)	1183	28	1	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=1
+-5.5074	d(n)	3534	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=0
+-5.5074	pi^2 digits (base 29)	7735	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.5074	composites	13933	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=1
+-5.5074	phi digits (base 29)	4424	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=1
+-5.5074	3301 * p_n	13571	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=5 litf=1 atb=1
+-5.5074	3301 * p_n	13690	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=3 litf=1 atb=1
+-5.5074	3301 - p_n	501	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=1
+-5.5074	(p+1)/2	3977	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=3 litf=1 atb=1
+-5.5074	e digits (base 29)	11674	28	1	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=0
+-5.5074	sqrt2 digits (base 10)	5091	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=6 litf=1 atb=0
+-5.5074	(p-1)/2	13886	28	0	p42	272	kw=DIVINITY isign=1 phase=0 litf=1 atb=0
+-5.5074	(p+1)/2	9645	28	1	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=0
+-5.5074	catalan G digits (base 29)	516	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=9 litf=1 atb=1
+-5.5074	prime index of primes	5628	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=6 litf=1 atb=1
+-5.5074	cbrt2 digits (base 29)	11464	28	1	p42	272	kw=DIVINITY isign=1 phase=0 litf=1 atb=1
+-5.5074	p_n mod 3301	8976	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.5074	partitions p(n)	381	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=0
+-5.5074	sqrt2 digits (base 29)	3742	1	1	p42	272	kw=DIVINITY isign=28 phase=4 litf=1 atb=0
+-5.5074	cumulative phi(n)	4313	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.5110	e^pi digits (base 29)	16527	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=0
+-5.5110	n * p_n	11158	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=1
+-5.5110	n * p_n	11160	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=1
+-5.5110	p_n mod 3301	505	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=1
+-5.5110	cbrt2 digits (base 29)	15570	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.5110	ln2 digits (base 29)	5980	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.5110	p_n - n	8247	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=0
+-5.5110	euler gamma digits (base 29)	1523	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=1
+-5.5110	primes digit sum	6828	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=0
+-5.5110	p_n + n	7009	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=1
+-5.5110	primes	7210	28	0	p42	272	kw=DIVINITY isign=28 phase=2 litf=1 atb=0
+-5.5110	primes base-29 digit sum	10821	28	1	p42	272	kw=DIVINITY isign=28 phase=5 litf=1 atb=0
+-5.5110	phi(n)	5364	1	1	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=1
+-5.5110	3301 - p_n	505	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=1
+-5.5110	ln3 digits (base 29)	5059	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=1
+-5.5110	d(n)	173	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=6 litf=1 atb=0
+-5.5110	phi(n)	11609	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=1
+-5.5110	euler gamma digits (base 29)	7453	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=1
+-5.5110	phi(n)	10884	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=1
+-5.5110	p_(n+1) * p_n	18821	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=0
+-5.5110	cumulative prime sum	804	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=1 litf=1 atb=0
+-5.5110	sqrt3 digits (base 10)	13730	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.5110	pi digits (base 10)	17157	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.5110	3301 * p_n	2282	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.5110	catalan G digits (base 29)	6656	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=0
+-5.5110	cumulative prime sum	8923	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=10 litf=1 atb=1
+-5.5110	pi digits (base 29)	10176	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=1
+-5.5110	primes from 3301	6747	28	0	p42	272	kw=DIVINITY isign=28 phase=2 litf=1 atb=0
+-5.5110	mobius mu(n)	6948	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=1
+-5.5110	d(n)	875	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.5110	(p+1)/2	12896	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.5147	composites	7722	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=9 litf=1 atb=0
+-5.5147	ln3 digits (base 29)	10799	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=8 litf=1 atb=0
+-5.5147	sigma(n)	18022	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.5147	cumulative prime sum	8460	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=1
+-5.5147	sqrt2 digits (base 10)	19171	1	1	p42	272	kw=DIVINITY isign=28 phase=7 litf=1 atb=0
+-5.5147	e digits (base 10)	17627	1	0	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=1
+-5.5147	sqrt3301 digits (base 29)	19565	1	1	p42	272	kw=DIVINITY isign=28 phase=5 litf=1 atb=1
+-5.5147	p_(n+1) * p_n	5415	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=1
+-5.5147	mobius mu(n)	167	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=1
+-5.5147	omega(n)	9038	28	0	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.5147	primes+1	7613	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=12 litf=1 atb=0
+-5.5147	euler gamma digits (base 29)	2792	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=1
+-5.5147	sigma(n)	5065	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.5147	primes+1	16622	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=3 litf=1 atb=1
+-5.5147	composites	19438	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.5147	primes-1 (totient)	9787	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=1
+-5.5147	primes popcount	131	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=0
+-5.5147	sigma(n)	10729	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=5 litf=1 atb=1
+-5.5147	primes^3	15688	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=0
+-5.5147	ln2 digits (base 29)	8087	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=1
+-5.5147	sqrt2 digits (base 29)	9045	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.5147	sqrt3 digits (base 10)	14526	28	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.5147	3301 * p_n	5659	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=6 litf=1 atb=1
+-5.5147	prime gaps	11919	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=0
+-5.5147	ln2 digits (base 10)	536	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=1
+-5.5147	rad(n)	8205	28	1	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=1
+-5.5147	e^pi digits (base 29)	15317	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.5147	(p-1)/2	158	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=1
+-5.5147	p_n - n	8155	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=1
+-5.5184	catalan G digits (base 29)	17304	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=1
+-5.5184	primes+1	15100	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=1
+-5.5184	phi(n)	6908	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=3 litf=1 atb=0
+-5.5184	cumulative prime sum	8224	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.5184	sigma(n)	15552	1	0	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=1
+-5.5184	zeta(3) digits (base 29)	10572	1	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=0
+-5.5184	primes reversed digits	10824	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-5.5184	e digits (base 29)	15011	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=1
+-5.5184	pi digits (base 29)	5188	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.5184	catalan G digits (base 29)	16142	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.5184	carmichael lambda(n)	3239	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.5184	sqrt2 digits (base 10)	6666	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-5.5184	pi digits (base 10)	12561	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=1
+-5.5184	pi digits (base 10)	12593	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=6 litf=1 atb=0
+-5.5184	e digits (base 10)	18661	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=1
+-5.5184	primes base-29 digit sum	17886	28	0	p42	272	kw=DIVINITY isign=28 phase=4 litf=1 atb=1
+-5.5184	p_(n+1) * p_n	17966	28	0	p42	272	kw=DIVINITY isign=1 phase=1 litf=1 atb=1
+-5.5184	(p-1)/2	12048	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.5184	p_n^2 - 1	18347	1	0	p42	272	kw=DIVINITY isign=1 phase=4 litf=1 atb=1
+-5.5184	(p+1)/2	16525	28	0	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=0
+-5.5184	primes reversed digits	16877	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=0
+-5.5184	ln2 digits (base 10)	17222	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.5184	primes popcount	3188	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=7 litf=1 atb=1
+-5.5184	(p+1)/2	16371	1	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=1
+-5.5184	p_n + n	11868	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=1
+-5.5184	prime gaps	7831	28	0	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=1
+-5.5184	ln2 digits (base 10)	11972	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.5184	ln2 digits (base 10)	14067	1	0	p42	272	kw=DIVINITY isign=28 phase=7 litf=1 atb=0
+-5.5184	prime gaps	7831	28	0	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=1
+-5.5221	ln2 digits (base 29)	6190	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=0
+-5.5221	prime index of primes	11692	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=1
+-5.5221	mobius mu(n)	18402	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=1
+-5.5221	carmichael lambda(n)	18323	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=5 litf=1 atb=0
+-5.5221	p_n - n	17980	28	1	p42	272	kw=DIVINITY isign=28 phase=1 litf=1 atb=1
+-5.5221	primes	18110	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.5221	(p+1)/2	11515	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=0
+-5.5221	3301 - p_n	8185	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=1
+-5.5221	cumulative phi(n)	4948	28	1	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=1
+-5.5221	phi digits (base 29)	14940	28	1	p42	272	kw=DIVINITY isign=1 phase=7 litf=1 atb=0
+-5.5221	primes+1	2405	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=2 litf=1 atb=0
+-5.5221	phi digits (base 10)	3990	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-5.5221	sigma(n)	14019	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=1 litf=1 atb=1
+-5.5221	primes+1	16182	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=0
+-5.5221	sqrt2 digits (base 10)	17048	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=3 litf=1 atb=1
+-5.5221	primes from 3301	17647	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.5221	catalan G digits (base 29)	10684	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=1
+-5.5221	Omega(n)	17548	1	0	p42	272	kw=DIVINITY isign=28 phase=6 litf=1 atb=0
+-5.5221	zeta(3) digits (base 29)	10892	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=2 litf=1 atb=0
+-5.5221	ln3301 digits (base 29)	1012	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.5221	ln3301 digits (base 29)	1014	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=0
+-5.5221	ln3 digits (base 29)	7952	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.5221	ln2 digits (base 29)	3506	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=1
+-5.5221	ln10 digits (base 29)	11487	1	1	p42	272	kw=DIVINITY isign=28 phase=5 litf=1 atb=1
+-5.5221	n * p_n	10439	28	1	p42	272	kw=DIVINITY isign=1 phase=3 litf=1 atb=1
+-5.5221	p_n - n	17555	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=1
+-5.5221	phi digits (base 10)	18626	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=1
+-5.5221	primes^2	7110	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.5221	pi^2 digits (base 29)	2565	28	1	p42	272	kw=DIVINITY isign=28 phase=3 litf=1 atb=1
+-5.5221	(p+1)/2	12892	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.5221	primes popcount	9263	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=11 litf=1 atb=0
+-5.5221	phi digits (base 10)	5716	28	0	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=0
+-5.5221	primes+1	3736	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=1
+-5.5221	pi digits (base 10)	4082	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=1
+-5.5221	(p-1)/2	13550	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=9 litf=1 atb=1
+-5.5221	(p-1)/2	18971	1	0	p42	272	kw=DIVINITY isign=1 phase=1 litf=1 atb=0
+-5.5221	(p-1)/2	4606	28	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=10 litf=1 atb=1
+-5.5257	cumulative prime sum	10002	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=0
+-5.5257	composites	1866	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=9 litf=1 atb=1
+-5.5257	n * p_n	18897	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=3 litf=1 atb=0
+-5.5257	3301 * p_n	3796	1	0	p42	272	kw=DIVINITY isign=28 phase=0 litf=1 atb=0
+-5.5257	3301 - p_n	15617	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=3 litf=1 atb=1
+-5.5257	pi digits (base 29)	489	1	1	p42	272	kw=DIVINITY isign=1 phase=5 litf=1 atb=0
+-5.5257	phi digits (base 10)	15853	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=0
+-5.5257	sqrt2 digits (base 10)	4218	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=0 litf=1 atb=0
+-5.5257	primes^2	16880	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=0
+-5.5257	primes digit sum	15837	28	0	p42	272	kw=DIVINITY isign=1 phase=2 litf=1 atb=1
+-5.5257	p_n^2 - 1	12240	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=12 litf=1 atb=0
+-5.5257	pi^2 digits (base 29)	7913	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=0 litf=1 atb=0
+-5.5257	sqrt29 digits (base 29)	6917	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=3 litf=1 atb=1
+-5.5257	sqrt5 digits (base 29)	6477	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=12 litf=1 atb=1
+-5.5257	ln3 digits (base 29)	6640	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=0
+-5.5257	cbrt2 digits (base 29)	12720	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.5257	n * p_n	11162	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=1
+-5.5257	p_n + n	1759	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.5257	primes-1 (totient)	19562	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=2 litf=1 atb=0
+-5.5257	composites	11315	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=0
+-5.5257	primes^3	10286	1	1	p42	272	kw=DIVINITY isign=1 phase=6 litf=1 atb=1
+-5.5257	sqrt5 digits (base 29)	19144	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=7 litf=1 atb=0
+-5.5257	n * p_n	6851	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=0
+-5.5257	e digits (base 29)	9447	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=8 litf=1 atb=0
+-5.5257	sqrt2 digits (base 29)	17168	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=8 litf=1 atb=0
+-5.5257	sqrt2 digits (base 10)	4892	28	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=2 litf=1 atb=0
+-5.5257	sqrt5 digits (base 29)	3947	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=0 litf=1 atb=0
+-5.5294	sqrt3 digits (base 10)	11186	1	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=2 litf=1 atb=1
+-5.5294	pi digits (base 29)	10946	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=10 litf=1 atb=1
+-5.5294	zeta(3) digits (base 29)	8803	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=4 litf=1 atb=1
+-5.5294	(p-1)/2	1053	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=12 litf=1 atb=0
+-5.5294	prime index of primes	12248	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=10 litf=1 atb=1
+-5.5294	phi(n)	15847	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=7 litf=1 atb=0
+-5.5294	prime index of primes	12248	28	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=11 litf=1 atb=1
+-5.5294	sqrt3301 digits (base 29)	14071	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=0
+-5.5294	ln3301 digits (base 29)	8694	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=8 litf=1 atb=1
+-5.5294	e^pi digits (base 29)	8712	28	1	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=1
+-5.5294	cumulative prime sum	6064	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=4 litf=1 atb=0
+-5.5294	p_n + n	13547	1	0	p42	272	kw=DIVINITY isign=28 phase=2 litf=1 atb=0
+-5.5294	e digits (base 10)	15354	1	1	p42	272	kw=CIRCUMFERENCE isign=1 phase=1 litf=1 atb=0
+-5.5294	e digits (base 10)	9116	1	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=4 litf=1 atb=0
+-5.5294	primes	362	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=0 litf=1 atb=0
+-5.5294	primes from 3301	17934	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=10 litf=1 atb=0
+-5.5294	emirps	15396	28	0	p42	272	kw=DIVINITY isign=1 phase=1 litf=1 atb=1
+-5.5294	ln3301 digits (base 29)	13137	28	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=1 litf=1 atb=1
+-5.5294	phi(n)	1443	1	1	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=1
+-5.5294	(p-1)/2	8885	1	0	p42	272	kw=FIRFUMFERENFE isign=28 phase=9 litf=1 atb=0
+-5.5294	p_n - n	8156	28	0	p42	272	kw=CIRCUMFERENCE isign=1 phase=9 litf=1 atb=1
+-5.5294	carmichael lambda(n)	8734	28	1	p42	272	kw=CIRCUMFERENCE isign=28 phase=8 litf=1 atb=1
+-5.5294	ln2 digits (base 10)	4103	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=8 litf=1 atb=0
+-5.5294	sigma(n)	6119	1	0	p42	272	kw=FIRFUMFERENFE isign=1 phase=5 litf=1 atb=1
+-5.5294	primes	18397	28	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=10 litf=1 atb=0
+-5.5294	sqrt2 digits (base 29)	17167	1	0	p42	272	kw=CIRCUMFERENCE isign=28 phase=8 litf=1 atb=0

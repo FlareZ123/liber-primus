@@ -1,0 +1,35 @@
+name: LP2 p39 and seven-page original source field gates
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-convolution:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out fixed original corpus
+        uses: actions/checkout@v4
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run original p39 240-slot all-secret convolution gate
+        run: |
+          node --check sims/lp2_p39_240_gridfactor16_convolution_sft.cjs
+          node sims/lp2_p39_240_gridfactor16_convolution_sft.cjs
+      - name: Run complete original p33-39 GF841 primitive field log gate
+        run: |
+          node --check sims/lp2_sevenpage_840_fieldlog_inverse_sft.cjs
+          node sims/lp2_sevenpage_840_fieldlog_inverse_sft.cjs
+      - name: Run source-fixed H/G quotient p39 twelve-line inverse
+        run: |
+          node --check sims/lp2_p39_q252_line_overhead_sft.cjs
+          node sims/lp2_p39_q252_line_overhead_sft.cjs
+      - name: Verify original p22 fixed LP1 pp14-16 native-word crib gate
+        run: |
+          node --check sims/lp1_lp2_p22_literal_passage_crib_sft.cjs
+          node sims/lp1_lp2_p22_literal_passage_crib_sft.cjs

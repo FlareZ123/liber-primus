@@ -1,0 +1,21 @@
+name: LP2 relative-key literary-register lexicon inversions
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout research corpus
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compare Shakespeare Emerson Gibran and mixed two-text decoders
+        run: node sims/relative_key_register_scan.cjs

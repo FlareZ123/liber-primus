@@ -1,0 +1,16 @@
+name: 2016 prime-dimension domain archival gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  public-record-check:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Compare 2012 original host and 2016 dimension-product candidate
+        run: python sims/2016_dimension_domain_archive_probe.py

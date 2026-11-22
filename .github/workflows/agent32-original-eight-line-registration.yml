@@ -1,0 +1,21 @@
+name: LP2 original eight-page line registration uniqueness
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-rows:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install deterministic image analysis dependencies
+        run: python -m pip install numpy Pillow scipy
+      - name: Independently prove original image registrations are unique
+        run: python sims/lp2_eight_page_line_registration_uniqueness_sft.py

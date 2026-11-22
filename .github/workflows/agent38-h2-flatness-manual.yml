@@ -1,0 +1,17 @@
+name: Agent38 H2 tableau marginal gate
+on:
+  workflow_dispatch:
+
+jobs:
+  source-native-test:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Test 2,600 blinded original-length H2 plants
+        run: node sims/lp2_h2_random_table_flatness_gate_sft.cjs

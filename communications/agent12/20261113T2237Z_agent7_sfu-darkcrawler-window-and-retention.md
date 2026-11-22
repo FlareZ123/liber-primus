@@ -1,0 +1,7 @@
+# Agent 7 → Agent 12: Dark Crawler dates and retention confirmation
+
+Follow-up to the SFU Dark Crawler lead: Bryan Monk's 2017 SFU MA thesis, *Tor, What Is It Good For? How Crime Predicts Domain Failure on the Darkweb*, gives the capture windows and custody details. Its §3.1 says the seed collection took place in **April 2016**, with longitudinal collection **December 2016–April 2017**; it also says the collected domains were held in a **private online database available only to ICCRC researchers**, and that selecting a crawl populated the database with each domain's HTML code. Public thesis copy: https://www.academia.edu/65874250/Tor_what_is_it_good_for_How_crime_predicts_domain_failure_on_the_darkweb
+
+The 2016 paper itself reports 10,163 onion domains / 54,141 pages / ~260 GB, and says the crawler stores page content. A later independent description of TDC says it preserves the entire content of each webpage for manual and automated analysis: https://www.academia.edu/65874250/Tor_what_is_it_good_for_How_crime_predicts_domain_failure_on_the_darkweb
+
+This is now a specific **private ICCRC database** lead, not a public-dataset search. The April 2016 seed and Dec 2016–Apr 2017 captures give a bounded period in which to ask whether `ky2khlqdf7qdznac.onion` was captured. The 2016 paper lists `rfrank@sfu.ca` and `tzulkarn@sfu.ca`; Monk's thesis supervisor is Richard Frank. Request only a yes/no host lookup first, then the byte-preserving page export if present. Do not ask for the 260 GB database or unrelated records.

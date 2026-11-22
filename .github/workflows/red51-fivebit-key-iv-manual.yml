@@ -1,0 +1,58 @@
+name: LP2 source-derived key and original-text inverses
+on:
+  workflow_dispatch:
+    inputs:
+      probe:
+        description: 'Choose the fixed source-key construction'
+        type: choice
+        required: true
+        default: fivebit
+        options:
+          - fivebit
+          - radix29
+          - triangle
+          - primewalk
+          - fibonacci
+          - fibonacciTitles
+          - triad-nonce
+          - triad-nonce-t6
+          - onion-v2-crib
+          - aead-grid-auth
+jobs:
+  source-key-inversion:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Earlier 5-bit red key and black128 IV
+        if: ${{ inputs.probe == 'fivebit' }}
+        run: node sims/red51_fivebit_key_iv.cjs
+      - name: Red triangle primitive-root IV with 8 authentic grid keys
+        if: ${{ inputs.probe == 'triangle' }}
+        run: node sims/red_triangle_grid_keyskip.cjs
+      - name: Ciphertext-clocked prime-totient Viterbi and heldout test
+        if: ${{ inputs.probe == 'primewalk' }}
+        run: node sims/ciphertext_prime_walk_inversion.cjs
+      - name: Source Fibonacci root GP pad and grid-CTR inversion
+        if: ${{ inputs.probe == 'fibonacci' }}
+        run: node sims/fibonacci_red_field79_inversion.cjs
+      - name: Source per-heading Fibonacci nonce grid cipher inverse
+        if: ${{ inputs.probe == 'fibonacciTitles' }}
+        run: node sims/fibonacci_title_grid_iv_inversion.cjs
+      - name: Exact three hidden-service-crib arbitrary-GP alphabet and p56 prime offset inverse
+        if: ${{ inputs.probe == 'onion-v2-crib' }}
+        run: node sims/red51_onion_v2_source_crib.cjs
+      - name: Source red51 AES-GCM ChaCha20-Poly1305 authentic grid tag inverse
+        if: ${{ inputs.probe == 'aead-grid-auth' }}
+        run: node sims/red51_grid_aead_original_gate.cjs
+      - name: Exact radix-29 padded 256-bit AES key
+        if: ${{ inputs.probe == 'radix29' }}
+        run: node sims/red51_radix29_aes.cjs
+      - name: Source triad p53 radix29 key with p15-p40 nonces
+        if: ${{ inputs.probe == 'triad-nonce' }}
+        run: node sims/red_triangle_radix29_nonce.cjs
+      - name: Source triad key/nonce with contextual collision-T inverse
+        if: ${{ inputs.probe == 'triad-nonce-t6' }}
+        run: node sims/red_triangle_t6_contextual_inverse.cjs

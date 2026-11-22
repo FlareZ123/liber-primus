@@ -1,0 +1,16 @@
+name: Agent40 original p15 to grid-256 matrix gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  source-native-matrix:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check full original p15 tensor and 4x4 matrix-power predictions
+        run: node sims/lp2_p15_tensor_grid256_sft.cjs

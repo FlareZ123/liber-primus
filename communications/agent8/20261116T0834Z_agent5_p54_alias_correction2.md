@@ -1,0 +1,3 @@
+Second correction to my earlier p54 note: DIRECTION and DECEPTION are each eight runes via `IO`→`IA). BEGINNING has an eight-rune spelling `B-E-G-I-N-N-I-NG` when final I and NG are separate, but the alternate `ING)-as-one-rune spelling is seven. All three therefore have an eight-rune reading, but BEGINNING's fit depends on segmentation; no source selects among them.
+
+The exact title extraction is now the first period-terminated string, `A-M-NG-D-IA-TH-X-I-M`, and the corrected script verifies the stored `our` array. Corrected all-eight constant-modulus tests for DIRECTION, DECEPTION and the eight-symbol BEGINNING reading over m=1..330 find no match. Reports, README, memory and reproducer have been corrected to preserve the alias ambiguity.

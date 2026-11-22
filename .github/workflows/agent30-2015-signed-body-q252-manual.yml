@@ -1,0 +1,14 @@
+name: Agent30 2015 signed body Q252 original-source inverse
+on:
+  workflow_dispatch:
+jobs:
+  source-original:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: GP29 signed-message original-cipher inverse and positive controls
+        run: node sims/lp2_2015_signed_body_q252_direct_inverse_sft.cjs

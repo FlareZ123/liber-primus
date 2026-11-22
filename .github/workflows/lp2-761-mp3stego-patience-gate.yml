@@ -1,0 +1,94 @@
+name: LP2 761 MP3Stego patience gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Fetch the 2013 carrier and MP3Stego control sample
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p probe/results
+          curl -fL --retry 3 --retry-all-errors \
+            'https://raw.githubusercontent.com/krisyotam/cicada3301/main/archives/cijhho/2013/additional%20files/Cicada%20OS/cicados/AUDIO/761.MP3' \
+            -o probe/761.MP3
+          curl -fL --retry 3 --retry-all-errors \
+            'https://raw.githubusercontent.com/krisyotam/cicada3301/main/tools/solvers/ibotpeaches/tool/storage/mp3stego.mp3' \
+            -o probe/mp3stego-control.mp3
+          sha256sum probe/761.MP3 probe/mp3stego-control.mp3 \
+            > probe/results/source-sha256.txt
+          wc -c probe/761.MP3 probe/mp3stego-control.mp3 \
+            > probe/results/source-sizes.txt
+
+      - name: Pull and identify the documented MP3Stego toolkit
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker pull dominicbreuker/stego-toolkit:latest
+          docker image inspect --format '{{.Id}} {{join .RepoDigests ","}}' \
+            dominicbreuker/stego-toolkit:latest \
+            > probe/results/tool-image.txt
+          docker run --rm dominicbreuker/stego-toolkit:latest \
+            sh -lc 'mp3stego-decode 2>&1 | head -n 30 || true' \
+            > probe/results/tool-version.txt
+
+      - name: Test only the source-derived passphrase candidates
+        shell: bash
+        run: |
+          set -euo pipefail
+          IMAGE='dominicbreuker/stego-toolkit:latest'
+          decode() {
+            local label="$1"
+            local input="$2"
+            local password="$3"
+            docker run --rm --network none \
+              -v "$PWD/probe:/probe" \
+              -e "PASS=$password" \
+              -e "IN=/probe/$input" \
+              -e "OUT_MEDIA=/probe/results/$label.pcm" \
+              -e "OUT_DATA=/probe/results/$label.txt" \
+              -e "LOG=/probe/results/$label.log" \
+              -e "EXIT=/probe/results/$label.exit" \
+              "$IMAGE" sh -lc \
+              'set +e; mp3stego-decode -X -P "$PASS" "$IN" "$OUT_MEDIA" "$OUT_DATA" >"$LOG" 2>&1; rc=$?; echo "$rc" >"$EXIT"; exit 0'
+          }
+
+          # Positive-control candidate documented as the toolkit wrapper's default.
+          decode control_abcd mp3stego-control.mp3 abcd
+
+          # Exact historical phrase and its 17-rune GP transliteration.
+          decode patience_source_phrase 761.MP3 'Patience is a virtue'
+          decode patience_gp_transliteration 761.MP3 'PATIENCEISAUIRTUE'
+          # p56's red-heading 280 signature selects INSTAR; the carrier title is The Instar Emergence.
+          decode instar_word 761.MP3 'INSTAR'
+          decode instar_title 761.MP3 'The Instar Emergence'
+
+          {
+            echo 'label exit_code output_bytes output_sha256'
+            for label in control_abcd patience_source_phrase patience_gp_transliteration instar_word instar_title; do
+              exit_code=$(cat "probe/results/$label.exit")
+              if [ -f "probe/results/$label.txt" ]; then
+                bytes=$(wc -c < "probe/results/$label.txt" | tr -d ' ')
+                digest=$(sha256sum "probe/results/$label.txt" | cut -d ' ' -f 1)
+              else
+                bytes=missing
+                digest=missing
+              fi
+              echo "$label $exit_code $bytes $digest"
+            done
+          } | tee probe/results/summary.txt
+
+      - name: Preserve extraction outputs and logs
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-761-mp3stego-patience-gate
+          path: probe/results/
+          if-no-files-found: error
+          retention-days: 14

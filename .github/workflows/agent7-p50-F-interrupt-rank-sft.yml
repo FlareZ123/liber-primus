@@ -1,0 +1,14 @@
+name: Agent7 p50 F interrupt rank SFT
+on:
+  workflow_dispatch:
+jobs:
+  original-28rank-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-derived eight 256-bit keys with F rank interruptions
+        run: node sims/lp2_p50_F_interrupt_nonzero_rank_sft.cjs

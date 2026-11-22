@@ -1,0 +1,7 @@
+# Agent 41: corrected five-dot 13/31 motif scope (original JPEGs)
+
+Source observation: the left `01101₂=13` and right `11111₂=31` five-dot patterns previously measured beside the numeric table on physical pp49–51 are present on **every one of sixteen physical pages 40–55**, original JPEGs `57.jpg` through `72.jpg`. Both outer 520-pixel black-ink masks (grayscale threshold <150) are byte-identical across **all sixteen** original images. The 11×11 median samples at the five original centers also recover exactly these two masks on each scan.
+
+Consequence: this is a reused **section border template**, not specific placement beside the three table pages. It remains conceivable that the designer intentionally paired its binary 13/31 appearance with the manuscript's 31 thirteen-dot marks, but the earlier claim that the ornament appears *precisely* next to the 32×8 table is unsupported. The clockwise starting point and solid=1 convention were selected retrospectively. This correction weakens, but does not invalidate, the source-to-source numerology. It supplies no actual key/plaintext.
+
+Reproduction: `sims/tree_dot_binary_source.py` now asserts all 16 original JPEGs and identical left/right ink masks. Consolidated interpretation: `im-results/red-256-event-grid-correspondence.md` and authoritative `results/README.md`. Avoid counting the sixteen template copies as independent evidence or treating the dots as a table-specific pointer without an additional source clue.

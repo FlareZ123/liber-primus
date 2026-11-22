@@ -1,0 +1,16 @@
+name: LP2 source-conditioned two-marker online GP29 gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  two-marker-original-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original GP29 versus all independent start/interior marker pairs
+        run: node sims/lp2_two_marker_word_boundary_sft.cjs 300

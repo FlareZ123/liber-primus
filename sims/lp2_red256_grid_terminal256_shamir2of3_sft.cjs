@@ -1,0 +1,256 @@
+'use strict';
+
+/**
+ * LP2 original three-channel 256-position Shamir 2-of-3 inverse gate.
+ * Run: node sims/lp2_red256_grid_terminal256_shamir2of3_sft.cjs
+ *
+ * Source channels:
+ *  - all 225 red runes and 31 original thirteen-dot marks (256 events);
+ *  - all 256 original p49-51 two-character numerical cells;
+ *  - p55's 76 unsolved runes + p56's 85 solved + p57's 95 clear runes.
+ * 2013 Cicada used Shamir sharing, motivating a direct finite-field check.
+ * This script tests a necessary condition, not an independently authorized cipher.
+ */
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+const crypto = require('node:crypto');
+
+const ROOT = path.join(__dirname, '..');
+const read = (name) => JSON.parse(fs.readFileSync(path.join(ROOT, name), 'utf8'));
+const ink = read('resources/liber-primus/lp2-ink-annotations.json');
+const corpus = read('resources/liber-primus/lp2-corpus.json');
+const grid = read('resources/liber-primus/base60-grid.json');
+const mod = (n) => ((n % 29) + 29) % 29;
+
+/** @returns {{index:number|null,page:number,offset:number}[]} */
+function sourceEvents() {
+  const out = [];
+  for (const page of ink.pages) {
+    const within = [];
+    for (const span of page.red_spans || []) {
+      const runes = [...span.runes];
+      assert.equal(runes.length, span.length);
+      for (let k = 0; k < runes.length; k++) {
+        const index = corpus.runes.indexOf(runes[k]);
+        assert.ok(index >= 0, 'unknown red rune');
+        assert.equal(corpus.pages[page.page].indices[span.start + k], index);
+        within.push({offset:span.start + k, kind:1, index, page:page.page});
+      }
+    }
+    for (const [offset, dots] of page.large_punctuation || []) {
+      if (dots === 13) within.push({offset, kind:0, index:null, page:page.page});
+    }
+    within.sort((a, b) => a.offset - b.offset || a.kind - b.kind);
+    for (const event of within) {
+      out.push({index:event.index, page:event.page, offset:event.offset});
+    }
+  }
+  assert.equal(out.filter(e => e.index !== null).length, 225);
+  assert.equal(out.filter(e => e.index === null).length, 31);
+  assert.equal(out.length, 256);
+  return out;
+}
+
+/** @returns {{radix:number, bytes:number[]}[]} */
+function sourceTables() {
+  const bytes60 = grid.byte_rows.flat();
+  assert.equal(bytes60.length, 256);
+  const digest = crypto.createHash('sha256').update(Buffer.from(bytes60)).digest('hex');
+  assert.equal(digest, '3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290');
+  const alphabet59 = grid.alphabet.replace('f', '');
+  assert.equal(alphabet59.length, 59);
+  const bytes59 = grid.rows.flat().map(token => {
+    assert.equal(token.length, 2);
+    const high = alphabet59.indexOf(token[0]);
+    const low = alphabet59.indexOf(token[1]);
+    assert.ok(high >= 0 && low >= 0);
+    const value = high * 59 + low;
+    assert.ok(value >= 0 && value <= 255);
+    return value;
+  });
+  assert.equal(bytes59.length, 256);
+  return [{radix:60, bytes:bytes60}, {radix:59, bytes:bytes59}];
+}
+
+/**
+ * Source-visible 32×8 table circumferences: 76+68+60+52 positions.
+ * The 8 admissible full-book spirals start at a fixed corner and turn
+ * clockwise or counterclockwise at every inward ring. No free ring
+ * permutation, skipped cells or inferred ciphertext offsets.
+ * @returns {{corner:string,clockwise:boolean,indices:number[]}[]}
+ */
+function ringRoutes() {
+  const out = [];
+  for (const corner of ['NW','NE','SE','SW'])
+    for (const clockwise of [true,false]) {
+      const indices = [];
+      const sizes = [];
+      for (let d = 0; d < 4; d++) {
+        const top=d, bottom=31-d, left=d, right=7-d;
+        const ring = [];
+        for (let c=left; c<=right; c++) ring.push(top*8+c);
+        for (let r=top+1; r<=bottom; r++) ring.push(r*8+right);
+        for (let c=right-1; c>=left; c--) ring.push(bottom*8+c);
+        for (let r=bottom-1; r>top; r--) ring.push(r*8+left);
+        const at = {
+          NW:top*8+left,NE:top*8+right,
+          SE:bottom*8+right,SW:bottom*8+left
+        }[corner];
+        const start=ring.indexOf(at);
+        assert.ok(start >= 0);
+        sizes.push(ring.length);
+        for (let i=0; i<ring.length; i++) {
+          const j=modRing(start+(clockwise?i:-i),ring.length);
+          indices.push(ring[j]);
+        }
+      }
+      assert.deepEqual(sizes,[76,68,60,52]);
+      assert.equal(indices.length,256);
+      assert.equal(new Set(indices).size,256);
+      out.push({corner,clockwise,indices});
+    }
+  assert.equal(out.length,8);
+  return out;
+}
+
+/** @param {number} value @param {number} n */
+function modRing(value,n) { return ((value%n)+n)%n; }
+
+/**
+ * A source-blind stationary 29-symbol lookup may be noninjective.
+ * The optimal lookup maps each input symbol to its modal known output.
+ * Any true fixed bijection is a subcase; no English-language score is used.
+ * @param {number[]} predicted
+ * @param {number[]} observed
+ * @returns {{direct:number, lookup:number}}
+ */
+function score(predicted, observed) {
+  assert.equal(predicted.length, observed.length);
+  const classes = Array.from({length:29}, () => Array(29).fill(0));
+  let direct = 0;
+  for (let i = 0; i < predicted.length; i++) {
+    const p = predicted[i], q = observed[i];
+    assert.ok(p >= 0 && p < 29 && q >= 0 && q < 29);
+    classes[p][q]++;
+    if (p === q) direct++;
+  }
+  return {direct, lookup:classes.reduce((n, row) => n + Math.max(...row), 0)};
+}
+
+function run() {
+  const events = sourceEvents();
+  const tables = sourceTables();
+  const lengths = [55,56,57].map(i => corpus.pages[i].indices.length);
+  assert.deepEqual(lengths, [76,85,95]);
+  const terminal = [55,56,57].flatMap(i => corpus.pages[i].indices);
+  assert.equal(terminal.length, 256);
+  let bestLookup = null;
+  let bestDirect = null;
+  let tested = 0;
+  let testedAffine = 0;
+  let bestAffineLookup = null;
+  let bestAffineDirect = null;
+  const bestOptions = [];
+  for (const {radix,bytes} of tables)
+    for (const marker of [0,13])
+      for (const reverseRed of [false,true])
+        for (const reverseGrid of [false,true])
+          for (const reverseTerminal of [false,true]) {
+            const red = events.map(e => e.index === null ? marker : e.index);
+            const table = bytes.map(x => x % 29);
+            const plain = terminal.slice();
+            if (reverseRed) red.reverse();
+            if (reverseGrid) table.reverse();
+            if (reverseTerminal) plain.reverse();
+            const knownPositions = Array.from({length:180}, (_,i) => i + (reverseTerminal ? 0 : 76));
+            const actual = knownPositions.map(i => plain[i]);
+            for (let a = 0; a < 29; a++)
+              for (let b = 0; b < 29; b++) {
+                const predicted = knownPositions.map(i => mod(a*red[i] + b*table[i]));
+                const {direct,lookup} = score(predicted, actual);
+                const desc = {radix,marker,reverseRed,reverseGrid,reverseTerminal,a,b,direct,lookup};
+                testedAffine++;
+                if (bestAffineLookup === null || lookup > bestAffineLookup.lookup)
+                  bestAffineLookup = desc;
+                if (bestAffineDirect === null || direct > bestAffineDirect.direct)
+                  bestAffineDirect = desc;
+                // Original 2-of-3 degree-one Shamir share coordinates
+                // impose exactly a+b=1, a proper subset of two-pad affine mixing.
+                if (mod(a + b) === 1) {
+                  tested++;
+                  if (bestLookup === null || lookup > bestLookup.lookup)
+                    bestLookup = desc;
+                  if (bestDirect === null || direct > bestDirect.direct)
+                    bestDirect = desc;
+                  bestOptions.push(desc);
+                }
+              }
+          }
+  assert.equal(tested, 928);
+  assert.equal(bestLookup.lookup, 53);
+  assert.equal(bestDirect.direct, 15);
+  assert.equal(testedAffine, 26912);
+  assert.equal(bestAffineLookup.lookup, 53);
+  assert.equal(bestAffineDirect.direct, 16);
+
+  // Independent physically motivated layout: p55's 76 runes equal
+  // the outer 32×8 ring; p56+p57's 180 runes equal the three inner rings.
+  // The explicit p57 instruction mentions shedding circumferences.
+  let ringBestLookup = null;
+  let ringBestDirect = null;
+  let ringVariants = 0;
+  for (const {radix,bytes} of tables)
+    for (const marker of [0,13])
+      for (const reverseRed of [false,true])
+        for (const reverseTerminal of [false,true])
+          for (const {corner,clockwise,indices} of ringRoutes()) {
+            const red = events.map(e => e.index === null ? marker : e.index);
+            const table = indices.map(i => bytes[i] % 29);
+            const plain = terminal.slice();
+            if (reverseRed) red.reverse();
+            if (reverseTerminal) plain.reverse();
+            const positions = Array.from({length:180},(_,i) =>
+              i + (reverseTerminal ? 0 : 76));
+            const actual = positions.map(i => plain[i]);
+            for (let k=0; k<29; k++) {
+              const predicted = positions.map(i =>
+                mod(k*red[i] + (1-k)*table[i]));
+              const {direct,lookup} = score(predicted,actual);
+              const desc = {radix,marker,reverseRed,reverseTerminal,
+                corner,clockwise,k,direct,lookup};
+              ringVariants++;
+              if (ringBestLookup === null || lookup > ringBestLookup.lookup)
+                ringBestLookup = desc;
+              if (ringBestDirect === null || direct > ringBestDirect.direct)
+                ringBestDirect = desc;
+            }
+          }
+  assert.equal(ringVariants,3712);
+  assert.equal(ringBestLookup.lookup,54);
+  assert.equal(ringBestDirect.direct,14);
+
+  // Positives: correctly constructed direct and secret-alphabet Shamir
+  // interpolation outputs must recover each of the 180 reserved known slots.
+  const a = events.map(e => e.index === null ? 13 : e.index);
+  const b = tables[0].bytes.map(x => x % 29);
+  const x = 17;
+  const synthetic = a.map((v,i) => mod(x*v + (1-x)*b[i]));
+  const known = synthetic.slice(76);
+  assert.deepEqual(score(synthetic.slice(76),known), {direct:180,lookup:180});
+  const relabeled = known.map(i => mod(11*i+7)); // bijective, gcd(11,29)=1
+  assert.equal(score(synthetic.slice(76),relabeled).lookup,180);
+
+  bestOptions.sort((a,b) => b.lookup-a.lookup || b.direct-a.direct);
+  console.log(JSON.stringify({
+    source:{redRunes:225,thirteenDotMarks:31,tableBytes:256,
+      terminalUnknown:76,terminalKnown:180,knownPageLengths:[85,95]},
+    model:'GF29 affine Shamir 2-of-3, 29 unknown coordinates, secret terminal alphabet',
+    variants:tested, bestLookup, bestDirect, top:bestOptions.slice(0,5),
+    affineVariants:testedAffine, bestAffineLookup, bestAffineDirect,
+    spiralShamirVariants:ringVariants, ringBestLookup, ringBestDirect,
+    planted:{direct:180,stationaryRelabel:180},
+    conclusion:'Neither direct 2-of-3 Shamir sharing (flat or circled) nor any row-major two-tape GF29-affine fixed-alphabet mixer recovers known original terminal plaintext'
+  },null,2));
+}
+run();

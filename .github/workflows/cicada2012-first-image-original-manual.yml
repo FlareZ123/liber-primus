@@ -1,0 +1,91 @@
+name: Cicada 2012 first-image OutGuess 0.2 reproduction
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout Liber Primus research
+        uses: actions/checkout@v4
+
+      - name: Checkout pinned 2012 archive
+        uses: actions/checkout@v4
+        with:
+          repository: cicada-solvers/The-Complete-Cicada3301-Archive
+          ref: c3127e0e9eb5afbb582d37988d6369fe38429238
+          path: source-archive
+          persist-credentials: false
+
+      - name: Checkout historical OutGuess 0.2 source
+        uses: actions/checkout@v4
+        with:
+          repository: resurrecting-open-source-projects/outguess
+          ref: e9967c7c5788b7e5b8d3aeec238766ea60bf8a12
+          path: outguess-src
+          persist-credentials: false
+
+      - name: Install build tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential
+
+      - name: Build OutGuess 0.2
+        run: |
+          set -euo pipefail
+          cd outguess-src
+          grep -F "OutGuess 0.2" README
+          CFLAGS="-O0 -std=gnu89" ./configure
+          make -j2
+          test -x ./outguess
+
+      - name: Confirm pinned source artifacts
+        run: |
+          set -euo pipefail
+          cmp resources/historical/cicada2012-first-image.jpg "source-archive/2012/additional media/images/1CcV1.jpg"
+          cmp resources/historical/cicada2012-first-image-bernstein-copy.jpg "source-archive/Archive/Old Sites/bernsteinbear.com blog cicada/3301 - Max Bernstein_files/1CcV1.jpg"
+          cmp resources/historical/cicada2012-outguess-decoy-m9sYK.jpg "source-archive/2012/additional media/images/m9sYK.jpg"
+
+      - name: Audit JPEG bytes and historical archive output
+        run: |
+          set -euo pipefail
+          python3 sims/cicada2012_first_image_byte_audit.py \
+            resources/historical/cicada2012-first-image.jpg \
+            --bernstein-copy resources/historical/cicada2012-first-image-bernstein-copy.jpg \
+            --decoy resources/historical/cicada2012-outguess-decoy-m9sYK.jpg \
+            --expected-outguess "source-archive/2012/additional docs/outguss/1CcV1.jpg.out"
+
+      - name: Reproduce the historical commands
+        run: |
+          set -euo pipefail
+          mkdir -p outguess-results
+          tail -61c resources/historical/cicada2012-first-image.jpg > outguess-results/appended.txt
+          printf '%s\n' 'TIBERIVS CLAVDIVS CAESAR says "lxxt>33m2mqkyv2gsq3q=w]O2ntk"' > outguess-results/expected-appended.txt
+          cmp outguess-results/appended.txt outguess-results/expected-appended.txt
+          printf '%s\n' 'lxxt>33m2mqkyv2gsq3q=w]O2ntk' \
+            | perl -pne 'chomp;s{(.)}{chr(ord($1)-4)}sgex;$_.=chr(10)' \
+            > outguess-results/rot4-url.txt
+          test "$(cat outguess-results/rot4-url.txt)" = "http://i.imgur.com/m9sYK.jpg"
+          set -o pipefail
+          outguess-src/outguess -r resources/historical/cicada2012-first-image.jpg outguess-results/first-image.out \
+            2>&1 | tee outguess-results/outguess.log
+          grep -E 'seed: *228, len: *535' outguess-results/outguess.log
+          python3 sims/cicada2012_first_image_byte_audit.py \
+            resources/historical/cicada2012-first-image.jpg \
+            --bernstein-copy resources/historical/cicada2012-first-image-bernstein-copy.jpg \
+            --decoy resources/historical/cicada2012-outguess-decoy-m9sYK.jpg \
+            --expected-outguess "source-archive/2012/additional docs/outguss/1CcV1.jpg.out" \
+            --observed-outguess outguess-results/first-image.out
+          sha256sum resources/historical/cicada2012-first-image.jpg outguess-results/first-image.out \
+            > outguess-results/sha256.txt
+
+      - name: Preserve reproduction outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: cicada2012-first-image-outguess-0.2
+          path: outguess-results/

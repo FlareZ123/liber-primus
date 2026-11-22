@@ -1,0 +1,68 @@
+# Original printed-line initials reflect typesetting; whole-word residual remains conditional
+
+**16–17 November 2026, Agents22 and12. Source-level compositor findings; no unknown plaintext or authentic key recovered.**
+
+## Decision
+
+The 594 first runes of the original 55 rune-bearing unknown LP2 physical pages are unusually unequal in their GP29 frequencies. The strongest independent predictor of those counts is already present in the original image resource: the physical width of each of the 29 printed glyphs. A fixed, unfitted **frequency × independently measured glyph-ink-width** sampling model reduces the apparent line-initial departure from the full-cipher distribution from χ² **78.656 (28 df; p≈1.06×10⁻⁶)** to **36.580 (28 df; p≈0.128)**. The Pearson correlation between physical source widths and first-line glyph enrichment is **+0.76248**, p≈1.53×10⁻⁶ across the 29 rune identities.
+
+An independent historical control supplies an additional constraint: the 2014 LP1 master rune transcription (147 original printed lines, 2,797 runes) shows a smaller but same-sign glyph-width enrichment of line initials, **Pearson +0.39474** (two-sided p≈0.034). This material includes already-solved and clear original chapters, predates the unsolved LP2 release, and was not used to measure the width vector. An LP2-exclusive line-acrostic therefore has no unique explanation for the basic phenomenon.
+
+This offers an inexpensive causal alternative to any reading that treats the line-initial statistical anomaly as a separately authored letter channel: the ordinary fixed-width line geometry is more likely to place wide glyphs at the start of the *next* printed row. It does **not** mathematically rule out a deliberately superimposed acrostic, and the independent image data are a first contiguous black-ink-run proxy rather than validated typesetting advance widths. Treat a proposed line-initial cipher as requiring value-changing text, an independently authored selector, and a typed full plaintext prediction after accounting for width.
+
+## Original inputs and non-fitted test
+
+- Complete unknown GP29 source stream: `resources/liber-primus/lp2-corpus.json`, 12,956 indices, original physical p0–55, omitting runeless p50. Original printed physical line wraps: `resources/liber-primus/lp2-transcription.txt`. Its **594** unknown-page rune-bearing lines flatten *exactly*, rune-for-rune, to all 12,956 indices. The solved p56 and clear p57 add a separate ten lines and are excluded. The separate 2014 LP1 control is the unmodified `resources/transcriptions/lp1_wulfic_canonical.txt` source, independently tokenized into 147 physical rune-bearing lines.
+- Independent original-JPEG-derived widths: `resources/liber-primus/lp2-line-start-ink-widths.json`, 29 modal source foreground-ink-run widths in pixels, measured by `sims/physical_line_start_ink_modes.py`; images are `resources/liber-primus/17.jpg` through `74.jpg`. This vector was not fitted to line-initial frequencies by the present test.
+- For each GP rune identity `r`, let `N_r` be total original 12,956-cipher runes, `A_r` its 594 printed-line first-rune count, and `w_r` the original image's first-glyph ink-run mode. Compare `E0_r=594*N_r/12956` with `Ew_r=594*N_r*w_r/(ΣN_j*w_j)`. The second model has **zero freely fitted parameters** in this test.
+
+| Statistic | Original value |
+| --- | ---: |
+| Whole unknown-cipher GP29 IoC | 0.034478398 |
+| 594 printed-line initials GP29 IoC | **0.037587795** |
+| 594 printed-line finals GP29 IoC | 0.034402485 |
+| Line-initial χ² vs whole-text GP frequency | 78.656033 |
+| Line-initial χ² vs fixed ink-width weighted frequency | **36.580044** |
+| Line-final χ² vs whole-text GP frequency | **24.216561** (p≈0.670) |
+| Independent original 2014 LP1 line-initial-width Pearson | **+0.394744**, 147 lines (p≈0.034) |
+| Width versus line-initial relative enrichment | **Pearson +0.762477** |
+| First rune EA (index 28), measured width | **38/594**, 86 px; full-text expected 21.09; width-weighted expected 41.79 |
+| First rune R (index 4), measured width | **6/594**, 34 px; full-text expected 19.44; width-weighted expected 15.23 |
+| First rune I (index 10), measured width | **9/594**, 9 px; full-text expected 21.59; width-weighted expected 4.48 |
+
+
+**Boundary-conditioned exception.** Of the 594 LP2 original line initials, **388** occur inside a printed word that continues across a line wrap and **206** begin a new printed word. Relative to the corresponding full-cipher word-interior and word-start symbol baselines, the same fixed ink-width weighting fits the **388 within-word starts** extremely well (χ² **21.85265**, 28 df, p≈**0.788**, width–enrichment r≈**+0.788**). In the **206 whole-word starts**, a width-only model leaves a real residual (χ² **50.46626**, 28 df, p≈**0.0057**, width–enrichment r≈**+0.442**). This remaining deviation could reflect word-level line breaking, word selection at chapter/paragraph boundaries or a deliberate authored pattern. It is *not* decoded plaintext; any future acrostic test should focus on the **206 word-boundary subset** while explicitly controlling original word lengths, font advances and page starts. The global 594-line fit does not exclude this narrower residual.
+
+**Independently restricted source test (17 November UTC boundary not assumed):** Retain only original printed-word starts, recompute the width-weighted baseline on the correspondingly filtered original corpus, then exclude the 55 *first runes of each rune-bearing physical page* and all red-ink runes using original-source color annotations. The initial 206 starts split to **190** when red is excluded (χ² **50.66493**, p≈0.00545), **151** when physical-page first runes are excluded (χ² **48.30375**, p≈0.00994), and **144** under both exclusions (χ² **47.46971**, p≈0.01221 on28df). The word-start residual therefore survives removing page headings and rubric ink. Its interpretation is still open: narrower line-fit biases, word-level wrapping, true word-boundary selection and weak statistical deviations remain rivals. These tests were source-only and selected after inspecting the global bias; p-values are exploratory and do not constitute decryption evidence.
+
+To preserve original page lengths and observed glyph multiset while disrupting selected start sites, shift each physical page's ciphertext **cyclically by an independent random offset** and leave its exact printed-line-start offsets fixed. In 20,000 deterministic page rotations, **0** reproductions attain the observed line-first IoC (reported plus-one upper tail ≤0.000050). This demonstrates a page-conditioned line-placement effect; it does *not* establish a cipher because physical glyph widths already explain the overall directional bias.
+
+
+## Exact source-glyph-advance and whole-word compositor gate (17 November, Agent12)
+
+Issue [#1316](https://github.com/FlareZ123/liber-primus/issues/1316) was tested beyond the initial first-ink-run proxy. The independent original-image program [`source_glyph_advance_inversion.py`](../sims/source_glyph_advance_inversion.py) fits 29 genuine glyph advances from the first seven rows of native image `60.jpg`, checking last-row and independent `61.jpg` glyph coordinates. Its source-pinned 29-vector already resides in [`line_start_raster_width_control.cjs`](../sims/line_start_raster_width_control.cjs). It was fixed before this 206-word-start test. This direct advance vector avoids substituting a detached black-ink component for an entire glyph's typesetting advance.
+
+Original physical LP2 printing has 2,928 physical page-local word fragments, including 32 fragments created when genuine printed words continue across page boundaries. Exactly 206 first rune glyphs of printed lines begin whole words. Of these, 55 are page firsts and 151 are ordinary within-page openings; 144 remain after excluding authenticated red first-rune sites. The conditional experiment samples exactly the observed number of these 144 starts, without replacement, from the *actual first-rune inventory of the original words on the same physical page and same source-visible feature bin*. Bins reflect first-rune native advance, whole-word sum of native rune advances, word length, preceding printed word length, and sentence-stop versus hyphen delimiter. No GP language text or unsolved plaintext enters these bins. The exact source-matched experiment has 10,000 deterministic permutations per model, with independent early/late page split residual transfers.
+
+| Model and eligible original sites | Pooled 29-rune chi-square | Conditional right-tail p | Early to late p / late to early p | Fully determined selected sites |
+| --- | ---: | ---: | ---: | ---: |
+| Native first-glyph advance, 144 nonred, nonpage | 35.001773 | 0.02690 | 0.04200 / 0.05929 | 6 |
+| Native first advance + whole-word advance, 144 | 28.169562 | 0.02740 | 0.02080 / 0.02030 | 16 |
+| Native first advance + word length, 144 | 25.622121 | 0.04700 | 0.02760 / 0.04110 | 15 |
+| Native first advance + whole-word advance + word length, 144 | 22.241669 | 0.04290 | **0.00650 / 0.00640** | 34 |
+| Also preceding word length, 144 | 15.233366 | 0.03410 | 0.08289 / 0.04470 | 70 |
+| Also delimiter category, 144 | **11.788581** | **0.12129** | **0.12619 / 0.12179** | **77** |
+| Dash-delimited words only, preceding word length, 127 | 13.341339 | 0.10789 | 0.10769 / 0.11939 | 60 |
+| Independent original 2014 LP1, first/word advance and length, 58 ordinary word starts | 8.433162 | 0.64754 | Not tested: one split contains no source pages | 11 |
+
+The apparent held-out 0.0065 residual in the fourth row is a *conditional, post-selected observation*. Its significance decreases when preceding word length and natural punctuation are preserved. In the sixth row, **77 of the 144 selected source events are completely fixed by their tiny conditioning cells**, so failure to distinguish a residual cannot prove that one is absent. The 144 selected cases include **127 hyphen-delimited** and **16 period-delimited** starts, plus one special break; corresponding source pools have 2,680 and 151 words respectively. This difference plausibly reflects compositor sentence/paragraph decisions rather than an alphabet channel. Several models and bins were explored; nominal p-values are neither independent tests nor discovery-wide significances.
+
+**Decision:** the original 206-site claim has been narrowed to a possible residual after exact original-source compositor controls. The strongest remaining signal lacks a source-selected readout, no original recovered key, and no coherent unknown plaintext. Its evidence currently justifies treating line-initial patterns as typesetting-biased source observations. A future attempt needs a printed author instruction or a model that predicts an original held-out plaintext run, ideally with native margin, kerning and paragraph controls. Exhaustive line-initial key sweeps do not follow.
+
+**Complete, read-only source SFT**: [`lp2_206_wordstart_visual_grammar_sft.cjs`](../sims/lp2_206_wordstart_visual_grammar_sft.cjs), 29 authentic rune advances imported from the existing native-image recovery; source geometry checked rune-for-rune on all 55 pages, with positive historical LP1 and seeded page-conditioned sampling. [Original-input manual CI pass, 17 November](https://github.com/FlareZ123/liber-primus/actions/runs/44000782095). The experiment checks a typographic necessary condition, without proposing an inverse cipher or generating plaintext.
+
+## Cryptanalytic consequence and next gate
+
+A first-rune-only acrostic or printed-line-reset key should not be inferred from the strong original-start frequency skew alone. The observed overall enrichment follows independently image-measured glyph widths remarkably closely, especially for 388 line wraps inside printed words. The earlier whole-word residual is substantially reduced by a conditional model with native glyph advances, complete word geometry, paragraph punctuation and preceding word length; that most-conditioned test has conditional p≈0.121 with 77/144 selected positions fixed. A source-authored selection rule and independently decipherable original held-out text are still prerequisites for interpreting the residual as a cipher. In particular, a candidate decoder must recover meaningful, source-clocked unknown GP29 plaintext and independently re-encrypt it; the present finding is about typesetting and supplies no candidate unknown-page letters or key.
+
+**Reproducer**: [`sims/lp2_line_initial_glyph_width_source_sft.cjs`](../sims/lp2_line_initial_glyph_width_source_sft.cjs), read-only CJS SFT for Windows Node.js 22. It asserts the original rune-for-rune flattening, tests the independent 2014 LP1 source and runs the page-offset, independently uniform-within-line and width-weighted source nulls with a fixed random seed. [Complete original and independent LP1 control passing Windows CI](https://github.com/FlareZ123/liber-primus/actions/runs/43976342484). Source counts, widths, each χ² and every simulation result print on execution.

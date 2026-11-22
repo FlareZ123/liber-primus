@@ -1,0 +1,23 @@
+name: LP2 base60 reversed-digit third-block continuation
+on:
+  workflow_dispatch:
+    inputs:
+      nulls:
+        description: Independent shuffled source keys
+        required: false
+        default: '60'
+permissions:
+  contents: read
+jobs:
+  continuation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      LP2_BASE60_THIRD_NULLS: ${{ inputs.nulls }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --check sims/base60_digit_reversal_thirdblock.cjs
+      - run: node sims/base60_digit_reversal_thirdblock.cjs

@@ -1,0 +1,16 @@
+name: Agent1 2014 cuneiform Git receiver census
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Search pinned original 2014 IRC blobs
+        run: node sims/lp2_2014_cuneiform_git_receiver_sft.cjs

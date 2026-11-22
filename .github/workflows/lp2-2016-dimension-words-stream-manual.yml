@@ -1,0 +1,14 @@
+name: Signed 2016 dimensional word stream key test (manual)
+on:
+  workflow_dispatch:
+jobs:
+  dimension-key-gate:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original-input finite AES and ChaCha inverse and source-native controls
+        run: node sims/lp2_2016_dimension_words_stream_original_sft.cjs

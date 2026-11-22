@@ -1,0 +1,14 @@
+name: Agent40 p56 GF257 quotient polynomial holdout
+on:
+  workflow_dispatch:
+jobs:
+  original-sft:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact source-locked original p56 positive and holdout
+        run: node sims/lp2_p50_gf257_quotient_p56_poly_holdout_sft.cjs

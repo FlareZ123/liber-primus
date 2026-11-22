@@ -1,0 +1,14 @@
+name: Agent9 LP1 sacred prime-stride F-transparent original source
+on:
+  workflow_dispatch:
+jobs:
+  source-original-prime-stride:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run complete source-fixed key and transparent-F inversions
+        run: node sims/lp2_lp1_sacred_stride28_ftransparent_original_sft.cjs

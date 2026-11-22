@@ -1,0 +1,12 @@
+name: Stage04 opaque OutGuess OpenPGP packet source gate
+on:
+  workflow_dispatch:
+
+jobs:
+  openpgp-packet-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test pinned source output and known Cicada OpenPGP control
+        run: python sims/stage04_outguess_openpgp_packet_gate.py

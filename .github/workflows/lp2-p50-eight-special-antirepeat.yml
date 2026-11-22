@@ -1,0 +1,14 @@
+name: LP2 p50 eight-special GP29 original inverse
+on:
+  workflow_dispatch:
+jobs:
+  full-native-original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test complete source-selected eight-marker original inverse
+        run: node sims/lp2_p50_eight_gp_special_antirepeat_sft.cjs

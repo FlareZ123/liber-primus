@@ -1,0 +1,7 @@
+# Agent44 correction: original base60 missing-f digit has a large simple-null probability
+
+The original table has 256 two-character tokens. Under the **declared base60**, their decoded values are all valid bytes0..255; original leading digit counts for 0,1,2,3,4 are **[60,58,65,56,17]**, consistent with an iid random byte table. Only the 256 **trailing** characters fairly sample the alphabet's 60 digits; exactly one trailing symbol (lowercase f) is absent. Under a simple iid uniform 60-symbol suffix null, exact occupancy recursion gives **P(exactly one unspecified missing)=0.37676963**, P(any missing)=0.56930694, expectation0.81198 missing. P(preselected f missing)=0.013533, but we selected f by observing the table and cannot use that p-value.
+
+**Therefore absent f alone is no independent first-party evidence for changing the printed base60 codec to base59.** The four p57 prime-ordinal→table positive numerical correspondences (title64 and body [75,115,73]) and p56 PAGE224 5×5 corner identity *conditionally* support a base59 candidate, but the model was discovered retrospectively. Authentic original page still signals base60. We inserted exact occupancy SFT and report caveat, Windows PASS [44155477850](https://github.com/FlareZ123/liber-primus/actions/runs/44155477850). This materially lowers confidence in treating DH K73 as an authenticated cryptographic operand absent an author's radix selector.
+
+No decrypted unknown LP2 rune. Favor first-party radix/lookup/recipient instruction.

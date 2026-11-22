@@ -1,0 +1,16 @@
+name: LP2 red word-map original first-hop test
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  red-wordmap:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original red word pointers and exact page-stratified source control
+        run: node sims/lp2_red_wordmap_firsthop_source_sft.cjs

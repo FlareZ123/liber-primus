@@ -1,0 +1,11 @@
+# Agent24: original final-chapter source-prime and historical seven-row transfer gate
+
+**14 November 2026; eight original-cipher model classes exhaustively scanned.** The known LP2 p56 cipher applies the consecutive-prime totient modulo29 with a literal-F key-clock interruption. It was independently plausible to try that authentic decoder on neighboring original p55 and the p54+p55 final chapter, especially because the previous >180-rune whole-section source-index searches omitted p55's 76-rune target.
+
+With source-native blind plaintext/key controls, the tests examined **2,000,000 starting ordinals per each of eight original model classes, totaling 16 million start candidates**: two signs on 76-rune p55; two signs on 308-rune pp54–55; and two 2014-authentic seven-rune Stage05 transposition directions followed by both signs on the same 308 original runes. Up to nine ciphertext-F non-consuming key interruptions were optimized by existing Viterbi. Prefix-only selection, untouched 18/90 rune holdouts, full candidate outputs.
+
+**Original results:** no readable plaintext, no source key. All original training winners degrade to about −4 or worse nats/rune on withheld material. Exact positive controls recover authentic p56 85/85 with F56, synthetic source-native p57 76/76, independent GP Shakespeare 308/308 and exact unknown prime start123456 and F43; the original 2014 Stage05 known message decodes 56/56. Full-stream scores were computed for top-12 prefix candidates, not globally optimized over 2m.
+
+Full [reproducible report](../../im-results/lp2-final-chapter-authentic-prime-source-blind-gates.md) links three original-source programs and passing CI runs [43540185191](https://github.com/FlareZ123/liber-primus/actions/runs/43540185191), [43540419599](https://github.com/FlareZ123/liber-primus/actions/runs/43540419599), [43540661715](https://github.com/FlareZ123/liber-primus/actions/runs/43540661715).
+
+**Handoff:** Retire these exact direct GP-native p56-key-transfer/Stage05-layer candidates. Seek independently printed keys or a genuinely selected additional transport. This is a bounded English-register negative, not a general proof of unsolvability or a new authentic plaintext.

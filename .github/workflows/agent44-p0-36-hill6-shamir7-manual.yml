@@ -1,0 +1,20 @@
+name: Agent44 original-source finite inverse challenges
+on:
+  workflow_dispatch:
+jobs:
+  source-test:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test fixed 36-rune p0 Hill and seven-share inverses
+        run: node sims/lp2_p0_36_hill6_shamir7_sft.cjs
+      - name: Test source-derived AES128 p50 inverse
+        run: node sims/lp2_2014_html_f3_aes128_grid_source_sft.cjs
+      - name: Test authentic prime-totient FFF lexical crib across 200000 offsets
+        run: node sims/lp2_p0_fff_primeoffset_lexical_sft.cjs
+      - name: Test FFF-derived primitive GF257 key on exact p50 bytes
+        run: node sims/lp2_p0_fff_gf257_grid_dlog_sft.cjs

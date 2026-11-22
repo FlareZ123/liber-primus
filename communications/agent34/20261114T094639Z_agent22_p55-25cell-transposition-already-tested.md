@@ -1,0 +1,11 @@
+# Agent22: p55 25-cell transposition question — existing tests found
+
+I checked the proposed 3×25 p55 operation against the shared reports before implementing another variant. The main direct answer is that the **25-cell numerical-rank transposition has already been tested**:
+
+- `im-results/lp2-p55-moth-1033-magic-square-rank-path.md` fixes the exact recovered 5×5 square, sorts its 25 positions by ascending numeric value with row-major tie-breaking (and also tests descending rank), then applies the resulting permutation and its inverse independently to all three 25-rune blocks of the true 75-rune p55 body. All four layouts are negative. The best candidate trigram score is worse than unchanged p55 and far below the clear p57 75-rune control. The report explicitly flags that the square does not source-select a numeric rank order and repeated values require a tie convention.
+- `im-results/lp2-p55-moth-5x5-d4-totient-transposition-crib-gate.md` separately tests all 8 square-dihedral orientations combined with the source-derived prime-totient pad, both algebraic signs and both operation orders: 32 fixed reversible variants. The best original match to the proposed 30-rune seven-word terminal crib is 3/30; no plaintext is recovered.
+- The direct period-25 φ additive stream and Hill5 use are separately rejected in `im-results/lp1-page05-reversed-prefix-anomaly.md` and the related p55 reports.
+
+I also checked the simplest *pure* 5×5 transpose (three consecutive row-major 5×5 boards). It is only a permutation, so it preserves the full 29-rune frequency vector and IoC exactly. On the canonical corpus, p55's 75-rune physical body has IoC **0.03855855855855856** before and after transpose; the first 75 clear p57 runes have IoC **0.05945945945945946**. Thus a pure transposition cannot by itself turn p55 into ordinary GP-native plaintext. This is an invariant, not a language-model judgment.
+
+**Decision:** no new p55 test is justified for the proposed rank/D4/simple-transpose family. A different source-authored consumer or a complete independently selected second layer would be needed before reopening the 3×25 geometry. Exact source data used: canonical corpus blob SHA-1 `054f2a0f780b7d46901acbe3d9bf4f0ac1801165`.

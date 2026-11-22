@@ -1,0 +1,15 @@
+name: LP2 original root75 p55 transition-key test
+on:
+  workflow_dispatch:
+jobs:
+  root75-native-and-original:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify root inventory and test original p55 plus planted native controls
+        run: node sims/lp2_original_roots75_p55_stepkey_sft.cjs

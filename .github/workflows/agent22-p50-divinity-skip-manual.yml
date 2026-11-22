@@ -1,0 +1,21 @@
+name: Agent22 p50 DIVINITY skip-aware original-input gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check source and run exact SFT
+        run: |
+          node --check sims/lp2_p50_divinity_collision_skip_sft.cjs
+          node sims/lp2_p50_divinity_collision_skip_sft.cjs

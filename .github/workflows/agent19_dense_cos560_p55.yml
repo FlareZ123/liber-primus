@@ -1,0 +1,26 @@
+name: Agent19 dense CicadaOS p55 word gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  dense-p55:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        builder: [mod29, prime_to_idx, hi_nibble, lo_nibble, byte_scaled]
+        relation: [exact, pair]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Fetch authoritative CicadaOS _560.00
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl -L --fail --retry 3 --output /tmp/_560.00 \
+            https://raw.githubusercontent.com/krisyotam/cicada3301/main/puzzles/2013/cicada-os/DATA/_560.00
+          test "$(stat -c%s /tmp/_560.00)" = "3992970"
+          echo "a24051a87f0eb25ca21accbd3158fdf7b4911243e5ee1b9778b81182f0d36573  /tmp/_560.00" | sha256sum -c -
+      - name: Dense exact p55 length-13 preimage scan
+        run: node sims/lp2_cos560_dense_p55_word13_sft.cjs /tmp/_560.00 ${{ matrix.builder }} ${{ matrix.relation }}

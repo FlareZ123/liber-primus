@@ -1,0 +1,40 @@
+name: Terminal 256 original inner-ring separability gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  inner-ring-rank:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exclude unrestricted secret high/low base60 digit maps on authentic p56-p57
+        run: node sims/lp2_terminal256_base60_digit_lookup_sft.cjs
+      - name: Test 512 inner-ring orders and all GF29 scalars
+        run: node sims/lp2_terminal256_inner_rowcol_rank_sft.cjs
+      - name: Test every 3x3 and 5x5 stencil against solved inner rings
+        run: node sims/lp2_terminal256_local_stencil_sft.cjs
+      - name: Test original 255-body carry against all-secret GF256 byte gates
+        run: node sims/lp2_terminal255_gf256_original_gate_sft.cjs
+      - name: Bound every source-ordered terminal inner GF29 linear recurrence
+        run: node sims/lp2_terminal256_inner_lfsr_sft.cjs
+      - name: Predict withheld 76-rune p55 from solved180 and perimeter monic GF29 cyclic code
+        run: node sims/lp2_terminal256_outer76_cyclic_completion_sft.cjs
+
+      - name: Predict p57 and p56 from each other by GF256 low-degree key interpolation
+        run: node sims/lp2_terminal256_gf256_erasure_sft.cjs
+
+      - name: Exclude all-secret full-width 8x8 affine filter on solved 180 terminal runes
+        run: node sims/lp2_terminal256_8x8_allsecret_kernel_sft.cjs
+      - name: Gate all-secret column and shell-local GP29 lookup maps on known terminal rings
+        run: node sims/lp2_terminal256_column_ring_secret_sft.cjs
+      - name: Test historically reproduced 2014 three-stream XOR as p55 perimeter key
+        run: node sims/lp2_2014_onion_xor3_p55_ring_sft.cjs
+      - name: Test 112-symbol HG/HG systematic core against 68 solved terminal runes
+        run: |
+          node --check sims/lp2_terminal_hg_biaxial_core112_sft.cjs
+          node sims/lp2_terminal_hg_biaxial_core112_sft.cjs

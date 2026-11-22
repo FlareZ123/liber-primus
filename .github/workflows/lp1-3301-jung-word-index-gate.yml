@@ -1,0 +1,36 @@
+name: LP1 3301 square to Jung Liber Primus word-index gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  word-index-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install PDF text extractor
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y poppler-utils
+      - name: Fetch the cited three-page Jung excerpt
+        id: fetch
+        env:
+          PDF_URL: https://www.jungiananalysts.org.uk/wp-content/uploads/2024/09/The-Way-of-What-is-to-Come-from-C.-G.-Jung-Liber-Novus-The-Red-Book-1-1.pdf
+        run: |
+          set -euo pipefail
+          curl --fail --location --silent --show-error --retry 2 --retry-delay 2 --max-time 60 "$PDF_URL" -o /tmp/jung-liber-primus-prologue.pdf
+          sha256sum /tmp/jung-liber-primus-prologue.pdf
+          sha="$(sha256sum /tmp/jung-liber-primus-prologue.pdf | cut -d' ' -f1)"
+          echo "sha256=$sha" >> "$GITHUB_OUTPUT"
+          pdftotext /tmp/jung-liber-primus-prologue.pdf /tmp/jung-default.txt
+          pdftotext -raw /tmp/jung-liber-primus-prologue.pdf /tmp/jung-raw.txt
+          pdftotext -layout /tmp/jung-liber-primus-prologue.pdf /tmp/jung-layout.txt
+      - name: Apply the fixed 3301 word-index hypothesis
+        env:
+          JUNG_PDF_SHA256: ${{ steps.fetch.outputs.sha256 }}
+        run: |
+          node sims/lp2_jung229_magic_square_word_index.cjs /tmp/jung-default.txt /tmp/jung-raw.txt /tmp/jung-layout.txt

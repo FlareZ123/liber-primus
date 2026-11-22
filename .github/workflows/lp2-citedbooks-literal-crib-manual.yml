@@ -1,0 +1,18 @@
+name: LP2 cited books original quotation source gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  cited-books-literal-crib:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check pinned KJV Mabinogion King in Yellow quote cribs
+        run: node sims/lp2_citedbooks_literal_crib_sft.cjs

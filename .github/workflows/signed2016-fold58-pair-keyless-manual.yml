@@ -1,0 +1,15 @@
+name: "2016 FOLD mirrored 58-page key-independent test (manual)"
+on:
+  workflow_dispatch:
+
+jobs:
+  folded-page-invariant:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test 29 folded page pairs and native shared-row plant
+        run: node sims/signed2016_fold58_pair_keyless_sft.cjs

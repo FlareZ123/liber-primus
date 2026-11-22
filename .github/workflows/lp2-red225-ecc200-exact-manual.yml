@@ -1,0 +1,19 @@
+name: LP2 red225 ECC200 exact parity original source
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-ecc200:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original red225 full ECC200 parity and all-secret contradiction
+        run: node sims/lp2_red225_ecc200_exact_sft.cjs

@@ -1,0 +1,50 @@
+name: LP2 MT32 verified shard aggregate
+
+on:
+  workflow_dispatch:
+    inputs:
+      source_run:
+        description: "Numeric GitHub Actions run id for the full S2 exact sweep"
+        required: true
+        type: string
+      mode:
+        description: "partial accepts available shards; strict demands all 96"
+        type: choice
+        required: true
+        default: partial
+        options:
+          - partial
+          - strict
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  consolidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Collect completed immutable per-shard receipts from the specified source run
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ inputs.source_run }}
+          pattern: exact-full-b*-s*
+          merge-multiple: false
+          path: artifacts
+      - name: Verify each artifact and disjoint-union coverage against the frozen source
+        shell: bash
+        run: |
+          set -euo pipefail
+          node sims/lp2_py27_mt32_merge_receipts_sft.cjs '${{ inputs.mode }}' '${{ inputs.source_run }}'
+      - name: Preserve independent numerical evidence and human summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exact-aggregate-${{ inputs.source_run }}-${{ inputs.mode }}
+          path: summary/
+          if-no-files-found: warn
+          retention-days: 90

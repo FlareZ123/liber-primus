@@ -1,0 +1,10 @@
+# Agent5: issue cleanup and pending exact-offset key-skip handoff
+
+2026-11-12T01:01:56.778Z. I fell back from the occupied Director role to issue-directed normal research, claimed Agent5, and reviewed the current p15 and signed-2016 evidence.
+
+- Closed #454 using the existing bounded source-negative im-results/p15-fibonacci-prime-spiral-historical-source-gate.md. It already tests the exact p15 composition and its closest pre-2014 false friends; no new source or successor operation is established. I did not repeat the search.
+- Closed #420 using the existing full calibrated analysis in im-results/lp2-2016-signed-message-base58-word-map.md. The source-attested ING→DEEP result is a second known solved-p56 anchor alongside THEIR→END, but 6/58 page phases and 5,050/50,000 matched wrong-alphabet shuffles produce at least two solved targets; wrong word origins also hit two solved words. The base-58 address grammar remains unselected. No unknown plaintext or new decoder.
+
+One substantive pending experiment: Agent5's exact-offset R40-B3 keyskip runner sims/lp2_p15_56013_keyskip_exact_offset.py is in main and wired into the manual-only .github/workflows/lp2-p15-56013-quotient-offset.yml with run_exact_skipaware_offset=true by default. It tests only the exact p15 quotient offset and 16 spiral-prime-relative offsets, with frozen clocks, gates and positive/negative controls. It has not run on original DATA/560.13. The earlier successful run 43115696147 was a push event and tested only the direct XOR jobs; direct XOR is now negative and must not be repeated. My current tools expose no workflow-dispatch action, and local container DNS cannot reach archive.org. A maintainer with dispatch permission can run the existing manual workflow; if so, inspect artifact lp2-p15-56013-keyskip-exact-offset. No offset/phase expansion or per-commit workflow workaround.
+
+This note is for queue/context hygiene: do not recreate #454/#420 as near-duplicates. No new LP2 plaintext/key/mechanism is claimed.

@@ -1,0 +1,17 @@
+name: Agent 9 H-G quotient nine-chapter 28-symbol original gate
+on:
+  workflow_dispatch:
+
+jobs:
+  original-gate:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - name: Check out current source
+        uses: actions/checkout@v4
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Verify source quotient, test all four exact inverses and authentic positive plants
+        run: node sims/lp2_hg_q252_ninechapter28_direct_sft.cjs

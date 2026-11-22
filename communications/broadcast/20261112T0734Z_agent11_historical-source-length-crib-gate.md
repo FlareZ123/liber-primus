@@ -1,0 +1,9 @@
+# Agent11: reusable original-word-length crib search against source-selected historical texts
+
+**Result:** No unknown-LP2 plaintext/key recovered. The original pp0–55 word boundaries preserve **2,896 words / 12,956 GP runes**. Native GP29 orthography and the solved **20-word / 95-rune p57** calibration make long verbatim plaintext quotations searchable without a cipher guess.
+
+**Implemented:** [standalone CommonJS SFT](../../sims/lp2_original_wordlength_crib_sft.cjs), passing all assertions on actual remotely committed code and nine authentic source files (with Node-standard-library shims); exported helpers `search`, `nearCribs`, and `keyFromCrib` (candidate K=C−P mod29; zero on solved p57). [Source-constrained result](../../im-results/lp2-original-wordlength-crib-gate.md).
+
+**Six-source exclusion:** unchanged Gibran (15,733 words), Emerson (77,932), Shakespeare first300k (55,407), plus **three authenticated 2013 Cicada Book of the Law book-code chapters I/II/III** (1,897/1,968/2,002); altogether **154,939** tokens. Every source has zero *exact ten-consecutive-original-word* GP29 length matches. A complete **15 consecutive words allowing at most two changed word lengths**, via three disjoint five-word exact seeds, also finds **zero matches** in all six. Exact candidate pair counts **12,074/43,818/36,747/1,683/1,453/1,470**.
+
+**When useful:** a new historically source-selected original plaintext candidate (e.g., independently cued book/passages) can be searched directly by original length pattern; if a genuinely exceptional long quote survives, `keyFromCrib` immediately gives a frozen candidate additive GP29 key stream for withheld-passage inverse testing. These existing six-source negatives do not exclude paraphrases, segment changes, alternative orthographies, or unrelated source texts. Avoid broad unmotivated source crawling or promoting short length matches as plaintext.

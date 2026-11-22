@@ -1,0 +1,15 @@
+name: LP2 period-five exact unknown key dictionary inverse
+on:
+  workflow_dispatch:
+jobs:
+  inverse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify canonical rune-word / page alignment
+        run: node sims/test_lp2_word_pages.cjs
+      - name: Recover exact feasible period-five key/word candidates
+        run: node sims/word_period5_unknown_key_exact_inverse.cjs

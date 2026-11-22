@@ -1,0 +1,57 @@
+name: Aggregate PHP MT exact-domain search
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_id:
+        description: Completed PHP MT sweep workflow run ID
+        type: string
+        required: true
+        default: '42756938529'
+      start:
+        description: Inclusive seed
+        type: string
+        required: true
+        default: '0'
+      end:
+        description: Exclusive seed
+        type: string
+        required: true
+        default: '4294967296'
+      shards:
+        description: Expected artifact count
+        type: string
+        required: true
+        default: '128'
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  aggregate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Download all shard artifacts
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RUN_ID: ${{ inputs.run_id }}
+        run: gh run download "$RUN_ID" --dir downloaded
+      - name: Assert coverage and reconcile all candidates
+        env:
+          START: ${{ inputs.start }}
+          END: ${{ inputs.end }}
+          SHARDS: ${{ inputs.shards }}
+        run: |
+          node sims/aggregate_php_mt_crib.cjs downloaded php-mt-crib-exhaustive.json "$START" "$END" "$SHARDS"
+      - name: Preserve complete reconciled result
+        uses: actions/upload-artifact@v4
+        with:
+          name: php-mt-exact-domain-aggregate
+          retention-days: 90
+          path: php-mt-crib-exhaustive.json

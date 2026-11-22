@@ -1,0 +1,21 @@
+name: LP2 p48 GEM to p49/p51 original inverse
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-gem-consumer:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check Node CommonJS syntax
+        run: node --check sims/lp2_p48_gemy_p49_p51_strictf_source_sft.cjs
+      - name: Run source-locked original p49/p51 inverse and solved-p57 plant
+        run: node sims/lp2_p48_gemy_p49_p51_strictf_source_sft.cjs

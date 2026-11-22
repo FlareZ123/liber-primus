@@ -1,0 +1,20 @@
+name: Agent42 p23-p56 2014-2016 half-turn source witness
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-2014-2016-witness:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Acquire original SHA-pinned Cicada IRC history
+        shell: bash
+        run: |
+          set -euo pipefail
+          curl --fail --location --retry 3 --silent --show-error "https://raw.githubusercontent.com/neuroretransmit/cicada/master/irc-logs/%23cicadasolvers.freenode.2.log" --output "$RUNNER_TEMP/#cicadasolvers.freenode.2.log"
+          node sims/lp2_p23_p56_halfturn_irc_witness_sft.cjs "$RUNNER_TEMP/#cicadasolvers.freenode.2.log"

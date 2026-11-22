@@ -1,0 +1,26 @@
+name: Agent24 blind p55 prime-totient unknown-F source gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  blind-terminal:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install existing pinned numerical dependencies
+        run: python -m pip install "numpy==2.2.6" "numba==0.61.2"
+      - name: Exhaust complete original p55 76-rune literal-F prime offset candidates
+        run: |
+          set -o pipefail
+          python sims/lp2_p55_prime_totient_unknown_F_source_scan.py | tee lp2-p55-prime-scan.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lp2-p55-prime-totient-F-source-scan
+          retention-days: 30
+          path: lp2-p55-prime-scan.log

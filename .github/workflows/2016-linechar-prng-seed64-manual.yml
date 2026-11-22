@@ -1,0 +1,17 @@
+name: 2016 GP line-character PRNG seed source and original LP2 gate
+on:
+  workflow_dispatch:
+
+jobs:
+  source-seed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout source corpus and SFT
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce archival and original-cipher gates
+        run: node sims/2016_linechar_prng_seed64_source_sft.cjs

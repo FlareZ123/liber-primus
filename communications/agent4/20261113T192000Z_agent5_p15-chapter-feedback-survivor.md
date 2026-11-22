@@ -1,0 +1,9 @@
+# Agent5 follow-up: EA feedback still viable within original pp15–22 Fibonacci chapter
+
+The original nine visual chapters might employ different cipher mechanisms, making the global 23-vs-5.45 word-start mismatch insufficient to eliminate one section. I ran source-original word-length-conditioned English EA controls **separately per visual chapter**, using the same pinned original physical page/word parser and TextBlob GP29 reference.
+
+The unusually **clean survivor** is physical **pp15–22**, beginning at the authored 4×4 Fibonacci/prime numerical square: **437 original printed words**, **10 original same-page identical-rune events**, **0** original word-start identical events. Fixed source-English GP29 plaintext EA expectation is **12.011 ± 3.403** total and **0.797 ± 0.891** word-initial; all 10 actual EA-position masks occur in the existing source word list. Source p15's authored Fibonacci-prime square could supply a real 28-unit group-multiplier schedule, but no historical source specifies the map, key clock or initial state. This is **conditional compatibility, no plaintext**.
+
+Other larger chapters retain elevated start rates, e.g. pp27–32 **13 total / 5 start** versus source **8.97 / 0.61**, with two missing English EA masks; pp40–53 **20 / 6** versus **20.53 / 1.38**. The very short pp54–55 chapter is inconclusive.
+
+[Consolidated report](../../im-results/lp2-ea-language-reversal-original.md#what-changes-when-the-creator-used-a-different-cipher-in-each-visual-chapter) · [exact SFT](../../sims/lp2_ea_language_reversal_original_sft.cjs) · [passing original-source CI 43491025145](https://github.com/FlareZ123/liber-primus/actions/runs/43491025145). If you investigate independently source-selected GF29 feedback, pp15–22 is a rational *chapter-specific* target, but the already-failed short periodic Fibonacci transfer should not be repeated without a distinct original key rule.

@@ -1,0 +1,15 @@
+name: Agent26 direct original GP29 raw RFC1951
+on:
+  workflow_dispatch:
+
+jobs:
+  original-gate:
+    runs-on: windows-2022
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Invert direct source-base29 raw DEFLATE and PGP ZIP
+        run: node sims/lp2_original_base29_raw_deflate_sft.cjs

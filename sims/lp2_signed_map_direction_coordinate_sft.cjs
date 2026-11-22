@@ -1,0 +1,301 @@
+"use strict";
+
+/**
+ * Agent17 SFT: charge the signed-2016 MAP/ROAD/DIRECTION clause-anchor
+ * coordinate family under the existing page=index / word=index+1 grammar.
+ * Node.js 22 / CommonJS. Reads canonical repository resources only.
+ */
+
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+
+const ROOT = path.resolve(__dirname, "..");
+
+/** @param {string} relative @returns {string} */
+function read(relative) {
+  return fs.readFileSync(path.join(ROOT, relative), "utf8").replace(/\r/g, "");
+}
+
+/** @param {number} segment @returns {number} */
+function physicalPage(segment) {
+  return segment >= 50 ? segment + 1 : segment;
+}
+
+/** @param {number} value @returns {number} */
+function mod29(value) {
+  return ((value % 29) + 29) % 29;
+}
+
+/** @param {number[]} values @returns {number[]} */
+function hSequence(values) {
+  const out = [];
+  let left = 0;
+  let right = values.length - 1;
+  while (left < right) {
+    out.push(mod29(values[left] - values[right]), mod29(values[left] + values[right]));
+    left += 1;
+    right -= 1;
+  }
+  if (left === right) out.push(values[left]);
+  return out;
+}
+
+/** @param {number[]} values @param {number} split @returns {number[]} */
+function lineWrapUnion(values, split) {
+  return [
+    ...hSequence(values),
+    ...hSequence(values.slice(0, split)),
+    ...hSequence(values.slice(split)),
+  ];
+}
+
+/** @param {number[]} values @returns {{best:number,runs:number[][]}} */
+function longestConsecutiveRuns(values) {
+  const set = new Set(values);
+  let best = 0;
+  let runs = [];
+  for (let start = 0; start < 29; start += 1) {
+    let end = start;
+    while (end < 29 && set.has(end)) end += 1;
+    const length = end - start;
+    if (length > best) {
+      best = length;
+      runs = length ? [[start, end - 1]] : [];
+    } else if (length === best && length > 0) {
+      runs.push([start, end - 1]);
+    }
+  }
+  return {best, runs};
+}
+
+const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
+const transcription = read("resources/lp2-transcription.txt");
+const signed2016 = read("resources/historical/cicada2016-4gq25-outguess.asc");
+const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+
+/** @typedef {{segment:number,offset:number,value:number}} Site */
+/** @typedef {{page:number,ordinal:number,start:number,values:number[],breaks:number[]}} Word */
+
+/** @type {Map<number, Word[]>} */
+const wordsByPage = new Map();
+/** @type {Site[]} */
+let current = [];
+/** @type {number[]} */
+let breaks = [];
+const offsets = Array(58).fill(0);
+let segment = 0;
+
+function finishWord() {
+  if (current.length === 0) return;
+  const segments = [...new Set(current.map((site) => site.segment))];
+  if (segments.length === 1) {
+    const page = physicalPage(segments[0]);
+    if (page <= 55) {
+      if (!wordsByPage.has(page)) wordsByPage.set(page, []);
+      const pageWords = wordsByPage.get(page);
+      pageWords.push({
+        page,
+        ordinal: pageWords.length + 1,
+        start: current[0].offset,
+        values: current.map((site) => site.value),
+        breaks: breaks.slice(),
+      });
+    }
+  }
+  current = [];
+  breaks = [];
+}
+
+for (const character of transcription) {
+  if (character === "%") {
+    segment += 1;
+  } else if (runeIndex.has(character)) {
+    current.push({segment, offset: offsets[segment], value: runeIndex.get(character)});
+    offsets[segment] += 1;
+  } else if (character === "/") {
+    if (current.length > 0) breaks.push(current.length);
+  } else if (/\s/u.test(character)) {
+    // Physical whitespace does not terminate a printed word.
+  } else {
+    finishWord();
+  }
+}
+finishWord();
+
+const signedBody = signed2016
+  .slice(signed2016.indexOf("Hello."), signed2016.indexOf("-----BEGIN PGP SIGNATURE-----"))
+  .replace(/\b7A35090F\b/g, "");
+const source = signedBody.match(/(?<![A-Za-z0-9])[A-Za-z]+(?![A-Za-z0-9])/g) || [];
+assert.equal(source.length, 43);
+const upper = source.map((word) => word.toUpperCase());
+
+const anchors = {
+  theMap: 17,
+  map: 18,
+  theRoad: 22,
+  road: 23,
+  theDirection: 28,
+  direction: 29,
+};
+assert.deepEqual(
+  Object.values(anchors).map((index) => upper[index]),
+  ["THE", "MAP", "THE", "ROAD", "THE", "DIRECTION"]
+);
+
+const anchorIndices = Object.values(anchors);
+const rows = [];
+for (const pageIndex of anchorIndices) {
+  const pageWords = wordsByPage.get(pageIndex) || [];
+  for (const wordIndex of anchorIndices) {
+    const word = pageWords[wordIndex];
+    if (!word) continue;
+    const union = word.breaks.length === 1
+      ? lineWrapUnion(word.values, word.breaks[0])
+      : hSequence(word.values);
+    rows.push({
+      pageIndex,
+      pageWord: upper[pageIndex],
+      wordIndex,
+      wordWord: upper[wordIndex],
+      ordinal: wordIndex + 1,
+      start: word.start,
+      length: word.values.length,
+      breaks: word.breaks,
+      ...longestConsecutiveRuns(union),
+    });
+  }
+}
+rows.sort((a, b) => b.best - a.best || a.pageIndex - b.pageIndex || a.wordIndex - b.wordIndex);
+
+const semantic = rows.find((row) =>
+  row.pageIndex === anchors.theDirection && row.wordIndex === anchors.map
+);
+assert.ok(semantic);
+assert.equal(rows[0], semantic);
+assert.equal(semantic.best, 7);
+assert.deepEqual(semantic.runs, [[16,22]]);
+assert.equal(rows[1].best, 4);
+
+const semanticWord = (wordsByPage.get(anchors.theDirection) || [])[anchors.map];
+assert.ok(semanticWord);
+assert.deepEqual(semanticWord.breaks, [9]);
+const semanticWholeH = hSequence(semanticWord.values);
+const semanticPrefixH = hSequence(semanticWord.values.slice(0, 9));
+const semanticSuffixH = hSequence(semanticWord.values.slice(9));
+
+const allThe = upper
+  .map((word, index) => ({word, index}))
+  .filter((row) => row.word === "THE")
+  .map((row) => row.index);
+assert.deepEqual(allThe, [1,7,12,17,22,28]);
+
+const theToMap = [];
+for (const pageIndex of allThe) {
+  const word = (wordsByPage.get(pageIndex) || [])[anchors.map];
+  if (!word) continue;
+  const union = word.breaks.length === 1
+    ? lineWrapUnion(word.values, word.breaks[0])
+    : hSequence(word.values);
+  theToMap.push({
+    pageIndex,
+    pageWord: upper[pageIndex],
+    wordIndex: anchors.map,
+    ordinal: anchors.map + 1,
+    start: word.start,
+    length: word.values.length,
+    breaks: word.breaks,
+    ...longestConsecutiveRuns(union),
+  });
+}
+theToMap.sort((a, b) => b.best - a.best || a.pageIndex - b.pageIndex);
+assert.equal(theToMap[0].pageIndex, anchors.theDirection);
+assert.equal(theToMap[0].best, 7);
+assert.equal(theToMap[1].best, 3);
+
+
+/** @param {number[]} bits @returns {number} */
+function binaryValue(bits) {
+  return bits.reduce((value, bit) => value * 2 + bit, 0);
+}
+
+/**
+ * Charge the complete authenticated source-coordinate family for physical
+ * line-wrapped receivers whose longest H-union run has length seven. For each
+ * run, ask whether every source number belongs exclusively to the whole-word
+ * H branch or to either physical-fragment H branch. Only then is a binary
+ * whole-vs-fragment provenance word defined.
+ */
+const provenanceRows = [];
+for (let pageIndex = 0; pageIndex < source.length; pageIndex += 1) {
+  const pageWords = wordsByPage.get(pageIndex) || [];
+  for (let wordIndex = 0; wordIndex < source.length; wordIndex += 1) {
+    const word = pageWords[wordIndex];
+    if (!word || word.breaks.length !== 1) continue;
+    const split = word.breaks[0];
+    if (split <= 0 || split >= word.values.length) continue;
+    const whole = hSequence(word.values);
+    const prefix = hSequence(word.values.slice(0, split));
+    const suffix = hSequence(word.values.slice(split));
+    const score = longestConsecutiveRuns([...whole, ...prefix, ...suffix]);
+    if (score.best !== 7) continue;
+    for (const run of score.runs) {
+      const values = Array.from(
+        {length: run[1] - run[0] + 1},
+        (_, index) => run[0] + index
+      );
+      const provenance = values.map((value) => {
+        const inWhole = whole.includes(value);
+        const inFragment = prefix.includes(value) || suffix.includes(value);
+        return {value, inWhole, inFragment};
+      });
+      const exclusive = provenance.every((row) => row.inWhole !== row.inFragment);
+      let readings = null;
+      if (exclusive) {
+        const wholeOne = provenance.map((row) => row.inWhole ? 1 : 0);
+        const fragmentOne = wholeOne.map((bit) => 1 - bit);
+        readings = {
+          wholeOneForward: binaryValue(wholeOne),
+          wholeOneReverse: binaryValue(wholeOne.slice().reverse()),
+          fragmentOneForward: binaryValue(fragmentOne),
+          fragmentOneReverse: binaryValue(fragmentOne.slice().reverse()),
+        };
+      }
+      provenanceRows.push({
+        pageIndex,
+        pageWord: upper[pageIndex],
+        wordIndex,
+        wordWord: upper[wordIndex],
+        ordinal: wordIndex + 1,
+        start: word.start,
+        split,
+        run,
+        provenance,
+        exclusive,
+        readings,
+        inSourceRegister: readings
+          ? Object.entries(readings).filter(([, value]) => value < source.length)
+          : [],
+      });
+    }
+  }
+}
+
+console.log(JSON.stringify({
+  status: "PASS",
+  sourceAnchors: anchors,
+  anchorFamily: {
+    rows: rows.length,
+    ranking: rows,
+  },
+  literalMapDirectionCoordinate: {
+    ...semantic,
+    sourceWords: upper.slice(16, 23),
+    raw: semanticWord.values,
+    wholeH: semanticWholeH,
+    prefixH: semanticPrefixH,
+    suffixH: semanticSuffixH,
+  },
+  theToMapFamily: theToMap,
+  run7ProvenanceFamily: provenanceRows,
+}, null, 2));

@@ -1,0 +1,16 @@
+name: Agent29 p50 eight SHA256 red-title source gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source-gate:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check the eight source title digest hypothesis
+        run: node sims/lp2_p50_eightsha256_redtitles_original_sft.cjs

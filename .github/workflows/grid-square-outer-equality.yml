@@ -1,0 +1,14 @@
+name: LP2 square and grid under unknown rune permutation
+on:
+  workflow_dispatch:
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Equality-only full-key section inversion with heldout validation
+        run: node sims/grid_square_outer_equality.cjs

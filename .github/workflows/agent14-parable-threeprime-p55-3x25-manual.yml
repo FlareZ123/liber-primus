@@ -1,0 +1,18 @@
+name: Agent14 Parable three-prime p55 3x25 original inverse
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-3x25:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run exact source-three-prime complete p55 SFT
+        run: |
+          node --check sims/lp2_p55_parable_threeprime_3x25_totient_sft.cjs
+          node sims/lp2_p55_parable_threeprime_3x25_totient_sft.cjs

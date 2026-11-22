@@ -1,0 +1,13 @@
+name: Agent 9 original BASE29 whole-word arithmetic gate
+on:
+  workflow_dispatch:
+jobs:
+  source-original-wordmod:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node sims/lp2_word_base29_modmult_2013_1033_3301_sft.cjs

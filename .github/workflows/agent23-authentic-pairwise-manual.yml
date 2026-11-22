@@ -1,0 +1,18 @@
+name: Agent23 source-authentic paired primitives original cipher gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  paired-original:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax check and source-locked original-cipher inverse
+        run: |
+          node --check sims/lp2_authentic_pairwise_composition_sft.cjs
+          node sims/lp2_authentic_pairwise_composition_sft.cjs

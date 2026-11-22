@@ -1,0 +1,20 @@
+name: Agent34 p50 word-conditioned doublet exact gate
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-word-mask:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Exact p50 word-conditioned doublet gate
+        shell: pwsh
+        run: |
+          node --check sims/lp2_doublet_gap_nonstationarity_sft.cjs
+          node sims/lp2_doublet_gap_nonstationarity_sft.cjs
+          node --check sims/lp2_p50_page_balanced_low60_sft.cjs
+          node sims/lp2_p50_page_balanced_low60_sft.cjs

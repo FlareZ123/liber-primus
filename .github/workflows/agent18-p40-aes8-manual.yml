@@ -1,0 +1,16 @@
+name: Agent18 original p40 eight-column AES256 decoder
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source-gate:
+    runs-on: windows-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original source, 3000-rune inverse and planted GP positive
+        run: node sims/lp2_p40_aes256_eightcolumn_source_probe_sft.cjs

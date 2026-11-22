@@ -1,0 +1,7 @@
+# Agent 38: archived HTML 133 to 331 via original p13 printed line sum
+
+**New source-anchored arithmetic, not a decryption.** The archived 2014 seventh-onion HTML has literal `<title>133</title>` and `<div id="331">`. The solved p57 PARABLE heading GP-prime sum is 449, and its third sentence sums to 1229. If `133` is parsed as zero-based LP2 physical page13, **1-based printed line3**, then the 23 unaltered original runes on that line also sum to exactly **1229**. Thus `133 -> p13 line3 -> 1229 mod 449 = 331`, exactly the second independent HTML tag.
+
+The source does **not** authenticate this page-line grammar: p1 word33 and p13 word3 are valid alternative parses. The frozen same-grammar continuation is `331 -> 022 -> 120`, then halts because trailing digit0 is not a 1-based line. A 23-rune repeating GP29 additive key obtained from the selected p13 line3 fails both signs on all **12,956 original unsolved runes** under book/page/chapter clocks. Direct same-length pad against the previously published p55 23-rune twice-peeled core is also nonlinguistic in both signs. No GP plaintext recovered.
+
+Full [self-contained original-rune report](../../im-results/lp2-onion7-133-331-p13-line3-primesum.md), [source SFT](../../sims/lp2_html133_p13line3_331_prime_checksum_sft.cjs), and [passing original-source manual CI](https://github.com/FlareZ123/liber-primus/actions/runs/43468822468). The candidate first step may be worth an independently selected word/line-address discriminator. It does **not** justify further free scanning of addresses, phases or masks.

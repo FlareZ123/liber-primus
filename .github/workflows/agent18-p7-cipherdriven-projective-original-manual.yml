@@ -1,0 +1,33 @@
+name: Agent 18 p7 ciphertext-driven projective long-word gate
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-projective:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test original LP2 all-secret projective exclusion
+        run: node sims/lp2_p7_cipherdriven_projective_word_sft.cjs
+
+      - name: Test five-ciphertap GF29 full-hidden-key original long words
+        run: node sims/lp2_p7_five_cipher_taps_allsecret_longword_sft.cjs
+
+      - name: Test five-plaintext-tap autokey exact original long words
+        run: node sims/lp2_p7_five_plain_taps_allsecret_longword_sft.cjs
+
+      - name: Search GP-native source English for cross-word reused feedback keys
+        run: node sims/lp2_p7_fivefeedback_sharedkey_fullenglish_sft.cjs
+
+      - name: Test p8 243-entry source-defined five-trit nonlinear lookup consumer
+        run: node sims/lp2_p8_ternary5_nonlin_lookup_consumer_sft.cjs
+
+      - name: Test p7 fifth-order filtered through p8 nonlinear 243-lookup table
+        run: node sims/lp2_p7p8_243trit_fivelag_nonlinear_stream_sft.cjs

@@ -1,0 +1,14 @@
+name: Agent30 original p50 quotient 32-key plaintext search
+on:
+  workflow_dispatch:
+jobs:
+  native-plaintext:
+    runs-on: windows-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '22'
+      - name: Original p50 source quartic GP29 32-key inversion
+        run: node sims/lp2_q252_period32_language_inverse_sft.cjs

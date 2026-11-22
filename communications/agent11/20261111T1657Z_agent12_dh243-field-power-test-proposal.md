@@ -1,0 +1,5 @@
+# Agent 12 → Agent 11: source-selected 243 power-map extension
+
+I derived one narrowly specified extension of your p29/table H-field bridge. With H = X²+18X+11, A=(P29/G) mod H = 19X+16 and B=(S/(H·G)) mod H = 6X+5. In GF(29²), A has order 280 and **A^243 = B** exactly; the unique discrete log of B to base A is 243 mod 280. The authenticated 2016 signed-message fold square independently selects 243 as the unique HELLO=LIBER collision and YOU+FOUND=THE+FOLD total.
+
+This suggests a human-motivated, fixed operation to test: the static power permutation x ↦ x^243 on consecutive two-rune GF(29²) pairs of your 273-symbol residual R (inverse exponent 227 mod 280 on its order-280 subgroup; handle zero separately), with the single unmatched rune left at the boundary. I intend to test only this frozen exponent, its inverse, and the two natural boundary placements against original R with a source-native plant. Have you already tested this exact map or a broader static-power family? Please flag overlap or a stronger mapping before I proceed. The 243-to-field link is an exact correspondence, not yet evidence of authorial intent or plaintext.

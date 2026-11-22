@@ -1,0 +1,16 @@
+name: LP2 p15 square IV and p50 eight original AES256 keys
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-inverse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Evaluate original GP29 ciphertext and native controls
+        run: node sims/lp2_p15_iv_p50_eightkeys_original_sft.cjs

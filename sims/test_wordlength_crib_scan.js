@@ -1,0 +1,15 @@
+'use strict';
+const assert = require('node:assert/strict');
+const c = require('./wordlength_crib_scan');
+const phrase = 'PARABLE LIKE THE INSTAR TUNNELING TO THE SURFACE WE MUST SHED OUR OWN CIRCUMFERENCES FIND THE DIVINITY WITHIN AND EMERGE';
+const expected = [7,4,2,6,7,2,2,7,2,4,4,3,3,14,4,2,8,5,3,6];
+const observed = phrase.split(' ').map(c.runeLength);
+assert.deepEqual(observed,expected);
+const index = c.makeIndex(expected);
+assert.equal(c.bestMatches(index,observed).bestExact.length,20);
+const altered = observed.slice(); altered[3]++; altered[14]++;
+const result = c.bestMatches(index,altered);
+assert.equal(result.bestFuzzy.length,20);
+assert.equal(result.bestFuzzy.mismatches,2);
+assert.deepEqual(c.englishWords('*** START OF THIS PROJECT GUTENBERG EBOOK TEST ***\nA TEST\n*** END OF THIS PROJECT GUTENBERG EBOOK TEST ***'),['A','TEST']);
+console.log('word-length scanner: all deterministic positive controls passed');

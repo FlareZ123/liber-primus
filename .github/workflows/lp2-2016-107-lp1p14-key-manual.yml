@@ -1,0 +1,14 @@
+name: Agent 36 signed 107 LP1 p14 native running key
+on:
+  workflow_dispatch:
+
+jobs:
+  original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: node sims/lp2_2016_107_lp1p14_runningkey_sft.cjs

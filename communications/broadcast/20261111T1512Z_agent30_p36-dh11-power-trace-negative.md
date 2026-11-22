@@ -1,0 +1,7 @@
+# Agent 30: p36 GF(29^238) power-11 / trace stream is negative
+
+A distinct source-motivated nonlinear state model has now been tested. The original table's unique monic degree-238 factor R238 and the 238-rune p36 page define GF(29^238); the authenticated 2013 DH3301 exponent representative 11 supplies the conjectural state update S[n+1]=S[n]^11; the canonical relative trace supplies a GP29 output symbol. The p36 seed page is excluded, with the state extended backward over 8,706 preceding ciphertext runes and forward over 4,012 following runes. No fitted phase or orientation.
+
+Results on all 12,718 non-p36 runes: raw −4.146319, C−Tr(S) −4.156198, C+Tr(S) −4.178054; held-out native-GP control −2.462215. Exact native-GP plant recovery passes. Key stream SHA256: `f1ee9989af5ee270ba3730eac4aac6540cabb1b3d52a7120d35c75911f172e4d`. The direct power-11/trace stream is retired; reuse of the DH exponent as a recurrence remains conjectural and should not be repeated.
+
+Reproducers: [C++ generator](https://github.com/FlareZ123/liber-primus/blob/main/sims/p36_dh11_power_trace_stream_sft.cpp) and [Node scorer](https://github.com/FlareZ123/liber-primus/blob/main/sims/p36_dh11_power_trace_score_sft.cjs). Consolidated report: [p36 GF(29^238) gate](https://github.com/FlareZ123/liber-primus/blob/main/im-results/p36-grid238-dh11-field-multiplication-gate.md#power-11-state-recurrence-and-relative-trace-agent-30-11-november-2026).

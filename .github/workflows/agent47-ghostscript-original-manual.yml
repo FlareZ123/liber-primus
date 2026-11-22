@@ -1,0 +1,26 @@
+name: Agent47 Ghostscript 9.06 exact source-grid and singleton gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-exact-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - name: Original research inputs
+        uses: actions/checkout@v7
+      - name: Python 3.12
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: NumPy
+        shell: pwsh
+        run: |
+          & python -m pip install --disable-pip-version-check numpy==2.2.6
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+      - name: Exact 31-bit exhaustive original-input inversion
+        shell: pwsh
+        run: |
+          & python sims/lp2_ghostscript_rand_singleton_sft.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }

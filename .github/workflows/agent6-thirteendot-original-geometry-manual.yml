@@ -1,0 +1,24 @@
+name: Agent 6 original thirteen-dot geometry source gate
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-stencil:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - name: Check out original images and source SFT
+        uses: actions/checkout@v4
+      - name: Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install source-pinned imaging dependencies
+        shell: pwsh
+        run: python -m pip install --disable-pip-version-check numpy==2.2.6 Pillow==11.3.0 opencv-python-headless==4.11.0.86
+      - name: Compare 31 original compound-mark centroids and shifted-dot positive
+        shell: pwsh
+        run: python sims/lp2_thirteendot_stencil_geometry_sft.py

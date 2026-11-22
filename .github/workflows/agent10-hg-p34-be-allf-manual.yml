@@ -1,0 +1,17 @@
+name: Agent10 source quadratic H G p34 BE all-F gate
+on:
+  workflow_dispatch:
+
+jobs:
+  p34-factors:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce both original quadratic GP29 factor state gates
+        run: |
+          node --check sims/lp2_hg_factor_p34_be_allf_sft.cjs
+          node sims/lp2_hg_factor_p34_be_allf_sft.cjs

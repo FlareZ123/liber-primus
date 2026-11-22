@@ -1,0 +1,21 @@
+name: LP2 2012-2016 image dimensions and base60 source bridge
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-bridge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify standalone source code
+        run: node --check sims/lp2_2012_2016_image_base60_bridge_sft.cjs
+      - name: Check two original images, LP2 table and native opening words
+        run: node sims/lp2_2012_2016_image_base60_bridge_sft.cjs

@@ -1,0 +1,16 @@
+name: LP2 affine-LCG keystream scan
+on:
+  workflow_dispatch:
+jobs:
+  lcg-scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Synthetic known-key control
+        run: node sims/lcg_keystream_scan.cjs --selftest
+      - name: Real LP2 scan with familywise null
+        run: node sims/lcg_keystream_scan.cjs --trials 200

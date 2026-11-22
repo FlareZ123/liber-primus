@@ -1,0 +1,47 @@
+# A contemporaneous 2015 Tor crawl as a conditional LP2 continuation source
+
+**Status (15 November 2026, Agent 43): external archival lead with a precise access gate. No original p56 hash preimage, unknown-page plaintext or key has been recovered.** This is a recoverable-data avenue rather than another cipher variant or an established source link.
+
+## Causal target
+
+The authenticated plaintext of LP2 physical p56 states that a page exists within the deep web which hashes to the printed 128-hex-character digest. The existence and historic reachability of that specific page remain unknown. The project has already tested source-authentic 2014 Stage11 files, known Onion7 hosts, original JPEGs, and 2014–2016 Arquivo.pt proxy captures without a match; see [the authoritative preimage audit](../im-results/archive-hash-preimage.md). Further hashing of the same known files is unlikely to help.
+
+A materially different route is to recover **previously unindexed contemporary Tor web material** and search it for Cicada-specific original pages or outgoing references. The 2016 study by **Daniel Moore and Thomas Rid**, *Cryptopolitik and the Darknet*, documents a deep Tor HTML crawl carried out between **January and March 2015**, after the May 2014 publication of LP2. This is more temporally relevant to LP2 than the independent TNO crawl of **December 2013**, which necessarily predates the book's second release.
+
+## Independently documented capture
+
+Sources:
+
+- [Moore and Rid, 2016 journal article](https://doi.org/10.1080/00396338.2016.1142085), methodology and crawl-period description.
+- [D. Moore, *Technical Annex: Indexing Tor Hidden Services*](https://ridt.co/d/moore-rid-technical-annex.pdf), preserved clearnet copy of a 2 February 2016 methodology page from the authors' then-current onion site.
+- [Thomas Rid's article/source hub](https://ridt.co/cryptopolitik/).
+
+The study starts with **5,615 onion seeds** from onion.city and Ahmia and describes up to **100 HTML pages per Tor site** and limited recursive link following. The technical annex gives **5,205 sites** with **239,000 unique pages** and **50,000 pages actually classified**; it describes a five-week continuous crawler run. The study describes the overall collection interval as January–March 2015. These figures refer to different stages and are not independent confirmations of source-body survival.
+
+The crawler stored data in **MongoDB** and normalized captured page text by stripping **HTML tags, invisible text including comments, embedded media and JavaScript** before hashing the normalized text and deduplicating it. The annex specifically excludes non-HTML formats such as executables, images, archives and `.bin`. **Its text digests therefore cannot be substituted for the exact original HTML entity bytes** when testing p56's historical hash target. The archived URL list, original HTTP bodies (if retained), crawl timestamps, or link graph could still identify an original page or a Cicada-linked service independently.
+
+## Independent DHT-discovered corpus: Owenson and Savage
+
+A second research study has a different historical *discovery channel*, relevant if the p56 page was never linked from a public Tor directory. [Gareth Owen (Owenson) and Nick Savage, *Empirical analysis of Tor hidden services*](https://doi.org/10.1049/iet-ifs.2015.0121) (IET Information Security **10(3):113–118**, publication **1 May 2016**) describes operation of Tor hidden-service directory relays for **approximately six months**, observing nearly **80,000 distinct hidden-service addresses**. Unlike Moore/Rid's seed-and-link crawler, the addresses originated from Tor descriptor announcements, which could in principle reveal an unlisted but actively advertised service. The subsequent one-month web-crawler also **recorded HTTP response server headers and extracted outbound onion/clearnet/own-site link categories**. A surviving per-service address list with capture-day metadata could thus create a candidate set independent of public search-engine visibility.
+
+**Date evidence and remaining caveat:** The original investigator gave a [recorded presentation at 31C3 on **30 December 2014**](https://media.ccc.de/v/31c3_-_6112_-_en_-_saal_2_-_201412301715_-_tor_hidden_services_and_deanonymisation_-_dr_gareth_owen) explicitly describing **the six-month relay collection and subsequent web crawl as completed work**. An independent [30 September 2015 paper, *The Tor Dark Net*](https://www.cigionline.org/publications/tor-dark-net/), again authored by Owen and Savage, confirms the same six-month study. This establishes a **2014-period historical dataset, temporally overlapping the May–December 2014 LP2 period**, even though its exact first and final observation days are not documented in the accessible source. The original data's survival remains unverified. Nor is it established that unchanged HTTP entity bodies, HTML hyperlinks with complete URL strings, or the source database survived; publication of aggregate counts is insufficient. Source-host and page metadata must be first checked against the authentic Cicada onion host before any narrower page retrieval. An entirely unlinked hash target is more likely to benefit from this DHT-discovery design than from Moore/Rid's link-only census, although the fraction of unpublished onion identities actually observed is unknown.
+
+The published aggregate findings do **not** themselves identify any Cicada site or hash preimage. The two proposed datasets have different possible failure modes: Moore/Rid has a verified **January–March 2015** window but requires public index/link discovery; Owenson/Savage captures otherwise undiscoverable Tor service announcements, with **verified pre-December-2014 presentation, unknown exact collection dates and unknown surviving records**. Establish exact original capture times and independent data access before equating them or escalating research.
+
+## Decisive data-access gate
+
+First determine whether the corpus remains accessible and whether it contains (a) crawl-time URL strings and capture timestamps, (b) unchanged source HTTP entity bytes rather than only sanitized text, and (c) Tor-page outgoing links. No public raw-corpus download or index was established in the present web search. This absence of a found public link is **not** evidence of destruction or nonavailability to the researchers.
+
+If the data can be queried, seek provider-side **exact-string, metadata-only matching** against the known first-party 2014 distribution host `ky2khlqdf7qdznac.onion`, authenticated Cicada titles, and relevant Cicada challenge markers; the known host is a *source identity control*, not the unknown hash destination. Only if a historically dated Cicada-related record exists should the investigation retrieve a narrow, non-illicit, directly relevant HTML record. For a candidate target, compute the printed p56 digest against **byte-exact original response bodies** using multiple correctly distinguished hash families. A match to sanitized text would instead be a thematic discovery and require a different authenticity claim.
+
+**Exact-hash membership as the cheapest decisive test:** If either archive retains original HTTP entities, a corpus custodian can compute **SHA-512 of each original captured HTML response body entirely in place**, comparing against the authenticated 128-hex p56 target `36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4`, and return only a Boolean hit and a crawl timestamp. This avoids transfer or publication of the potentially sensitive corpus, needs no guess of the lost onion URL, and can detect an otherwise completely unlinked original page **if it was captured**. A positive hit requires provenance and byte-exact independent verification of the specific harmless puzzle page; a negative hit excludes only SHA-512 of bodies actually retained under that exact representation, because the historical source does not specify its 512-bit hash algorithm. If original bytes were discarded, request a narrow known-Cicada-host address/link metadata query instead. This query order directly tests the stated p56 objective before speculative source selection or broader browsing.
+
+**Positive gate:** one independently captured original 2014–2015 Cicada-linked page or contemporaneous outgoing link not already in the repository; then use its exact bytes or cited links to make a new discriminating plaintext/key/destination hypothesis.
+
+**Negative gate:** verified absence of relevant Cicada identities and references from a genuinely searchable complete 2015 corpus, with clear dates, search terms and normalization caveats. This would retire this *one dataset* as a practical continuation source but would not disprove the p56 target's existence.
+
+The initial source establishes that the crawl occurred, **not** that it ever indexed the unlinked p56 target. Avoid broad downloading or publication of potentially harmful historical hidden-service material. Constrain access to authorized, narrowly scoped puzzle metadata and innocuous pages.
+
+## Research decision
+
+This route supplies a possible **new original document**, which could change the missing-key/continuation question. It is currently **blocked on primary data access**, not a basis for claiming a cipher or escalating arbitrary hash guessing. Do not add it to the established-result synthesis until a relevant period source is actually recovered.

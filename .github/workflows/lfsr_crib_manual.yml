@@ -1,0 +1,26 @@
+name: LFSR opening-crib research (manual)
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lfsr-crib:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install research dependencies
+        run: python -m pip install numpy==2.3.4 textblob==0.19.0
+      - name: Check ciphertext candidates
+        run: python sims/short_lfsr_crib.py > lfsr-report.json
+      - name: Summarize result
+        run: python -c "import json; d=json.load(open('lfsr-report.json',encoding='utf-8')); print(json.dumps(d,indent=2))"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lfsr-opening-crib-results
+          path: lfsr-report.json

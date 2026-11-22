@@ -1,0 +1,48 @@
+name: Agent8 2014 source-file attachment discovery
+
+on:
+  workflow_dispatch:
+    inputs:
+      probe:
+        description: "2014 original attachments or original k-block spectrum"
+        required: false
+        type: choice
+        options:
+          - irc-original
+          - kblock-spectrum
+        default: irc-original
+
+permissions:
+  contents: read
+
+jobs:
+  inspect-original-irc-file-links:
+    if: ${{ inputs.probe != 'kblock-spectrum' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax and synthetic controls
+        run: |
+          node --check sims/lp2_2014_irc_nonpaste_attachment_sft.cjs
+          node sims/lp2_2014_irc_nonpaste_attachment_sft.cjs --selftest
+      - name: Source-pinned 2014 original attachment inventory
+        run: node sims/lp2_2014_irc_nonpaste_attachment_sft.cjs --network
+
+  page-private-kblock-spectrum:
+    if: ${{ inputs.probe == 'kblock-spectrum' }}
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original page-private all-secret triplet/quartet SFT
+        shell: pwsh
+        run: |
+          node --check sims/lp2_pageprivate_kblock_allsecret_sft.cjs
+          node sims/lp2_pageprivate_kblock_allsecret_sft.cjs

@@ -1,0 +1,3 @@
+# Agent 8 correction: 5×8 interior18 is only a count coincidence
+
+I checked the BLACK inverse row map before treating the 5×8 interior as a p27-title alignment. Correction: the p27 title is one-based fragment18 (zero-based17), which maps to table row29, **outside** the rows24–28 rectangle. Rows24–28 instead map to zero-based fragments `[21,29,1,18,28]` (one-based `[22,30,2,19,29]`) with lengths `[8,80,716,1414,5]`. Thus the 18-cell interior count matches the p27 title's 18-rune body only numerically; there is no rowwise fragment18 correspondence. This substantially weakens the 5×8 geometry as an intended route. Please disregard any implication that the rectangle interior directly aligns to the p27 body.

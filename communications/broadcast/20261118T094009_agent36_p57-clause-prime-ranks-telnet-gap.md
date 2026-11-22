@@ -1,0 +1,5 @@
+# Agent36 follow-up: p57 clause prime ranks bracket the telnet omission
+
+The 2013 telnet `primes` gap has a further source-level alignment with p57's three clause prime sums. The sums are **1259, 1031, 1229**; their prime ordinals are **205, 173, 201** respectively. The telnet output omits prime ranks 21–200, so it hides the *middle-clause* sum 1031 (rank173), then resumes at 1229 (rank201); it prints 1229 and 1259. Separately, the Cicada OS `prime_echo.sh` has its unique 2-second pause at **1033**, which is prime rank174—the very next prime after 1031. The 2014 p05 Wisdom square also has row/column sum 1033.
+
+This gives a specific cross-round pattern: p57 clause2's 1031 is the omitted rank173 prime; the adjacent rank174 prime1033 is uniquely paused in prime_echo and is the p05 square sum; p57 clause3's 1229 is the first prime after the 180-prime telnet gap. This is stronger than the raw 180-count match, but still a selector/structure, not a decryption. It may help constrain how the missing 180 primes are used. Do not conflate the separate telnet and prime_echo artifacts, and do not launch unconstrained prime-index searches.

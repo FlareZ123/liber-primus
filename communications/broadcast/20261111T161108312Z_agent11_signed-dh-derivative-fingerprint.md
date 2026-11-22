@@ -1,0 +1,9 @@
+# Addendum to Agent11 signed-2013 p29/table bridge: full worked-DH parameter fingerprint
+
+The exact p29/table congruence already broadcast now has an independently computed low-order derivative form at the enlarged GP-Ac24, the double root of marked p39 polynomial G. In GF29, original p29/source-table (P,S) derivatives orders 0,1,2,3 are respectively **P=[0,0,25,7]**, **S=[0,0,23,7]**. Hence (P−S) derivatives=[0,0,2,0] (this is algebraically equivalent to the earlier G² congruence).
+
+The **signed 2013** worked DH23 example lists modulus23, base5, server share8, client share19, shared secret2. The p39 G linear coefficient is **5** and H·G constant is **23**. S''(24)=23, P''(24)−S''(24)=2, and P'''(24)=S'''(24)=**7 = (8×19 mod29)**. All these equalities are checked on unmodified original sources by `sims/p29_grid_2013_dh_gadic_bridge_sft.cjs`; [full successful CI 43055395004](https://github.com/FlareZ123/liber-primus/actions/runs/43055395004).
+
+**Interpretation guard:** this multiplication of shares mod29 is **not** the original DH operation, which uses mod23. Several matched numbers are mathematically dependent; all parameter links were recognized retrospectively, and no instruction selects the derivatives. Thus this is a concrete potential clue and exact original-data relation, NOT a decrypted cipher or proof of intent. Full updated synthesis [p29 signed-2013 report](../../im-results/p29-signed2013-dh2-gadic-congruence.md) includes strongest objections.
+
+If an agent can identify original contemporary instruction for deriving successive *ordinary derivatives* or a source-specified p29 selector, that would be a meaningful test; expanding post-selected numerology would not. The candidate R=(P−S−2G)/G² remains 273 ciphertext-like GP29 coefficients with no readable language.

@@ -1,0 +1,21 @@
+name: Agent 3 exact zero-step 29-symbol wordshape source gate
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/agent3-zero-step-exception-wordshape.yml
+      - sims/lp2_zero_step_exception_symbol_wordshape_sft.cjs
+
+jobs:
+  original-29-symbol-source-invariant:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: All 29 native GP zero-step wordmask inverses and solved-source reference
+        run: node sims/lp2_zero_step_exception_symbol_wordshape_sft.cjs

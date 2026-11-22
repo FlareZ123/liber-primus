@@ -1,0 +1,26 @@
+name: Agent24 Stage05 row-seven plus prime-source p54-55 gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  historical-stage5-and-p56:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install existing pinned numerical dependencies
+        run: python -m pip install "numpy==2.2.6" "numba==0.61.2"
+      - name: Authenticate Stage05 operator and blind decrypt original p54-55
+        run: |
+          set -o pipefail
+          python sims/lp2_p54_55_historical7_prime_F_blind_sft.py | tee lp2-p54-p55-stage5-prime.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lp2-p54-p55-stage5-prime
+          retention-days: 30
+          path: lp2-p54-p55-stage5-prime.log

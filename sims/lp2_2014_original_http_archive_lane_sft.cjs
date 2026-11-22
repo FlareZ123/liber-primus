@@ -1,0 +1,147 @@
+'use strict';
+
+/**
+ * Original-era 2014–2016 raw HTTP archive positive-control and Cicada-target gate.
+ * Public Arquivo.pt CDX and Archive-It CDX only. No Tor connection.
+ * Authoritative API descriptions:
+ * https://github.com/arquivo/pwa-technologies/wiki/URL-search:-CDX-server-API
+ * https://support.archive-it.org/hc/en-us/articles/115001790023-Access-Archive-It-s-Wayback-index-with-the-CDX-C-API
+ */
+const { createHash } = require('node:crypto');
+const fs = require('node:fs');
+
+const arquivo = [
+  {url: 'http://www.publico.pt/',from:'2014',to:'2014',control:true},
+  {url: 'http://www.sapo.pt/',from:'2014',to:'2014',control:true},
+  {url: 'http://ky2khlqdf7qdznac.onion.to/',from:'2014',to:'2014'},
+  {url: 'http://ky2khlqdf7qdznac.onion.to/',from:'2015',to:'2015'},
+  {url: 'http://ky2khlqdf7qdznac.onion.link/',from:'2014',to:'2016'},
+  {url: 'http://ky2khlqdf7qdznac.tor2web.org/',from:'2014',to:'2016'},
+  {url: 'http://ky2khlqdf7qdznac.onion.city/',from:'2014',to:'2016'},
+  {url: 'http://ky2khlqdf7qdznac.onion.cab/',from:'2014',to:'2016'},
+  {url: 'http://ky2khlqdf7qdznac.onion.sh/',from:'2014',to:'2016'},
+  {url: 'http://ky2khlqdf7qdznac.onion.ly/',from:'2014',to:'2016'},
+  // Missing 2014 IRC-linked eight-letter p0 candidate/key table.
+  {url: 'http://sprunge.us/PBPT',from:'2014',to:'2014',replay:true,output:'pbpt-arquivo-http-replay.txt'},
+  {url: 'https://sprunge.us/PBPT',from:'2014',to:'2014',replay:true,output:'pbpt-arquivo-https-replay.txt'}
+];
+
+const archiveit = [
+  {collection:'8232',url:'https://twitter.com/internetarchive/',from:'2016',to:'2016',control:true},
+  {collection:'4399',url:'http://archive-it.org/',from:'2014',to:'2014',control:true},
+  {collection:'4399',url:'http://ky2khlqdf7qdznac.onion.to/',from:'2014',to:'2016'},
+  {collection:'8232',url:'http://ky2khlqdf7qdznac.onion.to/',from:'2014',to:'2016'},
+  {collection:'4399',url:'http://sprunge.us/PBPT',from:'2014',to:'2014',replay:true,output:'pbpt-archiveit-4399-replay.txt'}
+];
+
+const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ234567';
+/** @param {Uint8Array} payload */
+function base32Sha1(payload) {
+  const bytes = createHash('sha1').update(payload).digest();
+  let bits=0, acc=0, result='';
+  for(const byte of bytes) {
+    acc=(acc<<8)|byte;bits+=8;
+    while(bits>=5) {bits-=5;result+=alphabet[(acc>>>bits)&31];}
+  }
+  if(bits)result+=alphabet[(acc<<(5-bits))&31];
+  return result;
+}
+/** @param {string} addr */
+async function fetchText(addr) {
+  try {
+    const r=await fetch(addr,{signal:AbortSignal.timeout(20000)});
+    const body=(await r.text()).slice(0,50000);
+    return {status:r.status,body,bodySize:body.length};
+  } catch(e){return {error:String(e)};}
+}
+/** @param {string} url */
+function parsedArquivo(url) {
+  return url.split(/\r?\n/).filter(Boolean).flatMap(line=>{
+    try {
+      const data=JSON.parse(line);
+      return Array.isArray(data) ? data : [data];
+    } catch(e){return [];}
+  });
+}
+/** @param {string} text */
+function parsedArchiveIt(text) {
+  return text.split(/\r?\n/).filter(line=>line&&!/^(?:CDX|urlkey)\b/i.test(line.trim())).map(line=>{
+    const p=line.trim().split(/\s+/);
+    return {timestamp:p[1],url:p[2],mime:p[3],status:p[4],digest:p[5],file:p[p.length-1]};
+  });
+}
+/** @param {{url:string,from:string,to:string,control?:boolean}} item */
+async function checkArquivo(item) {
+  const endpoint=new URL('https://arquivo.pt/wayback/cdx');
+  for(const [k,v] of Object.entries({url:item.url,from:item.from,to:item.to,output:'json',limit:'12'}))
+    endpoint.searchParams.set(k,v);
+  const response=await fetchText(endpoint.href);
+  const records=response.body?parsedArquivo(response.body):[];
+  const summary={provider:'arquivo',query:item,...{status:response.status,error:response.error},records:records.map(r=>({url:r.url,time:r.timestamp,status:r.status,mime:r.mime,digest:r.digest,collection:r.collection,filename:r.filename})),rawLength:response.bodySize};
+  if(item.control || item.replay) {
+    const chosen=records.find(r=>String(r.status)==='200' && String(r.mime).startsWith('text/'));
+    if(chosen) {
+      const replay='https://arquivo.pt/noFrame/replay/'+chosen.timestamp+'id_/'+chosen.url;
+      try {
+        const r=await fetch(replay,{signal:AbortSignal.timeout(22000)});
+        const bytes=new Uint8Array(await r.arrayBuffer());
+        const detail={status:r.status,bytes:bytes.length,sha1base32:base32Sha1(bytes),cdxDigest:chosen.digest,match:base32Sha1(bytes)===chosen.digest,replay,bodyExcerpt:new TextDecoder().decode(bytes).slice(0,10000)};
+        if(item.control) summary.controlReplay=detail;
+        else {
+          summary.replay=detail;
+          if(item.output) fs.writeFileSync(item.output,Buffer.from(bytes));
+        }
+      }catch(e){if(item.control)summary.controlReplay={error:String(e),replay};else summary.replay={error:String(e),replay};}
+    } else {
+      const detail={error:'No 200 text capture among returned records'};
+      if(item.control)summary.controlReplay=detail;else summary.replay=detail;
+    }
+  }
+  console.log(JSON.stringify(summary));
+}
+async function checkArchiveIt(item) {
+  const endpoint=new URL('https://wayback.archive-it.org/'+item.collection+'/timemap/cdx');
+  for(const [k,v] of Object.entries({url:item.url,from:item.from,to:item.to,fl:'timestamp,original,mimetype,statuscode,digest,filename',filter:'statuscode:200'}))
+    endpoint.searchParams.set(k,v);
+  const response=await fetchText(endpoint.href);
+  const entries=response.body?parsedArchiveIt(response.body):[];
+  const summary={provider:'archive-it',query:item,status:response.status,error:response.error,excerpt:response.status===200?undefined:response.body?.slice(0,200),records:entries.slice(0,10),rawLength:response.bodySize};
+  if(item.replay || item.control) {
+    const chosen=entries.find(r=>String(r.status)==='200' && String(r.mime).startsWith('text/'));
+    if(chosen) {
+      const replay='https://wayback.archive-it.org/'+item.collection+'/'+chosen.timestamp+'id_/'+chosen.url;
+      try {
+        const r=await fetch(replay,{signal:AbortSignal.timeout(22000)});
+        const bytes=new Uint8Array(await r.arrayBuffer());
+        const detail={status:r.status,bytes:bytes.length,sha1base32:base32Sha1(bytes),
+          cdxDigest:chosen.digest,match:base32Sha1(bytes)===chosen.digest,
+          replay,bodyExcerpt:new TextDecoder().decode(bytes).slice(0,10000)};
+        if(item.control) summary.controlReplay=detail; else summary.replay=detail;
+        if(item.output) fs.writeFileSync(item.output,Buffer.from(bytes));
+      } catch(e) { summary.replay={error:String(e),replay}; }
+    } else summary.replay={error:'No 200 text capture among returned records'};
+  }
+  console.log(JSON.stringify(summary));
+}
+function selftest() {
+  const a=arquivo.filter(item=>item.control||item.url.includes('sprunge.us/PBPT'));
+  const b=archiveit.filter(item=>item.control||item.url.includes('sprunge.us/PBPT'));
+  if(a.length!==4||b.length!==3) throw new Error('PBPT mode must retain same-provider positive controls and both target schemes');
+  if(parsedArquivo('{"status":"200"}').length!==1 ||
+     parsedArquivo('[{"status":"200"}]').length!==1)
+    throw new Error('Arquivo JSON object/array parsing failed');
+  const rows=parsedArchiveIt('urlkey timestamp original mimetype statuscode digest filename\n' +
+    'org,archive-it)/ 20140101000000 http://archive-it.org/ text/html 200 ABCDEF WARC');
+  if(rows.length!==1||rows[0].status!=='200'||rows[0].url!=='http://archive-it.org/')
+    throw new Error('Archive-It CDX parsing failed');
+  console.log('PASS PBPT archive selection retains same-provider positive controls; JSON/CDX parsers handle both response forms');
+}
+(async()=>{
+  if(process.argv.includes('--selftest')) {selftest();return;}
+  console.log('original-archive-cdx-gate '+new Date().toISOString());
+  const pbptOnly=process.argv.includes('--pbpt-only');
+  const arquivoItems=pbptOnly?arquivo.filter(item=>item.control||item.url.includes('sprunge.us/PBPT')):arquivo;
+  const archiveItItems=pbptOnly?archiveit.filter(item=>item.control||item.url.includes('sprunge.us/PBPT')):archiveit;
+  for(const item of arquivoItems)await checkArquivo(item);
+  for(const item of archiveItItems)await checkArchiveIt(item);
+})().catch(e=>{console.error(e);process.exitCode=1;});

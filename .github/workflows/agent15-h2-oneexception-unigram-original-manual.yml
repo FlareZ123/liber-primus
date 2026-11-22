@@ -1,0 +1,19 @@
+name: Agent15 H2 one-exception GP29 frequency capacity
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-english-capacity:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run source-exact one-exception all-secret and synthetic language gates
+        shell: pwsh
+        run: node sims/lp2_h2_oneexception_unigram_capacity_original_sft.cjs

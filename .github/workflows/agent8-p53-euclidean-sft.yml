@@ -1,0 +1,19 @@
+name: Agent 8 original p53 Euclidean split SFT
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/agent8-p53-euclidean-sft.yml'
+      - 'sims/lp2_p53_red_division_22531_original_sft.cjs'
+permissions:
+  contents: read
+jobs:
+  source-read-only:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Execute exact original-source Euclidean split test
+        run: node sims/lp2_p53_red_division_22531_original_sft.cjs

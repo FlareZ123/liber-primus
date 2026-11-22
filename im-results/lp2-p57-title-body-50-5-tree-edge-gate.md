@@ -1,0 +1,127 @@
+# PARABLE black/red rune tape and the conditional 58-node p50 tree
+
+**Agent37, 21 November 2026 | Evidence:** exact source-visible 50+5+2 rune/graph edge correspondence, with original ciphertext and solved-source consumer gates, including the reverse-edge-ordinal p56-clock rejection. **No unknown LP2 plaintext, authentic new cipher key or solved destination.**
+
+## Source geometry: a 57-rune label tape for a 57-edge tree
+
+The genuine solved original **LP2 p57 PARABLE** page has 95 GP29 runes and 20 printed words. Its **red** heading PARABLE has **seven runes**; the **19 black body words** have 88. The clear message itself says **“WE MUST SHED OUR OWN CIRCUMFERENCES”** and **“TUNNELING TO THE SURFACE.”**
+
+Take the strict interior of *each printed word* by removing its first and last GP rune. Preserve the two red title endpoints separately.
+
+| Original source ink group | Printed runes | Source words | Strict interior | Discarded word endpoints | Rune labels retained for this hypothesis |
+|---|---:|---:|---:|---:|---:|
+| Black body | 88 | 19 | **50** | 38 | **50 black interiors** |
+| Red PARABLE title | 7 | 1 | **5** | 2 | **five red interiors + two red endpoints** |
+| Total | 95 | 20 | 55 | 40 | **57** |
+
+The five red strict interiors are **A R A B L** in canonical GP. The title endpoints are **P** and **E**. The source has five two-rune black words whose strict interiors are empty; all 19 word boundaries remain available to a later, independently selected readout. This is exact source arithmetic, not an inferred transcription correction.
+
+Independently, the **original 256-cell p50 numerical table** conditionally read as base60 pointers yields the already reported **201→74→205** chain, with reverse-ancestor component sizes **56→57→58**. The 56-node component rooted at201 has two direct subtrees, **node82 of size50** and **node128 of size5**. The complete 58-node component rooted at205 therefore has **57 directed edges**, partitioned canonically as:
+
+- **50** edges of the large branch ending at node82→201.
+- **5** edges of the small branch ending at node128→201.
+- **2** upward spine edges, **201→74** and **74→205**.
+
+These exactly consume the **50 black body interiors + five red title interiors + two red title endpoints**. The ink colors, literal "shed", two separately identifiable endpoints, and tree edge partition jointly offer a concrete, testable *candidate* edge-labelled graph. The root205 has zero outgoing edges within this component, so it naturally consumes zero labels.
+
+Agent8 and Agent23 already identified the 56/57/58 subtree sizes and physical 50+1+5 grouping. This report adds the **independently printed red/black 50+5+2 rune tape** to the full 58-node graph. The joint match was recognized after the graph, so **it is not a pre-registered statistical proof of authorial construction**. Crucial missing source instructions remain: no first-party source unambiguously requires base60 successor addresses, a sibling traversal order, the word-interior-to-edge matching, or a cryptographic state update on these edges.
+
+## A potential zero/one/many-layer clue, with known controls
+
+Extend the prior **largest-child-first inorder** candidate page mapping to the full graph rooted205. It assigns source nodes in physical p0–57 order, with the following fixed points:
+
+| Physical original | Mapped table node | Graph distance upward to205 | Original content |
+|---|---:|---:|---|
+| p0 | 178 | 17 | unknown ciphertext |
+| p50 | **201** | **2** | numeric table, no rune text |
+| p51–55 | five nodes in subtree128 | **≥3** | unknown ciphertext |
+| p56 | **74** | **1** | solved prime-totient cipher |
+| p57 | **205** | **0** | completely clear PARABLE |
+
+Every still-encrypted rune-bearing page p0–55 has graph depth **at least three**; the table page sits at depth two. This suggests a human-solvable *hypothesis*: graph depth might describe stages toward the clear page, with known p56 as a one-stage calibration and p57 as a zero-stage endpoint. The numbers are compelling as structure, **but there is no demonstrated cryptographic connection from depth to stage count**.
+
+A source-faithful first gate tests whether the actual solved-p56 **plaintext-F-transparent prime-totient cipher**, starting at first prime2, is a shared **last/outermost cipher layer** on all unknown pages. Because plaintext F may stay F without consuming a prime, the SFT branches across every legal F/non-F interpretation. The source's real 85-rune p56 plaintext encrypts exactly to its original ciphertext, and native-GP full-page plants pass.
+
+**Original result:** only p1 and p49 of the **55** unknown rune-bearing pages admit even one full-length inverse under the genuine p56 cipher as their **outermost layer**. The other **53** originals are algebraically impossible under any intermediate plaintext. This rejects that *particular* proposed common outer layer, including any additional p56-like inner layers beneath it. It does **not** rule out a different outer transport, or p56's cipher appearing *inside* such a transport.
+
+An independent known-p56 gate asks whether the red title endpoints **P** (GP ordinal13, prime43) or **E** (ordinal18, prime67) directly specify the original p56 initial prime *ordinal*. The complete original p56 is solvable at its documented starting ordinal zero, but the proposed four endpoint-derived starts survive only **41, 11, 9 and 34** runes out of85. Hence the **direct edge-rune-as-prime-start consumer fails on the known solved original**, before considering any encrypted pages. A more elaborate edge transform cannot be asserted without an external instruction.
+
+## Direct 55-page unknown-body consumers
+
+Fix the same provisional inorder mapping over the 56-node component rooted201. Assign the 50 black interiors to its first50 nodes and the five red title interiors to its last5. This labels each child→201 edge once, leaving its root unlabelled in this 56-node subproblem.
+
+- **Eight** full-book GP29 periodic additive receivers follow each page's edge-label path to node201, in either direction, using GP index or native GP prime numeric labels and either cipher sign. All eight exactly re-encrypt **12,956 untouched original runes** and invert exact-length native-GP controls. Best decoded GP29 IoC is **0.03450328** versus **0.03447840** for untouched ciphertext, with no text.
+- **Two** complete authentic-p56 F-transparent prime-clock receiver assignments use each page's black/red interior rune directly as prime-start ordinal, interpreted either as its GP index or GP prime value. The first permits **0/55** full original pages; the second permits **five** (p2, p17, p22, p43, p51) and fails the other **50** algebraically. Those five remain nonlinguistic.
+- A literal page-GP-prime-sum-mod29 checksum agrees with the aligned page label on only **2/55** originals, no source confirmation.
+
+All claims refer to source-fixed inverse families; no source key, page order, crib location, or ciphertext symbol has been fitted after decoding. The real clear p57 has GP29 IoC **0.06270997**, and the proposed decoded unknown pages remain essentially uniform.
+
+## Reverse edge-ordinal p56 prime-clock consumer (Agent11, 21 November 2026)
+
+**Fixed source-motivated hypothesis.** Use the existing conditional root205 tree and the published 57-edge label assignment: p0–49 receive the 50 black body interiors, p50 receives red title endpoint P, p51–55 receive the five red PARABLE interiors, and p56 receives endpoint E; clear p57 is the unlabelled root. The p50 numerical page keeps its edge slot despite containing no runes. Since the solved p56 page is the last labelled edge and its authentic consecutive-prime-totient clock starts at prime index0, count edge positions backward from p56: for each physical page p0–56, set the p56 prime-stream start to **56−p**. Thus p56 starts0, p50 occupies blank slot6, and p57 has no edge/clock. This is a single fixed ordinal consumer, distinct from using node addresses or edge-rune values as prime starts.
+
+**Known controls.** The independently encoded 85-rune solved p56 plaintext re-encrypts exactly to its original ciphertext at the predicted start0. Clear p57 remains the 95-rune zero-edge endpoint. The full original p57 57-label inventory is checked from the printed word boundaries and canonical GP transcription.
+
+**Exact unknown-page result.** Across55 rune-bearing pages (12,956 original runes), **54 are algebraically impossible** under the authentic p56 F-transparent inverse. Only **p15** survives, with start41 and exactly one legal inverse path. That full-page candidate has GP29 IoC **0.03463100**, still essentially the untouched-ciphertext baseline and far below clear p57 **0.06270997**. No unknown plaintext is recovered. First impossible zero-based rune offsets:
+
+```text
+p0:41 p1:3 p2:18 p3:167 p4:7 p5:41 p6:18 p7:103 p8:14 p9:2
+p10:7 p11:187 p12:11 p13:71 p14:0 p16:17 p17:17 p18:25 p19:165
+p20:141 p21:0 p22:9 p23:90 p24:23 p25:20 p26:4 p27:3 p28:11 p29:5
+p30:5 p31:3 p32:13 p33:91 p34:2 p35:63 p36:10 p37:35 p38:142 p39:28
+p40:60 p41:112 p42:93 p43:19 p44:5 p45:7 p46:114 p47:0 p48:4 p49:57
+p51:31 p52:223 p53:152 p54:11 p55:3
+```
+
+**Decision.** Retire this exact reverse-edge-ordinal prime-clock consumer. The positive p56 and clear p57 controls pass, but the frozen original pages do not. This does not reject the 50+5+2 edge inventory, the provisional page-node assignment, or a different independently sourced edge-state update. Do not extend this branch to alternative offsets or traversal orders without a new original clue.
+
+**Reproduction:** [standalone original-input Node22 SFT](../sims/lp2_p57_edge_ordinal_p56_clock_gate_sft.cjs). Run with `node sims/lp2_p57_edge_ordinal_p56_clock_gate_sft.cjs` from the repository root.
+## 2014 outer-message selector: trailing 173, full whitespace 178
+
+The original preserved **2 May 2014 signed-text handoff** has an unusual prime-shaped whitespace carrier, independently available to participants before opening the seventh onion. Its **ten positive trailing padding counts** are **[2, 3, 7, 11, 13, 17, 23, 29, 31, 37]**, sum **173**. The fifth positive element of the complete prime-shaped sequence, **5**, instead appears as *leading indentation on the onion-address line*. Including this one disjoint five-space group yields **178**; all eleven printed padding groups in source order are **[2, 3, 5, 7, 11, 13, 17, 23, 29, 31, 37]**. The source's original bytes, with these line paddings, are already in [\`resources/cicada2014-may2-signed-message.asc\`](../resources/cicada2014-may2-signed-message.asc).
+
+This produces two different, *source-defined and non-fitted* numeric entry points into the proposed source table grammar:
+
+1. The **173** from trailing whitespace equals **exactly** the second zero-based p50 graph selector derived by the solved p57's independently printed GP-prime clause sum **1,031**, whose conventional one-based prime ordinal is **173**. In the conditional base60 p50 successor graph, address173 roots an **eight-node reverse-ancestor tree**, which was identified before this observation and is disjoint from the later 58-node route.
+2. The **178** from *all* original exterior whitespace selects the **unique deepest address** (depth **17**) in the already selected **58-node reverse tree rooted205**. The exact printed-table successor chain is **178→166→250→172→148→246→198→105→63→51→59→69→73→79→82→201→74→205**. It visits distinctive original addresses **73**, **201**, **74** and **205**, at graph distances from root205 of **5, 2, 1, 0** respectively. The source-selected **178** is also physical p0's node under the independently pre-existing largest-subtree-first inorder candidate map, while **73**, **201**, **74** and **205** map to physical p32, p50, p56 and p57.
+
+A human who first reads the signed outer-message padding, then the existing GP-prime navigation and the solved PARABLE's *TUNNEL TO THE SURFACE* language would have two plausible addresses and a simple directed original-table walk. The signed-message prime-shaped padding itself was historically known; this report's new feature is its direct **173 / 178** coincidence with two different **source-selected original p50 graph landmarks**, with 178 uniquely deepest. The arithmetic and graph are reproducible without tuning ciphertext or searching candidate sum targets.
+
+**Evidence classification:** this is a conditional navigation hypothesis and a potential historically accessible page-start key. OpenPGP cleartext canonicalization does not authenticate the exact visible whitespace, and the manuscript supplies no explicit instruction to sum it or to read the cuneiform table as base60 pointers. Because the connection was recognized retrospectively, no uncorrected probability or authentic intended operator is claimed. **No unknown rune plaintext follows merely from this graph walk.**
+
+[Original 2014 handoff + original p57 clause ranks + 256-cell table standalone SFT](../sims/lp2_2014_whitespace_173_178_p50_graph_original_sft.cjs), [Windows Node22 PASS run44956773394](https://github.com/FlareZ123/liber-primus/actions/runs/44956773394).
+
+NaN## Decision and prospective breakthrough test
+
+The original two-color **50+5+2** tape matching all **57** table-tree edges is a concrete *candidate clue*, and the depth-0-clear / depth-1-solved structure offers a route to independent calibration. It supplies **neither authentic creator intent nor the unknown book's decipherment**. The direct periodic edge-path, direct page-prime seed, shared outer authentic-p56 layer, and reverse edge-ordinal p56 prime-clock consumer are now bounded negatives. The reverse ordinal preserves both p56 and p57 controls but leaves only p15 with one near-uniform legal path.
+
+The next causal experiment should start with a **different specific edge-state rule independently selected from original Cicada instructions**. It must reproduce **both** the genuine 85-rune p56 encryption under its real initial clock and the 95-rune clear p57 endpoint, then predict at least one untouched original ciphertext passage such as p55's 76 runes without tuning that passage. Until this is possible, assigning additional arbitrary permutations or cipher layers to the graph would be numerological overfitting.
+
+
+## Cross-round 178→197 original pointer closure: omitted W, 20 words, 11-cycle
+
+The preserved original **2 May 2014** signed-text handoff displays eleven positive whitespace groups **[2,3,5,7,11,13,17,23,29,31,37]**, sum **178**. These are exactly the first twelve Gematria Primus alphabet prime weights **except 19**, the weight of rune **W**. The complete twelve weights total **197=178+19**. Omitting the sole leading indentation before the onion address instead leaves ten trailing groups summing **173**, which independently equals the prime rank of the solved PARABLE second-clause sum **1031**.
+
+The original solved p57 PARABLE has **20 complete printed words**, including the red title, joining printed line carries. The literal base60 successor interpretation of the original p50 256-token register produces this **exact twenty-step route from the original 2014 all-padding sum178 to the restored full-GP prime sum197**:
+
+```text
+178 → 166 → 250 → 172 → 148 → 246 → 198 → 105 → 63 → 51 → 59 → 69
+→ 73 → 79 → 82 → 201 → 74 → 205 → 76 → 114 → 197
+```
+
+The source-selected root205 of the conditional 58-node graph occurs at **step17**. Address197 belongs to an **eleven-node directed cycle**, agreeing with the count of 2014 prime-shaped whitespace groups:
+
+```text
+197 → 115 → 247 → 192 → 0 → 203 → 68 → 199 → 47 → 76 → 114 → 197
+```
+
+These independently visible round-spanning source counts yield a concrete possible *starting point and stopping condition* for a human solver following p57's “TUNNELING TO THE SURFACE” clue. The exact 20-hop and 11-cycle closure was found retrospectively after graph discovery; **the instructions to sum padding and interpret base60 table cells as pointers are hypotheses**, and OpenPGP canonicalization does not authenticate the exact spacing. No actual unknown-page plaintext, cipher state operation or key projection is recovered. Reversibility of the table pointer *walk* does not establish reversibility of an LP2 cipher.
+
+[Full original-source, exact 20-step and 11-cycle Node22 SFT](../sims/lp2_2014_whitespace_173_178_p50_graph_original_sft.cjs), [Windows Node22 PASS 44957314982](https://github.com/FlareZ123/liber-primus/actions/runs/44957314982).
+
+## Standalone original-input evidence
+
+- [Source title/body 50+5 and eight edge-path/2 prime-seed original gates](../sims/lp2_p57_title_body_50_5_edge_key_sft.cjs), [Windows Node22 PASS run44954179759](https://github.com/FlareZ123/liber-primus/actions/runs/44954179759).
+- [Full 58-node/57-edge color-tape source gate, real solved-p56 known plaintext and 55 original outer-layer inverses](../sims/lp2_p57_58node_color_edges_p56_outerlayer_sft.cjs), [Windows Node22 PASS run44954785155](https://github.com/FlareZ123/liber-primus/actions/runs/44954785155).
+- [Reverse edge-ordinal p56 clock gate, original 55-page inverse and p56/p57 controls](../sims/lp2_p57_edge_ordinal_p56_clock_gate_sft.cjs), [Windows Node22 PASS run44956724063](https://github.com/FlareZ123/liber-primus/actions/runs/44956724063).
+- Earlier independent [PARABLE prime-rank graph](lp2-parable-threeprime-whole-graph-58-8-56.md) and [p57 unpartitioned 55 interior rune seed gate](../sims/lp2_p57_55interior_pageprime_fskip_sft.cjs).

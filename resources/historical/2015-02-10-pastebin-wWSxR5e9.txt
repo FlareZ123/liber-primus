@@ -1,0 +1,497 @@
+Word Analysis (Narrated)
+irc://irc.freenode.org
+#cicadasolvers
++EmberCrest
+
+Match found: IA at array position 29 and 82
+Match found: IA at array position 29 and 369
+Match found: IA at array position 29 and 1407
+Match found: IA at array position 29 and 1745
+Match found: IA at array position 29 and 1893
+Match found: IA at array position 29 and 2095
+Match found: IA at array position 29 and 2863
+Match found: IA at array position 29 and 3209
+Match found: IA at array position 29 and 3474
+Match found: IA at array position 29 and 3645
+Match found: THP at array position 34 and 105
+Match found: THP at array position 34 and 1215
+Match found: EY at array position 38 and 667
+Single Letter Match: B at array position 44 and 190
+Single Letter Match: B at array position 44 and 224
+Single Letter Match: B at array position 44 and 846
+Single Letter Match: B at array position 44 and 1255
+Single Letter Match: B at array position 44 and 1462
+Single Letter Match: B at array position 44 and 2087
+Single Letter Match: B at array position 44 and 2477
+Single Letter Match: B at array position 44 and 3522
+Single Letter Match: B at array position 44 and 3710
+Single Letter Match: B at array position 44 and 3908
+Match found: EA at array position 51 and 61
+Match found: EA at array position 51 and 499
+Match found: EA at array position 51 and 513
+Match found: EA at array position 51 and 663
+Match found: EA at array position 51 and 721
+Match found: EA at array position 51 and 1258
+Match found: EA at array position 51 and 1264
+Match found: EA at array position 51 and 1295
+Match found: EA at array position 51 and 1595
+Match found: EA at array position 51 and 1801
+Match found: EA at array position 51 and 2113
+Match found: EA at array position 51 and 2225
+Match found: EA at array position 51 and 2931
+Match found: EA at array position 51 and 3034
+Match found: EA at array position 51 and 3200
+Match found: EA at array position 51 and 3703
+Match found: EA at array position 51 and 3822
+Match found: EOH at array position 63 and 2202
+Match found: HC at array position 67 and 2836
+Match found: SOE at array position 68 and 3760
+Single Letter Match: S at array position 71 and 492
+Single Letter Match: S at array position 71 and 1018
+Single Letter Match: S at array position 71 and 2088
+Single Letter Match: W at array position 75 and 302
+Single Letter Match: W at array position 75 and 977
+Single Letter Match: W at array position 75 and 1410
+Single Letter Match: W at array position 75 and 2634
+Single Letter Match: W at array position 75 and 2882
+Match found: FEA at array position 87 and 212
+Match found: NG at array position 93 and 3502
+Match found: ING at array position 96 and 230
+Match found: ING at array position 96 and 982
+Match found: ING at array position 96 and 1149
+Match found: ING at array position 96 and 1443
+Match found: ING at array position 96 and 1503
+Match found: ING at array position 96 and 2050
+Match found: ING at array position 96 and 2264
+Match found: ING at array position 96 and 2340
+Match found: ING at array position 96 and 2469
+Match found: ING at array position 96 and 3250
+Match found: ING at array position 96 and 3404
+Match found: ING at array position 96 and 3444
+Match found: ING at array position 96 and 3520
+Match found: ING at array position 96 and 3837
+Match found: ING at array position 96 and 3868
+Match found: ING at array position 96 and 3901
+Match found: LOE at array position 98 and 1004
+Single Letter Match: N at array position 104 and 235
+Single Letter Match: N at array position 104 and 713
+Single Letter Match: N at array position 104 and 736
+Single Letter Match: N at array position 104 and 880
+Single Letter Match: N at array position 104 and 1100
+Single Letter Match: N at array position 104 and 1175
+Single Letter Match: N at array position 104 and 1621
+Single Letter Match: N at array position 104 and 1977
+Single Letter Match: N at array position 104 and 2529
+Single Letter Match: N at array position 104 and 2855
+Single Letter Match: N at array position 104 and 2917
+Single Letter Match: N at array position 104 and 3654
+Match found: FR at array position 123 and 2520
+Match found: EAW at array position 136 and 2557
+Single Letter Match: C at array position 144 and 192
+Single Letter Match: C at array position 144 and 708
+Single Letter Match: C at array position 144 and 915
+Single Letter Match: C at array position 144 and 1355
+Single Letter Match: C at array position 144 and 2151
+Single Letter Match: C at array position 144 and 2183
+Single Letter Match: C at array position 144 and 2500
+Single Letter Match: C at array position 144 and 2963
+Single Letter Match: C at array position 144 and 3316
+Single Letter Match: C at array position 144 and 3607
+Single Letter Match: C at array position 144 and 3972
+Match found: OEAE at array position 148 and 1483
+Match found: OEAE at array position 148 and 2816
+Match found: UA at array position 149 and 1668
+Match found: HR at array position 150 and 3824
+Match found: GITH at array position 156 and 2815
+Match found: OEM at array position 161 and 402
+Single Letter Match: U at array position 162 and 253
+Single Letter Match: U at array position 162 and 290
+Single Letter Match: U at array position 162 and 356
+Single Letter Match: U at array position 162 and 452
+Single Letter Match: U at array position 162 and 782
+Single Letter Match: U at array position 162 and 841
+Single Letter Match: U at array position 162 and 926
+Single Letter Match: U at array position 162 and 959
+Single Letter Match: U at array position 162 and 1095
+Single Letter Match: U at array position 162 and 1376
+Single Letter Match: U at array position 162 and 1495
+Single Letter Match: U at array position 162 and 1723
+Single Letter Match: U at array position 162 and 1838
+Single Letter Match: U at array position 162 and 1899
+Single Letter Match: U at array position 162 and 2910
+Single Letter Match: U at array position 162 and 3292
+Single Letter Match: U at array position 162 and 3613
+Match found: HT at array position 163 and 2819
+Match found: HT at array position 163 and 3210
+Match found: FT at array position 177 and 1903
+Single Letter Match: J at array position 178 and 281
+Single Letter Match: J at array position 178 and 477
+Single Letter Match: J at array position 178 and 946
+Single Letter Match: J at array position 178 and 1001
+Single Letter Match: J at array position 178 and 2068
+Single Letter Match: J at array position 178 and 2085
+Single Letter Match: J at array position 178 and 2106
+Single Letter Match: J at array position 178 and 2197
+Single Letter Match: J at array position 178 and 2322
+Single Letter Match: J at array position 178 and 2471
+Single Letter Match: J at array position 178 and 3137
+Single Letter Match: J at array position 178 and 3757
+Single Letter Match: J at array position 178 and 3856
+Single Letter Match: F at array position 193 and 1025
+Single Letter Match: F at array position 193 and 1300
+Single Letter Match: F at array position 193 and 1581
+Single Letter Match: F at array position 193 and 1773
+Single Letter Match: F at array position 193 and 2100
+Single Letter Match: F at array position 193 and 2449
+Match found: EAX at array position 196 and 565
+Match found: OAE at array position 207 and 3926
+Match found: AL at array position 208 and 1127
+Match found: BJ at array position 209 and 2398
+Match found: OEB at array position 229 and 2958
+Match found: DEO at array position 232 and 2407
+Match found: EODEO at array position 247 and 1889
+Match found: IAEO at array position 249 and 1651
+Match found: IAEO at array position 249 and 1709
+Match found: EAH at array position 250 and 1405
+Match found: EAH at array position 250 and 1907
+Match found: EAH at array position 250 and 2053
+Match found: EAH at array position 250 and 2219
+Match found: SX at array position 257 and 1525
+Match found: SX at array position 257 and 3152
+Match found: FU at array position 268 and 3164
+Match found: LIA at array position 276 and 2595
+Single Letter Match: H at array position 280 and 540
+Single Letter Match: H at array position 280 and 2199
+Single Letter Match: H at array position 280 and 2278
+Single Letter Match: H at array position 280 and 2757
+Single Letter Match: H at array position 280 and 2896
+Single Letter Match: H at array position 280 and 3895
+Single Letter Match: M at array position 283 and 457
+Single Letter Match: M at array position 283 and 730
+Single Letter Match: M at array position 283 and 1140
+Single Letter Match: M at array position 283 and 1451
+Single Letter Match: M at array position 283 and 1512
+Single Letter Match: M at array position 283 and 1695
+Single Letter Match: M at array position 283 and 2108
+Single Letter Match: M at array position 283 and 2172
+Single Letter Match: M at array position 283 and 2213
+Single Letter Match: M at array position 283 and 2325
+Single Letter Match: M at array position 283 and 2630
+Single Letter Match: M at array position 283 and 3048
+Single Letter Match: M at array position 283 and 3539
+Single Letter Match: M at array position 283 and 3712
+Match found: AW at array position 293 and 1458
+Match found: HA at array position 296 and 2709
+Match found: EM at array position 312 and 1272
+Match found: TH at array position 317 and 1287
+Match found: TH at array position 317 and 1446
+Match found: TH at array position 317 and 2850
+Match found: TH at array position 317 and 3601
+Match found: TH at array position 317 and 3730
+Match found: TH at array position 317 and 3976
+Single Letter Match: P at array position 326 and 344
+Single Letter Match: P at array position 326 and 1010
+Single Letter Match: P at array position 326 and 1172
+Single Letter Match: P at array position 326 and 1359
+Single Letter Match: P at array position 326 and 1475
+Single Letter Match: P at array position 326 and 1565
+Single Letter Match: P at array position 326 and 1984
+Single Letter Match: P at array position 326 and 2323
+Single Letter Match: P at array position 326 and 2357
+Single Letter Match: P at array position 326 and 2455
+Single Letter Match: P at array position 326 and 2550
+Single Letter Match: P at array position 326 and 3373
+Single Letter Match: P at array position 326 and 3437
+Single Letter Match: P at array position 326 and 3486
+Single Letter Match: P at array position 326 and 3624
+Single Letter Match: P at array position 326 and 3695
+Match found: CU at array position 385 and 1091
+Single Letter Match: Y at array position 389 and 922
+Single Letter Match: Y at array position 389 and 956
+Single Letter Match: Y at array position 389 and 1128
+Single Letter Match: Y at array position 389 and 1763
+Single Letter Match: Y at array position 389 and 1890
+Single Letter Match: Y at array position 389 and 2217
+Single Letter Match: Y at array position 389 and 2416
+Single Letter Match: Y at array position 389 and 3283
+Single Letter Match: Y at array position 389 and 3882
+Match found: PIA at array position 391 and 2430
+Match found: PIA at array position 391 and 2997
+Match found: PIA at array position 391 and 3418
+Match found: CEA at array position 396 and 2813
+Single Letter Match: A at array position 398 and 917
+Single Letter Match: A at array position 398 and 1703
+Single Letter Match: A at array position 398 and 1736
+Single Letter Match: A at array position 398 and 2391
+Single Letter Match: A at array position 398 and 3357
+Single Letter Match: A at array position 398 and 3832
+Match found: HP at array position 416 and 2297
+Match found: HP at array position 416 and 2566
+Match found: HP at array position 416 and 3041
+Single Letter Match: T at array position 419 and 434
+Single Letter Match: T at array position 419 and 893
+Single Letter Match: T at array position 419 and 1248
+Single Letter Match: T at array position 419 and 1281
+Single Letter Match: T at array position 419 and 1327
+Single Letter Match: T at array position 419 and 1374
+Single Letter Match: T at array position 419 and 1571
+Single Letter Match: T at array position 419 and 1799
+Single Letter Match: T at array position 419 and 1811
+Single Letter Match: T at array position 419 and 2424
+Single Letter Match: T at array position 419 and 2515
+Single Letter Match: T at array position 419 and 2680
+Single Letter Match: T at array position 419 and 2984
+Single Letter Match: T at array position 419 and 3320
+Single Letter Match: T at array position 419 and 3353
+Single Letter Match: T at array position 419 and 3814
+Single Letter Match: T at array position 419 and 3960
+Single Letter Match: D at array position 421 and 520
+Single Letter Match: D at array position 421 and 541
+Single Letter Match: D at array position 421 and 724
+Single Letter Match: D at array position 421 and 828
+Single Letter Match: D at array position 421 and 1141
+Single Letter Match: D at array position 421 and 1427
+Single Letter Match: D at array position 421 and 1689
+Single Letter Match: D at array position 421 and 1724
+Single Letter Match: D at array position 421 and 2511
+Single Letter Match: D at array position 421 and 2567
+Single Letter Match: D at array position 421 and 2671
+Single Letter Match: D at array position 421 and 2688
+Single Letter Match: D at array position 421 and 2746
+Single Letter Match: D at array position 421 and 3079
+Single Letter Match: D at array position 421 and 3329
+Single Letter Match: D at array position 421 and 3782
+Match found: OEJ at array position 426 and 3339
+Match found: OEJ at array position 426 and 3493
+Match found: AEP at array position 433 and 1235
+Match found: AEP at array position 433 and 3091
+Match found: IAL at array position 441 and 3523
+Match found: JT at array position 465 and 3237
+Match found: MA at array position 473 and 3324
+Match found: PM at array position 479 and 2841
+Match found: GR at array position 483 and 3175
+Match found: UH at array position 487 and 1766
+Match found: DIA at array position 508 and 1959
+Single Letter Match: E at array position 533 and 617
+Single Letter Match: E at array position 533 and 965
+Single Letter Match: E at array position 533 and 1660
+Single Letter Match: E at array position 533 and 1952
+Single Letter Match: E at array position 533 and 2244
+Single Letter Match: E at array position 533 and 2753
+Single Letter Match: E at array position 533 and 2770
+Single Letter Match: E at array position 533 and 3788
+Single Letter Match: E at array position 533 and 3978
+Match found: DING at array position 535 and 536
+Match found: CH at array position 548 and 777
+Match found: OEX at array position 551 and 2592
+Match found: OEX at array position 551 and 3446
+Match found: OM at array position 573 and 3029
+Match found: EOAE at array position 574 and 1370
+Match found: EAREO at array position 579 and 1916
+Match found: EAREO at array position 579 and 2253
+Match found: AX at array position 597 and 3032
+Match found: XC at array position 602 and 1485
+Match found: XC at array position 602 and 2610
+Match found: TING at array position 608 and 2903
+Match found: TING at array position 608 and 2929
+Match found: TING at array position 608 and 2955
+Single Letter Match: L at array position 611 and 1189
+Single Letter Match: L at array position 611 and 1203
+Single Letter Match: L at array position 611 and 1780
+Single Letter Match: L at array position 611 and 1906
+Single Letter Match: L at array position 611 and 2190
+Single Letter Match: L at array position 611 and 2263
+Single Letter Match: L at array position 611 and 2375
+Single Letter Match: L at array position 611 and 2967
+Single Letter Match: L at array position 611 and 3933
+Match found: OET at array position 624 and 2238
+Match found: EO at array position 628 and 773
+Match found: EO at array position 628 and 1832
+Match found: EO at array position 628 and 1865
+Match found: EO at array position 628 and 2505
+Match found: EO at array position 628 and 2536
+Match found: EO at array position 628 and 2804
+Match found: EO at array position 628 and 3150
+Match found: EO at array position 628 and 3275
+Match found: EO at array position 628 and 3749
+Match found: EO at array position 628 and 3796
+Match found: EO at array position 628 and 3820
+Match found: EO at array position 628 and 3842
+Single Letter Match: X at array position 635 and 655
+Single Letter Match: X at array position 635 and 788
+Single Letter Match: X at array position 635 and 839
+Single Letter Match: X at array position 635 and 887
+Single Letter Match: X at array position 635 and 1872
+Single Letter Match: X at array position 635 and 2115
+Single Letter Match: X at array position 635 and 2166
+Single Letter Match: X at array position 635 and 2652
+Single Letter Match: X at array position 635 and 3128
+Single Letter Match: X at array position 635 and 3144
+Single Letter Match: X at array position 635 and 3751
+Single Letter Match: X at array position 635 and 3861
+Single Letter Match: X at array position 635 and 3929
+Match found: BMING at array position 661 and 3308
+Match found: EOD at array position 677 and 2481
+Match found: OEY at array position 686 and 2116
+Match found: OEO at array position 690 and 925
+Match found: OEO at array position 690 and 970
+Single Letter Match: G at array position 702 and 765
+Single Letter Match: G at array position 702 and 1315
+Single Letter Match: G at array position 702 and 1387
+Single Letter Match: G at array position 702 and 1721
+Single Letter Match: G at array position 702 and 1816
+Single Letter Match: G at array position 702 and 2223
+Single Letter Match: G at array position 702 and 2876
+Single Letter Match: G at array position 702 and 2890
+Single Letter Match: G at array position 702 and 3303
+Single Letter Match: G at array position 702 and 3568
+Single Letter Match: O at array position 703 and 1106
+Single Letter Match: O at array position 703 and 2154
+Single Letter Match: O at array position 703 and 2693
+Single Letter Match: O at array position 703 and 3326
+Single Letter Match: O at array position 703 and 3845
+Match found: XU at array position 709 and 1901
+Match found: OE at array position 715 and 908
+Match found: OE at array position 715 and 1129
+Match found: OE at array position 715 and 1644
+Match found: OE at array position 715 and 2017
+Match found: OE at array position 715 and 2526
+Match found: OE at array position 715 and 3022
+Match found: OE at array position 715 and 3420
+Match found: OE at array position 715 and 3683
+Match found: NS at array position 726 and 1041
+Match found: XAE at array position 732 and 1063
+Match found: TP at array position 750 and 1522
+Match found: OY at array position 752 and 2180
+Match found: XO at array position 759 and 3950
+Match found: SB at array position 761 and 3762
+Match found: SB at array position 761 and 3903
+Match found: AET at array position 769 and 1951
+Match found: AET at array position 769 and 3936
+Match found: BAE at array position 804 and 1170
+Match found: LN at array position 807 and 1850
+Match found: LTI at array position 815 and 3508
+Match found: EOI at array position 816 and 2451
+Match found: NTH at array position 833 and 1989
+Match found: WY at array position 848 and 3471
+Match found: EOP at array position 856 and 3354
+Match found: CI at array position 868 and 1924
+Match found: EN at array position 897 and 2400
+Match found: EN at array position 897 and 2645
+Match found: BI at array position 920 and 1879
+Match found: YIA at array position 990 and 1950
+Match found: AAE at array position 996 and 2080
+Match found: TM at array position 998 and 3590
+Match found: TJ at array position 1033 and 2454
+Match found: IACX at array position 1050 and 1606
+Match found: EAG at array position 1051 and 1997
+Match found: EAG at array position 1051 and 2507
+Match found: EAG at array position 1051 and 2597
+Match found: OEL at array position 1071 and 2977
+Match found: MI at array position 1113 and 2443
+Match found: MI at array position 1113 and 3651
+Match found: THR at array position 1144 and 3109
+Match found: HG at array position 1160 and 3006
+Match found: EC at array position 1194 and 2208
+Match found: INGOE at array position 1195 and 1706
+Match found: LTH at array position 1218 and 1510
+Match found: LTH at array position 1218 and 2422
+Match found: NM at array position 1222 and 2448
+Match found: INGAE at array position 1224 and 2028
+Match found: INGAE at array position 1224 and 2271
+Match found: INGAE at array position 1224 and 3010
+Match found: EAA at array position 1234 and 2725
+Match found: SEO at array position 1246 and 3214
+Match found: UINGO at array position 1247 and 2730
+Match found: TW at array position 1251 and 3843
+Match found: RTH at array position 1262 and 1641
+Match found: WE at array position 1269 and 3967
+Match found: PC at array position 1277 and 2042
+Single Letter Match: R at array position 1288 and 1428
+Single Letter Match: R at array position 1288 and 1886
+Single Letter Match: R at array position 1288 and 2598
+Single Letter Match: R at array position 1288 and 3849
+Single Letter Match: R at array position 1288 and 3869
+Match found: EOG at array position 1306 and 3177
+Match found: EAC at array position 1312 and 1964
+Match found: XH at array position 1318 and 2845
+Match found: IAING at array position 1319 and 3576
+Match found: OI at array position 1325 and 2648
+Match found: EX at array position 1346 and 1769
+Match found: BEO at array position 1353 and 3118
+Match found: AOE at array position 1393 and 1456
+Match found: JI at array position 1396 and 1500
+Match found: JI at array position 1396 and 3343
+Match found: AE at array position 1421 and 1539
+Match found: AE at array position 1421 and 1611
+Match found: AE at array position 1421 and 1615
+Match found: AE at array position 1421 and 1714
+Match found: AE at array position 1421 and 1788
+Match found: AE at array position 1421 and 3452
+Match found: AE at array position 1421 and 3518
+Match found: AE at array position 1421 and 3574
+Match found: EAAE at array position 1469 and 2580
+Match found: AEO at array position 1484 and 3615
+Match found: RG at array position 1516 and 3004
+Match found: AI at array position 1519 and 2718
+Match found: LR at array position 1535 and 2638
+Match found: IAEOE at array position 1550 and 2758
+Match found: DTH at array position 1554 and 1933
+Match found: MW at array position 1587 and 3476
+Match found: INGM at array position 1630 and 3224
+Match found: JG at array position 1632 and 3560
+Match found: ML at array position 1734 and 3148
+Match found: ML at array position 1734 and 3898
+Match found: NA at array position 1738 and 2510
+Match found: CA at array position 1739 and 2498
+Match found: IH at array position 1768 and 2589
+Match found: IH at array position 1768 and 2976
+Match found: POE at array position 1771 and 3636
+Match found: EOE at array position 1786 and 1868
+Match found: EOE at array position 1786 and 3914
+Match found: HJ at array position 1807 and 3158
+Match found: UE at array position 1810 and 3660
+Match found: LS at array position 1842 and 2959
+Match found: AETH at array position 1875 and 3268
+Match found: YO at array position 1878 and 2868
+Match found: YO at array position 1878 and 3687
+Match found: FA at array position 1915 and 3564
+Match found: MB at array position 1943 and 2479
+Match found: MB at array position 1943 and 2570
+Match found: AJ at array position 1946 and 2764
+Match found: AJ at array position 1946 and 3035
+Match found: AJ at array position 1946 and 3139
+Match found: BF at array position 1980 and 3745
+Match found: DJU at array position 1981 and 3921
+Match found: BEI at array position 1982 and 3922
+Match found: MF at array position 1990 and 3231
+Match found: UY at array position 2002 and 3087
+Match found: IAB at array position 2021 and 2176
+Match found: YS at array position 2052 and 3529
+Match found: SI at array position 2090 and 2268
+Match found: UGEA at array position 2107 and 2236
+Match found: EOA at array position 2109 and 2452
+Match found: EU at array position 2140 and 2432
+Match found: LEO at array position 2145 and 3086
+Match found: AEOE at array position 2152 and 2420
+Match found: SIA at array position 2292 and 2467
+Match found: TL at array position 2302 and 2313
+Match found: JOE at array position 2351 and 3792
+Match found: UT at array position 2402 and 3876
+Match found: EOOE at array position 2409 and 2574
+Match found: JL at array position 2436 and 3092
+Match found: INGW at array position 2458 and 3949
+Match found: CX at array position 2543 and 3920
+Match found: AEX at array position 2677 and 2743
+Match found: AEJ at array position 2749 and 3923
+Match found: MT at array position 2872 and 3812
+Match found: NT at array position 2905 and 2979
+Match found: OOEO at array position 2973 and 3211
+Match found: JIA at array position 2982 and 3132
+Match found: THN at array position 3203 and 3662
+Match found: TA at array position 3361 and 3596
+Match found: TA at array position 3361 and 3835
+Match found: YLO at array position 3384 and 3748
+Match found: MU at array position 3629 and 3675
+Match found: IC at array position 3648 and 3839
+Match found: THE at array position 3958 and 3964

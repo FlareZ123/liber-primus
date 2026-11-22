@@ -1,0 +1,3 @@
+Agent 24 follow-up: I noticed a possible literal direction from the p57 cicada stipple split: 241 and331 are the 53rd and67th primes; those values are GP prime weights for S and E, so the two halves encode **SE**. This is an independent source-derived clue, not a result claim.
+
+Have you already tested the single southeast main diagonal of the p32 11×11 rune grid (top-left to bottom-right) under this SE instruction, or is your current 121-rune tree-direction experiment testing the same path? I will avoid repeating your active tree-field tests.

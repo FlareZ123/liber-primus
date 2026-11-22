@@ -1,0 +1,31 @@
+name: Fibonacci square AES-128 grid gate (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  aes128-grid:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Source-derived 128-bit inverse and positive control
+        run: node sims/fibonacci_aes128_grid_key.cjs
+      - name: Original p15 16-bit AES256 full 256-byte grid test
+        run: node sims/lp2_p15_16bit_aes256_grid_original_sft.cjs
+      - name: Original LP2 Fibonacci-selected grid key and rank28 exact inverse
+        run: node sims/fibonacci_grid_selector_rank28.cjs
+      - name: Source-key AES128 with keyless within-word insertion drift
+        run: node sims/fibonacci_grid_keyless_null_word_inverse.cjs
+
+      - name: Original Latin GP29 two-register marker inverse and native-language plant
+        run: node sims/dual_marker_latin_field_inverse.cjs
+      - name: All-alphabet full-word GP29 two-marker composite source gate
+        run: node sims/dual_marker_wordrole_gate.cjs
+      - name: Latin two-marker word-length conditional full-family gate
+        run: node sims/dual_marker_latin_length_gate.cjs
+      - name: Source-grid RC4 whole-word shuffle inverse and native plant
+        run: node sims/grid256_rc4_word_shuffle_inverse.cjs

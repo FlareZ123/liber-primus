@@ -1,0 +1,51 @@
+name: Agent11 source-known 180 rune original audio exact-pad locator
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: agent11-terminal180-original-audio-locator
+  cancel-in-progress: false
+
+jobs:
+  historical-audio-locator:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Obtain exact creator-era MP3 sources
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $source2013 = Join-Path $env:RUNNER_TEMP '761.MP3'
+          $source2014 = Join-Path $env:RUNNER_TEMP 'interconnected.mp3'
+          $url2013 = 'https://raw.githubusercontent.com/rtkd/iddqd/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3'
+          $url2014 = 'https://raw.githubusercontent.com/iBotPeaches/cicada_3301/a0a616d85717af59f8b806875b43d51e06e1e874/tool/storage/interconnected.mp3'
+          Invoke-WebRequest -Uri $url2013 -OutFile $source2013
+          Invoke-WebRequest -Uri $url2014 -OutFile $source2014
+          if ((Get-Item -LiteralPath $source2013).Length -ne 4010732) { throw '761.MP3 historical size mismatch' }
+          if ((Get-Item -LiteralPath $source2014).Length -ne 6651873) { throw '2014 interconnected original size mismatch' }
+          $sha2013 = (Get-FileHash -LiteralPath $source2013 -Algorithm SHA256).Hash.ToLowerInvariant()
+          if ($sha2013 -ne '83008217439110c3b824898af73b99cb2cf0657dda88cb363c3aa34a4ec0a460') {
+            throw '761.MP3 original SHA256 mismatch'
+          }
+          $blob2014 = (& git hash-object -- $source2014).Trim().ToLowerInvariant()
+          if ($LASTEXITCODE -ne 0 -or $blob2014 -ne '09fe068192b76a3697c47ec1d604b527703db798') {
+            throw '2014 interconnected original Git blob mismatch'
+          }
+          "SOURCE_2013_MP3=$source2013" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          "SOURCE_2014_MP3=$source2014" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Run exact known-plaintext audio-key reconstruction and 76 rune positive plant
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          node --check sims/lp2_terminal256_known180_audio_exactpad_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw 'Node 22 script syntax check failed' }
+          node sims/lp2_terminal256_known180_audio_exactpad_sft.cjs "$env:SOURCE_2013_MP3" "$env:SOURCE_2014_MP3"
+          if ($LASTEXITCODE -ne 0) { throw 'Original terminal audio exact-pad source test failed' }

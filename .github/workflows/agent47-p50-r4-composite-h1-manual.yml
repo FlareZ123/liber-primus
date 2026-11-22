@@ -1,0 +1,53 @@
+name: Agent47 p50 table plus historical keyword under R4 (manual)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: agent47-p50-r4-composite-h1
+  cancel-in-progress: false
+
+jobs:
+  source-fixed-r4:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout Liber Primus sources and SFT
+        uses: actions/checkout@v4
+      - name: Checkout pinned external R4 reference engine
+        uses: actions/checkout@v4
+        with:
+          repository: pnotisdev/cicada3301
+          ref: 15200c67abee106913ba01ff504c5b6e88d16cc7
+          path: upstream
+          persist-credentials: false
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install numerical dependency
+        run: python -m pip install --disable-pip-version-check numpy==2.2.6
+      - name: Compile pinned mid-word decoder
+        run: |
+          mkdir -p upstream/work/chanscreen/v2/build
+          rustc --edition=2021 --crate-type cdylib -O \
+            upstream/work/chanscreen/v2/backward_mid.rs \
+            -o upstream/work/chanscreen/v2/build/libbackward_mid.so
+      - name: Validate parser and execute original plus positive controls
+        run: |
+          python -m py_compile sims/lp2_r4_composite_h1_sft.py
+          python -m py_compile sims/agent47_p50_r4_composite_h1_sft.py
+          export PNOTISDEV_ROOT="$GITHUB_WORKSPACE/upstream"
+          export PNOTISDEV_COMMIT=15200c67abee106913ba01ff504c5b6e88d16cc7
+          python -u sims/agent47_p50_r4_composite_h1_sft.py
+      - name: Preserve original scores and controls
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent47-p50-r4-composite-h1-original
+          path: im-results/lp2-p50-r4-composite-h1-sft.json
+          if-no-files-found: warn
+          retention-days: 60

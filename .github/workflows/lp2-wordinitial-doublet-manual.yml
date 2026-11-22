@@ -1,0 +1,13 @@
+name: LP2 original word-initial doublet source-native gate
+on:
+  workflow_dispatch:
+jobs:
+  wordinitial-original-source:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original LP2 word-initial doublet SFT
+        run: node sims/lp2_wordinitial_doublet_native_english_sft.cjs

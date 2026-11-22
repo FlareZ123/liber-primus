@@ -1,0 +1,14 @@
+name: LP2 original historical 14-column whole-book word gate
+on:
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run original LP2 bookwide 14-column SFT
+        run: node sims/lp2_book14_wordlength_historical_sft.cjs

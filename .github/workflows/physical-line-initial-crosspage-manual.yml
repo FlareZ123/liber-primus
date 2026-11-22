@@ -1,0 +1,57 @@
+name: LP2 physical-line and page-turn replication (manual)
+on:
+  workflow_dispatch:
+    inputs:
+      analysis:
+        description: Select original printed-initial replication or width-matched page-turn test
+        type: choice
+        required: true
+        default: line-initial
+        options:
+          - line-initial
+          - page-turn-width
+          - spread-interleave
+          - punctuation-clock
+          - tendot-bridge
+          - tendot-prime-transfer
+          - section-clock
+          - cuneiform-prime
+          - cuneiform-square
+permissions:
+  contents: read
+jobs:
+  heldout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test printed line initials and negative controls on canonical manuscript
+        if: ${{ inputs.analysis == 'line-initial' }}
+        run: node sims/physical_line_initial_crosspage_heldout.cjs
+      - name: Refit width/section/word-matched page-turn arcs on original source
+        if: ${{ inputs.analysis == 'page-turn-width' }}
+        run: node sims/page_turn_width_word_matched_crossfit.cjs
+      - name: Check lossless spread traversal and matched original-source boundaries
+        if: ${{ inputs.analysis == 'spread-interleave' }}
+        run: node sims/lp2_spread_traversal_sft.cjs
+      - name: Replicate historic p56 dot-mark prime-key clock discriminator
+        if: ${{ inputs.analysis == 'punctuation-clock' }}
+        run: node sims/lp2_punctuation_solved_clock_sft.cjs
+      - name: Test historical seven-page plus five-numbered magic-square GP pad
+        if: ${{ inputs.analysis == 'cuneiform-square' }}
+        run: node sims/lp2_cuneiform_seven_five_square_sft.cjs
+      - name: Test visible 1033 and 3301 as solved-totient starting primes
+        if: ${{ inputs.analysis == 'cuneiform-prime' }}
+        run: node sims/lp2_cuneiform_prime_totient_sft.cjs
+      - name: Verify all three source-preserving page-33 section clocks
+        if: ${{ inputs.analysis == 'section-clock' }}
+        run: node sims/lp2_section_clock_sft.cjs
+      - name: Build source-original rune-only clock across the 256-byte numeric grid
+        if: ${{ inputs.analysis == 'tendot-bridge' }}
+        run: node sims/lp2_tendot_binary_bridge_sft.cjs
+      - name: Test source-sized prime-totient clock transfers at ten-dot table
+        if: ${{ inputs.analysis == 'tendot-prime-transfer' }}
+        run: node sims/lp2_tendot_prime_transfer_gate.cjs

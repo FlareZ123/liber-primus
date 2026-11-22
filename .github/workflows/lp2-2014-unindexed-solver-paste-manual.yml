@@ -1,0 +1,22 @@
+name: LP2 original 2014 unreviewed solver-paste recovery
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  archived-pastes:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Positive source-parser self-test
+        run: node sims/lp2_2014_irc_unindexed_paste_recovery_sft.cjs --selftest
+      - name: Retrieve exact historical 2014 IRC source and selected 16 original paste IDs
+        run: node sims/lp2_2014_irc_unindexed_paste_recovery_sft.cjs
+      - name: Compare first-party period transcription with physical-page rune indices
+        run: |
+          node sims/lp2_2014_paste_early_transcription_comparison_sft.cjs --selftest
+          node sims/lp2_2014_paste_early_transcription_comparison_sft.cjs

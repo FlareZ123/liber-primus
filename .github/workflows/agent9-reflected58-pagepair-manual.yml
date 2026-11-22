@@ -1,0 +1,16 @@
+name: Agent9 58-page mirror-pair original-source gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  mirrored-page-test:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original GP29 mirror-pair source controls and planted pads
+        run: node sims/lp2_reflected58_pagepair_sharedpad_sft.cjs

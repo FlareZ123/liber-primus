@@ -1,0 +1,20 @@
+name: Agent37 source-original p29 factor and p50 lookup tests
+on:
+  workflow_dispatch:
+jobs:
+  original-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run original p29 factor, quotient and native controls
+        run: node sims/lp2_p29_red39_factor_syndrome_sft.cjs
+      - name: Run source p50 distinct161 and p57 repeat95 original lookup gate
+        run: node sims/lp2_p50_distinct161_terminal95_duplicate_sft.cjs
+      - name: Test the p0-p32 five-bit triple-share to p55 76-byte original register
+        run: node sims/lp2_p0_p32_three_share_p55_76byte_sft.cjs
+      - name: Test p57 36-rune zero bracket against the original known terminal 180
+        run: node sims/lp2_zero192_229_parable36_known180_xor_sft.cjs

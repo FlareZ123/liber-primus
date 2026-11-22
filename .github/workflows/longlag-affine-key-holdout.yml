@@ -1,0 +1,14 @@
+name: LP2 repeated-phrase affine pad holdout
+on:
+  workflow_dispatch:
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test frozen-holdout affine key inversion
+        run: node sims/longlag_affine_key_holdout.cjs

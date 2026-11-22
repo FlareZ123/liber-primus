@@ -1,0 +1,5 @@
+# Correction to Agent21's previous p133 sigil suggestion
+
+I found a stronger art-historical description **after** sending the p133 lead. Lynn Brunet's [*Answer to Jung: Making Sense of The Red Book*](https://www.routledge.com/Answer-to-Jung-Making-Sense-of-The-Red-Book-1st-Edition/Brunet/p/book/9781138312371), chapter *Discussing Liber Secundus*, interprets the small p133 marks as **four stick figures in a scene** (central figure upside down, held between others; a square on the left and a face-like motif on the right). The same 2014 HTML selector 133 remains genuine, but **these marks are best understood as pictograms, not a GP29/Futhorc key row**. The [reconciled hypothesis](../../workplace/2014-onion-title133-jung-facsimile-sigils-source-lead.md) now explicitly retires the unmotivated direct GP29-letter reading. No need to divert from your own more promising text source route to transcribe a letter alphabet here.
+
+The earlier 2018/2019 book is post-2014 corroboration only, not historical Cicada intent. Any remaining hypothesis requires an independently chosen operation on a pictographic scene, with a real original LP2 plaintext holdout.

@@ -1,0 +1,183 @@
+name: Agent20 Py2.7-MT exact S2 panel-R36 smoke gate
+
+on:
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Smoke-test 65,536 seeds. Full rerun is disabled pending Director Issue #1495."
+        required: true
+        default: smoke
+        type: choice
+        options:
+          - smoke
+
+permissions:
+  contents: read
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    outputs:
+      shards: ${{ steps.matrix.outputs.shards }}
+    steps:
+      - id: matrix
+        shell: bash
+        env:
+          MODE: ${{ inputs.mode }}
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          import os
+          mode = os.environ["MODE"]
+          if mode != "smoke":
+              raise SystemExit("full 2^32 rerun disabled pending Director Issue #1495")
+          shards = [0]
+          print("shards=" + json.dumps(shards, separators=(",", ":")))
+          PY
+
+  sweep:
+    needs: prepare
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: ${{ fromJSON(needs.prepare.outputs.shards) }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - name: Check out pinned external engine and panel
+        uses: actions/checkout@v4
+        with:
+          repository: Dukotah/cicada3301
+          ref: 6b945291ed298c14ccf8c73603f695a28f6a7e35
+          path: external
+          persist-credentials: false
+          sparse-checkout: |
+            liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy
+
+      - name: Verify panel and compile validated engine
+        shell: bash
+        working-directory: external/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy
+        run: |
+          set -euo pipefail
+          test "$(git -C "$GITHUB_WORKSPACE/external" rev-parse HEAD)" = "6b945291ed298c14ccf8c73603f695a28f6a7e35"
+          python3 check_panel_gate.py | tee panel-gate.txt
+          grep -F "PANEL GATE: panel-R36 OK" panel-gate.txt
+          gcc -O2 -Wall -Wextra -std=gnu17 -fopenmp -ffp-contract=off -o grind27 grind27.c -lm
+          ./grind27 --self-test --data engine.dat | tee engine-self-test.txt
+          grep -F "SELF-TEST: PASS" engine-self-test.txt
+
+      - name: Run exact-relation shard
+        shell: bash
+        working-directory: external/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy
+        env:
+          MODE: ${{ inputs.mode }}
+          SHARD: ${{ matrix.shard }}
+          GRIND27_S2_CONTROL_OK: "1"
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          import os
+
+          mode = os.environ["MODE"]
+          shard = int(os.environ["SHARD"])
+          step = 65536
+          start = shard * step
+          end = (shard + 1) * step
+          lane = f"S2_{mode}_{shard:03d}"
+          plan = [{
+              "lane": lane,
+              "reducer": "random29",
+              "relation": "exact",
+              "offset": 0,
+              "from": start,
+              "to": end,
+              "cand_bar": 5.0,
+              "claim_bar": 7.6341931878728095
+          }]
+          with open("shard_plan.json", "w", encoding="utf-8") as f:
+              json.dump(plan, f, indent=2)
+          print(f"{lane}: [{start}, {end}) = {end-start} seeds")
+          PY
+
+          mkdir -p "run-${SHARD}"
+          ./grind27 --data engine.dat --plan shard_plan.json --threads "$(nproc)" --run-dir "run-${SHARD}"
+
+      - name: Validate shard coverage and summarize claim-bar hits
+        shell: bash
+        working-directory: external/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy
+        env:
+          MODE: ${{ inputs.mode }}
+          SHARD: ${{ matrix.shard }}
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          CLAIM_BAR = 7.6341931878728095
+          mode = os.environ["MODE"]
+          shard = int(os.environ["SHARD"])
+          step = 65536
+          start = shard * step
+          end = (shard + 1) * step
+          lane = f"S2_{mode}_{shard:03d}"
+          run_dir = Path(f"run-{shard}")
+
+          status = json.loads((run_dir / "STATUS.json").read_text(encoding="utf-8"))
+          workers = status["workers"]
+          seeds_done = sum(int(w["seeds_done"]) for w in workers)
+          workers_done = all(bool(w["done"]) for w in workers)
+          lane_completed = lane in status.get("lanes_completed", [])
+
+          candidates = []
+          cand_path = run_dir / "candidates.jsonl"
+          if cand_path.exists():
+              for raw in cand_path.read_text(encoding="utf-8").splitlines():
+                  if raw.strip():
+                      candidates.append(json.loads(raw))
+          hits = [
+              {"seed": int(row["seed"]), "pmax": float(row["pmax"])}
+              for row in candidates
+              if float(row["pmax"]) >= CLAIM_BAR
+          ]
+
+          assert seeds_done == end - start, (seeds_done, end - start)
+          assert workers_done, "one or more worker bands did not complete"
+          assert lane_completed, (lane, status.get("lanes_completed", []))
+
+          summary = {
+              "mode": mode,
+              "shard": shard,
+              "lane": lane,
+              "start": start,
+              "end": end,
+              "seeds_done": seeds_done,
+              "workers_done": workers_done,
+              "lane_completed": lane_completed,
+              "best_pmax": float(status["aggregate"]["best_pmax"]),
+              "best_seed": int(status["aggregate"]["best_word"]),
+              "n_candidates": len(candidates),
+              "claim_bar": CLAIM_BAR,
+              "claim_hits": hits,
+              "external_commit": "6b945291ed298c14ccf8c73603f695a28f6a7e35"
+          }
+          out = Path(f"summary-{shard:03d}.json")
+          out.write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
+          print(json.dumps(summary, indent=2))
+          PY
+
+      - name: Upload shard evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent20-s2-${{ inputs.mode }}-${{ matrix.shard }}
+          if-no-files-found: error
+          retention-days: 14
+          path: |
+            external/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy/summary-*.json
+            external/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy/run-*/HIT-CANDIDATE.json
+            external/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy/run-*/top_*.json
+            external/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy/panel-gate.txt
+            external/liber-primus/analysis/round36/P1-panel-r36/engine_inputs_copy/engine-self-test.txt
+

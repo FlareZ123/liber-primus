@@ -1,0 +1,14 @@
+name: Original LP2 cross-page GF29 polynomial-factor SFT
+on:
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Recompute all pairs and conditioned controls
+        run: node sims/lp2_original_pairwise_gf29_gcd_sft.cjs

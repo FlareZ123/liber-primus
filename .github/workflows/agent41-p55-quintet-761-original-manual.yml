@@ -1,0 +1,28 @@
+name: 2013 audio original-byte cross-round rune gates
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  fixed-audio-transfer:
+    runs-on: windows-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Retrieve byte-authentic historical 2013 XOR operand
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $url = 'https://raw.githubusercontent.com/rtkd/iddqd/f2267b0c2f1e1d2662806b90b9c3a2953b3a7023/2013/02/761.MP3'
+          $target = Join-Path $env:RUNNER_TEMP '761.MP3'
+          Invoke-WebRequest -Uri $url -OutFile $target
+          node sims/lp2_p55_quintet_audio761_xor_sft.cjs $target
+          node sims/lp2_2013_audio_source_gp28_original_sft.cjs $target
+          node sims/lp2_2013_audio_source_gp28_original_sft.cjs $target p27-708
+          node sims/lp2_p27_fib708_audio761_base29xor_sft.cjs $target

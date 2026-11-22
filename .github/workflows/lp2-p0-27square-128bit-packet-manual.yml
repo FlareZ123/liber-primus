@@ -1,0 +1,13 @@
+name: LP2 original 27x27 direct 128bit packet capacity gate
+on:
+  workflow_dispatch:
+jobs:
+  original-invariant:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify original-rune packet capacity and AES positive
+        run: node sims/lp2_p0_27square_128bit_radix29_sft.cjs

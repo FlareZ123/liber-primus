@@ -1,0 +1,20 @@
+name: LP2 floral ABAAB direct original-lane pickup SFT
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-simple-selector:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Execute exact original nine-page AB lane and native-GP positive controls
+        shell: pwsh
+        run: node sims/lp2_flower_aba_ab_direct_pickup_sft.cjs

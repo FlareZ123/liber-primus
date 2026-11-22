@@ -1,0 +1,39 @@
+name: LP2 discrete-log field-unit key inverse
+on:
+  workflow_dispatch:
+    inputs:
+      attack:
+        description: "Choose bounded period scan or source-key stream inverse"
+        required: true
+        default: period
+        type: choice
+        options:
+          - period
+          - csprng-28
+          - anend-nonce
+          - digest-key
+permissions:
+  contents: read
+jobs:
+  invert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - if: inputs.attack == 'period'
+        run: node sims/field_unit_discrete_log_periods.cjs 80
+      - if: inputs.attack == 'csprng-28'
+        run: node sims/field_unit_csprng_alphabet_inverse.cjs
+      - if: inputs.attack == 'anend-nonce'
+        env:
+          LP2_FIELD_IV: anend
+          LP2_FIELD_NULLS: '100'
+        run: node sims/field_unit_csprng_alphabet_inverse.cjs
+      - if: inputs.attack == 'digest-key'
+        env:
+          LP2_FIELD_IV: digest-key
+          LP2_FIELD_NULLS: '100'
+        run: node sims/field_unit_csprng_alphabet_inverse.cjs

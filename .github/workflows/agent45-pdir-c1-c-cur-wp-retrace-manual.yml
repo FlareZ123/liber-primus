@@ -1,0 +1,44 @@
+name: Agent45 LP2 pdir c1 C-cur-wp retrace gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  retrace:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pin external pdir implementation
+        uses: actions/checkout@v4
+        with:
+          repository: pnotisdev/cicada3301
+          ref: 15200c67abee106913ba01ff504c5b6e88d16cc7
+          path: external-cicada3301
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Generate pinned source tables and rules
+        shell: pwsh
+        run: |
+          python -m pip install numpy mpmath
+          if ($LASTEXITCODE -ne 0) { throw "Python dependency failure" }
+          python external-cicada3301/work/kscreen/export.py
+          if ($LASTEXITCODE -ne 0) { throw "External export failed" }
+          python external-cicada3301/work/kscreen/signrules.py
+          if ($LASTEXITCODE -ne 0) { throw "Sign-rule generation failed" }
+      - name: Assert canonical source identity
+        run: python sims/lp2_pdir_issue1329_gate.py external-cicada3301
+      - name: Run C_cur_wp repeated-index gate
+        shell: pwsh
+        run: |
+          python sims/lp2_pdir_c1_c_cur_wp_retrace_sft.py external-cicada3301 | Tee-Object -FilePath pdir-c1-c-cur-wp-retrace.json
+          if ($LASTEXITCODE -ne 0) { throw "C_cur_wp retrace gate failed" }
+      - name: Preserve result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdir-c1-c-cur-wp-retrace
+          path: pdir-c1-c-cur-wp-retrace.json
+          if-no-files-found: error

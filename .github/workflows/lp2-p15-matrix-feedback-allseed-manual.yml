@@ -1,0 +1,16 @@
+name: LP2 p15 original-matrix full four-state feedback test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  source-original-allseed:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exhaustive original-source matrix feedback and positive plant
+        run: node sims/lp2_p15_matrix_feedback_allseeds_sft.cjs

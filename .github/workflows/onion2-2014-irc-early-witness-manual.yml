@@ -1,0 +1,14 @@
+name: Original 2014 onion-2 early IRC witness gate
+on:
+  workflow_dispatch:
+jobs:
+  original-irc-source:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Search SHA-verified 2014 source logs for early snapshots and clock statements
+        run: python sims/onion2_2014_irc_early_snapshot_source_scan.py

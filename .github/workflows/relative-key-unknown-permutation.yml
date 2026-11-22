@@ -1,0 +1,21 @@
+name: LP2 shared-key unknown permutation inversion
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout research corpus
+        uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Search up to two symbol swaps with heldout test
+        run: node sims/relative_key_unknown_permutation.cjs

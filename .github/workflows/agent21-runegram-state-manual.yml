@@ -1,0 +1,21 @@
+name: Agent 21 original LP2 rune-gram finite-state lower bound
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-native-state-gate:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check and run original-cipher 29-state comparison
+        run: |
+          node --check sims/lp2_runegram_sequential_state_lowerbound_sft.cjs
+          node sims/lp2_runegram_sequential_state_lowerbound_sft.cjs

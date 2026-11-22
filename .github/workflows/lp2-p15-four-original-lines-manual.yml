@@ -1,0 +1,16 @@
+name: LP2 p15 first four original printed lines Hill gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-line-inverse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - name: Decode frozen original p15 four text lines
+        run: node sims/lp2_p15_four_printed_lines_hill_sft.cjs

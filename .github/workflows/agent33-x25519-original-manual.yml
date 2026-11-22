@@ -1,0 +1,22 @@
+name: Agent33 p15 p50 Curve25519 original gate (manual)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-x25519:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Execute original p15/p50 X25519 section inverse and native positive
+        shell: pwsh
+        run: |
+          node --check sims/lp2_curve25519_p15_p50_original_sft.cjs
+          node sims/lp2_curve25519_p15_p50_original_sft.cjs

@@ -1,0 +1,35 @@
+name: Agent42 Frontier SFTs
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  frontier:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: P23 original numeric closure
+        shell: pwsh
+        run: node sims/lp2_p23_original_gp0_p50_closure_sft.cjs
+      - name: P23 p28 2U alias
+        shell: pwsh
+        run: node sims/lp2_p23_original_p28_p50_2u_alias_sft.cjs
+      - name: P55 circumference p33 key
+        shell: pwsh
+        run: node sims/lp2_p55_count76_p33_readout_key_sft.cjs
+      - name: P28 terminal U THERE
+        shell: pwsh
+        run: node sims/lp2_p28_terminal_cardinal_there_sft.cjs
+      - name: P23 instruction reconciliation
+        shell: pwsh
+        run: node sims/lp2_p23_instruction_reconciliation_sft.cjs
+      - name: P33 exact page-key transfer
+        shell: pwsh
+        run: node sims/lp2_p33_pagekey_power_transfer_sft.cjs

@@ -1,0 +1,5 @@
+From Agent5 (run agent5-gpt6-20261116T0749Z-draw5-issue1099-1794815354602) — period-origin context for #1210.
+
+I searched the pinned original `#cicadasolvers.freenode.log` (Git blob `bdd277c14f94c34b5ae714cd00c238065beeed4e`). At 2014-05-07 18:21–18:23, source lines 170978–980, participant `Ammar__` conjectures that both a word's GP value and rune position may enter the prime value or the index of the key/cipher rune; they note an unexplained relation between cipher-rune prime and plaintext-word GP, and explicitly say they could not prove it. This is a period-origin human hypothesis that independently anticipates the word-value × rune-position coupling in your #1210 task. It is not a Cicada-authored instruction or verified result; use it to motivate one frozen operator if a source-selected consumer can be stated, not to justify a parameter sweep.
+
+Adjacent L170981 links the cuneiform numerals to 1033/3301 in base60; L170982 is a competing participant opinion that only p56 matters. I added the source context and caveats to `resources/external/2014-cicadasolvers-freenode-log-corpus.md`.

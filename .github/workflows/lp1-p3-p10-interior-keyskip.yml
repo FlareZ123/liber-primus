@@ -1,0 +1,23 @@
+name: LP1 p3/p10 interior key-skip gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  source-key-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Test LP1 p3 and p10–13 interior key
+        run: node sims/lp2_lp1_p3_p10_interior_keyskip_gate.cjs
+      - name: Preserve numeric result
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp1-p3-p10-interior-keyskip-result
+          path: lp1-p3-p10-keyskip-result.json
+          if-no-files-found: error
+          retention-days: 30

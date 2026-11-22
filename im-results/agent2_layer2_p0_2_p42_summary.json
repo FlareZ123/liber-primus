@@ -1,0 +1,387 @@
+{
+  "survivors": [],
+  "missing": [
+    [
+      "opening",
+      "periodic0"
+    ],
+    [
+      "opening",
+      "periodic1"
+    ],
+    [
+      "p42",
+      "periodic0"
+    ],
+    [
+      "p42",
+      "periodic1"
+    ]
+  ],
+  "controls": {
+    "serial_pass": true,
+    "combined_pass": true,
+    "periodic_litf0_pass": false,
+    "periodic_litf1_pass": false,
+    "positive_control_lengths": [
+      729,
+      272
+    ],
+    "serial": [
+      {
+        "label": "serial_litf0_solved_positive",
+        "pass": true,
+        "checks": [
+          {
+            "window": "plant_0",
+            "truth_item": "primes",
+            "truth_offset": 2000,
+            "best": {
+              "score": 7.7449,
+              "item": "primes",
+              "offset": 2000,
+              "mult": 1,
+              "model": 0,
+              "inner": "kw=DIVINITY isign=1 phase=3 litf=0 atb=0"
+            },
+            "candidate": true,
+            "pass": true
+          },
+          {
+            "window": "plant_1",
+            "truth_item": "primes",
+            "truth_offset": 2997,
+            "best": {
+              "score": 7.3235,
+              "item": "primes",
+              "offset": 2997,
+              "mult": 1,
+              "model": 0,
+              "inner": "kw=DIVINITY isign=1 phase=3 litf=0 atb=0"
+            },
+            "candidate": true,
+            "pass": true
+          }
+        ],
+        "verify": "data/controls/serial_litf0_solved_positive_verify.txt"
+      },
+      {
+        "label": "serial_litf0_words_positive",
+        "pass": true,
+        "checks": [
+          {
+            "window": "plant_0",
+            "truth_item": "primes",
+            "truth_offset": 2000,
+            "best": {
+              "score": 7.7449,
+              "item": "primes",
+              "offset": 2000,
+              "mult": 1,
+              "model": 0,
+              "inner": "kw=DIVINITY isign=1 phase=3 litf=0 atb=0"
+            },
+            "candidate": true,
+            "pass": true
+          },
+          {
+            "window": "plant_1",
+            "truth_item": "primes",
+            "truth_offset": 2997,
+            "best": {
+              "score": 7.3235,
+              "item": "primes",
+              "offset": 2997,
+              "mult": 1,
+              "model": 0,
+              "inner": "kw=DIVINITY isign=1 phase=3 litf=0 atb=0"
+            },
+            "candidate": true,
+            "pass": true
+          }
+        ],
+        "verify": "data/controls/serial_litf0_words_positive_verify.txt"
+      },
+      {
+        "label": "serial_litf1_solved_positive",
+        "pass": true,
+        "checks": [
+          {
+            "window": "plant_0",
+            "truth_item": "primes",
+            "truth_offset": 2000,
+            "best": {
+              "score": 7.7407,
+              "item": "primes",
+              "offset": 2000,
+              "mult": 1,
+              "model": 0,
+              "inner": "kw=DIVINITY isign=1 phase=3 litf=1 atb=0"
+            },
+            "candidate": true,
+            "pass": true
+          },
+          {
+            "window": "plant_1",
+            "truth_item": "primes",
+            "truth_offset": 2997,
+            "best": {
+              "score": 7.2757,
+              "item": "primes",
+              "offset": 2997,
+              "mult": 1,
+              "model": 0,
+              "inner": "kw=DIVINITY isign=1 phase=3 litf=1 atb=0"
+            },
+            "candidate": true,
+            "pass": true
+          }
+        ],
+        "verify": "data/controls/serial_litf1_solved_positive_verify.txt"
+      },
+      {
+        "label": "serial_litf1_words_positive",
+        "pass": true,
+        "checks": [
+          {
+            "window": "plant_0",
+            "truth_item": "primes",
+            "truth_offset": 2000,
+            "best": {
+              "score": 7.7407,
+              "item": "primes",
+              "offset": 2000,
+              "mult": 1,
+              "model": 0,
+              "inner": "kw=DIVINITY isign=1 phase=3 litf=1 atb=0"
+            },
+            "candidate": true,
+            "pass": true
+          },
+          {
+            "window": "plant_1",
+            "truth_item": "primes",
+            "truth_offset": 2997,
+            "best": {
+              "score": 7.2757,
+              "item": "primes",
+              "offset": 2997,
+              "mult": 1,
+              "model": 0,
+              "inner": "kw=DIVINITY isign=1 phase=3 litf=1 atb=0"
+            },
+            "candidate": true,
+            "pass": true
+          }
+        ],
+        "verify": "data/controls/serial_litf1_words_positive_verify.txt"
+      }
+    ],
+    "combined": {
+      "label": "combined_a1_positive",
+      "pass": true,
+      "checks": [
+        {
+          "window": "plant_0",
+          "truth_item": "primes + 1*DIVINITY@3",
+          "truth_offset": 2000,
+          "best": {
+            "score": 7.7449,
+            "item": "primes + 1*DIVINITY@3",
+            "offset": 2000,
+            "mult": 1,
+            "model": 0,
+            "inner": "kw=NONE isign=1 phase=0 litf=0 atb=0"
+          },
+          "candidate": true,
+          "pass": true
+        },
+        {
+          "window": "plant_1",
+          "truth_item": "primes + 1*DIVINITY@3",
+          "truth_offset": 2997,
+          "best": {
+            "score": 7.2757,
+            "item": "primes + 1*DIVINITY@3",
+            "offset": 2997,
+            "mult": 1,
+            "model": 0,
+            "inner": "kw=NONE isign=1 phase=0 litf=0 atb=0"
+          },
+          "candidate": true,
+          "pass": true
+        }
+      ],
+      "verify": "data/controls/combined_a1_positive_verify.txt"
+    },
+    "periodic_litf0": [
+      {
+        "label": "periodic_litf0_m6",
+        "pass": true,
+        "checks": [
+          {
+            "window": "plant_0",
+            "truth_item": "primes",
+            "truth_offset": 2000,
+            "best": {
+              "score": 38.3207,
+              "item": "primes",
+              "offset": 2000,
+              "mult": 28,
+              "model": 1,
+              "inner": "m=6 litf=0"
+            },
+            "candidate": true,
+            "pass": true,
+            "period": 6,
+            "plant_index": 0
+          },
+          {
+            "window": "plant_1",
+            "truth_item": "primes",
+            "truth_offset": 2997,
+            "best": {
+              "score": 10.5913,
+              "item": "primes",
+              "offset": 2997,
+              "mult": 28,
+              "model": 1,
+              "inner": "m=6 litf=0"
+            },
+            "candidate": true,
+            "pass": true,
+            "period": 6,
+            "plant_index": 0
+          }
+        ],
+        "verify": "data/controls/periodic_litf0_m6_verify.txt"
+      },
+      {
+        "label": "periodic_litf0_m9",
+        "pass": false,
+        "checks": [
+          {
+            "window": "plant_0",
+            "truth_item": "primes",
+            "truth_offset": 5000,
+            "best": {
+              "score": 26.8462,
+              "item": "primes",
+              "offset": 5000,
+              "mult": 1,
+              "model": 0,
+              "inner": "m=9 litf=0"
+            },
+            "candidate": true,
+            "pass": true,
+            "period": 9,
+            "plant_index": 1
+          },
+          {
+            "window": "plant_1",
+            "truth_item": "primes",
+            "truth_offset": 5997,
+            "best": {
+              "score": 8.6096,
+              "item": "primes",
+              "offset": 5998,
+              "mult": 1,
+              "model": 0,
+              "inner": "m=3 litf=0"
+            },
+            "candidate": false,
+            "pass": false,
+            "period": 9,
+            "plant_index": 1
+          }
+        ],
+        "verify": "data/controls/periodic_litf0_m9_verify.txt"
+      }
+    ],
+    "periodic_litf1": [
+      {
+        "label": "periodic_litf1_m6",
+        "pass": false,
+        "checks": [
+          {
+            "window": "plant_0",
+            "truth_item": "primes",
+            "truth_offset": 2000,
+            "best": {
+              "score": 34.3244,
+              "item": "primes",
+              "offset": 1998,
+              "mult": 28,
+              "model": 1,
+              "inner": "m=6 litf=1"
+            },
+            "candidate": true,
+            "pass": true,
+            "period": 6,
+            "plant_index": 0
+          },
+          {
+            "window": "plant_1",
+            "truth_item": "primes",
+            "truth_offset": 2997,
+            "best": {
+              "score": 10.4108,
+              "item": "primes",
+              "offset": 5551,
+              "mult": 1,
+              "model": 0,
+              "inner": "m=3 litf=1"
+            },
+            "candidate": false,
+            "pass": false,
+            "period": 6,
+            "plant_index": 0
+          }
+        ],
+        "verify": "data/controls/periodic_litf1_m6_verify.txt"
+      },
+      {
+        "label": "periodic_litf1_m9",
+        "pass": false,
+        "checks": [
+          {
+            "window": "plant_0",
+            "truth_item": "primes",
+            "truth_offset": 5000,
+            "best": {
+              "score": 29.2529,
+              "item": "primes",
+              "offset": 5001,
+              "mult": 1,
+              "model": 0,
+              "inner": "m=9 litf=1"
+            },
+            "candidate": true,
+            "pass": true,
+            "period": 9,
+            "plant_index": 1
+          },
+          {
+            "window": "plant_1",
+            "truth_item": "primes",
+            "truth_offset": 5997,
+            "best": {
+              "score": 10.2202,
+              "item": "primes",
+              "offset": 3684,
+              "mult": 28,
+              "model": 0,
+              "inner": "m=5 litf=1"
+            },
+            "candidate": false,
+            "pass": false,
+            "period": 9,
+            "plant_index": 1
+          }
+        ],
+        "verify": "data/controls/periodic_litf1_m9_verify.txt"
+      }
+    ],
+    "rule": "every positive window must rank its planted stream offset within 2 and pass unchanged whole-window bigram verification (>=+2/rune and >= matched 20-offset maximum +5)"
+  }
+}

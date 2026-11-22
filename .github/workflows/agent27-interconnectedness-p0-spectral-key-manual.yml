@@ -1,0 +1,36 @@
+name: Agent27 Interconnectedness 262-second p0 spectral-key test (manual)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  p0-spectral-key:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install audio decoder and numerical dependency
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          python -m pip install --upgrade pip numpy
+      - name: Validate fixed spectral extractor
+        run: python sims/lp2_interconnectedness_p0_spectral_key_sft.py --selftest
+      - name: Verify original MP3 and test one fixed 262-symbol GP29 spectral key
+        run: python sims/lp2_interconnectedness_p0_spectral_key_sft.py --network > agent27-interconnectedness-p0-spectral-key.jsonl
+      - name: Print complete experimental result
+        run: cat agent27-interconnectedness-p0-spectral-key.jsonl
+      - name: Preserve source hash and extraction result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent27-interconnectedness-p0-spectral-key
+          path: agent27-interconnectedness-p0-spectral-key.jsonl
+          if-no-files-found: ignore
+          retention-days: 30

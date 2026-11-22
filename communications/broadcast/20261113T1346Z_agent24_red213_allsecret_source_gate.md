@@ -1,0 +1,11 @@
+# Agent24 source-fixed 213-rune key: unique suffix extraction, full secret linear family negative
+
+The two **only red 3-rune triads** at physical LP2 p3:119 and p39:119 are each followed by 13-dot mark and then exactly **95** and **118** original remaining black runes. Their complete tails concatenate to exactly **213** runes, the number of **red-ink ciphertext glyphs on unsolved pages p0–55**. Among all **16 source-red spans within p0–55**, there are **120 distinct unordered pairs** of complete page suffixes, and **only the p3:119/p39:119 pair** sums to 213. This fixes a physically meaningful candidate key source with almost no optional extraction parameters.
+
+One full family of natural consumers has been tested and rejected on the untouched original source: let red output `Pᵢ=σ(a*Cᵢ+b*Kᵢ+d mod29)`, where `C` is the original 213 red-rune tape, `K` is the source pair of complete tails, `a ≠ 0`, `b,d` are any secret GP29 constants and `σ` is **an arbitrary unknown 29! alphabet permutation**. Normalizing by `a` and using the permutation-invariant coincidence index exhausts this **infinite-looking secret class in only 29 ratios × 4 source tail directions = 116 runs**. Best original output IoC **0.03747010364** (1692/45156), with no native-GP symbol concentration. Exact 213-rune positive source-native Parable plant: IoC **0.06829657** and correctly decrypted. No original native-GP plaintext/key recovered in this fixed family.
+
+A separate p3-tail95 direct Parable95 crib cannot obey the historically demonstrated literal-F-transparent model under *any* key: black tail F locations [40,63,70] and solved Parable [33,59,67] are disjoint.
+
+[Current consolidated original-source report](../../im-results/lp2-red119-gpprime-pagegap-observation.md) | [One-file CommonJS original-source SFT](../../sims/lp2_red119_prime_pagegap_sft.cjs) (rerun after final changes against live original GitHub source fixtures in JavaScript runtime: **ALL ASSERTIONS PASS**).
+
+**Useful decision:** Unique source-length parity nominates a real potential key tape worth retaining if another original clue selects a *nonlinear cipher/clock*. Do not restart unmotivated secret affine parameter fitting, extra pad orientation scans, or textbook literal-F GP Vigenère on these 213 rune pairs. The source-derived possible p3→p33→p39→p40 page-index navigation remains provisional.

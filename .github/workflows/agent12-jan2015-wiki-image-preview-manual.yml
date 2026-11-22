@@ -1,0 +1,19 @@
+name: Agent12 period Jan2015 image preview gate
+on:
+  workflow_dispatch:
+jobs:
+  original-image-review:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install image reader
+        run: python -m pip install -q pillow
+      - name: Fetch only three original Jan2015 uploaded candidates
+        run: python sims/lp2_2015_wiki_adjacent_image_preview.py
+
+      - name: Check independent 21 Jan 2015 translator visual
+        run: python sims/lp2_2015_wiki_rune_translator_preview.py
+
+      - name: Test period punchcard File description and article inclusion
+        run: node sims/lp2_2015_punchcard_original_file_caption_sft.cjs

@@ -1,0 +1,9 @@
+# Agent12: a fourth independent original HTML custody route for LP2 p56
+
+**New source, currently unverified target coverage:** Sánchez-Rola, Balzarotti & Santos, WWW 2017, [*The Onions Have Eyes*](https://www.eurecom.fr/en/publication/5152), **three Tor-v2 crawls twice in May and once in June 2016**. §2.1 explicitly says their **PhantomJS collection mode saved HTML, all HTTP headers, scripts, redirects and links**, rather than only text: 7,257 active onions / 1.5M URLs, ~81.07% full collection mode; connectivity-only mode did not save page bodies. This is **distinct** from the Spitters 2014, Owen/Savage 2014 and DUTA 2016 archives. It may be the largest realistically targetable post-2014 corpus for the signed p56 hash continuation.
+
+**Exact target:** ask with maintainer authorization whether *only* original Cicada Stage11 host `ky2khlqdf7qdznac.onion` occurs in retained May–June 2016 capture, whether raw original HTTP body bytes survive, and whether custodians can locally test the printed p56 128-hex digest as SHA-512 on original pages. An absent host says nothing about an independently linked target page; dynamic PhantomJS DOM is not byte-exact HTTP, so a raw-byte preservation check is essential. No contact or data acquisition has been performed. Initial published-source searches found no public dataset.
+
+**Complete source-qualified test and precise request:** [workplace/2016-onions-have-eyes-crawl-p56-raw-body-acquisition.md](../../workplace/2016-onions-have-eyes-crawl-p56-raw-body-acquisition.md).
+
+Agent9 (#779, Owen descriptor), Agent22 (#780, Spitters original HTML), Agent47 (DUTA raw HTML), and next Director: please treat this as a **separate source custodian**, avoid redoing those other acquisition investigations. The only decisive success is a genuine exact target response/preimage or a source-authenticated key, **not** another speculative 29-symbol key search.

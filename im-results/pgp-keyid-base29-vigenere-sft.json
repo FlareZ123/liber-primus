@@ -1,0 +1,481 @@
+{
+  "source": {
+    "issuerId64": "181F01E57A35090F",
+    "explicitShortId32": "7A35090F",
+    "shortIdFactorization": "13 × 59 × 2673137",
+    "fullIdPrime": true,
+    "largeFactorPrime": true,
+    "largeFactorDigitSum": 29,
+    "candidates": [
+      {
+        "name": "full64-issuer-id",
+        "sourceHex": "181F01E57A35090F",
+        "number": "1738110066297735439",
+        "key": [
+          4,
+          26,
+          13,
+          11,
+          17,
+          23,
+          10,
+          2,
+          4,
+          25,
+          0,
+          25,
+          23
+        ],
+        "translit": "RYPJBDITHRAEFAED"
+      },
+      {
+        "name": "explicit-short32-id",
+        "sourceHex": "7A35090F",
+        "number": "2050296079",
+        "key": [
+          3,
+          12,
+          27,
+          24,
+          12,
+          10,
+          23
+        ],
+        "translit": "OEOIAAEOID"
+      },
+      {
+        "name": "short32-large-prime-factor",
+        "sourceHex": "2673137",
+        "number": "2673137",
+        "key": [
+          3,
+          22,
+          17,
+          15,
+          4
+        ],
+        "translit": "OOEBSR"
+      }
+    ]
+  },
+  "segmentation": {
+    "runes": 12956,
+    "marks": 31,
+    "fragments": 32,
+    "emptyFragments": [
+      8,
+      11
+    ]
+  },
+  "modelCount": 18,
+  "untreated": {
+    "scorePerRune": -6.188688019639518,
+    "ioc": 0.03447839786450569,
+    "ECount": 439,
+    "prefix": "SHEOGMIAFSYENGCTHJGAEFJOEONTHNEWBASOEEOINGUNAEGITHHBNIAPBNEOJTHANGYXBDPEIAFXGFSPTFPUNGYNGXIAYHBUGOPNGAETHIAEHXTHPGYFNGCJTHAMINGIIAYHEOTHAEIAXYEUNGCFNEOTHJ"
+  },
+  "best": {
+    "key": "short32-large-prime-factor",
+    "keyLength": 5,
+    "keyDigits": [
+      3,
+      22,
+      17,
+      15,
+      4
+    ],
+    "keyTranslit": "OOEBSR",
+    "clock": "page",
+    "sign": 1,
+    "scorePerRune": -6.149190828841331,
+    "ioc": 0.03450449337239636,
+    "ECount": 423,
+    "prefix": "EUGEIOELBUUNGXOEBSNEBYYGTHMAOEIIEOUYSONTPEAEAIABEOLTHSEANGEOCEABEAAMTHOIATJSSENOEOEALOGEWUAWSEOEOLDDEBAEMAEFJWMEAIFOENLSCBWAEAEPLXDTMUPPEFJEWNOTHFBS"
+  },
+  "results": [
+    {
+      "key": "short32-large-prime-factor",
+      "keyLength": 5,
+      "keyDigits": [
+        3,
+        22,
+        17,
+        15,
+        4
+      ],
+      "keyTranslit": "OOEBSR",
+      "clock": "page",
+      "sign": 1,
+      "scorePerRune": -6.149190828841331,
+      "ioc": 0.03450449337239636,
+      "ECount": 423,
+      "prefix": "EUGEIOELBUUNGXOEBSNEBYYGTHMAOEIIEOUYSONTPEAEAIABEOLTHSEANGEOCEABEAAMTHOIATJSSENOEOEALOGEWUAWSEOEOLDDEBAEMAEFJWMEAIFOENLSCBWAEAEPLXDTMUPPEFJEWNOTHFBS"
+    },
+    {
+      "key": "full64-issuer-id",
+      "keyLength": 13,
+      "keyDigits": [
+        4,
+        26,
+        13,
+        11,
+        17,
+        23,
+        10,
+        2,
+        4,
+        25,
+        0,
+        25,
+        23
+      ],
+      "keyTranslit": "RYPJBDITHRAEFAED",
+      "clock": "fragment",
+      "sign": -1,
+      "scorePerRune": -6.15468469015498,
+      "ioc": 0.03446142982649824,
+      "ECount": 478,
+      "prefix": "JJCNGEAEBIAJUEAEJIAXOEXEOBEOUCGNOEPPIATHJATJEACFGXHRLAETAEDEAIWGAAEOILITHURMEOTHRSBOEAETBINIARAEOEEOBCEOEATHXXTSGIGPIOAEANGFXUNHBXIAUXHMAXILTTYAECRSHCIA"
+    },
+    {
+      "key": "full64-issuer-id",
+      "keyLength": 13,
+      "keyDigits": [
+        4,
+        26,
+        13,
+        11,
+        17,
+        23,
+        10,
+        2,
+        4,
+        25,
+        0,
+        25,
+        23
+      ],
+      "keyTranslit": "RYPJBDITHRAEFAED",
+      "clock": "page",
+      "sign": 1,
+      "scorePerRune": -6.157963725892473,
+      "ioc": 0.034517910514809555,
+      "ECount": 488,
+      "prefix": "MCTHXDPHTHMOEEBEAGHMWBCOCPIANXUNGNGEARFRTHOPNGGGAEEOXOENUJMXSIAABLEXWAGNGITIAESNIRIXOXSAFURBYFWICWMRGIEIAPTHLREEOEMEFEOAEGIAOETHTPNGWSHWLCBCAEOTEAA"
+    },
+    {
+      "key": "full64-issuer-id",
+      "keyLength": 13,
+      "keyDigits": [
+        4,
+        26,
+        13,
+        11,
+        17,
+        23,
+        10,
+        2,
+        4,
+        25,
+        0,
+        25,
+        23
+      ],
+      "keyTranslit": "RYPJBDITHRAEFAED",
+      "clock": "page",
+      "sign": -1,
+      "scorePerRune": -6.164103799036274,
+      "ioc": 0.034479291546282764,
+      "ECount": 443,
+      "prefix": "JJCNGEAEBIAJUEAEJIAXOEXEOBEOUCGNOEPPIATHJATJEACFGXHRLAETAEDEAIWGAAEOILITHURMEOTHRSBOEAETBINIARAEOEEOBCEOEATHXXTSGIGPIOAEANGFXUNHBXIAUXHMAXILTTYAECRSHCIA"
+    },
+    {
+      "key": "explicit-short32-id",
+      "keyLength": 7,
+      "keyDigits": [
+        3,
+        12,
+        27,
+        24,
+        12,
+        10,
+        23
+      ],
+      "keyTranslit": "OEOIAAEOID",
+      "clock": "page",
+      "sign": 1,
+      "scorePerRune": -6.165955404360657,
+      "ioc": 0.034471677377542066,
+      "ECount": 435,
+      "prefix": "ELTIAEFNGOIAAPRSAEXEDADOYEOXWPMIAEECICRJOEAEHYLIAOUAESRANGAEIARANFRWNGIIANEINTEAIAHPTHLAYAENGLIAANSJTHEOREALEOYAETLOROGXCPPRHOENEGMLDOEYWEORROANGOEAEX"
+    },
+    {
+      "key": "short32-large-prime-factor",
+      "keyLength": 5,
+      "keyDigits": [
+        3,
+        22,
+        17,
+        15,
+        4
+      ],
+      "keyTranslit": "OOEBSR",
+      "clock": "fragment",
+      "sign": 1,
+      "scorePerRune": -6.169274502643375,
+      "ioc": 0.03452409479270694,
+      "ECount": 429,
+      "prefix": "EUGEIOELBUUNGXOECRDJRXSLAGEOJAOEAESFAEAERTHPNGXCUCATHTIYIASCBNEOELTURTHOWDSMTNBEACAMNFTHFUCTIGGNJGPEAEFGTEAXSAEHRMIDPXIAPUJCRDFUWXRCAIABATCR"
+    },
+    {
+      "key": "full64-issuer-id",
+      "keyLength": 13,
+      "keyDigits": [
+        4,
+        26,
+        13,
+        11,
+        17,
+        23,
+        10,
+        2,
+        4,
+        25,
+        0,
+        25,
+        23
+      ],
+      "keyTranslit": "RYPJBDITHRAEFAED",
+      "clock": "fragment",
+      "sign": 1,
+      "scorePerRune": -6.175457325514266,
+      "ioc": 0.034461453658012293,
+      "ECount": 459,
+      "prefix": "MCTHXDPHTHMOEEBEAGHMWBCOCPIANXUNGNGEARFRTHOPNGGGAEEOXOENUJMXSIAABLEXWAGNGITIAESNIRIXOXSAFURBYFWICWMRGIEIAPTHLREEOEMEFEOAEGIAOETHTPNGWSHWLCBCAEOTEAA"
+    },
+    {
+      "key": "explicit-short32-id",
+      "keyLength": 7,
+      "keyDigits": [
+        3,
+        12,
+        27,
+        24,
+        12,
+        10,
+        23
+      ],
+      "keyTranslit": "OEOIAAEOID",
+      "clock": "book",
+      "sign": 1,
+      "scorePerRune": -6.177056677589693,
+      "ioc": 0.034506244988679435,
+      "ECount": 459,
+      "prefix": "ELTIAEFNGOIAAPRSAEXEDADOYEOXWPMIAEECICRJOEAEHYLIAOUAESRANGAEIARANFRWNGIIANEINTEAIAHPTHLAYAENGLIAANSJTHEOREALEOYAETLOROGXCPPRHOENEGMLDOEYWEORROANGOEAEX"
+    },
+    {
+      "key": "full64-issuer-id",
+      "keyLength": 13,
+      "keyDigits": [
+        4,
+        26,
+        13,
+        11,
+        17,
+        23,
+        10,
+        2,
+        4,
+        25,
+        0,
+        25,
+        23
+      ],
+      "keyTranslit": "RYPJBDITHRAEFAED",
+      "clock": "book",
+      "sign": 1,
+      "scorePerRune": -6.178160884345347,
+      "ioc": 0.034513191875026585,
+      "ECount": 402,
+      "prefix": "MCTHXDPHTHMOEEBEAGHMWBCOCPIANXUNGNGEARFRTHOPNGGGAEEOXOENUJMXSIAABLEXWAGNGITIAESNIRIXOXSAFURBYFWICWMRGIEIAPTHLREEOEMEFEOAEGIAOETHTPNGWSHWLCBCAEOTEAA"
+    },
+    {
+      "key": "short32-large-prime-factor",
+      "keyLength": 5,
+      "keyDigits": [
+        3,
+        22,
+        17,
+        15,
+        4
+      ],
+      "keyTranslit": "OOEBSR",
+      "clock": "book",
+      "sign": -1,
+      "scorePerRune": -6.184550903914477,
+      "ioc": 0.034493197234734096,
+      "ECount": 437,
+      "prefix": "EOSUBTHTCEOFOESEABTWOOEOAEEFTXDXRAWFENBRSCOEPOETRXTIIAPGMDTLERYTHMIAEIXIOWIAIAEOYLPGOEENGIJRXHEBNEOXANGCNGXIATHDWRMWEATHTHABWCNOEHPSHEOIDAEPGUYTATW"
+    },
+    {
+      "key": "explicit-short32-id",
+      "keyLength": 7,
+      "keyDigits": [
+        3,
+        12,
+        27,
+        24,
+        12,
+        10,
+        23
+      ],
+      "keyTranslit": "OEOIAAEOID",
+      "clock": "fragment",
+      "sign": -1,
+      "scorePerRune": -6.194439153903652,
+      "ioc": 0.03448148404557586,
+      "ECount": 435,
+      "prefix": "EOAELHDNRYOEADNAEAEAHUBUEAFYRXGYDNGOABIAJWGPHSMIADGSSOEYTHBEAEODTHTHWFIGFCTHAEGEOUECULIADNTOXIADIADCENSHWPIMMOEODBDIEANGUTIADSSTXNRIUSROSEDIBEAEEAEA"
+    },
+    {
+      "key": "explicit-short32-id",
+      "keyLength": 7,
+      "keyDigits": [
+        3,
+        12,
+        27,
+        24,
+        12,
+        10,
+        23
+      ],
+      "keyTranslit": "OEOIAAEOID",
+      "clock": "fragment",
+      "sign": 1,
+      "scorePerRune": -6.19448340365666,
+      "ioc": 0.03447895790508599,
+      "ECount": 447,
+      "prefix": "ELTIAEFNGOIAAPRSCDRLEONGTGNGFRUBJIAIALWOETHAEOHRCXEJEOIJEONGOECCWMNGYIABTUAEAYTDEAEXAAEJSFREOOENEJREUHRGAEPHGNXDFFEOMFDEOEOEOEMCIWTHSEAGLIALNGPMFEOMGCD"
+    },
+    {
+      "key": "short32-large-prime-factor",
+      "keyLength": 5,
+      "keyDigits": [
+        3,
+        22,
+        17,
+        15,
+        4
+      ],
+      "keyTranslit": "OOEBSR",
+      "clock": "book",
+      "sign": 1,
+      "scorePerRune": -6.195634547375467,
+      "ioc": 0.034488061543455156,
+      "ECount": 433,
+      "prefix": "EUGEIOELBUUNGXOEBSNEBYYGTHMAOEIIEOUYSONTPEAEAIABEOLTHSEANGEOCEABEAAMTHOIATJSSENOEOEALOGEWUAWSEOEOLDDEBAEMAEFJWMEAIFOENLSCBWAEAEPLXDTMUPPEFJEWNOTHFBS"
+    },
+    {
+      "key": "full64-issuer-id",
+      "keyLength": 13,
+      "keyDigits": [
+        4,
+        26,
+        13,
+        11,
+        17,
+        23,
+        10,
+        2,
+        4,
+        25,
+        0,
+        25,
+        23
+      ],
+      "keyTranslit": "RYPJBDITHRAEFAED",
+      "clock": "book",
+      "sign": -1,
+      "scorePerRune": -6.2017068068071906,
+      "ioc": 0.03449235121598513,
+      "ECount": 431,
+      "prefix": "JJCNGEAEBIAJUEAEJIAXOEXEOBEOUCGNOEPPIATHJATJEACFGXHRLAETAEDEAIWGAAEOILITHURMEOTHRSBOEAETBINIARAEOEEOBCEOEATHXXTSGIGPIOAEANGFXUNHBXIAUXHMAXILTTYAECRSHCIA"
+    },
+    {
+      "key": "explicit-short32-id",
+      "keyLength": 7,
+      "keyDigits": [
+        3,
+        12,
+        27,
+        24,
+        12,
+        10,
+        23
+      ],
+      "keyTranslit": "OEOIAAEOID",
+      "clock": "book",
+      "sign": -1,
+      "scorePerRune": -6.2081823008775245,
+      "ioc": 0.03446432535545597,
+      "ECount": 415,
+      "prefix": "EOAELHDNRYOEADNAHHDIACEAEONGMJDAWUEOIXSNLSOEDEOWAEWSAUMXFUHNGNEAMCPMSSTHMDMNGIRTHEEJOETHFTHAEWWOLSYPNGTOEAETWUAEOYNWTMXAEWNEOOXIAEPAEIAOTHTAIANWCYTHHH"
+    },
+    {
+      "key": "short32-large-prime-factor",
+      "keyLength": 5,
+      "keyDigits": [
+        3,
+        22,
+        17,
+        15,
+        4
+      ],
+      "keyTranslit": "OOEBSR",
+      "clock": "fragment",
+      "sign": -1,
+      "scorePerRune": -6.20921837390092,
+      "ioc": 0.03448814495375435,
+      "ECount": 448,
+      "prefix": "EOSUBTHTCEOFOESEABEAEEIAEHFSDIAGAEMTHLEOFAABIATHLGEASFDDIANGYWEATHRJIXUAEODYNGEXJIDEOIAYERREADDSFSTHFLRIIAWOLEAIAIPNXBTHEXNSWEAOEEOOECMEAOENGANGNOYEEOEODHEAE"
+    },
+    {
+      "key": "short32-large-prime-factor",
+      "keyLength": 5,
+      "keyDigits": [
+        3,
+        22,
+        17,
+        15,
+        4
+      ],
+      "keyTranslit": "OOEBSR",
+      "clock": "page",
+      "sign": -1,
+      "scorePerRune": -6.232557488600622,
+      "ioc": 0.03447854085359002,
+      "ECount": 467,
+      "prefix": "EOSUBTHTCEOFOESEABTWOOEOAEEFTXDXRAWFENBRSCOEPOETRXTIIAPGMDTLERYTHMIAEIXIOWIAIAEOYLPGOEENGIJRXHEBNEOXANGCNGXIATHDWRMWEATHTHABWCNOEHPSHEOIDAEPGUYTATW"
+    },
+    {
+      "key": "explicit-short32-id",
+      "keyLength": 7,
+      "keyDigits": [
+        3,
+        12,
+        27,
+        24,
+        12,
+        10,
+        23
+      ],
+      "keyTranslit": "OEOIAAEOID",
+      "clock": "page",
+      "sign": -1,
+      "scorePerRune": -6.252550026794639,
+      "ioc": 0.0344755619143331,
+      "ECount": 490,
+      "prefix": "EOAELHDNRYOEADNAHHDIACEAEONGMJDAWUEOIXSNLSOEDEOWAEWSAUMXFUHNGNEAMCPMSSTHMDMNGIRTHEEJOETHFTHAEWWOLSYPNGTOEAETWUAEOYNWTMXAEWNEOOXIAEPAEIAOTHTAIANWCYTHHH"
+    }
+  ]
+}

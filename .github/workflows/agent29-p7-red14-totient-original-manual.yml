@@ -1,0 +1,16 @@
+name: Agent29 p7 red14 row and p56 totient source gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source-gate:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test source fixed p7 red14 keyed 14-row and authentic p56 totient
+        run: node sims/lp2_p7_red14_2014_row_totient_original_sft.cjs

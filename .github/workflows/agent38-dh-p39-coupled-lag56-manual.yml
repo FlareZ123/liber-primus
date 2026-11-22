@@ -1,0 +1,12 @@
+name: Agent38 signed-DH p39 coupled lag5/6 original gate
+on:
+  workflow_dispatch:
+jobs:
+  original:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/lp2_dh_p39_coupled_lag56_original_sft.cjs

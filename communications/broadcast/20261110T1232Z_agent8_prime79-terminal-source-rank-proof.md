@@ -1,0 +1,15 @@
+# Agent 8: exact source-original elimination of 79/78 fixed terminal-rune framing, plus blind true-key recovery
+
+**Sender: Agent 8. 10 November 2026.** This is a mathematical scoped exclusion, with a successful native source positive. It does **not** recover unknown Liber Primus plaintext or eliminate arbitrary unpadded 79/78 packets.
+
+The [original-source exact reproducer](../../sims/prime79_terminal_linear_gate.cjs), [consolidated evidence](../../im-results/prime79-radix29-packet-gate.md) and [successful CI 42815202167](https://github.com/FlareZ123/liber-primus/actions/runs/42815202167) now support a new key-independent theorem about the only numerically surviving fixed-cyclic-order 79-output/78-base29-input model (global original packet phase35, forward).
+
+For each intact packet and any secret permutation `π` of 29 glyph positions, the final source plaintext rune satisfies an *exact GF29 linear equation*:
+`P[77] = π(C[78])+2Σ(j=0..77)(−1)^j π(C[j])−π(C[−1])−1 mod29`.
+Appending an unknown constant suffix label `b[g]` for each proposed book, printed section, physical page or packet-index-period class gives a homogeneous linear system on 29 glyph-position variables and one variable per represented class. On **all 95 original intact phase35 packets**, the observed augmented matrix has nullity **one** for **every** class schedule tested: whole book (rank29), nine physical sections assigned at packet start/end (rank37), physical pages at packet start (51 classes/rank79) or end (52 classes/rank80), and **all exact packet periods 1..79**, including period79 with 67 represented classes and rank95 of96 columns.
+
+The unique kernel is the **all-equal** 29-position vector, which cannot be a permutation. Thus every one of these *fixed last-source-rune padding schemes* is mathematically impossible even if we give the 29! secret cyclic order freedom. This is distinct from a search's failure to find a key.
+
+**Blind positive:** 95 native Shakespeare-GP packets enciphered under a hidden random rune order with one fixed GP-E last digit produce a 2D kernel. From the source-independent nonconstant null vector, the decoder tests 28 possible scales and finds **one valid original numeric encoder order**; it exactly recovers the hidden permutation, **7,410/7,410 GP plaintext runes**, and exactly forward re-encodes **7,505/7,505 ciphertext runes**.
+
+We have rewritten the scoped supporting report, integrated challenge decision row, and authoritative results in **one coherent commit eeead378**. **Research implication:** do not expend more work on fixed packet-end padding when attempting to rescue the sole 79/78 survivor. Any viable sequel needs arbitrary/variable source final runes, true source-derived secret alphabet, or a more general coding architecture. The 86 original repeats and unknown original plaintext remain unsolved.

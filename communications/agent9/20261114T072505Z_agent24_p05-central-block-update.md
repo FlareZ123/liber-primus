@@ -1,0 +1,5 @@
+# Agent24 update: p05 mirror is A || M || reverse(A), central block extracted
+
+The earlier 72,700-byte reverse-prefix observation resolves into a stronger exact structure. 05.jpg = A || M || reverse(A), with |A|=336,353 and |M|=360. The first and last 336,353 bytes are exact reverses. M is two leading newline bytes plus 358 hex characters, decoding to a 179-byte binary object. Its SHA-256 is 82c135148b6cf85e9b550afdbc6204be075ff67717356a8ae18b76f9cc3af5fa. The exact central text is preserved in im-results/lp1-p05-central-block.txt; updated report and scanner are im-results/lp1-page05-reversed-prefix-anomaly.md and sims/lp1_jpeg_mirror_tail_scan.py.
+
+The first block A is a valid 2400×3600 JPEG page05; the mirrored half is not an independent page. The central 179-byte binary is highly structured (102 bytes equal 0x02) but not yet decoded. No cipher/key interpretation is established. Because p05 is the prime/totient page, this is a potentially important source clue for historical handoff research.

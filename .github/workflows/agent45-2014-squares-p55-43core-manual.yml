@@ -1,0 +1,69 @@
+name: Agent45 source-selected original LP2 independent gates
+
+on:
+  workflow_dispatch:
+    inputs:
+      experiment:
+        description: Select a single research family
+        type: choice
+        required: true
+        default: squares
+        options:
+          - squares
+          - outer56-prime
+          - p15-perimeter12-wordlag
+          - bookend-wordpair
+          - p15-local16-spiral
+          - p57-bbs-period612
+          - p57-bbs-hidden-keyskip
+
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: All-permutation invariant and original-word-shape controls
+        if: ${{ inputs.experiment == 'squares' }}
+        run: node sims/lp2_p55_inner43_square_permutation_invariant_sft.cjs
+      - name: Original 2014 inner-square GF29 Hill inverses and native plants
+        if: ${{ inputs.experiment == 'squares' }}
+        run: node sims/lp2_p55_2014_three_inner_squares_hill_sft.cjs
+      - name: Seventeen original square rows on every p55 rune with native positive controls
+        if: ${{ inputs.experiment == 'squares' }}
+        run: node sims/lp2_p55_2014_three_squares_17row_full76_sft.cjs
+      - name: Three authenticated 2014 square cores as complete p55-body Hill5 matrices
+        if: ${{ inputs.experiment == 'squares' }}
+        run: node sims/lp2_p55_three_square_75_hill5_sft.cjs
+      - name: Source-prime holes in original 2014 squares against complete p55 76-rune input
+        if: ${{ inputs.experiment == 'squares' }}
+        run: node sims/lp2_2014_primeholes_p55_99cell_sft.cjs
+      - name: Key-independent p55 word9-to-word10 source-value prediction on original ciphertext
+        if: ${{ inputs.experiment == 'squares' }}
+        run: node sims/lp2_2014_primeholes_p55_word9_10_keyfree_sft.cjs
+      - name: All-secret 37 same-value pair invariant across 858983 original GP native windows
+        if: ${{ inputs.experiment == 'squares' }}
+        run: node sims/lp2_2014_primeholes_p55_allsecret_equalvalue_sft.cjs
+      - name: Original 2014 three-square 56-cell perimeter as LP2 page prime keys
+        if: ${{ inputs.experiment == 'outer56-prime' }}
+        run: node sims/lp2_2014_threesquare_outer56_pageprime_sft.cjs
+      - name: Original LP2 12-word lag and exact p15 perimeter transport
+        if: ${{ inputs.experiment == 'p15-perimeter12-wordlag' }}
+        run: node sims/lp2_p15_perimeter12_wordlag_sft.cjs
+      - name: Original LP2 repeated bookend pair, exact conditional null and Monte Carlo
+        if: ${{ inputs.experiment == 'bookend-wordpair' }}
+        run: node sims/lp2_bookend_wordpair_lengthconditional_sft.cjs
+      - name: P15 exact local 4x4 whole-word spiral and native English plants
+        if: ${{ inputs.experiment == 'p15-local16-spiral' }}
+        run: node sims/lp2_p15_local16_wordspiral_sft.cjs
+      - name: Original p57 source-factor BBS all-secret period612 and direct decoded controls
+        if: ${{ inputs.experiment == 'p57-bbs-period612' }}
+        run: |
+          node sims/lp2_p57_prime_triplet_bbs_gate_sft.cjs
+          node sims/lp2_p57_prime_triplet_bbs_period612_allsecret_sft.cjs
+      - name: Original LP2 p0/p1/p5 BBS collision-triggered secret-pad skips and independent native plant
+        if: ${{ inputs.experiment == 'p57-bbs-hidden-keyskip' }}
+        run: node sims/lp2_p57_bbs_collision_keyskip_original_sft.cjs

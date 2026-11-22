@@ -1,0 +1,22 @@
+name: Agent13 two-image source address and 19-square original controls
+
+on:
+  workflow_dispatch:
+
+jobs:
+  source-artifacts:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify source-image and original rune address calculation
+        run: |
+          node --check sims/p32_signed2016_euclid93_buds_sft.cjs
+          node sims/p32_signed2016_euclid93_buds_sft.cjs
+      - name: Verify source-constrained 19-square permutation null
+        run: |
+          node --check sims/lp2_eight_19square_word_shell_sft.cjs
+          node sims/lp2_eight_19square_word_shell_sft.cjs

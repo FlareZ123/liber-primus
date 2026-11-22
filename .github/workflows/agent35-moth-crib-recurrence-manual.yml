@@ -1,0 +1,28 @@
+name: Agent35 original GF29 research gates (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-crib-gate:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact p55 source-crib recurrence and affine certificate
+        run: node sims/lp2_moth_grid16_crib_recurrence_sft.cjs
+      - name: Exact 256-cell six-check affine code and distance
+        run: node sims/lp2_grid_sixcheck_affine_code_sft.cjs
+      - name: Three-object p15-p39-p50 matrix functional-calculus gate
+        run: node sims/lp2_p15_p39_p50_matrix_function_sft.cjs
+      - name: Full source CRT-completed invertible Hill4 original-text gate
+        run: node sims/lp2_p15_p39_p50_crt_hill_original_sft.cjs
+      - name: Decode original LP1 p05 mirror-center against historical 2014 magic square
+        run: node sims/lp1_p05_magic_square_nibble_inverse_sft.cjs
+      - name: P55 terminal pointer, p27 differential and p50 cell103 original-input gate
+        run: node sims/lp2_p55_p27_delta_p50_103_exact_sft.cjs
+      - name: Original p55-p27-p32 and table103/104 modulo58 self-address
+        run: node sims/lp2_terminal_103_104_p32_58cycle_sft.cjs

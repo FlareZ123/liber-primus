@@ -1,0 +1,18 @@
+name: LP2 p56 factorization / p55 candidate original source check
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-repro:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify source-derived factor and complete UDP specimen
+        run: node sims/p56_factorization_udp_endpoint_sft.cjs

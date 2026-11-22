@@ -1,0 +1,14 @@
+name: Exact adjacent-repair shared-key evidence (manual)
+on:
+  workflow_dispatch:
+jobs:
+  forward:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact two-page marginal with source-matched shared and independent pads
+        run: node sims/relative_key_adjacent_forward.cjs

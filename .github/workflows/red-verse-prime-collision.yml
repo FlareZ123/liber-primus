@@ -1,0 +1,14 @@
+name: LP2 red 51-rune prime-totient collision-skip inversion
+on:
+  workflow_dispatch:
+jobs:
+  invert:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test planted two-skip recovery and invert original red eleven-rune anchor
+        run: node sims/red_verse_prime_collision_anchor.cjs

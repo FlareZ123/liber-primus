@@ -1,0 +1,14 @@
+name: LP2 literal red79 affine F29 original inverse
+on:
+  workflow_dispatch:
+jobs:
+  source-affine-key:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Finite F29 source affine candidate scan and original-shape plant
+        run: node sims/red79_affine_field_inverse.cjs

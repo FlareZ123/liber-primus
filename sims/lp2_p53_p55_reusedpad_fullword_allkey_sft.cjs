@@ -1,0 +1,281 @@
+"use strict";
+
+/**
+ * Original p53/p55 same-moth additive-pad differential, all secret pad values.
+ *
+ * Two literal image- and typography-fixed alignments are tested:
+ * (a) printed physical page starts, p53[0] with p55[0] (p55's first rune is a
+ *     p54 carry, so its plaintext is unconstrained in the word lexicon);
+ * (b) starts of the first complete words, p53[0] with p55[1].
+ *
+ * The exact GP29 difference between equal-key ciphertext positions eliminates
+ * the entire secret pad. We solve word-overlap constraints for both English
+ * plaintext streams using authenticated source-calibrated GP orthography.
+ *
+ * Windows Node.js 22 CommonJS SFT; no dependencies, no file writes.
+ */
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+const root = path.resolve(__dirname, "..");
+const read = name => fs.readFileSync(path.join(root, name), "utf8");
+const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
+const textPages = read("resources/lp2-transcription.txt").split("%");
+const p53 = corpus.pages.find(page => page.page === 53).indices;
+const p55 = corpus.pages.find(page => page.page === 55).indices;
+assert.equal(p53.length, 179);
+assert.equal(p55.length, 76);
+const translit = new Map(corpus.translit.map((s, i) => [s, i]));
+const RUNES = new Set(corpus.runes);
+const multi = ["ING", "TH", "NG", "EO", "OE", "AE", "EA", "IA", "IO"];
+
+/** @param {number} physicalPage @returns {number[][]} */
+function originalWords(physicalPage) {
+  const source = textPages[physicalPage <= 49 ? physicalPage : physicalPage - 1];
+  return source.replace(/\/\r?\n/gu, "").replace(/\r?\n/gu, "")
+    .replace(/[&$]/gu, "-").split(/[-.\s]+/gu)
+    .filter(Boolean).map(item => [...item].filter(glyph => RUNES.has(glyph))
+      .map(glyph => corpus.runes.indexOf(glyph))).filter(item => item.length);
+}
+const words53 = originalWords(53);
+const words55 = originalWords(55);
+assert.deepEqual(words53.flat(), p53);
+assert.deepEqual(words55.flat(), p55);
+const lengths53 = words53.map(word => word.length);
+const lengths55 = words55.map(word => word.length);
+assert.deepEqual(lengths53, [
+  5,3,7,3,3,4,8,6,4,4,4,2,5,7,2,3,4,10,3,9,7,3,7,
+  4,3,3,2,3,5,4,4,11,2,3,2,6,5,5,2,2
+]);
+assert.deepEqual(lengths55, [1,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]);
+
+/**
+ * Enumerate all common GP spellings of a Roman word, including the historical
+ * 2014 ING=>NG and IO=>IA rune conventions and optional two-letter ligatures.
+ * @param {string} sourceWord
+ * @param {Set<number>} lengths
+ * @returns {number[][]}
+ */
+function gpForms(sourceWord, lengths) {
+  if (!/^[a-z]+$/iu.test(sourceWord)) return [];
+  const word = sourceWord.toUpperCase().replace(/QU/gu, "CW")
+    .replace(/[KQ]/gu, "C").replace(/V/gu, "U").replace(/Z/gu, "S");
+  const maxLength = Math.max(...lengths);
+  /** @type {[number,number[]][]} */
+  const stack = [[0, []]];
+  /** @type {Map<string,number[]>} */
+  const result = new Map();
+  while (stack.length) {
+    const [position, current] = stack.pop();
+    if (current.length > maxLength) continue;
+    if (position === word.length) {
+      if (lengths.has(current.length)) result.set(current.join(","), current);
+      continue;
+    }
+    const single = translit.get(word[position]);
+    if (single !== undefined) stack.push([position + 1, [...current, single]]);
+    for (const group of multi) {
+      if (!word.startsWith(group, position)) continue;
+      const rune = translit.get(group === "ING" ? "NG" : group === "IO" ? "IA" : group);
+      assert.notEqual(rune, undefined);
+      stack.push([position + group.length, [...current, rune]]);
+    }
+  }
+  return [...result.values()];
+}
+const lengthSet = new Set([...lengths53, ...lengths55]);
+const sourceTexts = [
+  "resources/control/english_wordfreq_textblob.txt",
+  "resources/control/gibran_prophet_58585.txt",
+  "resources/control/shakespeare_first300k.txt",
+  "resources/control/emerson_essays_2944.txt",
+  "resources/liber-primus/lp1-plaintext-reference.txt",
+  "resources/control/blake_song_of_liberty_train.txt"
+];
+/** @type {Map<number,Map<string,number[]>>} */
+const formsByLength = new Map([...lengthSet].map(length => [length, new Map()]));
+let rawEnglishWords = 0;
+for (const file of sourceTexts) {
+  const source = read(file);
+  const words = file.endsWith("english_wordfreq_textblob.txt")
+    ? source.split(/\r?\n/gu).filter(line => !line.startsWith(";")).map(line => line.split(/\s+/u)[0])
+    : (source.match(/[A-Za-z]+/gu) || []);
+  for (const word of words) {
+    if (!/^[A-Za-z]+$/u.test(word)) continue;
+    rawEnglishWords++;
+    for (const form of gpForms(word, lengthSet)) {
+      formsByLength.get(form.length).set(form.join(","), form);
+    }
+  }
+}
+const lexicon = new Map([...formsByLength].map(([n,forms]) => [n,[...forms.values()]]));
+assert(lexicon.get(13).length > 100, "source-native 13-rune vocabulary absent");
+assert(gpForms("CIRCUMFERENCES", new Set([14])).some(
+  seq => seq.join(",") === [5,10,4,5,1,19,0,18,4,18,9,5,18,15].join(",")));
+assert(gpForms("TUNNELING", new Set([7])).some(
+  seq => seq.join(",") === [16,1,9,9,18,20,21].join(",")));
+
+/** @param {number[]} lengths @returns {{i:number,start:number,end:number}[]} */
+function intervals(lengths) {
+  let start = 0;
+  return lengths.map((length,i) => {
+    const result = {i, start, end:start+length};
+    start += length;
+    return result;
+  });
+}
+
+/**
+ * Arc-consistency is exact for the overlapping interval-partition forest:
+ * every original printed word is a variable, every intersecting pair is a
+ * constraint, and the unknown pad cancels locally.
+ * @param {number[]} cipher53
+ * @param {number[]} cipher55
+ * @param {"page-start"|"complete-word-start"} alignment
+ * @param {"additive"|"xor"} operation
+ */
+const specifications={
+  "page-start":[0,0,76],
+  "complete-word-start":[0,1,75],
+  "terminal-mark":[103,0,76],
+  "terminal-body":[104,1,75]
+};
+/**
+ * @param {number[]} cipher53
+ * @param {number[]} cipher55
+ * @param {keyof typeof specifications} alignment
+ * @param {"additive"|"xor"} operation
+ */
+function solve(cipher53, cipher55, alignment, operation="additive") {
+  const [start53,start55,count]=specifications[alignment];
+  assert.equal(start53+count<=cipher53.length,true);
+  assert.equal(start55+count<=cipher55.length,true);
+  const aIntervals=intervals(lengths53).map(word=>({...word,
+    start:word.start-start53,end:word.end-start53}));
+  const bIntervals=intervals(lengths55).map(word=>({...word,
+    start:word.start-start55,end:word.end-start55}));
+  /** @type {{a:number,b:number,lo:number,hi:number,aOffset:number,bOffset:number}[]} */
+  const edges=[];
+  for(const x of aIntervals) for(const y of bIntervals){
+    const lo=Math.max(x.start,y.start,0),hi=Math.min(x.end,y.end,count);
+    if(lo<hi)edges.push({
+      a:x.i,b:y.i,lo,hi,aOffset:lo-x.start,bOffset:lo-y.start
+    });
+  }
+  /** @type {Map<number,number[][]>} */
+  const aDomain=new Map();
+  /** @type {Map<number,number[][]>} */
+  const bDomain=new Map();
+  for(const edge of edges){
+    if(!aDomain.has(edge.a))aDomain.set(edge.a,lexicon.get(lengths53[edge.a]).slice());
+    if(!bDomain.has(edge.b)){
+      const isCarry=edge.b===0;
+      bDomain.set(edge.b,isCarry
+        ? Array.from({length:29},(_,i)=>[i])
+        : lexicon.get(lengths55[edge.b]).slice());
+    }
+  }
+  const initial=[...aDomain.values(),...bDomain.values()].reduce((s,x)=>s+x.length,0);
+  const trace=[];
+  for(let iteration=0;iteration<20;iteration++){
+    let removed=0;
+    for(const edge of edges){
+      const {a,b,lo,hi,aOffset,bOffset}=edge;
+      const delta=[];
+      for(let index=lo;index<hi;index++){
+        const c53=cipher53[start53+index],c55=cipher55[start55+index];
+        delta.push(operation==="xor"?(c53^c55):(c53-c55+29)%29);
+      }
+      const left=aDomain.get(a),right=bDomain.get(b);
+      const leftSignatures=left.map(word=>{
+        const key=[];
+        for(let j=0;j<delta.length;j++)key.push(operation==="xor"
+          ? word[aOffset+j]^delta[j]:(word[aOffset+j]-delta[j]+29)%29);
+        return key.join(",");
+      });
+      const rightSignatures=right.map(word=>
+        word.slice(bOffset,bOffset+delta.length).join(","));
+      const rightSet=new Set(rightSignatures);
+      const common=new Set(leftSignatures.filter(s=>rightSet.has(s)));
+      const nextLeft=left.filter((_,i)=>common.has(leftSignatures[i]));
+      const nextRight=right.filter((_,i)=>common.has(rightSignatures[i]));
+      removed+=left.length-nextLeft.length+right.length-nextRight.length;
+      aDomain.set(a,nextLeft);
+      bDomain.set(b,nextRight);
+    }
+    trace.push(removed);
+    if(!removed||[...aDomain.values(),...bDomain.values()].some(x=>!x.length))break;
+  }
+  return {
+    alignment,operation,count,edges:edges.length,initial,trace,
+    empty53:[...aDomain].filter(([,x])=>!x.length).map(([i])=>i),
+    empty55:[...bDomain].filter(([,x])=>!x.length).map(([i])=>i),
+    domain53:aDomain,domain55:bDomain
+  };
+}
+const original=[];
+for(const alignment of Object.keys(specifications)){
+  for(const operation of ["additive","xor"]){
+    const item=solve(p53,p55,alignment,operation);
+    assert(item.empty53.length && item.empty55.length,
+      "all-secret same-key candidate must fail on source: "+alignment+"/"+operation);
+    original.push(item);
+  }
+}
+
+function nativePlant(alignment,operation) {
+  /** @param {number} length @param {number} index */
+  const choose=(length,index)=>lexicon.get(length)[
+    (index*11+7)%lexicon.get(length).length
+  ];
+  const plain53=lengths53.flatMap((length,index)=>choose(length,index));
+  const plain55=lengths55.flatMap((length,index)=>
+    index===0?[15]:choose(length,index+17));
+  const [start53,start55,total]=specifications[alignment];
+  const encrypted53=plain53.slice();
+  const encrypted55=plain55.slice();
+  for(let index=0;index<total;index++){
+    const a=plain53[start53+index],b=plain55[start55+index];
+    let key;
+    if(operation==="additive")key=(13*index+7)%29;
+    else{
+      const legal=Array.from({length:32},(_,i)=>i)
+        .filter(x=>(a^x)<29&&(b^x)<29);
+      assert(legal.length>1);
+      key=legal[(13*index+7)%legal.length];
+    }
+    const apply=(value)=>operation==="xor"?(value^key):(value+key)%29;
+    encrypted53[start53+index]=apply(a);
+    encrypted55[start55+index]=apply(b);
+  }
+  const result=solve(encrypted53,encrypted55,alignment,operation);
+  assert.equal(result.empty53.length,0,"planted page53 must have candidates");
+  assert.equal(result.empty55.length,0,"planted page55 must have candidates");
+  return {alignment,operation,edgeCount:result.edges,trace:result.trace,
+    survivor53:[...result.domain53.values()].map(x=>x.length),
+    survivor55:[...result.domain55.values()].map(x=>x.length)};
+}
+const controls=[];
+for(const alignment of Object.keys(specifications)){
+  for(const operation of ["additive","xor"]){
+    controls.push(nativePlant(alignment,operation));
+  }
+}
+
+
+const summary=caseResult=>({
+  alignment:caseResult.alignment, operation:caseResult.operation,
+  originalRuneCount:caseResult.count,
+  overlapEdges:caseResult.edges, lexicalInitialCandidates:caseResult.initial,
+  eliminatedPerPass:caseResult.trace, emptyPage53Words:caseResult.empty53,
+  emptyPage55Words:caseResult.empty55,
+  conclusion:"NO two-stream English word assignment under the same arbitrary GP29 key"
+});
+console.log(JSON.stringify({
+  source:"unchanged original LP2 p53/p55, p55 first rune is real p54 continuation",
+  dictionarySources:sourceTexts, rawEnglishWords, classesByGPWordLength:
+    Object.fromEntries([...lexicon].map(([length,forms])=>[length,forms.length])),
+  original:original.map(summary),
+  genuineNativeGPSharedPadPlantedControls:controls,
+  status:"PASS: both source-natural alignments exclude shared GP29 additive and XOR pads within a finite lexicon; eight native-English positives survive"
+},null,2));

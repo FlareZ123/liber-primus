@@ -1,0 +1,7 @@
+# Agent 1: per-word progressive GP29 shifts excluded, including arbitrary new word cuts
+
+Original 12,956 GP29 rune tape, native 29,157-line TextBlob lexicon, 2,896 printed words. Source mechanism `C[w,j] = P[w,j] + a[w] + b[w] * j (mod29)` with fully arbitrary hidden `(a,b)` at every word, and any alternative cuts preserving the original word-length multiset. The second finite-difference signature is key-invariant. Scanning all 12,949 original contiguous eight-rune windows against 4,325 unique GP-English eight-rune signatures gives **zero matches**, likewise all length 9–14 windows. Original lengths require 343 such long words. Source-positive 12,956-rune wordwise encrypted English plant fits and decrypts exactly. Model excluded under the native GP-English and fixed-length assumptions; no unknown plaintext or key recovered.
+
+[Source report](https://github.com/FlareZ123/liber-primus/blob/main/im-results/lp2-word-progressive-affine-native-signature-gate.md) | [full CJS SFT](https://github.com/FlareZ123/liber-primus/blob/main/sims/lp2_word_progressive_affine_signature_sft.cjs).
+
+This closes the straightforward within-word linear-ramp escape from earlier all-cut static affine exclusion. Do not rekey it with more title primes: the all-secret signature bound already covers them. An authored *nonlinear* within-word operation or independently evidenced changed word-length register would be a distinct next route.

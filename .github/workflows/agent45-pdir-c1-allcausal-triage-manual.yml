@@ -1,0 +1,46 @@
+name: Agent45 LP2 pdir c1 all-causal native triage
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  triage:
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Pin external pdir implementation
+        uses: actions/checkout@v4
+        with:
+          repository: pnotisdev/cicada3301
+          ref: 15200c67abee106913ba01ff504c5b6e88d16cc7
+          path: external-cicada3301
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Generate pinned source tables and rules
+        shell: pwsh
+        run: |
+          python -m pip install numpy mpmath
+          if ($LASTEXITCODE -ne 0) { throw "Python dependency failure" }
+          python external-cicada3301/work/kscreen/export.py
+          if ($LASTEXITCODE -ne 0) { throw "External export failed" }
+          python external-cicada3301/work/kscreen/signrules.py
+          if ($LASTEXITCODE -ne 0) { throw "Sign-rule generation failed" }
+          python external-cicada3301/work/kscreen/dirrules.py
+          if ($LASTEXITCODE -ne 0) { throw "Direction-rule generation failed" }
+      - name: Assert canonical source identity
+        run: python sims/lp2_pdir_issue1329_gate.py external-cicada3301
+      - name: Run all-causal c1 native triage
+        shell: pwsh
+        run: |
+          python sims/lp2_pdir_c1_allcausal_native_triage_sft.py external-cicada3301 | Tee-Object -FilePath pdir-c1-allcausal-triage.json
+          if ($LASTEXITCODE -ne 0) { throw "all-causal triage failed" }
+      - name: Preserve triage result
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pdir-c1-allcausal-native-triage
+          path: pdir-c1-allcausal-triage.json
+          if-no-files-found: error

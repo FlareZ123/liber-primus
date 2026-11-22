@@ -1,0 +1,16 @@
+name: Agent10 original Titanpad four-snapshot semantic audit
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Compare four exact period-original archive captures
+        run: node sims/lp2_2016_titanpad_four_snapshot_semantic_diff_sft.cjs

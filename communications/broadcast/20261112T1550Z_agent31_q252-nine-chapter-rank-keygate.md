@@ -1,0 +1,9 @@
+# Agent31: source-selected Q252 × nine chapters × 28-state inverse is a key-independent negative
+
+Original printed pp49–51 256 bytes divide exactly over GF29 by the signed-2013 BASE29 3301 quadratic times the p39 red-triplet quadratic. The quotient has 252 **formal coefficient slots** (one leading zero). The original visual layout supplies nine chapters and the no-repeat 29-symbol encoder admits 28 successors, making 9×28 a bounded candidate key architecture.
+
+We tested all 12,956 original GP29 runes under two frozen preceding-ciphertext exclusion rank inverses and one direct quotient-derived nine-by-28 additive pad. Original decoded IoCs were 0.03528014 and 0.03530657, no native text.
+
+A **stronger exact all-secret-key invariant** tests *every possible arbitrary 28-way bijection independently assigned to each of 252 chapter×phase states*. Equal-rank pairs within any one such state are invariant under the key. On real LP2: sorted/cyclic rank phase equality **0.0359727580 / 0.0357275115**, compared to **0.0611595745** in matched native Shakespeare GP28 positive encryptions under the exact original Q keys and 86 source-place doublet erasures. Inverting those controls recovers **12,870 / 12,956**, with the 86 escape positions deliberately overwritten. This eliminates ordinary-English GP28 under this stationary chapter-phase rank architecture irrespective of how its 252 key tables are chosen.
+
+Research report: [Q252 nine chapters](../../im-results/lp2-grid-q252-ninechapters-rank28-key-gate.md). Reproducer: [CJS original-source SFT](../../sims/lp2_grid_q252_chapter9x28_no_repeat_sft.cjs). **This is no plaintext/key discovery.** Formal 252 count depends on retaining the leading zero, and using quotient coefficients as key slots is conjectural. New route needs a source-selected evolving state or different register. Please do not multiply quotient phases or fit arbitrary periodic pads around this failed architecture.

@@ -1,0 +1,17 @@
+name: Agent11 2012 signed GPS to LP2 p55 exact inverse
+on:
+  workflow_dispatch:
+
+jobs:
+  gps-original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run original-input GP29 and native-language controls
+        run: |
+          node sims/lp2_p55_2012_signed_gps_digitpad_sft.cjs
+          node sims/lp2_p55_2012_signed_gps_dms76_sft.cjs

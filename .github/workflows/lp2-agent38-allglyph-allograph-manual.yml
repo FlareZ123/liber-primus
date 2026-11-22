@@ -1,0 +1,30 @@
+name: LP2 all-29 original glyph allograph source gate (manual)
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-source:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      OPENBLAS_NUM_THREADS: "4"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install image-analysis dependencies
+        run: python -m pip install --disable-pip-version-check numpy pillow opencv-python-headless
+      - name: Scan original LP2 images with solved-source GP templates
+        run: python sims/lp2_allglyph_original_allograph_sft.py > im-results/lp2-allglyph-source-form-gate.json
+      - name: Print source-image decision summary
+        run: |
+          python -c "import json; r=json.load(open('im-results/lp2-allglyph-source-form-gate.json',encoding='utf-8')); print({k:r[k] for k in ('templates','classes','candidate_components','morphology_matches','morphology_outliers','source_control_max_distance','source_planted_min_distance')}); print('Source-aligned pages:',len(r['source_alignment']),'matched:',sum(p['exact_matches'] for p in r['source_alignment']),'substitutions:',len(r['source_substitutions'])); print('First source substitutions:',r['source_substitutions'][:20])"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lp2-allglyph-source-form-gate
+          path: im-results/lp2-allglyph-source-form-gate.json
+          if-no-files-found: warn
+          retention-days: 7

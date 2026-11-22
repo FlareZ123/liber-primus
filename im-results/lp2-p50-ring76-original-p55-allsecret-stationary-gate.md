@@ -1,0 +1,76 @@
+# Original p50 perimeter → p55: stationary-map and value-rank inversion gates
+
+**Status (19 November 2026):** exact all-secret exclusion of stationary symbol mappings and full-ring value-rank transpositions remains intact; a newly fixed anti-repeat collision-keyskip test also fails to recover plaintext despite exact source-native planted recovery. A fixed carry-aligned nested-shed extension reproduces 76→75→43→23 but its direct arithmetic, 43-word book-map and GP0-key consumers fail; no recovered unknown LP2 plaintext, historical key or complete decoder. [Stationary-map SFT](../sims/lp2_p50_ring76_stationary_map_allsecret_sft.cjs) · [Value-rank SFT](../sims/lp2_p50_ring76_rank_transposition_sft.cjs) · [Earlier original 76/180 partition and direct-key tests](lp2-p50-76-perimeter-180-interior-source-partition.md).
+
+## Source-selected input and proposed use
+
+The physical LP2 pp49–51 original print shows a 32×8 numerical table. Its one-cell exterior has exactly **76 cells**, and the authentic unknown LP2 p55 carries **76 ciphertext GP29 runes**, including the carried first rune from p54. The solved p57 phrase “shed our own circumferences” makes perimeter extraction a human-reconstructible *hypothesis*, but supplies no conversion, target page, clock or key. The pairing is accordingly speculative.
+
+The test takes the full, unchanged row-major table from `resources/liber-primus/base60-grid.json` and p55 rune indices from `resources/liber-primus/lp2-corpus.json`. It walks the outer ring once: top-left across the top, down the right, left across the bottom, up the left. The experiment also exhausts every one of its **76 possible initial cells** and both reading directions, so that uncertain natural orientation cannot rescue the result.
+
+A stationary lookup `f` can have an **arbitrary secret output value** for each possible input symbol; no numeric or linguistic restriction is imposed on `f`. An exact transport would require `p55[i] = f(ring[i])` at all 76 positions. If a repeated input symbol requires different p55 outputs, no such map exists. For each source symbol `s`, the exact best arbitrary lookup can satisfy `max_r count(source=s,target=r)` positions; summing over `s` gives the global maximal match count. This is a family-wide upper bound even if the map's output alphabet is unrestricted. Allowing arbitrary cipher-table entries cannot evade these contradictions.
+
+## Exhaustive original-cipher result
+
+| Perimeter input register | Distinct labels / 76 | Best fixed top-left clockwise match | Best of all 152 orientations / 76 |
+| --- | ---: | ---: | ---: |
+| Literal two-character printed token | 68 | 69 | **71** |
+| Literal interpreted base60 byte (0..255) | 68 | 69 | **71** |
+| Literal token with independent secret lookup on each original printed page (pp49/50/51) | 74 | 74 | **75** |
+| Byte mod29, native GP29 candidate | 24 | 26 | **34** |
+| Byte low 5 bits | 27 | 28 | **35** |
+| First base60 digit | 5 | 15 | **15** |
+| Second base60 digit | 41 | 43 | **48** |
+
+**Zero of 152** orientations per input register permits an exact 76/76 mapping. The strongest possible secret lookup from complete printed tokens still requires at least **5 exceptions**, even after selecting its orientation after observing p55. At fixed original top-left clockwise orientation, the genuine printed token `48` occurs at ring positions **26 and 27** (zero based) while the original p55 runes there have distinct GP29 indices **14 and 10**. Token `1K` occurs at positions **13, 38 and 71**, mapped by the original p55 ciphertext to **2, 23 and 11**; a single stationary lookup cannot produce those outputs. Printed tokens and canonical base60 bytes have the same equality classes, so an alternate one-to-one base59/base60 convention cannot repair this original-token contradiction.
+
+The original table is printed across **three** physical pages containing exactly **80, 104 and 72 cells**, respectively, or the first **10**, middle **13** and last **9** complete grid rows. To admit even secret changes at these source-visible page boundaries, the test grants **three completely independent arbitrary lookup tables**, one for each physical page, and records each ring source as `(original page ID, complete printed token)`. The perimeter partitions into **26, 26 and 24** source cells. There are **74** distinct page-qualified symbol classes across 76 cells, and their fixed-corner fit is **74/76**. Across all starts and directions the best is **75/76**, attained at clockwise start phase1; **0/152 orientations** admits a full 76/76 map. This is a stronger source-boundary family than the global-token lookup, although the weak one-symbol obstruction reflects high symbol diversity and is no independent evidence of a cipher. The exact 75/76 fit is **not** partial plaintext recovery. Arbitrary rekeying within a physical page or per-position state lies outside this gate.
+
+The script checks unique perimeter coordinates, exact original p55 size/status, all 152 orientations for each register, full known expected maxima and a 76/76 **planted stationary-lookup positive control** for every register. This is exact finite enumeration, not a language-model, random-null, or “unreadable output” judgement.
+
+## Expanded value-rank transposition with numeric-shift variants
+
+An existing [source-native ascending/descending border-rank transposition test](../sims/lp2_p50_border76_value_sort_p55_sft.cjs) already rejected the natural top-left-start sort and inverse with native-GP controls. To test whether that negative depended on start/direction or a directly readable numeric pad, the expanded experiment applies the same ranking idea to **every ring start and both directions** and optionally shifts runes by the printed numeric value before/after ranking. Sorting is a genuine permutation rather than a symbol substitution. The printed two-character token is interpreted using the existing, conditional base60-byte convention; exact base60 semantics are not authenticated by Cicada. Every repeated number is resolved by stable perimeter-order tie breaking.
+
+The [source-only CJS SFT](../sims/lp2_p50_ring76_rank_transposition_sft.cjs) enumerates **3,648** completely specified inverses: all **76** initial ring cells, both directions, ascending/descending stable numeric rank, rank permutation or inverse, and either no shift or a direct **±(byte mod29)** GP29 shift before or after the permutation. All original inverses re-encrypt exactly. A separate authentic solved-p57 76-rune plant survives every candidate's inverse/forward round trip.
+
+The **best** original p55 candidate scores **−3.313154195** log units per GP29 trigram character, and the best **pure transposition** scores **−3.354931323**. For a fixed, independent register reference, the same smoothed GP29 trigram scorer trained on the repository's solved LP1 prose assigns all **3,212** training-source windows of exactly 76 runes at least **−2.300029222** (1% quantile **−2.140500327**); the unmodified authentic solved p57 first 76 runes score **−2.083445755**. The in-training LP1 window comparison is optimistic and language-dependent, so the meaningful result is limited to **absence of native-LP1-like GP29 output in this frozen finite family**; it is not a universal linguistic impossibility. Original p55 has single-rune IoC **0.037894737**, invariant under a pure position permutation, independently explaining the difficulty of restoring ordinary-language frequencies by sorting alone.
+
+The original direct-rank test and this exhaustive extension jointly rule out **perimeter-number rank as a complete route to GP29-readable p55 text**, with or without the direct numeric shift in the specified orderings. It does not exclude secret reassignments of duplicated rank values, unprovided page clocks, encrypted non-GP intermediate registers, or a wholly different consumer of the original 32×8 table. No plaintext or authentic key has been recovered.
+
+
+## Fixed nested-shed / 43-word receiver gate (19 November 2026)
+
+The p55 recursive-circumference report establishes a leading carry rune followed by16 complete words of lengths [4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3], totalling75; the first word-edge peel leaves43 and the second leaves23. This experiment tests whether the matching p50 perimeter76 supplies a numeric receiver for those inner registers.
+
+The frozen alignment reads the p50 perimeter clockwise from top-left, drops its first cell to align with p55's leading carry, segments the remaining75 cells by those exact16 p55 word lengths, and applies the same two word-edge peels. This yields43 and23 p50 numeric tokens. The first-cell alignment and reuse of p55 word boundaries on the ring are hypotheses, not an authenticated instruction.
+
+The existing p50-ring SFT now reproduces this construction and tests base59/base60 direct additive/subtractive GP29 keys, the exact43-word 2016 signed-message book map (direct/reversed, zero/one-based), and the 43 signed-word GP0 sums as a direct key. None produces coherent plaintext. The fixed base59 zero-based direct book-map output is dipnuoaiudiitiauiiiagtdiohaiatoaitciegioedl; reversing word/letter roles gives rmesdhaneptetuiepadsasdawetpikiesehtmhihesp. The ring residues are not permutations (25 distinct modulo43; 12 modulo23), and the base5 logarithm is undefined at zero residues.
+
+The newer canonical source-number route interprets the signed43-word message as page/word coordinates, not as this direct per-letter book map; see lp2-direction-seek-you-numbered-route.md. That separate route does not rehabilitate the failed p50-ring/p55-letter-index mapping.
+
+**Decision:** preserve the 76→75→43→23 equality as structural geometry only. It does not identify a key or reversible consumer. Do not widen this into arbitrary ring starts, word offsets or further ciphers without an independent author-selected selector. The p55 23-register receiver remains missing.
+
+## Source-frozen collision-keyskip perimeter inverse (Agent12, 21 November 2026)
+
+The earlier 76-cell outer-perimeter GP29 additive tests and stationary/rank experiments did **not** permit key consumption to advance on a would-be repeated ciphertext rune. That matters because the original unknown LP2 ciphertext has a pronounced adjacent-repeat deficit, while conventional one-to-one additive decryption can score genuine planted keys poorly if the collision-handling rule is omitted. This test makes a distinct, source-constrained decision on the same natural 76-cell perimeter/p55 pairing without repeating the earlier direct-pad calculations.
+
+**Fixed source-to-receiver path:** use original printed p49–51 32x8 tokens; retain the already proposed drop-f base59 reading associated with p57 SHED; walk the outer 76 cells clockwise starting at the top left; take each base59 decoded integer modulo29 as a cyclic key; address the complete original 76-rune p55 in physical order from phase0. The only arithmetic alternatives are the two GP29 additive signs. The reusable collision-aware Viterbi inverse may reject **at most one key draw per rune**, and only if it would have produced the immediately preceding ciphertext rune; extra draw penalty 3.5, total latent skip cap 34. No key start, ring direction, matrix, offset or plaintext crib is fitted. The hypothesis here does not implement the separate solved-p56 plaintext-F bypass, so its exclusion is restricted to the specified model.
+
+| Original p55 decoder | Best GP trigram log score per rune | Viterbi key skips |
+| --- | ---: | ---: |
+| C = P + K (sign +1) | -5.825535 | 2 |
+| C = P - K (sign -1) | -6.090226 | 2 |
+| Authentic solved p57 clear 76-rune reference | -2.622892 | N/A |
+
+The +1 result renders as GP transliteration starting **AUFUIAXNHPTYUGIRIREJCRFBDD** and is nonlinguistic. A source-native p57 76-rune plant encrypted under the exact ring and one actual collision rejection is recovered **76/76**, and the Viterbi traceback identifies that one skip. On the unchanged original p55, **151 of 256 deterministic shuffled-ring nulls outperform the better of the two original signs** (null median -5.752403; best -5.007332; observed -5.825535). The observed best has no evidence of key specificity or authentic language recovery.
+
+**Decision:** the particular source-selected p50 base59 outer ring is rejected as a repeating GP29 additive p55 key with this one-collision optional key rejection. The rejection-aware positive control eliminates rigid-stream misalignment as the explanation for the poor original score under this rule. A different author-selected cipher operation, nonadditive transport, glyph-F convention or receiver remains untested, without license for arbitrary key-phase or ring sweeps.
+
+Read-only [source-locked CJS SFT](../sims/lp2_p50_ring76_p55_collision_skip_sft.cjs), [Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44940082121) on commit 0ce160ece34c264bb44965e2c3b981b4187f36b1.
+
+## Interpretation and decision
+
+The source-visible 76/76 length equality by itself does **not** select a cipher. The fixed nested-shed extension above also fails its bounded direct consumers and does not change this decision. This experiment rules out treating p55 as the original table-ring symbols passed through either one global memoryless lookup across six natural input registers or **three arbitrary independently secret, physical-page-local memoryless lookups** under complete printed tokens. The exclusion holds regardless of unknown lookup values and the starting ring cell. It also rejects a 29-symbol stationary bijective substitution after taking the numeric ring modulo29, because that family is a subset of the arbitrary lookups excluded above.
+
+The direct standard RC4-key consumer is now also tested: [full-table/outer-ring RC4 gate](lp2-p50-rc4-key-original-gate.md) finds no native GP29 signal for the frozen base60 keys, row-major/reverse orders and additive signs. This does **not** reject a different position-dependent key stream, a different RC4 key derivation/KSA, arbitrary reordering of nonadjacent ring cells, a transposition with an independently supplied non-ranking clue, or a perimeter with different source dimensions. The direct modular-additive/XOR perimeter keys are already separately negative: see the earlier perimeter report and [predecessor differential original-p55 gate](p55-grid-ring76-differential-gate.md). Do not treat this result as evidence that a new stateful mechanism exists. In the absence of independent source instructions fixing such a mechanism, discontinue direct arbitrary stationary ring↔p55 character-map fitting. A successful next route must derive the cipher consumer/key from external original clues and generate complete independently checked plaintext.

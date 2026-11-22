@@ -1,0 +1,16 @@
+name: LP2 Fibonacci 55x233 nonrepeat matrix all-secret gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  exact:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Prove original 55x233 periodic exclusion and source-native positive
+        run: node sims/fibonacci233_matrix_transpose_allkey.cjs

@@ -1,0 +1,54 @@
+{
+  "source": "2014 Onion7 historical index: image link 19.jpg, title 133, div id 331; p57 parable numerical association [361,133,331] is interpretive, not an explicit passphrase instruction.",
+  "image": "resources/liber-primus/36.jpg",
+  "method": "sims/outguess_extract.py + sims/outguess_bitmap_dump.c; source-faithful OutGuess 0.4 extraction",
+  "p56_target_sha512": "36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4",
+  "candidates": [
+    {
+      "password": "19",
+      "header_hex": "3d19151d",
+      "seed": 6461,
+      "declared_length": 7445,
+      "whole_sha256": "548dfced809e69643d71b9d092882f6829a08144a9968d49c874c01d70b06060",
+      "whole_sha512": "f09387b240594d09955837aaebf9285ec39653161e77b46f7babb90d6c59f6e61cf0ec6d68341e84eda5813836eddd65e5fde79ee06cba28a6456affc3d6f244",
+      "tail_sha256": "85c04a0b23bbe27e0fba2632db6f33a89e9b69c3851aae5dcda73293d23b0361",
+      "tail_sha512": "b3d7882a9f373b49d447959078fe36a29a067d1a3c6a180ec3bc5d3b61a2baff0bde374517955c5dc44509769474a3ba81d4aab4640d9af6912e0252c7d8772b",
+      "tail_entropy_bits_per_byte": 7.9748975077,
+      "tail_prefix_hex": "cd60aa64014b830c9b7f949e8a0159937a62064dfdb9278c775025260f73eb35",
+      "gpg_tail_valid": false
+    },
+    {
+      "password": "133",
+      "header_hex": "bae84a5b",
+      "seed": 59578,
+      "declared_length": 23370,
+      "whole_sha256": "dcf9d729febbe5d10f35067f1666f415d9bbf9eb43a04e3739a89a8a1aa95356",
+      "whole_sha512": "585e72ecb6e8687db77962d4d63fd6f727bd3fa3c81df92c44664e8dd1e6df5131d1ae91297a81da48489e09691f47c57baec4916546924e5e67805a70416d7d",
+      "tail_sha256": "967edd09a022e7b6b5f9db5953d92c582d3280f51eb78eac5a5e4ace6f06d878",
+      "tail_sha512": "579f2d3f55d3a2bdf8b92c37d0464922b14c11bbf4b011dc504464d044f467d1e1900cd7705b5593148d9e5cf30f13fb623fd25fbb390f771adb55e97babdb57",
+      "tail_entropy_bits_per_byte": 7.9919515626,
+      "tail_prefix_hex": "82c67aa7d2f67cd19b704b534515442235604d68553e2922b040090b2f77f2cd",
+      "gpg_tail_valid": false
+    },
+    {
+      "password": "331",
+      "header_hex": "3d11e032",
+      "seed": 4413,
+      "declared_length": 13024,
+      "whole_sha256": "c80708534c9e255e4261557025b6ae086b10843a7a0b3ac396c7c3b063de6180",
+      "whole_sha512": "f1047bc54a75b893d28ed7b2a40b688e8990dd705c5fcde6a865b3daecce71d9b91c2404652c7b4b9920cfb3678e7a160ced43c8fd5c7210f132d3149b34b317",
+      "tail_sha256": "2f76fe15da31a997ac719bcfdabf9bc05f43c05dbc9c1ed0c04ab575ab7a9fdc",
+      "tail_sha512": "0aa8d558df4b2eab15574d746cd8bc9d73f1b1ed60e0516b5cd24a8c9df6d6dc5cd778cab5ed818a6a9429689f183f4b66e02de5ad32e45b70261a60104299cc",
+      "tail_entropy_bits_per_byte": 7.9867728459,
+      "tail_prefix_hex": "e930cf03efc06ec59a587f1c0ccd93d509de4d9a7b0deb9e638507e59f1ca688",
+      "gpg_tail_valid": false
+    },
+    {
+      "password": "361",
+      "status": "no extraction",
+      "reason": "OutGuess iterator reaches zero skip; no payload output."
+    }
+  ],
+  "result": "No candidate tail has recognized file magic or a valid OpenPGP packet. Whole and tail SHA-512 values for 19, 133 and 331 do not match p56 target.",
+  "caveat": "The numerical association motivates only a bounded test; it does not establish that OutGuess or these passphrases were intended."
+}

@@ -1,0 +1,152 @@
+name: 2016-message-prime-layers
+
+on:
+  workflow_dispatch:
+    inputs:
+      probe:
+        description: "Original message prime-layer test or cumulative page walk"
+        required: false
+        type: choice
+        options:
+          - original
+          - cumulative
+          - pgphash
+          - xor43
+          - fibonacci-page-route
+          - fibonacci-p55-prefix
+          - fibonacci-p55-terminal
+          - base59-p29
+          - signed2016-p53-179
+          - full74-stage10
+        default: original
+
+jobs:
+  source-prime-layer-probe:
+    if: ${{ inputs.probe == 'original' || inputs.probe == '' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install pinned numerical runtime
+        run: python -m pip install --disable-pip-version-check numpy==2.2.6 numba==0.61.2
+      - name: Run source-frozen 2016 prime-layer probe
+        run: python sims/2016_message_prime_layers.py | tee 2016-message-prime-layers.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: 2016-message-prime-layers
+          path: 2016-message-prime-layers.json
+
+  cumulative-page-walk:
+    if: ${{ inputs.probe == 'cumulative' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test signed 2016 source-directed cumulative page walk and original direct-key inverse
+        run: node sims/lp2_signed2016_cumulative_page_walk_sft.cjs
+
+  pgp-signed-hash-page32:
+    if: ${{ inputs.probe == 'pgphash' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce native OpenPGP signed hash and original p32 direct inverse
+        run: node sims/lp2_p32_signed2016_pgphash_source_sft.cjs
+
+  signed-xor43-bookmap:
+    if: ${{ inputs.probe == 'xor43' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test original 2016 signed-43 XOR/book-map anchor and matched null
+        run: node sims/lp2_signed2016_xor43_bookmap_sft.cjs
+
+  fibonacci-page-route:
+    if: ${{ inputs.probe == 'fibonacci-page-route' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce signed 2016/2017 Fibonacci physical-page selector
+        run: node sims/signed2016_fibonacci_page_route_sft.cjs
+
+  fibonacci-p55-prefix:
+    if: ${{ inputs.probe == 'fibonacci-p55-prefix' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test frozen Fibonacci 76-rune prefix key on p55
+        run: node sims/signed2016_fibonacci_p55_prefix_key_sft.cjs
+
+  fibonacci-p55-terminal:
+    if: ${{ inputs.probe == 'fibonacci-p55-terminal' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test marked-end Fibonacci suffix key on p55
+        run: node sims/signed2016_fibonacci_p55_terminal_key_sft.cjs
+
+  base59-p29:
+    if: ${{ inputs.probe == 'base59-p29' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Test signed 2016 59-prime p29 selector and 14-rune TEA transport gate
+        run: node sims/signed2016_59prime_p29_selector_sft.cjs
+
+  signed2016-p53-179:
+    if: ${{ inputs.probe == 'signed2016-p53-179' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Source-locked canonical signed 2016 179 GP-symbol p53 key inversion
+        run: node sims/signed2016_full179_p53_direct_key_sft.cjs
+
+  full74-stage10-map:
+    if: ${{ inputs.probe == 'full74-stage10' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Reproduce full-book 74-page map and Stage10 prime-rank anchors
+        run: node sims/lp2_2016_message_full74_stage10_map.cjs | tee full74-stage10-map.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: full74-stage10-map
+          path: full74-stage10-map.json

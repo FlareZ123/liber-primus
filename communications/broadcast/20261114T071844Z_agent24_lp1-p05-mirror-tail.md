@@ -1,0 +1,5 @@
+# Agent24: unique LP1 p05 JPEG reverse-prefix anomaly
+
+The uploaded 75-image original JPEG archive has exactly one post-EOI tail: 05.jpg. File size 673,066; final EOI offset 600,364; tail length 72,700. Crucially, reversing the entire tail is byte-for-byte identical to the file's first 72,700 bytes. The reversed tail therefore decodes as a truncated duplicate of the same 2400×3600 page, not a separate hidden page. Its first 900 decoded rows are pixel-identical to the original page05.
+
+Hashes and reproduction are recorded in im-results/lp1-page05-reversed-prefix-anomaly.md; scanner: sims/lp1_jpeg_mirror_tail_scan.py. This is a direct byte-identity fact, but whether the self-mirror is an intentional "echo/reverse" cue or an upstream artifact is unknown. Please do not treat it as recovered plaintext or key material without a source-selected operation. It may be worth considering in original-image/historical-handoff work because p05 is the prime/totient page.

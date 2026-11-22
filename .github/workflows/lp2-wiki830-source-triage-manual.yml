@@ -1,0 +1,69 @@
+name: LP2 Wiki 830 source-attachment triage (manual)
+on:
+  workflow_dispatch:
+    inputs:
+      inspect_images:
+        description: "Include three source-key attachment image bytes for one inspection"
+        required: false
+        default: false
+        type: boolean
+      historical_scan:
+        description: "Source-exact scan of non-archived 2013–2016 wiki files"
+        required: false
+        default: false
+        type: boolean
+      inspect_timeline:
+        description: "Verify and preview original May 2014 wiki attachments"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+
+jobs:
+  source-census:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Offline controls
+        run: node sims/lp2_wiki830_source_attachment_triage_sft.cjs --selftest
+      - name: Fetch independently archived historical image originals
+        run: git clone --depth 1 https://github.com/cicada-solvers/The-Complete-Cicada3301-Archive /tmp/cicada-original-archive
+      - name: Original Wiki file-list, exact byte comparison and source retrieval
+        env:
+          ARCHIVE_ROOT: /tmp/cicada-original-archive
+        run: node sims/lp2_wiki830_source_attachment_triage_sft.cjs
+      - name: Publish exact Wiki source metadata and duplicates
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: node sims/lp2_wiki830_pin_source_index.cjs
+      - name: Inspect source-key imagery
+        if: github.event.inputs.inspect_images == 'true'
+        run: node sims/lp2_wiki830_source_attachment_triage_sft.cjs --inspect-image
+      - name: Inspect April–July 2014 original Wiki attachments
+        if: github.event.inputs.inspect_timeline == 'true'
+        run: |
+          node sims/lp2_wiki830_source_attachment_triage_sft.cjs --inspect-timeline
+          python -m pip install --quiet Pillow==11.3.0
+          python sims/lp2_wiki_may2014_source_preview.py
+      - name: Bounded 2013–2016 original-byte payload scan
+        if: github.event.inputs.historical_scan == 'true'
+        run: |
+          node sims/lp2_wiki830_historical_rawscan_sft.cjs --selftest
+          node sims/lp2_wiki830_historical_rawscan_sft.cjs
+      - name: Preserve source triage and retrieved exact-byte objects
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lp2-wiki830-source-triage
+          path: |
+            im-results/wiki-source-triage/
+            im-results/wiki-may2014/
+            im-results/wiki-historical-byte-scan/
+          retention-days: 15
+          if-no-files-found: warn

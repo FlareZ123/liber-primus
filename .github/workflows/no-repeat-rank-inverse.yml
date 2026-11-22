@@ -1,0 +1,49 @@
+name: LP2 unknown-alphabet no-repeat rank inversion
+on:
+  workflow_dispatch:
+    inputs:
+      gate:
+        description: Select the original rank tests or the separate word-pattern invariant
+        required: true
+        default: all
+        type: choice
+        options:
+          - all
+          - wordwise-bijection
+          - wordwise-gp29-phase
+          - fixed-wordcipher
+          - word-reset-hill4
+          - reserved-anyrune
+jobs:
+  rank-inverse:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test 28-symbol rank inverse, matched null and authentic controls
+        if: ${{ inputs.gate == 'all' }}
+        run: node sims/no_repeat_rank_inverse.cjs
+      - name: Test word-reset rank inverse with per-word hidden alphabets
+        if: ${{ inputs.gate == 'all' }}
+        run: node sims/no_repeat_rank_wordwise_gate.cjs
+      - name: Test within-word periodic phase permutations (periods 1–8)
+        if: ${{ inputs.gate == 'all' }}
+        run: node sims/no_repeat_rank_phase_period_gate.cjs
+      - name: Test fixed word cipher repeated-word invariant and planted controls
+        if: ${{ inputs.gate == 'fixed-wordcipher' }}
+        run: node sims/lp2_fixed_wordcipher_repeat_sft.cjs
+      - name: Test direct GP29 arbitrary per-word permutation equality invariant
+        if: ${{ inputs.gate == 'wordwise-bijection' }}
+        run: node sims/lp2_wordwise_bijection_pattern_gate.cjs
+      - name: Test arbitrary direct GP29 phase-specific per-word permutations
+        if: ${{ inputs.gate == 'wordwise-gp29-phase' }}
+        run: node sims/lp2_wordwise_gp29_phase_gate.cjs
+      - name: Test source-fixed p15 Hill4 with reversible printed-word block resets
+        if: ${{ inputs.gate == 'word-reset-hill4' }}
+        run: node sims/fibonacci_word_reset_hill4_inverse.cjs
+      - name: Check all GP29 reserved-repeat symbols against original word positions
+        if: ${{ inputs.gate == 'reserved-anyrune' }}
+        run: node sims/lp2_reserved_anyrune_repeat_original_gate.cjs

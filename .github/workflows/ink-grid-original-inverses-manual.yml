@@ -1,0 +1,76 @@
+name: LP2 ink-grid evolving and polynomial original inverses (manual)
+
+on:
+  workflow_dispatch:
+    inputs:
+      probe:
+        description: 'Legacy gate, red centered walk, 13/31 grid inverse or Onion7 checksum'
+        type: choice
+        required: true
+        default: legacy
+        options:
+          - legacy
+          - red13-256
+          - lcg13-31
+          - lcg13-31-raw
+          - onion7-133
+          - josephus-aes
+          - event-poly
+          - ink-hg-black
+          - terminal-crc
+          - terminal-rs841
+          - dh-elgamal-allsecret
+          - p49-p51-centred
+
+jobs:
+  original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce source-locked 256-event recurrence original-inverse gate
+        if: github.event.inputs.probe == 'legacy'
+        run: node sims/ink256_grid256_lfsr_inversion.cjs
+      - name: Reproduce full lossless polynomial diffusion original-inverse gate
+        if: github.event.inputs.probe == 'legacy'
+        run: node sims/grid_polynomial_diffusion_inverse.cjs
+      - name: Source-original 13x256 centered Ac97 walk and bounded inverse
+        if: github.event.inputs.probe == 'red13-256'
+        run: node sims/red_13x256_centered_walk_sft.cjs
+      - name: LCG 13/31 original full-text 32x8 and 256-byte grid inverses
+        if: github.event.inputs.probe == 'lcg13-31'
+        run: node sims/lp2_lcg13_31_grid_original_gate.cjs
+      - name: Onion7 title 133 original 256-event checksum and original inverse
+        if: github.event.inputs.probe == 'onion7-133'
+        run: node sims/lp2_onion7_133_event_checksum_sft.cjs
+      - name: LCG 13/31 original raw 256-state no-grid inverse
+        if: github.event.inputs.probe == 'lcg13-31-raw'
+        run: node sims/lp2_lcg13_31_raw256_state_inverse.cjs
+      - name: Original event-field P/P-prime trace/norm projection inverse
+        if: github.event.inputs.probe == 'event-poly'
+        run: node sims/gf29s2_event_poly_output_original_sft.cjs
+      - name: Black-anchored ink H/G source register and red32-length table inverse
+        if: github.event.inputs.probe == 'ink-hg-black'
+        run: |
+          node sims/ink256_hg_same_codeword_gate_sft.cjs
+          node sims/lp2_red32_length_aes_table_inverse_sft.cjs
+      - name: Test triad quartic, 256-ink and terminal 19-word source gate
+        if: github.event.inputs.probe == 'terminal-crc'
+        run: node sims/terminal_quartic_word19_crc_sft.cjs
+      - name: Test source field RS(256,180) against terminal pages and grid
+        if: github.event.inputs.probe == 'terminal-rs841'
+        run: node sims/terminal_76_180_rs_field841_sft.cjs
+      - name: Exact original 256-event Josephus AES eight-section inverse
+        if: github.event.inputs.probe == 'josephus-aes'
+        run: node sims/ink256_josephus_aes_sections_sft.cjs
+      - name: Source-derived 2013 DH quotient all-exponents finite-field gate
+        if: github.event.inputs.probe == 'dh-elgamal-allsecret'
+        run: node sims/2013_base29_dh_elgamal_source_sft.cjs
+      - name: Source-centred 158-rune p49/p51 grid-pad gate
+        if: github.event.inputs.probe == 'p49-p51-centred'
+        run: |
+          node --check sims/lp2_p49_p51_centered_grid_pad_sft.cjs
+          node sims/lp2_p49_p51_centered_grid_pad_sft.cjs

@@ -1,0 +1,15 @@
+name: Agent49 original ink256 to table direct inversion SFT
+on:
+  workflow_dispatch:
+jobs:
+  original-source:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout original repository
+        uses: actions/checkout@v4
+      - name: Configure Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Execute exact read-only original-input SFT
+        run: node sims/lp2_ink256_table_direct_aes_mask_sft.cjs

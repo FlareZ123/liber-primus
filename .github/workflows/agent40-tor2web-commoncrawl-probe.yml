@@ -1,0 +1,28 @@
+name: Agent40 Tor2web Common Crawl archive probe
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Self-test
+        run: node sims/lp2_p56_tor2web_commoncrawl_probe.cjs --selftest
+      - name: Query 2014 Common Crawl indexes
+        run: node sims/lp2_p56_tor2web_commoncrawl_probe.cjs
+      - name: Upload raw archive results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent40-tor2web-commoncrawl-results
+          path: probe-output/
+          if-no-files-found: warn

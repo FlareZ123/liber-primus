@@ -1,0 +1,123 @@
+name: Agent 24 historically selected CicadaOS byte-offset GP29 key-skip gate
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: agent24-authored-2013-byte-offset-skip
+  cancel-in-progress: false
+
+jobs:
+  authored-offsets:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Checkout Liber Primus research repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Checkout pinned Campaign XVIII decoder
+        uses: actions/checkout@v4
+        with:
+          repository: Dukotah/cicada3301
+          ref: f63501d8f2d835b80c30230eb89a1110fb9197d2
+          path: external
+          fetch-depth: 1
+          sparse-checkout: |
+            liber-primus
+          sparse-checkout-cone-mode: true
+
+      - name: Checkout pinned original CicadaOS binary inputs
+        uses: actions/checkout@v4
+        with:
+          repository: neuroretransmit/cicada
+          ref: ade9a02889ef8acbc8cde8edbfd0a785c369f4c3
+          path: cicada-source
+          fetch-depth: 1
+          sparse-checkout: |
+            2013/002-3301/3301-contents/data
+          sparse-checkout-cone-mode: true
+
+      - name: Verify external source revisions and prepare the two original pads
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C external rev-parse HEAD)" = "f63501d8f2d835b80c30230eb89a1110fb9197d2"
+          test "$(git -C cicada-source rev-parse HEAD)" = "ade9a02889ef8acbc8cde8edbfd0a785c369f4c3"
+          test -f external/liber-primus/analysis/campaign18_skip/sweep.py
+          test -f external/liber-primus/analysis/campaign18_skip/skipdecode.py
+          test -f external/liber-primus/src/lp/gematria.py
+          test -f external/liber-primus/data/english_quadgrams.txt
+          test -f external/liber-primus/data/keys/self_reliance.txt
+          test -f external/liber-primus/data/keys/solved_plaintext.txt
+          mkdir -p pa3-pads run-artifacts/pa3
+          cp cicada-source/2013/002-3301/3301-contents/data/_560.00 pa3-pads/_560.00
+          cp cicada-source/2013/002-3301/3301-contents/data/560.17 pa3-pads/560.17
+          sha256sum pa3-pads/_560.00 pa3-pads/560.17 | tee run-artifacts/pa3/source-sha256.txt
+          git -C external rev-parse HEAD | tee run-artifacts/pa3/external-commit.txt
+          git -C cicada-source rev-parse HEAD | tee run-artifacts/pa3/source-commit.txt
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install runtime dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy cryptography filelock
+          python -m pip freeze | tee run-artifacts/pa3/pip-freeze.txt
+
+      - name: Supply a deterministic wrong-key control omitted from the pinned external checkout
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          import random
+
+          # skipdecode.gate() expects a wrong-key text at this ignored local path.
+          # The pinned public commit does not contain the optional Mabinogion corpus.
+          # Supply a reproducible random GP29 stream solely as its negative control;
+          # this is NOT historical Mabinogion text and is never a candidate key.
+          tokens = [
+              "F", "U", "TH", "O", "R", "C", "G", "W", "H", "N", "I", "J",
+              "EO", "P", "X", "S", "T", "B", "E", "M", "L", "NG", "OE",
+              "D", "A", "AE", "Y", "IA", "EA",
+          ]
+          rng = random.Random(0x33013301)
+          target = Path("external/liber-primus/data/keys/mabinogion.txt")
+          target.parent.mkdir(parents=True, exist_ok=True)
+          target.write_text(
+              "# synthetic wrong-key control only; not historical Mabinogion text\n"
+              + " ".join(rng.choice(tokens) for _ in range(12000))
+              + "\n",
+              encoding="ascii",
+          )
+          print(f"synthetic_wrong_key_control={target}; GP tokens=12000; seed=0x33013301")
+          PY
+
+      - name: Run source-pinned PA-3 PRF/stream-generator and skip-aware search
+        shell: bash
+        env:
+          PYTHONUTF8: "1"
+          PYTHONHASHSEED: "0"
+        run: |
+          set -euo pipefail
+          python sims/lp2_2013_cicadaos_authored_offset_skip_sft.py \
+            --external-root external/liber-primus \
+            --pad-dir pa3-pads \
+            --output run-artifacts/pa3/report.json \
+            2>&1 | tee run-artifacts/pa3/run.log
+
+      - name: Upload PA-3 reproducibility report and logs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent24-authored-2013-byte-offset-skip
+          path: run-artifacts/pa3/
+          if-no-files-found: warn

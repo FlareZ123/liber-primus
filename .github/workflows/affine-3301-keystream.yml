@@ -1,0 +1,14 @@
+name: LP2 3301-recurrence heldout key attack
+on:
+  workflow_dispatch:
+jobs:
+  six-state-keys:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run fixed six-state keystream challenge and positive controls
+        run: node sims/affine_3301_keystream_heldout.cjs

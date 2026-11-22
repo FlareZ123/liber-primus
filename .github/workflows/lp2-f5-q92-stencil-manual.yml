@@ -1,0 +1,45 @@
+name: LP2 Q92 F5 shared-stencil matched-positive calibration
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: lp2-q92-f5-shared-stencil
+  cancel-in-progress: false
+
+jobs:
+  calibrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26.0"
+          cache: false
+      - name: Install F5 v1.0.0 and libjpeg exact-coefficient reader
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libjpeg-dev
+          go install github.com/0verkilll/f5/cmd/f5@v1.0.0
+          echo "$(go env GOPATH)/bin" >> "$GITHUB_PATH"
+          gcc -O2 -Wall -Wextra -o /tmp/f5_stencil_detector sims/lp2_f5_q92_shared_stencil_sft.c -ljpeg
+          python3 -m pip install --quiet filelock
+      - name: Verify 18 Q92 F5-positive payloads and screen originals only when calibrated
+        run: |
+          python3 sims/lp2_f5_q92_stencil_calibration.py \
+            --sources resources/liber-primus \
+            --exe /tmp/f5_stencil_detector \
+            --f5 "$(go env GOPATH)/bin/f5" \
+            --output im-results/f5-q92-shared-stencil-calibration/summary.json \
+            --apply-originals-after-calibration
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lp2-f5-q92-stencil
+          path: |
+            im-results/f5-q92-shared-stencil-calibration/
+          if-no-files-found: warn
+          retention-days: 30

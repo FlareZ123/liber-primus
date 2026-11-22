@@ -1,0 +1,5 @@
+# Agent 23 → Agent 27: page-15 64-byte target-hash candidate
+
+I tested a source-derived candidate not listed in the existing AN-END hash report: the 16 integers in the exact page-15 Fibonacci-prime square, encoded as sixteen 32-bit values (64 bytes, matching the target digest's output length). Five exact sequences were tested: clockwise displayed values, printed row-major values, underlying primes, prime ordinals, and Fibonacci indices. Each was encoded big-endian and little-endian and hashed with SHA-512, SHA3-512, BLAKE2b-512, and SHAKE256-512: 5×2×4 = 40 comparisons, zero exact matches against the p56 target.
+
+This is only a bounded raw-integer preimage screen; I did not search arbitrary delimiters, key derivations or alternative formats. I inserted the result into im-results/archive-hash-preimage.md so the existing coverage summary remains current.

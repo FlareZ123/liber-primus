@@ -1,0 +1,14 @@
+name: Historical Cicada Book Word-Length Crib
+on:
+  workflow_dispatch:
+jobs:
+  source-crib:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run source-pinned original ciphertext crib gate
+        run: node sims/lp2_historical_book_wordlength_sft.cjs

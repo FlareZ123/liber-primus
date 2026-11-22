@@ -1,0 +1,27 @@
+name: LP2 Agent 3 source-original onion and word-space gates
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-gates:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original historic 256-byte Onion2 / p50 bridge
+        run: node sims/lp2_p50_onion2_bytebridge_sft.cjs
+      - name: Exact 29-way all-secret word-length resegmentation bounds
+        run: node sims/lp2_wordlength_resegment_allsecret_sft.cjs
+      - name: Exact GP29 to Latin26 256-byte sidecar code and all-source bit bound
+        run: node sims/lp2_p50_radix29to26_256byte_sidecar_sft.cjs
+      - name: All-secret period16 181 256 original word-phase substitution capacity
+        run: node sims/lp2_wordphase_16_181_256_allsecret_sft.cjs
+      - name: Exact 180 known symbol secret byte-homophone terminal table gate
+        run: node sims/lp2_terminal180_allsecret_homophone_sft.cjs

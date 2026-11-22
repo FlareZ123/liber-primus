@@ -1,0 +1,14 @@
+name: LP2 p56 totient nonzero-step original-source SFT
+on:
+  workflow_dispatch:
+
+jobs:
+  original-input:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate source GP29 nonzero-step inverse
+        run: node sims/lp2_p56_phi_nonzero_step_original_sft.cjs

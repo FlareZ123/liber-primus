@@ -1,0 +1,17 @@
+name: Agent38 H2 cyclic key-skip Viterbi
+on:
+  workflow_dispatch:
+
+jobs:
+  source-native-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Blindly recover hidden key skips on planted ciphertext; test all original cyclic shifts
+        run: node sims/lp2_h2_cyclic_knownbase_skip_viterbi_sft.cjs

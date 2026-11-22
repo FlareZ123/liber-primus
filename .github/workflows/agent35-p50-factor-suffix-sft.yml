@@ -1,0 +1,13 @@
+name: Agent35 source p50 factor suffix and quotient SFT
+on:
+  workflow_dispatch:
+jobs:
+  original-p50:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Reproduce conditional suffix and 36 quotient GP29 inverses
+        run: node sims/lp2_p50_2013bit_factor_suffix_sft.cjs

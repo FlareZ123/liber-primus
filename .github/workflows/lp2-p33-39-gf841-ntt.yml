@@ -1,0 +1,13 @@
+name: LP2 GF841 full 840-point finite-field Fourier inverse
+on:
+  workflow_dispatch:
+jobs:
+  exact-original-inverse:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Execute exact source-native Fourier control and original chapter gate
+        run: node sims/lp2_p33_39_gf841_ntt_exact_inverse_sft.cjs

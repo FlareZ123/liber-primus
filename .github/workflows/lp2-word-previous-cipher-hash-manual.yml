@@ -1,0 +1,16 @@
+name: LP2 preceding-word SHA cipher candidate inverse
+on:
+  workflow_dispatch:
+
+jobs:
+  word-chain-direct-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Frozen SHA256/SHA512 word-key test and authentic positive
+        shell: pwsh
+        run: node sims/lp2_word_previous_cipher_hash_inverse_sft.cjs
