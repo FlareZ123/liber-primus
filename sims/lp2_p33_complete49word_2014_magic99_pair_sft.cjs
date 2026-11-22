@@ -1,0 +1,138 @@
+'use strict';
+
+/**
+ * LP2 p33 complete black-word register + p34 carry (198 GP29 runes),
+ * paired with all 99 authentic 2014 OpenPuff magic-square integers.
+ * Original-only direct pair operations and a nonunit hard gate.
+ * Windows 11 / Node 22 / CommonJS; read-only, no dependencies.
+ */
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const path = require('node:path');
+
+const root = path.resolve(__dirname, '..');
+/** @param {string} file @returns {string} */
+const read = file => fs.readFileSync(path.join(root, file), 'utf8');
+const corpus = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
+const physical = read('resources/lp2-transcription.txt')
+  .replace(/\r/g, '').split('\n%\n');
+assert.equal(physical.length, 57);
+const p33 = corpus.pages.find(page => page.page === 33).indices;
+const p34 = corpus.pages.find(page => page.page === 34).indices;
+assert.deepEqual([p33.length, p34.length], [214, 261]);
+
+/** @param {string} text @returns {string[]} */
+function words(text) {
+  return text.replace(/\/\s*\n/g, '').replace(/[\s/]/g, '')
+    .split(/[-.]/g).filter(Boolean);
+}
+const twoSections = physical[33].split('&').map(words);
+assert.deepEqual(twoSections.map(section => section.length), [23, 30]);
+const blackWords = twoSections.flatMap(section => section.slice(2));
+assert.deepEqual(twoSections.map(section => section.slice(2).length), [21, 28]);
+assert.equal(blackWords.length, 49);
+assert.equal(blackWords.at(-1), 'ᛒ', 'last p33 word begins before page carry');
+assert.ok(physical[34].startsWith('ᛗᛒ-'), 'two original carry runes on p34');
+const charToGP = new Map(corpus.runes.map((rune, i) => [rune, i]));
+/** @param {string} word @returns {number[]} */
+function gp(word) {
+  return [...word].map(rune => {
+    assert.ok(charToGP.has(rune), 'only known GP rune glyphs');
+    return charToGP.get(rune);
+  });
+}
+const p33Black = blackWords.flatMap(gp);
+assert.deepEqual(p33Black, p33.slice(10, 91).concat(p33.slice(99)));
+assert.equal(p33Black.length, 196);
+const original = p33Black.concat(p34.slice(0, 2));
+assert.equal(original.length, 198);
+assert.deepEqual(original.slice(-3), gp('ᛒᛗᛒ'));
+
+const squareText = read('resources/cicada2014-openpuff-magic-squares.txt');
+const squares = squareText.trim().split(/\r?\n\s*\r?\n/).map(block =>
+  block.trim().split(/\r?\n/).map(row =>
+    row.trim().split(/\s+/).map(Number)));
+assert.deepEqual(squares.map(matrix => matrix.length), [5, 7, 5]);
+const sums = [3301, 1033, 1033];
+squares.forEach((matrix, i) => {
+  assert.ok(matrix.every(row => row.length === matrix.length));
+  assert.ok(matrix.every(row => row.reduce((sum, x) => sum + x, 0) === sums[i]));
+});
+const key = squares.flat(2);
+assert.equal(key.length, 99);
+assert.equal(2 * key.length, original.length);
+
+const mod = (x, m) => (x % m + m) % m;
+/**
+ * @param {number[]} input 198 original GP29 symbols
+ * @param {number} sign +1 or -1
+ * @param {'base29-integer'|'independent-digits'} law
+ * @param {number[]} values 99 historical square numbers
+ * @returns {number[]}
+ */
+function transform(input, sign, law, values) {
+  assert.equal(input.length, 2 * values.length);
+  const result = [];
+  for (let i = 0; i < values.length; i++) {
+    const k = mod(values[i], 841);
+    const x = input[2*i], y = input[2*i+1];
+    if (law === 'base29-integer') {
+      const n = mod(29*x + y + sign*k, 841);
+      result.push(Math.floor(n / 29), n % 29);
+    } else {
+      assert.equal(law, 'independent-digits');
+      result.push(mod(x + sign*Math.floor(k / 29), 29),
+        mod(y + sign*(k % 29), 29));
+    }
+  }
+  return result;
+}
+/** @param {number[]} runes @returns {number} */
+function ioc(runes) {
+  const counts = Array(29).fill(0);
+  for (const rune of runes) counts[rune]++;
+  return counts.reduce((sum, n) => sum+n*(n-1), 0) /
+    (runes.length * (runes.length-1));
+}
+/** @param {number[]} runes @returns {string} */
+const translit = runes => runes.map(i => corpus.translit[i]).join('');
+const solved = corpus.pages.find(page => page.page === 57).indices;
+assert.equal(solved.length, 95);
+const positive = Array.from({length:198}, (_, i) => solved[i % solved.length]);
+const outcomes = [];
+for (const law of ['base29-integer', 'independent-digits']) {
+  for (const sign of [-1, +1]) {
+    const decoded = transform(original, sign, law, key);
+    const restored = transform(decoded, -sign, law, key);
+    assert.deepEqual(restored, original, 'all 198 original runes reencrypt');
+    const encryptedPlant = transform(positive, -sign, law, key);
+    assert.deepEqual(transform(encryptedPlant, sign, law, key), positive);
+    const wrong = transform(encryptedPlant, sign, law, key.slice().reverse());
+    assert.ok(wrong.some((v,i) => v !== positive[i]), 'wrong-order key control');
+    outcomes.push({law, sign, decodedIoC:ioc(decoded),
+      first72GP:translit(decoded.slice(0, 72)),
+      exactOriginalReplay:198, positiveGPReplay:198});
+  }
+}
+assert.deepEqual(outcomes.map(o => Number(o.decodedIoC.toFixed(10))),
+  [0.0388145414, 0.0338409475, 0.0363533815, 0.0343536892]);
+
+// The same historical square has 4 entries divisible by29.
+// Multiplication C=K*P (mod841) would force C%29=0 at those positions,
+// but all four original ciphertext pairs have nonzero low digits.
+// The reverse P=K*C is not bijective for these keys either.
+const nonunits = key.flatMap((k,i) => k % 29 === 0 ?
+  [{pairIndex:i, key:k, sourcePair:original.slice(2*i,2*i+2),
+    number:29*original[2*i]+original[2*i+1]}] : []);
+assert.deepEqual(nonunits.map(x => x.pairIndex), [6,18,40,58]);
+assert.deepEqual(nonunits.map(x => x.number), [821,247,603,515]);
+assert.ok(nonunits.every(x => x.number%29!==0));
+console.log(JSON.stringify({
+  source:'p33 49 black words completed by two actual p34 carry runes',
+  gpRuneCount:198, squareCells:99, matrixDimensions:[5,7,5],
+  originalIoC:ioc(original), nativeClearP57IoC:ioc(solved),
+  directAdditivePairs:outcomes,
+  multiplicativeUnitObstruction:nonunits,
+  meaning:'Exact source alignment; direct square-pad pair inverses fail to produce native GP plaintext. No author-selected cipher or plaintext is claimed.'
+},null,2));
+console.log('PASS: original 198/99 source-pair gate and all controls.');
