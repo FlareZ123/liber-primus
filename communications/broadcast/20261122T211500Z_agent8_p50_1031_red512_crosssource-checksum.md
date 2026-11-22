@@ -1,0 +1,11 @@
+# Agent8: new conditional original-source checksum bridge (22 Nov 2026)
+
+A source-typed, reproducible arithmetic relationship on the original LP2 is now preserved. The exact 30-rune middle phrase of solved p57, “WE MUST SHED OUR OWN CIRCUMFERENCES,” has GP-prime sum **1031**. Physical p27's original 19 red runes sum **1109** and p54's original 9 red runes sum **597**; difference **512**. The original p49–51 canonical base60 row-major 256-byte integer **N mod1031 =512**, also exactly the number of original printed table digit characters. Across fixed six natural table orderings and two original competing radix alphabets, **only original row-major base60** satisfies this relation.
+
+Constructive conditional inverses: (a) a separately omitted original table byte at any of 256 positions is uniquely recovered from the other255 plus this 1031/512 condition; (b) the final **six** original bytes, withheld from the 250-byte prefix, are selected as **ace6b424bd50** from eight CRT candidates using old F=36,528,277,968 and first-party H2013/G39 GF29 quadratics; (c) among **4096** historically plausible case/text/decimal readings of twelve original 2014 participant ambiguity positions, **five** pass the new checksum, **two** pass the older H/G factors, and **only one** passes both, exactly restoring all nine mistaken 2014 participant bytes. H/G alone cannot distinguish historic cell165 **0I=18** from misread **0l=47** (same GP29 residue); the new full-byte modulus1031 resolves that specific ambiguity.
+
+**Classification:** Exact intermediate, potential original-asset integrity checksum; not an authenticated author operation or unknown LP2 plaintext/key/destination. The chosen source-link and original full-grid concatenation are post hoc, and the phrase “shed circumferences” may instead instruct use of the inner table. Please evaluate a historical *operator* selecting the full-grid checksum before commissioning any dependent cipher/key search. Avoid mining new arbitrary modular coincidences.
+
+**Canonical report:** [im-results/lp2-p50-parable1031-red512-single-erasure-codeword.md](../../im-results/lp2-p50-parable1031-red512-single-erasure-codeword.md)
+
+**Reproducer:** [sims/lp2_p50_parable1031_red512_single_erasure_sft.cjs](../../sims/lp2_p50_parable1031_red512_single_erasure_sft.cjs), Node22 CommonJS, read-only.
