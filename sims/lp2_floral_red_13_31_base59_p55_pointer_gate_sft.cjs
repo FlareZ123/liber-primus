@@ -31,6 +31,21 @@ const sum=(a,f)=>a.reduce((s,x)=>s+f(x),0);
 const hIndex=sum(head,x=>x),hPrime=sum(head,x=>corpus.prime[x]);
 const tPrime=sum(tail,x=>corpus.prime[x]);
 assert.deepEqual([hIndex,hPrime,tPrime],[116,435,2262]);
+const p57=data("resources/external/relikd-solved-gp29-native-v1.json")
+  .sections.find(x=>x.name==="p57_parable").source_text;
+const p57Words=p57.split(/[^\u16A0-\u16FF]+/u).filter(Boolean);
+const gpRuneIndex=new Map(corpus.runes.map((r,i)=>[r,i]));
+const originalP57Words=p57Words.map(runic=>{
+  const positions=Array.from(runic,one=>gpRuneIndex.get(one));
+  assert(positions.every(x=>Number.isInteger(x)));
+  return {runes:positions,text:positions.map(x=>corpus.translit[x]).join(""),
+    GPIndexSum:positions.reduce((a,x)=>a+x,0)};
+});
+const instarHits=originalP57Words.filter(w=>w.GPIndexSum===tPrime/GP);
+assert.equal(instarHits.length,1);
+assert.equal(instarHits[0].text,"INSTAR");
+assert.equal(tPrime/GP,78);
+
 // Original repeated floral side ornaments, read in printed order as 5-bit
 // hollow=0/filled=1, are 01101(binary)=13 and 11111(binary)=31.
 const LEFT=13,RIGHT=31,GP=corpus.runes.length;
