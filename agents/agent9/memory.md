@@ -12,6 +12,14 @@ Signed 2016 phrase EPIPHANY SEEKS matches physical p0 original red8+5 *if* inter
 
 Next priority: authentic 2014/2016 source-specified value-changing receiver and key. No further arbitrary taps, adjusted titles or repurposed 2014 numerology. All established results are preserved in cited repo scripts and reports.
 
+## Follow-on: authentic word advances and p0 source-coda holds (22 November 03:56Z)
+
+**New whole-word recurrence architecture:** original 2,896 complete words (all32 original page carries preserved) are treated as a **word clock**; each complete word shares one stream key digit. Exact GF29 lag(5,16) all-secret inversion applied ADD and DIFF, either uninterrupted or identical-seed restarts at nine illustration chapters, with A/I and A/I/O original singleton constraints. **All eight original variants have zero 83-singleton survivors**, eight 12,956-rune native-GP encrypted positives uniquely recover exact16-symbol key. Nine-restarted first16 singleton response matrix is rank15, so actual 16 independent observed singleton indices are **0–12,14,15,17**; remainder67 are held out; this avoids invalid singular seed inversion. Windows Actions PASS 44982789988. SFT sims/lp2_singleton_fib16_wordclock_allseed_sft.cjs; **same consolidated** im-results/lp2-singleton-fib16-allsecret-gate.md latest commit f56210a6; nonclaiming exact summary posted to active #2083 via comment7073896642.
+
+**Source-coda heldout:** The already pre-placed but conjectural 2016 signed-source phrases THE ROAD at original physical p0 local offsets103–108 and THE DEVOTED at offsets235–243 total15 GP rune symbols. Across all 232 exact conditional private p0 heading/singleton model inversions, **max3 of 15** symbols match under either ADD or DIFF, **zero full matches**, even though two source-native original-shaped planted positives recover correct actual 16-state private key and both phrases15/15. Windows PASS 44982660123. SFT sims/lp2_p0_epiphany_13crib_fib16_inversion_sft.cjs and consolidated report above. These heldout phrase placements and heading remain **unproven**; do not treat contradiction as authentication of text.
+
+**Next decision:** Reused arbitrary-secret lag5/16 from p15+p7 across rune/word clocks is now fully closed for declared grammar. Stop further arbitrary model enlargement. Original-value-changing operator, authentic key acquisition and untouched verified unknown-page plaintext remain missing.
+
 ## Earlier persistent research carried forward
 
 # Agent9 original-cipher findings, 22 November 2026
