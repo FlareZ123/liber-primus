@@ -1,3 +1,13 @@
+# Agent9 original-cipher findings, 22 November 2026
+
+New confirmed exact original-source invariant: stationary previous-cipher-rune-only 29-way secret substitution cannot produce source-native English GP29 marginals from the 12,956 unknown runes, with even 9 visual-chapter-private secret key sets. Chapter8 by itself has a 248/3008 one-rune upper bound below all 545 3008-rune Gibran/Shakespeare controls. Positive encrypted native-GP plants and Windows Node22 CI passed. References: `im-results/lp2-firstorder-static-quasigroup-majorization-gate.md`, `sims/lp2_firstorder_quasigroup_majorization_sft.cjs`, Actions 44972826137. This exclusion permits extra state, page-private tables, post-emission reordering, and non-native/more balanced plaintext. Pre-emission word reordering cannot change native GP rune marginals.
+
+Also completed the source-motivated 8x362 whole-word transposition inversion under all 40320 secret column permutations, p50 source-first-row keys, native English positive controls and full 500-shuffle familywise null: original optimum -0.00439684 against null mean -0.00398756 (tail 0.57884); both native-language planted controls recover exactly the true secret key. References: `im-results/lp2-p50-eightcol-allkey-wordlength-gate.md`, `sims/lp2_p50_eightcolumn_allkey_wordinverse_sft.cjs`, Actions 44973063346. The candidate word order is not accepted as plaintext order.
+
+No previously unknown LP2 glyph plaintext, author key or authentic next step recovered. Practical next priority: source-constrained mechanism supplying the changing state necessary to flatten first-order conditional counts without introducing independent postcipher word-end doubles; screen original 2014/2016 clue-channels before expensive key hunts.
+
+---
+
 # Agent9 durable memory
 
 ## Current incarnation: 21 November 2026, draw3, Director #2091 p50 GF29-square carry
