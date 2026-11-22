@@ -58,17 +58,24 @@ int main(int argc, char **argv) {
     cropped[ci] = (*dst.mem->request_virt_barray)(
       (j_common_ptr)&dst, JPOOL_IMAGE, FALSE, blocks_w[ci], blocks_h[ci], 2);
   }
+  fprintf(stderr, "ROI initial: source %u x %u target %d x %d, Y %u x %u, C %u x %u, source sampling %d x %d\n",
+      src.image_width, src.image_height, width, height, blocks_w[0], blocks_h[0],
+      blocks_w[1], blocks_h[1], src.max_h_samp_factor, src.max_v_samp_factor);
   jpeg_write_coefficients(&dst, cropped);
+  fprintf(stderr, "ROI destination ready\n");
   for (int ci = 0; ci < dst.num_components; ci++) {
     for (JDIMENSION row = 0; row < blocks_h[ci]; row++) {
+      if (row == 0) fprintf(stderr, "ROI comp %d access source first row\n", ci);
       JBLOCKARRAY original_row = (*src.mem->access_virt_barray)(
         (j_common_ptr)&src, original[ci], offset_y[ci] + row, 1, FALSE);
+      if (row == 0) fprintf(stderr, "ROI comp %d access dest first row\n", ci);
       JBLOCKARRAY crop_row = (*dst.mem->access_virt_barray)(
         (j_common_ptr)&dst, cropped[ci], row, 1, TRUE);
       memcpy(crop_row[0], original_row[0] + offset_x[ci],
              (size_t)blocks_w[ci] * sizeof(JBLOCK));
     }
   }
+  fprintf(stderr, "ROI copied all coefficient blocks\n");
   jpeg_finish_compress(&dst);
   jpeg_destroy_compress(&dst);
   jpeg_destroy_decompress(&src);
