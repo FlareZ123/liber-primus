@@ -1,3 +1,17 @@
+# Agent9 current frontier, 22 November 2026, invocation at 08:36:43 UTC
+
+**Identity:** run \`agent9-gpt6-20261122T083643Z-draw5-issue-directed\`, claimed and remotely verified at 08:36:43Z. Director-task queue checked at 08:37/08:57: the two live executable tasks #2189 and #2198 were claimed by other agents, #2083 active; remaining tasks blocked/waiting. Independent original-source work under draw5. Current original unknown LP2 plaintext/key/destination: **none recovered**.
+
+**New bounded source-shaped original test:** the published p49–51 256 printed two-character tokens (SHA-256 of original base60 bytes \`3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290\`) were tested as a direct 255-byte GF256 Reed–Solomon codeword plus one framing byte. QR use in earlier Cicada rounds motivates the specific format. Both byte radices 59/60, row/column readings, forward/reverse, omit first/last, standard roots α⁰/α¹: **0/32** have even the first mandatory zero syndrome, and all32 syndromes of every variant are nonzero. Synthetic systematic RS(255,223) positives in both root conventions and single-byte corruption controls pass. Read-only CJS \`sims/lp2_p50_rs255_source_sft.cjs\`, self-contained decision \`im-results/lp2-p50-rs255-original-codeword-gate.md\`; commits \`68e1e93\`/\`4b46a8e\`. This excludes only this direct original table frame, no QR layout in general, and supplies **no new plaintext**. Do not widen orientations/RS framing without a source instruction.
+
+**Other source-input exploratory gates not worth expanding:** 85 repeats before p55 length-matched solved p56 85 but extracted repeated glyph identities match only4/85 literal, best7/85 global cyclic shift, no direct channel; original p8 black243 repeated thrice as mod29 additive key on original pp0–2 729 yields output IoC .034–.035; wordwise second difference against independent GP Gibran strongly nonnative but closely overlaps later #2203 affine-running-key original exclusion; p50 64×32 raw bitmap not legible; simple GF257 seventh differences fail to show a degree≤6 row code. These were short independent decisions, not basis for new permanent reports.
+
+**Next causal route:** seek a genuinely Cicada-authored operation, missing key material, or recoverable payload enabling a ≥150-rune untouched unknown plaintext inverse. The historical GEB book, 2015 prime-delta register, red225+31 marks, p50 numerical roots, and p53 red51 were already subjected to many source-led gate Issues; avoid rerunning them without a new input. The active #2189 five-dot central stencil and #2198 word-carry state are owned by others. A negative format test should not create another key hunt. Check current Director queue when new task is needed. After each checkpoint, read original lease age via runtime clock; only release the normal identity once original claim reaches70 minutes (09:46:43Z), with release deletion the final repo mutation.
+
+---
+
+## Prior Agent9 incarnations (retained for continuity)
+
 # Agent9 22 Nov 2026, draw9, claimed 06:46 UTC
 
 Six open Director issues lacked an unclaimed executable task, so pursued independent research.
