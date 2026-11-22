@@ -541,4 +541,73 @@ for (const [originalSeven, n, own, physical, inversePhysical] of [
     ' authentic-native plant=' + n + '/' + n);
 }
 
-console.log('SELFTEST_PASS original squares, charpolys, canonical basis, 3409 original runes, solved-native positives, 84-prime authenticated-key transfer, canonical shared three-mode original receiver, full factor-trace five-symbol original reductions');
+
+/**
+ * The immediately adjacent original LP2 p3-7 scroll has exactly 255
+ * source-printed words; the following original physical p8 has exactly
+ * 255 ciphertext runes. Test the independent 2014 original *5-square*
+ * against the 255-word register; this is a different consumer than
+ * applying either square to raw rune quintets. The original page-8
+ * 255-rune tape is a candidate per-word key clock, exactly 51 blocks
+ * of five. No fitted phase or inserted rune.
+ */
+const originalTranscription = fs.readFileSync(path.join(
+  ROOT, 'resources', 'liber-primus', 'lp2-transcription.txt'), 'utf8');
+const glyphMap = new Map(corpus.runes.map((rune, i) => [rune, i]));
+const print = originalTranscription.split('%').slice(3, 8).join('')
+  .replace(/[\n\/&$]/g, '');
+const exactPrintedWords = print.split(/[-.]/)
+  .map((piece) => [...piece].filter((rune) => glyphMap.has(rune))
+    .map((rune) => glyphMap.get(rune)))
+  .filter((word) => word.length > 0);
+assert.equal(exactPrintedWords.length, 255);
+assert.deepEqual(exactPrintedWords.flat(), concatenate(3, 7));
+assert.equal(byPage.get(8).length, 255);
+const sourceRuneWords = exactPrintedWords.flat();
+const sourceP8 = byPage.get(8);
+const B5inverse = matrixInverse(five1033);
+/** @param {number[]} key @param {number} sign @param {number[]} source @returns {number[]} */
+function addWordKey(key, sign, source) {
+  assert.equal(key.length, 255);
+  assert.equal(source.length, 1145);
+  const result = [];
+  let cursor = 0;
+  for (let w = 0; w < exactPrintedWords.length; w += 1) {
+    const shift = key[w];
+    for (let j = 0; j < exactPrintedWords[w].length; j += 1) {
+      result.push(m29(source[cursor] + sign * shift));
+      cursor += 1;
+    }
+  }
+  assert.equal(cursor, source.length);
+  return result;
+}
+const scrollTransforms = [
+  ['physical', five1033, 0.03433291599230464, 0.03428711026964302],
+  ['physical-inverse', B5inverse, 0.03463828747671542, 0.03457110575014505],
+  ['CHANGE-eigenvector', V5, 0.0341817571075213, 0.03420771368369622],
+  ['CHANGE-eigen-inverse', V5inverse, 0.03468714691422115, 0.0343573457110575]
+];
+const nativeScroll = Array.from(
+  { length: sourceRuneWords.length }, (_, i) => solved[i % solved.length]);
+assert.ok(ioc(nativeScroll) > 0.055);
+for (const [name, matrix, positiveIoc, negativeIoc] of scrollTransforms) {
+  const wordKey = transformFive(sourceP8, matrix);
+  assert.equal(wordKey.length, 255);
+  assert.deepEqual(transformFive(wordKey, matrixInverse(matrix)), sourceP8);
+  const plus = addWordKey(wordKey, 1, sourceRuneWords);
+  const minus = addWordKey(wordKey, -1, sourceRuneWords);
+  close(ioc(plus), positiveIoc);
+  close(ioc(minus), negativeIoc);
+  assert.deepEqual(addWordKey(wordKey, -1, plus), sourceRuneWords);
+  assert.deepEqual(addWordKey(wordKey, 1, minus), sourceRuneWords);
+  assert.deepEqual(
+    addWordKey(wordKey, 1, addWordKey(wordKey, -1, nativeScroll)),
+    nativeScroll);
+  console.log('ADJACENT_255WORD_SOURCE matrix=' + name +
+    ' original scroll 1145/1145 runes, key=255 p8, IoC +/-=' +
+    [ioc(plus), ioc(minus)].map((v) => v.toFixed(9)).join('/') +
+    ' genuine native positive=1145/1145');
+}
+
+console.log('SELFTEST_PASS original squares, charpolys, canonical basis, 3409 original runes, solved-native positives, 84-prime authenticated-key transfer, canonical shared three-mode original receiver, full factor-trace five-symbol original reductions, adjacent 255-word CHANGE-square key receiver');
