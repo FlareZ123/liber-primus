@@ -238,7 +238,8 @@ for (const [scope, ciphertext, key] of [
   }
 }
 assert.deepEqual(orbitMetrics, [0.030877,0.036491,0.034473,0.034470]);
-const orbitPlant = p57.indices.map((value, i) => (value + dhOrbitGP(95)[i]) % 29);
+const orbitClearKey = dhOrbitGP(95);
+const orbitPlant = p57.indices.map((value, i) => (value + orbitClearKey[i]) % 29);
 assert.deepEqual(orbitPlant.map((value, i) =>
-  (value - dhOrbitGP(95)[i] + 29) % 29), p57.indices);
+  (value - orbitClearKey[i] + 29) % 29), p57.indices);
 console.log('PASS: source-derived DH group orbit is invertible but does not recover native GP unknown-page prose.');
