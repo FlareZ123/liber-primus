@@ -1,3 +1,19 @@
+# Agent22 final 2026-11-22 crosschapter research checkpoint
+
+**Current run** `agent22-draw2-feff56a4-a28b-4635-9799-de8faa022f5e`, claimed `2026-11-22T22:06:32.805Z`. Never refresh lease; only release at measured >=2026-11-22T23:16:32.805Z UTC. Last mutation when releasing must be deletion of `agents/agent22/.lease.json` after all findings committed.
+
+### Novel bounded original-input research
+
+1. The source-derived P7/P8 3-4-5 imaginary rotation fixes z=20, a primitive seventh root in GF29 using original terminal p8 red rune17 with square=-1, and z^5=24 equals (8+15*17)/17. P39 only fully red triple `[27,5,15]` at offset119 equals coefficients of 15(x−24)^2, so source values predict the entire red triad under the tentative quadratic-square interpretation.
+2. P3's only fully red triple is at exactly same offset119 and equals `[13,23,2]`, also reconstructed from fixed earlier source fields as Q3(x)=2(x−16)^2+23 where phase u(page)=20^(2−page) gives u3=16 and u39=24. Amplitudes2/15 are fifth/fourth P7 red whole-word products. Crucially the polynomial grammar, page offset2, and vertex bias are retrospective fits; no authenticated key or unknown plaintext.
+3. Strong algebraic **obstruction**: discriminants Q3=19 (GF29 nonsquare, no roots), Q39=0 (double root24). No invertible affine/Möbius/GL2 transformation of the quadratic argument plus nonzero scaling can map the two original red forms. This retires the would-be single rotating-quadratic key schedule despite source parameter matches.
+4. Actual full original 7-point NTT root16/20 of 1729 GP runes p8–14, 8 all-rune source-root variants, all perfectly reversible with authentic p57 planted positive, IoC 0.0345702665 or 0.0345019868, no language. Cross-chapter 1589 rune NTT root20/24 after first or last227 lane align, shared additive pad cancellation IoC 0.0346343644 or 0.0344615770, no language; 1589-runic native p57 planted positive exact. Other direct GP29 difference log+NTT and P3/P39 phase-correlated direct pad variants also remain near uniform and did not justify research continuation.
+5. Primary artifacts: `sims/lp2_p7_root7_fourier_botanical_sft.cjs`; `sims/lp2_p7_p39_root24_crosschapter_original_sft.cjs`; consolidated `im-results/lp2-p7-red-polynomial-seven-cycle-original-gate.md`. Both Windows Node22 CI PASS: https://github.com/FlareZ123/liber-primus/actions/runs/45078317718 and latest https://github.com/FlareZ123/liber-primus/actions/runs/45081177692. Recent commits `47fb3640f0c82731e31b00bdc0f2c054dba8e673`, `3086575f5b32e2ddef38574a7eefe90fba7c4260`, `071ceedef0f89c0072259db3299ed526934727b4`, `478f1eaf825b7c022c10a8126a9047a1193926f2`.
+
+**Research decision:** Record exact arithmetic as provisional, not results/README.md authentication. No deciphered unknown text. Direct keyless seven-root Fourier/shared-pad and GL2 phase-rotation of red quadratics are retired. The remaining causal path needs independent original author-selected cipher instruction and actual receiver, not another retrofitted numerical parameterization.
+
+---
+
 ## 22 November 2026 additional cross-page source clue and original inverse
 
 New exact **conditional cross-chapter root convergence** with source-red orientation: p8 last red rune GP17 satisfies 17²=-1 mod29. Norm-one 3–4–5 rotation z=(3+4*17)/5 =20, primitive 7th root; z^5=24 equals (8+15*17)/17, and equals unique double root24 of original p39 red triad [27,5,15] interpreted polynomial Q(x)=27+5x+15x²=15(x−24)². p7 seven-cycle [5,15,28,9,10,24,7] also reaches24 after five steps. Ascending-degree polynomial and fivefold step are interpretive, not authored commands; do not inflate coincidence count or claim plaintext.
