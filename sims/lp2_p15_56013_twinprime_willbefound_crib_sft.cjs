@@ -28,7 +28,7 @@ assert.deepEqual(lower, [20, 1, 21, 9, 5, 1, 17, 9, 16, 0, 21]);
 
 const tokens = corpus.translit.map((g, i) => [g, i]).sort((a, b) => b[0].length - a[0].length);
 function runes(word) {
-  const text = word.toUpperCase().replace(/QU/g, "CW").replace(/V/g, "U")
+  const text = word.toUpperCase().replace(/\\s+/g, "").replace(/QU/g, "CW").replace(/V/g, "U")
     .replace(/[KQ]/g, "C").replace(/Z/g, "S");
   const out = [];
   for (let i = 0; i < text.length;) {
