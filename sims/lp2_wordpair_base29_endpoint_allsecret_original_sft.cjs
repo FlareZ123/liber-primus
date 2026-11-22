@@ -121,7 +121,7 @@ for(const c of controls){
   const tests=[0,1].flatMap(parity=>modes.map(mode=>({
     parity,mode,original:observed[parity][mode].total,
     min:Infinity,max:0,total:0,atMost:0
-  })).concat(modes.map(mode=>({
+  }))).concat(modes.map(mode=>({
     parity:2,mode,original:chapterLocal[mode].total,
     min:Infinity,max:0,total:0,atMost:0
   })));
