@@ -1,0 +1,15 @@
+name: Agent11 p54-p55 carry10 balanced Hadamard source SFT
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source-inverse:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test original p54-p55 balanced 43+43 source and native plant
+        run: node sims/lp2_p54_p55_carry10_balanced_hadamard_sft.cjs
