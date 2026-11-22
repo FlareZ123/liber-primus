@@ -49,6 +49,20 @@ The single-file SFT reads the *entire* original [12,956-rune canonical GP29 sour
 
 **Reproducer:** [`sims/lp2_p15_f17_p42_square91_hill_original_sft.cjs`](../sims/lp2_p15_f17_p42_square91_hill_original_sft.cjs), read-only Windows 11 / Node22 CommonJS, successful independent CI [45066963576](https://github.com/FlareZ123/liber-primus/actions/runs/45066963576). All output numbers above are computed directly from authentic original source files, with no synthetic inputs except the declared positive-control encryption.
 
+## Source-selected historical OutGuess password: original carrier negative
+
+The same 2014-source pointer identifies the exact complete GP word `PNW` on p42. Earlier Cicada rounds demonstrably distributed steganographic instructions through **OutGuess on the original JPG files**, with keyed extraction as a historically available operation. This motivates the smallest distinct, frozen password experiment without any mutation or language search: **literal ASCII `PNW`** from the indicated word; receiver original p42 JPG59; comparison original p15 JPG32, from which the Fibonacci pointer originated; wrong-key `PNX` on JPG59. All three calls ran the exact pinned maintained OutGuess implementation with genuine planted-key and authentic LP1 image-positive controls.
+
+| Untouched original JPEG | Literal source-directed key | Output length | Extracted SHA-256 prefix | Printable fraction | Empirical byte entropy |
+| --- | --- | ---: | --- | ---: | ---: |
+| p42, JPG59 | `PNW` | 16,300 | `5b5d6ba2b111...` | 0.389939 | 7.987756 bits |
+| p15, JPG32 | `PNW` | 16,300 | `1685c7b0f727...` | 0.384417 | 7.989916 bits |
+| p42, JPG59 | wrong `PNX` | 14,741 | `d4919a66786e...` | 0.384370 | 7.986271 bits |
+
+All reported bytes are raw extractor products. None has a recognizable PGP, ZIP, GZIP, PNG or human-readable structure, and both authentic-page `PNW` outputs are near maximum byte entropy despite sharing the same key-derived pseudoheader (seed61123, length16300) and the same first and last 32 extracted bytes. Crucially, the native extractor reports an apparently **successful seed/length and 9,582 extracted bytes** with the **same `PNW` passphrase on a freshly generated, known empty JPEG**; the wrong `PNX` likewise reports 61,457 bytes on that blank. The extractor's success status and pseudoheader **cannot authenticate a hidden message**. The genuine planted 47-byte secret and real original LP1 default-key messages do extract intact, providing algorithmic positives. No 2014-typed payload is recovered under this precisely selected key.
+
+Read-only source repo's pinned workflow [`.github/workflows/lp2-outguess.yml`](../.github/workflows/lp2-outguess.yml) with built-in real and synthetic controls, archived original results and per-run logs: [p42 source PNW](https://github.com/FlareZ123/liber-primus/actions/runs/45069935672), [p15 source PNW](https://github.com/FlareZ123/liber-primus/actions/runs/45069939470), [p42 one-symbol wrong PNX](https://github.com/FlareZ123/liber-primus/actions/runs/45069943169). This rejects a claim of recognizable, authenticated source-original OutGuess plaintext under the literal `PNW` key. It does not prove arbitrary binary streams cannot encode further ciphertext, and no external payload, seed transformation or second-stage key is chosen by the source.
+
 ## Decision and next fork
 
 **Reject the direct GP29 Hill decoding of this precise 2014-square91-targeted full original p42-to-p55 suffix.** The source coincidence is preserved as an *unproven route selector* and has no authenticated downstream operator. This does not exclude a differently instructed use of the square, the first-unprinted p15 index itself, a keyed or differently segmented cipher, a p42-only scope with a source-specified residual handling rule, or a historical missing stage. Avoid extending this dead end by fitting arbitrary matrix entries, padding words, letters or phases to English. Progress requires an original clue that determines an actual new reversible receiver and predicts untouched plaintext.
