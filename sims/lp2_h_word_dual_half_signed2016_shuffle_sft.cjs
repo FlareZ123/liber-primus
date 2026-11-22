@@ -27,7 +27,7 @@ function finishWord() {
     offset: held[0].offset,
     len: source.length,
     left: (2 * source.slice(0, half).reduce((a, b) => a + b, 0) + center) % 29,
-    right: (2 * source.slice(-half).reduce((a, b) => a + b, 0) + center) % 29,
+    right: (2 * source.slice(source.length - half).reduce((a, b) => a + b, 0) + center) % 29,
   });
   held = [];
 }
