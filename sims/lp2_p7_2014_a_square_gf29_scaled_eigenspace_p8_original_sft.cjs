@@ -275,6 +275,24 @@ assert.deepEqual(composedInverse,[
 ]);
 eq(mul(composedPolynomial,composedInverse),I5);
 eq(mul(composedInverse,composedPolynomial),I5);
+// A nonaccidental algebraic consequence of the same two original inputs:
+// D=F(A/2) has exact order56, with a 28-step reflection across Π.
+let Dpower28=I5,Dpower8=I5;
+for(let step=0;step<28;step++)Dpower28=mul(Dpower28,composedPolynomial);
+for(let step=0;step<8;step++)Dpower8=mul(Dpower8,composedPolynomial);
+const projectedHalfTurn=add(I5,scale(projector,-2));
+eq(Dpower28,projectedHalfTurn);
+assert.notDeepEqual(Dpower28,I5);
+assert.notDeepEqual(Dpower8,I5);
+eq(mul(Dpower28,Dpower28),I5);
+assert.deepEqual(Dpower28,[
+  [12,12,12,12,11],
+  [12,12,12,11,12],
+  [12,12,11,12,12],
+  [12,11,12,12,12],
+  [11,12,12,12,12]
+]);
+
 const sourcePolynomialOrbit=[];
 
 const sourceReceivers=[
@@ -522,6 +540,7 @@ console.log('PASS alternate_2014_1033_square_F(B) six_exact_original_roundtrips 
 for(const item of otherSquareResults)console.log('alternate-source-square receiver='+item.label+' direction='+item.direction+' GP29_IoC='+item.ioc.toFixed(12)+' opening='+item.opening);
 console.log('PASS original_p8_to_p14_all_seven_pages_1729_runes 7x7_historical_source_polynomial_four_roundtrips_and_four_native_GP_plants');
 for(const item of sevenSquareResults)console.log('historic-7-square square='+item.squareName+' direction='+item.direction+' det='+item.det+' IoC='+item.ioc.toFixed(12)+' opening='+item.opening);
+console.log('PASS source D=F(A/2) exact_order56, D^28=I-2Pi (original p7/historic square reflected halfturn)');
 console.log('SOURCE: GP29 original p8 IoC='+ioc(p8).toFixed(12));
 console.log('EXTRACTED: GP29 rank2 image IoC='+ioc(output).toFixed(12));
 console.log('EXTRACTED full GP spelling='+output.map((rune)=>corpus.translit[rune]).join(''));
