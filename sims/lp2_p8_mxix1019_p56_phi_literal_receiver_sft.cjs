@@ -27,7 +27,7 @@ for(let number=2;primes.length<750;number++){
 }
 const start=primes.indexOf(1019);
 assert.equal(start,170);
-assert.deepEqual(primes.slice(168,173),[1013,1019,1021,1031,1033]);
+assert.deepEqual(primes.slice(168,173),[1009,1013,1019,1021,1031]);
 const mod=n=>(n%29+29)%29;
 /**
  * Legal native p56 transparent-F inverse, with EVERY possible authentic
