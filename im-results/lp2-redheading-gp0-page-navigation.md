@@ -22,7 +22,9 @@ The printed numeral inventory uses no lower-case `f`, although its conventional 
 
 **Base59 links two equal-length headings to both solved pages:** the only two 16-rune chapter starts, p3 and p23, select **p56 (AN END)** and **p57 (PARABLE)** in that order. P0→p40→p53 selects the first and last page of the chapter containing the numeric grid. An independently already-known source detail adds a second entry to p40: the original non-heading red 11-rune passage on p6 also sums to181, although the GP-prime sums for p0/p6 differ by one. The GP0 p0/p6 coincidence predates this report, so only the combined routing observations are new.
 
-### Global terminal property of base59
+### Global terminal property of base59 (previously established)
+
+**Earlier independent work already established the rooted base59 graph, the exact fixed-multiset null, the 95-leaf coincidence, and negative known-p56 tree reconstructions.** See [prior source graph](lp2-p50-base59-source-convergent-map.md), [exact null](../sims/lp2_p50_rooted_mapping_exact_null_sft.cjs), and [known-p56 leaf-key obstruction](lp2-base59-tree-prufer-reversible-code.md). This report's distinct observation is the specific red-heading-to-solved-page mapping, NOT discovery of the graph. The exact unconditional graph-root probability under this fixed numeral multiset was already proven as 254/65,280 (0.3891%).
 
 Reading each table value as the address of the next cell creates a directed graph of 256 cells. **All 256 starting addresses eventually reach cell189**, whose token `3C` evaluates to189 in base59. It is the table's **only cycle**, a length-one fixed point. The longest starting route contains39 distinct cells. The original row-major grid gives cell189 zero-based coordinates (row23, column5). This makes an exact, human-followable stopping condition and is consistent with the 2016 signed statement about *direction*; it does not tell the solver what to do with189.
 
