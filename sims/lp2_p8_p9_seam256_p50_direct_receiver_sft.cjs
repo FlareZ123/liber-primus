@@ -216,6 +216,78 @@ const affinePlant=linearPlant.map(row=>row.map((v,j)=>mod(v+17+j,29)));
 assert.equal(matrixRank29(sourceRows.map((row,i)=>row.concat(linearPlant[i]))),8);
 assert.equal(matrixRank29(sourceRows.map((row,i)=>[1,...row,...affinePlant[i]])),9);
 
+
+/**
+ * For arbitrary (including nonlinear) unknown single-key substitutions on
+ * each of 8 columns, equal-symbol pairs in each column are invariant.
+ * This is a stronger all-key stationary 8-column cipher gate than any
+ * fixed Vigenere key or affine Hill map; no 29! key enumeration is needed.
+ * @param {number[]} values
+ */
+function periodEightColumnIoC(values) {
+  assert.equal(values.length,256);
+  return Array.from({length:8},(_,column)=>{
+    const freq=Array(29).fill(0);
+    for(let i=column;i<256;i+=8)freq[values[i]]++;
+    return freq.reduce((sum,n)=>sum+n*(n-1),0)/(32*31);
+  }).reduce((sum,n)=>sum+n,0)/8;
+}
+const originalColumnIoC=periodEightColumnIoC(register);
+assert.equal(originalColumnIoC,0.03377016129032258);
+const nativeTokens=corpus.translit.map((token,index)=>({token,index}))
+  .sort((a,b)=>b.token.length-a.token.length);
+/** @param {string} raw */
+function nativeGp(raw){
+  const word=raw.toUpperCase().replace(/QU/g,'CW')
+    .replace(/V/g,'U').replace(/[KQ]/g,'C').replace(/Z/g,'S');
+  const digits=[];
+  for(let i=0;i<word.length;){
+    if(word.startsWith('ING',i)){digits.push(21);i+=3;continue;}
+    if(word.startsWith('IO',i)){digits.push(27);i+=2;continue;}
+    const match=nativeTokens.find(v=>word.startsWith(v.token,i));
+    assert.ok(match,'Unknown GP symbol in source-native control '+raw);
+    digits.push(match.index);
+    i+=match.token.length;
+  }
+  return digits;
+}
+const gibranText=fs.readFileSync(path.join(root,
+  'resources/control/gibran_prophet_58585.txt'),'utf8');
+const gibranWords=gibranText.match(/[A-Za-z]+/g);
+assert.equal(gibranWords.length,15733);
+const clearGp=gibranWords.flatMap(nativeGp);
+assert.equal(clearGp.length,62492);
+const controlIoCs=[];
+for(let offset=0;offset+256<=clearGp.length;offset+=113){
+  controlIoCs.push(periodEightColumnIoC(clearGp.slice(offset,offset+256)));
+}
+assert.equal(controlIoCs.length,551);
+const controlsSorted=controlIoCs.slice().sort((a,b)=>a-b);
+assert.equal(controlsSorted[0],0.04914314516129033);
+assert.equal(controlsSorted[275],0.060735887096774195);
+assert.ok(controlsSorted.every(v=>v>originalColumnIoC));
+// A genuinely independently keyed period-eight monoalphabetic cipher,
+// with one arbitrary invertible GP29 map per column, preserves this
+// statistic exactly for ANY hidden permutations.
+let prng=0x33011989;
+function rand(){
+  prng ^= prng << 13;prng ^= prng>>>17;prng ^= prng<<5;
+  return prng>>>0;
+}
+const secretMaps=Array.from({length:8},()=>{
+  const a=Array.from({length:29},(_,i)=>i);
+  for(let j=28;j>0;j--){
+    const k=rand()%(j+1);[a[j],a[k]]=[a[k],a[j]];
+  }
+  assert.equal(new Set(a).size,29);
+  return a;
+});
+const plantedNative=clearGp.slice(0,256);
+const encryptedNative=plantedNative.map((v,i)=>secretMaps[i%8][v]);
+assert.equal(periodEightColumnIoC(plantedNative),
+  periodEightColumnIoC(encryptedNative));
+assert.ok(periodEightColumnIoC(encryptedNative)>originalColumnIoC);
+
 console.log(JSON.stringify({
   premise:'Second p8 red word (8 runes) + black p8 body (243) + physically continued first p9 word tail (5) = 256 = 32x8',
   p8Header:'XIXM',
@@ -230,6 +302,10 @@ console.log(JSON.stringify({
   originalSharedP39QuadraticRemainder:G,
   exactDirectByteIndexMatches:9,
   rowlinearAllSecretRank:rowlinear,
+  allSecretPeriodEightMonoalphabetic:{originalColumnIoC,
+    independentGibranControls:controlIoCs.length,controlMin:controlsSorted[0],
+    controlMedian:controlsSorted[275],originalAtOrAboveNative:0,
+    independentNativeEightPermutationPlant:'256/256 exact collision invariant'},
   romanXIXGraph:{seed:19,uniqueNodes:uniquePath.length,cycleStart:2,
     cycleLength:11,readout:labelReadout.map(i=>corpus.translit[i]).join(' ')},
   romanXIXGraphGP29Inverse:romangraph,
