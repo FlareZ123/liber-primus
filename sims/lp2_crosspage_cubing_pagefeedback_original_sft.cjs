@@ -121,7 +121,7 @@ const orbit = [2, 8, 19, 15, 11, 26];
 for (let i = 0; i < orbit.length; i++) {
   assert.equal(mod(orbit[i] ** 3), orbit[(i + 1) % 6]);
 }
-const key = page => orbit[mod(page - 28) % 6];
+const key = page => orbit[((page - 28) % 6 + 6) % 6];
 
 /**
  * A fully specified reversible GP29 filter. The six-cycle is a speculative
