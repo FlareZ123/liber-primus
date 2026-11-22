@@ -124,6 +124,41 @@ assert.equal(Math.min(...summaries.map((v) => v.padConflicts)), 54);
 assert.equal(Math.max(...summaries.map((v) => v.padConflicts)), 59);
 assert.equal(Math.min(...summaries.map((v) => v.plainConflicts)), 51);
 
+// Grant the *authentic* p56 plaintext-F-transparent clock too. In p55 there
+// are three literal F ciphertext symbols, each of which may or may not use
+// one strip-key slot, so the p56 start may be any slot 73,74,75,76. The one
+// genuine plaintext F in p56 NEVER consumes a strip-key slot. This tests all
+// four possible unknown-page key consumptions, with no original plaintext
+// guess or clock-phase fitting.
+const p55FCipherCount = p55.filter((v) => v === 0).length;
+assert.equal(p55FCipherCount, 3);
+const skipSummaries = [];
+for (let symmetry = 0; symmetry < 8; symmetry++) {
+  for (const reverse of [false, true]) {
+    const strip = sourceStrip(symmetry, reverse);
+    for (let consumed55 = p55.length - p55FCipherCount; consumed55 <= p55.length; consumed55++) {
+      const input = [];
+      const needed = [];
+      let consumed56 = 0;
+      for (let j = 0; j < p56.length; j++) {
+        if (p56[j] === 0) continue;
+        input.push(strip[consumed55 + consumed56++]);
+        needed.push((c56[j] - p56[j] + 29) % 29);
+      }
+      assert.equal(consumed56, 84);
+      const test = contradictions(input, needed);
+      skipSummaries.push({
+        symmetry, reverse, consumed55, consumed56,
+        keyConflicts: test.mismatches
+      });
+      assert(test.mismatches > 0);
+    }
+  }
+}
+assert.equal(skipSummaries.length, 64);
+assert.equal(Math.min(...skipSummaries.map((v) => v.keyConflicts)), 51);
+assert.equal(Math.max(...skipSummaries.map((v) => v.keyConflicts)), 57);
+
 // A planted *nonlinear, secret* 29-way GP lookup proves the consistency test
 // is sensitive. Learn it on synthetic p56 and recover p55 without knowing
 // the planted mapping, at each p55 position covered by p56 source symbols.
@@ -155,6 +190,7 @@ console.log(JSON.stringify({
   historicalP56PrimeMode: '85/85 exact, including one transparent F and 84 key terms',
   allSecretLookup: '0/16 variants consistent with original p56 known plaintext',
   sourceShapes: summaries,
+  sourceTransparentF: { variants: skipSummaries.length, minimumContradictions: 51, maximumContradictions: 57 },
   nonlinearPositive: '0 contradictions; ' + recovered + '/76 planted p55 runes recovered from p56',
   verdict: 'The literal L-strip terminal key-lookup family fails; no LP2 plaintext recovered.'
 }, null, 2));
