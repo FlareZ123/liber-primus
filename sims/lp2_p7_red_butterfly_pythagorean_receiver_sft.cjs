@@ -189,6 +189,45 @@ for (const [label, tape] of Object.entries(regions)) {
     originalReadouts.push({label,mode,n:tape.length,ioc:ioc(result)});
   }
 }
+
+// The two source-exact primitive Pythagorean triples generate genuine
+// determinant-one rotations over GP29. This is a distinct reversible
+// two-rune cipher grammar; no extra runes, padding or fitted numeric key.
+const normRotations = [];
+for (const [legA,legB,hyp] of [euclid(2),euclid(4)]) {
+  const inverseHyp = Array.from({length:28},(_,i)=>i+1)
+    .find(x=>mod(x*hyp)===1);
+  assert.equal(typeof inverseHyp, 'number');
+  const a = mod(legA*inverseHyp), b=mod(legB*inverseHyp);
+  assert.equal(mod(a*a+b*b),1);
+  for (const [label,original] of Object.entries(regions)) {
+    if (label === 'p40to53Holdout') continue;
+    for (const inverseDirection of [false,true]) {
+      for (const swap of [false,true]) {
+        const output=[];
+        for (let i = 0; i < original.length; i+=2) {
+          if (i+1 === original.length) {
+            output.push(original[i]);
+            break;
+          }
+          let left=original[i],right=original[i+1];
+          if (swap) [left,right]=[right,left];
+          let u=mod(a*left+(inverseDirection?b:-b)*right);
+          let v=mod((inverseDirection?-b:b)*left+a*right);
+          if (swap) [u,v]=[v,u];
+          output.push(u,v);
+        }
+        assert(ioc(output)<0.037);
+        normRotations.push({triple:[legA,legB,hyp],label,
+          inverseDirection,swap,ioc:ioc(output)});
+      }
+    }
+  }
+}
+assert.equal(normRotations.length,32);
+assert(Math.abs(Math.max(...normRotations.map(x=>x.ioc))-
+  0.035755245227012074)<1e-12);
+
 // Genuinely clear LP2 p57 native positive, odd final rune preserved.
 const native=gp.pages[57].indices;
 assert.equal(native.length,95);
@@ -254,7 +293,10 @@ console.log(JSON.stringify({
     matchesMiddleEightFifteen: triangleCount,
     middleEightFifteenAndOnlyRootsThreeFour: triangleRootCount
   },
-  originalReadouts,wordReceivers,negativeP53FiveWordWindows: p53Windows.length,
+  originalReadouts,wordReceivers,
+  sourceOrthogonalRotationModels: normRotations.length,
+  sourceRotationMaxOriginalIoC:Math.max(...normRotations.map(x=>x.ioc)),
+  negativeP53FiveWordWindows: p53Windows.length,
   positiveP57RuneCount: native.length,
   plaintextRecovered: false
 },null,2));
