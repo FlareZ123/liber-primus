@@ -230,6 +230,43 @@ assert(Math.abs(Math.max(...normRotations.map(x=>x.ioc))-
   0.035755245227012074)<1e-12);
 
 
+
+// Integer-only certificate that the source-derived FIVE-step 3-4-5
+// to 8-15-17 rotation and SEVEN-step return uniquely select modulus29,
+// rather than merely working in an arbitrary convenient GP field.
+const gaussianMul=([a,b],[c,d])=>[a*c-b*d,a*d+b*c];
+const gaussianPowers=[[1n,0n]];
+for(let k=1;k<=7;k++)
+  gaussianPowers.push(gaussianMul(gaussianPowers.at(-1),[3n,4n]));
+assert.deepEqual(gaussianPowers[5],[-237n,-3116n]);
+assert.deepEqual(gaussianPowers[7],[76443n,16124n]);
+// Clear denominators from ((3+4i)/5)^5 = ((8+15i)/17)
+// and ((3+4i)/5)^7 = 1, in Gaussian integer arithmetic.
+const fiveResiduals=[
+  17n*gaussianPowers[5][0]-8n*5n**5n,
+  17n*gaussianPowers[5][1]-15n*5n**5n
+];
+const sevenResiduals=[
+  gaussianPowers[7][0]-5n**7n,
+  gaussianPowers[7][1]
+];
+assert.deepEqual(fiveResiduals,[-29029n,-99847n]);
+assert.deepEqual(sevenResiduals,[-1682n,16124n]);
+/** @param {bigint} a @param {bigint} b @returns {bigint} */
+function gcd(a,b) {
+  if(a<0n)a=-a;
+  if(b<0n)b=-b;
+  while(b!==0n)[a,b]=[b,a%b];
+  return a;
+}
+const gcdFive=gcd(...fiveResiduals);
+const gcdSeven=gcd(...sevenResiduals);
+const uniquelySelectedModulus=gcd(gcdFive,gcdSeven);
+assert.deepEqual([gcdFive,gcdSeven,uniquelySelectedModulus],
+  [319n,58n,29n]);
+// The only nontrivial integer modulus dividing all four residuals is29.
+// Indeed 319=11*29 and 58=2*29. 5 and17 invert modulo29.
+
 // Key new cross-object source identity: the normalised 3-4-5
 // Pythagorean GP29 rotation has exact order SEVEN, and applying it
 // FIVE times yields exactly the independent printed 8-15-17 rotation.
@@ -360,6 +397,10 @@ console.log(JSON.stringify({
   sourceOrthogonalRotationModels: normRotations.length,
   originalRootRotation:rootRotation,
   powerFiveEqualsPrintedChild:rotationPowers[5],
+  exactGaussianResidualsFive:fiveResiduals.map(String),
+  exactGaussianResidualsSeven:sevenResiduals.map(String),
+  gcdFive:String(gcdFive),gcdSeven:String(gcdSeven),
+  uniquelySelectedNontrivialModulus:String(uniquelySelectedModulus),
   powerSevenIdentity:rotationPowers[7],
   sevenPhasePairRotationModels:cyclicRotationReadouts.length,
   maxSevenPhasePairRotationIoC: Math.max(...cyclicRotationReadouts.map(x=>x.ioc)),
