@@ -18,7 +18,7 @@ const root = path.resolve(__dirname, "..");
 
 /** @param {string} relative @returns {string} */
 function read(relative) {
-  return fs.readFileSync(path.join(root, relative), "utf8");
+  return fs.readFileSync(path.join(root, relative), "utf8").replace(/\r\n/g, "\n");
 }
 const gp = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const solved = JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"));
