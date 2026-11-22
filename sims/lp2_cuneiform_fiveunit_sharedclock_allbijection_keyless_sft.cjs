@@ -102,6 +102,35 @@ function sameColumnPairs(input) {
         matches += Number(input[left][position] === input[right][position]);
   return matches;
 }
+/**
+ * Another source-visible clock resets at every printed word boundary.
+ * Each (word ordinal, within-word offset) may have its own 29-rune secret
+ * permutation, reused across five units. Compare only extant positions.
+ * @param {number[][][]} allWords
+ * @returns {{matches:number,slots:number,byPair:number[]}}
+ */
+function sameWordOffsetPairs(allWords) {
+  const commonWords = Math.min(...allWords.map(words => words.length));
+  let matches = 0, slots = 0;
+  const byPair = [];
+  for (let left = 0; left < 5; left++)
+    for (let right = left + 1; right < 5; right++) {
+      let count = 0;
+      for (let word = 0; word < commonWords; word++) {
+        const a = allWords[left][word], b = allWords[right][word];
+        for (let pos = 0; pos < Math.min(a.length, b.length); pos++) {
+          count += Number(a[pos] === b[pos]);
+          slots++;
+        }
+      }
+      matches += count;
+      byPair.push(count);
+    }
+  return {matches, slots, byPair};
+}
+const originalWordClock = sameWordOffsetPairs(originals);
+assert.deepEqual(originalWordClock,
+  {matches: 15, slots: 636, byPair: [0, 4, 2, 1, 2, 3, 1, 1, 1, 0]});
 const byPair = [];
 for (let left = 0; left < 5; left++)
   for (let right = left + 1; right < 5; right++) {
@@ -169,34 +198,50 @@ function poolOf(words) {
 
 /**
  * Generate exactly the same five original complete-word length profiles,
- * crop each to its original first 91 runes, and count shared-column matches.
+ * crop each to its original first 91 runes and count shared-column matches.
+ * Independently retain all complete words to compare the literal word-reset
+ * clock, whose same-offset positions differ from continuous rune positions.
  * Sampling is independent across messages and words with replacement.
  *
  * @param {Map<number, number[][]>} pool
  * @param {number} seed
  * @param {number} draws
- * @returns {{name?:string, draws:number, mean:number, min:number, max:number,
- *            atOrBelow:number, pUpper:number, sample:number[][]}}
+ * @returns {{draws:number,mean:number,min:number,max:number,atOrBelow:number,
+ * pUpper:number,wordMean:number,wordMin:number,wordMax:number,
+ * wordAtOrBelow:number,wordPUpper:number,sample:number[][],
+ * sampleWords:number[][][]}}
  */
 function calibrate(pool, seed, draws) {
   const next = xorshift32(seed);
   let min = Infinity, max = 0, sum = 0, atOrBelow = 0;
-  let sample = [];
+  let wordMin = Infinity, wordMax = 0, wordSum = 0, wordAtOrBelow = 0;
+  let sample = [], sampleWords = [];
   for (let t = 0; t < draws; t++) {
-    const parallel = lengths.map(shape => shape.flatMap(n => {
+    const generatedWords = lengths.map(shape => shape.map(n => {
       const matching = pool.get(n);
       return matching[next() % matching.length];
-    }).slice(0, W));
+    }));
+    const parallel = generatedWords.map(words => words.flat().slice(0, W));
     const observed = sameColumnPairs(parallel);
-    if (t === 0) sample = parallel;
+    const observedWord = sameWordOffsetPairs(generatedWords).matches;
+    if (t === 0) {
+      sample = parallel;
+      sampleWords = generatedWords;
+    }
     min = Math.min(min, observed);
     max = Math.max(max, observed);
     sum += observed;
     if (observed <= originalMatches) atOrBelow++;
+    wordMin = Math.min(wordMin, observedWord);
+    wordMax = Math.max(wordMax, observedWord);
+    wordSum += observedWord;
+    if (observedWord <= originalWordClock.matches) wordAtOrBelow++;
   }
   return {
     draws, mean: sum / draws, min, max, atOrBelow,
-    pUpper: (atOrBelow + 1) / (draws + 1), sample
+    pUpper: (atOrBelow + 1) / (draws + 1), sample, sampleWords,
+    wordMean: wordSum / draws, wordMin, wordMax, wordAtOrBelow,
+    wordPUpper: (wordAtOrBelow + 1) / (draws + 1)
   };
 }
 
@@ -205,7 +250,9 @@ const solvedPool = poolOf(solved.sections.flatMap(section =>
 ));
 const solvedControl = calibrate(solvedPool, 0x3301a19e, 30000);
 assert.equal(solvedControl.atOrBelow, 0);
+assert.equal(solvedControl.wordAtOrBelow, 0);
 assert(solvedControl.mean > 50 && solvedControl.mean < 60);
+assert(solvedControl.wordMean > 45 && solvedControl.wordMean < 55);
 
 // Positive control: an arbitrary, secretly chosen 29-symbol permutation at
 // EACH position, reused on ALL five lanes, must conserve every equality.
@@ -224,6 +271,34 @@ const planted = solvedControl.sample.map(message =>
 assert.equal(sameColumnPairs(planted),
   sameColumnPairs(solvedControl.sample));
 
+// A second secret-key positive permits each printed word ordinal × internal
+// rune offset to have its own arbitrary alphabet, shared across five items.
+// No equality invariant requires equal word lengths or a fixed word count.
+const wordSecret = xorshift32(0x3301e1ab);
+const maxWords = Math.min(...lengths.map(row => row.length));
+const wordPermutations = Array.from({length: maxWords}, (_, w) =>
+  Array.from({length: Math.max(...lengths.map(row => row[w]))}, () => {
+    const permutation = Array.from({length: 29}, (_, i) => i);
+    for (let i = 28; i > 0; i--) {
+      const j = wordSecret() % (i + 1);
+      [permutation[i], permutation[j]] = [permutation[j], permutation[i]];
+    }
+    return permutation;
+  }));
+const plantedWordClock = solvedControl.sampleWords.map(words =>
+  words.map((word, ordinal) => word.map((symbol, pos) =>
+    ordinal < maxWords ? wordPermutations[ordinal][pos][symbol] : symbol))
+);
+assert.deepEqual(sameWordOffsetPairs(plantedWordClock),
+  sameWordOffsetPairs(solvedControl.sampleWords));
+for (let lane = 0; lane < 5; lane++)
+  for (let w = 0; w < maxWords; w++)
+    for (let pos = 0; pos < solvedControl.sampleWords[lane][w].length; pos++)
+      assert.equal(
+        wordPermutations[w][pos].indexOf(plantedWordClock[lane][w][pos]),
+        solvedControl.sampleWords[lane][w][pos]
+      );
+
 const donors = [
   ['Gibran', 'resources/control/gibran_prophet_58585.txt', 0x3301b00b + 2 * 19],
   ['Emerson', 'resources/control/emerson_essays_2944.txt', 0x3301b00b + 3 * 19],
@@ -235,11 +310,16 @@ const donorResults = donors.map(([name, filename, seed]) => {
     .map(encodeWord);
   const control = calibrate(poolOf(donorWords), seed, 16000);
   assert.equal(control.atOrBelow, 0);
+  assert.equal(control.wordAtOrBelow, 0);
   assert(control.mean > 50 && control.mean < 60);
+  assert(control.wordMean > 45 && control.wordMean < 55);
   return {
     donor: name, trainingWords: donorWords.length, draws: control.draws,
     mean: control.mean, minimum: control.min, maximum: control.max,
-    atOrBelow: control.atOrBelow, pUpper: control.pUpper
+    atOrBelow: control.atOrBelow, pUpper: control.pUpper,
+    wordMean: control.wordMean, wordMinimum: control.wordMin,
+    wordMaximum: control.wordMax, wordAtOrBelow: control.wordAtOrBelow,
+    wordPUpper: control.wordPUpper
   };
 });
 
@@ -253,7 +333,8 @@ console.log(JSON.stringify({
     prefixRunesPerUnit: W,
     symbolComparisons: 10 * W,
     byPair,
-    equalSymbolComparisons: originalMatches
+    equalSymbolComparisons: originalMatches,
+    wordReset: originalWordClock
   },
   solvedNativeControl: {
     draws: solvedControl.draws,
@@ -261,12 +342,20 @@ console.log(JSON.stringify({
     minimum: solvedControl.min,
     maximum: solvedControl.max,
     atOrBelow: solvedControl.atOrBelow,
-    pUpper: solvedControl.pUpper
+    pUpper: solvedControl.pUpper,
+    wordMean: solvedControl.wordMean,
+    wordMinimum: solvedControl.wordMin,
+    wordMaximum: solvedControl.wordMax,
+    wordAtOrBelow: solvedControl.wordAtOrBelow,
+    wordPUpper: solvedControl.wordPUpper
   },
   independentEnglishDonors: donorResults,
   plantedSecretBijectionInvariant: true,
-  scope: 'Only common coordinate-aligned per-position BIJECTIONS'
-    + ' with native-English-like plaintext; independent clocks,'
-    + ' nonbijective maps, code compression and unknown languages remain.'
+  plantedSecretWordResetBijectionInvariant: true,
+  scope: 'Excludes both common continuous rune-position secret BIJECTIONS'
+    + ' and common printed-word-ordinal × within-word-offset secret bijections'
+    + ' into native-English-like plaintext. Per-message keys,'
+    + ' plaintext-F skip, nonbijective coding, resegmentation, and'
+    + ' unknown languages remain possible.'
 }, null, 2));
 console.log('PASS original shared-alphabet equality invariant and controls');
