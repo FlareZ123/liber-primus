@@ -127,6 +127,7 @@ assert.deepEqual(localDeficits, [13, 20, 21, 23, 37, 51, 54]);
 const chapterRanges = [[0, 2], [3, 7], [8, 14], [15, 22], [23, 26],
   [27, 32], [33, 39], [40, 53], [54, 55]];
 const chapterDeficits = [];
+const chapterDeficitsEvenWithTernaryGlyphs = [];
 const starts = new Map();
 let running = 0;
 for (const page of corpus.pages.filter(p => p.page <= 55)) {
@@ -139,14 +140,18 @@ for (const [first, last] of chapterRanges) {
   const chapterWords = words.filter((_, i) => ends[i] > lo && ends[i] <= hi);
   const chapterRunes = chapterWords.reduce((s, w) => s + w.length, 0);
   assert.equal(chapterRunes, hi - lo, "chapter division cannot bisect a word");
-  const nSites = new Set(events.filter(e => e.rune_offset > lo &&
-    e.rune_offset <= hi).map(e => e.rune_offset)).size;
+  const chapterMarks = events.filter(e => e.rune_offset > lo && e.rune_offset <= hi);
+  const nSites = new Set(chapterMarks.map(e => e.rune_offset)).size;
   const sidePositions = choose(chapterWords.length, nSites);
   const encoded = chapterWords.reduce((v, w) => v * codebook(w), 1n);
   const unconstrained = 29n ** BigInt(chapterRunes);
   if (unconstrained > encoded * sidePositions) chapterDeficits.push(first);
+  if (unconstrained > encoded * sidePositions * 3n ** BigInt(chapterMarks.length)) {
+    chapterDeficitsEvenWithTernaryGlyphs.push(first);
+  }
 }
 assert.deepEqual(chapterDeficits, [23, 54]);
+assert.deepEqual(chapterDeficitsEvenWithTernaryGlyphs, [23, 54]);
 
 /** Native-GP, no sidecar: base28 ordered/cyclic nonrepeat-rank inverse. */
 function directInverse(cipher, cyclic, mirror, reverseDigits) {
@@ -241,6 +246,7 @@ console.log(JSON.stringify({
     placementBits: Math.log2(Number(possiblePositions)) },
   insufficientLocalPages: localDeficits,
   insufficientWordPreservingLocalChapters: chapterDeficits,
+  chaptersStillInsufficientWithThreePunctuationSymbols: chapterDeficitsEvenWithTernaryGlyphs,
   solvedIoc: controls, directOriginalInverses: variants,
   plantedPositive: "PASS"
 }, null, 2));
