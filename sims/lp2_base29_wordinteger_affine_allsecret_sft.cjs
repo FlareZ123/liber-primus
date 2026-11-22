@@ -359,6 +359,134 @@ const reorderedNativeControls = [
 assert.deepEqual(reorderedNativeControls.map(x => x.nativeFinalFour),
   [1547, 1553]);
 
+/**
+ * Physical chapter geometry is a genuine, independently visible source
+ * object. These nine runs are frozen by illustrations, not word statistics.
+ * The original rune transcript has 55 nonempty page segments: index>=50
+ * corresponds to physical page one greater (numeric-only p50 omitted).
+ */
+const illustratedChapters = [
+  [0,2], [3,7], [8,14], [15,22], [23,26],
+  [27,32], [33,39], [40,53], [54,55]
+];
+const chapterForWord = text.words.map(word => {
+  const page = word.startPage >= 50
+    ? word.startPage + 1 : word.startPage;
+  const chapter = illustratedChapters.findIndex(([a,b]) => a<=page && page<=b);
+  assert(chapter >= 0, "missing authored illustrated-chapter assignment");
+  return chapter;
+});
+
+/**
+ * Superset of the original word-integer polynomial family: ALLOW ONE
+ * TOTALLY UNKNOWN digit coordinate to serve as the final digit, chosen
+ * independently for EACH illustrated chapter × EACH printed word width.
+ * Follow with any 29-adically compatible bijection separately per
+ * chapter × word width, including unknown degree and polynomial keys.
+ *
+ * Each category histogram is unchanged by the bijective map mod29,
+ * while the chosen original digit position may vary between groups.
+ * Bound = sum over all chapter×width groups of max_j(top-four counts
+ * among 29 values at source word coordinate j).
+ *
+ * This does NOT assume a known coordinate permutation or literal order.
+ * It overgrants the plaintext top-four labels independently per group.
+ *
+ * @param {number[][]} runicWords
+ * @param {number[]} chapters
+ */
+function allSecretChapterPositionBound(runicWords, chapters) {
+  assert.equal(runicWords.length, chapters.length);
+  const groups = new Map();
+  for (let i = 0; i < runicWords.length; i++) {
+    const word = runicWords[i];
+    const id = chapters[i] + ":" + word.length;
+    const arr = groups.get(id) || [];
+    arr.push(word);
+    groups.set(id, arr);
+  }
+  let upper = 0, terminalUpper = 0;
+  const perGroup = [];
+  for (const [id, sourceWords] of groups) {
+    const columns = Array.from({length: sourceWords[0].length}, (_, j) => {
+      const bins = Array(29).fill(0);
+      for (const word of sourceWords) bins[word[j]]++;
+      const top4 = bins.sort((a,b) => b-a).slice(0,4)
+        .reduce((s,n) => s+n,0);
+      return {j,top4};
+    });
+    columns.sort((a,b) => b.top4-a.top4 || a.j-b.j);
+    const best = columns[0];
+    const final = columns.find(x => x.j === sourceWords[0].length-1);
+    upper += best.top4;
+    terminalUpper += final.top4;
+    perGroup.push({
+      group:id, n:sourceWords.length,
+      sourceBestPosition:best.j, sourceBestTop4:best.top4,
+      originalLastTop4:final.top4
+    });
+  }
+  return {upper,terminalUpper,groups:perGroup.length,perGroup};
+}
+const nineChapterPositionBound =
+  allSecretChapterPositionBound(original,chapterForWord);
+assert.equal(nineChapterPositionBound.upper,1145);
+assert.equal(nineChapterPositionBound.terminalUpper,1014);
+assert.equal(nineChapterPositionBound.groups,110);
+
+/** @param {number[]} word @param {number} left */
+function rotateLeft(word,left) {
+  return word.slice(left).concat(word.slice(0,left));
+}
+
+/**
+ * Source-shape positive: source-native original 2,896 GP words encrypted
+ * using chapter×length-specific full-integer modular affine keys AND
+ * chapter×length-specific secret intra-word cyclic position permutations.
+ * The key schedule is deliberately synthetic, not a Cicada claim.
+ *
+ * @param {number[][]} native
+ * @param {string} name
+ */
+function verifyChapterReorderPlant(native,name) {
+  const enc=native.map((word,i)=>{
+    const chapter=chapterForWord[i], L=word.length;
+    const m=29n**BigInt(L);
+    const b=(3301n+1033n*BigInt(L)+BigInt(chapter+1)**3n)%m;
+    const shift=(L+chapter*3+1)%L;
+    return rotateLeft(wordDigits(2n*wordNumber(word)+b,L),shift);
+  });
+  const rec=enc.map((word,i)=>{
+    const chapter=chapterForWord[i],L=word.length;
+    const m=29n**BigInt(L);
+    const b=(3301n+1033n*BigInt(L)+BigInt(chapter+1)**3n)%m;
+    const shift=(L+chapter*3+1)%L;
+    const unscrambled=rotateLeft(word,(L-shift)%L);
+    const inv2=(m+1n)/2n;
+    return wordDigits(inv2*(wordNumber(unscrambled)-b),L);
+  });
+  assert.deepEqual(rec,native);
+  const afterBound=allSecretChapterPositionBound(enc,chapterForWord);
+  const ending=observedTop4Last(native);
+  assert(afterBound.upper>=ending);
+  assert(nineChapterPositionBound.upper<ending);
+  return {
+    source:name,
+    plaintextFourMostCommonEndings:ending,
+    encryptedArbitraryChapterWidthPositionUpper:afterBound.upper,
+    originalArbitraryChapterWidthPositionUpper:nineChapterPositionBound.upper,
+    allWordsRoundtripped:"2896/2896"
+  };
+}
+const nineChapterNativeControls=[
+  verifyChapterReorderPlant(matchedNativeWords(
+    read("resources/control/gibran_prophet_58585.txt")), "Gibran"),
+  verifyChapterReorderPlant(matchedNativeWords(
+    read("resources/control/shakespeare_first300k.txt")), "Shakespeare")
+];
+assert.deepEqual(nineChapterNativeControls.map(x=>
+  x.plaintextFourMostCommonEndings),[1547,1553]);
+
 console.log(JSON.stringify({
   original: {
     completeWords: original.length, sourceRunes: text.runeCount,
@@ -372,6 +500,11 @@ console.log(JSON.stringify({
   polynomialControls,
   allReorderedPositions,
   reorderedNativeControls,
+  nineChapterPositionBound: {upper:nineChapterPositionBound.upper,
+    terminalUpper:nineChapterPositionBound.terminalUpper,
+    groups:nineChapterPositionBound.groups,
+    perGroup:nineChapterPositionBound.perGroup},
+  nineChapterNativeControls,
   affineAlphabetBijectionControls: "812/812 (a 1..28, b 0..28)",
-  conclusion: "ANY invertible 29-adically compatible word-integer map following ANY per-length fixed digit-coordinate permutation has exact original last-rune top-four upper bound 642, versus 1547/1553 native GP-English controls. Stronger fixed-order bound is 609. Verified nonlinear polynomial and reversed-affine full-length plants. No unknown LP2 plaintext/key recovered."
+  conclusion: "Genuine novel extension over prior fixed word-edge result: ANY independent secret digit coordinate and ANY invertible compatible integer cipher per illustrated chapter x word length obeys top-four native GP-English word-final bound 1145, versus 1547/1553 native controls. Synthetic 2896-word chapter-varying affine/coordinate plants pass. No unknown LP2 plaintext/key recovered."
 }, null, 2));
