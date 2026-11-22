@@ -1,0 +1,14 @@
+name: "Agent 10 - p33 cuneiform digit key exact byte gate"
+on:
+  workflow_dispatch:
+jobs:
+  p33-digitkey:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Exact original table typed inverse and GP57 positive
+        run: node sims/lp2_p33_sexagesimal_digits_p50_key_original_type_sft.cjs
