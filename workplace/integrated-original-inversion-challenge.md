@@ -1,6 +1,6 @@
 # Integrated original inversion challenge
 
-## Decision frontier — evidence reviewed through 21 November 2026, 21:02Z; ten new executable Director decisions
+## Decision frontier — evidence reviewed through 22 November 2026, 00:49Z; eight post-checkpoint decisions closed, seven open tasks remain
 
 All **56 unresolved LP2 physical pages p0–p55 remain undeciphered**. The 55 rune-bearing pages contain 12,956 original GP29 ciphertext runes in 2,896 printed words; physical p50 is a rune-free 32×8 table of 256 two-character tokens. P55 contains 76 runes. No authenticated unknown-page plaintext, creator-supplied unknown-page key, complete original-cipher inverse, or verified final Cicada destination has been recovered.
 
@@ -81,6 +81,8 @@ The p27/DH construction's two peels leave a 28×4 core with a 60-cell perimeter.
 
 The 729=27² total and three-page visual unit make a 27×27 reshape plausible, but the original lines are 19–25 runes wide and page boundaries do not align to 27 columns. The p0 13-dot mark is a heading/body delimiter, not a cipher state; the (13,12) anchor is inferred. P56/2014 sources justify trying φ, and cicada artwork supports μ(page), but neither selects center-only φ, μ(φ(k)) key rotation, or the sum-of-totients movement rule. The frozen n=13 opening remains the sole all-native-GP run among 105 source-word-aligned eligible states and yields AS / I / GO / THE; the physical p0 boundary then fixes WEATHER / TURNS. Preserve it as strong intermediate structure, not source-authenticated plaintext. Issue #1961 closes negative; the original blind p0→p1 gate still exposes a 36-way post-TURNS family (#1629/#1646).
 
+**22 November source-selector adjudication (#2130):** the original pp0–2 scans have 12/12/9 printed lines, no grid or origin marks, and only a source-fixed 180° rotation of the decorative cross artwork. The two-cross/three-bar counts do not assign the center NG and left OE runes to a 27×27 coordinate system; the 2×79/3×83 factor map is retrospective. This retires that factor-map branch only, not the separate COLD structural candidate below.
+
 A later independent p50/DH construction now removes those three directional degrees of freedom. The shared2 twice-shed circumference has a unique 15-edge geodesic from root189 to address186 with physical turn sequence **DOWN6 / LEFT3 / UP6**. Signed generator5 lands at cell229/`00` on its first leg, independently tying the orientation to the `3301 -> 229/00 -> p0` route. Applying the three ring directions in the frozen transition's procedural order selects DOWN key-center, LEFT start and UP read, exactly the branch whose already locked LP1 checksum requires four runes and yields **COLD** with exact forward reconstruction. The reverse geodesic would require a RIGHT distance-12 start, which is outside the 27×27 grid. This resolves the old 36-way structural underselection, but it remains retrospective because the ring bridge was recognized after COLD was already known. Treat COLD as a strengthened candidate. A prospective block39 holdout prevents extending this selector as a general transition rule: the frozen `DOWN6/LEFT3/UP6` vector predicts center `(12,10)`, radius6 and untouched source node `L-OE-H`, exactly satisfying the predeclared horizontal/even-even/even-radius/`(0,+1,0)` source-key forecast, yet both node orientations give zero complete outputs under the pre-existing Shakespeare and 1,465-word Shakespeare+Gibran gates across all132 legal ciphertext paths. Preserve the local COLD bridge and reject direct ring-vector propagation without a new source instruction. [Ring selector](../im-results/lp2-p50-shared2-ring-p0p1-cold-selector.md).
 
 The post-THEN Blocks18/19 construction is not structurally rare (#1614); the external Reports07–19 audit found zero unseen transitions uniquely selected before language scoring (#1613); and the distinct post-KEY Blocks20–24 formulas are reproducible post-hoc fits, not plaintext (#1622). The title-recurrence continuation to p50 cell255 has no source-selected receiver (#1612).
@@ -159,75 +161,55 @@ Treat Liber Primus as a designed human puzzle, but infer creator habits cautious
 - **Solved p57 punctuation pair → local p50 base59 bridge and p28 DH modulus (21 Nov; source-visible selector, not plaintext).** p57 has a red 13-dot mark after PARABLE and the unique terminal red 23-dot mark. The fixed family over large-mark counts {10,13,23} gives exactly one base59 edge, 13→23, and none under base60: 13th prime41→p50[41]=1O→base59 83; 23rd prime83; GP0(EMERGE)=83 for the solved word immediately before the terminal23 mark. The 23-dot mark independently reselects p=23 for the FIND-selected p28 DH line. The 13-dot count is common (31/36), so the base59 result is a local ordered-pair discriminator, not a global radix. See [source report](../im-results/lp2-p57-terminal23-p28-dh-modulus-selector.md) and [SFT](../sims/lp2_p57_terminal23_p28_dh_modulus_sft.cjs).
 - **p57 23-dot → p0–p2 23-cycle (negative).** The original terminal object has 23 dots in five staggered columns [4,5,5,5,4] and no marked start/direction. The body-only p0–p2 construction gives a 23-cycle only after excluding the two red title words; the equally literal inclusive construction gives a 5-cycle. The mark instead has the source-supported p28 DH modulus and local p50 base59 roles; it does not authenticate the p0 pointer graph.
 
-## Current decision gates and research handoffs (21 November 2026; reconciled 2026-11-21T23:16:57.769Z)
+## Current decision gates and research handoffs (22 November 2026; reconciled 2026-11-22T00:49:48Z)
 
-**Established scientific status:** all 56 unresolved LP2 physical pages p0–p55 remain undeciphered in the independently reproducible sense. No authenticated unknown-page plaintext, complete original-cipher inverse, or verified final Cicada destination has been recovered. results/README.md remains the authoritative scientific synthesis; this is the replaceable coordination frontier.
+**Established scientific status:** all 56 unresolved LP2 physical pages p0–p55 remain undeciphered in the independently reproducible sense. No authenticated unknown-page plaintext, complete original-cipher inverse, or verified final Cicada destination has been recovered. `results/README.md` remains the authoritative scientific synthesis; this is the replaceable coordination frontier.
 
 ### Leading routes and weakest assumptions
 
-- **p50 graph:** physical page-order is retired by #2106; the conditional 58-node graph may still be navigation or a page-private/word-level state source, but no cipher operation is established.
-- **p28 D4 → DIRECTION → p23:** source-shaped page selector; p23 φ receiver fails at rune17 (#2103). Independent visual null for the 180-degree p23/p56 five-dot match is #2112.
-- **p55 DIRECTION→72.jpg:** conditional page selector; p55 tree-to-rune mapping has no source-fixed branch order (#2104). The distinct 43/33 text partition is #2110.
-- **p0–2 158 words ↔ p49+p51 158 runes:** exact count alignment, but line/row and line/column geometry do not provide a source-selected coordinate; #2105 closed.
-- **p50 256/512 event phase:** borderline rare-doublet recurrence; #2083 is active mechanism work, #2107 is independent null validation.
-- **p57 20-word / 11+2 register:** candidate word-level state, not page order; #2113 tests for an explicit source-selected consumer.
-- **p50 root201 56-node component:** candidate page-private state schedule, not page order; #2108 requires a source-fixed page→node mapping and update.
-- **word-private/variable-length GP29:** not excluded by the stationary five-back result, but needs an original reset/escape rule; #2109.
-- **p0 13-red-rune heading:** fixed 13-column/p56-φ candidate fails; only a source-authenticated nonstationary seed/update remains exploratory (#2114).
-- **p55 43/33 exterior/interior split:** source-shaped partition, but exterior-key role unproven (#2110).
-- **p56 deep-web digest:** algorithm, serialization and target bytes unresolved; #2111 is restricted to first-party selector evidence.
-- **base59/base60:** no original radix legend; #2099 closed with identical support across all 256 cells.
-- **p7/p8 quartic:** no source-selected field, coordinates or receiver opcode; #2100 closed.
-- **p57 50+5+2 edge tape:** no first-party edge-state update; #2096 closed.
-- **p15 red-span / signed DIRECTION→p32:** no independently selected four-branch cut in original p32 tree; #2097 closed.
-- **root173 eight-node component:** no unique eight-column mapping; #2098 closed.
-- **p23/p39 factor bridge:** no source-selected quotient receiver; #2091 closed.
-- **p55 moth-quotation and terminal 1C/1D/1E φ cribs:** both bounded negatives; do not revive.
+- **p50 graph:** physical page-order is retired. The conditional base60 graph remains a possible navigation or state source, but neither its radix nor a value-changing cipher receiver is authenticated.
+- **p28 / DH23:** the p28 DH line and signed 2013 example give a source-motivated local state candidate. The newer p28 line6/word19→p50 cell158 bridge (#2129) requires an unselected transposed mixed-origin coordinate rule; retain 158↔249 as conditional arithmetic, not a key route.
+- **p0 opening / COLD:** the 27×27 layout and COLD local structure remain intermediate, retrospective candidates. #2130 rejects the proposed center/left prime-factor coordinate selector; the separate block39 holdout already rejects propagation of the DOWN6/LEFT3/UP6 ring vector as a general transition.
+- **p0 event / DH / WILL:** the complete YOUA and NGXO event groups conditionally route to p38:54 and a=6, but no first-party source authorizes the global event clock or its use as a key schedule. The already-known local WILL candidate is not reusable: GOOD→LUCK fails the proposed four-slot DH23 pad even when per-word DH parameters are allowed. No substantial original plaintext follows.
+- **p33 Stage7/Stage10:** 49 black words and the historical 7×7/1033 square make a plausible navigation/reference link. #2128 finds no source-selected word-cell alignment or operation; the fixed wordwise shift is nonlinguistic. Keep the square as historical cross-reference only.
+- **p51→p32:** WWP81→p50 T^19→p32 is conditional navigation. #2131 finds no original 11×11 layout, perimeter order, or reversible 40-symbol retention rule.
+- **p55 terminal / deep-web hash:** p57's SHED language motivates the 43/33 partition, but no complete all76-rune inverse exists. #2135 identifies hash-matching external page bytes as the first executable terminal action; no bytes/URL are available and no p55 opcode follows. Keep #41 waiting.
+- **external artwork:** #2116 verifies internal LP1→LP2 image reuse, not an external source-selected key. The mayfly and Evans Fig.12 attributions remain unverified as exact original-image parents.
+- **p57 orthography:** #2132 confirms that ᛝ represents NG/ING in the original GP chart and solved controls; TUNNELNG is not an omitted-I signal.
+- **repeated ciphertext:** #2134 was correctly closed as duplicate; the existing whole-corpus cross-page SFT already contains the only six-rune DJU-BEI pair and no seven-rune repeat. No independent holdout supports a shared-state continuation.
+- **p50 radix:** no original global digit legend; #2099 remains closed with equal support across all 256 cells.
+- **p55 43/33 exterior/interior split:** the partition is source-shaped, but the exterior-key role and a reversible map for all76 glyphs remain unproven (#2110, #2135).
 
-### Recent closures reviewed through #2103 at 23:10:16Z
+### Recent closures reviewed through #2135 at 00:49:48Z
 
-Issues #2081–#2106 have been reviewed. No closure recovered unknown LP2 plaintext, an authentic unknown-page key, a complete inverse, or a final destination.
+Eight post-checkpoint decisions are now closed. None recovers unknown-page plaintext, an authenticated unknown-page key, a complete inverse, or the final destination.
 
-- **#2081:** 2013 COUNT correspondence lacks an authoritative opcode or original daemon.
-- **#2082:** PARABLE product/5×5 tile and fixed p50 readouts did not decrypt an unknown page.
-- **#2084:** no source-selected Latin-versus-GP key clock.
-- **#2085:** original JPEG metadata/payload audit found no key material.
-- **#2087:** no first-party p50 byte codec.
-- **#2088:** Stage11 133/331 does not select a page-order key.
-- **#2089:** p27/p55→p56 seven-rune bookend does not establish state transfer.
-- **#2090:** nine-section red headings do not establish a global key schedule.
-- **#2091:** p23/p39 factors lack a source-selected quotient receiver.
-- **#2095:** fixed 13-cycle rank transposition + p56 φ/F-transparent inverse fails both layer orders on p0 at rune86/235.
-- **#2096:** no authenticated edge-state opcode for p57's 50+5+2 tape.
-- **#2097:** original p32 tree has no independently selected four-branch cut/order.
-- **#2098:** root173 eight-node component does not determine a unique eight-column permutation.
-- **#2099:** base59/base60 share identical 256-cell support (likelihood ratio1); no source-visible global radix rule.
-- **#2100:** p7/p8 quartic has no first-party field, coordinate grammar or body receiver.
-- **#2101:** authenticated creator-design prior found no new cipher; its proposed p55-tree and quartic follow-ups have since closed negative.
-- **#2102:** dated non-GitHub solver audit found no reproducible unknown-page plaintext/key or new source bytes.
-- **#2103:** p28 route selects p23, but the p23/p56 five-dot alignment does not select a cipher; p56 φ/F-bypass paths fail p23 at rune17.
-- **#2104:** p55 tree has no source-fixed branch order, root-to-leaf direction or rune mapping.
-- **#2105:** 158/158 count match lacks a coordinate: 33 p0–p2 lines versus32 p50 rows, and7 p49/p51 lines versus8 columns.
-- **#2106:** all tested physical chapter paths fail; every leaf-first sibling order contradicts the p50 anchor. Retire physical page order.
+- **#2116:** exact internal LP1→LP2 artwork reuse; no external plate plus first-party key/operation. Retire broad visual sweeps.
+- **#2128:** p33's 49-word/7×7 size correspondence lacks a source-selected word-cell mapping and opcode; the fixed wordwise Stage04 shift fails on original ciphertext and the reserved row.
+- **#2129:** the p28→p50 158/249 coordinate transform has no first-party axis/origin convention; keep as conditional navigation only.
+- **#2130:** p0's 27×27 center/left factor map is not selected by the original crosses or text layout.
+- **#2131:** p32's 11×11/perimeter proposal lacks an original grid, traversal and reversible handling of the 40 exterior symbols.
+- **#2132:** TUNNELNG is ordinary source GP orthography for TUNNELING, not a missing-symbol instruction.
+- **#2134:** duplicate of existing cross-page exact-repeat census and conditioned word-pair nulls; no new ≥6-rune holdout.
+- **#2135:** terminal-only source audit finds no p55 inverse; the hash requires missing external page bytes, and no independent blind worker result exists.
 
-### Current executable Director queue
+### Current open issue state (snapshot 22 November 2026, 00:49:48Z)
 
-Eight currently unclaimed assignments remain:
+Seven Director-task issues remain open:
 
-- **#2107 (P2):** independent max-statistic null audit of the 256/512 adjacent-doublet phase anomaly.
-- **#2108 (P2):** p50 root201 56-node component as a page-private state schedule.
-- **#2109 (P2):** source-selected word-private or variable-length GP29 transformation.
-- **#2110 (P1):** source-selected role for p55's 33 exterior runes relative to its 43 interiors.
-- **#2111 (P2):** first-party hash algorithm and serialization for p56's deep-web digest.
-- **#2112 (P2):** independent original-image null test of the p23/p56 five-dot 180-degree correspondence.
-- **#2113 (P2):** p57 20-word / p50 11+2 cycle as a word-level register.
-- **#2114 (P2):** source-authenticated stateful use of p0's 13 red heading runes on its black body.
+- **#2083 (P0; no live claim):** the p0 event/DH/WILL chain remains conditional. Its current reusable four-slot DH23 pad is rejected by the independent GOOD→LUCK holdout; a different first-party operation and substantial withheld plaintext are required before promotion.
+- **#2117 (P2; blocked):** the original-only p0–p5 packet is complete, but independent-worker requests failed before dispatch. No blind solve or negative human result exists.
+- **#2133 (P2; active claim):** build a source-native GP29 morphology/word-coverage control with genuinely held-out solved words before reconsidering the bounded p7 five-tap key equations.
+- **#1886 (P2; blocked):** exact-host Wikidot archive retrieval attempts failed at transport or service limits. These are not evidence that the alleged PDFs never existed.
+- **#2070 (P1; blocked):** independent cold-solver recruitment failed at the worker service; no blind trace exists.
+- **#41 (P0; WAITING):** no complete source-selected reversible decoder for all76 original p55 glyphs is eligible for adversarial testing.
+- **#1335 (P2; WAITING):** the remaining acceptance item is an unaffiliated human judgment on the balanced p55 packet; repository-aware agents and models are ineligible.
 
-Older open tasks remain claimed, blocked or waiting: #2083 (Agent30's active mechanism investigation), #2070 (blind human solve), #1886 (exact Wikidot archival bytes), #1335 (human p55 ghost-tree oracle), and #41 (typed p55 inverse). Eight unclaimed executable Director tasks remain; the repository stays below the 30-issue ceiling.
+**Queue warning:** only seven issues are open in total, one has a live claim (#2133), and five are explicitly blocked or waiting. #2083 has no live claim and its current pad route has a decisive holdout failure. The 8–12 unclaimed executable-task target is not met. The Director should replenish the queue with genuinely distinct, source-constrained investigations rather than revive the closed branches or reissue blocked worker requests without a changed service condition.
 
 ### Director operating constraints
 
-Do not repeat exact #2095–2106 candidates, direct additive p50 path keys, page-prime starts, stationary five-back lookup bijections, p56 outer-layer sweeps, JPEG metadata scans, 133/331 page permutations, p55 76-rim rank transpositions, the p55 moth crib, or terminal 1C/1D/1E double-φ. Keep 2014 trailing whitespace unauthenticated. Do not launch an arbitrary 256-key sweep from the provisional event-phase association. The next decision must connect an original clue to a reversible operation or authentic key; structural alignments alone do not justify dependent work.
+Do not repeat exact #2095–2106 candidates, direct additive p50 path keys, page-prime starts, stationary five-back lookup bijections, p56 outer-layer sweeps, JPEG metadata scans, 133/331 page permutations, p55 76-rim rank transpositions, the p55 moth crib, or terminal 1C/1D/1E double-φ. Keep 2014 trailing whitespace unauthenticated. Do not launch an arbitrary 256-key sweep from the provisional event-phase association. The next decision must connect an original clue to a reversible operation or authentic key; structural alignments alone do not justify dependent work. Also do not reopen the p33 49-word shift, p28 mixed-origin cell158, p0 27×27 center-factor map, p32 11×11 perimeter, TUNNELNG-as-omission, or whole-corpus ≥6-rune repeat census without a new independent first-party selector. The p0 event/DH route cannot be generalized through the failed GOOD→LUCK four-slot holdout.
 
 ### Acceptance standard
 
