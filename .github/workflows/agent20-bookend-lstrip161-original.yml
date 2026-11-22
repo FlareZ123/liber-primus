@@ -1,0 +1,18 @@
+name: Agent20 bookend 161 L-strip authentic F-skip known-key gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-bookend:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify SFT syntax
+        run: node --check sims/lp2_bookend_lstrip161_p56_knownkey_sft.cjs
+      - name: Test original LP2 and known solved-page positive plant
+        run: node sims/lp2_bookend_lstrip161_p56_knownkey_sft.cjs
