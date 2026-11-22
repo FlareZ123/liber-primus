@@ -35,7 +35,7 @@ const redOffsets = new Set();
 let pageStart = 0;
 for (let page = 3; page <= 7; page++) {
   const annotation = ink.pages.find(x => x.page === page);
-  for (const span of annotation.red_spans || []) {
+  for (const span of annotation?.red_spans || []) {
     for (let i = 0; i < span.length; i++) redOffsets.add(pageStart + span.start + i);
   }
   pageStart += corpus.pages[page].indices.length;
@@ -122,7 +122,7 @@ for (const scope of scopes) {
       for (const sign of [-1,+1]) {
         const decoded = transform(scope.target, key, sign);
         assert.deepEqual(transform(decoded, key, -sign), scope.target,
-          'Original ciphertext must reenrypt exactly');
+          'Original ciphertext must reencrypt exactly');
         runs.push({
           scope:scope.name, mode, seed, sign,
           len:decoded.length, ioc:ioc(decoded), matches,
