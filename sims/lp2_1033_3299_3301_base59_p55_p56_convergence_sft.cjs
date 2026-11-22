@@ -82,6 +82,29 @@ const positions=token=>cells.flatMap((value,i)=>value===token?[i]:[]);
 assert.deepEqual(positions("49"),[9,158,227]);
 assert.deepEqual(positions("00"),[192,229]);
 assert.deepEqual(positions("0u"),[94,245]);
+
+// The two literal "0u" cells reside precisely on the second 32x8
+// concentric ring, exposed after one perimeter peel. This is compatible
+// with the authenticated p57 instruction to shed circumferences.
+const layer=index=>{
+ const row=Math.floor(index/8),column=index%8;
+ return Math.min(row,31-row,column,7-column);
+};
+assert.deepEqual(positions("0u").map(layer),[1,1]);
+assert.equal(layer(state),1);
+const outerPerimeter=cells.flatMap((_,i)=>layer(i)===0?[i]:[]);
+assert.equal(outerPerimeter.length,76);
+assert.equal(outerPerimeter.length,p55.indices.length);
+const firstShed=Object.freeze({
+ fullGrid:"32x8",
+ outerPerimeterLength:outerPerimeter.length,
+ p55RuneCount:p55.indices.length,
+ originalP57Instruction:"WE MUST SHED OUR OWN CIRCUMFERENCES",
+ exposedIdenticalTokens:"0u",
+ exposedCells:positions("0u"),
+ exposedRingDepth:1
+});
+
 const directDestinationByKey={
   base59Page:p55.page,
   base60Page:p56.page,
@@ -96,7 +119,7 @@ console.log(JSON.stringify({
   originalTokenMultiplicity:{
     "49":positions("49"),"00":positions("00"),"0u":positions("0u")
   },
-  terminal,
+  terminal,firstShed,
   independentlyEquivalentOriginal3301Base59:"55×59+56",
   receiverPages:{p55RuneCount:p55.indices.length,
     p56RuneCount:p56.indices.length},
