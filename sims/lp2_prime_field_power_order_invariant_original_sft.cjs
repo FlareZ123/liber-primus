@@ -144,6 +144,38 @@ function main() {
     symbols: Array.from({ length: F }, (_, i) => i).filter(i => order(i) === k)
   }));
 
+  const sourceSymbolCounts = Array(F).fill(0);
+  original.forEach(x => { sourceSymbolCounts[x] += 1; });
+  const minWhole = Math.min(...sourceSymbolCounts);
+  const maxWhole = Math.max(...sourceSymbolCounts);
+  assert.equal(minWhole, 399);
+  assert.equal(maxWhole, 492);
+
+  const sections = [[0, 2], [3, 7], [8, 14], [15, 22],
+    [23, 26], [27, 32], [33, 39], [40, 53], [54, 55]];
+
+  /** @param {number[]} sequence @returns {number} */
+  function minimumSymbolCount(sequence) {
+    const counts = Array(F).fill(0);
+    for (const x of sequence) counts[x] += 1;
+    return Math.min(...counts);
+  }
+
+  const chapterMinimums = sections.map(([from, to]) => {
+    const sequence = corpus.pages.filter(p => p.page >= from && p.page <= to)
+      .flatMap(p => p.indices);
+    return { from, to, runes: sequence.length,
+      minimum: minimumSymbolCount(sequence) };
+  });
+  const chapterMinTotal = chapterMinimums.reduce(
+    (sum, section) => sum + section.minimum, 0);
+  const pageMinTotal = corpus.pages.filter(p => p.page <= 55 && p.indices.length)
+    .reduce((sum, page) => sum + minimumSymbolCount(page.indices), 0);
+  assert.deepEqual(chapterMinimums.map(x => x.minimum),
+    [17, 26, 44, 50, 21, 39, 40, 83, 4]);
+  assert.equal(chapterMinTotal, 324);
+  assert.equal(pageMinTotal, 180);
+
   const C = orderCounts(original);
   assert.deepEqual(ORDERS.map(x => C[x]),
     [458, 450, 460, 844, 2669, 2688, 5387]);
@@ -202,6 +234,18 @@ function main() {
   assert.deepEqual(recovered, known);
   assert.deepEqual(orderCounts(encryptedPlant), orderCounts(known));
 
+  // Even a completely arbitrary *fixed* output alphabet permutation must
+  // map the singleton plaintext EA index28 to one dedicated cipher symbol.
+  // A secret chapter-specific or page-specific permutation permits one such
+  // designated cipher symbol per segment, yielding exact pigeonhole bounds.
+  const outputPermuted = encryptedPlant.map(value => (3 * value + 5) % F);
+  const outputUnpermuted = outputPermuted.map(value =>
+    (10 * (value - 5 + F)) % F); // 3^-1 = 10 in GF29
+  assert.deepEqual(outputUnpermuted, encryptedPlant);
+  const outputRecovered = outputUnpermuted.map((value, i) =>
+    power(value, inverseExponent(primeExponents[i] % PHI)));
+  assert.deepEqual(outputRecovered, known);
+
   const results = [
     ['Unknown original p0-p55', original.length, C[4]],
     ['Solved original p56+p57', known.length, countKnown[4]],
@@ -218,6 +262,13 @@ function main() {
     fieldOrderClasses: secretPowerClasses,
     invertibleExponents,
     originalClassCounts: C,
+    arbitraryFixedOutputPermutation: {
+      requiredEAPlaintextMinimum: minWhole,
+      requiredEAPlaintextMaximum: maxWhole,
+      chapterIndependentOutputPermutationEAminimum: chapterMinTotal,
+      pageIndependentOutputPermutationEAminimum: pageMinTotal,
+      chapterMinimums
+    },
     solvedP56ClassCounts: count56,
     solvedP57ClassCounts: count57,
     comparatorRates: results,
