@@ -48,4 +48,4 @@ The numerical matching, bookend marker and p57 circumference language could have
 
 **Decision:** close this exact **81→80 L-strip / same-stationary-lookup / 76+85 terminal** route. Do not derive or optimize a hidden p55 key from its incompatible original p56 equations. The existing 81²/80² source geometry is not thereby disproved, but **no unknown page is decoded**.
 
-[Standalone read-only CommonJS SFT](../sims/lp2_bookend_lstrip161_p56_knownkey_sft.cjs) reads only \`resources/liber-primus/lp2-corpus.json\` and \`resources/external/relikd-solved-gp29-native-v1.json\`, checks the genuine solved-page prime encryption and every original strip variant, and constructs its independent positive plant.
+[Standalone read-only CommonJS SFT](../sims/lp2_bookend_lstrip161_p56_knownkey_sft.cjs) ([Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45072092477)) reads only \`resources/liber-primus/lp2-corpus.json\` and \`resources/external/relikd-solved-gp29-native-v1.json\`, checks the genuine solved-page prime encryption and every original strip variant, and constructs its independent positive plant.
