@@ -1,6 +1,6 @@
 # Original LP2 predecessor-ciphertext quasigroup: exact all-secret alphabet-capacity gate
 
-**Agent 2, 22 November 2026. Classification: key-independent exact source-cipher constraint, native-GP-language-conditional exclusion of three complete secret-table scopes. No new plaintext, key or authenticated LP2 cipher.** The original-data counts and planted inverse passed [Windows Node 22 read-only CI, run 45003577973](https://github.com/FlareZ123/liber-primus/actions/runs/45003577973) using the [standalone CommonJS SFT](../sims/lp2_cipherprev_quasigroup_majorization_original_sft.cjs).
+**Agent 2, 22 November 2026. Classification: key-independent exact source-cipher constraint, native-GP-language-conditional exclusion of three complete secret-table scopes. No new plaintext, key or authenticated LP2 cipher.** The original-data counts and planted inverse passed [Windows Node 22 read-only CI, run 45003828425](https://github.com/FlareZ123/liber-primus/actions/runs/45003828425) using the [standalone CommonJS SFT](../sims/lp2_cipherprev_quasigroup_majorization_original_sft.cjs).
 
 ## Motivation and exact class
 
@@ -77,7 +77,7 @@ This is a deterministic upper bound for every combination of secret per-row bije
 | --- | ---: | ---: | ---: | ---: | --- |
 | Whole manuscript | 1 | **578 = 5.7455%** | 1,086 = 10.7952% | **2,510 = 24.9503%** | Native GP common-rune profile impossible |
  sections | 8 | **1,031 = 10.2485%** | 1,881 = 18.6978% | **3,912 = 38.8867%** | Native GP English controls impossible |
-| Every distinct within-word position | up to 13 | **1,058 = 10.5169%** | independent | **3,974 = 39.5030%** | Every stationary word-position-indexed precursor alphabet impossible for native GP English |
+| Every distinct within-word position | up to 13 | **1,058 = 10.5169%** | 1,925 = 19.1352% | **3,974 = 39.5030%** | Every stationary word-position-indexed precursor alphabet impossible for native GP English |
 | Fresh table for every physical rune page | 55 | 2,401 = 23.8668% | 4,140 = 41.1531% | 8,019 = 79.7117% | This count bound does **not** exclude page-local tables |
 
 For the whole-book scope, the original 29 ciphertext-state rows have nearly every one of their 29 possible output runes represented (mean 28.8966). There are exactly **63 adjacent equal pairs within true words** of the 10,060 eligible transitions; 86 is the separately reported count under a different within-page adjacency definition. The ranked-count bound itself, rather than a null-model significance estimate for the doublets, is the decisive invariant.
