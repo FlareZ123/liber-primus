@@ -67,6 +67,21 @@ To quantify how often *some* of the eight D4 mappings would hit both exact sourc
 The obvious complete reversible consumer would invert the 256-rune 180-degree-rotated prefix against the original p50 table:
 `P[i]=(C[728−i]−T[i]) mod29` for `0≤i<256`, with positive sign as a rival. Under subtraction, both selected cycle cells have GP29 arithmetic output **zero** while their original rotated ciphertext runes are **nonzero** (P=13 and B=17). Consequently **these two algebraic zeros cannot be literal plaintext-F skips under the authenticated p56 F-transparent cipher**, which requires ciphertext F whenever plaintext F. The candidate output has **11 zeros overall**, an **IoC 0.0340993** and LP1-native log-trigram mean **−3.4205941**, far below solved clear p57's **−2.4681447**. The opposite sign has IoC **0.0358150**, trigram mean **−3.4012635**, likewise no readable prose. Exact forward reconstruction of either trial is automatic. **This direct rotated-table additive decoder fails to recover plaintext.**
 
+### New center-of-square GP-prime factor match
+
+The same source-motivated original 27×27 arrangement contains a second independent link to the 249↔158 table cycle. Its unique central original rune is **NG (GP index21, prime79)** at global position364; the rune immediately **left** of it is **OE (GP index22, prime83)** at position363. They are adjacent in the GP alphabet and their prime values are consecutive ordinary primes. These original cells exactly factor the two independently observed count/table coordinates:
+
+```text
+first-chapter word count158 = 2 × prime(center NG) = 2 × 79
+p0 black body count249      = 3 × prime(left OE)  = 3 × 83
+```
+
+Original pp0–2 illustrations show **two separate three-bar cross ornaments**, so the factors 2 and3 are both also source-visible *counts*. Whether the author intended the mapping “2 × centered rune prime” and “3 × left-neighbor prime” is unproved: the assignment of factors to sites remains a hypothesis. The precise center and left-neighbor are especially natural in an odd-order 27² square, although other neighboring sites and different factorizations were available to an exploratory solver.
+
+Under a *fixed source-chapter 729-rune multiset* shuffled uniformly, the two exact ordered glyphs (left OE and center NG) have probability **29×25/(729×728) = 0.00136608933**. If the center must be NG but **any of the eight surrounding neighbors** may be OE, that event rises to **0.00974301754**. These values condition on the observed cross-geometry, two small prime multipliers, and pair of counts; they are **not discovery-adjusted** against the many center/neighbor arithmetic alternatives that could have been examined. The event changes neither the table-cipher impossibilities nor the lack of known plaintext.
+
+The source-based prime pair also offers a frozen, minimal additive-key trial on the p0 black body: repeat `[prime(OE),prime(NG)] mod29 = [25,21]` in printed left-to-center order, using the historically solved p56 subtraction direction. The original-body output has **IoC 0.0338127** and no recognizable original-length words. The opposite sign IoC is 0.0335860. This little two-symbol clock supplies no authentic plaintext. All source prime and original-runic centre assertions are included in the 27-square SFT below.
+
 ### Further source-directed terminal-word sum, plus exact substitution obstruction
 
 There is one more **explicitly retrospective cross-register equality** that follows the p50 two-cycle as a natural word address: T[249] points to **word number158** in the 158-word opening chapter, the terminal printed word of physical p2. Under the canonical first-chapter parser this nine-rune word is `HDNIAUPSUW` (GP spell), at the final nine rune positions `C[720..728]`. It has **GP0 index sum104** (the only one of the chapter's 158 printed words with this sum) and GP-prime sum369. The **two separately half-turn-selected original rune symbols** have GP indices P=13 and B=17, whose **GP-prime weights are 43+61=104**. Thus
