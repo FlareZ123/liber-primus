@@ -98,4 +98,48 @@ console.log("RESULT: direct fixed deterministic byte -> GP29 rune-pair",
   "unambiguous byte instances disagree with original paired runes)");
 console.log("RESULT: no decoded original prose, no key or stateful",
   "byte-code exclusion; 22-rune split has no independent rubric marker");
+
+/**
+ * Distinct single-register stateful alternative: one previous output GP29
+ * rune is the complete decoder state. If the same input byte and same
+ * predecessor rune occur twice, their deterministic two-rune outputs must
+ * agree, irrespective of unknown secret table entries for all 256*29 states.
+ * Check all same source-physical 4 direction/byte traversal pairs.
+ */
+const predecessorRows = [];
+for (const tableOrder of ["row-major", "column-major"]) {
+  for (const bodyOrder of ["forward", "reverse"]) {
+    const sourceRunes = bodyOrder === "forward" ? body : body.slice().reverse();
+    let collisions = 0, contradictions = 0;
+    const seen = new Map();
+    for (let i = 0; i < 256; i++) {
+      const j = tableOrder === "row-major" ? i :
+        (i % 32) * 8 + Math.floor(i / 32);
+      if (ambiguousCellIndices.has(j)) continue;
+      const byte = bytes[j];
+      const prev = i > 0 ? String(sourceRunes[2*i - 1]) : "START";
+      const input = byte + "," + prev;
+      const output = sourceRunes.slice(2*i, 2*i+2).join(",");
+      if (seen.has(input)) {
+        collisions++;
+        contradictions += Number(seen.get(input) !== output);
+      } else {
+        seen.set(input, output);
+      }
+    }
+    predecessorRows.push({
+      tableOrder, bodyOrder,
+      collisionsOfSameInputByteAndPredecessor: collisions,
+      differentOriginalPairedOutputs: contradictions
+    });
+  }
+}
+assert.deepEqual(predecessorRows.map(x => [
+  x.collisionsOfSameInputByteAndPredecessor,
+  x.differentOriginalPairedOutputs
+]), [[6,6],[6,6],[5,5],[5,5]]);
+console.log("SECRET-ALL-29x256 PREDECESSOR-RUNE OUTPUT MAP TEST",
+  JSON.stringify(predecessorRows),
+  "impossible as a deterministic 1-GP-state byte-to-pair decoder");
+
 console.log("PASS: original 256/512 rubric-boundary pairing SFT");
