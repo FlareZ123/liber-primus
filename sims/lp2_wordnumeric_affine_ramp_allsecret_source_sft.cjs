@@ -7,7 +7,7 @@
  * A[w] is ENTIRELY SECRET and can vary adaptively at every word. The observed
  * within-word difference histogram is independent of all A[w]. Test global
  * drift g, and clue-motivated current/preceding printed-word length,
- * GP index sum or Gematria prime sum as drift, in both directions.
+ * GP index/prime sums or products, prime-totient sums/products, and word length as drift, in both directions.
  *
  * External source: the source-native (already solved) 2,979-rune GP29 LP1/LP2
  * plaintext witness. Text is split into original complete printed GP words.
@@ -45,23 +45,27 @@ assert.equal(solvedWords.length, 740);
 assert.equal(countRunes(solvedWords), 2979);
 assert.equal(corpus.prime.length, 29);
 
-/** @param {number[]} w @param {"prime"|"index"|"length"} kind */
+/** @param {number[]} w @param {"prime"|"index"|"length"|"indexprod"|"primeprod"|"totientsum"|"totientprod"} kind */
 function wordNumber(w, kind) {
   if (kind === "length") return w.length % 29;
   if (kind === "index") return mod(w.reduce((s, v) => s + v, 0));
-  return mod(w.reduce((s, v) => s + corpus.prime[v], 0));
+  if (kind === "prime") return mod(w.reduce((s, v) => s + corpus.prime[v], 0));
+  if (kind === "indexprod") return w.reduce((p, v) => mod(p * v), 1);
+  if (kind === "primeprod") return w.reduce((p, v) => mod(p * corpus.prime[v]), 1);
+  if (kind === "totientsum") return mod(w.reduce((s, v) => s + corpus.prime[v] - 1, 0));
+  return w.reduce((p, v) => mod(p * (corpus.prime[v] - 1)), 1);
 }
 
 /**
  * @param {number[][]} words
- * @param {{kind?: "prime"|"index"|"length", mode?: "previous"|"current"|"global",
+ * @param {{kind?: "prime"|"index"|"length"|"indexprod"|"primeprod"|"totientsum"|"totientprod", mode?: "previous"|"current"|"global",
  *          sign?: number, constant?: number}} model
  * @returns {number[]}
  */
 function differenceHistogram(words, model = {}) {
   const {kind = "prime", mode = "global", sign = 1, constant = 0} = model;
   const hist = Array(29).fill(0);
-  let previous = kind === "prime" ? 761 % 29 : 0;
+  let previous = kind === "prime" ? 761 % 29 : kind.endsWith("prod") ? 1 : 0;
   for (const word of words) {
     const current = wordNumber(word, kind);
     const drift = sign * (mode === "previous" ? previous
@@ -116,7 +120,7 @@ function nativeLengthMatchedWords() {
  * Exact source-native plant and forward inverse using arbitrary per-word
  * secret offsets and a true ciphertext-previous-word numeral drift.
  * @param {number[][]} plaintext
- * @param {"prime"|"index"|"length"} kind
+ * @param {"prime"|"index"|"length"|"indexprod"|"primeprod"|"totientsum"|"totientprod"} kind
  * @param {number} sign
  */
 function plantPrevious(plaintext, kind, sign) {
@@ -128,7 +132,7 @@ function plantPrevious(plaintext, kind, sign) {
     return rng >>> 0;
   };
   const ciphers = [], secretOffsets = [];
-  let previous = kind === "prime" ? 761 % 29 : 0;
+  let previous = kind === "prime" ? 761 % 29 : kind.endsWith("prod") ? 1 : 0;
   for (const word of plaintext) {
     const a = random() % 29;
     const cipher = word.map((p, j) => mod(p + a + sign * previous * j));
@@ -137,7 +141,7 @@ function plantPrevious(plaintext, kind, sign) {
     previous = wordNumber(cipher, kind);
   }
   const recovered = [];
-  previous = kind === "prime" ? 761 % 29 : 0;
+  previous = kind === "prime" ? 761 % 29 : kind.endsWith("prod") ? 1 : 0;
   for (let w = 0; w < ciphers.length; w++) {
     recovered.push(ciphers[w].map((c, j) =>
       mod(c - secretOffsets[w] - sign * previous * j)));
@@ -162,7 +166,8 @@ function run() {
   assert.ok(Math.abs(globals[0].chi - 308.10570344486956) < 1e-9);
 
   const sourceNumerics = [];
-  for (const kind of ["prime", "index", "length"])
+  const kinds = ["prime", "index", "length", "indexprod", "primeprod", "totientsum", "totientprod"];
+  for (const kind of kinds)
     for (const mode of ["current", "previous"])
       for (const sign of [-1, 1]) {
         const model = {kind, mode, sign};
@@ -180,7 +185,7 @@ function run() {
   const plantedChi = homogeneity(differenceHistogram(plant), native);
   assert.ok(Math.abs(plantedChi - 8.854050716963457) < 1e-9);
   const controls = [];
-  for (const kind of ["prime", "index", "length"])
+  for (const kind of kinds)
     for (const sign of [-1, 1]) controls.push(plantPrevious(plant, kind, sign));
   assert.ok(globals[0].chi > 300);
   assert.ok(sourceNumerics.every(row => row.chi > 300));
