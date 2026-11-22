@@ -109,7 +109,7 @@ console.log(JSON.stringify({
   verdict:"literal adjacent-hex decoder cannot consume the original full table",
   signed_word_count:signedWords.length,
   unique_signed_0x_address:hitWords,
-  0x_positions:markers,
+  hex_prefix_positions:markers,
   same_row_right_neighbors:markers.map(i => table[i+1]),
   valid_plain_hex_cells:hexTokens.length,
   invalid_plain_hex_cells:256-hexTokens.length,
