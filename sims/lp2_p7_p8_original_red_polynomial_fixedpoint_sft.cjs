@@ -114,6 +114,18 @@ assert.deepEqual(suitable, [coeff]);
 const reverseFixed = Array.from({ length: 29 }, (_, i) => i)
   .filter(x => evalPoly([...coeff].reverse(), x) === x);
 assert.deepEqual(reverseFixed, [9]);
+// The actual 2013 5-of-10 Shamir design supplies a historically
+// independent five-value reading: printed products as evaluations
+// F(1)..F(5), rather than as ascending coefficients.
+// Unique degree<=4 interpolation over GP29 then gives the following.
+const thresholdInterpolation = [5,6,23,26,9];
+assert.deepEqual(Array.from({length:5},(_,i)=>
+  evalPoly(thresholdInterpolation,i+1)),coeff);
+const thresholdFixed = Array.from({length:29},(_,i)=>i)
+  .filter(i=>evalPoly(thresholdInterpolation,i)===i);
+assert.deepEqual(thresholdFixed,[12,16]);
+assert.equal(evalPoly(thresholdInterpolation,19),9);
+assert.deepEqual(thresholdInterpolation.map(x=>x%29),[5,6,23,26,9]);
 const prime = i => gp.prime[i];
 /** @param {Cell[]} w @returns {number[]} */
 const v0 = w => w.map(x => x.value);
@@ -484,6 +496,9 @@ assert.equal(rootOnlyResiduals, 11536);
 console.log('LP2_P7_P8_POLYNOMIAL_FIXEDPOINT ' + JSON.stringify({
   p7Products: coeff, p8RedWordProducts: target,
   fixedRoots: fixed, highFirstFixedRoots: reverseFixed,
+  historicallyMotivatedShamirF1toF5Coefficients:thresholdInterpolation,
+  historicallyMotivatedShamirFixedRoots:thresholdFixed,
+  historicallyMotivatedShamirRoman19Output:9,
   factorization: "P(X)-X=2(X-3)(X-4)(X^2-8) modulo29",
   derivativeAt4: 17, derivativeAt3: 28,
   p8HeadingTerminalIndex: p8[1].at(-1).value,
