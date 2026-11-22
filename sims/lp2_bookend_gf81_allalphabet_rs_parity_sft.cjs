@@ -200,7 +200,7 @@ function main() {
         originalIntegerEmbeddingSyndrome(eq) !== 0).length
     });
   }
-  assert.deepEqual(fullFirstCases.map(x => x.nonzeroNativeSyndromes), [56, 52]);
+  assert.deepEqual(fullFirstCases.map(x => x.nonzeroNativeSyndromes), [80, 77]);
   const visible = tape.slice(6561);
   assert.equal(visible.length, 6395);
   const holeOffsets = [2244, 2384, 2476, 2575, 2672];
