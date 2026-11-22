@@ -25,3 +25,9 @@ jobs:
         run: |
           python sims/lp2_p8_feedback_minimum_edit_milp_sft.py
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Certify both source-p7 LFSR zero splices and directions
+        shell: pwsh
+        run: |
+          python sims/lp2_p7_p8_lfsr_feedback_minedit_sft.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
