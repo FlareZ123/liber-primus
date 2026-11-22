@@ -82,6 +82,14 @@ Under a *fixed source-chapter 729-rune multiset* shuffled uniformly, the two exa
 
 The source-based prime pair also offers a frozen, minimal additive-key trial on the p0 black body: repeat `[prime(OE),prime(NG)] mod29 = [25,21]` in printed left-to-center order, using the historically solved p56 subtraction direction. The original-body output has **IoC 0.0338127** and no recognizable original-length words. The opposite sign IoC is 0.0335860. This little two-symbol clock supplies no authentic plaintext. All source prime and original-runic centre assertions are included in the 27-square SFT below.
 
+### Source-complete small RSA framing, decisively rejected
+
+The original 27-square central rune primes 79 and83 also define a textbook RSA modulus `n=79×83=6557`; the independent p0 red 13-rune heading has GP0 sum `e=181`, coprime to `φ(n)=78×82=6396`, with inverse exponent `d=3145`. The following *fully source-parameterized*, high-contrast test assumes the black249 body (`249=3×83`) stores **83 consecutive base29 three-rune ciphertext blocks**, to be decrypted as ordinary two-rune plaintext blocks using `m=c^d mod n`.
+
+Textbook RSA ciphertext integers must lie in `[0,n-1]` before modular exponentiation. In untouched p0 original-order black-body triples, **63 of83** fail this necessary bound; in the source-motivated reversed 180° direction, **60 of83** fail. The construction is impossible in both original directions, before lexical scoring. A positive native-GP control encrypts 166 real solved-page GP runes into 83 valid three-rune RSA blocks with the same `p,q,e` and recovers all166 via the exact modular inverse. [Original-cipher RSA SFT](../sims/lp2_p0_center79_83_red181_rsa_range_sft.cjs), successful [Windows Node22 CI44965804883](https://github.com/FlareZ123/liber-primus/actions/runs/44965804883).
+
+This rejects exactly the fixed-width full-source RSA candidate; adding arbitrary offset/truncation/modulo re-framing would introduce a new unfixed instruction. It does not exclude other ways to use the original prime79/83 glyphs.
+
 ### Further source-directed terminal-word sum, plus exact substitution obstruction
 
 There is one more **explicitly retrospective cross-register equality** that follows the p50 two-cycle as a natural word address: T[249] points to **word number158** in the 158-word opening chapter, the terminal printed word of physical p2. Under the canonical first-chapter parser this nine-rune word is `HDNIAUPSUW` (GP spell), at the final nine rune positions `C[720..728]`. It has **GP0 index sum104** (the only one of the chapter's 158 printed words with this sum) and GP-prime sum369. The **two separately half-turn-selected original rune symbols** have GP indices P=13 and B=17, whose **GP-prime weights are 43+61=104**. Thus
