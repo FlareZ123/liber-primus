@@ -186,6 +186,36 @@ for(let t=0;t<120;t++){
   }
   nullScores.push(viterbi(ca,perm).score);
 }
+// The actual signed 2013 first-onion message contains FOREST and TREES.
+// Their literal GP token sequences nominate two fixed pads, phase zero.
+// Neither word supplies a Cicada-authored predecessor-step encryption opcode.
+const literalKeys=["FOREST","TREES"];
+const sourceKeyDecodings=[];
+const ioc=v=>{
+  const f=Array(29).fill(0);
+  for(const symbol of v)f[symbol]++;
+  return f.reduce((acc,n)=>acc+n*(n-1),0)/(v.length*(v.length-1));
+};
+for(const literal of literalKeys){
+  const key=encode(literal);
+  assert(key.every(x=>x<28));
+  for(const sign of [-1,1]){
+    for(const [p,d] of [[32,ca],[55,cb]]){
+      const output=d.map((step,i)=>step===0?28:
+        (step-1+sign*key[i%key.length]+28)%28);
+      const glyphs=output.map(x=>corpus.translit[x]).join("");
+      const reverse=output.map((x,i)=>x===28?0:
+        1+(x-sign*key[i%key.length]+28)%28);
+      assert.deepEqual(reverse,d);
+      sourceKeyDecodings.push({
+        literal,sign,originalPage:p,
+        length:output.length,ioc:ioc(output),gp29:glyphs
+      });
+    }
+  }
+}
+assert.equal(sourceKeyDecodings.length,8);
+assert(sourceKeyDecodings.every(x=>x.ioc<0.05));
 const stats=v=>({
   count:v.length,min:Math.min(...v),max:Math.max(...v),
   mean:v.reduce((a,b)=>a+b,0)/v.length,
@@ -206,6 +236,7 @@ console.log(JSON.stringify({
   independentlyTrainedGibranAndTestedShakespeare:true,
   nativePositiveControls:stats(positives),
   originalP55PermutationNull:stats(nullScores),
+  originalSigned2013LiteralForestTreeKeyDecodings:sourceKeyDecodings,
   allOriginalAndPlantedCipherInverseTestsPass:true,
   decision:"Original matched p32/p55 tree artwork leads to testable same-index GP28 chain-pad model; compare all original score with native plants and shuffled original."
 },null,2));
