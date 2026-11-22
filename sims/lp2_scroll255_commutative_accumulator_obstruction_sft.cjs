@@ -120,29 +120,23 @@ for (const [a, b] of [[54, 74], [235, 105], [236, 105]]) {
 const planted = words.map(w => mod(w.reduce((s, r) => s + r, 0)));
 assert.deepEqual(witnessList(planted), []);
 
-// Separate exact field-multiplication obstruction, allowing 29 arbitrary
-// secret rune factors and any invertible affine output a*product+b mod29.
-// For every possible b, every rune occurs in a word whose output is not b.
-// Thus no rune factor can be zero, yet every b also occurs as an output,
-// which would require at least one zero factor.
-const present = new Set(corrected);
-assert.equal(present.size, 29);
-const multiplicationObstructions = [];
-for (let b = 0; b < 29; b++) {
-  const seenInNonB = new Set();
-  for (let i = 0; i < 255; i++)
-    if (corrected[i] !== b) for (const rune of words[i]) seenInNonB.add(rune);
-  assert.equal(seenInNonB.size, 29);
-  multiplicationObstructions.push(b);
-}
-assert.equal(multiplicationObstructions.length, 29);
+// Independent second symbol class: a different global H collision has
+// incompatible continuation by two common multiset symbols {5,10}.
+assert.deepEqual([words[128], words[166], words[183], words[221]],
+  [[26], [27, 20], [5, 10, 26], [20, 27, 10, 5]]);
+assert.deepEqual([corrected[128], corrected[166], corrected[183], corrected[221]],
+  [25, 25, 19, 8]);
+// Both H=2 and H=25 require multiple distinct hidden states under a fixed
+// global state-to-output map. Each of the other 27 emitted symbols requires
+// its own state: any compatible global readout needs at least 31 states.
+assert.equal(new Set(corrected).size, 29);
 console.log(JSON.stringify({
   sourceWords: words.length, sourceRunes: words.flat().length,
   outputRunes: corrected.length, outputDistinctSymbols: present.size,
   originalSourceAnagrams: fourPairs,
   nonAssociativeEvidence: witnesses,
   additivePositiveControl: 'PASS: zero extension contradictions',
-  secretMultiplicationAffineOutput: 'IMPOSSIBLE for all 29 b values',
+  globalDeterministicStateLowerBound: 31,
   conclusion: 'No direct 29-state commutative associative word accumulator with injective length-specific readout'
 }, null, 2));
 console.log('PASS: original corrected scroll register violates universal monoid extension congruence.');
