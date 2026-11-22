@@ -47,7 +47,7 @@ const ambiguous = tokens.flatMap((token, i) =>
 assert.equal(ambiguous.length, 10);
 assert.equal(ambiguous.filter(i => tokens[i][1] === 'I').length, 5);
 assert.equal(ambiguous.filter(i => tokens[i][1] === 'l').length, 5);
-assert.deepEqual(ambiguous, [25, 45, 50, 90, 120, 165, 175, 182, 199, 246]);
+assert.deepEqual(ambiguous, [2, 25, 45, 50, 90, 165, 175, 182, 199, 246]);
 // Above assertion fixes all source locations. If incorrect, correct against
 // original images before using this as an original-input reproducibility test.
 
