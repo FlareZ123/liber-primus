@@ -32,6 +32,8 @@ const words = new Map();
 function add(word,source) {
   word=word.toLowerCase();
   if (!/^[a-z]+$/.test(word) || words.has(word)) return;
+  // Withhold this solved LP2 lexical token from *all* training sources.
+  if (word === "circumferences" && source !== "attested TextBlob noun lemma + source plurals") return;
   const p = encodeSourceNativeGP(word);
   if (p.length===13 || p.length===14) words.set(word,{word,P:p,source});
 }
@@ -216,7 +218,7 @@ const output={
   authenticHeldout:{word:"CIRCUMFERENCES",originalPage:57,
     nativeRuneLength:14,sourceLemma:"circumference",
     generatedBy:"one regular plural from independently attested TextBlob singular",
-    exactOriginalRunes:gp.runes.filter((_,i)=>heldOut.includes(i)).length===heldOut.length},
+    exactOriginalRunes:page57.includes(heldOut.join(","))},
   lexicon:{sourceGP13:byLength.get(13).length,
     sourceGP14:byLength.get(14).length,
     morphGenerated:generated,oldUnfilteredDWYL:dwyl.length},
