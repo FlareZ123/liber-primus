@@ -116,6 +116,72 @@ assert(plantAllowed.every((s,i)=>s.includes(key[i])));
 for(const [j,p]of planted.entries())for(const [i,v]of p.entries())
  assert.equal(v^key[i],shape[j][i]);
 
+// Independently identify wholly visible ORIGINAL printed words. With a
+// common XOR pad every rune of these whole words is forced plaintext;
+// this lexical observation uses no inferred key or conditional decryption.
+const txtPages=read("resources/lp2-transcription.txt").split("%").slice(0,55);
+const originalRune=new Map(corpus.runes.map((x,i)=>[x,i]));
+const vocabInputs=[
+ "resources/control/english_wordfreq_textblob.txt",
+ "resources/control/shakespeare_first300k.txt",
+ "resources/control/gibran_prophet_58585.txt",
+ "resources/control/emerson_essays_2944.txt"
+];
+const textVocab=new Set(vocabInputs.flatMap(file=>
+ read(file).toUpperCase().match(/[A-Z]+/g)||[]));
+const nativeWordShapes=new Set();
+for(let word of textVocab){
+ word=word.replace(/QU/g,"CW").replace(/V/g,"U")
+  .replace(/K/g,"C").replace(/Z/g,"S")
+  .replace(/ING/g,"NG").replace(/IO/g,"IA");
+ const indices=[];
+ for(let i=0;i<word.length;){
+  const t=tokens.find(t=>word.startsWith(t,i))||word[i];
+  const value=map.get(t);
+  if(value===undefined){indices.length=0;break;}
+  indices.push(value);i+=t.length;
+ }
+ if(indices.length)nativeWordShapes.add(indices.join(","));
+}
+let totalInteriorWords=0,fullyFixedWords=0,fullyFixedAtLeast3=0,
+ nativeMatchesAtLeast3=0;
+for(const p of original){
+ const raw=txtPages[p.page>=51?p.page-1:p.page];
+ const skip=firstBlack(p.page);
+ let pos=0,start=0,word=[];
+ const allWords=[];
+ function finish(){
+  if(word.length){allWords.push({start,end:pos,values:word});word=[];}
+ }
+ for(const ch of raw){
+  const runeValue=originalRune.get(ch);
+  if(runeValue!==undefined){
+   if(word.length===0)start=pos;
+   word.push(runeValue);pos++;
+  }else if(ch==="/"||/\s/u.test(ch)){
+   // Printed linebreaks do not terminate a word.
+  }else finish();
+ }
+ finish();
+ const local=allWords.filter(w=>w.start>=skip).map(w=>({
+  start:w.start-skip,end:w.end-skip,values:w.values
+ })).slice(1,-1);
+ totalInteriorWords+=local.length;
+ for(const w of local){
+  if(Array.from({length:w.end-w.start},(_,i)=>w.start+i)
+   .every(i=>zeroSet.has(i))){
+   fullyFixedWords++;
+   if(w.values.length>=3){
+    fullyFixedAtLeast3++;
+    if(nativeWordShapes.has(w.values.join(",")))nativeMatchesAtLeast3++;
+   }
+  }
+ }
+}
+assert.equal(totalInteriorWords,2796);
+assert.equal(fullyFixedWords,883);
+assert.equal(fullyFixedAtLeast3,594);
+assert.equal(nativeMatchesAtLeast3,10);
 console.log(JSON.stringify({
  conclusion:"A globally shared literal 5-bit XOR pad cannot change 9138 of 12844 original black-body runes because every shared XOR key at those positions is algebraically forced to zero by the GP29 alphabet range. This is an unconditional alphabet-only constraint under that precise global shared page-start-key hypothesis.",
  source:"Canonical original 55 LP2 unknown runic pages, exact original red-heading first-black clock",
@@ -126,6 +192,7 @@ console.log(JSON.stringify({
  first66PositionsForcedZero:zeroPositions.filter(i=>i<66).length,
  first150PositionsForcedZero:zeroPositions.filter(i=>i<150).length,
  totalUnchangedOriginalRunes:forcedOriginal.length,
+ forcedOriginalPrintedWords:{sourceCompleteInteriorWords:totalInteriorWords,fullyUnchangedWords:fullyFixedWords,fullyUnchangedAtLeast3Runes:fullyFixedAtLeast3,nativeFourSourceLexicalMatchesAtLeast3:nativeMatchesAtLeast3,lexiconSizeGP29:nativeWordShapes.size},
  unchangedFraction:forcedOriginal.length/total,
  unchangedRuneIoC:ioc,
  strongestUnchangedKeyRunSpans:zeroRuns.slice(0,8),
