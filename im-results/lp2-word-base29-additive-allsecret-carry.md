@@ -1,80 +1,90 @@
-# GP29 printed-word integer addition: exact all-secret carry bound
+# Original LP2 whole-word BASE29 numeral cipher: exact all-secret exclusions
 
-**Decision.** The complete original unsolved LP2 word stream **cannot be decoded into either of two printed-word-length-matched GP-native English controls** by ordinary, fixed-width, whole-word BASE29 integer subtraction, **even if the attacker grants a separate, completely arbitrary secret additive key for every observed word length**. Across all 2,896 original printed words, the exact upper bound on the count occupying the four most frequent plaintext initial GP rune classes is **648** (22.376%). Source-length-matched Gibran and Shakespeare GP-native controls have **1,002** and **963** (34.60% / 33.25%) respectively. No original plaintext or key was recovered.
+**Classification:** source-motivated, bounded negative. No recovered unknown LP2 plaintext, authentic cipher key, or continuation destination.
 
-This is a new exact hidden-key obstruction for a concrete source-motivated number-as-word candidate, not a universal rejection of every integer cipher. It differs from the unkeyed BASE29→Latin26 transcription ([related gate](lp2-word-base29-latin26-original-gate.md)) and the previously rejected *digitwise* GP29 independent Caesar offsets: this test permits ordinary arithmetic carries **across every digit inside each complete printed word**.
+**Strongest result.** Any word-length-stationary invertible affine BASE29 integer cipher, allowing arbitrary independent secret multiplier and offset for every printed word length, preserves each length class's **final-rune histogram** up to a permutation of its 29 labels. In the 2,896 original words this forces a global upper bound of **609** occurrences among any four plaintext-final rune classes. Two independently constructed original-length-matched GP-native English controls have **1,547** and **1,553**. A separate exact all-secret **additive** integer cipher bound limits the four most frequent plaintext-*first*-rune categories to **648**, against control counts **1,002** and **963**. These conclusions require no candidate key or actual cipher decryption, and cannot substitute for a demonstrated authored LP2 cipher selection.
 
-## Source-motivated operation and what is assumed
+## Source motivation and original object
 
-The Cicada-authored 2013 TCP task explicitly introduced the **BASE29 integer representation**. The authenticated 2016 instruction refers to the book's **words** and their **numbers**. A human solver might therefore interpret each printed rune word, rather than each individual rune, as one integer. These sources motivate an affordable reversible hypothesis; **neither proves the author chose it**.
+Cicada's signed 2013 TCP challenge demonstrates integer-to-BASE29 positional representation (3301 → 3QO). The signed January 2016 message references the manuscript's words and numbers. These clues motivate treating every *complete printed rune-word* as one base29 integer. They do **not** demonstrate that Cicada chose any of the subsequent proposed integer ciphers.
 
-For a complete printed GP29 word of length L and rune indices d0,…,d(L−1), let N = Σ dᵢ·29^(L−1−i). Test the full-word cipher family
+The canonical LP2 p0–55 complete-word parser yields **2,896 words, 12,956 rune indices, 32 original across-page carried words**, and fourteen rune-word widths L=1..14 with counts [83,448,720,513,317,256,216,156,78,52,32,18,4,3]. Each word is a positional GP29 integer N with 0≤N<29^L. Preserve the original width including leading F=0 rune digits, and leave source word delimiters unchanged. All results are asserted against the complete retained canonical source.
 
-\[
-C_w \equiv P_w + K_L \pmod {29^L}
-\qquad\text{and}\qquad
-P_w \equiv C_w-K_L \pmod {29^L}.
-\]
+## Universal invertible full-word BASE29 affine family
 
-Retain L GP symbols on each side, including any leading F=0. Use one unknown fixed K_L per word length L=1,…,14; keys for different lengths can be totally unrelated. This exceeds the freedom of a single whole-book shared integer key. All complete words crossing physical page boundaries are joined as original typography prescribes. There are exactly **2,896 words / 12,956 runes / 32 carried words**, not 2,928 independent page fragments.
-
-The tested class **preserves printed word widths, GP29 word boundaries and one shared plaintext alphabet**. An arbitrary different key for *each word occurrence*, length-changing stream arithmetic, a nonlinear bijection, or a second hidden homophonic layer lies outside this result.
-
-## The complete all-secret bound, with no key search
-
-Write a length-L ciphertext word integer as C = c₀·29^(L−1) + s, where c₀ is its first printed GP rune and s is its remaining suffix integer. Express **every** possible additive key as K_L = a·29^(L−1) + t, with 0≤a≤28 and 0≤t<29^(L−1).
-
-Subtracting the key yields the leading plaintext digit
+For every L, let a completely unknown A_L and B_L be applied to the whole L-digit integer word:
 
 \[
-p_0 \equiv c_0-a-b(s,t)\pmod{29},
-\qquad
-b(s,t)=\begin{cases}1 & s<t\\0&s\ge t.\end{cases}
+C \equiv A_L P+B_L\pmod{29^L},\qquad 29\nmid A_L.
 \]
 
-The entire unknown a merely rotates all 29 leading-rune categories; rotation never changes how many words occupy the four most frequent categories. The unknown suffix key t creates a **single sortable threshold**: words borrow precisely when s<t. Consequently, for each width L, sort all original ciphertext suffixes s and sweep the finitely many threshold changes t=s+1 that remain inside the valid key range. On crossing a threshold, move the affected word count from first-rune bin c₀ to bin c₀−1 mod29. Record the exact maximum top-four-bin total M_L over all permitted thresholds.
+A_L must be coprime to 29 to permit exact decryption on all GP29 words. Reduce this equation modulo29. Its least-significant, **final word rune** satisfies
 
-For any fixed four GP plaintext symbols, their count within length L is at most M_L. Adding the M_L across all widths is therefore an **upper bound even when every length may choose the best, unrelated secret K_L**; permitting the four winning labels to change between widths only makes the bound more permissive.
+\[
+c_{\mathrm{last}}\equiv
+ (A_L\bmod29)p_{\mathrm{last}}+(B_L\bmod29)
+\pmod{29}.
+\]
 
-The source-original exact maxima:
+The last-digit operation is therefore a bijective permutation of all 29 rune values for **every** choice of the higher-digit key residues. All final-rune category counts for width L are preserved exactly up to relabeling, even with arbitrary word-integer carry propagation. Summing the largest four category counts over *each separate L* is an upper bound for the four most common GP plaintext-final rune labels after combining all word lengths. This bound even allows different winning four labels for each L, which is more freedom than the actual shared plaintext alphabet has.
 
-| Original complete word length L | Words | Maximum M_L, all 29^L secret keys |
-|---:|---:|---:|
-| 1 | 83 | 20 |
-| 2 | 448 | 90 |
-| 3 | 720 | 145 |
-| 4 | 513 | 94 |
-| 5 | 317 | 66 |
-| 6 | 256 | 59 |
-| 7 | 216 | 54 |
-| 8 | 156 | 43 |
-| 9 | 78 | 31 |
-| 10 | 52 | 17 |
-| 11 | 32 | 12 |
-| 12 | 18 | 10 |
-| 13 | 4 | 4 |
-| 14 | 3 | 3 |
-| **All lengths** | **2,896** | **648** |
+The complete original source yields the exact third-column totals below, summing to **609** of 2,896 words. Every invertible full-word BASE29 affine key family with independent secret A_L and B_L for each L obeys this theorem, including a single fixed shared A/B and all pure additive variants.
 
-This is a deterministic upper bound, not an empirical statistical rarity or the outcome of sampled keys. An independent exhaustive check enumerates **all 29²=841 keys** for the length-two original-word subset and recovers the same maximum **90** as the suffix-threshold proof.
+## Independent all-secret BASE29 additive carry family
 
-## Direct-native power controls with correct source geometry
+The narrower full-word arithmetic family is
 
-Two independent public-domain corpora already retained in the repository provide the control plaintext: \`resources/control/gibran_prophet_58585.txt\` and \`resources/control/shakespeare_first300k.txt\`. For each of the original 2,896 GP word widths, select a genuine English word of exactly the matching **GP-native rune length** from the corresponding source, using the fixed source-attested transliteration (TH, ING/NG, IO, QU→CW, V→U, K/Q→C, Z→S). No native word's spelling or GP rune count is altered. This is a fixed-layout *positive construction* rather than a claim of real LP2 plaintext.
+\[
+C\equiv P+K_L\pmod{29^L},
+\]
 
-- Gibran's source-matched 2,896-word plant has 1,002 starts in its four most common GP categories.
-- Shakespeare's independent source-matched 2,896-word plant has 963 such starts.
-- Each plant is encrypted with a deterministic, nonzero **length-dependent full-word integer key**, using the exact GP29 modular-additive operation. The result decrypts all **2,896/2,896** original-width planted words exactly, including retained leading-zero positions. The all-secret upper bound on each planted ciphertext is verified to be at least the plaintext's true top-four count, demonstrating that the bound is sensitive to genuine positives.
-- The original 648 upper bound is far below both positives and cannot be rescued by alternate K_L, unknown within-word carries or one extra *fixed* GP29 alphabet relabeling.
+where every L has a wholly independent unknown **integer** key K_L. This family adds a second constraint, this time on the **first rune**. Write an original ciphertext word C=c0·29^(L−1)+s and its key K_L=a·29^(L−1)+t, with 0≤a≤28, 0≤t<29^(L−1). Subtraction gives
 
-The control set is intentionally limited to two GP-native English constructions. Non-English, extremely atypical texts with four-rune initial count ≤648, arbitrary word-private keys, variable-length encoders and unrelated arithmetic ciphers are not ruled out.
+\[
+p_0\equiv c_0-a-\mathbf1[s<t]\pmod{29}.
+\]
 
-## Reproduction and next decision
+The integer a merely rotates all 29 labels. Only t can change any leading-rune *count*, and it does so through one sortable threshold: words whose suffix s<t borrow exactly one from c0. Sort the **original** suffix integers s and sweep t=s+1 where legal, changing first-rune histogram bins from c0 to c0−1. Taking the highest four-bin count for each L covers **every single K_L** with no heuristic key search. The resulting fourth-column lengthwise upper bounds sum to **648**. Exhaustive enumeration of **all 29²=841 literal keys** for L=2 independently agrees with the exact threshold upper bound **90**. Full carries are included, even across all digits of length14 words.
 
-**Standalone read-only Windows 11 Node.js 22 SFT:**
-[\`sims/lp2_base29_wordinteger_additive_allsecret_sft.cjs\`](../sims/lp2_base29_wordinteger_additive_allsecret_sft.cjs).
-It reads the original canonical transcript and GP29 corpus, asserts exact word/rune/physical-carry counts, computes every secret-key threshold for all fourteen widths, runs the exhaustive length-two all-key crosscheck, constructs both independent native positives, encrypts/decrypts each source word, and asserts the output bounds.
+## Original invariant table
 
-**Passing original-input GitHub Actions run:** [45001813123](https://github.com/FlareZ123/liber-primus/actions/runs/45001813123), on the source script committed at \`3c11184cb43457023fba338f7302341e91f4a12c\`.
+| Original complete word length L | Words | Affine: max four terminal runes | Additive: max four initial runes |
+|---:|---:|---:|---:|
+| 1 | 83 | 20 | 20 |
+| 2 | 448 | 82 | 90 |
+| 3 | 720 | 130 | 145 |
+| 4 | 513 | 104 | 94 |
+| 5 | 317 | 71 | 66 |
+| 6 | 256 | 51 | 59 |
+| 7 | 216 | 50 | 54 |
+| 8 | 156 | 38 | 43 |
+| 9 | 78 | 19 | 31 |
+| 10 | 52 | 17 | 17 |
+| 11 | 32 | 12 | 12 |
+| 12 | 18 | 8 | 10 |
+| 13 | 4 | 4 | 4 |
+| 14 | 3 | 3 | 3 |
+| **All** | **2,896** | **609** | **648** |
 
-**Research fork.** Retire the **length-stationary modular-additive whole-word BASE29 cipher** as a route to ordinary GP-native English on the original book. Direct BASE29-to-Latin26 readout is independently negative. A more complex per-word private state or different output register needs a distinct first-party clue or an independently testable complete inverse; adding arbitrary word keys would erase recoverability. Keep attention on original artwork/source-selected operations that could supply an actual state or authentic plaintext.
+## Native-English original-width positive controls
+
+Two distinct public-domain source texts retained in the repo, Gibran's *The Prophet* and a Shakespeare corpus, are converted using the historically demonstrated GP29 transliteration (TH, NG/ING, IO, QU→CW, V→U, K/Q→C, Z→S). For every one of the original 2,896 ciphertext word widths, the fixed control builder chooses a genuine source word with **exactly the same number of GP runes**. This is a source-shaped control **construction**, not a claim to reproduce contiguous prose or any actual LP2 plaintext. The original manuscript's exact whole-word length sequence is retained.
+
+- Gibran native source-shaped plaintext has **1,547** words ending in its four most frequent GP runes, and **1,002** beginning in its four most frequent GP runes.
+- Shakespeare independently has **1,553** final and **963** initial.
+- Both sets of 2,896 matched words are encrypted by a genuine nontrivial length-dependent full-word affine cipher (invertible multiplier 2, key-dependent offset and cross-digit carries); decrypting with the modular inverse reproduces **2,896/2,896 original-width words** for each source. The terminal count invariant remains exactly unchanged on both encrypted plants.
+- The additive variant also encrypts and decrypts **2,896/2,896** native words with a secret width-dependent integer addition key, and its all-secret initial upper bound exceeds each native control's actual top-four initial count.
+- All **812** single-digit invertible affine maps (28 nonzero slopes × 29 offsets) are independently checked as bijective, and the length-two additive model checks all 841 possible full-word keys.
+
+The original's impossible bounds **609 < 1,547/1,553** and **648 < 1,002/963** are arithmetic, source-original upper limits. No unknown key value or extra fixed global alphabet relabeling can overcome them. These controls demonstrate a decisive difference from the native GP-English word-initial/terminal distributions in two independent real-language sources; they do not prove an impossibility for exotic registers or all conceivable natural language distributions.
+
+## Reproducible scripts and decision
+
+- [Affine all-secret word-integer test](../sims/lp2_base29_wordinteger_affine_allsecret_sft.cjs): source-verified 609 bound, genuine GP-native length-matched 1,547/1,553 positive controls, invertible synthetic affine forward/inverse, 812 29-symbol affine map checks.
+- [Additive all-secret carry test](../sims/lp2_base29_wordinteger_additive_allsecret_sft.cjs): source-verified exact 648 bound, complete legal key-suffix threshold argument, exact 841-key brute-force L2 check, genuine GP-native 1,002/963 controls, complete synthetic forward/inverse.
+- [Direct unkeyed word-integer Latin26 decoding test](../sims/lp2_word_base29_to_latin26_sft.cjs) and its [separate report](lp2-word-base29-latin26-original-gate.md): the ordinary and bijective direct Latin26 readouts are nonlinguistic. The bijective mode maps an original one-rune zero-integer word at source word index143 to an empty string.
+- Complete green Node.js 22 original-source CI: [GitHub Actions run 45002149600](https://github.com/FlareZ123/liber-primus/actions/runs/45002149600).
+
+**Exclusion scope:** the original complete GP29 word boundary and length are preserved; the output plaintext is expected to have ordinary GP-native English-like word-ending or word-initial distributions; affine or additive integer keys stay constant for all words of the same L. The final-rune theorem also applies to any *radix-triangular* reversible L-dependent function whose terminal output rune is a bijective function solely of the terminal input rune. It makes no claim about a word-private evolving state, non-invertible or length-changing transforms, keys applied to other source-defined partitions, a non-GP or non-English register, a nonlinear cipher mixing the final rune with previous digits, or an external high-entropy key.
+
+**Decision:** retire the direct unkeyed per-word Latin26 reading and per-word-length stationary whole-word BASE29 additive/affine integer ciphers as straightforward paths to ordinary GP-native English. A novel numeric permutation needs an independently authored operand and reversible rule before new parameter searches. This remains a strictly bounded negative, without recovered plaintext or a destination for the 56 unresolved pages.
