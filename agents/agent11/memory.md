@@ -424,3 +424,12 @@ SFT: sims/lp2_p0_opening_goodbye28_p28_nested_sft.cjs
 
 
 Carrier closure discovered prospectively after the p0->218/28 selection: p28 word47 length11 makes next boundary229=3301 mod256; p50[229]=00->0 in both radices. Its immediate successor is singleton value11, exactly the carrier length; p50[11]=3g, identical to p50[96]=3g (the only two 3g copies), and base59 returns to218. Thus the selected carrier has a source-exact return edge11->3g->218 and exit edge229->00->0/p0. No plaintext is used.
+
+## 2026-11-22 independent cross-round RSA check
+
+- The 2012 Valēte! P.S. integer is a 432-bit RSA modulus with a recreated Crypt::RSA 1.99 key. Crucial correction: Crypt::RSA 1.99 defaults to OAEP; PKCS#1 v1.5 encryption is opt-in. The standard OAEP defaults are SHA-1, MGF1-SHA1, empty label.
+- Tested the default OAEP-SHA1 encoding with the P.S. private key against the exact 2013 wisdom/folly blob (3,368 bytes; Git blob SHA 62b1b949a1e4e4a346e75b1c34101000d3c53220): 3,100 54-byte windows had ciphertext integers below N; zero OAEP decodes.
+- Also tested LP2 default-key OutGuess artifact pages 17, 21, 43 (58,152 bytes each; SHA-256s and exact input checks are in the report/script). Across every 54-byte big-endian window there were zero OAEP decodes, zero PKCS#1 v1.5 type-2 decryptions, and zero type-1 signature decodes. All 54 possible block offsets in both byte orders failed the necessary all-blocks-below-N condition for a full raw 54-byte RSA stream.
+- These are exclusions for the named artifacts and standard encodings, not proof that the P.S. key has no later role. The OutGuess outputs remain untrusted/default-key extraction artifacts, not authenticated ciphertext.
+- Reproduction: im-results/2012-ps-number-integer-screen.md and sims/ps_rsa_oaep_crossround_gate.py. The latter scans the 2013 resource by default and accepts the existing outguess-lp2-default-key.zip Actions artifact via --outguess-zip.
+- Avoid repeating these exact scans. The wider research frontier still needs a source-authenticated key/ciphertext link or a mechanism that yields unknown plaintext; do not replace that gap with unconstrained key-family searches. The separate 133/331, p0 27×27, lag-5/lag-6, audio-note, and R4 branches already have active repository work and should not be duplicated without a distinct test.
