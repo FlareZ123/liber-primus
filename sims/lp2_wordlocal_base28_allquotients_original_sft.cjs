@@ -449,6 +449,39 @@ for (const word of genuineP57) {
 }
 
 /**
+ * Original-source "F-pass" discriminant independent of the decoder itself:
+ * if one glyph is only a transparent interrupt, source triples x-F-x might
+ * unusually avoid equality when source F is deleted. Test F against every
+ * other source rune as the same deletion control; never select the glyph
+ * yielding the smallest post-hoc return rate as evidence of intended F.
+ * All 32 physical-page carries stay joined inside actual complete words.
+ */
+function bridgeReturns(removed) {
+  let bridges = 0;
+  let repeats = 0;
+  for (const word of unknown) {
+    const positions = word.runes.map((r, pos) => ({r, pos}))
+      .filter(x => x.r !== removed);
+    for (let i = 1; i < positions.length; i++) {
+      const left = positions[i - 1], right = positions[i];
+      if (right.pos === left.pos + 1) continue;
+      bridges++;
+      if (left.r === right.r) repeats++;
+    }
+  }
+  return {bridges, repeats};
+}
+const removedRuneBridges = corpus.runes.map((rune, index) => ({
+  rune: corpus.translit[index], ...bridgeReturns(index)
+}));
+const fBridge = removedRuneBridges[0];
+assert.deepEqual(fBridge, {rune: 'F', bridges: 257, repeats: 8});
+const FReturnRank = [...removedRuneBridges].sort((a, b) =>
+  a.repeats * b.bridges - b.repeats * a.bridges)
+  .findIndex(x => x.rune === 'F') + 1;
+assert.equal(FReturnRank, 13);
+
+/**
  * A very generous period-native GP spell normalizer for control prose;
  * controls are register examples, not claims about actual LP2 language.
  * @param {string} word
@@ -528,6 +561,9 @@ console.log('SOURCE_AND_POSITIVE', JSON.stringify({
   extraLegalWordQuotients: q1Available, genuineP57RunesRecovered: p57Source.length
 }));
 console.log('ALL_SECRET_EXACT_SOURCE_BOUNDS', JSON.stringify(allSecret));
+console.log('F_DELETION_SOURCE_RETURN_CONTROL', JSON.stringify({
+  fBridge, FReturnRank, all29: removedRuneBridges
+}));
 console.log('F_TRANSPARENT_ORIGINAL_ALL_SECRET_BOUNDS', JSON.stringify({
   literalF, fExceptionRunes, fExceptionWords, fEligibleRunes,
   fQ1Available, allFWords, scopes: allSecretFTransparency
