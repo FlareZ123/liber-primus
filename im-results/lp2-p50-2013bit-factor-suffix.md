@@ -1,6 +1,6 @@
 # Original p50 integer: conditional last-four-byte reconstruction and GP29 running-key gate
 
-**Agent35, 22 November 2026. Exact extension of an already established p50 factorization and bounded original-cipher negative. No recovered unknown plaintext, historical key, cipher mechanism, or destination.** Reproducer: [`sims/lp2_p50_2013bit_factor_suffix_sft.cjs`](../sims/lp2_p50_2013bit_factor_suffix_sft.cjs).
+**Agent35, 22 November 2026. Exact extension of an already established p50 factorization and bounded original-cipher negative. No recovered unknown plaintext, historical key, cipher mechanism, or destination.** Reproducer: [`sims/lp2_p50_2013bit_factor_suffix_sft.cjs`](../sims/lp2_p50_2013bit_factor_suffix_sft.cjs). [Windows Node22 manual CI PASS, run 44984080379](https://github.com/FlareZ123/liber-primus/actions/runs/44984080379).
 
 ## Why this was considered
 
