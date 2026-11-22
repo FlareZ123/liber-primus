@@ -127,6 +127,32 @@ Unlike prior original p16-only arithmetic tests, choose an **actual source-typed
 
 **Decision:** This is a bounded rejection of **one specifically source-cued, whole-word two-shear high-to-low-digit mixer** plus all 841 small global key aliases and the eight explicit 1033/3301 signed variants. It demonstrates the previous low-digit theorem was not silently applied to architectures that violate its assumptions. The original 1033/3301 cuneiform speaks in numbers and numerical reversal but provides **no** first-party instruction to perform these shears, use this word pairing, or decode a numbered block. No actual unknown LP2 plaintext, key, five-part instruction or destination is recovered. New work would need independent source instructions for a different high-to-low mixer or an actual crib, rather than repeated arbitrary coefficient matrices.
 
+## An original 256-cell p50 numerical-table receiver without ANY guessed secret permutation (Agent47, 22 November)
+
+### Source-first intervention rather than another invented key
+
+Original p49–51 contains one unusual **32-row×8-column table** of exactly **256 printed two-character tokens**. The original row-major stream has **161 distinct literal token spellings**; duplicated tokens are visually and digitally real. An intended human receiver might read a cell in sequence, apply that cell's secret alphabet to a whole pair of GP29 word-ending symbols, then continue to the next cell. Nothing in the source explicitly says to advance **one cell per two completed original words** or to read table data as paired-rune alphabet permutations; those remain two explicit unverified premises. This test grants the cipher maximum unknown-key capacity so they cannot be rescued by trying different 841-way permutations.
+
+Let `i=0..1447` index each adjacent pair of the **2,896 unchanged complete printed p0–p55 words** (all 32 actual physical page-carry words joined). Let `e_i=29*lastRune(word[2i])+lastRune(word[2i+1])` in the **841 possible ordered GP29 terminal pairs**. Under each fixed observable source context `g_i` derived from table cell `i mod256`, allow a **distinct, arbitrary, secret bijection of 841 input symbols**. Then within-context equality
+`E=Σ_gΣ_e binomial(count_g(e),2)` is **exactly conserved** by every possible permutation, even one created by a hidden cryptographic key generator. Six source-motivated context readings are frozen before comparing ciphertext:
+
+| Candidate source context for word-pair clock | Distinct secret maps granted | Original E | Min E in 2,000 Shakespeare books | Min E in 2,000 Gibran books | Min E in 2,000 Emerson books |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| **Every row-major cell index 0…255** | 256 | **3** | 15 | 11 | 16 |
+| **Identical literal printed token** | 161 | **5** | 43 | 37 | 44 |
+| Numeric byte high five bits (hypothetical base60) | 32 | 41 | 274 | 249 | 301 |
+| Numeric byte low three bits (hypothetical base60) | 8 | 158 | 1026 | 956 | 1143 |
+| Original row index (32×8) | 32 | 33 | 231 | 206 | 233 |
+| Original column index (32×8) | 8 | 183 | 989 | 908 | 1095 |
+
+Every null sample is a **complete 2,896-word genuine GP29-English control book**, drawing original Shakespeare, Gibran or Emerson source words with replacement inside **each exact original word-length bucket** (all 12,956 GP29 rune slots preserved). There are **6,000 fully sampled books** across three independent donor registers and **36,000 frozen context evaluations**; *zero* samples reach or fall below original E in **any** of the six settings. Add-one conditional empirical lower-tail **1/2001 ≈ 0.00050** per donor/context. The stronger literal-token equality test is independent of the unresolved **base59/base60 reading**, because the grouping uses the two printed characters verbatim.
+
+**Real exact positive rather than merely a synthetic histogram:** Choose an actual complete original-length-matched Shakespeare GP29 plaintext book. For each source interpretation (256 cell indices, 161 printed token types, or 32 byte-high components), independently uniformly scramble each of the 841 possible input endpoint-pair symbols under a *different completely secret permutation*. Encode all **12,956 genuine plaintext runes** and invert the actual secret maps. Decoding recovers **12,956/12,956**, preserving the source-native exact contextual collision statistic: respectively **33→33**, **62→62**, and **333→333**. These establish the all-secret equality test's power on a genuine reversible native-English construction.
+
+The source-original data and codebook-agnostic theorem are asserted in [single-file Windows Node22 reproducer](../sims/lp2_p50_256cell_wordpair_allsecret_original_sft.cjs), [PASS run45025409160](https://github.com/FlareZ123/liber-primus/actions/runs/45025409160). The original printed table, original GP29 corpus and original word boundaries are read as shipped; no output is written.
+
+**Decision:** The p50 table's actual **256 observable cells** (and its 161 literal repeated tokens, 32 rows, eight columns, and byte 5/3 components) do not furnish a native-prose-compatible **static bijective receiver on two adjacent complete word-ending runes**, regardless of hidden alphabet selection. This is sharper than simply finding no key: the exact incompatibility applies to every secret 841-way substitution per source cell. It does **not** exclude a state update that changes within the *same cell context*, a receiver that changes higher-order word digits, a table encoding keys through a nonbijective/fractionated operation, authentic punctuation resegmentation, or a different plaintext register. No independently source-selected decoder, recovered LP2 key, unknown plaintext or destination is inferred.
+
 ## Exact decision and what remains to solve
 
 **The tested entire global two-shear BASE29 keyspace fails** on independent original p16 and p40 windows. More importantly, **any two-word mechanism whose output last rune pair is a fixed invertible function of the plaintext last rune pair within its original chapter×ordered-length context** preserves the very sparse original six repeated endpoint pairs, inconsistent with all 6,000 sampled GP-native English word-length-matched books. Arbitrarily unknown chapter×length secret codebooks cannot repair that necessary equality invariant.
