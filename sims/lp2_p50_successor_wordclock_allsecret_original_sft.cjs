@@ -190,9 +190,10 @@ function nativeGP(sourceWord) {
  * @param {object} source
  * @param {'global'|'section'|'page'} mode
  * @param {string[]=} ciphertextWords
+ * @param {number=} phasePeriod  The root189 base59 fixed point uses period1.
  * @returns {{conflicts:number,first:null|object}}
  */
-function witness(plaintextWords,source,mode,ciphertextWords) {
+function witness(plaintextWords,source,mode,ciphertextWords,phasePeriod=PHASE_PERIOD) {
   const observed = ciphertextWords || source.spans.map(w=>w.cipher);
   const seen=new Map();
   let conflicts=0,first=null;
@@ -203,13 +204,13 @@ function witness(plaintextWords,source,mode,ciphertextWords) {
     const local=mode==='global'?i:
       mode==='section'?source.sectionLocals[i]:source.pageLocals[i];
     if(local<TERMINAL_AFTER) continue;
-    const key=id+'|'+(local%PHASE_PERIOD)+'|'+plaintextWords[i];
+    const key=id+'|'+(local%phasePeriod)+'|'+plaintextWords[i];
     const prior=seen.get(key);
     if(prior) {
       if(prior.cipher!==observed[i]) {
         conflicts++;
         if(first===null) first={wordIndex:i,previous:prior.i,
-          length:source.spans[i].len,group:id,phase:local%PHASE_PERIOD,
+          length:source.spans[i].len,group:id,phase:local%phasePeriod,
           text:plaintextWords[i]};
       }
     } else seen.set(key,{cipher:observed[i],i});
@@ -232,7 +233,7 @@ function donorControls(donor,seed,source) {
     return state>>>0;
   }
   const samples=[];
-  let plantCheck=false;
+  let plantCheck=false,firstSampleWitness=null;
   for(let sample=0;sample<64;sample++) {
     const plain=source.spans.map(w=>{
       const pool=byLen[w.len];
@@ -241,7 +242,13 @@ function donorControls(donor,seed,source) {
     const global=witness(plain,source,'global');
     const section=witness(plain,source,'section');
     const page=witness(plain,source,'page');
-    samples.push({global:global.conflicts,section:section.conflicts,page:page.conflicts});
+    const base59Global=witness(plain,source,'global',undefined,1);
+    const base59Section=witness(plain,source,'section',undefined,1);
+    samples.push({global:global.conflicts,section:section.conflicts,
+      page:page.conflicts,base59Global:base59Global.conflicts,
+      base59Section:base59Section.conflicts});
+    if(sample===0) firstSampleWitness={global:global.first,
+      chapterReset:section.first,base59Global:base59Global.first};
     if(sample===0) {
       // A real full-corpus GP-native positive: deterministic source-keyed
       // Caesar map with a fixed hidden additive per-state key.
@@ -275,6 +282,9 @@ function donorControls(donor,seed,source) {
   };
   return {donorWords:words.length,samples:64,global:stats('global'),
     chapterReset:stats('section'),physicalPageReset:stats('page'),
+    base59FixedPointGlobal:stats('base59Global'),
+    base59FixedPointChapterReset:stats('base59Section'),
+    firstSampleWitness,
     nativeGPPlantedRealTableMap:'PASS',
     oneRuneTamper:'PASS'};
 }
@@ -301,6 +311,8 @@ function main() {
   for(const r of Object.values(sources)) {
     assert.equal(r.global.numberContradicted,64);
     assert.equal(r.chapterReset.numberContradicted,64);
+    assert.equal(r.base59FixedPointGlobal.numberContradicted,64);
+    assert.equal(r.base59FixedPointChapterReset.numberContradicted,64);
     // Source page resets are a distinct mechanism and intentionally may survive.
   }
   console.log(JSON.stringify({
