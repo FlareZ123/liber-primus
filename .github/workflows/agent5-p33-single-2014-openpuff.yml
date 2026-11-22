@@ -1,9 +1,5 @@
 name: Agent 5 original p33 2014 OpenPuff single JPEG Maximum
 on:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/agent5-p33-single-2014-openpuff.yml'
   workflow_dispatch:
 permissions:
   contents: read
