@@ -16,7 +16,7 @@ const mul=(a,b)=>[mod(a[0]*b[0]+8*a[1]*b[1]),mod(a[0]*b[1]+a[1]*b[0])];
 /** @param {[number,number]} a @param {[number,number]} b @returns {[number,number]} */
 const add=(a,b)=>[mod(a[0]+b[0]),mod(a[1]+b[1])];
 /** @param {[number,number]} a @returns {[number,number]} */
-const neg=a=>a.map(x=>mod(-x));
+const neg=a=>[mod(-a[0]),mod(-a[1])];
 /** @param {[number,number]} a @returns {[number,number]} */
 function inv(a){
   let z=1;for(let i=0;i<27;i++)z=mod(z*mod(a[0]*a[0]-8*a[1]*a[1]));
@@ -90,7 +90,7 @@ for(const model of Object.keys(inverseModel)){
   assert.deepEqual(transform(output,inverseModel[model]),original);
   assert.deepEqual(transform(transform(plant,inverseModel[model]),model),plant);
   results.push({
-    model,originalRrunes:original.length,originalIoC:ioc(original),
+    model,originalRunes:original.length,originalIoC:ioc(original),
     decodedIoC:ioc(output),
     firstGpTransliteration:output.slice(0,36).map(x=>gp.translit[x]).join(' '),
     fullOriginalReplay:true,solvedP57Plant:true
