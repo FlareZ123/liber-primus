@@ -68,6 +68,9 @@ function tokenize(text, owners = []) {
       runes.push(digit);
       tokens.push({digit, section, page, offset:i, kind:'rune'});
     } else if (glyph === '-' || glyph === '.') {
+      // Six LP2 original Arabic numbered-list dashes (and two in
+      // native LP1 p10-13) are visual section headings, not GP word marks.
+      if (glyph === '-' && i > 0 && /[0-9]/.test(text[i - 1])) continue;
       tokens.push({digit:29, section, page, offset:i, kind:glyph});
     }
   }
@@ -225,17 +228,17 @@ const pageOwners = corpus.pages.filter((p) => p.page <= 55).sort((a, b) => a.pag
 const original = tokenize(originalParts, pageOwners);
 const corpusDigits = original.tokens.map((token) => token.digit);
 assert.equal(original.runes.length, 12956);
-assert.equal(corpusDigits.length, 15858);
-assert.equal(corpusDigits.filter((v) => v === 29).length, 2902);
+assert.equal(corpusDigits.length, 15852);
+assert.equal(corpusDigits.filter((v) => v === 29).length, 2896);
 assert.equal(corpusDigits.filter((v) => v === 0).length, 458);
 assert.deepEqual(original.runes,
   corpus.pages.filter((p) => p.page <= 55).sort((a, b) => a.page - b.page)
     .flatMap((p) => p.indices));
 
 const optimalOriginal = maximizeSpace(corpusDigits, 0);
-assert.equal(optimalOriginal.spaces, 756);
+assert.equal(optimalOriginal.spaces, 759);
 assert.equal(Math.max(...Array.from({length:KEY_LENGTH}, (_, phase) =>
-  maximizeSpace(corpusDigits, phase).spaces)), 759);
+  maximizeSpace(corpusDigits, phase).spaces)), 762);
 
 // The optimal original backtrace retains every original source token and
 // the entire original typography/per-page word-carry tape unchanged.
@@ -277,10 +280,10 @@ const sourceSections = independentResets(original.tokens, 'section', false);
 const freeSourceSections = independentResets(original.tokens, 'section', true);
 const physicalPages = independentResets(original.tokens, 'page', false);
 const freePhysicalPages = independentResets(original.tokens, 'page', true);
-assert.deepEqual(sourceSections, {groups:8, maximumSpaces:754});
-assert.deepEqual(freeSourceSections, {groups:8, maximumSpaces:767});
-assert.deepEqual(physicalPages, {groups:55, maximumSpaces:713});
-assert.deepEqual(freePhysicalPages, {groups:55, maximumSpaces:825});
+assert.deepEqual(sourceSections, {groups:8, maximumSpaces:758});
+assert.deepEqual(freeSourceSections, {groups:8, maximumSpaces:770});
+assert.deepEqual(physicalPages, {groups:55, maximumSpaces:720});
+assert.deepEqual(freePhysicalPages, {groups:55, maximumSpaces:827});
 
 // The exact 755-rune unenciphered LP1 source supplies a realistic positive
 // bypass plant with *real original GP lettering and 183 actual word/period
@@ -289,14 +292,14 @@ assert.deepEqual(freePhysicalPages, {groups:55, maximumSpaces:825});
 // The known mask is used ONLY to test source-native forward/reverse replay.
 const lp1 = tokenize(nativeLP1[4]);
 assert.equal(lp1.runes.length, 755);
-assert.equal(lp1.tokens.length, 938);
-assert.equal(lp1.tokens.filter((t) => t.digit === 29).length, 183);
+assert.equal(lp1.tokens.length, 936);
+assert.equal(lp1.tokens.filter((t) => t.digit === 29).length, 181);
 const lp1Plain = lp1.tokens.map((t) => t.digit);
 const lp1Mask = lp1Plain.map((p) => p === 0);
 const lp1Cipher = encipher(lp1Plain, lp1Mask).cipher;
 assert.deepEqual(decipher(lp1Cipher, lp1Mask).plain, lp1Plain);
 assert.ok(lp1Cipher.some((v, i) => v === 0 && !lp1Mask[i]));
-assert.ok(maximizeSpace(lp1Cipher, 0).spaces >= 183);
+assert.ok(maximizeSpace(lp1Cipher, 0).spaces >= 181);
 const p57 = tokenize(sourceParts[9]);
 const p57Plain = p57.tokens.map((t) => t.digit);
 assert.equal(p57.runes.length, 95);
@@ -312,19 +315,19 @@ function preview(seq, max) {
   return seq.slice(0, max).map((v) => v === 29 ? ' ' : corpus.translit[v]).join('');
 }
 console.log('GP30 DIVINITY/F-transparent all-mask original-space SFT: PASS');
-console.log('Original: 12956 GP runes, 2902 printed SPACE/period, 458 ciphertext F.');
+console.log('Original: 12956 GP runes, 2896 actual GP word/period marks, 458 ciphertext F; six numbered-list dashes preserved outside cipher.');
 console.log('Max plaintext SPACEs, arbitrary original F mask:');
 console.log('  entire original continuous phase0 =', optimalOriginal.spaces,
   '/', corpusDigits.length, '(' +
   (100 * optimalOriginal.spaces / corpusDigits.length).toFixed(3) + '%)');
-console.log('  entire original arbitrary global phase = 759 /', corpusDigits.length);
+console.log('  entire original arbitrary global phase = 762 /', corpusDigits.length);
 console.log('  8 original source section zero/arbitrary phases =',
   sourceSections.maximumSpaces, '/', freeSourceSections.maximumSpaces);
 console.log('  55 original physical page zero/arbitrary phases =',
   physicalPages.maximumSpaces, '/', freePhysicalPages.maximumSpaces);
 console.log('  p16–21 zero/free initial phase = 92/96 of 1985');
 console.log('  p40–53 zero/free initial phase = 191/192 of 3677');
-console.log('Authentic GP native controls: 755-rune LP1 (183 spaces) and',
+console.log('Authentic GP native controls: 755-rune LP1 (181 GP separators) and
   '95-rune p57 (20 spaces) exact GP30 F-transparent plants pass.');
 console.log('Original maximally-spaced decoded first 180 chars:',
   preview(optimalOriginal.decoded, 180));
