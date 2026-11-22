@@ -88,7 +88,7 @@ function encrypt(plaintext, keyOffset, mode) {
   return ciphertext;
 }
 // Authentically solved plaintext: unencrypted LP1 p10–p13, 755 GP29 runes.
-const lp1 = read('resources/transcriptions/lp1_wulfic_canonical.txt');
+const lp1 = read('resources/transcriptions/lp1_wulfic_canonical.txt').replace(/\r\n/g, '\n');
 const start = lp1.indexOf('ᚦᛖ-ᛚᚩᛋᛋ');
 const end = lp1.indexOf('\n$\n%\n', start);
 assert(start >= 0 && end > start);
