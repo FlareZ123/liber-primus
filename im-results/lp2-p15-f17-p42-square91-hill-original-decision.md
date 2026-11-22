@@ -1,6 +1,6 @@
 # LP2 p42 PNW/91 → original 2014 square91: complete five-rune Hill inverse
 
-**Agent45, 22 November 2026. Classification: newly executed original-source conditional decryption gate. No unknown LP2 plaintext, authentic decoding key or final destination recovered.** Windows Node22 single-file original-source SFT [PASS 45066963576](https://github.com/FlareZ123/liber-primus/actions/runs/45066963576).
+**Agent45, 22 November 2026. Classification: two original-source historical-square conditional decoding gates. No unknown LP2 plaintext, authentic decoding key or final destination recovered.** Windows Node22 single-file original-source SFT [PASS 45066963576](https://github.com/FlareZ123/liber-primus/actions/runs/45066963576).
 
 ## Human-visible causal route, with explicit weak links
 
@@ -25,6 +25,14 @@ The actual third square, preserved verbatim as [2014 original Stage10 integer so
 Reduce every entry modulo29. Its determinant is **3 mod29**, so its inverse exists unambiguously. Treat the authentic GP rune at global position10176 as the start of a **single continuous packet through p55**, including authentic page joins and the runeless p50 table. This yields **2,781 original GP29 source runes**. Apply each of the following **four** non-fitted five-rune Hill transformations, exactly 556 complete blocks = **2,780 runes**. Preserve the actual final residual rune, GP index10, untouched. The four complete source matrices are `M`, `M^-1`, `transpose(M)`, and `transpose(M^-1)`. At position `5b+j`, emit `sum_k matrix[j][k]*cipher[5b+k] mod29`.
 
 No search-selected start offset, phase, letter map, reversed ciphertext block order, prime-key shift, invented F exception, or patched trailing byte is permitted. Inversion by the exact finite-field inverse of each matrix reproduces every tested original rune, so the hypothetical decryptions are mathematically coherent.
+
+## Historically demonstrated prime-sum-to-square operation on this exact original receiver
+
+The already authenticated original 2014 Cicada LP1 *Some Wisdom* square-reading operation assigned each entire printed runic word its **integer GP-prime sum** and compared that with corresponding magic-square entries. This historical method is closer to a human's expected operation than importing an uninstructed Hill matrix. It can be tested here without choosing another key or start point: the new first-unprinted p15 global pointer **10176** selects original complete p42 word `PNW`, the **2,285th** original complete rune word (zero-based ordinal2284), so take **exactly 12 preceding and 12 following complete source words** as a natural **5×5 group centered on PNW**. The historical 2014 third square is centered on91. In physical reading order, compare all 25 *unaltered complete-word GP-prime sums* to the corresponding exact historical 25 square entries.
+
+**Result: only the central word, `PNW` with prime sum91, matches its square cell. The remaining 24 original word sums disagree.** In fact, every one of the **eight conventional rotations and reflections** of the same historical 5×5 square has **at most two** of the 25 original word-sum matches, at source slot numbers zero-based `[12]` or `[12,17]`. The extra orientation-dependent source word18 has prime sum245 and matches a repeated245 square value under some rotations. Neither arrangement is a literal 2014 magic-square plaintext/checksum reconstruction. The test uses all source word breaks, including cross-page carries elsewhere, and avoids post-fitted pointer rotations or square digits.
+
+This closes a **second, independently historically motivated square use** at the selected original p42 receiver. Under any proposed key that preserves whole printed-word GP-prime sums, all original 25 cells still cannot correspond to the authentic square without changing either the word segmentation or numeric rule. Those changes would require a separately authenticated instruction. Exact source-native executable assertions appear in the same [p42 2014-square SFT](../sims/lp2_p15_f17_p42_square91_hill_original_sft.cjs), now [Windows Node22 PASS 45069602526](https://github.com/FlareZ123/liber-primus/actions/runs/45069602526). No unknown plaintext or key resulted.
 
 ## Original-input decision
 
