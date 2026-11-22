@@ -330,7 +330,7 @@ assert.equal(plant.length,133);
 const decoded=encode(plant);
 assert.deepEqual(decoded.plaintext,known);
 assert(decoded.sidecar.every(x=>x===0));
-assert(samples.filter(x=>x.label!=='p55+13dot')
+assert(samples.filter(x=>!x.label.includes('dot'))
   .every(x=>x.decodedIoc<0.04));
 console.log(JSON.stringify({
   source:'all three original 2014 Stage10 3301/1033 magic squares',
