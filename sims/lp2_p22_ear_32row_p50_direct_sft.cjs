@@ -59,6 +59,16 @@ assert.equal(grid.rows.length, 32);
 assert.ok(grid.rows.every(row => row.length === 8));
 assert.equal(grid.byte_rows.length, 32);
 assert.ok(grid.byte_rows.every(row => row.length === 8));
+const sourceP22Runes = corpus.pages[22].indices;
+const page22Doublets = sourceP22Runes.flatMap((v,i) =>
+  i>0 && v===sourceP22Runes[i-1] ? [{index:i, gp29:v}] : []);
+assert.deepEqual(page22Doublets,[{index:101,gp29:28}]);
+const completeEarDoublets = corpus.pages.slice(0,56).flatMap(page =>
+  page.indices.flatMap((v,i) =>
+    i>0 && v===page.indices[i-1] && v===28 ? [{page:page.page,index:i}] : []));
+assert.deepEqual(completeEarDoublets, [
+  {page:1,index:194}, {page:22,index:101}, {page:43,index:92}
+]);
 const words = visibleFragments(pages[22]);
 assert.equal(words.length, 32);
 assert.deepEqual(pages.slice(0, 58).flatMap((page, i) =>
@@ -89,6 +99,7 @@ assert.deepEqual(results.map(r => r.printableAscii), [14, 16, 13, 16]);
 assert.ok(results.every(r => !r.whollyPrintable));
 console.log(JSON.stringify({
   source: { page22Runes: 131, unique32VisibleFragments: true, page32Runes: 121,
+    page22Doublets, completeEarDoublets,
     p50Rows: 32, p50Columns: 8, namedRuneOrdinalSums: names },
   directOneCellPerRow: results,
   scope: 'Tests 32-byte direct ASCII readouts only. No plaintext, creator-selected key, or cipher established.'
