@@ -190,14 +190,6 @@ assert.ok(Math.abs(heldout.gpIoC - 0.034547089820630573) < 1e-14);
  * if secret alphabets can differ by page, so this is a tight all-key bound.
  */
 
-/**
- * A complete all-secret classification gate for strictly more favorable
- * source-typed secret alphabets. Each (page, printed word length, rune slot)
- * state may independently apply an arbitrary GP30 permutation. The maximum
- * achievable SPACE count is the sum of its most frequent input symbol.
- * The exact equality witness is a per-state permutation sending the best
- * source symbol to SPACE and every other symbol to a distinct native label.
- *
 // Source punctuation's explicit full stops and chapter/section breaks may
 // reset a decoder. They do not delete/insert a GP rune and are treated as
 // independent secret-alphabet scopes for this all-key capacity gate.
@@ -211,6 +203,14 @@ assert.equal(punctuationAtRune.length, 12956);
 assert.equal((source.match(/\./g) || []).length, 175);
 assert.equal((source.match(/&/g) || []).length, 17);
 
+/**
+ * A complete all-secret classification gate for strictly more favorable
+ * source-typed secret alphabets. Each (page, printed word length, rune slot)
+ * state may independently apply an arbitrary GP30 permutation. The maximum
+ * achievable SPACE count is the sum of its most frequent input symbol.
+ * The exact equality witness is a per-state permutation sending the best
+ * source symbol to SPACE and every other symbol to a distinct native label.
+ *
  * @param {Array<'page'|'chapter'|'length'|'position'|'punctuation'>} fields
  * @returns {{classes:number,maximum:number,achieved:number,fraction:number}}
  */
