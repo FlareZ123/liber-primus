@@ -1,10 +1,11 @@
 "use strict";
 /**
- * LP2 pp36-38 five numbered units: physically fixed word/line parallel merge.
- * Original rune conservation, exact inverse, native LP1 GP29 positive plants.
- * Run: node sims/lp2_five_numbered_passages_parallel_read_original_sft.cjs
- * Source: printed numerals 1-5, authentic words and hard visual line wraps.
- * Does not try arbitrary rune permutation or secretly fit cipher keys.
+ * LP2 pp36-38: original 1-to-5 one-GP-rune interleave of 553 printed glyphs.
+ * Exact inverse, original source-page/rune/ink mapping and native LP1 control.
+ * Run: node sims/lp2_five_numbered_passages_single_rune_roundrobin_original_sft.cjs
+ * Source: original printed numerals 1-5 and original page-glyph transcript.
+ * Physical punctuation, source word boundaries and source ink remain attached
+ * to the original rune coordinates; only the rune visitation order changes.
  */
 const assert=require("node:assert/strict");
 const fs=require("node:fs");
