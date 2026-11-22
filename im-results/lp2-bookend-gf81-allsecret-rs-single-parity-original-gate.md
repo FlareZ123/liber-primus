@@ -54,3 +54,5 @@ This finite exclusion does not affect cryptanalysis using the p7-derived field a
 ## Original-input reproducibility
 
 Run [the single-file Windows-compatible Node22 CommonJS SFT](../sims/lp2_bookend_gf81_allalphabet_rs_parity_sft.cjs) against the unchanged [canonical LP2 rune tape](../resources/liber-primus/lp2-corpus.json). It reconstructs the original 81²/80² split and five authentic holes, implements arithmetic in the source-derived GF81 quartic, computes both original full-field and cyclic field parity matrices, performs exact Gaussian elimination, exhausts primitive generators, and supplies a genuine nonconstant-palette original-shape RS positive control. The only original-secret space eliminated is the clearly specified globally fixed 29→81 alphabet; this is an exact linear-algebra result rather than a language-model score or extrapolated p-value.
+
+The corrected SFT passes on Windows Node.js 22, including the independent native control: [run45065102892](https://github.com/FlareZ123/liber-primus/actions/runs/45065102892).
