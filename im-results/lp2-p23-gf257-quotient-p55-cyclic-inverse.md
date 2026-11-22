@@ -43,6 +43,15 @@ The source-frozen original p55 output contains **no coherent adjacent native-GP 
 
 As an independent algebraic obstruction to a naive **common polynomial factor** interpretation, the original high-first GP-index polynomial of p23 has GF257 linear root **20**, while p50 has **213**; exact GF257 Euclidean GCD between the full original p23 and p50 polynomials is **1** (also degree0 for p23 with p55 and for p50 with p55). Thus the page-length-to-root relation does not extend to shared original-cipher factors in these direct representations. This does **not** rule out nonlinear or differently serialized relations.
 
+
+**Independent Windows Node.js 22 execution:** [PASS 44978642173](https://github.com/FlareZ123/liber-primus/actions/runs/44978642173). The exact original segmented output is:
+
+```
+L ETMG BEA HEA XTOEOEIAF FPAYNGTH ANG XAENJSAAEDEABEUM TGGAIAAE TOEMU HEO WHIANGOTEO MEYNWUX EW EXWPYEA RHOE NGJOE
+```
+
+The 17 source word divisions and their carried first glyph are unchanged. This is an original-cipher **failure**, despite the valid 76/76 planted inverse and exact replay.
+
 ## Decision and next action
 
 The 213/76 source alignment is mathematically real, and the present rule supplies a fully reversible, strictly finite **non-additive** receiver. That receiver fails on the entire untouched original p55. More important, no first-party clue selects its polynomial-division-to-convolution steps. The original source gives one GF257 field equation and an appealing count correspondence; it does not yield a typed 76-symbol plaintext operation, correct p55 output or authentic cipher key. Prior DFT additive masks, 180/76 systematic RS, and 255/3×85 quotient-share candidates are independently negative; do not relabel those as consequences of this test or rerun them.
