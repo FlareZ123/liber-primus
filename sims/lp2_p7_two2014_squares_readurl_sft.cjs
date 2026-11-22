@@ -96,8 +96,12 @@ const p7EndWords = pageWords(7).slice(-5).map(w => w.runes);
 const scalarFeatures = {
   gpIndexProduct: p7EndWords.map(w =>
     w.reduce((acc, v) => mod(acc * v), 1)),
+  gpOrdinalProduct: p7EndWords.map(w =>
+    w.reduce((acc, v) => mod(acc * (v + 1)), 1)),
   gpIndexSum: p7EndWords.map(w =>
     mod(w.reduce((acc, v) => acc + v, 0))),
+  gpOrdinalSum: p7EndWords.map(w =>
+    mod(w.reduce((acc, v) => acc + v + 1, 0))),
   gpPrimeSum: p7EndWords.map(w =>
     mod(w.reduce((acc, v) => acc + corpus.prime[v], 0))),
   gpPrimeProduct: p7EndWords.map(w =>
@@ -105,7 +109,9 @@ const scalarFeatures = {
 };
 assert.deepEqual(scalarFeatures, {
   gpIndexProduct: [11, 26, 8, 15, 2],
+  gpOrdinalProduct: [9, 19, 25, 0, 0],
   gpIndexSum: [26, 7, 23, 13, 24],
+  gpOrdinalSum: [28, 11, 26, 15, 27],
   gpPrimeSum: [9, 16, 11, 11, 23],
   gpPrimeProduct: [14, 10, 4, 19, 19]
 });
@@ -124,7 +130,9 @@ assert.deepEqual(Object.fromEntries(
   Object.entries(alternativeFeatureReadouts).map(([rule, output]) =>
     [rule, output.centre])), {
   gpIndexProduct: "READURL",
+  gpOrdinalProduct: "HAPFAT",
   gpIndexSum: "GFDEOGOE",
+  gpOrdinalSum: "YJHAEENG",
   gpPrimeSum: "AETBYPEO",
   gpPrimeProduct: "PUOEPBI"
 });
