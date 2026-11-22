@@ -1,0 +1,21 @@
+name: LP2 Agent 3 source-original onion and word-space gates
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-gates:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original historic 256-byte Onion2 / p50 bridge
+        run: node sims/lp2_p50_onion2_bytebridge_sft.cjs
+      - name: Exact 29-way all-secret word-length resegmentation bounds
+        run: node sims/lp2_wordlength_resegment_allsecret_sft.cjs
