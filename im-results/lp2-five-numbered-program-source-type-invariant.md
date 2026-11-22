@@ -45,6 +45,8 @@ The *unskipped* alternate Vigenère outputs for each of 12 tested cases are also
 
 [One-file Windows Node22 SFT](../sims/lp2_five_numbered_signed2016_wordkey_sft.cjs) · [successful original-source run](https://github.com/FlareZ123/liber-primus/actions/runs/45016311624).
 
+**Independent original-image key-transfer receiver:** the fixed locally successful p36 `[1,3,3,1]` red-dot/section-number palindrome has now been extended without retuning to all **122** complete words in the five numbered items. The native GP29 English-lexicon receiver finds **6/122** short matches including the original `MEANING`, only **one** match spanning four runes, and no four-rune-or-longer matches on the 414-rune heldout items 2–5. Alternative bracket center or additive sign fares no better. This preserves the single-word clue candidate while rejecting its use as a full prose/program decoder. [Complete original decision](lp2-p36-section1-meaning-state-inverse.md) · [Windows22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45017369568).
+
 ## Reproducibility and Director decision
 
 [Single-file source-driven CJS SFT](../sims/lp2_numbered_fivestage_program_invariants_sft.cjs) reads the exact existing original transcription, reconstructs all 553 runes and 122 words, checks the five labels and counts, proves full-key alphabet substitution conserves IoC, and compares **every** equal-length original solved-source GP window. It has no parameter sweep, no hidden plaintext fitting, and no modifications to original sources.

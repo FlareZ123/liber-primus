@@ -306,6 +306,25 @@ section1 word0 -> MEANING.
 
 This supports a local instruction/state reading and rejects a simple running plaintext sentence under the same word-local rule.
 
+## Full first-opcode receiver: unchanged red-dot palindrome on all numbered words (Agent26, 22 November 2026)
+
+The original section-1 result selects one first **complete four-rune word** and proposes `MEANING` after subtracting `[1,3,3,1]`. The immediately necessary question is whether that *same human-visible key grammar* opens the complete 139-rune first numbered paragraph, then a truly untouched independent 91-rune second paragraph, rather than a standalone locator or chance four-rune word. Freeze the outer key at each original **red section ordinal 1..5** and select only the **two** inner digit values from the actual two ten-dot bracket column shape `(3,4,3)`: outer repeated `3=e`, central `4=q`. For each source-defined word of length n use additive GP29 palindrome `[section,inner,...,inner,section]` (for one-rune words the section value alone), in either direction. There is no fitted phase, secret key, invented punctuation or word-boundary reset. The actual 122 complete original words include the p37→p38 carried word: unit word counts **30/20/25/19/28** and rune counts **139/91/98/96/129**. The source parser now correctly removes the physical line-wrap slash at p37→p38.
+
+For an independent native GP29 word-level receiver, match each complete candidate plaintext token to a fixed **29,060-form** GP-normalized English lexicon from `resources/control/english_wordfreq_textblob.txt`, using exactly the existing Cicada `ING`, `IO`, `TH`, `NG` and other composite rune spelling conventions. This lexicon is intentionally generous: it admits low-frequency lexical items and single symbols. The original raw ciphertext, untreated, matches **5/122** complete word shapes covering **11/553** runes.
+
+| Source-licensed interior and direction | Matched complete words /122 | Matching rune coverage /553 | Matches with at least four GP runes |
+| --- | ---: | ---: | ---: |
+| `3`, subtract (the previously successful `MEANING` first-word key) | **6** | **12** | **1** (first word `MEANING`) |
+| `3`, add | 4 | 8 | 0 |
+| `4`, subtract | 5 | 8 | 0 |
+| `4`, add | 3 | 5 | 0 |
+
+The first-word `MEANING` is preserved exactly under the original fixed `[1,3,3,1]` key. On the later **92 original complete words and 414 runes** of units 2–5, the same `3` subtraction grammar finds only **five** short dictionary strings covering **eight** runes, **zero** with at least four GP runes. It therefore has no sustained native English sentence, paragraph or program instruction. The other three completely frozen original variants are similarly uniform/nonprose.
+
+Controls: each output exactly reencrpyts all 553 untouched original runes, and a source-native English lexical plant of *all 122 original word lengths* is encrypted and fully recovered **122/122** under each one of the four selected invertible rules. A deliberately wrong central-column key fails to recover all native lexical words. Both positives and original failing readouts were run in [Windows Node22 Actions 45017369568](https://github.com/FlareZ123/liber-primus/actions/runs/45017369568) via [single-file GP29 source SFT](../sims/lp2_p36_38_bracketpalindrome_fulltext_sft.cjs).
+
+**Interpretation:** The locally motivated four-rune `MEANING` target remains an unresolved *standalone* clue hypothesis. The same red-digit palindrome **cannot serve as a general GP29 English decoder** for the 139-rune first item or the later numbered items. Moving from one four-rune hit to an asserted 553-rune plaintext would require a new author-selected operator or external key; this test provides no such operand. Neither this local one-hit route nor the separate signed-2016 word-key Vigenère gate authenticates an original first-stage instruction.
+
 ## Manuscript-wide fixed-key control
 
 Hold the exact key `[1,3,3,1]` fixed across:
