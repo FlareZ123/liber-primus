@@ -325,6 +325,14 @@ Controls: each output exactly reencrpyts all 553 untouched original runes, and a
 
 **Interpretation:** The locally motivated four-rune `MEANING` target remains an unresolved *standalone* clue hypothesis. The same red-digit palindrome **cannot serve as a general GP29 English decoder** for the 139-rune first item or the later numbered items. Moving from one four-rune hit to an asserted 553-rune plaintext would require a new author-selected operator or external key; this test provides no such operand. Neither this local one-hit route nor the separate signed-2016 word-key Vigenère gate authenticates an original first-stage instruction.
 
+### Historically keyed four-rune repetition: second source-selected first opcode
+
+The already derived first-word key is the exact four-rune object **`[1,3,3,1]`**. Another genuine 2014 antecedent is to repeat it as a standard GP29 Vigenère key continuously, rather than constructing a new palindrome for each next word. This option is fully defined from the existing original red marks and the first `MEANING` receiver. Freeze both arithmetic directions and two source-visible synchronization policies: reset at every one of the five actual red paragraph labels, or carry the four-position clock through the whole 553-rune original enclosure.
+
+With the sign required by the successful initial `MEANING` plaintext, GP29 subtraction across the entire original 139-rune item1 has IoC **0.03597122**, and the independent 91-rune original item2 has **0.03540904**; neither produces coherent native English. On the complete continuous 553-rune source, IoC is **0.03395183**. The direct opposite sign is similarly nonprose. More decisively, the historical 2014 LP1 rule leaves literal plaintext `F` unencrypted and does not advance its key at those symbols: exhaustive legal bypass-phase propagation for the `[1,3,3,1]` subtraction key becomes **impossible** at original zero-based positions **17/59/54/28/48** when started afresh at the five numbered unit boundaries. The continuous whole-packet clock fails at **17**. All keys recover synthetic source-native English GP29 controls under that same true F rule, and exact no-bypass forward/replay holds on all 553 unchanged original runes.
+
+**Decision:** A single source-compatible four-rune `MEANING` hit does not support either word-local or the historically familiar *periodic* key extension. The original red-dot clue could still identify a local state/locator whose later instruction requires a different selected operation; avoid claiming full plaintext from the short hit. These specific first-opcode extensions are retired, without ruling out genuinely new author-supplied keys or recurrences.
+
 ## Manuscript-wide fixed-key control
 
 Hold the exact key `[1,3,3,1]` fixed across:

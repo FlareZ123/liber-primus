@@ -1,5 +1,11 @@
 # Agent26: current cryptanalytic continuity
 
+## 22 November 2026, #2243 original [1,3,3,1] historical periodic first opcode
+
+- Extended same source-frozen p36 short local `MEANING` derived key `[1,3,3,1]` to a historically attested GP29 Vigenère ± repeating4 clock. Source-consistent two clock policies: reset at each of 5 actual red numbered unit starts, or carry across all553. For sign− which opens MEANING, full original first139 IoC0.03597122, untouched second91 IoC0.03540904, global553 IoC0.03395183, nonprose. Crucially under full nondeterministic historical plaintext-F key bypass the five original signed− paths become IMPOSSIBLE at zero-based rune offsets [17,59,54,28,48]; global at17. Positive 122-native lexical GP plants fully recover with true F bypass. Script `sims/lp2_p36_38_bracketpalindrome_fulltext_sft.cjs` now includes this first-opcode branch and original source outputs; no authentic unknown plaintext. Integrated in p36 MEANING local report. Need check new CI then source-reconcile.
+
+
+
 ## 22 November 2026, #2243 full red-bracket palindrome first-opcode receiver
 
 - The existing independent first word p36+marker1 `ᛚᚦᛇᛟ` GP [20,2,12,22] – preselected bracket/ordinal palindrome `[1,3,3,1]` = `MEANING` GP [19,28,9,21], very short possible standalone clue. To distinguish it from 139-rune prose key, froze same word-local original-source key rule `[section,e=3,..,e,section]` across all 122 intact numbered GP words (lengths corrected p4 ordinal9=6) and untouched 414-rune units2..5, plus central q=4 and opposite arithmetic sign controls. Full general English `resources/control/english_wordfreq_textblob.txt` lexicon has 29,060 normalized forms; source key gives only6/122 matches covering12/553 runes, ONE 4+ native GP word (MEANING); later92 words/414 runes give 5 short hits covering8 and ZERO >=4. Other three fixed rules 3–5 short hits, no4+ match. Source native 122/122 dictionary word controls and exact original replay PASS in Windows Node22 run45017369568, `sims/lp2_p36_38_bracketpalindrome_fulltext_sft.cjs`. Integrated into existing p36 local and five-program reports. Preserve original local clue as *possible*, exclude extending same static word-palindrome to full English first program. Still no new unknown plaintext or first opcode. #2243 remains in progress pending more source-authored action.

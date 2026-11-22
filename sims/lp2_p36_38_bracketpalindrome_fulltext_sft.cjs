@@ -156,7 +156,69 @@ for(const interior of [3,4]) for(const sign of [-1,1]) {
       assert(match(transform(fakeCipher,lengths[u],u+1,4,sign),lengths[u]).wordHits<lengths[u].length);
   }
 }
+
+/**
+ * Exhaustively track possible historical plaintext-F bypass clocks for a
+ * cyclic key. F may remain unconsumed or be emitted by the ordinary key;
+ * no fitted skip pattern, and key phase starts at each printed numeral.
+ * @param {number[]} source
+ * @param {number[]} key
+ * @param {1|-1} sign
+ */
+function fFirstImpossible(source,key,sign) {
+  let phases=new Set([0]);
+  for(let i=0;i<source.length;i++) {
+    const next=new Set();
+    for(const phase of phases) {
+      if(source[i]===0) next.add(phase);
+      if(mod(source[i]+sign*key[phase%key.length])!==0)
+        next.add((phase+1)%key.length);
+    }
+    phases=next;
+    if(!phases.size) return i;
+  }
+  return -1;
+}
+/**
+ * Source GP plaintext -> ciphertext with plaintext-F transparency.
+ * @param {number[]} plain
+ * @param {number[]} key
+ * @param {1|-1} sign Inverse sign used during decryption
+ */
+function encryptF(plain,key,sign) {
+  let step=0;
+  return plain.map(p=>{
+    if(p===0) return 0;
+    const cipher=mod(p-sign*key[step%key.length]);
+    step++;
+    return cipher;
+  });
+}
+const repeatingKey=[1,3,3,1], expectedFBlocks=[17,59,54,28,48];
+for(const sign of [-1,1]) {
+  for(let u=0;u<5;u++) {
+    const original=C[u],out=original.map((x,j)=>mod(x+sign*repeatingKey[j%4]));
+    assert.deepEqual(out.map((x,j)=>mod(x-sign*repeatingKey[j%4])),original);
+    const block=fFirstImpossible(original,repeatingKey,sign);
+    if(sign===-1) assert.equal(block,expectedFBlocks[u]);
+    if(u===0&&sign===-1) assert.deepEqual(out.slice(0,4),[19,28,9,21]);
+    const plant=authenticPlant[u],fake=encryptF(plant,repeatingKey,sign);
+    assert.equal(fFirstImpossible(fake,repeatingKey,sign),-1);
+    console.log(JSON.stringify({repeatingVigenere:true,sign,section:u+1,
+      sourceRunes:original.length,originalIoC:ioc(out),
+      originalFBypassFirstImpossible:block,wordMatches:match(out,lengths[u])}));
+  }
+  const original=C.flat(),out=original.map((x,j)=>mod(x+sign*repeatingKey[j%4]));
+  assert.deepEqual(out.map((x,j)=>mod(x-sign*repeatingKey[j%4])),original);
+  const block=fFirstImpossible(original,repeatingKey,sign);
+  if(sign===-1) assert.equal(block,17);
+  const globalPlant=authenticPlant.flat();
+  assert.equal(fFirstImpossible(encryptF(globalPlant,repeatingKey,sign),repeatingKey,sign),-1);
+  console.log(JSON.stringify({repeatingVigenere:true,sign,continuousWhole553:true,
+    sourceRunes:553,originalIoC:ioc(out),originalFBypassFirstImpossible:block}));
+}
+
 assert.equal(modelCount,4);
-console.log('PASS 4 source-frozen bracketed palindrome consumers, 122 original words, '+
+console.log('PASS 4 source-frozen bracketed palindrome consumers plus ± historically keyed 4-rune Vigenere repeats, 122 original words, '+
   'original p37->p38 carried source words, exact forward/replay, all 122 native GP words '+
   'on synthetic positive, and wrong-key control; no continuous original plaintext.');
