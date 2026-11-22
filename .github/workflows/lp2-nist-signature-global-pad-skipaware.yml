@@ -38,6 +38,7 @@ jobs:
 
       - name: Install pinned decoder runtime dependencies
         run: |
+          mkdir -p run-artifacts/lp2-nist-global-pad
           python -m pip install --upgrade pip
           python -m pip install numpy cryptography filelock
           python -m pip freeze | tee run-artifacts/lp2-nist-global-pad/pip-freeze.txt
