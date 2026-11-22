@@ -34,13 +34,13 @@ The following source observations jointly reconstruct the entire *already-known 
 | a | **(3×4)/2**, triangle area from p8 second/first red products 3/4 and p9 suffix product5 | **6** |
 | b | p7 fourth red-word GP29 product | **15** |
 | A | p7 third red-word GP29 product | **8** |
-| B | p6 **single original red rune M**, index19 | **19** |
+| B | p8 first red printed word **XIX** (Roman 19) immediately followed by **M** GP19; p6 independent **single red M19** | **19** |
 | K | p7 fifth red-word GP29 product | **2** |
 | q | p8 first red-word GP29 product, cross-check **K² mod23** | **4** |
 
 Exactly the DH23 equations `5⁶ mod23=8`, `5¹⁵ mod23=19`, `8¹⁵ mod23=2`, `19⁶ mod23=2`, and `2² mod23=4` hold. In p7's first two red words the first **[23,3]** have *product11* modulo29, while the second distinct word has product **26=23+3**, a further elementary sum/product cue if the field interpretation is adopted.
 
-**Value of this alternative:** It avoids the high-assumption operation of measuring five dots and interpolating a quartic solely to recover a known historical parameter set. The geometry-based `a=6` is an independently specified arithmetic rule *once* the 3–4–5 interpretation is chosen. **Limit:** every field name and the use of triangle *area* were recognized against a previously published example. There is no author-labeled table identifying these as DH entries, no contemporaneous clue selecting a 2013 example as the LP2 output law, and no unknown manuscript plaintext. The earlier polynomial route may encode different information even if this simpler reconstruction is valid.
+**Value of this alternative:** It avoids the high-assumption operation of measuring five dots and interpolating a quartic solely to recover a known historical parameter set. The geometry-based `a=6` is an independently specified arithmetic rule *once* the 3–4–5 interpretation is chosen. **Limit:** every field name and the use of triangle *area* were recognized against a previously published example. There is no author-labeled table identifying these as DH entries, no contemporaneous clue selecting a 2013 example as the LP2 output law, and no unknown manuscript plaintext. The earlier polynomial route may encode different information even if this simpler reconstruction is valid. The p8 Roman XIX/M check is a shorter independent route to B19, despite remaining retrospective as an author-intended decoding instruction.
 
 ## A source-locked 60-cell receiver: direct GP29 inverse is negative
 
