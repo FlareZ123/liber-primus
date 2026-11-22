@@ -96,7 +96,7 @@ function encode(plain,bytes,sign,feedback){
     for(let i=1;i<word.length;i++){
       const k=bytes[index++]%29;
       const prev=feedback?current[i-1]:0;
-      current.push((word[i]+prev+sign*k)%29);
+      current.push(((word[i]+prev+sign*k)%29+29)%29);
     }
     return current;
   });
