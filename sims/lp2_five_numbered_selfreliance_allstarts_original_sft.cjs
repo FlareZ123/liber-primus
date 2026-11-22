@@ -12,8 +12,8 @@
  * Pinned Git blob SHA detects version/content changes.
  *
  * This test does not assert the original source instructed LP2 key use.
- * It excludes only a direct additive source stream without transparent-F
- * key skips, space changes, reordering, or additional transformations.
+ * It excludes both direct additive and exact historical plaintext-F-transparent
+ * source streams, with no space changes, reordering, or extra transformations.
  */
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
