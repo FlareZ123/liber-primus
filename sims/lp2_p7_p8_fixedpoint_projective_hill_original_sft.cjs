@@ -14,6 +14,7 @@ const ink = JSON.parse(load('lp2-ink-annotations.json'));
 const parts = load('lp2-transcription.txt').split('%');
 const runes = new Map(gp.runes.map((c, i) => [c, i]));
 const mod = x => (x % 29 + 29) % 29;
+const mod4 = x => (x % 4 + 4) % 4;
 /** @param {number} x @returns {number} */
 function inv(x) {
   assert.notEqual(mod(x), 0);
@@ -72,21 +73,21 @@ assert.equal(tMap(infinity),12);
 assert.equal(mapping.indexOf(infinity),24);
 /** @param {number} x @param {number} power @returns {number} */
 function tPower(x,power) {
-  for(let k=0;k<mod(power)%4;k++) x=tMap(x);
+  for(let k=0;k<mod4(power);k++) x=tMap(x);
   return x;
 }
 for(let x=0;x<=29;x++){
+  assert.equal(tMap(tMap(tMap(tMap(x)))),x);
   assert.equal(tPower(x,4),x);
-  assert.equal(tPower(x,3+1),x);
 }
 const mPair = ([x,y]) => [mod(A*x+B*y),mod(C*x+D*y)];
 /** @param {number[]} pair @param {number} power @returns {number[]} */
 function mPower(pair,power){
-  for(let k=0;k<mod(power)%4;k++)pair=mPair(pair);
+  for(let k=0;k<mod4(power);k++)pair=mPair(pair);
   return pair;
 }
 for(let x=0;x<29;x++)for(let y=0;y<29;y++)
-  assert.deepEqual(mPower([x,y],4),[x,y]);
+  assert.deepEqual(mPair(mPair(mPair(mPair([x,y])))),[x,y]);
 
 const receiver={
   blackAndCarried: p8.slice(12).concat(p9[0]),
@@ -117,7 +118,7 @@ for(const [name,tape]of Object.entries(receiver)){
       ioc:ioc(projected),special:projected.filter(x=>x===infinity).length});
   }
 }
-assert.equal(tests.length,60);
+assert.equal(tests.length,38);
 assert.equal(tests.filter(x=>x.ioc>=0.05).length,0);
 const methodMax={
   hillConstant:Math.max(...tests.filter(x=>x.method==='hill-constant').map(x=>x.ioc)),
