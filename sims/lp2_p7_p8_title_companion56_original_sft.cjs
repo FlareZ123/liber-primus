@@ -156,6 +156,50 @@ const matches56=original.map(({label,xs})=>({
   requiredEqualForRaw56StepLFSR:xs.length-56
 }));
 assert.deepEqual(matches56.map(x=>x.equalLag56),[6,6]);
+
+/**
+ * The only further low-complexity consumer motivated by the number 56 is
+ * one full GP29 four-rune Hill matrix power per physical page, derived
+ * from the same p7/p8 operator. For cross-page quartets, assign the
+ * power using the first actual rune's source page; p50 is rune-free.
+ * Explicitly predeclare two natural anchors and direction/transposition.
+ * The source does not tell the solver to apply this cipher.
+ */
+const unknown=corpus.pages.filter(p=>p.page<=55);
+const all=unknown.flatMap(p=>p.indices);
+const firstPageByRune=unknown.flatMap(p=>
+  Array(p.indices.length).fill(p.page));
+assert.equal(all.length,12956);
+assert.equal(all.length%4,0);
+const powers=[I];
+for(let j=1;j<=56;j++)powers.push(matrixMultiply(powers.at(-1),M));
+assert.deepEqual(powers[56],I);
+const clockCases=[];
+for(const anchor of [0,8])
+for(const sign of [-1,1])
+for(const transposed of [false,true]){
+  const plain=[];
+  for(let i=0;i<all.length;i+=4){
+    const exponent=((sign*(firstPageByRune[i]-anchor))%56+56)%56;
+    const transformMatrix=transposed
+      ? transpose(powers[exponent]) : powers[exponent];
+    const input=all.slice(i,i+4);
+    const output=transform(input,transformMatrix);
+    assert.deepEqual(transform(output,matrixInverse(transformMatrix)),input);
+    plain.push(...output);
+  }
+  clockCases.push({anchor,sign,transposed,
+    normalizedIoC:Number(ioc(plain).toFixed(9)),
+    firstP8:spell(plain.slice(unknown.filter(p=>p.page<8)
+      .reduce((total,p)=>total+p.indices.length,0),
+      unknown.filter(p=>p.page<8)
+      .reduce((total,p)=>total+p.indices.length,0)+40))});
+}
+assert.equal(clockCases.length,8);
+assert(clockCases.every(x=>x.normalizedIoC<1.002));
+const pageClockBest=Math.max(...clockCases.map(x=>x.normalizedIoC));
+assert(Math.abs(pageClockBest-1.000907790)<1e-8);
+
 console.log(JSON.stringify({
   source: {
     p7LastFiveWholeRedWordProducts:earlier,
@@ -170,8 +214,9 @@ console.log(JSON.stringify({
   unknownPageCount:56,
   originalTests:tests,
   rawPeriod56Exclusion:matches56,
+  completeBookPageClock:clockCases,
   solvedP57Control:{nativeIoC:Number(ioc(p57).toFixed(9)),
     authenticRunesReconstructed96:96},
-  interpretation:'Exact conditional p8->p7 arithmetic and reversible order56 operator. Direct four-rune cipher gates nonlinguistic; no recovered unknown plaintext, no authenticated page-clock instruction.'
+  interpretation:'Exact conditional p8->p7 arithmetic and reversible order56 operator. Direct four-rune and full 56-page clock cipher gates nonlinguistic; no unknown plaintext or authenticated decoder.'
 },null,2));
-console.log('PASS: p8 source reconstructs p7; companion order56; 8 reversible original gates; native planted control');
+console.log('PASS: p8 reconstructs p7; companion order56; 8 direct plus 8 whole-book page-clock gates; native planted control');
