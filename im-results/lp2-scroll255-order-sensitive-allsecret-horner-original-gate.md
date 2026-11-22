@@ -22,7 +22,9 @@ All **29 input rune labels A**, all **29 output rune labels B**, all 12 real wor
 
 The p7 polynomial additionally supplies the two roots of **t²=8 in GF(29²)**, a genuine source-local field already studied as a possible clock. Give each input rune an *arbitrary secret pair* of GF29 coefficients a[r]+t·c[r], and take the canonical **half-trace** of the whole ordered field-Horner word to obtain a physical GP29 symbol. For an exponent e, the coefficient of a[r] is 8^(e/2) for even e; the coefficient of c[r] is 8^((e+1)/2) for odd e. Negating t simply negates the secret c labels, so both source roots are exhaustively covered by the same original equation family. Give the same arbitrary 29 secret output labels, 12 length, five page and one red corrections.
 
-Both original-source **255×105** systems have **rank101, nullity4** and again *every output label B[y] is forced identical*. This eliminates the whole GF841 source-quadratic half-trace ordered-word family with arbitrary secret input/output alphabets.
+**Every nonzero GF29-linear output projection is covered.** The canonical half-trace is without loss of generality for this field-Horner architecture. An arbitrary nonzero linear projection is L(a+t·c)=αa+βc, where α,β are elements of GF29. Its even-exponent rune coordinate is A=αa+βc and its odd-exponent coordinate is C=(β/8)a+αc. The change-of-coordinates matrix has determinant α²−β²/8. Because 8 is a nonsquare modulo29, that determinant is nonzero for every nonzero (α,β). The 58 freely chosen secret rune coordinates therefore exhaust **every nonzero fixed linear readout of GF841 into GP29**, including any hidden trace multiplier or alternate field-coordinate selector. Nonlinear and position-changing outputs remain outside this claim.
+
+Both original-source **255×105** systems have **rank101, nullity4** and again *every output label B[y] is forced identical*. This eliminates the whole GF841 source-quadratic ordered-word family with any fixed nonzero linear output projection with arbitrary secret input/output alphabets.
 
 | Hidden-key family | Original equations / rank / variables | 29 output glyphs distinct? |
 | --- | --- | --- |
