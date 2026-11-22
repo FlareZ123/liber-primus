@@ -21,7 +21,7 @@ const source = read('resources/lp2-transcription.txt');
 const corpus = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
 const squares = read('resources/cicada2014-openpuff-magic-squares.txt');
 
-const pages = source.split(/\n%\n/);
+const pages = source.split(/\r?\n%\r?\n/);
 assert.equal(pages.length, 57, 'source transcription page groups');
 const groups = pages[33].split('&');
 assert.equal(groups.length, 2, 'two p33 red-headlined bodies');
