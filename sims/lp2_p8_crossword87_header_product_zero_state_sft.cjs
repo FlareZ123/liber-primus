@@ -140,6 +140,8 @@ const originalDHWithoutInterpolation = {
 };
 assert.deepEqual(originalDHWithoutInterpolation,
   { p: 23, g: 5, a: 6, b: 15, A: 8, B: 19, K: 2, e: 3, q: 4 });
+assert.equal(sourceRoman19Register.romanValue, originalDHWithoutInterpolation.B);
+assert.equal(sourceRoman19Register.followingGPIndex, originalDHWithoutInterpolation.B);
 assert.equal(p7.slice(-14)[1], originalDHWithoutInterpolation.e);
 assert.equal(p7.slice(-14)[6], originalDHWithoutInterpolation.g);
 const dh = originalDHWithoutInterpolation;
