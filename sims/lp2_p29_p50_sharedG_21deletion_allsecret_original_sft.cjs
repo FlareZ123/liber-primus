@@ -109,6 +109,88 @@ assert.deepEqual([raw.longerDistinct,raw.shorterDistinct,g.longerDistinct,g.shor
 assert.equal(g.longerMinimumTypeCount,1);
 assert.equal(g.shorterMinimumTypeCount,5);
 
+/**
+ * Stronger source-seven-phase consumer: the shared G root24 has exact order
+ * SEVEN, so grant SEVEN independent unknown bijections and a 21-symbol
+ * (three full root periods) contiguous extra block anywhere.
+ *
+ * This tests EVERY deletion start, both independent source orientations,
+ * and every secret seven-key alphabet implicitly via exact equality
+ * partitions, without enumerating (29!)^7 unknown alphabets.
+ *
+ * @param {number[]} source Source original GP29 register.
+ * @param {number[]} target Target original GP29 register.
+ */
+function allSevenPhaseContiguousDeletion(source,target){
+ assert.equal(source.length-target.length,21);
+ const output={cases:0,compatibleSevenPhaseKeys:0,
+  maximumFirstContradictionPosition:-1,minimumGreedyConflicts:Infinity,
+  best:{},earliestCounterexample:null};
+ for(const reverseSource of [false,true]){
+  for(const reverseTarget of [false,true]){
+   const longer=reverseSource?source.slice().reverse():source;
+   const shorter=reverseTarget?target.slice().reverse():target;
+   for(let start=0;start+21<=longer.length;start++){
+    const aligned=longer.slice(0,start).concat(longer.slice(start+21));
+    const maps=Array.from({length:7},()=>new Map());
+    const inverses=Array.from({length:7},()=>new Map());
+    let first=-1,conflicts=0;
+    for(let i=0;i<shorter.length;i++){
+      const state=i%7,one=aligned[i],two=shorter[i];
+      if((maps[state].has(one)&&maps[state].get(one)!==two)||
+         (inverses[state].has(two)&&inverses[state].get(two)!==one)){
+        if(first<0)first=i;
+        conflicts++;
+      }else{
+        maps[state].set(one,two);
+        inverses[state].set(two,one);
+      }
+    }
+    output.cases++;
+    if(conflicts===0)output.compatibleSevenPhaseKeys++;
+    if(first>output.maximumFirstContradictionPosition)
+      output.maximumFirstContradictionPosition=first;
+    if(conflicts<output.minimumGreedyConflicts){
+      output.minimumGreedyConflicts=conflicts;
+      output.best={reverseSource,reverseTarget,start,first,conflicts};
+    }
+    if(output.earliestCounterexample===null&&first>=0)
+      output.earliestCounterexample={reverseSource,reverseTarget,start,position:first};
+   }
+  }
+ }
+ return output;
+}
+const sevenPhaseRaw=allSevenPhaseContiguousDeletion(sourceA,sourceB);
+const sevenPhaseG=allSevenPhaseContiguousDeletion(quotientA,quotientB);
+assert.deepEqual([sevenPhaseRaw.cases,sevenPhaseRaw.compatibleSevenPhaseKeys],
+ [1028,0]);
+assert.deepEqual([sevenPhaseG.cases,sevenPhaseG.compatibleSevenPhaseKeys],
+ [1020,0]);
+assert.equal(sevenPhaseRaw.minimumGreedyConflicts,126);
+assert.equal(sevenPhaseG.minimumGreedyConflicts,127);
+assert.equal(sevenPhaseG.maximumFirstContradictionPosition,43);
+
+/* Authentic target / synthetic full seven-key positive. */
+const phases=Array.from({length:7},(_,phase)=>Array.from({length:29},
+ (_,symbol)=>((phase+2)*symbol+phase*11)%29));
+const unphase=phases.map(permutation=>{
+ assert.equal(new Set(permutation).size,29);
+ const inverse=Array(29);
+ permutation.forEach((value,index)=>inverse[value]=index);
+ return inverse;
+});
+const phasePlantOriginal=quotientB.map((value,i)=>phases[i%7][value]);
+const phasePlant=phasePlantOriginal.slice(0,57)
+ .concat(Array.from({length:21},(_,i)=>(17*i+4)%29))
+ .concat(phasePlantOriginal.slice(57));
+assert.equal(phasePlant.length,quotientA.length);
+const phasePlantTest=allSevenPhaseContiguousDeletion(phasePlant,quotientB);
+assert.equal(phasePlantTest.compatibleSevenPhaseKeys>0,true);
+const recoveredPhase=phasePlant.slice(0,57).concat(phasePlant.slice(78))
+ .map((value,i)=>unphase[i%7][value]);
+assert.deepEqual(recoveredPhase,quotientB);
+
 /* Exact positive: globally secret GP29 bijection and 21 arbitrary added
  * positions; rejector must accept a true plant. The original p50
  * quotient's 254 runes are used solely as the known target register,
@@ -144,6 +226,7 @@ console.log(JSON.stringify({
  source:'LP2 original p29 ciphertext and p50 conventional base60 table, GF29',
  sourceFactor:'p39 marked [27,5,15], G=15(X-24)^2',
  originalRaw:raw,originalSharedGQuotient:g,
+ sevenPhaseContiguous21:{raw:sevenPhaseRaw,gQuotient:sevenPhaseG,positiveCompatibleCases:phasePlantTest.compatibleSevenPhaseKeys,positiveExactRecovered:recoveredPhase.length},
  syntheticPositive:{
   actualAuthenticP50TargetRunes:quotientB.length,
   secretGP29AlphabetCount:29,arbitraryAddedPositions:21,
