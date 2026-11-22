@@ -179,6 +179,56 @@ assert.equal(base59Red13Orbit.points.length, firstRed[1]);
 assert.equal(bytes59[189], 189);
 
 /**
+ * Direct, frozen historical p56 prime-totient inverse with the original
+ * b59 graph root189 used as a prime-index start for source-selected p55.
+ * The original p55 Fehu runes remain literal and do not advance the key.
+ * This tests one motivated receiver, without offset or mask optimization.
+ */
+function primesAtLeast(length) {
+  const all = [];
+  for (let candidate = 2; all.length < length; candidate++) {
+    let isPrime = true;
+    for (let d = 2; d * d <= candidate; d++) {
+      if (candidate % d === 0) { isPrime = false; break; }
+    }
+    if (isPrime) all.push(candidate);
+  }
+  return all;
+}
+const primeList = primesAtLeast(300);
+const originalP56 = corpus.pages.find(page => page.page === 56).indices;
+let p56Clock = 0;
+const decodedP56 = originalP56.map((cipher, offset) =>
+  offset === 56 ? cipher :
+    (cipher - (primeList[p56Clock++] - 1) % 29 + 29) % 29
+);
+assert.ok(decodedP56.map(i => corpus.translit[i]).join("")
+  .startsWith("ANENDWITHINTHEDEEPWEBTH"));
+
+const originalP55 = corpus.pages.find(page => page.page === 55).indices;
+const p55Fehu = originalP55.flatMap((value, i) => value === 0 ? [i] : []);
+assert.deepEqual(p55Fehu, [15, 25, 41]);
+let p55Clock = 0;
+const proposedP55 = originalP55.map(cipher =>
+  cipher === 0 ? 0 :
+    (cipher - (primeList[189 + p55Clock++] - 1) % 29 + 29) % 29
+);
+assert.equal(p55Clock, 73);
+let reverseP55Clock = 0;
+assert.deepEqual(proposedP55.map(plain =>
+  plain === 0 ? 0 :
+    (plain + (primeList[189 + reverseP55Clock++] - 1) % 29) % 29
+), originalP55);
+function ioc(sequence) {
+  const counts = Array(29).fill(0);
+  for (const rune of sequence) counts[rune]++;
+  return counts.reduce((total, count) =>
+    total + count * (count - 1), 0) /
+    (sequence.length * (sequence.length - 1));
+}
+assert.ok(Math.abs(ioc(proposedP55) - 0.03508771929824561) < 1e-10);
+
+/**
  * Conditional matched null. Fixed original source cells preserve the exact
  * red13→LP3 observation and the indexed 3C=189 self-point under base59.
  * The remaining 252 printed two-character tokens are moved intact.
@@ -283,6 +333,18 @@ console.log(JSON.stringify({
     originalSourceRuneOffset: surfacePositions[0]
   },
   base59Red13PointerRoute: base59Red13Orbit,
+  primeTotientRoot189OnOriginalP55: {
+    historicalSolvedP56Positive: true,
+    primeStartIndex: 189,
+    firstPrime: primeList[189],
+    consumedKeyRunes: p55Clock,
+    preservedLiteralFehuOffsets: p55Fehu,
+    sourceOriginalIoC: ioc(originalP55),
+    decodedIoC: ioc(proposedP55),
+    originalReceiverReencoded: true,
+    decodedPrefix: proposedP55.slice(0, 30).map(i => corpus.translit[i]).join(""),
+    recoveredUnknownPlaintext: false
+  },
   matchedTokenPermutation: {
     ...nullResult,
     rates: Object.fromEntries(Object.entries(nullResult.counts).map(
