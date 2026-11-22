@@ -77,8 +77,10 @@ function summarize(values) {
 
 const targets = {
   p15_after_red9: corpus.pages[15].indices.slice(9),
+  p15_after_red20: corpus.pages[15].indices.slice(20),
   p16_to_p21: corpus.pages.slice(16,22).flatMap(p => p.indices),
   p15_to_p21: corpus.pages.slice(15,22).flatMap(p => p.indices),
+  p55: corpus.pages[55].indices,
 };
 console.log('original 16 printed spiral addresses:',addresses.join(','));
 for(let i=0;i<addresses.length;i++) {
@@ -95,7 +97,12 @@ for(const sign of [-1,1]) {
   console.log('WAY-key on remaining 12, sign',sign,
     gp(transform(tail,waypoint,sign,false)));
 }
-for(const [keyName,key] of Object.entries({black15:black,red16:all})) {
+for(const [keyName,key] of Object.entries({
+  black15:black,
+  red16:all,
+  outer12_after_WAY:tail,
+  outer12_reverse:[...tail].reverse(),
+})) {
   for(const [targetName,cipher] of Object.entries(targets)) {
     for(const transparentF of [false,true]) {
       for(const sign of [-1,1]) {
