@@ -194,7 +194,8 @@ for (const [label, tape] of Object.entries(regions)) {
 // determinant-one rotations over GP29. This is a distinct reversible
 // two-rune cipher grammar; no extra runes, padding or fitted numeric key.
 const normRotations = [];
-for (const [legA,legB,hyp] of [euclid(2),euclid(4)]) {
+for (const [legA,legB,hyp] of [euclid(2),
+  [coeff[2],coeff[3],p8.at(-1).at(-1).value]]) {
   const inverseHyp = Array.from({length:28},(_,i)=>i+1)
     .find(x=>mod(x*hyp)===1);
   assert.equal(typeof inverseHyp, 'number');
