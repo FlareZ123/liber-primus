@@ -334,6 +334,71 @@ for (const [sourceIndex, sourcePath] of corpusPaths.entries()) {
     EMinimum:minE, positivePlant:plantControls,
     positiveArbitrarilySwitchedModes:switchedModeControls});
 }
+/**
+ * Independent corrected Old English Beowulf GP29 register. The source has
+ * max word length 13; only 3 of 2,896 original words have 14 GP glyphs.
+ * We omit those 3 unrepresented words and compare the COUNT from the
+ * 10,021 genuinely source-matched interior GP positions directly against
+ * the ALL-10,060-original upper bounds. Completing missing three plaintext
+ * words cannot decrease the count of their five most frequent GP glyphs.
+ */
+function oldEnglishSourceControl() {
+  const source = JSON.parse(read("resources/control/beowulf_oe_gp_profile_corrected.json"));
+  const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabc";
+  const raw = Array.from(source.sourceGpBase29, c => alphabet.indexOf(c));
+  assert.equal(raw.length, source.allSourceGpRunes);
+  assert.equal(raw.length, 48012);
+  assert(raw.every(i => i >= 0 && i < 29));
+  const frequency = new Uint32Array(29);
+  for (const i of raw) frequency[i]++;
+  assert.deepEqual(Array.from(frequency), source.allGpCounts);
+  const bins = new Map();
+  let offset = 0;
+  for (const n of source.allSourceGpWordLengths) {
+    const w = raw.slice(offset, offset + n);
+    assert.equal(w.length, n);
+    if (!bins.has(n)) bins.set(n, []);
+    bins.get(n).push(w);
+    offset += n;
+  }
+  assert.equal(offset, raw.length);
+  assert.equal(source.allSourceGpWordLengths.length, 10885);
+  assert.equal(Math.max(...source.allSourceGpWordLengths), 13);
+  const eligible = words.filter(w => w.length <= 13);
+  assert.equal(eligible.length, 2893);
+  const rngSource = rng(0x44551019);
+  let minTop1 = Infinity, maxTop1 = 0, minTop5 = Infinity, maxTop5 = 0;
+  for (let trial = 0; trial < 180; trial++) {
+    const sampled = eligible.map(w => {
+      const options = bins.get(w.length);
+      assert(options?.length, "Old English source has no GP word of length " + w.length);
+      return options[Math.floor(rngSource() * options.length)];
+    });
+    const ranks = languageRank(sampled);
+    assert.equal(ranks.sites, 10021);
+    minTop1 = Math.min(minTop1, ranks.top1);
+    maxTop1 = Math.max(maxTop1, ranks.top1);
+    minTop5 = Math.min(minTop5, ranks.top5);
+    maxTop5 = Math.max(maxTop5, ranks.top5);
+  }
+  // 10,021 original-matched plaintext sites already require more common
+  // source-native runes than the 10,060 original ciphertext sites permit.
+  for (const scope of ["global", "section", "position", "color",
+      "sectionColor", "positionColor"]) {
+    assert(minTop1 > originalCaps[scope].capacities[1]);
+    assert(minTop5 > originalCaps[scope].capacities[5]);
+  }
+  assert(minTop1 > originalCaps.global.capacities[2],
+    "Old English also violates arbitrary hidden two-mode state capacity");
+  return {corpus:"resources/control/beowulf_oe_gp_profile_corrected.json",
+    sourceWords:source.allSourceGpWordLengths.length, sourceRunes:raw.length,
+    originalMatchedWords:eligible.length, missingLongSourceWords:3,
+    eligibleSites:10021, trials:180,
+    top1Range:[minTop1,maxTop1], top5Range:[minTop5,maxTop5],
+    fullOriginalTop1Cap:originalCaps.positionColor.capacities[1],
+    fullOriginalTop5Cap:originalCaps.positionColor.capacities[5]};
+}
+const oldEnglish = oldEnglishSourceControl();
 const lp1 = read("resources/transcriptions/lp1_wulfic_canonical.txt");
 const start = lp1.indexOf("ᚦᛖ-ᛚᚩᛋᛋ");
 const end = lp1.indexOf("\n$\n%\n", start);
@@ -347,6 +412,6 @@ assert.equal(solvedLP1.sites, 574);
 assert.equal(solvedLP1.E, 98);
 const result = {
   status:"PASS all-secret conditional alphabet-capacity theorem; no plaintext recovered",
-  original:originalCaps, solvedLP1, controls
+  original:originalCaps, solvedLP1, controls, oldEnglish
 };
 console.log(JSON.stringify(result, null, 2));
