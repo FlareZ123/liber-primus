@@ -210,7 +210,7 @@ console.log(JSON.stringify({
     keySettingCount:24*8*2},
   results:{periods:results,
     totalMatchedNativeWindowTests:totalComparisons,
-    highestOriginalQ,lowestControl,minGap,
+    highestOriginalQ:highestOriginal,lowestControl,minGap,
     nativeMatchesAtOrBelowOriginal:0,
     previouslyProvedAllFreeEExclusion:"periods1..232"},
   positive:{period:233,knownSolvedNativeRunes:P.length,
