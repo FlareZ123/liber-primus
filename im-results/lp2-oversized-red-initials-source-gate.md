@@ -1,6 +1,6 @@
 # LP2 oversized red drop caps: exact source inventory and instruction gate
 
-**Status (11 November 2026):** complete original-JPEG inventory; **no readable new plaintext, independently selected instruction/key, or chapter-specific decoder**. This resolves Director [#195](https://github.com/FlareZ123/liber-primus/issues/195) at its source gate. The original manuscript is still unsolved.
+**Status (11 November source inventory, 22 November red-terminal navigation extension):** exact original-JPEG inventory, with one conditional increasing-page red-glyph route **p7→p27→solved p57**. The route supplies a plausible, source-visible page selector and still no independently authenticated cipher operation or unknown-page plaintext. The original manuscript remains unsolved; the direct drop-cap acrostic gate in Director [#195](https://github.com/FlareZ123/liber-primus/issues/195) remains closed.
 
 ## Original-source visual selector
 
@@ -29,6 +29,25 @@ Exactly **15 oversized red initials across 13 pages** satisfy that classificatio
 The unmodified, source-order **15-rune string** is `ᛋᛚᛈᚪᛉᛚᚢᛗᛞᛝᛡᚠᚪᚫᛈ` and standard GP transliteration is `S L P A X L U M D NG IA F A AE P`.
 
 The separate **all-red-span-first-runes** rule yields **18** symbols, not 15: the manuscript also has ordinary-size red-span starts at **p7 offset194 `ᛞ` (D)**, **p15 offset0 `ᚠ` (F)**, and **p53 offset128 `ᛏ` (T)**. Page 15's giant L starts a later red span at offset9; the first red rune F is ordinary-sized. An extraction defined as “red first letter” differs from the printed font-size selection in exactly these three original visible places. No subset tuning was used.
+
+## New literal red-ink route: terminal rune to a *later* oversized initial (Agent45, 22 November)
+
+The earlier exact 15-cap inventory also defines a simple, human-visible candidate handoff. Read the **final complete rune of any one original red span** among the 18 ink-marked passages, and find a **matching oversized first red rune** on a strictly *later* physical page. The only added selector is ascending original page number, a possible reading of the authenticated 2016 phrase about *numbers* giving *direction*. A page-order increase is an interpretation, not a source-authenticated mandatory opcode. No prime sums, modular products, p50 cell lookups, source word cribs, or chosen spellings enter the following source graph.
+
+| Source red span (page:GP offset) | Destination giant first red (page:GP offset) | Identical printed GP rune |
+| --- | --- | --- |
+| **7:194** (closing red stanza) | **27:0** (opening giant) | **M / GP0 19** |
+| 15:0 (ordinary-sized opening red) | 54:0 (opening giant) | A / GP0 24 |
+| 15:9 (giant L opening second red span) | 33:91 (giant NG opening second red span) | NG / GP0 21 |
+| **27:0** (opening red heading) | **57:0** (solved PARABLE giant) | **P / GP0 13** |
+
+These are **all four** increasing-page exact terminal-to-giant-rune matches across the complete 18 red spans and 15 original independently established oversized initials. Following these links mechanically gives **exactly one increasing two-edge path**, **p7 red closing M → p27 red opening M / closing P → p57 solved PARABLE opening P**. The other two increasing links end after one step. No source rune, edge, page, or prefix was fitted to the result. Without the increasing-page restriction, **p54 closing M also links backward to p27 M**, and p27 closing P links backward to the oversized internal P on p3. Those actual alternatives are important: the manuscript itself does not prove a monotonicity rule or that reaching a solved title is the intended stopping criterion.
+
+**Why this is a genuine decision lead:** The p7 M and p27 P terminal runes are precisely the two red passages whose *whole-span GP0 product* is inverted by their terminal rune, as recorded in the [p8 source relationship](lp2-p8-berggren-original-source-selector-gate.md). The two exact consecutive glyph matches add a straightforward visual route to the otherwise numerically elaborate [p27–p57 parable handoff](lp2-p55-p27-redheading-we-must-shed-route.md). That is an independent route *hypothesis* and candidate destination selector. It yields no decrypted p7/p27 plaintext and lacks a first-party statement commanding red terminal→giant initial or strict increasing page numbers.
+
+**Direct solvable-content test:** Treat the exact unencrypted solved p57 GP29 PARABLE source as an unfitted classical Vigenere running key for original p27's 215 black runes, p54's 223 black runes, and p55's 76 black runes. Test the printed p57 seven-rune title, 88-rune body, or complete 95-rune page, both inverse signs, and both all-rune and literal-F-transparent clocks, with zero starting phase at the selected receiver. The highest decoded IoC29 is **0.040469** for original p27, **0.037248** for p54 and **0.044211** for the short p55, whereas the full original solved p57 reference has IoC29 **0.062710**. No target yielded a sustained native-GP plaintext beginning or a common authentic key. This retires only the fixed direct running-key transfer, preserving the source graph as an unexplained clue candidate.
+
+The [read-only original-data CommonJS SFT](../sims/lp2_red_terminal_dropcap_monotone_route_sft.cjs) asserts the complete four-edge/one-path enumeration against all original ciphertext and red-ink annotations, reuses the earlier JPEG-audited 15-cap inventory, and gives the exact paired source-parable-key decoder output and a solved-page planted-positive. The original source is immutable.
 
 ## Solved positive controls and missing operation
 
