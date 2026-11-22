@@ -41,25 +41,6 @@ assert.equal(offset,76);
 assert.equal(inner.length,43);
 assert.deepEqual(inner.map((v,i)=>v===0?i:-1).filter(i=>i>=0),[11]);
 /**
- * Reversible canonical p56 prime-totient GP29 law. For literalF, a source
- * ciphertext-F is emitted as unchanged F without consuming prime state.
- * @param {number[]} sequence @param {number} initial
- * @param {boolean} literalF @param {boolean} decrypt
- * @returns {number[]}
- */
-function transform(sequence,initial,literalF,decrypt){
-  let cursor=initial;
-  return sequence.map(v=>{
-    if(literalF&&v===0){
-      if(decrypt)return 0;
-      // This contract is applied to planted native positives with F held
-      // at the same already selected compacted source position.
-    }
-    const shift=primes[cursor++]-1;
-    return mod(v+(decrypt?-shift:shift));
-  });
-}
-/**
  * Preserve exactly the original known literal ciphertext-F marker at
  * compacted offset11 regardless of the input at that marker.
  * @param {number[]} values @param {number} start
