@@ -4,7 +4,7 @@
 
 ## Original independently supplied operands
 
-The original complete red inscription at the **end of physical LP2 page 7**, local rune offsets 194–207, contains five intact printed GP29 words of lengths [2,4,3,2,3]. Their **zero-based GP29 index products**, calculated inside each printed word and reduced modulo 29, are the existing p7 source vector
+The original complete red inscription at the **end of physical LP2 page 7**, local rune offsets 194–207, contains five intact printed GP29 words of lengths [2,4,3,2,3]. The original **two full stops split them into a two-word first clause and a three-word second clause**, 2|3; exactly **five black discs** appear immediately below the inscription. Both numbers and clause division are evident to a human from the untouched image before decipherment. Their **zero-based GP29 index products**, calculated inside each printed word and reduced modulo 29, are the existing p7 source vector
 
     v = (11, 26, 8, 15, 2)^T.
 
@@ -47,7 +47,9 @@ Under the standard GP transliteration, the two outputs concatenate to
 
     PE [READ URL] XNG
 
-where the six consecutive central rune values are **[4,28,23,1,4,20]**, corresponding exactly to **R-EA-D U-R-L**. The rune EA is a single authentic GP glyph encoding the two Latin letters **EA**. The surrounding four runes are **P,E,X,NG**; they remain unexplained. Calling the six central runes an instruction requires deciding *after looking at the output* to discard the first two and last two runes. Solved p57's “shed our own circumferences” supplies a possible contextual rationale, but does not prescribe this ten-rune framing or the fifth-power operator.
+where the six consecutive central rune values are **[4,28,23,1,4,20]**, corresponding exactly to **R-EA-D U-R-L**. The rune EA is a single authentic GP glyph encoding the two Latin letters **EA**. The surrounding four runes are **P,E,X,NG**; they remain unexplained.
+
+**Additional original-picture framing:** The pre-existing red punctuation divides the five printed source words **2|3**. With outputs of five runes each, placed in the two historical 5×5 matrix order and facing one another, a symmetric use of this source-derived **two-outside, three-inside** partition isolates precisely the A-output final three runes and B-output first three runes. This provides a retrospective, *source-shaped reason* to consider the exact central 3+3 readout instead of an unrestricted arbitrary crop. The five original black discs also make exponent five a visually motivated hypothesis. Neither cue directs a solver to multiply GP-index products by the **fifth powers** of both matrices or to orient the outputs face-to-face; a plausible framing is weaker than an authored operation. Calling the six central runes an instruction requires deciding *after looking at the output* to discard the first two and last two runes. Solved p57's “shed our own circumferences” supplies a possible contextual rationale, but does not prescribe this ten-rune framing or the fifth-power operator.
 
 ## Strong mathematical uniqueness, but no valid post-discovery significance estimate
 
