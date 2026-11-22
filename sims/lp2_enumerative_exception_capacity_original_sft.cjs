@@ -184,6 +184,94 @@ const chapterMinTotal = perChapterRankMin.reduce((sum,n)=>sum+n,0);
 assert.equal(chapterMinTotal,179);
 assert.ok(chapterMinTotal > 86); // one reserved rank already exceeds all original 86 doublets
 
+/*
+ * Exact minimum of TWO 28-rank labels under ANY one hidden GP29 ordering.
+ * Two chosen output ranks correspond to adjacent source-symbol pairs,
+ * either touching (a,b,c) or disjoint (a,b,c,d). For each other source
+ * predecessor the 2 or 3 placement regions are freely selectable. This
+ * is the minimum-side dual of the earlier exact maximum-two-rank theorem.
+ */
+function twoRankMinimum(t) {
+  const q = t.length;
+  const pairSum = Array.from({length:q},(_,z) =>
+    Array.from({length:q},(_,a) =>
+      Int32Array.from({length:q},(_,b)=>t[z][a]+t[z][b])));
+  let best=Infinity, kind='', labels=[];
+  touch: for(let a=0;a<q;a++) for(let b=0;b<q;b++) if(a!==b) {
+    for(let c=0;c<q;c++) if(c!==a && c!==b) {
+      let count=t[a][b]+t[a][c]+t[b][a]+t[b][c]+t[c][a]+t[c][b];
+      if(count>=best) continue;
+      for(let z=0;z<q;z++) if(z!==a && z!==b && z!==c) {
+        count+=Math.min(pairSum[z][b][c],pairSum[z][a][b]);
+        if(count>=best) break;
+      }
+      if(count<best){best=count;kind='touch';labels=[a,b,c];}
+      if(best===0) break touch;
+    }
+  }
+  disjoint: for(let a=0;a<q;a++) for(let b=0;b<q;b++) if(a!==b) {
+    for(let c=0;c<q;c++) if(c!==a && c!==b) {
+      for(let d=0;d<q;d++) if(d!==a && d!==b && d!==c) {
+        let count=t[a][b]+t[a][d]+t[b][a]+t[b][d]+
+          t[c][a]+t[c][d]+t[d][a]+t[d][c];
+        if(count>=best) continue;
+        for(let z=0;z<q;z++) if(z!==a && z!==b && z!==c && z!==d) {
+          count+=Math.min(pairSum[z][b][d],pairSum[z][a][d],pairSum[z][a][c]);
+          if(count>=best) break;
+        }
+        if(count<best){best=count;kind='disjoint';labels=[a,b,c,d];}
+        if(best===0) break disjoint;
+      }
+    }
+  }
+  const [a,b,c,d]=labels;
+  const before=[],middle=[],after=[];
+  for(let z=0;z<q;z++) if(!labels.includes(z)) {
+    if(kind==='touch') {
+      if(pairSum[z][b][c] <= pairSum[z][a][b]) before.push(z);
+      else after.push(z);
+    } else {
+      const v0=pairSum[z][b][d], v1=pairSum[z][a][d],
+        v2=pairSum[z][a][c];
+      if(v0<=v1 && v0<=v2)before.push(z);
+      else if(v1<=v2)middle.push(z);
+      else after.push(z);
+    }
+  }
+  const order=kind==='touch'?[...before,a,b,c,...after]:
+    [...before,a,b,...middle,c,d,...after];
+  const rankIds=kind==='touch'?[before.length,before.length+1]:
+    [before.length,before.length+2+middle.length];
+  assert.equal(new Set(order).size,q);
+  const pos=Array(q);order.forEach((x,i)=>{pos[x]=i});
+  const histogram=Array(q-1).fill(0);
+  for(let z=0;z<q;z++)for(let x=0;x<q;x++)if(z!==x) {
+    histogram[pos[x]-Number(pos[z]<pos[x])]+=t[z][x];
+  }
+  assert.equal(histogram[rankIds[0]]+histogram[rankIds[1]],best);
+  return {minimum:best,kind,labels,order,rankIds};
+}
+let toyTwoExhaustiveMin=Infinity;
+for(const order of permutations([0,1,2,3,4])) {
+  const pos=Array(5);order.forEach((v,i)=>{pos[v]=i});
+  const ranks=Array(4).fill(0);
+  for(let z=0;z<5;z++)for(let x=0;x<5;x++)if(z!==x) {
+    ranks[pos[x]-Number(pos[z]<pos[x])]+=toyT[z][x];
+  }
+  for(let a=0;a<4;a++)for(let b=a+1;b<4;b++) {
+    toyTwoExhaustiveMin=Math.min(toyTwoExhaustiveMin,ranks[a]+ranks[b]);
+  }
+}
+assert.equal(toyTwoExhaustiveMin,twoRankMinimum(toyT).minimum);
+const globalTwoRankMin=twoRankMinimum(transitionMatrix(pages));
+assert.equal(globalTwoRankMin.minimum,726);
+const chapterTwoRankMin=visualChapters.map(([lo,hi])=>
+  twoRankMinimum(transitionMatrix(pages.filter(p=>p.page>=lo && p.page<=hi))).minimum);
+assert.deepEqual(chapterTwoRankMin,[14,30,54,68,25,47,56,116,0]);
+const pageTwoRankMin=pages.map(p=>twoRankMinimum(transitionMatrix([p])).minimum);
+assert.ok(pageTwoRankMin.every(n=>n===0)); // page resets can hide 2 arbitrary rank labels
+assert.equal(chapterTwoRankMin.reduce((a,b)=>a+b,0),410);
+
 /* Page-local punctuation-placement capacity fails for seven physical pages. */
 let pageStart = 0;
 const localDeficits = [];
@@ -376,6 +464,12 @@ console.log(JSON.stringify({
     withinPageRepeats: 86, withinWordRepeats: 63 },
   exactMissingBits: required,
   predecessorRankMinimum: { global:globalRankMin.minimum,
+    simultaneousTwoRanks:globalTwoRankMin.minimum,
+    twoRankAttainingSourceLabels:globalTwoRankMin.labels.map(i=>corpus.translit[i]),
+    chapterTwoRankMinima:chapterTwoRankMin,
+    chapterTwoRankTotal:chapterTwoRankMin.reduce((a,b)=>a+b,0),
+    pageResetTwoRankMinimum:pageTwoRankMin.reduce((a,b)=>a+b,0),
+    exhaustiveQ5TwoRank:toyTwoExhaustiveMin,
     attainingSourcePair:globalRankMin.pair.map(i=>corpus.translit[i]),
     perVisualChapter:perChapterRankMin, chapterTotal:chapterMinTotal,
     exhaustiveQ5Control:toyExhaustiveMin },
