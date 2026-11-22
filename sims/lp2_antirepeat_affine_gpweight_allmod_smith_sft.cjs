@@ -20,6 +20,7 @@ const root=path.join(__dirname,"..");
 const read=name=>fs.readFileSync(path.join(root,name),"utf8");
 const corpus=JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const punct=JSON.parse(read("resources/liber-primus/lp2-punctuation-identity.json"));
+const originalInk=JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
 const pages=corpus.pages.filter(x=>x.page<56 && x.indices.length);
 assert.equal(pages.length,55);
 assert.equal(pages.reduce((n,p)=>n+p.indices.length,0),12956);
@@ -53,6 +54,10 @@ for(const w of sources){
  const marks=punct.events.filter(e=>e.page===w.page
    && e.local_rune_offset>w.start && e.local_rune_offset<=w.end);
  assert.equal(marks.length,0,"no printed punctuation in gap");
+ const sourceInk=originalInk.pages.find(p=>p.page===w.page);
+ assert(sourceInk);
+ const redInGap=(sourceInk.red_spans||[]).filter(r=>r.start<w.end && r.start+r.length>w.start);
+ assert.equal(redInGap.length,0,"no source red-ink rubric reset in gap");
  rows.before.push(vec(before));
  rows.after.push(vec(after));
  original.push({page:w.page,repeatDestinations:[w.start,w.end],
@@ -134,7 +139,7 @@ for(const m of [3,5,7,13,17,29,257,3301]){
  // establishes this as the sole key for all odd m without enumeration.
 }
 console.log("PASS "+JSON.stringify({
- originalRunes:12956,sourceWitnesses:original,
+ originalRunes:12956,noRedInkBetweenSourceWitnesses:true,sourceWitnesses:original,
  smithInvariant:{before:[1,1,2],after:[1,1,2]},
  exactOriginalMinors:checks,enumeratedSecretModuli:tested,
  allOddModuli:"only zero secret coefficient vector",
