@@ -221,6 +221,52 @@ sourceInputs.push({
   encoded:beowulf.allSourceGpWordLengths.map(x=>Math.min(x,17))
 });
 
+
+/**
+ * Author-authenticated signed Cicada wording is a closer plaintext donor
+ * premise than another arbitrary literary source. Strictly select only
+ * actual clear-signed message prose, never ASCII-armored signatures or
+ * nested ciphertext, with no source-specific word-offset choice.
+ *
+ * @param {string} name
+ * @returns {string[]}
+ */
+function signedMessageWords(name) {
+  const armor=read(name);
+  assert.ok(armor.startsWith('-----BEGIN PGP SIGNED MESSAGE-----\n'));
+  const bodyAt=armor.indexOf('\n\n');
+  const stopAt=armor.indexOf('-----BEGIN PGP SIGNATURE-----');
+  assert.ok(bodyAt>=0 && stopAt>bodyAt);
+  const signed=armor.slice(bodyAt+2,stopAt).split(/^- -----BEGIN PGP MESSAGE-----/m)[0];
+  return signed.toUpperCase().match(/[A-Z]+/g)||[];
+}
+const authenticated = [
+  'resources/historical/cicada2012-song-is-your-own-path.asc',
+  'resources/historical/cicada2013-welcome-and-congratulations.asc',
+  'resources/historical/cicada2013-no-more-testing.asc',
+  'resources/historical/cicada2013-first-onion-hello.asc',
+  'resources/historical/cicada2014-stage11-message.asc',
+  'resources/historical/cicada2016-4gq25-outguess.asc'
+];
+for (const source of authenticated) {
+  const words=signedMessageWords(source);
+  assert.ok(words.length>=10);
+  for (const [scheme, map] of [
+    ['GP-signed',gpLength],
+    ['LATIN-signed',w=>Math.min(w.length,17)]
+  ]) {
+    sourceInputs.push({source,scheme,encoded:words.map(map)});
+  }
+}
+console.log('SIGNED_SOURCE_CONTROL '+JSON.stringify({
+  corpus:'author-authenticated clear-signed prose only, no armor',
+  signedFiles:authenticated.length,
+  signedVariants:authenticated.length*2,
+  donorWordCounts:authenticated.map(f=>({
+    source:f,words:signedMessageWords(f).length
+  }))
+}));
+
 let totalExactMultisource = 0;
 let totalExactChapter = 0;
 let totalExactWholeBook = 0;
@@ -270,6 +316,7 @@ console.log('SUMMARY ' + JSON.stringify({
   originalRunes:runes, originalWords:originalWords.length, physicalPages:55,
   printedPageWindows:windows.length, printedChapterWindows:chapterWindows.length,
   sourceFiles:sources.length, solvedSourceInputs:3, oldEnglishInputs:1,
+  signedOriginalInputs:authenticated.length*2,
   sourceEncodingConventions:2,
   noMultiPageExact:totalExactMultisource===0,
   noChapterExact:totalExactChapter===0,
