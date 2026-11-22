@@ -248,4 +248,6 @@ function main() {
     " common-pad word solution under any constant offset or arithmetic sign");
   console.log("No unknown plaintext, original key or final destination recovered");
 }
-main();
+if (require.main === module) main();
+module.exports = {source, dictionary, completeInteriorWords, overlapWords,
+  plantedPlaintext, mod29, compatibleSpans, possibleGlobalShifts};
