@@ -136,6 +136,55 @@ function byPairParityIoC(a, page) {
   const sites = pagePairs.get(page) || [];
   return [0, 1].map(parity => ioc(sites.map(i => a[i + parity])));
 }
+/**
+ * Every X^p is monomial in the {1,X} basis: its two rune outputs are
+ * separately rescaled and maybe exchanged. Therefore all collisions
+ * inside an original physical-page × paired-rune parity stratum are
+ * exactly invariant, even if an entirely secret 29! substitution is
+ * independently supplied to *each* stratum. This tests a much larger
+ * hidden-key family than simply one fixed source root/phase.
+ */
+function parityCollision(a) {
+  let equal = 0, total = 0;
+  for (const sites of pagePairs.values()) {
+    for (const parity of [0, 1]) {
+      const values = sites.map(i => a[i + parity]);
+      const n = values.length;
+      if (n <= 1) continue;
+      const counts = Array(29).fill(0);
+      for (const v of values) counts[v]++;
+      equal += counts.reduce((sum, c) => sum + c * (c - 1), 0);
+      total += n * (n - 1);
+    }
+  }
+  return {same: equal, pairs: total, ioc: equal / total};
+}
+const observedParity = parityCollision(ciphertext);
+const {encodeSourceNativeGP} = require("./lp2_native_gp_source_orthography_sft.cjs");
+const read = file => fs.readFileSync(path.join(root, file), "utf8");
+const donorFiles = {
+  gibran: "resources/control/gibran_prophet_58585.txt",
+  shakespeare: "resources/control/shakespeare_first300k.txt",
+  emerson: "resources/control/emerson_essays_2944.txt"
+};
+const nativeBaseline = {};
+for (const [author, file] of Object.entries(donorFiles)) {
+  const encoded = encodeSourceNativeGP(read(file));
+  const samples = [];
+  for (let start = 0; start + ciphertext.length <= encoded.length;
+       start += Math.max(1, Math.floor(ciphertext.length / 2))) {
+    samples.push(parityCollision(encoded.slice(start, start + ciphertext.length)).ioc);
+  }
+  assert(samples.length >= 1, "native source must include at least one full original-length readout");
+  nativeBaseline[author] = {
+    sourceRunes: encoded.length, windows: samples.length,
+    minimum: Math.min(...samples),
+    median: samples.slice().sort((a, b) => a - b)[Math.floor(samples.length / 2)],
+    maximum: Math.max(...samples),
+    atOrBelowOriginal: samples.filter(x => x <= observedParity.ioc).length
+  };
+}
+
 const results = [];
 for (const sign of [1, -1]) {
   const received = apply(ciphertext, sign, true);
@@ -158,6 +207,8 @@ for (const sign of [1, -1]) {
       }
     }
   }
+  const recoveredStrata = parityCollision(received);
+  assert.deepEqual(recoveredStrata, observedParity);
   results.push({rootSign:sign,book: {runes: received.length, ioc:ioc(received)},
     regions:region(received),p0Unchanged:true,exactForwardReplay:true,
     originalParityIoCPreserved:parityInvariants});
@@ -177,7 +228,9 @@ console.log(JSON.stringify({
   result:"monomial 56-period GF29^2 generator is page-parity scaling/permutation",
   naturalClock:"GF29[X]/(X^2-8) as two global successive runes; X^(page number)",
   original:region(ciphertext),
+  originalPageParityCipherCollision:observedParity,
+  independentLanguagePageParityControls:nativeBaseline,
   rootCandidates:results,
   independentNativePositive:"true solved p57 corpus planted and reencrypted/decrypted exactly"
 }, null, 2));
-console.log("PASS: original GP29 polynomial and GF29^2 order56, exact root± full-book inverse, intrinsic parity IoC invariant, and source-native positive.");
+console.log("PASS: original GP29 polynomial and GF29^2 order56, exact root± full-book inverse, all-secret page-parity IoC invariant, source-native donor controls.");
