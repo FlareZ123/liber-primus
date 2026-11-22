@@ -37,7 +37,7 @@ Controls sample **exactly the same full complete-word length profiles** as the f
 | Emerson, *Essays* | 77,932 words | 16,000 | **55.72675** | 30 | **0** |
 | Shakespeare selection | 55,407 words | 16,000 | **55.17406** | 28 | **0** |
 
-The realized finite-sample upper bound `(hits+1)/(draws+1)` for each source is ≤3.3333×10⁻⁵ (solved Cicada) and ≤6.2497×10⁻⁵ (each independent author). These are empirical matched-register results, **not** universal p-values for unknown language, other period works, or a manuscript design chosen after seeing statistics. The conclusion also holds exactly for the **full secret alphabet** within the declared synchronous architecture; it is independent of any key recovery attempt.
+The displayed `(hits+1)/(draws+1)` quantity in the SFT is an **add-one smoothed descriptive tail rate**, 3.3333×10⁻⁵ (solved Cicada) and 6.2497×10⁻⁵ (each independent author). It is **not an upper confidence bound**. For zero matches in independent draws, the **exact one-sided 95% binomial upper confidence limits** are `1 − 0.05^(1/N)`: **9.9853×10⁻⁵** for 30,000 and **1.8722×10⁻⁴** for 16,000. These confidence calculations apply only to the respective specified independently sampled donor models; they are **not** universal p-values for unknown language, other period works, or a manuscript design chosen after seeing statistics. The conclusion also holds exactly for the **full secret alphabet** within the declared synchronous architecture; it is independent of any key recovery attempt.
 
 ## An independent clock selected by printed word boundaries
 
