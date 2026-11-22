@@ -16,3 +16,5 @@ jobs:
           node-version: '22'
       - name: Run source-frozen GP29 and SHA512 SFT
         run: node sims/lp2_p50_zero_suffix_p57_phrase_sft.cjs
+      - name: Run source-frozen original 8x8 Hill6 inverse
+        run: node sims/lp2_p50_final8_square_hill6_original_sft.cjs
