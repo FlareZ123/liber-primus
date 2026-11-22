@@ -34,6 +34,30 @@ The SFT evaluates the ratio by arbitrary-precision integer products and comparis
 
 The three bounds are *conditional on fixing the repeat count in each stated segment across all output codewords*. If the encoder permits more equal pairs for other messages, expands the ciphertext, changes word boundaries, or operates on a compressed/language-restricted source, this counting argument no longer excludes it.
 
+## Source alphabet sensitivity: genuine solved GP27 and no-sidecar coder
+
+**Crucial limitation on the GP29 information deficit:** source-language plaintext need not exhaust all \(29^L\) strings. In the [nine authenticated solved-native GP passages](../resources/external/relikd-solved-gp29-native-v1.json) containing **2,979 GP runes**, original GP labels **EO** and **OE** each occur **zero times**. Restricting the hypothetical source to the 27 remaining, *actually observed* GP symbols changes exact capacity at the same original full-book length:
+
+| Unrestricted plaintext alphabet | Continuous fixed-repeat book | 55 page-exact frames | 2,896 word-exact frames |
+| --- | ---: | ---: | ---: |
+| GP29 source, all 29 possible | 328 missing bits | 446 | 679 |
+| GP28 source, any one symbol excluded | 0 | 0 | **23 bits** |
+| **Solved-native GP27**, excluding EO and OE | **0** | **0** | **0** |
+
+Each cell uses arbitrary-precision comparison of \(q^{12956}\) with its original constrained codebook. This is a conditional **capacity** result, not proof of an encoding or a universal English claim: other authentic GP texts may contain EO or OE, and the source author's actual intermediate alphabet is unknown. Crucially, for this GP27 hypothesis **no physical punctuation sidecar would be mathematically required**, even with original whole-word repeat counts held exactly fixed. That makes searching hundreds of hypothesized exception bits premature unless the original work explicitly chooses an unrestricted GP29 source.
+
+**Full reversible canonical test, with authentic solved-plaintext positive control.** Let \(P=27^{12956}\) and \(M\) be the full exact-word-repeat constrained GP29 codebook size. Interpret GP27 plaintext as integer \(X\in[0,P)\). A simple source-unconstrained enumerative sender selects the original-word-rank output \(R=\lfloor XM/P\rfloor\); since \(M\ge P\), this is injective. Its receiver calculates \(X=\lfloor((R+1)P-1)/M\rfloor\). The source-specified word boundaries and each observed repeat count fix the mixed radices; two simple GP29 successor orders, original GP ordinal and cyclic, are independently tested. A direct native-GP27 **729-rune** p0–2-format planted source encodes into valid GP29 repeated-rune word shapes, then unrank/rank/redecode returns **all 729 original native GP runes exactly**. This verifies a real reversible implementation without inventing a key.
+
+The exact same **original source** does **not** lie in the canonical forward encoder's image in either declared ordering: \(R\ne\lfloor D(R)M/P\rfloor\) in both cases. The fully computed receiver output has no native-GP prose:
+
+| Original source span | GP ordinal successor | Cyclic successor | Authentic solved-native control minimum |
+| --- | ---: | ---: | ---: |
+| p0–p1 decoded first 300 runes | IoC **0.036299** | **0.035853** | **0.055385** |
+| p16 decoded 200 runes (original global rune positions 3762–3961) | **0.038543** | **0.038241** | **0.053166** |
+| Entire recovered GP27-shaped register | **0.037037** | **0.037013** | Typical solved-native GP29 around **0.06** |
+
+Therefore the **canonical directly scaled, full-book GP27 enumerative sender** is rejected by its original forward-codeword membership test as well as a disjoint native-text gate. This does not exclude a keyed, interleaved, differently ranked, or more flexible GP27 transport, and it does not elevate the recovered-looking GP27 integer into Cicada plaintext.
+
 ## Actual punctuation carrier, not inferred empty bits
 
 The **derived punctuation transcription** registers **180 events**: 31 `⁜`, 145 `⁘`, and four `⁚`. **Only 175 correspond to physical visible marks.** The [original-JPEG punctuation audit](lp2-punctuation-identity-stream.md) found four p15 numeric-row terminators inserted editorially and one p37 stop absent from the original image. The actual visible inventory is 31 large marks, 138 four-dot diamonds, five three-dot forms and one ambiguous detached square. We deliberately **overgrant** the side channel by counting all 180 registered events as independently writable, which strengthens the negative capacity conclusions. **All 180 registered events lie at complete printed-word endings** (including the five nonphysical entries); these comprise **173 distinct rune-offset sites**. The SFT joins cross-page word fragments from the canonical transcript and checks the derived offsets against their cumulative rune lengths. Source-image correction would only remove nonphysical slots.
