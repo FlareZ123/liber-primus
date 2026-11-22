@@ -201,6 +201,62 @@ function plant(words, byLength, predictor) {
     independentlyVaryingNonzeroKeys: true, withinPageRepeats};
 }
 
+
+/**
+ * Complete, key-independent exclusion gate for the entire GF29 power-map
+ * family m(x)=x^e, 1 <= e <= 28, including every possible unknown e.
+ * @param {Array<Array<{value:number,page:number}>>} words
+ * @param {Array<{name:string,byLength:Map<number,number[][]>}>} controls
+ * @param {{groups:Array<{length:number,eligible:boolean[],n:number}>,actualEqualPairs:number}} layout
+ */
+function fullPowerFamily(words, controls, layout) {
+  const powers = [];
+  let mostPermissive = {exponent: 0, source: '', log10UpperBound: -Infinity};
+  for (let exponent = 1; exponent <= 28; exponent++) {
+    const predictor = Array.from({length: 29},
+      (_, index) => modPow(index, exponent));
+    const sources = [];
+    for (const reference of controls) {
+      let expectedCount = 0;
+      const strata = [];
+      for (const group of layout.groups) {
+        const pool = reference.byLength.get(group.length);
+        assert(pool && pool.length);
+        let sum = 0;
+        const hist = new Map();
+        for (const candidate of pool) {
+          const count = predictorCount(candidate, predictor, group.eligible);
+          sum += count;
+          hist.set(count, (hist.get(count) || 0) + 1);
+        }
+        expectedCount += group.n * sum / pool.length;
+        strata.push({n: group.n, hist: [...hist], size: pool.length});
+      }
+      const exactBound = chernoff(strata, layout.actualEqualPairs);
+      const result = {source: reference.name,
+        expectedCount, log10UpperBound: exactBound.log10UpperBound};
+      sources.push(result);
+      if (result.log10UpperBound > mostPermissive.log10UpperBound) {
+        mostPermissive = {exponent, ...result};
+      }
+    }
+    const control = plant(words, controls[0].byLength, predictor);
+    assert.equal(control.exactRoundTrip, true);
+    powers.push({exponent, sources, nativeRoundtripRunes: control.runes});
+  }
+  assert.equal(powers.length, 28);
+  assert.equal(mostPermissive.exponent, 21);
+  assert(mostPermissive.source.includes('gibran_prophet_58585'));
+  assert(Math.abs(mostPermissive.expectedCount - 134.490219) < 0.001);
+  assert(Math.abs(mostPermissive.log10UpperBound - (-10.7315)) < 0.0001);
+  // Even after allowing an investigator to select any of all 28 exponents,
+  // union bound under each independently fixed literary source.
+  const unionLog10UpperBound = Math.log10(28) + mostPermissive.log10UpperBound;
+  assert(unionLog10UpperBound < -9.28);
+  return {exponents: powers.length, sources: controls.length,
+    mostPermissive, unionLog10UpperBound, powers};
+}
+
 /** @returns {object} */
 function run() {
   const words = originalWords();
@@ -322,9 +378,10 @@ function run() {
     invariant: 'Within one page: C[i]==C[i-1] iff P[i]==predictor[P[i-1]]',
     family: 'All 28 nonzero GF29 multipliers allowed independently at every position',
     models: modelResults,
+    allPowerMapFamily: fullPowerFamily(words, controls, layout),
     recoveredUnknownPlaintext: false
   };
 }
 
 if (require.main === module) console.log(JSON.stringify(run(), null, 2));
-module.exports = {run, chernoff, predictorCount, plant};
+module.exports = {run, chernoff, predictorCount, plant, fullPowerFamily};
