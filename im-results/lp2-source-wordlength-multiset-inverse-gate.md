@@ -1,34 +1,38 @@
-# Source-text fingerprint inverse: whole-word transposition hypothesis
+# Whole-word source inverse: exact word-length multisets
 
-**22 November 2026, Agent32. Classification:** bounded original-cipher plaintext-source acquisition test; no authentic new plaintext or decryption. Executable [Node22 CommonJS SFT](../sims/lp2_source_wordlength_multiset_scan_sft.cjs), with passing *Windows* [Actions run 44991558291](https://github.com/FlareZ123/liber-primus/actions/runs/44991558291), job 137113524157. Its logged summary confirms 12 source files, two fixed encoding conventions, 162 original page windows, 0 exact multi-page matches and passing planted 120-word sources under both conventions.
+**22 November 2026, Agent32.** Classification: bounded original-cipher plaintext-source attack. **No authenticated LP2 plaintext or key recovered.** The completed [Node22 CommonJS SFT](../sims/lp2_source_wordlength_multiset_scan_sft.cjs) passed on Windows ([initial CI run 44991558291](https://github.com/FlareZ123/liber-primus/actions/runs/44991558291); [extended CI run 44993123729](https://github.com/FlareZ123/liber-primus/actions/runs/44993123729)). The extended test includes the genuinely solved Liber Primus corpus and the nine source-illustrated chapters, guarding against a word permutation that crosses printed page boundaries.
 
-## Decision and plausible way to recover plaintext
+## How this would recover actual plaintext
 
-Original unknown LP2 has 12,956 runes separated into 2,896 printed words across 55 rune-bearing physical pages (the numeric table p50 has no runes). A deliberately rearranged set of words from a historically relevant literary passage can conceal adjacent word-length grammar yet preserve every page's **multiset of word lengths**. If an exact two- or three-page multiset is located in a contiguous independent literary passage, that passage becomes a specific, human-readable **plaintext candidate** to attempt to align on the actual ciphertext, with a separate untouched page as an important holdout. This bypasses an initial search for keys, provided the page-segmentation premise holds.
+An original source prose passage may have had its **whole words permuted**, while maintaining the 29-rune GP spelling and **length of each printed word**. Consequently, recovering the source would not require cracking the character cipher first: the word-length multiset of every containing segment is unchanged by such a permutation. A historical text whose contiguous passage exactly matches two or more original pages, or a whole illustrated chapter, would become a concrete independent plaintext candidate. We would then lock the passage, construct a forward original-rune cipher prediction and test withheld pages.
 
-The source-based attack does not need to guess the page's word ordering. For each source contiguous window containing exactly as many words as the original page window, it computes a histogram over 18 length bins (lengths 1–16, bin 17 for longer words). It minimizes **half the L1 distance** between source and original histograms. Zero means a lossless multiset match, and a positive distance lower-bounds the number of word lengths that would require modification for such a match.
+Each original printed word is read from `resources/lp2-transcription.txt`. Hyphen and terminal punctuation separate words, but literal line, section and page wrap markers do not: **all 32 cross-page words remain joined** and are assigned to their starting physical page. The original unknown corpus has **12,956 runes in 2,896 printed words** on 55 rune-bearing pages (physical p50 is a numeric-only table).
 
-Every physical LP2 printed word is parsed with original `resources/lp2-transcription.txt` delimiter conventions; line and page wraps never split a word, and an original across-page word is assigned to its starting page. The GP source-length normalization follows the project's existing `ING` and GP digraph rules; literal Latin-letter length is a second, *fixed in advance* alternative, because a source quotation could have been written before or after GP transliteration. No source, page or normalization is selected by maximizing an apparent plaintext fragment.
+For each source, every contiguous passage of exactly the same number of source words is tested. A sliding histogram of 18 bins (length 1–16; 17+ joined) computes **half the L1 distance** between the candidate source passage and original target. A distance of zero means the entire multiset matches, independent of word order. Any positive distance is a strict lower bound on the number of word lengths needing modification. Source data are encoded with either fixed GP-native compound TH/NG/EO/OE/AE/IA/EA/IO and ING rules, or literal Latin word length. These two alternatives are chosen in advance and not tuned to a lucky-looking fragment. The solved LP2 source also receives its exact original rune-count encoding.
 
-## Locked source corpus and outcomes
+The predeclared 55-published-page windows are **55 single, 54 adjacent pairs, 53 adjacent triples**, for 162 windows per source encoding. Independently, the source-visible chapter bounds are original physical pages **0–2, 3–7, 8–14, 15–22, 23–26, 27–32, 33–39, 40–53 and 54–55**, holding respectively **158, 255, 383, 437, 224, 326, 378, 669 and 66 printed words**. These nine chapter windows allow a whole-word permutation across the physical pages of a chapter while preserving each chapter's original printed words.
 
-The 12 included texts were independently available in this repository: Gibran's *Prophet*, Emerson essays, Shakespeare, the Latin Vulgate, all three books of Crowley's *Liber AL*, Blake's *Marriage of Heaven and Hell*, Caesar's *De Bello Civili*, *The Kybalion*, the King James Passion Gospels and Tennyson's *Lady of Shalott*. The original 55-page sequence is scanned as **55 single pages, 54 adjacent pairs, and 53 adjacent triples** in each corpus and encoding convention, regardless of visual motif.
+## Fixed inputs and real original results
 
-| Check | Actual original-input result |
+The included public source texts are Gibran's *The Prophet*, Emerson's essays, Shakespeare, the Latin Vulgate, Crowley's *Liber AL* I–III, Blake's *Marriage of Heaven and Hell*, Caesar's *De Bello Civili*, *The Kybalion*, the King James Passion Gospels and Tennyson's *Lady of Shalott*. In addition the extended run directly tests the repository's editor-normalized solved LP1 English text under both length conventions and the source-native solved LP2 rune words. These comprise **12 literary files, 24 converted literary inputs, three authentic-solved inputs and 27 total candidate source sequences**. In all, the SFT evaluates **4,374 page-range queries plus 243 chapter-range queries**, with every source-contiguous placement examined by the sliding scanner.
+
+| Gate | Observed on original LP2 |
 | --- | --- |
-| Source files / source encodings | 12 / 2 |
-| Original page windows per source convention | 162 |
-| Exact **two-page** contiguous source multiset matches | **0** |
-| Exact **three-page** contiguous source multiset matches | **0** |
-| Three-page best near-matches | 3 word-length replacements at p48,p49,p51 in KJV GP, and the same three physical pages in Shakespeare GP; other corpora produce independent near-misses |
-| Source-native positive | Exact 120-word source passage survives deterministic scrambling of each of three 40-word chunks, with a perfect 0-distance match under GP and Latin-length conversions |
+| Source inputs, original page-range windows, chapter windows | 27, 162, 9 |
+| Exact source passage matching **two adjacent original pages** | **0** |
+| Exact source passage matching **three adjacent original pages** | **0** |
+| Exact source passage matching a **whole illustrated chapter** | **0** |
+| Nearest whole-chapter match among 12 literary source files | **7 word-length changes** out of 378 original words, Emerson literal-Latin word lengths, source index 59,363 vs physical LP2 pp33–39 |
+| Nearest three-original-page match | **3 word-length changes** among 103 words at physical pp48,49,51, separately seen under Shakespeare and KJV GP conversions |
+| Genuine solved-LP1/LP2 control as possible source | **0** exact two/three-page or chapter matches |
+| Synthetic source-known positive | **Exact** passage recovered after deterministic shuffling of three consecutive 40-word blocks under both fixed GP and Latin conventions |
 
-A one-page 17-word signature at original physical p49 matches unrelated passages exactly in Gibran, Emerson and KJV. These collisions demonstrate why short-page or “one-rune word” fingerprints by themselves do not recover source plaintext. The p48/p49/p51 three-page near-miss is *not* an authenticated excerpt: different texts yield similar scores and no exact multi-page match exists.
+The original short physical p49 (17 words) produces exact one-page collisions in multiple unrelated historical sources. The extended run obtains a literal-Latin one-page match in the **known solved LP1 translation** as well, reinforcing that short pages do not identify a shared plaintext phrase. A three-word-length or seven-word-length *near*-match is likewise no discovery when the procedure screens millions of source-passage offsets. No unknown rune is decoded.
 
-## Consequence
+## Scope and next causal decision
 
-For these **12 specific public texts**, there is no exact source-text passage at the two- or three-page scale compatible with simple page-local *whole-word permutation preserving word lengths*. Do not turn the closest single-page or three-page near-match into a running key or candidate decryption. The scan imposes no conclusion about original prose, other books, inserted/deleted words, changed GP spelling, cross-page word movement, per-word encryption that changes lengths, or cryptographic pseudo-spacing.
+The experiment rejects **exact borrowing of a contiguous passage from these particular source texts with chapter- or page-local word permutations that preserve the word-length multiset**. It does **not** reject original prose, untranslated languages, paraphrasing, inserted/deleted words, GP spelling differences, word permutation that crosses all chapter boundaries, changed rune lengths, pseudo-spacing, or keys from these books used in unrelated cipher mechanisms.
 
-**Next meaningful fork:** apply the same frozen scanner only to a *new author-selected text or exact manuscript source* from authentic original clue material. A genuine long exact match (plus independent holdout and forward-original rune decoder) would immediately justify plaintext recovery. Without such a source, mathematical cipher inversion is higher priority than adding arbitrary literature to the search.
+Only a separately identified *author-selected* text warrants extending this exact source search. A credible exact long match with independent untouched original-passage confirmation would supply actual key-independent plaintext and justify forward cipher analysis. Until that occurs, do not promote the closest chapter, short-page collision, or unrelated literary source to an invented LP2 decryption.
 
-The original corpus and each source file are read directly from `resources/`; the read-only SFT prints source-specific minimum distances and offsets, allowing every candidate to be checked again.
+The SFT is read-only and contains an independent shuffled-120-word source positive, original rune/word/chapter assertions, exact minimum distance, source index and all candidate counts. It is implemented with Node's standard libraries and ran to completion on an unmodified Windows GitHub runner.
