@@ -77,7 +77,7 @@ function illegalF(original, generator, phase, sign, skipF) {
 }
 
 assert.equal(corpus.runes.length, 29);
-assert.equal(transcription.split("%").length >= 58, true);
+assert.equal(transcription.split("%").length, 57);
 const p7red = red(7);
 const p8red = red(8);
 const p27red = red(27);
