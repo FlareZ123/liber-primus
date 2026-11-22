@@ -125,6 +125,24 @@ assert.deepEqual(outputs.map(x=>x.twoCycleOutput), [[0,0],[26,5]]);
 assert.deepEqual(cycle2.map(i=>transformed[i]), [13,17]);
 assert.ok(cycle2.every(i => transformed[i] !== 0));
 
+// An arbitrary, secret *single* GP29 mapping from table residues to
+// original rotated rune values is still insufficient. Every one of the
+// 29 table residues has several different outputs; even the optimal
+// (postfitted) one-to-one-input lookup must mismatch 205 of 256 runes.
+const lookupOutputHistograms = Array.from({length:29},()=>new Map());
+for(let i=0;i<256;i++) {
+  const input=t[i]%29;
+  const output=transformed[i];
+  const hist=lookupOutputHistograms[input];
+  hist.set(output,(hist.get(output)||0)+1);
+}
+const lookupBestTotal=lookupOutputHistograms.reduce((sum,hist)=>
+  sum+Math.max(...hist.values()),0);
+const polyOutputs=lookupOutputHistograms.filter(hist=>hist.size>1).length;
+assert.equal(polyOutputs,29);
+assert.equal(lookupBestTotal,51);
+assert.equal(256-lookupBestTotal,205);
+
 let state = 0x33412317;
 /** @param {number} limit @returns {number} */
 function randomIndex(limit) {
@@ -184,6 +202,7 @@ console.log(JSON.stringify({
   })),
   d4,all256Rot180Hits:match(c,rot),directModulo29AdditiveConsumers:outputs,
   clearP57Trigram:model.p57Score,
+  exactSingleLookupObstruction:{sourceInputResiduesWithConflictingRuneOutputs:polyOutputs,bestPossibleMatchesWithArbitrary29To29Lookup:lookupBestTotal,forcedMismatches:256-lookupBestTotal},
   authenticFTransparencyObstruction:'the two matched GP29 zeros have original rotated ciphertext P=13 and B=17 (both non-F), so cannot be plaintext F skips in the proven p56 mechanism',
   nullTests:{fullChapterShuffle:allSourceNull,eachPageShuffle:pageCountPreservedNull},
   limitations:'180-degree half-turn is visually motivated but typed count-to-cell/residue lookup was recognized after original ciphertext inspection; conditional shuffle rates are NOT discovery-adjusted and no plaintext/key/cipher is authenticated'
