@@ -31,8 +31,28 @@ For `ω∈{12,17}`, the invertible length-four GF29 DFT is `F_ω(X)[k]=Σ_{j=0}�
 
 [Original-corpus read-only SFT](../sims/lp2_p8_onion133331_dft4_cbc_original_sft.cjs) · [Windows Node22 CI PASS 45056213744](https://github.com/FlareZ123/liber-primus/actions/runs/45056213744).
 
+## Independent source-shape p50 256-symbol key receiver via p28 H butterflies
+
+A separate local source-derived reversible operator had already been identified on the original p28 DH23/circumference object: `H(x,y)=(x−y,x+y) mod29`, supported conditionally by `H([28,20])=[8,19]`, the source-linked OUR OWN numerals, and `H([23,8])=[15,2]`. Using the exact two inverse-compatible H butterflies on four symbols `x0..x3` yields a standard four-point transform with the original HTML roots `ω∈{12,17}`. Put `(d0,s0)=H(x0,x2)`, `(d1,s1)=H(x1,x3)`; then
+
+```
+Fω(x0,x1,x2,x3) =
+  (s0+s1, d0+ω·d1, s0−s1, d0−ω·d1) mod29
+Fω⁻¹(y) = 4⁻¹·F(ω⁻¹)(y),  4⁻¹=22 mod29.
+```
+
+The **original** p49–p51 numeral panel is **32 rows × 8 columns, 256 base60 byte-values**, an independently printed packet. The literal p8 source offers exactly **8 red runes + 248 black runes through the first five runes of p9 = 256**. The extra preceding four red runes might be an IV, but no historical source dictates a nonce/update, so the current test uses a **direct frozen table transform** without inventing one.
+
+Compute the length-256 pad by H/FFT4 transform of the printed bytes modulo29 as consecutive quadruples, under the **row-major or column-major physical table traversal**, both `ω=12/17` and forward/inverse transform. Apply to original p8 black248 and continue the same unmodified 256-period pad over p8–p14 black1716, with only original red8 key alignment `0` or `8` and both additive key signs. This is **32 complete, lossless, source-shaped receiver tests**, with no trained free secret or dictionary choice.
+
+- Original **248-rune receiver**: best of all32 decoded whole-rune IoCs **0.036926994906621394**, no authentic native-GP language.
+- Original **1,716-rune untouched continuation**: best whole-rune IoC **0.034952122707224746**, again near the native-field random baseline **1/29**.
+- Every GF29 four-point transform and inverse round-trips each of **29×4 single-coordinate original-field basis inputs**. All32 configurations decrypt **248/248 authentic solved-p57-rune native-GP planted ciphertext**, and exactly replay the actual 248 original ciphertext.
+
+The deterministic, read-only [original p28-H / HTML-root / p50-key SFT](../sims/lp2_p8_p50_hadamard_fourier_key_original_sft.cjs) passed [Windows Node22 run 45058059629](https://github.com/FlareZ123/liber-primus/actions/runs/45058059629). This **separately rejects the direct original-table-derived Fourier pad interpretation** and makes the cross-page coincidence operationally testable. It does not provide a creator-written instruction connecting p28, p50 and p8, so the relationship remains provisional.
+
 ## Decision and next experiment worth funding
 
-The **GF29 residue / fourth-root pair is an exact, source-independent cross-artifact arithmetic observation**, which may help choose a human puzzle operation, although its intentionality is currently unproved. A historically recognizable **DFT4-plus-two-four-rune-key CBC** receiver has now been rejected against nearly the whole original botanical section, without fitting keys or choosing a beneficial clock offset. Neither this exact numeric pair nor the older p7 polynomial turns into an unknown plaintext/key through this test.
+The **GF29 residue / fourth-root pair is an exact, source-independent cross-artifact arithmetic observation**, which may help choose a human puzzle operation, although its intentionality is currently unproved. Two concrete source-shaped receivers have been rejected against the original botanical section: **DFT4 with the p8 printed 4+8 heading as CBC IV/key**, and **a p28-H-butterfly transform of the original p50 256-symbol numeric table as a direct 256-period pad**. Neither fits keys from ciphertext or supplies native-GP plaintext. Neither this exact numeric pair nor the older p7 polynomial turns into an unknown plaintext/key through this test.
 
 A future path must identify a **first-party instruction selecting a specific reversible operation** or an authentic additional key. A new arbitrary nonlinear 4-state family is **not** supported solely by the visual/numeric coincidences. Keep this clue provisional in `im-results/` until a frozen independent plaintext-bearing original receiver changes the assessment.
