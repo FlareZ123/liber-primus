@@ -15,3 +15,5 @@ jobs:
         run: node sims/lp2_p7_gf81_bookend_spatial_raster_sft.cjs
       - name: Original 81x81 and 80x80 direct source hidden-palette gate
         run: node sims/lp2_bookend_direct_allpalette_image_sft.cjs
+      - name: Exact all-secret rune-substitution entropy bound and native GP plant
+        run: node sims/lp2_bookend_gp29_allsecret_statealphabet_entropy_sft.cjs
