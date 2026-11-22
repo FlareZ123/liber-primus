@@ -203,6 +203,36 @@ for(const [source,lo,hi,key] of [[56,3,7,key56],[57,23,26,key57]]){
   }
 }
 assert(directTransfer.every(row=>row.decodedIoC<0.039));
+
+// The p3→p56 heading pointer also selects p56's *actual cipher
+// mechanism*, not just p56's plaintext as a possible key. Apply the
+// historically authenticated prime-totient decrement to the complete
+// p3–p7 source chapter, preserving original page sequence. No prime
+// phase, key, sign, or first-word crib is fitted on this original source.
+/** @param {number[]} sequence @param {boolean} ciphertextFSkip */
+function totientDecrypt(sequence,ciphertextFSkip) {
+  const allPrimes=[];
+  for(let v=2;allPrimes.length<sequence.length;v++){
+    let prime=true;
+    for(let f=2;f*f<=v;f++)if(v%f===0){prime=false;break;}
+    if(prime)allPrimes.push(v);
+  }
+  let position=0;
+  return sequence.map((c,i) => {
+    if(ciphertextFSkip && c===0) return 0;
+    return mod29(c-(allPrimes[position++]-1));
+  });
+}
+const linkedP3=gp.pages.slice(3,8).flatMap(item=>item.indices);
+assert.equal(linkedP3.length,1145);
+const primeSourceInverse=[false,true].map(ciphertextFSkip=>{
+  const out=totientDecrypt(linkedP3,ciphertextFSkip);
+  return {ciphertextFSkip,decodedIoC:coincidence(out),
+    first16:out.slice(0,16).map(v=>gp.translit[v]).join('-'),
+    fullRunes:out.length};
+});
+assert(primeSourceInverse.every(x=>x.decodedIoC<0.042));
+
 console.log(JSON.stringify({
   status:'Candidate numeric navigation and global base59 root; NO unknown plaintext',
   headings,sourceTable:{tokenCount:256,noLowercaseF:true},
@@ -213,5 +243,6 @@ console.log(JSON.stringify({
   shuffledSourceTable:{rootTrials,anyOneFixed,onlyRoot189,
     pairTrials,orderedPair,primaryPair,any16},
   directSolvedPageKeyTransfer:directTransfer,
+  p3LinkedP56AuthenticPrimeTotientMechanism:primeSourceInverse,
   nextDecision:'Require an author-selected original-cipher operation to promote navigation'
 },null,2));
