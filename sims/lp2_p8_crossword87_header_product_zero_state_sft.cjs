@@ -396,6 +396,87 @@ for (const sign of [-1, 1]) {
 }
 assert(nonlinearGF3TableResults.every(x => x.fullIoC < 0.036));
 
+
+// The same authentic 3-4-5 values and original bare TREE illustration admit
+// a completely independent 3^5 combinatorial route: the classical 1934
+// Berggren/Barning/Hall rooted TERNARY tree of primitive Pythagorean triples.
+// Its standard left-to-right U,A,D child maps yield exactly243 depth-five
+// triples, matching original p8's *complete* black body (including carry).
+// The p8 red 8-word even-position values 5,13,17 equal the root hypotenuse
+// and the two nonmiddle first-child hypotenuses. The missing middle child's
+// hypotenuse is 29 (the GP alphabet modulus), but the correspondence is
+// retrospective and does not specify the authored decryption equation.
+/** @param {number[]} t @returns {number[]} */
+function upBerggren(t) {
+  const [a, b, h] = t;
+  return [a - 2 * b + 2 * h, 2 * a - b + 2 * h, 2 * a - 2 * b + 3 * h];
+}
+/** @param {number[]} t @returns {number[]} */
+function alongBerggren(t) {
+  const [a, b, h] = t;
+  return [a + 2 * b + 2 * h, 2 * a + b + 2 * h, 2 * a + 2 * b + 3 * h];
+}
+/** @param {number[]} t @returns {number[]} */
+function downBerggren(t) {
+  const [a, b, h] = t;
+  return [-a + 2 * b + 2 * h, -2 * a + b + 2 * h, -2 * a + 2 * b + 3 * h];
+}
+const berggrenRoot = [redLegB, redLegA, blackHypotenuse];
+assert.deepEqual(berggrenRoot, [3, 4, 5]);
+const berggrenFirstChildren = [upBerggren(berggrenRoot),
+  alongBerggren(berggrenRoot), downBerggren(berggrenRoot)];
+assert.deepEqual(berggrenFirstChildren, [
+  [5, 12, 13], [21, 20, 29], [15, 8, 17],
+]);
+assert.deepEqual(red.filter((v, i) => i >= 4 && i % 2 === 1), [5, 13, 17]);
+const originalRedCountOnP7 = redWords.length;
+assert.equal(originalRedCountOnP7, 5);
+let berggrenDepth5 = [berggrenRoot];
+for (let layer = 0; layer < originalRedCountOnP7; layer++) {
+  berggrenDepth5 = berggrenDepth5.flatMap(t =>
+    [upBerggren(t), alongBerggren(t), downBerggren(t)]);
+}
+assert.equal(berggrenDepth5.length, 243);
+assert.equal(new Set(berggrenDepth5.map(t => t.join(","))).size, 243);
+assert(berggrenDepth5.every(([a, b, h]) =>
+  a > 0 && b > 0 && h > 0 && a * a + b * b === h * h));
+const rootPerimeter = berggrenRoot.reduce((n, v) => n + v, 0);
+assert.equal(rootPerimeter, red.length);
+assert.equal(rootPerimeter, p8.at(-1));
+const berggrenTreeConsumers = [];
+for (const [keyLabel, keyValues] of [
+  ["hypotenuse", berggrenDepth5.map(t => t[2] % 29)],
+  ["perimeter", berggrenDepth5.map(t => t.reduce((n, v) => n + v, 0) % 29)],
+]) {
+  for (const [scope, sourceText] of [["p8-black243", blackOriginal], ["p9-p14", originalCiphertext]]) {
+    for (const sign of [-1, 1]) {
+      const out = sourceText.map((v, i) =>
+        ((v + sign * keyValues[i % 243]) % 29 + 29) % 29);
+      const replay = out.map((v, i) =>
+        ((v - sign * keyValues[i % 243]) % 29 + 29) % 29);
+      assert.deepEqual(replay, sourceText);
+      const solvedPlant = terminalKnown.map((v, i) =>
+        ((v - sign * keyValues[i % 243]) % 29 + 29) % 29);
+      assert.deepEqual(solvedPlant.map((v, i) =>
+        ((v + sign * keyValues[i % 243]) % 29 + 29) % 29), terminalKnown);
+      berggrenTreeConsumers.push({
+        key: keyLabel, scope, sign,
+        originalIoC: indexOfCoincidence(sourceText),
+        recoveredIoC: indexOfCoincidence(out),
+        firstFortyGP: out.slice(0, 40).map(v => corpus.translit[v]).join(" "),
+        reencryptionRunes: replay.length, plantedSolvedRunes: terminalKnown.length,
+      });
+    }
+  }
+}
+assert.equal(berggrenTreeConsumers.length, 8);
+assert(berggrenTreeConsumers.every(x => x.recoveredIoC < 0.037));
+const hyp29 = berggrenDepth5.map(t => t[2] % 29);
+assert.equal(hyp29.filter(v => v === 0).length, 15);
+assert.equal(blackOriginal.filter(v => v === 0).length, 8);
+const directHypMatching = blackOriginal.filter((v, i) => v === hyp29[i]).length;
+assert.equal(directHypMatching, 11);
+
 const ringReceivers = [];
 for (const sign of [-1, 1]) {
   const candidate = ringTranslate(originalCiphertext, sign);
@@ -445,5 +526,8 @@ console.log(JSON.stringify({
   pythagoreanOriginalGP29PairRotations: pairRotations,
   pythagoreanOriginalP8SourcePacketRotations: sourcePacketRotations,
   sourceSelectedGF243DHExponent15Table: nonlinearGF3TableResults,
+  berggrenTripleRootChildren: berggrenFirstChildren,
+  berggrenDepthFiveOriginalConsumers: berggrenTreeConsumers,
+  berggrenDirectLeafHypotenuseMatches: directHypMatching,
   interpretation: "The carry-word GP0 sum selects splice87, whereas the earlier sentence-offset criterion selects208. The physical carried rune cannot itself be the all-zero five-trit state in either valid de Bruijn register. No first-party cipher output law is specified.",
 }, null, 2));
