@@ -86,11 +86,6 @@ def main():
     plant_rng = random.Random(3301)
     k_rand_plant = [plant_rng.randrange(29) for _ in range(len(k_ctrl))]
     plant_random = decode(c8, Cplant, k_rand_plant, "C8 plant: random seed 3301", offset)
-    plant_ok = (
-        c8.HF.DB.recovery(
-            [c8.corpus_idx for c8.corpus_idx in []], P
-        ) if False else True
-    )
     # The known-plaintext recovery is measured directly from the beam path.
     plant_dec = c8.HF.HitDecode(C=Cplant, K=k_ctrl, o=offset, sign=-1, preset="exact")
     plant_out = plant_dec.beam(list(Cplant), list(k_ctrl), offset)
