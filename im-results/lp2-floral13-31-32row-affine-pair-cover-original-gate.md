@@ -63,8 +63,23 @@ Each output rune reverses exactly to the original ciphertext by the opposite sig
 
 For the full **16 orientation/ring/sign** family, whole-book-area GP29 IoC ranges only **0.03426196311–0.03460110220**; the greatest is GP28/F-literal subtract with the mirrored left+2/right−2 walk. Every variant retains the uniform-looking original ciphertext distribution and remains far below the genuine solved p57 GP29 IoC `0.0627099664`. The GP29-subtract p40 prefix is `Y-D-IA-AE-W-EO-O-X-IA-F-T-EA-TH-C-P-I-S-U-F-IA`, without intelligible plaintext. No direct candidate recovers coherent previously unknown language. The [new Node22 source-loaded complete original SFT](../sims/lp2_floral_branch22_two_row_source_receiver_sft.cjs) asserts exact table bytes/digest, unique row coverage, all sixteen no-plaintext aggregate results, complete original replay, and full solved-p57 synthetic plant recovery.
 
+## Direct self-contained use of the otherwise orphaned p50 record
+
+A stronger *internal-consumption* rival to the per-page GP-rune receiver grants the rune-free **p50 itself the master key role**. Under each of the four minimal **±2** paired-row walks, take the one 16-byte record allocated to physical p50 (`i=10`), and treat the other fifteen 16-byte records as an ordered **240-byte ciphertext**. The simplest independently decrypted-block operation available in 2014 is **AES-128 ECB without padding or an IV**. This makes the 256 original bytes a completely self-contained candidate: 16 key bytes and 240 ciphertext bytes. There is still **no creator-authenticated command to use AES or ECB**.
+
+All **four** original stem-gap-key interpretations were actually decrypted with Node22's standard cryptography library. The recovered 240-byte messages are bytewise reproducible; encrypting each output under its own original record key exactly restores every source data block, and the same code round-trips an independent 240-byte readable ASCII plant.
+
+| Original left/right table step | Physical p50 master key (16 bytes hex) | Readable ASCII-range bytes out of 240 | Longest consecutive printable run |
+| --- | --- | ---: | ---: |
+| −2 / −2 | `79ca0f2166893b57d3dcc631ec543823` | **98** | 5 |
+| −2 / +2 | `79ca0f2166893b57e7210e7034fbf9f8` | **105** | 5 |
+| +2 / −2 | `8e3ac9c1ad1c6f41d3dcc631ec543823` | **77** | 3 |
+| +2 / +2 | `8e3ac9c1ad1c6f41e7210e7034fbf9f8` | **93** | 6 |
+
+No model yields a legible text payload or an apparent human-readable instruction. This *direct self-key AES-128 ECB* consumer fails to turn p50 into an authentic recovered key or plaintext, although mathematically it gives a fully reversible use for all 256 table bytes. Do not rescue the theory with unselected IVs, cipher modes, padding variants or additional compression steps. [Read-only source-loaded CommonJS SFT](../sims/lp2_floral_branch22_p50_selfkey_aes128_ecb_sft.cjs).
+
 ## Research decision
 
-The **stem-gap read adds a real visual motivation for 22** that the original top-first study lacked. It also exposes a concrete human route to an exhaustive 32-row allocation through `+2` parity walks. The alternate branch-tip direction13, 65 legal strides, the unused p50 receiver, and lack of any authentic encryption opcode remain decisive uncertainty. All sixteen minimally oriented direct GP additive receivers **fail on all 3,316 original runes**, and should not be retried with fitted phases. Prior direct 13/31 AES/TEA/GP29 experiments [also failed](lp2-floral-13-31-aes128-original-table-receiver.md).
+The **stem-gap read adds a real visual motivation for 22** that the original top-first study lacked. It also exposes a concrete human route to an exhaustive 32-row allocation through `+2` parity walks. The alternate branch-tip direction13, 65 legal strides, the unused p50 receiver, and lack of any authentic encryption opcode remain decisive uncertainty. All sixteen minimally oriented direct GP additive receivers **fail on all 3,316 original runes**. The four source-block p50-master AES-128 ECB readouts independently fail to yield legible byte plaintext. They should not be retried with fitted phases, modes or padding. Prior direct 13/31 AES/TEA/GP29 experiments [also failed](lp2-floral-13-31-aes128-original-table-receiver.md).
 
 Preserve this as a **conditional key-schedule candidate and a bounded original-cipher negative**, not genuine plaintext or a demonstrated Cicada key. A future advancement must provide a **first-party direction or typed byte-to-rune operation** that consumes the printed records, especially p50's record, and decrypts a new untouched passage. The table may instead be unrelated printed binary data.
