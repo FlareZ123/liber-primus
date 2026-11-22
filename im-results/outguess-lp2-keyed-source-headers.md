@@ -1,6 +1,6 @@
-# OutGuess keyed-image extraction: 22 corpus-wide source clues, original 2014 OpenPuff password, and isolated candidates
+# OutGuess keyed-image extraction: historical source passwords, cuneiform top-down readout, and original-source controls
 
-> **Follow-up candidate (2026-11-21):** The earlier 22-password gate did not include the 13-rune string `LCBPNGPARRTHBPC`, derived from the 2016 signed-message PRNG-marker hypothesis. It was previously tested only as a stream-key candidate, not as an OutGuess `-k` passphrase. The candidate is conditional rather than authenticated; this follow-up tests the literal GP-Latin string against all 58 original LP2 JPEGs. A header/length match alone is not evidence of a payload; require a recognizable payload or independent structural validation. **Status: pending.**
+The 2016 PRNG-marker string `LCBPNGPARRTHBPC` remains a separate, conditional unverified password proposal. No source links it to the cuneiform readout, and no result for it is implied here.
 
 
 **Evidence class:** exact source-guided extraction experiments with authentic historical and newly embedded positive controls, plus a local extractor parity check against the pinned OutGuess workflow. Agent 40, 2026-11-10 and 2026-11-15; Agent 8, 2026-11-11; Agent 38, 2026-11-11. **No new LP2 plaintext, authenticated hidden LP2 message, or cryptographic key recovered.**
@@ -8,6 +8,28 @@
 ## Purpose
 
 Historical Cicada puzzles used genuine OutGuess hidden messages. Agent 42's earlier exhaustive default-password extraction from the 58 original second-release JPEGs yielded 16 nominal binary payloads, each 58,152 bytes, sharing seed and header fields, without known message authentication. Instead of treating a nominal successful extraction as proof, the present experiment tests independently source-motivated passwords and asks if the extracted content is a recognizable message, if the metadata varies appropriately, and whether this exact extraction procedure can recover an actual known keyed payload.
+
+## Direct top-to-bottom cuneiform password `10333301` (22 November 2026)
+
+**Result: no authentic OutGuess hidden LP2 payload; original image input, complete pinned extractor and controls.** Physical LP2 p33–p39 prints the source-visible cuneiform numerals **1033 above 3301**. The 2014 solve path used password-based steganography, and source-derived key `10333301` is the unambiguous literal top-to-bottom concatenation. This key is **distinct** from authenticated historical OpenPuff A=`33011033`; using it as an OutGuess passphrase is an independent historical-tool **hypothesis**, since the cuneiform does not itself name OutGuess.
+
+One manual [GitHub Actions run 45032289594](https://github.com/FlareZ123/liber-primus/actions/runs/45032289594) passed and attempted `outguess -k 10333301 -r` once on **each of the 58 unmodified original LP2 JPEGs**, after a source-native known-key embedded/retrieved positive and independent original Cicada images0/8 historical controls. The entire corpus was read under one preselected passphrase, with no fitted image, phase, key variant or text threshold. Original run outcomes:
+
+| Source-exact outcome | Number |
+| --- | ---: |
+| Original LP2 images attempted | **58** |
+| Apparent internally consistent OutGuess header plus payload | **56** |
+| SIGFPE / no accepted extraction | **2** |
+| Recognisable PGP/ZIP/gzip/PNG/ASCII payload | **0** |
+| Different extracted SHA-256 values for the 56 nominal payloads | **56** |
+| **Same** nominal seed/size on all 56 accepted original images | **25080 / 35406 bytes** |
+| Original-independent, deliberately payload-free synthetic JPEG with *same key* | **False-success**, seed **58330**, size **8404 bytes** |
+| Positive keyed embed and exact retrieval, key79 | **PASS**, 47/47 bytes |
+| Independent authentic Cicada default-key positive images0 and8 | **PASS** |
+
+The fixed 56 raw candidates are highly noise-like with about **7.995 bits per byte** and printable fraction around **0.38**; the 56/58 accepted headers share the *identical* seed and size while containing mutually different bytes. The same key **incorrectly appears to extract a full payload from a known clean synthetic JPEG**, reproducing the previously established header false-positive mechanism. Thus 56 apparent returns are **not** 56 recovered Cicada files. No authenticated 2014-style signed message, key material or deciphered original LP2 rune was recovered. All 56 emitted byte files and the exact `summary.json` were captured in [run artifact 14758536408](https://github.com/FlareZ123/liber-primus/actions/runs/45032289594/artifacts/14758536408).
+
+The mechanism of the false positive is an extractor limitation; this result excludes an **observably valid unencrypted or normally formatted OutGuess payload under this one original key**, and does not prove the original JPEGs have no steganographic content in any other format. The same top-to-bottom password is being tested separately under the original 2014 **native OpenPuff v4.00** six-identical-header carrier chain, a different tool and input contract. Treat its result separately; do not infer it from these OutGuess outputs. Further blind key searches have little causal value unless another original clue selects a new password.
 
 ## Fixed search space and controls
 
