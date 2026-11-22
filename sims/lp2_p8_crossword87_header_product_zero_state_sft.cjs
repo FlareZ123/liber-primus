@@ -80,6 +80,16 @@ assert.equal(product29(red), 12);
 assert.equal(p8.at(-1), 12);
 assert.equal(red.length, p8.at(-1));
 
+// The seam also closes on the primitive 3-4-5 integer right triangle.
+// These operands are literal source-word products, not fitted keys.
+const redLegA = product29(red.slice(0, 4));
+const redLegB = product29(red.slice(4));
+const blackHypotenuse = product29(p9.slice(0, 5));
+assert.deepEqual([redLegA, redLegB, blackHypotenuse], [4, 3, 5]);
+assert.equal(redLegA * redLegA + redLegB * redLegB, blackHypotenuse * blackHypotenuse);
+assert.equal(redLegA + redLegB + blackHypotenuse, red.length);
+assert.equal((redLegA * redLegB) / 2, p8Cross.values.length);
+
 const startHeadingControls = [];
 for (const p of ink.pages) {
   if (p.page > 55) continue;
@@ -168,6 +178,9 @@ console.log(JSON.stringify({
     crossingWord: p8Cross.word,
     crossingIndices: p8Cross.values,
     crossingSum: sum29(p8Cross.values),
+    triangleLegsAndHypotenuse: [redLegA, redLegB, blackHypotenuse],
+    trianglePerimeter: redLegA + redLegB + blackHypotenuse,
+    triangleArea: (redLegA * redLegB) / 2,
   },
   originalCrossingWords: {
     total: crossings.length,
