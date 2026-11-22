@@ -1,6 +1,6 @@
 # GP28 predecessor exclusion with any secret 1–256-phase key: exact native E-rune obstruction
 
-**Agent39, 22 November 2026. New source-original all-secret family exclusion.** This is an exact finite single-letter upper bound covering **all key periods 1 through 256 inclusive**, 16 original-source clock/rank conventions, and every possible **independent secret permutation of all 28 plaintext rank labels at each phase**. It requires no key discovery or probabilistic search and operates on **all 12,956 intact unknown LP2 GP29 runes**. The result excludes direct recovery of the tested source-native English controls under the stated reversible predecessor-exclusion architecture. **It recovers no new LP2 plaintext, authentic key, or destination.**
+**Agent39, 22 November 2026. New source-original all-secret family exclusion in two independently verifiable tiers.** The first tier allows **arbitrary secret orderings of all 29 ciphertext rune identities at every key phase**, together with arbitrary 28-way plaintext substitutions, and excludes all periods **1 through 43**. The second tier retains the original cyclic/sorted GP order and covers **all periods 1 through 256** with arbitrary 28-way substitutions. Both are exact finite upper bounds on a single recovered plaintext rune. It requires no key discovery or probabilistic search and operates on **all 12,956 intact unknown LP2 GP29 runes**. The result excludes direct recovery of the tested source-native English controls under the stated reversible predecessor-exclusion architecture. **It recovers no new LP2 plaintext, authentic key, or destination.**
 
 ## Why this is an actionable architectural exclusion
 
@@ -25,7 +25,34 @@ For one fixed original clock, period `m`, and rank convention, let `n[j,r]` be t
 
 This is attainable at each phase and cannot be increased by changing any secret substitution mapping. No language model is used to derive it; the English source controls enter only when judging whether the upper bound is compatible with real prose.
 
-## Full original result
+## Stronger exact result: arbitrary secret ciphertext alphabet order through period43
+
+The prior source research established an exact one-rank bound under **every possible hidden ordering of the 29 ciphertext GP identities** at one key phase, by reducing the order search to 406 endpoint pairs rather than enumerating 29! permutations ([period13 predecessor work](lp2-rank28-period13-allsecret-original-gate.md)). This result extends that theorem to **every key period 1–60 inclusive**, each of the eight book/page/section/chapter × all/nonrepeat clocks, and the complete 12,956 original runes.
+
+For each phase j, form the 29×29 directed transition-count table `T_j[s,c]` of original unequal adjacent symbols. Any hidden GP alphabet order maps any one secret 28-way plaintext rank to the two adjacent destination symbols `a,b` in that secret order. The exact maximal number of one plaintext rune (e.g. E) attained at that phase is
+
+`W(T_j)=MAX(a<b){T_j[a,b]+T_j[b,a]+SUM(s!=a,b) MAX(T_j[s,a],T_j[s,b])}`.
+
+The bound is attained by placing every other source rune on whichever side of the adjacent pair permits its more frequent destination. The source order and the plaintext rank relabeling are each allowed to vary **independently at every phase**. Sum `W(T_j)` over phases and grant all **142** source exception sites arbitrary E. Small-alphabet exhaustive `q=4,5,6` permutation oracles validate the formula for 36 independent weighted transition tables.
+
+| Unknown period | Maximum original E after granting 142 free positions, any ciphertext ordering and any output alphabet |
+| --- | ---: |
+| 1 | 716 |
+| 13 | 1,036 |
+| 23 | 1,177 |
+| 29 | 1,240 |
+| 32 | 1,288 |
+| **Any period 1–43** | **At most 1,372** (maximum at period42) |
+| 43 alone | 1,370 |
+| **44** | **1,398**, first period not excluded by the E-only criterion |
+| 60 | 1,526 |
+
+Every 12,956-rune native-English control window has at least **1,397 E**. Thus **not one of the 344 source-clock and key-period combinations from period 1 to 43 can directly decrypt to any of those source-native English windows**, even after allowing a wholly unknown 29! source alphabet and independent 28! output mapping at every phase and even if **all** rare ciphertext repetitions could be E. The threshold **44** is only the first phase cardinality for which E frequency ceases to rule the model out; it is no evidence of a genuine 44-phase key. This all-order statement is stronger than the fixed-source-rank tier below for periods ≤43 and removes the separate assumption about which plaintext symbol ciphertext repeats encode.
+
+The [separate all-source-order Node22 CJS reproducer](../sims/lp2_rank28_period43_allsecret_alphabet_capacity_sft.cjs) computes all periods1–60 on the original ciphertext and proves the exact endpoint-pair bound against 36 independent small-alphabet exhaustive oracles. It encrypts and recovers **12,956/12,956** original-solved-p57-derived native plaintext runes under a fully secret noncanonical GP29 ciphertext order and an actual table-derived 256-phase secret rank key, confirming that the mathematical bound accepts true native GP plaintexts in the declared cipher class. [Successful Windows run 45061788402](https://github.com/FlareZ123/liber-primus/actions/runs/45061788402) records original threshold and positive.
+
+## Additional exact result: original fixed-order periodic ranks up to256
+
 
 | Original rank-bound question | Exact result |
 | --- | ---: |
@@ -66,4 +93,4 @@ Reproduction: [standalone Windows Node22 CJS SFT](../sims/lp2_rank28_period256_a
 
 ## Cryptanalytic decision
 
-**Retire further searches over arbitrary periodic 1–256-position keys for this fixed-order, lossless predecessor-exclusion rank28 architecture as a direct recovery of ordinary source-native English LP2 prose.** The key entropy can be enormous and still fail a single-letter conservation law. A future attempt would need an independent authored clue selecting a fundamentally different information-preserving transform, a changing ciphertext alphabet ordering/clock, a non-native intermediate register, or a source-specific unexpected plaintext language; another long random-key sweep within this family cannot repair the capacity deficit.
+**Retire searches over any original-source arbitrary-alphabet periodic key of 1–43 phases and, separately, over every fixed-GP-order periodic key of 1–256 phases with a non-E escape sentinel**, as direct routes to ordinary source-native English LP2 prose. The key entropy can be enormous and still fail a single-letter conservation law. A future attempt would need an independent authored clue selecting a fundamentally different information-preserving transform, a changing ciphertext alphabet ordering/clock, a non-native intermediate register, or a source-specific unexpected plaintext language; another long random-key sweep within this family cannot repair the capacity deficit.
