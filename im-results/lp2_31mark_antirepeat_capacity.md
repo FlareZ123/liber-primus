@@ -26,22 +26,22 @@ L=\log_2\left(\frac{29^{12901}}
 =\mathbf{325.4502541840\ \text{bits}}.
 \]
 
-**Overgrant punctuation capacity:** There are 2,896 complete printed words. Give the 31 marks an arbitrary choice among **3,008** boundary slots: one per word **plus both ends of each of the 56 physical unknown pages**, even counting the rune-free p50. Allow 31 independently chosen **distinct** slots, although p7 actually displays two groups at the same offset, and give every mark **four** independent identities, although the actual artifact has only the 10/13-dot and red/black properties with highly skewed counts. This upper bound for the proposed sidecar is
+**Overgrant punctuation capacity:** There are 2,896 complete printed words. Give the 31 marks an arbitrary choice among **3,008** boundary slots: one per word **plus both ends of each of the 56 physical unknown pages**, even counting the rune-free p50. Allow multiple marks at the same slot, as p7 actually displays two groups at one offset. The number of possible multisets of 31 positions is therefore the generous stars-and-bars count **C(3008+31−1,31)**. Also give every mark **four** independent identities, although the actual artifact has only the 10/13-dot and red/black properties with highly skewed counts. This upper bound for the proposed sidecar is
 
 \[
-S_4=\log_2\binom{3008}{31}+31\log_2 4
-=\mathbf{307.3052101123\ \text{bits}}.
+S_4=\log_2\binom{3038}{31}+31\log_2 4
+=\mathbf{307.7512637604\ \text{bits}}.
 \]
 
-So even this exceptionally generous scheme is short by **18.1450440717 bits**, or a factor of about **289,600** required distinct representations. If the source's actual counts of three 10-dot marks and one black mark are respected but their relative positions are free, the sidecar upper bound tightens to
+So even this exceptionally generous scheme is short by **17.6989904236 bits**, or a factor of about **212,778** required distinct representations. If the source's actual counts of three 10-dot marks and one black mark are respected but their relative positions are free, the sidecar upper bound tightens to
 
 \[
-S_{\mathrm{source}}=\log_2\binom{3008}{31}
+S_{\mathrm{source}}=\log_2\binom{3038}{31}
 +\log_2\binom{31}{3}+\log_2 31
-=\mathbf{262.3935118231\ \text{bits}},
+=\mathbf{262.8395654712\ \text{bits}},
 \]
 
-leaving a **63.0567423609-bit** deficit.
+leaving a **62.6106887128-bit** deficit.
 
 These counts use the more permissive **at most 86** repeat rule; requiring exactly 86 only makes the capacity problem worse. They permit every unknown codebook and every imaginable secret state machine that fits this exact length/sidecar contract. The fundamental impossibility follows by pigeonhole: fewer possible distinct outputs than arbitrary distinct inputs.
 
