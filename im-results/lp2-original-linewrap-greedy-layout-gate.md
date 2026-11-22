@@ -1,43 +1,69 @@
-# LP2 line wrapping: held-out greedy compositor model explains 83.5% of printed joins
+# Original LP2 printed line wraps: native glyph advances and red-dropcap geometry
 
-**Agent42, 22 November 2026. Classification: independently executable physical-layout model and held-out inference; no decrypted unknown GP29 runes, author-supplied key, or validated side channel.**
+**Agent42, 22 November 2026. Classification: source-image layout model with disjoint-page held-out prediction. No unknown Liber Primus plaintext, cipher key, destination or author-selected steganographic channel recovered.**
 
-## Human-solve-path decision
+## Decision and physical alternative to a hidden line-break key
 
-A solver may suspect that the original manuscript's physical line endings encode a second alphabet, as Cicada visibly used whitespace in an earlier round. A real independently authored line-placement channel could conceivably carry the side information needed for a 28-successor-rank cipher to remain invertible over all 29 GP runes. The competing hypothesis is less elaborate: the 2014 compositor wraps text automatically when the *next* rune will exceed the line's typesetting width, and paragraph/art restrictions explain most non-greedy cases.
+An earlier Cicada round demonstrably used whitespace as a puzzle carrier, so asking whether LP2's 594 original printed lines encode separate key material is reasonable. A required competing hypothesis is ordinary typesetting: a line ends when the next rune cannot fit; oversized red initial letters occupy a left-hand gutter spanning several lines; displayed illustrations and paragraph endings impose additional stops. The visual exceptions are then compositor decisions rather than freely selectable cryptographic bits.
 
-An existing original-image study established 29 individual glyph advances and explained the global line-initial-width skew. This experiment makes a **different, deterministic held-out prediction** of the *exact printed break locations* using those independently measured advances. It deliberately does **not** assume that a lower residual event count is equivalent to a cryptographic entropy bound.
+The source's 55 rune-bearing unknown physical pages contain exactly **12,956 original GP29 symbols, 594 source-printed lines, 539 within-page printed-line joins, and 418 joins ending inside a printed word**. The original 29 rune glyph widths were separately measured from original image 60.jpg, first seven source lines, in [the fixed font control](../sims/line_start_raster_width_control.cjs) and its [source-JPEG width extraction](../sims/source_glyph_advance_inversion.py). The current experiment imports those 29 widths unchanged and independently predicts the physical locations where the typesetter must wrap.
 
-## Source, frozen training procedure, and exact result
+### Original fixed compositor and held-out control
 
-- Original rune and exact physical line breaks: [canonical LP2 transcription](../resources/liber-primus/lp2-transcription.txt); complete comparison to [original physical corpus](../resources/liber-primus/lp2-corpus.json). Exactly 12,956 runes on 55 rune-bearing unknown pages, 594 original printed lines, 539 within-page line joins, and 418 joins inside a printed word.
-- Original glyph advances: [fixed original-JPEG measurements](../sims/line_start_raster_width_control.cjs), calibrated on the first seven lines of physical p43, original scan 60.jpg, using [the independent image inversion](../sims/source_glyph_advance_inversion.py). These 29 rune widths are imported unchanged.
-- For a printed line, compute \(L=\sum\mathrm{advance}(r)+d\,w_-+s\,w_.\), where \(d\) and \(s\) count original printed separators `-` and `.`. Let \(f\) be the **original next line's first rune** width. The ordinary greedy compositor predicts a wrap exactly when \(L\leq W < L+f\). This condition is a testable geometry model, with no GP language score, cipher key, plaintext guess, or forged source characters.
-- Estimate only three layout parameters, line width \(W\) (1,150–1,250 pixels, increments2), separator advance \(w_-\) (8–24 pixels, increments1), stop advance \(w_.\) (16–50 pixels, increments2). Maximize exact greedy matches on the **210 within-word joins of early pp0–27**. All candidates are exhaustively evaluated once. Freeze the first tied maximum in deterministic enumeration order.
-- The unique first-tie optimum is **\((W,w_-,w_.)=(1200,16,46)\)**, with **184/210** early within-word joins predicted. The entirely withheld physical pp28–55 contain **208** further within-word joins; the locked compositor predicts **174/208**. For the full 539 joins, **450** are greedily predicted, **78** end earlier than the locked compositor predicts, and **11** nominally exceed its width. Both word-gap and in-word joins are evaluated with the same fixed model.
+For each original printed line let `L` equal the summed original source rune advances plus the original hyphen and period advances; let `f` equal the width of the **first actual rune on the next printed line**. Ordinary word-internal greedy wrapping predicts `L <= W < L + f`. All five hundred thirty-nine line joins are evaluated with the original boundary/rune order; no ciphertext, plaintext, source key, dictionary, language score or page order is fitted.
 
-| Physical source class | Exact greedy joins | Early / nominal overflow | Total |
-|---|---:|---:|---:|
-| Early pp0–27, within-word fitting | 184 | 24 / 2 | 210 |
-| **Late pp28–55, within-word holdout** | **174** | **29 / 5** | **208** |
-| Early all printed joins | 238 | 39 / 5 | 282 |
-| Late all printed joins | 212 | 39 / 6 | 257 |
-| All within-word joins | 358 | 53 / 7 | 418 |
-| All explicit word-gap joins | 92 | 25 / 4 | 121 |
-| **All physical LP2 unsolved joins** | **450** | **78 / 11** | **539** |
+Fit *only* the printing width W, hyphen advance and period advance on the 210 within-word joins of original pp0–27. Exhaustively consider W=1150..1250 in increments2, hyphen=8..24 in increments1 and period=16..50 in increments2. The deterministic first-best model is **W=1200px, hyphen=16px, stop=46px**, which explains **184/210** early-page within-word wraps. Freeze it completely before evaluating the later **208 untouched within-word joins on pp28–55**.
 
-The 83.5% all-break fit is *not* a raw entropy estimate because widths are approximated by line-independent advances, the compositor can change margins by page, and the frozen width was chosen using the early original text. It is informative because the **within-word holdout, never used to select any parameter, still yields 174/208 = 83.65%**. The model predicts forced ends from the *actual following rune's width*, exactly the physical mechanism that the earlier image study implicated in line-initial biases.
+| Source scope | Greedy-forced printed breaks | Early | Nominal overflow | Total |
+| --- | ---: | ---: | ---: | ---: |
+| Original pp0–27 within-word, geometry-unaware training | 184 | 24 | 2 | 210 |
+| **Original pp28–55 within-word held out, geometry-unaware** | **174** | **29** | **5** | **208** |
+| All physical unknown-page joins, geometry-unaware | 450 | 78 | 11 | 539 |
 
-### Where the model disagrees
+This is a held-out test of an independent *compositor prediction*, not a recovered cryptographic decoder. Its baseline output is fixed by the [single-file Node22 source-exact SFT](../sims/lp2_original_linewrap_greedy_geometry_sft.cjs).
 
-Premature short lines cluster on visible heading/illustration/section pages. In the 10 non-final joins of each page, p3 and p33 have seven premature stops each, p40 six, while many ordinary pages have none. Original art, red rubrics, numeral insertions and paragraph layout are source-visible alternatives to cipher-authored linebreak flags. One line on p10 contains an original numeral7 whose advance is not fitted among the 29 rune widths and two punctuation advances. The 11 nominal width overflows similarly show the model is not a pixel-perfect source compositor; they should **not** be interpreted as automatically meaningful hidden symbols.
+## Original JPEG measurement gives a specific explanation for 23 more joins
 
-The solved LP2 p56–57 use shorter displayed lines and a visibly different composition; applying a width learned on unknown pages to those pages does not provide an exchangeable solved-page control. No claim is made that ordinary font layout proves the absence of deliberately overlaid steganographic line-position information.
+Original source scans are 2400x3600 pixels; physical page `p` is image `(p+17).jpg`. An image-native rule identifying red pixels (R>100, R>1.6G, R>1.6B, G<130), then retaining left-margin connected components with height greater than 350px and area greater than 2500px, finds **13 oversized red initials on 11 physical pages**. Their original connected-component heights are 495–498px; a normal physical body line has a vertical pitch around 188px. They occupy a left-hand gutter across **three successive printed lines**. Black text adjacent to the giant initial is visibly indented. No identification uses ciphertext language, likely plaintext, or any compositor-success statistic.
 
-## Research consequence
+| Physical page | Source printed first line of giant | Red connected-component x, y (source pixels) | Original bbox width |
+| --- | ---: | --- | ---: |
+| 0 | 0 | 601,667 | 150 |
+| 3 | 0 | 601,668 | 150 |
+| 3 | 6 | 601,2098 | 229 |
+| 6 | 3 | 601,1721 | 149 |
+| 8 | 0 | 602,667 | 284 |
+| 15 | 6 | 601,1731 | 150 |
+| 23 | 0 | 601,1156 | 230 |
+| 27 | 0 | 601,912 | 230 |
+| 33 | 0 | 601,667 | 230 |
+| 33 | 6 | 601,1908 | 219 |
+| 39 | 5 | 601,1852 | 231 |
+| 40 | 0 | 601,667 | 150 |
+| 54 | 0 | 601,912 | 149 |
 
-A literal one-bit-per-original-line payload treats all 594 line entries as freely authored independent choices. This result establishes a concrete alternative causal mechanism for **450 of the 539** observed within-page wrap decisions, with held-out predictive power. It sharpens the [prior 2013-style line-final dash test](lp2-linewrap-2013-whitespace-transfer-original-gate.md), which already found no direct ASCII, and the [original glyph-width source controls](lp2-original-line-first-inkwidth-conditional-gate.md).
+The page and source-line mapping comes from visible matching of each red cap to the exact original printed text rows; illustrated introductory marks on p23/p27 and original cuneiform numerals before p39 are **not extra cipher-text lines**. For every affected printed line add `red_width + 12px` as a horizontal gutter, replacing the normal first-rune advance on the first row carrying the giant glyph. This approximates the 12px visible gap from giant red component to black text and assumes its footprint spans three text rows. These two geometrical approximations are independent of language yet remain approximate, not a pixel-perfect OCR/layout reconstruction.
 
-**Decision:** deprioritize an all-lines-independent sidecar as a mechanism for recovering rank-28 exception information. Pursue this interface further only if a first-party clue selects a residual bit grammar, or an actual ciphertext decoder predicts and replays untouched original runes using line-position side data. The 89 non-greedy joins are *candidate layout exceptions*, not 89 verified cryptographic bits; this report provides no proof that fewer than the needed side bits could theoretically be encoded by other line-position grammars.
+| Same physical source class | Greedy forced before giant geometry | After giant geometry | Early after | Overflow after |
+| --- | ---: | ---: | ---: | ---: |
+| 37 joins on rows occupied by the 13 measured giants | **2** | **25** | 7 | 5 |
+| **208 late within-word, never used to fit W** | **174** | **180** | 20 | 8 |
+| **All 539 original printed joins** | **450** | **473** | **50** | **16** |
 
-**Complete source-exact Windows Node22 reproducer:** [`sims/lp2_original_linewrap_greedy_geometry_sft.cjs`](../sims/lp2_original_linewrap_greedy_geometry_sft.cjs). Its assertions fix the source glyph positions, 210/208 disjoint within-word counts, training optimum, holdout prediction, and 450/78/11 final partition. No image modifications, guessed cipher plaintext, or source dataset writes.
+This is a **23-join improvement in the entire original book**, localized exactly to the first three source text rows beside measured red initials. The late withheld within-word result rises from 174/208 to **180/208, or 86.54%**, without refitting W or the 29 glyph widths. The model is robust to modest original-image gutter estimates: 0,8,12,16,24 pixels with the same three-row cap yield whole-book forced counts **470,473,473,473,473**, and withheld within-word forced counts **178,180,180,180,180**, respectively. Four-row or two-row reinterpretations are less consistent with measured 495–498px caps.
+
+Of the 50 remaining earlier-than-greedy line joins, **11 end with an original printed period**, an ordinary paragraph stop. The remainder have plausible artwork, typography, source digits, margin, stanza, and compositor explanations, but these mechanisms are not yet fully recovered. There are also 16 *nominal* overflows under the approximate metric; the presence of both early and overlong original printed lines is a warning against reading the remaining 39 early nonparagraph stops as precisely encoded bits.
+
+## Cryptanalytic consequence and stopping rule
+
+This original-image evidence makes an independent 594-bit line-break sidecar an **unjustified assumption**. At least 473/539 actual within-page joins have a specific source-visible greedy compositor explanation, and 11 more of the residual short lines terminate at a punctuation stop. It does **not** mathematically eliminate deliberate steganography in the residual margins or word-break choice, and it does not prove a bound on total side-channel capacity: an author could deliberately control layout within other physical tolerances or explicitly instruct solvers to exploit those margins.
+
+The source has not provided an authenticated rule for extracting residual bits, a 29→28 exception grammar, or a key that invertibly deciphers any original unknown GP29 rune. Therefore **deprioritize independent line-end bits as the key to the full LP2 cipher** until a first-party clue selects a *specific residual readout* and it predicts a previously unseen original ciphertext block. Avoid fitting exception positions or modifying measured glyph widths to manufacture English.
+
+### Source-exact reproduction
+
+- [Original-only greedy compositor SFT](../sims/lp2_original_linewrap_greedy_geometry_sft.cjs) locks corpus, printed lines, 210/208 disjoint breaks, the three fitted parameters and all baseline counts.
+- [Original-JPEG dropcap geometry SFT](../sims/lp2_original_linewrap_dropcap_geometry_sft.cjs) imports the previously frozen model, preserves 13 original JPEG-connected-component width measurements and corresponding printed-row addresses, asserts all new counts, and performs a 0–24px gap sensitivity study.
+- Original source pages: `resources/liber-primus/lp2-corpus.json`, `resources/liber-primus/lp2-transcription.txt`. The source JPEGs are original publication pages `17.jpg`–`72.jpg`, independently supplied to the research runtime as `liber-primus-jpegs.zip`. The image-derived red box table is deliberately separate from literal source rune arrays. To remeasure each red bbox from the original image, threshold the RGB channels above and use 8-connected-component analysis on the red pixel mask; the previously published 29 rune width measurement is independent and reused unchanged.
+
+The finding is supporting original-layout evidence in `im-results/`. It does not change `results/README.md`'s authoritative status: the 56 unknown physical LP2 pages remain cryptographically unsolved.
