@@ -37,6 +37,20 @@ The reproducer also plants those exact 40 solved-p57 runes as 40 isolated equal-
 
 The [standalone CommonJS original-input SFT](../sims/lp2_2015_prime_delta_40_event_values_original_sft.cjs) computes and asserts the exact full inventory, phase peak, native-English control distribution and planted positive. No original data, 2015 transcript, or reference controls are modified.
 
+## Additional fixed consumer: 40 events versus p32's outer circumference
+
+A different, source-linked possibility was tested after the direct event-message failed. Original p32 has exactly **121 runes**; its **hypothetical 11×11 row-major layout** has a **40-rune perimeter**. Authentic solved p57 says to shed circumferences, while the signed 2016 tree points to this p32 chapter. The earlier 2015 event stream has **exactly 40 runic event values**. These are independent source counts, although the 11×11 p32 reflow is derived rather than printed and the 2015 transformation is participant-authored. Together they motivate one precise 40-rune key-consumer test.
+
+Freeze the outer perimeter in clockwise order, beginning with original p32 rune offset0 (top row left to right, right column downward, bottom row right to left, left column upward). Read the 40 actual p32 glyph indices C in that order, then invert using **P[i]=(C[i]−K[i]) mod29**, with K the 40 dated-prime event values in their original documented order above. This is exactly one direct GP29 additive key trial; it does not tune rotation, sign, border starting corner or the rune clock to maximize language.
+
+The untouched original p32 outer perimeter's GP29 IoC is **0.0346153846**; the proposed inverse has IoC **0.0320512821**, with literal GP transliteration:
+
+    JPOEHEIALLFHOERSIBSMASOTHETLYHOMRPTNGHFEOAYLXD
+
+No word, instruction, or other recognizable GP29-native text is recovered. For calibration, the first40 genuinely clear p57 GP29 runes have IoC **0.0564102564**. The same p32 receiver algorithm recovers **40/40** planted known p57 rune symbols exactly when that source text is first encrypted by the frozen 40-event key. These are exhaustive outcomes for the single fixed additive interpretation, with original source indices, full ring coordinates and positive assertion in the same updated [standalone SFT](../sims/lp2_2015_prime_delta_40_event_values_original_sft.cjs).
+
+The exact 40/40 cross-artifact length fit does not constitute a cipher instruction, particularly because p32 is not printed as 11×11 and the historical participant did not supply a p32 recipient. The simple p32-border use of the 2015 values is **retired**. This does not exclude a different author-selected extraction or more meaningful use of the 2015 events.
+
 ## Decision and next research dependency
 
-The dated 2015 calculation is reproducible and historically informative; its direct 40-value event-message hypothesis fails to yield language or an instruction. The 2015 participant never specified a distinct position-to-character reduction, punctuation/word mapping, target ciphertext, new encryption inverse, or blind 100-rune prediction. **Retire the literal 40 event-value message extraction**, leaving sparse event-position channels unassessed until an independent source can select a *specific* address/readout. Do not rescue the result through arbitrary gap reductions, ASCII maps, phase sweeps or guessed keys. This closes #2154 as an exact finite negative with no authenticated plaintext.
+The dated 2015 calculation is reproducible and historically informative; its direct 40-value event-message hypothesis fails to yield language or an instruction. The 2015 participant never specified a distinct position-to-character reduction, punctuation/word mapping, target ciphertext, new encryption inverse, or blind 100-rune prediction. **Retire the literal 40 event-value message extraction and its fixed direct p32-border additive consumer**, leaving sparse event-position channels unassessed until an independent source can select a *specific* address/readout. Do not rescue the result through arbitrary gap reductions, ASCII maps, phase sweeps or guessed keys. This closes #2154 as an exact finite negative with no authenticated plaintext.
