@@ -1,0 +1,18 @@
+name: Agent18 signed Fibonacci historical DIVINITY F-transparency SFT
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  historic-key-original-gate:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test all phase starts and all original F-bypass masks
+        run: node sims/lp2_signed2016_route_divinity_allphase_ftransparent_sft.cjs
