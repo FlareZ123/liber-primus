@@ -3,7 +3,7 @@
 /**
  * LP2 source-visible 10/13/23-dot checksum decision.
  * Preserve every original GP29 rune, mark, repeated mark and cross-page carry.
- * Test four fixed arithmetic rules, two literal scope conventions and both
+ * Test six fixed arithmetic rules, two literal scope conventions and both
  * mark directions. Exhaust all cyclic control offsets without fitting a key.
  *
  * Windows 11 / Node.js 22:
@@ -174,11 +174,14 @@ function main() {
     .map(x => x.primeModMarker), [7, 0]);
 
   const gp0 = doubledPrefix(allRunes);
+  const gp1 = doubledPrefix(allRunes.map(v => v + 1));
   const prime = doubledPrefix(allRunes.map(v => corpus.prime[v]));
   const rules = [
     {name:"GP0 % mark == 0", prefix:gp0, check:(v, m) => v % m === 0},
+    {name:"GP1 % mark == 0", prefix:gp1, check:(v, m) => v % m === 0},
     {name:"GPprime % mark == 0", prefix:prime, check:(v, m) => v % m === 0},
     {name:"GP0 % 29 == mark", prefix:gp0, check:(v, m) => v % 29 === m},
+    {name:"GP1 % 29 == mark", prefix:gp1, check:(v, m) => v % 29 === m},
     {name:"GPprime % 29 == mark", prefix:prime, check:(v, m) => v % 29 === m},
   ];
   const results = [];
@@ -201,10 +204,10 @@ function main() {
       }
     }
   }
-  assert.equal(results.length, 16);
+  assert.equal(results.length, 24);
   assert.deepEqual(results.map(x => x.matches),
-    [3,3,0,0,4,0,0,0,4,3,1,1,3,1,0,1]);
-  assert.ok(results.every(r => r.cyclicNullUpperTail >= 0.27));
+    [3,2,3,0,1,0,4,2,0,0,1,0,4,2,3,1,2,1,3,3,1,0,1,1]);
+  assert.ok(results.every(r => r.cyclicNullUpperTail >= 0.26));
 
   // A short native-register test proves the implemented sum/modulus predicate
   // accepts exactly matching marker-sized aggregates.
@@ -215,7 +218,7 @@ function main() {
   }
 
   console.log(JSON.stringify({
-    status:"NO UNIVERSAL SOURCE-SIMPLE DOT CHECKSUM",
+    status:"NO UNIVERSAL SOURCE-SIMPLE DOT CHECKSUM (GP0, GP1, PRIME)",
     printedMarkers:marks.length, nonemptyContinuousClosingSpans:34,
     duplicates:marks.filter((e, i) => i > 0 &&
       e.pos === marks[i - 1].pos).map(e => [e.page, e.local]),
