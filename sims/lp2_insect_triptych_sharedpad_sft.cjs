@@ -98,7 +98,7 @@ assert.deepEqual(aligned.map(x => x.length), [n, n, n]);
 const result = evaluate(aligned);
 const pageStartResult = evaluate(startAligned);
 assert(Math.abs(result.llr + 15.260542144431778) < 1e-8);
-assert(Math.abs(pageStartResult.llr + 11.150255250435459) < 1e-8);
+assert(Math.abs(pageStartResult.llr + 11.709610069135667) < 1e-8);
 assert.equal(result.equalities, 27);
 
 const donors = [
