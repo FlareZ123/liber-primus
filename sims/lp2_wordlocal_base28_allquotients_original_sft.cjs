@@ -322,6 +322,133 @@ assert.equal(allSecret.pageOrdinalRole[5]
   .upperWithEntireRepeatedWordsGrantedFree, 4750);
 
 /**
+ * Historical F-interrupter alternative: solved Cicada plaintext uses literal
+ * transparent F (GP index0). Remove source F from each authentic whole word
+ * before rank28 transport, then reinsert it unchanged in the exact source
+ * positions. This version does NOT assert LP2 actually uses that rule.
+ *
+ * The output top-five upper is made extremely forgiving: ALL 458 original F
+ * positions are credited to the top-five set, even if real English would
+ * not rank F among its five most common rune identities. Every remaining
+ * non-F rune in any word containing an adjacency after F-removal gets
+ * arbitrary plaintext as well. Different page×word-position fragments of
+ * one word are independently permitted to choose their Q candidate.
+ */
+const fTransparentStates = Object.fromEntries(
+  Object.keys(stateGroups).map(type => [type, new Map()])
+);
+let literalF = 0;
+let fExceptionRunes = 0;
+let fExceptionWords = 0;
+let fEligibleRunes = 0;
+let fQ1Available = 0;
+let allFWords = 0;
+for (const word of unknown) {
+  const filtered = word.runes.map((r, i) => ({r, page: word.runePages[i]}))
+    .filter(x => x.r !== 0);
+  literalF += word.runes.length - filtered.length;
+  if (!filtered.length) {
+    allFWords++;
+    continue;
+  }
+  const values = filtered.map(x => x.r);
+  const physicalPages = filtered.map(x => x.page);
+  const {candidates, repeated} = decodeCandidates(values);
+  if (repeated) {
+    fExceptionWords++;
+    fExceptionRunes += values.length;
+    continue;
+  }
+  fEligibleRunes += values.length;
+  if (candidates.length === 2) fQ1Available++;
+  for (const type of Object.keys(fTransparentStates)) {
+    const role = (i) => i === 0 ? 'first' :
+      i === values.length - 1 ? 'last' : 'inside';
+    const shell = (i) => i === 0 || i === values.length - 1 ?
+      'circumference' : 'inside';
+    const stateKey = i => type === 'global' ? 0 :
+      type === 'section' ? word.section :
+      type === 'page' ? physicalPages[i] :
+      type === 'pageCircumference' ?
+        physicalPages[i] + ':' + shell(i) :
+        physicalPages[i] + ':' + role(i);
+    const differences = new Map();
+    for (let i = 0; i < values.length; i++) {
+      const key = stateKey(i);
+      const group = fTransparentStates[type];
+      let state = group.get(key);
+      if (!state) {
+        state = newState();
+        group.set(key, state);
+      }
+      state.base[candidates[0][i]]++;
+      state.nonrepeatRunes++;
+      if (candidates.length === 2) {
+        let delta = differences.get(key);
+        if (!delta) {
+          delta = Array(29).fill(0);
+          differences.set(key, delta);
+        }
+        delta[candidates[1][i]]++;
+        delta[candidates[0][i]]--;
+      }
+    }
+    for (const [key, delta] of differences) {
+      fTransparentStates[type].get(key).diffs.push(delta);
+    }
+  }
+}
+assert.equal(literalF, 458);
+assert.equal(fExceptionWords, 67);
+assert.equal(fExceptionRunes, 380);
+assert.equal(fEligibleRunes, 12118);
+assert.equal(fQ1Available, 273);
+assert.equal(allFWords, 1);
+assert.equal(literalF + fExceptionRunes + fEligibleRunes, sourceR);
+assert.equal(fTransparentStates.page.size, 55);
+assert.equal(fTransparentStates.pageCircumference.size, 110);
+assert.equal(fTransparentStates.pageOrdinalRole.size, 165);
+for (const [type, groups] of Object.entries(fTransparentStates)) {
+  assert.equal([...groups.values()].reduce((n, state) =>
+    n + state.nonrepeatRunes, 0), fEligibleRunes, type);
+}
+const allSecretFTransparency = {};
+for (const [type, states] of Object.entries(fTransparentStates)) {
+  const nonRepeat = maximumTopK(states, 5);
+  allSecretFTransparency[type] = {
+    decodedNonrepeatTop5: nonRepeat,
+    boundWithAllFAndExceptionsFree: nonRepeat + literalF + fExceptionRunes
+  };
+}
+assert.deepEqual(
+  Object.fromEntries(Object.entries(allSecretFTransparency)
+    .map(([type, score]) => [type, score.decodedNonrepeatTop5])),
+  {
+    global: 2398, section: 2662, page: 3344,
+    pageCircumference: 3911, pageOrdinalRole: 4240
+  }
+);
+assert.equal(allSecretFTransparency.pageOrdinalRole
+  .boundWithAllFAndExceptionsFree, 5078);
+
+// Positive replay of F-interrupter word transport. It preserves its position,
+// including when F is on the first/last position, with a genuine source
+// p57 plaintext word rather than just an artificial arithmetic assertion.
+for (const word of genuineP57) {
+  const notF = word.runes.filter(r => r !== 0);
+  if (!notF.length) continue;
+  const {code, quotient} = encodePlant(notF);
+  const restored = unrank29(rank28(code) + quotient *
+    29n * 28n ** BigInt(code.length - 1), code.length);
+  const assembled = [];
+  let cursor = 0;
+  for (const r of word.runes) {
+    assembled.push(r === 0 ? 0 : restored[cursor++]);
+  }
+  assert.deepEqual(assembled, word.runes);
+}
+
+/**
  * A very generous period-native GP spell normalizer for control prose;
  * controls are register examples, not claims about actual LP2 language.
  * @param {string} word
@@ -388,6 +515,9 @@ assert.deepEqual(controlResults.map(x => x.minimumTopFive),
 assert(controlResults.every(x =>
   x.minimumTopFive > allSecret.pageOrdinalRole[5]
     .upperWithEntireRepeatedWordsGrantedFree));
+assert(controlResults.every(x =>
+  x.minimumTopFive > allSecretFTransparency.pageOrdinalRole
+    .boundWithAllFAndExceptionsFree));
 assert.equal(top5(histogram(p57Source)), 46);
 
 console.log('SOURCE_AND_POSITIVE', JSON.stringify({
@@ -398,5 +528,9 @@ console.log('SOURCE_AND_POSITIVE', JSON.stringify({
   extraLegalWordQuotients: q1Available, genuineP57RunesRecovered: p57Source.length
 }));
 console.log('ALL_SECRET_EXACT_SOURCE_BOUNDS', JSON.stringify(allSecret));
+console.log('F_TRANSPARENT_ORIGINAL_ALL_SECRET_BOUNDS', JSON.stringify({
+  literalF, fExceptionRunes, fExceptionWords, fEligibleRunes,
+  fQ1Available, allFWords, scopes: allSecretFTransparency
+}));
 console.log('SOURCE_NATIVE_CONTROL_MINIMA', JSON.stringify(controlResults));
-console.log('CONCLUSION: no direct native-English-GP29 inversion of this exact fixed-word BASE29/28 lift under any independent word quotient, arbitrary page-private alphabet, or independently keyed source word circumference/inside or first/interior/last page-role alphabets. All 371 real repeated-word runes were given arbitrary plaintext and Q may vary across crossed page and shell state. No first-party source selects the lift; no authentic unknown plaintext was recovered.');
+console.log('CONCLUSION: no direct native-English-GP29 inversion of this exact fixed-word BASE29/28 lift under any independent word quotient, arbitrary page-private alphabet, or independently keyed source word circumference/inside or first/interior/last page-role alphabets. All 371 real repeated-word runes were given arbitrary plaintext and Q may vary across crossed page and shell state. With F-interrupter transparency and all F runes optimistically credited to the top-five it also fails all three full-length donor controls, including the 165-page-role case. No first-party source selects the lift; no authentic unknown plaintext was recovered.');
