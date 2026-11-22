@@ -1,0 +1,53 @@
+# LP2 differential reserved-rune original-cipher test
+
+**Decision, 22 November 2026.** A word-local, reversible GP29 differential decoder with one reserved global plaintext rune has an exact key-independent marker. On the unchanged original 12,956-rune ciphertext, the marker has 63 occurrences. No source-selected plaintext, key, state schedule or historical cipher has been recovered. Candidate anchors matching that low frequency fail exact lexical masks under the fixed 29,157-entry native English wordlist, while a common-rune anchor admits radically different full-book dictionary assignments with independent secret keys.
+
+**Reproducer:** [Node22 CommonJS source SFT](../sims/lp2_differential_reserved_rune_allsecret_sft.cjs), [Windows GitHub Actions PASS 45004366865](https://github.com/FlareZ123/liber-primus/actions/runs/45004366865). It reads canonical original transcriptions, all three native English donors, the independent solved p57 positive and a fixed spelling lexicon. It emits all 29 anchors, not only the favored examples.
+
+## Cipher and its exact necessary-and-sufficient marker
+
+For each complete original printed word, including words carried across original physical page seams, posit
+\[
+C_{w,0}=P_{w,0}+v_w\pmod {29},\qquad
+C_{w,j}=C_{w,j-1}+k_{w,j}(P_{w,j}-x)\pmod {29},\quad j\ge1,
+\]
+where \(x\in GF(29)\) is a single globally fixed plaintext rune, every word-initial offset \(v_w\) is unknown, and every independently unknown multiplier \(k_{w,j}\in GF(29)^\times\) is nonzero. For a known key, \(P_{w,j}=x+k_{w,j}^{-1}(C_{w,j}-C_{w,j-1})\). This gives the exact invariant
+\[
+C_{w,j}=C_{w,j-1}\iff P_{w,j}=x.
+\]
+The manuscript therefore reveals every occurrence position of a hypothetical fixed plaintext rune, regardless of the otherwise arbitrary keys. Conversely, for any candidate plaintext word with exactly that event mask, set \(v_w=C_{w,0}-P_{w,0}\); for every nonzero step the unique compatible multiplier is \(k_{w,j}=(C_{w,j}-C_{w,j-1})/(P_{w,j}-x)\). For zero steps, set \(k=1\). Every assigned key is valid and the original is reencrypted exactly. The SFT checks these claims for all original runes.
+
+**Important historical limitation:** BASE29 is genuine source arithmetic, but no first-party clue selects the above difference equation, its word resets, the plaintext anchor, or the per-rune multipliers. The model is a testable cipher family rather than an identified LP2 mechanism.
+
+## Exact corpus, language controls and results
+
+The source has **55 rune-bearing unknown pages, 12,956 GP29 runes, 2,896 whole printed words**, yielding **10,060 internal word transitions**. Exactly **63** ciphertext doublets appear in **62** of these words. This differs from 86 source physical-page-local adjacent-equal events because the counting boundaries differ. The source parser asserts exact equality of all joined printed words and canonical physical-page rune arrays.
+
+The original word-length slots were held fixed. Original-attested English GP encoding normalizes QU→CW, V→U, K→C and Z→S and uses solved-LP1-calibrated ING/IO contractions. For each possible reserved rune, a length-conditioned native-English donor draws a word independently for each original slot. The expected internal anchor count and SD are calculated analytically from *per-word* occurrence-count distributions. A separate literal test requires each complete original word's 0/1 doublet mask to occur in at least one donor word of exactly its printed GP rune length. Three independent donor corpora and a 29,157-entry TextBlob-derived spelling lexicon are included.
+
+| Candidate reserved rune | Shakespeare mean ± SD | Gibran mean ± SD | Emerson mean ± SD | Original words with no matching mask in 29,157-word lexicon |
+| --- | ---: | ---: | ---: | ---: |
+| IA | 63.10 ± 7.27 | 66.13 ± 7.53 | 90.36 ± 8.95 | 3 |
+| B | 70.13 ± 8.24 | 74.60 ± 8.07 | 64.65 ± 8.00 | 3 |
+| F | 129.97 ± 11.74 | 166.78 ± 12.85 | 176.03 ± 13.49 | 3 |
+| E | 1490.76 ± 33.07 | 1479.79 ± 31.95 | 1491.03 ± 32.26 | 0 |
+
+The observed value is **63**. IA and B are count-compatible under some English donors, yet each has **three original masks absent** even from the broader 29,157-word dictionary. The historically tempting F anchor is below the donor means by 5.7–8.4 nominal standard deviations, with three lexical gaps. The eight common anchors C/N/S/T/E/L/D/A each satisfy all dictionary masks, but expected occurrence frequencies are much too high under the specified English-donor assumptions. Anchor choice after inspecting these original counts is retrospective, so no postselected rank is an authenticated clue or an independent discovery probability.
+
+One discriminating original: global zero-based word **1476** begins on physical p27 at local rune offset **79**. It is 12 runes long, source GP29 indices [12,4,9,15,3,3,5,24,18,26,18,18]. It has doublets at local zero-based indices **5 and 11**, the exact marker mask **00001000001**. No source-native dictionary 12-rune word matches that mask for IA, B or F. This is a **finite-vocabulary exclusion**, not a proof against unknown proper nouns, other source orthographies, other languages, or independently inserted symbols.
+
+## Full-book non-identifiability witness
+
+For anchor E, the full 29,157-word dictionary offers at least one GP-native matching whole-word mask for **every original word**. Choosing the first versus the last matching dictionary token at every original slot produces **two complete alternative candidate plaintext streams of 12,956 runes each**. They differ at **all 2,896 words**. Deriving separate valid GF29 multipliers and word IVs from each candidate and the *unchanged* source ciphertext gives two full decoders whose forward replay equals all **12,956 of the original cipher runes** exactly. Both are contrived synthetic assignments, not authentic recovered plaintext.
+
+At p27 word1476, E is at positions5 and11 in six matching dictionary entries. The SFT demonstrates two incompatible candidates, **BUSINESSLIKE** and **UNACCEPTABLE**, with independent fitted keys, for that identical original ciphertext word. This proves that exact ciphertext replay and valid native-dictionary words alone do not identify the keys or authorial plaintext under this high-entropy family. E itself is very inconsistent with normal native English anchor frequencies: its original count of63 is over43 donor SDs below the nominal Shakespeare/Gibran/Emerson means.
+
+As a genuine source-native positive input, the separately solved LP2 p57 original cleartext is segmented into its 20 authenticated words, totaling **95 runes**. Three deterministically planted independent-sentinel versions (B, E, IA) each recover all **95/95** plaintext runes, preserve every zero-step marker, and reencrypt exactly. This checks the reversible implementation only.
+
+## Decision and next causal fork
+
+A stationary reserved-plaintext-rune differential model with **unrestricted position-specific multipliers** does not produce genuine LP2 plaintext. Under the declared native English word-length/orthography assumption, rare anchors suffer specific missing full-word masks while common anchors require severe lexical selection. The broader family cannot be eliminated for all possible plaintext languages or dictionaries. Its many full original-cipher inverse solutions make further arbitrary key enumeration pointless.
+
+Continue this route only with an independent first-party clue fixing a *recoverable multiplier schedule and global anchor before original plaintext is scored*, or a direct source-visible state update whose held-out long original-text predictions would distinguish real language from these synthetic full-book fits. Earlier direct-output anchored affine and lag1/5/6 predecessor-feedback exclusions concern different equations; this source-level experiment should retain its precise scope. No change to the authoritative results synthesis is warranted.
+
+**Overall research state remains unchanged:** all 56 unknown physical LP2 pages p0–p55 lack authenticated new plaintext, an author-selected decoder and a confirmed destination.
