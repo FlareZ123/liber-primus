@@ -70,6 +70,34 @@ The original upper bound **1,145** lies strictly below the *actual combined nati
 
 **What the new bound does not cover.** Keys or digit-reading positions that change *within a given chapter×length group* from word to word, a transformation whose final output digit mixes two or more input digit positions rather than depending bijectively on one selected source digit, a cipher that moves printed word separators or word lengths, or a non-GP plaintext register. Nor does it establish that any integer cipher is author-selected; a first-party key/receiver is still missing.
 
+## Strongest original-derived complexity lower bound: at least 20 page-run regimes
+
+The nine illustrated chapters are a genuinely printed reset partition. A hidden 29-adic word-cipher designer might argue for additional key or reading-coordinate resets, but none are independently specified. We therefore grant an **optimistic all-secret boundary search**, allowing every possible partition of the **55 rune-bearing original physical page slots** into any k contiguous page runs. For each such run, all word lengths can have separate secret arithmetic keys and any selected source digit coordinate, and the four favorable GP output labels may change independently by run and word length. A complete physical cross-page word belongs to its source starting page; the rune-free p50 is handled transparently.
+
+For original pages a through b, compute the upper bound B(a,b) by grouping their words by length and taking the largest four GP rune counts over **every possible digit position** for each length. Dynamic programming then calculates the **global maximum achievable upper bound** after k contiguous source-page key regimes:
+
+\[
+D(k,e)=\max_{k-1\le s<e}\left(D(k-1,s)+B(s,e-1)\right),
+\qquad D(0,0)=0.
+\]
+
+All 1,540 page intervals and the full k×e partition recursion are evaluated exactly. This is an **optimistic bound over post hoc selected reset boundaries**, not a fitted cipher or an authored segmentation claim.
+
+| Number of optimally chosen original page-run regimes | Highest original upper bound for four common native-GP plaintext word endings |
+| ---: | ---: |
+| 1 | **642** |
+| 9, with arbitrary better-than-illustration-optimized page runs | **1,193** |
+| 9, actual fixed illustrated chapters | **1,145** |
+| 19, best of all contiguous partitions | **1,535** |
+| 20, best of all contiguous partitions | **1,561** |
+| 55, fully independent each rune-bearing physical page | **2,147** |
+| Actual native Gibran control | **1,547** |
+| Actual native Shakespeare control | **1,553** |
+
+At most **19** independent page-run regimes, even if an adversary picks their boundaries and all secret digit coordinates after seeing the source ciphertext, cannot produce either native-English control's actual high-ending counts. Thus, **at least 20 distinct contiguous page-run regimes and 19 intervening page boundaries** would be necessary merely to *avoid this one invariant* for an invertible compatible word-integer architecture. Twenty is **not sufficient** for authentic plaintext; the actual four winning GP plaintext labels must remain globally consistent and other language constraints still apply.
+
+This is a discriminating constraint on cipher *state complexity*. A purported nine-chapter BASE29 polynomial, extended Fibonacci numerator/denominator transform, word-endian/coordinate trick, or sparsely reset numeral key must either change state more frequently than nineteen optimally placed page boundaries, mix multiple GP digits in its low output digit, alter word segmentation or leave the ordinary GP-English word register. Earlier [fixed-endpoint per-page/length collision tests](lp2-word-base29-unit-invariant.md) already strongly excluded a different narrower state family, so this bound should be used to **stop** new unauthored key/phase search rather than fuel a new reset-position sweep.
+
 ## Original invariant table
 
 | Original complete word length L | Words | Affine: max four terminal runes | Additive: max four initial runes |
@@ -107,7 +135,7 @@ The original's impossible bounds **609 < 1,547/1,553** and **648 < 1,002/963** a
 - [Affine all-secret word-integer test](../sims/lp2_base29_wordinteger_affine_allsecret_sft.cjs): source-verified **1,145 original chapter×length hidden-position bound**, 642 whole-book-per-width position bound, 609 fixed-edge baseline, nonlinear 29-adic polynomial inverse, chapter-dependent digit-rotation affine inverse, genuine GP-native matched 1,547/1,553 positive controls, and 812 29-symbol affine map checks.
 - [Additive all-secret carry test](../sims/lp2_base29_wordinteger_additive_allsecret_sft.cjs): source-verified exact 648 bound, complete legal key-suffix threshold argument, exact 841-key brute-force L2 check, genuine GP-native 1,002/963 controls, complete synthetic forward/inverse.
 - [Direct unkeyed word-integer Latin26 decoding test](../sims/lp2_word_base29_to_latin26_sft.cjs) and its [separate report](lp2-word-base29-latin26-original-gate.md): the ordinary and bijective direct Latin26 readouts are nonlinguistic. The bijective mode maps an original one-rune zero-integer word at source word index143 to an empty string.
-- Complete green Node.js 22 original-source CI, including the full 110-stratum hidden-coordinate original-input bound and 2×2,896-word synthetic chapter-coordinate-key inverses: [GitHub Actions run 45002736328](https://github.com/FlareZ123/liber-primus/actions/runs/45002736328).
+- Complete green Node.js 22 original-source CI, including 110 illustrated chapter×length groups, **every possible contiguous page-run reset partition**, and 2×2,896-word synthetic chapter-coordinate-key inverses: [GitHub Actions run 45003137307](https://github.com/FlareZ123/liber-primus/actions/runs/45003137307).
 
 **Exclusion scope:** the original complete GP29 word boundary and length are preserved; the output plaintext is expected to have ordinary GP-native English-like word-ending or word-initial distributions. The new broader theorem permits independently keyed, unknown digit-position reading in each of the nine illustrated chapters × each original word length; the arithmetic word transform must preserve low-digit congruence and be invertible. The final-rune theorem also applies to any *radix-triangular* reversible L-dependent function whose terminal output rune is a bijective function solely of the terminal input rune. It makes no claim about a word-private evolving state, non-invertible or length-changing transforms, keys applied to other source-defined partitions, a non-GP or non-English register, a nonlinear cipher mixing the final rune with previous digits, or an external high-entropy key.
 
