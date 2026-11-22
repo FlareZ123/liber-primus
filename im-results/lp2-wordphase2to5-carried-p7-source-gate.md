@@ -75,6 +75,22 @@ An exact original decode/reencrypt consumes **11,082** original unknown runes fr
 
 Both 300-rune original previews and separate 200-rune heldouts remain near-uniform nonlinguistic GP29. The exact inverse forward replay reconstructs the original **11,082/11,082** runes for both signs. Each sign also encrypts and decrypts the **actual 95-rune, 20-word clear solved p57 PARABLE** correctly under the same declared algorithm. Therefore this simplest p7 five-product *word-carried* operation fails as a GP-English decoder, although it is fully reversible and can handle every original short word and seam.
 
+## Source-five-phase plus fifth-back feedback: 68 original equal pairs
+
+A more specific original five-dot/five-word interpretation gives each complete printed word **five independent unrestricted secret GP29 bijections**, separately chosen for each within-word position modulo five, and **five-back ciphertext feedback**. For genuine plaintext P and ciphertext C, each word and rune index j encrypts as
+
+\[
+C_{w,j} = (\pi_{w,j\bmod5}(P_{w,j}) + [j\ge5]C_{w,j-5})\bmod29.
+\]
+
+Thus the ciphertext-known residual D at each position is C minus the fifth-preceding unchanged ciphertext glyph within that complete word, or unchanged C on the first five positions. D then equals the corresponding secret-permuted plaintext rune. Equality pairs at positions in the **same word and same j mod5** are exactly preserved by all five arbitrary 29! maps, even if every word has entirely fresh secret maps and any carried inter-word state.
+
+On the full original 2,896 complete words, the source's E5 of the fifth-back residual is only **68**, versus the earlier unchanged direct E5=106. The fifteen thousand original-length-matched GP-native Shakespeare/Emerson/Gibran controls above have minimum E5 **95,95,78**, respectively. Thus **0/15,000** native English controls can match the 68 residual equal pairs under *any* secret five-phase per-word alphabet choice. A deterministic noninjective rune map would only increase equality pairs.
+
+The expanded source SFT also constructs exact source-shaped **12,956-rune** native-GP English positive ciphertext with five independent freshly secret phase dictionaries for every word and true fifth-back feedback; all donor words decrypt and reencrypt exactly, preserving E5. A second genuine solved p57 **95-rune,20-word** native GP positive also passes. This establishes an implementable full cipher and eliminates implementation failure as the cause of the original-language mismatch.
+
+**Decision:** Five arbitrary phase alphabets *without* feedback survive the direct equality test, but **five independent secret phase alphabets plus source five-back feedback do not** under the tested ordinary GP-native English registers and unchanged physical word boundaries. Missing first-party opcode, other register/segmentation, or more complex feedback remain open. [Expanded original-source executable](../sims/lp2_wordphase2to5_carried_p7_source_sft.cjs) · [GitHub Actions source test](https://github.com/FlareZ123/liber-primus/actions/runs/45022114561).
+
 ## Decision
 
 The **word-local two- and three-phase secret-alphabet superfamilies** fail the exact original necessary condition under each of 15,000 native-GP book controls, despite a different arbitrary 29! secret alphabet at each word and each phase. The 4- and 5-phase superfamilies are **not excluded** by the same key-free test. A direct source-p7 five-number, ciphertext-carried additive instantiation produces no plaintext on independent original p16 and p40 intervals; extending that unselected state law by fitted exceptions or keys is not justified.
