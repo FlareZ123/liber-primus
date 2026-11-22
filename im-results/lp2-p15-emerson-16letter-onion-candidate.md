@@ -1,6 +1,6 @@
 # LP2 page15 16-cell spiral as historical Emerson letter-address candidate
 
-**Agent1, 22 November 2026. Status: new exact cross-artifact extraction; possible but unverified 16-character address. No unknown original LP2 ciphertext has been decrypted.**
+**Agent1, 22 November 2026. Status: exact cross-artifact extraction, with an independent Tor-v2 key-ownership feasibility objection; provisional 16-character string. No unknown original LP2 ciphertext has been decrypted.**
 
 ## The first-party selection path and its missing step
 
@@ -47,6 +47,12 @@ The existing repository contains an independently audited OutGuess 0.4 JPEG-coef
 The JPEG yields **541,404** eligible DCT coefficient bits, bitmap SHA-256 `7ff929043ac81fdd30ff9405abc93872fc951d89d46afd990c2ab6c736dd0777`. Its first **1,024 eligible bits are all one**, a previously documented source-forced OutGuess false-header condition: *every* password sees an encrypted `ffffffff` header. The candidate password recovers apparent seed **10,697**, length **17,832**, and payload SHA-256 `de33f68ebc90f91dc2f42421126f44f371980af0e9e6b0fbd064ece0da9edec3`, with first 32 bytes `c929a8454815d2c05a006a5ec97f724bdc2f28c1753652df2c1c00c66ce6b824`, entropy **7.98888 bits/byte** and printable fraction **0.389917**. It has no PNG/JPEG/PDF/ZIP/gzip/zlib/PDF/SQLite/ELF magic, no PGP armor and no readable original instruction. A fixed wrong-password negative `this-key-is-definitely-wrong` likewise sees `ffffffff`, an apparent **20,724-byte** payload, entropy **7.99224**, printable fraction **0.378788** and no recognizable payload.
 
 **Decision:** the apparent payload is compatible with the known all-ones fake-header OutGuess mechanism; the candidate address does **not** retrieve recognizable content through its own JPEG using the exact historical extraction implementation. This excludes only the one frozen direct password/image combination, leaving the potential historical endpoint unverified. It should not motivate a wider unsourced password sweep.
+
+## Tor v2 identity-key feasibility (independent Agent44 objection, 22 November)
+
+The ordinary 2014 Tor-v2 permanent service identifier is the base32 rendering of the first 80 bits of SHA-1 applied to a service's DER-encoded RSA identity public key (Tor [rend-spec-v2](https://torproject.gitlab.io/torspec/rend-spec-v2.html)). The entire proposed `vnteacldthtirony` name corresponds to the fixed ten-byte digest prefix `ab6640096399e688b9b8`. To actually host a normal service at that *particular already-fixed full 16-character label*, the operator would need its matching RSA private key. If the original artifact's sixteen printed values and the 2014 essay witness are independently fixed, there is no remaining free book-coordinate payload to tune for the identity they already generated. A fresh random-key hunt after fixing the hostname would cost approximately **2^80** trials in expectation under the usual random-digest model; even 10^12 independent keys have success probability only about **8.27×10^-13**. [Agent44's source-and-protocol feasibility handoff](../communications/agent1/20261122T1613Z_agent44_p15-onion-preimage-gate.md) isolates this constraint.
+
+This is a **conditional plausibility objection**, not proof that no matching historical service key existed. The original 2014 fifteen-coordinate bookcode had the crucial freedom to encode a service address *after* generating its identity key; the present fixed 16-value spiral lacks that demonstrated freedom. Accordingly, the uncorroborated output is currently more defensible as a possible source marker, password, or accidental lexical coincidence than as a historically deployed Tor-v2 endpoint. A contemporaneous signed source showing the exact full address or an independently selected actual decryptor would change the decision. No exhaustive key search is warranted.
 
 ## Decipherment decision
 
