@@ -215,8 +215,8 @@ const proposedP55 = originalP55.map(cipher =>
 );
 assert.equal(p55Clock, 73);
 let reverseP55Clock = 0;
-assert.deepEqual(proposedP55.map(plain =>
-  plain === 0 ? 0 :
+assert.deepEqual(proposedP55.map((plain, i) =>
+  originalP55[i] === 0 ? 0 :
     (plain + (primeList[189 + reverseP55Clock++] - 1) % 29) % 29
 ), originalP55);
 function ioc(sequence) {
