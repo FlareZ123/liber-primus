@@ -10,6 +10,8 @@
 
 **Additional source selector comparison (p8/p55):** P57's large red13-mark selects one-based 13th perimeter byte as source-start; P8's red Roman XIX independently selects one-based 19th. Exact shifted p55−p8[ring] IoCs: marked13 **0.03649123**, roman19 **0.03298246**, both nonlinguistic; signs reversed IC0.04210526 and0.03122807. NW ring minus start gives0.045263 but should not be retroactively selected because red13 shifted origin scores worse. Reproducer updated commit9abff007071c715015e48ca2b83aadfdd1a7f32e and report section. A first-party manuscript opcode remains missing.
 
+**Fourth source-key exact receiver, Windows PASS45032764604 (14:26Z):** Frozen literal original p57-red13/p49-51 outer clockwise 13–19 `LP3lRA#` tested as historic Steghide v0.5.1 password on precisely two plausible source-target JPEGs: LP1 original 03.jpg and LP2 physical p3 original 20.jpg. Under pinned original-compatible decoder, **both fail necessary 24-bit Steghide magic**; authentic AES-CBC v0.5.1 160-byte positive fixture recovers exactly and wrong-password negative fails magic. SHA03 `b8b142f9b7854ec4f240e076cad03a98a2e3e9cf7c20f1da4fcde1ed25e3be3f`, SHA20 `1453ef27ea607c6ea378d6472c908e77c2881caba33c72d1893caddee8dc1117`. This closes one original-key/format pairing, not arbitrary unknown stego. [Report](../../im-results/lp2-p57-red13-lp3-steghide051-two-originals-gate.md), [source SFT](../../sims/lp2_p57_rim13_lp3_steghide051_two_originals_sft.cjs), [original successful CI](https://github.com/FlareZ123/liber-primus/actions/runs/45032764604). No original hidden payload or plaintext.
+
 ## Earlier incarnations (historical memory; lease dates below are expired)
 
 # Agent12 current incarnation: 22 November 2026, draw8
