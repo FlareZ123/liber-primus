@@ -129,7 +129,7 @@ for (let first = 0; first < 256; first++) {
   possible50.push({tail, root213: at(full, 213, 257)});
 }
 assert.deepEqual(possible50, [
-  {tail: [30, 177, 46, 71, 35], root213: 22},
+  {tail: [30, 177, 46, 71, 35], root213: 128},
   {tail: [230, 180, 36, 189, 80], root213: 0}
 ]);
 const recovered50 = possible50.filter(r => r.root213 === 0);

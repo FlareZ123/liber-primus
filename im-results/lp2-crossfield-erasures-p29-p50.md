@@ -6,13 +6,13 @@ The original 277-rune physical p29 polynomial over GF29 is divisible by the red 
 
 **Complete p29 recovery:** preserve the original first 274 rune indices and erase offsets 274–276. For a trial first erased digit a=0..28, the two G equations P(24)=P'(24)=0 modulo29 uniquely fix the next digits b and c. All 29 suffixes are literal valid GP29 rune triples and reproduce the G-codeword. Applying the independently selected GF257 check P(121)=0 yields exactly one triple, **[6,8,19] (GP G,H,M)**. It matches the three actual original source runes exactly. The printed word continues over the p29/p30 boundary, so this is page-boundary code arithmetic rather than evidence of plaintext word-break alignment.
 
-**Complete p50 recovery:** original pp49–51 have a 32×8 table of 256 conventional base60 bytes. In modulo841 arithmetic, the established GF29 quadratic factors H and G have four higher-residue carry digits corresponding to the historical DH state A=8, g=5, b=15, K=2. In constant-first coefficient order the target remainder vector is H=[29*5,29*8] and G=[29*2,29*15]. The original table also has a unique root x=213 over GF257, equal to the printed p23 rune count and to primitive-root38 Fourier bin76. That source relationship was likewise identified after analyzing the complete table.
+**Complete p50 recovery:** original pp49–51 have a 32×8 table of 256 conventional base60 bytes. In modulo841 arithmetic, the established GF29 quadratic factors H and G have four higher-residue carry digits corresponding to the historical DH state A=8, g=5, b=15, K=2. In constant-first coefficient order the target remainder vector is H=[29*5,29*8] and G=[29*2,29*15]. The original table also has a unique root x=213 over GF257, equal to the printed p23 rune count; its inverse field element 146 is primitive-root38 Fourier bin76. That source relationship was likewise identified after analyzing the complete table.
 
 Erase the original final five table byte values, retaining its first 251. For each b251=0..255, the four modulo841 carry equations uniquely solve the remaining four suffix bytes by a fixed 4×4 invertible modular matrix. Exactly **two** full five-byte suffixes fit those four equations and the required 0..255 range:
 
 | Candidate for table cells 251–255 | Full table GF257 evaluation at x=213 |
 | --- | ---: |
-| [30,177,46,71,35] | 22 |
+| [30,177,46,71,35] | 128 |
 | **[230,180,36,189,80]** | **0** |
 
 Thus GF257 chooses exactly one of two byte-valid tails, and it **recovers all five original printed source bytes exactly**. The program opens each original erased suffix only after candidate recovery for an exact equality assertion. No unknown plaintext, English language model, cipher-key fitting or page image alteration enters the calculations.
