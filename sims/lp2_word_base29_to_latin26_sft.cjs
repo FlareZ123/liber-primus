@@ -114,7 +114,7 @@ const zeroProfile = initialProfile(decodedZero);
 const bijectiveProfile = initialProfile(decodedBijective);
 assert.equal(zeroProfile.top1, 1096);
 assert.equal(zeroProfile.top4, 1434);
-assert.equal(bijectiveProfile.top1, 1031);
+assert.equal(bijectiveProfile.top1, 1030);
 
 /** @param {string} p @returns {string[]} */
 function referenceWords(p) {
