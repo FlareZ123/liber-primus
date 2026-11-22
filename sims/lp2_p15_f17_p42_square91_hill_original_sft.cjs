@@ -184,5 +184,7 @@ console.log(JSON.stringify({
   blockSize:5, completeOriginalRunes:complete.length,
   unchangedTrailingOriginalRune:residual,
   originalCipherIoC:ioc(complete), solvedP57IoC:ioc(solvedP57),
-  historicalPrimeWordSquare:{anchorWordIndex:anchor, originalWordWindow:25,\n    exactRowMajorMatches:[12], allEightOriginalRotations:squareOrientations},\n  results, recoveredUnknownPlaintext:false
+  historicalPrimeWordSquare:{anchorWordIndex:anchor, originalWordWindow:25,
+    exactRowMajorMatches:[12], allEightOriginalRotations:squareOrientations},
+  results, recoveredUnknownPlaintext:false
 },null,2));
