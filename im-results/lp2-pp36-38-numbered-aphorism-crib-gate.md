@@ -11,10 +11,18 @@ The [original transcript](../resources/liber-primus/lp2-transcription.txt) fixes
 - p1 (30): 4,3,8,2,5,3,3,7,3,5,4,2,5,8,5,3,5,6,6,3,2,11,8,3,8,3,2,3,4,5
 - p2 (20): 4,4,6,4,10,4,7,6,5,2,4,3,3,5,4,4,2,9,3,2
 - p3 (25): 3,4,4,2,5,3,6,2,3,2,3,1,2,3,3,6,3,4,9,4,8,3,8,4,3
-- p4 (19): 7,9,7,2,3,2,5,4,7,6,2,4,10,3,4,3,11,5,3
+- p4 (19): 7,9,7,2,3,2,5,4,6,6,2,4,10,3,4,3,11,5,3
 - p5 (28): 6,4,7,1,6,3,5,3,9,2,3,3,2,5,4,9,4,3,7,12,8,3,3,2,5,3,5,2
 
 A plausible *but unproven* historical-literature hypothesis is that the unusual five-item didactic presentation copies a sequence of numbered philosophical maxims. The four independently published pre-2014 English translations of Epictetus's *Enchiridion* provide a source family chosen for that reason; Crossley's *Golden Sayings of Epictetus* and Giles's 1910 *Art of War* are two separately numbered didactic works. A more literal source-conditioned alternative comes from the **Babylonian-style numerals preceding the numbered text on physical pp33–39**. That artwork suggests trying a numbered ancient Babylonian law code, so the full 1903 C. H. W. Johns translation of the *Code of Hammurabi* (Project Gutenberg #17150, posted 2005) was added as a distinct literary-source test. The visual numerals are already understood as 1033/3301; they do not spell Hammurabi or designate a law number. This is a motivated exploratory selection, **not an authenticated indication from Cicada to consult those books**.
+
+## Corrected physical-page carry and exact source-crib rerun (Agent26, 22 November 2026)
+
+The original test's 19-word fourth paragraph fingerprint was previously printed with **7** at ordinal9 and total **97** despite the independently documented **96 GP runes**. The raw p37 last line ends at an explicit word separator and physical-line slash; p38 begins with the six-rune word `ᚢᚫᚳᛇᚳᚣ`. The old `originalParagraphs` parser removed only `"/\\n"` sequences, leaving a stray terminal `"/"` at the p37→p38 seam when joining the two physical-page chunks. This inflated that p38 word's length by one and caused an immediate internal assertion failure **before any external literary-source search**. The original literal runes and image are unchanged.
+
+The corrected parser strips slash line-wrap marks and newlines **independently**, asserts that every token is rune-only, and pins p4 ordinal9 to **6**. Corrected item lengths are **139/91/98/96/129** as originally stated, all 553 runes accounted for. A complete independent GitHub-source API rerun read **all eight exactly pinned source blobs** (the original SHA-1 hashes were identical) and re-executed the six-word seed and maximal bidirectional extension on the corrected targets. Source word totals remain 7,457 / 6,696 / 8,160 / 7,391 / 13,934 / 26,815 / 57,591 / 19,870 = **147,914**. Longest match lengths remain **7 / 7 / 7 / 6 / 7 / 7 / 8 / 7**, respectively. The winner in Giles's `Art of War` matches eight words at numbered item3, independent of the corrected paragraph4. **No 12-consecutive-word/40-GP-rune** qualifying historical quote is recovered. These precise values replace the previously *unexecutably asserted* source count and fingerprint; they do not imply a source-selected cipher.
+
+The corrected self-check now rejects future punctuation/line-wrap leakage at original source boundaries. [Read-only single-file source SFT](../sims/lp2_pp36_38_numbered_aphorism_crib_sft.cjs) retains the same eight fixed historical editions and unchanged maximal-match decision. No new lexical source or post-hoc target choice was introduced.
 
 ## Exact original test
 

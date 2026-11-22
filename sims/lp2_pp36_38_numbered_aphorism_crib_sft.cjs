@@ -33,7 +33,7 @@ const EXPECTED = [
   [4,3,8,2,5,3,3,7,3,5,4,2,5,8,5,3,5,6,6,3,2,11,8,3,8,3,2,3,4,5],
   [4,4,6,4,10,4,7,6,5,2,4,3,3,5,4,4,2,9,3,2],
   [3,4,4,2,5,3,6,2,3,2,3,1,2,3,3,6,3,4,9,4,8,3,8,4,3],
-  [7,9,7,2,3,2,5,4,7,6,2,4,10,3,4,3,11,5,3],
+  [7,9,7,2,3,2,5,4,6,6,2,4,10,3,4,3,11,5,3],
   [6,4,7,1,6,3,5,3,9,2,3,3,2,5,4,9,4,3,7,12,8,3,3,2,5,3,5,2],
 ];
 
@@ -47,10 +47,17 @@ function originalParagraphs(text) {
     pages[37].split('\n4-')[1] + pages[38].split('\n5-')[0],
     pages[38].split('\n5-')[1].split('\n&\n')[0],
   ];
-  const paras = raw.map(s => s.replace(/\/\r?\n/g, '').replace(/\r?\n/g, '')
-    .split(/[-.]+/).filter(w => /[\u16a0-\u16ff]/u.test(w))
-    .map(w => [...w].length));
+  // Word wraps and the p37->p38 physical-page seam do not add symbols.
+  // The old parser stripped only "/\n", leaving a trailing "/" from p37
+  // in the p38 first word, incorrectly inflating its length from 6 to 7.
+  const paras = raw.map(s => {
+    const tokens = s.replace(/[\/\r\n]/g, '').split(/[-.]+/).filter(Boolean);
+    assert(tokens.every(w => /^[\u16a0-\u16ff]+$/u.test(w)),
+      'nonrune leaked into a numbered paragraph word');
+    return tokens.map(w => [...w].length);
+  });
   assert.deepEqual(paras, EXPECTED, 'physical-page 36-38 paragraph transcription changed');
+  assert.equal(paras[3][8], 6, 'first p38 word after p37 page carry contains six runes');
   assert.deepEqual(paras.map(p => p.reduce((sum, x) => sum + x, 0)), [139,91,98,96,129]);
   return paras;
 }
@@ -128,7 +135,7 @@ async function main() {
     classification: 'FINITE NO-CRIB RESULT; NO UNKNOWN LP2 PLAINTEXT',
     physicalPages: [36,37,38],
     paragraphRuneLengths: [139,91,98,96,129],
-    textWords: 128044,
+    totalSourceWordOccurrences: results.reduce((sum, x) => sum + x.words, 0),
     examinedSourceFiles: SOURCES.length,
     qualifying12Word40RuneMatches: 0,
     results,
