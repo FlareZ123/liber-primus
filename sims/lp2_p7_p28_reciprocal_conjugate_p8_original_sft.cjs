@@ -100,7 +100,10 @@ const originalTests=[
 ];
 const p57=gp.pages.find(p=>p.page===57).indices;
 const english=read('resources/control/shakespeare_first300k.txt')
- .toUpperCase().match(/[A-Z]+/gu).join('').slice(0,1474);
+ .toUpperCase().match(/[A-Z]+/gu).join('').slice(0,1474)
+ .replace(/QU/g,'CW').replace(/V/g,'U')
+ .replace(/[KQ]/g,'C').replace(/Z/g,'S')
+ .replace(/ING/g,'NG');
 const idx=Object.fromEntries(gp.translit.map((x,i)=>[x,i]));
 /** @param {string} letters @returns {number[]} */
 function encodeEnglish(letters){
