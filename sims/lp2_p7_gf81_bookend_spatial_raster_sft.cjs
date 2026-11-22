@@ -130,14 +130,22 @@ assert.equal(summary[0].nullMean, 434.748779296875);
 assert.equal(summary[1].nullMean, 434.66015625);
 
 /**
- * For ANY secret fixed 29-to-2 pixel palette, certify a lower bound on
- * cross-color edges using a positive-semidefinite integer matrix.
+ * For ANY globally fixed map of the 29 rune classes to REAL
+ * grayscale or RGB values, certify the total squared neighbor contrast
+ * lower bound using an exact positive-semidefinite integer matrix.
+ * Binary black/white palettes follow as a special case.
  *
  * With f_a symbol counts, L the symbol-adjacency graph Laplacian, and
  * N=6395, H=5*N*L - 18*N*diag(f) + 18*f*f^T must be PSD.
  * Each row of H sums to zero. Positive leading principal minors of
  * the upper-left 28x28 cofactor (exact Bareiss integer elimination)
  * prove the remaining 28 eigenvalues positive by Sylvester's criterion.
+ *
+ * In fact for ANY real-valued palette v[29] with source-weighted
+ * pixel variance sigma² and mean mu, the graph smoothness energy is
+ * E=sum_adjacencies (v[a]-v[b])² >= (18/5)*N*sigma².
+ * For multichannel RGB sum this bound independently over channels.
+ * The exact expected shuffled energy is 2*m*N/(N-1)*sigma².
  *
  * Thus every binary palette with black share q has
  * cross-color edge count >= (18/5)*N*q*(1-q).
@@ -206,6 +214,25 @@ function proveSecretBinaryPalette(data) {
 const paletteProofs = candidates.map(proveSecretBinaryPalette);
 assert.deepEqual(paletteProofs.map(x => x.maxBinarySameEdgesBalanced), [7094, 7094]);
 
+// A non-binary arbitrary real intensity assignment tests the strict
+// generalization: H is PSD for ALL real vectors, not only binary cuts.
+function scalarEnergy(data,colors) {
+  const present=data.filter(x=>x!==null).map(x=>colors[x]);
+  const n=present.length,mean=present.reduce((s,x)=>s+x,0)/n;
+  const variance=present.reduce((s,x)=>s+(x-mean)**2,0)/n;
+  assert.ok(variance>0);
+  let energy=0;
+  for(const i of hEdges)energy+=(colors[data[i]]-colors[data[i+1]])**2;
+  for(const i of vEdges)energy+=(colors[data[i]]-colors[data[i+80]])**2;
+  const expected=2*(hEdges.length+vEdges.length)*n/(n-1)*variance;
+  const floor=3.6*(n-1)/(2*(hEdges.length+vEdges.length));
+  return {ratio:energy/expected,certifiedLowerBound:floor};
+}
+const realPalette=Array.from({length:29},(_,i)=>
+  Math.sin(.37*(i+1))+Math.cos(1.91*(i+1)));
+const realPaletteOriginal=candidates.map(v=>scalarEnergy(v,realPalette));
+assert.ok(realPaletteOriginal.every(x=>x.ratio+1e-9>=x.certifiedLowerBound));
+
 // Positive control: inject a spatially coherent 10x10 block image
 // into the same exact five-hole geometry, then encrypt with the source pad.
 const plant = B.map((v, i) => v === null ? null :
@@ -238,6 +265,7 @@ console.log(JSON.stringify({
   edgeCount: hEdges.length + vEdges.length,
   candidates: summary,
   secretPaletteProofs: paletteProofs,
+  realGrayscalePaletteWitnesses: realPaletteOriginal,
   plantMatchedEdges: adjacent(replay).total,
   plantedBinaryCut: plantedCut,
   plantedBinaryShuffleExpectation: plantedExpectedCut,
