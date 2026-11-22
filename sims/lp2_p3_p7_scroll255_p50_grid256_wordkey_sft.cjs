@@ -144,4 +144,49 @@ function modInverse29(value) {
   throw Error('Nonzero GP29 element has no inverse');
 }
 console.log('all-secret multiplicative source-p8 obstructions: 7/9 zero-sum sites and 26/26 zero-product sites force impossible p8 symbols');
+// Five-red-word original p7 packet + 255 complete scroll words
+// + 255 following p8 runes supply a new 51×5 whole-word checksum receiver.
+// This is distinct from the prior five-lane 1,145-rune Hill tests.
+const redP7 = corpus.pages.find((p) => p.page === 7).indices.slice(194, 208);
+assert.deepEqual(redP7, [23,3,22,16,2,25,5,7,11,14,28,6,28,19]);
+const redWords = [redP7.slice(0,2),redP7.slice(2,6),redP7.slice(6,9),redP7.slice(9,11),redP7.slice(11,14)];
+const redProducts = redWords.map((w) => mod(w.reduce((x, y) => x * y, 1)));
+assert.deepEqual(redProducts, [11,26,8,15,2]);
+const inverseProducts = [23,2,5,2,19];
+const convolution = (a, b, i) => mod(Array.from({length:5}, (_, j) => a[j] * b[mod(i-j) % 5]).reduce((x,y)=>x+y,0));
+for (let i=0;i<5;i++) assert.equal(convolution(redProducts,inverseProducts,i),i===0?1:0);
+/** @param {number[]} source @param {number[]} row @param {boolean} transposed @returns {number[]} */
+function blockMix(source, row, transposed) {
+  assert.equal(source.length, 255);
+  const out = [];
+  for(let n=0;n<255;n+=5) for(let i=0;i<5;i++) {
+    let result=0;
+    for(let j=0;j<5;j++) result+=row[mod(transposed?i-j:j-i)%5]*source[n+j];
+    out.push(mod(result));
+  }
+  return out;
+}
+const mixExpectation=[
+  ['indexSum',false,false,6,0.03603520148216767],
+  ['indexSum',false,true,9,0.03486181874324533],
+  ['indexSum',true,false,9,0.03341052956615717],
+  ['indexSum',true,true,8,0.03405897792187741],
+  ['indexProduct',false,false,12,0.03297823066234368],
+  ['indexProduct',false,true,9,0.03375019299058206],
+  ['indexProduct',true,false,5,0.03418249189439555],
+  ['indexProduct',true,true,6,0.03427512737378416],
+];
+for(const [sourceName, inverse, transpose, hits, expectedDifferenceIoc] of mixExpectation) {
+  const source=sourceName==='indexSum'?wordSums:wordProducts;
+  const mixed=blockMix(source,inverse?inverseProducts:redProducts,transpose);
+  assert.equal(mixed.reduce((n,x,j)=>n+(x===nextPage[j]),0),hits);
+  const residue=nextPage.map((x,j)=>mod(x-mixed[j]));
+  assert(Math.abs(ioc(residue)-expectedDifferenceIoc)<1e-14);
+  // Every mixed packet can be inverted without changing the 255 source symbols.
+  const inverseRow=inverse?redProducts:inverseProducts;
+  assert.deepEqual(blockMix(mixed,inverseRow,transpose),source);
+  console.log(`p7 red five-product 51×5 word-checksum:${sourceName} inverse=${inverse} transpose=${transpose}, direct hits ${hits}/255, difference IoC ${ioc(residue).toFixed(9)}`);
+}
+console.log('PASS: 8 original five-red-product 255-word to p8 tests and complete 255/255 inverses');
+
 console.log('PASS: source 255-word scroll, grid256 8 inverses, adjacent p8 255-rune 4 inverses, 12 full GP-native plaintext plants');
