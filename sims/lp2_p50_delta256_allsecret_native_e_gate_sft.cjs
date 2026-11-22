@@ -89,9 +89,10 @@ const expected = {
   64:{global:853,page:836},
   128:{global:1015,page:1010},
   256:{global:1276,page:1279},
+  512:{global:1671,page:1310},
 };
 const bounds = [];
-for (const phases of [8,32,64,128,256]) {
+for (const phases of [8,32,64,128,256,512]) {
   for (const reset of ["global","page"]) {
     const rows = differenceRows(origPieces, phases, reset);
     const nonzero = rows.flat().reduce((a, b) => a + b, 0);
@@ -156,15 +157,15 @@ const countPageNoninitialE = pgs => pgs.reduce((n, p) =>
 const nativeE = countPageNoninitialE(plantPages);
 assert.ok(nativeE >= 1400, "source-native positive is strongly E-rich");
 /** @param {number[][]} clear @param {"global"|"page"} clock */
-function encrypt(clear, clock) {
+function encrypt(clear, clock, mask=sourceMask) {
   let abs = 0;
   const out = [];
   for(const p of clear) {
     const c = [p[0]];
     abs++;
     for(let i=1;i<p.length;i++,abs++){
-      const phase = (clock === "global" ? abs : i) % 256;
-      const delta = p[i] === 28 ? 0 : sourceMask[phase] * exp[p[i]] % 29;
+      const phase = (clock === "global" ? abs : i) % mask.length;
+      const delta = p[i] === 28 ? 0 : mask[phase] * exp[p[i]] % 29;
       c.push(mod(c[i-1]+delta));
     }
     out.push(c);
@@ -172,17 +173,17 @@ function encrypt(clear, clock) {
   return out;
 }
 /** @param {number[][]} cipher @param {"global"|"page"} clock */
-function decrypt(cipher,clock){
+function decrypt(cipher,clock,mask=sourceMask){
   let abs = 0;
   const out = [];
   for(const c of cipher){
     const p = [c[0]];
     abs++;
     for(let i=1;i<c.length;i++,abs++){
-      const phase = (clock === "global" ? abs : i) % 256;
+      const phase = (clock === "global" ? abs : i) % mask.length;
       const delta = mod(c[i]-c[i-1]);
       p.push(delta === 0 ? 28 :
-        (log[delta]-log[sourceMask[phase]]+28)%28);
+        (log[delta]-log[mask[phase]]+28)%28);
     }
     out.push(p);
   }
@@ -205,6 +206,32 @@ for (const reset of ["global","page"]) {
     exactNativeRecovery:true,exactOriginalReencryption:true});
 }
 assert.ok(expected[256].global < 1468 && expected[256].page < 1468);
+assert.ok(expected[512].global > 1591 && expected[512].page < 1468);
+const printedDigits = grid.pages.flatMap(p => p.tokens)
+  .flatMap(t => [alphabet.indexOf(t[0]), alphabet.indexOf(t[1])]);
+assert.equal(printedDigits.length,512);
+const digitMasks = [
+  {name:"digit-as-nonzero-residue",mask:printedDigits.map(n => 1+n%28)},
+  {name:"digit-as-unit-exponent",mask:printedDigits.map(n => exp[n%28])}
+];
+const digitResults=[];
+for(const {name,mask} of digitMasks){
+  for(const reset of ["global","page"]){
+    const decoded=decrypt(origPieces,reset,mask);
+    assert.deepEqual(encrypt(decoded,reset,mask),origPieces);
+    const E=countPageNoninitialE(decoded);
+    const all=decoded.flat();
+    const f=Array(29).fill(0);
+    for(const v of all)f[v]++;
+    const ioc=f.reduce((n,k)=>n+k*(k-1),0)/(all.length*(all.length-1));
+    assert.ok(E < 650 && ioc < 0.04);
+    const synthetic=encrypt(plantPages,reset,mask);
+    assert.deepEqual(decrypt(synthetic,reset,mask),plantPages);
+    digitResults.push({name,reset,E,ioc,exactOriginalReencryption:true,
+      exactNativePositive:true});
+  }
+}
+
 console.log(JSON.stringify({
   source,
   sourceTableDigits:256,
@@ -213,6 +240,7 @@ console.log(JSON.stringify({
   sourceOriginalAbsoluteAllSecretBounds:bounds,
   independentlyPublishedNativeGPMinimumE:1468,
   nativeLengthMatchedPositive:positives,
-  decision:"Reject any same-256-phase per-symbol GP29 difference decoder with a fixed zero branch and 28 nonzero bijective outputs, whether its key is multiplicative or an arbitrary secret permutation, provided the unknown plaintext uses ordinary solved-Cicada GP29 English rune frequencies. No authentic unknown plaintext.",
+  direct512DigitSourceKeys:digitResults,
+  decision:"Reject <=256-phase single-layer GP29 difference decoder with fixed zero and 28 bijective nonzero outputs; also reject page-reset 512-phase under native GP English. Global 512-phase capacity remains possible, though two literal printed-digit keys fail. No authentic unknown plaintext.",
 },null,2));
 console.log("PASS: original all-secret 256-phase finite-field difference bound and native-GP positive inverses");
