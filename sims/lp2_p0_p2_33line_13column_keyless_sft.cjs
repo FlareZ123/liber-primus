@@ -161,11 +161,95 @@ assert.deepEqual(vulgate.map((row) => [row.windows, row.atOrBelowOriginal]), [[1
 assert.ok(oldEnglish[0].min > actual13 && oldEnglish[1].min > actual50);
 assert.ok(vulgate[0].min > actual13 && vulgate[1].min > actual50);
 
+
+/** @param {number} x @returns {number} */
+const mod29 = (x) => ((x % 29) + 29) % 29;
+const redHeader = source.pages[0].indices.slice(0, 13);
+const seededRectangle = redHeader.concat(core);
+assert.equal(seededRectangle.length, 51 * 13);
+
+/**
+ * A first source-selected candidate: the red thirteen are the initial row
+ * of a 51x13 GP29 cumulative register. The following 50x13 remain source
+ * interior runes. No guessed key, prose, or extra page data enter.
+ * @param {number[]} tape 51x13 GP29 field, flattened row-major
+ * @returns {number[]} 50x13 column difference
+ */
+function verticalDifference(tape) {
+  assert.equal(tape.length, 51 * 13);
+  const plaintext = [];
+  for (let r = 1; r < 51; r++) {
+    for (let c = 0; c < 13; c++) {
+      plaintext.push(mod29(tape[r * 13 + c] - tape[(r - 1) * 13 + c]));
+    }
+  }
+  return plaintext;
+}
+
+/**
+ * The mixed second difference also cancels arbitrary unknown additive row
+ * AND column pads; it is invariant under any 50+13 secret additive masks.
+ * @param {number[]} tape 51x13 GP29 field, flattened row-major
+ * @returns {number[]} 50x12 interior differences
+ */
+function mixedDifference(tape) {
+  assert.equal(tape.length, 51 * 13);
+  const plaintext = [];
+  for (let r = 1; r < 51; r++) {
+    for (let c = 1; c < 13; c++) {
+      plaintext.push(mod29(tape[r * 13 + c] - tape[(r - 1) * 13 + c]
+        - tape[r * 13 + c - 1] + tape[(r - 1) * 13 + c - 1]));
+    }
+  }
+  return plaintext;
+}
+const actualVertical = verticalDifference(seededRectangle);
+const actualMixed = mixedDifference(seededRectangle);
+assert.equal(actualVertical.length, 650);
+assert.equal(actualMixed.length, 600);
+assert.ok(Math.abs(phaseIoc(actualVertical, 1) - 0.034543084034609456) < 1e-13);
+assert.ok(Math.abs(phaseIoc(actualMixed, 1) - 0.03434613244296049) < 1e-13);
+
+// Complete, independently true native GP plaintext is planted into the
+// source-shaped cumulative transform, then recovered without the plaintext.
+const plantVerticalPlain = controlOldEnglish.slice(0, 650);
+const plantVertical = redHeader.slice();
+for (let r = 1; r < 51; r++) {
+  for (let c = 0; c < 13; c++) {
+    plantVertical.push(mod29(plantVertical[(r - 1) * 13 + c]
+      + plantVerticalPlain[(r - 1) * 13 + c]));
+  }
+}
+assert.deepEqual(verticalDifference(plantVertical), plantVerticalPlain);
+
+// Independently recover a 600-rune native GP row-column double integral.
+// Arbitrary hidden row and column additive masks must cancel identically.
+const plantMixedPlain = controlOldEnglish.slice(0, 600);
+const plantMixed = redHeader.slice();
+for (let r = 1; r < 51; r++) {
+  for (let c = 0; c < 13; c++) {
+    if (c === 0) {
+      plantMixed.push((7 * r + 4) % 29);
+    } else {
+      plantMixed.push(mod29(plantMixedPlain[(r - 1) * 12 + c - 1]
+        + plantMixed[r * 13 + c - 1] + plantMixed[(r - 1) * 13 + c]
+        - plantMixed[(r - 1) * 13 + c - 1]));
+    }
+  }
+}
+const maskedPlantMixed = plantMixed.map((value, index) => {
+  const row = Math.floor(index / 13);
+  const col = index % 13;
+  return mod29(value + 3 * row + 11 * col + 7);
+});
+assert.deepEqual(mixedDifference(maskedPlantMixed), plantMixedPlain);
+
 process.stdout.write(JSON.stringify({
   classification: "source-exact 33-line 13x50 shape; bounded no-go for static class bijections",
   runes: { red: 13, black: original.length, lines: lines.length, inner: core.length, shell: 66 },
   lineLengths, actual: { period13: actual13, period50: actual50, wholeCore: phaseIoc(core, 1) },
   controls: { correctedOldEnglish: oldEnglish, latinVulgate: vulgate },
   exactOriginalReassembly: true,
+  redHeader2D: { dimensions: [51, 13], seeded650Ioc: phaseIoc(actualVertical, 1), mixed600Ioc: phaseIoc(actualMixed, 1), nativePlant650Ioc: phaseIoc(plantVerticalPlain, 1), nativePlant600Ioc: phaseIoc(plantMixedPlain, 1), rowColumnSecretPadCancellation: true, exactNativeGPRecovery: true },
   recovery: "NO authentic unknown LP2 plaintext or historical cipher selected",
 }, null, 2) + "\n");
