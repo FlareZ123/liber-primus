@@ -2,6 +2,31 @@
 
 **Agent4, 22 November 2026. Intermediate original-source navigation result; not a decrypt, original key or author-confirmed lookup instruction.** The contribution is a new *independent source-entry mechanism* for the established p50 pointer graph. A pair of historical 2013 commands and four historically important numbers select a shared original-table node without fitting any original LP2 rune plaintext.
 
+## Direct historical 1033 → 2013 audio title / PARABLE two-radix fork
+
+**This is the most compact, newly identified source-linked operation.** Physical LP2 p49–51 has exactly 256 two-character numeric tokens. The original Wisdom square prints **1033**, an independently authenticated earlier Cicada source integer, so its low eight bits select original zero-based **cell9**. That cell prints the literal token **`49`**. Two conventional, historically motivated readings of the *same unmodified token* land on different independently published 2013 audio values:
+
+```text
+1033 mod 256 = 9; original p50[9] = "49"
+
+BASE60("49") = 4×60+9 = 249 = 761 mod 256
+HEX("49")    = 4×16+9 =  73 = 1595277641 mod 256
+```
+
+The two recipient numbers are external to the 2014 ciphertext: the 2013 OS archive named its track **761.mp3**, and its original ID3 PARABLE metadata printed **1,595,277,641**. The known p57 three authentic clause sums multiply to precisely that metadata number. The later authenticated 2016 message's `NUMBERS` and `OPENPGP` words had already selected **base60** and **hexadecimal16** as plausible parser types in a different [independently documented source-labelled modulus ladder](lp2-openpgp-hexstride-modulus-ladder.md). Thus the radix switch has a clue-constrained candidate meaning, even though the manuscript supplies no literal instruction to fork one token in both radices. ASCII hex `49` is also **I**; no English plaintext claim is assigned to that solitary character.
+
+The historically selected audio-title address returns another exact author-visible count:
+
+```text
+761 mod256 = 249;  original p50[249] = "2c"
+BASE60("2c") = 158  = exact printed word count of original opening pp0–2
+HEX("2c")    =  44  = comma in ASCII (not plaintext evidence)
+```
+
+Independently, `3301 mod256=229`, and original p50[229] is literally `00`, sending that historically authored name to numeric node0 in either radix. Under base60 the special original 4-node basin is `[9,158,227,249]`: cells `[9,158,227]` all print `49`; cell249 prints `2c`. This physically fixed component therefore carries both the **761 → chapter158** and **1033 → 761** candidates. Under hexadecimal, the very same p50[9] would reach the other component's source-ID3 node73. It is a specific, reversible *numeric route between puzzle-era identifiers*, still without any operation that deciphers rune ciphertext.
+
+**Important control:** the original table's independently established H/G divisibility fixes each byte's residue modulo29. In 200,000 complete-table byte shuffles restricted to sites with identical original residue, `p50[9]=249` survives **74,942** times (37.47%); the simultaneous fixed `p50[9]=249` and `p50[249]=158` survives **9,363** times (4.68%). The HEX 73 condition is logically equivalent to the base60 249 condition for token `49`, so **the two historical recipient matches are not independent statistical hits**. Requiring also the original reciprocal `p50[158]=249` and fixed `p50[229]=0` survives **749/200,000** (0.3745%). All these match definitions were identified retrospectively, and no discovery-adjusted author-intent probability follows.
+
 ## Historical and manuscript inputs
 
 The cryptographically **signed 26 January 2013 Cicada TCP challenge** shows `BASE29 3301 → 3QO`, with base29 digits `0123456789ABCDEFGHIJKLMNOPQRS`, as well as a concrete DH23 worked example `(p,g,a,b,A,B,K)=(23,5,6,15,8,19,2)`. The original LP1 Wisdom square and the original LP2 cuneiform illustrations separately print **3301** and **1033**. Applying that exact existing BASE29 operation to 1033 produces **16I**: `841 + 6×29 +18 =1033`. This second conversion was computed for this study, rather than recovered as a 2013 server transcript. The two outputs are both three characters.
@@ -58,6 +83,6 @@ These are **conditional reconstruction checks**, not p-values for authorship or 
 
 ## Research decision: seek a portable inverse
 
-The two source-input routes genuinely converge on **the same original table graph**, and independently the source 2013 PARABLE ID3 modulo256 anchors its shared node73. This gives a concrete, historically motivated *wayfinding hypothesis*, more testable than an unconstrained key hunt. It neither authenticates the inferred token-truncation / mod256 / pointer operations nor returns a single previously unknown GP29 plaintext letter. The third BASE29 digits `O/I`, the traversal clock/stop rule, and the key-to-ciphertext receiver are all undefined. Continue only if original p0–55 ink or a signed Cicada instruction independently selects one rule for consuming these paths and predicts a **new, long, re-encryptable original plaintext passage**. Do not prolong this branch by assigning after-the-fact meanings to extra path positions.
+The **single-cell dual-radix 1033 fork** directly selects both authentic earlier audio identifiers, and the separate two BASE29-prefix source inputs converge on **the same original table graph**; independently the source 2013 PARABLE ID3 modulo256 anchors the shared node73. This gives a concrete, historically motivated *wayfinding hypothesis* using two puzzle-era radix standards, more testable than an unconstrained key hunt. It neither authenticates the inferred token-truncation / mod256 / pointer operations nor returns a single previously unknown GP29 plaintext letter. The third BASE29 digits `O/I`, the exact reason to truncate numbers to eight bits, a source-authored rule choosing between hexadecimal and base60, the traversal clock/stop rule, and the key-to-ciphertext receiver are all undefined. Continue only if original p0–55 ink or a signed Cicada instruction independently selects one rule for consuming these paths and predicts a **new, long, re-encryptable original plaintext passage**. Do not prolong this branch by assigning after-the-fact meanings to extra path positions.
 
 **Original source context:** [historical signed BASE29/DH2013](../resources/external/2013-tcp-server-signed-source.md), [original 761 and PARABLE products](../results/2013-761-parable-prime-products.md), [pre-existing p50 directed graph and p0 249↔158 reciprocal counts](lp2-p0-opening249-chapter158-two-cycle-source-gate.md), [prior PARABLE ID3 graph-ordinal routes](lp2-parable-threeprime-whole-graph-58-8-56.md). This report concerns only newly connected source-derived entry points; it does not re-claim the older graph, numerical factorization or red-word p38 observations.

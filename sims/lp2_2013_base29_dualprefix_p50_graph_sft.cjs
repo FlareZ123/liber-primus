@@ -123,6 +123,20 @@ const traditional={wisdom1033:1033%256,mp3Title761:761%256,wisdom3301:3301%256,
 assert.deepEqual(traditional,{wisdom1033:9,mp3Title761:249,
   wisdom3301:229,parableId3:73});
 assert.deepEqual([bytes[9],bytes[249],bytes[229]],[249,158,0]);
+// The source-selected first LP1 Wisdom1033 low-byte address has a
+// UNIQUE two-radix fork to TWO earlier independently published 2013
+// source byte residues, not to two fitted GP29 plaintext guesses.
+const forkCell=traditional.wisdom1033;
+assert.equal(forkCell,9);
+assert.equal(cells[forkCell],"49");
+assert.equal(decode60(cells[forkCell]),traditional.mp3Title761);
+assert.equal(parseInt(cells[forkCell],16),traditional.parableId3);
+assert.equal(cells[traditional.mp3Title761],"2c");
+assert.equal(decode60(cells[traditional.mp3Title761]),158);
+assert.equal(parseInt(cells[traditional.mp3Title761],16),44);
+assert.deepEqual(cells.flatMap((t,i)=>t==="49"?[i]:[]),[9,158,227]);
+assert.equal(cells[229],"00");
+
 assert.deepEqual([bytes[73],bytes[201],bytes[205]],[79,74,76]);
 
 // Historically documented toy-DH exponent6 and recovered client exponent15,
@@ -160,6 +174,9 @@ const counts={
   bothTraditionalHits:0,
   traditionalAndMerge:0,
   traditionalAndDualDh:0,
+  title761ToChapter158:0,
+  firstForkAndSongToChapter:0,
+  fullSourceFourPointerPacket:0,
 };
 for (let trial=0;trial<sampleCount;trial++) {
   for (const positions of bins) {
@@ -173,6 +190,11 @@ for (let trial=0;trial<sampleCount;trial++) {
   if(is1033to761) counts.wisdom1033To761++;
   if(is3301to0) counts.wisdom3301ToZero++;
   if(is1033to761&&is3301to0) counts.bothTraditionalHits++;
+  const sourceSongToChapter=simulated[249]===158;
+  if(sourceSongToChapter)counts.title761ToChapter158++;
+  if(is1033to761&&sourceSongToChapter)counts.firstForkAndSongToChapter++;
+  if(is1033to761&&sourceSongToChapter&&simulated[158]===249&&is3301to0)
+    counts.fullSourceFourPointerPacket++;
   const match = firstCoalescence(simulated,first,second);
   if(match!==null) {
     counts.twoPrefixSameComponent++;
@@ -199,13 +221,21 @@ assert.deepEqual(counts,{
   twoPrefixSameComponent:140593,
   wisdom1033To761:74942,wisdom3301ToZero:57224,
   bothTraditionalHits:21397,traditionalAndMerge:2,
-  traditionalAndDualDh:1
+  traditionalAndDualDh:1,title761ToChapter158:24891,
+  firstForkAndSongToChapter:9363,
+  fullSourceFourPointerPacket:749
 });
 console.log(JSON.stringify({
   original:{
     authenticated2013Base29:{number3301:code3301,number1033:code1033,
       prefix3301,prefix1033,unconsumedDigits:[code3301[2],code1033[2]]},
     sourceNumberBytes:traditional,sourceParableClauseSums:parableSums,
+    twoRadix1033Fork:{sourceAddress:9,rawToken:"49",
+      sourceAudioTitleLowByte:decode60(cells[9]),
+      sourceParableId3LowByte:parseInt(cells[9],16)},
+    continuing761Fork:{sourceAddress:249,rawToken:"2c",
+      openingChapterCount:decode60(cells[249]),
+      independentHexValue:parseInt(cells[249],16)},
     uniquePrefixCells:[start1,start2],first12Hops:partA,
     second15Hops:partB,firstMerge:merged,
     actualPage55Runes:76,syntheticCombinedScanNumbers:
@@ -218,5 +248,5 @@ console.log(JSON.stringify({
     conditionalPlusOne:Object.fromEntries(
       Object.entries(counts).map(([name,n])=>[name,(n+1)/(sampleCount+1)]))
   },
-  conclusion:"Historical BASE29, 761, 1033, 3301 and ID3 Parable provide independent source-number entries into a common p50 graph. Not a decoder; all opcodes/targets were selected retrospectively."
+  conclusion:"Original 1033 address9 raw49 has a dual base60/hex fork to independently historical 2013 761/ID3 low bytes; separate BASE29 prefix paths merge at ID3 low byte73. Not a rune decoder; the lookup/radix opcodes and stops are inferred."
 },null,2));
