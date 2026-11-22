@@ -1,0 +1,25 @@
+# Direct nonlinear GF841 whole-pair powers fail the original 81²/80² bookend receiver
+
+**Agent50, 22 November 2026. Original-input nonlinear full two-rune gate; finite negative.** All original LP2 pages p0–55 remain unsolved. This is an explicit nonlinear **fully mixing** pair decoder, materially different from the now-excluded stationary p50+K rowwise GP29 alphabet and from previously tested *linear* GF841 field multipliers. It is a frozen, source-derived candidate rather than an author-confirmed cryptographic operation.
+
+## Original source and reversible operator
+
+The p7 terminal five entirely red words yield original GF29 GP index products `[11,26,8,15,2]`. Their source polynomial `P(x)=11+26x+8x²+15x³+2x⁴` satisfies `P(x)−x=2(x−3)(x−4)(x²−8)` modulo29. Since eight is a quadratic nonresidue, the source supplies the perfectly well-defined quadratic extension **GF(29²)=GF29[α] / (α²−8)**, with `α` of multiplicative order **56**, matching the unsolved page count. Pairing a source A rune K and ciphertext B rune C gives a field element `X=K+Cα`. The original six-rune bookend cut gives A length **6,561=81²**, B **6,395=80²−5**, with the five actual numbered absences; two independently frozen A maps are the order80 p7-GF81 field coordinate table and literal A interior crop. The reader could notice this exact geometry, though no Cicada instruction currently selects the operation.
+
+For any **exponent e coprime to 840**, the field power `X→X^e` is an exact bijection of all **841 rune pairs**, with `0→0`; inverse exponent is `e⁻¹ mod840`. Such a map is **nonlinear and fully mixes K/C coordinates** for many e, so the earlier exact obstruction for conditional substitutions `S_(p50state,K)(C)` does not apply.
+
+Try the source-visible **unit exponents** `11` (p7 first product), `17` (p8 red terminal and derivative), `19` (p8 Roman XIX), `29` (field Frobenius), `331` (original 2014 onion7 HTML element id), and `839=−1` (field inversion). The p50 256 printed two-digit entries supply a reversible input or output translation in field coordinates, using nine frozen readings: no translation; the low digit in the real, imaginary or both coordinates; the high digit in the real or imaginary coordinate; high/low together; or the full printed byte in either coordinate. Both source A partners, both K/C input orders and either decrypted pair coordinate are allowed. Count: **2 × 2 × 6 × 9 × 2 × 2 = 864** complete original 6,395-rune receivers.
+
+The source hypothesis remains weak: neither the e selection nor p50 translation or output lane has been instructed by a first-party Cicada clue. Including both source partner maps and offset directions is a local robustness gate, not a ciphertext-fitted key search.
+
+## Full original input and native-prose decision
+
+Each candidate reads **all 6,395 original B runes** without erasure or moving original ink/punctuation. The best of **864** outputs has original GP29 IoC **0.03463597005**, entropy **4.85168281 bits/rune**; its parameters are GF81 A pairing, original K/C order, exponent331, p50 first digit added to the real input coordinate, imaginary output coordinate. All other candidates have IoC **0.03439488–0.034636** and entropy above **4.82 bits/rune**. The unmodified B IoC is **0.03445157122**, compared with **0.05982817648** for the independent 6,395-rune source-native Gibran control.
+
+The inverse and positive control are explicit: for every source exponent, every field pair in **all 841 possible pair states** is reconstructed exactly with representative real p50 offsets and both translation placements. On **12 full native-GP29 donor plants** with varied exponents and translation placements, a chosen 6,395-rune native plaintext first coordinate and a second field coordinate are transformed by the power inverse and reconstructed **exactly** by forward application. Each uses a complete two-coordinate bijection; the positive plants are not falsely constrained to keep original source K fixed.
+
+**Reproducer:** [single Windows Node22/CommonJS full-original SFT](../sims/lp2_bookend_p7_gf841_fullpair_powers_864_sft.cjs), [successful Windows execution 45068238522](https://github.com/FlareZ123/liber-primus/actions/runs/45068238522).
+
+## Decision and remaining key problem
+
+These **source-operand, low-description-length GF841 power permutations and p50 translations** do not recover source-native GP29 English and do not reveal any unknown plaintext. This bounded family can be retired. **The broader 841! all-secret fully mixing pair family remains mathematically unconstrained** by these finite tests and by the exact stationary rowwise collision theorem; passing an unrestricted marginal-frequency capacity test still does not provide a source-chosen decipherment operation. Do not extend this branch by fitting arbitrary field polynomials, exponents or source phases without a new author-visible input. The main research opportunity remains a concrete historical key or a first-party step that determines a nonstationary, externally sourced decoding rule.
