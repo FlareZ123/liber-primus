@@ -29,8 +29,24 @@ The last row is the most permissive of these ten tested keys: even an **arbitrar
 
 **Reproducer:** [Windows-compatible Node22 CommonJS original-input all-secret test](../sims/lp2_scroll255_nonlinear_baghash_allsecret_sft.cjs) and [successful Windows workflow run45044086500](https://github.com/FlareZ123/liber-primus/actions/runs/45044086500).
 
+
+## Stronger all-secret hidden-alphabet word-group theorem
+
+A natural rescue for a nonlinear-looking H is that the creator secretly substituted the **output alphabet after** aggregating the runes, so the true GP29 group value is B[H] rather than the visible H. For every additive group of order29, allowing arbitrary **independent secret input and output labels** A[r], B[y] and arbitrary additive output shifts by the *authentic length* (12 source lengths), by the *source page* (five pages), and by *source red ink*, the necessary original equations are
+
+```text
+sum over printed word runes r of A[r] - B[H(word)]
+       + D[length(word)] + E[page(word)] + F*red(word) == 0 (mod 29).
+```
+
+The 29+29+12+5+1 = **76 completely unrestricted secret coefficients** are tested at once, without searching or fitting. Exact full 255-row Gaussian elimination over GF(29) gives **rank73 and nullity3** for both legitimate page-start and page-end clock alternatives. Every kernel vector has all **29 output labels B[y] equal**. Thus *every possible* secret 29-letter output labeling is constant. This rules out the proposed architecture even if input and output rune labels were independently arbitrary 29-entry codebooks, and even if page/length/red shifts were free unknown secret values. An injective output alphabet cannot be constant.
+
+More restrictive source-preserving variants: without length/page/ink shifts, 58 coefficients have **rank58 and nullity0**; adding all12 length shifts gives 70 coefficients, rank68/nullity2; length plus five page shifts gives 75 coefficients, rank72/nullity3 with output labels still constant for both page clocks. A known synthetic positive plant uses two distinct affine GP29 input/output permutations, arbitrary per-length/page/red keys, and **passes all 255 exact equations** under the same matrix implementation; its nonconstant B output labeling survives the kernel test. The original ciphertext never does.
+
+A finite group of prime order29 is cyclic; therefore this excludes *every* associative and invertible 29-element group sum under hidden input/output substitutions and those visible side clocks. It does not cover a nonassociative quasigroup, higher-cardinality byte group, or cryptographic hash outside an additive hidden-group architecture. These are necessary original-cipher algebraic contradictions, not a proposed decryption. [Full exact elimination and synthetic planted test](../sims/lp2_scroll255_nonlinear_baghash_allsecret_sft.cjs) · [Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45044537270).
+
 ## Interpretation and next discriminating choice
 
-This is distinct from previous exclusions of additive secret rune-position codebooks: here f may be an **arbitrary nonlinear mapping of an entire symmetric source-word signature**. The canonical sum/product/length families cannot be the historical word-value law under this particular fitted receiver. More expressive hashes that distinguish almost all source words fit by construction, but such fitting does not explain source-selected parameters or recover an independent original rune. Prioritize a first-party **named nonlinear operation** with an authentically constrained key/byte representation and a held-out original receiver, or pivot away from the conditional GF4 chain. Do not promote these source arithmetic matches to decrypted plaintext.
+This is distinct from previous exclusions of additive secret rune-position codebooks: here f may be an **arbitrary nonlinear mapping of an entire symmetric source-word signature**. The canonical sum/product/length families and even every 29-element additive group disguised by arbitrary secret rune alphabets cannot be the historical word-value law under this particular fitted receiver. More expressive hashes that distinguish almost all source words fit by construction, but such fitting does not explain source-selected parameters or recover an independent original rune. Prioritize a first-party **named nonlinear operation** with an authentically constrained key/byte representation and a held-out original receiver, or pivot away from the conditional GF4 chain. Do not promote these source arithmetic matches to decrypted plaintext.
 
 The authoritative status remains unchanged: all 56 unknown LP2 physical pages remain undeciphered.
