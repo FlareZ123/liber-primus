@@ -141,7 +141,7 @@ The four p8 x-values are precisely the four roots of \(f(x)=1\); the y=1 is prin
 
 ### Bounded p8 body consumers
 
-The unchanged p8 black receiver is **243 runes**. Five polynomial/root consumers and two simpler direct-key receivers have now been frozen. All twenty named outputs have exact source-native p57 positive controls and all fail to produce native prose:
+The unchanged p8 black receiver is **243 runes**. Five polynomial/root consumers and two simpler direct-key receivers have now been frozen as **twenty named variants**: twelve polynomial/root, four direct Vigenère clock/sign, and four columnar rank/direction variants. The two exact F-transparent Vigenère variants have zero valid paths; the other eighteen scored outputs all fail to produce native prose:
 
 | Receiver | Frozen construction | Original p8 native-GP trigram score |
 |---|---|---:|
@@ -150,10 +150,10 @@ The unchanged p8 black receiver is **243 runes**. Five polynomial/root consumers
 | Root recurrence clock | characteristic polynomial \(x^4+5x^3+6x^2+4x+8\), initial state [19,4,3,27]; both signs | −10.877 to −10.831 |
 | Cyclic polynomial convolution | \(Q=f-1\) and its inverse in GF(29)[x]/(x^243−1), both directions | −10.756 to −10.753 |
 | Vandermonde block interpolation | source-order roots [19,4,3,27], 60 four-symbol blocks plus a three-symbol tail; both directions | −10.767 to −10.741 |
-| Direct period-5 Vigenère | Repeat p7 products [11,26,8,15,2] over p8 body; both signs, ordinary and p56-derived F-transparent clocks | −10.868 to −10.741 |
+| Direct period-5 Vigenère | Repeat p7 products [11,26,8,15,2]; ordinary clock both signs; exact p56 transparent-F DP both signs | −10.868 to −10.841; 0 valid transparent paths |
 | Direct 5-column transposition | Stable ascending/descending rank of p7 products [11,26,8,15,2]; both transform directions | −10.854 to −10.675 |
 
-All twenty outputs score below the minimum **−7.581** among the 710 available native-GP 243-rune LP1 windows (median **−7.186**). IoCs remain approximately **0.0334–0.0374**. The cyclic inverse is explicitly verified in the 243-cycle ring; the two direct-key tests also verify exact re-encryption. All twenty independently planted p57-native controls round-trip exactly. These are bounded negatives for the named consumers, not a proof against every possible polynomial or nonlinear state machine.
+All eighteen scored outputs are below the minimum **−7.581** among the 710 available native-GP 243-rune LP1 windows (median **−7.186**). IoCs remain approximately **0.0334–0.0374**. The cyclic inverse is explicitly verified in the 243-cycle ring; the direct ordinary-key and columnar tests also verify exact re-encryption. All twenty independently planted p57-native controls recover their planted plaintext, including the two exact-DP Vigenère controls where the planted sequence is one of the returned paths. These are bounded negatives for the named consumers, not a proof against every possible polynomial or nonlinear state machine.
 
 The two direct-key additions are separately reproducible: [period-5 Vigenère gate](lp2-p7-red-product-repeating-vigenere-p8-gate.md) and [5-column transposition gate](lp2-p7-red-product-columnar-p8-gate.md). Their exact scripts are [Vigenère SFT](../sims/lp2_p7_red_product_repeating_vigenere_p8_gate.cjs) and [columnar SFT](../sims/lp2_p7_red_product_columnar_p8_gate.cjs).
 
