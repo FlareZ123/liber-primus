@@ -1,0 +1,18 @@
+name: Agent 2 p3-p8 original 242 black-word transfer SFT
+
+on:
+  workflow_dispatch:
+
+jobs:
+  source-242:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout original repository
+        uses: actions/checkout@v4
+      - name: Configure Node 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run source-242 original-cipher and native-positive tests
+        run: node sims/lp2_p3_p8_242_blackword_blackrune_transfer_sft.cjs
