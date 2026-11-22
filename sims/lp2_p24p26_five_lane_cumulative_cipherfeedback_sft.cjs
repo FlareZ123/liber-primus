@@ -193,6 +193,102 @@ const checked = evaluate(planted, genuineSeed);
 assert.deepEqual(checked.map(p => p.train.length), [35, 29, 32]);
 assert.deepEqual(checked.map(p => p.hold.length), [27, 28, 25]);
 
+
+/**
+ * Source-word-shape matched phase-equality statistic. Every fixed permutation
+ * of a phase alphabet, including each additive seed, preserves this statistic
+ * exactly, even when the pre-page phase key is arbitrary.
+ * @param {number[][]} streams source-page ordered GP29 streams
+ * @returns {{weighted:number,cells:number[],numerator:number,denominator:number}}
+ */
+function phaseEquality(streams) {
+  assert.equal(streams.length, 3);
+  let numerator = 0, denominator = 0;
+  const cells = [];
+  for (const stream of streams) {
+    const lanes = Array.from({length:5}, () => Array(29).fill(0));
+    const counts = Array(5).fill(0);
+    for (let t = 0; t < stream.length; t++) {
+      lanes[t % 5][stream[t]]++;
+      counts[t % 5]++;
+    }
+    for (let lane = 0; lane < 5; lane++) {
+      const collisions = lanes[lane].reduce((acc,n) => acc + n * (n - 1), 0);
+      const pairs = counts[lane] * (counts[lane] - 1);
+      numerator += collisions;
+      denominator += pairs;
+      cells.push(collisions / pairs);
+    }
+  }
+  return {weighted:numerator / denominator,cells,numerator,denominator};
+}
+const originalNoSeed = pages.map(page =>
+  decrypt(page.cipher, [0,0,0,0,0]));
+const originalInvariant = phaseEquality(originalNoSeed);
+assert.ok(Math.abs(originalInvariant.weighted -
+  0.03211309802452954) < 1e-13);
+const plantedPlain = planted.map(page =>
+  decrypt(page.cipher, genuineSeed));
+const plantedZero = planted.map(page =>
+  decrypt(page.cipher, [0,0,0,0,0]));
+assert.equal(phaseEquality(plantedPlain).numerator,
+  phaseEquality(plantedZero).numerator);
+assert.equal(phaseEquality(plantedPlain).denominator,
+  phaseEquality(plantedZero).denominator);
+
+const references = [
+  'resources/control/shakespeare_first300k.txt',
+  'resources/control/gibran_prophet_58585.txt',
+  'resources/control/emerson_essays_2944.txt'
+];
+const controls = references.map((name, author) => {
+  const pools = new Map();
+  for (const match of read(name).matchAll(/[A-Za-z]+/g)) {
+    const gpWord = gp(match[0]);
+    if (!gpWord) continue;
+    if (!pools.has(gpWord.length)) pools.set(gpWord.length, []);
+    pools.get(gpWord.length).push(gpWord);
+  }
+  let state = (0x33015550 + author * 10231) >>> 0;
+  const random = () => {
+    state ^= state << 13;
+    state ^= state >>> 17;
+    state ^= state << 5;
+    return state >>> 0;
+  };
+  const observations = [];
+  let belowOriginal = 0;
+  for (let trial = 0; trial < 1000; trial++) {
+    const drawn = pages.map(page =>
+      page.words.flatMap(word => {
+        const pool = pools.get(word.values.length);
+        assert(pool && pool.length, name + ' missing GP length ' +
+          word.values.length);
+        return pool[random() % pool.length];
+      }));
+    const statistic = phaseEquality(drawn).weighted;
+    observations.push(statistic);
+    if (statistic <= originalInvariant.weighted) belowOriginal++;
+  }
+  observations.sort((a,b) => a - b);
+  assert.equal(belowOriginal, 0, name + ' should reject original invariant');
+  assert.ok(observations[0] > 0.05);
+  return {source:name,samples:observations.length,belowOriginal,
+    minimum:observations[0],median:observations[500],
+    maximum:observations[999]};
+});
+assert.deepEqual(controls.map(row =>
+  Number(row.minimum.toFixed(8))), [0.05388072,0.05275723,0.05392753]);
+
+console.log('ORIGINAL ALL-SECRET invariant 15 page/phase cells:',
+  JSON.stringify(originalInvariant));
+console.log('SOURCE-NATIVE WORD-SHAPE CONTROL phase IoC, 1000/author:',
+  JSON.stringify(controls));
+console.log('ALL-SECRET obstruction: any fixed page/phase GP29 permutation',
+  'after cumulative same-lane ciphertext feedback has exactly the observed',
+  '0.032113098 phase IoC, regardless of unknown per-phase keys, clock offsets',
+  'or pre-page ciphertext history; 0/3000 native-GP controls overlap.');
+
 console.log('SOURCE original page-runes:', pages.map(p => p.cipher.length).join(','),
   'partial prefix lengths:', pages.map(p => p.words[0].values.length).join(','));
 console.log('ORIGINAL independent first anchor:', anchor.start, anchor.values.length,

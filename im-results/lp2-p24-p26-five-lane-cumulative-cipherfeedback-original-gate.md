@@ -1,6 +1,6 @@
-# Original mayfly pages: shared five-lane cumulative ciphertext-feedback inverse
+# Original mayfly pages: all-secret five-lane feedback invariant and original inverse
 
-**Agent50, 22 November 2026. Director task #2261; original-input, source-shaped finite-model decision.** No unknown Liber Primus plaintext, historically authenticated cipher state, key, or full decryption has been recovered. The exact tested family fails native GP English at the original printed word boundaries. The negative applies to this one frozen feedback recurrence, not all evolving-state or polygraphic ciphers.
+**Agent50, 22 November 2026. Director task #2261; original-input, source-shaped finite-model decision.** No unknown Liber Primus plaintext, historically authenticated cipher state, key, or full decryption has been recovered. The original phase-equality invariant rejects the full tested additive-ciphertext-feedback family under source-native GP English, even with arbitrary fixed per-page/phase secret alphabets. The negative applies to this feedback recurrence, not all evolving-state or polygraphic ciphers.
 
 ## Human clue, premise and rival
 
@@ -23,6 +23,36 @@ Thus each page's keystream is identical for its first five symbols, then evolves
 Source transcript `resources/liber-primus/lp2-transcription.txt` is split at its exact `%` page markers; its page rune sequence is asserted identical to canonical `lp2-corpus.json` before any cipher operation. The actual original pages contain 270, 273 and 265 runes respectively. Crucially, the **first printed fragments** of the three pages are lengths **3, 2, 1**: these are unfinished words from previous physical pages. The cipher consumes them to keep the page-state clock honest but excludes them from word-language scoring, so none is misrepresented as a complete source word.
 
 The pinned unchanged `resources/control/english_wordfreq_textblob.txt` source defines 29,055 **unique** GP29 word forms in the run's original dictionary construction, incorporating source-solved ING→NG and IO→IA contractions, other GP multi-rune transliterations, QU→CW and normal V/K/Q/Z spellings. One-letter A/I/O are included. The first complete original p24 seven-rune anchor begins at offset **26**. Under the five-lane recurrence, testing *every lexicon seven-rune candidate* against its repeated phase values leaves **exactly 14 distinct common seeds**, without optimizing an English score.
+
+## Stronger all-secret invariant: the feedback law fails without any key search
+
+The seven-rune dictionary anchor above is a meaningful explicit-key recovery test. A stronger original-cipher rejection avoids requiring that particular anchor to be an English word, and removes even the assumption of a common original five-rune seed.
+
+For each source page j in p24–p26, each residue lane l=0..4, and the original GP29 ciphertext C, subtract the **exact cumulative previous ciphertext within that lane**, yielding Q. Under the stated feedback law every potential plaintext position in that lane must satisfy P=Q−S_(j,l) (mod29), even if its initial state is independently secret on every page. This is a fixed cyclic alphabet relabeling inside each lane. Allowing a completely arbitrary, unguessed secret **29-way bijection separately for each of the 15 page×phase cells** is substantially more permissive than the tested five numeric seeds. Every such bijection still preserves exact symbol equality and therefore preserves collision IoC.
+
+The same conclusion holds if the cipher clock is continuously carried across physical pages: all contributions from earlier pages to the same lane are a constant added to the later page's unknown initial phase state. Unknown phase-offset alignment permutes the five class labels, leaving the weighted within-page/phase collision statistic unchanged. This removes the earlier page-reset concern for this **same-lane additive-ciphertext-update law**.
+
+Define the all-secret weighted collision statistic as
+
+```text
+W = sum over pages j and phase lanes l of sum over symbols a n[j,l,a](n[j,l,a]-1)
+    / sum over pages j and phase lanes l of N[j,l](N[j,l]-1).
+```
+
+There are 15 populated source cells over all **808 original runes**. Directly removing the source ciphertext's preceding same-lane cumulative sum gives the **exact original W=0.03211309802452954**, independent of *every* unknown initial seed or per-page/phase alphabet permutation. It cannot be increased by a secret choice of those keys.
+
+For an independent language reference, the updated [CJS original-input reproducer](../sims/lp2_p24p26_five_lane_cumulative_cipherfeedback_sft.cjs) uses the same solved-LP GP29 spelling, including ING→NG and IO→IA, for three pinned source corpora. For **1,000 seeded draws per author**, each donor word has precisely the rune length of the corresponding original page-local printed word fragment; all 270+273+265 page positions, including original carried-fragment lengths 3/2/1, are retained and no original plaintext is used. Draws are independent by author and preserve the 15 original phase sizes. Word fragments are sampled as independent page-local slots because the tested machine reads them as such; the unknown page-crossing plaintext is not reconstructed.
+
+| GP-native source register | 1,000 source-length-matched W minima | Median W | Samples at/below original W |
+| --- | ---: | ---: | ---: |
+| Original unchanged p24–p26 cumulative-feedback residual | **0.03211310** | | |
+| Shakespeare | **0.05388072** | 0.06015354 | **0/1,000** |
+| Gibran | **0.05275723** | 0.05973223 | **0/1,000** |
+| Emerson | **0.05392753** | 0.06057485 | **0/1,000** |
+
+The original invariant lies below every one of **3,000** source-native controls. The positive source-word-shaped plant encrypted under the identical law and native GP29 spelling returns exactly the **same 15-cell collision numerator/denominator before and after encryption and feedback removal**; all original source positions also replay on reencryption. Thus the test can accept genuinely enciphered source-native prose without knowing its seed.
+
+**Decision:** The complete family *cumulative same-lane ciphertext addition followed by any one secret but fixed alphabet per page×phase class* cannot explain ordinary source-like native-GP plaintext on all three original insect pages. This applies to **all secret keys**, every physical-page reset/continuation initial history, and unknown pagewise five-phase rotations. It does not exclude a plaintext register with unusually flat phase-letter distributions, genuinely updating phase alphabets, different feedback arithmetic, source-word reorderings, or binary encoding. No creator-selected feedback opcode or authentic plaintext follows from this theorem.
 
 ## Original training and untouched continuation
 
