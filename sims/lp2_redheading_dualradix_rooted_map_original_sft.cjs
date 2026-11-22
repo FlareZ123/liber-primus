@@ -210,14 +210,14 @@ assert(directTransfer.every(row=>row.decodedIoC<0.039));
 // p3–p7 source chapter, preserving original page sequence. No prime
 // phase, key, sign, or first-word crib is fitted on this original source.
 /** @param {number[]} sequence @param {boolean} ciphertextFSkip */
-function totientDecrypt(sequence,ciphertextFSkip) {
+function totientDecrypt(sequence,ciphertextFSkip,startClock=0) {
   const allPrimes=[];
-  for(let v=2;allPrimes.length<sequence.length;v++){
+  for(let v=2;allPrimes.length<sequence.length+startClock;v++){
     let prime=true;
     for(let f=2;f*f<=v;f++)if(v%f===0){prime=false;break;}
     if(prime)allPrimes.push(v);
   }
-  let position=0;
+  let position=startClock;
   return sequence.map((c,i) => {
     if(ciphertextFSkip && c===0) return 0;
     return mod29(c-(allPrimes[position++]-1));
@@ -233,6 +233,20 @@ const primeSourceInverse=[false,true].map(ciphertextFSkip=>{
 });
 assert(primeSourceInverse.every(x=>x.decodedIoC<0.042));
 
+/* If the base59 pointer56 is a prime-sequence index rather than a
+ * destination page, the same authenticated prime-totient operation
+ * starts at its 57th prime. This is a separate typed, keyless reading. */
+const primeIndex56=addresses.map(i=>T59[i])[1];
+assert.equal(primeIndex56,56);
+const p3Clock56=[false,true].map(ciphertextFSkip=>{
+  const out=totientDecrypt(linkedP3,ciphertextFSkip,primeIndex56);
+  return {primeIndex:primeIndex56,ciphertextFSkip,
+    decodedIoC:coincidence(out),
+    first16:out.slice(0,16).map(v=>gp.translit[v]).join('-')};
+});
+assert(p3Clock56.every(x=>x.decodedIoC<0.042));
+
+
 console.log(JSON.stringify({
   status:'Candidate numeric navigation and global base59 root; NO unknown plaintext',
   headings,sourceTable:{tokenCount:256,noLowercaseF:true},
@@ -244,5 +258,6 @@ console.log(JSON.stringify({
     pairTrials,orderedPair,primaryPair,any16},
   directSolvedPageKeyTransfer:directTransfer,
   p3LinkedP56AuthenticPrimeTotientMechanism:primeSourceInverse,
+  p3Table56AsPrimeClock: p3Clock56,
   nextDecision:'Require an author-selected original-cipher operation to promote navigation'
 },null,2));
