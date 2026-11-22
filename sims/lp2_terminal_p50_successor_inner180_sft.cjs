@@ -31,9 +31,9 @@ function gp(text) {
   }
   return result;
 }
-const section56 = ref.split("### 56\n")[1].split("### 57\n")[0];
+const section56 = ref.split(/### 56\r?\n/)[1].split(/### 57\r?\n/)[0];
 const plain56 = gp(section56.split("\n").filter(x => !/^[\da-f]{20,}$/i.test(x.trim())).join("\n"));
-const plain57 = gp(ref.split("### 57\n")[1]);
+const plain57 = gp(ref.split(/### 57\r?\n/)[1]);
 assert.equal(plain56.length, 85);
 assert.deepEqual(plain57, corpus.pages[57].indices);
 const primes = [];
