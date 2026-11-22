@@ -76,7 +76,7 @@ For any five plaintext symbols, either F is excluded and the upper bound is the 
 | Direct 28-symbol phase substitution | **6,026/12,956 = 46.5113%** | **6,056/12,956 = 46.7428%** |
 | First-order cumulative phase substitution | **6,030/12,956 = 46.5421%** | **6,020/12,956 = 46.4650%** |
 
-All four are below independently solved p57's **46/95 = 48.4211%** five-symbol occupancy. Thus even the *historically motivated skip-F clock* does not rescue a one- or two-bank 255/256-slot periodic decoder for p57-like native-GP prose. This is a conditional frequency-profile exclusion, not an impossibility for arbitrary alphabet streams or a source-selected evolving cipher. The updated [full-source SFT](../sims/lp2_p50_period255256_allsecret_symbolrank_original_sft.cjs) asserts all original outcomes and source-F count; [Windows Node22 PASS 45049975605](https://github.com/FlareZ123/liber-primus/actions/runs/45049975605).
+All four are below independently solved p57's **46/95 = 48.4211%** five-symbol occupancy. Thus even the *historically motivated skip-F clock* does not rescue a one- or two-bank 255/256-slot periodic decoder for p57-like native-GP prose. This is a conditional frequency-profile exclusion, not an impossibility for arbitrary alphabet streams or a source-selected evolving cipher. The updated [full-source SFT](../sims/lp2_p50_period255256_allsecret_symbolrank_original_sft.cjs) asserts all original outcomes and source-F count; [Windows Node22 PASS 45050327599](https://github.com/FlareZ123/liber-primus/actions/runs/45050327599).
 
 ## Original controls and downstream choice
 
