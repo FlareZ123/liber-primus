@@ -173,6 +173,52 @@ assert.deepEqual(p42FromCenter91, {
 assert.equal(p42Suffix[p42FromCenter91.firstFailureOffset], 14);
 assert.equal(primes[118], 653);
 assert.equal((primes[118] - 1) % 29, 14);
+
+const lp1 = read("resources/liber-primus/lp1-plaintext-reference.txt");
+assert.match(lp1, /226\s+OBSCURA\s+FORM\s+245\s+MOBIUS/);
+const wisdomCenterWord = "FORM";
+const wisdomCenterKey = [0,3,4,19]; // source GP F,O,R,M
+assert.deepEqual(wisdomCenterKey.map(i => original.prime[i]), [2,7,11,71]);
+assert.equal(wisdomCenterKey.reduce((sum,i) => sum + original.prime[i],0), 91);
+/**
+ * Exact p56 plaintext-F transparency with a repeating literal word key.
+ * @param {number[]} ciphertext
+ * @param {number[]} key
+ */
+function transparentFWordKey(ciphertext, key) {
+  let states = new Set([0]);
+  for (let offset = 0; offset < ciphertext.length; offset++) {
+    const next = new Set();
+    for (const consumed of states) {
+      if (ciphertext[offset] === 0) next.add(consumed);
+      const shift = key[consumed % key.length];
+      if ((ciphertext[offset] - shift + 29) % 29 !== 0) next.add(consumed + 1);
+    }
+    if (!next.size) return { possible:false, firstFailureOffset:offset,
+      statesBefore:[...states] };
+    states = next;
+  }
+  return { possible:true, endStates:[...states] };
+}
+const formWordKeyReceiver = transparentFWordKey(p42Suffix,wisdomCenterKey);
+assert.deepEqual(formWordKeyReceiver,{
+  possible:false,firstFailureOffset:60,statesBefore:[58]
+});
+assert.equal(p42Suffix[60], 4); // ciphertext R
+assert.equal(wisdomCenterKey[58%4], 4); // next key R; would force F
+
+// Native source language positive: this model must recover its own
+// correctly encrypted p57, including both transparent F and ordinary
+// ciphertext F ambiguities.
+const p57Clear = original.pages[57].indices;
+const planted = [];
+let keyClock = 0;
+for (const plaintext of p57Clear) {
+  if (plaintext === 0) planted.push(0);
+  else planted.push((plaintext + wisdomCenterKey[keyClock++ % 4]) % 29);
+}
+assert.equal(transparentFWordKey(planted,wisdomCenterKey).possible,true);
+
 console.log(JSON.stringify({
   new_plaintext: false,
   source_square_centers: [809,331,91],
@@ -180,6 +226,9 @@ console.log(JSON.stringify({
   p1598: 13477,
   p15_continuation_global_position: futurePosition,
   original_unknown_runes: globalOffset,
+  authentic_lp1_center_word: wisdomCenterWord,
+  lp1_center_GP_prime_sum: 91,
+  FORM_key_p42_original_ftransparent_result: formWordKeyReceiver,
   maximal_original_wordlike_runs: tokens.length,
   no_center_matches_from_sixteen_printed_addresses: printedLookup.every(w => ![809,331,91].includes(w.sum)),
   circular_extensions_after_first_unprinted: circularExtensions,
