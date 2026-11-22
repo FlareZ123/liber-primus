@@ -374,7 +374,7 @@ assert.deepEqual(
 const sevenTargetCount = particular * titleHead.counts[21] * titleEnd.counts[1] * blackWord.counts[23];
 const sevenTotal = denominator * titleHead.total * titleEnd.total * blackWord.total;
 assert.equal(sevenTargetCount, 48);
-assert.equal(sevenTotal, 907200);
+assert.equal(sevenTotal, 1814400);
 assert.equal(sevenTargetCount / sevenTotal, 2.6455026455026453e-5);
 console.log(JSON.stringify({
   sourceSelectedContinuation: {
