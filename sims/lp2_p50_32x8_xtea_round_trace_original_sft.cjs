@@ -161,10 +161,89 @@ for(const little of [true,false]){
     assert(assess(readStates(buf,little,swapped),0).uniquelyConsistentAcross31Transitions);
   }
 }
+
+// Separate complete 256-byte original data consumer, motivated by
+// 32 printed eight-byte rows as 32 independently XTEA-enciphered blocks.
+// Key A is an exact 4-word p0 source tuple p,g,x,g^x from the FFF
+// GF257 corridor (257,38,48,225). Key B replaces the fourth word
+// with original p39's visibly marked leading coefficient 15.
+// Neither candidate is called a verified key; no secret is searched.
+// A full row is the standard 64-bit block; no hidden IV/tail/nonce.
+const tupleKeys=[[257,38,48,225],[257,38,48,15]];
+/** @param {number} v0 @param {number} v1 @param {number[]} key @returns {[number,number]} */
+function encryptBlock(v0,v1,key){
+ let sum=0;
+ for(let j=0;j<32;j++){
+  [v0,v1]=nextCycle(v0,v1,sum,key);
+  sum=(sum+DELTA)>>>0;
+ }
+ return [v0,v1];
+}
+/** @param {number} v0 @param {number} v1 @param {number[]} key @returns {[number,number]} */
+function decryptBlock(v0,v1,key){
+ let sum=0xC6EF3720;
+ for(let j=0;j<32;j++){
+  v1=(v1-(mix(v0)^((sum+key[(sum>>>11)&3])>>>0)))>>>0;
+  sum=(sum-DELTA)>>>0;
+  v0=(v0-(mix(v1)^((sum+key[sum&3])>>>0)))>>>0;
+ }
+ return [v0,v1];
+}
+const appendWord=(buffer,offset,value,little)=>{
+ if(little)buffer.writeUInt32LE(value,offset);
+ else buffer.writeUInt32BE(value,offset);
+};
+/**
+ * @param {Buffer} bytes @param {number[]} key
+ * @param {boolean} little @param {boolean} swap
+ * @param {boolean} encryption
+ * @returns {Buffer}
+ */
+function applyXtea32(bytes,key,little,swap,encryption){
+ const out=Buffer.alloc(256);
+ for(let row=0;row<32;row++){
+  let a=little?bytes.readUInt32LE(row*8):bytes.readUInt32BE(row*8);
+  let b=little?bytes.readUInt32LE(row*8+4):bytes.readUInt32BE(row*8+4);
+  if(swap)[a,b]=[b,a];
+  let [u,v]=encryption?encryptBlock(a,b,key):decryptBlock(a,b,key);
+  if(swap)[u,v]=[v,u];
+  appendWord(out,row*8,u,little);
+  appendWord(out,row*8+4,v,little);
+ }
+ return out;
+}
+const solved = JSON.parse(fs.readFileSync(
+ path.join(root,'resources/liber-primus/lp2-corpus.json'),'utf8'
+)).pages.find(p=>p.page===57).indices;
+assert.equal(solved.length,95);
+const nativePlant=Buffer.from(Array.from({length:256},(_,i)=>solved[i%solved.length]));
+const blockResults=[];
+for(const key of tupleKeys){
+ for(const littleEndian of [true,false]){
+  for(const swapHalves of [false,true]){
+   const clear=applyXtea32(packet,key,littleEndian,swapHalves,false);
+   const actual={key,littleEndian,swapHalves,
+    asciiPrintable:[...clear].filter(b=>b>=32&&b<=126).length,
+    asciiLetters:[...clear].filter(b=>(b>=65&&b<=90)||(b>=97&&b<=122)).length,
+    nativeGP29:[...clear].filter(b=>b<29).length,
+    first8Bytes:[...clear.subarray(0,8)]};
+   assert(actual.nativeGP29<50);
+   assert(actual.asciiPrintable<125);
+   const plantedCipher=applyXtea32(nativePlant,key,littleEndian,swapHalves,true);
+   const roundtrip=applyXtea32(plantedCipher,key,littleEndian,swapHalves,false);
+   assert.deepEqual(roundtrip,nativePlant);
+   blockResults.push(actual);
+  }
+ }
+}
+assert.equal(blockResults.length,8);
+
 console.log(JSON.stringify({
   status:'PASS: original 32x8 grid is not an ordered 32-cycle XTEA block-state trace',
   originalRows:32,bytes:256,transitions:31,cases:results,
   plantedOriginalRecovered32BitWords:plantedResult.hypothesizedKey,
   plantedOneCycleShiftedRecoveredWords:shifted.hypothesizedKey,
+  independentlyEncryptedXteaBlockTests:blockResults,
+  nativePositive256BytesRecovered:true,
   caution:'Does not reject XTEA encryption of some other byte payload or a differently keyed/ordered layout; no first-party text selects XTEA.'
 },null,2));
