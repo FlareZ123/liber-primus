@@ -43,7 +43,7 @@ The selected `[15,3,10,28,26,9,12]` GP29 operand physically belongs to **p8**. B
 | Reversed | Add / black first rune | 0.033806 |
 | Reversed | Add / continue after red12 | 0.034248 |
 
-The original p8 black243 IoC is **0.034044**. All eight tested inverses remain nonlinguistic on the unchanged p8 black runes and preserve low IoC. Each exactly reencrypts the original 243 GP29 runes, and an independent 243-rune planted solved-native GP source recovers **243/243** in every variant, while rotating the planted key fails. This rules out these **eight exact direct period-seven self-key readings**, without excluding a different historically specified nonlinear operator, a separate key recipient, or an external address. The missing source-selected action remains the central uncertainty.
+The original p8 black243 IoC is **0.034044**. All eight tested inverses remain nonlinguistic on the unchanged p8 black runes and preserve low IoC. Each exactly reencrypts the original 243 GP29 runes, and an independent 243-rune planted solved-native GP source recovers **243/243** in every variant, while rotating the planted key fails. This rules out these **eight exact direct period-seven self-key readings**, without excluding a different historically specified nonlinear operator, a separate key recipient, or an external address. The missing source-selected action remains the central uncertainty. **Updated full original-source SFT PASS:** [Windows Node22 CI run 45020322169](https://github.com/FlareZ123/liber-primus/actions/runs/45020322169), including the newly fixed 7×7 border-shape and all eight p8 self-key controls.
 
 ## One frozen original-cipher receiver, and its result
 
