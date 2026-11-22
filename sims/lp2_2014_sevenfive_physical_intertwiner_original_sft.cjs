@@ -143,6 +143,31 @@ const trace=[
  [0,1,0,0,0,0,0],
  [0,0,0,0,0,1,0],
 ];
+// Independent original-source mirror-sector signature: the same five
+// CHANGE eigenvalue labels have opposite reversal parities in the two
+// genuine historical squares, except the uniform row-sum eigenvalue E.
+// This is not enforced during RREF construction or in the source matrix.
+const reverse7=eye(7).map(row=>[...row].reverse());
+const reverse5=eye(5).map(row=>[...row].reverse());
+const classify=(v,J)=>{
+  const reversed=matvec(J,v);
+  if(reversed.every((x,i)=>x===v[i]))return 'even';
+  if(reversed.every((x,i)=>x===mod(-v[i])))return 'odd';
+  throw Error('mixed original reflection eigenmode');
+};
+const sevenParities=[];
+let cursor=0;
+for(const factor of factors) {
+  const modes=cols7.slice(cursor,cursor+factor.poly.length-1);
+  const parities=modes.map(v=>classify(v,reverse7));
+  assert.equal(new Set(parities).size,1);
+  sevenParities.push(parities[0]);
+  cursor+=factor.poly.length-1;
+}
+const fiveParities=cols5.map(v=>classify(v,reverse5));
+assert.deepEqual(sevenParities,['even','odd','even','odd','even']);
+assert.deepEqual(fiveParities,['odd','even','odd','even','even']);
+
 const D=mult(trace,Q7);
 const undoD=inverse(D);
 assert.deepEqual(mult(D,undoD),eye(7));
@@ -168,6 +193,15 @@ assert.deepEqual(N,[
 ]); 
 assert.deepEqual(mult(L,N),mult(B,L),
   'rank5 cross-source intertwiner L T(M)=B L');
+// Entire nonuniform five-channel sector flips mirror parity. The sole
+// row-sum mode is preserved, yielding the exact source-only rank-one
+// anti-commutator (2/7)*U = 21*U modulo29.
+const reflectionAnticommutator=add(mult(reverse5,L),mult(L,reverse7));
+assert.deepEqual(reflectionAnticommutator,
+  Array.from({length:5},()=>Array(7).fill(21)));
+assert.deepEqual(L.map(row=>mod(row.reduce((a,b)=>a+b,0))),
+  [1,1,1,1,1]);
+
 assert.notDeepEqual(mult(L,M),mult(B,L),
   'no raw cross-source intertwiner of same rank');
 // The original M spectrum shares only the three linear roots H/A/E
@@ -236,6 +270,9 @@ console.log(JSON.stringify({
   source:'original Stage10 seven and five 1033 magic squares',
   historicalFieldTracePolynom:T,
   physicalRank5Intertwiner:L,
+  originalSevenMirrorParity:sevenParities,
+  originalFiveMirrorParity:fiveParities,
+  physicalReflectionAnticommutator:reflectionAnticommutator,
   fullRankSevenEncoder:D,
   satisfied:'L*T(M7) = B5*L; L*M7 != B5*L',
   independentlyCompleteOriginalReceivers:samples,
