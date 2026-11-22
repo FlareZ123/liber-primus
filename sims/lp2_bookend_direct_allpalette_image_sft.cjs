@@ -125,6 +125,55 @@ assert.deepEqual(original.map(x => [x.result.N, x.result.edges,
 assert.deepEqual(original.map(x => x.result.maxEqualBinaryEdgesForBalancedPalette),
   [7291, 7094]);
 
+/**
+ * The exact H>=0 BigInt certificate holds for EVERY real vector of
+ * 29 fixed symbol intensities, including arbitrary grayscale and
+ * each channel of arbitrary RGB symbols. Unlike binary cut count,
+ * energy is the sum of squared intensity differences on the true
+ * horizontal and vertical pixel edges.
+ *
+ * For symbol-weighted source variance sigma^2:
+ *    energy >= (18/5) * N * sigma^2
+ * and randomized source-position energy expectation
+ *    Eshuffle = 2*m*N/(N-1) * sigma^2.
+ * The exact 28-minor certificate is the complete all-palette proof.
+ *
+ * @param {(number|null)[]} image Original or planted source pixels.
+ * @param {number} width Side length, source fixed.
+ * @param {number[]} colors Any globally fixed real-valued 29-rune palette.
+ */
+function scalarPaletteEnergy(image,width,colors) {
+  assert.equal(colors.length,29);
+  const pixels=image.filter(x=>x!==null).map(x=>colors[x]);
+  const N=pixels.length;
+  const mean=pixels.reduce((s,x)=>s+x,0)/N;
+  const variance=pixels.reduce((s,x)=>s+(x-mean)**2,0)/N;
+  let edges=0,energy=0;
+  for(let i=0;i<image.length;i++) {
+    const neighbors=[i%width===width-1?-1:i+1,
+      i<image.length-width?i+width:-1];
+    for(const j of neighbors) {
+      if(j<0||image[i]===null||image[j]===null)continue;
+      edges++;
+      energy+=(colors[image[i]]-colors[image[j]])**2;
+    }
+  }
+  assert.ok(variance>0);
+  const shuffledExpectation=2*edges*N/(N-1)*variance;
+  return {
+    energy,shuffledExpectation,
+    ratio:energy/shuffledExpectation,
+    exactLowerBound:3.6*(N-1)/(2*edges)
+  };
+}
+const arbitraryRealPalette=Array.from({length:29},(_,i)=>
+  Math.sin(.37*(i+1))+Math.cos(1.91*(i+1)));
+const grayscaleOriginal=[
+ {name:'A81 arbitrary real palette',...scalarPaletteEnergy(A,81,arbitraryRealPalette)},
+ {name:'B80 arbitrary real palette',...scalarPaletteEnergy(B,80,arbitraryRealPalette)}
+];
+assert.ok(grayscaleOriginal.every(x=>x.ratio+1e-9>=x.exactLowerBound));
+
 // Positive plant: a 9x9 (A) or 8x8 (B) chessboard of large contiguous
 // 9x9 or 10x10 binary patches, masked by the real numeral holes, with
 // individual visible rune symbols chosen pseudorandomly from 14/15
@@ -163,15 +212,20 @@ const plants = [[A,81,9], [B,80,10]].map(([arr,width,block]) => {
   assert.ok(boundaries / nullExpected < .25);
   assert.equal(positive.certificate,false,
     'all-secret original-image exclusion must not falsely reject a plant');
+  const coloredPlant=scalarPaletteEnergy(planted,width,
+    Array.from({length:29},(_,i)=>i<14?.15+.001*i:.85+.001*i));
+  assert.ok(coloredPlant.ratio<.25,
+    'coherent grayscale plant must violate exact all-secret source certificate');
   return {width,binaryBoundaries:boundaries,
     expectedShuffleBoundaries:nullExpected,
     relativeBoundaries:boundaries/nullExpected,
+    grayscalePlantEnergyRatio:coloredPlant.ratio,
     exactOriginalStyleCertificate:positive.certificate};
 });
 console.log(JSON.stringify({
   source:'Entire original LP2 p0-p55 GP29 original bookend registers',
   repeatedSourceSix:all.slice(6555,6561).map(i=>corpus.translit[i]).join(''),
-  original,plants,
-  decision:'Neither literal 81x81 nor 80x80 source grid admits a spatially coherent image under any globally fixed 29-symbol to binary palette; nonlinear or position-dependent ciphers remain open'
+  original,grayscaleOriginal,plants,
+  decision:'Neither literal 81x81 nor 80x80 source grid admits a spatially coherent image under any globally fixed 29-symbol grayscale/RGB palette with low spatial contrast; nonlinear or position-dependent ciphers remain open'
 },null,2));
-console.log('PASS: both original source direct binary-palette PSD proofs and hidden-palette planted controls');
+console.log('PASS: both original source direct all-real-palette PSD proofs and grayscale/binary planted controls');
