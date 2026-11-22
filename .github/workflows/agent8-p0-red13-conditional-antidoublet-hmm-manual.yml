@@ -1,0 +1,17 @@
+name: Agent8 p0 conditional antirepeat red13 HMM SFT
+on:
+  workflow_dispatch:
+
+jobs:
+  exact-hmm-original-crib-gate:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Conditional phase13 source-crib HMM and native English positive plants
+        run: |
+          node --check sims/lp2_p0_red13_conditional_antidoublet_hmm_sft.cjs
+          node sims/lp2_p0_red13_conditional_antidoublet_hmm_sft.cjs
