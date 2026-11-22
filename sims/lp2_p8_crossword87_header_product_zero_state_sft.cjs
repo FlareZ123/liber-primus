@@ -428,7 +428,8 @@ const berggrenFirstChildren = [upBerggren(berggrenRoot),
 assert.deepEqual(berggrenFirstChildren, [
   [5, 12, 13], [21, 20, 29], [15, 8, 17],
 ]);
-assert.deepEqual(red.filter((v, i) => i >= 4 && i % 2 === 1), [5, 13, 17]);
+assert.deepEqual(red.filter((v, i) => i >= 4 && i % 2 === 1), [14, 5, 13, 17]);
+assert.deepEqual(red.filter((v, i) => i >= 6 && i % 2 === 1), [5, 13, 17]);
 const originalRedCountOnP7 = redWords.length;
 assert.equal(originalRedCountOnP7, 5);
 let berggrenDepth5 = [berggrenRoot];
