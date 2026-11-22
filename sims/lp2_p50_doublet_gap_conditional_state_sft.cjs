@@ -25,6 +25,34 @@ const chapters = [
   [0,2], [3,7], [8,14], [15,22], [23,26],
   [27,32], [33,39], [40,53], [54,55]
 ];
+/*
+ * The original printed "/" line and "." / "&" punctuation sites are
+ * alternative source-visible segmentation clocks. Preserve these intact:
+ * punctuation carries from one physical page onto the next unless printed.
+ * A line/punctuation-conditioned event-count null is deliberately more
+ * permissive than a predictive decoder and cannot prove a real reset.
+ */
+const sourceText = read("resources/liber-primus/lp2-transcription.txt")
+  .split("%").slice(0,55).join("%");
+const runeCode = new Map(GP.runes.map((r,i) => [r,i]));
+const layout = [], exactRuneTape = [];
+let line=0, punctuation=0, paragraph=0;
+for (const char of sourceText) {
+  const value = runeCode.get(char);
+  if (value !== undefined) {
+    exactRuneTape.push(value);
+    layout.push({line,punctuation,paragraph});
+  } else if (char === "/") {
+    line++;
+  } else if (char === "." || char === "&") {
+    punctuation++;
+    if (char === "&") paragraph++;
+  }
+}
+assert.equal(line,594);
+assert.equal(exactRuneTape.length,12956);
+assert.deepEqual(exactRuneTape,GP.pages.filter(p => p.page < 56 &&
+  p.indices.length).flatMap(p => p.indices));
 const original = [];
 const opportunities = [];
 const counts = [new Array(29).fill(0),new Array(29).fill(0)];
@@ -37,7 +65,8 @@ for (const page of GP.pages.filter(p => p.page < 56 && p.indices.length)) {
     const position = bookPosition + i;
     const mark = TABLE[position % 256][0] === "0" ? 1 : 0;
     const delta = (page.indices[i+1] - page.indices[i] + 29) % 29;
-    const item = {position, page:page.page, chapter, mark, delta};
+    const item = {position, page:page.page, chapter, mark, delta,
+      ...layout[position]};
     opportunities.push(item);
     counts[mark][delta]++;
     if (delta === 0) original.push(position);
@@ -139,13 +168,19 @@ const suites = [
     0x33010080,25000),
   conditional("global-256-rune-blocks x p50-class",
     makeBins(e => Math.floor(e.position/256)+":"+e.mark),
-    0x33010100,25000)
+    0x33010100,25000),
+  conditional("source printed-punctuation blocks x p50-class",
+    makeBins(e => e.punctuation+":"+e.mark),0x33012ee3,16000),
+  conditional("source printed-line blocks x p50-class",
+    makeBins(e => e.line+":"+e.mark),0x33011177,16000)
 ];
 assert(suites[0].upperTail < .005);
 assert(suites[1].upperTail < .005);
 assert(suites[2].upperTail < .02);
 assert(suites[3].upperTail > .02);
 assert(suites[4].upperTail < .02);
+assert(suites[5].upperTail < .05);
+assert(suites[6].upperTail > .05);
 const nonzero = counts.map(row => row.slice(1));
 const rowTotals = nonzero.map(r => r.reduce((a,b)=>a+b,0));
 const colTotals = nonzero[0].map((x,i) => x+nonzero[1][i]);
@@ -167,5 +202,5 @@ console.log(JSON.stringify({
     note:"Pearson chi-square p=0.63594255 from scipy; source output is the exact chi-square",
     observed:nonzero},
   suites,
-  interpretation:"The digit0 mask and chapter/page incidence cannot fully explain order-sensitive gap structure. This is not plaintext or proof of a p50-controlled cipher."
+  interpretation:"The digit0 mask and chapter/page incidence cannot fully explain order-sensitive gap structure. Printed-line exact-count conditioning absorbs the anomaly, but fixes which lines actually contain events and is therefore descriptive, not a viable predictive decoder. No plaintext or proof of a p50-controlled cipher."
 },null,2));
