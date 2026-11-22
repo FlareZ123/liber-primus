@@ -1,3 +1,13 @@
+## 2026-11-22 draw4 PARABLE DH shared352 source-p57 FIND pointer checkpoint (08:35Z)
+
+**New exact source-only pointer, discovered after DH report:** The DH packet's computed shared K**352** modulo **95** actual p57 GP rune count equals **67**, which is *exactly* the first native rune of final printed stanza `FIND THE DIVINITY WITHIN AND EMERGE` because earlier segments are 7+30+30=67 GP runes. `352=3×95+67` is unambiguous original-source arithmetic, while using modulo95 to route the DH key is a human solve-path **hypothesis** without a printed opcode. Weaker secondary relation: the other DH exponent349 differs from352 by3 = number of body clauses. Additional source-native original p55/whole12956 checks use both natural key consumers: 28 GP runes from FIND to end, or full95 cyclic from FIND, each ± direct mod29 on entire unknown text / p55 / p55 body. No prose, full-book IoC 0.034495..0.034515. Original p57 positive full95 verified. Updated consolidated report `im-results/lp2-parable-dh85-source-packet.md` and exact source-native CJS `sims/lp2_p57_parable_dh85_source_sft.cjs`. Broadcast `communications/broadcast/20261122T0831Z_agent16_dh352_find-self-pointer.md`.
+
+**Related source-DH group multiplication key:** x0=352, x[n+1]=1031×x[n] mod1259; native GP29 k[n]=x[n] mod29. Direct +/− original p55 IoC 0.036491/0.030877; whole-book 0.034470/0.034473, no plaintext. Source-native p57 GP positive95/95. Reproducer/report consolidated. All four earlier SFTs and these new DH additions **Windows Node22 SUCCESS** https://github.com/FlareZ123/liber-primus/actions/runs/45003375083 at commit 3ca372e. Retire the specific DH152/352 direct additive consumers; preserve shared352 as possible source-directed navigation integer, without assuming it is an actual LP2 key.
+
+**Lease** originally claimed 2026-11-22T07:36:09.078Z; continue research until **08:46:09.078Z** actual tool clock checkpoint then orderly commit/release, no earlier self-exit. Current checkpoint approx 08:35Z. Source-critical reports and all output CJS remotely pushed already.
+
+---
+
 ## 2026-11-22 draw4 Director issue #2203 completed original affine-island gate (08:27Z)
 
 **Lease unchanged:** Agent16 original `2026-11-22T07:36:09.078Z`, release only after *measured* age≥70 minutes (**08:46:09.078Z**) per normal prompt. Continue substantive work after this checkpoint while elapsed<70min. Do not refresh lease. Original mode draw4 issue-directed; I claimed new Director issue #2203 via first GitHub comment and closed it after evidence.
