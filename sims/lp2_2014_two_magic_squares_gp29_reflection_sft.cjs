@@ -77,6 +77,72 @@ function vector29(matrix, vector) {
   return matrix.map(row => row.reduce((sum, value, i) =>
     (sum + value * vector[i]) % 29, 0));
 }
+/**
+ * Characteristic polynomial of 5x5 over GF29 via Newton identities.
+ * Returns leading coefficient first: x^5+c1*x^4+...+c5.
+ * All divisors 1..5 are units modulo29.
+ * @param {bigint[][]} source
+ * @returns {number[]}
+ */
+function characteristic5(source) {
+  const matrix = number29(source);
+  const n = matrix.length;
+  assert.equal(n, 5);
+  const multiply29 = (a, b) => a.map(row =>
+    b[0].map((_, j) => row.reduce((sum, v, k) => (sum + v * b[k][j]) % 29, 0)));
+  const mod = x => ((x % 29) + 29) % 29;
+  let current = number29(identity(5));
+  const coefficients = [1];
+  for (let k = 1; k <= 5; k++) {
+    current = multiply29(current, matrix);
+    const trace = current.reduce((sum, row, i) => sum + row[i], 0) % 29;
+    // For Newton's identities we need traces of all powers, not only k.
+    // The traces are collected and reused from the already-computed powers.
+    if (k === 1) characteristic5.traces = [];
+    characteristic5.traces.push(trace);
+    let numerator = 0;
+    for (let j = 1; j <= k; j++) {
+      numerator = mod(numerator + coefficients[k - j] * characteristic5.traces[j - 1]);
+    }
+    const inverse = Array.from({ length: 28 }, (_, i) => i + 1)
+      .find(x => (x * k) % 29 === 1);
+    coefficients.push(mod(-numerator * inverse));
+  }
+  return coefficients;
+}
+
+/** @param {number[]} roots @returns {number[]} */
+function polynomialFromRoots(roots) {
+  let ascending = [1];
+  for (const value of roots) {
+    const next = Array(ascending.length + 1).fill(0);
+    for (let i = 0; i < ascending.length; i++) {
+      next[i] = ((next[i] - ascending[i] * value) % 29 + 29) % 29;
+      next[i + 1] = (next[i + 1] + ascending[i]) % 29;
+    }
+    ascending = next;
+  }
+  return [...ascending].reverse();
+}
+
+/** @param {bigint[][]} input @param {number[]} coefficients */
+function polynomialOnMatrix(input, coefficients) {
+  const M = number29(input);
+  const n = M.length;
+  const mul = (a, b) => a.map(row =>
+    b[0].map((_, j) => row.reduce((sum, v, k) => (sum + v * b[k][j]) % 29, 0)));
+  let state = number29(identity(n));
+  for (let i = 1; i < coefficients.length; i++) {
+    state = mul(state, M);
+    for (let r = 0; r < n; r++) {
+      for (let c = 0; c < n; c++) {
+        state[r][c] = (state[r][c] + (r === c ? coefficients[i] : 0)) % 29;
+      }
+    }
+  }
+  return state;
+}
+
 /** @param {number[]} seq @returns {{ioc:number,top12:number}} */
 function score(seq) {
   const hist = Array(29).fill(0);
@@ -134,6 +200,37 @@ function main() {
   assert.deepEqual(reduce29(multiply(first, firstInverse)), identity(5));
   assert.deepEqual(reduce29(multiply(last, lastInverse)), identity(5));
 
+  // The actual solved LP1 *WARNING* prints "DO NOT EDIT OR CHANGE
+  // THIS BOOK". The five GP-index runes of the literal word CHANGE are
+  // [C,H,A,NG,E]=[5,8,24,21,18], not six Latin letters.
+  // Freeze exactly the three 5-rune distinct-symbol words occurring in
+  // that first solved warning and compare their *unordered* native
+  // GP-index multisets to the final original 1033-matrix eigenvalues.
+  const warningSource = fs.readFileSync(path.join(root, 'resources',
+    'liber-primus', 'lp1-plaintext-reference.txt'), 'utf8');
+  const warning = warningSource.split('### 1')[1].split('### 3')[0];
+  assert(warning.includes('DO NOT EDIT OR CHANGE THIS BOOK'));
+  const warningWords = (warning.match(/[A-Z]+/g) || [])
+    .map(word => ({ word, runes: encodeSourceNativeGP(word) }))
+    .filter(entry => entry.runes.length === 5 && new Set(entry.runes).size === 5);
+  assert.deepEqual([...new Set(warningWords.map(entry => entry.word))].sort(),
+    ['CHANGE', 'NOTHING', 'WORDS']);
+  const change = encodeSourceNativeGP('CHANGE');
+  assert.deepEqual(change, [5, 8, 24, 21, 18]);
+  const targetRoots = [...change].sort((a, b) => a - b);
+  const matches = warningWords
+    .filter(entry => [...entry.runes].sort((a, b) => a - b)
+      .every((v, i) => v === targetRoots[i]))
+    .map(entry => entry.word);
+  assert.deepEqual(matches, ['CHANGE']);
+  const finalCharacteristic = characteristic5(last);
+  assert.deepEqual(finalCharacteristic, [1, 11, 27, 7, 5, 26]);
+  assert.deepEqual(polynomialFromRoots(change), finalCharacteristic);
+  assert.deepEqual(polynomialOnMatrix(last, finalCharacteristic),
+    number29(Array.from({ length: 5 }, () => Array(5).fill(0n))));
+  assert.notDeepEqual(polynomialOnMatrix(first, finalCharacteristic),
+    number29(Array.from({ length: 5 }, () => Array(5).fill(0n))));
+
   const original = JSON.parse(fs.readFileSync(
     path.join(root, 'resources', 'liber-primus', 'lp2-corpus.json'), 'utf8'));
   const tape = original.pages.filter(p => p.page <= 55).flatMap(p => p.indices || []);
@@ -188,6 +285,14 @@ function main() {
     historical_dimensions: squares.map(s => s.length),
     first_five_magic_sum: 3301,
     final_five_magic_sum: 1033,
+    source_warning_word_spectral_correspondence: {
+      original_lp1_warning_five_distinct_GP_words: ['CHANGE', 'NOTHING', 'WORDS'],
+      exact_matching_anagram: matches,
+      CHANGE_native_GP_runes: change,
+      original_final1033_square_charpoly_mod29: finalCharacteristic,
+      word_CHANGE_product_polynomial_equals_charpoly: true,
+      source_alphabet_order_from_spectrum: 'UNDETERMINED'
+    },
     original_integer_modulus_uniqueness: {
       gcd_first_power28_minus_twice_mean_plus_reversal: String(firstGcd),
       gcd_last_power14_plus_reversal: String(lastGcd)
