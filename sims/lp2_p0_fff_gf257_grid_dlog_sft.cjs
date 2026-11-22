@@ -25,6 +25,7 @@ const read = name => fs.readFileSync(path.join(ROOT,name),'utf8');
 const json = name => JSON.parse(read(name));
 const book = json('resources/liber-primus/lp2-corpus.json');
 const grid = json('resources/liber-primus/lp2-grid-256.json');
+const ink = json('resources/liber-primus/lp2-ink-annotations.json');
 const html = read('resources/historical/stage11-2014-index.html');
 assert.equal(Number(html.match(/<title>(\d+)<\/title>/)[1]),133);
 assert.equal(Number(html.match(/<div id="(\d+)">/)[1]),331);
@@ -59,6 +60,48 @@ assert.equal(power,1);
 assert.equal(exponentFor.size,256);
 assert.equal(byExponent[128],256);
 assert.equal(byExponent[256-1]*generator%P,1);
+
+// Independent interpage algebraic bridge: the original p39 red GP triad
+// forms a double-root quadratic over GF29, nominated independently by
+// the oversized first rune of p54. P0's FFF words produce the primitive
+// generator over GF257 and phase 48 = twice that original double root.
+// This is a source consistency relation, not a plaintext decryption.
+const runeLookup = new Map(book.runes.map((r,i)=>[r,i]));
+const red39 = ink.pages.find(page=>page.page===39)
+  .red_spans.find(span=>span.length===3);
+const redFactors = [...red39.runes].map(r=>runeLookup.get(r));
+assert.deepEqual(redFactors,[27,5,15]);
+const rootA=book.pages[54].indices[0];
+assert.equal(rootA,24);
+const mod29=x=>((x%29)+29)%29;
+const valueAtA=mod29(redFactors[0]+redFactors[1]*rootA+
+  redFactors[2]*rootA*rootA);
+const derivativeAtA=mod29(redFactors[1]+2*redFactors[2]*rootA);
+assert.deepEqual([valueAtA,derivativeAtA],[0,0]);
+assert.equal(phase,2*rootA);
+assert.equal(byExponent[rootA],redFactors[2]);
+assert.equal(byExponent[phase],redFactors[2]*redFactors[2]%P);
+const doubleRootJet = coeff=>{
+  let value=0, derivative=0;
+  for(const digit of coeff){
+    derivative=mod29(derivative*rootA+value);
+    value=mod29(value*rootA+digit);
+  }
+  return [value,derivative];
+};
+assert.deepEqual(doubleRootJet(grid.bytes),[0,0]);
+assert.deepEqual(doubleRootJet(book.pages[29].indices),[0,0]);
+const crossArtifactBridge={
+  originalP0FffPrimeWordSums:sums,
+  originalP39RedRuneIndices:redFactors,
+  originalP39Polynomial:'27+5*x+15*x^2=15*(x-24)^2 (mod29)',
+  originalP54OversizedInitialRuneIndex:rootA,
+  originalP29AndP50DoubleRootValueDerivative:[0,0],
+  gf257PowerAtP54RuneIndex:byExponent[rootA],
+  gf257PowerAtTwiceP54RuneIndex:byExponent[phase],
+  equality:'38^24 = 15; 38^48 = 15^2 (mod257)',
+  status:'Exact independent source-data identity; authorial operation and authentic plaintext unknown.'
+};
 
 /** @param {number[]} values */
 function decode(values) {
@@ -251,6 +294,7 @@ console.log(JSON.stringify({
   sourceWordIndices:[40,41,42],
   sourceWordGp:words.map(w=>w.map(i=>book.translit[i]).join('')),
   sourcePrimeSums:sums,
+  crossArtifactBridge,
   primitiveGroupSize:exponentFor.size,
   originalFirst32Hex:Buffer.from(output.slice(0,32)).toString('hex'),
   originalASCII48:content(output.slice(0,48)),
