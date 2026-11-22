@@ -120,6 +120,33 @@ assert(controls.every(c=>ks.every(k=>c.contiguous.global[k].every(s=>s.atMostOri
 let seed=0x33012026;
 function random(){seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return seed>>>0;}
 const trials=96;
+/**
+ * Grant the adversary an independently secret page alignment per physical page.
+ * This takes the minimum equal-block pairs across every phase per page,
+ * so it weakens our test in favor of the secret block-cipher hypothesis.
+ */
+function phaseAdaptive(data,k){
+  let start=0,score=0;
+  for(const n of sizes){
+    const page=data.slice(start,start+n);
+    start+=n;
+    const per=Array.from({length:k},(_,phase)=>{
+      let sum=0;
+      const m=new Map();
+      for(let at=phase;at+k<=page.length;at+=k){
+        let value=0;
+        for(let j=0;j<k;j++)value=29*value+page[at+j];
+        const old=m.get(value)||0;
+        sum+=old;m.set(value,old+1);
+      }
+      return sum;
+    });
+    score+=Math.min(...per);
+  }
+  return score;
+}
+const originalAdaptive=Object.fromEntries(ks.map(k=>[k,phaseAdaptive(cipher,k)]));
+assert(ks.every(k=>originalAdaptive[k]===0));
 const matched=[];
 for(const c of controls){
   const pools=Array.from({length:30},()=>[]);
@@ -128,23 +155,31 @@ for(const c of controls){
     pools[vals.length].push(vals);
   }
   assert(lens.every(n=>pools[n].length>0));
-  const samples=[];
+  const samples=[],adaptive=[];
   for(let t=0;t<trials;t++){
     const sample=[];
     for(const n of lens){const bucket=pools[n];sample.push(...bucket[random()%bucket.length]);}
     assert.equal(sample.length,N);
     samples.push(counts(sample,false));
+    adaptive.push(Object.fromEntries(ks.map(k=>[k,phaseAdaptive(sample,k)])));
   }
-  matched.push({name:c.name,trials,perPage:summarize(samples,"perPage")});
+  matched.push({name:c.name,trials,perPage:summarize(samples,"perPage"),
+    adaptive:Object.fromEntries(ks.map(k=>[k,{
+      min:Math.min(...adaptive.map(x=>x[k])),
+      max:Math.max(...adaptive.map(x=>x[k])),
+      mean:Math.round(adaptive.reduce((v,x)=>v+x[k],0)*1000/trials)/1000,
+      atMostOriginal:adaptive.filter(x=>x[k]<=originalAdaptive[k]).length
+    }]))});
 }
 assert(matched.every(c=>[3,4].every(k=>c.perPage[k].every(s=>s.atMostOriginal===0))));
+assert(matched.every(c=>c.adaptive[3].atMostOriginal===0));
 assert(matched.some(c=>c.perPage[5].some(s=>s.atMostOriginal>0)));
 assert(matched.every(c=>c.perPage[7].some(s=>s.atMostOriginal>0)));
 process.stdout.write(JSON.stringify({
   originalPages:ps.length,originalRunes:N,wholeWords:lens.length,crossPageWords:words.crossPageWords,
-  original,sourceContinuousWindows:controls.map(c=>({name:c.name,n:c.samples.length,...c.contiguous})),
+  original,originalAdaptive,sourceContinuousWindows:controls.map(c=>({name:c.name,n:c.samples.length,...c.contiguous})),
   lengthMatchedControls:{seed:"0x33012026",trialsPerSource:trials,
     mechanism:"Each fixed original word-length slot sampled with replacement from that corpus's actual native GP words of matching rune length",
     results:matched},pageSpecificSecretInvertiblePlants:plants,
-  decision:"Excludes static page-key k=3 and k=4 transformations for source-native English register as calibrated; k=5 evidence weaker under source-shape controls; k=7 unresolved. No unknown plaintext."
+  decision:"k=3 holds even with secret page-by-page independently chosen alignment, for all tested source-native matched words; k=4 requires a source-fixed/common phase and is not all-phase excluded; k=5 controls occasionally match original; k=7 underpowered. No unknown plaintext."
 },null,2)+"\n");
