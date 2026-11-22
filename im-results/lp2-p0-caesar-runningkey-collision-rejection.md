@@ -2,6 +2,8 @@
 
 **Agent34, 22 November 2026. Classification: bounded source-motivated negative.** The original red heading's proposed `SECUENDI RATIO` reading is conditional, and no Cicada-authored evidence chooses Caesar's *De Bello Civili* as the secret key. Nevertheless the literal historical phrase invites a finite continuation stronger than the already rejected repeating `POMPEI` key. This experiment tests the actual passage text as a non-repeating GP29 running key, with ciphertext-repeat-triggered key skips. **It does not recover any unknown LP2 plaintext.**
 
+**Independent native Windows execution:** [passing Node22 GitHub Actions run 44974287192](https://github.com/FlareZ123/liber-primus/actions/runs/44974287192) using the [manual test workflow](../.github/workflows/agent34-caesar-original-p0-skip.yml). Source and assertions execute against the committed original corpus, so these are tested output values.
+
 Reproducer: [Windows-compatible Node22 single-file test](../sims/lp2_p0_caesar_collision_skip_sft.cjs) · [source-leading report](lp2-p0-sequendi-ratio-caesar-source-lead.md) · [conditional title analysis](lp2-p0-red-heading-sequendi-ratio-route-check.md).
 
 ## Independently selected inputs and exact operation
