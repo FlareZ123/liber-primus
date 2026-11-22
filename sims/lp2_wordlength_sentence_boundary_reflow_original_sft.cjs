@@ -44,7 +44,10 @@ const gpLength = word => word.replace(/ING/g, "NG")
   .replace(/TH|EO|OE|NG|AE|IA|EA/g, "X").length;
 const english = file => (read(file).toUpperCase().match(/[A-Z]+/g) || [])
   .map(gpLength);
+const oldEnglish = JSON.parse(read("resources/control/beowulf_oe_gp_profile_corrected.json")).allSourceGpWordLengths;
+assert.equal(oldEnglish.length, 10885);
 const donors = {
+  beowulf_old_english: oldEnglish,
   latin,
   gibran: english("resources/control/gibran_prophet_58585.txt"),
   shakespeare: english("resources/control/shakespeare_first300k.txt"),
@@ -194,6 +197,8 @@ assert.equal(result.original.punctuation.shortPair, 88);
 assert.ok(Math.abs(result.original.punctuation.conditionalExpected - 85.90505517407924) < 1e-8);
 assert.ok(Math.abs(result.original.punctuation.terminalZ + 0.68356206596369) < 1e-7);
 assert.equal(result.donorWindows.latin.atLeastOriginal, 0);
+assert.equal(result.donorWindows.beowulf_old_english.windows, 83);
+assert.equal(result.donorWindows.beowulf_old_english.atLeastOriginal, 83);
 assert.equal(result.donorWindows.shakespeare.atLeastOriginal, 0);
 assert.ok(routes.filter(r => r.width === 5 || r.width === 8)
   .every(r => r.heldout.latinMarkovPerPair < 0));
