@@ -28,4 +28,9 @@ jobs:
       - name: Fixed Python2-compatible integer MT vectors plus six plant controls
         run: /tmp/lp2_mt_crib_sieve --selftest
       - name: Exhaustively test this shard's disjoint 134217728 seeds
-        run: /tmp/lp2_mt_crib_sieve "${{ matrix.shard * 134217728 }}" "${{ (matrix.shard + 1) * 134217728 }}"
+        env:
+          SHARD: ${{ matrix.shard }}
+        run: |
+          start=$(( SHARD * 134217728 ))
+          end=$(( (SHARD + 1) * 134217728 ))
+          /tmp/lp2_mt_crib_sieve "$start" "$end"
