@@ -52,7 +52,7 @@ assert(signed.includes("BASE29 3301"));
 assert(signed.includes("p=23"));
 assert(signed.includes("g=5"));
 assert(signed.includes("a=6"));
-assert(signed.includes("K=2"));
+assert(signed.includes("shared key 2"));
 assert(message2016.toUpperCase().includes("EPIPHANY"));
 assert(message2016.toUpperCase().includes("DEVOTED"));
 const bytes=table.bytes;
