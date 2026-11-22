@@ -1,0 +1,18 @@
+name: Agent36 signed DIRECTION row30 original OutGuess key test
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-selected-row30-outguess:
+    runs-on: ubuntu-latest
+    timeout-minutes: 28
+    steps:
+      - name: Check out original JPEG corpus and original-source extractor
+        uses: actions/checkout@v4
+      - name: Install native jpeg decoding headers
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libjpeg-dev
+      - name: Test authentic known OutGuess control then all 58 LP2 JPEGs
+        run: python3 sims/lp2_direction30_outguess_original_sft.py
