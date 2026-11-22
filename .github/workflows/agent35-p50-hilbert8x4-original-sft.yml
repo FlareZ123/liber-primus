@@ -1,0 +1,14 @@
+name: Agent35 P50 Hilbert 8x4 original-receiver SFT
+on:
+  workflow_dispatch:
+jobs:
+  original-source:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-locked original-cipher inverse
+        run: node sims/lp2_p50_hilbert8x4_original_receiver_sft.cjs
