@@ -112,7 +112,27 @@ function sameColumnPairs(input) {
 function sameWordOffsetPairs(allWords) {
   const commonWords = Math.min(...allWords.map(words => words.length));
   let matches = 0, slots = 0;
-  /**
+const byPair = [];
+  for (let left = 0; left < 5; left++)
+    for (let right = left + 1; right < 5; right++) {
+      let count = 0;
+      for (let word = 0; word < commonWords; word++) {
+        const a = allWords[left][word], b = allWords[right][word];
+        for (let pos = 0; pos < Math.min(a.length, b.length); pos++) {
+          count += Number(a[pos] === b[pos]);
+          slots++;
+        }
+      }
+      matches += count;
+      byPair.push(count);
+    }
+  return {matches, slots, byPair};
+}
+const originalWordClock = sameWordOffsetPairs(originals);
+assert.deepEqual(originalWordClock,
+  {matches: 15, slots: 636, byPair: [0, 4, 2, 1, 2, 3, 1, 1, 1, 0]});
+
+/**
  * Historical p56 authentic keyed cipher permits plaintext F to emit F and
  * consume no key. A ciphertext F may instead be an ordinary encrypted
  * non-F. Enumerate BOTH choices for each original C=F, across all five
@@ -146,25 +166,6 @@ for (let mask = 0; mask < (1 << originalFEvents.length); mask++) {
 assert.equal(minFWordMatches, 15);
 assert.equal(bestFWord.matches, 16);
 assert.equal(bestFWord.slots, 633);
-const byPair = [];
-  for (let left = 0; left < 5; left++)
-    for (let right = left + 1; right < 5; right++) {
-      let count = 0;
-      for (let word = 0; word < commonWords; word++) {
-        const a = allWords[left][word], b = allWords[right][word];
-        for (let pos = 0; pos < Math.min(a.length, b.length); pos++) {
-          count += Number(a[pos] === b[pos]);
-          slots++;
-        }
-      }
-      matches += count;
-      byPair.push(count);
-    }
-  return {matches, slots, byPair};
-}
-const originalWordClock = sameWordOffsetPairs(originals);
-assert.deepEqual(originalWordClock,
-  {matches: 15, slots: 636, byPair: [0, 4, 2, 1, 2, 3, 1, 1, 1, 0]});
 const byPair = [];
 for (let left = 0; left < 5; left++)
   for (let right = left + 1; right < 5; right++) {
