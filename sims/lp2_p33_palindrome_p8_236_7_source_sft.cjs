@@ -16,7 +16,7 @@ const root = path.resolve(__dirname, "..");
 /** @param {string} name */
 const read = (name) => fs.readFileSync(path.join(root, name), "utf8");
 const corpus = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
-const raw = read("resources/liber-primus/lp2-transcription.txt");
+const raw = read("resources/liber-primus/lp2-transcription.txt").replace(/\r\n/gu, "\n");
 const pages = raw.split(/\n%\n/);
 const runeIndex = new Map(corpus.runes.map((r, i) => [r, i]));
 const isRune = (r) => runeIndex.has(r);
