@@ -82,6 +82,29 @@ Identically sized **source-native GP** windows from genuinely unrelated historic
 
 The [reproducible single-file Windows Node22 all-secret gate](../sims/lp2_p7_fiveproduct_lfsr1876_original_sft.cjs) checks the original red packet, polynomial factorization, entire state-matrix period, the untouched p0–p55 and p40–p53 originals, exact known-native encrypted plants, and source-native holdouts. Both original-cipher models in this consolidated note are now independently archived; neither recovers unknown-page plaintext. Future work should find an author-given **state update involving the ciphertext or a different output register**, if any, before investing in another p7-product-derived generator.
 
+## P8 printed-word key recovery under every source-product LFSR seed (22 November, Agent 36)
+
+**New decision: the p7 coefficient-driven homogeneous LFSR fails on the original p8 *alone*, even if its initial five-rune seed is completely unrestricted and it resets at the start of p8.** This is a stronger local conclusion than the whole-book period-1,876 equalities above, since it needs neither interpage key continuity nor a secret key phase. It is conditional on native-GP ordinary word spelling.
+
+A human could multiply the five physically red p7 rune words in GP29, obtaining exactly `[11,26,8,15,2]`, and apply them as the coefficients of the fixed fifth-order recurrence `K_i=11K_(i-1)+26K_(i-2)+8K_(i-3)+15K_(i-4)+2K_(i-5) (mod29)`. No original source explicitly mandates a recurrence; the five red products motivate this precise, testable candidate. Under either direct additive sign, a printed ciphertext word of length L determines L candidate keystream symbols `K=C−P` up to overall sign. Every set of **five consecutive** key symbols determines all later values under the recurrence. Therefore each word of length at least **nine** must satisfy four or more **exact GF29 recurrence equations** independently of all `29^5` possible hidden seeds, the unknown initial five key symbols, or the preceding words.
+
+There are exactly **49 complete black p8 printed words** after its two red heading words (4+8 red runes); their 243 black runes include **six long words** in the original reading order. Test every distinct ordinary English word spelling in the source-native 29,157-word TextBlob reference, retaining the already-solved GP spellings where `ING` and `IO` each occupy one rune. Independently test every printed word in the original **39,835-word** Latin Vulgate GP29 reference without English-word assumptions.
+
+| Black word index (0-based) | Body rune offset | Rune length | Distinct English GP candidates | Distinct Vulgate GP candidates | Candidates satisfying every recurrence equation, English / Latin |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 3 | 8 | 9 | 3,397 | 935 | **0 / 0** |
+| 27 | 112 | 10 | 2,388 | 728 | **0 / 0** |
+| 29 | 128 | 12 | 767 | 297 | **0 / 0** |
+| 35 | 160 | 10 | 2,388 | 728 | **0 / 0** |
+| 37 | 174 | 9 | 3,397 | 935 | **0 / 0** |
+| 45 | 221 | 9 | 3,397 | 935 | **0 / 0** |
+
+There is also a **direct actual-key recovery attempt**. The first two original black p8 words have lengths **three plus two**, fixing an arbitrary five-symbol additive pad under any plaintext choice in those slots. Exhaust **753** distinct source-native GP3 spellings × **189** distinct GP2 spellings = **142,317 candidate initial pads** per sign. Exactly **4,453** per sign decrypt the next printed three-rune word to a native dictionary entry. **Zero** decrypt the following original nine-rune word to an entry, under either sign, with no language score or fitted seed. The redundancy between signs is expected because multiplying every pad symbol by −1 preserves a homogeneous recurrence. It is still an explicit invertible key-search test, not a language-only statistic.
+
+The standalone SFT generates source-native words in **all 49 original p8 word positions**, encrypts the entire 243-rune sentence using a truly arbitrary concealed five-rune state `[7,11,3,23,5]`, and confirms exact source recovery and detection of a true key candidate under **both signs**. A separate five-term encrypted plant, original p8 sign controls and the independently encoded Latin word gate are also checked. No unknown p8 plaintext survives the original word constraints. The test passes on original source in Windows Node22 Actions; [reproducer](../sims/lp2_p8_fiveproduct_lfsr_allseed_nativeword_sft.cjs).
+
+**Decision:** retire a literal page-reset p7-product homogeneous order-five additive keystream for **native English and the independent Vulgate register**, even with unlimited hidden initial seed and either sign, on unchanged p8 original printed long words. This does not exclude exotic English vocabulary absent from the finite corpus, a different original plaintext language, altered word breaks, plaintext/ciphertext-conditioned key evolution, skipped-runic clocking or other cryptographic layers. This is a key-independent bounded cipher-class rejection and a failed complete-page key recovery, **not** authenticated plaintext.
+
 ## Stronger full-state exclusion for previous-ciphertext differential emission
 
 The original adjacent-equal-runic deficit motivates a self-synchronizing receiver. An independently testable adjacent-difference family is

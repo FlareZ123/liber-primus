@@ -155,6 +155,35 @@ assert.deepEqual(longWords.map(w => [w.wordIndex,w.bodyRuneOffset,w.length]),
   [[3,8,9],[27,112,10],[29,128,12],[35,160,10],[37,174,9],[45,221,9]]);
 assert.ok(longWords.every(w => w.matchingLexicalCandidates.length === 0));
 
+// An independent, source-preserving Latin reference word register tests
+// the same all-secret original sites without retrofitting English spelling.
+/** @type {Map<number, Map<string,number[]>>} */
+const latin = new Map();
+let latinPrintedWords = 0;
+for (const s of read('resources/control/latin-vulgate-gp-wholewords.txt').split(/\r?\n/)) {
+  if (!/^[0-9A-S]+$/.test(s)) continue;
+  const digits = [...s].map(ch => parseInt(ch, 36));
+  if (!latin.has(digits.length)) latin.set(digits.length, new Map());
+  latin.get(digits.length).set(s, digits);
+  latinPrintedWords++;
+}
+assert.equal(latinPrintedWords, 39835);
+assert.deepEqual([latin.get(9).size,latin.get(10).size,latin.get(12).size],
+  [935,728,297]);
+const latinLongWordResults = longWords.map(({wordIndex,bodyRuneOffset,length}) => {
+  const sourceCipher = bodyWords[wordIndex];
+  const matches = [];
+  for (const [literal, candidate] of latin.get(length).entries()) {
+    if (wordCompatible(sourceCipher, candidate)) matches.push(literal);
+  }
+  return {wordIndex,bodyRuneOffset,length,
+    independentLatinCandidates:latin.get(length).size,
+    compatibleLatinCandidates:matches};
+});
+assert.equal(latinLongWordResults.length, 6);
+assert.ok(latinLongWordResults.every(w => w.compatibleLatinCandidates.length === 0));
+
+
 // Actual secret-state recovery, rather than fitting keys to scores.
 // The first two original black words total exactly 5 GP runes. Every
 // dictionary-native 3+2 GP rune pair uniquely fixes an initial five-pad
@@ -236,6 +265,7 @@ console.log(JSON.stringify({
   input:{originalBlackRunes:243,originalBlackWords:49,
     nativeDictionaryWords:sourceWordCount},
   originalLongWords:longWords,
+  independentLatinLongWords:latinLongWordResults,
   sourceFirst5KeyProductWeights:weights,
   originalFirstFourWordRecovery:original,
   plantedNativeWordControls:plantResults,
