@@ -8,7 +8,7 @@ The historical 2012–2014 puzzles used several external texts and explicit addr
 
 - 2012: 29-volume encyclopaedia/Mabinogion reference and a separate William Gibson *Agrippa* QR-code poem route. The supplied coordinates were for **those** stage outputs.
 - 2013: *Liber AL vel Legis* was identified for its own book-code stage, not an LP2-running-key instruction.
-- 2014: the signed first-onion poem selected Emerson's *Self-Reliance* and supplied **sixteen 1-based paragraph:sentence:word:letter coordinates**, recovering `auqgnxjtvdbll3pv.onion`. The contemporary [archived essay text](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/001-twitter/self-reliance.txt) is pinned to a repository commit. A later 2014 stage selected Hofstadter's *Gödel, Escher, Bach* through chapter abbreviations and its own line/word/letter addresses.
+- 2014: the signed first-onion poem selected Emerson's *Self-Reliance* and supplied **fifteen 1-based paragraph:sentence:word:letter coordinates and one literal digit 3**, recovering `auqgnxjtvdbll3pv.onion`. The contemporary [archived essay text](https://github.com/neuroretransmit/cicada/blob/ade9a02889ef8acbc8cde8edbfd0a785c369f4c3/2014/001-twitter/self-reliance.txt) is pinned to a repository commit. A later 2014 stage selected Hofstadter's *Gödel, Escher, Bach* through chapter abbreviations and its own line/word/letter addresses.
 
 The [authenticated 2016 instruction](../resources/historical/cicada2016-4gq25-outguess.asc) instead identifies **Liber Primus's own** words, meanings and numbers as map/road/direction. It does not name an external book, edition, coordinate tuple, exact offset, running-key operation, or ciphertext receiver.
 

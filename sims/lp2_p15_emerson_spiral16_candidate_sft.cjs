@@ -58,6 +58,25 @@ const blob = crypto.createHash("sha1")
   .update(Buffer.from("blob " + buffer.length + "\0", "utf8"))
   .update(buffer).digest("hex");
 assert.equal(blob, "12a6bc018047a1276e77f2b7f633d5905732fff9");
+/** Historical positive control: 15 coordinates plus the signed literal '3'. */
+const historicalAddresses = [
+  "1:2:3:1", "3:3:13:5", "45:5:2:3", "20:3:20:5",
+  "8:3:8:6", "48:5:14:2", "21:13:4:1", "25:1:7:4",
+  "15:9:3:4", "1:1:16:3", "4:3:3:1", "8:3:26:4",
+  "47:3:3:5", "3", "13:2:5:4", "1:4:16:4"
+];
+const historicParagraphs = essay.split("\n\n").map(paragraph =>
+  paragraph.split(/(?<=[.!?])\s+/).map(sentence =>
+    sentence.replace(/\n/g, " ").split(" ")));
+const historicalOnion = historicalAddresses.map(code => {
+  if (code === "3") return code;
+  let [paragraph, sentence, word, letter] = code.split(":")
+    .map(n => Number(n) - 1);
+  if (paragraph + 1 >= 45) paragraph++;
+  return historicParagraphs[paragraph][sentence][word][letter];
+}).join("");
+assert.equal(historicalOnion, "auqgnxjtvdbll3pv");
+
 const letters = essay.toUpperCase().replace(/[^A-Z]/g, "");
 assert.equal(letters.length, 43516);
 assert.ok(Math.max(...nums) <= letters.length);
@@ -97,7 +116,7 @@ console.log(JSON.stringify({
   original_p15_spiral: nums,
   source_git_blob: blob,
   source_ascii_letters: letters.length,
-  extracted_16_base32: onion,
+  authentic_2014_emerson_bookcode_positive: historicalOnion,\n  extracted_16_base32: onion,
   hypothetical_onion_v2: onion + ".onion",
   other_edition_readout: alternateOnion,
   within_source_shift_control: {
