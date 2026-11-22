@@ -1,12 +1,12 @@
-# Exact whole-book H-word checksum readout: three-word maximum in original order
+# Full-book H-word checksum readouts: exact single-channel bound and dual-channel null
 
-**Agent39, 22 November 2026. Classification: one original-source, exact, bounded inverse/readout exclusion. No new unknown-page plaintext or source-selected key.**
+**Agent39, 22 November 2026. Classification: exact original-source readout bounds and source-conditioned controls. No unknown-page plaintext, manuscript-wide inverse or source-selected key.**
 
 ## Decision and strongest competing explanation
 
 The previously discovered outside-in word transform \`H(a,b)=(a-b,a+b) mod29\` produces a conspicuous **selectively assembled** run of the 2016 first-party signed text: the first two red words on original physical p7 read \`THE MAP\`, the next opening red title on p8 reads \`THEIR MEANING\`, and a red title plus first black word on **already solved p56** read \`IS THE ROAD\`. The exact checksum indices are \`[17,18,19,20,21,1,23]\`; index1 and index22 both name \`THE\`. The original chain is real as a **source-to-source, nonconsecutive selection**, documented in [the earlier red-word report](lp2-redword-h-signed2016-sevenword-source-readout.md). It has never inverted an unknown ciphertext word or authenticated the rule for choosing distant pages.
 
-The narrower, potentially stronger and falsifiable competing claim is that **the printed manuscript can simply be read in its actual word order with the same fixed checksum and signed2016 vocabulary**. Were that true for a meaningful passage, no extra navigation, page jumps, hand-selected word windows or key acquisition would be needed. We tested the **complete 2,896 unknown original words** plus the **45 known solved words** under this one frozen mechanism. The longest literal uninterrupted signed-source phrase is **three complete printed words**. There is no four-word phrase anywhere. Thus the promising seven-word assembled sequence cannot be promoted into a continuous direct decoder.
+Test two simple, fully specified mechanisms before inventing a navigation network. **One checksum per printed word**, consumed in original order, has a longest literal uninterrupted signed-source phrase of **three words**, with zero four-word phrases. **Two complementary half-word checksums per printed word**, read in either natural order, admit one five-word phrase on p11 under a right/left ordering. The latter occurs in approximately one fifth of page-and-word-length-preserving randomized books when all four readout modes are charged. Therefore neither one-channel nor two-channel direct continuous reading supports recovered plaintext; any real navigation route still needs an independently authored transition or an untouched receiver prediction.
 
 ## Source, exact operator and original integrity
 
@@ -38,10 +38,37 @@ All nine lexical three-word windows are exhaustive. **Eight begin within unknown
 
 Checks against the earlier discontiguous source readout reproduce the exact anchors: original p0's first two red words give \`[1,13]\` (THE WAY); the first two red words on p7 give \`[17,18]\`, p8's two opening red words give \`[19,20]\`, and solved p56's red-red-black starting three words give \`[21,1,23]\`. The exact original printed order includes intervening words at p7 and dozens of later pages, explaining why the assembled chain does not appear in this continuous census.
 
+## Two-channel test: the alluring five-word line is common under source-matched shuffles
+
+The previous one-number checksum drops every right-half rune. A natural alternative, motivated by **SHED CIRCUMFERENCES** and the outside-in H geometry, is to retain the other half rather than discard it. Define exactly the **left** and **right** GP29 checksum channels for each original printed word:
+
+- \`L(w) = [2 sum(first floor(n/2) rune indices) + odd center] mod29\`.
+- \`R(w) = [2 sum(last floor(n/2) rune indices) + odd center] mod29\`.
+
+For a **one-rune word**, both channels are precisely its one rune. Neither contains the other half; neither is a true wordwise inverse. Interpret each checksum as a zero-based lexical index into the exact signed 2016 text. Before examining an output, admit four human-legible fixed original-word-order readings: \`L\`, \`R\`, \`LR\` (left then right for each word), \`RL\` (right then left). Search every original starting word and every possible signed-source phrase. The original unknown-only book has **2,896 whole words**, 55 rune-bearing source pages and 32 cross-page carries.
+
+| Order | Longest exact contiguous signed-source phrase | Original location |
+| --- | --- | --- |
+| L | 3 words | Nine positions in full book; eight begin in unknown pages |
+| R | 3 words | Nine positions in full book |
+| LR | **4 words**: THEIR NUMBERS ARE THE | p42:263, continuing into p43 |
+| RL | **5 words**: THE MAP THEIR MEANING IS | **p11:51**, with only three original ciphertext words |
+
+The **RL** sequence is fully concrete on untouched p11: word p11:51 has \`(R,L)=(1,18)\`, giving \`THE MAP\`; p11:54 has \`(25,20)\`, giving \`THEIR MEANING\`; p11:58 has first \`R=11\`, giving \`IS\`. The same third word emits \`L=10=PRIMUS\`, **breaking the signed source's required continuation**. A separate **LR** run begins at p42:263, \`(L,R)=(19,26)\`, and continues with p43's next complete word \`(27,28)\`: THEIR NUMBERS ARE THE. The physically carried p42 word spans a page seam, but this coincidence does not independently identify a seam-specific cipher state.
+
+The five-word match was noticed after examining all reading orders and positions. We therefore **do not report its single-mode probability as discovery significance**. A stronger independent baseline keeps every actual word's **paired (L,R) values together**, preserving any observed correlation between its two outputs, and shuffles complete word pairs *within the original physical page*. An additional stricter null permits swaps only among original words sharing **both physical page and exact printed word length**. Each of **3,000** deterministic randomizations per null scans all four modes, all positions and every full five-token sequence of the first-party 43-word source whose lexical labels are addressable by the 29-value checksum. There are **25 distinct eligible signed-source five-grams**. The shuffles preserve the entire source's original word-length profile, page locations, pair multisets, signed lexical repetitions and allowable reading orders.
+
+| Matched original-source null, 3,000 trials | Any five-word match in four modes | At least one RL match | Plus-one familywise upper tail |
+| --- | ---: | ---: | ---: |
+| Original page-preserving word-pair shuffle | **583** | 218 | **584/3,001 = 0.1946** |
+| Original page **and original word length** preserving shuffle | **592** | 161 | **593/3,001 = 0.1976** |
+
+Both controls frequently produce at least one five-word match, even without any encoding of the signed passage. The original one-event result has **no meaningful evidence of a continuous signed-source H decoder** against this matched family. The null is an empirical randomization test under its stated exchangeability condition, not an all-mechanism mathematical exclusion; the output was discovered under the original data, and this null addresses the exact tested choice family. It also emphasizes that the original printed word sequence and natural two-part serialization are insufficient to select an authentic cipher operation.
+
 ## Consequence for actual cryptanalysis
 
-The checksum can legitimately be explored as a **navigation label** provided that a source-authenticated or independently predictive rule selects the manuscript words and prescribes how the label becomes an operation, key, or next address. The direct, all-word sequential readout under the same H rule is **excluded** by the exhaustive census. The solved p56 start illustrates the distinction sharply: its H labels name \`IS THE ROAD\`, while its independently authenticated full prime/totient decryption begins \`AN END WITHIN\`. A good-looking H label is therefore **not a decrypted plaintext word** even at this original solved control.
+The H family remains eligible as a **lossy navigation label** only if first-party evidence selects the target manuscript word, the checksum side and next transition independently of candidate language. Neither direct one-label original-order reading nor simple two-half wordwise serialization yields exceptional contiguous original-source text. The previously assembled p7→p8→p56 seven-word phrase requires distant selected locations, and the solved p56's H labels read \`IS THE ROAD\` even though its authenticated prime/totient decipherment starts \`AN END WITHIN\`. Thus an H label must **not be represented as recovered plaintext**.
 
-This result is a scoped restriction on one exact 2016 lexical source and one exact fixed operator. Arbitrary word routing, alternate vocabularies, different original-source segmentation, nonlinear ciphertext-to-key operations, or reading more than one H component remain open; they need an independent source-selected transition or a held-out original inverse. No new ciphertext plaintext, key or deep-web destination has been obtained.
+The new p11 and p42 phrases are chance-compatible with unchanged source geometry and word lengths. Do not build new dependent cipher layers or claim key recovery from these fragments without a prior original clue that singles them out and predicts a *separate untouched original span*. The original p46 H-checksum triple \`20,21,22\` begins in an 11-rune word that crosses p46→p47, but this checksum ignores its right half, including the seam, so does not select a page-boundary state law. All 56 unknown physical pages remain undeciphered.
 
-**Reproducer:** [single read-only Node22 CJS original-source SFT](../sims/lp2_h_word_signed2016_contiguous_fullbook_sft.cjs). The program asserts every physical page's GP indices, word/carry counts, exact 43 signed source words, all nine lexical triples, unique numeric triple and the published separated red/solved anchors.
+**Reproduction:** [exact original one-channel census SFT](../sims/lp2_h_word_signed2016_contiguous_fullbook_sft.cjs) and [four-mode dual-channel original source plus 6,000 seeded matched-shuffle SFT](../sims/lp2_h_word_dual_half_signed2016_shuffle_sft.cjs), Node.js 22 CommonJS. Each locks the original corpus, printed segmentation, 43-word 2016 PGP source and genuine page offsets. The second retains paired checksums, 55 page strata and 525 page/length strata, and asserts both independent 3,000-trial control counts.
