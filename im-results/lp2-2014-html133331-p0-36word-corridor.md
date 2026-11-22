@@ -121,6 +121,22 @@ The original HTML numbers select only **two literal table-byte offsets**, 141 an
 
 Other original pages have no simultaneous word beginnings at both offsets. Physical **p53 belongs to the five-page post-table/right subtree** p51–55, while p0 belongs to the 50-page pre-table subtree. The eight selected *p53* original ciphertext word lengths are **11/2/3/2/6/5/5/2**, unlike p0's **4/6/3/4/8/7/3/1**. Both original same-length ciphertext spans have uniform-looking GP marginal sequences; their ciphertext difference is also essentially uniform (36-sample IoC **0.03650794**, with **one** exact matching rune). That is too short to prove or exclude a reused hidden pad; no plaintext emerges.
 
+### A key-eliminating paired-page test: shared additive pad with English words fails
+
+Having two original **36-rune intervals at the same offsets** makes it possible to test the simplest potential shared key without guessing a single key byte. Under one common position-indexed additive GP29 pad, `C0[i]=P0[i]+K[i] mod29` and `C53[i]=P53[i]+K[i] mod29`, so `C0[i]-C53[i]=P0[i]-P53[i] mod29` *exactly*. The original p0 selected **second full word** has six runes at offsets145..150; these six positions overlap rune positions4..9 of the original **first p53 selected word**, which contains eleven runes at offsets141..151. The original six-runic difference vector, without an adjustable key, is:
+
+```text
+p0 original word33 (length6) at offsets145..150
+p53 original word31 (length11) positions 4..9
+(C0 − C53) mod29 = [26,16,28,8,10,3]
+```
+
+A fixed lexical receiver tests whether both aligned underlying GP29 words are plausible **complete English words**. Use the source-corpus TextBlob/P. Norvig 29,157-word English frequency dictionary; canonically map K→C, V→U, Q→C, Z→S, and allow both the ordinary single-GP-letter and 29-rune ligature options for `TH, NG, ING, EO, OE, AE, EA, IA`. These options accommodate the known-clear p57 spellings such as `DIUINITY` and `TUNNELNG`. The lexicon generates **5,935** distinct six-rune word spellings and **2,247** eleven-rune word spellings, covering **1,798** distinct six-rune middle substrings of those eleven-rune candidates. An exact source-locked dictionary join evaluates **every** pair satisfying the above six-runic modular difference. Result: **zero**.
+
+A planted two-word positive formed by one source dictionary word of each length and encrypting both under the same arbitrary pad reproduces the designed six-rune difference, and the same join recovers the planted word pair. Orthographic positives from p57 also pass. The entire [source-pinned CJS reproducer](../sims/lp2_133331_p0p53_reusedpad_6word_sft.cjs) passed native Windows Node22 in [CI run 44974515680](https://github.com/FlareZ123/liber-primus/actions/runs/44974515680).
+
+**Decision:** exclude the simple **same-position GP29 additive pad reused on both original intervals**, conditional on both published word boundaries being genuine and both words being among those 29,157 source-English candidates under the allowed GP orthographies. No readable original plaintext or original key is recovered. Longer or rarer English words, other alphabets, independent pads, altered offset origins or nonlinear mechanisms remain outside this bounded model. No warrant exists to modify the model until another original clue selects one of those alternatives.
+
 **Consequence:** p0 is *one of two* eight-word receiver matches, and its prior status as a uniquely source-selected page is weakened. Conversely, the new p53 match is a legitimate **unmodified second original-cipher receiver** for any later, fully frozen operation. Any proposed decoding operator fitted on p0 should be **applied without retuning to p53**, preferably predicting authentic readable text or a structural key relationship on both. The page selector remains an open hypothesis.
 
 ### New source-shaped comparison: 133/331 is the only surviving three-digit reversal pair
