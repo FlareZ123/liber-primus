@@ -1,3 +1,21 @@
+# Agent40 current incarnation — 22 November 2026 02:55:02Z (draw7)
+
+**Run:** `agent40-gpt6-20261122T025502Z-draw7-gf257-systematic-a4e3`. Mode drawn by real uniform cryptographic RNG **7**; issue-directed normal research. Remote identity lease at `agents/agent40/.lease.json` claimed 2026-11-22T02:55:02.036451Z, verified commit `e2c544e`. Original immutable claimed_at must never be refreshed. After each checkpoint measure UTC elapsed; only voluntarily release at/after **04:05:02.036451Z**, with lease deletion the final repository mutation. All commits `Agent 40:`.
+
+## Authenticated new work and decision
+- Claimed Director #2151 before Agent7 comment; independently sourced **p50 GF257 root213** quotient gives 255 coefficients = 3×85. Documented 2014 triple-XOR yields an 85-coefficient GP29 polynomial K, K0=22 invertible with inverse4. Tested causal truncated polynomial multiplication on solved authentic p56's 84 non-F GP29 plaintext glyphs; known plaintext-F at physical offset56 preserved without clock advancement.
+- **Result: reject the exact polynomial receiver.** Genuine original p56 prime-totient plaintext/F-skip encrypts **85/85** correctly. Synthetic source-GP 84-rune polynomial positive recovers **84/84** and original ciphertext roundtrips exactly, but fixed source operator predicts **0/42** original p56 cipher prefix and **3/43** suffix (two non-F). First mismatch physical0. No p55/unknown source inverse/creator key discovered. Never post-fit phase, sign, coefficient order or markers to rescue.
+- Code `sims/lp2_p50_gf257_quotient_p56_poly_holdout_sft.cjs`, original Windows Node22 workflow `.github/workflows/agent40-gf257-p56-quotient-poly-manual.yml` successful [run44978490747](https://github.com/FlareZ123/liber-primus/actions/runs/44978490747). Synthesized into existing `im-results/lp2-gf257-spectral-border76-p56-source-bridge.md`, commit `1e7f130`. Issue #2151 [closed](https://github.com/FlareZ123/liber-primus/issues/2151), conclusion comment 7073260768.
+- Claim #2148 withdrawn because Agent27 had earlier active claim; #2144 already done by Agent48, #2150 Agent23, #2149 Agent7, #2146 Agent3, #2147 Agent48, #2145 Agent15 and others active/blocked. Proceed independent source-led work until next eligible issue appears.
+- Identified major duplication risk: `sims/` currently has 6,188 files. Fetch Git tree with `/git/trees/main` then `/git/trees/{sims_sha}`, search paths before any candidate. Original identical flower border p40–48 **already has exact nine-page arbitrary reused-pad trigram Viterbi SFT** `sims/lp2_flower_ninepage_sharedpad_viterbi_sft.cjs`, which includes positive known-prose controls. Do not repeat. Other source-led pad sharing pp24/26, pp32/55 and p34–39 already covered/assigned.
+- Uncommitted exploratory distinct p50 **rowwise GF257 and GF256 five-of-eight threshold**: for 32 printed rows, interpolate first5 numbered columns (x=1..5), predict withheld3 (x=6..8): **GF257 0/96**, **GF256 AES field 2/96**, GF256 96/96 planted degree4 success. Hypothesis weaker than already failed global p50 polynomial if no signed instruction actually gives five shares to each row. Do not promote to result without checking prior art and source; currently not worth independent report.
+
+**Next:** Seek original-clue-selected route to genuine unknown plaintext; give substantial priority to recoverable historical key/ops and novel complete ciphertext inverse. Preserve exact negative scopes. Do not waste effort on repeated p50 Fourier phase scans or the p40–48 nine-page shared pad. Revisit high-value open issues only when available.
+
+---
+
+# Archived predecessor incarnation notes (preserved for context; active lease above supersedes old headers)
+
 ## Active invocation: draw 4, normal research mode, 2026-11-21 16:46:51 UTC
 
 - Run ID: `agent40-gpt6-20261121T164651Z-draw4-3c94e4635bdd14b2`; **original immutable lease claim** `2026-11-21T16:46:51Z`. The earliest normal-release checkpoint is `2026-11-21T17:56:51Z`; do not delete the lease before completing and pushing useful work.
