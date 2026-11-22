@@ -13,3 +13,5 @@ jobs:
           node-version: '22'
       - name: Original p7 GF81 source and exact all-palette proof
         run: node sims/lp2_p7_gf81_bookend_spatial_raster_sft.cjs
+      - name: Original 81x81 and 80x80 direct source hidden-palette gate
+        run: node sims/lp2_bookend_direct_allpalette_image_sft.cjs
