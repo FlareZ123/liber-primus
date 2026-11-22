@@ -114,6 +114,14 @@ const tableHash = crypto.createHash('sha256').update(Buffer.from(sourceBytes)).d
 assert.equal(tableHash, '3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290');
 const table = sourceBytes.map(mod);
 assert.equal(table[0], 0);
+const base59Alphabet = grid.alphabet.replace('f', '');
+assert.equal(base59Alphabet.length, 59);
+const base59 = tokens.map(token => {
+  assert.ok(base59Alphabet.includes(token[0]) && base59Alphabet.includes(token[1]));
+  return 59 * base59Alphabet.indexOf(token[0]) + base59Alphabet.indexOf(token[1]);
+}).map(mod);
+assert.equal(base59[0], 26);
+assert.notDeepEqual(divide(base59, G).remainder, [0, 0]);
 const quotientP = divide(p29, G);
 const quotientT = divide(table, G);
 assert.deepEqual(quotientP.remainder, [0, 0]);
@@ -139,7 +147,7 @@ const matrix = Array.from({length: 23}, (_, row) =>
   lcm.slice(23 * row, 23 * (row + 1)));
 const matrixData = inverse(matrix);
 assert.equal(matrixData.rank, 23);
-assert.ok(matrixData.determinant !== 0);
+assert.equal(matrixData.determinant, 1);
 const unit = Array.from({length: 23}, (_, i) =>
   Array.from({length: 23}, (_, j) => Number(i === j)));
 const product = (A, B) => Array.from({length: 23}, (_, i) =>
@@ -214,7 +222,8 @@ console.log(JSON.stringify({
   source: {p29RuneLength: 277, p50ByteLength: 256, p50Base60ByteSha256: tableHash,
     p39RedIndices: red, sharedGHighFirst: G, commonRoot: 24,
     p29GQuotientLength: 275, p50GQuotientLength: 254,
-    physicalTableMod29LeadingZero: table[0], lcmDegree: 528,
+    physicalTableMod29LeadingZero: table[0], base59LeadingResidue: base59[0],
+    base59SharesSourceG: false, lcmDegree: 528,
     lcmCoefficientCount: 529, matrixDimensions: '23 x 23',
     matrixRank: matrixData.rank, matrixDeterminantMod29: matrixData.determinant,
     squareCenterGP29: lcm[264]},
