@@ -10,12 +10,14 @@
  *
  * Source numeric addresses use n mod 256 for the original 256-cell grid.
  * Source base59 omits digit f, absent from p50's alphabet.
- * Source A=8 is a previously reconstructed, NON-author-selected teaching
- * example of DH; it is a conditional navigation depth, not a proven opcode.
+ * The 2016 signed words NUMBERS (7 native GP runes) and DIRECTION
+ * (8 native GP runes) offer a second, still-conditional 7/8-hop clue.
+ * Source DH A=8 was only a participant-selected teaching example.
  *
  * Windows Node.js 22/CommonJS, read-only:
  *   node sims/lp2_1033_3299_3301_base59_p55_p56_convergence_sft.cjs
  */
+const {encodeSourceNativeGP}=require("./lp2_native_gp_source_orthography_sft.cjs");
 const assert=require("node:assert/strict");
 const fs=require("node:fs");
 const path=require("node:path");
@@ -47,7 +49,7 @@ assert.deepEqual(seeds,[
  {number:3301,address:229,token:"00",base59:0,base60:0}
 ]);
 // The 3301 branch reaches the already source-selected target 245
-// exactly after A=8 pointers, no free address, clock or alphabet fit.
+// after eight pointers, with a conditional signed-word length selector.
 let state=seeds[2].address;
 const trace=[{address:state,token:cells[state]}];
 for(let hop=1;hop<=8;hop++){
@@ -82,6 +84,40 @@ const positions=token=>cells.flatMap((value,i)=>value===token?[i]:[]);
 assert.deepEqual(positions("49"),[9,158,227]);
 assert.deepEqual(positions("00"),[192,229]);
 assert.deepEqual(positions("0u"),[94,245]);
+
+// Stronger historically authored *suggestion* for the seven/eight hop
+// positions: the PGP-signed 2016 sentence literally says
+// "their numbers are the direction". The native-GP forms of the two
+// nouns have seven and eight original alphabet symbols respectively.
+// On the unchanged 3301 route, seven steps reach the THIRD literal
+// 49 cell, index158; eight steps reach its base59 successor245.
+// Thus all THREE literal 49 cells are reached by the independent
+// original 1033, 3299 and signed-word-7/3301 branches. There is still
+// no Cicada instruction to use GP word length as number of pointer hops.
+const signed2016=read("resources/historical/cicada2016-4gq25-outguess.asc");
+assert(signed2016.includes("their numbers are the direction"));
+const signedNumbersLength=encodeSourceNativeGP("NUMBERS").length;
+const signedDirectionLength=encodeSourceNativeGP("DIRECTION").length;
+assert.deepEqual([signedNumbersLength,signedDirectionLength],[7,8]);
+assert.deepEqual(
+ [trace[signedNumbersLength].address,trace[signedDirectionLength].address],
+ [158,245]);
+assert.equal(trace[signedNumbersLength].token,"49");
+assert.equal(trace[signedDirectionLength].token,"0u");
+const source49Addresses=[
+ sourceNumbers[0]%256,sourceNumbers[1]%256,
+ trace[signedNumbersLength].address
+].sort((a,b)=>a-b);
+assert.deepEqual(source49Addresses,positions("49"));
+const signedWordHopSelector={
+ signedLiteral:"their numbers are the direction",
+ nativeWordLengths:{NUMBERS:signedNumbersLength,
+  DIRECTION:signedDirectionLength},
+ selectedRouteNodes:[trace[7].address,trace[8].address],
+ all49CellsAccountedFor:source49Addresses,
+ operationSelectorAuthenticated:false
+};
+
 
 // The two literal "0u" cells reside precisely on the second 32x8
 // concentric ring, exposed after one perimeter peel. This is compatible
@@ -159,7 +195,7 @@ console.log(JSON.stringify({
   originalTokenMultiplicity:{
     "49":positions("49"),"00":positions("00"),"0u":positions("0u")
   },
-  terminal,firstShed,secondRingTests,
+  terminal,firstShed,secondRingTests,signedWordHopSelector,
   independentlyEquivalentOriginal3301Base59:"55×59+56",
   receiverPages:{p55RuneCount:p55.indices.length,
     p56RuneCount:p56.indices.length},
