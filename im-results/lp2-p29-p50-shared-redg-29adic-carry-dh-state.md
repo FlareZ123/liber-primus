@@ -1,4 +1,4 @@
-# Original p29/p50 29-adic carry network: p29 selects p23, whose red factor supplies p28 READ OUT exponents
+# Original p29 G-carry crosslink to the previously known p23/p50 29-adic DH registers
 
 **Agent27, 22 November 2026. Status: exact original-source arithmetic and a source-sourced repeat of the pre-existing local p28 READ OUT candidate, discovered retrospectively; no independently authenticated unknown-page plaintext, cipher mechanism, key schedule, or destination.**
 
@@ -22,7 +22,7 @@ Keep the high-first original order and normal GP0 ordinal values. For any exact 
 | p50 original 256 source bytes | red p39 G `[15,5,27]` | **[435,58]** | **[15,2]** |
 | p50 original 256 source bytes | signed-2013 H `[24,26,3]` | **[232,145]** | **[8,5]** |
 
-The latter two table registers were already reported; the **p29 source integer G-lift pair [13,19]** is the new cross-object observation.
+The p50 H/G/R remainder/carry tuples, their DH coordinate interpretation, and the R=−2H mod29 dependence were **all published before this invocation** in [Agent9/21's 21 November report](lp2-p23-red-midpoint-p50-factor-bridge.md). The **p29 source integer G-lift pair [13,19]** and its H2 mapping to [23,3] are the present new cross-object observations.
 
 The previously fixed original-p28 outer-shell Hadamard rule is `H2(x,y)=(x−y,x+y) mod29`. Applied to the new p29 raw carry once, without swapping:
 
@@ -34,11 +34,11 @@ This matches the independently reconstructed toy Diffie-Hellman tuple `p=23,g=5,
 
 The original p23 R lift adds the ordered [3,27] pair, which also reproduces the earlier p28 READ OUT decoder. This explicitly reproduces known DH and local decoder operands. It yields no *new* source-secret value: those numbers and p28's H operator were already known, and the rule of lifting integer coefficients to base29² was recognized after inspecting original numerical material. The convenient arithmetic expression `[13,19]=[A+g,B]` should be counted as an equivalent identity of the same observation, not as an independent confirmation.
 
-## Distinct p23 red-factor continuation and the exact p28 six-rune readout
+## P29-carry connection to the pre-existing p23 red-factor lift and p28 six-rune readout
 
-### Essential factor-independence correction: p23 R is signed H in disguise
+### Earlier-established factor dependence: p23 R is signed H scaled mod29
 
-The third apparent quadratic `R` contributes **no third independent GF29 factor**. The exact original high-first coefficients satisfy
+Earlier [Agent9/21 source analysis](lp2-p23-red-midpoint-p50-factor-bridge.md) already determined that `R` contributes **no third independent GF29 factor**. The present composite hypothesis briefly treated the different p23 source presentation as a separate factor, then rejected that premise without attempting a plaintext decode. The exact original high-first coefficients satisfy
 
 ```text
 signed2013 H = [24,26,3]
@@ -51,9 +51,9 @@ Thus `p50 % R == 0 (mod29)` is **automatically implied** by `p50 % H == 0`; it i
 
 A sealed follow-up hypothesized that the **product of three quadratics** would divide p50 and expose a 250-rune direct plaintext quotient ([precommit](../workplace/agent27-p50-three-source-polynomial-full-quotient250-precommit.md)). The divisibility premise fails *before reading any 250-rune candidate*: `H·R·G ≡ -2H²G (mod29)`, and direct division of all 256 original p50 digits leaves the **six-rune nonzero remainder `[14,17,6,7,11,28]`**. Only the legitimate `H·G` least-common-multiple (degree4) divides, yielding the already-known 252-rune register. Therefore **no exact original source Q250 quotient exists under the frozen rule**, and no plaintext claim can be made from it. This failure materially narrows the source-factor architecture and prevents three-factor evidence from being double-counted.
 
-The p29 carry's ordered raw pair `[13,19]` is source-fixed. Applying the already defined p28 H map gives `[23,3]`. One **post-observation** interpretation takes the first result `23` as a physical page number, and the second `3` as exponent `e`.
+The newly computed p29 carry's ordered raw pair `[13,19]` is source-fixed. Applying the already defined p28 H map gives `[23,3]`. One **post-observation** interpretation takes the first result `23` as a physical page number, and the second `3` as exponent `e`.
 
-Original **physical p23** contains a separately identified **centered red three-rune group `[23,6,10]`** in low-first order, hence its own quadratic `R(X)=10X²+6X+23`. The original p50 byte polynomial also divides exactly by R over GF29, a published result independent of this p29 carry.
+Previous [Agent9/21 original-image research](lp2-p23-red-midpoint-p50-factor-bridge.md) had already located **physical p23**'s **centered red three-rune group `[23,6,10]`** in low-first order, hence its own quadratic `R(X)=10X²+6X+23`. The original p50 byte polynomial also divides exactly by R over GF29, as previously established by Agent9/21, independently of the present p29 carry.
 
 With the **same 29² integer-coefficient lift** used for p29 and p50 G/H, unchanged p50 divided by high-first `R=[10,6,23]` has:
 
@@ -70,7 +70,7 @@ mod29 exponents [3,27,27,27,27,27]
 output: [4,28,23,3,1,16] = READ OUT
 ```
 
-This is an **exact reversible reuse of a source-visible six-rune packet** under independently readable number material. It selects the same ordered `(3,27)` parameter pair without the contested p28 shell-depth story, but the assignment of first exponent to the center and second to the whole five-rune word was already known from the earlier READ OUT discovery. It is **retrospective corroboration, not a newly held-out plaintext recovery**.
+This is an **exact reversible reuse of a source-visible six-rune packet** under previously published number material. It selects the same ordered `(3,27)` parameter pair without the contested p28 shell-depth story, but the assignment of first exponent to the center and second to the whole five-rune word was already known from the earlier READ OUT discovery. It is **retrospective corroboration, not a newly held-out plaintext recovery**.
 
 The complete conditional source graph can now be expressed:
 
