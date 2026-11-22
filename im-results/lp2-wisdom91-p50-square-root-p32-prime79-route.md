@@ -12,7 +12,7 @@ Apply the already documented conventional base60 token decoding, without changin
 | ---: | --- | ---: | --- |
 | **91** | **0n** | **49 = 7²** | original image **49.jpg** is physical p32, carrying the blurred tree |
 | **49** | **0G** | **16 = 4²** | the adjacent p15 Fibonacci-prime square has **16 cells** |
-| **16** | **21** | **121 = 11²** | physical p32 contains precisely **121 runes arranged 11×11** |
+| **16** | **21** | **121 = 11²** | physical p32 contains precisely **121 printed runes, which can be reflowed mathematically into 11×11** (its actual image prints six typographic lines) |
 
 Thus the original 91-led output sequence is exactly **7², 4², 11²**, and the source-visible square roots satisfy **7+4=11**. The next two unaltered pointer values are **121→237→32**, returning to the same physical p32 number whose original scan is 49.jpg. The status of every label in the right-hand column is *retrospective*: those labels were not registered predictions, and the table supplies no explicit square-root opcode.
 
@@ -30,9 +30,9 @@ Original p55 contains one incoming page-carry rune and sixteen complete printed 
 
 The nonzero **Pythagorean defect** of these three original outputs is **\`121−49−16=56=2×7×4\`**. This is a natural arithmetic follow-up to the manuscript's independently published Pythagorean arithmetic from p7; the proposed use of a *nonzero defect* was discovered retrospectively and no first-party instruction establishes it. Nevertheless **56** selects a pre-existing, independently studied navigation state without new fitted symbols:
 
-- GP0(MAP) = **56**, and p32 physically prints **BUDS** at (row8,col5), also GP0(BUDS) = **56**.
+- GP0(MAP) = **56**, and p32's untouched GP sequence contains the four-rune transliteration **BUDS** at reflowed (row8,col5), also GP0(BUDS) = **56**.
 - The original table cell56 is the literal token **\`4E\`**, whose hexadecimal ASCII interpretation is **N (north)**. From its original row7,column0 position, moving one printed eight-column row north selects **48**.
-- GP0(HOME) = **48**, and p32 physically prints **HOME** at (row3,col0). The p32 word positions HOME→BUDS differ by **five southeast cells**, matching the independently source-reconstructed DH generator g=5 and the [previous source-supported BUDS→HOME navigation](lp2-p32-home-buds-p50-closed-loop.md).
+- GP0(HOME) = **48**, and p32's untouched GP sequence contains **HOME** at reflowed (row3,col0). The p32 word positions HOME→BUDS differ by **five southeast cells**, matching the independently source-reconstructed DH generator g=5 and the [previous source-supported BUDS→HOME navigation](lp2-p32-home-buds-p50-closed-loop.md).
 
 This gives a **closed original-artifact route** from the authentic 2014 Stage10 centre **91** through its unmodified table pointer triple, the exact square-defect **56**, the previously documented \`4E\` hexadecimal **N**, and **HOME48→BUDS56** on the printed p32 11×11 grid. The direct p32 coordinate (7,4) additionally returns the published p15 prime79. The p55 43-rune interior count then selects the already independently documented original table pointer walk **\`43→73→79→82→201→74→205→76\`** from 43 surviving runes to 76 total runes, traversing original scan73.jpg (solved p56) and74.jpg (solved p57). No text on original p55 or p32 has yet been cryptographically decrypted.
 
