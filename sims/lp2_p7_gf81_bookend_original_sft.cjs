@@ -34,6 +34,20 @@ const products = redWordLengths.map((len) => {
 assert.equal(at, 14);
 assert.deepEqual(products, [11, 26, 8, 15, 2]);
 
+const p8 = corpus.pages[8];
+const p8Red = ink.pages.find((p) => p.page === 8).red_spans;
+assert.equal(p8Red.length, 1);
+assert.equal(p8Red[0].start, 0);
+assert.equal(p8Red[0].length, 12);
+assert.equal(p8.runic_count - 12, 243); // The full black body is exactly 3^5 runes.
+const p8SourceRed = p8.indices.slice(0, 12);
+assert.equal(p8SourceRed.map((n) => corpus.runes[n]).join(''), p8Red[0].runes);
+const p8WordProducts = [[0, 4], [4, 12]].map(([start, end]) =>
+  p8SourceRed.slice(start, end).reduce((acc, rune) => (acc * rune) % 29, 1));
+assert.deepEqual(p8WordProducts, [4, 3]); // Original source printed words XIXM / UXMCTHPOB.
+assert.equal(p8SourceRed.at(-1), 17);
+
+
 // Five source GP products interpreted as ascending quartic coefficients modulo 3.
 const residue = products.map((n) => n % 3);
 assert.equal(residue[4], 2);
@@ -61,14 +75,14 @@ for (let a = 0; a < 3; a++) {
 
 /** @param {number} a Field element encoded as four little-endian ternary digits. */
 /** @param {number} b Field element encoded as four little-endian ternary digits. */
-function multiply(a, b) {
+function multiply(a, b, modulus = f) {
   const c = Array(7).fill(0);
   for (let i = 0; i < 4; i++) {
     for (let j = 0; j < 4; j++) c[i + j] = mod3(c[i + j] + idx(a, i) * idx(b, j));
   }
   for (let degree = 6; degree >= 4; degree--) {
     const high = c[degree];
-    for (let j = 0; j < 4; j++) c[degree - 4 + j] = mod3(c[degree - 4 + j] - high * f[j]);
+    for (let j = 0; j < 4; j++) c[degree - 4 + j] = mod3(c[degree - 4 + j] - high * modulus[j]);
     c[degree] = 0;
   }
   return c[0] + 3 * c[1] + 9 * c[2] + 27 * c[3];
@@ -83,6 +97,84 @@ for (let i = 0; i < 80; i++) {
 assert.equal(power, 1);
 assert.equal(new Set(units).size, 80);
 assert.deepEqual(units.slice(0, 6), [1, 4, 16, 28, 45, 17]);
+
+assert.equal(units[5], p8SourceRed.at(-1)); // First P8 red product = x+1, ^5 = last red GP index.
+assert.equal(p8WordProducts[0], 4); // x+1 in the ternary polynomial basis.
+assert.equal(p8WordProducts[1], 3); // x in that same basis.
+
+/**
+ * Exhaust only the 29² alternative GP29 quartics already fixed by the
+ * independently published constraints P(3)=3, P(4)=4 and P'(4)=17.
+ * This is a conditional source-mathematics counterfactual, not a text cipher sweep.
+ * @param {number[]} poly Monic degree-4 coefficients in GF(3), low degree first.
+ */
+function isIrreducible(poly) {
+  for (let v = 0; v < 3; v++) {
+    if (poly.reduce((a, q, i) => a + q * v ** i, 0) % 3 === 0) return false;
+  }
+  for (let a = 0; a < 3; a++) {
+    for (let b = 0; b < 3; b++) {
+      const rem = poly.slice();
+      for (let degree = 4; degree >= 2; degree--) {
+        const high = rem[degree];
+        rem[degree] = 0;
+        rem[degree - 1] = mod3(rem[degree - 1] - high * a);
+        rem[degree - 2] = mod3(rem[degree - 2] - high * b);
+      }
+      if (rem[0] === 0 && rem[1] === 0) return false;
+    }
+  }
+  return true;
+}
+
+/** @param {number} value GF81 element. @param {number} power Nonnegative exponent. @param {number[]} polynomial */
+function powerField(value, power, polynomial) {
+  let out = 1;
+  let base = value;
+  let exponent = power;
+  while (exponent > 0) {
+    if (exponent % 2 === 1) out = multiply(out, base, polynomial);
+    base = multiply(base, base, polynomial);
+    exponent = Math.floor(exponent / 2);
+  }
+  return out;
+}
+
+let alternativeCount = 0;
+let irreducibleCount = 0;
+let primitiveCount = 0;
+const fifthPowerMatches = [];
+for (let a3 = 0; a3 < 29; a3++) {
+  for (let a4 = 0; a4 < 29; a4++) {
+    const a2 = ((16 - 11 * a3 - 81 * a4) % 29 + 29) % 29;
+    const a1 = ((1 - 37 * a3 - 175 * a4 - 7 * a2) % 29 + 29) % 29;
+    const a0 = ((3 - 27 * a3 - 81 * a4 - 3 * a1 - 9 * a2) % 29 + 29) % 29;
+    const a = [a0, a1, a2, a3, a4];
+    alternativeCount++;
+    const val29 = (z) => a.reduce((sum, q, i) => sum + q * z ** i, 0) % 29;
+    const derivative29 = a.reduce((sum, q, i) => sum + i * q * 4 ** Math.max(0, i - 1), 0) % 29;
+    assert.equal(val29(3), 3);
+    assert.equal(val29(4), 4);
+    assert.equal(derivative29, 17);
+    if (a4 % 3 === 0) continue;
+    const multiplier = a4 % 3;
+    const poly = a.map((v) => (v * multiplier) % 3); // multiplier^-1 = multiplier in GF3.
+    if (!isIrreducible(poly)) continue;
+    irreducibleCount++;
+    const primitive = powerField(4, 80, poly) === 1 &&
+      powerField(4, 40, poly) !== 1 && powerField(4, 16, poly) !== 1;
+    if (primitive) primitiveCount++;
+    if (powerField(4, 5, poly) === 17) fifthPowerMatches.push({ coefficients: a, primitive });
+  }
+}
+assert.equal(alternativeCount, 841);
+assert.equal(irreducibleCount, 114);
+assert.equal(primitiveCount, 54);
+assert.equal(fifthPowerMatches.length, 6);
+assert.ok(fifthPowerMatches.every((candidate) => candidate.primitive));
+assert.ok(fifthPowerMatches.some(({ coefficients }) =>
+  coefficients.every((v, i) => v === products[i])));
+
 
 const head = source.slice(0, 6561);
 const rawTail = source.slice(6561);
@@ -155,6 +247,12 @@ function mapConflicts(transpose, byColumn) {
 console.log('P7 red word products:', products);
 console.log('Irreducible quartic over GF(3), low→high:', f);
 console.log('GF81 nonzero generator x+1 has period:', units.length);
+console.log('Original P8 red products, final rune, and black length:',
+  p8WordProducts, p8SourceRed.at(-1), p8.runic_count - 12);
+console.log('GF81 (x+1)^5 = P8 final red index:', units[5]);
+console.log('Conditional 841 P8-fixed quartics: irreducible, primitive, fifth-hits:',
+  irreducibleCount, primitiveCount, fifthPowerMatches.length);
+console.log('All six fifth-hit GP29 coefficient vectors:', fifthPowerMatches);
 console.log('81² / (80² - 5) registers:', head.length, rawTail.length);
 console.log('Known solved p57 GP29:', metrics(corpus.pages[57].indices));
 console.log('Original full unknown ciphertext:', metrics(source));
