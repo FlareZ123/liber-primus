@@ -14,6 +14,14 @@ on:
         options:
           - image-10333301
           - 2014-33011033
+      carrier_mode:
+        description: Source-original seven cuneiform JPGs 50-56 or p33 alone
+        required: true
+        type: choice
+        default: seven
+        options:
+          - seven
+          - single
 permissions:
   contents: read
 jobs:
@@ -58,23 +66,31 @@ jobs:
           if ($LASTEXITCODE -ne 0) { throw 'Native positive failed to execute' }
           python -c "from pathlib import Path; p=Path('probe-output/public-positive/extracted/hidden.txt'); assert p.read_bytes()==b'Dies ist eine versteckte Nachricht!'; print('ORIGINAL_NATIVE_JPEG_POSITIVE_PASS')"
           if ($LASTEXITCODE -ne 0) { throw 'Original public JPEG positive bytes not recovered' }
-      - name: Probe original p33 scan50 single with pre-registered source-order A at Maximum
+      - name: Probe seven original cuneiform JPGs 50-56 with top-down printed A and Maximum
         shell: pwsh
         run: |
           $ErrorActionPreference = 'Stop'
-          $carrier = Join-Path $env:GITHUB_WORKSPACE 'resources/liber-primus/50.jpg'
-          if (-not (Test-Path -LiteralPath $carrier)) { throw 'Missing the single first-party p33 original JPEG' }
-          $digest = (Get-FileHash -LiteralPath $carrier -Algorithm SHA256).Hash.ToLowerInvariant()
-          Write-Host "SOURCE_SELECTED_P33_ORIGINAL_50_JPEG_SHA256=$digest"
+          $single = ('${{ inputs.carrier_mode }}' -eq 'single')
+          $images = if ($single) { @(50) } else { @(50..56) }
           $password = if ('${{ inputs.password_source }}' -eq '2014-33011033') { '33011033' } else { '10333301' }
-          Write-Host "SOURCE_P33_PRINTED_TOP_BOTTOM_KEY_A=$password"
-          python sims/openpuff_v400_extract.py --exe "$env:OPENPUFF_EXE" --carrier "$carrier" --password "$password" --bit-format 'Jpeg (Image)' --bit-level '1/2 (50%) - Maximum' --out probe-output/original-p33 --wait-seconds 600
-          if ($LASTEXITCODE -ne 0) { throw 'Native original p33 extraction did not execute' }
-          $result = Get-Content -LiteralPath 'probe-output/original-p33/result.json' -Raw | ConvertFrom-Json
-          if ($result.carrier_count -ne 1 -or -not $result.bit_selection_verified -or -not $result.attempted) { throw 'Original source, native JPEG depth or Unhide not verified' }
-          Write-Host "SOURCE_P33_NATIVE_RESULT $($result | Select-Object carrier_count, native_probe_outcome, output_present, outputs, completion_dialogs, error_dialogs | ConvertTo-Json -Depth 15 -Compress)"
+          $arguments = @('--exe', "$env:OPENPUFF_EXE", '--password', "$password", '--bit-format', 'Jpeg (Image)', '--bit-level', '1/2 (50%) - Maximum', '--out', 'probe-output/original-cuneiform', '--wait-seconds', '900')
+          foreach ($idx in $images) {
+            $carrier = Join-Path $env:GITHUB_WORKSPACE ('resources/liber-primus/{0:D2}.jpg' -f $idx)
+            if (-not (Test-Path -LiteralPath $carrier)) { throw "Missing original source scan $idx" }
+            $digest = (Get-FileHash -LiteralPath $carrier -Algorithm SHA256).Hash.ToLowerInvariant()
+            Write-Host "SOURCE_ORIGINAL_CUNEIFORM_JPEG index=$idx sha256=$digest"
+            $arguments += @('--carrier', "$carrier")
+          }
+          Write-Host "LOCKED_SOURCE_A=$password CARRIER_IDS=$($images -join ',') COUNT=$(@($images).Count)"
+          python sims/openpuff_v400_extract.py @arguments
+          if ($LASTEXITCODE -ne 0) { throw 'Native source extraction failed to execute' }
+          $result = Get-Content -LiteralPath 'probe-output/original-cuneiform/result.json' -Raw | ConvertFrom-Json
+          if ($result.carrier_count -ne @($images).Count -or -not $result.bit_selection_verified -or -not $result.attempted -or (-not $single -and -not $result.carrier_chain_verified)) {
+            throw 'Native original source chain, depth or attempt not verified'
+          }
+          Write-Host "LOCKED_SOURCE_NATIVE_RESULT $($result | Select-Object carrier_count, native_probe_outcome, output_present, outputs, completion_dialogs, error_dialogs | ConvertTo-Json -Depth 15 -Compress)"
           if ($result.native_probe_outcome -eq 'inconclusive-timeout') { throw 'Native source outcome inconclusive' }
-          if ($result.output_present) { Write-Host 'POTENTIAL_LP2_FIRST_PARTY_PAYLOAD_FOUND_NEEDS_BYTE_VALIDATION' }
+          if ($result.output_present) { Write-Host 'POTENTIAL_LP2_PAYLOAD_FOUND_NEEDS_EXACT_VALIDATION' }
       - name: Retain screenshots, native error/completion dialogs and exact output
         if: always()
         uses: actions/upload-artifact@v4
