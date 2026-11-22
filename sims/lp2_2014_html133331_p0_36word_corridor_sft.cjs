@@ -223,6 +223,28 @@ assert.equal(subtreeSize(82), 50);
 assert.equal(subtreeSize(128), 5);
 assert.equal(subtreeSize(201), 56);
 
+// Separate explicit solved p57 PARABLE clue: "find the divinity within".
+// This source word is genuinely present in the original clear GP runes.
+// Shedding its two circumference letters gives six original GP primes.
+const divinity = Array.from('DIUINITY')
+  .map((letter) => corpus.translit.indexOf(letter));
+assert.ok(divinity.every((index) => index >= 0));
+const clear57 = corpus.pages[57].indices;
+let wordHits = 0;
+for (let k = 0; k <= clear57.length - divinity.length; k++) {
+  if (divinity.every((v, i) => v === clear57[k + i])) wordHits++;
+}
+assert.equal(wordHits, 1);
+const divinityInteriorPrimes = divinity.slice(1, -1)
+  .reduce((sum, rune) => sum + corpus.prime[rune], 0);
+assert.equal(divinityInteriorPrimes, 184);
+assert.equal(bytes[184], 128);
+assert.equal(bytes[128], 201);
+// The two independently indicated source branches meet at a single
+// original table node, which has precisely 50+1+5 reverse descendants.
+assert.equal(bytes[factorSum], bytes[bytes[divinityInteriorPrimes]]);
+assert.deepEqual(inbound[201], [factorSum, bytes[divinityInteriorPrimes]]);
+
 let smoothPalindromes = 0;
 let fourDistinctGpPrimes = 0;
 const root201FourDistinct = [];
@@ -264,6 +286,7 @@ console.log('Unique 900-palindrome four-prime half-sum divisible29:',
   halfSumDivisible29FourDistinct);
 console.log('GP-prime factor sum and table pointer:', factorSum, bytes[factorSum]);
 console.log('Reverse table-pointer subtree: 201 <- 82 [50] and 128 [5], total 56');
+console.log('Clear p57 DIUINITY interior GP-prime184 -> B[184]=128 -> B[128]=201');
 console.log('Six-digit palindrome controls:', 900,
   'GP-smooth:', smoothPalindromes, 'four distinct:', fourDistinctGpPrimes,
   'four distinct -> 201:', root201FourDistinct);
