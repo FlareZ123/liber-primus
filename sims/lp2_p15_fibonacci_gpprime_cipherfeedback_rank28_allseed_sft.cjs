@@ -212,11 +212,108 @@ for (const reset of /** @type {Array<'book'|'page'|'chapter'>} */ (["book", "pag
   }
 }
 assert.equal(winners.length, 12);
+
+/**
+ * Algebraic upgrade: differences between any two source-forced Fibonacci
+ * key streams obey the homogeneous Fibonacci recurrence modulo 28.
+ * Its exact 2-dimensional state has period 48. Therefore candidate
+ * plaintexts under different unknown IVs are merely different additive
+ * *phase-48* relabelings of one another, and every equality collision
+ * within the same phase and reset scope is unchanged for all 784 seeds.
+ * The following grants an arbitrary 28! relabeling per phase, strictly
+ * more freedom than any possible source-forced secret seed.
+ */
+/** @returns {number} */
+function fibonacciPeriod28() {
+  let a = 0, b = 1;
+  for (let i = 1; i <= 28 * 28 * 2; i++) {
+    const c = (a + b) % 28;
+    a = b; b = c;
+    if (a === 0 && b === 1) return i;
+  }
+  throw Error("unexpected period");
+}
+const keyPeriod = fibonacciPeriod28();
+assert.equal(keyPeriod, 48);
+/**
+ * @param {'book'|'page'|'chapter'} reset
+ * @param {boolean} skipEquals
+ * @returns {{state:Int16Array,stateCount:number}}
+ */
+function keyPhase(reset, skipEquals) {
+  const state = new Int16Array(N);
+  let epoch = -1, consumed = 0;
+  for (let i = 0; i < N; i++) {
+    if (i === 0 || masks[reset][i]) { epoch++; consumed = 0; }
+    state[i] = epoch * keyPeriod + consumed % keyPeriod;
+    if (!skipEquals || !free[i] || firstOfPage[i]) consumed++;
+  }
+  return { state, stateCount: (epoch + 1) * keyPeriod };
+}
+/**
+ * @param {ArrayLike<number>} values
+ * @param {{state:Int16Array,stateCount:number}} phases
+ * @returns {{equal:number,denom:number,q:number}}
+ */
+function hiddenStateCollision(values, phases) {
+  const histogram = new Uint16Array(phases.stateCount * 28);
+  const total = new Uint16Array(phases.stateCount);
+  for (const i of eligible) {
+    const value = values[i], state = phases.state[i];
+    assert(value >= 0 && value < 28);
+    histogram[state * 28 + value]++;
+    total[state]++;
+  }
+  let equal = 0, denom = 0;
+  for (let state = 0; state < phases.stateCount; state++) {
+    denom += total[state] * (total[state] - 1);
+    for (let symbol = 0; symbol < 28; symbol++) {
+      const count = histogram[state * 28 + symbol];
+      equal += count * (count - 1);
+    }
+  }
+  return { equal, denom, q: equal / denom };
+}
+const nativeControls = [
+  { name: "Shakespeare", runes: sourceNative },
+  { name: "Gibran", runes: native(read("resources/control/gibran_prophet_58585.txt")) },
+];
+const phaseCertificates = [];
+for (const reset of /** @type {Array<'book'|'page'|'chapter'>} */ (["book", "page", "chapter"])) {
+  for (const skipEquals of [false, true]) {
+    const phases = keyPhase(reset, skipEquals);
+    const fixed = hiddenStateCollision(decrypt(source, 0, 0, reset, skipEquals, 1), phases);
+    // An unseen initial state may be distinct in every page or chapter
+    // because each reset scope receives independent 48-phase bins.
+    for (const [u, v] of [[0, 1], [1, 0], [13, 21], [27, 27]]) {
+      for (const sign of /** @type {Array<1|-1>} */ ([-1, 1])) {
+        const other = hiddenStateCollision(decrypt(source, u, v, reset, skipEquals, sign), phases);
+        assert.equal(other.equal, fixed.equal);
+        assert.equal(other.denom, fixed.denom);
+      }
+    }
+    const controls = nativeControls.map(({ name, runes }) => {
+      let minimum = Infinity, maximum = -Infinity;
+      for (let n = 0; n < 80; n++) {
+        const offset = Math.floor((runes.length - N) * n / 79);
+        const sample = Array.from({ length: N }, (_, i) =>
+          free[i] ? 0 : (runes[offset + i] === 28 ? 18 : runes[offset + i]));
+        const value = hiddenStateCollision(sample, phases).q;
+        minimum = Math.min(minimum, value);
+        maximum = Math.max(maximum, value);
+      }
+      return { name, windows: 80, min: minimum, max: maximum };
+    });
+    phaseCertificates.push({ reset, skipEquals, phaseCount: phases.stateCount,
+      source: fixed, controls, allUnknownSeedsPreserveExactCollision: true });
+  }
+}
+assert.equal(phaseCertificates.length, 6);
 console.log(JSON.stringify({
   status: "PASS: no native GP heldout plaintext under exhaustive original Fibonacci cipher-feedback seeds",
   source: { N, duplicates: duplicate, ordinary: eligible.length, gpPrimeWeights: primes,
     spiralPage: 15, fibonacciState: "k_i=k_(i-1)+k_(i-2)+prime(c_prev) modulo28" },
   tested: { seedPairs: 784, signs: 2, resetModes: 3, repeatPolicies: 2, receivers: 9408 },
   nativePlant: { length: N, resetPolicies: 6, exactRoundTrips: 6 },
-  winners,
+  winners, fibonacciPeriod28: keyPeriod, phaseCertificates,
 }, null, 2));
