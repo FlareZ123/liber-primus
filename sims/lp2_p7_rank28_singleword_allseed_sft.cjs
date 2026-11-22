@@ -91,4 +91,84 @@ for(let modelId=0;modelId<cases.length;modelId++){
       positive:"exact 1729/1729, reversible"}));
   }
 }
-console.log("PASS: source-p7 all-secret predecessor-rank direct decoder has no A/I/O original word-consistent key.");
+
+// Additional original-doublet event clock: an observed repeated ciphertext
+// glyph may consume zero key steps or one extra key step instead of one.
+// Only the actual 9 source duplicate events select the offsets below.
+let repeated = 0;
+const compressedClock = [];
+const expandedClock = [];
+for (let t = 0; t < original.length; t++) {
+  if (t > 0 && original[t] === original[t - 1]) repeated++;
+  compressedClock.push(t - repeated);
+  expandedClock.push(t + repeated);
+}
+assert.equal(repeated, 9);
+assert.ok(anchors.every(t => t === 0 || original[t] !== original[t - 1]));
+const clockModes = [
+  {name:"repeat-null", indices:compressedClock},
+  {name:"repeat-extra", indices:expandedClock}
+];
+let clockCases = 0;
+for (const clock of clockModes) {
+  for (const channel of [
+    {name:"direct", output:original},
+    {name:"pred-rank", output:rankSource}
+  ]) {
+    for (const model of cases) {
+      const d = model.characteristic ? 4 : 5;
+      const factor = model.characteristic ? mod(-inv(model.a[d])) : 1;
+      const basis = Array.from({length:d}, (_, k) => {
+        const values = Array.from({length:d}, (_, i) => Number(i === k));
+        for (let t = 0; t <= expandedClock.at(-1) - d; t++) {
+          let sum = 0;
+          for (let i = 0; i < d; i++) sum += model.a[i] * values[t + i];
+          values.push(mod(factor * sum));
+        }
+        return values;
+      });
+      const allRows = anchors.map(t => basis.map(v => v[clock.indices[t]]));
+      assert.equal(rank(allRows, d), d);
+      const selected = [];
+      const independent = [];
+      for (let i = 0; i < anchors.length && selected.length < d; i++) {
+        if (rank(independent.concat([allRows[i]]), d) > independent.length) {
+          selected.push(i);
+          independent.push(allRows[i]);
+        }
+      }
+      for (const allowed of [[10, 24], [3, 10, 24]]) {
+        let checked = 0;
+        let best = 0;
+        let survivors = 0;
+        const visit = targets => {
+          if (targets.length < d) {
+            for (const plaintext of allowed) visit(targets.concat(plaintext));
+            return;
+          }
+          checked++;
+          const seed = solve(independent, selected.map((i, j) =>
+            mod(channel.output[anchors[i]] - targets[j])));
+          const matches = anchors.filter(t => allowed.includes(
+            mod(channel.output[t] - seed.reduce(
+              (sum, x, k) => sum + x * basis[k][clock.indices[t]], 0)))).length;
+          best = Math.max(best, matches);
+          if (matches === anchors.length) survivors++;
+        };
+        visit([]);
+        assert.equal(checked, allowed.length ** d);
+        assert.equal(survivors, 0);
+        clockCases++;
+        console.log(JSON.stringify({
+          clock: clock.name, channel: channel.name, model: model.name,
+          alphabet: allowed.map(v => book.translit[v]),
+          originalRepeatedEvents: repeated,
+          allSecretCandidates: checked, maxMatchedOriginalWords: best,
+          validSecrets: survivors
+        }));
+      }
+    }
+  }
+}
+assert.equal(clockCases, 32);
+console.log("PASS: source-p7 all-secret predecessor-rank with observed repeated-symbol clocks has no A/I/O original word-consistent key.");
