@@ -220,6 +220,63 @@ assert.deepEqual(vigenereSourceResults.map((r)=>Number(r.ioc.toFixed(12))),[
   0.033410529566,0.033503165046,0.033772064075,0.033465972860
 ]);
 
+// The same two selected rows plus the three complementary projector rows
+// form a canonical full 5x5 reversible change of source coordinates.
+const K=add(I5,scale(projector,-1));
+assert.equal(rank(K),3);
+const completeBasis=fixedRoots.map((position)=>projector[position]).concat(
+  [0,1,2].map((position)=>K[position])
+);
+assert.equal(rank(completeBasis),5);
+function matrixInverse(source){
+  const n=source.length;
+  const augmented=source.map((row,i)=>row.map(mod).concat(I(n)[i]));
+  for(let column=0;column<n;column++){
+    const pivot=augmented.findIndex((row,i)=>i>=column&&row[column]!==0);
+    assert(pivot>=column);
+    [augmented[column],augmented[pivot]]=[augmented[pivot],augmented[column]];
+    const factor=inverse(augmented[column][column]);
+    augmented[column]=augmented[column].map((value)=>mod(value*factor));
+    for(let r=0;r<n;r++){
+      if(r===column)continue;
+      const multiplier=augmented[r][column];
+      augmented[r]=augmented[r].map((value,k)=>mod(value-multiplier*augmented[column][k]));
+    }
+  }
+  return augmented.map((row)=>row.slice(n));
+}
+const completeInverse=matrixInverse(completeBasis);
+eq(mul(completeBasis,completeInverse),I5);
+eq(mul(completeInverse,completeBasis),I5);
+function applyBlocks(input,matrix){
+  assert.equal(input.length%5,0);
+  const result=[];
+  for(let i=0;i<input.length;i+=5)result.push(...vecMul(matrix,input.slice(i,i+5)));
+  return result;
+}
+const sourceReceivers=[
+  ['p8 complete (255)',p8],
+  ['p3-p7 five-scroll (1145)',corpus.pages.filter((p)=>p.page>=3&&p.page<=7).flatMap((p)=>p.indices)],
+  ['p33-p39 3301/1033 chapter (1680)',corpus.pages.filter((p)=>p.page>=33&&p.page<=39).flatMap((p)=>p.indices)],
+];
+const fullReceiverResults=[];
+for(const [label,cipher] of sourceReceivers){
+  const candidate=applyBlocks(cipher,completeBasis);
+  assert.deepEqual(applyBlocks(candidate,completeInverse),cipher);
+  const native=Array.from({length:cipher.length},(_,i)=>
+    corpus.pages.find((p)=>p.page===57).indices[i%95]
+  );
+  assert.deepEqual(applyBlocks(applyBlocks(native,completeInverse),completeBasis),native);
+  const first2=candidate.filter((_,i)=>i%5<2);
+  const other3=candidate.filter((_,i)=>i%5>=2);
+  fullReceiverResults.push({label,original: cipher.length,completeIoC:ioc(candidate),first2IoC:ioc(first2),other3IoC:ioc(other3),start:candidate.slice(0,75).map(x=>corpus.translit[x]).join('')});
+}
+assert.deepEqual(fullReceiverResults.map((v)=>Number(v.completeIoC.toFixed(12))),[
+  0.033317894087,0.034357345711,0.034450778525
+]);
+assert(Math.abs(fullReceiverResults[0].first2IoC-0.0364977674238012)<1e-12);
+assert(Math.abs(fullReceiverResults[0].other3IoC-0.032593739250086)<1e-12);
+
 // Exact authentic-source plaintext plant: the 2x5 map has a fixed right inverse.
 const solved=corpus.pages.find((p)=>p.page===57).indices;
 assert.equal(solved.length,95);
@@ -247,6 +304,8 @@ console.log('PASS projected_p7_word_coefficients='+projectedCoeffs+' observed_tr
 console.log('PASS fiveword_windows=2892 two_reversal_hits='+twoMatch+' full_reversal_center13_hits='+threeMatch);
 console.log('PASS original_p8_two_and_five_value_Vigenere_eight_roundtrips_and_eight_solved_native_plants');
 for(const output of vigenereSourceResults)console.log('native_GP_attempt source_key='+output.keyName+' scope='+output.label+' sign='+output.sign+' IoC='+output.ioc.toFixed(12)+' opening='+output.opening);
+console.log('PASS canonical_same-source full_5x5_basis source_selected_rows=[4,3]/[0,1,2] exact_3_full_original_roundtrips_and_3_native_GP_plants');
+for(const res of fullReceiverResults)console.log('full-receiver='+res.label+' runes='+res.original+' IoC='+res.completeIoC.toFixed(12)+' two_component_IoC='+res.first2IoC.toFixed(12)+' three_component_IoC='+res.other3IoC.toFixed(12)+' start='+res.start);
 console.log('SOURCE: GP29 original p8 IoC='+ioc(p8).toFixed(12));
 console.log('EXTRACTED: GP29 rank2 image IoC='+ioc(output).toFixed(12));
 console.log('EXTRACTED full GP spelling='+output.map((rune)=>corpus.translit[rune]).join(''));
