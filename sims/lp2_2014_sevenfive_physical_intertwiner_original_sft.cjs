@@ -163,9 +163,9 @@ assert.deepEqual(N,[
  [4,24,4,5,27,13,28],
  [4,18,22,17,22,18,4],
  [28,13,27,5,4,24,4],
- [6,15,10,20,9,4,16],
+ [6,15,10,20,9,0,16],
  [23,25,1,19,3,10,24],
-].map((r,i)=>r.map((v,j)=>i===5&&j===5?0:v))); 
+]); 
 assert.deepEqual(mult(L,N),mult(B,L),
   'rank5 cross-source intertwiner L T(M)=B L');
 assert.notDeepEqual(mult(L,M),mult(B,L),
