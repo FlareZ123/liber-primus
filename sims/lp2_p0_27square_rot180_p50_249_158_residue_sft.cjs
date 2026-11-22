@@ -47,6 +47,34 @@ assert.equal(tokens[158], '49');
 assert.equal(t[249], 158);
 assert.equal(t[158], 249);
 
+// The original 27-square fixed center is rune NG (GP21, prime79), and
+// its immediately preceding left neighbor OE (GP22, prime83). These two
+// source-native consecutive prime values exactly factor the independently
+// selected count↔table cycle coordinates as 158=2×79 and 249=3×83.
+// Two separate three-bar cross ornaments can motivate factors 2 and 3,
+// but selecting a count-to-prime weighting remains speculative.
+assert.equal(c[364],21);
+assert.equal(c[363],22);
+assert.equal(corpus.prime[c[364]],79);
+assert.equal(corpus.prime[c[363]],83);
+assert.equal(2*corpus.prime[c[364]],158);
+assert.equal(3*corpus.prime[c[363]],249);
+
+// Exact original-chapter-multiset random-placement frequencies for the
+// fixed centered pair, and the generous family of ANY eight center
+// neighbors. These are conditionals, never discovery-adjusted p-values.
+const origCounts=Array(29).fill(0);
+for(const rune of c)origCounts[rune]++;
+assert.equal(origCounts[21],29);
+assert.equal(origCounts[22],25);
+const fixedCenterLeftChance=origCounts[21]*origCounts[22]/(729*728);
+let noneOfEight=1;
+for(let k=0;k<8;k++){
+  noneOfEight*=(728-origCounts[22]-k)/(728-k);
+}
+const anyNeighborChance=origCounts[21]/729*(1-noneOfEight);
+assert.ok(Math.abs(fixedCenterLeftChance-0.001366089329052292)<1e-15);
+
 const transforms = {
   identity: (r, q) => [r, q],
   rot90: (r, q) => [q, N - 1 - r],
@@ -220,6 +248,7 @@ console.log(JSON.stringify({
   sourceSha256:Object.fromEntries([
     'lp2-corpus.json','lp2-grid-256.json','lp2-ink-annotations.json','lp2-transcription.txt'
   ].map(name=>[name,crypto.createHash('sha256').update(read(name)).digest('hex')])),
+  centralPrimeCountRelation:{centerIndex:364,centerRune:corpus.translit[c[364]],centerPrime:corpus.prime[c[364]],leftIndex:363,leftRune:corpus.translit[c[363]],leftPrime:corpus.prime[c[363]],count158FromCenter:2*corpus.prime[c[364]],count249FromLeft:3*corpus.prime[c[363]],fixedPairMultisetChance:fixedCenterLeftChance,anyEightNeighborMultisetChance:anyNeighborChance},
   source:{
     openingPageLengths:openingPages.map(p=>p.indices.length),
     chapterWords:words.length,chapterRunes:c.length,square:[27,27],
