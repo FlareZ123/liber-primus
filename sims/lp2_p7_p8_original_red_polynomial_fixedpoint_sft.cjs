@@ -150,6 +150,113 @@ assert.deepEqual(matchingFeatureDirections, [{
   name: 'gp0Product', direction: 'printedLowFirst', roots: [3, 4]
 }]);
 
+// Novel original-title orbit-pair test. The only two rune values from
+// the red p8 heading which lie in P's unique nontrivial 7-cycle are:
+// I=10 in the FIRST red word and C=5 in the SECOND red word.
+// Their directional cycle distances are the OPPOSITE heading products:
+// P^3(I10)=C5 and P^4(C5)=I10. The printed heading independently
+// gives 4 and3, and the physically contiguous tree chapter has7 pages.
+/** @param {(x:number)=>number} f @param {number} seed
+ * @param {number} n @returns {number} */
+function iterate(f, seed, n) {
+  for (let i = 0; i < n; i++) seed = f(seed);
+  return seed;
+}
+const titleGlyphI = p8[0][1].value;
+const titleGlyphC = p8[1][3].value;
+assert.deepEqual([titleGlyphI, titleGlyphC], [10, 5]);
+const f29 = x => evalPoly(coeff, x);
+const cycleStartingAtI = Array.from({ length: 7 }, (_, n) =>
+  iterate(f29, titleGlyphI, n));
+assert.deepEqual(cycleStartingAtI, [10, 24, 7, 5, 15, 28, 9]);
+assert.equal(iterate(f29, titleGlyphI, target[1]), titleGlyphC);
+assert.equal(iterate(f29, titleGlyphC, target[0]), titleGlyphI);
+assert.equal(iterate(f29, titleGlyphI, 7), titleGlyphI);
+const titleGlyphsInCycle = p8.flat().filter(c =>
+  cycleStartingAtI.includes(c.value));
+assert.deepEqual(titleGlyphsInCycle.map(c => [c.offset,c.value]),
+  [[1, 10], [7, 5]]);
+const originalTreeChapter = gp.pages.slice(8, 15);
+assert.equal(originalTreeChapter.length, 7);
+assert.deepEqual(originalTreeChapter.map(p => p.indices.length),
+  [255,268,263,273,261,272,137]);
+
+// Exact 29² conditional source null: P has previously fixed
+// P(3)=3, P(4)=4, and P'(4)=17. The residual Q in
+// P(X)-X=(X-3)(X-4)Q(X) therefore has Q(4)=16 and
+// Q=16+b(X-4)+c(X-4)^2, leaving b,c free in GF29.
+// For the literal original I10→C5 orbit distances3,4, exactly
+// ONE of these 841 polynomials satisfies both conditions.
+let conditionalModels = 0;
+let orbitPairMatches = 0;
+let onlyRootModels = 0;
+const orbitPairParameterMatches = [];
+for (let b = 0; b < 29; b++) for (let c = 0; c < 29; c++) {
+  const candidate = x => {
+    const z = mod29(x - 4);
+    return mod29(x + (x - 3) * (x - 4) *
+      mod29(16 + b * z + c * z * z));
+  };
+  conditionalModels++;
+  const roots = Array.from({length:29},(_,i)=>i)
+    .filter(x => candidate(x) === x);
+  if (roots.join(',') === '3,4') onlyRootModels++;
+  if (iterate(candidate, titleGlyphI, target[1]) === titleGlyphC &&
+      iterate(candidate, titleGlyphC, target[0]) === titleGlyphI) {
+    orbitPairMatches++;
+    orbitPairParameterMatches.push([b,c]);
+  }
+}
+assert.equal(conditionalModels, 841);
+assert.equal(onlyRootModels, 409);
+assert.equal(orbitPairMatches, 1);
+assert.deepEqual(orbitPairParameterMatches, [[16,2]]);
+
+// Original complete printed word clock, preserving the real carried
+// p8→p9 six-rune word. The alternative source-rooted seven-cycle
+// supplies deterministic 7-word periodic GP29 key material.
+// This tests the word-clock alternative to the earlier author's
+// pure rune-clock original p8..14 family, without unrestricted phases.
+const chapterBlackWords = words.filter(w =>
+  w[0].page >= 8 && w[0].page <= 14 && w.every(c => !c.red));
+assert.equal(chapterBlackWords.length, 381);
+assert.equal(chapterBlackWords.flat().length, 1717);
+const fullChapterBlack = gp.pages[8].indices.slice(12).concat(
+  gp.pages.slice(9, 15).flatMap(p => p.indices));
+assert.deepEqual(chapterBlackWords.flat().map(c => c.value), fullChapterBlack);
+/** @param {number} x @returns {number} */
+function inverse29(x) {
+  for (let j = 1; j < 29; j++) if (mod29(x * j) === 1) return j;
+  throw new Error('Source cycle unexpectedly contains zero');
+}
+const chapterWordModels = [];
+for (const seed of [titleGlyphI, titleGlyphC]) {
+  const sourceCycle = Array.from({length:7},(_,i)=>iterate(f29,seed,i));
+  for (const op of ['add','multiply'])
+  for (const sign of [-1,1])
+  for (const wordClock of ['continuous','pageReset']) {
+    let index=0, prevPage=-1;
+    const decoded=[];
+    for (const word of chapterBlackWords) {
+      const page=word[0].page;
+      if (wordClock === 'pageReset' && page !== prevPage) index=0;
+      prevPage=page;
+      const key=sourceCycle[index++ % 7];
+      for (const cell of word) {
+        const digit=op==='add'
+          ? mod29(cell.value + sign*key)
+          : mod29(cell.value * (sign===1?key:inverse29(key)));
+        decoded.push(digit);
+      }
+    }
+    chapterWordModels.push({seed,op,sign,wordClock,ioc:freq(decoded)});
+  }
+}
+assert.equal(chapterWordModels.length,16);
+assert.equal(chapterWordModels.filter(x=>x.ioc>=0.05).length,0);
+const chapterWordModelMaxIoC=Math.max(...chapterWordModels.map(x=>x.ioc));
+assert(Math.abs(chapterWordModelMaxIoC - 0.03493381012309376)<1e-12);
+
 // A real but structurally imperfect continuation comparison:
 // p53 ends in TWELVE red words, p54 begins with TWO red words.
 // Freeze first5 and last5, with no fitted five-of-twelve window.
@@ -295,6 +402,20 @@ console.log('LP2_P7_P8_POLYNOMIAL_FIXEDPOINT ' + JSON.stringify({
   p8HeadingTerminalIndex: p8[1].at(-1).value,
   p8HeadingProduct: mod(target[0] * target[1]),
   sourceOrderMatchesOutOf120: suitable.length,
+  headerUniqueSevenCycleGlyphs: titleGlyphsInCycle.map(c=>[c.offset,c.value]),
+  originalPolynomialSevenCycleFromI: cycleStartingAtI,
+  titleCrossWordDirectedCycleLinks: [
+    {from:10,to:5,steps:target[1]},
+    {from:5,to:10,steps:target[0]}
+  ],
+  sourceSelectedOriginalTitleOrbitConditional841: {
+    tested:conditionalModels,onlyRootModels,orbitPairMatches,
+    uniqueResidualCoefficients:orbitPairParameterMatches
+  },
+  sevenPageChapterBlackRuneCount:fullChapterBlack.length,
+  sevenPageOriginalCompleteBlackWords:chapterBlackWords.length,
+  sourceCycleWordClockModels:chapterWordModels.length,
+  sourceCycleWordClockMaximumIoC:chapterWordModelMaxIoC,
   featureDirectionMatchesOutOf22: matchingFeatureDirections,
   p53p54DifferentShapeControl: continuation,
   irreducibleQuadratic: [21, 0, 1],
