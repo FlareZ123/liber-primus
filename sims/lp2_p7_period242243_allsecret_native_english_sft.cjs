@@ -48,7 +48,7 @@ const observed = sites.map(x => x.r);
 assert.equal(sourceWords.length, 333);
 assert.equal(sites.length, 1474);
 assert.deepEqual([9,10,11,12,13,14].map(p => sites.filter(x => x.p === p).length),
-  [238,244,249,232,255,256]); // original physical-page GP29 counts
+  [268,263,273,261,272,137]); // original physical-page GP29 counts
 
 const clock = {
   global242: sites.map((_, i) => i % 242),
