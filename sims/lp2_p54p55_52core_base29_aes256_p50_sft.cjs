@@ -89,6 +89,29 @@ for (const b of plaintext) {
   run = b >= 32 && b <= 126 ? run + 1 : 0;
   if (run > longestPrintable) longestPrintable = run;
 }
+// Independent literal source comparator: the solved p57 final 52 runes
+// begin with SHED and use the authenticated solved-p56 phi(prime) cipher.
+const knownFinal52 = corpus.pages.find((page) => page.page === 57).indices.slice(-52);
+assert.equal(knownFinal52.length, 52);
+assert.ok(knownFinal52.map((v) => corpus.translit[v]).join('').startsWith('SHED'));
+const primes = [];
+for (let candidate = 2; primes.length < 52; candidate += 1) {
+  let isPrime = true;
+  for (let divisor = 2; divisor * divisor <= candidate; divisor += 1) {
+    if (candidate % divisor === 0) { isPrime = false; break; }
+  }
+  if (isPrime) primes.push(candidate);
+}
+/** @param {number} p @returns {number} */
+function totientOfPrime(p) { return p - 1; }
+const F = corpus.translit.indexOf('F');
+assert.equal(F, 0);
+let primeClock = 0;
+const predictedCore = knownFinal52.map((v) => v === F
+  ? F : (v + totientOfPrime(primes[primeClock++])) % 29);
+const known52Matches = predictedCore.filter((v, i) => v === interior[i]).length;
+assert.equal(known52Matches, 1, 'the claimed native refrain is not present under solved phi');
+assert.equal(primeClock, 50);
 console.log(JSON.stringify({
   original: 'p54 last10 + all 76 p55 runes, 17 complete words, unchanged',
   register: { shellCount: shell.length, coreCount: interior.length,
@@ -101,6 +124,7 @@ console.log(JSON.stringify({
     last32hex: plaintext.subarray(-32).toString('hex'),
     printable, longestPrintable, entropyBitsPerByte: entropy,
     zeroByteCount: histogram[0] },
+  literalSolvedP57Known52PhiCompare: { observedMatches: known52Matches, length: 52, sourceSelectedCipher: 'p56 consecutive prime totient, literal F bypass', expectedFullRefrain: false },
   controls: { originalReencryptBytes: 256,
     sourceNativeAsciiPlantRecoveredBytes: 256, source86RunesRoundTrip: true },
   conclusion: 'A hypothesized terminal-core key, not a source-selected 86-rune inverse.'
