@@ -128,6 +128,20 @@ for(const [walk,positions] of Object.entries({row,shell})){
   }
   assert.equal(indices.length,84);
   const pairs=indices.map(i=>table[i]);
+  const seenBytes=new Map();
+  let byteContradiction=null;
+  for(let step=0;step<84;step++){
+   const cell=indices[step],byte=grid.bytes[cell],value=known[step];
+   const earlier=seenBytes.get(byte);
+   if(earlier&&earlier.value!==value&&!byteContradiction){
+    byteContradiction={byte,earlierCell:earlier.cell,laterCell:cell,
+      earlierKeyStep:earlier.step,laterKeyStep:step,
+      earlierKnownKey:earlier.value,laterKnownKey:value};
+   }
+   if(!earlier)seenBytes.set(byte,{cell,step,value});
+  }
+  assert.ok(byteContradiction,
+    'all-secret 256-byte source codebook should have a collision witness');
   for(const model of models){
    const fit=solve(model,pairs,known);
    const synthSecret=Array.from({length:model.variables},
@@ -156,7 +170,8 @@ for(const [walk,positions] of Object.entries({row,shell})){
    output.push({walk,clock,model:model.name,equations:84,
      unknownValues:model.variables,rank:fit.rank,freeValues:model.variables-fit.rank,
      consistent:fit.consistent,contradictoryEquationRow:fit.firstContradiction,
-     rimSymbolsKeyPredictable:provenRimCount,positivePlant:true});
+     rimSymbolsKeyPredictable:provenRimCount,positivePlant:true,
+     sourceByteConflictExample:model.name.includes('entire-base60-byte')?byteContradiction:null});
   }
  }
 }
