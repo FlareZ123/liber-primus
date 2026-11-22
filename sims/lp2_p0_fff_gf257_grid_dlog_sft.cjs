@@ -187,7 +187,6 @@ const originalP0=book.pages[0].indices;
 assert.equal(originalP0.length,262);
 const fieldLogKey=grid.bytes.map(byte=>exponentFor.get(byte+1));
 assert.equal(fieldLogKey.length,256);
-const mod29=x=>((x%29)+29)%29);
 /**
  * @param {number[]} plaintext
  * @param {number} anchor
