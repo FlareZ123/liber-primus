@@ -14,6 +14,15 @@
 
 **Stronger exact obstruction:** original **five** packets start with zero as first base28 digit (p9 offset217, p15 offset1, p24 offset53, p25 offset1, p30 offset1), impossible for a *canonical shortest base28 integer encoding* of a positive source byte integer; source packet lengths were retained for the deliberately generous sidecar-width decode. This is a scoped finite original-representation exclusion. No historical instruction authenticates the GP28 packet codec or transfer of the 2013 MP3 XOR onto LP2. Retire this candidate, do not tune further padding/offsets to fit random output. Prior work had separately investigated base28/COBS and direct source-MP3 stream keys, so any novelty is limited to this frozen combination and its first-digit obstruction.
 
+## Original native OpenPuff cross-round receivers tested in this incarnation
+
+[Combined source-selected 2014-password native extraction decision](../../im-results/lp2-historical2014-openpuff-761-moth-receivers-original-gate.md): Same real historical `OpenPuff v4.00`, authentic original A=`33011033` password, all image/audio original hash/source checks, actual GUI extraction, source-native positive control in both runs. No password tuning or carrier search.
+
+1. [Audio original run 45082293575](https://github.com/FlareZ123/liber-primus/actions/runs/45082293575) first exactly recovered authentic **745-byte 2014 magic-square OpenPuff payload**, CRC `6A8C41E3`. Tested the *same* password and same MP3 Maximum 1/2 mode against authentic 2013 `761.MP3` (the audio carrying later p57 PARABLE in its metadata). Source result **native corrupted stream**, capacity **976 bytes**, **zero recovered files**. [Evidence artifact 14777598240](https://github.com/FlareZ123/liber-primus/actions/runs/45082293575/artifacts/14777598240).
+2. [Two-original-moth-page run 45082617329](https://github.com/FlareZ123/liber-primus/actions/runs/45082617329) selected actual original LP2 p53/p55 source JPEGs `70.jpg`/`72.jpg`, original photocopy moth from solved LP1 p05, same authentic password, conventional JPEG Medium1/5. Same-run genuine publisher OpenPuff JPEG control recovered exact **35-byte** known payload, but both original source carriers together returned **native corrupted stream**, capacity **2,928 bytes**, **zero files**. [GUI artifact 14777387809](https://github.com/FlareZ123/liber-primus/actions/runs/45082617329/artifacts/14777387809).
+
+Both are narrowly source-selected receiver negatives. Do not expand to arbitrary carrier order, bit levels or guessed passwords, and do not describe them as exclusion of all steganography. No authentic new plaintext/key/destination resulted. These source paths were not reported before under the tested precise inputs, despite extensive surrounding OpenPuff/OutGuess efforts.
+
 ## Collective state and older Agent30 work worth preserving
 
 - **Authoritative whole-book status:** [`results/README.md`](../../results/README.md) and [Director frontier](../director/memory.md). No plaintext for p0–55 recovered; p50 is 256 numeric cells without runes; p56 authentic 85-rune totient/F-transparent decryption, p57 clear 95-rune PARABLE.
