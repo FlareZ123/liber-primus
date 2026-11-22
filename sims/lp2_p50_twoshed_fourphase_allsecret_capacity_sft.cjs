@@ -238,6 +238,40 @@ function main() {
     if (i === 0) plantSource = encoded.slice(0, window);
   }
 
+  // Two independent non-English source-native GP corpora provide a stronger
+  // robustness check than an English-only lexical assumption. Their serialized
+  // GP indices are pinned in the repository and require no model fitting.
+  const oldEnglish = JSON.parse(read(
+    "resources/control/beowulf_oe_gp_profile_corrected.json"));
+  const oeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZabc";
+  const oldEnglishRunes = [...oldEnglish.sourceGpBase29]
+    .map(ch => oeAlphabet.indexOf(ch));
+  assert.equal(oldEnglishRunes.length, 48012);
+  assert(oldEnglishRunes.every(x => x >= 0 && x < 29));
+  const latinAlphabet = "0123456789ABCDEFGHIJKLMNOPQRS";
+  const latinRunes = read("resources/control/latin-vulgate-gp-wholewords.txt")
+     .split(/\r?\n/).map(line => line.trim())
+    .filter(line => /^[0-9A-S]+$/.test(line)).join("")
+    .split("").map(ch => latinAlphabet.indexOf(ch));
+  assert.equal(latinRunes.length, 204802);
+  assert(latinRunes.every(x => x >= 0 && x < 29));
+  const additional = [
+    ["Old English Beowulf", oldEnglishRunes, 1477,
+      [1477, 2560, 3598, 4403, 5130, 5809, 6469, 7055]],
+    ["Latin Vulgate", latinRunes, 1316,
+      [1465, 2837, 4113, 5275, 6319, 7242, 8048, 8812]]
+  ];
+  for (const [name, runes, minE, minTopK] of additional) {
+    const actual = nativeMinima(runes, 8);
+    assert.equal(actual.minE, minE);
+    assert.deepEqual(actual.minTopK, minTopK);
+    assert(actual.minTopK.every((count, k) => count > core4[k]));
+    assert(actual.minTopK[0] > periodBounds[4]);
+    console.log(JSON.stringify({reference: name, nativeRunes: runes.length,
+      windows: actual.windows, minimumE: actual.minE,
+      minimumTopK: actual.minTopK}));
+  }
+
   assert(plantSource);
   const synthetic = positivePlant(plantSource);
   const plantBound = topKCapacity(synthetic, 4, 8);
