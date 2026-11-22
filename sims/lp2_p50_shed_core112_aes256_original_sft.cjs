@@ -145,3 +145,39 @@ for(const mode of ['aes-256-ecb','aes-256-cbc']) {
   assert.deepEqual(clear,plantText);
   console.log('Genuine solved p57 language AES positive '+mode+' '+clear.length+'/'+plantText.length);
 }
+
+
+/**
+ * Exact prefix probability under uniformly random reassignment of the 256
+ * observed 0..4 digits to the 112 fixed core coordinates, no replacement.
+ * This is a matched-table null, not an authored-key probability.
+ * @param {number} bitExponent
+ */
+function prefixProbability(bitExponent) {
+  const thresholds=Array(112).fill(0);
+  let limit=1n<<BigInt(bitExponent);
+  for(let i=111;i>=0;i--){
+    thresholds[i]=Number(limit%5n);
+    limit/=5n;
+  }
+  assert.equal(limit,0n);
+  const bins=hist.slice();
+  let equal=1;
+  let less=0;
+  for(const target of thresholds){
+    const remaining=bins.reduce((x,y)=>x+y,0);
+    const smaller=bins.slice(0,target).reduce((x,y)=>x+y,0);
+    less+=equal*smaller/remaining;
+    equal*=bins[target]/remaining;
+    if(!bins[target])break;
+    bins[target]--;
+  }
+  return less;
+}
+const less256=prefixProbability(256);
+const exactly255=prefixProbability(255)-prefixProbability(254);
+assert(Math.abs(less256-0.0365986546492357)<1e-12);
+assert(Math.abs(exactly255-0.009096829271241447)<1e-12);
+console.log('Original-digit-histogram shuffle P(112-digit core<2^256)='+
+  less256.toFixed(12)+'; P(actual bitlength exactly255)='+
+  exactly255.toFixed(12)+'; both exploratory not authorship corrections');
