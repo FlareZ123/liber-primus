@@ -150,3 +150,56 @@ assert(outcomes.every(x=>x.ioc < 0.04));
 console.log("SW-directed p50 rim --> p55 original 76-rune direct-key results:");
 for (const result of outcomes) console.log(JSON.stringify(result));
 console.log("PASS: source-only SW pointer is exact; eight simple rim-key receivers fail native-GP concentration and recover no readable original plaintext.");
+
+
+// SW also uniquely abbreviates an original LP1 heading, SOME WISDOM (p05).
+// That heading contains the actual 1033 5x5 square printed in 2014, hence
+// is a plausible human source receiver for these cuneiform numerals.
+// Historical Stage04 used solved LP1 prose to key a GP29 Vigenere cipher.
+// Probe exactly the printed 10-rune heading and its 64-rune prose body as
+// repeating, zero-phase, page-item-reset keys with the two additive signs.
+const wisdom = read("resources/external/2013-0-wisdom.txt");
+const titleEnd = wisdom.indexOf("⁜");
+const knowThis = wisdom.indexOf("ᚳᚾᚩᚹ•ᚦᛁᛋ");
+assert(titleEnd >= 0 && knowThis > titleEnd);
+const wisdomIndex = text => [...text].filter(ch => glyphs.has(ch)).map(ch => glyphs.get(ch));
+const wisdomKeys = [
+  {name:"LP1 SOME WISDOM heading",key:wisdomIndex(wisdom.slice(0,titleEnd))},
+  {name:"LP1 SOME WISDOM body",key:wisdomIndex(wisdom.slice(titleEnd+1,knowThis))}
+];
+assert.deepEqual(wisdomKeys.map(x => x.key.length),[10,64]);
+assert.equal(wisdomKeys[0].key.map(x => corpus.translit[x]).join(""),"SOMEWISDOM");
+const numbered = [
+  corpus.pages[36].indices.slice(99,238),
+  corpus.pages[37].indices.slice(0,91),
+  corpus.pages[37].indices.slice(91,189),
+  corpus.pages[37].indices.slice(189,228).concat(corpus.pages[38].indices.slice(0,57)),
+  corpus.pages[38].indices.slice(57,186)
+];
+assert.deepEqual(numbered.map(x => x.length),[139,91,98,96,129]);
+const wisdomOutcomes = [];
+for(const {name,key} of wisdomKeys){
+  for(const sign of [-1,1]){
+    // Cipher = Plain - sign*key. The same source key is used to plant known
+    // solved p57 plaintext and to decode original unknown numbered material.
+    const planted = nativeControl.map((plain,i) =>
+      (plain-sign*key[i%key.length]+29)%29);
+    const restored = planted.map((cipher,i) =>
+      (cipher+sign*key[i%key.length]+29)%29);
+    assert.deepEqual(restored,nativeControl);
+    const results = numbered.map((source,unit) => {
+      const plaintext = source.map((cipher,i) =>
+        (cipher+sign*key[i%key.length]+29)%29);
+      assert.deepEqual(plaintext.map((plain,i) =>
+        (plain-sign*key[i%key.length]+29)%29),source);
+      return {unit:unit+1,n:source.length,ioc:ioc(plaintext),
+        first35:plaintext.slice(0,35).map(x => corpus.translit[x]).join("")};
+    });
+    assert(results.every(x => x.ioc > 0.025 && x.ioc < 0.042));
+    wisdomOutcomes.push({name,sign,results});
+  }
+}
+assert.equal(wisdomOutcomes.length,4);
+console.log("SW -> literal LP1 SOME WISDOM Vigenere receivers on original five numbered units:");
+for(const result of wisdomOutcomes)console.log(JSON.stringify(result));
+console.log("PASS: Four source-linked title/body Vigenere transfers recover no native numbered plaintext.");
