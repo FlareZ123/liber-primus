@@ -219,7 +219,7 @@ function plant(plainWords) {
   /** @type {number[][]} */ const out = [];
   for (let w = 0; w < plainWords.length; w++) {
     const cipherWord = plainWords[w].map((p, i) => {
-      const key = 1 + (w * 13 + (i % plantPeriod) * 7) % 28;
+      const key = 1 + (w * 13 + (i % plantPeriod) * 5) % 28;
       previous = mod(previous + key * (p + 1));
       return previous;
     });
@@ -235,7 +235,7 @@ assert.equal(positive.total, 2896);
 let prev = 0;
 for (let w = 0; w < planted.length; w++) {
   for (let i = 0; i < planted[w].length; i++) {
-    const key = 1 + (w * 13 + (i % plantPeriod) * 7) % 28;
+    const key = 1 + (w * 13 + (i % plantPeriod) * 5) % 28;
     const curr = planted[w][i];
     const decoded = mod((curr - prev) * inverse[key] - 1);
     assert.equal(decoded, plantedPlainWords[w][i]);
@@ -252,4 +252,4 @@ console.log(JSON.stringify({
   realNativeWordLengthPeriod5Plant: positive.long,
   plantedRoundTrip: 'PASS',
 }, null, 2));
-console.log('PASS: every secret per-word nonzero scalar excluded on original 6+-rune words under the native English lexicon');
+console.log('PASS: all period-1..5 secret word keys excluded on every original 10+-rune word under the native English lexicon');
