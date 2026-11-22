@@ -1,4 +1,4 @@
-# P7 GF(3) clock as a three-mode GP29 predecessor cipher: complete all-secret exclusion on long original receivers
+# Both p7 source-derived primitive GF(3) clocks fail fixed three-mode GP29 direct decoding
 
 **Agent4, 22 November 2026. Evidence class: exact source-conditional negative on original LP2 ciphertext. No recovered unknown plaintext, authentic cipher key or final destination.**
 
@@ -65,6 +65,27 @@ The corresponding **complete 243-state zero-spliced** mode clocks give the follo
 
 The p9–p55 receiver is the historically more motivated test because the ternary clue is first printed on p7. All input ciphertext runes and printed boundaries remain untouched. No unknown cipher key or English target word contributes to these maxima.
 
+## Independently sourced p7 five-dot-height recurrence: exact same outcome
+
+P7 has a second, mathematically distinct **source-derived 242-state register**. The physically observed top-to-bottom dot-height ranks, paired left-to-right, are **[3,5,1,4,2]** on the original JPEG. They were locked before the cipher test by [the five-dot measurement and interpolation audit](lp2-p7-fivedot-shamir-dual-dh-source-gate.md). Interpolating the *same* original five red-word products [11,26,8,15,2] as the y-coordinates over GF29 gives the degree-four polynomial, low-to-high coefficient order **[23,18,21,22,11]**. Its constant **23** equals the independent historical 2013 DH modulus, and the horizontal-dot polynomial constant **5** equals the earlier DH base. Those are actual source-arithmetic observations, with no historical proof that a cipher consumes the coefficients.
+
+Reducing these five **height-polynomial coefficients modulo3** produces **[2,0,0,1,2]**. The resulting GF3 recurrence has period242 over the 242 nonzero five-trit states. All 242 nonzero GF3-linear output readouts are independently proven to be phases of this second m-sequence. Its two genuine 243-state de Bruijn zero insertions occur after original four-zero runs starting at positions **113** and **234**. Both are exact cyclic 243-window permutations, and the second is the first shifted122 steps and multiplied by2 mod3. Relabeling the three arbitrary secret Q alphabets absorbs this multiplication; testing all 243 phases of one full cycle covers both and every affine output constant.
+
+The exact same 87-permutation-row all-secret original-cipher test gives:
+
+| Five-dot-height source clock | P0–p55: max one recovered plaintext rune of 10,060 | P9–p55: max one recovered plaintext rune of 8,395 |
+| --- | ---: | ---: |
+| 242-state book-continuous | **774** | **687** |
+| 242-state physical-page reset | **782** | **688** |
+| 242-state word reset | **761** | **677** |
+| 243-state zero-spliced book-continuous | **782** | **690** |
+| 243-state zero-spliced page reset | **778** | **689** |
+| 243-state zero-spliced word reset | **761** | **677** |
+
+Eight-section full-book resets, also tested for both state lengths, have original maxima **778** and **774**. Across both independent source-fixed p7 register families, all affine readouts, both zero splices, all 242/243 phases and declared source-visible clocks, the **largest** original full-book common-rune capacity is **784/10,060** and the **largest** downstream p9–p55 capacity **691/8,395**. Every one of 180 independently native-GP Gibran/Shakespeare/Latin word-length-matched controls needs at least **1,181/10,060** and **974/8,395**, respectively. Neither recurrence can directly decode the tested source-native prose under three stationary predecessor-dependent GP29 substitution alphabets.
+
+Constructive positive controls encrypt, decrypt and reencrypt the full original-shaped 12,956-rune test stream under the **second** 242- and 243-state source cycles, retaining all 2,896 source word boundaries. Both recover all planted known solved-p57 GP symbols with arbitrary secret permutation tables and satisfy their exact computed frequency bounds. Thus the new source arithmetic survives, while this precise proposed cipher consumer is rejected.
+
 ### Calibrated word-preserving plaintext controls
 
 For independently sourced controls, use the repository's solved-LP1/p57-calibrated GP orthography to encode genuine Gibran and Shakespeare source words. Use the separately already-encoded GP29 Latin Vulgate words without reconverting them. Draw complete words matching **every one of the 2,896 original GP word lengths** in 60 deterministic seeded trials per source, preserving the exact positions selected for the p9–p55 subset.
@@ -81,10 +102,10 @@ A positive plant encrypts a full source-sized **12,956-rune** sequence using ori
 
 ## Decision
 
-The primitive p7 register, under **any affine GF(3) output coordinate/constant/phase**, cannot simply select one of three stationary ciphertext-predecessor substitution tables to decode the natural-language original LP2 p9–p55 or p0–p55 as long continuous source registers. This closes the specific three-mode escape left by the earlier one/two-mode capacity theorem.
+Neither of the two independent p7 source-derived primitive GF(3) registers, under **any affine GF(3) output coordinate/constant/phase**, can select one of three stationary ciphertext-predecessor substitution tables to decode source-native prose on original LP2 p9–p55 or p0–p55 as long continuous registers. This closes the specific three-mode escape left by the earlier one/two-mode capacity theorem.
 
 The **complete 243-state zero-spliced ternary clock**, under either author-plausible insertion, is **also excluded as the sole selector for these same three stationary predecessor alphabets**. The proof does not address short p8/p9–p14-only inscriptions, nonlinear five-trit-state-to-rune output, per-page independently changing secret alphabets, plaintext-dependent state updates, external keys, or non-GP intermediate messages. None is made more credible merely by escaping this exclusion. A further experiment needs its own visually or historically selected operation and plaintext-producing receiver.
 
 **Fully reproducible single-file test:** [SFT, Windows/Node 22 CommonJS](../sims/lp2_p7_gf3_affine_three_mode_allsecret_sft.cjs). It derives p7's actual red products, verifies original 12,956 rune/2,896 word identities, enumerates all affine readouts and phases, computes all 242-state and both 243-state source-clock capacity bounds, uses 180 matched native-source controls and confirms exact positive recovery for both period types.
 
-**Verified Windows/Node 22 workflow:** [PASS, full 242/243-clock SFT, run 45010878894](https://github.com/FlareZ123/liber-primus/actions/runs/45010878894). Classification remains intermediate research in im-results, with no claim of new plaintext.
+**Verified Windows/Node 22 workflow:** [PASS, both source-derived 242/243-clock families, run 45013263553](https://github.com/FlareZ123/liber-primus/actions/runs/45013263553). Classification remains intermediate research in im-results, with no claim of new plaintext.
