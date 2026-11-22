@@ -230,6 +230,30 @@ function main() {
     number29(Array.from({ length: 5 }, () => Array(5).fill(0n))));
   assert.notDeepEqual(polynomialOnMatrix(first, finalCharacteristic),
     number29(Array.from({ length: 5 }, () => Array(5).fill(0n))));
+  // Falsification control: 4 unit cell changes, preserving the complete
+  // 1033 row sums, column sums, both major diagonals and 180-degree
+  // centrosymmetry, DESTROY the spectral CHANGE word.
+  const magicPreservingPerturbation = [
+    [0, 0, 0, 0, 0],
+    [1, 0, 0, 0, -1],
+    [0, 0, 0, 0, 0],
+    [-1, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0]
+  ];
+  const counterfactual = last.map((row, i) =>
+    row.map((x, j) => x + BigInt(magicPreservingPerturbation[i][j])));
+  for (let i = 0; i < 5; i++) {
+    assert.equal(counterfactual[i].reduce((s, x) => s + x, 0n), 1033n);
+    assert.equal(counterfactual.reduce((s, row) => s + row[i], 0n), 1033n);
+    for (let j = 0; j < 5; j++) {
+      assert.equal(counterfactual[i][j], counterfactual[4 - i][4 - j]);
+    }
+  }
+  assert.equal(counterfactual.reduce((s, row, i) => s + row[i], 0n), 1033n);
+  assert.equal(counterfactual.reduce((s, row, i) => s + row[4 - i], 0n), 1033n);
+  const counterfactualPolynomial = characteristic5(counterfactual);
+  assert.deepEqual(counterfactualPolynomial, [1, 11, 13, 27, 2, 22]);
+  assert.notDeepEqual(counterfactualPolynomial, finalCharacteristic);
 
   const original = JSON.parse(fs.readFileSync(
     path.join(root, 'resources', 'liber-primus', 'lp2-corpus.json'), 'utf8'));
@@ -291,6 +315,9 @@ function main() {
       CHANGE_native_GP_runes: change,
       original_final1033_square_charpoly_mod29: finalCharacteristic,
       word_CHANGE_product_polynomial_equals_charpoly: true,
+      counterfactual_preserves_1033_magic_and_centrosymmetry: true,
+      counterfactual_4_cell_unit_perturbation_charpoly: counterfactualPolynomial,
+      counterfactual_BREAKS_CHANGE_factorization: true,
       source_alphabet_order_from_spectrum: 'UNDETERMINED'
     },
     original_integer_modulus_uniqueness: {
