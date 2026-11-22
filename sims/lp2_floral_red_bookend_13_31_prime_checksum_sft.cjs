@@ -76,6 +76,28 @@ for(let T=2*51;T<=109*51;T++)
 assert.deepEqual(rhs,[2262]);
 assert.equal(closing.primeSum,rhs[0]);
 
+// Stronger ink-blind consequence: ignore annotated color and enumerate every
+// ENTIRE p40 prefix and ENTIRE p53 suffix of ANY positive length. The same
+// two checksum predicates uniquely reconstruct exactly both original red
+// boundaries from the source rune values and original floral ornament values.
+const inkBlindPrefixes=[];
+let prefixIndex=0,prefixPrime=0;
+for(let i=0;i<p40.length;i++){
+  prefixIndex+=p40[i];prefixPrime+=primes[p40[i]];
+  if(prefixIndex%29===0 && prefixPrime%29===0)
+    inkBlindPrefixes.push({length:i+1,indexSum:prefixIndex,primeSum:prefixPrime});
+}
+assert.deepEqual(inkBlindPrefixes,[{length:8,indexSum:116,primeSum:435}]);
+const inkBlindSuffixes=[];
+let suffixPrime=0;
+for(let j=p53.length-1;j>=0;j--){
+  suffixPrime+=primes[p53[j]];
+  if(suffixPrime%(LEFT*GP)===0 &&
+     (heading.primeSum+suffixPrime)%(RIGHT*GP)===0)
+     inkBlindSuffixes.push({start:j,length:p53.length-j,primeSum:suffixPrime});
+}
+assert.deepEqual(inkBlindSuffixes,[{start:128,length:51,primeSum:2262}]);
+
 const heads=Array.from({length:p40.length-8+1},
   (_,i)=>sums(p40,i,8));
 const tails=Array.from({length:p53.length-51+1},
@@ -163,6 +185,7 @@ console.log(JSON.stringify({
   exactDivisions:{openingGPIndexOver29:4,openingPrimeOver29:15,
     closingPrimeOverGPxLeft:6,totalPrimeOverGPxRight:3,
     forcedClosingPrimeSum:rhs[0],boundedPossibleSums:[102,5559]},
+  inkBlindBoundaries:{p40AllPrefixesSatisfyingBoth29Checks:inkBlindPrefixes,p53AllSuffixesSatisfyingBothOrnamentChecks:inkBlindSuffixes},
   originalWindowCensus:{headWindows:heads.length,tailWindows:tails.length,
     totalPairs:heads.length*tails.length,headPrime0Pairs:head29,
     headIndexAndPrime0Pairs:headBoth29,tail13x29Pairs:tail13x29,
