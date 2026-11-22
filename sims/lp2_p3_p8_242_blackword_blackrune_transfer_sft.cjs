@@ -73,12 +73,26 @@ const residual = recipient.map((x, i) => mod(x - wordSums[i]));
 assert(Math.abs(ioc(residual) - 0.03288638935564624) < 1e-14);
 const direct = source.filter((w, i) => w.includes(recipient[i])).length;
 assert.equal(direct, 36);
+// A fixed whole-word -> one-rune code is independently impossible even if
+// the secret map is an arbitrary dictionary over entire source words.
+const repeats = new Map();
+for (let i = 0; i < source.length; i++) {
+  const key = source[i].join(',');
+  if (!repeats.has(key)) repeats.set(key, []);
+  repeats.get(key).push(i);
+}
+const duplicatePositions = [...repeats.values()].filter((indexes) => indexes.length > 1);
+assert.deepEqual(duplicatePositions, [[43, 232], [44, 223], [227, 228]]);
+for (const indexes of duplicatePositions)
+  assert.notEqual(recipient[indexes[0]], recipient[indexes[1]]);
+assert.equal(blackWords[227].page, 7);
+assert.equal(blackWords[228].page, 7); // Consecutive identical words on original p7.
 // Any global secret map (even nonbijective) needs one common source glyph for
 // every output glyph; page-specific maps need common glyph per page and output.
 function impossibleGroups(groupName) {
   const groups = new Map();
   for (let i = 0; i < source.length; i++) {
-    const key = groupName(blackWords[i]) + ':' + recipient[i];
+    const key = groupName(blackWords[i], i) + ':' + recipient[i];
     const possible = new Set(source[i]);
     if (groups.has(key)) {
       groups.set(key, new Set([...groups.get(key)].filter((x) => possible.has(x))));
@@ -90,6 +104,10 @@ const global = impossibleGroups(() => 'all');
 const page = impossibleGroups((x) => x.page);
 assert.deepEqual(global, { groups: 29, impossible: 29 });
 assert.deepEqual(page, { groups: 121, impossible: 52 });
+const phase5 = impossibleGroups((x, i) => i % 5);
+const pagePhase5 = impossibleGroups((x, i) => x.page + ':' + (i % 5));
+assert.deepEqual(phase5, { groups: 122, impossible: 49 });
+assert.deepEqual(pagePhase5, { groups: 205, impossible: 18 });
 // Exact source-shaped positive: arbitrary fixed secret GP29 affine substitution
 // applied to one selected rune per word must have zero impossible groups.
 const plant = source.map((w) => mod(7 * w[0] + 13));
@@ -137,5 +155,7 @@ assert(Math.abs(outputs[1].originalP9Ioc - 0.03422519509476031) < 1e-14);
 assert(Math.abs(outputs[1].untouchedP13Ioc - 0.03492462311557789) < 1e-14);
 console.log('PASS: 13 red/242 black scroll words, 12 red/242 intra-page black p8 runes, p8 carried rune preserved');
 console.log('PASS: direct extraction 36/242, arbitrary global map 29/29 impossible, page-private map 52/121 impossible');
+console.log('PASS: 3 repeated whole-word pairs each contradict fixed word-code, including one adjacent pair on p7');
+console.log('PASS: secret five-phase chosen-glyph maps 49/122 inconsistent; page-private five-phase maps 18/205 inconsistent');
 console.log('PASS: source-red-aware checksum match 6/242; 242-state BASE29 word labels have 150/149 distinct values');
 console.log('PASS: source-motivated checksum-pad reuse decrypts zero sustained original plaintext but both genuine-GP plants and original forward replay recover exactly');
