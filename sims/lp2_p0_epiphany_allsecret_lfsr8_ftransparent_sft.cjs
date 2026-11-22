@@ -175,12 +175,32 @@ function main() {
 
   const summary = [];
   let order8Survivors = [];
+  let ordinaryOrder8Best = { ioc: -1, coefficients: [] };
+  let ordinaryOrder8AtLeastFivePercent = 0;
+  const scoredOriginal = section0.length - 13;
   for (let order = 1; order <= 8; order += 1) {
     const solutions = solveCoefficients(seed, order);
     let firstChapterSurvivors = 0;
     let latestFailure = -1;
 
     for (const coefficients of solutions) {
+      if (order === 8) {
+        const keyAtOrdinary = keyStream(seed, coefficients);
+        const histogram = Array(29).fill(0);
+        for (let i = 13; i < section0.length; i += 1) {
+          histogram[mod(section0[i] - keyAtOrdinary(i))] += 1;
+        }
+        const indexOfCoincidence = histogram.reduce(
+          (sum, count) => sum + count * (count - 1), 0
+        ) / (scoredOriginal * (scoredOriginal - 1));
+        if (indexOfCoincidence >= 0.05) ordinaryOrder8AtLeastFivePercent += 1;
+        if (indexOfCoincidence > ordinaryOrder8Best.ioc) {
+          ordinaryOrder8Best = {
+            ioc: indexOfCoincidence,
+            coefficients
+          };
+        }
+      }
       const keyAt = keyStream(seed, coefficients);
       const { end } = firstFailure(section0, keyAt);
       latestFailure = Math.max(latestFailure, end);
@@ -214,6 +234,11 @@ function main() {
   assert(order8Survivors.every(s => s.firstContradiction >= 729));
   assert(order8Survivors.every(s => s.firstContradiction < section1.length));
 
+  assert.equal(ordinaryOrder8AtLeastFivePercent, 0);
+  assert.equal(ordinaryOrder8Best.ioc, 0.03684416142516701);
+  assert.deepEqual(ordinaryOrder8Best.coefficients,
+    [18, 20, 18, 25, 16, 25, 15, 12]);
+
   for (const row of order8Survivors) {
     const actual = encodeNative(nativePlant, keyStream(seed, row.coefficients));
     const proof = firstFailure(
@@ -231,6 +256,9 @@ function main() {
     chapterLengths: [section0.length, section1.length - section0.length],
     summary,
     order8Survivors,
+    ordinaryAdditiveOrder8Best: ordinaryOrder8Best,
+    ordinaryAdditiveOrder8WithIoCAtLeast0_05:
+      ordinaryOrder8AtLeastFivePercent,
     conclusion: 'All seeded homogeneous GF29 orders 1..8 fail by original p3,'
       + ' conditional on exact title crib, uninterrupted clock and p56 F-bypass.',
     positivePlant: nativePlant.length + ' known p57 GP29 runes per survivor PASS'
