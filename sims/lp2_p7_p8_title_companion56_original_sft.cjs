@@ -269,6 +269,61 @@ for(const sign of [-1,1]){
 assert.equal(forest19Cases.length,4);
 assert(forest19Cases.every(x=>x.normalizedIoC<1.024));
 
+
+/**
+ * Closed conditional countermodel census: all 29^2 quartics already
+ * fixed by p8 heading P(3)=3, P(4)=4, P'(4)=17. Count exactly how many
+ * OTHER models display a seven-cycle with nineteen transient vertices.
+ * This is a RETROSPECTIVE feature selection, NOT a global p-value.
+ */
+const conditionalForestNull={
+  count:0,withSevenCycle:0,sevenAndNineteenTransient:0,
+  sevenNineteenContainsI10C5:0,sevenNineteenAndP19Is12:0,
+  matchingParameterPairs:[]
+};
+for(let b=0;b<29;b++)for(let c=0;c<29;c++){
+  const f=x=>{const z=mod(x-4);
+    return mod(x+(x-3)*(x-4)*mod(16+b*z+c*z*z));};
+  conditionalForestNull.count++;
+  const seen=new Set(),cycles=[];
+  for(let start=0;start<29;start++){
+    if(seen.has(start))continue;
+    const visited=new Map(),chain=[];
+    let x=start;
+    while(!seen.has(x)&&!visited.has(x)){
+      visited.set(x,chain.length);chain.push(x);x=f(x);
+    }
+    if(visited.has(x))cycles.push(chain.slice(visited.get(x)));
+    for(const n of chain)seen.add(n);
+  }
+  const seven=cycles.filter(cycle=>cycle.length===7);
+  if(seven.length)conditionalForestNull.withSevenCycle++;
+  for(const cycle of seven){
+    const isCycle=new Set(cycle);
+    let basin=0;
+    for(let v=0;v<29;v++){
+      let x=v;
+      for(let i=0;i<29;i++){
+        if(isCycle.has(x)){basin++;break;}
+        x=f(x);
+      }
+    }
+    if(basin-cycle.length===19){
+      conditionalForestNull.sevenAndNineteenTransient++;
+      conditionalForestNull.matchingParameterPairs.push([b,c]);
+      if(cycle.includes(10)&&cycle.includes(5))
+        conditionalForestNull.sevenNineteenContainsI10C5++;
+      if(f(19)===12)
+        conditionalForestNull.sevenNineteenAndP19Is12++;
+    }
+  }
+}
+assert.deepEqual(conditionalForestNull,{
+  count:841,withSevenCycle:25,sevenAndNineteenTransient:2,
+  sevenNineteenContainsI10C5:1,sevenNineteenAndP19Is12:1,
+  matchingParameterPairs:[[5,21],[16,2]]
+});
+
 console.log(JSON.stringify({
   source: {
     p7LastFiveWholeRedWordProducts:earlier,
@@ -285,7 +340,7 @@ console.log(JSON.stringify({
   rawPeriod56Exclusion:matches56,
   completeBookPageClock:clockCases,
   originalRoman19Key:roman19Cases,
-  forest19SourceGraph:{cycle:fromI,transientBFSKey:forest19,cases:forest19Cases},
+  forest19SourceGraph:{cycle:fromI,transientBFSKey:forest19,cases:forest19Cases,conditionalNull:conditionalForestNull},
   solvedP57Control:{nativeIoC:Number(ioc(p57).toFixed(9)),
     authenticRunesReconstructed96:96},
   interpretation:'Exact conditional p8->p7 arithmetic and reversible order56 operator. Direct four-rune, Roman-XIX power and full 56-page clock gates nonlinguistic; no unknown plaintext or authenticated decoder.'
