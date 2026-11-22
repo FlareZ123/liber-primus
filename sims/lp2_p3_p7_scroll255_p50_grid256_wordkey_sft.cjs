@@ -115,4 +115,32 @@ assert.equal(Math.max(...alternatePages.map((p) => p.matches)), 14);
 const directDifference = wordSums.map((v, j) => mod(nextPage[j] - v));
 assert(Math.abs(ioc(directDifference) - 0.035602902578354176) < 1e-14);
 console.log('EXPLORATORY source-word-sum/p8 equality: 20/255 at phase0, max17 at other 254 rotations, max14 on other 255+-rune page prefixes; difference IoC 0.035602903');
+// Multiplicative rival to the additive key: the p7 red packet already uses
+// literal GP29 products, so test any wholly unknown per-word field multiplier
+// without guessing multipliers. The zero element cannot move under multiplication.
+const wordProducts = words.map((w) => mod(w.reduce((v, x) => v * x, 1)));
+const zeroContradictions = (values) => values.flatMap((value, j) =>
+  value === 0 && nextPage[j] !== 0 ? [j] : []);
+const sumObstructions = zeroContradictions(wordSums);
+const productObstructions = zeroContradictions(wordProducts);
+assert.equal(wordSums.filter((x) => x === 0).length, 9);
+assert.equal(wordProducts.filter((x) => x === 0).length, 26);
+assert.deepEqual(sumObstructions, [18, 50, 82, 132, 148, 224, 230]);
+assert.equal(productObstructions.length, 26);
+assert.equal(productObstructions.every((j) => wordProducts[j] === 0 && nextPage[j] !== 0), true);
+const gpNativePlant = Array.from({ length: 255 }, (_, j) => gp[j % gp.length]);
+for (const donor of [wordSums, wordProducts]) {
+  // A positive matched-target source may obey a secret per-word multiplier
+  // iff the source is zero exactly where a nonzero output is forbidden.
+  const planted = donor.map((v, j) => mod(v * (j % 28 + 1)));
+  assert.equal(zeroContradictions(donor.map((v, j) =>
+    v === 0 ? 0 : mod(planted[j] * modInverse29(v)))), 0);
+}
+/** @param {number} value @returns {number} */
+function modInverse29(value) {
+  assert(value > 0 && value < 29);
+  for (let i = 1; i < 29; i++) if (mod(value * i) === 1) return i;
+  throw Error('Nonzero GP29 element has no inverse');
+}
+console.log('all-secret multiplicative source-p8 obstructions: 7/9 zero-sum sites and 26/26 zero-product sites force impossible p8 symbols');
 console.log('PASS: source 255-word scroll, grid256 8 inverses, adjacent p8 255-rune 4 inverses, 12 full GP-native plaintext plants');
