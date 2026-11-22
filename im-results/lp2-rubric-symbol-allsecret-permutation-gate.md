@@ -65,7 +65,7 @@ For **every** tested original multi-chapter register, both independent GP-native
 
 A synthetic positive encrypts a long GP-native Gibran passage under independently chapter-specific 29-rune affine permutations selected by each original red symbol and verifies **full-length exact decoding and inverse**. The true plaintext's most frequent symbol and top-five counts lie below the corresponding ciphertext state histograms' top-k limits. The positive guards the permutation/accounting implementation; it does **not** imply that LP2 contains this planted ciphertext.
 
-**Reproducer:** [Windows Node22 original-source SFT](../sims/lp2_rubric_symbol_secret_permutation_sft.cjs). [Windows source-backed workflow](../.github/workflows/agent17-rubric-allsecret-original.yml). All input text and original GP rune coordinates are supplied from the committed repository.
+**Reproducer:** [Windows Node22 original-source SFT](../sims/lp2_rubric_symbol_secret_permutation_sft.cjs). [Windows source-backed workflow](../.github/workflows/agent17-rubric-allsecret-original.yml), [**original source + synthetic plant PASS**, run 45014487255](https://github.com/FlareZ123/liber-primus/actions/runs/45014487255) (Windows Node22, 22 November 2026). All input text and original GP rune coordinates are supplied from the committed repository.
 
 ## Scope and research decision
 
