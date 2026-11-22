@@ -96,6 +96,22 @@ assert(controlIoC >= 0.05);
  * 716=55*13+1 admits one row per actual rune-bearing unsolved page,
  * skipping physical rune-free p50.
  */
+// Separate source-motivated TWO-LAYER interpretation: assume (hypothetically)
+// that the red13 title means EPIPHANY SEECS under additive GP29, obtaining its
+// fixed 13-rune difference key. Apply this as an established Cicada-type
+// Vigenère to the 716 black chapter runes before forming 55 potential page
+// key rows. Key material is then high-entropy, so only the independent
+// page-receiver outputs are scored for language. The title remains a crib,
+// not an authenticated plaintext.
+const epiphanySeecs = [18,13,10,13,8,24,9,26,15,18,18,5,15];
+const candidateTitleKey = firstTitle.map((v, i) => mod29(v - epiphanySeecs[i]));
+assert.deepEqual(candidateTitleKey,
+  [26,24,8,19,27,24,18,3,0,8,0,16,19]);
+const decodedBlack = opening.slice(13).map((v, i) =>
+  mod29(v - candidateTitleKey[i % 13]));
+assert.equal(decodedBlack.length, 716);
+const runeBearingKeyPage = (page) => page >= 51 ? page - 1 : page;
+
 const alignments = [
   {name: "full-729-final-residual", offset: 0, rows: 56,
     keyPage: (page) => page},
@@ -104,15 +120,20 @@ const alignments = [
   {name: "black-716-final-residual", offset: 13, rows: 55,
     keyPage: (page) => page >= 51 ? page - 1 : page},
   {name: "black-716-initial-residual", offset: 14, rows: 55,
-    keyPage: (page) => page >= 51 ? page - 1 : page}
+    keyPage: runeBearingKeyPage},
+  {name: "title-crib-sub-black-716-final-residual", offset: 0, rows: 55,
+    stream: decodedBlack, keyPage: runeBearingKeyPage},
+  {name: "title-crib-sub-black-716-initial-residual", offset: 1, rows: 55,
+    stream: decodedBlack, keyPage: runeBearingKeyPage}
 ];
 const experiments = [];
 for (const alignment of alignments) {
   const {name, offset, rows, keyPage} = alignment;
+  const stream = alignment.stream || opening;
   const keys = Array.from({length: rows}, (_, p) =>
-    opening.slice(offset + p * 13, offset + p * 13 + 13));
+    stream.slice(offset + p * 13, offset + p * 13 + 13));
   assert(keys.every((k) => k.length === 13));
-  if (offset === 0) assert.deepEqual(keys[0], firstTitle);
+  if (name === "full-729-final-residual") assert.deepEqual(keys[0], firstTitle);
 
   for (const reverseKey of [false, true]) {
     for (const sign of [-1, 1]) {
@@ -145,14 +166,14 @@ for (const alignment of alignments) {
     }
   }
 }
-assert.equal(experiments.length, 48);
+assert.equal(experiments.length, 72);
 assert(experiments.every((p) => p.longPagesAbove0_05 === 0));
 assert(experiments.every((p) => p.maxLongPage.ioc < 0.04));
 
 console.log(JSON.stringify({
-  hypothesis: "p0-p2 full source 56x13+1, or red13-delimited body 55x13+1",
+  hypothesis: "p0-p2 full 56x13+1; body 55x13+1; or title-crib Vigenere-decoded body 55x13+1",
   source: {physicalPages: "p0-p2", runes: 729, redHeadingRunes: 13,
-    fullSourceKeyGroups: 56, blackBodyRunes: 716, blackBodyKeyGroups: 55, groupSize: 13},
+    fullSourceKeyGroups: 56, blackBodyRunes: 716, blackBodyKeyGroups: 55, candidateTitleKey, groupSize: 13},
   authenticUnknown: {pages: 52, runes: 12227, longPages: 49},
   authenticNativeSolvedControl: {page: 57, runes: 95, ioc: controlIoC},
   experiments
