@@ -260,4 +260,49 @@ parable.forEach((x) => p57Count[x]++);
 const p57TopFive = p57Count.sort((a, b) => b - a).slice(0, 5).reduce((a, b) => a + b, 0);
 assert.deepEqual([parable.length, p57TopFive], [95, 46]);
 console.log('Authentic solved PARABLE p57: 46/95 GP top-five letters (48.42105%), 19/114 GP30 SPACE tokens (16.66667%).');
+
+// Native-positive control: use the ACTUAL published PARABLE word breaks,
+// not synthetic positions selected for an expected test score.
+const p57Source = transcript.split('$')[9];
+const p57Words = [];
+let nativeWord = [];
+for (const ch of p57Source) {
+  if (gp.has(ch)) nativeWord.push(gp.get(ch));
+  else if (ch === '-' || ch === '.') {
+    if (nativeWord.length) p57Words.push(nativeWord);
+    nativeWord = [];
+  }
+}
+if (nativeWord.length) p57Words.push(nativeWord);
+assert.equal(p57Words.length, 20);
+assert.deepEqual(p57Words.flat(), parable);
+const p57FullGP30 = p57Words.flatMap((w, i) => i ? [29, ...w] : w);
+assert.equal(p57FullGP30.length, 114);
+assert.equal(p57FullGP30.filter((x) => x === 29).length, 19);
+
+// Source p57 does not use GP rune11, so a 29-to-30 injection can include SPACE
+// and still encode every native clear token. A simple nontrivial online
+// predecessor-state permutation is chosen independently of unknown LP2.
+const allowedTokens = Array.from({ length: 30 }, (_, i) => i).filter((x) => x !== 11);
+assert.equal(allowedTokens.length, 29);
+const plantCipher = [];
+let previousCipher = -1;
+for (const plain of p57FullGP30) {
+  const ordinal = allowedTokens.indexOf(plain);
+  assert.ok(ordinal >= 0);
+  const offset = previousCipher < 0 ? 0 : (previousCipher * 7 + 3) % 29;
+  const nextCipher = (ordinal - offset + 29) % 29;
+  plantCipher.push(nextCipher);
+  previousCipher = nextCipher;
+}
+const recovered = [];
+previousCipher = -1;
+for (const cipher of plantCipher) {
+  const offset = previousCipher < 0 ? 0 : (previousCipher * 7 + 3) % 29;
+  recovered.push(allowedTokens[(cipher + offset) % 29]);
+  previousCipher = cipher;
+}
+assert.deepEqual(recovered, p57FullGP30);
+assert.equal(plantCipher.length, 114);
+console.log('Solved PARABLE control PASS: all 95 native GP runes and all 19 true word spaces reproduced under reversible ciphertext-predecessor GP29-to-GP30 coding.');
 console.log('PASS: all ' + cases.length + ' original all-secret bounds and 29-to-30 exact inverse witnesses.');
