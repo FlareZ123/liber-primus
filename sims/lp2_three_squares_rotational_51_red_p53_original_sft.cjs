@@ -55,6 +55,7 @@ assert.equal(Math.max(...nativePairs), 174);
 // Scan only source-visible row / column order and entire-orbit reversal,
 // both additive directions. No crib, key tuning or original rune edits.
 const results = [];
+const lookupObstructions = [];
 for (const layout of ["row", "column"]) {
   const key = squares.flatMap((matrix, q) => {
     const n = matrix.length;
@@ -64,6 +65,42 @@ for (const layout of ["row", "column"]) {
     return entries.slice(0, orbit[q]).map(normalize);
   });
   assert.equal(key.length, 51);
+  const rawKey = squares.flatMap((matrix, q) => {
+    const n = matrix.length;
+    return Array.from({ length: n * n }, (_, i) =>
+      layout === "row" ? matrix[Math.floor(i / n)][i % n] :
+        matrix[i % n][Math.floor(i / n)])
+      .slice(0, orbit[q]);
+  });
+  assert.equal(new Set(rawKey).size, 50);
+  for (const reverse of [false, true]) {
+    const nativeKey = reverse ? [...rawKey].reverse() : rawKey;
+    const pos = new Map();
+    const rawConflicts = [];
+    const residueSeen = new Map();
+    let residueConflicts = 0;
+    for (let i = 0; i < 51; i++) {
+      const v = nativeKey[i];
+      if (pos.has(v) && red51[pos.get(v)] !== red51[i]) {
+        rawConflicts.push([pos.get(v), i, v]);
+      } else if (!pos.has(v)) {
+        pos.set(v, i);
+      }
+      const residue = normalize(v);
+      if (residueSeen.has(residue) && residueSeen.get(residue) !== red51[i]) {
+        residueConflicts++;
+      } else if (!residueSeen.has(residue)) {
+        residueSeen.set(residue, red51[i]);
+      }
+    }
+    assert.equal(rawConflicts.length, 1);
+    assert.ok(rawConflicts[0][2] === 7);
+    assert.ok(residueConflicts >= 25);
+    lookupObstructions.push([rawConflicts.length, residueConflicts]);
+    console.log(layout + " order, reversed=" + reverse +
+      ": arbitrary stationary integer→rune lookup is inconsistent at raw 7, " +
+      "and mod29 lookup has " + residueConflicts + " conflicting positions");
+  }
   for (const reverse of [false, true]) {
     const adjusted = reverse ? [...key].reverse() : key;
     for (const sign of [-1, 1]) {
@@ -87,6 +124,7 @@ for (const layout of ["row", "column"]) {
   assert.deepEqual(recovered, native.slice(0, 51));
 }
 assert.deepEqual(results, [96, 72, 82, 120, 82, 108, 102, 94]);
+assert.deepEqual(lookupObstructions, [[1,25], [1,25], [1,25], [1,26]]);
 assert.ok(results.every(n => n < Math.min(...nativePairs)));
 console.log("PASS 13+25+13 full rotated source positions, exact 51-rune p53 red anchor");
 console.log("PASS 2/2 native 51-rune source-language plants; all eight raw inverses non-native");
