@@ -152,7 +152,7 @@ The unchanged p8 black receiver is **243 runes**. Five polynomial/root consumers
 | Vandermonde block interpolation | source-order roots [19,4,3,27], 60 four-symbol blocks plus a three-symbol tail; both directions | −10.767 to −10.741 |
 | Direct period-5 Vigenère | Repeat p7 products [11,26,8,15,2]; ordinary clock both signs; exact p56 transparent-F DP both signs | −10.868 to −10.841; 0 valid transparent paths |
 | Direct 5-column transposition | Stable ascending/descending rank of p7 products [11,26,8,15,2]; both transform directions | −10.854 to −10.675 |
-| Direct DH exponential stream | k[i] = 2×5^i mod 23 from p7's (p,g,K)=(23,5,2); ordinary clock both signs; exact p56 transparent-F DP both signs | −10.756 to −10.719; 0 valid transparent paths |
+| Direct DH exponential stream | k[i] = 2×5^i mod 23 from p7's (p,g,K)=(23,5,2); first p7 product 11 gives 243 = 11×(23−1)+1; ordinary clock both signs; exact p56 transparent-F DP both signs | −10.756 to −10.719; 0 valid transparent paths |
 
 All twenty scored outputs are below the minimum **−7.581** among the 710 available native-GP 243-rune LP1 windows (median **−7.186**). IoCs remain approximately **0.0334–0.0374**. The cyclic inverse is explicitly verified in the 243-cycle ring; the direct ordinary-key and columnar tests also verify exact re-encryption. All twenty-four independently planted p57-native controls recover their planted plaintext, including all four exact-DP Vigenère/DH controls where the planted sequence is one of the returned paths. These are bounded negatives for the named consumers, not a proof against every possible polynomial or nonlinear state machine.
 
