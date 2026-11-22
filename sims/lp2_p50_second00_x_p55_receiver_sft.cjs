@@ -82,7 +82,8 @@ assert.equal(parseToken('1G', 59), 75);
 
 // Independent, previously studied p57 prime-ordinal 205 points to this
 // very same p50 token (the original PARABLE LIKE THE INSTAR clause).
-const clause = corpus.pages[57].indices.slice(0, 19);
+// Preserve the original seven-rune PARABLE title; first sentence is runes 7..36.
+const clause = corpus.pages[57].indices.slice(7, 37);
 const clauseSum = clause.reduce((sum, index) => sum + corpus.prime[index], 0);
 const primes = [];
 for (let n = 2; primes.length < 205; n++) {
