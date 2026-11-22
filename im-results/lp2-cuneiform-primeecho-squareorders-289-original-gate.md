@@ -38,6 +38,21 @@ Offsets are **zero-based runes within the exact numbered items**. Every item1/it
 
 **Exact runnable source test:** sims/lp2_1033_3301_squareorders_interpause289_sft.cjs. Inputs are the original source shell transcript, original 2014 recovered square matrices, the canonical GP29 LP2 ciphertext and source p57 cleartext. No mutable data or guessed key values enter this test. [Windows Node.js 22: **PASS**, successful exact source and original-cipher test](https://github.com/FlareZ123/liber-primus/actions/runs/45059396451).
 
+## Sexagesimal 578-to-553 digit packet: a conditional full-unit test
+
+Each of the **289** source-bounded primes **1039..3299** has exactly two **base60 digits**, directly motivated by the original cuneiform numeric writing. Thus the complete authentic interpause prime source encodes **578 digits**. The five original red-numbered passages contain **553 runes**; the exact excess **25 = 5×5** equals the 2014 source's square order. This permits a hypothesis of 25 header digits followed by one digit per ciphertext rune. There is **no first-party instruction** to omit these 25 digits, assign the remaining digits as GP29 keys, or select this packet division.
+
+A fixed first-opcode experiment uses original base60 digit pairs high-first in ascending prime order, mapping each digit modulo29 into the solved p56 GP29 additive-key inverse with its true plaintext-F transparency. The source stream begins at original digit offset **0** or the conditional after-header offset **25**. Both arithmetic signs are tested once. Key consumption is continuous across the five numbered units; at every visible ciphertext F, the inverse retains *every* legal nonconsuming plaintext F or consuming non-F path.
+
+| Digit source start | C = P + K item1 / item2 first impossible offsets | C = P − K item1 / item2 first impossible offsets |
+| ---: | --- | --- |
+| 0 | **27 / 13** | **2 / 0** |
+| 25 | **7 / 37** | **survives full139 / 19** |
+
+All first-impossible positions are zero-based within the untouched 139-rune original item1 and the independently printed 91-rune item2. The item1 survivor for offset25/minus is a **necessary cipher compatibility only**, not recovered plaintext: its direct no-F whole-553 GP29 IoC is **0.03387321** with no sustained language, and the independent item2 is algebraically impossible by its 20th original rune. The exact SFT includes a genuine native-GP 139-rune positive ciphertext accepted by the same F-transparent inverse, preventing an implementation-induced false exclusion. Full 553-source readouts remain ciphertext-like.
+
+**Research decision:** retain 578 = 25 + 553 solely as a conditional source-framing lead; reject these exact direct sexagesimal digit-to-rune consumers. An author-selected opcode and role for the 25 excess digits are needed before pursuing separate offsets, read orientations or a keyed block receiver.
+
 ## Cryptanalytic consequence and next discriminating action
 
 The new connection narrows a historically plausible *public* key-material candidate to **289 named original prime values** and a natural 17×17 geometry. It supplies no decoded text. The original document tells us to find the next **typed opcode**, not to iterate arbitrary transformations of the 289 values. Further work becomes justified if a genuinely first-party instruction supplies the row/column/ring readout or a cipher emitter; then the frozen 139-rune first passage can be tested immediately and must reencrypt exactly, with the independent 91-rune second passage as an untouched confirmation. Without such a selector, do not generalize this narrow negative into a full prime-source impossibility claim or begin a blind phase/geometry sweep.
