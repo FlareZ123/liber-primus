@@ -212,6 +212,43 @@ function indexOfCoincidence(seq) {
   for (const value of seq) counts[value]++;
   return counts.reduce((s, n) => s + n * (n - 1), 0) / (seq.length * (seq.length - 1));
 }
+
+// Independently printed p55 word circumferences select 33 external runes;
+// exact two-square difference 33 has one solution inside the 256-cell
+// byte range (289-256 is inadmissible): 49-16.
+// The square-chain defect 121-49-16 then selects table state56,
+// previously used by the literal base60/ASCII-hex compass handoff.
+const exteriors = p55.length - strictWordInteriors.length;
+assert.equal(exteriors, 33);
+const squarePairs = [];
+for (let a = 1; a * a <= 255; a++) {
+  for (let b = 1; b * b <= 255; b++) {
+    if (a * a - b * b === exteriors) squarePairs.push({ a, b });
+  }
+}
+assert.deepEqual(squarePairs, [{ a: 7, b: 4 }]);
+const [s7, s4, s11] = walk.slice(1, 4);
+assert.equal(s7 - s4, exteriors);
+const pythagoreanDefect = s11 - s7 - s4;
+assert.equal(pythagoreanDefect, 2 * 7 * 4);
+assert.equal(pythagoreanDefect, 56);
+assert.equal(cells[56], '4E');
+assert.equal(Number.parseInt(cells[56], 16), 'N'.charCodeAt(0));
+const mapAddress = 56;
+const nextNorthAddress = mapAddress - 8;
+assert.equal(nextNorthAddress, 48);
+assert.equal(corpus.translit[p32[33]], 'H');
+assert.equal(p32.slice(33, 37).map((x) => corpus.translit[x]).join(''), 'HOME');
+assert.equal(p32.slice(93, 97).map((x) => corpus.translit[x]).join(''), 'BUDS');
+const gpSum = (word) => Array.from(word).reduce((sum, ch) =>
+  sum + corpus.translit.indexOf(ch), 0);
+assert.equal(gpSum('BUDS'), mapAddress);
+assert.equal(gpSum('MAP'), mapAddress);
+assert.equal(gpSum('HOME'), nextNorthAddress);
+assert.equal(93 - 33, 5 * (11 + 1)); // DH g=5 southeast 11x11 translation
+console.log('SQUARE DEFECT 121-49-16=56 = GP0(BUDS/MAP); cell56=hex4E=N -> 48=GP0(HOME)');
+console.log('DIFFERENCE 49-16=33 = p55 outer-runecount (76-43), unique positive byte-square pair');
+
 const decoderCases = [
   { name: 'p55 all76', cipher: p55, expectation: [[0.029473684210526315, 0.03508771929824561], [0.034035087719298245, 0.031578947368421054]] },
   { name: 'p55 strict inner43', cipher: strictWordInteriors, expectation: [[0.03433001107419712, 0.02547065337763012], [0.023255813953488372, 0.03322259136212625]] },
