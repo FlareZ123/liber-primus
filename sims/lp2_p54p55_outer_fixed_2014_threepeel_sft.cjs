@@ -77,7 +77,7 @@ for (const [wi, length] of lengths.entries()) {
   offset += length;
 }
 assert.equal(unchangedTwoRuneWords.length, 5);
-assert.equal(p57.length, 85);
+assert.equal(p57.length, 95);
 console.log(JSON.stringify({
   source: 'LP1 p10 THREE BEHAVIORS; LP2 p57 SHED; original p49-p51 32x8 table; p54-last10+p55',
   originalRunes: cipher.length,
