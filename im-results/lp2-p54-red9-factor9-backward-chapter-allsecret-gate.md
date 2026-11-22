@@ -1,4 +1,4 @@
-# LP2 p54 red-nine / p50 degree-nine terminal-key inverse: original chapter holdout
+# LP2 p54 red-nine / p50 degree-nine reverse or forward chapter clock: original holdout
 
 **Agent8, 22 November 2026. Original-cipher decision: negative for the named terminal-state model. No new plaintext, author-selected key, or complete cipher found.**
 
@@ -39,6 +39,18 @@ To avoid prematurely excluding an unprinted mapping between numerical LFSR state
 
 A stringent authentic-language positive control encrypts **3,008 unedited Shakespeare GP29 plaintext runes** under a randomly shuffled, secret 29-symbol bijection with the *same source red9-to-chapter key schedule*. All **29 / 29** secret shift assignments are recovered from the training ciphertext alone and all **3,008** plaintext runes are recovered exactly. The resulting Shakespeare native GP29 negative log likelihood is **2.97949 training / 2.95663 holdout nats per rune**.
 
+### End-rubric initial-state alternative
+
+The **same nine red rune symbols can be a key printed after its ciphertext**: treat them as the initial forward LFSR state for the entire earlier chapter. This independently motivated temporal direction avoids assuming the red title encodes a terminal state. No forward-mode evidence is selected from the original ciphertext. Under the same permissive 29-symbol learnt map and exact original train/holdout partition, native English remains absent:
+
+| Supplied initial red-nine orientation | Original train NLL | Original heldout NLL | Distinct fitted shift labels |
+| --- | ---: | ---: | ---: |
+| Source red9, forward on p40–53 | 3.772504 | **4.104822** | 18 of 29 |
+| Reversed red9, forward on p40–53 | 3.772193 | **4.230321** | 19 of 29 |
+| Shakespeare source-native encrypted controls | 2.979492 | **2.956626** | 29 of 29 |
+
+Every source-native Shakespeare planted control under either forward key recovers the entire secret 29-shift map and all plaintext exactly. This extends the original negative to both physically readable clock directions without a guessed key offset.
+
 The corresponding original-input results:
 
 | Original p54 terminal-state direction | Original training NLL | Untouched original holdout NLL | Distinct fitted shift labels |
@@ -47,9 +59,9 @@ The corresponding original-input results:
 | Reversed | 3.802501 | **4.134856** | 18 of 29 |
 | Genuine Shakespeare encrypted control, either orientation | 2.979492 | **2.956626** | 29 of 29 |
 
-Every actual GP29 key symbol occurs at least **51** times in training and **25** times in holdout, so every state has observations in both sets. The language-trained map fits random-looking original training symbols slightly better than the holdout, but the *entire untouched test portion remains >1.17 nats/rune worse* than the genuine English positive. The original produces no authentic recovered words or promising decoded sentence.
+Every actual GP29 key symbol occurs at least **51** times in training and **25** times in holdout, so every state has observations in both sets. The language-trained map fits random-looking original training symbols slightly better than the holdout, but the *entire untouched test portion remains >1.17 nats/rune worse* than the genuine English positive. The original produces no authentic recovered words or promising decoded sentence, including when the printed rubric is treated as a later-supplied initial state.
 
-**Decision:** retire p54-red9-as-backward-chapter-state plus direct additive or any *fixed* independently learned 29-way state-symbol additive GP29 mapping. This is a stronger exclusion than the previously tested immediate forward nine-state key. It does **not** exclude a source-revealed different seed, a hidden nonlinear state advance, a non-additive alphabet, independently specified skip logic, non-English plaintext, or true ciphertext permutations/transpositions. A new independent source instruction is required before extending this branch. An increased search over arbitrary unseen checkpoint choices is not warranted by the original clues.
+**Decision:** retire both p54-red9-backward-terminal and p54-red9-forward-initial chapter clocks with direct additive or any *fixed* independently learned 29-way state-symbol additive GP29 mapping. This is a stronger exclusion than the previously tested immediate forward nine-state key. It does **not** exclude a source-revealed different seed, a hidden nonlinear state advance, a non-additive alphabet, independently specified skip logic, non-English plaintext, or true ciphertext permutations/transpositions. A new independent source instruction is required before extending this branch. An increased search over arbitrary unseen checkpoint choices is not warranted by the original clues.
 
 **Reproduction (Node22 CommonJS, Windows):**
 
