@@ -33,12 +33,18 @@ BEAENGEXSFESYJEAEAYIJJIASOECAENGEAWPNRAEMOECPXREODJLEOXPHIOEPAEAEWFTHGSTFTHOEHIA
 
 It is nonlinguistic. A planted 95-rune p57 original-source plaintext encrypted under the same predicted recurrence recovers all95, establishing implementation correctness only.
 
+## P0 13-dot classical-key continuation
+
+The title's actual 13-rune length and its immediately following 13-dot mark suggest a finite **Cicada-era Vigenère** continuation more directly than the learned six-tap polynomial. Preserve the already-hypothesized title, fix the body start at original rune offset13 and the natural 13-rune clock, then test three different directly visible primer streams as 13-rune repeated additive keys: the proposed plaintext (EPIPHANY SEECS), the original red title ciphertext, and the inferred title additive pad. Test both shift signs, **six** possibilities. Further test classical plaintext-autokey and ciphertext-autokey, seeded with the proposed known 13-rune title, under both additive signs, **four** possibilities.
+
+All **ten** original p0 body decoders have nonprose, nearly uniform IoC **0.03329–0.03618** (native clear p57 IoC 0.06271). This directly rejects the four classical 13-rune autokey branches and six literal repeated-primer branches under these source-fixed assumptions. It does not exclude a different indicator reset, non-additive alphabet, or unseen authored key material.
+
 ## Original numerical-table consumers
 
 The visibly original 13 middle rows of the p49–51 table offer a simple source motivation to try a 13-rune header key. Twenty-eight fixed direct interpretations were tested: eight columns in each of byte mod29, high base60 digit and low base60 digit; and four whole-row sum/XOR/digit-sum registers. **Zero full 13-rune key matches; best two positions** (low digits, eighth column). As a second direct model, every one of 256 original cells was started as a base59 or base60 successor walk for 13 steps, with four output channels (value, address, first/second digit modulo29): **2,048 readouts; zero complete matches; best three positions**. These exact direct receivers are rejected; more complex, source-authored key serialization remains untested.
 
 ## Reproduction and research decision
 
-The [self-contained Node22 CJS test](../sims/lp2_signed2016_literal_crib_original_sft.cjs) reads unchanged source artifacts and asserts source counts, conditional null outcomes, the key recurrence, next-symbol prediction, body transfer, planted control and table tests. Independent Windows Server 2025 / Node22.23.5 [run 44973053712 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44973053712) checked committed source at 88797d8ed3b5681e0fee5b146ffe2f34aa711f11.
+The [self-contained Node22 CJS test](../sims/lp2_signed2016_literal_crib_original_sft.cjs) reads unchanged source artifacts and asserts source counts, conditional null outcomes, the key recurrence, next-symbol prediction, body transfer, planted control and table and classical-primer tests. Independent Windows Server 2025 / Node22.23.5 [run 44973053712 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/44973053712) checked committed source at 88797d8ed3b5681e0fee5b146ffe2f34aa711f11.
 
-**Decision:** A signed word-length match is not a credible direct plaintext crib. The key polynomial's one-symbol hit is insufficient; its unchanged p0 body inverse fails. The literal p50 table-key readouts fail. Do not repeat these searches without a new original clue fixing an authentic word address, state reset, key schedule or substantial untouched plaintext. Preserve the p0 title only as the pre-existing conditional local hypothesis.
+**Decision:** A signed word-length match is not a credible direct plaintext crib. The key polynomial's one-symbol hit is insufficient; its unchanged p0 body inverse fails. The direct classical thirteen-rune title-primer consumers and literal p50 table-key readouts fail. Do not repeat these searches without a new original clue fixing an authentic word address, state reset, key schedule or substantial untouched plaintext. Preserve the p0 title only as the pre-existing conditional local hypothesis.
