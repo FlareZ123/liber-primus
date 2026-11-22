@@ -1,0 +1,16 @@
+name: Agent39 all-secret 256-phase collision invariant
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  collision:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source-unchanged GP28 collision 14400 native controls and solved plant
+        run: node sims/lp2_rank28_period256_allsecret_phasecollision_sft.cjs
