@@ -4,15 +4,26 @@
 
 ## Fixed upstream receiver
 
-Independent `EMPTY / EPIPHANY` navigation fixes the p0 boundary at offsets236/237. Existing work already established:
+The 2016 `EMPTY / EPIPHANY` word-map pair fixes the p0 boundary at offsets236/237; the p57/DH route independently brackets it. A separate two-symbol key candidate for the preceding word is documented below. Existing work already established:
 
 ```text
-p0 offsets235..236 = [8,5]                         # conditional THE candidate
+p0 offsets235..236 = [8,5]                         # two-rune receiver; THE / OF / PI candidates compete
 p0 offsets237..243 = [15,22,16,22,21,1,4]          # seven-rune 2|5 receiver
 H(receiver)         = [11,19,21,23,24,8,22]
 ```
 
 The seven-rune H packet has been interpreted as a DEVOTED state label; it does not independently establish the plaintext. Agent6 later observed that the crib residual for literal DEVOTED has a `THE WAY ITS WORDS` scalar signature, correctly classifying it as post-crib because the source phrase had not independently selected the residual. This note supplies that missing selector.
+
+## Preceding two-rune word: source-conditioned key candidate
+
+The corrected 29-word 2016 body register has one unique adjacent pair whose p50 destinations are consecutive: `EMPTY` (body ordinal4, GP0=92) →236 and `EPIPHANY` (ordinal5, GP0=121) →237. Their values are both **5 modulo29**. The destinations straddle the boundary after p0 word53, whose original two-rune ciphertext at offsets235–236 is **[8,5]**. Both additive signs are exact:
+
+```text
+C-K: [8,5] - [5,5] mod29 = [3,0] = OF
+C+K: [8,5] + [5,5] mod29 = [13,10] = PI
+```
+
+The signed source does not fix the sign, so this is a **key candidate**, not a plaintext recovery. It competes with the earlier conditional `THE` crib for this same receiver. The adjacent pair is unique among the 28 adjacent pairs in the corrected body register. See [the p50/2016 word-map report](lp2-p50-functional-graph-2016-wordmap.md).
 
 ## Adjacent ciphertext independently selects THE WAY ITS WORDS
 
@@ -33,6 +44,10 @@ The first three GP0 values are the exact ascending signed-source run `13,14,15 =
 ```
 
 Charge the rule across every canonical page-local four-word window: require the first three GP0 values to be `i,i+1,i+2` in the signed-source register and the fourth GP0 to name the same source lexeme as index `i-1`. Across **2,699** windows there is exactly **one** hit, p0 words53..56. No plaintext candidate enters this scan.
+
+## Original p0 cross motif and the outside-in H-map
+
+The original p0 scan contains black cross-like marks at diagonally opposite margins and infinity motifs above and below the text; the same paired-cross motif repeats on p1–p2. This is consistent with an outside-in/cross-pair operation on the seven-symbol receiver, but the drawing does not uniquely specify the exact H-map arithmetic. The p0 receiver's physical 2|5 line break is consistent with the prefix2/suffix5 fields used below. Treat the image as a plausible source selector, not proof of the DH-derived key.
 
 ## The carrier supplies the missing residual field
 
@@ -88,7 +103,7 @@ Only the first is the source-visible layout order above, and only it matches the
 
 ## Decision
 
-Retain DEVOTED as a conditional candidate at p0 offsets237..243. The 36-word pool and the residual signature do not establish its plaintext. The following independent identifiability calculation bounds the result.
+Retain DEVOTED as a conditional candidate at p0 offsets237..243. The preceding two-rune word has a source-conditioned key candidate [5,5], but C-K gives OF, C+K gives PI, and the earlier THE crib remains competing. The combined phrase is not established: the seven-rune DEVOTED residual remains non-identifiable, and the 36-word pool does not establish its plaintext. The following independent identifiability calculation bounds the result.
 
 The candidate-derived residual is:
 

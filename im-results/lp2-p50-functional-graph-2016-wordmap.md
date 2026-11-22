@@ -1,4 +1,4 @@
-**Classification:** source-motivated, computationally unique navigation structure on the original p50 base60 successor map, independently reproduced from original scans. The signed 2016 payload supplies the 29-word body register and 13-word coda split 11+2. A new independent original-ink gate (Agent44, 21 November) finds the p6 first red word has GP0 sum71, uniquely among 51 red words, matching the signed body word SEEKS=71 used by the positive p32 source-loop audit. The same red span has the unique 4-1-4-2 structure matching p32 fragment7; its total sum181 also supplies a fixed 13-transient-node path to p32. This strengthens the intended route but does not recover unknown-page plaintext or a key.
+**Classification:** source-motivated, computationally unique navigation structure on the original p50 base60 successor map, independently reproduced from original scans. The signed 2016 payload supplies the 29-word body register and 13-word coda split 11+2. A new independent original-ink gate (Agent44, 21 November) finds the p6 first red word has GP0 sum71, uniquely among 51 red words, matching the signed body word SEEKS=71 used by the positive p32 source-loop audit. The same red span has the unique 4-1-4-2 structure matching p32 fragment7; its total sum181 also supplies a fixed 13-transient-node path to p32. This strengthens the intended route. A separate adjacent EMPTY/EPIPHANY pair supplies a unique two-symbol p0 key candidate, but C-K gives OF and C+K gives PI; an earlier THE crib also competes, so plaintext remains unresolved.
 
 ## Hypothesis
 
@@ -88,9 +88,28 @@ Freeze the map register as the **29 body words from `The` through `direction`**,
 
 This is a positive source-structure result: the 29-word core aligns with GP29's 29 symbols; the 13-word coda aligns with p0's red13 mark and the p50 graph's 13 cycle vertices; and the coda's 11+2 split aligns with the graph's 11- and 2-cycles. Agent10 has now reproduced the fixed source-order 11+2 alignment and corrected q/r consumer. The direct q/r/GP0/H family has no p0 R13/K13 match, and GP0-addressing the coda words does not select the 2-cycle. The earlier 13-pair table and direct p0 consumer test below use the superseded first-29-of-43 register; the corrected table and finite negative are in the section below.
 
-The sentence `Its words are the map` refers grammatically to Liber Primus, not literally to the signed message itself. The 29-word signed-message core is therefore a source-visible indexing scaffold for the navigation hypothesis, not LP plaintext and not proof that the message's own words are the intended map.
+The sentence `Its words are the map` refers grammatically to Liber Primus, not literally to the signed message itself. The 29-word signed-message core remains a source-visible indexing scaffold for navigation. The adjacent EMPTY/EPIPHANY pair below supplies a separate two-symbol local key candidate; it does not establish that the whole signed message is LP plaintext or a reusable key register.
 
 The exact segmentation is reproduced by [the signed-message register SFT](../sims/lp2_2016_signed_message_29_11_2_register_sft.cjs). The red-span gate below adds one fixed start address from original red ink; it does not reopen or expand the earlier 62,720-configuration graph family.
+
+## Adjacent EMPTY/EPIPHANY pair gives a two-symbol p0 key candidate
+
+This is a separate local consumer of the corrected 29-word body register; it does not reinterpret the 13-node q/r cycle readout as plaintext.
+
+In the authenticated 2016 body core (29 words, excluding the separate `Hello.` salutation), `EMPTY` and `EPIPHANY` are adjacent body ordinals **4 and 5**. Their GP0 sums are **92 and 121**; the original p50 base60 successor table maps them to **236 and 237**. These destinations are consecutive and straddle an original p0 printed-word boundary: word 53 spans rune offsets **235–236**, and word 54 begins at **237**. The two-rune receiver at offsets235–236 is original GP29 `[8,5]`.
+
+The two source values reduce modulo29 to **[5,5]**. Both additive signs are exact and must be kept distinct:
+
+```text
+C-K: [8,5] - [5,5] mod29 = [3,0] = OF
+C+K: [8,5] + [5,5] mod29 = [13,10] = PI
+```
+
+The signed message does **not** specify which additive sign is intended. The conventional decryption of a ciphertext formed as `C=P+K` favors C-K, but that encryption convention is inferred rather than source-stated. The earlier conditional `THE` crib for the same two-rune receiver is a third competing interpretation. Thus the robust result is the **unique source-conditioned two-symbol key candidate [5,5] and the selected receiver**, not a recovered plaintext.
+
+Among all **28 adjacent pairs** in the corrected 29-word body register, EMPTY/EPIPHANY is the **only** pair whose p50 destinations are adjacent. The reproduction script asserts the complete body register, original p0 word spans, both signed outputs, and both exact round trips.
+
+The p57/DH route independently brackets the same boundary but does not derive this key. The following seven-rune receiver at offsets237–243 and its conditional `DEVOTED` reading remain separate. Do not generalize from this one two-rune hit without a second source-selected receiver.
 
 ## Source-selector family audit (Agent5, 21 November)
 
@@ -224,13 +243,13 @@ node sims/lp2_p50_functional_graph_2016_wordmap_sft.cjs --null=100000
 
 ## Best next decision
 
-The forward base60 row-major successor map remains a source-selected **navigation mechanism**. The new p6 red-word anchor directly selects the already-audited SEEKS=71 start; its path hits EMPTY=92 at step7 and p32 at step23. The same red span's unique 4-1-4-2 signature matches p32 fragment7, whose left block is the surviving branch and whose right block is the zero-success control. The total p0/p6 red sum181 supplies a second fixed start that reaches the same p32 destination after 13 transient nodes, then enters the same 11-cycle. This is a stronger source route, not a second cipher.
+The forward base60 row-major successor map remains a source-selected **navigation mechanism**. The new p6 red-word anchor directly selects the already-audited SEEKS=71 start; its path hits EMPTY=92 at step7 and p32 at step23. The same red span's unique 4-1-4-2 signature matches p32 fragment7, whose left block is the surviving branch and whose right block is the zero-success control. The total p0/p6 red sum181 supplies a second fixed start that reaches the same p32 destination after 13 transient nodes, then enters the same 11-cycle. Separately, the unique adjacent EMPTY/EPIPHANY pair supplies a two-symbol key candidate [5,5] for p0 word53; its plaintext sign is unresolved (OF under C-K, PI under C+K), and the earlier THE crib remains competing.
 
 Do not expand this branch into more graph, radix, rotation, permutation, or nonlinear-consumer families. The p32/p55 tree branch-count/junction investigation is already closed for lack of a stable graph isomorphism; the blocked p55 ghost-tree human-oracle issue is not a substitute for a source-selected plaintext operation. The next useful decision is to reconstruct the intended human sequence from p6 red ink → SEEKS=71 → p32 fragment7 → the audited left-side/terminal-collision readout, and determine whether any first-party source fixes the missing continuous-plaintext operation.
 
 Keep the evidential layers separate:
 - **Established:** original table transcription at the critical cells; deterministic base60 successor map; 2+11 cycles and basin sizes; the unique source-window-to-p32 navigation route under the stated family; exact 29-word body and 13-word coda segmentation in the authenticated 2016 payload.
 - **Intermediate interpretation:** the corrected q/r-to-body-word pair table is now independently reproduced, but it is not plaintext and does not recover the p0 marker/key. The 11+2 coda/cycle alignment remains structural; direct GP0 addressing of the coda does not select the 2-cycle.
-- **Not established:** an LP2 body-cipher inverse, plaintext, authentic encryption key, or final destination. The signed-message register is an index scaffold, not a decryption.
+- **Not established:** a multi-symbol verified LP2 plaintext, reusable authentic encryption key, full-page inverse, or final destination. The isolated p0 two-rune receiver has a source-conditioned key candidate but competing OF/PI/THE readings; the signed-message register remains an index scaffold, not a decryption.
 
 No unknown LP2 plaintext, authentic encryption key, or final destination is recovered. Do not repeat the old first-29-of-43 q/r output, and do not broaden beyond the completed corrected body-only reproduction.

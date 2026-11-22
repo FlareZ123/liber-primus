@@ -425,6 +425,104 @@ function wordRunes(word) {
 
 const wordValues = words.map(word => wordRunes(word).reduce((sum, x) => sum + x, 0));
 
+const bodyWords = words.slice(1, 30); // The 29-word core excludes the separate Hello. salutation.
+if (bodyWords.length !== 29 || bodyWords[3].toLowerCase() !== 'empty' ||
+    bodyWords[4].toLowerCase() !== 'epiphany' || bodyWords[28].toLowerCase() !== 'direction') {
+  throw new Error('The source-selected 29-word body register no longer matches the signed payload');
+}
+const bodyWordValues = bodyWords.map(word => wordRunes(word).reduce((sum, x) => sum + x, 0));
+
+const transcription = fs.readFileSync(path.join(ROOT, 'resources/lp2-transcription.txt'), 'utf8');
+const runeIndex = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const p0Text = transcription.split('%')[0];
+const p0WordSpans = [];
+let p0Offset = 0;
+let p0Current = [];
+function flushP0Word() {
+  if (!p0Current.length) return;
+  p0WordSpans.push({
+    ordinal: p0WordSpans.length + 1,
+    start: p0Offset - p0Current.length,
+    end: p0Offset,
+    values: p0Current.slice()
+  });
+  p0Current = [];
+}
+for (const char of p0Text) {
+  const value = runeIndex.get(char);
+  if (value !== undefined) {
+    p0Current.push(value);
+    p0Offset += 1;
+  } else if (char === '/' || /\s/u.test(char)) {
+    continue;
+  } else {
+    flushP0Word();
+  }
+}
+flushP0Word();
+if (p0Offset !== 262 || p0WordSpans.length !== 59) {
+  throw new Error('Original p0 printed-word parser changed: expected 262 runes and 59 words');
+}
+
+const mod29 = value => ((value % 29) + 29) % 29;
+const adjacentBodyMapPairs = [];
+for (let index = 0; index + 1 < bodyWords.length; index += 1) {
+  const sums = bodyWordValues.slice(index, index + 2);
+  const addresses = sums.map(value => next[value]);
+  if (Math.abs(addresses[0] - addresses[1]) !== 1) continue;
+  const low = Math.min(...addresses);
+  const high = Math.max(...addresses);
+  const target = p0WordSpans.find(word =>
+    word.start < low && word.end === high && word.values.length === 2
+  ) || null;
+  adjacentBodyMapPairs.push({
+    bodyOrdinals: [index + 1, index + 2],
+    words: bodyWords.slice(index, index + 2),
+    gp0: sums,
+    addresses,
+    residues: sums.map(mod29),
+    target: target ? {
+      ordinal: target.ordinal,
+      start: target.start,
+      end: target.end,
+      cipher: target.values
+    } : null
+  });
+}
+if (adjacentBodyMapPairs.length !== 1) {
+  throw new Error('Expected exactly one adjacent p50 destination pair in the 29-word body register');
+}
+const selectedAdjacentPair = adjacentBodyMapPairs[0];
+if (selectedAdjacentPair.words.map(word => word.toLowerCase()).join('|') !== 'empty|epiphany' ||
+    selectedAdjacentPair.gp0.join(',') !== '92,121' ||
+    selectedAdjacentPair.addresses.join(',') !== '236,237' ||
+    selectedAdjacentPair.residues.join(',') !== '5,5' ||
+    !selectedAdjacentPair.target ||
+    selectedAdjacentPair.target.ordinal !== 53 ||
+    selectedAdjacentPair.target.start !== 235 ||
+    selectedAdjacentPair.target.end !== 237 ||
+    selectedAdjacentPair.target.cipher.join(',') !== '8,5') {
+  throw new Error('The EMPTY/EPIPHANY pair no longer selects the original p0 two-rune receiver');
+}
+const p0TwoRunePlaintext = selectedAdjacentPair.target.cipher.map((value, index) =>
+  mod29(value - selectedAdjacentPair.residues[index])
+);
+const p0TwoRuneAlternative = selectedAdjacentPair.target.cipher.map((value, index) =>
+  mod29(value + selectedAdjacentPair.residues[index])
+);
+const p0TwoRuneRoundTrip = p0TwoRunePlaintext.map((value, index) =>
+  mod29(value + selectedAdjacentPair.residues[index])
+);
+const p0TwoRuneAlternativeRoundTrip = p0TwoRuneAlternative.map((value, index) =>
+  mod29(value - selectedAdjacentPair.residues[index])
+);
+if (p0TwoRunePlaintext.join(',') !== '3,0' ||
+    p0TwoRuneAlternative.join(',') !== '13,10' ||
+    p0TwoRuneRoundTrip.join(',') !== '8,5' ||
+    p0TwoRuneAlternativeRoundTrip.join(',') !== '8,5') {
+  throw new Error('The two additive signs no longer reproduce the p0 OF/PI alternatives and exact round trips');
+}
+
 function decomposeFunctionalGraph(mapping) {
   const n = mapping.length;
   const component = new Int16Array(n).fill(-1);
@@ -578,21 +676,21 @@ const ordered11 = rotateCycle(cycle11.nodes, cycle11Start);
 function wordPair(node) {
   const q = Math.floor(node / 29);
   const r = node % 29;
-  if (q >= 29 || r >= 29 || !words[q] || !words[r]) {
-    throw new Error('Base-29 pair falls outside signed-message word register: ' + node);
+  if (q >= 29 || r >= 29 || !bodyWords[q] || !bodyWords[r]) {
+    throw new Error('Base-29 pair falls outside the 29-word body register: ' + node);
   }
   const cell = cells[node];
-  return { node, page: cell.page, image: cell.image, row: cell.row, col: cell.col, token: cell.token, byte: next[node], q, r, qWord: words[q], rWord: words[r] };
+  return { node, page: cell.page, image: cell.image, row: cell.row, col: cell.col, token: cell.token, byte: next[node], q, r, qWord: bodyWords[q], rWord: bodyWords[r] };
 }
 
 const pairs2 = ordered2.map(wordPair);
 const pairs11 = ordered11.map(wordPair);
 const qMode = mode(pairs11.map(pair => pair.q));
 const rMode = mode(pairs11.map(pair => pair.r));
-const first29 = words.slice(0, 29);
+const bodyWordRegister = bodyWords;
 
 const output = {
-  classification: 'source-selected navigation map; q/r cycle word-pair readout remains intermediate; not a verified LP2 decryption',
+  classification: 'source-selected navigation map plus one two-symbol p0 key candidate; plaintext sign unresolved; not a verified LP2 decryption',
   table: {
     source: 'resources/liber-primus/lp2-grid-256.json',
     shape: grid.shape,
@@ -603,16 +701,18 @@ const output = {
   signedMessage: {
     source: 'resources/historical/cicada2016-4gq25-outguess.asc',
     wordCount: words.length,
-    first29WordRegister: first29,
-    wordAtIndex29: words[29],
+    bodyWordCount: bodyWords.length,
+    bodyWordRegister,
+    firstCodaWord: words[30],
     firstThe: {
-      wordIndex: firstTheIndex,
+      bodyOrdinal: firstTheIndex,
       gp0: wordValues[firstTheIndex],
       pathToCycle: firstTheWalk.path.slice(0, firstTheWalk.depth + 1),
       cycleEntry: firstTheWalk.entry
     },
     sourceSelectedP32Route: {
       startWord: words[6],
+      bodyOrdinal: 6,
       startAddress: wordValues[6],
       dhDepth: 23,
       route: p32Route,
@@ -647,9 +747,25 @@ const output = {
     sourceOrientedTwoCycle: pairs2,
     sourceOrientedElevenCycle: pairs11,
     elevenCycleModes: {
-      q: { ...qMode, word: qMode.value === null ? null : words[qMode.value] },
-      r: { ...rMode, word: rMode.value === null ? null : words[rMode.value] }
+      q: { ...qMode, word: qMode.value === null ? null : bodyWords[qMode.value] },
+      r: { ...rMode, word: rMode.value === null ? null : bodyWords[rMode.value] }
     }
+  },
+  p0AdjacentWordKeyCandidate: {
+    sourceRegister: 'corrected 29-word signed-message body core; one-based ordinals',
+    adjacentPairsChecked: bodyWords.length - 1,
+    adjacentDestinationPairs: adjacentBodyMapPairs,
+    keyRule: 'each source word GP0 sum reduced modulo 29',
+    plaintextRules: {
+      subtract: 'C-K; [8,5]-[5,5] = [3,0] = OF',
+      add: 'C+K; [8,5]+[5,5] = [13,10] = PI'
+    },
+    subtractiveCandidate: p0TwoRunePlaintext,
+    subtractiveTranslit: p0TwoRunePlaintext.map(value => corpus.translit[value]).join(''),
+    additiveAlternative: p0TwoRuneAlternative,
+    additiveAlternativeTranslit: p0TwoRuneAlternative.map(value => corpus.translit[value]).join(''),
+    roundTrips: [p0TwoRuneRoundTrip, p0TwoRuneAlternativeRoundTrip],
+    classification: 'unique two-symbol key candidate; plaintext sign unresolved; competes with an earlier THE crib; no reusable cipher'
   },
   candidateAnchors: {
     p0Title: [pairs2[0].qWord, qMode.value === null ? null : words[qMode.value]],
@@ -658,6 +774,7 @@ const output = {
   },
   caveats: [
     'The 13-node q/r word-pair sequence is a second-layer cross-source readout, not plaintext or a proven cipher.',
+    'The unique adjacent EMPTY/EPIPHANY pair supplies residues [5,5]; C-K gives OF and C+K gives PI for the same p0 two-rune receiver. The source does not fix the sign, and an earlier THE crib also competes.',
     'The 2016 source pronoun "Its" refers to Liber Primus; using the signed message words as the q/r register is an additional interpretation, though its zero-based form aligns with the independent DH word-position audit.',
     'The source-word GP0 values mostly enter the 252-node basin, so the first-THE path alone is not selective; the four-word p32 route supplies the selective grammar and fixes phase115.',
     'The p0 title candidate EPIPHANY SEEKS was already known and is not counted as a blind prediction.',

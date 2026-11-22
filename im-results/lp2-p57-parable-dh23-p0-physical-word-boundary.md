@@ -65,10 +65,28 @@ We tested how often this exact structural receiver appears under a restrictive s
 
 The fixed ordered-boundary event appears only **21/200,000** times (0.0105% of the restricted shuffles). Retrospective discovery through many source relationships, operation choices and prior candidate target assignments **is not charged**. Hence this is a conditional, sensitivity-calibration statistic and **not** an authorship probability, cryptanalytic plaintext score, familywise significance, or reason to accept a specific seven-rune crib. The result makes the route worth testing only if an independent original instruction supplies the still-missing inverse.
 
+## Independent 2016 word-map key candidate at the same boundary
+
+A separate test of the corrected 29-word signed-message body register finds one unique adjacent pair whose p50 destinations are consecutive:
+
+- body ordinal 4, `EMPTY`: GP0 sum **92**, p50 address **236**
+- body ordinal 5, `EPIPHANY`: GP0 sum **121**, p50 address **237**
+
+The residues are **[5,5] mod29**. The two addresses straddle the p0 word boundary at offsets236/237; the preceding two-rune word at offsets235–236 is original GP29 **[8,5]**. The two possible additive signs give:
+
+```text
+C-K = [3,0] = OF
+C+K = [13,10] = PI
+```
+
+The signed message does not fix the sign. This key candidate therefore competes with the earlier conditional `THE` crib for the same receiver; it is not a verified decryption. It is unique among the 28 adjacent pairs in the corrected 29-word body register.
+
+This is a separate, inferred two-symbol key candidate; it is not derived from the p57/DH paths. The p57/DH paths independently corroborate **recipient selection** at the same boundary, while the 2016 pair supplies a possible short key. Neither route establishes a reusable LP2 cipher. The following seven-rune `DEVOTED` candidate remains underdetermined. See [the updated 2016 p50 word-map report](lp2-p50-functional-graph-2016-wordmap.md) and its SFT.
+
 ## Decision: the missing actionable step
 
-These original controls create an **independently source-convergent candidate recipient**: solved p57 clause sums, signed 2013 DH clocks, later signed 2016 word-value addresses and exact p0 physical ink all meet on the same nine-rune original-ciphertext span. No free key, language-model plaintext guess, or modification of original transcription participates.
+These original controls create an **independently source-convergent candidate recipient**: solved p57 clause sums, signed 2013 DH clocks, later signed 2016 word-value addresses and exact p0 physical ink all meet on the same original-ciphertext boundary. The p57/DH route itself does not derive a key. A separate 2016 EMPTY/EPIPHANY word-pair test supplies the two-symbol [5,5] key candidate described above; its C-K and C+K outputs are OF and PI, respectively, and it competes with the earlier conditional THE crib.
 
-The smallest useful next research decision is to find a **first-party operation that converts the fixed 2013 DH state and these p50 pointer paths into a position-by-position reversible key**, ideally with an independent target determined before looking at ciphertext. The pre-existing local residual for hypothetical `DEVOTED` is insufficient because same-type transfer fails. A method that merely forces the already-known two words without predicting a second whole untouched passage must be rejected. An unlimited search over phase, masks or word aliases is not warranted.
+The smallest useful next decision is to seek a **second independent, source-selected receiver or longer untouched ciphertext span** that can test the 2016 word-number key rule and distinguish the competing OF/PI/THE readings. The p57/DH route remains navigation corroboration, not the key. The seven-rune DEVOTED residual remains underdetermined because same-type transfer fails. Do not rescue any candidate with arbitrary phase, mask or word-alias searches.
 
 **Reproduction:** [single-file Windows Node22 original-source control](../sims/lp2_p57_parable_clause_dh23_p50_p0_boundary_sft.cjs). Inputs: original 256-cell source grid; unmodified LP2 GP29 physical text and printed word parser; authentic clear p57 clauses; 2013 signed TCP source specification and 2016 signed text. The SFT asserts every hop, source verse prime sum, original page0 rune/value/word boundary, older signed word addressing, and the exact 200,000-shuffle control counts. See [source quotation and current historical limits](../resources/external/2013-tcp-server-signed-source.md), [independent p0 signed boundary](lp2-2016-gp0-table-word-pointer-circuit.md), and [previous p57 prime-ordinal table route](lp2-parable-threeprime-whole-graph-58-8-56.md).
