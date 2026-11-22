@@ -106,6 +106,28 @@ assert.deepEqual({commonNode,leftEntry,rightEntry,sharedTail},
 assert.equal(leftEntry,GP);
 assert.equal(sharedTail,hIndex/GP);
 assert.equal(right.depth,tPrime/(LEFT*GP));
+const startIndex=hIndex/GP;
+const startPrime=hPrime/GP;
+const closingPrime=tPrime/GP;
+const combinedPrime=(hPrime+tPrime)/GP;
+const jointColumn=(hPrime+tPrime)/(RIGHT*GP);
+const p54RedLength=ink.pages.find(page=>page.page===54).red_spans[0].length;
+assert.deepEqual([startIndex,startPrime,closingPrime,combinedPrime,p54RedLength],
+  [4,15,78,93,9]);
+/** @param {number} address @param {number} steps */
+function climb(address,steps){
+  for(let i=0;i<steps;i++) address=table59[address];
+  return address;
+}
+assert.equal(climb(startIndex,jointColumn),146);
+assert.equal(climb(startPrime,jointColumn),146);
+assert.notEqual(climb(startIndex,2),climb(startPrime,2));
+assert.equal(climb(146,leftColumn),58);
+assert.equal(climb(startIndex,p54RedLength),58);
+assert.equal(climb(startPrime,p54RedLength),58);
+assert.equal(climb(closingPrime,1),climb(seedL,startIndex));
+assert.equal(climb(combinedPrime,1),climb(seedL,LEFT));
+
 assert.deepEqual([left.nodes[1],left.nodes[16],left.nodes[18]],[32,244,58]);
 assert.deepEqual([corpus.pages[32].indices.length,corpus.pages[55].indices.length],[121,76]);
 
