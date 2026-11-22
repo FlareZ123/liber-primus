@@ -22,7 +22,7 @@ const grid=JSON.parse(read('resources/liber-primus/lp2-grid-256.json'));
 const printed=read('resources/liber-primus/lp2-transcription.txt');
 const signed=read('resources/historical/cicada2016-4gq25-outguess.asc');
 const mod=x=>(x%29+29)%29;
-assert(/epiphany\\s+seeks\\s+the\\s+devoted/i.test(signed));
+assert(signed.toLowerCase().includes('epiphany seeks the devoted'));
 const alphabet=grid.alphabet;
 assert.equal(alphabet.length,60);
 const bytes=grid.pages.flatMap(p=>p.tokens).map(token=>
