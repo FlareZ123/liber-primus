@@ -76,6 +76,7 @@ int main(int argc,char**argv){
       }
      }
     printf("ORIGINAL,%s,%d,%d,%ld,%ld,%ld\n",g->name,p,c,blocks,diffs,parity);
+    if(blocks<=0||diffs!=0){fprintf(stderr,"native chroma source-plate mismatch\n");return 5;}
    }
    destroy(&b);
   }
