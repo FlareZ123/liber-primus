@@ -29,4 +29,6 @@ The unchanged original chapter has IoC **0.0343600216**. Every output remains wi
 
 [Standalone Windows/Node22 CommonJS source SFT](../sims/lp2_p7_p8_g840_p33_39_orbitpad_original_sft.cjs) validates p8 actual title products, source p7 polynomial, exact primitive order840 and orbit uniqueness, p33–39 unchanged physical page lengths **[214,261,271,238,228,228,240]**, four original transformations, and original/solved source exact inverses.
 
+[Successful Windows Node22 original-source CI run 45052868026](https://github.com/FlareZ123/liber-primus/actions/runs/45052868026) confirmed the exact primitive, 840 distinct powers, all four original decryptions, and solved p57 planted forward/reverse controls.
+
 **Retire this explicit four-member `g^j` field-pad interpretation.** The 840 coincidence remains a hypothesis generator but does not justify secret page-specific phases, further fitted field permutations or arbitrary decoder stacks. Future work needs a first-party clue selecting **how** the field state interacts with original GP ciphertext, an independently verified plaintext fragment, or new historical source key material.
