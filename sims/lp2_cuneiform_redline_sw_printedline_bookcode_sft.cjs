@@ -273,3 +273,54 @@ assert(cornerModels.every(x=>x.ioc<0.05));
 console.log("SW source corner prime113, historical prime-totient receiver, original p55 16 F-transparent choices:");
 for(const x of cornerModels)console.log(JSON.stringify(x));
 console.log("PASS: candidate SW->113 has no p55 original native plaintext under any literal-F clock mask.");
+
+
+// More local receiver than p55: p51 is the 92-rune continuation immediately
+// BELOW the southwest table corner 1r=113. Apply the exactly solved p56
+// plaintext-F-transparent prime-totient clock, with no phase/offset search.
+const sourceShifts=start=>{
+  const out=[];
+  for(let n=start;out.length<500;n++){
+    let isPrime=n>=2;
+    for(let d=2;d*d<=n;d++)if(n%d===0){isPrime=false;break;}
+    if(isPrime)out.push((n-1)%29);
+  }
+  return out;
+};
+/** @param {number[]} ciphertext @param {number[]} shifts @param {number} sign */
+function fTransparentStates(ciphertext,shifts,sign){
+  let states=new Set([0]);
+  for(let i=0;i<ciphertext.length;i++){
+    const next=new Set();
+    for(const used of states){
+      if(ciphertext[i]===0)next.add(used);
+      const plaintext=(ciphertext[i]+sign*shifts[used]+29)%29;
+      if(plaintext!==0)next.add(used+1);
+    }
+    if(!next.size)return {possible:false,fail:i};
+    states=next;
+  }
+  return {possible:true,terminal:[...states]};
+}
+const historical=sourceShifts(2);
+const genuineSolved=fTransparentStates(corpus.pages[56].indices,historical,-1);
+assert.deepEqual(genuineSolved,{possible:true,terminal:[81,82,83,84,85]});
+const southShift=sourceShifts(113);
+const tableTail=corpus.pages[51].indices;
+const tableBridge=corpus.pages[49].indices.concat(tableTail);
+assert.equal(tableTail.length,92);
+assert.equal(tableBridge.length,158);
+const southLocal=[
+  {region:"p51 immediately under numerical corner",sign:-1,...fTransparentStates(tableTail,southShift,-1)},
+  {region:"p51 immediately under numerical corner",sign:1,...fTransparentStates(tableTail,southShift,1)},
+  {region:"p49 plus p51 around numerical table",sign:-1,...fTransparentStates(tableBridge,southShift,-1)},
+  {region:"p49 plus p51 around numerical table",sign:1,...fTransparentStates(tableBridge,southShift,1)}
+];
+assert.deepEqual(southLocal.map(x=>[x.possible,x.fail,x.terminal]),[
+  [false,49,undefined],
+  [true,undefined,[90,91]],
+  [false,9,undefined],
+  [false,57,undefined]
+]);
+console.log("SW=113 direct historical p56 transparent-prime immediate numeric-table receiver:",JSON.stringify(southLocal));
+console.log("PASS: native p56 85 original runes decrypt; original local p51 and p49/p51 do not.");
