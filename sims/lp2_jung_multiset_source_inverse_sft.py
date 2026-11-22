@@ -105,6 +105,9 @@ def target_segments() -> tuple[list[dict], list[dict]]:
 
 def evaluate(label: str, source: list[int], pages: list[dict],
              chapters: list[dict]) -> dict:
+    allbook=[w for chapter in chapters for w in chapter["lengths"]]
+    assert len(allbook)==2896
+    wholebook=min_multiset_distance(source,allbook)
     rows = []
     for entry in pages:
         hit = min_multiset_distance(source,entry["lengths"])
@@ -131,6 +134,12 @@ def evaluate(label: str, source: list[int], pages: list[dict],
     return {
         "scheme":label,
         "source_words":len(source),
+        "whole_book_multiset":{
+            "source_word_offset":wholebook.source_word_offset,
+            "min_changed":wholebook.replacement_count,
+            "exact_windows":wholebook.exact_windows,
+            "target_words":wholebook.target_word_count
+        },
         "exact_by_page_span":{
             str(span):sum(r["exact_windows"] for r in rows if r["span"]==span)
             for span in (1,2,3)
@@ -295,6 +304,7 @@ def main() -> None:
         "original_page_windows":len(pages),
         "original_chapter_windows":len(chapters),
         "source_variants":len(variants),
+        "no_whole_book_exact":all(row["whole_book_multiset"]["exact_windows"]==0 for row in results),
         "no_multi_page_exact":all(
             row["exact_by_page_span"]["2"] == 0 and
             row["exact_by_page_span"]["3"] == 0 for row in results),
