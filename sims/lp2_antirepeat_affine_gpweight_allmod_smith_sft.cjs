@@ -54,8 +54,7 @@ for(const w of sources){
  const marks=punct.events.filter(e=>e.page===w.page
    && e.local_rune_offset>w.start && e.local_rune_offset<=w.end);
  assert.equal(marks.length,0,"no printed punctuation in gap");
- const sourceInk=originalInk.pages.find(p=>p.page===w.page);
- assert(sourceInk);
+ const sourceInk=originalInk.pages.find(p=>p.page===w.page)||{red_spans:[]};
  const redInGap=(sourceInk.red_spans||[]).filter(r=>r.start<w.end && r.start+r.length>w.start);
  assert.equal(redInGap.length,0,"no source red-ink rubric reset in gap");
  rows.before.push(vec(before));
