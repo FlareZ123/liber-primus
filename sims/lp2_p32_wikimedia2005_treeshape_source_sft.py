@@ -129,6 +129,31 @@ def main() -> None:
         "localcontrast3": to_canvas(((ghost - background) > 3).astype(np.uint8) * 255)
     }
     cover_results = {name: fit(a, target) for name, a in faint.items()}
+
+    # Scan all 12 predeclared same-size positions across the signed 2016 image.
+    # Some noncentral windows overlap the tree: retain their scores rather than
+    # pretending that every neighboring window is an independent negative.
+    ch, cw = cover_tree.shape
+    control_crops = {}
+    for y in (0, (height - ch) // 3, 2 * (height - ch) // 3, height - ch):
+        for x in (0, (width - cw) // 2, width - cw):
+            patch = cover[y:y + ch, x:x + cw]
+            filtered = ((patch >= 2) & (patch <= 60)).astype(np.uint8) * 255
+            control_crops[f"x{x}_y{y}"] = {
+                "fractionActive": round(float(np.mean(filtered > 0)), 6),
+                "fit": fit(to_canvas(filtered), target)
+            }
+
+    # Frozen 3301-seed morphology control: shuffle original 16x16 blocks,
+    # preserving local JPEG radiometry but destroying global tree geometry.
+    rng = np.random.default_rng(3301)
+    central = faint["band2to60"].astype(np.float32)
+    blocks = central.reshape(16, 16, 16, 16).transpose(0, 2, 1, 3).reshape(256, 16, 16)
+    nulls = []
+    for iteration in range(32):
+        rearranged = blocks[rng.permutation(256)].reshape(16, 16, 16, 16).transpose(
+            0, 2, 1, 3).reshape(SIZE, SIZE)
+        nulls.append(fit(rearranged, target)["score"])
     mirror = fit(cv2.flip(outline, 1), target)
     print(json.dumps({
         "wikipedia2005": wikipedia,
@@ -137,6 +162,14 @@ def main() -> None:
             "sha256": hashlib.sha256(signed_data).hexdigest(),
             "dimensions": [width, height],
             "centralTreeToP32": cover_results,
+            "sourceCropPositions": control_crops,
+            "blockShuffleNull": {
+                "seeds": 32,
+                "max": max(nulls),
+                "mean": round(float(np.mean(nulls)), 6),
+                "original": cover_results["band2to60"]["score"],
+                "aboveOrEqualOriginal": sum(x >= cover_results["band2to60"]["score"] for x in nulls)
+            },
             "centralTreeGrayQuantiles": np.percentile(cover_tree, [0, 25, 50, 75, 90, 99]).tolist()
         },
         "originalP32": "resources/liber-primus/49.jpg",
