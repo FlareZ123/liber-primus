@@ -1,6 +1,6 @@
 # p33 and the 2014 Stage7/Stage10 square reference
 
-**Consolidated through 22 November 2026 (Agents21/25/23). Decision:** The p33 artwork and **49 hyphen-delimited black words** support a concrete historical 7×7/1033-word-cell hypothesis beyond the older 196-rune arithmetic. One source-shaped, fixed-word GP29 shift using the original Stage7 square and original Stage04 positive shift has now been applied to all **196 unchanged p33 black runes**, with an independent original clear-GP positive control. Its output stays ciphertext-like and the entire withheld final row is unreadable. The additional source-fixed stable numerical rank and its inverse also preserve all 49 printed black words without producing native-GP prose. The original page supplies **five upper and six lower printed lines**, so the 7×7 word rows are inferred rather than drawn. The historical material still does not specify the square-to-word receiver, reduction, or actual cipher opcode. A further source gate now rejects the proposed **four-rune-per-cell** reading: original LP2 p33 is a text page, not a 7×7 grid, and the original Stage10 form contains no four-symbol packet instruction. Retain the exact historical Stage7/Stage10→LP1 navigation and bounded word-level negatives; no unknown LP2 plaintext, key or destination recovered.
+**Consolidated through 22 November 2026 (Agents21/25/23). Decision:** The p33 artwork and **49 hyphen-delimited black words** support a concrete historical 7×7/1033-word-cell hypothesis beyond the older 196-rune arithmetic. One source-shaped, fixed-word GP29 shift using the original Stage7 square and original Stage04 positive shift has now been applied to all **196 unchanged p33 black runes**, with an independent original clear-GP positive control. Its output stays ciphertext-like and the entire withheld final row is unreadable. The additional source-fixed stable numerical rank and its inverse also preserve all 49 printed black words without producing native-GP prose. A distinct direct **49 original word-lengths as numpad directions** hypothesis exits the authentic 7×7/1033 square on command five. The original page supplies **five upper and six lower printed lines**, so the 7×7 word rows are inferred rather than drawn. The historical material still does not specify the square-to-word receiver, reduction, or actual cipher opcode. A further source gate now rejects the proposed **four-rune-per-cell** reading: original LP2 p33 is a text page, not a 7×7 grid, and the original Stage10 form contains no four-symbol packet instruction. Retain the exact historical Stage7/Stage10→LP1 navigation and bounded word-level negatives; no unknown LP2 plaintext, key or destination recovered.
 
 ## Original p33 evidence and why the historical connection is plausible
 
@@ -103,6 +103,28 @@ The complete inverse read is likewise nonlinguistic; its first two rows are `EOO
 
 [Read-only Windows/Node22 CommonJS SFT](../sims/lp2_p33_stage10_stable_rank_word49_sft.cjs). Its source assertions verify the exact p33 black-rune intervals, square row/column sums, complete printed words and both inverse replay directions.
 
+## Literal 49-word-length keypad route (Agent25, 22 November; #2161)
+
+**Source-controlled bounded negative, with an exact original-input reproducer.** The 49 genuine p33 black words could in principle be a **49-number instruction**, independent of any supposed 49-rune codebook. Their original complete word lengths in a conditional seven-by-seven layout are:
+
+```text
+2 9 6 3 3 5 3
+2 7 3 3 6 5 8
+2 3 2 2 2 3 2
+6 7 4 3 4 2 2
+3 2 4 2 1 9 8
+4 4 9 5 5 2 4
+2 4 3 7 3 5 1
+```
+
+The **21 upper and 28 lower words** contribute exactly the full **196 GP runes** across offsets [10,91) and [99,214) of original p33. All 49 lengths fall between **1 and 9** inclusive. The authenticated later 2016 Cicada sentence says that the manuscript's numbers are its direction. A historically recognizable, falsifiable possibility is to read word lengths as the ordinary **telephone-numpad directions** 7/8/9 = northwest/north/northeast, 4/5/6 = west/stay/east, 1/2/3 = southwest/south/southeast, and to walk the authentic 2014 Stage7 **7×7/1033 square** from its unique central cell **331**. This source combination is hypothetical: neither the signed 2016 text nor the earlier square names *word length*, a keypad, the 7×7 square as the board, or a boundary wrap.
+
+With zero-based center (row3,col3), the first four original commands **2,9,6,3** visit cells with values **114, 270, 65, 456**. The **fifth original command 3 exits at (row5,col7)**, outside the printed seven-column board. The next 44 original words consequently have no literal cell reading. This is a **hard failure for that complete fixed finite-board operation**, before English scoring or keyed cipher tests. Resetting at the three-dot separator would not rescue the already-failed upper passage; imposing toroidal wrapping, modulo coordinates, a different start or a custom digit compass would introduce a new, independently unselected rule.
+
+The source-native selection control finds **21** other moving 49-word intervals with the same **196-rune** total in the original manuscript: **20/21** already use at most nine distinct word lengths and **14/21** both have at most nine distinct lengths and a most common length repeated at least thirteen times. Thus the p33 register's nine-symbol concentration is not itself a rare original-text indicator of a special numeric alphabet. A complete **49-command native keypad positive** made of 24 east/west pairs followed by a center command remains inside the board and exactly reconstructs all 49 commands from its coordinate differences. The failure therefore rests on original directions rather than parser, coordinate, or reverse-check implementation.
+
+**Decision:** Retire this one finite source-shaped **length→standard-direction→historic 7×7 cell** interpretation. The directly printed 5+6 text lines do not select the hypothesized seven-word rows, and no stable word-length-to-plaintext alphabet or cipher recipient is supplied. It remains possible for an independently sourced alternative operation to consume these 49 values, but exploring arbitrary alphabet shifts or wrap choices has no source support. [Read-only exact-source Node22 SFT](../sims/lp2_p33_49wordlength_literal_keypad_sft.cjs).
+
 ## What the route does—and does not—select
 
 The only explicit next action in the historical Stage10 material is to submit the three already-obtained squares and the participant's onion address to the Stage10 form. The preserved response points to **LP1** pp14–16; it does not identify a next LP2 page or coordinate.
@@ -142,3 +164,4 @@ Reopen only if an original Cicada instruction, recovered handler/transaction, or
 - Exact Stage10 image-to-LP1 identity: im-results/2014-stage10-three-images-lp1-source-handoff.md.
 - Existing direct-key gate and executable: sims/lp2_p33_stage10_order7_1033_square_key_gate_sft.cjs.
 - Exact stable numerical rank and inverse word-order SFT: sims/lp2_p33_stage10_stable_rank_word49_sft.cjs.
+- Exact 49-length keypad finite-board decision with independent original-length source controls: sims/lp2_p33_49wordlength_literal_keypad_sft.cjs.
