@@ -91,6 +91,37 @@ def pkcs1_v15_type1_decode(encoded: bytes) -> bytes | None:
     return encoded[pos + 1 :]
 
 
+def pss_sha1_structure_decode(encoded: bytes) -> dict | None:
+    """Check default EMSA-PSS structure: SHA-1, MGF1-SHA1, 20-byte salt, trailer 0xbc.
+
+    This validates the encoded-message structure, not a signature's message hash:
+    a full signature verification additionally needs the signed message.
+    """
+    h_len = 20
+    salt_len = 20
+    em_bits = N.bit_length() - 1
+    em_len = (em_bits + 7) // 8
+    if len(encoded) != em_len or encoded[-1] != 0xBC:
+        return None
+    unused = 8 * em_len - em_bits
+    db_len = em_len - h_len - 1
+    masked_db = encoded[:db_len]
+    H = encoded[db_len : db_len + h_len]
+    if unused and (masked_db[0] >> (8 - unused)) != 0:
+        return None
+    db_mask = mgf1_sha1(H, db_len)
+    db = bytearray(a ^ b for a, b in zip(masked_db, db_mask))
+    if unused:
+        db[0] &= 0xFF >> unused
+    ps_len = em_len - h_len - salt_len - 2
+    if ps_len < 0 or any(db[:ps_len]) or db[ps_len] != 1:
+        return None
+    salt = bytes(db[ps_len + 1 :])
+    if len(salt) != salt_len:
+        return None
+    return {"H": H.hex(), "salt": salt.hex(), "ps_len": ps_len}
+
+
 def scan_windows(data: bytes) -> dict:
     """Scan every 54-byte big-endian window for OAEP and v1.5 enc/sign blocks."""
     counts = {
@@ -99,6 +130,7 @@ def scan_windows(data: bytes) -> dict:
         "oaep_sha1_hits": [],
         "pkcs1_v15_type2_hits": [],
         "pkcs1_v15_type1_hits": [],
+        "pss_sha1_structure_hits": [],
     }
     for offset in range(len(data) - K + 1):
         c = int.from_bytes(data[offset : offset + K], "big")
@@ -120,6 +152,11 @@ def scan_windows(data: bytes) -> dict:
 
         public_em = pow(c, E, N).to_bytes(K, "big")
         signature_message = pkcs1_v15_type1_decode(public_em)
+        pss_structure = pss_sha1_structure_decode(public_em)
+        if pss_structure is not None:
+            counts["pss_sha1_structure_hits"].append(
+                {"offset": offset, **pss_structure}
+            )
         if signature_message is not None:
             counts["pkcs1_v15_type1_hits"].append(
                 {"offset": offset, "message_hex": signature_message.hex()}
