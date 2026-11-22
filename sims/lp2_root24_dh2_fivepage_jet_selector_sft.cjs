@@ -118,6 +118,33 @@ for (let x = 0; x < M; x++) {
 assert.deepEqual(family, [{x:24, derivative:2,
   pages:[16,28,33,34,38]}]);
 
+// The runeless numeric table is the original sixth physical polynomial.
+// At the independent r24 it forms a full-jet repeat with original p29.
+// This adds exactly five original 2-or-more-member jet groups, selecting
+// precisely TEN original cipher-page IDs plus the table.
+const allUnits = [...unknown, {page: 50, indices: table.bytes.map(mod)}];
+const sameJets = new Map();
+for (const unit of allUnits) {
+  const [value, derivative] = jet(unit.indices, ROOT);
+  const id = value + ',' + derivative;
+  if (!sameJets.has(id)) sameJets.set(id, []);
+  sameJets.get(id).push(unit.page);
+}
+const repeatedJetGroups = [...sameJets].filter(([, pages]) => pages.length > 1)
+  .map(([key, pages]) => ({jet: key.split(',').map(Number), pages}))
+  .sort((a, b) => a.pages[0] - b.pages[0]);
+assert.deepEqual(repeatedJetGroups, [
+  {jet:[4, 12], pages:[3, 23]},
+  {jet:[24, 2], pages:[16, 34, 38]},
+  {jet:[12, 2], pages:[28, 33]},
+  {jet:[0, 0], pages:[29, 50]},
+  {jet:[28, 3], pages:[46, 49]}
+]);
+const originalTaggedPages = repeatedJetGroups.flatMap(group => group.pages)
+  .filter(page => page !== 50).sort((a, b) => a - b);
+assert.deepEqual(originalTaggedPages,
+  [3, 16, 23, 28, 29, 33, 34, 38, 46, 49]);
+
 // Five fully determined Shamir interpolation weights; no decoder key fitted.
 // Actual printed physical page numbers are x-coordinates reduced modulo 29.
 const ids = selected.map(record => record.page);
@@ -158,6 +185,29 @@ assert.deepEqual(recovery, native);
 const plantedCipher = native.map((a, i) => mod(a + secret[i]));
 assert.deepEqual(plantedCipher.map((a, i) => mod(a - secret[i])), native);
 
+// A genuine five-of-TEN source-tagged original-page holdout, with the
+// independent p50 table as a further non-GP-numeric sixth-share control.
+// Physical page numbers are the unaltered GF29 share coordinates. No fitted
+// offsets, alphabet substitutions, or plaintext crib are used.
+const unselectedPageIds = originalTaggedPages.filter(id => !ids.includes(id));
+assert.deepEqual(unselectedPageIds, [3, 23, 29, 46, 49]);
+const pageHoldouts = unselectedPageIds.map(id => {
+  const predicted = combine(source, weights(xs, id % M));
+  const target = corpus.pages[id].indices;
+  const length = Math.min(predicted.length, target.length);
+  return {
+    page: id, length,
+    matches: predicted.slice(0, length).reduce((n, symbol, i) =>
+      n + Number(symbol === target[i]), 0),
+    expectedUniform: length / M
+  };
+});
+assert.deepEqual(pageHoldouts.map(x => [x.length, x.matches]), [
+  [214, 6], [213, 8], [214, 9], [214, 8], [66, 3]
+]);
+assert.equal(pageHoldouts.reduce((n, x) => n + x.length, 0), 921);
+assert.equal(pageHoldouts.reduce((n, x) => n + x.matches, 0), 34);
+
 // Uniform iid GF29 pair null: a fixed derivative value occurs Binomial(55,1/29).
 // Conditional on exactly five occurrences, 3+2 value-pattern assignments
 // are C(29,2)*2*C(5,2)/29^5. This is a descriptive reference, not
@@ -178,6 +228,8 @@ assert(Math.abs(atLeastFiveAtMostTwo - 0.000017839813775305507) < 1e-15);
 console.log(JSON.stringify({
   source: 'Original LP2 printed GF29 whole-page coefficients; r24 from p39 red G and K2 from p28 DH state',
   selected,
+  repeatedJetGroups,
+  originalTaggedPages,
   fullFieldFamily: {trials: M * M, qualifying: family},
   uniformIidNull: {
     fixedRootAndDerivativeExactlyFiveSplit3plus2: fixedPairPattern32,
@@ -187,6 +239,7 @@ console.log(JSON.stringify({
   },
   directFiveShareReceiver: {
     sourcePages: ids, sourceLength: n, xCoordinatesMod29: xs,
+    fiveOfTenPageHoldouts: pageHoldouts,
     interpolationAtZeroWeights: w0, atTablePage50Weights: w50,
     sourceSecretIoc: ioc(secret), p29MatchedSymbols: check29,
     p50MatchedSymbols: check50, matchedReferenceExpected: n / M,
