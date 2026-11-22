@@ -78,6 +78,23 @@ const layouts = {
   contiguous: xs.map((_, i) => scroll.slice(i * n, (i + 1) * n)),
   interleaved: xs.map((_, i) => scroll.filter((_, j) => j % 5 === i)),
 };
+// Historical Cicada SSSS used a 176-bit field. Six natural 37-GP-digit
+// source packets per lane would have to be strictly smaller than 2^176,
+// without reducing them modulo the field (which loses source information).
+const historicalRecordFit = (digits) => {
+  let count = 0;
+  for (let block = 0; block < 6; block++) {
+    let number = 0n;
+    for (const gpIndex of digits.slice(block * 37, (block + 1) * 37)) {
+      number = 29n * number + BigInt(gpIndex);
+    }
+    if (number < (1n << 176n)) count++;
+  }
+  return count;
+};
+assert.deepEqual(layouts.contiguous.map(historicalRecordFit), [1, 2, 0, 1, 0]);
+assert.deepEqual(layouts.interleaved.map(historicalRecordFit), [1, 1, 0, 0, 0]);
+console.log('Historical 176-bit exact 37-digit packets: 4/30 contiguous, 2/30 interleaved fit field');
 const expected = {
   'contiguous:BASE29': ['00cb6d73b3b06c12076fc06dc2a1e4edf1531ecb498b769107d27b8cdc310693', 44],
   'interleaved:BASE29': ['d1f98998e058188bafecf6d545524cb5d33a6d8befc6cfc5d0ed5a65c1fa0e8e', 39],
