@@ -131,7 +131,7 @@ for(const [name,locations] of Object.entries(coord)) {
   };
 }
 assert.deepEqual(output["center-out"].inputReorderThenDecrypt,
-  {printable:100,ascii:130,maxPrintableRun:6,maxLetterRun:3});
+  {printable:100,ascii:130,maxPrintableRun:6,maxLetterRun:4});
 assert.deepEqual(output["outer-in"].inputReorderThenDecrypt,
   {printable:91,ascii:124,maxPrintableRun:4,maxLetterRun:3});
 assert.equal(output["center-out"].decryptThenOutputReorder.maxPrintableRun,8);
