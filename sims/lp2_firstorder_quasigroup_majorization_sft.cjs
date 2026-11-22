@@ -173,7 +173,7 @@ for (const [name, source] of controls) {
 assert.equal(countWindows, 150);
 
 const reference = read("resources/liber-primus/lp1-plaintext-reference.txt")
-  .split(/### \d+\n/).slice(1).join(" ");
+  .split(/### \d+\r?\n/).slice(1).join(" ");
 const solved = encodeNative(reference);
 assert.equal(solved.length, 3510);
 for (let i = 0; i < K_VALUES.length; i++) {
