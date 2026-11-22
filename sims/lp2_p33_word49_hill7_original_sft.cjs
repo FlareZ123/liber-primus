@@ -148,6 +148,84 @@ const results = inputs.flatMap(([source, symbols]) =>
         gpIndices: output,
       };
     })));
+
+/**
+ * Four complete original 7x7 GP-rune arrays, giving the historical 7x7
+ * matrix access to *all* 196 black runes rather than scalar word values.
+ * Every grid is a contiguous 49-rune block in the actual source order.
+ * @param {number[][]} a
+ * @param {number[][]} b
+ * @returns {number[][]}
+ */
+function multiply7(a, b) {
+  return a.map(row => row.map((_, j) =>
+    mod(row.reduce((sum, value, k) => sum + value * b[k][j], 0))));
+}
+
+/** @param {number[][]} a @returns {number[][]} */
+function transpose7(a) {
+  return a[0].map((_, j) => a.map(row => row[j]));
+}
+
+/**
+ * @param {number[]} originalFlat
+ * @param {number[][]} key
+ * @param {'left'|'right'} side
+ * @returns {number[]}
+ */
+function fourSquareTransform(originalFlat, key, side) {
+  assert.equal(originalFlat.length, 196);
+  return Array.from({ length: 4 }, (_, squareNumber) => {
+    const block = originalFlat.slice(49 * squareNumber, 49 * (squareNumber + 1));
+    const grid = Array.from({ length: 7 }, (_, j) => block.slice(j * 7, j * 7 + 7));
+    const decoded = side === 'left' ? multiply7(key, grid) : multiply7(grid, key);
+    return decoded.flat();
+  }).flat();
+}
+const squareOperators = [
+  ['K', matrix],
+  ['K-inverse', inverse],
+  ['K-transposed', transpose7(matrix)],
+  ['K-inverse-transposed', transpose7(inverse)],
+];
+const solved196 = Array.from({ length: 196 }, (_, i) => planted[i % planted.length]);
+for (const [name, key] of squareOperators) {
+  for (const side of ['left', 'right']) {
+    const concealed = fourSquareTransform(solved196, key, side);
+    const undo = name.startsWith('K-inverse')
+      ? name.includes('transposed') ? transpose7(matrix) : matrix
+      : name.includes('transposed') ? transpose7(inverse) : inverse;
+    assert.deepEqual(fourSquareTransform(concealed, undo, side), solved196,
+      '196/196 native source 7x7 four-grid recovery with inverse');
+  }
+}
+const runeGridCandidates = squareOperators.flatMap(([name, key]) =>
+  ['left', 'right'].map(side => {
+    const output = fourSquareTransform(rawRunes, key, side);
+    return {
+      operator: name, side, runes: output.length,
+      ioc: ioc(output),
+      first80GP: output.slice(0, 80).map(i => corpus.translit[i]).join(' '),
+    };
+  }));
+for (const [name, left, right] of [
+  ['K-both', matrix, matrix],
+  ['K-inverse-both', inverse, inverse],
+  ['K-both-transpose', matrix, transpose7(matrix)],
+  ['K-inverse-both-transpose', inverse, transpose7(inverse)],
+]) {
+  const output = Array.from({ length: 4 }, (_, squareNumber) => {
+    const block = rawRunes.slice(squareNumber * 49, (squareNumber + 1) * 49);
+    const grid = Array.from({ length: 7 }, (_, j) => block.slice(j * 7, j * 7 + 7));
+    return multiply7(multiply7(left, grid), right).flat();
+  }).flat();
+  runeGridCandidates.push({
+    operator: name, side: 'left+right', runes: output.length, ioc: ioc(output),
+    first80GP: output.slice(0, 80).map(i => corpus.translit[i]).join(' '),
+  });
+}
+assert.equal(runeGridCandidates.length, 12);
+
 console.log('P33_WORD49_STAGE10_HILL7', JSON.stringify({
   status: 'candidate original-cipher inverse, no authenticated plaintext',
   sourceP33OriginalRunes: original.length,
@@ -158,4 +236,6 @@ console.log('P33_WORD49_STAGE10_HILL7', JSON.stringify({
   originalWordPrimeSumsMod29: primeSums,
   solvedNativePlantRecovered: planted.length,
   candidates: results,
+  fourSquareRungroup196: runeGridCandidates,
+  fourSquareNativePositiveRecovered: solved196.length,
 }, null, 2));
