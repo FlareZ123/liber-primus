@@ -2,6 +2,7 @@
 
 /**
  * LP2 p7-to-p8 GF(3) lexicographic state-address transposition.
+ * Tests both inequivalent 242-to-243 zero splices and both read directions.
  * Single-file Windows 11 / Node 22 test: from repo root run
  * node sims/lp2_p7_gf3_p8_lexicographic_cycle_sft.cjs
  * Reads only the canonical unchanged source corpus. No writes.
@@ -34,11 +35,11 @@ function advance(s) {
 }
 
 /**
- * Use the exact earlier source-derived m-sequence splice. Every five-trit
+ * Test both mathematically valid m-sequence zero splices. Every five-trit
  * window now occurs once, yielding a bijection onto the printed 243 cells.
  * @returns {{addresses:number[],firstZeroRun:number,insertion:number}}
  */
-function stateAddresses() {
+function stateAddresses(firstZeroRun) {
   const trits = [];
   const visited = new Set();
   let state = seed.slice();
@@ -50,11 +51,12 @@ function stateAddresses() {
   }
   assert.deepEqual(state, seed);
   assert.equal(visited.size, 242);
-  const firstZeroRun = trits.findIndex((_, i) =>
-    [0, 1, 2, 3].every(j => trits[(i + j) % 242] === 0));
-  assert.equal(firstZeroRun, 83);
+  const zeroRuns = trits.flatMap((_, i) =>
+    [0, 1, 2, 3].every(j => trits[(i + j) % 242] === 0) ? [i] : []);
+  assert.deepEqual(zeroRuns, [83, 204]);
+  assert(zeroRuns.includes(firstZeroRun));
   const insertion = (firstZeroRun + 4) % 242;
-  assert.equal(insertion, 87);
+  assert.equal(insertion, firstZeroRun + 4);
   trits.splice(insertion, 0, 0);
   const addresses = Array.from({length:243}, (_, i) => {
     let value = 0;
@@ -97,7 +99,7 @@ function writeByAddress(readout, order) {
   return original;
 }
 
-const {addresses, firstZeroRun, insertion} = stateAddresses();
+const addressSets = [83, 204].map(stateAddresses);
 const black = p8.slice(12);
 assert.equal(black.length, 243);
 assert.equal(black.filter(x => x === 18).length, 7);
@@ -105,6 +107,7 @@ assert.equal(p9.filter(x => x === 18).length, 6);
 assert(coincidence(p57) > 0.06);
 const nativeControl = Array.from({length:243}, (_, i) => p57[i % 95]);
 const results = [];
+for (const {addresses, firstZeroRun, insertion} of addressSets) {
 for (const [direction,order] of [
   ["forward", addresses],
   ["reverse", addresses.slice().reverse()]
@@ -117,6 +120,7 @@ for (const [direction,order] of [
     assert.equal(decoded.filter(x => x === 18).length, page === 8 ? 7 : 6);
     assert.equal(coincidence(decoded), coincidence(input));
     results.push({
+      firstZeroRun, insertion,
       physicalPage:page,
       direction,
       GP29Runes:243,
@@ -128,17 +132,17 @@ for (const [direction,order] of [
     });
   }
 }
-assert.equal(results.length, 4);
+}
+assert.equal(results.length, 8);
 console.log(JSON.stringify({
   source:"Original p7 five red word products; original p8 243 black runes; adjacent p9 first243 only as a mechanical control",
   coefficients,
   seed,
-  firstZeroRun,
-  insertion,
-  addressHead:addresses.slice(0,20),
+  spliceAlternatives:addressSets.map(({firstZeroRun,insertion,addresses}) =>
+    ({firstZeroRun,insertion,addressHead:addresses.slice(0,20)})),
   originalP8GP29IoC:+coincidence(black).toFixed(12),
   originalP9GP29IoC:+coincidence(p9).toFixed(12),
   solvedP57GP29IoC:+coincidence(p57).toFixed(12),
-  verdict:"Both complete literal LFSR-address transpositions are lossless but do not yield legible plaintext or an original-key instruction.",
+  verdict:"All four exact splice-and-direction address readings are lossless but none yields legible plaintext or an original-key instruction.",
   results
 }, null, 2));
