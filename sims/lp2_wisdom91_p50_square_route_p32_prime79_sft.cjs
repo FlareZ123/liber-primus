@@ -179,6 +179,67 @@ for (const sign of [-1, 1]) {
   assert.equal(strictTotientStates(encrypted, sign).firstImpossible, -1);
 }
 
+
+// Secondary, source-defined 7+4=11 p32 torus stripe and solved-p57
+// circumference selection. No fitted key phase, word order or language score.
+const p32 = corpus.pages.find((page) => page.page === 32).indices;
+assert.equal(p32.length, 121);
+const torusKey = Array.from({ length: 11 }, (_, i) => {
+  const k = i + 1;
+  return p32[((7 * k) % 11) * 11 + ((4 * k) % 11)];
+});
+assert.deepEqual(torusKey, [21, 20, 26, 24, 3, 22, 14, 7, 3, 23, 20]);
+const transcript = fs.readFileSync(path.join(root, 'resources/lp2-transcription.txt'), 'utf8');
+const physicalP55Words = transcript.split('%')[54].replace(/\/\s*/g, '').match(/[\u16A0-\u16FF]+/gu);
+assert.equal(physicalP55Words.length, 17);
+assert.equal(Array.from(physicalP55Words[0]).length, 1);
+const gpByRune = new Map(corpus.runes.map((rune, i) => [rune, i]));
+const strictWordInteriors = physicalP55Words.flatMap(
+  (word) => Array.from(word).slice(1, -1).map((rune) => gpByRune.get(rune))
+);
+assert.equal(strictWordInteriors.length, 43);
+assert.deepEqual(strictWordInteriors.flatMap((x, i) => x === 0 ? [i] : []), [11]);
+assert.deepEqual(strictTotientStates(strictWordInteriors, -1), {
+  firstImpossible: -1,
+  survivors: 1,
+});
+assert.deepEqual(strictTotientStates(strictWordInteriors, 1), {
+  firstImpossible: 38,
+  survivors: 0,
+});
+
+/** @param {number[]} seq */
+function indexOfCoincidence(seq) {
+  const counts = Array(29).fill(0);
+  for (const value of seq) counts[value]++;
+  return counts.reduce((s, n) => s + n * (n - 1), 0) / (seq.length * (seq.length - 1));
+}
+const decoderCases = [
+  { name: 'p55 all76', cipher: p55, expectation: [[0.029473684210526315, 0.03508771929824561], [0.034035087719298245, 0.031578947368421054]] },
+  { name: 'p55 strict inner43', cipher: strictWordInteriors, expectation: [[0.03433001107419712, 0.02547065337763012], [0.023255813953488372, 0.03322259136212625]] },
+];
+for (const sample of decoderCases) {
+  for (let family = 0; family < 2; family++) {
+    for (const sign of [-1, 1]) {
+      const recovered = sample.cipher.map((value, i) => {
+        const runeIndex = torusKey[i % torusKey.length];
+        const shift = family === 0 ? runeIndex : (primes[runeIndex] - 1) % 29;
+        return ((value + sign * shift) % 29 + 29) % 29;
+      });
+      const actual = indexOfCoincidence(recovered);
+      assert(Math.abs(actual - sample.expectation[family][(sign + 1) / 2]) < 1e-12,
+        sample.name + ' torus family ' + family + ' sign ' + sign);
+      for (let i = 0; i < recovered.length; i++) {
+        const runeIndex = torusKey[i % torusKey.length];
+        const shift = family === 0 ? runeIndex : (primes[runeIndex] - 1) % 29;
+        assert.equal((recovered[i] - sign * shift + 2900) % 29, sample.cipher[i]);
+      }
+      console.log('TORUS ' + sample.name + ' family=' + (family ? 'phi(prime)' : 'gpIndex') +
+        ' sign=' + sign + ' IoC=' + actual.toFixed(8));
+    }
+  }
+}
+
 console.log('PASS: 256 original cells, source 2014 centre91, and unique base60 square-root route');
 console.log('91 -> 49 -> 16 -> 121 -> 237 -> 32; roots 7+4=11');
 console.log('p32[7,4] = NG (GP prime79); p15 3301-3222 =79');
