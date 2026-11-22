@@ -209,6 +209,23 @@ A source-marginal calibration further limits interpretation of the key length. U
 
 **Decision:** Retire the two literal AES readout families only. Do not treat the 255-bit fit, full 32-byte hex string, native AES inversion or shell word matches as a recovered key or original plaintext until an independent Cicada-authored operation specifies encryption, counter/IV and target. The complete [read-only Node22 CJS source gate](../sims/lp2_p50_shed_core112_aes256_original_sft.cjs) asserts exact original input, key material and positives; Windows [first successful key/CTR+ECB/CBC run 45009239653](https://github.com/FlareZ123/liber-primus/actions/runs/45009239653), with exact-histogram calibration appended and rerun [45009342023](https://github.com/FlareZ123/liber-primus/actions/runs/45009342023).
 
+## 7b. Direct signed BASE29 integer transport of the SHED field
+
+The genuine 2013 Cicada BASE29 converter supplies a second more historically direct possible consumer of the source-conditioned radix-shed field. Rather than grouping D digits into triples/quartets or claiming a symmetric key, regard all original **base-five digits** on the displayed rectangular scope as **one most-significant-first integer**, and write its exact canonical base29 representation. Four complete physical table scopes, each predetermined by an integer number of discarded original circumferences (0, 1, 2 or 3), yield:
+
+| Original circumferences removed | Source base5 digits | Exact base29 rune digits | GP29 decoded IoC | Literal GP transliteration prefix |
+| ---: | ---: | ---: | ---: | --- |
+| 0 | 256 | 123 | **0.033719845** | `THEPXTEIAAYHLEAONXCN...` |
+| 1 | 180 | 87 | **0.031275060** | `UFOEBWFNTRAEBUXEA...` |
+| 2 | 112 | 53 | **0.036284470** | `OXNGNEHDUEOLWAIJJ...` |
+| 3 | 52 | 25 | **0.043333333** | `UPHUEAIXGSICAE...` |
+
+The unpeeled result begins with GP runes `TH, E, P`, yielding the literal prefix `THEP` in the transliteration. The remaining **119 runes** have no continuous readable plaintext. Its full original-scope IoC is *below* uniform 1/29. The 53-rune twice-shed candidate also lacks prose and cannot be equated with the source red51 closing segment merely because their lengths are nearby. No word boundaries or length trims are fit; these are **raw canonical digit streams**, and four candidate scopes were available. The short English-looking prefix is therefore only an isolated coincidence and supplies no decoder.
+
+A genuine solved-p57 register of 95 native GP rune indices was independently converted to a complete base-five integer and recovered **95/95** with the very same reversible BASE29 parser, establishing that lack of original text is not an arithmetic implementation error. [Original-input CommonJS SFT](../sims/lp2_p50_shed_base5_base29_full_integer_sft.cjs), [Windows Node22 PASS45010188236](https://github.com/FlareZ123/liber-primus/actions/runs/45010188236).
+
+**Decision:** Retire direct no-key full-integer SHED→BASE29 prose. The original full 256-digit D field and inner112 key-shaped object still exist as exact mathematical source-derived values. Neither transport gives unknown plaintext or specifies a source-authenticated further permutation/decryption. If a newly recovered first-party instruction chooses a particular scope and a new keyed transformation, that would constitute a new hypothesis requiring an untouched original passage, rather than a reason to tune these outputs retroactively.
+
 ## 8. Research consequence
 
 The p50 arithmetic remains a candidate structural interpretation, not an established cipher mechanism. There is an unresolved radix fork: the SHED/DH-shell branch below uses conditional base59, while the p29/p50 root24 test conditionally favors conventional base60 if the inferred p39 high-first polynomial and p29/p50 relation are intended. No original source fixes a global digit legend, so neither branch is established and they must not be merged into a dual-radix state machine:
