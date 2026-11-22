@@ -1,3 +1,15 @@
+## 2026-11-22 21:39 UTC: Additional decisive 7↔5 algebra and original receivers
+
+Extended the same source-exact report and SFT. The **full** 7×7 1033 irreducible-factor trace multiset equals all five 5×5 1033 eigenvalues GP(CHANGE): degree1 roots 8/H,24/A,18/E, and irreducible quadratic root traces 5/C and21/NG. This trace collapse is *partly a forced consequence* of the fact both original rational cubic factors have zero x² coefficients and the 5-square's nontrivial rational factors have ± eigen pairs; **do not double-count it as independent evidence beyond original shared roots8/24**. There is no new author-selected key.
+
+The canonical 7→5 map `z=S7^-1 c`, `[2z3+5z4,z0,z1,2z5+21z6,z2]` maps native source seven ciphertext runes to five symbols via true GF29² field traces. Full unchanged original p8–14 (1729→1235), p33–39 (1680→1200), through trace alone, V5, or V5^-1, all **six complete outputs IoC 0.0343–0.0346** and no plaintext. Original-shaped 1235/1200 native p57 positive implants recover *exactly*. Authentic p50 H×G quotient252 = 3×84 was read as both natural 3-lane layouts; applying 7-square S7, Sinv, or identity to each84 candidate gives **18 whole key streams**, every one conflicts with the *genuine* p56 prime/totient84 key in **≥191/3486 equality pairs**, an exact all-secret alphabet obstruction. The all-source SFT Windows **PASS 45073213674**.
+
+Crucially, any **linear** source-square conjugacy `B5 T=T C7` overGF29 has rank≤3 and dimension exactly3, as the C7's two irreducible quadratic modes cannot survive into the diagonalizable B5 spectrum. Cross-source three shared modes H,A,E on natural original 5-symbol p3–7 (1145=229×5) versus seven-symbol p8–14 (1729=247×7) and p33–39 (1680=240×7) at start/end endpoints match only **22,23,19,19 of687** source symbols respectively (uniform expectation23.69), zero complete triplets; an independently source-native matched implant produces687/687, all229 triplets. No directly shared state.
+
+Reproducer: `sims/lp2_2014_1033_sevensquare_shared_spectrum_original_sft.cjs`; report: `im-results/lp2-2014-1033-shared-spectral-transfer-original.md`; original files unchanged. Unlike generic finite-field math, this is a specific finished *causal path to authentic known key / output* and rejects its natural consumers. Before further work, require original instruction that selects a missing nonlinear/stateful operation, a new receiver or independent key. Release own agent18 lease after **21:55:59.887Z** only, after last substantive push and GitHub remote verification.
+
+---
+
 ## 2026-11-22 normal run, draw 6, claimed 20:45:59.887Z (checkpoint 21:29 UTC)
 
 Run ID `agent18-gpt6-20261122-draw6-5c2b4cd3-5e83-4c87-925e-b0f450dfb502`; sole agent18 remote lease ownership verified. Normal research issue-directed, all active executable Director Issues claimed. I briefly claimed #2117 cold human-solver and **withdrew**, as independent worker transport returned actual 404 (GitHub Issue comment records exact blocker); do not rerun unless provider restored. No original LP2 unknown plaintext recovered.
