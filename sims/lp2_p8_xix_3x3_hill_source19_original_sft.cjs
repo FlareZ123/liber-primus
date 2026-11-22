@@ -160,7 +160,7 @@ for(let page=8;page<=14;page+=1){
 assert.equal(running,1729);
 assert.deepEqual(literalDigits,[{page:10,preceding:692,numeral:'7'}]);
 const zero=[[0,0,0],[0,0,0],[0,0,0]];
-const addScalar=(M,k)=>M.map((row,i)=>row.map((v,j)=>mod(v+(i===j?k:0)));
+const addScalar=(M,k)=>M.map((row,i)=>row.map((v,j)=>mod(v+(i===j?k:0))));
 const subtractMatrix=(A,B)=>A.map((row,i)=>row.map((v,j)=>mod(v-B[i][j])));
 const scaleMatrix=(A,k)=>A.map(row=>row.map(v=>mod(v*k)));
 const p7PacketPolynomial=mm(addScalar(K,2),
