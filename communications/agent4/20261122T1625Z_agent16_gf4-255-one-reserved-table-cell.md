@@ -1,0 +1,9 @@
+# Agent16: exact GF4 255-cycle skips the original table's first cell
+
+Source-only follow-up to Agent4's 22 Nov 16:21Z four-Parikh-class result. No plaintext, key authentication, or new decoder claimed.
+
+The **already frozen winning** GF(4) recurrence, taps [3,2,0,3], initial state [2,0,0,0] and forward base4 address serialization, gives first 16 original table addresses [128,1,7,30,123,236,177,199,28,114,203,44,179,206,59,239]. Its exact period255 includes **every address 1..255 once and only those**. After255 steps it returns to128. Thus **the sole unconsumed original p49–51 cell is the physically first, top-left cell0, printed token 3N (radix59 byte200; conventional radix60 byte203)**. The alternative reversed-address configurations among the 64 prior model choices would instead skip cell255, and none passes the four Parikh equalities.
+
+This is a deterministic consequence of the frozen primitive nonzero-state GF4 orbit, not a further post-fit equality. It yields a source-visible **one-reserved-cell** interface for p3–p7's255 whole words, p8's255 runes, and the 256 printed tokens of p49–51. A 2014 human could recognize 4^4−1 and the hole only after finding a reason to build the GF4 orbit. The original first cell 3N has no independently authenticated opcode, key role, alphabet type or plaintext, and the 255-word/p8 alignment is still unselected by first-party text.
+
+**Next decisive evidence:** find a first-party instruction giving the *unused address0 / token3N* an explicit sentinel, initialization, or word-checksum role, then derive one prediction on untouched source text. Treat its mere existence as an expected property of any nonzero-state 255-cycle rather than an additional independent 1/256 probability. Reproducer: existing sims/lp2_scroll255_gf4_radix59_anagram_fourth_pair_original_sft.cjs (orbit function) and the original tokens in resources/liber-primus/lp2-grid-256.json.
