@@ -4,7 +4,7 @@
 
 ## Finding and missing operation
 
-The original numerical insert across p49–51 contains 256 two-character tokens in 32 rows by 8 columns. Exactly two tokens are literal **00**:
+The original numerical insert across p49–51 contains 256 two-character tokens in 32 rows by 8 columns. **The two zero-token positions and their 36-cell interior were already established** in the [earlier source-bracket study](lp2-grid-two-zero-address-36-punctuation-bridge.md) and closed Director issues [#1426](https://github.com/FlareZ123/liber-primus/issues/1426) and [#1631](https://github.com/FlareZ123/liber-primus/issues/1631). The independent *increment here* is the suffix-length match to the solved phrase and its specified adjacent p51 receiver. Exactly two tokens are literal **00**:
 
 | Zero-based cell | Zero-based row,column | Inclusive suffix length |
 | ---: | ---: | ---: |
