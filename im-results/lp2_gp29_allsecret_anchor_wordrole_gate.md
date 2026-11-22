@@ -59,6 +59,19 @@ A complementary **24-source-length matched iid-flat ciphertext control** gave mi
 
 The [complete, original-GP29, read-only Windows Node22 SFT](../sims/lp2_gp29_allsecret_anchor_wordrole_sft.cjs) builds all841 candidates, tests exactly 87 known-plaintext source-length plants and24 flat negatives, computes seven source-native features, and verifies exact multiplicative forward/inverse. Its original-cipher arithmetic uses each original rune in reading order. It has no recovered key and does not reinterpret line wrapping as word breaks.
 
+### Whole-word half-book transfer: can the closest anchor recover plaintext?
+
+To check whether the full-corpus **C→E** resemblance contains a genuine, geographically stable plaintext marker, split the **2,896 original whole words** deterministically into first1,448 and last1,448 (no word is split). Fit each half independently using only its own source-native whole-word length counts; freeze the best pair and inspect the *other* half. This is an out-of-sample computation, although the anchor family was explored on the full corpus first and it is **not an externally blinded discovery**.
+
+| Population | First half's best \((x,y)\), max-\(|z|\) | Second half's best \((x,y)\), max-\(|z|\) | First winner's rank in second half | Fixed C→E rank, first / second |
+|---|---|---|---:|---|
+| Original LP2 ciphertext | C→F, **2.09465** | C→EO, **2.09745** | **9** (score4.19985) | 2 / 4 |
+| True C→E Shakespeare plant | C→E, **1.36546** | C→E, **1.84599** | **1** | 1 / 1 |
+| True C→E Emerson plant | C→E, **1.29774** | C→E, **1.49627** | **1** | 1 / 1 |
+| True C→E Gibran plant | C→E, **2.85647** | C→E, **0.92670** | **1** | 1 / 1 |
+
+The original's first-half fitted cipher glyph **F** does not transfer to the second half, which independently favours **EO**. The full-corpus favourite **C→E** is comparatively near in both halves but never wins; its second-half fit reaches max-\(|z|=3.58637\). All three genuine anchored source-native controls chose **the same correct pair as the first-ranked option in both independent halves**. Therefore the candidate is insufficient to authenticate **any** original plaintext C at the positions of ciphertext E. Under this complete model, declaring those439 occurrences to be recovered plaintext would be unjustified.
+
 ## What changes next
 
 A short unknown LP2 decryption by a changing multiplicative GP29 cipher with **one shared unshifted fixed point or affine anchor** is disfavored under plausible native-English word-preserving semantics. Any future candidate of this form should first show which genuine original clue selects \(x\) and \(y\), and why the original anchor's 2,896-word positional mask fails established English references. Work that replaces \(a_i\) with a secret high-entropy stream, varies its period, or permits page resets cannot repair this exact invariant. By contrast, changing the anchor from rune to rune, using a nonmultiplicative permutation, transposing symbols or changing word segmentation changes the model and remains untested here.

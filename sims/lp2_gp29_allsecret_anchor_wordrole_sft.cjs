@@ -193,10 +193,93 @@ const compact = (r) => ({
 assert.equal(originalWords.flat().length, 12956);
 assert.ok(original[0].minMaxAbsZ > 3);
 assert.equal(original.filter((x) => x.minMaxAbsZ < 3).length, 0);
+
+// Test whether a pair fit on one untouched half-book predicts the other half.
+// The word-index cut preserves all 2,896 complete printed source words.
+function subsetScan(words) {
+  const localCounts = new Uint16Array(maxLength + 1);
+  for (const w of words) localCounts[w.length]++;
+  const models = [];
+  for (const ref of references) {
+    const means = Array.from({length:29}, () => new Float64Array(7));
+    const variances = Array.from({length:29}, () => new Float64Array(7));
+    for (let L = 1; L <= maxLength; L++) {
+      const n = localCounts[L];
+      if (!n) continue;
+      const pool = ref.pools[L];
+      const sum = Array.from({length:29}, () => new Float64Array(7));
+      const sq = Array.from({length:29}, () => new Float64Array(7));
+      for (const word of pool) for (let x = 0; x < 29; x++) {
+        const f = wordFeature(word, x);
+        for (let k = 0; k < 7; k++) {
+          sum[x][k] += f[k];
+          sq[x][k] += f[k] * f[k];
+        }
+      }
+      for (let x = 0; x < 29; x++) for (let k = 0; k < 7; k++) {
+        const mean = sum[x][k] / pool.length;
+        means[x][k] += n * mean;
+        variances[x][k] += n * Math.max(0, sq[x][k] / pool.length - mean*mean);
+      }
+    }
+    models.push({name:ref.name, means, variances});
+  }
+  const observed = corpusFeatures(words);
+  const ranked = [];
+  for (let x = 0; x < 29; x++) for (let y = 0; y < 29; y++) {
+    let best = Infinity, source = '';
+    for (const ref of models) {
+      const z = Array.from({length:7}, (_, k) =>
+        (observed[y][k] - ref.means[x][k]) /
+        Math.sqrt(ref.variances[x][k] || 1e-16));
+      const maxZ = Math.max(...z.map(Math.abs));
+      if (maxZ < best) {best = maxZ; source = ref.name;}
+    }
+    ranked.push({x, y, score:best, source});
+  }
+  ranked.sort((a, b) => a.score - b.score);
+  return ranked;
+}
+/** @param {number[][]} words */
+function splitPrediction(words) {
+  const split = Math.floor(words.length/2);
+  const first = subsetScan(words.slice(0, split));
+  const second = subsetScan(words.slice(split));
+  const firstBest = first[0], secondBest = second[0];
+  const firstCandidateOnSecond = second.findIndex((r) =>
+    r.x === firstBest.x && r.y === firstBest.y);
+  const secondCandidateOnFirst = first.findIndex((r) =>
+    r.x === secondBest.x && r.y === secondBest.y);
+  const x = latin.get('C'), y = latin.get('E');
+  const trueOnFirst = first.findIndex((r) => r.x === x && r.y === y);
+  const trueOnSecond = second.findIndex((r) => r.x === x && r.y === y);
+  return {
+    splitAtWholeWord: split,
+    firstBest: {x:gp.translit[firstBest.x], y:gp.translit[firstBest.y], score:firstBest.score},
+    secondBest: {x:gp.translit[secondBest.x], y:gp.translit[secondBest.y], score:secondBest.score},
+    firstBestHoldoutRank: firstCandidateOnSecond+1,
+    firstBestHoldoutScore:second[firstCandidateOnSecond].score,
+    secondBestFirstRank:secondCandidateOnFirst+1,
+    CtoE: {firstRank:trueOnFirst+1,firstScore:first[trueOnFirst].score,
+      secondRank:trueOnSecond+1,secondScore:second[trueOnSecond].score}
+  };
+}
+const originalSplit = splitPrediction(originalWords);
+const nativeSplit = references.map((ref) => ({
+  source:ref.name, ...splitPrediction(nativeWordPlant(ref,latin.get('C'),latin.get('E')))
+}));
+assert.deepEqual(
+  [originalSplit.firstBest.x, originalSplit.firstBest.y,
+    originalSplit.secondBest.x, originalSplit.secondBest.y],
+  ['C','F','C','EO']);
+assert.deepEqual(
+  nativeSplit.map((q) => [q.CtoE.firstRank, q.CtoE.secondRank]), [[1,1],[1,1],[1,1]]);
+
 console.log(JSON.stringify({
   hypothesis: 'C=y+a[i]*(P-x) mod29; a[i] in 1..28 completely arbitrary; anchor (x,y) shared',
   source: {runes:12956,words:2896,crossPageWords:32,wordMax:maxLength,
     sourceNativeSingletonCount:lengthCount[1],sourceGlyphCount:29},
+  outOfSample: {originalSplit, nativeSplit},
   allSecretOriginal: {allAnchorPairs:841,
     best:original.slice(0, 8).map(compact),
     belowThreshold3:original.filter((x) => x.minMaxAbsZ < 3).length,
