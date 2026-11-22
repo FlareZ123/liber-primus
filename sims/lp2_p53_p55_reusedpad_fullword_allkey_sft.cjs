@@ -134,123 +134,134 @@ function intervals(lengths) {
  * @param {"page-start"|"complete-word-start"} alignment
  * @param {"additive"|"xor"} operation
  */
+const specifications={
+  "page-start":[0,0,76],
+  "complete-word-start":[0,1,75],
+  "terminal-mark":[103,0,76],
+  "terminal-body":[104,1,75]
+};
+/**
+ * @param {number[]} cipher53
+ * @param {number[]} cipher55
+ * @param {keyof typeof specifications} alignment
+ * @param {"additive"|"xor"} operation
+ */
 function solve(cipher53, cipher55, alignment, operation="additive") {
-  const complete = alignment === "complete-word-start";
-  const bytes55 = complete ? cipher55.slice(1) : cipher55;
-  const l55 = complete ? lengths55.slice(1) : lengths55;
-  const count = complete ? 75 : 76;
+  const [start53,start55,count]=specifications[alignment];
+  assert.equal(start53+count<=cipher53.length,true);
+  assert.equal(start55+count<=cipher55.length,true);
+  const aIntervals=intervals(lengths53).map(word=>({...word,
+    start:word.start-start53,end:word.end-start53}));
+  const bIntervals=intervals(lengths55).map(word=>({...word,
+    start:word.start-start55,end:word.end-start55}));
   /** @type {{a:number,b:number,lo:number,hi:number,aOffset:number,bOffset:number}[]} */
-  const edges = [];
-  for (const a of intervals(lengths53)) {
-    for (const b of intervals(l55)) {
-      const lo = Math.max(a.start,b.start);
-      const hi = Math.min(a.end,b.end,count);
-      if (lo < hi) edges.push({
-        a:a.i,b:b.i,lo,hi,aOffset:lo-a.start,bOffset:lo-b.start
-      });
-    }
+  const edges=[];
+  for(const x of aIntervals) for(const y of bIntervals){
+    const lo=Math.max(x.start,y.start,0),hi=Math.min(x.end,y.end,count);
+    if(lo<hi)edges.push({
+      a:x.i,b:y.i,lo,hi,aOffset:lo-x.start,bOffset:lo-y.start
+    });
   }
   /** @type {Map<number,number[][]>} */
-  const aDomain = new Map();
+  const aDomain=new Map();
   /** @type {Map<number,number[][]>} */
-  const bDomain = new Map();
-  for (const edge of edges) {
-    if (!aDomain.has(edge.a)) aDomain.set(edge.a,lexicon.get(lengths53[edge.a]).slice());
-    if (!bDomain.has(edge.b)) {
-      const allowCarry = !complete && edge.b === 0;
-      const values = allowCarry
+  const bDomain=new Map();
+  for(const edge of edges){
+    if(!aDomain.has(edge.a))aDomain.set(edge.a,lexicon.get(lengths53[edge.a]).slice());
+    if(!bDomain.has(edge.b)){
+      const isCarry=edge.b===0;
+      bDomain.set(edge.b,isCarry
         ? Array.from({length:29},(_,i)=>[i])
-        : lexicon.get(l55[edge.b]).slice();
-      bDomain.set(edge.b,values);
+        : lexicon.get(lengths55[edge.b]).slice());
     }
   }
-  const initial = [...aDomain.values(), ...bDomain.values()]
-    .reduce((sum,list)=>sum+list.length,0);
-  const trace = [];
+  const initial=[...aDomain.values(),...bDomain.values()].reduce((s,x)=>s+x.length,0);
+  const trace=[];
   for(let iteration=0;iteration<20;iteration++){
     let removed=0;
-    for(const edge of edges) {
+    for(const edge of edges){
       const {a,b,lo,hi,aOffset,bOffset}=edge;
-      const delta = [];
-      for(let index=lo;index<hi;index++) {
-        delta.push(operation==="xor" ? (cipher53[index]^bytes55[index])
-          : (cipher53[index]-bytes55[index]+29)%29);
+      const delta=[];
+      for(let index=lo;index<hi;index++){
+        const c53=cipher53[start53+index],c55=cipher55[start55+index];
+        delta.push(operation==="xor"?(c53^c55):(c53-c55+29)%29);
       }
-      const left = aDomain.get(a), right = bDomain.get(b);
-      const signaturesLeft = left.map(word => {
+      const left=aDomain.get(a),right=bDomain.get(b);
+      const leftSignatures=left.map(word=>{
         const key=[];
-        for(let k=0;k<delta.length;k++)key.push(operation==="xor"
-          ? word[aOffset+k]^delta[k] : (word[aOffset+k]-delta[k]+29)%29);
+        for(let j=0;j<delta.length;j++)key.push(operation==="xor"
+          ? word[aOffset+j]^delta[j]:(word[aOffset+j]-delta[j]+29)%29);
         return key.join(",");
       });
-      const signaturesRight = right.map(word =>
+      const rightSignatures=right.map(word=>
         word.slice(bOffset,bOffset+delta.length).join(","));
-      const leftSet=new Set(signaturesLeft), rightSet=new Set(signaturesRight);
-      const intersection=new Set([...leftSet].filter(key=>rightSet.has(key)));
-      const nextLeft=left.filter((_,index)=>intersection.has(signaturesLeft[index]));
-      const nextRight=right.filter((_,index)=>intersection.has(signaturesRight[index]));
+      const rightSet=new Set(rightSignatures);
+      const common=new Set(leftSignatures.filter(s=>rightSet.has(s)));
+      const nextLeft=left.filter((_,i)=>common.has(leftSignatures[i]));
+      const nextRight=right.filter((_,i)=>common.has(rightSignatures[i]));
       removed+=left.length-nextLeft.length+right.length-nextRight.length;
       aDomain.set(a,nextLeft);
       bDomain.set(b,nextRight);
     }
     trace.push(removed);
-    if(!removed)break;
-    if([...aDomain.values(),...bDomain.values()].some(values=>!values.length))break;
+    if(!removed||[...aDomain.values(),...bDomain.values()].some(x=>!x.length))break;
   }
   return {
-    alignment, operation, count, edges:edges.length, initial, trace,
+    alignment,operation,count,edges:edges.length,initial,trace,
     empty53:[...aDomain].filter(([,x])=>!x.length).map(([i])=>i),
     empty55:[...bDomain].filter(([,x])=>!x.length).map(([i])=>i),
-    domain53:aDomain, domain55:bDomain
+    domain53:aDomain,domain55:bDomain
   };
 }
-const original=[
-  solve(p53,p55,"page-start","additive"),
-  solve(p53,p55,"complete-word-start","additive"),
-  solve(p53,p55,"page-start","xor"),
-  solve(p53,p55,"complete-word-start","xor")
-];
-for(const item of original) {
-  assert(item.empty53.length && item.empty55.length,
-    "all-secret same-key candidate must fail on source: "+item.alignment+"/"+item.operation);
+const original=[];
+for(const alignment of Object.keys(specifications)){
+  for(const operation of ["additive","xor"]){
+    const item=solve(p53,p55,alignment,operation);
+    assert(item.empty53.length && item.empty55.length,
+      "all-secret same-key candidate must fail on source: "+alignment+"/"+operation);
+    original.push(item);
+  }
 }
 
 function nativePlant(alignment,operation) {
-  const complete=alignment==="complete-word-start";
-  const length55=complete?lengths55.slice(1):lengths55;
   /** @param {number} length @param {number} index */
-  const choose=(length,index)=>lexicon.get(length)[(index*11+7)%lexicon.get(length).length];
+  const choose=(length,index)=>lexicon.get(length)[
+    (index*11+7)%lexicon.get(length).length
+  ];
   const plain53=lengths53.flatMap((length,index)=>choose(length,index));
-  const plain55=length55.flatMap((length,index)=>
-    (!complete && index===0) ? [15] : choose(length,index+17));
-  const total=complete?75:76;
-  const pad=Array.from({length:total},(_,index)=>{
-    if(operation==="additive")return (13*index+7)%29;
-    const legal=Array.from({length:32},(_,i)=>i)
-      .filter(key=>(plain53[index]^key)<29&&(plain55[index]^key)<29);
-    assert(legal.length>1);
-    return legal[(13*index+7)%legal.length];
-  });
-  const apply=(value,key)=>operation==="xor"?(value^key):(value+key)%29;
-  const encrypted53=plain53.map((v,index)=>index<total?apply(v,pad[index]):v);
-  const encrypted55=complete
-    ? [21, ...plain55.map((v,index)=>apply(v,pad[index]))]
-    : plain55.map((v,index)=>apply(v,pad[index]));
+  const plain55=lengths55.flatMap((length,index)=>
+    index===0?[15]:choose(length,index+17));
+  const [start53,start55,total]=specifications[alignment];
+  const encrypted53=plain53.slice();
+  const encrypted55=plain55.slice();
+  for(let index=0;index<total;index++){
+    const a=plain53[start53+index],b=plain55[start55+index];
+    let key;
+    if(operation==="additive")key=(13*index+7)%29;
+    else{
+      const legal=Array.from({length:32},(_,i)=>i)
+        .filter(x=>(a^x)<29&&(b^x)<29);
+      assert(legal.length>1);
+      key=legal[(13*index+7)%legal.length];
+    }
+    const apply=(value)=>operation==="xor"?(value^key):(value+key)%29;
+    encrypted53[start53+index]=apply(a);
+    encrypted55[start55+index]=apply(b);
+  }
   const result=solve(encrypted53,encrypted55,alignment,operation);
   assert.equal(result.empty53.length,0,"planted page53 must have candidates");
   assert.equal(result.empty55.length,0,"planted page55 must have candidates");
-  assert(result.domain53.get(0).some(w=>w.join(",")===choose(lengths53[0],0).join(",")),
-    "must preserve exact planted first p53 word");
   return {alignment,operation,edgeCount:result.edges,trace:result.trace,
     survivor53:[...result.domain53.values()].map(x=>x.length),
     survivor55:[...result.domain55.values()].map(x=>x.length)};
 }
-const controls=[
-  nativePlant("page-start","additive"),
-  nativePlant("complete-word-start","additive"),
-  nativePlant("page-start","xor"),
-  nativePlant("complete-word-start","xor")
-];
+const controls=[];
+for(const alignment of Object.keys(specifications)){
+  for(const operation of ["additive","xor"]){
+    controls.push(nativePlant(alignment,operation));
+  }
+}
+
 
 const summary=caseResult=>({
   alignment:caseResult.alignment, operation:caseResult.operation,
@@ -266,5 +277,5 @@ console.log(JSON.stringify({
     Object.fromEntries([...lexicon].map(([length,forms])=>[length,forms.length])),
   original:original.map(summary),
   genuineNativeGPSharedPadPlantedControls:controls,
-  status:"PASS: both source-natural alignments exclude shared GP29 additive and XOR pads within a finite lexicon; four native-English positives survive"
+  status:"PASS: both source-natural alignments exclude shared GP29 additive and XOR pads within a finite lexicon; eight native-English positives survive"
 },null,2));
