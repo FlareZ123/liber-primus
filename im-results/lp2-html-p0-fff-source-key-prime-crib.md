@@ -82,6 +82,23 @@ All direct and inverse field operations return **256/256 original cells** exactl
 
 **Decision:** retain the unusual five-source repeated-root/primitive-field equality as an unconfirmed new mechanism lead, with the exact field parameters as a possible reconstruction. The straightforward reversible field-value maps, full-period streams, whole-grid and 32×8 Fourier receivers fail on the untouched original table, and direct GF257 discrete-log key-stream application fails against all 262 original p0 ciphertext runes. Future dependent work needs an independent indication of *which* cipher operation, input ordering or cross-artifact transformation the creator intended. Repeating more unconstrained phase/key combinations is not warranted.
 
+## Historical five-share Shamir: exact original p50 GF257 holdout (Agent3, 22 November)
+
+**Decisive negative:** The established unique FFF packet nominates modulus257, primitive generator38 and start48. A different interpretation would treat the original p50 256 printed numeric values as consecutive Shamir polynomial evaluation shares over GF257, borrowing from the documented **2013 Cicada 5-of-10 SSSS episode** ([historical reconstruction](https://connortumbleson.com/2021/01/25/the-cicada-3301-mystery-puzzle-2/)). Correction to the Director assignment premise: that five-share precedent is **2013**, rather than an independently documented 2014 LP2 stage. The source packet to secret-sharing operation remains conjectural.
+
+**Frozen reconstruction:** Threshold t=5 gives an interpolating polynomial of degree at most four. All 256 original p50 decoded bytes serve as field y-coordinates 0..255. Two original-clue-compatible x clocks are tested independently: (a) conventional one-based share ordinal x_i=i+1, (b) source FFF primitive and phase x_i=38^(i+48) modulo257. Both provide 256 distinct nonzero x values. Freeze only the first five original cells0–4 as shares, interpolate GF257 by Lagrange, and predict all **251 untouched cells5–255**. Neither signs, byte values, threshold, addresses nor phase are adjusted for the output.
+
+| Frozen x clock | First withheld cell5 prediction, actual237 | Matches among 251 held-out cells | Failures | Last cell255 prediction, actual80 |
+| --- | ---: | ---: | ---: | ---: |
+| One-based ordinal x=i+1 | 114 | **1/251**, source position118 | **250/251** | 168 |
+| FFF x=38^(i+48) | 228 | **0/251** | **251/251** | 193 |
+
+Both clocks **already contradict original cells5–7**, the untouched end of the first printed row. A true degree-four GF257 share codeword must interpolate all remaining evaluations exactly. One accidental match under the ordinal clock is not evidence of a common polynomial. The two-clock test thereby rejects these particular literal source-fixed 5-of-256 Shamir hypotheses, without needing to interpret ciphertext as language.
+
+**Positive controls:** For each clock, a distinct source-shaped genuine degree-four polynomial with fixed coefficients [0,38,48,14,23] produces 256 field shares. Its first five reconstruct **all 251/251 held-out y values**, with exact interpolation. Field values equal256 are legal synthetic GF257 elements even though the original printed numeric table only contains 0..255. No original ciphertext is altered.
+
+[Single-file Windows Node22 CJS SFT](../sims/lp2_p0_fff_gf257_shamir_t5_original_sft.cjs) and [successful GitHub Actions run 44976829658](https://github.com/FlareZ123/liber-primus/actions/runs/44976829658). This exact all-original holdout is separate from earlier exhausted dlog, 256-point Fermat transform, AES and whole-grid cipher families. A new first-party threshold, row-specific share groups or true serialized x-coordinate evidence would be required before another interpolation interpretation. Scanning degrees, x rotations or new field operators against the already-inspected 251 failures would be postselected.
+
 ## Research decision
 
 The original HTML boundary → unique p0 FFF word run → original table first zero is a specifically localized original-artifact **route candidate**. Its consecutive F heads merit preservation for future source-selected operations. None of the source-frozen consumers recovers plaintext: the assembled AES128 key fails on the original 256-byte register; the 200,000-position authentic prime-totient/F-skip decoding fails the 6/6/3 original dictionary test despite a positive plant; and the three complete original F-headed words nominate a primitive GF257 group but its direct reversible consumers remain untyped.
