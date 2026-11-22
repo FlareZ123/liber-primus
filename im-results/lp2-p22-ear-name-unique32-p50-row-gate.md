@@ -21,7 +21,7 @@ If the 32 p22 printed fragments are treated as one instruction per p50 row, the 
 | Visible | Prime sum mod 8 | 14 | 7e5c3b8d7250567619cd8e23220ec556b3e9ae70e9fe83aa00443d8e90ee38bd |
 | Visible | Ordinal sum mod 8 | 16 | cb5ccac6c5501033c0cd6f2320b8232ac90a7d7069d151aab04a06db00793850 |
 | Joined carry | Prime sum mod 8 | 13 | cb5c3b8d7250567619cd8e23220ec556b3e9ae70e9fe83aa00443d8e90ee38bd |
-| Joined carry | Ordinal sum mod 8 | 16 | ba5ccac6c5501033c0cd6f23220b8232ac90a7d7069d151aab04a06db00793850 |
+| Joined carry | Ordinal sum mod 8 | 16 | ba5ccac6c5501033c0cd6f2320b8232ac90a7d7069d151aab04a06db00793850 |
 
 These are **opaque byte sequences**, without an ASCII instruction or known directly decoded text. They are possible *synthetic candidate keys* under an unsourced operation; no source selects an algorithm, nonce, encryption target or verified plaintext consumer. In particular, their 32-byte length alone does not license AES256 or a hash-preimage claim.
 
