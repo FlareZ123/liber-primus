@@ -57,6 +57,17 @@ Use the physically printed final8×8 p51 key in conventional base60 or condition
 
 The full before/after inputs, headers, plaintext candidates, native solved positive roundtrip and original exact reencryption are contained in the [same original nested-Hill SFT](../sims/lp2_p50_final8_square_hill6_original_sft.cjs). [Windows Node22 PASS for the final full-span test](https://github.com/FlareZ123/liber-primus/actions/runs/45006030822). The *source-shape plus full original word-continuation* hypothesis now has a direct negative at its most natural whole-block framing. The 2-rune hypothesis may also be an accidental modulo8 coincidence; do not add fitted headers or transformations to make it work.
 
+A more demanding **two-layer original-cipher necessary-condition test** composes the same eight frozen complete Hill8 inverses with the only independently authenticated LP2 value-changing mechanism: p56's GP29 prime(j)−1 shift with plaintext F transparent and non-consuming. It explicitly allows *both* cipher-F histories (unshifted F and shifted non-F), so no ambiguity is silently ruled out. The prime clock starts at the authenticated p56 page-local index0, without fitted offsets. The original source p56 itself **passes for all85 runes**, giving an authentic positive. Every Hill8 deciphered original flank fails a required p56-prime predecessor before its complete 136- or168-rune body can be processed:
+
+| Source numeric register | Pretable, column / row: first impossible zero-based offset | Posttable, column / row: first impossible zero-based offset |
+| --- | --- | --- |
+| base60 | **14 / 59** | **109 / 88** |
+| base59 drop-f | **47 / 114** | **89 / 116** |
+
+This is a **strict structural exclusion** of the exact full 8×8 Hill inverse followed by p56's proven transparent-prime outer transfer for either of the two original flank messages, with the named two-rune header and prime reset. The matrix inverses themselves remain fully reversible. A different historical layered cipher, selected prime phase or externally sourced key has not been ruled out. The report provides no recovered unknown plaintext.
+
+
+
 ## Source-frozen immediate consumer
 
 Take exactly the last **27** table values, cells229–255, as a key for the first **27** unmodified p51 runes from offset0, motivated solely by the adjacent placement and matching 27. Test direct additive GP29 transfer with signs ±1 and two register alphabets: conventional base60 and conditional base59 with lowercase f deleted. No phase, receiver, alphabet, or keyword is adjusted after seeing the outputs.
