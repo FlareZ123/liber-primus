@@ -181,9 +181,10 @@ assert.deepEqual(HGRecovery, {
   proposals: [1, 1, 1, 1], consensus: 1
 });
 const erased = recoverIndependentErasures(parsed.known, xPositions, HG);
-assert.deepEqual(erased, {solution: [1, 1, 5, 1], rank: 4});
+assert.deepEqual(erased, {solution: [1, 1, 1, 1], rank: 4});
 const originalBytes = tokens.map(t => 60 * Number(t[0]) + alphabet.indexOf(t[1]));
-assert.deepEqual(xPositions.map(i => mod(originalBytes[i])), erased.solution);
+assert.deepEqual(erased.solution, xPositions.map(i => mod(alphabet.indexOf(tokens[i][1]))));
+assert.deepEqual(xPositions.map(i => mod(originalBytes[i])), [1, 1, 5, 1]);
 assert.deepEqual(originalBytes, grid.byte_rows.flat());
 assert.deepEqual(remainder(originalBytes, HG), [0, 0, 0, 0]);
 assert.deepEqual([1, 30, 59].map(d => d % 29), [1, 1, 1],
@@ -232,7 +233,7 @@ console.log(JSON.stringify({
   originalP39XResidue: GRecovery,
   combinedXResidue: HGRecovery,
   independentFourErasures: erased,
-  sourceCheck: "0x/0x/2x/0x reconstructed as 1/1/5/1 modulo29",
+  sourceCheck: "four x RIGHT digits independently recover residue1; full table residues are 1/1/5/1",
   ambiguity: "x digit is 1, 30 or 59 modulo60; printed convention assigns 59",
   baselineRadix59: {H: altH, G: altG},
   reversedFactorOrientation: {H: revH, G: revG},
