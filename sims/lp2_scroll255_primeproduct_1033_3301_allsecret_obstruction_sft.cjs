@@ -234,6 +234,93 @@ const positiveRank = equalityRank(phaseFeatures(1), encodedNativePositive);
 assert(positiveRank.rank < positiveRank.variables);
 assert(positiveRank.labels > 1);
 
+
+/**
+ * Stronger all-secret certificate: permit ONE INDEPENDENT secret weight for
+ * every original rune identity at every possible position in a source word.
+ * Since the original scroll's longest word is 12 runes, the resulting 12*29
+ * matrix strictly contains all stationary period-1..12 additive input laws.
+ *
+ * Equal corrected rune outputs imply equal input sums under a deterministic
+ * output map whenever that map is injective; and the original Q tape uses all
+ * 29 of the possible field values, so ANY deterministic 29-to-29 output map
+ * must be bijective if it generates Q. No chosen output alphabet is presumed.
+ *
+ * If E = feature differences within equal-Q word classes, and D = all
+ * original feature differences to word0, equality of their rowspace proves
+ * that all k with E*k=0 also satisfy D*k=0: EVERY word hash is the same,
+ * contradicting the 29 visibly different corrected rune values.
+ */
+function fieldRank(rows, variables) {
+  const matrix = rows.map(row => row.map(mod29));
+  let rank = 0;
+  for (let col = 0; col < variables; col++) {
+    let selected = rank;
+    while (selected < matrix.length && matrix[selected][col] === 0)
+      selected++;
+    if (selected === matrix.length) continue;
+    [matrix[rank], matrix[selected]] = [matrix[selected], matrix[rank]];
+    let inverse = 0;
+    for (let j = 1; j < 29; j++) {
+      if (mod29(j * matrix[rank][col]) === 1) {
+        inverse = j;
+        break;
+      }
+    }
+    assert(inverse !== 0);
+    for (let j = col; j < variables; j++)
+      matrix[rank][j] = mod29(matrix[rank][j] * inverse);
+    for (let i = rank + 1; i < matrix.length; i++) {
+      const multiple = matrix[i][col];
+      if (multiple === 0) continue;
+      for (let j = col; j < variables; j++)
+        matrix[i][j] = mod29(
+          matrix[i][j] - multiple * matrix[rank][j]);
+    }
+    rank++;
+    if (rank === variables || rank === matrix.length) break;
+  }
+  return rank;
+}
+/**
+ * @param {number[][]} features
+ * @param {number[]} labels
+ * @returns {number[][]}
+ */
+function withinLabelDifferenceRows(features, labels) {
+  const anchors = new Map(), differences = [];
+  for (let i = 0; i < labels.length; i++) {
+    const label = labels[i];
+    if (!anchors.has(label)) anchors.set(label, i);
+    else {
+      const first = features[anchors.get(label)];
+      differences.push(features[i].map((x, j) => mod29(x - first[j])));
+    }
+  }
+  return differences;
+}
+assert.equal(Math.max(...words.map(w => w.length)), 12);
+const completeFeatures = phaseFeatures(12);
+const completeEquals = withinLabelDifferenceRows(
+  completeFeatures, corrected);
+const completeAll = completeFeatures.slice(1).map(row =>
+  row.map((x, j) => mod29(x - completeFeatures[0][j])));
+assert.equal(completeEquals.length, 226);
+assert.equal(completeAll.length, 254);
+const completeEqRank = fieldRank(completeEquals, 348);
+const completeAllRank = fieldRank(completeAll, 348);
+assert.equal(completeEqRank, 199);
+assert.equal(completeAllRank, 199);
+const positivePositionWeights = Array.from({ length: 12 }, (_, position) =>
+  gp.runes.map((_, symbol) => mod29(17 * position + 7 * symbol + 3)));
+const positivePositionOutput = words.map(word =>
+  secretLabelPermutation(word.reduce((sum, symbol, position) =>
+    sum + positivePositionWeights[position][symbol], 0) % 29));
+assert(new Set(positivePositionOutput).size > 1);
+const positivePositionEqRank = fieldRank(
+  withinLabelDifferenceRows(completeFeatures, positivePositionOutput), 348);
+assert(positivePositionEqRank < completeAllRank);
+
 /* A full residue has 251 classes, allowing an arbitrary 251-entry fit.
  * That perfect map is tautological, not a recovered cipher/hidden key. */
 console.log('SCROLL255_PRIME_PRODUCT_RESIDUE_ALLSECRET ' + JSON.stringify({
@@ -249,5 +336,13 @@ console.log('SCROLL255_PRIME_PRODUCT_RESIDUE_ALLSECRET ' + JSON.stringify({
   nativePlantedPositiveErrors: positive.unavoidableErrors,
   originalUnknownOutputPermutationPhaseRanks: allSecretPhaseBounds,
   nativeGPSecretOutputPermutationPositiveRank: positiveRank,
+  completeOriginalUnrestrictedPositionGF29Hash: {
+    variables: 348, equalOutputDifferenceRows: 226,
+    allOriginalDifferenceRows: 254,
+    rankEqualOutputConstraints: completeEqRank,
+    rankAllOriginalWordDifferences: completeAllRank,
+    forcedAllSecretHashesConstant: completeEqRank === completeAllRank,
+    secretPositionHashPositiveRank: positivePositionEqRank
+  },
   status: 'No plaintext, author-selected key, or original cipher demonstrated'
 }, null, 2));
