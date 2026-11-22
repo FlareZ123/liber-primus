@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "source": "resources/transcriptions/liber_primus_master.txt",
-  "source_notes": "Derived tokens from canonical master transcription (with earlier 2021 corrections). Direct original JPEG pixel measurements establish that the existing token readings at eleven previously disputed cell indices 25,45,50,165,172,175,182,199,215,237,246 are correct and five external variant changes are invalid; see im-results/lp2-grid-11-original-glyph-adjudication.md. Remaining cells are derived transcriptions and not comprehensively re-adjudicated. Base60 bytes remain a hypothesis distinct from radix59.",
+  "source_notes": "Derived from canonical master transcription with 2021 corrections. A complete independent read of all 256 source tokens from original scans 66.jpg–68.jpg on 21 November 2026, supported by 512-glyph font-consistency analysis and exact case-specific pixel measurements, agrees at all 256 cells with this dataset. Eleven earlier contested cells, and the remaining cell 90 I/l ambiguity, are separately adjudicated at the source. See im-results/lp2-grid-11-original-glyph-adjudication.md. These source-image checks establish the printed characters; treating their numerical interpretation as conventional radix60 bytes rather than radix59 remains a cryptanalytic hypothesis.",
   "alphabet": "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx",
   "byte_rule": "value = 60*digit(first) + digit(second)",
   "shape": "32 rows by 8 columns across LP2 pages 49, 50, 51",
