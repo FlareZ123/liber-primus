@@ -147,6 +147,67 @@ assert.deepEqual(words[48].runes, words[231].runes);
 assert.equal(words[47].firstPage, 4);
 assert.equal(words[240].firstPage, 7);
 
+
+/**
+ * Independent original-p7-red GF(4) 255-state register and original 256-byte
+ * p50 table, source-selected before asking whether a fixed secret word
+ * lookup can map scroll words to p8 under a nonconstant key.
+ *
+ * The p7 last five red complete-word GP0 products are [11,26,8,15,2].
+ * Four taps modulo4: [3,2,0,3]; fifth product2 is a fixed initial digit.
+ * GF4 modulus x^2+x+1, table address is the base4 state integer 0..255.
+ * Candidate conditional channel: p8[i] = H(scrollWord[i]) - table[state[i]].
+ * Identical source words eliminate arbitrary unknown H exactly. 
+ * @param {number} a @param {number} b
+ */
+function gf4Multiply(a,b) {
+  let result = 0;
+  for (let bit=0;bit<2;bit++) {
+    if ((b>>>bit)&1) result ^= a;
+    a <<= 1;
+    if (a&4) a ^= 7;
+  }
+  return result;
+}
+const p7redWords = [[23,3],[22,16,2,25],[5,7,11],[14,28],[6,28,19]];
+const gp0product = runes => runes.reduce((v, x) => v*x%29, 1);
+assert.deepEqual(p7redWords.map(gp0product),[11,26,8,15,2]);
+assert.deepEqual(corpus.pages.find(p=>p.page===7).indices.slice(194),
+  p7redWords.flat());
+let state = [2,0,0,0];
+const taps = [3,2,0,3];
+const gf4states = [];
+for (let i=0;i<255;i++) {
+  gf4states.push([...state]);
+  let feedback=0;
+  for (let j=0;j<4;j++) feedback ^= gf4Multiply(state[j],taps[j]);
+  state=[...state.slice(1),feedback];
+}
+assert.deepEqual(state,[2,0,0,0]);
+const addresses = gf4states.map(v =>
+  v.reduce((acc, digit)=>acc*4+digit,0));
+assert.equal(new Set(addresses).size,255);
+assert.deepEqual(addresses.slice(0,8),[128,1,7,30,123,236,177,199]);
+const pairs = [[47,240],[48,231],[235,236]];
+const mod29 = v => ((v%29)+29)%29;
+const sourceKey = addresses.map(addr => grid.bytes[addr]);
+const actualCollisionDiffs = pairs.map(([i,j]) =>
+  mod29(target[i]-target[j]));
+const predictedCollisionDiffs = pairs.map(([i,j]) =>
+  mod29(-(sourceKey[i]-sourceKey[j])));
+assert.deepEqual(actualCollisionDiffs,[8,18,14]);
+assert.deepEqual(predictedCollisionDiffs,[8,18,15]);
+assert.deepEqual(pairs.map(([i,j])=>[addresses[i],addresses[j]]),
+  [[8,120],[32,31],[43,173]]);
+assert.equal(pairs.filter(([i,j]) =>
+  mod29(target[i]+sourceKey[i])===mod29(target[j]+sourceKey[j])).length,2);
+console.log('HEX_GF4_P50_COLLISIONS '+JSON.stringify({
+  originalGP29Differences:actualCollisionDiffs,
+  exactSourceGF4GridPredictions:predictedCollisionDiffs,
+  matchedPairs:2,totalPairs:3,
+  note:'The held-out adjacent same-page p7 pair differs by one; no exact word dictionary decryption'
+}));
+
 for (const [name, keys] of Object.entries(registers)) {
   const observed = obstruction(keys, target);
   assert.deepEqual(Object.values(observed), expected[name]);
