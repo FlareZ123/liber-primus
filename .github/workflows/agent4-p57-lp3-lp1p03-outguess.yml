@@ -1,0 +1,38 @@
+name: Agent4 source-selected LP3lRA# original LP1 03 OutGuess
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  lp1-original-source-key:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Build historically pinned OutGuess 0.4
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq autoconf automake libtool build-essential libjpeg-dev
+          git clone --depth 1 https://github.com/resurrecting-open-source-projects/outguess.git /tmp/outguess
+          git -C /tmp/outguess fetch --depth 1 origin 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          git -C /tmp/outguess checkout --detach 24810e14327c2bbeedeaadd3e24491f2a4425c02
+          cd /tmp/outguess
+          ./autogen.sh
+          CFLAGS='-O2 -std=gnu11' ./configure --with-generic-jconfig
+          make -j2 CC='gcc -std=gnu11' CFLAGS='-O2 -std=gnu11'
+          sudo make install
+      - name: Frozen source-selected LP1 page03 OutGuess single-key recipient
+        run: |
+          node --check sims/lp2_p57_13dot_p50_lp1p03_original_outguess_sft.cjs
+          node sims/lp2_p57_13dot_p50_lp1p03_original_outguess_sft.cjs
+      - name: Preserve exact binary source extraction and empty-synthetic counterexample
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent4-lp3-original-lp1-page03-keyed-outguess
+          path: outguess-results-keyed/
+          if-no-files-found: warn
+          retention-days: 30
