@@ -54,6 +54,53 @@ The four complete outputs remain ciphertext-like, near the uniform 29-symbol bas
 
 **[Single self-contained Windows Node22 SFT](../sims/lp2_2014_1033_sevensquare_shared_spectrum_original_sft.cjs)** · **[independent Windows Actions PASS, run 45072210392](https://github.com/FlareZ123/liber-primus/actions/runs/45072210392)**.
 
+## The entire five-symbol CHANGE spectrum is the seven-square factor-trace spectrum
+
+The two original 1033-square characteristic polynomials have a stronger, **exact algebraic relation** than their three common linear roots. Over GF29 the 7-square has **five irreducible factors**, three of degree one and two irreducible quadratics:
+
+```text
+7-square irreducible factor   Sum of its roots in GF29   Native GP rune
+x−8                          8                            H
+x−24                         24                           A
+x−18                         18                           E
+x²−5x−13                     5                            C
+x²+8x+8                      21                           NG
+```
+
+The two quadratic sums are the GF(29²)-to-GF29 field traces of their two conjugate eigenvalues: `5` and `−8≡21`. **The resulting unordered multiset `{5,8,18,21,24}` equals the *entire* independently supplied 5-square 1033 spectrum, `GP(CHANGE)`.** This relation uses every one of the seven-square eigenmodes through the canonical irreducible factorization and does not choose letters by fitting ciphertext. It is a possible matrix-to-matrix source selector, with no authenticated ordering. Importantly, it is **not statistically independent** of the shared roots8/24: the original two nontrivial integer cubic factors have zero quadratic coefficients, so their reduction modulo29 forces each complementary quadratic's trace to equal the negative of its paired linear root. The second square's ± eigenvalue pairs are likewise explained by its integer polynomial. The notable unexplained coincidence is still that the *two 1033 matrices share the original linear eigenvalues* 8 and24.
+
+The factorization gives one canonical **five-symbol output per seven ciphertext runes**. For an original source packet `c∈GF29^7`, calculate `z=S^-1 c` using the unique RREF-normalized source 7×7 basis above. Apply the intrinsic quadratic field traces, with the five symbols in the *known source-word* order:
+
+```text
+TR_7to5(c) = [
+  2*z[3] + 5*z[4],    // quadratic x²−5x−13, C
+  z[0],               // linear root 8, H
+  z[1],               // linear root 24, A
+  2*z[5] + 21*z[6],  // quadratic x²+8x+8, NG
+  z[2]                // linear root 18, E
+] mod 29
+```
+
+This is a **rank-five noninvertible projection**, which could be a real human-designed 7-symbol ciphertext to 5-symbol plaintext code if the artifact specified it. It discards exactly two extension-mode degrees of freedom per packet. Test both intact original 7-rune-compatible chapters with no chosen ciphertext shift. Their native-GP frequency results are:
+
+| Unchanged 7-rune ciphertext receiver | Trace-only 5-rune output | After genuine 5-square physical basis `V` | After inverse `V^-1` |
+| --- | ---: | ---: | ---: |
+| p8–p14, **1729→1235** runes | **0.03431649814** | 0.03432043517 | 0.03450416341 |
+| p33–p39, **1680→1200** runes | **0.03433416736** | 0.03445232138 | 0.03462885738 |
+
+All six whole-register outputs are frequency-flat and **none recovers sustained native GP29 plaintext**. A full-length source-native positive plant converts any genuine 5-rune p57 text packet `[c,h,a,ng,e]` into a 7-rune matrix-coded packet `S·[h,a,e,c/2,0,ng/2,0]`; the identical fixed trace decoder recovers **all 1,235/1,235 and 1,200/1,200** original-shaped positive symbols exactly.
+
+A sharp algebraic limitation prevents conflating the field-trace *value* map with a true linear **cipher-state conjugacy**. For a 5×7 GF29 matrix `T` that intertwines the original magic square actions, `B*T=T*C`, the four-dimensional pair of irreducible quadratic modes of C must lie in T's kernel, because B has **no** corresponding quadratic invariant factors. Consequently the full vector space of commuting transfer maps has dimension exactly **three**, supported only on common eigenroots **H,A,E**, and **every such map has rank at most three**. A full five-dimensional change-of-state key would need a nonlinear/stateful operation selected elsewhere; the factor-trace map above cannot secretly serve as a five-dimensional intertwiner.
+
+That separate three-mode *state-reuse* proposal was tested directly on the only obvious original size-compatible sections: **p3–p7=1145=229×5**, **p8–p14=1729=247×7** and **p33–p39=1680=240×7**. After each original matrix's canonical eigenbasis, preserve the shared `[H,A,E]` modes, with either start-aligned packets or end-aligned packets (offset18 or11, the exact surplus packet counts). Across **687 compared GP29 symbols** in each original registration:
+
+| Source five-section versus source seven-section | Start alignment matches | End alignment matches |
+| --- | ---: | ---: |
+| p3–p7 versus p8–p14 | **22/687**, zero complete triplets | **23/687**, zero complete triplets |
+| p3–p7 versus p33–p39 | **19/687**, zero complete triplets | **19/687**, zero complete triplets |
+
+The uncorrelated uniform expectation is about **23.69** symbol matches out of 687. A separate authentic p57 3-symbol source-native plant embedded through the **real 5-square and 7-square eigenvector bases** reproduces **687/687 symbols and all 229 complete triplets**. Thus neither actual packet alignment reveals a reused original three-mode source state, and the natural seven-to-five trace loses rather than reveals language structure. These tests limit only these specific receiver assumptions, without excluding a missing source-selected nonlinear operation.
+
 ## A genuine known-key receiver: original 252-symbol quotient versus solved p56
 
 A source-level conjecture could make the seven-square transfer meaningful beyond a ciphertext-only visual transform. The original 256-cell numeric table's native GP29 polynomial divides exactly by the source factors `H=[3,26,24]` and `G=[27,5,15]`, leaving **252 quotient coefficients**. The separately authenticated solved p56 prime/totient cipher consumes exactly **84 known consecutive key residues**: `K[i]=(prime[i]−1) mod29`, with one F-transparent rune at ciphertext position56. Thus the quotient can be read as **three 84-rune lanes**, and the seven-square key transfer can act on each complete `84=12×7` lane. This is an independently checkable authentic-key target, unlike ranking prospective English fragments.
@@ -77,4 +124,4 @@ This receiver is *not* selected explicitly by a Cicada instruction: it combines 
 
 ## Decipherment decision
 
-The two authentic 1033 magic squares share a **new exact native-field spectral relation**, with two extra roots beyond their forced row sum. This is a legitimate source-derived reversible-coordinate candidate and a possible algebraic clue for further *source-selected* routing. **The natural complete original seven-rune consumers do not decrypt either relevant chapter, and the 18 fixed quotient-to-authentic-p56-key transfers have at least 191 key-independent pair conflicts**, and no one has supplied an original author-authenticated instruction to diagonalize the matrices or apply the resulting basis to Liber Primus. The result belongs in intermediate research. Keep any future use dependent on an independent original clue identifying the recipient, eigenmode order and value-changing operation. Do not continue arbitrary basis permutations and phase fitting to make a selected output resemble prose.
+The two authentic 1033 magic squares share a **new exact native-field spectral relation**, with two extra roots beyond their forced row sum. Every factor's GF29 root trace in the 7-square also reproduces the full 5-square CHANGE eigenvalue multiset, although no plaintext or cipher-state conjugacy follows. This is a legitimate source-derived reversible-coordinate candidate and a possible algebraic clue for further *source-selected* routing. **The natural complete original seven-rune and seven-to-five trace consumers do not decrypt either relevant chapter, the directly comparable common three modes show no shared state, and the 18 fixed quotient-to-authentic-p56-key transfers have at least 191 key-independent pair conflicts**, and no one has supplied an original author-authenticated instruction to diagonalize the matrices or apply the resulting basis to Liber Primus. The result belongs in intermediate research. Keep any future use dependent on an independent original clue identifying the recipient, eigenmode order and value-changing operation. Do not continue arbitrary basis permutations and phase fitting to make a selected output resemble prose.
