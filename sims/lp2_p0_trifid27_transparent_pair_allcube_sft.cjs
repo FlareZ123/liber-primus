@@ -341,6 +341,97 @@ console.log(JSON.stringify({
   decision: 'Only O/C of six source-singleton-compatible transparent pairs survives the opening Latin source frequency gate, and O/C fails exact original word-start and terminal C registers in every native-Latin source window.'
 }, null, 2));
 
+// Historically plausible third language: the manuscript uses Anglo-Saxon
+// Futhorc glyphs, so examine the fixed source-native Old English Beowulf
+// profile. Its real GP29 poem word breaks and 48,012 source runes are pinned.
+const beowulf = JSON.parse(read('resources/control/beowulf_oe_gp_profile_corrected.json'));
+assert.equal(beowulf.schema, 2);
+const angloAlphabet = beowulf.positiveControlAlphabet;
+const angloStream = Array.from(beowulf.sourceGpBase29, symbol => {
+  const value = angloAlphabet.indexOf(symbol);
+  assert.ok(value >= 0 && value < 29);
+  return value;
+});
+assert.equal(angloStream.length, 48012);
+let angloCursor = 0;
+const angloWords = beowulf.allSourceGpWordLengths.map(n => {
+  const word = angloStream.slice(angloCursor, angloCursor + n);
+  angloCursor += n;
+  return word;
+});
+assert.equal(angloCursor, angloStream.length);
+assert.equal(angloWords.length, 10885);
+const englishSingletonWordLabels = new Set(angloWords.filter(w=>w.length===1).map(w=>w[0]));
+assert.deepEqual([...englishSingletonWordLabels].sort((a,b)=>a-b), [6,23,24,28]);
+const oldCompatible = Array.from({length:29}, (_, i) => i)
+  .filter(i => !seenSingles.has(i) || englishSingletonWordLabels.has(i));
+assert.deepEqual(oldCompatible, [5,6,23,24,28]);
+const oldPairCounts = [];
+for (let i=0; i<oldCompatible.length; i++) {
+  for(let j=i+1; j<oldCompatible.length; j++) {
+    oldPairCounts.push({u:oldCompatible[i],v:oldCompatible[j],matches:0});
+  }
+}
+const oldHistogram = histogram(angloStream.slice(0,729));
+for (let i=0; i+729<=angloStream.length; i++) {
+  for (const pair of oldPairCounts) {
+    if (oldHistogram[pair.u]===originalHistogram[pair.u]
+      && oldHistogram[pair.v]===originalHistogram[pair.v]) pair.matches++;
+  }
+  if (i+729<angloStream.length) {
+    oldHistogram[angloStream[i]]--;
+    oldHistogram[angloStream[i+729]]++;
+  }
+}
+const oldCandidates = oldPairCounts.filter(p=>p.matches);
+assert.deepEqual(oldCandidates.map(p=>[p.u,p.v,p.matches]),
+  [[5,6,21],[5,23,6],[6,23,102]]);
+const oldWordRegistration = oldCandidates.map(({u,v}) => {
+  const labels=[u,v];
+  const actual=labels.flatMap(x=>[
+    originalWords.filter(w=>w[0]===x).length,
+    originalWords.filter(w=>w.length>1&&w.at(-1)===x).length]);
+  const flags=angloWords.map(w=>labels.flatMap(x=>[
+    +(w[0]===x), +(w.length>1&&w.at(-1)===x)]));
+  const N=originalWords.length;
+  const counts=Array(4).fill(0);
+  for(let i=0;i<N;i++)for(let j=0;j<4;j++)counts[j]+=flags[i][j];
+  let closestL1=Infinity, exact=0, minima=Array(4).fill(Infinity),
+    maxima=Array(4).fill(-Infinity);
+  for(let i=0;i+N<=angloWords.length;i++){
+    let distance=0;
+    for(let j=0;j<4;j++){
+      minima[j]=Math.min(minima[j],counts[j]);
+      maxima[j]=Math.max(maxima[j],counts[j]);
+      distance+=Math.abs(counts[j]-actual[j]);
+    }
+    closestL1=Math.min(closestL1,distance);
+    if(distance===0)exact++;
+    if(i+N<angloWords.length)for(let j=0;j<4;j++)
+      counts[j]+=flags[i+N][j]-flags[i][j];
+  }
+  assert.equal(exact,0);
+  return {pair:labels.map(x=>corpus.translit[x]).join('/'),
+    originalStartFinal:actual,sourceWindowMin:minima,sourceWindowMax:maxima,
+    bestTotalAbsoluteDeviation:closestL1,matchingWholeBookWordWindows:exact};
+});
+assert.deepEqual(oldWordRegistration.map(x=>x.bestTotalAbsoluteDeviation),
+  [280,225,381]);
+console.log(JSON.stringify({
+  nativeOldEnglish: {
+    source:'Pinned source-native Beowulf GP29 poem profile',
+    originalCompatibleSingletonSymbols:oldCompatible.map(x=>corpus.translit[x]),
+    possibleBypassPairs:oldPairCounts.length,
+    complete729RuneWindows:angloStream.length-728,
+    firstChapterSurvivors:oldCandidates.map(p=>({
+      pair:[p.u,p.v].map(x=>corpus.translit[x]).join('/'),
+      matching729RuneWindows:p.matches})),
+    complete2896WordWindows:angloWords.length-originalWords.length+1,
+    wholeBookPositions:oldWordRegistration
+  },
+  decision:'All 10 source-original-singleton-compatible literal-bypass pairs fail in the pinned Old English Beowulf register: 7 fail p0 exact runic counts; the 3 remaining pairs disagree with observed long-word-final or initial rune identities in every source window.'
+},null,2));
+
 console.log(JSON.stringify({
   wholeManuscript: {unknownRunes:12956, printedWords:2896,
     singletonWords:83, distinctSingletonLabels:seenSingles.size,
