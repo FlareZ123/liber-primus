@@ -220,6 +220,31 @@ const recovered = planted.map((cipher, i) =>
   mod29(cipher - extrapolate(key.slice(0,12), fitted.polynomial, controlPlain.length)[i]));
 assert.deepEqual(recovered, controlPlain);
 
+// Source-motivated continuation of the same p0 13-dot key/title clue:
+// classical fixed-primer Vigenere and plaintext/ciphertext autokey, unchanged
+// GP29 source clock from the first post-title rune, both additive signs.
+const conventional = [];
+for (const primer of [
+  {name:'inferred-title-plaintext',values:candidateIndices},
+  {name:'original-red-ciphertext',values:p0.slice(0, 13)},
+  {name:'inferred-title-pad',values:key}
+]) for (const sign of [1,-1]) {
+  const body = p0.slice(13).map((v,i) => mod29(v + sign * primer.values[i%13]));
+  conventional.push({mode:'repeating-primer',primer:primer.name,
+    sign,bodyIoc:ioc(body)});
+}
+for (const kind of ['plaintext','ciphertext']) for (const sign of [1,-1]) {
+  const decoded = candidateIndices.slice();
+  for (let i = 13; i < p0.length; i++) {
+    const step = kind === 'plaintext' ? decoded[i-13] : p0[i-13];
+    decoded.push(mod29(p0[i] + sign * step));
+  }
+  conventional.push({mode:kind+'-autokey',primer:'known-title',sign,
+    bodyIoc:ioc(decoded.slice(13))});
+}
+assert.equal(conventional.length, 10);
+assert.ok(conventional.every(x => x.bodyIoc < .045)); // All fail native GP29 prose IoC.
+
 // Direct use of the visually exact thirteen original p50 table rows as key
 // material: each of 8 columns and four natural row summaries.
 const mid = grid.pages.find(p => p.page === 50);
@@ -287,7 +312,8 @@ console.log(JSON.stringify({
     predicted13:predicted[12],observed13:key[12],
     bodyIoc,knownClearP57Ioc:p57Ioc,
     bodyPrefixGP:decrypted.slice(13,93).map(i=>corpus.translit[i]).join(''),
-    planted95RunesRecovered:true},
+    planted95RunesRecovered:true,
+    conventionalTitleConsumers:conventional},
   p50:{middleRows:rows.length,directProjections:direct.length,
     bestProjection:scored[0],originalTableGraphWalks:walks,
     bestOriginalWalkMatches:bestWalkMatch},
