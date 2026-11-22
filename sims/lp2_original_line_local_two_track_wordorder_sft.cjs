@@ -242,6 +242,30 @@ function main() {
   const decrypted = order.map(i => encrypted[i]);
   assert.deepEqual(decrypted, clean);
   assert.ok(score(clean, second.orders[0]) > score(encrypted, second.orders[0]));
+  // The same inverse acts on every genuine GP29 rune of the >150-rune
+  // heldout source interval, not just on abstract word-length labels.
+  const heldoutWords = words.filter(w => w.page >= 40 && w.page <= 53);
+  const holdOrder = second.orders[NAMES.indexOf("odds_first")];
+  const decodedWords = holdOrder.map(i => heldoutWords[i]);
+  const reverseOrder = new Array(holdOrder.length);
+  for (let i = 0; i < holdOrder.length; i++) reverseOrder[holdOrder[i]] = i;
+  const restoredWords = reverseOrder.map(i => decodedWords[i]);
+  assert.deepEqual(restoredWords, heldoutWords);
+  const originalRunes = heldoutWords.flatMap(w => w.values);
+  const decodedRunes = decodedWords.flatMap(w => w.values);
+  assert.equal(originalRunes.length, 3008);
+  assert.equal(decodedRunes.length, 3008);
+  const histogram = sequence => {
+    const output = new Array(29).fill(0);
+    for (const value of sequence) output[value]++;
+    return output;
+  };
+  assert.deepEqual(histogram(decodedRunes), histogram(originalRunes));
+  const frequency = histogram(decodedRunes);
+  const pairCount = frequency.reduce((sum, x) => sum + x * (x - 1), 0);
+  const unchangedIoC = pairCount / (decodedRunes.length * (decodedRunes.length - 1));
+  const decodedPreview = decodedWords.slice(0, 35).map(w => w.values
+    .map(value => gp.translit[value]).join("")).join(" ");
   const output = {
     input: "12956 original unknown ciphertext runes, 2896 printed words, 32 page carries",
     regions: {p16_21: {words: 373, runes: 1615, lines: first.lineCount},
@@ -255,6 +279,8 @@ function main() {
       wholeBook: {exceeded: exceededFull, trials: 350, plusOneP: (exceededFull + 1) / 351},
     },
     sourceNativePlantedInverse: "669/669 word lengths exactly restored",
+    originalGP29Heldout: {runes: 3008, reversedExactly: true,
+      unchangedIoC, wordPreview: decodedPreview},
     conclusion: "No transferable original-source selected word-order inverse or plaintext",
   };
   process.stdout.write(JSON.stringify(output, null, 2) + "\n");
