@@ -22,6 +22,29 @@ The vertical bar here records the source's *printed word break* after six of the
 
 The p33 cuneiform values **1033 and 3301** are decimal reversals and primes, echoing the independently documented historical 2013 prime-reversal exercise. This supports *considering* palindromic word shapes as a possible human-recognizable clue. Nevertheless no first-party instruction says to pick palindromic p33 words, use their **positions** against the 7×7 numerical square, add the selected values, jump to p8, or treat its final seven runes as cipher state. Each selection is an explicit **hypothesis**, not an established author instruction. The historical 7×7 numerical square itself is centrally symmetric and repeats values, so a value-only lookup is ambiguous without positional addressing.
 
+## Additional source shape: matching first and last 7-word rows
+
+The 49 complete source words can be arranged as seven consecutive rows of seven, exactly the historical 7×7 square's shape. Original word lengths on the **first row** are `[2,9,6,3,3,5,3]`; on the **last row** they are `[2,4,3,7,3,5,3]`. Four corresponding positions match, and in both rows the **last three** have the symmetrical length sequence `[3,5,3]`. These are the only two consecutive `[3,5,3]` windows among the 47 possible 3-word windows in this 49-word original object. The three-rune palindrome pair RAR/BMB appears specifically in the last row's repeated `[3,5,3]` window, immediately before the visible cuneiform 1033/3301 decimal reversals.
+
+As a *conditional descriptive* null, if the first row and the complete 28-word second section's rune lengths are fixed and the latter's order is randomly permuted, the probability that the last three positions read `[3,5,3]` is `(5/28)×(3/27)×(4/26) = 0.003052503`. This statistic is **post-discovery and uncorrected for inspection of multiple patterns**, so it is not an author-authorship p-value. It supports checking an intentional 7×7 row design and the terminal palindrome as a possible human cue, without supplying a reversible cipher opcode. A generic 7×7 word permutation and length-derived register have already been negatively tested elsewhere; they are not reopened.
+
+## Direct p8 self-receiver using the source-selected final seven runes
+
+The selected `[15,3,10,28,26,9,12]` GP29 operand physically belongs to **p8**. Before treating it as a p34–p39 key, an even simpler human interpretation is that the p8 suffix is the secret for decoding **p8's own 243 black runes**. The historically authentic LP1 GP29 Vigenère mode motivates one strict bounded test. Freeze only four observable alternatives: normal or digit-reversal-motivated **reversed** seven-symbol key, modulo29 addition or subtraction, and the exact black reset or a clock continuing through the 12 printed red prefix runes. This yields **eight total source-limited operations** on a complete, unaltered 243-rune original receiver. Original key symbols and GP29 alphabet are never fitted to decoded output.
+
+| Source seven-symbol orientation | Sign / clock origin | Decoded p8 black-rune IoC |
+| --- | --- | ---: |
+| Printed order | Subtract / black first rune | 0.032650 |
+| Printed order | Subtract / continue after red12 | 0.035711 |
+| Printed order | Add / black first rune | 0.034010 |
+| Printed order | Add / continue after red12 | 0.034656 |
+| Reversed | Subtract / black first rune | 0.033806 |
+| Reversed | Subtract / continue after red12 | 0.033874 |
+| Reversed | Add / black first rune | 0.033806 |
+| Reversed | Add / continue after red12 | 0.034248 |
+
+The original p8 black243 IoC is **0.034044**. All eight tested inverses remain nonlinguistic on the unchanged p8 black runes and preserve low IoC. Each exactly reencrypts the original 243 GP29 runes, and an independent 243-rune planted solved-native GP source recovers **243/243** in every variant, while rotating the planted key fails. This rules out these **eight exact direct period-seven self-key readings**, without excluding a different historically specified nonlinear operator, a separate key recipient, or an external address. The missing source-selected action remains the central uncertainty.
+
 ## One frozen original-cipher receiver, and its result
 
 The five visibly numbered passages start on physical p36 and occupy exact rune lengths **[139,91,98,96,129]**, totaling **553 = 7×79** symbols. The seven-position transposition from actual 2014 Cicada Stage05 is `[0,6,2,5,1,4,3]` (zero-based); it has an independently reproduced 56-character historical positive. To test a conventional interpretation of the candidate seven-rune operand, freeze:
