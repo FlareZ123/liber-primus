@@ -17,11 +17,13 @@ A separate literal historical book-code interpretation uses that same perimeter 
 | Original p55 ciphertext | 0.0378947 | Undeciphered |
 | p55 minus p8[perimeter-byte] | **0.0452632** | Nonlinguistic GP29 stream |
 | p55 plus p8[perimeter-byte] | 0.0403509 | Nonlinguistic GP29 stream |
-| Minus branch followed by the exact solved-p56 prime-totient/F-transparent surrogate | 0.0477193 | Nonlinguistic |
-| Plus branch followed by same prime-totient | 0.0364912 | Nonlinguistic |
+| Minus branch followed by p56 prime-totient, no F bypass assumed | 0.0294737 | Nonlinguistic |
+| Plus branch followed by p56 prime-totient, no F bypass assumed | 0.0333333 | Nonlinguistic |
+| Minus branch followed by p56 prime-totient, **all ciphertext zeros bypassed** | 0.0477193 | Nonlinguistic, **unselected and historically incorrect surrogate** |
+| Plus branch followed by same all-zero bypass | 0.0364912 | Nonlinguistic, unselected surrogate |
 | Best of ten scroll-word summary keys | 0.0403509 | Nonlinguistic |
 
-An original-corpus control evaluates **all 12,702 contiguous 255-rune windows** from the 12,956 unknown LP2 runes with the *same unmodified perimeter addresses, sign, and p55 ciphertext*. **95** windows score at least the selected p8 minus score (fraction 0.00748). P8 is independently selected by immediate adjacency and exact length, but modest IC enrichment and no prose cannot establish a historical key. Both the authentic p56 prime-totient/F rule (85/85 original plaintext runes) and a planted two-layer 76-rune cipher round trip succeed. The second stage's F rule is a surrogate when collisions could produce additional zero ciphertext runes, so its negative applies only to this explicitly implemented stage order.
+An original-corpus control evaluates **all 12,702 contiguous 255-rune windows** from the 12,956 unknown LP2 runes with the *same unmodified perimeter addresses, sign, and p55 ciphertext*. **95** windows score at least the selected p8 minus score (fraction 0.00748). P8 is independently selected by immediate adjacency and exact length, but modest IC enrichment and no prose cannot establish a historical key. The first CI run **45030634370** caught an important implementation flaw in the initial p56 control: skipping *every ciphertext F* is incorrect, because authentic p56 has ciphertext-F at positions **35,47,51,56,74**, and **only position56** is source-attested transparent plaintext-F. The corrected positive control selects only position56 and recovers all **85/85** original p56 plaintext runes. A planted 76-rune two-stage source-text cipher with explicitly known transparent positions19 and43 also round-trips in full. On unknown p55, neither the correct transparent positions nor an F-state selector is available; the no-F-bypass result and the *explicitly arbitrary* all-zero bypass are reported separately. None yields plaintext, and an all-zero rule must not be mistaken for the authentic cipher.
 
 Reproduce with [single-file Node22 original-source SFT](../sims/lp2_scroll255_p8_p50rim_p55_bookcode_original_sft.cjs), or [original p3–p7 source-construction SFT](../sims/lp2_p3_p7_scroll255_p50_grid256_wordkey_sft.cjs).
 

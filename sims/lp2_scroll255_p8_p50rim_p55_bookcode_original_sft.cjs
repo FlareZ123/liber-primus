@@ -67,19 +67,29 @@ function firstPrimes(count) {
   return out;
 }
 const primes=firstPrimes(90);
-/** A literal input GP rune zero is the transparent F surrogate from original p56.
- * @param {number[]} source @returns {{plain:number[],used:number,skips:number[]}}
+/**
+ * Real p56 transparency depends on original PLAINTEXT F, not ciphertext F.
+ * Only the independently known original position 56 is exempt on p56.
+ * For unknown recipients, no such positions are identified.
+ * @param {number[]} source Original GP29 ciphertext
+ * @param {Set<number>} transparentIndices Independently selected bypass positions
+ * @returns {{plain:number[],used:number,skips:number[]}}
  */
-function phiTransparent(source){
+function phiWithSelectedF(source,transparentIndices){
   let cursor=0;const skips=[];
   const plain=source.map((v,i)=>{
-    if(v===0){skips.push(i);return 0;}
+    if(transparentIndices.has(i)){
+      assert.equal(v,0,'transparent original GP F must remain GP F');
+      skips.push(i);
+      return 0;
+    }
     return mod(v-(primes[cursor++]-1));
   });
   return {plain,used:cursor,skips};
 }
-// Authentic positive control, including p56's original F interruption.
-const known=phiTransparent(p56);
+// Authentic p56 control has FIVE ciphertext zeros, but just ONE transparent F.
+assert.deepEqual(p56.flatMap((v,i)=>v===0?[i]:[]),[35,47,51,56,74]);
+const known=phiWithSelectedF(p56,new Set([56]));
 assert.deepEqual(known.skips,[56]);
 assert.equal(known.used,84);
 assert.equal(render(known.plain),
@@ -89,9 +99,19 @@ const mix=(key,sign)=>p55.map((value,i)=>mod(value+sign*key[rim[i]]));
 const p8Down=mix(p8,-1),p8Up=mix(p8,1);
 assert.equal(ioc(p8Down),0.045263157894736845);
 assert.equal(ioc(p8Up),0.04035087719298246);
-const twiceDown=phiTransparent(p8Down),twiceUp=phiTransparent(p8Up);
-assert.equal(ioc(twiceDown.plain),0.047719298245614036);
-assert.equal(ioc(twiceUp.plain),0.036491228070175435);
+// The unskipped rival uses a declared no-transparent-F assumption.
+// The all-ciphertext-F-skipped rival is explicitly an unselected surrogate,
+// because p56 proves ciphertext zeros do not identify transparent plaintext F.
+const twiceDown=phiWithSelectedF(p8Down,new Set());
+const twiceUp=phiWithSelectedF(p8Up,new Set());
+const downZeroPositions=p8Down.flatMap((v,i)=>v===0?[i]:[]);
+const upZeroPositions=p8Up.flatMap((v,i)=>v===0?[i]:[]);
+const allZeroSkippedDown=phiWithSelectedF(p8Down,new Set(downZeroPositions));
+const allZeroSkippedUp=phiWithSelectedF(p8Up,new Set(upZeroPositions));
+assert.equal(ioc(twiceDown.plain),0.029473684210526315);
+assert.equal(ioc(twiceUp.plain),0.03333333333333333);
+assert.equal(ioc(allZeroSkippedDown.plain),0.047719298245614036);
+assert.equal(ioc(allZeroSkippedUp.plain),0.036491228070175435);
 // A source-native planted ciphertext must actually recover its known text,
 // with transparent F positions. Prevent accidental ciphertext-F collisions.
 const plantedPlain=[];
@@ -108,7 +128,7 @@ for(let i=0;i<76;i++){
 const plantedCipher=firstStage.map((v,i)=>mod(v+p8[rim[i]]));
 const plantedInner=plantedCipher.map((v,i)=>mod(v-p8[rim[i]]));
 assert.deepEqual(plantedInner,firstStage);
-assert.deepEqual(phiTransparent(plantedInner).plain,plantedPlain);
+assert.deepEqual(phiWithSelectedF(plantedInner,new Set([19,43])).plain,plantedPlain);
 // More direct historical book-code receiver: ring index chooses a scroll word;
 // each original p55 rune as 0-based character index would need to fit the word.
 const outOfRange=p55.flatMap((selector,i)=>selector>=words[rim[i]].length?[i]:[]);
@@ -152,9 +172,14 @@ console.log(JSON.stringify({
  perimeter:{zeroBasedValid:true,firstZeroPositionOneBased:53,largest:Math.max(...rim),distinctAddresses:new Set(rim).size},
  directIndexedBookCode:{invalidCharacterOffsetsOutOf76:outOfRange.length,sourceWordAdditiveControls:summaryScores},
  directRimPage8:{minus:{ioc:ioc(p8Down),preview:render(p8Down)},plus:{ioc:ioc(p8Up),preview:render(p8Up)}},
- solvedPrimeSecondLayer:{minus:{ioc:ioc(twiceDown.plain),skips:twiceDown.skips,preview:render(twiceDown.plain)},plus:{ioc:ioc(twiceUp.plain),skips:twiceUp.skips,preview:render(twiceUp.plain)}},
+ solvedPrimeSecondLayer:{
+  noFBypassMinus:{ioc:ioc(twiceDown.plain),skips:twiceDown.skips,preview:render(twiceDown.plain)},
+  noFBypassPlus:{ioc:ioc(twiceUp.plain),skips:twiceUp.skips,preview:render(twiceUp.plain)},
+  unselectedCipherZeroBypassMinus:{ioc:ioc(allZeroSkippedDown.plain),skips:downZeroPositions,preview:render(allZeroSkippedDown.plain)},
+  unselectedCipherZeroBypassPlus:{ioc:ioc(allZeroSkippedUp.plain),skips:upZeroPositions,preview:render(allZeroSkippedUp.plain)}
+ },
  original255WindowControls:{total:counted,downExceedances:exceedDown,plusExceedances:exceedUp,downEmpiricalFraction:exceedDown/counted},
  positiveControls:{p56RecoveredRunes:85,plantedTwoLayerRecoveredRunes:76},
- verdict:'No intelligible native GP29 plaintext or authenticated terminal key. The direct page8 index stream remains a conditional source-shaped intermediate.'
+ verdict:'No intelligible GP29 plaintext or identified terminal key. A ciphertext-zero F skip is not authenticated by the original p56; the original page8 lookup remains conditional.'
 },null,2));
 console.log('PASS complete original source-pinned p8/book-code/perimeter/p55 two-layer gate');
