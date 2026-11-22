@@ -1,0 +1,71 @@
+name: Agent9 p7 READURL original native OpenPuff holdout
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  p7-readurl-source-native:
+    runs-on: windows-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: x86
+      - name: Prepare pinned historical OpenPuff v4 and native public JPEG control
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python -c "import struct; assert struct.calcsize('P') == 4"
+          python -m pip install --disable-pip-version-check pywinauto Pillow filelock
+          python sims/openpuff_output_capture_sft.py
+          if ($LASTEXITCODE -ne 0) { throw 'Original GUI regression failed' }
+          $directory = Join-Path $env:RUNNER_TEMP 'OpenPuff-v400-original-p33-single'
+          New-Item -ItemType Directory -Force -Path $directory | Out-Null
+          $base = 'https://raw.githubusercontent.com/codejanus/ToolSuite/1eaf6d006d31ba842f6cc6b16e9d82dbf904aaf5/OpenPuff'
+          $expected = @{
+            'OpenPuff.exe' = '466e03c792075313ce533a5dc7a789e8a41209f9'
+            'libObfuscate.dll' = 'f3b1c3315f8286346416fefd6141410f422f2454'
+          }
+          foreach ($name in $expected.Keys) {
+            $file = Join-Path $directory $name
+            Invoke-WebRequest -Uri "$base/$name" -OutFile $file
+            $actual = (& git hash-object -- $file).Trim().ToLowerInvariant()
+            if ($LASTEXITCODE -ne 0 -or $actual -ne $expected[$name]) { throw "Historical binary mismatch: $name" }
+          }
+          "OPENPUFF_EXE=$(Join-Path $directory 'OpenPuff.exe')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Confirm original native JPEG extractor recovers publisher's exact 35 bytes
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python sims/openpuff_public_jpeg_positive_source.py --out probe-output/public-source
+          if ($LASTEXITCODE -ne 0) { throw 'Original public carrier unavailable' }
+          python sims/openpuff_v400_extract.py --exe "$env:OPENPUFF_EXE" --carrier probe-output/public-source/openpuff.jpg --password 12345678 --bit-format 'Jpeg (Image)' --bit-level '1/2 (50%) - Maximum' --out probe-output/public-positive --wait-seconds 65
+          if ($LASTEXITCODE -ne 0) { throw 'Native positive failed to execute' }
+          python -c "from pathlib import Path; p=Path('probe-output/public-positive/extracted/hidden.txt'); assert p.read_bytes()==b'Dies ist eine versteckte Nachricht!'; print('ORIGINAL_NATIVE_JPEG_POSITIVE_PASS')"
+          if ($LASTEXITCODE -ne 0) { throw 'Original public JPEG positive bytes not recovered' }
+      - name: Test exact 2014 square full output on original LP2 p7 JPEG
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $carrier = Join-Path $env:GITHUB_WORKSPACE 'resources/liber-primus/24.jpg'
+          $expected = '91a726a7dd59c6caa4d736b9ce72ceba0a2fa827d6b69a2d4057562b9303636c'
+          $digest = (Get-FileHash -LiteralPath $carrier -Algorithm SHA256).Hash.ToLowerInvariant()
+          if ($digest -ne $expected) { throw 'Original p7 JPEG does not match source' }
+          $password = 'PEREADURLXNG'
+          Write-Host "SOURCE_P7_JPEG_SHA256=$digest SOURCE_FULL_MATRIX_PASSWORD=$password"
+          python sims/openpuff_v400_extract.py --exe "$env:OPENPUFF_EXE" --carrier "$carrier" --password "$password" --bit-format 'Jpeg (Image)' --bit-level '1/2 (50%) - Maximum' --out probe-output/original-p7 --wait-seconds 200
+          if ($LASTEXITCODE -ne 0) { throw 'Original native source extraction script failed' }
+          $result = Get-Content -LiteralPath probe-output/original-p7/result.json -Raw | ConvertFrom-Json
+          if ($result.carrier_count -ne 1 -or -not $result.bit_selection_verified -or -not $result.attempted) { throw 'Native original image, bit level or attempt not verified' }
+          Write-Host "ORIGINAL_P7_RESULT $($result | Select-Object carrier_count, native_probe_outcome, output_present, outputs, completion_dialogs, error_dialogs | ConvertTo-Json -Compress -Depth 12)"
+          if ($result.native_probe_outcome -eq 'inconclusive-timeout') { throw 'Native result inconclusive' }
+          if ($result.output_present) { Write-Host 'P7_NATIVE_PAYLOAD_FOUND' }
+      - name: Retain screenshots, native error/completion dialogs and exact output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent9-p7-readurl-original-native-evidence
+          path: probe-output/
+          if-no-files-found: warn
