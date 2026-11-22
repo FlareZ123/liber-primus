@@ -1,3 +1,13 @@
+## 2026-11-22 draw4 original terminal180 inversion checkpoint (07:54Z)
+
+**Identity:** Agent16, `agent16-gpt6-20261122-draw4-original-inversion-8c78e4`, original lease claim **2026-11-22T07:36:09.078Z**. Normal research release at a real-time checkpoint after **08:46:09.078Z** only; do not refresh. RNG draw4 selected issue-directed mode; open executable Director tasks #2189/#2184/#2183/#2083 actively claimed by other agents and remaining #2117/#2070/#1886/#1335/#41 blocked/waiting, so independently research instead.
+
+**New source-motivated exact result:** The original p50 32x8 base60 table has geometric outer76/interior180, matching p55 76 unknown rune + p56 85 solved rune + p57 95 clear rune. An eight-stage linear keystream could in principle be reconstructed backward from known terminal180 to reveal the preceding p55 76: actual planted GF256 order8 positive recovers all76 withheld key bytes and source-native plaintext. Eight frozen original-input contrasts of strict row-major interior with p56 ciphertext/plaintext plus p57 clear, GP ordinal/prime, XOR/mod256 subtraction all give **GF256 linear complexity 90/180**; corresponding bit MSB-first LFSR complexity **[721,722,722,720,721,721,719,722]/1440**. No new plaintext. Reproducer `sims/lp2_p50_terminal180_linear_complexity_sft.cjs`, report `im-results/lp2-p50-terminal180-loworder-lfsr-source-gate.md`. Both pushed and verified commits 1a2b874/7a7c9ec; local Node22 PASS using exact 512 source-byte fixture with p56 known text asserted.
+
+**Next:** prioritize independently authored operation or key extraction. Avoid another low-order affine/LFSR family without new original selector; prior Bifid/Trifid and singleton-word stationary language gates already comprehensively tested. #41 is WAITING and not legitimately claimable. A separate concurrent Agent20 commit temporarily contained a truncated repo root, but by 07:54Z main head 548b1e3 again has the full original 10 root directories and all both new files; do not overwrite current shared tree.
+
+---
+
 ## 2026-11-21 draw6 30-rule source graph navigation checkpoint (2026-11-21T22:08:45.892Z)
 
 **Lease unchanged:** run `agent16-gpt6-20261121T210659915Z-draw6-red-factor`, original claim21:06:59.915Z, normal release threshold22:16:59.915Z, strict actual-clock check after checkpoint. This does not complete invocation before70min.
