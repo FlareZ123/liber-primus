@@ -78,6 +78,22 @@ For each, scan **all 26,281 possible contiguous running-key starts** on the *ent
 
 Unkeyed original opening IoC **0.03408252**. Both exhaustive best-selected clearings still look statistically like original random-rune text; they show no sustained GP-native words and are far below the authentic solved-Cicada positive. Exact re-encryption of each fitted opening and untouched holdout passes because the operation is bijective. That merely certifies implementation: it does not rescue a nonexistent plaintext. The finite candidate is ruled out as a **direct/unskipped Welsh textual running key** in either specified classical representation. Keyed skips, nonlinear state and a different source-language spelling are outside this gate and require a fresh printed selector; no further offset/algorithm menu is warranted.
 
+## Original Old Norse Hávamál as a keyed input on the tree-illustrated chapter
+
+The **seven original pp8–14 tree-illustrated scans** contain **1,729 rune glyphs**. Old Norse `Hávamál` describes a tree and the origin of rune wisdom, providing a specific *humanly conceivable* source prompt for this chapter. The source images **do not actually name Hávamál or select one poem stanza**, so this is an explicitly exploratory historical-language key candidate. Use the unmodified pinned poem, with the declared `Ð/Þ→TH` and source GP ligature rules, in original order, producing **14,282 GP29 key runes**. The [read-only Hávamál original-input SFT](../sims/lp2_havamal_treesection_original_receivers_sft.cjs) applies three *fully defined and invertible* maps to every one of **12,554 possible start offsets**:
+
+1. Literal `P=C−K mod29`.
+2. Ciphertext-predecessor differential `P=(C−Cprev)−K mod29` with a fixed chapter initializer0.
+3. A 28-ary non-repeating step stream: `ΔC=0` means **plaintext GP EA (ordinal28)**; otherwise `P= (ΔC−1−(K mod28)) mod28`, with GP ordinals0–27 used for the 28 non-escape plaintext runes. The corresponding forward encoder is `ΔC=0` on EA and `ΔC=1+((P+K) mod28)` otherwise. This allows all authentic 86 repeated-cipher positions to encode a rare literal plaintext sentinel while keeping each keyed step map reversible. **EA and the 28-letter skip grammar are exploratory model choices**, never asserted to be authored.
+
+| Receiver | Best original p8–14 source-key start | Maximum original IoC after scanning all 12,554 starts | Disjoint original pp15–21 holdout IoC (1,772 runes) |
+| --- | ---: | ---: | ---: |
+| Plain GP29 additive key | 3,093 | **0.03525373** | **0.03457956** |
+| Ciphertext-difference GP29 additive key | 10,043 | **0.03522160** | **0.03455598** |
+| Ciphertext-difference, 28-symbol nonzero steps, EA sentinel | 2,448 | **0.03604430** | **0.03547816** |
+
+Untouched original p8–14 ciphertext IoC is **0.03446048**; a genuine 755-rune known-solved LP1 native-GP control has IoC **0.06230875** and replays exactly through all three encipher/decipher paths. Even retrospectively choosing the best of 12,554 source offsets does not recover ordinary GP English in the full original 1,729-rune chapter, and none predicts a readable held-out chapter. The class rejects these direct classical text-key receivers, including one exactly specified nonrepetition escape, **without excluding other Hávamál interpretations or a separately source-selected evolving cipher**. No key or new plaintext is recovered.
+
 ## Cryptanalytic consequence and stop decision
 
 The strongest direct new result is **linguistic sensitivity**: the all-secret anti-frequency proof is powerful for native English and Latin, yet **cannot alone reject a historically plausible Welsh orthographic register with a richer source-visible switching state**. The distinct, more general word-local equality invariant still rejects both tested non-English sources under an intact-word, fixed-map architecture, even with every word holding its own arbitrary key and position shuffle. The original manuscript's only 63 within-word adjacent-equal ciphertext events versus 400+ in source placements similarly motivates a variable per-rune operation, although an anagram can change this adjacency statistic.
