@@ -151,9 +151,62 @@ function evaluate(name, text) {
     anchorCases: all, bestAnchors: all.slice().sort(
       (a, b) => a.missingMatchedWordMasks - b.missingMatchedWordMasks).slice(0, 5)};
 }
+/**
+ * Independent 5-fold source-word heldout calibration of an exact mask test.
+ * Train on four fifths of tokens; test both real-original source masks and
+ * 32 deterministic exact-length heldout-source placements in each fold.
+ *
+ * @param {string} text @param {number} anchor
+ * @returns {object[]}
+ */
+function calibrateHeldout(text, anchor) {
+  const words = (text.match(/\p{L}+/gu) || []).map(encode);
+  const report = [];
+  for (let fold = 0; fold < 5; fold++) {
+    const train = Array.from({length: 15}, () => new Set());
+    const heldout = Array.from({length: 15}, () => []);
+    words.forEach((w, i) => {
+      if (w.length > 14) return;
+      if (i % 5 === fold) heldout[w.length].push(w);
+      else train[w.length].add(plainInteriorMask(w, anchor));
+    });
+    const eligible = target.filter(item =>
+      train[item.len].size && heldout[item.len].length);
+    let seed = 0x20143301 + fold * 29 + anchor;
+    /** @returns {number} */
+    function nextRandom() {
+      seed ^= seed << 13;
+      seed ^= seed >>> 17;
+      seed ^= seed << 5;
+      return seed >>> 0;
+    }
+    const observedMissing = eligible.filter(item =>
+      !train[item.len].has(item.mask)).length;
+    const nullCounts = [];
+    for (let trial = 0; trial < 32; trial++) {
+      let absent = 0;
+      for (const item of eligible) {
+        const candidates = heldout[item.len];
+        const w = candidates[nextRandom() % candidates.length];
+        absent += Number(!train[item.len].has(plainInteriorMask(w, anchor)));
+      }
+      nullCounts.push(absent);
+    }
+    report.push({
+      fold, eligible: eligible.length, originalMissing: observedMissing,
+      heldoutNullMin: Math.min(...nullCounts),
+      heldoutNullMax: Math.max(...nullCounts),
+      heldoutNullMean: Number((nullCounts.reduce((s, x) => s + x, 0) /
+        nullCounts.length).toFixed(4))
+    });
+  }
+  return report;
+}
+
 const results = sources.map(([name, text]) => evaluate(name, text));
 console.log(JSON.stringify({model:'C_i=C_(i-1)+k_i*(P_i-anchor) (mod29), k_i=1..28 arbitrary',
   sourceOriginal:{words: 2896, runes:12956, withinWordDoubles:63},
   controls:'95/95 p57 positive inverse and zero-marker checks pass',
-  results}, null, 2));
+  results, welshAnchorAEHeldout: calibrateHeldout(welsh, 25),
+  welshAnchorFHeldout: calibrateHeldout(welsh, 0)}, null, 2));
 console.log('PASS: 29 anchors x two pinned source registers, all original ciphertext word masks');
