@@ -61,6 +61,11 @@ squares.forEach((matrix, i) => {
 const key = squares.flat(2);
 assert.equal(key.length, 99);
 assert.equal(2 * key.length, original.length);
+const twoDigitMax=29*29-1;
+const historicalOutOfRange=key.filter(value => value>twoDigitMax);
+assert.equal(twoDigitMax,840);
+assert.deepEqual(historicalOutOfRange.sort((a,b)=>a-b),[934,934,966,966,1071,1071,1311,1311]);
+console.log('Direct equality of all 99 source square entries to unmodified GP29 pair integers is impossible: exactly eight historical entries exceed 840.');
 
 const mod = (x, m) => (x % m + m) % m;
 /**
