@@ -82,18 +82,33 @@ assert.deepEqual(recoveredP56,p56Text);
 const p57Native=encode(parts[17]);
 assert.deepEqual(p57Native,data.pages.find(p=>p.page===57).indices,
   "real solved p57 native IO/ING register must reencode exactly");
-// Positive with 13 different secret permutation tables and true inverse.
+// Positive: thirteen independent secret alphabets AND within-block
+// transpositions, all privately generated, with exact 729-rune inverse.
 let state=0x330113;
 const next=()=>{state=(Math.imul(state,1664525)+1013904223)>>>0;return state;};
-const clear=native.slice(0,729),encrypt=[],decrypt=[],maps=[];
+const clear=native.slice(0,729),encrypt=[],decrypt=[],maps=[],positions=[];
 for(let b=0,offset=0;b<13;b++){
  const p=Array.from({length:29},(_,i)=>i);
  for(let i=28;i>0;i--){const j=next()%(i+1);[p[i],p[j]]=[p[j],p[i]];}
  const inv=Array(29);for(let i=0;i<29;i++)inv[p[i]]=i;
  maps.push(p.join(","));
- for(let j=0;j<lengths[b];j++){const c=p[clear[offset++]];encrypt.push(c);decrypt.push(inv[c]);}
+ const n=lengths[b];
+ const position=Array.from({length:n},(_,i)=>i);
+ for(let i=n-1;i>0;i--){const j=next()%(i+1);[position[i],position[j]]=[position[j],position[i]];}
+ positions.push(position);
+ const blockPlain=clear.slice(offset,offset+n);
+ const blockCipher=position.map(i=>p[blockPlain[i]]);
+ const blockRecovered=Array(n);
+ for(let j=0;j<n;j++)blockRecovered[position[j]]=inv[blockCipher[j]];
+ encrypt.push(...blockCipher);decrypt.push(...blockRecovered);offset+=n;
 }
 assert.equal(new Set(maps).size,13);
+assert.ok(positions.filter(x=>x.some((y,i)=>i!==y)).length>=9);
 assert.deepEqual(decrypt,clear);
 assert.equal(score(encrypt,lengths).total,score(clear,lengths).total);
-console.log(JSON.stringify({sourcePrimeLength: lengths,originalPairs:real.byBlock,originalTotal:real.total,phaseMin:Math.min(...phases),phaseMax:Math.max(...phases),koanWindows:pure,otherNativeWindowCount:controls.length,otherNativeMin:controls[0],otherNativeMedian:controls[Math.floor(controls.length/2)],otherNativeMax:controls.at(-1),secretTables:maps.length,positiveInverse:decrypt.length,status:"PASS: conditional all-secret block substitution exclusion"},null,2));
+console.log(JSON.stringify({sourcePrimeLength:lengths,originalPairs:real.byBlock,originalTotal:real.total,
+ phaseMin:Math.min(...phases),phaseMax:Math.max(...phases),koanWindows:pure,
+ otherNativeWindowCount:controls.length,otherNativeMin:controls[0],
+ otherNativeMedian:controls[Math.floor(controls.length/2)],otherNativeMax:controls.at(-1),
+ secretAlphabets:maps.length,secretTranspositions:positions.length,
+ positiveInverse:decrypt.length,status:"PASS: conditional all-secret block substitution and transposition exclusion"},null,2));
