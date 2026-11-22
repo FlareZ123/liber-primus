@@ -264,6 +264,185 @@ assert.equal(holdout.length, 250);
 assert(Math.abs(sourceIoC - 0.033320755812265984) < 1e-12);
 assert(Math.abs(holdoutIoC - 0.033542168674698794) < 1e-12);
 assert(Math.abs(ioc(reconstructed) - 0.03393028183322207) < 1e-12);
+
+/**
+ * Two stronger interpretations of an occasional anti-doublet correction:
+ * "skip": the generator consumes one extra key symbol at one word position.
+ * "shock": one key symbol changes and becomes part of future recurrence state.
+ * Both are exact, source-agnostic and allow arbitrary unknown taps and seeds.
+ *
+ * @param {number[]} observed
+ * @param {number} order
+ * @param {number} errorIndex
+ * @param {"skip"|"shock"} kind
+ * @returns {number[]|null}
+ */
+function recoverIrregular(observed, order, errorIndex, kind) {
+  /** @type {(number[]|null)[]} */
+  const pivots = Array(order).fill(null);
+  let rank = 0;
+  for (let i = order; i < observed.length; i++) {
+    const affected = kind === "shock" ? i === errorIndex
+      : i >= errorIndex && i < errorIndex + order;
+    if (affected) continue;
+    const row = [
+      ...Array.from({length: order}, (_, j) => observed[i - j - 1]),
+      observed[i]
+    ];
+    let installed = false;
+    for (let column = 0; column < order; column++) {
+      if (row[column] === 0) continue;
+      const pivot = pivots[column];
+      if (pivot === null) {
+        const scale = inv[row[column]];
+        for (let j = column; j <= order; j++)
+          row[j] = mod(row[j] * scale);
+        pivots[column] = row;
+        rank++;
+        installed = true;
+        break;
+      }
+      const factor = row[column];
+      for (let j = column; j <= order; j++)
+        row[j] = mod(row[j] - factor * pivot[j]);
+    }
+    if (!installed && row[order] !== 0) return null;
+  }
+  if (rank !== order) return null;
+  const solution = Array(order).fill(0);
+  for (let i = order - 1; i >= 0; i--) {
+    let value = pivots[i][order];
+    for (let j = i + 1; j < order; j++)
+      value -= pivots[i][j] * solution[j];
+    solution[i] = mod(value);
+  }
+  return solution;
+}
+
+/**
+ * @param {number[]} observed
+ * @param {number[]} taps
+ * @param {number} errorIndex
+ * @param {"skip"|"shock"} kind
+ */
+function replayIrregular(observed, taps, errorIndex, kind) {
+  const order = taps.length;
+  if (kind === "skip") {
+    const generated = generateKey(
+      observed.slice(0, order), taps, observed.length + 1);
+    return generated[errorIndex] !== generated[errorIndex + 1]
+      && observed.every((value, i) =>
+        value === generated[i + Number(i >= errorIndex)]);
+  }
+  const mismatches = [];
+  for (let i = order; i < observed.length; i++) {
+    const expected = mod(taps.reduce(
+      (sum, tap, j) => sum + tap * observed[i - j - 1], 0));
+    if (expected !== observed[i]) mismatches.push(i);
+  }
+  return mismatches.length === 1 && mismatches[0] === errorIndex;
+}
+
+// Synthetic source-native positives: secret order-3/4 taps and seeds,
+// followed by one genuinely consumed-extra key or one state-changing shock.
+for (const [order, taps, seed] of [
+  [3, [27, 5, 15], [2, 6, 19]],
+  [4, [23, 26, 14, 17], [2, 6, 19, 8]]
+]) {
+  const plain = encodeSourceNativeGP("CIRCUMFERENCES");
+  const generated = generateKey(seed, taps, plain.length + 1);
+  const index = 7;
+  const skipped = plain.map((p, i) =>
+    mod(p + generated[i + Number(i >= index)]));
+  const skippedObserved = skipped.map((c, i) => mod(c - plain[i]));
+  const skipTaps = recoverIrregular(skippedObserved, order, index, "skip");
+  assert.deepEqual(skipTaps, taps);
+  assert(replayIrregular(skippedObserved, skipTaps, index, "skip"));
+  const shockedKey = generated.slice(0, plain.length);
+  shockedKey[index] = mod(shockedKey[index] + 4);
+  for (let i = index + 1; i < shockedKey.length; i++)
+    shockedKey[i] = mod(taps.reduce(
+      (sum, tap, j) => sum + tap * shockedKey[i - j - 1], 0));
+  const shocked = encipher(plain, shockedKey);
+  const shockedObserved = shocked.map((c, i) => mod(c - plain[i]));
+  const shockTaps = recoverIrregular(shockedObserved, order, index, "shock");
+  assert.deepEqual(shockTaps, taps);
+  assert(replayIrregular(shockedObserved, shockTaps, index, "shock"));
+}
+
+const irregularResults = {};
+for (const kind of ["skip", "shock"]) {
+  irregularResults[kind] = {};
+  for (const order of [3, 4, 5]) {
+    const hits = [];
+    const counts = [];
+    for (const {page, cipher} of originals) {
+      let count = 0;
+      for (const {word, plain} of byLength.get(cipher.length)) {
+        const key = cipher.map((value, i) => mod(value - plain[i]));
+        const lastAllowed = kind === "shock" ? key.length - 1
+          : key.length;
+        for (let index = order; index < lastAllowed; index++) {
+          const taps = recoverIrregular(key, order, index, kind);
+          if (taps === null || !replayIrregular(key, taps, index, kind))
+            continue;
+          hits.push({page, word, index, taps});
+          count++;
+        }
+      }
+      counts.push({page, count});
+    }
+    const byTaps = new Map();
+    for (const hit of hits) {
+      const signature = hit.taps.join(",");
+      const group = byTaps.get(signature) || [];
+      group.push(hit);
+      byTaps.set(signature, group);
+    }
+    const shared = [...byTaps.values()].filter(group =>
+      new Set(group.map(hit => hit.page)).size >= 2);
+    irregularResults[kind][order] = {
+      count: hits.length,
+      counts, crossPageSharedKeys: shared.length,
+      fourTapCandidates: order === 4 ? hits : undefined
+    };
+  }
+}
+assert.deepEqual([3, 4, 5].map(m => irregularResults.skip[m].count),
+  [0, 0, 4]);
+assert.deepEqual([3, 4, 5].map(m => irregularResults.shock[m].count),
+  [0, 1, 593]);
+assert.deepEqual(irregularResults.shock[4].fourTapCandidates, [{
+  page: 52, word: "nonluminously", index: 5,
+  taps: [27, 25, 11, 28]
+}]);
+assert(["skip", "shock"].every(kind =>
+  [3, 4, 5].every(m =>
+    irregularResults[kind][m].crossPageSharedKeys === 0)));
+
+// The second independent p52 candidate changes the future key register.
+// Propagate its original observed word keys directly, with a fixed
+// back-step inverse of its last tap, across every untouched page rune.
+const shockCandidate = irregularResults.shock[4].fourTapCandidates[0];
+const shockPlain = encodeSourceNativeGP(shockCandidate.word);
+const shockKey = word52.map((c, i) => mod(c - shockPlain[i]));
+const shockTaps = shockCandidate.taps;
+assert.equal(inv[shockTaps[3]], 28);
+const expanded = Array(page52.length).fill(0);
+for (let i = 0; i < shockKey.length; i++) expanded[78 + i] = shockKey[i];
+for (let i = 91; i < expanded.length; i++)
+  expanded[i] = mod(shockTaps.reduce(
+    (sum, a, j) => sum + a * expanded[i - j - 1], 0));
+for (let i = 77; i >= 0; i--)
+  expanded[i] = mod(inv[shockTaps[3]] *
+    (expanded[i + 4] - shockTaps[0] * expanded[i + 3]
+      - shockTaps[1] * expanded[i + 2] - shockTaps[2] * expanded[i + 1]));
+const shockDecoded = page52.map((c, i) => mod(c - expanded[i]));
+const shockHoldout = shockDecoded.filter((_, i) => i < 78 || i >= 91);
+assert.equal(shockHoldout.length, 250);
+assert(Math.abs(ioc(shockHoldout) - 0.03469879518072289) < 1e-12);
+assert(Math.abs(ioc(shockDecoded) - 0.03433663251385946) < 1e-12);
+
 console.log(JSON.stringify({
   source: "all seven original long GP words; 29,229 source-native independent dictionary candidates",
   model: "arbitrary homogeneous GF29 order3/4/5 key and per-word seed; at most one output-only redraw after seed",
@@ -271,6 +450,8 @@ console.log(JSON.stringify({
   positiveCleanRecovers: 3,
   positiveOneRedrawRecovers: 2,
   results: output,
+  stateIrregularResults: irregularResults,
+  stateShockP52HoldoutIoC: ioc(shockHoldout),
   p52CandidateHoldout: {
     word: "OVERSENSITIZE",
     originalWordStart: 78,
