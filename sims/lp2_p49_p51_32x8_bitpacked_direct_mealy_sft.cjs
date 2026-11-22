@@ -109,6 +109,58 @@ for (let a = 0; a < 32; a++) {
 assert.equal(testedRowSubsets, 4960); // every possible secret 29-of-32 row choice
 assert.equal(minRemaining, 5);
 assert.equal(minAffectedColumns, 4);
+/*
+ * A collision in column s matters only if s is reachable from the chosen
+ * initial state. Prove it for EVERY possible three control rows, EVERY seed,
+ * BOTH 5+3 bit layouts and BOTH plausible original number radices. Each
+ * symbol is a legal input: the all-symbol reachability closure must visit
+ * all eight columns. This rules out any "colliding states are unreachable"
+ * rescue of the ordinary universal 29-rune encoder.
+ */
+let checkedReachability = 0;
+for (const radix of [60, 59]) {
+  const T = sourceTable(radix);
+  for (const split of ['low5', 'high5']) {
+    for (let first = 0; first < 32; first++) {
+      for (let second = first + 1; second < 32; second++) {
+        for (let third = second + 1; third < 32; third++) {
+          const gone = new Set([first, second, third]);
+          for (let seed = 0; seed < 8; seed++) {
+            let reachable = 1 << seed;
+            let expanded = true;
+            while (expanded) {
+              expanded = false;
+              for (let state = 0; state < 8; state++) {
+                if (!(reachable & (1 << state))) continue;
+                for (let runeRow = 0; runeRow < 32; runeRow++) {
+                  if (gone.has(runeRow)) continue;
+                  const byte = T[runeRow][state];
+                  const next = split === 'low5' ? (byte >>> 5) : (byte & 7);
+                  const bit = 1 << next;
+                  if (!(reachable & bit)) {
+                    reachable |= bit;
+                    expanded = true;
+                  }
+                }
+              }
+            }
+            assert.equal(reachable, 255,
+              'Every secret 29-row subset reaches every state from every seed');
+            checkedReachability++;
+          }
+        }
+      }
+    }
+  }
+}
+assert.equal(checkedReachability, 158720);
+console.log(JSON.stringify({
+  stateReachability: 'Every starting column reaches all eight after any 29-of-32 input rows are retained',
+  checkedRadices: [60, 59], checkedSplits: ['low5', 'high5'],
+  checkedSubsets: 4960, checkedSeedsEach: 8,
+  totalAllStateCertificates: checkedReachability
+}));
+
 console.log(JSON.stringify({ all32CollisionEdges: edges.length, minimumRowsDiscardedForUniversalInjection: cover.length, maximumInjectiveAlphabet: 32 - cover.length, witnessRemovedRows: cover, tested29RowSelections: testedRowSubsets, minimumRemainingCollisionPairs: minRemaining, minimumAffectedStateColumns: minAffectedColumns }));
 
 /** @param {number} radix */
