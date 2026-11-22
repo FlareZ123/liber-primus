@@ -208,6 +208,46 @@ assert.ok(fifthPowerMatches.some(({ coefficients }) =>
   coefficients.every((v, i) => v === products[i])));
 
 
+// Direct p8 3^5 interpretation gate: its 243 original black rune residues
+// are not a full cyclic ternary de Bruijn sequence of order 5.
+const p8BlackTrits = p8.indices.slice(12).map((n) => n % 3);
+assert.equal(p8BlackTrits.length, 243);
+/** @param {number[]} trits Integer values 0,1,2. */
+function cyclicFiveWindowCount(trits) {
+  const seen = new Set();
+  for (let i = 0; i < trits.length; i++) {
+    let state = 0;
+    for (let j = 0; j < 5; j++) state = state * 3 + trits[(i + j) % trits.length];
+    seen.add(state);
+  }
+  return seen.size;
+}
+assert.equal(cyclicFiveWindowCount(p8BlackTrits), 161);
+// Independent 243-symbol de Bruijn positive: Fredricksen–Kessler–Maiorana.
+function deBruijn3Order5() {
+  const alphabetSize = 3;
+  const order = 5;
+  const work = Array(alphabetSize * order + 1).fill(0);
+  const output = [];
+  function visit(t, p) {
+    if (t > order) {
+      if (order % p === 0) for (let i = 1; i <= p; i++) output.push(work[i]);
+    } else {
+      work[t] = work[t - p];
+      visit(t + 1, p);
+      for (let i = work[t - p] + 1; i < alphabetSize; i++) {
+        work[t] = i;
+        visit(t + 1, t);
+      }
+    }
+  }
+  visit(1, 1);
+  return output;
+}
+const positiveDeBruijn = deBruijn3Order5();
+assert.equal(positiveDeBruijn.length, 243);
+assert.equal(cyclicFiveWindowCount(positiveDeBruijn), 243);
+
 const head = source.slice(0, 6561);
 const rawTail = source.slice(6561);
 assert.equal(head.length, 81 ** 2);
@@ -322,4 +362,6 @@ for (let r = 0; r < 80; r++) {
 assert.equal(expected.length, 6395);
 assert.deepEqual(apply(planted, -1), expected);
 console.log('Native solved-p57 planted round trip: PASS (synthetic, not LP2 plaintext)');
-console.log('GF81 original-source decision: direct additive and secret row/column maps NEGATIVE');
+console.log('P8 black 243 trit cyclic five-window distinct states:',
+  cyclicFiveWindowCount(p8BlackTrits), '(positive 243)');
+console.log('GF81 original-source decision: direct additive, secret row/column maps and direct de Bruijn NEGATIVE');
