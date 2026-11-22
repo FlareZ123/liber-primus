@@ -368,3 +368,13 @@ Supporting source gates: [original p0 image adjudication](lp2-p0-red13-13dot-bla
 ```text
 node sims/lp2_p0_square_state_rise_key_serializer_sft.cjs
 ```
+
+## Source-length bridge: p0 marker13 + p39 marked triad to p50 degree16 factor (22 November)
+
+A different test tied the 13-rune marker-derived key packet from this report to an independently printed **three-rune red highlight on p39**. Their concatenation yields 16 GP29 symbols, exactly the degree of the established **monic GF29 factor F16** of the printed 256-cell p50 table. This makes an inexpensive, source-dimension-motivated possible generator: use the two original glyph operands as an initial field recurrence state, with F16 as its fixed feedback polynomial. Crucially, neither source says to concatenate these operands or to run an LFSR. The 13-rune key was already recognized through the p0 title candidate.
+
+The new [original-rune SFT](../sims/lp2_p0_marker13_p39_tri3_p50_factor16_original_sft.cjs) validates exact source table SHA-256 and F16 divisibility, freezes p39 red symbols `[27,5,15]` and candidate p0 key `[26,24,8,19,27,24,18,3,0,8,0,16,19]`, then evaluates **16 precise additive receivers**: both 13|3 and 3|13 seed orders, F16 and its monic reciprocal, seed-start and post-state output clocks, two GP29 signs. Every key is generated independently of the unknown ciphertext. The seed-start subtraction variant reproduces the **already-known** p0 `EPIPHANY SEEKS` candidate in its first 13 symbols **by construction**; this is no fresh confirmation of that title.
+
+The untouched original whole-book outputs have GP29 IoCs **0.034454–0.034516**, indistinguishable from source **0.0344784** and far below clear p57 **0.062710**. Physical p0 outputs range **0.032786–0.036355** and independent physical pp40–53 chapter outputs **0.034360–0.034655**. None gives original coherent GP English outside the preloaded title. All **16** distinct registers exactly reencrypt the real source ciphertext and each independently recovers **12,956/12,956** genuine p57-native synthetic plaintext symbols from its own planted ciphertext. [Windows Node22 PASS 45009905514](https://github.com/FlareZ123/liber-primus/actions/runs/45009905514).
+
+**Fork:** The degree-16 table factor and two source-highlight dimensions remain true observations, but their concatenated-state direct GF29 LFSR bridge fails as an isolated LP2 plaintext decoder. The outcome does not license changing seed order, clocks or polynomials without a new first-party operation. The p0-local candidate and the independently verified table factorization are preserved separately.
