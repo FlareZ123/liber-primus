@@ -38,6 +38,24 @@ Two more exact, **secondary/postselected** source-number relations remain provis
 Exact original data and the 189-window countercheck: [Node22 source-root SFT](../sims/lp2_p39_3301_original_double_root_sft.cjs). The previous long-division/29-adic carry conclusions below are unchanged.
 
 
+## Original printed coefficient direction: an unresolved author-selected choice
+
+A newly source-exact direction gate (Agent2, Director #2300, 22 November 2026) isolates **the necessary but unprinted change of coefficient convention**. The physical p39 original image (56.jpg) prints its isolated red triad in ordinary left-to-right rune order **[27,5,15]**. Evaluated as a high-first GF29 polynomial at the independently printed 3301≡24, this literal order gives **P(24)=27, P′(24)=25**, so the displayed triad **does not** have the proposed double root. Reversing just the red triad to [15,5,27] yields the zero pair (0,0).
+
+The two proposed long receivers behave oppositely when the same consistent direction is imposed:
+
+| Source original coefficient register | Printed left-to-right as high-first: P(24), P′(24) | Same printed register as low-first: P(24), P′(24) |
+| --- | --- | --- |
+| P39 three genuine red GP indices [27,5,15] | **(27,25)** | **(0,0)** |
+| P29 entire 277 original GP indices | **(0,0)** | **(13,10)** |
+| P50 entire 256 original numeric bytes, conditional radix60 | **(0,0)** | **(16,4)** |
+
+Thus **neither uniform all-high-first nor uniform all-low-first serialization** realizes the triple double-root fact. The currently known relation requires **the original red p39 triad to be interpreted low-first, while the entire original p29 and p50 streams are read high-first**. This is not mathematically inconsistent: a human author may choose ascending powers for short factor coefficients and descending powers for whole encoded messages. The physical triad has no visible direction arrow or legend specifying such a mixed syntax. Identifying G as the shared source polynomial remains a well-defined conditional mathematical observation; an authored mixed-endian instruction has not been recovered.
+
+Even granting the selected orientation, double-root checks furnish only **two independent GF29 linear conditions** on each original polynomial's many coefficients. With divisor G fixed and no further original constraint, the p29 277-coefficient register allows a **free GF29 quotient of length275**, giving 29^275 possibilities; p50's 256-coefficient register allows a **free quotient of length254**, giving 29^254 possibilities. Shared zero syndromes therefore do not themselves specify any unique key, plaintext or error correction, and the documented direct quotient/Taylor/Hill consumers above remain negative.
+
+[Read-only source-exact Windows11/Node22 CommonJS SFT](../sims/lp2_3301_uniform_polynomial_direction_gate_sft.cjs) computes all six value/derivative pairs from the actual source corpus and original p39 ink span; it asserts that no single uniform direction satisfies all three double roots. The inexpensive check changes **which author instruction must be found before pursuing** 3301 as a reversible checksum/decoder, without expanding any previous factor-hunting or ciphertext-search family.
+
 ## Exact second-digit arithmetic
 
 Keep the high-first original order and normal GP0 ordinal values. For any exact modulus29 divisor, lift the same long division to `Z/841Z`. Since the remainder vanishes modulo29, normalize the two 841-remainder coefficients by 29, producing a pair in `GF29²` as two independent coordinates.
