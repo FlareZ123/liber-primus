@@ -3,7 +3,7 @@
 
 The source image is the 400x400 archived @991948530947554 profile
 with corner digits 9-9-0-1, and 9901 was also its reported bio.
-Only the literal key '9901' and historically default/no key are tested.
+Only the literal key '9901' and the exact historical 'Default key' are tested.
 The account's relation to the real Cicada organization is unverified.
 
 Runs on an Ubuntu Actions runner with libjpeg-dev, using the existing
@@ -19,7 +19,7 @@ from outguess_extract import build_bitmap, detect_magic, extract
 
 ROOT = Path(__file__).resolve().parent.parent
 IMAGE = ROOT / "resources/external/cicada2014-aux-twitter-9901-profile.jpeg"
-LP1_CONTROL = ROOT / "resources/liber-primus/00.jpg"
+LP1_CONTROL = ROOT / "resources/liber-primus/03.jpg"
 EXPECTED_BLOB = "c3f0011f9c3e6de4338a2c7cac95535b04e2bb18"
 
 
@@ -63,14 +63,15 @@ def main() -> None:
     source = IMAGE.read_bytes()
     assert git_sha1(source) == EXPECTED_BLOB, "Archived 2014 profile byte integrity"
 
-    # Positive: genuine original LP1 image, known unsigned default OutGuess path.
-    control = probe(LP1_CONTROL, "")
+    # Positive: genuine original LP1 image, authentic keyed "Default key" OutGuess path.
+    control = probe(LP1_CONTROL, "Default key")
     assert control["status"] == "unvalidated header-consistent extraction", control
+    assert control["length"] == 31809, control
     print("AUTHENTIC_LP1_CONTROL " + json.dumps(control, sort_keys=True), flush=True)
     assert control["first48_ascii"].startswith(
         "-----BEGIN PGP SIGNED MESSAGE-----"
-    ), "Authentic default OutGuess LP1 control failed"
-    tests = [probe(IMAGE, key) for key in ("", "9901")]
+    ), "Authentic 2014 LP1 Default key OutGuess control failed"
+    tests = [probe(IMAGE, key) for key in ("Default key", "9901")]
     print(json.dumps({
         "source_file": str(IMAGE.relative_to(ROOT)),
         "source_git_blob_sha1": EXPECTED_BLOB,
