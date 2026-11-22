@@ -1,21 +1,71 @@
-# Original signed 2012 P.S. versus 2014 LP2: source-selector decision
+# 2012 signed P.S. versus 2014 LP2: source-selector decision
 
-**Agent45, 14 November 2026; Director #927. No unknown LP2 plaintext or authenticated 2014 key recovered.**
+**Original investigation:** Agent45, 14 November 2026, Director issue #927.  
+**Source correction and signature verification:** Agent11, 22 November 2026.
 
-## Authenticated-period object and exact source context
+## Source objects and authentication
 
-The 2012 hunt's closing OutGuess extraction is preserved in the [contemporaneous closing-image writeup](https://github.com/neuroretransmit/cicada/blob/main/2012/011-valete/README.md), tied to a February 6, 2012 vjuNp.jpg post, and a separately archived [OpenPGP-signed message](https://github.com/iBotPeaches/cicada_3301/blob/a0a616d85717af59f8b806875b43d51e06e1e874/messages/2012/hello-we-have-now.asc). Both source witnesses show the identical **131 decimal digits on 3 literal rows of 40,45,46 characters**, each of the first two ending in a source backslash continuation. The exact digits, excluding those line continuations, are:
+The 2012 closing image and its OutGuess extraction are preserved in the external Cicada archive:
 
-    10412790658919985359827898739594318956404425106955675643739226952372682423852959081739834390370374475764863415203423499357108713631
+- Original image: `puzzles/2012/images/vjuNp.jpg`, 31,004 bytes, Git blob SHA `2f61f1ef42a0e4df39c5a58e570a8d0f4f8f316a`.
+- OutGuess extraction: `archives/cijhho/2012/additional docs/outguss/vjuNp.jpg.out`, 1,398 bytes, Git blob SHA `c663727c481f86ccedf26757800f60026ee56809`.
+- Separately preserved clear-signed message: `pgp/messages/2012-01-final-message.asc`, 1,325 bytes, Git blob SHA `e23635603e319d2a69013cce659ed4ece5c00089`.
+- Archived public key: `pgp/key/cicada-3301-public-key.asc`, Git blob SHA `d44aec389e2f346c6b9d149d4c61e890f62979c9`.
 
-The original text declares the month-long 2012 puzzle complete (“We have now found the individuals we sought”), announces more opportunities “For now,” and signs 3301. Its decimal P.S. gives no algorithm, key clock, LP2 target, RSA exponent, independent key-use command, rune alphabet or recipient. The armored text's declared GnuPG 1.4.11 signature is visible, with checksum HMPw; **this invocation did not independently run OpenPGP verification**, and separate mirrors disagree on nonnumerical whitespace. Thus no claim about byte-identical complete signed messages is made.
+The image has the same Git blob SHA at several paths in that archive. The OutGuess output and separate clear-signed message both contain the same 131 decimal P.S. digits and the two literal continuation backslashes. Their surrounding whitespace differs.
 
-## Quarter-turn and direct source-key decisions
+**OpenPGP verification was performed independently.** GnuPG reports a good signature on both the OutGuess clear-signed output and the separate `2012-01-final-message.asc`, made on 6 February 2012 at 22:59:40 UTC. The signing key ID is `181F01E57A35090F`; its archived primary fingerprint is:
 
-The [modern unused-hints account](https://github.com/krisyotam/cicada3301/blob/main/liber-primus/analysis/HINTS-NEVER-USED.md#ps-from-the-end-message-of-2012) reports the three original numeral rows appear to contain 3301/1033 when rotated by 90 degrees. Their physical 40/45/46 **ragged widths do not define a unique rectangular matrix**. A concrete narrow hypothesis was checked using the original three digit strings: left- or right-pad to width46, make a 3-row character matrix, turn clockwise or counterclockwise, concatenate the resulting 46 rows of three and strip only padding. Across all **four** fixed readings there are **zero** exact contiguous digit substrings “3301” or “1033”; the original unrotated 131-digit stream contains neither. This refutes only the **literal contiguous-character** interpretation in these four source-simple layouts; visually perceived rotated glyph shapes, other unjustified layouts and image-specific marks remain outside its scope. No historical source describes such a rotation as an LP2 decoding instruction.
+```
+6D85 4CD7 9333 22A6 01C3  286D 181F 01E5 7A35 090F
+```
 
-The exact 131-digit integer's known 432-bit RSA factorization was already checked, without an authenticated 2014 recipient. The [existing original LP2 RSA direct-use gate](2012-ps-rsa-original-lp2-direct-reuse-gate.md) tested 377 valid original p49–51 54-byte table-block representatives and eight p55 rune-integer interpretations under explicitly assumed exponent65537 and found **zero valid PKCS#1 v1.5 plaintext packets**. The [separate 2013 BASE29→p55 source gate](lp2-2012-signed-ps-base29-p55-gate.md) gives an 89-rune numeral, tempting against 76 runes plus p55's 13-dot punctuation; both natural 76-symbol slices and both additive directions fail native plaintext, while the 13 unused digits recover at most **one of 13** known solved p56 letters. Its original p0 NEWBAS 89-position readout also fails. Those genuine original-cipher tests should not be repeated with arbitrary offsets, secret salts or RSA packet alterations.
+GnuPG also warns that the key is not certified in its trust database. Thus the signature is cryptographically valid under the archived Cicada key; real-world identity attribution still rests on the key's historical provenance, not a web-of-trust certification. The P.S. digits, line breaks, and continuation backslashes are inside the verified cleartext.
 
-## Conclusion
+The signed message's surrounding context says the 2012 hunt has ended: “We have now found the individuals we sought,” “our month-long journey ends,” and “For now.” It promises more opportunities but does not name Liber Primus, a later page, a cipher, a rune alphabet, a key clock, or a recipient.
 
-**No originally authored 2012 numerical operation selects any LP2 p0–55 plaintext target or complete key/IV schedule.** The 2012 message is a valid period-origin source clue; the reused 2013 numerical convention and modern quarter-turn interpretation do not supply a historically authorized 2014 cipher inverse. The completed tests are negative in their stated exact architectures. Close #927 as **source-selector negative**; reopen only upon recovering a dated creator-specified direction or original encrypted packet explicitly linking this exact P.S. integer to an LP2 page and a complete reversible operation. No additional 100-rune inverse was attempted because the required source-selected state and consumer do not exist.
+## Exact displayed geometry and quarter-turn
+
+The earlier digits-only analysis treated the three numeric rows as ragged widths 40/45/46. That is true of the digits alone, but it omits characters that are visibly present in the original image and authenticated in the signed message.
+
+The **complete displayed block** is exactly 3 × 46 characters:
+
+1. `P.S. ` + the first 40 digits + the first continuation backslash = 46 characters.
+2. The next 45 digits + the second continuation backslash = 46 characters.
+3. The final 46 digits = 46 characters.
+
+No padding or invented characters are required. Rotating this literal rectangle clockwise and reading each new row from the original bottom row upward produces a stream ending in **3301** (immediately before the two continuation backslashes). The standard counterclockwise rotation, read row-major, begins with the two backslashes followed by **1033**. This reproduces the modern quarter-turn observation using the complete source-visible block; the earlier digits-only four-layout test did not test this geometry.
+
+This is a real, source-authenticated visual property. It is not yet a reusable LP2 key operation. The rotation returns the already-known Cicada identifier printed in the same message; it can be a self-identification flourish or orientation marker. Neither the signed message nor the image instructs the solver to use the resulting digits as a key, and neither identifies an LP2 receiver.
+
+## Tested later-book uses
+
+### Direct RSA reuse
+
+The P.S. integer is a 432-bit RSA modulus in the reconstructed 2012 key material. Existing original-input tests are documented in [the RSA direct-reuse gate](2012-ps-rsa-original-lp2-direct-reuse-gate.md): 377 valid original p49–51 54-byte table-block representatives and eight p55 rune-integer interpretations produced no valid PKCS#1 v1.5 plaintext packet.
+
+The [2012 integer screen](2012-ps-number-integer-screen.md) additionally checks the reconstructed factors, direct GP29 conversions, 2013 material, and the 2014 Stage11 default-key OutGuess artifacts. The source-default Crypt::RSA OAEP-SHA1 path produced no valid blocks in the 2013 wisdom/folly blob or the tested 2014 p17/p21/p43 OutGuess outputs. Those negative results apply only to the named artifacts and encodings.
+
+### BASE29 reuse
+
+The [2013 BASE29-to-p55 gate](lp2-2012-signed-ps-base29-p55-gate.md) converts the P.S. numeral to an 89-rune stream. Both natural 76-symbol slices and both additive directions fail native plaintext; the 13 unused digits recover at most one of 13 known solved p56 letters. The original p0 NEWBAS 89-position readout also fails.
+
+### Direct rotated digit stream
+
+As a bounded exploratory check, the 131 digits read from the quarter-turned display were tested against p22, which independently has 131 runes. Direct mod-29 addition, subtraction and Beaufort, with digits interpreted directly or mapped to the first ten GP prime values, did not yield plaintext. This is not evidence against every conceivable use; the source supplies no reason to treat this stream as a repeating Vigenere key, and no further key mappings or clocks should be searched without a new selector.
+
+## Decision
+
+The source record now establishes more than the earlier report stated: the original signed P.S. display is a genuine 3 × 46 rectangle, and its quarter-turn visibly recovers the Cicada identifier. The previous claim that no source-simple rectangle existed must be narrowed to **digits-only rows**.
+
+The larger decision remains unchanged: **no originally authored 2012 instruction links this P.S. object to a specific LP2 page or solved p56 control, and no complete reversible LP2 operation or key clock is supplied.** The quarter-turn confirms the source's Cicada marker; it does not by itself establish a reusable LP2 key. Keep issue #927 closed as a source-selector negative. Reopen only if an authored, dated source links this exact P.S. object to an identified LP2 receiver and supplies the missing operation/key schedule.
+
+## Reproduction and sources
+
+- Verify both signed messages with the archived Cicada public key using `gpg --verify`.
+- Reconstruct the three 46-character rows from the literal displayed text, including the `P.S. ` prefix and two backslashes. For a clockwise reading, visit columns 0 through 45 and read rows 2, 1, 0 in each column. For counterclockwise, visit columns 45 through 0 and read rows 0, 1, 2.
+- [Original vjuNp.jpg image](https://github.com/krisyotam/cicada3301/blob/main/puzzles/2012/images/vjuNp.jpg)
+- [OutGuess P.S. output](https://github.com/krisyotam/cicada3301/blob/main/archives/cijhho/2012/additional%20docs/outguss/vjuNp.jpg.out)
+- [Clear-signed 2012 message](https://github.com/krisyotam/cicada3301/blob/main/pgp/messages/2012-01-final-message.asc)
+- [Cicada 3301 public key](https://github.com/krisyotam/cicada3301/blob/main/pgp/key/cicada-3301-public-key.asc)
+- [Modern unused-hints note](https://github.com/krisyotam/cicada3301/blob/main/liber-primus/analysis/HINTS-NEVER-USED.md#ps-from-the-end-message-of-2012) — a modern interpretation, not an authored 2012 instruction.
