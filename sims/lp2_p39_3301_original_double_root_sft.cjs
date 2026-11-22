@@ -84,6 +84,32 @@ function main() {
     {value: 28, derivative: 9});
   assert.deepEqual(valueDerivative(p50, printed1033),
     {value: 10, derivative: 12});
+  // A genuine fresh prediction: seven pages bearing the same header, and
+  // all five bracketed numbered units below it, would also have this
+  // checksum if G were a chapter-wide or per-unit appended-check code.
+  // No full original page or numbered unit has the repeated root.
+  const sevenPages = corpus.pages.slice(33, 40)
+    .map(p => valueDerivative(p.indices, printed3301));
+  assert.deepEqual(sevenPages.map(p => [p.value, p.derivative]), [
+    [12, 2], [24, 2], [16, 24], [0, 27],
+    [3, 1], [24, 2], [7, 27],
+  ]);
+  const numbered = [
+    corpus.pages[36].indices.slice(99, 238),
+    corpus.pages[37].indices.slice(0, 91),
+    corpus.pages[37].indices.slice(91, 189),
+    corpus.pages[37].indices.slice(189, 228)
+      .concat(corpus.pages[38].indices.slice(0, 57)),
+    corpus.pages[38].indices.slice(57, 186),
+  ];
+  assert.deepEqual(numbered.map(p => p.length), [139, 91, 98, 96, 129]);
+  const fiveUnits = numbered.map(p => valueDerivative(p, printed3301));
+  assert.deepEqual(fiveUnits.map(p => [p.value, p.derivative]), [
+    [1, 24], [11, 19], [26, 18], [26, 16], [16, 13],
+  ]);
+  assert(sevenPages.every(v => v.value !== 0 || v.derivative !== 0));
+  assert(fiveUnits.every(v => v.value !== 0 || v.derivative !== 0));
+
   // Values and derivatives zero certify a double root, so no quotient
   // calculation, cipher-model fit, key search or external data is needed.
   const powers = [1];
@@ -136,13 +162,16 @@ function main() {
     matchedRedTriple: doubleRoots,
     totalOriginalRedTripleWindows: windows.length,
     originalIsolatedRedTripleWindows: isolatedWindows.length,
+    sevenPhysicalHeaderPagesAt3301: sevenPages,
+    fiveOriginalNumberedUnitsAt3301: fiveUnits,
     modulo29Root24MultiplicativeOrder: 7,
     g3301IntegerValueMod29Squared: 377,
     classification: 'Exact source-number/red-triad/genuine-p29/conditional-p50 '
       + 'double root; no cipher operation or unknown plaintext',
   }, null, 2));
   console.log('PASS: source-chosen 3301 root24 is a repeated zero of '
-    + 'both original p29 GP and p50 table polynomials; only p39 red '
+    + 'both original p29 GP and p50 table polynomials; no full ' +
+    'cuneiform chapter page or numbered unit passes; only p39 red '
     + 'trigram has that double root; 1033 is an exact negative control.');
 }
 
