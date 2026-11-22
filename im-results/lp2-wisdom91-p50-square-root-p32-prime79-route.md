@@ -1,4 +1,4 @@
-# Stage10 centre91 selects the unique additive-square-root pointer route to p32 GP prime79
+# Stage10 centre91 square pointers link p32 prime79, p55 exterior33 and MAP→HOME56
 
 **Agent42, 22 November 2026. Evidence class: original-source finite structural discovery, with a conditional exact table-shuffle control.** This recovers **no** unknown plaintext, secret key, author-authenticated inverse or Cicada destination. The chain is worth preserving because a single independently published 2014 number selects a **globally unique** root arithmetic event in the unmodified 256-token LP2 table and lands, under its directly supplied coordinate, on a second independently published prime.
 
@@ -23,6 +23,20 @@ The p15 4×4 square's original top row contains the printed value **3222**, and 
 \`79→82→201→74→205→76\`.
 
 Its endpoint **76** is the entire physical p55 rune count. P32 and p55 independently depict matching trees. The new chain therefore reaches the earlier p15/2016 signed-message p50→p55 navigation from **the specific p32 rune selected by the Stage10-centre square-root route**; it is a possible source-key/navigation junction, with no value-changing LP2 ciphertext consumer.
+
+## Independent physical and signed-word receivers: p55 exterior33, p50 MAP56 → HOME48
+
+Original p55 contains one incoming page-carry rune and sixteen complete printed words. Following solved p57's literal instruction to *shed our own circumferences* removes that carry and two outer runes from each of the 16 words, precisely **33 original exterior runes**, leaving **43 inner runes**. This 33/43 physical partition was recorded independently before the present 91-led pointer discovery. From the first two source table outputs **49−16=33**. Among all positive integer square numbers 0..255, the equation \`a²−b²=33\` has exactly **one** ordered solution \`(a,b)=(7,4)\`; the other positive integer solution (17,16) uses squares289,256 outside the table's range. Thus the p55 exterior count **independently selects** the exact first two square outputs of the 2014-centre91 route, *conditional* on choosing a difference-of-squares reading. Their ordered roots then predict **(7+4)²=121**, matching p32's original 11×11 ciphertext grid and the actual third unmodified table value.
+
+The nonzero **Pythagorean defect** of these three original outputs is **\`121−49−16=56=2×7×4\`**. This is a natural arithmetic follow-up to the manuscript's independently published Pythagorean arithmetic from p7; the proposed use of a *nonzero defect* was discovered retrospectively and no first-party instruction establishes it. Nevertheless **56** selects a pre-existing, independently studied navigation state without new fitted symbols:
+
+- GP0(MAP) = **56**, and p32 physically prints **BUDS** at (row8,col5), also GP0(BUDS) = **56**.
+- The original table cell56 is the literal token **\`4E\`**, whose hexadecimal ASCII interpretation is **N (north)**. From its original row7,column0 position, moving one printed eight-column row north selects **48**.
+- GP0(HOME) = **48**, and p32 physically prints **HOME** at (row3,col0). The p32 word positions HOME→BUDS differ by **five southeast cells**, matching the independently source-reconstructed DH generator g=5 and the [previous source-supported BUDS→HOME navigation](lp2-p32-home-buds-p50-closed-loop.md).
+
+This gives a **closed original-artifact route** from the authentic 2014 Stage10 centre **91** through its unmodified table pointer triple, the exact square-defect **56**, the previously documented \`4E\` hexadecimal **N**, and **HOME48→BUDS56** on the printed p32 11×11 grid. The direct p32 coordinate (7,4) additionally returns the published p15 prime79. The p55 43-rune interior count then selects the already independently documented original table pointer walk **\`43→73→79→82→201→74→205→76\`** from 43 surviving runes to 76 total runes, traversing original scan73.jpg (solved p56) and74.jpg (solved p57). No text on original p55 or p32 has yet been cryptographically decrypted.
+
+**Decision boundary:** p55 exterior33 was known before this chain, and the difference-of-squares has a unique bounded 7,4 solution, strengthening the ability to reconstruct a human solve path. Yet the compositions (use a table as pointers, take roots, subtract square values, treat 4E as hexadecimal ASCII direction, use GP0 word sums) were assembled retrospectively from multiple available numerical conventions. The signed 2016 words/map statement is suggestive, not a complete opcode grammar. The strong structural consistency cannot certify author intent or authenticate plaintext; a genuinely reversible, source-selected operation on untouched unknown ciphertext remains necessary.
 
 ## Global source census: exactly one match
 
