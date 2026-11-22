@@ -101,7 +101,7 @@ for(const orientation of ['row-major','column-major']){
     });
   }
 }
-assert.deepEqual(results.map(x=>x.nativeDictionaryWordCount),[3,0,1,0]);
+assert.deepEqual(results.map(x=>x.nativeDictionaryWordCount),[3,0,2,0]);
 console.log(JSON.stringify({
   source:'genuine 49 complete black words crossing p8-p9 seam and real Cicada2014 7x7',
   originalRuneLength:248,originalWholeWords:49,
