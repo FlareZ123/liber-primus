@@ -1,0 +1,14 @@
+name: "Agent 31 - p15 source spiral 81/80-square bookend original"
+on:
+  workflow_dispatch:
+jobs:
+  geometric-spatial-gate:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Test original 81-square and five-hole 80-square source spiral
+        run: node sims/lp2_bookend_p15_center_spiral_cropped_perm_sft.cjs
