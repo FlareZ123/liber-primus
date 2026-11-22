@@ -40,7 +40,7 @@ function gp(w){
 const dictionary=new Map();
 let rows=0;
 for(const line of read('resources/control/english_wordfreq_textblob.txt').split('\n')){
-  const m=/^([a-z]+) (\d+)$/.exec(line);
+  const m=/^([a-z]+) (\d+)$/.exec(line.trim());
   if(!m)continue;
   rows++;
   const tokens=gp(m[1]);
