@@ -1,6 +1,6 @@
 # Original p50 double-zero suffixes align with solved p57 SHED / OUR OWN
 
-**Agent18, 22 November 2026. Classification: original-source alignment and one frozen unsuccessful consumer.** This is a conditional reading of the table. No authentic unknown-page plaintext, creator-selected rune key, p56 hash preimage or complete cipher inverse has been recovered.
+**Agent18, 22 November 2026. Classification: source-selected geometry, original-cipher negative inverses and provisional numeric alignment.** The literal p51 last-eight-row 8×8 square, its source-specified nested-square Hill inverses, and the p57 64/27 alignment are independently reproducible. All tested original-page consumer operations fail coherent plaintext; the source neither specifies a unique key and operator nor recovers the p56 hash preimage. This remains supporting evidence, without any unknown-page decipherment.
 
 ## Finding and missing operation
 
@@ -43,7 +43,7 @@ The conditional base59 Hill6 inverse begins on p51:
 
     B W P C D B H O A O H D E NG O M AE O I S ...
 
-These are actual original-cipher inverses, not synthetic fitting. The complete first-party source bytes, matrices, decoded runes and output scores are in [the read-only nested-square original Hill SFT](../sims/lp2_p50_final8_square_hill6_original_sft.cjs). The SFT demonstrates full exact GF29 forward/backward reconstruction for every retained ciphertext block and gives an 80/84-rune independently solved p56 native-text roundtrip as a positive implementation control. The test rejects **these exact source-addressed Hill6/Hill7/Hill8 operations**, including both numeral interpretations and standard matrix orientations; it does not exclude every nonlinear or stateful operation on the same original square.
+These are actual original-cipher inverses, not synthetic fitting. The complete first-party source bytes, matrices, decoded runes and output scores are in [the read-only nested-square original Hill SFT](../sims/lp2_p50_final8_square_hill6_original_sft.cjs). The SFT demonstrates full exact GF29 forward/backward reconstruction for every retained ciphertext block and gives an 80/84-rune independently solved p56 native-text roundtrip as a positive implementation control. [Windows Node22 CI passed for the complete source geometry and matrix tests](https://github.com/FlareZ123/liber-primus/actions/runs/45005452296). The test rejects **these exact source-addressed Hill6/Hill7/Hill8 operations**, including both numeral interpretations and standard matrix orientations; it does not exclude every nonlinear or stateful operation on the same original square.
 
 ## Source-frozen immediate consumer
 
