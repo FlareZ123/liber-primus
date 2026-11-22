@@ -159,6 +159,27 @@ for (const match of clearMatches) {
 console.log('POSITIVE: ' + clearMatches.length +
   ' actual repeated source-native Gibran GP29 word pairs recovered from two secret independent affine streams.');
 // Another independent original solved source encodes 95/95 actual p57 runes.
+const p56Cipher = corpus.pages.find((page) => page.page === 56).indices;
+const firstPrimes = [];
+for (let candidate = 2; firstPrimes.length < 85; candidate++) {
+  if (firstPrimes.every((prior) => candidate % prior !== 0)) firstPrimes.push(candidate);
+}
+let primeCursor = 0;
+const actual56Plain = p56Cipher.map((symbol, i) => {
+  if (i === 56) {
+    assert.equal(symbol, 0); // Original transparent F.
+    return symbol;
+  }
+  return (symbol - (firstPrimes[primeCursor++] - 1) % 29 + 29) % 29;
+});
+assert.equal(actual56Plain.length, 85);
+assert.equal(primeCursor, 84);
+assert.equal(actual56Plain.slice(0, 10).map((v) => gp[v]).join(''), 'ANENDWITHIN');
+let keyCursor = 0;
+assert.deepEqual(actual56Plain.map((symbol) => symbol === 0
+  ? 0 : (symbol + firstPrimes[keyCursor++] - 1) % 29), p56Cipher);
+assert.equal(keyCursor, 84);
+console.log('POSITIVE: all 85/85 authentically solved p56 ciphertext runes decoded, F-transparent, and re-encrypted exactly.');
 const clear57 = corpus.pages.find((page) => page.page === 57).indices;
 const wrapped57 = encryptAffine([clear57], 11, 7)[0];
 assert.deepEqual(wrapped57.map((value, i) => (value - 11 - 7 * i % 29 + 58) % 29), clear57);
