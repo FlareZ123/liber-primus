@@ -2,7 +2,7 @@
 
 **Decision, 22 November 2026.** A word-local, reversible GP29 differential decoder with one reserved global plaintext rune has an exact key-independent marker. On the unchanged original 12,956-rune ciphertext, the marker has 63 occurrences. No source-selected plaintext, key, state schedule or historical cipher has been recovered. Candidate anchors matching that low frequency fail exact lexical masks under the fixed 29,157-entry native English wordlist, while a common-rune anchor admits radically different full-book dictionary assignments with independent secret keys.
 
-**Reproducer:** [Node22 CommonJS source SFT](../sims/lp2_differential_reserved_rune_allsecret_sft.cjs), [Windows GitHub Actions PASS 45004366865](https://github.com/FlareZ123/liber-primus/actions/runs/45004366865). It reads canonical original transcriptions, all three native English donors, the independent solved p57 positive and a fixed spelling lexicon. It emits all 29 anchors, not only the favored examples.
+**Reproducer:** [Node22 CommonJS source SFT](../sims/lp2_differential_reserved_rune_allsecret_sft.cjs), [Windows GitHub Actions PASS 45005118852](https://github.com/FlareZ123/liber-primus/actions/runs/45005118852). It reads canonical original transcriptions, all three native English donors, the independent solved p57 positive and a fixed spelling lexicon. It emits all 29 anchors, not only the favored examples.
 
 ## Cipher and its exact necessary-and-sufficient marker
 
@@ -35,6 +35,22 @@ The original word-length slots were held fixed. Original-attested English GP enc
 The observed value is **63**. IA and B are count-compatible under some English donors, yet each has **three original masks absent** even from the broader 29,157-word dictionary. The historically tempting F anchor is below the donor means by 5.7–8.4 nominal standard deviations, with three lexical gaps. The eight common anchors C/N/S/T/E/L/D/A each satisfy all dictionary masks, but expected occurrence frequencies are much too high under the specified English-donor assumptions. Anchor choice after inspecting these original counts is retrospective, so no postselected rank is an authenticated clue or an independent discovery probability.
 
 One discriminating original: global zero-based word **1476** begins on physical p27 at local rune offset **79**. It is 12 runes long, source GP29 indices [12,4,9,15,3,3,5,24,18,26,18,18]. It has doublets at local zero-based indices **5 and 11**, the exact marker mask **00001000001**. No source-native dictionary 12-rune word matches that mask for IA, B or F. This is a **finite-vocabulary exclusion**, not a proof against unknown proper nouns, other source orthographies, other languages, or independently inserted symbols.
+
+## Independent original word-boundary clock decision
+
+The whole original flattened GP29 stream has exactly **86** adjacent-equal ciphertext steps: **63** inside authentic printed words and **23** exactly across word boundaries (2,895 such boundaries, including across physical page locations). This separation is fixed before choosing any plaintext. Under a **continuous, no-reset** version of the same stationary-anchor differential equation, all 86 equality steps must mark the same plaintext rune x. Its 23 cross-boundary events therefore require **23 plaintext words to begin with x**, while the 63 internal events require exactly 63 occurrences of that x at positions 1 onward.
+
+The new SFT calculates two independent count diagnostics for *every one of the 29 anchors* under each exact original-word-length source-native donor: the expected internal occurrences and the expected first-rune occurrences in the 2,895 post-initial words. The smallest possible, over all x, of the larger of those two absolute standardized residuals is:
+
+| Donor | Best globally fixed x after inspecting data | Smallest possible max(abs internal z, abs boundary z) | Predicted first-word x occurrences vs 23 original markers |
+| --- | --- | ---: | --- |
+| Shakespeare | G | **7.2339** | 86.88 vs 23 |
+| Gibran | EA | **4.5254** | 10.76 vs 23 |
+| Emerson | EA | **4.3374** | 9.61 vs 23 |
+
+For example, B is an attractive *within-word* frequency anchor: it predicts 70.13/74.60/64.65 internal occurrences for Shakespeare/Gibran/Emerson (actual 63). But a **continuous** B sentinel also predicts **152.63/115.69/118.73 first-position occurrences** (actual23). Native-register IA fits within-word counts for two donors, but cannot fix the substantial first-position discrepancy. These diagnostics include the full 29-anchor retrospective-selection choice and exact native word-length slots; they are **conditional source-language residuals**, not calibrated postselection p-values or algebraic exclusions for all unknown plaintext languages.
+
+This makes the word reset a **material mechanism decision**. A continuous, globally stationary sentinel with no boundary-specific exception is strongly inconsistent with every tested native-English control. A model that **resets at printed word boundaries**, treats boundary transitions with a distinct source-specified state/escape symbol, or changes its plaintext register is not excluded by the no-reset gate. The observed original delimiters alone do not establish which such mechanism the author used. The separately solved p57 is synthetically planted and exactly decoded under both word-reset and continuous clock modes to guard the implementation.
 
 ## Full-book non-identifiability witness
 
