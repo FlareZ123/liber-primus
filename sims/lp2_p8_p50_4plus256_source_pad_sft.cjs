@@ -220,6 +220,23 @@ console.log('P50_SUCCESSOR_P8_OUTPUT_PROGRAM',
   'READOUT', firstReadout,
   'MAX_UNIQUE_STATES_ANY_SEED', 35,
   'ALL_CYCLE_LENGTHS', '2,11');
+// A permutation/all-secret-alphabet obstruction independent of the
+// red-eight sorted key: the exact multiset of 248 p8 black GP29 symbols
+// differs from the corresponding 248 numeric table bytes modulo29.
+// Reordering any rows/columns/positions and globally relabelling GP29
+// cannot change the sorted 29-bin histogram.
+function sorted29Signature(values) {
+  return Array.from({ length: 29 }, (_, symbol) =>
+    values.filter((v) => v === symbol).length).sort((x, y) => y - x);
+}
+const originalBodySignature = sorted29Signature(frame.slice(8));
+const numericBodySignature = sorted29Signature(
+  grid.bytes.slice(8).map((v) => v % 29)
+);
+assert.notDeepEqual(originalBodySignature, numericBodySignature);
+console.log('NO_ALL_ORDER_OR_ALPHABET_DIRECT_GP29_TABLE_READOUT',
+  'ORIGINAL_SORTED29', originalBodySignature.join(','),
+  'TABLE_SORTED29', numericBodySignature.join(','));
 console.log('P8_WHOLE_PRINTED_4PLUS256_SOURCE_FRAME', frame.length);
 console.log('P50_TABLE_SHAPE', grid.shape);
 console.log('PASS: exact original frame and negative fixed row-major byte-mod29 pad gate');
