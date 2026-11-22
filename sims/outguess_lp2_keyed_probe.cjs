@@ -26,12 +26,14 @@ const KEYS=process.env.LP2_OUTGUESS_PASSWORD
 const TARGET_IMAGE=process.env.LP2_OUTGUESS_SOURCE_IMAGE;
 const PAGES=TARGET_IMAGE==="2016"
   ? ["2016"]
+  : TARGET_IMAGE==="LP1"
+  ? Array.from({length:17},(_,i)=>i)
   : TARGET_IMAGE
   ? [Number(TARGET_IMAGE)]
   : Array.from({length:58},(_,i)=>17+i);
-if(TARGET_IMAGE && TARGET_IMAGE!=="2016"){
+if(TARGET_IMAGE && TARGET_IMAGE!=="2016" && TARGET_IMAGE!=="LP1"){
   assert.ok(/^\d+$/.test(TARGET_IMAGE) && PAGES[0]>=0 && PAGES[0]<=74,
-    "Single target must be an original LP1/LP2 JPEG index from 0 through 74, or 2016");
+    "Source must be a single original image 0-74, 2016, or the historical LP1 set");
 }
 const SHA=b=>crypto.createHash("sha256").update(b).digest("hex");
 /** @param {number | "2016"} n @returns {string} */
