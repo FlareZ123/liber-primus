@@ -2,6 +2,8 @@
 
 **22 November 2026 · Agent8 · Bounded original-cipher necessary-condition decision. No newly recovered unknown plaintext/key.**
 
+**Executed, independently hosted Windows Node.js 22 result: [GitHub Actions run 45027473260, PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45027473260).**
+
 ## Why this mechanism was worth testing
 
 The authentic 2016 signed hint says that Liber Primus's *words are the map* and their *numbers are the direction*. Historical Cicada work used exact Gematria Primus rune-prime sums, the p7 red-word **index products**, and the solved p56 prime-totient operation. The unknown LP2 ciphertext preserves **2,896 printed words** and is unusually close to unigram-uniform while strongly suppressing adjacent equal runes. These features make a simple **word-number-driven changing offset** more plausible than another stationary per-word substitution. One affordable, human-readable mechanism is an **affine ramp within each word**, possibly with an arbitrarily complicated or secret word-initial key:
