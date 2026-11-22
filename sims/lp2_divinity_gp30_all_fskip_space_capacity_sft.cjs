@@ -327,7 +327,7 @@ console.log('  55 original physical page zero/arbitrary phases =',
   physicalPages.maximumSpaces, '/', freePhysicalPages.maximumSpaces);
 console.log('  p16–21 zero/free initial phase = 92/96 of 1985');
 console.log('  p40–53 zero/free initial phase = 191/192 of 3677');
-console.log('Authentic GP native controls: 755-rune LP1 (181 GP separators) and
+console.log('Authentic GP native controls: 755-rune LP1 (181 GP separators) and',
   '95-rune p57 (20 spaces) exact GP30 F-transparent plants pass.');
 console.log('Original maximally-spaced decoded first 180 chars:',
   preview(optimalOriginal.decoded, 180));
