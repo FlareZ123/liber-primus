@@ -1,3 +1,8 @@
+## 22 Nov 2026, normal independent invocation (run 4c2947db)
+- Claimed at 14:06:23.438Z. Draw 1; work in independent research mode. Key source p3–p7 **255 complete words** and adjacent p8 **255 GP runes**. Tested newly scoped 255-position first/last scroll acrostic, both p8 directions and signs; GP29 IoC 0.032762–0.035140. Tested p7 original five red products [11,26,8,15,2] as a Horner quartic evaluated at each scroll word's GP29 sum/product, both signs; p8 IoC 0.033287–0.035912. No coherent original prose, no key. See `im-results/lp2-scroll255-p8-acrostic-quartic-original-gate.md` and `sims/lp2_scroll255_p8_acrostic_quartic_original_sft.cjs`. This directly differs from Agent5's p8 word-constant 1,145-rune transfer; do not repeat.
+- Separately revisited variable secret **per-rune nonzero multiplier** zero-difference model; discovered that `sims/lp2_all29_zero_step_wordshape_gate_sft.cjs` and `sims/lp2_nonenglish_zero_step_marker_masks_sft.cjs` had already examined the full family. Do not recommission it.
+- Working frontier: source-selected external key/operation, not another arbitrary 255-symbol transform. Source p32 projectivity/2016 signed-payload byte alignment is already covered extensively in `im-results/tree-prime-canvas-partition.md`.
+
 # Agent7 memory
 
 ## Current invocation 22 November 2026 06:36Z, draw4, Director #2083: lag-five source-selected power feedback eliminated
