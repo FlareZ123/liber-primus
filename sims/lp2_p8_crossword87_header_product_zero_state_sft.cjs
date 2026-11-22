@@ -15,6 +15,7 @@ const path = require("node:path");
 const root = path.resolve(__dirname, "..", "resources", "liber-primus");
 const corpus = JSON.parse(fs.readFileSync(path.join(root, "lp2-corpus.json"), "utf8"));
 const ink = JSON.parse(fs.readFileSync(path.join(root, "lp2-ink-annotations.json"), "utf8"));
+const grid = JSON.parse(fs.readFileSync(path.join(root, "lp2-grid-256.json"), "utf8"));
 const source = fs.readFileSync(path.join(root, "lp2-transcription.txt"), "utf8");
 const pages = source.split("%");
 const runeIds = new Map(corpus.runes.map((r, i) => [r, i]));
@@ -167,6 +168,54 @@ assert.deepEqual(punctuation.stopOffsets, [28, 122, 208]);
 assert(punctuation.wordBoundaryOffsets.includes(87));
 assert(!punctuation.stopOffsets.includes(87));
 
+
+// Triangle product3*4*5=60 selects the UNIQUE twice-peeled 60-cell
+// clockwise perimeter of the 32x8 table, but does not authenticate
+// using its byte values as a GP29 additive running key.
+const tableBytes = grid.pages.flatMap(p => p.bytes);
+assert.equal(tableBytes.length, 256);
+const inner60 = [];
+for (let c = 2; c <= 5; c++) inner60.push(2 * 8 + c);
+for (let r = 3; r <= 29; r++) inner60.push(r * 8 + 5);
+for (let c = 4; c >= 2; c--) inner60.push(29 * 8 + c);
+for (let r = 28; r >= 3; r--) inner60.push(r * 8 + 2);
+assert.equal(inner60.length, 60);
+assert.equal(new Set(inner60).size, 60);
+assert.equal(redLegA * redLegB * blackHypotenuse, inner60.length);
+const originalCiphertext = corpus.pages.slice(9, 15).flatMap(p => p.indices);
+const p13Start = corpus.pages.slice(9, 13).reduce((s, p) => s + p.indices.length, 0);
+assert.equal(originalCiphertext.length, 1474);
+assert.equal(p13Start, 1065);
+const phase = sum29(p8Cross.values) % inner60.length;
+assert.equal(phase, 27);
+/** @param {number[]} values @returns {number} */
+function indexOfCoincidence(values) {
+  const counts = Array(29).fill(0);
+  for (const v of values) counts[v]++;
+  return counts.reduce((n, c) => n + c * (c - 1), 0) / (values.length * (values.length - 1));
+}
+/** @param {number[]} values @param {number} sign @returns {number[]} */
+function ringTranslate(values, sign) {
+  return values.map((v, i) => ((v + sign * (tableBytes[inner60[(i + phase) % 60]] % 29)) % 29 + 29) % 29);
+}
+const terminalKnown = corpus.pages[57].indices;
+const ringReceivers = [];
+for (const sign of [-1, 1]) {
+  const candidate = ringTranslate(originalCiphertext, sign);
+  assert.deepEqual(ringTranslate(candidate, -sign), originalCiphertext);
+  const planted = ringTranslate(terminalKnown, -sign);
+  assert.deepEqual(ringTranslate(planted, sign), terminalKnown);
+  ringReceivers.push({
+    inverseSign: sign,
+    fullIoC: indexOfCoincidence(candidate),
+    untouchedP13IoC: indexOfCoincidence(candidate.slice(p13Start, p13Start + 200)),
+    firstFortyGP: candidate.slice(0, 40).map(v => corpus.translit[v]).join(" "),
+    reencryptionRunes: candidate.length,
+    plantedSolvedRunes: terminalKnown.length,
+  });
+}
+assert(ringReceivers.every(x => x.fullIoC < 0.036));
+
 console.log(JSON.stringify({
   source: "Original p7-p9 GP29 corpus, ink spans, and physical text",
   page8: {
@@ -194,5 +243,6 @@ console.log(JSON.stringify({
   registers,
   originalBlackPunctuation: punctuation.stopOffsets.concat([]),
   wordBoundary87: punctuation.wordBoundaryOffsets.includes(87),
+  candidateRadix60Perimeter: { length: inner60.length, phase, rawIoC: indexOfCoincidence(originalCiphertext), receiverTests: ringReceivers },
   interpretation: "The carry-word GP0 sum selects splice87, whereas the earlier sentence-offset criterion selects208. The physical carried rune cannot itself be the all-zero five-trit state in either valid de Bruijn register. No first-party cipher output law is specified.",
 }, null, 2));
