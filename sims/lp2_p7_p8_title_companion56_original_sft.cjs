@@ -195,6 +195,26 @@ for(const transposed of [false,true]){
       unknown.filter(p=>p.page<8)
       .reduce((total,p)=>total+p.indices.length,0)+40))});
 }
+// The authentic first THREE heading glyphs are the literal Roman XIX
+// (19), followed by M with GP index19. Freeze that visible exponent as
+// the only additional non-page-clock source-selected matrix power.
+assert.equal(spell(p8.slice(0,3)),'XIX');
+assert.equal(p8[3],19);
+const roman19Cases=[];
+for(const {label,xs} of original)
+for(const sign of [-1,1])
+for(const transposed of [false,true]){
+  const exponent=(sign*19+56)%56;
+  const transformMatrix=transposed
+    ? transpose(powers[exponent]) : powers[exponent];
+  const candidate=transform(xs,transformMatrix);
+  assert.deepEqual(transform(candidate,matrixInverse(transformMatrix)),xs);
+  roman19Cases.push({receiver:label,exponent:19*sign,transposed,
+    normalizedIoC:Number(ioc(candidate).toFixed(9)),
+    first40:spell(candidate.slice(0,40))});
+}
+assert.equal(roman19Cases.length,8);
+assert(roman19Cases.every(x=>x.normalizedIoC<1.056));
 assert.equal(clockCases.length,8);
 assert(clockCases.every(x=>x.normalizedIoC<1.002));
 const pageClockBest=Math.max(...clockCases.map(x=>x.normalizedIoC));
@@ -215,8 +235,9 @@ console.log(JSON.stringify({
   originalTests:tests,
   rawPeriod56Exclusion:matches56,
   completeBookPageClock:clockCases,
+  originalRoman19Key:roman19Cases,
   solvedP57Control:{nativeIoC:Number(ioc(p57).toFixed(9)),
     authenticRunesReconstructed96:96},
-  interpretation:'Exact conditional p8->p7 arithmetic and reversible order56 operator. Direct four-rune and full 56-page clock cipher gates nonlinguistic; no unknown plaintext or authenticated decoder.'
+  interpretation:'Exact conditional p8->p7 arithmetic and reversible order56 operator. Direct four-rune, Roman-XIX power and full 56-page clock gates nonlinguistic; no unknown plaintext or authenticated decoder.'
 },null,2));
-console.log('PASS: p8 reconstructs p7; companion order56; 8 direct plus 8 whole-book page-clock gates; native planted control');
+console.log('PASS: p8 reconstructs p7; companion order56; 8 direct, 8 Roman-XIX power and 8 whole-book page-clock gates; native planted control');
