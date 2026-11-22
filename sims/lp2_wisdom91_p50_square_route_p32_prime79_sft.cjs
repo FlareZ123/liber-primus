@@ -288,6 +288,22 @@ assert.deepEqual(Array.from(p32TerminalBudsWord.word).slice(-4).map((rune) => gp
 console.log('WORD BOUNDS: p55 33/43 select exact p32 11-rune original word HOMEXWDSLFD [33..43]');
 console.log('BUDS is terminal 4/8 runes of original p32 word [89..96] at central49 boundary');
 
+// Reuse Agent8's EXISTING p32 BUDS H-shell, not an invented decoder:
+// original eight-rune word at [89..96] returns the authenticated 2016
+// zero-based signed-word positions [7,8] = THE DEVOTED.
+const budContainer = p32.slice(89, 97);
+assert.deepEqual(budContainer, [22, 21, 3, 19, 17, 1, 23, 15]);
+const outerH = (left, right) => [
+  ((left - right) % 29 + 29) % 29,
+  (left + right) % 29,
+];
+const dhShell = [];
+for (let k = 0; k < 4; k++) dhShell.push(...outerH(budContainer[k], budContainer[7 - k]));
+assert.deepEqual(dhShell, [7, 8, 27, 15, 2, 4, 2, 7]);
+assert.deepEqual(outerH(budContainer[0], budContainer.at(-1)), [7, 8]);
+console.log('KNOWN H-SHELL receiver BUDS word -> [7,8] = signed 2016 THE DEVOTED');
+
+
 /** @param {number[]} ciphertext @param {number[]} key @param {number} sign */
 function strictPeriodicKeyFirstFailure(ciphertext, key, sign) {
   let consumedStates = new Set([0]);
