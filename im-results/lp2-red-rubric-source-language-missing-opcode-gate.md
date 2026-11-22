@@ -25,6 +25,23 @@ The committed color annotations identify **16** red unsolved spans containing **
 
 Earlier work has already tested the exact p0 original red13+black716 source under multiple prime/periodic/2014 historical hypotheses; see `sims/agent30_p0_red13_body716_source_sft.cjs`, `sims/agent30_p0_red13_body716_periodic_control_sft.py` and `sims/lp2_2014_index331_p0_red_primepair_sft.cjs`. The last report supplies the independently observed 2014 HTML `<title>133</title>` and `<div id="331">` numerical alignment with p0's 8+5 red-word GP prime-weight sums, **347 and315**; its direct original p0 prime-totient transfers fail after 24/25/2 runes. It is numerically interesting, but the author supplied no mode/clock/recipient in that HTML. Repeating it as a “program” without an independent opcode is not justified.
 
+## Original opening infinity glyph: an additional source-typed, bounded receiver
+
+An independently readable **small black infinity (∞)** is printed above the first-line rubric in original physical **p0, p1, and p2** (17.jpg–19.jpg). Direct original-image inspection and a fixed 125×50-pixel original p0 symbol template at half resolution locate the same small symbol at the same coordinates on p1/p2 (normalized image match ~0.966, versus no match >0.43 on the other 55 LP2 scans). This is a distinct, human-readable *chapter-sign* and potentially cues a **continuing/iterating** operation across the original 729-rune first chapter. No glyph provides a source-explicit arithmetic step, key period, cipher mode, or word to use.
+
+Rather than scan synonyms, I froze the two immediately literal 8-rune GP readings **INFINITY** and **INFINITE**, each exactly the length of the first original red word. The historically demonstrated GP29 periodic Vigenère operation supplies two simple ways a human might use the sign: as a repeating eight-rune keyword, or as an exact first-eight-plaintext crib determining a periodic eight-rune subtract key on the source's first eight red runes. All four runs preserve the original **red13+black716 p0–p2** ciphertext without dropping punctuation or page carries; the crib-derived key is computed only from the first eight red symbols and evaluated on the unseen remaining red5 and all716 black symbols.
+
+| Original ∞ word | Frozen operation | Untrained result | Original black716 IoC |
+| --- | --- | --- | ---: |
+| INFINITY | Literal eight-rune repeating key | Red title decodes to CEAEOEYNJOCBEJAE, nonprose | 0.0344220 |
+| INFINITE | Literal eight-rune repeating key | Red title decodes to CEAEOEYNJJCBEJAE, nonprose | 0.0342892 |
+| INFINITY | First eight plaintext runes, infer and repeat key `CEAEOEYNJO` | Remaining red5 decodes identically to **IIAFEAH**, nonprose | 0.0342110 |
+| INFINITE | First eight plaintext runes, infer and repeat key `CEAEOEYNJJ` | Remaining red5 decodes identically to **IIAFEAH**, nonprose | 0.0342189 |
+
+The unchanged source black IoC is **0.0341017**. Every proposed decode remains nonlinguistic for the original full chapter, against a separate solved-GP native prose control. The test verifies exact forward replay and native solved-p57 source-plant recovery; the crib branch also rejects a wrong rotated key. The infinity glyph is therefore **genuine source-visible context** that does not select either straightforward eight-period cipher or explain a higher-order operation. A source-typed recurrence or missing key could remain.
+
+[Single runnable CJS original-source test](../sims/lp2_p0_original_infinity_rubric_period8_source_gate_sft.cjs) · [Windows Node22 CI PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45019993612). The ∞ image observations are visible in original JPEGs and independent of language scoring; the eight-rune cipher candidates are frozen conditional interpretations, not an author signature or claim of unknown plaintext.
+
 ## Decision and precise missing operand
 
 An instruction grammar grounded **only in ink color, red word count, 13-dot marks, and source-red GP words has no source-selected unique cipher instruction**. The solved original pages establish two distinct valid title modes under the same markup. Neither red words' raw GP29 spellings nor these markers specify how to choose between literal and encrypted text, how any black-text cipher resets or continues, or what key/recipient is used. A finite conditional grammar could exist if a missing external first-party legend or opcode-to-key table were recovered, but no such legend is identified here. Any new proposal should supply that original-authored **key/mode selector** and commit to the exact p0 red13 → p0–p2 black716 transition plus a different chapter holdout before optimizing plaintext.
