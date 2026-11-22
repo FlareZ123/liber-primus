@@ -68,11 +68,12 @@ function H(values) {
  */
 function Hgiven(key, values) {
   assert.equal(key.length,values.length);
-  const f=Array.from({length:29},()=>Array(29).fill(0));
-  const count=Array(29).fill(0);
+  const states=Math.max(...key)+1;
+  const f=Array.from({length:states},()=>Array(29).fill(0));
+  const count=Array(states).fill(0);
   for(let i=0;i<values.length;i++){f[key[i]][values[i]]++;count[key[i]]++;}
   let bits=0;
-  for(let i=0;i<29;i++)if(count[i])for(const n of f[i])if(n)
+  for(let i=0;i<states;i++)if(count[i])for(const n of f[i])if(n)
     bits-=n/values.length*Math.log2(n/count[i]);
   return bits;
 }
@@ -160,11 +161,53 @@ assert.ok(Math.abs(outputs[0].originalConditionalEntropyBits-
   4.7695940712579565)<tiny);
 assert.ok(Math.abs(outputs[1].originalConditionalEntropyBits-
   4.761411732063601)<tiny);
+// Give each true original raster row, column, or wrapped diagonal its own
+// ENTIRELY secret independently chosen GP29 permutation. This proves a
+// larger, source-geometry-selected family key-independently by H(C|state).
+const rowsA=Array.from({length:6561},(_,i)=>Math.floor(i/81));
+const colsA=Array.from({length:6561},(_,i)=>i%81);
+const rowsB=valid.map(i=>Math.floor(i/80));
+const colsB=valid.map(i=>i%80);
+const coordinateCases=[
+ {name:'source A81 row',source:A,clock:rowsA,h:4.600918348534869},
+ {name:'source A81 column',source:A,clock:colsA,h:4.589988594827367},
+ {name:'source B80 row',source:C,clock:rowsB,h:4.586270602548661},
+ {name:'source B80 column',source:C,clock:colsB,h:4.573269869128853},
+ {name:'source B80 positive diagonal',source:C,
+  clock:rowsB.map((r,i)=>(r+colsB[i])%80),h:4.57065439817325},
+ {name:'source B80 negative diagonal',source:C,
+  clock:rowsB.map((r,i)=>(r-colsB[i]+80)%80),h:4.573850644525693}
+];
+const coordinateOutputs=[];
+for(const entry of coordinateCases){
+ const {name,source,clock,h}=entry,observed=Hgiven(clock,source);
+ assert.ok(Math.abs(observed-h)<tiny,name+' original source entropy');
+ const referencePlain=native.slice(0,source.length);
+ const permutations=Array.from({length:Math.max(...clock)+1},()=>permutation());
+ const inverses=permutations.map(p=>{
+  const inv=Array(29);
+  p.forEach((v,i)=>inv[v]=i);
+  return inv;
+ });
+ const cipherPlant=referencePlain.map((p,i)=>permutations[clock[i]][p]);
+ const recovered=cipherPlant.map((v,i)=>inverses[clock[i]][v]);
+ assert.deepEqual(recovered,referencePlain,name+' reversible native positive');
+ assert.ok(Math.abs(Hgiven(clock,cipherPlant)-Hgiven(clock,referencePlain))<tiny);
+ assert.ok(observed-H(native)>.27);
+ coordinateOutputs.push({name,sourceRunes:source.length,
+   separateSecretAlphabets:permutations.length,
+   minimumPossibleDecodedEntropyBits:observed,
+   excessOverFullGibranBits:observed-H(native),
+   exactNativePlantRecovered:recovered.length});
+}
+assert.equal(coordinateOutputs.length,6);
+
 console.log(JSON.stringify({
   source:'Original unaltered LP2 source, two key-state grammars on 80x80 with original five numbered holes',
   theorem:'For ANY 29! per-key permutation pi, P=pi[K](C) gives H(P)>=H(P|K)=H(C|K) on original empirical rune counts',
   nativeReference:reference,
   outputs,
-  scope:'Excludes direct GP-native English after any fixed per-key GP29 substitution. Does not exclude time-varying alphabets, position private pads, lossy maps, compressed intermediate registers, or F-skip state.'
+  coordinateOutputs,
+  scope:'Lower bound on direct decoded GP29 unigram entropy under fixed per-state bijections. The source original lower bounds exceed independently pinned native-English GP entropy. Changing state, nonbijective intermediates and unusual-entropy plaintext remain possible.'
 },null,2));
 console.log('PASS: source original all-secret 29-symbol state alphabet entropy bound, two positive native GP plants');
