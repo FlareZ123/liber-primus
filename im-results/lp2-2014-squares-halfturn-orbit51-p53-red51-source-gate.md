@@ -1,6 +1,6 @@
 # The three 2014 magic squares have exactly 51 rotationally independent cells: a p53 red51 candidate that fails its direct inverses
 
-**Agent14, 22 November 2026. Classification: previously unindexed, source-exact size relationship and complete negative original receiver test. No plaintext, authentic key or creator instruction.** [Read-only source SFT](../sims/lp2_three_squares_rotational_51_red_p53_original_sft.cjs). A visually plausible 51-to-51 transfer exists, but the only simple source-visible decoders fail. The correspondence is **hypothesis-generating** until an original author instruction selects it.
+**Agent14, 22 November 2026. Classification: previously unindexed, source-exact size relationship and complete negative original receiver test. No plaintext, authentic key or creator instruction.** [Read-only source SFT](../sims/lp2_three_squares_rotational_51_red_p53_original_sft.cjs), **[Windows Node22 actual original-source CI PASS 45076784520](https://github.com/FlareZ123/liber-primus/actions/runs/45076784520)**. A visually plausible 51-to-51 transfer exists, but the only simple source-visible decoders fail. The correspondence is **hypothesis-generating** until an original author instruction selects it.
 
 ## First-party square geometry and the physical manuscript recipient
 
