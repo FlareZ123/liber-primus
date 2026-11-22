@@ -62,6 +62,36 @@ The p8 terminal *original red rune* has index **17**. Thus the printed red middl
 
 These equalities are **algebraically interdependent**. The earlier independent [p7 red 2×2 Hill/checksum study](../sims/lp2_p7_red_fiveword_hill_checksum_sft.cjs) noted that matrix [[11,26],[8,15]] has determinant15 and fifth word2 is its inverse, because 15×2≡1. Given the butterfly and the integer 8²+15²=17²≡−1 modulo29, that checksum follows algebraically: det([[a,b],[a+b,b−a]])=−(a²+b²)=15 modulo29. They are mutually reinforcing **descriptions of the same authentic five values**, not three independent probabilistic surprises. Neither the older Hill receiver nor the new simpler butterfly decrypts ordinary original GP29 runes.
 
+## A source-derived five-step matrix rotation with exact period seven
+
+The *two* ordinary-integer primitive triangles are unexpectedly connected by a **single reversible GP29 matrix operation**. Normalize their ordinary rotations by their printed hypotenuses in the canonical field GF29:
+
+    R(3,4,5)   = 5^(-1) [[3,-4],[4,3]]   = [[18,5],[24,18]] (mod29)
+    R(8,15,17) =17^(-1) [[8,-15],[15,8]]= [[9,23],[6,9]] (mod29).
+
+These are proper rotations in the finite quadratic form x²+y²: determinant1 and an explicitly computable inverse via matrix transpose. **Exact full-matrix multiplication establishes**
+
+    R(3,4,5)^5 = R(8,15,17);
+    R(3,4,5)^7 = identity;
+    R(3,4,5)^j != identity for j=1..6.
+
+The **five** marked p7 red words thus correspond to precisely **five repeated applications** of the rotation encoded by p8's red whole-word legs3,4 and the Euclid-m2 hypotenuse5, producing the rotation encoded by the **two middle p7 red whole-word values8,15 and the final p8 red rune17**. The following botanical chapter has **seven** original physical pages, and the root rotation has **exact order seven**. This is a new source-to-source relation involving complete independently printed operands and a bona fide, completely reversible finite-field operation. It provides **all seven distinct matrix keys with no secret coefficients**:
+
+    R^0 = [[1,0],[0,1]]
+    R^1 = [[18,5],[24,18]]
+    R^2 = [[9,6],[23,9]]
+    R^3 = [[16,8],[21,16]]
+    R^4 = [[16,21],[8,16]]
+    R^5 = [[9,23],[6,9]]
+    R^6 = [[18,24],[5,18]]
+    R^7 = identity.
+
+Unlike the quartic polynomial's seven-point orbit, the matrix rotation is bijective on *every* GP29 two-rune pair, potentially making it a more plausible decipherment operator. Two branches compete: the source could mean an ordinary direct Pythagorean rotation, or a page/word clock choosing one of its seven powers. Neither rotation operator nor its key-consumption direction is explicitly written by the author. The same native prime29 and seven-page count underlie both this cycle and the earlier quartic seven-cycle; they cannot be treated as statistically independent evidence. The printed numeral7 at original rune offset692 aligns with a **rune-clock** value of the quartic, while a two-rune-pair rotation clock would have 346 pair ticks and a different phase; the numeral's positional match does **not** by itself confirm this matrix consumer.
+
+An original-input direct inverse gates the normalized **3–4–5 and 8–15–17** rotations, forward and inverse, both pair orientations, on genuine p8→p9 carry receivers of lengths244/256 and full p9–14 and independent p16–21. All **32 fixed rotation tests** produce nonprose GP29 IoC below0.037. More strongly, apply **R^j** to successive original adjacent rune pairs under its exact source period7, with only two motivated initial powers0 or5 and both inverse directions: **16 fully reversible source models** on the same four original receivers, none yielding GP-native prose. Maximum corrected IoC is **0.0361519608** for the 256-rune full-p8 plus genuine first-p9 carrier. Original whole-book p57 authentic clear-GP plants round-trip exactly under these clock models. These original negatives reject these direct receivers. The new fivefold identity itself is exact regardless of encryption interpretation.
+
+**Reproduction:** [single read-only Windows11 Node22 complete-source SFT](../sims/lp2_p7_red_butterfly_pythagorean_receiver_sft.cjs), including complete printed words, red span checks, 29×29 butterfly inverses, two GP29 norm-one rotations, explicit integer matrix fifth/seventh powers, all original receiver outputs and untouched native-p57 positive. [Windows Actions PASS 45050398807](https://github.com/FlareZ123/liber-primus/actions/runs/45050398807).
+
 ## An independent literal numeral-7 phase check
 
 The *sole* non-rune Arabic numeral in the complete original p8–p14 tree chapter is a printed **7** in physical p10. There are exactly **692 authentic GP rune symbols preceding it**, counting from the beginning of physical p8, and the entire chapter has 1,729 GP runes. Independently, this is the number previously used by the [five-dot and seven-column original alignment](lp2-p7-five-dot-numeral7-nested-column-alignment.md).
@@ -74,7 +104,7 @@ An exact source-derived cipher candidate applies the determinant-2 butterfly abo
 
 Because the operands were originally **whole-word products**, a different direct receiver aggregates the **383 complete printed source words** in p8–p14 to their individual GP29 products first, retaining the real p8→p9 word carry. Applying the same pair butterfly to these products gives GP29 IoC **0.03511818** (forward) and **0.03457138** (inverse), with no original prose. Eight five-word windows within the only other twelve-word all-red passage, physical p53, do not reproduce the butterfly example. These are direct consumer negatives, while the upstream source arithmetic is exact.
 
-**Research decision:** The butterfly is a more concrete invertible author-operation candidate than inventing a nonlinear key lookup, and the p7 2|2|1 values together with the neighboring red 3,4,17 and a literal7 offer a plausible human clue sequence. Yet neither the 2|2|1 cut, polynomial iteration, source-page/black phase boundary, Pythagorean branch order nor the destination of any transformed words is printed as an instruction. Promote only on a new actual original plaintext or an independently selected full reversible receiver.
+**Research decision:** The butterfly and the source-derived normalized **period-seven Pythagorean rotation**, whose fifth power predicts the independently printed 8–15–17 triangle, are concrete invertible operation candidates with no unfitted numeric parameters. The p7 2|2|1 values, the neighboring red 3,4,17 and a literal7 form a plausible human clue sequence. Yet neither the 2|2|1 cut, polynomial iteration, source-page/black phase boundary, Pythagorean branch order nor the destination of any transformed words is printed as an instruction. Promote only on a new actual original plaintext or an independently selected full reversible receiver.
 
 **Reproduction:** [separate original-source butterfly/triangle/numeral7 Windows Node22 SFT](../sims/lp2_p7_red_butterfly_pythagorean_receiver_sft.cjs), with 2,896 original words/ink, all 841 coefficient controls, 29×29 round-trip, five complete source receivers and the 383-word original chapter.
 
