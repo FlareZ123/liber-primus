@@ -1,0 +1,14 @@
+name: Agent32 red13 p50 outer ring LP3 source gate
+on:
+  workflow_dispatch:
+jobs:
+  source-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original source-indexed perimeter read and p3 negative gate
+        run: node sims/lp2_p57_red13_p50_outerring_lp3_sft.cjs
