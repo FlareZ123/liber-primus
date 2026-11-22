@@ -176,13 +176,40 @@ for(const policy of policies){
       failure:decoded.failedAt});
   }
 }
+// Unrelated untouched original p16 control, retaining its own actual
+// printed word lengths and delimiters. Page16 is well away from the
+// terminal p54->55 handoff and does not supply any key parameters.
+const p16raw=raw.split('%')[16];
+const p16words=[];
+let p16current=[];
+for(const ch of p16raw){
+  const i=gp.runes.indexOf(ch);
+  if(i>=0)p16current.push(i);
+  else if(ch!=='/'&&!/\s/u.test(ch)){
+    if(p16current.length)p16words.push(p16current);
+    p16current=[];
+  }
+}
+if(p16current.length)p16words.push(p16current);
+assert.deepEqual(p16words.flat(),page(16));
+const independentP16=p16words.slice(0,17);
+assert.equal(independentP16.flat().length,78);
+assert.equal(independentP16.reduce((n,w)=>n+Math.max(0,w.length-2),0),45);
+const unrelated=policies.map(policy=>{
+  const result=inverse(independentP16,policy,0);
+  return {policy:policy.name,source:'p16 first 17 complete word fragments',
+    originalRunes:78,innerRunes:45,legal:result.survivors>0,
+    firstFailure:result.failedAt??null,
+    innerReadout:result.survivors?
+      result.specimen.flatMap(w=>w.slice(1,-1)).map(i=>gp.translit[i]).join('-'):null};
+});
 const summary={
   keyTransliteration:'DIUINITY',key,source:'71.jpg->72.jpg',
   sourceRunes:86,sourceWords:17,firstCrossingWordLength:11,
   literalCores:52,literalExteriors:34,
   originalFCount:source86.filter(x=>x===0).length,
   positive:'PASS authentic 95-rune solved p57 and source-shaped 86-rune native controls for all four fixed clocks',
-  outcomes
+  outcomes,unrelated
 };
 console.log(JSON.stringify(summary,null,2));
 console.log('END GP29 authentic LP1 keyword on p54->55 literal complete-word interiors');
