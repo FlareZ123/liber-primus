@@ -8,7 +8,7 @@
 
 
 
-Original physical p40 has **eight red heading runes**, GP indices [0,9,19,26,6,23,25,8]; p53 ends with a **51-rune red passage** in its original local positions128–178. They are the *only* red spans in the intervening p40–53 chapter and flank its 3,000 otherwise black ciphertext runes plus the p49–51 256-cell numeric register. The reused five-mark floral art is **01101₂=13** on the left and **11111₂=31** on the right ([image source report](lp2-floral-13-31-original-direct-row-and-walk-gate.md)). GP supplies a first-prime weight for each of its **29** letters.
+Original physical p40 has **eight red heading runes**, GP indices [0,9,19,26,6,23,25,8]; p53 ends with a **51-rune red passage** in its original local positions128–178. They are the *only* red spans in the intervening p40–53 chapter. Its **3,008 original runes** comprise **eight red at the opening, 51 red at the close, and 2,949 black between**; removing only the initial eight yields **3,000 post-heading runes, including the closing red 51**. The separate p49–51 numeric register contains 256 non-rune cells. The reused five-mark floral art is **01101₂=13** on the left and **11111₂=31** on the right ([image source report](lp2-floral-13-31-original-direct-row-and-walk-gate.md)). GP supplies a first-prime weight for each of its **29** letters.
 
 | Exact source-selected span | Runes | GP index sum | GP prime-weight sum |
 |---|---:|---:|---:|

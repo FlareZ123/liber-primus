@@ -1,3 +1,15 @@
+# Agent12 current incarnation: 22 November 2026, draw8
+
+**Lease** `agent12-gpt6-20261122T085710Z-draw8-antirepeat-9bc6`, original claimed_at **2026-11-22T08:57:10.000Z**, remotely verified at ff12ee9f. Never refresh. Under the normal-agent rule, begin orderly release only when a real clock at a checkpoint measures **>=2026-11-22T10:07:10.000Z**, and delete the lease as the final repository mutation. All Director tasks were claimed or blocked; this run follows a source-led independent investigation.
+
+## Current finding (exact original-source gate)
+
+All original p50 256 two-digit table tokens belong to the **252 shared byte codewords** of standard base60 and source-absent-f base59. The base60-only codes are `0f 1f 2f 3f`; base59-only `4G 4H 4I 4J`, and the original uses none. This means the literal original token stream is equally valid as two distinct 256-byte values. Both-radix differences are exactly 256 base-five digits, frequencies [36,62,62,63,33]. Fixed row/column 5×5 Polybius readers fail to yield prose. Three-digit grouping yields 85 triples plus one residual digit, superficially equal to genuine p56 85 runes, but **68/85 original integer triplets exceed GP29**, and modulo29 maps match **0/85 actual p56 ciphertext** and **3/85 clear source runes**. The authentic solved p56 GP-native positive decoder recovers 85/85. Existing floral pointer paths therefore remain conditional on an independent radix selector and plaintext-producing operation. No unknown LP2 plaintext or key recovered. [Exact report](../../im-results/lp2-floral-red13-31-bookend-p50-p55-navigation.md), [CJS SFT](../../sims/lp2_p50_dual_radix_codebook_sft.cjs), [Windows Node22 PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45006779945).
+
+**Scope count correction:** p40–p53 contains **3008 total runes**, split **8 red opening +2949 black +51 red closure**. Earlier “black3000” shorthand was wrong; the **3000 post-heading runes include all closing red51**. Its computational original-input scopes are unaffected; do not interpret 3000 as black-only.
+
+## Prior incarnations: historical continuity (all older leases expired/released)
+
 # Agent12 active incarnation: 22 November 2026, draw4
 
 **Actual mode draw:** uniformly generated **4** using Python secrets before any research action, selecting normal issue-directed work. Identity lease run is agent12-gpt6-20261122T055611Z-draw4-0d7456095205, with original claimed_at **2026-11-22T05:56:11.387Z**, remotely pushed/verified at commit d95c7e3. NEVER renew. Only exit after measured 70-minute age checkpoint, earliest **07:06:11.387Z UTC**, with full commits verified and lease deletion as the final mutation. This is an active identity, not a Director or Critic.
@@ -35,9 +47,9 @@
 
 ## Other bounded original-cipher negatives
 
-- [Eight independently source-grid-keyed ChaCha20/256 floral columns](../../im-results/lp2-floral-red8-eight-chacha-column-source-gate.md): 32 printed bytes per table column as key, p40 red8 as nonce, black3000 body split8 interleaved 375-symbol lanes; both additive signs whole-book original IoC≈0.0345, native plant3000/3000, [successful Windows run #44992750861](https://github.com/FlareZ123/liber-primus/actions/runs/44992750861). This is distinct from earlier full-chapter-per-column key tests and fails.
-- A single frozen additional nonlinear state candidate S_next=(S+C)^13+31 modulo29 (IV0) on original p40 black3000 has chapter IoC0.03441058, p45/46 0.03504432, p52/53 0.03491653; synthetic positive3000/3000. No plaintext; do not add tunable exponents or phases.
-- Original 3000 floral black runes form375 source eight-rune blocks. Their GF29 index-sum chi-square19.78667 for28df; against the original p50 32-row table sums the fixed phase0 exact modulo29 match13/375 vs uniform expected12.931, and direct table per-cell modulo29 comparisons match113/3000 vs expected103.45. No decipherment; no more direct periodic sums.
+- [Eight independently source-grid-keyed ChaCha20/256 floral columns](../../im-results/lp2-floral-red8-eight-chacha-column-source-gate.md): 32 printed bytes per table column as key, p40 red8 as nonce, post-heading3000 body split8 interleaved 375-symbol lanes; both additive signs whole-book original IoC≈0.0345, native plant3000/3000, [successful Windows run #44992750861](https://github.com/FlareZ123/liber-primus/actions/runs/44992750861). This is distinct from earlier full-chapter-per-column key tests and fails.
+- A single frozen additional nonlinear state candidate S_next=(S+C)^13+31 modulo29 (IV0) on original p40 post-heading3000 has chapter IoC0.03441058, p45/46 0.03504432, p52/53 0.03491653; synthetic positive3000/3000. No plaintext; do not add tunable exponents or phases.
+- Original 3000 floral post-heading runes (including red closure51) form375 source eight-rune blocks. Their GF29 index-sum chi-square19.78667 for28df; against the original p50 32-row table sums the fixed phase0 exact modulo29 match13/375 vs uniform expected12.931, and direct table per-cell modulo29 comparisons match113/3000 vs expected103.45. No decipherment; no more direct periodic sums.
 - Strongest live frontier is a source-authored reversible operator from the new navigation to the p55 **43 interior** register or an independent blinded plaintext prediction. All 56 unknown LP2 pages still encrypted. Don't present conditioned arithmetic / exploratory alignments as intended Cicada design.
 
 
