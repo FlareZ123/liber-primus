@@ -1,0 +1,39 @@
+# LP2 1031/512 table checksum: historical twin-prime cross-clue and no typed original receiver
+
+**22 November 2026, Agent47, Director #2322. Intermediate source-selected candidate with a bounded original-cipher negative. No new unknown plaintext, key or external object.** [Read-only Windows Node22 SFT](../sims/lp2_p50_1031_512_quotient_original_text_receiver_sft.cjs) · [passing CI run 45072146200](https://github.com/FlareZ123/liber-primus/actions/runs/45072146200).
+
+## A better human lead for the modulus, still not an author-defined checksum
+
+Agent8's [full table checksum reconstruction](lp2-p50-parable1031-red512-single-erasure-codeword.md) establishes that the original printed 256-cell base60 stream, when interpreted as a 2048-bit big-endian integer N, obeys `N mod 1031 = 512`. The source-selected operands are the solved p57 middle 30-GP-rune prime sum **1031**; the **512** difference of original p27/p54 red rubric GP-prime sums (1109−597); and the literal 512 numeral digits of the 256 cells. This exact relationship can repair an erased original table byte, but it is a conditional codeword, not text decryption.
+
+A *distinct original source bridge* improves how a 2014 human might have encountered **1031** without retrospectively selecting p57's numerical coincidence. The original Stage10 magic squares explicitly have row totals **3301, 1033, 1033**. They are two twin-prime upper members, **3301−2=3299** and **1033−2=1031**, where all four numbers are prime. The LP2 p15 central-out four-by-four square actually highlights **3299 in red**. Solved p57's visibly middle instruction **WE MUST SHED OUR OWN CIRCUMFERENCES** actually has GP-prime sum **1031**. This yields a source-typed two-case pattern:
+
+| Creator-visible antecedent | Stage10 target | LP2 source-visible counterpart | Prime ranks (1-based) |
+|---|---:|---:|---|
+| 2014 first 5×5 row sum | 3301 | printed red p15 **3299** | 464 and 463 |
+| 2014 subsequent 7×7/5×5 row sums | 1033 | solved p57 middle 30-rune prime sum **1031** | 174 and 173 |
+
+Both upper and lower prime-ordinal differences are **290 = 10×29**, the GP29 alphabet size times the original 10-dot punctuation count class. Note that matching offsets follow arithmetically once these four primes are fixed; they are not an additional independent check.
+
+**Crucial period chronology:** a non-Cicada third-party discussion published **28 April 2014** explicitly identifies *both* `1033→1031` and `3301→3299` as twin-prime pairs, before the May 2014 LP2 dump. This proves a period participant could notice the same operation. It is **not** an authenticated Cicada instruction or a new authored connection. Archive: Klaus Schmeh's 23 January 2014 open thread, comment **#111**, user **cing**, dated **28 April 2014**, [exact publicly preserved comment](https://scienceblogs.de/klausis-krypto-kolumne/2014/01/23/cicada-3301-wer-knackt-das-neueste-raetsel/). The participant also makes unrelated mathematical errors, so use only the independently checkable twin-prime statement. Together the two LP2 images can nominate 1031, while the **unselected whole-grid modular operation** remains the central obstruction. <https://www.cicadasolvers.com/wiki/liber-primus/liber-primus-structural-overview/> is background on the 2014 releases, not a missing source opcode.
+
+**Discouraging original control:** the unchanged printed full integer has residues **N mod1033=140, N mod3299=1994, N mod3301=3199**. Only 1031 of the four source twin-prime options yields remainder512. This is a conditional fingerprint, not evidence a human would independently choose modulus/remainder/full-grid ordering without inspecting all of them.
+
+## Exact reversible checksum stripping as a typed payload attempt
+
+The least unconstrained consumer of the newly proposed whole-grid checksum is **Euclidean quotient extraction**: if `N = 1031 Q + 512`, remove the 512 remainder and divide by the GP-prime-sum modulus. The original 256-byte N yields exactly **255 bytes of Q**; its first bytes in hex are `32 a1 4f a3 3a d4 6b f0 f1 97 9d e3 6f bd a2 19 71 eb`. Exactly **88/255** are printable ASCII, with maximum printable run **four**. The quotient cannot be directly read as a 255-byte ASCII message, JSON instruction, printable URL or ordinary file signature. This is the direct byte-defined operation arising from the proposed checksum relation, with no guessed numeric factors.
+
+As a secondary candidate consumer, the existing native GP29 **additive/subtractive cipher** accepts the first corresponding quotient bytes reduced mod29, in source order with initial phase zero. A genuine source-visible candidate original target is the **66 printed rune characters preceding the numeric panel on physical p49** joined to the **92 following it on physical p51** (158 source runes total). An independent untouched original target is p53 with **179 runes**. The test does not tune phase, skip rules, key text or paragraph placement; it tests only the two historically used additive signs.
+
+| Original cipher receiver | Subtract Q mod29: IoC | Add Q mod29: IoC | Native GP prose? |
+|---|---:|---:|---|
+| p49 66 + p51 92 = **158** original runes | **.03587842** | **.03265339** | no |
+| Separate p53 **179** original runes | **.03565376** | **.03377064** | no |
+
+All four outputs are near random-class IoC 1/29. The entire 158/179-rune outputs recover the exact source original on forward encryption. Separate authentic native p57 GP plaintext repeated to the same 158/179 rune lengths passes all four same decoder/encoder plants. The tests establish a functioning inverse; none yields natural original plaintext. The SFT asserts the original source SHA-256, all original byte counts, exact quotient arithmetic, printable statistic, receiver lengths, every output and exact plants.
+
+## Decision
+
+A real period player could choose the source **twin-prime lower partners 3299/1031**, which strengthens the human route for the modulus value. **The remaining selector is absent:** no source-authenticated 2014 instruction selects `N` as one single whole-table big-endian integer, tells the player to reduce it modulo1031, reads the resulting residue as 512, or turns quotient/bytes into a GP29 ciphertext key or an external address. Solved p57 actually says to **shed circumferences**, an intuitive reason to remove the **76-cell border**, whereas `N mod1031=512` consumes all 256 original cells. Earlier source-p50 direct 76-border / 180-interior transpositions and known-p56/p57 key tests already failed and are not reopened.
+
+Do not turn a source-supported modulus into an invented author-selected codeword. No 150-rune plaintext or file recipient survived even the most natural bounded quotient test. Preserve the exact numerical observation and this newly identified **2014-visible twin-prime cross-clue** as potential evidence if an original **operator/receiver instruction** surfaces. Close #2322 without manufacturing a chain of new modulus or checksum searches.
