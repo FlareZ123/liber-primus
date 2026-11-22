@@ -105,13 +105,11 @@ function cubeAll(table) {
  * @param {number} splice
  * @param {-1|1} sign
  * @param {boolean} encode
- * @param {number[]} [sourceCells]
  */
-function transform(input,splice,sign,encode,sourceCells=cells) {
+function transform(input,splice,sign,encode) {
   const table=initTable(splice);
   // Deterministic, original-source pre-read table conversion; no unknown key.
-  const prior=lastFiveP8.slice();
-  let prev=prior;
+  let prev=lastFiveP8.slice();
   const out=[];
   for(let i=0;i<input.length;i++){
     if(i%243===0)cubeAll(table);
@@ -130,6 +128,43 @@ const nativeSource=pages[57].indices;
 assert.equal(nativeSource.length,95);
 const plant=Array.from({length:original.length},(_,i)=>nativeSource[i%95]);
 assert(ioc(plant)>0.05);
+
+// Necessary-condition screen for *every* possible starting phase when the
+// receiver follows the same full 243-cell de Bruijn visitation order used
+// to fill the table. The cube-all prepass converts the first lap into the
+// unchanged p8 source tape raised to exponent3; reverse-cube exponent19 is
+// the source red M rune's multiplicative inverse (3*19 mod28 =1).
+// Every entry is first read exactly once before any later local writeback.
+// Consequently this phase-complete 972-case gate covers arbitrary later
+// addressed-cell writes, and cannot be rescued by tuning those updates.
+const firstOriginal243=original.slice(0,243);
+assert.equal(firstOriginal243.length,243);
+/** @param {number} value @param {number} exponent */
+function power(value,exponent) {
+  let out=1;
+  for(let k=0;k<exponent;k++)out=residue(out*value);
+  return out;
+}
+for(let v=0;v<29;v++)assert.equal(power(power(v,3),19),v);
+const phaseCensus=[];
+for(const exponent of [3,19]){
+  const cubedTape=cells.map(v=>power(v,exponent));
+  for(const sign of [-1,1]){
+    let maxIoC=-1,bestPhase=-1;
+    for(let phase=0;phase<243;phase++){
+      const plain=firstOriginal243.map((x,i)=>
+        residue(x+sign*cubedTape[(i+phase)%243]));
+      assert.deepEqual(plain.map((v,i)=>
+        residue(v-sign*cubedTape[(i+phase)%243])),firstOriginal243);
+      const stat=ioc(plain);
+      if(stat>maxIoC){maxIoC=stat;bestPhase=phase;}
+    }
+    assert(maxIoC<0.04);
+    phaseCensus.push({exponent,sign,maximumIoC:maxIoC,bestPhase});
+  }
+}
+assert.equal(phaseCensus.length,4);
+assert.equal(243*phaseCensus.length,972);
 
 const results=[];
 for(const splice of zeroRuns)for(const sign of [-1,1]){
@@ -161,6 +196,15 @@ console.log(JSON.stringify({
   receiver:"GP29 Vigenere +/- key from five preceding source ciphertext residues mod3",
   ciphertextIoC:ioc(original),
   nativePlantIoC:ioc(plant),
+  preReadCubicAllPhaseFirstCycleGate: {
+    testedOriginalFirst243:243,
+    phasesPerVariant:243,
+    totalModels:972,
+    globalExponent3AndInverse19:phaseCensus,
+    aboveGPProseIoC040Count:0,
+    allSourceExactForwardReplays:true,
+    conditionalReceiver:"consecutive all-cell read in initial source filling order",
+  },
   tested:results,
   decision:"all four globally pre-cubed source-table receivers nonprose on intact p9 original and p13 holdout; no author-signed table role/mutation",
 },null,2));
