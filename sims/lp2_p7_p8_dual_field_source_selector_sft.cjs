@@ -158,6 +158,22 @@ function period3(values) {
 }
 assert.equal(orbit4(products).period, 255);
 assert.equal(period3(products), 242);
+// Competing source-first reading: all five printed products are
+// coefficients of one GF4 degree-four polynomial, low-first.
+// It factors as (3+2X)(1+X^3) and vanishes at all three
+// nonzero GF4 elements. It is therefore nonprimitive.
+// The 255-register specifically depends on treating product5 as a seed.
+/** @param {number[]} coeffs @param {number} x @returns {number} */
+function evalGF4Polynomial(coeffs, x) {
+  let result = 0;
+  for (let i = coeffs.length - 1; i >= 0; i--)
+    result = multiplyGF4(result, x) ^ coeffs[i];
+  return result;
+}
+const fullGF4Coefficients = products.map(x => x % 4);
+assert.deepEqual(fullGF4Coefficients, [3, 2, 0, 3, 2]);
+assert.deepEqual([1, 2, 3].map(x =>
+  evalGF4Polynomial(fullGF4Coefficients, x)), [0, 0, 0]);
 assert.equal(new Set(orbit4(products).addresses).size, 255);
 
 const gp0 = w => w.map(c => c.value);
@@ -197,9 +213,40 @@ assert.deepEqual(absent, ['f']);
 assert.equal(second.filter(ch => ch === 'F').length, 2);
 assert(grid.bytes.every(n => n >= 0 && n <= 255));
 assert.equal(new Set(grid.bytes).size, 161);
+assert.equal(Math.min(...grid.bytes), 0);
+assert.equal(Math.max(...grid.bytes), 255);
+assert.equal(tokens.filter((token, i) => grid.bytes[i] === 255)
+  .join(','), '4F');
+assert.equal(tokens.filter((token, i) => grid.bytes[i] === 0)
+  .join(','), '00,00');
+/** @param {number} n @param {number} k @returns {bigint} */
+function choose(n, k) {
+  let value = 1n;
+  for (let i = 1; i <= k; i++)
+    value = value * BigInt(n - i + 1) / BigInt(i);
+  return value;
+}
+// Exact integer inclusion-exclusion, no floating cancellation:
+// 16 modulo60 digit classes each have 5 uniform-byte preimages,
+// and the other 44 classes each have 4.
+const denominator = 256n ** 256n;
+let noMissingNumerator = 0n;
+for (let i = 0; i <= 16; i++) {
+  for (let j = 0; j <= 44; j++) {
+    const term = choose(16, i) * choose(44, j) *
+      BigInt(256 - 5 * i - 4 * j) ** 256n;
+    noMissingNumerator += (i + j) % 2 ? -term : term;
+  }
+}
+const anyMissingSecondDigit =
+  Number((denominator - noMissingNumerator) * 1000000000000000n /
+    denominator) / 1000000000000000;
+assert(Math.abs(anyMissingSecondDigit - 0.6008052781434413) < 1e-14);
 const a59 = a60.replace('f', '');
 const table59 = tokens.map(token =>
   59 * a59.indexOf(token[0]) + a59.indexOf(token[1]));
+assert.equal(Math.min(...table59), 0);
+assert.equal(Math.max(...table59), 251);
 const pairs = [[47, 240], [48, 231], [235, 236], [88, 179]];
 for (const [i, j] of pairs) {
   assert.deepEqual(
@@ -260,6 +307,11 @@ console.log('LP2_DUAL_FIELD_SOURCE_SELECTOR ' + JSON.stringify({
   featureInventory: inventory,
   candidateModels: models, observedDifferences: observed,
   tableAbsentSecondDigits: absent, tableConventionalDistinctBytes: 161,
+  tableBase60Range: [0, 255], tableBase59Range: [0, 251],
+  unseededFullGF4Polynomial: fullGF4Coefficients,
+  unseededFullGF4Roots: [1, 2, 3],
+  sourceFirstConventionRequiresFifthProductAsSeed: true,
+  uniformBytePAnySecondDigitAbsent: anyMissingSecondDigit,
   conventionalByteNullPAbsentLowerf: Math.pow(252 / 256, 256),
   fiveGp29ValueNull: { total, gf3, gf4, both,
     dualRate: both / total },
