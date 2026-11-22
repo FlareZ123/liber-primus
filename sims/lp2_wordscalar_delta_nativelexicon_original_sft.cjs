@@ -9,7 +9,7 @@
  * Model (within each preserved printed GP29 word):
  *   C_i = C_previous + k_word * (P_i + 1) mod29.
  * The predecessor is either global ciphertext or reset to 0 each word.
- * Word key k may be chosen independently for each of 2,896 source words.
+ * Word keys k[phase] may be chosen independently for each of 2,896 source words.
  * GP EA (index 28) is the sole zero-step plaintext.
  *
  * Exact key elimination: divide the vector of within-word ciphertext
@@ -86,25 +86,30 @@ function sourceWords(source) {
  * @param {number[]} v
  * @returns {string}
  */
-function signature(v) {
-  const start = v.find((x) => x !== 0);
-  if (start === undefined) return v.join(',');
-  return v.map((x) => mod(x * inverse[start])).join(',');
+function signature(v, period = 1) {
+  /** @param {number[]} xs */
+  function scalarSignature(xs) {
+    const start = xs.find((x) => x !== 0);
+    if (start === undefined) return xs.join(',');
+    return xs.map((x) => mod(x * inverse[start])).join(',');
+  }
+  return Array.from({length: period}, (_, phase) =>
+    scalarSignature(v.filter((_, i) => i % period === phase))).join('|');
 }
 
-/** @param {number[]} word @param {number} prev @param {boolean} reset */
-function deltaSignature(word, prev, reset) {
+/** @param {number[]} word @param {number} prev @param {boolean} reset @param {number} period */
+function deltaSignature(word, prev, reset, period) {
   let old = reset ? 0 : prev;
   return signature(word.map((v) => {
     const d = mod(v - old);
     old = v;
     return d;
-  }));
+  }), period);
 }
 
-/** @param {number[]} plaintext */
-function ordinalSignature(plaintext) {
-  return signature(plaintext.map((x) => mod(x + 1)));
+/** @param {number[]} plaintext @param {number} period */
+function ordinalSignature(plaintext, period) {
+  return signature(plaintext.map((x) => mod(x + 1)), period);
 }
 
 const originalWords = sourceWords(raw);
@@ -112,16 +117,18 @@ const original = originalWords.flat();
 assert.equal(originalWords.length, 2896);
 assert.equal(original.length, 12956);
 assert.deepEqual(original, corpus.pages.slice(0, 56).flatMap((p) => p.indices));
-const byLength = new Map();
+const byLengthByPeriod = Array.from({length: 5}, () => new Map());
 let dictionaryItems = 0;
 for (const line of textblob.split(/\r?\n/)) {
   const match = /^([a-z]+) (\d+)$/.exec(line);
   if (!match) continue;
   const encoded = nativeGP(match[1]);
   if (!encoded) continue;
-  const n = encoded.length;
-  if (!byLength.has(n)) byLength.set(n, new Set());
-  byLength.get(n).add(ordinalSignature(encoded));
+  for (let period = 1; period <= 5; period++) {
+    const index = byLengthByPeriod[period - 1];
+    if (!index.has(encoded.length)) index.set(encoded.length, new Set());
+    index.get(encoded.length).add(ordinalSignature(encoded, period));
+  }
   dictionaryItems++;
 }
 assert.equal(dictionaryItems, 23940);
@@ -131,53 +138,71 @@ assert.equal(dictionaryItems, 23940);
  * @param {boolean|null} mode true = word-reset ciphertext differences;
  * false = continuous ciphertext differences; null = native plaintext.
  */
-function audit(words, mode) {
+function audit(words, mode, period) {
   let previous = 0;
   /** @type {Map<number,{n:number,match:number}>} */
   const counts = new Map();
   for (const word of words) {
     const n = word.length;
     const sig = mode === null
-      ? ordinalSignature(word)
-      : deltaSignature(word, previous, mode);
-    const hit = byLength.get(n)?.has(sig) ?? false;
+      ? ordinalSignature(word, period)
+      : deltaSignature(word, previous, mode, period);
+    const hit = byLengthByPeriod[period - 1].get(n)?.has(sig) ?? false;
     const record = counts.get(n) || {n: 0, match: 0};
     record.n++;
     if (hit) record.match++;
     counts.set(n, record);
     previous = word[word.length - 1];
   }
-  const long = [...counts].filter(([n]) => n >= 5)
-    .reduce((s, [, x]) => ({
-      n: s.n + x.n,
-      match: s.match + x.match,
-    }), {n: 0, match: 0});
-  const longer = [...counts].filter(([n]) => n >= 6)
-    .reduce((s, [, x]) => ({
-      n: s.n + x.n,
-      match: s.match + x.match,
-    }), {n: 0, match: 0});
+  /** @param {number} minLength */
+  function tally(minLength) {
+    return [...counts].filter(([n]) => n >= minLength)
+      .reduce((total, [, x]) => ({
+        n: total.n + x.n,
+        match: total.match + x.match,
+      }), {n: 0, match: 0});
+  }
   return {
-    total: words.length, long, longer,
+    total: words.length, long: tally(5), longer: tally(6),
+    longEight: tally(8), longTen: tally(10),
     byLength: Object.fromEntries([...counts].sort((a, b) => a[0] - b[0])),
   };
 }
 
-const continuous = audit(originalWords, false);
-const reset = audit(originalWords, true);
-assert.deepEqual(continuous.long, {n: 1132, match: 0});
-assert.deepEqual(reset.long, {n: 1132, match: 2});
-assert.equal(continuous.longer.match, 0);
-assert.equal(reset.longer.match, 0);
-
 const gibranWords = (gibran.match(/[A-Za-z]+/g) || [])
   .map(nativeGP).filter((w) => w !== null);
-const natural = audit(gibranWords, null);
-assert.deepEqual(natural.long, {n: 4120, match: 3896});
+const summaries = [];
+for (let period = 1; period <= 5; period++) {
+  const continuous = audit(originalWords, false, period);
+  const reset = audit(originalWords, true, period);
+  const natural = audit(gibranWords, null, period);
+  assert.deepEqual(continuous.longTen, {n: 109, match: 0});
+  assert.deepEqual(reset.longTen, {n: 109, match: 0});
+  assert.deepEqual(natural.longTen, {n: 324, match: 289});
+  if (period === 1) {
+    assert.deepEqual(continuous.long, {n: 1132, match: 0});
+    assert.deepEqual(reset.long, {n: 1132, match: 2});
+  }
+  summaries.push({
+    period,
+    continuous5: continuous.long,
+    continuous8: continuous.longEight,
+    continuous10: continuous.longTen,
+    reset5: reset.long,
+    reset8: reset.longEight,
+    reset10: reset.longTen,
+    GibranNative5: natural.long,
+    GibranNative10: natural.longTen,
+  });
+}
 
+// A planted entire-LP2-length native plaintext under five independent
+// secret nonzero scalar keys per original printed word.
+const plantPeriod = 5;
 const sourceNative = new Map();
 for (const word of gibranWords) {
-  if (!byLength.get(word.length)?.has(ordinalSignature(word))) continue;
+  if (!byLengthByPeriod[plantPeriod - 1].get(word.length)
+    ?.has(ordinalSignature(word, plantPeriod))) continue;
   if (!sourceNative.has(word.length)) sourceNative.set(word.length, []);
   sourceNative.get(word.length).push(word);
 }
@@ -193,9 +218,9 @@ function plant(plainWords) {
   let previous = 0;
   /** @type {number[][]} */ const out = [];
   for (let w = 0; w < plainWords.length; w++) {
-    const k = 1 + (w * 13) % 28;
-    const cipherWord = plainWords[w].map((p) => {
-      previous = mod(previous + k * (p + 1));
+    const cipherWord = plainWords[w].map((p, i) => {
+      const key = 1 + (w * 13 + (i % plantPeriod) * 7) % 28;
+      previous = mod(previous + key * (p + 1));
       return previous;
     });
     out.push(cipherWord);
@@ -204,29 +229,27 @@ function plant(plainWords) {
 }
 
 const planted = plant(plantedPlainWords);
-const positive = audit(planted, false);
+const positive = audit(planted, false, plantPeriod);
 assert.deepEqual(positive.long, {n: 1132, match: 1132});
 assert.equal(positive.total, 2896);
 let prev = 0;
 for (let w = 0; w < planted.length; w++) {
-  const k = 1 + (w * 13) % 28;
   for (let i = 0; i < planted[w].length; i++) {
+    const key = 1 + (w * 13 + (i % plantPeriod) * 7) % 28;
     const curr = planted[w][i];
-    const decoded = mod((curr - prev) * inverse[k] - 1);
+    const decoded = mod((curr - prev) * inverse[key] - 1);
     assert.equal(decoded, plantedPlainWords[w][i]);
     prev = curr;
   }
 }
 
 console.log(JSON.stringify({
-  model: 'C_i=C_prev+k_word*(P_i+1) mod29',
+  model: 'C_i=C_prev+k_word[i mod period]*(P_i+1) mod29',
   originalRunes: original.length,
   originalWords: originalWords.length,
   admissibleEnglishWords: dictionaryItems,
-  originalContinuous: continuous,
-  originalWordReset: reset,
-  independentGibranNative: natural.long,
-  realNativeWordLengthPlant: positive.long,
-  positiveRoundTrip: 'PASS',
+  periods: summaries,
+  realNativeWordLengthPeriod5Plant: positive.long,
+  plantedRoundTrip: 'PASS',
 }, null, 2));
 console.log('PASS: every secret per-word nonzero scalar excluded on original 6+-rune words under the native English lexicon');
