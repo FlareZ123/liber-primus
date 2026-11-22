@@ -143,6 +143,14 @@ const chapter8 = chapters.tables.get("7");
 const successors = chapter8.map(row => row.filter(x => x > 0).length);
 assert.equal(Math.min(...successors), 25);
 assert.equal(Math.max(...successors), 29);
+// Chapter eight by itself excludes a chapter-private stationary map.
+const chapter8Edges = chapter8.flat().reduce((a, b) => a + b, 0);
+assert.equal(chapter8Edges, 2995);
+const chapter8Heads = 3008 - chapter8Edges;
+assert.equal(chapter8Heads, 13);
+const chapter8Bound = upper(new Map([["chapter8", chapter8]]), 1)
+  + chapter8Heads;
+assert.equal(chapter8Bound, 248);
 
 /** Fixed finite control windows, 12956 runes each, step 1703. */
 const controls = [
@@ -166,6 +174,18 @@ for (const [name, source] of controls) {
     windows++;
   }
   assert(windows > 0);
+  // Also compare genuinely chapter-eight-sized source-native samples.
+  let chapter8Windows = 0, smallestChapter8Top1 = 1;
+  for (let start = 0; start + 3008 <= tape.length; start += 503) {
+    const rate = topK(tape.slice(start, start + 3008), 1) / 3008;
+    assert(rate > chapter8Bound / 3008,
+      name + " 3008-rune chapter-eight native-GP control");
+    smallestChapter8Top1 = Math.min(smallestChapter8Top1, rate);
+    chapter8Windows++;
+  }
+  console.log("CHAPTER8_CONTROL", name, "windows", chapter8Windows,
+    "minimum_top1", smallestChapter8Top1);
+  assert.equal(chapter8Windows, name === "Gibran" ? 119 : 426);
   countWindows += windows;
   console.log("CONTROL", name, "runes", tape.length, "windows", windows,
     "whole_top4", whole, "minimum_window_top4", minima);
@@ -262,7 +282,9 @@ for (const mode of ["global", "chapter"]) {
 
 console.log("ORIGINAL", "edges", pooled.edges, "page_heads", STARTS,
   "offdiag_min", Math.min(...offDiagonal),
-  "chapter8_successor_min", Math.min(...successors));
+  "chapter8_successor_min", Math.min(...successors),
+  "chapter8_one_rune_upper", chapter8Bound,
+  "chapter8_one_rune_fraction", chapter8Bound / 3008);
 for (const b of bounds) console.log("BOUND", b.k,
   "global", b.global, "chapter", b.chapter, "page", b.page,
   "chapter_with_heads_fraction", (b.chapter + STARTS) / TOTAL);
