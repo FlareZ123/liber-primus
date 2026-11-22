@@ -230,6 +230,37 @@ for(const region of regions) {
   };
 }
 
+
+/**
+ * The source-visible infinity mark actually lies on p15, after the first
+ * nine red title runes. Therefore start at original p15 offset 9 (first
+ * lower red heading rune) and carry the state through its remaining 150
+ * runes into the whole p16–p21 intact original region.
+ */
+const p15 = pages.find(page=>page.page===15);
+assert.equal(p15.indices.length,159);
+const p15AfterInfinity=p15.indices.slice(9);
+assert.equal(p15AfterInfinity.length,150);
+const p16to21=regions.find(region=>region.name==="p16-p21");
+const p15InfinityFullCipher=p15AfterInfinity.concat(
+  orig.slice(p16to21.start,p16to21.end));
+const p15InfinityDecoded=skipFDecode(p15InfinityFullCipher);
+assert.deepEqual(skipFEncode(p15InfinityDecoded),p15InfinityFullCipher);
+const firstP15Title=p15InfinityDecoded.slice(0,11);
+const p15InfinityP16=p15InfinityDecoded.slice(150);
+assert.equal(p15InfinityP16.length,1613);
+const p15InfinitySeededFirstHeading={
+  originalStartPage:15,
+  afterInfinityStartLocalRune:9,
+  remainingP15Runes:150,
+  decodedLowerRedHeading11:firstP15Title.map(i=>gp.translit[i]).join(" "),
+  p16to21:globalStats(p15InfinityP16),
+  p16OriginalRemainderRuneCount:1613,
+  exactReencrypt: true,
+  first70RunesP16:p15InfinityP16.slice(0,70)
+    .map(i=>gp.translit[i]).join(" ")
+};
+
 const tests=[
   ["Gibran","resources/control/gibran_prophet_58585.txt"],
   ["Shakespeare","resources/control/shakespeare_first300k.txt"],
@@ -278,6 +309,7 @@ if(require.main===module)console.log(JSON.stringify({
   plantedAllSecret120StatePositive:PLANTS,
   exactP56StyleFSkipSingleFixedOriginalInverse:genuineP56FSemanticsOnP15,
   exactP56StyleFSkipSourceNativePositive:skippedFPlants,
+  sourceVisibleP15InfinitySeedWithContinuousP16To21:p15InfinitySeededFirstHeading,
   missingOpcode:"Any actual plaintext- or ciphertext-dependent state update, infinity-output interpretation, or keyed GP29 readout must come from independent first-party evidence"
 },null,2));
 module.exports={mobius,phaseCoincidence,rows,skipFDecode,skipFEncode};
