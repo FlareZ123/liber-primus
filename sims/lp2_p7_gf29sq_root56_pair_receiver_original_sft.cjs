@@ -195,8 +195,22 @@ const donorFiles = {
   emerson: "resources/control/emerson_essays_2944.txt"
 };
 const nativeBaseline = {};
-for (const [author, file] of Object.entries(donorFiles)) {
-  const encoded = encodeSourceNativeGP(read(file));
+const beowulf = JSON.parse(read("resources/control/beowulf_oe_gp_profile_corrected.json"));
+const beowulfAlphabet = beowulf.positiveControlAlphabet;
+assert.equal(beowulfAlphabet.length, 29);
+const oeSource = [...beowulf.sourceGpBase29]
+  .map(symbol => beowulfAlphabet.indexOf(symbol));
+assert.equal(oeSource.length, 48012);
+const oeCounts = Array(29).fill(0);
+for (const symbol of oeSource) {
+  assert(symbol >= 0 && symbol < 29);
+  oeCounts[symbol]++;
+}
+assert.deepEqual(oeCounts, beowulf.allGpCounts);
+const nativeSources = Object.entries(donorFiles)
+  .map(([author, file]) => [author, encodeSourceNativeGP(read(file))]);
+nativeSources.push(["beowulf_old_english", oeSource]);
+for (const [author, encoded] of nativeSources) {
   const samples = [];
   for (let start = 0; start + ciphertext.length <= encoded.length;
        start += Math.max(1, Math.floor(ciphertext.length / 2))) {
@@ -214,6 +228,8 @@ for (const [author, file] of Object.entries(donorFiles)) {
       minimum: Math.min(...values), maximum: Math.max(...values),
       atOrBelowOriginal: values.filter(v => v <= observedPageCohorts[parity].ioc).length };
   });
+  assert(pageCohorts.every(c => c.atOrBelowOriginal === 0),
+    author + ": native source should be strongly distinguishable from original root family");
   nativeBaseline[author] = {
     pageCohorts,
     sourceRunes: encoded.length, windows: samples.length,
