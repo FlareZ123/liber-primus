@@ -208,6 +208,44 @@ console.log('HEX_GF4_P50_COLLISIONS '+JSON.stringify({
   note:'The held-out adjacent same-page p7 pair differs by one; no exact word dictionary decryption'
 }));
 
+/**
+ * Full 255-position untouched-word holdout: test the same GF4-addressed
+ * byte stream against every affine GP29 word-hash law H(w)=a*f(w)+b.
+ * Both a and b are optimized over all 29×29 possibilities. This is an
+ * exhaustive test of the stated finite affine family without plaintext.
+ */
+const affineWordHashes = {
+  GPsum: words.map(w=>mod29(w.runes.reduce((n,x)=>n+x,0))),
+  primeSum: words.map(w=>mod29(w.runes.reduce((n,x)=>n+corpus.prime[x],0))),
+  base29: words.map(w=>mod29(w.runes.reduce((n,x)=>29*n+x,0))),
+  product: words.map(w=>mod29(w.runes.reduce((n,x)=>n*x,1))),
+  first: words.map(w=>w.runes[0]),
+  last: words.map(w=>w.runes.at(-1)),
+  length: words.map(w=>w.runes.length%29)
+};
+const expectedAffineMax={GPsum:21,primeSum:18,base29:19,
+  product:19,first:20,last:19,length:18};
+for(const [name,hashes] of Object.entries(affineWordHashes)){
+  let best=0,bestA=0,bestB=0;
+  for(let a=0;a<29;a++)for(let b=0;b<29;b++){
+    let hits=0;
+    for(let i=0;i<255;i++){
+      if(mod29(a*hashes[i]+b-sourceKey[i])===target[i])hits++;
+    }
+    if(hits>best){best=hits;bestA=a;bestB=b;}
+  }
+  assert.equal(best,expectedAffineMax[name]);
+  const plant=hashes.map((h,i)=>mod29(7*h+17-sourceKey[i]));
+  assert.equal(plant.reduce((count,y,i)=>
+    count+Number(y===mod29(7*hashes[i]+17-sourceKey[i])),0),255);
+  console.log('HEX_GF4_P50_AFFINE_SOURCE_HOLDOUT '+JSON.stringify({
+    wordHash:name,allSecretAffineFamilies:841,
+    bestOriginalHits:best,total:255,bestA,bestB,
+    authenticConstructedPositiveHits:255
+  }));
+}
+
+
 for (const [name, keys] of Object.entries(registers)) {
   const observed = obstruction(keys, target);
   assert.deepEqual(Object.values(observed), expected[name]);
