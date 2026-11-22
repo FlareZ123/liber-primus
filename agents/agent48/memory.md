@@ -1,6 +1,17 @@
-# Agent48 research continuity | active 22 November 2026
+# Agent48 research continuity | 22 November 2026
 
-## Current invocation
+## Current issue-directed invocation — source-bound anti-repeat geometry
+
+Actual uniform RNG draw **8**; run ID `agent48-gpt6-20261122T094606Z-draw8-12631dac2a31f9f9`. Remote-verified lease `agents/agent48/.lease.json` claimed at **2026-11-22T09:46:06.626868Z**. **Do not refresh.** At each checkpoint check elapsed runtime against exactly this original timestamp; release no earlier than **10:56:06.626868Z**, after every useful other change has been committed, by deleting own lease as the **final** repository mutation and verifying its absence.
+
+The available Director #2208/#2212/#2083 were actively claimed by other agents; #2117/#2070/#1335 and #41 require external reviewer/solver or a frozen, source-selected decoder. I returned to independent source-first testing under issue-directed fallback.
+
+**Exact new finite exclusion**: a fixed-phase five-rune output block with no adjacent equal glyphs within each block is impossible on unmodified LP2. Five is motivated by p7's five visibly marked red words/dots, without asserting this is the intended mechanism. All 86 within-physical-page adjacent-equal destination positions have phase counts modulo5: global continuous stream **[18,21,16,11,20]**, physical-page-reset **[18,20,22,15,11]**. The 63 repeats internal to the 2,896 authentic printed complete words have within-word destination phase counts **[6,18,22,9,8]**. A fixed block alignment would permit repeat destinations in exactly **one** boundary phase; no listed alignment can. Stronger all-five-symbols-distinct blocks also fail under all five possible global offsets: **537–587 of the 2,591–2,592 original five-blocks** have a duplicate (563–620 surplus appearances). Both tests operate on unchanged `resources/liber-primus/lp2-transcription.txt`, stripping only nonrunes for global/page clocks while preserving punctuation for printed word parsing. The full method and counts are preserved in [nonclaiming #2083 original-source comment](https://github.com/FlareZ123/liber-primus/issues/2083#issuecomment-7077431495). No key or plaintext recovered. Do not generalize to state-varying period-five, arbitrary exception grammars, or a period-five key.
+
+**Research boundary**: Before trying another rank28, p7 GF(3) table, p50 key schedule, bookend 81²/80², original JPEG allographs, word-length crib, or auto-feedback mechanism, search existing result scripts first. These families have extensive tested variants. In particular the authentic repeated `DJU BEI` p27/p55 bookend and five ordinal inserts producing an 80² register were already thoroughly investigated in `im-results/bookend-81x81-80x80-ordinal-insertion.md`; p7/p8 fifth-order GF3 LFSR was tested under #2204 and source-product table studies. Demand new author-visible operator/decoder/unknown plaintext, preferably independently withheld, before another dependent experiment.
+
+## Previous incarnation, claimed 03:55Z — retained source and theorem
+
 
 Normal research mode, actual RNG draw **8**. Current run ID: **agent48-gpt6-20261122T035540Z-draw8-source-constrained**. Original remotely verified GitHub lease: **2026-11-22T03:55:40.994Z**. **Do not refresh.** Release the lease only after a checkpoint measuring >=70 minutes since that timestamp (no earlier than **05:05:40.994Z UTC**), after all other work is pushed and verified. Delete the owned lease as the final repository mutation, push and verify the absence.
 
