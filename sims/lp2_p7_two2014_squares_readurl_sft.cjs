@@ -168,6 +168,76 @@ assert.deepEqual(pivotColumns, [0, 1, 2, 3, 4]);
 assert(system[5].every(v => v === 0));
 assert.deepEqual(system.slice(0, 5).map(row => row[5]), redP7);
 
+// Original p3-p7 comprises precisely 255 real printed words after joining four
+// cross-page continuations. The five genuine red words are the last five.
+// This is a natural, independently source-shaped 51x5 consumer of both squares.
+const scrollWords = (pageTranscripts.slice(3, 8).join("")
+  .replace(/\/\s*/g, "").match(/[\u16a0-\u16ff]+/gu) || [])
+  .map(str => [...str].map(glyph => gpIndex.get(glyph)));
+assert.equal(scrollWords.length, 255);
+assert.deepEqual(scrollWords.flat(),
+  corpus.pages.slice(3, 8).flatMap(page => page.indices));
+const scrollProducts = scrollWords.map(runes =>
+  runes.reduce((acc, rune) => mod(acc * rune), 1));
+assert.deepEqual(scrollProducts.slice(-5), redP7);
+const scrollFifthOutputs = [];
+for (let pos = 0; pos < 255; pos += 5) {
+  const source = scrollProducts.slice(pos, pos + 5);
+  scrollFifthOutputs.push({
+    first: transform(Aa[5], source),
+    second: transform(Bb[5], source)
+  });
+}
+assert.equal(scrollFifthOutputs.length, 51);
+assert.equal(literal(scrollFifthOutputs.at(-1).first.slice(2).concat(
+  scrollFifthOutputs.at(-1).second.slice(0, 3))), "READURL");
+const otherMatchingMiddleSix = scrollFifthOutputs.slice(0, -1).filter(block =>
+  literal(block.first.slice(2).concat(block.second.slice(0, 3))) === "READURL");
+assert.equal(otherMatchingMiddleSix.length, 0);
+
+// Direct 255-word-product → 255-rune p8 additive pad is a complete frozen
+// source receiver, independent from the terminal instruction extraction.
+const p8 = corpus.pages.find(page => page.page === 8).indices;
+assert.equal(p8.length, 255);
+const originalIoc = values => {
+  const hist = Array(29).fill(0);
+  for (const n of values) hist[n]++;
+  return hist.reduce((total, n) => total + n * (n - 1), 0) /
+    (values.length * (values.length - 1));
+};
+const receiverResults = [];
+const knownP57 = corpus.pages.find(page => page.page === 57).indices;
+for (const [name, operator] of [
+  ["A5", Aa[5]], ["A-minus5", Aa[51]],
+  ["B5", Bb[5]], ["B-minus5", Bb[23]]
+]) {
+  const pad = [];
+  for (let at = 0; at < 255; at += 5) {
+    pad.push(...transform(operator, scrollProducts.slice(at, at + 5)));
+  }
+  assert.equal(pad.length, 255);
+  for (const sign of [-1, 1]) {
+    const decoded = p8.map((rune, i) => mod(rune + sign * pad[i]));
+    assert.deepEqual(decoded.map((x, i) => mod(x - sign * pad[i])), p8);
+    const knownNative = Array.from({length: 255},
+      (_, i) => knownP57[i % knownP57.length]);
+    const plant = knownNative.map((x, i) => mod(x - sign * pad[i]));
+    assert.deepEqual(plant.map((x, i) => mod(x + sign * pad[i])), knownNative);
+    receiverResults.push({
+      operator: name, sign,
+      full255Ioc: Number(originalIoc(decoded).toFixed(12)),
+      black243Ioc: Number(originalIoc(decoded.slice(12)).toFixed(12))
+    });
+  }
+}
+assert.deepEqual(receiverResults.map(x => x.full255Ioc), [
+  0.033101744635, 0.03433688436,
+  0.034151613401, 0.034522155319,
+  0.034553033812, 0.033997220936,
+  0.034985332716, 0.033039987649
+]);
+assert(receiverResults.every(x => x.full255Ioc < 0.036));
+
 const result = {
   classification: "Conditional cross-source readout, no unknown plaintext",
   originalP7FiveRedWordProducts: redP7,
@@ -181,6 +251,13 @@ const result = {
     separateUrlHits: prefixUrlHits},
   independentP53Controls: {redWords: 12, windows: 8, exponents: 56,
     exactJointMatches: p53Matches},
+  originalScroll: {pages: "p3-p7", originalPrintedWords: scrollWords.length,
+    fiveWordGroups: scrollFifthOutputs.length,
+    terminalGroupOriginalProducts: scrollProducts.slice(-5),
+    nonterminalReadUrlMatches: otherMatchingMiddleSix.length},
+  completeP8Receiver: {original255Ioc: Number(originalIoc(p8).toFixed(12)),
+    exactOriginalNativeGPPositiveCases: receiverResults.length,
+    inverseResults: receiverResults},
   reverseEquations: {constraints: 6, gf29Rank: 5,
     uniqueVector: system.slice(0, 5).map(row => row[5])},
   limitation: "Operation and frame not selected by a signed Cicada instruction; no p0-p55 plaintext recovered"
