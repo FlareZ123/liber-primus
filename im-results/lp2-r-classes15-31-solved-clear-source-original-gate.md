@@ -23,8 +23,24 @@ A frozen same-form nearest-overlap classifier, without consulting any plaintext 
 
 On authenticated **solved p56**, all **five** ᚱ glyphs from the 85-rune totient plaintext give **four class15, one class31**. On independently printed, **unencrypted p57 PARABLE**, all **six** ᚱ glyphs from genuine cleartext give **four class15, two class31**. The very same 15/31 morphological split therefore occurs in ordinary plaintext at least twice, with both classes present on *each* solved original page. Original p57 class15 R at (928,918) has a completely pixel-identical thresholded bitmap to the original p17 class15 R; original p7/p27 class31 R at (1610,1274)/(1470,1482) also match p17 class31 *exactly*. Source shapes are font-rendering variations shared by both cipher and clear printing.
 
+## The second unmapped image-cluster label is an exact duplicate of ordinary I
+
+The independent Round9 form clustering's **other** unmapped class0 maps to GP29 **ᛁ (I)**, while image class11 also maps to the same native rune. This source is even sharper than the two R raster phases: on four original physical pages, the complete binary source images of I are **literally the same 9×114 rectangle with all 1,026 pixels black**, including both originally distinct image class IDs:
+
+| Original source image | Round9 class | Fixed native I rectangle (x,y,w,h) |
+| --- | ---: | --- |
+| p0 original 17.jpg | 0 | (1320,1426,9,114) |
+| p7 original 24.jpg | 0 | (1189,897,9,114) |
+| p7 original 24.jpg | 11 | (1108,1274,9,114) |
+| p17 original 34.jpg | 11 | (687,861,9,114) |
+| p54 original 71.jpg | 0 | (1118,917,9,114) |
+
+All five source masks have **1.000000 pairwise IoU** to the p0 class0 bitmap, with zero pixel difference at the same fixed original threshold128. This decisively rejects a visibly distinct I form for class0 versus11. The class distinction originates in the external template clustering/segmentation rather than in an independently readable source-bitmap bit at these sites.
+
+Together these two frozen source tests cover **both apparently extra** high-usage image classes0 and31 beyond the canonical GP29 29 characters: I-class0 is a literal source-bitmap duplicate, while R-class31 is an approximately one-pixel raster variant appearing on both known plaintext controls. This is a practical obstruction to treating the computer clustering's 31 labels as an authored 31-letter alphabet. It does **not** exclude a new first-party key constructed from native printable glyph identities or a proven microscopic channel beyond these two classes.
+
 ## Cipher decision
 
 **Retire the isolated class15/31 R glyph split as evidence of an encrypted-page-specific secondary alphabet.** Both source shapes already occur in known cleartext in precisely the same image format. The 1-pixel stroke differences and no author-visible key-reading rule are compatible with normal raster phase/antialiasing. A hypothetical micro-pixel data channel embedded even in cleartext, other rune classes, bit-level data or merged strokes remains unexcluded, but requires a *new independent source instruction* specifying its bits, order, key use and an original plaintext receiver. Existing original all-29 image-glyph studies and per-doublet reviews address the wider obvious-font-variation class; this test does not repeat them.
 
-**Reproduce:** [single-file original-image Python SFT](../sims/lp2_r_twoform_solved_original_sft.py) uses NumPy, Pillow and OpenCV; with source originals in resources/liber-primus it needs no arguments, or pass the optional original maintainer ZIP. It checks 8/8 unknown-page R sites, **11/11 solved R** sites, both classes on each known clear control, source p17 IoU, 1-pixel stroke inclusion and an artificial extra-stroke positive. The same classifier is unchanged across all pages. It produces **no** decoded unknown original GP29 rune, no key, and no plaintext claim.
+**Reproduce:** [single-file original-image Python SFT](../sims/lp2_r_twoform_solved_original_sft.py) uses NumPy, Pillow and OpenCV; with source originals in resources/liber-primus it needs no arguments, or pass the optional original maintainer ZIP. It checks 8/8 unknown-page R sites, the five original I-class0/class11 exact-bitmap identity controls, **11/11 solved R** sites, both classes on each known clear control, source p17 IoU, 1-pixel stroke inclusion and an artificial extra-stroke positive. The same classifier is unchanged across all pages. It produces **no** decoded unknown original GP29 rune, no key, and no plaintext claim.
