@@ -56,6 +56,8 @@ function stream(ciphertext,start,stride,inverse,swap) {
   assert.equal(ciphertext.length%2,0);
   let state=power(inverse?gInverse:g,start);
   const step=power(inverse?gInverse:g,stride);
+  let inverseState=power(inverse?g:gInverse,start);
+  const inverseStep=power(inverse?g:gInverse,stride);
   const result=[];
   for(let i=0;i<ciphertext.length;i+=2){
     const block=ciphertext.slice(i,i+2);
@@ -63,11 +65,12 @@ function stream(ciphertext,start,stride,inverse,swap) {
     const decoded=mul(block,state);
     if(swap)decoded.reverse();
     result.push(...decoded);
-    // Exact original-cipher replay using inverse state, no guessed glyph.
-    const undo=mul(swap?decoded.slice().reverse():decoded,
-      power(state[0]===1&&state[1]===0?one:state,0)); // explicit no-op check below
-    assert.equal(undo.length,2);
+    // Replay original field pair using the exactly inverse known state.
+    const undo=mul(decoded,inverseState);
+    if(swap)undo.reverse();
+    assert.deepEqual(undo,ciphertext.slice(i,i+2));
     state=mul(state,step);
+    inverseState=mul(inverseState,inverseStep);
   }
   assert.equal(result.length,ciphertext.length);
   return result;
