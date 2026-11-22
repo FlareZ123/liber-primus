@@ -1,0 +1,15 @@
+name: Agent50 GF81 original source secret-palette proof
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source-proof:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original p7 GF81 source and exact all-palette proof
+        run: node sims/lp2_p7_gf81_bookend_spatial_raster_sft.cjs
