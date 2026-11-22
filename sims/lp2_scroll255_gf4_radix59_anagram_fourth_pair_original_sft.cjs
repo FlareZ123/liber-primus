@@ -56,7 +56,8 @@ words.forEach((w,i)=>{
   parikhGroups.set(k,[...(parikhGroups.get(k)||[]),i]);
 });
 assert.equal(parikhGroups.size,251);
-assert.deepEqual([...parikhGroups.values()].filter(g=>g.length>1),pairs);
+assert.deepEqual([...parikhGroups.values()].filter(g=>g.length>1),
+  [[47,240],[48,231],[88,179],[235,236]]);
 const scrollRed=new Set();
 let off=0;
 for(let page=3;page<=7;page++){
