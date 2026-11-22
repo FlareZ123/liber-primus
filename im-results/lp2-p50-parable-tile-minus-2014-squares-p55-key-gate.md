@@ -43,7 +43,7 @@ The cipher target is **exactly** `lp2-corpus.json pages[55].indices.slice(1)`, w
 
 For comparison: original p55 core IoC **0.038559**, authentic clear p57 first75 IoC **0.059459**, full clear p57 IoC **0.062710**. These are descriptive scale controls; with just75 runes, an IoC alone cannot prove non-English or quantify a discovery-adjusted p-value. The full 16-word outputs printed by the SFT are visibly nonprose, including the best-IoC candidate. No word-boundary search or key tuning was used.
 
-**Exact reproducer:** [`sims/lp2_p50_tile_minus_historical_square_p55_sft.cjs`](../sims/lp2_p50_tile_minus_historical_square_p55_sft.cjs), direct original-source Node22/CommonJS, **Windows GitHub Actions PASS** [44994279963](https://github.com/FlareZ123/liber-primus/actions/runs/44994279963). The test pulls the actual preserved original source bytes, rather than embedding a second hand-transcription.
+**Exact reproducer:** [`sims/lp2_p50_tile_minus_historical_square_p55_sft.cjs`](../sims/lp2_p50_tile_minus_historical_square_p55_sft.cjs), direct original-source Node22/CommonJS, **Windows GitHub Actions PASS** [44995130421](https://github.com/FlareZ123/liber-primus/actions/runs/44995130421) (including the authentic-F branch test). The test pulls the actual preserved original source bytes, rather than embedding a second hand-transcription.
 
 ## Complete authentic plaintext-F transparency gate
 
