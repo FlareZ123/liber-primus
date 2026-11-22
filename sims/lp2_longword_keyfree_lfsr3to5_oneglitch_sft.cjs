@@ -370,6 +370,98 @@ for (const [order, taps, seed] of [
   assert(replayIrregular(shockedObserved, shockTaps, index, "shock"));
 }
 
+
+/**
+ * Exact identification-free m4 safety check. A rank-three consistent
+ * system can have 29 possible tap vectors and must not be mislabeled an
+ * inconsistent original word merely because full-rank recovery fails.
+ * The independent original scan establishes that no m4 system has
+ * two or more free taps; all rank-three systems are exhaustively
+ * enumerated and replayed, including the extra-consumed-key clock.
+ *
+ * @param {number[]} observed
+ * @param {number} error
+ * @param {"redraw"|"skip"} kind
+ * @returns {{rank:number,solutions:number[][]}|null}
+ */
+function recoverRankDeficientFour(observed, error, kind) {
+  const order = 4;
+  /** @type {(number[]|null)[]} */
+  const basis = Array(order).fill(null);
+  for (let i = order; i < observed.length; i++) {
+    const affected = kind === "redraw"
+      ? i >= error && i <= error + order
+      : i >= error && i < error + order;
+    if (affected) continue;
+    const row = [
+      observed[i - 1], observed[i - 2],
+      observed[i - 3], observed[i - 4], observed[i]
+    ];
+    let pivotInstalled = false;
+    for (let col = 0; col < order; col++) {
+      if (!row[col]) continue;
+      const pivot = basis[col];
+      if (pivot === null) {
+        const scale = inv[row[col]];
+        for (let j = col; j <= order; j++)
+          row[j] = mod(row[j] * scale);
+        basis[col] = row;
+        pivotInstalled = true;
+        break;
+      }
+      const factor = row[col];
+      for (let j = col; j <= order; j++)
+        row[j] = mod(row[j] - factor * pivot[j]);
+    }
+    if (!pivotInstalled && row[order] !== 0) return null;
+  }
+  const free = Array.from({length: order}, (_, col) => col)
+    .filter(col => basis[col] === null);
+  if (free.length === 0) return {rank: order, solutions: []};
+  assert.equal(free.length, 1,
+    "Original m4 search must explicitly bound all nonunique key spaces");
+  const solutions = [];
+  for (let value = 0; value < 29; value++) {
+    const taps = Array(order).fill(0);
+    taps[free[0]] = value;
+    for (let col = order - 1; col >= 0; col--) {
+      if (basis[col] === null) continue;
+      let next = basis[col][order];
+      for (let j = col + 1; j < order; j++)
+        next -= basis[col][j] * taps[j];
+      taps[col] = mod(next);
+    }
+    const exact = kind === "redraw"
+      ? exactReplay(observed, taps, error)
+      : replayIrregular(observed, taps, error, "skip");
+    if (exact) solutions.push(taps);
+  }
+  return {rank: order - free.length, solutions};
+}
+
+const nonuniqueAudit = {};
+for (const kind of ["redraw", "skip"]) {
+  let consistentNonunique = 0;
+  let exactFits = 0;
+  for (const {cipher} of originals) {
+    for (const {plain} of byLength.get(cipher.length)) {
+      const observed = cipher.map((value, i) => mod(value - plain[i]));
+      for (let error = 4; error < observed.length; error++) {
+        const found = recoverRankDeficientFour(observed, error, kind);
+        if (found !== null && found.rank < 4) {
+          consistentNonunique++;
+          exactFits += found.solutions.length;
+        }
+      }
+    }
+  }
+  nonuniqueAudit[kind] = {consistentNonunique, exactFits};
+}
+assert.deepEqual(nonuniqueAudit, {
+  redraw: {consistentNonunique: 408, exactFits: 0},
+  skip: {consistentNonunique: 5, exactFits: 0}
+});
+
 const irregularResults = {};
 for (const kind of ["skip", "shock"]) {
   irregularResults[kind] = {};
@@ -451,6 +543,7 @@ console.log(JSON.stringify({
   positiveOneRedrawRecovers: 2,
   results: output,
   stateIrregularResults: irregularResults,
+  exactNonuniqueFourTapAudit: nonuniqueAudit,
   stateShockP52HoldoutIoC: ioc(shockHoldout),
   p52CandidateHoldout: {
     word: "OVERSENSITIZE",
