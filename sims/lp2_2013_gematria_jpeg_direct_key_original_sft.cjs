@@ -113,6 +113,92 @@ function byteSummary(values) {
   };
 }
 
+
+/**
+ * Use the later, authentically signed 2016 phrase as a CONDITIONAL
+ * known-plaintext crib for the 8+5 red GP runes on original p0.
+ * Neither the signature nor the page identifies that plaintext binding.
+ * Scan all JPEG byte offsets without selecting a favorable phase.
+ */
+function signed2016OpeningCribGate() {
+  const phrase13 = [18, 13, 10, 13, 8, 24, 9, 26, 15, 18, 18, 5, 15];
+  // Native GP29 spelling of "EPIPHANY SEEKS THE DEVOTED":
+  // TH is one symbol; K -> C, V -> U.
+  const phrase22 = phrase13.concat([2, 18, 23, 18, 1, 3, 16, 18, 23]);
+  const source0 = corpus.pages.find(p => p.page === 0).indices;
+  assert.deepEqual(source0.slice(0, 13), [15, 8, 18, 3, 6, 19, 27, 0, 15, 26, 18, 21, 5]);
+  assert.equal(source0[7], 0); // Original printed F
+  assert.equal(phrase13[7], 26); // Y in hypothetical signed-source plaintext
+
+  /**
+   * @param {number[]} plain
+   * @param {number[]} cipher
+   * @param {"mod29"|"scale29"} projection
+   * @param {"minus"|"plus"} sign
+   * @param {boolean} reverse
+   */
+  function scan(plain, cipher, projection, sign, reverse) {
+    const needed = cipher.map((value, i) => mod(sign === "minus" ?
+      value - plain[i] : plain[i] - value));
+    let bestMatches = -1;
+    const firstBestOffsets = [];
+    let tiedBest = 0;
+    for (let start = 0; start < jpeg.length; start++) {
+      let matches = 0;
+      for (let i = 0; i < needed.length; i++) {
+        const k = ((start + (reverse ? -i : i)) % jpeg.length + jpeg.length) % jpeg.length;
+        const byte = jpeg[k];
+        const key = projection === "mod29" ? byte % 29 : Math.floor(29 * byte / 256);
+        if (key === needed[i]) matches++;
+      }
+      if (matches > bestMatches) {
+        bestMatches = matches;
+        tiedBest = 1;
+        firstBestOffsets.length = 0;
+        firstBestOffsets.push(start);
+      } else if (matches === bestMatches) {
+        tiedBest++;
+        if (firstBestOffsets.length < 4) firstBestOffsets.push(start);
+      }
+    }
+    return {projection, sign, reverse, bestMatches, tiedBest, firstBestOffsets};
+  }
+
+  const results = [];
+  for (const projection of ["mod29", "scale29"]) {
+    for (const sign of ["minus", "plus"]) {
+      for (const reverse of [false, true]) {
+        const red13 = scan(phrase13, source0.slice(0, 13), projection, sign, reverse);
+        const extended22 = scan(phrase22, source0.slice(0, 22), projection, sign, reverse);
+        assert(red13.bestMatches <= 6);
+        assert(extended22.bestMatches <= 7);
+
+        // Known exact seeded original-source control: the same scan must
+        // find a planted 22/22 at source offset 3301 for every mode.
+        const planted = phrase22.map((v, i) => {
+          const k = ((3301 + (reverse ? -i : i)) % jpeg.length + jpeg.length) % jpeg.length;
+          const byte = jpeg[k];
+          const key = projection === "mod29" ? byte % 29 : Math.floor(29 * byte / 256);
+          return mod(sign === "minus" ? v + key : v - key);
+        });
+        const plantedResult = scan(phrase22, planted, projection, sign, reverse);
+        assert.equal(plantedResult.bestMatches, 22);
+        assert(plantedResult.firstBestOffsets.includes(3301));
+        results.push({red13, extended22, plantedMatched: plantedResult.bestMatches});
+      }
+    }
+  }
+  assert.equal(results.length, 8);
+  return {
+    premise: "Signed 2016 EPIPHANY SEEKS, optionally followed by THE DEVOTED, is a candidate p0 opening crib, not authenticated as LP2 plaintext",
+    originalFBypassContradiction: {printedP0Index7: 0, proposedPlainIndex7: 26},
+    originalTotalOffsetsPerMode: jpeg.length,
+    conditionalCribTests: results.length * 2 * jpeg.length,
+    plantedControls: results.length,
+    results
+  };
+}
+
 function main() {
   assert.equal(jpeg.length, 64167);
   const gitBlob = crypto.createHash("sha1").update(Buffer.concat([
@@ -173,6 +259,8 @@ function main() {
   const jpegHashMatch = crypto.createHash("sha512").update(jpeg).digest("hex") === target;
   assert.equal(jpegHashMatch, false);
 
+  const signed2016Crib = signed2016OpeningCribGate();
+
   const summary = {
     source: "2013 recovered gematria.jpg, prior-stage XOR output; new direct-key interpretation unauthenticated",
     sourceGitBlob: gitBlob,
@@ -187,6 +275,7 @@ function main() {
     base29XorCases: xorCandidates,
     p56SHA512WholeJPEGMatch: jpegHashMatch,
     nativeSolvedReroundtrips: additive.length + xorCandidates.length,
+    signed2016Crib,
     decision: "No native-GP original plaintext or recognizable binary format recovered from the source JPEG as a direct additive or XOR keystream. This does not exclude a separately sourced KDF, hidden start offset, or different cipher."
   };
   console.log(JSON.stringify(summary, null, 2));
