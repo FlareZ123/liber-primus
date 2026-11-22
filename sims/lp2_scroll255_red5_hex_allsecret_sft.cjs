@@ -100,6 +100,40 @@ for (let offset = 0; offset < 5; offset++) {
   }
 }
 assert.equal(rotationsWithTwo, 1);
+// An equally source-native five-page rival resets the five-word key
+// at each physical page boundary. Preserve original cross-page whole words;
+// assign a complete word by either the page where it starts or where it ends.
+// Neither alternate reset repairs all three original source collisions.
+const pageRuneLength = corpus.pages.slice(3, 8).map(p => p.indices.length);
+assert.deepEqual(pageRuneLength, [217, 261, 263, 196, 208]);
+const cuts = [0];
+for (const n of pageRuneLength) cuts.push(cuts.at(-1) + n);
+function pageOfRune(offset) {
+  return cuts.findIndex((v, i) => i < 5 && v <= offset && offset < cuts[i + 1]);
+}
+const pageStartCounter = Array(5).fill(0), pageEndCounter = Array(5).fill(0);
+const startOrd = [], endOrd = [];
+for (const w of words) {
+  const sp = pageOfRune(w.start), ep = pageOfRune(w.end);
+  assert(sp >= 0 && ep >= 0);
+  startOrd.push(pageStartCounter[sp]++);
+  endOrd.push(pageEndCounter[ep]++);
+}
+assert.deepEqual(pageStartCounter, [44,60,58,44,49]);
+assert.deepEqual(pageEndCounter, [43,60,58,44,50]);
+const pageResetBest = {};
+for (const [name, phase] of Object.entries({start:startOrd, end:endOrd})) {
+  let best = 0;
+  for (const sign of [-1, 1]) for (let offset = 0; offset < 5; offset++) {
+    const keyless = ciphertext.map((y, i) =>
+      mod(y - sign * five[(phase[i] + offset) % 5]));
+    const n = repeated.filter(([a, b]) => keyless[a] === keyless[b]).length;
+    best = Math.max(best, n);
+  }
+  assert.equal(best, 1);
+  pageResetBest[name] = best;
+}
+
 
 /**
  * Most favorable possible deterministic arbitrary secret lookup over input
@@ -191,6 +225,7 @@ console.log(JSON.stringify({
   source:"Original p3-p8, exact p7 five red-word GP-index product key",
   red5:five, originalDifferences:rawDifferences, correctedMatches,
   directP50ByteConsumers:byteConsumers,
+  pageResetBest,
   sourceWordCount:words.length, page8RuneCount:ciphertext.length,
   arbitrarySecretLookupBounds:output,
   plant:"every feature's 255-position positive reaches 255/255"
