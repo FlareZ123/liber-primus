@@ -239,6 +239,7 @@ for (let trial = 0; trial < fixedTrials; trial++) {
  * In each shuffled original table, examine all 1,024 offset/radix/sign
  * interpretations, charging the entire search rather than just offset76.
  */
+for (let i = 0; i < 256; i++) index[i] = i;
 seed = 0x330125601;
 const globalTrials = 1800;
 let globalTail = 0;
