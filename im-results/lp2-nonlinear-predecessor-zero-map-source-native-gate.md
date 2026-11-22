@@ -1,6 +1,6 @@
-# Nonlinear predecessor zero-map: full-secret original LP2 exclusion
+# Nonlinear predecessor zero-map: all 28 GP29 powers and source-derived maps
 
-**Classification: intermediate, source-conditioned, key-independent constraint.** No unknown LP2 plaintext, key, or author-selected cipher is recovered. This result extends the earlier exact-equality delta model to five **distinct fixed predecessor maps**. It does not exclude general nonlinear feedback, a freely chosen predictor, or ciphertext whose printed words are not plaintext word boundaries.
+**Classification: intermediate, source-conditioned, key-independent constraint.** No unknown LP2 plaintext, key, or author-selected cipher is recovered. This result extends the earlier equality-preserving delta model to **every one of the 28 field-power predecessor maps** \(m(x)=x^e\), plus three independent source-derived prime/totient/DH maps. It does not exclude general nonlinear feedback, a freely chosen predictor outside these families, or ciphertext whose printed words are not plaintext word boundaries.
 
 ## Reversible proposed cipher and exact zero observable
 
@@ -34,7 +34,7 @@ The source candidates are five *fixed* 29-entry functions of the previous plaint
 | (x^{27}\pmod{29}) | An inverse-like nontrivial field power; not an authenticated instruction |
 | (8x+19\pmod{29}) | The p28 candidate DH packet's visible state fields (A=8,B=19) |
 
-The GP prime chart and solved p56 totient are established. The p28 DH values and power choices are investigator interpretations; they do **not** make this whole-cipher recurrence a historical Cicada instruction. There is no fitted parameter, postselected orientation, ciphertext-dependent zero-map update, or ad hoc exemption.
+The GP prime chart and solved p56 totient are established. The p28 DH values and power choices are investigator interpretations; they do **not** make this whole-cipher recurrence a historical Cicada instruction. There is no fitted positionwise key, postselected orientation, ciphertext-dependent zero-map update, or ad hoc exemption. The exhaustive power-family analysis allows a **single secret exponent chosen after seeing the ciphertext**: its source-conditioned rarity bound is reported with an explicit 28-way union correction.
 
 ## Actual original-input observable
 
@@ -55,6 +55,8 @@ For each proposed (m), the original cipher necessarily demands **exactly 63** pl
 | GP exponent27 | 185.787 | 146.384 | 159.124 | **−13.85** |
 | DH-affine 8,19 | 129.715 | 103.845 | 92.585 | **−2.38** |
 
+**Complete GP29 power-family decision.** Independently evaluate every exponent e from1 through28 with the same 34 original word/page masks and each of the three native-GP references. Of all **84** combinations, the *single most permissive* is exponent **e=21** against Gibran: it predicts **134.4902** zero-step plaintext events, compared with the original ciphertext requirement **63**, and yields rigorous log10 lower-tail upper bound **−10.7315**. Even granting a cipher designer any of the 28 field exponents after inspection, the simple union bound is at most **28 × 10^(−10.7315) < 5.2 × 10^(−10)** under that explicit fixed source-word sampling model. The Shakespeare and Emerson controls reject the entire 28-power family by stronger individual bounds. All 28 synthetic native-English original-layout plants independently decode and re-encrypt **12,956/12,956** symbols under position-varying secret multipliers. Thus no unknown power exponent or hidden per-rune key schedule rescues the stated native-English source model.
+
 The tail values use a mathematically explicit Chernoff bound optimized over positive tilts. Their probability model is **only** independent with-replacement source-English whole-word sampling matched to the manuscript's 34 exact length/page masks. They are *not* the probability Cicada used any particular cryptosystem, nor are they valid for other languages, deliberately engineered unnatural prose, or words transformed before encryption. The DH-affine candidate is substantially less disfavored under Emerson than the others, yet it does not produce an original plaintext receiver.
 
 ## The original p27 doublet-bearing long-word discriminator
@@ -67,8 +69,8 @@ Its complete within-word equal-output mask has events at zero-based word positio
 
 ## Positive original-layout inverse and scope
 
-The [single-file Node 22 source-exact reproducer](../sims/lp2_nonlinear_zero_map_allsecret_source_gate_sft.cjs) decodes and re-encrypts a 12,956-rune Shakespeare-derived **native GP English plant** for **each** of the five maps. Each plant keeps all 2,896 original word lengths, original 55 page resets and 32 carries, with an independently changing nonzero multiplier at every eligible original position. All 12,956 decoded runes exactly match their source inputs, and the zero-step equivalence is checked at every within-page successor. The same script asserts all original counts, p27 word, 890-type mask obstruction, each fixed expected value, and every tail bound.
+The [single-file Node 22 source-exact reproducer](../sims/lp2_nonlinear_zero_map_allsecret_source_gate_sft.cjs) decodes and re-encrypts a 12,956-rune Shakespeare-derived **native GP English plant** for **each** of the five illustrative maps and **every** field-power exponent1–28. Each plant keeps all 2,896 original word lengths, original 55 page resets and 32 carries, with an independently changing nonzero multiplier at every eligible original position. All 12,956 decoded runes exactly match their source inputs, and the zero-step equivalence is checked at every within-page successor. The same script asserts all original counts, p27 word, 890-type mask obstruction, each fixed expected value, and every tail bound.
 
-**Decision for Director #2083:** retire these five specific fixed nonlinear predecessor maps as explanations for **ordinary native-GP English while respecting printed word breaks**. This is an algebraic family-wide exclusion across all position-dependent keys for those maps, more general than previous (m(x)=x) or fixed-EA-marker tests. A productive successor needs source evidence selecting a *different exact predictor* and a key-clock/initialization rule; expanding ad hoc function families or tuning English register scores alone would not unlock the ciphertext.
+**Decision for Director #2083:** retire the complete 28-power predecessor-map family and the three independently specified GP prime, totient and DH-affine maps as explanations for **ordinary native-GP English while respecting printed word breaks**. This is an algebraic family-wide exclusion across all position-dependent keys for those maps, more general than previous (m(x)=x) or fixed-EA-marker tests. A productive successor needs source evidence selecting a *different exact predictor* and a key-clock/initialization rule; expanding ad hoc function families or tuning English register scores alone would not unlock the ciphertext.
 
 The unconditional fact is the zero-step equivalence under the written recurrence. The native-English discrimination and finite dictionary coverage are explicitly **conditional**. No actual unknown plaintext, source-selected key, or solved page has been established.
