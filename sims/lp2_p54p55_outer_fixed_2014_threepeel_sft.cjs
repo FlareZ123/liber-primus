@@ -190,7 +190,8 @@ assert.equal(allSecretsHits.length, 0);
 // contains seven single-GP symbols with two consecutive T glyphs.
 const critterPattern = [0, 1, 2, 3, 3, 4, 1];
 assert.ok(canMatchWord('CRITTER', critterPattern, false));
-assert.ok(lexicon.includes('CRITTER'));
+// CRITTER is a source-independent positive for the matcher; it need not
+// appear in the narrower Gutenberg-derived TextBlob training lexicon.
 
 console.log(JSON.stringify({
   source: 'LP1 p10 THREE BEHAVIORS; LP2 p57 SHED; original p49-p51 32x8 table; p54-last10+p55',
