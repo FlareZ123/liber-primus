@@ -17,7 +17,9 @@ const read=filename=>fs.readFileSync(path.join(root,filename));
 function gitBlobId(data) {
   return crypto.createHash("sha1").update(Buffer.from("blob "+data.length+"\0")).update(data).digest("hex");
 }
-const htmlBytes=read("resources/historical/cicada2014-stage10-original-form.html");
+/** @param {string} filename */
+const readOriginalText=filename=>Buffer.from(read(filename).toString("utf8").replace(/\r\n/gu,"\n"),"utf8");
+const htmlBytes=readOriginalText("resources/historical/cicada2014-stage10-original-form.html");
 assert.equal(htmlBytes.length,1943);
 assert.equal(gitBlobId(htmlBytes),"9d7c35bc8fff24c8079668c9d070d98277502f7c");
 const html=htmlBytes.toString("utf8");
@@ -36,7 +38,7 @@ assert.deepEqual(fields,["53301","71033","51033"]);
 assert.match(html,/<input type="text" name="onion"\s*\/>/iu);
 assert.match(html,/<input type="submit" value="Submit"\s*\/>/iu);
 assert.doesNotMatch(html,/<script\b|onsubmit\s*=|onload\s*=|<iframe\b/iu);
-const response=read("resources/external/2014-stage10-post-square-response.html");
+const response=readOriginalText("resources/external/2014-stage10-post-square-response.html");
 assert.equal(gitBlobId(response),"d71303af76016c8e88ed5dcc8a18b08e6276a437");
 const delivered=[...response.toString("utf8").matchAll(/<img\s+src="\/([^"]+)"\s*\/>/giu)].map(m=>m[1]);
 assert.deepEqual(delivered,["107.jpg","167.jpg","229.jpg"]);
@@ -50,7 +52,7 @@ const verifiedImages=delivered.map((name,i)=>{
   assert.equal(digest,expected);
   return {stage10Image:name,identicalOriginalLP1Page:targets[i],gitBlobSha1:digest};
 });
-const stage11Bytes=read("resources/historical/cicada2014-onion7-original-index.html");
+const stage11Bytes=readOriginalText("resources/historical/cicada2014-onion7-original-index.html");
 assert.equal(stage11Bytes.length,1640);
 assert.equal(gitBlobId(stage11Bytes),"303db130705f0ef9be2a738f4336d5cfcebde80c");
 const stage11=stage11Bytes.toString("utf8");
