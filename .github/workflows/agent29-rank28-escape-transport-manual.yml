@@ -21,3 +21,8 @@ jobs:
         run: |
           node --check sims/lp2_p50_char59_dual_gp29_original_sft.cjs
           node sims/lp2_p50_char59_dual_gp29_original_sft.cjs
+
+      - name: Original p50 literal-x four-erasure independent signed-H and p39-G reconstruction
+        run: |
+          node --check sims/lp2_p50_literal_x_four_erasure_source_sft.cjs
+          node sims/lp2_p50_literal_x_four_erasure_source_sft.cjs
