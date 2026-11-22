@@ -179,7 +179,8 @@ function plantedPositive(chapters, source) {
     offset += ch.body.length;
   });
   assert.deepEqual(reconstructed, plaintext);
-  const cap = capacity(mergeRows(rows));
+  const caps = rows.map(capacity);
+  const cap = { b1: caps.reduce((n, x) => n + x.b1, 0), b5: caps.reduce((n, x) => n + x.b5, 0) };
   const freq = Array(29).fill(0);
   for (const p of plaintext) freq[p] += 1;
   const sorted = freq.sort((a, b) => b - a);
