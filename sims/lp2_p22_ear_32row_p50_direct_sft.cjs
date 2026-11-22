@@ -74,6 +74,21 @@ assert.equal(words.length, 32);
 assert.deepEqual(pages.slice(0, 58).flatMap((page, i) =>
   visibleFragments(page).length === 32 ? [i] : []), [22]);
 
+// The visually selected unique ᛠᛠ word has an exact cross-original
+// numerical link: GP0(ᛟᛠᛠᚪ)=102 and p50's flattened byte[102]=32
+// =GP0(EAR)=the 32 local printed p22 fragments and 32 p50 rows.
+// This equality alone supplies neither a cipher operation nor a target.
+assert.deepEqual([...words[23]].map(ch=>runeNumber.get(ch)),[22,28,28,24]);
+const markedWordSum=[...words[23]].reduce((n,ch)=>n+runeNumber.get(ch),0);
+assert.equal(markedWordSum,102);
+const flattenedTable=grid.byte_rows.flat();
+assert.equal(flattenedTable[markedWordSum],32);
+assert.deepEqual(flattenedTable.flatMap((value,i)=>value===32?[i]:[]),[102,110,237]);
+const localIndexMatches=words.flatMap((w,i)=>{
+  const n=[...w].reduce((sum,ch)=>sum+runeNumber.get(ch),0);
+  return n<256 && flattenedTable[n]===32 ? [i] : [];
+});
+assert.deepEqual(localIndexMatches,[23]);
 const incoming = visibleFragments(pages[21]).at(-1);
 assert.equal([...incoming].length, 8);
 assert.equal([...words[0]].length, 2);
@@ -100,6 +115,7 @@ assert.ok(results.every(r => !r.whollyPrintable));
 console.log(JSON.stringify({
   source: { page22Runes: 131, unique32VisibleFragments: true, page32Runes: 121,
     page22Doublets, completeEarDoublets,
+    earMarkedWord: {zeroBasedWordIndex:23, wordGPsum:markedWordSum, p50ByteAtWordSum:flattenedTable[markedWordSum], localIndexMatches},
     p50Rows: 32, p50Columns: 8, namedRuneOrdinalSums: names },
   directOneCellPerRow: results,
   scope: 'Tests 32-byte direct ASCII readouts only. No plaintext, creator-selected key, or cipher established.'
