@@ -184,9 +184,31 @@ function donorWindows(a) {
     max: values[values.length - 1],
     atLeastOriginal: values.filter(v => v >= adjacency(words).ratio).length };
 }
+const {stats: grammarStats, rankMatch} = require("./lp2_wordlength_order_grammar_sft.cjs");
+const originalChi = grammarStats(words).chi;
+const orderedOld = [];
+const targetSorted = words.slice().sort((a, b) => a - b);
+for (let start = 0; start + words.length <= oldEnglish.length; start += 97) {
+  const match = rankMatch(oldEnglish.slice(start, start + words.length), targetSorted);
+  orderedOld.push({chi: grammarStats(match).chi, shortPairRatio: adjacency(match).ratio});
+}
+const oldEnglishHistogramMatched = {
+  windows: orderedOld.length,
+  originalChi,
+  originalShortPairRatio: adjacency(words).ratio,
+  chiBelowOriginal: orderedOld.filter(x => x.chi <= originalChi).length,
+  shortRatioBelowOriginal: orderedOld.filter(x => x.shortPairRatio <= adjacency(words).ratio).length,
+  minChi: Math.min(...orderedOld.map(x => x.chi)),
+  minShortPairRatio: Math.min(...orderedOld.map(x => x.shortPairRatio))
+};
+assert.equal(oldEnglishHistogramMatched.windows, 83);
+assert.equal(oldEnglishHistogramMatched.chiBelowOriginal, 6);
+assert.equal(oldEnglishHistogramMatched.shortRatioBelowOriginal, 0);
+
 const result = {
   source: "LP2 original 55 rune-bearing physical pages, 2014 original text and pinned donor corpora",
   original: { global: adjacency(words), punctuation: sentenceMetrics(full) },
+  oldEnglishHistogramMatched,
   authenticSolved: sentenceMetrics(solved),
   donorWindows: Object.fromEntries(Object.entries(donors)
     .map(([name, lengths]) => [name, donorWindows(lengths)])),
