@@ -63,6 +63,21 @@ Each output rune reverses exactly to the original ciphertext by the opposite sig
 
 For the full **16 orientation/ring/sign** family, whole-book-area GP29 IoC ranges only **0.03426196311–0.03460110220**; the greatest is GP28/F-literal subtract with the mirrored left+2/right−2 walk. Every variant retains the uniform-looking original ciphertext distribution and remains far below the genuine solved p57 GP29 IoC `0.0627099664`. The GP29-subtract p40 prefix is `Y-D-IA-AE-W-EO-O-X-IA-F-T-EA-TH-C-P-I-S-U-F-IA`, without intelligible plaintext. No direct candidate recovers coherent previously unknown language. The [new Node22 source-loaded complete original SFT](../sims/lp2_floral_branch22_two_row_source_receiver_sft.cjs) asserts exact table bytes/digest, unique row coverage, all sixteen no-plaintext aggregate results, complete original replay, and full solved-p57 synthetic plant recovery.
 
+## Original source-static flower as one fixed 16-byte key
+
+The exact same flower drawing repeats across all sixteen p40–55 plates. An independent, simpler interpretation does **not need a page-dependent key schedule**: the stem-origin clockwise mask 22 and unchanged right mask31 may select **one 16-byte key**, consisting of **original row22 concatenated with original row31**, namely `eb83a6af9028a751719eace6b424bd50`. Its uninterrupted use over all p40–55 avoids the arbitrary `±2` row stride and avoids assigning a separate key to the runeless p50 page. Its weakness is equally important: it leaves 240 printed numeric table bytes unexplained, and no source instruction calls this a key.
+
+Test the same two reversible native GP ring hypotheses with the first-party p56-inspired F-transparent variant. Add the two genuine layout clocks as the only choice: **reset at each of the fifteen rune-bearing original flower pages** or **carry the key clock uninterrupted through all 3,316 GP runes**. Both cipher signs are tested. The resulting **eight** exact source-key decoders reproduce all original source runes when reversed and recover independent synthetic solved-p57 rune plants. Whole-group IoCs range from **0.03440260394777** to **0.03465168195886**, and no decoded original passage is intelligible GP prose. The highest IoC is GP29 addition with a continuous clock, still essentially unmodified original ciphertext.
+
+| Ring, cipher sign | Reset at physical page | Continuous across flower pages |
+| --- | ---: | ---: |
+| GP29 subtract | 0.034559438 | 0.034477928 |
+| GP29 add | 0.034440630 | 0.034651682 |
+| GP28 transparent-F subtract | 0.034402604 | 0.034443359 |
+| GP28 transparent-F add | 0.034453911 | 0.034406789 |
+
+These are complete original-input negative results for one frozen static, source-origin-key hypothesis. Both true reading clocks preserve p50's **zero-rune** position without inventing a tick for its table contents. All recovered outputs were scored without tuning a key phase, row order, language reference or additional decryption. [Read-only source-loaded, planted-roundtrip CommonJS test](../sims/lp2_floral_branch22_static_two_row_key_source_sft.cjs). The evidence now disfavors the **simplest reversible GP29/GP28 use** of row22+31 as either a static or a page-rotating key, but cannot rule out a separately authored decoder instruction.
+
 ## Direct self-contained use of the otherwise orphaned p50 record
 
 A stronger *internal-consumption* rival to the per-page GP-rune receiver grants the rune-free **p50 itself the master key role**. Under each of the four minimal **±2** paired-row walks, take the one 16-byte record allocated to physical p50 (`i=10`), and treat the other fifteen 16-byte records as an ordered **240-byte ciphertext**. The simplest independently decrypted-block operation available in 2014 is **AES-128 ECB without padding or an IV**. This makes the 256 original bytes a completely self-contained candidate: 16 key bytes and 240 ciphertext bytes. There is still **no creator-authenticated command to use AES or ECB**.
