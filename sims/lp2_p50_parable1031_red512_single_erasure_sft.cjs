@@ -226,6 +226,61 @@ assert.equal(checksumPassingMasks.length, 5);
 assert.deepEqual(dualPolynomialPassingMasks, [0xfc7, 0xfcf]);
 assert.deepEqual(jointPassingMasks, [0xfc7]);
 
+
+// Full-codeword suffix recovery reaches seven bytes, but NOT eight.
+// The only inputs used to choose candidates are the unchanged known prefix,
+// older exact factor F and H2013/G39 quadratics, and the new 1031/512 check.
+// The actual original suffix is touched only by post-recovery assertions.
+/** @param {number} suffixSize @returns {{tested: number, matches: string[]}} */
+function recoverSuffix(suffixSize) {
+  const prefix = original.slice(0, 256 - suffixSize);
+  const prefixInteger = prefix.reduce((a, v) => a * 256n + BigInt(v), 0n);
+  const shift = 256n ** BigInt(suffixSize);
+  const requiredF = modulo(-prefixInteger * shift, F);
+  const requiredM = modulo(target - prefixInteger * shift, M);
+  const first = requiredF + F * modulo((requiredM - requiredF) * inverseFmodM, M);
+  const ceiling = 1n << BigInt(8 * suffixSize);
+  const knownPlusZero = prefix.concat(Array(suffixSize).fill(0));
+  const hBase = polyRemainderGF29(knownPlusZero, h2013);
+  const gBase = polyRemainderGF29(knownPlusZero, g39);
+  const hWeights = [];
+  const gWeights = [];
+  for (let j = 0; j < suffixSize; j++) {
+    const unit = Array(256).fill(0);
+    unit[256 - suffixSize + j] = 1;
+    hWeights.push(polyRemainderGF29(unit, h2013));
+    gWeights.push(polyRemainderGF29(unit, g39));
+  }
+  let tested = 0;
+  /** @type {string[]} */
+  const matches = [];
+  for (let candidate = first; candidate < ceiling; candidate += lcm) {
+    tested++;
+    const values = Array.from({ length: suffixSize }, (_, j) =>
+      Number((candidate >> BigInt(8 * (suffixSize - j - 1))) & 255n));
+    let h0 = hBase[0], h1 = hBase[1], g0 = gBase[0], g1 = gBase[1];
+    for (let j = 0; j < suffixSize; j++) {
+      const value = values[j] % 29;
+      h0 += value * hWeights[j][0];
+      h1 += value * hWeights[j][1];
+      g0 += value * gWeights[j][0];
+      g1 += value * gWeights[j][1];
+    }
+    if (h0 % 29 === 0 && h1 % 29 === 0 && g0 % 29 === 0 && g1 % 29 === 0)
+      matches.push(candidate.toString(16).padStart(2 * suffixSize, '0'));
+  }
+  return { tested, matches };
+}
+const recovered7 = recoverSuffix(7);
+assert.equal(recovered7.tested, 1913);
+assert.deepEqual(recovered7.matches, ['9eace6b424bd50']);
+assert.equal(Buffer.from(original.slice(249)).toString('hex'), recovered7.matches[0]);
+const recovered8 = recoverSuffix(8);
+assert.equal(recovered8.tested, 489815);
+assert.equal(recovered8.matches.length, 24);
+assert.ok(recovered8.matches.includes('719eace6b424bd50'));
+assert.equal(Buffer.from(original.slice(248)).toString('hex'), '719eace6b424bd50');
+
 console.log(JSON.stringify({
   originalBytes: original.length,
   printedCharacters: flat.join('').length,
@@ -238,6 +293,8 @@ console.log(JSON.stringify({
   readings: alternatives,
   recoveredIndependentErasures: recovered,
   historic2014Ambiguity: { candidateReadings: 4096, originalWrongBytes: 9, checksumSurvivors: checksumPassingMasks.length, priorGF29FactorSurvivors: dualPolynomialPassingMasks.map((m) => m.toString(16)), jointSurvivor: jointPassingMasks[0].toString(16), correctedOriginalCells: historicChoices.length },
+  sevenByteSuffix: recovered7,
+  eightByteAmbiguity: {tested: recovered8.tested, candidateCount: recovered8.matches.length, originalSurvives: recovered8.matches.includes('719eace6b424bd50')},
   sixByteSuffix: { candidateCountAfterIntegerCongruences: lastSixCandidates.length, uniqueAfterOriginalTwoGF29Quadratics: fullConstraints[0].suffix, candidates: lastSixCandidates },
   singleByteErrorsProvablyDetected: true,
   claim: 'Conditional arithmetic codeword; NO authenticated Cicada checksum or unknown plaintext',
