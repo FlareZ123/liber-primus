@@ -73,11 +73,32 @@ for (const sign of [-1,1]) {
   assert.deepEqual(decode(escaped, sourceSeed, sign), special);
   assert.equal(escaped[12], escaped[11]);
 }
+const convergenceBySign = [];
+for (const sign of [-1,1]) {
+  let states = Array.from({length:243}, (_, i) => i);
+  let previous = preceding, firstConvergence = -1;
+  for (let i = 0; i < cipher.length; i++) {
+    const difference = mod(cipher[i] - previous, 29);
+    previous = cipher[i];
+    states = states.map(state => {
+      const p = difference === 0 ? 28 :
+        mod(difference - 1 + sign * table[state], 28);
+      return (state % 81) * 3 + p % 3;
+    });
+    if (firstConvergence < 0 && states.every(s => s === states[0]))
+      firstConvergence = i + 1;
+  }
+  convergenceBySign.push({sign,firstConvergence});
+}
+assert.deepEqual(convergenceBySign, [
+  {sign:-1, firstConvergence:428}, {sign:1, firstConvergence:1512}
+]);
+
 results.sort((a,b)=>b.wholeIoC-a.wholeIoC);
 assert.equal(results[0].wholeIoC < 0.036, true);
 assert.equal(results.at(-1).wholeIoC > 0.035, true);
 assert.equal(results.every(x=>x.escapes===73), true);
 console.log(JSON.stringify({sourceSeed,sourceSeedResults:results.filter(x=>x.seed===sourceSeed),
   maxIoC:results[0],minIoC:results.at(-1),nativeSolvedP57IoC:ioc(solved),
-  originalRunes:cipher.length,candidateCount:results.length},null,2));
+  originalRunes:cipher.length,candidateCount:results.length,convergenceBySign},null,2));
 console.log('PASS: original candidate inverses remain nonprose; solved-p57 and escape plants recover.');
