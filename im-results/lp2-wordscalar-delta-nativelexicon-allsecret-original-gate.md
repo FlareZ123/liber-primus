@@ -42,6 +42,20 @@ Here **carry** means the original first rune of a printed word subtracts the pre
 
 **Full-length period-five planted positive:** The script selects a genuine Gibran-native dictionary word for *each* of the original 2,896 GP word-length slots, reconstitutes exactly **12,956 source-shaped native GP rune positions**, encrypts using a distinct nonzero secret multiplier for every one of the five word-local phases, and checks the original-register phasewise inverse. All **1,132/1,132** planted words of GP length≥5 are discoverable without any secret key, and the independent known-key decoder reverses each of the 12,956 planted ciphertext symbols exactly. The same original parser checks that original rune concatenation equals the canonical physical-page corpus byte for byte after transcription normalization.
 
+## Separate native-Latin vocabulary control (22 November)
+
+The same exact, fully secret-key invariant was also applied against the independently sourced **Latin Vulgate New Testament** word corpus, already encoded in genuine GP29 rune indices at [`latin-vulgate-gp-wholewords.txt`](../resources/control/latin-vulgate-gp-wholewords.txt). The pinned resource contains **39,835 GP-native word tokens with 7,305 distinct exact GP-rune spellings**. This is a test of *another plausible manuscript language*, with no English spelling conversion or selection of candidate keys.
+
+| Per-original-word arbitrary private phase keys | Compatible original long Latin words, carry predecessor | Compatible original long Latin words, word-reset |
+| ---: | ---: | ---: |
+| t=1 | **0/109** GP length≥10, **0/1,132** length≥5 | **0/109** length≥10, **0/1,132** length≥5 |
+| t=2 | **0/109** length≥10, 16/1,132 length≥5 | **0/109** length≥10, 8/1,132 length≥5 |
+| t=3 | **0/109** length≥10, 172/1,132 length≥5 | **0/109** length≥10, 182/1,132 length≥5 |
+| t=4 | **0/109** length≥10, 472/1,132 length≥5 | **0/109** length≥10, 454/1,132 length≥5 |
+| t=5 | **0/109** length≥10, 702/1,132 length≥5 | **0/109** length≥10, 682/1,132 length≥5 |
+
+This specifically precludes the tempting explanation that the native-English negative was caused solely by **Latin plaintext**. The test remains conditional on Latin words represented by this pinned Vulgate vocabulary, intact printed word boundaries and these exact period1..5 word-local multiplier laws. It does not exclude other Latin writing, resegmented/compressed content or different cryptographic mechanisms. The updated CJS contains both dictionaries and validates these exact entire-source counts; Windows Node22 rerun [45052716571](https://github.com/FlareZ123/liber-primus/actions/runs/45052716571).
+
 ## Next cryptanalytic decision
 
 This rejects a materially large, even *unconstrained-key*, periodic within-word extension of the naturally anti-repeating GP29 predecessor cipher. Selecting a key from p7/p15/p50 prime operands would narrow the keyspace even further and cannot repair a mathematical signature mismatch. Most importantly, the source's fifth-back excess does **not** make a five-phase *multiplicative ciphertext-step cipher with intact English words* sufficient to recover plaintext: all 109 longest printed words violate its necessary native-word signature.
