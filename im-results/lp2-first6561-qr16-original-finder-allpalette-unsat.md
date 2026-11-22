@@ -1,42 +1,42 @@
-# Original 81² LP2 register cannot be a literal QR Code version 16 under any fixed rune-bit palette
+# Literal QR Model2 version 16 is impossible on LP2's first 81² runes, even with word-local secret palettes
 
-**Agent40 / Director #2314, 22 November 2026. Classification: exact source-input exclusion of one complete standardized binary-decoding architecture. No unknown plaintext or destination recovered.**
+**Agent40, 22 November 2026. Established conditional architecture exclusion with exact two-cell contradictions and a genuine complete QR positive. Zero unknown plaintext.** The result applies to the original 6,561-rune contiguous register, original order and eight square isometries. It makes no statement about original positions after an externally specified general permutation, nonlinear pre-decryption or a palette that can change within one original word.
 
-## Concrete standard and why this matters
+## Original source and human-solvable hypothesis
 
-The first **6,561 unchanged rune glyphs** in the canonical original LP2 ciphertext occupy an exact **81×81** row-major register, as established in [the source bookend study](bookend-81x81-80x80-ordinal-insertion.md). DENSO WAVE's [official QR version table](https://www.qrcode.com/en/about/versionPage/versionPage11_20.html) identifies **81×81 as QR Model2 version 16**, and the original puzzle used machine-readable codes elsewhere. This justifies a finite, high-information alternative to guessing further GP29 keys.
+The original LP2 unknown pages p0–55 contain 12,956 GP29 rune instances, and the very first **6,561 = 81²** are a genuine contiguous block, independent of OCR or layout. A standard QR Model2 **version16** uses **81×81 modules**, as [DENSO WAVE's official QR reference](https://www.qrcode.com/en/about/versionPage/versionPage11_20.html) confirms. Since the Cicada series previously used machine-readable codes, a literal runic QR register is a finite alternative with a recognizable success event: valid fixed finder symbols followed by a standards-decodable QR payload.
 
-A QR v16 symbol necessarily contains **three 7×7 finder targets with one-module light separators**, placed at top-left, top-right and bottom-left. Each 9×9 stencil is clipped at the outer image border, leaving exactly **64 required cells** per corner, **192 required binary cells overall**. An exact coordinate implementation follows the [Nayuki QR generator](https://github.com/nayuki/QR-Code-generator/blob/master/python/qrcodegen.py), whose finder rule assigns black to Chebyshev distances 0, 1 and 3 from the center and white to distances 2 and 4, with out-of-bounds cells clipped.
+Every version16 QR image must have three immutable 7×7 black/white finder targets and one-module white separators. Their standard clipped 9×9 footprints contribute **192 exact source-imposed binary module requirements**, irrespective of encoding, data mask, version BCH, format BCH or Reed–Solomon parity. The test uses [Nayuki's standards-implementing QR finder-distance rule](https://github.com/nayuki/QR-Code-generator/blob/master/python/qrcodegen.py): within each corner, black when maximum coordinate distance from target center is 0, 1 or 3, white when 2 or 4; cells outside 81×81 are discarded.
 
-This test grants the adversary **every one of the 2²⁹ unknown mappings of the 29 original rune identities to a binary dark/light value**, subject only to **one globally fixed mapping**, plus all **eight dihedral rotations and reflections** of the 81×81 original raster. It preserves original rune identities, order, position and length, without requiring visible image smoothness or readable language.
+The experiment grants the hypothetical decoder an **arbitrary secret binary mapping for each of the 29 GP rune identities**, then repeats under two more permissive model classes: a completely independent **29-to-binary palette for every printed original page**, and a completely independent **29-to-binary palette for every printed original word**. Thus no fixed color class, page key or original-word key is assumed known. The actual printed word scopes are parsed from `resources/liber-primus/lp2-transcription.txt` with original hyphen, period and structural markers, preserving split-line word continuations; its first **6,561 rune identities are exactly equal** to `lp2-corpus.json` in original order, with first-register final word ID **1505**. Real original page identities come from corpus page-length records.
 
-## Exact original contradiction
+For each of the eight full D4 square symmetries, a palette can represent the QR only if each identical original rune within its permitted key scope receives **one** finder-required color. The proof records explicit two-observation witnesses whenever a rune is required to be both black and white within the same key scope.
 
-For each orientation the SFT traverses all 192 standard-required cells, records the first black/white assignment forced for each original GP29 symbol, then detects when the *same symbol* is required to have the opposite value. This elementary equality-constraint contradiction is stronger than an approximate QR finder fit or a score. Neither QR format BCH, version BCH, a data mask nor Reed–Solomon can repair it, because all of them apply only after the finder targets have been fixed.
+## Exact full-source contradictions
 
-| Transpose | Flip X | Flip Y | Conflicting forced assignments among 192 modules |
-| --- | --- | --- | ---: |
-| No | No | No | **91** |
-| No | No | Yes | **75** |
-| No | Yes | No | **80** |
-| No | Yes | Yes | **67** |
-| Yes | No | No | **79** |
-| Yes | No | Yes | **82** |
-| Yes | Yes | No | **76** |
-| Yes | Yes | Yes | **76** |
+| Raster transform | Secret global palette: conflicts | Independently rekeyed *each original page*: conflicts | Independently rekeyed *each original word*: conflicts |
+| --- | ---: | ---: | ---: |
+| Original orientation | 91 | 43 | **5** |
+| Flip Y | 75 | 40 | **4** |
+| Flip X | 80 | 40 | **3** |
+| Flip X and Y | 67 | 41 | **5** |
+| Transpose | 79 | 44 | **5** |
+| Transpose + flip Y | 82 | 41 | **4** |
+| Transpose + flip X | 76 | 45 | **3** |
+| Transpose + flip X and Y | 76 | 42 | **5** |
 
-All eight orientations use **all 29 original symbol classes** inside the 192 required cells, and every one has a concrete two-module incompatible pair. For example, in the unrotated original reading the **identical GP29 symbol index25** occurs at original global offsets **81 and 84**, corresponding to candidate QR module coordinates **(0,1) and (3,1)**. The first is required to be **black** and the second **white** by the upper-left finder. This single repeated-symbol pair suffices to disprove that orientation under *any* 29-to-binary palette. The SFT retains equally explicit contradictions for the seven other orientations.
+All **24 scoped cases** are decisively inconsistent, with at least **three contradictory forced assignments even after giving every one of the 1,506 printed source words an unrelated secret binary palette**. Every count is an actual original-rune collision on the 192 fixed cells, independently of any candidate plaintext score.
 
-## Standards-compliant positive plant
+A minimal unrotated witness for the global **and page-local** model: original rune index25 occurs at source positions **81 and 84** on physical p0, which QR finder modules (0,1) and (3,1) require to be **black** and **white** respectively. Even fully **word-local** keys fail: original rune index10 occurs **twice within printed original word ID91**, at source offsets **399 and 405**; under the same unrotated QR layout those two cells must have opposite fixed finder colors. The other seven symmetries have their own source-exact same-word contradictions, preserved in SFT output. No choice of the full 29-bit alphabet lookup table, or an independently keyed table per original word, can resolve such a pair.
 
-A real full **version16, ECC-M** QR symbol encoding the independent phrase **`CICADA3301 QR16 CHECK`** was generated with Python's `qrcode` package, given a four-module quiet zone, and decoded back to that exact phrase with OpenCV `QRCodeDetector`. Its 81×81 module payload is packed MSB-first into an 821-byte fixture with SHA256 `15a37d8415b4367abe3a74c5ea5a9a43f5bc523e9fd3eab780d091b0c4310508`. To camouflage the genuine QR image as runic writing, the test uses an arbitrary deterministic assignment of **14 different rune values to dark modules and 15 to light**, ensuring all 29 rune identities occur in the complete plant. The *same* finder-constraint check accepts this planted full real QR with **zero** contradictions, and decoding the 29-valued symbols using that unknown-to-the-checker binary mapping reconstructs **6,561/6,561** original QR bits. This tests the all-secret equality logic against a valid hidden-binary instance.
+## Genuine positive and independent controls
 
-The independent standard source and actual planted payload predate this simulated test, while the binary relabeling itself is an explicitly artificial control. The planted QR's source bytes do not claim to come from Cicada.
+A real standards-valid **version16, ECC-M QR** encoding the unrelated phrase `CICADA3301 QR16 CHECK` was created by the independent Python `qrcode` encoder, shown with four-module quiet zone, and correctly decoded by OpenCV QRCodeDetector. The exact complete 81×81 module grid is stored in an MSB-first 821-byte fixture with SHA256 `15a37d8415b4367abe3a74c5ea5a9a43f5bc523e9fd3eab780d091b0c4310508`. It was camouflaged by replacing black cells with any of 14 labels and white cells with any of 15 labels from the same 29-rune alphabet; **all 29 labels appear**. The identical fixed finder gate accepts the real QR with **zero conflicts**, whether granted global, per-page or per-word lookup tables. A separate inverse of the relabeling exactly reconstructs **6,561/6,561** QR bits. This demonstrates that the check accepts a genuine runic-camouflaged QR payload; its control content is emphatically not Cicada plaintext.
 
-## Result, limitation and disposition
+## Disposition and reproducible implementation
 
-**Decisive no:** the untouched first 6,561 LP2 rune identities cannot be interpreted as a standard QR Model2 version-16 image by *any single stationary rune-to-bit map*, under *any of the eight natural square symmetries*. The contradiction already occurs in the immutable finder/separator modules. A full BCH/RS decoder cannot yield authentic unknown bytes in this model, so there is no useful key or plaintext to promote. This does **not** exclude a variable position-specific palette, a nonlinear changing-state cipher before QR decoding, inserted/remapped runes, a genuine source-selected spatial permutation outside dihedral symmetries, or a separate second register such as ECC200. Those require an independent rule to define before searching.
+**Original model excluded:** the **unaltered** first 6,561 LP2 rune identities are **not** a literal standard QR Model2 version-16 symbol under any globally fixed, original-page-local, or even original-word-local binary encoding, for any of eight image symmetries. This is stronger than a codeword/ECC failure: the mandatory finder cells are already impossible. The original puzzle might still call for a source-defined general spatial rearrangement, stateful palette changing **within** words, or a cryptographic transformation before producing a conventional QR. Those mechanisms need an independent clue; freely choosing them to rescue the rejected model loses the finite original test.
 
-**Executable original-source proof:** [`sims/lp2_first6561_qr16_finder_palette_allsecret_sft.cjs`](../sims/lp2_first6561_qr16_finder_palette_allsecret_sft.cjs), Node 22, no runtime third-party dependencies, read-only. [Source-grounded GitHub Actions regression](https://github.com/FlareZ123/liber-primus/actions/runs/45063642188).
+Reproducer: [`sims/lp2_first6561_qr16_finder_palette_allsecret_sft.cjs`](../sims/lp2_first6561_qr16_finder_palette_allsecret_sft.cjs), read-only Node22 CommonJS, no third-party runtime package. Complete source-original and planted-positive tests **PASS** in [GitHub Actions run 45065825461](https://github.com/FlareZ123/liber-primus/actions/runs/45065825461). Original initial fixed-global subtest also passed [run 45063642188](https://github.com/FlareZ123/liber-primus/actions/runs/45063642188).
 
-**Research choice:** retire the literal QR16 raster plus any secret fixed 29-to-binary encoding. A solver should next choose a genuinely marked reversible spatial transform or a different architectural route, rather than try random rune palettes or field-masked QR guesses on the unchanged original source.
+**Future priority:** seek a genuinely printed/authenticated reversible operation or external byte key. No further literal QR16 alphabet search on the unchanged raster is justified, even under original-page or word rekeying.
