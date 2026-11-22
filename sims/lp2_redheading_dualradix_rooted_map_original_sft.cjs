@@ -267,6 +267,43 @@ const p3Clock56=[false,true].map(ciphertextFSkip=>{
 assert(p3Clock56.every(x=>x.decodedIoC<0.042));
 
 
+
+/* Independently solved p56 is the only original text on which a
+ * hypothesized GLOBAL red-heading→table-key mechanism can be checked
+ * against 85 authenticated plaintext runes. Its cipher heading has
+ * GP0=77 and the two table decoders select native starts142/144.
+ * Test additive signs and key-clock F transparency. This tests a single
+ * human-readable table-consumer grammar, not a page-specific hidden KDF. */
+const sourceP56=gp.pages[56].indices;
+const redP56=sourceP56.slice(0,5).reduce((sum,v)=>sum+v,0);
+assert.equal(redP56,77);
+const directTableConsumer=[];
+for(const [radix,bytes] of [[59,T59],[60,T60]]){
+  const origin=bytes[redP56];
+  assert.equal(origin,radix===59?142:144);
+  for(const sign of [-1,1]){
+    // Positive-control round trip, only the no-skip reversible core.
+    const planted=key56.map((value,i)=>
+      mod29(value-sign*bytes[(origin+i)%256]));
+    assert.deepEqual(planted.map((value,i)=>
+      mod29(value+sign*bytes[(origin+i)%256])),key56);
+    for(const ciphertextFSkip of [false,true]){
+      let clock=0;
+      const candidate=sourceP56.map(value=>{
+        if(ciphertextFSkip&&value===0)return 0;
+        return mod29(value+sign*bytes[(origin+clock++)%256]);
+      });
+      const exact=candidate.filter((v,i)=>v===key56[i]).length;
+      directTableConsumer.push({radix,origin,sign,ciphertextFSkip,
+        matchedKnownPlaintext:exact,total:key56.length,
+        first5:candidate.slice(0,5).map(v=>gp.translit[v]).join('-')});
+    }
+  }
+}
+assert.deepEqual(directTableConsumer.map(row=>row.matchedKnownPlaintext),
+  [3,1,6,3,2,4,3,3]);
+assert(directTableConsumer.every(row=>row.matchedKnownPlaintext<7));
+
 console.log(JSON.stringify({
   status:'Candidate numeric navigation and global base59 root; NO unknown plaintext',
   headings,redSpanSolvedPointers:{sourceSpans:sourceReds.length,base59:redSolved59,base60:redSolved60},
@@ -280,5 +317,6 @@ console.log(JSON.stringify({
   directSolvedPageKeyTransfer:directTransfer,
   p3LinkedP56AuthenticPrimeTotientMechanism:primeSourceInverse,
   p3Table56AsPrimeClock: p3Clock56,
+  knownP56DirectTableConsumer:directTableConsumer,
   nextDecision:'Require an author-selected original-cipher operation to promote navigation'
 },null,2));
