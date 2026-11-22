@@ -98,6 +98,28 @@ assert.deepEqual(signature(p29),{rootValue:0,derivativeAtRoot:0,remainder:[0,0]}
 assert.deepEqual(signature(bytes60),{rootValue:0,derivativeAtRoot:0,remainder:[0,0]});
 assert.deepEqual(signature(bytes59),{rootValue:20,derivativeAtRoot:12,remainder:[12,22]});
 
+// Entire two-source polynomial Euclidean gcd: no other common factor is
+// hidden beyond the printed source red quadratic; base59 loses even that.
+/** @param {number[]} arr @returns {number[]} */
+const strip=arr=>{const a=arr.map(mod);while(a.length&&a[0]===0)a.shift();return a;};
+/** @param {number[]} numerator @param {number[]} divisor @returns {number[]} */
+function modPoly(numerator,divisor){
+  const a=strip(numerator),b=strip(divisor);
+  if(a.length<b.length)return a;
+  return strip(divide(a,b).remainder);
+}
+/** @param {number[]} first @param {number[]} second @returns {number[]} */
+function gcd(first,second){
+  let a=strip(first),b=strip(second);
+  while(b.length){const rem=modPoly(a,b);a=b;b=rem;}
+  const leadInv=inv(a[0]);
+  return a.map(v=>mod(v*leadInv));
+}
+const gcd60=gcd(p29,bytes60);
+const gcd59=gcd(p29,bytes59);
+assert.deepEqual(gcd60,[1,10,25]);
+assert.deepEqual(gcd59,[1]);
+
 // 2-symbol parity append needs no key guessing: exact GF29 linear equations
 // from P(24)=P'(24)=0. An artificial native GP29 payload is 254 symbols,
 // wholly independently selected before the checksum.
@@ -134,6 +156,7 @@ console.log(JSON.stringify({
   lengths:[p29.length,bytes60.length],
   gap21IsThree7Cycles:true,
   source:statuses,
+  polynomialGCD:{base60:gcd60,base59:gcd59},
   nativeGP29Control:{
     dataRuneLength:payload.length,
     checksumSymbols:[u,v2],
