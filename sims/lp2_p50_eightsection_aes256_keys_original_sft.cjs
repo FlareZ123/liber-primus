@@ -120,18 +120,32 @@ function score(r) {
   return r.singletonAI + 3 * r.the + 5 * r.and + r.of + r.to + r.in;
 }
 
+/**
+ * @param {number[]} values Complete GP29 rune sequence.
+ * @returns {number} Exact index of coincidence; independent of word breaks.
+ */
+function coincidence(values) {
+  const counts = Array.from({ length: 29 }, () => 0);
+  for (const v of values) counts[v]++;
+  const total = values.length;
+  return counts.reduce((sum, n) => sum + n * (n - 1), 0) /
+    (total * (total - 1));
+}
+
 const results = [];
 for (const [geometry, candidates] of Object.entries(keys)) {
   for (const order of ['forward', 'reverse']) {
     for (const iv of ['zero', 'section-index']) {
       for (const digits of ['mod29', 'rejection232']) {
         for (const direction of [-1, 1]) {
+          const completePlain = [];
           const rows = cipherSections.map((part, i) => {
             const key = candidates[order === 'forward' ? i : 7 - i];
             const stream = aesDigits(key, i, part.indices.length, iv, digits);
             const plain = shift(part.indices, stream, direction);
+            completePlain.push(...plain);
             const hits = recognizability(part, plain);
-            return { section: i, ...hits };
+            return { section: i, indexOfCoincidence: coincidence(plain), ...hits };
           });
           const totals = rows.reduce((acc, row) => {
             for (const key of ['singletonAIO', 'singletonAI', 'the', 'and', 'of', 'to', 'in']) {
@@ -140,7 +154,9 @@ for (const [geometry, candidates] of Object.entries(keys)) {
             return acc;
           }, { singletonAIO: 0, singletonAI: 0, the: 0, and: 0, of: 0, to: 0, in: 0 });
           results.push({ geometry, order, iv, digits, direction, ...totals,
-            wordSignal: score(totals), sections: rows });
+            wordSignal: score(totals), wholeBookIoc: coincidence(completePlain),
+            sectionIocMax: Math.max(...rows.map((r) => r.indexOfCoincidence)),
+            sections: rows });
         }
       }
     }
@@ -186,7 +202,13 @@ console.log(JSON.stringify({
   sectionRuneCounts: cipherSections.map((x) => x.indices.length),
   originalWordCount: allWords,
   originalSingletons: singletonCount,
+  untouchedCiphertextIoc: coincidence(actual),
+  authenticClearP57Ioc: coincidence(corpus.pages.find((p) => p.page === 57).indices),
   directFamilies: results.length,
+  bestIoc: results.slice().sort((a, b) => b.wholeBookIoc - a.wholeBookIoc)
+    .slice(0, 5).map(({ geometry, order, iv, digits, direction, wholeBookIoc,
+      sectionIocMax }) => ({ geometry, order, iv, digits, direction,
+      wholeBookIoc, sectionIocMax })),
   best,
   topEight: results.slice(0, 8).map(({ sections, ...rest }) => rest),
   positiveControl: positive,
