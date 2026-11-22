@@ -171,6 +171,65 @@ function positivePlant(native) {
   assert.equal(a.equalPairs,b.equalPairs);
   return {recovered:recovered.length,IoC:a.IoC,equalPairs:a.equalPairs};
 }
+
+/**
+ * One additional source-readable dynamic alternative: the authentic solved
+ * LP2 p56 behavior holds the key cursor whenever the recovered rune is F.
+ * The p15 infinity state is emitted as the F=0 shift. No hidden secret key
+ * or fitted offset; this is an experimental cross-page transfer.
+ */
+function skipFDecode(ciphertext) {
+  const plaintext=[];
+  let state=-1, phase=0;
+  for(const c of ciphertext) {
+    const key=state<0?0:state;
+    const p=mod(c-key);
+    plaintext.push(p);
+    if(p!==0) {
+      state=mobius(state,rows[phase]);
+      phase=(phase+1)%4;
+    }
+  }
+  return plaintext;
+}
+function skipFEncode(plaintext) {
+  const ciphertext=[];
+  let state=-1, phase=0;
+  for(const p of plaintext) {
+    const key=state<0?0:state;
+    ciphertext.push(mod(p+key));
+    if(p!==0) {
+      state=mobius(state,rows[phase]);
+      phase=(phase+1)%4;
+    }
+  }
+  return ciphertext;
+}
+function globalStats(a) {
+  const hist=new Uint32Array(29);
+  for(const p of a)hist[p]++;
+  const n=a.length;
+  return {
+    runes:n,
+    IoC:Array.from(hist).reduce((s,x)=>s+x*(x-1),0)/(n*(n-1)),
+    mostCommon5:Array.from(hist).sort((a,b)=>b-a)
+      .slice(0,5).reduce((s,x)=>s+x,0)
+  };
+}
+const genuineP56FSemanticsOnP15 = {};
+const skippedFPlants = {};
+for(const region of regions) {
+  const ciphertext=orig.slice(region.start,region.end);
+  const native=skipFDecode(ciphertext);
+  assert.deepEqual(skipFEncode(native),ciphertext,
+    "complete original nonlinear stateful F-skip roundtrip");
+  genuineP56FSemanticsOnP15[region.name]={
+    ...globalStats(native),
+    reconstructedCipherRunes:ciphertext.length,
+    nativeHead: native.slice(0,70).map(i=>gp.translit[i]).join(" ")
+  };
+}
+
 const tests=[
   ["Gibran","resources/control/gibran_prophet_58585.txt"],
   ["Shakespeare","resources/control/shakespeare_first300k.txt"],
@@ -193,8 +252,14 @@ for(const [name,file] of tests){
       assert(result.IoC>region.original.IoC,
         "120-state original native-GP all-secret gate "+
           name+" "+region.name+" trial "+trial);
-      if(trial===0&&name==="Gibran")
+      if(trial===0&&name==="Gibran") {
         PLANTS[region.name]=positivePlant(native);
+        const encoded=skipFEncode(native);
+        assert.deepEqual(skipFDecode(encoded),native,
+          "complete GP-native F-skipped PGL2 positive");
+        skippedFPlants[region.name]={runes:native.length,
+          exactRecovered:true, nativeStats:globalStats(native)};
+      }
     }
   }
   controlResults.push({name,file,statistics:stats});
@@ -211,6 +276,8 @@ if(require.main===module)console.log(JSON.stringify({
   originalSource:regions.map(({name,expected,original})=>({name,n:expected,...original})),
   GPnativeWordMatchedControls:controlResults,
   plantedAllSecret120StatePositive:PLANTS,
+  exactP56StyleFSkipSingleFixedOriginalInverse:genuineP56FSemanticsOnP15,
+  exactP56StyleFSkipSourceNativePositive:skippedFPlants,
   missingOpcode:"Any actual plaintext- or ciphertext-dependent state update, infinity-output interpretation, or keyed GP29 readout must come from independent first-party evidence"
 },null,2));
-module.exports={mobius,phaseCoincidence,rows};
+module.exports={mobius,phaseCoincidence,rows,skipFDecode,skipFEncode};
