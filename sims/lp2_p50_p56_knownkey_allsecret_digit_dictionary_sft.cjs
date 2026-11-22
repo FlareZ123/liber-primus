@@ -67,7 +67,9 @@ const models=[
  {name:'same-60-entry-dictionary-difference',variables:60,
    terms:(h,l)=>[[h,1],[l,-1]]},
  {name:'separate-high5-low60-dictionaries',variables:65,
-   terms:(h,l)=>[[h,1],[5+l,1]]}
+   terms:(h,l)=>[[h,1],[5+l,1]]},
+ {name:'unconstrained-entire-base60-byte-lookup',variables:256,
+   terms:(h,l)=>[[60*h+l,1]]}
 ];
 function inverse(x){
  for(let k=1;k<29;k++)if(mod(k*x)===1)return k;
@@ -158,7 +160,7 @@ for(const [walk,positions] of Object.entries({row,shell})){
   }
  }
 }
-assert.equal(output.length,20);
+assert.equal(output.length,24);
 console.log(JSON.stringify({
  source:{gridTokens:256,knownP56UnmaskedPrimeTotientKeySteps:84,
    p55Rim:76, sourceP56TransparentFOffset:56},
