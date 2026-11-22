@@ -38,6 +38,16 @@ For **every LP2 image**, the apparent encrypted four-byte header is `ffffffff`, 
 
 The exact full-file test and source-derived password reconstruction are implemented read-only in `sims/lp2_2014_prime_signature_columns_outguess_sft.py`. The local original image run used the same `outguess_bitmap_dump.c` coefficient extraction and a faithful copy of its established ARC4/iterator algorithm; all 58 payloads had the fixed header and no recognizable content. The source code in the shared SFT permits independent replay.
 
+## Exact contemporary service-receiver test
+
+Because the extracted eleven characters satisfy YouTube's usual video-identifier shape and their first eight satisfy Pastebin's paste-identifier shape, one locked network test checked those **exact identifiers** with independent live controls, rather than enumerating mutations of the candidate. On **2026-11-22**, Windows Node22 workflow [external receiver run 45027978160](https://github.com/FlareZ123/liber-primus/actions/runs/45027978160) established:
+
+- YouTube oEmbed accepted a known video (HTTP 200 with metadata), but returned **HTTP 400 Bad Request** for `I8XwhKTScAn`; a separate noembed endpoint returned the same rejection as a structured error.
+- Pastebin returned a real archived 2014 Cicada music paste for a known period URL (HTTP 200) and **404 Not Found** for `I8XwhKTS`.
+- Internet Archive's current `wayback/available` endpoint returned empty `archived_snapshots` objects for both exact addresses. This is a negative availability query, not an exhaustive guarantee that no historical copy ever existed.
+
+Thus the simplest exact YouTube/Pastebin receiver is unsupported. The read-only reproducible source reconstruction and test are in `sims/lp2_2014_signature_exact_external_receiver_probe.cjs`; its [Windows workflow](../.github/workflows/agent49-2014-signature-external-receiver.yml) ran successfully after normalizing source CRLF. It recovered no external key or continuation.
+
 ## Additional native-rune consumer and decision
 
 The eleven-character string is valid Base64 text and decodes to eight exact bytes, `23c5f084a4d27009`. It can also be encoded as ten GP-native letters (digit `8` omitted), eleven Base64 index residues modulo 29, or eleven ASCII-value residues modulo 29. Direct periodic GP29 subtraction/addition with these three simple key interpretations on original p0, p8, p28, p32 and p55 produced near-uniform index of coincidence and no native-language text.
@@ -45,6 +55,8 @@ The eleven-character string is valid Base64 text and decodes to eight exact byte
 A more generous but still fixed source-selected route uses **the full original signature**, comprising 724 Base64 characters or 543 decoded packet bytes, as a continuous additive GP29 key. Across all **52 original unknown pages with at least 120 runes**, four signature/password source encodings × both signs × a source-zero cursor yielded **416 complete direct decryptions**. None reached GP29 index of coincidence 0.047; the maximum was **0.039812**, at p22 using the decoded packet bytes with negative sign. Decoded prefixes were nonprose. Source-signature variants tested as a 28-symbol predecessor-excluding alphabet on five unchanged pages likewise produced nonprose. The original solved-p56 transparent-F rule with signature-derived key advancement could complete a few short original windows, but all recovered alternatives were nonprose.
 
 On the **original 256-byte p50 numeral table**, direct DES, RC4 and whole-signature first/second-half XOR consumers using the candidate's eight raw bytes or signature packet showed no readable plaintext or identifiable file header. A locked p0 first-word `EPIPHANY` crib (GP29 indices `[18,13,10,13,8,24,9,26]`, suggested by the later signed `epiphany seeks the devoted` instruction) requires additive key `[26,24,8,19,27,24,18,3]`; that exact eight-residue vector, or even a one-mismatch neighbor, occurs in neither direction of the 2014 signature raw bytes, armor/Base64 residues, p50 256 bytes or the signed handoff itself. This is an exploratory crib, **not verified original plaintext**.
+
+A direct RC4 stream consumer using either the eleven original ASCII password bytes or its eight Base64-decoded bytes, with both keystream signs and both page-reset/full-book framing, supplied another **416 complete decodes** of original LP2 pages having at least 120 runes. No run reached GP29 index of coincidence 0.047 (maximum **0.040398**); the printed native-rune prefixes remained nonprose. RC4 was tested as a concrete historic option, without independently authored instructions for applying it to LP2.
 
 These negatives bound direct source-derived consumers only. An independently specified alternative key derivation, structural reading or external target could still change the conclusion.
 
