@@ -254,6 +254,29 @@ function applyBlocks(input,matrix){
   for(let i=0;i<input.length;i+=5)result.push(...vecMul(matrix,input.slice(i,i+5)));
   return result;
 }
+// The direct polynomial evaluation F(A/2) is a second source-exact
+// reversible candidate distinct from the rank-two projector and full T.
+// Its determinant is exactly one modulo 29, not an assumed key.
+const composedPolynomial=add(Pmatrix,R);
+assert.deepEqual(composedPolynomial,[
+  [15,6,7,12,10],
+  [17,12,28,4,18],
+  [19,16,9,16,19],
+  [18,4,28,12,17],
+  [10,12,7,6,15]
+]);
+const composedInverse=matrixInverse(composedPolynomial);
+assert.deepEqual(composedInverse,[
+  [0,28,17,21,10],
+  [5,14,16,13,28],
+  [4,0,10,0,4],
+  [28,13,16,14,5],
+  [10,21,17,28,0]
+]);
+eq(mul(composedPolynomial,composedInverse),I5);
+eq(mul(composedInverse,composedPolynomial),I5);
+const sourcePolynomialOrbit=[];
+
 const sourceReceivers=[
   ['p8 complete (255)',p8],
   ['p3-p7 five-scroll (1145)',corpus.pages.filter((p)=>p.page>=3&&p.page<=7).flatMap((p)=>p.indices)],
@@ -271,6 +294,31 @@ for(const [label,cipher] of sourceReceivers){
   const other3=candidate.filter((_,i)=>i%5>=2);
   fullReceiverResults.push({label,original: cipher.length,completeIoC:ioc(candidate),first2IoC:ioc(first2),other3IoC:ioc(other3),start:candidate.slice(0,75).map(x=>corpus.translit[x]).join('')});
 }
+// Two literal directions on each of the three complete original page
+// registers. Neither changes input length or drops any original rune.
+for(const [label,cipher] of sourceReceivers){
+  const native=Array.from({length:cipher.length},(_,i)=>
+    corpus.pages.find((p)=>p.page===57).indices[i%95]
+  );
+  for(const [direction,operator,opposite] of [
+    ['polynomial-F',composedPolynomial,composedInverse],
+    ['polynomial-F-inverse',composedInverse,composedPolynomial]
+  ]){
+    const recovered=applyBlocks(cipher,operator);
+    assert.deepEqual(applyBlocks(recovered,opposite),cipher);
+    assert.deepEqual(applyBlocks(applyBlocks(native,opposite),operator),native);
+    sourcePolynomialOrbit.push({
+      label,direction,ioc:ioc(recovered),
+      opening:recovered.slice(0,75).map((rune)=>corpus.translit[rune]).join('')
+    });
+  }
+}
+assert.deepEqual(sourcePolynomialOrbit.map((v)=>Number(v.ioc.toFixed(12))),[
+  0.032638567238,0.034614790798,
+  0.034595535469,0.034374141143,
+  0.034458577952,0.034287699594
+]);
+
 assert.deepEqual(fullReceiverResults.map((v)=>Number(v.completeIoC.toFixed(12))),[
   0.033317894087,0.034357345711,0.034450778525
 ]);
@@ -345,6 +393,8 @@ console.log('PASS canonical_same-source full_5x5_basis source_selected_rows=[4,3
 for(const res of fullReceiverResults)console.log('full-receiver='+res.label+' runes='+res.original+' IoC='+res.completeIoC.toFixed(12)+' two_component_IoC='+res.first2IoC.toFixed(12)+' three_component_IoC='+res.other3IoC.toFixed(12)+' start='+res.start);
 console.log('PASS first_2014_A_square_order56 historical_5seed_orbit eight_original_p8_decoders_eight_native_positive_plants');
 for(const r of orbitResults)console.log('source-A-orbit seed='+r.seedName+' direction='+r.direction+' sign='+r.sign+' IoC='+r.ioc.toFixed(12)+' original-opening='+r.opening);
+console.log('PASS source_composed_full_polynomial_F(A_over_2) SL5_GF29 six_exact_original_roundtrips six_native_positive_plants');
+for(const r of sourcePolynomialOrbit)console.log('full-source-polynomial receiver='+r.label+' direction='+r.direction+' GP29_IoC='+r.ioc.toFixed(12)+' opening='+r.opening);
 console.log('SOURCE: GP29 original p8 IoC='+ioc(p8).toFixed(12));
 console.log('EXTRACTED: GP29 rank2 image IoC='+ioc(output).toFixed(12));
 console.log('EXTRACTED full GP spelling='+output.map((rune)=>corpus.translit[rune]).join(''));
