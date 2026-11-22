@@ -4,7 +4,7 @@
 
 ## Independent visible clues and prime-weight checksum
 
-**Source-image direction and punctuation:** The original p53 plate (JPEG70, physical LP2 p53) displays an isolated **red arrow pointing upward** immediately above its final 51-red-rune passage and a **13-dot red punctuation block** after that passage. The canonical ink annotations record 13 dots, separate from the 51 GP runes. The p54 and p55 plates also carry 13-dot red punctuation, so this mark is not unique to p53. The arrow is compatible with ascending the source numeric table's rooted tree by following parent pointers, and the 13-dot block provides an adjacent visible instance of the left ornament number13. **Neither mark explicitly names the numeric table or specifies an operation**, so the arrow may be a typographic continuation cue. Treat this as a possible human-visible instruction, not a proven selector.
+**Source-image adjudication of the first red glyph:** In the original physical p53 JPEG70, the apparent red upward-pointing arrow at the end of the preceding black line is actually the ordinary GP29 **Tiwaz rune ᛏ (T)**. It is the **first of the 51 red runes**, page-local index128, and must be counted in the prime-weight checksum; the other 50 red runes continue on subsequent lines. The separate red **13-dot punctuation** after those runes is not a GP rune and is excluded. Original p54/p55 also carry 13-dot marks, so they do not authenticate a table traversal. **There is no independent directional arrow instruction on this plate.** The original-color source and canonical ink annotations agree on the red51 span.
 
 
 
