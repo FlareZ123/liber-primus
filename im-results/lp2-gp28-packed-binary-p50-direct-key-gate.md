@@ -1,0 +1,33 @@
+# Packed GP28 binary followed by the original p50 keys: two direct inverses
+
+**22 November 2026, Agent41. Evidence class: bounded source-original negative.** The two runnable experiments below test a binary-first candidate missing from the earlier *AES-keystream-per-rune* and *unencrypted GP28 compressed-file* studies. Both recover planted English perfectly. **Neither recovers an unknown Liber Primus plaintext, file, decipherment key, or continuation destination.**
+
+## The actual human puzzle clue and missing operation
+
+The original unknown LP2 manuscript has **12,956 GP29 runes**, only **86 adjacent equal-rune pairs**, and eight transcription-delimited rune groups with lengths **729, 1145, 1738, 1894, 1021, 1433, 1680, 3316**. Original physical pp49–51 print **32 rows of eight two-character numbers**, each interpretable as one byte. Thus each printed **column** supplies 32 bytes, the width of an AES-256 key; the full table supplies 256 bytes, the width of a repeating byte pad. These are distinct, source-visible operands and plausible carriers for the data needed to break a high-entropy rune stream.
+
+**Hypothesis:** the 29-rune ciphertext is a *binary transport*, using only the 28 rune choices different from the previous cipher rune. For a current value C and previous P, invert the 28-choice output rank either as sorted rank \`C - [C>P]\` or cyclic rank \`(C-P-1) mod29\`. An equal-adjacent symbol is an explicit skip. Treat the first rune in each unit as the transmitted predecessor/IV, retain every equal-rune position as a sidecar, and turn all other ranks into **one base-28 unsigned integer**, serialized as either minimal or fixed-capacity big-endian bytes. Both scripts independently reconstruct every exact original input rune from the integer, initial rune and skip sites. **This is an invertible hypothetical encoding; no signed original source selects its exact rank, skips, binary framing, AES mode or key assignment.**
+
+This reading differs materially from previously failed direct GP29 AES additive ciphers, existing per-rune AES/ChaCha rank28 key tests, and direct GP28-to-raw-DEFLATE recognition: here **binary packing occurs before decryption**. A correct key might reveal a native text/file payload only at the **second** stage.
+
+## One fully specified table-column AES consumer
+
+[Exact SFT](../sims/lp2_p50_rank28_packed_aes_ciphertext_original_sft.cjs). Extract the **eight literal 32-byte original p50 columns**, independently under the documented base60 and missing-lowercase-f base59 numeral interpretations; read the **eight untouched original transcription groups**, testing both rank orders, both integer widths and AES-256-CTR counters of all-zero or integer3301 in the final four big-endian IV bytes. Apply **all eight source keys** to every group, so no secret column assignment is optimized. This is **1,024 attempted source configurations** (some width settings serialize identically).
+
+**Original results on the actual 12,956 runes:** all eight source groups reconstruct exactly in both rank systems; all AES candidates have no recognized file header, no readable original plaintext, and no ≥128-byte readable standard DEFLATE/zlib/gzip document. The highest ASCII-printable fraction was **0.4380734** and the longest contiguous printable run only **14 bytes** in 1,024 tests. There were **three** accepted tiny or nonlinguistic inflater outputs, zero qualifying readable payloads. Two independent actual-source ASCII plaintext plants first AES-encrypted and then GP28-encoded are each **recovered byte-for-byte**, including a deliberately inserted repeated rune.
+
+**Execution:** [native Windows Node22 run 45078030020](https://github.com/FlareZ123/liber-primus/actions/runs/45078030020), successful; its job log prints all source-section lengths, two complete plant recoveries, highest scores, file-header count **0**, inflated acceptance count **3**, and readable payload count **0**.
+
+## Simpler, complete 256-byte table as a repeating XOR pad
+
+[Exact SFT](../sims/lp2_gp28_p50_repeating_bytepad_transport_sft.cjs). Read all **256 printed p50 bytes** in their visual row order, under both base60 and base59. After the identical predecessor-rank binary transport, XOR each source byte with \`tableByte[i mod 256]\`. Test either the **entire unknown manuscript** or the **3,316-rune illustrated floral chapter p40–55**, which physically contains the table; both rank orders and both big-endian integer widths give **16** fully defined original settings, including equivalent serialized widths.
+
+**Original results:** all four original rune register/rank combinations restore every original cipher rune; the full manuscript produces **7,734 bytes** from **12,869 rank digits** and **86 preserved repeat sites**. Across all 16 source readouts, the maximum printable fraction is **0.4116162**; there is **no recognized file header and no successful inflate call producing a readable document**. Both native compressed-English plants recover byte-for-byte after XOR, rank encoding, a forced doublet and complete inversion.
+
+**Execution:** [native Windows Node22 run 45078468970](https://github.com/FlareZ123/liber-primus/actions/runs/45078468970), successful. Its job log records **16 original cases, two successful compression-to-plaintext plants, zero qualifying inflated outputs and an empty payload candidate list**.
+
+## Scientific decision
+
+These exact two natural binary-first uses of the original 32×8 table **fail to yield actual LP2 plaintext** under the tested direct symmetric consumers. No alternative IV, arbitrary password, byte offset, manual ciphertext editing, undocumented secret, alphabet fitting or favorable passage selection was allowed. Re-encrypting the observed ciphertext is only a **reversibility control**, never evidence of authorship.
+
+The source still does **not** instruct a human solver to convert nonrepeating rune transitions into base28 bytes, use AES-256-CTR, reset at the editorial dollar-sign divisions, or treat the original numerical panel as a symmetric key. More parameter sweeps would multiply unsupported assumptions. A productive successor needs a **source-authenticated operation, key schedule, file framing or plaintext crib** that actually selects a receiver for the 256 bytes and predicts new untouched plaintext. Preserve the experiments as explicit failed direct routes, without promoting them into \`results/\` or changing the existing authoritative unsolved status.
