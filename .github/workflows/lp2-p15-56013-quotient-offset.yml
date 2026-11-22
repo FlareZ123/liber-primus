@@ -12,6 +12,11 @@ on:
         required: false
         type: boolean
         default: false
+      p0_knownplaintext_only:
+        description: "Search original CicadaOS 560.13 for the exact p0 13-rune EPIPHANY SEEKS required key"
+        required: false
+        type: boolean
+        default: false
 permissions:
   contents: read
 jobs:
@@ -30,8 +35,17 @@ jobs:
           $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
           curl.exe --fail --location --retry 4 --retry-all-errors --connect-timeout 30 --max-time 900 'https://archive.org/download/3301.iso/3301.iso/DATA%2F560.13' --output $asset
           if ($LASTEXITCODE -ne 0) { throw "Original asset download failed" }
+      - name: Execute p0 exact known-plaintext full-source pad scan
+        if: ${{ inputs.p0_knownplaintext_only }}
+        shell: pwsh
+        run: |
+          $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
+          node --check sims/lp2_p0_2013_historical_pad_knownplain_crib_sft.cjs
+          if ($LASTEXITCODE -ne 0) { throw "Known-plaintext scan syntax failed" }
+          node sims/lp2_p0_2013_historical_pad_knownplain_crib_sft.cjs $asset
+          if ($LASTEXITCODE -ne 0) { throw "Known-plaintext original-source scan failed" }
       - name: Execute source-frozen p15 quotient offset and conditional crib inverse
-        if: ${{ !inputs.chainstep_only }}
+        if: ${{ !inputs.chainstep_only && !inputs.p0_knownplaintext_only }}
         shell: pwsh
         run: |
           $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
@@ -40,7 +54,7 @@ jobs:
           node sims/lp2_p15_56013_quotient_offset_sft.cjs $asset
           if ($LASTEXITCODE -ne 0) { throw "Source-inverse test failed" }
       - name: Test direct BASE29-integer-to-byte conversion plus historical XOR at selected full-file offset
-        if: ${{ !inputs.chainstep_only }}
+        if: ${{ !inputs.chainstep_only && !inputs.p0_knownplaintext_only }}
         shell: pwsh
         run: |
           $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
@@ -49,7 +63,7 @@ jobs:
           node sims/lp2_p15_56013_base29_integer_xor_sft.cjs $asset
           if ($LASTEXITCODE -ne 0) { throw "BASE29 integer XOR original test failed" }
       - name: Execute frozen p55 central-23 circumference XOR gate
-        if: ${{ !inputs.chainstep_only }}
+        if: ${{ !inputs.chainstep_only && !inputs.p0_knownplaintext_only }}
         shell: pwsh
         run: |
           $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
@@ -58,7 +72,7 @@ jobs:
           node sims/lp2_p55_circumference_23byte_56013_sft.cjs $asset
           if ($LASTEXITCODE -ne 0) { throw "p55 central-23 XOR gate failed" }
       - name: Execute direct 2013 XOR on original 256 numerical-table bytes
-        if: ${{ !inputs.chainstep_only }}
+        if: ${{ !inputs.chainstep_only && !inputs.p0_knownplaintext_only }}
         shell: pwsh
         run: |
           $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
@@ -67,7 +81,7 @@ jobs:
           node sims/p15_iso56013_grid256_historical_xor_sft.cjs $asset
           if ($LASTEXITCODE -ne 0) { throw "p50 grid XOR source gate failed" }
       - name: Execute p15-selected full-GP29 chain-step inverse
-        if: ${{ inputs.chainstep_only }}
+        if: ${{ inputs.chainstep_only && !inputs.p0_knownplaintext_only }}
         shell: pwsh
         run: |
           $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
@@ -77,7 +91,7 @@ jobs:
           node sims/lp2_p15_56013_chainstep_sft.cjs $asset | Tee-Object -FilePath $out
           if ($LASTEXITCODE -ne 0) { throw "Chain-step original-input test failed" }
       - name: Execute p15-selected 28-symbol chain-cipher key-source gate
-        if: ${{ inputs.chainstep_only }}
+        if: ${{ inputs.chainstep_only && !inputs.p0_knownplaintext_only }}
         shell: pwsh
         run: |
           $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
@@ -87,7 +101,7 @@ jobs:
           node sims/lp2_p15_56013_28chain_sft.cjs $asset | Tee-Object -FilePath $out
           if ($LASTEXITCODE -ne 0) { throw "28-symbol chain key-source gate failed" }
       - name: Checkout pinned MIT-licensed R40-B3 decoder
-        if: ${{ !inputs.chainstep_only && inputs.run_exact_skipaware_offset }}
+        if: ${{ !inputs.chainstep_only && !inputs.p0_knownplaintext_only && inputs.run_exact_skipaware_offset }}
         uses: actions/checkout@v4
         with:
           repository: Dukotah/cicada3301
@@ -95,17 +109,17 @@ jobs:
           path: external/dukotah-cicada3301
           persist-credentials: false
       - uses: actions/setup-python@v5
-        if: ${{ !inputs.chainstep_only && inputs.run_exact_skipaware_offset }}
+        if: ${{ !inputs.chainstep_only && !inputs.p0_knownplaintext_only && inputs.run_exact_skipaware_offset }}
         with:
           python-version: '3.11'
       - name: Install the R40-B3 runtime dependency
-        if: ${{ !inputs.chainstep_only && inputs.run_exact_skipaware_offset }}
+        if: ${{ !inputs.chainstep_only && !inputs.p0_knownplaintext_only && inputs.run_exact_skipaware_offset }}
         shell: pwsh
         run: |
           python -m pip install --disable-pip-version-check numpy==1.26.4
           if ($LASTEXITCODE -ne 0) { throw "numpy installation failed" }
       - name: Execute exact p15 560.13 offset under R40-B3 keyskip1/keyskip2
-        if: ${{ !inputs.chainstep_only && inputs.run_exact_skipaware_offset }}
+        if: ${{ !inputs.chainstep_only && !inputs.p0_knownplaintext_only && inputs.run_exact_skipaware_offset }}
         shell: pwsh
         run: |
           $asset = Join-Path $env:RUNNER_TEMP 'DATA_560.13'
@@ -113,14 +127,14 @@ jobs:
           python sims/lp2_p15_56013_keyskip_exact_offset.py --pad $asset --dukotah-root external/dukotah-cicada3301 --out $out
           if ($LASTEXITCODE -ne 0) { throw "Exact-offset keyskip test failed or controls did not pass" }
       - name: Preserve exact-offset controls and results
-        if: ${{ always() && !inputs.chainstep_only && inputs.run_exact_skipaware_offset }}
+        if: ${{ always() && !inputs.chainstep_only && !inputs.p0_knownplaintext_only && inputs.run_exact_skipaware_offset }}
         uses: actions/upload-artifact@v4
         with:
           name: lp2-p15-56013-keyskip-exact-offset
           path: ${{ runner.temp }}/p15-keyskip-exact-offset
           if-no-files-found: warn
       - name: Preserve chain-step result
-        if: ${{ always() && inputs.chainstep_only }}
+        if: ${{ always() && inputs.chainstep_only && !inputs.p0_knownplaintext_only }}
         uses: actions/upload-artifact@v4
         with:
           name: lp2-56013-chainstep-results
