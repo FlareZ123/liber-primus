@@ -107,7 +107,7 @@ for (let i = 0; distinctFib.length < 16; i++) {
 assert.deepEqual(distinctFib, [
   0,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987
 ]);
-const primes = primesUpTo(16000);
+const primes = primesUpTo(150000);
 const reconstructed = distinctFib.map(f => Math.abs(3301 - primes[f]));
 assert.deepEqual(reconstructed, originalPage15Spiral);
 const insideTweet = tweetValues.filter(f => f <= 987n).map(Number);
@@ -141,6 +141,41 @@ const profilePrime = 9901n;
 assert.ok(isPrime64(profilePrime));
 assert.equal(profilePrime, 3n * 3301n - 2n);
 assert.equal(profilePrime % 3301n, 3299n);
+
+// Minimal direct consumer for the independently reported profile number 9901:
+// the only known source-authentic running cipher is solved p56's
+// transparent-F phi(successive primes) addition. Prime value 9901 is
+// exactly ordinal 1221. The other literal interpretation is ordinal9901.
+// In both cases first failing forced F cannot be repaired by any F skip.
+/** @param {number[]} ciphertext @param {number} start */
+function transparentFRun(ciphertext, start) {
+  let states = new Set([0]);
+  for (let index = 0; index < ciphertext.length; index++) {
+    const next = new Set();
+    for (const consumed of states) {
+      if (ciphertext[index] === 0) next.add(consumed);
+      const prime = primes[start + consumed - 1];
+      assert.notEqual(prime, undefined);
+      const plaintext = ((ciphertext[index] - prime + 1) % 29 + 29) % 29;
+      if (plaintext !== 0) next.add(consumed + 1);
+    }
+    if (next.size === 0) return { possible: false, firstFailure: index };
+    states = next;
+  }
+  return { possible: true, endStates: [...states] };
+}
+const p56Native = corpus.pages.find(page => page.page === 56).indices;
+const p56Control = transparentFRun(p56Native, 1);
+assert.equal(p56Control.possible, true);
+assert.ok(p56Control.endStates.includes(84));
+const p16Native = corpus.pages.find(page => page.page === 16).indices;
+const ordinalOf9901 = primes.indexOf(9901) + 1;
+assert.equal(ordinalOf9901, 1221);
+const p16ValueGate = transparentFRun(p16Native, ordinalOf9901);
+const p16OrdinalGate = transparentFRun(p16Native, 9901);
+assert.deepEqual(p16ValueGate, { possible: false, firstFailure: 15 });
+assert.deepEqual(p16OrdinalGate, { possible: false, firstFailure: 32 });
+
 console.log(JSON.stringify({
   status: "unsigned auxiliary tweet; mathematical bridge, no plaintext",
   archived_tweet_id: record.id,
@@ -153,6 +188,9 @@ console.log(JSON.stringify({
   first_unprinted_spiral_value: extrapolated,
   recipient: {lp2_page:42, zero_based_rune_offset:31, complete_original_word:sourceWord},
   avatar_9901_mod_3301: Number(profilePrime % 3301n),
+  prime_9901_start_ordinal: ordinalOf9901,
+  p16_p56_transparentF_from_9901_prime_value: p16ValueGate,
+  p16_p56_transparentF_from_9901_ordinal: p16OrdinalGate,
   decode_claim: "none"
 }, null, 2));
 console.log("PASS: archived tweet, Fibonacci-prime list, original p15, and original LP2 pointer assertions");
