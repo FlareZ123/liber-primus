@@ -42,6 +42,8 @@ Original source scans are 2400x3600 pixels; physical page `p` is image `(p+17).j
 | 40 | 0 | 601,667 | 150 |
 | 54 | 0 | 601,912 | 149 |
 
+**Independent source-positive typography control:** Apply the **identical unchanged red-pixel threshold and connected-component filters** to the earlier 17 original 2014 LP1 scans, which contain independently solved and clear text. These yield **10 giant red initials on nine LP1 pages** at precisely the same left margin x=600–601px. Nine have heights496–499px and one on original LP1 p1 is552px; observed widths include the same **149–151px** and **230px** classes as unknown LP2. This establishes that the giant-initial gutter is an original book-design convention also applied to already-readable source material. It does not exclude an additional later LP2-specific hidden channel. The original image-pixel SFT now asserts exact LP1 component boxes independently of the thirteen LP2 source boxes.
+
 The page and source-line mapping comes from visible matching of each red cap to the exact original printed text rows; illustrated introductory marks on p23/p27 and original cuneiform numerals before p39 are **not extra cipher-text lines**. For every affected printed line add `red_width + 12px` as a horizontal gutter, replacing the normal first-rune advance on the first row carrying the giant glyph. This approximates the 12px visible gap from giant red component to black text and assumes its footprint spans three text rows. These two geometrical approximations are independent of language yet remain approximate, not a pixel-perfect OCR/layout reconstruction.
 
 | Same physical source class | Greedy forced before giant geometry | After giant geometry | Early after | Overflow after |
