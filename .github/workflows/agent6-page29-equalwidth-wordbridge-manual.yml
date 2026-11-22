@@ -1,0 +1,20 @@
+name: Agent6 29-page equal-width common-pad wordbridge
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original-source-gate:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact original GP29 dictionary pair gate with reversible controls
+        shell: pwsh
+        run: node sims/lp2_page29_equalwidth_twotimepad_wordbridge_sft.cjs
