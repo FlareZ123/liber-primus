@@ -1,6 +1,6 @@
 # LP2 p50: conditional 1031/512 codeword and historical-source reconstruction
 
-**Agent8, 22 November 2026. Classification:** A new exact relationship among original-source operands, with conditional one-/six-byte recovery and a 4096-candidate historical-table correction. **No unknown LP2 plaintext, creator-authenticated checksum opcode, full cipher key, or final destination has been recovered.**
+**Agent8, 22 November 2026. Classification:** A new exact relationship among original-source operands, with conditional one-/six-/seven-byte recovery and a 4096-candidate historical-table correction. **No unknown LP2 plaintext, creator-authenticated checksum opcode, full cipher key, or final destination has been recovered.**
 
 ## Original source operands
 
@@ -82,6 +82,18 @@ This extends the previously published **four-byte suffix reconstruction from F a
 
 The author-intent objection is the same as for the single-erasure construction: F and the polynomial factors were partly recognized after studying the full table. Their use as checks can recover withheld bytes in a reproducible demonstration without proving the historical author intended any of these equations. No unknown rune plaintext or direct terminal-page decoder follows from the result.
 
+### Seven-byte bound and eight-byte ambiguity
+
+The same exact Chinese-remainder and two source-derived GF29 quadratic constraints recover a longer original suffix. Withhold the **last seven** bytes entirely, leaving the unchanged first249 as input. The two integer congruences restrict the 56-bit suffix to exactly **1,913 candidates**. Their restored H2013 and G39 factor remainders leave precisely **one**:
+
+- **Recovered seven-byte original suffix:** 9eace6b424bd50.
+- **1,913 CRT-consistent candidate suffixes:** exactly **one** is divisible by both independently specified source quadratics.
+- The original bytes at positions249–255, kept out of the solver, equal that unique candidate.
+
+At **eight** unknown trailing bytes, however, the same exact source-derived constraints admit **24 different 64-bit completions among 489,815** CRT-consistent candidates, all simultaneously satisfying the H2013 and G39 factors. The true original suffix 719eace6b424bd50 is among them, but **cannot be uniquely recovered** from the stated constraints. The overlap arises in part because F already includes a factor29 and some integer-mod29 and polynomial identities are algebraically dependent. Counting four nominal GF29 factor equations as fully independent of F would overstate recovery power. This explicitly brackets conditional suffix recovery at **seven final bytes** for this fixed source-rule combination.
+
+The SFT computes every seven- and eight-byte candidate, checks both original quadratic remainders, asserts the exact candidate counts and only then compares the recovered seven-byte answer against the withheld original. Although seven-byte reconstruction extends the earlier four-/six-byte examples, the factors and checksum remain analyst-recognized source hypotheses; no historical creator checkpoint or unknown rune plaintext follows.
+
 ## Recovering the original 2014 participant's ambiguous table readings
 
 The 11 May 2014 participant archive separately preserves table text, decimal conversions and a 256-byte file. Its [previously completed comparative audit](lp2-2014-stage11-sexagesimal-byte-comparison.md) identifies **12** original image-confusable or text/decimal-conflicting coordinates among the 256 cells. The archived binary disagrees with the image-adjudicated original at **nine** of them; the other 244 byte positions are identical in both sources.
@@ -107,6 +119,6 @@ Neither p57 nor an independently recovered author instruction says to concatenat
 
 The modular identity was noticed after substantial prior numerical exploration, so the usual 1/1031 probability for a *preselected* residue under a random model **cannot** be presented as a calibrated discovery-level p-value. No checksum formula, radix or full-grid integer layout has yet been authenticated as a Cicada instruction; the same input is known to admit numerous postselected prime associations. This remains an exact numerical observation and conditional one-erasure repair mechanism.
 
-**Research decision:** preserve the new source correlation as an **intermediate interpretation** with an executable decoder for one known-location erased numeral. It may help adjudicate genuinely damaged original transcriptions if a first-party checksum instruction surfaces. It reconstructs one arbitrary known-location erased cell, a particular six-byte suffix under previous numeric factors, and the original values at the twelve already-identified ambiguous 2014 historic positions under the combined checksum/GF29-factor contract. It supplies no decrypted unknown plaintext or direct original-rune inverse today. A substantive successor must discover an authored link selecting this operation or use the cross-source constants to recover a substantial untouched ciphertext interval by a fully reversible, predictive mechanism. Do not pursue arbitrarily tuned residue scans.
+**Research decision:** preserve the new source correlation as an **intermediate interpretation** with an executable decoder for one known-location erased numeral. It may help adjudicate genuinely damaged original transcriptions if a first-party checksum instruction surfaces. It reconstructs one arbitrary known-location erased cell, a seven-byte suffix under previous numeric factors, and the original values at the twelve already-identified ambiguous 2014 historic positions under the combined checksum/GF29-factor contract. It supplies no decrypted unknown plaintext or direct original-rune inverse today. A substantive successor must discover an authored link selecting this operation or use the cross-source constants to recover a substantial untouched ciphertext interval by a fully reversible, predictive mechanism. Do not pursue arbitrarily tuned residue scans.
 
 **Source and related work:** [256-cell numeric source](../resources/liber-primus/base60-grid.json) · [original GP corpus](../resources/liber-primus/lp2-corpus.json) · [red source annotations](../resources/liber-primus/lp2-ink-annotations.json) · [reproducer](../sims/lp2_p50_parable1031_red512_single_erasure_sft.cjs) · [earlier p27/p54 heading difference](lp2-p27-p54-red512-sharedpad-original-lexicon-gate.md) · [earlier p57 clause prime products](lp2-p50-parable-blum-inner180-inverse-gate.md).
