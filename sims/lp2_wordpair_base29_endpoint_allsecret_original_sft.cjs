@@ -57,6 +57,38 @@ assert.equal(observed[0].length.groups,129);
 assert.equal(observed[0].chapterLength.groups,537);
 assert.equal(observed[0].book.pairs,1448);
 assert.equal(observed[1].book.pairs,1447);
+
+/* Natural page-art-source alternative: reset word-pair pairing at each of
+ * nine genuine red-heading chapter starts. Odd chapter last words remain
+ * unpaired and require an author-selected singleton rule. */
+const chapterPairs=[];
+const skipped=[];
+for(let ch=0;ch<9;ch++){
+  const indices=words.map((w,i)=>chapter(w.start)===ch?i:-1).filter(i=>i>=0);
+  for(let k=0;k+1<indices.length;k+=2)chapterPairs.push([indices[k],indices[k+1]]);
+  if(indices.length%2)skipped.push({chapter:ch,wordIndex:indices.at(-1)});
+}
+assert.equal(chapterPairs.length,1446);
+assert.deepEqual(skipped.map(x=>x.chapter),[1,2,3,7]);
+/** @param {number[][]} code @param {"book"|"length"|"chapterLength"} mode */
+function chapterLocalEquality(code,mode){
+  let total=0;
+  const buckets=new Map();
+  for(const [i,k] of chapterPairs){
+    const a=words[i],b=words[k];
+    const label=mode==="book"?"all":
+      mode==="length"?a.codes.length+"/"+b.codes.length:
+      chapter(a.start)+"/"+a.codes.length+"/"+b.codes.length;
+    let bins=buckets.get(label);
+    if(!bins){bins=new Uint16Array(841);buckets.set(label,bins);}
+    const id=29*code[i].at(-1)+code[k].at(-1);
+    total+=bins[id];bins[id]++;
+  }
+  return {total,groups:buckets.size,pairs:chapterPairs.length};
+}
+const chapterLocal=Object.fromEntries(modes.map(mode=>[mode,chapterLocalEquality(raw,mode)]));
+assert.deepEqual([chapterLocal.book.total,chapterLocal.length.total,chapterLocal.chapterLength.total],[1294,31,6]);
+assert.equal(chapterLocal.chapterLength.groups,530);
 /** @param {number} init */
 function rng(init){let seed=init;return()=>{seed^=seed<<13;seed^=seed>>>17;seed^=seed<<5;return seed>>>0;};}
 const token=src.translit.map((str,v)=>({str,v})).sort((a,b)=>b.str.length-a.str.length);
@@ -89,6 +121,9 @@ for(const c of controls){
   const tests=[0,1].flatMap(parity=>modes.map(mode=>({
     parity,mode,original:observed[parity][mode].total,
     min:Infinity,max:0,total:0,atMost:0
+  })).concat(modes.map(mode=>({
+    parity:2,mode,original:chapterLocal[mode].total,
+    min:Infinity,max:0,total:0,atMost:0
   })));
   for(let i=0;i<count;i++){
     const book=words.map(w=>{
@@ -97,7 +132,7 @@ for(const c of controls){
     });
     if(!i&&c.name==="Shakespeare")planted=book.map(w=>[...w]);
     for(const t of tests){
-      const k=equality(book,t.parity,t.mode).total;
+      const k=t.parity===2?chapterLocalEquality(book,t.mode).total:equality(book,t.parity,t.mode).total;
       t.min=Math.min(t.min,k);
       t.max=Math.max(t.max,k);
       t.total+=k;
@@ -149,7 +184,7 @@ console.log(JSON.stringify({
   premise:"2013 signed BASE29 integers, 2016 signed words/numbers; one source-p0-red anchored pair of COMPLETE words",
   source:"12,956 exact original runes, 2,896 printed words including all original page carries",
   invariant:"any fixed bijection on two word-terminal GP29 residues preserves same-context endpoint-pair collisions, despite arbitrary unknown key and map",
-  observed,controls:reports,
+  observed,chapterLocal,chapterLocalUnpairedWords:skipped,controls:reports,
   genuineGPPlant:{
     source:"genuine Shakespeare native GP29 word lengths matched to every printed LP2 word",
     originalRunes:planted.flat().length,
