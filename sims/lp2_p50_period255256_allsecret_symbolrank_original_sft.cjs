@@ -256,7 +256,7 @@ function allTwoBankTransparentF(period,mode) {
         for(let c=1;c<29;c++)bucket[c]+=hist[chapter][phaseIndex][c];
       }
       for(const bank of banks){
-        const sorted=Array.from(bank).slice(1).sort((a,b)=>b-a);
+        const sorted=Array.from(bank).slice(mode==='direct'?1:0).sort((a,b)=>b-a);
         topFourNonF+=sorted.slice(0,4).reduce((a,b)=>a+b,0);
         topFiveNonF+=sorted.slice(0,5).reduce((a,b)=>a+b,0);
       }
@@ -274,7 +274,7 @@ for(const mode of ['direct','integrator'])
     transparentFBounds.push(allTwoBankTransparentF(period,mode));
 assert.deepEqual(transparentFBounds.map(x=>[x.mode,x.period,x.B5,x.mask]),
   [['direct',255,6026,27],['direct',256,6056,88],
-   ['integrator',255,6029,38],['integrator',256,6020,58]]);
+   ['integrator',255,6030,38],['integrator',256,6020,58]]);
 assert(transparentFBounds.every(x=>x.B5/original.length<46/95));
 
 /** Exact histogram for any recovered candidate plaintext. */
