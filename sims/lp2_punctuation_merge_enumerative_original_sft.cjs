@@ -291,6 +291,17 @@ const known = read("resources/external/2013-book-of-law-I.txt")
   .toUpperCase().replace(/[^A-Z]/g, "")
   .split("").map(c => c.charCodeAt(0) - 65);
 assert.ok(known.length > 7000);
+// Authentic already-solved 2014 p57 is a native GP29 plaintext source.
+// Use its actual 95 GP symbols for q27 positives, retaining native TH/ING
+// contractions rather than miscalling 2013 26-letter Latin text native GP.
+const p57Source = JSON.parse(
+  read("resources/external/relikd-solved-gp29-native-v1.json")
+).sections.find(section => section.name === "p57_parable").source_text;
+const gp27Native = Array.from(p57Source)
+  .filter(rune => runeIdx.has(rune))
+  .map(rune => q27Map.indexOf(runeIdx.get(rune)));
+assert.equal(gp27Native.length, 95);
+assert.ok(gp27Native.every(x => x >= 0 && x < 27));
 for (const schedule of [q26, q27]) {
   const q = schedule.q;
   let actual = [], recoveredRunes = [], canonicalCount = 0;
@@ -305,7 +316,7 @@ for (const schedule of [q26, q27]) {
     const start = planted.length;
     const source = Array.from({ length: group.n }, (_, i) =>
       q === 26 ? known[(start + i) % known.length] :
-        known[(start + i) % known.length] % 27);
+        gp27Native[(start + i) % gp27Native.length]);
     planted.push(...source);
     const encoded = encodeGroup(group, q, source);
     const decoded = decodeGroup({ ...group, R: encoded.R }, q);
@@ -333,7 +344,7 @@ for (const schedule of [q26, q27]) {
       book.translit[q27Map[k]]).join("");
   console.log("ALPHABET", q, "original cipher decoded", actual.length,
     "symbols", "IoC", outIoC.toFixed(9),
-    "native-source planted IoC", plantedIoC.toFixed(9),
+    "historically native-source planted IoC", plantedIoC.toFixed(9),
     "canonical-original ciphertext frames", canonicalCount,
     "of", schedule.groups.length,
     "initial decoded text", printed);
