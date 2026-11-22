@@ -1,0 +1,23 @@
+name: Agent28 Original-Source SFTs
+on:
+  push:
+    paths:
+      - .github/workflows/agent28-original-source-gates.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-gates:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Original scroll255 red13 and p8 red12 GF256 gate
+        run: node sims/lp2_red12_red13_rs255_source_sft.cjs
+      - name: Authenticated-signed source to original 2896-word hex gate
+        run: node sims/lp2_2896word_gp0_p50_printablehex_transfer_sft.cjs
