@@ -124,20 +124,44 @@ function gp(tape){
 const solved=corpus.pages.find((page)=>page.page===57).indices;
 assert.equal(solved.length,95);
 const nativePlant=Array.from({length:175},(_,i)=>solved[i%solved.length]);
-const outputs=[];
-for(let bitmask=0;bitmask<8;bitmask++){
-  const decoded=decode(marksBefore,bitmask);
-  assert.deepEqual(encode(decoded,bitmask),marksBefore);
-  assert.deepEqual(decode(encode(nativePlant,bitmask),bitmask),nativePlant);
-  outputs.push({bitmask, ioc:ioc(decoded), prefix:gp(decoded.slice(0,52)), distinct:new Set(decoded).size});
-}
-const maximum=Math.max(...outputs.map((item)=>item.ioc));
-assert(Math.abs(ioc(marksBefore)-0.034811165845648605)<1e-12);
-assert(Math.abs(maximum-0.03802955665024631)<1e-12);
-assert.equal(outputs.find((item)=>item.ioc===maximum).bitmask,5);
+
+// Four complete fixed visible-mark channels; each carries exactly 175 GF29 values.
+// The after-mark channel includes a single conditional final->first rune wrap.
+const markAfter=marks.map((mark)=>original[mark.rune_offset%original.length]);
+const markGaps=marks.map((mark,i)=>mod(mark.rune_offset-(i?marks[i-1].rune_offset:0)));
+const dotCounts=marks.map((mark)=>mark.large_mark?.dot_count??(
+  mark.symbol==='⁚'||mark.index===127?3:mark.index===91?1:4
+));
+const dotHistogram=dotCounts.reduce((counts,value)=>(counts[value]=(counts[value]||0)+1,counts),{});
+assert.deepEqual(dotHistogram,{'1':1,'3':5,'4':138,'10':3,'13':28});
+const channels={
+  'preceding-original-rune':marksBefore,
+  'following-original-rune-cyclic':markAfter,
+  'consecutive-mark-rune-gap-mod29':markGaps,
+  'original-visible-mark-dot-count':dotCounts
+};
+const expectedIoC={
+  'preceding-original-rune':[0.033694581281,0.035927750411,0.034417077176,0.032840722496,0.034548440066,0.038029556650,0.036781609195,0.032643678161],
+  'following-original-rune-cyclic':[0.035270935961,0.036387520525,0.034285714286,0.034482758621,0.033563218391,0.032840722496,0.032643678161,0.033037766831],
+  'consecutive-mark-rune-gap-mod29':[0.035205254516,0.034614121511,0.035336617406,0.034220032841,0.035665024631,0.035139573071,0.036256157635,0.036256157635],
+  'original-visible-mark-dot-count':[0.035665024631,0.032052545156,0.036256157635,0.035862068966,0.034417077176,0.035205254516,0.036387520525,0.032118226601]
+};
+assert.equal(markAfter.at(-1),original[0]);
+assert.equal(markGaps[0],13);
 console.log('PASS original_runes=12956 visible_marks=175 source_dimensions=5x7x5');
 console.log('PASS excluded_only_original_absent_events=57,58,59,60,125 duplicate_offsets=1860,3603,9358');
-console.log('PASS eight_exact_original_roundtrips eight_solved_p57_plants');
-console.log('Original mark-predecessor IoC='+ioc(marksBefore).toFixed(12)+'; solved p57 IoC='+ioc(solved).toFixed(12));
-for(const output of outputs)console.log('bitmask='+output.bitmask+' IoC='+output.ioc.toFixed(12)+' distinct='+output.distinct+' prefix='+output.prefix);
-console.log('DECISION: no readable native-GP source-selected inverse; unchosen mark-to-operand rule remains missing');
+for(const [name,input] of Object.entries(channels)){
+  assert.equal(input.length,175);
+  const outputs=[];
+  for(let bitmask=0;bitmask<8;bitmask++){
+    const decoded=decode(input,bitmask);
+    assert.deepEqual(encode(decoded,bitmask),input);
+    assert.deepEqual(decode(encode(nativePlant,bitmask),bitmask),nativePlant);
+    assert(Math.abs(ioc(decoded)-expectedIoC[name][bitmask])<1e-12);
+    outputs.push({bitmask, ioc:ioc(decoded), prefix:gp(decoded.slice(0,52)), distinct:new Set(decoded).size});
+  }
+  console.log('PASS channel='+name+' eight_exact_original_roundtrips eight_solved_p57_plants');
+  console.log('channel='+name+' raw_IoC='+ioc(input).toFixed(12)+' max_IoC='+Math.max(...outputs.map(x=>x.ioc)).toFixed(12));
+  for(const output of outputs)console.log('channel='+name+' bitmask='+output.bitmask+' IoC='+output.ioc.toFixed(12)+' distinct='+output.distinct+' prefix='+output.prefix);
+}
+console.log('DECISION: no sustained native-GP instruction in any of 32 fixed original-mark tensor candidates; source-selected mark-to-key operation absent');
