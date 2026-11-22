@@ -54,6 +54,42 @@ for (const a of values) {
 }
 assert.equal(slopes(13,31).length,0);
 assert.equal(slopes(12,30).length,0); // Same one-based conversion.
+
+// A source-shaped mirror: the two five-bit masks define a reflection
+// r -> (left+right-r) mod32. An odd mask sum pairs all 32 rows with
+// no fixed point, whereas an even sum leaves two self-paired rows.
+/** @param {number} left @param {number} right */
+function reflectionPairs(left, right) {
+  const used = new Set();
+  const pairs = [];
+  for (let i = 0; i < 32; i++) {
+    if (used.has(i)) continue;
+    const partner = (left + right - i + 64) % 32;
+    used.add(i); used.add(partner);
+    pairs.push([i, partner]);
+  }
+  return pairs;
+}
+assert.deepEqual(reflectionPairs(13, 31).filter(([x,y]) => x === y),
+  [[6,6],[22,22]]);
+assert.equal(reflectionPairs(13, 31).length, 17);
+assert.equal(reflectionPairs(22, 31).length, 16);
+assert.ok(reflectionPairs(22, 31).every(([x,y]) => x !== y));
+assert.equal(reflectionPairs(26, 31).length, 16);
+
+// The exceptional non-even stride among the 65 complete covers is
+// exactly the two seeds' own gap d=(right-left), counter-rotating
+// around the same mask-sum reflection r + partner = left+right mod32.
+for (const left of [22,26]) {
+  const gap = 31 - left;
+  const mirror = [32 - gap, gap];
+  const valid = slopes(left,31);
+  assert.deepEqual(valid.filter(([s,t]) => s % 4 !== 2 || t % 4 !== 2),
+    [mirror]);
+  const layout = pairs(left,31,...mirror);
+  assert.equal(new Set(layout.flat()).size, 32);
+  assert.ok(layout.every(([l,r]) => (l+r)%32 === (left+31)%32));
+}
 console.log('PASS',JSON.stringify({original13_31FixedStride32rowCover:0,
   candidateLeftCyclicReadings:values,all1024StridePairCounts:counts,
   interpretation:'a 32-row cover requires an unselected left-bit origin and a cipher/codec'}));
