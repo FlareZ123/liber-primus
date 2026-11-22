@@ -249,6 +249,21 @@ console.log(JSON.stringify({
       p32ToP55Edges:left.nodes.indexOf(244)-left.nodes.indexOf(32)
     },
 
+
+    sourceRedIndependentBranch:{
+      p40IndexQuotient:startIndex,p40PrimeQuotient:startPrime,
+      p53PrimeQuotient:closingPrime,p40AndP53PrimeQuotient:combinedPrime,
+      p53FloralRightColumn:jointColumn,
+      afterThreeStepsFrom4:climb(startIndex,3),
+      afterThreeStepsFrom15:climb(startPrime,3),
+      unique33ExteriorSubtreeAddress:146,
+      fromExteriorNode146AfterSixSteps:climb(146,6),
+      actualP54RedOpeningRunes:p54RedLength,
+      afterNineStepsFrom4:climb(startIndex,9),
+      afterNineStepsFrom15:climb(startPrime,9),
+      sourceRed78PointsToLeftStep4:climb(closingPrime,1),
+      sourceRed93PointsToLeftStep13:climb(combinedPrime,1)
+    },
     base60CycleLengths:[base60L.cycleLength,base60R.cycleLength],
     totalOrderedPairMatches:allPairs,allOrderedPairs:256**2,
     markedOrnamentRowPairs:8*8,markedRowMatches:restricted},
