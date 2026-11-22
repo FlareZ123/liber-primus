@@ -237,13 +237,15 @@ function poolOf(words) {
  * Independently retain all complete words to compare the literal word-reset
  * clock, whose same-offset positions differ from continuous rune positions.
  * Sampling is independent across messages and words with replacement.
+ * (hits+1)/(draws+1) is an add-one descriptive tail rate, not a
+ * frequentist upper confidence bound or universal language p-value.
  *
  * @param {Map<number, number[][]>} pool
  * @param {number} seed
  * @param {number} draws
  * @returns {{draws:number,mean:number,min:number,max:number,atOrBelow:number,
- * pUpper:number,wordMean:number,wordMin:number,wordMax:number,
- * wordAtOrBelow:number,wordPUpper:number,sample:number[][],
+ * smoothedTail:number,wordMean:number,wordMin:number,wordMax:number,
+ * wordAtOrBelow:number,wordSmoothedTail:number,sample:number[][],
  * sampleWords:number[][][]}}
  */
 function calibrate(pool, seed, draws) {
@@ -282,11 +284,11 @@ function calibrate(pool, seed, draws) {
   }
   return {
     draws, mean: sum / draws, min, max, atOrBelow,
-    pUpper: (atOrBelow + 1) / (draws + 1), sample, sampleWords,
+    smoothedTail: (atOrBelow + 1) / (draws + 1), sample, sampleWords,
     wordMean: wordSum / draws, wordMin, wordMax, wordAtOrBelow,
-    wordPUpper: (wordAtOrBelow + 1) / (draws + 1),
+    wordSmoothedTail: (wordAtOrBelow + 1) / (draws + 1),
     fWordMean: fWordSum / draws, fWordMin, fWordMax, fWordAtOrBelow,
-    fWordPUpper: (fWordAtOrBelow + 1) / (draws + 1)
+    fWordSmoothedTail: (fWordAtOrBelow + 1) / (draws + 1)
   };
 }
 
@@ -386,15 +388,15 @@ const donorResults = donors.map(([name, filename, seed]) => {
   return {
     donor: name, trainingWords: donorWords.length, draws: control.draws,
     mean: control.mean, minimum: control.min, maximum: control.max,
-    atOrBelow: control.atOrBelow, pUpper: control.pUpper,
+    atOrBelow: control.atOrBelow, smoothedTail: control.smoothedTail,
     wordMean: control.wordMean, wordMinimum: control.wordMin,
     wordMaximum: control.wordMax, wordAtOrBelow: control.wordAtOrBelow,
-    wordPUpper: control.wordPUpper,
+    wordSmoothedTail: control.wordSmoothedTail,
     fWordMean: control.fWordMean,
     fWordMinimum: control.fWordMin,
     fWordMaximum: control.fWordMax,
     fWordAtOrBelow: control.fWordAtOrBelow,
-    fWordPUpper: control.fWordPUpper
+    fWordSmoothedTail: control.fWordSmoothedTail
   };
 });
 
@@ -423,17 +425,17 @@ console.log(JSON.stringify({
     minimum: solvedControl.min,
     maximum: solvedControl.max,
     atOrBelow: solvedControl.atOrBelow,
-    pUpper: solvedControl.pUpper,
+    smoothedTail: solvedControl.smoothedTail,
     wordMean: solvedControl.wordMean,
     wordMinimum: solvedControl.wordMin,
     wordMaximum: solvedControl.wordMax,
     wordAtOrBelow: solvedControl.wordAtOrBelow,
-    wordPUpper: solvedControl.wordPUpper,
+    wordSmoothedTail: solvedControl.wordSmoothedTail,
     fWordMean: solvedControl.fWordMean,
     fWordMinimum: solvedControl.fWordMin,
     fWordMaximum: solvedControl.fWordMax,
     fWordAtOrBelow: solvedControl.fWordAtOrBelow,
-    fWordPUpper: solvedControl.fWordPUpper
+    fWordSmoothedTail: solvedControl.fWordSmoothedTail
   },
   independentEnglishDonors: donorResults,
   plantedSecretBijectionInvariant: true,
