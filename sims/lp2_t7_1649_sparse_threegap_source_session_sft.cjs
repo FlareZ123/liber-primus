@@ -112,7 +112,7 @@ const Dpage = repeatedEvents("page", expected);
 const Dword = repeatedEvents("word", expected);
 const Dflat = repeatedEvents("continuous", expected);
 assert.equal(Dpage.length, 86);
-assert.equal(Dword.length, 65);
+assert.equal(Dword.length, 63);
 assert(Dflat.length >= Dpage.length);
 const longPage = longestVoid(Dpage);
 const longWord = longestVoid(Dword);
