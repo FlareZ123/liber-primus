@@ -22,7 +22,7 @@ The original physical pp49–51 table is **32×8 = 256** printed two-character t
 - Fixed historical first-onion control: replacing only the 16-byte key with `auqgnxjtvdbll3pv` produces SHA-256 `b750d95fe23406004f5feca3cbdd5541e923005f57a33c5610cdb0a3bf0022a0` and **98/256 printable ASCII bytes**, similarly nontextual. This is a contextual negative comparator, not a parameter sweep.
 - Exact forward re-encryption must reproduce all 256 source bytes for each key. An independent 256-byte ASCII-planted AES positive also tests the implementation. **Correct reencryption is not evidence of key authenticity.**
 
-A complete Windows Node22/CommonJS [single-file original-cipher reproduction](../sims/lp2_p15_emerson16_p50_aes128_ecb_original_sft.cjs) contains the pinned source assertions, native AES operations, byte digests, 256-byte replay, synthetic positive, and output diagnostics.
+Windows Node22 CI **PASS** on the unchanged committed source: [run 45042804221](https://github.com/FlareZ123/liber-primus/actions/runs/45042804221), showing both SHA-256 values, the exact original replay and the planted AES positive. A complete Windows Node22/CommonJS [single-file original-cipher reproduction](../sims/lp2_p15_emerson16_p50_aes128_ecb_original_sft.cjs) contains the pinned source assertions, native AES operations, byte digests, 256-byte replay, synthetic positive, and output diagnostics.
 
 ## Result and next decision
 
