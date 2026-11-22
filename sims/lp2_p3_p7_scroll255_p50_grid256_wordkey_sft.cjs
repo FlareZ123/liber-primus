@@ -99,4 +99,20 @@ for (const [reverse, sign, expectedIoc] of neighbors) {
   assert(measured < 0.035);
   console.log(`adjacent p8 key reverse=${reverse} sign=${sign}: original IoC ${measured.toFixed(9)}, planted ${known.length}/${known.length}`);
 }
+// Exploratory direct GP29-index word-sum alignment to the immediately
+// following 255-rune page. This observation was found during a broad search;
+// treat it as a possible structural marker, never an authenticated decoder.
+const wordSums = words.map((w) => mod(w.reduce((sum, x) => sum + x, 0)));
+const coincident = (key, shift = 0) => wordSums.reduce((n, x, j) => n + (x === key[(j + shift) % key.length] ? 1 : 0), 0);
+assert.equal(coincident(nextPage), 20);
+const rotations = Array.from({ length: 255 }, (_, shift) => coincident(nextPage, shift));
+assert.equal(Math.max(...rotations.slice(1)), 17);
+assert.equal(rotations.filter((n) => n >= 20).length, 1);
+const alternatePages = corpus.pages
+  .filter((p) => p.page >= 9 && p.page <= 55 && p.indices.length >= 255)
+  .map((p) => ({ page: p.page, matches: coincident(p.indices.slice(0, 255)) }));
+assert.equal(Math.max(...alternatePages.map((p) => p.matches)), 14);
+const directDifference = wordSums.map((v, j) => mod(nextPage[j] - v));
+assert(Math.abs(ioc(directDifference) - 0.035602902578354176) < 1e-14);
+console.log('EXPLORATORY source-word-sum/p8 equality: 20/255 at phase0, max17 at other 254 rotations, max14 on other 255+-rune page prefixes; difference IoC 0.035602903');
 console.log('PASS: source 255-word scroll, grid256 8 inverses, adjacent p8 255-rune 4 inverses, 12 full GP-native plaintext plants');
