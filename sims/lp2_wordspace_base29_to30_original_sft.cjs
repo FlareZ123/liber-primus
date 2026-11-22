@@ -189,6 +189,81 @@ assert.ok(Math.abs(heldout.gpIoC - 0.034547089820630573) < 1e-14);
  * most frequent output symbol in each such page. The sum is achievable
  * if secret alphabets can differ by page, so this is a tight all-key bound.
  */
+
+/**
+ * A complete all-secret classification gate for strictly more favorable
+ * source-typed secret alphabets. Each (page, printed word length, rune slot)
+ * state may independently apply an arbitrary GP30 permutation. The maximum
+ * achievable SPACE count is the sum of its most frequent input symbol.
+ * The exact equality witness is a per-state permutation sending the best
+ * source symbol to SPACE and every other symbol to a distinct native label.
+ *
+ * @param {Array<'page'|'chapter'|'length'|'position'>} fields
+ * @returns {{classes:number,maximum:number,achieved:number,fraction:number}}
+ */
+function alphabetSpaceCapacity(fields) {
+  /** @type {Map<string,{counts:number[],tokens:number[]}>} */
+  const states = new Map();
+  const pageAtIndex = unknownPages.flatMap(p => Array(p.indices.length).fill(p.page));
+  const chapter = (page) => [3,8,15,23,27,33,40,54].filter(start => page >= start).length;
+  const features = words.flatMap((w, wi) =>
+    converted[wi].map((digit, position) => ({
+      digit, page: pageAtIndex[w.start + position], length: w.runes.length,
+      position, chapter: chapter(pageAtIndex[w.start + position])
+    }))
+  );
+  assert.equal(features.length, runes.length);
+  for (const row of features) {
+    const label = fields.map(field => row[field]).join(':');
+    if (!states.has(label)) states.set(label, { counts: Array(30).fill(0), tokens: [] });
+    const state = states.get(label);
+    state.counts[row.digit]++;
+    state.tokens.push(row.digit);
+  }
+  let maximum = 0;
+  let achieved = 0;
+  for (const { counts, tokens } of states.values()) {
+    const most = Math.max(...counts);
+    maximum += most;
+    const target = counts.indexOf(most);
+    // A concrete all-secret bijection can send 'target' to GP30 SPACE29.
+    const map = Array.from({ length: 30 }, (_, i) =>
+      i === target ? 29 : (i < target ? i : i - 1));
+    assert.equal(new Set(map).size, 30);
+    achieved += tokens.filter(digit => map[digit] === 29).length;
+  }
+  assert.equal(maximum, achieved);
+  return { classes: states.size, maximum, achieved, fraction: maximum / runes.length };
+}
+const secretCapacities = {
+  global: alphabetSpaceCapacity([]),
+  perPage: alphabetSpaceCapacity(['page']),
+  perLength: alphabetSpaceCapacity(['length']),
+  perChapterLength: alphabetSpaceCapacity(['chapter', 'length']),
+  perPageLength: alphabetSpaceCapacity(['page', 'length']),
+  perChapterLengthPosition: alphabetSpaceCapacity(['chapter', 'length', 'position']),
+  perPageLengthPosition: alphabetSpaceCapacity(['page', 'length', 'position'])
+};
+assert.deepEqual(
+  [
+    secretCapacities.global.maximum,
+    secretCapacities.perPage.maximum,
+    secretCapacities.perLength.maximum,
+    secretCapacities.perChapterLength.maximum,
+    secretCapacities.perPageLength.maximum,
+    secretCapacities.perChapterLengthPosition.maximum,
+    secretCapacities.perPageLengthPosition.maximum
+  ],
+  [480, 767, 600, 890, 1595, 1729, 3893]
+);
+assert.equal(secretCapacities.global.classes, 1);
+assert.equal(secretCapacities.perPage.classes, 55);
+assert.equal(secretCapacities.perPageLength.classes, 529);
+assert.equal(secretCapacities.perChapterLengthPosition.classes, 740);
+assert.equal(secretCapacities.perPageLengthPosition.classes, 3023);
+assert.ok(secretCapacities.perChapterLengthPosition.fraction < 19 / 114);
+assert.ok(secretCapacities.perPageLength.fraction < 19 / 114);
+
 const native = txt('resources/transcriptions/liber_primus_master.txt')
   .split(/\r?\n\r?\n/).slice(1).join('\n\n')
   .split(/^\s*%\s*$/m).slice(8, 12).join('');
@@ -243,6 +318,7 @@ console.log('ORIGINAL_BASE29_TO_GP30', JSON.stringify(overall));
 console.log('ORIGINAL_FIRST_80_GP30', out.slice(0, 80).map(n => n === 29 ? '|' : corpus.translit[n]).join(' '));
 console.log('EARLY_P16_21', JSON.stringify(early));
 console.log('HELDOUT_P40_53', JSON.stringify(heldout));
+console.log('ALL_SECRET_BIJECTION_CLASSES', JSON.stringify(secretCapacities));
 console.log('ALL_SECRET_BIJECTION_PER_PAGE', JSON.stringify({
   exactMaxPossibleSpaceTokens: perPageMaximum,
   possibleSpaceTokenFraction: perPageMaximum / out.length,
