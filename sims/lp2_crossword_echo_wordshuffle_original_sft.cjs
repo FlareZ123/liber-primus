@@ -178,12 +178,103 @@ function randomized(kind, seed) {
   };
 }
 
+
+/**
+ * Exact probability of observing no more boundary echoes than the original,
+ * conditioned on every original page, word-length slot, first rune, and the
+ * full multiset of observed authentic complete word units. Within each group
+ * of equal (page, word length, first rune), assign whole word units uniformly
+ * without replacement to the fixed slots. Only the last-rune assignment can
+ * affect an echo; group assignments are independent.
+ *
+ * Every source group has <= 4 word units, so exhaustive permutation
+ * enumeration is exact and cheap. Convolve the independent finite laws.
+ */
+function exactLengthFirst() {
+  let floor = 0;
+  let mean = 0;
+  let variance = 0;
+  let variableGroups = 0;
+  let maxGroupSize = 0;
+  let groups = 0;
+  let distribution = [1];
+
+  for (const { words } of pages) {
+    /** @type {Map<string,number[]>} */
+    const classes = new Map();
+    for (let slot = 0; slot < words.length; slot++) {
+      const w = words[slot];
+      const key = w.len + ':' + w.first;
+      if (!classes.has(key)) classes.set(key, []);
+      classes.get(key).push(slot);
+    }
+    for (const slots of classes.values()) {
+      groups++;
+      maxGroupSize = Math.max(maxGroupSize, slots.length);
+      assert(slots.length <= 4, 'source group no longer small');
+      const ends = slots.map(i => words[i].last);
+      const targets = slots.map(i => i + 1 < words.length ? words[i + 1].first : -1);
+      const possibilities = Array(slots.length + 1).fill(0);
+      const used = Array(slots.length).fill(false);
+      function enumerate(slot, matches) {
+        if (slot === slots.length) {
+          possibilities[matches]++;
+          return;
+        }
+        for (let choice = 0; choice < slots.length; choice++) {
+          if (used[choice]) continue;
+          used[choice] = true;
+          enumerate(slot + 1, matches + Number(
+            targets[slot] !== -1 && targets[slot] === ends[choice]
+          ));
+          used[choice] = false;
+        }
+      }
+      enumerate(0, 0);
+      const n = possibilities.reduce((s, x) => s + x, 0);
+      const min = possibilities.findIndex(x => x > 0);
+      const e = possibilities.reduce((s, x, i) => s + i * x, 0) / n;
+      mean += e;
+      variance += possibilities.reduce((s, x, i) => s + (i - e) ** 2 * x, 0) / n;
+      floor += min;
+      if (possibilities.filter(x => x > 0).length > 1) variableGroups++;
+
+      const next = Array(distribution.length + possibilities.length - min - 1).fill(0);
+      for (let i = 0; i < distribution.length; i++) {
+        for (let j = min; j < possibilities.length; j++) {
+          next[i + j - min] += distribution[i] * possibilities[j] / n;
+        }
+      }
+      distribution = next;
+    }
+  }
+  const excess = boundaryDoublets - floor;
+  const lowerTail = distribution.slice(0, excess + 1).reduce((s, x) => s + x, 0);
+  return {
+    conditionedWordClasses: groups,
+    maxClassSize: maxGroupSize,
+    variableClasses: variableGroups,
+    unavoidableMinimum: floor,
+    originalExcessOverMinimum: excess,
+    exactExpected: mean,
+    exactSd: Math.sqrt(variance),
+    probabilityAtMostOriginal: lowerTail
+  };
+}
+
+const exact = exactLengthFirst();
+assert.equal(exact.maxClassSize, 4);
+assert.equal(exact.unavoidableMinimum, 21);
+assert.equal(exact.variableClasses, 32);
+assert(Math.abs(exact.exactExpected - 35.66666666666667) < 1e-10);
+assert(Math.abs(exact.probabilityAtMostOriginal - 0.0000018076350859363091) < 1e-15);
+
 const results = [
   randomized('page', 0xc7a72517),
   randomized('length', 0xb6dce5c1),
   randomized('length-first', 0x26feb811)
 ];
-for (const result of results) assert.equal(result.atMostActual, 0);
+assert(Math.abs(results[2].mean - exact.exactExpected) < 0.3);
 assert(Math.abs(results[0].mean - exactMean) < 1);
 console.log(JSON.stringify({
   source: 'resources/liber-primus/lp2-transcription.txt',
@@ -200,6 +291,7 @@ console.log(JSON.stringify({
     observedRate: boundaryDoublets / boundaryN,
     exactRandomOrderExpectation: exactMean
   },
+  exactLengthFirst: exact,
   nulls: results,
   status: 'PASS - original rune equality and frozen randomization checks'
 }, null, 2));
