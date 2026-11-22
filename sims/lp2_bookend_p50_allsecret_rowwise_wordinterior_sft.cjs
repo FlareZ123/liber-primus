@@ -270,7 +270,7 @@ console.log(JSON.stringify({
   original: {
     runes: all.length, sourceA: A.length, sourceB: C.length,
     originalPrintedWords: words.length, BNonInitialRuneSites: 4963,
-    BFirstRuneSites: 1432, p50Cells: bytes.length
+    BFirstRuneSites: 1432, p50Cells: p50.bytes.length, BClockPositions: bytes.length
   },
   theorem: "For EVERY secret rowwise GP29 alphabet S_(p50state,K), one plaintext rune's count at non-word-initial positions is <= sum over source states/K rows of max original ciphertext category count in that row at those positions.",
   masksExamined: masks.length,
