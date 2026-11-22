@@ -154,6 +154,33 @@ console.log('FOUR_RED_GP_RUNES_2X2_HILL_INVERSE',
     corpus.translit[n]).join(''),
   'BODY120', hillOutput.slice(8, 128).map((n) =>
     corpus.translit[n]).join(''));
+// The original red second word consists of eight distinct rune values.
+// Its GP29 ordinal sort provides one completely source-derived columnar
+// key for the printed 32x8 grid, not an arbitrary 8! search. Compare the
+// sorted and inverse sorting conventions against the original 31x8
+// black/carry receiver, skipping the eight red cells and grid row0.
+const eightRedValues = frame.slice(0, 8);
+assert.equal(new Set(eightRedValues).size, 8);
+const sortedColumns = Array.from({ length: 8 }, (_, i) => i)
+  .sort((i, j) => eightRedValues[i] - eightRedValues[j]);
+assert.deepEqual(sortedColumns, [0, 4, 6, 3, 5, 1, 7, 2]);
+const inverseColumns = Array.from({ length: 8 }, (_, i) =>
+  sortedColumns.indexOf(i));
+for (const [label, order] of [
+  ['red8-sorted-column-key', sortedColumns],
+  ['red8-inverse-sorted-column-key', inverseColumns]
+]) {
+  const sourceKey = Array.from({ length: 248 }, (_, i) =>
+    grid.bytes[8 + Math.floor(i / 8) * 8 + order[i % 8]] % 29);
+  const recovered = frame.slice(8).map((value, i) =>
+    gp29(value - sourceKey[i]));
+  const score = coincidence(recovered);
+  assert.ok(score < 0.045, label + ': no original native-GP prose');
+  console.log('SOURCE_SORTED_RED8_COLUMN_KEY', label,
+    'IOC', score.toFixed(11),
+    'PREVIEW120', recovered.slice(0, 120).map((n) =>
+      corpus.translit[n]).join(''));
+}
 console.log('P8_WHOLE_PRINTED_4PLUS256_SOURCE_FRAME', frame.length);
 console.log('P50_TABLE_SHAPE', grid.shape);
 console.log('PASS: exact original frame and negative fixed row-major byte-mod29 pad gate');
