@@ -1,0 +1,15 @@
+name: Agent45 p15 WAY original five-triples SFT
+
+on:
+  workflow_dispatch:
+
+jobs:
+  p15-original-source:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate p15 first-three WAY, p50 five groups and native-Koan negative
+        run: node sims/lp2_p15_first3_way_table_entry_sft.cjs
