@@ -168,7 +168,7 @@ console.log(JSON.stringify({
     lag6SelectedByOriginal: false, authorCipherAuthenticated: false},
   original: {lag6Opportunities: opportunities, lag6Echoes: matches,
     lag6WithinWordDoublets: afterSixDoublets,
-    forcedStrictRepairContradictions,
+    forcedStrictRepairContradictions: forcedStrictRepeatContradictions,
     twoPreimageSites: ambiguous.length,
     redColocatedSites: ambiguous.filter((site) => site.markedRed).length,
     minimumDistinctProvisionalStreams: (1n << BigInt(ambiguous.length)).toString(),
