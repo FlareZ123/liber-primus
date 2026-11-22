@@ -1,0 +1,13 @@
+name: Agent40 original scroll255 prime-product all-secret obstruction
+on:
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original ciphertext exact proof and source-shaped positive
+        run: node sims/lp2_scroll255_primeproduct_1033_3301_allsecret_obstruction_sft.cjs
