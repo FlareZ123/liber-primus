@@ -39,7 +39,8 @@ const repeatCount = a => a.slice(1).reduce((n, v, i) => n + Number(v === a[i]), 
 
 /** @param {number} n @param {number} k */
 function choose(n, k) {
-  assert.ok(Number.isInteger(n) && Number.isInteger(k) && n >= 0 && k >= 0 && k <= n);
+  assert.ok(Number.isInteger(n) && Number.isInteger(k) && n >= 0 && k >= 0);
+  if (k > n) return 0n; // zero combinatorial completions when rank prefix runs out
   let z = 1n;
   for (let j = 1; j <= Math.min(k, n - k); j++) {
     z = z * BigInt(n - j + 1) / BigInt(j);
