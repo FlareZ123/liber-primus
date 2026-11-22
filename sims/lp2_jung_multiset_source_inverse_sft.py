@@ -1,0 +1,197 @@
+"""Same-title Jung Liber Primus inverse: original whole-word length multisets.
+
+Instead of demanding source words appear in original printed order, this test
+recovers a hypothetical original source passage despite any permutation of
+whole words within an illustrated chapter. No secret keyword, cipher language,
+font spelling, page or source offset may be fitted from original outcomes.
+
+Read-only Windows Python 3.12 SFT. Source PDF fetched into memory, SHA-256
+authenticated, and the exact source-title body selected by source headings;
+no source PDF or source prose is written to the repository.
+"""
+from __future__ import annotations
+
+from collections.abc import Sequence
+from dataclasses import dataclass
+from hashlib import sha256
+import json
+
+import lp2_jung_liberprimus_section_address_sft as jung
+import lp2_jung_liberprimus_wordlength_source_sft as source_lengths
+
+# These nine boundaries are selected by original illustrations.
+CHAPTER_CUTS = (0, 3, 8, 15, 23, 27, 33, 40, 54, 56)
+BINS = 18
+
+
+@dataclass(frozen=True)
+class Match:
+    replacement_count: int
+    source_word_offset: int
+    exact_windows: int
+    target_word_count: int
+
+
+def min_multiset_distance(source: Sequence[int], wanted: Sequence[int]) -> Match:
+    """Half-L1 histogram distance across ALL fixed-length contiguous windows.
+
+    This is the minimum number of changed word lengths necessary for the
+    source passage's multiset to match an original page or chapter exactly.
+    The source and target both use length 17 for all longer words.
+    """
+    window = len(wanted)
+    if window > len(source):
+        return Match(window, -1, 0, window)
+    want_counts = [0] * BINS
+    have_counts = [0] * BINS
+    for n in wanted:
+        want_counts[min(n, 17)] += 1
+    for n in source[:window]:
+        have_counts[min(n, 17)] += 1
+    distance = sum(abs(a - b) for a, b in zip(want_counts, have_counts))
+    lowest = distance
+    best_offset = 0
+    exact_windows = int(distance == 0)
+    for start in range(1, len(source) - window + 1):
+        out = min(source[start-1], 17)
+        incoming = min(source[start+window-1], 17)
+        if out != incoming:
+            distance -= abs(want_counts[out] - have_counts[out])
+            have_counts[out] -= 1
+            distance += abs(want_counts[out] - have_counts[out])
+            distance -= abs(want_counts[incoming] - have_counts[incoming])
+            have_counts[incoming] += 1
+            distance += abs(want_counts[incoming] - have_counts[incoming])
+        if distance < lowest:
+            lowest, best_offset = distance, start
+        if distance == 0:
+            exact_windows += 1
+    assert lowest % 2 == 0
+    return Match(lowest // 2, best_offset, exact_windows, window)
+
+
+def target_segments() -> tuple[list[dict], list[dict]]:
+    original, physical = source_lengths.original_words()
+    assert len(original) == len(physical) == 2896
+    assert sum(original) == 12956
+    page_numbers = [p for p in range(56) if p != 50]
+    page_lengths = {
+        p:[min(n,17) for n,q in zip(original,physical) if q==p]
+        for p in page_numbers
+    }
+    page_windows = []
+    for start in range(55):
+        for span in range(1,4):
+            if start+span > 55:
+                continue
+            indices = page_numbers[start:start+span]
+            page_windows.append({
+                "physical":indices,
+                "lengths":[l for p in indices for l in page_lengths[p]],
+                "span":span
+            })
+    assert len(page_windows) == 162
+    chapters = []
+    for index,(begin,end) in enumerate(zip(CHAPTER_CUTS,CHAPTER_CUTS[1:])):
+        lengths = [min(n,17) for n,p in zip(original,physical)
+                   if begin <= p < end]
+        chapters.append({"chapter":index, "physical":[begin,end-1], "lengths":lengths})
+    assert [len(c["lengths"]) for c in chapters] == [
+        158,255,383,437,224,326,378,669,66
+    ]
+    return page_windows,chapters
+
+
+def evaluate(label: str, source: list[int], pages: list[dict],
+             chapters: list[dict]) -> dict:
+    rows = []
+    for entry in pages:
+        hit = min_multiset_distance(source,entry["lengths"])
+        rows.append({
+            "start":entry["physical"][0],
+            "end":entry["physical"][-1],
+            "span":entry["span"],
+            "min_changed":hit.replacement_count,
+            "source_offset":hit.source_word_offset,
+            "exact_windows":hit.exact_windows,
+            "target_words":hit.target_word_count
+        })
+    chapter_rows = []
+    for entry in chapters:
+        hit = min_multiset_distance(source,entry["lengths"])
+        chapter_rows.append({
+            "chapter":entry["chapter"],
+            "physical":entry["physical"],
+            "min_changed":hit.replacement_count,
+            "source_offset":hit.source_word_offset,
+            "exact_windows":hit.exact_windows,
+            "target_words":hit.target_word_count
+        })
+    return {
+        "scheme":label,
+        "source_words":len(source),
+        "exact_by_page_span":{
+            str(span):sum(r["exact_windows"] for r in rows if r["span"]==span)
+            for span in (1,2,3)
+        },
+        "exact_whole_chapter_windows":sum(r["exact_windows"] for r in chapter_rows),
+        "best_by_page_span":{
+            str(span):sorted((r for r in rows if r["span"]==span),
+                             key=lambda r:r["min_changed"])[:2]
+            for span in (1,2,3)
+        },
+        "best_whole_chapter":sorted(
+            chapter_rows,
+            key=lambda r:r["min_changed"]/r["target_words"]
+        )[:2]
+    }
+
+
+def main() -> None:
+    pages,chapters = target_segments()
+    raw,words,details = jung.source_subbook()
+    original_sha = sha256(raw).hexdigest()
+    assert original_sha == "5cbb32a6a6033399c8692ac9aaeb148e02a1a0734f4d7a31a90453fbc6073359"
+    assert details["source_words"] == len(words)
+    assert len(words) == 41654
+    variants = [
+        ("native-GP", [min(17,source_lengths.gp_length(w)) for w in words]),
+        ("literal-Latin", [min(17,len(w)) for w in words])
+    ]
+    for name,source in variants:
+        # Independent positive: a contiguous authored 180-word window retains
+        # the same exact multiset after three 60-word deterministic reversals.
+        positive = source[5000:5180]
+        shuffled = [
+            *reversed(positive[0:60]),
+            *reversed(positive[60:120]),
+            *reversed(positive[120:180])
+        ]
+        planted = min_multiset_distance(source,shuffled)
+        assert planted.replacement_count == 0
+        assert planted.exact_windows >= 1
+        print("POSITIVE",json.dumps({"mode":name,"source_words":180,
+              "exact_windows":planted.exact_windows},sort_keys=True))
+    results = [evaluate(name,seq,pages,chapters) for name,seq in variants]
+    for row in results:
+        print("SOURCE",json.dumps(row,sort_keys=True,separators=(",",":")))
+    observed = {
+        "source":"Jung English reader, exactly titled Liber Primus body",
+        "source_sha256":original_sha,
+        "source_section":details,
+        "original_runes":12956,
+        "original_printed_words":2896,
+        "original_page_windows":len(pages),
+        "original_chapter_windows":len(chapters),
+        "source_variants":len(variants),
+        "no_multi_page_exact":all(
+            row["exact_by_page_span"]["2"] == 0 and
+            row["exact_by_page_span"]["3"] == 0 for row in results),
+        "no_chapter_exact":all(row["exact_whole_chapter_windows"] == 0
+                               for row in results)
+    }
+    print("SUMMARY",json.dumps(observed,sort_keys=True))
+
+
+if __name__ == "__main__":
+    main()
