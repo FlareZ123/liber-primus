@@ -230,6 +230,25 @@ assert.deepEqual(referenceMajorization,{
   at33:0,at40:0,at54:56}}
 });
 
+// Solved source (2,979 symbols) lacks EO/OE, but ordinary English often
+// does too. Test this caveat in independently native-encoded 2,979-run windows.
+const gapControls={};
+for(const [label,file] of referenceSources){
+ const glyphs=encode(read(file));
+ let windows=0,bothAbsent=0;
+ for(let i=0;i+2979<=glyphs.length;i+=997){
+  const window=glyphs.slice(i,i+2979);
+  if(window.every(x=>x!==12&&x!==22))bothAbsent++;
+  windows++;
+ }
+ gapControls[label]={windows,bothAbsent};
+}
+assert.deepEqual(gapControls,{
+ Gibran:{windows:60,bothAbsent:13},
+ Shakespeare:{windows:215,bothAbsent:30},
+ Emerson:{windows:320,bothAbsent:26}
+});
+
 // Positive cipher: all 243 unknown state bijections may be different.
 // Use a seeded family of genuine invertible affine GP29 permutations.
 const native=encode(read("resources/control/gibran_prophet_58585.txt"))
@@ -271,6 +290,6 @@ console.log(JSON.stringify({
  classification:"key-independent conditional exclusion, no recovered original plaintext",
  sourceP7RedProducts:products,sourceTritIV:INITIAL,
  originalRuns:limits,solved27RuneSourceAlphabet:{authenticRunes:genuineSolved.length,used:27,unseenIndices:[12,22]},sevenStateAlphabetObstructions:support,nativeControls:controls,
- positiveNativeCipherPlants:positive,allSecretTopKOriginal:prefixBounds,nativeTopKWindowViolations:referenceMajorization,
+ positiveNativeCipherPlants:positive,allSecretTopKOriginal:prefixBounds,nativeTopKWindowViolations:referenceMajorization,EOOEAbsence2979Null:gapControls,
  result:"all-secret 243-state feedback alphabet excluded under source-native 27-rune support for continuous, chapter and page reset with any IV; a weaker frequency bound additionally excludes 29-rune English-like prose for continuous and chapter shared keys"
 },null,2));
