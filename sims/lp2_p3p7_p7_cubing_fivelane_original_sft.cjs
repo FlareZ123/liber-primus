@@ -101,9 +101,45 @@ for(let mode=0;mode<4;mode++){
  assert(score.nativeHeldout200>0.05);
  output.push(score);
 }
+/**
+ * Changing-state ciphertext-fed companion to the source cubing orbit.
+ * First-party p7 five red word products seed registers; each emitted C
+ * changes its own register by S_j <- (S_j+C_j)^3 mod29. This is a
+ * nonlinear, aperiodic, reversible source-keyed five-state cipher,
+ * distinct from the periodically cubic four baseline conventions.
+ *
+ * No original cue chooses the addition of ciphertext here: explicit
+ * predeclared hypothesis, not an authenticated author opcode.
+ * @param {number[]} input @param {number[]} initial @param {boolean} decrypt
+ */
+function ciphertextFedCubic(input,initial,decrypt){
+ const state=initial.slice(),output=[];
+ for(let i=0;i<input.length;i++){
+  const lane=i%5,value=input[i],s=state[lane];
+  const cipher=decrypt?value:pow(mod(value+s),3);
+  const plaintext=decrypt?mod(pow(cipher,19)-s):value;
+  output.push(decrypt?plaintext:cipher);
+  state[lane]=pow(mod(s+cipher),3);
+ }
+ return output;
+}
+const fedDecoded=ciphertextFedCubic(book,seed,true);
+assert.deepEqual(ciphertextFedCubic(fedDecoded,seed,false),book);
+const fedPlanted=ciphertextFedCubic(plant,seed,false);
+assert.deepEqual(ciphertextFedCubic(fedPlanted,seed,true),plant);
+const fedWrong=ciphertextFedCubic(fedPlanted,wrongSeed,true);
+const fedWrongMatches=fedWrong.filter((v,i)=>v===plant[i]).length;
+assert(fedWrongMatches<plant.length/8);
+const fedScores={train300:ioc(fedDecoded.slice(0,300)),
+ heldout200:ioc(fedDecoded.slice(300,500)),
+ fullScroll:ioc(fedDecoded),
+ wrongKeyMatches:fedWrongMatches,
+ preview:fedDecoded.slice(0,55).map(x=>corpus.translit[x]).join(" ")};
+assert(fedScores.train300<0.047);
+assert(fedScores.heldout200<0.047);
 console.log("PASS "+JSON.stringify({sourceScroll:"physical p3–7",runes:book.length,
  sourceP7Products:seed,cubicOrbit:orbit,sourceP8RedM:19,
  originalIoC:ioc(book),nativePositiveIc:ioc(plant),
- fourExactSourceConventions:output,
+ fourExactSourceConventions:output,nonlinearCipherFeedback:fedScores,
  excluded:"these exact low-state cubing/rune transport conventions",
  remaining:"source does not select any nonlinear rune receiver or its IV/clock; no unknown plaintext"}));
