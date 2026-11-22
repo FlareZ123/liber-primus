@@ -1,0 +1,18 @@
+name: Agent10 GP30 DIVINITY original-source reversible SFT
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gp30-sft:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Exact LP2 original and native solved controls
+        run: node sims/lp2_divinity_gp30_space_vigenere_original_sft.cjs
