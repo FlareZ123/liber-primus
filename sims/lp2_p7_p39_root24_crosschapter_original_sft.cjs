@@ -59,7 +59,11 @@ const red39 = ink.pages.find(p => p.page === 39).red_spans
 assert.equal(red39.length, 1);
 const q = corpus.pages[39].indices
   .slice(red39[0].start, red39[0].start + 3);
-assert.deepEqual(q, [27,5,15]);
+const amplitude = product(p7[3]); // Fourth red word is the R^5 y-component 15.
+const predictedRed39 = [mod(amplitude * w * w),
+  mod(-2 * amplitude * w), amplitude];
+assert.deepEqual(predictedRed39, [27,5,15]);
+assert.deepEqual(q, predictedRed39);
 const Q = x => mod(q[0] + q[1]*x + q[2]*x*x);
 const dQ = x => mod(q[1] + 2*q[2]*x);
 const roots = Array.from({length:29}, (_,x) => x)
@@ -130,6 +134,7 @@ assert.deepEqual(recoveredA.map((v,j)=>mod(v-recoveredB[j])),
 console.log(JSON.stringify({
   sourceP7WordProducts:coeff, sourceP8WordProducts:p8.map(product),
   originalPrintedImaginaryIndex:i, rootP8:z, powerFiveRootP39:pow(z,5),
+  sourcePredictedFullP39RedTriad:predictedRed39,
   originalP39RedRuneCoefficients:q, uniqueDoubleRoot:roots,
   sevenCycle:cycle, originalRuneLengths:[botanical.length,cuneiform.length],
   crossChapterSharedPadTests:differences,
