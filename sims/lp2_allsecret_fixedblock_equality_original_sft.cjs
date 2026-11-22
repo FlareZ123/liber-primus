@@ -213,9 +213,36 @@ for(const [name,base29,sourceAlphabet,expected] of alternate){
     k4AdaptiveMin:Math.min(...entries.map(x=>x.k4Adaptive)),
     k4CommonMin:Math.min(...entries.flatMap(x=>x.k4Common))});
 }
+/** Latin Vulgate exact native word-shape test on every original word slot. */
+const latinPools=Array.from({length:30},()=>[]);
+for(const row of read("resources/control/latin-vulgate-gp-wholewords.txt").split(/\r?\n/)){
+  const word=row.trim();
+  if(!word||word.startsWith("#"))continue;
+  const data=Array.from(word,ch=>gpAlphabet.indexOf(ch));
+  assert(data.every(x=>x>=0&&x<29));
+  latinPools[data.length].push(data);
+}
+assert(lens.every(n=>latinPools[n].length>0));
+seed=0x02916017;
+const latinTrials=96,latinStats={3:[],4:[],5:[]};
+for(let trial=0;trial<latinTrials;trial++){
+  const control=[];
+  for(const n of lens){const group=latinPools[n];control.push(...group[random()%group.length]);}
+  assert.equal(control.length,N);
+  for(const k of [3,4,5])latinStats[k].push(phaseAdaptive(control,k));
+}
+const latinWordMatched=Object.fromEntries([3,4,5].map(k=>[k,{
+  min:Math.min(...latinStats[k]),max:Math.max(...latinStats[k]),
+  mean:Math.round(1000*latinStats[k].reduce((a,b)=>a+b,0)/latinTrials)/1000,
+  zeroCount:latinStats[k].filter(v=>v===0).length
+}]));
+assert(latinWordMatched[3].min>0);
+assert(latinWordMatched[4].min>0);
+assert.equal(latinWordMatched[5].min,0);
 process.stdout.write(JSON.stringify({
   originalPages:ps.length,originalRunes:N,wholeWords:lens.length,crossPageWords:words.crossPageWords,
-  original,originalAdaptive,alternateLanguages,sourceContinuousWindows:controls.map(c=>({name:c.name,n:c.samples.length,...c.contiguous})),
+  original,originalAdaptive,alternateLanguages,latinWordMatched,
+  latinWordShapeSeed:"0x02916017",latinWordShapeTrials:latinTrials,sourceContinuousWindows:controls.map(c=>({name:c.name,n:c.samples.length,...c.contiguous})),
   lengthMatchedControls:{seed:"0x33012026",trialsPerSource:trials,
     mechanism:"Each fixed original word-length slot sampled with replacement from that corpus's actual native GP words of matching rune length",
     results:matched},pageSpecificSecretInvertiblePlants:plants,
