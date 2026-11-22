@@ -18,7 +18,7 @@ const assert = require("node:assert/strict");
 const fs = require("node:fs");
 const path = require("node:path");
 const root = path.resolve(__dirname, "..");
-const read = name => fs.readFileSync(path.join(root, name), "utf8");
+const read = name => fs.readFileSync(path.join(root, name), "utf8").replace(/\r\n/g,"\n");
 const gp = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const {encodeSourceNativeGP} = require("./lp2_native_gp_source_orthography_sft.cjs");
 const runeMap = new Map(gp.runes.map((r, i) => [r, i]));
