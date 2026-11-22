@@ -39,6 +39,21 @@ For each fixed sign and key, every source-p55 candidate is re-encrypted to its e
 
 The only assumptions needed for the reported finite negatives are the specified shedding operation, GP-index register, printed order, direct additive consumer and page/position correspondence. Results do not exclude alternate source-selected consumers, partial word-specific keys, stateful operations, or genuine instructions encoded outside the text. The cardinality matches themselves require independent source support before stronger significance is assigned.
 
+## The same 75-runic key as a five-bit XOR byte register
+
+The direct GP29 additive receiver above is an explicit rune-domain test. A distinct, historically plausible binary consumer is available without any new source address: represent each of the **75 original GP29 rune indices** in the p55 complete-word body as a five-bit unsigned value, XOR it with the aligned **75 original p57 GP29 indices** after shedding the first or last rune of each of p57's 20 words, and pack the result into consecutive eight-bit bytes. The sender/receiver boundaries, key input and length are fixed; XOR is involutive. Both natural five-bit orientations are explicitly included, with no searched byte offset, IV, secret alphabet, English-based phase selection or discarded source symbols.
+
+The [read-only original-input SFT](../sims/lp2_p55_p57_shed75_binaryxor_sft.cjs) checks all 95 native p57 runes against the original transcript, consumes all75 p55 body runes, proves original bytewise/runic replay and recovers an authentic solved-p57 75-rune plaintext plant exactly. Each 75×5=375-bit read contains **46 full bytes and seven remaining bits**. Four fixed outputs:
+
+| Original p57 shed edge | Five-bit pack direction | Printable ASCII bytes /46 | First twelve output bytes (hex) |
+| --- | --- | ---: | --- |
+| First rune | MSB first | **16** | `0de56d8c96ef9f89049a8e2f` |
+| First rune | LSB first | **18** | `8752dde08dbbfc34c08b88fb` |
+| Last rune | MSB first | **15** | `a2ddff17595399e6a70bce19` |
+| Last rune | LSB first | **20** | `2e9df7d173538cfb487a98cd` |
+
+The outputs have ordinary binary-looking readability, no direct ASCII sentence and no recognizable standard binary header at byte zero. The seven residual bits have no first-party type or checksum instruction. This **retires the exact source-aligned five-bit XOR/byte-unpack consumer** alongside the additive inverses, while allowing a future independently specified cryptographic transform on the two 75-symbol inputs. A generic headerless secret key cannot be excluded by visual byte tests.
+
 ## An all-secret plaintext-crib constraint on the 76/75 tail alignment
 
 The source p57 tail may alternatively be hypothesized as p55's *plaintext* rather than as the pad. Under the exact same source-derived alignment, **no fixed GP29 monoalphabetic substitution can map the original p55 ciphertext to that intact p57 tail**, regardless of the secret alphabet. On the full 76-rune alignment, there are **99 unordered position-pairs** with the same p55 rune but different proposed p57 plaintext runes, which violates even a non-injective substitution. There are also **171 unordered position-pairs** with different p55 runes but equal proposed p57 runes, which violates injectivity of a reversible substitution. A concrete contradiction occurs at p55 page-local offsets **0 and 33**: both ciphertext runes are GP index21, while the proposed p57 tail plaintext runes are indices16 and9. On the 75-rune body/last-four-lines alignment, the two mismatch counts are **98** and **168**, respectively.
