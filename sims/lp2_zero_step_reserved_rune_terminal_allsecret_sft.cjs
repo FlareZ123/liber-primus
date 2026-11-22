@@ -23,7 +23,7 @@ const {encodeSourceNativeGP} = require('./lp2_native_gp_source_orthography_sft.c
 
 const root = path.resolve(__dirname, '..');
 /** @param {string} name @returns {string} */
-const read = name => fs.readFileSync(path.join(root, name), 'utf8');
+const read = name => fs.readFileSync(path.join(root, name), 'utf8').replace(/\r\n/g, '\n');
 const gp = JSON.parse(read('resources/liber-primus/lp2-corpus.json'));
 const pages = gp.pages.filter(p => p.page < 56 && p.indices.length);
 const original = pages.flatMap(p => p.indices);
