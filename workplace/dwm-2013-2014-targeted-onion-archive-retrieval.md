@@ -17,6 +17,14 @@ A third, *more direct* first-party-institutional source is **Kris Oosthoek, Mark
 
 If the specific 2014 distributor host was not crawled or no raw response remains, a narrowly scoped alternative is an **archived PGP-key-identifier lookup for Cicada's contemporaneous signed notices**, followed only if hits have verified original date and host links; the crawler's documented key-extraction feature makes this a more constrained backup than unbounded searching by religious/cryptographic vocabulary.
 
+## 2023 operator-side lookup semantics: per-domain version and metadata
+
+A direct **CFLW-owned operator study** now supplies an even more targeted query shape: Hartel, Haspels, van Staalduinen & Texeira, **[DarkDiff: Explainable Web Page Similarity of TOR Onion Sites](https://arxiv.org/abs/2308.12134)** (23 August 2023), explicitly states (method §3.2) that DWM **stores database metadata for every fetched page**, and **preserves each changed version of a homepage** rather than duplicating identical revisits. All authors worked at CFLW; their primary data stayed on CFLW servers (§2.8), and their data access acknowledgment directs inquiries to CFLW. The study's measured population is **June 2020–September 2022** and does not show that a 2014 historical layer survived. This fixes the most affordable original question precisely:
+
+> Does the retained indexed **domain metadata/version table**, including any pre-2020 legacy records, contain `ky2khlqdf7qdznac.onion`, with earliest/latest original crawl timestamps and any HTML version? If yes, can a puzzle-specific authorized historical body be retrieved?
+
+That yes/no indexed lookup avoids bulk scanning and does not require a Tor descriptor, which the crawler may never have captured. **The study also establishes that its current crawler ran with JavaScript disabled**, so any lost JS-generated content might not be present even when the host was known. Do not assume this was true for the 2014 crawler. The **different** preimage digest query is gated on original raw-body retention and affordable indexed search, as described below.
+
 ## Single low-cost custodian question
 
 Ask CFLW/DWM whether its **2014**, especially **10–15 May 2014 UTC**, retained *public web page* metadata or raw HTTP responses include the **signed Cicada 2014 Stage11 hidden-service domain**
