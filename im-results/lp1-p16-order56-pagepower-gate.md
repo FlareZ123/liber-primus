@@ -10,9 +10,7 @@ The three original Stage 10 matrices have exact, source-derived orders over GF(2
 | 1033 | 5×5 | 3 | **28** |
 | 1033 | 7×7 | 2 | **280** |
 
-The 3301 order equals the 56 LP2 pages; the 7×7 1033 order is (280=5×56); the 5×5 1033 order is 28, half the page count and the multiplicative-group order of GF(29). All three orders divide 280. The two 5×5 matrices do not commute, and the 1033 5×5 matrix is not a power of the 3301 matrix.
-
-These are genuine algebraic properties and a potentially meaningful source clue. They are not plaintext or a decipherment. We tested the most natural direct consumers below: **all 52 configurations remain ciphertext-like**. No plaintext is recovered.
+Exact orders are A5=56, M7=280, B5=28. Although A's order56 equals the 56 unsolved LP2 pages, a new generic sector theorem substantially weakens this as a proposed creator-selected key clock: **every invertible centrosymmetric 5×5 GP29 magic square whose row, column and both diagonal sums agree has 56th power equal to identity**. A attains the universal upper bound. B's order28 is a permitted divisor; M7's order280 is a separate original fact. A and B do not commute and B is not a power of A. All 52 existing original inverse candidates remain ciphertext-like, with no decoded page. [General source-geometry theorem and changed-square counterexample](lp2-2014-centrosymmetric-magic-generic-sector-constraints.md). No plaintext is recovered.
 
 ## Source objects
 
@@ -32,9 +30,9 @@ The 7×7 1033 matrix modulo 29 is:
 
 The 5×5 matrices and their orders are documented below; the order of each matrix is obtained by repeated multiplication to the first identity. The 7×7 matrix's exact order is 280, not merely “not a divisor of 56.”
 
-## Exact 2014 half-period matrix reflections, unique to the 29-rune modulus
+## Source-specific half-period reflections inside the generic magic-sector bound
 
-**New original-source algebraic discovery (Agent32, 22 November 2026; independent Windows Node22 PASS [45067129359](https://github.com/FlareZ123/liber-primus/actions/runs/45067129359)).** The three raw matrices' orders were previously recorded above. Their actual powers show a much more selective relationship than having order divisible by 7 or28.
+**Exact source operator (Agent32, 22 November 2026; Windows Node22 PASS [45067129359](https://github.com/FlareZ123/liber-primus/actions/runs/45067129359)).** The two specific half-period sign operators remain mathematically exact and source-specific. Their low-complexity form must now be interpreted alongside the generic geometric result: in every 5×5 centrosymmetric magic square over GP29, odd and even-nonuniform 2D sectors are traceless, so the square lies in span(I,J,U). The original complete matrices obey A²=6I−3J+16U and B²=I+5J+23U. The 56th-power collapse is generic, while the original half-period power signs and exact eigenvalues depend on the printed entries. [Full theorem, independent positive integer square and Windows PASS](lp2-2014-centrosymmetric-magic-generic-sector-constraints.md).
 
 Write **A** for the complete *first* 5×5 historical square with magic sum **3301**, and **B** for the complete *last* 5×5 historical square with magic sum **1033**, in their **original printed row/column order**. Both are the actual 2014 OpenPuff-extracted integer matrices; B also appears in the solved LP1 “SOME WISDOM” source. Let **J** denote the 5×5 anti-identity reversing a length-five vector, and **U** the 5×5 all-ones matrix. The following complete-source identities hold **exactly over GP29's field**:
 
