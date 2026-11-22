@@ -27,16 +27,16 @@ Consider a source with **d distinct types**, of which **h occur at least five ti
 
 At most h outputs can inherit a high source type. Every additional high output costs **at least one type merge** among the d′ source types mapped onto t outputs. Exactly d′−t type merges are available in total (sum of group sizes minus one over the t output groups). Therefore, the total number H of output types with multiplicity≥5 obeys the necessary bound
 
-[
+\[
  H\le h+(d'-t)\le h+(d-t).
-]
+\]
 
 On the unchanged p32 interior and either original p55 target:
 
 [
 H\le 3+(28-25)=\boxed{6},
 \qquad H_{\mathrm{p55}}=\boxed{7}.
-]
+\]
 
 **Contradiction, without searching f, the omission positions or any permutation:** no static deterministic GP29 rune-to-rune map, even a completely noninvertible one of the 29^29 theoretically possible lookup tables, satisfies the source-target multiplicity constraint. This is stronger than the earlier bijective correspondence exclusion: merging symbols is already granted as generously as possible.
 
