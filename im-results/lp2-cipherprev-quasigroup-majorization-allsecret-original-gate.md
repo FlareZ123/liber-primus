@@ -61,6 +61,19 @@ Using the repo's [native GP encoder calibrated against literal solved LP1/p57](.
 
 All **180** sampled source-native placements exceed B2=1,086 for the arbitrary two-mode family, exceed the global/eight-section/word-position B1 values, and exceed the global/eight-section/word-position B5 values. Neither control sampling nor solved-page reference establishes the language, spelling register, frequency spectrum or word semantics of the unknown original plaintext. These are stringent explicit *source-language-conditional* exclusions.
 
+### Corrected Old English source, including the three unmatched long words
+
+A fourth, linguistically distinct GP29-native source is the repository's [independently corrected Beowulf GP stream](../resources/control/beowulf_oe_gp_profile_corrected.json): **10,885 actual source words and 48,012 already normalized GP runes**, with all 29 GP29 source-rune counts verified against the literal corrected profile. The original source has maximum GP word length 13; unknown LP2 has three printed words of length 14. The SFT therefore samples only the **2,893 exactly supportable original word lengths**, containing **10,021 complete-word interior GP positions**, without fabricating 14-rune Old English tokens. There are 180 independent seeded source-register draws, each using the original GP word-length inventory for those 2,893 words.
+
+| 180 corrected Old English Beowulf GP placements | Minimum | Maximum |
+| --- | ---: | ---: |
+| Most frequent GP rune within 10,021 matched sites | **1,437 (14.3399%)** | 1,604 |
+| Five most frequent GP runes within 10,021 matched sites | **4,735 (47.2508%)** | 4,958 |
+
+These **partial-plaintext source counts already exceed the full-manuscript original-cipher capacities over all 10,060 sites**, even without choosing any plaintext at the three unrepresented length-14 words: the single most common old-English GP rune requires at least **1,437 occurrences**, versus the *generous original position×color-table upper bound* of **1,160**, and any five common native runes require at least **4,735**, versus the same full-original bound **4,089**. Adding the missing three words can never reduce the frequency of any fixed set of letters already counted. The other original source-visible stationary scopes have strictly tighter B1/B5 ceilings. The completely unknown binary mode still has B2=1,086 below every sampled Old English top-one count.
+
+This is a source-register-conditional exclusion even when the unknown prose is modeled on premodern **Old English** rather than modern English or Latin, grounded in a corrected primary word stream. It does not prove LP2 actually contains Old English, and it does not supply any plaintext. The completed [Windows/Node22 run 45006092151](https://github.com/FlareZ123/liber-primus/actions/runs/45006092151) passed all exact source-profile counts, original capacity assertions and 180 subset placements.
+
 ### Positive, exact full-manuscript inverses
 
 The same SFT creates independently secret, random but fixed GP29 row permutations for **all eight group scopes** and also plants **two-mode and three-mode** predecessor-based substitution families with a freely varying secret mode at *every* site. Source-native controls are encoded on the original 2,896-word shapes and decoded using their actual planted keys/modes, recovering **12,956/12,956 original-sized GP plaintext runes** for every tested architecture. The planted ciphertexts satisfy their own theoretical rank capacities. These implementation controls do not identify a creator cipher, key, or actual LP2 plaintext.
@@ -69,7 +82,7 @@ The original file parsing, GP alphabet, original printed word joins, real sectio
 
 ## Cryptanalytic decision
 
-For source-native English or Latin, retire **all fixed global one-step predecessor-cipher alphabet substitutions, all independently secret eight-section tables, all per-word-position stationary tables, all source-red/black-specific versions of those stationary models, and even two independent tables with an entirely arbitrary unknown sitewise switching schedule**. Under these assumptions, no secret mapping of those families has capacity to represent the observed original ciphertext as ordinary GP prose. An exhaustive key search of those families would be causally pointless.
+For source-native English, Latin or corrected Old English Beowulf-like GP prose, retire **all fixed global one-step predecessor-cipher alphabet substitutions, all independently secret eight-section tables, all per-word-position stationary tables, all source-red/black-specific versions of those stationary models, and even two independent tables with an entirely arbitrary unknown sitewise switching schedule**. Under these assumptions, no secret mapping of those families has capacity to represent the observed original ciphertext as ordinary GP prose. An exhaustive key search of those families would be causally pointless.
 
 The remaining credible choices require new independently selected information: at least three genuinely different predecessor-state alphabet choices for ordinary GP common-rune density; more complex memory; fresh per-page or evolving secrets; an original source-specific non-GP register; or altered word/letter boundaries. The art and first-party Cicada materials have **not yet selected** one such decoding rule. Do not promote numerical coincidences or synthetic key recovery as plaintext.
 
