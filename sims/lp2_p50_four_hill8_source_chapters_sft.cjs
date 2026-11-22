@@ -135,6 +135,32 @@ for (let square = 0; square < 4; square += 1) {
 }
 
 assert.equal(outcomes.length, 128);
+
+// Exact, independently signed 2016 phrase EPIPHANY offers a conditional
+// eight-rune title crib. Original p0[0..7] has eight red title runes;
+// test all four source squares, both transpose choices and both
+// encoder/decoder orientations without fitting any matrix entry.
+const titlePlain = [18, 13, 10, 13, 8, 24, 9, 26]; // EPIPHANY
+const titleCipher = corpus.pages.find((page) => page.page === 0)
+  .indices.slice(0, 8);
+const titleCases = [];
+for (let square = 0; square < 4; square += 1) {
+  for (const transposed of [false, true]) {
+    const matrix = transposed ? transpose(squares[square]) : squares[square];
+    for (const inverseReading of [false, true]) {
+      // A*M*B inverses are equivalent to M applied in the opposite
+      // direction, so compare the source side appropriate to each.
+      const output = inverseReading
+        ? multiply(matrix, titleCipher) : multiply(matrix, titlePlain);
+      const target = inverseReading ? titlePlain : titleCipher;
+      const matched = output.filter((symbol, i) => symbol === target[i]).length;
+      titleCases.push({ square, transposed, inverseReading, matched });
+    }
+  }
+}
+assert.equal(titleCases.length, 16);
+assert.ok(titleCases.every((row) => row.matched <= 1),
+  "a source key should reproduce the independent red-title candidate");
 const ranked = outcomes.slice().sort((a, b) => b.ioc - a.ioc);
 assert.ok(ranked.every((x) => x.ioc < 0.04),
   "no direct matrix reading should reproduce native GP29 prose profile");
@@ -148,6 +174,8 @@ process.stdout.write(JSON.stringify({
     allSquaresInvertibleOverGF29: true,
   },
   testedOriginalSourceVariants: outcomes.length,
+  signed2016EpiphanyTitleExactCases: titleCases,
+  signed2016EpiphanyTitleMaxMatched: Math.max(...titleCases.map((x) => x.matched)),
   authenticClearP57Ioc: ioc(native),
   bestOriginalSourceCandidates: ranked.slice(0, 8),
   worstOriginalSourceIoc: ranked.at(-1).ioc,
