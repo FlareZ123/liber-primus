@@ -6,6 +6,8 @@
 
 Physical LP2 pp3–7 print exactly **255 complete GP29 rune words** across 1,145 runes; adjacent p8 prints exactly **255 rune characters**. Take a single p8 rune for each preceding complete scroll word in original order. Some source words are duplicated but their aligned p8 symbols differ; a human might subtract the two outputs to eliminate a word-dependent contribution. Gematria Primus arithmetic and historic Cicada Vigenere subtraction give a recognizable, source-native 29-element operation.
 
+There is also **a second, independent selector for this physical pairing**: exhaustive counting over all 1,540 contiguous original page intervals [pA..pB], where pB≤p54 and the immediately following page is p(B+1), finds exactly **one** case where the interval's number of complete, page-carry-joined printed words equals the next physical page's rune count: **p3–p7's 255 words = p8's 255 runes**. The chapter is bounded by original p3 and p8 illuminated starts. This count identity is a genuine one-of-1,540 *corpus structural uniqueness*, although those overlapping page intervals are far from independent random tests. It strengthens the *reason to inspect* the sequential 255-to-255 interface without establishing that the author aligned word i to rune i. Reproducer: [source-gated all-interval proof](../sims/lp2_scroll255_word2rune_anylookup_obstruction_sft.cjs).
+
 There are only **three** duplicated complete source-word types. In increasing order of **first source-word occurrence**, subtract the rune at the later word from the rune at the earlier word, modulo29. Use zero-based indexes throughout:
 
 | Identical original scroll words (GP29 codepoints) | Scroll positions | p8 GP29 rune pair | Earlier minus later, modulo29 | GP transliteration |
