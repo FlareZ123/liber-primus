@@ -18,3 +18,5 @@ jobs:
         run: node sims/lp2_divinity_gp30_space_vigenere_original_sft.cjs
       - name: Exact all-secret 30-symbol periodic key-space bound
         run: node sims/lp2_gp30_allsecret_periodic_space_fiveconcentration_sft.cjs
+      - name: Exact source-authenticated F bypass all-mask bound
+        run: node sims/lp2_divinity_gp30_all_fskip_space_capacity_sft.cjs
