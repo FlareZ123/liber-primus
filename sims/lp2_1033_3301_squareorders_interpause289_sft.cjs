@@ -122,10 +122,65 @@ assert.deepEqual(outcomes.map((o) => o.firstFailures), [
   [36, 33, 0, 39, 35],
   [21, 12, 56, 15, 1]
 ]);
+
+// Secondary, specifically typed source fact: every interpause prime has
+// exactly two positional base-60 digits, giving 578 = 553 + 25 digits.
+// No first-party instruction selects dropping an initial 5*5 square.
+const digits = interior.flatMap((p) => [Math.floor(p / 60), p % 60]);
+assert.equal(digits.length, 578);
+assert.equal(digits.length - units.flat().length, sizes[0] ** 2);
+assert.equal(digits.every((digit) => digit >= 0 && digit < 60), true);
+const digitKey = digits.map((digit) => digit % 29);
+/** @param {number[]} C @param {number} start @param {number} sign */
+function finiteDigitInverse(C, start, sign) {
+  let states = new Set([start]);
+  for (let i = 0; i < C.length; i++) {
+    const next = new Set();
+    for (const cursor of states) {
+      if (C[i] === 0) next.add(cursor);
+      const p = ((C[i] - sign * digitKey[cursor]) % 29 + 29) % 29;
+      if (p !== 0) next.add(cursor + 1);
+    }
+    if (!next.size) return i;
+    states = next;
+  }
+  return null;
+}
+const originalDigitCases = [];
+for (const start of [0, 25]) {
+  for (const sign of [1, -1]) {
+    const failures = units.map((unit, index) => finiteDigitInverse(
+      unit, start + units.slice(0, index).reduce((sum, x) => sum + x.length, 0), sign));
+    assert.notEqual(failures[1], null);
+    originalDigitCases.push({start, sign, failures});
+  }
+}
+assert.deepEqual(originalDigitCases.map((o) => o.failures), [
+  [27, 13, 5, null, null],
+  [2, 0, 38, 48, 2],
+  [7, 37, 7, 24, 8],
+  [null, 19, 11, 47, 50]
+]);
+// Native GP source-positive for the peculiar position25 one-unit survivor.
+// Use an explicit cipher output and require every original plaintext F skip.
+const plantedDigitPlain = Array.from({length: 139}, (_, i) => clear[i % 95]);
+const explicitDigitCipher = [];
+let ptr = 25;
+for (const letter of plantedDigitPlain) {
+  if (letter === 0) {
+    explicitDigitCipher.push(0);
+  } else {
+    explicitDigitCipher.push(((letter - digitKey[ptr]) % 29 + 29) % 29);
+    ptr++;
+  }
+}
+assert.equal(finiteDigitInverse(explicitDigitCipher, 25, -1), null);
+
 console.log(JSON.stringify({
   status: "PASS; exact historical interval, original 139+91 rune inverse fails",
   sizes, rowSums: sums, product, side,
   primeOrdinals: [174, 175, 463, 464],
   range: [1039, 3299], rangeSize: interior.length,
-  rings, itemLengths: units.map((unit) => unit.length), outcomes
+  rings, itemLengths: units.map((unit) => unit.length), outcomes,
+  sourceBase60DigitCount: digits.length, digitCases: originalDigitCases
 }, null, 2));
