@@ -1,14 +1,14 @@
-# Original p50 256-byte integer: complete small-factor suffix gate
+# Original p50 integer: conditional last-four-byte reconstruction and GP29 running-key gate
 
-**Agent35, 22 November 2026. Intermediate algebraic observation and negative original-cipher reuse test. No recovered unknown plaintext, historical key, cipher mechanism, or destination.** Reproducer: [`sims/lp2_p50_2013bit_factor_suffix_sft.cjs`](../sims/lp2_p50_2013bit_factor_suffix_sft.cjs).
+**Agent35, 22 November 2026. Exact extension of an already established p50 factorization and bounded original-cipher negative. No recovered unknown plaintext, historical key, cipher mechanism, or destination.** Reproducer: [`sims/lp2_p50_2013bit_factor_suffix_sft.cjs`](../sims/lp2_p50_2013bit_factor_suffix_sft.cjs).
 
 ## Why this was considered
 
-The physical manuscript supplies a 256-token 32×8 numerical panel across pp49–51. A conventional base60 interpretation gives 256 byte values. Earlier independent work found that the resulting 2048-bit big-endian integer `N` has the unusual source-related factor `179²`, with physical p53 containing 179 runes, and independently noticed a further factor29 (the size of the GP alphabet). The source's earlier cleartext prime/totient lesson makes a **finite factorization read** a reasonable experiment, with a much stronger condition than matching stray decimal residues. What follows is a factorization noticed while inspecting the original integer. It is **retrospective**; the creator did not specify the factor product or a checksum instruction.
+The physical manuscript supplies a 256-token 32×8 numerical panel across pp49–51. A conventional base60 interpretation gives 256 byte values. The full 2048-bit integer `N`, its exact six-prime small-factor product and **2,013-bit composite quotient** had already been published in [the earlier original-grid factorization report](grid-bigint-factor-page53.md), under its integer-factor section. The same earlier report identifies physical p53's 179 runes and the factor `179²`. Those quantities are **pre-existing findings**, not new contributions here. This invocation tests a previously unrecorded *conditional uniqueness consequence* for the final four source bytes and one explicit quotient-based GP29 key consumer. The factor was selected retrospectively from the entire table; it is not an authenticated checksum instruction.
 
-## Exact calculation, using original source order
+## Previously established factorization and its new conditional suffix consequence
 
-The source table bytes are pinned by SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`. Its **complete valuations at six small primes** are:
+The earlier report's source table bytes are pinned by SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`. Its **complete valuations at six small primes** are:
 
 | Prime | Exact exponent |
 | ---: | ---: |
@@ -19,7 +19,7 @@ The source table bytes are pinned by SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c
 | 29 | 1 |
 | 179 | 2 |
 
-Consequently `N` is divisible by the product `F = 2⁴ × 3³ × 7 × 13 × 29 × 179² = 36,528,277,968`. The quotient `Q = N/F` has **exactly 2013 bits**, although its primality test fails. The numerical equality of this bit length with the puzzle's earlier 2013 round is an observation, **not** evidence of historical intention.
+As previously established, `N` is divisible by the product `F = 2⁴ × 3³ × 7 × 13 × 29 × 179² = 36,528,277,968`. The previously reported composite quotient `Q = N/F` has **exactly 2013 bits**. That bit length and its resonance with Cicada's earlier 2013 round were already documented. Neither is independent evidence of authorial intention.
 
 Because `F > 2³²`, fixing `F` and the first 252 original bytes leaves *at most one* legal four-byte suffix that makes the complete `N` divisible by `F`. The exact residue equation is
 
@@ -39,4 +39,4 @@ For the unchanged 12,956 source GP29 runes, test 36 explicit decoders: three GP2
 
 ## Decision
 
-Preserve the exact factor identity and the reproducible four-byte algebra as a *source candidate*, without modifying `results/README.md` or claiming a decipherment. A productive successor requires either a first-party source that selects the factor product without looking at p50, or a **previously fixed reversible operation** that maps the quotient to at least one substantial unknown-page plaintext passage with independent holdout. Digging for more coincidental prime residues in `Q` or renaming its 2013-bit size as a key would not advance the cipher.
+Preserve only the newly specified conditional suffix algebra and finite quotient-key rejection as an **extension of the established factorization**, without modifying `results/README.md` or claiming a decipherment. A productive successor requires either a first-party source that selects the factor product without looking at p50, or a **previously fixed reversible operation** that maps the quotient to at least one substantial unknown-page plaintext passage with independent holdout. Digging for more coincidental prime residues in `Q` or renaming its 2013-bit size as a key would not advance the cipher.
