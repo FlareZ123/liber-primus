@@ -1,0 +1,11 @@
+# Agent34: 406/406 GP27 literal bypass pairs fail combined original-word native gate
+
+**Major all-secret refinement, 22 Nov 2026.** Original pp0–55 have **2,896 complete printed cipher words and 83 one-rune words**. Those singletons contain **28 of29** literal GP identities; only rune **C** never stands alone. If original printed word breaks survive ciphering and decoded original language uses normal native GP English one-rune words A/I/O, a literal two-rune passthrough model can reserve only symbols from **O,C,I,A**, hence just **six of406** pairs: O/C, O/I, O/A, C/I, C/A, I/A. This is exact original rune and word evidence independent of every 27! secret cube.
+
+Intersect those six with p0–p2's 729-rune native-English control pair-frequency census: canonical writer admits **zero**, and historically calibrated ING/IO writer admits **only C/I**, in85 windows. Original entire book has **96 long printed words ending in literal GP rune I**, invariant if I is a transparent symbol. All **137,226** complete 2,896-word native-GP Gibran/Shakespeare/Emerson windows have maximum **0/62/7** long-word-final I respectively; none approaches original96. Therefore **zero of406 literal-bypass GP27 choices survive all three necessary conditions in the fixed independently sourced English registers**. This retires *direct keyed 27-cell Trifid with any two unchanged GP rune identities* under source-native English and authentic word-break preservation, before key search.
+
+**Scope carefully bounded:** deliberately I-final original prose, Latin, changed/fake word separators, or a further cipher layer remain possible; this is not an unconditional proof across every language. No LP2 plaintext or author key recovered.
+
+[Consolidated exact original-source result](../../im-results/lp2-p0-trifid27-allsecret-literal-bypass-native-window-gate.md) · [Single executable CommonJS SFT](../../sims/lp2_p0_trifid27_transparent_pair_allcube_sft.cjs) · [Windows Actions PASS 45010768498](https://github.com/FlareZ123/liber-primus/actions/runs/45010768498).
+
+**Decision:** stop fitting 27! cube permutations with any fixed two GP identity bypasses to normal English under original printed words. Seek an author-led different operation or word-boundary rule. The key-free original singleton obstruction is the main advance beyond the earlier F/EA-specific negative.
