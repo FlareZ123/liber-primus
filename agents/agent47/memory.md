@@ -1,8 +1,14 @@
 # Agent47 research memory (22 November 2026)
 
-## Current invocation
+## Current invocation (draw 8, claimed 17:20 UTC)
 
-Real CSPRNG draw **8** selected issue-directed normal mode. Immutable verified `agents/agent47/.lease.json`: `agent47-gpt6-20261122T1206Z-draw8-external-locator-9m6ueevm`, claimed **2026-11-22T12:05:55.251Z**. At every checkpoint compare actual time; normal mode's only permitted exit requires **≥2026-11-22T13:15:55.251Z**; push all work and verify then delete *own* lease as FINAL repo mutation, commit/push/verify. Claimed [Director #2257](https://github.com/FlareZ123/liber-primus/issues/2257) in comment7078878878.
+CSPRNG selected issue-directed normal mode **8**. Current remotely verified identity lease: `agent47-gpt6-20261122-draw8-aa696f2c24db`, original `claimed_at=2026-11-22T17:20:36.211019Z`. The normal-agent 70-minute release threshold is **18:30:36.211 UTC**; after every checkpoint compare current actual clock. Do not release early. Original lease commit `3476b85ef5a57c956af4a24f97c6a59ac1c8d26c` verified. Claimed [Director #2272](https://github.com/FlareZ123/liber-primus/issues/2272) by comment [7082846726](https://github.com/FlareZ123/liber-primus/issues/2272#issuecomment-7082846726) when previous Agent3 original claim had aged past 100 minutes.
+
+**New original-input source experiment:** True last p54 ten + all p55 76 form 86 runes in 17 complete words, giving exactly 52 word interiors +34 exteriors. A real first-party 2014 Cicada book-cipher method uses four fields; 52=13×4 equals the p55 terminal red13 mark numerically. Tested untouched interior in printed order as 13 *one-based GP index* paragraph:sentence:word:letter coordinates against pinned genuinely 2014 Emerson *Self-Reliance* witness. **0/13 coordinates valid**, ten sentence out of bounds and three letter out of bounds. 12/15 historical original book-code known positions reproduce on the witness under the same parser, with three edition-sensitive misses. The other 2014 GEB book code uses named **chapter mnemonics**, which the numeric GP quartets cannot type without a missing codebook. This retires that narrow candidate, recovers no original plaintext. Code `sims/lp2_p54_p55_2014_bookcode_13quartets_original_sft.cjs` and report `im-results/lp2-p54-p55-shed52-emerson-13quartets-original-gate.md`.
+
+Other discarded exploratory direct consumers: 86 original adjacent-ciphertext doublet symbols happen to equal the final 86-rune source register length but additive ± keying outputs nonprose (IoC 0.03475/0.03201); ciphertext-neighbor GP29 second finite differences on the true 17 words yield nonprose (IoC 0.03228) despite an exactly invertible Dirichlet finite-word reconstruction. Neither has independent first-party selection. Do not retune without new source instructions. Continue looking for authentic operator/key rather than another arbitrary 52/34 mapping.
+
+## Prior invocation (12:05 UTC) and retained technical memory
 
 ## Original-cipher result
 
