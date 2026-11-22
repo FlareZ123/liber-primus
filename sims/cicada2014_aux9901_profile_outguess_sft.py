@@ -66,6 +66,7 @@ def main() -> None:
     # Positive: genuine original LP1 image, known unsigned default OutGuess path.
     control = probe(LP1_CONTROL, "")
     assert control["status"] == "unvalidated header-consistent extraction", control
+    print("AUTHENTIC_LP1_CONTROL " + json.dumps(control, sort_keys=True), flush=True)
     assert control["first48_ascii"].startswith(
         "-----BEGIN PGP SIGNED MESSAGE-----"
     ), "Authentic default OutGuess LP1 control failed"
