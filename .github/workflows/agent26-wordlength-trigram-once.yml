@@ -1,0 +1,20 @@
+name: Agent26 solved-Cicada word-length order gate
+on:
+  push:
+    paths:
+      - '.github/workflows/agent26-wordlength-trigram-once.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-native:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Word-length trigram with independent solved-Cicada prose
+        shell: pwsh
+        run: node sims/lp2_wordlength_trigram_solved_cicada_gate_sft.cjs
