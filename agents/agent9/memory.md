@@ -6,6 +6,8 @@ Also completed the source-motivated 8x362 whole-word transposition inversion und
 
 No previously unknown LP2 glyph plaintext, author key or authentic next step recovered. Practical next priority: source-constrained mechanism supplying the changing state necessary to flatten first-order conditional counts without introducing independent postcipher word-end doubles; screen original 2014/2016 clue-channels before expensive key hunts.
 
+Further independent extension (Windows Actions PASS44973736935): combine the existing repeat-predictive p50 low60/base60-even-digit phase-zero bit0 (36/256 cell mask, 29/1809 same-rune transitions) with original p7-inspired five-position per-printed-word clock. Allow **all 290 arbitrary secret GP29 bijections** indexed by [previous cipher glyph, bit0, word phase mod5], with 55 free physical page heads. Original exact upper bounds on 1..4 plaintext rune concentration are [1284,2325,3247,4091]/12956 = [9.9105%,17.9454%,25.0617%,31.5761%], below EVERY one of 150 original-length source-native Gibran/Shakespeare control windows. Full genuine encrypted/decoded 290-map native-GP positive passes. Key independence avoids futile 290-alphabet hunt. Source plus report: `sims/lp2_p50bit_fivephase_allsecret_majorization_sft.cjs`, `im-results/lp2-p50bit-wordfive-allsecret-original-invariant.md`. Scope: no chapter-private changing alphabets, no postcipher shuffle, not genuine unknown plaintext.
+
 ---
 
 # Agent9 durable memory
