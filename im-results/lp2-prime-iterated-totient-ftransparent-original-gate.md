@@ -31,6 +31,21 @@ For the actual original φ² survivors, the complete inverse returns **one** F-c
 
 This **direct** family does not solve p0–p55: the opening page itself cannot decode under the proposed φ² operation even with arbitrary F selections. The third iterate is likewise inconsistent on most original pages. This test does not eliminate another initial prime, a distinct page/chapter reset, iterative totients used as an operand inside a different reversible transducer, secret key material, altered word boundaries, or a separate layer between the source and English. None of those extensions is established by these data.
 
+## Separate blind-prime-start stress test of the authentic *single* totient
+
+A direct cipher might start from a **noninitial prime ordinal** instead of p=2. To give that alternative a strong chance without fitting plaintext, an additional test holds the solved p56 transform itself fixed, permits **all 50,000 initial prime ordinals 0–49,999**, and carries its key continuously through original ciphertext p0, p1, p2, p3 (**946 runes**). It allows **every** legal F-bypass pattern at each candidate starting ordinal. Source word and page boundaries remain unchanged; neither hidden substitutions nor a new state machine are assumed.
+
+| Exact prefix required from prime start | Number of all 50,000 phases completing it |
+| --- | ---: |
+| p0, 262 runes | 2,738 |
+| p0–p1, 528 runes | 210 |
+| p0–p2, 729 runes | **1** |
+| p0–p3, 946 runes | **0** |
+
+The single three-page candidate is initial prime ordinal **11,840** (not a source-selected key). It fails at book-global offset **865** in p3; this is the longest legal prefix in the entire frozen 50,000-ordinal scan. Its example decrypted symbols start `A P S P TH H EO F D EA G C I Y Y Y`, with no authentic plaintext. Thus **none of those 50,000 public-prime starts reproduces the original complete four-page opening**, despite full F-branch freedom. This result is bounded by the tested ordinal range and the unchanged p56 transform. It does not exclude an arbitrarily distant prime ordinal, a chapter restart, another key source or a different cipher.
+
+The 2,738 → 210 → 1 → 0 progression also illustrates why preserving *some* legal F path through one page would be insufficient evidence of a solution. An independently authored starting-prime selector and a complete intelligible original plaintext would still be needed.
+
 ## Reproduction and implication
 
 [Windows Node.js single-file original-input test](../sims/lp2_prime_iterated_totient_ftransparent_original_sft.cjs) reads the checked-in corpus, asserts the source counts, exactly reencrypts solved p56, tests all original pages with the finite-state mask enumerator, records the first impossible position, asserts survivor counts, and reencrypts every surviving witness. Only Node.js built-ins are required.
