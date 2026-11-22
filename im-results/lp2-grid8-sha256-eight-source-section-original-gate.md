@@ -1,8 +1,16 @@
-# LP2 eight author-delimited text spans vs eight 32-byte table columns: SHA-256 decision
+# LP2 eight transcription-delimited text spans vs eight 32-byte table columns: SHA-256 decision
 
 ## Proposed decipherment / key interface
 
-The **original** numerical table occupies 80+104+72 cells on p49–p51, making a 32-row by 8-column, 256-byte object when decoded with the traditional base-60 alphabet. The separate original text transcription `resources/lp2-transcription.txt` contains eight `$`-delimited encrypted runic spans, totalling exactly **12,956** GP29 runes before the two known solved p56–p57 pages. Their sizes are **729, 1,145, 1,738, 1,894, 1,021, 1,433, 1,680, 3,316**. The eight visually distinct numeric columns could be one 32-byte SHA-256 digest per ciphertext span. This proposal depends on the author intending column layout as a cryptographic interface; **there is no authenticated instruction explicitly selecting SHA-256**, and the eight source delimiters are not identical to the nine illustration groups.
+The **original** numerical table occupies 80+104+72 cells on p49–p51, making a 32-row by 8-column, 256-byte object when decoded with the traditional base-60 alphabet. The derivative text transcription `resources/lp2-transcription.txt` contains eight `# LP2 eight transcription-delimited text spans vs eight 32-byte table columns: SHA-256 decision
+
+## Proposed decipherment / key interface
+
+The **original** numerical table occupies 80+104+72 cells on p49–p51, making a 32-row by 8-column, 256-byte object when decoded with the traditional base-60 alphabet. -delimited encrypted runic spans, totalling exactly **12,956** GP29 runes before the two known solved p56–p57 pages. These `# LP2 eight transcription-delimited text spans vs eight 32-byte table columns: SHA-256 decision
+
+## Proposed decipherment / key interface
+
+The **original** numerical table occupies 80+104+72 cells on p49–p51, making a 32-row by 8-column, 256-byte object when decoded with the traditional base-60 alphabet.  marks are **transcription segmentation**, not authenticated author-specified eight-chapter boundaries: the original page-and-rubric map identifies **nine visually motivated chapters**, including an internal p15 split and the later p53→p54 page break. The distinction means the 8-by-8 numerical/section match is a hypothesis rather than a first-party selector. Their sizes are **729, 1,145, 1,738, 1,894, 1,021, 1,433, 1,680, 3,316**. The eight visually distinct numeric columns could be one 32-byte SHA-256 digest per ciphertext span. This proposal depends on the author intending column layout as a cryptographic interface; **there is no authenticated instruction explicitly selecting SHA-256**, and the eight source delimiters are not identical to the nine illustration groups.
 
 ## Exact original-ciphertext test
 
