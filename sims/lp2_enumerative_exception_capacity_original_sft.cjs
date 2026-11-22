@@ -525,6 +525,62 @@ function unrankWords(rank,scope,cyclic) {
   assert.equal(rank,0n);
   return codes;
 }
+/*
+ * The original 31 physically visible large punctuation glyphs carry a
+ * source-observable binary shape: 28 thirteen-dot and 3 ten-dot. A natural
+ * (but still speculative) quotient-sidecar read takes 13-dot=0, 10-dot=1
+ * from first to last. That read is S=392, within the GP28 23-bit quotient
+ * domain. The other binary polarity and endianness reads are out of range.
+ * Exact original GP28 decoding and an independently planted genuine
+ * solved-native GP28 positive are both checked before claiming a key.
+ */
+const largeDots=punctuation.events.filter(e=>e.symbol==="⁜")
+  .map(e=>e.large_mark.dot_count);
+assert.equal(largeDots.length,31);
+assert.equal(largeDots.filter(n=>n===10).length,3);
+assert.equal(largeDots.filter(n=>n===13).length,28);
+const mask31=(list,tenIsOne)=>list.reduce(
+  (v,d)=>(v<<1n)+BigInt(Number((d===10)===tenIsOne)),0n);
+const glyphQuotient=mask31(largeDots,true);
+assert.equal(glyphQuotient,392n);
+const quotientDomainMax=(plain28Size-1n)/wordSize;
+assert.equal(quotientDomainMax,5082098n);
+for(const alt of [
+  mask31(largeDots,false),mask31(largeDots.slice().reverse(),true),
+  mask31(largeDots.slice().reverse(),false)
+]) assert.ok(alt>quotientDomainMax);
+const gp28Alphabet=corpus.translit.map((_,i)=>i).filter(i=>i!==12);
+const gp28Index=new Map(gp28Alphabet.map((n,i)=>[n,i]));
+const original28=[];
+for(const cyclic of [false,true]){
+  const v=glyphQuotient*wordSize+rankWords(words,cyclic);
+  assert.ok(v<plain28Size);
+  const runes=toBase(v,28,total).map(i=>gp28Alphabet[i]);
+  original28.push({cyclic,globalIoc:ioc(runes),
+    p0p1Ioc300:ioc(runes.slice(0,300)),
+    p16Ioc200:ioc(runes.slice(3762,3962)),
+    last2896Ioc:ioc(runes.slice(-2896))});
+}
+assert.ok(original28.every(v=>v.p0p1Ioc300<controls.n300.min));
+assert.ok(original28.every(v=>v.p16Ioc200<controls.n200.min));
+
+const fullNativeGp28=Array.from({length:total},(_,i)=>
+  solvedSections.flat()[i % solvedSections.flat().length]);
+assert.ok(fullNativeGp28.every(i=>gp28Index.has(i)));
+const fullNativeInt=fullNativeGp28.reduce(
+  (v,i)=>v*28n+BigInt(gp28Index.get(i)),0n);
+const nativeSide=fullNativeInt/wordSize;
+const nativeRank=fullNativeInt%wordSize;
+assert.ok(nativeSide<=quotientDomainMax);
+const native31Bits=toBase(nativeSide,2,31);
+assert.equal(native31Bits.reduce((v,d)=>v*2n+BigInt(d),0n),nativeSide);
+const nativeCipher=unrankWords(nativeRank,words,false);
+assert.equal(rankWords(nativeCipher,false),nativeRank);
+const nativeDecoded=toBase(nativeSide*wordSize+
+  rankWords(nativeCipher,false),28,total).map(i=>gp28Alphabet[i]);
+assert.deepEqual(nativeDecoded,fullNativeGp28);
+assert.equal(nativeCipher.reduce((v,w)=>v+w.length,0),total);
+
 const chapterOpeningWords=words.filter((w,i)=>{
   let prefix=0;
   for(let j=0;j<=i;j++)prefix+=words[j].length;
@@ -603,6 +659,11 @@ console.log(JSON.stringify({
   chaptersStillInsufficientWithThreePunctuationSymbols: chapterDeficitsEvenWithTernaryGlyphs,
   solvedIoc: controls, directOriginalInverses: variants,
   sidecarIndependent2896RuneSuffix: sideInvariantSuffix,
+  literal31GlyphGP28Sidecar: {
+    binaryRead: glyphQuotient.toString(), maxQuotient:quotientDomainMax.toString(),
+    competingThreeBinaryReadsInvalid: true, actualDecoded:original28,
+    plantedNativeGP28Runes:total, plantedSide: nativeSide.toString()
+  },
   genuineGP27ReducedSource: {missingBits:0,
     GP28WordFixedMissingBits:23,
     openingPlantedRunes:729,original:plain27Original},
