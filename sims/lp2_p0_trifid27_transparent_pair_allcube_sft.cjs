@@ -305,8 +305,6 @@ for (let i = 0; i + 729 <= latinStream.length; i++) {
 }
 const latinSurvivingPairs = [...latinPairs].filter(([, count]) => count > 0);
 assert.deepEqual(latinSurvivingPairs, [['3,5', 15]]);
-const longWordFinalC = originalWords.filter(word => word.length > 1
-  && word.at(-1) === 5).length;
 const wordStartC = originalWords.filter(word => word[0] === 5).length;
 assert.deepEqual([longWordFinalC, wordStartC], [91,95]);
 const latinTailC = latinWords.map(word => +(word.length > 1 && word.at(-1) === 5));
