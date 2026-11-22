@@ -32,3 +32,5 @@ jobs:
           $env:CICADA_ISO_56013_PATH = $localFile
           & node sims/lp2_2013_iso56013_threecrib_alloffset_secret_affine_sft.cjs
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          & node sims/lp2_2013_iso56013_p0_title12_gp28_source_pad_sft.cjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
