@@ -19,6 +19,7 @@ jobs:
           node --check sims/lp2_p57_parable_dh85_source_sft.cjs
           node --check sims/lp2_p57_bbs_prime_triple_original_sft.cjs
           node --check sims/lp2_affine_runningkey_repeated_word_islands_sft.cjs
+          node --check sims/lp2_p55_parable_dh85_elgamal_blocks_sft.cjs
       - name: Execute source-original p50, PARABLE-DH, BBS, and repeated-island decisions
         shell: pwsh
         run: |
@@ -29,4 +30,6 @@ jobs:
           node sims/lp2_p57_bbs_prime_triple_original_sft.cjs
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           node sims/lp2_affine_runningkey_repeated_word_islands_sft.cjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node sims/lp2_p55_parable_dh85_elgamal_blocks_sft.cjs
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
