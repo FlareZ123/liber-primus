@@ -1,0 +1,14 @@
+name: Agent35 P15 spiral sixteen 4x4 tile keys AES128 source SFT
+on:
+  workflow_dispatch:
+jobs:
+  source-original:
+    runs-on: windows-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original 16-page complete source inverse
+        run: node sims/lp2_p15_spiral16_floral_pagekey_aes128_original_sft.cjs
