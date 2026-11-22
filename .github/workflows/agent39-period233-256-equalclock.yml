@@ -1,0 +1,16 @@
+name: Agent39 arbitrary marker period233-256 key-invariant equality
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-source:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: All 233-256 periods 172800 source-native invariant comparisons
+        run: node sims/lp2_rank28_period233_256_collision_allsecret_sft.cjs
