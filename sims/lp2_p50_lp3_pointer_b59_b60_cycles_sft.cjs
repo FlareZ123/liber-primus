@@ -29,6 +29,7 @@ function load(name) {
 
 const grid = load("resources/liber-primus/base60-grid.json");
 const ink = load("resources/liber-primus/lp2-ink-annotations.json");
+const corpus = load("resources/liber-primus/lp2-corpus.json");
 const tokens = grid.rows.flat();
 assert.equal(tokens.length, 256);
 assert.ok(grid.rows.length === 32 && grid.rows.every(row => row.length === 8));
