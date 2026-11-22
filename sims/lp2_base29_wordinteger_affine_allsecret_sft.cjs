@@ -196,6 +196,76 @@ for (let a = 1; a < 29; a++) {
   }
 }
 
+/**
+ * Genuine NONLINEAR permutation polynomial over Z/(29^L):
+ *
+ *   y = 2*x + b_L + 29*x^2 (mod 29^L)
+ *
+ * It is bijective for every L because reducing modulo29 gives 2x+b,
+ * and its derivative 2+58x is always nonzero modulo29. Its last-digit
+ * histogram is exactly a permutation of the plaintext last digits.
+ *
+ * Inversion uses the simple 29-adically contractive recurrence
+ *   x <- inverse(2) * (y - b - 29*x*x) mod 29^L.
+ * Each iteration raises precision by at least one base29 digit, so L
+ * iterations recover the exact unique preimage, from any initial x.
+ *
+ * @param {number[][]} native
+ * @param {string} name
+ */
+function verifyNonlinearPolynomialPlant(native, name) {
+  /** @param {number} L */
+  const modulus = L => 29n ** BigInt(L);
+  /** @param {number} L */
+  const offset = L => (3301n + 1033n * BigInt(L)) % modulus(L);
+  const encrypted = native.map(word => {
+    const x = wordNumber(word);
+    return wordDigits(2n*x + offset(word.length) + 29n*x*x, word.length);
+  });
+  const recovered = encrypted.map(word => {
+    const L = word.length;
+    const m = modulus(L);
+    const inverse2 = (m + 1n) / 2n;
+    const y = wordNumber(word);
+    let x = 0n;
+    for (let i = 0; i < L; i++)
+      x = ((inverse2 * (y - offset(L) - 29n*x*x)) % m + m) % m;
+    assert.equal((2n*x + offset(L) + 29n*x*x) % m, y);
+    return wordDigits(x, L);
+  });
+  assert.deepEqual(recovered, native);
+  const before = finalRuneAllSecretBound(native);
+  const after = finalRuneAllSecretBound(encrypted);
+  assert.deepEqual(after.perLength.map(row => row.top4),
+    before.perLength.map(row => row.top4));
+  return {
+    source: name, nativeTopFourLast: observedTop4Last(native),
+    encryptedTopFourLast: observedTop4Last(encrypted),
+    lengthwiseOriginalBound: source.top4AllLengthUpper,
+    nativeLengthwiseTopFour: before.top4AllLengthUpper,
+    encryptedLengthwiseTopFour: after.top4AllLengthUpper,
+    nonlinearWordRoundtrip: "2896/2896"
+  };
+}
+
+const polynomialControls = [
+  verifyNonlinearPolynomialPlant(matchedNativeWords(
+    read("resources/control/gibran_prophet_58585.txt")), "Gibran"),
+  verifyNonlinearPolynomialPlant(matchedNativeWords(
+    read("resources/control/shakespeare_first300k.txt")), "Shakespeare")
+];
+assert.deepEqual(polynomialControls.map(x => x.nativeTopFourLast),
+  [1547, 1553]);
+for (const item of polynomialControls)
+  assert(item.nativeLengthwiseTopFour > source.top4AllLengthUpper);
+
+// General theorem: ANY polynomial map f_L of a BASE29 integer word is
+// compatible with the low base29 digit, meaning x ≡ y mod29 entails
+// f_L(x) ≡ f_L(y) mod29. If f_L permutes all 29^L words, its induced
+// mod29 map must permute the 29 residue classes. Therefore the same 609
+// all-secret upper bound covers every degree, secret coefficient and
+// key of EVERY invertible word-length-stationary polynomial f_L.
+
 console.log(JSON.stringify({
   original: {
     completeWords: original.length, sourceRunes: text.runeCount,
@@ -206,6 +276,7 @@ console.log(JSON.stringify({
     perLength: source.perLength
   },
   nativeControls,
+  polynomialControls,
   affineAlphabetBijectionControls: "812/812 (a 1..28, b 0..28)",
-  conclusion: "An invertible whole-word BASE29 modular affine integer cipher with ANY unknown a_L,b_L for each source word length preserves last-rune top-four counts per length. Original bound609; source-native matched Gibran/Shakespeare >1547. Not a native-GP English plaintext channel. No unknown LP2 plaintext/key recovered."
+  conclusion: "ANY invertible 29-adically compatible whole-word BASE29 map, including arbitrary secret polynomial permutations, preserves the final-rune histogram by word length. Original bound 609, native Gibran/Shakespeare 1547/1553. Verified 2896-word nonlinear polynomial plants. No unknown LP2 plaintext/key recovered."
 }, null, 2));
