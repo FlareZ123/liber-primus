@@ -85,6 +85,30 @@ The source-native English control is a genuine GP29 transliteration of three ind
 
 The two distinct conclusions matter: beyond period232, without an independently supported non-E escape identity, the all-exception upper bound is not a proof of exclusion. Additionally, this cannot exclude texts with unusual E scarcity, non-English plaintext, a preliminary compressed/binary register, secret changing **source-rune order** before the rank operation, clock states responding to source content, per-page independently chosen 256-symbol keys, or an unrelated cipher. It is a **conditional native-language no-go**, not an assertion about all possible encryption methods.
 
+## Independent 256-phase equality invariant without a chosen escape symbol
+
+There is an additional **key-independent and escape-identity-independent diagnostic** for the source-fixed rank architecture, especially useful at period256 where the conservative all-free **E-count bound alone** does not eliminate all candidate outputs. At each fixed key phase, a secret 28-way rank-to-plaintext bijection preserves **which pairs of recovered plaintext symbols are equal**. This can be measured directly in the ciphertext, with no key entropy search.
+
+Delete all **142** unclaimed source positions from the original and from every candidate native plaintext control, matching exact absolute indices. For phase `j=0..255` and rank `r=0..27`, compute the original counts `n[j,r]`. Define the collision invariant
+
+`Q=SUM_j SUM_r n[j,r](n[j,r]-1) / SUM_j N_j(N_j-1)`,
+
+where `N_j=SUM_r n[j,r]`. **Every possible 256 independent secret rank permutations preserves Q exactly**. A prospective plaintext should have the same phase-equality statistic when its GP letters are counted at those same 12,814 eligible positions and under the same phase clock. The 86 adjacent-repeat sites remain unconstrained; this test imposes **no assumption** about the plaintext letter or escape meaning at any original repeated position. This is materially different from requiring a non-E EA marker in the E-count proof.
+
+For the same **16** original source clock / rank cases (book, page, section, illuminated chapter; all-rune or nonfree-rune advance; cyclic or sorted alphabet order), select **150 deterministic equally spaced full-length 12,956-rune windows** from each of the six independently encoded native-English source configurations. There are **900 native controls per clock case**, **14,400** matched comparisons total. All are scored after removing exactly the original 142 unconstrained source sites.
+
+| Test | Original result |
+| --- | ---: |
+| Across 16 original 256-phase clocks, **largest source Q** | **0.03629385269301529** |
+| Across 14,400 native GP-English controls, **smallest Q** | **0.05630316188273788** |
+| Native controls with Q at or below their corresponding original source Q | **0/14,400** |
+| Separate solved-p57 native GP positive, 12,956 generated symbols | **12,956/12,956 exact plaintext recovered** |
+| Positive generated rank and genuine clear-GP collision Q | **0.06969947563290545, exactly equal** |
+
+The separation is **at least 0.02000930918972259** in normalized equal-pair probability, even though source controls allow the GP alphabet's full 29 labels while the model's eligible channel holds at most28. The controls are intentionally spaced but can overlap and should not be interpreted as 14,400 independent random trials. The evidence rejects compatibility with **these actual independently sourced and orthographically pinned native-English registers**, rather than proving an absolute impossibility for every conceivable English text. An adversarially crafted unnatural source sequence could be much flatter.
+
+Independent reproduction: [single-file original-input equality-invariant SFT](../sims/lp2_rank28_period256_allsecret_phasecollision_sft.cjs), [Windows Node22 passing run 45062198381](https://github.com/FlareZ123/liber-primus/actions/runs/45062198381). A separate planted ciphertext is produced with the original 256-cell table key, authentic solved-p57 native text, and three forced escape sites; the known-key inverse recovers every rune, and the theorem's phase-collision numerators match exactly. This experiment therefore closes the earlier period256 **marker=E loophole** against the 900 fixed matched source controls per mode. It leaves changing/secret **ciphertext-rune order**, page-specific independent key tables, genuinely unusual plaintext, and non-native encodings outside its scope.
+
 ## Independent solved-source positive
 
 The same program constructs two independent **12,956-symbol** ciphertexts from actual solved LP2 p57 native GP text repeated to match the target length, with three forced GP28-EA escape symbols. It uses the authentic 256 printed table-cell bytes mod28 as an example key, one cyclic-rank consuming clock and one sorted-rank nonconsuming clock. In both cases encryption and decryption reconstruct exactly **12,956/12,956** source-native plaintext runes. Their native control has **2,044 E** occurrences and the all-secret bound on the synthetic generated cipher is **2,256** or **2,289** including permitted IVs, so the obstruction correctly *accepts* real native GP language encoded using its own declared cipher family. These controls establish that the source-original negative is about the ciphertext, not an impossible encoder or broken E counting.
@@ -93,4 +117,4 @@ Reproduction: [standalone Windows Node22 CJS SFT](../sims/lp2_rank28_period256_a
 
 ## Cryptanalytic decision
 
-**Retire searches over any original-source arbitrary-alphabet periodic key of 1–43 phases and, separately, over every fixed-GP-order periodic key of 1–256 phases with a non-E escape sentinel**, as direct routes to ordinary source-native English LP2 prose. The key entropy can be enormous and still fail a single-letter conservation law. A future attempt would need an independent authored clue selecting a fundamentally different information-preserving transform, a changing ciphertext alphabet ordering/clock, a non-native intermediate register, or a source-specific unexpected plaintext language; another long random-key sweep within this family cannot repair the capacity deficit.
+**Retire arbitrary-source-alphabet periodic key searches for phases 1–43, and stop further fixed-GP-order periodic key hunts through phase256 as a direct native-English decoding strategy.** The longer key family is now screened both by the E-count theorem (fully general for non-E repeat markers; periods≤232 even for unknown markers) and by the independently observed 256-phase, key-invariant collision mismatch (all marker identities on the 900 matched native control windows per case). The key entropy can be enormous and still fail a single-letter conservation law. A future attempt would need an independent authored clue selecting a fundamentally different information-preserving transform, a changing ciphertext alphabet ordering/clock, a non-native intermediate register, or a source-specific unexpected plaintext language; another long random-key sweep within this family cannot repair the capacity deficit.
