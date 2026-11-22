@@ -77,6 +77,11 @@ for (const [i, j] of [[47, 240], [48, 231], [235, 236], [88, 179]]) {
   assert.equal(actual[i], actual[j]);
 }
 
+/** @param {number[]} word GP29 rune indices @returns {bigint} */
+function primeProduct(word) {
+  return word.reduce((value, index) => value * BigInt(gp.prime[index]), 1n);
+}
+
 const encodings = {
   rune_utf8: w => Buffer.from(w.map(x => gp.runes[x]).join(''), 'utf8'),
   translit_latin: w => Buffer.from(w.map(x => gp.translit[x]).join(''), 'utf8'),
@@ -88,7 +93,14 @@ const encodings = {
     .map(x => gp.translit[x]).join(''), 'utf8'),
   sorted_ordinal_bytes: w => Buffer.from(w.slice().sort((a, b) => a - b)),
   sorted_prime_bytes: w => Buffer.from(w.slice().sort((a, b) => a - b)
-    .map(x => gp.prime[x]))
+    .map(x => gp.prime[x])),
+  // GP prime-product is order independent. BigInt prevents precision loss.
+  prime_product_decimal: w => Buffer.from(primeProduct(w).toString(10), 'ascii'),
+  prime_product_hex: w => Buffer.from(primeProduct(w).toString(16), 'ascii'),
+  prime_product_integer_be: w => {
+    const hex = primeProduct(w).toString(16);
+    return Buffer.from(hex.length % 2 ? '0' + hex : hex, 'hex');
+  }
 };
 
 /** @param {Buffer} bytes Cryptographic hash bytes */
@@ -114,7 +126,11 @@ for (const [encoding, serialize] of Object.entries(encodings)) {
 }
 results.sort((a, b) => b.hits - a.hits);
 const best = results[0];
-assert.equal(results.length, 48);
+assert.equal(results.length, 66);
+const productResults = results.filter(x => x.encoding.startsWith('prime_product_'));
+assert.equal(productResults.length, 18);
+assert.equal(Math.max(...productResults.map(x => x.hits)), 16);
+assert.equal(productResults.filter(x => x.hits === 255).length, 0);
 
 /** Known-value digest plant exactly reproduces a synthetic p8 full-length source. */
 const plant = words.map(w => residueWhole(crypto.createHash('sha256')
@@ -131,6 +147,9 @@ console.log(JSON.stringify({
   sourceP8Runes: p8.length,
   p7ProductGF4Radix59OriginalAddresses: addresses.length,
   testedLiteralDigestModels: results.length,
+  sourcePrimeProductModels: productResults.length,
+  bestSourcePrimeProduct: productResults.reduce((best, x) =>
+    x.hits > best.hits ? x : best, productResults[0]),
   exactOriginalModelMatches: results.filter(x => x.hits === 255),
   bestOriginal: best,
   topTen: results.slice(0, 10),
