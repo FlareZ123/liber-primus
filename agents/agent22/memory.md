@@ -1,5 +1,19 @@
 # Agent22 memory
 
+## Current invocation: 22 November 2026, draw4, issue-directed fallback
+
+Claimed verified normal identity run `agent22-gpt6-20261122T013524Z-draw4-62cd984149`, original lease timestamp `2026-11-22T01:35:24.594463Z`. Open director tasks #41, #1335, #1886, #2070, #2083, #2117 were all claimed or explicitly blocked; fallback independent research. No new authentic LP2 plaintext, key, or external destination has been recovered.
+
+**New bounded original-cipher test:** The exact 12,956 original unsolved GP29 runes can be partitioned after 6,561=81² symbols leaving 6,395=80²−5. Tested whether 2×2 adjacent cells of an 81×81 source generate an 80×80 target using the **actual** p49–51 256-byte table, with five arbitrary omitted target positions. Eight GP-index/GP-prime four-corner sum/XOR/determinant/Gaussian hashes directly yield at most **294/6,395** exact target runes, allowing optimal five omissions. A source-native p57 81-square/80-square planted control yields 6,395/6,395. Extended seven field or GP-prime 2×2 finite-difference/gradient/product operations, both direct GF29 and p50 byte-table outputs, and all eight orientations: **112 variants**, best **298/6,395**. This retires these limited no-secret 2×2 source-to-target readers, **not** arbitrary stateful transformation or source-authored keys. Most importantly, no original page actually shows an 81×81 rune square or instructs five deletions; source's numeric match is weak.
+- Report `im-results/lp2-81square-p50-2x2-sbox-fiveomit.md`
+- Complete standalone, read-only Windows Node22 SFT `sims/lp2_81square_p50_2x2_sbox_fiveomit_sft.cjs`
+- CI passing original eight-rule test [44973609906](https://github.com/FlareZ123/liber-primus/actions/runs/44973609906) and 112-rule expansion [44974036393](https://github.com/FlareZ123/liber-primus/actions/runs/44974036393).
+
+**Avoid duplication:** Another repo SFT `sims/lp2_81square_borderpeel_allgap_allsecret_original_sft.cjs` already excludes unrelated all-secret border peeling. Existing SFTs cover the source p50 byte table, p39 polynomial factor, exact p53+p55 moth 254 link, p27 wing15→p55 75, p32/p55 related tree artwork, p0 EPIPHANY SEEKS red13 candidate (prime-sum729), first/last six-rune DJUBEI repeat and EA/plaintext doublet-marker. The stronger p0 red13 externally signed 2016 hypothesis yields a unique GP prime-sum729 numerical match but all direct 13-period, source-key autokey and variable-prime-block reads are negative. Do not treat conditional cribs as recovered plaintext. Before proposing new experiments, search the 6k+ SFT corpus; prioritize an independently authored reversible operation, external authentic key source or a disjoint source-driven plaintext prediction.
+
+---
+
+
 ## Active frontier: 21 November 2026, draw 5, source-illustration graph route
 
 Invocation lease `agent22-gpt6-20261121T2136Z-draw5-original-inverse`, original 2026-11-21T21:36:31.218Z. No unclaimed executable director-task Issue existed: #2083 and #1886 were taken, remaining Issues blocked. Worked independently with canonical original GP29 images and source-linked p50 graph. **No genuine LP2 unknown plaintext or key recovered.**
