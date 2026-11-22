@@ -222,6 +222,54 @@ for(const [reading,key] of [
    decodedExteriorIoC:ioc(direct),first33SourceTranslit:direct.map(x=>corpus.translit[x]).join(" "),
    exactOriginalReplay:33,positiveNativeRecovered:33});
 }
+// Finite, pre-bounded conditional table-value multiset null. Freeze exactly
+// the already selected source GP red4/15, source pointer 110, computed
+// 78/93, and the original source subtree nodes146/58. Reassign the exact
+// original 256 base59 target values to table slots uniformly by
+// Fisher–Yates. This asks whether the cross-links survive when the table
+// content is severed from its fixed printed coordinates. As the grammar was
+// discovered after observing the source, DO NOT call its exceedance an
+// authorship p-value or a pre-registered hypothesis test.
+let randomState=0x13312959>>>0;
+function randomInt(){
+ randomState^=randomState<<13;
+ randomState^=randomState>>>17;
+ randomState^=randomState<<5;
+ return randomState>>>0;
+}
+const tableShuffles=200000;
+const shuffledNull={single78:0,single93:0,both78and93:0,
+  sameAfterThreeFrom4And15:0,sameAt146:0,
+  sameAt146ThenSixTo58:0,allThree:0};
+for(let trial=0;trial<tableShuffles;trial++){
+ const shuffled=[...table59];
+ for(let j=255;j>0;j--){
+  const k=randomInt()%(j+1);
+  const tmp=shuffled[j];shuffled[j]=shuffled[k];shuffled[k]=tmp;
+ }
+ /** @param {number} seed @param {number} steps */
+ const S=(seed,steps)=>{
+  for(let i=0;i<steps;i++) seed=shuffled[seed];
+  return seed;
+ };
+ const e78=shuffled[78]===S(110,4);
+ const e93=shuffled[93]===S(110,13);
+ const a=S(4,3),b=S(15,3),e3=a===b;
+ const e146=e3&&a===146;
+ const e58=e146&&S(146,6)===58;
+ shuffledNull.single78+=Number(e78);
+ shuffledNull.single93+=Number(e93);
+ shuffledNull.both78and93+=Number(e78&&e93);
+ shuffledNull.sameAfterThreeFrom4And15+=Number(e3);
+ shuffledNull.sameAt146+=Number(e146);
+ shuffledNull.sameAt146ThenSixTo58+=Number(e58);
+ shuffledNull.allThree+=Number(e58&&e78&&e93);
+}
+assert.deepEqual(shuffledNull,{
+ single78:1453,single93:753,both78and93:8,
+ sameAfterThreeFrom4And15:2339,sameAt146:26,
+ sameAt146ThenSixTo58:0,allThree:0
+});
 console.log(JSON.stringify({
   model:"original red8, red51, ornament 13/31 prime sums into exact row/column addresses; follow base59 source-table pointers; compare p55 literal word circumferences",
   source:{headIndices:head,headIndexSum:hIndex,headPrimeSum:hPrime,
@@ -267,6 +315,7 @@ console.log(JSON.stringify({
     base60CycleLengths:[base60L.cycleLength,base60R.cycleLength],
     totalOrderedPairMatches:allPairs,allOrderedPairs:256**2,
     markedOrnamentRowPairs:8*8,markedRowMatches:restricted},
+  fixedTableValueShuffleControl:{seed:'0x13312959',trials:tableShuffles,counts:shuffledNull},
   directP55CircumferenceGate:recoveries,
   interpretation:"Coherent original-source address/pointer/33-circumference receiver; no author-selected numeric-to-rune decoder or authenticated unknown plaintext recovered."
 },null,2));
