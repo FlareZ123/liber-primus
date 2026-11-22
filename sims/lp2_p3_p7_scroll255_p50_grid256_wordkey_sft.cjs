@@ -222,5 +222,48 @@ for (let y = 0; y < 29; y++) {
   if(plantCandidates.counts[y] > 0) assert(plantCandidates.possible[y].has(modInverse29(13) * mod(y - 7) % 29));
 }
 console.log('all-secret single-source-rune-per-word obstruction: direct membership 34/255, 29/29 target rune symbols have empty source-word intersections; positive monoalphabetic 255-symbol plant succeeds');
+// Even five completely different secret alphabets, reset at each ORIGINAL
+// physical scroll page, cannot rescue the single-rune-per-word operator.
+const scrollWithPageTurns = text.split('%').slice(3, 8).join('%');
+let originalPage = 3, currentWordRunes = 0, firstRunePage = 3;
+const wordPages = [];
+for (const r of scrollWithPageTurns) {
+  if (alphabet.has(r)) {
+    if (!currentWordRunes) firstRunePage = originalPage;
+    currentWordRunes++;
+  } else if (r === '%') {
+    originalPage++;
+  } else if ((r === '-' || r === '.') && currentWordRunes) {
+    wordPages.push(firstRunePage);
+    currentWordRunes = 0;
+  }
+}
+if(currentWordRunes) wordPages.push(firstRunePage);
+assert.equal(wordPages.length, 255);
+assert.deepEqual([3,4,5,6,7].map((p) => wordPages.filter((q) => q===p).length),[44,60,58,44,49]);
+const impossibleByPage = [];
+for (let page = 3; page <= 7; page++) {
+  let fail = 0;
+  for (let y = 0; y < 29; y++) {
+    const rows = words.flatMap((w,j) => wordPages[j]===page && nextPage[j]===y ? [new Set(w)] : []);
+    if (!rows.length) continue;
+    const shared = new Set(rows[0]);
+    for (const word of rows.slice(1)) for(const x of [...shared]) if(!word.has(x)) shared.delete(x);
+    if (!shared.size) fail++;
+  }
+  impossibleByPage.push(fail);
+}
+assert.deepEqual(impossibleByPage,[6,13,10,7,8]);
+// A valid pagewise-bijective source-native plant must survive the same screen.
+const pagePlant=words.map((w,j)=>mod((wordPages[j]-1)*w[0] + (wordPages[j]+3)));
+let pagePlantFailures=0;
+for (let page = 3; page <= 7; page++) for (let y = 0; y < 29; y++) {
+  const rows=words.flatMap((w,j)=>wordPages[j]===page && pagePlant[j]===y?[new Set(w)]:[]);
+  if (!rows.length) continue;
+  const intersection = rows.reduce((current,group)=>new Set([...current].filter(x=>group.has(x))),new Set(rows[0]));
+  if(!intersection.size) pagePlantFailures++;
+}
+assert.equal(pagePlantFailures,0);
+console.log('all-secret five independent page alphabets fail: empty output/source intersections by original page 6,13,10,7,8, total44; native planted pagewise monoalphabetic code passes');
 
 console.log('PASS: source 255-word scroll, grid256 8 inverses, adjacent p8 255-rune 4 inverses, 12 full GP-native plaintext plants');
