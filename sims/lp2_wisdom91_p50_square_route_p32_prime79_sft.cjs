@@ -280,6 +280,23 @@ assert.equal(selectedWord.word.length, 11);
 const selectedP32WordKey = Array.from(selectedWord.word).map((rune) => gpByRune.get(rune));
 assert.deepEqual(selectedP32WordKey, p32.slice(33, 44));
 assert.equal(selectedP32WordKey.slice(0, 4).map((x) => corpus.translit[x]).join(''), 'HOME');
+
+// Shorter independent receiver: the very same authenticated 2014 center91
+// addresses original p50[91]=49 and p32[91]=O, whose native GP prime7
+// squared reproduces 49. Its original punctuation-delimited word is
+// exactly the already source-selected eight-rune BUDS container.
+const sameIndexRune = p32[91];
+assert.equal(corpus.translit[sameIndexRune], 'O');
+assert.equal(corpus.prime[sameIndexRune], 7);
+assert.equal(corpus.prime[sameIndexRune] ** 2, values[91]);
+const originalSameIndexWord = p32WordBounds.find((word) => word.start <= 91 && 91 <= word.end);
+assert(originalSameIndexWord);
+assert.deepEqual([originalSameIndexWord.start, originalSameIndexWord.end], [89, 96]);
+const sameIndexedSquareHits = p32.flatMap((rune, address) =>
+  corpus.prime[rune] ** 2 === values[address] ? [address] : []);
+assert.deepEqual(sameIndexedSquareHits, [91]);
+console.log('SAME INDEX: original 2014 91 selects table[91]=49 AND p32[91]=O, GPprime(O)^2=49; original word[89..96] contains BUDS');
+
 const p32TerminalBudsWord = p32WordBounds.find((word) =>
   word.start === 89 && word.end === 96);
 assert(p32TerminalBudsWord);
