@@ -28,7 +28,7 @@ The native 243-rune LP1 windows have score range **−7.5814652309 to −6.82643
 
 Under the exact p56 plaintext-F-transparent rule, **both signs have zero valid plaintext paths** for the original p8 ciphertext. This is an algebraic impossibility for this receiver, not merely a poor language score. The same DP recovers planted p57 plaintext under both signs (93 and 288 candidate paths), validating the ambiguity handling.
 
-**Scoring limitation:** the ordinary-clock scores reject this exact receiver as a native-GP English candidate; the transparent-clock result is language-independent for this exact key schedule. Neither result excludes another language or a different cipher.
+**Scoring limitation:** the ordinary-clock scores reject this exact receiver as native-GP English plaintext; the transparent-clock result is algebraic for this exact key schedule. The 243-rune body may instead be nonlinguistic key/state material or a lookup table for a later page, so this test does not evaluate those possible uses. Neither result excludes another language or a different cipher.
 
 ## Decision
 
