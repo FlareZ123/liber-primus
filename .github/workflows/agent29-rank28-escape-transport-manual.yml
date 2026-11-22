@@ -26,3 +26,8 @@ jobs:
         run: |
           node --check sims/lp2_p50_literal_x_four_erasure_source_sft.cjs
           node sims/lp2_p50_literal_x_four_erasure_source_sft.cjs
+
+      - name: T7 original 1649 sparse triple-gap correction and exact page-line coordinate census
+        run: |
+          node --check sims/lp2_t7_1649_sparse_threegap_source_session_sft.cjs
+          node sims/lp2_t7_1649_sparse_threegap_source_session_sft.cjs
