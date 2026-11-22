@@ -129,6 +129,32 @@ assert.deepEqual(chapters.map(x => x.repeatedTransitions),
 assert.deepEqual(chapters.map(x => x.minimumUnavoidableNonprintable),
   [68, 141, 214, 235, 112, 160, 207, 372, 15]);
 
+// More generous scope: a completely new secret map and byte phase on
+// every original physical page. Six short pages have at least one alignment
+// for which the necessary condition alone cannot reject printable ASCII.
+const physicalPageBounds = [];
+for (const page of corpus.pages.filter(item => item.page <= 55 &&
+                                            item.indices.length > 0)) {
+  const digits = rank28(page.indices).digits;
+  const variants = [];
+  for (let phase = 0; phase < 8; phase++) {
+    for (const lsbFirst of [false, true]) {
+      variants.push(lowerBound(digits, phase, lsbFirst));
+    }
+  }
+  physicalPageBounds.push({
+    page: page.page,
+    allSixteenAlignmentsImpossible: variants.every(
+      variant => variant.unavoidableNonprintable > 0)
+  });
+}
+assert.equal(physicalPageBounds.length, 55);
+assert.equal(physicalPageBounds.filter(x => x.allSixteenAlignmentsImpossible)
+  .length, 49);
+assert.deepEqual(physicalPageBounds.filter(
+  x => !x.allSixteenAlignmentsImpossible).map(x => x.page),
+  [14, 22, 32, 49, 51, 55]);
+
 /**
  * Real positive control: encode the known p57 English instruction directly
  * as ASCII bits using one fixed *unknown* balanced 28-rank bit partition.
@@ -177,7 +203,7 @@ assert.equal(lowerBound(decoded.digits, 0, false).unavoidableNonprintable, 0);
 
 console.log(JSON.stringify({
   status: "PASS",
-  originalRuperCounts: {book: whole.runes, chapters: chapters.map(x => x.runes)},
+  originalRuneCounts: {book: whole.runes, chapters: chapters.map(x => x.runes)},
   book: {
     repeatedTransitions: whole.repeatedTransitions,
     rankDigits: whole.rankDigits,
@@ -191,10 +217,15 @@ console.log(JSON.stringify({
     minimumForcedNonprintableBytes: x.minimumUnavoidableNonprintable,
     best: x.exampleBest
   })),
+  physicalPageGate: {
+    pagesTested: physicalPageBounds.length,
+    pagesRejectedForEveryAlignment: 49,
+    inconclusiveShortPages: [14, 22, 32, 49, 51, 55]
+  },
   positive: {
     asciiBytesRecovered: recoveredBytes.length,
     exact: recoveredBytes.length === plantedBytes.length,
-    noRepeatCipherRupees: planted.ciphertext.length,
+    noRepeatCipherRunes: planted.ciphertext.length,
     plaintext: originalSolvedText
   }
 }, null, 2));
