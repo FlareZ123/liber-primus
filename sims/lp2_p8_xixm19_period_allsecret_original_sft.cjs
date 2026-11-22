@@ -70,6 +70,39 @@ const continuous = invariant(sourceOriginal, 19, false);
 const pageReset = invariant(sourceOriginal, 19, true);
 const nativeContinuous = invariant(sourceNative, 19, false);
 const nativePageReset = invariant(sourceNative, 19, true);
+/**
+ * Independent complete solved-GP control: keep every possible 1,580-rune
+ * native window, preserving the exact source page cuts and two key clocks.
+ * Frequency collisions survive all secret per-phase rune bijections.
+ * @returns {{count:number,min:number[],max:number[],atOrBelow:number[]}}
+ */
+function allNativeWindows() {
+  const targets = [continuous.ioc, pageReset.ioc];
+  const minimum = [Infinity, Infinity], maximum = [-Infinity, -Infinity];
+  const atOrBelow = [0, 0];
+  let count = 0;
+  for (let start = 0; start + 1580 <= native.length; start++) {
+    let i = start;
+    const candidate = lengths.map(n => {
+      const page = native.slice(i, i + n);
+      i += n;
+      return page;
+    });
+    const measured = [invariant(candidate, 19, false).ioc,
+      invariant(candidate, 19, true).ioc];
+    for (let k = 0; k < 2; k++) {
+      minimum[k] = Math.min(minimum[k], measured[k]);
+      maximum[k] = Math.max(maximum[k], measured[k]);
+      atOrBelow[k] += Number(measured[k] <= targets[k]);
+    }
+    count++;
+  }
+  return {count, min:minimum, max:maximum, atOrBelow};
+}
+const nativeWindows = allNativeWindows();
+assert.equal(nativeWindows.count, 1400);
+assert.deepEqual(nativeWindows.atOrBelow, [0, 0]);
+
 function nearly(x, y) { assert(Math.abs(x - y) < 1e-15, x + " vs " + y); }
 nearly(continuous.ioc, 0.03358703355621977);
 nearly(pageReset.ioc, 0.03082965144820815);
@@ -113,6 +146,7 @@ console.log(JSON.stringify({
   continuousOriginal:continuous, pageResetOriginal:pageReset,
   solvedNativeContinuous:nativeContinuous,
   solvedNativePageReset:nativePageReset,
+  allSolvedNativeWindows:nativeWindows,
   positive:"19-class unknown-key ciphertext decrypt/reencrypt, both clock rules PASS",
   conclusion:"No stationary GP29 Vigenere19 or arbitrary secret per-19-phase alphabet explains this receiver as native-English GP"
 },null,2));
