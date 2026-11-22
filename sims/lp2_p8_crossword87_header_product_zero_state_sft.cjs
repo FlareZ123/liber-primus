@@ -478,6 +478,62 @@ assert.equal(blackOriginal.filter(v => v === 0).length, 8);
 const directHypMatching = blackOriginal.filter((v, i) => v === hyp29[i]).length;
 assert.equal(directHypMatching, 11);
 
+
+// Another bounded original-output law that actually READS branch decisions
+// from the preceding five source runes (rather than merely replaying the
+// 243-leaf key tape): GP29 ordinal mod3 selects U/A/D; the resulting leaf
+// hypotenuse or perimeter gives the GP29 transformation. Both already-visible
+// ciphertext and just-recovered plaintext clocks are independently reversible.
+/** @param {number[]} a @param {number} sign @param {number[]} keys
+ *  @param {boolean} plainFeedback @returns {number[]} */
+function decodeBerggrenFeedback(a, sign, keys, plainFeedback) {
+  const history = p8.slice(-5);
+  const out = [];
+  for (const c of a) {
+    const addr = history.slice(-5).reduce((v, x) => 3 * v + x % 3, 0);
+    const p = ((c + sign * keys[addr]) % 29 + 29) % 29;
+    out.push(p);
+    history.push(plainFeedback ? p : c);
+  }
+  return out;
+}
+/** @param {number[]} a @param {number} sign @param {number[]} keys
+ *  @param {boolean} plainFeedback @returns {number[]} */
+function encodeBerggrenFeedback(a, sign, keys, plainFeedback) {
+  const history = p8.slice(-5);
+  const out = [];
+  for (const p of a) {
+    const addr = history.slice(-5).reduce((v, x) => 3 * v + x % 3, 0);
+    const c = ((p - sign * keys[addr]) % 29 + 29) % 29;
+    out.push(c);
+    history.push(plainFeedback ? p : c);
+  }
+  return out;
+}
+const berggrenFiveBranchFeedback = [];
+for (const [statistic, leafKeys] of [
+  ["hypotenuse", berggrenDepth5.map(t => t[2] % 29)],
+  ["perimeter", berggrenDepth5.map(t => t.reduce((n, v) => n + v, 0) % 29)],
+]) {
+  for (const feedback of [false, true]) {
+    for (const sign of [-1, 1]) {
+      const originalDecoded = decodeBerggrenFeedback(originalCiphertext, sign, leafKeys, feedback);
+      assert.deepEqual(encodeBerggrenFeedback(originalDecoded, sign, leafKeys, feedback), originalCiphertext);
+      const originalSolvedPlant = encodeBerggrenFeedback(terminalKnown, sign, leafKeys, feedback);
+      assert.deepEqual(decodeBerggrenFeedback(originalSolvedPlant, sign, leafKeys, feedback), terminalKnown);
+      berggrenFiveBranchFeedback.push({
+        statistic, feedback: feedback ? "plaintext" : "ciphertext", sign,
+        fullIoC: indexOfCoincidence(originalDecoded),
+        p13First200IoC: indexOfCoincidence(originalDecoded.slice(p13Start, p13Start + 200)),
+        firstFortyGP: originalDecoded.slice(0, 40).map(v => corpus.translit[v]).join(" "),
+        originalReplayRunes: originalDecoded.length, solvedPositiveRunes: terminalKnown.length,
+      });
+    }
+  }
+}
+assert.equal(berggrenFiveBranchFeedback.length, 8);
+assert(berggrenFiveBranchFeedback.every(x => x.fullIoC < 0.036));
+
 const ringReceivers = [];
 for (const sign of [-1, 1]) {
   const candidate = ringTranslate(originalCiphertext, sign);
@@ -530,5 +586,6 @@ console.log(JSON.stringify({
   berggrenTripleRootChildren: berggrenFirstChildren,
   berggrenDepthFiveOriginalConsumers: berggrenTreeConsumers,
   berggrenDirectLeafHypotenuseMatches: directHypMatching,
+  berggrenSourceFiveRuneBranchFeedback: berggrenFiveBranchFeedback,
   interpretation: "The carry-word GP0 sum selects splice87, whereas the earlier sentence-offset criterion selects208. The physical carried rune cannot itself be the all-zero five-trit state in either valid de Bruijn register. No first-party cipher output law is specified.",
 }, null, 2));
