@@ -263,9 +263,8 @@ const plant = Array.from({ length: 244 }, (_, i) => (i * 17 + 3) % 29);
 for (let rounds = 1; rounds <= 4; rounds++)
 for (const sign of [-1, 1]) {
   const encrypted = feistelTape(plant, rounds, sign, false, false);
-  const recovered = feistelTape(encrypted, rounds, sign, true, true);
-  // A Feistel inverse under unchanged pair presentation must apply
-  // the reverse round ordering; repeated identical rounds make this exact.
+  const recovered = feistelTape(encrypted, rounds, sign, true, false);
+  // All repeated identical Feistel rounds reverse exactly.
   assert.deepEqual(recovered, plant);
 }
 
