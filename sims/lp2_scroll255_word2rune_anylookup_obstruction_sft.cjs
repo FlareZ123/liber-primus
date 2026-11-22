@@ -52,6 +52,45 @@ assert.equal(source.length, 1145);
 assert.deepEqual(words.flatMap(word => word.runes), source);
 assert.equal(grid.bytes.length, 256);
 
+
+/**
+ * All possible contiguous original p0–p54 page intervals with a following
+ * rune-bearing page. Count COMPLETE printed words across page and line
+ * carries, then ask whether they match the entire next physical page's runes.
+ * This is a source-visible independent registration test: 55*56/2 =1540
+ * intervals, no search by English plaintext or cryptographic scoring.
+ */
+const equalAdjacentPageWindows = [];
+let testedAdjacentPageWindows = 0;
+function wholeWordsInPhysicalWindow(a, b) {
+  let count = 0;
+  let inWord = false;
+  for (let page = a; page <= b; page++) {
+    for (const character of parts[page]) {
+      if (runeIndex.has(character)) inWord = true;
+      else if ((character === '-' || character === '.') && inWord) {
+        count++;
+        inWord = false;
+      }
+    }
+  }
+  return count + Number(inWord);
+}
+for (let start = 0; start <= 54; start++) {
+  for (let end = start; end <= 54; end++) {
+    testedAdjacentPageWindows++;
+    const count = wholeWordsInPhysicalWindow(start, end);
+    const nextLength = corpus.pages.find(page =>
+      page.page === end + 1).indices.length;
+    if (count === nextLength)
+      equalAdjacentPageWindows.push({start, end, words:count});
+  }
+}
+assert.equal(testedAdjacentPageWindows, 1540);
+assert.deepEqual(equalAdjacentPageWindows, [{start:3,end:7,words:255}]);
+console.log('WHOLE_SOURCE_UNIQUE_255_TO_255 ' +
+  JSON.stringify({allAdjacentPageWindows:1540,exactMatches:equalAdjacentPageWindows}));
+
 /**
  * The best possible deterministic lookup is learned independently for EACH
  * distinct source key. Its exception count is a strict lower bound over ALL
