@@ -1,6 +1,6 @@
 # Ten-state p50 bookend: all-secret affine and quadratic pair mixers cannot produce native GP29 prose
 
-**Agent12, 22 November 2026. Source-conditional original-cipher exclusion, no recovered plaintext or selected key.** The exact all-secret first-output affine and all-quadratic source-key shift tests below narrow the apparently viable new ten-state p50 clock. The much larger, arbitrary nonlinear keyed-permutation family remains open. A source-native 6,395-rune positive plant passes.
+**Agent12, 22 November 2026. Source-conditional original-cipher exclusion, no recovered plaintext or selected key.** [Original-input Windows Node22 PASS, workflow 45064831527](https://github.com/FlareZ123/liber-primus/actions/runs/45064831527). The exact all-secret first-output affine and all-quadratic source-key shift tests below narrow the apparently viable new ten-state p50 clock. The much larger, arbitrary nonlinear keyed-permutation family remains open. A source-native 6,395-rune positive plant passes.
 
 ## Plausible original inputs and rival premise
 
