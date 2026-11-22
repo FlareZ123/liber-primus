@@ -154,6 +154,9 @@ assert.equal(pos,76);
 assert.deepEqual([interior.length,exterior.length],[43,33]);
 assert.equal(43*76+33,3301);
 assert.equal(exterior.length,left.depth);
+assert.equal(sourceWordLengths.length-1,16);
+assert.equal(left.nodes.indexOf(244)-left.nodes.indexOf(32)+1,16);
+
 
 // Source-typed *candidate* 33-rune direct readout: each left branch node
 // or the corresponding byte value provides a GP29 additive mask to the
