@@ -61,6 +61,7 @@ A natural causal follow-through, conditional on the five-page selector being a r
 
 1. Use exactly the selected **p16, p28, p33, p34, p38** as the five shares in that order, with **their actual zero-based physical page numbers mod29** as distinct share coordinates **[16,28,4,5,9]**.
 2. Preserve the first **214** original rune positions, the shortest source page, and interpolate the unique degree-at-most-four GF29 polynomial at **x=0** at every position. Its forced Lagrange weights are **[18,5,14,11,11]**. No plaintext or external key selects these weights.
+3. Hold out the other five jet-tagged original cipher pages **p3,p23,p29,p46,p49**, and test the full available rune-coordinate predictions at their own page-number field addresses. Independently hold out the numeric table p50 at (50\bmod29=21), with exact weights **[17,9,5,27,1]**.
 4. Because physical p55 has exactly **76** runes and precedes solved p56, also test the first 76 interpolated symbols as an additive and subtractive GP29 key on all 76 original p55 ciphertext runes.
 
 | Entire untouched receiver | Exact result |
@@ -75,9 +76,9 @@ A natural causal follow-through, conditional on the five-page selector being a r
 
 The exact subtractive p55 output is:
 
-\`\`\`text
+```text
 EFDXIASRHTLCRCSCXUFNTXOEMYIAJIEOIAIAEANMBHSOEHGHIAEOPIEATHEOEEDSLOSSHCNGEOWOECEANHTHTHIIAMEOWXOEWH
-\`\`\`
+```
 
 It is **not** authenticated plaintext. An exact interpolation into a secret always exists for five arbitrary GF29 shares, so the synthetic round-trip establishes implementation accuracy alone. All **five** independently tagged rune-page holdout streams and the sixth numerical-table holdout reject the *specific* direct **degree-four common share-polynomial** architecture under original indexed, unshifted page alignment. **34/921** rune symbols agree with the complete original five-of-ten reconstruction, near the iid coincidence expectation. This does not rule out a historically typed share format with a separately supplied nontrivial decoding of rune pages into equal-width GF(2^n) records.
 
@@ -87,4 +88,4 @@ The **five-page/two-state selector**, and its precise extension to a **five-of-t
 
 The simplest GP29 five-share readout **fails all five held-out tagged rune pages, the numeric table, and p55 as a direct key consumer**. Do not rescue it with secretly rephased page offsets, fitted field-coordinate origins, new polynomial degrees, or a second arbitrary cipher. The useful next decision is whether an **independent original image or dated Cicada operation actually types five page numbers as a key/route/state**, and if so whether it produces an exact *prospective* symbol or decryptor prediction on untouched p16/p28/p33/p34/p38 data. Absent such an operation, keep this cluster as provisional structural evidence.
 
-**Reproducer and run:** [Windows Node22 CommonJS SFT](../sims/lp2_root24_dh2_fivepage_jet_selector_sft.cjs) · [GitHub Actions PASS 44994344606](https://github.com/FlareZ123/liber-primus/actions/runs/44994344606). It asserts the source p39 red triad, p29 and table double-root inputs, p28 DH equations, the complete 841-case census, five repeated-jet states and ten original rune-page tags including the numeric table, original five-of-ten GP29 Shamir heldouts and p55 readouts, and source-native positive-control recovery.
+**Reproducer and run:** [Windows Node22 CommonJS SFT](../sims/lp2_root24_dh2_fivepage_jet_selector_sft.cjs) · [GitHub Actions PASS 44994803296, complete ten-page holdout](https://github.com/FlareZ123/liber-primus/actions/runs/44994803296). It asserts the source p39 red triad, p29 and table double-root inputs, p28 DH equations, the complete 841-case census, five repeated-jet states and ten original rune-page tags including the numeric table, original five-of-ten GP29 Shamir heldouts and p55 readouts, and source-native positive-control recovery.
