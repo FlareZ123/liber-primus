@@ -263,6 +263,45 @@ for (const item of secondarySquares) {
   }
 }
 
+// Source-directed geometry rival: source p0..2 length729=27² and p57
+// clear text says "shed circumferences". Remove two 27-square outer rings
+// to obtain exactly 23² original, untouched rune positions.
+const p0Chapter = unknownPages.filter(page => page.page <= 2).flatMap(page => page.indices);
+assert.equal(p0Chapter.length, 729);
+const inner23 = [];
+for (let row = 2; row < 25; row++) for (let col = 2; col < 25; col++) {
+  inner23.push(p0Chapter[row * 27 + col]);
+}
+assert.equal(inner23.length, 529);
+assert.equal(729 - inner23.length, 200);
+const innerControl = Array.from({length: 529}, (_, i) => p57[i % p57.length]);
+const squareInteriorTests = [];
+for (const sign of [-1, 1]) {
+  const decoded = inner23.map((sourceRune, i) => mod(sourceRune + sign * lcm[i]));
+  assert.deepEqual(decoded.map((plainRune, i) => mod(plainRune - sign * lcm[i])), inner23);
+  const encodedControl = innerControl.map((plainRune, i) => mod(plainRune - sign * lcm[i]));
+  assert.deepEqual(encodedControl.map((encrypted, i) => mod(encrypted + sign * lcm[i])),
+    innerControl);
+  squareInteriorTests.push({
+    receiver: sign < 0 ? 'inner23 GP29 subtract source LCM' : 'inner23 GP29 add source LCM',
+    nativeGpIoC: coincidence(decoded), first69: text(decoded.slice(0, 69)),
+    exactOriginalReplay: '529/529', nativeGpPlantRecovered: '529/529',
+    authenticUnknownPlaintextRecovered: false
+  });
+}
+for (const transpose of [false, true]) {
+  const decoded = transform(inner23, matrixData.inverse, transpose);
+  assert.deepEqual(transform(decoded, matrix, transpose), inner23);
+  assert.deepEqual(transform(transform(innerControl, matrix, transpose),
+    matrixData.inverse, transpose), innerControl);
+  squareInteriorTests.push({
+    receiver: 'inner23 Hill23 ' + (transpose ? 'transposed' : 'printed-rows'),
+    nativeGpIoC: coincidence(decoded), first69: text(decoded.slice(0, 69)),
+    exactOriginalReplay: '529/529', nativeGpPlantRecovered: '529/529',
+    authenticUnknownPlaintextRecovered: false
+  });
+}
+
 console.log(JSON.stringify({
   test: 'Original p29/table shared-root polynomial LCM gives 23x23 finite-field Hill matrix',
   source: {p29RuneLength: 277, p50ByteLength: 256, p50Base60ByteSha256: tableHash,
@@ -274,6 +313,6 @@ console.log(JSON.stringify({
     matrixRank: matrixData.rank, matrixDeterminantMod29: matrixData.determinant,
     squareCenterGP29: lcm[264]},
   originalRunes: unknown.length, unusedTerminalPartialBlock: unknown.length % 23,
-  originalResults, secondaryResults,
+  originalResults, secondaryResults, squareInteriorTests,
   conclusion: 'Source-derived algebra yields a reversible GF29 matrix but no readable original LP2 plaintext by either frozen Hill23 orientation. The square/Hill interpretation is not author-authenticated.'
 }, null, 2));
