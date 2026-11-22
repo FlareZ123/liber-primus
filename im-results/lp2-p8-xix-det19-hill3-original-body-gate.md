@@ -20,7 +20,9 @@ Its integer determinant is **1,092**, and `1092 mod29 = 19`, exactly the precedi
 
 `K⁻¹ = [[24,12,1], [21,12,12], [24,16,4]] (mod29)`.
 
-Both matrix products are exactly identity. The determinant coincidence is specific to the previously adopted *zero-based GP29 index* convention: using one-based indices gives determinant **6 mod29**, and native GP prime-value entries give **15 mod29**. This is a real dependence of the hypothesis, not a suppressed rival.
+Both matrix products are exactly identity. **The matrix has two more exact self-descriptions:** its trace `19+5+17=41 ≡12 (mod29)` equals the *twelve original red heading runes*, and its characteristic polynomial factors as `χ_K(x)=x³−12x²+6x−19=(x+2)(x²−14x+5) mod29`. Therefore `−2` is an eigenvalue, where **2 is the fifth complete red-word product on preceding p7**. The determinant, trace and characteristic-root relations are exact; their interpretation as authored checksums remains retrospective. The quadratic factor defines the same **isomorphism class** of GF(29²) as the p7 irreducible `x²−8`, but every irreducible quadratic over GF29 does; field isomorphism by itself is no evidence of a shared key.
+
+The determinant coincidence is specific to the previously adopted *zero-based GP29 index* convention: using one-based indices gives determinant **6 mod29**, and native GP prime-value entries give **15 mod29**. This is a real dependence of the hypothesis, not a suppressed rival.
 
 Immediately below, p8 contains exactly **243 black rune characters**, i.e. **3⁵**, a complete integral 81 blocks of size3. The p7 preceding five marked red words may make the exponent5 interesting, but no explicit period-2014 source instruction says to apply these nine red runes as a Hill key to the 243 black symbols. The local p7 red butterfly and its 29-state polynomial also reuse the zero-based GP convention, so their numerical agreements are not independent sources of author authentication.
 
@@ -43,12 +45,25 @@ One example direct inverse begins
 
 No model produces sustained intelligible plaintext, a new key stream, or a predicted untouched page.
 
+## A separate fully reversible five-level ternary recipient
+
+The p8 body length `243=3⁵` and **five red terminal p7 words** suggest a different, fully source-sized operator beyond per-three-rune Hill blocks: apply the same original matrix on each axis of a **5-dimensional 3×3×3×3×3 tensor**. There are exactly five recursively nested ternary mixing layers; each 243-symbol transform is bijective because K is invertible. This tests a genuine value-changing whole-page operator rather than a positional shuffle. Its complete original p8 black plaintext results are:
+
+| Matrix and five-layer direction | Complete original 243-rune IoC |
+| --- | ---: |
+| Row-major `(K⁻¹)^⊗5` | **0.0365949053** |
+| Row-major `K^⊗5` | **0.0345202870** |
+| Column-major `(Kᵀ)⁻¹` five times | **0.0328537904** |
+| Column-major `Kᵀ` five times | **0.0346563276** |
+
+Every full result exactly round-trips under the converse five-layer transform, and none produces native prose. The five-level interpretation additionally assumes the original p7 count of five red words is an instruction about recursion depth, although p8's `3⁵` length alone supplies it; no original 3D grid or tensor notation is printed. Thus all **four** exact whole-body tensor receivers are excluded along with the **14** blockwise/feedback variants above.
+
 ## Decision and route forward
 
-This is a potentially author-intuitive **3+9 checksum-key packet** anchored by a human-readable numeral and a complete 243-rune receiver. The exact integer determinant19 and `3⁵` body length make it more constrained than a free hidden matrix hypothesis. The three-rune split is inferred *inside* the original first word, however, and all direct reversible receivers tested on the actual body fail.
+This is a potentially author-intuitive **3+9 checksum-key packet** anchored by a human-readable numeral and a complete 243-rune receiver. The exact integer determinant19 and `3⁵` body length make it more constrained than a free hidden matrix hypothesis. The three-rune split is inferred *inside* the original first word, however, and all **18** complete reversible recipients tested on the actual body fail, including a full five-level ternary transform.
 
 Retain this as a **provisional original-source key observation**. Do not promote it to verified decryption or brute-force new matrix phases. A genuinely new first-party operation, transposition, source-specified 3-symbol block clock, or independent full-text receiver would be needed before a successor attack; the current most plausible classical Hill/CBC interpretations are closed. This should be evaluated alongside the historical prime19 clue and p7 quartic rather than counted as an unrelated low-probability miracle.
 
 ## Reproduction
 
-[Windows11/Node22/CommonJS read-only SFT](../sims/lp2_p8_xix_3x3_hill_source19_original_sft.cjs) reconstructs the nine actual original red symbols from [the canonical GP29 corpus](../resources/liber-primus/lp2-corpus.json), independently computes the 3×3 determinant and modular cofactor inverse, confirms global uniqueness of the literal XIX rune triplet, verifies the original 243-character black receiver and all **14** complete reversible modes, and prints their exact IoCs and first25 source-native rune outputs. The [historical prime19 origin hypothesis](../workplace/2014-prime19-p8-xix-black-clock-source-path.md) and the [earlier p7 butterfly](lp2-p7-red-polynomial-seven-cycle-original-gate.md) are the closest independent cues; neither supplies the missing encryption opcode.
+[Windows11/Node22/CommonJS read-only SFT](../sims/lp2_p8_xix_3x3_hill_source19_original_sft.cjs) reconstructs the nine actual original red symbols from [the canonical GP29 corpus](../resources/liber-primus/lp2-corpus.json), independently computes the 3×3 determinant and modular cofactor inverse, confirms global uniqueness of the literal XIX rune triplet, verifies the original 243-character black receiver and all **14** blockwise reversible modes plus **four** complete five-level ternary-tensor modes, and prints their exact IoCs and first25 source-native rune outputs. The [historical prime19 origin hypothesis](../workplace/2014-prime19-p8-xix-black-clock-source-path.md) and the [earlier p7 butterfly](lp2-p7-red-polynomial-seven-cycle-original-gate.md) are the closest independent cues; neither supplies the missing encryption opcode.
