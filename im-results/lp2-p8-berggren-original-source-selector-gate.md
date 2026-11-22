@@ -13,6 +13,23 @@ The authoritative page mapping is resources/liber-primus/README.md: physical LP2
 
 The historical Berggren/Barning/Hall matrices on (3,4,5) produce the first-level triples (5,12,13), (21,20,29), (15,8,17). Even granting this unprinted program, **the manuscript does not place the three matrix operations into one uniquely readable child order**. All six possible global orders produce 243 valid, distinct depth-five triples, with six **different** ordered 243-symbol streams when their hypotenuses are reduced modulo29. This is an explicit branch-order ambiguity, independent of language scores. Choosing either leg, perimeter, full-triple serialization, forward/reverse order, or feedback adds further options. The illustration specifies none of them.
 
+## Exact original-cipher obstruction to direct 243-leaf symbol readout
+
+The ambiguity can be narrowed further **without a guessed GP29 alphabet or reading order**. A direct reading of one Berggren numeric leaf coordinate as one p8 black rune, even if both 29-symbol alphabets are related by an **arbitrary secret 29! permutation**, must preserve the sorted 29-class symbol-frequency histogram. Permuting all 243 leaf positions, reversing the traversal, or choosing any of the six globally ordered Berggren child permutations does not change this condition.
+
+For the **exact original 243 p8 black runes** (including the final carried EO/GP12), sorted frequency bins begin **[15,14,12,12,11,11,10,10,...]**. The fully enumerated standard depth-five primitive Berggren leaves have these first sorted-bin counts when the indicated numeric output is reduced modulo29:
+
+| Leaf output | First sorted GP29 frequency bins | Direct original p8 readout under any secret fixed rune alphabet? |
+| --- | --- | --- |
+| First leg a | [20,11,11,11,11,10,...] | Impossible |
+| Second leg b | [13,13,13,11,11,10,...] | Impossible |
+| Hypotenuse c | [15,15,12,12,11,10,...] | Impossible |
+| Perimeter a+b+c | [19,14,12,12,11,11,...] | Impossible |
+
+The exhaustive 29-bin comparisons fail for every candidate. For the closest hypotenuse candidate, two bins each contain 15 leaves while the original has only one 15-count bin and one 14-count bin. **No secret substitution, stem-side order, global branch ordering, or permutation of all243 positions can repair this exact multiset mismatch.** This is stronger than having to guess which of six orders was intended and directly excludes treating those simple leaf quantities as the original p8 ciphertext under a single value-labeling alphabet. It does **not** exclude using the leaves as an evolving **key**, applying an additional value-changing cipher after leaf generation, choosing a different coordinate function, or encoding a 243-rune intermediate that need not equal the p8 black glyphs. Those possibilities still lack an authored selector.
+
+The original-source SFT now asserts all four no-monoalphabetic-inverse gates as strict inequalities, alongside the whole-word and branch-order checks.
+
 ## Original image and historical-operation decision
 
 Original p8 25.jpg and p10 27.jpg show the same irregular, naturalistic botanical stem reused beside the prose, rather than a five-tier regular ternary graph with 243 individually displayed leaves. In 25.jpg a large red initial ᛉ/X resembles a three-pronged fork, but is also the first canonical red rune (GP0=14), not a separately drawn cipher operator. There are no matrix labels, distinct leaf numbers, branch reading arrows, or marked depth-five paths. This comparison agrees with the independently established repeated stem and page-parity evidence in [closed #2294](https://github.com/FlareZ123/liber-primus/issues/2294) and its [bitmap report](../im-results/lp2-p8-p14-stem-side-parity-source-gate.md). The artwork could still allude to trees, but it does not physically encode a uniquely ordered Berggren key.
