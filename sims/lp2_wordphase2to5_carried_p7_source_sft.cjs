@@ -234,6 +234,67 @@ for (const sign of [1, -1]) {
   const encrypted = wordFive(nativeSolved, sign, true);
   assert.deepEqual(wordFive(encrypted, sign, false), nativeSolved);
 }
+
+/*
+ * Strongest five-dot interpretation: FIVE independent fresh arbitrary GP29
+ * symbol permutations PER word, and ciphertext feedback of exactly FIVE.
+ * Cipher-known D_j=C_j-C_(j-5) then equals the phase-specific permuted
+ * plaintext, so E_5(D) is independent of ALL secret word/phase keys.
+ */
+function fifthResidual(word) {
+  return word.map((c, j) =>
+    ((c - (j >= 5 ? word[j - 5] : 0)) % 29 + 29) % 29);
+}
+const sourceFiveFiveE = total(original.map(w => signature(fifthResidual(w.codes))))[4];
+assert.equal(sourceFiveFiveE, 68);
+const nativeFivePhaseMin = Math.min(...donorResults.map(row => row.minimum[4]));
+assert.equal(nativeFivePhaseMin, 78);
+assert(sourceFiveFiveE < nativeFivePhaseMin);
+/** @param {number[][]} book @param {number} seed */
+function fivePhaseFeedbackPlant(book, seed) {
+  const random = rng(seed);
+  for (const word of book) {
+    const maps = Array.from({ length: 5 }, () => {
+      const a = Array.from({ length: 29 }, (_, i) => i);
+      for (let i = 28; i > 0; i--) {
+        const k = Math.floor(random() * (i + 1));
+        [a[i], a[k]] = [a[k], a[i]];
+      }
+      return a;
+    });
+    const inverse = maps.map(a => {
+      const i = Array(29);
+      a.forEach((v, j) => { i[v] = j; });
+      return i;
+    });
+    const c = [];
+    for (let j = 0; j < word.length; j++) {
+      c.push((maps[j % 5][word[j]] + (j >= 5 ? c[j - 5] : 0)) % 29);
+    }
+    const resid = fifthResidual(c);
+    assert.equal(signature(resid)[4], signature(word)[4]);
+    const decoded = resid.map((r, j) => inverse[j % 5][r]);
+    assert.deepEqual(decoded, word);
+    const replay = [];
+    for (let j = 0; j < decoded.length; j++) {
+      replay.push((maps[j % 5][decoded[j]] + (j >= 5 ? replay[j - 5] : 0)) % 29);
+    }
+    assert.deepEqual(replay, c);
+  }
+  return book.flat().length;
+}
+const sourceNativeShakespeare = new Map();
+for (const word of read("resources/control/shakespeare_first300k.txt").match(/[A-Za-z]+/g) || []) {
+  const native = gpNative(word);
+  if (!sourceNativeShakespeare.has(native.length)) sourceNativeShakespeare.set(native.length, native);
+}
+const sourceShapePositive = original.map(w => sourceNativeShakespeare.get(w.codes.length));
+assert(sourceShapePositive.every(Array.isArray));
+assert.equal(fivePhaseFeedbackPlant(sourceShapePositive, 0x33015505), 12956);
+const realSolvedFiveFive = physical[56].replace(/\/\r?\n/g, "").replace(/[\r\n%]/g, "");
+const solvedFiveWords = parseWords(realSolvedFiveFive).map(w => w.codes);
+assert.deepEqual(solvedFiveWords.flat(), src.pages[57].indices);
+assert.equal(fivePhaseFeedbackPlant(solvedFiveWords, 0x33015705), 95);
 console.log(JSON.stringify({
   source: "p7 final five red word GP index products; original p8-onward printed words, physical p16 and withheld p40",
   exactOriginal: {
@@ -250,5 +311,6 @@ console.log(JSON.stringify({
   fiveProductSourceKeys: products,
   originalCipherSourceTest: receiver,
   nativePositiveP57Recovered: 95,
+  fivePhaseFiveBackArbitraryPerWordSecret: { sourceE5: sourceFiveFiveE, lowestNativeE5: nativeFivePhaseMin, sourceRunesPlantRecovered: 12956, genuineSolvedP57Recovered: 95, compatibleTrials: 0 },
   conclusion: "The simple p7 5-product + preceding-cipher-word carry is an invertible source-shaped hypothesis, not an identified original Cicada operation; judge each frozen original receiver independently."
 }, null, 2));
