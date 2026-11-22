@@ -90,6 +90,18 @@ All eight original inverses produce non-prose GP29 symbol distributions near the
 
 The extended original-corpus reproducer joins all page carries before counting words and asserts the complete scroll has exactly 255 words and 1,145 source indices, that the final five words reproduce the red source vector, and that none of the first 50 groups repeats READURL. It checks all eight complete p8 masks and planted positives. **Windows Node22 Actions PASS [45069325026](https://github.com/FlareZ123/liber-primus/actions/runs/45069325026)**. These are conditional, source-motivated tests, not language-general impossibility proofs.
 
+## Original-image negative control: the five-dot artwork is not a unique opcode
+
+The same **five-dot image motif** appears on the original p23 and solved p56 images as well as p7, as established by the [original-picture template comparison](lp2-five-dot-three-page-art-and-phi-transfer.md). This makes it unsafe to claim that **five dots alone** instructs the matrix fifth power on p7. An independent, non-fitted **all-three-dot-pages prediction** is possible: identify the five nearest **whole printed words** on the marked edge of each physical page, take the same zero-based GP29 whole-word products, and apply the **same frozen A^5/B^5 outer-two stripping rule**.
+
+| Original five-dot graphic page | Proximity-defined five-word GP29 product vector | Six inner GP-rune transliteration |
+| --- | --- | --- |
+| p7, dots **below** its five red terminal words | [11,26,8,15,2] | **READURL** |
+| p23, dots **above** first five page words (three whole red plus two continuing words) | [24,13,18,13,16] | **OECDLOIA** |
+| p56, dots **below** last five ordinary printed words | [13,0,10,7,11] | **NSTOEOH** |
+
+The two independent picture-marked control pages do not yield comparably coherent original navigation instructions. The source of special selection on p7 is thus its **five fully red, punctuated words**, with dots only a contextual suggestion, rather than the artwork as a general cipher selector. The absence of other instructions does not authenticate the successful p7 phrase, and the control pages may not have the same encoded role. All five-source vectors above derive from the unchanged per-page transcription after source-correct p56 offset handling (physical p50 is runeless); no word choice, key, exponent, or extracted position was fitted to control outputs.
+
 ## Relation to a genuinely distinct p7→p8 source handoff
 
 This same original five-product vector was independently known, before the historical-square READURL hypothesis, to define an ascending-degree GF29 quartic P(x) with **only fixed points {3,4}**, exactly the two complete neighboring p8 red-heading word products in reverse order; **P′(4)=17** matches the last originally printed p8 red rune. That relationship and its negative direct cipher consumers are preserved in [the p7/p8 original source report](lp2-p7-p8-original-red-polynomial-fixedpoint.md). The new A5/B5 readout therefore makes the p7 red packet a candidate **multi-purpose local navigation seed** rather than a generic text cipher. Both distinct operations depend on the **same selected five source values**, and neither is independently authenticated. Their respective retrospective coincidence counts cannot be multiplied into a creator-intent probability. The useful predicted continuation would be an actual p8 or historically delivered URL receiver for this seed, not a third unconstrained numerical encoding of its five elements.
