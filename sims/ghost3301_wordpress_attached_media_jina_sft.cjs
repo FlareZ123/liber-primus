@@ -12,9 +12,9 @@
 const crypto = require('node:crypto');
 
 const urls = [
-  'https://r.jina.ai/https://public-api.wordpress.com/rest/v1.1/sites/70062450/media/?post_ID=8189%26number=100',
-  'https://r.jina.ai/https://public-api.wordpress.com/wp/v2/sites/70062450/media?parent=8189%26per_page=100',
-  'https://r.jina.ai/https://therealsamizdat.com/wp-json/wp/v2/media?parent=8189%26per_page=100',
+  'https://r.jina.ai/https://public-api.wordpress.com/rest/v1.1/sites/70062450/media/?post_ID=8189&number=100',
+  'https://r.jina.ai/https://public-api.wordpress.com/wp/v2/sites/70062450/media?parent=8189&per_page=100',
+  'https://r.jina.ai/https://therealsamizdat.com/wp-json/wp/v2/media?parent=8189&per_page=100',
   'https://r.jina.ai/https://public-api.wordpress.com/rest/v1.1/sites/70062450/posts/8189'
 ];
 
