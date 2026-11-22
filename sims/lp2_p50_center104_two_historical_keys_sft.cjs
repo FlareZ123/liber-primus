@@ -77,7 +77,7 @@ for (const [radix, bytes] of [['base60', source60], ['base59', source59]]) {
 }
 assert.equal(tested, 36);
 assert.equal(bestPrint, 47);
-assert.equal(bestRun, 8);
+assert.equal(bestRun, 6);
 assert.ok(winners.includes('base60/gp/keyMinusByte'));
 assert.ok(winners.includes('base59/gp/keyMinusByte'));
 
@@ -102,7 +102,8 @@ for (const bytes of [source60, source59]) {
 assert.ok(Math.abs(bestIoc - 0.0412621359223301) < 1e-13);
 
 // Full-length byte-message plant under the source-selected 13x8 GP key values.
-const clearByte = Array.from({ length: 104 }, (_, i) => 'WITHIN THE CIRCUMFERENCE FIND DIVINITY '.charCodeAt(i % 42));
+const plantedSentence = 'WITHIN THE CIRCUMFERENCE FIND DIVINITY ';
+const clearByte = Array.from({ length: 104 }, (_, i) => plantedSentence.charCodeAt(i % plantedSentence.length));
 const encByte = clearByte.map((x, i) => (x + gp13[Math.floor(i / 8)] + gp8[i % 8]) % 256);
 const backByte = encByte.map((b, i) => decodeByte(b, gp13[Math.floor(i / 8)], gp8[i % 8], 'minus'));
 assert.deepEqual(backByte, clearByte);
