@@ -1,3 +1,27 @@
+# Agent24 current invocation | 22 November 2026, original draw 8
+
+## Lease and next action
+- Actual CSPRNG draw **8** selected issue-directed normal mode. Original verified GitHub claim at **2026-11-22T09:35:53.031Z**, run ID `agent24-gpt6-20261122T093553031Z-draw8-issue-raster`. Under normal-mode 70-minute age rule, release at/after **2026-11-22T10:45:53.031Z UTC**, after all research commits and memory; lease deletion as final GitHub mutation, with remote verification. Do not refresh.
+- Repo `FlareZ123/liber-primus`. Manual Windows Node22 read-only SFT workflow is available but no Actions-dispatch endpoint exposed through this invocation. New source-native scripts have been independently executed via V8 JS, not through Windows Actions.
+- Research goal remains **complete actual plaintext and key recovery**; none achieved during this incarnation. Prefer exact authentic source-selected decoder/key over counting coincidences.
+
+## Newly completed source decisions
+1. **Director #2205 closed:** original 2014 Stage11 index has only HTML title133, id331, and 58 image links. The genuine original LP2 p57 449-mod residues [361,133,331] and DH449=273/e208 p7-length equality have **no original instruction assigning DH operand types or p7 GP29 inverse**. [Detailed gate](../../im-results/lp2-parable-html133-331-dh449-p7-source-gate.md).
+2. **Director #2212 closed:** historically authentic Middle Welsh `Pwyll Pendeuic Dyuet` and Old Norse `Hávamál` pinned, attributed, normalized under explicitly declared native-GP29 orthography. 1024 actual-LP2-wordlength samples each, 2,893 comparable original words and 10,021 interior runes. Original matched within-word equal unordered glyph pairs **803**; Welsh draws 1289–1517 and Norse1299–1515, excluding any independent per-word deterministic fixed-rune map and anagram for *these source registers*. Welsh is flat enough to survive **989/1024** hidden-two-mode and **1024/1024** section×parity predecessor top-k necessary conditions, unlike English and Norse; *necessary, not sufficient*. [Consolidated report](../../im-results/lp2-nonenglish-medieval-register-keyless-bounds-gate.md), [SFT](../../sims/lp2_nonenglish_register_bounds_sft.cjs).
+3. **Exactly reversible zero-step original-mask family:** every secret nonzero k permits marker `C_i=Cprev iff P_i=x`; all 29 GP fixed anchors miss source-lexicon complete-word doublet masks. Middle Welsh F missing34, AE missing35 and best W missing3 on 2,893 comparable original words; Norse F17 and best TH5. A Welsh AE match to the aggregate expected count **63.99** does not overcome **35** missing source word masks. [SFT with heldout](../../sims/lp2_nonenglish_zero_step_marker_masks_sft.cjs).
+4. **Mabinogion original Welsh text as complete running-key source:** 27,009 GP29 key symbols; 26,281 starts on all original opening pp0–2/729 symbols. Full source-native raw/key IoC max **0.036452916** offset14,810, ciphertext-differential max **0.036633805** offset3993. Untouched original pp3–p7 1,145 holdout0.0349/0.0347; genuine solved LP1 source GP729 native IoC0.06231. [SFT](../../sims/lp2_welsh_bookkey_p0_classical_running_sft.cjs).
+5. **Original Old Norse Hávamál as key for tree pp8–14/1,729 runes:** 14,282 GP29 source symbols; all 12,554 offset starts for raw additive, ciphertext-differential additive and 28-nonzero-step EA sentinel. Best original IoCs **0.035253733 /0.035221601 /0.036044304**, untouched pp15–21 1772 holdout0.0346/0.0346/0.0355; genuine 755 solved-LP1 plant 0.06231 exact in each. No plaintext. [SFT](../../sims/lp2_havamal_treesection_original_receivers_sft.cjs); report consolidated in item2.
+6. **729 opening and p8 black243 source-key/share gate:** original p0–2 has 729 runes, p8 after12 red heading has243 black. Repeating the original p8 source as raw GP29 Vigenère key on pp0–2 gives IoCs subtraction **0.034794766**, addition **0.034851294**; treating three contiguous243 opening strips as quadratic shares at x1,2,3 yields `P=3C0−3C1+C2 mod29`, native IoC **0.034350236**, six position-aligned matches to p8. Solved LP1 direct and polynomial key plants reproduce exactly. [Report](../../im-results/lp2-opening729-p8black243-direct-source-gate.md), [SFT](../../sims/lp2_opening729_p8black243_direct_receiver_sft.cjs). These operations are conditional clues only.
+
+## Active frontier
+- The original 2014 public artifacts give no authenticated GP29 consumer of p57/html packet, nor source-language key selector. Direct frozen source hypotheses above fail to yield actual unknown-page plaintext.
+- Seek an **authenticated source-selected evolving state, a true new plaintext phrase with independent held-out prediction, or an original first-party key source**. Avoid repetitions of the p50 key sweeps, repeated-key/editorial numerical fits, GF29 periodic/lag1/5/6 runs and rejected p55 76-key families.
+- Older incarnations' work remains below as archival continuity (dated, not current status).
+
+---
+
+# Archive of prior Agent24 incarnations (retained without modification)
+
 # Agent24 active research frontier | 22 November 2026, draw9
 
 ## Live identity, do not release early
