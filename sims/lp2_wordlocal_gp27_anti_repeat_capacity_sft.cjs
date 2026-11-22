@@ -243,4 +243,78 @@ console.log("GP27 INSUFFICIENT FRAMES AND REQUIRED MARK ALTERNATIVES",
 console.log("GP27 MAXIMUM FIVE-TYPE END-MARK CODE INSUFFICIENT:",
   "p29 original words1597..1599 need >=6 distinct local endings");
 
+
+/**
+ * Five physically distinguished end-mark morphologies are an extraordinarily
+ * generous maximal local side register. Evaluate alphabet size as a real
+ * design variable: an unrestricted 26-letter Latin alphabet may be
+ * independently encoded under each source punctuation frame with <=5 types,
+ * whereas a GP27 source cannot.
+ */
+function framedCardinality(q) {
+  const deficient = [];
+  let start = 0;
+  let totalFixedBits = 0;
+  for (let i = 1; i < punctuationCuts.length; i++) {
+    const endExclusive = punctuationCuts[i] + 1;
+    let available = 1n, runeCount = 0;
+    for (let j = start; j < endExclusive; j++) {
+      available *= codebooks[j];
+      runeCount += words[j].length;
+    }
+    const categories = (BigInt(q) ** BigInt(runeCount) + available - 1n)
+      / available;
+    if (categories > 1n) {
+      deficient.push({
+        start, last: endExclusive - 1, runes: runeCount,
+        categories: Number(categories)
+      });
+      totalFixedBits += (categories - 1n).toString(2).length;
+    }
+    start = endExclusive;
+  }
+  return { deficient, totalFixedBits };
+}
+const q25Frames = framedCardinality(25);
+const q26Frames = framedCardinality(26);
+const q27Frames = framedCardinality(27);
+const q28Frames = framedCardinality(28);
+assert.deepEqual(q25Frames, {
+  deficient: [{ start: 1597, last: 1599, runes: 11, categories: 3 }],
+  totalFixedBits: 2
+});
+assert.deepEqual(q26Frames, {
+  deficient: [
+    { start: 1597, last: 1599, runes: 11, categories: 4 },
+    { start: 2767, last: 2775, runes: 29, categories: 2 }
+  ],
+  totalFixedBits: 3
+});
+assert.deepEqual(q27Frames, {
+  deficient: [
+    { start: 853, last: 863, runes: 35, categories: 2 },
+    { start: 1586, last: 1596, runes: 36, categories: 2 },
+    { start: 1597, last: 1599, runes: 11, categories: 6 },
+    { start: 2361, last: 2369, runes: 31, categories: 3 },
+    { start: 2767, last: 2775, runes: 29, categories: 4 }
+  ],
+  totalFixedBits: 9
+});
+assert.equal(q28Frames.deficient.length, 43);
+assert.equal(q28Frames.totalFixedBits, 128);
+assert.equal(Math.max(...q28Frames.deficient.map(x => x.categories)), 506);
+console.log("PHYSICAL MARK-RESET CAPACITY BY SOURCE ALPHABET",
+  JSON.stringify([25, 26, 27, 28].map((q, i) => {
+    const r = [q25Frames, q26Frames, q27Frames, q28Frames][i];
+    return {
+      q,
+      shortFrames: r.deficient.length,
+      largestRequiredMarkTypeCount:
+        Math.max(1, ...r.deficient.map(x => x.categories)),
+      independentMinimumFixedSideBits: r.totalFixedBits
+    };
+  })));
+console.log("GP26 EACH FRAME SATISFIED BY FIVE DISTINCT MARK CLASSES",
+  q26Frames.deficient.every(x => x.categories <= 5));
+
 console.log("PASS: exact original-cipher local-capacity gate");
