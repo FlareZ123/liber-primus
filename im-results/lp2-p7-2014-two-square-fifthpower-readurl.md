@@ -51,6 +51,19 @@ where the six consecutive central rune values are **[4,28,23,1,4,20]**, correspo
 
 **Additional original-picture framing:** The pre-existing red punctuation divides the five printed source words **2|3**. With outputs of five runes each, placed in the two historical 5×5 matrix order and facing one another, a symmetric use of this source-derived **two-outside, three-inside** partition isolates precisely the A-output final three runes and B-output first three runes. This provides a retrospective, *source-shaped reason* to consider the exact central 3+3 readout instead of an unrestricted arbitrary crop. The five original black discs also make exponent five a visually motivated hypothesis. Neither cue directs a solver to multiply GP-index products by the **fifth powers** of both matrices or to orient the outputs face-to-face; a plausible framing is weaker than an authored operation. Calling the six central runes an instruction requires deciding *after looking at the output* to discard the first two and last two runes. Solved p57's “shed our own circumferences” supplies a possible contextual rationale, but does not prescribe this ten-rune framing or the fifth-power operator.
 
+## Strongest original-operation objection: why multiply rune indices?
+
+The older, authentically solved LP1 WISDOM operation uses **sums of GP prime weights in each complete printed word**. It is historically more directly motivated than multiplying **zero-based rune indices** for each p7 red word. Keep both operations pinned to the same unchanged five original printed word spellings and to the *exact same* original 2014 matrix fifth powers, source order, and middle-six-symbol frame:
+
+| Whole-word aggregation, each mod29 | Genuine p7 five-symbol input | Five-square central 3+3 GP transliteration |
+| --- | --- | --- |
+| **GP index product** (chosen for earlier p7/p8 polynomial handoff) | [11,26,8,15,2] | **READURL** |
+| GP index sum | [26,7,23,13,24] | GFDEOGOE |
+| **GP prime sum** (historically established LP1 WISDOM grammar) | [9,16,11,11,23] | AETBYPEO |
+| GP prime product | [14,10,4,19,19] | PUOEPBI |
+
+This is a consequential **operator-selection objection** to the author-intent reading: the most plainly documented earlier Cicada word→number operation fails. The success depends on the less explicitly source-selected zero-based index **product**. The product had already been independently motivated by the p7→p8 fixed-point arithmetic before this report, preventing it from being invented solely for READURL, but that earlier result was itself retrospectively discovered. The [source-exact SFT](../sims/lp2_p7_two2014_squares_readurl_sft.cjs) asserts the four genuine original word feature vectors and all four complete readouts. A first-party cue for **multiplication** over prime **addition** is therefore a necessary component of any genuine author solve path.
+
 ## Strong mathematical uniqueness, but no valid post-discovery significance estimate
 
 Freeze **both** output locations, the historical printed A-then-B ordering, and the exact six target GP symbols READURL. The six linear equations
