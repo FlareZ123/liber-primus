@@ -93,3 +93,55 @@ console.log('Key='+key.toString('hex')+'; SHA256='+
 console.log('Original full book n='+all.length+' IoC='+ioc(dec).toFixed(9));
 console.log('DECISION: source key candidate is exact; AES256-CTR-zero-IV is unselected. '+
   'Only promote if the original GP plaintext is coherent and heldout.');
+
+
+/**
+ * Direct whole-page GP29-integer transport into native AES blocks:
+ * zero-left-pad to the next 16-byte multiple, natural big-endian digit order.
+ * These page/byte-to-AES conversions are additional unselected hypotheses.
+ */
+/** @param {number[]} indices */
+function pack(indices) {
+  const number = indices.reduce((v,x)=>29n*v+BigInt(x),0n);
+  const hex = number.toString(16);
+  const minimumByteCount = Math.ceil(hex.length/2);
+  const byteCount = Math.ceil(minimumByteCount/16)*16;
+  return { bytes:Buffer.from(hex.padStart(byteCount*2,'0'),'hex'),
+    rawBits:number.toString(2).length, leftPad:byteCount-minimumByteCount };
+}
+/** @param {Buffer} clear */
+function printableFraction(clear) {
+  return clear.filter(b=>b>=32&&b<=126).length+'/'+clear.length;
+}
+/** @param {Buffer} clear */
+function goodPkcs7(clear) {
+  const padding = clear[clear.length-1];
+  return padding>=1&&padding<=16&&
+    clear.subarray(-padding).every(b=>b===padding);
+}
+for (const pageNumber of [52,54,55]) {
+  const page = C.pages.find(p=>p.page===pageNumber);
+  const packed = pack(page.indices);
+  for(const mode of ['aes-256-ecb','aes-256-cbc']) {
+    const iv=mode==='aes-256-ecb'?null:Buffer.alloc(16);
+    const cipher=crypto.createDecipheriv(mode,key,iv);
+    cipher.setAutoPadding(false);
+    const clear=Buffer.concat([cipher.update(packed.bytes),cipher.final()]);
+    assert.equal(clear.length,packed.bytes.length);
+    console.log('Original p'+pageNumber+' base29 '+mode+
+      ' runeN='+page.indices.length+' trueBits='+packed.rawBits+
+      ' leftZeroPadBytes='+packed.leftPad+
+      ' nativeAsciiPrint='+printableFraction(clear)+
+      ' pkcs7='+goodPkcs7(clear)+' first32='+clear.subarray(0,32).toString('hex'));
+  }
+}
+const plantText=Buffer.from('LIKE THE INSTAR TUNNELNG WITHIN; WE MUST SHED OUR OWN CIRCUMFERENCES','utf8');
+for(const mode of ['aes-256-ecb','aes-256-cbc']) {
+  const iv=mode==='aes-256-ecb'?null:Buffer.alloc(16);
+  const en=crypto.createCipheriv(mode,key,iv);
+  const enc=Buffer.concat([en.update(plantText),en.final()]);
+  const dec=crypto.createDecipheriv(mode,key,iv);
+  const clear=Buffer.concat([dec.update(enc),dec.final()]);
+  assert.deepEqual(clear,plantText);
+  console.log('Genuine solved p57 language AES positive '+mode+' '+clear.length+'/'+plantText.length);
+}
