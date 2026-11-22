@@ -1,7 +1,8 @@
 "use strict";
 /**
- * SFT: original p51 final eight-by-eight source square and literal six-by-six
- * interior as a Hill6 GP29 key. Frozen physical row-major extraction.
+ * SFT: original p51 final eight-by-eight source square, one-corner-seven,
+ * and literal six-by-six interior as source-typed Hill8/Hill7/Hill6 GP29 keys.
+ * Frozen physical row-major extraction.
  * Both real digit alphabets, two standard matrix-vector directions.
  * Read-only; Node.js 22 CommonJS; no selected plaintext, offset or key fitting.
  */
@@ -45,11 +46,11 @@ assert.deepEqual(K59, [
 
 /**
  * Exact Gaussian elimination over prime field Z29.
- * @param {number[][]} matrix square 6x6 GP29 matrix
+ * @param {number[][]} matrix square GP29 matrix
  * @returns {{rank:number,det:number,inverse:number[][]|null}}
  */
 function invert29(matrix) {
-  const width = 6;
+  const width = matrix.length;
   const A = matrix.map((row, i) => [
     ...row, ...Array.from({ length: width }, (_, j) => Number(i === j))
   ]);
@@ -82,7 +83,7 @@ function invert29(matrix) {
 
 /** @param {number[][]} a @param {number[][]} b */
 const matrixProduct = (a, b) => a.map((row) =>
-  Array.from({ length: 6 }, (_, j) =>
+  Array.from({ length: a.length }, (_, j) =>
     mod(row.reduce((sum, x, k) => sum + x * b[k][j], 0))));
 const identity = Array.from({ length: 6 }, (_, i) =>
   Array.from({ length: 6 }, (_, j) => Number(i === j)));
@@ -109,11 +110,12 @@ assert.deepEqual([192, 229].map((i) => {
   return [Math.floor(off / 8), off % 8];
 }), [[0, 0], [4, 5]]);
 
-/** Encode/decode 6-rune blocks; preserve original whole-block cut. */
+/** Encode/decode source-dimension rune blocks; preserve original whole-block cut. */
 const transform = (M, input) => {
   const output = [];
-  for (let k = 0; k + 6 <= input.length; k += 6) {
-    const x = input.slice(k, k + 6);
+  const width = M.length;
+  for (let k = 0; k + width <= input.length; k += width) {
+    const x = input.slice(k, k + width);
     for (const row of M) output.push(mod(row.reduce((sum, a, j) => sum + a * x[j], 0)));
   }
   return output;
@@ -149,13 +151,53 @@ for (const page of [49, 51, 55]) {
     });
   }
 }
+const outerSquareTests = [];
+for (const [shape, dimension, inset] of [
+  ["whole8x8", 8, 0],
+  ["removeZeroCornerRowAndColumn7x7", 7, 1]
+]) {
+  for (const [radix, values] of [["base60", base60], ["base59-drop-f", base59]]) {
+    const key = Array.from({ length: dimension }, (_, row) =>
+      Array.from({ length: dimension }, (_, col) =>
+        mod(values[192 + 8 * (row + inset) + col + inset])));
+    const state = invert29(key);
+    const expected = shape === "whole8x8"
+      ? (radix === "base60" ? 12 : 7)
+      : (radix === "base60" ? 4 : 17);
+    assert.equal(state.rank, dimension);
+    assert.equal(state.det, expected);
+    const unit = Array.from({ length: dimension }, (_, i) =>
+      Array.from({ length: dimension }, (_, j) => Number(i === j)));
+    assert.deepEqual(matrixProduct(key, state.inverse), unit);
+    assert.deepEqual(matrixProduct(state.inverse, key), unit);
+    const nativeUnit = p56Native.slice(0, dimension * Math.floor(p56Native.length / dimension));
+    assert.deepEqual(transform(state.inverse, transform(key, nativeUnit)), nativeUnit);
+    for (const page of [49, 51, 55]) {
+      const original = corpus.pages.find((x) => x.page === page).indices;
+      for (const [matrixDirection, forward, inverse] of [
+        ["column", key, state.inverse],
+        ["row", transpose(key), transpose(state.inverse)]
+      ]) {
+        const decoded = transform(inverse, original);
+        assert.deepEqual(transform(forward, decoded), original.slice(0, decoded.length));
+        outerSquareTests.push({
+          shape, radix, rank: state.rank, det29: state.det,
+          page, matrixDirection, nRunes: decoded.length,
+          leftover: original.length - decoded.length,
+          inverseIoC: ioc(decoded), first44Gp29: render(decoded.slice(0, 44))
+        });
+      }
+    }
+  }
+}
 console.log(JSON.stringify({
-  mode: "source-original final 8x8 -> physical 6x6 interior -> Hill6 mod29",
+  mode: "source-original final 8x8 -> natural nested 7x7 and 6x6 -> frozen HillN mod29",
   rowMajorSquareStart: 192, literalZeroLocations: [192, 229],
   overlapBetweenSourceZeroBracketAndTrueInterior: 22,
   base60: { rank: K60State.rank, det29: 0, recoverable: false },
   base59: { rank: K59State.rank, det29: K59State.det, recoverable: true },
   inverseGp29Tests: candidates,
+  originalNestedSquareHill8AndHill7: outerSquareTests,
   positive: "84 authentic p56 plaintext runes roundtrip under both Hill6 orientations",
-  verdict: "The source-derived base59 inverse is executable and exact but yields no coherent prose on the original p49, p51 or p55. The base60 matrix is singular."
+  verdict: "All source-geometry Hill8 and Hill7 original-cipher inverses are valid but yield no coherent prose. Source-interior Hill6 is invertible only in base59 and also nonprose."
 }, null, 2));
