@@ -46,7 +46,7 @@ These are **exact mathematical impossibilities**, independent of the ciphertext 
 
 Therefore the 49 printed word positions **cannot directly map by GP-prime word-sums to the genuine 7×7 2014 square**, even if the unknown text underneath the ciphertext can be any arbitrary GP rune sequence with identical printed word lengths. The theorem does *not* eliminate changed word boundaries, omitted words, an author-instructed index permutation beyond square dihedral symmetries, use of the matrix as a key rather than plaintext target, or a different operator. None is selected by the first-party source. This closes the most directly historical word-prime-sum transfer without requiring any English guess.
 
-[The same original-source SFT](../sims/lp2_p33_complete49word_2014_magic99_pair_sft.cjs) now derives all 49 complete word lengths and exhaustively computes these feasible-sum sets under every rotation/reflection. Windows execution: [run 45066731208](https://github.com/FlareZ123/liber-primus/actions/runs/45066731208) (check final conclusion before treating as passing).
+[The same original-source SFT](../sims/lp2_p33_complete49word_2014_magic99_pair_sft.cjs) now derives all 49 complete word lengths and exhaustively computes these feasible-sum sets under every rotation/reflection. Windows Node22 **PASS**, [run 45066731208](https://github.com/FlareZ123/liber-primus/actions/runs/45066731208), head commit `70c045bd007256ed50ea74f5f2b75d4127b8938e`.
 
 ## Decision and reproducibility
 
