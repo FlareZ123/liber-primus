@@ -96,6 +96,14 @@ assert.deepEqual(positions("0u"),[94,245]);
 // no Cicada instruction to use GP word length as number of pointer hops.
 const signed2016=read("resources/historical/cicada2016-4gq25-outguess.asc");
 assert(signed2016.includes("their numbers are the direction"));
+const signedPhrase="ITS WORDS ARE THE MAP THEIR MEANING IS THE ROAD AND THEIR NUMBERS ARE THE DIRECTION";
+const signedWordLengths=signedPhrase.split(" ")
+ .map(word=>encodeSourceNativeGP(word).length);
+assert.deepEqual(signedWordLengths,
+ [3,5,3,2,3,4,4,2,2,4,3,4,7,3,2,8]);
+assert.deepEqual(
+ signedWordLengths.filter(n=>n>=7),[7,8]);
+
 const signedNumbersLength=encodeSourceNativeGP("NUMBERS").length;
 const signedDirectionLength=encodeSourceNativeGP("DIRECTION").length;
 assert.deepEqual([signedNumbersLength,signedDirectionLength],[7,8]);
@@ -142,6 +150,8 @@ const orthographyDualReceiver={
 
 const signedWordHopSelector={
  signedLiteral:"their numbers are the direction",
+ allSignedWordGpLengths:signedWordLengths,
+ uniqueTwoLongestSourceWordLengths:[7,8],
  nativeWordLengths:{NUMBERS:signedNumbersLength,
   DIRECTION:signedDirectionLength},
  selectedRouteNodes:[trace[7].address,trace[8].address],
