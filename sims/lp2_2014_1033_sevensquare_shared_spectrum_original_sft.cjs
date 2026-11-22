@@ -751,4 +751,52 @@ for(let i=0;i<49;i+=7)recovered35.push(
 assert.deepEqual(recovered35,clear35);
 console.log('P33_49WORD_TRACE native GP positive exact 35/35');
 
-console.log('SELFTEST_PASS original squares, charpolys, canonical basis, 3409 original runes, solved-native positives, 84-prime authenticated-key transfer, canonical shared three-mode original receiver, full factor-trace five-symbol original reductions, adjacent 255-word CHANGE-square key receiver, exact five-to-seven reversal-dual trace, p33 explicit 1033 49-word firstparty receiver');
+
+/**
+ * Complete 35-period source-derived 1033 / 49-word key receiver:
+ * 49 source black words = 7x7, each exact seven-word row -> five
+ * key residues by F, hence 7x5=35 key residues. The physical
+ * p33-p39 original full chapter contains exactly 1680 = 48x35
+ * ciphertext runes. Freeze three native whole-word summaries, the
+ * physical F basis or 5-square eigenbasis, and the historic LP1
+ * +/- GF29 Vigenere rule, with source starting at first p33 rune.
+ * No fitted clocks, word edits, alphabet changes, or secret keys.
+ */
+const completeP33to39 = concatenate(33,39);
+assert.equal(completeP33to39.length, 1680);
+assert.equal(completeP33to39.length % 35, 0);
+assert.equal(completeP33to39.length / 35, 48);
+const native1680 = Array.from({length:1680},(_,i)=>solved[i % solved.length]);
+assert.ok(ioc(native1680) > 0.05);
+const original35Result = [];
+for(const [source, summary] of p33Summaries){
+ const physical35 = [];
+ for(let i=0;i<49;i+=7)
+   physical35.push(...apply(tracePhysical, summary.slice(i,i+7)));
+ const keys=[
+   ['physical',physical35],
+   ['eigen',transformFive(physical35,V5inverse)]
+ ];
+ for(const [basis,key] of keys)for(const sign of [-1,1]){
+   const inverseR = completeP33to39.map(
+     (v,i)=>m29(v+sign*key[i%35]));
+   const decoded = inverseR.map(
+     (v,i)=>m29(v-sign*key[i%35]));
+   assert.deepEqual(decoded,completeP33to39);
+   const planted = native1680.map(
+     (v,i)=>m29(v-sign*key[i%35]));
+   assert.deepEqual(planted.map(
+     (v,i)=>m29(v+sign*key[i%35])),native1680);
+   original35Result.push({source,basis,sign,ioc:ioc(inverseR)});
+ }
+}
+assert.equal(original35Result.length,12);
+assert.ok(Math.max(...original35Result.map(x=>x.ioc)) < 0.035);
+close(Math.max(...original35Result.map(x=>x.ioc)),
+  0.034742902521342066);
+console.log('SOURCE_P33_1033_49WORD_TO_35_RUNE_PERIOD48 all12 original p33-39 1680 rune receivers IoC range=' +
+  Math.min(...original35Result.map(x=>x.ioc)).toFixed(9)+'..'+
+  Math.max(...original35Result.map(x=>x.ioc)).toFixed(9)+
+  ' native GP planted positive all 1680/1680, no plaintext');
+
+console.log('SELFTEST_PASS original squares, charpolys, canonical basis, 3409 original runes, solved-native positives, 84-prime authenticated-key transfer, canonical shared three-mode original receiver, full factor-trace five-symbol original reductions, adjacent 255-word CHANGE-square key receiver, exact five-to-seven reversal-dual trace, p33 explicit 1033 49-word firstparty receiver, complete 35-period 48-cycle original decipherment');
