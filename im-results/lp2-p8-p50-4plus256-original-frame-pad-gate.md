@@ -56,6 +56,16 @@ Freeze this source-derived ordering with no phase fitting. For each of 31 rows, 
 
 
 
+## A complete, source-typed 256-state machine: numeric successor and p8 output
+
+The two exact 256 registers support another sharply specified consumer: treat original numeric byte b[s] as the **successor pointer** from state s (0..255), and the aligned p8/p9 GP29 rune r[s] as **output** at that same state. This constructs a complete 256-state **Moore machine** with no inferred key table. A source-led seed from the first four genuine red p8 runes uses their standard BASE29 integer value modulo256: [14,10,14,19] gives **seed73**.
+
+The exact source walk is **73→79→82→201→74→205→76→114→197→115→247→192→0→203→68→199→47→114...**. It visits **17 distinct states**, then enters an **11-state cycle** after six initial states. Reading the original p8 output runes in that state order gives **RLWAEYLXXHREAFUTHOEFTH**, without a coherent instruction. No start state was chosen by English fit.
+
+Even permitting all **256 possible seed values**, exhaustive original numeric-graph traversal bounds the maximum distinct states before repetition at **35**, with all actual cycles having lengths **2 or 11**. The unmodified pointer/output machine cannot produce 248 or 256 nonrepeating plaintext runes in one traversal; extra authored state, different transition semantics, or external input would be required. This is an exact graph bound for the explicitly stated successor law. It leaves different roles for the numeric table possible.
+
+## Reproduction and next actionable decision
+
 [Standalone read-only Windows11/Node22 CommonJS SFT](../sims/lp2_p8_p50_4plus256_source_pad_sft.cjs) loads the original p8/p9 GP29 corpus, ink spans, exact page-break printing, and numeric table. It asserts physical 4|8|243|5, preserves all six carried-word symbols, checks 32×8/10|13|9, inverts both signs and reencrypts 256/256. The same original source values and numerical output were independently computed by inline deterministic JavaScript; no GitHub Actions run was claimed or available.
 
 The other p8 source clues, reciprocal17, and four all-secret Berggren direct-leaf exclusions remain consolidated in [p8 source decision](lp2-p8-berggren-original-source-selector-gate.md). The existing numeric grid source rules and unrelated p50 key-family failures remain in their original research documents.
