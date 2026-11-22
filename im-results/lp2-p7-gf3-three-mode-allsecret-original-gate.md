@@ -87,4 +87,4 @@ The **complete 243-state zero-spliced ternary clock**, under either author-plaus
 
 **Fully reproducible single-file test:** [SFT, Windows/Node 22 CommonJS](../sims/lp2_p7_gf3_affine_three_mode_allsecret_sft.cjs). It derives p7's actual red products, verifies original 12,956 rune/2,896 word identities, enumerates all affine readouts and phases, computes all 242-state and both 243-state source-clock capacity bounds, uses 180 matched native-source controls and confirms exact positive recovery for both period types.
 
-**Verified Windows/Node 22 workflow:** [PASS, run 45010438618](https://github.com/FlareZ123/liber-primus/actions/runs/45010438618). Classification remains intermediate research in im-results, with no claim of new plaintext.
+**Verified Windows/Node 22 workflow:** [PASS, full 242/243-clock SFT, run 45010878894](https://github.com/FlareZ123/liber-primus/actions/runs/45010878894). Classification remains intermediate research in im-results, with no claim of new plaintext.
