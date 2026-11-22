@@ -134,18 +134,23 @@ const positiveText = corpus.pages[57].indices.slice(0,40);
 const plantedSites = new Set(positiveText.map((_,i)=>11+i*17));
 assert.equal(plantedSites.size,40);
 const plantedD=[];
-let next=0;
+const targetBySite = new Map(positiveText.map((v,i)=>[11+i*17,v]));
 for(let i=0;i<729;i++){
-  if(plantedSites.has(i)){
-    assert.ok(i>0);
-    plantedD.push(plantedD[i-1] = positiveText[next++]);
-  }else{
-    let value=mod(i*11+3);
-    if(i>0 && value===plantedD[i-1]) value=mod(value+1);
-    plantedD.push(value);
+  let value;
+  if(targetBySite.has(i)) {
+    value = targetBySite.get(i);
+  } else if(targetBySite.has(i+1)) {
+    value = targetBySite.get(i+1);
+  } else {
+    value = mod(i*11+3);
+    while((i>0 && value===plantedD[i-1]) ||
+      (targetBySite.has(i+2) && value===targetBySite.get(i+2))) {
+      value=mod(value+1);
+    }
   }
+  plantedD.push(value);
 }
-assert.equal(next,40);
+
 const plantedCipher=inverseDelta(plantedD);
 assert.deepEqual(primeDelta(plantedCipher),plantedD);
 const plantedEvents=repeatedRightValues(primeDelta(plantedCipher));
