@@ -153,6 +153,26 @@ const observed = variants.map(variant => {
 });
 assert.deepEqual(observed.map(x => x.maxCommonWords), [5,6,6]);
 
+// The only two six-word length alignments both cross visible source marks.
+// Check those marks against the untouched printed separators rather than
+// treating a matching count sequence as intact source plaintext.
+const signedPlain = signed.replace(/\r\n?/g, '\n');
+assert.match(signedPlain, /direction\.\s+Seek\b/i);
+assert.match(signedPlain, /map,\s+their\b/i);
+const rawPages = transcript.replace(/[\r\n/]/g, '').split('%');
+/** @param {number} page @param {number} at @returns {string} */
+function printedGap(page, at) {
+  const matches = [...rawPages[page].matchAll(/[\u16a0-\u16ff]+/gu)];
+  assert.ok(at + 1 < matches.length);
+  const end = matches[at].index + matches[at][0].length;
+  return rawPages[page].slice(end, matches[at+1].index);
+}
+assert.equal(printedGap(34, 18), '-');   // DIRECTION. then SEEK
+assert.equal(printedGap(37, 20), '-');   // MAP, then THEIR
+assert.equal(printedGap(37, 19), '.3-'); // extra original stop after THE
+const sixWordPunctuationMatches = 0;
+
+
 // Deterministic permutations preserve source word lengths and repeats.
 // Used only as a conditional selectivity calibration, not a discovery-wide p-value.
 let state = 3301;
@@ -307,7 +327,7 @@ assert.equal(bestWalkMatch, 3);
 console.log(JSON.stringify({
   original:{runes:knownRunes,physicalPages:physical.length,
     physicalWordFragments:2928,signedWords:originalWords.length},
-  literalCrib:{observed,shuffled,permutations:trials,anySixInRandom:any6},
+  literalCrib:{observed,sixWordPunctuationMatches,shuffled,permutations:trials,anySixInRandom:any6},
   headerKey:{hypothesis:'EPIPHANY SEEKS',pad:key,recurrence:fitted,
     predicted13:predicted[12],observed13:key[12],
     bodyIoc,knownClearP57Ioc:p57Ioc,
