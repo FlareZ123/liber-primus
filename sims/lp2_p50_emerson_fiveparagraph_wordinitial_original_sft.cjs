@@ -154,6 +154,85 @@ for (const sign of [-1, 1]) {
     'ioc', ioc(p16Candidate).toFixed(12), 'prefixGP', roman(p16Candidate));
   tests++;
 }
+
+/**
+ * All-secret obstruction: each original Emerson initial may select any
+ * independent GP29 symbol permutation. Same-initial collision counts
+ * survive EVERY such permutation. Controls are source-original clear
+ * LP1 runes rather than synthesized English or fitted plaintext.
+ *
+ * @param {number[]} symbols
+ * @returns {{hits: number, pairs: number, rate: number}}
+ */
+function sameInitialCollisions(symbols) {
+  /** @type {Map<string, number[]>} */
+  const groups = new Map();
+  for (let i = 0; i < symbols.length; i++) {
+    const letter = initials[i % initials.length];
+    if (!groups.has(letter)) groups.set(letter, Array(G).fill(0));
+    groups.get(letter)[symbols[i]]++;
+  }
+  let hits = 0;
+  let pairs = 0;
+  for (const freq of groups.values()) {
+    const size = freq.reduce((sum, v) => sum + v, 0);
+    pairs += size * (size - 1) / 2;
+    hits += freq.reduce((sum, v) => sum + v * (v - 1) / 2, 0);
+  }
+  return { hits, pairs, rate: hits / pairs };
+}
+
+const master = fs.readFileSync(path.join(root, 'resources/transcriptions/liber_primus_master.txt'), 'utf8');
+const decodeRune = new Map(corpus.runes.map((rune, index) => [rune, index]));
+const lp1Sections = master.split(/\r?\n\r?\n/).slice(1).join('\n\n')
+  .split(/^\s*%\s*$/m)
+  .map((section) => [...section].filter((ch) => decodeRune.has(ch)).map((ch) => decodeRune.get(ch)));
+assert.equal(lp1Sections.length, 74);
+assert.deepEqual(lp1Sections.slice(8, 12).map((a) => a.length), [187, 207, 192, 169]);
+const independentlyClearLp1 = lp1Sections.slice(8, 12).flat();
+assert.equal(independentlyClearLp1.length, 755);
+assert.deepEqual(sameInitialCollisions(flank), { hits: 32, pairs: 947, rate: 32 / 947 });
+assert.deepEqual(sameInitialCollisions(p16), { hits: 113, pairs: 3040, rate: 113 / 3040 });
+
+/**
+ * @param {number[]} original
+ * @returns {{count: number, minimumHits: number, atMostOriginal: number}}
+ */
+function solvedNativeWindows(original) {
+  let count = 0;
+  let minimumHits = Number.POSITIVE_INFINITY;
+  let atMostOriginal = 0;
+  const target = sameInitialCollisions(original);
+  for (let begin = 0; begin + original.length <= independentlyClearLp1.length; begin++) {
+    const donor = independentlyClearLp1.slice(begin, begin + original.length);
+    const observed = sameInitialCollisions(donor);
+    assert.equal(observed.pairs, target.pairs);
+    minimumHits = Math.min(minimumHits, observed.hits);
+    if (observed.hits <= target.hits) atMostOriginal++;
+    // Positive controls: source-letter-specific nonzero multipliers and
+    // offsets form fully invertible affine GP29 permutations.
+    const planted = donor.map((symbol, i) => {
+      const order = initials[i % 256].charCodeAt(0) - 65;
+      return ((1 + order % 28) * symbol + (7 * order + 3) % G) % G;
+    });
+    assert.deepEqual(sameInitialCollisions(planted), observed);
+    count++;
+  }
+  return { count, minimumHits, atMostOriginal };
+}
+
+const nativeFlank = solvedNativeWindows(flank);
+const nativeP16 = solvedNativeWindows(p16);
+assert.deepEqual(nativeFlank, { count: 598, minimumHits: 37, atMostOriginal: 0 });
+assert.deepEqual(nativeP16, { count: 489, minimumHits: 142, atMostOriginal: 0 });
+console.log('ALL_SECRET_BIJECTION_INVARIANT', JSON.stringify({
+  originalFlank: sameInitialCollisions(flank),
+  originalP16: sameInitialCollisions(p16),
+  nativeFlankWindows: nativeFlank,
+  nativeP16Windows: nativeP16,
+  conclusion: 'Every stationary letter-conditioned bijection preserves those original equality counts, all below genuine native-source controls',
+}));
+
 assert.equal(tests, 6);
 console.log('PASS', tests, 'original variants, source-only 256-letter external book-code and solved-native GP29 plants.');
 console.log('DECISION: This particular two-field Emerson initials and direct historical GP29 shift do not reveal prose. The source does not specify this LP2 mapping.');
