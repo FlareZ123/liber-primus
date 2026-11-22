@@ -255,5 +255,5 @@ console.log(JSON.stringify({
   original:{runes:original.length,wholeWords:words.length,
     samePageLag5Sites:nSites,adjacentCipherDoublets:nObserved},
   output,
-  scope:"Exact necessary-condition contradiction on native-English matched controls, allowing an independent secret f by signed-source section or physical page. Not an exclusion of arbitrary non-English plaintext, evolving f within these scopes, or other ciphers; no plaintext recovered"
+  scope:"Exact necessary-condition contradiction on native-English matched controls, allowing an independent secret f by original printed section or physical page. Not an exclusion of arbitrary non-English plaintext, evolving f within these scopes, or other ciphers; no plaintext recovered"
 },null,2));
