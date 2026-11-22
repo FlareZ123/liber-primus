@@ -130,6 +130,41 @@ for (let i = 0; i < raw.length; i++) {
   const restoredC2 = (raw[i] + 1) * power(c1, privateExponent) % modulus;
   assert.equal(restoredC2, original[2 * i + 1] + 1);
 }
+
+// Original GP29 receiver motivated by the same ElGamal exponent x=48:
+// a field unit b+1 has canonical generator log k in Z/256; multiply x*k
+// there, then project its representative to the native Z/29 alphabet.
+// Fixed absolute rune position and the table's only 256-cell wrap; no
+// rotations, masks, sign search, per-word resets or lexical optimization.
+const groupKey = original.map(v => (privateExponent * groupLogs.get(v + 1) % order) % 29);
+/** @param {number[]} ciphertext @returns {number[]} */
+function decodeGp(ciphertext) {
+  return ciphertext.map((c, i) => (c + 29 - groupKey[i % original.length]) % 29);
+}
+/** @param {number[]} symbols @returns {number} */
+function ioc(symbols) {
+  const counts = Array.from({length: 29}, (_, x) => symbols.filter(v => v === x).length);
+  return counts.reduce((sum, count) => sum + count * (count - 1), 0) /
+    (symbols.length * (symbols.length - 1));
+}
+const p53 = source.pages.find(page => page.page === 53).indices;
+assert.equal(p0.length, 262);
+assert.equal(p53.length, 179);
+const originalP0Inverse = decodeGp(p0);
+const untouchedP53Inverse = decodeGp(p53);
+assert.equal(groupKey[192], 0);
+assert.equal(groupKey[229], 0);
+assert.equal(originalP0Inverse[192], p0[192]);
+assert.equal(originalP0Inverse[229], p0[229]);
+const trans = indices => indices.map(i => source.translit[i]).join('');
+const p0Words40To43 = [[177,183],[183,189],[189,192],[192,196]]
+  .map(([start, end]) => trans(originalP0Inverse.slice(start, end)));
+assert.deepEqual(p0Words40To43, ['IAEWJUEA', 'ALRPJO', 'FMY', 'MMNGP']);
+assert(Math.abs(ioc(originalP0Inverse) - 0.03533093504138516) < 1e-13);
+assert(Math.abs(ioc(untouchedP53Inverse) - 0.034021718661728706) < 1e-13);
+const plantedGpCipher = p57.map((value, i) => (value + groupKey[i]) % 29);
+assert.deepEqual(decodeGp(plantedGpCipher), p57);
+
 console.log(JSON.stringify({
   status: 'PASS: authentic p50 ElGamal receiver has no native-GP or ASCII prose',
   originalP0PrimeSums: [fieldPrime, fieldGeneratorSum, privateExponent],
@@ -142,6 +177,17 @@ console.log(JSON.stringify({
   asciiPrintable, asciiLetters, nativeGp29, exponentGp29,
   nativeGp29Violations: raw.length - nativeGp29,
   exponentGp29Violations: raw.length - exponentGp29,
+  gpProjectedOriginal: {
+    p0Runes: originalP0Inverse.length,
+    p0IoC: ioc(originalP0Inverse),
+    originalP0FFFFollowingWord: p0Words40To43,
+    p0Word43FirstLetterUnchanged: trans([originalP0Inverse[192]]),
+    originalP53WindowRunes: untouchedP53Inverse.length,
+    p53IoC: ioc(untouchedP53Inverse),
+    zeroMaskNativeAnchors: [192, 229],
+    solvedP57GPPlantRecovered: decodeGp(plantedGpCipher).length,
+    note: 'This projected exponent mapping is reversible GP29 but not a GF257 group homomorphism.'
+  },
   escapedAscii: printed,
   solvedP57PlantedSymbols: planted.length,
   solvedP57PlantedRecovered: decrypt(encryptedPlant).length,
