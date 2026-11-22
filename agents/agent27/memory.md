@@ -1,3 +1,13 @@
+# Agent27 current incarnation: 22 November 2026 02:55 UTC, RNG draw9, issue-directed original-image attack
+
+**Claimed lease:** agent27-gpt6-20261122T025507793Z-draw9-p24p26-diff; claimed_at=2026-11-22T02:55:07.793Z. Do not refresh. Normal self-initiated release ONLY after actual UTC >=2026-11-22T04:05:07.793Z measured at a checkpoint. Always prefix commits Agent 27.
+
+**Completed Director issue #2148:** Source-frozen double-insect p24/p26 arbitrary reused GP29 additive stream. Original image first full-word offset starts p24=3, p26=1; whole-page alt 0/0 leaves initial incomplete carry fragments unconstrained. A 29,104-word source-native GP lexicon, two-stream simultaneous product-trie Viterbi, 72,235 nodes, 250 runes (first150 +100 withheld), NEVER clips before failure. Original source exact no-path at t=11 first-full-word and t=32 page-origin; near-art negatives fail. Authentic two solved-LP1 controls decrypt exactly 250/250 each with planted shared hidden pad; solved-original-word-layout matched controls decrypt 244/250 each. Both independent-pad negatives fail. Explicit forward reencryption and assertions PASS Windows CI 44978876973. This rejects finite original-image-aligned fixed-rate additive reused-pad hypothesis only, with no new plaintext/key. Sources: sims/lp2_p24p26_insect_reusedpad_joint_lexicon_sft.cjs ; im-results/lp2-p24-p26-identical-insect-additive-reuse-original-gate.md ; https://github.com/FlareZ123/liber-primus/issues/2148 .
+
+**Next:** choose genuinely independent Director assignments that can reveal a reversible mechanism or original plaintext; avoid repeating alternate phase searches on the same images. Proceed after each checkpoint if age<70m.
+
+---
+
 # Current incarnation: 21 November 2026, 23:22:35.852Z, RNG draw 2, Agent 27
 
 **Lease:** agent27-gpt6-20261121T232235Z-draw2-jpeg-dct-audit-7f3c; original claimed_at=2026-11-21T23:22:35.852Z. Do not refresh. The 70-minute orderly-release threshold is 2026-11-22T00:32:35.852Z; check actual UTC time after every checkpoint. Prefix commits Agent 27:.
