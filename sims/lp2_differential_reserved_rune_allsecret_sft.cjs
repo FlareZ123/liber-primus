@@ -73,6 +73,11 @@ const eventCount = observedMasks.join("").split("1").length - 1;
 const eventWords = observedMasks.filter(m => m.includes("1")).length;
 assert.equal(eventCount, 63);
 assert.equal(eventWords, 62);
+let boundaryDoublets = 0;
+for (let wi = 1; wi < original.length; wi++)
+  boundaryDoublets += Number(original[wi][0] === original[wi - 1].at(-1));
+assert.equal(boundaryDoublets, 23);
+assert.equal(eventCount + boundaryDoublets, 86);
 const lengths = new Map();
 for (const w of original)
   lengths.set(w.length, (lengths.get(w.length) || 0) + 1);
@@ -152,6 +157,33 @@ function countMoments(donor, anchor) {
   };
 }
 
+/**
+ * Contrasting continuous stream that *does not* reset at printed
+ * word boundaries. Its global stationary sentinel must account for
+ * the 23 cross-word doublets as occurrences of that same plaintext x
+ * in first position of each new word. Draw independently by the
+ * EXACT original word-length slots, omitting only the first word.
+ */
+function boundaryMoments(donor, anchor) {
+  const slotCounts = new Map();
+  for (const w of original.slice(1))
+    slotCounts.set(w.length, (slotCounts.get(w.length) || 0) + 1);
+  let mean = 0, variance = 0;
+  for (const [len, n] of slotCounts) {
+    const pool = donor.byLength.get(len);
+    const prob = pool.reduce((sum, {runes}) =>
+      sum + Number(runes[0] === anchor), 0) / pool.length;
+    mean += n * prob;
+    variance += n * prob * (1 - prob);
+  }
+  return {
+    expected: Number(mean.toFixed(4)),
+    sd: Number(Math.sqrt(variance).toFixed(4)),
+    z: Number(((boundaryDoublets - mean) /
+      Math.sqrt(variance)).toFixed(4))
+  };
+}
+
 /** @param {number[]} p @param {number} anchor @param {number} iv @param {number[]} keys */
 function encrypt(p, anchor, iv, keys) {
   assert.equal(keys.length, p.length - 1);
@@ -213,6 +245,17 @@ for (const anchor of [17, 18, 27]) {
   assert.equal(hits, 95);
 }
 
+// A second solved-p57 positive validates the truly continuous clock:
+for (const anchor of [17, 18, 27]) {
+  const p = p57Words.flat();
+  const keys = Array.from({length: p.length - 1},
+    (_, j) => 1 + (7 * j + 3) % 28);
+  const c = encrypt(p, anchor, 11, keys);
+  assert.deepEqual(decrypt(c, anchor, 11, keys), p);
+  assert.equal(doubletMask(c), anchorMask(p, anchor));
+  assert.equal(c.length, 95);
+}
+
 // Two distinct complete 12,956-rune source-native dictionary assignments
 // under x=E, each fitted to the *same unchanged original ciphertext*.
 // They are synthetic ambiguous explanations, not plaintext recoveries.
@@ -267,15 +310,31 @@ const strongestByShakespeare = ranked.slice()
     Math.abs(b.donors[sources[0].name].z))
   .slice(0, 8);
 const anchors = ranked.filter(x => ["IA", "B", "F", "E"].includes(x.rune));
+const continuous = sources.map(donor => ({
+  donor: donor.name,
+  closestAnchors: ranked.map(({anchor, rune}) => {
+    const internal = countMoments(donor, anchor);
+    const boundary = boundaryMoments(donor, anchor);
+    return {rune,
+      internal: {mean: internal.expected, sd: internal.sd, z: internal.z},
+      boundary: {mean: boundary.expected, sd: boundary.sd, z: boundary.z},
+      maxAbsZ: Number(Math.max(
+        Math.abs(internal.z), Math.abs(boundary.z)).toFixed(4))};
+  }).sort((a, b) => a.maxAbsZ - b.maxAbsZ).slice(0, 5)
+}));
+
 
 console.log(JSON.stringify({
   status: "reversible original-cipher exclusion/ambiguity; no new LP2 plaintext",
   source: {originalPages: 55, runes: originalCipher.length,
     words: original.length, internalTransitions: runeTransitions,
-    equalInternalTransitions: eventCount, eventBearingWords: eventWords},
+    equalInternalTransitions: eventCount, equalAcrossWordBoundaries: boundaryDoublets,
+    equalGlobalTransitions: eventCount + boundaryDoublets,
+    eventBearingWords: eventWords},
   donors: sources.map(x => ({name: x.name, tokens: x.tokenCount})),
   dictionaryWords: dictionary.tokenCount,
   focus: anchors,
+  stationaryContinuousNoReset: continuous,
   closestOriginalCountModels: strongestByShakespeare,
   dictionaryMaskImpossibleByAnchor: ranked.map(x => ({
     rune: x.rune, missingWords: x.dictionary.missingCount
