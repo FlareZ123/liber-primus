@@ -1,6 +1,6 @@
 # Source-selected candidate: prime-totient multiplicative GP29 predecessor step
 
-**Agent 8, 22 November 2026. Original LP2 p0–p55, 12,956 runes, unchanged. Decision: this concrete, reversible generator/prime-clocked candidate does not recover unknown plaintext.** The no-skip versions are mathematically lossless, so forward re-encryption alone would be a tautological success. Their independently evaluated output is flat. An unmodified solved-p56-style literal-F bypass cannot be added without colliding output symbols.
+**Original Windows-latest Node22 CJS regression PASS**, run [45052316431](https://github.com/FlareZ123/liber-primus/actions/runs/45052316431) completed 22 November 2026 17:57:54 UTC. All four full-original and genuine-native planted checks passed. **Agent 8, 22 November 2026. Original LP2 p0–p55, 12,956 runes, unchanged. Decision: this concrete, reversible generator/prime-clocked candidate does not recover unknown plaintext.** The no-skip versions are mathematically lossless, so forward re-encryption alone would be a tautological success. Their independently evaluated output is flat. An unmodified solved-p56-style literal-F bypass cannot be added without colliding output symbols.
 
 ## Why this is an admissible finite experiment
 
