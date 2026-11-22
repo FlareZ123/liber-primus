@@ -191,7 +191,7 @@ assert.equal(Math.min(...outcomes.filter(x => x.register.startsWith("p56 solved"
   .map(x => x.page57Conflicts)), 14);
 assert.deepEqual(
   outcomes.slice(0, 16).map(x => x.whole.contradictions),
-  outcomes.slice(16).map(x => x.whole.contradictions),
+  outcomes.slice(16, 32).map(x => x.whole.contradictions),
   "base59 and base60 preserve collisions under byte-injective numeral parsing"
 );
 
