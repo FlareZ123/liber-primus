@@ -68,11 +68,33 @@ for n in range(17, 75):
     print("SCAN", json.dumps(info, sort_keys=True))
 
 assert len(results) == 58
-survivors = [row for row in results if row["result"] != "rejected_header_or_iterator"]
+survivors = [entry for entry in results if entry["result"] == "header_accepted"]
+rejects = [entry for entry in results if entry["result"] == "rejected_header_or_iterator"]
+recognizable = [
+    entry for entry in survivors
+    if entry["magic"] or entry["armor"]
+    or (entry["printable"] >= 0.8 and entry["length"] >= 32)
+]
+# The source contains a known wrong-key-like 32-byte header candidate. The
+# extractor's acceptance alone cannot establish an embedded original payload.
+assert len(survivors) == 57, survivors
+assert len(rejects) == 1 and rejects[0]["scan"] == "74.jpg", rejects
+assert not recognizable, recognizable
+assert {entry["length"] for entry in survivors} == {32904}
+assert {entry["prefix"] for entry in survivors} == {
+    "8ca188804d02f5cc41485a86b8509ebe845d4612f2ea36b14ec73733c06c82a3"
+}
+assert len({entry["sha256"] for entry in survivors}) == 57
 print("SUMMARY", json.dumps({
     "source": "signed 2016 DIRECTION word30 -> table row30 printed token password",
     "password": password,
     "scans": len(results),
     "positive_control": True,
-    "header_survivors": survivors,
+    "header_survivors": len(survivors),
+    "rejected": rejects,
+    "recognizable_payloads": recognizable,
+    "distinct_survivor_sha256": len({entry["sha256"] for entry in survivors}),
+    "common_survivor_prefix_hex": survivors[0]["prefix"],
+    "common_survivor_length": survivors[0]["length"],
+    "conclusion": "no recognizable PGP/file/printable payload"
 }, sort_keys=True))
