@@ -9,7 +9,8 @@
  * 29-page-offset survivor, using complete original printed word domains.
  *
  * All source data/positive tests use the independently validated sibling
- * GP29 wordgate. These are necessary tests only; survivors are hypotheses.
+ * GP29 wordgate. Bridge exclusions are necessary tests; converged AC3
+ * is sufficient for full dictionary-word assignment on acyclic graphs.
  */
 const assert=require("node:assert/strict");
 const {source,dictionary,completeInteriorWords,overlapWords,plantedPlaintext,mod29}
@@ -62,7 +63,9 @@ function shifts(mask){
 /**
  * AC-3-like exact support consistency on every >=1 rune original word-pair
  * overlap. A single empty complete original-word domain is an impossibility
- * witness. A surviving fixed point is only necessary, not sufficient.
+ * witness. The original word-overlap graph is a forest, so a nonempty
+ * converged fixed point guarantees a global dictionary-word assignment.
+ * This is not authenticated plaintext.
  */
 function arc(pa,pb,a,b,sign,shift){
   const wa=completeInteriorWords(pa),wb=completeInteriorWords(pb);
@@ -103,6 +106,21 @@ function arc(pa,pb,a,b,sign,shift){
   }
   return {status:"UNRESOLVED_ITERATION_LIMIT",checked};
 }
+/** On every original page pair, complete-word overlap graph is a forest.
+ * Consequence: arc consistency is sufficient for a full lexicon assignment. */
+function assertForest(pa,pb){
+  const a=completeInteriorWords(pa),b=completeInteriorWords(pb);
+  const parent=Array.from({length:a.length+b.length},(_,i)=>i);
+  function root(x){while(parent[x]!==x){parent[x]=parent[parent[x]];x=parent[x];}return x;}
+  for(let i=0;i<a.length;i++)for(let j=0;j<b.length;j++){
+    const x=a[i],y=b[j];
+    if(Math.min(x.start+x.length,y.start+y.length)<=Math.max(x.start,y.start))continue;
+    const u=root(i),v=root(a.length+j);
+    assert.notEqual(u,v,"cycle in source word-overlap graph");
+    parent[v]=u;
+  }
+}
+
 function main(){
   const pages=source.pages.filter(p=>p.page<=55&&p.indices.length);
   assert.equal(pages.length,55);
@@ -110,6 +128,7 @@ function main(){
   const candidates=[];
   for(let i=0;i<pages.length;i++)for(let j=i+1;j<pages.length;j++){
     const a=pages[i],b=pages[j],sp=overlapWords(a.page,b.page);
+    assertForest(a.page,b.page);
     assert(sp.length);
     const out=masks(a.indices,b.indices,sp);
     tested+=out.n;
@@ -144,7 +163,8 @@ function main(){
   // single-word identities across all short and long page-word overlaps.
   // Apply the exact same complete-word constraint procedure to EVERY
   // preliminary survivor, including the 55 short and sparse alignments.
-  // Surviving fixed points are explicitly retained as undecided.
+  // Surviving forest assignments are feasible dictionary text, but
+  // their historical authenticity is explicitly undecided.
   const qualified=candidates;
   let arcTrials=0,arcContradictions=0,arcChecks=0;
   const qualifiedSurvivors=[];
