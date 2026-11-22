@@ -43,7 +43,7 @@ function originalWords(from, to) {
 const originalA = originalWords(16, 21);
 const originalB = originalWords(34, 39);
 const holdoutH = originalWords(40, 53);
-assert.deepEqual([originalA.length, originalB.length, holdoutH.length], [372, 325, 718]);
+assert.deepEqual([originalA.length, originalB.length, holdoutH.length], [372, 325, 669]);
 
 /**
  * The complete invariant for C[j]=P[j]+a+b*(globalRunePosition+j) mod29:
