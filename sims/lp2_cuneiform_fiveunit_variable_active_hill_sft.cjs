@@ -120,8 +120,8 @@ const activeLengths = expectedActive.map((n, j) =>
   (clockSegments[j + 1] - clockSegments[j]) * n);
 assert.deepEqual(activeLengths, [455, 20, 6, 62, 10]);
 assert.equal(activeLengths.reduce((s, n) => s + n, 0), 553);
-assert.equal(runeDoublets(original), 1 + 4, 
-  'cross-word equality count changed; source is not word-local here');
+assert.equal(runeDoublets(original), 1, 
+  'only one adjacent original equal pair across all five printed units');
 const sourceControlIoc = ioc(knownPlant.flat());
 assert(sourceControlIoc > 0.05);
 
