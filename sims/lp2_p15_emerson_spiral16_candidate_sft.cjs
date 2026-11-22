@@ -116,7 +116,8 @@ console.log(JSON.stringify({
   original_p15_spiral: nums,
   source_git_blob: blob,
   source_ascii_letters: letters.length,
-  authentic_2014_emerson_bookcode_positive: historicalOnion,\n  extracted_16_base32: onion,
+  authentic_2014_emerson_bookcode_positive: historicalOnion,
+  extracted_16_base32: onion,
   hypothetical_onion_v2: onion + ".onion",
   other_edition_readout: alternateOnion,
   within_source_shift_control: {
