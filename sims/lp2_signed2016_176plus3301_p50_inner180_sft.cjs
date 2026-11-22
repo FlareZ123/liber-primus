@@ -90,6 +90,21 @@ function score(values,log) {
   return sum/(values.length-2);
 }
 
+const gibranWords = gibran.match(/[a-zA-Z]+/g) || [];
+const gibranWordCounts = gibranWords.map((w)=>toGP(w).length);
+let exact176Windows=0;
+let running43 = gibranWordCounts.slice(0,43).reduce((a,b)=>a+b,0);
+for(let i=0;i+43<=gibranWordCounts.length;i++) {
+  if(i>0)running43+=gibranWordCounts[i+42]-gibranWordCounts[i-1];
+  if(running43===176) exact176Windows++;
+}
+const gibran43Windows = gibranWordCounts.length-42;
+console.log("LENGTH_NULL "+JSON.stringify({
+  nativeSourceWords:43,signedReneLength:176,numericDigits:4,p50InteriorCells:180,
+  gibran43WordWindows:gibran43Windows,gibranExact176:exact176Windows,
+  fraction:gibran43Windows ? exact176Windows/gibran43Windows : 0
+}));
+
 const reference=toGP(gibran);
 const model=train(reference);
 const controls=[];
