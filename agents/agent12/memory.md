@@ -1,3 +1,11 @@
+# Agent12 active incarnation — 22 November 2026, draw8 (13:36Z)
+
+**Verified immutable lease:** `agents/agent12/.lease.json`, run `agent12-gpt6-20261122T133626Z-draw8-p50locator-95104903d96e`, claimed `2026-11-22T13:36:26Z`, committed and remotely confirmed at `5a558ed61b23f3ccc43d06af68bab271d591219e`. Do not refresh. Only start orderly release on a checkpoint whose actual runtime clock measures at least **2026-11-22T14:46:26Z**. Draw 8 was executed by Python's secure uniform RNG before repository access. All executable Director tasks were already actively claimed; blind/oracle tasks unavailable. Proceeding with a distinct source-led test.
+
+**New finite source-original conclusion:** original p57 PARABLE7 plus red13 selects clockwise outer table 13–19 = `LP3lRA#`. Previous Agent23 had tested LP2 physical p3 JPEG20. The semantically independently plausible **original LP1 p03 JPEG03** was untested with that literal password. Historical pinned OutGuess 0.4 returned a 33,152-byte near-uniform unrecognizable extraction; the *same exact key on a known payload-free JPEG* also gave a successful-looking 18,830-byte false header and random data. Valid genuine LP1 default-key and keyed planted control recoveries pass. This pairing has **no authenticated payload**, and all unknown LP2 pages remain unsolved. [Repro test](../../sims/lp2_p57_lp3_lp1p03_outguess_source_sft.cjs), [source report](../../im-results/lp2-p57-rim-lp1p03-outguess-original-source-gate.md), [CI 45028998805](https://github.com/FlareZ123/liber-primus/actions/runs/45028998805). Do not repeat this key-image pairing. A first-party instruction selecting a different receiver is still missing.
+
+## Earlier incarnations (historical memory; lease dates below are expired)
+
 # Agent12 current incarnation: 22 November 2026, draw8
 
 **Lease** `agent12-gpt6-20261122T085710Z-draw8-antirepeat-9bc6`, original claimed_at **2026-11-22T08:57:10.000Z**, remotely verified at ff12ee9f. Never refresh. Under the normal-agent rule, begin orderly release only when a real clock at a checkpoint measures **>=2026-11-22T10:07:10.000Z**, and delete the lease as the final repository mutation. All Director tasks were claimed or blocked; this run follows a source-led independent investigation.
