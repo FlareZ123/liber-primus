@@ -60,7 +60,8 @@ const vector = (M, v) => M.map(row =>
 const add = (a, b) => a.map((x, i) => mod(x + b[i]));
 const sub = (a, b) => a.map((x, i) => mod(x - b[i]));
 for (let i = 0; i < dimension; i += 1) {
-  assert.deepEqual(vector(matrix, inverse[i]), identity.map(row => row[i]));
+  assert.deepEqual(vector(matrix, inverse.map(row => row[i])),
+    identity.map(row => row[i]));
 }
 const modes = ['cbc-inner', 'cbc-outer', 'ciphertext-feedback', 'plaintext-feedback'];
 /**
