@@ -1,6 +1,6 @@
-# LP2 p50: conditional 1031/512 cross-page congruence and exact one-byte erasure inverse
+# LP2 p50: conditional 1031/512 codeword and one-/six-byte source reconstruction
 
-**Agent8, 22 November 2026. Classification:** A new exact relationship among existing original-source operands, with a constructive conditional one-byte recovery rule. **No unknown LP2 plaintext, creator-authenticated checksum opcode, full cipher key, or final destination has been recovered.**
+**Agent8, 22 November 2026. Classification:** A new exact relationship among existing original-source operands, with conditional one-byte and six-byte source recovery constructions. **No unknown LP2 plaintext, creator-authenticated checksum opcode, full cipher key, or final destination has been recovered.**
 
 ## Original source operands
 
@@ -54,12 +54,40 @@ B_j=(512-S_j)\,w_j^{-1}\pmod {1031}.
 
 The new [single-file Node22 CommonJS original-source test](../sims/lp2_p50_parable1031_red512_single_erasure_sft.cjs) omits each original byte *from its own sum*, independently computes the missing value from the other 255 source bytes plus the cross-page source constants, and obtains **256/256 exact original recoveries**. It also validates the p57 source location and prime sum, p27/p54 original red rune prime sums, canonical SHA256, all twelve reading residues, and all possible single-byte substitution deltas. These 256 erasures are **algebraic demonstrations of one checksum**, not 256 independent statistical confirmations. If the position of a corrupted cell is unknown, one checksum alone does not locate it or repair multiple errors.
 
+## Six-byte original suffix: a stronger conditional reconstruction
+
+The same cross-page residue also has a nontrivial constructive consequence when combined with **previously documented** original-grid factors. Define the earlier *post hoc* whole-integer divisor
+
+\[
+F=2^4\cdot3^3\cdot7\cdot13\cdot29\cdot179^2=36,528,277,968.
+\]
+
+The established original GF29 table polynomial P(X), whose coefficients are the 256 original bytes read in descending power order, has both original-source quadratic factors **H2013(X)=3+26X+24X²** (2013 signed BASE29 clue) and **G39(X)=27+5X+15X²** (p39 red triad). These relations were discovered well before the present modular 1031 observation. Retrospective discovery of F and the factors prevents treating their agreement as independent prospective evidence of an author-added checksum.
+
+Now **withhold the actual last six original table bytes**, keeping only the first 250 original cells. Set A to their 250-byte big-endian integer and let x be the missing **48-bit suffix**, so N=A·256⁶+x. Demand only
+
+\[
+x\equiv -A256^6\pmod F,\qquad
+x\equiv 512-A256^6\pmod{1031}.
+\]
+
+The two moduli are coprime. Exact Chinese remaindering within 0≤x<2⁴⁸ leaves precisely **eight** legal six-byte suffixes. Requiring the restored **entire GF29 table polynomial** to be divisible by the two original independent-source quadratics H2013 and G39 selects precisely **one of the eight**:
+
+- Six recovered original bytes: decimal **[172, 230, 180, 36, 189, 80]**.
+- Unique candidate as 12 hex digits: **ace6b424bd50**, identical to the physically printed original suffix.
+- The alternative **f167d00546b0** satisfies the G39 factor too, but its H2013 remainder is [13,2] rather than [0,0]; the six other candidates fail both quadratics.
+- All eight candidates, each exact pair of GF29 remainders, and the original 250-byte unchanged prefix are preserved by the same read-only SFT.
+
+This extends the previously published **four-byte suffix reconstruction from F alone** ([prior partial-factor report](lp2-p50-2013bit-factor-suffix.md)) to **six exact source bytes**, conditional on both the prior factoring premises and the new p57/p27/p54 1031/512 congruence. It does not locate or correct six arbitrary damaged cell positions; this construction holds specifically for a known contiguous six-byte suffix. The unchanged source bytes were only used to assert the recovered answer, never to form the candidate set or choose between the eight candidates.
+
+The author-intent objection is the same as for the single-erasure construction: F and the polynomial factors were partly recognized after studying the full table. Their use as checks can recover withheld bytes in a reproducible demonstration without proving the historical author intended any of these equations. No unknown rune plaintext or direct terminal-page decoder follows from the result.
+
 ## Main objection and next decision
 
 Neither p57 nor an independently recovered author instruction says to concatenate *all* 256 table bytes as a single integer and reduce modulo its middle clause's prime sum. The phrase about **shedding circumferences** more naturally selects removing the table perimeter. But the 180 interior cells read naturally as one integer have residue **110** modulo1031, and the clockwise 76-cell outer rim residue **83**, rather than512. This is a genuine weakness of the whole-grid hypothesis.
 
 The modular identity was noticed after substantial prior numerical exploration, so the usual 1/1031 probability for a *preselected* residue under a random model **cannot** be presented as a calibrated discovery-level p-value. No checksum formula, radix or full-grid integer layout has yet been authenticated as a Cicada instruction; the same input is known to admit numerous postselected prime associations. This remains an exact numerical observation and conditional one-erasure repair mechanism.
 
-**Research decision:** preserve the new source correlation as an **intermediate interpretation** with an executable decoder for one known-location erased numeral. It may help adjudicate genuinely damaged original transcriptions if a first-party checksum instruction surfaces. It supplies no legitimate decrypted plaintext or direct original-rune inverse today. A substantive successor must discover an authored link selecting this operation or use the cross-source constants to recover a substantial untouched ciphertext interval by a fully reversible, predictive mechanism. Do not pursue arbitrarily tuned residue scans.
+**Research decision:** preserve the new source correlation as an **intermediate interpretation** with an executable decoder for one known-location erased numeral. It may help adjudicate genuinely damaged original transcriptions if a first-party checksum instruction surfaces. It reconstructs one arbitrary known-location erased cell, or a specific six-byte suffix after imposing previously published source-inspired factors. It supplies no decrypted unknown plaintext or direct original-rune inverse today. A substantive successor must discover an authored link selecting this operation or use the cross-source constants to recover a substantial untouched ciphertext interval by a fully reversible, predictive mechanism. Do not pursue arbitrarily tuned residue scans.
 
 **Source and related work:** [256-cell numeric source](../resources/liber-primus/base60-grid.json) · [original GP corpus](../resources/liber-primus/lp2-corpus.json) · [red source annotations](../resources/liber-primus/lp2-ink-annotations.json) · [reproducer](../sims/lp2_p50_parable1031_red512_single_erasure_sft.cjs) · [earlier p27/p54 heading difference](lp2-p27-p54-red512-sharedpad-original-lexicon-gate.md) · [earlier p57 clause prime products](lp2-p50-parable-blum-inner180-inverse-gate.md).
