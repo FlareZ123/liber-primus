@@ -151,6 +151,95 @@ assert.deepEqual([...exactPairs].sort(), [
   '13,49', '141,177', '192,228', '20,56', '201,237',
 ].sort());
 
+
+/** Factor a positive integer over the canonical GP29 prime alphabet only. */
+function gpPrimeFactors(integer) {
+  let remaining = integer;
+  const factors = [];
+  for (const prime of corpus.prime) {
+    while (remaining % prime === 0) {
+      factors.push(prime);
+      remaining /= prime;
+    }
+  }
+  return remaining === 1 ? factors : null;
+}
+
+const sourcePalindrome = Number(String(sourceTitle) + String(sourceId));
+assert.equal(sourcePalindrome, 133331);
+assert.equal(
+  String(sourcePalindrome),
+  String(sourcePalindrome).split('').reverse().join(''),
+);
+const factors = gpPrimeFactors(sourcePalindrome);
+assert.deepEqual(factors, [11, 17, 23, 31]);
+assert.equal(gpPrimeFactors(Number(String(sourceId) + String(sourceTitle))), null);
+const factorSum = factors.reduce((sum, n) => sum + n, 0);
+assert.equal(factorSum, 82);
+assert.equal(bytes[factorSum], 201);
+assert.equal(sourceTitle + sourceId, 464);
+assert.equal(sourceTitle + sourceId, 58 * 8);
+assert.equal(sourceTitle + sourceId, 29 * 16);
+const factorRunes = factors.map((prime) => corpus.translit[corpus.prime.indexOf(prime)]);
+assert.deepEqual(factorRunes, ['R', 'G', 'H', 'I']);
+
+const inbound = bytes.map(() => []);
+bytes.forEach((value, index) => inbound[value].push(index));
+/**
+ * Count reverse descendants for a non-cycle source node.
+ * The source nodes 82,128,201 are outside the table's 11-cycle.
+ */
+function subtreeSize(root) {
+  const visited = new Set([root]);
+  const queue = [root];
+  for (let i = 0; i < queue.length; i++) {
+    for (const predecessor of inbound[queue[i]]) {
+      if (!visited.has(predecessor)) {
+        visited.add(predecessor);
+        queue.push(predecessor);
+      }
+    }
+  }
+  return visited.size;
+}
+assert.deepEqual(inbound[201], [82, 128]);
+assert.equal(subtreeSize(82), 50);
+assert.equal(subtreeSize(128), 5);
+assert.equal(subtreeSize(201), 56);
+
+let smoothPalindromes = 0;
+let fourDistinctGpPrimes = 0;
+const root201FourDistinct = [];
+for (let a = 1; a <= 9; a++) {
+  for (let b = 0; b <= 9; b++) {
+    for (let c = 0; c <= 9; c++) {
+      // Exact complete six-decimal-digit palindrome family: abccba.
+      const palindrome = a * 100001 + b * 10010 + c * 1100;
+      const factorization = gpPrimeFactors(palindrome);
+      if (factorization === null) continue;
+      smoothPalindromes++;
+      if (
+        factorization.length !== 4 ||
+        new Set(factorization).size !== 4
+      ) continue;
+      fourDistinctGpPrimes++;
+      const sum = factorization.reduce((n, value) => n + value, 0);
+      if (bytes[sum] === 201) root201FourDistinct.push(palindrome);
+    }
+  }
+}
+assert.equal(smoothPalindromes, 175);
+assert.equal(fourDistinctGpPrimes, 9);
+assert.deepEqual(root201FourDistinct, [133331]);
+
+console.log('HTML 133331 palindrome GP prime factors:', factors.join(' x '));
+console.log('GP rune names of those factors:', factorRunes.join(''));
+console.log('GP-prime factor sum and table pointer:', factorSum, bytes[factorSum]);
+console.log('Reverse table-pointer subtree: 201 <- 82 [50] and 128 [5], total 56');
+console.log('Six-digit palindrome controls:', 900,
+  'GP-smooth:', smoothPalindromes, 'four distinct:', fourDistinctGpPrimes,
+  'four distinct -> 201:', root201FourDistinct);
+
 console.log('HTML title/id:', sourceTitle, sourceId);
 console.log('Table addresses:', addressA, addressB);
 console.log('Table byte destinations:', start, end);
