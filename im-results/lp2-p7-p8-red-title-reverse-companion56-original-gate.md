@@ -45,6 +45,18 @@ A direct raw-rune 56-state output cannot itself be the original p8 ciphertext: t
 
 To test the cheapest literal companion **plaintext** consumer, apply `M`, `M⁻¹` and the corresponding transposes to successive native GP29 four-rune blocks, without any secret key or tuned phase. Two source-consistent original full receivers avoid inventing padding: **all original p8 255 runes plus the first p9 continuation rune (256)**, and **p8 black243 plus that first p9 rune (244)**. The 8 reversible reconstructions give **normalized GP29 IoC 0.971998–1.015382**, while authentic solved p57 has normalized IoC **1.818589**. All eight outputs are nonprose. The script verifies exact forward replay for every original rune and an authentic solved-p57 GP-native 96-symbol planted inverse.
 
+## Roman XIX also counts exactly the polynomial forest's 19 transient vertices
+
+The original first red p8 word `XIXM` literally contains **Roman XIX = 19**. Independently of reading it as a matrix exponent, the earlier quartic `P` has a **seven-state nontrivial directed cycle** `[10,24,7,5,15,28,9]`, with **exactly nineteen additional GP29 vertices flowing into this cycle**. Its other three vertices form the singleton fixedpoint3 and the two-vertex component `1→4→4`. Thus `7 + 19 + 3 = 29`. This supplies a concrete graph-theoretic interpretation of the title's 19 and the seven-page repeated tree art, conditional on the retrospective polynomial grammar; the numeral could still be coincidence.
+
+A single fixed *reader* of this structure is the complete 19-element breadth-first list of non-cycle preimages, rooted at the **first red word's literal cycle glyph I=10**, advancing in the actual source P cycle and taking children in ascending native GP29 index order:
+
+```text
+[18,2,8,21,17,20,12,23,14,16,19,6,11,22,26,27,0,13,25]
+```
+
+Use those 19 native GP29 digits as a repeating Vigenère key on the intact **p8 black243+first-p9 carry (244 runes)**. Since solved LP1 used both Vigenère and Atbash, freeze the only four simple sign/Atbash consumers. All are exactly reversible and a genuine p57 GP-native plant is recovered without error; normalized original IoCs are **0.978210** or **1.023207**, with no prose. The **BFS start/ordering and Vigenère opcode are unselected** by any first-party text. This is a precisely documented potential *19-value source key*, not recovered key material. Further traversal-order hunting is unjustified without an original route selector.
+
 ## Basis-independent identity-page obstruction for anchored page clocks
 
 The full-book candidate above is excluded in a stronger, key-independent sense for the **two exact title/page anchors already tested**. For *any* unknown invertible GF29 4×4 basis change `B`, the state power on the origin page is `B M⁰ B⁻¹=I`. With the original p0 anchor, at least **260 contiguous p0 original runes** occupy complete unmodified four-rune blocks, and retain normalized GP29 IoC **1.001693**. With the source-title p8 anchor, at least **252 contiguous p8 original runes** occupy complete same-page quartets and remain unmodified, IoC **0.996743**. These values are vastly below native-GP source control **1.818589**, and the visible rune text is nonprose. Original cross-page blocks affect the excluded boundary fragments only. No secret global coordinate change, clockwise direction or conjugation can repair an identity action on the anchored page. A separate unprinted seed phase or additional cipher layer would be a genuinely different hypothesis requiring independent source selection.
