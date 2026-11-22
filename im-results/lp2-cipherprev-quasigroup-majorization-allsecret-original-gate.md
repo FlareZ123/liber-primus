@@ -1,110 +1,67 @@
-# Original LP2 predecessor-ciphertext quasigroup: exact all-secret alphabet-capacity gate
+# GP29 predecessor-ciphertext quasigroup: exact all-secret rank-capacity obstruction
 
-**Agent 2, 22 November 2026. Classification: key-independent exact source-cipher constraint, native-GP-language-conditional exclusion of three complete secret-table scopes. No new plaintext, key or authenticated LP2 cipher.** The original-data counts and planted inverse passed [Windows Node 22 read-only CI, run 45003828425](https://github.com/FlareZ123/liber-primus/actions/runs/45003828425) using the [standalone CommonJS SFT](../sims/lp2_cipherprev_quasigroup_majorization_original_sft.cjs).
+**Agent 2, 22 November 2026.** An exact, original-ciphertext, secret-key-independent theorem excludes several large reversible GP29 one-step feedback families as sole length-preserving decoders of ordinary source-native GP English or Latin. This is a language-conditional exclusion, with **no unknown plaintext, author-selected key, historical cipher or Cicada destination recovered**. The [single-file Windows/Node22 SFT](../sims/lp2_cipherprev_quasigroup_majorization_original_sft.cjs) has passed original-input and native-GP planted-control tests on [run 45004361283](https://github.com/FlareZ123/liber-primus/actions/runs/45004361283).
 
-## Motivation and exact class
+## Original evidence and cipher class
 
-LP2 has unusually few adjacent equal ciphertext runes. A simple human-executable way to suppress repeated ciphertext is to use the previous *visible ciphertext* symbol as the selector for an evolving alphabet, possibly reserving a rare plaintext symbol for a repeated output. This includes nonlinear ciphertext-feedback substitution and secret keyed quasigroup tables, more general than an additive differential transform. The strongest rival is a state that includes earlier symbols or external key material and therefore cannot be indexed solely by the preceding ciphertext rune.
+The authentic unknown LP2 source contains **12,956 GP29 runes in 2,896 complete printed words** (the rune-free p50 numeric table is excluded). The canonical word join across physical pages is checked against the canonical rune array. Exactly **10,060 positions follow a rune inside the same complete word**. They contain 63 adjacent-equal glyph pairs; the manuscript-wide within-physical-page statistic of 86 uses a different boundary definition.
 
-Test precisely:
+Consider any one-step ciphertext-predecessor substitution:
 
-`C[w,j] = Q[g][C[w,j-1]][P[w,j]],  j >= 1`
+    C[w,j] = Q[g][C[w,j-1]][P[w,j]], j>=1.
 
-where every `Q[g][s]` is **any secret bijection** of the 29 canonical GP rune identities. The group `g` is either one whole-book table, one of the eight authentic `# Original LP2 predecessor-ciphertext quasigroup: exact all-secret alphabet-capacity gate
+Here each secret row Q[g][s] is an **arbitrary bijection on 29 GP symbols**, indexed by the visible previous ciphertext rune s and a permitted group g. Different groups and different previous-rune states may have wholly unrelated permutations. Every one of the 2,896 word-initial plaintext runes is unconstrained. Ciphertext states are recoverable from the original ciphertext, so a known-row table admits a sequential inverse and forward re-encryption.
 
-**Agent 2, 22 November 2026. Classification: key-independent exact source-cipher constraint, native-GP-language-conditional exclusion of three complete secret-table scopes. No new plaintext, key or authenticated LP2 cipher.** The original-data counts and planted inverse passed [Windows Node 22 read-only CI, run 45003577973](https://github.com/FlareZ123/liber-primus/actions/runs/45003577973) using the [standalone CommonJS SFT](../sims/lp2_cipherprev_quasigroup_majorization_original_sft.cjs).
+The five bounded group choices are: (1) a global fixed table, (2) one independently secret table for each of the eight original `$` sections, (3) a separate table at every literal within-word position 1–13 (this includes **every fixed within-word periodic clock**), (4) a combined original-section and within-word parity clock, and (5) an independent full table per physical rune-bearing page. These choices are tests of distinct reversible architectures; their existence is **not** evidence that the creator selected them.
 
-## Motivation and exact class
+## Exact theorem and original capacities
 
-LP2 has unusually few adjacent equal ciphertext runes. A simple human-executable way to suppress repeated ciphertext is to use the previous *visible ciphertext* symbol as the selector for an evolving alphabet, possibly reserving a rare plaintext symbol for a repeated output. This includes nonlinear ciphertext-feedback substitution and secret keyed quasigroup tables, more general than an additive differential transform. The strongest rival is a state that includes earlier symbols or external key material and therefore cannot be indexed solely by the preceding ciphertext rune.
+Let n[g,s,t] count observed original transitions from predecessor s to next ciphertext glyph t within one true printed word. A secret permutation Q[g][s] can only **reassign** the counts in each histogram row to plaintext glyph identities. Hence the number of positions occupied by the k most frequent recovered plaintext runes is no greater than
 
-Test precisely:
+    B_k = sum over (g,s) of the k largest entries in n[g,s,*].
 
-`C[w,j] = Q[g][C[w,j-1]][P[w,j]],  j >= 1`
+This is an exact, attainable upper bound over **all** hidden row permutations; no 29! enumeration, additive or affine assumption, language fit, secret optimizer or model-selection heuristic is used. It says nothing about the first rune in each word and cannot exclude atypical source plaintext with a flat marginal.
 
-where every `Q[g][s]` is **any secret bijection** of the 29 canonical GP rune identities.  text sections, a completely independent table at each within-word position (indices 1–13), or one of 55 rune-bearing physical pages. The position-specific model contains *every possible periodic within-word phase schedule*, including the five-source-word and eight-column candidate clocks, as strict subsets. Each previous-ciphertext state and each group gets an *independent arbitrary* permutation; no numeric additive, affine, language-optimal or historically guessed key is fitted. The first ciphertext rune in each true printed word is unconstrained. The proof uses the original **2,896 complete printed words**, including joined cross-page continuations; punctuation, actual page positions and section membership are retained.
+| Scope of independent unknown secret rows | Groups | B1 / 10,060 | B2 / 10,060 | B5 / 10,060 |
+| --- | ---: | ---: | ---: | ---: |
+| Global fixed | 1 | **578 (5.7455%)** | 1,086 (10.7952%) | **2,510 (24.9503%)** |
+| Eight literal manuscript sections | 8 | **1,031 (10.2485%)** | 1,881 (18.6978%) | **3,912 (38.8867%)** |
+| Every distinct within-word position | up to 13 | **1,058 (10.5169%)** | 1,925 (19.1352%) | **3,974 (39.5030%)** |
+| Section × even/odd word position | up to 16 | **1,354 (13.4592%)** | 2,414 (23.9960%) | 4,842 (48.1312%) |
+| Every physical source page | 55 | 2,401 (23.8668%) | 4,140 (41.1531%) | 8,019 (79.7117%) |
 
-This hypothesis differs from the recently tested arbitrary plaintext-lag-five table (#2083), word-position alphabet class (#2177), floral affine ciphertext feedback (#2162), eight-lane cipher (#2199), and repeated plaintext affine-key islands (#2203). It is a bounded *all-secret one-step ciphertext-predecessor* family.
+The global, eight-section and *every-word-position* secret tables all have **strictly insufficient capacity** to encode the common-rune profiles of the native-GP English and Latin original-layout controls below. The section-parity combination excludes the sampled English profiles under B1, while the Latin profile remains possible within that separate combination. The page-specific family has enough secret freedom that the present rank bounds **do not exclude it**.
 
-## Exact bound, independent of all 29! row keys
+### Stronger unknown-schedule two-mode theorem
 
-For every original state `s`, scope group `g`, and following original ciphertext rune `t`, count `n[g,s,t]` among the **10,060 within-word positions** `j>=1`. An unknown permutation `Q[g][s]` can only **relabel** the 29 counts in that row. Therefore the number of recovered plaintext positions occupied by *any* selected `k` distinct GP runes is at most
+Even if an **unknown binary hidden mode** chooses between *two arbitrary independent* permutation tables **at every symbol**, with unrestricted choice of mode at each site and no recoverable clock, every fixed plaintext glyph can map to **at most two** next ciphertext glyphs per observed predecessor s. Its total original frequency therefore cannot exceed the same global B2 = **1,086/10,060 = 10.7952%**. The result holds even if mode selection depends on the plaintext and is chosen adversarially after seeing the original ciphertext. A **one-mode** system gives the tighter B1 = 578. A **three-mode** system has the weaker B3 = 1,582 for any single plaintext glyph and is **not excluded by this bound**.
 
-`B_k = sum_(g,s) sum_(k largest t) n[g,s,t]`.
+Thus a decoder with at most **two stationary predecessor-ciphertext alphabets**, regardless of their switching schedule, cannot yield a source-native GP text with a common glyph above 10.7952% at these original word-interior positions. This is a cardinality/occupancy impossibility, independent of key entropy or computational search. It does not rule out three or more modes, location-specific key tables, changing symbol lengths, resegmentation, extra hidden state or exceptional language.
 
-This is a deterministic upper bound for every combination of secret per-row bijections, even if an adversary optimizes each row against the unknown target plaintext. It does **not** presume plaintext independence from the previous ciphertext, any fixed GP letter ordering, a uniform key, a language model, an additive operation, or knowledge of a single plaintext rune. An entire class is tested without key enumeration.
+## Real solved-script and independent language controls
 
-| Independent secret-row scope | Groups | B1 / 10,060 | B2 / 10,060 | B5 / 10,060 | Implication |
-| --- | ---: | ---: | ---: | ---: | --- |
-| Whole manuscript | 1 | **578 = 5.7455%** | 1,086 = 10.7952% | **2,510 = 24.9503%** | Native GP common-rune profile impossible |
-| Eight authentic printed `# Original LP2 predecessor-ciphertext quasigroup: exact all-secret alphabet-capacity gate
+The authentic solved LP1 p10–13 sample contains 181 complete printed words with **574 internal GP runes**: literal E occurs **98/574 = 17.0732%**, and the five most common GP runes comprise **284/574 = 49.4774%**. The separate solved LP2 p57 has **15 E among 95 GP runes**. These demonstrate actual solved-Cicada spelling, rather than assuming generic Latin-letter-to-GP conversion.
 
-**Agent 2, 22 November 2026. Classification: key-independent exact source-cipher constraint, native-GP-language-conditional exclusion of three complete secret-table scopes. No new plaintext, key or authenticated LP2 cipher.** The original-data counts and planted inverse passed [Windows Node 22 read-only CI, run 45003577973](https://github.com/FlareZ123/liber-primus/actions/runs/45003577973) using the [standalone CommonJS SFT](../sims/lp2_cipherprev_quasigroup_majorization_original_sft.cjs).
+Using the repo's [native GP encoder calibrated against literal solved LP1/p57](../sims/lp2_native_gp_source_orthography_sft.cjs), the passing SFT draws **60 seeded placements of 2,896 words, matched to each original GP word length**, from each pinned English and Latin source. All 180 language placements have exactly 10,060 within-word runes. The following are the **minimum** values across each source's 60 placements in [Windows PASS 45004361283](https://github.com/FlareZ123/liber-primus/actions/runs/45004361283):
 
-## Motivation and exact class
-
-LP2 has unusually few adjacent equal ciphertext runes. A simple human-executable way to suppress repeated ciphertext is to use the previous *visible ciphertext* symbol as the selector for an evolving alphabet, possibly reserving a rare plaintext symbol for a repeated output. This includes nonlinear ciphertext-feedback substitution and secret keyed quasigroup tables, more general than an additive differential transform. The strongest rival is a state that includes earlier symbols or external key material and therefore cannot be indexed solely by the preceding ciphertext rune.
-
-Test precisely:
-
-`C[w,j] = Q[g][C[w,j-1]][P[w,j]],  j >= 1`
-
-where every `Q[g][s]` is **any secret bijection** of the 29 canonical GP rune identities. The group `g` is either one whole-book table, one of the eight authentic `# Original LP2 predecessor-ciphertext quasigroup: exact all-secret alphabet-capacity gate
-
-**Agent 2, 22 November 2026. Classification: key-independent exact source-cipher constraint, native-GP-language-conditional exclusion of three complete secret-table scopes. No new plaintext, key or authenticated LP2 cipher.** The original-data counts and planted inverse passed [Windows Node 22 read-only CI, run 45003577973](https://github.com/FlareZ123/liber-primus/actions/runs/45003577973) using the [standalone CommonJS SFT](../sims/lp2_cipherprev_quasigroup_majorization_original_sft.cjs).
-
-## Motivation and exact class
-
-LP2 has unusually few adjacent equal ciphertext runes. A simple human-executable way to suppress repeated ciphertext is to use the previous *visible ciphertext* symbol as the selector for an evolving alphabet, possibly reserving a rare plaintext symbol for a repeated output. This includes nonlinear ciphertext-feedback substitution and secret keyed quasigroup tables, more general than an additive differential transform. The strongest rival is a state that includes earlier symbols or external key material and therefore cannot be indexed solely by the preceding ciphertext rune.
-
-Test precisely:
-
-`C[w,j] = Q[g][C[w,j-1]][P[w,j]],  j >= 1`
-
-where every `Q[g][s]` is **any secret bijection** of the 29 canonical GP rune identities.  text sections, a completely independent table at each within-word position (indices 1–13), or one of 55 rune-bearing physical pages. The position-specific model contains *every possible periodic within-word phase schedule*, including the five-source-word and eight-column candidate clocks, as strict subsets. Each previous-ciphertext state and each group gets an *independent arbitrary* permutation; no numeric additive, affine, language-optimal or historically guessed key is fitted. The first ciphertext rune in each true printed word is unconstrained. The proof uses the original **2,896 complete printed words**, including joined cross-page continuations; punctuation, actual page positions and section membership are retained.
-
-This hypothesis differs from the recently tested arbitrary plaintext-lag-five table (#2083), word-position alphabet class (#2177), floral affine ciphertext feedback (#2162), eight-lane cipher (#2199), and repeated plaintext affine-key islands (#2203). It is a bounded *all-secret one-step ciphertext-predecessor* family.
-
-## Exact bound, independent of all 29! row keys
-
-For every original state `s`, scope group `g`, and following original ciphertext rune `t`, count `n[g,s,t]` among the **10,060 within-word positions** `j>=1`. An unknown permutation `Q[g][s]` can only **relabel** the 29 counts in that row. Therefore the number of recovered plaintext positions occupied by *any* selected `k` distinct GP runes is at most
-
-`B_k = sum_(g,s) sum_(k largest t) n[g,s,t]`.
-
-This is a deterministic upper bound for every combination of secret per-row bijections, even if an adversary optimizes each row against the unknown target plaintext. It does **not** presume plaintext independence from the previous ciphertext, any fixed GP letter ordering, a uniform key, a language model, an additive operation, or knowledge of a single plaintext rune. An entire class is tested without key enumeration.
-
-| Independent secret-row scope | Groups | B1 / 10,060 | B2 / 10,060 | B5 / 10,060 | Implication |
-| --- | ---: | ---: | ---: | ---: | --- |
-| Whole manuscript | 1 | **578 = 5.7455%** | 1,086 = 10.7952% | **2,510 = 24.9503%** | Native GP common-rune profile impossible |
- sections | 8 | **1,031 = 10.2485%** | 1,881 = 18.6978% | **3,912 = 38.8867%** | Native GP English controls impossible |
-| Every distinct within-word position | up to 13 | **1,058 = 10.5169%** | 1,925 = 19.1352% | **3,974 = 39.5030%** | Every stationary word-position-indexed precursor alphabet impossible for native GP English |
-| Fresh table for every physical rune page | 55 | 2,401 = 23.8668% | 4,140 = 41.1531% | 8,019 = 79.7117% | This count bound does **not** exclude page-local tables |
-
-For the whole-book scope, the original 29 ciphertext-state rows have nearly every one of their 29 possible output runes represented (mean 28.8966). There are exactly **63 adjacent equal pairs within true words** of the 10,060 eligible transitions; 86 is the separately reported count under a different within-page adjacency definition. The ranked-count bound itself, rather than a null-model significance estimate for the doublets, is the decisive invariant.
-
-### Authenticated native GP controls and independently sourced texts
-
-The actual source-native solved LP1 p10–13 sample consists of **181 complete words and 574 internal rune positions**: GP `E` occurs **98/574 = 17.0732%**, and the five most frequent GP symbols occupy **284/574 = 49.4774%**. Independent solved LP2 p57 has 95 native plaintext runes, 15 of them GP E (15.7895% overall). These are source examples of ordinary Cicada GP prose, not statistical assumptions about the unknown pages.
-
-As a broader full-layout check, the calibrated source-native GP encoder from [existing LP1/p57 original controls](../sims/lp2_native_gp_source_orthography_sft.cjs) encoded 60 deterministic **length-matched 2,896-word placements** from each of the pinned Gibran and Shakespeare corpora. Every placement has exactly 10,060 tested *interior* GP sites. These are language controls, not hypothesized original plaintext.
-
-| Original-layout native GP control, 60 placements each | Minimum most frequent rune | Minimum top-five runes |
+| Source-native GP word-placement corpus | Lowest top-one plaintext glyph | Lowest top-five glyphs |
 | --- | ---: | ---: |
-| Gibran, original text corpus | **1,402 / 10,060 = 13.9364%** | **4,665 / 10,060 = 46.3718%** |
-| Shakespeare, original text corpus | **1,430 / 10,060 = 14.2147%** | **4,594 / 10,060 = 45.6660%** |
+| Gibran, The Prophet | **1,404 / 10,060 (13.9563%)** | 4,617 / 10,060 (45.8946%) |
+| Shakespeare | **1,391 / 10,060 (13.8270%)** | 4,555 / 10,060 (45.2783%) |
+| Latin Vulgate | **1,135 / 10,060 (11.2823%)** | 4,891 / 10,060 (48.6183%) |
 
-Thus all 120 ordinary GP-English source-native placements **strictly violate all three** of the whole-book, eight-section, and arbitrary word-position all-secret bounds. The absolute eight-section gap is at least 371 runes for the most frequent symbol and 682 runes for the five highest-frequency symbols in these matched controls. Even allowing a fresh secret alphabet at every within-word rune position, a common native GP rune requires at least 1,402 instances while the original ciphertext permits at most 1,058, and the five most frequent require at least 4,594 versus a maximum of 3,974. This contrasts native-language plausibility against an exact cipher-observable impossibility, without searching secret tables. A contrived unknown plaintext whose internal GP rank frequencies are much flatter than both solved LP1 prose and the two native controls is *not* mathematically excluded.
+All **180** sampled source-native placements exceed B2=1,086 for the arbitrary two-mode family, exceed the global/eight-section/word-position B1 values, and exceed the global/eight-section/word-position B5 values. Neither control sampling nor solved-page reference establishes the language, spelling register, frequency spectrum or word semantics of the unknown original plaintext. These are stringent explicit *source-language-conditional* exclusions.
 
-### Full-length reversible positives
+### Positive, exact full-manuscript inverses
 
-The SFT plants a different random but fixed, reversible 29-entry row permutation for **each preceding ciphertext state and group** on native-GP word placements, including the all-secret word-position variant. As an anti-doublet-friendly additional positive constraint, every planted row maps plaintext F to the previous ciphertext value. It uses an arbitrary reversible word-first-rune offset. The decoder reconstructs the complete **12,956/12,956 planted runes** for each of the whole-book, eight-section, every-word-position and page-local scopes on both independent native source corpora, including the original word lengths and true page/section clocks. All planted plaintext rank counts remain below their corresponding ciphertext-derived bounds.
+The same SFT creates independently secret, random but fixed GP29 row permutations for **all five group scopes** and also plants **two-mode and three-mode** predecessor-based substitution families with a freely varying secret mode at *every* site. Source-native controls are encoded on the original 2,896-word shapes and decoded using their actual planted keys/modes, recovering **12,956/12,956 original-sized GP plaintext runes** for every tested architecture. The planted ciphertexts satisfy their own theoretical rank capacities. These implementation controls do not identify a creator cipher, key, or actual LP2 plaintext.
 
-The first CI attempt [45003506637](https://github.com/FlareZ123/liber-primus/actions/runs/45003506637) failed solely on a Windows CRLF-sensitive LP1 substring check, before the final known-LP1 check. The script now normalizes CRLF; [run 45003577973](https://github.com/FlareZ123/liber-primus/actions/runs/45003577973) passes all exact original capacity assertions, solved-source controls and planted inverses.
+The original file parsing, GP alphabet, original printed word joins, real section/page clocks, exact row histograms, 60-trial source sampling and positive inverses are contained in one executable source file. An initial Windows run failed due CRLF-sensitive parsing of the solved LP1 fixture; that was corrected before the successful original-input controls.
 
-## Interpretation, useful boundary and next decision
+## Cryptanalytic decision
 
-**Retire any manuscript-global, authentic-eight-section or within-word-position stationary bijective ciphertext-predecessor substitution as a sole length-preserving native GP-English inverse.** Because every possible secret table has the same row-count rank capacity, tweaking lookup tables, source words, arithmetic representations or additive constants cannot repair the contradiction. This is a broad all-secret exclusion, while retaining its explicit source-language assumption. It does **not** establish that LP2 is unbreakable or random.
+For source-native English or Latin, retire **all fixed global one-step predecessor-cipher alphabet substitutions, all independently secret eight-section tables, all per-word-position stationary tables, and even two independent tables with an entirely arbitrary unknown sitewise switching schedule**. Under these assumptions, no secret mapping of those families has capacity to represent the observed original ciphertext as ordinary GP prose. An exhaustive key search of those families would be causally pointless.
 
-The physical-page-local version has enough independent secret rows that the present upper bounds are nonrestrictive. Further work would need an *independent original clue* selecting per-page alphabet tables, a reversible evolving state involving multiple previous symbols or a genuinely changing secret table within positions, a distinct non-GP plaintext alphabet, or a ciphertext transform prior to this family. Without a source-selected key/state, expanding the free tables per word simply turns this into an underdetermined fit. The experiment recovered **zero unknown LP2 plaintext runes** and supplies no next-stage destination.
+The remaining credible choices require new independently selected information: at least three genuinely different predecessor-state alphabet choices for ordinary GP common-rune density; more complex memory; fresh per-page or evolving secrets; an original source-specific non-GP register; or altered word/letter boundaries. The art and first-party Cicada materials have **not yet selected** one such decoding rule. Do not promote numerical coincidences or synthetic key recovery as plaintext.
 
-**Reproduce:** `node sims/lp2_cipherprev_quasigroup_majorization_original_sft.cjs`, on unchanged `resources/liber-primus/lp2-corpus.json`, `lp2-transcription.txt`, original solved LP1 transcription, and both pinned original English control texts. Output prints the exact scope rank capacity arrays, solved GP witness and both full-size planted positive checks.
+**Reproducer:** [`sims/lp2_cipherprev_quasigroup_majorization_original_sft.cjs`](../sims/lp2_cipherprev_quasigroup_majorization_original_sft.cjs), Windows11/Node22 [PASS 45004361283](https://github.com/FlareZ123/liber-primus/actions/runs/45004361283). A later runner at [45004366865](https://github.com/FlareZ123/liber-primus/actions/runs/45004366865) independently executed the same committed source revision.
