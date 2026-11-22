@@ -128,13 +128,14 @@ assert.equal(wordProducts.filter((x) => x === 0).length, 26);
 assert.deepEqual(sumObstructions, [18, 50, 82, 132, 148, 224, 230]);
 assert.equal(productObstructions.length, 26);
 assert.equal(productObstructions.every((j) => wordProducts[j] === 0 && nextPage[j] !== 0), true);
-const gpNativePlant = Array.from({ length: 255 }, (_, j) => gp[j % gp.length]);
 for (const donor of [wordSums, wordProducts]) {
-  // A positive matched-target source may obey a secret per-word multiplier
-  // iff the source is zero exactly where a nonzero output is forbidden.
   const planted = donor.map((v, j) => mod(v * (j % 28 + 1)));
-  assert.equal(zeroContradictions(donor.map((v, j) =>
-    v === 0 ? 0 : mod(planted[j] * modInverse29(v)))), 0);
+  // Positive model: a field-multiplier codeword must keep source-zero sites
+  // at zero. The exact unknown multiplier is recovered at every nonzero site.
+  assert.equal(planted.filter((x) => x === 0).length, donor.filter((x) => x === 0).length);
+  for (let j = 0; j < 255; j++) {
+    if (donor[j] !== 0) assert.equal(mod(planted[j] * modInverse29(donor[j])), j % 28 + 1);
+  }
 }
 /** @param {number} value @returns {number} */
 function modInverse29(value) {
