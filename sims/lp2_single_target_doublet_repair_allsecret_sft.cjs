@@ -76,17 +76,25 @@ const originalTail = binomialCdf(original.N, original.maxAnyTarget, 2 / 29);
 assert.ok(Math.abs(originalTail - 0.0008300828629389194) < 1e-10);
 
 /**
- * Deterministic reproducible RNG, not a claimed Cicada generator.
+ * Deterministic HMAC-SHA256 counter PRF for independent-like source controls; not a Cicada generator.
  * @param {number} seed
  * @returns {() => number} Random value in [0,1)
  */
 function randomFactory(seed) {
-  let state = seed >>> 0;
+  const crypto = require("node:crypto");
+  const key = Buffer.alloc(4);
+  key.writeUInt32BE(seed >>> 0);
+  let at = 32, block = Buffer.alloc(32), counter = 0;
   return () => {
-    state ^= state << 13;
-    state ^= state >>> 17;
-    state ^= state << 5;
-    return (state >>> 0) / 4294967296;
+    if (at >= 32) {
+      const input = Buffer.alloc(8);
+      input.writeBigUInt64BE(BigInt(counter++));
+      block = crypto.createHmac("sha256", key).update(input).digest();
+      at = 0;
+    }
+    const value = block.readUInt32BE(at);
+    at += 4;
+    return value / 4294967296;
   };
 }
 /**
