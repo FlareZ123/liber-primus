@@ -79,6 +79,29 @@ for (const chapter of chapters) {
   }
 }
 
+// A distinct six-GP-rune fixed-width RSA proposal needs no ciphertext
+// range padding, but every decrypted value must still fit in six runes.
+// The complete physical p33–39 chapter has exactly 280 such packets.
+const chapterSix = c.pages.slice(33, 40).flatMap(page => page.indices);
+assert.equal(chapterSix.length, 1680);
+const sixBlocks = [];
+for (let i = 0; i < chapterSix.length; i += 6) {
+  sixBlocks.push(pack(chapterSix.slice(i, i + 6), false));
+}
+assert.ok(sixBlocks.every(v => v < n));
+for (const [exponent, inverse, expectedInvalid] of [
+  [3n, 1060779147n, 172],
+  [65537n, 401379393n, 182]
+]) {
+  assert.equal(exponent * inverse % phi, 1n);
+  const plaintext = sixBlocks.map(v => modPow(v, inverse, n));
+  const invalid = plaintext.filter(v => v >= 29n ** 6n).length;
+  assert.equal(invalid, expectedInvalid);
+  console.log("p33–39, six-rune ciphertext, RSA exponent " + exponent +
+    ": " + invalid + "/" + sixBlocks.length +
+    " decrypted blocks cannot fit six original GP rune slots");
+}
+
 // A true three-prime RSA encoder emits valid 7-digit ciphertext words.
 // Plant 200 known native GP five-rune packets, recovering all source digits.
 const clear = [...c.pages[57].indices, ...c.pages[56].indices];
