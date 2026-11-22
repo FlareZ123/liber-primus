@@ -36,6 +36,7 @@ assert.deepEqual(words.flat(), source.pages.slice(0, 56).flatMap(p => p.indices)
 assert.equal(words.flat().length, 12956);
 assert.equal(words.filter(w => w.length === 1).length, 83);
 assert.equal(words.filter(w => w.length === 2).length, 448);
+assert.equal(Math.max(...words.map(w => w.length)), 14);
 
 /** @param {number[]} word @returns {number} */
 function equalPairs(word) {
@@ -61,6 +62,11 @@ assert.deepEqual(observed.map(x => x.sourceEqualPairs),
   [811, 1079, 1026, 939, 863, 817, 803, 842, 817, 816, 811, 810, 811, 812]);
 const highestResidual = Math.max(...observed.slice(1).map(x => x.sourceEqualPairs));
 assert.equal(highestResidual, 1079);
+// Every lag >= 14 is identically unfeedbacked for every original word,
+// so its original E is exactly 811. This certifies ALL positive lags.
+for (const lag of [14, 15, 16, 28, 29, 761]) {
+  assert.deepEqual(words.map(w => originalInverseResidual(w, lag)), words);
+}
 
 // GP29 historical reference orthography, including ING -> rune NG and IO -> IA.
 const tokens = source.translit.map((token, index) => ({ token, index }))
@@ -198,8 +204,9 @@ assert.equal(controls.length, 13);
 console.log(JSON.stringify({
   model: "Any unrestricted fresh 29! GP29 word substitution, followed by j-lag ciphertext feedback, with truly intact original words",
   originalSource: { runes: 12956, completeWords: 2896, observed },
-  originalAllLagMaximumInternalEqualPairs: highestResidual,
+  originalAllPositiveLagMaximumInternalEqualPairs: highestResidual,
+  allLagAtLeast14IdenticalToOriginal: true,
   sourceNativeEnglishWordLengthMatchedControls: donorRows,
   syntheticAndGenuineSolvedPositive: controls,
-  conclusion: "No lag1..13 word-reset additive ciphertext-feedback with one unrestricted new monoalphabet per complete word produces native English-like GP29 original ciphertext. Other output laws, multiple alphabets within word, altered punctuation, or intermediate language remain untested."
+  conclusion: "No positive integer lag in word-reset additive ciphertext feedback with one unrestricted new monoalphabet per complete word produces native English-like GP29 original ciphertext; all lag>=14 coincide with the established plain word-local map. Other output laws, multiple alphabets within word, altered punctuation, or intermediate language remain untested."
 }, null, 2));
