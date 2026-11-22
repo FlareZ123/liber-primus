@@ -93,8 +93,10 @@ assert.deepEqual([lexicon.get(2).size,lexicon.get(3).size,
   lexicon.get(9).size,lexicon.get(10).size,lexicon.get(12).size],
 [189, 753, 3397, 2388, 767]);
 
-// P8 is the single authentic original page containing two red words then
-// 49 entire black words. The original page text has no cross-page word here.
+// P8 contains two red heading words, then 48 complete black words and
+// one final one-rune black fragment which continues into p9. The precise
+// page-local 49-fragment register is tested only as such. The six long
+// black words examined below are all complete and wholly inside p8.
 const rawP8 = read('resources/lp2-transcription.txt').split('%')[8];
 const pageWords = rawP8.split(/[-.&$§]/u)
   .map(part => [...part].filter(r => runeMap.has(r)).map(r => runeMap.get(r)))
@@ -103,6 +105,14 @@ assert.equal(pageWords.length, 51);
 assert.deepEqual(pageWords.slice(0, 2).map(w => w.length), [4, 8]);
 const bodyWords = pageWords.slice(2);
 assert.equal(bodyWords.length, 49);
+const originalTranscription = read('resources/lp2-transcription.txt').split('%');
+const p9FirstRuneFragment = originalTranscription[9].split(/[-.&$§]/u)
+  .map(part => [...part].filter(r => runeMap.has(r)).map(r => runeMap.get(r)))
+  .find(v => v.length);
+assert.equal(bodyWords.at(-1).length, 1);
+assert.equal(p9FirstRuneFragment.length, 5);
+assert.equal(bodyWords.at(-1).concat(p9FirstRuneFragment).length, 6);
+assert.ok(rawP8.trimEnd().endsWith('/'), 'P8 final fragment has no word stop');
 const body = bodyWords.flat();
 assert.deepEqual(body, page8.slice(red8.length));
 assert.equal(body.length, 243);
@@ -235,7 +245,8 @@ const original = [recover(body,wordLengths,1),recover(body,wordLengths,-1)];
 assert.deepEqual(original.map(r => [r.initialPairs,r.thirdMatches,r.fourthMatches]),
   [[142317,4453,0],[142317,4453,0]]);
 
-// Independently planted native GP words in EXACT authentic word geometry,
+// Independently planted native GP words in EXACT authentic page-local
+// fragment lengths (48 whole black words plus one continued fragment),
 // encrypted with an arbitrary unknown 5-symbol key state. Recovery must
 // find the planted seed from both original word lengths and original driver.
 const plantedWords = wordLengths.map(len =>
@@ -260,11 +271,68 @@ for (const sign of [1,-1]) {
   plantResults.push({sign,recoveredPairs:recovered.fourthMatches,
     exactKnownSeedRoundtrip:'243/243'});
 }
+
+// Chapter scope: preserve word continuation over every physical page seam.
+// This is an independent all-secret test over the seven-page p8..14 group,
+// where the five red products are a plausible heading-derived key.
+// Only actual complete printed words wholly contained in a page are
+// counted. The 1-rune page8 tail is not a standalone lexical word.
+const chapterSource = read('resources/lp2-transcription.txt');
+/** @type {{startPage:number,endPage:number,digits:number[]}[]} */
+const joinedWords = [];
+let active = [];
+let currentPage = 0;
+let startPage = 0;
+function finishWord() {
+  if (active.length) joinedWords.push({
+    startPage, endPage:currentPage, digits:active
+  });
+  active = [];
+}
+for (const ch of chapterSource) {
+  if (ch === '%') currentPage++;
+  else if (runeMap.has(ch)) {
+    if (active.length === 0) startPage = currentPage;
+    active.push(runeMap.get(ch));
+  } else if (ch === '/' || /\s/u.test(ch)) {
+    // Line wraps preserve the current word.
+  } else {
+    finishWord();
+  }
+}
+finishWord();
+const chapterWords = joinedWords.filter(w => w.startPage >= 8
+  && w.startPage <= 14 && w.endPage === w.startPage);
+const chapterLong = [];
+for (const item of chapterWords) {
+  const C = item.digits;
+  if (C.length < 9) continue;
+  const englishMatches = [];
+  for (const candidate of lexicon.get(C.length).values()) {
+    if (wordCompatible(C, candidate.digits)) englishMatches.push(candidate.word);
+  }
+  const latinMatches = [];
+  for (const [token, digits] of latin.get(C.length).entries()) {
+    if (wordCompatible(C, digits)) latinMatches.push(token);
+  }
+  chapterLong.push({page:item.startPage, length:C.length,
+    originalContainsF:C.includes(0),englishMatches,latinMatches});
+}
+assert.equal(chapterWords.length, 380);
+assert.equal(chapterLong.length, 29);
+assert.deepEqual(Array.from({length:7}, (_, i) =>
+  chapterLong.filter(w => w.page === i+8).length),[6,3,2,9,5,3,1]);
+assert.equal(chapterLong.filter(w => !w.originalContainsF).length, 18);
+assert.ok(chapterLong.every(w =>
+  w.englishMatches.length === 0 && w.latinMatches.length === 0));
+
 console.log(JSON.stringify({
   statement:'p8 original six long words incompatible with any fifth-order p7-product LFSR seed under source-native English GP rune words',
   input:{originalBlackRunes:243,originalBlackWords:49,
-    nativeDictionaryWords:sourceWordCount},
+    nativeDictionaryWords:sourceWordCount,originalP8CompleteBlackWords:48,
+    p8ToP9ContinuedWordLength:6},
   originalLongWords:longWords,
+  sourceChapterP8ThroughP14LongWords:chapterLong,
   independentLatinLongWords:latinLongWordResults,
   sourceFirst5KeyProductWeights:weights,
   originalFirstFourWordRecovery:original,
