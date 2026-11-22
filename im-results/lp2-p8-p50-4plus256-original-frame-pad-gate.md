@@ -48,7 +48,13 @@ Under the same *word-bounded original 256-rune frame*, this yields 128 adjacent 
 
 This is a concrete negative for the simple fixed p8-red4 Hill2 architecture, with no Vigenère/Atbash or hidden phase overlays. Another nonlinear block operation using those four runes is not excluded; a visible first-party rule selecting it would be necessary before additional searches.
 
-## Reproduction and next actionable decision
+## Authored-looking eight-column key: the unique red second word
+
+The original second red p8 word is exactly **eight runes with eight distinct GP29 values** [1,14,19,5,2,13,3,17]. It therefore provides a concrete, uniquely determined **columnar key** for the eight-column p49–51 table: sort its eight GP29 rune indices ascending, giving column order **[0,4,6,3,5,1,7,2]**, or the corresponding inverse convention. The remaining original p8/p9 **31×8=248** black/carry runes align with the **31 rows** of the numeric table after removing its first row, so both sources have a plausible rubric/control octuple followed by matching body dimensions.
+
+Freeze this source-derived ordering with no phase fitting. For each of 31 rows, read the original p50 byte values in ascending-red8 column order, reduce them modulo29, and subtract from the corresponding untouched p8/p9 body symbols. The **248-rune decoded IoC is 0.03503330286** and the beginning has no continuous native-GP plaintext. The inverse ordering similarly yields **0.03379260807** with no prose. These are finite negatives for the obvious red8-sorted rowwise additive key consumers. Sorting is an historically familiar idea, but **no first-party text instructs a reader to use this red word as a numeric-column key**; the unsolved receiver provides no independent plaintext endorsement. Future work must obtain a typed cipher law, not tune 8! unknown orderings.
+
+
 
 [Standalone read-only Windows11/Node22 CommonJS SFT](../sims/lp2_p8_p50_4plus256_source_pad_sft.cjs) loads the original p8/p9 GP29 corpus, ink spans, exact page-break printing, and numeric table. It asserts physical 4|8|243|5, preserves all six carried-word symbols, checks 32×8/10|13|9, inverts both signs and reencrypts 256/256. The same original source values and numerical output were independently computed by inline deterministic JavaScript; no GitHub Actions run was claimed or available.
 
