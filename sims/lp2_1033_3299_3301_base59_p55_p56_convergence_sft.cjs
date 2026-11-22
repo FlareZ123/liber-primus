@@ -38,6 +38,28 @@ const numeral=(token,alphabet)=>{
 };
 const pointer=address=>numeral(cells[address],base59Alphabet);
 const sourceNumbers=[1033,3299,3301];
+
+// The visibly marked original 3299 and the public emblem 3301 are
+// *twin primes*. They bracket 3300, whose base59 representation is
+// the repeated p55/p55 page number. Under the original f-omitted
+// alphabet all three numbers have quotient55 and consecutive residues
+// p54/p55/p56, bracketing the unknown→solved transition.
+const prime=n=>{
+ for(let d=2;d*d<=n;d++)if(n%d===0)return false;
+ return n>1;
+};
+assert(prime(3299)&&prime(3301)&&3301-3299===2);
+assert.equal(prime(3300),false);
+const pageBridge=[3299,3300,3301].map(n=>({
+ number:n,base59Quotient:Math.floor(n/59),
+ base59Remainder:n%59
+}));
+assert.deepEqual(pageBridge,[
+ {number:3299,base59Quotient:55,base59Remainder:54},
+ {number:3300,base59Quotient:55,base59Remainder:55},
+ {number:3301,base59Quotient:55,base59Remainder:56}
+]);
+
 const seeds=sourceNumbers.map(number=>({
  number,address:number%256,token:cells[number%256],
  base59:pointer(number%256),
@@ -229,7 +251,7 @@ const directDestinationByKey={
   sourceSelectedKey:false
 };
 console.log(JSON.stringify({
-  sources:seeds,
+  sources:seeds,pageBridge,
   conditionalDhDepth:8,
   source3301PointerTrace:trace,
   commonNode:245,
