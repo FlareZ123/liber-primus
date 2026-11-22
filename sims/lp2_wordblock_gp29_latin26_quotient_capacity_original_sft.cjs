@@ -153,14 +153,17 @@ for(let i=0;i<nativeWords.length;i+=5){
   const Q=m>1n ? m-1n : 0n;
   synthetic.push(fixedDigits(Q*B+R,29n,L));
 }
-const nativeBlocks=makeBlocks(synthetic,1);
 const nativeWordWidths=nativeWords.map(w=>w.length);
 assert.deepEqual(nativeWordWidths,words.map(w=>w.length));
-const n5=makeBlocks(nativeWords.map((_,i)=>{
-  let start=0;
-  for(let j=0;j<i;j++) start+=nativeWordWidths[j];
-  return synthetic.flat().slice(start,start+nativeWordWidths[i]);
-}),5);
+const nativeGP=synthetic.flat();
+let nativeOffset=0;
+const shapedNative=nativeWords.map(w=>{
+  const result=nativeGP.slice(nativeOffset,nativeOffset+w.length);
+  nativeOffset+=w.length;
+  return result;
+});
+assert.equal(nativeOffset,12956);
+const n5=makeBlocks(shapedNative,5);
 const {rank:nrank}=rankBlocks(n5);
 assert.deepEqual(decodeBlocks(n5,nrank),synthetic.flat());
 const nativeRecovered=n5.flatMap(x=>x.latin)
