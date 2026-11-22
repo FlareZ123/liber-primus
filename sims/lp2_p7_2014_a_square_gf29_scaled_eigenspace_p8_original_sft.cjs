@@ -410,6 +410,81 @@ assert.deepEqual(orbitResults.map((r)=>Number(r.ioc.toFixed(12))),[
   0.033750192991,0.033287015594,0.035016211209,0.034676547784
 ]);
 
+// Distinct seven-page adjacency selected by original p7 F and historical
+// Stage10 7x7 square. Original p8-p14 has 1,729=247*7 GP29 runes exactly.
+const sevenPages=corpus.pages.filter((p)=>p.page>=8 && p.page<=14);
+const sevenOriginal=sevenPages.flatMap((p)=>p.indices);
+assert.equal(sevenPages.length,7);
+assert.deepEqual(sevenPages.map((p)=>p.indices.length),[
+  255,268,263,273,261,272,137
+]);
+assert.equal(sevenOriginal.length,1729);
+assert.equal(sevenOriginal.length%7,0);
+const applySeven=(tape,matrix)=>{
+  assert.equal(matrix.length,7);
+  assert.equal(tape.length%7,0);
+  const output=[];
+  for(let i=0;i<tape.length;i+=7)output.push(...vecMul(matrix,tape.slice(i,i+7)));
+  return output;
+};
+const determinant=(original)=>{
+  const matrix=original.map((row)=>row.map(mod));
+  let result=1;
+  for(let column=0;column<matrix.length;column++){
+    const pivot=matrix.findIndex((row,i)=>i>=column && row[column]!==0);
+    if(pivot<column)return 0;
+    if(pivot!==column){
+      [matrix[pivot],matrix[column]]=[matrix[column],matrix[pivot]];
+      result=mod(-result);
+    }
+    const pivotValue=matrix[column][column];
+    result=mod(result*pivotValue);
+    const invPivot=inverse(pivotValue);
+    matrix[column]=matrix[column].map((value)=>mod(value*invPivot));
+    for(let i=column+1;i<matrix.length;i++){
+      const factor=matrix[i][column];
+      matrix[i]=matrix[i].map((value,j)=>mod(value-factor*matrix[column][j]));
+    }
+  }
+  return result;
+};
+const sevenSquareResults=[];
+for(const [squareName,square] of [
+  ['historical-1033-seven-square',matrices[1].map((row)=>row.map(mod))],
+  ['historical-1033-seven-square-divided-by-2',scale(matrices[1],15)]
+]){
+  let power=I(7),polynomial=zero(7);
+  for(const k of coeff){
+    polynomial=add(polynomial,scale(power,k));
+    power=mul(power,square);
+  }
+  assert.deepEqual(polynomial[0],squareName.includes('divided')?
+    [10,19,14,19,1,3,2]:[24,5,13,21,2,1,26]);
+  const det=determinant(polynomial);
+  assert.equal(det,squareName.includes('divided')?25:14);
+  const invertPolynomial=matrixInverse(polynomial);
+  eq(mul(polynomial,invertPolynomial),I(7));
+  eq(mul(invertPolynomial,polynomial),I(7));
+  const native=Array.from({length:1729},(_,i)=>
+    corpus.pages.find((p)=>p.page===57).indices[i%95]
+  );
+  for(const [direction,operator,opposite] of [
+    ['source-polynomial-F',polynomial,invertPolynomial],
+    ['source-polynomial-F-inverse',invertPolynomial,polynomial]
+  ]){
+    const decoded=applySeven(sevenOriginal,operator);
+    assert.deepEqual(applySeven(decoded,opposite),sevenOriginal);
+    assert.deepEqual(applySeven(applySeven(native,opposite),operator),native);
+    sevenSquareResults.push({
+      squareName,direction,det,runes:decoded.length,ioc:ioc(decoded),
+      opening:decoded.slice(0,100).map((rune)=>corpus.translit[rune]).join('')
+    });
+  }
+}
+assert.deepEqual(sevenSquareResults.map((v)=>Number(v.ioc.toFixed(12))),[
+  0.034514705567,0.034268363216,0.034570935887,0.034435045948
+]);
+
 // Exact authentic-source plaintext plant: the 2x5 map has a fixed right inverse.
 const solved=corpus.pages.find((p)=>p.page===57).indices;
 assert.equal(solved.length,95);
@@ -445,6 +520,8 @@ console.log('PASS source_composed_full_polynomial_F(A_over_2) SL5_GF29 six_exact
 for(const r of sourcePolynomialOrbit)console.log('full-source-polynomial receiver='+r.label+' direction='+r.direction+' GP29_IoC='+r.ioc.toFixed(12)+' opening='+r.opening);
 console.log('PASS alternate_2014_1033_square_F(B) six_exact_original_roundtrips six_native_positive_plants');
 for(const item of otherSquareResults)console.log('alternate-source-square receiver='+item.label+' direction='+item.direction+' GP29_IoC='+item.ioc.toFixed(12)+' opening='+item.opening);
+console.log('PASS original_p8_to_p14_all_seven_pages_1729_runes 7x7_historical_source_polynomial_four_roundtrips_and_four_native_GP_plants');
+for(const item of sevenSquareResults)console.log('historic-7-square square='+item.squareName+' direction='+item.direction+' det='+item.det+' IoC='+item.ioc.toFixed(12)+' opening='+item.opening);
 console.log('SOURCE: GP29 original p8 IoC='+ioc(p8).toFixed(12));
 console.log('EXTRACTED: GP29 rank2 image IoC='+ioc(output).toFixed(12));
 console.log('EXTRACTED full GP spelling='+output.map((rune)=>corpus.translit[rune]).join(''));
