@@ -11,7 +11,7 @@
  * For every b=0..28 and both literal source-page clocks, solve all 255
  * original linear relations. An output labeling forced constant for every
  * nullspace vector is an exact mathematical contradiction, irrespective of
- * the hidden weights and offsets. 29 synthetic positive plants independently
+ * the hidden weights and offsets. 58 synthetic positive plants independently
  * demonstrate recovery of a genuine reversible output alphabet.
  *
  * The p7 GF4 + proposed radix59 p50 correction is provisional; this SFT
@@ -186,7 +186,7 @@ function equations(base, outputs, pageClock) {
  * @returns {{ rank:number, nullity:number, distinctOutputAllowed:boolean,
  *            pivots:number[], freeColumns:number[] }}
  */
-function analyze(sourceRows) {
+function analyze(sourceRows, outputStart = 29, outputEnd = 58) {
   const a = sourceRows.map(row => row.slice());
   const rows = a.length;
   const columns = a[0].length;
@@ -227,7 +227,7 @@ function analyze(sourceRows) {
       assert.equal(mod(sourceRow.reduce(
         (sum, coeff, j) => sum + coeff * v[j], 0)), 0);
     }
-    if (v.slice(30, 58).some(value => value !== v[29])) {
+    if (v.slice(outputStart + 1, outputEnd).some(value => value !== v[outputStart])) {
       distinctOutputAllowed = true;
     }
   }
@@ -300,4 +300,112 @@ for (const clock of ['start', 'end']) {
 }
 console.log('PASS: all 58 source-original 255-word Horner families force the 29 output glyphs to one label.');
 console.log('PASS: all 58 independently encoded source-shaped positives retain a valid nonconstant output alphabet.');
-console.log('CONCLUSION: No source-registered stationary Horner GF29 word checksum, irrespective of 29 secret input/output labels, 12 true-length keys, five page keys, one red key, any base 0..28 or either page clock. The proposed GF4/radix59 registration itself remains unverified; zero unknown LP2 plaintext.');
+
+// The p7 source quartic's other factor X^2-8 is irreducible over GF29.
+// In GF(29^2) = GF29[t]/(t^2-8), an arbitrary hidden input rune label is
+// a(r)+b(r)*t. Multiplication by t is a reversible two-state, ordered
+// word hash. Its half-trace to the physical 29-rune output is the real
+// coordinate, because (z + Frobenius(z))/2 = a for z=a+b*t.
+// Coefficients: t^(2k)=8^k, and t^(2k+1)=8^k*t.
+// We even allow all 58 field coordinates a(r),b(r) to be wholly secret,
+// 29 independently secret OUTPUT label values and all 18 layout keys.
+// The other root -t merely renames the wholly secret b(r), so one
+// original-source matrix covers BOTH genuine p7 quadratic roots.
+const powers8 = [1];
+for (let i = 1; i <= 12; i++) powers8.push(mod(powers8[i - 1] * 8));
+
+/**
+ * All-secret 255x105 real-coordinate trace of the complete GF841 Horner word.
+ * @param {number[]} outputs
+ * @param {'start'|'end'} clock
+ * @returns {number[][]}
+ */
+function extensionTraceEquations(outputs, clock) {
+  return words.map((word, i) => {
+    const row = Array(105).fill(0);
+    for (let j = 0; j < word.length; j++) {
+      const exponent = word.length - 1 - j;
+      const rune = word[j];
+      if (exponent % 2 === 0) {
+        row[rune] = mod(row[rune] + powers8[exponent / 2]);
+      } else {
+        row[29 + rune] = mod(row[29 + rune]
+          + powers8[(exponent + 1) / 2]);
+      }
+    }
+    row[58 + outputs[i]] = mod(row[58 + outputs[i]] - 1);
+    row[87 + word.length - 1] = 1;
+    row[99 + sourceWordPages[i][clock === 'start' ? 0 : 1]] = 1;
+    if (sourceWordRed[i]) row[104] = 1;
+    return row;
+  });
+}
+
+/**
+ * Native 29-way positive from a genuine 841-field Horner word, followed
+ * by its half-trace and a fixed, secretly invertible output rune labeling.
+ * @param {'start'|'end'} clock
+ * @returns {number[]}
+ */
+function extensionTracePlant(clock) {
+  const a = Array.from({ length: 29 }, (_, r) =>
+    mod(7 + 3 * r + 8 * r * r));
+  const b = Array.from({ length: 29 }, (_, r) =>
+    mod(13 + 5 * r + 2 * r * r));
+  const outputLabels = Array.from({ length: 29 }, (_, y) =>
+    mod(7 * y + 11));
+  const lengthKeys = Array.from({ length: 12 }, (_, j) =>
+    mod(4 * (j + 1) + 3));
+  const pageKeys = Array.from({ length: 5 }, (_, j) =>
+    mod(9 * j + 5));
+  const redKey = 17;
+  const trueSecret = [...a, ...b, ...outputLabels,
+    ...lengthKeys, ...pageKeys, redKey];
+  assert.equal(trueSecret.length, 105);
+  const output = words.map((word, i) => {
+    let real = 0;
+    for (let j = 0; j < word.length; j++) {
+      const exponent = word.length - 1 - j;
+      const rune = word[j];
+      if (exponent % 2 === 0) {
+        real += powers8[exponent / 2] * a[rune];
+      } else {
+        real += powers8[(exponent + 1) / 2] * b[rune];
+      }
+    }
+    real = mod(real + lengthKeys[word.length - 1]
+      + pageKeys[sourceWordPages[i][clock === 'start' ? 0 : 1]]
+      + (sourceWordRed[i] ? redKey : 0));
+    return mod((real - 11) * inverse(7));
+  });
+  for (const row of extensionTraceEquations(output, clock)) {
+    assert.equal(mod(row.reduce((sum, coeff, j) =>
+      sum + coeff * trueSecret[j], 0)), 0);
+  }
+  assert.equal(new Set(output).size, 29);
+  return output;
+}
+
+for (const clock of ['start', 'end']) {
+  const actual = analyze(extensionTraceEquations(corrected, clock), 58, 87);
+  assert.equal(actual.rank, 101);
+  assert.equal(actual.nullity, 4);
+  assert.equal(actual.distinctOutputAllowed, false);
+  const positive = analyze(extensionTraceEquations(
+    extensionTracePlant(clock), clock), 58, 87);
+  assert.equal(positive.rank, 100);
+  assert.equal(positive.nullity, 5);
+  assert.equal(positive.distinctOutputAllowed, true);
+  console.log('GF841_SOURCE_QUADRATIC_HALFTTRACE ' + JSON.stringify({
+    clock, quadratic: 't^2=8 mod29', sourceRoots: '+t and -t',
+    secretInputCoordinates: 58, secretOutputGlyphValues: 29,
+    secretLengthPageInkOffsets: 18, originalEquations: 255,
+    originalRank: actual.rank, originalNullity: actual.nullity,
+    originalOutputAlphabetCanBeDistinct: actual.distinctOutputAllowed,
+    originalFreeColumns: actual.freeColumns,
+    plantedNonconstantOutputAlphabetPossible: positive.distinctOutputAllowed,
+    positiveRank: positive.rank
+  }));
+}
+console.log('PASS: both original-source GF841 trace word hashes force all 29 emitted symbols to one label; two genuinely encoded held-out positive books retain distinct labels.');
+console.log('CONCLUSION: Conditional on the provisional GF4/radix59 p8 registration, ALL GF29 Horner bases and the source-quartic GF841 quadratic-root half-trace direct word hashes fail with arbitrary secret source rune labels, secret output rune alphabet, layout keys and both source clocks. Zero unknown LP2 plaintext recovered.');
