@@ -256,6 +256,92 @@ for (const [seedName, seed] of sourceSeeds) {
   }
 }
 assert.equal(directPads.length, 8);
+
+/**
+ * Finite-field degree-two-per-axis Newton/Lagrange interpolation of the
+ * source LFSR-addressed complete 3^5 function table in GP field 29.
+ * Coefficient array uses five base-three exponent digits.
+ * @param {number[]} values
+ * @returns {number[]}
+ */
+function interpolateTernaryFive(values) {
+  assert.equal(values.length, 243);
+  let source = values.slice();
+  for (let axis = 0; axis < 5; axis++) {
+    const stride = 3 ** (4 - axis);
+    const output = source.slice();
+    for (let i = 0; i < 243; i++) {
+      if (Math.floor(i / stride) % 3 !== 0) continue;
+      const f0 = source[i], f1 = source[i + stride], f2 = source[i + 2 * stride];
+      const d1 = mod29(f1 - f0), d2 = mod29(f2 - f0);
+      const quadratic = mod29(15 * (d2 - 2 * d1));
+      output[i] = f0;
+      output[i + stride] = mod29(d1 - quadratic);
+      output[i + 2 * stride] = quadratic;
+    }
+    source = output;
+  }
+  return source;
+}
+
+/** @param {number} code @returns {number[]} */
+function digits5(code) {
+  const digits = Array(5);
+  for (let i = 4; i >= 0; i--) {
+    digits[i] = code % 3;
+    code = Math.floor(code / 3);
+  }
+  return digits;
+}
+
+// An independent genuinely sparse GF29 five-trit polynomial positive
+// must recover exactly four coefficients, including one quadratic term.
+const sparseValues = Array.from({length:243}, (_, code) => {
+  const d = digits5(code);
+  return mod29(7 + 11 * d[0] + 2 * d[4] + 5 * d[2] * d[3]);
+});
+const sparsePolynomial = interpolateTernaryFive(sparseValues);
+assert.equal(sparsePolynomial.filter(x => x !== 0).length, 4);
+const truthTablePolynomialResults = [];
+for (const [seedName, seed] of sourceSeeds) {
+  const {states} = insertMissingZero(maximalSequence(seed));
+  const table = Array(243);
+  states.forEach((address, i) => { table[address] = p8Black[i]; });
+  const coeff = interpolateTernaryFive(table);
+  const populated = coeff.filter(x => x !== 0).length;
+  const expected = seedName === "p7 red-product trits" ? 230 : 235;
+  assert.equal(populated, expected);
+
+  // One fixed, source-histogram-preserving permutation null. Invertible
+  // interpolation on a random label table should have about 235 populated
+  // coefficients. Do not tune source orientation from this control.
+  let randomState = 0x33012026;
+  /** @returns {number} */
+  const random = () => {
+    randomState ^= randomState << 13;
+    randomState ^= randomState >>> 17;
+    randomState ^= randomState << 5;
+    return randomState >>> 0;
+  };
+  const surrogates = [];
+  for (let rep = 0; rep < 64; rep++) {
+    const shuffled = p8Black.slice();
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = random() % (i + 1);
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    const mapped = Array(243);
+    states.forEach((address, i) => { mapped[address] = shuffled[i]; });
+    surrogates.push(interpolateTernaryFive(mapped).filter(x => x !== 0).length);
+  }
+  truthTablePolynomialResults.push({
+    seed: seedName, sourceNonzeroPolynomialCoefficients: populated,
+    possibleCoefficients: 243, plantedSparsePositive: 4,
+    permutationNull64Min: Math.min(...surrogates),
+    permutationNull64Max: Math.max(...surrogates),
+    permutationNull64Mean: +(surrogates.reduce((a,b)=>a+b,0)/64).toFixed(4)
+  });
+}
 console.log(JSON.stringify({
   source: "p7 red last14; p8 red12+black243; original p9–14 complete; solved p57 positive",
   vector: products, reducedGF3Coefficients: coefficients,
@@ -266,5 +352,5 @@ console.log(JSON.stringify({
   originalRecipientRawIoC: +ioc(recipient).toFixed(8),
   solvedP57IoC: +ioc(p57).toFixed(8),
   verdict: "Exact GF3 source-derived 243-state address construction; all 16 tested direct GP29 lookup ciphers remain original-ciphertext-like; no plaintext.",
-  results, directPads
+  results, directPads, truthTablePolynomialResults
 }, null, 2));
