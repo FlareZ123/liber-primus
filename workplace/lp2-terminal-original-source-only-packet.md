@@ -30,7 +30,7 @@ P57 is clear in the original book:
 > WE MUST SHED OUR OWN CIRCUMFERENCES
 > FIND THE DIVINITY WITHIN AND EMERGE
 
-**Orthography caution:** the conventional English transcription inserts the I of `TUNNELING`; the original source encodes **TUNNELNG** in its native runes. Other native conventions such as `U` for Latin `V`, `C` for `K`, and compound GP rune pairs need to be respected when forming a numeric key. Never silently promote normalized Latin spellings into original ciphertext characters.
+**Orthography caution:** the physical source spells T U N N E L ᛝ. The final single GP rune ᛝ has the original chart value **NG/ING**, so it correctly encodes English `TUNNELING` with no missing I, extra letter or cipher skip. Some abbreviated transliteration registers print `TUNNELNG`. Other native conventions include `U` for Latin `V`, `C` for `K`, and compound GP runes; use source-native **one** rune for the final ING when forming numeric streams. See [original GP orthography control](../results/lp1-source-orthography.md) and original [GP chart](../results/2013-original-gp29-source-map.md).
 
 ## Time-correct first-party context
 
