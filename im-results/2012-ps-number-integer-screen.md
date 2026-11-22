@@ -47,9 +47,9 @@ It is also 432 bits, but has 130 decimal digits and is a different integer; (gcd
 
 Using the published 2013 cookie values labelled `167` and `761` as integers and the reconstructed private exponent from `numbers.private`, decryption gives two fixed-width 54-byte blocks beginning `0cff` and `4b10`, respectively. Neither has the required `00 02` PKCS#1 v1.5 type-2 prefix or recognizable plaintext. This excludes only direct PKCS#1 v1.5 type-2 decryption of these two candidates under the reconstructed key; their original role remains unknown.
 
-### Crypt::RSA default encryption scheme
+### Crypt::RSA 1.99 default schemes
 
-The archived private key is a `Crypt::RSA 1.99` object. Its module documentation says the default encryption scheme is OAEP; PKCS#1 v1.5 is an explicit opt-in. Under the PKCS#1 OAEP defaults, the relevant decoder is SHA-1 with MGF1-SHA1 and an empty label. This matters because a v1.5-only negative would not test the historically natural encryption mode.
+The archived private key is a `Crypt::RSA 1.99` object. Its module documentation explicitly sets the default encryption scheme to OAEP and the default signature scheme to PSS; PKCS#1 v1.5 encryption and signatures are opt-ins. The OAEP defaults are SHA-1, MGF1-SHA1, and an empty label. The PSS defaults are SHA-1, MGF1-SHA1, a 20-byte salt, and trailer byte `0xBC`. This tests the library's natural modes rather than treating v1.5 as the only plausible encoding.
 
 ### 2013 ISO /tmp files as RSA targets
 
@@ -59,11 +59,13 @@ Using the reconstructed 2012 RSA key, every 54-byte sliding window was tested in
 
 The source-default OAEP-SHA1 path was then tested on every 54-byte big-endian window. Of 3,315 windows, 3,100 represented integers below N and were decrypted; **zero** passed OAEP decoding (empty-label SHA-1 hash check, MGF1-SHA1 unmasking, zero padding, and delimiter). This rejects direct OAEP blocks as well as the previously tested v1.5 blocks in these two files. It does not rule out a symmetric/custom packet format or another use of the files.
 
+The source-default PSS signature path was also checked: every 54-byte big-endian window with c < N was raised to e and tested for the necessary EMSA-PSS structure (top unused bit, 12 zero padding bytes, delimiter, 20-byte salt, and `0xBC` trailer). **Zero** PSS structures were found. This is a structural exclusion, not full signature verification against an unknown message; no candidate reached that second step.
+
 ### 2014 Stage11 default-key OutGuess artifacts as RSA targets
 
 The existing `outguess-lp2-default-key.zip` Actions artifact (workflow run `42755426574`, artifact `13735332261`) contains extracted outputs `17.payload`, `21.payload`, and `43.payload`, each 58,152 bytes. These are the same untrusted/default-key extraction family discussed in [the OutGuess source assessment](outguess-lp2-original.md), not independently authenticated ciphertext.
 
-Using the 2012 modulus (54-byte RSA blocks), every big-endian 54-byte window in each file was checked. Candidate windows with c < N numbered 54,572 (page 17), 54,557 (page 21), and 54,528 (page 43). Across those windows there were **zero** OAEP-SHA1 decodes, zero PKCS#1 v1.5 type-2 encryption blocks under d, and zero PKCS#1 v1.5 type-1 signature blocks under e. A separate framing check tested all 54 possible block offsets in both byte orders; no alignment made every full 54-byte block smaller than N, so these files are not a complete raw 54-byte RSA block stream under this modulus.
+Using the 2012 modulus (54-byte RSA blocks), every big-endian 54-byte window in each file was checked. Candidate windows with c < N numbered 54,572 (page 17), 54,557 (page 21), and 54,528 (page 43). Across those windows there were **zero** OAEP-SHA1 decodes, zero PKCS#1 v1.5 type-2 encryption blocks under d, and zero PKCS#1 v1.5 type-1 signature blocks under e. A separate framing check tested all 54 possible block offsets in both byte orders; no alignment made every full 54-byte block smaller than N, so these files are not a complete raw 54-byte RSA block stream under this modulus. The same candidate windows also produced **zero** default PSS structures under e (SHA-1/MGF1-SHA1, 20-byte salt, `0xBC` trailer).
 
 This is only a negative for these three extracted artifacts and standard 2012-key RSA encodings. It does not promote the OutGuess outputs to source-authenticated ciphertext or rule out non-RSA uses of the P.S. object.
 
@@ -86,7 +88,7 @@ python sims/ps_rsa_oaep_crossround_gate.py
 python sims/ps_rsa_oaep_crossround_gate.py --outguess-zip /path/to/outguess-lp2-default-key.zip
 ```
 
-`ps_number_lp2_screen.py` checks the factor product, modulus sizes, Stage 2 modulus inequality, cookie RSA decryptions, and the direct base-29 key screen against the canonical `resources/liber-primus/lp2-transcription.txt`. `ps_rsa_oaep_crossround_gate.py` reproduces the default OAEP-SHA1 scan of the 2013 source blob and, when given the Actions artifact ZIP, the OAEP/v1.5 and 54-byte framing checks for LP2 OutGuess pages 17, 21, and 43.
+`ps_number_lp2_screen.py` checks the factor product, modulus sizes, Stage 2 modulus inequality, cookie RSA decryptions, and the direct base-29 key screen against the canonical `resources/liber-primus/lp2-transcription.txt`. `ps_rsa_oaep_crossround_gate.py` reproduces the default OAEP-SHA1 scan of the 2013 source blob and, when given the Actions artifact ZIP, the OAEP/PSS/v1.5 and 54-byte framing checks for LP2 OutGuess pages 17, 21, and 43.
 
 ## Sources
 
