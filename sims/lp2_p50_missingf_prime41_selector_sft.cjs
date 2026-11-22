@@ -123,6 +123,41 @@ function shuffledControls(input) {
   }
   return {trials, sq, joint};
 }
+
+// One complete, source-frozen decipherment attempt: the omitted-f ordinal
+// selects 179-rune p53, and 2016 DIRECTION's printed p50 cell points to byte72.
+// Take exactly 179 consecutive original table bytes [72..250] as a GP29
+// additive key. These were not fitted to plaintext, phased or repeated.
+// This is a candidate consumer, not an authenticated manuscript opcode.
+assert.equal(tokens[98], '1C');
+const directionOffset = bytes[98];
+assert.equal(directionOffset, 72);
+const originalCipher = sourcePage.indices;
+assert.equal(originalCipher.length, 179);
+assert.equal(directionOffset + originalCipher.length, 251);
+const mod29 = x => (x % 29 + 29) % 29;
+const key = bytes.slice(directionOffset, directionOffset + originalCipher.length);
+/** @param {readonly number[]} xs @returns {number} */
+function coincidence(xs) {
+  const counts = Array(29).fill(0);
+  for (const x of xs) counts[x] += 1;
+  return counts.reduce((n, c) => n + c * (c - 1), 0) / (xs.length * (xs.length - 1));
+}
+const plaintextMinus = originalCipher.map((c, i) => mod29(c - key[i]));
+const plaintextPlus = originalCipher.map((c, i) => mod29(c + key[i]));
+assert.ok(Math.abs(coincidence(plaintextMinus) - 0.0353399033331241) < 1e-12);
+assert.ok(Math.abs(coincidence(plaintextPlus) - 0.031636432113489425) < 1e-12);
+for (let i = 0; i < originalCipher.length; i += 1) {
+  assert.equal(mod29(plaintextMinus[i] + key[i]), originalCipher[i]);
+  assert.equal(mod29(plaintextPlus[i] - key[i]), originalCipher[i]);
+}
+// Positive solved-native plant, using the manuscript's clear p57 as plaintext.
+const solved = corpus.pages.find(p => p.page === 57).indices;
+assert.equal(solved.length, 95);
+const nativePlant = Array.from({length: 179}, (_, i) => solved[i % solved.length]);
+const encryptedPlant = nativePlant.map((p, i) => mod29(p + key[i]));
+assert.deepEqual(encryptedPlant.map((c, i) => mod29(c - key[i])), nativePlant);
+
 const observed = shuffledControls(bytes);
 assert.deepEqual(observed, {trials: 1000000, sq: 30, joint: 5});
 
@@ -140,6 +175,14 @@ console.log(JSON.stringify({
   after29QuotientMod179: secondQuotient % factor,
   wordOrdinal: wordIndex,
   signedWord: words[wordIndex - 1],
+  fixedFull179RuneInverse: {
+    keyWindow: [directionOffset, directionOffset + originalCipher.length - 1],
+    leftoverTableBytes: bytes.length - directionOffset - originalCipher.length,
+    minusIoC: coincidence(plaintextMinus),
+    plusIoC: coincidence(plaintextPlus),
+    sourceNativePlantRoundtrip: true,
+    originalRecoveredPlaintext: false,
+  },
   shuffledTableConditionedOnMissingDigit: observed,
   criticalLimit: 'Digit-to-prime index and quotient-to-signed-word are proposed typing rules, not first-party instructions; no authentic unknown plaintext recovered.',
 }, (k, v) => typeof v === 'bigint' ? v.toString() : v, 2));
