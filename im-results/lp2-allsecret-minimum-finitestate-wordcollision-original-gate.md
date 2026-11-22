@@ -154,6 +154,22 @@ The original's sharply **zero length-four-plus duplicates** are especially discr
 
 Even section-private `(Cprev,rune-phase5)` alone fails **256/256** for both controls; page-private versions pass only **19/256** Shakespeare and **1/256** Gibran samples. Thus a cipher whose *only* observable state is one or two predecessor cipher glyphs plus a fixed five-phase register cannot explain either tested source donor under globally shared deterministic tables. **Three cipher-predecessors with phase5** become almost entirely collision-compatible, whereas **page-private tables** can also make many source placements compatible. The exact state machine, real source language and page-specific key source remain unselected.
 
+### Does a five-clock reset at the actual chapter or page rescue the low-state model?
+
+A source-faithful five-dot clock need not begin at absolute whole-book rune zero. The authentic manuscript offers **eight** printed section starts at global source rune indices [0,729,1874,3612,5506,6527,7960,9640], and 55 genuine runic physical page starts. Recompute the identical **global, fully unknown machine** with `phase=(rune index−actual section/page start) mod5` instead of whole-book absolute phase, without giving it different secret tables by section or page. This distinction is crucial: **resetting a five-phase clock is not the same as granting a new secret alphabet on every page**.
+
+The same 256 frozen Shakespeare and 256 Gibran original-length donor placements yield:
+
+| One globally shared unknown table; phase5 reset at | Shakespeare zero-conflict placements /256, prev C1 / C2 / C3 / (C1,Pprev) | Gibran zero-conflict placements /256, same order |
+| --- | --- | --- |
+| Whole manuscript | **0 / 4 / 246 / 0** | **0 / 0 / 234 / 0** |
+| Original eight section starts | **0 / 2 / 199 / 0** | **0 / 0 / 146 / 0** |
+| Original 55 page starts | **0 / 3 / 227 / 0** | **0 / 0 / 208 / 0** |
+
+The zero-conflict figures use the original preceding ciphertext values and original ciphertext outputs. Chapter/page phase resets fail to rescue single-C-predecessor rules for **all 512** donor placements, and fail to rescue two-C rules for **all 256 Gibran** and at least **253/256 Shakespeare** placements. The full `Cprev+Pprev` state also remains contradicted for all512 with one global output table. Resetting at the source-visible eight chapter boundaries makes the three-C model slightly *less* compatible in the donor controls, because source-word occurrences formerly separated by phase are regrouped. Neither the p7 five dots nor another graphic selects a particular reset rule; all displayed clocks are explicitly source-derived comparative interpretations.
+
+This extension is committed in the **same** [complete exact witness SFT](../sims/lp2_wordcollision5_arbitrary_predecessor_states_sft.cjs), alongside its native full-book GP positive. It prevents a misleading rescue by a chapter-local phase offset after the full-book five-clock obstruction.
+
 **Positive cryptographic control:** encipher all12,956 GP runes of one genuine native-GP word-length-matched donor placement with a fixed invertible `C_i=17P_i+11C_(i−1)+7C_(i−2)+5(i mod5)+3 (mod29)`, then decode with (17^{-1}=12) modulo29. All12,956 original-shaped plaintext runes reappear exactly, and the start-state collision witness is **zero** for its true two-cipher-predecessor, rune-phase5 grammar. The original-input contradictions are therefore not an artifact of the grouping code.
 
 **Research consequence:** source-visible five dots are insufficient to license one universal five-alphabet predecessor cipher. Before a three-back or page-private family merits fitting, find an original instruction selecting its state-update law and a key/operand source capable of generating authentic prose on an untouched chapter. None has yet been found.
