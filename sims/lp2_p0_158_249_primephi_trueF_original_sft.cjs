@@ -98,7 +98,12 @@ function encrypt(plain, seed, sign) {
 
 const native = Array.from({length: 249}, (_, i) => p57[i % p57.length]);
 const results = [];
-for (const seed of [158, 249]) {
+// The original source-center pair contributes two independently frozen
+// additional ordinary-prime index candidates: 79 (ordinal index21)
+// and 83 (ordinal index22), from original C[364] and C[363].
+assert.equal(prime[21],79);
+assert.equal(prime[22],83);
+for (const seed of [158, 249, 21, 22]) {
   for (const sign of /** @type {const} */ ([1, -1])) {
     const positive = encrypt(native, seed, sign);
     const planted = reachable(positive.cipher, seed, sign);
@@ -113,11 +118,11 @@ for (const seed of [158, 249]) {
   }
 }
 
-assert.deepEqual(results.map(x => x.firstEmpty), [111, 24, 27, 31]);
-assert.deepEqual(results.map(x => x.completeStates), [0, 0, 0, 0]);
+assert.deepEqual(results.map(x => x.firstEmpty), [111, 24, 27, 31, 73, 17, 96, 12]);
+assert.deepEqual(results.map(x => x.completeStates), [0, 0, 0, 0, 0, 0, 0, 0]);
 
 console.log(JSON.stringify({
-  status: 'exact finite-state exclusion of 158/249 source-seeded p56 prime-phi cipher for original p0 black249',
+  status: 'exact F-transparent finite-state exclusion of 158/249 counts and original-center GP-prime index21/22 seed pair on original p0 black249',
   source: 'original p0 red13 / black249; opening chapter158 printed words; original p50 158<->249',
   clock: 'zero-based ordinary primes, key phi(prime[j]) modulo29',
   F: 'plaintext rune index0 stays C0 and skips prime; C0 may also arise from consumed non-F',
