@@ -124,6 +124,24 @@ function main() {
   const selectedBytes = addresses.map(address => grid.bytes[address]);
   assert.deepEqual(selectedBytes, [194, 175, 84, 86]);
 
+  // Hold out the drop-f base59 rival on the same four source-selected
+  // addresses. The original table's stored alphabet is base60; base59 is
+  // tested only as the competing serialization, never selected per cell.
+  const tableTokens = grid.pages.flatMap(page => page.tokens);
+  const base59Alphabet = grid.alphabet.replace("f", "");
+  function parseToken(token, digits, radix) {
+    const high = digits.indexOf(token[0]);
+    const low = digits.indexOf(token[1]);
+    assert.ok(high >= 0 && low >= 0, "invalid token for radix: " + token);
+    return radix * high + low;
+  }
+  const selectedTokens = addresses.map(address => tableTokens[address]);
+  assert.deepEqual(selectedTokens, ["3E", "2t", "1O", "1Q"]);
+  const selectedBase59Bytes = selectedTokens.map(token =>
+    parseToken(token, base59Alphabet, 59)
+  );
+  assert.deepEqual(selectedBase59Bytes, [191, 172, 83, 85]);
+
   const p32 = corpus.pages.find(page => page.page === 32).indices;
   const marker = p32.slice(33, 38).map(index => corpus.translit[index]).join("");
   assert.equal(marker, "HOMEX");
@@ -169,6 +187,14 @@ function main() {
   assert.equal(selectedRoute.finalIndex, 37);
   assert.deepEqual(selectedRoute.final, [3, 4]);
   assert.ok(hasOrderedSubsequence(selectedRoute.positions, [35, 36, 37]));
+
+  // Same words, addresses, origin and compass rule under base59 do not reach
+  // the p32 H->X marker. This is the discriminating global-radix control.
+  const base59Route = walk(selectedBase59Bytes);
+  assert.deepEqual(base59Route.positions, [32, 21, 9, 120]);
+  assert.deepEqual(base59Route.steps.map(item => item.rune), ["TH", "W", "W", "EO"]);
+  assert.equal(base59Route.finalIndex, 120);
+  assert.notEqual(base59Route.finalIndex, 37);
 
   // Existing 43-word compass route uses the separate p50 byte interval 84..126.
   const existing43Route = walk(grid.bytes.slice(84, 127));
@@ -255,13 +281,20 @@ function main() {
       primeWeights: item.primeWeights,
       primeSum: item.primeSum,
       zeroBasedTableAddress: addresses[i],
-      tableByte: selectedBytes[i]
+      tableToken: selectedTokens[i],
+      base60TableByte: selectedBytes[i],
+      base59AlternativeByte: selectedBase59Bytes[i]
     })),
     p32: {
       marker,
       start: { row: startRow, col: startCol, position: startIndex, rune: "H" },
       selectedRoute: selectedRoute.steps,
       final: { row: 3, col: 4, position: 37, rune: "X" },
+      base59GlobalRadixControl: {
+        bytes: selectedBase59Bytes,
+        steps: base59Route.steps,
+        final: { row: 10, col: 10, position: 120, rune: "EO" }
+      },
       existing43WordCompassRouteFinalIndex: existing43Route.finalIndex,
       outerToInnerRoutePositions: outerToInnerRoute.positions
     },
@@ -281,7 +314,7 @@ function main() {
       selectedSetMEXPermutations: selectedPermutationCount,
       warning: "Post hoc conditional control; not a discovery-wide p-value."
     },
-    interpretation: "The inside-out phi-ring selector chooses four words whose GP-prime-sum addresses produce a second route from the p32 H marker to X. Zero-based table addressing is essential. No plaintext, cipher key, or final destination is recovered."
+    interpretation: "The inside-out phi-ring selector chooses four words whose GP-prime-sum addresses produce a second route from the p32 H marker to X under the stored base60 table. The same fixed route under the drop-f base59 rival ends at EO/cell120, not X/cell37, favoring base60 for this compass consumer. This remains a provisional navigation bridge, not plaintext, a cipher key, or a final destination."
   };
   process.stdout.write(JSON.stringify(output, null, 2) + "\n");
 }
