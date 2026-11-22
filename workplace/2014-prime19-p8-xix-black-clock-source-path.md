@@ -24,6 +24,20 @@ The separately recovered five original p7 red-word products `[11,26,8,15,2]` def
 
 An exact new coupling for the historical prime19 is **`P(19)=12`**, which equals the authentic number of red p8 runes. Both source-only starting values (historical prime19 and p7 coefficients) appear without searching an unknown-page plaintext or choosing a private key. This is a retrospective cross-source observation, **not** an authenticated instruction to iterate a polynomial. The original p7→p8 polynomial itself was discovered by examining the red headings, so the 12-rune match is not an independent blinded prediction.
 
+## A new word-bounded Roman reversal and prime/totient key hint
+
+The p8 title's **entire first original red word** is GP transliteration `XIXM` (four runes). In printed order it is not a canonical Roman numeral, while reversing **that complete, genuinely separated word** produces `MXIX`, the valid Roman numeral **1019**. Crucially **1019 is prime**, and the red page supplies two complete red words with original GP29 products `[4,3]`; these equal precisely
+
+`1019 mod29=4`, and `φ(1019)=1018≡3 mod29`.
+
+Thus a recognizable **word-level reversal → Roman numeral → primality/totient** operation would explain *both* adjacent original red-word products via the solved LP2 p56's authenticated use of prime totients. The source additionally gives the adjacent p7 polynomial fixed points `P(4)=4`, `P(3)=3`. This is a single algebraically interdependent chain: `φ(n)=n−1` follows automatically once n is prime, and the p7 fixed point match was already noticed using red products; these must **not** be multiplied as independent chance hits.
+
+A deterministic whole-original-text control confirms that of the **50 fully red printed words** in all original unknown LP2 pages, only two become canonical Roman numerals when each complete red word is reversed: the one-rune `M` on p6 (1000 in either direction) and the **four-rune `XIXM` on p8** (1019 only in reverse). There is no other multi-rune fully red reversible Roman example in the original source. This gives a plausible human reason to try a *reverse-word* operation, more specific than an arbitrary end-to-end ciphertext reversal; it does not instruct how to transform the remaining 243 black runes.
+
+The source-defined `1019` may be interpreted as a prime **value** or as a **prime-sequence position**; no first-party note selects the output type or a concrete ciphertext clock. Its GP residue4 is itself a p7 fixed point, so using it directly as the p7 recurrence seed produces a constant4, **not** an unobserved evolving keystream. The real opportunity is a separately authored instruction converting the Roman prime or its totient into a reversible alphabet operation or a key. Do not brute-force prime starts or rely on synthetically fitted prose.
+
+[Read-only full-source 2,896-word Node22 SFT](../sims/lp2_p8_reverse_roman_prime_totient_source_sft.cjs) verifies physical word boundaries, all 50 original red words, strict Roman parsing, unique reversed `MXIX=1019`, prime/totient residues, both original p8 products and p7 source fixed points.
+
 ## Original p10 numeral7: a previously untested source-numbered origin and black-only clock
 
 The original p8–p14 chapter has one standalone decimal **7**, physically printed in p10 after exactly **692** GP rune symbols counted from the original p8 opening. Its p10 within-page prefix is169 runes. Physical p8 begins with **12 red runes**; the black body through the numeral therefore contains **680 runes**.
