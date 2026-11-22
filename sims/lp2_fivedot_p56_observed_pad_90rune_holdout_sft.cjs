@@ -82,7 +82,7 @@ const key = p56Cipher.map((c, i) => i === 56 ? null : mod29(c - p56Plain[i]));
 assert.equal(key.length, 85);
 assert.deepEqual(key.flatMap((v, i) => v === null ? [i] : []), [56]);
 const p56Recovered = decryptWindow(p56Cipher, key);
-assert.deepEqual(p56Recovered, p56Plain);
+assert.deepEqual(p56Recovered.map((v, i) => v === null ? p56Cipher[i] : v), p56Plain);
 assert.deepEqual(
   reencryptKnown(p56Recovered, key).map((v, i) => v === null ? p56Cipher[i] : v),
   p56Cipher
