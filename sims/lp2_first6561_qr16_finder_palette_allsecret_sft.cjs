@@ -30,6 +30,32 @@ assert.equal(runes.length, 12956);
 const size=81, version=16, sample=runes.slice(0, size*size);
 assert.equal(size, 17+4*version);
 assert.equal(sample.length, 6561);
+// The official original transcript fixes printed runic word separators, while
+// LP2 corpus page records fix the physical page for each rune. Grant the
+// hypothetical QR decoder a completely new secret binary palette at every
+// printed original page or even at every original printed word boundary.
+// A slash is a visual line wrap and does not start a new word.
+const pageScope=corpus.pages.filter(p => p.page<=55)
+  .flatMap(p => Array(p.indices.length).fill(p.page)).slice(0,size*size);
+assert.equal(pageScope.length,6561);
+const transcript=fs.readFileSync(path.join(root,
+  'resources/liber-primus/lp2-transcription.txt'),'utf8');
+const runeIndex=new Map(corpus.runes.map((r,i)=>[r,i]));
+const transcribed=[],wordScope=[];
+let wordId=0;
+for(const character of transcript){
+  if(runeIndex.has(character)){
+    if(transcribed.length<6561){
+      transcribed.push(runeIndex.get(character));
+      wordScope.push(wordId);
+    }
+  }else if('- . & $ %'.split(' ').includes(character)){
+    wordId++;
+  }
+}
+assert.deepEqual(transcribed,sample);
+assert.equal(wordScope[6560],1505);
+
 const centers=[[3,3],[77,3],[3,77]];
 const switches=[false,true];
 
@@ -95,6 +121,44 @@ for(const transpose of switches)for(const flipX of switches)
     const orientation={transpose,flipX,flipY};
     outcomes.push({...orientation,...check(sample,orientation)});
   }
+
+/**
+ * Every palette assignment is allowed to change independently at each
+ * printed original page or word. The class key is (scope, originalRune).
+ * An opposite required finder bit for the same class disproves the model.
+ * @param {number[]} glyphs
+ * @param {{transpose:boolean,flipX:boolean,flipY:boolean}} orientation
+ * @param {number[]} labels
+ */
+function checkScoped(glyphs,orientation,labels){
+  const assigned=new Map();
+  let conflicts=0,first=null;
+  for(const position of required){
+    const original=sourceAt(position.x,position.y,orientation);
+    const scope=labels[original],rune=glyphs[original];
+    const key=scope+':'+rune;
+    const witness={qr:[position.x,position.y],originalOffset:original,
+      page:pageScope[original],scope,rune,requiredBit:position.bit};
+    const prev=assigned.get(key);
+    if(prev&&prev.requiredBit!==witness.requiredBit){
+      conflicts++;
+      if(!first)first={first:prev,second:witness};
+    }else if(!prev)assigned.set(key,witness);
+  }
+  return {conflicts,first,classesSeen:assigned.size};
+}
+const scopedOutcomes=outcomes.map(o=>{
+  const orientation={transpose:o.transpose,flipX:o.flipX,flipY:o.flipY};
+  const page=checkScoped(sample,orientation,pageScope);
+  const word=checkScoped(sample,orientation,wordScope);
+  return {...orientation,page,word};
+});
+assert.deepEqual(scopedOutcomes.map(x=>x.page.conflicts),
+  [43,40,40,41,44,41,45,42]);
+assert.deepEqual(scopedOutcomes.map(x=>x.word.conflicts),
+  [5,4,3,5,5,4,3,5]);
+assert(scopedOutcomes.every(x=>x.page.first&&x.word.first));
+
 const expected=[91,75,80,67,79,82,76,76];
 assert.deepEqual(outcomes.map(x=>x.conflicts),expected);
 assert(outcomes.every(x=>x.first&&x.classesSeen===29));
@@ -124,16 +188,23 @@ const positive=check(planted,{transpose:false,flipX:false,flipY:false});
 assert.equal(positive.conflicts,0);
 const decoded=planted.map(rune=>Number(rune<14));
 assert.deepEqual(decoded,bits);
+// A real QR relabeled with a stationary palette also satisfies the much more
+// permissive independent-per-page and independent-per-word models.
+const identity={transpose:false,flipX:false,flipY:false};
+assert.equal(checkScoped(planted,identity,pageScope).conflicts,0);
+assert.equal(checkScoped(planted,identity,wordScope).conflicts,0);
+
 
 console.log(JSON.stringify({
-  result:'EXACT UNSAT for a globally stationary rune-to-bit QR16 raster',
+  result:'EXACT UNSAT for a global, page-local, or word-local rune-to-bit QR16 raster',
   source:'LP2 p0..55 original first 6561 GP29 runes, row major 81x81',
   originalOffsetStart:0,originalOffsetEndExclusive:6561,
   allEightSquareSymmetries:true,
   fixedModulesPerOrientation:192,
   orientations:outcomes,
+  originalPaletteRekeyByPageAndWord:scopedOutcomes,
   positive:'actual version16/M QR 6561/6561 bit exact after 29-class camouflage',
   knownPositivePayload:'CICADA3301 QR16 CHECK',
-  conclusion:'No orientation supports even required finders; any legal BCH or RS scheme also fails',
+  conclusion:'All eight rotations contradict even per-original-word rune palettes within mandatory finder modules; BCH/RS cannot repair',
   unknownPlaintextRecovered:false
 },null,2));
