@@ -20,6 +20,8 @@ const transcription = read('resources/lp2-transcription.txt');
 const runeToIndex = new Map(gp.runes.map((r, i) => [r, i]));
 /** @param {number} n @returns {number} */
 const mod = n => (n % 29 + 29) % 29;
+/** @param {number} n @returns {number} */
+const phase5 = n => (n % 5 + 5) % 5;
 
 /** @returns {number[]} The actual five p7 red-word index products. */
 function redProducts() {
@@ -86,7 +88,7 @@ function decode(input, offset, past) {
   const h = historySeed(past);
   const output = [];
   for (let j = 0; j < input.length; j++) {
-    const phase = mod(offset + j - clockEpoch) % 5;
+    const phase = phase5(offset + j - clockEpoch);
     const prod = mod(h[0] * h[1] * h[2]);
     output.push(mod(input[j] - prod - five[phase]));
     h.shift();
@@ -104,7 +106,7 @@ function encode(plain, offset, past) {
   const h = historySeed(past);
   const output = [];
   for (let j = 0; j < plain.length; j++) {
-    const phase = mod(offset + j - clockEpoch) % 5;
+    const phase = phase5(offset + j - clockEpoch);
     const prod = mod(h[0] * h[1] * h[2]);
     const c = mod(plain[j] + prod + five[phase]);
     output.push(c);
