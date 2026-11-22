@@ -26,6 +26,8 @@ with first sixteen **distinct** `F` numbers `[0,1,2,3,5,8,13,21,34,55,89,144,233
 `[3299,3298,3296,3294,3288,3278,3258,3222,3152,3038,2838,2472,1820,708,1206,4516]`.
 This known formula and its sixteen values are independently established in [the authoritative p15 result](../results/lp2-p15-fibonacci-prime-spiral.md).
 
+The tweet's **direct twelve-value repeating GP29-totient interpretation was already source-tested** by Agent42 ([earlier source-correct failure](lp2-2014-twitter-fibprime-totient-p16-22-gate.md), original p16 obstruction offset28). The separate direct-key interpretation and the visible 9901 reduction are already addressed in [the prior 2014 Twitter direct-key gate](2014-secondary-twitter-fibonacci-prime-key-gate.md). These previous results leave only the **new combined first-unprinted-index cue** and the exact archive copy as independent contributions here.
+
 The archived tweet's **first six Fibonacci-prime values** `2,3,5,13,89,233` are a subset of these sixteen source Fibonacci numbers. The tweet's **very next** Fibonacci-prime value is **1597 = F[17]**, which is simultaneously the **very next distinct Fibonacci number past the original p15 grid**. The page's own infinity illustration can independently motivate continuing its sequence. This coincidence offers an historically available *external* reason for a human solver to look immediately beyond the 4×4 square instead of treating all sixteen cells as an isolated key.
 
 Following **only the already established** p15 formula for its next index gives
