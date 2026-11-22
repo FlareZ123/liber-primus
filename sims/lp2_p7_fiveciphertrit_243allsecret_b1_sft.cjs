@@ -20,6 +20,16 @@ const products=SOURCE_WORDS.map(w=>w.reduce((n,v)=>n*v%29,1));
 assert.deepEqual(products,[11,26,8,15,2]);
 const INITIAL=products.map(v=>v%3);
 assert.deepEqual(INITIAL,[2,2,2,0,2]);
+// All nine genuinely solved GP29 source sections jointly instantiate
+// a restricted 27-rune plaintext register: EO and OE are absent.
+const solved=JSON.parse(read("resources/external/relikd-solved-gp29-native-v1.json"));
+const genuineSolved=solved.sections.flatMap(x=>[...x.source_text]
+ .filter(g=>GP.runes.includes(g)));
+assert.equal(solved.sections.length,9);
+assert.equal(genuineSolved.length,2979);
+assert.equal(new Set(genuineSolved).size,27);
+assert.equal(genuineSolved.filter(g=>g===GP.runes[12]||
+  g===GP.runes[22]).length,0);
 const chapterBounds=[[8,14],[15,22],[23,26],[27,32],
  [33,39],[40,53],[54,55]];
 const byPages=GP.pages.filter(p=>p.page>=8&&p.page<=55&&p.indices.length);
@@ -78,6 +88,36 @@ for(const [name,groups] of Object.entries(corpus)){
  limits[name]={groups:groups.length,fixedInitial:fixed,
   afterFirst5Each:tail,arbitraryInitialUpper:worstInitial};
 }
+/**
+ * A state-specific GP29 bijection cannot map any <=27-symbol plaintext
+ * register to 28 distinct ciphertext symbols in the same state.
+ * Remove five seed-dependent positions per group: the remaining states
+ * depend ONLY on the preceding five observed source ciphertext glyphs.
+ */
+function supportAfterIV(groups){
+ const rows=Array.from({length:243},()=>new Uint16Array(29));
+ for(const part of groups){
+  let hist=INITIAL.slice();
+  for(let i=0;i<part.length;i++){
+   const s=state(hist),c=part[i];
+   if(i>=5)rows[s][c]++;
+   hist=[hist[1],hist[2],hist[3],hist[4],c%3];
+  }
+ }
+ const sizes=rows.map(r=>r.filter(n=>n>0).length);
+ return {
+  maxDistinctCipherGlyphsPerState:Math.max(...sizes),
+  statesWith28PlusCipherGlyphs:sizes.flatMap((n,i)=>n>=28?[i]:[])
+ };
+}
+const support=Object.fromEntries(Object.entries(corpus).map(([name,groups])=>
+  [name,supportAfterIV(groups)]));
+for(const s of Object.values(support)){
+ assert.equal(s.maxDistinctCipherGlyphsPerState,28);
+ assert.deepEqual(s.statesWith28PlusCipherGlyphs,
+  [32,33,41,85,96,103,173]);
+}
+
 /** Minimum maximum-rune count in independently source-native windows. */
 const N=all[0].length;
 function nativeWindow(name,file,count,min,max){
@@ -144,7 +184,7 @@ const positive=[crypto([native],1),crypto(splitNative(),17),
 console.log(JSON.stringify({
  classification:"key-independent conditional exclusion, no recovered original plaintext",
  sourceP7RedProducts:products,sourceTritIV:INITIAL,
- originalRuns:limits,nativeControls:controls,
+ originalRuns:limits,solved27RuneSourceAlphabet:{authenticRunes:genuineSolved.length,used:27,unseenIndices:[12,22]},sevenStateAlphabetObstructions:support,nativeControls:controls,
  positiveNativeCipherPlants:positive,
- result:"all-secret 243-state feedback alphabet excluded under sustained source-native GP spelling for continuous and chapter-reset shared keys; free per-page IV not excluded"
+ result:"all-secret 243-state feedback alphabet excluded under source-native 27-rune support for continuous, chapter and page reset with any IV; a weaker frequency bound additionally excludes 29-rune English-like prose for continuous and chapter shared keys"
 },null,2));
