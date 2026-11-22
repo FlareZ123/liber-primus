@@ -1,6 +1,6 @@
 # The source-locked GF257 spectral zero at the p50 border size
 
-**Agent21, 22 November 2026. Classification: original-source algebraic observation, conditional cross-artifact solve-path candidate, direct decipherment negative. No unknown LP2 plaintext, authentic key, or final destination recovered.**
+**Agent21, 22 November 2026; systematic-code addendum by Agent48, 22 November 2026. Classification: original-source algebraic observations, conditional cross-artifact solve-path candidates, direct decipherment negatives. The specified systematic GF(257) (256,180) interior-to-border evaluation code is rejected at 0/76. No unknown LP2 plaintext, authentic key, or final destination recovered.**
 
 ## A new, small, source-motivated transition
 
@@ -47,6 +47,28 @@ Three exact, original-source receivers were computed on all **85 positions**, pr
 
 This eliminates the historically motivated straightforward three-share consumer of the *new* field-quotient layout. It gives no reason to invent a fourth share, reassign coefficients, transpose blocks, or tune additional phases. The exact length equality and the cross-page root remain observations rather than plaintext recovery.
 
+## Systematic GF(257) (256,180) physical interior-to-border code: rejected
+
+A single systematic Reed–Solomon evaluation convention was frozen before inspecting the border predictions. The 256 physical p50 cells are kept in original row-major order; cell \(j\) is evaluated at \(x_j=38^{48+j}\pmod{257}\), using the original p0 FFF-selected generator 38 and phase48. The 180 physical interior bytes are the information positions. They determine the unique polynomial of degree less than180; the 76 physical perimeter bytes are held out and predicted at their original evaluation points. No orientation, phase, x-coordinate, degree or border order was fitted.
+
+**Original result: 0/76 exact border predictions.** The interpolant predicts:
+
+```
+[196,236,133,239,29,119,189,224,76,38,98,207,91,214,241,106,19,171,58,198,196,139,1,188,160,145,186,71,174,71,227,173,104,19,243,84,109,195,139,191,29,24,89,249,66,9,153,179,109,50,178,232,65,203,97,4,146,155,123,43,68,139,2,6,154,92,20,36,22,12,54,255,255,115,239,241]
+```
+
+The unchanged original perimeter values, in the same physical order, are:
+
+```
+[203,231,167,186,97,237,126,183,92,212,121,87,109,133,115,5,80,76,253,80,254,51,122,108,164,82,142,65,211,35,222,206,122,115,73,184,42,193,201,171,10,152,125,189,231,248,233,248,240,18,235,81,128,33,0,47,110,21,57,84,142,151,68,175,106,173,144,192,113,158,172,230,180,36,189,80]
+```
+
+There are **76/76 mismatches**. An independent spectral consequence agrees: if \(y_j=f(38^{48+j})\) for \(\deg f<180\), the 256-point DFT with root38 must vanish at bins **1 through76**. The original p50 table has only one zero bin, **[76]**. The single observed zero therefore does not imply this systematic code.
+
+The implementation passes a planted degree-179 positive control: coefficients \([1,2,\ldots,180]\) recover all **76/76** held-out values and produce exactly the required DFT zero bins **1..76**. A one-byte corruption of a planted border is detected. Reproducer: [`lp2_p50_gf257_rs256_180_systematic_gate.cjs`](../sims/lp2_p50_gf257_rs256_180_systematic_gate.cjs).
+
+This rejects only the predeclared systematic RS(256,180) convention. Do not search alternative phases, evaluation-point orders, orientations, degrees or parity placements to rescue it. The original high-first p50 root and single spectral zero remain exact algebraic observations, not a recovered code or plaintext.
+
 ## Direct original-cipher receivers and decision
 
 A concrete potential payoff is a source-selected **76-rune p55 receiver**. We evaluated four full-76 streams with **both** canonical GP29 additive signs and phase zero:
@@ -60,4 +82,4 @@ Each GF257 coefficient is reduced mod29 and added/subtracted against **all 76 un
 
 The [single-file, original-input Windows Node22 SFT](../sims/lp2_gf257_spectral_border_source_sft.cjs) checks the field order, p0 original prime sums, p23/p55/p56 rune counts, all 256 original p50 bytes, the GF29 quartic, the 257-field roots including p55's neighboring-page rule, the single spectral-zero position, the deterministic 50,000 byte-residue-preserving controls, the three p56 85-symbol share consumers, and the original p55 keystream inverse controls. The original p56 ciphertext is rebuilt from its authenticated GP-native plaintext and its exact prime-totient key including the transparent-F clock exception. It is read-only, source-locked and needs no third-party packages.
 
-**Decision:** retain as an explicitly provisional clue-constrained route with **a new field-valued source selector at the exact perimeter/interior split**. This does **not** justify a search across arbitrary Fourier bins, shifts, key interpretations or further post-selected numerical coincidences. The next worthwhile advance would be an original source instruction independently specifying the direction of a spectral/field operation and a ciphertext-bearing 76- or 180-symbol consumer that yields continuous authentic prose or a typed external address. In its absence the cross-page relation is structural evidence and not decipherment.
+**Decision:** retain the exact original GF257 root and single spectral-zero identities as algebraic observations, but reject the specified systematic RS(256,180) physical interior-to-border code and the four direct additive p55 receivers. The 180 original interior bytes define a unique degree<180 interpolant under the source-fixed \(x_j=38^{48+j}\), but it misses all 76 original border bytes; the actual spectrum has only bin76 zero rather than the 76-bin zero band required by this code. Do not search alternate phases, x-orders, orientations or degrees to rescue it. Any new GF257 successor requires an independent original instruction selecting a different operation and a ciphertext-bearing 76/180-symbol receiver that yields authentic plaintext or a typed address. The p50 root remains an exact structural observation, not a recovered cipher or plaintext.
