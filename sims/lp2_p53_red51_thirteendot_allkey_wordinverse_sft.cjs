@@ -261,12 +261,6 @@ function invertCipherAutokey(cipher,sign){
     fourthDictionaryMatch:lookup[11].has(token(fourth)),
     sourceCompleteWordsValidated:valid,post};
 }
-function autoEncrypt(plain,primer,sign,plainFeedback){
-  return plain.map((p,i)=>i<13?mod(p+primer[i]):
-    mod(p+sign*(plainFeedback?plain[i-13]:
-      // The previous ciphertext is available because output is sequential.
-      (autoEncrypt.state[i-13]))));
-}
 function cipherAutokeyEncrypt(plain,primer,sign){
   const c=[];
   for(let j=0;j<plain.length;j++)
