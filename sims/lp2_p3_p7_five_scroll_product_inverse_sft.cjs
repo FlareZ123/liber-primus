@@ -192,6 +192,68 @@ assert(Math.max(...causal.map(h => h.ioc)) < 0.035);
 const p57 = gp.pages.find(p => p.page === 57).indices;
 assert.equal(p57.length, 95);
 const known = Array.from({length: 1145}, (_, i) => p57[i % 95]);
+
+/**
+ * Authentic 2014 signed-stage magic squares transfer onto actual p3-p7
+ * five-page 1145-rune receiver. Two historic 5x5 integer matrices give
+ * exactly 16 complete reversible GF29 interpretations:
+ * two original squares × direct/inverse × row/column transpose ×
+ * adjacent-five/229-long-five-column source original geometry.
+ *
+ * This independently motivated external key source is contemporary
+ * Cicada-origin input, without a claimed LP2 consumer instruction.
+ */
+const historicalSquareBlocks = read(
+  "resources/cicada2014-openpuff-magic-squares.txt")
+  .trim().split(/\r?\n\s*\r?\n/)
+  .map(block => block.trim().split(/\r?\n/)
+    .map(row => row.trim().split(/\s+/).map(Number)));
+assert.deepEqual(historicalSquareBlocks.map(x => x.length), [5,7,5]);
+assert.deepEqual(historicalSquareBlocks[0][0],
+  [434,1311,312,278,966]);
+assert.deepEqual(historicalSquareBlocks[2][0],
+  [272,138,341,131,151]);
+const historicalMagicMatrices = [
+  ["2014-original-magic3301", historicalSquareBlocks[0]],
+  ["2014-original-magic1033", historicalSquareBlocks[2]]
+];
+const identity5 = Array.from({length:5},(_,i)=>
+  Array.from({length:5},(_,j)=>i===j?1:0));
+const historicalMagic = [];
+for (const [squareName, originalMatrix] of historicalMagicMatrices) {
+  const inverseMatrix = gaussJordan(originalMatrix);
+  assert.deepEqual(multiply(originalMatrix, inverseMatrix), identity5);
+  assert.deepEqual(multiply(inverseMatrix, originalMatrix), identity5);
+  for (const [direction, matrix, matrixInverse] of [
+    ["as-printed", originalMatrix, inverseMatrix],
+    ["matrix-inverse", inverseMatrix, originalMatrix]
+  ]) {
+    for (const [orientation, operation, opposite] of [
+      ["normal", matrix, matrixInverse],
+      ["transposed", transpose(matrix), transpose(matrixInverse)]
+    ]) {
+      for (const layout of ["adjacent", "five-columns"]) {
+        const sourceDerived = matrixApply(C, operation, layout);
+        assert.deepEqual(matrixApply(sourceDerived, opposite, layout), C);
+        const plantedCipher = matrixApply(known, opposite, layout);
+        assert.deepEqual(matrixApply(plantedCipher, operation, layout), known);
+        historicalMagic.push({
+          squareName, direction, orientation, layout,
+          recoveredRunes:sourceDerived.length, ioc:ioc(sourceDerived),
+          E:sourceDerived.filter(v=>v===18).length,
+          prefix:sourceDerived.slice(0,30).map(v=>gp.translit[v]).join(" ")
+        });
+      }
+    }
+  }
+}
+assert.equal(historicalMagic.length, 16);
+const historicalMagicMax = Math.max(...historicalMagic.map(x=>x.ioc));
+const historicalMagicMin = Math.min(...historicalMagic.map(x=>x.ioc));
+assert(Math.abs(historicalMagicMax - 0.03487342351971173) < 1e-12);
+assert(Math.abs(historicalMagicMin - 0.03422450911533881) < 1e-12);
+assert(historicalMagicMax < 0.035);
+
 let plants = 0;
 for (const [matrix, opposite] of [
   [M, Minv], [Minv, M]]) {
@@ -258,6 +320,7 @@ assert.deepEqual(Object.fromEntries(Object.entries(controls)
 const controlMin = Math.min(...Object.values(controls).map(z => z.minimum));
 const upper = Math.max(...hill.concat(causal).map(c => c.ioc));
 assert(controlMin > 0.05);
+assert(historicalMagicMax < controlMin);
 assert(upper < 0.035);
 const originalIoc = ioc(C);
 assert(Math.abs(originalIoc - 0.034633706904449266) < 1e-12);
@@ -385,6 +448,10 @@ if (require.main === module)
     hill,
     causal,
     positiveSolvedSourceRoundtrips: plants,
+    historical2014FiveMagicSquareOriginal: historicalMagic,
+    historical2014FiveMagicPositivePlants: historicalMagic.length,
+    historical2014FiveMagicMaximumOriginalIoc: historicalMagicMax,
+    historical2014FiveMagicMinimumOriginalIoc: historicalMagicMin,
     nativeWindowControls: controls,
     fiveShareShamirOriginal: shamir,
     fiveShareShamirPositivePlants: shamirPlants,
