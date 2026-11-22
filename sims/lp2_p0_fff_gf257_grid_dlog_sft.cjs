@@ -117,6 +117,47 @@ for(const kind of ['exponent-stream','field-unit-stream']){
 }
 assert(dynamicReadouts.every(x=>x.maxAlphabeticRun<=3));
 
+// A 256-point Fermat/number-theoretic transform is the canonical
+// full-length operation when the source words yield modulus 257 and a
+// primitive 256th root 38. Test forward and inverse frequency directions,
+// with the printed phase 48 only for positioning the readout.
+const inverseRoots=byExponent.map((_,i)=>byExponent[(256-i)%256]);
+/** @param {number[]} input @param {boolean} inverse */
+function transform(input,inverse=false){
+  assert.equal(input.length,256);
+  const powers=inverse?inverseRoots:byExponent;
+  const out=Array(256).fill(0);
+  for(let k=0;k<256;k++){
+    let sum=0;
+    for(let i=0;i<256;i++)
+      sum=(sum+input[i]*powers[(i*k)%256])%P;
+    out[k]=inverse?sum*256%P:sum;
+  }
+  return out;
+}
+assert.deepEqual(transform(transform(grid.bytes),true),grid.bytes);
+assert.deepEqual(transform(transform(planted),true),planted);
+const finiteFourierReadouts=[];
+for(const inverse of [false,true]){
+  const coefficients=transform(grid.bytes,inverse);
+  const restored=transform(coefficients,!inverse);
+  assert.deepEqual(restored,grid.bytes);
+  const rotated=coefficients.map((_,i)=>coefficients[(i+phase)%256]);
+  const ascii=content(rotated);
+  finiteFourierReadouts.push({
+    direction:inverse?'inverse':'forward',
+    printableASCII:printable(rotated),
+    GP29ByteCount:rotated.filter(x=>x<29).length,
+    fieldElement256Count:rotated.filter(x=>x===256).length,
+    asciiFirst80:ascii.slice(0,80),
+    first16FieldValues:rotated.slice(0,16),
+    maxAlphabeticRun:Math.max(0,...(ascii.match(/[A-Za-z]+/g)||[])
+      .map(x=>x.length)),
+    exactOriginalRoundTrip256:true
+  });
+}
+assert(finiteFourierReadouts.every(x=>x.maxAlphabeticRun<=3));
+
 // The same source primitive root also defines a unique 256-position
 // permutation. Read the original printed grid in the two fixed traversal
 // directions with the source phase 48. The index receiver is independent
@@ -164,7 +205,8 @@ console.log(JSON.stringify({
   fileHeaders:signatures,
   sourceFieldIndexTraversal:indexReadouts,
   sourceFieldStreamDecoders:dynamicReadouts,
+  sourceFermatTransform:finiteFourierReadouts,
   originalExactReverse256:true,
   plantedSolvedP57ExactReverse256:true,
-  conclusion:'Original 256-byte discrete-log, two full-period source-key streams and two source-power index traversal readouts are nontext and untyped. The field-group source remains a structural lead, not authenticated cipher or plaintext.'
+  conclusion:'Original discrete-log, full-period field streams, two index traversals and both 256-point source-field transforms return nontext and untyped data. The source algebra is a structural lead, not an authenticated cipher or plaintext.'
 },null,2));
