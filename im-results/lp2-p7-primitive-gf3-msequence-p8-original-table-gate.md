@@ -40,9 +40,31 @@ However, the candidate's **mod3 field and its 243-state interpretation** were th
 | GP29 last rune index | No return within243 steps |
 | Literal word length | 24 |
 
-The product aggregator is the only full-length option among these seven; the seven functions were chosen because they already appeared as ordinary source-readout alternatives in the p7 historical DH research. This is a **local finite discrimination**, never an exhaustive search of ways to interpret the drawing.
+The product aggregator is the only full-length option among these seven; the seven functions were chosen because they already appeared as ordinary source-readout alternatives in the p7 historical DH research. **Important conditional base rate:** the five actual red products reduce to four 2s and one 0. Merely *permuting those same five original values* makes a primitive five-tap GF3 register in **48 of 120 permutations =40%**, because moving the lone zero into either of two out of five positions is sufficient. Thus the nominal 22/243 whole-field primitive frequency substantially **overstates how surprising the actual observed source vector is, once its digit multiset is held fixed**. The local seven-aggregator distinction and adjacency to 243 are useful hypotheses, not rare-event proof.
 
 The existing [p7-p8 GF29 fifth-order period study](lp2-p7-p8-five-dot-lfsr-skip-cube-original-gate.md) independently found period1876 (28×67) for the same source products under GF29. The **new** test reduces that source-defined vector modulo3 and finds the length242 primitive state orbit. The two period observations use different fields; neither itself specifies an original cipher inverse.
+
+## Independently printed dot-height geometry gives a second primitive ternary register
+
+The original five black dots under the p7 red words have source-verified height-ranks **[3,5,1,4,2]** in left-to-right order. The existing Shamir-style interpolation over GF29 pairs these ranks with the same five printed red products, yielding the **vertical** degree-four coefficients **[23,18,21,22,11]**. Their order is a source-number readout, with all coefficients fixed without viewing p8 ciphertext language.
+
+Remarkably the vertical coefficients modulo3 are **[2,0,0,1,2]**, another **maximal-period 242** GF3 five-stage register. The horizontal rank-based interpolation gives **[5,6,23,26,9]**, reducing to GF3 taps [2,0,2,2,0] and period **12**, so the two original geometric axes are not interchangeable. The five p7 red products in dot-height order [8,2,11,15,26] have the same modulo3 vector as the original printed order, [2,2,2,0,2], because their first three residues all equal2.
+
+The honest conditional comparison is the **entire 120-permutation original-five-word multiset**, fixing the actual dot-rank coordinates and GF29 interpolation:
+ 
+| Primitive period242 condition | Number of 120 printed-red-product orderings |
+| --- | ---: |
+| Original GP-product five-tap vector | **48/120** |
+| Five-dot vertical interpolation's five GF29 coefficients modulo3 | **12/120** |
+| Five-dot horizontal interpolation's five coefficients modulo3 | **12/120** |
+| **Both** original-product and vertical-interpolation registers primitive | **4/120** |
+| Historical horizontal constant5 and vertical constant23, together | **1/120**, the original printed order |
+
+The actual printed order belongs to the four-order joint primitive subset, and it is the unique order that also gives the historically recognized DH constant pair. This is an **interesting source-constrained multiple representation**, but the DH targets, interpolation rule and coefficient-to-LFSR interpretation were identified retrospectively; conditioning on the already selected pair could invalidate any naïve multi-clue probability calculation.
+
+The vertical-regime 242-cycle also receives a deterministic one-zero splice and associates every one of p8's 243 original black runes with a distinct five-trit state. With two visible source seeds, GP index/prime mod3 state readout, both additive signs and both ciphertext/plaintext feedback registers, **16 additional fully reversible original p9–p14 1,474-rune decoders** have IoC **0.03424002–0.03473560**. Every candidate reencrypts all1,474 original runes and recovers the **95/95** independently source-solved p57 GP positive; none produces real unknown text. This source-geometry-dependent **second full-period key table** is a new finite negative, separate from the red-product clock below.
+
+[Dot-height GF3 source-census and full original receiver](../sims/lp2_p7_dotheight_gf3_primitive_original_sft.cjs) · [Windows Node22 PASS 45004523235](https://github.com/FlareZ123/liber-primus/actions/runs/45004523235).
 
 ## A source-selected 243-cell lookup with unchanged 1,474-rune consumer
 
@@ -86,7 +108,7 @@ Both original candidate tables occupy essentially their *entire* five-dimensiona
 
 ## Decision for further work
 
-This discovery gives a **complete, source-constrained candidate ternary state traversal** without searching five-tap coefficients or using a secret address permutation. It may be useful if a new original instruction or readable title establishes that p8's 243 runes are a lookup or assigns the observed coefficient sequence to a concrete cipher opcode. A human could write down all243 states and locate any state by its five trits.
+This discovery gives **two complete, source-constrained candidate ternary state traversals** without searching five-tap coefficients or using a secret address permutation. The simple product vector has a 40% primitive rate conditioned on its own trit multiset, so its maximal period alone is weak evidence of intended design. It may be useful if a new original instruction or readable title establishes that p8's 243 runes are a lookup or assigns the observed coefficient sequence to a concrete cipher opcode. A human could write down all243 states and locate any state by its five trits.
 
 Neither direct consumer succeeds on original p8 or independent p9–p14. An arbitrary nonlinear output function would need **243 unprovided key values**, which the original p8 body could supply only under a specific, still-unproven table interpretation. More source-free register/output sweeps are not justified by this length coincidence alone.
 
