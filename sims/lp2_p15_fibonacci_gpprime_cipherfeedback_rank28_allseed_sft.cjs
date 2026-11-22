@@ -282,14 +282,18 @@ const phaseCertificates = [];
 for (const reset of /** @type {Array<'book'|'page'|'chapter'>} */ (["book", "page", "chapter"])) {
   for (const skipEquals of [false, true]) {
     const phases = keyPhase(reset, skipEquals);
-    const fixed = hiddenStateCollision(decrypt(source, 0, 0, reset, skipEquals, 1), phases);
+    const fixed = {
+      plus: hiddenStateCollision(decrypt(source, 0, 0, reset, skipEquals, 1), phases),
+      minus: hiddenStateCollision(decrypt(source, 0, 0, reset, skipEquals, -1), phases),
+    };
     // An unseen initial state may be distinct in every page or chapter
     // because each reset scope receives independent 48-phase bins.
     for (const [u, v] of [[0, 1], [1, 0], [13, 21], [27, 27]]) {
       for (const sign of /** @type {Array<1|-1>} */ ([-1, 1])) {
         const other = hiddenStateCollision(decrypt(source, u, v, reset, skipEquals, sign), phases);
-        assert.equal(other.equal, fixed.equal);
-        assert.equal(other.denom, fixed.denom);
+        const expected = sign === 1 ? fixed.plus : fixed.minus;
+        assert.equal(other.equal, expected.equal);
+        assert.equal(other.denom, expected.denom);
       }
     }
     const controls = nativeControls.map(({ name, runes }) => {
