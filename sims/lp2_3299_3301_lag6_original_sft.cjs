@@ -57,6 +57,39 @@ assert.equal(total,1290);
 assert.equal(hits,80);
 assert.deepEqual(withinWordDoublets,{beforeSix:{pairs:8770,hits:54},fromSix:{pairs:1290,hits:9}});
 const correct=((x,m)=>((x%m)+m)%m);
+// The 16 original p15 Fibonacci-indexed prime cells, rigorously solved by
+// njloof / Dukotah #14 (2026-11-19), can alias in GP29. The original
+// red first-prime coefficient is NOT unique among the 16 modulo 29.
+const sourceFibonacciIndices=[0,1,2,3,5,8,13,21,34,55,89,144,233,377,610,987];
+const p15PhysicalGrid=[
+  [3258,3222,3152,3038],
+  [3278,3299,3298,2838],
+  [3288,3294,3296,2472],
+  [4516,1206,708,1820]
+];
+const p15Spiral=[
+  [1,1],[1,2],[2,2],[2,1],[2,0],[1,0],[0,0],[0,1],
+  [0,2],[0,3],[1,3],[2,3],[3,3],[3,2],[3,1],[3,0]
+];
+const firstPrimes=[];
+for(let n=2;firstPrimes.length<988;n++){
+  let prime=true;
+  for(let d=2;d*d<=n;d++)if(n%d===0){prime=false;break;}
+  if(prime)firstPrimes.push(n);
+}
+const gridMultChoice=sourceFibonacciIndices.map((F,k)=>{
+  const prime=firstPrimes[F],gridCell=Math.abs(3301-prime);
+  const [row,col]=p15Spiral[k];
+  assert.equal(p15PhysicalGrid[row][col],gridCell);
+  const a=(((-prime)%29)+29)%29;
+  let h=0;
+  for(let previous=0;previous<29;previous++)
+    h+=observed[previous][(a*previous+sourceB)%29];
+  return {spiralIndex:k,F,firstPrime:prime,gridCell,multiplierMod29:a,hits:h};
+});
+assert.deepEqual(gridMultChoice.filter(v=>v.hits===80)
+  .map(v=>v.spiralIndex),[0,9,12]);
+assert.equal(gridMultChoice[0].gridCell,3299);
 const competitors=[];
 for(let a=1;a<29;a++) for(let b=0;b<29;b++) {
   let h=0;
@@ -101,6 +134,8 @@ for(let round=0;round<rounds;round++){
 console.log(JSON.stringify({
   provenance:'External pnotisdev/cicada3301 phase57 reports 80/1290 original lag6 affine hits in 2026. Independent original-source re-evaluation; this SFT does not claim discovery of the numerical event.',
   physicalClues:{red_p15_fibonacci_grid_entry:3299,cicada_puzzle_number:3301,modulus:29,selected_a:sourceA,selected_b:sourceB,unselected_lag:6},
+  p15AllSixteenSourcePrimeCoefficients:gridMultChoice,
+  red29Aliases:[0,9,12],
   original:{completeWords:parsed.words.length,carriedWords:parsed.crossPageWords,
     withinWordDoubletsBySixPosition:withinWordDoublets,
     expectedFirstSixDoubletsWithoutAnyRepair:8770/29,
