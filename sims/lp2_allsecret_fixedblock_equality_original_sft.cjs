@@ -186,12 +186,13 @@ const sourceLatin=read("resources/control/latin-vulgate-gp-wholewords.txt")
   .split(/\r?\n/).map(x=>x.trim())
   .filter(x=>x&&!x.startsWith("#")).join("");
 const alternate=[
-  ["Old English Beowulf",oldEnglish.sourceGpBase29,6],
-  ["Latin Vulgate",sourceLatin,30]
+  ["Old English Beowulf",oldEnglish.sourceGpBase29,
+    oldEnglish.positiveControlAlphabet,6],
+  ["Latin Vulgate",sourceLatin,gpAlphabet,30]
 ];
 const alternateLanguages=[];
-for(const [name,base29,expected] of alternate){
-  const runes=Array.from(base29,glyph=>gpAlphabet.indexOf(glyph));
+for(const [name,base29,sourceAlphabet,expected] of alternate){
+  const runes=Array.from(base29,glyph=>sourceAlphabet.indexOf(glyph));
   assert(runes.every(x=>x>=0&&x<29));
   const entries=[];
   for(let offset=0;offset+N<=runes.length;offset+=Math.floor(N/2)){
