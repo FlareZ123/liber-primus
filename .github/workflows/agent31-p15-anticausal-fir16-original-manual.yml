@@ -1,0 +1,14 @@
+name: "Agent 31 - p15 anti-causal FIR16 all-secret original plaintext recovery"
+on:
+  workflow_dispatch:
+jobs:
+  backward-fir16:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Recover original LP2 p16-22 inverse via all 43 million secret singleton solutions
+        run: node sims/lp2_p15_anticausal_fir16_allsecret_source_sft.cjs
