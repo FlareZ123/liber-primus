@@ -1,0 +1,52 @@
+# LP2 p24–p26 mayfly triptych: no source-aligned shared additive GP29 pad
+
+**Decision, 22 November 2026:** the original three-page insect-artwork triptych does not support the simple 2014-executable hypothesis that its three different GP29 texts were encrypted under one repeated additive rune keystream at a common position clock. The literal page-start and the source-visible first-complete-word clocks both yield differences substantially less native-English-like than all sampled genuine GP29 source controls. Even selecting two unrestricted pagewise Caesar offsets after observing the ciphertext does not improve the result beyond the weakest 200 disjoint original-English controls. **No original unknown-page plaintext, authentic key or new complete cipher has been recovered.** This closes only this specifically stated reuse architecture.
+
+## Human-visible premise and exact source register
+
+Physical LP2 pages p24/p25/p26 correspond to original scans 41.jpg/42.jpg/43.jpg. They repeat a near-identical insect engraving and have similar text lengths **270, 273 and 265 GP29 runes**. Prior [Agent9 triptych word-weave decision](lp2-p24-p26-original-whole-word-weave-all-order-gate.md) excludes value-preserving word-only anagrams; it did not directly test an independent **shared additive pad**, which would instead change rune values. The printed first-line fragments are the ends of authentic cross-page words with exactly **3,2,1** leading runes, respectively. These facts motivate the two pre-specified alignments:
+
+1. **Page-start alignment:** first 264 runes of each page.
+2. **Complete-word alignment:** ignore only the respective first 3/2/1 carried runes, and compare the next 264 runes of each page, with the same putative keystream clock at the first full printed word.
+
+Using 264 common positions avoids truncation differences and imaginary runes. Source data: [canonical LP2 page indices](../resources/liber-primus/lp2-corpus.json), [genuine solved GP29 sections](../resources/external/relikd-solved-gp29-native-v1.json).
+
+## Key-independent inverse implication
+
+For distinct pages a,b at equal positions i, if
+
+C[a,i] = P[a,i] + K[i] (mod 29)  and  C[b,i] = P[b,i] + K[i] (mod 29),
+
+then **C[a,i]−C[b,i] = P[a,i]−P[b,i] (mod 29)** for *every possible keystream*, even an unknown high-entropy stream. We therefore do not need to guess K to test this model. The native-source solved-GP symbol distribution f from 2,979 solved reference runes fixes, without fitting ciphertext, the independent-English difference law q[d] = sum_x f[x]f[x−d] for 29 residues. For the three original page pairs at 264 positions each, the score is
+
+L = sum_pairs sum_i log(29 q[(C[a,i]−C[b,i]) mod29]).
+
+L>0 favors the predeclared real-source GP29 difference law over uniform independent masking; a negative L favors uniform. Because real English has sequential dependence and orthographic idiosyncrasies, the decision uses actual native-GP continuous control windows rather than a naive iid chi-square significance claim. Native English is source-calibrated for ING→GP21 and IO→GP27 and checks the independently solved **95-rune p57** exactly. Controls are pinned original text files [Gibran](../resources/control/gibran_prophet_58585.txt), [Shakespeare](../resources/control/shakespeare_first300k.txt), and [Emerson](../resources/control/emerson_essays_2944.txt), encoded word by word into authentic-source GP spelling.
+
+## Original results and source-native controls
+
+| Exact 3×264-rune register / experiment | Three-pair L | Interpretation |
+| --- | ---: | --- |
+| Original p24/25/26, **drop 3/2/1 carries** | **−15.2605421444** | 27 of 792 pair-difference observations are zero; χ² against uniform 28.71464646 |
+| Original p24/25/26, **page starts** | **−11.7096100691** | Same source-visible page-start alternative |
+| Original drop-carry with **literal +3,+2,+1 per-page additive cipher offsets removed** | **−10.5941011770** | The only natural signed numerical variant from the printed carry sequence; still nonprose-like |
+| **200 non-overlapping** triples of native Gibran/Shakespeare/Emerson, 264 runes each, stride 300 | **minimum −0.5653341560**, median 17.5020374653 | Zero control triples scored at/below the original source-aligned L |
+| **6,000 seeded randomly located** native source triples | **minimum −9.2398935343**, median 16.3598718242 | Zero samples scored at/below the original source-aligned L; overlapping placements are *not* independent tests |
+| Original drop-carry, **best two arbitrary constant pagewise Caesar offsets out of all 29²** | **+0.2733377235**, relative offsets [0,17,4] | An *unselected* fitted rival; still below the weakest of the 200 identically optimized disjoint native controls (min +1.2058509874; zero at/below) |
+| Original page streams circularly rotated independently 6,000 times | **median −19.3468436581** | 1,589/6,000 wrong-key rotations score as favorably as or better than the actual drop-carry alignment |
+
+The **source fixed data** distinguish same-position pad reuse from independent masking. A naive count of short English-looking fragments would not. The observed native-control gap is an empirical calibration under these three actual English books, **not a universal probability that no pad was reused**. The 200 disjoint controls are much more independent than the 6,000 overlapping placement samples.
+
+## Positive and alternate-model controls
+
+- **Exact reversible positive plant:** take three independent contiguous native GP English blocks, encrypt all three with a common deterministic 264-symbol GP29 additive pad, verify exact inverse and full equality of all three pairwise score distributions. PASS.
+- **Independent native transcription check:** source-calibrated English GP encoder exactly reproduces the original solved LP2 p57 in all **95/95 runes**. PASS.
+- **Two different human-visible phase options:** page start and first complete printed word both tested as frozen clocks; no shift was chosen by maximizing original-language scores.
+- **Strong rival:** a different key per page, an unknown nonadditive state or page-specific 29-symbol permutation, a nonnative source language, a plaintext whose page boundaries are unrelated to printed word positions, or an arbitrary unknown clock can evade this test. All remain possible; fitting them without an independent clue would not establish a decipherment.
+- **Unrestricted two-Caesar-offset variant:** maximized exactly across 841 possibilities, with matched source controls. Its near-null best value and lack of source key cannot be promoted as evidence for the fitted [0,17,4] offsets.
+
+## Research decision
+
+Retire **equal-position, same additive GP29 pad reused on all three repeated-insect pages**, including literal source first-word trimming and obvious page-carry offsets, as a lead to plaintext in source-native GP English. The repeated art may still select an entirely different intentional relationship, but it supplies no authored additive key or clock beyond these tested options. Continue only if a first-party clue specifies a different state, nonadditive operator or a real shared plaintext/key artifact and yields a prospective original-passage prediction.
+
+**Reproduction:** [Windows-compatible Node.js CommonJS single-file test](../sims/lp2_insect_triptych_sharedpad_sft.cjs), using only the committed immutable source inputs, fixed source-native encoder, seeded controls, exact original rune registers and reversible shared-pad plant. The complete test was executed successfully in a V8 JavaScript runner against exact GitHub repository source bytes on 22 November 2026; no Actions workflow was created. Run locally on a full checkout with Node.js 20+.
