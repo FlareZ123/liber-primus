@@ -247,6 +247,39 @@ assert planted_result["status"] == 0
 assert planted_result["exact_integral_source_certificate"]
 
 original_result = solve(SOURCE_HIST, eligible, 95.0)
+# Independent original-image 4x13 rectangle: the 51 p53 red runes plus
+# the physically next page p54 single enlarged red A (GP24) are exactly
+# 52. A pure 4-by-13 route may remove ONE arbitrary physical-source rune
+# as a pad. Exhaust all DISTINCT possible pad symbols; no symbol choice
+# is fitted or selected by a language score.
+P54 = next(p for p in DATA["pages"] if p["page"] == 54)
+assert P54["indices"][0] == 24
+square52 = SOURCE_HIST.copy()
+square52[24] += 1
+drop_cases = []
+for dropped in range(29):
+    if square52[dropped] == 0:
+        continue
+    possible = square52.copy()
+    possible[dropped] -= 1
+    if dropped == 24:
+        candidate_count = len(eligible)
+        report = original_result
+    else:
+        allowed = [
+            (word, encoded, weight)
+            for encoded, (word, weight) in D.items()
+            if not np.any(np.bincount(encoded, minlength=29) > possible)
+        ]
+        candidate_count = len(allowed)
+        report = solve(possible, allowed, 7.0)
+    case = {"dropped_rune_index": dropped, "dropped_rune": ALPHABET[dropped],
+            "eligible_types": candidate_count,
+            "status": report["status"],
+            "solver_elapsed_seconds": report["elapsed_seconds"]}
+    if report["status"] == 0:
+        case["certificate"] = report["selected"]
+    drop_cases.append(case)
 out = {
     "source": {"original_page": 53, "red_start": 128, "red_runes": 51,
                "thirteen_dots": 13, "word_lengths": SIZES,
@@ -258,6 +291,15 @@ out = {
                 "original_histogram_eligible_types": len(eligible)},
     "positive_same_form": planted_result,
     "original_feasibility": original_result,
+    "original_52_square_pad_exhaustion": {
+        "source": "p53 red51 plus p54 enlarged red A, 4x13 rectangle",
+        "source_extra_rune_gp": 24,
+        "possible_distinct_pad_symbols": len(drop_cases),
+        "infeasible": sum(x["status"] == 2 for x in drop_cases),
+        "feasible": sum(x["status"] == 0 for x in drop_cases),
+        "timed_or_unknown": sum(x["status"] not in (0, 2) for x in drop_cases),
+        "cases": drop_cases,
+    },
     "decision": (
         "EXACT infeasibility within the pinned native-GP word-inventory"
         if original_result["status"] == 2
