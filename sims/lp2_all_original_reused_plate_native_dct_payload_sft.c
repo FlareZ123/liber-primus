@@ -96,6 +96,7 @@ static void compare_original(Image *ref, const char *folder, int page,const Grou
     printf("ORIGINAL,%s,%d,%ld,%ld,%ld,%ld,%ld,%ld,%ld\n",g->name,page,blocks,identical,
         different,dc,ac,absOne,parityChange);
     if(blocks<=0) die("empty source ROI");
+    if(different!=0) die("source repeated plate luma DCT mismatch");
     close_image(&cand);
 }
 /* Synthetic JPEG copy with exactly 40 controlled bit sites.
