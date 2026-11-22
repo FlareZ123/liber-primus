@@ -2,9 +2,11 @@
 
 /**
  * Frozen original-cipher test of two publicly asserted LP2 page keys.
- * External claims: Wulfic/Cicada3301-Liber_Primus MASTER_TRACKER.md §3,
+ * Historic, now retracted claims: Wulfic/Cicada3301-Liber_Primus
+ * reference/archive/MASTER_TRACKER_pre-2026-09-29.md,
  * "Page 18 — Vigenère SUB, Key Length 53" and
- * "Page 19 — Vigenère ADD, Key Length 47", as viewed 22 Nov 2026.
+ * "Page 19 — Vigenère ADD, Key Length 47". The current tracker
+ * explicitly retracts pre-2026-09-29 wrongly mapped-page claims.
  * Scan 18.jpg is true physical LP2 p1; scan 19.jpg is physical p2.
  * No repository or network writes. Run: node sims/lp2_external_p18_p19_keys_original_sft.cjs
  */
