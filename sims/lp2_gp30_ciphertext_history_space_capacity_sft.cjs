@@ -96,9 +96,14 @@ function evaluate(k, reset, fields = []) {
    * @returns {string}
    */
   function stateKey(tape, index, start) {
-    const metadata = fields.map((field) => feature(frames[index], field));
+    const frame = frames[index];
+    // Only a page-private or chapter-private key selects its own codebook.
+    // A word reset reuses the same map in every printed complete word.
+    const owner = reset === 'page' ? String(frame.page) :
+      reset === 'chapter' ? String(frame.chapter) : 'shared';
+    const metadata = fields.map((field) => feature(frame, field));
     const history = tape.slice(Math.max(index - k, start), index);
-    return metadata.join(',') + '|' + history.join(',');
+    return owner + '|' + metadata.join(',') + '|' + history.join(',');
   }
 
   /**
