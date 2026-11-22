@@ -69,7 +69,7 @@ def oaep_sha1_decode(encoded: bytes) -> bytes | None:
 
 
 def pkcs1_v15_type2_decode(encoded: bytes) -> bytes | None:
-    if len(encoded) != K or encoded[:2] != b"\x00\\x02":
+    if len(encoded) != K or encoded[:2] != b"\x00\x02":
         return None
     try:
         separator = encoded.index(0, 2)
@@ -81,7 +81,7 @@ def pkcs1_v15_type2_decode(encoded: bytes) -> bytes | None:
 
 
 def pkcs1_v15_type1_decode(encoded: bytes) -> bytes | None:
-    if len(encoded) != K or encoded[:2] != b"\x00\\x01":
+    if len(encoded) != K or encoded[:2] != b"\x00\x01":
         return None
     pos = 2
     while pos < len(encoded) and encoded[pos] == 0xFF:
