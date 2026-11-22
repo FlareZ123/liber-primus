@@ -1,0 +1,24 @@
+name: "Agent34 Emerson two-field original SFT"
+'on':
+  push:
+    paths:
+      - ".github/workflows/agent34-emerson-bookcode-original-sft.yml"
+      - "sims/lp2_p50_emerson_fiveparagraph_wordinitial_original_sft.cjs"
+      - "resources/external/2014-emerson-firstfive-word60-source.json"
+  workflow_dispatch:
+
+jobs:
+  original-windows-node22:
+    name: "Pinned 2014 Emerson source and original LP2, Windows Node22"
+    runs-on: windows-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout source-locked repository
+        uses: actions/checkout@v4
+      - name: Set up Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Execute all-secret and historical source SFT
+        run: node sims/lp2_p50_emerson_fiveparagraph_wordinitial_original_sft.cjs
