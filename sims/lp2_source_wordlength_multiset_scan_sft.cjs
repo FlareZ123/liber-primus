@@ -232,7 +232,7 @@ sourceInputs.push({
  * @returns {string[]}
  */
 function signedMessageWords(name) {
-  const armor=read(name);
+  const armor=read(name).replace(/\r\n/g,'\n');
   assert.ok(armor.startsWith('-----BEGIN PGP SIGNED MESSAGE-----\n'));
   const bodyAt=armor.indexOf('\n\n');
   const stopAt=armor.indexOf('-----BEGIN PGP SIGNATURE-----');
