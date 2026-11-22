@@ -14,7 +14,7 @@ Under this branch, interpret `SHED` as removing the only unused base60 digit `f`
 
 `D(i) = value60(i) - value59(i)`.
 
-Independent p28 DH geometry supplies shared value **2**, so remove exactly two complete rectangular circumferences from the physical 32×8 table. The surviving 28×4 object contains **112 cells = φ(GP-prime(SHED))**. Its exposed circumference has **60 cells = φ(GP-prime(MUST))**.
+Independent p28 DH geometry supplies shared value **2**. Under this branch, use it as the peel count and remove two complete rectangular circumferences from the physical 32×8 table. The surviving 28×4 object contains **112 cells = φ(GP-prime(SHED))**. Its exposed circumference has **60 cells = φ(GP-prime(MUST))**.
 
 Now sum the source-defined shed values on the two surviving circumferences:
 
@@ -23,13 +23,13 @@ Now sum the source-defined shed values on the two surviving circumferences:
 
 The two outer discarded shell sums, 162 and146, match no solved p57 GP0 word.
 
-The geometry also implements the parable's directional language. `GP0(SURFACE)=67` is an address on the inner `TUNNELNG` circumference. Under the selected base59 pointer map, original cell67 is `3C=189`, moving in one edge onto the exposed `DIUINITY` circumference. Cell189 is also `3C=189`, the unique global fixed point.
+Under the candidate base59 pointer interpretation, the geometry can be read as implementing the parable's directional language. `GP0(SURFACE)=67` is an address on the inner `TUNNELNG` circumference. Under this candidate base59 pointer map, original cell67 is `3C=189`, moving in one edge onto the exposed `DIUINITY` circumference. Cell189 is also `3C=189`, the unique global fixed point.
 
-Most importantly, the recovered inner label gives a typed exit:
+The candidate inner label gives a typed table lookup:
 
 `TUNNELNG=94 → p50[94]=0u → base59 55`.
 
-Under the pre-transition base60 control the same token is56. Across the entire solved p57 vocabulary, **TUNNELNG is the only word whose post-switch base59 table value lands in terminal physical pages54–57**, and it selects the last unsolved physical page **p55**.
+Under the pre-transition base60 control the same token is56. Across the entire solved p57 vocabulary, **TUNNELNG is the only word whose post-switch base59 table value lands in terminal physical pages54–57**, and it maps to the last unsolved physical page **p55** under this candidate convention.
 
 That destination was independently source-selected before this result. The historical finite `prime_echo` family uniquely identifies the p54–p55 boundary300 when both player-visible pause values1033 and3301 are required; `GP-prime(EMERGE)=300`. The first intact repeated complete-word pair after that boundary is `DJU / BEI`, whose only other adjacent occurrence is p27. The candidate navigation chain is therefore, up to the independently selected p27:28 handoff:
 
@@ -37,9 +37,9 @@ That destination was independently source-selected before this result. The histo
 
 This remains a candidate source-internal p50→p55 bridge, not a decryption. The later p27 GP0/base59 continuation to p39/p50 fails its immediate NEXT pair AEF/P and does not authenticate a further DIVINITY/red13/3301 destination.
 
-## 1. Locked upstream state
+## 1. Candidate source sequence for the base59 branch
 
-The previous result establishes the ordered transition without using the present shell sums:
+The base59 branch interprets the following source observations as an ordered transition; the source does not explicitly state that the p50 table changes radix:
 
 1. conventional base60 reaches `CIRCUMFERENCES → PARABLE → FIND → 28`;
 2. the source-selected p28 word yields a DH151 public value66 and shared value87;
@@ -48,8 +48,8 @@ The previous result establishes the ordered transition without using the present
 5. `GP-prime(MUST)=186`, so `φ(186)=60`;
 6. `GP0(MUST)=51 → p50[51]=0x → 59` under the still-active base60 reading;
 7. lowercase `f` is the sole unused digit in the 60-symbol printed alphabet;
-8. SHED therefore selects the order-preserving drop-`f` base59 alphabet;
-9. frozen shared87 then decodes as `SHED=64` only in base59.
+8. This motivates testing an order-preserving drop-`f` base59 alphabet;
+9. under this branch, frozen shared87 decodes as `SHED=64` only in base59.
 
 Separately, the physical p28 line6 DH23 state is:
 
@@ -57,13 +57,13 @@ Separately, the physical p28 line6 DH23 state is:
 
 The present experiment uses only the already fixed shared value `K=2` as a radial peel count.
 
-## 2. The numeral-state change defines a literal shed field
+## 2. Candidate shed field under the f-deleted base59 interpretation
 
 The printed 60-symbol alphabet is:
 
 `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx`.
 
-The selected 59-symbol state removes the sole unused character `f`:
+Under this branch, the 59-symbol alphabet removes the sole unused character `f`:
 
 `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdeghijklmnopqrstuvwx`.
 
@@ -75,9 +75,9 @@ Across all256 cells:
 - the complete shed-value sum is507;
 - the exact concentric-shell sums are **162, 146, 105, 94** from outside inward.
 
-This quantity did not have a source reason before the ordered `60→59` state transition existed. It is the numerical amount removed by SHED.
+This is the arithmetic difference implied by the candidate `60→59` interpretation. The source selection of the radix change and the subtraction field remains unresolved.
 
-## 3. Shared2 selects the 28×4 object
+## 3. Shared2 motivates a two-shell peel
 
 The physical 32×8 table has four complete rectangular circumferences:
 
@@ -102,7 +102,7 @@ cells.
 
 Thus the clear adjacent instruction words `MUST SHED` numerically describe the selected object's exposed circumference and total remaining area at the same time that they define the numeral-state change.
 
-## 4. DIVINITY and TUNNELNG label the nested circumferences
+## 4. Shell sums match the solved p57 words
 
 On the selected 28×4 object:
 
@@ -118,7 +118,7 @@ This is more specific than merely noticing that a table total equals a solved wo
 
 A deterministic matched calibration permutes the exact 256 shed values over the fixed 32×8 positions while preserving their entire multiset. In 100,000 seeded shuffles, depth2 has sum105 about 1.2% of the time, while the ordered conjunction depth2=105 and depth3=94 occurs about 0.02% of the time. These frequencies are post-discovery scale diagnostics only. They are not historical authorship probabilities and do not correct the broader search process.
 
-## 5. SURFACE is a one-edge tunnel from the inner ring to the exposed ring
+## 5. SURFACE gives a candidate one-edge pointer
 
 Clear p57 has:
 
@@ -142,7 +142,7 @@ Under the candidate base59 pointer map, this is an exact one-edge movement from 
 
 The longer functional graph from arbitrary word starts wanders among shell depths, so this result does **not** promote shell depth as a universal semantic decoder. The one-edge SURFACE transition is the useful typed consequence.
 
-## 6. TUNNELNG exits to the last unsolved page
+## 6. TUNNELNG maps to a candidate p55 address
 
 The recovered inner-shell label is actionable under the already established solved-word map:
 
