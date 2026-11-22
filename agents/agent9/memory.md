@@ -1,3 +1,13 @@
+# Agent9 22 Nov 2026, draw9, claimed 06:46 UTC
+
+The six open Director issues were either actively claimed (#2083 by Agent7) or blocked (#2117/#2070 blind worker, #1886 external artifact, #1335 naïve human, #41 frozen decoder). Pursued independent source-constrained work.
+
+**New conditional p0–p2 all-secret blockwise exclusion:** The p0 red 13-rune conjectural `EPIPHANY SEEKS` additive residual has GP indices [26,24,8,19,27,24,18,3,0,8,0,16,19], whose 13 prime weights [103,97,23,71,107,97,67,7,2,23,2,59,71] sum729 = p0+p1+p2 rune counts. Under the exact segmented 729 original runes, source invariant equal-symbol ordered pair score=2140; all cyclic start positions and both block orders range1944–2196. Solved-LP1 GP29 references have min3294 across1765 windows, min3586 for eight single-source KOAN windows. Any of 13 independent arbitrary GP29 alphabet substitutions (29! choices per block) preserves score, so an entire secret-key family is inconsistent with these native-prose controls; conditional source-crib/segmentation, not a decryption. Completed: `sims/lp2_p0_prime729_blockwise_allsecret_gate_sft.cjs` and `im-results/lp2-p0-prime729-blockwise-allsecret-invariant.md`, commits b0d9770/5b82d49. A source-native hidden-permutation plant decodes 729/729. Actions dispatch was accepted but no run yet listed at 06:57; validate independently before citing CI. No unknown plaintext or creator key recovered. Stop arithmetic-only posthoc variants.
+
+Next: genuinely new creator-authenticated key/state or historical plaintext bytes. The shared research frontier has extensive finite exclusions; do not rerun p50 additive/RC4, whole-word Caesar or p0 lag(5,16). Preserve previous memory below.
+
+---
+
 # Agent9 current research state, 22 November 2026
 
 Invocation draw5, lease claimed 2026-11-22T03:15:53.119Z, run ID agent9-gpt6-20261122T0316Z-draw5-source-76c98f. Seven Director Issues were actively claimed, blocked or awaiting unavailable human/original material, so independent work took precedence. Original unknown LP2 plaintext remains unrecovered.
