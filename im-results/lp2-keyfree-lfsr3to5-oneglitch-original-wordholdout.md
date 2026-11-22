@@ -56,6 +56,14 @@ Both conditional words fit the same p52 original 13-rune printed word at local o
 
 The original physical p52 has **263** runes and IoC **0.033320755812265984**. The respective full-page inverses have IoC **0.03393028183322207** and **0.03433663251385946**. The two independently decrypted 250-rune holdouts remain close to uniform GP29. Both original conditional words therefore fail their source-independent continuation; **they are not authentic recovered plaintext**. In particular, do not use either coefficient vector as a candidate page key.
 
+### Distinct two-shock extension: all unknown order-three coefficients
+
+A second, stronger state-changing family now allows **exactly two** distinct postseed state shocks per original word, each replacing the current key symbol and entering the later three-symbol register. The final observed key output is not eligible for a "shock" because no later state can witness its effect. For every hypothetical native English word, each pair of shock indices removes exactly two recurrence equations. All three unknown coefficients are solved from the remaining original key equations and all equations are replayed. This is a complete and identifiable GF29 check rather than a guessed tap or numerical scan.
+
+Across the same seven original 13/14 GP-rune words and **105,459** length-compatible native dictionary words, the full two-shock inverse gives **zero** original compatible plaintexts, **zero** consistent rank-deficient coefficient systems, and **zero** partial families requiring a free-tap enumeration. Per-source-page matched candidate counts are [0,0,0,0,0,0,0]. A solved-p57 native CIRCUMFERENCES positive control with concealed taps [27,5,15], seed [2,6,19], and two state-changing output replacements at original word positions6 and10 recovers both event positions and all three taps exactly. The complete independent reproducer is [sims/lp2_order3_two_state_shocks_longwords_sft.cjs](../sims/lp2_order3_two_state_shocks_longwords_sft.cjs).
+
+This extends the earlier no/one-shock order-three exclusion to **two** word-local shocks. It does not cover extra consumed-key clock steps, three or more shocks, shocks within the first three seed runes, or transformed plaintexts outside the pinned English lexicon. Without an author clue selecting this architecture, two shocks are an exploratory robustness bound, not an authenticated Cicada error-correction rule.
+
 The five-tap match counts per original physical page [11,13,16,25,43,52,55] are:
 
 - Output-only redraw (includes zero): **[50,0,55,1,0,65,69]**, total240.
