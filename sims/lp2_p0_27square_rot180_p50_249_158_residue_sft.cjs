@@ -119,6 +119,12 @@ const outputs = [-1,1].map(sign => {
 });
 assert.deepEqual(outputs.map(x=>x.twoCycleOutput), [[0,0],[26,5]]);
 
+// Under the authenticated solved-p56 cipher, plaintext F=0 must emit C=0.
+// The two algebraic zero residues here have NONZERO original ciphertext,
+// so they cannot be F-transparent plaintext skips under that proven cipher.
+assert.deepEqual(cycle2.map(i=>transformed[i]), [13,17]);
+assert.ok(cycle2.every(i => transformed[i] !== 0));
+
 let state = 0x33412317;
 /** @param {number} limit @returns {number} */
 function randomIndex(limit) {
@@ -178,6 +184,7 @@ console.log(JSON.stringify({
   })),
   d4,all256Rot180Hits:match(c,rot),directModulo29AdditiveConsumers:outputs,
   clearP57Trigram:model.p57Score,
+  authenticFTransparencyObstruction:'the two matched GP29 zeros have original rotated ciphertext P=13 and B=17 (both non-F), so cannot be plaintext F skips in the proven p56 mechanism',
   nullTests:{fullChapterShuffle:allSourceNull,eachPageShuffle:pageCountPreservedNull},
   limitations:'180-degree half-turn is visually motivated but typed count-to-cell/residue lookup was recognized after original ciphertext inspection; conditional shuffle rates are NOT discovery-adjusted and no plaintext/key/cipher is authenticated'
 },null,2));
