@@ -163,8 +163,8 @@ const positives=[],nullScores=[],posEqual=[];
 for(let t=0;t<120;t++){
   const pA=sampleNative(A),pB=sampleNative(B);
   const shared=Array.from({length:N},()=>integer(28));
-  const a=pA.map((x,i)=>(x-1+shared[i])%28);
-  const b=pB.map((x,i)=>(x-1+shared[i])%28);
+  const a=pA.map((x,i)=>(x+shared[i])%28);
+  const b=pB.map((x,i)=>(x+shared[i])%28);
   posEqual.push(a.filter((x,i)=>x===b[i]).length);
   const pos=viterbi(a,b);
   positives.push(pos.score);
