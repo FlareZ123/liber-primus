@@ -1,60 +1,77 @@
-# Key-free long-word test of GF29 linear key recurrences, orders 3–5
+# Key-free source-native long-word attack on GF29 linear key recurrences
 
 ## Decision
 
-Original unsolved LP2 provides seven complete printed words of length 13 or 14 Gematria Primus runes. A complete search against the **29,229** previously pinned independent source-native English words of those lengths found **zero** clean or single-output-glitch fits for an arbitrary three-tap additive GF29 key recurrence. The analogous four-tap family gave exactly **one** fit, physical p52 **OVERSENSITIZE** with inferred coefficients [23,26,14,17] and output redraw at local word index7. A strictly untouched **250-rune** continuation of that very recurrence across p52 has IoC **0.033542168674698794**, at the uniform-rune floor and below ordinary native-GP prose. The candidate is therefore rejected as a usable shared key or authenticated original plaintext. A five-tap family produced **240** fits, dominated by short-word degrees of freedom, with **zero** identical coefficient sets recurring on different original pages.
+A complete key-free search across **all seven longest original unsolved LP2 words** and **29,229 independently pinned native-GP English dictionary words** recovered **no authenticated unknown-page plaintext** under any tested 3–5-order linear key model. The experiment algebraically eliminates every coefficient and every word-local seed for three distinct one-irregularity designs:
 
-This is a scoped original-cipher *negative*, with positive recovery controls. **No unknown-page plaintext, creator key, or historically specified LFSR operation was recovered.** It should prevent further arbitrary seed hunting within this particular word-local recurrence model.
+| Order | Clean or one output-only redraw | One extra consumed generator key | One state-changing key shock |
+|---|---:|---:|---:|
+| 3 | **0** | **0** | **0** |
+| 4 | **1** | **0** | **1** |
+| 5 | **240** | **4** | **593** |
 
-## Motivating premise and how this differs from earlier work
+Neither of the **two** original order-four candidate words survives a completely untouched 250-rune same-page key continuation. Every family has **zero** recovered coefficient vectors recurring across distinct original pages. The five-tap models are sufficiently flexible on 13/14-rune observations to produce hundreds of unrelated dictionary fits by chance.
 
-The book's GP29 ring and visible numerical sequences make modular recurrences a conceivable reversible keystream family. An earlier p0 conditional 13-rune EPIPHANY crib yielded a six-lag Berlekamp–Massey model, but that result depended on the crib and failed its independent continuation. The existing p7 five-red-product experiment fixed five tap values and solved separate feedback-driver models; it did not algebraically eliminate **every unknown three- and four-tap coefficient** for all seven longest words with a state-preserving key-output redraw.
+The result restricts these key-and-register families on source-native English words. It does **not** imply an LFSR key was selected by Cicada, nor solve another runic passage.
 
-The present experiment grants each original word a completely unknown, independent seed and key coefficients. Its only language restriction is the pinned 29,229-word source-native GP dictionary. It does not assume plaintext elsewhere in the book or use p50 candidate pointers. It tests a falsifiable consequence of any single global or per-page recurrence, since each full word must obey the same local key equation.
+## Source, premise, and independently supplied lexicon
 
-## Exact model and source
+Original material: **resources/lp2-transcription.txt** and **resources/liber-primus/lp2-corpus.json**. The parser joins typography-wrapped words across original lines and pages. The seven long original words occur on physical pages **11, 13, 16, 25, 43, 52, 55**, with rune lengths **13,14,13,14,14,13,13**. Every runic position is from the original cipher.
 
-For each source word of length n, ciphertext and putative native-GP plaintext use values 0..28:
+Language baseline: **resources/control/dwyl-english-alpha-gp13-14-only.txt**, a pinned English lexicon of exactly **29,229** entries, including **17,772** words encoding to 13 source-native GP runes and **11,457** encoding to 14. The encoder **sims/lp2_native_gp_source_orthography_sft.cjs** reproduces authentic 2014 solved-p57 CIRCUMFERENCES and 181 solved-LP1 native words, including the IO/ING spelling differences. Its source dictionary contains no plaintext inferred from the unsolved original.
+
+Motivation: the book establishes prime-valued symbols and simple modular operations, while the unknown ciphertext has unusually few adjacent repeated runes. A linear register plus a rare anti-doublet correction is one plausible reversible explanation. Extensive prior all-state order-three LFSR/Cicada F-skip and collision HMM work is acknowledged. This experiment is a **different local inverse:** no specified tap vector, no word-initial seed, no model-trained plaintext and no globally frozen phase. It assesses native word candidates by exact reconstruction of unknown coefficients on the original seven longest words, and checks the two surviving order-four apparent plaintexts on never-fitted page material.
+
+## Reversible models
+
+For all words, original C and native hypothetical P take GP index values 0..28:
 
 \[
-C_i=P_i+K_i\pmod {29},\qquad
-K_i=\sum_{j=1}^{m}a_jK_{i-j}\pmod {29},\quad m\in\{3,4,5\}.
+C_i=P_i+K_i \pmod{29},\qquad
+K_i=\sum_{j=1}^{m}a_jK_{i-j}\pmod{29},\quad m\in\{3,4,5\}.
 \]
 
-Both the m initial key symbols and m coefficients are unknown. The optional *single output-only redraw* replaces one observed K value at any index **i ≥ m** without changing the underlying generated recurrence state. This is narrower than a state-rekeying or slipping cipher. No page-wide seed is imported or fitted.
+The coefficients a and initial m key values are **arbitrary**, independently granted to every original word. For each dictionary candidate, infer K=C−P, form all GF29 linear equations for recurrence taps and recover their unique full-rank solution by modular Gaussian elimination. A full exact recurrence replay is mandatory; a compatible subset of equations alone does not qualify.
 
-Inputs: original rune transcription **resources/lp2-transcription.txt**, original numeric runes **resources/liber-primus/lp2-corpus.json**, independent dictionary **resources/control/dwyl-english-alpha-gp13-14-only.txt**, the source-calibrated GP encoder **sims/lp2_native_gp_source_orthography_sft.cjs**, and physical-page logic **sims/lp2_word_pages.cjs**. The original words occur on pages 11,13,16,25,43,52,55 with length profile [13,14,13,14,14,13,13]. The dictionary contains 17,772 GP13 words and 11,457 GP14 words. Word-boundary joining across printed lines/pages follows the shared parser.
+The following optional one-event corrections were separately included, in addition to clean key streams:
 
-For each word and lexicon candidate, compute K = C − P in GF29. Solve the m unknown recurrence coefficients by row elimination on equations for all i ≥ m. For one redraw at position r, omit exactly equations i = r through r + m, the only recurrence equations contaminated by that observed output. Demand full rank m and **replay the entire underlying generated key from the original first-m seed**, accepting only an exact match everywhere except one difference at precisely r. This secondary exact inverse is important: an overfitted subset of modular equations alone is never accepted. The candidate is then re-enciphered by addition. The last m initial positions are not offered as redraw locations because doing so would require an additional unknown seed term.
+1. **Output-only redraw:** one emitted key after the first m positions is replaced by an arbitrary rune. The hidden register keeps its original state. Remove exactly the equations at positions r..r+m that use the corrupted observed K, solve the clean equations, regenerate the entire key from the first m true values, and accept only an exact match at all positions except r.
+2. **Extra consumed key:** before emitting cipher rune r, consume and discard one register output; later outputs move one register step forward. Remove the m contaminated equations at r..r+m−1, solve all other equations, generate one extra state from the original first m values, and demand exact reconstruction with the single source-fixed phase skip.
+3. **State-changing shock:** at r, replace one generator output with an arbitrary value that is fed into all subsequent recurrence steps. Remove exactly the equation for r; every other equation must hold, including all later ones. A genuine shock is required at r. The terminal position is not used for a one-event state-change fit because no subsequent prediction could distinguish it.
 
-## Original results
+An event is permitted **only after the m seed positions**. The models do not include a second event, arbitrary alphabet permutation, ciphertext-dependent nonlinear taps, state changes outside the declared shock/skip, or an English word absent from the dictionary.
 
-| Key order m | Candidate plaintext fits (zero or one output redraw) | Distinct pages with fits | Cross-page repeated coefficient sets |
-|---|---:|---:|---:|
-| 3 | 0 | 0 | 0 |
-| 4 | 1 | 1 | 0 |
-| 5 | 240 | 5 | 0 |
+## Exact original-data results
 
-For m5, per-page counts in physical page order [11,13,16,25,43,52,55] are [50,0,55,1,0,65,69]. Its broader model naturally admits many random dictionary coincidences, especially near the word end. Its 240 matches are not plaintext evidence.
+Across the seven physical original words, all three order-three variants give zero dictionary fits. The four-tap families give exactly two separate *conditional* original matches:
 
-The *only* m4 match is original p52 source word at local rune offsets **78..90**. Candidate plaintext **OVERSENSITIZE** has thirteen source-native runes. The exact inferred observed key starts [10,4,23,26]; coefficients [23,26,14,17] generate all thirteen inferred key positions except index7. The candidate has no first-party source spelling/operation selector.
+| Exact event model | p52 hypothetical word | Word-local register recovered | Error position | Original page-heldout IoC |
+|---|---|---|---:|---:|
+| One output-only redraw | OVERSENSITIZE | taps **[23,26,14,17]**; seed **[10,4,23,26]** | 7 | **0.033542168674698794** |
+| One state-changing shock | NONLUMINOUSLY | taps **[27,25,11,28]**; seed **[4,2,3,10]** | 5 | **0.03469879518072289** |
 
-Holdout: run the recovered recurrence forward to the end and backward to the beginning of **the same complete original physical p52**, using the modular inverse 17⁻¹ ≡12 mod29 for the backward recurrence. None of the 250 other runes, their word boundaries, or their expected plaintext affected the recovered taps or initial key. The IoCs are:
+Both conditional words fit the same p52 original 13-rune printed word at local offsets **78..90**. They were discovered in an unrestricted all-dictionary scan and have no first-party operation selector. In each case, extend the recovered key recursively from the exact local source rune offsets: forward with its four inferred taps, backward through the inverse of its nonzero fourth tap (respectively 17⁻¹=12 and 28⁻¹=28 mod29). Other original p52 runes are never used to tune taps, seed, shock location or candidate dictionary phrase.
 
-| Original p52 263-rune cipher | Inverse across all 263 runes | Inverse on the 250 untouched runes |
-|---:|---:|---:|
-| 0.033320755812265984 | 0.03393028183322207 | **0.033542168674698794** |
+The original physical p52 has **263** runes and IoC **0.033320755812265984**. The respective full-page inverses have IoC **0.03393028183322207** and **0.03433663251385946**. The two independently decrypted 250-rune holdouts remain close to uniform GP29. Both original conditional words therefore fail their source-independent continuation; **they are not authentic recovered plaintext**. In particular, do not use either coefficient vector as a candidate page key.
 
-The output retains noise-like GP29 letter frequencies. It does not exhibit a reproducible English plaintext stretch. The local oversensitize fit is therefore a dictionary coincidence under a flexible model. Continuing this recurrence to other pages or building key schedules from its taps is unwarranted.
+The five-tap match counts per original physical page [11,13,16,25,43,52,55] are:
 
-## Power and limitations
+- Output-only redraw (includes zero): **[50,0,55,1,0,65,69]**, total240.
+- One skipped generator key: **[1,0,0,0,0,1,2]**, total4.
+- One state-changing shock (includes zero): **[132,3,146,5,6,148,153]**, total593.
 
-The accompanying CommonJS single-file test plants native-GP **CIRCUMFERENCES**, attested verbatim in solved p57, with three fully secret, nontrivial order-3/4/5 coefficient vectors and seed registers. Algebra recovers all three clean planted keys exactly. It also recovers order-3 and order-4 coefficients after an independently inserted nonzero output redraw at position7. The order-5 redraw control is not required: at n=14, removing its six contaminated equations leaves too little rank to determine five coefficients. All positive encipherments reconstruct by the same additive GP29 rule.
+None of these five-tap fits shares an identical inferred coefficient vector across two physical original pages. The high flexibility and short-word samples make most five-tap matches expected under unrelated sequences; there is no independently reproducible paragraph receiver.
 
-The original negative is conditional on **one-to-one source-native English orthography, the named 29,229-word dictionary, additive GP29 output, homogeneous linear recurrence, and at most one state-preserving key-output redraw after the seed**. An unrepresented plain word, foreign/altered language, nonlinear cipher, multiple redraws, a redraw that advances/resets state, or a length-changing decoder remains open. The single 4-tap candidate's holdout rejects transferring *those recovered taps* to full p52. It does not disprove a cipher with wholly private per-word taps, although such flexibility has no source key selector and cannot by itself recover other plaintext.
+## Positive controls and independent reproducibility
 
-## Reproduction
+[Read-only Windows Node.js 22 CommonJS SFT](../sims/lp2_longword_keyfree_lfsr3to5_oneglitch_sft.cjs) uses the existing sources, source-GP encoder and physical word parser, and asserts every original hit count, both p52 candidate identities and both untouched heldout IoCs.
 
-[Read-only Windows Node22 SFT](../sims/lp2_longword_keyfree_lfsr3to5_oneglitch_sft.cjs) verifies wordlist cardinalities, original page/rune positions, 3/4/5-tap hit counts, positive controls, the sole original m4 match and its independent p52 holdout. Commit: ee70b3cb8757549e8db83763a1073a2608cb9236 (SFT). The original search calculations were independently executed in the current V8 runtime before the SFT was committed.
+It plants source-native **CIRCUMFERENCES** (directly attested in clear p57) under arbitrary secret nontrivial three-, four-, and five-tap recurrences. The solver recovers all three clean planted coefficient vectors exactly. For three- and four-tap keys, independently inserted one-output redraws, consumed-extra keys and state-changing shocks are also recovered exactly, with reconstructed ciphertext. Order-five one-event positives would often be unidentifiable on a 14-rune word because deleting five or six contaminated equations leaves insufficient rank; only order-five exact recovery is claimed as a calibration.
 
-**Next decision:** prioritize locating a first-party key/state instruction or recoverable historical artifact. Do not extend this numerical fit to a larger family merely to retain OVERSENSITIZE. If an authentic source eventually selects an m≤4 continuous GF29 recurrence, this exact original long-word gate can be reused to test that proposal without tuning.
+The earlier original-data V8 calculations independently established the all-dictionary results; the repository SFT is the persistent single-file reproducer. GitHub changes: ee70b3cb (initial source runner), 24dd251 (add state-skip and shock families), and this consolidated result. No distinct external creator evidence was used.
+
+## Interpretation and next decision
+
+These results exclude a **source-native English long word covered by this lexicon** for any arbitrary order-3 recurrence with zero/one of the stated irregularities, and make an order-4 global state model implausible in the face of two noise-like conditional page-wide continuations. They do not exclude other-language words, actual ciphertext-phase slips involving multiple register changes, nonlinear/hashed keys, orders higher than five, or dictionary omissions.
+
+The current advancement is an efficient local inverse that exactly removes unknown taps and word seeds before any attempted longer decode. Further blind all-seed LFSR coefficient fitting has low expected payoff. A first-party source selecting a key source, opcode, receiver and clock remains the valuable missing input.
