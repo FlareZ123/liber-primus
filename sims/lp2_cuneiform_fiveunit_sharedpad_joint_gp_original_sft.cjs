@@ -367,6 +367,28 @@ const planted=plantedSets.map(unit=>({
 const negatives=Array.from({length:9},(_,j)=>recover(
   encryptedControl(plantedSets[j%plantedSets.length],false),model));
 const found=recover(message,model);
+/**
+ * Exact source-number rival: each of the five red labels is a public
+ * additive lane offset 0,1,2,3,4 (global 1 offset cancels with the pad).
+ * The same unknown i-th key rune is reused across lanes. Both possible
+ * arithmetic signs are frozen; no extra page/phrase-dependent deltas.
+ *
+ * An encryption C_l,i = P_l,i + K_i +/- l has common-pad differences
+ * after subtracting/adding the printed lane label. No retuning language
+ * model or beam states against the output.
+ */
+const numberedOffsets=[-1,1].map(sign=>{
+  const coded=message.map((unit,lane)=>({
+    tape:unit.tape.map(v=>mod(v+sign*lane)),
+    begins:unit.begins,ends:unit.ends
+  }));
+  const trial=recover(coded,model);
+  return {sign,scorePerRune:trial.scorePerRune,
+    sourceFirstUnit:wordsAtSourceBreaks(trial.plaintext[0],message[0].begins),
+    sourceLast50Units:trial.plaintext.map(t=>translit(t.slice(41))),
+    full91RuneRecovered:trial.plaintext.map(t=>translit(t))
+  };
+});
 const positives=planted.map(({unit,decoded},i)=>({
   case:i, scorePerRune:decoded.scorePerRune,
   exactOriginalRuneHits:decoded.plaintext.map((t,j)=>t.filter(
@@ -396,6 +418,14 @@ console.log(JSON.stringify({
     bestScore:Math.max(...negativeScores),
     worstScore:Math.min(...negativeScores),
     differenceFromOriginal:negativeScores.map(x=>found.scorePerRune-x)},
+  numberedOffsetSharedPadOriginalRivals:{
+    signs:[-1,1],
+    exactClock:'original 1..5 labels as zero-based lane shift; common 91-rune pad',
+    candidates:numberedOffsets,
+    nativeReferencePasses:positives.every(t=>t.exactTail50RuneHits.every(n=>n>=30)),
+    originalBeatsAllNineIndependentPadControlScores:
+      numberedOffsets.map(t=>t.scorePerRune > Math.max(...negativeScores))
+  },
   originalFiveUnit:{
     scorePerRune:found.scorePerRune,
     complete91GP29RuneCandidates:found.plaintext.map(translit),
