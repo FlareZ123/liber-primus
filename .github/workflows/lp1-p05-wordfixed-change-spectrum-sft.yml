@@ -1,0 +1,16 @@
+name: LP1 p05 word-fixed CHANGE matrix SFT
+on:
+  workflow_dispatch:
+jobs:
+  source-word-prime-operator:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - name: Original source checkout
+        uses: actions/checkout@v4
+      - name: Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify all 13 authentic word cells and 29 entire-number-family squares
+        run: node sims/lp1_p05_wordfixed_change_spectrum_29invariant_sft.cjs
