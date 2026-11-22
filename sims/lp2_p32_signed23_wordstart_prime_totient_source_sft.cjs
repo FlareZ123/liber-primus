@@ -151,6 +151,47 @@ assert.equal(results.length,96);
 assert.equal(results.filter(x=>x.invalid===0).length,0);
 assert.equal(results.filter(x=>x.score>=nativeMin).length,0);
 results.sort((a,b)=>b.score-a.score);
+// Closest source-simple rival: each of the 22 route addresses itself is
+// one constant GP29 Caesar key for the corresponding *whole printed word*.
+// This does not use a prime index or fit a private offset.
+const directWordShifts=[];
+for(const [alignment,sourceStarts] of Object.entries(alignments)){
+  for(const sign of [-1,1]){
+    for(let mask=0;mask<16;mask++){
+      const decoded=[],illegal=[];let position=0;
+      for(let j=0;j<fragments.length;j++){
+        for(const v of fragments[j]){
+          const fIndex=fSites.indexOf(position);
+          const copy=fIndex>=0&&(mask&(1<<fIndex));
+          const p=copy?0:mod(v+sign*sourceStarts[j]);
+          decoded.push(p);
+          if(p===0&&!copy)illegal.push(position);
+          position++;
+        }
+      }
+      assert.equal(position,121);
+      directWordShifts.push({alignment,sign,mask,
+        illegal:illegal.length,score:score(decoded),
+        preview:decoded.slice(0,35).map(x=>corpus.translit[x]).join('')});
+    }
+  }
+}
+assert.equal(directWordShifts.length,96);
+assert.equal(directWordShifts.filter(v=>v.illegal===0).length,0);
+assert.equal(directWordShifts.filter(v=>v.score>=nativeMin).length,0);
+// Independent native 121-rune positive for the simple whole-word shift.
+const directCipher=[],directRecovered=[];
+let positiveAt=0;
+for(let j=0;j<fragments.length;j++)for(let i=0;i<fragments[j].length;i++){
+  const fIndex=fSites.indexOf(positiveAt);
+  const copy=fIndex>=0&&(positiveMask&(1<<fIndex));
+  const p=positivePlain[positiveAt++];
+  const c=copy?0:mod(p+starts[j]);
+  directCipher.push(c);
+  directRecovered.push(copy?0:mod(c-starts[j]));
+}
+assert.deepEqual(directRecovered,positivePlain);
+directWordShifts.sort((a,b)=>b.score-a.score);
 console.log(JSON.stringify({
   status:'PASS',source:'original p32 121 runes/22 fragments + original p50 23-hop route',
   p56AuthenticPositive:85,sourceNativeP32Positive:121,
@@ -159,5 +200,10 @@ console.log(JSON.stringify({
   cryptographicallyAdmissible:results.filter(x=>x.invalid===0).length,
   aboveNativeFloor:results.filter(x=>x.score>=nativeMin).length,
   highestScoring:results.slice(0,5),
+  directWholeWordRouteShift:{trials:directWordShifts.length,
+    legal:directWordShifts.filter(v=>v.illegal===0).length,
+    aboveNative:directWordShifts.filter(v=>v.score>=nativeMin).length,
+    nativePositive:directRecovered.length,
+    highestScoring:directWordShifts.slice(0,3)},
   decision:'Reject this exact per-fragment original-route-seeded p56 prime-totient transfer without fitted offsets or fragment-private keys; no original LP2 plaintext.'
 },null,2));
