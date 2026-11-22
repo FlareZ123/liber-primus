@@ -36,7 +36,7 @@ Unaltered original GP29 indices come from `resources/liber-primus/lp2-corpus.jso
 
 The unaltered p8–14 source itself has IoC **0.0344604835**. The full CRT result opens with GP transliteration `STIBXUHAEUCYRDYIUAEHBEC...` and the inverse opens `IAPTHHDEAXHGMAEWSI...`; neither contains a continuous intelligible passage. All five untouched sections remain at near-uniform GP29 inventory in both directions. The genuine solved p57 GP text has IoC about **0.06271**; this exact family does not behave like that native solved source.
 
-The [single-file Node22/CommonJS SFT](../sims/lp2_p7_quartic_crt_fourchannel_original_sft.cjs) checks all four matrix basis states, exact source reencryption of **every original rune** in each of the five sections, both clock directions, original full-run IoCs and an independently known **96-rune p57+p56 GP-positive** that encrypts and decrypts without error.
+The [single-file Node22/CommonJS SFT] has [passed the untouched-source Windows CI run 45053219885](https://github.com/FlareZ123/liber-primus/actions/runs/45053219885) and(../sims/lp2_p7_quartic_crt_fourchannel_original_sft.cjs) checks all four matrix basis states, exact source reencryption of **every original rune** in each of the five sections, both clock directions, original full-run IoCs and an independently known **96-rune p57+p56 GP-positive** that encrypts and decrypts without error.
 
 ## Decision and important missing input
 
