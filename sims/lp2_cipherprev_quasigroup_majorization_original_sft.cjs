@@ -54,18 +54,53 @@ for (const [g, n] of sectionLengths.entries())
   for (let i = 0; i < n; i++) sectionAt.push(g);
 assert.equal(pageAt.length, original.length);
 assert.equal(sectionAt.length, original.length);
+const ink = JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
+const redAt = new Uint8Array(original.length);
+let inkOffset = 0;
+for (const page of pageSource) {
+  const marked = ink.pages.find(p => p.page === page.page);
+  if (marked) assert.equal(marked.rune_count, page.indices.length);
+  for (const span of marked?.red_spans || []) {
+    assert(span.start >= 0 && span.start + span.length <= page.indices.length);
+    const literallyRed = page.indices.slice(span.start, span.start + span.length)
+      .map(i => gp.runes[i]).join("");
+    assert.equal(literallyRed, span.runes, "physical colored original rune identity");
+    for (let i = 0; i < span.length; i++) {
+      assert.equal(redAt[inkOffset + span.start + i], 0,
+        "no overlapping original red spans");
+      redAt[inkOffset + span.start + i] = 1;
+    }
+  }
+  inkOffset += page.indices.length;
+}
+assert.equal(inkOffset, original.length);
+assert.equal(redAt.reduce((sum, v) => sum + v, 0), 213);
+let crossedInkInsideWord = 0;
+let colorOffset = 0;
+for (const word of words) {
+  for (let j = 1; j < word.length; j++)
+    if (redAt[colorOffset + j] !== redAt[colorOffset + j - 1])
+      crossedInkInsideWord++;
+  colorOffset += word.length;
+}
+assert.equal(crossedInkInsideWord, 0,
+  "red/black typography boundaries must coincide with original word boundaries");
 const TOP = [1, 2, 3, 5, 8, 10];
-const scopes = ["global", "section", "page", "position", "sectionParity"];
+const scopes = ["global", "section", "page", "position", "sectionParity",
+  "color", "sectionColor", "positionColor"];
 const groupAt = (scope, offset, wordPosition) =>
   scope === "global" ? 0 :
   scope === "section" ? sectionAt[offset] :
   scope === "page" ? pageAt[offset] :
-  scope === "sectionParity" ? sectionAt[offset] * 2 + (wordPosition % 2) : wordPosition;
+  scope === "sectionParity" ? sectionAt[offset] * 2 + (wordPosition % 2) :
+  scope === "color" ? redAt[offset] :
+  scope === "sectionColor" ? sectionAt[offset] * 2 + redAt[offset] :
+  scope === "positionColor" ? wordPosition * 2 + redAt[offset] : wordPosition;
 
 /**
  * Exact envelope of ANY secret row bijections under a given reset scope.
  * @param {number[][]} ciphertext
- * @param {"global"|"section"|"page"|"position"|"sectionParity"} scope
+ * @param {"global"|"section"|"page"|"position"|"sectionParity"|"color"|"sectionColor"|"positionColor"} scope
  */
 function envelope(ciphertext, scope) {
   assert(scopes.includes(scope));
@@ -243,6 +278,12 @@ assert.equal(originalCaps.position.capacities[1], 1058);
 assert.equal(originalCaps.position.capacities[5], 3974);
 assert.equal(originalCaps.sectionParity.capacities[1], 1354);
 assert.equal(originalCaps.sectionParity.capacities[5], 4842);
+assert.equal(originalCaps.color.capacities[1], 614);
+assert.equal(originalCaps.color.capacities[5], 2610);
+assert.equal(originalCaps.sectionColor.capacities[1], 1134);
+assert.equal(originalCaps.sectionColor.capacities[5], 4024);
+assert.equal(originalCaps.positionColor.capacities[1], 1160);
+assert.equal(originalCaps.positionColor.capacities[5], 4089);
 assert.equal(originalCaps.global.equal, 63);
 
 const corpusPaths = [
@@ -268,8 +309,9 @@ for (const [sourceIndex, sourcePath] of corpusPaths.entries()) {
     maxTop5 = Math.max(maxTop5, st.top5);
     minE = Math.min(minE, st.E);
     if (trial === 0) {
-      plantControls = Object.fromEntries(scopes.map(scope =>
-        [scope, plant(nativeWords, scope, random)]));
+      plantControls = Object.fromEntries(scopes.map((scope, scopeIndex) =>
+        [scope, plant(nativeWords, scope, scopeIndex < 5
+          ? random : rng(0x33018801 + 100 * sourceIndex + scopeIndex))]));
       switchedModeControls = [2, 3].map(m =>
         plantUnknownModes(nativeWords, m, random));
     }
@@ -278,6 +320,9 @@ for (const [sourceIndex, sourcePath] of corpusPaths.entries()) {
     "even freely switching between any TWO secret nonlinear tables is insufficient");
   assert(minTop1 > originalCaps.section.capacities[1]);
   assert(minTop5 > originalCaps.section.capacities[5]);
+  assert(minTop5 > originalCaps.color.capacities[5]);
+  assert(minTop5 > originalCaps.sectionColor.capacities[5]);
+  assert(minTop5 > originalCaps.positionColor.capacities[5]);
   assert(minTop1 > originalCaps.position.capacities[1]);
   // English controls fail even with separate even/odd tables per section.
   // Latin is addressed by the tighter per-word-position and section gates.
