@@ -85,6 +85,35 @@ A controlled source-local alternative check matters: enumerate **all** the solve
 
 The existing [single CommonJS SFT](../sims/lp2_2014_two_magic_squares_gp29_reflection_sft.cjs) now includes this exact original warning-word comparison, computes the authentic matrix polynomial without symbolic-code or selected roots, and checks the five rune factors, the only matching first-warning word, the contrast with the first 3301 square, plus all earlier exact integer-gcd reflection and native GP positive controls. [Successful source-input Windows Node22 run](https://github.com/FlareZ123/liber-primus/actions/runs/45068491582).
 
+## Complete cuneiform-chapter CHANGE eigenbasis consumer (Agent 1, 22 November 2026)
+
+A source-specific untested consumer follows from the historical 1033-sum B square's **distinct eigenvalues equal to the known source word CHANGE**. Because B is centrosymmetric, its five GF29 eigendirections have an objective symmetric/antisymmetric split: antisymmetric eigenvalues **[5,24] = C,A**, symmetric non-constant eigenvalues **[8,21] = H,NG**, and the constant-all-ones eigenvalue **18 = E = 1033 mod29**. If each nonconstant pair is separately sorted ascending, then interleaved beginning with the antisymmetric family, followed by the row-sum eigenvalue, they spell **C H A NG E**. This explains how an ordered source-word *candidate* can be constructed from the eigenvalues without sorting all five globally. **The interleaving convention is unprinted and postselected**; the word is already available in solved LP1, so this cannot be treated as unknown plaintext or verified authorial key material.
+
+The eigenvectors themselves define a mathematically distinct operation from multiplying by B or B powers. For every eigenvalue in actual known-source CHANGE order [5,8,24,21,18], choose the unique GF29 right eigenvector whose *first nonzero coordinate equals 1*. Place these five vectors as columns of invertible `S` and compute `S^{-1}`. The resulting matrices are exactly:
+
+```text
+S =                 S inverse =
+1  1  1  1  1       15 25  0  4 14
+0 24 11 18  1        1  5 17  5  1
+0  8  0 20  1        0  4  0 25  0
+0 24 18 18  1        8 18  6 18  8
+28 1 28  1  1        6  6  6  6  6
+```
+
+The complete physical p33–39 section contains exactly **1,680 original GP29 runes**, or 336 full five-rune packets. This section uniquely **contains both the printed 1033/3301 numerical context and five numbered units**, making it a plausible ciphertext receiver independent of any plaintext score. Preserve all source runes and a fixed first-p33 block alignment; test all four natural original-inverse linear changes of basis `S, S^{-1}, S^T, (S^{-1})^T`, with their exact counterpart reencrypting every original rune. No glyph is dropped or source word boundary moved to select an output.
+
+| Complete p33–39 inverse | GP29 IoC across 1,680 original runes |
+| --- | ---: |
+| Source original ciphertext | **0.034360021555** |
+| `S^{-1}` canonical eigenbasis | **0.034230267449** |
+| `S` reverse basis | **0.034633001503** |
+| `(S^{-1})^T` transposed | **0.034524518563** |
+| `S^T` transposed reverse | **0.034408945234** |
+
+All four original outputs remain ciphertext-like; the first 30 canonical inverse GP runes are `IA IA EA D C AE C G NG J TH B A AE TH X A R N F NG NG I NG L H E A F R`. The same four decoders recover **all 1,680/1,680 synthetic source-native runes** from independently enciphered authentic solved-p57 PARABLE repeated registers, with solved-GP IoC above0.05 and four original exact reencryption checks. [Windows Node22 original-input SFT PASS 45069529014](https://github.com/FlareZ123/liber-primus/actions/runs/45069529014) · [read-only original-square/eigenvector/replay source](../sims/lp2_2014_1033_square_eigenbasis_p33_1680_original_sft.cjs).
+
+**Decision:** the known warning-word spectral coincidence now has a direct, complete and mathematically natural *basis-change* decryptor test on its numerically associated LP2 section. The source-selected operator and five-block alignment are unverified, and the canonical eigenbasis output is not readable plaintext. Do not restart generic eigenvector normalization/order/phase sweeps absent independent authored instruction or authentic plaintext. This original-register test does not exclude a different multi-stage use of the matrix or a missing independent key.
+
 ## 5×5 matrix consumers
 
 For both 5×5 matrices, three natural consumers were tested:
