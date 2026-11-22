@@ -20,3 +20,5 @@ jobs:
         run: node sims/lp2_gp30_allsecret_periodic_space_fiveconcentration_sft.cjs
       - name: Exact source-authenticated F bypass all-mask bound
         run: node sims/lp2_divinity_gp30_all_fskip_space_capacity_sft.cjs
+      - name: Exact all-secret source word-geometry alphabet bound
+        run: node sims/lp2_gp30_wordgeometry_allsecret_source_criterion_sft.cjs
