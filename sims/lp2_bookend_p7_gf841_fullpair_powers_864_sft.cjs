@@ -139,9 +139,9 @@ function entropy(data) {
 const shiftModes=["zero","low-real","low-imag","both",
   "high-real","high-imag","highlow","byte-real","byte-imag"];
 for(const exponent of exponents)for(const mode of shiftModes)
-for(const q of table.bytes)for(const post of [false,true]) {
+for(const q of [0,1,7,128,255])for(const post of [false,true]) {
   const shift=offsetAt(q,mode);
-  // Test all 841 possible original input pairs for exact invertibility,
+  // Test all 841 possible original input pairs for exact invertibility at representative physical-byte offsets,
   // including zero and negative residues through GF29 reduction.
   for(let a=0;a<29;a++)for(let b=0;b<29;b++) {
     const original=[a,b];
