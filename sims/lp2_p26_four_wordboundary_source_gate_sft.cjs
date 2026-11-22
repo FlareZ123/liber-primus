@@ -162,10 +162,10 @@ assert.deepEqual(fourHits(falseP26), [{
 }]);
 assert.deepEqual(fourHits(actualP26), []);
 assert.deepEqual(actualP26.slice(43, 49).map(wordText), [
-  "YIA", "AET", "ESAOE", "CHISFIN", "POENG", "EOTHYTAEX",
-].slice(0, 6).map((v, i) => v));
-assert.deepEqual(actualP26.slice(44, 48).map(wordAddress), [58, 79, 57, 56]);
-assert.deepEqual(actualP26.slice(44, 48).map(highDigit), [2, 1, 1, 4]);
+  "AET", "ESAOE", "CHISFIN", "POENG", "EOTHYTAEX", "EOET",
+]);
+assert.deepEqual(actualP26.slice(43, 47).map(wordAddress), [58, 79, 57, 56]);
+assert.deepEqual(actualP26.slice(43, 47).map(highDigit), [2, 1, 1, 4]);
 assert.deepEqual(exactWayMapEdges(actualP26), [{
   index: 45, words: ["CHISFIN", "POENG"],
 }]);
@@ -226,8 +226,8 @@ console.log(JSON.stringify({
   p26: {
     falseWindow: fourHits(falseP26),
     actualFourWindows: fourHits(actualP26),
-    correctedPreEdgeAddresses: actualP26.slice(44, 48).map(wordAddress),
-    correctedPreEdgeHigh: actualP26.slice(44, 48).map(highDigit),
+    correctedPreEdgeAddresses: actualP26.slice(43, 47).map(wordAddress),
+    correctedPreEdgeHigh: actualP26.slice(43, 47).map(highDigit),
     genuineEdge: exactWayMapEdges(actualP26),
   },
   priorSelectedTableRoute: {
