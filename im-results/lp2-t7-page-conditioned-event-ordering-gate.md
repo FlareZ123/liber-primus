@@ -18,7 +18,7 @@ For each registered null, choose **without replacement** a new set of candidate 
 - **Page × word-boundary:** additionally preserve 23 event-word starts versus 63 within-word events, separately on each page.
 - **Page × word-position:** additionally preserve each page's 23 word-start, 19 word-terminal, and 44 other within-word doublet event allocations. These are totals across pages.
 
-Each null was simulated 30,000 times with deterministic xorshift32 and source-native candidate position pools. The observed `0.38001968924100965` was frozen before testing these nulls, having been reported by the independent external study. Three independent 30k simulations use fixed seeds and explicit exact source stratifications; no hidden key or language scorer is involved.
+Each null was simulated 30,000 times with deterministic xorshift32 and source-native candidate position pools. The observed `0.38001968924100965` was frozen before testing these nulls, having been reported by the independent external study. Three 30k simulations use one fixed-seed pseudorandom stream and explicit exact source stratifications; no hidden key or language scorer is involved.
 
 | Conditional null | Mean gap correlation | Draws ≥ original | Upper-tail add-one p |
 |---|---:|---:|---:|
