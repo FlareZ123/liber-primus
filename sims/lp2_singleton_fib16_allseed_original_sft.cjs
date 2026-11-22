@@ -26,6 +26,15 @@ const map = new Map(corpus.runes.map((r,i)=>[r,i]));
 const mod = x => ((x%29)+29)%29;
 const ORDER=16, HALF=8;
 const p15Seed = [3299,3298,3296,3294,3288,3278,3258,3222,3152,3038,2838,2472,1820,708,1206,4516].map(mod);
+const chapterPages = new Set([0,3,8,15,23,27,33,40,54]);
+const chapterStarts = [];
+let overallOffset = 0;
+for(const page of corpus.pages){
+  if(page.page>55)break;
+  if(chapterPages.has(page.page))chapterStarts.push(overallOffset);
+  overallOffset+=page.indices.length;
+}
+assert.deepEqual(chapterStarts,[0,729,1874,3603,5506,6527,7960,9640,12648]);
 
 /** @typedef {{at:number,c:number,page:number}} Position */
 /** @returns {{cipher:number[],words:Position[][],observed:Position[]}} */
@@ -85,13 +94,17 @@ function invert(a){
  * 16 independent observed positions. Later 67 observations are withheld.
  * @param {Position[]} observed
  * @param {number} length
+ * @param {number[]} resets
  * @returns {{rows:number[][],inverse:number[][]}}
  */
-function linearize(observed,length){
+function linearize(observed,length,resets){
   const basis=[];
+  const boundaries=new Set(resets);
+  let resetAt=0;
   for(let n=0;n<length;n++){
-    const row=Array(ORDER).fill(0);
-    if(n<ORDER)row[n]=1;
+    if(boundaries.has(n))resetAt=n;
+    const phase=n-resetAt,row=Array(ORDER).fill(0);
+    if(phase<ORDER)row[phase]=1;
     else for(let j=0;j<ORDER;j++)row[j]=(basis[n-5][j]+basis[n-16][j])%29;
     basis.push(row);
   }
@@ -107,11 +120,13 @@ function linearize(observed,length){
  * @param {number[]} ciphertext
  * @param {"add"|"diff"} mode
  * @param {number[]} alphabet
+ * @param {number[]} resets
  * @returns {number[][]}
  */
-function possibilities(observed,ciphertext,mode,alphabet){
+function possibilities(observed,ciphertext,mode,alphabet,resets){
+  const boundaries=new Set(resets);
   return observed.map(o=>{
-    const c=ciphertext[o.at],previous=o.at===0?0:ciphertext[o.at-1];
+    const c=ciphertext[o.at],previous=boundaries.has(o.at)?0:ciphertext[o.at-1];
     return alphabet.map(p=>mode==="add"?mod(c-p):mod(previous+p-c));
   });
 }
@@ -179,55 +194,65 @@ function solve(options,rows,basisInverse){
   return {counts,longest,seed};
 }
 
-/** @param {number[]} seed @param {number} n @returns {number[]} */
-function stream(seed,n){
-  const out=seed.slice();
-  for(let i=ORDER;i<n;i++)out.push((out[i-5]+out[i-16])%29);
+/** @param {number[]} seed @param {number} n @param {number[]} resets @returns {number[]} */
+function stream(seed,n,resets){
+  const boundaries=new Set(resets),out=[];
+  let resetAt=0;
+  for(let i=0;i<n;i++){
+    if(boundaries.has(i))resetAt=i;
+    const phase=i-resetAt;
+    out.push(phase<ORDER?seed[phase]:(out[i-5]+out[i-16])%29);
+  }
   return out;
 }
-/** @param {number[]} plain @param {number[]} key @param {"add"|"diff"} mode @returns {number[]} */
-function encrypt(plain,key,mode){
+/** @param {number[]} plain @param {number[]} key @param {"add"|"diff"} mode @param {number[]} resets @returns {number[]} */
+function encrypt(plain,key,mode,resets){
+  const boundaries=new Set(resets);
   let prev=0;
   return plain.map((p,i)=>{
+    if(boundaries.has(i))prev=0;
     const c=mode==="add"?mod(p+key[i]):mod(prev+p-key[i]);
     prev=c;return c;
   });
 }
-/** @param {number[]} cipher @param {number[]} key @param {"add"|"diff"} mode @returns {number[]} */
-function decrypt(cipher,key,mode){
-  return cipher.map((c,i)=>mode==="add"?mod(c-key[i]):mod(c-(i?cipher[i-1]:0)+key[i]));
+/** @param {number[]} cipher @param {number[]} key @param {"add"|"diff"} mode @param {number[]} resets @returns {number[]} */
+function decrypt(cipher,key,mode,resets){
+  const boundaries=new Set(resets);
+  return cipher.map((c,i)=>mode==="add"?mod(c-key[i]):mod(c-(boundaries.has(i)?0:cipher[i-1])+key[i]));
 }
 
-/** @param {{cipher:number[],observed:Position[]}} x @param {"add"|"diff"} mode @param {number[]} alphabet @param {number[][]} rows @param {number[][]} matrixInverse */
-function positive(x,mode,alphabet,rows,matrixInverse){
+/** @param {{cipher:number[],observed:Position[]}} x @param {"add"|"diff"} mode @param {number[]} alphabet @param {number[][]} rows @param {number[][]} matrixInverse @param {number[]} resets @param {string} clock */
+function positive(x,mode,alphabet,rows,matrixInverse,resets,clock){
   const clear=corpus.pages.find(p=>p.page===57).indices;
   const plain=Array.from({length:x.cipher.length},(_,i)=>clear[i%clear.length]);
   for(let i=0;i<x.observed.length;i++)plain[x.observed[i].at]=alphabet[i%alphabet.length];
-  const key=stream(p15Seed,plain.length);
-  const encoded=encrypt(plain,key,mode);
-  assert.deepEqual(decrypt(encoded,key,mode),plain);
-  assert.deepEqual(encrypt(decrypt(encoded,key,mode),key,mode),encoded);
-  const recovered=solve(possibilities(x.observed,encoded,mode,alphabet),rows,matrixInverse);
+  const key=stream(p15Seed,plain.length,resets);
+  const encoded=encrypt(plain,key,mode,resets);
+  assert.deepEqual(decrypt(encoded,key,mode,resets),plain);
+  assert.deepEqual(encrypt(decrypt(encoded,key,mode,resets),key,mode,resets),encoded);
+  const recovered=solve(possibilities(x.observed,encoded,mode,alphabet,resets),rows,matrixInverse);
   assert.equal(recovered.counts.at(-1),1,"one planted true key must survive");
   assert.deepEqual(recovered.seed,p15Seed);
   const wrong=p15Seed.slice();wrong[0]=mod(wrong[0]+1);
-  const wrongClear=decrypt(encoded,stream(wrong,plain.length),mode);
+  const wrongClear=decrypt(encoded,stream(wrong,plain.length,resets),mode,resets);
   assert.ok(x.observed.some(o=>!alphabet.includes(wrongClear[o.at])));
-  console.log("PLANTED "+mode+" A/I"+(alphabet.length===3?"/O":"")+": recovered 16/16 key cells, exact full-stream replay, wrong key rejected");
+  console.log("PLANTED "+clock+" "+mode+" A/I"+(alphabet.length===3?"/O":"")+": recovered 16/16 key cells, exact full-stream replay, wrong key rejected");
 }
 
 function main(){
   const x=original();
-  const {rows,inverse}=linearize(x.observed,x.cipher.length);
   console.log("SOURCE: 12956 unchanged original runes, 2896 words, 32 cross-page carries, 83 one-rune words");
-  console.log("MODEL: continuous global GF29 5+16 recurrence, all 29^16 secret initial states, two value-changing cipher grammars");
-  for(const mode of ["add","diff"])for(const alphabet of [[24,10],[24,10,3]]){
-    const result=solve(possibilities(x.observed,x.cipher,mode,alphabet),rows,inverse);
-    console.log("ORIGINAL "+mode+" A/I"+(alphabet.length===3?"/O":"")+
-      ": exhaustive "+result.counts[0]+" first16 key assignments; max compatible prefix "+
-      result.longest+"/83; full 83-site survivors "+result.counts.at(-1));
-    assert.equal(result.counts.at(-1),0,"Unexpected source candidate: investigate original plaintext");
-    positive(x,mode,alphabet,rows,inverse);
+  console.log("MODEL: global GF29 5+16 recurrence, all 29^16 secret initial states, continuous or nine shared visible-chapter resets");
+  for(const [clock,resets] of [["continuous",[0]],["nine-shared-resets",chapterStarts]]){
+    const {rows,inverse}=linearize(x.observed,x.cipher.length,resets);
+    for(const mode of ["add","diff"])for(const alphabet of [[24,10],[24,10,3]]){
+      const result=solve(possibilities(x.observed,x.cipher,mode,alphabet,resets),rows,inverse);
+      console.log("ORIGINAL "+clock+" "+mode+" A/I"+(alphabet.length===3?"/O":"")+
+        ": exhaustive "+result.counts[0]+" first16 key assignments; max compatible prefix "+
+        result.longest+"/83; full 83-site survivors "+result.counts.at(-1));
+      assert.equal(result.counts.at(-1),0,"Unexpected source candidate: investigate original plaintext");
+      positive(x,mode,alphabet,rows,inverse,resets,clock);
+    }
   }
   console.log("PASS: exact all-secret finite exclusion under explicit plaintext and clock assumptions; no original unknown-page plaintext recovered");
 }
