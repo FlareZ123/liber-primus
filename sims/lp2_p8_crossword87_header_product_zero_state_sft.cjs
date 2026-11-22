@@ -534,6 +534,81 @@ for (const [statistic, leafKeys] of [
 assert.equal(berggrenFiveBranchFeedback.length, 8);
 assert(berggrenFiveBranchFeedback.every(x => x.fullIoC < 0.036));
 
+
+// LP1 explicitly says "THE TOTIENT FUNCTION IS SACRED", and p56 really
+// uses a plaintext-F-transparent totient clock. This makes Euler phi of
+// Berggren leaf hypotenuses/perimeters a stronger *typed* first-party rule
+// than choosing arbitrary modular coefficients. The DP below tests EXACT
+// true transparent F semantics (F plaintext consumes no key), allowing
+// ambiguous ciphertext F to mean either literal F or encoded non-F.
+// Testing every initial phase avoids rescuing with an unprinted page key.
+/** @param {number} n @returns {number} */
+function eulerPhi(n) {
+  let out = n, rem = n;
+  for (let p = 2; p * p <= rem; p++) {
+    if (rem % p) continue;
+    while (rem % p === 0) rem /= p;
+    out = out / p * (p - 1);
+  }
+  if (rem > 1) out = out / rem * (rem - 1);
+  return out;
+}
+/** @param {number[]} ciphertext @param {number[]} key @param {number} sign
+ *  @param {boolean} anyInitialPhase @returns {{reached: number, survivors: number}} */
+function transparentTotientDP(ciphertext, key, sign, anyInitialPhase) {
+  let phases = new Set(anyInitialPhase
+    ? Array.from({ length: 243 }, (_, i) => i) : [0]);
+  for (let i = 0; i < ciphertext.length; i++) {
+    const c = ciphertext[i], next = new Set();
+    for (const phase of phases) {
+      // LP1/p56 transparency: plaintext F0 maps to ciphertext F0, and
+      // must not consume the next key value.
+      if (c === 0) next.add(phase);
+      // Conversely encoded ordinary (non-F) plaintext always consumes it.
+      const p = ((c + sign * key[phase]) % 29 + 29) % 29;
+      if (p !== 0) next.add((phase + 1) % 243);
+    }
+    phases = next;
+    if (phases.size === 0) return { reached: i, survivors: 0 };
+  }
+  return { reached: ciphertext.length, survivors: phases.size };
+}
+/** @param {number[]} plaintext @param {number[]} key @param {number} sign
+ *  @returns {number[]} */
+function plantTransparentTotient(plaintext, key, sign) {
+  let phase = 0;
+  return plaintext.map(p => {
+    if (p === 0) return 0;
+    const c = ((p - sign * key[phase]) % 29 + 29) % 29;
+    phase = (phase + 1) % 243;
+    return c;
+  });
+}
+const berggrenTotientTransparentDP = [];
+for (const [statistic, key] of [
+  ["phi(hypotenuse)", berggrenDepth5.map(t => eulerPhi(t[2]) % 29)],
+  ["phi(perimeter)", berggrenDepth5.map(t => eulerPhi(t.reduce((n, v) => n + v, 0)) % 29)],
+]) {
+  assert.equal(key.length, 243);
+  assert.equal(new Set(key).size, 29);
+  for (const sign of [-1, 1]) {
+    const sourcePhase0 = transparentTotientDP(originalCiphertext, key, sign, false);
+    const sourceAnyPhase = transparentTotientDP(originalCiphertext, key, sign, true);
+    const planted = plantTransparentTotient(terminalKnown, key, sign);
+    const positive = transparentTotientDP(planted, key, sign, false);
+    assert.equal(positive.reached, terminalKnown.length);
+    assert(positive.survivors > 0);
+    berggrenTotientTransparentDP.push({
+      statistic, sign, originalPhase0: sourcePhase0,
+      originalAnyPhase: sourceAnyPhase,
+      solvedPositive: positive,
+    });
+  }
+}
+assert.deepEqual(berggrenTotientTransparentDP.map(x => x.originalPhase0.reached), [7, 119, 183, 7]);
+assert.deepEqual(berggrenTotientTransparentDP.map(x => x.originalAnyPhase.reached), [306, 285, 393, 303]);
+assert(berggrenTotientTransparentDP.every(x => x.originalAnyPhase.survivors === 0));
+
 const ringReceivers = [];
 for (const sign of [-1, 1]) {
   const candidate = ringTranslate(originalCiphertext, sign);
@@ -587,5 +662,6 @@ console.log(JSON.stringify({
   berggrenDepthFiveOriginalConsumers: berggrenTreeConsumers,
   berggrenDirectLeafHypotenuseMatches: directHypMatching,
   berggrenSourceFiveRuneBranchFeedback: berggrenFiveBranchFeedback,
+  berggrenOriginalTotientTransparentFPhaseExhaustion: berggrenTotientTransparentDP,
   interpretation: "The carry-word GP0 sum selects splice87, whereas the earlier sentence-offset criterion selects208. The physical carried rune cannot itself be the all-zero five-trit state in either valid de Bruijn register. No first-party cipher output law is specified.",
 }, null, 2));
