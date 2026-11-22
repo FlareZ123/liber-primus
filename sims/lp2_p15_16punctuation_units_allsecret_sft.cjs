@@ -150,6 +150,67 @@ for(const [name,file] of controls){
   tested.push({name,trials:60,GPtop1:[min1,max1],GPtop5:[min5,max5],
     atOrBelowOriginalBound:0});
 }
+
+/**
+ * Additional source-frozen historical AUTOKEY inverse:
+ * p15's 16 literal numeric values in authentic spiral order supply one
+ * initial GP29 key per period-delimited fragment. After first rune,
+ * the state is either prior decoded plaintext (classical Vigenere autokey)
+ * or prior ciphertext (cipher autokey); two direction signs cover
+ * additive Vigenere and Beaufort. No fitted offset/seed/clock.
+ */
+const squareSeeds=[
+  3299,3298,3296,3294,3288,3278,3258,3222,
+  3152,3038,2838,2472,1820,708,1206,4516
+].map(x=>x%29);
+assert.deepEqual(squareSeeds,[22,21,19,17,11,1,10,3,20,22,25,7,22,12,17,21]);
+const mod29=n=>((n%29)+29)%29;
+function inverseAuto(cipherPieces,tap,sign){
+  return cipherPieces.map((fragment,j)=>{
+    let prior=squareSeeds[j];
+    return fragment.map(c=>{
+      const p=sign===1?mod29(c-prior):mod29(prior-c);
+      prior=tap==="plain"?p:c;
+      return p;
+    });
+  });
+}
+function forwardAuto(plainPieces,tap,sign){
+  return plainPieces.map((fragment,j)=>{
+    let prior=squareSeeds[j];
+    return fragment.map(p=>{
+      const c=sign===1?mod29(p+prior):mod29(prior-p);
+      prior=tap==="plain"?p:c;
+      return c;
+    });
+  });
+}
+function gpIoC(a){
+  const count=new Uint16Array(29);
+  for(const x of a)count[x]++;
+  return Array.from(count).reduce((s,n)=>s+n*(n-1),0)/(a.length*(a.length-1));
+}
+const originalAutokey=[];
+for(const tap of ["plain","cipher"]){
+  for(const sign of [1,-1]){
+    const decoded=inverseAuto(fragments,tap,sign);
+    assert.deepEqual(forwardAuto(decoded,tap,sign),fragments,
+      "p15 key original inversion must preserve every cipher rune");
+    const all=decoded.flat();
+    originalAutokey.push({tap,sign,decodedRunes:all.length,
+      GPglobalIoC:gpIoC(all),GPtop5:topK(all,5)});
+    const plantedNative=donor(poolFor(
+      "resources/control/gibran_prophet_58585.txt"))
+      .slice(start,start+region.length);
+    const plantedParts=splitAtOriginalSentences(plantedNative);
+    assert.deepEqual(inverseAuto(
+      forwardAuto(plantedParts,tap,sign),tap,sign),plantedParts,
+      "source GP plant must be recovered under exact historical autokey");
+  }
+}
+assert(originalAutokey.every(o=>o.GPglobalIoC<0.036&&o.GPtop5<350),
+  "four source-locked sentence-autokey original outputs remain nonlinguistic");
+
 if(require.main===module)console.log(JSON.stringify({
   status:"exact one-secret-alphabet-per-punctuation-fragment conditional original exclusion",
   sourceFact:"p15 has 16 printed cells; physical p16..21 has 15 periods",
@@ -159,6 +220,8 @@ if(require.main===module)console.log(JSON.stringify({
   allSecretGP29TopKCapacity:bound,
   nativeWordLengthMatchedControls:tested,
   plantedGenuineGP29SecretAlphabetPositive:planted,
+  fourExactSourceSquareSentenceAutokeyOriginalInverses:originalAutokey,
+  fourAutokeySourceNativePositive:{variants:4,decodedRunesEach:1613},
   missingAuthoredClue:"source does not say one square cell selects one independent alphabet per punctuation fragment"
 },null,2));
-module.exports={topK,secretCapacityInvariant};
+module.exports={topK,secretCapacityInvariant,inverseAuto,forwardAuto};
