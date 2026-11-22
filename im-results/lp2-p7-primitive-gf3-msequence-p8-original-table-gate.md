@@ -70,10 +70,24 @@ A still smaller reversible alternative uses each of the 243 de Bruijn five-trit 
 
 These **eight** directly defined inverses return original p8 IoCs of **approximately 0.0329–0.0355** and p9 IoCs **approximately 0.0333–0.0355**, with no recovered GP plaintext. All source runes reencrypt exactly under the inverse sign. Neither the 243-entry table nor the simple state-derived additive pad is an authentic decipherment.
 
+## Is the LFSR-indexed p8 source table actually a compact polynomial?
+
+The preceding receiver allows a sharper test that does **not** depend on guessing a target plaintext or secret opcode. Under the LFSR address hypothesis, the original p8 black243 becomes a complete function `F: GF(3)^5 → GF(29)`. The 2013 Cicada record already gives a historically grounded precedent for **polynomial interpolation**, although over a different field. If the 243 original rune values were merely a verbose printing of a simple five-variable polynomial, the unique representation in degree at most two for each ternary coordinate should be **sparse**.
+
+Compute the exact five-dimensional tensor interpolation using field-29 evaluation sites **[0,1,2]** for each of five source-defined ternary coordinates. No GP29 output symbols are changed; the transform uniquely represents all243 original values, for both source-derived seed orientations. A planted polynomial `F(x)=7+11x0+2x4+5x2*x3` recovers **exactly its four nonzero coefficients** under the same inverse.
+
+| Full 243-value original LFSR-indexed table | Nonzero polynomial coefficients of 243 | 64 original-histogram-preserving shuffled tables |
+| --- | ---: | --- |
+| Seed p7 red-products **22202** | **230** | 227–241, mean234.4219 |
+| Seed p8 first-five-red **21211** | **235** | 229–240, mean234.2500 |
+| Explicit four-term polynomial plant | **4** | Not a null |
+
+Both original candidate tables occupy essentially their *entire* five-dimensional polynomial basis, with no evidence of a concise five-trit polynomial readout. The source-preserving null suggests the observed small coefficient sparsity is typical of an arbitrary rune-valued function. This exact table-permutation evaluation is **different from** earlier p8 tensor interpolation in the printed row-major base-three order: its coordinate addresses are obtained exclusively from the newly discovered source-product primitive LFSR. The result disfavors one possible short-codebook construction; it cannot exclude a genuinely intended **unstructured lookup table**, an external cipher key, or a different field or nonpolynomial operation.
+
 ## Decision for further work
 
 This discovery gives a **complete, source-constrained candidate ternary state traversal** without searching five-tap coefficients or using a secret address permutation. It may be useful if a new original instruction or readable title establishes that p8's 243 runes are a lookup or assigns the observed coefficient sequence to a concrete cipher opcode. A human could write down all243 states and locate any state by its five trits.
 
 Neither direct consumer succeeds on original p8 or independent p9–p14. An arbitrary nonlinear output function would need **243 unprovided key values**, which the original p8 body could supply only under a specific, still-unproven table interpretation. More source-free register/output sweeps are not justified by this length coincidence alone.
 
-**Reproducer:** [read-only original-source Node22 CommonJS SFT](../sims/lp2_p7_primitive_gf3_p8_debruijn_lookup_sft.cjs), using only the existing `lp2-corpus.json`, with exhaustive 243-polynomial period census, seven source-aggregator controls, complete de Bruijn 243-state assertions, original 1,474-rune table decodes, independent 243-rune direct pad decodes and solved-page plants. **Windows Node22 PASS:** [GitHub Actions run 45003902299](https://github.com/FlareZ123/liber-primus/actions/runs/45003902299). Existing exact static rune-to-trit impossibility [here](lp2-p7-p8-243-trit-nonlinear-original-consumer.md) remains valid: the present *source-indexed evolving register* is a distinct proposition. No change to the authoritative established results is claimed.
+**Reproducer:** [read-only original-source Node22 CommonJS SFT](../sims/lp2_p7_primitive_gf3_p8_debruijn_lookup_sft.cjs), using only the existing `lp2-corpus.json`, with exhaustive 243-polynomial period census, seven source-aggregator controls, complete de Bruijn 243-state assertions, original 1,474-rune table decodes, independent 243-rune direct pad decodes and solved-page plants. **Windows Node22 PASS, including full polynomial table and controls:** [GitHub Actions run 45004132906](https://github.com/FlareZ123/liber-primus/actions/runs/45004132906). Existing exact static rune-to-trit impossibility [here](lp2-p7-p8-243-trit-nonlinear-original-consumer.md) remains valid: the present *source-indexed evolving register* is a distinct proposition. No change to the authoritative established results is claimed.
