@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Original-source p27 / p50 / p55 changing-coordinate Shamir candidate.
+ * Original-source p27 / p50 / p55 changing-coordinate interpolation and polynomial coefficient candidates.
  * Node.js 22, CommonJS, read-only SFT. Run from any working directory.
  */
 const assert = require('node:assert/strict');
@@ -117,3 +117,63 @@ console.log('SFT PASS: all 8 original-source candidates and 8 solved-GP positive
 console.log(JSON.stringify({
   p55CipherIoC: ioc(p55), solvedP57First76IoC: ioc(p57.slice(0, 76))
 }));
+
+
+/**
+ * A materially different interpretation of the original three p27 76-symbol
+ * tapes is the coefficient register [a,b,c] of a polynomial a+b*x+c*x*x,
+ * rather than three Shamir y-values observed at fixed x=1,2,3.
+ * This matches the GP29 field-polynomial notation appearing elsewhere in LP2.
+ * Test both signs for the direct additive consumer and exact fourth-codeword
+ * identity without changing any original input or coordinate selection.
+ */
+const polynomialOutcomes = [];
+for (const [layout, lanes] of [
+  ['contiguous', separated], ['interleaved', interleaved]
+]) {
+  for (const [direction, indices] of [
+    ['clockwise', rim],
+    ['counterclockwise', [rim[0], ...rim.slice(1).reverse()]]
+  ]) {
+    for (const radix of [59, 60]) {
+      const alphabet = radix === 59
+        ? grid.alphabet.replace('f', '') : grid.alphabet;
+      const x = indices.map((cell) => {
+        const token = tokens[cell];
+        return mod(alphabet.indexOf(token[0]) * radix +
+          alphabet.indexOf(token[1]));
+      });
+      const coefficients = x.map((v, i) => mod(lanes[0][i] +
+        v * lanes[1][i] + v * v * lanes[2][i]));
+      const directMatches = coefficients.filter((k, i) =>
+        k === p55[i]).length;
+      for (const inverseSign of [-1, 1]) {
+        const decrypted = p55.map((cipher, i) =>
+          mod(cipher + inverseSign * coefficients[i]));
+        const encrypted = decrypted.map((plain, i) =>
+          mod(plain - inverseSign * coefficients[i]));
+        assert.deepEqual(encrypted, p55);
+        const nativePlant = p57.slice(0, 76);
+        const ciphertextPlant = nativePlant.map((plain, i) =>
+          mod(plain - inverseSign * coefficients[i]));
+        assert.deepEqual(ciphertextPlant.map((cipher, i) =>
+          mod(cipher + inverseSign * coefficients[i])), nativePlant);
+        polynomialOutcomes.push({
+          layout, direction, radix, inverseSign,
+          directMatches, decodedIoC: Number(ioc(decrypted).toFixed(9)),
+          opening: decrypted.slice(0, 24).map((v) =>
+            corpus.translit[v]).join(' ')
+        });
+      }
+    }
+  }
+}
+assert.equal(polynomialOutcomes.length, 16);
+assert.equal(Math.max(...polynomialOutcomes.map((o) => o.directMatches)), 4);
+assert.ok(Math.max(...polynomialOutcomes.map((o) => o.decodedIoC)) <
+  ioc(p57.slice(0, 76)));
+console.log(JSON.stringify({
+  interpretation: 'p27 tapes as three polynomial coefficients rather than Shamir shares',
+  outcomes: polynomialOutcomes,
+  status: 'SFT PASS: 16 full p55 original-cipher inverses and native positive controls'
+}, null, 2));
