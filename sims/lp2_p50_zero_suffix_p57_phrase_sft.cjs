@@ -85,6 +85,54 @@ const hashTests = [];
 const transformations = [];
 const p55Transforms = [];
 const p55 = corpus.pages.find((page) => page.page === 55).indices;
+
+/**
+ * The only authenticated unknown-page-sized GP29 value transform is p56's
+ * prime(j)-1 shift with plaintext-F (index0) transparent and non-consuming.
+ * A 27-cell Trifid intermediate must use exactly 27 source-native rune
+ * values. Native LP1 and p56/p57 use all GP runes except EO(12), OE(22).
+ * This source-fixed necessary condition is independent of the Trifid key.
+ * For cipher F, both transparent F and shifted non-F predecessors are allowed.
+ */
+const primeSpan = [];
+for (let n = 2; primeSpan.length < 350; n++) {
+  let isPrime = true;
+  for (let d = 2; d * d <= n; d++) if (n % d === 0) { isPrime = false; break; }
+  if (isPrime) primeSpan.push(n);
+}
+const nativeP56 = Array.from(nativeSolved.sections.find((section) =>
+  section.name === "p56_an_end").source_text).filter((rune) => runeIndex.has(rune)).map((rune) => runeIndex.get(rune));
+const originalP56 = corpus.pages.find((page) => page.page === 56).indices;
+assert.equal(nativeP56.length, 85);
+assert.deepEqual(nativeP56.map((plain, i) => {
+  const consumed = nativeP56.slice(0, i).filter((x) => x !== 0).length;
+  return plain === 0 ? 0 : mod29(plain + primeSpan[consumed] - 1);
+}), originalP56);
+assert(nativeP56.every((index) => index !== 12 && index !== 22));
+const gp27PrimeGate = (cipher, startPrimeIndex) => {
+  let states = new Set([startPrimeIndex]);
+  let firstImpossible = null;
+  for (let i = 0; i < cipher.length; i++) {
+    const next = new Set();
+    for (const state of states) {
+      const plain = mod29(cipher[i] - (primeSpan[state] - 1));
+      if (plain !== 0 && plain !== 12 && plain !== 22) next.add(state + 1);
+      if (cipher[i] === 0) next.add(state);
+    }
+    states = next;
+    if (states.size === 0) { firstImpossible = i; break; }
+  }
+  return { startPrimeIndex, firstImpossible, compatibleFullSpan: states.size > 0, possibleEndStates: [...states] };
+};
+const gp27Gates = [49, 51, 52, 55, 56].flatMap((page) => [0, 42].map((phase) => ({
+  physicalPage: page, nRunes: corpus.pages[page].indices.length,
+  ...gp27PrimeGate(corpus.pages[page].indices, phase)
+})));
+assert.deepEqual(gp27Gates.filter((item) => item.startPrimeIndex === 0).map((x) => x.firstImpossible),
+  [9, 12, 0, 12, null]);
+assert.deepEqual(gp27Gates.filter((item) => item.startPrimeIndex === 42).map((x) => x.firstImpossible),
+  [1, 24, 5, 4, 1]);
+
 for (const [radix, values] of [["base60", bytes60], ["base59-drop-f", bytes59]]) {
   for (const [scope, input] of [
     ["first192", values.slice(0, 192)],
@@ -138,6 +186,7 @@ const report = {
       distinctMod26: new Set(after.map((value) => value % 26)).size }
   },
   directPadTests: transformations,
+  authenticatedPrimeOuterGp27Gate: gp27Gates,
   p55Repeated27PadTests: p55Transforms,
   p56Sha512Tests: hashTests,
   decision: "Source-aligned suffix match survives as a navigation clue; four direct 27-rune pads do not yield native prose, and ten fixed byte-hash candidates miss p56."
