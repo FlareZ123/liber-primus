@@ -27,9 +27,15 @@ const glyphs = new Map(corpus.runes.map((r, i) => [r, i]));
 const lines = [];
 const headings = [];
 for (let p = 0; p < 56; p++) {
+  if (p === 50) {
+    assert.equal(corpus.pages[p].indices.length, 0, "rune-free numeric p50");
+    continue;
+  }
+  // The physical transcription deliberately excludes the rune-free table p50.
+  const source = physical[p < 50 ? p : p - 1];
   const rows = [];
   let current = [], offset = 0, lineStart = 0;
-  for (const ch of physical[p]) {
+  for (const ch of source) {
     if (glyphs.has(ch)) {
       current.push(glyphs.get(ch));
       offset++;
@@ -53,7 +59,7 @@ for (let p = 0; p < 56; p++) {
   }
 }
 headings.sort((a, b) => a.index - b.index);
-assert.equal(lines.length, 599);
+assert.equal(lines.length, 594);
 assert.equal(headings.length, 16);
 const start = headings.find(h => h.page === 33 && h.offset === 91);
 const stop = headings.find(h => h.page === 39 && h.offset === 119);
@@ -91,7 +97,7 @@ for (let i = 0; i < headings.length; i++) {
 }
 assert.deepEqual(comparable.map(r => [r.page,r.offset,r.lineCount,r.reading]), [
   [8,0,79,"IS"], [15,9,85,"XA"], [27,0,65,"NNG"],
-  [33,91,69,"SW"], [40,0,141,"RAE"]
+  [33,91,69,"SW"], [40,0,131,"RAE"]
 ]);
 console.log("All other red-to-red sections supporting both literal coordinates:",comparable);
 
