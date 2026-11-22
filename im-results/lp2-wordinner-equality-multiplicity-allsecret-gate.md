@@ -22,7 +22,7 @@ The canonical original source at [`resources/lp2-transcription.txt`](../resource
 | --- | ---: |
 | Total within-word equal unordered rune pairs, across **all lags** | **811** |
 | Words with at least one repeated rune | 621 |
-| Words with a run of at least three occurrences of one rune (not necessarily adjacent) | 29 |
+| Words containing at least three occurrences of the same rune | 29 |
 | Complete printed source words | 2,896 |
 
 The original word-length inventory is **83×1, 448×2, 720×3, 513×4, 317×5, 256×6, 216×7, 156×8, 78×9, 52×10, 32×11, 18×12, 4×13, 3×14**. Its total and per-word `E` are checked in the reproducer.
@@ -44,7 +44,7 @@ For each control source, enumerate its words with the native GP29 compound-lette
 
 Old English's pinned corpus has no fourteen-rune source word: **three** original length-14 words are omitted from **both** observed and expected counts, leaving 803/2,893. All other rows use all 2,896 original words. The Old English GP sequence is pre-normalized from original Beowulf in [the corrected source fixture](../resources/control/beowulf_oe_gp_profile_corrected.json); the other corpora use the convention already frozen by the [native word-length grammar gate](lp2-wordlength-trigram-solved-cicada-and-latin-source-gate.md).
 
-All **24,000** original-conditional trials across six distinct source corpora produced *higher* equal-pair counts than the actual LP2. Each corpus has zero native Monte Carlo draws at or below observed, with a one-sided smoothed empirical bound of **1/4,001** for that individual null. The printed z-values are descriptive standardized contrasts, **not** exact independent tail probabilities; the distinct control sources and overlapping lexical content also prevent multiplying the reported p-values. These tests condition on word lengths, not on source topic, genre or word-frequency mixture, so their exclusions are source-language-conditional.
+All **24,000** original-conditional trials across six distinct source corpora produced *higher* equal-pair counts than the actual LP2. Each corpus has zero native Monte Carlo draws at or below observed, giving the conventional finite-resampling one-sided Monte Carlo p-value **(1+0)/(4,000+1) = 0.00024994** for each individual control. This is a resolution-limited empirical test rather than a confidence bound on the source population. The printed z-values are descriptive standardized contrasts, **not** exact independent tail probabilities; the distinct control sources and overlapping lexical content also prevent multiplying the reported p-values. These tests condition on word lengths, not on source topic, genre or word-frequency mixture, so their exclusions are source-language-conditional.
 
 ## Research decision
 
