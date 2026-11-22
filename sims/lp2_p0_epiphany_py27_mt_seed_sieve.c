@@ -183,13 +183,13 @@ static void selftest(void) {
     for(int i=0;i<RAW_N;i++)raw[i]=next32(&m);
     uint8_t k[K_N];
     if(!keys(raw,RAW_N,0,16,k))abort();
-    /* Python2.7 seed(int(3301)) published exact vector in G3. */
-    const uint8_t expect[16]={15,27,17,1,24,8,12,11,25,27,13,2,28,19,14,22};
+    /* CPython integer seed 3301: verified with local Python3 _random C core, rather than the unrelated seed-string '3301' vectors. */
+    const uint8_t expect[16]={6,6,13,12,13,17,25,23,11,17,21,15,14,25,4,19};
     for(int i=0;i<16;i++)if(k[i]!=expect[i]){
         fprintf(stderr,"MT vector mismatch %d: %d != %d\n",i,k[i],expect[i]);exit(2);
     }
     if(!keys(raw,RAW_N,2,16,k))abort();
-    const uint8_t expectReject[16]={17,26,16,19,26,1,11,27,3,9,14,13,0,12,8,27};
+    const uint8_t expectReject[16]={6,6,6,5,14,2,13,25,15,13,18,27,25,2,12,26};
     for(int i=0;i<16;i++)if(k[i]!=expectReject[i]){
         fprintf(stderr,"grb5 reject mismatch %d: %d != %d\n",i,k[i],expectReject[i]);exit(2);
     }
