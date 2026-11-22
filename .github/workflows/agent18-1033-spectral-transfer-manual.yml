@@ -1,0 +1,16 @@
+name: Agent18 1033 shared-square spectral transfer original source
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-source-sft:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check original magic squares and full LP2 registers
+        run: node sims/lp2_2014_1033_sevensquare_shared_spectrum_original_sft.cjs
