@@ -89,6 +89,35 @@ console.log('DIRECT_ADDRESS_READOUT',
   'REPEATED_ADDRESS_EVENTS', 256 - distinctPositions,
   'IOC', lookupIoc.toFixed(11),
   'PREVIEW120', indexReadout.slice(0, 120).map((n) => corpus.translit[n]).join(''));
+// All-secret stationary codebook invariant. If the p50 byte at index i
+// is an input to ANY deterministic secret byte-to-GP29 mapping, repeated
+// source byte values must always produce the same p8 GP rune. This test
+// is over original 248 black/carried receiver positions only (no rubric).
+const classes = new Map();
+for (let position = 8; position < frame.length; position += 1) {
+  const key = grid.bytes[position];
+  const observed = frame[position];
+  if (!classes.has(key)) {
+    classes.set(key, { values: new Set(), count: 0 });
+  }
+  const group = classes.get(key);
+  group.values.add(observed);
+  group.count += 1;
+}
+const groups = Array.from(classes.values());
+const conflictingClasses = groups.filter((g) => g.values.size > 1);
+const repeatOccurrences = 248 - classes.size;
+const affectedOccurrences = conflictingClasses.reduce((sum, g) =>
+  sum + g.count, 0);
+assert.equal(classes.size, 157);
+assert.equal(repeatOccurrences, 91);
+assert.equal(conflictingClasses.length, 65);
+assert.equal(affectedOccurrences, 156);
+console.log('NO_ALL_SECRET_STATIONARY_BYTE_TO_RUNE_MAP',
+  'INPUT_CLASSES', classes.size,
+  'REPEAT_EVENTS', repeatOccurrences,
+  'CONFLICTING_CLASSES', conflictingClasses.length,
+  'CONFLICTED_ORIGINAL_SLOTS', affectedOccurrences);
 console.log('P8_WHOLE_PRINTED_4PLUS256_SOURCE_FRAME', frame.length);
 console.log('P50_TABLE_SHAPE', grid.shape);
 console.log('PASS: exact original frame and negative fixed row-major byte-mod29 pad gate');
