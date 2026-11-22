@@ -18,6 +18,25 @@ assert.equal(crypto.createHash("sha256").update(Buffer.from(originalBytes))
   .digest("hex"),"3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290");
 const N=originalBytes.reduce((acc,x)=>acc*256n+BigInt(x),0n);
 assert.equal(N%1031n,512n);
+// An independently documented legacy three-cell transcription differs from the
+// corrected printed 2014 scan at exactly these 0-based numeric-grid positions.
+// The modulus/remainder were originally noticed on the corrected table, so
+// the contrasts below are conditional error-detection controls, not a blind
+// creator-intent validation of the proposed checksum.
+const oldCellPositions=[45,50,246];
+const legacyCellValues=[81,21,224];
+const correctedCellValues=[107,47,198];
+assert.deepEqual(oldCellPositions.map(i=>originalBytes[i]),correctedCellValues);
+const mod1031=bytes=>bytes.reduce(
+  (acc,x)=>(acc*256n+BigInt(x))%1031n,0n);
+const legacyBytes=originalBytes.slice();
+oldCellPositions.forEach((index,j)=>{legacyBytes[index]=legacyCellValues[j];});
+assert.equal(mod1031(legacyBytes),265n);
+const individualLegacyResidues=oldCellPositions.map((index,j)=>{
+  const b=originalBytes.slice();b[index]=legacyCellValues[j];
+  return Number(mod1031(b));
+});
+assert.deepEqual(individualLegacyResidues,[1026,991,303]);
 let q=(N-512n)/1031n;
 const quotientBytes=[];
 while(q>0n){quotientBytes.unshift(Number(q%256n));q/=256n;}
@@ -69,6 +88,12 @@ assert.equal(longestPrintable,4);
 assert(Math.max(...outputs.map(x=>x.decodedIoC))<0.04);
 console.log(JSON.stringify({
   sourceIntBytes:256,integerModulus:1031,integerRemainder:512,
+  originalSourceTableCounterfactual:{
+    independentlyCorrectedCellValues:correctedCellValues,
+    archivedLegacyCellValues:legacyCellValues,
+    legacyThreeErrorResidue:265,
+    individualLegacyResidues
+  },
   quotientBytes:quotientBytes.length,quotientASCIIPrintable:printable,
   quotientLongestPrintable:longestPrintable,
   quotientFirst20:quotientBytes.slice(0,20),
