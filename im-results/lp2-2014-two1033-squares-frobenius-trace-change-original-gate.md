@@ -107,6 +107,32 @@ The receiver was frozen before reading outputs. It was applied without discarded
 
 **Decision:** the exact `L T(M)=BL` intertwiner is an independently specified, full-rank **physical-source realization** of the Frobenius trace bridge and a stronger mechanistic reason to consider 7→5 packets than raw dimension arithmetic. Nevertheless, neither native GP plaintext nor an actual source instruction selecting it has appeared. Direct original seven-square reduction is rank-obstructed; the trace-polynomial quotient is technically valid but failed its complete original receivers. [Read-only full source SFT](../sims/lp2_2014_sevenfive_physical_intertwiner_original_sft.cjs) · [Windows 11 / Node22 full PASS 45073106675](https://github.com/FlareZ123/liber-primus/actions/runs/45073106675).
 
+## The two original 1033 squares reverse every nonuniform CHANGE mirror sector
+
+One sharper source-only relation is visible once the original **printed palindromic/symmetric spatial layout** is used as an operation in its own right. Both 1033-sum historical squares commute exactly with the coordinate-reversal involution `J_n`, including over the integers before reduction. Their GF29 factor eigenspaces therefore have objectively defined **even** (palindromic) or **odd** (antipalindromic) parity under coordinate reversal.
+
+The physically independent original matrices have this exact factor parity table:
+
+| Shared original-source factor trace | Native GP label | 7×7 source M reversal parity | 5×5 source B reversal parity |
+|---|---|---|---|
+| 5 | C | **even** (quadratic, 2 dimensions) | **odd** (linear, 1 dimension) |
+| 8 | H | **odd** (linear, 1 dimension) | **even** (linear, 1 dimension) |
+| 24 | A | **even** (linear, 1 dimension) | **odd** (linear, 1 dimension) |
+| 21 | NG | **odd** (quadratic, 2 dimensions) | **even** (linear, 1 dimension) |
+| 18 | E | **even** (uniform) | **even** (uniform) |
+
+**All four nonuniform CHANGE factors switch mirror parity between independently printed magic squares.** The common row-sum factor E preserves parity. Because the five original-source factor traces can be grouped by their actual mirror parity before reading any unknown LP2 ciphertext, the familiar word **CHANGE** is also obtainable by alternately interleaving *even/odd factors* of M and *odd/even factors* of B, each factor group in numerical GP-index order, with the unique uniform E last. The alternating reading convention is a researcher hypothesis; no original explicit instruction says “interleave factor parity,” and the factors without an ordering do not themselves spell a written message.
+
+For the exact canonical source-generated physical `L` of the preceding section, every nonuniform eigenmode maps into the *opposite* reflection sector, yielding a second exact **source-to-source operator identity**:
+
+\[
+J_5 L+L J_7=21\,\mathbf{1}_{5\times7}\pmod{29}.
+\]
+
+Here 21 is the GP29 residue of `2/7` because `7×21≡2 (mod29)`; the `5×7` all-ones matrix on the right captures the **sole unchanged uniform factor**. The full five-row and seven-column identity is tested from original integer squares, with no independent key, unknown plaintext, or guessed digit. For any seven-rune input `v`, the physical bridge obeys `L J_7 v= -J_5 L v+21\sum_i v_i\,\mathbf 1_5`. This describes exactly how a source-visible reversal of seven physical coordinates changes the five-coordinate output. It does not identify which original ciphertext register should be reversed.
+
+**Scope:** This involution is a structurally stronger cross-square relationship than merely having the same row sums or characteristic roots. The underlying source matrices were both already known to be centrosymmetric, and their nonuniform parity sectors are consequences of the original source entries; this observation therefore remains an algebraic fact about supplied squares. A designer may have arranged the reversed parities deliberately, yet there is no authorized LP2 receiver or independent recovered plaintext. The full original seven-chapter receiver remained negative. [Exact mirror-sector assertion plus 5×7 anti-commutator, Windows CI PASS 45073706742](https://github.com/FlareZ123/liber-primus/actions/runs/45073706742).
+
 ## Decision and next discriminating evidence
 
 The 2014 historical **two different 1033-sum magic squares** share the five-letter CHANGE value set in a mathematically specific way that does not depend on LP2 unknown ciphertext. This gives a genuine new exact source relation and a completely reproducible possible reversible operation. Yet the obvious direct original LP2 consumers fail, and source documents do not command factoring the seven-square, taking finite-field traces, reading CHANGE, preserving residual channels, or choosing a particular receiver.
