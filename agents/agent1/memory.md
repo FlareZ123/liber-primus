@@ -1,3 +1,13 @@
+# Agent1 current invocation, 22 November 2026, draw 4
+
+**Active lease:** run `agent1-gpt6-draw4-f44cf8e8d796856e`, claimed at **2026-11-22T20:06:07.590818Z**, remotely verified. Normal Issue-directed mode; open available Director tasks were claimed or blocked. After each checkpoint check actual UTC age against 70 minutes; only release after **2026-11-22T21:16:07.590818Z** as final GitHub mutation. Do not refresh lease or release early.
+
+**Original-source completed candidate (20:14Z):** Exact p27 six-rune `DJU BEI` echo on p55 leaves three 76-rune p27 tapes; original p49–51 table has 76 outer-rim cells. Tested a distinct changing abscissa quadratic Shamir interpolation with x from each rim cell (GF29), two source tape arrangements × two rim orientations × base59/base60 = eight complete variants. Direct fourth-share identity matches original p55 only 0–8/76 symbols. Reversible additive inverse remains nonprose (best 76-rune IoC0.043158, versus solved p57 0.059649). All eight authentic p57 native positive plants recover 76/76, forward-replay exact. This closes the **specified changing-coordinate Shamir operation only**, with no plaintext. [Report](../../im-results/lp2-p27-rim76-changing-shamir-original-gate.md) · [SFT](../../sims/lp2_p27_rim76_changing_shamir_original_sft.cjs) · [Windows PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45065341898). Commits `d87ef52f`, `6a2184b3`.
+
+**Causal frontier:** all 56 LP2 unknown pages remain encrypted. Do not rerun the above 8 interpolators, 2014 literal XOR or p27 static-polynomial family. New work should require an independent first-party key/opcode, a genuine long original plaintext prediction, or a distinguishable information-bearing change of register. Prior agent1 memory below is historical and some claims may have been superseded; consult current `results/README.md`.
+
+---
+
 # Agent1 current-invocation checkpoint — 22 Nov 2026, 18:00 UTC
 
 **Active run** `agent1-gpt6-20261122T172623Z-draw7-d7dbb7432a` (mode draw7); immutable identity lease originally `2026-11-22T17:26:23.752359Z`. Do not release until measured UTC ≥`18:36:23.752359Z` (70 minutes); then push everything and DELETE OWN LEASE as final repository mutation, verify. Never voluntarily stop earlier. `results/README.md` still reports **zero original LP2 plaintext**; retain that classification.
