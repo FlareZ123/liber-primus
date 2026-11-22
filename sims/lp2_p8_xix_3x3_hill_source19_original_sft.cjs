@@ -143,6 +143,58 @@ for(const [basis,dec,enc] of [['row',L,K],['column',transpose(L),transpose(K)]])
 assert.equal(tensorModels.length,4);
 assert(tensorModels.every(v=>v.ioc<0.04));
 
+// Original neighboring p10 numeral7 (unique whole p8–p14 chapter), together
+// with authentic prior p7 terminal red-word product2 and P's root alpha²=8,
+// reconstructs the ENTIRE p8 K characteristic polynomial post hoc:
+// chi_K(t)=(t+2)*((t-7)²-8*7²) modulo29. No source prints this cipher law.
+const transcription=fs.readFileSync(path.join(__dirname,'..','resources','liber-primus','lp2-transcription.txt'),'utf8').split('%');
+const runeSet=new Set(corpus.runes);
+let running=0;
+const literalDigits=[];
+for(let page=8;page<=14;page+=1){
+  for(const char of transcription[page]){
+    if(runeSet.has(char))running+=1;
+    else if(/[0-9]/.test(char))literalDigits.push({page,preceding:running,numeral:char});
+  }
+}
+assert.equal(running,1729);
+assert.deepEqual(literalDigits,[{page:10,preceding:692,numeral:'7'}]);
+const zero=[[0,0,0],[0,0,0],[0,0,0]];
+const addScalar=(M,k)=>M.map((row,i)=>row.map((v,j)=>mod(v+(i===j?k:0)));
+const subtractMatrix=(A,B)=>A.map((row,i)=>row.map((v,j)=>mod(v-B[i][j])));
+const scaleMatrix=(A,k)=>A.map(row=>row.map(v=>mod(v*k)));
+const p7PacketPolynomial=mm(addScalar(K,2),
+  subtractMatrix(mm(addScalar(K,-7),addScalar(K,-7)),
+    scaleMatrix(identity,8*7*7)));
+assert.deepEqual(p7PacketPolynomial,zero);
+assert.equal(mod((-2)*7*7*(1-8)),19); // source numeral7 eigen-block norm
+/** @param {number[][]} matrix @param {number} exponent */
+function matrixPower(matrix,exponent){
+  let result=identity,base=matrix;
+  for(let e=exponent;e>0;e=Math.floor(e/2)){
+    if(e%2)result=mm(result,base);
+    base=mm(base,base);
+  }
+  return result;
+}
+assert.deepEqual(matrixPower(K,420),identity);
+for(const p of [2,3,5,7])assert.notDeepEqual(matrixPower(K,420/p),identity);
+const sevenModels=[];
+const Kseven=matrixPower(K,7);
+const LinverseSeven=matrixPower(L,7);
+assert.deepEqual(mm(Kseven,LinverseSeven),identity);
+for(const [orientation,enc,dec] of [
+  ['row',Kseven,LinverseSeven],
+  ['column',transpose(Kseven),transpose(LinverseSeven)]
+])for(const [direction,underlyingEnc,underlyingDec] of [
+  ['inverse',enc,dec],['forward',dec,enc]
+]){
+  const model=tryMode(underlyingEnc,underlyingDec,'ECB');
+  sevenModels.push({orientation,direction,ioc:model.ioc,first25:model.first25});
+}
+assert.equal(sevenModels.length,4);
+assert(sevenModels.every(x=>x.ioc<0.04));
+
 const GP1Det = mod(det3(K.map(row => row.map(x => x + 1))));
 const primeDet = mod(det3(K.map(row => row.map(x => corpus.prime[x]))));
 assert.deepEqual([GP1Det,primeDet], [6,15]);
@@ -157,7 +209,9 @@ console.log(JSON.stringify({
   originalTitle:red, roman19Prefix:iv, redMatrix:K,
   determinantInteger:det3(K), determinantGP0:19, determinantGP1:GP1Det,
   determinantPrimeValues:primeDet, inverse:L,
-  characteristic:{trace,principal2,determinant:19,rootNegative2:true},
+  characteristic:{trace,principal2,determinant:19,rootNegative2:true,
+    sourceP10Numeral:literalDigits,sourceRoot8And7MatrixEquation:true,matrixOrder420:true},
+  p10SevenPoweredHillModes:sevenModels,
   tensorFiveLevels:tensorModels,
   originalBlackRunes:body.length, blackOriginalIOC:ioc(body),
   modeResults:rows, classification:'source-shape key candidate; no original plaintext'
