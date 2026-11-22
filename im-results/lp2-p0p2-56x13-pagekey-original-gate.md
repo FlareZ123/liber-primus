@@ -1,90 +1,52 @@
-# P0–p2 opening 729-rune register as a 56×13 candidate page-key table
+# P0–p2: 729 full runes and 716 black runes as candidate page-key rows
 
-**Status:** Source-motivated alignment; direct receiver tests reject the simplest
-page-key decoders on authentic unknown pages. **No LP2 plaintext or authentic key
-recovered.** This is a bounded decision, not an established cipher.
+**Status:** The original 13-dot framing makes two exact 13-rune-row counts visible. Direct reversible cipher receivers on the original unsolved pages remain nonlinguistic. **No recovered plaintext, authenticated key, or inferred creator operation.** This is a bounded hypothesis, outside the established-results record.
 
-## Original source and human-recognizable cue
+## Source-visible alignment
 
-The authentic LP2 opening image is archive `17.jpg` (physical p0).
-Its first **13 red runes** form two printed words of lengths 8+5; a
-13-dot mark follows those runes, and the black body starts immediately
-after. The p0–p2 continuous three-page unit contains **729 GP29 runes**:
-262 on p0, 266 on p1, and 201 on p2.
+On LP2 physical p0 (original JPEG `17.jpg`), **13 initial red runes** in an 8+5 title are followed by a **red 13-dot separator**. On physical p2 (original JPEG `19.jpg`), another **red 13-dot separator** comes immediately after the last rune. The intervening entire three-page region comprises p0 262 + p1 266 + p2 201 = **729 GP29 runes**, and the span between the two separators is **716 GP29 runes**:
 
-The exact identity is
+```text
+729 = 56 × 13 + 1    (all p0–p2 runes)
+716 = 55 × 13 + 1    (after p0's red heading, through p2)
+```
 
-    729 = 56*13 + 1 = 13 + 55*13 + 1.
+LP2 has **56 unknown physical pages p0–p55**, of which exactly **55 are rune-bearing** (p50 contains the middle of the 256-cell numeral panel). This motivates two *competing* speculative row interpretations. In the full 729 register, 56 rows of 13 runes and a residual occupy the three pages, and row0 coincides with the **literal original red heading** when the residual is last. In the 716 black register bounded by the two 13-dot separators, 55 rows of 13 and a residual can be assigned to 55 rune-bearing unknown pages in physical order, skipping p50.
 
-There are 56 unsolved **physical** pages p0–p55, including rune-free p50.
-Thus a naive page-key reading could take the first 728 runes as 56 rows
-of length 13. Its first row is **exactly the red heading**, and one
-final rune remains. Alternatively, the first rune is a framing seed and
-the following 728 runes are the rows. The same 729 also equals 3^6 and
-27^2, already investigated elsewhere; its arithmetic alone does **not**
-select a 56×13 array or specify a cipher. No original instruction maps
-these rows to corresponding page plaintext.
+Source constraints are the original image ink, marker positions, rune counts, and page mapping. **No first-party text instructs an actual 13-rune key table, an omitted residual, a mode, or even reuse of the opening chapter as a key.** The alternative 729=27²=3⁶ is also a natural design interpretation and has existing separate investigations. Direct use of an opening-source row to decode that same opening page would be self-referential. Hence pages p3–p55 are the independent original receiver here.
 
-The two source-visible row arrangements are:
+## Frozen original-source test
 
-- **Final residual:** key for page `p` is opening rune offsets
-  `13p ... 13p+12`, with offset 728 unused. This preserves the complete
-  13-rune original red heading as key0.
-- **Initial residual:** key for page `p` is offsets
-  `1+13p ... 13+13p`, with offset0 unused.
+Reproduce with [the single-file CommonJS SFT](../sims/lp2_p0p2_56x13_pagekey_original_sft.cjs) reading the repository's canonical `resources/liber-primus/lp2-corpus.json`.
 
-This is a deliberately limited test. It does not try unconstrained
-shifts, arbitrary key permutations, secret KDFs, or simulated state
-fitting.
+The four source row placements are:
 
-## Full original source inverse
+| Register | Key rows | Original rune offset of first key | Residual placement | Page-to-key address |
+| --- | ---: | ---: | --- | --- |
+| Full 729 | 56×13 | 0 | Last | Physical page number |
+| Full 729 | 56×13 | 1 | First | Physical page number |
+| Black 716 | 55×13 | 13 | Last | Rune-bearing physical-page ordinal, skipping p50 |
+| Black 716 | 55×13 | 14 | First | Rune-bearing physical-page ordinal, skipping p50 |
 
-Use [the self-contained CommonJS SFT](../sims/lp2_p0p2_56x13_pagekey_original_sft.cjs).
-Input is `resources/liber-primus/lp2-corpus.json`; the test uses all
-original rune-bearing physical pages **p3–p55**, excluding rune-free p50.
-This gives **52 untouched pages, 12,227 genuine ciphertext runes**.
-P0–p2 supply keys and are not counted as independent ciphertext tests.
+For each placement, reverse the key or keep printed order, select addition or subtraction, and apply three familiar reversible constructions over GP29:
 
-For each page, test both key orientations, both signs, and these three
-standard fully reversible, length-preserving receivers, with
-`k` the original 13-rune page row and indices modulo 29:
+1. Repeating period-13 key: `P[i] = C[i] ± key[i mod 13]`.
+2. Ciphertext-autokey at lag13: `P[i] = C[i] ± (i<13 ? key[i] : C[i−13])`.
+3. Plaintext-autokey at lag13: `P[i] = C[i] ± (i<13 ? key[i] : P[i−13])`.
 
-1. Periodic Vigenère `P_i = C_i ± k_(i mod13)`.
-2. Ciphertext autokey at lag13 `P_i = C_i ± (i<13 ? k_i : C_(i−13))`.
-3. Plaintext autokey at lag13 `P_i = C_i ± (i<13 ? k_i : P_(i−13))`.
+This defines exactly **48 source-key candidates** with no fitted secret parameters. All original pages **p3–p55, excluding rune-free p50**, supply **12,227 ciphertext runes on 52 independent pages**. Also test 49 pages of length≥100 separately. A genuine solved p57 GP29-language control is used for IoC comparison, and each reversible mode is checked by exactly recovering all 95 solved p57 runes from its synthetic encryption.
 
-The 2 residual placements × 2 orientations × 2 signs × 3 receivers
-give **24 frozen original-stream trials**. Each has a precise forward
-inverse. All 24 independent synthetic encryptions of the genuine native
-95-rune solved p57 control decrypt **exactly 95/95 runes**.
+## Observed decision
 
-## Measured result
-
-Across the 24 original-source inverses:
-
-| Diagnostic | Original unknown ciphertext decoded |
+| Diagnostic | Result over the 48 original-input candidates |
 | --- | --- |
-| GP29 IoC across all 12,227 decoded runes | **0.034447–0.034515** |
-| Pages with at least 100 runes | 49 |
-| Long pages attaining GP29 IoC ≥ 0.050 | **0 / 49 in every trial** |
-| Largest original long-page IoC in any trial | **0.038843** |
-| Solved native p57 language control | 95 runes, GP29 IoC above 0.050 |
-| Synthetic native p57 encrypt/decrypt plant | **24/24 exact reversals** |
+| Original full-receiver decoded GP29 IoC | **0.0344471–0.0345264** |
+| Number of independently decoded long pages reaching IoC≥0.050 | **0 of 49 per candidate** |
+| Largest long-page IoC across the entire candidate family | **0.0395317** |
+| Length/word-preserving original runes consumed per candidate | **12,227** |
+| Genuine solved p57 GP29 IoC | **above 0.050** |
+| Reversible native p57 synthetic planted control | **48 of 48**, each **95/95 recovered runes** |
 
-The resulting strings remain near uniformly distributed over GP29.
-This is decisive against these **direct** row-key readers as
-self-contained recoveries of ordinary GP-native prose. It does not
-exclude a deliberately encoded key table, a nonlinear state update,
-a different output alphabet, a different grouping, or another way to
-interpret the final rune.
+Both plausible source-frame registrations fail to recover ordinary GP-native natural prose under these direct standard cipher consumers. The paired 13-dot separators make the black-register hypothesis interesting as a reading cue, but the numerology does not fix its operation and no original ciphertext was deciphered.
 
-## Decision
-
-Preserve the exact source alignment as a possible clue but **do not
-promote 56×13 to an authored key schedule**. Any successor needs an
-independent original-image or first-party operation selecting how the
-13-rune row controls a page, and must recover meaningful withheld
-original plaintext with exact inverse reconstruction. A new
-unmotivated KDF/clock sweep on this correspondence would duplicate the
-broader key-search failures. The source count is an observation,
-not cryptographic evidence of a selected key.
+**Decision:** Retire these exact repeating and lag13 autokey inverses. Future investigation would need a source-selected 13-rune-row consumer, with a complete exact inverse and non-overfit original plaintext holdout, to justify pursuing this alignment. Do not expand the idea into unconstrained key transformation sweeps solely because of the exact count.
