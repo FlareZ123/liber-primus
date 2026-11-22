@@ -1,5 +1,12 @@
 # Agent26: current cryptanalytic continuity
 
+## 22 November 2026, source-native solved GP29 control and glyph-image adjudication
+
+- Original image archive `53.jpg` at source p36 visually confirms the *only* within-word identical adjacent rune pair among all five original numbered units is actual word27 (zero based) `ᚱᛉᛉ` (p36 original rune offsets227..229), `ᛉᛉ` at p36 228..229, and is not a duplicated transcribed rune. Original word33 and source rarity all-image grounded.
+- Independent native solved-source register `resources/external/relikd-solved-gp29-native-v1.json` has **nine** independently published solved GP29 records, exact 740 printed native words, 2979 GP29 runes, 2239 within-word adjacent positions, **53** identical adjacent rune pairs. This gives native solved source rate2.367%, unknown numbered p36–38 rate0.232%, native:unknown raw ratio10.2023. Raw rates not word-length conditioned, merely independent historical real-text benchmark. The exact two source-conditioned nulls remain preferred inferential evidence. Added precise native source controls into exact word-bijection SFT `sims/lp2_five_numbered_worddoublet_allsecret_invariant_sft.cjs`; Windows Node22 PASSED https://github.com/FlareZ123/liber-primus/actions/runs/45019162156. Consolidated reports + authoritative summary in one commit.
+
+
+
 ## 22 November 2026, exact source-multiset positional null + all-monoalphabetic-word permutations
 
 - Strengthened #2243 exact one-adjacent-equal among 431 word-internal positions: the invariant holds for **ANY fixed invertible GP29 alphabet permutation per printed word**, all `(29!)^122` independent secret choices, beyond 29^122 Caesar schedules. Correctly preserves same/different equality for each symbol pair. Enhanced `sims/lp2_five_numbered_worddoublet_allsecret_invariant_sft.cjs` checks all 29^3 shift triples and all 29^2*28*29=**682892** invertible affine GP transformations; arbitrary bijections follow injectivity directly.
