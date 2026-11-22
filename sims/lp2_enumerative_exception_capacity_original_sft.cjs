@@ -438,6 +438,127 @@ assert.ok(sideInvariantSuffix.ordinal < 0.04);
 assert.ok(sideInvariantSuffix.cyclic < 0.04);
 assert.ok(sideInvariantSuffix.solvedNative > 0.06);
 
+/*
+ * A source-native alphabet-sensitive rival: the 2,979 known solved GP runes
+ * use NEITHER EO nor OE. The remaining 27 GP symbols may be enough for
+ * a length-preserving, word-exact constrained-code mapping WITHOUT a
+ * variable sidecar. Verify capacity and test canonical arithmetic scaling.
+ *
+ * Given a source integer X in [0,27^L), output constrained codeword rank
+ * R=floor(X*M/27^L); M>=27^L ensures injectivity. Decode any rank using
+ * X=floor(((R+1)*27^L-1)/M). A real canonical encoder must additionally
+ * satisfy R=floor(X*M/27^L) exactly; otherwise any apparent output text
+ * is a mathematical readout of an INVALID source frame.
+ */
+const source27 = corpus.translit.map((_,i)=>i).filter(i=>i!==12 && i!==22);
+assert.equal(source27.length,27);
+const gpTo27=new Map(source27.map((v,i)=>[v,i]));
+assert.ok(solvedSections.flat().every(i=>gpTo27.has(i)));
+const plain27Size=27n ** BigInt(total);
+assert.ok(wordSize>=plain27Size); // zero additional side bits for all-source GP27
+const plain28Size=28n ** BigInt(total);
+assert.ok(plain28Size>wordSize); // all-source GP28 still needs a small side field
+assert.equal(missingBits(plain28Size,wordSize),23);
+function toBase(n,q,count) {
+  const out=Array(count).fill(0);
+  for(let i=count-1;i>=0;i--){out[i]=Number(n%BigInt(q));n/=BigInt(q);}
+  assert.equal(n,0n);
+  return out;
+}
+function wordRankOne(w,cyclic) {
+  const t=w.length-1,maskSites=[],digits=[];
+  for(let j=1;j<w.length;j++) {
+    const prev=w[j-1],v=w[j];
+    if(v===prev)maskSites.push(j-1);
+    else digits.push(cyclic?(v-prev+28)%29:v-Number(v>prev));
+  }
+  const e=maskSites.length,masks=choose(t,e),base=28n**BigInt(t-e);
+  let posRank=0n,used=0;
+  for(let j=0;j<t;j++)if(maskSites[used]===j){
+    posRank+=choose(t-j-1,e-used);used++;
+  }
+  let digitRank=0n;
+  for(const d of digits)digitRank=digitRank*28n+BigInt(d);
+  return (BigInt(w[0])*masks+posRank)*base+digitRank;
+}
+function rankWords(scope,cyclic) {
+  let rank=0n;
+  for(const w of scope)rank=rank*codebook(w)+wordRankOne(w,cyclic);
+  return rank;
+}
+function unrankWords(rank,scope,cyclic) {
+  const codes=Array(scope.length);
+  for(let i=scope.length-1;i>=0;i--){
+    const word=scope[i],t=word.length-1,e=repeatCount(word);
+    const m=codebook(word),wRank=rank%m;
+    rank/=m;
+    const base=28n**BigInt(t-e),masks=choose(t,e);
+    let digitsValue=wRank%base;
+    const top=wRank/base;
+    let maskValue=top%masks;
+    const first=Number(top/masks);
+    const digits=toBase(digitsValue,28,t-e);
+    const flags=Array(t).fill(false);
+    let remaining=e;
+    for(let j=0;j<t;j++){
+      const skip=choose(t-j-1,remaining);
+      if(remaining>0 && maskValue>=skip){
+        flags[j]=true;maskValue-=skip;remaining--;
+      }
+    }
+    assert.equal(maskValue,0n);
+    assert.equal(remaining,0);
+    const decoded=[first];
+    let nextDigit=0;
+    for(let j=0;j<t;j++){
+      const prev=decoded.at(-1);
+      if(flags[j])decoded.push(prev);
+      else{
+        const d=digits[nextDigit++];
+        decoded.push(cyclic?(prev+d+1)%29:d+Number(d>=prev));
+      }
+    }
+    assert.equal(nextDigit,t-e);
+    assert.equal(wordRankOne(decoded,cyclic),wRank);
+    codes[i]=decoded;
+  }
+  assert.equal(rank,0n);
+  return codes;
+}
+const chapterOpeningWords=words.filter((w,i)=>{
+  let prefix=0;
+  for(let j=0;j<=i;j++)prefix+=words[j].length;
+  return prefix<=729;
+});
+assert.equal(chapterOpeningWords.length,158);
+assert.equal(chapterOpeningWords.reduce((sum,w)=>sum+w.length,0),729);
+const openingM=chapterOpeningWords.reduce((v,w)=>v*codebook(w),1n);
+const native27=solvedSections.flat().slice(0,729);
+const xNative=native27.reduce((v,z)=>v*27n+BigInt(gpTo27.get(z)),0n);
+const pNative=27n ** 729n;
+assert.ok(openingM>=pNative);
+const rankPlant=xNative*openingM/pNative;
+const plantedWords=unrankWords(rankPlant,chapterOpeningWords,false);
+assert.equal(rankWords(plantedWords,false),rankPlant);
+assert.equal(((rankPlant+1n)*pNative-1n)/openingM,xNative);
+assert.deepEqual(toBase(xNative,27,729).map(i=>source27[i]),native27);
+
+const plain27Original=[];
+for(const cyclic of [false,true]) {
+  const originalRank=rankWords(words,cyclic);
+  const x=((originalRank+1n)*plain27Size-1n)/wordSize;
+  const canonicalRank=x*wordSize/plain27Size;
+  assert.notEqual(originalRank,canonicalRank);
+  const plain=toBase(x,27,total).map(i=>source27[i]);
+  plain27Original.push({
+    cyclic,wholeIoc:ioc(plain),p0p1Ioc300:ioc(plain.slice(0,300)),
+    p16Ioc200:ioc(plain.slice(3762,3962)),
+    canonicalForwardMatchesOriginal:originalRank===canonicalRank
+  });
+}
+assert.ok(plain27Original.every(v=>v.p0p1Ioc300<controls.n300.min));
+assert.ok(plain27Original.every(v=>v.p16Ioc200<controls.n200.min));
+
 /* Real solved-native plaintext, planted through a length-expanding GP28
    nonrepeat transition encoder, recovers exactly under the same decoder. */
 const native = solvedSections.flat().slice(0, 300);
@@ -482,5 +603,8 @@ console.log(JSON.stringify({
   chaptersStillInsufficientWithThreePunctuationSymbols: chapterDeficitsEvenWithTernaryGlyphs,
   solvedIoc: controls, directOriginalInverses: variants,
   sidecarIndependent2896RuneSuffix: sideInvariantSuffix,
+  genuineGP27ReducedSource: {missingBits:0,
+    GP28WordFixedMissingBits:23,
+    openingPlantedRunes:729,original:plain27Original},
   plantedPositive: "PASS"
 }, null, 2));
