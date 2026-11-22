@@ -10,7 +10,7 @@ import hashlib
 import os
 from pathlib import Path
 
-from PIL import Image
+from PIL import Image, ImageChops
 
 
 ROOT = Path(os.environ.get("LP2_IMAGE_DIR", Path(__file__).resolve().parents[1] / "resources" / "liber-primus"))
@@ -37,6 +37,16 @@ def main() -> None:
     assert all(row["left"] == hashes[0]["left"] for row in hashes)
     assert all(row["right"] == hashes[0]["right"] for row in hashes)
     assert len({row["center"] for row in hashes}) == 16, "Central areas should differ"
+    with Image.open(SOURCE_FILES[0]) as source:
+        original = source.convert("RGB")
+        boxes = []
+        for path in SOURCE_FILES[1:]:
+            with Image.open(path) as other:
+                bounds = ImageChops.difference(original, other.convert("RGB")).getbbox()
+                assert bounds is not None
+                boxes.append(bounds)
+    assert min(box[0] for box in boxes) == 591
+    assert max(box[2] for box in boxes) == 1832
     assert hashes[0]["left"] == "3487367efc8b098f9dd8d4b878132bab0f56e36bebb7bc168283f7a9669910c1"
     assert hashes[0]["right"] == "d860da957dc1b6dd00319f6b158a6a66884142c0a635bdd5725b5c5af260d089"
     print("PASS: p40-p55 all 16 original JPEGs: exact RGB left/right border matches")
