@@ -70,10 +70,10 @@ function permutations(vals){
 const orders=permutations(coeff);
 assert.equal(orders.length,120);
 const predicate=(candidate)=>({
- at19:poly(candidate,19)===mod(idNum),
+ at19:poly(candidate,19)===mod(container),
  slopeAt4:poly(candidate.slice(1).map((v,i)=>mod(v*(i+1))),4)===mod(title)
 });
-// idNum is 331 (residue12); title is 133 (residue17).
+// container is 331 (residue12); title is 133 (residue17).
 const hits=orders.map(candidate=>({candidate,...predicate(candidate)}));
 const at19=hits.filter(h=>h.at19), slope=hits.filter(h=>h.slopeAt4),
   both=hits.filter(h=>h.at19&&h.slopeAt4);
