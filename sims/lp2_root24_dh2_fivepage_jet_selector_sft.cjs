@@ -208,6 +208,70 @@ assert.deepEqual(pageHoldouts.map(x => [x.length, x.matches]), [
 assert.equal(pageHoldouts.reduce((n, x) => n + x.length, 0), 921);
 assert.equal(pageHoldouts.reduce((n, x) => n + x.matches, 0), 34);
 
+// A second fully predicted, whole-table reader: 2013 Cicada used a 5-of-10
+// Shamir threshold. The two independently source-derived p50 quadratic factors
+// have total degree four, leaving 256-4 = 252 original quotient symbols,
+// exactly C(10,5) possible five-page choices. The complete 252 entries of that
+// quotient are a direct untouched holdout, not a key fitted to English.
+/** @param {number[]} a @param {number[]} b @returns {number[]} */
+function polyMultiply(a, b) {
+  const result = Array(a.length + b.length - 1).fill(0);
+  for (let i = 0; i < a.length; i++)
+    for (let j = 0; j < b.length; j++)
+      result[i + j] = mod(result[i + j] + a[i] * b[j]);
+  return result;
+}
+const H = [24, 26, 3]; // signed 2013 BASE29 3301->3QO, high-first
+const G = [15, 5, 27]; // physical p39 marked red, high-first
+const divisor = polyMultiply(H, G);
+assert.deepEqual(divisor, [12, 17, 11, 21, 23]);
+const remainder = table.bytes.map(mod);
+const tableQuotient = [];
+for (let i = 0; i < table.bytes.length - divisor.length + 1; i++) {
+  const factor = mod(remainder[i] * inverse(divisor[0]));
+  tableQuotient.push(factor);
+  for (let j = 0; j < divisor.length; j++)
+    remainder[i + j] = mod(remainder[i + j] - factor * divisor[j]);
+}
+assert.equal(tableQuotient.length, 252);
+assert.deepEqual(remainder.slice(-4), [0, 0, 0, 0]);
+const ten = originalTaggedPages.map(id => ({
+  id, x: id % M, jet: jet(corpus.pages[id].indices, ROOT)
+}));
+assert.equal(new Set(ten.map(record => record.x)).size, 10);
+assert.deepEqual(ten.map(record => record.jet), [
+  [4,12],[24,2],[4,12],[12,2],[0,0],
+  [12,2],[24,2],[24,2],[28,3],[28,3]
+]);
+const fiveSubsets = [];
+for (let a = 0; a < 6; a++)
+  for (let b = a + 1; b < 7; b++)
+    for (let c = b + 1; c < 8; c++)
+      for (let d = c + 1; d < 9; d++)
+        for (let e = d + 1; e < 10; e++)
+          fiveSubsets.push([a, b, c, d, e]);
+assert.equal(fiveSubsets.length, 252);
+const selectedPositions = ids.map(id => originalTaggedPages.indexOf(id));
+const selectedRank = fiveSubsets.findIndex(group =>
+  group.every((id, i) => id === selectedPositions[i]));
+assert.deepEqual(selectedPositions, [1, 3, 5, 6, 7]);
+assert.equal(selectedRank, 171);
+const interpolatedJetRegisters = [0, 1].map(field => fiveSubsets.map(subset =>
+  subset.reduce((sum, i) => {
+    const r = ten[i];
+    const factor = subset.reduce((weight, j) => i === j ? weight :
+      mod(weight * mod(-ten[j].x) * inverse(mod(r.x - ten[j].x))), 1);
+    return mod(sum + factor * r.jet[field]);
+  }, 0)));
+const quotientMatches = interpolatedJetRegisters.map(register =>
+  register.reduce((sum, x, i) => sum + Number(x === tableQuotient[i]), 0));
+assert.deepEqual(quotientMatches, [6, 6]);
+const quotientIoc = interpolatedJetRegisters.map(ioc);
+assert(Math.abs(quotientIoc[0] - 0.269461835198887) < 1e-12);
+assert(Math.abs(quotientIoc[1] - 0.2732561816227155) < 1e-12);
+assert.equal(tableQuotient[selectedRank], 4);
+assert.equal(ioc(tableQuotient) > 0.0, true);
+
 // Uniform iid GF29 pair null: a fixed derivative value occurs Binomial(55,1/29).
 // Conditional on exactly five occurrences, 3+2 value-pattern assignments
 // are C(29,2)*2*C(5,2)/29^5. This is a descriptive reference, not
@@ -230,6 +294,16 @@ console.log(JSON.stringify({
   selected,
   repeatedJetGroups,
   originalTaggedPages,
+  sourceCombinatorial252: {
+    count: fiveSubsets.length,
+    selectedSubsetRankLexZeroBased: selectedRank,
+    quotientTableLength: tableQuotient.length,
+    quotientSymbolAtSelectedRank: tableQuotient[selectedRank],
+    allOriginalPageJetValueMatches: quotientMatches[0],
+    allOriginalPageJetDerivativeMatches: quotientMatches[1],
+    allPredictedValueIoC: quotientIoc[0],
+    allPredictedDerivativeIoC: quotientIoc[1]
+  },
   fullFieldFamily: {trials: M * M, qualifying: family},
   uniformIidNull: {
     fixedRootAndDerivativeExactlyFiveSplit3plus2: fixedPairPattern32,
