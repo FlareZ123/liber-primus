@@ -39,6 +39,7 @@ for (const word of parsed.words) {
 assert.deepEqual([cursor, parsed.words.length, singleton.length], [12956,2896,83]);
 for (const s of singleton) assert.equal(source[s.position], s.value);
 const MOD = 29;
+const N9 = [11,15,0,9,1,5,10,20,12];
 // Prove the corrected N9 coefficient vector divides the unchanged table
 // in original descending orientation, independent of plaintext controls.
 const grid=JSON.parse(fs.readFileSync(path.join(ROOT,
@@ -53,7 +54,7 @@ for(let i=remainder.length-1;i>=9;i--){
 assert.deepEqual(remainder.slice(0,9),Array(9).fill(0));
 const ORDER = 9;
 const VARIABLES = 12;
-const N9 = [11,15,0,9,1,5,10,20,12];
+
 const inv = Array(MOD).fill(0);
 for (let x = 1; x < MOD; x++) {
   for (let y = 1; y < MOD; y++) if (x*y%MOD === 1) inv[x]=y;
