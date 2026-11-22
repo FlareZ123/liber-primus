@@ -34,6 +34,23 @@ None yields coherent native prose or a useful instruction. All four exactly repr
 
 The 36 cells strictly between the two marks have **34 distinct base60 values**, and only **24 distinct residues mod36**. The 26 cells strictly after the final mark have **26 distinct base60 values**, but only **16 distinct residues mod26**. Therefore the obvious direct byte-modulus reductions do not encode a 36- or 26-symbol one-to-one secret alphabet in the printed order. It remains possible to rank those bytes or invoke another conversion, but no source clue presently selects such an extra layer.
 
+## New central-cube and independent p55 receiver (conditional)
+
+The same original p57 phrase gives an unusually constrained *shape hypothesis*. The two GP index sums **64 = 4 cubed** and **27 = 3 cubed** are consecutive perfect cubes. The last 27 numeric cells can be regarded as one 3×3×3 solid, with its central cell at local offset13 (zero-based). Original absolute table cell **242** prints **0g**, base60 value **42**, exactly **GP0(FIND)=42**, the next active verb in the clear p57 instruction. Among all 20 complete p57 words, the admissible fixed *one-word plus next-two-words* suffix grammar (first sum greater than the next-two sum, both within256) produces exactly **five distinct candidate pairs**; SHED | OUR OWN selects observed addresses **192 and229** as its only match. This is a finite, descriptive grammar count. The grammar was noticed after inspecting the source, so the count cannot be quoted as an authorship p-value.
+
+The six face-neighbors of the 3×3×3 center (local offsets4,10,12,14,16,22) have base60 values **234,173,141,214,56,230**. The value **56 = GP0(AND)** occurs exactly once, at local offset16, one cube-grid step from the center. Another exact source lookup already known independently from p57 is **table[42] = 0S = 28**, which points to p28's candidate READ OUT circuit. The clear phrase is FIND THE DIVINITY WITHIN AND EMERGE. This center-to-face coincidence is a useful *testable* candidate, but the original physical object is an 8-column two-dimensional print: it does not instruct a 3-dimensional remapping, a rotation or an executable inverse. The center gives FIND, not DIVINITY. No original receiver has been decoded by this cube interpretation.
+
+Under the **GP-prime** rather than zero-index sums, OUR OWN = **76**, precisely the p55 original rune count, and the 32×8 table's outer perimeter also contains76 cells. This 76/perimeter relation was already investigated under [Director #1407](https://github.com/FlareZ123/liber-primus/issues/1407); this report does not claim it as new. It supplies a distinct, source-motivated receiving choice for the 27-cell candidate. Applying the fixed last27 source cells cyclically across **all 76 original p55 ciphertext runes**, both signs and both radices, yields only nonprose. Exact output GP IoCs:
+
+| 27-period pad on p55 | IoC |
+| --- | ---: |
+| base60 subtract | 0.03474 |
+| base60 add | 0.03544 |
+| base59 subtract | 0.03579 |
+| base59 add | 0.03193 |
+
+Thus the obvious contiguous receivers, the immediate p51 runes and full p55, both reject the same literal direct additive pad. Neither a center-to-face navigation clue nor the 26 unique other cube bytes supplies the missing transformation. Further tuned rotations or pad traversals would need source-authored directions and a withheld full-span plaintext consequence.
+
 ## Direct original p56 SHA-512 check
 
 For both conventional base60 and the conditional drop-f base59, convert table numeric cells directly into bytes and hash each of four frozen ranges: first192, first229, all256, and last64. **None of the eight SHA-512 digests matches** the 128-hex-character original p56 target:
