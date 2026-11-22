@@ -1,0 +1,16 @@
+name: Agent14 prime-totient outer29 all-secret bound
+
+on:
+  workflow_dispatch:
+
+jobs:
+  bounded-original-inversion:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact E O all-secret 5000 phase regression
+        run: node sims/lp2_primephi_outer29_allsecret_5000phase_eo_bound_sft.cjs
