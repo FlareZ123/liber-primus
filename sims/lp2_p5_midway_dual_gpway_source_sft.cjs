@@ -78,6 +78,41 @@ function ioc(values){
 }
 assert.ok(ioc(decoded)<0.045);
 assert.ok(ioc(sourceIndices)<0.045);
+
+// Fixed source-size page walk: 29 GP runes, 55 rune-bearing unsolved pages.
+// It predicts MAP on p34 and HERE on p8, with no fitted page-step constant.
+const mapNumber={ordinal:56,primes:211};
+const hereNumber={ordinal:48,primes:168};
+assert.deepEqual([table[211],table[168]],["11","40"]);
+const mapAliases=words.filter(w=>w.ordinal===mapNumber.ordinal&&w.primes===mapNumber.primes);
+const hereAliases=words.filter(w=>w.ordinal===hereNumber.ordinal&&w.primes===hereNumber.primes);
+assert.deepEqual(mapAliases.map(w=>w.page),[16,29,34,50]);
+assert.deepEqual(hereAliases.map(w=>w.page),[8,27,41]);
+const validPages=gp.pages.filter(p=>p.page<=55&&p.runic_count>0);
+assert.equal(validPages.length,55);
+const step=gp.runes.length;
+assert.equal(step,29);
+assert.equal((5+step)%55,34);
+assert.equal((34+step)%55,8);
+assert.equal(mapAliases.find(w=>w.page===34).source,"ᛒᚪᛋ");
+assert.equal(hereAliases.find(w=>w.page===8).source,"ᛈᛝᚢᛈ");
+assert.equal(gp.pages[34].runic_count,261);
+assert.equal((gp.pages[34].runic_count-1)/2,130);
+assert.deepEqual(gp.pages[34].indices.slice(130,133),[17,24,15]);
+assert.equal(gp.pages[8].runic_count,255);
+assert.equal((gp.pages[8].runic_count-1)/2,127);
+assert.deepEqual(gp.pages[8].indices.slice(63,67),[13,21,1,13]);
+assert.equal(parseInt(table[168],16),64);
+console.log(JSON.stringify({sourceBounded29PageRoute:[
+ {word:"WAY",page:5,localStart:130,dual:[57,219]},
+ {word:"MAP",page:34,localStart:130,dual:[56,211]},
+ {word:"HERE",page:8,localStart:63,dual:[48,168]}
+],independentModulus:validPages.length,originalAlphabetSize:step,
+ mapSourceAliases:mapAliases.map(w=>w.page),
+ hereSourceAliases:hereAliases.map(w=>w.page),
+ globalPageCenterRuleFailsAtPage8:true,
+ recoveredUnknownPlaintext:false},null,2));
+
 console.log(JSON.stringify({
   class:"original-source navigation/crib candidate; no unknown plaintext",
   originalWords:words.length,originalRunes:parsed.runeCount,
