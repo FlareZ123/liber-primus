@@ -30,5 +30,5 @@ jobs:
           $actualHash = (Get-FileHash -LiteralPath $localFile -Algorithm SHA256).Hash.ToLowerInvariant()
           if ($actualHash -ne 'db79072ce580efa54acf5f31f3ef0eb00aef867871a051d04e27ee5e7fbc112f') { throw "Historical file SHA256 mismatch: $actualHash" }
           $env:CICADA_ISO_56013_PATH = $localFile
-          & node sims/lp2_2013_iso56013_p0_originalXOR5_allbit_source_sft.cjs
+          & node sims/lp2_p36_numbered1_iso56013_alloffset_nativelexicon_sft.cjs
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
