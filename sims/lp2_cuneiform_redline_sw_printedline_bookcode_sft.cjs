@@ -238,7 +238,7 @@ console.log("PASS: direct literal SW key on its original source chapter and five
 // Three literal F ciphertext sites admit 2^3 transparent-F clock choices.
 assert.equal(grid.bytes[31*8],113);
 assert.equal(grid.pages.flatMap(p=>p.tokens)[31*8],"1r");
-assert.equal(corpus.primes.at(-1),109);
+assert.equal(corpus.prime.at(-1),109);
 const p55Source=corpus.pages[55].indices;
 const p55F=p55Source.flatMap((value,i)=>value===0?[i]:[]);
 assert.deepEqual(p55F,[15,25,41]);
