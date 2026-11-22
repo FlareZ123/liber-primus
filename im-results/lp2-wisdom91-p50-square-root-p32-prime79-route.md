@@ -36,6 +36,28 @@ The nonzero **Pythagorean defect** of these three original outputs is **\`121−
 
 This gives a **closed original-artifact route** from the authentic 2014 Stage10 centre **91** through its unmodified table pointer triple, the exact square-defect **56**, the previously documented \`4E\` hexadecimal **N**, and **HOME48→BUDS56** on the printed p32 11×11 grid. The direct p32 coordinate (7,4) additionally returns the published p15 prime79. The p55 43-rune interior count then selects the already independently documented original table pointer walk **\`43→73→79→82→201→74→205→76\`** from 43 surviving runes to 76 total runes, traversing original scan73.jpg (solved p56) and74.jpg (solved p57). No text on original p55 or p32 has yet been cryptographically decrypted.
 
+### The literal centered49 receiver spells BUDS before any arithmetic defect
+
+The original p32 image prints **121 runes over six typographic lines**; only the preserved GP29 stream is reflowed into a hypothetical 11×11 grid. The solved p57 instruction to *shed our own circumferences* supplies an economical physical selector for the first 2014-centre91 table output **49**: strip the 40-cell outer circumference from 11×11, then strip the 32-cell circumference from 9×9, retaining the **centered 7×7 = 49** original rune array. Its normal row-major final four cells are exactly **B U D S**, original p32 offsets93–96, GP indices **[17,1,23,15]**, **GP0 sum56**. It is an *unchanged source-rune readout*, an English-looking navigational word, **not a decryption of unknown ciphertext**.
+
+Consequently the human-scale route can avoid inventing a “Pythagorean defect” calculation entirely:
+\`2014 Wisdom centre91 → original table[91]=49 → p32 centered7×7 after p57 circumference shedding → terminal BUDS → GP0(BUDS)=56 → original table[56]=4E → hex ASCII N → one printed table-row north to48 → GP0(HOME)=48\`.
+A previously observed pair of p32 ciphertext substrings and established table-dimension convention independently provides the matching HOME receiver. This use of a **literal terminal BUDS word** is a stronger potential solve-path clue than the alternative retrospective \`121−49−16=56\` identity. It still depends on several unprinted choices: why source centre91 is a pointer, why 49 should specify *two* shell peels, and why a table token changes from base60 to hex ASCII direction.
+
+A fixed four-glyph BUDS suffix has conditional frequency **4.708425×10⁻⁶** under uniform rearrangement of the original p32 121-rune multiset, holding the final four centered7×7 addresses fixed. This **does not** account for how many meaningful words, source regions, extraction directions or operations were considered; it is a diagnostic of the finite receiver, not a discovery-adjusted p-value.
+
+### Complete p55 exterior/interior prediction with the authenticated totient
+
+The same source-selected p32 \`(7,4)\` rune has **GP prime79**. Applying the *genuinely solved p56* Euler operation gives **φ(79)=78**. Therefore **121−φ(79)=43**, precisely the separately source-counted **p55 strict word-interior count**. The first two table square outputs separately give **49−16=33**, the p55 *exterior* count. These recover the two parts and full page length:
+
+\[
+\underbrace{(49-16)}_{\text{33 exterior runes}}+
+\underbrace{(121-\varphi(79))}_{\text{43 interior runes}}=
+\boxed{76\text{ original p55 runes}}.
+\]
+
+The totient is historically sanctioned, and the original p55 33/43 partition was established independently. The subtraction choices and 91→p32→p55 composition remain analyst hypotheses. The two matches are **not independent probability factors** within the square-root construction, and the direct p56 prime79 cipher inverses on untouched p55 whole/interior streams yield no plaintext (below). This is a sharply specified receiver and key-material lead; no functional p55 decryption is yet known.
+
 **Decision boundary:** p55 exterior33 was known before this chain, and the difference-of-squares has a unique bounded 7,4 solution, strengthening the ability to reconstruct a human solve path. Yet the compositions (use a table as pointers, take roots, subtract square values, treat 4E as hexadecimal ASCII direction, use GP0 word sums) were assembled retrospectively from multiple available numerical conventions. The signed 2016 words/map statement is suggestive, not a complete opcode grammar. The strong structural consistency cannot certify author intent or authenticate plaintext; a genuinely reversible, source-selected operation on untouched unknown ciphertext remains necessary.
 
 ## Global source census: exactly one match
