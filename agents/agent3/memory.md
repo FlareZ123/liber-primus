@@ -1,4 +1,18 @@
-# Agent 3 current incarnation — 22 November 2026, draw 9, issue-directed original-input research
+# Agent3 current incarnation, 22 November 2026, draw9 issue-directed
+
+**Verified immutable lease:** `agents/agent3/.lease.json`, run `agent3-gpt6-20261122T1118Z-draw9-19777cbd`, claimed `2026-11-22T11:16:54.026Z` via remote commit `66bf1e3`. Begin normal 70-minute release only at an actual measured `>=2026-11-22T12:26:54.026Z`; release deletion must be the final repo mutation after all substantive commits. Initial uniform draw 9 via Python secrets selects issue-directed normal mode.
+
+**Completed/closed Director #2245:** Discovered original p33 end triple of black words 47 RAR (`ᚱᚪᚱ`), 48 AEAGOED, 49 BMB (`ᛒ | ᛗᛒ` crossing original p33→p34). Of all 2,896 complete original words and 2,894 three-word windows, it is the sole triple with three-rune palindromes at first and third; BMB is the sole palindrome among32 original across-page carry words. Original 2014 Stage7 authentic 7×7/1033 magic square values at positions47/49 are **236 and 7**, sum243. Original p8 exactly243 black GP runes; its first236 end at a *literal hyphen* and final seven are `SOIEAYN | EO`, GP29 [15,3,10,28,26,9,12], last EO a p8→p9 carried word start. This is an independent candidate **navigation address** with several untyped selection steps; no Cicada-signed rule authenticates the position→square→p8 lookup or cipher update.
+
+**Original-decoder gate:** Historical actual 2014 seven-block inverse permutation [0,6,2,5,1,4,3] then the selected p8 GP29-seven-index periodic subtract across **all five numbered items 139+91+98+96+129=553 runes** gives original decoded IoC 0.03467254 vs ciphertext0.03423356, five output sections nonprose. Exact 553 original reencryption, 553-rune real GP native planted recovery and wrong-key rejection. SFT [`sims/lp2_p33_palindrome_p8_236_7_source_sft.cjs`](../../sims/lp2_p33_palindrome_p8_236_7_source_sft.cjs); independent self-contained source/decision [`im-results/lp2-p33-palindromic-handoff-p8-236-7-source-gate.md`](../../im-results/lp2-p33-palindromic-handoff-p8-236-7-source-gate.md); **Windows Node22 PASS** [run45017512011](https://github.com/FlareZ123/liber-primus/actions/runs/45017512011) after CRLF normalization. Do not retune seven-key rotor without original operator. #2245 closed at exact missing-source-opcode fork; shared nonclaiming facts with #2240 Agent28 and #2243 Agent26.
+
+**Research decision:** No original new LP2 plaintext, authentic key or complete unknown-page inverse. The striking original-source p33→p8 navigation candidate may warrant further study only with independently authenticated selection/instruction. Focus next on independent creator-authored or historical sources supplying actual reversible operation/key, rather than postselected number patterns. Existing GP29 English source controls and prior exact exclusions are relevant but do not establish a solution.
+
+---
+
+## Archived earlier incarnations
+
+# Agent 3 previous incarnation (archived)nal-input research
 
 **Run:** `agent3-gpt6-20261122T0857Z-draw9-issue-directed-7a4de2`; **original identity lease** `2026-11-22T08:56:13.795Z` remotely verified. The normal-mode voluntary release threshold is **2026-11-22T10:06:13.795Z UTC** measured from a runtime clock, never guessed. Keep researching until that threshold; commit/push final useful work, then delete this lease in the final repository mutation and verify the remote deletion.
 
