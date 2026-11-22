@@ -694,4 +694,61 @@ const rhs = [...traceLinear(printedFirstSeven)].reverse()
 assert.deepEqual(lhs,rhs);
 console.log('REVERSE_DUALITY original 2014 5x7 TRACE map rank5, opposite parity C/H/A/NG, even E; J5*F+F*J7=21*ones; original 7-rune block PASS');
 
-console.log('SELFTEST_PASS original squares, charpolys, canonical basis, 3409 original runes, solved-native positives, 84-prime authenticated-key transfer, canonical shared three-mode original receiver, full factor-trace five-symbol original reductions, adjacent 255-word CHANGE-square key receiver, exact five-to-seven reversal-dual trace');
+
+/**
+ * The physical LP2 p33 red cuneiform headings print 1033 and3301,
+ * providing a more direct human-visible pointer to the actual 2014
+ * 1033 squares. The 21+28 black words start as a literal 7x7 grid,
+ * last word BMB continuing across p33->p34. This is the strongest
+ * source-directed recipient for our new rank5 trace. Read the complete
+ * 49 words, summarize each to GP29 (native index sum, genuine GP
+ * prime sum, physical length) and apply the *unaltered 5x7 F* to each
+ * consecutive row7. This produces exactly 35 native candidate runes.
+ * We do not claim an unknown plaintext from these short outputs.
+ */
+const transPages = originalTranscription.split(/\r?\n%\r?\n/);
+assert.equal(transPages.length, 57);
+const p33parts = transPages[33].split('&');
+assert.equal(p33parts.length, 2);
+const tokenizePart = s => s.replace(/[\/\s]/g, '')
+  .split(/[-.]/).filter(Boolean);
+const p33Printed49 = p33parts.map(part => tokenizePart(part).slice(2)).flat();
+assert.equal(p33Printed49.length, 49);
+p33Printed49[48] += tokenizePart(transPages[34])[0];
+assert.deepEqual(p33Printed49.slice(-3), [
+  'ᚱᚪᚱ', 'ᚫᚪᚷᛟᛞ', 'ᛒᛗᛒ'
+]);
+const p33WordIndices = p33Printed49.map(word =>
+  [...word].map(r => glyphMap.get(r)));
+assert.equal(p33WordIndices.flat().length, 198);
+assert.deepEqual(p33WordIndices.slice(0,3).map(w=>w.length),[2,9,6]);
+assert.deepEqual(p33WordIndices.slice(-3).map(w=>w.length),[3,5,3]);
+const p33NativePrime = corpus.prime;
+const p33Summaries = [
+  ['index-sum', p33WordIndices.map(w=>m29(w.reduce((a,v)=>a+v,0))),
+    [27,7,27,8,8,17,15,5,21,24,4,15,17,2,10]],
+  ['prime-sum',p33WordIndices.map(w=>m29(w.reduce((a,v)=>a+p33NativePrime[v],0))),
+    [18,10,20,14,15,13,4,5,20,19,6,17,2,4,24]],
+  ['word-length',p33WordIndices.map(w=>w.length),
+    [6,27,19,25,28,12,27,7,6,22,9,18,23,28,8]]
+];
+for(const [name,src,first15] of p33Summaries){
+ const output=[];
+ for(let i=0;i<src.length;i+=7)output.push(...apply(tracePhysical,src.slice(i,i+7)));
+ assert.equal(output.length,35);
+ assert.deepEqual(output.slice(0,15),first15);
+ console.log('ORIGINAL_P33_CUNEIFORM_1033_TO_35 source=' +name+
+   ' words=49 complete output35='+
+   output.map(i=>corpus.translit[i]).join('.')+
+   ' no independently readable plaintext');
+}
+const clear35 = solved.slice(0,35);
+const plantedP33Seven = liftFiveSource(transformFive(clear35,V5inverse));
+assert.equal(plantedP33Seven.length,49);
+const recovered35=[];
+for(let i=0;i<49;i+=7)recovered35.push(
+  ...apply(tracePhysical,plantedP33Seven.slice(i,i+7)));
+assert.deepEqual(recovered35,clear35);
+console.log('P33_49WORD_TRACE native GP positive exact 35/35');
+
+console.log('SELFTEST_PASS original squares, charpolys, canonical basis, 3409 original runes, solved-native positives, 84-prime authenticated-key transfer, canonical shared three-mode original receiver, full factor-trace five-symbol original reductions, adjacent 255-word CHANGE-square key receiver, exact five-to-seven reversal-dual trace, p33 explicit 1033 49-word firstparty receiver');
