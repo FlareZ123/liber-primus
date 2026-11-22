@@ -190,4 +190,37 @@ for(const [sourceName, inverse, transpose, hits, expectedDifferenceIoc] of mixEx
 }
 console.log('PASS: 8 original five-red-product 255-word to p8 tests and complete 255/255 inverses');
 
+// Exact key-independent Hall-style obstruction for the most generous
+// fixed-alphabet single-rune-per-printed-word mapping: each output symbol y
+// must have at least one source symbol common to ALL words mapped to y.
+// The secret selection index may vary for every word and the output substitution
+// may be any unknown alphabet map; no simultaneous common candidate means no key.
+function candidateRunnersForFixedOutput(target) {
+  assert.equal(target.length, words.length);
+  const counts = Array(29).fill(0);
+  const possible = Array.from({ length: 29 }, () => new Set(Array.from({length:29}, (_,i)=>i)));
+  for (let j = 0; j < target.length; j++) {
+    const y = target[j];
+    assert(y >= 0 && y < 29);
+    counts[y]++;
+    const available = new Set(words[j]);
+    for (const v of [...possible[y]]) if (!available.has(v)) possible[y].delete(v);
+  }
+  return {counts,possible};
+}
+const membershipMatches = nextPage.reduce((n, y, j) => n + Number(words[j].includes(y)), 0);
+assert.equal(membershipMatches, 34);
+const hiddenDictionary = candidateRunnersForFixedOutput(nextPage);
+assert.deepEqual(hiddenDictionary.counts.every((count) => count >= 4), true);
+assert.deepEqual(hiddenDictionary.possible.map((set) => set.size), Array(29).fill(0));
+// Deliberately encrypted source-native 255-position glyph selector positive:
+// a source word's first rune is selected, then every selected rune is relabeled
+// by one unknown global bijective affine 29-symbol alphabet.
+const plantedFirst = words.map((w) => mod(13 * w[0] + 7));
+const plantCandidates = candidateRunnersForFixedOutput(plantedFirst);
+for (let y = 0; y < 29; y++) {
+  if(plantCandidates.counts[y] > 0) assert(plantCandidates.possible[y].has(modInverse29(13) * mod(y - 7) % 29));
+}
+console.log('all-secret single-source-rune-per-word obstruction: direct membership 34/255, 29/29 target rune symbols have empty source-word intersections; positive monoalphabetic 255-symbol plant succeeds');
+
 console.log('PASS: source 255-word scroll, grid256 8 inverses, adjacent p8 255-rune 4 inverses, 12 full GP-native plaintext plants');
