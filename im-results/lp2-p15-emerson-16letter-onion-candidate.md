@@ -12,6 +12,10 @@ The **2014 Cicada Stage1 signed poem**, which says “He trusted himself / to pr
 
 **The missing author instruction is crucial:** no examined original LP2 source orders 2014's earlier book to be reused for page15, or says to replace its old paragraph:sentence:word:letter grammar with **absolute position in a punctuation-stripped letter stream**. The following is a single natural but analyst-proposed cross-round extraction, not authenticated puzzle instructions.
 
+### Does the original 2014 four-coordinate grammar directly apply?
+
+The most historically faithful competing read is to take each visible decimal number as four one-digit fields `paragraph:sentence:word:letter`, with one leading zero for the printed three-digit **708**, preserving the genuine 2014 **one-based** bookcode semantics. This already fails on the source tokens, independently of any edition: `3038→3:0:3:8` has sentence0; `1820→1:8:2:0` has letter0; `0708→0:7:0:8` has paragraph0 and word0; and `1206→1:2:0:6` has word0. Twelve of the sixteen four-digit literal tuples avoid zero, but **four cannot be legal original 2014 addresses**. This source-first exclusion explains why the proposed absolute-A–Z indexing above requires a genuinely new instruction and cannot be described as a mechanical replay of the historical four-field code. It does not exclude a separately justified zero-based or variable-width code.
+
 ## Exact original-input readout
 
 1. Keep the complete archived 2014 essay in its source order. Convert to uppercase and remove all non-ASCII A–Z; the result has **43,516 letters**. This is a letter-only coordinate stream, without selecting or skipping any particular paragraph.
