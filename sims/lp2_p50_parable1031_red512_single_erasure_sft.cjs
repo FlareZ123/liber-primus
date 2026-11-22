@@ -140,6 +140,51 @@ for (const weight of weights) {
     assert.notEqual(BigInt(delta) * weight % M, 0n);
   }
 }
+
+// Separately reconstruct the final SIX bytes from the first 250 known bytes,
+// the previously published factor F, new 1031/512 relation, and original-source
+// H2013 and G39 GF29 quadratic constraints. The factors were selected post hoc.
+const F = 36528277968n;
+const head250 = original.slice(0, 250).reduce((a, byte) => a * 256n + BigInt(byte), 0n);
+const padWidth = 256n ** 6n;
+const modulo = (x, modulus) => ((x % modulus) + modulus) % modulus;
+const requiredF = modulo(-head250 * padWidth, F);
+const requiredM = modulo(target - head250 * padWidth, M);
+const inverseFmodM = powMod(F % M, M - 2n, M);
+assert.equal((F * inverseFmodM) % M, 1n);
+const firstSuffix = requiredF + F * modulo((requiredM - requiredF) * inverseFmodM, M);
+const lcm = F * M;
+/** @param {bigint} x @returns {number[]} */
+const sixBytes = (x) => Array.from({ length: 6 }, (_, i) => Number((x >> BigInt((5 - i) * 8)) & 255n));
+/** @param {number[]} values @param {number[]} divisor @returns {number[]} */
+function polyRemainderGF29(values, divisor) {
+  const coefficients = values.map((n) => n % 29).reverse();
+  const scale = Number(powMod(BigInt(divisor[divisor.length - 1]), 27n, 29n));
+  for (let i = coefficients.length - divisor.length; i >= 0; i--) {
+    const q = (coefficients[i + divisor.length - 1] * scale) % 29;
+    for (let j = 0; j < divisor.length; j++) {
+      coefficients[i + j] = ((coefficients[i + j] - q * divisor[j]) % 29 + 29) % 29;
+    }
+  }
+  return coefficients.slice(0, divisor.length - 1);
+}
+const h2013 = [3, 26, 24];
+const g39 = [27, 5, 15];
+assert.deepEqual(polyRemainderGF29(original, h2013), [0, 0]);
+assert.deepEqual(polyRemainderGF29(original, g39), [0, 0]);
+/** @type {{suffix: string, h: number[], g: number[]}[]} */
+const lastSixCandidates = [];
+for (let x = firstSuffix; x < padWidth; x += lcm) {
+  const possible = original.slice(0, 250).concat(sixBytes(x));
+  const h = polyRemainderGF29(possible, h2013);
+  const g = polyRemainderGF29(possible, g39);
+  lastSixCandidates.push({ suffix: x.toString(16).padStart(12, '0'), h, g });
+}
+assert.equal(lastSixCandidates.length, 8);
+const fullConstraints = lastSixCandidates.filter((candidate) => candidate.h.every((v) => v === 0) && candidate.g.every((v) => v === 0));
+assert.deepEqual(fullConstraints.map((candidate) => candidate.suffix), ['ace6b424bd50']);
+assert.deepEqual(original.slice(250), [172, 230, 180, 36, 189, 80]);
+
 console.log(JSON.stringify({
   originalBytes: original.length,
   printedCharacters: flat.join('').length,
@@ -151,6 +196,7 @@ console.log(JSON.stringify({
   canonicalRemainder: Number(byteIntegerRemainder(original, M)),
   readings: alternatives,
   recoveredIndependentErasures: recovered,
+  sixByteSuffix: { candidateCountAfterIntegerCongruences: lastSixCandidates.length, uniqueAfterOriginalTwoGF29Quadratics: fullConstraints[0].suffix, candidates: lastSixCandidates },
   singleByteErrorsProvablyDetected: true,
   claim: 'Conditional arithmetic codeword; NO authenticated Cicada checksum or unknown plaintext',
 }, null, 2));
