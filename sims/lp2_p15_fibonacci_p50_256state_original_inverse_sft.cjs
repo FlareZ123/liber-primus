@@ -108,6 +108,58 @@ for (const mod of [256, 29]) {
     }));
   }
 }
-console.log("PASS: original seeded-Fibonacci original-cipher receiver "
-  + "fails GP-native prose on all six intact p16–21 pages; "
-  + "synthetic solved-p57 native GP positive reencrypts exactly.");
+// A no-adjacent-repeat direct receiver driven by the *same* p50 state.
+// Encode 28 ordinary GP29 classes as nonzero circular next-step distances;
+// reserve distance 0 for the rare source EA rune index28. The map is
+// bijective with its own exact inverse for every initial previous cipher rune.
+// This adds the minimal physical anti-repeat transformation, with zero
+// fitted tables, phases or reserved-symbol positions.
+/** @param {number[]} input @param {number[]} state @param {number} sign
+ * @param {number} previous @returns {number[]} */
+function rotorDecrypt(input, state, sign, previous) {
+  return input.map((cipher, i) => {
+    const delta = (29 + cipher - previous) % 29;
+    previous = cipher;
+    return delta === 0 ? 28 :
+      (28 + delta - 1 + sign * (state[i] % 28) + 28) % 28;
+  });
+}
+/** @param {number[]} input @param {number[]} state @param {number} sign
+ * @param {number} previous @returns {number[]} */
+function rotorEncrypt(input, state, sign, previous) {
+  return input.map((plain, i) => {
+    const delta = plain === 28 ? 0 :
+      1 + ((28 + plain - sign * (state[i] % 28) + 28) % 28);
+    previous = (previous + delta) % 29;
+    return previous;
+  });
+}
+const pre16 = original.pages[15].indices.at(-1);
+const rareDelta0 = cipher.reduce((a, c, i) =>
+  a + Number(c === (i ? cipher[i - 1] : pre16)), 0);
+assert.equal(rareDelta0, 9);
+for (const mod of [256, 29]) {
+  const state = makeState(mod, cipher.length);
+  for (const sign of [-1, +1]) {
+    const encoded = rotorEncrypt(clear, state, sign, pre16);
+    assert.deepEqual(rotorDecrypt(encoded, state, sign, pre16), clear,
+      "full real p57 GP29 control roundtrip in rotor mode");
+    const decoded = rotorDecrypt(cipher, state, sign, pre16);
+    assert.deepEqual(rotorEncrypt(decoded, state, sign, pre16), cipher,
+      "full 1613-rune original rotor ciphertext roundtrip");
+    assert.equal(decoded.filter(x => x === 28).length, rareDelta0);
+    assert(ioc(decoded) < 0.04,
+      "source-constrained anti-repeat rotor does not reveal native text");
+    console.log(JSON.stringify({
+      model: "p50-F144/F233 + reversible 28-nonzero-neighbor anti-repeat rotor",
+      mod, sign, nativeRuneCount: decoded.length,
+      unchangedSourceEqualityCount: rareDelta0,
+      originalOutputIoC: ioc(decoded),
+      first110: romanize(decoded.slice(0, 110))
+    }));
+  }
+}
+console.log("PASS: both original seeded-Fibonacci additive and full "
+  + "reversible anti-repeat rotor receivers fail GP-native prose. "
+  + "Both exact signed decoding modes reencrypt original sources; "
+  + "solved-p57 native GP planted positives reencrypt exactly.");
