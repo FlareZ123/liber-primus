@@ -54,6 +54,27 @@ The four complete outputs remain ciphertext-like, near the uniform 29-symbol bas
 
 **[Single self-contained Windows Node22 SFT](../sims/lp2_2014_1033_sevensquare_shared_spectrum_original_sft.cjs)** · **[independent Windows Actions PASS, run 45072210392](https://github.com/FlareZ123/liber-primus/actions/runs/45072210392)**.
 
+## A genuine known-key receiver: original 252-symbol quotient versus solved p56
+
+A source-level conjecture could make the seven-square transfer meaningful beyond a ciphertext-only visual transform. The original 256-cell numeric table's native GP29 polynomial divides exactly by the source factors `H=[3,26,24]` and `G=[27,5,15]`, leaving **252 quotient coefficients**. The separately authenticated solved p56 prime/totient cipher consumes exactly **84 known consecutive key residues**: `K[i]=(prime[i]−1) mod29`, with one F-transparent rune at ciphertext position56. Thus the quotient can be read as **three 84-rune lanes**, and the seven-square key transfer can act on each complete `84=12×7` lane. This is an independently checkable authentic-key target, unlike ranking prospective English fragments.
+
+Freeze all three lane indices, the two source-natural serializations (three consecutive 84-coefficient blocks, or three every-third interleaved subsequences), and three operations (identity, `S`, `S^-1`). Exactly **18 source-defined 84-value streams** enter a direct test against the complete independently known p56 key. To avoid mistaking an unknown constant alphabet permutation for failure, give every candidate **all 29! possible secret GP29 bijections** without searching them: the relation `candidate[i]=candidate[j]` must be exactly equivalent to `key[i]=key[j]` at all `84×83/2=3,486` unordered position pairs under *every* such bijection.
+
+| Original-source transfer result | Exact original result |
+| --- | ---: |
+| Entire p50 table / quotient | 256 cells / 252 coefficients |
+| H×G polynomial division remainder | `[0,0,0,0]` |
+| Authentic solved p56 prime-totient key | 84 residues, no guessed prefix |
+| Complete fixed layouts | 18 |
+| Best untransformed literal-key hits of 84 | 8 |
+| **Smallest key-independent equality-pattern disagreement** | **191 / 3,486 pairs** |
+| Best equality-pattern case | second consecutive 84-symbol lane under `S` |
+| Complete known-key matches under **any fixed secret alphabet** | **0 / 18** |
+
+An affine secret re-encoding `7×K+3 mod29` retains the authentic key's **zero** pairwise conflicts; a planted seven-square stream `S×K` recovers exactly under `S^-1`. Both are explicitly tested, alongside all four zero polynomial-remainder coefficients and the true p56 F position. This shows that the 191 residual contradictions are a hard all-secret obstruction in the declared whole-lane model, rather than a decoder bug or a failed keyword guess.
+
+This receiver is *not* selected explicitly by a Cicada instruction: it combines three separately original source counts/operations. Earlier work already excluded static 3×84 direct/symbol and quadratic-Shamir transfers; the new check specifically adds the **source-derived 7×7 spectral-coordinate operation**, so it is an independent bounded gate rather than a repeat of that direct analysis. It cannot rule out changing alphabets by seven-rune group, a different source key, or a stateful nonlinear transform. The updated [Windows PASS run 45072589763](https://github.com/FlareZ123/liber-primus/actions/runs/45072589763) executes this complete known-key comparison on the unchanged original files.
+
 ## Decipherment decision
 
-The two authentic 1033 magic squares share a **new exact native-field spectral relation**, with two extra roots beyond their forced row sum. This is a legitimate source-derived reversible-coordinate candidate and a possible algebraic clue for further *source-selected* routing. **The natural complete original seven-rune consumers do not decrypt either relevant chapter**, and no one has supplied an original author-authenticated instruction to diagonalize the matrices or apply the resulting basis to Liber Primus. The result belongs in intermediate research. Keep any future use dependent on an independent original clue identifying the recipient, eigenmode order and value-changing operation. Do not continue arbitrary basis permutations and phase fitting to make a selected output resemble prose.
+The two authentic 1033 magic squares share a **new exact native-field spectral relation**, with two extra roots beyond their forced row sum. This is a legitimate source-derived reversible-coordinate candidate and a possible algebraic clue for further *source-selected* routing. **The natural complete original seven-rune consumers do not decrypt either relevant chapter, and the 18 fixed quotient-to-authentic-p56-key transfers have at least 191 key-independent pair conflicts**, and no one has supplied an original author-authenticated instruction to diagonalize the matrices or apply the resulting basis to Liber Primus. The result belongs in intermediate research. Keep any future use dependent on an independent original clue identifying the recipient, eigenmode order and value-changing operation. Do not continue arbitrary basis permutations and phase fitting to make a selected output resemble prose.
