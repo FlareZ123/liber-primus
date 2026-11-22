@@ -1,0 +1,32 @@
+name: Agent16 LP2 source-selected DH and affine islands SFT
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-source:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check source-native syntax
+        shell: pwsh
+        run: |
+          node --check sims/lp2_p50_terminal180_linear_complexity_sft.cjs
+          node --check sims/lp2_p57_parable_dh85_source_sft.cjs
+          node --check sims/lp2_p57_bbs_prime_triple_original_sft.cjs
+          node --check sims/lp2_affine_runningkey_repeated_word_islands_sft.cjs
+      - name: Execute source-original p50, PARABLE-DH, BBS, and repeated-island decisions
+        shell: pwsh
+        run: |
+          node sims/lp2_p50_terminal180_linear_complexity_sft.cjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node sims/lp2_p57_parable_dh85_source_sft.cjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node sims/lp2_p57_bbs_prime_triple_original_sft.cjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          node sims/lp2_affine_runningkey_repeated_word_islands_sft.cjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
