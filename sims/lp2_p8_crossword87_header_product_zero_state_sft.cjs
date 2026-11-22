@@ -75,6 +75,31 @@ assert.deepEqual(p8Ink.red_spans.map(s => [s.start, s.length]), [[0, 12]]);
 const red = p8.slice(0, 12);
 assert.equal(red.length, 12);
 assert.deepEqual(red, [14, 10, 14, 19, 1, 14, 19, 5, 2, 13, 3, 17]);
+// The first complete p8 red word transliterates literally to "XIXM":
+// Latin Roman XIX = nineteen, and the following GP29 rune M has index19.
+// The X-I-X trigram is unique among all original p0-p55 rune streams.
+// This offers a *human-visible* source of historical DH B=19 on p8 itself,
+// independent of the previously used p6 singleton M19. It is a candidate
+// author cue, not a proof of intended Roman-numeral decoding.
+const sourceRoman19Register = {
+  runeIndices: red.slice(0, 4),
+  literalTransliteration: red.slice(0, 4).map(v => corpus.translit[v]).join(""),
+  romanNumeral: "XIX",
+  romanValue: 10 + (10 - 1),
+  followingGPIndex: red[3],
+};
+assert.deepEqual(sourceRoman19Register.runeIndices, [14, 10, 14, 19]);
+assert.equal(sourceRoman19Register.literalTransliteration, "XIXM");
+assert.equal(sourceRoman19Register.romanValue, sourceRoman19Register.followingGPIndex);
+const romanHits = [];
+for (const p of corpus.pages.filter(p => p.page <= 55)) {
+  for (let i = 0; i <= p.indices.length - 3; i++) {
+    if ([14, 10, 14].every((v, j) => p.indices[i + j] === v)) {
+      romanHits.push({ page: p.page, offset: i, followingIndex: p.indices[i + 3] });
+    }
+  }
+}
+assert.deepEqual(romanHits, [{ page: 8, offset: 0, followingIndex: 19 }]);
 assert.equal(product29(red.slice(0, 4)), 4);
 assert.equal(product29(red.slice(4)), 3);
 assert.equal(product29(red), 12);
@@ -647,6 +672,8 @@ console.log(JSON.stringify({
     lengthSixCount: crossings.filter(w => w.values.length === 6).length,
   },
   headingControls: startHeadingControls,
+  sourceRedRomanXIXM: sourceRoman19Register,
+  sourceRomanXIXOriginalOccurrences: romanHits,
   p7RedProducts29: product,
   directHistoricalDH23WithoutFiveDotInterpolation: originalDHWithoutInterpolation,
   p7PrimitiveTaps3: taps,
