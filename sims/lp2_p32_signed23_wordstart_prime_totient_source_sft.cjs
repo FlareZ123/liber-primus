@@ -72,7 +72,7 @@ const p56Plain=p56.map((c,i)=>i===56?0:mod(c-(primes[p56Prime++]-1)));
 assert.equal(p56Prime,84);
 assert.equal(p56Plain.slice(0,5).map(x=>corpus.translit[x]).join(''),'ANEND');
 assert.equal(p56Plain.slice(0,31).map(x=>corpus.translit[x]).join(''),
-  'ANENDWITHINTHEDEEPWEBTHEREEXISTS');
+  'ANENDWITHINTHEDEEPWEBTHEREEXISTSAP');
 const tokens=corpus.translit.map((symbol,index)=>({symbol,index}))
   .sort((a,b)=>b.symbol.length-a.symbol.length);
 /** @param {string} word @returns {number[]} */
