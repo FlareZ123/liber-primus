@@ -16,18 +16,22 @@
   - Reproducer: sims/lp2_p7_red_product_repeating_vigenere_p8_gate.cjs
   - Report: im-results/lp2-p7-red-product-repeating-vigenere-p8-gate.md
 
+- Tested the p7 DH-derived stream k[i]=2×5^i mod23 on p8's 243-rune black body. The p7 packet gives (p,g,K)=(23,5,2), 5 has order22 mod23, and 243=11×22+1. Ordinary-clock scores are −10.7562 and −10.7194 versus native LP1 minimum −7.5815; exact p56 plaintext-F-transparent DP has zero valid paths for both signs, with planted p57 controls recovered.
+  - Reproducer: sims/lp2_p7_dh23_exponential_stream_p8_gate.cjs
+  - Report: im-results/lp2-p7-dh23-exponential-stream-p8-gate.md
+
 - Tested the p7 five red-word products [11,26,8,15,2] as a pure five-column transposition key for p8's 243-rune black body. The five-dot marker gives a natural width and 243 = 5×48+3. Stable ascending/descending rank and both transform orientations were tested; best native-GP trigram score −10.6755 versus the weakest native LP1 243-rune window at −7.5815. This is a bounded negative.
   - Reproducer: sims/lp2_p7_red_product_columnar_p8_gate.cjs
   - Report: im-results/lp2-p7-red-product-columnar-p8-gate.md
 
-- Sent anti-duplication broadcasts: communications/broadcast/2026-11-22T000100Z_agent27-p0-p7-operator-gates.md and communications/broadcast/2026-11-22T000700Z_agent27-p7-columnar-followup.md, and communications/broadcast/2026-11-22T001900Z_agent27-ftransparent-dp-correction.md.
-- Consolidated the p7→p8 synthesis in im-results/lp2-p7-p8-red-product-state-header-keyclock.md and updated the matching authoritative summary in results/README.md. The five polynomial/root consumers plus the new direct period-5 Vigenère and five-column receivers are now summarized together: eighteen scored outputs remain below native-GP 243-rune LP1 windows and the two exact-DP Vigenère variants have zero valid paths; all twenty planted p57 controls are recovered. The strongest overall polynomial candidate is still −10.583 versus the weakest native window −7.581. The overall conclusion remains structural clue, no p8 plaintext.
+- Sent anti-duplication broadcasts: communications/broadcast/2026-11-22T000100Z_agent27-p0-p7-operator-gates.md and communications/broadcast/2026-11-22T000700Z_agent27-p7-columnar-followup.md, and communications/broadcast/2026-11-22T001900Z_agent27-ftransparent-dp-correction.md, and communications/broadcast/2026-11-22T002200Z_agent27-p7-dh23-stream-gate.md.
+- Consolidated the p7→p8 synthesis in im-results/lp2-p7-p8-red-product-state-header-keyclock.md and updated the matching authoritative summary in results/README.md. The five polynomial/root consumers plus the direct period-5 Vigenère, five-column, and DH-stream receivers are summarized together: twenty scored outputs remain below native-GP 243-rune LP1 windows and four exact-DP Vigenère/DH variants have zero valid paths; all twenty-four planted p57 controls are recovered. The strongest overall polynomial candidate is still −10.583 versus the weakest native window −7.581. The overall conclusion remains structural clue, no p8 plaintext.
 
 - Audited the external Dukotah/cicada3301 research archive against the current FlareZ synthesis. Its T7 doublet-gap analysis, multilingual scoring caveats, and Python 2.7 MT short-seed work are already integrated in results/README.md and related reports; the full S2 seed completion and later R36 decision are already recorded. Do not rerun or re-import this work as new.
 
 ## Evidence discipline and next action
 
-The four new tests are bounded negatives. Their language scores are English-register screens (the p7→p8 test uses the repository's native-GP LP1 model); they do not exclude every language or every cipher family. Do not extend the p0 red13 branch with arbitrary RC4 drops, column permutations, phases, or extra layers absent a new first-party selector. Do not repeat the p7 period-5 Vigenère or five-column transposition receivers without a new clue. Next work should select an independent, source-constrained route elsewhere in LP2, beginning with the current results/README.md and recent reports rather than reopening these exact receivers.
+The five new tests are bounded negatives. Their language scores are English-register screens (the p7→p8 test uses the repository's native-GP LP1 model); they do not exclude every language or every cipher family. Do not extend the p0 red13 branch with arbitrary RC4 drops, column permutations, phases, or extra layers absent a new first-party selector. Do not repeat the p7 period-5 Vigenère, five-column transposition, or DH-derived period-22 receivers without a new clue. Next work should select an independent, source-constrained route elsewhere in LP2, beginning with the current results/README.md and recent reports rather than reopening these exact receivers.
 
 ---
 
