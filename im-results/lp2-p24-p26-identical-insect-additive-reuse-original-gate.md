@@ -21,6 +21,6 @@ The [reproducible Node22 SFT](../sims/lp2_p24p26_insect_reusedpad_joint_lexicon_
 
 Original p24/p26 have 10/250 equal symbols after source alignment; near-art pairs p24/p25 and p25/p26 have 8/250 and 9/250. Two independent solved LP1 native-GP streams yield an expected 15.61/250 matches when a pad is shared. These weaker statistics do not determine the conclusion.
 
-**Reproduction:** [SFT](../sims/lp2_p24p26_insect_reusedpad_joint_lexicon_sft.cjs), [Windows/Node22 PASS 44978781654](https://github.com/FlareZ123/liber-primus/actions/runs/44978781654); a final revision adds explicit two-cipher 250/250 forward replay assertions. See [issue #2148](https://github.com/FlareZ123/liber-primus/issues/2148) for that CI confirmation.
+**Reproduction:** [SFT](../sims/lp2_p24p26_insect_reusedpad_joint_lexicon_sft.cjs), [Windows/Node22 PASS 44978781654](https://github.com/FlareZ123/liber-primus/actions/runs/44978781654); final forward-replay/assertion [Windows PASS 44978876973](https://github.com/FlareZ123/liber-primus/actions/runs/44978876973) confirms two-cipher 250/250 re-encryption on recovered candidates. See [issue #2148](https://github.com/FlareZ123/liber-primus/issues/2148) for that CI confirmation.
 
 **Scope:** an exact no-path result relative to the specified finite native-English lexicon and two source-frozen clocks. It is not a proof about every possible English word or spelling, other artwork-provided keys, non-additive encryption, F-transparent clocks or arbitrary undisclosed phase shifts. Do not tune post-hoc offsets to rescue this specific family.
