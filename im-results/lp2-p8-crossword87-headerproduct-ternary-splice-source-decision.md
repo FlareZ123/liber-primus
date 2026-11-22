@@ -14,6 +14,28 @@ The authentic p7 final red-word GP products are [11,26,8,15,2]. Taking their rem
 
 These exact equalities support an **87-first hypothesis**, not a settled author-selected splice. Both alignments are original-source facts under the proposed mathematical model, and the GP product/sum/model/phase choices were recognized after extensive prior analysis. The document does not assign an authorship probability to the coincidences.
 
+## Direct historical DH23 without interpolation
+
+There is a further **simpler, human-readable** connection to the previous 2013 Cicada Diffie–Hellman example. Earlier [p6/p7/p8 DH source reconstruction](lp2-p6-p8-red-shamir-dh-fullstate-coverage.md) recovered the known DH23 tuple by interpolating the p7 five red words at five measured dot positions over GF29. The **p8→p9 3–4–5 seam** gives an alternative value of the example's private exponent **a=6** from the ordinary right-triangle area, and a value of the example's generator **g=5** from the actual p9 five-rune continuation product, **without performing any Shamir or quartic interpolation**.
+
+The following source observations jointly reconstruct the entire *already-known historical* tuple using only directly visible rune indices, printed red words and the physical crossing word:
+
+| Historical field | Original physical source | Reconstructed value |
+| --- | --- | ---: |
+| p | p7 **first rune** of first red word | **23** |
+| e | p7 **second rune** of first red word, cross-check p8 second red-word product | **3** |
+| g | literal p9 **five-rune suffix** product of the crossing word, cross-check p7 third red word's first rune | **5** |
+| a | **(3×4)/2**, triangle area from p8 second/first red products 3/4 and p9 suffix product5 | **6** |
+| b | p7 fourth red-word GP29 product | **15** |
+| A | p7 third red-word GP29 product | **8** |
+| B | p6 **single original red rune M**, index19 | **19** |
+| K | p7 fifth red-word GP29 product | **2** |
+| q | p8 first red-word GP29 product, cross-check **K² mod23** | **4** |
+
+Exactly the DH23 equations `5⁶ mod23=8`, `5¹⁵ mod23=19`, `8¹⁵ mod23=2`, `19⁶ mod23=2`, and `2² mod23=4` hold. In p7's first two red words the first **[23,3]** have *product11* modulo29, while the second distinct word has product **26=23+3**, a further elementary sum/product cue if the field interpretation is adopted.
+
+**Value of this alternative:** It avoids the high-assumption operation of measuring five dots and interpolating a quartic solely to recover a known historical parameter set. The geometry-based `a=6` is an independently specified arithmetic rule *once* the 3–4–5 interpretation is chosen. **Limit:** every field name and the use of triangle *area* were recognized against a previously published example. There is no author-labeled table identifying these as DH entries, no contemporaneous clue selecting a 2013 example as the LP2 output law, and no unknown manuscript plaintext. The earlier polynomial route may encode different information even if this simpler reconstruction is valid.
+
 ## A source-locked 60-cell receiver: direct GP29 inverse is negative
 
 The same literal triangle yields **3×4×5=60**. The original 32×8 table on pp49–51 contains four successively inward concentric perimeters of lengths **76, 68, 60, 52**. Exactly the **twice-shed** ring has 60 original cells. This is an independently readable bridge to the solved p57 text's **SHED OUR OWN CIRCUMFERENCES** and to the period's sexagesimal cuneiform table, although no source commands a crossing from p8 to p50.
@@ -65,4 +87,4 @@ For a decipherment, the creator must still select **one value-changing and rever
 
 ## Reproduction
 
-[Read-only Node22/CommonJS original-source SFT](../sims/lp2_p8_crossword87_header_product_zero_state_sft.cjs) uses only the canonical `lp2-corpus.json`, `lp2-ink-annotations.json` and page-preserving original `lp2-transcription.txt`. It asserts the complete 32-word crossing register, nine red-heading controls, the literal 3–4–5 triangle, both p7 GF(3) splice coordinates, real p8 punctuation, the all-zero address objection, plus the 60-ring direct inverse, eight physically framed Pythagorean GP29 pair rotations, their eight full p8-p9 packet inverses, and solved-language round trips. [Original Windows Node22 GitHub Actions PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45036154684) verifies the actual committed script. No synthetic decryption, language score, or plaintext has been promoted into this source decision.
+[Read-only Node22/CommonJS original-source SFT](../sims/lp2_p8_crossword87_header_product_zero_state_sft.cjs) uses only the canonical `lp2-corpus.json`, `lp2-ink-annotations.json` and page-preserving original `lp2-transcription.txt`. It asserts the complete 32-word crossing register, nine red-heading controls, the literal 3–4–5 triangle, both p7 GF(3) splice coordinates, real p8 punctuation, the all-zero address objection, direct complete historical DH23 field reconstruction without dot interpolation, plus the 60-ring direct inverse, eight physically framed Pythagorean GP29 pair rotations, their eight full p8-p9 packet inverses, and solved-language round trips. [Original Windows Node22 GitHub Actions PASS](https://github.com/FlareZ123/liber-primus/actions/runs/45037121408) verifies the actual committed script. No synthetic decryption, language score, or plaintext has been promoted into this source decision.
