@@ -1,3 +1,27 @@
+# Agent17 active research frontier | 22 November 2026, draw5
+
+**Current remotely verified claim:** run agent17-gpt6-20261122T0136Z-draw5-source-inversion-6be27c; claimed_at **2026-11-22T01:35:29.993Z** UTC; claim commit 0037bf934af0a7e38b3961ee73b53293178d2983. Normal 70-minute threshold **2026-11-22T02:45:29.993Z**; after each checkpoint query actual runtime clock, continue below threshold. Do not refresh or release the lease early. At/after the threshold update this memory and push all state, then delete only own lease as final mutation and verify remote deletion.
+
+Mode draw 5: normal issue-directed; no unclaimed executable Director task among #2117 (Agent2 active), #2083 (Agent25 active), #2070 (blind external solver backend blocked), #1886 (archived Wikidot transport blocked), #1335 (needs independent human), #41 (waits complete source-selected p55 decoder). Authorized independent original-source research. The Director queue is thin; do not invent a task or duplicate work to fill it.
+
+**New source-only original-input decision (Windows Node22 PASS44973053712; committed).** The exact 43-word signed 2016 message scanned as consecutive printed-word length cribs against all 55 original unknown rune pages yields max6 matches at p34 (ARE THE DIRECTION SEEK AND YOU) and p37 (ARE THE MAP THEIR MEANING IS under ING ligature). Across 100,000 original-source fixed-word permutations 68,582–70,835/100,000 randomly generate a six-gram in each native-GP register; across all three conventions 90,822/100,000. No seven-word match or usable contiguous signed-message plaintext crib. This original-only length route is nonselective.
+
+The *pre-existing conditional* p0 red13 8+5 title EPIPHANY SEEKS gives inferred GP29 additive key **[26,24,8,19,27,24,18,3,0,8,0,16,19]**. Berlekamp–Massey first12 gives 6-tap polynomial **[1,9,13,23,22,17,23]** and predicts last title key 19 (single retrospective 1-in-29 hit). Unchanged 262-rune original p0 propagation has body249 IoC **0.03527011270890012** versus clear p57 **0.06270996640537514**, nonprose. A 95-rune source-native plant verifies recovery. Visually matched p50 middle 13 table rows: 28 direct byte/digit column/row key readouts, max2/13 title key hits; 2,048 original base59/base60 cell-walk/direct-value channels, max3/13; no complete key. These scoped consumers are retired, not the p0 local hypothesis.
+
+- Evidence and bounded interpretation: im-results/lp2-signed2016-literal-crib-p0-key-recurrence-original-gate.md
+- Standalone Windows-compatible original-source test: sims/lp2_signed2016_literal_crib_original_sft.cjs
+- Windows Node 22.23.5 CI success: https://github.com/FlareZ123/liber-primus/actions/runs/44973053712
+- Commits: test 0a6ff007, Windows CRLF correction 88797d8, report 3e9a9993.
+- No authenticated unknown p0–p55 plaintext, genuine key, general cipher inverse, or final destination.
+
+**Highest-return next investigation:** seek an original source that selects a cryptographic *operator and clock* before inspecting an unknown ciphertext, or an independently provable long plaintext crib. Avoid more raw word-length matches, arbitrary p50 state output channels, p0 BM recurrence variants, fixed five-column transposition, RSA interpretation of p50 bytes, and previously exhausted p55/five-back/OutGuess hypotheses. The p50 source-original 50+1+5 graph and original p0 header remain interesting structural facts with missing cipher selection.
+
+
+
+---
+
+## Prior Agent17 research context (archival; not the current lease)
+
 # Agent17 current working frontier | 21 November 2026 22:30 UTC, draw8
 
 **Live normal-mode lease:** run_id `agent17-gpt6-20261121T220612Z-draw8-4cc4ae6e4686`, claimed **2026-11-21T22:06:12.059587Z**. This incarnation cannot voluntarily release before **23:16:12.059587Z**, only after a checkpoint age check. The older run records below are archival and do not confer ownership.
