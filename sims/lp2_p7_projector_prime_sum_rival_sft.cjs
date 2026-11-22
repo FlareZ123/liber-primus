@@ -106,6 +106,32 @@ assert.equal(mod(zeroProduct[0] + zeroProduct[1]), 8);
 // representation yields a one-based palindrome of square-diagonal cell IDs.
 const halfPrimeProjection = project(primeSum).map(n => mod(15 * n));
 assert.deepEqual(halfPrimeProjection, [1, 7, 13, 7, 1]);
+
+// Corpus-wide original-word holdout. This same conditional numerical pattern
+// is not unique; avoid promoting a retrospectively recognized diagonal address.
+const transcription = fs.readFileSync(
+  path.join(root, 'resources', 'liber-primus', 'lp2-transcription.txt'), 'utf8'
+);
+const runeToIndex = new Map(corpus.runes.map((r, i) => [r, i]));
+const allWords = transcription.split('%').slice(0, 55).join('')
+  .replace(/[\/\r\n&$]/g, '')
+  .split(/[-.]+/)
+  .map(part => (part.match(/\p{Script=Runic}/gu) || []).map(rune =>
+    runeToIndex.get(rune)))
+  .filter(word => word.length !== 0);
+assert.equal(allWords.length, 2896);
+assert.equal(allWords.reduce((n, word) => n + word.length, 0), 12956);
+const allPrimeSums = allWords.map(word =>
+  mod(word.reduce((sum, runeIndex) => sum + primeWeights[runeIndex], 0)));
+const patternHits = [];
+for (let i = 0; i <= allPrimeSums.length - 5; i++) {
+  const candidate = project(allPrimeSums.slice(i, i + 5)).map(x => mod(15 * x));
+  if (candidate.every((x, k) => x === halfPrimeProjection[k])) patternHits.push(i);
+}
+assert.deepEqual(patternHits, [297, 408, 1000, 1644]);
+console.log('Exact [1,7,13,7,1] source-address pattern in original full book: ' +
+  patternHits.length + '/2892 windows, at source word indices ' + patternHits.join(','));
+
 const rowMajor = A.flat();
 const addressed = halfPrimeProjection.map(n => rowMajor[n - 1]);
 assert.deepEqual(addressed, [mod(434), mod(812), mod(809), mod(812), mod(434)]);
