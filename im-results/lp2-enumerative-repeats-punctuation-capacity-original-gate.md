@@ -58,6 +58,31 @@ The exact same **original source** does **not** lie in the canonical forward enc
 
 Therefore the **canonical directly scaled, full-book GP27 enumerative sender** is rejected by its original forward-codeword membership test as well as a disjoint native-text gate. This does not exclude a keyed, interleaved, differently ranked, or more flexible GP27 transport, and it does not elevate the recovered-looking GP27 integer into Cicada plaintext.
 
+## Full original 31-ornament binary quotient receiver
+
+The original source has a **noninvented morphology channel** closer to the GP28 capacity deficit: exactly **31 physically visible large ornaments** on unsolved pp0–55, consisting of **28 thirteen-dot** and **three ten-dot** forms. These are independently confirmed against the original JPEGs in the [large punctuation image census](lp2-original-dot-punctuation-physical-census.md). The three ten-dot source events occur on physical **p36, p38, p49**, at large-mark sequence indices **22,23,27** (zero-based). They are distinct from the 180 registered general punctuation events with five nonphysical marks.
+
+Under the source-legible binary interpretation **13-dot=0, 10-dot=1**, reading these **31 physical ornaments in printed order, most significant first**, produces integer **392**, with the only set bits corresponding to the three ten-dot marks. With the exact original 2,896 word-wise repeat-constrained codebook size \(M\), a GP28 source of original length \(L=12956\) has quotient range
+
+\[
+0\le S=\lfloor X/M\rfloor\le
+\left\lfloor\frac{28^L-1}{M}\right\rfloor
+=\mathbf{5,082,098}.
+\]
+
+Thus the source-derived **392 is a numerically valid side quotient** for a straightforward GP28 mixed-radix receiver \(X=392M+R\). The other three fixed 31-bit polarity/reading-direction conventions exceed the quoted maximum, without applying arbitrary modulo or truncation. This is a narrow mathematical alignment; it is **not evidence of intended binary semantics or a source-signed instruction**. With the *existing* inventory fixed at exactly three ten-dot symbols, those 31 locations have only \(\binom{31}{3}\) distinguishable glyph assignments, insufficient to guarantee 23 bits of arbitrary side information. A complete hypothetical 31-bit sender must allow the mix of ten-dot and thirteen-dot markers to vary with plaintext.
+
+The simplest original decoder uses the canonical printed-word mixed-radix rank \(R\), excluding original GP rune **EO** to obtain a 28-symbol target alphabet (the first of the two rune identities absent from the known solved-native sample). Both unkeyed source-alphabet successor orders yield nonlinguistic full-length output, including on *independent original spans*:
+
+| Original GP28 readout from physical 31-dot binary quotient | Original GP ordinal | Cyclic allowed-successor rank |
+| --- | ---: | ---: |
+| Entire reconstructed GP28-shaped 12,956-rune register IoC | **0.035711** | **0.035705** |
+| First 300 runes of original p0–p1 IoC | **0.034849** | **0.035362** |
+| Independent original p16, 200 runes IoC | **0.034824** | **0.035779** |
+| Final 2,896 decoded runes IoC | **0.035651** | **0.035720** |
+
+The source-native solved controls for the 300/200-rune windows have minimum IoCs **0.055385/0.053166**. As an implementation positive, a complete **12,956-rune** authentic solved-GP28 plaintext plant is encoded with **exactly the original 2,896 word lengths and each word's original repeat count**, with the GP28 side quotient **4,225,317**, and all 12,956 tokens recover perfectly using the same mixed-radix and quotient inverse. The printed original **392** instead yields only near-uniform GP28 glyphs. This **retires the literal binary-orientation GP28 quotient as a direct native-prose decoder**, while leaving unknown keyed/nonlinear operations and different data registers open.
+
 ## Actual punctuation carrier, not inferred empty bits
 
 The **derived punctuation transcription** registers **180 events**: 31 `⁜`, 145 `⁘`, and four `⁚`. **Only 175 correspond to physical visible marks.** The [original-JPEG punctuation audit](lp2-punctuation-identity-stream.md) found four p15 numeric-row terminators inserted editorially and one p37 stop absent from the original image. The actual visible inventory is 31 large marks, 138 four-dot diamonds, five three-dot forms and one ambiguous detached square. We deliberately **overgrant** the side channel by counting all 180 registered events as independently writable, which strengthens the negative capacity conclusions. **All 180 registered events lie at complete printed-word endings** (including the five nonphysical entries); these comprise **173 distinct rune-offset sites**. The SFT joins cross-page word fragments from the canonical transcript and checks the derived offsets against their cumulative rune lengths. Source-image correction would only remove nonphysical slots.
