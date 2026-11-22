@@ -17,3 +17,5 @@ jobs:
         run: node sims/lp2_bookend_direct_allpalette_image_sft.cjs
       - name: Exact all-secret rune-substitution entropy bound and native GP plant
         run: node sims/lp2_bookend_gp29_allsecret_statealphabet_entropy_sft.cjs
+      - name: Exact all-secret nonlinear two-rune 841! pair-mixer entropy proof
+        run: node sims/lp2_bookend_allsecret_29x29_pairmixer_entropy_sft.cjs
