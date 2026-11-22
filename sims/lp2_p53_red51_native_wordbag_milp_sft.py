@@ -296,6 +296,48 @@ assert planted_result["status"] == 0
 assert planted_result["exact_integral_source_certificate"]
 
 original_result = solve(SOURCE_HIST, eligible, 95.0)
+# Independent pre-existing GP29 Latin Vulgate word inventory, source-preserved.
+# The upstream file uses 0123456789ABCDEFGHIJKLMNOPQRS for rune indexes0..28.
+# This is a DIFFERENT historical-language hypothesis, kept separate from
+# English. The printed 12 red word-length groups remain fixed.
+latin_symbols = "0123456789ABCDEFGHIJKLMNOPQRS"
+latin_path = ROOT / "resources/control/latin-vulgate-gp-wholewords.txt"
+LATIN_SOURCE = {}
+for line in latin_path.read_text(encoding="utf-8").splitlines():
+    if not line or line.startswith("#"):
+        continue
+    if any(c not in latin_symbols for c in line):
+        continue
+    word = tuple(latin_symbols.index(c) for c in line)
+    if len(word) in set(SIZES):
+        LATIN_SOURCE.setdefault(word, ("latin-original-native", 1))
+latin_eligible = [
+    (name, encoded, wt)
+    for encoded, (name, wt) in LATIN_SOURCE.items()
+    if not np.any(np.bincount(encoded, minlength=29) > SOURCE_HIST)
+]
+assert len(latin_eligible) >= 500
+latin_planted = []
+for n in sorted(Counter(SIZES)):
+    options = [w for w in latin_eligible if len(w[1]) == n]
+    assert len(options) >= Counter(SIZES)[n]
+    latin_planted.extend(options[:Counter(SIZES)[n]])
+latin_planted_rhs = np.bincount(
+    [v for _, word, _ in latin_planted for v in word], minlength=29
+)
+latin_positive = solve(latin_planted_rhs, latin_eligible, 10.0)
+assert latin_positive["status"] == 0
+latin_original = solve(SOURCE_HIST, latin_eligible, 22.0)
+MIXED_SOURCE = dict(D)
+for encoded, value in LATIN_SOURCE.items():
+    MIXED_SOURCE.setdefault(encoded, value)
+mixed_eligible = [
+    (name, encoded, wt)
+    for encoded, (name, wt) in MIXED_SOURCE.items()
+    if len(encoded) in set(SIZES)
+    and not np.any(np.bincount(encoded, minlength=29) > SOURCE_HIST)
+]
+mixed_original = solve(SOURCE_HIST, mixed_eligible, 25.0)
 ALL_SOURCE_WORDS = lexicon(set(range(1, 52)))
 eligible_free = [
     (word, encoded, weight)
@@ -350,6 +392,20 @@ out = {
                 "original_histogram_eligible_types": len(eligible)},
     "positive_same_form": planted_result,
     "original_feasibility": original_result,
+    "separate_Latin_Vulgate_wordbag_test": {
+        "latin_only_eligible": len(latin_eligible),
+        "latin_positive": {"status": latin_positive["status"],
+                           "exact_certificate": latin_positive.get(
+                               "exact_integral_source_certificate", False)},
+        "latin_original": {"status": latin_original["status"],
+                           "message": latin_original["message"]},
+        "union_English_Latin_original": {
+            "eligible": len(mixed_eligible),
+            "status": mixed_original["status"],
+            "message": mixed_original["message"],
+            "found_full_bag": mixed_original.get("selected")
+        }
+    },
     "arbitrary_native_English_wordspaces": {
         "original": original_free, "planted": planted_free,
         "source_all_lengths": len(ALL_SOURCE_WORDS)
