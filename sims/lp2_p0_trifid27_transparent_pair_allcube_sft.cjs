@@ -172,6 +172,7 @@ assert.deepEqual(trifid(trifid(original, cube, 27, false), cube, 27, true), orig
 
 const reports = [];
 const unions = [];
+const allPairByWriter = [];
 for (const historicOverrides of [false, true]) {
   const allPairs = new Set();
   let windows = 0;
@@ -187,10 +188,104 @@ for (const historicOverrides of [false, true]) {
     totalWindows: windows, survivingAnyTwoUnchangedPairs: allPairs.size,
     rejectedAnyTwoUnchangedPairs: 406 - allPairs.size,
     containsFAndEA: allPairs.has('0,28')});
+  allPairByWriter.push(allPairs);
 }
 assert.deepEqual(reports.map(x => x.maxEA), [20,19,16,21,19,16]);
 assert.deepEqual(unions.map(x => [x.totalWindows,x.survivingAnyTwoUnchangedPairs,x.containsFAndEA]),
   [[589280,81,false],[583878,93,false]]);
+// Entire-manuscript native-word constraint on the same two literally
+// unchanged glyphs. All 28 seen GP labels except C (5) occur as their
+// own original printed one-rune words, whereas native English singletons
+// must be A, I or O (GP indices 24,10,3). The source text grammar, not
+// the fitted plaintext, defines all 2,896 complete printed words.
+const glyphs = new Map(corpus.runes.map((symbol, i) => [symbol, i]));
+const originalUnknown = corpus.pages.slice(0, 56).flatMap(p => p.indices);
+assert.equal(originalUnknown.length, 12956);
+const transcribed = read('resources/lp2-transcription.txt');
+const originalGlyphStream = Array.from(transcribed)
+  .filter(symbol => glyphs.has(symbol)).map(symbol => glyphs.get(symbol));
+assert.deepEqual(originalGlyphStream.slice(0, 12956), originalUnknown);
+const joined = transcribed.replace(/\/\r?\n/g, '').replace(/%\r?\n/g, '')
+  .replace(/\r?\n/g, '');
+let originalOffset = 0;
+const originalWords = [];
+for (const fragment of joined.split(/[-.&$]/)) {
+  const tokens = Array.from(fragment)
+    .filter(symbol => glyphs.has(symbol)).map(symbol => glyphs.get(symbol));
+  if (tokens.length && originalOffset < originalUnknown.length) {
+    originalWords.push(tokens);
+    originalOffset += tokens.length;
+  }
+}
+assert.equal(originalOffset, 12956);
+assert.equal(originalWords.length, 2896);
+const singletons = originalWords.filter(word => word.length === 1).map(word => word[0]);
+assert.equal(singletons.length, 83);
+const seenSingles = new Set(singletons);
+assert.deepEqual(Array.from({length: 29}, (_, i) => i)
+  .filter(i => !seenSingles.has(i)), [5]); // only C never stands alone
+
+const longWordFinalI = originalWords.filter(word => word.length > 1
+  && word.at(-1) === 10).length;
+const longWordFinalC = originalWords.filter(word => word.length > 1
+  && word.at(-1) === 5).length;
+assert.equal(longWordFinalI, 96);
+assert.equal(longWordFinalC, 91);
+
+// All six possible 27-cube bypass pairs after the exact native-singleton
+// restriction. Include C because it never occurs as an original singleton.
+const allowed = [3,5,10,24]; // O,C,I,A
+const singletonCompatiblePairs = [];
+for (let i = 0; i < allowed.length; i++) {
+  for (let j = i + 1; j < allowed.length; j++) {
+    singletonCompatiblePairs.push(allowed[i] + ',' + allowed[j]);
+  }
+}
+const p0CountCompatible = allPairByWriter.map(set =>
+  singletonCompatiblePairs.filter(pair => set.has(pair)));
+assert.deepEqual(p0CountCompatible, [[], ['5,10']]);
+
+// A further key-independent invariant: if rune I is literally unchanged,
+// its word-final placements cannot move or be changed by ANY secret cube.
+// Compare the 96 original long-word-final I with every 2,896-word rolling
+// native-prose window. This is descriptive corpus evidence, not a proof
+// about all possible original English authoring styles or Latin vocabulary.
+const longTailControl = [];
+for (const [name, source] of controls) {
+  const englishWords = (source.toUpperCase().match(/[A-Z]+/g) || [])
+    .map(word => gpEncode(word, true)).filter(word => word.length);
+  assert.ok(englishWords.length >= originalWords.length);
+  const suffixI = englishWords.map(word => Number(word.length > 1
+    && word.at(-1) === 10));
+  const n = originalWords.length;
+  let sum = suffixI.slice(0, n).reduce((a, b) => a + b, 0);
+  let max = -1;
+  let matching96 = 0;
+  for (let i = 0; i + n <= suffixI.length; i++) {
+    max = Math.max(max, sum);
+    if (sum === longWordFinalI) matching96++;
+    if (i + n < suffixI.length) sum += suffixI[i+n] - suffixI[i];
+  }
+  assert.equal(matching96, 0);
+  longTailControl.push({name, englishWords: englishWords.length,
+    complete2896WordWindows: englishWords.length - n + 1,
+    maxLongWordFinalI: max, matchingOriginalLongWordFinalI: matching96});
+}
+assert.deepEqual(longTailControl.map(x => x.maxLongWordFinalI), [0,62,7]);
+console.log(JSON.stringify({
+  wholeManuscript: {unknownRunes:12956, printedWords:2896,
+    singletonWords:83, distinctSingletonLabels:seenSingles.size,
+    absentSingleton:corpus.translit[5], longFinalI:longWordFinalI,
+    longFinalC:longWordFinalC},
+  singletonCompatiblePairs: singletonCompatiblePairs
+    .map(s => s.split(',').map(x => corpus.translit[Number(x)]).join('/')),
+  p0CountCompatiblePairs: p0CountCompatible
+    .map(s => s.map(pair => pair.split(',')
+      .map(x => corpus.translit[Number(x)]).join('/'))),
+  sourceLongIControls: longTailControl,
+  decision: 'Across these native-English registers, a fixed literal two-rune bypass used throughout all unknown printed words has no remaining possible pair: C/I alone survives original singleton plus p0 count, but source-native word-final I never reaches original 96. No plaintext recovered.'
+}, null, 2));
+
 console.log(JSON.stringify({
   original: {physicalPages: [0,1,2], runeCount: original.length,
     sourceF: originalHistogram[0], sourceEA: originalHistogram[28]},
