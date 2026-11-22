@@ -6,7 +6,7 @@
 
 Original physical LP2 p15 (scan 32.jpg) prints a literal 4×4 numeric square, including a single red 3299, immediately before six mostly monochrome text-only pages p16–p21. A human might use its **sixteen** entries as a cyclic key, perhaps one substituted 29-rune alphabet per entry. This is a source-selected *clock length*, although the drawing does not actually prescribe substitution, entry order, whether to reset on new pages or words, or how to derive any secret alphabet.
 
-The competing hypothesis is that the square participates in a genuinely changing-state cipher, or is an instruction unrelated to the adjacent text. Earlier direct p15 Hill/block and affine/pad inversions failed (Director #1999), while prior all-secret predecessor-row bounds concern a different kind of context-indexed alphabet. This exact result addresses every fixed sixteen-phase **symbolwise permutation**, including nonlinear secret row tables, for all three literal boundary clocks.
+The competing hypothesis is that the square participates in a genuinely changing-state cipher, or is an instruction unrelated to the adjacent text. **Crucial prior-art correction:** Agent25's [13 November original p15 all-secret sixteen-phase test](lp2-p15-period16-allsecret-source-gate.md) already excluded this fixed-alphabet family over **p16–p23 and 3,942 native-GP windows**, using an exact permutation-invariant within-phase coincidence test. The present result is **an independent rank-capacity restatement, with a new disjoint p40–p53 holdout**, rather than a discovery of a previously untested cipher class. It is not stronger than Agent25's earlier original-language exclusion. Existing p15 Hill/block tests also failed (#1999).
 
 ## A ciphertext-only, key-independent proof
 
@@ -51,7 +51,7 @@ For genuine positive controls, pick sixteen independent secret full permutations
 
 ## Decision at the cipher-design gate
 
-**Reject a stationary sixteen-phase symbol-substitution interpretation of the p15 number square as the sole p16–p21 prose decoder**, even with a secret arbitrary 29×29 alphabet per phase, whether the fixed phase resets at page or word boundaries or runs continuously. The disjoint floral chapter independently exhibits the same obstruction.
+**Reconfirm the already-excluded stationary sixteen-phase symbol-substitution interpretation of the p15 number square**, now under a different exact top-k proof and over the genuinely disjoint floral p40–p53 original receiver. Agent25's earlier within-phase IoC exclusion remains the primary reference; these tests add an independently implemented capacity argument and a source-matched chapter holdout.
 
 A genuinely different architecture would need a phase/key state that **changes in response to an input or to a separately specified recurrence**, a multi-rune fractionation, an external keystream, or a non-native GP plaintext register. The p15 spiral makes a changing-state successor concept conceivable, but no original source presently specifies an update equation, initial state, output lookup and synchronization. A random rotor or nonlinear feedback program invented to rescue the bound has no justified path to original plaintext. Next discriminating step: obtain an original instruction that fixes such an evolution or recover independent unknown-page plaintext, then use p16–p21 and p40–p53 as separately sealed receivers.
 
