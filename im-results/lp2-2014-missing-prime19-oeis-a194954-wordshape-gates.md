@@ -4,19 +4,19 @@
 
 The [preserved 2014 signed Cicada stage11 message](../resources/historical/cicada2014-stage11-message.asc) displays prime-length blanks **2, 3, 5, 7, 11, 13, 17, 23, 29, 31, 37**, omitting **19**. The 5 is an internal indentation before the onion URL; the other ten values are trailing spaces. **Trailing whitespace is not authenticated** by the OpenPGP cleartext signature. The missing prime 19 is the Gematria Primus prime assigned to **ᚹ (W)**. The earlier [original W-transparent prime/totient decision](lp2-2014-missing-prime19-Wtransparent-original-cipher-gate.md) already proves its fixed p56-style transfer algebraically impossible by p0 rune6, irrespective of plaintext-word frequencies. This complementary test removes the need to assume that particular additive key, prime clock, or cipher family: it checks the unavoidable **word-position consequences of any bijective, boundary-preserving W-transparent encoder**.
 
-If all plaintext W symbols remain W and no other symbol becomes W, word-initial and word-final W frequencies must be inherited from the plaintext. The original transcription's 55 encrypted runic pages p0–p55 (p50 contains no runes) match the canonical 12,956-rune ciphertext exactly. After joining visual line wraps and splitting only at marked punctuation/word-dot separators there are **2,928** runic word groups. Nine genuinely solved GP sections have **740** rune-word groups and **2,979** runes.
+If all plaintext W symbols remain W and no other symbol becomes W, word-initial and word-final W frequencies must be inherited from the plaintext. The original transcription's 55 encrypted runic pages p0–p55 (p50 contains no runes) match the canonical 12,956-rune ciphertext exactly. After joining visual line wraps **and the 32 genuine cross-page word continuations** and splitting only at marked punctuation/word-dot separators there are **2,896 complete words**. Splitting mechanically at page boundaries would create 32 artificial word groups and subtly bias terminal-W counts. Nine genuinely solved GP sections have **740** rune-word groups and **2,979** runes.
 
 | Invariant | LP2 unknown ciphertext | Genuine solved GP plaintext |
 |---|---:|---:|
-| Initial W | 82 / 2,928 = **2.80%** | 79 / 740 = **10.68%** |
-| Final W | 99 / 2,928 = **3.38%** | 8 / 740 = **1.08%** |
+| Initial W | 82 / 2,896 = **2.83%** | 79 / 740 = **10.68%** |
+| Final W | 98 / 2,896 = **3.38%** | 8 / 740 = **1.08%** |
 | All W | 401 / 12,956 = **3.10%** | 98 / 2,979 = **3.29%** |
 
-Exact two-sided Fisher tests give initial-W **p = 3.9660×10⁻¹⁷**, final-W **p = 0.00035248**, and all-position-W **p = 0.59949**. Thus the tempting overall W-frequency agreement conceals severe word-position disagreement. Three separately retained English prose controls support an English-like initial-W rate well above the ciphertext: Shakespeare **6.87%** (55,407 words), Gibran **6.78%** (15,733), and Emerson **6.44%** (77,932); their terminal-W rates are 1.22%, 0.99%, and 1.04% respectively. A synthetic exact GP28 non-W substitution that leaves W untouched correctly preserves all three original GP plaintext W counts and positions.
+Exact two-sided Fisher tests give initial-W **p = 1.1566×10⁻¹⁶**, final-W **p = 0.00034776**, and all-position-W **p = 0.59949**. Thus the tempting overall W-frequency agreement conceals severe word-position disagreement. Three separately retained English prose controls support an English-like initial-W rate well above the ciphertext: Shakespeare **6.87%** (55,407 words), Gibran **6.78%** (15,733), and Emerson **6.44%** (77,932); their terminal-W rates are 1.22%, 0.99%, and 1.04% respectively. A synthetic exact GP28 non-W substitution that leaves W untouched correctly preserves all three original GP plaintext W counts and positions.
 
 **Decision:** under the conditional assumptions of preserved printed word segmentation and GP-native English, the historical omitted-19 clue is inconsistent with a universal *transparent W* cipher, even though arbitrary cipher keys are allowed. Other languages, a non-literal separator scheme, a nonbijective W mapping, or an independent text layer can evade this conclusion. This does **not** recover ciphertext plaintext.
 
-Reproducer: [`sims/lp2_2014_missing_w_source_wordshape_sft.cjs`](../sims/lp2_2014_missing_w_source_wordshape_sft.cjs), with exact source flattening and positive W-preserving plant.
+Reproducer: [`sims/lp2_2014_missing_w_source_wordshape_sft.cjs`](../sims/lp2_2014_missing_w_source_wordshape_sft.cjs), with exact source flattening and all 32 cross-page complete-word joins and positive W-preserving plant.
 
 ## Source-extrapolated A194954 keystream
 
