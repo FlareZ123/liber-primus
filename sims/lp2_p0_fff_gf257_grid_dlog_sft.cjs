@@ -100,6 +100,34 @@ assert.deepEqual(eligibleGenerators,[38,94,105,119,138,152,163,219]);
 assert.equal(generator,eligibleGenerators[0]);
 assert.equal(sourceG,P+eligibleGenerators[0]);
 assert.equal(sums[2],2*rootA);
+
+// Run the exact three-number cross-artifact packet against every printed
+// complete original unknown-page word, preserving words that cross a
+// physical page boundary. Only the full exact tuple counts as a hit.
+const fullRuneTranscript=read('resources/liber-primus/lp2-transcription.txt');
+const runeParts=fullRuneTranscript.split('%').slice(0,55);
+const allWordPrimeSums=[];
+let currentRuneIndices=[];
+for(const section of runeParts)
+  for(const rune of Array.from(section)){
+    const index=runeLookup.get(rune);
+    if(index!==undefined)currentRuneIndices.push(index);
+    else if('-.,'.includes(rune)&&currentRuneIndices.length){
+      allWordPrimeSums.push(currentRuneIndices
+        .reduce((sum,i)=>sum+book.prime[i],0));
+      currentRuneIndices=[];
+    }
+  }
+if(currentRuneIndices.length)allWordPrimeSums.push(currentRuneIndices
+  .reduce((sum,i)=>sum+book.prime[i],0));
+assert.equal(allWordPrimeSums.length,2896);
+const predictedSumTriplet=[P,P+eligibleGenerators[0],2*rootA];
+const originalPacketMatches=[];
+for(let i=0;i+2<allWordPrimeSums.length;i++){
+  if(predictedSumTriplet.every((value,j)=>allWordPrimeSums[i+j]===value))
+    originalPacketMatches.push(i);
+}
+assert.deepEqual(originalPacketMatches,[40]);
 const doubleRootJet = coeff=>{
   let value=0, derivative=0;
   for(const digit of coeff){
@@ -120,7 +148,9 @@ const crossArtifactBridge={
   gf257PowerAtTwiceP54RuneIndex:byExponent[phase],
   eligible24thRootsInGF257:eligibleGenerators,
   leastPositiveGenerator:eligibleGenerators[0],
-  predictedThreeFFfWordPrimeSums:[P,P+eligibleGenerators[0],2*rootA],
+  predictedThreeFFfWordPrimeSums:predictedSumTriplet,
+  originalUnsolvedPrintedWordCount:allWordPrimeSums.length,
+  orderedPacketMatchesInFullOriginal:originalPacketMatches,
   equality:'38^24 = 15; 38^48 = 15^2 (mod257)',
   status:'Exact independent source-data identity; authorial operation and authentic plaintext unknown.'
 };
