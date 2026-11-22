@@ -214,7 +214,7 @@ for (const reset of /** @type {Array<'book'|'page'|'chapter'>} */ (["book", "pag
 assert.equal(winners.length, 12);
 console.log(JSON.stringify({
   status: "PASS: no native GP heldout plaintext under exhaustive original Fibonacci cipher-feedback seeds",
-  source: { N, duplicates, ordinary: eligible.length, gpPrimeWeights: primes,
+  source: { N, duplicates: duplicate, ordinary: eligible.length, gpPrimeWeights: primes,
     spiralPage: 15, fibonacciState: "k_i=k_(i-1)+k_(i-2)+prime(c_prev) modulo28" },
   tested: { seedPairs: 784, signs: 2, resetModes: 3, repeatPolicies: 2, receivers: 9408 },
   nativePlant: { length: N, resetPolicies: 6, exactRoundTrips: 6 },
