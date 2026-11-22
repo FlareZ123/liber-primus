@@ -5,10 +5,10 @@
  * Complete original source N9 characteristic-polynomial all-secret inversion.
  * Node.js 22 / Windows CommonJS, read-only, no tunable parameters.
  *
- * N9(X) = X^9+12X^8+20X^7+10X^6+5X^5+X^4+9X^2+15X+11,
+ * N9(X) = X^9+12X^8+20X^7+10X^6+5X^5+9X^3+15X+11,
  * independently factored from the original 256-cell p50 polynomial.
  *
- * Test both natural coefficient orientations. A continuous nine-register
+ * Test authentic source N9 and its normalized monic GF29 reciprocal. A continuous nine-register
  * GP29 additive key has ANY 29^9 initial state; allow an additional
  * entirely unknown stationary permutation of the 29-rune alphabet.
  * The original 83 one-rune printed words must map to <=3 intermediate
@@ -39,9 +39,22 @@ for (const word of parsed.words) {
 assert.deepEqual([cursor, parsed.words.length, singleton.length], [12956,2896,83]);
 for (const s of singleton) assert.equal(source[s.position], s.value);
 const MOD = 29;
+const N9 = [11,15,0,9,1,5,10,20,12];
+// Prove the corrected N9 coefficient vector divides the unchanged table
+// in original descending orientation, independent of plaintext controls.
+const grid=JSON.parse(fs.readFileSync(path.join(ROOT,
+  "resources/liber-primus/lp2-grid-256.json"),"utf8")).bytes;
+const originalFactor=[...N9,1];
+const modSource = n => (n%29+29)%29;
+const remainder=grid.map(modSource).reverse();
+for(let i=remainder.length-1;i>=9;i--){
+  const q=remainder[i];
+  for(let j=0;j<10;j++)remainder[i-9+j]=modSource(remainder[i-9+j]-q*originalFactor[j]);
+}
+assert.deepEqual(remainder.slice(0,9),Array(9).fill(0));
 const ORDER = 9;
 const VARIABLES = 12;
-const N9 = [11,15,9,0,1,5,10,20,12];
+
 const inv = Array(MOD).fill(0);
 for (let x = 1; x < MOD; x++) {
   for (let y = 1; y < MOD; y++) if (x*y%MOD === 1) inv[x]=y;
@@ -154,20 +167,20 @@ function plantNative() {
 }
 
 function main(){
-  const output={model:"source N9/reciprocal, arbitrary nine-symbol seed, secret stationary GP29 alphabet",
+  const output={model:"Original p50 N9/normalized reciprocal, arbitrary nine-symbol seed, secret stationary GP29 alphabet",
     originalRunes:12956,printedWords:2896,singletonWords:83,global:[],chapter15to22:[]};
   const chapterStart=3603,chapterEnd=5506;
   const chapter=singleton.filter(x=>x.position>=chapterStart&&x.position<chapterEnd)
     .map(x=>({position:x.position-chapterStart,value:x.value}));
   assert.equal(chapter.length,18);
   for(const reverse of [false,true]){
-    const coeff=reverse?[...N9].reverse():[...N9];
+    const coeff=reverse?[...N9,1].reverse().slice(0,9).map(x=>mod(8*x)):[...N9];
     const global=solve(rowsFor(coeff,singleton),singleton);
     assert.equal(global.solutions,0);
     assert.equal(global.maxPrefix,17);
     const local=solve(rowsFor(coeff,chapter),chapter);
     assert.equal(local.solutions,0);
-    assert.equal(local.maxPrefix,16);
+    assert.equal(local.maxPrefix,17);
     output.global.push({reverse,...global});
     output.chapter15to22.push({reverse,...local});
   }
