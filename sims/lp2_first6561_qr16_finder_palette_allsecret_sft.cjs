@@ -55,6 +55,7 @@ for(const character of transcript){
 }
 assert.deepEqual(transcribed,sample);
 assert.equal(wordScope[6560],1505);
+assert.equal(new Set(wordScope).size,1479); // empty structural delimiter IDs carry no runes
 
 const centers=[[3,3],[77,3],[3,77]];
 const switches=[false,true];

@@ -25,7 +25,7 @@ For each of the eight full D4 square symmetries, a palette can represent the QR 
 | Transpose + flip X | 76 | 45 | **3** |
 | Transpose + flip X and Y | 76 | 42 | **5** |
 
-All **24 scoped cases** are decisively inconsistent, with at least **three contradictory forced assignments even after giving every one of the 1,506 printed source words an unrelated secret binary palette**. Every count is an actual original-rune collision on the 192 fixed cells, independently of any candidate plaintext score.
+All **24 scoped cases** are decisively inconsistent, with at least **three contradictory forced assignments even after giving **all 1,479 nonempty original printed word spans** (across 1,506 delimiter IDs, including 27 structural/empty IDs) unrelated secret binary palettes**. Every count is an actual original-rune collision on the 192 fixed cells, independently of any candidate plaintext score.
 
 A minimal unrotated witness for the global **and page-local** model: original rune index25 occurs at source positions **81 and 84** on physical p0, which QR finder modules (0,1) and (3,1) require to be **black** and **white** respectively. Even fully **word-local** keys fail: original rune index10 occurs **twice within printed original word ID91**, at source offsets **399 and 405**; under the same unrotated QR layout those two cells must have opposite fixed finder colors. The other seven symmetries have their own source-exact same-word contradictions, preserved in SFT output. No choice of the full 29-bit alphabet lookup table, or an independently keyed table per original word, can resolve such a pair.
 
