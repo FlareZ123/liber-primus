@@ -14,6 +14,23 @@ Counting only page-local **visible rune fragments** separated by original hyphen
 
 The canonical greedy GP29 spelling of historical **EAR** is EA|R, indices 28+4=32, providing a conditional name-to-page-32 reading. Historical **EOH** is EO|H, indices 12+8=20. P50's original base60 cell graph has 20→102→32→115; the earlier signed-2016 EPIPHANY/SEEKS/THE/DEVOTED research also selects p32 by a longer different route. These are exact numerical facts; none says to convert rune names to ordinal-sum page addresses. There are immediate alternatives among historically attested names: **CEN** also sums to 32, and **FEOH** sums to 20. This weakens claims that p32 or p50 is uniquely selected by the proposed gloss.
 
+## A genuinely historical textual key: the final EAR stanza
+
+The corpse artwork and the actual p22 EA EA doublet together select an *external original text* more specifically than the number 32: the **29th and last EAR stanza of the Old English Rune Poem**. The same 29-stanza historical transcription was pinned independently in the prior [original source Rune Poem experiment](../sims/lp2_rune_poem_tablefree_bookkey_stage1.py), Git blob **dea9478b3ded47cc1fbbe30be7b8941486054e07** at [Dukotah commit 9087dc36](https://github.com/Dukotah/cicada3301/blob/9087dc36b5aa64c1786428e32180261ab9420c29/liber-primus/data/keys/runepoem_oe.txt). The original final stanza begins “Ear byþ egle eorla gehwylcun” and describes the corpse cooling and entering the grave, a human-visible link to p22. The source selection is evidence-based, while the choice to use the stanza as a cryptographic *pad* remains unlicensed.
+
+A bounded native inverse takes the **exact historical Old English EAR stanza** in source order; normalize thorn/eth to TH, ash to AE, wynn to W and the standard canonical GP digraphs, yielding **118 native GP29 runes**. Apply that exact sequence as an additive GP29 Vigenère-like key to all **131 original p22 runes** from offset zero. Because the stanza is only118 runes, continue cyclically for the final13 input symbols, without adjusting source key order, rune offset, direction or a fitted phase. Both additive signs are explicit. An omit-the-two-rune EAR title control tests whether the author's poem could have meant only the stanza *body*; it has115 key runes. No other cipher families or source offsets were searched.
+
+| Frozen original receiver | Native GP trigram mean log probability per rune | GP29 IoC | Language |
+| --- | ---: | ---: | --- |
+| Raw original p22 ciphertext | −4.693637 | contextual | Unreadable |
+| **Full literal EAR stanza, C−K** | **−4.667424** | **0.036524** | Unreadable |
+| Full literal EAR stanza, C+K | −4.765903 | 0.035819 | Unreadable |
+| Stanza body only, C−K | −4.343088 | 0.034292 | Unreadable |
+| Stanza body only, C+K | −4.552538 | 0.032413 | Unreadable |
+| **Authentic solved p57 source** | **−2.494634** | reference | Genuine GP English |
+
+The single best bounded original decode merely produces pseudo-runes, with no recovered grammatical passage or instruction. All four exact inverse configurations reencrypt the entire **131/131 original glyphs**, and each recovers an authentic **85/85 solved p57** source-key encryption plant. The [standalone offline original CJS key SFT](../sims/lp2_p22_ear_rune_poem_stanza_original_sft.cjs) freezes the literal historical final stanza, 118-rune canonical GP normalization, the exact p22 EA doublet, all outputs, GP-English controls and inverse plants. The external poem is a plausible authored *reference*, but it does not decode p22 under the simplest historically attested LP-like additive mechanism. Do not salvage by arbitrary stanza offsets, book-key selection, skipped words or a secret extra layer without a new independently authored instruction.
+
 ## One concrete direct receiver, tested on original data
 
 If the 32 p22 printed fragments are treated as one instruction per p50 row, the natural eight-column selector is each word's GP **prime-number sum modulo 8**. We tested this exact rule on the original row-ordered 32×8 table. Two input conventions respect the visible page-boundary uncertainty: p22's two-rune first fragment alone, or its full ten-rune word joined to the eight immediately preceding p21 runes. The distinct GP **ordinal sum modulo 8** is a comparator, not an authored alternative.
