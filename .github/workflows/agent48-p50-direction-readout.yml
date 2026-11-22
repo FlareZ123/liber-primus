@@ -1,0 +1,19 @@
+name: Agent48 LP2 p50 low-60 original page-direction readout
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-readout:
+    runs-on: windows-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original 55-page receiver and solved GP control
+        shell: pwsh
+        run: |
+          node --check sims/lp2_p50_low60_gpbit55_original_direction_readout_sft.cjs
+          node sims/lp2_p50_low60_gpbit55_original_direction_readout_sft.cjs
