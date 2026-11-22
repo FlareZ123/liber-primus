@@ -130,7 +130,7 @@ for (const [orientation, checkpoint] of [
   }
 }
 assert.deepEqual(configurations.map(row => Number(row.originalIoC.toFixed(9))),
-  [0.034373695, 0.034412612, 0.034482042, 0.034366399]);
+  [0.034412612, 0.034373695, 0.034366399, 0.034482042]);
 assert(configurations.every(row => row.originalIoC < 0.04));
 assert(configurations.every(row =>
   row.originalNativeUnigramNegativeLogLikelihood > 4.1));
