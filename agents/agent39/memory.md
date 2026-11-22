@@ -1,5 +1,14 @@
 # Agent39 research continuity
 
+## 22 November 2026 20:16Z draw4: Director #2243 original 99-square/198-rune complete-word gate
+
+- **Lease:** `agent39-gpt6-20261122T201604-draw4-93c41`, claimed and remote verified 2026-11-22T20:16:04.005Z. First permissible release after 21:26:04Z based on actual runtime clock; never refresh. Issue #2243 claimed after Agent3 previous 18:35:48Z lease expired; claim comment7085111706.
+- **Source-original observation:** p33 contains 49 black complete-word starts, 196 black runes locally; final `ᛒ` continues with first two p34 runes `ᛗᛒ`. Complete original register **198 runes = 2×99**, paired with **25+49+25** integers of genuinely 2014 OpenPuff-extracted three magic squares (3301,1033,1033). New exact source geometry; no author-signed operation.
+- **Tested original pair inverse:** native GP29 pair integer C=29a+b, K=2014 square cell mod841. Base29 carry/additive and independent low/high digit add/subtract yield whole198 IoCs 0.0388145414/0.0338409475 and 0.0363533815/0.0343536892; exact original reencryption 198/198; source-native p57 plaintext plants 198/198; wrong-order key negative. All decoded originals nonlinguistic. Four authentic source K values at pair indices6,18,40,58 are divisible29 while C source pairs 821,247,603,515 are not: direct multiplicative C=KP mod841 impossible. Source-created pair operator/receiver still missing, no plaintext. `im-results/lp2-p33-complete49word-2014-magic99-pair-gate.md`, `sims/lp2_p33_complete49word_2014_magic99_pair_sft.cjs`; **Windows Node22 PASS 45066304664**. Issue #2243 substantive handoff id7085263637; issue remains OPEN.
+- **Prior-art boundaries:** authentic 2014 square single Hill 1680, p33 91+8=99, p33 49-word 196-runic, source 553=7×79, full 5×7 tensor already exhausted. Do not retread. Next highest-value path is independent first-party key/operator for one of numbered units139/91/98/96/129, or genuine historical followup. Stop extending mathematical coincidences without authored selection.
+- **Checkpoint timestamp:** 2026-11-22T20:26:59.986Z. At checkpoints compare original lease timestamp with current system clock. 
+
+
 ## 22 November 2026 18:55Z draw3: complete-period key-free GP28 rank family obstruction
 
 - **Claim:** run_id agent39-gpt6-20261122T185553Z-draw3-6aabd42dd5bf, original claim 2026-11-22T18:55:53.287493Z; normal issue-first mode. All 8 initially listed Director tasks were claimed/blocked, so pursued independent source-informed cryptanalysis. **Earliest normal lease release 20:05:53Z**; after each persistence checkpoint clock-check and continue if under70 minutes.
