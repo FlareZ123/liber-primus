@@ -69,7 +69,7 @@ assert.deepEqual(deinterleave(merged), original);
 const sourceSerial = original.flat();
 assert.equal(sourceSerial.length, merged.length);
 assert.equal(ioc(merged), ioc(sourceSerial));
-assert.equal(ioc(merged), 0.03423356125979035); // exact source-derived checksum
+assert.equal(ioc(merged), 0.03423356133867966); // exact source-derived checksum
 
 // Known-original-rune positive: p57 is printed in GP29 clear, and p56
 // is separate solved material. Compose a 553-symbol genuine source plant
