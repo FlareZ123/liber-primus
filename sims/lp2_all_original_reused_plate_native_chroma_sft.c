@@ -33,7 +33,29 @@ static int member(int bx,int by,int sx,int sy,const Group *g){
   const int *r=g->rect[i];
   if(x>=r[0]&&y>=r[1]&&x+8*sx<=r[2]&&y+8*sy<=r[3])return 1;
  }
+ p1_achromatic_rgb_original(argv[1]);
  return 0;
+}
+static void p1_achromatic_rgb_original(const char *folder){
+ char path[1024];
+ snprintf(path,sizeof(path),"%s/18.jpg",folder);
+ Image im;load(&im,path);
+ if(im.dec.num_components!=3){fprintf(stderr,"p1 expected original RGB\n");exit(6);}
+ long total=0,nonzero=0;
+ for(int c=1;c<=2;c++){
+  jpeg_component_info *info=&im.dec.comp_info[c];
+  for(JDIMENSION y=0;y<info->height_in_blocks;y++){
+   JBLOCKARRAY row=(*im.dec.mem->access_virt_barray)(
+     (j_common_ptr)&im.dec,im.arr[c],y,1,FALSE);
+   for(JDIMENSION x=0;x<info->width_in_blocks;x++){
+    total+=64;
+    for(int j=0;j<64;j++)nonzero+=row[0][x][j]!=0;
+   }
+  }
+ }
+ printf("P1_WHOLE_RGB_ACHROMATIC,1,%ld,%ld\n",total,nonzero);
+ if(total!=4320000||nonzero!=0)exit(7);
+ destroy(&im);
 }
 int main(int argc,char**argv){
  if(argc!=2)return 2;
