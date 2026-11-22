@@ -23,6 +23,26 @@ Original quotient lengths are `QP=275` and `QT=254`; left-pad the high-first tab
 
 The source-derived D polynomial always has a repeated root by construction, so **exact division and re-encoding alone cannot authenticate plaintext**. Its output is uniformly distributed and incoherent. The original source blocks were never modified, and the 21-degree padding follows directly from high-first polynomial exponent alignment. The first mismatch and the independently withheld block failure exclude a literal common quotient codeword under the only source-selected scalar/constant. The next Taylor coefficient disagreement makes that failure particularly decisive.
 
+## A conditional original-source radix discriminator: repeated-root24 selects base60 over base59 (Agent10, 22 November 2026)
+
+The p50 256-cell table is printed using two symbols from the conventional `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx` base60 alphabet, but the source never prints a lowercase `f` (ordinal41). A **59-character compressed alphabet**, in which `f` is deleted and subsequent digits shift down one, is therefore a concrete competing original-table interpretation. The p39 red triad itself physically reads GP indices `[27,5,15]`; reversing to the previously frozen **high-degree-first** coefficient order gives `G(X)=[15,5,27]=15(X−24)^2` over GF29.
+
+An **independent, finite radix test** can consequently use the already detected original p29/G connection as an intact-page checksum **without selecting whichever alphabet gives more legible plaintext**. Source numeric tokens, printed order and symbols are unchanged; only the two specifically plausible numeral alphabets differ.
+
+| Full original high-first polynomial | Total coefficients | `P(24)` | `P'(24)` | Remainder mod `G(X)` |
+| --- | ---: | ---: | ---: | --- |
+| Original p29 native GP rune page | 277 | **0** | **0** | **[0,0]** |
+| Original p50 numeric cells as conventional base60 bytes modulo29 | 256 | **0** | **0** | **[0,0]** |
+| **Same** original p50 numeric cells as f-deleted base59 digits modulo29 | 256 | **20** | **12** | **[12,22]** |
+
+Thus **base60, uniquely among these two predeclared numeral conventions, retains the exact original p29/p39 shared quadratic factor**. Independent earlier 2014 Cicada source explains literal sexagesimal numerals, lending conventional radix60 an additional historical reason; absence of printed `f` is insufficient reason to silently prefer 59.
+
+A related exact algebraic fact sharpens the possible human route: `24` has **multiplicative order seven modulo29**, with powers `24,25,20,16,7,23,1`. The two original data lengths differ by **277−256=21=3×7** and both are **4 mod7**, so the source coefficients share a natural seven-phase remainder alignment. This does **not** establish a seven-column text traversal. Both source polynomials satisfy only two field-moment constraints at the chosen seventh root; the other six seventh roots (including1) are not simultaneously zeros, ruling out an easy all-roots/seven-lane checksum interpretation.
+
+The exact independent [read-only Windows Node22 SFT](../sims/lp2_p29_p50_base60_7root_selector_sft.cjs), [successful source-source run44992568667](https://github.com/FlareZ123/liber-primus/actions/runs/44992568667) verifies the original p39 physical red glyphs, all 256 table printed tokens and radix interpretations, canonical p29, field remainders, order7 and gap21. It also constructs a separate genuine solved-p57 GP29 **254-rune native plaintext payload**, computes two unique suffix checksum runes so its 256-symbol codeword shares the factor, then mutates one checksum to confirm the gate rejects the change. Full original data and plaintext controls pass.
+
+**Decision:** for a future cipher hypothesis that requires the *shared original p29/p39/p50 repeated-root structure*, use **conventional radix60**, since the alternative 59-digit source parser destroys that structure; the base60 bytes are not thereby proven to be Cicada's intended GP29 ciphertext key. The shared factor itself remains a **conditional author-intent premise**, and the red triad's coefficient-direction reversal is an interpretive step. This is a useful source-conditioned alphabet discriminator, **not recovered unknown plaintext, a verified key, or an unconditional claim that all future p50 readers must use radix60**. The source cannot yet tell a human how to turn the resulting field codeword into a deciphering operation.
+
 ## Independent direct Taylor-coordinate plaintext gate (Agent10, 22 November 2026)
 
 The shared original root24 suggests a second, **mathematically distinct direct decoder** that does not use a quotient/key comparison or convolution with p50: treat the complete original 277-rune p29 and 256-byte p50 as **descending** GF29 polynomials `P(X)` and `T(X)`, substitute `X+24`, and read ascending Taylor coefficients after the first two forced zero jets. This yields p29 **275** and p50 **254** fully specified symbols, the source-backed coefficient-counts with no phase, free scalar or secret key. This is an especially discriminating original question because both source polynomials really do contain the same factor `(X−24)^2`, and formal Taylor change of basis has an exact inverse `X−24`.
