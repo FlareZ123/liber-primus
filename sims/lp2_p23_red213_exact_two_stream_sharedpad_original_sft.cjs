@@ -117,7 +117,7 @@ assert.equal(Math.max(...overlaps.map(x=>x.end-x.begin)),8);
 const mod=x=>(x%29+29)%29;
 /**
  * Exact existence of two native GP29 words of these source word lengths
- * under one shared pad (unknown and eliminated), for specified sign.
+ * under one shared additive or nonzero multiplicative pad (unknown and eliminated).
  * @param {number[]} ca @param {number[]} cb
  * @param {{a:{start:number,length:number},b:{start:number,length:number},begin:number,end:number}} overlap
  * @param {'same'|'opposite'} sign
@@ -125,24 +125,48 @@ const mod=x=>(x%29+29)%29;
 function compatible(ca,cb,overlap,sign){
   const {a,b,begin,end}=overlap;
   const wordsA=options.get(a.length)||[],wordsB=options.get(b.length)||[];
+  const multiplicative=sign==='mulSame'||sign==='mulInverse';
+  const indices=Array.from({length:end-begin},(_,i)=>begin+i);
+  const fixed=indices.filter(pos=>!multiplicative||ca[pos]!==0);
   const bProjection=new Set();
-  for(const w of wordsB)
-    bProjection.add(w.slice(begin-b.start,end-b.start).join(','));
-  const needed=Array(end-begin);
+  for(const w of wordsB){
+    if(multiplicative && indices.some(pos=>
+      (w[pos-b.start]===0)!==(cb[pos]===0)))continue;
+    bProjection.add(fixed.map(pos=>w[pos-b.start]).join(','));
+  }
+  if(!bProjection.size)return false;
+  const needed=Array(fixed.length);
   for(const w of wordsA){
-    for(let pos=begin;pos<end;pos++){
-      const val=mod(ca[pos]+(sign==='same'?-cb[pos]:cb[pos]));
-      needed[pos-begin]=sign==='same'
-        ?mod(w[pos-a.start]-val):mod(val-w[pos-a.start]);
+    if(multiplicative && indices.some(pos=>
+      (w[pos-a.start]===0)!==(ca[pos]===0)))continue;
+    for(let i=0;i<fixed.length;i++){
+      const pos=fixed[i],plainA=w[pos-a.start];
+      if(multiplicative){
+        // K is a nonzero field element independently at every position.
+        // Same K:  C_a*P_b=C_b*P_a.
+        // Reciprocal: C_a*C_b=P_a*P_b.
+        const z=sign==='mulSame' ? cb[pos]*plainA : cb[pos]*ca[pos];
+        needed[i]=mod(z*inverse29(plainA));
+      } else {
+        const delta=mod(ca[pos]+(sign==='same'?-cb[pos]:cb[pos]));
+        needed[i]=sign==='same'
+          ?mod(plainA-delta):mod(delta-plainA);
+      }
     }
     if(bProjection.has(needed.join(',')))return true;
   }
   return false;
 }
+/** @param {number} a */
+function inverse29(a){
+  assert.ok(a>0&&a<29);
+  for(let i=1;i<29;i++)if((a*i)%29===1)return i;
+  throw Error('GF29 inversion failed');
+}
 /** @param {number[]} ca @param {number[]} cb */
 function count(ca,cb){
   const outcomes={};
-  for(const sign of ['same','opposite']){
+  for(const sign of ['same','opposite','mulSame','mulInverse']){
     const misses=overlaps.filter(o=>!compatible(ca,cb,o,sign));
     outcomes[sign]={
       impossibleWordPairs:misses.length,
@@ -162,6 +186,8 @@ function count(ca,cb){
 const tested=count(p23,red);
 assert.ok(tested.same.impossibleWordPairs>=1);
 assert.ok(tested.opposite.impossibleWordPairs>=1);
+assert.ok(tested.mulSame.impossibleWordPairs>=1);
+assert.ok(tested.mulInverse.impossibleWordPairs>=1);
 
 /* Matched pad control with independently selected real dictionary GP
  * words placed at every true original word interval, exactly preserving
@@ -190,9 +216,21 @@ const matchedOpposite=count(pa.map((x,i)=>mod(x+key[i])),
   pb.map((x,i)=>mod(x-key[i])));
 const mismatched=count(pa.map((x,i)=>mod(x+key[i])),
   pb.map((x,i)=>mod(x+wrong[i])));
+const keyNonzero=Array.from({length:213},()=>1+rand(28));
+const wrongNonzero=Array.from({length:213},()=>1+rand(28));
+const matchedMulSame=count(pa.map((x,i)=>mod(x*keyNonzero[i])),
+  pb.map((x,i)=>mod(x*keyNonzero[i])));
+const matchedMulInverse=count(pa.map((x,i)=>mod(x*keyNonzero[i])),
+  pb.map((x,i)=>mod(x*inverse29(keyNonzero[i]))));
+const independentMul=count(pa.map((x,i)=>mod(x*keyNonzero[i])),
+  pb.map((x,i)=>mod(x*wrongNonzero[i])));
+
 assert.equal(matchedSame.same.impossibleWordPairs,0);
 assert.equal(matchedOpposite.opposite.impossibleWordPairs,0);
 assert.ok(mismatched.same.impossibleWordPairs>0);
+assert.equal(matchedMulSame.mulSame.impossibleWordPairs,0);
+assert.equal(matchedMulInverse.mulInverse.impossibleWordPairs,0);
+assert.ok(independentMul.mulSame.impossibleWordPairs>0);
 console.log(JSON.stringify({
   name:'Entire original p23 cipher213 vs all original unsolved red rune213',
   original:{p23Runes:p23.length,redRunes:red.length,
@@ -205,7 +243,9 @@ console.log(JSON.stringify({
   model:'One arbitrary secret GP29 additive key at every aligned original glyph; both signs, original word boundaries. Exact local lexicon-pair incompatibility.',
   originalResults:tested,
   nativeMatchedPadControls:{same:matchedSame.same,
-    opposite:matchedOpposite.opposite},
-  independentPadNegativeControl:mismatched.same,
-  conclusion:'Both 213-rune source channels cannot be complete native-dictionary GP29 prose under one position-wise shared additive pad. The GF257 source-syndrome coincidences remain algebraic only.'
+    opposite:matchedOpposite.opposite,
+    mulSame:matchedMulSame.mulSame,mulInverse:matchedMulInverse.mulInverse},
+  independentPadNegativeControls:{additive:mismatched.same,
+    multiplication:independentMul.mulSame},
+  conclusion:'Both 213-rune source channels fail direct two-native-English shared GP29 additive and multiplicative pad families. The GF257 source-syndrome coincidences remain algebraic only.'
 },null,2));
