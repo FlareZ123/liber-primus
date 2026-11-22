@@ -122,6 +122,13 @@ for (let i = 0; i < converted.length;) {
   i = end;
 }
 rows.sort((a, b) => b.printableLength - a.printableLength);
+const compact = converted.map(x => x.printable || "").join("");
+assert.equal(compact.length, 537);
+assert.equal(compact.slice(0, 16), "3OHM3O$=F<MH-OI=");
+assert.equal(
+  (compact.match(/[A-Za-z ]{6,}/g) || []).sort((a, b) => b.length - a.length)[0],
+  "NMIOMGE"
+);
 assert.equal(validHex.length, 867);
 assert.equal(validPrintable.length, 537);
 assert.equal(rows.length, 19);
@@ -135,6 +142,8 @@ console.log("ORIGINAL FULL UNKNOWN BOOK: " +
     hexByteAddresses: validHex.length,
     printableByteAddresses: validPrintable.length,
     consecutivePrintableRunsLength3plus: rows.length,
+    joinedPrintablePrefix: compact.slice(0, 96),
+    longestAlphabeticJoinedRun: 'NMIOMGE',
     longestSourceRuns: rows.slice(0, 8)
   }, null, 2));
 console.log("PASS: the direct signed-GP0-to-p50-hex receiver yields no " +
