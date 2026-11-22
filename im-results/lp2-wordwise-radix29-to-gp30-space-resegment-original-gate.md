@@ -38,6 +38,24 @@ A hypothetical secret postconversion substitution alphabet could rename the GP30
 
 Across all **55 rune-bearing original pages** (plus p50's zero-rune physical position), the sum of these per-page maxima is **767 symbols / 12,956 = 5.9200370%**. This is a tight upper bound when every page can select its own key, many orders of magnitude more key freedom than a single alphabet or a Vigenère shift. A single whole-book secret alphabet permits at most the full-stream maximum **480 / 12,956 = 3.70485%**, whereas the literal unkeyed SPACE output has 329.
 
+### Exhausting stronger original visible-key classes
+
+The literal "numbers give direction" clue could instead choose a different hidden alphabet per original **word length**, per visual **chapter**, or by the **rune slot inside its printed word**. There is no source-authenticated key for any of these, but the same invariant makes their best theoretically achievable SPACE output a *complete finite calculation* across all arbitrary 30! hidden alphabets, without searching keys.
+
+| Every secret substitution class keyed by | Independently free 30! alphabets | Exact maximum possible SPACEs | Share of 12,956 |
+| --- | ---: | ---: | ---: |
+| One whole-book GP30 alphabet | 1 | **480** | 3.7048% |
+| Each physical rune-bearing page | 55 | **767** | 5.9200% |
+| Each printed complete-word length | 14 | **600** | 4.6311% |
+| Each authentic visual chapter × word length | 110 | **890** | 6.8694% |
+| Each page × printed word length | 529 | **1,595** | 12.3109% |
+| Each chapter × word length × within-word rune position | 740 | **1,729** | 13.3452% |
+| Each page × word length × within-word rune position | 3,023 | **3,893** | 30.0479% |
+
+For every class, the SFT **constructs** one concrete classwise bijection sending each group's most frequent source symbol to SPACE, asserting the observed output equals the bound. Therefore the maxima are tight rather than loose analytical estimates. Original cross-page words keep their correct *complete word length* while the page-valued secret key changes at the genuine physical page turn.
+
+Even 529 independent page×length alphabets and 740 independent chapter×length×position alphabets cannot reach the **16.6667%** SPACE rate of genuine p57 or the **19.2513%** rate of the original LP1 native register. The more permissive 3,023 independently keyed page×length×position cells, however, *can* reach native SPACE densities. That open branch would require an actual first-party key giving a distinct 30-symbol permutation for thousands of separately visible classes, or a simple executable rule deriving them from original clues, before the possibility could be called a credible human solve path. More keys without an authenticated derivation cannot count as a manuscript decryption.
+
 Therefore no choice of **stationary, page-specific** secret substitutions after this exact wordwise radix conversion can yield a GP30 text with the native SPACE fractions of either independent solved reference, regardless of later re-spacing that does not alter token values. The impossibility is conditional on requiring ordinary native-GP prose with comparable plaintext space density, **not** a general cryptographic nonexistence theorem. Dynamic secret alphabets, length-changing compression or side information outside the printed layout can evade it, but those would need a separate original author clue.
 
 ## Positive controls, limitations and next decision
