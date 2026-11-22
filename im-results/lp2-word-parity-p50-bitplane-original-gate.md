@@ -1,0 +1,23 @@
+# LP2 word-length parity × original p50 table: direct steganographic receiver gate
+
+**Agent19, 22 November 2026. Decision: no recovered plaintext or source-selected bit/word key.** [Executable original-source Node22 SFT](../sims/lp2_wordparity_p50_bitplane_original_gate.cjs).
+
+## Original operands and prospective solve path
+
+The source contains **2,896 authentic printed rune words** across physical LP2 p0–55 (12,956 GP runes), so the word count is **362 × 8**, exactly divisible by the eight physically printed columns of the p50 numeral table. Their rune-length parity is unusually balanced, **1,450 odd versus 1,446 even**. Given the Cicada-signed 2016 instruction that the book's numbers give direction, an immediately readable candidate is the sequence of 2,896 parity bits, packed as 362 consecutive bytes (eight printed words per byte). A second direct operation uses a particular source table byte bit to predict printed-word parity on the source-natural **global word clock, beginning with p0 word zero and p50 row-major table cell zero**. Neither packing convention nor the word clock is authenticated by the visible manuscript.
+
+The unmodified source strings are `resources/liber-primus/lp2-transcription.txt`, `lp2-corpus.json`, and `lp2-grid-256.json`. The extraction conserves all original words, including the ones carrying across physical page turns, and exactly reproduces the source's 12,956 rune indices. The p50 grid has 32 rows ×8 tokens; two documented interpretations are its supplied radix60 alphabet and the alternative radix59 alphabet omitting unused `f`.
+
+## Decisive complete-input results
+
+**Direct 8-bit steganographic readout:** the four natural odd-bit polarity / byte-bit-endianness presentations of 362 full bytes give **132, 138, 128, 149 printable-ASCII bytes**, respectively; their first eight bytes are `5ed4f0e82728f780`, `a12b0f17d8d7087f`, `7a2b0f17e414ef01`, and `85d4f0e81beb10fe`. None begins with an ordinary file header or plaintext sentence. This is a bounded byte-level failure, not a prohibition on additional keyed steganography.
+
+**Table-bit prediction:** with base60, natural word phase0 and the most ordinary low bit `byte&1`, parity matches **1,456/2,896** (z≈+0.602). Testing the eight separately source-visible bit planes at that same phase, base60 bit2 gives **1,502/2,896** (z≈+4.012). However bit2 is **selected after seeing the response**; base59 bit2 at the unchanged phase instead gives **1,417/2,896** (z≈−2.299), leaving no radix-independent natural receiver.
+
+A complete **16 binary masks × 256 cyclic positions = 4,096** check found its largest original score at **radix59, bit4, phase53**, with **1,539/2,896** matches (z≈+6.771). The large z is seductive but not a recovery: this is the most favorable member of a postselected family, with no first-party evidence selecting bit4, radix59 or phase53. The last half of the manuscript also strongly disagrees with the highest-scoring model selected **on the first half only**: base60 bit5, phase226, has first-half z≈+6.643 and held-out second-half z≈−2.870. The supposedly interesting unshifted bit2 is uneven over the nine visually defined chapters (seven positive, two negative).
+
+**Source-table-preserving familywise null:** permute the **32 intact eight-cell table rows** using fixed seed `0x33011914`; preserve all table values, individual printed-row geometry and eight-column layout; keep all 2,896 original word lengths and positions untouched. A source-exact 150-draw matched control yields mean **max z≈7.338**, with **120/150** row permutations scoring **at least as high as the observed global maximum of 6.771**. For the phase-zero best-of-all-16 bit masks, **49/150** shuffled tables reach at least the original z≈4.012. Only the *postselected individual* base60 bit2/phase0 receiver has 2/150 matched exceedances, which is insufficient after the 16 masks have been inspected. All counts and the exact seed are asserted in the read-only SFT; these are bounded empirical comparisons, not universal significance claims.
+
+## Cryptanalytic decision
+
+This original-source receiver provided no usable plaintext byte stream and no repeatable key schedule. The strongest apparent word-parity/table alignment is **ordinary under the complete-family source-preserving null**. Retire phase-fitting and secret-bit selection on these operands unless a new authenticated clue explicitly fixes a bit, radix and clock. The nine-chapter structural and p50 doublet-site observations remain separate; this experiment does not refute their source-specific tests, nor does it demonstrate that printed spaces cannot carry other information.
