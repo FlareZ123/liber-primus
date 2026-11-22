@@ -1,6 +1,6 @@
 # GP29 predecessor-ciphertext quasigroup: exact all-secret rank-capacity obstruction
 
-**Agent 2, 22 November 2026.** An exact, original-ciphertext, secret-key-independent theorem excludes several large reversible GP29 one-step feedback families as sole length-preserving decoders of ordinary source-native GP English or Latin. This is a language-conditional exclusion, with **no unknown plaintext, author-selected key, historical cipher or Cicada destination recovered**. The [single-file Windows/Node22 SFT](../sims/lp2_cipherprev_quasigroup_majorization_original_sft.cjs) has passed original-input and native-GP planted-control tests on [run 45004361283](https://github.com/FlareZ123/liber-primus/actions/runs/45004361283).
+**Agent 2, 22 November 2026.** An exact, original-ciphertext, secret-key-independent theorem excludes several large reversible GP29 one-step feedback families as sole length-preserving decoders of ordinary source-native GP English or Latin. This is a language-conditional exclusion, with **no unknown plaintext, author-selected key, historical cipher or Cicada destination recovered**. The [single-file Windows/Node22 SFT](../sims/lp2_cipherprev_quasigroup_majorization_original_sft.cjs) has passed original-input and native-GP planted-control tests on [run 45006835347](https://github.com/FlareZ123/liber-primus/actions/runs/45006835347).
 
 ## Original evidence and cipher class
 
@@ -86,7 +86,7 @@ For a new archaic-language cross-check, the same corrected Beowulf source was dr
 
 The same SFT creates independently secret, random but fixed GP29 row permutations for **all eight group scopes** and also plants **two-mode and three-mode** predecessor-based substitution families with a freely varying secret mode at *every* site. Source-native controls are encoded on the original 2,896-word shapes and decoded using their actual planted keys/modes, recovering **12,956/12,956 original-sized GP plaintext runes** for every tested architecture. The planted ciphertexts satisfy their own theoretical rank capacities. These implementation controls do not identify a creator cipher, key, or actual LP2 plaintext.
 
-The original file parsing, GP alphabet, original printed word joins, real section/page clocks, exact row histograms, 60-trial source sampling and positive inverses are contained in one executable source file. An initial Windows run failed due CRLF-sensitive parsing of the solved LP1 fixture; that was corrected before the successful original-input controls.
+The original corpus parsing, GP alphabet, canonical full-word joins, physically printed source-ink/section/page clocks, exact state-histogram capacities, all four native-GP language-register controls, real word-collision counts and exact positive inverses are contained in the single reproducible CommonJS script. Source integrity assertions include the literal GP29 red-rune identities and the corrected Beowulf GP symbol-count profile.
 
 ### Independent 29-start word-repetition bound (source-language sensitive)
 
@@ -106,4 +106,4 @@ For source-native English, Latin or corrected Old English Beowulf-like GP prose,
 
 The remaining credible choices require new independently selected information: at least three genuinely different predecessor-state alphabet choices for ordinary GP common-rune density; more complex memory; fresh per-page or evolving secrets; an original source-specific non-GP register; or altered word/letter boundaries. The art and first-party Cicada materials have **not yet selected** one such decoding rule. Do not promote numerical coincidences or synthetic key recovery as plaintext.
 
-**Reproducer:** [`sims/lp2_cipherprev_quasigroup_majorization_original_sft.cjs`](../sims/lp2_cipherprev_quasigroup_majorization_original_sft.cjs), Windows11/Node22 [PASS 45004361283](https://github.com/FlareZ123/liber-primus/actions/runs/45004361283). A later runner at [45004366865](https://github.com/FlareZ123/liber-primus/actions/runs/45004366865) independently executed the same committed source revision.
+**Reproducer:** [`sims/lp2_cipherprev_quasigroup_majorization_original_sft.cjs`](../sims/lp2_cipherprev_quasigroup_majorization_original_sft.cjs), exact original-input Windows Node22 [PASS 45006835347](https://github.com/FlareZ123/liber-primus/actions/runs/45006835347), including the fully secret 29-initial-codeword word-variant bound.
