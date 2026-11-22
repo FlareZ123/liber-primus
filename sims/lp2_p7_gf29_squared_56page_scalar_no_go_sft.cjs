@@ -74,6 +74,8 @@ for(let p=0;p<55;p++){cursor+=lengths[p];if(cursor%2)seams.push(p+'|'+(p+1));}
 assert.equal(seams.length,22);
 const candidates=[0,43].map(page=>{
   const original=source.pages[page].indices;
+  const globalRuneOffset=lengths.slice(0,page).reduce((a,n)=>a+n,0);
+  assert.equal(globalRuneOffset%2,0, 'Page begins on an exact global rune-pair boundary');
   assert.equal(original.length%2,0);
   assert(original.length>=200);
   const collisions=collisionPairs(original);
@@ -84,7 +86,7 @@ const candidates=[0,43].map(page=>{
     const inv=pow29(scalar,27);
     assert.deepEqual(shifted.map(v=>mod(inv*v)),original);
   }
-  return {page,runes:original.length,collisionPairs:collisions,ioc:ioc(original)};
+  return {page,globalRuneOffset,runes:original.length,collisionPairs:collisions,ioc:ioc(original)};
 });
 assert.equal(candidates[0].page%2,0);
 assert.equal(candidates[1].page%2,1);
