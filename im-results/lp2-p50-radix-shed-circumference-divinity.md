@@ -2,6 +2,8 @@
 
 **Agent48, 18 November 2026. Classification: candidate source-structure/navigation interpretation, not a validated decoder. No unknown LP2 plaintext, final key, KDF, or complete cipher inverse is recovered.**
 
+**Independent core-key consumer check (22 November 2026, Agent12):** After the already proposed two-shell peel, the unmodified 28×4 core's **112 five-state shed differences** form a **255-bit** big-endian base-five integer, fitting one 32-byte field without lossy truncation. The exact original input yields the candidate 256-bit zero-padded value `55f78eab5d76f4d9f577829b25c560fbc83e7a5ff90e1381be067f7957995987`. This is a useful finite *possible* key shape, but the source gives no AES instruction, nonce or key-use mechanism. Its direct AES-256-CTR zero-IV GP29 receiver leaves every original chapter near uniform; direct AES-256-ECB/CBC from original p52/p54/p55 base29 byte representations produces no plaintext or valid PKCS#7 padding. The exact test and matched digit-histogram size calculation are in §7a below. This **does not authenticate a key** or change the existing radix/receiver fork.
+
 **Later adjudication (22 November 2026):** The p50 shell arithmetic and candidate `TUNNELNG→p55` address remain intermediate evidence; the historical `prime_echo` boundary and repeated `DJU/BEI` handoff to p27:28 remain independently selected. The downstream p27 GP0/base59 word-map extension is not authenticated: its immediate NEXT pair `AEF/P` maps to p195:4, outside LP2 pages0–55. Director #1709's familywise blind gate independently rejects the broader p27 GP0→p50 convergence. Do not claim a completed `p55→p27→DIVINITY→red13/3301` route or use it as a key. See [the updated DJU/BEI circuit assessment](lp2-dju-bei-base59-word-map-circuit.md) and [the familywise blind gate](lp2-p27-djubei-familywise-blind-gate.md).
 
 **Unresolved radix fork (22 November 2026):** This report tests a conditional drop-`f` base59 reading. A separate p29/p50 test reports a shared GF(29) double root24 under conventional base60 but not under f-deleted base59, conditional on the inferred p39 high-first polynomial and p29/p50 association. That is competing evidence for base60, not proof of a global radix. Neither branch is selected by an original digit legend or explicit radix instruction. Keep this base59 shell interpretation conditional; do not combine it with base60 into an invented dual-radix decoder. See [the p29/p50 root24 decision](lp2-p29-p50-shared-root24-quotient-common-codeword-decision.md).
@@ -180,6 +182,32 @@ The candidate shell route therefore reaches this independently selected terminal
 `TUNNELNG94 → base59 55 → p55 → EMERGE300 → DJU/BEI → p27`.
 
 The p55 historical selector and repeated-pair result are independent of the present shell arithmetic. They are documented in `im-results/lp2-primeecho-terminal-duplicate-mapline.md`.
+
+## 7a. Source-shaped 255-bit inner-core candidate and direct AES-256 original-input gate
+
+The previously defined *conditional* 60→59 **shed difference** is an unsigned digit in **0..4** at each original table cell. After the independently hypothesized DH shared2 removes the first two 32×8 shells, the retained original **28×4** region has exactly **112 such base-five digits**. Reading those 112 digits in printed row order, without using any ciphertext score, gives the unambiguous integer
+
+`0x55f78eab5d76f4d9f577829b25c560fbc83e7a5ff90e1381be067f7957995987`,
+
+of **255-bit** length, zero-left-padded to a conventional **32-byte / 256-bit AES key candidate**. Its original first twelve base-five digits are `002230213011`; the 112 digits sum to **199**. This is mathematically interesting because no bits need be discarded to fit a 256-bit register. However **AES is nowhere selected by this source-derived shell route**, and the alphabet/radix choice and peel count remain conditional. The core does not become genuine recovered *cryptographic key material* until it decrypts an independently preserved ciphertext or passes a source-authenticated keyed verification.
+
+A deliberately tight, unoptimized trial uses AES-256-CTR from a **zero 128-bit counter/IV**, one keystream byte per unchanged GP29 ciphertext rune, `P_i=C_i−(AES_byte[i] mod29) mod29`, with a **single clock across all 12,956 original unknown runes**. No image resampling, AES key hash, fitted nonce, word resets, chosen phase or altered symbol order enter this first receiver. Original decoded coincidence indices are:
+
+| Exact source interval | Original runes | Decoded GP29 coincidence |
+| --- | ---: | ---: |
+| p16–21 training corridor | 1,613 | **0.034311787** |
+| p40–53 untouched floral | 3,008 | **0.034432733** |
+| p54–55 untouched terminal | 308 | **0.034519227** |
+| p55 alone | 76 | **0.033333333** |
+| Entire unknown book | 12,956 | **0.034503028** |
+
+These are approximately uniform (1/29≈0.03448276) and yield no coherent original paragraph. An authentic solved-p57 GP-native positive encoded under the *same* key and byte-to-GP operation recovers **1,613/1,613** and **3,008/3,008** known runes. The original full-text reencryption also succeeds (expected algebraic replay, not confirmation of the key).
+
+A second typed original-byte consumer treats each complete original p52, p54 and p55 GP rune page as a single most-significant-first **base29 integer**, left-padded to a whole 16-byte AES block count, then directly decrypts with the same key under AES-256-ECB and AES-256-CBC with zero IV. Original input lengths are respectively **160, 144, 48 bytes**. None of the **six** native decryptions has valid PKCS#7 padding or recognizable UTF-8/ASCII prose. For p55 alone, the 76 actual rune digits encode a **369-bit** integer that needs **one leading zero byte** to occupy three complete 16-byte AES blocks; the two outputs have only **13/48** and **19/48** printable ASCII bytes. The positive source-solved language CBC/ECB plants reencrypt and recover exactly. These are deliberately narrow, finite, direct readouts, so their failure does not invalidate the 112-digit numerical source object or all imaginable cryptographic consumers.
+
+A source-marginal calibration further limits interpretation of the key length. Under uniformly random rearrangement of the **exact observed 256 shed digits** (frequencies `[36,62,62,63,33]`) into the 112 fixed core positions, the exact sequential hypergeometric prefix probability that the 112-digit integer fits **any 256-bit slot** is **0.036598654649**, and the probability of the observed **exact 255-bit length** is **0.009096829271**. These values are **post-discovery, uncorrected** for having selected a particular radix, peel count, orientation and conventional key size; they are context for the numerology, not independent evidence that Cicada encoded AES-256.
+
+**Decision:** Retire the two literal AES readout families only. Do not treat the 255-bit fit, full 32-byte hex string, native AES inversion or shell word matches as a recovered key or original plaintext until an independent Cicada-authored operation specifies encryption, counter/IV and target. The complete [read-only Node22 CJS source gate](../sims/lp2_p50_shed_core112_aes256_original_sft.cjs) asserts exact original input, key material and positives; Windows [first successful key/CTR+ECB/CBC run 45009239653](https://github.com/FlareZ123/liber-primus/actions/runs/45009239653), with exact-histogram calibration appended and rerun [45009342023](https://github.com/FlareZ123/liber-primus/actions/runs/45009342023).
 
 ## 8. Research consequence
 
