@@ -142,16 +142,26 @@ for(const [name,representation] of Object.entries(families)){
   // First maximal independent set of feature rows (not ciphertext fit):
   // select by rank without consulting original values and fit only those.
   const independent=[];
-  let featureRank=0;
+  const basis=[];
   for(let i=0;i<255;i++){
-    const probe=solve([...independent.map(j=>[
-      ...features[j],0]),[...features[i],0]],cols);
-    if(probe.rank>featureRank){
-      independent.push(i);
-      featureRank=probe.rank;
+    const candidate=features[i].map(mod);
+    for(const existing of basis){
+      const factor=candidate[existing.pivot];
+      if(factor){
+        for(let j=existing.pivot;j<cols;j++)
+          candidate[j]=mod(candidate[j]-factor*existing.row[j]);
+      }
     }
+    const pivot=candidate.findIndex(v=>v!==0);
+    if(pivot<0)continue;
+    let inverse=1;
+    while(mod(inverse*candidate[pivot])!==1)inverse++;
+    for(let j=pivot;j<cols;j++)candidate[j]=mod(candidate[j]*inverse);
+    basis.push({pivot,row:candidate});
+    basis.sort((a,b)=>a.pivot-b.pivot);
+    independent.push(i);
   }
-  assert.equal(featureRank,original.rank);
+  assert.equal(basis.length,original.rank);
   const trained=solve(independent.map(i=>rows[i]),cols);
   assert.equal(trained.inconsistent,false);
   assert.equal(trained.rank,original.rank);
