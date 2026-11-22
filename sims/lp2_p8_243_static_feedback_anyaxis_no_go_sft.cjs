@@ -66,7 +66,7 @@ assert.equal(nativePositive.length, 5);
 console.log(JSON.stringify({
   model: 'lexicographically addressed complete GF3^5 static rune-to-feedback table',
   source: 'physical LP2 p8 black 243 original rune indices, red12 excluded',
-  sourceR%C3%B6les: '29 rune identities, arbitrary secret stationary rune-to-trit map',
+  sourceRoles: '29 rune identities, arbitrary secret stationary rune-to-trit map',
   originalByOmittedAxis: actual,
   validExplicitTritPositiveByAxis: nativePositive.map(x =>
     ({axis:x.axis, groups:x.groups, repeats:x.repeats})),
