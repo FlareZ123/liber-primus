@@ -1,0 +1,16 @@
+name: 2014 magic square generic-sector SFT
+on:
+  workflow_dispatch:
+jobs:
+  source-matrix-theorem:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout original artifact corpus
+        uses: actions/checkout@v4
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test all three historical squares and genuine magic-square counterexample
+        run: node sims/lp2_2014_centrosymmetric_magic_generic_sector_sft.cjs
