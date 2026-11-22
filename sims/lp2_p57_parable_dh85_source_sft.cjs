@@ -273,3 +273,41 @@ console.log('SECOND SOURCE DH: original2014 HTML title/base=' + g2 +
   ', other share=' + a2 + ', logs=' + logA2.log + '/' + logB2.log +
   ', shared=' + shared2a + ', unique physical p7 rune length=' + page(7).indices.length +
   '. Candidate navigation, NO recovered unknown plaintext.');
+
+
+// Conservative direct original consumer of the second DH packet:
+// iterate the historical DH multiplication by g=133 from shared273,
+// emit GP29 ordinal k=x mod29 and try the two additive signs with no
+// fitted clock. Source-positive p57 encrypt-then-decrypt checks invertibility.
+function secondDHKeystream(n) {
+  const stream = [];
+  let state = shared2a;
+  for (let i = 0; i < n; i++) {
+    stream.push(state % 29);
+    state = state * g2 % p2;
+  }
+  return stream;
+}
+assert.deepEqual(secondDHKeystream(16),
+  [12,12,15,9,22,26,25,22,17,28,1,1,21,24,3,1]);
+const secondRunners = [
+  {scope:'p7-original',cipher:page(7).indices},
+  {scope:'all-original-unknown',cipher:originalUnknown}
+];
+const secondDHMetrics = [];
+for (const {scope, cipher} of secondRunners) {
+  const key = secondDHKeystream(cipher.length);
+  for (const sign of [-1, 1]) {
+    const plain = cipher.map((code, i) => (code + sign * key[i] + 29) % 29);
+    const score = Number(ioc(plain).toFixed(6));
+    secondDHMetrics.push(score);
+    console.log('ORIGINAL second-source DH449 group orbit scope=' + scope +
+      ', sign=' + sign + ', originalGP29IoC=' + score.toFixed(6));
+  }
+}
+assert.deepEqual(secondDHMetrics, [0.033956,0.034281,0.034504,0.034485]);
+const p57SourceKey = secondDHKeystream(p57.indices.length);
+const secondDHPlant = p57.indices.map((rune, i) => (rune + p57SourceKey[i]) % 29);
+assert.deepEqual(secondDHPlant.map((cipher, i) =>
+  (cipher - p57SourceKey[i] + 29) % 29), p57.indices);
+console.log('PASS: signed-2014-HTML DH449/208/p7 packet is exact source math; direct group-orbit key has no original prose.');
