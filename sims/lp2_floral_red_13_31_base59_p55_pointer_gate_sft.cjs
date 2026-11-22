@@ -41,10 +41,10 @@ const originalP57Words=p57Words.map(runic=>{
   return {runes:positions,text:positions.map(x=>corpus.translit[x]).join(""),
     GPIndexSum:positions.reduce((a,x)=>a+x,0)};
 });
-const instarHits=originalP57Words.filter(w=>w.GPIndexSum===tPrime/GP);
+const instarHits=originalP57Words.filter(w=>w.GPIndexSum===tPrime/corpus.runes.length);
 assert.equal(instarHits.length,1);
 assert.equal(instarHits[0].text,"INSTAR");
-assert.equal(tPrime/GP,78);
+assert.equal(tPrime/corpus.runes.length,78);
 
 // Original repeated floral side ornaments, read in printed order as 5-bit
 // hollow=0/filled=1, are 01101(binary)=13 and 11111(binary)=31.
