@@ -213,7 +213,7 @@ const latinWords = read("resources/control/latin-vulgate-gp-wholewords.txt")
 assert(latinWords.every(w => w.length && w.every(x => x >= 0)));
 function englishWords(file) {
   return (read(file).match(/[A-Za-z]+/g) || [])
-    .map(encodeSourceNativeGP).filter(w => w.length);
+    .map(word => encodeSourceNativeGP(word)).filter(w => w.length);
 }
 const languageSources = [
   ["Gibran", englishWords("resources/control/gibran_prophet_58585.txt")],
