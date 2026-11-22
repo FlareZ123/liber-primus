@@ -148,10 +148,97 @@ assert.deepEqual([power(generator,1),power(generator,32),
   power(generator,35)],[38,193,97]);
 assert.notEqual(evaluate(page(57).indices,generator),0);
 
+// Original p55's sole GF257 root also admits a cross-page length rule,
+// found after examining the terminal root set, hence exploratory.
+const roots55 = Array.from({length:MOD},(_,i)=>i)
+  .filter(x=>evaluate(page(55).indices,x)===0);
+const nextPageExponent = page(56).indices.length+1;
+assert.equal(nextPageExponent,86);
+assert.deepEqual(roots55,[power(generator,nextPageExponent)]);
+assert.deepEqual(roots55,[207]);
+const adjacentLengthRootPages = gp.pages.filter(p=>
+  p.indices.length && gp.pages[p.page+1]?.indices.length).filter(p=>
+  evaluate(p.indices,power(generator,
+    gp.pages[p.page+1].indices.length+1))===0).map(p=>p.page);
+assert.deepEqual(adjacentLengthRootPages,[55]);
+const q55 = divideLinear(page(55).indices,roots55[0]);
+assert.equal(q55.length,75);
+assert.equal(q55.filter(x=>x<29).length,7);
+
 // Source-typed direct key consumers. All operations invert exactly,
 // but original p55 outputs are not native-English-looking.
 const q50=divideLinear(bytes,target);
 const q56=divideLinear(page(56).indices,generator);
+
+// The source-selected p50 GF257 quotient is EXACTLY three blocks of
+// the independently authenticated solved p56 (85 rune) length.
+// Historical 2014 Cicada used three equal-length XOR shares: test that
+// original documented operation, plus native-field/group additions,
+// directly against genuine held-out p56 known plaintext/ciphertext.
+const {encodeSourceNativeGP} =
+  require("./lp2_native_gp_source_orthography_sft.cjs");
+const clearReference = read("resources/liber-primus/lp1-plaintext-reference.txt");
+const p56Section=clearReference.split("### 56\n")[1]
+  .split("### 57\n")[0];
+const p56Prose=p56Section.split(/\r?\n/).filter(s=>
+  !/^[0-9a-f]{25,}$/i.test(s.trim())).join(" ");
+const knownP56=encodeSourceNativeGP(p56Prose);
+const encryptedP56=page(56).indices;
+assert.equal(knownP56.length,85);
+assert.equal(knownP56[56],0);
+assert.equal(encryptedP56[56],0);
+let nthPrime=1;
+/** @returns {number} */
+function nextPrime(){
+  while(true){
+    nthPrime++;
+    let prime=true;
+    for(let d=2;d*d<=nthPrime;d++)
+      if(nthPrime%d===0){prime=false;break}
+    if(prime)return nthPrime;
+  }
+}
+for(let i=0;i<85;i++){
+  if(knownP56[i]===0){
+    assert.equal(encryptedP56[i],0);
+    continue;
+  }
+  assert.equal(encryptedP56[i],mod29(knownP56[i]+nextPrime()-1),
+    "independently authenticated p56 prime-totient decoder");
+}
+assert.equal(q50.length,3*knownP56.length);
+const shares=[q50.slice(0,85),q50.slice(85,170),q50.slice(170)];
+assert.deepEqual(shares.map(x=>x.length),[85,85,85]);
+const reducers={
+  "2014 historical three-share XOR":i=>
+    shares[0][i]^shares[1][i]^shares[2][i],
+  "three-share GF257 sum":i=>
+    (shares[0][i]+shares[1][i]+shares[2][i])%MOD,
+  "three-share GP29 sum":i=>
+    mod29(shares[0][i]+shares[1][i]+shares[2][i])
+};
+const expectedP56Hits=[5,5,3], expectedC56Hits=[2,3,5];
+const threeShareReceivers=[];
+for(const [j,[name,operation]] of
+  Object.entries(reducers).entries()){
+  const raw=Array.from({length:85},(_,i)=>operation(i));
+  const candidate=raw.map(mod29);
+  const hits=(reference)=>candidate.filter((v,i)=>v===reference[i]).length;
+  assert.equal(hits(knownP56),expectedP56Hits[j]);
+  assert.equal(hits(encryptedP56),expectedC56Hits[j]);
+  const nativeValues=raw.filter(v=>v>=0&&v<29).length;
+  threeShareReceivers.push({
+    operation:name,p56KnownPlainExactRunes:hits(knownP56),
+    p56OriginalCipherExactRunes:hits(encryptedP56),
+    originalNativeRange: nativeValues,
+    nativeGuessIoC:Number(ioc(candidate).toFixed(8))
+  });
+}
+const plantedP56 = knownP56.map((p,i)=>mod29(
+  shares[0][i]+shares[1][i]+mod29(p-shares[0][i]-shares[1][i])));
+assert.deepEqual(plantedP56,knownP56,
+  "original 3x85-shaped complete known-plaintext positive control");
+
 const candidates={
   "DFT first 76":spectral.slice(0,outer),
   "DFT phase48 76":spectral.slice(sourcePhase,sourcePhase+outer),
@@ -212,8 +299,11 @@ console.log(JSON.stringify({
   originalSource:{p0FFFPrimeSums:sums,primitiveGenerator:generator,
     p23Runes:target,p50Rows:32,p50Columns:8,
     p50InnerCells:inner,p50BorderCells:outer,p55Runes:76,
+    p55CipherRoots:roots55,p55RootExponent:nextPageExponent,
+    p55RootMatchesAdjacentRuleIn:adjacentLengthRootPages,
     p56CipherRoots:roots56,p56RootExponents:[1,35,32],
     uniqueP50Root:roots50,onlyP50FourierZero:zeroBins},
+  originalP50ThreeBy85Receivers:threeShareReceivers,
   conditionedNull:{draws:N,exactRoot213:rootHits,
     anyOf23OriginalPageLengths:anyLengthHits,
     warning:"post-discovery conditional controls; not a global p-value"},
