@@ -131,7 +131,7 @@ function inverse(cipher,key,start,phase,mode="additive"){
     const next=new Map();
     for(const state of states){
       const j=state.j;
-          // Both exact source LFSRs have at most four equal consecutive keys.
+      // Both exact source LFSRs have at most four equal consecutive keys.
       // Four rejected values therefore exhaust all possible skip runs.
       for(let skip=0;skip<=4;skip++){
         const residual=mod(cipher[i]-key[j+skip]);
@@ -227,7 +227,7 @@ for(const [seedName,seed] of seeds){
   }
 }
 // Deliberately generous separation, >1.2 nats/rune between best
-// original across all 40 source cases and worst native heldout control.
+// original across all 120 source cases and worst native heldout control.
 const strongest=viable[0];
 const worstNative=Math.min(...positive.map(x=>x.nativeMeanLogScore));
 assert.ok(worstNative-strongest.meanLogScore>1.2);
@@ -256,6 +256,6 @@ console.log(JSON.stringify({
   },
   independentNativeSourceControls:positive,
   languageModel:"GP29 smoothed trigram trained on first 150000 runes of Shakespeare only; Gibran and later Shakespeare are held out",
-  limitation:"An experimental five-dot guard, fixed authentic candidate seeds, additive GP29 pad and at-most-three consecutive rejected key draws; no claim to exhaust all evolving-key or non-GP mechanisms.",
+  limitation:"An experimental five-dot guard, fixed authentic candidate seeds, additive GP29 pad and at-most-four consecutive rejected key draws; no claim to exhaust all evolving-key or non-GP mechanisms.",
   unknownPlaintextRecovered:false
 },null,2));
