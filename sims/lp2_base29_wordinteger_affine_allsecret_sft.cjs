@@ -567,6 +567,146 @@ function pageRunResetComplexityBound() {
 }
 const optimalPageResetBound=pageRunResetComplexityBound();
 
+/**
+ * Three creator-visible state-reset schedules from the retained original
+ * physical-ink and punctuation annotations:
+ *   (i) 13-dot marks alone;
+ *  (ii) 13-dot + 10-dot marks;
+ * (iii) every start of a physically red GP rune span.
+ *
+ * This tests a specifically SOURCE-SELECTED alternative to the optimized
+ * arbitrary page cutpoints above. All actual unknown-page source-mark
+ * positions are joined into the complete global 12956-rune stream.
+ */
+const physicalInk=JSON.parse(read(
+  "resources/liber-primus/lp2-ink-annotations.json"));
+const pageOffset=new Map();
+let sourceRuneTotal=0;
+for(const p of corpus.pages.filter(p=>p.page<=55)){
+  pageOffset.set(p.page,sourceRuneTotal);
+  sourceRuneTotal+=p.indices.length;
+}
+assert.equal(sourceRuneTotal,12956);
+const completeWordStart=[];
+let runningRune=0;
+for(const word of original){
+  completeWordStart.push(runningRune);
+  runningRune+=word.length;
+}
+assert.equal(runningRune,12956);
+const legalCompleteWordStarts=new Set(completeWordStart);
+
+/** @param {Array<[number,number,number]>} physicalMarks */
+function sourceMarkerBound(physicalMarks) {
+  const raw=physicalMarks.map(([p,j])=>{
+    const offset=pageOffset.get(p);
+    assert.notEqual(offset,undefined);
+    return offset+j;
+  });
+  const cuts=[...new Set(raw.filter(n=>n>0&&n<12956))]
+    .sort((a,b)=>a-b);
+  for(const cut of cuts){
+    assert(legalCompleteWordStarts.has(cut),
+      "source-original mark lies inside a complete GP29 printed word");
+  }
+  const groups=Array.from({length:cuts.length+1},()=>[]);
+  const wordGroup=[];
+  let group=0;
+  for(let i=0;i<original.length;i++){
+    while(group<cuts.length&&completeWordStart[i]>=cuts[group])group++;
+    groups[group].push(original[i]);
+    wordGroup.push(group);
+  }
+  assert(groups.every(g=>g.length>0));
+  const upper=groups.reduce((s,g)=>
+    s+allSecretPositionReorderBound(g).upper,0);
+  return {
+    rawOriginalEvents:raw.length,independentCuts:cuts.length,
+    actualNonemptyIntervals:groups.length,allSecretUpper:upper,
+    wordGroup,realRuneCutpoints:cuts
+  };
+}
+const physicalMarks13=physicalInk.pages.filter(p=>p.page<=55)
+  .flatMap(p=>(p.large_punctuation||[]).filter(mark=>mark[1]===13)
+    .map(mark=>[p.page,mark[0]]));
+const physicalMarksAll=physicalInk.pages.filter(p=>p.page<=55)
+  .flatMap(p=>(p.large_punctuation||[])
+    .map(mark=>[p.page,mark[0]]));
+const physicalRedStarts=physicalInk.pages.filter(p=>p.page<=55)
+  .flatMap(p=>(p.red_spans||[]).map(span=>[p.page,span.start]));
+const thirteenDotMarkBound=sourceMarkerBound(physicalMarks13);
+const allDotMarkBound=sourceMarkerBound(physicalMarksAll);
+const redSpanResetBound=sourceMarkerBound(physicalRedStarts);
+assert.deepEqual([
+  thirteenDotMarkBound.rawOriginalEvents,
+  thirteenDotMarkBound.independentCuts,
+  thirteenDotMarkBound.actualNonemptyIntervals,
+  thirteenDotMarkBound.allSecretUpper
+], [28,25,26,1235]);
+assert.deepEqual([
+  allDotMarkBound.rawOriginalEvents,
+  allDotMarkBound.independentCuts,
+  allDotMarkBound.actualNonemptyIntervals,
+  allDotMarkBound.allSecretUpper
+], [31,28,29,1332]);
+assert.deepEqual([
+  redSpanResetBound.rawOriginalEvents,
+  redSpanResetBound.independentCuts,
+  redSpanResetBound.actualNonemptyIntervals,
+  redSpanResetBound.allSecretUpper
+], [16,15,16,1231]);
+
+/**
+ * A genuine width-preserving, marker-interval-varying full-word affine
+ * integer cipher, followed by marker-interval-dependent digit rotation.
+ * Source native 2896-word GP29 controls must pass exactly.
+ *
+ * @param {number[][]} native
+ * @param {ReturnType<typeof sourceMarkerBound>} marks
+ * @param {string} name
+ */
+function verifyMarkedRunPositive(native,marks,name) {
+  const groups=marks.wordGroup;
+  const enc=native.map((word,i)=>{
+    const L=word.length, group=groups[i],mod=29n**BigInt(L);
+    const b=(3301n+1033n*BigInt(L)+BigInt(group+1)**3n)%mod;
+    const shift=(L+2*group+1)%L;
+    return rotateLeft(wordDigits(2n*wordNumber(word)+b,L),shift);
+  });
+  const dec=enc.map((word,i)=>{
+    const L=word.length,group=groups[i],mod=29n**BigInt(L);
+    const b=(3301n+1033n*BigInt(L)+BigInt(group+1)**3n)%mod;
+    const shift=(L+2*group+1)%L;
+    const unrotated=rotateLeft(word,(L-shift)%L);
+    return wordDigits(((mod+1n)/2n)*(wordNumber(unrotated)-b),L);
+  });
+  assert.deepEqual(dec,native);
+  const encryptedGrouping=Array.from(
+    {length:marks.actualNonemptyIntervals},()=>[]);
+  for(let i=0;i<enc.length;i++)encryptedGrouping[groups[i]].push(enc[i]);
+  const maxEncrypted=encryptedGrouping.reduce((s,g)=>
+    s+allSecretPositionReorderBound(g).upper,0);
+  const nativeFour=observedTop4Last(native);
+  assert(maxEncrypted>=nativeFour);
+  assert(marks.allSecretUpper<nativeFour);
+  return {source:name,plaintextTopFourEndings:nativeFour,
+    sourceMarkedUpper:marks.allSecretUpper,
+    encryptedSourceMarkedUpper:maxEncrypted,
+    fullWordRoundtrip:"2896/2896"};
+}
+const gibranNative=matchedNativeWords(
+  read("resources/control/gibran_prophet_58585.txt"));
+const shakespeareNative=matchedNativeWords(
+  read("resources/control/shakespeare_first300k.txt"));
+const sourceMarkPositiveControls=[
+  verifyMarkedRunPositive(gibranNative,thirteenDotMarkBound,"Gibran/13dot"),
+  verifyMarkedRunPositive(shakespeareNative,thirteenDotMarkBound,"Shakespeare/13dot"),
+  verifyMarkedRunPositive(gibranNative,allDotMarkBound,"Gibran/allDots"),
+  verifyMarkedRunPositive(shakespeareNative,allDotMarkBound,"Shakespeare/allDots"),
+  verifyMarkedRunPositive(gibranNative,redSpanResetBound,"Gibran/redStarts"),
+  verifyMarkedRunPositive(shakespeareNative,redSpanResetBound,"Shakespeare/redStarts")
+];
+
 console.log(JSON.stringify({
   original: {
     completeWords: original.length, sourceRunes: text.runeCount,
@@ -586,6 +726,21 @@ console.log(JSON.stringify({
     perGroup:nineChapterPositionBound.perGroup},
   nineChapterNativeControls,
   optimalPageResetBound,
+  sourceVisibleResetBounds: {
+    thirteenDot:{rawOriginalEvents:thirteenDotMarkBound.rawOriginalEvents,
+      independentCuts:thirteenDotMarkBound.independentCuts,
+      intervals:thirteenDotMarkBound.actualNonemptyIntervals,
+      upper:thirteenDotMarkBound.allSecretUpper},
+    allDots:{rawOriginalEvents:allDotMarkBound.rawOriginalEvents,
+      independentCuts:allDotMarkBound.independentCuts,
+      intervals:allDotMarkBound.actualNonemptyIntervals,
+      upper:allDotMarkBound.allSecretUpper},
+    redStarts:{rawOriginalEvents:redSpanResetBound.rawOriginalEvents,
+      independentCuts:redSpanResetBound.independentCuts,
+      intervals:redSpanResetBound.actualNonemptyIntervals,
+      upper:redSpanResetBound.allSecretUpper}
+  },
+  sourceMarkPositiveControls,
   affineAlphabetBijectionControls: "812/812 (a 1..28, b 0..28)",
-  conclusion: "The original nine illustrated chapter keys and arbitrary hidden word digit positions give source upper bound 1145 vs native controls 1547/1553. Even ANY OPTIMALLY SELECTED 19 contiguous page-run key regimes cannot reach these native endings: at least 20 separate page-run regimes are necessary within this compatible numeral model. No unknown LP2 plaintext/key recovered."
+  conclusion: "Original author-visible 13-dot and all-dot reset positions yield compatible numeral protected-digit ceilings 1235 and 1332, versus native GP-English controls 1547/1553, despite allowing any per-mark-interval secret digit source and cipher key. A freely optimized page-run model needs 20 regimes even to reach those controls. No unknown LP2 plaintext/key recovered."
 }, null, 2));
