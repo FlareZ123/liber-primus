@@ -116,6 +116,64 @@ for (const [clockName, clock] of Object.entries(phase)) {
   }
 }
 
+/**
+ * Stronger independent 2-mode model: each of the nine visually bounded
+ * original chapters may use either of two wholly independent 255/256-row
+ * hidden substitution banks. Enumerate all 2^8 inequivalent assignments,
+ * fixing chapter zero to bank A to remove the global A/B symmetry.
+ * This is stricter than only alternating chapters or testing one split.
+ */
+const authoredChapters = [
+  [0, 2], [3, 7], [8, 14], [15, 22], [23, 26],
+  [27, 32], [33, 39], [40, 53], [54, 55]
+];
+const chapterTapes = authoredChapters.map(([a, b]) =>
+  corpus.pages.slice(a, b + 1).flatMap(p => p.indices));
+assert.equal(chapterTapes.flat().length, original.length);
+
+/** @param {number} period Repeating positions per secret bank. */
+function allTwoBankChapterAssignments(period) {
+  const hist = chapterTapes.map(tape => {
+    const rows = Array.from({ length: period }, () => new Uint32Array(29));
+    tape.forEach((c, i) => rows[i % period][c]++);
+    return rows;
+  });
+  let maximumTopFive = -1;
+  let bestMask = -1;
+  let minimumTopFive = Infinity;
+  let scanned = 0;
+  for (let mask = 0; mask < 256; mask++) {
+    let total = 0;
+    for (let phaseIndex = 0; phaseIndex < period; phaseIndex++) {
+      const bankA = new Uint32Array(29);
+      const bankB = new Uint32Array(29);
+      for (let chapterIndex = 0; chapterIndex < 9; chapterIndex++) {
+        const bank = chapterIndex === 0 || ((mask >>> (chapterIndex - 1)) & 1)
+          ? bankA : bankB;
+        const row = hist[chapterIndex][phaseIndex];
+        for (let c = 0; c < 29; c++) bank[c] += row[c];
+      }
+      for (const bank of [bankA, bankB]) {
+        total += Array.from(bank).sort((a, b) => b - a)
+          .slice(0, 5).reduce((a, b) => a + b, 0);
+      }
+    }
+    scanned++;
+    if (total > maximumTopFive) {
+      maximumTopFive = total;
+      bestMask = mask;
+    }
+    minimumTopFive = Math.min(minimumTopFive, total);
+  }
+  return { period, scanned, maximumTopFive, bestMask, minimumTopFive,
+    maximumFraction: Number((maximumTopFive / original.length).toFixed(8)) };
+}
+const twoBankChapterBounds = [255, 256].map(allTwoBankChapterAssignments);
+assert.deepEqual(twoBankChapterBounds.map(x =>
+  [x.scanned, x.maximumTopFive, x.bestMask, x.minimumTopFive]),
+[[256, 6084, 60, 4833], [256, 6114, 185, 4856]]);
+assert(twoBankChapterBounds.every(x => x.maximumTopFive / original.length < 46 / 95));
+
 /** Exact histogram for any recovered candidate plaintext. */
 function globalTopK(stream, k) {
   const counts = new Uint32Array(29);
@@ -152,6 +210,7 @@ console.log(JSON.stringify({
   periods: [255, 256],
   sourceNativeP57TopFive: [globalTopK(solved, 5), solved.length],
   exactBounds: observations,
+  exhaustiveTwoSecretChapterBankBounds: twoBankChapterBounds,
   syntheticNativeControl: {
     nativeRunes: positivePlain.length,
     trueTopFive: positiveTopFive,
