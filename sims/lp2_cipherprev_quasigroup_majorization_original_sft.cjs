@@ -55,14 +55,16 @@ for (const [g, n] of sectionLengths.entries())
 assert.equal(pageAt.length, original.length);
 assert.equal(sectionAt.length, original.length);
 const TOP = [1, 2, 3, 5, 8, 10];
-const scopes = ["global", "section", "page"];
-const groupAt = (scope, offset) =>
-  scope === "global" ? 0 : scope === "section" ? sectionAt[offset] : pageAt[offset];
+const scopes = ["global", "section", "page", "position"];
+const groupAt = (scope, offset, wordPosition) =>
+  scope === "global" ? 0 :
+  scope === "section" ? sectionAt[offset] :
+  scope === "page" ? pageAt[offset] : wordPosition;
 
 /**
  * Exact envelope of ANY secret row bijections under a given reset scope.
  * @param {number[][]} ciphertext
- * @param {"global"|"section"|"page"} scope
+ * @param {"global"|"section"|"page"|"position"} scope
  */
 function envelope(ciphertext, scope) {
   assert(scopes.includes(scope));
@@ -73,7 +75,7 @@ function envelope(ciphertext, scope) {
   let equal = 0;
   for (const w of ciphertext) {
     for (let j = 1; j < w.length; j++) {
-      const g = groupAt(scope, offset + j);
+      const g = groupAt(scope, offset + j, j);
       const s = w[j - 1];
       const key = g * 29 + s;
       if (!rows.has(key)) rows.set(key, new Uint32Array(29));
@@ -164,7 +166,7 @@ function plant(nativeWords, scope, random) {
   for (const w of nativeWords) {
     const c = [(w[0] + 7) % 29], recovered = [w[0]];
     for (let i = 1; i < w.length; i++) {
-      const table = tableFor(groupAt(scope, offset + i), c[i - 1]);
+      const table = tableFor(groupAt(scope, offset + i, i), c[i - 1]);
       c.push(table[w[i]]);
       recovered.push(table.indexOf(c[i]));
     }
@@ -188,6 +190,8 @@ assert.deepEqual(originalCaps.section.capacities,
   {"1":1031,"2":1881,"3":2613,"5":3912,"8":5520,"10":6421});
 assert.deepEqual(originalCaps.page.capacities,
   {"1":2401,"2":4140,"3":5633,"5":8019,"8":9749,"10":10012});
+assert.equal(originalCaps.position.capacities[1], 1058);
+assert.equal(originalCaps.position.capacities[5], 3974);
 assert.equal(originalCaps.global.equal, 63);
 
 const corpusPaths = [
@@ -216,6 +220,8 @@ for (const [sourceIndex, sourcePath] of corpusPaths.entries()) {
   }
   assert(minTop1 > originalCaps.section.capacities[1]);
   assert(minTop5 > originalCaps.section.capacities[5]);
+  assert(minTop1 > originalCaps.position.capacities[1]);
+  assert(minTop5 > originalCaps.position.capacities[5]);
   controls.push({sourcePath, trials:60,
     top1Range:[minTop1, maxTop1], top5Range:[minTop5, maxTop5],
     EMinimum:minE, positivePlant:plantControls});
