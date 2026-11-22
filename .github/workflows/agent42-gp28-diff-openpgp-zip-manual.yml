@@ -1,0 +1,15 @@
+name: Agent42 GP28 differential raw OpenPGP ZIP
+on:
+  workflow_dispatch:
+
+jobs:
+  source-original:
+    runs-on: windows-2022
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Decode all canonical original GP28 delta packets as complete RFC1951
+        run: node sims/lp2_gp28_diff_openpgp_zip_raw_original_sft.cjs
