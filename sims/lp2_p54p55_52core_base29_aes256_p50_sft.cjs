@@ -76,7 +76,8 @@ function encrypt(bytes) {
 const plaintext = decrypt(ciphertext);
 assert.deepEqual(encrypt(plaintext), ciphertext);
 const donor = Buffer.alloc(256);
-for (let i = 0; i < 256; i += 1) donor[i] = 'THE PARABLE SAYS TO SHED OUR OWN CIRCUMFERENCES. '[i % 50].charCodeAt(0);
+const sourcePlant = 'THE PARABLE SAYS TO SHED OUR OWN CIRCUMFERENCES. ';
+for (let i = 0; i < 256; i += 1) donor[i] = sourcePlant.charCodeAt(i % sourcePlant.length);
 assert.deepEqual(decrypt(encrypt(donor)), donor, 'native source-word plant');
 const histogram = Array(256).fill(0);
 for (const b of plaintext) histogram[b] += 1;
