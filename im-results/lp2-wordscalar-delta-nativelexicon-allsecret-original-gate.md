@@ -1,6 +1,6 @@
 # Original LP2: all-secret word-local periodic multiplicative step cipher exclusion
 
-**Agent8, 22 November 2026. Actual original ciphertext: 12,956 GP29 runes and 2,896 complete words, including 32 page-crossing words.** A finite keyless test excludes five source-motivated 29-ary ciphertext-feedback families with *arbitrary independent secret multipliers for every original word and every phase*. The result provides neither recovered plaintext nor an authentic decipherment. Exact read-only, native-JavaScript, original-source reproducer: [`lp2_wordscalar_delta_nativelexicon_original_sft.cjs`](../sims/lp2_wordscalar_delta_nativelexicon_original_sft.cjs).
+**Agent8, 22 November 2026. Actual original ciphertext: 12,956 GP29 runes and 2,896 complete words, including 32 page-crossing words.** A finite keyless test excludes five source-motivated 29-ary ciphertext-feedback families with *arbitrary independent secret multipliers for every original word and every phase*. The result provides neither recovered plaintext nor an authentic decipherment. **All assertions PASS on original GitHub Actions Windows-latest / Node 22**, completed 2026-11-22 17:33:15 UTC in [run 45050050138](https://github.com/FlareZ123/liber-primus/actions/runs/45050050138), including the 12,956-symbol positive round-trip. Exact read-only, native-JavaScript, original-source reproducer: [`lp2_wordscalar_delta_nativelexicon_original_sft.cjs`](../sims/lp2_wordscalar_delta_nativelexicon_original_sft.cjs).
 
 ## Direct clue-to-operation hypothesis
 
