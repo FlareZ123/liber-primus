@@ -9,11 +9,14 @@
  * collision suppression clock. This is an exploratory cipher hypothesis:
  * the author did not sign the PRNG, pad or fifth-slot-bypass rule.
  *
- * Attack: C_i = (P_i + K_j) mod29. If C_i would equal prior emitted C,
+ * Attack: direct C_i = (P_i + K_j) mod29, or previous-output
+ * integration C_i = (C_(i-1) + P_i + K_j) mod29.
+ * If C_i would equal prior emitted C,
  * reject K_j and advance to K_(j+1), except at every fifth key draw,
  * whose unguarded repeat is allowed. The exact inverse can try skipped
  * key positions only if all rejected candidates WOULD equal prior C.
- * Test the original p8-p14 chapter with every five-phase guard, two
+ * Test the original p8-p14 chapter with both feedback registers,
+ * three source value-operations, every five-phase guard, two
  * source-grounded starts, two sourced seeds and full/black p8 clocks.
  *
  * No dependencies beyond project data, Node.js22 and one existing
@@ -98,14 +101,15 @@ function nativeScore(text){
  * @param {number[]} plain @param {number[]} key
  * @param {number} start @param {number} phase
  */
-function encrypt(plain,key,start,phase,mode="additive"){
+function encrypt(plain,key,start,phase,mode="additive",register="direct"){
   let j=start,skips=0;const cipher=[];
   for(let i=0;i<plain.length;i++){
     for(;;){
       const pos=j++;
       assert.ok(j<key.length);
       const emission=mode==="cube-plaintext"?cube[plain[i]]:plain[i];
-      const candidate=mod(emission+key[pos]);
+      const feedback=register==="integrated" && i>0?cipher[i-1]:0;
+      const candidate=mod(feedback+emission+key[pos]);
       if(i&&candidate===cipher[i-1]&&pos%5!==phase){
         skips++;
         continue;
@@ -125,25 +129,28 @@ function encrypt(plain,key,start,phase,mode="additive"){
  * @param {number[]} cipher @param {number[]} key
  * @param {number} start @param {number} phase
  */
-function inverse(cipher,key,start,phase,mode="additive"){
+function inverse(cipher,key,start,phase,mode="additive",register="direct"){
   let states=[{j:start,p1:0,p2:0,score:0,path:""}],maxStates=1;
   for(let i=0;i<cipher.length;i++){
     const next=new Map();
     for(const state of states){
       const j=state.j;
+      const current=register==="integrated"?mod(cipher[i]-(i?cipher[i-1]:0)):cipher[i];
+      const skippedShouldEmit=register==="integrated"?0:cipher[i-1];
+      const identicalRepeat=register==="integrated"?current===0:cipher[i]===cipher[i-1];
       // Both exact source LFSRs have at most four equal consecutive keys.
       // Four rejected values therefore exhaust all possible skip runs.
       for(let skip=0;skip<=4;skip++){
-        const residual=mod(cipher[i]-key[j+skip]);
+        const residual=mod(current-key[j+skip]);
         const p=mode==="cube-plaintext"?cubeInverse[residual]:residual;
         const emission=mode==="cube-plaintext"?cube[p]:p;
         let admissible=true;
         for(let t=0;t<skip;t++){
-          if(i===0||mod(emission+key[j+t])!==cipher[i-1]||
+          if(i===0||mod(emission+key[j+t])!==skippedShouldEmit||
             (j+t)%5===phase){admissible=false;break;}
         }
         if(!admissible)continue;
-        if(i&&cipher[i]===cipher[i-1]&&(j+skip)%5!==phase)continue;
+        if(i&&identicalRepeat&&(j+skip)%5!==phase)continue;
         const nextJ=j+skip+1;
         const score=state.score+logScore(p,state.p1,state.p2,i);
         const k=nextJ*841+29*state.p1+p;
@@ -178,6 +185,7 @@ const nativeControls=[
 const originalResults=[];
 for(const [seedName,seed] of seeds){
   for(const mode of ["additive","cube-key","cube-plaintext"]){
+    for(const register of ["direct","integrated"]){
     const base=generate(seed);
     const key=mode==="cube-key"?base.map(x=>cube[x]):base;
   // Original: both printed p8 chapter with its red12 title, and the
@@ -185,9 +193,9 @@ for(const [seedName,seed] of seeds){
   for(const [scope,original] of [["p8-p14",whole],["p8-body-p14",black]]){
     for(const start of [0,14]){
       for(let phase=0;phase<5;phase++){
-        const v=inverse(original,key,start,phase,mode);
+        const v=inverse(original,key,start,phase,mode,register);
         originalResults.push({
-          seed:seedName,mode,scope,start,unguardedKeyPhase:phase,
+          seed:seedName,mode,register,scope,start,unguardedKeyPhase:phase,
           ...(v.deadAt!==undefined ? {firstImpossibleRune:v.deadAt} : {
             meanLogScore:v.averageLogScore,
             survivingStates:v.statesAtEnd,
@@ -197,6 +205,7 @@ for(const [seedName,seed] of seeds){
         });
       }
     }
+  }
   }
   }
 }
@@ -209,15 +218,15 @@ for(const [seedName,seed] of seeds){
     const base=generate(seed);
     const key=mode==="cube-key"?base.map(x=>cube[x]):base;
   for(const [name,plain] of nativeControls){
-    const encrypted=encrypt(plain,key,0,0,mode);
-    const decoded=inverse(encrypted.cipher,key,0,0,mode);
+    const encrypted=encrypt(plain,key,0,0,mode,register);
+    const decoded=inverse(encrypted.cipher,key,0,0,mode,register);
     assert.ok(decoded.averageLogScore!==undefined);
     // Reconstruct original ciphertext exactly by replaying every inferred
     // plaintext candidate and its source key-consumption history.
-    const reencoded=encrypt(decoded.decoded,key,0,0,mode);
+    const reencoded=encrypt(decoded.decoded,key,0,0,mode,register);
     assert.deepEqual(reencoded.cipher,encrypted.cipher);
     positive.push({
-      seed:seedName,mode,source:name,originalRunes:plain.length,
+      seed:seedName,mode,register,source:name,originalRunes:plain.length,
       actualSkipCount:encrypted.skips,nativeMeanLogScore:nativeScore(plain),
       decodedMeanLogScore:decoded.averageLogScore,
       exactRecoveredRunes:decoded.decoded.filter((x,i)=>x===plain[i]).length,
@@ -225,9 +234,10 @@ for(const [seedName,seed] of seeds){
     });
   }
   }
+  }
 }
 // Deliberately generous separation, >1.2 nats/rune between best
-// original across all 120 source cases and worst native heldout control.
+// original across all 240 source cases and worst native heldout control.
 const strongest=viable[0];
 const worstNative=Math.min(...positive.map(x=>x.nativeMeanLogScore));
 assert.ok(worstNative-strongest.meanLogScore>1.2);
@@ -240,6 +250,7 @@ console.log(JSON.stringify({
     candidateSeedNames:seeds.map(x=>x[0]),
     predeclaredValueOps:["identity GP29 emission","cube source LFSR key",
       "cube plaintext before adding LFSR key"],
+    cipherRegisters:["direct additive modulo29","integrated previous-ciphertext feedback"],
     proposedUngatedRate:"one in five LFSR key draws",
     proposedKeyPeriod:1876,
     originalScopeSizes:{whole:whole.length,afterOriginalRed12:black.length}
