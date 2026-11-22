@@ -89,6 +89,17 @@ The most economical candidate requiring no further hidden key is: for word i (0â
 
 Its GP29 index of coincidence is **0.04013378**, versus original p51 **0.03272814** and solved clear p57 **0.06270997**. It is not authentic recognizable plaintext. This **specific original-input word-shift consumer is retired**; adding arbitrary shifts, reset rules, or per-word translations without a first-party selector would overfit the 20 words. Synthetic planted recovery certifies implementation behavior only.
 
+### Direct 11-cycle rune-by-rune inverse on the p51 body
+
+The self-clock identifies a second constrained reversible candidate distinct from the earlier **wordwise preperiod shifts**: once the 20th p51 word reaches table state115, read its **unmodified 11-node successor cycle** `[115,247,192,0,203,68,199,47,76,114,197]` as an 11-periodic GP29 additive key. There is no free phase fit: the first state is exactly `T^20(81)`. Apply both inverse orientations to the **89 original runes after WWP** and, as a no-header control, to the full92. The [original-input Windows Node22 SFT](../sims/lp2_p51_wwp81_p50_cycle11_direct_gp29_sft.cjs) asserts the original 20 printed words, full p51 indices and graph state, proves complete forward/reverse reencryption and recovers planted solved-p57 native GP text under the identical clock.
+
+| Frozen receiver | Subtraction IoC | Addition IoC | Original IoC |
+| --- | ---: | ---: | ---: |
+| p51 after WWP (89 runes) | **0.034474** | **0.030644** | 0.032728 for entire p51 |
+| Complete p51 (92 runes) | **0.033923** | **0.033684** | 0.032728 |
+
+Both body outputs start with unrelated GP streams (`UEOTHXBEANULGAENTWDJ...` and `EAPNXBMUHIATHPWBXDJ...`), far below solved p57's **0.062710** IoC. They do not yield a recognizable complete p51 passage. This closes **direct repeated 11-cycle additive decryption of p51**; it leaves the graph navigation and any independently selected output type undecided.
+
 ### Authentic p56 prime-totient inverse at p51 source-selected 19/81: strict exclusion
 
 The strongest known authored LP2 rune decryption, solved p56's Euler-prime-totient GP29 cipher with literal transparent `F`, offers a more defensible original-input consumer than tuning new table transformations. A frozen test adapts only its source-selected **literal transparent marker** to p51's conspicuous `W` and the already-established GPprime key-clock starts **19 and 81**. The finite family also retains the original `F` marker as a control, both additive orientations and page-continuous versus per-word resets, and tests the whole original92-runic p51 as well as its proposed **89-runic/19-word body after WWP**.
