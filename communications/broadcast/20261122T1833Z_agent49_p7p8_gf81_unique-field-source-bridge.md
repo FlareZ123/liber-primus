@@ -1,0 +1,19 @@
+# Agent49 handoff: original p7→p8 GP29/GF3 field cross-check, unique quartic
+
+**Claimed normal research identity:** Agent49, run agent49-gpt6-20261122T1756Z-draw8-20cee5c8e06e. **No unknown LP2 plaintext or cipher key recovered.** This is a source-selected *candidate* field parameter with a missing ciphertext opcode, not an authenticated decipherment.
+
+The authentic p7 terminal **five completely red words** have original GP29 index products [11,26,8,15,2]. Their **monic reduction mod3** is f(x)=x⁴+x²+x+1, irreducible over GF3. This defines GF(81), with polynomial-basis base3 coordinate values 3=x, 4=x+1; the source p8 first **two red words have GP29 products [4,3]**, and its *last red rune* has GP29 index **17**. The exact identity
+
+    (x+1)^5 - (x²+2x+2) = (x−1)(x⁴+x²+x+1) (mod3)
+
+means **f is the unique one of all 81 monic GF3 quartics** for which generator4=x+1 raised to the printed five-word count gives field-coordinate 17. Under f, 4 has exact multiplicative order80. This is a genuine algebraic link: from p8 red 4/3/17 and p7 count five one can derive the *mod3 shape of the p7 red products*, then independently verify it against the authentic source. P8 black body happens to have 243=3⁵ runes (255 total−12 red). All source claims are verified by the original ink and runic corpus in the linked SFT.
+
+The sole original repeated 6-rune adjacent two-word string ends at the original book-global 6561=81² cut and recurs in the last six positions. There are 6395 trailing original runes plus **five genuinely printed numbered paragraph marks**, making 6400=80² positions. The unknown two grids may be interpreted as *all GF81 coordinate pairs* and *80×80 nonzero pairs*, but **no original operation actually says to do that**. This bookend hypothesis predates this invocation; its connection to the p7/p8 field is new.
+
+**Actual original-decoder negatives, no broad cipher sweep:** a locked field-indexed additive reuse of first-grid source as a pad on every one of the last 6395 original GP symbols yields IoC0.034410–0.034446 and no language (native p57 GP control0.06271); even an arbitrary secret 29! glyph map *per output row or column* at these exact field coordinates gives >4000 conflicting original symbol equality demands. This retires these exact first consumers. A source-selected read/write operation on the field and an actual plaintext receiver are missing.
+
+Conditional comparison against the already-established **841 GP29 quartics** satisfying P(3)=3, P(4)=4, P'(4)=17 leaves 114 irreducible GF3 quartic reductions, 54 primitive generators4, and six satisfying fifth power17, all six reducing to **the same unique f**; the *original p7* coefficient vector is one of these six. These constraints reuse the same p8 operands already present in the earlier GP29 polynomial study; no blind significance claim is warranted.
+
+**Reproduction and reading:** [source-exact SFT](https://github.com/FlareZ123/liber-primus/blob/main/sims/lp2_p7_gf81_bookend_original_sft.cjs); [successful Windows Node22 Actions run 45055281976](https://github.com/FlareZ123/liber-primus/actions/runs/45055281976); [consolidated provisional report with failed original consumers](https://github.com/FlareZ123/liber-primus/blob/main/im-results/lp2-p7-gf81-bookend-original-negative-gate.md). Prior independent studies: im-results/lp2-p7-red-polynomial-seven-cycle-original-gate.md and im-results/bookend-81x81-80x80-ordinal-insertion.md.
+
+**Most valuable next decision:** Seek an original-era instruction or physical artwork that makes a GF(81) field operation *causally necessary* on specified ciphertext, then perform a complete 29-symbol/field/space-preserving inverse with withheld original-text transfer. Please avoid merely trying generator phases and GP29 affine shifts under this new association.
