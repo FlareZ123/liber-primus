@@ -48,9 +48,25 @@ for (const p of sourcePages) {
   pageAt.fill(p.page, offset, offset + p.indices.length);
   offset += p.indices.length;
 }
+const wordOffsets = [];
+const sectionSource = read("resources/liber-primus/lp2-transcription.txt")
+  .split("%").slice(0, 55).join("%");
+const sectionLengths = sectionSource.split("$")
+  .map(part => (part.match(new RegExp("[" + gp.runes.join("") + "]", "gu")) || []).length)
+  .filter(Boolean);
+assert.deepEqual(sectionLengths,
+  [729,1145,1738,1894,1021,1433,1680,3316]);
+const sectionAt = new Uint8Array(original.length);
+let sectionStart=0;
+for (const [number,length] of sectionLengths.entries()) {
+  sectionAt.fill(number,sectionStart,sectionStart+length);
+  sectionStart+=length;
+}
+assert.equal(sectionStart,original.length);
 const slots = [];
 offset = 0;
 for (const w of words) {
+  wordOffsets.push(offset);
   const indices = [];
   for (let j = 5; j < w.length; j++)
     if (pageAt[offset+j] === pageAt[offset+j-5])
@@ -80,42 +96,55 @@ assert.equal(nObserved, 15);
  * @param {number[][]} plain full 2896 native-GP words
  * @param {boolean[][]} event indexed by same-page j>=5 slots
  */
-function feasibility(plain, event) {
-  const banned = Array.from({length:29}, () => new Uint8Array(29));
-  const required = Array(29).fill(-1);
-  const conflicting = new Uint8Array(29);
+function feasibility(plain, event, scope = "global") {
+  assert(["global","section","page"].includes(scope));
+  const groups = new Map();
+  function groupAt(id) {
+    if (!groups.has(id))
+      groups.set(id,{required:Array(29).fill(-1),
+        banned:Array.from({length:29},()=>new Uint8Array(29)),
+        conflicting:new Uint8Array(29)});
+    return groups.get(id);
+  }
   for (let wi=0; wi<plain.length; wi++) {
     const w = plain[wi];
     for (let site=0; site<slots[wi].length; site++) {
-      const j=slots[wi][site], input=w[j-5], output=w[j];
+      const j=slots[wi][site], g=wordOffsets[wi]+j;
+      const id=scope==="global" ? 0 :
+        scope==="section" ? sectionAt[g] : pageAt[g];
+      const group=groupAt(id);
+      const input=w[j-5], output=w[j];
       if (event[wi][site]) {
-        if (required[input] !== -1 && required[input] !== output)
-          conflicting[input]=1;
-        required[input]=output;
+        if (group.required[input]!==-1 && group.required[input]!==output)
+          group.conflicting[input]=1;
+        group.required[input]=output;
+      } else group.banned[input][output]=1;
+    }
+  }
+  let conflicts=0,forbiddenForced=0,emptyUnforced=0;
+  let possibilities=0,forced=0;
+  for (const {required,banned,conflicting} of groups.values()) {
+    conflicts+=conflicting.reduce((s,v)=>s+v,0);
+    for(let x=0;x<29;x++) {
+      if(required[x]!==-1) {
+        forced++;
+        if(banned[x][required[x]]) forbiddenForced++;
+        else if(!conflicting[x]) possibilities++;
       } else {
-        banned[input][output]=1;
+        let allowed=0;
+        for(let y=0;y<29;y++)if(!banned[x][y])allowed++;
+        if(!allowed)emptyUnforced++;
+        possibilities+=allowed;
       }
     }
   }
-  const conflicts = conflicting.reduce((s,v)=>s+v,0);
-  let forbiddenForced=0, emptyUnforced=0, possibilities=0;
-  for (let x=0; x<29; x++) {
-    if (required[x] !== -1) {
-      if (banned[x][required[x]]) forbiddenForced++;
-      else if (!conflicting[x]) possibilities++;
-    } else {
-      let allowed=0;
-      for (let y=0; y<29; y++) if (!banned[x][y]) allowed++;
-      if (!allowed) emptyUnforced++;
-      possibilities+=allowed;
-    }
-  }
   return {possible: !conflicts && !forbiddenForced && !emptyUnforced,
+    scope,groups:groups.size,
     conflictingForcedRows:conflicts,
     forbiddenForcedRows:forbiddenForced,
     emptyUnforcedRows:emptyUnforced,
     possibleTableEntries:possibilities,
-    forcedRows:required.filter(x=>x!==-1).length};
+    forcedRows:forced};
 }
 
 /** @param {number} seed */
@@ -183,6 +212,7 @@ for (let src=0;src<controls.length;src++){
     assert(pools.has(w.length),"missing GP length "+w.length);
   const next=xorshift(0x33015550+src);
   const stats=[];
+  const pass={global:0,section:0,page:0};
   let positive=null;
   for(let trial=0;trial<nTrials;trial++){
     const draw=words.map(w=>{
@@ -199,12 +229,17 @@ for (let src=0;src<controls.length;src++){
       positive={arbitraryFunction:plant(draw,arbitrary),
         secretBijection:plant(draw,bijective)};
     }
-    stats.push(feasibility(draw,observed));
+    const globalResult=feasibility(draw,observed);
+    stats.push(globalResult);
+    if(globalResult.possible) pass.global++;
+    if(feasibility(draw,observed,"section").possible) pass.section++;
+    if(feasibility(draw,observed,"page").possible) pass.page++;
   }
   const avg=f=>stats.reduce((s,x)=>s+f(x),0)/nTrials;
   output.push({source:controls[src],samples:nTrials,positive,
     secretTablesSatisfyingOriginal:
-      stats.filter(x=>x.possible).length,
+      pass.global,
+    exactScopePassCounts:pass,
     conflictingForcedRowsMean:+avg(x=>x.conflictingForcedRows).toFixed(3),
     minimumConflictingForcedRows:
       Math.min(...stats.map(x=>x.conflictingForcedRows)),
@@ -220,5 +255,5 @@ console.log(JSON.stringify({
   original:{runes:original.length,wholeWords:words.length,
     samePageLag5Sites:nSites,adjacentCipherDoublets:nObserved},
   output,
-  scope:"Exact necessary-condition contradiction on native-English matched controls, not a formal exclusion of arbitrary non-English plaintext or changing f, and no plaintext recovered"
+  scope:"Exact necessary-condition contradiction on native-English matched controls, allowing an independent secret f by signed-source section or physical page. Not an exclusion of arbitrary non-English plaintext, evolving f within these scopes, or other ciphers; no plaintext recovered"
 },null,2));
