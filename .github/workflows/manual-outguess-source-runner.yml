@@ -33,7 +33,7 @@ jobs:
         shell: bash
         run: |
           sudo apt-get update -qq
-          sudo apt-get install -y -qq autoconf automake libtool gnupg
+          sudo apt-get install -y -qq autoconf automake libtool gnupg libjpeg-dev
           cd outguess-src
           ./autogen.sh
           ./configure --with-generic-jconfig
