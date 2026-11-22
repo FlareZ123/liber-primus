@@ -4,6 +4,8 @@
 
 The authentic 2012 P.S. integer is a 131-digit, 432-bit number with a published factorization into two 216-bit primes. A later research status labels the P.S. object a 435-bit modulus; exact parsing of the original signed message gives 432 bits. The same 2012 archive also contains a matching recreated Crypt::RSA public/private key pair, so the RSA reconstruction is not merely inferred from the factorization. Appending an accidental trailing `1` would create a different 132-digit, 436-bit integer, not the source value.
 
+The original vjuNp.jpg display and the OutGuess clear-signed output establish a source-authenticated 3 × 46 character block when the literal `P.S. ` prefix and two continuation backslashes are retained. GnuPG verifies the P.S. digits and line arrangement under the archived Cicada key; a quarter-turn reads the Cicada marker 3301/1033. This corrects the earlier digits-only 40/45/46 treatment, but it does not supply an LP2 receiver or key schedule; see [the source-selector decision](2012-signed-ps-original-selector-2014-link-gate.md).
+
 The P.S. integer has a matching community-recreated RSA public/private key pair in the 2012 archive, but it is **not** the 2014 Stage 2 RSA modulus. Its direct base-29 representations and the obvious RSA-derived values do not decrypt LP2 under an additive/subtractive running-key model. Treat it as a solved historical RSA side-object with no established LP2 role. Do not expand this into unconstrained exponent or key-family searches without a specific ciphertext or source instruction.
 
 ## Exact source value and factorization
