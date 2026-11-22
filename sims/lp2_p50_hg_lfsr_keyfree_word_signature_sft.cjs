@@ -319,6 +319,97 @@ for (const [name, filter] of [
   });
 }
 
+
+/**
+ * Solved p56 / LP1 F-transparent variant: plaintext F=0 bypasses key
+ * consumption and prints F; an encrypted non-F may also print F.
+ * The proposed plaintext itself fixes the skip positions exactly.
+ *
+ * @param {number[]} cipher @param {number[]} plain
+ * @param {number[]} filter @returns {boolean}
+ */
+function transparentCompatible(cipher, plain, filter) {
+  const consumed = [];
+  for (let i = 0; i < plain.length; i++) {
+    if (plain[i] === 0) {
+      if (cipher[i] !== 0) return false;
+    } else consumed.push(MOD(cipher[i] - plain[i]));
+  }
+  for (let i = 0; i + 4 < consumed.length; i++) {
+    let sum = 0;
+    for (let j = 0; j < 5; j++)
+      sum += filter[j] * consumed[i+j];
+    if (MOD(sum) !== 0) return false;
+  }
+  return true;
+}
+
+/** @param {number[]} filter */
+function transparentLongMatches(filter) {
+  const byLength = new Map();
+  for (const value of lexicon.values()) {
+    const len = value.indices.length;
+    if (len < 8) continue;
+    if (!byLength.has(len)) byLength.set(len, []);
+    byLength.get(len).push(value);
+  }
+  const matches = [];
+  for (let i = 0; i < originalWords.length; i++) {
+    const orig = originalWords[i];
+    if (orig.runes.length < 8) continue;
+    const found = (byLength.get(orig.runes.length) || [])
+      .filter(value => transparentCompatible(
+        orig.runes, value.indices, filter));
+    if (found.length) matches.push({
+      originalWordIndex:i,
+      absoluteRuneOffset:orig.start,
+      runeLength:orig.runes.length,
+      sourceCandidates:found.map(x => x.word)
+    });
+  }
+  return matches;
+}
+
+/** Complete authentic GP-native plaintext-F-bypass source positives. */
+function plantTransparent(filter) {
+  let glyphCount = 0, longCount = 0, bypassCount = 0;
+  for (const word of originalWords) {
+    const p = byLen.get(word.runes.length);
+    const seeds = Array.from({length:4}, () => random() % 29);
+    const stream = keyFromSeed(filter, seeds, p.filter(x => x !== 0).length);
+    let used = 0;
+    const c = p.map(x => {
+      if (x === 0) {
+        bypassCount++;
+        return 0;
+      }
+      return MOD(x + stream[used++]);
+    });
+    assert.equal(used, stream.length);
+    assert(transparentCompatible(c, p, filter));
+    glyphCount += p.length;
+    if (p.length >= 8) longCount++;
+  }
+  assert.deepEqual([glyphCount,longCount], [12956,343]);
+  return {cipherRuneCount:glyphCount, longWordCount:longCount,
+    literalFBypasses:bypassCount, fullInverseValid:true};
+}
+
+const authenticatedSkip = [];
+for (const [orientation, filter] of [
+  ["p23-R-times-p39-G", forward],
+  ["reversed-coefficient-orientation", reverse]
+]) {
+  const matched = transparentLongMatches(filter);
+  const planted = plantTransparent(filter);
+  authenticatedSkip.push({
+    orientation, originalLongWordMatches:matched,
+    countLength8Plus:matched.length,
+    countLength9Plus:matched.filter(x => x.runeLength >= 9).length,
+    planted
+  });
+}
+
 console.log(JSON.stringify({
   source:"exact GF29 p50 factor p23 R × centered-red-p39 G, scalar equivalent to signed H × G",
   filter:forward,
@@ -329,5 +420,6 @@ console.log(JSON.stringify({
   originalWordsLength8PlusFfree:noFLong,
   independentUniqueGPDictionary:lexicon.size,
   results,
+  authenticFtransparent:authenticatedSkip,
   decision:"No original chapter-continuous fourth-order source-polynomial LFSR plaintext; two isolated 8-GP-word coincidences do not extend and all 9-plus-runic original words lack native-English source candidates. Word-by-word IV models are only excluded conditional on this finite source lexicon."
 }, null, 2));
