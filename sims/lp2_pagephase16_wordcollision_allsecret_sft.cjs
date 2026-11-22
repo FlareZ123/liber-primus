@@ -47,26 +47,34 @@ for(let i=0;i<source.length;i++){
   const p=ranges.find(a=>r>=a.start&&r<a.end);
   assert(p);
   if(!pageStart.has(p.page))pageStart.set(p.page,i);
-  positions.push({page:p.page,phase:(i-pageStart.get(p.page))%16,length:source[i].length});
+  positions.push({page:p.page,phase:(i-pageStart.get(p.page))%16,
+    runePhase:(r-p.start)%16,length:source[i].length});
   r+=source[i].length;
 }
 assert.equal(r,12956);
-const classes=new Map(),lengthSlots=new Map();
+const classes=new Map(),runeClasses=new Map(),lengthSlots=new Map();
 for(const [i,p] of positions.entries()){
   const key=p.page+"|"+p.phase+"|"+p.length;
   if(!classes.has(key)) classes.set(key,[]);
   classes.get(key).push(i);
+  const runeKey=p.page+"|"+p.runePhase+"|"+p.length;
+  if(!runeClasses.has(runeKey))runeClasses.set(runeKey,[]);
+  runeClasses.get(runeKey).push(i);
   if(!lengthSlots.has(p.length))lengthSlots.set(p.length,[]);
   lengthSlots.get(p.length).push(i);
 }
 assert.equal(classes.size,2417);
-const comparePairs=[...classes.values()].reduce((n,ids)=>n+ids.length*(ids.length-1)/2,0);
+assert.equal(runeClasses.size,2315);
+const pairs=groups=>[...groups.values()].reduce((n,ids)=>n+ids.length*(ids.length-1)/2,0);
+const comparePairs=pairs(classes),runeComparePairs=pairs(runeClasses);
 assert.equal(comparePairs,536);
+assert.equal(runeComparePairs,690);
 
 /** @param {number[][]} words */
-function countCollisions(words){
+function countCollisions(words,clock="word"){
   let n=0;
-  for(const ids of classes.values()){
+  const classMap=clock==="word"?classes:runeClasses;
+  for(const ids of classMap.values()){
     const counts=new Map();
     for(const i of ids){
       const w=words[i].join(",");
@@ -76,8 +84,9 @@ function countCollisions(words){
   }
   return n;
 }
-const sourcePairs=countCollisions(source);
+const sourcePairs=countCollisions(source),runeSourcePairs=countCollisions(source,"rune");
 assert.equal(sourcePairs,0);
+assert.equal(runeSourcePairs,0);
 
 /** @param {number} seed */
 function randomState(seed){
@@ -135,9 +144,10 @@ const inv29=a=>{
  * @param {number[][]} words
  * @param {boolean} inverse
  */
-function cipher(words,inverse=false){
+function cipher(words,inverse=false,clock="word"){
   return words.map((w,i)=>{
-    const p=positions[i],a=1+(7*p.page+11*p.phase+3)%28,b=(13*p.page+5*p.phase+11)%29;
+    const p=positions[i],phase=clock==="word"?p.phase:p.runePhase;
+    const a=1+(7*p.page+11*phase+3)%28,b=(13*p.page+5*phase+11)%29;
     return w.map(x=>inverse?((x-b+29)*inv29(a))%29:(a*x+b)%29);
   });
 }
@@ -146,39 +156,52 @@ for(const [sourceIndex,[name,file]] of [
   ["Gibran","resources/control/gibran_prophet_58585.txt"],
   ["Emerson","resources/control/emerson_essays_2944.txt"]
 ].entries()){
-  const donors=pools(file),N=1000,stats=[];
+  const donors=pools(file),N=1000,stats=[],runeStats=[];
   let plantCheck=null;
   for(let trial=0;trial<N;trial++){
     const rng=randomState((0x3301a5f0+
       Math.imul(sourceIndex+1,0x9e3779b9)+
       Math.imul(trial+1,0x85ebca6b))>>>0);
     const sample=matched(donors,rng);
-    const found=countCollisions(sample);
+    const found=countCollisions(sample),runeFound=countCollisions(sample,"rune");
     stats.push(found);
+    runeStats.push(runeFound);
     if(trial===0){
-      const encrypted=cipher(sample);
+      const encrypted=cipher(sample),runeEncrypted=cipher(sample,false,"rune");
       assert.equal(sample.flat().length,12956);
       assert.deepEqual(cipher(encrypted,true),sample);
+      assert.deepEqual(cipher(runeEncrypted,true,"rune"),sample);
       assert.equal(countCollisions(encrypted),found);
+      assert.equal(countCollisions(runeEncrypted,"rune"),runeFound);
       plantCheck={sourceRunes:12956,exactRecovery:12956,
-        matchingPairsBefore:found,matchingPairsAfter:countCollisions(encrypted)};
+        wordPhasePairsBefore:found,wordPhasePairsAfter:countCollisions(encrypted),
+        runePhasePairsBefore:runeFound,runePhasePairsAfter:countCollisions(runeEncrypted,"rune")};
     }
   }
   stats.sort((a,b)=>a-b);
+  runeStats.sort((a,b)=>a-b);
   assert(stats[0]>sourcePairs);
-  results.push({name,draws:N,minimum:stats[0],p05:stats[49],
-    median:stats[499],p95:stats[949],maximum:stats[999],
-    mean:stats.reduce((s,x)=>s+x,0)/N,
-    drawsAtOrBelowOriginal:stats.filter(x=>x<=sourcePairs).length,
+  assert(runeStats[0]>runeSourcePairs);
+  results.push({name,draws:N,
+    wordPhase:{minimum:stats[0],p05:stats[49],median:stats[499],
+      p95:stats[949],maximum:stats[999],
+      mean:stats.reduce((s,x)=>s+x,0)/N,
+      drawsAtOrBelowOriginal:stats.filter(x=>x<=sourcePairs).length},
+    runeStartPhase:{minimum:runeStats[0],p05:runeStats[49],median:runeStats[499],
+      p95:runeStats[949],maximum:runeStats[999],
+      mean:runeStats.reduce((s,x)=>s+x,0)/N,
+      drawsAtOrBelowOriginal:runeStats.filter(x=>x<=runeSourcePairs).length},
     fullSourcePlant:plantCheck});
 }
 console.log(JSON.stringify({
-  classification:"bounded original all-key deterministic page-local 16-word-phase word-map exclusion",
+  classification:"bounded original all-key deterministic page-reset 16-phase word- and rune-start-clock word-map exclusions",
   runes:12956,completeWords:2896,
-  phaseClasses:classes.size,
-  classesWithComparableWords:[...classes.values()].filter(v=>v.length>1).length,
-  comparableSamePagePhaseLengthWordPairs:comparePairs,
-  actualEqualWordPairs:sourcePairs,
+  wordPhase:{classes:classes.size,
+    classesWithComparableWords:[...classes.values()].filter(v=>v.length>1).length,
+    comparablePairs:comparePairs,originalEqualPairs:sourcePairs},
+  runeStartPhase:{classes:runeClasses.size,
+    classesWithComparableWords:[...runeClasses.values()].filter(v=>v.length>1).length,
+    comparablePairs:runeComparePairs,originalEqualPairs:runeSourcePairs},
   sourceNativeGPExactLengthControlsWithoutReplacement:results,
-  limitation:"Requires plaintext-English GP rune words preserving original printed cuts and deterministic map fixed for each physical page×local wordphase. Allows arbitrary secret page/phase maps, nonlinear withinword transformations. Does not cover per-word feedback, resegmentation, other language or per-word nonce."
+  limitation:"Requires native GP English words preserving original printed cuts and a deterministic whole-word map fixed for each physical page×word clock or page×rune-start clock modulo16. Allows arbitrary secret page/phase maps and nonlinear withinword mixing. Leaves feedback, resegmentation, other languages and per-word nonce open."
 },null,2));
