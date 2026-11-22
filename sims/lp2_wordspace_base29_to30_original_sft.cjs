@@ -212,9 +212,10 @@ assert.equal((source.match(/&/g) || []).length, 17);
  * source symbol to SPACE and every other symbol to a distinct native label.
  *
  * @param {Array<'page'|'chapter'|'length'|'position'|'punctuation'>} fields
+ * @param {number} [period=0] Optional within-word-position residue; 0 keeps absolute slot
  * @returns {{classes:number,maximum:number,achieved:number,fraction:number}}
  */
-function alphabetSpaceCapacity(fields) {
+function alphabetSpaceCapacity(fields, period = 0) {
   /** @type {Map<string,{counts:number[],tokens:number[]}>} */
   const states = new Map();
   const pageAtIndex = unknownPages.flatMap(p => Array(p.indices.length).fill(p.page));
@@ -228,7 +229,7 @@ function alphabetSpaceCapacity(fields) {
   );
   assert.equal(features.length, runes.length);
   for (const row of features) {
-    const label = fields.map(field => row[field]).join(':');
+    const label = fields.map(field => field === 'position' && period > 0 ? row.position % period : row[field]).join(':');
     if (!states.has(label)) states.set(label, { counts: Array(30).fill(0), tokens: [] });
     const state = states.get(label);
     state.counts[row.digit]++;
@@ -276,6 +277,20 @@ assert.deepEqual(
   ],
   [480, 767, 600, 890, 1028, 2142, 2505, 1595, 1729, 3893]
 );
+const punctuationPositionPeriodFrontier = Array.from({ length: 14 }, (_, index) => {
+  const period = index + 1;
+  return { period, ...alphabetSpaceCapacity(['punctuation', 'position'], period) };
+});
+assert.deepEqual(
+  punctuationPositionPeriodFrontier.map(x => x.maximum),
+  [1028,1331,1534,1722,1906,2051,2176,2281,2367,2431,2473,2496,2502,2505]
+);
+assert.deepEqual(
+  punctuationPositionPeriodFrontier.map(x => x.classes),
+  [175,350,525,694,856,1005,1141,1259,1356,1426,1470,1493,1500,1503]
+);
+assert.equal(punctuationPositionPeriodFrontier.find(x => x.fraction >= 19 / 114).period, 7);
+assert.equal(punctuationPositionPeriodFrontier.find(x => x.fraction >= 180 / 935).period, 12);
 assert.equal(secretCapacities.global.classes, 1);
 assert.equal(secretCapacities.perPage.classes, 55);
 assert.equal(secretCapacities.perOriginalPunctuationScope.classes, 175);
@@ -342,6 +357,7 @@ console.log('ORIGINAL_FIRST_80_GP30', out.slice(0, 80).map(n => n === 29 ? '|' :
 console.log('EARLY_P16_21', JSON.stringify(early));
 console.log('HELDOUT_P40_53', JSON.stringify(heldout));
 console.log('ALL_SECRET_BIJECTION_CLASSES', JSON.stringify(secretCapacities));
+console.log('PUNCTUATION_WORDSLOT_MODULO_PERIOD_CAPACITY', JSON.stringify(punctuationPositionPeriodFrontier));
 console.log('ALL_SECRET_BIJECTION_PER_PAGE', JSON.stringify({
   exactMaxPossibleSpaceTokens: perPageMaximum,
   possibleSpaceTokenFraction: perPageMaximum / out.length,
