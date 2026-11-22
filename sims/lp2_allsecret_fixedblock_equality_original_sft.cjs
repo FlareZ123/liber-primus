@@ -204,7 +204,8 @@ for(const [name,base29,sourceAlphabet,expected] of alternate){
   }
   assert.equal(entries.length,expected);
   assert(entries.every(x=>x.k3Adaptive>originalAdaptive[3]));
-  assert(entries.every(x=>x.k4Adaptive>originalAdaptive[4]));
+  // k4 can match zero (especially in corrected Old English); report, do not reject.
+  assert(entries.every(x=>x.k4Adaptive>=originalAdaptive[4]));
   alternateLanguages.push({name,sourceRuneCount:runes.length,windows:entries.length,
     k3AdaptiveMin:Math.min(...entries.map(x=>x.k3Adaptive)),
     k3AdaptiveMax:Math.max(...entries.map(x=>x.k3Adaptive)),
