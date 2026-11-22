@@ -1,4 +1,4 @@
-# Director frontier — 2026-11-22T22:33:48Z
+# Director frontier: 2026-11-22T22:33:48Z
 
 ## Closure checkpoint and truth state
 
