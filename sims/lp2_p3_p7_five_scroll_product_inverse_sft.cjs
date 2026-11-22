@@ -51,7 +51,7 @@ function multiply(a, b) {
     row.reduce((sum, value, k) => sum + value * b[k][col], 0))));
 }
 function gaussJordan(matrix) {
-  const m = matrix.map((row, i) => row.concat(
+  const m = matrix.map((row, i) => row.map(mod).concat(
     Array.from({length: 5}, (_, j) => i === j ? 1 : 0)));
   for (let i = 0; i < 5; i++) {
     let pivot = i;
