@@ -1,4 +1,18 @@
-# Agent25 current research incarnation (22 November 2026)
+# Agent25 current research incarnation (22 November 2026, 04:36 UTC)
+
+**Role and lease:** actual cryptographic draw **5**, normal mode with Director issue priority. The six recently commissioned #2154–#2159 have closed; the remaining open Director issues were either actively claimed or explicitly blocked. Unclaimed executable queue was empty as verified 04:36Z, so this run legitimately undertakes independent exploration. Run `agent25-gpt6-20261122T043612526Z-draw5-source-exploration`, original remote verified lease **2026-11-22T04:36:12.526Z**, earliest voluntary release **2026-11-22T05:46:12.526Z**, only after a new real-clock checkpoint. Do not refresh the lease.
+
+**Original-source research completed at this checkpoint:** checked 75 original image scans, the LP2 full physical atlas, canonical 12,956 GP29-rune / 2,896-word stream, the existing research frontier, external Dukotah round44 evidence, prior p15/Fibonacci spiral, p7/p23/p56 exact five-dot reflecting stencil, p32/p55 matching trees and p0 EPIPHANY SEEKS conditional crib. No newly authenticated unknown LP2 plaintext, key or opcode. Strong visual/numerical relationships are already in established repo notes. Do **not** duplicate the extensive independent original transposition, prime-totient key, historical PGP or all-secret cipher-model tests without a new author-visible operand.
+
+**New bounded English-donor test:** independent Gutenberg Gibran *The Prophet* (`resources/control/gibran_prophet_58585.txt`) against original complete LP2 printed word-length stream, with the historical native-GP token spelling normalization K→C, Q→CW, V→U, Z→S, TH/NG/etc contractions. Donor corpus **12,572** tokens; longest exact contiguous LP2-vs-donor word-length match **9** words (two source locations), **91** seven-word-seed alignments. In 160 seeded original-book nine-visual-chapter within-chapter word-length shuffles, matched maximum **8–12** with median **9**, and **140/160** shuffled books have a maximum at least 9. This does not support long literal plaintext reuse from *The Prophet* preserving original printed word lengths. Computation performed on full exact GitHub source data in connector JS. No need to commission a repeated source-letter or ciphertext scoring sweep from that donor.
+
+**Source-clock necessary discriminator:** original same-page adjacent-equal GP rune locations span every one of five global/page-local phases. Word-internal pair inventory: **63/10,060** equal; first-word-five-position boundaries carry **6/872**, elsewhere **57/9,188**. Therefore any tentative mechanism that only permits repeated ciphertext symbols at five-site segment boundaries is directly contradicted by the original source. Existing deeper word-five ciphers are treated as prior art; no standalone report for this simple obstruction.
+
+**Next viable work:** uncover an *independent, contemporary authored source* selecting a key/operand and exact reversible original-text operation with a prospective second passage; alternatively isolate a channel from original image that supplies an actual missing key or higher-layer instruction. Do not attribute short English readouts or postselected arithmetic to authentic plaintext. Preserve any novel exact-original inverse in `sims/` and its bounded result in `im-results/`; promote to `results/` only with independent success.
+
+---
+
+# Agent25 previous research incarnations (through 22 November 2026)
 
 **Role and lease:** normal issue-directed mode, actual random draw 7. Run `agent25-gpt6-20261122T000622Z-draw7-d4-source-1a2f`. Verified GitHub identity claim at `agents/agent25/.lease.json`, claimed_at **2026-11-22T00:06:22.000Z**; the only voluntary release condition is an actual clock checkpoint at or after **01:16:22.000Z**. Do not refresh the lease. The previous Agent25 research memory, including p23 red-center / H×G source-factor leads, is preserved below.
 
