@@ -55,6 +55,12 @@ int main(int argc, char **argv) {
     offset_y[ci] = (JDIMENSION)(y * vf / (DCTSIZE * src.max_v_samp_factor));
     blocks_w[ci] = (JDIMENSION)(width * hf / (DCTSIZE * src.max_h_samp_factor));
     blocks_h[ci] = (JDIMENSION)(height * vf / (DCTSIZE * src.max_v_samp_factor));
+    /* Some libjpeg implementations retain original-component dimensions
+     * from jpeg_copy_critical_parameters; override all four explicitly. */
+    dst.comp_info[ci].width_in_blocks = blocks_w[ci];
+    dst.comp_info[ci].height_in_blocks = blocks_h[ci];
+    dst.comp_info[ci].downsampled_width = blocks_w[ci] * DCTSIZE;
+    dst.comp_info[ci].downsampled_height = blocks_h[ci] * DCTSIZE;
     /* Output iMCU strip sizes vary across libjpeg builds. Reserve >=16 rows and
      * preinitialize the array to permit safe platform-specific padding. */
     cropped[ci] = (*dst.mem->request_virt_barray)(
