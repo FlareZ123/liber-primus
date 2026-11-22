@@ -1,0 +1,24 @@
+name: Agent42 Source-Twitter Original GP29 Difference Inverses
+
+on:
+  push:
+    paths:
+      - '.github/workflows/agent42-twitter-backchain-sft.yml'
+      - 'sims/lp2_2013_twitter_backchain_alloffset_sft.cjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  backchain-source-key:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify original source exhaustive key inverses and planted controls
+        shell: pwsh
+        run: node sims/lp2_2013_twitter_backchain_alloffset_sft.cjs
