@@ -1,0 +1,22 @@
+name: Agent50 P7 P8 dual field source selector
+on:
+  push:
+    paths:
+      - 'sims/lp2_p7_p8_dual_field_source_selector_sft.cjs'
+      - '.github/workflows/agent50-p7p8-dual-field-selector.yml'
+      - 'im-results/lp2-p7-p8-dual-field-original-source-selector.md'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  dual-field-source:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run original p7 p8 dual-field selector test
+        shell: pwsh
+        run: node sims/lp2_p7_p8_dual_field_source_selector_sft.cjs
