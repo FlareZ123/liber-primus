@@ -190,6 +190,14 @@ assert.equal(alphabetQuotient, 16);
 assert.equal(outsideIn, 'RIGH');
 const directionWord = outsideIn + corpus.translit[alphabetQuotient];
 assert.equal(directionWord, 'RIGHT');
+// Independently route the SAME four factor primes through the unmodified
+// table's own byte-as-pointer graph. Its second byte has residue16 = T.
+assert.equal(bytes[82], 201);
+assert.equal(bytes[bytes[82]], 74);
+assert.equal(bytes[bytes[82]] % corpus.prime.length, alphabetQuotient);
+const tableDirectionWord = outsideIn +
+  corpus.translit[bytes[bytes[factorSum]] % corpus.prime.length];
+assert.equal(tableDirectionWord, 'RIGHT');
 
 const inbound = bytes.map(() => []);
 bytes.forEach((value, index) => inbound[value].push(index));
@@ -250,6 +258,8 @@ assert.deepEqual(halfSumDivisible29FourDistinct, [133331]);
 console.log('HTML 133331 palindrome GP prime factors:', factors.join(' x '));
 console.log('GP rune names of those factors:', factorRunes.join(''));
 console.log('Outside-in factor GP letters + half-sum/29 GP letter:', directionWord);
+console.log('Same RIGHT from factor-sum table[82]->table[201] residue:',
+  tableDirectionWord, 'via byte', bytes[bytes[factorSum]]);
 console.log('Unique 900-palindrome four-prime half-sum divisible29:',
   halfSumDivisible29FourDistinct);
 console.log('GP-prime factor sum and table pointer:', factorSum, bytes[factorSum]);
