@@ -118,7 +118,7 @@ const invert=pow.map(a=>{for(let b=1;b<29;b++)if(a*b%29===1)return b;
 function decode(c,sign){
   let prev=0;
   return c.map(x=>{
-    const exponent=mod(sign*prev)%28;
+    const exponent=((sign*prev)%28+28)%28;
     const p=mod(28+invert[exponent]*mod(x-prev));
     prev=x;
     return p;
@@ -128,7 +128,7 @@ function decode(c,sign){
 function encode(p,sign){
   let prev=0;
   return p.map(x=>{
-    const exponent=mod(sign*prev)%28;
+    const exponent=((sign*prev)%28+28)%28;
     prev=mod(prev+pow[exponent]*(x+1));
     return prev;
   });
