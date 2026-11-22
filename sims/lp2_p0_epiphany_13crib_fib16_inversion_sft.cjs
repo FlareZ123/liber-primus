@@ -25,6 +25,15 @@ const mod = x => ((x%29)+29)%29;
 const title = [18,13,10,13,8,24,9,26,15,18,18,5,15];
 const p15 = [3299,3298,3296,3294,3288,3278,3258,3222,3152,3038,2838,2472,1820,708,1206,4516].map(mod);
 const originalP0 = corpus.pages.find(p=>p.page===0).indices;
+const heldout = [
+  {label:"THE ROAD",at:103,plain:[2,18,4,3,24,23]},
+  {label:"THE DEVOTED",at:235,plain:[2,18,23,18,1,3,16,18,23]}
+];
+const heldoutSize=heldout.reduce((sum,x)=>sum+x.plain.length,0);
+assert.equal(heldoutSize,15);
+for(const phrase of heldout){
+  assert.equal(phrase.plain.map(i=>corpus.translit[i]).join(""),phrase.label.replaceAll(" ","").replaceAll("V","U"));
+}
 assert.equal(title.map(i=>corpus.translit[i]).join(""),"EPIPHANYSEECS");
 
 /**
@@ -212,6 +221,14 @@ function main(){
       ", best body IoC "+bestIoC.toFixed(6));
     console.log("BEST "+mode+" seed="+best.key.join(",")+" singletons="+best.singletons.join(",")+
       " commonWords="+best.wordHits+" sample="+best.sample);
+    const heldoutMatch=scored.map(x=>heldout.reduce((sum,part)=>
+      sum+part.plain.filter((v,k)=>x.plain[part.at+k]===v).length,0));
+    const maxHeldout=Math.max(...heldoutMatch);
+    const fullMatch=heldoutMatch.filter(v=>v===heldoutSize).length;
+    assert.equal(fullMatch,0);
+    console.log("HELDOUT "+mode+": fixed source-proposed THE ROAD / THE DEVOTED at physical p0 local offsets 103 /235; max "+
+      maxHeldout+"/"+heldoutSize+" rune matches; full original key survivors "+
+      fullMatch+"/"+candidates.length);
     const nativeWin=nativeWordHit.filter(v=>v<=best.wordHits).length;
     console.log("CALIBRATION "+mode+": clear-source intervals with <= best fixed-common-word count "+
       nativeWin+"/"+nativeWordHit.length+" (descriptive, not a cipher-proof)");
@@ -222,15 +239,17 @@ function main(){
     title.forEach((p,j)=>{plantedPlain[j]=p;});
     plantedPlain[observed[0].at]=24;
     plantedPlain[observed[1].at]=10;
+    for(const phrase of heldout)phrase.plain.forEach((v,k)=>{plantedPlain[phrase.at+k]=v;});
     const planted=enc(plantedPlain,stream(p15),mode);
     const test=decodeAll(planted,mode,observed);
     const found=test.filter(x=>x.key.every((v,j)=>v===p15[j]));
     assert.equal(found.length,1);
     assert.deepEqual(found[0].plain,plantedPlain);
+    for(const phrase of heldout)assert.deepEqual(found[0].plain.slice(phrase.at,phrase.at+phrase.plain.length),phrase.plain);
     const wrong=p15.slice();wrong[0]=mod(wrong[0]+1);
     const wrongPlain=dec(planted,stream(wrong),mode);
     assert.ok(wrongPlain.some((p,j)=>p!==plantedPlain[j]));
-    console.log("PLANTED "+mode+": one exact true 16-digit key recovered from 13-heading +2 singletons; 262-rune reencryption verified, wrong-key control fails");
+    console.log("PLANTED "+mode+": true 16-digit seed recovered from 13-heading +2 singletons, both 15-rune heldout phrases verified, 262-rune reencryption exact");
   }
   console.log("PASS: bounded 13-crib p0 search finished, candidate plaintext hypothesis unverified, no unknown plaintext identified");
 }
