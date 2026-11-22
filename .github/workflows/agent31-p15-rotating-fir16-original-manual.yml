@@ -1,0 +1,14 @@
+name: "Agent 31 - p15 spiral phase-rotating FIR16 all-secret plaintext recovery"
+on:
+  workflow_dispatch:
+jobs:
+  rotating-fir16:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Recover original LP2 GP29 plaintext under all 43 million rotating filters
+        run: node sims/lp2_p15_rotating_fir16_allsecret_original_sft.cjs
