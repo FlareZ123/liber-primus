@@ -64,9 +64,46 @@ A 1504 *Mundus Novus* source lead describes 3+2+6 southern-sky star groups at no
 
 This rejects the obvious 11-star→p32 and 3+2+6→p50 compass overlays. It does **not** test or strengthen the separate four-ring φ→2016-word→p50→p32 route above; that route remains provisional on its own stated assumptions. Reproducer: [Vespucci star-map overlay gate](../sims/lp2_vespucci_star_map_overlay_gate.cjs). The source-dot geometry and non-unique triangle comparison are documented in the [five-dot constellation gate](lp2-p56-five-black-dots-constellation-gate.md), with exact page reflections in the [mirrored-emblem bridge](lp2-mirrored-five-dot-original-page-bridge.md).
 
+## Base59 rival holdout on the same four selected words
+
+The four ring-selected words and their GP-prime-sum addresses are unchanged. Reinterpret only the four corresponding p50 tokens under the drop-f base59 rival, keeping the same zero-based addresses, start H at p32 cell33, direction = byte & 7, distance = byte >> 3, and 11×11 wrap.
+
+| Word | p50 address | token | base60 byte | base59 byte |
+|---|---:|---|---:|---:|
+| road | 204 | `3E` | 194 | 191 |
+| words | 179 | `2t` | 175 | 172 |
+| and | 215 | `1O` | 84 | 83 |
+| found | 130 | `1Q` | 86 | 85 |
+
+The stored base60 interpretation reproduces the existing route:
+
+| Step | byte | direction / distance | p32 cell | rune |
+|---:|---:|---|---:|---|
+| start | — | — | 33 | H |
+| 1 | 194 | E / 24 | 35 | M |
+| 2 | 175 | NW / 21 | 47 | IA |
+| 3 | 84 | S / 10 | 36 | E |
+| 4 | 86 | W / 10 | 37 | X |
+
+The fixed base59 rival instead gives:
+
+| Step | byte | direction / distance | p32 cell | rune |
+|---:|---:|---|---:|---|
+| start | — | — | 33 | H |
+| 1 | 191 | NW / 23 | 32 | TH |
+| 2 | 172 | S / 21 | 21 | W |
+| 3 | 83 | SE / 10 | 9 | W |
+| 4 | 85 | SW / 10 | 120 | EO |
+
+Thus the same four source-selected words, addresses, start and compass rule reach the p32 **X/cell37** marker under base60, but end at **EO/cell120** under base59. This is a discriminating negative for the global base59 compass serialization and additional support for base60 in this receiver. It does not prove the entire p50 alphabet/serialization from one route: the p32 11×11 arrangement, H origin and compass interpretation remain provisional, and the p22 dual-radix perimeter hypothesis is a separate local claim. Do not infer arbitrary per-cell radix switching from this result.
+
+The original p50 grid resource stores the base60 alphabet `0-9A-Z a-x`; the 2013 ALL AROUND selector independently favors base60. The new holdout is consistent with those source constraints. The base59-only `CIRCUMFERENCES/EMERGE` hits in the p22 square report should remain conditional and should not be used as evidence for a global base59 p50 decoder.
+
+Reproduction: `node sims/lp2_phi_ring_2016_wordmap_compass_bridge.cjs`. The SFT now asserts both paths and their distinct endpoints.
+
 ## Decision
 
-This is a **promising, reproducible navigation bridge** from the solved p57 instruction through the p50 numerical grid and signed 2016 word map to the p32 H→X marker. It does not recover unknown-page plaintext, an authentic cipher key, or the intended final destination. The next useful work is independent reproduction/adversarial review of the complete chain and investigation of what the X endpoint signifies—not additional unconstrained transformations of the same four bytes.
+This is a **promising, reproducible navigation bridge** from the solved p57 instruction through the p50 numerical grid and signed 2016 word map to the p32 H→X marker. The same fixed route fails under the drop-f base59 rival, favoring the stored base60 interpretation for this compass consumer. The full chain remains provisional because its p32 grid/origin and compass semantics are not all explicitly source-stated. It does not recover unknown-page plaintext, an authentic cipher key, or the intended final destination. The next useful work is independent source support for the p32 grid/origin and investigation of what the X endpoint signifies—not additional unconstrained transformations of the same four bytes.
 
 ## Reproduction
 
