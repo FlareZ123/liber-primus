@@ -22,11 +22,11 @@ Thus each page's keystream is identical for its first five symbols, then evolves
 
 Source transcript `resources/liber-primus/lp2-transcription.txt` is split at its exact `%` page markers; its page rune sequence is asserted identical to canonical `lp2-corpus.json` before any cipher operation. The actual original pages contain 270, 273 and 265 runes respectively. Crucially, the **first printed fragments** of the three pages are lengths **3, 2, 1**: these are unfinished words from previous physical pages. The cipher consumes them to keep the page-state clock honest but excludes them from word-language scoring, so none is misrepresented as a complete source word.
 
-The pinned unchanged `resources/control/english_wordfreq_textblob.txt` source defines 29,053 **unique** GP29 word forms in the run's original dictionary construction, incorporating historical GP multi-rune transliterations, QU→CW and normal V/K/Q/Z spellings. One-letter A/I/O are included. The first complete original p24 seven-rune anchor begins at offset **26**. Under the five-lane recurrence, testing *every lexicon seven-rune candidate* against its repeated phase values leaves **exactly 13 distinct common seeds**, without optimizing an English score.
+The pinned unchanged `resources/control/english_wordfreq_textblob.txt` source defines 29,055 **unique** GP29 word forms in the run's original dictionary construction, incorporating source-solved ING→NG and IO→IA contractions, other GP multi-rune transliterations, QU→CW and normal V/K/Q/Z spellings. One-letter A/I/O are included. The first complete original p24 seven-rune anchor begins at offset **26**. Under the five-lane recurrence, testing *every lexicon seven-rune candidate* against its repeated phase values leaves **exactly 14 distinct common seeds**, without optimizing an English score.
 
 ## Original training and untouched continuation
 
-For each of those 13 preimage seeds, decrypt all three original streams. Score only the **complete page-local printed words ending by source offset150** and choose the seed maximizing exact whole-word dictionary matches over all three pages. Then freeze that one seed and score the disjoint words *beginning* at or after offset150 without alteration to any clock, key, page, or word boundary.
+For each of those 14 preimage seeds, decrypt all three original streams. Score only the **complete page-local printed words ending by source offset150** and choose the seed maximizing exact whole-word dictionary matches over all three pages. Then freeze that one seed and score the disjoint words *beginning* at or after offset150 without alteration to any clock, key, page, or word boundary.
 
 | Original receiver | Complete training words / exact lexicon hits | Untouched later words / hits |
 | --- | ---: | ---: |
@@ -35,7 +35,7 @@ For each of those 13 preimage seeds, decrypt all three original streams. Score o
 | p26 | 32 / **3** | 25 / **0** |
 | **Combined** | **96 / 8** | **80 / 6** |
 
-The best key is `[8,15,11,15,2]` in canonical ordinal-index GP29. Its original accepted training forms include **ND**, **DROWNED**, **LE**, **A**, **HEW**, **VA**, **IX**, and **JUG**, scattered without grammatical continuity. The original p24 anchor decodes to DROWNED for this key; a rival seed decodes it to DRAINED. The other words overwhelmingly fail the unchanged lexicon. Every candidate seed can exactly forward-reencrypt its own gibberish: this is a necessary invariant, not an independent key-discovery criterion.
+The best key is `[8,15,11,15,2]` in canonical ordinal-index GP29. Its original accepted training forms include **ND**, **DROWNED**, **LE**, **A**, **HEW**, **VA**, **IX**, and **JUG**, scattered without grammatical continuity. The original p24 anchor decodes to DROWNED for this key; a rival seed decodes it to DRAINED. The less authentic inventory-label spelling, which leaves ING and IO uncontracted, yields 13 anchor-admissible seeds and the same winning seed and original hit counts; the source-native result is the stated 14-seed gate. The other words overwhelmingly fail the unchanged lexicon. Every candidate seed can exactly forward-reencrypt its own gibberish: this is a necessary invariant, not an independent key-discovery criterion.
 
 ## Positive and limitation
 
