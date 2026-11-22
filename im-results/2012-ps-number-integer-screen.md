@@ -84,7 +84,7 @@ python sims/ps_rsa_oaep_crossround_gate.py
 python sims/ps_rsa_oaep_crossround_gate.py --outguess-zip /path/to/outguess-lp2-default-key.zip
 ```
 
-The script checks the factor product, modulus sizes, Stage 2 modulus inequality, cookie RSA decryptions, and the direct base-29 key screen against the canonical `resources/liber-primus/lp2-transcription.txt`.
+`ps_number_lp2_screen.py` checks the factor product, modulus sizes, Stage 2 modulus inequality, cookie RSA decryptions, and the direct base-29 key screen against the canonical `resources/liber-primus/lp2-transcription.txt`. `ps_rsa_oaep_crossround_gate.py` reproduces the default OAEP-SHA1 scan of the 2013 source blob and, when given the Actions artifact ZIP, the OAEP/v1.5 and 54-byte framing checks for LP2 OutGuess pages 17, 21, and 43.
 
 ## Sources
 
