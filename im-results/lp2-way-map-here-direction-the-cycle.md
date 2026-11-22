@@ -24,6 +24,23 @@ Under the simple case-insensitive grammar `digit 1..9 + N/S/E/W`, this is the **
 
 At fixed source state57 and fixed target state56, exactly three of the 256 printed table-token instances would perform that move: two `1W` tokens and the single `1w` token. A token-instance permutation of the fixed table therefore gives the conditional calibration `3/256 = 0.01171875`. This does not charge the fact that the movement grammar was recognized from the visible token.
 
+## New independent WAY prime-number lookup supplies a possible hex decoder opcode (Agent45, 22 November)
+
+**Source-exact finding, conditional operator semantics.** The original Gematria Primus assigns every rune both its ordinal **index** and its official **prime number**. The authentic signed-2016 word **WAY**, now also selected by the p15 first-three numeral pointers, therefore has *two independently defined canonical totals*:
+
+| Original WAY rune | GP29 index | Official prime value |
+| --- | ---: | ---: |
+| W | 7 | 19 |
+| A | 24 | 97 |
+| Y | 26 | 103 |
+| **Total** | **57** | **219** |
+
+**Original table cell57 contains 1w**, as already established, giving one west to **MAP=56**. The distinct **prime-total table cell219 contains the exact literal 0x**, the common programmer's **hexadecimal prefix**. This is a previously missing *source-selected candidate reason* to interpret the next printed token, original **p50[56]=4E**, as **0x4E = ASCII N**, then move one cell north to **HERE=48**. The first and second syntax cues come from **the same signed/source-selected word**, using only its established GP ordinal and prime columns. No numeral, token, page offset, spelling or parser parameter is fitted to unknown plaintext.
+
+In an independent exact source-native control, tokenize all **740** authentic GP29 words from nine preserved solved-source sections (including p56/p57), yielding **272 distinct original rune words** and **156 distinct words whose prime total is a valid 0..255 table index**. **WAY is the only one** of those 156 whose prime-total table token is 0x, even accepting uppercase 0X as equivalent; the table itself contains three exact lowercase 0x instances (indices22,51,219). The same source-preserving audit confirms adjacent **WAY HERE** in the solved WELCOME passage. Thus this word's two source-defined numeric addresses simultaneously select an authentic **cardinal movement token** and a **hex notation cue**, a stronger, independently constrained transition than simply recognizing the hex interpretation after the fact.
+
+**Unresolved causal leap:** No authenticated Cicada instruction directs a solver to consult *both* ordinal-sum and prime-sum addresses of WAY, or specifies how the 0x hint is distributed over the table's other cells. 0x is also a valid two-digit base60 token in the original printed alphabet, so its programming meaning is a hypothesis. The 2016 signed note speaks of words, numbers and directions but does not explicitly name this particular two-channel lookup. The dual observation is a **possible original navigation opcode**, still not a GP29 decipherment of any of p0–55. [Original-source/solved-reference SFT](../sims/lp2_way_gpprime_0x_hex_original_sft.cjs).
+
 ## Composition with the frozen MAP consumer
 
 Agent20 froze the MAP consumer before the later signed scaffold and before derivative WAY was recovered:
@@ -135,7 +152,7 @@ MAP 56 -> 4E -> hex N -> north -> HERE 48
 DIRECTION 98 -> 1C(base60)=72 -> GP-prime(THE)=72
 ```
 
-Do not generalize digit-cardinal parsing to every table cell. Do not infer that every table byte should be compared against both GP0 and GP-prime. The composite WAY -> MAP -> HERE rule now has an independently solved plaintext transfer. The next decisive test is a second independently selected state or an unknown-ciphertext receiver predicted before inspection, using the same exact operation without widening the parser.
+Do not generalize digit-cardinal parsing to every table cell. The independently source-selected GP-prime value of WAY now points to the literal token 0x and thus supplies a concrete candidate reason for applying a hexadecimal parser at MAP. That does not establish a general two-channel GP0/GP-prime table algorithm, because no author-signed instruction says to consult both addresses. The composite WAY -> MAP -> HERE rule now has an independently solved plaintext transfer. The next decisive test is a second independently selected state or an unknown-ciphertext receiver predicted before inspection, using the same exact operation without widening the parser.
 
 ## Reproduction
 
