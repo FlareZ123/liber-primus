@@ -62,6 +62,10 @@ assert.equal(tokens[242], "0g");
 assert.equal(bytes60[242], 42);
 assert.equal(bytes60[42], 28);
 assert.equal(bytes60[245], 56);
+assert.deepEqual([4, 10, 12, 14, 16, 22].map((offset) => bytes60[229 + offset]), [234, 173, 141, 214, 56, 230]);
+assert.equal(new Set(bytes60.slice(229)).size, 27);
+assert.equal(64, 4 ** 3);
+assert.equal(27, 3 ** 3);
 assert.equal(bytes60[198], 105);
 
 const hasSequence = (haystack, needle) => haystack.some((_, start) =>
@@ -86,7 +90,8 @@ for (const [radix, values] of [["base60", bytes60], ["base59-drop-f", bytes59]])
     ["first192", values.slice(0, 192)],
     ["first229", values.slice(0, 229)],
     ["full256", values],
-    ["last64", values.slice(192)]
+    ["last64", values.slice(192)],
+    ["last27", values.slice(229)]
   ]) {
     const digest = sha512(input);
     assert.notEqual(digest, sourceDigest, "Unexpected original p56 target SHA512 match");
@@ -122,7 +127,8 @@ const report = {
     zeroBasedCubicalCenterOffset: 13,
     absoluteCell: 229 + 13, token: tokens[242], base60Byte: bytes60[242],
     GP0_FIND: 42, tablePointer42: bytes60[42], originalP55Runes: 76,
-    faceNeighborAtOffset16: { token: tokens[245], value: bytes60[245], GP0_AND: 56 }
+    faceNeighborAtOffset16: { token: tokens[245], value: bytes60[245], GP0_AND: 56 },
+    faceNeighborBytes: [4, 10, 12, 14, 16, 22].map((offset) => bytes60[229 + offset])
   },
   p51FirstWord: { GP: render(p51.slice(0, 3)), indices: p51.slice(0, 3), sum: 27 },
   strictInterior: {
@@ -134,6 +140,6 @@ const report = {
   directPadTests: transformations,
   p55Repeated27PadTests: p55Transforms,
   p56Sha512Tests: hashTests,
-  decision: "Source-aligned suffix match survives as a navigation clue; four direct 27-rune pads do not yield native prose, and eight fixed byte-hash candidates miss p56."
+  decision: "Source-aligned suffix match survives as a navigation clue; four direct 27-rune pads do not yield native prose, and ten fixed byte-hash candidates miss p56."
 };
 console.log(JSON.stringify(report, null, 2));
