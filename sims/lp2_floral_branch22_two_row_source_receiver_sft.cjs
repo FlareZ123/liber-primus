@@ -135,7 +135,36 @@ for (const leftStep of [-2, 2]) {
     }
   }
 }
-assert.equal(results.length, 16);
+// The mask-selected odd counter-rotating stride pair derives directly
+// from the two source mask addresses: d = 31-22 = 9, steps (-d,+d).
+// This covers 32 printed table rows once with a constant row-pair sum.
+/** @type {number[]} */
+const sourceMirrorSteps = [23, 9];
+for (const ring of [29, 28]) {
+  for (const sign of [-1, 1]) {
+    const decoded = original.map((p, i) => {
+      const key = keyFor(i, ...sourceMirrorSteps);
+      const out = transform(p.indices, key, ring, sign);
+      assert.deepEqual(transform(out, key, ring, -sign), p.indices);
+      const plant = Array.from({length: p.indices.length},
+        (_, j) => known[j % known.length]);
+      const encPlant = transform(plant, key, ring, -sign);
+      assert.deepEqual(transform(encPlant, key, ring, sign), plant);
+      return out;
+    });
+    results.push({
+      leftStep:23, rightStep:9, ring, sign,
+      counts:[3316,3008,308],
+      allIoc:ioc(decoded.flat()),
+      openingIoc:ioc(decoded.slice(0, 14).flat()),
+      terminalIoc:ioc(decoded.slice(14).flat()),
+      firstTwentyGP:decoded[0].slice(0,20)
+        .map(i => corpus.translit[i]).join('-')
+    });
+  }
+}
+assert.equal(results.length, 20);
+
 const find = (leftStep, rightStep, ring, sign) => results.find(r =>
   r.leftStep === leftStep && r.rightStep === rightStep &&
   r.ring === ring && r.sign === sign);
@@ -143,12 +172,14 @@ assert.ok(Math.abs(find(2, 2, 29, -1).allIoc - 0.03435202419095132) < 1e-12);
 assert.ok(Math.abs(find(2, 2, 29, +1).allIoc - 0.03444681574959017) < 1e-12);
 assert.ok(Math.abs(find(2, 2, 28, -1).allIoc - 0.034542517016085454) < 1e-12);
 assert.ok(Math.abs(find(2, 2, 28, +1).allIoc - 0.03457890533034221) < 1e-12);
+assert.ok(Math.abs(find(23, 9, 29, -1).allIoc - 0.034527415865668896) < 1e-12);
+assert.ok(Math.abs(find(23, 9, 29, +1).allIoc - 0.034417159273470915) < 1e-12);
 assert.ok(Math.abs(Math.min(...results.map(r => r.allIoc)) -
   0.03426196311316584) < 1e-12);
 assert.ok(Math.abs(Math.max(...results.map(r => r.allIoc)) -
   0.03460110220203884) < 1e-12);
 console.log(JSON.stringify({
-  result: 'PASS / no coherent plaintext under any four minimal stride orientations',
+  result: 'PASS / no coherent plaintext under four minimal mirrored and source-derived odd-mirror orientations',
   originalSourcePositions: 3316,
   all256TableCellsAllocatedExactlyOncePerStride: true,
   unusedRecord: 'physical p50 has no GP runes',
