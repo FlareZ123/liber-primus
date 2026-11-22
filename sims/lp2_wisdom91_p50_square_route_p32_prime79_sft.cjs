@@ -189,7 +189,7 @@ const inner7x7 = [];
 for (let row = 2; row <= 8; row++) {
   for (let col = 2; col <= 8; col++) inner7x7.push(p32[11 * row + col]);
 }
-assert.equal(inner7x7.length, s7); // declared below via fixed table walk
+assert.equal(inner7x7.length, 49); // matches original table[91] output
 assert.deepEqual(inner7x7.slice(-4), [17, 1, 23, 15]); // B-U-D-S
 assert.equal(inner7x7.slice(-4).reduce((a, b) => a + b, 0), 56);
 const ringLengths = [11 * 11 - 9 * 9, 9 * 9 - 7 * 7];
