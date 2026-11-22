@@ -174,7 +174,6 @@ const planted=Array.from({length:256},(_,i)=>book.pages[57].indices[i%95]);
 assert.equal(book.pages[57].indices.length,95);
 assert.deepEqual(decode(encode(planted)),planted);
 const output=decode(grid.bytes);
-const output=decode(grid.bytes);
 
 // The original p50 table could be a *key register* rather than encrypted
 // data. This is the first reversible p0 original-cipher receiver downstream
