@@ -432,6 +432,69 @@ const multiplicativeReal=inverseMultiplicative(red);
 assert.equal(multiplicativeReal.stats.firstWordSurvivors,0);
 assert.equal(multiplicativeReal.stats.fullSolutions,0);
 
+
+/**
+ * Visually distinct two-step gate motivated by TWO original graphic
+ * coordinates: red p53 ends with 13 dots and 51 runes, next physical
+ * p54 starts with ONE oversized red A. 51+1=52=4*13. The appended
+ * original A occupies the unique bottom-right cell, which stays LAST
+ * under either natural 4x13 row/column reading direction.
+ *
+ * Freeze a single column transpose + arbitrary repeated 13-additive GP
+ * key in both reciprocal natural read directions. An exhaustive
+ * 11-rune fourth-word anchor fixes the FIRST two plaintext words,
+ * independent of two missing key symbols. No language search ranking,
+ * no fitted padding symbol, no phase shift, no deletion other than the
+ * one source-marked oversized A.
+ */
+const p54BigA=gp.pages.find(x=>x.page===54).indices[0];
+assert.equal(p54BigA,24);
+function readSquare52(vals,mode){
+  assert.equal(vals.length,52);
+  const out=[];
+  if(mode==="row-to-column"){
+    for(let col=0;col<13;col++)
+      for(let row=0;row<4;row++)out.push(vals[row*13+col]);
+  }else if(mode==="column-to-row"){
+    for(let row=0;row<4;row++)
+      for(let col=0;col<13;col++)out.push(vals[col*4+row]);
+  }else throw Error("unknown frozen source route");
+  assert.equal(out.length,52);
+  assert.equal(out[51],vals[51]);
+  return out;
+}
+function source13AnchorStats(cipher){
+  assert.equal(cipher.length,51);
+  const result={longWordTypes:lex[11].length,
+    firstWordSurvivors:0,firstTwoSurvivors:0};
+  for(const anchored of lex[11]){
+    const K=anchored.nums.map((v,j)=>mod(cipher[13+j]-v));
+    const first=Array.from({length:5},(_,j)=>mod(cipher[j]-K[j]));
+    if(!lookup[5].has(token(first)))continue;
+    result.firstWordSurvivors++;
+    const second=Array.from({length:4},(_,j)=>mod(cipher[5+j]-K[5+j]));
+    if(lookup[4].has(token(second)))result.firstTwoSurvivors++;
+  }
+  return result;
+}
+const column13=[];
+for(const [mode,inverse] of [
+  ["row-to-column","column-to-row"],
+  ["column-to-row","row-to-column"],
+]){
+  const actualPadded=readSquare52(red.concat([p54BigA]),mode);
+  const originalStats=source13AnchorStats(actualPadded.slice(0,51));
+  assert.equal(originalStats.firstTwoSurvivors,0);
+  const knownCipher52=encipher(planted,key).concat([p54BigA]);
+  const reconstructedSource=readSquare52(knownCipher52,inverse);
+  const recovered=readSquare52(reconstructedSource,mode);
+  assert.deepEqual(recovered,knownCipher52);
+  const positiveStats=source13AnchorStats(recovered.slice(0,51));
+  assert(positiveStats.firstTwoSurvivors>=1);
+  column13.push({mode,original:originalStats,
+    exact51GPPositive:true,planted:positiveStats});
+}
+
 console.log("summary",JSON.stringify({
   original:{physicalPage:53,redOffset:128,runes:51,redWordLengths:EXPECTED,
     punctuationDots:13,anchorStart:13,anchorLength:11,
@@ -450,6 +513,7 @@ console.log("summary",JSON.stringify({
     scalarControl},
   fieldMultiplicative:{planted:multiplicativePositive.stats,
     original:multiplicativeReal.stats},
+  red51PlusP54BigA4by13ColumnAndAdditive13:column13,
   decision:"No native-word inverse for p53 red51 under the source-selected " +
     "13-rune repeated additive, 13-lag plaintext autokey (+/-), " +
     "13-lag ciphertext autokey (+/-), 28-scalar affine/additive " +
