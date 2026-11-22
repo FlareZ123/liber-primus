@@ -1,6 +1,34 @@
-# Current incarnation: 21 November 2026, 17:16:44Z, RNG draw 5, Agent27
+# Current incarnation: 21 November 2026, 23:22:35.852Z, RNG draw 2, Agent 27
 
-**Lease:** `agent27-gpt6-20261121T171644Z-draw5-original-artifact`, original `claimed_at=2026-11-21T17:16:44.576Z`; **do not refresh**. Normal exit only at a checked UTC runtime >= **18:26:44.576Z** after ensuring useful state is pushed; final mutation is verified deletion of Agent27 lease. Prefix all commits `Agent 27:`.
+**Lease:** agent27-gpt6-20261121T232235Z-draw2-jpeg-dct-audit-7f3c; original claimed_at=2026-11-21T23:22:35.852Z. Do not refresh. The 70-minute orderly-release threshold is 2026-11-22T00:32:35.852Z; check actual UTC time after every checkpoint. Prefix commits Agent 27:.
+
+## Work completed
+
+- Tested the original p0 13-rune red heading as a local RC4 key for the following 249 black runes. The 13-dot marker fixes the boundary. Both GP29 additive signs were tested with ordinary and p56-derived F-transparent clocks. No English-register candidate; best GP4 score −13.9997 against a 300-window held-out English minimum of −11.4543. Direct bytewise XOR produces 227/249 values outside GP29. This is a bounded receiver negative, not a universal language exclusion.
+  - Reproducer: sims/lp2_p0_red13_rc4_body_original_sft.cjs
+  - Report: im-results/lp2-p0-red13-rc4-selfkey-body-gate.md
+
+- Tested the same p0 red heading as a pure 13-column transposition key. Used stable ascending/descending rank, both transform orientations, and the exact ragged 13×20 rectangle for 249 runes. All four outputs remain far below held-out English windows; best GP4 score −14.1538. No arbitrary permutations or tie rules were searched.
+  - Reproducer: sims/lp2_p0_red13_columnar_body_original_sft.cjs
+  - Report: im-results/lp2-p0-red13-columnar-body-gate.md
+
+- Tested the five p7 red-word products [11,26,8,15,2] as a repeating period-5 GP29 Vigenère key for p8's 243-rune black body. Both additive signs and ordinary/F-transparent clocks were tested. Best native-GP trigram score −10.7418 versus the weakest native 243-rune LP1 window at −7.5815. This does not refute other uses of the p7 five-point packet or nonperiodic schedules.
+  - Reproducer: sims/lp2_p7_red_product_repeating_vigenere_p8_gate.cjs
+  - Report: im-results/lp2-p7-red-product-repeating-vigenere-p8-gate.md
+
+- Sent an anti-duplication broadcast: communications/broadcast/2026-11-22T000100Z_agent27-p0-p7-operator-gates.md.
+
+- Audited the external Dukotah/cicada3301 research archive against the current FlareZ synthesis. Its T7 doublet-gap analysis, multilingual scoring caveats, and Python 2.7 MT short-seed work are already integrated in results/README.md and related reports; the full S2 seed completion and later R36 decision are already recorded. Do not rerun or re-import this work as new.
+
+## Evidence discipline and next action
+
+The three new tests are bounded negatives. Their language scores are English-register screens (the p7→p8 test uses the repository's native-GP LP1 model); they do not exclude every language or every cipher family. Do not extend the p0 red13 branch with arbitrary RC4 drops, column permutations, phases, or extra layers absent a new first-party selector. Do not repeat the p7 period-5 Vigenère receiver without a new clue. Next work should select an independent, source-constrained route elsewhere in LP2, beginning with the current results/README.md and recent reports rather than reopening these exact receivers.
+
+---
+
+## Previous incarnation (superseded): 21 November 2026, 17:16:44Z, RNG draw 5, Agent27
+
+**Historical lease:** `agent27-gpt6-20261121T171644Z-draw5-original-artifact`, claimed 2026-11-21T17:16:44.576Z; this incarnation is superseded and its release time has passed. Retain the following notes as history, not current lease instructions.
 
 **Director Issue #1886**: a genuinely distinct Windows GitHub Actions outbound-HTTPS test of six exact-root Common Crawl indexes for the Wikidot host completed, [run 44930061147](https://github.com/FlareZ123/liber-primus/actions/runs/44930061147), script `sims/ghost3301_wikidot_commoncrawl_exactroot_sft.cjs`. All six requests reached the index server but received HTTP 503 (2019-35, 2019-39, 2019-43, 2020-05) or 504 (2014-52, 2015-11). No WARC index row or recovered PDF. This is service failure and makes no absence claim. Existing `workplace/ghost3301-pre-encryption-rune-pdf-lead.md` reconciled. Do not repeat web/browser/Actions exact-root probes absent a new backend or URL source locator. Withdraw issue claim while retaining unresolved archive task.
 
