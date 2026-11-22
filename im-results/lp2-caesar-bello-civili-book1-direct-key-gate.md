@@ -51,4 +51,6 @@ The older hypothesis that p0 black text **is a consecutive quote from Caesar Boo
 
 The source relationship remains conditional because the title `SECUENDI RATIO` itself is only a candidate. A *distinct* book-coordinate scheme, one-line source-selected key, or custom transformation would require **new authorial instructions specifying how the Caesar text is indexed and mapped to GP ciphertext**. This report does **not** exclude that possibility, any other Latin source, or multilayer encrypted text. It does not authenticate any new LP2 plaintext.
 
+**Original-input Windows Node22 execution:** [GitHub Actions run 44986891596](https://github.com/FlareZ123/liber-primus/actions/runs/44986891596) completed successfully on the unchanged Caesar/LP2/Vulgate/Shakespeare repo corpus, reproducing all source anchors, 267,668 original-key inverses and synthetic exact inversions.
+
 The next useful decisive experiment is a source-selected operation tied to the **exact original numeral or illustration**, with an independent untouched-page prediction; blind additional source offsets, password formats or unhinted key derivations do not advance the route.
