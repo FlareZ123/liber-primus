@@ -1,0 +1,21 @@
+name: Agent11 2005 Wikimedia tree vs original LP2 p32
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-tree:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install image-registration dependencies
+        run: python -m pip install numpy opencv-python-headless
+      - name: Compare authentic 2005 photo with original p32 and p55
+        run: python sims/lp2_p32_wikimedia2005_treeshape_source_sft.py
