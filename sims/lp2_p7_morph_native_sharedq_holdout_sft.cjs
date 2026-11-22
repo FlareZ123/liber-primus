@@ -192,6 +192,42 @@ for(const mode of ["ciphertext","plaintext"]){
     positive.push({mode,word,recovered:params});
   }
 }
+// Blind complete-lexicon calibration: the true hidden q must be shared
+// by two separately enciphered native words. Count impostor shared q vectors
+// that arise from every other lexicon entry, both for a genuinely shared key
+// and for two independently drawn nonmatching keys.
+const falseQCalibration={};
+for(const mode of ["ciphertext","plaintext"]){
+  const scenarios={
+    common: [sharedPlant,sharedPlant],
+    different: [sharedPlant,[9,4,7,5,2]]
+  };
+  const score={};
+  for(const [label,keys] of Object.entries(scenarios)){
+    const qHits=new Map();
+    for(let index=0;index<syntheticWords.length;index++){
+      const name=syntheticWords[index],P=words.get(name).P;
+      const C=encrypt(P,mode,keys[index],7,11,3,[23,2,5,2,19]);
+      for(const x of byLength.get(P.length)){
+        const params=compatible(C,x.P,mode);
+        if(!params)continue;
+        const q=params.q.join(",");
+        const hits=qHits.get(q)||[];
+        hits.push({sourceWord:name,interpretedAs:x.word,a:params.a});
+        qHits.set(q,hits);
+      }
+    }
+    const cross=[...qHits].filter(([,hits])=>
+      new Set(hits.map(h=>h.sourceWord)).size===2);
+    score[label]={crossSharedQ:cross.length,
+      matchingTrueQ:cross.filter(([q])=>q===sharedPlant.join(",")).length,
+      spuriousSharedQ:cross.filter(([q])=>q!==sharedPlant.join(",")).length,
+      crossSharedQAndA:cross.filter(([,hits])=>
+        new Set(hits.map(h=>h.a)).size===1).length};
+    assert.equal(score[label].matchingTrueQ,label==="common"?1:0);
+  }
+  falseQCalibration[mode]=score;
+}
 const results={};
 for(const mode of ["ciphertext","plaintext"]){
   const byQ=new Map(),wordFits=[];
@@ -223,6 +259,7 @@ const output={
     sourceGP14:byLength.get(14).length,
     morphGenerated:generated,oldUnfilteredDWYL:dwyl.length},
   positives:positive,
+  fullLexiconCalibratedFalseQ:falseQCalibration,
   unchangedOriginal7:results
 };
 console.log(JSON.stringify(output,null,2));
