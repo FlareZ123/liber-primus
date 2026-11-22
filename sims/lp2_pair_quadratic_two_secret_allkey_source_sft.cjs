@@ -143,6 +143,57 @@ const result=original.map(({name,indices,expected})=>{
     exactReencryption:"all-original positions",nativePlant:"all positions"
   };
 });
+/** @param {number[][]} pages @param {number} mask @param {number} b @param {boolean} inverse */
+function pagePhaseSecond(pages,mask,b,inverse){
+  const out=[];
+  for(let page=0;page<pages.length;page++){
+    const text=pages[page],phase=(mask>>page)&1;
+    for(let i=phase;i+1<text.length;i+=2)
+      out.push(inverse?mod29(text[i+1]-b*text[i]*text[i]):text[i+1]);
+  }
+  return out;
+}
+const pageResetResult=[16,40].map((start,idx)=>{
+  const pages=corpus.pages.slice(start,start+6).map(p=>p.indices);
+  const lengths=pages.map(p=>p.length),N=lengths.reduce((a,b)=>a+b,0);
+  const masks=1<<pages.length;
+  let upper={fraction:-1};
+  for(let b=0;b<29;b++)for(let mask=0;mask<masks;mask++){
+    const vals=pagePhaseSecond(pages,mask,b,true);
+    const count=top12(vals),fraction=count/vals.length;
+    if(fraction>upper.fraction)
+      upper={b,mask,n:vals.length,top12:count,fraction};
+  }
+  let nativeLeast={fraction:Infinity},nativeWindows=0;
+  for(let offset=0;offset+N<=gibranNative.length;offset+=N){
+    let next=offset;
+    const nativePages=lengths.map(length=>{
+      const window=gibranNative.slice(next,next+length);next+=length;
+      return window;
+    });
+    for(let mask=0;mask<masks;mask++){
+      const vals=pagePhaseSecond(nativePages,mask,0,false);
+      const count=top12(vals),fraction=count/vals.length;
+      nativeWindows++;
+      if(fraction<nativeLeast.fraction)
+        nativeLeast={offset,mask,n:vals.length,top12:count,fraction};
+    }
+  }
+  assert(upper.fraction<nativeLeast.fraction);
+  // Arbitrary but frozen key; for each possible per-page phase schedule
+  // both original and GP-literary plant reencode without one lost glyph.
+  for(let mask=0;mask<masks;mask++)
+    for(let j=0;j<pages.length;j++){
+      const phase=(mask>>j)&1,orig=pages[j],test=decrypt(orig,seed,phase);
+      assert.deepEqual(encrypt(test,seed,phase),orig);
+    }
+  return {
+    source:original[idx].name,resetMasks:masks,
+    possibleSharedBValues:29,allSecretKeys:29**4,
+    originalWorstCaseUpper:upper,
+    nativeReferenceWindowCount:nativeWindows,nativeMinimum:nativeLeast
+  };
+});
 console.log(JSON.stringify({
   hypothesis:"Any secret quadratic triangular GP29 pair mixer, two phase conventions",
   verdict:"Excluded as a single-step native-GP plaintext decoder on both independent original receivers",
@@ -151,5 +202,6 @@ console.log(JSON.stringify({
   sourceAuthenticatedCipher:false,
   positiveSyntheticPassed:true,
   originalPlaintextRecovered:false,
-  result
+  result,
+  pageResetResult
 },null,2));
