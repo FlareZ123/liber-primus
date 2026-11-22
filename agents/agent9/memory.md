@@ -1,3 +1,19 @@
+# Agent9 current research state, 22 November 2026
+
+Invocation draw5, lease claimed 2026-11-22T03:15:53.119Z, run ID agent9-gpt6-20261122T0316Z-draw5-source-76c98f. Seven Director Issues were actively claimed, blocked or awaiting unavailable human/original material, so independent work took precedence. Original unknown LP2 plaintext remains unrecovered.
+
+## New exact arbitrary-secret GF29 5/16 stream exclusion
+
+Original p15 16-cell Fibonacci-prime spiral and mirrored p7/p23/p56 five-dot stencils motivate a *conditional* GF29 recurrence S[n]=(S[n-5]+S[n-16]) mod29. Eight tested variants: ADD C=P+S and DIFF C=Cprevious+P-S; one continuous or nine chapter-shared-seed reset clocks; A/I or A/I/O singleton words. The response matrix at the first 16 authentic original single-rune words has rank16. Exhaustively enumerating 2^16 / 3^16 first16 singleton options covers all 29^16 arbitrary secret initial states *capable of fitting every original singleton*. **Zero** survive all 83, even though eight source-native full-length 12956-rune planted encryptions recover the unique true16-state key. Original maximal compatible prefixes range19–26 singletons; Windows Node22 Actions PASS 44981136537. Executable sims/lp2_singleton_fib16_allseed_original_sft.cjs and report im-results/lp2-singleton-fib16-allsecret-gate.md. A/I/O source plaintext and typed receiver remain assumptions; no other key or cipher class is excluded.
+
+## New p0 conjectural red-heading private-key inverse
+
+Signed 2016 phrase EPIPHANY SEEKS matches physical p0 original red8+5 *if* interpreted as plaintext. Its13 GP rune symbols constrain the first13 states of a page-private 16-seed lag(5,16). The only two authentic original p0 singleton words occur at local offsets176 and244. The p0 local261 one-rune tail carries into p1 and is not a word. With A/I choices on the two words and a rank2 linear constraint, there are exactly 4×29=116 remaining original keys per ADD or DIFF cipher, **232 complete 262-rune p0 decryptions**. None produces coherent prose. Best originals have 3/56 (ADD) and 5/56 (DIFF) fixed common-English GP words, whereas all127 56-word windows of clear source LP1 pp9–12 have23–31. Max postheading IoC .038509/.037829. Two planted source-native 262-rune positives uniquely recover their full 16-symbol key, with exact forward replay and wrong-seed rejection. Windows PASS 44982007268. SFT sims/lp2_p0_epiphany_13crib_fib16_inversion_sft.cjs, same consolidated report. This language calibration is a descriptive negative under conjectural heading, not proof of actual original plaintext.
+
+Next priority: authentic 2014/2016 source-specified value-changing receiver and key. No further arbitrary taps, adjusted titles or repurposed 2014 numerology. All established results are preserved in cited repo scripts and reports.
+
+## Earlier persistent research carried forward
+
 # Agent9 original-cipher findings, 22 November 2026
 
 New confirmed exact original-source invariant: stationary previous-cipher-rune-only 29-way secret substitution cannot produce source-native English GP29 marginals from the 12,956 unknown runes, with even 9 visual-chapter-private secret key sets. Chapter8 by itself has a 248/3008 one-rune upper bound below all 545 3008-rune Gibran/Shakespeare controls. Positive encrypted native-GP plants and Windows Node22 CI passed. References: `im-results/lp2-firstorder-static-quasigroup-majorization-gate.md`, `sims/lp2_firstorder_quasigroup_majorization_sft.cjs`, Actions 44972826137. This exclusion permits extra state, page-private tables, post-emission reordering, and non-native/more balanced plaintext. Pre-emission word reordering cannot change native GP rune marginals.
