@@ -256,6 +256,69 @@ assert.equal(p32.length - selectedTotient, strictWordInteriors.length);
 assert.equal((s7 - s4) + (p32.length - selectedTotient), p55.length);
 console.log('TOTAL PARTITION: exterior=(49-16)=33; interior=(121-phi(79))=43; sum=76 original p55');
 
+
+// Two p55 physical counts become exact ORIGINAL p32 word-boundary addresses.
+// Exterior count33 is the start of one 11-rune original printed word.
+// Interior count43 is its inclusive final rune; its literal first 4 runes
+// transliterate as HOME. The entire selected original word is a possible
+// unambiguous 11-rune key, with direct GP29 additive uses tested below.
+const originalP32Words = transcript.split('%')[32].replace(/\/\s*/g, '')
+  .match(/[\u16A0-\u16FF]+/gu);
+let wordStart = 0;
+const p32WordBounds = originalP32Words.map((word) => {
+  const length = Array.from(word).length;
+  const record = { start: wordStart, end: wordStart + length - 1, word };
+  wordStart += length;
+  return record;
+});
+assert.equal(wordStart, p32.length);
+const selectedWord = p32WordBounds.find((word) =>
+  word.start === exteriors && word.end === strictWordInteriors.length);
+assert(selectedWord);
+assert.equal(selectedWord.end - selectedWord.start + 1, 11);
+assert.equal(selectedWord.word.length, 11);
+const selectedP32WordKey = Array.from(selectedWord.word).map((rune) => gpByRune.get(rune));
+assert.deepEqual(selectedP32WordKey, p32.slice(33, 44));
+assert.equal(selectedP32WordKey.slice(0, 4).map((x) => corpus.translit[x]).join(''), 'HOME');
+const p32TerminalBudsWord = p32WordBounds.find((word) =>
+  word.start === 89 && word.end === 96);
+assert(p32TerminalBudsWord);
+assert.equal(p32TerminalBudsWord.word.length, 8);
+assert.deepEqual(Array.from(p32TerminalBudsWord.word).slice(-4).map((rune) => gpByRune.get(rune)), [17, 1, 23, 15]);
+console.log('WORD BOUNDS: p55 33/43 select exact p32 11-rune original word HOMEXWDSLFD [33..43]');
+console.log('BUDS is terminal 4/8 runes of original p32 word [89..96] at central49 boundary');
+
+/** @param {number[]} ciphertext @param {number[]} key @param {number} sign */
+function strictPeriodicKeyFirstFailure(ciphertext, key, sign) {
+  let consumedStates = new Set([0]);
+  for (let i = 0; i < ciphertext.length; i++) {
+    const nextStates = new Set();
+    for (const k of consumedStates) {
+      const plain = ((ciphertext[i] + sign * key[k % key.length]) % 29 + 29) % 29;
+      if (plain !== 0) nextStates.add(k + 1);
+      if (ciphertext[i] === 0) nextStates.add(k); // plaintext-F literal bypass
+    }
+    consumedStates = nextStates;
+    if (!consumedStates.size) return i;
+  }
+  return -1;
+}
+assert.equal(strictPeriodicKeyFirstFailure(strictWordInteriors, selectedP32WordKey, -1), 36);
+assert.equal(strictPeriodicKeyFirstFailure(strictWordInteriors, selectedP32WordKey, 1), 29);
+assert.equal(strictPeriodicKeyFirstFailure(p55, selectedP32WordKey, -1), 2);
+assert.equal(strictPeriodicKeyFirstFailure(p55, selectedP32WordKey, 1), 0);
+const clear43 = corpus.pages.find((p) => p.page === 57).indices.slice(0, 43);
+for (const sign of [-1, 1]) {
+  let k = 0;
+  const planted = clear43.map((plain) => {
+    if (plain === 0) return 0;
+    const enc = ((plain - sign * selectedP32WordKey[k++ % 11]) % 29 + 29) % 29;
+    return enc;
+  });
+  assert.equal(strictPeriodicKeyFirstFailure(planted, selectedP32WordKey, sign), -1);
+}
+console.log('CIPHER GATE: selected original 11-rune HOME-start word as additive key fails p55 all76/inner43 all strict-F masks');
+
 const pythagoreanDefect = s11 - s7 - s4;
 assert.equal(pythagoreanDefect, 2 * 7 * 4);
 assert.equal(pythagoreanDefect, 56);
