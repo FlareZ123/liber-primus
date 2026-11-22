@@ -214,7 +214,7 @@ function main() {
     .map(word => ({ word, runes: encodeSourceNativeGP(word) }))
     .filter(entry => entry.runes.length === 5 && new Set(entry.runes).size === 5);
   assert.deepEqual([...new Set(warningWords.map(entry => entry.word))].sort(),
-    ['CHANGE', 'NOTHING', 'WORDS']);
+    ['CHANGE', 'WARNING', 'WORDS']);
   const change = encodeSourceNativeGP('CHANGE');
   assert.deepEqual(change, [5, 8, 24, 21, 18]);
   const targetRoots = [...change].sort((a, b) => a - b);
@@ -286,7 +286,7 @@ function main() {
     first_five_magic_sum: 3301,
     final_five_magic_sum: 1033,
     source_warning_word_spectral_correspondence: {
-      original_lp1_warning_five_distinct_GP_words: ['CHANGE', 'NOTHING', 'WORDS'],
+      original_lp1_warning_five_distinct_GP_words: ['CHANGE', 'WARNING', 'WORDS'],
       exact_matching_anagram: matches,
       CHANGE_native_GP_runes: change,
       original_final1033_square_charpoly_mod29: finalCharacteristic,
