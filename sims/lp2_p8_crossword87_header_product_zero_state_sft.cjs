@@ -653,6 +653,81 @@ for (const sign of [-1, 1]) {
 }
 assert(ringReceivers.every(x => x.fullIoC < 0.036));
 
+
+// A separate physically exact cross-page channel: p7 has precisely194
+// original black runes before its final14 red runes. P8's authentic243
+// black glyphs are divided by their ORIGINAL printed punctuation into
+// 49 page-local word fragments (last fragment is the carried singleton).
+// Thus the next page has 243-49=194 INTRA-word successor slots. These
+// can be aligned to p7's black194 without using any unknown plaintext.
+// This is an original-source count equality; it does not authenticate
+// a cipher or authorize moving five continuation runes from p9.
+let p8RuneOffset = 0, p8PrintedBlack = "";
+for (const ch of pages[8]) {
+  if (runes.has(ch)) {
+    if (p8RuneOffset >= 12) p8PrintedBlack += ch;
+    p8RuneOffset++;
+  } else if (p8RuneOffset >= 12) p8PrintedBlack += ch;
+}
+assert.equal(p8RuneOffset, 255);
+const blackFragments = p8PrintedBlack.split(/[-.]/)
+  .map(fragment => Array.from(fragment).filter(c => runes.has(c))
+    .map(c => runeIds.get(c)))
+  .filter(fragment => fragment.length > 0);
+assert.equal(blackFragments.length, 49);
+assert.deepEqual(blackFragments.flat(), blackOriginal);
+assert.deepEqual(blackFragments.at(-1), [12]);
+const p7BlackToP8WordDifferential = {
+  p7BlackPrefix: p7.slice(0, 194),
+  p8BlackWordFragments: blackFragments,
+  inWordSteps: blackFragments.reduce((n, w) => n + w.length - 1, 0),
+};
+assert.equal(p7BlackToP8WordDifferential.p7BlackPrefix.length, 194);
+assert.equal(p7BlackToP8WordDifferential.inWordSteps, 194);
+const wordDifferentialTests = [];
+/** @param {number} n @returns {number} */
+const modGP = n => ((n % 29) + 29) % 29;
+/** @param {number[][]} words @param {string} law @param {number} sign
+ * @param {boolean} isEncode @returns {number[][]} */
+function wordDifferential(words, law, sign, isEncode) {
+  let offset = 0;
+  return words.map(word => {
+    if (!word.length) return [];
+    const out = [word[0]];
+    for (let i = 1; i < word.length; i++) {
+      const k = p7BlackToP8WordDifferential.p7BlackPrefix[offset++];
+      const prevCipher = isEncode ? out[i - 1] : word[i - 1];
+      if (law === "pad") out.push(modGP(word[i] + (isEncode ? -sign : sign) * k));
+      if (law === "difference") out.push(isEncode
+        ? modGP(word[i] + prevCipher - sign * k)
+        : modGP(word[i] - prevCipher + sign * k));
+      if (law === "sum") out.push(isEncode
+        ? modGP(word[i] - prevCipher - sign * k)
+        : modGP(word[i] + prevCipher + sign * k));
+    }
+    return out;
+  });
+}
+for (const law of ["pad", "difference", "sum"]) {
+  for (const sign of [-1, 1]) {
+    const recovered = wordDifferential(blackFragments, law, sign, false);
+    assert.deepEqual(wordDifferential(recovered, law, sign, true), blackFragments);
+    const output = recovered.flat();
+    assert.equal(output.length, 243);
+    const inside = recovered.flatMap(w => w.slice(1));
+    assert.equal(inside.length, 194);
+    wordDifferentialTests.push({
+      law, sign, originalIoc: indexOfCoincidence(blackOriginal),
+      recoveredIoc: indexOfCoincidence(output),
+      internalIoc: indexOfCoincidence(inside),
+      firstWords: recovered.slice(0, 12).map(w => w.map(v => corpus.translit[v]).join("")).join(" "),
+      originalReplayedRunes: output.length,
+    });
+  }
+}
+assert.equal(wordDifferentialTests.length, 6);
+assert(wordDifferentialTests.every(x => x.recoveredIoc < 0.036));
+
 console.log(JSON.stringify({
   source: "Original p7-p9 GP29 corpus, ink spans, and physical text",
   page8: {
@@ -687,6 +762,7 @@ console.log(JSON.stringify({
   pythagoreanOriginalGP29PairRotations: pairRotations,
   pythagoreanOriginalP8SourcePacketRotations: sourcePacketRotations,
   sourceSelectedGF243DHExponent15Table: nonlinearGF3TableResults,
+  exactP7Black194ToP8Black49WordInterior194: wordDifferentialTests,
   berggrenTripleRootChildren: berggrenFirstChildren,
   berggrenDepthFiveOriginalConsumers: berggrenTreeConsumers,
   berggrenDirectLeafHypotenuseMatches: directHypMatching,
