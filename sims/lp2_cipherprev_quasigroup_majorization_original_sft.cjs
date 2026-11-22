@@ -87,7 +87,7 @@ assert.equal(crossedInkInsideWord, 0,
   "red/black typography boundaries must coincide with original word boundaries");
 const TOP = [1, 2, 3, 5, 8, 10];
 const scopes = ["global", "section", "page", "position", "sectionParity",
-  "color", "sectionColor", "positionColor"];
+  "color", "sectionColor", "positionColor", "sectionParityColor"];
 const groupAt = (scope, offset, wordPosition) =>
   scope === "global" ? 0 :
   scope === "section" ? sectionAt[offset] :
@@ -95,12 +95,14 @@ const groupAt = (scope, offset, wordPosition) =>
   scope === "sectionParity" ? sectionAt[offset] * 2 + (wordPosition % 2) :
   scope === "color" ? redAt[offset] :
   scope === "sectionColor" ? sectionAt[offset] * 2 + redAt[offset] :
-  scope === "positionColor" ? wordPosition * 2 + redAt[offset] : wordPosition;
+  scope === "positionColor" ? wordPosition * 2 + redAt[offset] :
+  scope === "sectionParityColor" ? sectionAt[offset] * 4 +
+    (wordPosition % 2) * 2 + redAt[offset] : wordPosition;
 
 /**
  * Exact envelope of ANY secret row bijections under a given reset scope.
  * @param {number[][]} ciphertext
- * @param {"global"|"section"|"page"|"position"|"sectionParity"|"color"|"sectionColor"|"positionColor"} scope
+ * @param {"global"|"section"|"page"|"position"|"sectionParity"|"color"|"sectionColor"|"positionColor"|"sectionParityColor"} scope
  */
 function envelope(ciphertext, scope) {
   assert(scopes.includes(scope));
@@ -317,6 +319,11 @@ assert.equal(originalCaps.sectionColor.capacities[1], 1134);
 assert.equal(originalCaps.sectionColor.capacities[5], 4024);
 assert.equal(originalCaps.positionColor.capacities[1], 1160);
 assert.equal(originalCaps.positionColor.capacities[5], 4089);
+assert.equal(originalCaps.sectionParityColor.capacities[1], 1473);
+assert.equal(originalCaps.sectionParityColor.capacities[2], 2547);
+assert.equal(originalCaps.sectionParityColor.capacities[5], 4956);
+assert.equal(originalCaps.sectionParityColor.groups, 32);
+assert.equal(originalCaps.sectionParityColor.rows, 595);
 assert.equal(originalCaps.global.equal, 63);
 
 const corpusPaths = [
@@ -333,7 +340,7 @@ for (const [sourceIndex, sourcePath] of corpusPaths.entries()) {
   let plantControls = null;
   let switchedModeControls = null;
   let minForcedVariantPairs = Infinity, maxForcedVariantPairs = 0,
-    sourceVariantViolations = 0;
+    sourceVariantViolations = 0, joint32StateRankPasses = 0;
   for (let trial = 0; trial < 60; trial++) {
     const nativeWords = drawNative(pools, random);
     const st = languageRank(nativeWords);
@@ -342,6 +349,9 @@ for (const [sourceIndex, sourcePath] of corpusPaths.entries()) {
     minForcedVariantPairs = Math.min(minForcedVariantPairs, forcedWordPairs);
     maxForcedVariantPairs = Math.max(maxForcedVariantPairs, forcedWordPairs);
     if (forcedWordPairs > 230) sourceVariantViolations++;
+    if (st.top1 <= originalCaps.sectionParityColor.capacities[1] &&
+        st.top5 <= originalCaps.sectionParityColor.capacities[5])
+      joint32StateRankPasses++;
     minTop1 = Math.min(minTop1, st.top1);
     maxTop1 = Math.max(maxTop1, st.top1);
     minTop5 = Math.min(minTop5, st.top5);
@@ -374,7 +384,8 @@ for (const [sourceIndex, sourcePath] of corpusPaths.entries()) {
   assert(minTop5 > originalCaps.position.capacities[5]);
   controls.push({sourcePath, trials:60,
     top1Range:[minTop1, maxTop1], top5Range:[minTop5, maxTop5],
-    EMinimum:minE, positivePlant:plantControls,
+    EMinimum:minE, joint32StateRankPasses,
+    positivePlant:plantControls,
     freeWordStartVariantBound:{maximumCipherCodewordsPerPlainWord:29,
       originalCipherWordPairCount:230,
       sourceForcedPairRange:[minForcedVariantPairs,maxForcedVariantPairs],
@@ -416,7 +427,7 @@ function oldEnglishSourceControl() {
   const rngSource = rng(0x44551019);
   let minTop1 = Infinity, maxTop1 = 0, minTop5 = Infinity, maxTop5 = 0;
   let minForcedVariantPairs = Infinity, maxForcedVariantPairs = 0,
-    sourceVariantViolations = 0;
+    sourceVariantViolations = 0, joint32StateRankPasses = 0;
   for (let trial = 0; trial < 180; trial++) {
     const sampled = eligible.map(w => {
       const options = bins.get(w.length);
@@ -429,6 +440,9 @@ function oldEnglishSourceControl() {
     minForcedVariantPairs = Math.min(minForcedVariantPairs, forcedWordPairs);
     maxForcedVariantPairs = Math.max(maxForcedVariantPairs, forcedWordPairs);
     if (forcedWordPairs > 230) sourceVariantViolations++;
+    if (ranks.top1 <= originalCaps.sectionParityColor.capacities[1] &&
+        ranks.top5 <= originalCaps.sectionParityColor.capacities[5])
+      joint32StateRankPasses++;
     minTop1 = Math.min(minTop1, ranks.top1);
     maxTop1 = Math.max(maxTop1, ranks.top1);
     minTop5 = Math.min(minTop5, ranks.top5);
@@ -505,6 +519,7 @@ function oldEnglishSourceControl() {
     originalMatchedWords:eligible.length, missingLongSourceWords:3,
     eligibleSites:10021, trials:180,
     top1Range:[minTop1,maxTop1], top5Range:[minTop5,maxTop5],
+    joint32StateRankPasses,
     globallyStationaryFree29WordStartBound:{
       originalCipherWordPairs:230,
       minSourceForcedPairs:minForcedVariantPairs,
