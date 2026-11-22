@@ -40,6 +40,20 @@ The exact original 12,956-rune continuous LP2 p0–55 unknown stream contains **
 
 The profile number **9901** additionally satisfies the exact arithmetic identity `9901 = 3×3301 - 2`, so `9901 mod 3301 = 3299`, the original p15 **red initial numeral**. This is a *retrospective modular echo*, not an independently source-specified modulo instruction or a statistical discovery claim. The number may have been chosen for unrelated properties.
 
+
+## Frozen original-cipher consumer of the profile prime 9901
+
+The profile explicitly supplies the independent prime **9901**; the only already authenticated LP2 runic key schedule is p56's additive `φ(successive primes)` with literal plaintext F passed through without advancing the key. Two obvious meanings of source number 9901, before any unknown text scoring, are **start at prime value 9901 = p[1221]**, or **start at one-based prime ordinal 9901 = prime103613**. P16 is the immediately following full runic page after the source-visible p15 key square, so the test was frozen to its original 267 unmodified runes, beginning at its very first glyph. No phase search, sign change, guessing plaintext-F skip masks, chapter alternatives or source-key transformations enter.
+
+Track every legally possible transparent-F history exactly: cipher F may be literal F without advancing or an encrypted non-F that consumes one prime; ciphertext non-F **must consume** a prime, and its inverse `P=C−(p−1) mod29` must not be plaintext F. The authentic solved p56 reference admits its actual 84-consumed-prime path.
+
+| Literal 9901 interpretation | Original p16 first impossible zero-based offset | Why all branches fail |
+| --- | ---: | --- |
+| 9901 as prime value = p[1221] | **15** | non-F ciphertext index5; next prime at ordinal1236 is 10069, whose `φ mod29=5`, forcing impossible plaintext F |
+| 9901 as one-based prime ordinal, p[9901]=103613 | **32** | non-F ciphertext index2; next prime at ordinal9933 is 103997, whose `φ mod29=2`, again forcing impossible plaintext F |
+
+Both also fail on any longer unreset section beginning with the same p16 glyphs. This is a decisive original-input exclusion of these **two exact direct applications of 9901** under p56's F-transparent cipher, not a general exclusion of the tweet, its possible use as another key, or hidden plaintext. A source-driven inverse would now require another genuine instruction selecting its operation and recipient. The [same SFT](../sims/lp2_p15_twitter_2014_fibprime_continuation_source_sft.cjs) derives the two prime starts, checks the complete original p56 positive, and asserts both first contradictions.
+
 ## Critical rival and research decision
 
 The tweet lists **Fibonacci primes** `F[prime-index]`; p15 instead takes **ordinary primes at Fibonacci-derived indices** `prime(F+1)`. The two constructions are mathematically distinct and should never be conflated. Their first few overlaps and the first unseen 1597 are consequences of the standard Fibonacci sequence once both are mentioned. Absent creator authentication, a mathematically themed third-party account could intentionally mimic Cicada, and the p42 PNW acronym is a reading of still-encrypted original ciphertext.
@@ -48,4 +62,4 @@ The tweet lists **Fibonacci primes** `F[prime-index]`; p15 instead takes **ordin
 
 ## Reproduction
 
-[Windows Node22 CommonJS SFT](../sims/lp2_p15_twitter_2014_fibprime_continuation_source_sft.cjs) checks the tweet source Git blob, exact ID/time/text, all twelve Fibonacci-prime values including their primality, all sixteen original p15 derived numbers, the next prime ordinal, original p42 index/word, and profile number modular identity. The script is read-only, deterministic and has no fitted cipher parameters, but it **does not** claim a solved LP2 cipher.
+[Windows Node22 CommonJS SFT](../sims/lp2_p15_twitter_2014_fibprime_continuation_source_sft.cjs) checks the tweet source Git blob, exact ID/time/text, all twelve Fibonacci-prime values including their primality, all sixteen original p15 derived numbers, the next prime ordinal, original p42 index/word, and profile number modular identity. The script is read-only, deterministic and has no fitted cipher parameters, but it **does not** claim a solved LP2 cipher. It also runs the two frozen 9901-source p16 transparent-F failures and the authentic p56 positive.
