@@ -93,6 +93,7 @@ assert.equal(global, 12956);
 assert.equal(opportunities, 1290);
 assert.equal(matches, 80);
 assert.equal(afterSixDoublets, 9);
+assert.equal(forcedStrictRepeatContradictions, 8);
 assert.equal(ambiguous.length, 79);
 assert.equal(ambiguous.filter((site) => site.markedRed).length, 2);
 assert.deepEqual(ambiguous.slice(0, 4).map((site) =>
