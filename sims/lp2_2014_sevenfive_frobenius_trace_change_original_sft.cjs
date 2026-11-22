@@ -200,6 +200,39 @@ function ioc(source) {
   for(const v of source) counts[v]+=1;
   return counts.reduce((a,n)=>a+n*(n-1),0)/(source.length*(source.length-1));
 }
+/** Reversible GF29 Hill receiver using the unique factor-trace polynomial. */
+function hillBlocks(M, tape) {
+  assert.equal(tape.length%M.length,0);
+  const out=[];
+  for(let i=0;i<tape.length;i+=M.length) {
+    out.push(...vector(M,tape.slice(i,i+M.length)));
+  }
+  return out;
+}
+const transpose=M=>M[0].map((_,j)=>M.map(r=>r[j]));
+const originalChapter=corpus.pages.filter(p=>p.page>=33&&p.page<=39)
+  .flatMap(p=>p.indices);
+assert.equal(originalChapter.length,1680);
+const native91=corpus.pages.find(p=>p.page===57).indices.slice(0,91);
+const traceInverse=inverse(traceOperator);
+const hillOperators=[
+  ['T(M)',traceOperator,traceInverse],
+  ['T(M)^-1',traceInverse,traceOperator],
+  ['T(M)^T',transpose(traceOperator),transpose(traceInverse)],
+  ['T(M)^-T',transpose(traceInverse),transpose(traceOperator)],
+];
+const hillOutcomes=[];
+for (const [name,op,undo] of hillOperators) {
+  const decoded=hillBlocks(op,originalChapter);
+  assert.deepEqual(hillBlocks(undo,decoded),originalChapter);
+  const plant=hillBlocks(undo,native91);
+  assert.deepEqual(hillBlocks(op,plant),native91);
+  hillOutcomes.push({name,sourceRunes:originalChapter.length,
+    decodedIoc:ioc(decoded),opening:decoded.slice(0,30)
+      .map(v=>corpus.translit[v]).join(' ')});
+}
+assert(hillOutcomes.every(o=>o.decodedIoc<0.04));
+
 const outputs=[];
 for(const [begin,end,expected] of [[8,14,1729],[33,39,1680],[54,55,308]]) {
   const input=corpus.pages.filter(p=>p.page>=begin&&p.page<=end)
@@ -239,6 +272,7 @@ console.log(JSON.stringify({
   uniqueTracePolynomialAscending:tracePolynomial,
   traceCarrierMatrix:map,
   realSourceOutputs:outputs,
+  sevenSquareTraceHillOriginalChapter:hillOutcomes,
   solvedP57Plant:'95/95 trace symbols recovered from 133 encoded runes',
   verdict:'Original-source spectral coincidence and lossless field-trace carrier; no unknown LP2 plaintext or authenticated key.',
 },null,2));
