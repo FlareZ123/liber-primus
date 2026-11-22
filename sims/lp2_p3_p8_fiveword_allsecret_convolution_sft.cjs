@@ -149,4 +149,75 @@ for (const [measure, numbers] of measures) {
     }));
   }
 }
-console.log('PASS: six original-source five-word all-secret obstructions + six GP29 cube plants');
+/**
+ * A much wider all-secret NONLINEAR alternative: any stationary lookup keyed
+ * by the last/next 2 or 3 whole-word feature values, with 29^arity arbitrary
+ * and unobserved table entries. If two source input tuples coincide, every
+ * deterministic table must emit the same next GP rune, regardless of key.
+ * @param {number[][]} rows
+ * @param {number[]} outputs
+ */
+function outputConflicts(rows, outputs) {
+  const first = new Map();
+  let duplicate = 0;
+  let conflict = 0;
+  let earliest = null;
+  for (let j = 0; j < rows.length; j++) {
+    const signature = rows[j].join(',');
+    if (!first.has(signature)) {
+      first.set(signature, j);
+      continue;
+    }
+    duplicate++;
+    const earlier = first.get(signature);
+    if (outputs[j] !== outputs[earlier]) {
+      conflict++;
+      if (!earliest) earliest = [earlier, j, signature, outputs[earlier], outputs[j]];
+    }
+  }
+  return { unique: first.size, duplicate, conflict, earliest };
+}
+const collisionChecks = [
+  // original p8 outputs, each row from two/three source-contained
+  // neighboring original complete words. No arbitrary shift or wrap.
+  ['whole-word-length', [161, 163, 66, 68]],
+  ['GP29-index-sum', [27, 27, 0, 0]],
+  ['GP-prime-sum', [26, 27, 1, 1]],
+  ['GP-index-product', [41, 42, 3, 3]],
+];
+const measureLookup = new Map(measures);
+measureLookup.set('GP-index-product',
+  black.map((w) => w.reduce((value, x) => mod(value * x), 1)));
+for (const [name, expected] of collisionChecks) {
+  const x = measureLookup.get(name);
+  assert(x);
+  for (const [mode, arity, want] of [
+    ['past', 2, expected[0]], ['future', 2, expected[1]],
+    ['past', 3, expected[2]], ['future', 3, expected[3]],
+  ]) {
+    const indices = Array.from({ length: 243 - arity }, (_, j) =>
+      j + (mode === 'past' ? arity - 1 : 0));
+    const rows = indices.map((index) =>
+      Array.from({ length: arity }, (_, step) =>
+        x[index + step * (mode === 'past' ? -1 : 1)]));
+    const outputs = indices.map((index) => target[index]);
+    const actual = outputConflicts(rows, outputs);
+    assert.equal(actual.conflict, want,
+      'contradiction count for every secret stationary nonlinear lookup');
+    if (want > 0) assert(actual.earliest);
+
+    // Full 29^arity lookup is never needed for the positive: a constructed
+    // nonlinear deterministic map of two/three whole-word scalar inputs
+    // gives zero conflicts for ALL repeated input classes.
+    const planted = rows.map((row) => mod(row.reduce((value, term, i) =>
+      value + (i + 3) * (i ? power(term, 5) : power(term, 3)), 7)));
+    assert.equal(outputConflicts(rows, planted).conflict, 0);
+    console.log(JSON.stringify({
+      measure: name, mode, arity, originalPositions: indices.length,
+      originalDuplicates: actual.duplicate, contradictoryOutputs: actual.conflict,
+      firstWitness: actual.earliest, nonlinearPlantConflicts: 0,
+    }));
+  }
+}
+console.log('PASS: six original-source five-word all-secret obstructions + six GP29 cube plants + sixteen unrestricted nonlinear lookup gates and positives');
+
