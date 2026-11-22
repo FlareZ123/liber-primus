@@ -232,6 +232,45 @@ for (const phase of [0, 1]) {
 }
 
 
+/**
+ * A universal page-local invertible **two-rune** decoder, whether a field
+ * multiplier, any GL2(29) matrix, or a secret 841! substitution, permutes
+ * complete original pair states in that page. It preserves repeated PAIRS
+ * *within a page* even when unigram GP29 IoC is changed by a dense basis.
+ * This key-independent no-go also includes the independent source-title
+ * non-scalar coset h=4+3X multiplied by X^(page-8).
+ */
+function pairStateCollision(a) {
+  let same = 0, pairs = 0, states = 0;
+  for (const sites of pagePairs.values()) {
+    const counts = Array(29 * 29).fill(0);
+    for (const i of sites) counts[29 * a[i] + a[i + 1]]++;
+    same += counts.reduce((sum, count) => sum + count * (count - 1), 0);
+    pairs += sites.length * (sites.length - 1);
+    states += sites.length;
+  }
+  return {pages:pagePairs.size, states, same, pairs, ioc:same / pairs};
+}
+const observedPairs = pairStateCollision(ciphertext);
+assert.equal(observedPairs.same, 972);
+assert.equal(observedPairs.pairs, 796524);
+// Construct a fully dense invertible, independently page-translated matrix
+// as an implementation-positive control. Determinant=13 and inverse13=9.
+const plantPairs = ciphertext.slice();
+for (const [p, sites] of pagePairs.entries()) {
+  for (const i of sites) {
+    const a = ciphertext[i], b = ciphertext[i + 1];
+    const u = mod(3 * a + 4 * b + 17 * p);
+    const v = mod(2 * a + 7 * b + 13 * p);
+    plantPairs[i] = u;
+    plantPairs[i + 1] = v;
+    const origA = mod(9 * (7 * (u - 17 * p) - 4 * (v - 13 * p)));
+    const origB = mod(9 * (-2 * (u - 17 * p) + 3 * (v - 13 * p)));
+    assert.equal(origA, a); assert.equal(origB, b);
+  }
+}
+assert.deepEqual(pairStateCollision(plantPairs), observedPairs);
+
 const observedParity = parityCollision(ciphertext);
 const {encodeSourceNativeGP} = require("./lp2_native_gp_source_orthography_sft.cjs");
 const read = file => fs.readFileSync(path.join(root, file), "utf8");
@@ -263,6 +302,18 @@ for (const [author, encoded] of nativeSources) {
     samples.push(parityCollision(encoded.slice(start, start + ciphertext.length)).ioc);
   }
   assert(samples.length >= 1, "native source must include at least one full original-length readout");
+  const pairWindowValues = [];
+  for (let start = 0; start + ciphertext.length <= encoded.length;
+       start += Math.max(1, Math.floor(ciphertext.length / 2))) {
+    pairWindowValues.push(pairStateCollision(encoded.slice(start,
+      start + ciphertext.length)).ioc);
+  }
+  const pairState = {minimum: Math.min(...pairWindowValues),
+    median: pairWindowValues.slice().sort((a, b) => a - b)[Math.floor(pairWindowValues.length / 2)],
+    maximum: Math.max(...pairWindowValues),
+    atOrBelowOriginal: pairWindowValues.filter(v => v <= observedPairs.ioc).length};
+  assert.equal(pairState.atOrBelowOriginal, 0,
+    author + ": source-native pairs must exceed original pair-state collision rate");
   const affinePageCohorts = [0, 1].map(parity => {
     const values = [];
     for (let start = 0; start + ciphertext.length <= encoded.length;
@@ -290,6 +341,7 @@ for (const [author, encoded] of nativeSources) {
   assert(affinePageCohorts.every(c => c.atOrBelowOriginal === 0),
     author + ": affine field page parity native source distinction");
   nativeBaseline[author] = {
+    pairState,
     affinePageCohorts,
     pageCohorts,
     sourceRunes: encoded.length, windows: samples.length,
@@ -322,6 +374,7 @@ for (const sign of [1, -1]) {
       }
     }
   }
+  assert.deepEqual(pairStateCollision(received), observedPairs);
   const recoveredStrata = parityCollision(received);
   assert.deepEqual(recoveredStrata, observedParity);
   // For the natural page-number origin, all even physical pages are
@@ -348,10 +401,11 @@ console.log(JSON.stringify({
   naturalClock:"GF29[X]/(X^2-8) as two global successive runes; X^(page number)",
   original:region(ciphertext),
   originalPageParityCipherCollision:observedParity,
+  originalExactPagewiseTwoRunePairStateCollision:observedPairs,
   originalEvenOddPageCohorts:observedPageCohorts,
   originalAffineEvenOddPageCohorts:observedAffineCohorts,
   independentLanguagePageParityControls:nativeBaseline,
   rootCandidates:results,
   independentNativePositive:"true solved p57 corpus planted and reencrypted/decrypted exactly"
 }, null, 2));
-console.log("PASS: source GF29^2 root56, exact all-phase/basis affine page-parity invariants, native corpus controls, complete source inverse.");
+console.log("PASS: full-book original 841-symbol per-page pair-state all-secret invariant, dense invertible controls, affine root clock, English/Old English source donors.");
