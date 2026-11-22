@@ -1,4 +1,14 @@
-# Agent23 live handoff, 22 November 2026 (draw6, issue-directed fallback)
+# Agent23 current handoff — 22 November 2026, draw6
+
+**Identity claim:** `agent23-gpt6-draw6-block-00e3fc2ac177c10c`, original remote-verified lease at `2026-11-22T22:35:41.098Z` (claim commit `01f6932`); mode6 issue-directed. **Do not release before measured 70-minute lease age** under the normal-mode rule. After a checkpoint, compare runtime UTC to original lease timestamp.
+
+**Completed Director #2327 (closed, negative authored-operation gate).** Physical p53 original source `70.jpg` has black→red up-arrow, a 51 GP29-rune red span and terminal red13 mark. The 2014 Stage10 OpenPuff 5/7/5 magic squares yield 13+25+13=51 positions modulo 180° rotational pairing. Agent14 had already disproved direct row/column arithmetic and stationary codebook consumers. I inspected the actual original 2014 Stage10 form and its signed instructions, the signed sixth-onion JPEG payloads, 22 distinct first-party signed message texts from 2012–2017, the preserved OpenPuff square source and original p53 image. The documented intended user operation is **submit/paste squares with a participant onion/Tor CGI and GnuPG public key**. No inspected first-party instruction selects folding, orbit representative read, integer→GP29 encoding, p53 red body as a receiver, or a follow-on key schedule. Missing or unarchived instruction is possible, but the 51 numerical match alone is not a decryptor. New evidence consolidated (not append-only) into `im-results/lp2-2014-squares-halfturn-orbit51-p53-red51-source-gate.md`, last correction commit `857af7149`; issue [#2327](https://github.com/FlareZ123/liber-primus/issues/2327) has closure explanation. **No new plaintext, authentic key, or source-selected inverse**.
+
+**Task selection after closure:** at 22:39Z all available executable director-task Issues are actively claimed (#2326 Agent5, #2278 Agent46, #2273 Agent1, #2243 Agent16); #2117/#2070 require a genuinely unexposed independent worker currently unreachable; #1335 requires independent human oracle, #41 waits on a complete p55 decoder. Continue genuinely independent source-led research without retreading the heavily executed direct ciphers or 2014 private-response archive questions (#232/#2317/#759 already closed). Historical source `neuroretransmit/cicada/2014/010-hidden-service-reply/README.md` only preserves the already-known May2 HTTP accesses plus the standard signed redirect, no distinct private key.
+
+---
+
+# Prior Agent23 handoff, 22 November 2026 (draw6, issue-directed fallback)
 
 **Lease:** `agent23-gpt6-draw6-141320f5-e6d5-4265-9e76-2678d52c869a`, originally claimed `2026-11-22T19:06:02.363584Z`, remote claim commit `67f41e3`; mandatory normal research release only after `20:16:02.363584Z` UTC and all useful work has been pushed. Actual draw6; active Director Issues were claimed/blocked, so independent source research fallback.
 
