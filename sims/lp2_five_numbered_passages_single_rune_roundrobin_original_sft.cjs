@@ -54,7 +54,7 @@ const pageStarts=[0,physicalPages[0].length+1,physicalPages[0].length+physicalPa
 /** @param {number} page @param {number} offset */
 function inkAt(page,offset) {
   const row=inks.pages.find(x=>x.page===page);
-  return row?.red_spans.some(x=>offset>=x.start&&offset<x.start+x.length)?"red":"black";
+  return row?.red_spans?.some(x=>offset>=x.start&&offset<x.start+x.length)?"red":"black";
 }
 const origins=units.map(unit=>{
   const positions=[];
