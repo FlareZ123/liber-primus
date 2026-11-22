@@ -131,6 +131,54 @@ planted[4] = 9;
 planted[9] = 25;
 assert(allAdditiveSquareTriples(planted).some((x) => x.start === 92 && x.roots.join(',') === '2,3,5'));
 
+
+// Lowest-description direct ciphertext consumer: transfer the independently
+// SOLVED p56 prime-totient cipher with initial prime79, the 22nd prime.
+// The historical plaintext-F bypass does not consume the prime clock.
+// Test ALL valid unknown bypass masks by propagating prime-index states.
+const primes = [];
+for (let n = 2; primes.length < 200; n++) {
+  let ok = true;
+  for (let d = 2; d * d <= n; d++) {
+    if (n % d === 0) { ok = false; break; }
+  }
+  if (ok) primes.push(n);
+}
+assert.equal(primes[21], 79);
+
+/** @param {number[]} cipher @param {number} sign */
+function strictTotientStates(cipher, sign) {
+  let states = new Set([21]);
+  for (let i = 0; i < cipher.length; i++) {
+    const next = new Set();
+    for (const k of states) {
+      const key = (primes[k] - 1) % 29;
+      const plain = ((cipher[i] + sign * key) % 29 + 29) % 29;
+      if (plain !== 0) next.add(k + 1);
+      if (cipher[i] === 0) next.add(k); // possible literal plaintext-F bypass
+    }
+    states = next;
+    if (states.size === 0) return { firstImpossible: i, survivors: 0 };
+  }
+  return { firstImpossible: -1, survivors: states.size };
+}
+assert.deepEqual(strictTotientStates(p55, -1), { firstImpossible: 5, survivors: 0 });
+assert.deepEqual(strictTotientStates(p55, 1), { firstImpossible: 61, survivors: 0 });
+
+// Genuine solved p57 native-GP material is a positive under each sign.
+const clearPlant = corpus.pages.find((p) => p.page === 57).indices.slice(0, 76);
+assert.equal(clearPlant.length, 76);
+for (const sign of [-1, 1]) {
+  let k = 21;
+  const encrypted = clearPlant.map((plain) => {
+    if (plain === 0) return 0;
+    const cipher = ((plain - sign * ((primes[k] - 1) % 29)) % 29 + 29) % 29;
+    k++;
+    return cipher;
+  });
+  assert.equal(strictTotientStates(encrypted, sign).firstImpossible, -1);
+}
+
 console.log('PASS: 256 original cells, source 2014 centre91, and unique base60 square-root route');
 console.log('91 -> 49 -> 16 -> 121 -> 237 -> 32; roots 7+4=11');
 console.log('p32[7,4] = NG (GP prime79); p15 3301-3222 =79');
@@ -139,4 +187,5 @@ console.log('Base59: no additive-square-triple start among 256 addresses');
 console.log('Exact fixed-start shuffle-null: any = ' + anyTripleWeights + '/' + denom);
 console.log('Third root11 = ' + thirdRoot11Weights + '/' + denom);
 console.log('Third root11 + source cell prime79 = ' + root11Prime79Weights + '/' + denom);
+console.log('Direct p55 p56-style phi(prime) from initial prime79 fails all valid F masks at runes 5/61.');
 console.log('No unknown-page plaintext or decryption is claimed.');
