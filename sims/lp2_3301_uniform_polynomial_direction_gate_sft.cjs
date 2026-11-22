@@ -10,6 +10,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const dir = path.join(__dirname, '..', 'resources', 'liber-primus');
+/** @param {string} name @returns {any} */
 const json = (name) => JSON.parse(fs.readFileSync(
   path.join(dir, name), 'utf8'
 ));
@@ -73,5 +74,5 @@ console.log('ONLY_MIXED_ENDIAN_MATCHES', 'red=LOW_FIRST',
   'p29=HIGH_FIRST', 'p50=HIGH_FIRST');
 console.log('GF29_DIMENSIONS_P29_QUOTIENT', 275,
   'P50_QUOTIENT', 254,
-  'SYNROMES_TWO_EACH', 'CHECKSUM_NOT_UNIQUE_KEY');
+  'SYNDROMES_TWO_EACH', 'CHECKSUM_NOT_UNIQUE_KEY');
 console.log('PASS: original-value 3301 root has no uniform coefficient convention');
