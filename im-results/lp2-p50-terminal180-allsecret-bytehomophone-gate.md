@@ -18,18 +18,19 @@ The original p56 plaintext is recovered independently from the source-authentica
 
 The 95 p57 runes are already clear in the original. Both registers are left intact. As a rival target, we also use the original p56 **ciphertext** with the same clear p57, because the two solved pages are printed in different modes.
 
-For **both** source-defined numeric radices (**base60**, **base59 dropping unused f**), the **eight** natural 30×6 interior orders are row-major/column-major with the source's row and column directions independently normal/reversed. These are exactly **16 fixed byte sequences** against **two** source receiver registers (32 tests), with no fitted byte permutation or plaintext scoring. Each interior has **127 distinct byte values** across 180 cells: **53 repeated occurrences**. An unrestricted secret homophonic decoder would need **zero** contradictions.
+For **both** source-defined numeric radices (**base60**, **base59 dropping unused f**), test two physically legible interpretations. Eight 30×6 row-major/column-major interior orders use physical row and column directions independently normal/reversed. The solved p57's explicit *circumferences* language additionally nominates **three interior circumferences of lengths 68+60+52=180**, each read in one of **four physical corner starts** and clockwise or anticlockwise, yielding another eight fixed spiral readouts. Thus there are **16 readouts per radix** against **two** original receiver registers (**64 total**), with no fitted byte order or language scoring. Every complete interior contains **127 distinct byte values** across 180 cells: **53 repeated occurrences**. An unrestricted secret homophonic decoder would need **zero** contradictions.
 
 ## Exact original outcomes
 
-| Original target and key policy | Strongest of 8 native physical readouts | Why it fails |
+| Original target and key policy | Strongest of 16 native physical readouts | Why it fails |
 | --- | ---: | --- |
 | One secret byte→GP29 mapping across both known pages, p56 **plaintext** and p57 clear | **47 contradictions** among 53 repeated bytes | Same original byte would have to decode to two different GP29 runes |
-| One mapping across p56 **ciphertext** and p57 clear | **50 contradictions** among 53 repeated bytes | Same exact mathematical impossibility |
+| One mapping across p56 **ciphertext** and p57 clear | **49 contradictions** among 53 repeated bytes (spiral); **50** among row/column orders | Same exact mathematical impossibility |
 | Completely separate arbitrary byte→GP29 mapping restricted to the 85-rune p56 **plaintext** segment | **9 contradictions** | Even resetting the codebook at p56 boundary cannot decode p56 |
 | Completely separate mapping restricted to the 95-rune p57 **clear** segment | **14 contradictions** | Even resetting a second independent codebook for p57 cannot decode p57 |
+| Three-shed-circumference 68+60+52 readout, both radices and both target registers | **49 contradictions** minimum | Source-nominated spiral reading also has no static decoder |
 
-All 32 base59/base60 layouts share the same byte-equality pattern under each physical order, because the two original numeral readings are each **one-to-one** over the observed printed cell tokens. Hence choosing the radix or secretly permuting byte labels cannot turn the contradictory rows into a valid homophonic alphabet. No particular 29-way or 256-way key can rescue the specified relationship. The **47** minimum whole-register contradictions are exact counts of repeated source bytes receiving incompatible known GP29 labels, rather than a language-model score.
+All **64** original combinations share the same byte-equality pattern between the two radices for a given physical readout and target, because the two original numeral readings are each **one-to-one** over the observed printed cell tokens. Hence choosing the radix or secretly permuting byte labels cannot turn the contradictory rows into a valid homophonic alphabet. No particular 29-way or 256-way key can rescue the specified relationship. The **47** minimum whole-register contradictions, and **49** minimum in the separate spiral family, are exact counts of repeated source bytes receiving incompatible known GP29 labels, rather than a language-model score.
 
 ## A full-length key-recovery positive, including 76 hidden runes
 
@@ -37,8 +38,8 @@ The original-source test separately builds an independent **256-cell 32×8 synth
 
 ## Decision
 
-**Reject a direct arbitrary static byte-homophonic codebook linking the 180 p50 inner cells to known p56/p57 GP29 runes and revealing p55 on the 76-cell rim.** The same mathematical failure applies to separate unknown mappings per solved page in all eight physical alignments. Different byte-order rules, a position-dependent/evolving decoder, another nonlocal transport, and a p55-only unrelated cipher remain open but have **no independently selected first-party key expansion rule here**.
+**Reject a direct arbitrary static byte-homophonic codebook linking the 180 p50 inner cells to known p56/p57 GP29 runes and revealing p55 on the 76-cell rim.** The same mathematical failure applies to separate unknown mappings per solved page in all sixteen physical alignments. Different byte-order rules, a position-dependent/evolving decoder, another nonlocal transport, and a p55-only unrelated cipher remain open but have **no independently selected first-party key expansion rule here**.
 
 This source-bounded exclusion is structurally distinct from the earlier 48-program direct arithmetic table readers and the known180 XOR/add/sub + PRNG/visual event codebook gates, because **all 256 byte→29-rune codebook entries are treated as arbitrary hidden keys** with no formula, and the obstruction depends solely on exact source-symbol equality.
 
-Reproducer: [`sims/lp2_terminal180_allsecret_homophone_sft.cjs`](../sims/lp2_terminal180_allsecret_homophone_sft.cjs), read-only CommonJS for Node.js22 Windows. Immutable source inputs are [the canonical LP2 original runes](../resources/liber-primus/lp2-corpus.json) and [the printed numerical rectangle](../resources/liber-primus/lp2-grid-256.json). The test asserts p56's complete solved original text and all terminal dimensions, 32 original variants and the independently planted 76/76 recovery.
+Reproducer: [`sims/lp2_terminal180_allsecret_homophone_sft.cjs`](../sims/lp2_terminal180_allsecret_homophone_sft.cjs), read-only CommonJS for Node.js22 Windows. Immutable source inputs are [the canonical LP2 original runes](../resources/liber-primus/lp2-corpus.json) and [the printed numerical rectangle](../resources/liber-primus/lp2-grid-256.json). The test asserts p56's complete solved original text and all terminal dimensions, **64** original variants, including eight 68+60+52 three-ring clockwise/anticlockwise corner readers, and the independently planted 76/76 recovery.

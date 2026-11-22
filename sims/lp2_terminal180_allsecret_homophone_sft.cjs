@@ -120,7 +120,70 @@ for (const [sourceIndex, cells] of sources.entries()) {
     }
   }
 }
-assert.equal(outcomes.length, 32);
+/**
+ * Solved p57 expressly names shedding circumferences. These eight spiral
+ * paths are the separate source-readable interior 68+60+52 ring orders,
+ * each with one of four physical corner starts and clockwise/anticlockwise
+ * traversal, without changing the published 30x6 inner cells.
+ * @param {number} corner
+ * @param {boolean} reverse
+ */
+function spiralPositions(corner, reverse) {
+  const output = [];
+  for (let shell = 0; shell < 3; shell++) {
+    const top = 1 + shell, bottom = 30 - shell;
+    const left = 1 + shell, right = 6 - shell;
+    const ring = [];
+    for (let column = left; column <= right; column++)
+      ring.push(8 * top + column);
+    for (let row = top + 1; row <= bottom; row++)
+      ring.push(8 * row + right);
+    for (let column = right - 1; column >= left; column--)
+      ring.push(8 * bottom + column);
+    for (let row = bottom - 1; row > top; row--)
+      ring.push(8 * row + left);
+    assert.equal(ring.length, [68, 60, 52][shell]);
+    const corners = [8 * top + left, 8 * top + right,
+      8 * bottom + right, 8 * bottom + left];
+    const start = ring.indexOf(corners[corner]);
+    assert.ok(start >= 0);
+    for (let i = 0; i < ring.length; i++)
+      output.push(ring[(start + (reverse ? -i : i) + ring.length * 3) % ring.length]);
+  }
+  assert.equal(output.length, 180);
+  assert.equal(new Set(output).size, 180);
+  assert.deepEqual([...output].sort((a,b)=>a-b),
+    [...interior0].sort((a,b)=>a-b));
+  return output;
+}
+for (const [sourceIndex, cells] of sources.entries()) {
+  for (let corner = 0; corner < 4; corner++) {
+    for (const reverse of [false, true]) {
+      const inner = spiralPositions(corner, reverse).map(i => cells[i]);
+      for (const {name, known} of registers) {
+        const whole = conflicts(inner, known);
+        const left = conflicts(inner.slice(0, 85), known.slice(0, 85));
+        const right = conflicts(inner.slice(85), known.slice(85));
+        assert.equal(whole.repeatedBytes, 53);
+        assert.ok(whole.contradictions >= 49);
+        outcomes.push({radix: sourceIndex ? 59 : 60,
+          mode: "spiral", corner, reverse, register: name,
+          whole: {distinctBytes: whole.distinctBytes,
+            repeatedBytes: whole.repeatedBytes, contradictions: whole.contradictions,
+            agreements: whole.repeatAgreements},
+          page56Conflicts: left.contradictions,
+          page57Conflicts: right.contradictions});
+      }
+    }
+  }
+}
+assert.equal(outcomes.length, 64);
+assert.equal(Math.min(...outcomes.filter(x =>
+  x.mode === "spiral" && x.register.startsWith("p56 solved"))
+  .map(x => x.whole.contradictions)), 49);
+assert.deepEqual(
+  outcomes.slice(32, 48).map(x => x.whole.contradictions),
+  outcomes.slice(48, 64).map(x => x.whole.contradictions));
 assert.equal(Math.min(...outcomes.map(x => x.whole.contradictions)), 47);
 assert.equal(Math.min(...outcomes.filter(x => x.register.startsWith("p56 solved"))
   .map(x => x.page56Conflicts)), 9);
