@@ -1,4 +1,4 @@
-# Medieval Welsh and Old Norse: native-GP language is flatter, but word-local equality deficit persists
+# Medieval source-language controls: exact word-length exclusion, source-key failures and cipher-family bounds
 
 **Agent24 / 22 November 2026 / Director issue [#2212](https://github.com/FlareZ123/liber-primus/issues/2212).** New, independent source-language controls; a source-conditional inequality result. No unknown LP2 plaintext, key, period-authenticated non-English language choice, or decrypting operation is recovered.
 
@@ -7,6 +7,26 @@
 The manuscript's GP29 characters are Germanic rune-shaped, so **Old Norse `Hávamál`** is a source-plausible period-old wisdom poem with explicit rune references. The authentic 2012 Cicada puzzle used **the Mabinogion in English translation**, making the original **Middle Welsh `Pwyll Pendeuic Dyuet`** an independent cross-language rival to the repeatedly sampled source-English text. Neither original-language text is attested as the LP2 plaintext. Their historical works predate LP2; modern source mirrors are pinned and licensed in [the source attribution](../resources/control/nonenglish_medieval_sources_provenance.md).
 
 The two unchanged source fixtures are [Middle Welsh Pwyll](../resources/control/pwyll_pendeuic_dyuet_welsh_source.txt) (7,847 original lexical tokens after its citation preface) and [Old Norse Hávamál](../resources/control/havamal_old_norse_source.txt) (3,588 tokens after one Roman heading). The [single-file CommonJS SFT](../sims/lp2_nonenglish_register_bounds_sft.cjs) implements explicit source-native-to-GP29 spelling equivalences and source-calibrated ING→NG / IO→IA. Medieval spellings are **not uniquely encodable into GP29**, and the chosen mappings are disclosed assumptions. Both source texts remain byte-level unchanged.
+
+## Decisive source-text selector: the authentic printed word-length sequence
+
+A cipher consisting of **any arbitrary sequence of secret per-rune substitutions, feedback permutations, one-time pad digits or reversible alphabet maps that preserves the printed plaintext word boundaries** also preserves the entire **ordered sequence of complete GP29 word lengths**. This holds without knowing the cipher key, without a language model and even if each letter uses a different secret map. It is a more direct test of the *literal proposed source texts* as plaintext than testing their glyph frequencies. The original LP2 line-break/page-break parser joins true continued words before counting.
+
+The [exact length-compatibility SFT](../sims/lp2_medieval_source_wordlength_exact_gate_sft.cjs) considers **every contiguous offset** in each fully pinned historical text, rather than selecting a favorable source passage. Source-native word lengths incorporate the same explicit GP29 ligature assumptions as the preceding comparison.
+
+| Authentic source / exact word-length gate | Original LP2 p0–55 | Middle Welsh Pwyll | Old Norse Hávamál |
+| --- | ---: | ---: | ---: |
+| Complete source words | **2,896** | 7,847 | 3,588 |
+| Mean GP29 runes per printed word | **4.47375691** | **3.44195234** | **3.98049052** |
+| One-rune words in entire text | **83** | **2,019** | **92** |
+| Contiguous source windows of exactly 2,896 words | — | 4,952 | 693 |
+| Minimum/maximum GP29 mean across all 2,896-word source windows | original fixed | **3.380525–3.490677** | **3.956837–4.003108** |
+| Longest contiguous original-to-source word-length match, anywhere | — | **7 words** | **8 words** |
+| Positions of the longest original/source match, zero-based complete-word indices | — | original679 / Pwyll5759 | original1480 / Hávamál445 |
+
+**Exact conclusion:** neither historical text can be the unmodified, contiguous, **nine-or-more-word plaintext** behind any original LP2 region if the printed word boundaries have their ordinary plaintext role and the word-to-GP29 spelling normalization above is appropriate. The test makes no assumptions about the number, period or entropy of cipher keys. It also excludes an exact 2,896-word **full-book source passage**: no contiguous window within either text even approaches the original length mean. The reproducer plants 100 authentic source words encoded in GP29 and encrypts each letter with independently changing keys; the entire 100-word original source-length subsequence is recovered exactly. Thus the gate would pass if either candidate really were a length-preserving whole-word source.
+
+**Important distinction:** a different medieval Welsh or Old Norse text can have another length distribution, and a cipher that transposes, joins or splits words invalidates the invariant. Therefore this is a **literal-source-text plaintext rejection**, not a theorem against either language. Pwyll/Hávamál may still serve as external keys under a separate authenticated operation; the frozen direct-key tests below are relevant to those roles.
 
 ## Exact ciphertext-side constraints
 
@@ -96,10 +116,10 @@ Untouched original p8–14 ciphertext IoC is **0.03446048**; a genuine 755-rune 
 
 ## Cryptanalytic consequence and stop decision
 
-The strongest direct new result is **linguistic sensitivity**: the all-secret anti-frequency proof is powerful for native English and Latin, yet **cannot alone reject a historically plausible Welsh orthographic register with a richer source-visible switching state**. The distinct, more general word-local equality invariant still rejects both tested non-English sources under an intact-word, fixed-map architecture, even with every word holding its own arbitrary key and position shuffle. The original manuscript's only 63 within-word adjacent-equal ciphertext events versus 400+ in source placements similarly motivates a variable per-rune operation, although an anagram can change this adjacency statistic.
+The strongest overall new decision is the **exact source-text word-length exclusion** above: neither pinned medieval work can be the intact printed-word plaintext over a passage of nine or more words under any length-preserving letter cipher. A complementary, architecture-specific observation is **linguistic sensitivity**: the all-secret anti-frequency proof is powerful for native English and Latin, yet **cannot alone reject a historically plausible Welsh orthographic register with a richer source-visible switching state**. The distinct, more general word-local equality invariant still rejects both tested non-English sources under an intact-word, fixed-map architecture, even with every word holding its own arbitrary key and position shuffle. The original manuscript's only 63 within-word adjacent-equal ciphertext events versus 400+ in source placements similarly motivates a variable per-rune operation, although an anagram can change this adjacency statistic.
 
 The first-party 2012 book cipher selected **Lady Charlotte Guest's English Mabinogion**, not the original Welsh. The original Norse text has no Cicada-signed key indication. Thus neither register supplies the necessary missing selector for a **concrete single original-LP2 inverse**. Additional unsourced GP29 transliteration freedoms, synthetic flat source strings, or a post-selected Welsh language-model key search would create an unbounded fit.
 
-**Decision:** preserve these as external-source controls and retire the proposition that the 2012 English-book or visual rune aesthetic alone authenticates a Welsh/Norse plaintext. Do not generalize English-only upper bounds into impossible-any-language claims. A substantive successor needs an independent historically authenticated language/spelling selector and then an exact original-cipher inversion with a withheld page, ideally comparing the Welsh-hypothesis to its documented English source within the same locked grammar.
+**Decision:** retire the two **literal source works** as intact-print-boundary plaintext and the tested complete original-input running-key operators, while preserving their separate all-secret cipher-family bounds as external-source calibrations. Do not generalize English-only frequency bounds into impossible-any-language claims; other source works, altered word segmentation and independently selected changing-state operations remain open. A substantive successor needs an authenticated language/spelling/key selector and an exact original-cipher inverse with a withheld page. The historical 2012 puzzle used the **English** Mabinogion translation, and neither original-language alternative is an established Cicada key.
 
-**Scope:** language-conditioned Monte Carlo with independent word samples, not a theorem about all Welsh/Norse dialects or all GP orthographies. The positive controls test the encoder and equality invariants, not authentic LP2 ciphertext decryptions. The full sources, code, seeds, original runes, word parser, finite tested bounds and exact scores are committed for direct reproduction.
+**Scope:** exact finite-source word-length comparisons and separately language-conditioned Monte Carlo with independent word samples, not a theorem about all Welsh/Norse dialects or all GP orthographies. The positive controls test the encoder and equality invariants, not authentic LP2 ciphertext decryptions. The full sources, code, seeds, original runes, word parser, finite tested bounds and exact scores are committed for direct reproduction.
