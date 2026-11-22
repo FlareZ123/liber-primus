@@ -34,7 +34,7 @@ const rune=/[\u16A0-\u16FF]/u;
 const words=[];
 let page=0,length=0,startPage=0,runes=0;
 function finish(){
-  if(length>0){words.push({length,page:startPage});length=0;}
+  if(length>0){words.push({length,page:startPage>=50?startPage+1:startPage});length=0;}
 }
 for(const ch of text){
   if(rune.test(ch)){if(length===0)startPage=page; length++; runes++;}
