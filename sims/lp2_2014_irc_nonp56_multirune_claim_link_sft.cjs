@@ -89,6 +89,10 @@ async function main(){
   assert.equal(blob(bytes),sha,name+' original Git blob');
   const result=scan(bytes.toString('latin1').split(/\r?\n/),name);
   console.log('VERIFIED-ORIGINAL '+JSON.stringify({source:name,sha,bytes:bytes.length,explicitClaimLines:result.explicitClaimLines,eligibleClaimLines:result.eligibleClaimLines,distinctCandidateLinks:result.distinctCandidateLinks}));
+  if(name===SOURCES[0][0]){
+   const rawLines=bytes.toString('latin1').split(/\r?\n/);
+   for(const line of [216041,198542])console.log('FROZEN-CLAIM-CONTEXT '+JSON.stringify({line,context:rawLines.slice(line-13,line+12).map((body,k)=>({line:line-12+k,body:body.slice(0,340)}))}));
+  }
   for(const x of result.explicitClaims)console.log('EXPLICIT-SOURCE-CLAIM '+JSON.stringify(x));
   for(const x of result.selected)console.log('CLAIMED-LINK '+JSON.stringify(x));
  }
