@@ -104,6 +104,18 @@ assert.notEqual(base60R.depth,right.depth);
 // All 256^2 ordered seed pairs, with no cherry-picked table cells.
 const graph=Array.from({length:256},(_,i)=>follow(i,table59));
 assert(graph.every(x=>x.fixed&&x.cycleEntry===189));
+const subtreeSizes=new Array(256).fill(0);
+for (const walk of graph) {
+  for (const address of walk.nodes) subtreeSizes[address]++;
+}
+assert.deepEqual(
+  subtreeSizes.map((n,i)=>n===33?i:null).filter(x=>x!==null),[146]);
+assert.deepEqual(
+  subtreeSizes.map((n,i)=>n===76?i:null).filter(x=>x!==null),[244]);
+assert.deepEqual(
+  subtreeSizes.map((n,i)=>n===121?i:null).filter(x=>x!==null),[58]);
+assert.equal(subtreeSizes[189],256);
+
 let allPairs=0,restricted=0;
 const passing=[];
 for(let i=0;i<256;i++) for(let j=0;j<256;j++){
