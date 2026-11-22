@@ -36,10 +36,30 @@ The direct literal-table hit counts have ordinary alignment ranks over all **255
 
 The table tests are a narrower check than the universal same-word contradiction. They do not require p50's alleged byte interpretations to resolve the more fundamental contradiction at p7 positions235 and236.
 
+## Five-tap changing-state extension: still impossible under an arbitrary GP29 linear key
+
+To address the obvious stateful rival rather than stop at a static lookup, grant the encoder an arbitrary moving state of depth five, an arbitrary six-word input filter, and an independently unknown constant. Five comes from the visible five red terminal words on original p7; the scroll-word source and immediately adjacent p8 are the same input/output registers as above. Fit three original-source GF(29) transducers, with **every coefficient free**:
+
+- \`FIR6\`: target output is an affine combination of the current and five preceding source-word summaries.
+- \`AR5+input\`: target output is an affine combination of its five prior target runes and the current source-word summary.
+- \`AR5+FIR6\`: both five prior target runes and current/previous five source summaries, plus a constant.
+
+There are respectively **7, 7 and 12 secret coefficients**. The first five original p8 runes are admitted as unconstrained public initialization. For each input summary, the remaining **250 original p8 runes** give 250 linear equations. Exact GF(29) elimination yields full column rank and a large set of individually contradictory zero-left/nonzero-right equations:
+
+| Source summary reduced from its original modulo256 numeric address to GP29 | FIR6 inconsistent equations | AR5+input | AR5+FIR6 |
+| --- | ---: | ---: | ---: |
+| GP29-index sum | 235 / 250 | 235 / 250 | 230 / 250 |
+| Prime-weight sum | 223 / 250 | 235 / 250 | 226 / 250 |
+| Base29 whole-word integer | 231 / 250 | 235 / 250 | 230 / 250 |
+
+These contradictions prove **no secret coefficient choice whatsoever** can implement any of these **nine** finite, five-tap source-to-target models over the original 255 aligned units. For each model an independently generated authentic-shape 255-rune recurrence with nonzero secret coefficients is accepted with **zero inconsistent equations** by the same GF29 rank program; its 250 dependent symbols are correctly reproduced. It is a linear **stateful** exclusion, separate from the earlier universal **stateless lookup** exclusion.
+
+An arbitrary nonlinear state transition, secret position-dependent key, longer memory, GF256 computation, genuinely different pairing, or multi-layer encoding remains outside both tests. No native-English interpretation or missing plaintext is imposed on these rank certificates.
+
 ## Cryptanalytic consequence and decision
 
-Retire a **single-source-word to p8-symbol, stateless digest/checksum/S-box** under the observed sequential 255-to-255 pairing. A direct extra 256-cell secret permutation cannot fix repeated-input conflicts; tuning the table wastes effort. The meaningful next route requires **a source-selected changing state, positional operand, different word-to-rune permutation, or a different kind of relationship between p3–p7 and p8**. Any such candidate must specify its state transition before examining target plaintext and must explain why adjacent identical p7 words map to different p8 symbols.
+Retire a **single-source-word to p8-symbol, stateless digest/checksum/S-box**, and the complete arbitrary-coefficient **five-tap GF29 causal-linear source/target transfer families**, under the observed sequential 255-to-255 pairing. A direct extra 256-cell secret permutation cannot fix repeated-input conflicts; tuning the table wastes effort. The meaningful next route requires **a source-selected nonlinear changing state, a position-dependent operand, a different word-to-rune permutation, or a different kind of relationship between p3–p7 and p8**. Any such candidate must specify its state transition before examining target plaintext and must explain why adjacent identical p7 words map to different p8 symbols.
 
 The observed 255-to-255 count match and source adjacency remain plausible puzzle clues, but **the pairing is not independently authenticated by Cicada**. The result is therefore a conditional exclusion, not evidence that p8 itself has been deciphered.
 
-**Reproducer:** [original 255-word all-secret lookup gate](../sims/lp2_scroll255_word2rune_anylookup_obstruction_sft.cjs), Node.js 22/CommonJS, reads only the original-transcription-derived resources, asserts all counts and original word positions, checks exact arbitrary-table lower bounds and independent planted controls.
+**Reproducer:** [original 255-word all-secret lookup gate](../sims/lp2_scroll255_word2rune_anylookup_obstruction_sft.cjs), Node.js 22/CommonJS, reads only the original-transcription-derived resources, asserts all counts and original word positions, checks exact arbitrary-table lower bounds, GF29 causal-linear rank contradictions, and independent planted controls.
