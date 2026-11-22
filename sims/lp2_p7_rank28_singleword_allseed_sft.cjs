@@ -171,4 +171,183 @@ for (const clock of clockModes) {
   }
 }
 assert.equal(clockCases, 32);
-console.log("PASS: source-p7 all-secret predecessor-rank with observed repeated-symbol clocks has no A/I/O original word-consistent key.");
+
+// One *entirely unknown stationary GP29 alphabet* grants arbitrary distinct
+// preimages for the native one-letter English words A and I. Test every one
+// of the C(29,2)=406 possible two-symbol latent codebooks, all key seeds,
+// both original channels and both observed-repeat clock laws. Any 29! output
+// permutation is covered without enumerating it or fitting a dictionary.
+function inverseMatrix(matrix) {
+  const d = matrix.length;
+  const work = matrix.map((row, i) =>
+    row.concat(Array.from({length:d}, (_, j) => Number(i === j))).map(mod));
+  for (let k = 0; k < d; k++) {
+    const target = work.findIndex((row, i) => i >= k && row[k]);
+    assert.ok(target >= 0);
+    [work[k], work[target]] = [work[target], work[k]];
+    const unit = inv(work[k][k]);
+    work[k] = work[k].map(value => mod(unit * value));
+    for (let h = 0; h < d; h++) {
+      if (h === k) continue;
+      const coefficient = work[h][k];
+      work[h] = work[h].map((value, i) =>
+        mod(value - coefficient * work[k][i]));
+    }
+  }
+  return work.map(row => row.slice(d));
+}
+const everyClock = [
+  {name:"continuous", indices:Array.from({length:original.length}, (_, i) => i)},
+  ...clockModes
+];
+let arbitraryAlphabetCases = 0;
+const generousThreeOriginal = [];
+for (const model of cases) {
+  const d = model.characteristic ? 4 : 5;
+  const factor = model.characteristic ? mod(-inv(model.a[d])) : 1;
+  const basis = Array.from({length:d}, (_, k) => {
+    const values = Array.from({length:d}, (_, i) => Number(i === k));
+    for (let t = 0; t <= expandedClock.at(-1) - d; t++) {
+      let sum = 0;
+      for (let i = 0; i < d; i++) sum += model.a[i] * values[t + i];
+      values.push(mod(factor * sum));
+    }
+    return values;
+  });
+  for (const clock of everyClock) {
+    const rows = anchors.map(t => basis.map(v => v[clock.indices[t]]));
+    const independent = [];
+    const selected = [];
+    for (let i = 0; i < anchors.length && selected.length < d; i++) {
+      if (rank(independent.concat([rows[i]]), d) > independent.length) {
+        independent.push(rows[i]);
+        selected.push(i);
+      }
+    }
+    assert.equal(selected.length, d);
+    const inverseRows = inverseMatrix(independent);
+    for (const channel of [
+      {name:"cipher", output:original},
+      {name:"predecessor-rank", output:rankSource}
+    ]) {
+      let maximum = 0;
+      let complete = 0;
+      let count = 0;
+      for (let x = 0; x < 29; x++) {
+        for (let y = x + 1; y < 29; y++) {
+          for (let mask = 0; mask < 2**d; mask++) {
+            count++;
+            const rhs = selected.map((i, k) =>
+              mod(channel.output[anchors[i]] - ((mask >> k) & 1 ? y : x)));
+            const seed = inverseRows.map(row =>
+              mod(row.reduce((sum, value, k) => sum + value * rhs[k], 0)));
+            let matches = 0;
+            for (let i = 0; i < anchors.length; i++) {
+              const key = rows[i].reduce((sum, value, k) =>
+                sum + value * seed[k], 0);
+              const clear = mod(channel.output[anchors[i]] - key);
+              if (clear === x || clear === y) matches++;
+            }
+            maximum = Math.max(maximum, matches);
+            if (matches === anchors.length) complete++;
+          }
+        }
+      }
+      assert.equal(count, 406 * 2**d);
+      assert.equal(complete, 0);
+      arbitraryAlphabetCases++;
+      console.log(JSON.stringify({
+        hiddenAlphabet:"any stationary permutation: native A/I",
+        model:model.name, clock:clock.name, output:channel.name,
+        elligibleLatentPairCodebooks:406, allSecretAssignments:count,
+        bestOriginalWords:maximum, survivors:complete
+      }));
+    }
+
+    // A fixed *three-letter* codebook (A/I/O) is a deliberately generous
+    // sensitivity only for the direct continuous original source. There are
+    // C(29,3)=3654 unordered target sets; each has 3^d first-anchor choices.
+    if (clock.name === "continuous") {
+      const y = original;
+      let exact = 0;
+      let max = 0;
+      let examples = [];
+      let count = 0;
+      for (let x = 0; x < 29; x++) {
+        for (let z = x + 1; z < 29; z++) {
+          for (let w = z + 1; w < 29; w++) {
+            const allowed = [x, z, w];
+            for (let mask = 0; mask < 3**d; mask++) {
+              count++;
+              let h = mask;
+              const rhs = selected.map(i => {
+                const clear = allowed[h % 3];
+                h = Math.floor(h / 3);
+                return mod(y[anchors[i]] - clear);
+              });
+              const seed = inverseRows.map(row =>
+                mod(row.reduce((sum, v, k) => sum + v * rhs[k], 0)));
+              let matches = 0;
+              for (let i = 0; i < anchors.length; i++) {
+                const key = rows[i].reduce((sum, v, k) =>
+                  sum + v * seed[k], 0);
+                if (allowed.includes(mod(y[anchors[i]] - key))) matches++;
+              }
+              max = Math.max(max, matches);
+              if (matches === anchors.length) {
+                exact++;
+                if (examples.length < 3) {
+                  const output = original.map((cipher, t) =>
+                    mod(cipher - seed.reduce((sum, v, k) =>
+                      sum + v * basis[k][t], 0)));
+                  const hist = Array(29).fill(0);
+                  output.forEach(v => hist[v]++);
+                  const ioc = hist.reduce((sum, n) => sum + n * (n - 1), 0) /
+                    (output.length * (output.length - 1));
+                  examples.push({labels:allowed, seed, originalIoC:ioc});
+                }
+              }
+            }
+          }
+        }
+      }
+      assert.equal(count, 3654 * 3**d);
+      assert.equal(exact, model.name === "P five taps mirrored" ? 2 : 0);
+      assert.equal(max, model.name === "P five taps mirrored" ? 11 : 10);
+      generousThreeOriginal.push({model:model.name,exact,examples});
+      console.log(JSON.stringify({
+        hiddenAlphabet:"any stationary permutation: generous A/I/O",
+        model:model.name, clock:"continuous", channel:"cipher",
+        exhaustiveCodebookAssignments:count, bestOriginalWords:max,
+        validKeys:exact, examples
+      }));
+    }
+  }
+  // Independent full plaintext-positive through nonidentity stationary
+  // alphabet, using an entirely hidden p7 initial key.
+  const spell = v => mod(7*v + 5);
+  const unspell = v => mod(25*(v - 5));
+  const plain = Array.from({length:original.length}, (_, i) =>
+    book.pages[57].indices[i % book.pages[57].indices.length]);
+  anchors.forEach((t, i) => {
+    plain[t] = i % 2 ? 10 : 24;
+  });
+  const secret = Array.from({length:d}, (_, i) => mod(5*i + 2));
+  const encrypted = plain.map((v, t) => mod(spell(v) +
+    seedSum(secret, basis, t)));
+  const positions = anchors.slice(0, d);
+  const independent = positions.map(t => basis.map(row => row[t]));
+  assert.equal(rank(independent, d), d);
+  const recovered = solve(independent, positions.map(t =>
+    mod(encrypted[t] - spell(plain[t]))));
+  assert.deepEqual(recovered, secret);
+  assert.deepEqual(encrypted.map((v, t) =>
+    unspell(mod(v - seedSum(recovered, basis, t)))), plain);
+}
+function seedSum(seed, basis, position) {
+  return mod(seed.reduce((sum, value, k) =>
+    sum + value * basis[k][position], 0));
+}
+assert.equal(arbitraryAlphabetCases, 24);
+assert.deepEqual(generousThreeOriginal.map(x => x.exact), [0, 0, 0, 2]);
+console.log("PASS: source-p7 all-secret predecessor-rank with observed repeated-symbol clocks has no A/I original word-consistent key with any hidden stationary output alphabet.");
