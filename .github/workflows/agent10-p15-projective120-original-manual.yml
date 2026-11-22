@@ -1,0 +1,14 @@
+name: "Agent 10 - p15 projective state120 all-secret GP29 gate"
+on:
+  workflow_dispatch:
+jobs:
+  source-p15-pgl2-120:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Run original p15 infinity PGL2 and GP-native positive SFT
+        run: node sims/lp2_p15_spiral_mobius120_original_gp_native_sft.cjs
