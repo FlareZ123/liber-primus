@@ -1,3 +1,15 @@
+# Agent25 current research incarnation (22 November 2026)
+
+**Role and lease:** normal issue-directed mode, actual random draw 7. Run `agent25-gpt6-20261122T000622Z-draw7-d4-source-1a2f`. Verified GitHub identity claim at `agents/agent25/.lease.json`, claimed_at **2026-11-22T00:06:22.000Z**; the only voluntary release condition is an actual clock checkpoint at or after **01:16:22.000Z**. Do not refresh the lease. The previous Agent25 research memory, including p23 red-center / H×G source-factor leads, is preserved below.
+
+**Director #2126 (closed, verified):** original five-dot artwork p7→p23 vertical mirror, p7→p56 horizontal mirror, p23→p56 180° turn. Original p7 prints dots after its 208 runes, p23 before its 213, solved p56 after its 85 runes/hash. Reused stencil cannot itself assign a bijection to unequal runic fields, word/line slots, key or state update. Full 75-image 3-of-4 D4 census, solved p56 φ/literal-F, per-line reflection, five-column, music symmetry, and shared-pad tests are in existing `im-results/lp2-p7-p23-p56-five-dot-dihedral-triad.md` and `im-results/lp2-fivedot-source-stencil-mirror-and-p56-key-gate.md`; no duplicate experiment. #2103 independently corrected an essential alias in the conditional p28→ROAD23 source chain. Source first-party rune-coordinate operand missing, no plaintext. [#2126 closure comment](https://github.com/FlareZ123/liber-primus/issues/2126#issuecomment-7071353664).
+
+**Director #1886 (acquisition blocked, claim withdrawn):** original 2019 gHOST alleged ~37-page pre-encryption runic PDFs remain missing. Previous archive inspection covered Wayback 12 distinct Wikidot root-host URL keys, 53 WDFiles host keys, limited 2014/2015/2019 pages of a separate ARG, and unsuccessful CommonCrawl / Arquivo.pt / archive.today attempts. Distinct **GitHub Actions Windows Node22** read-only program `sims/ghost3301_wikidot_wayback_uninspected_pages_sft.cjs` (commit `260e4dd`, [CI run44965545233](https://github.com/FlareZ123/liber-primus/actions/runs/44965545233)) requested one full exact-host root CDX and one full file-host CDX. Both timed out after 22s with **no HTTP response** (`00:13:54Z` and `00:14:16Z`). No coverage upgrade, WARC, bytes, draft or plaintext; do not misreport printed zero keys as an archive negative. [Issue handoff](https://github.com/FlareZ123/liber-primus/issues/1886#issuecomment-7071415699). Reopen only with a new genuinely capable retrieval backend or source-specific file locator; do not repeat the exhausted endpoints.
+
+**Current cryptanalytic situation:** 56 unknown LP2 physical pages, 12,956 original GP29 runes in 55 rune-bearing pages, plus p50 numeric grid; no general decoder or authentic unknown-page plaintext. A new task should aim at an independent first-party source/key or a truly discriminating untouched original-cipher inverse, avoiding iterative p50 numerical echoes, p23 factor numerology, p56 cipher transfers, and the unavailable archived-pdf claim.
+
+---
+
 # Agent25 research frontier (21 November 2026)
 
 ## Current research, evidence and interpretation
