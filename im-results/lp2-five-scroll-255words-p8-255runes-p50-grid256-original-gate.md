@@ -56,9 +56,24 @@ The exact 20 zero-based aligned word indices are
 
 **This is exploratory, not an authenticated partial decryption or evidence of 20 intentionally copied symbols.** The index-sum candidate was selected while examining several word summaries; the cyclic maximum is an internal comparison, **not** a discovery-adjusted probability. The 20 matches are source coincidences, not known plaintext. In fact, the direct complete GP29 difference message `p8[j]−sum(word[j]) mod29` has flat IoC **0.0356029026** and no recoverable native-GP words or coherent text. A source-authored clue choosing a word-checksum relation, its use as a state or key, and a reversible plaintext consumer would be required. The SFT preserves the exact count, full rotation controls, independent-page maximum, and difference-stream negative so later work can avoid misreading a one-symbol spike as genuine plaintext.
 
+## Any secret multiplicative word-checksum key fails at source-zero positions
+
+The original p7 five-red-word DH packet specifically derives GP29 **word-index products**, providing a historically sharper reason to test field **multiplication** than to invent another additive key. It is possible to reject *every* secret per-word multiplicative key at once, with no key search. If the page-8 rune at position j were `C8[j]=wordSummary[j]×secret[j] mod29`, then a zero source word summary would force a zero page-8 rune irrespective of the secret, even if each secret multiplier could vary freely among all 29 values.
+
+Two frozen, ordinary GP29 word summaries give the following exact original-source contradictions.
+
+| Complete 255-word source summary | Source summary equal to zero | Of those, aligned p8 rune is nonzero | Logical conclusion |
+| --- | ---: | ---: | --- |
+| Sum of literal GP29 indices modulo29 | **9** | **7** | Impossible for any word-specific multiplicative key |
+| Product of literal GP29 indices modulo29 | **26** | **26** | Impossible for any word-specific multiplicative key |
+
+The nine sum-zero positions are `[18,50,82,132,148,196,224,230,245]`; the seven contradictions exclude positions196 and245, where p8 itself has a literal GP-index-zero F rune. For the **26 product-zero** positions, *every corresponding p8 rune is nonzero*. These are exact algebraic impossibilities for complete source-ordered direct multiplication; only positions where the source summary is zero constrain an arbitrary secret key.
+
+The same SFT plants an independently keyed 255-position message using arbitrary nonzero field multipliers, verifies source-zero invariance and correctly recovers every planted unknown multiplier on source-nonzero positions. This is a complete model-negative with a positive control, and it does not reject a full affine map with additive intercept, keyed state, nonlinear per-word update, or a different source-selected order. The zero-product sites are exactly those original scroll words containing a literal zero-index GP rune, so the result is grounded in unchanged ciphertext and printed word boundaries, without an external language assumption.
+
 ## Reproduction and integration
 
-- [Windows Node.js 22 CommonJS self-contained SFT](../sims/lp2_p3_p7_scroll255_p50_grid256_wordkey_sft.cjs): asserts full p3–p7 word/rune identity, exact next-page p8 255-rune length, 256 complete numeric cells, all **12 fixed original full-length IoC outputs**, all original forward inversions and all twelve source-native 1,145/1,145 planted recoveries.
+- [Windows Node.js 22 CommonJS self-contained SFT](../sims/lp2_p3_p7_scroll255_p50_grid256_wordkey_sft.cjs): asserts full p3–p7 word/rune identity, exact next-page p8 255-rune length, 256 complete numeric cells, all **12 fixed original full-length IoC outputs** and the source-zero obstruction for every secret multiplicative word key, all original forward inversions and all twelve source-native 1,145/1,145 planted recoveries.
 - [Passing full 12-case Windows CI run 45027088365](https://github.com/FlareZ123/liber-primus/actions/runs/45027088365).
 - [Independent earlier five-scroll GF29 / 2014-square / source-p7-product inverses](lp2-p3-p7-five-scroll-product-original-gate.md), which consume source **runes in five lanes** rather than one key per complete original printed word.
 - [Separate original five-scroll GF256 byte-field and historical 176-bit-format gate](lp2-p3-p7-historical-bytefield-five-share-original-gate.md), which consumes five 229-symbol streams as shares rather than 255 printed words.
