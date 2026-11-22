@@ -25,7 +25,7 @@ const vocabularyFiles = [
 const dictionary = new Set(vocabularyFiles.flatMap(file =>
   read(file).toUpperCase().match(/[A-Z]+/g) || []));
 const GP = new Map(source.translit.map((token, index) => [token, index]));
-const digraphs = ["TH", "EO", "NG", "OE", "AE", "IA", "EA"]);
+const digraphs = ["TH", "EO", "NG", "OE", "AE", "IA", "EA"];
 
 /** Reconstruct frozen source-native English spelling. @param {string} word */
 function encodeWord(word) {
