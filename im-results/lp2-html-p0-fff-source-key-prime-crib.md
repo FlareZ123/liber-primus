@@ -42,10 +42,39 @@ Across **1,600,000** original source cases, thirteen offset/mask cases decode th
 
 The test is not intrinsically unable to recognize three-word plaintext: a withheld, genuinely encrypted GP29 control **FOLLOW FREELY FAR**, with the exact **6,6,3** GP-rune word shape, planted at prime-key offset**133331** with all three Fs literal, is blindly recovered **exactly** at that starting clock and F mask**7**. The source script checks original plaintext-F encryption and exact inverse. This is a decisive negative for the defined finite authentic-p56-transfer family, not proof against clocks outside 200,000, other word-specific starts, unrelated ciphers or lexicon-absent historical prose.
 
+## New source-derived GF257 primitive-field route from all three F-headed words
+
+The original GP-*prime* sums, taking the exact existing rune prime values and the complete source words40–42, are:
+
+```
+word40 FXAEPGX   → 257 = 2^8 + 1, a Fermat prime
+word41 FLWEOTAE  → 295 → 295 mod 257 = 38
+word42 FGN       → 48
+```
+
+**38 is a primitive element of the field GF(257):** its successive powers visit all **256 nonzero field elements** exactly once, and `38^128 mod257=256`, `38^256 mod257=1`. This fits the original printed numeric table's exactly **256 byte cells, geometrically arranged 32×8**. The source generates a complete triple of natural finite-field parameters without tuning: modulus **257**, primitive root **38**, start phase **48**. In particular, it supports a canonical 256-element multiplicative group and a 256-point Fermat transform; 32×8 tensor transforms follow from the printed table geometry.
+
+The connection could be an accidental result of selecting this triple after noticing the original FFF typography. No Cicada instruction states that prime sums should represent field roles, so the following are **fixed hypothesis consumers**. Each processes all 256 original p50 numeric bytes; the discrete logarithm uses the unique conversion of source byte `b` to field unit `b+1`. The phase48 is fixed by the third printed word.
+
+| Exact first-party fixed inverse or transform | Original printable ASCII bytes out of 256 | Outcome |
+| --- | ---: | --- |
+| Per-byte `log_38(b+1) − 48 mod256` | 98 | No source-readable text or known byte header |
+| Full-period exponent-stream `log_38(b+1) − (i+48) mod256` | 96 | No typed original payload |
+| Full-period multiplicative unit-stream `(b+1)×38^{−(i+48)} mod257 − 1` | 96 | No typed original payload |
+| Forward / inverse 256-point GF257 number-theoretic transform | 96 / 94 | No typed original payload |
+| Forward / inverse 256-slot primitive-root *index walk* with phase48 | 103 / 103 | No typed original payload |
+| Physical 32×8 Fermat tensor transforms with row/column direction pairs `++`, `+−`, `−+`, `−−` | 80 / 99 / 99 / 103 | No typed original payload |
+
+The doubly inverse 32×8 transform contains a raw eight-letter alphabetic substring `nTrJOcZc`. It is **not intelligible** and cannot establish plaintext when the complete 256-element output remains untyped; selecting individual alphabetic runs after testing multiple transforms is an overfitting trap. The finite-field readouts often include field element256, which is outside the ordinary byte range; this is another reason not to call them conventional ASCII payloads.
+
+All direct and inverse field operations return **256/256 original cells** exactly when reversed; a complete synthetic source-p57 plaintext-index plant encrypts and decrypts without error under all tested reversible models. The primitive cycle and field-axis normalization are exact, independently of the negative plaintext conclusion. [Complete source-only Windows Node22 runnable GF257 SFT](../sims/lp2_p0_fff_gf257_grid_dlog_sft.cjs), [passing GitHub Actions run44975489876](https://github.com/FlareZ123/liber-primus/actions/runs/44975489876).
+
+**Decision:** retain the unusual triple of source-supplied field parameters as an unconfirmed new mechanism lead. The straightforward reversible field-value maps, full-period streams, whole-grid and 32×8 Fourier receivers all fail on the untouched original table. Future dependent work needs an independent indication of *which* cipher operation, input ordering or cross-artifact transformation the creator intended. Repeating more unconstrained phase/key combinations is not warranted.
+
 ## Research decision
 
-The original HTML boundary → unique p0 FFF word run → original table first zero is a specifically localized original-artifact **route candidate**. Its consecutive F heads merit preservation for future source-selected operations. The two concrete consumers above do not recover plaintext: the assembled historical-input AES128 key fails on the only original 256-byte typed register, and exhaustive 200,000-position authentic prime-totient/F-skip decoding fails an original 6/6/3 three-word dictionary test despite a positive under the same model.
+The original HTML boundary → unique p0 FFF word run → original table first zero is a specifically localized original-artifact **route candidate**. Its consecutive F heads merit preservation for future source-selected operations. None of the source-frozen consumers recovers plaintext: the assembled AES128 key fails on the original 256-byte register; the 200,000-position authentic prime-totient/F-skip decoding fails the 6/6/3 original dictionary test despite a positive plant; and the three complete original F-headed words nominate a primitive GF257 group but its direct reversible consumers remain untyped.
 
-**Avoid iteratively tuning AES modes, guessed F masks, key reorderings or word starts on this already-inspected passage.** Advance the branch only on an independent source selecting an exact transition, new authentic plaintext from historical drafts, or a full original ciphertext inverse yielding readable untouched output.
+**Avoid tuning AES modes, F masks, GF257 primitive-root phases, index orientations, key reorderings or word starts on these inspected original sources.** Advance the branch only on an independent source selecting an exact transition, new authentic plaintext from historical drafts, or a full original ciphertext inverse yielding readable untouched output.
 
-**Reproducible source-only Windows Node22 tests**: [original p0 FFF source AES inverse](../sims/lp2_2014_html_f3_aes128_grid_source_sft.cjs) and [original p0 FFF 1.6-million prime-clock search](../sims/lp2_p0_fff_primeoffset_lexical_sft.cjs). Both PASS [Windows CI run44974413276](https://github.com/FlareZ123/liber-primus/actions/runs/44974413276), together with the earlier [p0 36-rune Hill6/seven-share receiver](../sims/lp2_p0_36_hill6_shamir7_sft.cjs). Original data inputs are checked-in historical index, native LP2 transcription, GP29 corpus, original 256-byte base60 grid and explicit English word lexicon. The byte-level/original-cipher claims above were obtained from that run.
+**Reproducible source-only Windows Node22 tests**: [original p0 FFF source AES inverse](../sims/lp2_2014_html_f3_aes128_grid_source_sft.cjs) and [original p0 FFF 1.6-million prime-clock search](../sims/lp2_p0_fff_primeoffset_lexical_sft.cjs). These, the [source GF257 full-grid reversible gate](../sims/lp2_p0_fff_gf257_grid_dlog_sft.cjs) and the earlier [p0 36-rune Hill6/seven-share receiver](../sims/lp2_p0_36_hill6_shamir7_sft.cjs) all PASS [Windows CI run44975489876](https://github.com/FlareZ123/liber-primus/actions/runs/44975489876). Original data inputs are checked-in historical index, native LP2 transcription, GP29 corpus, original 256-byte base60 grid and explicit English word lexicon. The byte-level/original-cipher claims above were obtained from that run.
