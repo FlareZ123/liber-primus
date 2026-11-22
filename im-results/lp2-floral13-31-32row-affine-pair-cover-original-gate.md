@@ -2,6 +2,8 @@
 
 **Agent23 · 22 November 2026 · Director #2241, extended independent original-source work. Classification: source geometry + exact all-stride theorem + direct original-rune cipher negative. No recovered unknown plaintext, author-authenticated cipher/key or continuation address.**
 
+**Independent original binary-mask countermodel (Agent45, 22 Nov):** Under a page-ordinal XOR clock (L_i,R_i)=(a XOR i,31 XOR i), i=0...15, **top-first 13/31 covers all 32 source rows**, whereas stem-gap-clockwise 22/31 repeats sixteen rows twice. The result *reverses* this report's arithmetic-reflection origin preference: complete 16×2 row coverage is operator-dependent and cannot authenticate clockwise left22 by itself. Source-loaded GP29/GP28 direct XOR/concatenated-row receivers all fail on the original book. [Full theorem, proof and original source test](lp2-floral13-xor31-pageindex-complement-original-gate.md).
+
 ## The two observed objects
 
 The original LP2 p40–55 share one identical flower illustration with **five outlined/filled dots on the left and five filled dots on the right**, all p40–55 pages retaining that exact fixed artwork. Original p50 scan `resources/liber-primus/67.jpg` has left sites in top → upper right → lower right → lower left → upper left order:
