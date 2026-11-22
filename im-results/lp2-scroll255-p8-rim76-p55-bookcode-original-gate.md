@@ -8,6 +8,8 @@ Physical p3–p7 print **255 complete words** over five scrollwork pages, totali
 
 The first frozen receiver treats the perimeter's conditional base60 byte at position `i` as a **zero-based address into the 255-rune p8**, then subtracts the selected GP29 rune value from p55 rune `i` modulo29. All 76 addresses are 0–254, so each is valid; 68 are distinct, and address0 occurs at zero-based rim index52. A one-based receiver would require an additional invented treatment of that zero. The source does **not** explicitly instruct interpreting p50 bytes as p8 addresses, nor does it declare base60 over the also-compatible base59.
 
+**Original-selector alternatives, added without fitting phase to p55.** P57's same red 13-dot mark also makes **clockwise perimeter starting at one-based position13** a stronger author-plausible origin than an unexplained NW start; p8's source-red Roman `XIX` supplies a separate first-party one-based position19. I froze these two alternatives and both GP29 signs, without sweeping other starts. P57-start13 gives minus/plus IoC **0.0364912/0.0421053**; p8-XIX-start19 yields **0.0329825/0.0312281**. All four 76-rune texts are unintelligible. A source-native 76-rune encrypt/decrypt plant round-trips for each selected start. The NW-origin minus concentration (0.0452632) is therefore the *best numerical reading in this finite set*, but **the author-selected red13 origin loses that apparent concentration**. Do not postselect NW as the historical start merely because it scores better.
+
 A separate literal historical book-code interpretation uses that same perimeter byte to address one of the **255 scroll words**, then uses the p55 rune as a zero-based **character position**. **64/76 references are outside their selected words**, decisively rejecting that direct 2D receiver. Ten conventional one-word-summary GP29 additive keys (first, last, length, index sum, product; ±) also fail.
 
 ## Original outcome, controls, and uncertainty
@@ -17,6 +19,8 @@ A separate literal historical book-code interpretation uses that same perimeter 
 | Original p55 ciphertext | 0.0378947 | Undeciphered |
 | p55 minus p8[perimeter-byte] | **0.0452632** | Nonlinguistic GP29 stream |
 | p55 plus p8[perimeter-byte] | 0.0403509 | Nonlinguistic GP29 stream |
+| p57 red13-selected ring start, p55 minus/plus | 0.0364912 / 0.0421053 | Both nonlinguistic |
+| p8 red Roman XIX-selected ring start, p55 minus/plus | 0.0329825 / 0.0312281 | Both nonlinguistic |
 | Minus branch followed by p56 prime-totient, no F bypass assumed | 0.0294737 | Nonlinguistic |
 | Plus branch followed by p56 prime-totient, no F bypass assumed | 0.0333333 | Nonlinguistic |
 | Minus branch followed by p56 prime-totient, **all ciphertext zeros bypassed** | 0.0477193 | Nonlinguistic, **unselected and historically incorrect surrogate** |

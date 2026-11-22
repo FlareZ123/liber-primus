@@ -99,6 +99,28 @@ const mix=(key,sign)=>p55.map((value,i)=>mod(value+sign*key[rim[i]]));
 const p8Down=mix(p8,-1),p8Up=mix(p8,1);
 assert.equal(ioc(p8Down),0.045263157894736845);
 assert.equal(ioc(p8Up),0.04035087719298246);
+// Two independent, first-party *nonfitted* rim starts that rival the
+// printed NW corner: p57 large red13 -> one-based 13, and p8 red XIX=19.
+// A valid route should not be rescued by a tuned p55-dependent phase.
+const p57RingStart=12, p8Roman19RingStart=18;
+const ink=JSON.parse(fs.readFileSync(path.join(root,'lp2-ink-annotations.json'),'utf8'));
+assert.deepEqual(ink.pages.find(p=>p.page===57).large_punctuation[0],[7,13,'red']);
+assert.equal(p8.slice(0,3).map(v=>corpus.translit[v]).join(''),'XIX');
+/** @param {number} start @param {-1|1} sign @returns {number[]} */
+const decodeShiftedRim=(start,sign)=>p55.map((v,i)=>mod(v+sign*p8[rim[(i+start)%rim.length]]));
+const marked13Minus=decodeShiftedRim(p57RingStart,-1);
+const marked13Plus=decodeShiftedRim(p57RingStart,1);
+const roman19Minus=decodeShiftedRim(p8Roman19RingStart,-1);
+const roman19Plus=decodeShiftedRim(p8Roman19RingStart,1);
+assert.deepEqual(
+ [ioc(marked13Minus),ioc(marked13Plus),ioc(roman19Minus),ioc(roman19Plus)],
+ [0.036491228070175435,0.042105263157894736,0.03298245614035088,0.031228070175438598]
+);
+const originalClear=p57.slice(0,76);
+for(const start of [0,p57RingStart,p8Roman19RingStart]){
+ const planted=originalClear.map((v,i)=>mod(v+p8[rim[(i+start)%rim.length]]));
+ assert.deepEqual(planted.map((v,i)=>mod(v-p8[rim[(i+start)%rim.length]])),originalClear);
+}
 // The unskipped rival uses a declared no-transparent-F assumption.
 // The all-ciphertext-F-skipped rival is explicitly an unselected surrogate,
 // because p56 proves ciphertext zeros do not identify transparent plaintext F.
@@ -172,6 +194,10 @@ console.log(JSON.stringify({
  perimeter:{zeroBasedValid:true,firstZeroPositionOneBased:53,largest:Math.max(...rim),distinctAddresses:new Set(rim).size},
  directIndexedBookCode:{invalidCharacterOffsetsOutOf76:outOfRange.length,sourceWordAdditiveControls:summaryScores},
  directRimPage8:{minus:{ioc:ioc(p8Down),preview:render(p8Down)},plus:{ioc:ioc(p8Up),preview:render(p8Up)}},
+ sourceSelectedRimStarts:{
+  p57Marked13:{startOneBased:13,minus:{ioc:ioc(marked13Minus),preview:render(marked13Minus)},plus:{ioc:ioc(marked13Plus),preview:render(marked13Plus)}},
+  p8RedRomanXIX:{startOneBased:19,minus:{ioc:ioc(roman19Minus),preview:render(roman19Minus)},plus:{ioc:ioc(roman19Plus),preview:render(roman19Plus)}}
+ },
  solvedPrimeSecondLayer:{
   noFBypassMinus:{ioc:ioc(twiceDown.plain),skips:twiceDown.skips,preview:render(twiceDown.plain)},
   noFBypassPlus:{ioc:ioc(twiceUp.plain),skips:twiceUp.skips,preview:render(twiceUp.plain)},
