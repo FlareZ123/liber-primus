@@ -60,6 +60,22 @@ The authentic *historical* GP29 `DIVINITY` interior cipher is independently rule
 
 **Reproduction:** the locally expanded and checked-in [single-file SFT](../sims/lp2_p54p55_outer_fixed_2014_threepeel_sft.cjs) passed an actual [Windows Node22 source job 45035538592](https://github.com/FlareZ123/liber-primus/actions/runs/45035538592) with the fixed 86-rune original source, the 29,157-word TextBlob register, native solved reference and complete 86-rune key-candidate forward replay. Prior fullbook/global and historical F results are reused, not recomputed.
 
+## 2014 historically selected Emerson: exact whole-quotation crib fails original word cuts
+
+A contemporary **2014 first-onion signed verse** independently selected Emerson's *Self-Reliance* as a book-code source (see [historical witness](../resources/external/cicada2014-self-reliance-2014-bookcode-witness.txt)). Emerson's essay contains the sentence “the inmost becomes the outmost”, making a *verbatim* quotation tempting for p54/p55, which ends immediately before p57's injunction to shed circumferences. This selects a concrete historical plaintext donor before searching the terminal ciphertext.
+
+A [new exact native-GP word-length crib gate](../sims/lp2_p54p55_2014_bookquote_wordshape_sft.cjs) took all **17 authentic complete original terminal word lengths** `[11,4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]` and their final seven `[2,7,7,2,6,3,3]`. It used the independently validated **LP1-native GP29 English orthography** (ING→NG, IO→IA, historical V/K/Z/QU) to read the entire pinned **Emerson Essays, First Series** Gutenberg corpus, including *Self-Reliance*, and two alternative contemporary literary donors. Punctuation is ignored in the donor, making the test *more permissive* than a strict original-spacing/stop-mark comparison.
+
+| Original archived donor | Whole English words inspected | Exact 17-word lengths | Exact terminal 7-word lengths |
+| --- | ---: | ---: | ---: |
+| Emerson *Essays*, including *Self-Reliance* | **77,932** | **0** | **0** |
+| Gibran *The Prophet* | **15,733** | **0** | **0** |
+| Shakespeare first 300k bytes | **55,407** | **0** | **0** |
+
+A source-native **solved LP1 p5 positive** `THE TOTIENT FUNCTION IS SACRED ALL THINGS` has precisely the last-seven GP lengths and is recognized by the same parser, so the terminal 7-word shape is a real discriminating query rather than an impossible encoder configuration. This solved phrase has been independently tested previously as a **provisional p55 crib** and fails its previously attempted source-selected cipher consumers; do not re-promote it as decrypted LP2 text merely because its word lengths match.
+
+**Disposition:** an intact direct quotation from the entire selected Emerson text under the *original* printed terminal word boundaries is impossible. This is a useful, bounded **plaintext-target exclusion**, not a test of a transformative paraphrase, paraphrased Emerson quotation, a 2014 poem outside these donors, resegmented plaintext, or a recovered key. The “inmost becomes outmost” motif remains thematic evidence only; prior all75 p55 original-rune pure transposition had independently failed native-English frequency controls.
+
 ## Immediate cryptanalytic consequence
 
 An acceptable **full-passage decoder** now has an especially inexpensive *early falsification*: decode the five zero-core words **through a source-selected exterior operation**, before expensive searches on the remaining twelve words. If the proposed exterior rule is merely “keep endpoints” or yields the same fixed nonsense words, it cannot recover ordinary whole-word plaintext, regardless of what it produces for the 52 cores. The author must supply the exterior alphabet/value-changing law or independently typed side-channel semantics. Three ring peels alone do not provide that law.
