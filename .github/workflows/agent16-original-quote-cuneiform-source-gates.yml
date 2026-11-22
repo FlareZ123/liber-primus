@@ -48,3 +48,7 @@ jobs:
         run: node --check sims/lp2_p33_stage7_188digit_iv10_source_sft.cjs
       - name: Run p33 IV10 original 188-digit Stage7 key and codebook gate
         run: node sims/lp2_p33_stage7_188digit_iv10_source_sft.cjs
+      - name: Check allsecret three-cipher predecessor fivephase SFT
+        run: node --check sims/lp2_threeback_fivephase_allsecret_affine_original_sft.cjs
+      - name: Exhaust allsecret 3back GP29 phase5 on original corpus
+        run: node sims/lp2_threeback_fivephase_allsecret_affine_original_sft.cjs
