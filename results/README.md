@@ -105,7 +105,9 @@ The creator's intended human solve-path remains unknown. Missing or unarchived h
 
 ## 4. Bounded exclusions and source decisions that change what to try
 
-This is a consolidated decision table, not an inventory of every experiment. The exact negative scopes and reproducible controls are in the linked reports; **none** has recovered unknown LP2 plaintext. A claimed external 27×27 p0–2 decoder consumes only 106/729 distinct original source glyphs and provides no full-source inverse or untouched-page plaintext; the identical model already failed controlled original tests ([external intake #2285](https://github.com/FlareZ123/liber-primus/issues/2285)).
+This is a consolidated decision table, not an inventory of every experiment. The exact negative scopes and reproducible controls are in the linked reports; **none** has recovered unknown LP2 plaintext.
+
+A new *exact all-secret word-role information gate* strengthens the earlier 13-phase/previous-ciphertext family result. Under either a continuous or physical-page-reset clock, every one of 377 independently secret GP29 alphabet permutations preserves the conditional information between rune identity and printed word role, given the previous ciphertext and phase. Original MI is **0.611927 / 0.607420 nats/rune**, respectively, exceeding the **maximum** of all 750 native-GP English source-word-length-matched reversible positives from Gibran, Shakespeare and Emerson. This excludes the stated 13-phase full-substitution family **within that source-language and printed-word-boundary model**, without recovering an author-selected opcode, key or unknown plaintext. [Consolidated exact invariant and Windows-positive gate](../im-results/lp2-prev-c-phase13-allsecret-lowrepeat-heldout-gate.md). A claimed external 27×27 p0–2 decoder consumes only 106/729 distinct original source glyphs and provides no full-source inverse or untouched-page plaintext; the identical model already failed controlled original tests ([external intake #2285](https://github.com/FlareZ123/liber-primus/issues/2285)).
 
 | Mechanism or source route | Current operational boundary |
 | --- | --- |
