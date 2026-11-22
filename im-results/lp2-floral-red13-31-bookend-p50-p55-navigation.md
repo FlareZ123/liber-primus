@@ -24,6 +24,16 @@ Both ornament numbers divide the respective already-marked red prime sums once t
 
 A separate 300,000-trial deterministic, source-page-histogram-preserving null samples eight source p40 and51 source p53 runes without replacement in each trial; **zero** randomized pairs satisfy all four original predicates. This finite model supports unusual joint specificity *conditional on the rules*, but the checksum grammar was developed from these very images, so the add-one 3.33×10⁻⁶ exceedance figure is **not** a discovery-adjusted authorship probability. An authenticated instruction to compute these exact sums remains missing.
 
+## Out-of-chapter red-prime checksum control: p15 points to p22
+
+The rule \`red GP prime-weight sum divisible by29\` was first noticed on the floral p40/p53 bookends. Apply **the same arithmetic without new parameters** to the entire **18 source-annotated original red-rune spans** across LP2, including those outside the floral image set. Exactly **three of eighteen** original spans divide by29: physical **p15's first red nine-rune title has weight638=22×29**, p40's red8 weight435=15×29, and p53's red51 weight2262=78×29. Among all eighteen, **p40 red8 alone** also has its rune-index sum divisible29. The fourteen other red spans plus the second p15 red11 have no integral sum/29. The first nine-rune p15 title was not used to construct the floral checksum grammar and is a modest *off-chapter source check*.
+
+Its quotient **22** directly selects **physical LP2 page22**, where an independently proven original-JPEG image comparison shows the complete mirrored reclining figure from **solved LP1 pp14–16**. Those solved pages historically used the exact GP29 Vigenère key **FIRFUMFERENFE**; thus the off-chapter red checksum provides a putative numerical path to a **real historical key source**. The matching art and failed direct key transfer were documented **before** this red GP-prime quotient was noticed ([original source art study](lp1-lp2-illustration-reuse-and-cipher-transfer-gate.md)), which makes this a more useful independent receiver than finding another arbitrary matching integer in the chapter.
+
+The result remains **conditional**: the p15 first title might divide by29 accidentally, the author did not state that the quotient is a physical page address, and the reused p22 art had already suggested a historical Vigenère key that **failed on authentic p22 ciphertext**. Therefore the new red source route does **not** rescue that retired decryption. It supplies a concrete, off-chapter test of the same proposed **GP-prime red heading → page number → real older cipher exemplar** grammar, where the page and exemplar are independently visible. Any claim of an intended directed page map requires further predictive evidence and genuine recovered text.
+
+**Reproducer:** the [same original red prime-sum SFT](../sims/lp2_floral_red_bookend_13_31_prime_checksum_sft.cjs) now includes and asserts all **18** red spans and physical p15's quotient22, alongside the locked p40/p53 original checksum and color-blind boundary recovery.
+
 ## Two source-addressed pointer paths
 
 The literal frozen table has32 rows×8 columns. Read ornament as **row**, computed prime-sum quotient as **column**, zero-based in original printed order:
