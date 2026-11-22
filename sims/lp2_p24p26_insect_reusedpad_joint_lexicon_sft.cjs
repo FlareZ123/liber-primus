@@ -228,6 +228,42 @@ function solvedTrack(words) {
   return {values,ends};
 }
 const ca=solvedTrack(controlWordsA),cb=solvedTrack(controlWordsB);
+/**
+ * Additional power control: keep p24/p26's ORIGINAL printed word-length
+ * tapes exactly, but fill them from authentic solved LP1 GP words. When
+ * no solved word has a required length, use a source-independent common
+ * TextBlob dictionary word and count that substitution.
+ */
+function matchedTrack(template) {
+  let cursor=0,fallbacks=0; const values=[];
+  for(let end=0;end<WIDTH;end++){
+    if(!template.ends[end])continue;
+    const needed=end+1-cursor;
+    let options=solvedWords.filter(w=>w.length===needed);
+    if(!options.length){
+      fallbacks++;
+      const dict=Array.from(lex.keys()).filter(w=>w.length===needed);
+      assert(dict.length,"no dictionary word of length "+needed);
+      const chosen=dict[random()%dict.length];
+      options=[Array.from(chosen,c=>c.charCodeAt(0)-65)];
+    }
+    const chosen=options[random()%options.length];
+    values.push(...chosen);cursor=end+1;
+  }
+  if(cursor<WIDTH){
+    const needed=WIDTH-cursor;
+    let options=solvedWords.filter(w=>w.length>=needed);
+    assert(options.length);
+    values.push(...options[random()%options.length].slice(0,needed));
+  }
+  assert.equal(values.length,WIDTH);
+  return {values,ends:template.ends,fallbacks};
+}
+const matchedA=matchedTrack(targets[24]),matchedB=matchedTrack(targets[26]);
+const matchedPad=newPad(), matchedOther=newPad();
+const matchedSharedA={...matchedA,values:encrypt(matchedA.values,matchedPad)};
+const matchedSharedB={...matchedB,values:encrypt(matchedB.values,matchedPad)};
+const matchedIndependentB={...matchedB,values:encrypt(matchedB.values,matchedOther)};
 const pad=newPad();
 const sharedA={...ca,values:encrypt(ca.values,pad)};
 const sharedB={...cb,values:encrypt(cb.values,pad)};
@@ -235,7 +271,9 @@ const independentB={...cb,values:encrypt(cb.values,newPad())};
 console.log("setup",JSON.stringify({pages:[24,25,26].map(n=>({page:n,
   runes:byPage[n].values.length,start:starts[n],wordEnds:targets[n].ends.reduce((s,v)=>s+v,0)})),
   width:WIDTH,calibration:CAL,beam:BEAM,lexicon:lex.size,trieNodes:nodes.length,
-  nativeControl:[ca.values.length,cb.values.length]}));
+  nativeControl:[ca.values.length,cb.values.length],matchedLayoutFallbacks:[matchedA.fallbacks,matchedB.fallbacks]}));
+evaluate("matched-layout-shared-pad",matchedSharedA,matchedSharedB,matchedA,matchedB);
+evaluate("matched-layout-independent-pads",matchedSharedA,matchedIndependentB);
 evaluate("planted-shared-pad",sharedA,sharedB,ca,cb);
 evaluate("planted-independent-pads",sharedA,independentB,false);
 evaluate("original-p24-p26",targets[24],targets[26]);
