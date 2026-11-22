@@ -125,6 +125,81 @@ for (const operator of operators) {
 // Fixed-seed, source-frequency-matched no-repeat *inner* stream controls,
 // with the nine original within-chapter repeats imposed at exact source sites.
 // Test four plausible outer transpositions with the same observation function.
+
+
+// An additional direct plaintext-recovery test: combine each *proposed*
+// 19-column terminal permutation with the only authentic LP2 p56 cipher.
+// The p56 plaintext-F branch copies F=0 without advancing prime key state.
+// Exhaustive DP retains all legal F histories, so an empty state set is a
+// mathematical impossibility under this exact decoder, independent of score.
+const primes = [];
+for (let candidate = 2; primes.length <= n; candidate++) {
+  let isPrime = true;
+  for (const prime of primes) {
+    if (prime * prime > candidate) break;
+    if (candidate % prime === 0) {
+      isPrime = false;
+      break;
+    }
+  }
+  if (isPrime) primes.push(candidate);
+}
+const mod = (x) => ((x % 29) + 29) % 29;
+/** @param {number[]} ciphertext @param {number} sign
+ *  @returns {{reachable: number, terminal_states: number}} */
+function phiFInverse(ciphertext, sign) {
+  let states = new Set([0]);
+  for (let at = 0; at < ciphertext.length; at++) {
+    const c = ciphertext[at];
+    const next = new Set();
+    for (const primeClock of states) {
+      if (c === 0) next.add(primeClock);
+      const decoded = mod(c + sign * (primes[primeClock] - 1));
+      if (decoded !== 0) next.add(primeClock + 1);
+    }
+    if (next.size === 0) return {reachable: at, terminal_states: 0};
+    states = next;
+  }
+  return {reachable: ciphertext.length, terminal_states: states.size};
+}
+/** @param {number[]} plaintext @param {number} encryptionSign
+ *  @returns {number[]} */
+function phiFEncrypt(plaintext, encryptionSign) {
+  let primeClock = 0;
+  return plaintext.map((p) => {
+    if (p === 0) return 0;
+    const c = mod(p + encryptionSign * (primes[primeClock] - 1));
+    primeClock++;
+    return c;
+  });
+}
+const phiFOriginal = [
+  {mode: 'unmodified chapter',
+    subtract: phiFInverse(original, -1).reachable,
+    add: phiFInverse(original, 1).reachable},
+  ...operators.map((operator) => ({
+    mode: operator.name,
+    subtract: phiFInverse(operator.decode(original), -1).reachable,
+    add: phiFInverse(operator.decode(original), 1).reachable,
+  })),
+];
+assert.deepEqual(phiFOriginal.map((x) => [x.subtract, x.add]),
+  [[30, 26], [20, 47], [15, 215], [125, 47], [6, 11]]);
+// Native solved-p57 GP is the real plaintext donor. It is forward encrypted
+// with the original p56 F-transport, then transposed and exactly untransposed.
+const plantedP57 = Array.from({length: n},
+  (_, i) => known[i % known.length]);
+for (const operator of operators) {
+  for (const sign of [-1, 1]) {
+    const encrypted = phiFEncrypt(plantedP57, sign);
+    const presented = operator.encode(encrypted);
+    const recoveredCipher = operator.decode(presented);
+    assert.deepEqual(recoveredCipher, encrypted);
+    const reach = phiFInverse(recoveredCipher, -sign);
+    assert.equal(reach.reachable, n);
+  }
+}
+
 const histogram = Array(29).fill(0);
 for (const v of original) histogram[v]++;
 const repeatSites = [];
@@ -190,6 +265,8 @@ console.log(JSON.stringify({
   expected_random_doublets_approx: (n - 1) / 29,
   original_full_inverses: observed,
   known_native_gp_exact_plants: operators.length,
+  authentic_phi_F_inverse_original_complete_rune_prefixes: phiFOriginal,
+  authentic_phi_F_native_GP_plants: operators.length * 2,
   source_frequency_matched_controls: controls,
   scope: 'conditional last-layer architecture; does not exclude an earlier transposition before a final anti-repeat encoder or source-keyed nonrectangular transport',
 }, null, 2));
