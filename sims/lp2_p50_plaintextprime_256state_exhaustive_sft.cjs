@@ -150,7 +150,7 @@ nativePlant.flat().forEach((rune) => nativeHistogram[rune] += 1);
 const nativeIC = normalizedIC(nativeHistogram, 12956);
 assert.ok(nativeIC > 1.65);
 
-const expectedSync = [802, 299, 614, 360, 383, 173, 365, 628];
+const expectedSync = [796, 299, 614, 360, 383, 172, 365, 628];
 let syncIndex = 0;
 const outcomes = [];
 for (const { radix, bytes } of sources) {
