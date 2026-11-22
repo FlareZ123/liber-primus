@@ -15,9 +15,9 @@ jobs:
       - name: Download authentic DATA/560.13
         shell: pwsh
         run: |
-          $file = "$env:RUNNER_TEMP\\560.13"
+          $file = "$env:RUNNER_TEMP/560.13"
           curl.exe -fL --retry 3 --retry-delay 2 "https://archive.org/download/3301.iso/3301.iso/DATA/560.13" -o $file
           if ((Get-Item $file).Length -ne 118818811) { throw "Unexpected DATA/560.13 length" }
       - name: Run fixed-offset source crib
         shell: pwsh
-        run: node sims/lp2_p15_56013_twinprime_willbefound_crib_sft.cjs "$env:RUNNER_TEMP\\560.13"
+        run: node sims/lp2_p15_56013_twinprime_willbefound_crib_sft.cjs "$env:RUNNER_TEMP/560.13"
