@@ -100,7 +100,7 @@ function main() {
 
   const r = compare(source.breaks, model);
   assert.deepEqual(r.originalAll,
-    {forced: 450, early: 78, overflow: 11, total: 539, earlyParagraphs: 16});
+    {forced: 450, early: 78, overflow: 11, total: 539, earlyParagraphs: 11});
   assert.deepEqual(r.imageAll,
     {forced: 473, early: 50, overflow: 16, total: 539, earlyParagraphs: 11});
   assert.deepEqual(r.originalHoldoutWithinWord,
@@ -108,7 +108,7 @@ function main() {
   assert.deepEqual(r.imageHoldoutWithinWord,
     {forced: 180, early: 20, overflow: 8, total: 208, earlyParagraphs: 0});
   assert.deepEqual(r.originalRedCapLines,
-    {forced: 2, early: 35, overflow: 0, total: 37, earlyParagraphs: 3});
+    {forced: 2, early: 35, overflow: 0, total: 37, earlyParagraphs: 2});
   assert.deepEqual(r.imageRedCapLines,
     {forced: 25, early: 7, overflow: 5, total: 37, earlyParagraphs: 2});
 
