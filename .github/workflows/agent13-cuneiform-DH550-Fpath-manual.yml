@@ -1,0 +1,14 @@
+name: Agent 13 cuneiform DH550 authentic-F complete-path test
+on:
+  workflow_dispatch:
+
+jobs:
+  original-input:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run exact all-phase 550-orbit inverse with native F control
+        run: node sims/lp2_cuneiform_dh550_allphase_Fpath_sft.cjs
