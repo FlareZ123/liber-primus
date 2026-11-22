@@ -62,10 +62,30 @@ Thus **every one of these 104 windows** requires at least **1,217** copies of on
 
 The SFT additionally constructs actual secret 243-state reversible affine GP29 alphabets, enciphers the *same* independently sourced original-length English text, then decrypts it exactly with the ciphertext-driven feedback, both as one continuous register and at seven authentic chapter resets. In those positive plants the same mathematical upper bound necessarily admits the actual plaintext's dominant rune count, verifying that the feedback-state bookkeeping is correct. The original ciphertext is not treated as a planted valid English cipher.
 
+## Exact top-k majorization and one-rekey decision
+
+The top-one upper bound is the first member of a complete *key-independent majorization* necessary condition. For every k from 1 through 29, the count of the k most frequent plaintext rune symbols is at most the sum, over every independent 243-state alphabet epoch and every state, of the k largest ciphertext-rune counts in that source epoch/state. As above, exclude the first five source runes per epoch and add five to the upper bound, so this **also covers any arbitrary secret IV**. The k=27 theorem yields the 28-symbol support obstruction without assuming frequencies.
+
+A possible intended fix for the post-p7 global-key failure is **one state-alphabet rekey at a conspicuous original section boundary**. Freeze exactly the six visible visual section boundaries p15, p23, p27, p33, p40 and p54. Treat each side of the chosen cut as a separate secret 243-state alphabet family, resetting the five-trit register there. Do not fit a key, decoder or English passage. The following upper bounds include all possible starting IVs:
+
+| One global or two independent-key epochs | Maximum top-1 plaintext count | Maximum top-10 plaintext count | Maximum top-27 plaintext count | Independent ordinary-English control windows violating at least one top-k necessary bound |
+| --- | ---: | ---: | ---: | --- |
+| No rekey p8–55 | 1,141 | 7,094 | **11,075** | **104/104** |
+| Rekey exactly p15 | 1,403 | 7,913 | **11,081** | **102/104** |
+| Rekey exactly p23 | 1,481 | 8,303 | 11,082 | 0/104 |
+| Rekey exactly p27 | 1,478 | 8,299 | 11,082 | 0/104 |
+| Rekey exactly p33 | 1,474 | 8,350 | 11,082 | 0/104 |
+| Rekey exactly p40 | 1,475 | 8,343 | 11,082 | 1/104 |
+| Rekey exactly p54 | 1,316 | 7,251 | **11,078** | **104/104** |
+
+The full ciphertext is 11,082 runes. Hence top-27 capacity smaller than 11,082 **algebraically prohibits the exact historically observed 27-GP-symbol plaintext repertoire**, even if there is a key reinitialization at p15 or p54. A single rekey at **p23, p27, p33 or p40** escapes that *necessary-condition* contradiction, making these four source-visible chapter cuts the first viable one-rekey alternatives in the specified class. They are **not successful decipherments or creator-identified key changes**.
+
+With no rekey, the earliest support contradiction is physical **p47 rune offset68 (zero-based), global post-p7 position9,697**, where one history state first precedes its 28th distinct ciphertext symbol. This proves a key-renewal or a different operation is required by that point under the historical 27-rune hypothesis. The p15 and p54 single rekeys cannot repair this independent full-book deficit. The source does not distinguish among p23/p27/p33/p40, so further cipher optimization requires a clue selecting one transition.
+
 ## Decision
 
 Retire **globally reusable, fixed, 243-state GP29 substitution alphabets driven solely by the preceding five ciphertext residues modulo3** across the post-p7 register under either of two independent conditional premises: (a) the intended source-native plaintext uses only the 27 GP29 symbols authenticated across known solved sections, which excludes even page-reset shared-Q variants for every secret IV; or (b) the intended plaintext has sustained ordinary English GP rune frequencies, which excludes continuous and seven-chapter shared-Q variants for every secret IV. The result is key-independent but depends on the stated plaintext register. The original 242/243 physical state clue still may select a *different* operation: word aggregation, non-bijective output, changing Q, per-chapter independent rekeying, a separate transform, an external pad, or nonstandard plaintext register.
 
-A new proposed feedback mechanism must identify a first-party **value-changing state update** beyond merely choosing among stationary 243 bijections. Continuing to tune 243-state key tables cannot overcome the proven dominant-rune capacity bound.
+A proposed salvage must identify a first-party **new key epoch** at a valid original boundary (p23/p27/p33/p40 if there is exactly one), or a genuinely value-changing update beyond stationary 243 bijections. Freely tuning continuous or p15/p54-only 243-state alphabets cannot overcome the exact support and top-k capacity bounds.
 
-**Exact Windows-compatible Node22 SFT:** sims/lp2_p7_fiveciphertrit_243allsecret_b1_sft.cjs. Sources: resources/liber-primus/lp2-corpus.json, existing source-native GP orthography/solved-LP1 controls, and independent pinned Gibran/Shakespeare/Emerson plaintext. The SFT asserts the original red five-word product vector, all physical scopes, exact all-key B bounds, the seven original 28-symbol ciphertext-support obstructions, genuine 27-rune known plaintext, source-native English controls and exact feedback-cipher positive plants.
+**Exact Windows-compatible Node22 SFT:** sims/lp2_p7_fiveciphertrit_243allsecret_b1_sft.cjs. Sources: resources/liber-primus/lp2-corpus.json, existing source-native GP orthography/solved-LP1 controls, and independent pinned Gibran/Shakespeare/Emerson plaintext. The SFT asserts the original red five-word product vector, all physical scopes, exact all-key B bounds, the seven original 28-symbol ciphertext-support obstructions, full top-k majorization and illustrated one-rekey decisions, genuine 27-rune known plaintext, source-native English controls and exact feedback-cipher positive plants.
