@@ -231,6 +231,82 @@ const linearLookupGate = fixedTokenContradictions(
 assert.deepEqual(ringLookupGate, { duplicate: 53, contradiction: 47 });
 assert.deepEqual(linearLookupGate, { duplicate: 51, contradiction: 48 });
 
+/**
+ * Author-visible "shed circumferences": peel all four concentric rings
+ * of the 32x8 table (76 + 68 + 60 + 52 = 256 physical printed cells).
+ * Each ring has four corner origins and two clockwise/counter-clockwise
+ * orientations, exhaustive 8 geometrically natural traversals. Reserve
+ * the first 76 for p55, next 85 for p56 known-key tests, final 95 for p57.
+ */
+const rings = [];
+for (let layer = 0; layer < 4; layer++) {
+  const top = layer;
+  const left = layer;
+  const bottom = 31 - layer;
+  const right = 7 - layer;
+  const one = [];
+  for (let c = left; c <= right; c++) one.push(top * 8 + c);
+  for (let r = top + 1; r <= bottom; r++) one.push(r * 8 + right);
+  for (let c = right - 1; c >= left; c--) one.push(bottom * 8 + c);
+  for (let r = bottom - 1; r > top; r--) one.push(r * 8 + left);
+  rings.push(one);
+}
+assert.deepEqual(rings.map((ring) => ring.length), [76, 68, 60, 52]);
+const spirals = [];
+for (const clockwise of [true, false]) {
+  for (const corner of ['TL', 'TR', 'BR', 'BL']) {
+    const read = [];
+    for (let layer = 0; layer < 4; layer++) {
+      const ring = rings[layer];
+      const origins = {
+        TL: layer * 8 + layer,
+        TR: layer * 8 + 7 - layer,
+        BR: (31 - layer) * 8 + 7 - layer,
+        BL: (31 - layer) * 8 + layer,
+      };
+      const origin = ring.indexOf(origins[corner]);
+      assert.ok(origin >= 0);
+      for (let k = 0; k < ring.length; k++) {
+        read.push(ring[(origin + (clockwise ? k : -k) + ring.length * 2)
+          % ring.length]);
+      }
+    }
+    assert.equal(new Set(read).size, 256);
+    assert.equal(read.length, 256);
+    for (let z = 0; z < 2; z++) {
+      for (const sign of [-1, 1]) {
+        const knownPrimeHits = used.filter((i) =>
+          values[z][read[76 + i]] === mod29(sign * primeShift[i]));
+        const p57LiteralHits = p57.filter((value, i) =>
+          value === values[z][read[161 + i]]).length;
+        const decoded55 = p55.map((v, i) =>
+          mod29(v + sign * values[z][read[i]]));
+        assert.deepEqual(decoded55.map((v, i) =>
+          mod29(v - sign * values[z][read[i]])), p55);
+        spirals.push({
+          corner, clockwise, radix: alphabets[z].length, sign,
+          knownPrimeHits: knownPrimeHits.length,
+          p57LiteralHits,
+          p55NormalizedIoc: normalizedIoc(decoded55),
+        });
+      }
+    }
+  }
+}
+assert.equal(spirals.length, 32);
+spirals.sort((a, b) => b.knownPrimeHits - a.knownPrimeHits);
+assert.deepEqual(spirals[0], {
+  corner: 'BL', clockwise: true, radix: 59, sign: 1,
+  knownPrimeHits: 6, p57LiteralHits: 3,
+  p55NormalizedIoc: 0.9157894736842105,
+});
+assert.ok(spirals.every((v) => v.knownPrimeHits <= 6 &&
+  v.p55NormalizedIoc < 1.2));
+const standardSpiral = spirals.filter((v) =>
+  v.corner === 'TL' && v.clockwise && v.radix === 60);
+assert.deepEqual(standardSpiral.map((v) => [v.sign, v.knownPrimeHits]),
+  [[1, 4], [-1, 3]]);
+
 // A direct same-table additive-pad decoder on untouched p55 is not language.
 const p55Direct = [];
 for (let z = 0; z < 2; z++) {
@@ -337,6 +413,10 @@ const result = {
     base59Plus: observed[2], base59Minus: observed[3]
   }, fixedOriginalOffset: 76, exactPositions, matches,
     allOffsetTop: allAlignments.slice(0, 4), p55Direct,
+    spiralPeel: { ringLengths: rings.map((x) => x.length),
+      maxKnownP56PrimeKeyHits: spirals[0].knownPrimeHits,
+      best: spirals[0], standardTopLeftBase60: standardSpiral,
+      all32: spirals },
     circumferenceRival: { ringCells: ring.length, innerCells: interior.length,
       innerPrimeKeyMatchesPlusMinus: interiorScores,
       interiorP57Matches, ringLookupGate, linearLookupGate },
