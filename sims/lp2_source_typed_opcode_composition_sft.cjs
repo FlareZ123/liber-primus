@@ -128,7 +128,7 @@ function ioc(text) {
     (text.length * (text.length - 1));
 }
 
-/** One fixed, native-GP interpolating trigram model from solved LP1 prose. */
+/** One fixed, native-GP interpolating trigram model from LP1 and solved LP2 p56–57 reference. */
 function makeScorer(training) {
   const bigrams = new Uint32Array(29 * 29);
   const trigrams = new Uint32Array(29 * 29 * 29);
