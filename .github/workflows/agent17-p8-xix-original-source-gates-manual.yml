@@ -1,0 +1,33 @@
+name: Agent17 original p8 XIX Roman, matrix, field and cipher gates
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  source-exact-p8-gates:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout original source corpus and immutable LP2 page registers
+        uses: actions/checkout@v4
+      - name: Use Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source prime19 and original black clock
+        run: node sims/lp2_whitespace_prime19_xix_p7_blackclock_sft.cjs
+      - name: Original red-word Roman1019 and GP29 products
+        run: node sims/lp2_p8_reverse_roman_prime_totient_source_sft.cjs
+      - name: Source-selected prime1019 full original p56 transparent-F failure
+        run: node sims/lp2_p8_mxix1019_p56_phi_literal_receiver_sft.cjs
+      - name: Original p8 3x3 matrix and complete original 243-rune receivers
+        run: node sims/lp2_p8_xix_3x3_hill_source19_original_sft.cjs
+      - name: Exact full original-source 17 million conditional p8 key family
+        run: node sims/lp2_p8_xix_matrix_conditional_fullspace_sft.cjs
+      - name: Source p7 GF29 butterfly and complete p8 256-rune receiver
+        run: node sims/lp2_p7_p8_255_to_256_fwht_full_original_sft.cjs
+      - name: Source primitive GF29 squared exponent and complete 840-pair inverse
+        run: node sims/lp2_p7_p8_primefield_g243_17_19_full_original_sft.cjs
