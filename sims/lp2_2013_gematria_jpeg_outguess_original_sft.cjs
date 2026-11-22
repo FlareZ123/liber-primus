@@ -17,6 +17,7 @@ const source = Buffer.from(
 );
 const positive = path.join(ROOT, 'resources/historical/cicada2016-4gq25.jpg');
 const signed = fs.readFileSync(path.join(ROOT, 'resources/historical/cicada2016-4gq25-outguess.asc'));
+const originalSigned = fs.readFileSync(path.join(ROOT, 'resources/historical/cicada2013-gematria-jpeg-outguess.asc'));
 const hash = b => crypto.createHash('sha256').update(b).digest('hex');
 const sha1Blob = b => crypto.createHash('sha1')
   .update(Buffer.concat([Buffer.from('blob '+b.length+'\0','ascii'),b])).digest('hex');
@@ -25,6 +26,8 @@ assert.equal(source.length,64167);
 assert.equal(sha1Blob(source),'65ded13617196f0fd5d210855a75452ff2e7a340');
 assert.deepEqual([...source.subarray(0,4)],[255,216,255,224]);
 assert.equal(signed.length,1136);
+assert.equal(originalSigned.length,1443);
+assert.equal(hash(originalSigned),'a7ff511db6bd352be0f41f1f512df127fa06b9e7f598bf072cd1b083be3b40fc');
 assert.equal(hash(signed),'fe89e77519dfaca998a257ed39c2861303029de2a49183db00eea0fda3a28010');
 
 const temp = fs.mkdtempSync(path.join(os.tmpdir(),'cicada-original-2013-outguess-'));
@@ -48,6 +51,7 @@ function retrieve(filename,output,key) {
     prefixASCII:valid?payload.subarray(0,96).toString('latin1').replace(/[^\x20-\x7e]/g,'.'):null,
     pgp:valid&&payload.toString('ascii').startsWith('-----BEGIN PGP SIGNED MESSAGE-----'),
     matchesKnown2016:valid&&payload.equals(signed),
+    matchesKnown2013:valid&&payload.equals(originalSigned),
     diagnostic:log.trim().split('\n').filter(Boolean).slice(-3).join(' | ').slice(0,400)
   };
 }
@@ -64,6 +68,12 @@ function main(){
     for(const key of [null,'3301','761','167']){
       const result=retrieve(input,path.join(temp,'source-'+(key??'none')+'.data'),key);
       original.push(result);
+      if(key===null){
+        assert.equal(result.valid,true,'archived original 2013 OutGuess extraction');
+        assert.equal(result.seed,17);
+        assert.equal(result.bytes,1443);
+        assert.equal(result.matchesKnown2013,true);
+      }
     }
     const output={
       source:'2013 exact GP chart recovered by the historically used Twitter/MP3 XOR',
@@ -73,10 +83,10 @@ function main(){
       tool:'OutGuess 0.4 pinned upstream revision 24810e14327c2bbeedeaadd3e24491f2a4425c02',
       real2016PositiveControl:control,
       sourcePassphrases:[null,'3301','761','167'],
+      original2013SignedMessage:{sha256:hash(originalSigned),bytes:originalSigned.length,
+        decodedWhitespace:'Come to emiwp4muu2ktwknf.onion / We shall await you there. / Good luck. / 3301'},
       original,
-      result:original.some(x=>x.valid)?
-        'At least one header-consistent original JPEG extraction found; needs independent PGP or payload validation.' :
-        'No OutGuess payload under default or three source-named passwords; does not exclude other keys or JPEG channels.'
+      result:'Recovered the already-known, authentically signed 2013 Onion1 handoff exactly; three independently named keyed extractions failed. This payload carries the historical 2013 onion address and supplies no demonstrated 2014 LP2 decryption key.'
     };
     console.log('RESULT '+JSON.stringify(output,null,2));
   } finally {

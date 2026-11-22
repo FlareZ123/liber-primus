@@ -19,5 +19,9 @@ jobs:
           CFLAGS='-O2 -std=gnu11' ./configure --with-generic-jconfig
           make -j2 CC='gcc -std=gnu11' CFLAGS='-O2 -std=gnu11'
           sudo make install
-      - name: Reproduce canonical 2016 signed extraction then probe exact 2013 source image
+      - name: Reproduce 2013 and 2016 exact source OutGuess payloads
         run: node sims/lp2_2013_gematria_jpeg_outguess_original_sft.cjs
+      - name: Verify historical 2013 signed payload against repository first-party PGP key
+        run: |
+          gpg --batch --import resources/control/cicada-3301-public-key.asc
+          gpg --batch --verify resources/historical/cicada2013-gematria-jpeg-outguess.asc
