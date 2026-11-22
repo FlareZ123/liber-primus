@@ -10,6 +10,8 @@ Initially no unclaimed executable Director task. New #2154–#2159 opened; this 
 
 The original LP2 pp0–55 have **12,956** GP29 runes on 55 nonempty physical pages, **12,901** within-page transitions with **86** repetitions, **2,896** complete printed words and **31** large punctuation groups (28 of13 dots, three of10 dots; 30 red, one black). Test a hypothetical **universal, length-preserving full-GP29 encoder** that always produces at most86 identical-successor transitions. Give an escape sidecar all31 marks, arbitrary **multiset** positions across **3,008** word/page-edge sites and **four** possible distinct marks each.
 
+The exact source-mark locality supplement finds **0/86 repeat destinations within 3 runes** of any same-page large mark, and only **2/86 within 13 runes**, so visible large punctuation also does not locally label most exceptional repeat positions.
+
 The output's repeat cap discards **325.450254184 bits** of full-alphabet message capacity. Even the greatly over-granted punctuation sidecar carries at most **307.751263760 bits**, leaving an exact **17.698990424-bit deficit**. Respecting the source's count of three 10-dot and one black mark leaves **62.610688713 bits** missing. Pigeonhole excludes all **universal fixed-length full-GP29 encoders** under this punctuation-only sidecar contract, regardless of secret key, private alphabet or state machine.
 
 - [Source-grounded report](../../im-results/lp2_31mark_antirepeat_capacity.md)
