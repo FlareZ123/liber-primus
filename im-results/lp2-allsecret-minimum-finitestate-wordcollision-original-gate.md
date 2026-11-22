@@ -174,12 +174,44 @@ This extension is committed in the **same** [complete exact witness SFT](../sims
 
 **Research consequence:** source-visible five dots are insufficient to license one universal five-alphabet predecessor cipher. Before a three-back or page-private family merits fitting, find an original instruction selecting its state-update law and a key/operand source capable of generating authentic prose on an untouched chapter. None has yet been found.
 
+## Exact all-secret third-order **affine** exclusion under five independent secret phases (Agent16, 22 November)
+
+The observed-start-state proof above leaves a meaningful **three-ciphertext-predecessor, five-phase** nonlinear automaton collision-compatible for most native English donor placements, as an architectural necessary condition. That does **not** license a compact field-affine update as its instantiation. The original p7 has five printed red words and five dots, which motivate a *testable hypothetical* five-rune phase clock without authenticating that decoder.
+
+For original LP2 p0–55 (55 nonempty physical pages, **12,956** ciphertext runes), freeze an independent source **page-local phase** `i mod5` and a decoder that operates on the **three preceding actual ciphertext runes**:
+
+```text
+R_i = C_i − a_φ C_(i−1) − b_φ C_(i−2) − c_φ C_(i−3) − d_φ  mod 29
+P_i = π_φ(R_i)
+φ = i mod5, i measured from the start of each original printed page
+```
+
+Grant the cryptanalyst the entire unknown secret: **each** `(a_φ,b_φ,c_φ)` independently ranges over **all 29³ choices**; `d_φ` independently ranges over all 29 offsets; `π_φ` may be **any full 29! output alphabet permutation**, separately for all five phases. All five maps are shared across the actual source pages. Even the first three runes of each page can have **arbitrary, unconstrained plaintext**, so 55×3=165 positions are free.
+
+Because a phase's offset and arbitrary alphabet can only relabel its 29 observed residues, the **five largest occupancy classes** for every coefficient triple bound the *maximum possible* five most frequent genuine plaintext runes, regardless of every hidden key and without guessing English prose. Exhaust the **24,389 GF29 triples** for each phase, evaluating all **12,791 nonprefix original ciphertext symbols**. The exact per-phase maxima are:
+
+| Actual original phase `i mod5` | Rune positions | Maximum same-plaintext-rune count under every secret | Maximum five most frequent plaintext-rune count |
+| ---: | ---: | ---: | ---: |
+| 0 | 2,561 | **133** | **567** |
+| 1 | 2,547 | **134** | **559** |
+| 2 | 2,538 | **132** | **557** |
+| 3 | 2,577 | **137** | **569** |
+| 4 | 2,568 | **135** | **567** |
+| **All original nonprefix positions** | **12,791** | **≤671** | **≤2,819** |
+| **Include all 165 unrestricted page prefixes** | **12,956** | **≤836** | **≤2,984** |
+
+Thus **every one** of the unknown five-state, third-order affine-key families, including completely *secret nonadditive per-phase alphabet permutations*, has **top-one ≤6.4526%** (836/12,956) and **top-five ≤23.032%** (2,984/12,956) of full unknown original runes. For a directly source-native benchmark, repeat all95 genuine solved p57 GP plaintext runes on the same 12,791 nonprefix source positions: its top rune appears **2,019** times, and top five appear **6,190** times. This is a fixed native solved-GP contrast rather than a probabilistic claim about every hypothetical non-English plaintext. All55 page lengths are preserved. The single-phase best unpartitioned whole-source IoC among all24,389 triples is also only **0.03532535** (coefficients `[1,0,0]`, the first difference), indistinguishable from ciphertext; it contains no recoverable language.
+
+An independent planted genuine-source-native GP29 control encrypts **all12,956** book-shaped runes with a nontrivial phase-specific triple and decrypts all12,956 exactly, so the obstruction arises from the *original input's residue occupancies*, rather than implementation blindness. [Source-exact Windows Node22 SFT](../sims/lp2_threeback_fivephase_allsecret_affine_original_sft.cjs) · [Actions run 45079618146](https://github.com/FlareZ123/liber-primus/actions/runs/45079618146).
+
+**Decision:** This substantially strengthens the prior source-p7 *one fixed 3-back affine law* negative result and closes **every possible page-reset five-phase third-order GF29 ciphertext-affine decoder**, even with five arbitrary secret plaintext alphabets, *conditional on native-GP-English-like output frequencies*. The general three-back **arbitrary nonlinear** transducer class remains open, as do page-private secret tables, hidden state updates and non-English or compressed plaintext. The 5-dot artwork does not authenticate this affine formula. There is still no unknown plaintext, true key, or manuscript destination.
+
 ## What this changes
 
 This newly proved bound covers *far more than* the earlier special-case `C_j=Q[C_(j−1)][P_j]` predecessor table, which has at most 29 states. Here every hidden transition may be nonlinear and arbitrary, and **any number of unseen fixed lookup tables** are allowed, provided the full machine exposes at most `S` possible word-start states. Even a three-mode × GP29 predecessor automaton (`S=87`) fails all 256 exact-length Gibran controls, while all 256 Shakespeare controls satisfy this **state-count necessary condition** at that capacity. The exact observed-start-state witness above is substantially stronger: it rejects one/two previous-cipher GP-rune plus source-five-phase machines for the same donor samples even when the hidden output maps are completely arbitrary. An actual source **five-dot** motif could motivate five modes, and `5×29=145` is *capacity-compatible* with 243/256 Gibran placements; **this is not source evidence that the dots select such a machine**. Five modes are a combinatorial capacity observation, not a recovered cipher grammar or operator.
 
 The linguistic comparison is intentionally conditional: Shakespeare and Gibran provide two actual GP registers, and independent length-matched draws can repeat common donor words. A different author, dialect, word frequency or encoded intermediate can require a different `S`; this is **not an impossibility theorem for all human languages**. The argument also assumes printed LP2 hyphenation corresponds to plaintext word boundaries and one GP rune per plaintext rune, as did the previous structural word-length tests. If those boundaries are intentionally randomized, these bounds have no authority over the altered segmentation.
 
-**Actionable next decision:** a proposed low-state cipher is rejected *before any key fitting* if it has fewer than the source-calibrated required starting states. A plausible exact reversible antirepetition model needs either a sufficiently rich externally motivated mode space, word resegmentation, or other nonlocal state/keystream source. The historical original p7 five-dot ornament does not by itself specify a cipher. The observed-state witness points beyond one/two previous-cipher rune modes, toward a source-selected **three-back** operation or genuinely **page-private key table**; neither is authenticated. Do not choose a new table by optimizing English likelihood on the same ciphertext. Demand a new first-party update rule and independent original output.
+**Actionable next decision:** a proposed low-state cipher is rejected *before any key fitting* if it has fewer than the source-calibrated required starting states. A plausible exact reversible antirepetition model needs either a sufficiently rich externally motivated mode space, word resegmentation, or other nonlocal state/keystream source. The historical original p7 five-dot ornament does not by itself specify a cipher. The observed-state witness points beyond one/two previous-cipher rune modes toward a source-selected **nonlinear three-back** operation or genuinely **page-private key table**; neither is authenticated. The fully secret five-phase third-order **ciphertext-affine** subfamily has now been closed on the original via exact per-phase occupancy bounds, so that simpler three-back parameter fitting should not be restarted. Do not choose a new table by optimizing English likelihood on the same ciphertext. Demand a new first-party update rule and independent original output.
 
 **Reproduction:** [source-runic SFT](../sims/lp2_allsecret_minimum_finitestate_wordcollisions_sft.cjs), 512 seeded full-book draws, exact positive toy and original corpus assertions. Windows Node22 **PASS**: [source-word finite-state bound run45013147409](https://github.com/FlareZ123/liber-primus/actions/runs/45013147409) and [five-phase all-secret original-state witness run45013151786](https://github.com/FlareZ123/liber-primus/actions/runs/45013151786), after exact original-input V8 calculations.
