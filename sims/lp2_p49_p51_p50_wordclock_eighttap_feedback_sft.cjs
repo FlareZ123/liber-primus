@@ -47,8 +47,7 @@ const stops = new Set(['-', '.', '&', '$', '§']);
 assert.equal(pages.length, 55);
 assert.equal(source.length, 57);
 assert.equal(grid.bytes.length, 256);
-assert.equal(grid.shape[0], 32);
-assert.equal(grid.shape[1], 8);
+assert.equal(grid.shape, '32 rows by 8 columns across LP2 pages 49, 50, 51');
 const key = grid.bytes.map(v => v % 29);
 
 /** @type {number[]} */
