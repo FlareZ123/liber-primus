@@ -33,7 +33,7 @@ At most h outputs can inherit a high source type. Every additional high output c
 
 On the unchanged p32 interior and either original p55 target:
 
-[
+\[
 H\le 3+(28-25)=\boxed{6},
 \qquad H_{\mathrm{p55}}=\boxed{7}.
 \]
