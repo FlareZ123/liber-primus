@@ -1,6 +1,6 @@
-# Ten-state p50 bookend: all-secret affine and quadratic pair mixers cannot produce native GP29 prose
+# Ten-state p50 bookend: all-secret GF29 key polynomials through quartic cannot produce native GP29 prose
 
-**Agent12, 22 November 2026. Source-conditional original-cipher exclusion, no recovered plaintext or selected key.** [Original-input Windows Node22 PASS, workflow 45064831527](https://github.com/FlareZ123/liber-primus/actions/runs/45064831527). The exact all-secret first-output affine and all-quadratic source-key shift tests below narrow the apparently viable new ten-state p50 clock. The much larger, arbitrary nonlinear keyed-permutation family remains open. A source-native 6,395-rune positive plant passes.
+**Agent12, 22 November 2026. Source-conditional original-cipher exclusion, no recovered plaintext or selected key.** [Original-input Windows Node22 PASS, workflow 45064831527](https://github.com/FlareZ123/liber-primus/actions/runs/45064831527). Exact original-source exhaustive tests of every affine, quadratic, cubic and quartic source-key shift narrow the apparently viable new ten-state p50 clock. The much larger, arbitrary nonlinear keyed-permutation family remains open. A source-native 6,395-rune positive plant passes.
 
 ## Plausible original inputs and rival premise
 
@@ -52,6 +52,33 @@ Normalize b to one. Exactly **29² = 841** unknown quadratic and linear coeffici
 
 These maxima include the independently fitted best output symbol **within every state**, without requiring a common label. Native GP29 controls again exceed both caps in all 126 windows. An independent genuinely quadratic **6,395-rune source-native encrypted plant** with ten secret coefficient sets is decrypted exactly; the same routine therefore recognizes attainable native-GP source material when it is present.
 
+
+## Original p7 red five-word polynomial: exhaustive quartic closure
+
+P7's original **five red GP29 words** supply a concrete human-visible reason to consider a **fourth-degree** finite-field operation. Rather than tune those five printed values to a hypothetical bookend correspondence, grant the cipher **every possible secret polynomial through degree four in K**, independently in each of the original p50 clock's ten states:
+
+\[
+P_i=b_{z_i}C_i+a_{4,z_i}K_i^4+a_{3,z_i}K_i^3
++a_{2,z_i}K_i^2+a_{1,z_i}K_i+d_{z_i}\pmod{29},\quad b_z\ne0.
+\]
+
+As above, scaling by the inverse of any nonzero b, and adding d, only permutes decoded rune labels. Exhausting **29⁴ = 707,281** coefficient quadruples per state covers all secret first-output quartics with nonzero C term. In addition, allow **any injective source-key-only first output** \`g(K)\` as a separate vertical direction. This includes possible higher-degree permutation polynomials in K, so nothing is hidden in the \`b=0\` case.
+
+The source-original \`10 × 707,281 = 7,072,810\` secret coefficient sets **per pairing** have a sharp absolute best-case upper bound of:
+
+| Source K pairing | All-secret degree≤3 top-one maximum | All-secret degree≤4 top-one maximum |
+| --- | ---: | ---: |
+| GF81 field | **464** | **492** |
+| Literal A interior crop | **472** | **511** |
+
+The cubic columns were independently exhausted over all 29³ coefficient triples; their low values agree with the monotonic growth to quartic. The quartic column is a complete exhaustive original-cipher result. All 27 native-GP Gibran and 99 Shakespeare held-out windows still **exceed** the most permissive quartic maximum of511, since the least frequent winner among those controls appears658 times. The first 6,395 native-GP Gibran control runes have755 occurrences of one rune. This excludes any ten-state variable-key polynomial shift of degree at most four under the declared bookend and clock, even with unknown coefficients.
+
+The independent planted **secret quartic** cipher uses source state \`s\` and original pair K:
+\`Cplant = P − [(s+1)K⁴+(s+2)K³+(s+3)K²+(s+4)K+(s+5)] mod29\`.
+It decrypts **all 6,395 original-length source-native Gibran runes exactly** under both field and crop K alignments. The same exhaustive test is therefore capable of accepting authentic native-GP source prose when this mechanism produces it.
+
+[Read-only original-source quartic CommonJS SFT](../sims/lp2_bookend_p50_tenstate_allquartic_source_sft.cjs) completed **14,145,620** key-state evaluations across two pairings on Windows Node22, [Actions PASS 45065187772](https://github.com/FlareZ123/liber-primus/actions/runs/45065187772). The per-pair original exhaustive operations took 44–50 seconds on that runner. This is a condition on the chosen original-geometry source route, not a proof about other page pairings or an authenticated Cicada quartic operation. The puzzle's visible five red words **motivate** the degree; their actual printed coefficients are not fitted or recovered by this test.
+
 ## Delimiting the surviving nonlinear class
 
 To distinguish a meaningful architecture restriction from an impossibility proof about *all* pair mixing, grant a completely different secret permutation of all 29 C-rune symbols at **each of the 10×29 combinations (z,K)**:
@@ -69,10 +96,10 @@ This remains a valid reversible two-rune triangular mixer by preserving K in the
 
 Every one of the **27 Gibran native windows** satisfies all 29 necessary envelopes for both pairings. For Shakespeare, **94/99 field** windows and **99/99 crop** windows pass; the five field exceptions violate some cumulative rank by at most 24. These passes are merely necessary and permit \((29!)^{290}\) secret mapping tables. They do **not** recover any original plaintext, establish that real English is consistent under the simultaneous original within-word equality constraints, or identify a low-complexity Cicada key.
 
-**The causal fork is now sharp:** for this source arrangement and clock, a static affine rule or any ten-state source-keyed quadratic shift is mathematically incapable of producing ordinary native-GP English. A **genuinely nonlinear K-indexed alphabet**, additional hidden/dynamic state, different panel/rune order or a different plaintext register is required. Before investing in arbitrary lookup tables, seek a first-party 2014-visible instruction or source-selected algebra. The fact that arbitrary nonlinear mappings pass frequency inequalities is not evidence that Cicada intended them.
+**The causal fork is now sharp:** for this source arrangement and clock, any ten-state source-key polynomial shift through the visibly motivated quartic degree is mathematically incapable of producing ordinary native-GP English. A **genuinely nonlinear K-indexed alphabet**, additional hidden/dynamic state, different panel/rune order or a different plaintext register is required. Before investing in arbitrary lookup tables, seek a first-party 2014-visible instruction or source-selected algebra. The fact that arbitrary nonlinear mappings pass frequency inequalities is not evidence that Cicada intended them.
 
 ## Reproduction and positives
 
 [Complete Windows Node.js 22 CommonJS source SFT](../sims/lp2_bookend_p50_tenstate_allaffine_majorization_sft.cjs) reads only original-derived \`resources/liber-primus/lp2-corpus.json\`, \`lp2-grid-256.json\` and the existing source-calibrated English controls. It reconstructs both frozen partner maps and the ten-state clock, exhausts every affine projective direction and 841 quadratic coefficient pairs for each state, evaluates the 290 secret key-indexed histograms, asserts the exact original caps, and exercises two **distinct** 6,395/6,395 inverse-positive English plants: unknown secret affine parameters per state, and secret quadratic shifts per state. The control's native-GP orthography is calibrated against solved authentic LP1 and p57 source runes.
 
-This closes the **finite-field low-complexity** branch of the ten-state p50 bookend idea, with all key choices covered for its exact declared models. It leaves the [earlier arbitrary nonlinear 841! capacity survivor](lp2-bookend-p50-tenstate-pair-majorization-original-gate.md) intact and does not promote a speculative bookend source arrangement to an established cipher.
+These two SFTs close the **finite-field low-degree polynomial-shift** branch of the ten-state p50 bookend idea, with all key choices covered for its exact declared models. It leaves the [earlier arbitrary nonlinear 841! capacity survivor](lp2-bookend-p50-tenstate-pair-majorization-original-gate.md) intact and does not promote a speculative bookend source arrangement to an established cipher.
