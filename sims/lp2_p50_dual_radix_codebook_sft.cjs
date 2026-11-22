@@ -88,6 +88,42 @@ assert.equal(columnText.slice(0, 12), 'RNMZOOXGQPZX');
 assert.equal(rowText.includes('E'), false);
 assert.equal(columnText.includes('E'), false);
 
+// A source-typed but unproven next recipient: 256 source digits give
+// 85 complete 3-digit base5 numbers and one trailing digit; solved p56 is 85 runes.
+const corpus = JSON.parse(fs.readFileSync(
+  path.join(__dirname, '..', 'resources', 'liber-primus', 'lp2-corpus.json'),
+  'utf8',
+));
+const solved = JSON.parse(fs.readFileSync(
+  path.join(__dirname, '..', 'resources', 'external', 'relikd-solved-gp29-native-v1.json'),
+  'utf8',
+));
+const originalP56 = corpus.pages.find(page => page.page === 56).indices;
+const clearP56 = [...solved.sections.find(item => item.name === 'p56_an_end').source_text]
+  .filter(ch => corpus.runes.includes(ch))
+  .map(ch => corpus.runes.indexOf(ch));
+assert.equal(originalP56.length, 85);
+assert.equal(clearP56.length, 85);
+
+const triples = Array.from({ length: 85 }, (_, i) =>
+  25 * differences[3 * i] + 5 * differences[3 * i + 1] + differences[3 * i + 2]);
+const validTriples = triples.filter(v => v < 29).length;
+assert.equal(validTriples, 17);
+assert.equal(differences[255], 1);
+const literalGp = triples.map(v => v % 29);
+const equal = (a, b) => a.filter((x, i) => x === b[i]).length;
+assert.equal(equal(literalGp, originalP56), 0);
+assert.equal(equal(literalGp, clearP56), 3);
+
+// Genuine solved original positive: direct five-digit triple encoding is
+// exactly invertible when the 85 source GP glyphs truly generate those triples.
+const planted = clearP56.flatMap(v => [Math.floor(v / 25), Math.floor(v / 5) % 5, v % 5]);
+assert.deepEqual(Array.from({ length: 85 }, (_, i) =>
+  25 * planted[3 * i] + 5 * planted[3 * i + 1] + planted[3 * i + 2]), clearP56);
+console.log('Original 85x3+1 triple receiver: in-range direct GP29 slots', validTriples,
+  '/85; original ciphertext exact matches (mod29)', equal(literalGp, originalP56),
+  '/85; authenticated clear p56 matches', equal(literalGp, clearP56), '/85.');
+
 const eventProbability = (252 / 256) ** 256;
 console.log('Source tokens: 256, distinct tokens: 161, both byte decoders valid.');
 console.log('Base60-only codes:', only60.join(','), 'Base59-only codes:', only59.join(','));
