@@ -200,7 +200,7 @@ def main() -> None:
     parser.add_argument(
         "--outguess-zip",
         type=Path,
-        help="Existing outguess-lp2-default-key.zip Actions artifact",
+        help="ZIP or extracted directory for the outguess-lp2-default-key Actions artifact",
     )
     args = parser.parse_args()
 
@@ -229,20 +229,30 @@ def main() -> None:
     }
 
     if args.outguess_zip:
-        with zipfile.ZipFile(args.outguess_zip) as archive:
-            for page, expected_sha in OUTGUESS_SHA256.items():
-                data = archive.read(f"{page}.payload")
-                actual_sha = hashlib.sha256(data).hexdigest()
-                if len(data) != 58152 or actual_sha != expected_sha:
-                    raise ValueError(
-                        f"Unexpected page {page} payload: {len(data)} bytes, {actual_sha}"
-                    )
-                results["artifacts"][f"lp2_outguess_page_{page}"] = {
-                    "bytes": len(data),
-                    "sha256": actual_sha,
-                    **scan_windows(data),
-                    "54_byte_alignment_screen": aligned_block_screen(data),
+        if args.outguess_zip.is_dir():
+            payloads = {
+                page: (args.outguess_zip / f"{page}.payload").read_bytes()
+                for page in OUTGUESS_SHA256
+            }
+        else:
+            with zipfile.ZipFile(args.outguess_zip) as archive:
+                payloads = {
+                    page: archive.read(f"{page}.payload")
+                    for page in OUTGUESS_SHA256
                 }
+        for page, expected_sha in OUTGUESS_SHA256.items():
+            data = payloads[page]
+            actual_sha = hashlib.sha256(data).hexdigest()
+            if len(data) != 58152 or actual_sha != expected_sha:
+                raise ValueError(
+                    f"Unexpected page {page} payload: {len(data)} bytes, {actual_sha}"
+                )
+            results["artifacts"][f"lp2_outguess_page_{page}"] = {
+                "bytes": len(data),
+                "sha256": actual_sha,
+                **scan_windows(data),
+                "54_byte_alignment_screen": aligned_block_screen(data),
+            }
 
     print(json.dumps(results, indent=2, sort_keys=True))
 
