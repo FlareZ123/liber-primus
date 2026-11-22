@@ -26,7 +26,7 @@ const phys51=physicalSources[50];
 // A '%' physical page boundary is transparent to complete words, so the
 // physical fragment PLF on p51 continues into p52 as source 'P-'.
 const p52=physicalSources[51];
-assert(p52.trimStart().startsWith(corpus.runes[15]));
+assert(p52.trimStart().startsWith(corpus.runes[13]));
 const fragments=phys51.split(/[-.$&]/)
   .map(block=>[...block].filter(ch=>lookup.has(ch)).map(ch=>lookup.get(ch)))
   .filter(word=>word.length>0);
