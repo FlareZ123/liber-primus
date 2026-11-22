@@ -64,6 +64,21 @@ function backwards(end9) {
   assert.deepEqual(all.slice(original.length), end9);
   return all.slice(0, original.length);
 }
+/**
+ * Alternative: red9 at end tells the INITIAL state, run forward on p40–53.
+ * @param {number[]} initial9
+ * @returns {number[]}
+ */
+function forwards(initial9) {
+  const all = initial9.slice();
+  while (all.length < original.length) {
+    let sum = 0;
+    for (let j = 0; j < 9; j++)
+      sum += factor[j] * all[all.length - 9 + j];
+    all.push(mod(-sum));
+  }
+  return all.slice(0, original.length);
+}
 const freq = Array(period).fill(0.5);
 for (const r of encodeSourceNativeGP(read(
   "resources/control/gibran_prophet_58585.txt"))) freq[r]++;
@@ -133,10 +148,14 @@ function learnAndTest(ciphertext, states) {
   };
 }
 const cases = [];
+for (const [direction, derive] of [
+  ["terminal-state-backward", backwards],
+  ["end-rubric-supplies-forward-initial-state", forwards]
+]) {
 for (const [name, terminal] of [
   ["red9",red9],["reverse-red9",red9.slice().reverse()]
 ]) {
-  const key = backwards(terminal);
+  const key = derive(terminal);
   const actual = learnAndTest(original, key);
   const encrypted = native.map((p, i) => mod(p + secretMap[key[i]]));
   const positive = learnAndTest(encrypted, key);
@@ -145,7 +164,7 @@ for (const [name, terminal] of [
   assert.equal(positive.distinctShifts, 29);
   assert.deepEqual(encrypted.map((c,i)=>mod(c-positive.map[key[i]])),native);
   cases.push({
-    orientation:name,
+    temporalDirection:direction, orientation:name,
     sourceOriginal:{
       trainingNativeNLL:actual.trainNLL,
       untouchedHoldoutNativeNLL:actual.holdoutNLL,
@@ -161,12 +180,13 @@ for (const [name, terminal] of [
     }
   });
 }
+}
 assert.deepEqual(cases.map(x =>
   Number(x.sourceOriginal.untouchedHoldoutNativeNLL.toFixed(9))),
-  [4.165590652,4.134855744]);
+  [4.165590652,4.134855744,4.104821714,4.230320532]);
 assert.deepEqual(cases.map(x =>
   Number(x.sourceNativeEnglishPlant.untouchedHoldoutNativeNLL.toFixed(9))),
-  [2.956625867,2.956625867]);
+  [2.956625867,2.956625867,2.956625867,2.956625867]);
 assert(cases.every(x =>
   x.sourceOriginal.untouchedHoldoutNativeNLL >
   x.sourceNativeEnglishPlant.untouchedHoldoutNativeNLL + 1));
@@ -186,5 +206,5 @@ console.log(JSON.stringify({
     sourceMapRecoveredIndependently:true
   },
   cases,
-  outcome:"Neither terminal-state orientation predicts native English in completely untouched heldout ciphertext even with 29 separately learned shift symbols."
+  outcome:"Neither backward terminal-state nor forward initial-state interpretation, with either red9 orientation, predicts native English in untouched heldout ciphertext even with 29 independently trained shifts."
 },null,2));
