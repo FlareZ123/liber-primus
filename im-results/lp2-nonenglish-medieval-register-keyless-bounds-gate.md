@@ -62,6 +62,22 @@ For context, source-native Welsh `AE` is a **near-perfect aggregate count match*
 
 **Stop:** the equality-marker hypothesis has no complete original-cipher native-source vocabulary assignment in either tested text, even with all 29 unknown anchors and all per-symbol nonzero keys secret. A different externally selected register or documented exception must precede any attempt to tune `k_i`; no recovered unknown plaintext is claimed.
 
+## Literal original Welsh book key: direct GP29 running-key operators fail
+
+A second, executable alternative treats the 2012 Mabinogion reference as motivating a **key source** rather than a proposed plaintext register. The actual historical book cipher used an English translation, so recovering original Middle Welsh here is intentionally an *independent rival hypothesis*. The author would still need to specify that cross-round substitution. The [single-file original-input receiver](../sims/lp2_welsh_bookkey_p0_classical_running_sft.cjs) encodes the pinned original Welsh `Pwyll` text in source word order to **27,009 GP29 key runes**. Freeze exactly the source-native GP29 ordinal transform that matches authentic LP1 orthography, and use precisely two classical reversible operators already analogous to the solved book's standard alphabetic shifts:
+
+- **Direct:** `P_i=C_i-K_(t+i) mod29`.
+- **Ciphertext-differential:** `P_i=(C_i-C_(i-1))-K_(t+i) mod29`, with documented initial `C_(-1)=0` for each source-framed run.
+
+For each, scan **all 26,281 possible contiguous running-key starts** on the *entire original opening section*, physical pp0–2 (729 ciphertext runes). The independent precommitted holdout is the next illustrated chapter, pp3–7 (1,145 original runes), evaluated with the selected offset plus729. The matched 729-rune **genuine solved LP1 p10–13 native-GP plaintext control** has IoC **0.06230875**, and both source-key encipherings recover those same original runes exactly.
+
+| Fixed source-key receiver | Best original opening key offset (of 26,281) | Best original opening IoC | Untouched next-chapter IoC |
+| --- | ---: | ---: | ---: |
+| Raw GP29 Vigenère | 14,810 | **0.03645292** | **0.03488411** |
+| GP29 ciphertext-difference Vigenère | 3,993 | **0.03663381** | **0.03469020** |
+
+Unkeyed original opening IoC **0.03408252**. Both exhaustive best-selected clearings still look statistically like original random-rune text; they show no sustained GP-native words and are far below the authentic solved-Cicada positive. Exact re-encryption of each fitted opening and untouched holdout passes because the operation is bijective. That merely certifies implementation: it does not rescue a nonexistent plaintext. The finite candidate is ruled out as a **direct/unskipped Welsh textual running key** in either specified classical representation. Keyed skips, nonlinear state and a different source-language spelling are outside this gate and require a fresh printed selector; no further offset/algorithm menu is warranted.
+
 ## Cryptanalytic consequence and stop decision
 
 The strongest direct new result is **linguistic sensitivity**: the all-secret anti-frequency proof is powerful for native English and Latin, yet **cannot alone reject a historically plausible Welsh orthographic register with a richer source-visible switching state**. The distinct, more general word-local equality invariant still rejects both tested non-English sources under an intact-word, fixed-map architecture, even with every word holding its own arbitrary key and position shuffle. The original manuscript's only 63 within-word adjacent-equal ciphertext events versus 400+ in source placements similarly motivates a variable per-rune operation, although an anagram can change this adjacency statistic.
