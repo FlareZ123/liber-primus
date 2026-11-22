@@ -34,7 +34,9 @@ function redWords(page) {
     const rune = index.get(ch);
     if (rune !== undefined) {
       current.push(rune);
-      allRed = allRed && reds.has(position++);
+      const isRed = reds.has(position);
+      position++;
+      allRed = allRed && isRed;
     } else if (ch === '-' || ch === '.') flush();
   }
   flush();
