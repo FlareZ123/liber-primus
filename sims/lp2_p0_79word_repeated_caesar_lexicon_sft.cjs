@@ -95,6 +95,54 @@ function evaluate(runes) {
   return {any,unique,multiple,none,sample};
 }
 
+/** @param {number} x @returns {number} */
+const mod29=x=>((x%29)+29)%29;
+/**
+ * Exactly three additional source-visible variants: a 180-degree
+ * mirrored-pair word reading, either same key or opposite key, and
+ * straight two-half pairing with opposite key. The source has no
+ * instruction choosing a variant; all four are tested as one family.
+ * @param {number[][]} runes
+ * @param {'straight'|'mirror'} pairing
+ * @param {'same'|'opposite'} keySign
+ */
+function evaluateVariant(runes,pairing,keySign) {
+  let any=0,unique=0,multiple=0,none=0;
+  const sample=[];
+  for(let i=0;i<79;i++) {
+    const j=pairing==='mirror'?157-i:79+i;
+    const shifts=[];
+    for(let k=0;k<29;k++) {
+      const alt=keySign==='opposite'?mod29(-k):k;
+      if(dictionary.has(key(dec(runes[i],k)))&&
+        dictionary.has(key(dec(runes[j],alt))))shifts.push(k);
+    }
+    if(!shifts.length)none++;
+    else {
+      any++;
+      if(shifts.length===1)unique++;else multiple++;
+      if(sample.length<6 && shifts.length===1) {
+        const k=shifts[0],alt=keySign==='opposite'?mod29(-k):k;
+        const spell=w=>w.map(x=>corpus.translit[x]).join('');
+        sample.push({word1:i+1,word2:j+1,shifts,
+          spell1:spell(dec(runes[i],k)),spell2:spell(dec(runes[j],alt))});
+      }
+    }
+  }
+  return {any,unique,multiple,none,sample};
+}
+
+const variants=[
+  {pairing:'straight',keySign:'same'},
+  {pairing:'straight',keySign:'opposite'},
+  {pairing:'mirror',keySign:'same'},
+  {pairing:'mirror',keySign:'opposite'}
+];
+const sourceVariant=variants.map(v=>({...v,...evaluateVariant(words,v.pairing,v.keySign)}));
+assert.deepEqual(sourceVariant[0],{
+  ...variants[0],...evaluate(words)
+});
+
 const original=evaluate(words);
 // Synthetic positive: independent native GP English words chosen from the
 // exact reference dictionary with original ciphertext-word rune lengths,
@@ -110,16 +158,34 @@ assert.equal(positive.any,79);
 assert.equal(positive.none,0);
 assert.equal(original.any+original.none,79);
 
+const variantPlants=variants.map(v=>{
+  const candidate=plantedWords.map((w,i)=>{
+    const slot=i<79?i:(v.pairing==='mirror'?157-i:i-79);
+    const signed=i<79||v.keySign==='same'?secret[slot]:mod29(-secret[slot]);
+    return w.map(x=>(x+signed)%29);
+  });
+  const decoded=evaluateVariant(candidate,v.pairing,v.keySign);
+  assert.equal(decoded.any,79);
+  return {pairing:v.pairing,keySign:v.keySign,any:decoded.any,unique:decoded.unique};
+});
+
 const negative=[];
 for(let k=0;k<200;k++){
   const randomCipher=words.map(w=>Array.from({length:w.length},()=>rnd(29)));
   const r=evaluate(randomCipher);
-  negative.push({any:r.any,unique:r.unique});
+  const variantCounts=variants.map(v=>
+    evaluateVariant(randomCipher,v.pairing,v.keySign).any);
+  negative.push({any:r.any,unique:r.unique,
+    variantCounts,maxAcrossFour:Math.max(...variantCounts)});
 }
 const counts=negative.map(x=>x.any);
 const average=counts.reduce((sum,x)=>sum+x,0)/counts.length;
 const max=Math.max(...counts);
 const exceed=counts.filter(x=>x>=original.any).length;
+const bestSource=Math.max(...sourceVariant.map(v=>v.any));
+const familyExceed=negative.filter(x=>x.maxAcrossFour>=bestSource).length;
+const familyMean=negative.reduce((sum,x)=>sum+x.maxAcrossFour,0)/negative.length;
+const familyMax=Math.max(...negative.map(x=>x.maxAcrossFour));
 console.log(JSON.stringify({
   status:'original p0–2 79-word-pair repeated Caesar key exact shared-lexicon gate',
   fixedSource:{wordCount:words.length,primePeriod:79,chapterRunes:729,
@@ -127,7 +193,13 @@ console.log(JSON.stringify({
   nativeReferenceSources:sources,uniqueSourceRuneWords:dictionary.size,
   original:{...original,observedKeyPairCandidates:original.any},
   plantedNative:{any:positive.any,unique:positive.unique,multiple:positive.multiple},
+  sourceFixedD4WordPairFamily:sourceVariant,
+  sourceFixedD4NativePlants:variantPlants,
+  fourVariantFamilyNull:{n:negative.length,observedBest:bestSource,
+    nullMeanBest:familyMean,nullMaxBest:familyMax,
+    nullCountAtLeastBest:familyExceed,
+    addOneUpperTail:(familyExceed+1)/(negative.length+1)},
   randomGP29Controls:{n:negative.length,meanAny:average,maxAny:max,
     countAtLeastOriginal:exceed,addOneUpperTail:(exceed+1)/(negative.length+1)},
-  caveats:'hypothetical one-shift-per-word repeated79 key; broad lexicon overfits short words, and a lexical fit alone cannot authenticate p0 plaintext. No source instruction yet selects this cipher.'
+  caveats:'hypothetical one-shift-per-word 79-key with four source-word pair/sign conventions; broad lexicon overfits short words, and a lexical fit alone cannot authenticate p0 plaintext. No source instruction yet selects this cipher.'
 },null,2));
