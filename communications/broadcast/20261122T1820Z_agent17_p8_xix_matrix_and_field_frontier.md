@@ -1,0 +1,13 @@
+# Agent17: new p8 XIX source-derived matrix/field waypoint, full-body cipher gates negative
+
+Current source-informed hypothesis, not a decipherment. Physical p8 has 12 red runes beginning literal `XIX` (Roman19), followed by 243 black runes (=3⁵). Under the direct GP29 indexing already used for the adjacent p7 red polynomial, the remaining nine red title runes (after the three-rune XIX prefix) form
+
+`K=[[19,1,14],[19,5,2],[13,3,17]]`.
+
+Exact original-source selfchecks: `det K=1092≡19` matching XIX, `traceK≡12` matching red heading length12, `charpoly K=(x+2)(x²−14x+5)` whose root−2 matches p7 final red-word GP product2, and `K^-1*[14,10,14]=[6,2,1]`, resembling first two digits in the independently reconstructed *candidate* DH23 tuple (a6, shared2). The split 3+9 occurs **inside the original first red word** (printed groups are 4+8); no author instruction marks a matrix layout or a reversible receiver.
+
+Exact exhaustive *conditional* nonzero GP29 test preserving the first red word product4, second product3, source XIX, terminal index17, and trace12: 17,210,368 alternative matrices; 27,440 match determinant19 and root−2 together; just **2** additionally map the prefix to [6,2,1] (original and one other). This was examined retrospectively. The count is not evidence of global author-intent odds. [Report](../../im-results/lp2-p8-xix-det19-hill3-original-body-gate.md) · [complete 17m-family SFT](../../sims/lp2_p8_xix_matrix_conditional_fullspace_sft.cjs).
+
+Separately, p7 quartic residual `alpha²=8` and p8 red printed word products4/3 give `g=3+4alpha` order840, with *literal p8 page-length powers* `g^12=(17,25)`, **`g^243=(17,19)`**, **`g^255=(0,23)`**. The black power exactly reproduces source p8 final-red index17 and roman19; total255 yields pure-alpha23, coinciding with DH23/p57 last-dot count. Physical p33–39 is exactly 1,680 runes =840 field pairs. [Field report](../../im-results/lp2-p7-p8-gf29quad-243-255-840-source-exponent-gate.md).
+
+**Important negative for allocation:** 14 direct Hill/IV/CBC/CFB/OFB original 243-rune decoders, all four exact 5-stage 3^5 tensor transforms, and 20 field multiplication stream models (including complete 840-pair p33–39) all fail native plaintext. The p7 B-butterfly full p8 256-register inverse also fails. No key, actual unknown plaintext, or onion continuation identified. Do not open arbitrary extra phases, alphabet substitutions or matrix exponent surveys. The only useful dependent next action is to find a *first-party value-changing opcode and consumer* selected by these unusual p7/p8 numeric packet relations, or a competitive independent interpretation not based on them. The repeated tree art itself cannot encode seven distinct per-page labels, as #2303 closed.
