@@ -39,6 +39,22 @@ All outputs retain 1,729 original-like runes and marginal distribution, differin
 
 A simple independent uniform-pair binomial approximation gives **P(X≤9 | n=1728, p=1/29) ≈ 1.89×10⁻¹⁶**, but the independent-pair model does not exactly describe the source's structured pairs. The stronger case-specific statement is the explicit 2,000-draw source-shaped comparison above, where the smallest output count is over three times the original. This does not assign discovery-adjusted author-intent probability to the Roman19 or chapter-length coincidence.
 
+## Authentic p56 cipher: full original plaintext-inversion gate
+
+The strongest simple composition of this proposed source-selected 19-column transposition with an **actual solved-page method** would first undo the rectangular permutation and then decrypt through the p56 consecutive-prime Euler-totient GP29 schedule, allowing plaintext index-zero F to be copied without consuming a key symbol. This makes a strict algebraic test: at each rune the same ciphertext can either be literal F if its index is zero, or an encrypted non-F rune after the current prime is subtracted (or added in the opposite-sign control). Keep **all** legal prime-clock states at each position without fitting language or choosing a mask. Once no states remain, **no** full native-GP plaintext is possible under the proposed combined mechanism.
+
+| Original p8–14 input orientation | First impossible index, subtract φ(prime) | First impossible index, add φ(prime) |
+| --- | ---: | ---: |
+| Original printed chapter without transposition | **30** | **26** |
+| Undo column fill → row read | **20** | **47** |
+| Undo row fill → column read | **15** | **215** |
+| Undo snake-row column fill | **125** | **47** |
+| Undo reversed-column fill | **6** | **11** |
+
+All ten full **1,729-rune** original alternatives fail by rune215 at the latest, **even granting every legal plaintext-F bypass**. This is an exact necessary-condition failure, independent of a language model or statistical threshold. The implementation forward-encrypts real source-native 95-rune solved p57 plaintext repeated to exactly1,729 runes under both actual p56 arithmetic signs, then applies each of the four 19-column permutations. Every one of the **eight** planted full-length inverses recovers the complete legal prime-clock path after undoing the permutation. The source-exact Windows Node22 rerun **[PASS 45077466040](https://github.com/FlareZ123/liber-primus/actions/runs/45077466040)**.
+
+This further excludes **an immediately post-columnar unmodified p56 φ-prime/F-transparent method on the full p8–14 chapter**. It cannot exclude a different genuinely selected key, resetting at page boundaries, or an independent encoder preceding the proposed transposition.
+
 ## Decision and remaining plausible path
 
 **Reject ordinary last-layer 19-column transposition after a generic low-doublet stream** as an explanation of the original p8–14 anti-repeat ciphertext under the four specified source-native orders. The source's nine doublets appear in the form one would expect **after** a final anti-repeat stage, rather than after an ordinary column shuffle.
@@ -47,4 +63,4 @@ This is a *conditional processing-order discriminator*, not an algebraic exclusi
 
 The direct p8–14 chapter-wide width19 test is distinct from the older [19-column + solved-p56 φ-prime inverse](lp2-2014-prime19-columnar-phiF-original-gate.md), which covered different chapters (p0–2, p3–7, p40–53 and p55). It does not contradict those bounded negatives.
 
-**Complete reproducible original-source test:** [sims/lp2_p8_14_xix19_column_finalorder_original_sft.cjs](../sims/lp2_p8_14_xix19_column_finalorder_original_sft.cjs), Windows Node22, **[CI PASS run 45077231850](https://github.com/FlareZ123/liber-primus/actions/runs/45077231850)**. Inputs are the canonical original-source rune arrays, source-selected red Roman title, original 19×91 extent, and genuine solved p57 95-rune round-trip control.
+**Complete reproducible original-source test:** [sims/lp2_p8_14_xix19_column_finalorder_original_sft.cjs](../sims/lp2_p8_14_xix19_column_finalorder_original_sft.cjs), Windows Node22, **[original 2,000-null CI PASS 45077231850](https://github.com/FlareZ123/liber-primus/actions/runs/45077231850)** and **[full φ-F inverse CI PASS 45077466040](https://github.com/FlareZ123/liber-primus/actions/runs/45077466040)**. Inputs are the canonical original-source rune arrays, source-selected red Roman title, original 19×91 extent, and genuine solved p57 95-rune round-trip control.
