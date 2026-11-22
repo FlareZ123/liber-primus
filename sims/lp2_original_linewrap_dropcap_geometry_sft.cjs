@@ -139,6 +139,30 @@ function main() {
   assert.equal(residualSlack.filter(n => n > 150).length, residualCounts.over150);
   assert.ok(Math.abs(residualSlack[17] - 12.133) < 0.001);
 
+  // Freeze a source-early normal-line tolerance, then test later pages.
+  // The only exclusions are source-visible paragraph-ending short lines.
+  const normal = source.breaks.map(b => {
+    const l = b.base + redCapMargin(b) + b.dashes * model.dash + b.stops * model.stop;
+    const kind = classifyWithOriginalDropcap(b, model);
+    const shortfall = kind === 'early' ? model.W - l - b.nextWidth :
+      kind === 'overflow' ? l - model.W : 0;
+    return { page: b.page, line: b.line, kind, shortfall,
+      paragraph: kind === 'early' && b.ending === '.' };
+  }).filter(b => !b.paragraph);
+  const trainNormal = normal.filter(b => b.page < 28);
+  const heldoutNormal = normal.filter(b => b.page >= 28);
+  assert.equal(trainNormal.length, 278);
+  assert.equal(heldoutNormal.length, 250);
+  const maxTrainingMiss = Math.max(...trainNormal.map(b => b.shortfall));
+  const trainingTolerance = Math.ceil(maxTrainingMiss);
+  assert.equal(trainingTolerance, 51);
+  const heldoutInTolerance = heldoutNormal.filter(b => b.shortfall <= trainingTolerance);
+  const heldoutExceptions = heldoutNormal.filter(b => b.shortfall > trainingTolerance)
+    .map(b => [b.page, b.line]);
+  assert.equal(heldoutInTolerance.length, 246);
+  assert.deepEqual(heldoutExceptions, [[37, 0], [37, 9], [40, 8], [42, 5]]);
+  assert.ok(Math.max(...heldoutNormal.map(b => b.shortfall)) < 73);
+
   const sensitivity = [0, 8, 12, 16, 24].map(gap => {
     const result = compare(source.breaks, model, gap, CAP_LINES);
     return { gap, all: result.imageAll, withheld: result.imageHoldoutWithinWord };
@@ -148,7 +172,8 @@ function main() {
     originalJPEG: 'liber-primus-jpegs/<page + 17>.jpg',
     redConnectedComponents: RED_CAPS,
     model, gap: GAP, heightLines: CAP_LINES, observations: r,
-    sensitivity, residualShortfall: { median: residualSlack[17], ...residualCounts }, conclusion: 'Source-correct red initials predict 31 more original wraps; ciphertext remains undeciphered.'
+    sensitivity, normalLineTolerance: { trainingTolerance, maxTrainingMiss, train: trainNormal.length,
+      heldout: heldoutNormal.length, heldoutInTolerance: heldoutInTolerance.length, heldoutExceptions }, residualShortfall: { median: residualSlack[17], ...residualCounts }, conclusion: 'Source-correct red initials predict 31 more original wraps; ciphertext remains undeciphered.'
   }, null, 2));
 }
 
