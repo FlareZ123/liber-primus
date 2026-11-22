@@ -1,6 +1,6 @@
 # LP2: fixed distinguished-rune zero-delta event profile, with arbitrary changing secret keys
 
-**Status:** exact original-ciphertext positional invariant and source-native GP language exclusion for one explicitly defined family. **No unknown plaintext, creator-selected key, complete cipher or destination was recovered.**
+**Status:** **independent, lower-dimensional reproduction of an already excluded fixed-marker family**, using a distinct simple three-coordinate event statistic. The 12 November [fixed-marker word-shape gate](lp2-fixedmarker-original-wordshape-allsecret-gate.md), 14 November [reserved-rune gate](lp2-fixed-reserved-rune-doublet-source-gate.md), and 15 November [all-29 whole-wordshape gate](lp2-all29-zero-step-wordshape-gate.md) had already excluded the same broad fixed-marker iff family, with finer rune-position tests and more directly source-related reference text. This experiment **does not broaden that family exclusion or establish a new cipher decision**. **No unknown plaintext, creator-selected key, complete cipher or destination was recovered.**
 
 ## What operational family is tested?
 
@@ -10,7 +10,7 @@ Consider a complete, reversible GP29 cipher that makes **the same single unknown
  C_i=C_{i-1}\ \Longleftrightarrow\ P_i=s,\quad i\ge1.
 \]
 
-Every other plaintext rune maps bijectively onto the 28 *different* next-cipher symbols. The 28-way map may use arbitrary secret fresh keys, arbitrary time-varying permutations, page or word clocks, and nonlinear state. This family includes the natural "escape rune" interpretation of a 28-nonzero-step encoder, while conceding much greater freedom than the stationary ciphertext-predecessor tables rejected in the existing [all-secret row-capacity work](lp2-cipherprev-quasigroup-majorization-allsecret-original-gate.md).
+Every other plaintext rune maps bijectively onto the 28 *different* next-cipher symbols. The 28-way map may use arbitrary secret fresh keys, arbitrary time-varying permutations, page or word clocks, and nonlinear state. This already studied family includes the natural "escape rune" interpretation of a 28-nonzero-step encoder, while conceding much greater freedom than the stationary ciphertext-predecessor tables rejected in the existing [all-secret row-capacity work](lp2-cipherprev-quasigroup-majorization-allsecret-original-gate.md).
 
 Its exact key-independent consequence is that the *positions of every occurrence of plaintext rune s*, after the initial unencrypted position, equal the *positions of every consecutive-ciphertext-rune repetition*. The identity of s is an unrestricted 29-way secret: every candidate is tested, and the best allowed result is reported.
 
@@ -53,8 +53,10 @@ The tested native-GP 12,956-rune control round-trips **exactly**; both its ciphe
 
 **Independent execution:** [read-only CommonJS single-file SFT](../sims/lp2_one_symbol_zero_delta_wordprofile_sft.cjs), [Windows Node22 PASS, 22 November 2026](https://github.com/FlareZ123/liber-primus/actions/runs/45021695450).
 
-## Research decision
+## Research decision and overlap with established work
 
-Retire the entire family where **one fixed unknown source-native GP plaintext rune, regardless of changing nonmarker keys, always and only generates adjacent ciphertext equalities**. Further key search inside this family cannot change the exact original event positions.
+The fixed-marker family was **already retired before this run**. The present test independently reconfirms the decision with a compact [total, first, last] statistic. Its limited source comparisons, Gibran and Shakespeare, are weaker evidence than the prior [15 November all29 full word-shape test](lp2-all29-zero-step-wordshape-gate.md), which explicitly tested positional word masks and all 29 markers using authentic Cicada-era vocabulary. No further research on this already excluded class is warranted.
+
+The previously established exclusion concerns the entire family where **one fixed unknown source-native GP plaintext rune, regardless of changing nonmarker keys, always and only generates adjacent ciphertext equalities**. Further key search inside this family cannot change the exact original event positions.
 
 A promising new hypothesis must first supply an *authored* reason to change the escape symbol by position, admit an independently indicated non-GP register or a source-selected sideband/exception rule. The test does not choose among those alternatives. The objective remains authentic unknown-page plaintext with an independently predictive inverse.
