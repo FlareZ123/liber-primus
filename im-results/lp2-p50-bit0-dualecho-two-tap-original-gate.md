@@ -63,10 +63,10 @@ A stronger counterfactual removes **all 256 directly chosen p50-byte offsets** f
 
 Let `r_i∈0..27` be the ordinal of the observed ciphertext rune when the one forbidden predecessor rune is removed; let `r_i=−1` at the 116 source-forbidden exceptions. With phase `j` fixed, any unknown codebook merely **permutes** the 28 possible values. Thus the equal-pair fraction
 
-[
+\[
 Q=\frac{\sum_{j=0}^{255}\sum_{a=0}^{27} n_{j,a}(n_{j,a}-1)}
          {\sum_{j=0}^{255} n_j(n_j-1)}
-]
+\]
 
 is **exactly invariant under all codebooks**. Here `n_j` counts nonexception sites in phase `j`. If the inverse yielded ordinary readable GP29, its symbol-collision rate within a stationary phase class would need the source-native GP register. No search for any secret per-phase key is necessary.
 
