@@ -18,7 +18,7 @@ An exact GP28 W-excluding bijective substitution preserves all source W position
 
 **Decision:** under the conditional assumptions of preserved complete-word segmentation and GP-native English, **even the non-exclusive p56-style transparent-W bypass is inconsistent with source-language W-initial frequencies**: it cannot output fewer initial ciphertext W than already exist in its plaintext. This rejects a much broader family than the preexisting fixed p56/φ prime-clock theorem. A different underlying language, encrypted/redefined word separators, characters not representing literal W, or a change in register before the W-bypass can evade the conditional inference. An arbitrary non-exclusive W output *alone* cannot evade the positional ceiling. No unknown ciphertext plaintext is recovered.
 
-Reproducer: [`sims/lp2_2014_missing_w_source_wordshape_sft.cjs`](../sims/lp2_2014_missing_w_source_wordshape_sft.cjs), with exact source flattening and all 32 cross-page complete-word joins, exhaustive natural-length prose windows, and positive exclusive/non-exclusive transparent-W plants.
+Reproducer: [`sims/lp2_2014_missing_w_source_wordshape_sft.cjs`](../sims/lp2_2014_missing_w_source_wordshape_sft.cjs), with exact source flattening and all 32 cross-page complete-word joins, exhaustive natural-length prose windows, and positive exclusive/non-exclusive transparent-W plants. **Passed original-source Windows Node.js 22 CI** in [run 45046636041](https://github.com/FlareZ123/liber-primus/actions/runs/45046636041), including all original ciphertext matching, exact Fisher assertions, native-source windows and both planted controls.
 
 ## Source-extrapolated A194954 keystream
 
