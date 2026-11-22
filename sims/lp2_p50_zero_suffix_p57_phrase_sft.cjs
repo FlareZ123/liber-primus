@@ -66,6 +66,20 @@ assert.deepEqual([4, 10, 12, 14, 16, 22].map((offset) => bytes60[229 + offset]),
 assert.equal(new Set(bytes60.slice(229)).size, 27);
 assert.equal(64, 4 ** 3);
 assert.equal(27, 3 ** 3);
+const physicalSquareLast64 = bytes60.slice(192);
+const squareInterior = [...Array(64).keys()].filter((i) => {
+  const x = i % 8, y = Math.floor(i / 8);
+  return x > 0 && x < 7 && y > 0 && y < 7;
+});
+const betweenZeroLocal = [...Array(36).keys()].map((i) => i + 1);
+const actualInteriorOverlap = betweenZeroLocal.filter((i) => squareInterior.includes(i));
+assert.equal(physicalSquareLast64.length, 64);
+assert.equal(squareInterior.length, 36);
+assert.equal(actualInteriorOverlap.length, 22);
+assert.deepEqual(zeroCells.map((i) => {
+  const local = i - 192;
+  return [Math.floor(local / 8), local % 8];
+}), [[0, 0], [4, 5]]);
 assert.equal(bytes60[198], 105);
 
 const hasSequence = (haystack, needle) => haystack.some((_, start) =>
@@ -177,6 +191,15 @@ const report = {
     GP0_FIND: 42, tablePointer42: bytes60[42], originalP55Runes: 76,
     faceNeighborAtOffset16: { token: tokens[245], value: bytes60[245], GP0_AND: 56 },
     faceNeighborBytes: [4, 10, 12, 14, 16, 22].map((offset) => bytes60[229 + offset])
+  },
+  lastEightRowsEightByEight: {
+    sourceRows: "p51 original printed numeric rows 2..9",
+    gridStart: 192, gridEndInclusive: 255,
+    squareShape: [8, 8], literalTwoZeroSquareCells: [[0, 0], [4, 5]],
+    interior36ActualPhysicalCells: squareInterior.length,
+    bracket36MatchingPhysicalInterior: actualInteriorOverlap.length,
+    interior36OutsideBracket: squareInterior.length - actualInteriorOverlap.length,
+    verdict: "The 36 bracket bytes equal 6x6 area in count but are not the literal source square interior."
   },
   p51FirstWord: { GP: render(p51.slice(0, 3)), indices: p51.slice(0, 3), sum: 27 },
   strictInterior: {
