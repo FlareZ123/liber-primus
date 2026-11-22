@@ -1,0 +1,26 @@
+name: Agent15 source-selected EAR Steghide p22 and p32
+on:
+  workflow_dispatch:
+jobs:
+  ear:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Obtain independently pinned Steghide 0.5.1 parser and real fixtures
+        shell: pwsh
+        run: |
+          git clone --depth 1 https://github.com/rickschaves/stegostudio.git stegostudio-upstream
+          git -C stegostudio-upstream fetch --depth 1 origin 201689b5755c0f1267223cd881429e679230b835
+          git -C stegostudio-upstream checkout --detach 201689b5755c0f1267223cd881429e679230b835
+          if ((git -C stegostudio-upstream rev-parse HEAD).Trim() -ne '201689b5755c0f1267223cd881429e679230b835') { throw 'Unexpected source SHA' }
+      - name: Verify authentic AES-CBC planted fixture and test source-selected EAR
+        shell: pwsh
+        env:
+          STEGOSTUDIO_DIR: ${{ github.workspace }}\stegostudio-upstream
+        run: |
+          node --check sims/lp2_ear_steghide051_two_carrier_sft.cjs
+          node sims/lp2_ear_steghide051_two_carrier_sft.cjs
