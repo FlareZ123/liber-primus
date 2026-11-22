@@ -42,8 +42,37 @@ Punctuation-selected splice208 gives full IoCs **0.03425752–0.03472823**, and 
 
 For all 24 variants, the exact forward cipher reconstructs **1,474/1,474 original ciphertext runes**. Separately, each model encrypts and decrypts the genuine **95/95 solved p57 native runes** with the same original table and initializer. Round trips establish implementation correctness alone: any bijective cipher can round-trip wrong-key gibberish.
 
+## Whole-class first-cycle result: arbitrary writeback is invisible
+
+The five-trit schedule has exactly 243 addresses, each visited **once** per complete cycle. The p8 table was initialized by writing its 243 black runes in **that same source order** at those 243 unique addresses. Therefore the first 243 subsequent table reads must yield the unmodified original p8-black rune tape in a **cyclic phase shift**, regardless of how every previously read cell is overwritten. This is a combinatorial fact requiring no estimate of secret table updates. It holds equally for both independently source-valid zero splices **87 and 208** because both give 243 distinct addresses and consume the unchanged source tape in order. It includes every deterministic, stochastic, or plaintext-dependent **read-one-cell, then mutate-only-that-cell** rule, provided the table is not rewritten globally before its first cycle completes.
+
+Specifically, for any cycle start \(\phi\) in 0…242, and every first-cycle rune position \(i\) in 0…242,
+
+\[
+T_{\mathrm{read},i}=B_{(i+\phi)\bmod243}.
+\]
+
+The key tape is consequently **independent of every later update equation** for this first-cycle receiver. The earliest full 243-rune original consumer is the **first 243 unchanged p9 runes**. Its first five source runes complete the actual word begun on the last line of p8; no synthetic delimiter is imposed. This direct theorem resolves an entire family at once, without choosing another update law.
+
+The source's adjacent red-heading word product **3** and printed **M=19** offer two independently bounded source-readable output operations: the direct GP29 additive output \(P=C-\sigma B\), and the cubic-root output \(P=C^{19}-\sigma B\), both modulo29 and with \(\sigma\in\{-1,+1\}\). Exhaustively grant **every one of the 243 possible phase starts** even though the printed order naturally selects phase0: **243 × 2 signs × 2 output equations = 972 complete original 243-rune decodes**. Unlike another mutable-cell search, this is an **all-writeback necessary-condition screen**.
+
+| Original p9 first243 decoding family | Highest GP29 IoC across all 243 cyclic phases | Best phase (0-based) | Phase0 IoC |
+| --- | ---: | ---: | ---: |
+| Additive, subtraction by p8 tape | **0.03798932** | 77 | 0.03601673 |
+| Additive, addition by p8 tape | **0.03982587** | 167 | 0.03513247 |
+| Cubic-root19, subtraction by p8 tape | **0.03826140** | 36 | 0.03401014 |
+| Cubic-root19, addition by p8 tape | **0.03849947** | 123 | 0.03336394 |
+
+The unchanged first243 physical p9 runes have IoC **0.03322790**. **Zero of 972 outputs** reaches even **0.04000**. The full phase search is charged, and each phase/output pair reencrypts all **243/243** original runes using its exact inverse. An unselected phase has no special evidential status.
+
+For independent source-native calibration, the SFT applies the project's **solved-LP1 calibrated GP29 orthography** (including the source-attested ING→NG and IO→IA contractions) to the committed *The Prophet* text from Almustafa through the Project Gutenberg book terminator, and independently to the committed first300k Shakespeare characters. The complete Gibran native GP stream contains **46,834** runes, yielding **46,592 contiguous 243-rune windows**; the lowest GP29 IoC is **0.05179744**. Shakespeare yields **217,106** native GP runes, **216,864 windows**; its minimum IoC is **0.04798830**. Thus **all 972** original decodes remain at least **0.00816** below **every one of the 263,456 native-reference windows**, in their common language-concentration statistic. Those donor windows are overlapping and should not be treated as independent hypothesis tests; this is a strong finite diagnostic for ordinary GP-native English, not a language-independent impossibility theorem.
+
+**New family decision:** Conditional on using the *literal* p8 black 243 tape in the *source p7 five-trit de Bruijn address order*, any arbitrary **single-cell-after-read writeback** remains invisible for the entire first 243 subsequent positions. Consequently **no writeback function whatsoever** can rescue either of the source-readable additive or cubing output laws as a direct native-GP-English decoder of original p9 first243, even after optimizing all 243 phases. A **different output equation**, an author-selected table permutation distinct from that five-trit order, a pre-read/global mutation, an additional key layer, a non-GP payload or a different language register are outside this proof. The original page itself does not explicitly instruct a 243-cell lookup, so a genuine solve still needs the missing operator and a long authentic plaintext.
+
+This family result is asserted directly against the original p8 source in the same 24-variant SFT, including simulated adversarial overwrites at all 243 phase starts for **both splices**, 972 exact original forward replays and **every** length243 donor window. [Original-input Windows Node22 CI run 45018556736](https://github.com/FlareZ123/liber-primus/actions/runs/45018556736).
+
 ## Causal decision
 
 The tested **source 243-addressed, five-cipher-trit-indexed writable-table** architecture, with additive and cubic outputs and the simplest source-cued cell updates, fails to decipher original GP prose. The wider dynamic-table hypothesis remains unselected because the original artwork depicts a repeated sapling rather than an explicitly drawn 243-cell, five-level instruction tree; the body has normal word separators and a true cross-page carry. What is missing is an **independent first-party update/output opcode**, including the table-data role and the actual register clock. Unconstrained further table writeback choices and seed/phase fitting lack a human solve path. A source-authenticated operation or substantial new original plaintext would reopen the route; [Director #2240](https://github.com/FlareZ123/liber-primus/issues/2240) remains open for that distinct evidence.
 
-**Reproducibility:** [Read-only Windows Node22/CommonJS SFT](../sims/lp2_p8_original_mutable_ternary243_source_sft.cjs), **PASS** in its expanded 24-variant form at [GitHub Actions run 45017679931](https://github.com/FlareZ123/liber-primus/actions/runs/45017679931). It reads canonical original-derived source runes and exact physical punctuation, asserts the true red-word operands, two zero splices, p8–p9 carry, source-sized receiver and native-solved controls.
+**Reproducibility:** [Read-only Windows Node22/CommonJS SFT](../sims/lp2_p8_original_mutable_ternary243_source_sft.cjs), **PASS** including the all-writeback first-cycle theorem and all-phase screen at [GitHub Actions run 45018556736](https://github.com/FlareZ123/liber-primus/actions/runs/45018556736). It reads canonical original-derived source runes and exact physical punctuation, asserts the true red-word operands, two zero splices, p8–p9 carry, source-sized receiver and native-solved controls.
