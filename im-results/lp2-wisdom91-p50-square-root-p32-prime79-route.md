@@ -53,6 +53,19 @@ where \`m(v)\` is the observed original table-value multiplicity.
 
 Only **(a,b)=(7,4)** meets that final original p32 rune condition among the original-table-supported root11 pairs. A separate deterministic 200,000-shuffle Fisher–Yates screen, **seed 0x91741179**, found **240/200,000** shuffled tables with an additive-square-root triple **somewhere** among all 256 starts, and **3/200,000** at address91; this illustrates the look-elsewhere burden of exploring an entire table. These are finite, highly conditional comparisons, **not** objective discovery-adjusted p-values. The events, source artefact choices, base60 reading, square-root property and further p32 test were recognized in the course of cryptanalytic exploration. They may be one of many uncharged ways of finding eye-catching structure in a 256-cell table.
 
+## Direct cipher consumer: the solved p56 totient rule cannot decode p55 from prime79
+
+The source-selected p32 rune's GP prime **79** is the **22nd** ordinary prime, giving a fixed zero-based prime-list start **21**. The returned p50 route selects p55's entire **76 unchanged original runes**. The simplest manuscript-authenticated value-changing operation is the actual solved-p56 prime-totient cipher, starting at prime79, with its original special rule that **plaintext F encrypts transparently and does not advance the prime clock**. No unknown key, phase, page shift, guessed exception position or trial plaintext is introduced.
+
+For both possible arithmetic signs, propagate **all** consistent key-clock states at each p55 rune. A non-F ciphertext cannot decode to plaintext F through ordinary encryption, because such F would instead have been emitted literally. At ciphertext F, allow **both** a literal F bypass and ordinary encryption of a non-F rune. This dynamic program covers every possible hidden plaintext-F mask rather than assuming that every F glyph is necessarily transparent.
+
+| Fixed inverse on entire original p55 | First rune index at which *every* valid F-mask path becomes impossible |
+| --- | ---: |
+| \`P=C−φ(prime[k]) mod29\`, initial prime79 | **5** |
+| \`P=C+φ(prime[k]) mod29\`, initial prime79 | **61** |
+
+The identical code encrypts authentic solved-p57 GP source material under both signs from prime79 and confirms that the complete planted inverse retains a valid key-clock path through all76 runes. Therefore the specified p56 cipher transfer is **algebraically incompatible with actual p55 ciphertext**, even before a language score. This excludes only this exact starting-prime/totient/F-bypass operation. A new independently instructed cipher consumer or key source is required; it is not productive to optimize hidden F masks further.
+
 ## Causal decision and unresolved inverse
 
 The result is substantially sharper than an unanchored numeric match: the only directly addressable 2014 Stage10 centre selects the only three-output additive-square-root path, its roots give a legal cell on the independently printed 11×11 p32 grid, and that cell recovers the independently established p15 prime79. This nominates a **specific source-to-source path**, with p55's 76-rune page as a possible downstream target.
