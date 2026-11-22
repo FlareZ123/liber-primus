@@ -105,6 +105,46 @@ const firstShed=Object.freeze({
  exposedRingDepth:1
 });
 
+
+// A fully source-selected *candidate* p55 key receiver: start at the
+// convergent second-ring source cell245, walk the literal peeled ring,
+// convert cells to GP29 residues, subtract as in solved-p56. Both natural
+// ring directions and the table's two published radix conventions are
+// charged before inspecting any plaintext. This tests the actual first
+// two words on all 76 p55 source runes without fitting a cipher phase.
+const secondRing=[];
+for(let column=1;column<=6;column++)secondRing.push(8+column);
+for(let row=2;row<=30;row++)secondRing.push(8*row+6);
+for(let column=5;column>=1;column--)secondRing.push(240+column);
+for(let row=29;row>=2;row--)secondRing.push(8*row+1);
+assert.equal(secondRing.length,68);
+assert.equal(new Set(secondRing).size,68);
+const secondRingOffset=secondRing.indexOf(245);
+assert.equal(secondRingOffset,35);
+const secondRingTests=[];
+for(const radix of [59,60]){
+ const digits=radix===59?base59Alphabet:grid.alphabet;
+ for(const direction of [1,-1]){
+  const pad=p55.indices.map((_,j)=>{
+   const at=((secondRingOffset+direction*j)%68+68)%68;
+   return numeral(cells[secondRing[at]],digits)%29;
+  });
+  const plaintext=p55.indices.map((c,i)=>
+   ((c-pad[i])%29+29)%29);
+  const reencrypted=plaintext.map((p,i)=>(p+pad[i])%29);
+  assert.deepEqual(reencrypted,p55.indices);
+  secondRingTests.push({radix,direction,first32:plaintext.slice(0,32)
+   .map(v=>gp.translit[v]).join(""),
+   fullTransliterated:plaintext.map(v=>gp.translit[v]).join("")});
+ }
+}
+assert.deepEqual(secondRingTests.map(x=>x.first32),[
+ "NGTHRBIANAEIAYENOBTEOTNGJOTHJXBRMXOGPUJIA",
+ "NGMSEANGGRIAYAENNGIAEEOTEOEXTHRXBAEOELNGAAEUEAN",
+ "LFTHXAEWOEYABNOBPJXMWEAEAHJSFBIEAGIFNAE",
+ "LTSABRFAEDOEGBGDISNEXTHOEOTOELEEOEDFAEN"
+]);
+
 const directDestinationByKey={
   base59Page:p55.page,
   base60Page:p56.page,
@@ -119,7 +159,7 @@ console.log(JSON.stringify({
   originalTokenMultiplicity:{
     "49":positions("49"),"00":positions("00"),"0u":positions("0u")
   },
-  terminal,firstShed,
+  terminal,firstShed,secondRingTests,
   independentlyEquivalentOriginal3301Base59:"55×59+56",
   receiverPages:{p55RuneCount:p55.indices.length,
     p56RuneCount:p56.indices.length},
