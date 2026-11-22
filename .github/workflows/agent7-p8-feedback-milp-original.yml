@@ -1,0 +1,27 @@
+name: Agent7 p8 243-feedback exact repair minima
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  certify-all-five-axes:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - name: Check out original runes
+        uses: actions/checkout@v4
+      - name: Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install maintained exact MILP library
+        shell: pwsh
+        run: python -m pip install --disable-pip-version-check scipy==1.17.0
+      - name: Certify globally minimal feedback edits and positives
+        shell: pwsh
+        run: |
+          python sims/lp2_p8_feedback_minimum_edit_milp_sft.py
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
