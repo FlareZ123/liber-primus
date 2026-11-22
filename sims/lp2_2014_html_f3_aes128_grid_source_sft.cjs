@@ -33,7 +33,7 @@ assert.equal(table.bytes[title], 141);
 assert.equal(table.bytes[id % 256], 177);
 assert.equal(table.bytes.length, 256);
 const runeIndex = new Map(source.runes.map((glyph, i) => [glyph, i]));
-const print = read('resources/liber-primus/lp2-transcription.txt').split('%').slice(0, 56);
+const print = read('resources/liber-primus/lp2-transcription.txt').split('%').slice(0, 55);
 const words = [];
 let current = [];
 let pageRange = [];
