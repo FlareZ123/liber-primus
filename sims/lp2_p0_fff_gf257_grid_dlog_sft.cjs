@@ -83,6 +83,40 @@ const output=decode(grid.bytes);
 const printable=values=>values.filter(x=>x>=32&&x<=126).length;
 /** @param {number[]} values */
 const content=values=>values.map(x=>x>=32&&x<=126?String.fromCharCode(x):'.').join('');
+// The source primitive field admits a canonical index-dependent
+// multiplicative keystream, g^(i+48), of period 256. Test both its direct
+// field multiplication and its additive-exponent interpretation against
+// all original bytes with no tunable phase, key or initial vector.
+const fieldMask = Array.from({length:256},(_,i)=>
+  byExponent[(i+phase)%256]);
+const dynamicReadouts = [];
+for(const kind of ['exponent-stream','field-unit-stream']){
+  const recovered = grid.bytes.map((byte,i) => kind==='exponent-stream'
+    ? (exponentFor.get(byte+1)-i-phase+512)%256
+    : ((byte+1)*byExponent[(256-(i+phase)%256)%256])%P-1);
+  const reencoded = recovered.map((byte,i) => kind==='exponent-stream'
+    ? byExponent[(byte+i+phase)%256]-1
+    : ((byte+1)*fieldMask[i])%P-1);
+  assert.deepEqual(reencoded,grid.bytes);
+  const plantedCipher=planted.map((byte,i) => kind==='exponent-stream'
+    ? byExponent[(byte+i+phase)%256]-1
+    : ((byte+1)*fieldMask[i])%P-1);
+  const plantRecovered=plantedCipher.map((byte,i)=>
+    kind==='exponent-stream'
+      ? (exponentFor.get(byte+1)-i-phase+512)%256
+      : ((byte+1)*byExponent[(256-(i+phase)%256)%256])%P-1);
+  assert.deepEqual(plantRecovered,planted);
+  const ascii=content(recovered);
+  dynamicReadouts.push({kind,originalPrintableASCII:printable(recovered),
+    originalGP29ByteCount:recovered.filter(x=>x<29).length,
+    first32Hex:Buffer.from(recovered.slice(0,32)).toString('hex'),
+    originalASCII80:ascii.slice(0,80),
+    maxAlphabeticRun:Math.max(0,...(ascii.match(/[A-Za-z]+/g)||[])
+      .map(x=>x.length)),
+    exactOriginalInverse256:true,plantedSolvedP57Inverse256:true});
+}
+assert(dynamicReadouts.every(x=>x.maxAlphabeticRun<=3));
+
 // The same source primitive root also defines a unique 256-position
 // permutation. Read the original printed grid in the two fixed traversal
 // directions with the source phase 48. The index receiver is independent
@@ -129,7 +163,8 @@ console.log(JSON.stringify({
   originalGP29ByteCount:output.filter(x=>x<29).length,
   fileHeaders:signatures,
   sourceFieldIndexTraversal:indexReadouts,
+  sourceFieldStreamDecoders:dynamicReadouts,
   originalExactReverse256:true,
   plantedSolvedP57ExactReverse256:true,
-  conclusion:'Both 256-byte discrete-log value and source-power index readouts are nontext and untyped. The field-group source remains a structural lead, not authenticated cipher or plaintext.'
+  conclusion:'Original 256-byte discrete-log, two full-period source-key streams and two source-power index traversal readouts are nontext and untyped. The field-group source remains a structural lead, not authenticated cipher or plaintext.'
 },null,2));
