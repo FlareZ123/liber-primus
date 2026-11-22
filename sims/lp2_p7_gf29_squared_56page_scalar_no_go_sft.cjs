@@ -117,6 +117,46 @@ let cursor=0;
 const seams=[];
 for(let p=0;p<55;p++){cursor+=lengths[p];if(cursor%2)seams.push(p+'|'+(p+1));}
 assert.equal(seams.length,22);
+// Universal extension-field norm theorem: EVERY nonzero GF(29^2)
+// multiplier, not only elements of exact order56, has 30th power
+// equal to the scalar field norm (a^2-8b^2) in GF29*.
+let allNonzeroFieldElements=0;
+for(let a=0;a<29;a++)for(let b=0;b<29;b++){
+  if(a===0 && b===0)continue;
+  const beta=[a,b],norm=mod(a*a-8*b*b);
+  assert.notEqual(norm,0);
+  assert.deepEqual(fieldPow(beta,30),[norm,0]);
+  allNonzeroFieldElements++;
+}
+assert.equal(allNonzeroFieldElements,840);
+const scalarPhaseWitness=[];
+const originalPageIoC=source.pages.slice(0,56)
+  .map(page=>page.indices.length>1?ioc(page.indices):null);
+for(let phase=0;phase<30;phase++){
+  // A whole-page clock advances one beta power per physical page.
+  // In the first thirty physical pages, one page has exponent
+  // exactly divisible by 30, whatever the unknown initial phase.
+  const candidate=(30-phase)%30;
+  const other=candidate+30;
+  const protectedPage=other<56 && lengths[other]>lengths[candidate]
+    ? other : candidate;
+  assert(lengths[protectedPage]>=201);
+  assert(originalPageIoC[protectedPage]<0.037);
+  const offset=lengths.slice(0,protectedPage).reduce((a,n)=>a+n,0);
+  // If page starts mid-global pair, only the first rune is governed
+  // by its predecessor's clock; all other rune pairs are scalar.
+  const exceptions=offset%2;
+  const stable=source.pages[protectedPage].indices.slice(exceptions);
+  assert(stable.length>=200);
+  assert(ioc(stable)<0.037);
+  scalarPhaseWitness.push({
+    phase,protectedPage,originalRunes:lengths[protectedPage],
+    pageOffset:offset,spilloverExceptions:exceptions,
+    preservedRunes:stable.length,originalIoC:originalPageIoC[protectedPage],
+    preservedIoC:ioc(stable)
+  });
+}
+assert.equal(scalarPhaseWitness.length,30);
 const candidates=[0,43].map(page=>{
   const original=source.pages[page].indices;
   const globalRuneOffset=lengths.slice(0,page).reduce((a,n)=>a+n,0);
@@ -168,6 +208,10 @@ console.log(JSON.stringify({
   solvedP57ScalarEncryptedInverse:'PASS',
   all56PhaseChecks:phaseProof.length,
   allExactOrder56FieldMultipliers:exactOrder56.length,
+  all840NonzeroFieldElementsNormScalarAtPower30:allNonzeroFieldElements,
+  all30GlobalClockPhaseLongPageWitnesses:scalarPhaseWitness.length,
+  minimumSourceNativeWitnessRunes:Math.min(...scalarPhaseWitness.map(v=>v.preservedRunes)),
+  maximalSourceOriginalWitnessIoC:Math.max(...scalarPhaseWitness.map(v=>v.preservedIoC)),
   fieldOrder56AllPureAlpha:true,
   sourceTitleCubeOrder56:fieldPow([4,3],3),
   sourceReverseTitle15Order56:fieldPow([3,4],15)
