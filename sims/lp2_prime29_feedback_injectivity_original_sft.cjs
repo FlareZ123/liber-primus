@@ -68,6 +68,23 @@ console.log("ALL 28 nonzero secret multipliers preserve indistinguishable",
 const original = corpus.pages.filter((p) => p.page <= 55)
   .flatMap((p) => p.indices);
 assert.equal(original.length, 12956);
+
+// Source-original table has 256 printed 2-character base60 tokens.
+// This entire 512-character register cannot carry enough side information
+// to restore all GP29 inputs from a 24-residue mapping over 12956 runes.
+const grid = JSON.parse(read("resources/liber-primus/lp2-grid-256.json"));
+assert.equal([...grid.alphabet].length, 60);
+const cells = grid.pages.flatMap((p) => p.tokens);
+assert.equal(cells.length, 256);
+assert.ok(cells.every((t) => [...t].length === 2 &&
+  [...t].every((ch) => grid.alphabet.includes(ch))));
+const completeGridBits = cells.length * 2 * Math.log2(60);
+const allPlaintextSideBits = original.length * Math.log2(29 / buckets.size);
+assert.ok(completeGridBits < allPlaintextSideBits);
+console.log("SOURCE CAPACITY entire base60² p50 table:",
+  completeGridBits.toFixed(6), "bits <", "full-book GP29-to-24 inverse need",
+  allPlaintextSideBits.toFixed(6), "bits");
+
 let equal = 0;
 for (let i = 1; i < original.length; i++)
   if (original[i] === original[i - 1]) equal++;
