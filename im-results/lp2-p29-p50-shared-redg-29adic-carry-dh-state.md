@@ -75,9 +75,25 @@ A lexical or uniformly random 277-symbol null would almost always fail exact div
 
 Results: **11/8,000** null registers reproduce exactly `[13,19]`; plus-one empirical frequency **12/8,001 = 0.0014998125**, and all 841 possible carry pairs occur. This estimates how frequently that *specific pair* arises under a narrow quotient-histogram-preserving factor null. Crucially, the exact p29 target pair and its H transformation were interpreted **after they were observed**, amid thousands of previously explored possible numeric relations. The number **0.0015 must not be quoted as a discovery-wide p-value or authorship probability**.
 
+## Direct source-carry Hill2 consumer: complete 254-rune inverse fails
+
+An independent original-body receiver was frozen in [the precommit](../workplace/agent27-p50-factorcarry-hill2-original-precommit.md) before reading its output. The two previously established original-p50 H/G factor carries form the complete 2×2 key **`M=[[8,5],[15,2]]`**, with determinant `−1 mod29` and exact inverse **`M⁻¹=[[27,5],[15,21]]`**. The original full p50/G quotient has **254** complete runes, so it admits 127 native pairs without a padding, phase, or skip convention.
+
+The single frozen rule applies `M⁻¹` as a standard column-vector GP29 Hill2 decoder to all consecutive pairs of the exact 254-symbol original table quotient. Results:
+
+| Source register | GP source-native trigram nats/rune | IoC |
+| --- | ---: | ---: |
+| Original p50/G quotient254 | −3.439876889 | 0.03277209 |
+| **Entire p50/G Hill2 inverse254** | **−3.423784872** | **0.03551088** |
+| Independently solved p57 GP95 | −2.468144714 | 0.06270997 |
+
+The full output remains nonlinguistic; its first source-native GP runes read `MTFWSNERGLHARHBIODEAEYTHPGMCIMTHHEAHDTHEAPCIOHIOCOEACTHXIOAAMNYTAOEAMGCHRCSAXOINGDDBUOEJWOEAEDFINGOEMEWINGINGIOREINGYWMIGANIJFMSSIOIRLNHMEEOSJUNTHPOCAAEIOINGXRTHXEOEEATHCNGEOGTHAEWFOETHAEINGJCAERBNINGSGEAESSWCT`. Forward replay restores all **254/254** original quotient runes. A planted 254-rune source-native LP1 control encrypts/decrypts exactly under the same M, so the failure concerns the original stream rather than the implementation.
+
+**Decision:** retire this *one exact source-ordered H/G-carry Hill2 reading of the source-aligned p50 quotient*. This is a motivated two-row key and complete reversible inverse, while the original 2013 protocol never authorizes treating the carry pair as a Hill matrix; matrix inversions on other source spans would require a fresh selector. [Read-only SFT](../sims/lp2_p50_factorcarry_hill2_direct_original_sft.cjs).
+
 ## Causal plaintext decision
 
-The new carries are **exact, key-like short numeric packets** aligned with the p39/p23 factors linking p29, p50 and p28, but it does not identify a complete key stream, reversible original-rune transform, clock/reset, or plaintext receiver. The p29 quotient itself has near-ciphertext GP29 IoC **0.03405441**. Any single fixed GP29 permutation applied uniformly to this quotient preserves that IoC, so the revealed `e=3` GP29 cube operation alone cannot turn the full quotient into native-GP English prose. The separately frozen full 275-rune quotient→outer-H shell inverse also failed native-GP language [under its exact source rule](lp2-p28-p29-gquotient-outerh-prospective-inverse-decision.md).
+The new carries are **exact, key-like short numeric packets** aligned with the p39/p23 factors linking p29, p50 and p28, but it does not identify a complete key stream, reversible original-rune transform, clock/reset, or plaintext receiver. The p29 quotient itself has near-ciphertext GP29 IoC **0.03405441**. Any single fixed GP29 permutation applied uniformly to this quotient preserves that IoC, so the revealed `e=3` GP29 cube operation alone cannot turn the full quotient into native-GP English prose. The separately frozen full 275-rune quotient→outer-H shell inverse and the above p50 factor-carry Hill2 inverse both failed native-GP language [under its exact source rule](lp2-p28-p29-gquotient-outerh-prospective-inverse-decision.md).
 
 **Next discriminating requirement:** find an independently legible original instruction specifying what the two red-factor carries actually key and how its state advances through >=150 original encrypted runes. Until then this is intermediate arithmetic evidence, useful for interpreting the table's unusual algebraic structure but insufficient to promote the p28/p29/p50 network to an authenticated decipherment.
 
