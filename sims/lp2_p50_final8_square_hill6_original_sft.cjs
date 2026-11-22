@@ -209,6 +209,45 @@ for (const [shape, dimension, inset] of [
     }
   }
 }
+const intactFlanks = {
+  pretable138: [
+    ...corpus.pages.find((page) => page.page === 48).indices.slice(-72),
+    ...corpus.pages.find((page) => page.page === 49).indices
+  ],
+  posttable170: [
+    ...corpus.pages.find((page) => page.page === 51).indices,
+    ...corpus.pages.find((page) => page.page === 52).indices.slice(0, 78)
+  ]
+};
+assert.equal(intactFlanks.pretable138.length, 138);
+assert.equal(intactFlanks.posttable170.length, 170);
+assert.deepEqual(intactFlanks.pretable138.slice(0, 2), [20, 2]); // L TH
+assert.deepEqual(intactFlanks.posttable170.slice(0, 2), [7, 7]); // W W
+const intactFlankTwoRuneHeaderHill8 = [];
+for (const [radix, values] of [["base60", base60], ["base59-drop-f", base59]]) {
+  const key = Array.from({ length: 8 }, (_, row) =>
+    Array.from({ length: 8 }, (_, col) => mod(values[192 + row * 8 + col])));
+  const state = invert29(key);
+  assert.equal(state.rank, 8);
+  for (const [flank, original] of Object.entries(intactFlanks)) {
+    const body = original.slice(2);
+    assert.equal(body.length % 8, 0);
+    for (const [direction, forward, inverse] of [
+      ["column", key, state.inverse],
+      ["row", transpose(key), transpose(state.inverse)]
+    ]) {
+      const decoded = transform(inverse, body);
+      assert.equal(decoded.length, body.length);
+      assert.deepEqual(transform(forward, decoded), body);
+      intactFlankTwoRuneHeaderHill8.push({
+        flank, radix, direction, sourceHeaderGp29: render(original.slice(0, 2)),
+        cipherRunes: original.length, decipheredRunes: decoded.length,
+        inverseIoC: ioc(decoded), decodedFirst72Gp29: render(decoded.slice(0, 72)),
+        decodedLast16Gp29: render(decoded.slice(-16))
+      });
+    }
+  }
+}
 console.log(JSON.stringify({
   mode: "source-original final 8x8 -> natural nested 7x7 and 6x6 -> frozen HillN mod29",
   rowMajorSquareStart: 192, literalZeroLocations: [192, 229],
@@ -218,6 +257,7 @@ console.log(JSON.stringify({
   base59: { rank: K59State.rank, det29: K59State.det, recoverable: true },
   inverseGp29Tests: candidates,
   originalNestedSquareHill8AndHill7: outerSquareTests,
+  intactFlankTwoRuneHeaderHill8,
   positive: "84 authentic p56 plaintext runes roundtrip under both Hill6 orientations",
-  verdict: "All original Hill8/Hill7 inverses are nonprose; base59 Hill6 also nonprose. Base60 Hill6 rank5 also fails its necessary full-block parity-code constraint."
+  verdict: "All source-geometry Hill8/Hill7 inverses are nonprose on three untouched pages, and complete original 138/170 rune flanks remain nonprose after source two-rune header exclusion. Base59 Hill6 nonprose; base60 Hill6 rank5 fails exact full-block parity necessary condition."
 }, null, 2));
