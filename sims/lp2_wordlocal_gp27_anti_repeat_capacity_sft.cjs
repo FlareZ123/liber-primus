@@ -186,4 +186,61 @@ const gp28Quotient = (totalGP28 + wholeAvailable - 1n) / wholeAvailable;
 assert.equal((gp28Quotient - 1n).toString(2).length, 23);
 console.log("GP27 GLOBAL CARDINALITY", "sufficient",
   "GP28 GLOBAL FIXED-SHAPE SIDE BITS", 23);
+
+/*
+ * Distinct punctuation-reset necessary condition. Treat each of the 172
+ * physically distinct punctuation-mark word-ending sites as an independent
+ * segment boundary; grant any secret bijection of ALL complete words within
+ * a segment, preserving each printed word's exact repeat count. A single
+ * variable morphological punctuation mark at its end is an overgenerous
+ * local side channel of up to five symbols (13/10/4/3 dots, detached square).
+ * Determine exactly how many mark symbols would be needed for a lossless
+ * unrestricted GP27 source in each such independently framed segment.
+ * No assumption that the author actually uses punctuation resets is made.
+ */
+const siteToWord = new Map(endings.map((end, i) => [end, i]));
+const punctuationCuts = [
+  -1, ...new Set(physicalMarks.map(mark => siteToWord.get(mark.rune_offset)))
+].sort((a, b) => a - b);
+assert.equal(punctuationCuts.length - 1, 172);
+assert.equal(punctuationCuts[punctuationCuts.length - 1], words.length - 1);
+const framed = [];
+for (let k = 1; k < punctuationCuts.length; k++) {
+  const start = punctuationCuts[k - 1] + 1;
+  const endExclusive = punctuationCuts[k] + 1;
+  let available = 1n, runeCount = 0;
+  for (let j = start; j < endExclusive; j++) {
+    available *= codebooks[j];
+    runeCount += words[j].length;
+  }
+  const required = 27n ** BigInt(runeCount);
+  const minMarkChoices = (required + available - 1n) / available;
+  framed.push({
+    start, last: endExclusive - 1, runeCount,
+    markIndex: physicalMarks.filter(mark =>
+      siteToWord.get(mark.rune_offset) === endExclusive - 1)
+      .map(mark => mark.index),
+    minMarkChoices: Number(minMarkChoices)
+  });
+}
+const needy = framed.filter(frame => frame.minMarkChoices > 1);
+assert.deepEqual(needy.map(frame => [
+  frame.start, frame.last, frame.runeCount, frame.minMarkChoices,
+  frame.markIndex
+]), [
+  [853, 863, 35, 2, [63]],
+  [1586, 1596, 36, 2, [98]],
+  [1597, 1599, 11, 6, [99]],
+  [2361, 2369, 31, 3, [151]],
+  [2767, 2775, 29, 4, [174]]
+]);
+assert.equal(framed.length - needy.length, 167);
+assert.ok(needy.some(frame => frame.minMarkChoices > 5));
+console.log("GP27 PHYSICAL PUNCTUATION RESET FRAMES", framed.length,
+  "WITHOUT SIDE DEFICIT", framed.length - needy.length);
+console.log("GP27 INSUFFICIENT FRAMES AND REQUIRED MARK ALTERNATIVES",
+  JSON.stringify(needy));
+console.log("GP27 MAXIMUM FIVE-TYPE END-MARK CODE INSUFFICIENT:",
+  "p29 original words1597..1599 need >=6 distinct local endings");
+
 console.log("PASS: exact original-cipher local-capacity gate");
