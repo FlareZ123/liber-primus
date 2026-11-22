@@ -124,12 +124,22 @@ function sweep(code, key, model, sign) {
 
 /** @param {number[]} native @param {Float64Array} model @param {number} len @returns {number[]} */
 function nativeScores(native, model, len) {
-  const src = native.filter((x) => x !== 0).map((x) => x - 1);
+  // Preserve GP0=F and original window lengths. Language-model training
+  // resets on F; removing F first would create artificial cross-F bigrams.
   const scores = [];
-  for (let start = 0; start + len <= src.length; start += 29) {
-    let total = 0;
-    for (let i = start + 1; i < start + len; i++)total += model[src[i-1] * N + src[i]];
-    scores.push(total / (len - 1));
+  for (let start = 0; start + len <= native.length; start += 29) {
+    let total = 0, transitions = 0, previous = -1;
+    for (let i = start; i < start + len; i++) {
+      if (native[i] === 0) { previous = -1; continue; }
+      const p = native[i] - 1;
+      if (previous !== -1) {
+        total += model[previous * N + p];
+        transitions++;
+      }
+      previous = p;
+    }
+    assert.ok(transitions > 0, "control window has no usable GP28 bigrams");
+    scores.push(total / transitions);
   }
   scores.sort((a,b)=>a-b);
   return scores;
