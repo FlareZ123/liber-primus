@@ -141,4 +141,95 @@ for (const [name, keys] of Object.entries(registers)) {
   console.log(name + ': ' + JSON.stringify(observed) +
     ', literalTableMatches=' + direct + '/255, cyclicRank=' + rank + '/255');
 }
-console.log('PASS: exact stateless word-lookup obstruction; no unknown plaintext recovered.');
+
+/**
+ * GF29 rank certificate against a moving five-tap state plus scroll-word
+ * feed-forward key, without fixing ANY of the coefficients.
+ *
+ * AR5: output_i = sum_j a_j output_(i-j) + b input_i + c.
+ * FIR6: output_i = sum_j b_j input_(i-j) + c.
+ * AR5+FIR6: both moving-output and moving-input channels, all twelve
+ * coefficients freely secret. The first five original outputs are public IVs.
+ * @param {number[][]} rows
+ * @param {number[]} rhs
+ */
+function linearCertificate(rows, rhs) {
+  const augmented = rows.map((row, i) => [...row, rhs[i]]);
+  const numCols = rows[0].length;
+  let rank = 0;
+  for (let col = 0; col < numCols; col++) {
+    let pivot = rank;
+    while (pivot < augmented.length && augmented[pivot][col] === 0) pivot++;
+    if (pivot === augmented.length) continue;
+    [augmented[rank], augmented[pivot]] =
+      [augmented[pivot], augmented[rank]];
+    const inverse = Array.from({length: 28}, (_, i) => i + 1)
+      .find(x => ((x * augmented[rank][col]) % 29) === 1);
+    assert.notEqual(inverse, undefined);
+    for (let j = col; j <= numCols; j++) {
+      augmented[rank][j] = augmented[rank][j] * inverse % 29;
+    }
+    for (let i = rank + 1; i < augmented.length; i++) {
+      if (augmented[i][col] === 0) continue;
+      const factor = augmented[i][col];
+      for (let j = col; j <= numCols; j++) {
+        augmented[i][j] = ((augmented[i][j] -
+          factor * augmented[rank][j]) % 29 + 29) % 29;
+      }
+    }
+    rank++;
+  }
+  const contradictions = augmented.slice(rank)
+    .filter(row => row[numCols] !== 0).length;
+  return {rank, contradictions};
+}
+/** @param {number[]} input @param {number[]} output @param {string} mode */
+function stateRows(input, output, mode) {
+  const rows = [], rhs = [];
+  const ar = mode !== 'FIR6', fir = mode !== 'AR5+input';
+  for (let i = 5; i < output.length; i++) {
+    const row = ar ? Array.from({length:5}, (_, k) => output[i - k - 1]) : [];
+    for (let k = 0; k < (fir ? 6 : 1); k++) row.push(input[i - k]);
+    row.push(1);
+    rows.push(row);
+    rhs.push(output[i]);
+  }
+  return {rows, rhs};
+}
+const expectedState = {
+  GP0Sum: [[7,235],[7,235],[12,230]],
+  primeSum: [[7,232],[7,235],[12,229]],
+  base29Byte: [[7,230],[7,237],[12,228]]
+};
+for (const [name, input] of Object.entries(registers)) {
+  if (!(name in expectedState)) continue;
+  const reducedInput = input.map(x => x % 29);
+  for (const [k,mode] of ['FIR6','AR5+input','AR5+FIR6'].entries()) {
+    const original = stateRows(reducedInput, target, mode);
+    const cert = linearCertificate(original.rows, original.rhs);
+    assert.deepEqual(Object.values(cert), expectedState[name][k]);
+    assert(cert.contradictions > 0);
+
+    // Real AR/FIR5 state-positive: choose secret nonzero fixed coefficients
+    // and an independent source-native public five-rune initial state.
+    const plant = target.slice(0,5);
+    for (let i=5; i<target.length; i++) {
+      const features = mode === 'FIR6' ? [] :
+        Array.from({length:5}, (_, j) => plant[i-j-1]);
+      for (let j=0; j < (mode === 'AR5+input' ? 1 : 6); j++) {
+        features.push(reducedInput[i-j]);
+      }
+      features.push(1);
+      const value = features.reduce((sum, v, j) =>
+        sum + v * ((j * 11 + 3) % 29), 0) % 29;
+      plant.push(value);
+    }
+    const planted = stateRows(reducedInput, plant, mode);
+    const plantedCert = linearCertificate(planted.rows, planted.rhs);
+    assert.equal(plantedCert.contradictions, 0);
+    console.log(name + ' ' + mode + ': ' + JSON.stringify(cert) +
+      ', authentic state-plant 250/250');
+  }
+}
+
+console.log('PASS: arbitrary-table and arbitrary-five-tap causal-linear original-source exclusions; no plaintext.');
