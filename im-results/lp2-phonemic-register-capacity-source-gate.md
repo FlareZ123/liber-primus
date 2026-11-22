@@ -10,6 +10,10 @@ ARPAbet has 39 distinct phones. The test freezes ten reasonable, but deliberatel
 
 ## Strong observation with necessary control caveats
 
+**New unfitted raw-39-phone control (22 November):** Before the declared ten mergers, the first ARPAbet pronunciations of the **same exact 538 solved-text words** contain **8 equal adjacent phones out of 1,805 transitions (0.44321%)**, with **zero** within the 1,268 within-word transitions and **eight** across 537 printed-word boundaries. This raw 39-phoneme representation uses no 39→29 mergers at all and still produces an extremely small repeat rate. The 29-class coincidence of 12/1,805 is therefore not solely manufactured by the merger choices, although the precise near-equality to LP2 depends on those declared choices. Neither baseline matches LP2's many within-word doublets, low unigram IoC, long printed words or lack of repeated long ciphertext words. The amended read-only SFT verifies both controls; [successful independent rerun 45021416981](https://github.com/FlareZ123/liber-primus/actions/runs/45021416981).
+
+## Strong observation with necessary control caveats
+
 | Statistic | LP1+solved-p57 CMU sound-class control | Original unknown LP2 |
 | --- | ---: | ---: |
 | Source length | 538 pronounceable words; 1,806 sound classes | 2,896 printed words; 12,956 runes |
@@ -21,7 +25,7 @@ ARPAbet has 39 distinct phones. The test freezes ten reasonable, but deliberatel
 | Unigram index of coincidence | 0.06226 | 0.03448 |
 | Repeated words of length at least 4 (excess) | 57 | **0** |
 
-The two overall repeat rates are close for *this one fixed source slice* (absolute gap 0.00001795). This is a meaningful counterexample to the inference that extremely few equal neighbors require an explicit anti-repeat encryption step. The source has no publication-supported reason to undergo phonemic translation before encryption, and matching this **single** statistic cannot select a cipher, determine its key or make a linguistic plaintext appear.
+The two 29-class overall repeat rates are close for *this one selected solved-source slice* (absolute gap 0.00001795). This is a meaningful counterexample to the inference that extremely few equal neighbors require an explicit anti-repeat encryption step. The source has no publication-supported reason to undergo phonemic translation before encryption, and matching this **single** statistic cannot select a cipher, determine its key or make a linguistic plaintext appear.
 
 The other three contrasts are large and independently measured. In particular, a fixed one-to-one letter/rune substitution of the sound classes cannot turn 57 duplicated long words into **zero** duplicate long ciphertext words, nor move the source IoC to the original without a time-varying or homophonic operation.
 
