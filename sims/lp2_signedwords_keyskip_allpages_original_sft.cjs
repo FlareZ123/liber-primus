@@ -141,7 +141,7 @@ for (const key of keys) {
   for (const sign of [-1, 1]) {
     for (const F of [false,true]) {
       const e = encrypt(native, key.indices, sign, F);
-      const d = decrypt(e.C, key.indices, sign, F, 1200);
+      const d = decrypt(e.C, key.indices, sign, F, 8000);
       const recovered = d.plain.reduce((n, p, i) =>
         n + Number(p === native[i]), 0);
       assert.equal(recovered, 255,
