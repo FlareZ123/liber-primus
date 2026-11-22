@@ -159,6 +159,33 @@ function parityCollision(a) {
   }
   return {same: equal, pairs: total, ioc: equal / total};
 }
+/**
+ * The source quadratic generator itself gives a strictly stronger,
+ * arbitrary-field-basis-independent invariant. X^(2k)=8^k*I is central
+ * in GL2(29), so B X^(2k) B^-1 stays a *single common scalar* on
+ * both rune coordinates, for EVERY fixed non-singular unknown basis B.
+ * For any global phase, one parity cohort of physical pages is scalar.
+ * A page-local bijective GP alphabet following that scalar also cannot
+ * change the page-level IoC.
+ */
+function pageCohortCollision(a, physicalParity) {
+  let equal = 0, possible = 0, count = 0, pages = 0;
+  for (const [page, sites] of pagePairs.entries()) {
+    if (page % 2 !== physicalParity) continue;
+    const values = sites.flatMap(i => [a[i], a[i + 1]]);
+    pages++;
+    count += values.length;
+    const hist = Array(29).fill(0);
+    for (const v of values) hist[v]++;
+    equal += hist.reduce((sum, x) => sum + x * (x - 1), 0);
+    possible += values.length * (values.length - 1);
+  }
+  return { pages, runes: count, same: equal, pairs: possible,
+    ioc: equal / possible };
+}
+const observedPageCohorts = [0, 1].map(parity =>
+  pageCohortCollision(ciphertext, parity));
+
 const observedParity = parityCollision(ciphertext);
 const {encodeSourceNativeGP} = require("./lp2_native_gp_source_orthography_sft.cjs");
 const read = file => fs.readFileSync(path.join(root, file), "utf8");
@@ -176,7 +203,19 @@ for (const [author, file] of Object.entries(donorFiles)) {
     samples.push(parityCollision(encoded.slice(start, start + ciphertext.length)).ioc);
   }
   assert(samples.length >= 1, "native source must include at least one full original-length readout");
+  const pageCohorts = [0, 1].map(parity => {
+    const values = [];
+    for (let start = 0; start + ciphertext.length <= encoded.length;
+         start += Math.max(1, Math.floor(ciphertext.length / 2))) {
+      values.push(pageCohortCollision(encoded.slice(start,
+        start + ciphertext.length), parity).ioc);
+    }
+    return { pages: observedPageCohorts[parity].pages,
+      minimum: Math.min(...values), maximum: Math.max(...values),
+      atOrBelowOriginal: values.filter(v => v <= observedPageCohorts[parity].ioc).length };
+  });
   nativeBaseline[author] = {
+    pageCohorts,
     sourceRunes: encoded.length, windows: samples.length,
     minimum: Math.min(...samples),
     median: samples.slice().sort((a, b) => a - b)[Math.floor(samples.length / 2)],
@@ -209,6 +248,10 @@ for (const sign of [1, -1]) {
   }
   const recoveredStrata = parityCollision(received);
   assert.deepEqual(recoveredStrata, observedParity);
+  // For the natural page-number origin, all even physical pages are
+  // pure scalar field multiplications, regardless of hidden basis.
+  assert.deepEqual(pageCohortCollision(received, 0),
+    observedPageCohorts[0]);
   results.push({rootSign:sign,book: {runes: received.length, ioc:ioc(received)},
     regions:region(received),p0Unchanged:true,exactForwardReplay:true,
     originalParityIoCPreserved:parityInvariants});
@@ -229,8 +272,9 @@ console.log(JSON.stringify({
   naturalClock:"GF29[X]/(X^2-8) as two global successive runes; X^(page number)",
   original:region(ciphertext),
   originalPageParityCipherCollision:observedParity,
+  originalEvenOddPageCohorts:observedPageCohorts,
   independentLanguagePageParityControls:nativeBaseline,
   rootCandidates:results,
   independentNativePositive:"true solved p57 corpus planted and reencrypted/decrypted exactly"
 }, null, 2));
-console.log("PASS: original GP29 polynomial and GF29^2 order56, exact root± full-book inverse, all-secret page-parity IoC invariant, source-native donor controls.");
+console.log("PASS: original GF29^2 root56, all-secret page/pair invariant and arbitrary-basis scalar page-cohort invariant, native donors and exact inverse.");
