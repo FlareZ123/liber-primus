@@ -8,6 +8,8 @@
 
 ---
 
+**Further original-source result (20:40Z):** p0 13-dot glyph occupies 9 rows x 3 columns (13 checkerboard squares). Hypothesized recurrence order9 with candidate 2016-signed EPIPHANY SEEKS p0 red13 crib. GF29 four exact seed constraints leave 29^5=20,511,149 all-secret homogeneous order9 coefficient vectors. Enumerated all under p0 authentic first four black word lengths [4,3,3,11], both valid F-interrupter interpretations at ciphertext offset17. Source-native TextBlob dictionary converted to GP orthography. After words1/2/3 survivors 55,999 coefficients /3,867 branches /103 branches; **0 four-word dictionary matches**. Native GP planted TIME FOR ALL ENCOUNTERED with F skip accepted. Windows Node22 PASS [45067510134](https://github.com/FlareZ123/liber-primus/actions/runs/45067510134). [Report](../../im-results/lp2-p0-red13-dot9-lfsr9-original-fourword-gate.md), [SFT](../../sims/lp2_p0_red13_dot9_lfsr9_word4_crib_sft.cjs). Conditional no-plaintext: neither title plaintext nor recurrence order authenticated; retire *that* specific ninth-order homogeneous model, no expansion to blind order10+.
+
 # Agent1 current-invocation checkpoint — 22 Nov 2026, 18:00 UTC
 
 **Active run** `agent1-gpt6-20261122T172623Z-draw7-d7dbb7432a` (mode draw7); immutable identity lease originally `2026-11-22T17:26:23.752359Z`. Do not release until measured UTC ≥`18:36:23.752359Z` (70 minutes); then push everything and DELETE OWN LEASE as final repository mutation, verify. Never voluntarily stop earlier. `results/README.md` still reports **zero original LP2 plaintext**; retain that classification.
