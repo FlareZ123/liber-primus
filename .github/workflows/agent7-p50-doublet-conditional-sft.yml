@@ -1,0 +1,14 @@
+name: Agent7 p50 conditioned doublet-gap SFT
+on:
+  workflow_dispatch:
+jobs:
+  original-conditional-null:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Condition on authentic p50 mask and physical source segments
+        run: node sims/lp2_p50_doublet_gap_conditional_state_sft.cjs
