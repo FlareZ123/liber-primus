@@ -71,20 +71,35 @@ assert.equal(body.length, 3 ** 5);
 const fCount = body.filter((x) => x === 0).length;
 assert.equal(fCount, 8);
 
-function decode(cipher, sign, fTransparent) {
-  let j = 0;
-  const symbols = cipher.map((c) => {
-    if (fTransparent && c === 0) return 0;
-    const k = key[j % key.length];
-    j++;
-    return mod(c + sign * k);
-  });
-  return { symbols, consumed: j };
+function decodeOrdinary(ct, sign) {
+  return ct.map((c, i) => mod(c + sign * key[i % key.length]));
 }
-function encode(plain, sign, fTransparent) {
+function encodeOrdinary(plain, sign) {
+  return plain.map((p, i) => mod(p - sign * key[i % key.length]));
+}
+function decodeTransparentDP(ct, sign) {
+  let states = [{ j: 0, p: [] }];
+  for (const c of ct) {
+    const next = [];
+    for (const state of states) {
+      const k = key[state.j % key.length];
+      if (c !== 0) {
+        const p = mod(c + sign * k);
+        if (p !== 0) next.push({ j: state.j + 1, p: state.p.concat(p) });
+      } else {
+        next.push({ j: state.j, p: state.p.concat(0) });
+        const p = mod(sign * k);
+        if (p !== 0) next.push({ j: state.j + 1, p: state.p.concat(p) });
+      }
+    }
+    states = next;
+  }
+  return states;
+}
+function encodeTransparent(plain, sign) {
   let j = 0;
   return plain.map((p) => {
-    if (fTransparent && p === 0) return 0;
+    if (p === 0) return 0;
     const k = key[j % key.length];
     j++;
     return mod(p - sign * k);
@@ -135,28 +150,45 @@ assert.equal(nativeWindows.length, 710);
 nativeWindows.sort((a, b) => a - b);
 
 const planted = Array.from({ length: body.length }, (_, i) => p57[i % p57.length]);
-const results = [];
-for (const fTransparent of [false, true]) {
-  for (const sign of [-1, 1]) {
-    const decoded = decode(body, sign, fTransparent);
-    const reencrypted = encode(decoded.symbols, sign, fTransparent);
-    assert.deepEqual(reencrypted, body);
-
-    const plantedCipher = encode(planted, sign, fTransparent);
-    const plantedRecovered = decode(plantedCipher, sign, fTransparent).symbols;
-    assert.deepEqual(plantedRecovered, planted);
-
-    results.push({
-      clock: fTransparent ? 'F-transparent' : 'ordinary',
-      direction: sign < 0 ? 'C-minus-K' : 'C-plus-K',
-      keystream_symbols_consumed: decoded.consumed,
-      ioc: ioc(decoded.symbols),
-      native_gp_trigram_mean_log_score: score(decoded.symbols),
-      first120: decoded.symbols.slice(0, 120).map((x) => corpus.translit[x]).join(''),
-      exact_round_trip_runes: reencrypted.length,
-      planted_p57_round_trip_runes: plantedRecovered.length
-    });
-  }
+const ordinary = [];
+for (const sign of [-1, 1]) {
+  const plain = decodeOrdinary(body, sign);
+  assert.deepEqual(encodeOrdinary(plain, sign), body);
+  ordinary.push({
+    direction: sign < 0 ? 'C-minus-K' : 'C-plus-K',
+    keystream_symbols_consumed: body.length,
+    ioc: ioc(plain),
+    native_gp_trigram_mean_log_score: score(plain),
+    first120: plain.slice(0, 120).map((x) => corpus.translit[x]).join(''),
+    exact_round_trip_runes: body.length
+  });
+}
+const transparent = [];
+for (const sign of [-1, 1]) {
+  const states = decodeTransparentDP(body, sign);
+  const ranked = states.map((s) => ({
+    j: s.j,
+    score: score(s.p),
+    first120: s.p.slice(0, 120).map((x) => corpus.translit[x]).join('')
+  })).sort((a, b) => b.score - a.score);
+  transparent.push({
+    direction: sign < 0 ? 'C-minus-K' : 'C-plus-K',
+    valid_plaintext_paths: states.length,
+    best_score: ranked[0]?.score ?? null,
+    best_first120: ranked[0]?.first120 ?? null
+  });
+}
+const transparentPositive = [];
+for (const sign of [-1, 1]) {
+  const plantedCipher = encodeTransparent(planted, sign);
+  const states = decodeTransparentDP(plantedCipher, sign);
+  const found = states.some((s) => s.p.length === planted.length && s.p.every((v, i) => v === planted[i]));
+  assert(found);
+  transparentPositive.push({
+    direction: sign < 0 ? 'C-minus-K' : 'C-plus-K',
+    candidate_count: states.length,
+    planted_recovered: found
+  });
 }
 
 console.log(JSON.stringify({
@@ -174,5 +206,7 @@ console.log(JSON.stringify({
     nativeWindows[0], nativeWindows[Math.floor(nativeWindows.length / 2)], nativeWindows[nativeWindows.length - 1]
   ],
   raw_body: { ioc: ioc(body), native_gp_trigram_mean_log_score: score(body) },
-  results
+  ordinary_clock_outputs: ordinary,
+  exact_p56_plaintext_F_transparent_DP: transparent,
+  exact_transparent_planted_p57_controls: transparentPositive
 }, null, 2));
