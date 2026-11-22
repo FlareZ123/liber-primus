@@ -88,6 +88,18 @@ The same SFT creates independently secret, random but fixed GP29 row permutation
 
 The original file parsing, GP alphabet, original printed word joins, real section/page clocks, exact row histograms, 60-trial source sampling and positive inverses are contained in one executable source file. An initial Windows run failed due CRLF-sensitive parsing of the solved LP1 fixture; that was corrected before the successful original-input controls.
 
+### Independent 29-start word-repetition bound (source-language sensitive)
+
+The all-secret predecessor-state model also has a **word-level constraint** that does not use ciphertext rune rank frequencies. For a single fixed global GP29 transition table, each given plaintext word can produce at most **29 distinct ciphertext words**, even if the word's first ciphertext rune can be any of the 29 symbols and is selected adversarially afresh at every word. The remaining ciphertext letters are uniquely determined by that initial rune and the fixed per-state secret bijections. If a plaintext word appears `n=29q+r` times, the unavoidable number of equal complete ciphertext-word pairs among its realizations is at least
+
+`r · q(q+1)/2 + (29−r) · q(q−1)/2`.
+
+Summing over all source plaintext word identities yields a second exact, all-secret **necessary** constraint. The original 2,896 printed ciphertext words have precisely **230 equal-word pairs** across the manuscript. This theorem assumes fixed global word-transition dynamics with 29 possible initial ciphertext symbols; it does not apply unchanged to fresh word-dependent tables, section-specific tables or freely switching internal cipher modes.
+
+The final SFT applies that exact bound to the same **60 full original-length native-GP controls per Gibran/Shakespeare/Latin source**. **All 60 Gibran and all 60 Latin controls** have a necessary minimum exceeding the original 230 cipher word-pair events, regardless of the 29 permitted initial ciphertext choices. Shakespeare remains a counterexample to any **universal** word-variant-only exclusion, so the code records its complete source range without claiming every sample violates the bound. For the 180 corrected Beowulf source placements on 2,893 supportable original word lengths, **170/180** force more than 230 ciphertext word pairs, while **10/180 do not**; their actual bound range is **208–346**. The earlier, much stronger rank-capacity theorem excludes all these sampled source registers under the fully stationary global and source-visible color/position models. The complete original-word counts and planted inverses pass [Windows Node22 run 45006835347](https://github.com/FlareZ123/liber-primus/actions/runs/45006835347).
+
+This independent word-variant limitation pinpoints an additional required degree of cipher nonstationarity for highly repetitive plaintext, even if its rune frequencies were atypically flat. It is not a proposed plaintext readout.
+
 ## Cryptanalytic decision
 
 For source-native English, Latin or corrected Old English Beowulf-like GP prose, retire **all fixed global one-step predecessor-cipher alphabet substitutions, all independently secret eight-section tables, all per-word-position stationary tables, all source-red/black-specific versions of those stationary models, and even two independent tables with an entirely arbitrary unknown sitewise switching schedule**. Under these assumptions, no secret mapping of those families has capacity to represent the observed original ciphertext as ordinary GP prose. An exhaustive key search of those families would be causally pointless.
