@@ -159,6 +159,36 @@ const solvedWindowIoCs=[];
 for(let i=0;i+words.length<=nativeLetters.length;i++)
   solvedWindowIoCs.push(ioc(nativeLetters.slice(i,i+words.length)));
 const firstLastIoC={min:Math.min(...solvedWindowIoCs),max:Math.max(...solvedWindowIoCs)};
+// Exhaust the six mathematically distinct natural full-register orderings.
+// Any high-quotient sidecar Q is powerless to change the same low 2896 runes,
+// although the fixed suffix differs across these six independently frozen laws.
+const fields={
+  A:{rank:model.firstRank,base:tailBase},
+  B:{rank:model.repeatedRank,base:model.b},
+  D:{rank:model.nonrepeatRank,base:model.p28}
+};
+const sixRegisterOrderTails=['ABD','ADB','BAD','BDA','DAB','DBA'].map(order=>{
+  let r=0n;
+  for(const field of order)r=r*fields[field].base+fields[field].rank;
+  assert(r>=0n && r<model.m);
+  const recovered={};
+  let residue=r;
+  for(let i=order.length-1;i>=0;i--){
+    const field=order[i];
+    recovered[field]=residue%fields[field].base;
+    residue/=fields[field].base;
+  }
+  assert.equal(residue,0n);
+  for(const field of order)assert.equal(recovered[field],fields[field].rank);
+  const canonical=((recovered.A*model.b+recovered.B)*model.p28)+recovered.D;
+  assert.equal(canonical,model.r);
+  assert.deepEqual(unpack(canonical,model.lengths,model.k).flat(),original);
+  const fixedTail=digits(r%tailBase,29n,words.length);
+  assert.equal((r+model.m*29n)%tailBase,r%tailBase);
+  return {order,tailIoC:ioc(fixedTail),
+    first30:fixedTail.slice(0,30).map(x=>corpus.translit[x]).join(' ')};
+});
+assert(sixRegisterOrderTails.every(x=>x.tailIoC<firstLastIoC.min));
 const codeSize=29n**BigInt(original.length);
 const maxQ=(codeSize-1n)/model.m;
 const minSidecarBits=maxQ.toString(2).length;
@@ -203,6 +233,7 @@ const summary={
     eachLiteralEightColumnSidecarBits:256,
     shortfallBits:minSidecarBits-256
   },
+  sixCompleteNaturalRegisterOrderings:sixRegisterOrderTails,
   commonAllSecretPlaintextTail:{
     gpRunes:tail.length, IoC:ioc(tail), 
     solvedNativeControlIoCRange:firstLastIoC,
@@ -213,4 +244,4 @@ const summary={
   originalPrintedByteColumnConsumers:columnResults
 };
 console.log(JSON.stringify(summary,null,2));
-console.log('PASS: original 12,956-rune enumerative pack/unpack; all sidecar values leave same nonnative GP29 tail; eight original printed numeric columns and native source-positive replay.');
+console.log('PASS: six complete 63-repeat enumerative register orders cannot yield native GP prose for ANY sidecar; original recipher, eight numeral columns and planted solved source pass.');
