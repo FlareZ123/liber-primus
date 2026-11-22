@@ -503,6 +503,59 @@ assert.deepEqual(sevenSquareResults.map((v)=>Number(v.ioc.toFixed(12))),[
   0.034514705567,0.034268363216,0.034570935887,0.034435045948
 ]);
 
+// The exact 56-state source matrix also admits a manuscript-wide original
+// 56-physical-page key schedule. The ink-free numeric page p50 consumes one
+// matrix step, yet contributes no invented GP rune. Original page-local
+// keystream position restarts at each page, with no tuned offset or phase.
+const allPhysicalUnknownPages=corpus.pages.filter((p)=>p.page<=55);
+assert.equal(allPhysicalUnknownPages.length,56);
+assert.deepEqual(allPhysicalUnknownPages.filter((p)=>p.indices.length===0).map((p)=>p.page),[50]);
+assert.equal(allPhysicalUnknownPages.reduce((sum,p)=>sum+p.indices.length,0),12956);
+const fullBookPageKeyResults=[];
+for(const [seedName,originalSeed] of [
+  ['red-five-source',coeff],
+  ['projected-red-five-source',projectedCoeffs]
+]){
+  for(const [direction,matrix] of [
+    ['D-forward',composedPolynomial],
+    ['D-inverse',composedInverse]
+  ]){
+    const pageKeys=[];let state=originalSeed.slice();
+    for(const page of allPhysicalUnknownPages){
+      pageKeys.push(state);
+      state=vecMul(matrix,state);
+    }
+    assert.deepEqual(state,originalSeed); // all 56 pages, exact order56
+    for(const sign of [-1,1]){
+      const originalOutputs=[],nativeOutput=[];
+      for(let page=0;page<56;page++){
+        const key=pageKeys[page],cipher=allPhysicalUnknownPages[page].indices;
+        const decoded=cipher.map((rune,i)=>mod(rune+sign*key[i%5]));
+        assert.deepEqual(decoded.map((rune,i)=>mod(rune-sign*key[i%5])),cipher);
+        originalOutputs.push(decoded);
+        const positive=Array.from({length:cipher.length},(_,i)=>
+          corpus.pages.find((p)=>p.page===57).indices[i%95]
+        );
+        const encrypted=positive.map((rune,i)=>mod(rune-sign*key[i%5]));
+        assert.deepEqual(encrypted.map((rune,i)=>mod(rune+sign*key[i%5])),positive);
+        nativeOutput.push(positive);
+      }
+      const full=originalOutputs.flat();
+      const tree=originalOutputs.slice(8,15).flat();
+      assert.equal(full.length,12956);
+      assert.equal(nativeOutput.flat().length,12956);
+      fullBookPageKeyResults.push({
+        seedName,direction,sign,bookIoC:ioc(full),sevenPageIoC:ioc(tree),
+        p8:originalOutputs[8].slice(0,75).map((i)=>corpus.translit[i]).join('')
+      });
+    }
+  }
+}
+assert.deepEqual(fullBookPageKeyResults.map((x)=>Number(x.bookIoC.toFixed(12))),[
+  0.034525834493,0.034494388810,0.034472368491,0.034475585746,
+  0.034539525698,0.034471772704,0.034466982569,0.034468340966
+]);
+
 // Exact authentic-source plaintext plant: the 2x5 map has a fixed right inverse.
 const solved=corpus.pages.find((p)=>p.page===57).indices;
 assert.equal(solved.length,95);
@@ -541,6 +594,8 @@ for(const item of otherSquareResults)console.log('alternate-source-square receiv
 console.log('PASS original_p8_to_p14_all_seven_pages_1729_runes 7x7_historical_source_polynomial_four_roundtrips_and_four_native_GP_plants');
 for(const item of sevenSquareResults)console.log('historic-7-square square='+item.squareName+' direction='+item.direction+' det='+item.det+' IoC='+item.ioc.toFixed(12)+' opening='+item.opening);
 console.log('PASS source D=F(A/2) exact_order56, D^28=I-2Pi (original p7/historic square reflected halfturn)');
+console.log('PASS 56_physical_page historical_D_source_state eight_fullbook_12956_GP_original_roundtrips eight_fullbook_GP_native_positive_plants');
+for(const item of fullBookPageKeyResults)console.log('fullbook_D_pagekey seed='+item.seedName+' direction='+item.direction+' sign='+item.sign+' IoC='+item.bookIoC.toFixed(12)+' p8-p14-IoC='+item.sevenPageIoC.toFixed(12)+' p8prefix='+item.p8);
 console.log('SOURCE: GP29 original p8 IoC='+ioc(p8).toFixed(12));
 console.log('EXTRACTED: GP29 rank2 image IoC='+ioc(output).toFixed(12));
 console.log('EXTRACTED full GP spelling='+output.map((rune)=>corpus.translit[rune]).join(''));
