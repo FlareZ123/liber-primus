@@ -49,7 +49,6 @@ function invariant(parts, period, restart) {
   let position = 0;
   for (const part of parts) {
     for (let i = 0; i < part.length; i++) {
-      const group = (restart ? position - i : 0) + (restart ? i % period : position % period);
       // Restarted groups incorporate a distinct page base address.
       const label = restart ? (position - i) + ":" + (i % period) : String(position % period);
       const counts = groups.get(label) || Array(29).fill(0);
