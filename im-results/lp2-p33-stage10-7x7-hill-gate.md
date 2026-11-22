@@ -1,6 +1,6 @@
-# Historical 2014 Stage10 7×7/1033 square as p33 Hill key: 91-rune and 49-word receivers
+# Historical Stage10 7×7/1033 square on original p33: opening rune, word-value and four-square receivers
 
-**Disposition: both direct original-source receivers are negative.** The 91-rune opening and the independently distinct 49-word body-to-symbol reading have now been evaluated. Neither yields any authenticated unknown-page plaintext or key. The 49-word experiment uses the actual 21+28 printed black-word split and no fitted seed. These are bounded operations only; the source does not identify a Hill cipher or a word-value alphabet.
+**Disposition: all three direct original-source receivers are negative.** The 91-rune opening, the independently distinct 49-word body-to-symbol reading, and a complete 196-rune/four-square reading have now been evaluated. Neither yields any authenticated unknown-page plaintext or key. The 49-word experiment uses the actual 21+28 printed black-word split and no fitted seed. These are bounded operations only; the source does not identify a Hill cipher or a word-value alphabet.
 
 ## Hypothesis and selection
 
@@ -87,6 +87,23 @@ Every source output passes the exact matrix forward/reverse reconstruction. A se
 **Interpretation:** the 49-word/7×7 source alignment is real, and this historical matrix inverse is a concrete value-changing consumer that was not covered by the 91-rune or per-word Caesar experiments. Its original outputs do **not** supply an English message, key, page destination or further selected action. This retires the direct 49-word Hill readout. Further matrix transformations on these numbers require an independent author-supplied rule rather than output-guided tuning.
 
 [Full Windows/CommonJS SFT](../sims/lp2_p33_word49_hill7_original_sft.cjs) · [Dedicated manual runner](../.github/workflows/agent50-p33-word49-hill7.yml).
+
+## Full 196-rune four-square receiver (Agent50, 22 November 2026)
+
+The same exact p33 typography supplies one more geometrically coherent **complete original-symbol receiver**. Its 49 black printed words have exactly **196 GP29 runes** after removing the two actual red headings, so the source's black rune stream fits **four successive 7×7 arrays of rune indices** without padding. Unlike the 49-word value reading above, this uses every printed black rune unchanged. The coincidence is moderately motivated: an independent 49-word block count and a 7×7 historical numeric square were already visible, although an ordinary word-length total near 49×4 can arise without deliberate cipher geometry.
+
+For each of the **four complete row-major 7×7 blocks**, write the actual original GP29 index values into matrix A. Take the unchanged authentic historical 7×7 square reduced modulo29 as K. Test the exact standard finite matrix operators K or K-inverse acting on A **from the left**, from the **right**, and their literal transposes, plus K or K-inverse from **both** sides (and one right-transposed option per direction). These are **12 full 196-rune original readouts**, with no fitted key, shift, phase, row reset, punctuation normalization or ciphertext edit. This matrix-on-matrix operation differs from both a word sum or raw 91-rune direct Hill vector cipher.
+
+The source GP29 four-square baseline IoC is **0.033543**. The full-readout IoCs span **0.032391–0.037206**, and all twelve complete original outputs are nonprose. Illustrative two naturally motivated original inverses:
+
+- K-inverse applied to each square from the left: IoC **0.035217**, starts GP **EA AE B EO EA M L NG EA E NG G X X A D B M N U AE T A EO ...**
+- K-inverse applied from the right: IoC **0.032810**, starts GP **A NG R W OE S W E Y IA A A E U EA E B G N EO Y J ...**
+
+The best collision rate occurs for K-transposed from the right (IoC **0.037206**), still far from the solved clear-GP language signal, with prefix **E N G Y IA IA I O T EA L M O NG IA IA M P N O E S C F ...**. None yields an authenticated plaintext sentence, URL or rune key. The 49 source words' original boundaries are retained as evidence but not used as extra tunable readout breaks.
+
+Every one-sided matrix candidate passes an exact **196/196 real solved-p57 GP29 plaintext plant**, repeated to original length, encrypted under the matching actual historical matrix and decoded by its inverse, in both row and column orientations. This genuine positive verifies that a true plaintext under this scheme would be recovered. The new run extended the existing single-file script and passed **Windows Node22 [Actions 44975331458](https://github.com/FlareZ123/liber-primus/actions/runs/44975331458)**. The producer prints all 12 original GP prefixes and whole-text IoCs.
+
+**Decision:** the complete four-square matrix receiver is closed as a direct source-shaped Hill consumer, with no recovered key or message. A new cipher layer, reordering of the 196 source runes, secret matrix powers or additional key operands would need an independent original author clue. Combined with the prior 91-rune and 49-word results, the straightforward historical 7×7/1033 Hill routes on p33 are now exhausted without claiming that the 49-word geometry was intended by Cicada.
 
 ## Reproduction
 
