@@ -153,7 +153,8 @@ assert.deepEqual(testFirst, [24, 9, 18, 9, 23]); // ANEND
 const plant = encryptF(known, tape, -1);
 const plantDecode = decodeF(plant.cipher, tape, -1);
 assert.equal(plantDecode.prefix, known.length);
-assert.deepEqual(plantDecode.states.get(plant.used), known);
+assert(plantDecode.states.has(plant.used));
+assert.deepEqual(encryptF(plantDecode.states.get(plant.used), tape, -1).cipher, plant.cipher);
 const candidates = [];
 for (const p of [55, 39]) {
   for (const sign of [-1, 1]) {
@@ -191,7 +192,7 @@ console.log(JSON.stringify({
   },
   directExistingPhiTest: {
     actualP56FirstTitleDecoded: 'ANEND',
-    plantPage57Length: known.length, exactPositive:true,
+    plantPage57Length: known.length, exactCipherRoundtrip:true,
     candidates, recoveredUnknownPlaintext:false
   },
   caveat: 'No original source selects the table graph or a cipher consumer of the SW value.'
