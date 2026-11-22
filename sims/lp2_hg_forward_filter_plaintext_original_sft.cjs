@@ -81,7 +81,7 @@ function coincidence(symbols) {
 /** @param {number[]} symbols @returns {{e: number,o: number}} */
 function commonLetters(symbols) {
   return {
-    e: symbols.filter(value => value === 1).length,
+    e: symbols.filter(value => value === 18).length,
     o: symbols.filter(value => value === 3).length,
   };
 }
