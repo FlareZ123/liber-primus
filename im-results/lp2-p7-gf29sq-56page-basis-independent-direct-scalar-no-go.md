@@ -35,6 +35,18 @@ A 262–274-rune authentic natural-GP plaintext should not have such uniform gly
 
 The result has a cryptographic explanation beyond statistics: **half the 56 states are merely monoalphabetic rune substitutions**, even if the odd states are pair-swapping transformations. A state machine of this literal form lacks enough diffusion to hide frequency structure on every page.
 
+## Universal strengthening: all 840 field elements, every field-power page clock
+
+The no-go theorem extends beyond all 24 exact-order56 generators. **Every nonzero** `β=a+bα∈GF(29²)` satisfies the field-norm identity
+
+`β³⁰ = β · β²⁹ = (a+bα)(a−bα) = a²−8b² ∈ GF29*`.
+
+Therefore **every** literal whole-book page power clock `β^(physical page+φ)`, for an arbitrary original phase φ, has a page exponent divisible by 30 among the first **30 physical pages p0–p29**. On that page the transform is a nonzero **scalar rune permutation**, in *every* fixed coordinate basis. A second page 30 positions later, when physically present, has the same scalar-only property.
+
+The original source has sufficient uninterrupted text to make this nonlinguistic obstruction independent of φ: for each of the 30 source-phase residue classes, choose the longer of pages `j` and `j+30` (where present), where `j≡−φ mod30`. Every selected page provides **at least 201 genuinely original runes**; their original unmodified GP29 index of coincidence is low. Even if global field pairs are allowed to cross real page boundaries, at most **one leading rune** is governed by the preceding page's state. Removing just that possible spillover leaves **at least 201 runes** with IoC no higher than **0.0359890792** under all 30 phase choices. A nonzero scalar preserves that exact remaining rune-frequency distribution and cannot transform it into normal source-native GP prose.
+
+The SFT enumerates **all 840 nonzero field elements β** and verifies `β³⁰=Norm(β)·1` exactly, as well as all **30 original-source phase witnesses**, physical page lengths, true global pair offsets and low retained IoCs. This is a complete mathematical exclusion of the **bare fixed-field power clock family**, including any source red-title primitive element g of order840 and all alternative generator periods. The direct diagnostic still assumes the page state starts inside its own β-power orbit; a distinct source-selected **coset seed** `h·α^p` can avoid a scalar page. Such a seed was tested separately on all **12,956 original runes** and failed as a direct prose decoder in [the independent complete-source decision](lp2-p7-p8-hseed-56clock-whole-book-original-negative.md).
+
 ## Additional true-original framing obstruction
 
 The 55 rune-bearing unknown pages contain **12,956 GP29 runes**, but **32 of the 56 physical pages have an odd original rune count**. A reset-at-each-page two-rune operation therefore needs an unprinted padding/side-information convention for those pages. A manuscript-continuous pairing avoids loss, but then **22 actual page breaks cut between a consecutive pair of rune coordinates**, requiring a rule for which page state owns the pair. The original page frames alone do not specify that rule. The p0/p43 witnesses above remain completely aligned in both representations, so this ambiguity cannot rescue the simple field multiplier.
@@ -49,4 +61,4 @@ The [standalone source-native Windows/Node22 SFT](../sims/lp2_p7_gf29_squared_56
 
 ## Research decision
 
-**Retire the bare original-GP pair multiplier `×α^(page+phase)` as a complete whole-book natural-prose cipher under any fixed field basis.** The p7 residual remains valid source arithmetic and a candidate source-defined **operand** for a more complex, separately selected operation. To progress, one must discover a first-party instruction specifying a different reversible consumption of α or the p8 title's companion field value, a true ciphertext receiver or an independently checkable plaintext fragment. Simply selecting more page origins, α/−α signs or basis matrices cannot overcome this no-go theorem.
+**Retire every bare fixed-field multiplier page clock `×β^(page+phase)` with nonzero β in GF(29²), any fixed basis and any phase, as a complete whole-book ordinary-GP-prose decoder.** The p7 residual remains valid source arithmetic and a candidate source-defined **operand** for a more complex, separately selected operation. To progress, one must discover a first-party instruction specifying a different reversible consumption of α or the p8 title's companion field value, a true ciphertext receiver or an independently checkable plaintext fragment. Simply selecting more page origins, α/−α signs or basis matrices cannot overcome this no-go theorem.
