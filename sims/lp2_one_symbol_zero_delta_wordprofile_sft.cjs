@@ -100,11 +100,10 @@ function random(seed) {
 /** @param {number[][][]} banks @param {()=>number} rnd */
 function matchedPlant(banks, rnd) {
   const result = [];
-  for (let n = 1; n < lens.length; n++) {
-    const bank = banks[n];
-    assert(bank.length > 0, 'missing native GP length ' + n);
-    for (let j = 0; j < lens[n]; j++)
-      result.push(bank[Math.floor(rnd() * bank.length)]);
+  for (const originalWord of originalWords) {
+    const bank = banks[originalWord.length];
+    assert(bank.length > 0, 'missing native GP length ' + originalWord.length);
+    result.push(bank[Math.floor(rnd() * bank.length)]);
   }
   return result;
 }
@@ -229,12 +228,14 @@ for (const [name, filename, seed] of corpora) {
   const ciphertext = encrypt(plain, k);
   assert.deepEqual(decrypt(ciphertext, k), plain);
   assert.deepEqual(encrypt(decrypt(ciphertext, k), k), ciphertext);
-  assert.deepEqual(eventProfile(
-    positive.map((w, i) => {
-      const before = positive.slice(0, i).reduce((s, item) =>
-        s + item.length, 0);
-      return ciphertext.slice(before, before + w.length);
-    })), markerProfiles(positive)[28]);
+  let offset = 0;
+  const cipherWords = positive.map(w => {
+    const result = ciphertext.slice(offset, offset + w.length);
+    offset += w.length;
+    return result;
+  });
+  assert.equal(offset, ciphertext.length);
+  assert.deepEqual(eventProfile(cipherWords), markerProfiles(positive)[28]);
   results.push({
     corpus:name,
     sampledSourceNativeWordMatchedControls:SAMPLES,
