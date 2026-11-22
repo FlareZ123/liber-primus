@@ -138,9 +138,32 @@ function main(){
     assert((sign===1?m.plus:m.minus)&(1<<shift));
     assert.equal(arc(13,42,a,b,sign,shift).status,"POSSIBLE");
   }
+  // Source-length and original-bridge coverage gate: candidate pairs with
+  // at least eight independent 4+ overlaps and 130 runes on each side.
+  // Expand every remaining relative offset and both signs, then enforce
+  // single-word identities across all short and long page-word overlaps.
+  const qualified=candidates.filter(t=>
+    Math.min(...t.lengths)>=130&&t.bridges>=8);
+  let arcTrials=0,arcContradictions=0,arcChecks=0;
+  const qualifiedSurvivors=[];
+  for(const item of qualified){
+    const [pa,pb]=item.pair;
+    const a=source.pages[pa].indices,b=source.pages[pb].indices;
+    for(const [sign,shifts] of [[1,item.plus],[-1,item.minus]])
+      for(const shift of shifts){
+        const result=arc(pa,pb,a,b,sign,shift);
+        arcTrials++;
+        arcChecks+=result.checked;
+        if(result.status==="UNSAT")arcContradictions++;
+        else qualifiedSurvivors.push({pair:item.pair,sign,shift,
+          status:result.status});
+      }
+  }
   console.log(JSON.stringify({sourcePages:55,pairs:1485,
     excludedAtIndependentWordOverlaps:excluded,
     preliminarySurvivors:candidates.length,
+    qualifiedPairCount:qualified.length,arcTrials,arcContradictions,
+    arcChecks,qualifiedSurvivors,
     longBridgeChecks:tested,
     p2p31OneShift17:rejected,
     otherSurvivors:candidates.filter(x=>
