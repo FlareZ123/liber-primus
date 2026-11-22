@@ -123,6 +123,12 @@ This is reversibly decryptable and exactly forward-reencryptable, but **the two-
 
 **Decision:** Reject this one nonsecret, source-seeded two-register additive consumer as a native-GP29 decoder of p8–p14. It neither weakens the exact upstream fixed-point/derivative relation nor authenticates a Feistel/feedback architecture. A different cipher requires an independent authorial instruction selecting its update, receiver and inverse.
 
+## Direct p7 quartic one-rune S-box and pair-Feistel obstruction (Agent47, 22 Nov 2026)
+
+The exact source polynomial is **not** a permutation of the GP29 alphabet: it reaches only **19 distinct outputs**, with **10 unreachable values** `[0,1,6,8,13,14,16,25,26,27]`. Fully **86/255 actual p8 ciphertext runes** (5 red-title, 81 black-body) lie outside its image. Thus the direct one-rune hypothesis `C[i]=P(p[i])` is **arithmetically impossible on original p8**, independently of whether the original plaintext is English. The opposite direction `p[i]=P(C[i])` is non-injective and cannot be a complete reversible one-rune cipher without original side information.
+
+A new separate [complete original-input gate](lp2-p7-quartic-nonlinear-feistel-p8-original-sft.md) puts the exact same source polynomial inside a standard nonlinear **GP29 two-rune Feistel permutation**, allowing ± signs and 1,2,3,4,5,8 rounds on both the untouched full p8+p9 incoming 256 runes and p8 black243+p9 first1=244 runes. Across **24 exact reversible original decodes**, all output IoCs are **0.032414–0.037286**, with no native language signal; all original and source-native plants reencrypt exactly. This excludes these frozen direct nonlinear recipients while retaining the independent p7 fixedpoint/derivative handoff as an unexplained source relationship. No authentic new key or plaintext follows.
+
 ## Reproduction and decision
 
 - [Windows Node22 read-only original-source SFT](../sims/lp2_p7_p8_original_red_polynomial_fixedpoint_sft.cjs), **[CI PASS, 22 Nov 2026](https://github.com/FlareZ123/liber-primus/actions/runs/45047067228)**. Frozen output verifies all polynomial identities, p8 red runes, source-word inventory, feature and direction controls, the first/last p53 continuation, GF29² root order and all 255 p8 ciphertext runes.
