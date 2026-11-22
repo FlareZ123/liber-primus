@@ -1,0 +1,15 @@
+name: Agent20 p8 GF3 state-address readout
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-source-sft:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original-source GF3 state-address readout and solved control
+        run: node sims/lp2_p7_gf3_p8_lexicographic_cycle_sft.cjs
