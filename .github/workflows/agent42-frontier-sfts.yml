@@ -30,6 +30,9 @@ jobs:
       - name: P23 instruction reconciliation
         shell: pwsh
         run: node sims/lp2_p23_instruction_reconciliation_sft.cjs
+      - name: Stage10 centre91 square pointer to p32/p55
+        shell: pwsh
+        run: node sims/lp2_wisdom91_p50_square_route_p32_prime79_sft.cjs
       - name: P33 exact page-key transfer
         shell: pwsh
         run: node sims/lp2_p33_pagekey_power_transfer_sft.cjs
