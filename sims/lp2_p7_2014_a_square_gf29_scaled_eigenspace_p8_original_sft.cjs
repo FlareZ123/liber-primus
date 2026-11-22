@@ -195,23 +195,29 @@ assert(Math.abs(ioc(p8)-0.03427512737378416)<1e-13);
 // The newly identified author-source-only two-value key also admits a direct
 // exact historical GP29-Vigenere candidate on the adjacent entire/red-free p8.
 const vigenereSourceResults=[];
-for(const [label,original] of [
-  ['p8-complete255',p8],
-  ['p8-black243',p8.slice(12)]
+for(const [keyName,key] of [
+  ['two-selected-coordinates',sourceKey],
+  ['five-projected-products',projectedCoeffs]
 ]){
-  for(const sign of [-1,1]){
-    const recovered=original.map((rune,i)=>mod(rune+sign*sourceKey[i%2]));
-    assert.deepEqual(recovered.map((rune,i)=>mod(rune-sign*sourceKey[i%2])),original);
-    const native=Array.from({length:original.length},(_,i)=>
-      corpus.pages.find((p)=>p.page===57).indices[i%95]
-    );
-    const plantedCipher=native.map((rune,i)=>mod(rune-sign*sourceKey[i%2]));
-    assert.deepEqual(plantedCipher.map((rune,i)=>mod(rune+sign*sourceKey[i%2])),native);
-    vigenereSourceResults.push({label,sign,ioc:ioc(recovered),opening:recovered.slice(0,100).map(x=>corpus.translit[x]).join('')});
+  for(const [label,original] of [
+    ['p8-complete255',p8],
+    ['p8-black243',p8.slice(12)]
+  ]){
+    for(const sign of [-1,1]){
+      const recovered=original.map((rune,i)=>mod(rune+sign*key[i%key.length]));
+      assert.deepEqual(recovered.map((rune,i)=>mod(rune-sign*key[i%key.length])),original);
+      const native=Array.from({length:original.length},(_,i)=>
+        corpus.pages.find((p)=>p.page===57).indices[i%95]
+      );
+      const plantedCipher=native.map((rune,i)=>mod(rune-sign*key[i%key.length]));
+      assert.deepEqual(plantedCipher.map((rune,i)=>mod(rune+sign*key[i%key.length])),native);
+      vigenereSourceResults.push({keyName,label,sign,ioc:ioc(recovered),opening:recovered.slice(0,100).map(x=>corpus.translit[x]).join('')});
+    }
   }
 }
 assert.deepEqual(vigenereSourceResults.map((r)=>Number(r.ioc.toFixed(12))),[
-  0.034892697236,0.033441408059,0.035098459341,0.033465972860
+  0.034892697236,0.033441408059,0.035098459341,0.033465972860,
+  0.033410529566,0.033503165046,0.033772064075,0.033465972860
 ]);
 
 // Exact authentic-source plaintext plant: the 2x5 map has a fixed right inverse.
@@ -239,8 +245,8 @@ console.log('PASS scaled_historic_square_quadratic_fixedspace_rank=2 projector_i
 console.log('PASS original_p8=255 native_runic_symbols extracted_register=102, positive_plant=102/102');
 console.log('PASS projected_p7_word_coefficients='+projectedCoeffs+' observed_trailing_marker13 source_key='+sourceKey);
 console.log('PASS fiveword_windows=2892 two_reversal_hits='+twoMatch+' full_reversal_center13_hits='+threeMatch);
-console.log('PASS original_p8_two-value_Vigenere_four_roundtrips_and_four_solved_native_plants');
-for(const output of vigenereSourceResults)console.log('native_GP_attempt scope='+output.label+' sign='+output.sign+' IoC='+output.ioc.toFixed(12)+' opening='+output.opening);
+console.log('PASS original_p8_two_and_five_value_Vigenere_eight_roundtrips_and_eight_solved_native_plants');
+for(const output of vigenereSourceResults)console.log('native_GP_attempt source_key='+output.keyName+' scope='+output.label+' sign='+output.sign+' IoC='+output.ioc.toFixed(12)+' opening='+output.opening);
 console.log('SOURCE: GP29 original p8 IoC='+ioc(p8).toFixed(12));
 console.log('EXTRACTED: GP29 rank2 image IoC='+ioc(output).toFixed(12));
 console.log('EXTRACTED full GP spelling='+output.map((rune)=>corpus.translit[rune]).join(''));
