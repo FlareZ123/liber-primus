@@ -266,6 +266,9 @@ function decryptChangingZero(cipher,clock,mask){
   }
   return out;
 }
+const printedDigits = grid.pages.flatMap(p => p.tokens)
+  .flatMap(t => [alphabet.indexOf(t[0]), alphabet.indexOf(t[1])]);
+assert.equal(printedDigits.length,512);
 const changingZero=[
   {name:"256 source-cell additive mask",mask:bytes.map(b=>b%29)},
   {name:"512 source-digit additive mask",mask:printedDigits.map(d=>d%29)}
@@ -292,9 +295,6 @@ for(const {name,mask} of changingZero){
   }
 }
 
-const printedDigits = grid.pages.flatMap(p => p.tokens)
-  .flatMap(t => [alphabet.indexOf(t[0]), alphabet.indexOf(t[1])]);
-assert.equal(printedDigits.length,512);
 const digitMasks = [
   {name:"digit-as-nonzero-residue",mask:printedDigits.map(n => 1+n%28)},
   {name:"digit-as-unit-exponent",mask:printedDigits.map(n => exp[n%28])}
