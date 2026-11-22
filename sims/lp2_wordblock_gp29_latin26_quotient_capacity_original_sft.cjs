@@ -113,7 +113,7 @@ const variants=[1,2,3,4,5,8,words.length].map(k=>{
     first64latin:latin.slice(0,64).map(n=>String.fromCharCode(65+n)).join('')};
 });
 assert.deepEqual(variants.map(x=>x.requiredBits),[2210,2065,2052,2049,2044,2042,2042]);
-assert.deepEqual(variants.map(x=>x.exactSourceRankBits),[2208,2064,2051,2048,2043,2041]);
+assert.deepEqual(variants.map(x=>x.exactSourceRankBits),[2208,2064,2051,2048,2043,2041,2041]);
 assert(variants.slice(0,4).every(x=>!x.withinTableCapacity));
 assert(variants.slice(4).every(x=>x.withinTableCapacity));
 assert(variants.every(x=>!x.exactLiteralTable));
