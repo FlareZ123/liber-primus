@@ -132,8 +132,9 @@ function intervals(lengths) {
  * @param {number[]} cipher53
  * @param {number[]} cipher55
  * @param {"page-start"|"complete-word-start"} alignment
+ * @param {"additive"|"xor"} operation
  */
-function solve(cipher53, cipher55, alignment) {
+function solve(cipher53, cipher55, alignment, operation="additive") {
   const complete = alignment === "complete-word-start";
   const bytes55 = complete ? cipher55.slice(1) : cipher55;
   const l55 = complete ? lengths55.slice(1) : lengths55;
@@ -172,12 +173,14 @@ function solve(cipher53, cipher55, alignment) {
       const {a,b,lo,hi,aOffset,bOffset}=edge;
       const delta = [];
       for(let index=lo;index<hi;index++) {
-        delta.push((cipher53[index]-bytes55[index]+29)%29);
+        delta.push(operation==="xor" ? (cipher53[index]^bytes55[index])
+          : (cipher53[index]-bytes55[index]+29)%29);
       }
       const left = aDomain.get(a), right = bDomain.get(b);
       const signaturesLeft = left.map(word => {
         const key=[];
-        for(let k=0;k<delta.length;k++)key.push((word[aOffset+k]-delta[k]+29)%29);
+        for(let k=0;k<delta.length;k++)key.push(operation==="xor"
+          ? word[aOffset+k]^delta[k] : (word[aOffset+k]-delta[k]+29)%29);
         return key.join(",");
       });
       const signaturesRight = right.map(word =>
@@ -195,18 +198,24 @@ function solve(cipher53, cipher55, alignment) {
     if([...aDomain.values(),...bDomain.values()].some(values=>!values.length))break;
   }
   return {
-    alignment, count, edges:edges.length, initial, trace,
+    alignment, operation, count, edges:edges.length, initial, trace,
     empty53:[...aDomain].filter(([,x])=>!x.length).map(([i])=>i),
     empty55:[...bDomain].filter(([,x])=>!x.length).map(([i])=>i),
     domain53:aDomain, domain55:bDomain
   };
 }
-const originalPageStart=solve(p53,p55,"page-start");
-const originalCompleteStart=solve(p53,p55,"complete-word-start");
-assert(originalPageStart.empty53.length && originalPageStart.empty55.length);
-assert(originalCompleteStart.empty53.length && originalCompleteStart.empty55.length);
+const original=[
+  solve(p53,p55,"page-start","additive"),
+  solve(p53,p55,"complete-word-start","additive"),
+  solve(p53,p55,"page-start","xor"),
+  solve(p53,p55,"complete-word-start","xor")
+];
+for(const item of original) {
+  assert(item.empty53.length && item.empty55.length,
+    "all-secret same-key candidate must fail on source: "+item.alignment+"/"+item.operation);
+}
 
-function nativePlant(alignment) {
+function nativePlant(alignment,operation) {
   const complete=alignment==="complete-word-start";
   const length55=complete?lengths55.slice(1):lengths55;
   /** @param {number} length @param {number} index */
@@ -215,35 +224,47 @@ function nativePlant(alignment) {
   const plain55=length55.flatMap((length,index)=>
     (!complete && index===0) ? [15] : choose(length,index+17));
   const total=complete?75:76;
-  const pad=Array.from({length:total},(_,index)=>(13*index+7)%29);
-  const encrypted53=plain53.map((v,index)=>index<total?(v+pad[index])%29:v);
+  const pad=Array.from({length:total},(_,index)=>{
+    if(operation==="additive")return (13*index+7)%29;
+    const legal=Array.from({length:32},(_,i)=>i)
+      .filter(key=>(plain53[index]^key)<29&&(plain55[index]^key)<29);
+    assert(legal.length>1);
+    return legal[(13*index+7)%legal.length];
+  });
+  const apply=(value,key)=>operation==="xor"?(value^key):(value+key)%29;
+  const encrypted53=plain53.map((v,index)=>index<total?apply(v,pad[index]):v);
   const encrypted55=complete
-    ? [21, ...plain55.map((v,index)=>(v+pad[index])%29)]
-    : plain55.map((v,index)=>(v+pad[index])%29);
-  const result=solve(encrypted53,encrypted55,alignment);
+    ? [21, ...plain55.map((v,index)=>apply(v,pad[index]))]
+    : plain55.map((v,index)=>apply(v,pad[index]));
+  const result=solve(encrypted53,encrypted55,alignment,operation);
   assert.equal(result.empty53.length,0,"planted page53 must have candidates");
   assert.equal(result.empty55.length,0,"planted page55 must have candidates");
   assert(result.domain53.get(0).some(w=>w.join(",")===choose(lengths53[0],0).join(",")),
     "must preserve exact planted first p53 word");
-  return {alignment,edgeCount:result.edges,trace:result.trace,
+  return {alignment,operation,edgeCount:result.edges,trace:result.trace,
     survivor53:[...result.domain53.values()].map(x=>x.length),
     survivor55:[...result.domain55.values()].map(x=>x.length)};
 }
-const controlA=nativePlant("page-start");
-const controlB=nativePlant("complete-word-start");
+const controls=[
+  nativePlant("page-start","additive"),
+  nativePlant("complete-word-start","additive"),
+  nativePlant("page-start","xor"),
+  nativePlant("complete-word-start","xor")
+];
 
 const summary=caseResult=>({
-  alignment:caseResult.alignment, originalRuneCount:caseResult.count,
+  alignment:caseResult.alignment, operation:caseResult.operation,
+  originalRuneCount:caseResult.count,
   overlapEdges:caseResult.edges, lexicalInitialCandidates:caseResult.initial,
   eliminatedPerPass:caseResult.trace, emptyPage53Words:caseResult.empty53,
   emptyPage55Words:caseResult.empty55,
-  conclusion:"NO dual English word assignment under the same arbitrary GP29 additive pad"
+  conclusion:"NO two-stream English word assignment under the same arbitrary GP29 key"
 });
 console.log(JSON.stringify({
   source:"unchanged original LP2 p53/p55, p55 first rune is real p54 continuation",
   dictionarySources:sourceTexts, rawEnglishWords, classesByGPWordLength:
     Object.fromEntries([...lexicon].map(([length,forms])=>[length,forms.length])),
-  original:[summary(originalPageStart),summary(originalCompleteStart)],
-  genuineNativeGPSharedPadPlantedControls:[controlA,controlB],
-  status:"PASS: both source-natural alignments exclude a shared additive GP29 pad within a finite lexicon; planted positives survive"
+  original:original.map(summary),
+  genuineNativeGPSharedPadPlantedControls:controls,
+  status:"PASS: both source-natural alignments exclude shared GP29 additive and XOR pads within a finite lexicon; four native-English positives survive"
 },null,2));
