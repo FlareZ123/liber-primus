@@ -8,6 +8,8 @@ The physical p3–p7 scroll contains **255 complete printed words** spanning 1,1
 
 Both 255=2^8−1 and the adjacent **13+242** and **12+243** partitions suggest systematic **RS(255,242)** and **RS(255,243)** error correction over GF(256). Earlier Cicada used QR codes, making Reed–Solomon a plausible human-recognizable algorithm. Yet the original does not say red means parity, give a 29-rune-to-byte map, or treat the scattered scroll red words as checks. The competing explanation is ordinary decorative headings and coincidental counts.
 
+**Prior-art boundary:** The repository already contained [`lp2_p8_red12_rs255_243_source_sft.cjs`](../sims/lp2_p8_red12_rs255_243_source_sft.cjs), which excluded the **original p8** as an RS(255,243) GF(0x11d) codeword for GP-index and GP-prime bytes, a few source-shaped arrangements and generator roots 0/1. That p8 exclusion is **not a new discovery** here. The incremental test is the **adjacent 255-word scroll's separate red13/black242 original-input RS(255,242) gate**, plus the all-255-root / two-field / ordinal-representation extensions for p8. The equal 255-unit counts were known before this invocation. All 44 cases are displayed as combined scope; only the additional cases extend earlier evidence.
+
 ## Frozen original-source inverse gate
 
 A complete conventional RS(255,k) codeword has 255 evaluations with at least 255−k consecutive generator roots. The necessary condition holds regardless of whether the 12/13 parity symbols appear at the front, end, or scattered positions. To allow **any first-root exponent**, scan all 255 field roots and find the longest cyclic zero-syndrome run.
