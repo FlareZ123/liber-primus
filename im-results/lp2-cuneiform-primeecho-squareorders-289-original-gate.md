@@ -6,6 +6,8 @@
 
 The archived original 2013 CicadaOS prime_echo program prints every prime from 2 to 3301 and inserts its two exceptional two-second pauses *only* at **1033** and **3301**. The otherwise regular delay is 0.05 seconds. The LP2 cuneiform section physically repeats these two numbers in Babylonian sexagesimal notation. The printed 2014 Stage10 signed square-solving form requests three independently identifiable squares, in order: **5 by 5 with row sum 3301, 7 by 7 with sum 1033, 5 by 5 with sum 1033**. The exact original three matrices are preserved as resources/cicada2014-openpuff-magic-squares.txt. These are relevant source constraints and were fixed before examining any numerical behavior of original LP2 ciphertext.
 
+The original sexagesimal cuneiform reading of the first heading number is **1033 = 17×60 + 13**; the second is **3301 = 55×60 + 1**. Thus **17** is already a literal higher-place digit in the same physical LP2 marking, independent of the three-square arithmetic. This suggests a human-visible candidate side-length selector, while still providing no reading direction or cipher operation. The cuneiform header is printed as a repeated decoration across pp34–39 rather than five separately changing states.
+
 The three genuine matrix orders are **5, 7, 5**. They produce two small integer values through two ordinary symmetric operations:
 
 | Calculation on the authentic orders | Exact result | Original 2013 prime-display correspondence |
