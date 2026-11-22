@@ -9,8 +9,8 @@ The terminal internal ciphertext repeats one unique two-word pair at the 6,561-r
 Freeze exactly its original inputs, with **no fitted offset or rune edits**:
 
 - A: original unsolved global rune indices 0…6,560; C: subsequent 6,395 indices. The exact five missing B positions in an 80×80 printed geometry are 2,244, 2,384, 2,476, 2,575, 2,672.
-- K: independently compare the p7-derived **GF81 quartic field-generator** pairing \`A[g^r,g^c]\` and literal **interior crop** \`A[r+1,c+1]\`, as defined verbatim in the earlier screen.
-- Clock \`z_i = 2 * floor(T[(6561+i−1) mod 256] / 60) + (T[(6561+i−1) mod 256] mod 2)\`, where T is the unaltered original p50 base60 token byte and i runs 0…6,394. Ten observed state sizes are **[899,600,799,650,750,875,725,675,174,248]**.
+- K: independently compare the p7-derived **GF81 quartic field-generator** pairing `A[g^r,g^c]` and literal **interior crop** `A[r+1,c+1]`, as defined verbatim in the earlier screen.
+- Clock `z_i = 2 * floor(T[(6561+i−1) mod 256] / 60) + (T[(6561+i−1) mod 256] mod 2)`, where T is the unaltered original p50 base60 token byte and i runs 0…6,394. Ten observed state sizes are **[899,600,799,650,750,875,725,675,174,248]**.
 
 The test asks whether one human-plausible **finite-field equation** using the two physical rune operands and p50 changing state could recover ordinary GP29-encoded English. It explicitly permits all secret coefficients for each of the ten states, making this much stronger than testing a few p7-polynomial guesses.
 
@@ -24,7 +24,7 @@ P_i=a_{z_i}K_i+b_{z_i}C_i+d_{z_i}\pmod {29},\qquad (a_z,b_z)\ne(0,0).
 
 The unseen second output Q may carry the other pair coordinate so that the full \((K,C)\mapsto(P,Q)\) is an invertible GF29 affine transformation. In particular this family includes all secret affine two-rune mixers, variable sign and slope choices, Caesar shifts and every scalar p7 polynomial-orbit reading that is linear in either original operand at a fixed source state.
 
-There are only **30 projective nonzero directions** for the output coefficient pair \([a:b]\) over GF29: **29** normalized directions \`C + λK\`, \`λ=0…28\`, and one vertical \`K\`. Multiplying a direction by any nonzero scalar and adding any d **only permute the 29 output rune labels**, leaving the sorted rune-count histogram exactly unchanged. For every clock state and every cumulative rank k, maximize the sum of the k largest counts across all 30 directions, then add the ten independent per-state maxima. This bounds every imaginable choice of all ten hidden affine keys, even when the selected top-k rune labels disagree across states.
+There are only **30 projective nonzero directions** for the output coefficient pair \([a:b]\) over GF29: **29** normalized directions `C + λK`, `λ=0…28`, and one vertical `K`. Multiplying a direction by any nonzero scalar and adding any d **only permute the 29 output rune labels**, leaving the sorted rune-count histogram exactly unchanged. For every clock state and every cumulative rank k, maximize the sum of the k largest counts across all 30 directions, then add the ten independent per-state maxima. This bounds every imaginable choice of all ten hidden affine keys, even when the selected top-k rune labels disagree across states.
 
 **Original upper bounds (total length 6,395):**
 
@@ -62,19 +62,19 @@ P_i=b_{z_i}C_i+a_{4,z_i}K_i^4+a_{3,z_i}K_i^3
 +a_{2,z_i}K_i^2+a_{1,z_i}K_i+d_{z_i}\pmod{29},\quad b_z\ne0.
 \]
 
-As above, scaling by the inverse of any nonzero b, and adding d, only permutes decoded rune labels. Exhausting **29⁴ = 707,281** coefficient quadruples per state covers all secret first-output quartics with nonzero C term. In addition, allow **any injective source-key-only first output** \`g(K)\` as a separate vertical direction. This includes possible higher-degree permutation polynomials in K, so nothing is hidden in the \`b=0\` case.
+As above, scaling by the inverse of any nonzero b, and adding d, only permutes decoded rune labels. Exhausting **29⁴ = 707,281** coefficient quadruples per state covers all secret first-output quartics with nonzero C term. In addition, allow **any injective source-key-only first output** `g(K)` as a separate vertical direction. This includes possible higher-degree permutation polynomials in K, so nothing is hidden in the `b=0` case.
 
-The source-original \`10 × 707,281 = 7,072,810\` secret coefficient sets **per pairing** have a sharp absolute best-case upper bound of:
+The source-original `10 × 707,281 = 7,072,810` secret coefficient sets **per pairing** have a sharp absolute best-case upper bound of:
 
 | Source K pairing | All-secret degree≤3 top-one maximum | All-secret degree≤4 top-one maximum |
 | --- | ---: | ---: |
 | GF81 field | **464** | **492** |
 | Literal A interior crop | **472** | **511** |
 
-The cubic columns were independently exhausted over all 29³ coefficient triples; their low values agree with the monotonic growth to quartic. The quartic column is a complete exhaustive original-cipher result. All 27 native-GP Gibran and 99 Shakespeare held-out windows still **exceed** the most permissive quartic maximum of511, since the least frequent winner among those controls appears658 times. The first 6,395 native-GP Gibran control runes have755 occurrences of one rune. This excludes any ten-state variable-key polynomial shift of degree at most four under the declared bookend and clock, even with unknown coefficients.
+The cubic columns were independently exhausted over all 29³ coefficient triples; their low values agree with the monotonic growth to quartic. **Any 8-state or 9-state p50 first-digit/parity split-mask grammar obtained by merging some of these ten states is automatically excluded as well:** a coefficient per merged state is a special case of the ten independently chosen coefficients, so its top-one capacity cannot exceed the maxima here. In particular this applies to Agent50's eight-state split mask `{0,1,2}`, the minimal arbitrary-nonlinear majorization survivor; no separate eight-state polynomial search is warranted. The quartic column is a complete exhaustive original-cipher result. All 27 native-GP Gibran and 99 Shakespeare held-out windows still **exceed** the most permissive quartic maximum of511, since the least frequent winner among those controls appears658 times. The first 6,395 native-GP Gibran control runes have755 occurrences of one rune. This excludes any ten-state variable-key polynomial shift of degree at most four under the declared bookend and clock, even with unknown coefficients.
 
-The independent planted **secret quartic** cipher uses source state \`s\` and original pair K:
-\`Cplant = P − [(s+1)K⁴+(s+2)K³+(s+3)K²+(s+4)K+(s+5)] mod29\`.
+The independent planted **secret quartic** cipher uses source state `s` and original pair K:
+`Cplant = P − [(s+1)K⁴+(s+2)K³+(s+3)K²+(s+4)K+(s+5)] mod29`.
 It decrypts **all 6,395 original-length source-native Gibran runes exactly** under both field and crop K alignments. The same exhaustive test is therefore capable of accepting authentic native-GP source prose when this mechanism produces it.
 
 [Read-only original-source quartic CommonJS SFT](../sims/lp2_bookend_p50_tenstate_allquartic_source_sft.cjs) completed **14,145,620** key-state evaluations across two pairings on Windows Node22, [Actions PASS 45065187772](https://github.com/FlareZ123/liber-primus/actions/runs/45065187772). The per-pair original exhaustive operations took 44–50 seconds on that runner. This is a condition on the chosen original-geometry source route, not a proof about other page pairings or an authenticated Cicada quartic operation. The puzzle's visible five red words **motivate** the degree; their actual printed coefficients are not fitted or recovered by this test.
@@ -100,6 +100,6 @@ Every one of the **27 Gibran native windows** satisfies all 29 necessary envelop
 
 ## Reproduction and positives
 
-[Complete Windows Node.js 22 CommonJS source SFT](../sims/lp2_bookend_p50_tenstate_allaffine_majorization_sft.cjs) reads only original-derived \`resources/liber-primus/lp2-corpus.json\`, \`lp2-grid-256.json\` and the existing source-calibrated English controls. It reconstructs both frozen partner maps and the ten-state clock, exhausts every affine projective direction and 841 quadratic coefficient pairs for each state, evaluates the 290 secret key-indexed histograms, asserts the exact original caps, and exercises two **distinct** 6,395/6,395 inverse-positive English plants: unknown secret affine parameters per state, and secret quadratic shifts per state. The control's native-GP orthography is calibrated against solved authentic LP1 and p57 source runes.
+[Complete Windows Node.js 22 CommonJS source SFT](../sims/lp2_bookend_p50_tenstate_allaffine_majorization_sft.cjs) reads only original-derived `resources/liber-primus/lp2-corpus.json`, `lp2-grid-256.json` and the existing source-calibrated English controls. It reconstructs both frozen partner maps and the ten-state clock, exhausts every affine projective direction and 841 quadratic coefficient pairs for each state, evaluates the 290 secret key-indexed histograms, asserts the exact original caps, and exercises two **distinct** 6,395/6,395 inverse-positive English plants: unknown secret affine parameters per state, and secret quadratic shifts per state. The control's native-GP orthography is calibrated against solved authentic LP1 and p57 source runes.
 
 These two SFTs close the **finite-field low-degree polynomial-shift** branch of the ten-state p50 bookend idea, with all key choices covered for its exact declared models. It leaves the [earlier arbitrary nonlinear 841! capacity survivor](lp2-bookend-p50-tenstate-pair-majorization-original-gate.md) intact and does not promote a speculative bookend source arrangement to an established cipher.
