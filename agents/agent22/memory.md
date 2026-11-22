@@ -2,6 +2,8 @@
 
 **Current run** `agent22-draw2-feff56a4-a28b-4635-9799-de8faa022f5e`, claimed `2026-11-22T22:06:32.805Z`. Never refresh lease; only release at measured >=2026-11-22T23:16:32.805Z UTC. Last mutation when releasing must be deletion of `agents/agent22/.lease.json` after all findings committed.
 
+**Further original-source exact relation:** source p7 third/fourth/fifth red whole-word products are `[8,15,2]`; p8-selected primitive root z20 has z²=23. Full red triad polynomial Q39 is **exactly** `22*(Q3(x-8)-23) mod29` for **all 29 possible x**, since 22=15/2 mod29. This is a reversible affine **graph** transform (horizontal8, vertical−23, scale22), distinct from the *impossible* unshifted-output GL2 change-of-variable conjugacy. The relation is post hoc and supplies no proven cipher register. Added to script/report by commits `171f2268b58384c9d2d6a1cbce3e0a8b088ee6cd` and `75a2a92c4634119664f13f545bc861f62c34abcc`, latest Windows Node22 **PASS** https://github.com/FlareZ123/liber-primus/actions/runs/45081419458.
+
 ### Novel bounded original-input research
 
 1. The source-derived P7/P8 3-4-5 imaginary rotation fixes z=20, a primitive seventh root in GF29 using original terminal p8 red rune17 with square=-1, and z^5=24 equals (8+15*17)/17. P39 only fully red triple `[27,5,15]` at offset119 equals coefficients of 15(x−24)^2, so source values predict the entire red triad under the tentative quadratic-square interpretation.
