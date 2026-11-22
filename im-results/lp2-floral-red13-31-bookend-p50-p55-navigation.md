@@ -4,6 +4,10 @@
 
 ## Independent visible clues and prime-weight checksum
 
+**Source-image direction and punctuation:** The original p53 plate (JPEG70, physical LP2 p53) displays an isolated **red arrow pointing upward** immediately above its final 51-red-rune passage and a **13-dot red punctuation block** after that passage. The canonical ink annotations record 13 dots, separate from the 51 GP runes. The p54 and p55 plates also carry 13-dot red punctuation, so this mark is not unique to p53. The arrow is compatible with ascending the source numeric table's rooted tree by following parent pointers, and the 13-dot block provides an adjacent visible instance of the left ornament number13. **Neither mark explicitly names the numeric table or specifies an operation**, so the arrow may be a typographic continuation cue. Treat this as a possible human-visible instruction, not a proven selector.
+
+
+
 Original physical p40 has **eight red heading runes**, GP indices [0,9,19,26,6,23,25,8]; p53 ends with a **51-rune red passage** in its original local positions128–178. They are the *only* red spans in the intervening p40–53 chapter and flank its 3,000 otherwise black ciphertext runes plus the p49–51 256-cell numeric register. The reused five-mark floral art is **01101₂=13** on the left and **11111₂=31** on the right ([image source report](lp2-floral-13-31-original-direct-row-and-walk-gate.md)). GP supplies a first-prime weight for each of its **29** letters.
 
 | Exact source-selected span | Runes | GP index sum | GP prime-weight sum |
