@@ -52,7 +52,7 @@ for (const annotated of ink.pages) {
   for (const span of annotated.red_spans||[]) {
     const words = wordsInSpan(annotated.page,span);
     red.push({page:annotated.page,start:span.start,length:span.length,
-      rawWords:words,transliteratedWords:words.map((w)=>gp(runes(w).map((r)=>indexByRune.get(r)))});
+      rawWords:words,transliteratedWords:words.map((w) => gp(runes(w).map((r) => indexByRune.get(r))))});
   }
 }
 assert.equal(red.length,18); // 16 unknown + 2 solved
