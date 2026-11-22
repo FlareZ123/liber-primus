@@ -182,6 +182,70 @@ for(let k=0;k<4;k++)for(let dir of [-1,1]){
 assert.equal(Math.max(...sourceHashScreens.map(x=>x.matches)),14);
 assert.equal(blackHash.filter(x=>x===0).length,26);
 assert.equal(blackTarget.filter(x=>x===0).length,8);
+// Printed punctuation can be a natural 30th source symbol ∞.
+// Consume actual '-' and '.' separators as one projective infinity
+// class, retain original rune order, ignore visual line breaks;
+// skip precisely the 12 first red p8 heading runes and their punctuation.
+// This supersedes an overstrict claim that projective infinity is
+// necessarily absent from the original manuscript.
+const originalChapterTokens=[];
+const chapterTokenPages=[];
+for(let p=8;p<=14;p++){
+  const items=[];
+  let localRune=0;
+  for(const ch of parts[p]){
+    if(runes.has(ch)){
+      if(p!==8||localRune>=12)items.push(runes.get(ch));
+      localRune++;
+    } else if(ch==='-'||ch==='.'){
+      if(p!==8||localRune>12)items.push(infinity);
+    }
+  }
+  assert.equal(localRune,gp.pages[p].indices.length);
+  chapterTokenPages.push(items);
+  originalChapterTokens.push(...items);
+}
+const realChapterRuneCount=originalChapterTokens.filter(x=>x!==infinity).length;
+const realChapterSeparatorCount=originalChapterTokens.filter(x=>x===infinity).length;
+assert.equal(realChapterRuneCount,1717);
+assert.equal(realChapterSeparatorCount,382);
+const projectivePunctuationModels=[];
+for(const direction of [-1,1])
+for(let phase=0;phase<4;phase++)
+for(const clock of ['all','runesOnly'])
+for(const reset of ['global','pageReset']){
+  let ordinal=0;
+  const decoded=[];
+  const reencoded=[];
+  for(const segment of chapterTokenPages){
+    if(reset==='pageReset') ordinal=0;
+    for(const ch of segment){
+      const step=direction*(ordinal+phase);
+      const out=tPower(ch,step);
+      decoded.push(out);
+      reencoded.push(tPower(out,-step));
+      if(clock==='all'||ch!==infinity)ordinal++;
+    }
+  }
+  assert.deepEqual(reencoded,originalChapterTokens);
+  const separators=decoded.filter(x=>x===infinity).length;
+  const decodedRuneCount=decoded.length-separators;
+  projectivePunctuationModels.push({direction,phase,clock,reset,
+    separators,ioc:ioc(decoded),
+    averageDecodedWordRunes:decodedRuneCount/(separators+1)});
+}
+assert.equal(projectivePunctuationModels.length,32);
+const projectivePunctuationMaxIoC=
+  Math.max(...projectivePunctuationModels.map(x=>x.ioc));
+const projectivePunctuationMaxSeparators=
+  Math.max(...projectivePunctuationModels.map(x=>x.separators));
+const projectivePunctuationMinSeparators=
+  Math.min(...projectivePunctuationModels.map(x=>x.separators));
+assert(Math.abs(projectivePunctuationMaxIoC-0.039519890846387844)<1e-12);
+assert.equal(projectivePunctuationMaxSeparators,161);
+assert.equal(projectivePunctuationMinSeparators,115);
+assert(projectivePunctuationModels.every(x=>x.averageDecodedWordRunes>11));
+
 console.log('LP2_P7_P8_POLYNOMIAL_PGL_HILL_ORIGINAL ' + JSON.stringify({
   sourceCoefficients:coefficients,headerRoots:heading,
   derivativeAtFirstRoot:lambda,uniqueMatrix:matrix,
@@ -195,6 +259,15 @@ console.log('LP2_P7_P8_POLYNOMIAL_PGL_HILL_ORIGINAL ' + JSON.stringify({
   sourceFixedCompleteReceiverModels:tests.length,
   sourceFixedModelMaximumIoC:methodMax,
   sourceFixedModelNativeIoCOver05:0,
+  originalChapterPrintedSeparators:realChapterSeparatorCount,
+  originalChapterRuneCount:realChapterRuneCount,
+  punctuationInfinityModels:projectivePunctuationModels.length,
+  punctuationInfinityMaxIoC:projectivePunctuationMaxIoC,
+  punctuationInfinitySeparatorRange:[
+    projectivePunctuationMinSeparators,projectivePunctuationMaxSeparators
+  ],
+  punctuationInfinityMinimumAverageWordRunes:
+    Math.min(...projectivePunctuationModels.map(x=>x.averageDecodedWordRunes)),
   originalBlackSourceWords:blackWords.length,
   originalWordProductZeroCount:blackHash.filter(x=>x===0).length,
   originalBlackTargetZeros:blackTarget.filter(x=>x===0).length,
