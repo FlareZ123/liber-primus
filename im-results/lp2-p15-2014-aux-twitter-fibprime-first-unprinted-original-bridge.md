@@ -43,6 +43,41 @@ The exact original 12,956-rune continuous LP2 p0–55 unknown stream contains **
 The profile number **9901** additionally satisfies the exact arithmetic identity `9901 = 3×3301 - 2`, so `9901 mod 3301 = 3299`, the original p15 **red initial numeral**. This is a *retrospective modular echo*, not an independently source-specified modulo instruction or a statistical discovery claim. The number may have been chosen for unrelated properties.
 
 
+
+## A distinct original-input cross-artifact hit: p42 PNW sums to the Stage10 square center 91
+
+The **2014 first-party Stage10 Three Squares** were digitally preserved as [literal printed matrices](../resources/cicada2014-openpuff-magic-squares.txt). Their actual centers, in the historic form's order, are **809, 331, 91**. The **91** occupies the geometric center of the original 5×5 square whose lines each sum **1033**. This is independently archived source content and precedes the July tweet. The 2014 signed operation is **submitting the three squares**, however; it does **not** tell an LP2 solver to take a word's prime sum and index an unknown page.
+
+The first missing p15 Fibonacci index from the July tweet selects **original page42 local rune offset31**. At that precisely selected address the word-length delimiters in the unmodified manuscript enclose **ᛈᚾᚹ / PNW**, with the independently prescribed Gematria Primus prime values `P=43, N=29, W=19`. Their arithmetic sum is **91**. This connects the p15 continuation to **one actual 2014 square center** without modifying the original ciphertext.
+
+To quantify the coincidence without counting only convenient examples, a read-only original-transcription parser traversed every unknown runic page (physical p0–55, skipping numeric-only p50) and confirmed **12,956 runes**. It identified **2,928 maximal rune-run tokens** delimited by actual punctuation/word-spacing (a transcription-derived count, not a claim of 2,928 independent semantic plaintext words). Exactly **six** full tokens have GP prime sum 91:
+
+| Global one-based token start | Physical LP2 page | Original GP token | Rune count |
+|---:|---:|---|---:|
+| 3195 | p13 | GTHFJGC | 6 |
+| 3750 | p15 | RTHLF | 4 |
+| 5878 | p24 | OTHNG | 3 |
+| 6360 | p26 | THFCM | 4 |
+| 9159 | p37 | WETH | 3 |
+| **10176** | **p42** | **PNW** | **3** |
+
+Thus **six out of 12,956 original rune positions** begin a maximal run whose full prime sum equals 91, and only **three** such runs are three runes long. The first sixteen printed p15 Fibonacci-prime values, read as one-based global rune addresses under the *same* grammar, select **zero** entire tokens summing to any of the three square centers `[809,331,91]`. The very next, 10176, selects the 91 hit. The original square's numbers were neither searched nor altered in this finite comparison.
+
+**Critical statistical caveat:** The center target 91 was examined **after noticing** the `PNW` pointer. There are many potential historical target numbers and ways to turn runes into numbers. Therefore the empirical 6/12956 fraction is a descriptive selectivity count, **not** a calibrated probability that this match was creator-intended. The unsigned July tweet **postdates the May manuscript release**, and its creator control is unverified. These independent caveats prevent promotion to a genuine solution.
+
+One natural generalization is **not supported**: if the infinity sign authorizes wrapping successive unprinted terms modulo the exact 12,956-rune book length, F18 generates `|3301−p2585|=19866`, wraps to global rune **6910**, inside original token `IEPEAH` (sum273); F19 generates `|3301−p4182|=36490`, wraps to **10578**, inside `JXSJ` (sum174). Neither recovers the other centers **331** or **809**. No alternate wrap, offset or word origin was tuned.
+
+### One frozen source-selected original cipher test
+
+If the p42 pointer and the historic square's **center91** were intended to supply a new prime-clock seed, the most source-constrained consumer is the **already solved p56** additive `φ(prime)` cipher, beginning at its one-based **prime ordinal91** exactly at `PNW`, preserving the authentic plaintext-F zero-keystep rule. This uses an additional **unlicensed interpretation** of center91 as an index, so it is a finite hypothesis, not a recovered instruction.
+
+On the **241 untouched original p42 runes from PNW to page end**, an exact state enumeration of **every possible legal plaintext-F bypass** becomes impossible at **offset28** (global rune10204). The ciphertext is X, GP index14. The next required prime is **p119=653**, giving `φ(653) mod29 = 652 mod29 = 14`. Subtracting that key from X forces plaintext F, which under the authentic rule would instead have appeared as **literal ciphertext F**. No exception branch exists. This is a mathematical original-cipher obstruction. The exact same solver admits the authentic full solved-p56 control ending in its correct 84-consumed-prime state.
+
+[Complete deterministic Windows Node22 reproducer](../sims/lp2_p15_f17_to_p42_pnw_2014_center91_source_sft.cjs) asserts the original p15 numeric values, both original sources, full 12,956-rune transcription, all six matching word-like tokens, historical square centers, the first in-range continuation, the negative circular predictions, and the all-secret p42 failure; see [Windows original-cipher positive-controlled run](https://github.com/FlareZ123/liber-primus/actions/runs/45047087206).
+
+**Decision:** preserve the **exact 91 center alignment as a candidate source-shaped cross-artifact clue** with explicitly retrospective selection. Retire only the direct center91 → ordinal91 → p56-prime cipher on p42, and the two immediate circular wraps. No unknown plaintext or active historical destination follows. A different original instruction selecting prime-value summation and a reversible consumer of 91 would be needed to justify deeper downstream work.
+
+
 ## Frozen original-cipher consumer of the profile prime 9901
 
 The profile explicitly supplies the independent prime **9901**; the only already authenticated LP2 runic key schedule is p56's additive `φ(successive primes)` with literal plaintext F passed through without advancing the key. Two obvious meanings of source number 9901, before any unknown text scoring, are **start at prime value 9901 = p[1221]**, or **start at one-based prime ordinal 9901 = prime103613**. P16 is the immediately following full runic page after the source-visible p15 key square, so the test was frozen to its original 267 unmodified runes, beginning at its very first glyph. No phase search, sign change, guessing plaintext-F skip masks, chapter alternatives or source-key transformations enter.
