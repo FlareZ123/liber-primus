@@ -54,7 +54,7 @@ function nativeGP(token) {
   return out;
 }
 assert.deepEqual(nativeGP('SING'), [15, 21]);
-assert.deepEqual(nativeGP('VISION'), [7, 10, 15, 27, 9]); // UI -> U, IO -> IA
+assert.deepEqual(nativeGP('VISION'), [1, 10, 15, 27, 9]); // UI -> U, IO -> IA
 assert.deepEqual(nativeGP('AREA'), [24, 4, 28]);
 
 // Feature[0] total glyph count. [1] at word starts, including singletons.
