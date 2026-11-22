@@ -43,6 +43,29 @@ assert.equal(marks.filter(p => p[1] === 10).length, 3);
 assert.equal(marks.filter(p => p[2] === 'black').length, 1);
 assert.equal(marks.filter(p => p[2] === 'red').length, 30);
 
+const inkByPage = new Map(annotations.pages.map(p => [
+  p.page, p.large_punctuation || []
+]));
+const nearMarkCounts = [0, 0, 0, 0];
+const nearMarkCutoffs = [0, 1, 3, 13];
+const pageRepeatLocations = [];
+for (const page of pages) {
+  const marksHere = inkByPage.get(page.page) || [];
+  for (let j = 1; j < page.indices.length; j++) {
+    if (page.indices[j] !== page.indices[j - 1]) continue;
+    const distance = marksHere.length
+      ? Math.min(...marksHere.map(p => Math.abs(j - p[0])))
+      : Infinity;
+    pageRepeatLocations.push([page.page, j, distance]);
+    nearMarkCutoffs.forEach((cutoff, k) => {
+      if (distance <= cutoff) nearMarkCounts[k]++;
+    });
+  }
+}
+assert.equal(pageRepeatLocations.length, 86);
+assert.deepEqual(nearMarkCounts, [0, 0, 0, 2]);
+
+
 /** @param {number} n @param {number} k */
 function logChoose(n, k) {
   let value = 0;
@@ -103,6 +126,8 @@ console.log(JSON.stringify({
   pages: 56, runeBearingPages: pages.length, originalRunes: allRunes.length,
   originalWords: words.length, withinPageTransitions: transitions,
   equalAdjacencies: repeats,
+  nearMarkDistanceCutoffs: nearMarkCutoffs,
+  repeatSitesNearLargeMarks: nearMarkCounts,
   originalLargePunctuation: marks.length, original13dot: 28,
   original10dot: 3, originalBlack: 1,
   mode: 'universal fixed-layout injective GP29->GP29 code; at most 86 output repeats',
