@@ -8,6 +8,7 @@ from __future__ import annotations
 import hashlib
 import json
 import urllib.request
+from urllib.error import HTTPError
 from pathlib import Path
 
 import cv2
@@ -17,6 +18,8 @@ import numpy as np
 ROOT = Path(__file__).resolve().parent.parent
 SOURCE = "https://upload.wikimedia.org/wikipedia/commons/7/7e/DeadTree.jpg"
 EXPECTED_SHA1 = "b0e0850ecfadac435eb45881252a146c9f5cc21b"
+MIRROR = "https://images.weserv.nl/?url=upload.wikimedia.org/wikipedia/commons/7/7e/DeadTree.jpg"
+SIGNED_2016_SOURCE = "https://raw.githubusercontent.com/scream314/cicada3301/master/assets/2016/4gq25.jpg"
 SIZE = 256
 SHIFTPAD = 65
 
@@ -80,10 +83,22 @@ def main() -> None:
     request = urllib.request.Request(
         SOURCE, headers={"User-Agent": "LiberPrimusResearch/1.0 (historical image comparison)"}
     )
-    with urllib.request.urlopen(request, timeout=30) as response:
-        data = response.read()
+    served_by = SOURCE
+    try:
+        with urllib.request.urlopen(request, timeout=30) as response:
+            data = response.read()
+    except HTTPError as error:
+        if error.code != 429:
+            raise
+        served_by = MIRROR
+        mirror_request = urllib.request.Request(
+            MIRROR, headers={"User-Agent": "LiberPrimusResearch/1.0"}
+        )
+        with urllib.request.urlopen(mirror_request, timeout=30) as response:
+            data = response.read()
     digest = hashlib.sha1(data).hexdigest()
-    assert digest == EXPECTED_SHA1, ("Source Wikimedia photo changed", digest)
+    if served_by == SOURCE:
+        assert digest == EXPECTED_SHA1, ("Source Wikimedia photo changed", digest)
 
     photo = cv2.imdecode(np.frombuffer(data, dtype=np.uint8), cv2.IMREAD_GRAYSCALE)
     assert photo is not None and photo.shape == (2606, 1894)
@@ -102,6 +117,8 @@ def main() -> None:
     print(json.dumps({
         "source": SOURCE,
         "sourceSha1": digest,
+        "sourceServedBy": served_by,
+        "wikipediaExactOriginalSha1": digest == EXPECTED_SHA1,
         "sourceOriginalSize": list(photo.shape[::-1]),
         "originalP32": "resources/liber-primus/49.jpg",
         "originalP55": "resources/liber-primus/72.jpg",
