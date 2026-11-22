@@ -296,6 +296,142 @@ for(const sign of [-1,1]){
       predictedFourth:realCipher.firstPredictedWord}});
 }
 
+
+/**
+ * Exhaust the native-field affine extension
+ * C[t] = scalar*P[t]+K[t mod 13] (mod29), scalar in F29^*.
+ *
+ * The source-specific 11-rune long word fixes the first 11 phases of
+ * the otherwise arbitrary 13-element pad. The first/second words are
+ * independent dictionary holdouts, BEFORE fitting the last two phases.
+ */
+const inv29=Array(29).fill(-1);
+for(let a=1;a<29;a++)
+  for(let b=1;b<29;b++)
+    if(a*b%29===1)inv29[a]=b;
+assert(inv29.slice(1).every(v=>v>0));
+function inverseAffine(cipher) {
+  const stats={scalars:28,anchorTypes:lex[11].length,
+    combinations:28*lex[11].length,firstWordSurvivors:0,
+    firstTwoSurvivors:0,fullSolutions:0};
+  const solutions=[];
+  for(let scalar=1;scalar<29;scalar++){
+    const ai=inv29[scalar];
+    for(const anchor of lex[11]){
+      const k=Array(P).fill(-1);
+      for(let i=0;i<11;i++)
+        k[i]=mod(cipher[13+i]-scalar*anchor.nums[i]);
+      const partial=(start,len)=>Array.from({length:len},(_,j)=>
+        mod(ai*(cipher[start+j]-k[start+j])));
+      const one=partial(0,5),two=partial(5,4);
+      if(!lookup[5].has(token(one)))continue;
+      stats.firstWordSurvivors++;
+      if(!lookup[4].has(token(two)))continue;
+      stats.firstTwoSurvivors++;
+      const partialThird=partial(9,2);
+      for(const third of lex[4]){
+        if(third.nums[0]!==partialThird[0]||
+           third.nums[1]!==partialThird[1])continue;
+        k[11]=mod(cipher[11]-scalar*third.nums[2]);
+        k[12]=mod(cipher[12]-scalar*third.nums[3]);
+        const plain=Array.from({length:51},(_,j)=>
+          mod(ai*(cipher[j]-k[j%P])));
+        const fullWords=redWords.map(w=>lookup[w.len].get(token(
+          plain.slice(w.start,w.start+w.len))));
+        if(fullWords.some(w=>!w))continue;
+        assert.deepEqual(plain.slice(13,24),anchor.nums);
+        assert.deepEqual(encipherAffine(plain,k,scalar),cipher);
+        stats.fullSolutions++;
+        if(solutions.length<5)solutions.push({scalar,key:k.slice(),
+          plain,words:fullWords.map(w=>w.display)});
+      }
+    }
+  }
+  return {stats,solutions};
+}
+function encipherAffine(plain,key,scalar){
+  return plain.map((p,i)=>mod(scalar*p+key[i%13]));
+}
+/**
+ * Exhaust multiplicative nonzero GP29 source-unit keys:
+ * C[t]=P[t]*K[t mod13] (mod29), with all 13 K units in 1..28.
+ *
+ * Source/power gate: original anchor ciphertext C[13..23] has no zeros;
+ * hence any valid 11-rune anchor plaintext has no GP-F and uniquely
+ * determines eleven multiplicative unit keys. Unknown slots K[11/12]
+ * are exhaustively enumerated on the three-rune primer continuation.
+ */
+function inverseMultiplicative(cipher){
+  assert(cipher.slice(13,24).every(x=>x>0),
+    "Original and planted anchor ciphertext must be nonzero");
+  const stats={anchorTypes:lex[11].length,admissibleAnchorTypes:0,
+    firstWordSurvivors:0,firstTwoSurvivors:0,fullSolutions:0};
+  const solutions=[];
+  for(const anchor of lex[11]){
+    if(anchor.nums.includes(0))continue;
+    stats.admissibleAnchorTypes++;
+    const k=Array(P).fill(0);
+    for(let i=0;i<11;i++)k[i]=(cipher[13+i]*inv29[anchor.nums[i]])%29;
+    const part=(start,len)=>Array.from({length:len},(_,j)=>
+      cipher[start+j]*inv29[k[start+j]]%29);
+    const first=part(0,5),second=part(5,4);
+    if(!lookup[5].has(token(first)))continue;
+    stats.firstWordSurvivors++;
+    if(!lookup[4].has(token(second)))continue;
+    stats.firstTwoSurvivors++;
+    const knownThird=part(9,2);
+    for(const third of lex[4]){
+      if(third.nums[0]!==knownThird[0]||
+        third.nums[1]!==knownThird[1])continue;
+      /** Complete all keys, including source F=0/C=0 exceptions. */
+      const keyChoices=[];
+      for(let q=2;q<4;q++){
+        const t=9+q,plain=third.nums[q],c=cipher[t];
+        if(plain===0){keyChoices.push(c===0?
+          Array.from({length:28},(_,i)=>i+1):[]);}
+        else keyChoices.push(c===0?[]:[c*inv29[plain]%29].filter(x=>x>0));
+      }
+      for(const a of keyChoices[0])for(const b of keyChoices[1]){
+        k[11]=a;k[12]=b;
+        const plain=Array.from({length:51},(_,i)=>
+          cipher[i]*inv29[k[i%P]]%29);
+        const fullWords=redWords.map(w=>lookup[w.len].get(token(
+          plain.slice(w.start,w.start+w.len))));
+        if(fullWords.some(w=>!w))continue;
+        assert.deepEqual(plain.slice(13,24),anchor.nums);
+        assert.deepEqual(encipherMultiplicative(plain,k),cipher);
+        stats.fullSolutions++;
+        if(solutions.length<5)solutions.push({key:k.slice(),plain,
+          words:fullWords.map(w=>w.display)});
+      }
+    }
+  }
+  return {stats,solutions};
+}
+function encipherMultiplicative(plain,key){
+  return plain.map((v,i)=>v*key[i%13]%29);
+}
+const scalarControl=15,affinePad=Array.from({length:13},()=>random()%29);
+const affineCipher=encipherAffine(planted,affinePad,scalarControl);
+const affinePositive=inverseAffine(affineCipher);
+assert(affinePositive.stats.fullSolutions>=1);
+assert(affinePositive.solutions.some(x=>x.scalar===scalarControl
+  &&token(x.plain)===token(planted)
+  &&x.key.every((a,i)=>a===affinePad[i])));
+const affineReal=inverseAffine(red);
+assert.equal(affineReal.stats.firstTwoSurvivors,0);
+assert.equal(affineReal.stats.fullSolutions,0);
+const unitPad=Array.from({length:13},()=>1+(random()%28));
+assert(planted.slice(13,24).every(x=>x!==0));
+const multiplicativeCipher=encipherMultiplicative(planted,unitPad);
+const multiplicativePositive=inverseMultiplicative(multiplicativeCipher);
+assert(multiplicativePositive.stats.fullSolutions>=1);
+assert(multiplicativePositive.solutions.some(x=>token(x.plain)===token(planted)
+  &&x.key.every((v,i)=>v===unitPad[i])));
+const multiplicativeReal=inverseMultiplicative(red);
+assert.equal(multiplicativeReal.stats.firstWordSurvivors,0);
+assert.equal(multiplicativeReal.stats.fullSolutions,0);
+
 console.log("summary",JSON.stringify({
   original:{physicalPage:53,redOffset:128,runes:51,redWordLengths:EXPECTED,
     punctuationDots:13,anchorStart:13,anchorLength:11,
@@ -310,6 +446,10 @@ console.log("summary",JSON.stringify({
   independentPadNegative:wrong.stats,
   originalCipher:actual.stats,
   autokeyControls,autokeyOriginal,
+  fieldAffine:{planted:affinePositive.stats,original:affineReal.stats,
+    scalarControl},
+  fieldMultiplicative:{planted:multiplicativePositive.stats,
+    original:multiplicativeReal.stats},
   decision:"The original p53 red 13-dot local program fails exact native-word " +
     "inversions for: 13-position repeated additive key; 13-lag plaintext " +
     "autokey (both signs); and 13-lag ciphertext autokey (both signs). " +
