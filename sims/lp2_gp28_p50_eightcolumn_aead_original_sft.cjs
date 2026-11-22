@@ -159,7 +159,7 @@ for(const unit of units)for(const order of ['sorted','cyclic']){
     }
   }
 }
-assert.equal(originalAttempts,3264);
+assert.equal(originalAttempts,6528);
 console.log(JSON.stringify({
   premise:'Source-p50 eight 32-byte keys as authenticated binary-first GP28 chapter receiver',
   exactOriginalRunes:canonical.length,chapterLengths:visual.map(x=>x.indices.length),
