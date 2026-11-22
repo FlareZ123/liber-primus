@@ -1,40 +1,41 @@
-# Original 175 physical marks × historical 5×7×5 magic squares: complete GP29 receiver decision
+# Physical 175 LP2 punctuation marks × historical three magic squares: complete original GP29 receiver decision
 
-**22 November 2026, Agent 5. Classification: source-constrained finite original-input negative; no unknown LP2 plaintext or authenticated key.**
+**22 November 2026, Agent 5. Source-constrained finite negative. No recovered unknown plaintext, first-party key, or executable continuation.**
 
-## An independently visible source alignment
+## Source-visible coincidence and the necessary inference
 
-The first-party 2014 Cicada Stage10 OpenPuff material supplies **three real integer magic squares**, in printed order and with orders **5, 7, 5** (respective row sums 3301, 1033, 1033). Their tensor product occupies exactly **175 = 5×7×5** cells. Separately, the actual physical LP2 pp0–55 contain **175 visible punctuation-mark instances**. The latter number comes from the independent original-JPEG census in [the punctuation identity audit](lp2-punctuation-identity-stream.md): **31 large ten-/thirteen-dot marks, 138 four-dot diamonds, five three-dot marks, and one ambiguous singleton square**.
+The actual LP2 physical pp0–55 contain **175 visible punctuation-mark instances**. This follows the [source-image-adjudicated physical registry](../resources/liber-primus/lp2-punctuation-identity.json) and [original-JPEG ink audit](lp2-punctuation-identity-stream.md): of 180 derivative events, the four p15 numeric-row terminators #57–60 are editorial additions and p37 event #125 is absent from ink. The 175 actual marks comprise **28 thirteen-dot and three ten-dot large marks, 138 four-dot marks, five three-dot marks, and one singleton**.
 
-The derivative punctuation registry contains 180 entries. Its four p15 numeric-row terminators **57–60 were not printed**, and one p37 stop **125 is absent**. Excluding exactly those five yields all 175 original marks in reading order. This is a stronger source register than merely counting periods in the Unicode transcription, and its unusual size has a legitimate historically available 5×7×5 counterpart. The objection is equally concrete: **neither the original pages nor Stage10 instructs a reader to map every kind of printed mark to one rune, use this three-dimensional tensor, or apply magic-square multiplication**. A 175-count equality alone does not select an inverse.
+The first-party 2014 Cicada OpenPuff [three historical magic-square files](../resources/cicada2014-openpuff-magic-squares.txt) are in order **5×5 row sum3301, 7×7 row sum1033, 5×5 row sum1033**. Their three axis widths multiply to **5×7×5 = 175**. Thus both genuinely independent original-source registers admit the same three-dimensional array size. This numerical match does **not establish** that the author intended a matrix code: the original manuscripts never prescribe a mark-to-value extraction or a tensor-multiplication inverse. The historically documented purpose of these squares was entry into a 2014 CGI form; other historical square arrangements satisfy its row-sum constraints.
 
-## A complete, fixed ciphertext consumer
+## Four fixed human-readable mark operands and 32 exact original inverses
 
-Take the zero-based original GP29 rune tape of all unknown physical pp0–55, with **12,956** runes including page carries. For each of the 175 physical marks, take the single **immediately preceding GP rune** at original global offset \`mark.rune_offset−1\`. The first mark has offset13, the last after the final rune has offset12,956; hence all 175 operands exist without wraparound. Three pairs of physically distinct marks share the same preceding rune because their offsets coincide: **1860, 3603, 9358**. Preserve all three duplicates.
+Use all **12,956 original pp0–55 GP29 ciphertext runes** in the canonical [GP29 corpus](../resources/liber-primus/lp2-corpus.json), preserving every physical mark in chronological order and all three same-offset duplicate-mark pairs at original global rune positions **1860, 3603, 9358**. The first mark has preceding rune offset13; the last follows global rune12,956.
 
-Arrange the resulting **175 unchanged GP29 values** in printed order as row-major \`5×7×5\`. Reduce each authentic 2014 square modulo29 and apply its normal matrix multiplication separately along the matching tensor axis. The full family admits precisely eight historical operator-direction combinations: on each axis use its direct matrix or its unique inverse. There are **no padded runes, fitted key cells, phase searches, altered source symbols, word-meaning assumptions, or freely chosen axis permutations**. The original vector convention and printed square order are fixed in advance. For each of the eight outputs, reversing the three axis operations exactly reproduces all 175 original mark-adjacent runes.
+Freeze the four most direct complete value channels, each exactly 175 original-source-derived values reduced modulo29:
 
-The runnable [Windows-compatible Node.js CommonJS original SFT](../sims/lp2_2014_magic5x7x5_visible175_marktensor_original_sft.cjs) consumes the canonical [GP29 corpus](../resources/liber-primus/lp2-corpus.json), [source-image-adjudicated mark registry](../resources/liber-primus/lp2-punctuation-identity.json), and [authentic historical square entries](../resources/cicada2014-openpuff-magic-squares.txt). All three historical matrices are invertible over GF29. The test also takes the **95 genuine already-clear p57 GP runes**, repeats them to 175 positions, encrypts them under each exact matrix family, and demands **175/175** recovery on each of eight independent positive plants.
+1. **Preceding rune:** the single original rune immediately before each mark; last mark naturally consumes the final book rune.
+2. **Following rune:** the rune immediately after each mark, with one explicit **final-to-first cyclic wrap** because the last mark follows the final rune. This conditional book-end wrap is an additional premise, held fixed before decipherment.
+3. **Rune gap:** distance since the previous physical mark, taking the first offset from the book opening, reduced mod29.
+4. **Visible dot count:** original ink-mark counts 1,3,4,10,13, with original ambiguous-mark annotations exactly fixed as in the registry.
 
-## Original outputs
+For each channel, place its 175 values in printed mark order as row-major 5×7×5 and multiply by the three historical integer squares modulo29 on the corresponding tensor axes. On each axis, use either the historical square itself or its unique GF29 matrix inverse: **eight direction masks** for each channel, **32 distinct fixed output attempts**. No key fitting, guessed rune alphabets, data-dependent axis permutations, padded mark counts or page-specific phase choices are admitted. The [standalone Windows-compatible Node.js CommonJS original SFT](../sims/lp2_2014_magic5x7x5_visible175_marktensor_original_sft.cjs) verifies every 175/175 original ciphertext round-trip, then encrypts and decrypts a native-GP positive plant sourced from all 95 genuine clear original p57 runes under every corresponding matrix direction.
 
-The original physical-mark predecessor channel has GP29 index of coincidence **0.034811165846**, near the uniform benchmark \`1/29 = 0.0344827586\`. All eight complete source-fixed matrix inverses remain effectively flat:
+## Actual full original-cipher outputs
 
-| Bitmask selecting direct matrix on axes 0,1,2 | GP29 IoC |
-| ---: | ---: |
-| 0 | 0.033694581281 |
-| 1 | 0.035927750411 |
-| 2 | 0.034417077176 |
-| 3 | 0.032840722496 |
-| 4 | 0.034548440066 |
-| 5 | **0.038029556650** |
-| 6 | 0.036781609195 |
-| 7 | 0.032643678161 |
+All 32 source-input × operator-choice results have GP29 indices of coincidence near the 29-symbol uniform value **1/29≈0.03448276**. The strongest per-channel score is listed after the complete eight-choice search; neither the leading 52-runic original output nor the surviving 175-symbol readout contains a sustained GP-English instruction.
 
-The strongest uniform-frequency deviation, mask5, begins \`TH J TH EO X EA Y TH EO A I I F J M OE TH TH X I I OE F M OE NG ...\` in GP29 transliteration, **without a sustained readable instruction or original-page plaintext**. Other outputs are likewise nonlinguistic. Genuine clear original p57 GP29 has IoC about **0.06271**. Each of the eight original transformations passes exact forward re-encryption, and each of eight independent solved-p57 positive controls passes; those implementation properties do not authenticate the proposed historical cipher.
+| Complete original mark-value channel | Original input IoC | Largest output IoC across 8 matrices | Mask |
+| --- | ---: | ---: | ---: |
+| Preceding original rune | 0.034811165846 | **0.038029556650** | 5 |
+| Following original rune (wrap after book end) | 0.035599343186 | 0.036387520525 | 1 |
+| Consecutive mark rune gap mod29 | 0.032972085386 | 0.036256157635 | 6 and 7 |
+| Physical ink dot count | 0.646568144499 | 0.036387520525 | 6 |
 
-## Decision and next branch
+The dot-count input is highly nonuniform because 138 of the 175 original marks have four dots, yet the historical square transforms distribute its result near uniform. For direct comparison, already-clear original LP2 p57 prose has GP29 IoC about **0.06271**. The predecessor mask5 starts with GP29 tokens **TH J TH EO X EA Y TH EO A I I F J M OE ...**, an unrelated runic string. The full 32 × 175 symbol outputs and eight real solved-GP positive controls per source channel are printed by the SFT. These are valid, reversible mathematical decryptions of the frozen registers; source authenticity of the plaintext would require language and an independently selected reading rule.
 
-The **175 original physical punctuation marks** are a real self-contained source register, and the earlier authentic three-square 5×7×5 operand is mathematically compatible with that size. The simplest complete mark-predecessor → historic matrix-tensor inverse **does not recover unknown GP29 prose**, so this direct candidate can be retired without additional secret letter alphabets, tuned phases, or rearranged geometries. A prospective positive would require a *new* first-party selector identifying which runes or numeric values each physical mark contributes, how its morphology matters, and why this matrix rather than its other historically possible uses is the deciphering operation. No claim is made against other consumers of original marks or a non-native intermediate byte register.
+## Research decision
 
-This direct test is distinct from previously completed direct magic-square Hill decoding of complete page or scroll rune streams, p33's 49-word and 7×7 rune arrays, and ordinary line/complete-word acrostic extraction. It supplies a reproducible stopping point for the tempting 175×magic-square count alignment while keeping the true problem of author-selected plaintext recovery open.
+The original visible **175 punctuation marks** form a reproducible source register with the same cardinality as the earlier real 2014 **5×7×5** squares. **No native-GP plaintext is recovered by the complete four natural mark-consumer × eight authentic-matrix direction family**. The absent step is a creator-origin specification of the mark operand, original mark types or intended matrix operation. One additional arbitrary alphabet, freely chosen 3D permutation, or nonlinear filter would supply the needed secret degrees of freedom without solving that source-selection problem.
+
+Preserve this as a finite stopping point for the 175-count coincidence. Distinct source-led avenues may still use punctuation to identify separate words, follow a different first-party keyed operation, or produce a non-rune intermediate payload. The established direct magic-square Hill tests on entire chapters, p33 7×7 text arrays and ordinary acrostics are independent earlier results; this report addresses **all physically printed marks**, their intact source order and four immediate natural numeric consumers.
