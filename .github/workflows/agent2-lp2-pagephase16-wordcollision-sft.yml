@@ -1,0 +1,13 @@
+name: Agent2 all-secret LP2 page reset 16 wordphase collision SFT
+on:
+  workflow_dispatch:
+jobs:
+  reproduce:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original word-pair capacity and native-plant positives
+        run: node sims/lp2_pagephase16_wordcollision_allsecret_sft.cjs
