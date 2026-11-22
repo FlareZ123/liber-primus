@@ -79,3 +79,93 @@ console.log(JSON.stringify({
   newUnknownPlaintextRecovered:false,
   interpretation:'source-typed hypothesis; DH mode and intended consumer not author-authenticated'
 },null,2));
+
+
+// First source-key consumer: transfer the independently authenticated
+// solved-p56 prime/totient/F-transparency rule to original p55, with DH shared
+// secret352 selecting either prime index352, one-based 352nd prime at351,
+// or least prime >=352 (353, zero-based index70). The first glyph of p55 is
+// a source-printed continuation of p54's final word, so compare local0/local1.
+// Every original ciphertext F bypass mask is enumerated, not language-fitted.
+/** @param {number} count @returns {number[]} */
+function firstPrimes(count) {
+  const primes = [];
+  for (let x = 2; primes.length < count; x++) {
+    if (primes.every((q) => x % q !== 0)) primes.push(x);
+  }
+  return primes;
+}
+const primes = firstPrimes(500);
+const firstAboveShared = primes.findIndex((value) => value >= sharedServer);
+assert.equal(firstAboveShared, 70);
+assert.equal(primes[firstAboveShared], 353);
+
+/** @param {number[]} symbols @returns {number} */
+function ioc(symbols) {
+  const freq = Array(29).fill(0);
+  for (const symbol of symbols) freq[symbol]++;
+  return freq.reduce((sum, n) => sum + n * (n - 1), 0) /
+    (symbols.length * (symbols.length - 1));
+}
+/**
+ * Enumerate every ciphertext F bypass subset under an exact reversible
+ * prime/totient encoder. sign=-1 means the authentic p56 inverse.
+ * @param {number[]} cipher Native source rune indices.
+ * @param {number} primeStart Starting zero-based ordinary prime ordinal.
+ * @param {-1|1} sign Input operation C ± (prime-1).
+ * @returns {{mask:number,plain:number[],ioc:number}[]}
+ */
+function decodePrimeMasks(cipher, primeStart, sign) {
+  const fehuPositions = cipher.flatMap((symbol, i) => symbol === 0 ? [i] : []);
+  assert.equal(fehuPositions.length, 3);
+  const out = [];
+  for (let mask = 0; mask < 2 ** fehuPositions.length; mask++) {
+    let index = primeStart;
+    const plain = [];
+    let legal = true;
+    for (let i = 0; i < cipher.length; i++) {
+      const bypass = fehuPositions.some((position, bit) => position === i &&
+        (mask & (1 << bit)) !== 0);
+      const value = bypass ? 0 : (cipher[i] + sign * (primes[index++] - 1) % 29 + 29) % 29;
+      if (value === 0 && !bypass) { legal = false; break; }
+      plain.push(value);
+    }
+    if (legal) out.push({ mask, plain, ioc: ioc(plain) });
+  }
+  return out;
+}
+const keyStarts = [351, 352, firstAboveShared];
+const p55KeyTests = [];
+for (const primeStart of keyStarts) {
+  for (const skipCarry of [0, 1]) {
+    for (const sign of [-1, 1]) {
+      const cipher = p55.indices.slice(skipCarry);
+      const paths = decodePrimeMasks(cipher, primeStart, sign);
+      p55KeyTests.push({
+        primeStart, skipCarry, sign,
+        legalPaths: paths.length,
+        ioc: paths.map((candidate) => Number(candidate.ioc.toFixed(6)))
+      });
+      console.log('P55 source-DH key', primeStart, skipCarry, sign,
+        'legal', paths.length, 'IoC', paths.map((candidate) => candidate.ioc.toFixed(6)).join(','));
+    }
+  }
+}
+assert.deepEqual(p55KeyTests.map((caseResult) => caseResult.legalPaths),
+  [0, 2, 0, 0, 3, 0, 0, 2, 0, 4, 0, 0]);
+// The planted p57 native source survives every source-chosen prime ordinal,
+// with F never consuming a key, exactly as on authentic solved p56.
+for (const primeStart of keyStarts) {
+  const planted = p57.indices.slice(0, 76);
+  let cursor = primeStart;
+  const ciphertext = planted.map((value) =>
+    value === 0 ? 0 : (value + primes[cursor++] - 1) % 29);
+  const recovered = ciphertext.map((value, i) => {
+    if (planted[i] === 0) return 0;
+    // The true non-F transition is predetermined in this positive.
+    return (value - (primes[primeStart + planted.slice(0, i)
+      .filter((v) => v !== 0).length] - 1) % 29 + 29) % 29;
+  });
+  assert.deepEqual(recovered, planted);
+}
+console.log('PASS: the DH352 prime-index transfer to original p55 has no source-English plaintext; native GP29 plants recover 76/76.');
