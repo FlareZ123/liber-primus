@@ -15,6 +15,7 @@ from collections.abc import Sequence
 from dataclasses import dataclass
 from hashlib import sha256
 import json
+from random import Random
 
 import lp2_jung_liberprimus_section_address_sft as jung
 import lp2_jung_liberprimus_wordlength_source_sft as source_lengths
@@ -216,6 +217,25 @@ def original_title_tiebreak(source: list[int], original: list[int]) -> dict:
              "equal_length_out_of":len(original)}
             for name,variant in transform]
     counts.sort(key=lambda x:-x["exact_positions"])
+    observed=counts[0]["exact_positions"]
+    rng=Random(3301)
+    maxima=[]
+    for _ in range(1000):
+        randomized=list(candidate)
+        rng.shuffle(randomized)
+        variants=[
+            randomized,
+            list(reversed(randomized)),
+            read_row_by_columns(randomized,3),
+            inverse_column_read(randomized,3),
+            read_row_by_columns(randomized,13),
+            inverse_column_read(randomized,13),
+            rail3(randomized),
+            inverse_rail3(randomized)
+        ]
+        maxima.append(max(sum(a==b for a,b in zip(original,variant))
+                          for variant in variants))
+    upper=(1+sum(n>=observed for n in maxima))/1001
     # Exact source-known recoverability, including 4 predeclared errors.
     planted=read_row_by_columns(candidate,3)
     recovered=inverse_column_read(planted,3)
@@ -229,6 +249,11 @@ def original_title_tiebreak(source: list[int], original: list[int]) -> dict:
         "source_offset_selected_before_any_order_test":match.source_word_offset,
         "minimum_wordlength_replacements":match.replacement_count,
         "top_fixed_order_readouts":counts,
+        "order_null": {"shuffle_replicates":1000,
+                       "max_of_eight_reads":True,
+                       "median_random_max":sorted(maxima)[500],
+                       "random_95th_percentile_max":sorted(maxima)[949],
+                       "upper_tail_probability":round(upper,6)},
         "plant": "three-column 158-source-word plant restored exactly; four mutations leave 154/158"
     }
 
