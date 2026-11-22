@@ -188,6 +188,120 @@ assert.equal(actual.stats.firstWordSurvivors,0);
 assert.equal(actual.stats.firstTwoSurvivors,0);
 assert.equal(actual.stats.fullSolutions,0);
 assert.equal(actual.stats.truncated,false);
+
+/**
+ * Plaintext-autokey alternative at the SAME source-selected 13-dot clock.
+ *
+ * C[t]=P[t]+sign*P[t-13] mod29 for t>=13. The independent first13
+ * cipher cells are encrypted under an arbitrary 13-rune primer.
+ * Given each candidate complete 11-rune fourth word P[13..23],
+ * the recurrence fixes P[0..10] and the first two whole words BEFORE
+ * considering the two missing primer runes P[11..12]. Exhaust both signs.
+ *
+ * @param {number[]} cipher
+ * @param {number} sign 1 or -1, source-frozen finite convention
+ */
+function invertPlainAutokey(cipher,sign){
+  const stats={sign,anchorTypes:lex[11].length,firstWordSurvivors:0,
+    firstTwoSurvivors:0,thirdWordSurvivors:0,fullSolutions:0};
+  const solutions=[];
+  for(const anchor of lex[11]){
+    const plain=Array(51).fill(-1);
+    for(let j=0;j<11;j++){
+      plain[13+j]=anchor.nums[j];
+      plain[j]=mod(sign*(cipher[13+j]-plain[13+j]));
+    }
+    if(!lookup[5].has(token(plain.slice(0,5))))continue;
+    stats.firstWordSurvivors++;
+    if(!lookup[4].has(token(plain.slice(5,9))))continue;
+    stats.firstTwoSurvivors++;
+    // The third 4-rune word starts at rune9. The first two runes are
+    // already fixed by the eleven-symbol fourth-word anchor.
+    for(const third of lex[4]){
+      if(third.nums[0]!==plain[9]||third.nums[1]!==plain[10])continue;
+      stats.thirdWordSurvivors++;
+      plain[11]=third.nums[2];plain[12]=third.nums[3];
+      for(let j=24;j<51;j++)
+        plain[j]=mod(cipher[j]-sign*plain[j-13]);
+      const display=[];
+      let valid=true;
+      for(const word of redWords){
+        const lexWord=lookup[word.len].get(token(plain.slice(
+          word.start,word.start+word.len)));
+        if(!lexWord){valid=false;break;}
+        display.push(lexWord.display);
+      }
+      if(!valid)continue;
+      const primer=Array.from({length:13},(_,j)=>mod(cipher[j]-plain[j]));
+      const replay=Array.from({length:51},(_,j)=>j<13?
+        mod(plain[j]+primer[j]):mod(plain[j]+sign*plain[j-13]));
+      assert.deepEqual(replay,cipher);
+      stats.fullSolutions++;
+      if(solutions.length<5)solutions.push({plain:plain.slice(),
+        primer,words:display});
+    }
+  }
+  return {stats,solutions};
+}
+/**
+ * Ciphertext-autokey alternative: after the first 13 arbitrary primer
+ * slots, P[t] = C[t]-sign*C[t-13]. The first complete 11-rune word
+ * after t13 is itself a direct original-cipher independent prediction.
+ */
+function invertCipherAutokey(cipher,sign){
+  const post=Array.from({length:51},(_,j)=>j<13?null:
+    mod(cipher[j]-sign*cipher[j-13]));
+  const fourth=post.slice(13,24);
+  let valid=0;
+  if(lookup[11].has(token(fourth))){
+    valid=redWords.slice(3).filter(w=>
+      lookup[w.len].has(token(post.slice(w.start,w.start+w.len)))).length;
+  }
+  return {sign,firstPredictedWord:fourth.map(n=>gp.translit[n]).join(""),
+    fourthDictionaryMatch:lookup[11].has(token(fourth)),
+    sourceCompleteWordsValidated:valid,post};
+}
+function autoEncrypt(plain,primer,sign,plainFeedback){
+  return plain.map((p,i)=>i<13?mod(p+primer[i]):
+    mod(p+sign*(plainFeedback?plain[i-13]:
+      // The previous ciphertext is available because output is sequential.
+      (autoEncrypt.state[i-13]))));
+}
+function cipherAutokeyEncrypt(plain,primer,sign){
+  const c=[];
+  for(let j=0;j<plain.length;j++)
+    c.push(mod(plain[j]+(j<13?primer[j]:sign*c[j-13])));
+  return c;
+}
+function plainAutokeyEncrypt(plain,primer,sign){
+  return plain.map((v,j)=>mod(v+(j<13?primer[j]:sign*plain[j-13])));
+}
+const autokeyControls=[],autokeyOriginal=[];
+for(const sign of [-1,1]){
+  const primer=Array.from({length:13},()=>random()%29);
+  const plantedPlain=plainAutokeyEncrypt(planted,primer,sign);
+  const found=invertPlainAutokey(plantedPlain,sign);
+  assert(found.stats.fullSolutions>=1);
+  assert(found.solutions.some(x=>token(x.plain)===token(planted)
+    &&x.primer.every((v,i)=>v===primer[i])));
+  const plantedCipher=cipherAutokeyEncrypt(planted,primer,sign);
+  const predicted=invertCipherAutokey(plantedCipher,sign);
+  assert(predicted.fourthDictionaryMatch);
+  assert.deepEqual(predicted.post.slice(13),planted.slice(13));
+  const realPlain=invertPlainAutokey(red,sign);
+  const realCipher=invertCipherAutokey(red,sign);
+  assert.equal(realPlain.stats.firstTwoSurvivors,0);
+  assert.equal(realPlain.stats.fullSolutions,0);
+  assert.equal(realCipher.fourthDictionaryMatch,false);
+  autokeyControls.push({sign,plainFeedback:found.stats,
+    authenticGP51Recovery:true,cipherFeedback:{
+      fourthDictionaryMatch:predicted.fourthDictionaryMatch,
+      postPrimer38Exact:true}});
+  autokeyOriginal.push({sign,plainFeedback:realPlain.stats,
+    cipherFeedback:{fourthDictionaryMatch:realCipher.fourthDictionaryMatch,
+      predictedFourth:realCipher.firstPredictedWord}});
+}
+
 console.log("summary",JSON.stringify({
   original:{physicalPage:53,redOffset:128,runes:51,redWordLengths:EXPECTED,
     punctuationDots:13,anchorStart:13,anchorLength:11,
@@ -201,7 +315,10 @@ console.log("summary",JSON.stringify({
       (v,i)=>v===plantedCipher[i])},
   independentPadNegative:wrong.stats,
   originalCipher:actual.stats,
-  decision:"source-selected 13-period fixed additive red-only key has zero " +
-    "full native-word inverse on original p53, with no search clipping. " +
-    "This is dictionary-conditional and does not identify other red ciphers."
+  autokeyControls,autokeyOriginal,
+  decision:"The original p53 red 13-dot local program fails exact native-word " +
+    "inversions for: 13-position repeated additive key; 13-lag plaintext " +
+    "autokey (both signs); and 13-lag ciphertext autokey (both signs). " +
+    "All independently sourced GP positive plants are recovered. " +
+    "Exclusions are finite-dictionary-conditional and not claims of a true cipher."
 }));
