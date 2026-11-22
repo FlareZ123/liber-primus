@@ -1,0 +1,15 @@
+name: Agent45 floral XOR 13 versus 22 original SFT
+
+on:
+  workflow_dispatch:
+
+jobs:
+  original-xor-row-clock:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Run original floral XOR row coverage and full cipher inverse
+        run: node sims/lp2_floral13_xor31_rowpair_original_sft.cjs
