@@ -2,7 +2,7 @@
 /**
  * Exact read-only LP2 p40–55 original-rune test of conditional
  * floral-stem gap -> clockwise 10110₂=22; right=11111₂=31;
- * two lane row strides +2 mod32; 16 source-authentic 16-byte keys.
+ * two source-motivated minimal +/-2 row strides mod32; 16 original 16-byte records.
  *
  * This operation is a deliberately frozen DIRECT additive receiver,
  * not an authenticated creator cipher. It contains no key guessing.
@@ -38,23 +38,31 @@ const startLeft = 22;
 const startRight = 31;
 
 /** @param {number} i - zero-based illustrated page index p40..p55 */
-function tableRowPair(i) {
-  return [(startLeft + 2 * i) % 32, (startRight + 2 * i) % 32];
+function tableRowPair(i, leftStep, rightStep) {
+  return [
+    ((startLeft + leftStep * i) % 32 + 32) % 32,
+    ((startRight + rightStep * i) % 32 + 32) % 32
+  ];
 }
 /** @param {number} i - zero-based illustrated page index p40..p55 */
-function keyFor(i) {
-  const [left, right] = tableRowPair(i);
+function keyFor(i, leftStep, rightStep) {
+  const [left, right] = tableRowPair(i, leftStep, rightStep);
   return [
     ...table.slice(8 * left, 8 * left + 8),
     ...table.slice(8 * right, 8 * right + 8)
   ];
 }
-const allRows = Array.from({length: 16}, (_, i) => tableRowPair(i)).flat();
-assert.equal(new Set(allRows).size, 32);
-assert.deepEqual(tableRowPair(0), [22, 31]);
-assert.deepEqual(tableRowPair(15), [20, 29]);
-assert.equal(Buffer.from(keyFor(0)).toString('hex'),
-  'eb83a6af9028a751719eace6b424bd50');
+for (const leftStep of [-2, 2]) {
+  for (const rightStep of [-2, 2]) {
+    const allRows = Array.from({length: 16}, (_, i) =>
+      tableRowPair(i, leftStep, rightStep)).flat();
+    assert.equal(new Set(allRows).size, 32);
+    assert.deepEqual(tableRowPair(0, leftStep, rightStep), [22, 31]);
+    assert.equal(Buffer.from(keyFor(0, leftStep, rightStep)).toString('hex'),
+      'eb83a6af9028a751719eace6b424bd50');
+  }
+}
+assert.deepEqual(tableRowPair(15, 2, 2), [20, 29]);
 
 /** @param {number} value @param {number} mod */
 function positiveMod(value, mod) { return ((value % mod) + mod) % mod; }
@@ -94,37 +102,55 @@ assert.equal(original[10].indices.length, 0); // runeless p50 record
 const known = corpus.pages[57].indices;
 
 const results = [];
-for (const ring of [29, 28]) {
-  for (const sign of [-1, 1]) {
-    const decoded = original.map((p, i) => {
-      const key = keyFor(i);
-      const out = transform(p.indices, key, ring, sign);
-      // Complete exact original ciphertext replay with same page clock.
-      assert.deepEqual(transform(out, key, ring, -sign), p.indices);
-      const plant = Array.from({length: p.indices.length},
-        (_, j) => known[j % known.length]);
-      const encryptedPlant = transform(plant, key, ring, -sign);
-      assert.deepEqual(transform(encryptedPlant, key, ring, sign), plant);
-      return out;
-    });
-    const chapter = decoded.flat();
-    const lead = decoded.slice(0, 14).flat();
-    const terminal = decoded.slice(14).flat();
-    const row = {
-      ring, sign, counts: [chapter.length, lead.length, terminal.length],
-      allIoc: ioc(chapter), openingIoc: ioc(lead),
-      terminalIoc: ioc(terminal),
-      firstTwentyGP: decoded[0].slice(0, 20).map(i => corpus.translit[i]).join('-')
-    };
-    results.push(row);
-    assert.ok(row.allIoc < 0.04);
-    assert.ok(row.openingIoc < 0.04);
+for (const leftStep of [-2, 2]) {
+  for (const rightStep of [-2, 2]) {
+    for (const ring of [29, 28]) {
+      for (const sign of [-1, 1]) {
+        const decoded = original.map((p, i) => {
+          const key = keyFor(i, leftStep, rightStep);
+          const out = transform(p.indices, key, ring, sign);
+          // Exact full original ciphertext replay under one fixed page clock.
+          assert.deepEqual(transform(out, key, ring, -sign), p.indices);
+          const plant = Array.from({length: p.indices.length},
+            (_, j) => known[j % known.length]);
+          const encPlant = transform(plant, key, ring, -sign);
+          assert.deepEqual(transform(encPlant, key, ring, sign), plant);
+          return out;
+        });
+        const chapter = decoded.flat();
+        const lead = decoded.slice(0, 14).flat();
+        const terminal = decoded.slice(14).flat();
+        const row = {
+          leftStep, rightStep, ring, sign,
+          counts: [chapter.length, lead.length, terminal.length],
+          allIoc: ioc(chapter), openingIoc: ioc(lead),
+          terminalIoc: ioc(terminal),
+          firstTwentyGP: decoded[0].slice(0, 20)
+            .map(i => corpus.translit[i]).join('-')
+        };
+        results.push(row);
+        assert.ok(row.allIoc < 0.04);
+        assert.ok(row.openingIoc < 0.04);
+      }
+    }
   }
 }
-assert.ok(Math.abs(results[0].allIoc - 0.03435202419095132) < 1e-12);
-assert.ok(Math.abs(results[1].allIoc - 0.03444681574959017) < 1e-12);
-assert.ok(Math.abs(results[2].allIoc - 0.034542517016085454) < 1e-12);
-assert.ok(Math.abs(results[3].allIoc - 0.03457890533034221) < 1e-12);
-console.log(JSON.stringify({result:'PASS / no coherent plaintext', 
-  originalSourcePositions:3316, all256TableCellsAllocatedExactlyOnce:true,
-  discardedRecord:'p50 has no GP rune text', variants:results}, null, 2));
+assert.equal(results.length, 16);
+const find = (leftStep, rightStep, ring, sign) => results.find(r =>
+  r.leftStep === leftStep && r.rightStep === rightStep &&
+  r.ring === ring && r.sign === sign);
+assert.ok(Math.abs(find(2, 2, 29, -1).allIoc - 0.03435202419095132) < 1e-12);
+assert.ok(Math.abs(find(2, 2, 29, +1).allIoc - 0.03444681574959017) < 1e-12);
+assert.ok(Math.abs(find(2, 2, 28, -1).allIoc - 0.034542517016085454) < 1e-12);
+assert.ok(Math.abs(find(2, 2, 28, +1).allIoc - 0.03457890533034221) < 1e-12);
+assert.ok(Math.abs(Math.min(...results.map(r => r.allIoc)) -
+  0.03426196311316584) < 1e-12);
+assert.ok(Math.abs(Math.max(...results.map(r => r.allIoc)) -
+  0.03460110220203884) < 1e-12);
+console.log(JSON.stringify({
+  result: 'PASS / no coherent plaintext under any four minimal stride orientations',
+  originalSourcePositions: 3316,
+  all256TableCellsAllocatedExactlyOncePerStride: true,
+  unusedRecord: 'physical p50 has no GP runes',
+  variants: results
+}, null, 2));
