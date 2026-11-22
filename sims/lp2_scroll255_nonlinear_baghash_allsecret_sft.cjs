@@ -46,7 +46,7 @@ assert.deepEqual([[47,240],[48,231],[235,236],[88,179]].map(([i,j])=>[output[i],
 /** @param {number[]} w @param {(x:number)=>number} f @returns {number} */
 const sum=(w,f)=>mod(w.reduce((a,x)=>a+f(x),0));
 /** @param {number[]} w @param {(x:number)=>number} f @returns {number} */
-const product=(w,f)=>mod(w.reduce((a,x)=>a*f(x),1));
+const product=(w,f)=>w.reduce((a,x)=>mod(a*f(x)),1);
 const sig={
   'rune-index-sum':w=>[sum(w,x=>x)],
   'prime-sum':w=>[sum(w,x=>gp.prime[x])],
