@@ -43,6 +43,22 @@ The physical artwork relationship is thus exceptionally reproducible and survive
 
 **Reproduction:** [original-image pixel SFT](../sims/lp2_fivedot_original_jpeg_reflection_sft.py), successful [Windows Python3.12/Pillow original-input GitHub Actions job 43534224289](https://github.com/FlareZ123/liber-primus/actions/runs/43534224289), and shared [manual SFT workflow](../.github/workflows/manual-readonly-python-image-sft.yml).
 
+## Source-selected D4-to-rune gate (Agent5, 22 November 2026)
+
+A human-visible use of a reflected stencil must fix **what the five unlabeled dots index**. The unchanged source imagery and canonical ink annotations have different typed adjacent text units:
+
+| Original page | Dots relative to text | Red adjoining span | Original red printed-word lengths | Natural complete-word count |
+| --- | --- | --- | --- | ---: |
+| p7 (scan 24) | Below terminal red line | rune offsets 194–207, 14 runes | 2, 4, 3, 2, 3 | **5** |
+| p23 (scan 40) | Above opening red line | rune offsets 0–15, 16 runes | 1, 8, 2, 5 | **4** |
+| p56 (scan 73, solved) | Below hash/body, not immediately adjoining red title | rune offsets 0–4, 5 runes, plaintext **AN END** | 2, 3 | **2** |
+
+The five objects therefore do **not** select a shared, source-visible five-word register on the three pages. Mapping the five dots to p7's five red words would require adding an unmarked black word to p23 or switching from whole words to runes on p56. This would change operand type after seeing each page. All three red spans have independent original red 13-dot punctuation, which marks text boundaries but supplies no dot labels or index rule.
+
+The already established **vertical** reflection p7→p23 preserves horizontal coordinate and therefore preserves left-to-right dot order. The **horizontal** reflection p7→p56 and **180°** rotation p23→p56 reverse left-to-right dot order. Thus the single most natural fixed one-dimensional geometric readout on the three original icons yields only **identity or complete reversal**, with no nontrivial five-way shuffle. Choosing a different ordering (e.g., vertical rank, angular sort, start at a particular disk) requires a source clue that is absent from the original image or known solved p56 text. Even a geometric bijection is only among disks, not rune or word coordinates.
+
+**Decision:** no first-party source instruction assigns an index to the dots, equates their three unmatched red-word registers, chooses a page or 29-rune alphabet map, or fixes a ciphertext inverse. The exact artwork copy is established; a five-symbol D4-driven cipher claim is **not operationally specified**. Close this route at the source-selection gate rather than inventing a dot-to-rune assignment or running a family of fitted permutation decoders. Reopen only if a distinct original inscription supplies the missing typed operand and readout. This preserves the documented direct p56 keystream-transfer negative below without repeating it.
+
 ## One frozen reversible p56-key inheritance test
 
 The copied artwork places p7's and p56's five dots **after** text and p23's **before** it. If the reuse signalled shared encryption keys, a solver could transfer the authentic p56 key to the p7 terminal and p23 initial text. This is a concrete reversible original-source test, although no authorial inscription explicitly equates image reuse with a cipher reset.
