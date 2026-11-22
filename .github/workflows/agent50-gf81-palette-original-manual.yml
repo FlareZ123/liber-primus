@@ -19,3 +19,5 @@ jobs:
         run: node sims/lp2_bookend_gp29_allsecret_statealphabet_entropy_sft.cjs
       - name: Exact all-secret nonlinear two-rune 841! pair-mixer entropy proof
         run: node sims/lp2_bookend_allsecret_29x29_pairmixer_entropy_sft.cjs
+      - name: Source p50 first-digit parity 841-pair all-secret majorization original gate
+        run: node sims/lp2_bookend_p50_pairmixer_tenstate_majorization_sft.cjs
