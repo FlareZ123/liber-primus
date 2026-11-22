@@ -99,6 +99,16 @@ assert(lastAt236 >= 0);
 assert.equal(page8text[lastAt236 + 1], "-",
   "source p8 has a literal word boundary after its 236th black rune");
 
+// Source-drawn 7x7 word grid has a repeated 3,5,3 ending in its first and
+// last rows, in addition to the palindromic last-row endpoint words.
+// This is a source morphology observation, not an encrypted key claim.
+const topRowLengths = blackWords.slice(0, 7).map((w) => [...w].length);
+const bottomRowLengths = blackWords.slice(42, 49).map((w) => [...w].length);
+assert.deepEqual(topRowLengths, [2, 9, 6, 3, 3, 5, 3]);
+assert.deepEqual(bottomRowLengths, [2, 4, 3, 7, 3, 5, 3]);
+assert.deepEqual(topRowLengths.slice(-3),bottomRowLengths.slice(-3));
+assert.equal(topRowLengths.filter((n,i)=>n===bottomRowLengths[i]).length,4);
+
 const numbered = pages.slice(36, 39).join("\n")
   .split(/(?=[1-5]-)/u).filter((s) => /^[1-5]-/u.test(s))
   .map((s) => onlyRunes(s.split("&")[0]).map((r) => runeIndex.get(r)));
@@ -143,6 +153,43 @@ assert.notDeepEqual(decode(encode(planted, key), wrongKey), planted);
 assert(ioc(planted) > 0.05);
 assert(ioc(plaintext) < 0.04);
 
+// A separate, directly motivated self-receiver: p33 source selects p8's last
+// seven symbols. Treat those symbols as a seven-rune Vigenere operand to the
+// source page itself. Freeze only native key direction, historical 1033/3301
+// reversal, GP29 +/- direction, and either source red12 clock or black reset.
+// Eight exact, original, independent-body tests; never tune key to output.
+/** @param {number[]} input @param {number[]} operand @param {number} phase @param {number} sign */
+function sevenKeyDecode(input,operand,phase,sign) {
+  return input.map((v,i)=>mod29(v+sign*operand[(i+phase)%7]));
+}
+/** @param {number[]} input @param {number[]} operand @param {number} phase @param {number} sign */
+function sevenKeyEncode(input,operand,phase,sign) {
+  return input.map((v,i)=>mod29(v-sign*operand[(i+phase)%7]));
+}
+const nativePage8Control=Array.from({length:243},(_,i)=>solved[i%solved.length]);
+assert(ioc(nativePage8Control)>0.05);
+const p8LocalReceiver=[];
+for (const reverse of [false,true]) {
+  const operand=reverse?key.slice().reverse():key;
+  for (const sign of [-1,1]) {
+    for (const clockPhase of [0,12]) {
+      const candidate=sevenKeyDecode(p8Black,operand,clockPhase,sign);
+      assert.deepEqual(sevenKeyEncode(candidate,operand,clockPhase,sign),p8Black);
+      const plantCipher=sevenKeyEncode(nativePage8Control,operand,clockPhase,sign);
+      assert.deepEqual(sevenKeyDecode(plantCipher,operand,clockPhase,sign),nativePage8Control);
+      assert.notDeepEqual(sevenKeyDecode(plantCipher,operand.slice(1).concat(operand[0]),clockPhase,sign),nativePage8Control);
+      assert(ioc(candidate)<0.04);
+      p8LocalReceiver.push({
+        reverseSourceSeven:reverse,
+        clockPhase,sign,
+        decodedIoC:ioc(candidate),
+        firstOriginal95:candidate.slice(0,95).map((v)=>corpus.translit[v]).join(""),
+      });
+    }
+  }
+}
+assert.equal(p8LocalReceiver.length,8);
+
 console.log(JSON.stringify({
   source: {
     p33LastThreeWords: blackWords.slice(-3).map(roman),
@@ -152,7 +199,15 @@ console.log(JSON.stringify({
     p33MagicValues: [236, 7],
     p8BlackRuneSplit: [236, 7],
     p8TailSeven: key.map((v) => corpus.translit[v]).join(""),
+    firstAndLastSquareWordLengthRows: [topRowLengths,bottomRowLengths],
     numberedUnitLengths: numbered.map((n) => n.length),
+  },
+  p8SelfReceiver: {
+    originalBlackLength:243,
+    originalBlackIoC:ioc(p8Black),
+    eightSourceBoundedVariants:p8LocalReceiver,
+    exactForwardAndNativePlantControls:true,
+    outcome:"no readable p8 plaintext from direct 7-rune self-key",
   },
   conditionalReceiver: {
     operation: "historical-period7-block-inverse then subtract p8-tail7 GP29",
