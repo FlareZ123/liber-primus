@@ -1,0 +1,41 @@
+# Original p50 first-digit/parity clock: a ten-state nonlinear pair-mixer frontier
+
+**Agent50, 22 November 2026. Original-input cryptanalytic selection test with positive controls.** There is **no newly recovered LP2 plaintext and no authenticated 3301-selected decoder**. This report makes a precise decision about which visible p50 state grammar is even *capable of the native GP29 frequency register* when an original 81×81/80×80 bookend pair is fed through a fully secret nonlinear local two-rune bijection. It does **not** infer a successful key from a language score.
+
+## Three independent visible operands
+
+1. The original `DJU BEI` repeated two-word end-marker defines source `A=first 6,561 GP29 runes` as **81×81** and `B=last 6,395 runes` plus original numbered holes **[2244,2384,2476,2575,2672]** as **80×80**. Only source GP values participate.
+2. The p7 wholly red five-word GP29 products select a candidate GF81 quartic, `x⁴+x²+x+1`, with order80 generator `g=x+1`. The source-pair component `K` at B position `(r,c)` can be `A[g^r,g^c]`. A wholly geometry-first rival is the literal original A interior crop `K=A[r+1,c+1]`. Neither original cipher operation is author authenticated.
+3. The actual **256 two-character p50 numeral entries**, as the conventional **base60** bytes in `resources/liber-primus/lp2-grid-256.json`, have a visible **first digit** in `0…4` and a **second digit** with unambiguous even/odd parity. The original global source rune clock is `G=6,561+j` for B rune ordinal `j=0…6394`; the numeral operand is the **predecessor clock** `T[(G−1) mod256]`, frozen to the already published p50 low60-even anti-doublet signal, rather than fitting a new phase.
+
+Three intentionally small, visible p50 state partitions are compared: **five** first-digit states; **six** states splitting only first-digit-0 by second-digit parity while leaving the other four intact; **ten** joint first-digit × second-digit-parity states. The last uses exactly the two already printed character slots; it is a plausible independent state input, yet still lacks a first-party instruction to use parity as a cipher switch.
+
+## All-secret frequency majorization rather than another fitted key
+
+Give the decoder **one completely arbitrary 841-point bijection** `F_z` of the original GP29 **pair** `(K_i,B_i)` for each p50 source state `z`. Every one of `(841!)^{#states}` possible secret nonlinear S-box arrangements is allowed. The first decoded GP rune `P_i` is any one of 29 outputs, with a second fully hidden GP29 side rune `Q_i` carrying the rest; this is more permissive than source-keyed substitution.
+
+**Exact key-independent combinatorial obstruction:** In each source state `z`, all 841 distinct input GP29 pairs must map bijectively to the 841 output GP29 pairs. Exactly **29 input pair categories** therefore map to any one decoded first-output rune (one for each hidden Q). The total decoded count of **any k chosen GP29 plaintext rune categories** cannot exceed the sum of the **29k largest source input-pair frequencies within that state**. Sum that bound over original p50 state classes and require the cumulative frequency of the **k most common plaintext runes** to be below it for every `k=1…28`. This is exact for all secret bijections, with no language-fitting and no search over 841! codebooks.
+
+An earlier [all-secret joint-entropy bound](lp2-bookend-allsecret-static-alphabet-entropy.md) rules out a single stationary 841! original pair mixer, and initially also the five p50 first-digit states for direct English. Although six p50 states make the *entropy alone* permissive, **this stronger sorted-frequency majorization gate still rejects the native-GP reference**. The exact primary original register results are:
+
+| p50 state grammar | Classes | Field source: maximum allowed first plaintext-rune count | Literal crop: maximum allowed | Source-native Gibran first 6,395 rune control |
+| --- | ---: | ---: | ---: | --- |
+| First radix60 digit | 5 | **677** | **698** | Fails both; target top rune occurs **755** times |
+| First digit, split digit0 by second-digit parity | 6 | **718** | **754** | Fails both (crop by 1 top-rune position, and substantially at other ranks) |
+| First digit × second-digit parity | 10 | **899** | **928** | **Passes all 28 necessary top-k envelope checks** for both alignments |
+
+Across the full ranked-frequency envelope, the reference Gibran control exceeds the field/crop **five-state upper bound by as many as309/302 rune occurrences**, and exceeds the **six-state upper bound by up to152/147**. Under the **ten-state** source grammar it exceeds **zero** upper bounds. These figures are empirical original-cipher necessary conditions, not probability values.
+
+## Independent held-out controls and key-planted positives
+
+The [single Windows Node22 original-source SFT](../sims/lp2_bookend_p50_pairmixer_tenstate_majorization_sft.cjs) uses the repository’s solved-LP1-orthography-calibrated English GP29 encoder, rather than a generic Anglo-Saxon romanized alphabet. It tests the first complete source Gibran 6,395-rune register, then uses a deterministic xorshift32 seed `0x50330181` to draw **128 independent-position windows each** from long GP29-encoded Gibran and Shakespeare references. For **each** of the two original source K alignments, the 5-state and 6-state envelopes reject **128/128 Gibran and 128/128 Shakespeare samples**. By contrast, the ten-state envelopes accept **128/128 samples from each reference**, **256/256 per source alignment**, on this precise necessary frequency constraint. Source-native word-length patterns are not the test itself; tests use whole 6,395-rune windows and do not train the original ciphertext source caps on those controls.
+
+The SFT also plants 6,395 GP29 Gibran plaintext runes under a **fully reversible triangular nonlinear-source-state pair operation** using the actual original `K` and ten p50 state classes: `C_i=P_i+K_i+z_i mod29`, `P_i=C_i−K_i−z_i mod29`. Every rune reencodes and recovers exactly on both source alignments. This is a positive program implementation, **not** evidence that this particular additive operation works on original LP2.
+
+[Windows Node.js22 original-input success, 22 November 2026, run45062817631](https://github.com/FlareZ123/liber-primus/actions/runs/45062817631), including all 5/6/10 original pair histograms, 512 independently positioned native-registrar control windows and native source-key positive plants. The same workflow tests earlier GF81 square and all-real-secret-palettes sources.
+
+## Decision: a bounded first *non-excluded* key state, not a decode
+
+If original p50 numerical cells participate in the 81²/80² bookend cipher as **the phase source for independently keyed, full two-rune reversible nonlinear mixing**, the **10-state** first-character × second-parity reading is the first tested simple printed-token state grammar that **survives** the independent original-input entropy/majorization obstructions and the broad English controls. This is a research decision about *viability*, not evidence of use, and 10-state frequency-envelope pass is **necessary only, not sufficient** for a jointly realizable GP29 plaintext. There may be unrelated state grammars that pass as well; this subset is not a uniqueness claim.
+
+To turn this into authentic plaintext, the next test must recover from an **independent 2014-visible source** a low-parameter relationship selecting one of the ten codebooks or an explicit relation between p7 red algebra and the two printed p50 characters. Arbitrary unconstrained `(841!)^{10}` codebook search has no justified path to recovering a secret key. A proposed source-constrained operation should decode **complete original printed words**, reencrypt the exact source runes, and predict a fresh held-out page/word sequence or continuation without optimizing its key on those targets. The earlier source-p50 repeat-bit parity signal is motivation for the state partition, **not proof of the novel nonlinear pair cipher**.
