@@ -94,6 +94,24 @@ const variants = /** @type {const} */ ([
 const originalScores = variants.map(([mode, sign]) =>
   repeatedPairs(decode(table, mode, sign)));
 assert.deepEqual(originalScores, [210, 164, 198, 210]);
+
+/**
+ * Each p55 printed rune also admits a *per-rune* clock starting after
+ * the previous 3,226 floral transitions. This source-natural alternative
+ * aligns the literal table zeros to p55 rune indices 38 and 75.
+ * @param {number[]} bytes
+ * @param {-1|1} sign
+ * @returns {number[]}
+ */
+function decodeRuneClock(bytes, sign) {
+  return ciphertext.map((letter, i) =>
+    (letter + sign * (bytes[(p55Start + i) % 256] % 29) + 29) % 29);
+}
+assert.deepEqual([38, 75].map(i => (p55Start + i) % 256), [192, 229]);
+assert.deepEqual([ciphertext[38], ciphertext[75]], [23, 10]);
+const runeScores = /** @type {(-1|1)[]} */ ([-1, 1])
+  .map(sign => repeatedPairs(decodeRuneClock(table, sign)));
+assert.deepEqual(runeScores, [184, 180]);
 const p57 = corpus.pages.find(p => p.page === 57).indices;
 assert.equal(repeatedPairs(p57.slice(0, 76)), 340);
 assert.equal(repeatedPairs(ciphertext), 216);
@@ -112,6 +130,12 @@ const firstFViolation = sign => {
 };
 assert.equal(firstFViolation(-1), 20);
 assert.equal(firstFViolation(1), 70);
+function firstRuneFViolation(sign) {
+  return ciphertext.findIndex((letter, i) =>
+    letter !== 0 && decodeRuneClock(table, sign)[i] === 0);
+}
+assert.equal(firstRuneFViolation(-1), 1);
+assert.equal(firstRuneFViolation(1), 3);
 
 // Discovery-sensitive control: hold *both* source-written zero addresses
 // fixed while randomly permuting the other 254 actual printed bytes.
@@ -126,7 +150,7 @@ function random32() {
 }
 const free = Array.from({ length: 256 }, (_, i) => i)
   .filter(i => i !== 192 && i !== 229);
-const bestOriginal = Math.max(...originalScores);
+const bestOriginal = Math.max(...originalScores, ...runeScores);
 let atLeast = 0;
 const shuffles = 8192;
 for (let sample = 0; sample < shuffles; sample++) {
@@ -137,11 +161,15 @@ for (let sample = 0; sample < shuffles; sample++) {
   }
   const shuffled = table.slice();
   for (let j = 0; j < free.length; j++) shuffled[free[j]] = values[j];
-  const bestNull = Math.max(...variants.map(([mode, sign]) =>
-    repeatedPairs(decode(shuffled, mode, sign))));
+  const bestNull = Math.max(
+    ...variants.map(([mode, sign]) =>
+      repeatedPairs(decode(shuffled, mode, sign))),
+    .../** @type {(-1|1)[]} */ ([-1, 1]).map(sign =>
+      repeatedPairs(decodeRuneClock(shuffled, sign)))
+  );
   if (bestNull >= bestOriginal) atLeast++;
 }
-assert.equal(atLeast, 5331);
+assert.equal(atLeast, 6515);
 console.log(JSON.stringify({
   result: 'PASS', originalUnknownRunes: 12956,
   floralRunes: floral.reduce((n, p) => n + p.indices.length, 0),
@@ -150,9 +178,13 @@ console.log(JSON.stringify({
   finalClockAfterText: 229, p55AtFirstZeroRune0: 39,
   p55FirstZeroIsInsideWord: zeroWord.word,
   originalKeyVariantPairCounts: originalScores,
+  runeClockPairCounts: runeScores,
+  runeClockByteZeroAtLocalRunes: [38, 75],
+  runeClockZeroCipherIndices: [23, 10],
   denominator: 76 * 75, nativeClearP57First76PairCount: 340,
   tableShuffleAtLeast: atLeast, tableShuffles: shuffles,
   matchedNullUpperTail: (atLeast + 1) / (shuffles + 1),
   literalFContradictionOffsets: [20, 70],
+  runeClockLiteralFContradictionOffsets: [1, 3],
   recoveredUnknownPlaintext: false
 }, null, 2));
