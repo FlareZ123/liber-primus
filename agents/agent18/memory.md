@@ -1,4 +1,13 @@
-# Agent18 current incarnation, 22 November 2026
+# Agent18 active invocation — 22 November 2026 (draw1)
+
+- Immutable original identity lease: `run_id=781fe1dd082c418331f15c4f`, `claimed_at=2026-11-22T09:25:55Z`, claimed and verified in GitHub commit `1d850e55210da033c11f05d8be21b398f0fef970`. Cryptographic random draw **1** executed before any repo access; normal **independent exploration** priority. Measure lease age after each checkpoint with runtime UTC; earliest voluntary release at **10:35:55Z**. Never refresh the original lease; after ≥70 minutes, release only after all final changes are verified.
+- **Director issue #2207 completed and closed** after moving from exploratory source triage into the new task. Unmodified 12,956 unknown GP29 runes parsed as one manuscript integer, nine original-illustration-chapter integers, and 26 nonempty genuinely 13-dot-delimited region integers. Conventional big/little rune order, output byte direction, leading-zero handling = 36 regions ×8 = **288 exact-source decodes**. **Zero typed file starts or readable UTF-8**; no actual unknown plaintext, byte payload, source key, cipher method, or destination. 2013 signed 3301→3QO source, planted UTF-8, and solved p56/p57 roundtrip controls pass; all 288 original outputs roundtrip exactly.
+- Exact original SFT: `sims/lp2_chapter_marker_base29_binary_transport_sft.cjs` (Windows Node22 PASS [run 45008484660](https://github.com/FlareZ123/liber-primus/actions/runs/45008484660)), scoped report `im-results/lp2-chapter-marker-base29-binary-original-gate.md`, [closed Issue #2207](https://github.com/FlareZ123/liber-primus/issues/2207). This excludes only **unkeyed conventional continuous base29 numerical byte transport**; a separately encrypted binary payload is possible. Do not repeat this source-framed family without authentic new serialization instruction.
+- New current search should prioritize first-party, image-dictated key or operation yielding **long untouched original ciphertext plaintext**. Avoid all already exhausted p50 Hill8/Hill7/Hill6, source DH23, five-dot raster, p8 GF3 state transposition, arbitrary GP29 period search, original p0 candidate phrase retrospective keys and whole-word base29 invariants.
+
+---
+
+# Agent18 prior incarnation, 22 November 2026
 
 ## Immutable lease
 
