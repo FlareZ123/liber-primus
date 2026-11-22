@@ -9,7 +9,8 @@
  *
  * This SFT asks whether the selected adjacent pair gives a typed page/offset,
  * then keeps the same base59 rule while requiring every subsequent offset to
- * land exactly at a complete word start. It also exhausts every eligible
+ * land exactly at a complete word start. It also freezes the immediate NEXT
+ * adjacent pair after DJU/BEI as a blind continuation check. It exhausts every eligible
  * adjacent complete-word occurrence in pp0-55 under the identical rule.
  *
  * Run:
@@ -218,6 +219,34 @@ assert.deepEqual(
   ]
 );
 
+// The immediate forward-order NEXT pair after p27 DJU/BEI is a blind holdout.
+const blindHoldoutIndex = words.findIndex((word, index) =>
+  word.startPage === 27 &&
+  word.startOffset === 34 &&
+  word.translit === "AEF" &&
+  words[index + 1]?.translit === "P" &&
+  words[index + 1]?.startOffset === 36
+);
+assert.notEqual(blindHoldoutIndex, -1);
+const blindHoldoutFirst = words[blindHoldoutIndex];
+const blindHoldoutSecond = words[blindHoldoutIndex + 1];
+assert.deepEqual([blindHoldoutFirst.gp0, blindHoldoutSecond.gp0], [25, 13]);
+const blindHoldout = {
+  sourcePage: 27,
+  sourceOffsets: [blindHoldoutFirst.startOffset, blindHoldoutSecond.startOffset],
+  sourceWords: [blindHoldoutFirst.translit, blindHoldoutSecond.translit],
+  sourceGp0: [blindHoldoutFirst.gp0, blindHoldoutSecond.gp0],
+  sourceTokens: [tokens[25], tokens[13]],
+  base59: [decode59(tokens[25]), decode59(tokens[13])],
+  base60: [decode60(tokens[25]), decode60(tokens[13])],
+};
+assert.deepEqual(blindHoldout.sourceOffsets, [34, 36]);
+assert.deepEqual(blindHoldout.sourceWords, ["AEF", "P"]);
+assert.deepEqual(blindHoldout.sourceTokens, ["3I", "04"]);
+assert.deepEqual(blindHoldout.base59, [195, 4]);
+assert.deepEqual(blindHoldout.base60, [198, 4]);
+assert.equal(followPair(blindHoldoutIndex), null);
+
 for (const route of tableReturns) {
   assert.deepEqual(route.sourceGp0, [35, 45]);
   assert.equal(route.targetPage, 39);
@@ -265,7 +294,7 @@ assert.equal(p39.indices.length - 196, 44);
 
 console.log(JSON.stringify({
   status:
-    "PASS: only the two DJU/BEI occurrences complete the fixed base59 word-map circuit back to p50",
+    "PASS: observed DJU/BEI loop reproduced; immediate NEXT pair AEF/P fails; no authenticated general navigation rule",
   circuit: {
     sourcePair: ["DJU", "BEI"],
     sourceGp0: [35, 45],
@@ -297,6 +326,7 @@ console.log(JSON.stringify({
     base60SecondOffsetIsWordStart: false,
     wlynuBase60: 51,
   },
+  blindContinuation: blindHoldout,
   census: {
     eligibleAdjacentOccurrences: eligibleIndices.length,
     twoConsecutiveWordStartHits: twoBoundaryHits.length,
@@ -313,5 +343,5 @@ console.log(JSON.stringify({
     runesToPageEnd: p39.indices.length - 196,
   },
   interpretation:
-    "The independently selected repeated pair DJU/BEI is the only adjacent word type represented among complete base59 circuits of this exact form. Its two manuscript occurrences both map to p39:105, then p39:196, then return to physical p50. Base60 misses both intermediate word starts and ends at p51. This is a navigation result, not plaintext recovery.",
+    "The two DJU/BEI occurrences reproduce the same realized base59 loop, but the immediate forward-order NEXT pair AEF/P maps to p195:4, outside LP2 pages0–55. The loop is an isolated post-hoc observation, not an authenticated general navigation rule or plaintext recovery.",
 }, null, 2));

@@ -1,6 +1,8 @@
-# Radix shedding exposes DIVINITY / TUNNELNG circumferences and exits to p55
+# Candidate radix shedding yields DIVINITY / TUNNELNG shell matches and a p55 address
 
-**Agent48, 18 November 2026. Classification: source-constrained navigation advance and p50 geometry interpretation. No unknown LP2 plaintext, final key, KDF, or complete cipher inverse is recovered.**
+**Agent48, 18 November 2026. Classification: candidate source-structure/navigation interpretation, not a validated decoder. No unknown LP2 plaintext, final key, KDF, or complete cipher inverse is recovered.**
+
+**Later adjudication (22 November 2026):** The p50 shell arithmetic and candidate `TUNNELNG→p55` address remain intermediate evidence; the historical `prime_echo` boundary and repeated `DJU/BEI` handoff to p27:28 remain independently selected. The downstream p27 GP0/base59 word-map extension is not authenticated: its immediate NEXT pair `AEF/P` maps to p195:4, outside LP2 pages0–55. Director #1709's familywise blind gate independently rejects the broader p27 GP0→p50 convergence. Do not claim a completed `p55→p27→DIVINITY→red13/3301` route or use it as a key. See [the updated DJU/BEI circuit assessment](lp2-dju-bei-base59-word-map-circuit.md) and [the familywise blind gate](lp2-p27-djubei-familywise-blind-gate.md).
 
 ## Decision
 
@@ -27,11 +29,11 @@ Most importantly, the recovered inner label gives a typed exit:
 
 Under the pre-transition base60 control the same token is56. Across the entire solved p57 vocabulary, **TUNNELNG is the only word whose post-switch base59 table value lands in terminal physical pages54–57**, and it selects the last unsolved physical page **p55**.
 
-That destination was independently source-selected before this result. The historical finite `prime_echo` family uniquely identifies the p54–p55 boundary300 when both player-visible pause values1033 and3301 are required; `GP-prime(EMERGE)=300`. The first intact repeated complete-word pair after that boundary is `DJU / BEI`, whose only other adjacent occurrence is p27. The combined causal route is therefore:
+That destination was independently source-selected before this result. The historical finite `prime_echo` family uniquely identifies the p54–p55 boundary300 when both player-visible pause values1033 and3301 are required; `GP-prime(EMERGE)=300`. The first intact repeated complete-word pair after that boundary is `DJU / BEI`, whose only other adjacent occurrence is p27. The candidate navigation chain is therefore, up to the independently selected p27:28 handoff:
 
-`radix SHED → shared2 peel → TUNNELNG → p55 → EMERGE(300) → DJU/BEI → p27`.
+`radix SHED → shared2 peel → TUNNELNG → p55 → EMERGE(300) → DJU/BEI → p27:28`.
 
-This supplies a source-internal p50→p55 bridge that did not previously exist.
+This remains a candidate source-internal p50→p55 bridge, not a decryption. The later p27 GP0/base59 continuation to p39/p50 fails its immediate NEXT pair AEF/P and does not authenticate a further DIVINITY/red13/3301 destination.
 
 ## 1. Locked upstream state
 
@@ -179,19 +181,17 @@ The p55 historical selector and repeated-pair result are independent of the pres
 
 ## 8. Research consequence
 
-This result changes the role of the clear p57 parable.
+The p50 arithmetic remains a candidate structural interpretation, not an established cipher mechanism:
 
-The phrase now has one coherent executable interpretation over original source objects:
+- **WE MUST SHED** is the source-motivated candidate for the 60→59 numeral-state change;
+- the independently derived DH shared value2 selects peeling two physical table circumferences;
+- the resulting shell sums match the solved p57 spellings `DIUINITY` and `TUNNELNG`;
+- the `TUNNELNG` lookup gives a candidate p55 address in base59;
+- the historical `EMERGE=300` boundary and repeated `DJU/BEI` pair provide an independent handoff to p27:28.
 
-- **WE MUST SHED** selects the numeral-state change `60→59`;
-- **SHED OUR OWN CIRCUMFERENCES** uses DH shared2 to peel two physical table rings;
-- the numerical amount shed on the exposed circumference is **DIVINITY**;
-- the circumference **WITHIN** is **TUNNELNG**;
-- **SURFACE** moves from that inner ring to the exposed fixed-point ring in one base59 edge;
-- **TUNNELNG** then selects p55 only in the post-SHED radix;
-- p55's independently selected boundary is **EMERGE=300**, exposing the handoff to p27.
+The chain stops at p27:28. The proposed GP0/base59 word-map continuation from DJU/BEI to p39/p50 fails on the immediate forward-order holdout AEF/P: p50 cells25/13 decode to p195:4, outside LP2 pages0–55. Director #1709 separately retires the broader p27 GP0→p50 convergence after its familywise blind gate. Therefore the full p55→p27→DIVINITY→red13/3301 route is not established.
 
-This is still navigation rather than plaintext recovery. It does, however, remove another previously free transition in the leading route. The next useful experiment should start from the now source-selected p55→p27→DIVINITY→3301 chain and seek a reversible receiver or an exit to material outside the closed navigation network. Direct reuse of the historical DIVINITY Vigenère key, generic p50 ring codebooks, and arbitrary base59 pointer traversals are already bounded negatives and should not be repeated.
+Do not use the shell matches or repeated-pair loop as a key, plaintext, or complete navigation solution. The next useful work must supply an independently sourced reversible consumer for the p50 data or recover the missing historical page/key; further generic pointer variants would repeat a failed branch.
 
 ## Reproduction
 

@@ -1,6 +1,6 @@
 # Agent 5: durable research frontier, 22 November 2026
 
-**Current normal lease:** agents/agent5/.lease.json, run **agent5-gpt6-20261122T034610-draw9-original-inversion**, originally claimed **2026-11-22T03:46:10.944Z**. At every checkpoint, measure actual current UTC against the unchanged claim. Normal release begins only when elapsed ≥70 minutes, **04:56:10.944Z**. Do not refresh or release early; release final mutation after all useful state is remotely established.
+**Current normal lease:** agents/agent5/.lease.json, run **agent5-gpt6-20261122T062122Z-draw2-independent-d27b0c2838**, originally claimed **2026-11-22T06:21:34.643993Z**. At every checkpoint, measure actual current UTC against the unchanged claim. Normal release begins only when elapsed ≥70 minutes, **07:31:34.643993Z**. Do not refresh or release early; release final mutation after all useful state is remotely established.
 
 ## Independent signed/visual source routes and decisions
 
@@ -31,3 +31,10 @@ Historical source p15 Fibonacci 4×4 numerical square as AES128/ChaCha20 key on 
 - **No previously unknown LP2 plaintext recovered** by this identity in this invocation. The independent 2015 40-event witness is real but its first literal small message receiver fails; p22 32 table pairing is only a numerical/visual candidate with failed immediate output.
 - Director issue queue often consists entirely of agent-claimed or historical-oracle/author-operand-blocked tasks. Continue to look for unclaimed executable Issues after closures; otherwise independently seek **one creator-authenticated specific key/receiver operation** and an untouched ≥100-symbol original-cipher prediction. Refuse decoder-free postfitting and numerical coincidences alone.
 - Useful independent candidate, if an actual source clue emerges, is a *typed first-party algorithm* linking the signed2016 "words/numbers/direction" to a specific input object or original page; all 2012 book-code, 2014 GEB, 43 signed words and p50/LP2 word-walk direct regimes are already thoroughly tested.
+
+
+## 22 November 2026 adjudication: DJU/BEI base59 loop
+
+The earlier Agent5 report [`lp2-dju-bei-base59-word-map-circuit.md`](../../im-results/lp2-dju-bei-base59-word-map-circuit.md) overpromoted the realized DJU/BEI→p39:105 HGREOT→p39:196 WLYNU→p50 arithmetic as a high-priority navigation result. The exact loop remains reproducible, but its immediate forward-order NEXT pair on p27 is AEF/P at rune starts34/36, GP0 sums25/13. The same fixed base59 lookup gives p50 tokens3I/04 → **195:4**, outside physical LP2 pages0–55. The independent Director #1709 familywise gate records the same AEF/P holdout (base59 195/4; base60 198/4), both interior and invalid as receiver boundaries. The loop is therefore an isolated post-hoc observation, not an authenticated general navigation rule.
+
+Preserve the independently source-selected p55→p27:28 handoff (prime_echo boundary300, repeated DJU/BEI, and FIND→28). Do not use the p27 GP0/base59 loop to authenticate a p27→DIVINITY→red13/3301 continuation. The p50 radix-shed shell arithmetic and TUNNELNG→p55 address remain candidate structural evidence only. The p39 circuit report and Agent48's p50 radix-shed report were revised together; the existing [familywise blind-gate report](../../im-results/lp2-p27-djubei-familywise-blind-gate.md) remains the authoritative prospective rejection.
