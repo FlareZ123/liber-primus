@@ -59,6 +59,28 @@ since A² has eigenvalues 25 (multiplicity1), 9 (multiplicity2), and 3 (multipli
 
 The source-complete equalities **Π²=Π, rank Π=2, QΠ=0** hold exactly. This is an unusually compact, keyless **five-input/two-output linear filter** based on two separately printed artifacts. Its discovery is post-observation. Because any two nonsquare quadratic parameters in GF29 differ by a square factor, the field-isomorphism alone is generic; the particular **3/4** link and adjacent **[4,3]** are the more specific coincidences, not proof of intent.
 
+## A source-only, internally marked candidate key
+
+Apply the original 2014-derived Π **directly to the five original printed p7 red-word GP products** v=[11,26,8,15,2]. The exact source-only result is
+
+\[
+\Pi v = [26,11,\mathbf{13},11,26]\pmod{29}.
+\]
+
+The two outside values are exactly the **first two red p7 word products in reversed order**, and the middle value **13** matches the *visibly printed large red thirteen-dot mark* immediately after the five red words at p7 original rune offset208. That physical punctuation count did **not** enter the calculation of F, the historical matrix A or Π. The source-original p8 two heading-word products **[4,3]** select zero-based positions 4 then3 of this projected vector, producing a specific two-symbol **candidate key [26,11]**.
+
+This is a concrete cross-artifact source link, not yet a recovered cipher key. Its palindromic shape is mathematically forced for *every* input by Π's symmetric rank-two image, and the recognition of reversal/13 occurred after looking at the candidate output.
+
+To charge the observation against original selection opportunities, the SFT parses **all 2,896 complete printed unknown-page GP words** (12,956 unchanged runes, retaining all32 actual cross-page word carries), computes GP index-product quintets on all **2,892 consecutive five-word windows** and looks for the exact fixed pattern Πv=[v₁,v₀,13,v₀,v₁]. Results:
+
+| Original-wide fixed pattern | Matching five-word windows |
+| --- | --- |
+| Outer two values reverse the input's first two products, regardless of center | **2**: original word408 (p7 red), word2309 (p42) |
+| Projected center equals visible thirteen-dot count13, regardless of outer values | **87** |
+| Both reversed outer products **and** center13 | **1 / 2,892**, the complete red p7 five-word sequence at original word index408 |
+
+The p42 competitor yields projected values [11,0,7,0,11] and fails the center13 condition. The uniqueness of p7 among all manuscript five-word windows is an observed finite-corpus fact, **not** a calibrated p-value: the exact conjunctive pattern was recognized after computing p7's output. Still, it specifies a **repeatable author-source key candidate [26,11] and a single original clue-locus** worth differentiating from free alphabet searches.
+
 ## Full original p8 plaintext/key-extraction decision
 
 The adjacent physical p8 contains **255 original GP29 runes**, consisting of **12 red heading runes plus 243 black**. This is exactly **51 packets of five**, with no padding or invented source letters. Group all255 in original page/rune order, apply the actual Π to each five-rune vector, and take the projected **zero-based components 4 then3**. These are linearly independent rows of the rank-two projector and their order is fixed by the two p8 original heading-word GP products **[4,3]**. The resulting complete receiver contains **102 native GP29 values**. This is a proposed lossy key/message extraction, since the original 255 inputs cannot be reconstructed from 102 outputs alone.
@@ -69,10 +91,23 @@ The actual original-p8 output has **GP29 IoC 0.036497767424** (original p8 **0.0
 
 No sustained recognizable original-page prose, address, or typed instruction was recovered. The original already-clear p57 source has GP29 IoC about **0.06271**. The proposed extraction does **not** establish a cipher or a key even though the algebra and source input registration are exact.
 
-The [read-only Windows Node.js22 CommonJS original-input test](../sims/lp2_p7_2014_a_square_gf29_scaled_eigenspace_p8_original_sft.cjs) reads the actual 2014 matrix, original GP corpus, original red-ink annotations and line-preserving transcription. It independently reconstructs the five p7 source word products, two p8 title products, the complete historical characteristic polynomial, both polynomial factorizations, the scaled-matrix fixed-point rank and the canonical projector. It checks all255 original receiver symbols and prints the **full 102-symbol original output**. A fixed right inverse independently embeds 102 known GP29 runes drawn from the authentic solved p57 into 51 five-rune source-shaped words and recovers **102/102 exactly**. The plant demonstrates the transport can express plaintext, without authenticating this original decoding idea.
+### Direct original-cipher consumer of the new source-only key
+
+The previously solved 2014 Cicada image-stage actually used **GP29 Vigenère subtraction**, making the simplest executable consumer of [26,11] an exact two-rune cyclic key, without choosing new secret symbols. Apply the key from index0 to either (i) **all255 p8 runes**, including the two red words, or (ii) **the 243 black runes** following their completed heading. Test both GP29 addition directions, consuming Fehu normally. This is exactly four full-original-input inverses with no key/phase tuning:
+
+| Original receiver | Subtract [26,11] IoC | Add [26,11] IoC |
+| --- | ---: | ---: |
+| Complete p8, 255 runes | **0.034892697236** | 0.033441408059 |
+| P8 black body, 243 runes | **0.035098459341** | 0.033465972860 |
+
+All four GP29 outputs stay near uniform and contain no sustained readable text. Each exact source ciphertext reencrypts 255/255 or 243/243 respectively; four authentic solved-p57 GP-native plants of the corresponding register size also recover exactly after source-key encryption. The direct period-two Vigenère use of the newly derived [26,11] key **fails** on its adjacent original page. Other keys or intermediate operations are outside this exact gate.
+
+The [read-only Windows Node.js22 CommonJS original-input test](../sims/lp2_p7_2014_a_square_gf29_scaled_eigenspace_p8_original_sft.cjs) reads the actual 2014 matrix, original GP corpus, original red-ink annotations and line-preserving transcription. It independently reconstructs the five p7 source word products, two p8 title products, the complete historical characteristic polynomial, both polynomial factorizations, the scaled-matrix fixed-point rank and the canonical projector. It checks all255 original receiver symbols and prints the **full 102-symbol original output**. The same test enumerates all 2,892 original five-word windows and four new original-p8 two-rune Vigenère inverse candidates. A fixed right inverse independently embeds 102 known GP29 runes drawn from the authentic solved p57 into 51 five-rune source-shaped words and recovers **102/102 exactly**. The plant demonstrates the transport can express plaintext, without authenticating this original decoding idea.
 
 ## Decision
 
-The **historical 3301-square quadratic x²−3 and p7 quartic residual x²−8** exhibit a genuine, formerly unrecorded *scaling relationship that exactly involves the adjacent two p8 heading products3 and4*. The canonical two-dimensional common fixed subspace is a mathematically legitimate original-input **candidate key location**. The *one fully source-frozen, 255→102 p8 receiver* remains ciphertext-like. This rejects that immediate extraction as direct native GP prose and leaves the key/destination problem unresolved.
+The **historical 3301-square quadratic x²−3 and p7 quartic residual x²−8** exhibit a genuine, formerly unrecorded *scaling relationship that exactly involves the adjacent two p8 heading products3 and4*. The canonical two-dimensional common fixed subspace is a mathematically legitimate original-input **candidate key location**. The *fully source-frozen, 255→102 p8 receiver* and all four original-p8 direct source-key Vigenère uses remain ciphertext-like. This rejects that immediate extraction as direct native GP prose and leaves the key/destination problem unresolved.
 
 Promote the source connection to a cipher hypothesis only with an independently selected original recipient and typed output predicate. Changing coordinates, phases, word segmentation, square variants or output alphabet to fit favorable short English would reintroduce an unrestricted search. No additional unverified ciphertext key is claimed.
+
+**Executed source SFT:** [manual Node.js22 workflow run 45072513093](https://github.com/FlareZ123/liber-primus/actions/runs/45072513093) passed the initial exact GF29 projector/original-p8 receiver before the enlarged 2,892-window and period-two Vigenère additions; see the later linked run for the complete extended script.
