@@ -101,6 +101,32 @@ The 5- and 10-phase source-only mapping classes therefore remain far from even a
 
 **Research decision:** Every original-reader-plausible low-state **five-dot/ten-dot phase clock** by itself and when keyed by just red chapters remains inconsistent with the fixed native-GP control register. A high-capacity ten-phase chapter×word-length codebook cannot be statistically excluded, but is **not a defined human solve path** without an independent historical key generator. The first-party decorative marks alone have no verified instruction for mapping five or ten dots into any particular GP29 endpoint permutation. Search for a genuinely specified state-update/key source rather than enlarging free lookups, and explicitly leave an unobserved high-order digit mixer or nonstationary per-pair key outside these terminal-digit tests.
 
+## An actual cross-digit reversibility attack from the printed 1033↔3301 cuneiform (Agent47, 22 November)
+
+The original p33–39 heading prints **1033** and **3301**, an unmistakable **decimal digit reversal of each other**. Independently, signed2013 Cicada material explicitly serialized integers in BASE29. These source facts motivate, but do not authenticate, a concrete **reverse-the-complete-GP29-word-digits before/after two-word full-integer arithmetic** operation. Unlike the fixed terminal-pair substitution studied above, mixed-modulus carries in this reversed-digit register **can change the visible terminal pair according to high-order original digits**. It therefore bypasses the previously established endpoint-collision theorem by construction. This makes it a substantive independent architecture test rather than another low-digit key search.
+
+The fixed reversible two-complete-word machine for widths n₁,n₂ is:
+```text
+X₁ := BASE29(reverse(plainWord₁)),   X₂ := BASE29(reverse(plainWord₂))
+Y₁ := (X₁ + a·X₂) mod 29^n₁
+Y₂ := (X₂ + b·Y₁) mod 29^n₂
+cipherWord₁ := reverse(GP29_fixed_width(Y₁,n₁))
+cipherWord₂ := reverse(GP29_fixed_width(Y₂,n₂))
+
+Inverse from original ciphertext:
+Y₁ := BASE29(reverse(cipherWord₁)), Y₂ := BASE29(reverse(cipherWord₂))
+X₂ := (Y₂ − b·Y₁) mod 29^n₂
+X₁ := (Y₁ − a·X₂) mod 29^n₁
+plainWordᵢ := reverse(GP29_fixed_width(Xᵢ,nᵢ))
+```
+For the historical numeral cue, freeze **(a,b)=(1033,3301)** and all eight source-sized sign/order choices of these two source integers, with both original word widths preserved. As a much larger fully checked small-key class, test every global **a,b∈{0,…,28}**, all **841** aliases, without choosing the output from language scoring. The physical p0 first two red words establish the first pair and all **32** genuine cross-page words are retained intact.
+
+Unlike prior original p16-only arithmetic tests, choose an **actual source-typed numbered-text train and holdout**: the complete **139-rune** first original numbered paragraph starts at p36 source-rune offset99; the complete **91-rune** second numbered paragraph begins at p37 offset0; plus a separate **200-rune** unrelated p40 source window. The exact source-original E statistics of the three unchanged ciphertext windows are 0.034198728 / 0.034676435 / 0.033517588; the signed-number variant 1033,3301 decodes to GP29 IoC **0.034720050 / 0.034188034 / 0.033618090** with **0 genuine native GP words** of length at least four among 17+14+27 complete printed word slots. The eight source sign/order variants all have **zero long word hits** and their smallest of the three IoCs is **≤0.035778895**. Across the **entire 841-key low-coefficient class**, not a single pair yields **IoC≥0.045 simultaneously** on all three original windows; the best of the three window-minima is **0.036331658** at (a,b)=(20,21), with zero full native-GP lexicon words in all three decoded windows. An actual 12,956-rune source-native Shakespeare plant (with *identical original word widths*) instead achieves GP IoCs **0.055677197 / 0.052258852 / 0.055678392** and **17/17+14/14+27/27** native dictionary words on these identical three windows.
+
+**All code paths roundtrip truly:** the same whole-word cipher correctly enciphers and inverse-recovers every one of the **12,956 true Shakespeare GP native test runes**, and the authentic solved LP2 p57 95-rune plaintext in its natural complete printed words. Every fixed historical reverse-digit variant also forward-reencrypts all 12,956 *original* ciphertext runes exactly, a necessary implementation check that cannot itself validate a guessed plaintext. [Windows Node22 verified original SFT](../sims/lp2_cuneiform_1033_3301_reverseword_two_shear_original_sft.cjs) · [PASS45024848736](https://github.com/FlareZ123/liber-primus/actions/runs/45024848736).
+
+**Decision:** This is a bounded rejection of **one specifically source-cued, whole-word two-shear high-to-low-digit mixer** plus all 841 small global key aliases and the eight explicit 1033/3301 signed variants. It demonstrates the previous low-digit theorem was not silently applied to architectures that violate its assumptions. The original 1033/3301 cuneiform speaks in numbers and numerical reversal but provides **no** first-party instruction to perform these shears, use this word pairing, or decode a numbered block. No actual unknown LP2 plaintext, key, five-part instruction or destination is recovered. New work would need independent source instructions for a different high-to-low mixer or an actual crib, rather than repeated arbitrary coefficient matrices.
+
 ## Exact decision and what remains to solve
 
 **The tested entire global two-shear BASE29 keyspace fails** on independent original p16 and p40 windows. More importantly, **any two-word mechanism whose output last rune pair is a fixed invertible function of the plaintext last rune pair within its original chapter×ordered-length context** preserves the very sparse original six repeated endpoint pairs, inconsistent with all 6,000 sampled GP-native English word-length-matched books. Arbitrarily unknown chapter×length secret codebooks cannot repair that necessary equality invariant.
