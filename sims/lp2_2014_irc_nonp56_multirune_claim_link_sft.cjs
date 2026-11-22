@@ -32,10 +32,12 @@ function scan(lines,name){
  const all=lines.map(entry);
  const found=[];
  let explicit=0,eligible=0;
+ const explicitClaims=[];
  for(let i=0;i<all.length;i++){
   const x=all[i];
   if(!x || !claimed.test(x.body)||!pages.test(x.body)||p56.test(x.body))continue;
   explicit++;
+  explicitClaims.push({source:name,line:x.line,date:x.date,nick:x.nick,body:x.body.slice(0,350)});
   const near=all.slice(Math.max(0,i-9),Math.min(all.length,i+10))
     .filter(z=>z&&z.day===x.day&&Math.abs(z.minute-x.minute)<=12);
   const out=[];
@@ -62,7 +64,7 @@ function scan(lines,name){
   if(!previous||x.score>previous.score)byURL.set(key,x);
  }
  return {source:name,explicitClaimLines:explicit,eligibleClaimLines:eligible,
-  distinctCandidateLinks:byURL.size,
+  distinctCandidateLinks:byURL.size,explicitClaims,
   selected:[...byURL.values()].sort((a,b)=>b.score-a.score||a.claimLine-b.claimLine).slice(0,35)};
 }
 const plant=[
@@ -87,6 +89,7 @@ async function main(){
   assert.equal(blob(bytes),sha,name+' original Git blob');
   const result=scan(bytes.toString('latin1').split(/\r?\n/),name);
   console.log('VERIFIED-ORIGINAL '+JSON.stringify({source:name,sha,bytes:bytes.length,explicitClaimLines:result.explicitClaimLines,eligibleClaimLines:result.eligibleClaimLines,distinctCandidateLinks:result.distinctCandidateLinks}));
+  for(const x of result.explicitClaims)console.log('EXPLICIT-SOURCE-CLAIM '+JSON.stringify(x));
   for(const x of result.selected)console.log('CLAIMED-LINK '+JSON.stringify(x));
  }
 }
