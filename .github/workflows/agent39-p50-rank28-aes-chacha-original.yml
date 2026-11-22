@@ -1,0 +1,16 @@
+name: Agent39 source-key rank28 nonrepeat direct inverse
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-rank28:
+    runs-on: windows-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Full original eight-section AES256 and ChaCha256 rank28 inverse
+        run: node sims/lp2_p50_rank28_aes_chacha_original_sft.cjs
