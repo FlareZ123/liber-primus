@@ -103,7 +103,7 @@ function complete(chosen){
 const first=complete(aGlobal),second=complete(bGlobal);
 assert.equal(first.length,45);
 assert.equal(second.length,50);
-assert.equal(first.reduce((a,w)=>a+w.length,0),213);
+assert.equal(first.reduce((a,w)=>a+w.length,0),209); // p23 has four edge-crossing page fragments
 assert.equal(second.reduce((a,w)=>a+w.length,0),213);
 const overlaps=[];
 for(const a of first)for(const b of second){
@@ -197,7 +197,7 @@ console.log(JSON.stringify({
   name:'Entire original p23 cipher213 vs all original unsolved red rune213',
   original:{p23Runes:p23.length,redRunes:red.length,
     p23CompleteWords:first.length,redCompleteWords:second.length,
-    originalCompleteWordRuneCoverage:[213,213],
+    originalCompleteWordRuneCoverage:[209,213],
     overlappingWordPairs:overlaps.length,
     overlapsAtLeast2:overlaps.filter(x=>x.end-x.begin>=2).length,
     greatestOverlap:8},
