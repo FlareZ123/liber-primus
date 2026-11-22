@@ -172,7 +172,9 @@ function nativeControl() {
     return i === undefined ? ch : corpus.translit[mod(i - vigKey[j++ % vigKey.length])];
   }).join('');
   assert.equal(j, 18);
-  assert.equal(sourceStage04, 'AUOWYFGL5LCSFJ3NONION');
+  assert.equal(sourceStage04, 'AUOWYFGL5LCSFJ3NONIAN');
+  // Source GP rune 27 admits IA and IO; IO produces its period host spelling.
+  assert.equal(sourceStage04.replace(/NONIAN$/, 'NONION'), 'AUOWYFGL5LCSFJ3NONION');
 
   const stage05Cipher = 'TL BE IE OV UT HT RE ID TS EO ST PO SO YR ' +
     'SL BT II IY T4 DG UQ IM NU 44 2I 15 33 9M';
@@ -247,6 +249,7 @@ function main() {
     testedPages: 'LP2 p40..p53, excluding the rune-free numeric p50',
     length: prediction.length, score: scorer(prediction), ioc: ioc(prediction),
     first260: sourcePreview(prediction.slice(0,260)),
+    completeGpTransliteration: sourcePreview(prediction),
     last260: sourcePreview(prediction.slice(-260)),
     sha256: hash(prediction), exactForwardReplay: true,
     sourceSelectedOperandForLP2: false
