@@ -175,9 +175,45 @@ assert(matched.every(c=>[3,4].every(k=>c.perPage[k].every(s=>s.atMostOriginal===
 assert(matched.every(c=>c.adaptive[3].atMostOriginal===0));
 assert(matched.some(c=>c.perPage[5].some(s=>s.atMostOriginal>0)));
 assert(matched.every(c=>c.perPage[7].some(s=>s.atMostOriginal>0)));
+/**
+ * Non-English register controls use existing published-source-derived GP29
+ * whole-word encodings. They are separately spelled, not translated English.
+ * Corrected Old English retains þ/ð/æ runes; Latin preserves word boundaries.
+ */
+const gpAlphabet="0123456789ABCDEFGHIJKLMNOPQRS";
+const oldEnglish=JSON.parse(read("resources/control/beowulf_oe_gp_profile_corrected.json"));
+const sourceLatin=read("resources/control/latin-vulgate-gp-wholewords.txt")
+  .split(/\r?\n/).map(x=>x.trim())
+  .filter(x=>x&&!x.startsWith("#")).join("");
+const alternate=[
+  ["Old English Beowulf",oldEnglish.sourceGpBase29,6],
+  ["Latin Vulgate",sourceLatin,30]
+];
+const alternateLanguages=[];
+for(const [name,base29,expected] of alternate){
+  const runes=Array.from(base29,glyph=>gpAlphabet.indexOf(glyph));
+  assert(runes.every(x=>x>=0&&x<29));
+  const entries=[];
+  for(let offset=0;offset+N<=runes.length;offset+=Math.floor(N/2)){
+    const data=runes.slice(offset,offset+N);
+    entries.push({k3Adaptive:phaseAdaptive(data,3),
+      k4Adaptive:phaseAdaptive(data,4),
+      k3Common:counts(data,false)[3].perPage,
+      k4Common:counts(data,false)[4].perPage});
+  }
+  assert.equal(entries.length,expected);
+  assert(entries.every(x=>x.k3Adaptive>originalAdaptive[3]));
+  assert(entries.every(x=>x.k4Adaptive>originalAdaptive[4]));
+  alternateLanguages.push({name,sourceRuneCount:runes.length,windows:entries.length,
+    k3AdaptiveMin:Math.min(...entries.map(x=>x.k3Adaptive)),
+    k3AdaptiveMax:Math.max(...entries.map(x=>x.k3Adaptive)),
+    k3CommonMin:Math.min(...entries.flatMap(x=>x.k3Common)),
+    k4AdaptiveMin:Math.min(...entries.map(x=>x.k4Adaptive)),
+    k4CommonMin:Math.min(...entries.flatMap(x=>x.k4Common))});
+}
 process.stdout.write(JSON.stringify({
   originalPages:ps.length,originalRunes:N,wholeWords:lens.length,crossPageWords:words.crossPageWords,
-  original,originalAdaptive,sourceContinuousWindows:controls.map(c=>({name:c.name,n:c.samples.length,...c.contiguous})),
+  original,originalAdaptive,alternateLanguages,sourceContinuousWindows:controls.map(c=>({name:c.name,n:c.samples.length,...c.contiguous})),
   lengthMatchedControls:{seed:"0x33012026",trialsPerSource:trials,
     mechanism:"Each fixed original word-length slot sampled with replacement from that corpus's actual native GP words of matching rune length",
     results:matched},pageSpecificSecretInvertiblePlants:plants,
