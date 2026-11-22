@@ -23,7 +23,7 @@ For each channel, place its 175 values in printed mark order as row-major 5×7×
 
 ## Actual full original-cipher outputs
 
-All 32 source-input × operator-choice results have GP29 indices of coincidence near the 29-symbol uniform value **1/29≈0.03448276**. The strongest per-channel score is listed after the complete eight-choice search; neither the leading 52-runic original output nor the surviving 175-symbol readout contains a sustained GP-English instruction.
+All 32 source-input × operator-choice results have GP29 indices of coincidence near the 29-symbol uniform value **1/29≈0.03448276**. The strongest per-channel score is listed after the complete eight-choice search; the leading original outputs have no sustained readable GP-English instruction, while the complete 175-symbol readouts remain distributionally unlike ordinary prose.
 
 | Complete original mark-value channel | Original input IoC | Largest output IoC across 8 matrices | Mask |
 | --- | ---: | ---: | ---: |
@@ -32,7 +32,7 @@ All 32 source-input × operator-choice results have GP29 indices of coincidence 
 | Consecutive mark rune gap mod29 | 0.032972085386 | 0.036256157635 | 6 and 7 |
 | Physical ink dot count | 0.646568144499 | 0.036387520525 | 6 |
 
-The dot-count input is highly nonuniform because 138 of the 175 original marks have four dots, yet the historical square transforms distribute its result near uniform. For direct comparison, already-clear original LP2 p57 prose has GP29 IoC about **0.06271**. The predecessor mask5 starts with GP29 tokens **TH J TH EO X EA Y TH EO A I I F J M OE ...**, an unrelated runic string. The full 32 × 175 symbol outputs and eight real solved-GP positive controls per source channel are printed by the SFT. These are valid, reversible mathematical decryptions of the frozen registers; source authenticity of the plaintext would require language and an independently selected reading rule.
+The dot-count input is highly nonuniform because 138 of the 175 original marks have four dots, yet the historical square transforms distribute its result near uniform. For direct comparison, already-clear original LP2 p57 prose has GP29 IoC about **0.06271**. The predecessor mask5 starts with GP29 tokens **TH J TH EO X EA Y TH EO A I I F J M OE ...**, an unrelated runic string. The SFT prints all 32 × 175 original rune outputs and confirms eight real solved-GP positive controls per source channel. These are valid, reversible mathematical decryptions of the frozen registers; source authenticity of the plaintext would require language and an independently selected reading rule.
 
 ## Research decision
 
