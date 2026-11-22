@@ -88,6 +88,47 @@ const literal = data => data.map(i => corpus.translit[i]).join("");
 assert.equal(literal(first), "PEREAD");
 assert.equal(literal(second), "URLXNG");
 
+
+// Competing source-visible whole-word scalar grammars. The solved LP1 Wisdom
+// prime-weight SUM is historically better attested than the retrospectively
+// selected p7 GP0 index PRODUCT. Keep both as explicit independent controls.
+const p7EndWords = pageWords(7).slice(-5).map(w => w.runes);
+const scalarFeatures = {
+  gpIndexProduct: p7EndWords.map(w =>
+    w.reduce((acc, v) => mod(acc * v), 1)),
+  gpIndexSum: p7EndWords.map(w =>
+    mod(w.reduce((acc, v) => acc + v, 0))),
+  gpPrimeSum: p7EndWords.map(w =>
+    mod(w.reduce((acc, v) => acc + corpus.prime[v], 0))),
+  gpPrimeProduct: p7EndWords.map(w =>
+    w.reduce((acc, v) => mod(acc * corpus.prime[v]), 1))
+};
+assert.deepEqual(scalarFeatures, {
+  gpIndexProduct: [11, 26, 8, 15, 2],
+  gpIndexSum: [26, 7, 23, 13, 24],
+  gpPrimeSum: [9, 16, 11, 11, 23],
+  gpPrimeProduct: [14, 10, 4, 19, 19]
+});
+const alternativeFeatureReadouts = Object.fromEntries(
+  Object.entries(scalarFeatures).map(([rule, vector]) => {
+    const firstFive = transform(Aa[5], vector);
+    const secondFive = transform(Bb[5], vector);
+    return [rule, {
+      input: vector,
+      full: literal(firstFive.concat(secondFive)),
+      centre: literal(firstFive.slice(2).concat(secondFive.slice(0, 3)))
+    }];
+  })
+);
+assert.deepEqual(Object.fromEntries(
+  Object.entries(alternativeFeatureReadouts).map(([rule, output]) =>
+    [rule, output.centre])), {
+  gpIndexProduct: "READURL",
+  gpIndexSum: "GFDEOGOE",
+  gpPrimeSum: "AETBYPEO",
+  gpPrimeProduct: "PUOEPBI"
+});
+
 const targetRead = [4, 28, 23], targetUrl = [1, 4, 20];
 const middle = first.slice(2).concat(second.slice(0, 3));
 assert.deepEqual(middle, targetRead.concat(targetUrl));
@@ -241,6 +282,7 @@ assert(receiverResults.every(x => x.full255Ioc < 0.036));
 const result = {
   classification: "Conditional cross-source readout, no unknown plaintext",
   originalP7FiveRedWordProducts: redP7,
+  competingOriginalWholeWordScalarRules: alternativeFeatureReadouts,
   historicalSquares: ["3301 five-by-five", "1033 five-by-five"],
   sourceMotivatedExponent: 5,
   firstOutput: {gpIndices: first, glyphs: literal(first)},
