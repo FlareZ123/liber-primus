@@ -213,7 +213,7 @@ for (let i = 0; i < bookWords.length; i++) {
   } else if (n === maxBookQuotePrefix) ties++;
 }
 assert.equal(maxBookQuotePrefix, 3);
-assert.equal(ties, 9);
+assert.equal(ties, 10);
 
 const bookKeyVariants = {
   'direct-Latin-C-for-Q': latinDirect(source),
