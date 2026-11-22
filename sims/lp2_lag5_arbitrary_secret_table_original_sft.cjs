@@ -186,6 +186,8 @@ function plant(plain,table) {
   const event=markers(ciphertext);
   const result=feasibility(recovered,event);
   assert(result.possible);
+  assert(feasibility(recovered,event,"section").possible);
+  assert(feasibility(recovered,event,"page").possible);
   assert.deepEqual(recovered,plain);
   return {
     symbolsRecovered: recovered.reduce((n,w)=>n+w.length,0),
