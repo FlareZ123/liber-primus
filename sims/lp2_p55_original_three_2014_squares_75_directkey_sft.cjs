@@ -39,7 +39,8 @@ const complete=ciphertext.slice(1);
 const expectedLengths=[4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3];
 assert.equal(expectedLengths.reduce((a,b)=>a+b,0),complete.length);
 const transcript=read("resources/lp2-transcription.txt").split("%")[54];
-const sourceLengths=(transcript.match(/[\u16A0-\u16FF]+/gu)||[]).map(s=>[...s].length);
+const joined=transcript.replace(/\/\r?\n/gu,"").replace(/\r?\n/gu,"");
+const sourceLengths=(joined.match(/[\u16A0-\u16FF]+/gu)||[]).map(s=>[...s].length);
 assert.deepEqual(sourceLengths,[1,...expectedLengths]);
 assert.equal(complete.join(","),
   [...transcript.matchAll(/[\u16A0-\u16FF]/gu)].map(m=>corpus.runes.indexOf(m[0])).slice(1).join(","));
