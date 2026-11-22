@@ -228,6 +228,68 @@ assert.equal(normRotations.length,32);
 assert(Math.abs(Math.max(...normRotations.map(x=>x.ioc))-
   0.035755245227012074)<1e-12);
 
+
+// Key new cross-object source identity: the normalised 3-4-5
+// Pythagorean GP29 rotation has exact order SEVEN, and applying it
+// FIVE times yields exactly the independent printed 8-15-17 rotation.
+// The original five red words and following seven tree pages match those
+// two power counts; this remains conditional on selecting rotations.
+const multiplyMat=(A,B)=>[
+  [mod(A[0][0]*B[0][0]+A[0][1]*B[1][0]),
+   mod(A[0][0]*B[0][1]+A[0][1]*B[1][1])],
+  [mod(A[1][0]*B[0][0]+A[1][1]*B[1][0]),
+   mod(A[1][0]*B[0][1]+A[1][1]*B[1][1])]
+];
+const rootRotation=[[18,5],[24,18]];
+const childRotation=[[9,23],[6,9]];
+const eye=[[1,0],[0,1]];
+const rotationPowers=[eye];
+for(let n=1;n<=7;n++)
+  rotationPowers.push(multiplyMat(rotationPowers.at(-1),rootRotation));
+assert.deepEqual(rotationPowers[5],childRotation);
+assert.deepEqual(rotationPowers[7],eye);
+assert(!rotationPowers.slice(1,7).some(m =>
+  JSON.stringify(m)===JSON.stringify(eye)));
+assert.deepEqual(multiplyMat(rootRotation,
+  [[18,24],[5,18]]),eye);
+assert.deepEqual(multiplyMat(childRotation,
+  [[9,6],[23,9]]),eye);
+
+/** @param {number[]} source @param {number} phase
+ * @param {boolean} reverse @returns {number[]} */
+function sevenPairClock(source,phase,reverse) {
+  const out=[];
+  for(let i=0;i<source.length;i+=2) {
+    if(i+1===source.length){out.push(source[i]);break;}
+    const position=(phase+i/2)%7;
+    const M=rotationPowers[reverse?(7-position)%7:position];
+    out.push(
+      mod(M[0][0]*source[i]+M[0][1]*source[i+1]),
+      mod(M[1][0]*source[i]+M[1][1]*source[i+1]));
+  }
+  return out;
+}
+const cyclicRotationReadouts=[];
+for(const [label,tape] of Object.entries(regions)){
+  if(label==='p40to53Holdout')continue;
+  for(const phase of [0,5]){
+    for(const inverseDirection of [false,true]){
+      const result=sevenPairClock(tape,phase,inverseDirection);
+      assert.deepEqual(sevenPairClock(result,phase,!inverseDirection),tape);
+      assert(ioc(result)<0.037);
+      cyclicRotationReadouts.push({label,phase,inverseDirection,ioc:ioc(result)});
+    }
+  }
+}
+assert.equal(cyclicRotationReadouts.length,16);
+assert(Math.abs(Math.max(...cyclicRotationReadouts.map(x=>x.ioc))-
+  0.03615196078431373)<1e-12);
+for(const phase of [0,5])for(const reverse of [false,true]){
+  const clear=gp.pages[57].indices;
+  assert.deepEqual(sevenPairClock(sevenPairClock(clear,phase,reverse),
+    phase,!reverse),clear);
+}
+
 // Genuinely clear LP2 p57 native positive, odd final rune preserved.
 const native=gp.pages[57].indices;
 assert.equal(native.length,95);
@@ -295,6 +357,11 @@ console.log(JSON.stringify({
   },
   originalReadouts,wordReceivers,
   sourceOrthogonalRotationModels: normRotations.length,
+  originalRootRotation:rootRotation,
+  powerFiveEqualsPrintedChild:rotationPowers[5],
+  powerSevenIdentity:rotationPowers[7],
+  sevenPhasePairRotationModels:cyclicRotationReadouts.length,
+  maxSevenPhasePairRotationIoC: Math.max(...cyclicRotationReadouts.map(x=>x.ioc)),
   sourceRotationMaxOriginalIoC:Math.max(...normRotations.map(x=>x.ioc)),
   negativeP53FiveWordWindows: p53Windows.length,
   positiveP57RuneCount: native.length,
