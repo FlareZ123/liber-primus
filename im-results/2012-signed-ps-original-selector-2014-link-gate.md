@@ -52,7 +52,7 @@ The [2013 BASE29-to-p55 gate](lp2-2012-signed-ps-base29-p55-gate.md) converts th
 
 ### Direct rotated digit stream
 
-As a bounded exploratory check, the 131 digits read from the quarter-turned display were tested against p22, which independently has 131 runes. Direct mod-29 addition, subtraction and Beaufort, with digits interpreted directly or mapped to the first ten GP prime values, did not yield plaintext. This is not evidence against every conceivable use; the source supplies no reason to treat this stream as a repeating Vigenere key, and no further key mappings or clocks should be searched without a new selector.
+As a bounded exploratory check, the 131 digits read from the quarter-turned display were tested against p22, which independently has 131 runes. Direct mod-29 addition, subtraction and Beaufort, with digits interpreted directly or mapped to the first ten GP prime values, did not yield plaintext. The length match is noteworthy, but p22's six source transcription lines contain 22, 24, 23, 23, 19, and 20 runes; pairing adjacent lines gives 46, 46, and 39, so the third pair is short by seven and no source instruction supplies a padding or block rule. The exact 131:131 match therefore does not yet define a complete key clock or even a uniform three-block segmentation. This is not evidence against every conceivable use; no further key mappings, padding, matrix-size, or clock sweeps should be searched without a new selector.
 
 ## Decision
 
