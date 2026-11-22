@@ -35,6 +35,46 @@ assert.deepEqual(coefficients, [2, 2, 2, 0, 2]);
 const p8Black = p8.slice(12);
 assert.equal(p8Black.length, 243);
 
+/**
+ * Period of the visible five-tap ternary polynomial from a fixed nonzero
+ * canonical state; return null if it does not return within 243 steps.
+ * @param {number[]} tap
+ * @returns {number|null}
+ */
+function registerPeriod(tap) {
+  let state = [1, 0, 0, 0, 0];
+  for (let i = 1; i <= 243; i++) {
+    state = [...state.slice(1), tap.reduce((a, c, j) => a + c * state[j], 0) % 3];
+    if (state.join("") === "10000") return i;
+  }
+  return null;
+}
+const originalAggregatorVariants = [
+  ["GP index product", word => word.reduce((a, x) => a * x % 29, 1)],
+  ["GP index sum", word => word.reduce((a, x) => a + x, 0) % 29],
+  ["GP prime product", word => word.reduce((a, x) => a * gp.prime[x] % 29, 1)],
+  ["GP prime sum", word => word.reduce((a, x) => a + gp.prime[x], 0) % 29],
+  ["first GP rune index", word => word[0]],
+  ["last GP rune index", word => word[word.length - 1]],
+  ["printed word length", word => word.length]
+];
+const aggregationPeriods = originalAggregatorVariants.map(([name, getValue]) => ({
+  name, reduced: redWords.map(getValue).map(x => x % 3),
+  period: registerPeriod(redWords.map(getValue).map(x => x % 3))
+}));
+assert.deepEqual(aggregationPeriods.map(x => x.period), [242, 20, 10, null, 78, null, 24]);
+let primitiveTapCount = 0;
+for (let code = 0; code < 243; code++) {
+  let n = code;
+  const candidate = Array.from({length:5}, () => {
+    const trit = n % 3;
+    n = Math.floor(n / 3);
+    return trit;
+  });
+  if (registerPeriod(candidate) === 242) primitiveTapCount++;
+}
+assert.equal(primitiveTapCount, 22);
+
 /** @param {number[]} state @returns {number[]} */
 function advance(state) {
   assert.equal(state.length, 5);
@@ -185,13 +225,46 @@ for (const [seedName, seed] of sourceSeeds) {
 }
 assert.equal(results.length, 16);
 assert(ioc(p57) > 0.06);
+
+// A second, genuinely source-typed plaintext receiver: the five-trit
+// state address itself is reduced to an ordinary GP29 key on p8 black243,
+// with p9 first243 as disjoint holdout. The available first-party
+// alternative is to use that state's GP prime value rather than ordinal.
+const directPads = [];
+for (const [seedName, seed] of sourceSeeds) {
+  const {states} = insertMissingZero(maximalSequence(seed));
+  for (const operation of ["address modulo29", "GP prime of address modulo29"]) {
+    const key = states.map(address => operation === "address modulo29"
+      ? address % 29 : gp.prime[address % 29] % 29);
+    for (const sign of [-1, 1]) {
+      const apply = sequence => sequence.map((x, i) =>
+        mod29(x + sign * key[i]));
+      const blackPlain = apply(p8Black);
+      const p9Plain = apply(gp.pages[9].indices.slice(0, 243));
+      assert.deepEqual(blackPlain.map((x, i) =>
+        mod29(x - sign * key[i])), p8Black);
+      assert.deepEqual(p9Plain.map((x, i) =>
+        mod29(x - sign * key[i])), gp.pages[9].indices.slice(0, 243));
+      assert(ioc(blackPlain) < 0.04);
+      directPads.push({
+        seed: seedName, operation, sign,
+        originalP8IoC: +ioc(blackPlain).toFixed(8),
+        originalP9IoC: +ioc(p9Plain).toFixed(8),
+        originalReconstruction: "243/243"
+      });
+    }
+  }
+}
+assert.equal(directPads.length, 8);
 console.log(JSON.stringify({
   source: "p7 red last14; p8 red12+black243; original p9–14 complete; solved p57 positive",
   vector: products, reducedGF3Coefficients: coefficients,
   sourceLFSRNonzeroStatePeriod: 242, augmentedDeBruijnCycle: 243,
+  primitiveFeedbackVectorsOf243: primitiveTapCount,
+  alternativePrintedRedWordAggregatorPeriods: aggregationPeriods,
   p8BlackRuneValues: 243, originalTargetRunes: recipient.length,
   originalRecipientRawIoC: +ioc(recipient).toFixed(8),
   solvedP57IoC: +ioc(p57).toFixed(8),
   verdict: "Exact GF3 source-derived 243-state address construction; all 16 tested direct GP29 lookup ciphers remain original-ciphertext-like; no plaintext.",
-  results
+  results, directPads
 }, null, 2));
