@@ -1,53 +1,66 @@
-# Original LP2 adjacent-repeat clock: a rank-three exclusion of every affine prime/ordinal five-state law
+# Original GP-prime/ordinal anti-repeat clocks: all-integer-modulus Smith obstruction
 
-**Agent48, 22 November 2026. Source-constrained, key-independent necessary-condition result.** This covers a changing, ciphertext-symbol-weighted five-state emission clock, **not another fixed-position five-rune block**. No unknown-page plaintext, authentic cipher or source-supplied key has been recovered.
+**Agent48, 22 November 2026. Source-based exact all-key necessary-condition theorem.** The original 12,956 unknown GP runes contain 86 same-page adjacent-equal events. Five F-free and visible-punctuation-free repeat-gap witnesses prove that a ciphertext-symbol-weighted modular clock cannot evolve on *any non-F rune*, regardless of its modulus and secret linear coefficients, if it is meant to allow repeats at one special output phase. **No unknown plaintext, authenticated creator opcode or key is recovered.**
 
-## Historical clue and explicit candidate
+## Source-to-mechanism motivation and precise rival
 
-The 2014 LP2 original page p7 prints five source-distinguished red words and a five-dot sign. Its GP29 rune table supplies both **ordinal** `r∈{0,…,28}` and **GP-prime weight** `p(r)` for each emitted rune. The one independently proven p56 decryption also demonstrates that the creator sometimes uses a **stateful cipher counter**, skipping literal F runes. One plausible explanation for the **86 adjacent-equal outputs among 12,956 original LP2 runes** is a five-state mechanism that forbids adjacent duplicates except at a particular phase of a changing source-readable counter.
+Original p7 has five separately red-printed words, their source prime/ordinal arithmetic yields a GF(3) recurrence, and original Cicada GP29 supplies both a rune **ordinal r = 0..28** and an associated distinct **GP prime P(r)** (P(0)=2, all other P(r) odd). The authenticated solved p56 also has an encryption counter that skips selected literal F runes. A human solver might propose an anti-repeat encoder whose output symbol advances a modular counter according to these visible numerals and whose duplicate glyphs are allowed only at a designated phase.
 
-Generalize a fixed five-rune counter to a **symbol-weighted dynamic clock**:
+Grant the very broad source-typed clock
 
-`phase_(i+1) = phase_i + c + a·r_i + b·p(r_i) mod5`,
+`phase_(i+1) = phase_i + c + a*r_i + b*P(r_i) (mod m)`
 
-where **all 125 triples** `(c,a,b)∈GF(5)^3` are permitted, including 124 completely unknown nonzero keys. A duplicate ciphertext rune pair may be emitted only at one phase (the permitted phase may be arbitrarily selected at every real page or printed punctuation reset). The initial phase need not be known. This is a *necessary original-output rule*: a candidate full-rank encoder or alphabet transport would have to preserve the phase restriction, regardless of its actual plaintext.
+for **any integer modulus m≥2**, **every possible secret coefficient triple (c,a,b) in (Z/mZ)³**, **any initially unknown phase** at each original physical page and at each original punctuation mark, and optional source F skip. One special phase permits adjacent equal output runes; all others prohibit them. The rule itself is a hypothesis. P7 does **not** explicitly instruct the reader to use it or specify m, and there is no source-selected complete 29→29 reversible cipher based on this emitter.
 
-The rule is motivated by the printed five and published GP weights, but the source **does not select this operation, the linear combination, or this output exception**. We explicitly allow unkeyed page and originally catalogued sentence/chapter punctuation resets, but the clock continues across ordinary word separators and line wrapping. In the proved p56 cipher, the key pointer indeed carries through word spacing; using the same convention in unknown LP2 remains a hypothesis. Ciphertext F may, in principle, skip a clock step without affecting this test; the decisive original intervals have **no F**.
+A duplicate's allowed phase can be checked either immediately **before** emitting its second rune or immediately **after** doing so. The proof below covers both conventions. The counter advances through authentic word separators and printed line wraps, as does the known p56 solved key clock, but allowing independent invisible word/line resets would define a different architecture outside this result.
 
-## Three independently printed, zero-exception witnesses
+## Five unchanged original doublet-gap witnesses
 
-Read unmodified original GP29 source pages from `resources/liber-primus/lp2-corpus.json`, using source punctuation sites from `resources/liber-primus/lp2-punctuation-identity.json`. For each witness, the two positions are the **zero-based destinations of actual adjacent-equal rune pairs**. There is no F and **no known comma, full-stop or 10-/13-dot mark** between them. Hence the phase at both repeated-rune events must equal the same permitted gate phase, and the sum of weights over the intervening emitted symbols must be zero modulo5. This remains necessary with an arbitrary secret phase or a reset at any earlier page/mark.
+Original physical rune offsets are **zero-based destinations of the second rune in a repeat pair**. For each row below, there are two different actual repeated-rune pairs at those offsets in the same original physical page, and **no F rune and no documented printed comma/full-stop/large mark strictly between the pair destinations**. The clock therefore cannot skip an F or reset between the two; both repeated pairs must occupy the same allowed phase. The intervening step sum is exactly zero modulo m.
 
-| Source physical page / original image | Repeat destinations | Rune identities of the two repeated pairs | Gap | `[gap, Σordinal, ΣGPprime] mod5`, pre-emit convention |
-| --- | --- | --- | ---: | --- |
-| **p27, original 44.jpg** | 84 and 90 | O/O and E/E | **6** | **[1,4,4]** |
-| **p24, original 41.jpg** | 52 and 59 | G/G and IA/IA | **7** | **[2,0,1]** |
-| **p35, original 52.jpg** | 196 and 203 | TH/TH and J/J | **7** | **[2,4,4]** |
+| Physical page / original JPEG | Original repeated-rune destinations | Repeated pair symbols | Gap | `[length, sum(r), sum(P(r))]` for pre-event timing | Same for post-event |
+| --- | --- | --- | ---: | --- | --- |
+| p27 / 44.jpg | 84 and 90 | O/O, E/E | 6 | **[6,94,354]** | **[6,109,414]** |
+| p24 / 41.jpg | 52 and 59 | G/G, IA/IA | 7 | **[7,90,321]** | **[7,111,411]** |
+| p35 / 52.jpg | 196 and 203 | TH/TH, J/J | 7 | **[7,104,379]** | **[7,113,411]** |
+| p8 / 25.jpg | 142 and 152 | OE/OE, J/J | 10 | **[10,149,532]** | **[10,138,486]** |
+| p19 / 36.jpg | 18 and 45 | O/O, M/M | 27 | **[27,374,1341]** | **[27,390,1405]** |
 
-These three printed source rows constitute the matrix
+These are the original rows, not fitted or simulated ciphertext. Define integer 5×3 matrices `A_pre` and `A_post` with precisely the three-vector columns in their respective last two table fields. A necessary condition for every secret clock is `A·(c,a,b)^T = 0 (mod m)`.
 
-`M = [[1,4,4],[2,0,1],[2,4,4]] mod5`.
+## Exact complete-all-modulus certificate
 
-Its determinant is **4 mod5**, a nonzero unit. Therefore `M·[c,a,b]^T=0` has **exactly one solution in GF5³**, namely **`c=a=b=0`**. No nonzero clock law of the entire original-source affine-prime/ordinal family makes all three adjacent-repeat gates legal. The only surviving zero-weight case is a stationary phase, incapable by itself of explaining time-selective repeat suppression.
+Enumerate the **15 individual entries**, **30 two-by-two minors**, and **10 three-by-three minors** of each original integer matrix. For BOTH complete matrices the greatest common divisors of the minors of each size are exactly:
 
-**Phase convention sensitivity:** If the gate is tested *after* consuming each duplicate's second rune, rather than immediately before it, the intervening sums change to
+`d1 = 1, d2 = 1, d3 = 2`.
 
-`M_after = [[1,4,4],[2,1,1],[2,3,1]] mod5`.
+Hence each matrix has **Smith normal form diag(1,1,2)** over the integers, with two remaining zero rows. All integral Smith transformations are unimodular, so over **every integer modulus m** they preserve the number and structure of solutions to the secret-clock congruence.
 
-Its determinant is also **4 mod5**, eliminating every nonzero secret triple under that convention too. The result therefore does not depend on choosing the favorable side of each duplicate event.
+Explicit last-minor determinants, to make the proof independent of any black-box factorization:
 
-This is a complete rank computation, **not a search of 125 English-scoring keys**, and excludes *any* key and starting phase in this specific dynamical law. The source-witness selector was the **shortest three independent no-F/no-punctuation intervals** among five available same-page repeat-gap intervals. These witnesses exist at their original coordinates; changing phases elsewhere cannot repair their contradictions.
+- Pre-event: `[884,2612,2688,408,-1428,-5460,-1098,-824,904,-2154]` (GCD **2**).
+- Post-event: `[864,924,1010,-1524,-4486,-3016,-1416,-2524,-1044,-2900]` (GCD **2**).
 
-## Executable proof and constructive positive
+The modular consequences are **exact and exhaustive, for unbounded m**:
 
-The [read-only Windows Node22 SFT](../sims/lp2_antirepeat_gpprime_ordinal5_rank3_sft.cjs) loads both unchanged original-source files and asserts **55 rune-bearing physical pages, 12,956 glyphs, 86 repeats**, every witness's actual two identical-rune pairs, no F or punctuation in either convention, exact vector entries, both modular determinants4 and direct enumeration of **125/125 secret coefficient triples**, of which only the stationary triple passes in either convention.
+1. For **every odd m≥3**, the only solution is **(c,a,b)=(0,0,0)**. This includes the visibly motivated moduli 3, 5, 7, 23, 29, 3301, and every other odd composite or prime, with no need to enumerate their keyspaces.
+2. For **every even m≥2**, there are precisely **two** solutions: zero, and the **single** nonzero coefficient triple **`(m/2,0,m/2)`**. Its step for any source symbol `r` is `w(r)=(m/2)·(1+P(r)) mod m`. Since all original non-F GP primes are odd, **w(r)=0 for every non-F rune**. The only possible change is **w(F)=m/2**, a half-cycle toggle caused exclusively by F (prime2). If all F are skipped, this degenerates to a stationary phase everywhere.
+3. Consequently **no nontrivial secret linear ordinal/prime-weighted clock that advances on a non-F ciphertext glyph** can make the original five repeat gaps land at one shared permitted phase, whatever the modulus, secret key, initial phase or convention for checking the output gate.
 
-A separate generated **125-rune, actual original-GP-alphabet positive control** uses the nontrivial secret clock `w(r)=1+2r+3p(r) mod5` and emits identical adjacent symbols only at its permitted phase0. It passes with **24 true adjacent-repeat events**, and every such gap has zero accumulated clock weight. This demonstrates that the proposed changing-state rule can admit valid outputs, whereas the actual unchanged manuscript cannot.
+This gives a strict answer to the exact candidate architecture, not a probability or source-native-English language test. In particular the earlier rank-three **mod5** certificate (from just the first three rows) is now a special case of this full unbounded-modulus result: for those three rows both 3×3 determinants are **4 mod5**. The additional two original rows remove modulus-specific kernel exceptions (e.g. 13/17 for one three-row determinant) and classify the remaining even-modulus mode exactly.
 
-**Original-source Windows Node22 PASS:** [run 45012458683](https://github.com/FlareZ123/liber-primus/actions/runs/45012458683).
+## Original-input proof, direct exhaustive checks and positive clock
 
-## Research consequence
+The [read-only Node22 Windows SFT](../sims/lp2_antirepeat_affine_gpweight_allmod_smith_sft.cjs) reads the unchanged canonical `resources/liber-primus/lp2-corpus.json` and `lp2-punctuation-identity.json`, reconstructs the **55 rune-bearing physical pages and 12,956 source GP runes**, checks all five actual doublets and **absence of F/punctuation between them**, re-computes all 55 source-derived original gap vectors, the exact 30+10 minors for both timing conventions, and independently tests every secret coefficient triple for **all 28 integer moduli m=2..29**. Each of these 28 finite keyspaces has exactly the stated zero/unique F-only two-element kernel.
 
-Retire **the entire 124-nonzero-key family of five-phase symbol-weighted clocks linear in the published GP rune ordinal and GP prime**, if source page/printed punctuation are its only resets and visible F is its only optional skip. The 86 original repeat events cannot be explained as “duplicates only at a special phase” of that clock, irrespective of secret coefficient selection.
+The earlier independent [five-phase source SFT](../sims/lp2_antirepeat_gpprime_ordinal5_rank3_sft.cjs) additionally generates a true nonstationary prime/ordinal-dependent **125-rune positive clock** with **24 legal duplicate events**, confirming that the declared mechanism can actually produce repeated output at a phase gate in laboratory data; the original source fails while a positive genuinely generated sequence passes.
 
-The result does **not** exclude arbitrary **nonlinear** GP symbol weights, a key state that depends on two adjacent ciphertext runes, an unknown extra clock register, new resets at every printed word or line, plaintext-dependent skips, variable forbidden phases, or a stochastic escape rule. None of those is established by the first-party five-dot or prime clues; each would need an independently author-visible transition/exception grammar before its inverse is worth optimizing. The rank-three witnesses are best used to prune unauthored clock/key sweeps and focus effort on authentic reversible key generation.
+**Verified original-source Windows Node22 runs**: [all-modulus Smith certificate PASS, 45013548736](https://github.com/FlareZ123/liber-primus/actions/runs/45013548736) and [independent five-phase positive PASS, 45012458683](https://github.com/FlareZ123/liber-primus/actions/runs/45012458683).
+
+## Cryptanalytic decision and limitations
+
+**Retire every affine-combination source-GP ordinal/prime modular output-clock rule whose duplicate ciphertext rune pairs may occur only at a single counter phase, and whose only clock resets are printed punctuation or page starts, for all m≥2.** The sole formal even-modulus survivor is an F-only toggle that is frozen on all 28 non-F runes. It cannot be presented as evidence that Cicada designed a useful progressing clock or as a recovered cipher.
+
+The proof **does not** cover a clock that intentionally resets on every printed word/line, nonlinear weights in prime/ordinal, dependence on two previous runes, contextual exception gates, additional plaintext-side invisible skips, arbitrary time-varying forbidden phases, or a fully arbitrary polygraphic cipher. These larger families need a new original clue selecting their state and reversible update, not an ad hoc exemption of the five witnessed original gaps.
+
+The result is a **decisive independent-source exclusion**, and its proper use is to stop cipher/key searches in this mathematically complete family and prioritize genuine source-derived next operations. No new authentic LP2 plaintext is claimed.
