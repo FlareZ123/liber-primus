@@ -40,6 +40,14 @@ for (let r=27;r>=4;r--) ring.push(r*8+3);
 assert.equal(ring.length,52);
 assert.equal(new Set(ring).size,52);
 const key = ring.map((i) => panel.bytes[i] % 29);
+const rowMajor = [];
+for (let r = 3; r <= 28; r += 1) {
+  for (let c = 3; c <= 4; c += 1) rowMajor.push(r * 8 + c);
+}
+assert.equal(rowMajor.length,52);
+assert.deepEqual([...rowMajor].sort((a,b)=>a-b), [...ring].sort((a,b)=>a-b));
+const rowKey = rowMajor.map((i) => panel.bytes[i] % 29);
+const rowMajorInverse = interior.map((v,i) => (v-rowKey[i]+29)%29);
 /** @param {number[]} values @returns {number[]} */
 function subtract(values) { return values.map((v,i) => (v-key[i]+29)%29); }
 /** @param {number[]} values @returns {number[]} */
@@ -58,6 +66,10 @@ assert.ok(printGP(sourceRefrain).startsWith('SHED'));
 assert.equal(printGP(sourceRefrain).length>=52,true);
 const originalMatches = inverse.filter((x,i)=>x===sourceRefrain[i]).length;
 assert.equal(originalMatches,3);
+const rowMajorMatches = rowMajorInverse.filter((v,i) => v === sourceRefrain[i]).length;
+assert.equal(rowMajorMatches,4);
+assert.ok(Math.abs(ioc(rowMajorInverse) - 0.03092006033182504) < 1e-12);
+assert.deepEqual(rowMajorInverse.map((v,i)=>(v+rowKey[i])%29),interior);
 assert.deepEqual(add(inverse),interior);
 assert.deepEqual(subtract(add(sourceRefrain)),sourceRefrain);
 console.log(JSON.stringify({
@@ -69,6 +81,13 @@ console.log(JSON.stringify({
   decodedCore:printGP(inverse),decodedCoreIoC:ioc(inverse),
   independentSolvedP57Last52:printGP(sourceRefrain),knownNativeIoC:ioc(sourceRefrain),
   originalP57ExactMatches:originalMatches,
+  printedRowMajor: {
+    gridIndices:rowMajor,
+    output:printGP(rowMajorInverse),
+    outputIoC:ioc(rowMajorInverse),
+    originalP57Matches:rowMajorMatches,
+    originalExactReplay:'52/52'
+  },
   originalCoreReencryption:'52/52',
   solvedP57SourceNativePlant:'52/52',
   status:'No original prose, no shell inversion, no independently authored all86-rune cipher.'
