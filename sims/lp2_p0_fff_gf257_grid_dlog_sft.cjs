@@ -81,6 +81,25 @@ assert.deepEqual([valueAtA,derivativeAtA],[0,0]);
 assert.equal(phase,2*rootA);
 assert.equal(byExponent[rootA],redFactors[2]);
 assert.equal(byExponent[phase],redFactors[2]*redFactors[2]%P);
+
+// Source-independent prediction check: the p39 red leading GP value 15
+// and p54 red index A=24 produce exactly eight 24th roots in GF257.
+// The p0 middle word's prime sum 295 encodes 257 plus the *least*
+// positive root, 38; its third prime sum 48 doubles the root exponent.
+// This exact cross-page match was found exploratorily and must not be
+// marketed as a pre-registered prediction or creator-authenticated key.
+/** @param {number} base @param {number} exponent */
+function powerMod(base,exponent){
+  let result=1;
+  for(let i=0;i<exponent;i++)result=result*base%P;
+  return result;
+}
+const eligibleGenerators=Array.from({length:P-1},(_,i)=>i+1)
+  .filter(g=>powerMod(g,rootA)===redFactors[2]);
+assert.deepEqual(eligibleGenerators,[38,94,105,119,138,152,163,219]);
+assert.equal(generator,eligibleGenerators[0]);
+assert.equal(sourceG,P+eligibleGenerators[0]);
+assert.equal(sums[2],2*rootA);
 const doubleRootJet = coeff=>{
   let value=0, derivative=0;
   for(const digit of coeff){
@@ -99,6 +118,9 @@ const crossArtifactBridge={
   originalP29AndP50DoubleRootValueDerivative:[0,0],
   gf257PowerAtP54RuneIndex:byExponent[rootA],
   gf257PowerAtTwiceP54RuneIndex:byExponent[phase],
+  eligible24thRootsInGF257:eligibleGenerators,
+  leastPositiveGenerator:eligibleGenerators[0],
+  predictedThreeFFfWordPrimeSums:[P,P+eligibleGenerators[0],2*rootA],
   equality:'38^24 = 15; 38^48 = 15^2 (mod257)',
   status:'Exact independent source-data identity; authorial operation and authentic plaintext unknown.'
 };
