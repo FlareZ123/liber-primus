@@ -1,0 +1,26 @@
+name: Agent8 p32 source-route prime-clock original decision
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: agent8-p32-23step-prime-clock
+  cancel-in-progress: false
+
+jobs:
+  sft:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Exact 96 original p32 variants and native solved positives
+        shell: pwsh
+        run: |
+          node sims/lp2_p32_signed23_wordstart_prime_totient_source_sft.cjs
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
