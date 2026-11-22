@@ -51,9 +51,25 @@ Under the **GP-prime** rather than zero-index sums, OUR OWN = **76**, precisely 
 
 Thus the obvious contiguous receivers, the immediate p51 runes and full p55, both reject the same literal direct additive pad. Neither a center-to-face navigation clue nor the 26 unique other cube bytes supplies the missing transformation. Further tuned rotations or pad traversals would need source-authored directions and a withheld full-span plaintext consequence.
 
+## Source-locked 27-rune fractionation intermediate: p56 prime-outer gate
+
+A standard 3×3×3 Trifid or equivalent coordinate cipher holds 27 symbols. The **2,979 original GP runes in the independent published solved-control transcription** contain no EO(index12) or OE(index22), leaving exactly a 27-rune native subset. This makes a source-motivated GP27 *intermediate* possible without claiming that the original author selected Trifid. However, untouched unknown ciphertext visibly uses all29 GP rune values, so a reversible **29-symbol outer step** is required to recover that intermediate.
+
+The one **independently authenticated GP29 outer mechanism** in Liber Primus is p56's prime-index shift with plaintext F transparent and non-consuming. Its exact forward transform reproduces all85 original p56 ciphertext runes from the independent solved plaintext. The read-only SFT applies the exact corresponding inverse with a **state-set DP** to the untouched unknown input, allowing *both* possible interpretations of cipher rune F: unshifted plaintext F and shifted non-F. It enforces the necessary condition that every recovered intermediate belongs to the solved-source 27-rune subset. This test is **key-independent** of the unknown Trifid permutation or period.
+
+| Physical original page | Original runes | Prime start0: first impossible rune offset | Alternative source-42 start: first impossible offset |
+| --- | ---: | ---: | ---: |
+| p49 | 66 | 9 | 1 |
+| **p51 after numeric table** | **92** | **12** | **24** |
+| p52 | 263 | 0 | 5 |
+| **p55 terminal unknown** | **76** | **12** | **4** |
+| **p56 authentic solved positive** | **85** | **none, complete valid path** | 1 |
+
+Both starts are literal choices: prime index0 reproduces the independently confirmed historical p56 beginning, while proposed start42 is supplied by the source-cube center 0g=42; it is **not** a free phase search. The **p56 source positive accepts all85** and matches the known exact plaintext/ciphertext. The original p51 and p55 are impossible under either frozen prime start even before any 27-cube key permutation is applied. This retires the simple double-layer candidate **p56 prime outer ⇒ fixed GP27 cube inner** with page-local prime start0 or clue42, including source-native F transparency. It leaves non-prime outer rules, non-27 intermediates, other authenticated start conditions, and unknown historical key material undecided. Do not rescue the candidate by fitting an arbitrary prime phase or adding unmentioned escape symbols.
+
 ## Direct original p56 SHA-512 check
 
-For both conventional base60 and the conditional drop-f base59, convert table numeric cells directly into bytes and hash each of four frozen ranges: first192, first229, all256, and last64. **None of the eight SHA-512 digests matches** the 128-hex-character original p56 target:
+For both conventional base60 and the conditional drop-f base59, convert table numeric cells directly into bytes and hash each of five frozen ranges: first192, first229, all256, last64 and last27. **None of the ten SHA-512 digests matches** the 128-hex-character original p56 target:
 
 36367763ab73783c7af284446c59466b4cd653239a311cb7116d4618dee09a8425893dc7500b464fdaf1672d7bef5e891c6e2274568926a49fb4f45132c2a8b4
 
@@ -63,4 +79,4 @@ This finite negative does not rule out a separately encoded file, alternate seri
 
 Retain the exact zero-cell/suffix/solved-phrase alignment as an intermediate **source-navigation hypothesis**, not a decryption. Revisit it only if an original image, historical clue, or complete source-fixed decoder can select a byte extraction and p51 receiver without post-fitting. The next advance must yield actual bytes or a long original ciphertext plaintext with an independent holdout. Do not proliferate same-table arbitrary 27-cell pad variants.
 
-The self-contained [read-only Node22/CommonJS SFT](../sims/lp2_p50_zero_suffix_p57_phrase_sft.cjs) asserts both source zero positions, both solved GP sums, the original p51 prefix, the direct four reversible consumers, alphabet uniqueness counts and all eight SHA-512 negatives. Its inputs are the immutable [canonical corpus](../resources/liber-primus/lp2-corpus.json) and [original-table transcription](../resources/liber-primus/lp2-grid-256.json); original p51 is scan 68.jpg, and solved p57 is scan 74.jpg in the [image atlas](../resources/liber-primus/). Run as Node.js 22 from repository root or any current working directory. This report belongs in supporting evidence; no unknown text was deciphered.
+The self-contained [read-only Node22/CommonJS SFT](../sims/lp2_p50_zero_suffix_p57_phrase_sft.cjs) asserts both source zero positions, both solved GP sums, the original p51 prefix, the direct four reversible consumers, alphabet uniqueness counts, the independently positive-controlled p56 prime-to-GP27 output-type obstruction, and all ten SHA-512 negatives. Its inputs are the immutable [canonical corpus](../resources/liber-primus/lp2-corpus.json) and [original-table transcription](../resources/liber-primus/lp2-grid-256.json); original p51 is scan 68.jpg, and solved p57 is scan 74.jpg in the [image atlas](../resources/liber-primus/). Run as Node.js 22 from repository root or any current working directory. [The source-frozen Windows Node22 CI execution passed](https://github.com/FlareZ123/liber-primus/actions/runs/45004597599). This report belongs in supporting evidence; no unknown text was deciphered.
