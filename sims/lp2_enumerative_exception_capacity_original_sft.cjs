@@ -215,6 +215,60 @@ for (const cyclic of [false, true]) {
 assert.ok(variants.every(v => v.p0p1Ioc300 < controls.n300.min));
 assert.ok(variants.every(v => v.p16Ioc200 < controls.n200.min));
 
+/*
+ * For canonical mixed-radix word enumeration P = S*M + R, each word
+ * codebook has a factor 29. Thus M is divisible by 29^2896, fixing the
+ * final 2896 plaintext GP digits for EVERY external sidecar S.
+ */
+function mixedWordRank(cyclic) {
+  let rank = 0n, choicesAll = 1n;
+  for (const w of words) {
+    const t = w.length - 1, sites = [], digits = [];
+    for (let j = 1; j < w.length; j++) {
+      const x = w[j], p = w[j - 1];
+      if (x === p) sites.push(j - 1);
+      else digits.push(cyclic ? (x - p + 28) % 29 : x - Number(x > p));
+    }
+    const e = sites.length, masks = choose(t, e), base = 28n ** BigInt(digits.length);
+    let maskRank = 0n, used = 0;
+    for (let j = 0; j < t; j++) {
+      if (sites[used] === j) {
+        maskRank += choose(t - j - 1, e - used);
+        used++;
+      }
+    }
+    let dr = 0n;
+    for (const d of digits) dr = dr * 28n + BigInt(d);
+    const m = 29n * masks * base, r = (BigInt(w[0]) * masks + maskRank) * base + dr;
+    assert.ok(r >= 0n && r < m);
+    rank = rank * m + r;
+    choicesAll *= m;
+  }
+  assert.equal(choicesAll, wordSize);
+  return rank;
+}
+const suffixModulus = 29n ** BigInt(words.length);
+assert.equal(wordSize % suffixModulus, 0n);
+const suffixIoc = cyclic => {
+  const rank = mixedWordRank(cyclic);
+  assert.equal((rank + 123456789n * wordSize) % suffixModulus,
+    rank % suffixModulus);
+  let x = rank % suffixModulus;
+  const out = Array(words.length).fill(0);
+  for (let i = out.length - 1; i >= 0; i--) {
+    out[i] = Number(x % 29n);
+    x /= 29n;
+  }
+  return ioc(out);
+};
+const sideInvariantSuffix = {
+  ordinal: suffixIoc(false), cyclic: suffixIoc(true),
+  solvedNative: ioc(solvedSections.flat().slice(-words.length))
+};
+assert.ok(sideInvariantSuffix.ordinal < 0.04);
+assert.ok(sideInvariantSuffix.cyclic < 0.04);
+assert.ok(sideInvariantSuffix.solvedNative > 0.06);
+
 /* Real solved-native plaintext, planted through a length-expanding GP28
    nonrepeat transition encoder, recovers exactly under the same decoder. */
 const native = solvedSections.flat().slice(0, 300);
@@ -248,5 +302,6 @@ console.log(JSON.stringify({
   insufficientWordPreservingLocalChapters: chapterDeficits,
   chaptersStillInsufficientWithThreePunctuationSymbols: chapterDeficitsEvenWithTernaryGlyphs,
   solvedIoc: controls, directOriginalInverses: variants,
+  sidecarIndependent2896RuneSuffix: sideInvariantSuffix,
   plantedPositive: "PASS"
 }, null, 2));
