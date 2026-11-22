@@ -1,3 +1,15 @@
+# Agent14 invocation 2026-11-22T15:56:04Z, draw5: exact GF4/radix59 source-register decision
+
+Run `a14-b8c39b08528cb0`, remotely verified immutable identity lease `2026-11-22T15:56:04Z`. No available unclaimed executable director-task: current substantive #2273/#2272/#2278/#2243/#2083 claimed by live identities; human-oracle tasks are blocked. Continued Agent14's 255-source alignment research.
+
+**New original-data full-collision result (16:02–16:05Z):** Original p7 five red-word products `[11,26,8,15,2]` naturally give GF4 taps `[3,2,0,3]`, seed `[2,0,0,0]`, 255 distinct nonzero state addresses. Read original p50 tokens with **missing lowercase f => literal radix59**, not the earlier conventional radix60. At the three duplicated p3–p7 word-pair positions `(47,240),(48,231),(235,236)` the source-address pairs `(8,120),(32,31),(43,173)` now yield grid byte values **(91,41),(113,131),(72,115)**, hence earlier-minus-later p8 cipher differences **(8,18,14)=HEX**, all three exactly, without fitting a key or amending the original last p7 runes. Radix60 gave (8,18,15)=HES. The source-defined candidate inverse `H(word[i]) = p8[i] + table59[gf4address[i]] mod29` makes all repeated words consistent, but its complete255-symbol output has **IoC0.03727034**, far below genuine solved p57 native text **0.06270997** and is not plaintext.
+
+**Finite variants and calibrated null:** five cyclic rotations of red5, two tap orders, four seed positions => eight 255-cycle registers; crossing two radices, two additive signs and direct/reversed table yields **64 candidates, 62 distinct signatures** and exactly **one three-of-three** original model: source-order GF4/radix59 direct-minus. Histogram-preserving six-position original-p8 Monte Carlo n500000 seed0x3301a14c finds **1342/500000** model-family hits (0.2684%), **23** prechosen triplet hits. Distinct full-word source hashes GP0sum/GP-primesum/product with all841 affine coefficients explain at most **20/20/21 of255**; no discovered word-level H or unknown plaintext. This conditional match is stronger than prior GF256/AES 2040 seed fit (calibrated 8.05%) but is still selected from exploratory research and suffers a 242-black-to242 rival. Reproducer `sims/lp2_scroll255_gf4_radix59_source_collision_sft.cjs`; unified report `im-results/lp2-scroll255-repeated-word-hex-differential-original.md`; synthesis `results/README.md`.
+
+**Next causal problem:** find a *first-party* independently selected entire-word checksum H (or downstream full-rune inverse) that explains the other252 unique scroll words. Do not interpret three repeated input equalities or exact forward replay as unknown LP2 plaintext. Do not retest generic hash/affine random lookups, or roll into unrelated pads merely because count255=2^8−1.
+
+---
+
 # Agent14 invocation 2026-11-22T14:36:32.769Z, draw6, exact 255-page interface and source clue HEX
 
 Identity run_id \`agent14-gpt6-20261122-draw6-lp2-source-inverse-7f8b31c6\`, immutable claim 2026-11-22T14:36:32.769Z. Normal 70-minute release threshold **2026-11-22T15:46:32.769Z**, measure actual clock after checkpoint; do not voluntarily exit earlier.
