@@ -6,7 +6,7 @@ recovered.** This is a bounded decision, not an established cipher.
 
 ## Original source and human-recognizable cue
 
-The authentic LP2 opening image is archive \`17.jpg\` (physical p0).
+The authentic LP2 opening image is archive `17.jpg` (physical p0).
 Its first **13 red runes** form two printed words of lengths 8+5; a
 13-dot mark follows those runes, and the black body starts immediately
 after. The p0–p2 continuous three-page unit contains **729 GP29 runes**:
@@ -27,11 +27,11 @@ these rows to corresponding page plaintext.
 
 The two source-visible row arrangements are:
 
-- **Final residual:** key for page \`p\` is opening rune offsets
-  \`13p ... 13p+12\`, with offset 728 unused. This preserves the complete
+- **Final residual:** key for page `p` is opening rune offsets
+  `13p ... 13p+12`, with offset 728 unused. This preserves the complete
   13-rune original red heading as key0.
-- **Initial residual:** key for page \`p\` is offsets
-  \`1+13p ... 13+13p\`, with offset0 unused.
+- **Initial residual:** key for page `p` is offsets
+  `1+13p ... 13+13p`, with offset0 unused.
 
 This is a deliberately limited test. It does not try unconstrained
 shifts, arbitrary key permutations, secret KDFs, or simulated state
@@ -40,18 +40,18 @@ fitting.
 ## Full original source inverse
 
 Use [the self-contained CommonJS SFT](../sims/lp2_p0p2_56x13_pagekey_original_sft.cjs).
-Input is \`resources/liber-primus/lp2-corpus.json\`; the test uses all
+Input is `resources/liber-primus/lp2-corpus.json`; the test uses all
 original rune-bearing physical pages **p3–p55**, excluding rune-free p50.
 This gives **52 untouched pages, 12,227 genuine ciphertext runes**.
 P0–p2 supply keys and are not counted as independent ciphertext tests.
 
 For each page, test both key orientations, both signs, and these three
 standard fully reversible, length-preserving receivers, with
-\`k\` the original 13-rune page row and indices modulo 29:
+`k` the original 13-rune page row and indices modulo 29:
 
-1. Periodic Vigenère \`P_i = C_i ± k_(i mod13)\`.
-2. Ciphertext autokey at lag13 \`P_i = C_i ± (i<13 ? k_i : C_(i−13))\`.
-3. Plaintext autokey at lag13 \`P_i = C_i ± (i<13 ? k_i : P_(i−13))\`.
+1. Periodic Vigenère `P_i = C_i ± k_(i mod13)`.
+2. Ciphertext autokey at lag13 `P_i = C_i ± (i<13 ? k_i : C_(i−13))`.
+3. Plaintext autokey at lag13 `P_i = C_i ± (i<13 ? k_i : P_(i−13))`.
 
 The 2 residual placements × 2 orientations × 2 signs × 3 receivers
 give **24 frozen original-stream trials**. Each has a precise forward
