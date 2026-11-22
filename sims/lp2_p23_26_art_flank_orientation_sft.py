@@ -62,6 +62,7 @@ def main() -> None:
     # A flipped known image must be recognized as flipped by the same routine.
     planted = np.full((3600, 2400), 255, dtype=np.uint8)
     left = frames[41][1280:2200, 90:520]
+    planted[1280:2200, 90:520] = left
     planted[1280:2200, 1880:2310] = cv2.flip(left, 1)
     positive = orientation_scores(planted)
     print("synthetic left-right-flipped receiver:", positive)
