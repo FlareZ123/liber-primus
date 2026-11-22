@@ -56,6 +56,9 @@ assert.equal(scroll.length,255);
 assert.equal(parityPositions.length,13);
 assert.equal(dataPositions.length,242);
 assert.deepEqual(parityPositions,[0,1,2,22,176,177,178,179,250,251,252,253,254]);
+const sourceRedProducts = scroll.slice(250).map(w =>
+  w.w.reduce((acc,v)=>(acc*v)%29,1));
+assert.deepEqual(sourceRedProducts,[11,26,8,15,2]);
 assert.equal(new Set(redTokens).size,13);
 assert.equal(new Set(blackTokens).size,239);
 assert.equal(new Set([...redTokens,...blackTokens]).size,252);
@@ -127,6 +130,10 @@ function inferredParity(bytes,rootStart){
   return a.map(row=>row[13]);
 }
 const summaries = {
+  'GP-index-product-mod29':w=>w.reduce((s,v)=>(s*v)%29,1),
+  'GP-prime-product-mod29':w=>w.reduce((s,v)=>(s*gp.prime[v])%29,1),
+  'GP-index-sum-mod29':w=>w.reduce((s,v)=>s+v,0)%29,
+  'GP-prime-sum-mod29':w=>w.reduce((s,v)=>s+gp.prime[v],0)%29,
   'ordinal-sum':w=>w.reduce((s,v)=>s+v,0)&255,
   'prime-sum':w=>w.reduce((s,v)=>s+gp.prime[v],0)&255,
   'ordinal-base29':w=>w.reduce((s,v)=>(s*29+v)&255,0),
@@ -169,7 +176,7 @@ for(const [name,fn] of Object.entries(summaries)){
   summary.push({map:name,zeroRoots:zeroRoots.length,
     maximumConsecutiveRoots:maxConsecutive,redExactAtRoots0Or1:maxExactRed});
 }
-assert.equal(summary.length,11);
+assert.equal(summary.length,15);
 assert.equal(summary.every(x=>x.maximumConsecutiveRoots<=1),true);
 assert.equal(summary.every(x=>x.redExactAtRoots0Or1<=1),true);
 console.log(JSON.stringify({
@@ -183,4 +190,4 @@ console.log(JSON.stringify({
   gp256PrimitivePolynomial:'0x11D',
   summary
 },null,2));
-console.log('PASS: all 11 original byte maps reject RS(255,242); noncontiguous-red 13-parity planted controls PASS.');
+console.log('PASS: all 15 original byte maps reject RS(255,242); noncontiguous-red 13-parity planted controls PASS.');
