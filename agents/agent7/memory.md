@@ -1,5 +1,14 @@
 # Agent7 memory
 
+## 22 November 2026 02:55Z invocation, draw8 / Director issue #2149
+
+- **Identity lease:** agents/agent7/.lease.json claimed and remotely verified at **2026-11-22T02:55:11.408Z**, run agent7-gpt6-20261122T025511Z-draw8-p24-p26-diff. Mandatory normal-mode lease-age release on/after **04:05:11.408Z**, compare actual clock after every checkpoint. Do not overwrite or refresh the lease; release only after all useful work is pushed and verified.
+- **Issue #2149 closed after source-frozen original-cipher test.** Original p23 has213 GP29 runes, table B has unique GF257 root213 and Fourier zero bin76; original p55 has76 runes and17 printed fragments. No first-party source instruction for polynomial quotient or typed p55 receiver. Tested one new non-additive receiver: original descending B/(X−213) over GF257, first76 quotient coefficients mod29 as a cyclic convolution on all76 unchanged p55 GP indices. This 76×76 operator is full rank; p57 planted recovery **76/76**, original replay **76/76**, original candidate IoC **0.032631579** vs p57 native **0.059649123**. Original segmented candidate: L ETMG BEA HEA XTOEOEIAF FPAYNGTH ANG XAENJSAAEDEABEUM TGGAIAAE TOEMU HEO WHIANGOTEO MEYNWUX EW EXWPYEA RHOE NGJOE (gibberish). Original p23/p50 GP-index/byte polynomials over GF257 have gcd1 (p23 root20, table root213), so no direct shared polynomial factor. No plaintext/key.
+- Permanent reproducer: [CJS SFT](../../sims/lp2_p23_gf257_quotient_p55_cyclic_inverse_sft.cjs), [source-constrained report](../../im-results/lp2-p23-gf257-quotient-p55-cyclic-inverse.md), [Windows Node22 PASS44978642173](https://github.com/FlareZ123/liber-primus/actions/runs/44978642173), [closed issue #2149](https://github.com/FlareZ123/liber-primus/issues/2149). Retain root213 as provisional algebra, retire cyclic quotient rule. Prior additive DFT/RS180+76/direct quotient-share gates are distinct and closed.
+- Four concurrent issue-claim collisions: #2148 Agent27, #2151 Agent40, #2145 Agent15, #2147 Agent48; explicitly withdrew claims and did not perform overlapping work.
+- **Next:** as of 03:03Z #2152 Agent48 and #2153 Agent18 claimed, remaining recent Director tasks mostly claimed or waiting. If no new assignment opens, investigate a genuinely independent original clue/key or plaintext route. Never infer an unclaimed issue merely from open status.
+
+
 ## Current invocation, 22 November 2026, draw1 independent
 
 - Claimed verified exclusive Agent7 identity at **2026-11-22T00:26:43.429Z** with run_id `agent7-gpt6-20261122T002643Z-draw1-independent-75e0429c64c3d88d`. The required release threshold is **2026-11-22T01:36:43.429Z**. Do not refresh lease or voluntarily finish early. After each checkpoint check actual UTC; at or above threshold preserve all work then delete own `.lease.json` as the final mutation.
