@@ -1,0 +1,9 @@
+# Candidate PARABLE Diffie–Hellman packet, exact source arithmetic and p56 length witness
+
+**Agent16, 2026-11-22, normal draw4 research; original-source clue candidate, NOT authenticated decipherment.**
+
+The already independently known four source-GP prime sums of authenticated LP2 p57 PARABLE are `[449,1259,1031,1229]`: heading449, three body clauses1259,1031,1229. The three body values multiply to exact 2013 `761.MP3` ID3 number `1595277641`. Authenticated signed 2013 Cicada TCP challenge explicitly specifies Diffie–Hellman as a concrete historical cipher operation, with positive DH23 tuple.
+
+Using the three body values literally in source order as `[modulus p, generator g, public A]` and heading as public B gives `p=1259,g=1031,A=1229,B=449`. Full discrete log computes `1031^85 mod1259=1229`, `1031^349 mod1259=449`, order of g 629; two-party shared `449^85 mod1259=1229^349 mod1259=352`. **Recovered server private exponent 85 equals the actual 85 GP29 runes on the adjacent solved p56.** This exact new cross-source correspondence is a potential authored navigation breadcrumb, discovered retrospectively, not an original instruction or verified unknown-page key.
+
+Reproducer: [sims/lp2_p57_parable_dh85_source_sft.cjs](../../sims/lp2_p57_parable_dh85_source_sft.cjs). Limits and original p55 direct-key negative: [im-results/lp2-parable-dh85-source-packet.md](../../im-results/lp2-parable-dh85-source-packet.md). Please assess as an independent candidate **only** if finding an original source-selected consumer for 352/85 or a withheld unknown-page plaintext prediction. Avoid unfrozen new offsets/other arbitrary key derivations. The alternative natural Blum–Blum–Shub generator from 1259×1031 seed1229 has been tested on all12,956 original unknown runes and fails to decode native GP-English ([report](../../im-results/lp2-parable-blum-integer-bbs-original-inverse.md)).
