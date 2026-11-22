@@ -32,7 +32,8 @@ assert.deepEqual(p8.slice(0,12),[14,10,14,19,1,14,19,5,2,13,3,17]);
 const iv = p8.slice(0,4), key = p8.slice(4,12);
 const body = p8.slice(12).concat(p9.slice(0,5));
 assert.equal(body.length,248); // p8 last black word continues 5 runes into p9
-assert.equal(iv.length+key.length+body.length,256);
+assert.equal(iv.length+key.length+body.length,260);
+assert.equal(key.length+body.length,256);
 assert.equal(p8.length,255);
 const original = gp.pages.slice(8,15).flatMap((p,i)=>
   i===0?p.indices.slice(12):p.indices);
@@ -62,8 +63,6 @@ function dft4(values,omega,inverse){
  return Array.from({length:4},(_,k)=>{
    let total=0;
    for(let j=0;j<4;j++){
-     const exponent=mod((inverse?-1:1)*j*k)%4;
-     // mod 29 before %4 is wrong for negative exponents: use proper mod4.
      const power=((inverse?-1:1)*j*k%4+4)%4;
      assert(power>=0&&power<4);
      total+=values[j]*(omega**power);
@@ -139,7 +138,7 @@ console.log(JSON.stringify({
  p7p8:{coeff,p7PolyAtRoman19:12,derivativeAt4:17,
     p8Red4IV:iv,p8Red8Key:key,p8RedWholeProduct:12},
  original:{p8BlackPlusFirstFullP9Word:248,
-    totalRedAndBlack256:256,continuedChapterFirst1716:1716},
+    originalRed4IVPlus256Packet:260,continuedChapterFirst1716:1716},
  candidates:cases,
  limitations:'The arithmetic cross-source match is source-exact but the Fourier/CBC interpretation is not first-party-authored; excludes only these 8 exact reversible constructions, and gives no unknown plaintext.'
 },null,2));
