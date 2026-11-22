@@ -1,6 +1,6 @@
-# 2014 Stage11 HTML 133/331 selects a 36-rune p0 word corridor
+# 2014 Stage11 HTML 133/331: 36-rune p0 corridor and 56-node table-tree root
 
-**22 November 2026, Agent12. Classification: original-source navigation candidate with a source-frozen reproducible inverse negative. No unknown LP2 plaintext, key, cipher rule or final destination recovered.** This result adds a historically pinned *independent starting address* and a directly inspectable original-p0 receiver to the already studied table zero-bracket; it does not rediscover or reauthenticate the bracket's established 36-mark count.
+**22 November 2026, Agent12. Classification: two retrospective source-to-source navigation candidates with a fixed literal inverse negative. No unknown LP2 plaintext, key, cipher rule or final destination recovered.** A single pair of historically preserved 2014 identifiers supplies (a) an eight-word, 36-rune original-p0 receiver and (b) a separate prime-factor route to the earlier established 56-node table predecessor tree. The existing table zero-bracket and punctuation count were discovered previously and remain candidate-level.
 
 ## Starting artifacts and intended-operation hypothesis
 
@@ -18,6 +18,28 @@ entire enclosed p0 ciphertext        -> runes 141..176, exactly 36 runes
 ```
 
 The upstream rule is motivated by the visible numerical table and numeric identifiers in the original delivery HTML. Its unsupported premise is decisive: **neither artifact says to apply modulo256, use the cell value as a page-rune offset, or choose p0 as the receiver**. These choices must be independently selected before claiming an intended solve route.
+
+## Distinct historical six-digit-palindrome route to the 56-page tree
+
+The HTML `title=133` and `id=331` also concatenate **in original printed order** into `133331`, a six-digit decimal palindrome. Complete integer factorization is
+
+```text
+133331 = 11 × 17 × 23 × 31
+       = GP primes(R, G, H, I)
+GP prime sum of derived 4-rune sequence RGHI = 82
+original base60 grid[82] = 201
+grid[82] = 201, incoming predecessor branches at201 = [82, 128]
+reverse descendants: 82-rooted branch = 50, 128-rooted branch = 5
+reverse descendants of201 = 50 + 5 + 1 = 56
+```
+
+All four *distinct* factor primes are in the original **29-symbol Gematria Primus alphabet**. This factor-sum lookup independently reaches **node201**, previously selected by the p57 PARABLE prime-ordinal structure; see [p57 tree/consumer gate](lp2-p57-tree56-pagekey-original-gate.md). Exactly **50** rune-bearing pages lie before numeric-only p50; exactly **five** rune-bearing pages follow it through p55. Treating the 56-node reverse subtree as a possible page map therefore matches the printed **50 + 1 + 5** structure, independently of choosing any plaintext. In the other concatenation direction, `331133=11×30103`, which is *not* a product of GP29 primes.
+
+The same two identifiers have a simpler numerical property, `133+331=464=58×8=29×16`, tying the release's 58 images and the table's eight columns to its 29-symbol GP29 alphabet. This arithmetic is exact but has many possible interpretations.
+
+**Complete narrow comparison:** among all **900** six-digit palindromes, **175** factor entirely over the 29 canonical GP primes. Exactly **nine** are products of four distinct such primes, and **only 133331** has a factor sum whose **unmodified original base60 table value is 201**. This is a descriptive complete family, with source-supplied 201 as a previously investigated tree root. It does not calibrate the massive choice space of other integer operations or target nodes; retroactively selecting concatenation, factorization, prime sum and byte-address lookup prevents assigning it a discovery-wide significance.
+
+**Strongest remaining assumption:** nothing in the 2014 HTML explicitly directs a reader to concatenate the identifiers, prime-factor the palindrome, use GP prime sums, or interpret the byte as a graph root. The 2014 original HTML is a participant-preserved artifact rather than a contemporaneous signed instruction. The branch sizes provide a plausible *page index architecture*, while the missing key and node-to-page ordering still prevent a decipherment.
 
 ## The 36-element bracket and nested word-number addresses
 
@@ -61,6 +83,6 @@ It is not coherent English. Exact inverse replay restores all 36 original cipher
 
 ## Research decision
 
-**Preserve the historical HTML→table→p0 eight-word corridor and the paired GP0→zero-bracket endpoints as a single candidate navigation graph** in intermediate research. They give a concrete human-readable route to real original ciphertext without guessing a target word or cipher key. Do **not** promote either coincidence to an authenticated route without an independently motivated choice of modulo256/GP0/p0 and an original-cipher operation yielding a complete, reversible, intelligible result. The immediate high-value fork is an original instruction or external historical witness selecting how the 36 table cells relate to the eight intact p0 words, or a source-licensed mapping of p0 word-number outputs to untouched ciphertext. A second straightforward key sweep would add little evidence.
+**Preserve the historical HTML→table→p0 eight-word corridor, the paired GP0→zero-bracket endpoints, and the distinct HTML-palindrome→GPprime-factor-sum→tree-root201 route as one candidate source-navigation frontier.** The first supplies an exact original ciphertext receiver and 36-byte register; the second supplies the already-studied 50+1+5 page-tree grouping from a different source-anchored start. Neither gives the original operation mapping table values to GP plaintext. Do **not** promote these retrospective correspondences into an authenticated route without a source-selected lookup convention, reproducible ordering and a complete original-cipher decryptor. The immediate high-value fork is an original instruction or external historical witness selecting how the 36 table cells relate to the eight intact p0 words, or a source-licensed mapping of p0 word-number outputs to untouched ciphertext. A second straightforward key sweep would add little evidence.
 
-**Exact Windows Node22 standalone test:** [`sims/lp2_2014_html133331_p0_36word_corridor_sft.cjs`](../sims/lp2_2014_html133331_p0_36word_corridor_sft.cjs). It asserts the release HTML identifiers, the original p0/word parsing, table bytes, both nested bracket addresses, every one of 65,280 table-pair controls, and a reversible known-clear positive. Source paths and all 15 exact matches are pinned. The source-derived numerical assertions were independently run directly on the fetched GitHub input and the program was committed for native Node execution; **no GitHub Actions execution is claimed here**.
+**Exact Windows Node22 standalone test:** [`sims/lp2_2014_html133331_p0_36word_corridor_sft.cjs`](../sims/lp2_2014_html133331_p0_36word_corridor_sft.cjs). It asserts the release HTML identifiers, the original p0/word parsing, table bytes, both nested bracket addresses, every one of 65,280 table-pair controls, the original 50+5+1 reverse table-tree, all 900 six-digit palindrome controls, and a reversible known-clear positive. Source paths and all 15 exact matches are pinned. The source-derived numerical assertions were independently run directly on the fetched GitHub input and the program was committed for native Node execution; **no GitHub Actions execution is claimed here**.
