@@ -26,7 +26,8 @@ assert.equal(WIDTHS.length, 29);
 
 /**
  * @typedef {{ page:number, line:number, inside:boolean, base:number,
- *            dashes:number, stops:number, nextWidth:number }} Break
+ *            dashes:number, stops:number, firstWidth:number,
+ *            ending:string, nextWidth:number }} Break
  */
 
 /** @returns {{breaks:Break[],pageCount:number,runeCount:number,lineCount:number}} */
@@ -58,6 +59,8 @@ function parseOriginal() {
         base: printed.reduce((v, ch) => v + (IDS.has(ch) ? WIDTHS[IDS.get(ch)] : 0), 0),
         dashes: printed.filter(c => c === '-').length,
         stops: printed.filter(c => c === '.').length,
+        firstWidth: WIDTHS[IDS.get(printed.find(c => IDS.has(c)))],
+        ending: printed.at(-1),
         nextWidth: WIDTHS[IDS.get(next)]
       });
     }
