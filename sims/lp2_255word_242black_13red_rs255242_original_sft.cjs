@@ -129,10 +129,10 @@ function inferredParity(bytes,rootStart){
 const summaries = {
   'ordinal-sum':w=>w.reduce((s,v)=>s+v,0)&255,
   'prime-sum':w=>w.reduce((s,v)=>s+gp.prime[v],0)&255,
-  'ordinal-base29':w=>w.reduce((s,v)=>s*29+v,0)&255,
-  'onebased-base29':w=>w.reduce((s,v)=>s*29+v+1,0)&255,
-  'ordinal-product':w=>w.reduce((s,v)=>s*(v+1),1)&255,
-  'prime-product':w=>w.reduce((s,v)=>s*gp.prime[v],1)&255,
+  'ordinal-base29':w=>w.reduce((s,v)=>(s*29+v)&255,0),
+  'onebased-base29':w=>w.reduce((s,v)=>(s*29+v+1)&255,0),
+  'ordinal-product':w=>w.reduce((s,v)=>(s*(v+1))&255,1),
+  'prime-product':w=>w.reduce((s,v)=>(s*gp.prime[v])&255,1),
   'word-length':w=>w.length,
   'first-index':w=>w[0],
   'last-index':w=>w.at(-1),
@@ -163,7 +163,7 @@ for(const [name,fn] of Object.entries(summaries)){
       name+': planted RS(255,242) syndrome '+j);
     assert.deepEqual(inferredParity(inserted,rootStart),needed);
     inserted[parityPositions[0]]^=1;
-    assert.equal(evalAt(inserted,rootStart),1,
+    assert.equal(evalAt(inserted,rootStart),EXP[(rootStart*(254-parityPositions[0]))%255],
       name+': planted wrong parity rejected');
   }
   summary.push({map:name,zeroRoots:zeroRoots.length,
