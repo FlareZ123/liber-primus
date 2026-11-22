@@ -19,7 +19,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
 const {
-  originalParagraphs, gpLength, longestMatch, gitBlobSha,
+  originalParagraphs, longestMatch, gitBlobSha,
 } = require('./lp2_pp36_38_numbered_aphorism_crib_sft.cjs');
 
 const root = path.resolve(__dirname, '..');
@@ -131,7 +131,7 @@ async function main() {
   assert.equal(words.length, 10170, '2014 source token count changed');
   const key = words.flatMap(gpWord);
   assert.equal(key.length, 41181);
-  const bestCrib = longestMatch(words.map(gpLength), wordLengths);
+  const bestCrib = longestMatch(words.map(word => gpWord(word).length), wordLengths);
   assert.equal(bestCrib.length, 7,
     'the original-word-length match changed');
   assert(bestCrib.length < 12, 'a 12+ word literal crib needs adjudication');
@@ -143,6 +143,18 @@ async function main() {
   assert.equal(solved.length, 780);
   const native553 = solved.slice(0, 553);
   assert(ioc(native553) > 0.05, 'genuine solved-source baseline');
+  let genuineMinimum = Infinity;
+  let genuineWindows = 0;
+  for (const section of native.sections) {
+    const seq = Array.from(section.source_text)
+      .filter(ch => runeIndex.has(ch)).map(ch => runeIndex.get(ch));
+    for (let i = 0; i + 553 <= seq.length; i++) {
+      genuineMinimum = Math.min(genuineMinimum, ioc(seq.slice(i, i + 553)));
+      genuineWindows++;
+    }
+  }
+  assert.equal(genuineWindows, 431);
+  assert(Math.abs(genuineMinimum - 0.059930025945435964) < 1e-12);
   const plantKeyStart = 1234;
   const planted = native553.map((n, i) => (n + key[plantKeyStart + i]) % 29);
   const recovered = planted.map((n, i) =>
@@ -174,6 +186,8 @@ async function main() {
     originalAboveNative139Minimum: result.firstPassageHits,
     originalAboveLongGPThreshold005: result.genuineLongWindowHits,
     plantedSolvedLP1GP553IoC: ioc(native553),
+    genuineSolvedLP1Minimum553IoC: genuineMinimum,
+    genuineSolvedLP1Windows: genuineWindows,
     plantedForwardInverse: 'PASS',
     plantedWrongStart: 'DIFFERENT',
     interpretation: 'The 2014 named essay supplies a real historically selected source '
