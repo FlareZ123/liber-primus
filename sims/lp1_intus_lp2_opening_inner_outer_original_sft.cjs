@@ -19,7 +19,7 @@ const corpus=JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const lp2=read("resources/lp2-transcription.txt").split("%");
 const lp1=read("resources/transcriptions/lp1_wulfic_canonical.txt").split("%");
 assert.equal(lp2.length,57);
-assert.equal(lp1.length,15);
+assert.equal(lp1.length,16); // Fifteen rune-bearing segments plus terminal separator
 
 /** 
  * Match the original master grammar. Slash is a line wrap, not a word.
