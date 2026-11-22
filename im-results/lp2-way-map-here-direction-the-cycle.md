@@ -78,6 +78,21 @@ A **distinct original p7 receiver** emerged from the already published p50 liter
 
 **Two source-exact, Windows Node22 SFTs:** [signed-follower/physical-center full original check](../sims/lp2_signed2016_pagecenter_dual_gpchecks_sft.cjs), [CI PASS 45068445160](https://github.com/FlareZ123/liber-primus/actions/runs/45068445160); and [p7 typed adjacent-word compass/0x receiver](../sims/lp2_p7_neighbor_gpprime0x_compass_original_sft.cjs), [CI PASS 45067942068](https://github.com/FlareZ123/liber-primus/actions/runs/45067942068). These tests parse unchanged original files, prove all structural positions/lookup values, and preserve the independent signed reference.
 
+### Two center-cribs uniquely determine a 3×3 affine-circulant key, which fails on 720 original held-out words
+
+**New exact original-source decryption test (Agent45, 22 November; Windows Node22 [PASS 45069272016](https://github.com/FlareZ123/liber-primus/actions/runs/45069272016)).** If the original p5 center ciphertext `CEAA` really represents signed `WAY`, and original p34 center ciphertext `BAS` really represents signed `MAP`, these constitute **two separate, fixed, genuine-original GP29 three-rune plaintext cribs**, each independently matching its proposed word in *both* official GP ordinal and GP-prime totals. These are hypotheses about two words, not recovered plaintext. A 2014-solvable **reversible three-rune affine Hill cipher with a circulant matrix** has precisely six GF29 unknowns: three cyclic matrix coefficients and three additive biases. The two frozen three-rune pairs algebraically determine all six without fitting any unvisited original ciphertext.
+
+With `C=A P+b mod29`, the unique source-derived model for this restricted architecture is
+```text
+A = [ 8 20  2 ]      b = [26]
+    [ 2  8 20 ]          [27]
+    [20  2  8 ]          [ 5]
+``` Determinant **20 mod29** is nonzero, and both hypothesized anchor words recover exactly. The complete encoder/inverse is a three-rune circulant linear layer plus an additive vector.
+
+**Untouched original receiver:** every **720 printed complete three-rune word** elsewhere in the exact 2,896-original-word corpus, accounting for **2,160 actual GP29 source runes**, without choosing a phase, changing the GP chart, or adjusting the key after deriving it from p5/p34. Every original word reencrypts exactly. The transformed GP29 index of coincidence is **0.03456632871871408**, scarcely different from the original three-word subset **0.03457705041771739**, and lacks contiguous GP-native prose. Against **43 distinct authentic solved-Cicada three-rune word vectors**, only two decoded source words match: the model-imposed `WAY` and one incidental `DON`. A genuine solved-source forward cipher plant at the same 720-word length decrypts all 2,160 symbols exactly and gives language-like GP frequencies. The native positive demonstrates the inverse works under this exact key and format.
+
+**Decision:** retire this complete two-crib affine-circulant reconstruction; the second purported crib does not generalize into any broad source-English decryption. The two center sums remain original source observations, with no authenticated plaintext. Reproducer: [source-exact single-file SFT](../sims/lp2_p5_p34_waymap_3x3_affine_circulant_heldout_sft.cjs). The original input and independently solved source data are read from preserved repository resources.
+
 ### Fixed 29-rune page stride reaches exact MAP and HERE dual-number aliases
 
 There are **29 GP rune symbols** and exactly **55 rune-bearing unsolved LP2 pages** (p0–55 excluding the runeless original p50). Start at the unique original p5 center word **C EA A**, which matches both official number sums for the independently signed WAY. Apply a *single* additive page step **+29 modulo55**, with no subsequent adjustment. From original rune-page5 it predicts original **p34**, where the physical center word **B A S** at local rune offsets **130–132** has exact GP0 **56** and GP-prime **211**, matching the same two official numbers for **MAP**. Original p34 has 261 runes; its central rune is index130, the **first rune** of that word. Original p5 has 263 runes; its middle rune index131 is the **second rune** of C EA A. Both word starts are exactly index130.
