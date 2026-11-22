@@ -1,57 +1,51 @@
-# Original-LP2 all-secret word-scalar step cipher: a complete native-word obstruction
+# Original LP2: all-secret word-local periodic multiplicative step cipher exclusion
 
-**Agent8, 22 November 2026. Original source: all 12,956 unknown physical-page runes and all 2,896 complete printed words. No recovered plaintext or authenticated decryption.** This is a new key-independent test of the specific *ciphertext-step multiplicative* architecture, distinct from direct per-word substitution and word-polynomial shift exclusions. The exact program is [`lp2_wordscalar_delta_nativelexicon_original_sft.cjs`](../sims/lp2_wordscalar_delta_nativelexicon_original_sft.cjs).
+**Agent8, 22 November 2026. Actual original ciphertext: 12,956 GP29 runes and 2,896 complete words, including 32 page-crossing words.** A finite keyless test excludes five source-motivated 29-ary ciphertext-feedback families with *arbitrary independent secret multipliers for every original word and every phase*. The result provides neither recovered plaintext nor an authentic decipherment. Exact read-only, native-JavaScript, original-source reproducer: [`lp2_wordscalar_delta_nativelexicon_original_sft.cjs`](../sims/lp2_wordscalar_delta_nativelexicon_original_sft.cjs).
 
-## Proposed original-source solve path
+## Direct clue-to-operation hypothesis
 
-One widely repeatable original constraint is only **86 adjacent equal runes** in 12,956 unknown LP2 runes, alongside nearly uniform marginal GP29 frequencies. The authentic Gematria Primus alphabet has 29 ordered symbols. Its last symbol, **EA**, has zero value under one-based ordinal reduction modulo29. A cumulative multiplicative step cipher naturally produces a repeated ciphertext rune precisely when its plaintext value is EA:
+The unknown LP2 original has only **86 adjacent-equal ciphertext pairs** despite near-uniform frequencies of all 29 GP runes. In GP29 one-based ordinal arithmetic, the rune **EA** is ordinal29 and therefore residue0. This suggests a natural cipher family in which *only* plaintext EA creates ciphertext equality, regardless of the unknown multiplicative key. The 2016 Cicada-signed message foregrounds **words, numbers and direction**, and the original p23–26 displays a five-dot grouping cue; independent research reports a within-word fifth-back equality excess. Those clues motivate per-word, possibly periodic, multipliers. The creator's actual opcode, if any, remains unknown.
 
-```text
-k_word ∈ {1,...,28} (arbitrary independent secret for each word)
-q(P_i) = (GP0(P_i) + 1) mod 29
-
-C_i = C_prev + k_word * q(P_i)  (mod 29)
-```
-
-The **2016 Cicada-signed emphasis on words and numbers** makes per-word key selection a conceivable human starting point, although no first-party instruction states this equation or the key source. To avoid a fitted-key experiment, grant the attacker **all 28^2896 choices** of independent nonzero keys across the original words. Two complete boundary interpretations are frozen: continue previous ciphertext over real word/page boundaries, or reset `C_prev=0` at every complete printed word. Every original cross-page word remains one word. No rune or punctuation is discarded.
-
-## Exact all-secret key elimination
-
-Let `D_i=(C_i−C_prev) mod29` be the ciphertext step within a word, under the chosen predecessor convention. For the hypothesized word cipher `D_i=k_word*q(P_i)`. Normalize any vector `v` by multiplying all entries by the inverse of its **first nonzero entry** in GF29, retaining zero entries. Denote the result `S(v)`. Because `k_word` is a nonzero field element,
+Grant a stronger attacker than any sourced simple key construction: choose completely arbitrary **independent nonzero secret keys** for each physical complete printed word and each phase `0..t−1`, with *t fixed* to each of the five modest periods `1,2,3,4,5`. Even without knowing those keys, test all source words under the following exact reversible hypothesis:
 
 ```text
-S(D_word) = S(q(P_word))
+t in {1,2,3,4,5}
+k[word,phase] in GF(29)^* = {1,2,...,28}, private and arbitrary
+q(P_i) = GP0(P_i) + 1 mod29
+
+C_i = C_previous + k[word, i mod t] * q(P_i) mod29
 ```
 
-holds **for every possible secret word key**. A native candidate that disagrees with the ciphertext's normalized signature is mathematically impossible under this cipher. The only assertion about language is that native plaintext words should be recoverable from a specified contemporary-style English dictionary. This is an exact key-independent dictionary membership test, not a stochastic ciphertext score or an adaptive key search.
+Here `i` counts rune positions *within each complete original printed word*. Both natural predecessor conventions are covered: ciphertext continuously carried over the preceding word/page, and predecessor0 reset at the start of every word. The original typography and all 12,956 runes are retained; there are no guessed plaintext-F skips, deleted repeated runes, or resegmented words.
 
-The pinned TextBlob English spelling-frequency lexicon `resources/control/english_wordfreq_textblob.txt` has **23,940** words encodable under the standard GP29 native multigraph priorities `ING,TH,NG,EO,OE,AE,IA,EA`, mapping ING to GP NG. For each candidate, the SFT computes `S(GP0+1)` and indexes it by **rune word length**. For each original LP2 printed word, it tests whether **any** native word of the exact same GP length shares the normalized ciphertext step signature, independent of its unknown key.
+## A full-keyspace test without searching secret keys
 
-## All-original results and an independent genuine-English positive control
+For each observed original word, let `D_i=C_i−C_prev mod29` be its ciphertext step. For each residue class `i mod t`, normalize the corresponding step subsequence by multiplying every entry by the modular inverse of its first nonzero member; retain explicit zeros. Concatenate these `t` canonical signatures in phase order. Do the identical phasewise normalization to each candidate plaintext word's vector of one-based GP29 ordinates `q(P)`.
 
-| Exact original runic word length | Words | Any compatible native dictionary word, continuous predecessor | Any compatible native dictionary word, word-reset |
-| ---: | ---: | ---: | ---: |
-| 1 | 83 | 83 | 82 |
-| 2 | 448 | 448 | 448 |
-| 3 | 720 | 404 | 383 |
-| 4 | 513 | 38 | 39 |
-| **5** | **317** | **0** | **2** |
-| **6** | **256** | **0** | **0** |
-| **7** | **216** | **0** | **0** |
-| **8** | **156** | **0** | **0** |
-| **9–14** | **187** | **0** | **0** |
-| **All 5+** | **1,132** | **0** | **2** |
+For the hypothesized cipher, `D_i=k[word, i modt]·q(P_i)`. Hence **each private scalar cancels identically within its phase**. The resulting phasewise signatures of ciphertext and a genuine plaintext word must match exactly for **every** possible choice of the `t` private keys; this includes every conceivable source-derived word length, number, prime or table-key selector in this particular architecture. There is no language-model ranking, period tuning from ciphertext output, numeric brute force, or fitted substitution alphabet.
 
-A potential small-word match is expected by chance because many short GP vectors share the same one-scalar equivalence class; **none** of the **815 original 6-or-longer-rune words** matches even a single native word under either fixed predecessor rule. In particular, **all** native 6+-rune plaintext dictionaries using this standard GP spelling fail, regardless of the 2,896 hidden nonzero scalar keys.
+The fixed English word source is the pre-existing research [TextBlob spelling-frequency reference](../resources/control/english_wordfreq_textblob.txt), containing **23,940** GP29-encodable lexical words under the canonical `ING,TH,NG,EO,OE,AE,IA,EA` multigraph priority (`ING` maps to GP NG). An observed word matches iff **at least one** dictionary candidate of the exact same native GP rune length has precisely the same phasewise canonical signature. A nonmatch is an exact exclusion for every private key within the named architecture, conditional on native English being represented by that fixed lexicon.
 
-**Independent native corpus control:** Run the same native GP tokenizer on the actual pre-2014 Kahlil Gibran *The Prophet* text in `resources/control/gibran_prophet_58585.txt`. Among its **4,120 genuine 5+-rune words**, **3,896** have an exact native signature found in the same pinned dictionary. The remaining native 224 illustrate the lexicon's genuine coverage limit. This native control is not used to choose ciphertext keys or tune anything.
+## Original ciphertext results with five all-secret phase families
 
-**Original-length planted positive:** take source-native Gibran dictionary words of exactly the original 2,896 LP2 printed word lengths, including every original long word. Encode the real GP-native words with independently changing secret nonzero per-word scalar keys, preserving 12,956 symbols and original word boundaries. All **1,132/1,132** native 5+-rune words remain discoverable by the all-secret ciphertext signature after encryption, and every rune reverses under its private planted key. The positive demonstrably detects the modeled mechanism at full-original size.
+| Private keys per word / phase period | Original compatible words of 1,132 length≥5, carry | Original compatible words of 343 length≥8, carry | Original compatible words of 109 length≥10, carry | Original compatible words of 109 length≥10, reset |
+| ---: | ---: | ---: | ---: | ---: |
+| t=1 | 0 | 0 | **0** | **0** |
+| t=2 | 50 | 0 | **0** | **0** |
+| t=3 | 321 | 0 | **0** | **0** |
+| t=4 | 592 | 1 | **0** | **0** |
+| t=5 | 793 | 28 | **0** | **0** |
 
-## What this decides and what it cannot exclude
+Here **carry** means the original first rune of a printed word subtracts the preceding word's last ciphertext rune; **reset** means that first rune subtracts zero. Both interpretations give 0/109 native lexical matches for all periods. The source also gives 0/815 source words of length≥6 under t=1, even after granting a different unconstrained key for each word. Under the five-phase model, shorter words frequently match by coincidence because single observed symbols impose no relative scalar constraint. The 109 source words of length≥10 contain enough repeated phase positions to make t≤5 discriminating.
 
-The 29-ary ciphertext-step / nonzero **word-static scalar** cipher cannot plausibly explain intact LP2 as ordinary GP-native English under either of the two natural original-word predecessor semantics. The apparent 86 EA-compatible zero steps alone are insufficient to rescue it: the remaining words reject the hypothesis even after allowing an arbitrary secret scalar per word. The test is stronger than trying particular GP-prime key generators or table residues, because it eliminates all possible per-word scalars simultaneously.
+**Independent natural-language control:** Run the same GP-native tokenizer and static lexicon against the genuine pre-2014 Kahlil Gibran *The Prophet* text `resources/control/gibran_prophet_58585.txt`. **289/324 native words of GP length≥10** have a lexicon match under **every t=1..5**. For all native GP length≥5, exact lexicon matches increase from **3,896/4,120 at t1** to **4,018/4,120 at t5**; increasing matches reflect less restrictive phase signatures, not decipherment. This demonstrates normal genuine literary words satisfy the test often and gives explicit finite dictionary-coverage limitations.
 
-This does **not** prove the unenciphered manuscript is English, that the printed word boundaries equal plaintext boundaries, that this dictionary contains every possible name or language, or that the intended cipher lacks **within-word evolving keys, position-dependent multipliers, non-GP coding, resegmentation, nonlinear state, escapes, or a supplied one-time pad**. These are materially different architectures. A complete original plaintext/key remains unknown. Consequently any future revival of the one-based multiplicative-step idea should require an independently sourced, **within-word-changing** key schedule with an actual untouched plaintext prediction; exhaustive per-word scalar fitting adds nothing.
+**Full-length period-five planted positive:** The script selects a genuine Gibran-native dictionary word for *each* of the original 2,896 GP word-length slots, reconstitutes exactly **12,956 source-shaped native GP rune positions**, encrypts using a distinct nonzero secret multiplier for every one of the five word-local phases, and checks the original-register phasewise inverse. All **1,132/1,132** planted words of GP length≥5 are discoverable without any secret key, and the independent known-key decoder reverses each of the 12,956 planted ciphertext symbols exactly. The same original parser checks that original rune concatenation equals the canonical physical-page corpus byte for byte after transcription normalization.
 
-[Single-file CommonJS reproduction and positive plants](../sims/lp2_wordscalar_delta_nativelexicon_original_sft.cjs) · [Original rune dataset](../resources/lp2-transcription.txt) · [Native English dictionary](../resources/control/english_wordfreq_textblob.txt) · [Independent 2014-era prose positive](../resources/control/gibran_prophet_58585.txt).
+## Next cryptanalytic decision
+
+This rejects a materially large, even *unconstrained-key*, periodic within-word extension of the naturally anti-repeating GP29 predecessor cipher. Selecting a key from p7/p15/p50 prime operands would narrow the keyspace even further and cannot repair a mathematical signature mismatch. Most importantly, the source's fifth-back excess does **not** make a five-phase *multiplicative ciphertext-step cipher with intact English words* sufficient to recover plaintext: all 109 longest printed words violate its necessary native-word signature.
+
+Limits are explicit. The original book could have non-English plaintext, names absent from TextBlob, fake printed spaces, position-varying **nonperiodic** multiplicative keys, nonlinear cipher state, additive phase offsets, homophonic/steganographic channels, or a non-GP intermediate code. The result is conditional on preservation of the original complete words and on one-based scalar ciphertext steps. Since this finite branch yields no usable plaintext or key, the next candidate needs an independently visible reason for one of those genuinely different operations and must then predict original unknown plaintext on a held-out interval. Avoid further secret scalar fitting within the excluded word-local family.
+
+[Reproduce all five fully secret-key tests and period-five English plants](../sims/lp2_wordscalar_delta_nativelexicon_original_sft.cjs) · [Canonical source rune transcript](../resources/lp2-transcription.txt) · [Corpus of all 58 physical pages](../resources/liber-primus/lp2-corpus.json) · [English reference](../resources/control/english_wordfreq_textblob.txt) · [Period-native prose control](../resources/control/gibran_prophet_58585.txt).
