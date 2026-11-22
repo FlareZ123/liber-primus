@@ -169,3 +169,41 @@ for (const primeStart of keyStarts) {
   assert.deepEqual(recovered, planted);
 }
 console.log('PASS: the DH352 prime-index transfer to original p55 has no source-English plaintext; native GP29 plants recover 76/76.');
+
+
+// New source-only self-address: DH shared352 modulo the original 95 GP runes
+// lands at p57 rune offset67, the literal first F of the imperative FIND.
+const p57Pointer = sharedServer % p57.indices.length;
+assert.equal(p57Pointer, 67);
+const wordFIND = p57.indices.slice(p57Pointer, p57Pointer + 4)
+  .map((index) => corpus.translit[index]).join('');
+assert.equal(wordFIND, 'FIND');
+assert.equal(p57Pointer, clauses[3][0]); // Exact fourth printed stanza boundary.
+assert.equal(sharedServer - client.log, 3); // Number of printed body stanzas.
+const findTail = p57.indices.slice(p57Pointer);
+const findCycle = findTail.concat(p57.indices.slice(0, p57Pointer));
+assert.deepEqual([findTail.length, findCycle.length], [28, 95]);
+
+/** @param {number[]} cipher @param {number[]} key @param {-1|1} sign @returns {number[]} */
+function vignereGP(cipher, key, sign) {
+  return cipher.map((symbol, i) => (symbol + sign * key[i % key.length] + 29) % 29);
+}
+const originalUnknown = corpus.pages.filter((page) => page.page >= 0 && page.page <= 55)
+  .flatMap((page) => page.indices);
+assert.equal(originalUnknown.length, 12956);
+for (const [name, key] of [['FIND-tail28', findTail], ['FIND-cycle95', findCycle]]) {
+  const planted = vignereGP(p57.indices, key, 1);
+  assert.deepEqual(vignereGP(planted, key, -1), p57.indices); // Native clear positive.
+  for (const sign of [-1, 1]) {
+    for (const [scope, ciphertext] of [
+      ['p55-page', p55.indices], ['p55-body', p55.indices.slice(1)],
+      ['whole-book', originalUnknown]
+    ]) {
+      const plain = vignereGP(ciphertext, key, sign);
+      console.log('SOURCE pointer FIND key=' + name + ' sign=' + sign +
+        ' scope=' + scope + ' exactIoC=' + ioc(plain).toFixed(6) +
+        ' opening=' + plain.slice(0, 24).map((v) => corpus.translit[v]).join(''));
+    }
+  }
+}
+console.log('PASS: K352 modulo p57 length95 points exactly at FIND/last stanza; both frozen literal Vigenere key consumers fail to recover original prose.');
