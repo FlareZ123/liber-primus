@@ -42,7 +42,8 @@ function parse(source, owners) {
   const runes = [];
   let section = 0;
   let page = owners.length ? owners[0] : 57;
-  for (const glyph of source) {
+  for (let offset = 0; offset < source.length; offset++) {
+    const glyph = source[offset];
     if (glyph === '$') {
       section++;
       continue;
@@ -56,6 +57,9 @@ function parse(source, owners) {
       runes.push(n);
       tokens.push({digit:n, section, page});
     } else if (glyph === '-' || glyph === '.') {
+      // Keep structural dashes after actual Arabic numerals 7,1,2,3,4,5
+      // in the typography sidecar. These six are not GP word marks.
+      if (glyph === '-' && offset > 0 && /[0-9]/.test(source[offset - 1])) continue;
       tokens.push({digit:29, section, page});
     }
   }
@@ -69,8 +73,8 @@ const owners = pages.flatMap((p) => p.indices.map(() => p.page));
 const original = parse(source, owners);
 assert.deepEqual(original.runes, pages.flatMap((p) => p.indices));
 assert.equal(original.runes.length, 12956);
-assert.equal(original.tokens.length, 15858);
-assert.equal(original.tokens.filter((x) => x.digit === 29).length, 2902);
+assert.equal(original.tokens.length, 15852);
+assert.equal(original.tokens.filter((x) => x.digit === 29).length, 2896);
 assert.equal(new Set(original.tokens.map((x) => x.section)).size, 8);
 assert.equal(new Set(original.tokens.map((x) => x.page)).size, 55);
 
@@ -202,7 +206,7 @@ const qLongNative = [
   firstInconclusive(original.tokens, 320, 755, 'section', 30),
   firstInconclusive(original.tokens, 320, 755, 'page', 10)
 ];
-assert.deepEqual(qLongNative, [148, 20, 3]);
+assert.deepEqual(qLongNative, [153, 20, 3]);
 
 const qNative = [
   firstInconclusive(original.tokens, 46, 95, 'global', 340),
@@ -214,18 +218,19 @@ const qConservative = [
   firstInconclusive(original.tokens, 2, 5, 'section', 30),
   firstInconclusive(original.tokens, 2, 5, 'page', 10)
 ];
-assert.deepEqual(qNative, [315, 41, 6]);
-assert.deepEqual(qConservative, [98, 14, 2]);
+assert.deepEqual(qNative, [318, 41, 6]);
+assert.deepEqual(qConservative, [102, 14, 2]);
 
-// Inconclusiveness is not monotone in period: 315 is the first inconclusive
-// global period, while 316 and even 333 remain source-excluded.
-assert.equal(capacity(original.tokens, 314, 46, 95, 'global').excluded, true);
-assert.equal(capacity(original.tokens, 315, 46, 95, 'global').excluded, false);
-assert.equal(capacity(original.tokens, 316, 46, 95, 'global').excluded, true);
-assert.equal(capacity(original.tokens, 333, 46, 95, 'global').excluded, true);
+// Inconclusiveness is not monotone: first surviving global period 318,
+// period 320 still excluded on the exact original, with its numbered list
+// punctuation treated as non-GP layout.
+assert.equal(capacity(original.tokens, 317, 46, 95, 'global').excluded, true);
+assert.equal(capacity(original.tokens, 318, 46, 95, 'global').excluded, false);
+assert.equal(capacity(original.tokens, 320, 46, 95, 'global').excluded, true);
 
 console.log('GP30 all-secret periodic SPACE/five-letter upper bound: PASS');
-console.log('Exact source: 12956 runes + 2902 authentic printed spaces/periods = 15858 tokens');
+console.log('Exact source: 12956 runes + 2896 GP printed marks = 15852 tokens');
+console.log('Six dashes after ASCII list markers (7,1,2,3,4,5) stay unencoded.');
 console.log('Native LP2 p57 plant: 95 runes, 20 separators, 46 top-five; period8 passes');
 console.log('Native LP1 p10–13 plant: 755 runes, 320 top-five; period8 passes');
 console.log('First INCONCLUSIVE period, long native LP1 q=320/755:');
@@ -237,11 +242,11 @@ console.log('  global ' + qNative[0] + ', 8 source sections ' + qNative[1] +
 console.log('First INCONCLUSIVE period, conservative q=2/5:');
 console.log('  global ' + qConservative[0] + ', sections ' + qConservative[1] +
   ', pages ' + qConservative[2]);
-for (const period of [1, 8, 29, 97, 98, 314, 315, 316, 333]) {
+for (const period of [1, 8, 29, 97, 101, 102, 317, 318, 320]) {
   const record = capacity(original.tokens, period, 46, 95, 'global');
   console.log('Global native-q all-secret period ' + period + ': ' +
     JSON.stringify(record));
 }
-console.log('Decision: all continuous GP30 bijective-substitution periods 1..314 are source-excluded');
+console.log('Decision: all continuous GP30 bijective-substitution periods 1..317 are source-excluded');
 console.log('at native p57 top-five concentration, including arbitrary hidden phase keys.');
 console.log('This is a necessary class gate only; it does not recover LP2 plaintext.');
