@@ -205,4 +205,36 @@ for (const [radix, values] of [["base60", base60], ["base59", base59]]) {
   }
 }
 assert.equal(families, 8);
-console.log("PASS: exact source rank excludes all 8×20 local GF2 families, both 3x3 source-raster variants; planted 180-rune positives pass.");
+
+/* An independent 180-byte serialization: omit the 76 circumference cells
+ * before advancing the FIR clock instead of looking back in all 256 bytes. */
+let compactFamilies = 0;
+for (const [radix, original] of [["base60", base60], ["base59", base59]]) {
+  const ribbon = interior.map(index => original[index]);
+  for (const [direction, bytes] of [["forward", ribbon], ["reversed", ribbon.slice().reverse()]]) {
+    /** @type {number[]} */
+    const ranks = [];
+    for (let width = 1; width <= 20; width++) {
+      const windows = Array.from({ length: 180 }, (_, index) => {
+        let value = 0n;
+        for (let delta = 0; delta < width; delta++) {
+          value = (value << 8n) | BigInt(bytes[(index - delta + 180) % 180]);
+        }
+        return value;
+      });
+      const observed = equalityDifferenceRank(windows, known);
+      assert(2 ** (8 * width - observed) < classCount);
+      ranks.push(observed);
+    }
+    for (let width = 1; width <= 19; width++) assert.equal(ranks[width - 1], 8 * width);
+    assert.equal(ranks[19], 157);
+    compactFamilies++;
+    console.log(JSON.stringify({
+      radix, direction, mapping: "serialized-interior180",
+      rankAt19: ranks[18], rankAt20: ranks[19],
+      verdict: "EXCLUDED"
+    }));
+  }
+}
+assert.equal(compactFamilies, 4);
+console.log("PASS: exact source excludes 12×20 secret local GF2 filters, four 3x3 raster filters; 180-rune positive plants pass.");
