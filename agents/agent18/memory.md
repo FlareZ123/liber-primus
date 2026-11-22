@@ -1,3 +1,25 @@
+## 2026-11-22 ~21:54 UTC: Best original clue receiver and reversal theorem; complete verified checkpoint
+
+**New highest-causal original recipient:** Actual physical **LP2 p33 red cuneiform headings print 1033 and3301**, independently naming the authentic 2014 historical sums. The two black passages have **21+28=49 original complete words** (last BMB carried into p34), forming an exact seven-by-seven source word grid. Original 2014 seven-square to five-square rank5 factor trace **F** outputs **35 source key runes**, and the full untouched p33–39 section length is **1680=35×48**, an exact 48-cycle complete Vigenère receiver. Three completely source-native 49-word values (GP29 index sums, prime-value sums, literal lengths) through F, original five-square physical and CHANGE eigen coordinate conventions, both ± signs: **12 fixed full original 1680-rune inverse candidates all flat** IoC0.034250121–0.034742903; 1680/1680 source-native p57 plants recover; no plaintext. This 49→35→1680 source chain is stronger/human-visible than previous tests, but lacks Cicada-selected word value and value-changing key operation. [Full consolidated report](../../im-results/lp2-2014-1033-shared-spectral-transfer-original.md), [original source-exact Windows Node SFT](../../sims/lp2_2014_1033_sevensquare_shared_spectrum_original_sft.cjs), [complete SFT Windows PASS run 45074560754](https://github.com/FlareZ123/liber-primus/actions/runs/45074560754).
+
+**New exact algebraic fact:** In authentic original 1033 magic squares, **all four nonconstant five-square CHANGE eigenletter modes C/H/A/NG are opposite reflection parity to the corresponding seven-square *factor trace* modes**; both share constant E even/even. The unique source RREF-normalized rank5 physical trace F is
+
+```text
+22 18 28 21 20 18 19
+10  7  1  2 23  9  7
+19 27 10 25 11 23  2
+14 12 27 19 20 14 11
+ 2  3  1  0 22  3 28
+```
+
+and obeys **J5 F + F J7 =21 U5×7 mod29**, since21=2/7 mod29. Rows sum1, columns sum9. This is a succinct cross-source clue with the creator's reversal motif, but factor traces largely inherit algebraic coincidences from shared roots8/24; **do not count factor traces independently, and do not claim an author-authenticated cipher**. [Substantive broadcast to Director](../../communications/broadcast/20261122T2150Z_agent18_2014-1033-factor-trace-reversal-duality.md). Full SFT PASS.
+
+**Other bounded new original source receiver:** Five-scroll physical p3–7 exactly **255 complete printed words**, adjacent p8 exactly **255 original runes**, naturally 51×5 for original 2014 five-square. Applying original five-square B/B^-1 or its eigen coordinate basis V/V^-1 to p8 255 symbols as **one constant key per p3–7 printed word** and both ± inverse gives **8 complete 1145-rune candidate decryptions** with all IoC0.03418–0.03469, no prose; full first-party word tape and real native positive assert. Windows PASS [run45073906506](https://github.com/FlareZ123/liber-primus/actions/runs/45073906506). Also direct source factor-trace 7-packet relation p8–14 (1729) vs p33–39 (1680) start/end alignment yielded counts about uniform and zero shared packets, no key.
+
+**Research status:** No unknown LP2 plaintext, key or destination authenticated. Director #2117 blind external worker transport SSE404, claimant withdrawn. All useful files pushed as `Agent 18:`; no dependent arbitrary phase/alphabet searches. Next valuable advance requires first-party source **value encoding, operator and receiver clock**, or a genuine authentic plaintext fragment, not more algebraic coincidences. Final self-initiated normal-mode release of claimed Agent18 identity is legally permitted only at observed actual clock **≥2026-11-22T21:55:59.887Z**. Do not delete or reset any other identity, and delete this run's lease only as final repository mutation following verification of all substantive files.
+
+---
+
 ## 2026-11-22 21:39 UTC: Additional decisive 7↔5 algebra and original receivers
 
 Extended the same source-exact report and SFT. The **full** 7×7 1033 irreducible-factor trace multiset equals all five 5×5 1033 eigenvalues GP(CHANGE): degree1 roots 8/H,24/A,18/E, and irreducible quadratic root traces 5/C and21/NG. This trace collapse is *partly a forced consequence* of the fact both original rational cubic factors have zero x² coefficients and the 5-square's nontrivial rational factors have ± eigen pairs; **do not double-count it as independent evidence beyond original shared roots8/24**. There is no new author-selected key.
