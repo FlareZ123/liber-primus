@@ -245,6 +245,38 @@ for(const depth of [2,3]){
     withheldLatinWords:latinLengths.length-middle
   });
 
+  // Independent, correctly normalized Old English: published Beowulf
+  // source, 10,885 original words; avoid the separate misnormalized legacy
+  // fixture. Train only first half, hold out second half with page-shape.
+  const oldEnglish=JSON.parse(read(
+    'resources/control/beowulf_oe_gp_profile_corrected.json'));
+  assert.equal(oldEnglish.acceptedSourceWords,10885);
+  const oe=oldEnglish.allSourceGpWordLengths.map(n=>Math.min(K-1,n));
+  assert.equal(oe.length,10885);
+  const halfOE=Math.floor(oe.length/2);
+  const oeModel=model([oe.slice(0,halfOE)],depth);
+  const oeSource=oe.slice(halfOE);
+  let oeOffset=200;
+  const oeNative=pageChunks.map(page=>{
+    const part=oeSource.slice(oeOffset,oeOffset+page.length);
+    assert.equal(part.length,page.length);
+    oeOffset+=page.length;
+    return part;
+  });
+  const oeOriginal=evaluate(book,oeModel,depth,trials);
+  const oeHoldout=evaluate(oeNative,oeModel,depth,trials);
+  assert.ok(Math.abs(oeOriginal.z)<2,
+    'LP2 original was not expected to show Old English grammar');
+  assert.ok(oeHoldout.z>(depth===2?3:2),
+    'actual Beowulf passage must retain word-length order information');
+  results.push({
+    depth,heldout:'resources/control/beowulf_oe_gp_profile_corrected.json',
+    sourceLanguage:'Old English',originalPageConditioned:oeOriginal,
+    sourceNativePositive:oeHoldout,
+    trainingOldEnglishWords:halfOE,
+    withheldOldEnglishWords:oe.length-halfOE
+  });
+
   results.push({
     depth,
     knownSolvedCicadaWordCount:known.reduce((n,p)=>n+p.values.length,0),
@@ -252,7 +284,7 @@ for(const depth of [2,3]){
   });
 }
 console.log(JSON.stringify({
-  outcome:'Both original LP2 printed word-length bigrams and trigrams match within-page shuffled controls, while 713 words of solved Cicada text, three English controls and Latin heldout text retain order structure. No unknown plaintext recovered.',
+  outcome:'Both original LP2 printed word-length bigrams and trigrams match within-page shuffled controls, while 713 words of solved Cicada text, three English controls, Latin Vulgate, and Old English Beowulf retain order structure. No unknown plaintext recovered.',
   originalPages:pageChunks.length,
   originalWords:physicalWords.length,
   originalRunes:runecount,
