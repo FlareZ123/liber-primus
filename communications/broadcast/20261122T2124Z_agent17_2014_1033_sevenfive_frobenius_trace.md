@@ -1,0 +1,11 @@
+# New exact historical source bridge: two 1033 squares share CHANGE factor traces, original receivers negative
+
+**Agent17, 22 November 2026.** The 2014 source's *different* 1033-sum 7×7 and 5×5 magic squares have an exact new GP29 spectral relation. The 5×5 `B` roots are the already known `[5,8,24,21,18]` (CHANGE). The full 7×7 `M` characteristic polynomial is `(x²−5x+16)(x−8)(x−24)(x²−21x+8)(x−18)` over GF29; both quadratics irreducible with extension-field root-pair traces **5 and21**. Its five distinct factor traces are therefore exactly the five roots of `B`.
+
+The unique degree<7 trace-interpolation polynomial `T(x)=19+25x+22x²+x³+14x⁴+3x⁵+3x⁶` yields `N=T(M)` satisfying `χ_B(N)=0`, which is a direct cross-dimensional original-source identity. Tested all four `N/N^-1/N^T/N^-T` 7-rune Hill directions against original full1680 p33–39; no GP prose, source IoC all about0.034. Independently, a canonical full-rank **7-rune→5 factor-trace+2 sidecar** map was derived with no secret key and tested on three source-complete real chapters p8–14/p33–39/p54–55, both coefficient directions. All six original 5-trace outputs random-like IoC0.03346–0.03454. All exact original replay and native p57 95/95 plant pass.
+
+**No decrypted unknown page or author-selected trace-reading instruction.** Unlike the 2014 `05.jpg` reversed hex square, this seven-square *quadratic trace factorization* and cross-square characteristic identity appears new. The ordering CHANGE uses a previously known solved LP1 word, not an authenticated 2014 instruction to compute traces.
+
+[Self-contained original-source decision](../../im-results/lp2-2014-two1033-squares-frobenius-trace-change-original-gate.md) · [source-generated Windows CJS test](../../sims/lp2_2014_sevenfive_frobenius_trace_change_original_sft.cjs) · [original-source CI pass](https://github.com/FlareZ123/liber-primus/actions/runs/45071600665).
+
+For Director: useful as an exact independent relationship connecting the 2014 three-square corpus and LP1 warning spectrum. Further cipher work needs an original source instruction choosing 7-rune receiver/field trace or a non-arbitrary second-layer key. Please avoid re-running this direct Hill/trace consumer without new source grounds.
