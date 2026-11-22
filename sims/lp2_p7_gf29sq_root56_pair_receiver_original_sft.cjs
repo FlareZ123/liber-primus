@@ -185,6 +185,52 @@ function pageCohortCollision(a, physicalParity) {
 }
 const observedPageCohorts = [0, 1].map(parity =>
   pageCohortCollision(ciphertext, parity));
+/**
+ * The same pure-root no-go survives a fixed affine field translation:
+ * T(v)=A*v+b -> T^n(v)=A^n*v+sum(A^j*b).
+ * On every even exponent, A^n=lambda*I even under an arbitrary
+ * hidden GL2 basis, leaving one independent affine map *per position*
+ * in each original page. Per-page-and-position collisions are immutable.
+ */
+function affinePageCohortCollision(a, physicalParity) {
+  let equal = 0, possible = 0, count = 0, groups = 0;
+  for (const [page, sites] of pagePairs.entries()) {
+    if (page % 2 !== physicalParity) continue;
+    for (const runeParity of [0, 1]) {
+      const values = sites.map(i => a[i + runeParity]);
+      const hist = Array(29).fill(0);
+      for (const value of values) hist[value]++;
+      equal += hist.reduce((sum, v) => sum + v * (v - 1), 0);
+      possible += values.length * (values.length - 1);
+      count += values.length;
+      groups++;
+    }
+  }
+  return { groups, runes: count, same: equal, pairs: possible,
+    ioc: equal / possible };
+}
+const observedAffineCohorts = [0, 1].map(parity =>
+  affinePageCohortCollision(ciphertext, parity));
+
+// Positive decoder plant only: each scalar page has a separately
+// invented nonzero affine rune offset on each paired-rune position.
+// The offsets are *synthetic controls*, never inferred LP2 keys.
+for (const phase of [0, 1]) {
+  const next = ciphertext.slice();
+  for (const [page, sites] of pagePairs.entries()) {
+    const powerValue = page + phase;
+    if (powerValue % 2) continue;
+    const scalar = power([0, 1], powerValue)[0];
+    assert.notEqual(scalar, 0);
+    for (const i of sites) {
+      next[i] = mod(scalar * ciphertext[i] + 17 * page + 3);
+      next[i + 1] = mod(scalar * ciphertext[i + 1] + 13 * page + 4);
+    }
+  }
+  assert.deepEqual(affinePageCohortCollision(next, phase % 2),
+    observedAffineCohorts[phase % 2]);
+}
+
 
 const observedParity = parityCollision(ciphertext);
 const {encodeSourceNativeGP} = require("./lp2_native_gp_source_orthography_sft.cjs");
@@ -217,6 +263,17 @@ for (const [author, encoded] of nativeSources) {
     samples.push(parityCollision(encoded.slice(start, start + ciphertext.length)).ioc);
   }
   assert(samples.length >= 1, "native source must include at least one full original-length readout");
+  const affinePageCohorts = [0, 1].map(parity => {
+    const values = [];
+    for (let start = 0; start + ciphertext.length <= encoded.length;
+         start += Math.max(1, Math.floor(ciphertext.length / 2))) {
+      values.push(affinePageCohortCollision(encoded.slice(start,
+        start + ciphertext.length), parity).ioc);
+    }
+    return {groups: observedAffineCohorts[parity].groups,
+      minimum: Math.min(...values), maximum: Math.max(...values),
+      atOrBelowOriginal: values.filter(v => v <= observedAffineCohorts[parity].ioc).length};
+  });
   const pageCohorts = [0, 1].map(parity => {
     const values = [];
     for (let start = 0; start + ciphertext.length <= encoded.length;
@@ -230,7 +287,10 @@ for (const [author, encoded] of nativeSources) {
   });
   assert(pageCohorts.every(c => c.atOrBelowOriginal === 0),
     author + ": native source should be strongly distinguishable from original root family");
+  assert(affinePageCohorts.every(c => c.atOrBelowOriginal === 0),
+    author + ": affine field page parity native source distinction");
   nativeBaseline[author] = {
+    affinePageCohorts,
     pageCohorts,
     sourceRunes: encoded.length, windows: samples.length,
     minimum: Math.min(...samples),
@@ -289,8 +349,9 @@ console.log(JSON.stringify({
   original:region(ciphertext),
   originalPageParityCipherCollision:observedParity,
   originalEvenOddPageCohorts:observedPageCohorts,
+  originalAffineEvenOddPageCohorts:observedAffineCohorts,
   independentLanguagePageParityControls:nativeBaseline,
   rootCandidates:results,
   independentNativePositive:"true solved p57 corpus planted and reencrypted/decrypted exactly"
 }, null, 2));
-console.log("PASS: original GF29^2 root56, all-secret page/pair invariant and arbitrary-basis scalar page-cohort invariant, native donors and exact inverse.");
+console.log("PASS: source GF29^2 root56, exact all-phase/basis affine page-parity invariants, native corpus controls, complete source inverse.");
