@@ -4,6 +4,8 @@
 
 A genuinely contiguous source register closes physical p55's missing 10-unit outer count: **the last ten runes of p54 + p55's 33 word exteriors =43**, exactly equal to the 43 strict interiors of p55. The two 43-symbol tapes use **all 86 original runes**, including the complete word crossing the page break. This specifies a new real input geometry for possible reversible two-stream decoders. It still requires an independent operation selected by the creator; the artist did not label the 43/43 scheme.
 
+**Literal p57 instruction scope:** The solved PARABLE command to “shed our own circumferences” acts on complete words. The actual p54→p55 crossing word has 11 runes, whose strict interior is the nine p54 symbols following its initial G. Complete-word shedding of all original 86 thus makes **52 interior +34 exterior**, whereas the **43+43 grouping** below assigns all ten p54 tail runes to its provisional exterior tape. That page-local reassignment is a genuine original-data partition but needs an extra author-supplied boundary rule before being treated as the literal p57 instruction. [Exact source reader and replay](lp2-p54-p55-literal-completeword-52core34shell-source-gate.md).
+
 ## 1. The original cross-page source
 
 Archive image `71.jpg`, physical p54, ends with an **unterminated ten-rune** fragment:
