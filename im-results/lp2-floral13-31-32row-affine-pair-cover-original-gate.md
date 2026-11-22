@@ -1,37 +1,70 @@
-# The floral 13/31 ornaments cannot by themselves allocate the 32 original numeric rows
+# Floral stem-gap row address: a complete 22/31 paired-row map, with no decrypted LP2 text
 
-**Agent23 · 22 November 2026 · Director #2241. Intermediate, key-independent row-addressing result. No recovered plaintext, authenticated key, cipher, or destination.**
+**Agent23 · 22 November 2026 · Director #2241, extended independent original-source work. Classification: source geometry + exact all-stride theorem + direct original-rune cipher negative. No recovered unknown plaintext, author-authenticated cipher/key or continuation address.**
 
-## Source-visible input and the actual proposed operation
+## The two observed objects
 
-Original physical p40–55 are sixteen consecutively flower-framed pages. Each has the same **five-dot pattern on each side**. Earlier original-image work established the original-source, top-first circular binary reading **left 01101₂=13** and **right 11111₂=31**. Those pixels are page-static; this work does not rediscover or verify them. Read [the original 13/31 source study](lp2-floral-13-31-original-direct-row-and-walk-gate.md) and [the exact raster/DCT identity](lp2-floral16-source-border-pixel-identity.md).
+The original LP2 p40–55 share one identical flower illustration with **five outlined/filled dots on the left and five filled dots on the right**, all p40–55 pages retaining that exact fixed artwork. Original p50 scan `resources/liber-primus/67.jpg` has left sites in top → upper right → lower right → lower left → upper left order:
 
-Independently, the authentic p49–51 table holds **32 printed rows of eight base-60-number bytes**, giving 256 values. A natural candidate tries to turn each floral page's *left/right* decorations into two *distinct* eight-byte table rows, assigning every printed table row exactly once across sixteen pages. This would yield sixteen 16-byte records, possibly cryptographic keys, but the manuscript never calls them keys or supplies an opcode.
+`[(398,1475),(425,1500),(421,1534),(380,1542),(367,1500)]`, with actual 11×11 dark-center counts `[0,121,121,0,121]` and binary `01101₂=13`. The right sequence is `11111₂=31`. These source marks and unchanged frame identity were established by [the earlier original-image study](lp2-floral-dot-masks-grid-row-original-gate.md), independently of this contribution.
 
-To avoid tuning a key against unknown prose, test the following **generous key-independent addressing family** first. Given the two original 5-bit readings `a,b` and unknown stride parameters `s,t∈{0,…,31}`, assign original physical page `p40+i` these table rows:
+The same source's p49–51 numeric field prints exactly **32 rows of eight base60 two-character tokens**, whose accepted conditional byte reading yields 256 original values. The **16** flower-framed pages can be paired with **16** successive two-row / 16-byte records. Neither the picture nor the 2014 source calls those bytes a key or specifies a cipher; the apparent dimensional match is a hypothesis.
 
-`L_i=(a+s·i) mod32;  R_i=(b+t·i) mod32;  i=0,…,15`.
+## Newly observed original-ink start boundary
 
-Grant the unknown left and right stride independently. Ask only whether these 32 referenced row indices cover **every printed row once**. All 1024 ordered stride pairs are tested exactly; each page has two complete eight-byte rows, so no rune, table cell or cryptographic key is fitted. Equivalent one-based addressing subtracts one from both seeds, retaining the same pair spacing.
+In original 2400×3600 scan `67.jpg`, the filament/branch leading into the **left five-dot cluster** ends at exactly **x=370, y=1520–1521**, the last dark pixels in the isolated branch-end search rectangle `300≤x<375, 1510≤y<1527` at grayscale threshold120. Its terminal falls **between** the upper-left **filled** site4 `(367,1500)` and lower-left **outlined** site3 `(380,1542)`. Both gap neighbors are close; the stem does not point unambiguously to a single petal. This differs from arbitrarily declaring the top dot the bit-reading start.
 
-## Exact original result
+A person starting a circular five-bit read **at the natural filament gap** has two immediate choices:
 
-| Left 5-bit reading | Right 5-bit reading | Independent stride pairs with exactly-once coverage of 32 rows |
-| --- | --- | ---: |
-| **13**, established top-first pattern | **31**, original all-filled pattern | **0 / 1,024** |
-| 11, other permissible cyclic start/direction | 31 | **0 / 1,024** |
-| 21, other permissible cyclic start/direction | 31 | **0 / 1,024** |
-| 22, shifted bit-start convention | 31 | **65 / 1,024** |
-| 26, shifted bit-start convention | 31 | **65 / 1,024** |
+| First dot after the stem gap | Order of original five site indices | Actual original binary bits | Readout |
+| --- | --- | --- | ---: |
+| **clockwise**, upper-left filled first | 4, 0, 1, 2, 3 | **10110** | **22** |
+| **counterclockwise**, lower-left outlined first | 3, 2, 1, 0, 4 | **01101** | **13** |
 
-The five possible left values **{11,13,21,22,26}** are the distinct readings produced by all five cyclic start positions and both traversal orientations of the already established original mark sequence `01101`; the original right `11111` always reads31. The table's original 256 byte values are checked by SHA-256 `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290`. The exact original `13,31` reading fails **even with independent secretly chosen strides**; the one-based `12,30` variant also fails.
+The previously reported **top-first 13** remains genuine. The new **stem-gap clockwise 22** requires a visible origin convention, and puts the readout at an **even** row. The artwork has no directional arrow or printed “start here” instruction, so `22` is **a source-motivated alternative**, not a demonstrated intended key. The other rotation `26` has no corresponding natural stem-gap start in this reading. [The new original-JPEG Pillow SFT](../sims/lp2_floral_branch_stem_bit_origin_original_sft.py) asserts the exact mark-center fills, stem tip, and both directional readouts with untouched scan bytes.
 
-**The precise fork:** For either alternative *even* left reading, 64 of the 65 legal slope pairs are `s≡t≡2 (mod4)`, and the sole other is a nonlinear-looking affine-step pair. The simple common choice `s=t=2` covers all rows for both starts. For `a=22`, the ordered row pairs begin **[22,31], [24,1], [26,3]** and end **[20,29]**; for `a=26`, they begin **[26,31], [28,1], [30,3]** and end **[24,29]**. Both use each of the 256 original printed byte cells exactly once, with sixteen concrete 16-byte records. Their p40 first-record bytes are respectively `eb83a6af9028a751719eace6b424bd50` and `39af063d4696fb54719eace6b424bd50`. The `s=2` example is a **syntactically complete row allocation**, not a decrypted key.
+## Exact all-stride 32-row cover test
 
-The possibility that one can rescue a complete table row cover by changing the **unselected dot-reading origin** is exactly the weakness: neither the source art nor the first-party Cicada operation specifies that changed origin, both even readings survive, and many independently chosen strides survive. Also, **p50 is one of the sixteen illustrated pages and contains no runic ciphertext**, so a per-page-key narrative must specify how its allocated record is consumed. We have deliberately not chosen a block cipher, nonce, binary text transport or value reduction after observing this ambiguity. The alternative of a table simply printed as numerical data remains alive.
+For each p40–55 page index `i=0..15`, assign two eight-byte source table rows by constant independent strides `s,t ∈ {0,…,31}`:
 
-## Decision and limits
+`L_i=(a+s·i) mod32; R_i=(31+t·i) mod32`.
 
-For the **source-established 13/31 reading**, the specific *full-32-row, two-row-per-page, constant-stride* key schedule is **mathematically impossible**, independent of any proposed cipher family, plaintext language, or secret key. An adapted read-origin model can cover the 32 rows but remains **underdetermined** by the image: at least two equally valid left origins and 65 distinct stride pairs in each. A future positive step would need a *new first-party instruction that selects the left bit origin, progression/row order, cipher/key/IV roles, and a full-rune reversible receiver* before testing unknown LP2, with an explicit policy for the rune-free p50 record. This gate does not exclude a completely different, nonaffine row permutation or other functions of the image.
+A **full-table paired-row schedule** must reference each of the 32 printed rows exactly once, with no collision or omission. The [original-table, source-independent test](../sims/lp2_floral13_31_fullrow_affine_coverage_sft.cjs) enumerates all 1,024 stride pairs for each distinct rotation or reflection of the actual left bitmap, with no ciphertext matching:
 
-The exact [read-only Node22 SFT](../sims/lp2_floral13_31_fullrow_affine_coverage_sft.cjs) asserts the canonical original bytes/digest, all ten geometric read directions, all 1024 stride choices per distinct reading, and positive 256-cell coverage for the two conditional `+2` walks. It uses **no ciphertext scorer**, so none of the 0/65 decisions could have been tuned to guessed English. Prior direct 13/31-row AES/TEA/GP29 experiments [have already failed](lp2-floral-13-31-aes128-original-table-receiver.md); do not rerun them or interpret this row-allocation result as a new key.
+| Left seed | Independent stride pairs giving exact 32-row cover |
+| --- | ---: |
+| 13 (top-first; also stem-gap counterclockwise) | **0/1,024** |
+| 11, 21 (other origin/direction choices) | **0/1,024 each** |
+| **22 (stem-gap clockwise)** | **65/1,024** |
+| 26 (another unselected origin) | **65/1,024** |
+
+The right all-filled seed is always31. With the actual 13/31 reading, **every** independent constant-stride two-row-per-page attempt is impossible, including any hidden stride choice. The equivalent one-based seeds12/30 are impossible too. This does not exclude nonaffine table row arrangements.
+
+For the stem-gap-clockwise **22/31**, the minimal positive disjoint progression `s=t=2` gives p40 row pair **[22,31]**, p41 **[24,1]**, p42 **[26,3]**, …, p55 **[20,29]**. Its sixteen 16-byte records use **all 256 source table byte cells exactly once**, with p40 record `eb83a6af9028a751719eace6b424bd50`. This is the simplest parity-complementary cover, an actual source-anchored **candidate key schedule**. Among the 65 possible strides, 64 have `s≡t≡2 (mod4)`. Nothing author-signed chooses `+2`, although it is the simplest positive stride that visits the two disjoint row parities.
+
+**Crucial receiver problem:** p50 itself is one of the sixteen flower pages and has **zero GP runes**; the p50-assigned 16-byte record is never consumed by an ordinary one-record-per-page ciphertext cipher. An intended algorithm would need to explain the role of that record and why the 32-row object appears in the middle of its own alleged key schedule.
+
+## New direct original-rune decryption of the best source-shaped schedule
+
+To test the candidate on **actual unknown text**, freeze one source-motivated direct decoder, with no hidden phase, guessed keyword, AES mode, byte reorder or plaintext fitting. Each of sixteen page keys is the literal left eight bytes followed by the literal right eight bytes at that page's `+2` source rows. At the first rune of each original page, reset the key clock. Test only the two algebraic signs on two simple, fully invertible known-GP transport conventions:
+
+1. **GP29 additive**: `P[i] = (C[i] ± (key[i mod16] mod29)) mod29`. Every original rune consumes one key byte.
+2. **GP28 with F literal**: if original `C[i]=F=0`, preserve F and do not advance the key; otherwise rank the 28 non-F runes as 1–28 and add/subtract `byte mod28` in that ring. This is a strictly reversible model inspired by the independently authenticated p56 F-interruption convention; it is **not** the p56 prime-totient cipher itself.
+
+Each output rune reverses exactly to the original ciphertext by the opposite sign, preserving all source positions and page widths. The test also encrypts a source-native p57 95-rune cleartext repeated across the **entire original p40–55 physical page layout**, then decrypts the plant exactly, including the rune-free p50 receiver. All 3,316 original p40–55 rune positions are tested, including original p40–53 **3,008** and separate p54–55 **308** holdout positions.
+
+| Frozen direct transform | Original p40–53 GP29 IoC, 3,008 runes | Original p54–55 GP29 IoC, 308 runes | Full p40–55 IoC, 3,316 runes |
+| --- | ---: | ---: | ---: |
+| unchanged ciphertext | 0.03454262749 | 0.03382122763 | 0.03446282661 |
+| GP29 subtract | **0.03434074924** | **0.03390583358** | **0.03435202419** |
+| GP29 add | 0.03443273320 | 0.03363086425 | 0.03444681575 |
+| GP28 literal-F subtract | 0.03461714333 | 0.03621134566 | 0.03454251702 |
+| GP28 literal-F add | 0.03463151582 | 0.03432886332 | 0.03457890533 |
+
+Every decoded output retains the uniform-looking original ciphertext distribution; the entire chapter remains far below the genuine solved p57 source GP29 IoC `0.0627099664`. The GP29-subtract p40 prefix is `Y-D-IA-AE-W-EO-O-X-IA-F-T-EA-TH-C-P-I-S-U-F-IA`, without intelligible plaintext. No direct candidate recovers coherent previously unknown language. The [new Node22 source-loaded complete original SFT](../sims/lp2_floral_branch22_two_row_source_receiver_sft.cjs) asserts exact table bytes/digest, unique row coverage, all four no-plaintext aggregate results, complete original replay, and full solved-p57 synthetic plant recovery.
+
+## Research decision
+
+The **stem-gap read adds a real visual motivation for 22** that the original top-first study lacked. It also exposes a concrete human route to an exhaustive 32-row allocation through `+2` parity walks. The alternate branch-tip direction13, 65 legal strides, the unused p50 receiver, and lack of any authentic encryption opcode remain decisive uncertainty. The simplest direct GP additive receivers **fail on all 3,316 original runes**, and should not be retried with fitted phases. Prior direct 13/31 AES/TEA/GP29 experiments [also failed](lp2-floral-13-31-aes128-original-table-receiver.md).
+
+Preserve this as a **conditional key-schedule candidate and a bounded original-cipher negative**, not genuine plaintext or a demonstrated Cicada key. A future advancement must provide a **first-party direction or typed byte-to-rune operation** that consumes the printed records, especially p50's record, and decrypts a new untouched passage. The table may instead be unrelated printed binary data.
