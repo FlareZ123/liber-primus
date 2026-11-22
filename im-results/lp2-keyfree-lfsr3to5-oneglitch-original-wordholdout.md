@@ -10,7 +10,7 @@ A complete key-free search across **all seven longest original unsolved LP2 word
 | 4 | **1** | **0** | **1** |
 | 5 | **240** | **4** | **593** |
 
-Neither of the **two** original order-four candidate words survives a completely untouched 250-rune same-page key continuation. Every family has **zero** recovered coefficient vectors recurring across distinct original pages. The five-tap models are sufficiently flexible on 13/14-rune observations to produce hundreds of unrelated dictionary fits by chance.
+An independent original rank-deficiency audit found **408** consistent nonunique four-tap systems in the output-redraw family and **5** in the extra-consumed-key family. Exhaustive enumeration of each free GF29 coefficient over all 29 values gives **zero** additional exact original matches. Thus the two original four-tap fits are exhaustive even allowing rank-three coefficient spaces. Neither of the **two** original order-four candidate words survives a completely untouched 250-rune same-page key continuation. Every family has **zero** recovered coefficient vectors recurring across distinct original pages. The five-tap models are sufficiently flexible on 13/14-rune observations to produce hundreds of unrelated dictionary fits by chance.
 
 The result restricts these key-and-register families on source-native English words. It does **not** imply an LFSR key was selected by Cicada, nor solve another runic passage.
 
@@ -31,7 +31,7 @@ C_i=P_i+K_i \pmod{29},\qquad
 K_i=\sum_{j=1}^{m}a_jK_{i-j}\pmod{29},\quad m\in\{3,4,5\}.
 \]
 
-The coefficients a and initial m key values are **arbitrary**, independently granted to every original word. For each dictionary candidate, infer K=C−P, form all GF29 linear equations for recurrence taps and recover their unique full-rank solution by modular Gaussian elimination. A full exact recurrence replay is mandatory; a compatible subset of equations alone does not qualify.
+The coefficients a and initial m key values are **arbitrary**, independently granted to every original word. For each dictionary candidate, infer K=C−P, form all GF29 linear equations for recurrence taps and recover identifiable coefficients by modular Gaussian elimination. For order four, every consistent rank-three system is additionally enumerated exhaustively over its 29 possible remaining coefficient values. For order five, only full-rank identifiable systems are counted; the limited 13/14-rune word length leaves some one-event five-tap systems underdetermined. A full exact recurrence replay is mandatory; a compatible subset of equations alone does not qualify.
 
 The following optional one-event corrections were separately included, in addition to clean key streams:
 
@@ -66,7 +66,7 @@ None of these five-tap fits shares an identical inferred coefficient vector acro
 
 [Read-only Windows Node.js 22 CommonJS SFT](../sims/lp2_longword_keyfree_lfsr3to5_oneglitch_sft.cjs) uses the existing sources, source-GP encoder and physical word parser, and asserts every original hit count, both p52 candidate identities and both untouched heldout IoCs.
 
-It plants source-native **CIRCUMFERENCES** (directly attested in clear p57) under arbitrary secret nontrivial three-, four-, and five-tap recurrences. The solver recovers all three clean planted coefficient vectors exactly. For three- and four-tap keys, independently inserted one-output redraws, consumed-extra keys and state-changing shocks are also recovered exactly, with reconstructed ciphertext. Order-five one-event positives would often be unidentifiable on a 14-rune word because deleting five or six contaminated equations leaves insufficient rank; only order-five exact recovery is claimed as a calibration.
+It plants source-native **CIRCUMFERENCES** (directly attested in clear p57) under arbitrary secret nontrivial three-, four-, and five-tap recurrences. The runner independently re-solves all rank-three original order-four systems and checks every possible free coefficient by complete output replay. The solver recovers all three clean planted coefficient vectors exactly. For three- and four-tap keys, independently inserted one-output redraws, consumed-extra keys and state-changing shocks are also recovered exactly, with reconstructed ciphertext. Order-five one-event positives would often be unidentifiable on a 14-rune word because deleting five or six contaminated equations leaves insufficient rank; only order-five exact recovery is claimed as a calibration.
 
 The earlier original-data V8 calculations independently established the all-dictionary results; the repository SFT is the persistent single-file reproducer. GitHub changes: ee70b3cb (initial source runner), 24dd251 (add state-skip and shock families), and this consolidated result. No distinct external creator evidence was used.
 
@@ -74,4 +74,4 @@ The earlier original-data V8 calculations independently established the all-dict
 
 These results exclude a **source-native English long word covered by this lexicon** for any arbitrary order-3 recurrence with zero/one of the stated irregularities, and make an order-4 global state model implausible in the face of two noise-like conditional page-wide continuations. They do not exclude other-language words, actual ciphertext-phase slips involving multiple register changes, nonlinear/hashed keys, orders higher than five, or dictionary omissions.
 
-The current advancement is an efficient local inverse that exactly removes unknown taps and word seeds before any attempted longer decode. Further blind all-seed LFSR coefficient fitting has low expected payoff. A first-party source selecting a key source, opcode, receiver and clock remains the valuable missing input.
+The current advancement is an efficient local inverse that removes unknown taps and word seeds in identifiable cases, with exhaustive one-free-tap four-state completion before a longer held-out decode. Further blind all-seed LFSR coefficient fitting has low expected payoff. A first-party source selecting a key source, opcode, receiver and clock remains the valuable missing input.
