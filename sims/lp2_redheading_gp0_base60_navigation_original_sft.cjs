@@ -102,8 +102,10 @@ for (const kind of ['GP0', 'prime']) {
   for (const firstOnly of [false, true]) {
     for (const offset of [0, -1]) {
       const addresses = headings.map(item => {
-        const number = item[(firstOnly ? 'first' : '') +
-          (kind === 'GP0' ? 'GP0' : 'Prime')];
+        const field = firstOnly
+          ? (kind === 'GP0' ? 'firstGP0' : 'firstPrime')
+          : (kind === 'GP0' ? 'gp0' : 'prime');
+        const number = item[field];
         assert(Number.isInteger(number));
         return ((number + offset) % 256 + 256) % 256;
       });
