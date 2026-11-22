@@ -90,7 +90,8 @@ function gpLength(word, ingRune) {
   return (normalized.match(/TH|NG|EA|EO|OE|AE|IA|./g) || []).length;
 }
 
-const originalWords = signed.split('-----BEGIN PGP SIGNATURE-----')[0]
+const originalWords = signed.replace(/\r\n?/g, '\n')
+  .split('-----BEGIN PGP SIGNATURE-----')[0]
   .split('\n\n').slice(1).join(' ')
   .replace(/3301|7A35090F/gi, ' ')
   .match(/[A-Za-z]+/g).map(x => x.toUpperCase());
