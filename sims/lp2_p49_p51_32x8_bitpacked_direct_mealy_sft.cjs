@@ -50,6 +50,67 @@ assert.deepEqual(duplicates, [
   [[19, 20, '48']],
 ]);
 
+/*
+ * An unrestricted secret mapping can choose ANY 29 of the 32 printed rows.
+ * A collision edge links equal complete printed tokens in one state column.
+ * To carry every possible input without ambiguity, at least one endpoint
+ * of every edge must be removed. This is a minimum-vertex-cover problem.
+ */
+const edges = [];
+for (let col = 0; col < 8; col++) {
+  const seen = new Map();
+  for (let row = 0; row < 32; row++) {
+    const token = grid.rows[row][col];
+    if (seen.has(token)) edges.push([seen.get(token), row, col, token]);
+    else seen.set(token, row);
+  }
+}
+assert.equal(edges.length, 12);
+const memo = new Map();
+/**
+ * Exact optimal cover by branching on both endpoints of one uncovered edge.
+ * @param {Array<[number,number,number,string]>} remaining
+ * @returns {number[]}
+ */
+function minimumCover(remaining) {
+  if (!remaining.length) return [];
+  const memoKey = JSON.stringify(remaining);
+  if (memo.has(memoKey)) return memo.get(memoKey);
+  const [u, v] = remaining[0];
+  const left = minimumCover(remaining.filter((e) => e[0] !== u && e[1] !== u));
+  const right = minimumCover(remaining.filter((e) => e[0] !== v && e[1] !== v));
+  const answer = left.length <= right.length ? [u, ...left] : [v, ...right];
+  memo.set(memoKey, answer);
+  return answer;
+}
+const cover = minimumCover(edges);
+assert.equal(cover.length, 7);
+assert.ok(edges.every(([u, v]) => cover.includes(u) || cover.includes(v)));
+
+let minRemaining = Infinity;
+let minAffectedColumns = 8;
+let testedRowSubsets = 0;
+for (let a = 0; a < 32; a++) {
+  for (let b = a + 1; b < 32; b++) {
+    for (let c = b + 1; c < 32; c++) {
+      let remaining = 0;
+      const affected = new Set();
+      for (const [u, v, col] of edges) {
+        if ([a, b, c].includes(u) || [a, b, c].includes(v)) continue;
+        remaining++;
+        affected.add(col);
+      }
+      minRemaining = Math.min(minRemaining, remaining);
+      minAffectedColumns = Math.min(minAffectedColumns, affected.size);
+      testedRowSubsets++;
+    }
+  }
+}
+assert.equal(testedRowSubsets, 4960); // every possible secret 29-of-32 row choice
+assert.equal(minRemaining, 5);
+assert.equal(minAffectedColumns, 4);
+console.log(JSON.stringify({ all32CollisionEdges: edges.length, minimumRowsDiscardedForUniversalInjection: cover.length, maximumInjectiveAlphabet: 32 - cover.length, witnessRemovedRows: cover, tested29RowSelections: testedRowSubsets, minimumRemainingCollisionPairs: minRemaining, minimumAffectedStateColumns: minAffectedColumns }));
+
 /** @param {number} radix */
 function sourceTable(radix) {
   const alphabet = radix === 59 ? grid.alphabet.replace('f', '') : grid.alphabet;
