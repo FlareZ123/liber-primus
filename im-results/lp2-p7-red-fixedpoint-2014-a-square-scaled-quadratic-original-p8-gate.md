@@ -169,7 +169,7 @@ D^{-1}=\begin{pmatrix}
 \end{pmatrix}\pmod{29}.
 \]
 
-This is a fully source-specified **SL₅(29)** cipher operation, with no fitted key or phase. Both D and D⁻¹ were applied to **all three** five-rune-aligned original full receivers, keeping every printed rune and actual original page/section order unchanged:
+This is a fully source-specified **SL₅(29)** cipher operation, with no fitted key or phase. Moreover, its **exact order is 56**, with a 28-step half-turn **`D²⁸=I−2Π`**, a literal reflection through the complement of the same p7-source quadratic fixed plane. The directly computed original matrix is `D²⁸=[[12,12,12,12,11],[12,12,12,11,12],[12,12,11,12,12],[12,11,12,12,12],[11,12,12,12,12]]` mod29. `D⁵⁶=I` follows from the projector identity and is separately asserted by finite original-matrix multiplication; `D⁸≠I` and `D²⁸≠I` establish minimal order56. The number56 also counts the unsolved physical LP2 pages, yet the original A itself already has order56. This inherited numerical match does not independently select a page-to-page key schedule or remedy the tested absence of plaintext.  Both D and D⁻¹ were applied to **all three** five-rune-aligned original full receivers, keeping every printed rune and actual original page/section order unchanged:
 
 | Source-complete original register | D forward GP29 IoC | D inverse GP29 IoC |
 | --- | ---: | ---: |
