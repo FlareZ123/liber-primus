@@ -188,6 +188,19 @@ for(const [sourceName, inverse, transpose, hits, expectedDifferenceIoc] of mixEx
   assert.deepEqual(blockMix(mixed,inverseRow,transpose),source);
   console.log(`p7 red five-product 51×5 word-checksum:${sourceName} inverse=${inverse} transpose=${transpose}, direct hits ${hits}/255, difference IoC ${ioc(residue).toFixed(9)}`);
 }
+// Another authentic p7/p8-derived source object is the quartic whose
+// coefficients are the REVERSED p7 five red products (see prior p7→p8
+// five-point packet). A direct quartic output occupies only 18 GP values,
+// independent of which hidden input or source-word summary it receives.
+const redQuartic = (x) => redProducts.reduce((v, a) => mod(v * x + a), 0);
+assert.deepEqual([redQuartic(0),redQuartic(3),redQuartic(4),redQuartic(19),redQuartic(27)],[2,1,1,1,1]);
+const quarticImage = new Set(Array.from({length:29},(_,x)=>redQuartic(x)));
+assert.equal(quarticImage.size,18);
+const unreachableP8 = nextPage.filter((v)=>!quarticImage.has(v));
+assert.equal(unreachableP8.length,85);
+const quarticPlant = wordSums.map(redQuartic);
+assert(quarticPlant.every((v)=>quarticImage.has(v)));
+console.log('all-secret direct p7 quartic→p8: 85/255 original p8 symbols outside the 18/29 possible GP29 outputs, independently of quartic inputs');
 console.log('PASS: 8 original five-red-product 255-word to p8 tests and complete 255/255 inverses');
 
 // Exact key-independent Hall-style obstruction for the most generous
