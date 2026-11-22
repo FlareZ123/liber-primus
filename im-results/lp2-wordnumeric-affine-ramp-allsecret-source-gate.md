@@ -4,7 +4,7 @@
 
 ## Why this mechanism was worth testing
 
-The authentic 2016 signed hint says that Liber Primus's *words are the map* and their *numbers are the direction*. Historical Cicada work also used exact Gematria Primus rune-prime sums. The unknown LP2 ciphertext preserves **2,896 printed words** and is unusually close to unigram-uniform while strongly suppressing adjacent equal runes. These features make a simple **word-number-driven changing offset** more plausible than another stationary per-word substitution. One affordable, human-readable mechanism is an **affine ramp within each word**, possibly with an arbitrarily complicated or secret word-initial key:
+The authentic 2016 signed hint says that Liber Primus's *words are the map* and their *numbers are the direction*. Historical Cicada work used exact Gematria Primus rune-prime sums, the p7 red-word **index products**, and the solved p56 prime-totient operation. The unknown LP2 ciphertext preserves **2,896 printed words** and is unusually close to unigram-uniform while strongly suppressing adjacent equal runes. These features make a simple **word-number-driven changing offset** more plausible than another stationary per-word substitution. One affordable, human-readable mechanism is an **affine ramp within each word**, possibly with an arbitrarily complicated or secret word-initial key:
 
 \[
 C_{w,j}=P_{w,j}+A_w+jg_w\pmod{29}.
@@ -29,8 +29,8 @@ The source input is the unchanged pp0–55 runic transcription (12,956 glyphs, 2
 The frozen model family comprises:
 
 - Every one of the **29 constant slopes** \(g=0,\ldots,28\), leaving all initial word offsets arbitrary.
-- The printed word's **GP-prime sum mod29**, **GP ordinal-index sum mod29**, or **rune length mod29** as \(g_w\), taken from either the *current* original ciphertext word or the *preceding* original ciphertext word, in either sign: **12 exact source-number directions**.
-- The preceding-word GP-prime variant starts at the first-party historical 761 mod29 for the first word; its choice affects no histogram sample in a word of length one. The first model is fully causal/reversible when the secret offsets are supplied; for current-word-derived slopes, only the stated necessary condition is claimed, since current-word checksum feedback could make an encoder ambiguous.
+- The printed word's **GP-prime sum/product mod29**, **GP ordinal-index sum/product mod29**, **prime totient sum/product mod29**, or **rune length mod29** as \(g_w\), taken from either the *current* original ciphertext word or the *preceding* original ciphertext word, in either sign: **28 exact source-number directions**.
+- The preceding-word GP-prime sum variant starts with the period 761 mod29, while a preceding-word product starts with its empty-product identity 1. Other first-word source registers start at 0. The preceding-word models are fully causal/reversible when secret offsets are supplied; for current-word-derived slopes, only the stated necessary condition is claimed, since current-word checksum feedback could make an encoder ambiguous. The genuine p7 word products motivate testing products, but no historical source explicitly says to use them as an affine slope.
 
 **Original results:**
 
@@ -38,6 +38,7 @@ The frozen model family comprises:
 | --- | ---: |
 | Best of **all 29** constant slopes: +22 | **308.105703** |
 | Best of 12 source word-numeral directions: **+ current printed word length** | **301.654324** |
+| Next: − current GP-prime product | 329.627578 |
 | Next: − current GP-prime sum | 331.169860 |
 | Next: − preceding GP-prime sum | 340.496909 |
 | Next: − current GP-index sum | 345.245323 |
@@ -46,11 +47,11 @@ The frozen model family comprises:
 | Unchanged original word differences | 409.836824 |
 | **Actually native GP29 plaintext plant** preserving all 2,896 original word lengths | **8.854051** |
 
-All **41** original source-declared consumers stay drastically unlike the native GP29 reference. In particular the extreme shortage of identical neighbors cannot be undone into realistic native word-internal differences by any single global increment, and the source-derived **current/preceding word prime/index/length clocks** likewise fail. The original has **63** equal within-word adjacent runes of 10,060; the raw GP29 solved texts have **53** of 2,239.
+All **57** original source-declared consumers stay drastically unlike the native GP29 reference. In particular the extreme shortage of identical neighbors cannot be undone into realistic native word-internal differences by any single global increment, and the source-derived **current/preceding word prime/index/totient sum/product and length clocks** likewise fail. The original has **63** equal within-word adjacent runes of 10,060; the raw GP29 solved texts have **53** of 2,239.
 
 ## Positive controls and source limits
 
-The [single-file, read-only CommonJS reproducer](../sims/lp2_wordnumeric_affine_ramp_allsecret_source_sft.cjs) does **not** rely on a language model or ad hoc rune transliteration. It first resamples authentic solved GP29 *complete words matched to every one of the 2,896 original word-length slots*, obtaining exactly 12,956 real source-native symbols and \(\chi^2=8.854051\) against the independently listed native reference. It then encrypts that control under **all six preceding-word source-number variants** (three numerical types and both slopes), with 2,896 independently generated hidden offsets, and deterministically recovers the entire **12,956/12,956** source-native plaintext for each. In every positive, removing the true drift returns the original 29-bin native difference histogram **exactly**. The forward and backward procedures retain every native GP rune, including F, and word length, with no synthetic spelling or punctuation edits.
+The [single-file, read-only CommonJS reproducer](../sims/lp2_wordnumeric_affine_ramp_allsecret_source_sft.cjs) does **not** rely on a language model or ad hoc rune transliteration. It first resamples authentic solved GP29 *complete words matched to every one of the 2,896 original word-length slots*, obtaining exactly 12,956 real source-native symbols and \(\chi^2=8.854051\) against the independently listed native reference. It then encrypts that control under **all fourteen preceding-word source-number variants** (seven numerical types and both slopes), with 2,896 independently generated hidden offsets, and deterministically recovers the entire **12,956/12,956** source-native plaintext for each. In every positive, removing the true drift returns the original 29-bin native difference histogram **exactly**. The forward and backward procedures retain every native GP rune, including F, and word length, with no synthetic spelling or punctuation edits.
 
 The all-secret cancellation theorem is mathematical. The *linguistic rejection* is conditional on unknown pages eventually representing ordinary, word-length-preserving native GP29 English with adjacent-difference structure comparable to the published solved sections. It does not exclude non-English words, dynamically changing \(A_{w,j}\), different word segmentation, non-additive state, position-dependent independent slopes, encrypted GP rune identities or other value-changing transforms. No true unknown-page sentence, creator-selected key or final address was recovered.
 
