@@ -217,9 +217,10 @@ assert.equal(total, 537);
 // 3008/3008 and reaches native text scores with 0 extra interventions,
 // so this conditional necessity concerns only the ACTUAL LP2 ciphertext.
 const pos = sites;
+const rngPlant = rand32(0x3301);
 const ptext = words.flatMap((w) => {
   const arr = pools[1][w.length];
-  return arr[rand32(0x3301 + w.length)() % arr.length];
+  return arr[rngPlant() % arr.length];
 });
 assert.equal(ptext.length, 3008);
 const seed = [13,5,20,0,22];
