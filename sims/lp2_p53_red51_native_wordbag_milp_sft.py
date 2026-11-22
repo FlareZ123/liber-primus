@@ -81,10 +81,10 @@ def encode(word: str) -> tuple[int, ...]:
     return tuple(out)
 
 
-def lexicon() -> dict[tuple[int, ...], tuple[str, int]]:
+def lexicon(allowed_lengths: set[int] | None = None) -> dict[tuple[int, ...], tuple[str, int]]:
     """Completely source-pinned dictionaries and authenticated GP words."""
     d: dict[tuple[int, ...], tuple[str, int]] = {}
-    wanted = set(SIZES)
+    wanted = set(SIZES) if allowed_lengths is None else allowed_lengths
     freq_file = ROOT / "resources/control/english_wordfreq_textblob.txt"
     for line in freq_file.read_text(encoding="utf-8").splitlines():
         m = re.fullmatch(r"([a-z]+) (\d+)", line)
@@ -222,6 +222,55 @@ def solve(rhs: np.ndarray, words: list[tuple[str, tuple[int, ...], int]],
     return summary
 
 
+def solve_free_spaces(rhs: np.ndarray, words: list[tuple[str, tuple[int, ...], int]],
+                      max_seconds: float) -> dict:
+    """All GP rune bags of ordinary English words, with arbitrary spaces.
+
+    This drops all six original word-length cardinality equalities from the
+    exact source problem and admits every word length from 1 through 51.
+    Therefore an INFEASIBLE result excludes every pure permutation into
+    *any segmentation* of source-native English dictionary words, rather
+    than only the source's original 12 printed word lengths.
+    """
+    rows: list[int] = []
+    cols: list[int] = []
+    data: list[float] = []
+    for j, (_, encoded, _) in enumerate(words):
+        for i, v in Counter(encoded).items():
+            rows.append(i)
+            cols.append(j)
+            data.append(float(v))
+    model = csc_array(
+        (np.array(data, dtype=np.float64),
+         (np.array(rows), np.array(cols))),
+        shape=(29, len(words)),
+    )
+    bounds = Bounds(np.zeros(len(words)),
+                    np.array([51 // len(w[1]) for w in words], dtype=np.float64))
+    t0 = time.monotonic()
+    fit = milp(c=np.zeros(len(words)),
+               integrality=np.ones(len(words)),
+               bounds=bounds,
+               constraints=LinearConstraint(model, rhs.astype(float), rhs.astype(float)),
+               options={"time_limit": max_seconds, "presolve": True, "disp": False})
+    summary = {
+        "status": int(fit.status),
+        "message": str(fit.message),
+        "elapsed_seconds": round(time.monotonic() - t0, 3),
+        "source_eligible_word_types_any_length": len(words),
+    }
+    if fit.x is not None:
+        chosen = np.rint(fit.x).astype(np.int64)
+        assert np.allclose(model @ chosen, rhs)
+        summary["exact_integral_source_certificate"] = True
+        summary["native_GP_wordbag"] = [
+            {"word": words[j][0], "runic_length": len(words[j][1]),
+             "count": int(chosen[j])}
+            for j in np.flatnonzero(chosen)
+        ]
+    return summary
+
+
 D = lexicon()
 eligible = []
 for encoded, (word, weight) in D.items():
@@ -247,6 +296,16 @@ assert planted_result["status"] == 0
 assert planted_result["exact_integral_source_certificate"]
 
 original_result = solve(SOURCE_HIST, eligible, 95.0)
+ALL_SOURCE_WORDS = lexicon(set(range(1, 52)))
+eligible_free = [
+    (word, encoded, weight)
+    for encoded, (word, weight) in ALL_SOURCE_WORDS.items()
+    if not np.any(np.bincount(encoded, minlength=29) > SOURCE_HIST)
+]
+original_free = solve_free_spaces(SOURCE_HIST, eligible_free, 45.0)
+planted_free = solve_free_spaces(plant_rhs, eligible_free, 15.0)
+assert planted_free["status"] == 0
+assert planted_free["exact_integral_source_certificate"]
 # Independent original-image 4x13 rectangle: the 51 p53 red runes plus
 # the physically next page p54 single enlarged red A (GP24) are exactly
 # 52. A pure 4-by-13 route may remove ONE arbitrary physical-source rune
@@ -291,6 +350,10 @@ out = {
                 "original_histogram_eligible_types": len(eligible)},
     "positive_same_form": planted_result,
     "original_feasibility": original_result,
+    "arbitrary_native_English_wordspaces": {
+        "original": original_free, "planted": planted_free,
+        "source_all_lengths": len(ALL_SOURCE_WORDS)
+    },
     "original_52_square_pad_exhaustion": {
         "source": "p53 red51 plus p54 enlarged red A, 4x13 rectangle",
         "source_extra_rune_gp": 24,
