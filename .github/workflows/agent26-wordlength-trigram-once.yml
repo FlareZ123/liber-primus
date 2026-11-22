@@ -17,4 +17,15 @@ jobs:
           node-version: '22'
       - name: Word-length trigram with independent solved-Cicada prose
         shell: pwsh
-        run: node sims/lp2_wordlength_trigram_solved_cicada_gate_sft.cjs
+        run: |
+          node sims/lp2_wordlength_trigram_solved_cicada_gate_sft.cjs *> sft-wordlength-output.txt
+          $result = $LASTEXITCODE
+          Get-Content sft-wordlength-output.txt
+          exit $result
+      - name: Preserve diagnostic stdout and stderr
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent26-wordlength-diagnostic
+          path: sft-wordlength-output.txt
+          if-no-files-found: error
