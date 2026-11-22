@@ -1,0 +1,28 @@
+name: Agent12 p57 rim13 LP3 Steghide 0.5.1 original carriers
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-key-lp3:
+    runs-on: windows-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Pin independent historically compatible Steghide decoder and fixture
+        shell: pwsh
+        run: |
+          git clone --depth 1 https://github.com/rickschaves/stegostudio.git stegostudio-upstream
+          git -C stegostudio-upstream fetch --depth 1 origin 201689b5755c0f1267223cd881429e679230b835
+          git -C stegostudio-upstream checkout --detach 201689b5755c0f1267223cd881429e679230b835
+          if ((git -C stegostudio-upstream rev-parse HEAD).Trim() -ne '201689b5755c0f1267223cd881429e679230b835') { throw 'Unexpected original Steghide decoder' }
+      - name: Test frozen source password on exactly two original JPEGs
+        shell: pwsh
+        env:
+          STEGOSTUDIO_DIR: ${{ github.workspace }}\\stegostudio-upstream
+        run: |
+          node --check sims/lp2_p57_rim13_lp3_steghide051_two_originals_sft.cjs
+          node sims/lp2_p57_rim13_lp3_steghide051_two_originals_sft.cjs
