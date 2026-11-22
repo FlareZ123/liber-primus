@@ -73,15 +73,25 @@ for (let i = 0; i < 242; i++) {
 assert.deepEqual(zeroInsertions, [87, 208]);
 
 /** @param {number} insertion @returns {number[]} */
-function sourceAddressedTable(insertion) {
+function sourceCycleAddresses(insertion) {
   const trits = [...seq.slice(0, insertion), 0, ...seq.slice(insertion)];
-  const table = Array(243);
-  for (let i = 0; i < 243; i++) {
+  const addresses = trits.map((_, i) => {
     let address = 0;
     for (let j = 0; j < 5; j++) address = 3 * address + trits[(i + j) % 243];
+    return address;
+  });
+  assert.equal(new Set(addresses).size, 243, "one use of every de Bruijn cell");
+  return addresses;
+}
+
+/** @param {number} insertion @returns {number[]} */
+function sourceAddressedTable(insertion) {
+  const addresses = sourceCycleAddresses(insertion);
+  const table = Array(243);
+  addresses.forEach((address, i) => {
     assert.equal(table[address], undefined);
     table[address] = black[i];
-  }
+  });
   assert(table.every(Number.isInteger));
   return table;
 }
@@ -132,6 +142,116 @@ function transform(xs, table, update, sign, encrypt, output) {
   return out;
 }
 
+/**
+ * Exactly one full de Bruijn cycle exhausts 243 distinct table cells.
+ * Whatever new value is written to a just-read cell, the first 243
+ * reads cannot observe it. This theorem covers EVERY cell-local writeback.
+ * Enumerate ALL phase shifts and two printed-source output laws on original p9.
+ */
+const p9FirstCycle = p9.slice(0, 243);
+const frozenCycle = [];
+for (const splice of [208, 87]) {
+  const addresses = sourceCycleAddresses(splice);
+  const initialTable = sourceAddressedTable(splice);
+  for (let phase = 0; phase < 243; phase++) {
+    const writable = initialTable.slice();
+    for (let step = 0; step < 243; step++) {
+      const addr = addresses[(phase + step) % 243];
+      assert.equal(writable[addr], black[(phase + step) % 243]);
+      writable[addr] = (step * 17 + phase + 13) % 29;
+    }
+  }
+}
+for (const output of ["add", "cube"]) {
+  for (const sign of [1, -1]) {
+    const phases = [];
+    for (let phase = 0; phase < 243; phase++) {
+      const plain = p9FirstCycle.map((cipher, i) => {
+        const key = black[(i + phase) % 243];
+        return ((output === "add" ? cipher : pow29(cipher, 19)) - sign * key + 29) % 29;
+      });
+      const reencrypted = plain.map((p, i) => {
+        const key = black[(i + phase) % 243];
+        return output === "add" ? (p + sign * key + 29) % 29
+          : pow29((p + sign * key + 29) % 29, 3);
+      });
+      assert.deepEqual(reencrypted, p9FirstCycle);
+      phases.push({ phase, IoC: ioc(plain) });
+    }
+    phases.sort((a, b) => b.IoC - a.IoC);
+    frozenCycle.push({
+      output, sign,
+      greatestIoC: phases[0],
+      leastIoC: phases.at(-1),
+      phaseZeroIoC: phases.find(x => x.phase === 0).IoC,
+      phasesAtLeastPoint04: phases.filter(x => x.IoC >= 0.04).length,
+      fullCyclePhases: phases.length
+    });
+  }
+}
+assert.equal(frozenCycle.length, 4);
+assert(frozenCycle.every(x => x.greatestIoC.IoC < 0.04));
+
+/** @param {string} input @returns {number[]} */
+function encodeSourceNativeGP(input) {
+  const byLength = source.translit.map((token, value) => ({ token, value }))
+    .sort((a, b) => b.token.length - a.token.length);
+  const text = input.toUpperCase().replace(/QU/g, "CW").replace(/V/g, "U")
+    .replace(/[KQ]/g, "C").replace(/Z/g, "S");
+  const output = [];
+  for (const word of text.match(/[A-Z]+/g) || []) {
+    for (let i = 0; i < word.length;) {
+      if (word.startsWith("ING", i)) { output.push(21); i += 3; }
+      else if (word.startsWith("IO", i)) { output.push(27); i += 2; }
+      else {
+        const match = byLength.find(t => word.startsWith(t.token, i));
+        assert(match, "source GP29 orthography missing token");
+        output.push(match.value);
+        i += match.token.length;
+      }
+    }
+  }
+  return output;
+}
+/**
+ * Find the actual lowest GP29 IoC of ALL contiguous 243-rune windows.
+ * @param {number[]} stream
+ * @returns {{totalRunes:number, windows:number, minimumIoC:number}}
+ */
+function referenceWindowMinimum(stream) {
+  const width = 243;
+  const freq = Array(29).fill(0);
+  for (let i = 0; i < width; i++) freq[stream[i]]++;
+  let numerator = freq.reduce((a, count) => a + count * (count - 1), 0);
+  let lowest = numerator;
+  for (let i = width; i < stream.length; i++) {
+    const first = stream[i - width];
+    numerator -= 2 * (freq[first] - 1);
+    freq[first]--;
+    const last = stream[i];
+    numerator += 2 * freq[last];
+    freq[last]++;
+    lowest = Math.min(lowest, numerator);
+  }
+  return { totalRunes: stream.length, windows: stream.length - width + 1,
+    minimumIoC: lowest / (width * (width - 1)) };
+}
+const nativeGibran = fs.readFileSync(path.join(root, "resources", "control", "gibran_prophet_58585.txt"), "utf8");
+const nativeShakespeare = fs.readFileSync(path.join(root, "resources", "control", "shakespeare_first300k.txt"), "utf8");
+const gibranStart = nativeGibran.toUpperCase().indexOf("ALMUSTAFA");
+const gibranEnd = nativeGibran.toUpperCase().indexOf("*** END OF THIS PROJECT", gibranStart);
+assert(gibranStart >= 0 && gibranEnd > gibranStart);
+const nativeControls = {
+  gibran: referenceWindowMinimum(encodeSourceNativeGP(nativeGibran.slice(gibranStart, gibranEnd))),
+  shakespeare: referenceWindowMinimum(encodeSourceNativeGP(nativeShakespeare))
+};
+assert.equal(nativeControls.gibran.totalRunes, 46834);
+assert.equal(nativeControls.shakespeare.totalRunes, 217106);
+assert(nativeControls.gibran.minimumIoC > 0.05);
+assert(nativeControls.shakespeare.minimumIoC > 0.047);
+assert(frozenCycle.every(x => x.greatestIoC.IoC < nativeControls.gibran.minimumIoC
+  && x.greatestIoC.IoC < nativeControls.shakespeare.minimumIoC));
+
 const result = [];
 for (const splice of [208, 87]) {
   const table = sourceAddressedTable(splice);
@@ -174,6 +294,7 @@ console.log(JSON.stringify({
     first300IoC: ioc(target.slice(0, 300)),
     separateP13First200IoC: ioc(source.pages[13].indices.slice(0, 200))
   },
+  fullCycleAllPhaseNoRevisit: { originalFirst243IoC: ioc(p9FirstCycle), outputs: frozenCycle, nativeControls },
   result,
   decision: "No original native-GP plaintext recovered under these twenty-four fixed, exactly reversible mutable-source-table variants"
 }, null, 2));
