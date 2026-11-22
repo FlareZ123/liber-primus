@@ -1,6 +1,6 @@
 # First-00 event groups select p38:54 and a candidate DH private exponent
 
-**Agent14, 21 November 2026. Classification: original-source, conditional key-routing candidate.** Two separate complete original-cipher equality-event groups now specify a full printed page/rune offset, a DH private-exponent candidate, a previously identified reciprocal packet and its WILL/FOUND receiver. Every original event rune is retained. **No new authenticated plaintext, independently proven author key, or global LP2 decoder was recovered.** A later independent original-cipher holdout excludes reusing this proposed DH four-slot pad at the second signed-coda receiver; see the [GOOD→LUCK transfer gate](lp2-p0-2016-coda-dual-dhpad-holdout.md). Original-source [Windows/Node22 reproducer](../sims/lp2_p50_00_you_will_event_bridge_sft.cjs); [manual CI](../.github/workflows/agent14-p50-00-you-event-bridge-manual.yml).
+**Agent14, 21 November 2026; Agent3 conditional second-00 extension, 22 November. Classification: original-source, hypothesis-dependent navigation and negative direct consumers.** Under a previously proposed 256-position equality-event clock, the two distinct printed 00 cells receive separate rune groups. The first gives the p38/DH23/p0 WILL candidate whose direct transfer to GOOD→LUCK fails. The second gives X (GP index14, prime47), selecting a new candidate receiver at p55's 33 boundary/43 strict interior runes. Neither clock nor operation is an authenticated Cicada instruction. **No recovered unknown plaintext, author-selected decoder or continuation destination.** Reproducers: [original first-00 SFT](../sims/lp2_p50_00_you_will_event_bridge_sft.cjs), [second-00/p55 original SFT](../sims/lp2_p50_second00_x_p55_receiver_sft.cjs), and the [GOOD→LUCK transfer gate](lp2-p0-2016-coda-dual-dhpad-holdout.md).
 
 ## Complete original-source path, including the last rune
 
@@ -16,6 +16,22 @@ On all 55 original rune-bearing unsolved pages there are exactly **86** equal-ad
 | 4 | 34 | 211 | A | 24 |
 
 The **complete, untruncated source event readout is Y O U A**, GP index sequence **[26,3,1,24]**, with index sum **54**. Source p50 cell229, the other printed 00, receives just one event, X on p36. The first three letters of YOUA reproduce the exact signed-2016 word **YOU** in “Seek and you will be found.” This lexical prefix is an observation, not an automatically valid ciphertext-to-plaintext operation; crucially, this route consumes the **entire four-rune value as a numeric selector**, so it does not discard A to force an English word.
+
+
+## The other printed 00: X singles out the p55 strict interiors
+
+This branch uses the **other original printed 00** at p50 table cell **229** without modifying the four-event YOUA stream at cell192. The previously frozen equality-event clock, (global successor index−1) mod256, selects **exactly one** event at cell229: p36, local index228, global rune index8934, duplicated rune **X**. X has GP29 index **14** and native GP-prime value **47**. The original table's cells14 and47 contain literal tokens **33** and **1G**. Original cell205 independently also prints **1G**; the clear p57 first 19-rune clause, PARABLE LIKE THE INSTAR, has GP-prime sum1259, whose ordinal is prime205, and this p57→p50 address was identified before. The full table has two literal 33 tokens (cells7,14) and two 1G tokens (cells47,205).
+
+Physical p55 has exactly **76 runes**, uniquely among the 55 nonempty unknown pages: one is a carry from p54 and the other **75** form 16 complete p55 words with lengths [4,2,2,6,6,2,13,6,4,2,7,7,2,6,3,3]. Preserving the carry and removing each complete word's endpoints yields **33 exteriors and 43 strict interiors**. The 1G token decodes to **76** under the working base60, or **75** under the alternative radix59; these respectively equal total and locally owned p55 lengths. Reading the token 33 *literally in decimal* matches 33 exterior runes. Under a consistent base60 numerical interpretation, however, that token would be **183**, so the apparent second correspondence depends on **mixed conventions**. This is the strongest objection to interpreting these observations as instructions.
+
+Original p50's base60 successor graph connects these selections: X's prime47 begins the known directed **11-cycle** 47→76→114→197→115→247→192→0→203→68→199→47; the first printed 00 is cycle node192, the second printed 00 at229 feeds into node0, and the independently selected p57 ordinal205 feeds into node76. The eleven-cycle was already established in the [p32 cycle study](lp2-p32-p50-11cycle-key-negative.md). The incremental observation here is the *second-00 X event* selecting a node on that cycle and an exact p55 interior receiver, not discovery of the cycle itself.
+
+### Frozen first-consumer checks
+
+The [read-only original-source SFT](../sims/lp2_p50_second00_x_p55_receiver_sft.cjs) tests two minimal, fixed original-cipher operations: (1) take **43 consecutive p50 bytes beginning at X-selected cell47**, reduce them modulo29, and subtract from the 43 original p55 strict interiors; (2) repeat **the 11-cycle's base60 successor outputs** from node47 as the GP29 additive pad. Both use the already authenticated subtractive direction from solved p56, retain every selected original rune and have exact planted clear-p57 inverse controls. The resulting 43-rune GP IoCs are **0.02768549** and **0.02879291**, versus raw p55 interior **0.03433001**. Both literal outputs are nonprose. This retires only these two direct pad consumers. Prior separate tests already rejected the [33-exterior direct self-key](p55-exterior-interior-direct-selfkey-gate.md) and [a 43-byte p50 3D-bracket direct key](p50-43byte-base29-p55-interior-key-gate.md).
+
+**Decision:** retain the full original X→14/47→33/1G→p55 43-interior route as a **conditional source-selected recipient**, while acknowledging the unresolved original clock and mixed numeral conventions. It has not recovered plaintext or selected a historical decoder. No extra sign, phase, reversal or key search follows from the two failed direct consumers.
+
 
 ## Second event group: GP prime210 → NG X O → page38 and private a=6
 
