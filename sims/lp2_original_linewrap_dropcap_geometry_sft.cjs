@@ -37,6 +37,7 @@ const RED_CAPS = Object.freeze([
 const GAP = 12; // Approximate 12px original x-gap between the giant and text.
 /** @type {number} */
 const CAP_LINES = 3; // 497-498px tall originals overlap three 188px lines.
+const NUMBER_INSET = 76; // Independent original JPEG first-black x676–680 vs normal x~601.
 
 /**
  * @param {{page:number,line:number,base:number,firstWidth:number,nextWidth:number,inside:boolean,ending:string}} b
@@ -46,7 +47,8 @@ const CAP_LINES = 3; // 497-498px tall originals overlap three 188px lines.
  * @returns {'forced'|'early'|'overflow'}
  */
 function classifyWithOriginalDropcap(b, model, gap = GAP, heightLines = CAP_LINES) {
-  return classify({ ...b, base: b.base + redCapMargin(b, gap, heightLines) }, model);
+  return classify({ ...b, base: b.base + redCapMargin(b, gap, heightLines) +
+    (b.numericPrefix ? NUMBER_INSET : 0) }, model);
 }
 
 /**
@@ -111,11 +113,11 @@ function main() {
   assert.deepEqual(r.originalAll,
     {forced: 450, early: 78, overflow: 11, total: 539, earlyParagraphs: 11});
   assert.deepEqual(r.imageAll,
-    {forced: 481, early: 45, overflow: 13, total: 539, earlyParagraphs: 11});
+    {forced: 484, early: 40, overflow: 15, total: 539, earlyParagraphs: 11});
   assert.deepEqual(r.originalHoldoutWithinWord,
     {forced: 174, early: 29, overflow: 5, total: 208, earlyParagraphs: 0});
   assert.deepEqual(r.imageHoldoutWithinWord,
-    {forced: 183, early: 19, overflow: 6, total: 208, earlyParagraphs: 0});
+    {forced: 186, early: 14, overflow: 8, total: 208, earlyParagraphs: 0});
   assert.deepEqual(r.originalRedCapLines,
     {forced: 0, early: 39, overflow: 0, total: 39, earlyParagraphs: 0});
   assert.deepEqual(r.imageRedCapLines,
@@ -125,11 +127,11 @@ function main() {
   // This is a geometric diagnostic, not a key extraction channel.
   const residualSlack = source.breaks
     .filter(b => b.ending !== '.' && classifyWithOriginalDropcap(b, model) === 'early')
-    .map(b => model.W - b.base - redCapMargin(b) - b.dashes * model.dash -
+    .map(b => model.W - b.base - redCapMargin(b) - (b.numericPrefix ? NUMBER_INSET : 0) - b.dashes * model.dash -
       b.stops * model.stop - b.nextWidth).sort((a, b) => a - b);
-  assert.equal(residualSlack.length, 34);
-  const residualCounts = { within10: 16, within20: 21, within30: 24,
-    within50: 29, within75: 34, within100: 34, over150: 0 };
+  assert.equal(residualSlack.length, 29);
+  const residualCounts = { within10: 15, within20: 19, within30: 22,
+    within50: 26, within75: 29, within100: 29, over150: 0 };
   for (const [name, limit] of Object.entries({
     within10: 10, within20: 20, within30: 30, within50: 50,
     within75: 75, within100: 100
@@ -137,7 +139,7 @@ function main() {
     assert.equal(residualSlack.filter(n => n <= limit).length, residualCounts[name], name);
   }
   assert.equal(residualSlack.filter(n => n > 150).length, residualCounts.over150);
-  assert.ok(Math.abs(residualSlack[17] - 12.133) < 0.001);
+  assert.ok(Math.abs(residualSlack[14] - 8.969) < 0.001);
 
   // Freeze a source-early normal-line tolerance, then test later pages.
   // The only exclusions are source-visible paragraph-ending short lines.
@@ -159,8 +161,8 @@ function main() {
   const heldoutInTolerance = heldoutNormal.filter(b => b.shortfall <= trainingTolerance);
   const heldoutExceptions = heldoutNormal.filter(b => b.shortfall > trainingTolerance)
     .map(b => [b.page, b.line]);
-  assert.equal(heldoutInTolerance.length, 246);
-  assert.deepEqual(heldoutExceptions, [[37, 0], [37, 9], [40, 8], [42, 5]]);
+  assert.equal(heldoutInTolerance.length, 248);
+  assert.deepEqual(heldoutExceptions, [[40, 8], [42, 5]]);
   assert.ok(Math.max(...heldoutNormal.map(b => b.shortfall)) < 73);
 
   const sensitivity = [0, 8, 12, 16, 24].map(gap => {
@@ -171,9 +173,9 @@ function main() {
   console.log(JSON.stringify({
     originalJPEG: 'liber-primus-jpegs/<page + 17>.jpg',
     redConnectedComponents: RED_CAPS,
-    model, gap: GAP, heightLines: CAP_LINES, observations: r,
+    model, gap: GAP, heightLines: CAP_LINES, numberedPrefixInset: NUMBER_INSET, observations: r,
     sensitivity, normalLineTolerance: { trainingTolerance, maxTrainingMiss, train: trainNormal.length,
-      heldout: heldoutNormal.length, heldoutInTolerance: heldoutInTolerance.length, heldoutExceptions }, residualShortfall: { median: residualSlack[17], ...residualCounts }, conclusion: 'Source-correct red initials predict 31 more original wraps; ciphertext remains undeciphered.'
+      heldout: heldoutNormal.length, heldoutInTolerance: heldoutInTolerance.length, heldoutExceptions }, residualShortfall: { median: residualSlack[14], ...residualCounts }, conclusion: 'Source-correct red initials and five original red numerals explain 34 more joins; ciphertext remains undeciphered.'
   }, null, 2));
 }
 
