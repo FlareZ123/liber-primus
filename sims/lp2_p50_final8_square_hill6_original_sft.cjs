@@ -249,6 +249,10 @@ assert.equal(intactFlanks.pretable138.length, 138);
 assert.equal(intactFlanks.posttable170.length, 170);
 assert.deepEqual(intactFlanks.pretable138.slice(0, 2), [20, 2]); // L TH
 assert.deepEqual(intactFlanks.posttable170.slice(0, 2), [7, 7]); // W W
+const primeAsFinalOuter = Object.entries(intactFlanks).map(([flank, original]) =>
+  ({ flank, ...p56PrimeOutputGate(original.slice(2)) }));
+assert.deepEqual(primeAsFinalOuter.map((item) => item.firstImpossible), [116, 20]);
+assert(primeAsFinalOuter.every((item) => !item.complete));
 const intactFlankTwoRuneHeaderHill8 = [];
 for (const [radix, values] of [["base60", base60], ["base59-drop-f", base59]]) {
   const key = Array.from({ length: 8 }, (_, row) =>
@@ -288,6 +292,7 @@ console.log(JSON.stringify({
   inverseGp29Tests: candidates,
   originalNestedSquareHill8AndHill7: outerSquareTests,
   intactFlankTwoRuneHeaderHill8,
+  authenticatedPrimeAsFinalOuterOnOriginalIntactFlanks: primeAsFinalOuter,
   positive: "84 authentic p56 plaintext runes roundtrip under both Hill6 orientations",
   verdict: "All direct Hill8/Hill7 original inverse outputs nonprose. Even adding exact authenticated p56 F-transparent prime outer decoding to both complete flanks is impossible under all eight fixed source cases. Hill6 base59 also nonprose; singular base60 Hill6 fails full-block parity."
 }, null, 2));
