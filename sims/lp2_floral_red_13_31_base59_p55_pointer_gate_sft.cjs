@@ -91,6 +91,9 @@ assert.deepEqual({commonNode,leftEntry,rightEntry,sharedTail},
 assert.equal(leftEntry,GP);
 assert.equal(sharedTail,hIndex/GP);
 assert.equal(right.depth,tPrime/(LEFT*GP));
+assert.deepEqual([left.nodes[1],left.nodes[16],left.nodes[18]],[32,244,58]);
+assert.deepEqual([corpus.pages[32].indices.length,corpus.pages[55].indices.length],[121,76]);
+
 const base60L=follow(seedL,grid.bytes);
 const base60R=follow(seedR,grid.bytes);
 assert.deepEqual([base60L.cycleLength,base60R.cycleLength],[11,11]);
