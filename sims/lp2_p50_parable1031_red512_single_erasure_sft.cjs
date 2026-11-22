@@ -185,6 +185,47 @@ const fullConstraints = lastSixCandidates.filter((candidate) => candidate.h.ever
 assert.deepEqual(fullConstraints.map((candidate) => candidate.suffix), ['ace6b424bd50']);
 assert.deepEqual(original.slice(250), [172, 230, 180, 36, 189, 80]);
 
+
+// Historical source repair: twelve 2014 text/decimal/case ambiguities, with
+// nine wrong bytes in the archived participant binary. The other 244 agree.
+// Alternatives from the 2014 participant files and confusable letter cases.
+const historicChoices = [
+  [25, 224, 198], [45, 81, 107], [50, 21, 47], [165, 18, 47],
+  [170, 254, 194], [172, 148, 174], [175, 44, 18], [182, 141, 167],
+  [199, 21, 47], [215, 5, 84], [237, 58, 32], [246, 224, 198],
+];
+const oldParticipantBytes = [...original];
+for (const [i, oldValue, alternate] of historicChoices) {
+  assert.ok(alternate !== oldValue);
+  assert.ok(original[i] === oldValue || original[i] === alternate);
+  oldParticipantBytes[i] = oldValue;
+}
+assert.equal(oldParticipantBytes.filter((value, i) => value !== original[i]).length, 9);
+/** @type {number[]} */
+const checksumPassingMasks = [];
+/** @type {number[]} */
+const dualPolynomialPassingMasks = [];
+/** @type {number[]} */
+const jointPassingMasks = [];
+for (let mask = 0; mask < 4096; mask++) {
+  const possible = [...oldParticipantBytes];
+  for (let j = 0; j < historicChoices.length; j++) {
+    if ((mask & (1 << j)) !== 0) possible[historicChoices[j][0]] = historicChoices[j][2];
+  }
+  const checksumPasses = byteIntegerRemainder(possible, M) === target;
+  const polynomialPasses = polyRemainderGF29(possible, h2013).every((r) => r === 0)
+    && polyRemainderGF29(possible, g39).every((r) => r === 0);
+  if (checksumPasses) checksumPassingMasks.push(mask);
+  if (polynomialPasses) dualPolynomialPassingMasks.push(mask);
+  if (checksumPasses && polynomialPasses) {
+    jointPassingMasks.push(mask);
+    assert.deepEqual(possible, original);
+  }
+}
+assert.equal(checksumPassingMasks.length, 5);
+assert.deepEqual(dualPolynomialPassingMasks, [0xfc7, 0xfcf]);
+assert.deepEqual(jointPassingMasks, [0xfc7]);
+
 console.log(JSON.stringify({
   originalBytes: original.length,
   printedCharacters: flat.join('').length,
@@ -196,6 +237,7 @@ console.log(JSON.stringify({
   canonicalRemainder: Number(byteIntegerRemainder(original, M)),
   readings: alternatives,
   recoveredIndependentErasures: recovered,
+  historic2014Ambiguity: { candidateReadings: 4096, originalWrongBytes: 9, checksumSurvivors: checksumPassingMasks.length, priorGF29FactorSurvivors: dualPolynomialPassingMasks.map((m) => m.toString(16)), jointSurvivor: jointPassingMasks[0].toString(16), correctedOriginalCells: historicChoices.length },
   sixByteSuffix: { candidateCountAfterIntegerCongruences: lastSixCandidates.length, uniqueAfterOriginalTwoGF29Quadratics: fullConstraints[0].suffix, candidates: lastSixCandidates },
   singleByteErrorsProvablyDetected: true,
   claim: 'Conditional arithmetic codeword; NO authenticated Cicada checksum or unknown plaintext',
