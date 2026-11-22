@@ -46,6 +46,16 @@ The **maximum** among all 12 is **0.034659663**: all original outputs remain clo
 
 The same source 255 register may still designate word positions, page routes, a key seed or a different byte/rune transform. Those are possibilities, **not positive cryptanalytic outputs**. The observed numeric equalities alone cannot authenticate them. Do not continue with extra reversals, alternate radices or fitted word phases without an independently visible instruction selecting a reversible consumer.
 
+## Exploratory checksum coincidence: exact native-GP number sum
+
+A second possible direct readout maps each of the 255 printed scroll words to one **GP29-index sum modulo29** and compares it with its aligned p8 rune. Under the *unshifted exact adjacent-page correspondence*, **20/255 source words have index sum equal to the p8 ciphertext rune**. This alignment is also the **unique maximum across all 255 cyclic alignments** of the unchanged p8 register: at the other 254 rotations, the largest equality count is **17**. Against every other original p9–p55 page with at least 255 runes (taking its first 255 runes at the identical phase), the maximum equality count is **14**. This appears to be a small zero-phase source correspondence worth preserving.
+
+The exact 20 zero-based aligned word indices are
+
+`[7,14,15,21,24,28,37,45,72,73,103,124,141,156,175,196,210,211,240,245]`.
+
+**This is exploratory, not an authenticated partial decryption or evidence of 20 intentionally copied symbols.** The index-sum candidate was selected while examining several word summaries; the cyclic maximum is an internal comparison, **not** a discovery-adjusted probability. The 20 matches are source coincidences, not known plaintext. In fact, the direct complete GP29 difference message `p8[j]−sum(word[j]) mod29` has flat IoC **0.0356029026** and no recoverable native-GP words or coherent text. A source-authored clue choosing a word-checksum relation, its use as a state or key, and a reversible plaintext consumer would be required. The SFT preserves the exact count, full rotation controls, independent-page maximum, and difference-stream negative so later work can avoid misreading a one-symbol spike as genuine plaintext.
+
 ## Reproduction and integration
 
 - [Windows Node.js 22 CommonJS self-contained SFT](../sims/lp2_p3_p7_scroll255_p50_grid256_wordkey_sft.cjs): asserts full p3–p7 word/rune identity, exact next-page p8 255-rune length, 256 complete numeric cells, all **12 fixed original full-length IoC outputs**, all original forward inversions and all twelve source-native 1,145/1,145 planted recoveries.
