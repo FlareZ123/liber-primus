@@ -117,6 +117,9 @@ function stats(a){
  return {n,ioc:Number((hist.reduce((s,v)=>s+v*(v-1),0)/(n*(n-1))).toFixed(11)),
   top5:hist.slice().sort((a,b)=>b-a).slice(0,5).reduce((s,v)=>s+v,0)};
 }
+/** @param {number[][]} ww @returns {number} */
+const withinWordDoublets=ww=>ww.reduce((sum,w)=>
+ sum+w.slice(1).reduce((a,c,i)=>a+Number(c===w[i]),0),0);
 const decoded=transform(words,true),reencoded=transform(decoded,false);
 assert.deepEqual(reencoded,words);
 const plain=decoded.flat();
@@ -173,8 +176,12 @@ console.log(JSON.stringify({
    p7RedFirst:[23,3],wordExponent:3,
    chaining:'last TWO actual ciphertext runes as low-order additive two-digit state'},
  original:{ciphertext:stats(raw),decoded:stats(plain),
+   sourceWithinWordDoublets:withinWordDoublets(words),
+   decodedWithinWordDoublets:withinWordDoublets(decoded),
    sections:origSegments,decodedFirst150:plain.slice(0,150).map(v=>gp.translit[v]).join(' ')},
  native:{sourceGpPlain:stats(rp),encrypted:stats(rc),
+   sourcePlainWithinWordDoublets:withinWordDoublets(reference),
+   encryptedWithinWordDoublets:withinWordDoublets(ciphertext),
    allMatchedWords:reference.length,wholeRecovered:rp.length,
    p57Recovered:solved.length,exactOriginalForwardReplay:true},
  decision:'A complete reversible stateful original-word transform; decode not GP prose on p3–7, p16–21 or p40–53. Reject this exact spec, not arbitrary word-state ciphers.'
