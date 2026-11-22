@@ -615,6 +615,34 @@ for(const cyclic of [false,true]) {
 assert.ok(plain27Original.every(v=>v.p0p1Ioc300<controls.n300.min));
 assert.ok(plain27Original.every(v=>v.p16Ioc200<controls.n200.min));
 
+/*
+ * The smaller GP28 source reduces the whole-book deficit to 23 bits, but
+ * the physical 31 large ornaments alone cannot serve as independent
+ * chapter-local GP28 quotient fields. The nine original visual chapters
+ * have actual exact-word GP28 minimum side bits 0,0,0,6,16,4,3,6,0;
+ * only 4,2,2,2 physical large glyphs appear respectively in the four
+ * failing chapters. This uses marks' source-page attributes to avoid
+ * counting a boundary mark twice at the same printed rune offset.
+ */
+const native28ChapterNeeds=[],largeGlyphChapterCounts=[],largeGlyphDeficits=[];
+for(const [lo,hi] of visualChapters){
+  const start=starts.get(lo);
+  const end=starts.get(hi)+corpus.pages.find(p=>p.page===hi).indices.length;
+  const scope=words.filter((_,i)=>ends[i]>start&&ends[i]<=end);
+  const L=scope.reduce((v,w)=>v+w.length,0);
+  assert.equal(L,end-start);
+  const M=scope.reduce((v,w)=>v*codebook(w),1n);
+  const requiredBits=missingBits(28n**BigInt(L),M);
+  const large=punctuation.events.filter(e=>e.symbol==='⁜' &&
+    e.page>=lo&&e.page<=hi).length;
+  native28ChapterNeeds.push(requiredBits);
+  largeGlyphChapterCounts.push(large);
+  if(requiredBits>large)largeGlyphDeficits.push([lo,requiredBits,large]);
+}
+assert.deepEqual(native28ChapterNeeds,[0,0,0,6,16,4,3,6,0]);
+assert.deepEqual(largeGlyphChapterCounts,[2,8,1,4,2,2,8,2,2]);
+assert.deepEqual(largeGlyphDeficits,[[15,6,4],[23,16,2],[27,4,2],[40,6,2]]);
+
 /* Real solved-native plaintext, planted through a length-expanding GP28
    nonrepeat transition encoder, recovers exactly under the same decoder. */
 const native = solvedSections.flat().slice(0, 300);
@@ -662,6 +690,9 @@ console.log(JSON.stringify({
   literal31GlyphGP28Sidecar: {
     binaryRead: glyphQuotient.toString(), maxQuotient:quotientDomainMax.toString(),
     competingThreeBinaryReadsInvalid: true, actualDecoded:original28,
+    nativeGP28ChapterRequiredBits:native28ChapterNeeds,
+    physicalLargeGlyphsPerChapter:largeGlyphChapterCounts,
+    chapterLocalInsufficientLargeGlyphs:largeGlyphDeficits,
     plantedNativeGP28Runes:total, plantedSide: nativeSide.toString()
   },
   genuineGP27ReducedSource: {missingBits:0,
