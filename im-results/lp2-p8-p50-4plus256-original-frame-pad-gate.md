@@ -38,6 +38,16 @@ Those 248 table cells contain **157 distinct byte values** and **91 repeated-byt
 
 This is a rigorous exclusion of the **stationary direct source-byte-to-ciphertext-rune** interpretation under the frozen physically matched row-major registers. It does not reject a byte stream serving as a position-dependent key in a separate true cipher, or another table traversal justified by a first-party instruction. Such models must specify the missing historical state update rather than retrofitting the observed GP29 outputs.
 
+## Independent self-contained p8 decipherment: red four-rune Hill2 key
+
+The first red word **XIXM**, GP0 [14,10,14,19], has **exactly four runes** and can be interpreted without outside keys as the row-major **2×2 Hill matrix** over GP29:
+
+M = [[14,10],[14,19]], determinant = 126 mod29 = **10**; determinant reciprocal = **3**; exact modular inverse **M^−1 = [[28,28],[16,13]]**.
+
+Under the same *word-bounded original 256-rune frame*, this yields 128 adjacent two-rune ciphertext blocks, with a unique correct mathematical inverse and **no tuned key components**. This tests a direct, historically familiar matrix cipher selected by the physical four-rune header, distinct from all p50 byte hypotheses. The first red eight-rune row decodes to the GP transliteration “XACNGXIANH”, not an instruction. The following **248 unchanged original black/carried runes** decode with IoC **0.03604544861**, producing no continuous native-GP prose. All128 cipher pairs reconstruct exactly using M, with the actual complete page-break word intact.
+
+This is a concrete negative for the simple fixed p8-red4 Hill2 architecture, with no Vigenère/Atbash or hidden phase overlays. Another nonlinear block operation using those four runes is not excluded; a visible first-party rule selecting it would be necessary before additional searches.
+
 ## Reproduction and next actionable decision
 
 [Standalone read-only Windows11/Node22 CommonJS SFT](../sims/lp2_p8_p50_4plus256_source_pad_sft.cjs) loads the original p8/p9 GP29 corpus, ink spans, exact page-break printing, and numeric table. It asserts physical 4|8|243|5, preserves all six carried-word symbols, checks 32×8/10|13|9, inverts both signs and reencrypts 256/256. The same original source values and numerical output were independently computed by inline deterministic JavaScript; no GitHub Actions run was claimed or available.
