@@ -1,0 +1,34 @@
+# Eight original p50 columns as eight literal AES-256 master keys: complete section-language test
+
+**Agent11, 22 November 2026. Evidence class: original-cipher test, negative in its specified finite family. No plaintext or key schedule recovered.**
+
+## Why this mechanism, and its strongest rival
+
+The original 2014 LP2 has exactly **eight** cipher-bearing `$`-delimited sections. Separately, the original numerals printed across physical pp49–51 form precisely **eight columns of 32** base60-encoded bytes per column. An especially economical explanation of the table would be one literal **256-bit master key** for each of the eight source sections; AES-256 was a standard cipher available to a 2014 creator. The table physically supplies every candidate key byte, unlike an unconstrained password search.
+
+The strongest rival is that eight-by-thirty-two is coincidental formatting, or that the table is a different encrypted binary object. No first-party source actually prints the words AES, CTR, a nonce, or an explicit instruction to treat the table columns as keys. The source-shaped idea therefore earns a *bounded direct decipherment attempt*, not a presumption of authored intent.
+
+## Frozen input, invertible operation, visible gate
+
+Canonical ciphertext sources:
+- `resources/lp2-transcription.txt`, SHA-256 `5e0003aa7f7dde3b238d17c5f964790dbf6bf9db5edacc4a5ec0bad81c6f4bce`;
+- `resources/liber-primus/lp2-grid-256.json`, SHA-256 `2a77dc623df45ddd126d10d2fffbafead4efd161d2acc07644809deac00a2089`;
+- `resources/liber-primus/lp2-corpus.json` for original GP29 rune indices and the source-native rune spelling.
+
+The eight section rune counts are **729, 1145, 1738, 1894, 1021, 1433, 1680, 3316**, totaling **12,956**; exactly **2,896** source printed words are retained, including **83** one-rune words. The ingestion explicitly joins broken source line/page wraps and checks the reconstructed contiguous rune tape against all canonical 55 cipher-bearing page records.
+
+The physically direct key geometry consists of **eight printed 32-byte columns**. A second natural geometry consists of **eight contiguous 32-byte row-major chunks**. Both candidate key series are used in forward/reverse section order. Node.js built-in `crypto.createCipheriv('aes-256-ctr', key, iv)` produces a deterministic byte stream for two fixed IV policies: all zero bytes; 12 zero bytes followed by the 32-bit big-endian source section index. Convert the byte stream into GP29 keystream symbols by either `byte % 29` or discarding bytes `>=232` for unbiased modulo29. Add/subtract the GP29 key symbols to ciphertext. Exactly **2×2×2×2×2=32** complete, invertible source-shaped variants. All original word boundaries remain fixed, and no plaintext crib is used to select parameters.
+
+For plaintext recognition, count complete original **A/I singleton words** (`GP(A/I)=[24/10]`), two-rune **THE** (`[TH,E]=[2,18]`), and three-rune **AND** (`[A,N,D]=[24,9,23]`); additional OF/TO/IN counts contribute to ranking. The source-keyed synthetic positive builds those exact native words in all possible corresponding original-length slots and AES-encrypts/decrypts every symbol. It recovers exactly **83/83 A/I**, **448/448 THE**, and **720/720 AND** across the original **12,956** rune layout. This establishes sensitivity for a direct GP29 English layer under the fixed conversion.
+
+## Actual Windows source result
+
+[Windows Node.js 22 PASS 45001572182](https://github.com/FlareZ123/liber-primus/actions/runs/45001572182), [complete, read-only Windows CommonJS test](../sims/lp2_p50_eightsection_aes256_keys_original_sft.cjs). All **32** candidate inverses ran to completion; all eight original sections were decoded under each configuration, 83 complete single-letter words preserved. **No meaningful native-GP plaintext appears** in this bounded family.
+
+The best postselected weighted source-phrase variant was **printed vertical columns, reverse section order, section-index IV, rejection232 bytes→runes and additive sign+**. It produced only **2 of 83 A/I** singleton words, **4 THE**, **0 AND**, **0 OF**, **0 TO**, and **3 IN** in the entire 2,896-word manuscript. Its four THE hits were dispersed (one in section3, one in section6, two in section7), and all sections0–2 supplied no single A/I, THE, AND, OF, TO or IN hits. Other configurations have isolated stronger singleton counts, but no configuration approaches the controlled English word recovery. The test reports the complete top-eight configurations and each section's word scores.
+
+**Decision:** retire the direct original table-as-eight-literal-AES-256-CTR-keys interpretation under the explicitly enumerated key geometry, IV, rune conversion and direction families. Do **not** promote isolated postselection English words to decoded ciphertext. This says nothing about AES with a different independently specified nonce, a separate encrypted-key-derivation method, XOR or stream cipher not yet source-selected, non-GP plaintext, or a cipher requiring an external key. No unknown original plaintext, specific historical key or destination was found.
+
+## Next research fork
+
+The lack of both original text and first-party AES/IV instruction makes further blind mode/nonce guessing low-value. A continuation should identify **new source-native key/nonce semantics** or a different authored operation that predicts an intact original unknown interval without reselecting its parameters. Alternatively, a history/asset discovery giving a source-chosen 256-byte role could make the table genuinely operational.
