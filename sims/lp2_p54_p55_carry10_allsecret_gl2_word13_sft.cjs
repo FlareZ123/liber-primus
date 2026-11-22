@@ -45,7 +45,7 @@ function nativeGP(word) {
 }
 assert.deepEqual(nativeGP("IN"), [10, 9]);
 assert.deepEqual(nativeGP("THE"), [2, 18]);
-assert.equal(nativeGP("PERTINACIOUSLY").length, 13);
+assert.equal(nativeGP("CIRCUMSTANCES").length, 13);
 const lex = new Map();
 const sourceCounts = [];
 for (const name of [
@@ -203,7 +203,7 @@ const secret = [5, 8, 13, 21];
 assert.equal(mod(secret[0] * secret[3] - secret[1] * secret[2]), 1);
 const native = c.pages[57].indices.slice(0, 86);
 assert.equal(native.length, 86);
-const positiveWord = nativeGP("PERTINACIOUSLY");
+const positiveWord = nativeGP("CIRCUMSTANCES");
 assert.equal(positiveWord.length, 13);
 for (let j = 0; j < 13; j += 1) native[10 + 23 + j] = positiveWord[j];
 const positives = [];
@@ -214,7 +214,7 @@ for (const mirror of [false, true]) {
   const recovered = solveWord(encrypted, positiveWord, mirror);
   assert.deepEqual(recovered, secret);
   const candidates = search(encrypted, mirror);
-  assert.ok(candidates.some(x => x.word.toUpperCase() === "PERTINACIOUSLY" &&
+  assert.ok(candidates.some(x => x.word.toUpperCase() === "CIRCUMSTANCES" &&
     x.matrix.every((z, i) => z === secret[i])));
   const wrong = secret.slice();
   wrong[0] = mod(wrong[0] + 1);
@@ -223,7 +223,7 @@ for (const mirror of [false, true]) {
     source: mirror ? "mirror" : "source-order",
     secretRecovered: recovered.join(","),
     nativeGPOriginal86Recovered: decoded.length,
-    sourceWord13Recovered: "PERTINACIOUSLY",
+    sourceWord13Recovered: "CIRCUMSTANCES",
     fullOriginalPositionRoundtrip: true
   });
 }
