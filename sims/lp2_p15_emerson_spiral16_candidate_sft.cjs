@@ -111,6 +111,26 @@ for (let shift = 0; shift + max < letters.length; shift++) {
 }
 assert.equal(lexicalTailCount, 26);
 assert.deepEqual(ironyOffsets, [0]);
+/** Conditional fixed-letter order control: all 16P5 distinct suffixes. */
+let totalOrder = 0, wordOrder = 0, ironyOrder = 0;
+const bag = [...onion.toUpperCase()];
+for (let a=0;a<16;a++) for(let b=0;b<16;b++) {
+  if (b===a) continue;
+  for(let c=0;c<16;c++) {
+    if (c===a||c===b) continue;
+    for(let d=0;d<16;d++) {
+      if (d===a||d===b||d===c) continue;
+      for(let e=0;e<16;e++) {
+        if (e===a||e===b||e===c||e===d) continue;
+        const suffix=bag[a]+bag[b]+bag[c]+bag[d]+bag[e];
+        totalOrder++;
+        if (common.has(suffix)) wordOrder++;
+        if (suffix==="IRONY") ironyOrder++;
+      }
+    }
+  }
+}
+assert.deepEqual([totalOrder,wordOrder,ironyOrder],[524160,262,2]);
 console.log(JSON.stringify({
   status: "provisional letter-address hypothesis, not verified service or plaintext",
   original_p15_spiral: nums,
@@ -120,6 +140,7 @@ console.log(JSON.stringify({
   extracted_16_base32: onion,
   hypothetical_onion_v2: onion + ".onion",
   other_edition_readout: alternateOnion,
+  fixed_letter_order: {totalOrder,wordOrder,ironyOrder},
   within_source_shift_control: {
     source_shifts: letters.length - max,
     common_5_letter_tail_shifts: lexicalTailCount,
