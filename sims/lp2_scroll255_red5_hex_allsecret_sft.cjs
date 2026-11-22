@@ -154,9 +154,43 @@ for (const [name, fn] of Object.entries(summaries)) {
   assert.equal(bound(feature, exact, true).max, 255);
   output[name] = {singleTable:raw, arbitraryByLength:lengthAdjusted};
 }
+// Source-typed HEX consumer: use the original 256 base60-decoded table
+// cells as unsigned bytes and original p7 red-five products as periodic masks.
+// All three complete 256-byte variants must re-encrypt exactly.
+const grid = JSON.parse(fs.readFileSync(path.join(ROOT,
+  "resources", "liber-primus", "lp2-grid-256.json"), "utf8"));
+const table = grid.bytes;
+assert.equal(table.length, 256);
+assert.deepEqual(table.slice(0, 3), [203, 231, 167]);
+const byteMasks = {
+  xor:(v,k) => v ^ k,
+  plus:(v,k) => (v + k) & 255,
+  minus:(v,k) => (v - k + 256) & 255,
+};
+const byteConsumers = {};
+for (const [name, encode] of Object.entries(byteMasks)) {
+  const out = table.map((v, j) => encode(v, five[j % five.length]));
+  const decoded = out.map((v, j) => {
+    const k = five[j % five.length];
+    return name === "xor" ? (v ^ k)
+      : name === "plus" ? ((v - k + 256) & 255)
+      : ((v + k) & 255);
+  });
+  assert.deepEqual(decoded, table);
+  byteConsumers[name] = {
+    first16:out.slice(0, 16),
+    printableASCII:out.filter(v => v >= 32 && v <= 126).length,
+  };
+}
+assert.equal(byteConsumers.xor.printableASCII, 103);
+assert.equal(byteConsumers.plus.printableASCII, 96);
+assert.equal(byteConsumers.minus.printableASCII, 93);
+assert.deepEqual(byteConsumers.xor.first16.slice(0, 4), [192,253,175,181]);
+
 console.log(JSON.stringify({
   source:"Original p3-p8, exact p7 five red-word GP-index product key",
   red5:five, originalDifferences:rawDifferences, correctedMatches,
+  directP50ByteConsumers:byteConsumers,
   sourceWordCount:words.length, page8RuneCount:ciphertext.length,
   arbitrarySecretLookupBounds:output,
   plant:"every feature's 255-position positive reaches 255/255"
