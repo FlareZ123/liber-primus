@@ -549,6 +549,35 @@ for(const alt of [
   mask31(largeDots,false),mask31(largeDots.slice().reverse(),true),
   mask31(largeDots.slice().reverse(),false)
 ]) assert.ok(alt>quotientDomainMax);
+/*
+ * Exact combinatorial null for the tempting binary-orientation "fit".
+ * Condition only on the genuine 31 visible large glyph positions and
+ * exactly three source-visible ten-dot exceptions (C(31,3)=4495).
+ * Under random placement of those same 3 exceptional glyphs, forward
+ * or reverse binary ordinal scores are individually valid often; the
+ * opposite bit polarity is always outside the bounded 23-bit quota.
+ */
+const threeTenDotOrientationControl = {
+  placements:0, validForward:0, validReverse:0,
+  exactlyOneValid:0, bothValid:0, neitherValid:0
+};
+for(let a=0;a<31;a++)for(let b=a+1;b<31;b++)for(let c=b+1;c<31;c++){
+  const left=(1n<<BigInt(30-a))+(1n<<BigInt(30-b))+
+    (1n<<BigInt(30-c));
+  const right=(1n<<BigInt(a))+(1n<<BigInt(b))+(1n<<BigInt(c));
+  const f=left<=quotientDomainMax,r=right<=quotientDomainMax;
+  threeTenDotOrientationControl.placements++;
+  threeTenDotOrientationControl.validForward+=Number(f);
+  threeTenDotOrientationControl.validReverse+=Number(r);
+  threeTenDotOrientationControl.exactlyOneValid+=Number(f!==r);
+  threeTenDotOrientationControl.bothValid+=Number(f&&r);
+  threeTenDotOrientationControl.neitherValid+=Number(!f&&!r);
+}
+assert.deepEqual(threeTenDotOrientationControl,{
+  placements:4495, validForward:1730,validReverse:1730,
+  exactlyOneValid:2650,bothValid:405,neitherValid:1440
+});
+
 const gp28Alphabet=corpus.translit.map((_,i)=>i).filter(i=>i!==12);
 const gp28Index=new Map(gp28Alphabet.map((n,i)=>[n,i]));
 const original28=[];
@@ -689,7 +718,8 @@ console.log(JSON.stringify({
   sidecarIndependent2896RuneSuffix: sideInvariantSuffix,
   literal31GlyphGP28Sidecar: {
     binaryRead: glyphQuotient.toString(), maxQuotient:quotientDomainMax.toString(),
-    competingThreeBinaryReadsInvalid: true, actualDecoded:original28,
+    competingThreeBinaryReadsInvalid: true,
+    threeTenDotOrientationControl, actualDecoded:original28,
     nativeGP28ChapterRequiredBits:native28ChapterNeeds,
     physicalLargeGlyphsPerChapter:largeGlyphChapterCounts,
     chapterLocalInsufficientLargeGlyphs:largeGlyphDeficits,
