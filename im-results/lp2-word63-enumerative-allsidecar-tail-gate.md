@@ -1,6 +1,6 @@
 # Exact 63-repeat complete-word enumerative codec: full original inverse and all-sidecar tail obstruction
 
-**Agent26 · 22 November 2026 · issue [#2273](https://github.com/FlareZ123/liber-primus/issues/2273).** An original-input, fully reversible, **bounded negative** for one specified enumerative architecture. It does not recover unknown plaintext, identify an authentic sidecar, or exclude alternative register orderings, changing segmentation, or source-selected stateful encoders.
+**Agent26 · 22 November 2026 · issue [#2273](https://github.com/FlareZ123/liber-primus/issues/2273).** An original-input, fully reversible, **bounded negative** for all six natural complete-register orderings of one specified enumerative architecture. It does not recover unknown plaintext, identify an authentic sidecar, or exclude alternative register orderings, changing segmentation, or source-selected stateful encoders.
 
 **Reproducer:** [`sims/lp2_word63_enumerative_allsidecar_tail_sft.cjs`](../sims/lp2_word63_enumerative_allsidecar_tail_sft.cjs). **Independent Windows Node22 original-corpus + planted solved-GP PASS:** [Actions run 45049449555](https://github.com/FlareZ123/liber-primus/actions/runs/45049449555). This run reads unmodified committed source JPEG-derived transcription, GP ordinal corpus, numeral-table bytes, and nine independently published solved GP29 sources. It tests all 12,956 source runes, complete decoder and encoder, and eight original column sidecars.
 
@@ -36,6 +36,21 @@ Therefore the **last 2,896 decoded plaintext GP29 runes** are fixed *before* cho
 
 This suffix is almost maximally uniform (uniform GP29 IoC 1/29≈0.034483), rather than native solved-Cicada GP29 prose. The complete **2,979-rune** nine-section independently published solved register has IoC **0.06138672520944124**; **all 84** contiguous solved-native 2,896-rune windows range **0.0612794492313858–0.06154519604194696**. This is a large fixed-original disparity, with no fitting on candidate words or key bits. It is a conditional native-prose rejection, not a universal proof that no unusual/artificial plaintext can have a flat histogram.
 
+## All six complete-register orderings on the original ciphertext
+
+The previous argument does not depend on which of the three full integers is serialized first. Exhaust the **six** natural lexicographic orderings of the unchanged complete registers A (2,896 GP29 word initials), B (63 positions among10,060), D (9,997 ranked GP28 transitions). Each is independently invertible: the exact mixed-radix backward decoder retrieves all three source-original register values and therefore reconstructs all 12,956 authentic original ciphertext runes and printed word breaks. Their codebook size is the same `M`, so **every conceivable high-order sidecar Q leaves the same 2,896-rune tail within that ordering**.
+
+| Full source-register ordering | Exact original all-sidecar-invariant 2,896-rune tail IoC |
+|---|---:|
+| A B D | 0.034523707287 |
+| A D B | 0.034355528202 |
+| B A D | 0.034544222750 |
+| B D A | 0.034422084180 |
+| D A B | 0.034442838195 |
+| D B A | 0.034422084180 |
+
+All six tails remain dramatically below the **0.061279–0.061545** IoC range over all 84 contiguous solved-source-native windows of the identical 2,896-rune length. All six plaintext-tail obstructions apply to **all possible Q**, beyond the eight literal source-table Q columns tested under A B D. They do **not** rule out reversal of individual symbol orders, interleaving/variable-length register fragments, stateful conditional updates, or a wholly different author-selected encoder. The authors have not instructed an exhaustive reordering search, and this finite six-order test does not justify one.
+
 ## Full original inverse, source-sidecar consumers, and positive tests
 
 The CommonJS test uniquely ranks the **unchanged 12,956 source cipher runes** and unpacks `R` back to **all 2,896 words, 12,956 symbols and 63 exact within-word repeats**. It constructs all eight original literal source-table **32-byte columns** as big-endian `Q` values. Every one gives a well-defined **12,956-rune full inverse** and exact original reciphering, but full-source IoCs are:
@@ -48,6 +63,6 @@ For a full-length positive, the test cycles the independent real solved-GP29 sou
 
 ## Cryptanalytic decision
 
-**Retire this exact three-register big-endian BASE29/28 enumerator, with a high-order unrestricted quotient sidecar, as a candidate direct explanation for ordinary native-GP plaintext across LP2.** No amount of optimizing, brute-forcing, rearranging, or locating Q can affect the fatal 2,896-rune decoded tail for this fixed register order. Its original original-cipher test and planted inverse are both complete and independently passed on Windows.
+**Retire all six complete-register orderings of this exact big-endian BASE29/28 enumerator, with an unrestricted high-order quotient sidecar, as a candidate direct explanation for ordinary native-GP plaintext across LP2.** No amount of optimizing, brute-forcing, rearranging, or locating Q can affect the fatal 2,896-rune decoded tail for this fixed register order. Its original original-cipher test and planted inverse are both complete and independently passed on Windows.
 
 The open **distinct** escape routes require a **source-visible change in the rank ordering, a stateful/word-conditioned enumerator, an intermediate compression or encryption step, or decoy word segmentation**, with a genuine original clue fixing that operation **before** examining new plaintext scores. The source words and 32×8 panel alone do not choose one. Do not promote the 265-bit requirement or a synthetic roundtrip to an authenticated key. This result narrows #2273; it does not settle the broad anti-repeat architecture.
