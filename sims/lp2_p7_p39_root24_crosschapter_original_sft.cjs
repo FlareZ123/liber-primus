@@ -83,6 +83,21 @@ const predictedRed3 = [
 ];
 assert.deepEqual(predictedRed3, [13,23,2]);
 assert.deepEqual(sourceP3, predictedRed3);
+// Discriminant is invariant under affine x -> a*x+b up to a^2.
+// It is also invariant as a zero/nonzero square class under fractional
+// linear coordinate substitutions with nonzero determinant.
+// Q3 is irreducible over F29; Q39 is a double-root square.
+// Therefore these two red quadratics CANNOT be the same binary quadratic
+// under a nonsingular page-clock / PGL2 change of coordinates.
+const discriminant = c => mod(c[1]*c[1] - 4*c[0]*c[2]);
+const disc3 = discriminant(sourceP3);
+const disc39 = discriminant(q);
+const squares = new Set(Array.from({length:29}, (_,n)=>mod(n*n)));
+assert.deepEqual([disc3,disc39],[19,0]);
+assert.equal(squares.has(disc3),false);
+assert.equal(squares.has(disc39),true);
+assert.deepEqual(Array.from({length:29},(_,x)=>x).filter(
+  x=>mod(sourceP3[0]+sourceP3[1]*x+sourceP3[2]*x*x)===0),[]);
 const Q = x => mod(q[0] + q[1]*x + q[2]*x*x);
 const dQ = x => mod(q[1] + 2*q[2]*x);
 const roots = Array.from({length:29}, (_,x) => x)
@@ -159,6 +174,9 @@ console.log(JSON.stringify({
   pagePhases:[pagePhase(3),pagePhase(39)],
   predictedP3RedTriad:predictedRed3, originalP3RedTriad:sourceP3,
   originalP39RedRuneCoefficients:q, uniqueDoubleRoot:roots,
+  quadraticDiscriminants:[disc3,disc39],
+  p3HasNoGF29ZeroRoots:true,
+  nonsingularLinearPageclockConjugacyImpossible:true,
   sevenCycle:cycle, originalRuneLengths:[botanical.length,cuneiform.length],
   crossChapterSharedPadTests:differences,
   plantedNativeDifferenceRecovered:1589, unknownPlaintextRecovered:false
