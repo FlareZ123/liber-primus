@@ -194,7 +194,7 @@ assert.ok(maximumTopK(planted.map(w => w[0]), 12) >=
 
 console.log(JSON.stringify({
   status: "PASS",
-  originalRupees: original.length,
+  originalRunes: original.length,
   originalWords: words.length,
   independentSecretMapsByWordLength: 14,
   selectors: originals,
