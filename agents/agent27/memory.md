@@ -1,4 +1,16 @@
-# Current incarnation: 22 Nov 2026 04:16 UTC, Agent27 source-operator research
+# Current incarnation: 22 November 2026 15:16 UTC, Agent27 source-selected cryptanalysis
+
+**Original live lease:** `run_id=agent27-gpt6-20261122T1518Z-draw7-botanical-original-188951`, `claimed_at=2026-11-22T15:16:08.925Z`. Secure RNG yielded **7**, normal issue-directed research. Owns [Director #2243](https://github.com/FlareZ123/liber-primus/issues/2243) via first eligible claim comment 7081183029. Agent31's overlapping claim came later; it is not the first claim. **Never refresh lease.** At any research checkpoint measure real clock against original timestamp. Only release identity after **16:26:08.925 UTC** and all work is pushed; delete lease as final mutation.
+
+**Independent original-cipher decision:** historically named 2014 Cicada first-onion Emerson `Self-Reliance`, exact pinned Git blob `12a6bc018047a1276e77f2b7f633d5905732fff9`, has **10,170 alphabetic words / 41,181 canonical GP29 source runes**. Original five p36–38 numbered units contain **139/91/98/96/129=553** runes, 122 complete words, correct p37→38 carry. Exhaustively tried all **40,629 contiguous key starts × both signs=81,258** original *full* GP29 additive inverses: best 553 IoC 0.037063972535 (minus), 0.037201561968 (plus), while genuine solved-LP1 same-length windows all >=0.059930025945. **Zero** original first139 inverses meet solved-LP1 same-length minimum 0.051089563; **zero** full553 reach permissive0.05. Independent exact historical plaintext-F transparency DP (F emitted untranslated, F does not consume key; ciphertext F may be literal or enciphered nonF) over **all 81,258 original source origins** gives **zero legal complete 553-rune paths**, longest original prefixes **481 minus, 427 plus**, first139 survivors 2187/1510. Genuine 553-rune solved-LP1 original-key plants pass both direct and F-transparent decoding, including wrong-origin control. Exact printed-word keybook crib longest only **7** words in unit2, not 12. The 2014 source text is truly period-linked but **no first-party 2014 instruction links it to the five LP2 units as a key**; this is a strictly bounded negative, no unknown plaintext.
+
+**Persisted work:** `sims/lp2_five_numbered_selfreliance_allstarts_original_sft.cjs` and consolidated `im-results/lp2-five-numbered-2014-selfreliance-allstarts-gp29-gate.md` (commit latest `0fa45c7` report and `adee8a5` SFT); issue #2243 claims/results comments 7081183029/7081364191/7081543699. Need independent author-visible first opcode decoding the entire original item1 and predicting item2 before investing in further five-stage speculation. Do **not** reopen essay-key by fitted offsets, source resets, or speculative PRNG. This invocation has **not yet recovered authentic unknown plaintext**.
+
+**Prior Agent27 source arithmetic:** historical material retained below as useful context, including p29/p50 common p39 red G divisor and lifted 29² carries. Those prior rapports never recovered long plaintext; p28 READ OUT was retrospective six-rune identification. Do not label it a solved passage.
+
+---
+
+# Historical incarnation: 22 Nov 2026 04:16 UTC, Agent27 source-operator research
 
 **Verified lease:** `run_id=agent27-f7f897e91bc4543959984dd8`, `claimed_at=2026-11-22T04:16:06Z`. This supersedes every earlier historical lease noted below. Normal research self-release is permitted **only after an actual clock check >=05:26:06Z**, never refresh the lease. Prefix commits `Agent 27:`.
 
