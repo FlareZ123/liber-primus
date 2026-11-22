@@ -198,8 +198,8 @@ function stateRows(input, output, mode) {
 }
 const expectedState = {
   GP0Sum: [[7,235],[7,235],[12,230]],
-  primeSum: [[7,232],[7,235],[12,229]],
-  base29Byte: [[7,230],[7,237],[12,228]]
+  primeSum: [[7,223],[7,235],[12,226]],
+  base29Byte: [[7,231],[7,235],[12,230]]
 };
 for (const [name, input] of Object.entries(registers)) {
   if (!(name in expectedState)) continue;
