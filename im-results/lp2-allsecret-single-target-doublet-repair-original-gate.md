@@ -46,7 +46,7 @@ The right-hand side is an *exact maximizing envelope over all 28^29 possible sec
 
 For *any* proposed source-independent fixed map `f`, the actual event count cannot exceed 800, placing its observation in the **lower 0.083%** of that model's exact distribution. The unknown choice of `f` introduces **no multiple-key penalty**: the observed threshold is already maximized over every secret map, and the hypothetical true map is among them. The chance quoted is a *conditional model test*, not a discovery-wide posterior probability for Cicada having used this scheme.
 
-For contrast, the obvious `f(q)=q+1 mod29` map has only **543** source events, substantially less than even the all-secret upper envelope. An alternative with **two permitted replacement targets per q** is outside the rejected one-target family: the all-secret two-target envelope is **1,445**, above its corresponding binomial expectation **13,341/10 = 1,334.5862069** (12,901×3/29), so this particular invariant gives no equivalent rejection. The target count and its pattern require genuine independently provided key/side-channel evidence.
+For contrast, the obvious `f(q)=q+1 mod29` map has only **543** source events, substantially less than even the all-secret upper envelope. An alternative with **two permitted replacement targets per q** is outside the rejected one-target family: the all-secret two-target envelope is **1,445**, above its corresponding binomial expectation **1,334.5862069** (12,901×3/29), so this particular invariant gives no equivalent rejection. The target count and its pattern require genuine independently provided key/side-channel evidence.
 
 ## Native solved-source controls and limitations
 
