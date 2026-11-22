@@ -11,7 +11,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 
 const root = path.resolve(__dirname, '..');
-const source = fs.readFileSync(path.join(root, 'resources/historical/cicada2014-stage11-message.asc'), 'utf8');
+const source = fs.readFileSync(path.join(root, 'resources/historical/cicada2014-stage11-message.asc'), 'utf8').replace(/\r\n/g, '\n');
 const signed = source.split('Hash: SHA1\n\n')[1].split('-----BEGIN PGP SIGNATURE-----')[0];
 const widths = [];
 for (const line of signed.split(/\r?\n/)) {
