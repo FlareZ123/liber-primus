@@ -161,12 +161,44 @@ const positiveScore=languageScore(positiveText);
 assert.ok(positiveScore>-3.7);
 assert.ok(originalScore<Math.min(...english40));
 
+// A second source-motivated, completely typed 40-symbol consumer:
+// original p32 (121 runes) can be interpreted as an inferred 11x11 square;
+// solved p57 says SHED CIRCUMFERENCES. Take exactly the clockwise outer 40,
+// from its upper-left cell, and subtract the documented 2015 40 event values.
+const p32 = corpus.pages[32].indices;
+assert.equal(p32.length, 121);
+const outer = [];
+for(let col=0;col<11;col++) outer.push(col);
+for(let row=1;row<11;row++) outer.push(row*11+10);
+for(let col=9;col>=0;col--) outer.push(110+col);
+for(let row=9;row>=1;row--) outer.push(row*11);
+assert.equal(outer.length, 40);
+assert.equal(new Set(outer).size, 40);
+const ring = outer.map(i=>p32[i]);
+const ringRead = ring.map((v,i)=>mod(v-values[i]));
+const indexCoincidence = xs => {
+  const count=new Uint32Array(29);
+  for(const v of xs) count[v]++;
+  return count.reduce((s,n)=>s+n*(n-1),0)/(xs.length*(xs.length-1));
+};
+assert.equal(latin(ringRead),'JPOEHEIALLFHOERSIBSMASOTHETLYHOMRPTNGHFEOAYLXD');
+assert.ok(Math.abs(indexCoincidence(ringRead)-0.03205128205128205)<1e-12);
+const ringPositiveCipher = positiveText.map((v,i)=>mod(v+values[i]));
+assert.deepEqual(ringPositiveCipher.map((v,i)=>mod(v-values[i])),positiveText);
+
 console.log(JSON.stringify({
   sourcePages:'p0-p2',sourceRunes:source.length,
   eventRule:'first-prime-shift difference; keep every right-side repeated D value',
   original:{events:events,valuesGP29:values,transliteration:latin(values),
     meanTrigramLogProbability:originalScore},
   phaseCounts:{max40AtOnlyPhase0:true},
+  p32Outer40DirectKey: {
+    consumer:'source p32 inferred 11x11 clockwise border, C minus 2015 forty event values',
+    originalOutput:latin(ringRead), originalIoC:indexCoincidence(ringRead),
+    unmodifiedBorderIoC:indexCoincidence(ring),
+    positivePlant40:latin(positiveText),
+    positiveRecoveredExactly:true
+  },
   independentEnglish:{trainingRunes:train.length,validationRunes:validation.length,
     windows40:english40.length,lowestScore:Math.min(...english40),
     windowsAtOrBelowOriginal:english40.filter(s=>s<=originalScore).length},
