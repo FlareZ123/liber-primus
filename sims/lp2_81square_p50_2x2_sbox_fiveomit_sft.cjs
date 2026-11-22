@@ -84,13 +84,13 @@ function orient80(predicted, rotation, mirror) {
 const stencil = {
   mixedDifference: ([a, b, c, d]) => a - b - c + d,
   primeMixedDifference: ([a, b, c, d]) =>
-    prime[a] - prime[b] - prime[c] + prime[d],
+    pr[a] - pr[b] - pr[c] + pr[d],
   horizontalGradient: ([a, b, c, d]) => a + b - c - d,
   verticalGradient: ([a, b, c, d]) => a + c - b - d,
   primeHorizontalGradient: ([a, b, c, d]) =>
-    prime[a] + prime[b] - prime[c] - prime[d],
+    pr[a] + pr[b] - pr[c] - pr[d],
   primeVerticalGradient: ([a, b, c, d]) =>
-    prime[a] + prime[c] - prime[b] - prime[d],
+    pr[a] + pr[c] - pr[b] - pr[d],
   rectangleProduct: ([a, b, c, d]) => (a - c) * (b - d)
 };
 const differenceResults = [];
