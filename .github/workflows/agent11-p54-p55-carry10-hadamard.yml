@@ -13,3 +13,5 @@ jobs:
           node-version: '22'
       - name: Test original p54-p55 balanced 43+43 source and native plant
         run: node sims/lp2_p54_p55_carry10_balanced_hadamard_sft.cjs
+      - name: Solve all-secret pairwise GF29 matrix from original 13-rune word
+        run: node sims/lp2_p54_p55_carry10_allsecret_gl2_word13_sft.cjs
