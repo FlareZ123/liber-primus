@@ -102,7 +102,7 @@ function encryptAffine(words, a, b) {
 /** @param {string} token @returns {number[]} */
 function nativeGpWord(token) {
   const normalized = token.toUpperCase().replace(/Q/g, 'CW').replace(/K/g, 'C')
-    .replace(/V/g, 'U').replace(/Z/g, 'S');
+    .replace(/V/g, 'U').replace(/Z/g, 'S').replace(/ING/g, 'NG');
   const output = [];
   for (let i = 0; i < normalized.length;) {
     let found = false;
@@ -196,11 +196,11 @@ function summary(values) {
 const statsG = summary(controlGibran);
 const statsS = summary(controlShakespeare);
 assert.deepEqual(statsG, {
-  min: 1, median: 20, max: 125, zero: 0,
+  min: 1, median: 20, max: 124, zero: 0,
   conservativePlusOneTail: 1 / 401
 });
 assert.deepEqual(statsS, {
-  min: 0, median: 15, max: 283, zero: 1,
+  min: 0, median: 14, max: 283, zero: 1,
   conservativePlusOneTail: 2 / 401
 });
 console.log(JSON.stringify({
