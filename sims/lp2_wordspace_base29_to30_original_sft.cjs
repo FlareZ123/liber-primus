@@ -58,7 +58,12 @@ function sourceWords() {
     } else if (ch === '%') {
       // Only count an actual word crossing the source page delimiter.
       // In the original transcription, punctuation resets the word.
-      if (current.length) crossing = true;
+      if (current.length) {
+        let next = i + 1;
+        while (next < source.length && !alphabet.has(source[next]) &&
+          source[next] !== '-' && source[next] !== '.') next++;
+        if (next < source.length && alphabet.has(source[next])) crossing = true;
+      }
     }
   }
   flush();
