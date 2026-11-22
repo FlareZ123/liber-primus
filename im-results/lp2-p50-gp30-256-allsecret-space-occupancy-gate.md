@@ -1,8 +1,8 @@
-# LP2 p50 grid as a GP30 movable-space key: exact all-secret six-class obstruction
+# LP2 GP30 movable spaces: exact all-secret p50 and all-period page-offset obstruction
 
-**Decision, 22 November 2026, Agent46.** The original printed 256-cell p49–p51 grid cannot supply a **stationary, independently bijective 30-symbol substitution alphabet per cell** that converts the entire original LP2 rune+space tape into ordinary native-Gematria-Primus prose. The decision covers continuous and physical-page-reset table clocks, advancing over all printed GP30 symbols or only original source ciphertext runes. Every cell is allowed its own unrestricted secret 30! permutation. Equal table values sharing an alphabet only strengthen the impossibility. A direct table-modulo30 GP30 stream inverse also produces no prose on original pp16–21 or independent pp40–53.
+**Decision, 22 November 2026, Agent46.** The original printed 256-cell p49–p51 grid cannot supply a **stationary, independently bijective 30-symbol substitution alphabet per cell** that converts the entire original LP2 rune+space tape into ordinary native-Gematria-Primus prose. **More strongly, any fixed-period, shared-offset substitution alphabet reset at each original physical page fails the same original-cipher native-language bound for *every positive period*.** Under a globally continuous clock, all periods 1–404 (token advances) or 1–413 (original-rune advances) fail; period405 or414 first crosses the necessary capacity, with no claim that it decrypts. All cell keys are allowed independent unrestricted secret 30! permutations. Equal table values sharing an alphabet only strengthen the impossibility. A direct table-modulo30 GP30 stream inverse also produces no prose on original pp16–21 or independent pp40–53.
 
-This is a conditional, **key-independent exclusion of a full original-input architecture**, with no unknown-page plaintext recovered. Evolving-state keys, genuine symbol expansion/compression, a recoverable side channel or substantially non-native output are outside its scope.
+This is a conditional, **key-independent exclusion of complete original-input architectures**, with no unknown-page plaintext recovered. Evolving-state keys, genuine symbol expansion/compression, a recoverable side channel, separately secret private alphabets for each physical page, or substantially non-native output are outside its scope.
 
 ## Source-visible premise and independent rival
 
@@ -27,6 +27,23 @@ This bound is tight for the stated model, even if every secret alphabet can be c
 
 All rows have denominator 15,852 original GP30 tokens. The first row deliberately gives repeated identical table values separate secret alphabets. Across the four tested clock modes, the **most permissive** full-secret bound is **7,779 / 15,852 = 49.073%**.
 
+## Generalized all-period original-cipher obstruction
+
+The same top-six argument does **not depend on p50**. Give an arbitrary secret permutation of GP30 **at every phase of an unrestricted period**. The source ciphertext determines each phase's frequency histogram, and no secret key can increase the target six-symbol count above the phasewise top-six total.
+
+The independently source-defined clock either advances on every GP30 token or only on original rune symbols, and either continues across all 55 physical text pages or resets at each page. Each period is computed on the untouched 15,852-token original source. The language criterion is the minimum combined-six share of the authenticated solved LP1 long section (501/936), solved p57 (66/115), and eight matched Gibran GP-native samples. It imposes the necessary original count threshold **8484.884615...**, meaning at least 8,485 of the source's 15,852 positions must be able to map to SPACE plus five chosen GP symbols.
+
+| Shared fixed-state clock | All periods rejected by exact original M6 | First period not excluded by this gate | Source fact explaining the endpoint |
+| --- | --- | --- | --- |
+| Globally continuous token index | **1–404** | **405**, M6=8,520 | The p404 original bound is M6=8,388; periods beyond 404 require a new operation/key clue |
+| Globally continuous source-ciphertext-rune index | **1–413** | **414**, M6=8,495 | The p413 original bound is M6=8,482 |
+| Page-reset original token index, with secret alphabet **shared across pages** | **Every positive integer period** | None | Physical p29 has the maximum 347 source GP30 tokens. All periods ≥347 have identical no-wrap state assignments, with M6 permanently saturated at **8,202** (51.741%); all shorter periods separately fail |
+| Page-reset original rune index, with secret alphabet **shared across pages** | **Every positive integer period** | None | Physical p29 has the maximum 277 source runes; after-rune separator may occupy state277. All periods ≥278 saturate at M6=**7,852** (49.533%); all shorter periods separately fail |
+
+These are **necessary language-capacity exclusions** for a fixed six plaintext-symbol set, regardless of which source GP30 classes represent the five plaintext runes. A period first crossing the capacity threshold supplies no positive evidence of an original cipher: a correctly keyed full plaintext, page segmentation, word breaks, key origin and independent holdout remain necessary. A separately secret alphabet at each actual *page × offset* is outside the global sharing assumption, as are nonstationary key schedules or plaintext-dependent clocks; no authorial cipher selection has been found.
+
+The committed read-only SFT enumerates **all 404 + 413 + 347 + 278** period possibilities in their respective specified ranges, asserts each is below the native control, verifies the first two nonexcluded periods and checks page-local saturation at arbitrary period 800. This all-period extension passed [Windows-latest Node.js 22 CI 45077821659](https://github.com/FlareZ123/liber-primus/actions/runs/45077821659) on source commit 4bed784eeed8f2a4e8259f3246c2dd84d89b6e71. The claim is exact on the unmodified ciphertext and conditional on the shared secret-alphabet architecture and native-GP target comparison.
+
 ## Original positive controls and direct inverses
 
 The authentic solved p57 contains 95 GP runes plus 20 word marks; its five most frequent GP runes occur 46 times. Therefore the corresponding SPACE+top-five concentration is **66/115 = 57.391%**. A previously established solved LP1 long section has **(181 marks + 320 top-five runes)/(181+755) = 53.526%**. Eight equal-token-length, source-native 29-GP-plus-space windows from public-domain Gibran text under the SFT's declared Latin-to-GP rules range **53.539%–54.094%**. Thus none of these authentic-source-native comparators can pass the original ciphertext's maximum 49.073% occupancy, even granting every p50 cell an unrelated secret 30! alphabet. The exclusion is conditional on natural native-GP prose, not every imaginable target plaintext.
@@ -37,4 +54,4 @@ An independent full-length **source-native positive plant** encrypts real Gibran
 
 ## Next decision
 
-Retire further experiments that only retune a stationary per-cell full 30-symbol alphabet under these four clocks or vary an unselected cell-value key. To bypass this exact original occupancy theorem, identify a **source-visible state-changing operation**, **authenticated side-information carrier**, **variable-length reversible code**, or another distinct target-language model, then demand intact original ciphertext inverse plus an independent original plaintext prediction. This report provides an exact all-key gate, not a completed solution to Liber Primus.
+Retire further experiments that only retune stationary GP30 source table alphabets, short shared continuous phase keys, or **any globally shared physical-page-offset substitution key**, regardless of declared period. To bypass this exact original occupancy theorem, identify a **source-visible state-changing operation**, **authenticated side-information carrier**, **variable-length reversible code**, or another distinct target-language model, then demand intact original ciphertext inverse plus an independent original plaintext prediction. This report provides an exact all-key gate, not a completed solution to Liber Primus.
