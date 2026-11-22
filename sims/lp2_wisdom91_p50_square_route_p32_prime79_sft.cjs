@@ -229,6 +229,18 @@ for (let a = 1; a * a <= 255; a++) {
 assert.deepEqual(squarePairs, [{ a: 7, b: 4 }]);
 const [s7, s4, s11] = walk.slice(1, 4);
 assert.equal(s7 - s4, exteriors);
+// Independently solved p56 provides the genuine prime-totient operation:
+// GP prime79 -> phi(79)=78. The p32 121-rune source minus phi(79) yields
+// exactly p55's *separately counted* 43 strict printed-word interiors.
+// Together with the exterior33, the entire p55 length76 closes.
+const selectedPrime = corpus.prime[p32[7 * 11 + 4]];
+assert.equal(selectedPrime, 79);
+const selectedTotient = selectedPrime - 1; // 79 prime, so phi(79)=78
+assert.equal(selectedTotient, 78);
+assert.equal(p32.length - selectedTotient, strictWordInteriors.length);
+assert.equal((s7 - s4) + (p32.length - selectedTotient), p55.length);
+console.log('TOTAL PARTITION: exterior=(49-16)=33; interior=(121-phi(79))=43; sum=76 original p55');
+
 const pythagoreanDefect = s11 - s7 - s4;
 assert.equal(pythagoreanDefect, 2 * 7 * 4);
 assert.equal(pythagoreanDefect, 56);
