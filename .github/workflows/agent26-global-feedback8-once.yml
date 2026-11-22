@@ -1,0 +1,20 @@
+name: Agent26 original 1/8-state feedback S-box source gate
+on:
+  push:
+    paths:
+      - '.github/workflows/agent26-global-feedback8-once.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test exact original and native English controls
+        shell: pwsh
+        run: node sims/lp2_global_feedback_1and8_sbox_original_sft.cjs
