@@ -1,6 +1,21 @@
-# A direct spatial-image receiver for the p7 GF(81) and 81²/80² bookend
+# Original 81²/80² bookend: direct and source-field spatial-image inverses
 
 **Agent50, 22 November 2026. Interim original-cipher result.** Neither a new LP2 plaintext nor a creator-supplied key was recovered. This is a bounded test of a different output type from the ordinary-GP-language additive receivers in [the field-bookend study](lp2-p7-gf81-bookend-original-negative-gate.md). It evaluates whether those same source-determined operations hide a spatial image whose pixel frequencies need not look like English letters.
+
+## The simpler original-source image route: square layouts with any secret binary palette
+
+The **source-defined** 81²/80² bookend does not in itself require a field, cipher or printed key to suggest that a human could physically lay out the source runes as a pair of square raster images. I therefore also tested the *literal original GP29 runes* in each of those two exact layouts before introducing a source pad. This is a genuinely independent receiver: each of the 29 rune glyphs is assigned a secret but **globally fixed black/white pixel color**; the palette may be any of the `2^29` assignments, including a choice made after viewing the page layout.
+
+The same exact integer positive-semidefinite certificate derived later in this report applies to each original source square, with its own actual rune frequencies, width, edge count, and no secret palette enumeration:
+
+| Unchanged original square | Real rune pixels | Valid orthogonal edges | Same-*rune* edges | Mathematically minimum fraction of shuffle-expected *binary* boundaries under any fixed secret palette | Maximum same-color edges for any balanced 40–60% black/white palette |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| First bookend `A`, 81×81 | **6,561** | **12,960** | **256** | **0.9111111111** | **7,291** |
+| Second bookend `B`, 80×80 with five true numbered holes | **6,395** | **12,620** | **263** | **0.9119809826** | **7,094** |
+
+All **28 exact positive leading principal minors** of the integer certificate matrix pass for each unchanged source square. A source-faithful position layout containing an ordinary coherent two-color image would normally require a substantial deficit of black/white boundaries; these two squares cannot exhibit that deficit for any static rune→black/white mapping. This closes the **untransformed original-source square-as-picture** mechanism, independent of p7 algebra.
+
+[The separate direct-square CommonJS test](../sims/lp2_bookend_direct_allpalette_image_sft.cjs) includes a demanding positive control: deterministic 9×9 and 8×8 coarse chessboards in which **each** glyph is drawn pseudorandomly from 14/15 different original-GP symbol classes according to its **secret palette**. This camouflage defeats trivial same-rune adjacency, yet the original-equivalent exact certificate *correctly fails* for both implanted pictures; each planted picture has fewer than 25% of the binary boundaries expected from shuffled controls. Both direct-square and GF81-field certificate tests passed [the shared Windows Node.js 22 workflow](https://github.com/FlareZ123/liber-primus/actions/runs/45060643895).
 
 ## Source-selected image geometry and reversible receiver
 
@@ -55,4 +70,4 @@ times its random-shuffle expected number of black/white boundaries. Any source-d
 
 A simple readable raster does **not** emerge after the suggested source GF81 address mapping. Because the same two inverses already fail linguistic-frequency tests, the spatial interpretation no longer gives an independent reason to prioritize this specific pad. Do not expand this negative into a free search over orientations, secret palettes, field generators or symbols. The real missing ingredient remains an **author-chosen reversible operation** capable of exposing unknown-page plaintext or a genuine linked key carrier.
 
-The standalone [Windows 11 / Node22 CommonJS SFT](../sims/lp2_p7_gf81_bookend_spatial_raster_sft.cjs) reads the unchanged `lp2-corpus.json`; reconstructs p7 products and p8 original red words; derives the order-80 field generator; checks the bookend counts and exact numeral-hole geometry; computes the two original adjacency numerators; runs the deterministic 4,096-per-sign controls; verifies full original reencryption and a planted 8×8-block spatial image. Its original numerators and null means were independently executed against the exact GitHub-retrieved source corpus in the invocation's JS runtime; no GitHub Actions run is claimed for this script.
+The standalone [Windows 11 / Node22 CommonJS SFT](../sims/lp2_p7_gf81_bookend_spatial_raster_sft.cjs) reads the unchanged `lp2-corpus.json`; reconstructs p7 products and p8 original red words; derives the order-80 field generator; checks the bookend counts and exact numeral-hole geometry; computes the two original adjacency numerators; runs the deterministic 4,096-per-sign controls; verifies full original reencryption and a planted 8×8-block spatial image. Its original numerators and null means were independently executed against the exact GitHub-retrieved source corpus in the invocation's JS runtime; [Windows Node.js 22 run 45060643895](https://github.com/FlareZ123/liber-primus/actions/runs/45060643895) passes this script and the independent original-source direct-square SFT.
