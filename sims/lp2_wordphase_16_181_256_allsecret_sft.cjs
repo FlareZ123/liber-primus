@@ -1,7 +1,7 @@
 "use strict";
 
 /**
- * LP2 source period16/181/256 whole-word-key all-secret majorization SFT.
+ * LP2 source period16/181/256/362 whole-word-key all-secret majorization SFT.
  * Read-only Node.js 22 / Windows 11.
  */
 const assert = require("node:assert/strict");
@@ -30,13 +30,16 @@ const len = actual.length;
 const wordLengths = words.map(w => w.length);
 assert.equal(wordLengths.reduce((s, n) => s + n, 0), 12956);
 assert.equal(16 * 181, words.length);
+assert.equal(8 * 362, words.length);
 const sourceClocks = [
   {label: "p15 original 16-cell square / word period16", period: 16,
-    expected: [635, 1223, 1790, 2338]},
+    expected: [635, 1223, 1790, 2338], rejectAtK: 4},
   {label: "16-by-181 complete-word rectangle / word period181", period: 181,
-    expected: [1063, 1988, 2839, 3624]},
+    expected: [1063, 1988, 2839, 3624], rejectAtK: 4},
   {label: "p50 original 256-byte table / word period256", period: 256,
-    expected: [1226, 2250, 3170, 4021]}
+    expected: [1226, 2250, 3170, 4021], rejectAtK: 4},
+  {label: "p50 eight printed columns / word period362", period: 362,
+    expected: [1377, 2536, 3553, 4471], rejectAtK: 1}
 ];
 /**
  * The sharp concentration bound under arbitrary independent fixed
@@ -86,27 +89,30 @@ function nativeGP(english) {
   return out;
 }
 /** @param {number[]} indices */
-function topFour(indices) {
+function topK(indices, k) {
   const count = new Uint32Array(29);
   for (const value of indices) count[value]++;
-  return [...count].sort((a, b) => b - a).slice(0, 4)
+  return [...count].sort((a, b) => b - a).slice(0, k)
     .reduce((a, b) => a + b, 0);
 }
 const donors = [
   {name: "Gibran", value: nativeGP(read("resources/control/gibran_prophet_58585.txt")),
-    expectedLength: 62492, expectedWindows: 99, expectedMinTop4: 4373},
+    expectedLength: 62492, expectedWindows: 99, expectedMinimum: [1423, 4373]},
   {name: "Shakespeare", value: nativeGP(read("resources/control/shakespeare_first300k.txt")),
-    expectedLength: 217106, expectedWindows: 406, expectedMinTop4: 4266}
+    expectedLength: 217106, expectedWindows: 406, expectedMinimum: [1409, 4266]}
 ];
 for (const donor of donors) {
   assert.equal(donor.value.length, donor.expectedLength);
-  const scores = [];
+  const scores = [[], []];
   for (let start = 0; start + len <= donor.value.length; start += 503) {
-    scores.push(topFour(donor.value.slice(start, start + len)));
+    const window = donor.value.slice(start, start + len);
+    scores[0].push(topK(window, 1));
+    scores[1].push(topK(window, 4));
   }
-  assert.equal(scores.length, donor.expectedWindows);
-  assert.equal(Math.min(...scores), donor.expectedMinTop4);
-  donor.minimumTop4 = Math.min(...scores);
+  assert.equal(scores[0].length, donor.expectedWindows);
+  const minima = scores.map(v => Math.min(...v));
+  assert.deepEqual(minima, donor.expectedMinimum);
+  donor.minimum = minima;
 }
 
 /**
@@ -147,7 +153,7 @@ function roundtrip(plaintext, period, seed) {
   });
   assert.equal(cursor, len);
   assert.deepEqual(decrypted, plaintext);
-  const originalTop4 = topFour(plaintext);
+  const originalTop4 = topK(plaintext, 4);
   const upper = phaseCapacity(wordLengths.map((L, i) => {
     const start = wordLengths.slice(0, i).reduce((a, b) => a + b, 0);
     return encrypted.slice(start, start + L);
@@ -160,18 +166,22 @@ const records = [];
 for (const variant of sourceClocks) {
   const candidate = phaseCapacity(words, variant.period);
   assert.deepEqual(candidate.bounds, variant.expected);
-  assert.ok(donors.every(d => candidate.bounds[3] < d.minimumTop4),
-    "all-secret table cannot have enough native GP top-four symbols");
+  const k = variant.rejectAtK;
+  assert.ok(donors.every(d => candidate.bounds[k - 1] < d.minimum[k === 1 ? 0 : 1]),
+    "all-secret table cannot have enough native GP top-k symbols");
   const plant = roundtrip(donors[0].value.slice(0, len), variant.period,
     (0x33010000 + variant.period) >>> 0);
-  records.push({label: variant.label, ...candidate, shareTop4: candidate.bounds[3] / len,
+  records.push({label: variant.label, ...candidate, rejectAtK: k,
+    sourceBoundShare: candidate.bounds[k - 1] / len,
     fullNativePlant: plant});
 }
-console.log("PASS LP2 period16/181/256 all-secret source word-key rejection");
+console.log("PASS LP2 period16/181/256/362 all-secret source word-key rejection");
 console.log(JSON.stringify({
   sourceWords: words.length, sourceRunes: len, crossPageWords: parsed.crossPageWords,
   references: donors.map(d => ({source: d.name, totalRunes: d.value.length,
-    windows: d.expectedWindows, minimumTop4: d.minimumTop4,
-    minimumShare: d.minimumTop4 / len})),
+    windows: d.expectedWindows, minimumTop1: d.minimum[0],
+    minimumTop4: d.minimum[1],
+    minimumTop1Share: d.minimum[0] / len,
+    minimumTop4Share: d.minimum[1] / len})),
   records
 }, null, 2));
