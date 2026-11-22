@@ -17,7 +17,7 @@ const path = require("node:path");
 const {parseSharedCorpus, physicalLP2Page} = require("./lp2_word_pages.cjs");
 const {encodeSourceNativeGP} = require("./lp2_native_gp_source_orthography_sft.cjs");
 const root = path.resolve(__dirname, "..");
-const read = file => fs.readFileSync(path.join(root, file), "utf8");
+const read = file => fs.readFileSync(path.join(root, file), "utf8").replace(/\r\n/g, "\n");
 const gp = JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const originals = parseSharedCorpus();
 const runeIndex = new Map(gp.runes.map((r,i) => [r,i]));
