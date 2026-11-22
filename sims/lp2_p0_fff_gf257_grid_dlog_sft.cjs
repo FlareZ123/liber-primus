@@ -158,6 +158,64 @@ for(const inverse of [false,true]){
 }
 assert(finiteFourierReadouts.every(x=>x.maxAlphabeticRun<=3));
 
+// The original numerical source is printed as 32 physical rows of
+// 8 cells. GF257's 256th root 38 supplies primitive 32nd and 8th roots,
+// so test all four fixed direct/inverse axis orientations of the natural
+// 32x8 tensor-product Fermat transform.
+const mod257=x=>((x%P)+P)%P;
+/** @param {number[]} data @param {number} length
+ * @param {number} exponentStep @param {boolean} inverse */
+function axisTransform(data,length,exponentStep,inverse){
+  const inverseFactor=length===8?225:249;
+  return Array.from({length},(_,k)=>{
+    let acc=0;
+    for(let j=0;j<length;j++){
+      const power=mod257((inverse?-1:1)*k*j*exponentStep)%256;
+      acc=(acc+data[j]*byExponent[power])%P;
+    }
+    return inverse?acc*inverseFactor%P:acc;
+  });
+}
+/** @param {number[]} input @param {boolean} inverseRows
+ * @param {boolean} inverseColumns */
+function transform2D(input,inverseRows,inverseColumns){
+  const afterColumns=Array(256).fill(0);
+  for(let r=0;r<32;r++){
+    const transformed=axisTransform(input.slice(8*r,8*r+8),8,32,
+      inverseColumns);
+    for(let c=0;c<8;c++)afterColumns[8*r+c]=transformed[c];
+  }
+  const afterRows=Array(256).fill(0);
+  for(let c=0;c<8;c++){
+    const column=Array.from({length:32},(_,r)=>afterColumns[8*r+c]);
+    const transformed=axisTransform(column,32,8,inverseRows);
+    for(let r=0;r<32;r++)afterRows[8*r+c]=transformed[r];
+  }
+  return afterRows;
+}
+const tensorFourierReadouts=[];
+for(const inverseRows of [false,true])
+  for(const inverseColumns of [false,true]){
+    const transformed=transform2D(grid.bytes,inverseRows,inverseColumns);
+    const original=transform2D(transformed,!inverseRows,!inverseColumns);
+    assert.deepEqual(original,grid.bytes);
+    const plantedCipher=transform2D(planted,inverseRows,inverseColumns);
+    const plantedRestored=transform2D(plantedCipher,!inverseRows,!inverseColumns);
+    assert.deepEqual(plantedRestored,planted);
+    const ascii=content(transformed);
+    const matches=ascii.match(/[A-Za-z]+/g)||[];
+    tensorFourierReadouts.push({
+      rows:inverseRows?'inverse':'forward',
+      columns:inverseColumns?'inverse':'forward',
+      originalPrintableASCII:printable(transformed),
+      originalGP29ByteCount:transformed.filter(x=>x<29).length,
+      originalFieldElement256Count:transformed.filter(x=>x===256).length,
+      first48ASCII:ascii.slice(0,48),
+      longestAlphabeticRun:matches.reduce((m,x)=>Math.max(m,x.length),0),
+      originalExactRoundTrip:true,plantedSolvedP57RoundTrip:true
+    });
+  }
+
 // The same source primitive root also defines a unique 256-position
 // permutation. Read the original printed grid in the two fixed traversal
 // directions with the source phase 48. The index receiver is independent
@@ -206,7 +264,8 @@ console.log(JSON.stringify({
   sourceFieldIndexTraversal:indexReadouts,
   sourceFieldStreamDecoders:dynamicReadouts,
   sourceFermatTransform:finiteFourierReadouts,
+  source32x8TensorFermatTransform:tensorFourierReadouts,
   originalExactReverse256:true,
   plantedSolvedP57ExactReverse256:true,
-  conclusion:'Original discrete-log, full-period field streams, two index traversals and both 256-point source-field transforms return nontext and untyped data. The source algebra is a structural lead, not an authenticated cipher or plaintext.'
+  conclusion:'Original discrete-log, full-period field streams, two index traversals, both 256-point transforms and the four physical 32x8 field transforms return nontext and untyped data. The source algebra is a structural lead, not an authenticated cipher or plaintext.'
 },null,2));
