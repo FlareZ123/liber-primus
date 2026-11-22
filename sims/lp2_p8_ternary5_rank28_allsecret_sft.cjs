@@ -151,7 +151,42 @@ for(const [name,file,expected] of refs){
   minTop1=Math.min(minTop1,low[0]);
   minTop2=Math.min(minTop2,low[1]);
 }
-assert.equal(controlsCount,107);
+// Manuscript title is Latin. Extend language sensitivity using the
+// independent, already GP29-encoded Vulgate NT whole-word fixture.
+const latinAlpha="0123456789ABCDEFGHIJKLMNOPQRS";
+const latin=[];
+let latinWords=0;
+for(const line of read("resources/control/latin-vulgate-gp-wholewords.txt").split(/\r?\n/)){
+  const word=line.trim();
+  if(!word||word.startsWith("#"))continue;
+  latinWords++;
+  for(const ch of word){
+    const index=latinAlpha.indexOf(ch);
+    assert(index>=0,"Latin GP29 fixture rune encoding");
+    latin.push(index);
+  }
+}
+assert.equal(latinWords,39835);
+assert.equal(latin.length,204802);
+let latinWindows=0;
+const latinLow=[1,1,1,1];
+for(let start=0;start+original.length<=latin.length;start+=Math.floor(original.length/2)){
+  const counts=Array(29).fill(0);
+  for(let i=start;i<start+original.length;i++)counts[latin[i]]++;
+  counts.sort((a,b)=>b-a);
+  let sum=0;
+  for(let k=0;k<4;k++){
+    sum+=counts[k];latinLow[k]=Math.min(latinLow[k],sum/original.length);
+  }
+  latinWindows++;
+}
+assert.equal(latinWindows,36);
+controls.push({name:"Latin Vulgate NT",sourceRunes:latin.length,
+  windows:latinWindows,minimumTopShares:latinLow});
+controlsCount+=latinWindows;
+minTop1=Math.min(minTop1,latinLow[0]);
+minTop2=Math.min(minTop2,latinLow[1]);
+assert.equal(controlsCount,143);
 const bounds=[];
 for(const base of ["index","prime"]){
   for(const reset of ["page","book"])bounds.push(secretRowCapacity(base,reset));
