@@ -31,6 +31,23 @@ A solved p57 native-GP control has a much higher direct concentration (about 0.0
 
 **Exact incompatibility for multiplication.** A further natural fully paired model `C=K×P (mod841)` is impossible at original pair indices `6,18,40,58` (zero based). Authentic square values there are `812,812,232,232`, each divisible by 29, while original pair-cipher values are `821,247,603,515`, all **nonzero** modulo29. Consequently no `P` satisfies those four equations. The reverse direction `P=K×C` is many-to-one at those values, so cannot constitute a completely reversible original cipher absent extra supplied information. This is an exact, source-based obstruction to only the stated 99-slot multiplication law.
 
+## Stronger historical opcode: exact original GP-prime word sums fail all 7×7 orientations
+
+The actual solved 2014 LP1 `SOME WISDOM` page explicitly uses **the sum of canonical GP rune primes within a complete word** to convert 13 printed rune-word cells into a 5×5 square whose rows/columns total1033. This is independently a historically authentic prior operation, stronger evidence than the unselected adjacent-pair additions above. Test the direct analogous operation on **all 49 p33 black word slots completed across the p34 carry**, against the historical 2014 order-7/1033 square as the expected clear 49 source values.
+
+The 49 original word lengths, in printed order, are held fixed. Allow **every plaintext rune** in each word to be freely chosen among all 29 GP runes, independent of the observed ciphertext, and require only that its prime sum equal the 2014 square cell assigned at the matching word position. Enumerate all reachable sums of exactly `n` canonical GP primes by dynamic programming, for each original word length `n` (1–9). Try all eight dihedral source square orientations: rotations0°,90°,180°,270° with and without reflection, without rearranging the printed word order.
+
+| Historical square orientation | Number of word slots whose target prime sum is impossible |
+| --- | ---: |
+| No reflection, rotations 0°/90°/180°/270° | 14 / 17 / 14 / 17 |
+| Reflection, rotations 0°/90°/180°/270° | 17 / 18 / 17 / 18 |
+
+These are **exact mathematical impossibilities**, independent of the ciphertext symbols, English dictionaries, secret rune substitutions, and cipher key. For example, original word8 has only **two GP runes** (maximum possible prime sum `2×109=218`), whereas the row-major square assigns **351**. Original word14 has eight GP runes (minimum prime sum16) yet is assigned7. Additional impossible cells fail exact achievable-prime-sum membership, even when they fall within broad bounds. All eight orientations have **at least 14 impossible cells**.
+
+Therefore the 49 printed word positions **cannot directly map by GP-prime word-sums to the genuine 7×7 2014 square**, even if the unknown text underneath the ciphertext can be any arbitrary GP rune sequence with identical printed word lengths. The theorem does *not* eliminate changed word boundaries, omitted words, an author-instructed index permutation beyond square dihedral symmetries, use of the matrix as a key rather than plaintext target, or a different operator. None is selected by the first-party source. This closes the most directly historical word-prime-sum transfer without requiring any English guess.
+
+[The same original-source SFT](../sims/lp2_p33_complete49word_2014_magic99_pair_sft.cjs) now derives all 49 complete word lengths and exhaustively computes these feasible-sum sets under every rotation/reflection. Windows execution: [run 45066731208](https://github.com/FlareZ123/liber-primus/actions/runs/45066731208) (check final conclusion before treating as passing).
+
 ## Decision and reproducibility
 
 The complete 49-word/99-pair alignment is genuine physical arithmetic with two historically authentic original operands. All four minimal additive pair decoders fail to produce recognizable native-GP prose; the direct multiplicative source law is algebraically impossible on original ciphertext. The historical material does **not select** the pair serialization or a cipher operation. No additional guessed alphabet or rescue layer is licensed by this observation.
