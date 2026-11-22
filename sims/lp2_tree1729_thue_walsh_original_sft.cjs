@@ -520,6 +520,70 @@ for(let a=0;a<29;a++)for(let b=0;b<29;b++){
 assert.equal(fibNativeHits,0);
 console.log("Fibonacci 841 cumulative-key automata:",fibBest,
   "native source threshold:",nativeWholeMin,"hits:",fibNativeHits);
+// Conditional Carmichael/RSA rival: the source product n=7*13*19=1729,
+// opening red Roman XIX=19 as exponent, lambda(n)=lcm(6,12,18)=36.
+// 19^2=1 mod36, so exponentiation is a complete involution on Z/1729.
+const rsaModulus=7*13*19;
+const rsaExponent=19;
+assert.equal(rsaModulus,1729);
+assert.equal((rsaExponent*rsaExponent)%36,1);
+
+/** @param {number} base @param {number} power @param {number} modulo @returns {number} */
+function modularPower(base,power,modulo) {
+  let result=1;
+  let factor=base%modulo;
+  while(power>0) {
+    if(power%2)result=result*factor%modulo;
+    factor=factor*factor%modulo;
+    power=Math.floor(power/2);
+  }
+  return result;
+}
+const rsa=x=>modularPower(x,rsaExponent,rsaModulus);
+for(let x=0;x<rsaModulus;x++)assert.equal(rsa(rsa(x)),x);
+const rsaWithin=(x,alphabetSize)=>{
+  const y=rsa(x);
+  return y<alphabetSize?y:x; // canonical cycle-walk for this order-two map
+};
+for(const m of [256,29*29])for(let x=0;x<m;x++){
+  assert.equal(rsaWithin(rsaWithin(x,m),m),x);
+}
+function twoRuneRsa(input) {
+  const raw=[];
+  const walked=[];
+  let overflows=0,changed=0;
+  for(let i=0;i+1<input.length;i+=2){
+    const x=input[i]*29+input[i+1];
+    const y=rsa(x);
+    raw.push(y);
+    if(y>=29*29)overflows++;
+    const z=rsaWithin(x,29*29);
+    walked.push(Math.floor(z/29),z%29);
+    if(x!==z)changed++;
+  }
+  if(input.length%2)walked.push(input[input.length-1]);
+  return {raw,walked,overflows,changed};
+}
+const rawRsa=twoRuneRsa(cipher);
+const bodyRsa=twoRuneRsa(treeBody);
+assert.equal(rawRsa.overflows,186);
+assert.equal(bodyRsa.overflows,185);
+assert.equal(bodyRsa.changed,235);
+const nativeRsaPlant=twoRuneRsa(native.slice(0,cipher.length)).walked;
+assert.deepEqual(twoRuneRsa(nativeRsaPlant).walked,
+  native.slice(0,cipher.length));
+console.log("Carmichael RSA n1729 e19 original chapter 864 GP29 digrams:",
+  rawRsa.overflows,"outputs exceed native two-GP-digit range 0..840");
+console.log("Exact involutive cycle-walk FPE n1729/e19 body changed",
+  bodyRsa.changed,"of 858 pairs, IoC",ioc(bodyRsa.walked),
+  "source-native minimum",nativeWholeMin,
+  "known-English ciphertext->plaintext planted replay PASS");
+assert(ioc(bodyRsa.walked)<nativeWholeMin);
+const rsaByteOutput=grid.bytes.map(rsa);
+const rsaByteOverflows=rsaByteOutput.filter(y=>y>255).length;
+assert.equal(rsaByteOverflows,107);
+console.log("Carmichael RSA original p50 byte receiver:",rsaByteOverflows,
+  "of256 residues exceed one-byte alphabet.");
 assert.equal(grid.shape, "32 rows by 8 columns across LP2 pages 49, 50, 51");
 assert.equal(grid.bytes.length, 256);
 let native256Minimum = Infinity;
