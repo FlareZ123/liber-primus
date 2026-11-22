@@ -14,6 +14,10 @@ jobs:
           node-version: '22'
       - name: Run original-LP2 exact source and null tests
         run: node sims/lp2_literal_fourrune_chapter_head_sft.cjs
+      - name: Run p0 prime-column original inverse and planted GP controls
+        run: node sims/lp2_p0_13prime_irregular_column_chain_sft.cjs
+      - name: Run original word-parity p50 binary masks with source-row null
+        run: node sims/lp2_wordparity_p50_bitplane_original_gate.cjs
       - name: Check plaintext-prime p50 table walker source script
         run: node --check sims/lp2_p50_plaintextprime_256state_exhaustive_sft.cjs
       - name: Exhaust all 256 original plaintext-feedback table seeds
