@@ -154,6 +154,58 @@ assert.deepEqual([
  sourceResult.field['first digit x second-digit parity (10 states)'].sourceMaxForTopOneRune,
  sourceResult.crop['first digit x second-digit parity (10 states)'].sourceMaxForTopOneRune
 ],[677,698,718,754,899,928]);
+// A concrete ORIGINAL, zero-tuning cipher attempt suggested by the
+// same source: 5 radix60 first digits = iterate the literal p7 red-word
+// quartic 0..4 times, second digit parity = inverse direction sign.
+// Unlike secret 841! tables, this is a fully specified executable
+// source-operand decoding law, tested directly on the original 6395
+// GP29 rune bodies, not on synthetic data or optimized English.
+const F=x=>((11+26*x+8*x*x+15*x*x*x+2*x*x*x*x)%29+29)%29;
+const powersF=Array.from({length:5},()=>Array(29).fill(0));
+for(let k=0;k<29;k++){
+ let x=k;
+ for(let iter=0;iter<5;iter++){powersF[iter][k]=x;x=F(x);}
+}
+function H(values) {
+ const f=Array(29).fill(0);
+ for(const v of values)f[v]++;
+ return -f.reduce((total,v)=>v?
+  total+v/values.length*Math.log2(v/values.length):total,0);
+}
+function IoC(values) {
+ const f=Array(29).fill(0);
+ for(const v of values)f[v]++;
+ return f.reduce((total,v)=>total+v*(v-1),0)/
+  (values.length*(values.length-1));
+}
+const fixedSourceOpcodeTests={};
+for(const [name,K] of Object.entries(keys)){
+ const readings={};
+ for(const mode of ['signed-polynomial-orbit','signed-polynomial-plus-key']){
+  const delta=phase.map((byte,i)=>{
+   const digit=Math.floor(byte/60),sign=byte%2===0?1:-1;
+   const orbit=powersF[digit][K[i]];
+   return sign*(orbit+(mode==='signed-polynomial-plus-key'?K[i]:0));
+  });
+  const decrypted=C.map((v,i)=>(v-delta[i]+290)%29);
+  assert.deepEqual(decrypted.map((v,i)=>(v+delta[i]+290)%29),C);
+  readings[mode]={
+   originalRuneEntropyBits:H(decrypted),
+   originalRuneIoC:IoC(decrypted),
+   expectedNativeGibranEntropyBits:4.2944425927154635
+  };
+  assert.ok(H(decrypted)>4.85);
+  assert.ok(IoC(decrypted)<.036);
+ }
+ fixedSourceOpcodeTests[name]=readings;
+}
+assert.ok(Math.abs(fixedSourceOpcodeTests.field[
+ 'signed-polynomial-orbit'].originalRuneEntropyBits-
+ 4.855615845978618)<1e-10);
+assert.ok(Math.abs(fixedSourceOpcodeTests.crop[
+ 'signed-polynomial-orbit'].originalRuneEntropyBits-
+ 4.856080833616484)<1e-10);
+
 // Fully original K and 10-state phase; secret triangular, bijective
 // 841-point pair transformation per state. Native Gibran is genuinely
 // recovered from a source-keyed ciphertext synthetically planted.
@@ -169,6 +221,7 @@ console.log(JSON.stringify({
  source:'LP2 original pair A81x81 B80x80 and conventional 256-byte p50 first-digit/second-parity table with source predecessor-rune clock',
  theorem:'For each source state and every 841! GP29 pair bijection, any k decoded GP-rune classes have total frequency <= sum of the top 29*k original 841 input-pair frequencies in that state; sum over all source states.',
  original:sourceResult,
+ fixedSourceOpcodeTests,
  decision:'Five-state p50 first digit and six-state low0-parity extension reject pinned native-GP Gibran first6395, even where 6-state entropy alone does not. The natural ten-state first-digit x second-digit parity avoids THIS necessary contradiction. It is a bounded candidate class, not proof of a key, and no original plaintext is recovered.'
 },null,2));
 console.log('PASS: original p50-phase all-secret 841-pair majorization; 5/6-state exclusion, 10-state survivor, native-GP triangular plants');
