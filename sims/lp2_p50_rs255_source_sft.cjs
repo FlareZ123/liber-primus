@@ -50,9 +50,9 @@ function syndromes(codeword,firstRoot){
  return Array.from({length:32},(_,i)=>evalAt(codeword,exp[firstRoot+i]));
 }
 /** @param {number[]} message @param {number} firstRoot */
-function encode(message,firstRoot){
+function encode(message,firstRoot,parityCount=32){
  let generator=[1];
- for(let i=0;i<32;i++){
+ for(let i=0;i<parityCount;i++){
   const previous=generator,x=exp[firstRoot+i];
   generator=new Array(previous.length+1).fill(0);
   for(let j=0;j<previous.length;j++){
@@ -60,7 +60,7 @@ function encode(message,firstRoot){
    generator[j+1]^=mul(previous[j],x);
   }
  }
- const work=[...message,...new Array(32).fill(0)];
+ const work=[...message,...new Array(parityCount).fill(0)];
  for(let i=0;i<message.length;i++){
   const coefficient=work[i];
   for(let j=0;j<generator.length;j++)work[i+j]^=mul(coefficient,generator[j]);
@@ -96,6 +96,58 @@ for(const [radix,bytes] of [[60,v60],[59,v59]]){
 }
 assert.equal(cases.length,32);
 assert.ok(cases.every(c=>c.firstSyndrome!==0));
+/**
+ * QR-style interleaved alternative: 8 complete 32-byte blocks (grid
+ * columns), or 32 complete eight-byte blocks (grid rows). Standard QR
+ * RS GF256 generator, with fixed roots alpha^0 or alpha^1. No fitted key.
+ * @param {number[]} bytes
+ * @param {"columns32"|"rows8"} shape
+ * @returns {number[][]}
+ */
+function splitBlocks(bytes,shape){
+ return shape==='columns32'
+  ?Array.from({length:8},(_,j)=>Array.from({length:32},(_,i)=>bytes[8*i+j]))
+  :Array.from({length:32},(_,i)=>bytes.slice(i*8,i*8+8));
+}
+const blockCodewordCases=[];
+for(const [radix,bytes] of [[60,v60],[59,v59]]){
+ for(const shape of ['columns32','rows8']){
+  for(const direction of ['forward','reverse']){
+   for(const firstRoot of [0,1]){
+    const blocks=splitBlocks(bytes,shape)
+      .map(b=>direction==='forward'?b:[...b].reverse());
+    const firstSyndromes=blocks.map(b=>evalAt(b,exp[firstRoot]));
+    blockCodewordCases.push({
+     radix,shape,direction,firstRoot,
+     blockCount:blocks.length,
+     firstRootZeroCount:firstSyndromes.filter(v=>v===0).length,
+     firstSyndromes
+    });
+   }
+  }
+ }
+}
+assert.equal(blockCodewordCases.length,16);
+assert.ok(blockCodewordCases.every(c=>c.firstRootZeroCount===0));
+/** Genuine short RS plants validate each interleaved matrix orientation. */
+for(const shape of ['columns32','rows8']){
+ for(const root of [0,1]){
+  const blockCount=shape==='columns32'?8:32;
+  const blockSize=shape==='columns32'?32:8;
+  const parityCount=shape==='columns32'?8:4;
+  const blocks=Array.from({length:blockCount},(_,b)=>
+   encode(Array.from({length:blockSize-parityCount},
+    (_,i)=>(31*b+73*i+19)%256),root,parityCount));
+  const interleaved=shape==='columns32'
+   ?Array.from({length:256},(_,i)=>blocks[i%8][Math.floor(i/8)])
+   :blocks.flat();
+  const parsed=splitBlocks(interleaved,shape);
+  assert.deepEqual(parsed,blocks);
+  assert.ok(parsed.every(b=>evalAt(b,exp[root])===0));
+  interleaved[shape==='columns32'?8:1]^=0x5a;
+  assert.ok(splitBlocks(interleaved,shape).some(b=>evalAt(b,exp[root])!==0));
+ }
+}
 console.log(JSON.stringify({
  sourceSHA256:expected,
  sourceCounts:{bytes:grid.bytes.length,tokens:tokens.length},
@@ -103,6 +155,10 @@ console.log(JSON.stringify({
  firstSyndromeZero:cases.filter(c=>c.firstSyndrome===0).length,
  minimumNonzeroAmong32:Math.min(...cases.map(c=>c.nonzeroAmong32)),
  syntheticRS255223AndSingleByteCorruption:'PASS for roots 0 and 1',
+ syntheticRSInterleavedShortBlocks:'PASS for columns32 and rows8, roots 0 and 1, each with corruption control',
+ originalInterleavedCandidateCount:blockCodewordCases.length,
+ originalInterleavedCasesWithAllFirstSyndromesZero:blockCodewordCases.filter(c=>c.firstRootZeroCount===c.blockCount).length,
+ blockCodewordCases,
  interpretation:'No standard direct GF256 RS codeword at either conventional first root under the declared 256→255 source-shaped serializations; no new plaintext.',
  cases
 },null,2));
