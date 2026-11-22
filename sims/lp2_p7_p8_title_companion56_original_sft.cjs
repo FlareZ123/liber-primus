@@ -256,8 +256,9 @@ for(const sign of [-1,1]){
     ?mod(28-value+sign*forest19[i%19])
     :mod(value-sign*forest19[i%19]));
   assert.deepEqual(reciphered,forestReceiver);
-  const planted=p57.map((value,i)=>mod(
-    (atbash?28-value:value)-sign*forest19[i%19]));
+  const planted=p57.map((value,i)=>atbash
+    ?mod(28+sign*forest19[i%19]-value)
+    :mod(value-sign*forest19[i%19]));
   const recovered=planted.map((value,i)=>mod(
     (atbash?28-value:value)+sign*forest19[i%19]));
   assert.deepEqual(recovered,p57);
