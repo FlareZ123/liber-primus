@@ -45,7 +45,7 @@ The byte XOR path fails even the ability to represent all the already-known GP29
 
 The source-only implementation reproduces the standard RC4 `Key → eb9f7781b734ca72a7` nine-byte known test vector and recovers all95 authentic p57 known runes after a planted GP29 encryption under the same seven-byte RC4 clock. The original mismatch thus rejects the **declared direct recipient**, not the implementation.
 
-[Original-source read-only CommonJS SFT](../sims/lp2_p57_lp3seven_arc4_p50_inner180_original_sft.cjs), [manual Windows Node22 workflow](../.github/workflows/manual-readonly-commonjs-sft.yml) with `script=sims/lp2_p57_lp3seven_arc4_p50_inner180_original_sft.cjs`. All original manuscript inputs are unchanged.
+[Original-source read-only CommonJS SFT](../sims/lp2_p57_lp3seven_arc4_p50_inner180_original_sft.cjs), [Windows Node22 original-input PASS 45029302015](https://github.com/FlareZ123/liber-primus/actions/runs/45029302015), [manual Windows Node22 workflow](../.github/workflows/manual-readonly-commonjs-sft.yml) with `script=sims/lp2_p57_lp3seven_arc4_p50_inner180_original_sft.cjs`. All original manuscript inputs are unchanged.
 
 ## Research decision
 
