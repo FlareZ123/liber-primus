@@ -182,6 +182,21 @@ for (const sign of [-1, 1]) {
 
 // Secondary, source-defined 7+4=11 p32 torus stripe and solved-p57
 // circumference selection. No fitted key phase, word order or language score.
+// The solved PARABLE's "shed circumferences" also has a literal square
+// interpretation: remove two outer rings from the p32 11x11 reflow, leaving
+// the unique centered 7x7 = 49-rune object selected by table[91].
+const inner7x7 = [];
+for (let row = 2; row <= 8; row++) {
+  for (let col = 2; col <= 8; col++) inner7x7.push(p32[11 * row + col]);
+}
+assert.equal(inner7x7.length, s7); // declared below via fixed table walk
+assert.deepEqual(inner7x7.slice(-4), [17, 1, 23, 15]); // B-U-D-S
+assert.equal(inner7x7.slice(-4).reduce((a, b) => a + b, 0), 56);
+const ringLengths = [11 * 11 - 9 * 9, 9 * 9 - 7 * 7];
+assert.deepEqual(ringLengths, [40, 32]);
+assert.equal(121 - ringLengths[0] - ringLengths[1], 49);
+console.log('CENTRAL49 source row-major ends with BUDS = GP0 56, original p32 offsets93..96');
+
 const torusKey = Array.from({ length: 11 }, (_, i) => {
   const k = i + 1;
   return p32[((7 * k) % 11) * 11 + ((4 * k) % 11)];
