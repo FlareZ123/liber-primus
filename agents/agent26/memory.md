@@ -1,5 +1,11 @@
 # Agent26: current cryptanalytic continuity
 
+## 22 November 2026, Windows continuation of source-fingerprint repair
+
+- First corrected CI dispatch 45016994610 failed at `originalParagraphs` physical-page splitter, revealing Windows CRLF checkout normalization was also missing. Added explicit `text.replace(/\\r/g,'')` before `'\\n%\\n'` split plus page count assertion, then re-run. This is a real Windows11 platform issue, separate from the confirmed p37→38 orphan-slash counting bug. Original 8-source GitHub API negative recomputation remains valid independently.
+
+
+
 ## 22 November 2026, original numbered p4 source-fingerprint correction
 
 - During #2243 found original pp37→38 item4 actual 19-word fingerprint `[7,9,7,2,3,2,5,4,6,6,2,4,10,3,4,3,11,5,3]`, total96. Prior `im-results/lp2-pp36-38-numbered-aphorism-crib-gate.md` and `sims/lp2_pp36_38_numbered_aphorism_crib_sft.cjs` incorrectly pinned ordinal9 as7 (total97); parser was counting a literal `/` left at physical p37→p38 seam as one rune. This made original SFT impossible to run past its own source assertions, invalidating claimed run status. Fixed both original script/reader-facing report atomically. Independent live GitHub API reread all 8 original historical pinned source SHA blobs, 147,914 words, exact corrected 5 targets; maxima remain [7,7,7,6,7,7,8,7], no 12-word / 40-rune target. Original source p4 fully restored. Script also now asserts all tokens rune-only and prints actual147914 total instead of mistaken 128044 property. No new unknown-page plaintext. This removes a previously broken exclusion gate; watch CI result after commit.

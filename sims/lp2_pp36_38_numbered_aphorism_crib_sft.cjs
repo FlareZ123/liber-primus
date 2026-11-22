@@ -39,7 +39,10 @@ const EXPECTED = [
 
 /** @param {string} text @returns {number[][]} */
 function originalParagraphs(text) {
-  const pages = text.split('\n%\n');
+  // Windows checkout may convert original linefeeds to CRLF. Normalize before
+  // reading physical-page separators and red paragraph labels.
+  const pages = text.replace(/\r/g, '').split('\n%\n');
+  assert.equal(pages.length >= 39, true, 'original page separators missing');
   const raw = [
     pages[36].split('\n1-')[1],
     pages[37].split('\n3-')[0].replace(/^2-/, ''),
