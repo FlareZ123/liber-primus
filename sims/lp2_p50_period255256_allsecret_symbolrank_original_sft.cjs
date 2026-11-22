@@ -168,7 +168,8 @@ function allTwoBankChapterAssignments(period, tapes = chapterTapes) {
   return { period, scanned, maximumTopFive, bestMask, minimumTopFive,
     maximumFraction: Number((maximumTopFive / original.length).toFixed(8)) };
 }
-const twoBankChapterBounds = [255, 256].map(allTwoBankChapterAssignments);
+const twoBankChapterBounds = [255, 256].map(period =>
+  allTwoBankChapterAssignments(period));
 assert.deepEqual(twoBankChapterBounds.map(x =>
   [x.scanned, x.maximumTopFive, x.bestMask, x.minimumTopFive]),
 [[256, 6084, 60, 4833], [256, 6114, 185, 4856]]);
