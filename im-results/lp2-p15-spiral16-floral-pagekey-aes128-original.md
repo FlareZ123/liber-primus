@@ -9,10 +9,10 @@
 The original p15 4×4 number grid explicitly fixes **3299 as the red origin**, then the independently decoded sixteen terms follow a rightward-first, outward four-neighbour spiral:
 
 ```text
- 5   6   7   8
- 4   0   1   9
- 3   2  15  10
-14  13  12  11
+ 6   7   8   9
+ 5   0   1  10
+ 4   3   2  11
+15  14  13  12
 ```
 
 These display *ordinal steps*, not the actual four-digit printed numbers. The exact zero-based 4×4 array-index order is `[5,6,10,9,8,4,0,1,2,3,7,11,15,14,13,12]`. The existing original p15 source proof verifies all 16 Fibonacci-indexed primes and the original image. Here the new hypothesis transfers only the **read order** to each native 4×4 square of an entirely different original artifact.
