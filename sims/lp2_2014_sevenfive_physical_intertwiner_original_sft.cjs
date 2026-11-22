@@ -277,6 +277,15 @@ const p55=corpus.pages.find(p=>p.page===55);
 assert.equal(p55.indices.length,76);
 original.push({label:'p55+13dot',
   source:[...p55.indices,13]});
+// Both literal manuscript bookend markers are actually red 13-dot signs,
+// after 13 red source runes on p0 and after 76 source runes on p55. The
+// hypothetical dot-count-as-one-GP-number 13 closes both 7-symbol packets.
+const p0Ink=annotations.pages.find(p=>p.page===0);
+assert.deepEqual(p0Ink.large_punctuation,[[13,13,'red']]);
+const p0=corpus.pages.find(p=>p.page===0);
+assert.equal(p0.indices.length,262);
+original.push({label:'p0-red13+13dot',
+  source:[...p0.indices.slice(0,13),13]});
 /** Full physical M7->B5 Frobenius trace bridge, residual sidecar 2. */
 function encode(input) {
   assert.equal(input.length%7,0);
