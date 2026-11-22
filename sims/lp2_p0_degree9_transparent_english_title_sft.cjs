@@ -288,7 +288,7 @@ for (const [orientation, f] of orientations) {
         .filter(([k]) => k !== 'candidates'))});
   }
 }
-assert.deepEqual(results.map(x => x.titleFits), [557, 46 + 0 /* placeholder */, 546, 30 + 0 /* placeholder */]);
+assert.deepEqual(results.map(x => x.blackFits), [4, 46, 2, 30]);
 console.log(JSON.stringify({source: 'canonical LP2 p0 + native TextBlob GP lexicon',
   model: 'p50 GF29 degree-nine affine running key, F-transparent',
   conclusion: 'No dictionary-based five-word p0 continuation in either F branch or factor orientation',
