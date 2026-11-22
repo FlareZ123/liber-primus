@@ -35,6 +35,24 @@ A source-exact contiguous-window test, granting **arbitrary secret codebooks ove
 
 This window result describes **necessary information capacity under fixed exact repeat counts**. It does not establish an actual encoder, force a block width of 54, or exclude carefully aligned shorter block partitions. It also does not hold when source language is a restricted dictionary, when ciphertext words can change their repeat counts, when punctuation positions themselves encode extra data, or when source spaces move.
 
+## Source-physical punctuation reset: a five-type mark is insufficient at p29
+
+One **distinct, more promising framed architecture** is to carry GP27 arithmetic state across the words **until** the next actual printed punctuation event, then reset at that mark. This uses genuine source-visible reset positions rather than inventing 54-word blocks. After removing five known nonphysical derived events, 175 actual marks occupy **172 distinct original printed word endings**, including their genuine co-located duplicates. Hence there are **172 complete original punctuation-terminated segments**.
+
+Grant each segment an arbitrary secret lossless GP27 block codebook preserving **all** its printed word lengths and their observed exact repeat counts. Without side information, **167 of 172 segments have enough aggregate output capacity**, but **five do not**. The exact minimum number of distinct **end-mark alternatives** needed to correct each deficient segment is:
+
+| Original contiguous words, zero-based | Rune count | Original punctuation event at end | Minimum side-mark alternatives |
+| --- | ---: | ---: | ---: |
+| 853–863 (p16) | 35 | #63 | **2** |
+| 1586–1596 (p29) | 36 | #98 | **2** |
+| **1597–1599 (p29)** | **11** | **#99, original four-dot mark at global rune7153** | **6** |
+| 2361–2369 (p43) | 31 | #151 | **3** |
+| 2767–2775 (p52) | 29 | #174 | **4** |
+
+The **p29 11-rune three-word segment** requires **at least six different codeword-sidecar combinations per codeword** under unrestricted GP27 source. Thus even generously letting its *one terminal punctuation mark* vary over **all five genuine physical mark morphologies** (13-dot, 10-dot, four-dot, three-dot and detached square) is **provably insufficient**: \(5M_{\text{segment}}<27^{11}\). The other four deficient segments would be feasible *in raw capacity* if their terminal marks were freely writable enough. All five actual terminal glyphs are ordinary four-dot marks in the source registry, so the analysis overgrants the side-channel freedoms rather than exploiting hidden variable type bits. The [SFT](../sims/lp2_wordlocal_gp27_anti_repeat_capacity_sft.cjs) establishes the complete 172-frame distribution **167 need one alternative, 2 need two, 1 needs three, 1 needs four, 1 needs six**, and checks the original five exceptional intervals by exact BigInt cardinality.
+
+**Decision:** a GP27 rank28 encoder independently reset at **every** physical punctuation site and carrying its entire correction **only in that segment's one terminal mark type** cannot be fully lossless under these fixed original word-repeat-count constraints, however its secret codebooks are permuted. A solution could carry arithmetic state across the p29 #99 boundary; transfer information through another original field; vary punctuation **placement**, letter/space segmentation or repeat counts; or use a strictly restricted plaintext codebook. An independent source-selected rule is needed to justify any such rescue. The p29 failure is a concrete human-visible breakpoint to test against a proposed reset schedule.
+
 ## Decisive next research choice
 
 If a clue really selects *independent per-word GP27→29 constrained encoding*, the implementer must point to the five extra bits for p35 word1939 and the correction fields for the **59 unmarked repeat-bearing words**. This architecture cannot be rescued by choosing a smarter 29-rune secret permutation. A genuinely **cross-word** GP27 arithmetic or finite-state coder remains cardinality-feasible, but the manuscript must select its carry law, secret or unkeyed symbol ordering, and reset rules. Demand full original-input inversion and untouched prose before treating such a code as Cicada's mechanism.
