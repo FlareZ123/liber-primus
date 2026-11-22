@@ -189,6 +189,124 @@ const sixRegisterOrderTails=['ABD','ADB','BAD','BDA','DAB','DBA'].map(order=>{
     first30:fixedTail.slice(0,30).map(x=>corpus.translit[x]).join(' ')};
 });
 assert(sixRegisterOrderTails.every(x=>x.tailIoC<firstLastIoC.min));
+// Eight authentic $-terminated printed sections, whose count matches the
+// eight literal 32-byte columns in the original pp49-51 numeric table.
+// Section boundaries reset the three-register codec; no source words lost.
+const sourceSections=source.split('%').slice(0,55).join('%')
+  .split('29n**BigInt(original.length);
+const maxQ=(codeSize-1n)/model.m;
+const minSidecarBits=maxQ.toString(2).length;
+assert.equal(minSidecarBits,265);
+const nativePlant=Array.from({length:original.length},(_,i)=>nativeLetters[i%nativeLetters.length]);
+const nativeValue=toInteger(nativePlant,29n);
+const nativeQuotient=nativeValue/model.m;
+const nativeRemainder=nativeValue%model.m;
+const planted=unpack(nativeRemainder,model.lengths,model.k);
+assert.equal(pack(planted).r,nativeRemainder);
+assert.deepEqual(digits(nativeQuotient*model.m+pack(planted).r,29n,original.length),nativePlant);
+assert.equal(grid.bytes.length,256);
+const columnResults=[];
+for(let column=0;column<8;column++){
+  let quotient=0n;
+  for(let row=0;row<32;row++)quotient=256n*quotient+BigInt(grid.bytes[8*row+column]);
+  assert(quotient<2n**256n);
+  const value=quotient*model.m+model.r;
+  assert(value<codeSize);
+  const plain=digits(value,29n,original.length);
+  assert.equal(value/model.m,quotient);
+  assert.equal(value%model.m,model.r);
+  assert.deepEqual(unpack(value%model.m,model.lengths,model.k).flat(),original);
+  assert.deepEqual(plain.slice(-words.length),tail);
+  const offset16=corpus.pages.filter(p=>p.page<16).reduce((a,p)=>a+p.indices.length,0);
+  const offset40=corpus.pages.filter(p=>p.page<40).reduce((a,p)=>a+p.indices.length,0);
+  columnResults.push({
+    column, totalIoC:ioc(plain),
+    page0IoC:ioc(plain.slice(0,262)),
+    page16IoC:ioc(plain.slice(offset16,offset16+corpus.pages[16].indices.length)),
+    page40IoC:ioc(plain.slice(offset40,offset40+corpus.pages[40].indices.length)),
+    prefix:plain.slice(0,25).map(x=>corpus.translit[x]).join(' ')
+  });
+}
+const summary={
+  originalRunes:original.length, originalWords:words.length,
+  wordInternalTransitions:model.within,
+  wordInternalRepeatedPairs:model.k,
+  crossWordRepeatedPairs:across,
+  sourceConditionalCodebook:{
+    minimumQuotientBits:minSidecarBits,
+    eachLiteralEightColumnSidecarBits:256,
+    shortfallBits:minSidecarBits-256
+  },
+  eightAuthenticSectionLocalSourceBounds:sectionModels,
+  sixCompleteNaturalRegisterOrderings:sixRegisterOrderTails,
+  commonAllSecretPlaintextTail:{
+    gpRunes:tail.length, IoC:ioc(tail), 
+    solvedNativeControlIoCRange:firstLastIoC,
+    first40:tail.slice(0,40).map(x=>corpus.translit[x]).join(' ')
+  },
+  exactOriginalReencoding:true,
+  solvedNativeFullLengthPlantedReencoding:true,
+  originalPrintedByteColumnConsumers:columnResults
+};
+console.log(JSON.stringify(summary,null,2));
+console.log('PASS: original eight $-sections x six complete-register orders all-key native-language gate, raw eight 256-bit source columns invalid as quotients; whole-original exact inverse and solved source native-positive pass.');
+).map(getWords).filter(x=>x.length);
+assert.equal(sourceSections.length,8);
+assert.deepEqual(sourceSections.flat(2),original);
+const sectionModels=sourceSections.map((part,index)=>{
+  const local=pack(part);
+  const flat=part.flat();
+  assert.deepEqual(unpack(local.r,local.lengths,local.k).flat(),flat);
+  const localWordBase=29n**BigInt(part.length);
+  assert.equal(local.m%localWordBase,0n);
+  const plausiblePlaintextCodebook=29n**BigInt(flat.length);
+  const maxQ=(plausiblePlaintextCodebook-1n)/local.m;
+  const maxQuotientBits=maxQ.toString(2).length;
+  let literalColumnQ=0n;
+  for(let row=0;row<32;row++){
+    literalColumnQ=256n*literalColumnQ+BigInt(grid.bytes[8*row+index]);
+  }
+  // A 256-bit original column cannot literally be a chapter quotient:
+  // every authentic column exceeds the allowed entire plaintext range.
+  assert(literalColumnQ>maxQ);
+  const controlScores=[];
+  for(let i=0;i+part.length<=nativeLetters.length;i++)
+    controlScores.push(ioc(nativeLetters.slice(i,i+part.length)));
+  const nativeMin=Math.min(...controlScores);
+  const nativeMax=Math.max(...controlScores);
+  const fields={
+    A:{rank:local.firstRank,base:localWordBase},
+    B:{rank:local.repeatedRank,base:local.b},
+    D:{rank:local.nonrepeatRank,base:local.p28}
+  };
+  const suffixes=['ABD','ADB','BAD','BDA','DAB','DBA'].map(order=>{
+    let r=0n;
+    for(const field of order)r=r*fields[field].base+fields[field].rank;
+    const recovered={};
+    let residue=r;
+    for(let i=order.length-1;i>=0;i--){
+      const field=order[i];
+      recovered[field]=residue%fields[field].base;
+      residue/=fields[field].base;
+    }
+    assert.equal(residue,0n);
+    for(const field of order)assert.equal(recovered[field],fields[field].rank);
+    const canonical=((recovered.A*local.b+recovered.B)*local.p28)+recovered.D;
+    assert.equal(canonical,local.r);
+    assert.deepEqual(unpack(canonical,local.lengths,local.k).flat(),flat);
+    assert.equal((r+local.m*literalColumnQ)%localWordBase,r%localWordBase);
+    const tail=digits(r%localWordBase,29n,part.length);
+    const score=ioc(tail);
+    assert(score<nativeMin,'original section suffix unexpectedly in native solved control range');
+    return {order,IoC:score};
+  });
+  return {section:index,sourceRunes:flat.length,sourceWords:part.length,
+    withinWordRepeats:local.k,maxQuotientBits,
+    literal256bitColumnFits:false,solvedNativeIoCRange:{min:nativeMin,max:nativeMax},
+    sixAllKeyTails:suffixes};
+});
+assert.equal(sectionModels.reduce((a,v)=>a+v.sourceRunes,0),original.length);
+assert.equal(sectionModels.reduce((a,v)=>a+v.withinWordRepeats,0),63);
 const codeSize=29n**BigInt(original.length);
 const maxQ=(codeSize-1n)/model.m;
 const minSidecarBits=maxQ.toString(2).length;
