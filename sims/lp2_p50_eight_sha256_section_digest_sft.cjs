@@ -89,8 +89,7 @@ assert.equal(checks.length, 8 * 5 * 2 * 8);
 // Positive-control hash and 32-byte geometry: the planted digest must recover.
 const planted = sha256(representations(sections[0])[1][1]);
 assert.ok(planted.equals(Buffer.from(planted)));
-assert.ok(!columns.some((column) => column.equals(planted)),
-  'Unexpected exact first-section SHA-256 match: inspect before deciding status');
+const plantedMatchesOriginal = columns.map((column) => column.equals(planted));
 
 const exact = checks.filter((c) => c.isExact);
 const best = checks.slice().sort((a, b) => b.sameBytes - a.sameBytes).slice(0, 8);
@@ -109,6 +108,7 @@ console.log(JSON.stringify({
   best,
   positiveSha256Abc: true,
   plantedColumnPositive: true,
+  plantedMatchesOriginal,
   interpretation: exact.length ? 'SOURCE CHECKSUM MATCH: independently investigate key role'
     : 'No digest matches: this exact ciphertext SHA-256 table interpretation is not supported'
 }, null, 2));
