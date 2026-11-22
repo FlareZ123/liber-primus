@@ -1,7 +1,8 @@
 """Reproduce red-initial JPEG component widths in the published 2014 LP2 scans.
 
 This is a source-image verification program and produces no cipher plaintext.
-It expects an unmodified zip containing liber-primus-jpegs/17.jpg..72.jpg.
+It expects the original 75 scans in liber-primus-jpegs/00.jpg..74.jpg.
+The seventeen LP1 pre-LP2 pages form an independent known-solved typography control.
 Portable Python 3.12+ (Windows 11), Pillow, NumPy and OpenCV are required.
 No files are written.
 
@@ -38,13 +39,30 @@ EXPECTED = (
 )
 
 
-def measure(archive: Path) -> list[tuple[int, int, int, int, int, int]]:
-    """Return (physical page, x, y, width, height, red area)."""
+# Independent 2014 LP1 known-solved-page positive: same original typography.
+# (original scan, x, y, width, height, red pixel area)
+EXPECTED_LP1 = (
+    (1, 601, 671, 165, 552, 46521),
+    (3, 601, 669, 230, 496, 39119),
+    (4, 601, 2042, 149, 496, 35636),
+    (6, 600, 669, 151, 496, 29354),
+    (9, 600, 2393, 150, 499, 29456),
+    (10, 600, 667, 150, 498, 30325),
+    (13, 601, 1488, 150, 499, 32032),
+    (13, 600, 2487, 150, 497, 31099),
+    (14, 601, 668, 149, 498, 31073),
+    (16, 601, 668, 149, 497, 31008),
+)
+
+
+def measure_scans(
+    archive: Path, scan_to_page: dict[int, int]
+) -> list[tuple[int, int, int, int, int, int]]:
+    """Read original JPEG pixel masks and report large red first initials."""
     recorded: list[tuple[int, int, int, int, int, int]] = []
     with zipfile.ZipFile(archive) as zf:
-        for page in range(56):
-            image_id = page + 17
-            name = f"liber-primus-jpegs/{image_id}.jpg"
+        for scan, page in scan_to_page.items():
+            name = f"liber-primus-jpegs/{scan:02}.jpg"
             rgb = np.asarray(Image.open(io.BytesIO(zf.read(name))).convert("RGB"))
             assert rgb.shape == (3600, 2400, 3), name
             red = (rgb[:, :, 0] > 100) & (rgb[:, :, 0] > 1.6 * rgb[:, :, 1]) & (
@@ -57,11 +75,23 @@ def measure(archive: Path) -> list[tuple[int, int, int, int, int, int]]:
     return sorted(recorded, key=lambda a: (a[0], a[2]))
 
 
+def measure(archive: Path) -> list[tuple[int, int, int, int, int, int]]:
+    """Return (physical LP2 page, x, y, width, height, red pixel area)."""
+    return measure_scans(archive, {p + 17: p for p in range(56)})
+
+
+def measure_lp1(archive: Path) -> list[tuple[int, int, int, int, int, int]]:
+    """Return source-positive original solved LP1 typography control."""
+    return measure_scans(archive, {p: p for p in range(17)})
+
 def verify_source(archive: Path) -> list[tuple[int, int, int, int, int, int]]:
     """Exact independent source-image regression; use only original JPEGs."""
     observed = measure(archive)
     if observed != list(EXPECTED):
         raise AssertionError(f"red giant component mismatch: {observed!r}")
+    lp1 = measure_lp1(archive)
+    if lp1 != list(EXPECTED_LP1):
+        raise AssertionError(f"known-solved LP1 red initials mismatch: {lp1!r}")
     return observed
 
 
@@ -69,4 +99,5 @@ if __name__ == "__main__":
     if len(sys.argv) != 2:
         raise SystemExit("Specify one source archive: liber-primus-jpegs.zip")
     expected = verify_source(Path(sys.argv[1]))
-    print(json.dumps({"verified": True, "red_giants": len(expected), "boxes": expected}, indent=2))
+    print(json.dumps({"verified": True, "lp2_red_giants": len(expected),
+        "lp1_solved_red_giants": len(EXPECTED_LP1), "boxes": expected}, indent=2))
