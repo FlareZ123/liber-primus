@@ -111,7 +111,7 @@ function test(bytes){
       m=rotate(m);
     }
   }
-  assert.equal(candidates.length, 256);
+  assert.equal(candidates.length, 512);
   return candidates;
 }
 
@@ -173,7 +173,7 @@ console.log(JSON.stringify({
  barcode:'Data Matrix ECC200 8x32 rectangular or 16x16 square',
  validation:'official fixed L/alternating-edge finder, exact perimeter',
  sourceReadingVariants:Object.keys(readingAlphabets),
- familywiseCandidateCount:512,
+ familywiseCandidateCount:1024,
  independentSyntheticPlants:{originalSize:256,rectangularFinderRecovered:true,
    squareFinderRecovered:true},
  reports,
