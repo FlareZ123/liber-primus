@@ -29,6 +29,10 @@ const corpus=JSON.parse(read("resources/liber-primus/lp2-corpus.json"));
 const ink=JSON.parse(read("resources/liber-primus/lp2-ink-annotations.json"));
 const M=29;
 const mod=n=>(n%M+M)%M;
+const cube=Array.from({length:M},(_,x)=>mod(x*x*x));
+const cubeInverse=new Uint8Array(M);
+assert.equal(new Set(cube).size,M);
+for(let x=0;x<M;x++)cubeInverse[cube[x]]=x;
 const coeff=[11,26,8,15,2];
 const seeds=[
   ["reconstructed-DH23", [23,2,5,2,19]],
@@ -44,6 +48,10 @@ const products=[[23,3],[22,16,2,25],[5,7,11],[14,28],[6,28,19]]
 assert.deepEqual(products,coeff);
 assert.equal(corpus.prime[18],67);
 assert.equal(p8.slice(0,4).map(x=>corpus.translit[x]).join(""),"XIXM");
+assert.equal(p8.slice(4,12).reduce((a,b)=>mod(a*b),1),3,
+  "p8 second complete eight-rune red-word product selects cube exponent3");
+assert.equal((3*19)%28,1,
+  "p8 Roman XIX supplies the inverse cube exponent on GP29");
 const whole=corpus.pages.slice(8,15).flatMap(x=>x.indices);
 const black=[...p8.slice(12),...corpus.pages.slice(9,15).flatMap(x=>x.indices)];
 assert.equal(whole.length,1729);
@@ -90,13 +98,14 @@ function nativeScore(text){
  * @param {number[]} plain @param {number[]} key
  * @param {number} start @param {number} phase
  */
-function encrypt(plain,key,start,phase){
+function encrypt(plain,key,start,phase,mode="additive"){
   let j=start,skips=0;const cipher=[];
   for(let i=0;i<plain.length;i++){
     for(;;){
       const pos=j++;
       assert.ok(j<key.length);
-      const candidate=mod(plain[i]+key[pos]);
+      const emission=mode==="cube-plaintext"?cube[plain[i]]:plain[i];
+      const candidate=mod(emission+key[pos]);
       if(i&&candidate===cipher[i-1]&&pos%5!==phase){
         skips++;
         continue;
@@ -116,7 +125,7 @@ function encrypt(plain,key,start,phase){
  * @param {number[]} cipher @param {number[]} key
  * @param {number} start @param {number} phase
  */
-function inverse(cipher,key,start,phase){
+function inverse(cipher,key,start,phase,mode="additive"){
   let states=[{j:start,p1:0,p2:0,score:0,path:""}],maxStates=1;
   for(let i=0;i<cipher.length;i++){
     const next=new Map();
@@ -125,10 +134,12 @@ function inverse(cipher,key,start,phase){
           // Both exact source LFSRs have at most four equal consecutive keys.
       // Four rejected values therefore exhaust all possible skip runs.
       for(let skip=0;skip<=4;skip++){
-        const p=mod(cipher[i]-key[j+skip]);
+        const residual=mod(cipher[i]-key[j+skip]);
+        const p=mode==="cube-plaintext"?cubeInverse[residual]:residual;
+        const emission=mode==="cube-plaintext"?cube[p]:p;
         let admissible=true;
         for(let t=0;t<skip;t++){
-          if(i===0||mod(p+key[j+t])!==cipher[i-1]||
+          if(i===0||mod(emission+key[j+t])!==cipher[i-1]||
             (j+t)%5===phase){admissible=false;break;}
         }
         if(!admissible)continue;
@@ -166,15 +177,17 @@ const nativeControls=[
 ];
 const originalResults=[];
 for(const [seedName,seed] of seeds){
-  const key=generate(seed);
+  for(const mode of ["additive","cube-key","cube-plaintext"]){
+    const base=generate(seed);
+    const key=mode==="cube-key"?base.map(x=>cube[x]):base;
   // Original: both printed p8 chapter with its red12 title, and the
   // remaining body after those 12 original red runes.
   for(const [scope,original] of [["p8-p14",whole],["p8-body-p14",black]]){
     for(const start of [0,14]){
       for(let phase=0;phase<5;phase++){
-        const v=inverse(original,key,start,phase);
+        const v=inverse(original,key,start,phase,mode);
         originalResults.push({
-          seed:seedName,scope,start,unguardedKeyPhase:phase,
+          seed:seedName,mode,scope,start,unguardedKeyPhase:phase,
           ...(v.deadAt!==undefined ? {firstImpossibleRune:v.deadAt} : {
             meanLogScore:v.averageLogScore,
             survivingStates:v.statesAtEnd,
@@ -185,28 +198,32 @@ for(const [seedName,seed] of seeds){
       }
     }
   }
+  }
 }
 const viable=originalResults.filter(x=>x.meanLogScore!==undefined)
   .sort((a,b)=>b.meanLogScore-a.meanLogScore);
 assert.ok(viable.length>0);
 const positive=[];
 for(const [seedName,seed] of seeds){
-  const key=generate(seed);
+  for(const mode of ["additive","cube-key","cube-plaintext"]){
+    const base=generate(seed);
+    const key=mode==="cube-key"?base.map(x=>cube[x]):base;
   for(const [name,plain] of nativeControls){
-    const encrypted=encrypt(plain,key,0,0);
-    const decoded=inverse(encrypted.cipher,key,0,0);
+    const encrypted=encrypt(plain,key,0,0,mode);
+    const decoded=inverse(encrypted.cipher,key,0,0,mode);
     assert.ok(decoded.averageLogScore!==undefined);
     // Reconstruct original ciphertext exactly by replaying every inferred
     // plaintext candidate and its source key-consumption history.
-    const reencoded=encrypt(decoded.decoded,key,0,0);
+    const reencoded=encrypt(decoded.decoded,key,0,0,mode);
     assert.deepEqual(reencoded.cipher,encrypted.cipher);
     positive.push({
-      seed:seedName,source:name,originalRunes:plain.length,
+      seed:seedName,mode,source:name,originalRunes:plain.length,
       actualSkipCount:encrypted.skips,nativeMeanLogScore:nativeScore(plain),
       decodedMeanLogScore:decoded.averageLogScore,
       exactRecoveredRunes:decoded.decoded.filter((x,i)=>x===plain[i]).length,
       sourceCipherReplayed:true
     });
+  }
   }
 }
 // Deliberately generous separation, >1.2 nats/rune between best
@@ -221,6 +238,8 @@ console.log(JSON.stringify({
     p7Products:coeff,
     p8Roman19thGpPrime:67,
     candidateSeedNames:seeds.map(x=>x[0]),
+    predeclaredValueOps:["identity GP29 emission","cube source LFSR key",
+      "cube plaintext before adding LFSR key"],
     proposedUngatedRate:"one in five LFSR key draws",
     proposedKeyPeriod:1876,
     originalScopeSizes:{whole:whole.length,afterOriginalRed12:black.length}
