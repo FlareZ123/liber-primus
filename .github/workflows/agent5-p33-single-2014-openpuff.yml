@@ -1,0 +1,73 @@
+name: Agent 5 original p33 2014 OpenPuff single JPEG Maximum
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/agent5-p33-single-2014-openpuff.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  p33-single-exact-historical:
+    runs-on: windows-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: x86
+      - name: Prepare pinned historical OpenPuff v4 and native public JPEG control
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python -c "import struct; assert struct.calcsize('P') == 4"
+          python -m pip install --disable-pip-version-check pywinauto Pillow filelock
+          python sims/openpuff_output_capture_sft.py
+          if ($LASTEXITCODE -ne 0) { throw 'Original GUI regression failed' }
+          $directory = Join-Path $env:RUNNER_TEMP 'OpenPuff-v400-original-p33-single'
+          New-Item -ItemType Directory -Force -Path $directory | Out-Null
+          $base = 'https://raw.githubusercontent.com/codejanus/ToolSuite/1eaf6d006d31ba842f6cc6b16e9d82dbf904aaf5/OpenPuff'
+          $expected = @{
+            'OpenPuff.exe' = '466e03c792075313ce533a5dc7a789e8a41209f9'
+            'libObfuscate.dll' = 'f3b1c3315f8286346416fefd6141410f422f2454'
+          }
+          foreach ($name in $expected.Keys) {
+            $file = Join-Path $directory $name
+            Invoke-WebRequest -Uri "$base/$name" -OutFile $file
+            $actual = (& git hash-object -- $file).Trim().ToLowerInvariant()
+            if ($LASTEXITCODE -ne 0 -or $actual -ne $expected[$name]) { throw "Historical binary mismatch: $name" }
+          }
+          "OPENPUFF_EXE=$(Join-Path $directory 'OpenPuff.exe')" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+      - name: Confirm original native JPEG extractor recovers publisher's exact 35 bytes
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          python sims/openpuff_public_jpeg_positive_source.py --out probe-output/public-source
+          if ($LASTEXITCODE -ne 0) { throw 'Original public carrier unavailable' }
+          python sims/openpuff_v400_extract.py --exe "$env:OPENPUFF_EXE" --carrier probe-output/public-source/openpuff.jpg --password 12345678 --bit-format 'Jpeg (Image)' --bit-level '1/2 (50%) - Maximum' --out probe-output/public-positive --wait-seconds 65
+          if ($LASTEXITCODE -ne 0) { throw 'Native positive failed to execute' }
+          python -c "from pathlib import Path; p=Path('probe-output/public-positive/extracted/hidden.txt'); assert p.read_bytes()==b'Dies ist eine versteckte Nachricht!'; print('ORIGINAL_NATIVE_JPEG_POSITIVE_PASS')"
+          if ($LASTEXITCODE -ne 0) { throw 'Original public JPEG positive bytes not recovered' }
+      - name: Probe original p33 scan50 single with 2014 exact 33011033 and Maximum
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $carrier = Join-Path $env:GITHUB_WORKSPACE 'resources/liber-primus/50.jpg'
+          if (-not (Test-Path -LiteralPath $carrier)) { throw 'Missing the single first-party p33 original JPEG' }
+          $digest = (Get-FileHash -LiteralPath $carrier -Algorithm SHA256).Hash.ToLowerInvariant()
+          Write-Host "SOURCE_SELECTED_P33_ORIGINAL_50_JPEG_SHA256=$digest"
+          python sims/openpuff_v400_extract.py --exe "$env:OPENPUFF_EXE" --carrier "$carrier" --password '33011033' --bit-format 'Jpeg (Image)' --bit-level '1/2 (50%) - Maximum' --out probe-output/original-p33 --wait-seconds 600
+          if ($LASTEXITCODE -ne 0) { throw 'Native original p33 extraction did not execute' }
+          $result = Get-Content -LiteralPath 'probe-output/original-p33/result.json' -Raw | ConvertFrom-Json
+          if ($result.carrier_count -ne 1 -or -not $result.bit_selection_verified -or -not $result.attempted) { throw 'Original source, native JPEG depth or Unhide not verified' }
+          Write-Host "SOURCE_P33_NATIVE_RESULT $($result | Select-Object carrier_count, native_probe_outcome, output_present, outputs, completion_dialogs, error_dialogs | ConvertTo-Json -Depth 15 -Compress)"
+          if ($result.native_probe_outcome -eq 'inconclusive-timeout') { throw 'Native source outcome inconclusive' }
+          if ($result.output_present) { Write-Host 'POTENTIAL_LP2_FIRST_PARTY_PAYLOAD_FOUND_NEEDS_BYTE_VALIDATION' }
+      - name: Retain screenshots, native error/completion dialogs and exact output
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: agent5-p33-original-openpuff-single-maximum
+          path: probe-output/
+          if-no-files-found: warn
