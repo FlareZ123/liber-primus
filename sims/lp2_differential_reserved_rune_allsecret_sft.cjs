@@ -78,6 +78,40 @@ for (let wi = 1; wi < original.length; wi++)
   boundaryDoublets += Number(original[wi][0] === original[wi - 1].at(-1));
 assert.equal(boundaryDoublets, 23);
 assert.equal(eventCount + boundaryDoublets, 86);
+
+/**
+ * Exact distribution-free word-reset diagnostic. If every next
+ * word-initial cipher rune is independently uniformly masked by
+ * a fresh GF29 IV, the indicator "equals previous ciphertext"
+ * is iid Bernoulli(1/29), regardless of plaintext and the
+ * within-word encoder. This directly tests the proposed
+ * independently random 2,895 word resets on unchanged source.
+ *
+ * @param {number} n
+ * @param {number} maxHits
+ * @param {number} p
+ */
+function binomialLowerTail(n, maxHits, p) {
+  let mass = Math.pow(1 - p, n);
+  let total = mass;
+  for (let h = 1; h <= maxHits; h++) {
+    mass *= (n - h + 1) / h * p / (1 - p);
+    total += mass;
+  }
+  return total;
+}
+const independentUniformWordIV = {
+  events: boundaryDoublets,
+  eligibleBoundaries: original.length - 1,
+  modelCollisionProbability: 1 / 29,
+  expectedEvents: (original.length - 1) / 29,
+  lowerTailProbability: binomialLowerTail(
+    original.length - 1, boundaryDoublets, 1 / 29),
+  internalObservedRate: eventCount / runeTransitions,
+  boundaryObservedRate: boundaryDoublets / (original.length - 1)
+};
+assert(independentUniformWordIV.lowerTailProbability > 0 &&
+  independentUniformWordIV.lowerTailProbability < 1e-18);
 const lengths = new Map();
 for (const w of original)
   lengths.set(w.length, (lengths.get(w.length) || 0) + 1);
@@ -334,6 +368,7 @@ console.log(JSON.stringify({
   donors: sources.map(x => ({name: x.name, tokens: x.tokenCount})),
   dictionaryWords: dictionary.tokenCount,
   focus: anchors,
+  independentUniformWordIV,
   stationaryContinuousNoReset: continuous,
   closestOriginalCountModels: strongestByShakespeare,
   dictionaryMaskImpossibleByAnchor: ranked.map(x => ({
