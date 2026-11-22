@@ -1,0 +1,13 @@
+name: Agent2 LP2 nonlinear five-lane scroll original SFT
+on:
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source and planted cipher controls
+        run: node sims/lp2_2263_five_scroll_nonlinear_shear_sft.cjs
