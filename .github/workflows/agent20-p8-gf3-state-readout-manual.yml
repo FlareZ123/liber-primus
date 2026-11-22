@@ -17,3 +17,5 @@ jobs:
         run: node sims/lp2_p55_hsum_gp29_source_sft.cjs
       - name: Original p55 H-sum 55-page familywise selection test
         run: node sims/lp2_p55_hsum_familywise_55page_original_sft.cjs
+      - name: Original p8 DH exponent codebook and both GF3 splices
+        run: node sims/lp2_p8_dh_exponent_context_original_sft.cjs
