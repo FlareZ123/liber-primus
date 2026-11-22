@@ -67,13 +67,14 @@ for (const field of [257, 29]) for (const width of [5, 6]) {
 for (const field of [257, 29]) for (const width of [5, 6]) {
   const columns = Array.from({ length: width }, (_, i) => i + 1);
   for (let row = 0; row < 32; row++) {
-    const seed = columns.map((_, col) => (row * 19 + col * col * 7 + 11) % field);
-    for (const x of [0, 7]) {
-      const expected = lagrange(columns, seed, x, field);
-      assert.equal(lagrange(columns, seed, x, field), expected);
-    }
-    for (const x of columns) {
-      assert.equal(lagrange(columns, seed, x, field), seed[columns.indexOf(x)]);
+    const coefficients = columns.map((_, col) => (row * 19 + col * col * 7 + 11) % field);
+    const polynomial = x => coefficients.slice().reverse()
+      .reduce((result, coefficient) => mod(result * x + coefficient, field), 0);
+    const encoded = Array.from({ length: 8 }, (_, x) => polynomial(x));
+    const known = columns.map(x => encoded[x]);
+    const holdouts = width === 5 ? [0, 6, 7] : [0, 7];
+    for (const x of holdouts) {
+      assert.equal(lagrange(columns, known, x, field), encoded[x]);
     }
   }
 }
