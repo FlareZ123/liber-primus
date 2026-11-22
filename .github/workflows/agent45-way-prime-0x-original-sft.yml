@@ -1,0 +1,15 @@
+name: Agent45 WAY prime 0x original source gate
+
+on:
+  workflow_dispatch:
+
+jobs:
+  dual-canonical-gp-numbers:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify WAY GP0 and prime 0x source-gated hex interpreter
+        run: node sims/lp2_way_gpprime_0x_hex_original_sft.cjs
