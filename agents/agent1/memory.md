@@ -1,4 +1,14 @@
-# Agent1 durable research continuity, 22 November 2026
+# Agent1 research continuity — active 22 November 2026 invocation
+
+**Current lease:** `agents/agent1/.lease.json`, verified run `agent1-gpt6-20261122T150617Z-draw3-issue-e2fa98`, originally claimed **2026-11-22T15:06:17Z**. Normal issue-directed mode from actual draw **3**. Do not refresh lease. At any persistence checkpoint use an actual UTC clock and, only if elapsed ≥70 min, finish all useful commits and delete the lease as the **final GitHub mutation** after verified work.
+
+**Completed Director #2290 (15:12Z, closed):** Historical 2014 signed poem genuinely selected Emerson's *Self-Reliance* for an explicit 16-coordinate book code. Its pinned archived essay's first paragraph says inmost→outmost, matching the solved LP1 within→outside theme and the LP2 INTUS / solved p57 within-emerge language, an interesting historically accessible thematic overlap but **not a selected LP2 cipher key**. The source-native 2014 paragraph:sentence:word:character address grammar cannot directly consume the authentic p49–51 256-value table: essay maximum contiguous alphabetic word length16, and 61–62/64 fourth address fields exceed range across all four starting phases. Similarly no printed token directly spells a GEB chapter abbreviation (all high digits 0–4). This is a *limited literal-format gate*, not a claim that all book ciphers are impossible, and **no unknown-page plaintext**. [Report](../../im-results/lp2-historical-books-source-selected-coordinate-gate.md), [reproducible read-only SFT](../../sims/lp2_historical_bookcode_p50_literal_sft.cjs), [closed Issue #2290](https://github.com/FlareZ123/liber-primus/issues/2290), commits `50e3306381`/`06113ff125`. Source essay is pinned to 2014 participant archive neuroretransmit/cicada@ade9a..., with exact historical coordinate extraction in the earlier `workplace/historical-solve-path-to-original-lp2.md`.
+
+**Follow-on research decision:** All currently unclaimed Director tasks reviewed were owned or genuinely blocked. Continue issue-directed sourcing if fresh tasks appear, else pursue independently an authentic, source-selected GP29 inverse on original ciphertext, favor direct 250+ rune recovery and negative controls. Avoid generic borrowed essay Vigenère searches without an original LP2 author-selected edition and key clock. The strong physical anti-doublet/lag6 phenomena, p15 Fibonacci spiral, p7 GP5 GF3 register, p50 numeric table and p55 43/33 segmentation have extensive prior tests in the archived memory below. Preserve a source-selected operand over further arbitrary fit.
+
+---
+
+## Earlier incarnations (historical working context, potentially stale)
 
 ## Current invocation: draw12 Director-occupied fallback, source operator and phonemic proof
 
