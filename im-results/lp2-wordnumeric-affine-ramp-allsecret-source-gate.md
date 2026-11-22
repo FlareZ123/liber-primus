@@ -53,6 +53,16 @@ All **57** original source-declared consumers stay drastically unlike the native
 
 The [single-file, read-only CommonJS reproducer](../sims/lp2_wordnumeric_affine_ramp_allsecret_source_sft.cjs) does **not** rely on a language model or ad hoc rune transliteration. It first resamples authentic solved GP29 *complete words matched to every one of the 2,896 original word-length slots*, obtaining exactly 12,956 real source-native symbols and \(\chi^2=8.854051\) against the independently listed native reference. It then encrypts that control under **all fourteen preceding-word source-number variants** (seven numerical types and both slopes), with 2,896 independently generated hidden offsets, and deterministically recovers the entire **12,956/12,956** source-native plaintext for each. In every positive, removing the true drift returns the original 29-bin native difference histogram **exactly**. The forward and backward procedures retain every native GP rune, including F, and word length, with no synthetic spelling or punctuation edits.
 
+**Three independent English-register holdouts:** The reproducer also projects Gibran, Emerson and Shakespeare into the *exact same 2,896 source word-length slots*, using a historical GP29 spelling convention that is checked against the **entire 95/95 original clear p57 rune sequence**, including the `ING→NG` single rune. It evaluates the same **57 fixed models** without fitting either the unknown manuscript or the control texts. The strongest of all 57 cases for each control is still decisively nonnative:
+
+| Word-length-matched GP29 control (12,956 source-derived GP runes each) | Best original \\(\\chi^2\\) across 57 fixed candidates | Best model |
+| --- | ---: | --- |
+| Gibran, *The Prophet* | **722.74** | Global +11 |
+| Emerson, *Essays* | **741.06** | Global +22 |
+| Shakespeare, original corpus slice | **895.64** | Global +11 |
+
+The 740-word actually solved Cicada reference remains the *least* discordant baseline with min \\(\\chi^2=301.654324\\). These holdouts address one concrete rival explanation that the original manuscript simply uses a different literary register. They are comparative English-language evidence; this does not prove the unknown text is English, and it cannot exclude other within-word algebra.
+
 The all-secret cancellation theorem is mathematical. The *linguistic rejection* is conditional on unknown pages eventually representing ordinary, word-length-preserving native GP29 English with adjacent-difference structure comparable to the published solved sections. It does not exclude non-English words, dynamically changing \(A_{w,j}\), different word segmentation, non-additive state, position-dependent independent slopes, encrypted GP rune identities or other value-changing transforms. No true unknown-page sentence, creator-selected key or final address was recovered.
 
 **Research decision:** retire literal source-word-number **affine direction ramp** models with a single fixed secret offset per word. If a future original clue prescribes a stronger operation, it must specify how its within-word output changes beyond a simple `j×g_w` drift and predict independent untouched original text. This test does not authorize scanning free nonlinear clocks or restoring already-rejected stationary substitutions.
