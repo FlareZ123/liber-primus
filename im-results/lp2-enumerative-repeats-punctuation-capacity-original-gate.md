@@ -56,6 +56,26 @@ A canonical quotient sidecar would decode the complete original plaintext intege
 
 On actual intact source words, the forced 2,896-rune suffix has IoC **0.034590** when successor ranks skip the previous rune in GP ordinal order, and **0.034519** when using cyclic forward-successor ranks. The independent genuinely solved GP source's final 2,896-rune control has IoC **0.061474**. Both all-sidecar-fixed original suffixes look incompatible with ordinary native-GP prose. Consequently a proposed p50 or punctuation key **cannot rescue this particular canonical full-book enumerative arithmetic receiver**, even if its side channel has unlimited capacity. A different ordering of the rank fields or other nonlinear, interleaved state architecture is outside this exact obstruction.
 
+## All-secret 26-letter / 28-successor rank-coding exclusion
+
+An important rival to an unrestricted GP29 source is an **ordinary 26-letter Latin plaintext**. A 29-rune ciphertext can offer 28 choices after excluding the previous rune, enough to encode one Latin letter per ciphertext rune without any external sidecar. The two surplus successor ranks might seem natural unused/rare escape or separator states, especially given only 86 original adjacent-repeat exceptions. This is a genuinely **different source alphabet** from the 29-symbol capacity assumption above, so that theorem must not be used to reject it.
+
+For one fixed, entirely unknown ordering \(\pi\) of all 29 ciphertext rune identities, define the observed successor digit \(d=\operatorname{pos}_{\pi}(c)-\mathbf1[\operatorname{pos}_{\pi}(s)<\operatorname{pos}_{\pi}(c)]\) whenever previous rune \(s\) differs from current rune \(c\). Each of the 28 digits is associated with two adjacent identities \(a,b\) in \(\pi\). Form the actual original unequal-successor matrix \(T[s,c]\). For every unknown ordering, every output rank occurs **at least** the following exactly attainable count:
+
+\[
+m(T)=\min_{a<b}\left[T[a,b]+T[b,a]+\sum_{s\notin\{a,b\}}\min\big(T[s,a],T[s,b]\big)\right].
+\]
+
+Place each remaining predecessor identity before or after adjacent \(a,b\) to minimize which next-symbol transition emits that rank; the choices can be realized together by one actual ordering. This is the **minimum** counterpart of the [previously established all-order maximum theorem](lp2-no-repeat-allorder-page-capacity.md), not an independent cipher system. The new SFT constructs a minimizing original 29-rune ordering and checks its exact rank histogram; a full 5-rune permutation oracle matches the derived formula.
+
+| Unknown underlying order | Lower bound on **each** reserved rank's actual source occurrences | Interpretation |
+| --- | ---: | --- |
+| One secret order over all 55 rune-bearing pages | **348** of 12,815 unequal transitions | Every one of 28 rank codes is used at least 348 times, regardless of the alphabet order |
+| Independent ordering at each of nine physical illustrated chapters | **179** of 12,815 unequal transitions | Exact chapter minima **5,12,23,31,11,20,23,54,0** |
+| Independently change ordering on every original physical page | **0** guaranteed | This particular support argument cannot exclude page-local alphabet resets |
+
+For the global case the exact minimizing pair is original GP **R/EO**; even that one output rank appears 348 times. Since each rank is lower-bounded separately, any two designated reserved ranks jointly appear at least 696 times globally or 358 times under the independent visual-chapter model. Thus the **literal 26 ordinary Latin letters + two never-used or at-most-86-in-band exception codes** cannot explain all original unequal GP29 ciphertext transitions under a stationary global or visual-chapter-reset predecessor-exclusion ordering, *however its 29 underlying runes are secretly permuted*. An author could instead use the surplus codes as frequent ordinary instructions, relabel the rank alphabet at each physical page, evolve it during a page, or alter the word/rune framing; those distinct mechanisms survive. No source clue yet selects this rank coder or a page-reset rule.
+
 ## Direct original-input arithmetic inversion
 
 The cheapest source-legible inverse removes each literal repeated-cipher event and labels each remaining next-cipher choice by its order among the 28 allowed symbols. Two independently simple orders were tried: alphabetically skipping the previous symbol, and cyclic forward step \((C_i-C_{i-1}-1)\bmod29\). Each was evaluated in normal and reversed order, with forward or backward digit significance, producing eight fully specified no-key base28-to-base29 integer conversions. Each physical page supplies an explicit first-symbol anchor; observed repeats are preserved as visible event masks. This is a direct arithmetic-rank diagnostic, **not** a demonstrated length-preserving original cipher.
