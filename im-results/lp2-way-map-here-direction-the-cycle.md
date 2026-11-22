@@ -4,6 +4,8 @@
 
 ## Result
 
+**Alternative source entry established 22 November:** The original p15 4×4 spiral's first three clockwise non-red numerals **3298, 3296, 3294**, read as zero-based global original LP2 rune indices, spell **WAY** at physical p13 local offsets104,102,100. This is a separate candidate entry into the already frozen WAY→MAP→HERE path below, with its unproven zero-based convention and three-cell stopping condition. [Exact source and one-based control](lp2-p15-fibprime-global-index-original-route.md). It is a **possible navigation clue**, not authenticated decryption and not a second confirmation of the mixed table codec.
+
 The authenticated 2016 THE-position scaffold fixes the ordered followers `PATH DEVOTED WAY MAP ROAD DIRECTION`, and the independently selected p29 derivative bridge later recovers candidate instruction **WAY**. Opening the p50 table only at that already fixed WAY address gives:
 
 ```text
