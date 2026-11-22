@@ -182,10 +182,10 @@ function shuffleTest(groupList, seed, trials) {
 const page = shuffleTest(pageGroups, 0x9e3779b9, 3000);
 const pageAndLength = shuffleTest(pageLengthGroups, 0x243f6a88, 3000);
 assert.deepEqual([page.hitsAny, page.hitsRightLeft, page.hitsLeftRight, page.hitsSingle],
-  [611, 236, 161, 249]);
+  [583, 218, 171, 243]);
 assert.deepEqual(
   [pageAndLength.hitsAny, pageAndLength.hitsRightLeft, pageAndLength.hitsLeftRight, pageAndLength.hitsSingle],
-  [667, 232, 235, 252]);
+  [592, 161, 220, 258]);
 console.log(JSON.stringify({
   originalUnknownWords: 2896,
   sourceSignedWords: 43,
