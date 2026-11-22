@@ -123,6 +123,47 @@ for (let i = 1; i < planted.visited.length; i++) {
 }
 assert.deepEqual(inverse, plant);
 
+// Original-source selection control: how common is this length register
+// among other 49-word original intervals with the same 196-rune total?
+let currentWord = "";
+const allWords = [];
+for (const glyph of text.split("%").slice(0, 55).join("%")) {
+  if (glyph >= "\u16a0" && glyph <= "\u16ff") {
+    currentWord += glyph;
+  } else if (glyph === "-" || glyph === ".") {
+    if (currentWord) {
+      allWords.push([...currentWord].length);
+      currentWord = "";
+    }
+  }
+}
+if (currentWord) allWords.push([...currentWord].length);
+assert.equal(allWords.length, 2896);
+const p33Frequencies = new Map();
+for (const len of lengths) {
+  p33Frequencies.set(len, (p33Frequencies.get(len) || 0) + 1);
+}
+assert.equal(p33Frequencies.size, 9);
+assert.equal(Math.max(...p33Frequencies.values()), 13);
+const control = { sameTotal: 0, atMostNineTypes: 0,
+  atLeastThirteenOfOneType: 0, both: 0 };
+for (let at = 0; at + 49 <= allWords.length; at++) {
+  const window = allWords.slice(at, at + 49);
+  if (window.reduce((a,b)=>a+b,0) !== 196) continue;
+  control.sameTotal++;
+  const types = new Map();
+  for (const n of window) types.set(n, (types.get(n) || 0) + 1);
+  const nine = types.size <= 9;
+  const thirteen = Math.max(...types.values()) >= 13;
+  control.atMostNineTypes += Number(nine);
+  control.atLeastThirteenOfOneType += Number(thirteen);
+  control.both += Number(nine && thirteen);
+}
+assert.deepEqual(control, {
+  sameTotal: 21, atMostNineTypes: 20,
+  atLeastThirteenOfOneType: 15, both: 14,
+});
+
 const matrix = [...Array(7)].map((_, i) => lengths.slice(7*i, 7*i+7));
 const out = {
   source: "Original LP2 p33 archive 50.jpg; historical Stage7 7x7/1033 square",
@@ -132,6 +173,7 @@ const out = {
   blackRuneCount: lengths.reduce((a,b)=>a+b,0),
   blackSplit: [21,28],
   matrix,
+  originalSameTotalWindowControls: control,
   rowSums: matrix.map(row=>row.reduce((a,b)=>a+b,0)),
   literalKeypadWalk: {
     origin: [3,3],
