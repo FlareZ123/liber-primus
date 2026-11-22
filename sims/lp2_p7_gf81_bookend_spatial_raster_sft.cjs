@@ -129,6 +129,83 @@ const summary = nulls.map((draws, i) => ({
 assert.equal(summary[0].nullMean, 434.748779296875);
 assert.equal(summary[1].nullMean, 434.66015625);
 
+/**
+ * For ANY secret fixed 29-to-2 pixel palette, certify a lower bound on
+ * cross-color edges using a positive-semidefinite integer matrix.
+ *
+ * With f_a symbol counts, L the symbol-adjacency graph Laplacian, and
+ * N=6395, H=5*N*L - 18*N*diag(f) + 18*f*f^T must be PSD.
+ * Each row of H sums to zero. Positive leading principal minors of
+ * the upper-left 28x28 cofactor (exact Bareiss integer elimination)
+ * prove the remaining 28 eigenvalues positive by Sylvester's criterion.
+ *
+ * Thus every binary palette with black share q has
+ * cross-color edge count >= (18/5)*N*q*(1-q).
+ * Relative to a uniform pixel-position shuffle with the identical black
+ * occupancy, crossing edges are at least
+ * (18/5)*(N-1)/(2*12620) = 0.91198098 of shuffled expectation.
+ *
+ * @param {(number|null)[]} data The original GP29 transformed spatial field.
+ * @returns {{symbolCount:number,proofMinorCount:number,
+ *  minShuffleBoundaryFraction:number,maxBinarySameEdgesBalanced:number}}
+ */
+function proveSecretBinaryPalette(data) {
+  const frequency = Array(29).fill(0);
+  const laplacian = Array.from({length:29}, () => Array(29).fill(0));
+  for (const rune of data) if (rune !== null) frequency[rune]++;
+  assert.equal(frequency.reduce((s, n) => s + n, 0), 6395);
+  const addEdge = (i, j) => {
+    const a = data[i], b = data[j];
+    if (a === b) return;
+    laplacian[a][a]++;
+    laplacian[b][b]++;
+    laplacian[a][b]--;
+    laplacian[b][a]--;
+  };
+  for (const i of hEdges) addEdge(i, i + 1);
+  for (const i of vEdges) addEdge(i, i + 80);
+  const N = 6395n;
+  const H = Array.from({length:29}, (_, i) =>
+    Array.from({length:29}, (_, j) =>
+      5n * N * BigInt(laplacian[i][j]) -
+      (i === j ? 18n * N * BigInt(frequency[i]) : 0n) +
+      18n * BigInt(frequency[i]) * BigInt(frequency[j])));
+  assert.ok(H.every(row => row.reduce((sum, x) => sum + x, 0n) === 0n));
+  // H is symmetric and has null vector (1,...,1); check all 28
+  // leading principal minors of a cofactor exactly, without eigensolver.
+  const minor = H.slice(0, 28).map(row => row.slice(0, 28));
+  let previous = 1n;
+  for (let k = 0; k < 28; k++) {
+    const pivot = minor[k][k];
+    assert.ok(pivot > 0n, 'nonpositive exact Sylvester minor ' + (k + 1));
+    for (let i = k + 1; i < 28; i++) {
+      for (let j = k + 1; j < 28; j++) {
+        const numerator = minor[i][j] * pivot -
+          minor[i][k] * minor[k][j];
+        assert.equal(numerator % previous, 0n, 'Bareiss exact division');
+        minor[i][j] = numerator / previous;
+      }
+      minor[i][k] = 0n;
+    }
+    previous = pivot;
+  }
+  // If a binary palette contains 40%-60% of the original pixels in
+  // each class, its cross-color edge count is at least ceil(5525.28).
+  const minBalancedCut = Number((108n * N + 124n) / 125n);
+  assert.equal(minBalancedCut, 5526);
+  const minShuffleBoundaryFraction = 3.6 * (6395 - 1) /
+    (2 * (hEdges.length + vEdges.length));
+  assert.ok(minShuffleBoundaryFraction > 0.91);
+  return {
+    symbolCount: frequency.length,
+    proofMinorCount: 28,
+    minShuffleBoundaryFraction,
+    maxBinarySameEdgesBalanced: hEdges.length + vEdges.length - minBalancedCut
+  };
+}
+const paletteProofs = candidates.map(proveSecretBinaryPalette);
+assert.deepEqual(paletteProofs.map(x => x.maxBinarySameEdgesBalanced), [7094, 7094]);
+
 // Positive control: inject a spatially coherent 10x10 block image
 // into the same exact five-hole geometry, then encrypt with the source pad.
 const plant = B.map((v, i) => v === null ? null :
@@ -137,6 +214,18 @@ const encrypted = plant.map((v, i) => v === null ? null : mod29(v + Afield[i]));
 const replay = encrypted.map((v, i) => v === null ? null : mod29(v - Afield[i]));
 assert.deepEqual(replay, plant);
 assert.ok(adjacent(replay).total > 10000);
+const plantedBinary = replay.map(x => x === null ? null : Number(x >= 14));
+const plantedPresent = plantedBinary.filter(x => x !== null);
+const plantedBlack = plantedPresent.reduce((sum, x) => sum + x, 0);
+const plantedQ = plantedBlack / plantedPresent.length;
+let plantedCut = 0;
+for (const i of hEdges) plantedCut += Number(plantedBinary[i] !== plantedBinary[i + 1]);
+for (const i of vEdges) plantedCut += Number(plantedBinary[i] !== plantedBinary[i + 80]);
+const plantedExpectedCut = 2 * (hEdges.length + vEdges.length) *
+  6395 / 6394 * plantedQ * (1 - plantedQ);
+assert.ok(plantedCut / plantedExpectedCut < 0.2,
+  'coherent planted image must violate original all-secret palette bound');
+
 for (let i = 0; i < B.length; i++) {
   if (B[i] !== null) {
     assert.equal(mod29(candidates[0][i] + Afield[i]), B[i]);
@@ -148,7 +237,10 @@ console.log(JSON.stringify({
   fieldGeneratorOrder: powers.length,
   edgeCount: hEdges.length + vEdges.length,
   candidates: summary,
+  secretPaletteProofs: paletteProofs,
   plantMatchedEdges: adjacent(replay).total,
+  plantedBinaryCut: plantedCut,
+  plantedBinaryShuffleExpectation: plantedExpectedCut,
   conclusion: 'No direct GP29 spatial-raster signal in these two fixed field-source pads'
 }, null, 2));
 console.log('PASS: original-source GF81 bookend spatial receiver and planted image');
