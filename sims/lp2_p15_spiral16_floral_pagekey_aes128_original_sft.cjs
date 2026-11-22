@@ -155,6 +155,40 @@ for (const model of ['gp29','gp28-f-literal']) {
   }
 }
 assert(results.every(r => r.completeIoC < 0.046));
+
+// A simpler competing, no-AES interpretation: repeat each 16-byte tile
+// directly on its matched page, again with no fitted clock or phase.
+// It is deliberately tested before accepting any proposed AES key role.
+const directResults = [];
+for (const model of ['gp29','gp28-f-literal']) {
+  for (const sign of [-1,1]) {
+    const decoded = [];
+    for (let pageIndex = 0; pageIndex < 16; pageIndex++) {
+      const original = pages[pageIndex].indices;
+      const key = keys[pageIndex];
+      const stream = Buffer.from(Array.from(
+        {length: original.length}, (_,i) => key[i % 16]));
+      const plain = convert(original, stream, sign, model);
+      assert.deepEqual(convert(plain, stream, -sign, model), original);
+      const p = native[pageIndex];
+      const controlStream = Buffer.from(Array.from(
+        {length:p.length}, (_,i) => key[i % 16]));
+      const enc = convert(p, controlStream, -sign, model);
+      assert.deepEqual(convert(enc, controlStream, sign, model), p);
+      decoded.push(plain);
+    }
+    const full = decoded.flat();
+    const outcome = {
+      model, sign,
+      completeIoC: coincidence(full),
+      p40to53IoC: coincidence(decoded.slice(0,14).flat()),
+      p54to55IoC: coincidence(decoded.slice(14).flat()),
+      p55IoC: coincidence(decoded[15])
+    };
+    assert(outcome.completeIoC < 0.046);
+    directResults.push(outcome);
+  }
+}
 console.log(JSON.stringify({
   source: 'p15 red-centered, complete 4x4 Fibonacci-prime spiral + unmodified p49-51 32x8 grid',
   hypothesis: '16 keys of 16 native tile bytes, one per original physical floral page; AES-128-CTR/zero-IV and GP29/GP28 additive',
@@ -168,5 +202,6 @@ console.log(JSON.stringify({
   solvedNativeControlIoC: coincidence(control),
   originalCipherIoC: coincidence(raw),
   results,
+  directLiteralPageKeyResults: directResults,
   verdict: 'Neither source-spiral page-local AES-128-CTR receiver recovers native GP text. No unknown LP2 plaintext or key authenticated.'
 }, null, 2));
