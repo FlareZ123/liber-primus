@@ -12,6 +12,28 @@ Three separate source objects are fixed before reading the carries:
 
 Both G and H were previously identified as exact source-algebraic factors. Their key use and any higher 29-adic lift were **not** specified by the original manuscript. Nonetheless, retaining the same literal printed integer coefficients modulo29²=841 and dividing by the same factors yields a reproducible *second digit* of the two otherwise-zero polynomial remainders.
 
+
+## New independent original-image check: 3301 directly selects G's double root
+
+A distinct first-party clue anchors the previously known algebraic factor **without consulting either polynomial ciphertext**: the repeated original p33–p39 cuneiform numeral (55,1) in sexagesimal literally denotes **3301**, while (17,13) denotes **1033**. The p39 **same seven-page chapter** visibly isolates the red three-rune sequence [27,5,15] low-first. Under the existing GP29 high-first polynomial interpretation this is **G(X)=15X²+5X+27**.
+
+The raw printed integer **3301 mod29=24**, and the exact identity **G(X)=15(X−3301)² mod29** holds coefficientwise, with **G(3301)=G′(3301)=0 mod29**. Thus the printed header selects the existing double root directly, rather than an arbitrary subsequently searched numerical seed. The other original header integer 1033 gives G(1033)=18 and G′(1033)=23 mod29, an exact negative control. Direct evaluation of *both complete unchanged sources* at the printed integer3301 produces:
+
+| Source polynomial | Value mod29 at 3301 | Formal derivative mod29 at 3301 | Value, derivative at 1033 |
+| --- | ---: | ---: | --- |
+| Original p39 red G, GP29 degree2 | 0 | 0 | 18, 23 |
+| Original p29 277-rune coefficient stream, degree276 | 0 | 0 | 28, 9 |
+| Original p50 256-byte conventional base60 stream, degree255 | 0 | 0 | 10, 12 |
+
+This was checked by a direct Horner recurrence, independently of long division and the earlier 29-adic lift. In the annotated original red-source inventory, exactly **two isolated full three-rune red spans** exist (p3 at rune119 and p39 at rune119). Only p39 has the 3301 double root. Among **all189 overlapping original red three-rune windows**, p39 at offset119 is likewise the unique exact 3301 double root. The alternative original p3 triad has [13,23,2] low-first, value6 and derivative3 at3301.
+
+Two more exact, **secondary/postselected** source-number relations remain provisional: the root residue24 has multiplicative order **7** modulo29 (matching the illustrated seven-page p33–p39 chapter length), and **G(3301) mod841=377=29×13** (the p39 triad is bracketed by red13-dot marks). Neither selects a decoder. The p50 polynomial additionally assumes the conditional ordinary base60-byte interpretation of the printed table, while p29's rune coefficients and p39's colored triplet do not require that byte convention.
+
+**Clue strength and boundary:** unlike a random guessed GP29 element, **3301 itself is visibly printed in the same original physical chapter as the red G**, independently identifying its root. But the idea of reading the red triplet as an ascending-degree polynomial, using mod29 derivatives, and transporting the root into p29/p50 was explored retrospectively after the G-factor evidence had been discovered. This is an original-artifact crosslink with two disjoint source-negative controls. It is **not proof the author intended polynomial long division, or that a 2014 player could derive it**. A future solution still needs an author-visible **operation and recipient** for the quotient or root and a complete unknown-ciphertext inversion.
+
+Exact original data and the 189-window countercheck: [Node22 source-root SFT](../sims/lp2_p39_3301_original_double_root_sft.cjs). The previous long-division/29-adic carry conclusions below are unchanged.
+
+
 ## Exact second-digit arithmetic
 
 Keep the high-first original order and normal GP0 ordinal values. For any exact modulus29 divisor, lift the same long division to `Z/841Z`. Since the remainder vanishes modulo29, normalize the two 841-remainder coefficients by 29, producing a pair in `GF29²` as two independent coordinates.
