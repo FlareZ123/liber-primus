@@ -93,7 +93,7 @@ const begin=lp1.indexOf("ᚦᛖ-ᛚᚩᛋᛋ");
 const end=lp1.indexOf("\n$\n%\n",begin);
 assert(begin>=0&&end>begin);
 let nativeWitness=0;
-for(const m of lp1.slice(begin,end).matchAll(wordRe)){
+for(const m of lp1.slice(begin,end).replace(/\/\n%\n/g,"").replace(/\/\n/g,"").replace(/\n/g,"").matchAll(wordRe)){
   add(Array.from(m[0],c=>rune.get(c)));nativeWitness++;
 }
 assert.equal(nativeWitness,181);
