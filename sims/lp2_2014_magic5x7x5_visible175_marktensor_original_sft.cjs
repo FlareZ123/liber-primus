@@ -158,10 +158,10 @@ for(const [name,input] of Object.entries(channels)){
     assert.deepEqual(encode(decoded,bitmask),input);
     assert.deepEqual(decode(encode(nativePlant,bitmask),bitmask),nativePlant);
     assert(Math.abs(ioc(decoded)-expectedIoC[name][bitmask])<1e-12);
-    outputs.push({bitmask, ioc:ioc(decoded), prefix:gp(decoded.slice(0,52)), distinct:new Set(decoded).size});
+    outputs.push({bitmask, ioc:ioc(decoded), fullGP:gp(decoded), distinct:new Set(decoded).size});
   }
   console.log('PASS channel='+name+' eight_exact_original_roundtrips eight_solved_p57_plants');
   console.log('channel='+name+' raw_IoC='+ioc(input).toFixed(12)+' max_IoC='+Math.max(...outputs.map(x=>x.ioc)).toFixed(12));
-  for(const output of outputs)console.log('channel='+name+' bitmask='+output.bitmask+' IoC='+output.ioc.toFixed(12)+' distinct='+output.distinct+' prefix='+output.prefix);
+  for(const output of outputs)console.log('channel='+name+' bitmask='+output.bitmask+' IoC='+output.ioc.toFixed(12)+' distinct='+output.distinct+' fullGP='+output.fullGP);
 }
 console.log('DECISION: no sustained native-GP instruction in any of 32 fixed original-mark tensor candidates; source-selected mark-to-key operation absent');
