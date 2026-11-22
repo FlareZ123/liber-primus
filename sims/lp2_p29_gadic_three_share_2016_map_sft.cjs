@@ -177,6 +177,48 @@ function run() {
     m(shares[0][i]-3*shares[1][i]+3*shares[2][i]));
   assert.deepEqual(recovered,planted);
   assert.deepEqual(predicted,shares[3]);
+
+  // Source-fixed alternative Shamir coordinates: p39's printed red triad
+  // is [27,5,15]. p57's terminal 23-dot mark supplies the held-out x=23.
+  // This is distinct from treating [15,5,27] as coefficients of G(X).
+  const p39Xs = [27, 5, 15];
+  const inv29 = n => {
+    for (let x = 1; x < 29; x++) if (m(x * n) === 1) return x;
+    throw new Error("non-invertible Shamir denominator");
+  };
+  const lagrangeWeights = (xs, at) => xs.map((x, i) =>
+    xs.reduce((w, y, j) => j === i ? w :
+      m(w * m(at - y) * inv29(m(x - y))), 1));
+  const p39AtZeroWeights = lagrangeWeights(p39Xs, 0);
+  const p39At23Weights = lagrangeWeights(p39Xs, 23);
+  assert.deepEqual(p39AtZeroWeights, [25, 17, 17]);
+  assert.deepEqual(p39At23Weights, [19, 22, 18]);
+  const combineP39 = weights => A.map((_, i) =>
+    m(weights[0] * A[i] + weights[1] * B[i] + weights[2] * C[i]));
+  const p39Secret = combineP39(p39AtZeroWeights);
+  const p39Share23 = combineP39(p39At23Weights);
+  const p39SecretMatches = p39Secret.flatMap((v, i) =>
+    v === target[i] ? [i] : []);
+  const p39Share23Matches = p39Share23.flatMap((v, i) =>
+    v === target[i] ? [i] : []);
+  assert.deepEqual(p39SecretMatches, [3, 24, 27, 60, 82]);
+  assert.deepEqual(p39Share23Matches, [5, 7, 48]);
+  assert(Math.abs(ioc(p39Secret) - 0.03394383394383394) < 1e-13);
+  assert(Math.abs(ioc(p39Share23) - 0.030525030525030524) < 1e-13);
+
+  // Native-GP positive for the same source-selected coordinates and x=23:
+  // build a nonzero quadratic from independently clear p57 plaintext.
+  const p39A = planted.map((_, i) => m(7 * i + 13));
+  const p39B = planted.map((_, i) => m(11 * i + 23));
+  const p39PositiveShares = p39Xs.map(x => planted.map((v, i) =>
+    m(v + p39A[i] * x + p39B[i] * x * x)));
+  const p39Expected23 = planted.map((v, i) =>
+    m(v + p39A[i] * 23 + p39B[i] * 23 * 23));
+  const p39Predicted23 = planted.map((_, i) =>
+    m(p39At23Weights.reduce((sum, w, j) =>
+      sum + w * p39PositiveShares[j][i], 0)));
+  assert.deepEqual(p39Predicted23, p39Expected23);
+
   return {
     original:{p29Runes:277,sourceGridBytes:256,residualRunes:273,
       layerLength:91,signedWords:43,mapInteriors:91},
@@ -184,6 +226,18 @@ function run() {
       .map(x=>corpus.translit[x]).join("")},
     fourthShare:{matchCount:matchedFourth.length,
       matchOffsetsZeroBased:matchedFourth},
+    p39TriadShamir:{sourceCoordinates:p39Xs,targetCoordinate:23,
+      weightsAtZero:p39AtZeroWeights,weightsAt23:p39At23Weights,
+      secretMatches:p39SecretMatches.length,
+      secretMatchOffsetsZeroBased:p39SecretMatches,
+      secretIoC:ioc(p39Secret),secretFirst40:p39Secret.slice(0,40)
+        .map(x=>corpus.translit[x]).join(""),
+      fourthShareMatches:p39Share23Matches.length,
+      fourthShareMatchOffsetsZeroBased:p39Share23Matches,
+      fourthShareIoC:ioc(p39Share23),fourthShareFirst40:p39Share23.slice(0,40)
+        .map(x=>corpus.translit[x]).join(""),
+      nativeP57PositiveControl:p39Predicted23.filter((v,i)=>
+        v===p39Expected23[i]).length},
     anyStationaryAffine:{keyCount:29**4,bestMatch:bestAffine,
       keyTies:affineTies,oneBestKey:bestAffineKey},
     anyStationaryOuterFunction:{projectionCount:29**3,
