@@ -1,0 +1,13 @@
+name: Agent2 LP2 4x7 word polygraph original SFT
+on:
+  workflow_dispatch:
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Original and solved controls
+        run: node sims/lp2_2258_rectangle4x7_spiral_word_polygraph_sft.cjs
