@@ -100,9 +100,18 @@ for(const [keyName,key] of Object.entries({black15:black,red16:all})) {
     for(const transparentF of [false,true]) {
       for(const sign of [-1,1]) {
         const result=transform(cipher,key,sign,transparentF);
-        assert.deepEqual(transform(result,key,-sign,transparentF)
-          .filter((_,i) => !transparentF || cipher[i]!==0),
-          cipher.filter((_,i) => !transparentF || cipher[i]!==0));
+        // Invert using the same original-ciphertext F mask. A free
+        // F-transparent variant without the mask is not self-inverting.
+        let clock=0;
+        for(let i=0;i<cipher.length;i++) {
+          if(transparentF && cipher[i]===0) {
+            assert.equal(result[i],0);
+            continue;
+          }
+          const reencryption=(result[i]-sign*key[clock%key.length]+29)%29;
+          assert.equal(reencryption,cipher[i]);
+          clock++;
+        }
         const stat=summarize(result);
         console.log(keyName,targetName,'Ftransparent',transparentF,
           'sign',sign,'n',cipher.length,'ioc',stat.ioc.toFixed(9),
