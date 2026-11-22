@@ -1,0 +1,18 @@
+name: Agent1 ten-dot authentic p56 keyclock gate
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  original:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: First-party p56 cipher clock vs printed ten-dot
+        run: node sims/lp2_tendot_p56_authentic_keyclock_source_gate.cjs
