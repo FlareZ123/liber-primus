@@ -1,0 +1,14 @@
+name: Agent32 LP3 and p50 two-radix pointer cycle gate
+on:
+  workflow_dispatch:
+jobs:
+  original-two-radix-cycle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Source cycles and 120k paired-token shuffles
+        run: node sims/lp2_p50_lp3_pointer_b59_b60_cycles_sft.cjs
