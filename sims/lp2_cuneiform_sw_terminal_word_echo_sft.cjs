@@ -2,7 +2,7 @@
 
 /**
  * SFT: conditional cuneiform bookcode SW exactly echoes the first complete
- * original GP29 word of the section's last physical page (p39).
+ * original GP29 word of the following red-heading page's first printed word (p39).
  * This is a source observation, not a decryption.
  *
  * Windows Node.js 22: node sims/lp2_cuneiform_sw_terminal_word_echo_sft.cjs
@@ -91,7 +91,7 @@ for (let i = 0; i < headings.length; i++) {
   if (section.length < 55 || section[16].values.length < 13) continue;
   const a = point(section, 17, 13);
   const b = point(section, 55, 1);
-  const lastPage = section[section.length - 1].page;
+  const lastPage = headings[i + 1].page; // next red-heading boundary, possibly at line1
   const opening = corpus.pages.find((z) => z.page === lastPage).indices.slice(0, 2);
   const readout = a.roman + b.roman;
   const echo = roman(opening);
