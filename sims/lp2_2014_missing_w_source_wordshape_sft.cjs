@@ -76,13 +76,13 @@ function positions(words){
 }
 const chunks=master.split("%");
 assert.equal(chunks.length,57);
-const original=originalWords(chunks.slice(0,-2));
-const suffix=originalWords(chunks.slice(-2));
+const original=originalWords([chunks.slice(0,-2).join("")]);
+const suffix=originalWords([chunks.slice(-2).join("")]);
 const native=solvedWords(SOLVED.sections.map(s=>s.source_text));
 const sourceIndices=GP.pages.filter(p=>p.page<=55).flatMap(p=>p.indices);
 assert.deepEqual(original.flat(),sourceIndices.map(i=>GP.runes[i]));
 assert.deepEqual(positions(original),
- {words:2928,runes:12956,Wstart:82,Wend:99,Wall:401});
+ {words:2896,runes:12956,Wstart:82,Wend:98,Wall:401});
 assert.deepEqual(positions(suffix),
  {words:45,runes:180,Wstart:3,Wend:3,Wall:8});
 assert.deepEqual(positions(native),
@@ -120,8 +120,8 @@ const fisher={
  end:fisherTwoSided(a.Wend,a.words,b.Wend,b.words),
  all:fisherTwoSided(a.Wall,a.runes,b.Wall,b.runes)
 };
-assert.ok(Math.abs(fisher.start-3.9660443577388446e-17)<2e-19);
-assert.ok(Math.abs(fisher.end-0.00035247751838885107)<1e-7);
+assert.ok(Math.abs(fisher.start-1.156629946706025e-16)<2e-19);
+assert.ok(Math.abs(fisher.end-0.0003477568553329069)<1e-7);
 assert.ok(Math.abs(fisher.all-0.5994862465158237)<2e-5);
 // Construct a genuine one-to-one GP28 substitution excluding W.
 // This preserves every W occurrence exactly, independent of the key.
