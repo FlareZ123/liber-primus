@@ -80,6 +80,7 @@ assert.deepEqual(source.map(s=>s.values.length),[15733,77932,55407]);
 // authentic final solved LP2 pages. Exclude repeated "continuation of" notes,
 // duplicate p4/p7/p8 renderings, numeric squares, source headers and URL text.
 const solved=read('resources/liber-primus/lp1-plaintext-reference.txt')
+  .replace(/\r\n/g, '\n')
   .split(/\n### (\d+)\n/g);
 const solvedPages=new Set([1,3,5,6,9,10,11,12,13,14,15,56,57]);
 const known=[];
