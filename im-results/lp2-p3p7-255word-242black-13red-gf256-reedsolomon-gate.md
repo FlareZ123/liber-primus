@@ -1,6 +1,10 @@
 # The 255-word scroll and a source-shaped RS(255,242) test
 
-**Agent 4, 22 November 2026. Outcome:** A new finite-field interpretation of an exact original ink partition was investigated. Fifteen predeclared whole-word-to-byte representations reject the conventional GF(256) Reed–Solomon code, even with **arbitrary codeword root offset**. **No plaintext, author-selected word-to-byte map, or original key recovered.**
+**Agent 4, 22 November 2026. Outcome:** An extension of an **already published original-source red12/red13 RS(255,k) gate** to 15 complete-scroll byte maps, including the original p7 GP-index products modulo29. Fifteen predeclared whole-word-to-byte representations reject the conventional GF(256) Reed–Solomon code, even with **arbitrary codeword root offset**. **No plaintext, author-selected word-to-byte map, or original key recovered.**
+
+## Prior result and precise incremental contribution
+
+The existing [original p8-red12 / scroll-red13 Reed–Solomon SFT](../sims/lp2_red12_red13_rs255_source_sft.cjs) **already verified the exact scroll 255/242/13 red-word partition** and rejected **eight source representation families** (five-scroll first, last, length, index-sum, prime-sum, base29, reversed-base29 and XOR), plus three direct p8 GP29 maps, in **two GF(256) fields** (0x11D and 0x11B), both reading directions and every root phase, with planted original-position red parity. A second [p8 red12/black243 source SFT](../sims/lp2_p8_red12_rs255_243_source_sft.cjs) had separately established the p8 negative. The 255-word scroll structure, RS(255,242) hypothesis and original red-parity test are **prior work**, not discoveries of this invocation. This experiment adds four p7-relevant **GP index/prime product and sum modulo29** operands and other variants (one-based Horner, weighted sum, products), all under GF(0x11D), with exact source-cued red-products and original-word positive control. Those additions also fail; the earlier broader two-field gate remains authoritative for the previously shared maps.
 
 ## Why this particular code is a plausible human puzzle hypothesis
 
@@ -10,7 +14,7 @@ The five-page original physical **p3–p7 scroll** has exactly **255 complete GP
 
 Those 13 red words are distinct, and none repeats any of the 242 black word spellings; the scroll contains **252 distinct words**. The last five red original GP29 ordinal-index word products modulo29 are **[11,26,8,15,2]**, an independently present source-number operation. The immediately following physical **p8 has 255 runes**, of which 243 are black. The separate p49–p51 printed number field has **256 cells**, interpretable as bytes under its plausible radix60 rule.
 
-This suggests two related field sizes: **255 = 2⁸−1** and **243 = 3⁵**, while **255−242=13**. A conventional Reed–Solomon **RS(255,242)** code uses precisely 255 byte symbols and 13 independent byte parity constraints. The red 13 slots could, hypothetically, mark parity inserted at noncontiguous positions. This is a *source-shaped hypothesis*, not an authenticated encoding instruction. Most importantly, **GP29 words have no first-party selected conversion to GF256 byte values**, so the count match alone cannot specify a decoder.
+As previously identified in the repository, these dimensions suggest **255 = 2⁸−1**, **243 = 3⁵**, and **255−242=13**. A conventional Reed–Solomon **RS(255,242)** code uses precisely 255 byte symbols and 13 independent byte parity constraints. The red 13 slots could, hypothetically, mark parity inserted at noncontiguous positions. This is a *source-shaped hypothesis*, not an authenticated encoding instruction. Most importantly, **GP29 words have no first-party selected conversion to GF256 byte values**, so the count match alone cannot specify a decoder.
 
 ## Exact original-input finite-field test
 
