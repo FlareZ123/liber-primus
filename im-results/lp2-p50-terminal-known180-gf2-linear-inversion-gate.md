@@ -39,7 +39,7 @@ At \(w=21\), the equality constraints alone have too few rows to exclude injecti
 
 A genuine 180-symbol planted solution is generated for the same actual solved symbols by writing each into a synthetic byte table under a fully invertible non-identity map \(E(s)=\operatorname{rotl}_8(s,3)\oplus\mathrm{A5}_{16}\). Applying \(E^{-1}\) reconstructs **all 180 native GP plaintext values**, preserving the F exception inherited from authentic p56. The exact equality-difference rank is zero at width1, as expected; a second plant puts the symbols at the 180 physical interior cells, and its center-byte member of the 3×3 family remains feasible. These distinguish a correct obstruction from a broken binary-rank implementation.
 
-[Reproducible original-data and positive-control SFT](../sims/lp2_p50_terminal_known180_gf2_fir_rank_sft.cjs). The first, eight-case version passed [Windows Node22 GitHub Actions run 44979775749](https://github.com/FlareZ123/liber-primus/actions/runs/44979775749); the added compact-interior variants have identical rank outcome in direct source-based execution, pending a separate CI rerun. The script relies only on committed original resources and built-in Node libraries.
+[Reproducible original-data and positive-control SFT](../sims/lp2_p50_terminal_known180_gf2_fir_rank_sft.cjs). The complete **twelve-case**, positive-controlled source test passed [Windows Node22 GitHub Actions run 44981170384](https://github.com/FlareZ123/liber-primus/actions/runs/44981170384); the first eight-case version independently passed [run 44979775749](https://github.com/FlareZ123/liber-primus/actions/runs/44979775749). The script relies only on committed original resources and built-in Node libraries.
 
 ## Decision
 
