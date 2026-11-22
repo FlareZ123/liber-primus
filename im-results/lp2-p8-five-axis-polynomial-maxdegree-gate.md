@@ -28,6 +28,20 @@ Both original top coefficients are **nonzero**, proving that each unique interpo
 
 The checked-in test reconstructs all 243 original source symbols exactly after **inverse then forward interpolation** in both coordinate systems. For a separate independent positive plant, it creates a genuine degree-four-or-less GF29 polynomial coefficient tensor, evaluates it on each complete 243-point grid, interpolates the ciphertext back to **243/243** original coefficients, and asserts that all coefficients of degree at least six vanish. The test is an actual positive for the model it excludes on p8, rather than a language-likeness check.
 
+## Exact all-secret tensor-rank bound
+
+A second **basis-independent** structural question is whether the p8 243-rune object is a sum of the **five** separable terms suggested by p7's five red words, possibly after *unknown invertible 3×3 substitutions on each axis*. Unlike an additive cipher search, this has a strict all-key necessary condition. If the tensor is a sum of `r` pure five-axis products over GF29, **every** matrix flattening into two ternary axes (9 rows) versus the other three axes (27 columns) has rank at most `r`. Applying any invertible 3×3 operator independently to each axis preserves **all flattening ranks** by invertible left/right matrix multiplication. This encompasses any per-axis unknown invertible Vandermonde or 3×3 secret basis.
+
+Enumerate the **ten** unordered choices of two row axes among the five source-order ternary digits. The exact original 9×27 matrix for each one has **full rank 9 over GF29**:
+
+| Source-order row axes | (0,1) | (0,2) | (0,3) | (0,4) | (1,2) | (1,3) | (1,4) | (2,3) | (2,4) | (3,4) |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| Original rank | **9** | **9** | **9** | **9** | **9** | **9** | **9** | **9** | **9** | **9** |
+
+The canonical tensor rank of this original input is therefore **at least 9**, so *no* sum of eight or fewer separable five-axis GF29 products could have generated it under the frozen source-order tensor interpretation, **even granting arbitrary unknown invertible 3×3 basis changes on every axis**. The SFT also generates an independently planted *five-term separable tensor* and verifies ranks at most five in all ten flattenings. Full rank is common for a random source tensor; this is an exact lower bound on the specified construction, never statistical evidence of intended cipher design.
+
+This result is **independent** of the preceding maximal-degree certificate: a tensor could have low polynomial total degree but high rank, or maximal degree and low rank. Together they reject two distinct low-complexity explanations of p8 as a raw five-variable table. They leave intact the possibility of an additional encrypting layer or a wholly different ciphertext register.
+
 ## Consequence and limits
 
 This is an exact exclusion for **literal polynomial-table generation** under the two source-fixed evaluation grids, independent of language or secret polynomial coefficients. It cannot exclude a genuine polynomial table whose outputs were subsequently encrypted with a separately sourced keystream, a different coordinate assignment or point set, binary encoding, non-polynomial generator, or the more ordinary interpretation that p8 is encrypted prose. It does not turn the nonzero coefficient values 16 and 10 into keys or interpretations.

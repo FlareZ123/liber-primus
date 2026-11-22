@@ -170,6 +170,78 @@ for (const item of cases) {
     lowDegreePositiveControl: '243/243'
   });
 }
+
+/**
+ * Compute rank over GF29 without integer-field rounding.
+ * @param {number[][]} matrix
+ * @returns {number}
+ */
+function gf29Rank(matrix) {
+  const a = matrix.map(row => row.slice());
+  let rank = 0;
+  for (let col = 0; col < a[0].length && rank < a.length; col++) {
+    let pivot = rank;
+    while (pivot < a.length && mod(a[pivot][col]) === 0) pivot++;
+    if (pivot === a.length) continue;
+    [a[rank], a[pivot]] = [a[pivot], a[rank]];
+    const q = inverse(mod(a[rank][col]));
+    for (let j = col; j < a[rank].length; j++) a[rank][j] = mod(a[rank][j] * q);
+    for (let k = rank + 1; k < a.length; k++) {
+      const f = a[k][col];
+      for (let j = col; j < a[k].length; j++) {
+        a[k][j] = mod(a[k][j] - f * a[rank][j]);
+      }
+    }
+    rank++;
+  }
+  return rank;
+}
+/**
+ * Matrix unfolding of a five-axis ternary tensor: two axes become nine
+ * rows, the complementary three become twenty-seven columns.
+ * @param {number[]} values
+ * @param {number[]} rowAxes
+ * @returns {number[][]}
+ */
+function flattenTernary(values, rowAxes) {
+  const colAxes = [0, 1, 2, 3, 4].filter(i => !rowAxes.includes(i));
+  const matrix = Array.from({length: 9}, () => Array(27).fill(0));
+  for (let i = 0; i < 243; i++) {
+    const x = Array.from({length: 5}, (_, axis) => Math.floor(i / 3 ** axis) % 3);
+    const row = x[rowAxes[0]] + 3 * x[rowAxes[1]];
+    const col = x[colAxes[0]] + 3 * x[colAxes[1]] + 9 * x[colAxes[2]];
+    matrix[row][col] = values[i];
+  }
+  return matrix;
+}
+const rankWitnesses = [];
+for (let a = 0; a < 5; a++) {
+  for (let b = a + 1; b < 5; b++) {
+    const r = gf29Rank(flattenTernary(body, [a, b]));
+    assert.equal(r, 9, 'Original 2-vs-3 flattening has full rank');
+    rankWitnesses.push({rowAxes: [a, b], rank: r});
+  }
+}
+assert.equal(rankWitnesses.length, 10);
+
+// Independently generated five-separable-product positive control.
+const fiveFactorPlant = Array.from({length: 243}, (_, i) => {
+  const x = Array.from({length: 5}, (_, axis) => Math.floor(i / 3 ** axis) % 3);
+  let value = 0;
+  for (let k = 0; k < 5; k++) {
+    let term = 1;
+    for (let axis = 0; axis < 5; axis++) {
+      term = mod(term * mod(11 * (k + 1) + 7 * (axis + 1)
+        + 5 * (x[axis] + 1) + (axis * k)));
+    }
+    value = mod(value + term);
+  }
+  return value;
+});
+for (const entry of rankWitnesses) {
+  assert.ok(gf29Rank(flattenTernary(fiveFactorPlant, entry.rowAxes)) <= 5);
+}
+
 console.log(JSON.stringify({
   scope: 'Exact LP2 p8 black 243 GP29 indices under two fixed GF29 tensor bases',
   sourceP7RedWordProducts: operands,
@@ -177,5 +249,7 @@ console.log(JSON.stringify({
   maximumTotalDegree: 10,
   result: 'Both source-fixed representations have nonzero maximum-degree coefficient; neither is a lower-total-degree polynomial table',
   noPlaintextRecovered: true,
+  all10OriginalFlatteningsRank: rankWitnesses,
+  fiveTermSeparablePositiveControl: '10/10 ranks at most five',
   models: results
 }, null, 2));
