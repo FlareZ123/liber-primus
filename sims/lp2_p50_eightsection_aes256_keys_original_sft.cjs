@@ -34,7 +34,7 @@ assert.equal(pageChunks.length, 57);
 const cipherSections = pageChunks.slice(0, -2).join('%').split('$')
   .filter((part) => /[\u16a0-\u16ff]/u.test(part))
   .map((part) => {
-    const tokens = Array.from(part.matchAll(/[\u16a0-\u16ff]+/gu),
+    const tokens = Array.from(part.replace(/[%\/\r\n]/g, '').matchAll(/[\u16a0-\u16ff]+/gu),
       (match) => Array.from(match[0], (rune) => runeMap.get(rune)));
     const indices = tokens.flat();
     assert.ok(indices.every((x) => Number.isInteger(x) && x >= 0 && x < 29));
