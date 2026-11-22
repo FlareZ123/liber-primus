@@ -52,6 +52,20 @@ The literal "numbers give direction" clue could instead choose a different hidde
 | Each chapter × word length × within-word rune position | 740 | **1,729** | 13.3452% |
 | Each page × word length × within-word rune position | 3,023 | **3,893** | 30.0479% |
 
+### Source-punctuation-keyed state: a substantially different historical reset choice
+
+The original manuscript visibly delimits text by punctuation. A decoder could change its secret alphabet on encountering each original **four-dot stop or large source delimiter**, an operation more historically plausible than independently keying all 55 pages with 3,023 unrelated alphabets. Give that model more freedom than any actual known Cicada punctuation cipher: allocate **an entirely independent arbitrary GP30 substitution** to every original segment defined by the literal punctuation characters \`.\` and \`&\` in the unchanged canonical transcript. The 175 literal stops and 17 section separators produce **175 nonempty rune-bearing scopes**. Source ordinary word dashes and the 54 physical page marks remain nonconsuming.
+
+| Independently keyed output GP30 substitution state | Secret classes | Exact achievable SPACE maximum | Share |
+| --- | ---: | ---: | ---: |
+| Original-punctuation-delimited scope | **175** | **1,028** | **7.9345%** |
+| Original scope × source complete-word length | **1,055** | **2,142** | **16.5329%** |
+| Original scope × within-word rune position | **1,503** | **2,505** | **19.3347%** |
+
+The first case stays far below both genuinely native controls even with a completely arbitrary independent permutation after *every* observed punctuation scope. The second grants one distinct arbitrary GP30 alphabet for each punctuation scope and each printed complete-word length and still cannot reach p57's **16.6667%** literal SPACE fraction (it misses by 18 tokens at this source length), nor the LP1 19.2513% control. This latter negative is close to the p57 threshold and should not be overinterpreted as universal English impossibility. A separate punctuation-scope × within-word-position alphabet can reach both native benchmark densities (19.3347% ceiling), so this extended class is **not excluded**. Such a decoder would still need independently sourced full key state and must actually produce sustained original plaintext rather than merely attain a space count.
+
+The enumeration includes a constructive per-state secret permutation witnessing the maximum for *every* displayed class. It is an exact key-independent capacity calculation conditioned on this particular full-width BASE29→30 transducer, not an authenticated puzzle cipher or an independent proof of what plain LP2's unknown words must look like.
+
 For every class, the SFT **constructs** one concrete classwise bijection sending each group's most frequent source symbol to SPACE, asserting the observed output equals the bound. Therefore the maxima are tight rather than loose analytical estimates. Original cross-page words keep their correct *complete word length* while the page-valued secret key changes at the genuine physical page turn.
 
 Even 529 independent page×length alphabets and 740 independent chapter×length×position alphabets cannot reach the **16.6667%** SPACE rate of genuine p57 or the **19.2513%** rate of the original LP1 native register. The more permissive 3,023 independently keyed page×length×position cells, however, *can* reach native SPACE densities. That open branch would require an actual first-party key giving a distinct 30-symbol permutation for thousands of separately visible classes, or a simple executable rule deriving them from original clues, before the possibility could be called a credible human solve path. More keys without an authenticated derivation cannot count as a manuscript decryption.
