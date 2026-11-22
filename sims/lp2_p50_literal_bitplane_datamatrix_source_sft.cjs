@@ -5,6 +5,9 @@
  * ECC 200 bitmap with a *standard* L finder, not a cryptographic key sweep.
  *
  * Source: ISO/IEC 16022:2006 §4.3.1, GS1 DataMatrix technical overview.
+ * Original rectangular base60 byte-bitplane family was already bounded in
+ * sims/lp2_grid_8x32_datamatrix_finder_sft.cjs; the present incremental
+ * value is a base59-without-f reading and three natural 16x16 folds.
  * ECC200 border has solid dark left+bottom edges, alternating top+right.
  * 32x8 itself rotates to the valid 8x32 ECC200 rectangle. 256 cells can
  * also fold into a valid 16x16 ECC200 square in only three natural ways.
@@ -56,20 +59,40 @@ function rotate(m) {
 function mirror(m) { return m.map(r=>r.slice().reverse()); }
 
 /**
- * Exact ECC200 perimeter, corners counted once.
+ * Standard ECC200 finder cells, including the repeated vertical boundary of
+ * two 8x16 regions in the 8x32 rectangle; null is unconstrained payload.
+ * @param {number} y @param {number} x
+ * @param {number} h @param {number} w
+ * @returns {number|null}
+ */
+function finderCell(y,x,h,w) {
+  assert.ok((h===8&&w===32)||(h===16&&w===16));
+  const col = w===32 ? x%16 : x;
+  const regionWidth = w===32 ? 16 : w;
+  if(y===0) return 1-(col&1);
+  if(y===h-1) return 1;
+  if(col===0) return 1;
+  if(col===regionWidth-1) return y&1;
+  return null;
+}
+
+/**
  * @param {number[][]} m
  * @returns {{hits:number,required:number}}
  */
 function finder(m) {
-  const h=m.length,w=m[0].length;
-  let hits=0, required=0;
-  for(let y=0;y<h;y++)for(let x=0;x<w;x++){
-    if(x!==0 && x!==w-1 && y!==0 && y!==h-1)continue;
-    const ideal=x===0||y===h-1?1:y===0?(1-(x&1)):(y&1);
+  // The physical matrix is 32x8; its ordinary quarter turns also represent
+  // 8x32 canonical ECC200 orientation after one additional rigid rotation.
+  const a = m.length===32 ? rotate(m) : m;
+  const h=a.length,w=a[0].length;
+  let hits=0,required=0;
+  for(let y=0;y<h;y++) for(let x=0;x<w;x++) {
+    const wanted=finderCell(y,x,h,w);
+    if(wanted===null) continue;
     required++;
-    if(m[y][x]===ideal)hits++;
+    if(a[y][x]===wanted) hits++;
   }
-  assert.equal(required, 2*h+2*w-4);
+  assert.equal(required,h===8?88:60);
   return {hits,required};
 }
 
@@ -126,8 +149,8 @@ function plant(original,kind) {
   }
   const h=ideal.length,w=ideal[0].length;
   for(let y=0;y<h;y++)for(let x=0;x<w;x++){
-    if(x===0||x===w-1||y===0||y===h-1)
-      ideal[y][x]=x===0||y===h-1?1:y===0?(1-(x&1)):(y&1);
+    const wanted=finderCell(y,x,h,w);
+    if(wanted!==null)ideal[y][x]=wanted;
   }
   let result;
   if(kind==='rectangle'){
@@ -165,13 +188,13 @@ for(const [reading,alphabet] of Object.entries(readingAlphabets)){
 const original=readBytes(fullAlphabet);
 const plantedRect=test(plant(original,'rectangle')).filter(c=>c.form==='rectangle');
 const plantedSquare=test(plant(original,'square')).filter(c=>c.form==='pairRows');
-assert.ok(plantedRect.some(c=>c.hits===76 && c.required===76));
+assert.ok(plantedRect.some(c=>c.hits===88 && c.required===88));
 assert.ok(plantedSquare.some(c=>c.hits===60 && c.required===60));
 
 console.log(JSON.stringify({
  source:'original LP2 physical p49–51 32 x 8 base60 written cells',
  barcode:'Data Matrix ECC200 8x32 rectangular or 16x16 square',
- validation:'official fixed L/alternating-edge finder, exact perimeter',
+ validation:'full ECC200 8x32 two-data-region 88-cell or 16x16 60-cell finder',
  sourceReadingVariants:Object.keys(readingAlphabets),
  familywiseCandidateCount:1024,
  independentSyntheticPlants:{originalSize:256,rectangularFinderRecovered:true,
