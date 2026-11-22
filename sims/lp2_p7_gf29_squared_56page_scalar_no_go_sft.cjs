@@ -63,6 +63,51 @@ for(const B of bases){
   for(let j=0;j<56;j+=2)
     assert.deepEqual(power(changed,j),[pow29(8,j/2),0,0,pow29(8,j/2)]);
 }
+// Stronger theorem: ANY exact-order-56 field multiplier is pure alpha.
+// A field element beta=(a,b) of order56 has beta^28=-1, so beta^29=-beta.
+// Frobenius in GF29[alpha]/(alpha^2-8) maps a+b*alpha -> a-b*alpha.
+// Comparing forces a=0, independent of which element was selected.
+const fieldMul=(a,b)=>[mod(a[0]*b[0]+8*a[1]*b[1]),
+  mod(a[0]*b[1]+a[1]*b[0])];
+/** @param {number[]} base @param {number} exponent @returns {number[]} */
+function fieldPow(base, exponent){
+  let z=[1,0],b=base,k=exponent;
+  while(k){if(k%2)z=fieldMul(z,b);b=fieldMul(b,b);k=Math.floor(k/2);}
+  return z;
+}
+let exactOrder56=[];
+for(let a=0;a<29;a++)for(let b=0;b<29;b++){
+  if(a===0 && b===0)continue;
+  const beta=[a,b];
+  if(fieldPow(beta,56).join(',')!=='1,0')continue;
+  if(fieldPow(beta,28).join(',')==='1,0'
+    ||fieldPow(beta,8).join(',')==='1,0')continue;
+  // For divisors 56/2=28 and 56/7=8, these two checks
+  // exactly certify order56, because 56=2^3*7.
+  assert.equal(a,0, 'No order56 field element has nonzero scalar coefficient');
+  assert.deepEqual(fieldPow(beta,28),[28,0]);
+  assert.deepEqual(fieldPow(beta,29),[0,mod(-b)]);
+  assert.equal(fieldPow(beta,2)[1],0);
+  exactOrder56.push(beta);
+}
+assert.equal(exactOrder56.length,24);
+assert.deepEqual(exactOrder56.map(v=>v[1]),[1,2,3,5,6,7,8,9,11,12,13,14,15,16,17,18,20,21,22,23,24,26,27,28]);
+assert.deepEqual(fieldPow([4,3],3),[0,12]);
+assert.deepEqual(fieldPow([3,4],15),[0,24]);
+assert(exactOrder56.some(v=>v[1]===12));
+assert(exactOrder56.some(v=>v[1]===24));
+for(const beta of exactOrder56){
+  for(const B of bases){
+    const Binv=inverse(B);
+    const betaM=[beta[0],mod(8*beta[1]),beta[1],beta[0]];
+    const conjugate=mul(mul(B,betaM),Binv);
+    const sq=mod(8*beta[1]*beta[1]);
+    assert.deepEqual(power(conjugate,2),[sq,0,0,sq]);
+    for(let e=0;e<56;e+=2)
+      assert.deepEqual(power(conjugate,e),[pow29(sq,e/2),0,0,pow29(sq,e/2)]);
+  }
+}
+
 const lengths=source.pages.slice(0,56).map(x=>x.indices.length);
 assert.equal(lengths.length,56);
 assert.equal(lengths.reduce((a,b)=>a+b,0),12956);
@@ -121,6 +166,10 @@ console.log(JSON.stringify({
   pageCrossingExamples:seams.slice(0,8),
   solvedP57CleartextControlIoC:ioc(solved),
   solvedP57ScalarEncryptedInverse:'PASS',
-  all56PhaseChecks:phaseProof.length
+  all56PhaseChecks:phaseProof.length,
+  allExactOrder56FieldMultipliers:exactOrder56.length,
+  fieldOrder56AllPureAlpha:true,
+  sourceTitleCubeOrder56:fieldPow([4,3],3),
+  sourceReverseTitle15Order56:fieldPow([3,4],15)
 },null,2));
 console.log('PASS: source-root 56-state bare field multiplier cannot recover manuscript-wide GP plaintext');
