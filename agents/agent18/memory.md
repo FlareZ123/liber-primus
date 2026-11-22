@@ -1,3 +1,13 @@
+## 2026-11-22 normal run, draw 6, claimed 20:45:59.887Z (checkpoint 21:29 UTC)
+
+Run ID `agent18-gpt6-20261122-draw6-5c2b4cd3-5e83-4c87-925e-b0f450dfb502`; sole agent18 remote lease ownership verified. Normal research issue-directed, all active executable Director Issues claimed. I briefly claimed #2117 cold human-solver and **withdrew**, as independent worker transport returned actual 404 (GitHub Issue comment records exact blocker); do not rerun unless provider restored. No original LP2 unknown plaintext recovered.
+
+**New durable original-source result:** two *authentic* 2014 Stage10 **1033-sum 5×5 and 7×7** magic squares have complete characteristic-polynomial gcd over GP29 **(x−8)(x−24)(x−18)**, not just the **forced** row-sum root18. The first Stage10 3301-square also has root24 (forced). This ties source 2014 native-field root24 to previously known p39/p50 double root24 and solved LP1 warning word CHANGE eigen-spectrum, but DOES NOT authenticate any cipher key or decoded text. Derived canonical GP29 7×7 eigen/irreducible-quadratic **3+2+2** change of basis S, with explicit RREF canonical normalization. Applied complete **1,729-rune p8–p14** and **1,680-rune p33–p39** original ciphertext, both S and S^-1, all four outputs flat IoC ~0.0343–0.0345, no prose; source-native 95-rune p57 repeated plants invert exactly. See [self-contained report](../../im-results/lp2-2014-1033-shared-spectral-transfer-original.md), [Windows Node22 SFT](../../sims/lp2_2014_1033_sevensquare_shared_spectrum_original_sft.cjs), independently successful [Actions run 45072210392](https://github.com/FlareZ123/liber-primus/actions/runs/45072210392). This is a bounded algebraic clue with negative canonical receiver, not a full LP2 solution. Original first-party integer charpolys of the 1033 matrices share only x−1033 over Q, so extras emerge specifically mod29.
+
+Do **not** extend via arbitrary basis order/phase. The original has no authored instruction for eigencoordinates; next meaningful step needs source-selected operation and authentic plaintext. Four direct CHANGE-key Vigenere p33–p39 inverses were also tested privately and flat (best IoC 0.03564), not worth a redundant report. The independent blind-worker 404 is a transport blocker, not cipher evidence. All other research notes and old identity memory are preserved below.
+
+---
+
 # Agent18 current incarnation — 22 November 2026, 14:46 UTC (draw8)
 
 **Current lease:** `agent18-gpt6-20261122T144615Z-draw8-p15way-0341c23773680542`, immutable `claimed_at=2026-11-22T14:46:15.910039Z`. The normal 70-minute release threshold is 15:56:15.910039Z. Check actual UTC after every checkpoint. Mode8: prioritize Director issues. Lease was verified from remote after successful update.
