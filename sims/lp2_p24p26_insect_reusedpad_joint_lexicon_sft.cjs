@@ -78,6 +78,8 @@ function track(source, offset) {
 }
 const targets = Object.fromEntries([24,25,26].map(n =>
   [n, track(byPage[n], starts[n])]));
+const pageTop = Object.fromEntries([24,25,26].map(n =>
+  [n, track(byPage[n], 0)]));
 // Native English training words and weights are source-independent of
 // any unknown LP2 plaintext. The solved LP1 runes are authentic controls.
 const lex = new Map();
@@ -143,21 +145,23 @@ const show = (encoded, ends) => {
  * @param {Uint8Array} endsA
  * @param {Uint8Array} endsB
  */
-function joint(difference,endsA,endsB) {
+function joint(difference,endsA,endsB,freeA=0,freeB=0) {
   let beam = [{a:0,b:0,score:0,letters:""}];
   const trace = []; let clipped = 0;
   let first={alive:false,score:null,candidate:null};
   for (let t=0; t<difference.length;t++) {
     const choice = new Map();
     for (const s of beam) {
-      for (const x of nodes[s.a].edges) {
+      const allowed=t<freeA ? Array.from({length:MOD},(_,j)=>j) : nodes[s.a].edges;
+      for (const x of allowed) {
         const y=reduce(x-difference[t]);
-        let a=nodes[s.a].next[x], b=nodes[s.b].next[y];
+        let a=t<freeA ? 0 : nodes[s.a].next[x];
+        let b=t<freeB ? 0 : nodes[s.b].next[y];
         if (b<0)continue;
         let score=s.score;
-        if(endsA[t]){if(!Number.isFinite(nodes[a].score))continue;
+        if(t>=freeA&&endsA[t]){if(!Number.isFinite(nodes[a].score))continue;
           score+=nodes[a].score;a=0;}
-        if(endsB[t]){if(!Number.isFinite(nodes[b].score))continue;
+        if(t>=freeB&&endsB[t]){if(!Number.isFinite(nodes[b].score))continue;
           score+=nodes[b].score;b=0;}
         const id=a*nodes.length+b;
         const previous=choice.get(id);
@@ -193,8 +197,8 @@ const results=[];
 /** @param {string} name @param {{values:number[],ends:Uint8Array}} a
  * @param {{values:number[],ends:Uint8Array}} b
  * @param {boolean} known */
-function evaluate(name,a,b,known=false){
-  const d=minus(a.values,b.values),answer=joint(d,a.ends,b.ends);
+function evaluate(name,a,b,truthA=null,truthB=null,freeA=0,freeB=0){
+  const d=minus(a.values,b.values),answer=joint(d,a.ends,b.ends,freeA,freeB);
   const r={name,alive:answer.alive,deadAt:answer.deadAt,
     first150:answer.first,states:answer.states,clipped:answer.clipped,
     trace:answer.trace};
@@ -203,11 +207,11 @@ function evaluate(name,a,b,known=false){
     r.plainA=show(answer.candidate,a.ends);
     const other=code(Array.from(d,(v,i)=>reduce(answer.candidate.charCodeAt(i)-65-v)));
     r.plainB=show(other,b.ends);
-    if(known){
+    if(truthA&&truthB){
       let matchA=0,matchB=0;
       for(let i=0;i<WIDTH;i++){
-        matchA+=Number(answer.candidate.charCodeAt(i)-65===a.values[i]);
-        matchB+=Number(other.charCodeAt(i)-65===b.values[i]);
+        matchA+=Number(answer.candidate.charCodeAt(i)-65===truthA.values[i]);
+        matchB+=Number(other.charCodeAt(i)-65===truthB.values[i]);
       }
       r.correct=[matchA,matchB];
     }
@@ -232,10 +236,11 @@ console.log("setup",JSON.stringify({pages:[24,25,26].map(n=>({page:n,
   runes:byPage[n].values.length,start:starts[n],wordEnds:targets[n].ends.reduce((s,v)=>s+v,0)})),
   width:WIDTH,calibration:CAL,beam:BEAM,lexicon:lex.size,trieNodes:nodes.length,
   nativeControl:[ca.values.length,cb.values.length]}));
-evaluate("planted-shared-pad",sharedA,sharedB,true);
+evaluate("planted-shared-pad",sharedA,sharedB,ca,cb);
 evaluate("planted-independent-pads",sharedA,independentB,false);
-evaluate("original-p24-p26",targets[24],targets[26],false);
-evaluate("near-art-negative-p24-p25",targets[24],targets[25],false);
-evaluate("near-art-negative-p25-p26",targets[25],targets[26],false);
+evaluate("original-p24-p26",targets[24],targets[26]);
+evaluate("original-p24-p26-page-start",pageTop[24],pageTop[26],null,null,3,1);
+evaluate("near-art-negative-p24-p25",targets[24],targets[25]);
+evaluate("near-art-negative-p25-p26",targets[25],targets[26]);
 console.log("summary",JSON.stringify(results.map(({name,alive,deadAt,score,states,clipped,correct})=>
   ({name,alive,deadAt,score,states,clipped,correct}))));
