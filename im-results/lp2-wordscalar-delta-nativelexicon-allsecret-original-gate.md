@@ -54,7 +54,7 @@ The same exact, fully secret-key invariant was also applied against the independ
 | t=4 | **0/109** length≥10, 472/1,132 length≥5 | **0/109** length≥10, 454/1,132 length≥5 |
 | t=5 | **0/109** length≥10, 702/1,132 length≥5 | **0/109** length≥10, 682/1,132 length≥5 |
 
-This specifically precludes the tempting explanation that the native-English negative was caused solely by **Latin plaintext**. The test remains conditional on Latin words represented by this pinned Vulgate vocabulary, intact printed word boundaries and these exact period1..5 word-local multiplier laws. It does not exclude other Latin writing, resegmented/compressed content or different cryptographic mechanisms. The updated CJS contains both dictionaries and validates these exact entire-source counts; Windows Node22 rerun [45052716571](https://github.com/FlareZ123/liber-primus/actions/runs/45052716571).
+This specifically precludes the tempting explanation that the native-English negative was caused solely by **Latin plaintext**. The test remains conditional on Latin words represented by this pinned Vulgate vocabulary, intact printed word boundaries and these exact period1..5 word-local multiplier laws. It does not exclude other Latin writing, resegmented/compressed content or different cryptographic mechanisms. The updated CJS contains both dictionaries and validates these exact entire-source counts; **Windows-latest Node22 rerun SUCCESS, all assertions passed**, completed 22 November 2026 18:02:14 UTC: [run45052716571](https://github.com/FlareZ123/liber-primus/actions/runs/45052716571).
 
 ## Next cryptanalytic decision
 
