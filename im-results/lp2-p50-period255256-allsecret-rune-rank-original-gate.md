@@ -36,8 +36,8 @@ The default same-alphabet-per-phase condition may be overly restrictive if one o
 
 | Period | All assignments | Maximum top-five capacity | Upper-bound fraction | Best mask (first chapter bank A; bit per later chapter) |
 | --- | ---: | ---: | ---: | ---: |
-| 255 | 256 | **6,084 / 12,956** | **46.9574%** | 60 |
-| 256 | 256 | **6,114 / 12,956** | **47.1911%** | 185 |
+| 255 | 256 | **6,084 / 12,956** | **46.9589%** | 60 |
+| 256 | 256 | **6,114 / 12,956** | **47.1905%** | 185 |
 
 Even the most favorable **two-bank** source-chapter assignment cannot reproduce solved p57's **48.4211%** five-rune concentration if p57 were representative of the unknown full-text plaintext. This is a conditional *language-profile* obstruction, rather than a mathematical impossibility of meaningful atypical text. It is stronger than the one-bank theorem and rules out a large class of arbitrary chapter-to-chapter key changes without specifying any secret table values. The same exact source reader and all 256 bank partitions were executed with all numeric assertions passing in [Windows Node22 run 45048674108](https://github.com/FlareZ123/liber-primus/actions/runs/45048674108).
 
