@@ -121,6 +121,72 @@ function affineEnvelope(key, cipher) {
   return { topK, stateRows };
 }
 
+
+/**
+ * More permissive next-degree triangle: every independent p50 state may
+ * use ANY hidden quadratic GF29 shift of the source rune K:
+ *    P=b*C+u*K*K+v*K+d, b!=0.
+ * Normalizing by b leaves 29^2 possible (u,v) first outputs; scaling
+ * and d again only permute output classes. A first output independent
+ * of C must be an injective quadratic in K for invertible pair mixing.
+ * In odd-characteristic GF29, a nonconstant quadratic is not injective,
+ * so the only legal missing direction is vertical K.
+ *
+ * @param {number[]} key
+ * @param {number[]} cipher
+ */
+function quadraticTopOneEnvelope(key,cipher){
+  const slots=Array.from({length:10},()=>[]);
+  for(let i=0;i<cipher.length;i++)slots[state[i]].push(i);
+  let upper=0;
+  const rows=[];
+  for(let st=0;st<10;st++){
+    let best=0;
+    const args=[];
+    for(let u=0;u<29;u++)for(let v=0;v<29;v++){
+      const f=new Uint16Array(29);
+      for(const i of slots[st]){
+        const k=key[i];
+        f[(cipher[i]+u*k*k+v*k)%29]++;
+      }
+      const top=Math.max(...f);
+      if(top>best){best=top;args.length=0;args.push([u,v]);}
+      else if(top===best)args.push([u,v]);
+    }
+    const vertical=new Uint16Array(29);
+    for(const i of slots[st])vertical[key[i]]++;
+    const verticalTop=Math.max(...vertical);
+    const cap=Math.max(best,verticalTop);
+    rows.push({state:st,n:slots[st].length,cap,
+      quadraticBest:best,verticalTop,optimalPairs:args.length});
+    upper+=cap;
+  }
+  return {topOne:upper,rows};
+}
+
+/**
+ * Boundary control: ANY independently secret GP29 permutation of C
+ * at every (p50 state,K) pair. A 29-way bijection has exactly one
+ * selected C index producing any designated output symbol. Each
+ * row contributes at most its most frequent C. More generally,
+ * the sum of top-k row counts bounds any k output symbols.
+ * This class is *strictly more permissive* than polynomial shifts.
+ * @param {number[]} key
+ * @param {number[]} cipher
+ */
+function arbitrarySourceKeySubstitutionEnvelope(key,cipher){
+  const rows=Array.from({length:10*29},()=>Array(29).fill(0));
+  for(let i=0;i<cipher.length;i++)
+    rows[29*state[i]+key[i]][cipher[i]]++;
+  const cap=Array(29).fill(0);
+  for(const row of rows){
+    row.sort((a,b)=>b-a);
+    let acc=0;
+    for(let k=0;k<29;k++){acc+=row[k];cap[k]+=acc;}
+  }
+  return cap;
+}
+
 /** @param {number[]} source @returns {number[]} */
 function topHistogram(source) {
   const counts = Array(29).fill(0);
@@ -154,6 +220,24 @@ for (const [name, key] of Object.entries(K)) {
   assert.equal(original.topK[0], name === "field" ? 375 : 381);
   assert.equal(original.topK[4], name === "field" ? 1571 : 1565);
   assert.equal(original.topK[9], name === "field" ? 2838 : 2850);
+
+  const quadratic=quadraticTopOneEnvelope(key,C);
+  assert.equal(quadratic.topOne,name==="field"?418:426);
+  const arbitrarySourceKey=arbitrarySourceKeySubstitutionEnvelope(key,C);
+  assert.equal(arbitrarySourceKey[0],name==="field"?828:853);
+  assert.equal(arbitrarySourceKey[4],name==="field"?3084:3082);
+  assert.equal(arbitrarySourceKey[9],name==="field"?4767:4758);
+
+  // Planted source-keyed quadratic, fully invertible in the cipher operand.
+  const quadraticPlant=nativeFirst.map((plain,i)=>{
+    const st=state[i],k=key[i];
+    return mod(plain-(st+3)*k*k-(2*st+5)*k-(3*st+7));
+  });
+  assert.deepEqual(quadraticPlant.map((ci,i)=>{
+    const st=state[i],k=key[i];
+    return mod(ci+(st+3)*k*k+(2*st+5)*k+(3*st+7));
+  }),nativeFirst);
+  assert.ok(quadraticTopOneEnvelope(key,quadraticPlant).topOne>=755);
 
   // Complete native-GP positive plant under a different source-derived,
   // state-specific invertible affine first-output for each of ten states.
@@ -192,6 +276,12 @@ for (const [name, key] of Object.entries(K)) {
     };
   }
   findings[name] = {
+    independentQuadraticTopOneMaximum: quadratic.topOne,
+    independentQuadraticStateBounds: quadratic.rows,
+    arbitraryStateKeySubstitutionTopOneMaximum: arbitrarySourceKey[0],
+    arbitraryStateKeySubstitutionTopFiveMaximum: arbitrarySourceKey[4],
+    arbitraryStateKeySubstitutionTopTenMaximum: arbitrarySourceKey[9],
+    plantedQuadraticFullyRecoveredRunes: quadraticPlant.length,
     originalTopOneMaximum: original.topK[0],
     originalTopFiveMaximum: original.topK[4],
     originalTopTenMaximum: original.topK[9],
@@ -211,5 +301,5 @@ console.log(JSON.stringify({
   source: "Original GP29 81x81/80x80 bookend; p50 global predecessor-byte ten-state first-digit x parity",
   theorem: "For every state-specific invertible GF29 affine 841-pair mixer (any secret a,b,d with (a,b)!=0 and any hidden second output), the exact upper bound on any k plaintext label counts is the sum of the maximal top-k counts over 30 projective output directions in each original p50 state.",
   result: findings,
-  conclusion: "All ten-state affine pair-mixer first-output maps are excluded for the pinned GP29-native English donor frequencies on this original source. The much larger arbitrary nonlinear 841! S-box family remains unexcluded, and no unknown plaintext or key was recovered."
+  conclusion: "All ten-state GF29 affine and source-keyed quadratic shifts are excluded for pinned native-GP English donor frequencies on this original source. Arbitrary source-key-indexed GP29 substitution survives this necessary bound, and the larger nonlinear 841! S-box family remains unexcluded. No unknown plaintext or key recovered."
 }, null, 2));
