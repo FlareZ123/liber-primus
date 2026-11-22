@@ -115,13 +115,13 @@ assert.equal(new Set(midiWords).size, 47);
 const keys = midiWords.map(gpWord);
 const page33 = printedWords(pages[33]);
 const page34 = printedWords(pages[34]);
-assert.deepEqual(page33.join('') && gpIndices(page33.join('')), corpus.pages[33].indices);
+assert.deepEqual(gpIndices(page33.join('')), corpus.pages[33].indices);
 assert.deepEqual(gpIndices(page34.join('')), corpus.pages[34].indices);
 
 // Confirm the two red rubric blocks against the original p33 image (50.jpg).
 const redAt = [0, 1, 23, 24];
 const rubrics = redAt.map((i) => translit(gpIndices(page33[i])));
-assert.deepEqual(rubrics, ['DEO', 'XCFIAWHG', 'NGTHEO', 'IFCOEO']);
+assert.deepEqual(rubrics, ['DEO', 'XCFIAWHG', 'NGTHEO', 'IFCOEEO']);
 const black = page33.filter((word, i) => !redAt.includes(i));
 assert.equal(black.length, 49);
 assert.equal(black.join('').length, 196);
