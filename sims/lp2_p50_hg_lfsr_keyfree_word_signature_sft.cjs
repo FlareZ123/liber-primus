@@ -373,8 +373,14 @@ function transparentLongMatches(filter) {
 /** Complete authentic GP-native plaintext-F-bypass source positives. */
 function plantTransparent(filter) {
   let glyphCount = 0, longCount = 0, bypassCount = 0;
+  let encryptedFCount = 0;
   for (const word of originalWords) {
-    const p = byLen.get(word.runes.length);
+    const p = word.runes.length === 14
+      ? encodeSourceNativeGP("circumferences")
+      : word.runes.length === 8
+        ? encodeSourceNativeGP("afferent")
+        : byLen.get(word.runes.length);
+    assert.equal(p.length, word.runes.length);
     const seeds = Array.from({length:4}, () => random() % 29);
     const stream = keyFromSeed(filter, seeds, p.filter(x => x !== 0).length);
     let used = 0;
@@ -383,7 +389,9 @@ function plantTransparent(filter) {
         bypassCount++;
         return 0;
       }
-      return MOD(x + stream[used++]);
+      const emitted = MOD(x + stream[used++]);
+      if (emitted === 0) encryptedFCount++;
+      return emitted;
     });
     assert.equal(used, stream.length);
     assert(transparentCompatible(c, p, filter));
@@ -391,8 +399,11 @@ function plantTransparent(filter) {
     if (p.length >= 8) longCount++;
   }
   assert.deepEqual([glyphCount,longCount], [12956,343]);
+  assert(bypassCount > 0);
+  assert(encryptedFCount > 0);
   return {cipherRuneCount:glyphCount, longWordCount:longCount,
-    literalFBypasses:bypassCount, fullInverseValid:true};
+    literalFBypasses:bypassCount, encryptedNonFToF:encryptedFCount,
+    fullInverseValid:true};
 }
 
 const authenticatedSkip = [];
