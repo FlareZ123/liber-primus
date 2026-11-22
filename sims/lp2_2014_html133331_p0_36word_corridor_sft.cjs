@@ -179,6 +179,46 @@ assert.equal(reversalControls.bothP0WordStarts, 77);
 assert.equal(reversalControls.eightWordsApart, 2);
 assert.equal(reversalControls.span36Runes, 1);
 assert.deepEqual(reversalControls.eightWordsAnd36Runes, [[133, 331]]);
+// Unmodified source target-page control. The historical HTML selects offsets
+// and a physical first page is natural but unexplicit; test all rune pages.
+const originalPageSections = transcript.split('%');
+const runePages = corpus.pages.filter((page) => page.runic_count > 0);
+assert.equal(originalPageSections.length, runePages.length);
+const allPageWordStartHits = [];
+for (let pageIndex = 0; pageIndex < runePages.length; pageIndex++) {
+  const source = originalPageSections[pageIndex];
+  let runePosition = 0;
+  let currentLength = 0;
+  const starts = [];
+  const endWord = () => {
+    if (!currentLength) return;
+    starts.push(runePosition - currentLength);
+    currentLength = 0;
+  };
+  for (const glyph of Array.from(source)) {
+    if (glyphIndex.has(glyph)) {
+      currentLength++;
+      runePosition++;
+    } else if ('-., '.includes(glyph)) endWord();
+  }
+  endWord();
+  assert.equal(runePosition, runePages[pageIndex].runic_count);
+  const startW = starts.indexOf(start);
+  const endW = starts.indexOf(end);
+  if (startW >= 0 && endW >= 0) {
+    allPageWordStartHits.push({
+      page: runePages[pageIndex].page,
+      startWord: startW,
+      endWord: endW,
+      eight: endW - startW === 8,
+    });
+  }
+}
+assert.deepEqual(allPageWordStartHits, [
+  { page: 0, startWord: 32, endWord: 40, eight: true },
+  { page: 47, startWord: 30, endWord: 39, eight: false },
+  { page: 53, startWord: 31, endWord: 39, eight: true },
+]);
 assert.deepEqual([...exactPairs].sort(), [
   '13,49', '141,177', '192,228', '20,56', '201,237',
 ].sort());
@@ -338,6 +378,7 @@ console.log('Both word starts:', eligiblePairs);
 console.log('Eight-word separations:', eightWordPairs);
 console.log('Eight-word and 36-rune separations:', exactCorridorPairs);
 console.log('Complete three-digit reversal controls:', reversalControls);
+console.log('All 57 rune-page original receiver hits:', allPageWordStartHits);
 console.log('Direct literal byte-minus-GP29 readout:', renderWords(candidate));
 console.log('Known GP positive and original inverse round trip: PASS');
 console.log('Status: candidate navigation, no readable original plaintext');
