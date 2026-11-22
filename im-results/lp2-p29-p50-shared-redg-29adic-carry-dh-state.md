@@ -106,6 +106,12 @@ The full output remains nonlinguistic; its first source-native GP runes read `MT
 
 **Decision:** retire this *one exact source-ordered H/G-carry Hill2 reading of the source-aligned p50 quotient*. This is a motivated two-row key and complete reversible inverse, while the original 2013 protocol never authorizes treating the carry pair as a Hill matrix; matrix inversions on other source spans would require a fresh selector. [Read-only SFT](../sims/lp2_p50_factorcarry_hill2_direct_original_sft.cjs).
 
+## Period60 matrix clock from the two independent H/G carries
+
+The **two genuinely independent** table factor carries H=[8,5] and G=[15,2] form a conventional invertible Hill2 matrix `M=[[8,5],[15,2]]` with determinant −1. Unexpectedly, `M^15=12I`, `M^30=−I`, and **exact order60**, matching the printed base60 table alphabet and the conditional DH relation `b=15, K·a=12`. This is an exact, retrospectively noticed numeric link, not an authenticated creator key clock.
+
+A **complete 12,956-rune source-keyed rotating-Hill2 original inverse** was frozen before reading output: consecutive global GP29 pairs receive `M^(−i)` with zero-based pair index `i`. The entire output remains uniform-like (native source-GP trigram −3.41644 vs solved p57 −2.46814; IoC 0.03446465 vs 0.06270997), despite 12,956/12,956 exact forward replay and a complete source-native plaintext plant. Retire this specific dynamic clock. [Detailed original-input report](lp2-p50-carry-order60-rotating-hill2-original-gate.md) · [reproducer](../sims/lp2_p50_carry_order60_rotating_hill2_wholebook_sft.cjs).
+
 ## Causal plaintext decision
 
 The new carries are **exact, key-like short numeric packets** aligned with the p39 G factor and the distinct p23 *integer representative* of signed H linking p29, p50 and p28, but it does not identify a complete key stream, reversible original-rune transform, clock/reset, or plaintext receiver. The p29 quotient itself has near-ciphertext GP29 IoC **0.03405441**. Any single fixed GP29 permutation applied uniformly to this quotient preserves that IoC, so the revealed `e=3` GP29 cube operation alone cannot turn the full quotient into native-GP English prose. The separately frozen full 275-rune quotient→outer-H shell inverse and the above p50 factor-carry Hill2 inverse both failed native-GP language [under its exact source rule](lp2-p28-p29-gquotient-outerh-prospective-inverse-decision.md).
