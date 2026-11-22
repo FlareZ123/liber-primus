@@ -3,8 +3,9 @@
 /**
  * The 2014 stage11 trailing-space sequence skips prime 19, which is W
  * in Gematria Primus (GP zero-index 7). A plaintext-transparent W
- * requires W locations at the starts and ends of printed words to
- * survive ANY reversible non-W substitution, independent of the key.
+ * requires EVERY plaintext W at a printed word position to remain W
+ * in the ciphertext, even if some other plaintext glyphs can ALSO
+ * produce W. This lower-bound survives arbitrary unknown key/state.
  *
  * Compare original 55 unknown runic pages to all 9 genuine solved-GP
  * text controls and historical themed prose. This is a conditional
@@ -38,7 +39,8 @@ assert.ok(!markedPrimes.includes(19));
  * Original transcriptions use '-' for a printed word-dot, '.' for a
  * printed full-stop/section mark, '/' for a visual line break, '%' for
  * a page division, and '&' for non-rune page art boundaries.
- * Preserve words across visual line breaks.
+ * Preserve words across visual line breaks AND physical page divisions,
+ * which carry exactly 32 complete words in the unknown original book.
  *
  * @param {string[]} sections
  * @returns {string[][]}
@@ -142,22 +144,81 @@ const plant=native.map(w=>w.map(ch=>shiftWithTransparentW(ch,13)));
 assert.deepEqual(positions(plant),positions(native));
 assert.deepEqual(plant.map(w=>w.map(ch=>shiftWithTransparentW(ch,-13))),native);
 assert.notDeepEqual(plant,native);
+
+// Non-exclusive plaintext W bypass: non-W symbols can ALSO become cipher W.
+// This is the source-solved p56 transparent-F pattern transposed to W.
+// The proper key-independent invariant is P(W positions) subset C(W positions),
+// not strict equality. A candidate with 82/2896 C-W-first cannot encode
+// plaintext having more than 82/2896 W-first under unchanged word boundaries.
+/** @param {number} n @returns {number[]} */
+function firstPrimes(n){
+ const o=[];
+ for(let i=2;o.length<n;i++){
+  let ok=true;
+  for(let d=2;d*d<=i;d++)if(i%d===0){ok=false;break;}
+  if(ok)o.push(i);
+ }
+ return o;
+}
+const phiPrimes=firstPrimes(b.runes),nonexclusive=[];
+let primeClock=0;
+for(const w of native){
+ const out=[];
+ for(const ch of w){
+  if(ch===W){out.push(W);continue;}
+  const source=GP.runes.indexOf(ch);
+  out.push(GP.runes[(source+phiPrimes[primeClock++]-1)%29]);
+ }
+ nonexclusive.push(out);
+}
+const nonexclusiveCounts=positions(nonexclusive);
+assert.deepEqual(nonexclusiveCounts,
+ {words:740,runes:2979,Wstart:99,Wend:32,Wall:189});
+assert.equal(primeClock,b.runes-b.Wall);
+assert.ok(nonexclusiveCounts.Wall>b.Wall);
+for(let i=0;i<native.length;i++)for(let j=0;j<native[i].length;j++){
+ if(native[i][j]===W)assert.equal(nonexclusive[i][j],W);
+}
+// The counts in this positive plant satisfy the inclusion lower bound,
+// even though the ciphertext can contain many extra W symbols.
+assert.ok(nonexclusiveCounts.Wstart>=b.Wstart);
+assert.ok(nonexclusiveCounts.Wend>=b.Wend);
+assert.ok(nonexclusiveCounts.Wall>=b.Wall);
+assert.ok(a.Wstart/a.words<b.Wstart/b.words);
+
 // Contrast with independent larger English sources, using literal W,
 // which has the same plain-letter meaning as the GP W rune.
 /** @param {string} p */
 function latinPositions(p){
  const words=read(p).toUpperCase().match(/[A-Z]+/g)||[];
+ const Wstart=words.map(w=>Number(w.startsWith("W")));
+ const width=a.words;
+ let count=Wstart.slice(0,width).reduce((s,x)=>s+x,0);
+ let smallest=count,largest=count,countAtMostCipher=Number(count<=a.Wstart);
+ for(let start=1;start+width<=words.length;start++){
+  count+=Wstart[start+width-1]-Wstart[start-1];
+  smallest=Math.min(smallest,count);
+  largest=Math.max(largest,count);
+  if(count<=a.Wstart)countAtMostCipher++;
+ }
  return {source:p,words:words.length,
-  Wstart:words.filter(s=>s[0]==="W").length,
-  Wend:words.filter(s=>s.endsWith("W")).length};
+  Wstart:Wstart.reduce((s,x)=>s+x,0),
+  Wend:words.filter(s=>s.endsWith("W")).length,
+  windows:words.length-width+1,
+  minWStartsInCompleteWindow:smallest,
+  maxWStartsInCompleteWindow:largest,
+  windowsWithCipherOrFewerWStarts:countAtMostCipher};
 }
 const prose=[
  latinPositions("resources/control/shakespeare_first300k.txt"),
  latinPositions("resources/control/gibran_prophet_58585.txt"),
  latinPositions("resources/control/emerson_essays_2944.txt")
 ];
-assert.deepEqual(prose.map(s=>[s.words,s.Wstart,s.Wend]),
- [[55407,3807,677],[15733,1067,155],[77932,5019,808]]);
+assert.deepEqual(prose.map(s=>[s.words,s.Wstart,s.Wend,
+ s.windows,s.minWStartsInCompleteWindow,s.windowsWithCipherOrFewerWStarts]),
+ [[55407,3807,677,52512,158,0],
+  [15733,1067,155,12838,166,0],
+  [77932,5019,808,75037,140,0]]);
 const fraction=(x,y)=>+(100*x/y).toFixed(4);
 console.log(JSON.stringify({
   source: "2014 PGP stage11 trailing-blank prime list omits 19 (GP W); blanks are not PGP-authenticated",
@@ -172,6 +233,10 @@ console.log(JSON.stringify({
    ...z,startPercent:fraction(z.Wstart,z.words),
    endPercent:fraction(z.Wend,z.words)
   })),
-  positiveTransparentWPlantPass:true,
-  interpretation:"A W-transparent, word-boundary-preserving native-English LP2 cipher would retain the W boundary positions. The original positions disagree sharply with native controls despite similar total W frequency. This is conditional, not plaintext or a proof against all mechanisms."
+  positiveExclusiveTransparentWPlantPass:true,
+  positiveNonexclusiveWBypassPlant:{valid:true,source:b,output:nonexclusiveCounts,
+   newCipherWCreatedFromNonW:nonexclusiveCounts.Wall-b.Wall},
+  nonexclusiveNecessaryCondition:
+   'At every unaltered printed position, plaintext W implies ciphertext W; every plain word beginning in W requires a cipher word beginning in W.',
+  interpretation:"Under unchanged word boundaries, even a non-exclusive p56-style plaintext-W bypass cannot encode more plaintext W-initial words than ciphertext W-initial words. None of 140,387 contiguous native-prose windows of the same length approaches the observed ciphertext ceiling of 82; minimum is 140. This is a conditional linguistic exclusion, not an authenticated cipher disproof or plaintext recovery."
 },null,2));
