@@ -1,0 +1,15 @@
+name: Agent17 floral 13-31 AES128 source-key gate
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  frozen-original:
+    runs-on: windows-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node sims/lp2_floral_13_31_aes128_source_key_original_sft.cjs
