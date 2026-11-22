@@ -39,7 +39,7 @@ const GAP = 12; // Approximate 12px original x-gap between the giant and text.
 const CAP_LINES = 3; // 497-498px tall originals overlap three 188px lines.
 
 /**
- * @param {import('./lp2_original_linewrap_greedy_geometry_sft.cjs').Break} b
+ * @param {{page:number,line:number,base:number,firstWidth:number,nextWidth:number,inside:boolean,ending:string}} b
  * @param {{W:number,dash:number,stop:number}} model
  * @param {number} [gap]
  * @param {number} [heightLines]
