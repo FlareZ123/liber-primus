@@ -331,6 +331,45 @@ console.log("Squarefree Thue cumulative three-state keys:", 24389,
 console.log("Thue running-key engines are fully reversible for every secret key.");
 console.log("Exact re-encryption is an implementation invariant for all 25,230 wrong keys.");
 
+/**
+ * Ciphertext-feedback Thue receiver: P_i = C_i - key[h(i)]*C_(i-1).
+ * This is distinct from public-counter running keys; its previous-symbol
+ * state derives from the *observed original ciphertext* and is reversible.
+ * @param {number[]} ciphertext @param {number[]} key @returns {number[]}
+ */
+function inverseTernaryFeedback(ciphertext, key) {
+  return ciphertext.map((value, i) => mod29(
+    value - key[ternary[i]] * (i ? ciphertext[i-1] : 0)));
+}
+
+/** @param {number[]} plaintext @param {number[]} key @returns {number[]} */
+function forwardTernaryFeedback(plaintext, key) {
+  const ciphertext = [];
+  for (let i = 0; i < plaintext.length; i++) {
+    ciphertext.push(mod29(plaintext[i] +
+      key[ternary[i]] * (i ? ciphertext[i-1] : 0)));
+  }
+  return ciphertext;
+}
+
+let feedbackBest={key:[0,0,0],ioc:-1};
+let feedbackNative=0;
+for (let a=0;a<29;a++) for (let b=0;b<29;b++)
+  for (let c=0;c<29;c++) {
+    const key=[a,b,c],candidate=inverseTernaryFeedback(cipher,key);
+    const score=ioc(candidate);
+    if (score>feedbackBest.ioc) feedbackBest={key,ioc:score};
+    if (score>=nativeWholeMin) feedbackNative++;
+  }
+assert.equal(feedbackNative,0);
+const feedbackPlant=native.slice(0,cipher.length);
+assert.deepEqual(inverseTernaryFeedback(
+  forwardTernaryFeedback(feedbackPlant,feedbackBest.key),
+  feedbackBest.key),feedbackPlant);
+console.log("Thue squarefree ciphertext-feedback all 24,389 secret coefficient triples:",
+  "best",feedbackBest,"native benchmark",nativeWholeMin,
+  "authentic native plant replay PASS");
+
 assert.equal(grid.shape, "32 rows by 8 columns across LP2 pages 49, 50, 51");
 assert.equal(grid.bytes.length, 256);
 let native256Minimum = Infinity;
