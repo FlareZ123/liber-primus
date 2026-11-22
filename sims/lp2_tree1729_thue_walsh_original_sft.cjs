@@ -218,6 +218,60 @@ console.log("All 841 ternary additive three-secret-key relatives: best",
   ternaryBest, "at or above native class floor:", ternaryMatches);
 
 /**
+ * Public seven-bit Thue–Morse factor is a candidate register selected
+ * hypothetically by the seven visible tree pages. Every fixed secret
+ * GP29 alphabet permutation within a factor class must preserve its IoC.
+ * @param {number} i @returns {number}
+ */
+function sevenBitThue(i) {
+  let factor = 0;
+  for (let bit = 0; bit < 7; bit++) factor = factor * 2 + thue(i + bit);
+  return factor;
+}
+
+const sevenGroups = new Map();
+for (let i = 0; i < cipher.length; i++) {
+  const state = sevenBitThue(i);
+  if (!sevenGroups.has(state)) sevenGroups.set(state, []);
+  sevenGroups.get(state).push(i);
+}
+assert.equal(sevenGroups.size, 20);
+
+/**
+ * @param {number[]} sequence
+ * @param {number[]} positions
+ * @returns {number}
+ */
+function positionalIoc(sequence, positions) {
+  const hist = Array(29).fill(0);
+  for (const i of positions) hist[sequence[i]]++;
+  return hist.reduce((sum, n) => sum + n*(n-1), 0) /
+    (positions.length*(positions.length-1));
+}
+
+let sevenViolating = 0;
+let sevenWorst = null;
+for (const [state,positions] of sevenGroups) {
+  const score = positionalIoc(cipher, positions);
+  let controlMin = Infinity;
+  for (let start = 0; start+cipher.length <= native.length; start++) {
+    const hist = Array(29).fill(0);
+    for (const pos of positions) hist[native[start+pos]]++;
+    const nativeScore = hist.reduce((sum,n)=>sum+n*(n-1),0) /
+      (positions.length*(positions.length-1));
+    controlMin = Math.min(controlMin,nativeScore);
+  }
+  if (score < controlMin) sevenViolating++;
+  if (!sevenWorst || score-controlMin < sevenWorst.margin)
+    sevenWorst={state,positions:positions.length,original:score,nativeMin:controlMin,margin:score-controlMin};
+}
+assert.equal(sevenViolating,18);
+console.log("Seven-bit Thue factor states:",sevenGroups.size,
+  "original classes below all native controls:",sevenViolating,
+  "strongest absolute exclusion:",sevenWorst);
+console.log("All secret fixed 29! maps per public seven-bit Thue state fail native class IoC.");
+
+/**
  * Prefix counts of each externally fixed driver state before rune i.
  * The resulting running-key inverse is P_i = C_i - sum_j a_j*N_j(i).
  * Its forward encoder uses precisely the same public clock and coefficients.
