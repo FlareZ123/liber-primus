@@ -34,6 +34,16 @@ The result remains **conditional**: the p15 first title might divide by29 accide
 
 **Reproducer:** the [same original red prime-sum SFT](../sims/lp2_floral_red_bookend_13_31_prime_checksum_sft.cjs) now includes and asserts all **18** red spans and physical p15's quotient22, alongside the locked p40/p53 original checksum and color-blind boundary recovery.
 
+## Independent radix gate: overlapping byte codebooks
+
+The **256 unchanged printed tokens are simultaneously valid** as single-byte encodings under both the conventional 60-digit table alphabet `0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwx` and that alphabet with lowercase `f` omitted (base59). This is a complete, exact codebook ambiguity: each byte value 0–255 has one printed two-character code in either radix, and **252/256 printed codes coincide**. The only base60-exclusive codes are `0f 1f 2f 3f`; the only base59-exclusive codes are `4G 4H 4I 4J`. **None of the original 256 cells uses any of these eight distinguishing codes**. The two streams' exact original SHA256 digests are `3b9b07d9a26e6d55c432d94d2661fdff3c2b348daed06821f2bdb23184a4b290` (base60) and `511d4fdb69ffbae4707ef93acf7465421f5480208e28d8e8c598cafa0d33cb79` (base59).
+
+Under the explicit rival models of independently uniformly sampled **byte** values encoded in either fixed radix, each exact original token sequence has the **same likelihood** `256^-256`. The probability that 256 encoded tokens all land in the 252-code intersection is `(252/256)^256 = 0.017746279621...` under **either** model. These are deliberately narrow models, not empirical likelihoods for Cicada authorship. They establish that token validity, the absence of lowercase `f`, and the original maximum byte alone **cannot choose which radix the creator intended**. Any reader preferring the rooted base59 graph to the conventional base60 interpretation must bring an independently source-selected *consumer*.
+
+As a direct original-source differential-carrier check, subtract each base59 byte from its base60 byte in unchanged table order. All **256 differences** necessarily lie in `0..4`, with original frequencies `[36,62,62,63,33]`. The most immediate 5×5 Polybius interpretation pairs these base-five digits into 128 letters using `ABCDEFGHIKLMNOPQRSTUVWXYZ`. Original row-major output starts `UTKOKPVTOANG...`; column-major starts `RNMZOOXGQPZX...`; neither contains a single **E** in its 128 letters. Therefore this specific **literal dual-radix-difference → standard Polybius** receiver fails to yield native English. This does not exclude a source-authenticated keyed second stage, alternative purpose for the digits, or either radix. The [read-only source-asserting CJS gate](../sims/lp2_p50_dual_radix_codebook_sft.cjs) reproduces the exact codebooks, byte hashes, 256 differences and two direct reads.
+
+The following red-header/tree route continues to use **base59 conditionally** for its specific tree properties. Its numerical identities remain exact, and this independent ambiguity prevents presenting that radix as proved by the printed numeral syntax alone.
+
 ## Two source-addressed pointer paths
 
 The literal frozen table has32 rows×8 columns. Read ornament as **row**, computed prime-sum quotient as **column**, zero-based in original printed order:
