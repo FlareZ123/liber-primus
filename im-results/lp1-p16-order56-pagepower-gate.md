@@ -32,6 +32,35 @@ The 7×7 1033 matrix modulo 29 is:
 
 The 5×5 matrices and their orders are documented below; the order of each matrix is obtained by repeated multiplication to the first identity. The 7×7 matrix's exact order is 280, not merely “not a divisor of 56.”
 
+## Exact 2014 half-period matrix reflections, unique to the 29-rune modulus
+
+**New original-source algebraic discovery (Agent32, 22 November 2026; independent Windows Node22 PASS [45067129359](https://github.com/FlareZ123/liber-primus/actions/runs/45067129359)).** The three raw matrices' orders were previously recorded above. Their actual powers show a much more selective relationship than having order divisible by 7 or28.
+
+Write **A** for the complete *first* 5×5 historical square with magic sum **3301**, and **B** for the complete *last* 5×5 historical square with magic sum **1033**, in their **original printed row/column order**. Both are the actual 2014 OpenPuff-extracted integer matrices; B also appears in the solved LP1 “SOME WISDOM” source. Let **J** denote the 5×5 anti-identity reversing a length-five vector, and **U** the 5×5 all-ones matrix. The following complete-source identities hold **exactly over GP29's field**:
+
+\[
+A^{28}\equiv12U-J\pmod{29},\qquad
+B^{14}\equiv-J\pmod{29}.
+\]
+
+Both operators are involutions: \((12U-J)^2\equiv I\pmod{29}\) since \(5\cdot12=60\equiv2\), and \((-J)^2=I\). The powers are genuinely half-order because **A has exact matrix order56 and B has exact order28**, as established above. The two half-powers commute even though the **original A and B matrices do not**. Their product is
+
+\[
+A^{28}B^{14}=I-12U\pmod{29}.
+\]
+
+For a completely arbitrary five-rune GP-index vector \(v=(v_0,\ldots,v_4)\), the two independently printed matrices therefore specify **two explicit, reversible, keyless operations**:
+
+- B, half order: reverse the five rune positions and replace each GP index \(v_i\) by \(-v_i\bmod29\).
+- A, half order: reverse the positions and replace the resulting indices by \(12\sum_i v_i-v_{4-i}\bmod29\).
+- Their composition negates only the **vector mean component** and preserves the four-dimensional zero-sum subspace; \(I-12U\) is a rank-one reflection.
+
+The **modulus is not tuned**. Starting with both enormous integer matrix powers computed from the **unchanged source cell integers**, calculate the gcd of all 25 entries of \(B^{14}+J\); it is **exactly 29**. Independently the gcd of all 25 entries of \(A^{28}-(12U-J)\) is **exactly 29**. Thus for each literal identity individually, **29 is the only modulus \(m>1\)** for which that exact integer-matrix identity holds, and both identities hold jointly at the unique size of the original Gematria Primus alphabet. This is an arithmetic proof; no cryptanalytic fitting or candidate plaintext selection was involved.
+
+These equations provide a potentially actionable **source-derived reversal and mean-flip vocabulary**, rather than the original direct Hill inverse whose negative result is catalogued below. It is historical fact that Cicada supplied the matrices before LP2, and GP29/prime/totient are authentic earlier-source clues. **Author intent is unproven:** neither 2014 text nor an LP2 rune page instructs multiplication by \(A^{28}\), \(B^{14}\), their product, or a specific five-symbol receiver. It is also known that the original 1033 and3301 square sums occur as the p33 cuneiform numerical interpretations, but that source coincidence alone does not select such a matrix power. Reversing a ciphertext vector remains ciphertext when no further value-changing source operation is given.
+
+The [new source-read-only Windows Node22 SFT](../sims/lp2_2014_two_magic_squares_gp29_reflection_sft.cjs) computes **both full original integer powers using BigInt**, proves both unique positive modulus claims by gcd, confirms the exact minimal matrix orders and reversibility, verifies actual 6,395-rune B register preservation under a full source 5-vector Hill round-trip, and plants a full 6,395-rune native GP text that recovers exactly. The genuine source's direct one-round A/B inverse outputs have GP29 index-of-coincidence **0.0345136897 / 0.0344639460**, compared with a true native-GP plant **0.0598281765**, so **the direct one-round variants have no plaintext**. This is a new **algebraic source relation and reversible operator**, not a newly solved page.
+
 ## 5×5 matrix consumers
 
 For both 5×5 matrices, three natural consumers were tested:
