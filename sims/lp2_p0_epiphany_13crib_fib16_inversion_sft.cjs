@@ -149,7 +149,7 @@ function decodeAll(cipher,mode,observed){
   let piv=null;
   for(let i=0;i<3;i++)for(let j=i+1;j<3;j++){
     const determinant=mod(rows[0].tail[i]*rows[1].tail[j]-rows[1].tail[i]*rows[0].tail[j]);
-    if(determin&&!piv)piv={i,j,determinant};
+    if(determinant&&!piv)piv={i,j,determinant};
   }
   assert.ok(piv,"two original observations have zero rank");
   const {i,j,determinant}=piv;
