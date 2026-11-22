@@ -291,6 +291,27 @@ assert.equal(corpus.pages[22].indices.slice(99, 103)
 assert.equal(table.bytes[102], 32);
 assert.equal(selectedJetSecret + tableQuotient[selectedRank], 32);
 
+// Original p32 is 121 GP runes, hence 11x11. The SECOND concentric
+// Chebyshev ring has exactly 32 cells, matching source EAR GP sum 32.
+// Its GP-prime sum is exactly 1539 = 9*171, where 171 is the wholly
+// independent selected five-of-ten lexicographic source rank.
+// The factor NINE was recognized retrospectively (nine illustrated
+// manuscript chapter groups); do not promote a postselected checksum
+// to a Cicada-authenticated equation or key.
+const p32 = corpus.pages[32].indices;
+assert.equal(p32.length, 121);
+const ring32 = [];
+for (let row = 1; row < 10; row++)
+  for (let col = 1; col < 10; col++)
+    if (Math.max(Math.abs(row - 5), Math.abs(col - 5)) === 4)
+      ring32.push(p32[row * 11 + col]);
+assert.equal(ring32.length, 32);
+const ring32PrimeSum = ring32.reduce((sum, v) => sum + corpus.prime[v], 0);
+assert.equal(ring32PrimeSum, 1539);
+assert.equal(ring32PrimeSum, 9 * selectedRank);
+
+
+
 const earKey = [selectedJetSecret, tableQuotient[selectedRank]];
 /** @param {number[]} ciphertext @param {number} sign */
 const applyEar = (ciphertext, sign) => ciphertext.map((c, i) =>
@@ -347,6 +368,9 @@ console.log(JSON.stringify({
     uniqueAll252Readout: allEAR,
     originalCorpsePageEAEAWordGP0Sum: 102,
     originalP50ByteAtSum102: table.bytes[102],
+    originalP32SecondRingSize: ring32.length,
+    originalP32SecondRingPrimeSum: ring32PrimeSum,
+    primeSumToSubsetRankQuotient: ring32PrimeSum / selectedRank,
     directEARReceivers: earDirectReceivers,
     allOriginalPageJetValueMatches: quotientMatches[0],
     allOriginalPageJetDerivativeMatches: quotientMatches[1],
