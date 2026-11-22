@@ -1,0 +1,31 @@
+# Source GF4/radix59 scroll255→p8: all-secret rune-weighted word-hash exclusion
+
+**Agent 4, 22 November 2026. Classification: bounded exact original-cipher exclusion.** No recovered plaintext, authenticated key, sender-selected word-checksum algorithm or verified continuation.
+
+## Source-backed starting point and decisive remaining alternative
+
+Prior [Agent14's independent original GF4/radix59 candidate](../sims/lp2_scroll255_gf4_radix59_source_collision_sft.cjs) uses five authentic p7 red-word GP29 products **[11,26,8,15,2]**. Four products reduced modulo4 supply taps **[3,2,0,3]**, the final product2 seeds a full nonzero 255-state GF(4) cycle. A 59-symbol reading of the original 256-cell p49–p51 numerical field supplies the actual byte at every 255-addressed state. The resulting source-defined pad, added modulo29 to the following p8's **255 original ciphertext runes**, makes all three repeated complete scroll-word classes equal: original source indices **[47,240], [48,231], [235,236]** map to corrected **[20,20], [8,8], [2,2]**. All 64 nearby tested source-key conventions produce that exact three-of-three difference match only for the named hypothesis; its retrospective, familywise-calibrated null is ~0.2684%. This is an intriguing *conditional* registration, without validated plaintext or an authenticated creator opcode.
+
+**A key question was still undecided:** could the corrected p8 register actually be a *deterministic cryptographic checksum of the 255 source whole words*, where the 29 rune values have unknown secret contributions? A creator could plausibly use the GP29 prime/rune alphabet as a 29-entry secret encoding. This alternative is strictly stronger than the previous direct GP-index sum, prime sum and 841 affine-parameter tests, because every one of the **29 independently arbitrary secret rune contributions** is recovered if a linear additive checksum is compatible with the full original source. We test original whole-word spelling, preserving the three duplicate classes, rather than deriving output from synthetic or presumed English.
+
+## Exact full-original rejection of five secret-key families
+
+The [Windows Node22 SFT](../sims/lp2_scroll255_gf4_radix59_allsecret_wordhash_original_sft.cjs) re-creates the exact earlier [canonical corpus](../resources/liber-primus/lp2-corpus.json), [original physical 255-word scroll](../resources/liber-primus/lp2-transcription.txt), and [256-cell panel](../resources/liber-primus/lp2-grid-256.json). The GF4 state must visit exactly 255 distinct nonzero states. The source GP29 pad must make the **three original repeated words pairwise equal** at their p8 recipients. The same pad must exactly reconstruct all **255 original p8 ciphertext runes** from the corrected register. Then the SFT freezes the entire corrected vector and solves these entire GP29 systems over **GF(29)**:
+
+| Candidate deterministic word hash | Free hidden GP29 coefficients | Original coefficient-matrix rank | Incompatible original equations after full elimination | Original untouched recipient matches |
+| --- | ---: | ---: | ---: | ---: |
+| Sum of 29 independently weighted rune counts | 29 | 29 | 218 | 8/226 |
+| Same plus a fully secret intercept | 30 | 30 | 217 | 8/225 |
+| Secret rune-count contribution, plus separately secret first-rune/last-rune effects and intercept | 88 | 86 | 163 | 12/169 |
+| 58 independently secret weights for even/odd rune positions plus intercept | 59 | 59 | 189 | 7/196 |
+| 87 independently secret weights for rune-position residue modulo3 plus intercept | 88 | 88 | 157 | 10/167 |
+
+The equations are exactly **255 original 255-word-to-255-rune constraints**, each reduced modulo29. Secret weights are **arbitrary**, and the odd/even and 3-phase models permit separate secret weights for every GP rune at every allowed source-position class. For each family the coefficient equations have a finite rank, and the *augmented* original system has nonzero contradiction rows. This is a formal **no-key** exclusion of each model under the fixed source-defined GF4/radix59 pad. The unused-runic predictions are made by fitting only a **maximal independent subset chosen from source features alone**, without inspecting target output values. Their near-chance agreement is descriptive, not the proof.
+
+For positive controls, the exact same authentic 255 source words were assigned random-looking frozen secret weights in the declared feature model. All five planted positive systems have **zero inconsistent equations**, full original-source model rank and **255/255** exact recovered outputs, despite nonunique coefficients for the rank86 first/last case. This checks GF29 arithmetic, original source alignment, underdetermined coefficient handling, and the impossibility criterion independently of candidate natural language.
+
+## Decision
+
+Even granting the source-shaped, post-observation key fit **all three repeated-word constraints**, none of these five **entire families of arbitrary secret rune-additive checksums** can map every original scroll word to its adjacent corrected p8 rune. The remaining viable possibilities require a genuinely *nonlinear* word digest, word-order dependent hidden state, a different source-derived key/register, or a missing author-selected step. A 255-entry arbitrary secret word dictionary still fits because the three duplicate source classes already agree, so any generic "lookup-table decryption" is tautological without an independently supplied table. No extra source-constrained plaintext follows.
+
+**Research decision:** terminate all unkeyed GP29 per-rune additive/phase-weighted word-hash tuning for this precise original p7→p50→p8 chain. Demand a first-party historical clue identifying the nonlinear accumulator or a verified independent unseen p8/unknown-page symbol prediction before investing in further variants. Preserve the 3/3 HEX collision as a conditional mechanism clue only.
