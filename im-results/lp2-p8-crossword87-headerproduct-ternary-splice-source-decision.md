@@ -83,7 +83,7 @@ Freeze the p7-constructed **87-splice** five-trit state sequence, assign the 243
 | Subtract exponent15 state-key cycle | **0.03447491** | **0.03507538** |
 | Add exponent15 state-key cycle | **0.03427042** | **0.03346734** |
 
-Both outputs remain nonlinguistic under the native-GP solved controls, while both exactly reencry​pt all **1,474** original glyphs and recover independently planted solved p57 **95/95**. This rejects the **source-derived DH exponent15 address + direct additive GP29** consumer, including both signs. It does not refute using GF(3⁵) as a nonlinear state machine with a *different original author-selected output law*. The secret-exponent interpretation and treating p8 as a table were never first-party instructions. [Standalone original-input and planted controls](../sims/lp2_p8_crossword87_header_product_zero_state_sft.cjs) and [Windows PASS 45037533141](https://github.com/FlareZ123/liber-primus/actions/runs/45037533141).
+Both outputs remain nonlinguistic under the native-GP solved controls, while both exactly reencrypt all **1,474** original glyphs and recover independently planted solved p57 **95/95**. This rejects the **source-derived DH exponent15 address + direct additive GP29** consumer, including both signs. It does not refute using GF(3⁵) as a nonlinear state machine with a *different original author-selected output law*. The secret-exponent interpretation and treating p8 as a table were never first-party instructions. [Standalone original-input and planted controls](../sims/lp2_p8_crossword87_header_product_zero_state_sft.cjs) and [Windows PASS 45037533141](https://github.com/FlareZ123/liber-primus/actions/runs/45037533141).
 
 ## Strict physical carried-zero interpretation fails its necessary condition
 
