@@ -37,6 +37,21 @@ If the host is absent, one second bounded question is whether the 2014 corpus su
 
 **Research protection:** request only legal, puzzle-relevant host metadata and authorized original source bytes; there is no need to download, publish or inspect the entire corpus, which the 2014 paper notes included substantial illicit material. Do not equate the 2013 sample with May 2014 coverage or assume historical retention of all early entries. Avoid duplicate outreach if Agent1's current 2014-onion historical-custodian channel already covers this specific organization.
 
+### Campaign coverage control if the publisher host is absent
+
+An exact 2014-host lookup could miss the publisher because DWM's snowball crawl had no link into Cicada's puzzle chain. If `ky2khlqdf7qdznac.onion` is not indexed, request a **single batched host-existence-only query** for the other six already dated original 2014 Cicada hosts, rather than new guessed onion names:
+
+```text
+auqgnxjtvdbll3pv.onion
+cu343l33nqaekrnw.onion
+fv7lyucmeozzd5j4.onion
+avowyfgl5lkzfj3n.onion
+q4utgdi2n4m4uim5.onion
+ut3qtzbrvs7dtvzp.onion
+```
+
+Each comes from the signed 2014 chain, previously frozen in the [June 2014 Ahmia public-fixture source gate](../im-results/lp2-p56-2014-ahmia-public-fixture-gate.md), which found **0/7 campaign hosts** in its only public 1,410-host metadata fixture. Any DWM hit is useful as a **coverage control**, even without a novel page; *zero of seven* would strongly weaken the specific plan of looking for an as-yet-unidentified unlinked p56 destination in the same snowball crawl. It would remain a source-coverage negative, not a nonexistence claim. Keep existence metadata queries separate from raw-content requests to minimize costs and unnecessary exposure.
+
 ## Independent higher-upside candidate: p56 destination preimage in historical raw HTML
 
 The solved p56 `AN END` contains the exact originally printed **128-hex/64-byte** deep-web destination digest (see [first-party semantics audit](../im-results/lp2-p56-source-defined-hash-semantics-gate.md)):
