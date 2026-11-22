@@ -55,6 +55,42 @@ EXPECTED_LP1 = (
 )
 
 
+# Source-visible, authenticated five red Arabic passage numerals.
+# (physical LP2 page, x, y, width, height, area, first black rune x)
+EXPECTED_NUMBERS = (
+    (36, 620, 1693, 25, 92, 1131, 676),
+    (37, 606, 694, 59, 94, 1980, 680),
+    (37, 607, 1538, 56, 96, 1936, 676),
+    (37, 601, 2569, 69, 96, 2027, 678),
+    (38, 603, 1316, 62, 94, 1929, 676),
+)
+
+
+def measure_numbered_prefixes(archive: Path) -> list[tuple[int, ...]]:
+    """Find all five original red numeric markers, and adjacent black rune x."""
+    found: list[tuple[int, ...]] = []
+    with zipfile.ZipFile(archive) as zf:
+        for page in (36, 37, 38):
+            name = f"liber-primus-jpegs/{page + 17:02}.jpg"
+            rgb = np.asarray(Image.open(io.BytesIO(zf.read(name))).convert("RGB"))
+            red = (rgb[:, :, 0] > 100) & (rgb[:, :, 0] > 1.6 * rgb[:, :, 1]) & (
+                rgb[:, :, 0] > 1.6 * rgb[:, :, 2]
+            ) & (rgb[:, :, 1] < 130)
+            _, _, boxes, _ = cv2.connectedComponentsWithStats(red.astype(np.uint8))
+            for x, y, width, height, area in boxes:
+                if not (area > 400 and 80 <= height <= 110 and 580 <= x < 1000 and 400 < y < 3200):
+                    continue
+                black = np.all(rgb[y:y+height, :, :] < 100, axis=2)
+                counts = np.count_nonzero(black, axis=0)
+                candidates = np.flatnonzero((counts >= 8) & (
+                    np.arange(rgb.shape[1]) >= 600
+                ) & (np.arange(rgb.shape[1]) <= 900))
+                assert len(candidates)
+                found.append((page, int(x), int(y), int(width),
+                              int(height), int(area), int(candidates[0])))
+    return sorted(found, key=lambda row: (row[0], row[2]))
+
+
 def measure_scans(
     archive: Path, scan_to_page: dict[int, int]
 ) -> list[tuple[int, int, int, int, int, int]]:
@@ -92,6 +128,9 @@ def verify_source(archive: Path) -> list[tuple[int, int, int, int, int, int]]:
     lp1 = measure_lp1(archive)
     if lp1 != list(EXPECTED_LP1):
         raise AssertionError(f"known-solved LP1 red initials mismatch: {lp1!r}")
+    numbered = measure_numbered_prefixes(archive)
+    if numbered != list(EXPECTED_NUMBERS):
+        raise AssertionError(f"original numeral runic indent mismatch: {numbered!r}")
     return observed
 
 
@@ -100,4 +139,5 @@ if __name__ == "__main__":
         raise SystemExit("Specify one source archive: liber-primus-jpegs.zip")
     expected = verify_source(Path(sys.argv[1]))
     print(json.dumps({"verified": True, "lp2_red_giants": len(expected),
-        "lp1_solved_red_giants": len(EXPECTED_LP1), "boxes": expected}, indent=2))
+        "lp1_solved_red_giants": len(EXPECTED_LP1),
+        "verified_numbered_prefixes": len(EXPECTED_NUMBERS), "boxes": expected}, indent=2))
