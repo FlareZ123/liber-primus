@@ -15,4 +15,6 @@ All four source-native outputs are near-uniform and their prefixes are unreadabl
 
 [Read-only Windows Node22 full-source CJS reproducer](../sims/lp2_p7_p8_source_quartic_feistel_original_sft.cjs) reconstructs original receivers and exact inverse from `lp2-corpus.json` with actual p7/p8 red products and solved-p57 controls.
 
+[Successful original-input Windows Node22 run 45053554588](https://github.com/FlareZ123/liber-primus/actions/runs/45053554588) independently checks the exact p7 quartic, source p8 title words, both entire unchanged ciphertext scopes, all four reversible decoders and genuine solved-p57 GP plants.
+
 **Decision:** retire this exact 4-round, step3 quartic Feistel receiver as a plain direct cipher. Arbitrary rounds, offsets, retuned keys or extra layers would require new first-party instructions. This is distinct from the already negative P pointwise, PGL2, h field multiplier and 56-page clock consumers.
