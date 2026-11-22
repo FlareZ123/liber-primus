@@ -49,6 +49,8 @@ This retires only the explicitly fixed **simple repeating-key consumers** and pa
 
 Keep the source-defined **ten Tor-v2 hostname bytes** as a candidate *operand*, contingent on an independent author clue specifying their use. The direct decryptions fail, and the matrix readout remains a conditional phrase. An authenticated cipher instruction or independent unknown-page plaintext would justify a further test. Mere numerical width agreement or one clean English phrase does not license an unbounded key search.
 
+**Windows Node22 original-source result:** [PASS run 45075775363](https://github.com/FlareZ123/liber-primus/actions/runs/45075775363), with all 2,892 word windows, the single READURL pair, Tor-v2 Base32 10-byte packet, all 36 original-page inverses and all twelve solved-P57 plaintext plants asserted.
+
 **Exact original-data, read-only, Windows Node22 CommonJS reproducer:**
 [sims/lp2_p7_readurl_onion7_base32_original_receiver_sft.cjs](../sims/lp2_p7_readurl_onion7_base32_original_receiver_sft.cjs).
 It reads the actual pre-LP2 square and signed URL text, original marked red words, complete manuscript word-seams, canonical numeric table, GP29 controls, and solved P57 positive. It asserts all printed operands and original candidate outputs before reporting the final original-page inverses.
