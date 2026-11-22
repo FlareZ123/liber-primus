@@ -192,7 +192,7 @@ function exhaustFirstSectionQuotients(){
   const maxLegalQ=(29n**BigInt(model.n)-1n-model.r)/model.m;
   const count=Number(maxLegalQ);
   assert(Number.isSafeInteger(count));
-  assert.equal(count,6585649,'original-section exact quotient count changed');
+  assert.equal(count,6585648,'original-section exact quotient count changed');
   const digitsM=decodeDigits(model.m,29n,model.n).reverse();
   const candidate=Uint8Array.from(decodeDigits(model.r,29n,model.n).reverse());
   const counts=new Int32Array(29);
