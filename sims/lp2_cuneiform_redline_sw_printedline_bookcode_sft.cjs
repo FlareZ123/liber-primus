@@ -230,3 +230,46 @@ for(const [name,ciphertext] of [["p33 to p39 red to red",sourceChapter],["five n
   }
 }
 console.log("PASS: direct literal SW key on its original source chapter and five numbered passages produces no native prose.");
+
+
+// Source-selected numerical bridge: the SW table corner is byte113 (token1r),
+// exactly the first prime after the 29th GP prime 109. Freeze the historical
+// solved-p56 prime-totient decoder at that prime on the 76 original p55 runes.
+// Three literal F ciphertext sites admit 2^3 transparent-F clock choices.
+assert.equal(grid.bytes[31*8],113);
+assert.equal(grid.pages.flatMap(p=>p.tokens)[31*8],"1r");
+assert.equal(corpus.primes.at(-1),109);
+const p55Source=corpus.pages[55].indices;
+const p55F=p55Source.flatMap((value,i)=>value===0?[i]:[]);
+assert.deepEqual(p55F,[15,25,41]);
+const cornerPrimes=[];
+for(let candidate=113;cornerPrimes.length<76;candidate++){
+  let prime=true;
+  for(let d=2;d*d<=candidate;d++)if(candidate%d===0){prime=false;break;}
+  if(prime)cornerPrimes.push(candidate);
+}
+assert.equal(cornerPrimes[0],113);
+const cornerModels=[];
+for(const sign of [-1,1]){
+  const ciphertextPositive=nativeControl.map((v,i)=>(v-sign*(cornerPrimes[i]-1)%29+29)%29);
+  const decodedPositive=ciphertextPositive.map((v,i)=>(v+sign*(cornerPrimes[i]-1)%29+29)%29);
+  assert.deepEqual(decodedPositive,nativeControl);
+  for(let mask=0;mask<8;mask++){
+    let key=0,output=[],skips=[];
+    for(let i=0;i<p55Source.length;i++){
+      const fIndex=p55F.indexOf(i);
+      const bypass=fIndex>=0&&(mask&(1<<fIndex))!==0;
+      if(bypass){output.push(0);skips.push(i);}
+      else output.push((p55Source[i]+sign*(cornerPrimes[key++]-1)%29+29)%29);
+    }
+    let replayIndex=0;
+    assert.deepEqual(output.map((v,i)=>skips.includes(i)?0:(v-sign*(cornerPrimes[replayIndex++]-1)%29+29)%29),p55Source);
+    const score=ioc(output);
+    cornerModels.push({sign,mask,skips,ioc:score,first50:output.slice(0,50).map(x=>corpus.translit[x]).join("")});
+  }
+}
+assert.equal(cornerModels.length,16);
+assert(cornerModels.every(x=>x.ioc<0.05));
+console.log("SW source corner prime113, historical prime-totient receiver, original p55 16 F-transparent choices:");
+for(const x of cornerModels)console.log(JSON.stringify(x));
+console.log("PASS: candidate SW->113 has no p55 original native plaintext under any literal-F clock mask.");
