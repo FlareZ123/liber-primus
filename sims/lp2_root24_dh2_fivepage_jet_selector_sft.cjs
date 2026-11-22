@@ -80,9 +80,9 @@ assert.deepEqual(corpus.pages[39].indices.slice(119, 122), [27, 5, 15]);
 assert.equal(table.bytes.length, 256);
 assert.deepEqual(jet(corpus.pages[29].indices, 24).slice(0, 2), [0, 0]);
 assert.deepEqual(jet(table.bytes.map(mod), 24).slice(0, 2), [0, 0]);
-assert.equal(power(5, 6) % 23, 8);
-assert.equal(power(5, 15) % 23, 19);
-assert.equal((8 ** 15) % 23, 2); // valid small integer? see next line
+assert.equal((5 ** 6) % 23, 8);
+assert.equal((5 ** 15) % 23, 19);
+assert.equal((8 ** 15) % 23, 2);
 assert.equal((19 ** 6) % 23, 2);
 const DH_K = 2;
 const ROOT = 24;
