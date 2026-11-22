@@ -43,10 +43,32 @@ Even the most favorable **two-bank** source-chapter assignment cannot reproduce 
 
 The minimal richer alternative is **at least three distinct independently keyed chapter modes** under this native-profile assumption, a page-specific key, a changing-state source, or a genuinely different cipher. A three-bank cycling-by-chapter example has a necessary capacity above 52% (so this gate alone does not exclude it), but neither a three-mode key grammar nor an actual source-selected chapter key has been recovered. The true original could have a different plaintext frequency profile; no language threshold is assumed in the exact algebraic capacity theorem.
 
+## Source-motivated first-order accumulator extension: adjacency suppression cannot rescue the repeating key
+
+The original 12,956 unknown GP29 runes have only **86 adjacent equalities** under a continuous manuscript rune clock. A more plausible candidate than direct periodic Vigenere, given that extraordinary suppression, is a **running modular sum** of periodically substituted plaintext:
+
+`C[i] = C[i−1] + E_{phase(i)}(P[i]) (mod29)`
+
+where `E` is an unknown independently chosen invertible GP29 permutation for each 255/256 period phase. A change in `C` hides the native plaintext's repeated symbols, and a cipher is reversible by first differences. Crucially, this model is completely tested **without discovering E**: the derived original increment stream `D[i]=(C[i]−C[i−1]) mod29` must itself have the same unknown-key per-phase rank capacities. We independently evaluated five visible restart clocks, putting zero as the preceding virtual ciphertext at their respective source-visible boundaries, and tested both exact periods.
+
+| Fixed difference-accumulator restart clock | Period255 maximum top five | Period256 maximum top five |
+| --- | ---: | ---: |
+| Continuous original manuscript | **4,894 / 12,956** | **4,940 / 12,956** |
+| Physical page restart | 4,901 | 4,912 |
+| Nine original chapter restart | 4,858 | 4,920 |
+| Every original complete printed word | 2,760 | 2,760 |
+| Every printed line | 3,048 | 3,048 |
+
+The most favorable single-bank cumulative cipher has top-five capacity **4,940/12,956 = 38.1291%**. The original continuous first-difference stream has precisely **86 zeros**, reproducing the 86 source doublet sites, so this calculation explicitly includes the remarkable suppression rather than assuming it away.
+
+A second all-secret calculation lets the nine authentic illustrated chapters choose freely between **two separate 255/256-position cumulative substitution banks**, and exhausts the entire **2^8=256** independent chapter-bank assignments. Even with all unknown secret phase permutations and a restart at each chapter, the largest possible source top-five capacity is **6,106 / 12,956 = 47.1287%** for period255 and **6,180 / 12,956 = 47.6999%** for period256, still below the actual solved p57's **48.4211%** native-GP reference. This is a *conditional language-profile exclusion* of first-order integrators with at most two globally reused chapter modes. An arbitrary three-bank scheme, a content-evolving mapping, altered output register or unusually flat original plaintext is not excluded.
+
+The updated [full-source CommonJS SFT](../sims/lp2_p50_period255256_allsecret_symbolrank_original_sft.cjs) reconstructs all 12956 original differences from the exact written source, checks 86 original continuous zeros, enumerates all 256 two-bank choices for both periods and asserts all reported counts. It also encrypts the full 12956-rune solved-p57-native positive by the corresponding cumulative cipher with a nontrivial phase-affine secret, then exactly recovers **12956/12956** plaintext runes. [Original Windows Node22 PASS run 45049597218](https://github.com/FlareZ123/liber-primus/actions/runs/45049597218). No key fitting or language-score optimization is involved.
+
 ## Original controls and downstream choice
 
 The [read-only, original-corpus Windows Node22 CommonJS SFT](../sims/lp2_p50_period255256_allsecret_symbolrank_original_sft.cjs) reconstructs and exactly reconciles **12,956** input runes across the raw transcription, confirms **2,896** printed source words, and reproduces all ten above upper bounds with strict numerical assertions. It additionally repeats the authentic solved p57 plaintext to **12,956** runes and encrypts it under a chosen nontrivial phase-varying invertible affine GP29 map of period256. The real decoder exactly recovers all **12,956/12,956** native-GP runes. Its plaintext top five count is **6,271**, and the encrypted stream's keyless top-five upper bound is **6,929**, correctly leaving the genuine positive possible. [Actual read-only Windows Node22 PASS run 45048405846](https://github.com/FlareZ123/liber-primus/actions/runs/45048405846).
 
-**Operational decision:** retire the direct, globally reused 255/256-slot GP29 Vigenere/keyed substitution as the full-manuscript explanation for ordinary native-GP prose under the five frozen source clocks. Do not spend time recovering per-phase secret alphabets: the original histograms already defeat every one. This is **not** a p50-as-key impossibility result when the table is consumed **once**, the key evolves with previous symbols or pages, the ciphertext undergoes a nonalphabet transformation, original word boundaries are not plaintext boundaries, or a genuinely non-GP29 intermediate is used. Those require a human-visible operation specifying state update and output register, rather than more brute-force attempts on repeated simple pads.
+**Operational decision:** retire the direct and first-order-integrated, globally reused 255/256-slot GP29 Vigenere/keyed substitution as the full-manuscript explanation for ordinary native-GP prose under the five frozen source clocks. Do not spend time recovering per-phase secret alphabets: the original histograms already defeat every one. This is **not** a p50-as-key impossibility result when the table is consumed **once**, the key evolves with previous symbols or pages, the ciphertext undergoes a nonalphabet transformation, original word boundaries are not plaintext boundaries, or a genuinely non-GP29 intermediate is used. Those require a human-visible operation specifying state update and output register, rather than more brute-force attempts on repeated simple pads.
 
 No unknown plaintext or authentic producer key was recovered.
