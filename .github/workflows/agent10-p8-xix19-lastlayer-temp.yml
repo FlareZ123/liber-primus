@@ -1,0 +1,15 @@
+name: Agent10 P8 XIX19 terminal transposition original-source test
+on:
+  workflow_dispatch:
+jobs:
+  source-transposition:
+    runs-on: windows-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Assert p8-p14 direct inverses and 2000 source-matched controls
+        run: node sims/lp2_p8_14_xix19_column_finalorder_original_sft.cjs
