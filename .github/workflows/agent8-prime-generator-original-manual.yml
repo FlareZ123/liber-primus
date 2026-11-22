@@ -1,0 +1,14 @@
+name: "Agent 8 - LP2 prime-generator original delta inverse gate"
+on:
+  workflow_dispatch:
+jobs:
+  p7-prime-generator-original:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Original LP2 12956-rune prime-totient step inverse and native planted controls
+        run: node sims/lp2_prime_generator_delta_step_original_sft.cjs
