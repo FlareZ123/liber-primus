@@ -31,6 +31,21 @@ A second finite, explicitly speculative consumer uses the native GP29 additive s
 
 The independently solved p57 baseline is **0.0627099664**. The entire original outputs remain incoherent native GP; for instance, subtract/continuous p49 opens **D F A Y P S D AE TH IA M E T NG T J H R A L J**. Exact inverse re-encoding and authentic solved-native planted plaintext pass for all six fixed operations.
 
+## Authentic 2014 Stage04 running-key transfer using the complete selected words
+
+The 2014 source implementation actually decrypted its small runic image with the multiword key *WELCOME PILGRIM TO THE* using **one-based GP ordinal shifts** \`P=(C+K) mod29\`. This makes a full selected-word key, rather than an initial-letter key, a distinct historically executable consumer: preserve each of the 256 source-selected words, concatenate their letter content in printed table order, apply the original Stage04 greedy two-character GP-token parser to the key text, and repeat it cyclically for each original LP2 receiver. Unlike the first-initial key, the resulting GP key has over one thousand changing entries and does not have the same stationary per-initial equality invariant.
+
+The actual 2014 parser **silently skips** characters it does not recognize. Exactly **30 V, one Q and one K** occur in the 256 selected words; following that historical behavior yields a **1,087-GP-shift** key. A second natural native-GP-normalized reading \`V→U, K→C, Q→CW, Z→S\` retains all letters and yields **1,120 GP shifts**. The Q normalization is an inferred convention, not an authenticated 2014 source rule. The printed table cells, original selected words, shift polarity, source-word order, zero clock, GP tokenization and two receiver definitions remain unchanged under both modes; no offset, word selection or phase is language-fitted.
+
+| Full-source word-key policy | Original 158-rune table flank IoC | Independent p16 267-rune IoC | Original p16–21 (1,613) IoC | Heldout p40–53 (3,008) IoC |
+| --- | ---: | ---: | ---: | ---: |
+| Exact historical unsupported-letter skip, GP shift length 1,087 | **0.0336208982** | **0.0340457886** | **0.0343756298** | **0.0344853586** |
+| Native normalization, GP shift length 1,120 | **0.0353946626** | **0.0350032384** | **0.0341817952** | **0.0346235557** |
+
+These eight complete original-rune results remain uniformly scrambled and do not recover a recognizable GP29 plaintext or any external object. Each decoder correctly re-enciphers its own full original receiver. A separate exact positive for every receiver takes **real solved p57 original GP runes**, forward-enciphers them with the same historical key stream and recovers all rune identities. The [full-word historical Stage04 SFT](../sims/lp2_p50_emerson_2014_fullword_stage04_sft.cjs) reproduced all eight fixed cases and all eight authentic-native positive plants against pinned GitHub sources in an executed isolated JS test. No independent Windows CI completion is asserted.
+
+This test retires the most direct historically authenticated **full-word-key consumer** of the same unselected two-field Emerson table lookup, in addition to the simpler first-initial consumer. A secret dynamic per-key-symbol substitution, source-selected non-Emerson text, new provenance-backed address grammar or cryptographically independent key source falls outside both tests.
+
 ## A key-independent equality invariant for a much broader cipher family
 
 Suppose each external word-initial letter selects its own **unknown bijection of all 29 GP symbols**. A particular letter's alphabet could have any of 29! permutations, independently of all other letters. The key need not be additive, known, or related to English initials. **The number of equal-symbol pairs within positions carrying the same source-initial letter is unchanged under every such bijection**. It is an exact invariant even for this very generous class of secret substitution keys.
