@@ -17,7 +17,7 @@ const BIBLE_REF = "0e8cc040bfb69f564e15ba93b2569b00e28420a8";
 const GIBRAN_REF = "6ebc10889ae826388c63daaaf2fd2eb1d9f64e58";
 const SHAKESPEARE_REF = "6f9487a6fe5b420b7ca9afb0d7c078e37c1d1b4e";
 const BIBLE_REPO = "takelley1/plaintext-bible-kjv";
-const DIGRAPHS = ["ING", "TH", "NG", "EO", "AE", "IA", "EA"];
+const DIGRAPHS = ["ING", "TH", "NG", "EO", "OE", "AE", "IA", "EA"];
 const exactWidth = 12;
 const seedWidth = 7;
 const contextWidth = 24;
@@ -29,7 +29,10 @@ const sourceJobs = [
 
 /** @param {string} text @returns {string[]} */
 function latinWords(text) {
-  return (text.toUpperCase().match(/[A-Z]+(?:['\u2019][A-Z]+)*/g) || []).map((word) => word.replace(/['\u2019]/g, ""));
+  // The source uses phonetic GP spellings. K/V/Z normally reduce to one
+  // rune as C/U/S, while Q can expand to two runes (KW -> C/W).
+  return (text.toUpperCase().match(/[A-Z]+(?:['\u2019][A-Z]+)*/g) || []).map((word) =>
+    word.replace(/['\u2019]/g, "").replaceAll("Q", "CW"));
 }
 
 /** @param {string} word @returns {number} */
