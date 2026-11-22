@@ -610,4 +610,88 @@ for (const [name, matrix, positiveIoc, negativeIoc] of scrollTransforms) {
     ' genuine native positive=1145/1145');
 }
 
-console.log('SELFTEST_PASS original squares, charpolys, canonical basis, 3409 original runes, solved-native positives, 84-prime authenticated-key transfer, canonical shared three-mode original receiver, full factor-trace five-symbol original reductions, adjacent 255-word CHANGE-square key receiver');
+
+/**
+ * Authentic-source reversal duality of the complete five-factor trace map:
+ * every nonconstant 7-square trace factor has the OPPOSITE reversal parity
+ * from the corresponding 5-square CHANGE eigenmode; the constant E mode
+ * is reflection-even in both squares.
+ *
+ * The complete SOURCE-DERIVED 5x7 trace F has the striking exact identity
+ *          J5 * F + F * J7 = (2/7 mod 29) * U5x7
+ * where J denotes index reversal, U is all ones, and 2/7 mod29 = 21.
+ * Thus on any 7-source packet with rune sum zero, F anti-commutes with
+ * reversing; otherwise it differs by exactly the packet's mean.
+ * This is a structural fact of the printed 2014 squares, NOT proof the
+ * creator intended this conversion as an LP2 decoder.
+ */
+const traceFromEigenCoordinates = [
+  [0, 0, 0, 2, 5, 0, 0],
+  [1, 0, 0, 0, 0, 0, 0],
+  [0, 1, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 2, 21],
+  [0, 0, 1, 0, 0, 0, 0]
+];
+const tracePhysical = multiply(
+  multiply(V5, traceFromEigenCoordinates), Sinverse);
+assert.deepEqual(tracePhysical, [
+  [22,18,28,21,20,18,19],
+  [10,7,1,2,23,9,7],
+  [19,27,10,25,11,23,2],
+  [14,12,27,19,20,14,11],
+  [2,3,1,0,22,3,28]
+]);
+const reverseMatrix = (n) =>
+  Array.from({length:n}, (_,i) =>
+    Array.from({length:n}, (_,j) => +(i + j === n - 1)));
+const leftReflection = multiply(reverseMatrix(5),tracePhysical);
+const rightReflection = multiply(tracePhysical,reverseMatrix(7));
+assert.ok(leftReflection.every((row,i) =>
+  row.every((v,j) => m29(v + rightReflection[i][j]) === 21)));
+assert.deepEqual(tracePhysical.map(row =>
+  m29(row.reduce((s,v) => s + v,0))), [1,1,1,1,1]);
+assert.deepEqual(Array.from({length:7}, (_,j) =>
+  m29(tracePhysical.reduce((s,row) => s + row[j],0))),
+  [9,9,9,9,9,9,9]);
+for (const [eigenRoot, sevenEigenColumn, fiveEigenColumn,
+  sourceSevenParity, sourceFiveParity] of [
+    [8, 0, 1, -1, 1],
+    [24, 1, 2, 1, -1],
+    [18, 2, 4, 1, 1]
+]) {
+  const v7 = S.map(row => row[sevenEigenColumn]);
+  const v5 = V5.map(row => row[fiveEigenColumn]);
+  assert.deepEqual(apply(reverseMatrix(7),v7),
+    v7.map(v => m29(sourceSevenParity * v)));
+  assert.deepEqual(apply(reverseMatrix(5),v5),
+    v5.map(v => m29(sourceFiveParity * v)));
+  assert.deepEqual(apply(seven1033,v7),
+    v7.map(v => m29(eigenRoot * v)));
+  assert.deepEqual(apply(five1033,v5),
+    v5.map(v => m29(eigenRoot * v)));
+}
+for (const [quadraticIndex, traceIndex, sevenParity, fiveParity] of [
+  [3, 0, 1, -1], [5, 3, -1, 1]
+]) {
+  const z7a = S.map(row => row[quadraticIndex]);
+  const z7b = S.map(row => row[quadraticIndex + 1]);
+  const z5 = V5.map(row => row[traceIndex]);
+  for (const v7 of [z7a,z7b]) {
+    assert.deepEqual(apply(reverseMatrix(7),v7),
+      v7.map(v=>m29(sevenParity*v)));
+  }
+  assert.deepEqual(apply(reverseMatrix(5),z5),
+    z5.map(v=>m29(fiveParity*v)));
+}
+const traceLinear = a => apply(tracePhysical,a);
+const printedFirstSeven = concatenate(8,14).slice(0,7);
+assert.deepEqual(traceLinear(printedFirstSeven),
+  transformFive(traceToFive(printedFirstSeven),V5));
+const baseReversal = [...printedFirstSeven].reverse();
+const lhs = traceLinear(baseReversal);
+const rhs = [...traceLinear(printedFirstSeven)].reverse()
+  .map((v)=>m29(21*printedFirstSeven.reduce((s,x)=>s+x,0)-v));
+assert.deepEqual(lhs,rhs);
+console.log('REVERSE_DUALITY original 2014 5x7 TRACE map rank5, opposite parity C/H/A/NG, even E; J5*F+F*J7=21*ones; original 7-rune block PASS');
+
+console.log('SELFTEST_PASS original squares, charpolys, canonical basis, 3409 original runes, solved-native positives, 84-prime authenticated-key transfer, canonical shared three-mode original receiver, full factor-trace five-symbol original reductions, adjacent 255-word CHANGE-square key receiver, exact five-to-seven reversal-dual trace');
