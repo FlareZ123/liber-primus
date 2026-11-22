@@ -1,6 +1,6 @@
 # LP2 p55: self-derived nine-rune wordfold key has a local signal but fails the p27 holdout
 
-**Agent 46, 15 November 2026. Classification: provisional, original-source structural signal, with a tested failed cross-page cipher prediction.** No authenticated unknown LP2 plaintext, author-supplied key, working cipher, or continuation recovered. A [standalone read-only source SFT](../sims/lp2_p55_self_wordfold9_source_sft.cjs) reproduces the full experiment and passed [manual GitHub Actions Node22 run 43661530787](https://github.com/FlareZ123/liber-primus/actions/runs/43661530787). The measurements below supplement, rather than replace, the authoritative [unsolved synthesis](../results/README.md).
+**Agent 46, 15 November; Agent3, 22 November 2026. Classification: provisional original-source structural signal and finite failed wordfold/full-page butterfly cipher predictions.** No authenticated unknown LP2 plaintext, author-supplied key, working cipher, or continuation recovered. A [standalone read-only source SFT](../sims/lp2_p55_self_wordfold9_source_sft.cjs) reproduces the full experiment and passed [manual GitHub Actions Node22 run 43661530787](https://github.com/FlareZ123/liber-primus/actions/runs/43661530787). The measurements below supplement, rather than replace, the authoritative [unsolved synthesis](../results/README.md).
 
 ## Intended-solver hypothesis, without treating it as an instruction
 
@@ -47,6 +47,20 @@ phase = (70 - 28) mod 9 = 6
 ```
 
 Apply *the same forward-minus nine-rune key* to the original p27 page with phase 6. The page's IoC goes **down**, from **0.03393126 to 0.03330766**; no readable passage appears. Even optimizing a phase retrospectively among nine alternatives only reaches IoC **0.03668244**, still ciphertext-like. This rejects the simplest cross-page shared-key interpretation despite its two exactly matching original anchors. It cannot rule out a distinct page-local selfkey or a deliberate repeated ciphertext marker with different underlying key streams.
+
+## Full-physical-page reversible two-wing fold (Agent3, 22 November)
+
+**New bounded architectural test, source-motivated and negative.** Original physical p55 prints bilaterally mirrored vine-like framing and a two-wing moth below the pale tree. The solved PARABLE source explicitly describes shedding circumferences; the earlier p55 wordfold test instead discarded information when folding source fragments, and its ciphertext-derived key made a complete plaintext-to-ciphertext inverse unspecified. The most literal entirely **lossless** continuation pairs every original rune with its physical left/right mirror across the **entire 76-rune ciphertext stream**, rather than deleting endpoint or two-rune word data.
+
+Freeze 38 source-ordered pairs at unchanged physical offsets (i,75−i), i=0..37. Apply one keyless 2×2 GF29 butterfly H=[[1,1],[1,−1]] to each pair: P_i=C_i+C_(75−i), P_(75−i)=C_i−C_(75−i), modulo29. Its determinant is −2, invertible in GF29, with H inverse=(15×H) mod29. Thus **all 76 printed ciphertext symbols** participate and recover exactly, including p55's carry from p54 and all five two-rune complete words. All original 16 complete word lengths are retained as output word breaks; no cipher symbols or punctuation lengths are silently omitted. The butterfly operator is a human-visible geometry interpretation, not a claimed creator-selected cipher.
+
+The original page's IoC changes from **0.037894737** to **0.042456140**, while the complete first 76 true clear p57 GP source runes have **0.059649123**. All sixteen original p55 complete printed words after this inverse are:
+
+    XWJE  NTH  MN  AEJJTRJ  EFYFLM  OEI  THCIONHPIAETNLAE  BNNGNGEAL  RFUF  EU  JAEMOEOIANG  EOMCOEAEJI  FU  UPCFNO  NGAEN  THWJ
+
+The initial carried rune in the output is TH. There is no meaningful continuous GP-native prose in these word positions. The specific **whole-page no-key mirror butterfly** is rejected as a direct p55 decoder; its modest IoC change cannot compensate for the literal gibberish. The model selection has **zero free parameters**. On a separate genuine clear p57 76-rune planted source, forward inverse H reconstructs all 76/76 runes and decrypts exactly. Every original p55 glyph also reencrypts exactly; these roundtrips verify implementation, not historical authenticity.
+
+[Single-file Windows Node22 CJS SFT](../sims/lp2_p55_full76_tree_butterfly_original_sft.cjs) · [passing complete original-source CI run 44977110624](https://github.com/FlareZ123/liber-primus/actions/runs/44977110624). Existing exterior33, nested 43/23/9/5 peel, source-kernel, p56 direct totient and three-square feedback models are distinct published failures and were not retested here. No new numerical key or post-hoc fold orientation is proposed.
 
 ## Research decision
 
