@@ -93,16 +93,16 @@ function characteristic5(source) {
   const mod = x => ((x % 29) + 29) % 29;
   let current = number29(identity(5));
   const coefficients = [1];
+  const traces = [];
   for (let k = 1; k <= 5; k++) {
     current = multiply29(current, matrix);
     const trace = current.reduce((sum, row, i) => sum + row[i], 0) % 29;
     // For Newton's identities we need traces of all powers, not only k.
     // The traces are collected and reused from the already-computed powers.
-    if (k === 1) characteristic5.traces = [];
-    characteristic5.traces.push(trace);
+    traces.push(trace);
     let numerator = 0;
     for (let j = 1; j <= k; j++) {
-      numerator = mod(numerator + coefficients[k - j] * characteristic5.traces[j - 1]);
+      numerator = mod(numerator + coefficients[k - j] * traces[j - 1]);
     }
     const inverse = Array.from({ length: 28 }, (_, i) => i + 1)
       .find(x => (x * k) % 29 === 1);
