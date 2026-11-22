@@ -36,7 +36,7 @@ A direct test can be made without deciding whether the above arithmetic is inten
 
 Offsets are **zero-based runes within the exact numbered items**. Every item1/item2 result is an *exact finite-state contradiction* to a literal p56-style inverse, well before language scoring. The program also encrypts known genuine p57 GP-native plaintext (cycling it only to build complete-length synthetic controls) with every tested key and every relevant item length, then recovers a legal original plaintext history. All four cipher consumers pass those positive controls. The tests do **not** disprove a 289-prime source with a different source-selected operation, a third cipher layer, or a missing historical instruction.
 
-**Exact runnable source test:** sims/lp2_1033_3301_squareorders_interpause289_sft.cjs. Inputs are the original source shell transcript, original 2014 recovered square matrices, the canonical GP29 LP2 ciphertext and source p57 cleartext. No mutable data or guessed key values enter this test. The Windows Node22 Actions run is linked when verified.
+**Exact runnable source test:** sims/lp2_1033_3301_squareorders_interpause289_sft.cjs. Inputs are the original source shell transcript, original 2014 recovered square matrices, the canonical GP29 LP2 ciphertext and source p57 cleartext. No mutable data or guessed key values enter this test. [Windows Node.js 22: **PASS**, successful exact source and original-cipher test](https://github.com/FlareZ123/liber-primus/actions/runs/45059396451).
 
 ## Cryptanalytic consequence and next discriminating action
 
