@@ -189,3 +189,40 @@ assert.ok(wordPrimeSumObstructions.every(x => x.impossibleWords >= 14));
 console.log('Original complete-word GP prime-sum -> historical 7x7 source orientations');
 console.log(JSON.stringify(wordPrimeSumObstructions,null,2));
 console.log('PASS: all 8 authentic square orientations have >=14 exact unreachable word-prime sums, even with fully secret GP plaintext symbols.');
+
+/**
+ * Corpus-internal frequency calibration for the exact two-runes-per-99-square
+ * 198-length relation. The source transcription omits the entirely non-rune
+ * p50 image, so source blocks 0..54 correspond to rune-bearing physical
+ * pages 0..55 (and exclude solved p56/p57 at blocks 55/56).
+ * Original data independently demands 12,956 runes in 2,896 complete words.
+ * Explicit separators are honored, physical line/page wraps are joined,
+ * and visual decimal labels are not GP29 runes.
+ */
+const canonicalRunes = new Set(corpus.runes);
+const unknownPhysicalText = physical.slice(0, 55).join('')
+  .replace(/\//g,'').replace(/\s/g,'');
+const completeUnknownWords = unknownPhysicalText.split(/[-.&$%]/)
+  .filter(Boolean).map(part => [...part]
+    .filter(c => canonicalRunes.has(c)).join('')).filter(Boolean);
+const allUnknownLengths = completeUnknownWords.map(s => [...s].length);
+assert.equal(completeUnknownWords.length, 2896);
+assert.equal(allUnknownLengths.reduce((sum,n) => sum+n,0), 12956);
+const rolling49 = [];
+let sum49 = allUnknownLengths.slice(0,49).reduce((s,n) => s+n,0);
+rolling49.push(sum49);
+for (let i=49; i<allUnknownLengths.length; i++) {
+  sum49 += allUnknownLengths[i] - allUnknownLengths[i-49];
+  rolling49.push(sum49);
+}
+assert.equal(rolling49.length, 2848);
+const exact198 = rolling49.filter(n => n===198).length;
+assert.equal(exact198,26);
+console.log(JSON.stringify({
+  corpusCalibration:'unknown LP2 complete printed words, source-boundary-aware',
+  unknownGP29Runes:12956,unknownWords:2896,windows49:2848,
+  windowsWith198Runes:exact198,
+  descriptiveFraction:exact198/rolling49.length,
+  warning:'Sliding windows overlap and 198/99 was noticed after seeing the puzzle. This is a descriptive base-rate, NOT a significance probability for Cicada intent.'
+},null,2));
+console.log('PASS: 198-rune 49-word relation has source-internal 26/2848 base rate.');
