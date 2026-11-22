@@ -29,6 +29,21 @@ assert.equal(red.red_spans.length,1);
 const heading=red.red_spans[0];
 assert.deepEqual([heading.start,heading.length],[0,7]);
 assert.equal(p57.slice(0,7).map(x=>corpus.translit[x]).join(''),'PARABLE');
+const p56=ink.pages.find(p=>p.page===56);
+assert(p56);
+assert.deepEqual(p56.red_spans.map(s=>s.length),[5]);
+assert.deepEqual(p56.large_punctuation[0],[5,13,'red']);
+assert.deepEqual(grid.page_row_counts,[10,13,9]);
+const p3=ink.pages.find(p=>p.page===3);
+assert(p3);
+assert.deepEqual(p3.red_spans.map(s=>({start:s.start,
+ first:corpus.translit[corpus.runes.indexOf([...s.runes][0])]})),[
+ {start:0,first:'L'},{start:119,first:'P'}]);
+assert.equal(p3.large_punctuation.filter(e=>e[1]===13&&e[2]==='red').length,3);
+assert.deepEqual(ink.pages.filter(p=>(p.red_spans||[]).length>=2 &&
+ p.red_spans.slice(0,2).map(s=>corpus.translit[
+  corpus.runes.indexOf([...s.runes][0])]).join('')==='LP')
+ .map(p=>p.page),[3]);
 const r=grid.byte_rows;
 assert.equal(r.length,32);
 assert(r.every(row=>row.length===8));
@@ -42,6 +57,13 @@ const start=red.large_punctuation[0][1]-1;
 const length=heading.length;
 const candidate=Buffer.from(outer.slice(start,start+length)).toString('latin1');
 assert.equal(candidate,'LP3lRA#');
+assert.equal(Buffer.from(outer.slice(start,start+p56.red_spans[0].length))
+ .toString('latin1'),'LP3lR');
+// The first 5 bytes end at the original p49 row10/p50 page seam.
+assert.deepEqual(grid.byte_rows.slice(5,10).map(row=>row[7]),
+ outer.slice(12,17));
+assert.deepEqual(grid.byte_rows.slice(10,12).map(row=>row[7]),
+ outer.slice(17,19));
 assert.deepEqual(outer.slice(start,start+length),[76,80,51,108,82,65,35]);
 const targetPage=Number(candidate[2]);
 assert.equal(targetPage,3);
