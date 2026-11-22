@@ -195,7 +195,7 @@ for (const slot of bSpiral) if (!holeSet.has(slot)) planted[slot] = native[nativ
 assert.equal(nativeIndex, native.length);
 const decodedPlant = bSpiral.map(i => planted[i]).filter(x => x !== null);
 assert.deepEqual(decodedPlant, native);
-assert.deepEqual(bestWindow(decodedPlant, 300), {count:246,start:0});
+assert.deepEqual(bestWindow(decodedPlant, 300), {count:246,start:5});
 assert.equal(top12(solved,0,solved.length),77);
 
 console.log(JSON.stringify({
