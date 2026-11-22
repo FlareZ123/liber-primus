@@ -53,7 +53,7 @@ The original-source SFT uses the repository's established LP1-native spelling en
 | p52–p53 | **0.0549245339** | 0.0384051056 |
 | Whole chapter | **0.0583769829** | 0.0354544209 |
 
-Every native control beats the all-secret original maximum on every interval. These 60 samples are original-word-length matched; they are drawn from three authors, and do not constitute 60 independent literary sources. For both frozen planted true cipher keys (13,2,7,5) and (6,19,0,7), the original-layout 3,008-rune positive recovers **3,008/3,008** and exactly reencrpyts the full chapter across all page boundaries. The original real ciphertext likewise reencrpyts under wrong keys, an expected bijective identity with zero historical probative value.
+Every native control beats the all-secret original maximum on every interval. These 60 samples are original-word-length matched; they are drawn from three authors, and do not constitute 60 independent literary sources. For both frozen planted true cipher keys (13,2,7,5) and (6,19,0,7), the original-layout 3,008-rune positive recovers **3,008/3,008** and exactly re-encrypts the full chapter across all page boundaries. The original real ciphertext likewise re-encrypts under wrong keys, an expected bijective identity with zero historical probative value.
 
 ## Decision and causal next fork
 
