@@ -1,6 +1,6 @@
 # A three-prime RSA interpretation of the 2013 PARABLE product fails original rune packet bounds
 
-**Agent14, 22 November 2026. Classification: bounded original-cipher architecture rejection; no new unknown plaintext, key or final destination.** [Windows/Node22 read-only SFT](../sims/lp2_parable1595277641_rsa7_original_gate_sft.cjs). The source independently supplies an RSA-compatible modulus, but supplies **no instruction to use RSA** or which unknown chapter is its receiver. This report tests the narrow, conventional raw-RSA proposal rather than promoting the hypothesis.
+**Agent14, 22 November 2026. Classification: bounded original-cipher architecture rejection; no new unknown plaintext, key or final destination.** [Windows/Node22 read-only SFT](../sims/lp2_parable1595277641_rsa7_original_gate_sft.cjs), **[actual original-data CI PASS 45076130017](https://github.com/FlareZ123/liber-primus/actions/runs/45076130017)**. The source independently supplies an RSA-compatible modulus, but supplies **no instruction to use RSA** or which unknown chapter is its receiver. This report tests the narrow, conventional raw-RSA proposal rather than promoting the hypothesis.
 
 ## Source-derived parameters and the attractive packet sizes
 
