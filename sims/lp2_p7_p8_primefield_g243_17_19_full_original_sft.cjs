@@ -62,11 +62,11 @@ function stream(ciphertext,start,stride,inverse,swap) {
   for(let i=0;i<ciphertext.length;i+=2){
     const block=ciphertext.slice(i,i+2);
     if(swap)block.reverse();
-    const decoded=mul(block,state);
-    if(swap)decoded.reverse();
+    const decodedInFieldBasis=mul(block,state);
+    const decoded=swap?decodedInFieldBasis.slice().reverse():decodedInFieldBasis;
     result.push(...decoded);
-    // Replay original field pair using the exactly inverse known state.
-    const undo=mul(decoded,inverseState);
+    // Replay in the SAME field basis; only then undo the optional basis swap.
+    const undo=mul(decodedInFieldBasis,inverseState);
     if(swap)undo.reverse();
     assert.deepEqual(undo,ciphertext.slice(i,i+2));
     state=mul(state,step);
